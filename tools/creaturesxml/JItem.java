@@ -1,12 +1,12 @@
-import games.stendhal.client.Sprite;
-import games.stendhal.client.SpriteStore;
-import games.stendhal.common.Pair;
+import games.stendhal.client.sprite.Sprite;
+import games.stendhal.client.sprite.SpriteStore;
 import games.stendhal.server.config.CreaturesXMLLoader;
 import games.stendhal.server.config.ItemsXMLLoader;
 import games.stendhal.server.entity.creature.impl.DropItem;
 import games.stendhal.server.entity.creature.impl.EquipItem;
 import games.stendhal.server.rule.defaultruleset.DefaultCreature;
 import games.stendhal.server.rule.defaultruleset.DefaultItem;
+import marauroa.common.Pair;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.io.BufferedReader;
@@ -835,7 +835,7 @@ public class JItem extends javax.swing.JFrame {
             
             actual.setValue(Integer.parseInt(itemValue.getText()));
             
-            List<String> canEquip=new LinkedList();
+            List<String> canEquip=new LinkedList<String>();
             for(Object sel: itemEquipable.getSelectedValues()) {
                 canEquip.add((String)sel);
             }

@@ -4,8 +4,8 @@
  * Created on 6 de mayo de 2007, 22:52
  */
 
-import games.stendhal.client.Sprite;
-import games.stendhal.client.SpriteStore;
+import games.stendhal.client.sprite.Sprite;
+import games.stendhal.client.sprite.SpriteStore;
 import games.stendhal.server.config.CreaturesXMLLoader;
 import games.stendhal.server.config.ItemsXMLLoader;
 import games.stendhal.server.entity.creature.impl.DropItem;
@@ -149,6 +149,16 @@ public class JCreature extends javax.swing.JFrame {
 
     private void drawSinglePart(Sprite sprite, double w, double h, Graphics g)  {
         clean(g);
+
+	// TODO: Draw bounding box of logical size passed (to show relative
+	// position/extents). Center left-right, Bottom align.
+
+	/*
+	 * Calculate sizes based on a 3x4 template layout.
+	 */
+	w = sprite.getWidth() / (3.0 * 32.0);
+	h = sprite.getHeight() / (4.0 * 32.0);
+
         if(w == 1.0D && h == 2D)
             w = 1.5D;
         int offset = (int)(h * 2D * 32D);
