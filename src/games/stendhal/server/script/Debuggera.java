@@ -280,7 +280,7 @@ public class Debuggera extends ScriptImpl {
 		}
 
 		// Set zone and position
-		npc.set(x, y);
+		npc.setPosition(x, y);
 		npc.setDirection(Direction.DOWN);
 		sandbox.add(npc);
 

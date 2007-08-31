@@ -305,7 +305,7 @@ public class BetManager extends ScriptImpl implements TurnListener {
 		sandbox.setZone(sandbox.getZone(admin));
 		int x = admin.getX() + 1;
 		int y = admin.getY();
-		npc.set(x, y);
+		npc.setPosition(x, y);
 		sandbox.add(npc);
 
 		// Create Dialog

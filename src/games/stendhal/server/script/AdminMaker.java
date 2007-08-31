@@ -207,7 +207,7 @@ public class AdminMaker extends ScriptImpl {
 		}
 
 		//Set zone and position
-		npc.set(x, y);
+		npc.setPosition(x, y);
 		sandbox.add(npc);
 
 		// Create Dialog
