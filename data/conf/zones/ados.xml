@@ -24,29 +24,27 @@
 
  <zone name="0_ados_mountain_nw" level="0" x="500512" y="499872" file="Level 0/ados/mountain_nw.tmx">
   <entity x="126" y="107">
-   <implementation class-name="games.stendhal.server.entity.Sign">
-    <parameter name="text">
-     Beware of bandits beyond!
-    </parameter>
-   </implementation>
+   <implementation class-name="games.stendhal.server.entity.Sign"/>
+   <attribute name="text">
+    Beware of bandits beyond!
+   </attribute>
   </entity>
+
   <entity x="77" y="82">
-    <implementation class-name="games.stendhal.server.entity.Sign">
-      <parameter name="text">
+    <implementation class-name="games.stendhal.server.entity.Sign"/>
+    <attribute name="text">
 North: Haizen's house
 East: Ados
 West: Semos
-      </parameter>
-      <parameter name="class">signpost</parameter>
-    </implementation>
+    </attribute>
+    <attribute name="class">signpost</attribute>
   </entity>
 
   <entity x="126" y="115">
-   <implementation class-name="games.stendhal.server.entity.Sign">
-    <parameter name="text">
-     Beware of bandits beyond!
-    </parameter>
-   </implementation>
+   <implementation class-name="games.stendhal.server.entity.Sign"/>
+   <attribute name="text">
+    Beware of bandits beyond!
+   </attribute>
   </entity>
 
   <portal x="75" y="50" ref="magician_house_entrance">
@@ -62,8 +60,8 @@ West: Semos
    <destination zone="0_ados_mountain_nw" ref="magician_house_entrance"/>
   </portal>
   <entity x="9" y="6">
-    <implementation class-name="games.stendhal.server.entity.Sign">
-      <parameter name="text">
+    <implementation class-name="games.stendhal.server.entity.Sign"/>
+    <attribute name="text">
 Summon scrolls will immediately
 summon a creature that will attack
 your foes. Strong magicians are
@@ -72,9 +70,8 @@ creatures. Therefore, some cities,
 such as Semos, have forbidden
 the usage of these scrolls in their
 areas.
-      </parameter>
-      <parameter name="class">book_red</parameter>
-    </implementation>
+    </attribute>
+    <attribute name="class">book_red</attribute>
   </entity>
  </zone>
 
@@ -87,22 +84,21 @@ areas.
   </portal>
 
   <entity x="53" y="48">
-   <implementation class-name="games.stendhal.server.entity.Sign">
-    <parameter name="text">
+   <implementation class-name="games.stendhal.server.entity.Sign"/>
+   <attribute name="text">
 Ados Wildlife Refuge
 Home for endangered animals
-    </parameter>
-   </implementation>
+   </attribute>
   </entity>
+
   <entity x="52" y="107">
-    <implementation class-name="games.stendhal.server.entity.Sign">
-      <parameter name="text">
+    <implementation class-name="games.stendhal.server.entity.Sign"/>
+    <attribute name="text">
 North: Wildlife refuge
 East: Ados
 West: Semos
-      </parameter>
-      <parameter name="class">signpost</parameter>
-    </implementation>
+    </attribute>
+    <attribute name="class">signpost</attribute>
   </entity>
  </zone>
 
@@ -180,14 +176,13 @@ West: Semos
    </portal>
    
    <entity x="18" y="85">
-     <implementation class-name="games.stendhal.server.entity.Sign">
-       <parameter name="text">
-         Home of Zara 
-         Dear postman, I'm on holiday!
-         Please leave my mail at my neighbour's house.
-       </parameter>
-       <parameter name="class">transparent</parameter>
-     </implementation>
+     <implementation class-name="games.stendhal.server.entity.Sign"/>
+     <attribute name="text">
+Home of Zara 
+Dear postman, I'm on holiday!
+Please leave my mail at my neighbour's house.
+     </attribute>
+     <attribute name="class">transparent</attribute>
    </entity>
    
    <portal x="38" y="52" ref="goldsmith_entrance">
@@ -278,12 +273,11 @@ West: Semos
 -->
 
     <entity x="8" y="1">
-     <implementation class-name="games.stendhal.server.entity.Sign">
-      <parameter name="text">
+     <implementation class-name="games.stendhal.server.entity.Sign"/>
+     <attribute name="text">
 Under new management. Chest to the right is still held by Semos Bank Merchants Ltd.
-      </parameter>
-      <parameter name="class">blackboard</parameter>
-     </implementation>
+     </attribute>
+     <attribute name="class">blackboard</attribute>
     </entity>
    </zone>
 
@@ -314,9 +308,9 @@ Under new management. Chest to the right is still held by Semos Bank Merchants L
    <zone name="int_ados_library" file="interiors/ados/library.tmx">
     <configurator class-name="games.stendhal.server.maps.ados.library.LibrarianNPC" />
 
-	<entity x="4" y="27">
-    	<implementation class-name="games.stendhal.server.entity.Sign">
-      		<parameter name="text">
+    <entity x="4" y="27">
+    	<implementation class-name="games.stendhal.server.entity.Sign"/>
+      	<attribute name="text">
 FISHING SPOTS IN FAIUMONI
 The best spot to fish for cod is in 
 Ados, as this species lives in the sea.
@@ -333,9 +327,8 @@ In a mountain lake near Ados is a spot
 where char fish are very easy to find.
 In Semos there is a lake which is rich 
 in roaches.
-      		</parameter>
-      		<parameter name="class">book_blue</parameter>
-     	</implementation>
+      	</attribute>
+      	<attribute name="class">book_blue</attribute>
     </entity>
 
     <portal x="8" y="30" ref="entrance_left">
@@ -893,16 +886,15 @@ in roaches.
    </zone>
    
    <zone name="0_ados_rock_w" level="0" x="500384" y="500000" file="Level 0/ados/rock_w.tmx">
-	   <entity x="14" y="50">
-		   <implementation class-name="games.stendhal.server.entity.Sign">
-			   <parameter name="text">
+    <entity x="14" y="50">
+     <implementation class-name="games.stendhal.server.entity.Sign"/>
+     <attribute name="text">
 West: Semos
 Northeast: Ados
 Southeast: Docks
-			   </parameter>
-			   <parameter name="class">signpost</parameter>
-		   </implementation>
-	   </entity>
+     </attribute>
+     <attribute name="class">signpost</attribute>
+    </entity>
    </zone>
    
    <zone name="0_ados_rock" level="0" x="500512" y="500000" file="Level 0/ados/rock.tmx">

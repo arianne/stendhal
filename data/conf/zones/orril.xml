@@ -162,15 +162,15 @@
   <portal x="39" y="5" ref="jynath_house_entrance">
    <destination zone="int_orril_jynath_house" ref="entrance"/>
   </portal>
+
   <entity x="67" y="9">
-    <implementation class-name="games.stendhal.server.entity.Sign">
-      <parameter name="text">
+    <implementation class-name="games.stendhal.server.entity.Sign"/>
+    <attribute name="text">
 North: Or'ril castle
 West: Fado
 East: Nalwor, Semos
-      </parameter>
-      <parameter name="class">signpost</parameter>
-    </implementation>
+    </attribute>
+    <attribute name="class">signpost</attribute>
   </entity>
  </zone>
 

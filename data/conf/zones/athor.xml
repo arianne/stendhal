@@ -272,41 +272,32 @@
            <parameter name="direction">down</parameter>
          </implementation>
        </entity>
+
        <entity x="83" y="42">
-         <implementation class-name="games.stendhal.server.entity.Sign">
-           <parameter name="text">
-             Changing Room for Women
-           </parameter>
-         </implementation>
+         <implementation class-name="games.stendhal.server.entity.Sign"/>
+         <attribute name="text">Changing Room for Women</attribute>
        </entity>
+
        <entity x="88" y="42">
-         <implementation class-name="games.stendhal.server.entity.Sign">
-           <parameter name="text">
-             Changing Room for Men
-           </parameter>
-         </implementation>
+         <implementation class-name="games.stendhal.server.entity.Sign"/>
+         <attribute name="text">Changing Room for Men</attribute>
        </entity>
+
        <entity x="112" y="96">
-         <implementation class-name="games.stendhal.server.entity.Sign">
-           <parameter name="text">
-             DANGER! Quicksand!
-           </parameter>
-         </implementation>
+         <implementation class-name="games.stendhal.server.entity.Sign"/>
+         <attribute name="text">DANGER! Quicksand!</attribute>
        </entity>
+
        <entity x="119" y="89">
-         <implementation class-name="games.stendhal.server.entity.Sign">
-           <parameter name="text">
-             DANGER! Quicksand!
-           </parameter>
-         </implementation>
+         <implementation class-name="games.stendhal.server.entity.Sign"/>
+         <attribute name="text">DANGER! Quicksand!</attribute>
        </entity>
+
        <entity x="120" y="104">
-         <implementation class-name="games.stendhal.server.entity.Sign">
-           <parameter name="text">
-             DANGER! Quicksand!
-           </parameter>
-         </implementation>
+         <implementation class-name="games.stendhal.server.entity.Sign"/>
+         <attribute name="text">DANGER! Quicksand!</attribute>
        </entity>
+
        <entity x="12" y="88">
     		<implementation class-name="games.stendhal.server.entity.FishSource">
      		<parameter name="species">surgeonfish</parameter>
@@ -420,9 +411,10 @@
            <parameter name="node2">28,31</parameter>
          </implementation>
    </entity>
+
    <entity x="24" y="35">
-         <implementation class-name="games.stendhal.server.entity.Sign">
-           <parameter name="text">
+         <implementation class-name="games.stendhal.server.entity.Sign"/>
+         <attribute name="text">
 BLACKJACK RULES
 
 You play against the bank. The goal is to have a higher number of points than the bank, but not more than 21.
@@ -430,9 +422,8 @@ You play against the bank. The goal is to have a higher number of points than th
 Jacks, queens, and kings are worth 10 points. Aces are worth 11 points, but only 1 point if your hand would exceed 21 points otherwise. All other cards are worth their number.
 
 You get your stake back when there is a draw. If you win, you get the double of your stake. You get the triple of your stake when you have a Blackjack (i.e. 21 points with only 2 cards).
-           </parameter>
-           <parameter name="class">blackboard</parameter>
-         </implementation>
+         </attribute>
+         <attribute name="class">blackboard</attribute>
        </entity>
      </zone>
 

@@ -74,14 +74,13 @@
            </portal>
            
   <entity x="16" y="10">
-    	<implementation class-name="games.stendhal.server.entity.Sign">
-      		<parameter name="text">
+    	<implementation class-name="games.stendhal.server.entity.Sign"/>
+      	<attribute name="text">
 Getting Married? Why not buy an engagement ring? 
 It's not an official engagement without the nun knowing, but your girl will like to wear a diamond ring!
 You'll definitely need a wedding ring. Come here to get yours cast once you are engaged!
-	</parameter>
-      		<parameter name="class">blackboard</parameter>
-     	</implementation>
+	</attribute>
+      	<attribute name="class">blackboard</attribute>
     </entity>
 
    	</zone>
@@ -175,16 +174,15 @@ You'll definitely need a wedding ring. Come here to get yours cast once you are 
              <attribute name="description">You see a table clean enough to eat from.</attribute>
   		   </entity>	
   		 <entity x="21" y="23">
-    	<implementation class-name="games.stendhal.server.entity.Sign">
-      		<parameter name="text">
+    	<implementation class-name="games.stendhal.server.entity.Sign"/>
+      	<attribute name="text">
 SOUP RECIPE
 
 carrot, salad (From Semos)
 onion, cauliflower, broccoli, leek, spinach, courgette (From Fado)
 collard (special exotic type of cabbage - hard to find. often grows indoors)
-</parameter>
-      		<parameter name="class">book_blue</parameter>
-     	</implementation>
+	</attribute>
+      	<attribute name="class">book_blue</attribute>
     </entity>  
   		   	    		   	   
          </zone>
@@ -198,8 +196,8 @@ collard (special exotic type of cabbage - hard to find. often grows indoors)
              <destination zone="0_fado_city" ref="house_entrance"/>
            </portal>
              <entity x="6" y="1">
-    	<implementation class-name="games.stendhal.server.entity.Sign">
-      		<parameter name="text">
+    	<implementation class-name="games.stendhal.server.entity.Sign"/>
+      	<attribute name="text">
 My Wish List
 
 cloak, elf cloak, dwarf cloak, blue elf cloak, stone cloak, green dragon cloak, 
@@ -207,9 +205,8 @@ bone dragon cloak, lich cloak, vampire cloak, blue dragon cloak ...
 
 ... I don't like the vulgar chaos cloak or ugly black dragon cloak, ugh! 
 Don't want them, no way!
-</parameter>
-      		<parameter name="class">blackboard</parameter>
-     	</implementation>
+	</attribute>
+      	<attribute name="class">blackboard</attribute>
     </entity>      
          </zone>
 
@@ -240,9 +237,10 @@ Don't want them, no way!
 	   <portal x="5" y="16" ref="entrance">
              <destination zone="0_fado_city" ref="weaponshop_entrance"/>
            </portal>
+
             <entity x="15" y="13">
-    	<implementation class-name="games.stendhal.server.entity.Sign">
-      		<parameter name="text">
+    	<implementation class-name="games.stendhal.server.entity.Sign"/>
+      	<attribute name="text">
 Gemstones and Precious metals
 
 Gems are typically hoarded by dragons. If you're strong enough to kill one,
@@ -251,9 +249,8 @@ gems, and so on.
 
 Gold is harder to find in a land not rich in minerals. Or'ril river has a spot
 where panning for gold is possible. this spot is south of Or'ril castle. 
-</parameter>
-      		<parameter name="class">book_blue</parameter>
-     	</implementation>
+	</attribute>
+      	<attribute name="class">book_blue</attribute>
     </entity>      
          </zone>
 	 
@@ -307,8 +304,8 @@ where panning for gold is possible. this spot is south of Or'ril castle.
            <destination zone="int_fado_hotel_0" ref="dressing_rooms_entrance"/>
          </portal>
         <entity x="21" y="5">
-    	<implementation class-name="games.stendhal.server.entity.Sign">
-      		<parameter name="text">
+    	<implementation class-name="games.stendhal.server.entity.Sign"/>
+      	<attribute name="text">
 ADVICE FOR THE GROOM:
 
 Remember to take a wedding ring, to give the bride, to the church.
@@ -316,9 +313,8 @@ Remind your bride to take a ring for you as well.
 
 When you get to the church, you ask the Priest if you can marry your bride.
 If the bride is called Helen, you should say 'marry Helen'
-	</parameter>
-      		<parameter name="class">book_red</parameter>
-     	</implementation>
+	</attribute>
+      	<attribute name="class">book_red</attribute>
     </entity>
          </zone>
          
@@ -338,8 +334,8 @@ If the bride is called Helen, you should say 'marry Helen'
            </portal>
 
                  <entity x="14" y="48">
-    	<implementation class-name="games.stendhal.server.entity.Sign">
-      		<parameter name="text">
+    	<implementation class-name="games.stendhal.server.entity.Sign"/>
+     	<attribute name="text">
 0. Blue Paradise - with a flaming bed
 1. Windy Love - be blown away
 2. Literary Haven - bathe, read and relax
@@ -359,9 +355,8 @@ If the bride is called Helen, you should say 'marry Helen'
 
 If you're looking for a honeymoon room, just say the room number you desire
 For example say:  11  if you want the room called Water of Love.
-	</parameter>
-      		<parameter name="class">book_red</parameter>
-     	</implementation>
+	</attribute>
+      	<attribute name="class">book_red</attribute>
     </entity>  
 
        <!--    these hotel rooms aren't in use yet
@@ -546,8 +541,8 @@ For example say:  11  if you want the room called Water of Love.
 <zone name="0_fado_forest" level="0" x="499744" y="500512" file="Level 0/fado/forest.tmx">
  <configurator class-name="games.stendhal.server.maps.fado.forest.WoodCutterNPC" />
   <entity x="63" y="82">
-    <implementation class-name="games.stendhal.server.entity.Sign">
-      <parameter name="text">
+    <implementation class-name="games.stendhal.server.entity.Sign"/>
+    <attribute name="text">
 I buy good axes:
 halberd            2000 
 golden twoside axe 4000 
@@ -557,10 +552,10 @@ black scythe       9000
 chaos axe         10000
 black halberd     12000
           Signed, Woody
-      </parameter>
-      <parameter name="class">signpost</parameter>
-    </implementation>
+    </attribute>
+    <attribute name="class">signpost</attribute>
   </entity>
+
   <portal x="60" y="80" ref="woodcutter_entrance">
    <destination zone="int_fado_woodcutter_lodge" ref="entrance"/>
   </portal>
