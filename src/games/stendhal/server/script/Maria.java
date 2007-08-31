@@ -50,7 +50,7 @@ public class Maria extends ScriptImpl {
 
 		// Create NPC
 		ScriptingNPC npc = new ScriptingNPC("Maria");
-		npc.setClass("tavernbarmaidnpc");
+		npc.setEntityClass("tavernbarmaidnpc");
 
 		// Place NPC in int_admin_playground on server start
 		String myZone = "int_admin_playground";

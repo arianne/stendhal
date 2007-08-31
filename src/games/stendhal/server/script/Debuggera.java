@@ -264,7 +264,7 @@ public class Debuggera extends ScriptImpl {
 
 		// Create NPC
 		ScriptingNPC npc = new ScriptingNPC("Debuggera");
-		npc.setClass("girlnpc");
+		npc.setEntityClass("girlnpc");
 
 		// Place NPC in int_admin_playground on server start
 		String myZone = "int_admin_playground";

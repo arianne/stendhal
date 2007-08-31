@@ -190,7 +190,7 @@ public class AdminMaker extends ScriptImpl {
 		// create npc
 		ScriptingNPC npc;
 		npc = new ScriptingNPC("Admin Maker");
-		npc.setClass("tavernbarmaidnpc");
+		npc.setEntityClass("tavernbarmaidnpc");
 
 		// Place NPC in int_admin_playground on server start
 		String myZone = "0_semos_city";
