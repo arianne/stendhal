@@ -115,13 +115,8 @@
 
 		<mkdir dir="${build_server_maps}"/>
 
-<!--
-		<javac srcdir="${src}/games/stendhal/server/maps" destdir="${build_server_maps}" debug="${javac.debug}" debuglevel="${javac.debuglevel}"  source="1.5" target="1.5" deprecation="${javac.deprecation}"
--->
-
 		<javac srcdir="${src}" destdir="${build_server_maps}" debug="${javac.debug}" debuglevel="${javac.debuglevel}" source="1.5" target="1.5" deprecation="${javac.deprecation}"
-           includes="games/stendhal/server/maps/**/*.java"
-           excludes="games/stendhal/server/maps/quests/**">
+           includes="games/stendhal/server/maps/**/*.java">
 			<compilerarg value="-encoding"/>
 			<compilerarg value="utf-8"/>
 			<compilerarg value="-Xlint:unchecked"/>
