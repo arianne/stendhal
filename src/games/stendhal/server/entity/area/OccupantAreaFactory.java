@@ -23,18 +23,6 @@ public abstract class OccupantAreaFactory implements ConfigurableFactory {
 	 */
 	protected abstract OccupantArea createArea(ConfigurableFactoryContext ctx);
 
-
-	/**
-	 * Extract the name of the area entity.
-	 *
-	 * @param	ctx		The configuration context.
-	 * @return	The entity's name.
-	 * @throws	IllegalArgumentException If the attribute is missing.
-	 */
-	protected String getName(ConfigurableFactoryContext ctx) {
-		return ctx.getRequiredString("name");
-	}
-
 	/**
 	 * Extract the width from context
 	 *

@@ -26,6 +26,6 @@ public class LifeDrainAreaFactory extends OccupantAreaFactory {
 
 	@Override
 	protected OccupantArea createArea(ConfigurableFactoryContext ctx) {
-		return new LifeDrainArea(getName(ctx), getWidth(ctx), getHeight(ctx), getDamage(ctx), getInterval(ctx));
+		return new LifeDrainArea(getWidth(ctx), getHeight(ctx), getDamage(ctx), getInterval(ctx));
 	}
 }

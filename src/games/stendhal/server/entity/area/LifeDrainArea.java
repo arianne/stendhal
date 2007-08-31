@@ -45,8 +45,8 @@ public class LifeDrainArea extends OccupantArea {
 	 * @param	interval	How often damage is given while
 	 *				stationary (in turns).
 	 */
-	public LifeDrainArea(String name, int width, int height, int damage, int interval) {
-		super(name, width, height, interval);
+	public LifeDrainArea(int width, int height, int damage, int interval) {
+		super(width, height, interval);
 
 		this.damage = damage;
 

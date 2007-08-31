@@ -67,4 +67,14 @@ public abstract class AreaEntity extends Entity {
 	public static void generateRPClass() {
 		createRPClass();
 	}
+
+
+	/**
+	 * Set the name.
+	 *
+	 * @param	name		The area name.
+	 */
+	public void setName(final String name) {
+		put("name", name);
+	}
 }

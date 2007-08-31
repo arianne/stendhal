@@ -51,10 +51,8 @@ public class OccupantArea extends AreaEntity implements MovementListener, TurnLi
 	 * @param	height		Height of this area
 	 * @param	interval	Standing action interval.
 	 */
-	public OccupantArea(String name, int width, int height, int interval) {
+	public OccupantArea(int width, int height, int interval) {
 		super(width, height);
-
-		put("name", name);
 
 		this.interval = interval;
 
@@ -204,11 +202,16 @@ public class OccupantArea extends AreaEntity implements MovementListener, TurnLi
 		 * Reregister incase coordinates/size changed (could be smarter)
 		 */
 		zone = getZone();
-		zone.removeMovementListener(this);
+
+		if(zone != null) {
+			zone.removeMovementListener(this);
+		}
 
 		super.update();
 
-		zone.addMovementListener(this);
+		if(zone != null) {
+			zone.addMovementListener(this);
+		}
 	}
 
 

@@ -107,7 +107,6 @@ West: Semos
    <configurator class-name="games.stendhal.server.maps.ados.wall.SoldierNPC"/>
    <entity x="88" y="78">
      <implementation class-name="games.stendhal.server.entity.area.LifeDrainArea">
-      <parameter name="name">deathmatch spikes</parameter>
       <parameter name="width">25</parameter>
       <parameter name="height">2</parameter>
       <parameter name="interval">2</parameter>
@@ -115,10 +114,11 @@ West: Semos
       <parameter name="probability">100</parameter>
       <parameter name="players-only">true</parameter>
      </implementation>
+     <attribute name="name">deathmatch spikes</attribute>
    </entity>
+
    <entity x="88" y="93">
      <implementation class-name="games.stendhal.server.entity.area.LifeDrainArea">
-      <parameter name="name">deathmatch spikes</parameter>
       <parameter name="width">25</parameter>
       <parameter name="height">2</parameter>
       <parameter name="interval">2</parameter>
@@ -126,10 +126,11 @@ West: Semos
       <parameter name="probability">100</parameter>
       <parameter name="players-only">true</parameter>
      </implementation>
+     <attribute name="name">deathmatch spikes</attribute>
    </entity>
+
    <entity x="88" y="80">
      <implementation class-name="games.stendhal.server.entity.area.LifeDrainArea">
-      <parameter name="name">deathmatch spikes</parameter>
       <parameter name="width">2</parameter>
       <parameter name="height">13</parameter>
       <parameter name="interval">2</parameter>
@@ -137,10 +138,11 @@ West: Semos
       <parameter name="probability">100</parameter>
       <parameter name="players-only">true</parameter>
      </implementation>
+     <attribute name="name">deathmatch spikes</attribute>
    </entity>
+
    <entity x="111" y="80">
      <implementation class-name="games.stendhal.server.entity.area.LifeDrainArea">
-      <parameter name="name">deathmatch spikes</parameter>
       <parameter name="width">2</parameter>
       <parameter name="height">13</parameter>
       <parameter name="interval">2</parameter>
@@ -148,7 +150,9 @@ West: Semos
       <parameter name="probability">100</parameter>
       <parameter name="players-only">true</parameter>
     </implementation>
+     <attribute name="name">deathmatch spikes</attribute>
    </entity>
+
    <!-- exit for the admin house -->
   <portal x="97" y="74" ref="house_exit_2">
    <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>

@@ -40,6 +40,6 @@ public class DamagingAreaFactory extends OccupantAreaFactory {
 
 	@Override
 	protected OccupantArea createArea(ConfigurableFactoryContext ctx) {
-		return new DamagingArea(getName(ctx), getWidth(ctx), getHeight(ctx), getDamage(ctx), getInterval(ctx), getProbability(ctx));
+		return new DamagingArea(getWidth(ctx), getHeight(ctx), getDamage(ctx), getInterval(ctx), getProbability(ctx));
 	}
 }
