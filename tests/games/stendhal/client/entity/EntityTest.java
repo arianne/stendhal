@@ -113,18 +113,6 @@ public class EntityTest {
 
 	}
 
-	@Test
-	public final void testGetSprite() {
-		Entity en;
-		RPObject rpo;
-		rpo = new RPObject();
-		rpo.put("type", "_hugo");
-
-		en = new MockEntity();
-		en.initialize(rpo);
-		assertNotNull(en.getView().getSprite());
-
-	}
 
 	@Test
 	public final void testSetAudibleRangegetAudibleArea() {
@@ -145,21 +133,6 @@ public class EntityTest {
 		Entity en = new MockEntity();
 		assertEquals(null, en.getSlot(""));
 
-	}
-
-	@Test
-	public final void testOfferedActions() {
-		Entity en = new MockEntity();
-		String[] str = new String[1];
-		str[0] = "Look";
-		assertEquals(str, en.getView().getActions());
-	}
-
-	@Test
-	public final void testBuildOfferedActions() {
-		Entity en = new MockEntity();
-		String[] expected = { "Look" };
-		assertEquals(expected, en.getView().getActions());
 	}
 
 	private class MockEntity extends Entity {
