@@ -3,9 +3,9 @@ package games.stendhal.server.maps.ados.magician_house;
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.config.ZoneConfigurator;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.spawner.PassiveEntityRespawnPoint;
-import games.stendhal.server.maps.ZoneConfigurator;
 
 import java.util.Map;
 

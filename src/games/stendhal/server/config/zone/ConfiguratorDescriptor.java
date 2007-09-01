@@ -10,7 +10,7 @@ package games.stendhal.server.config.zone;
 //
 
 import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.maps.ZoneConfigurator;
+import games.stendhal.server.config.ZoneConfigurator;
 
 import marauroa.common.Log4J;
 import marauroa.common.Logger;

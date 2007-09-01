@@ -2,10 +2,10 @@ package games.stendhal.server.maps.nalwor.tunnel;
 
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.config.ZoneConfigurator;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.creature.ItemGuardCreature;
 import games.stendhal.server.entity.spawner.CreatureRespawnPoint;
-import games.stendhal.server.maps.ZoneConfigurator;
 import games.stendhal.server.rule.defaultruleset.DefaultEntityManager;
 
 import java.util.Map;

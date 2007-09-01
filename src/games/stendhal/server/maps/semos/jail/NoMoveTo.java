@@ -1,7 +1,7 @@
 package games.stendhal.server.maps.semos.jail;
 
 import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.maps.ZoneConfigurator;
+import games.stendhal.server.config.ZoneConfigurator;
 
 import java.util.Map;
 
@@ -11,8 +11,6 @@ import java.util.Map;
  * @author hendrik
  */
 public class NoMoveTo implements ZoneConfigurator {
-
-
 	/**
 	 * Configure a zone.
 	 *

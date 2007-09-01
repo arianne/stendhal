@@ -1,7 +1,7 @@
 package games.stendhal.server.maps.ados.wall;
 
 import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.maps.ZoneConfigurator;
+import games.stendhal.server.config.ZoneConfigurator;
 import games.stendhal.server.maps.quests.AdosDeathmatch;
 import games.stendhal.server.util.Area;
 

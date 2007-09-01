@@ -1,7 +1,9 @@
 /*
+ * @(#) src/games/stendhal/server/config/ZoneConfigurator.java
  *
+ * $Id$
  */
-package games.stendhal.server.maps;
+package games.stendhal.server.config;
 
 //
 //
@@ -14,7 +16,6 @@ import java.util.Map;
  * Zone post-configuration.
  */
 public interface ZoneConfigurator {
-
 	/**
 	 * Configure a zone.
 	 *
