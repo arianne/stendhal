@@ -38,8 +38,20 @@ public class DamagingAreaFactory extends OccupantAreaFactory {
 		return ctx.getInt("probability", 0) / 100.0;
 	}
 
+
+	//
+	// OccupantAreaFactory
+	//
+
+	/**
+	 * Creates the OccupantArea.
+	 *
+	 * @param ctx	The configuration context.
+	 * @return An OccupantArea.
+	 * @throws IllegalArgumentException in case of an invalid configuration
+	 */
 	@Override
 	protected OccupantArea createArea(ConfigurableFactoryContext ctx) {
-		return new DamagingArea(getWidth(ctx), getHeight(ctx), getDamage(ctx), getInterval(ctx), getProbability(ctx));
+		return new DamagingArea(getWidth(ctx), getHeight(ctx), getInterval(ctx), getDamage(ctx), getProbability(ctx));
 	}
 }

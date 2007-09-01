@@ -13,18 +13,17 @@ import games.stendhal.server.config.factory.ConfigurableFactoryContext;
  * A base factory for <code>OccupantArea</code> objects.
  */
 public abstract class OccupantAreaFactory implements ConfigurableFactory {
-
 	/**
-	 * Creates the OccupantArea
+	 * Creates the OccupantArea.
 	 *
-	 * @param ctx
-	 * @return OccupantArea
+	 * @param ctx	The configuration context.
+	 * @return An OccupantArea.
 	 * @throws IllegalArgumentException in case of an invalid configuration
 	 */
 	protected abstract OccupantArea createArea(ConfigurableFactoryContext ctx);
 
 	/**
-	 * Extract the width from context
+	 * Extract the width from context.
 	 *
 	 * @param	ctx		The configuration context.
 	 * @return	The width, 1 if unspecified.
@@ -35,7 +34,7 @@ public abstract class OccupantAreaFactory implements ConfigurableFactory {
 	}
 
 	/**
-	 * Extract the height from context
+	 * Extract the height from context.
 	 *
 	 * @param	ctx		The configuration context.
 	 * @return	The height, 1 if unspecified.

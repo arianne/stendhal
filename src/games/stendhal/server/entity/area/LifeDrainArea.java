@@ -6,13 +6,7 @@
 
 package games.stendhal.server.entity.area;
 
-import games.stendhal.common.Level;
 import games.stendhal.server.entity.RPEntity;
-
-import java.util.Random;
-
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
 
 /**
  * An area that drains an RPEntity of HP while over it.
@@ -21,120 +15,74 @@ import marauroa.common.Logger;
 public class LifeDrainArea extends OccupantArea {
 
 	/**
-	 * The logger instance.
+	 * The minimum damage inflicted.
 	 */
-	private static final Logger logger = Log4J.getLogger(LifeDrainArea.class);
+	protected int minimumDamage;
 
 	/**
-	 * The damage inflicted each hit.
+	 * The ratio of HP to inflicted.
 	 */
-	protected int damage;
-
-	/**
-	 * Random number generator.
-	 */
-	protected Random rand;
+	protected double damageRatio;
 
 
 	/**
 	 * Create a damaging area.
 	 *
-	 * @param	damage		The amount of damage to inflict.
-	 * @param   width       Width of  this area
-	 * @param   height      Height of this area
+	 * @param	width		Width of  this area.
+	 * @param	height		Height of this area.
 	 * @param	interval	How often damage is given while
 	 *				stationary (in turns).
+	 * @param	damageRatio	The ratio of damage to inflict.
+	 * @param	minimumDamage	The minimum damage to inflict.
 	 */
-	public LifeDrainArea(int width, int height, int damage, int interval) {
+	public LifeDrainArea(final int width, final int height, final int interval, final double damageRatio, final int minimumDamage) {
 		super(width, height, interval);
 
-		this.damage = damage;
-
-		rand = new Random();
+		this.damageRatio = damageRatio;
+		this.minimumDamage = minimumDamage;
 
 		setResistance(50);
 	}
+
 
 	//
 	// LifeDrainArea
 	//
 
 	/**
-	 * Calculate the entity's final defense value.
-	 * Taken from new (potential replacement) combat code.
-	 */
-	protected float calculateDefense(RPEntity entity) {
-		float potential;
-		float min;
-		float score;
-
-		float armor = entity.getItemDef() + 1.0f;
-		int def = entity.getDEF();
-
-		if (logger.isDebugEnabled()) {
-			logger.debug("defender has " + def + " and uses a armor of " + armor);
-		}
-
-		/*
-		 * The maximum defense skill can double armor effectiveness
-		 */
-		potential = ((float) Level.getWisdom(def)) * 2.0f * armor;
-
-		/*
-		 * Wisdom allows a certain amount of skill to always be used
-		 */
-		min = (float) Level.getWisdom(entity.getLevel()) * 0.60f;
-
-		score = ((rand.nextFloat() * (1.0f - min)) + min) * potential;
-
-		/*
-		 * Account for karma (+/-10%) potential
-		 */
-		score += ((float) entity.useKarma(0.1) * potential);
-
-		if (logger.isDebugEnabled()) {
-			logger.debug("DEF MAX: " + potential + "  DEF SCORE: " + score);
-		}
-
-		return score;
-	}
-
-	/**
 	 * Inflict damage on an entity.
 	 *
 	 * @param	entity		The entity to damage.
+	 *
+	 * @return	<code>false</code> if this entity should be removed
+	 *		from further processing, <code>true</code> otherwise.
 	 */
 	protected boolean doDamage(RPEntity entity) {
-//		float attack;
-//		float defense;
-		int actualDamage;
+		int hp = entity.getHP();
 
 		/*
-		 * Don't beat a [near] dead horse!
+		 * Don't beat a dead horse!
 		 */
-		if (entity.getHP() <= 1) {
+		if (hp == 0) {
 			return false;
 		}
 
 		/*
-		 * TEMP HACK - Emulate some of user's def.
+		 * Can't touch a ghost
 		 */
-//		attack = damage;
-//		defense = calculateDefense(entity);
-//		actualDamage = Math.round(attack - defense);
-
-// XXX - Do better stuff later
-		actualDamage = entity.getHP() / 10;
-
-		//logger.info("attack: " + attack);
-		//logger.info("defense: " + defense);
-		//logger.info("actualDamage: " + actualDamage);
-
-		if (actualDamage <= 0) {
+		if(entity.isGhost()) {
 			return true;
 		}
 
-		entity.onDamaged(this, Math.min(actualDamage, entity.getHP()));
+		int damage = (int) (hp * damageRatio);
+
+		damage = Math.max(damage, minimumDamage);
+		damage = Math.min(damage, hp);
+
+		if (damage != 0) {
+			entity.onDamaged(this, damage);
+		}
+
 		return true;
 	}
 
@@ -159,8 +107,7 @@ public class LifeDrainArea extends OccupantArea {
 		}
 
 		entity.onAttacked(this, true);
-		doDamage(entity);
-		return true;
+		return doDamage(entity);
 	}
 
 	/**
@@ -173,8 +120,7 @@ public class LifeDrainArea extends OccupantArea {
 	 */
 	@Override
 	protected boolean handleInterval(RPEntity entity) {
-		doDamage(entity);
-		return true;
+		return doDamage(entity);
 	}
 
 

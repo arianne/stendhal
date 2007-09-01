@@ -46,15 +46,15 @@ public class DamagingArea extends OccupantArea {
 	/**
 	 * Create a damaging area.
 	 *
-	 * @param	damage		The amount of damage to inflict.
 	 * @param   width       Width of  this area
 	 * @param   height      Height of this area
 	 * @param	interval	How often damage is given while
 	 *				stationary (in turns).
+	 * @param	damage		The amount of damage to inflict.
 	 * @param	probability	The chance of damage while walking
 	 *				(0.0 - 1.0).
 	 */
-	public DamagingArea(int width, int height, int damage, int interval, double probability) {
+	public DamagingArea(final int width, final int height, final int interval, final int damage, final double probability) {
 		super(width, height, interval);
 
 		this.damage = damage;
@@ -113,11 +113,13 @@ public class DamagingArea extends OccupantArea {
 	 * Inflict damage on an entity.
 	 *
 	 * @param	entity		The entity to damage.
+	 *
+	 * @return	<code>false</code> if this entity should be removed
+	 *		from further processing, <code>true</code> otherwise.
 	 */
 	protected boolean doDamage(RPEntity entity) {
 		float attack;
 		float defense;
-		int actualDamage;
 
 		/*
 		 * Don't beat a dead horse!
@@ -127,21 +129,29 @@ public class DamagingArea extends OccupantArea {
 		}
 
 		/*
+		 * Can't touch a ghost
+		 */
+		if(entity.isGhost()) {
+			return true;
+		}
+
+		/*
 		 * TEMP HACK - Emulate some of user's def.
 		 */
 		attack = damage;
 		defense = calculateDefense(entity);
-		actualDamage = Math.round(attack - defense);
+		int actualDamage = Math.round(attack - defense);
 
 		//logger.info("attack: " + attack);
 		//logger.info("defense: " + defense);
-		//logger.info("actualDamage: " + actualDamage);
+		//logger.info("damage: " + damage);
 
-		if (actualDamage <= 0) {
-			return true;
+		actualDamage = Math.min(actualDamage, entity.getHP());
+
+		if (actualDamage != 0) {
+			entity.onDamaged(this, actualDamage);
 		}
 
-		entity.onDamaged(this, Math.min(actualDamage, entity.getHP()));
 		return true;
 	}
 
@@ -166,8 +176,7 @@ public class DamagingArea extends OccupantArea {
 		}
 
 		entity.onAttacked(this, true);
-		doDamage(entity);
-		return true;
+		return doDamage(entity);
 	}
 
 	/**
@@ -180,8 +189,7 @@ public class DamagingArea extends OccupantArea {
 	 */
 	@Override
 	protected boolean handleInterval(RPEntity entity) {
-		doDamage(entity);
-		return true;
+		return doDamage(entity);
 	}
 
 	/**
