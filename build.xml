@@ -79,9 +79,11 @@
 		<delete dir="${buildroot}/build_client_data"/>
 		<delete dir="${build_server}"/>
 		<delete dir="${build_server_maps}"/>
+		<delete dir="${build_server_script}"/>
 		<delete dir="${buildroot}/build_server_quests"/>
 		<delete dir="${buildroot}/build_server_xmlconf"/>
 		<delete dir="${build_tests}"/>
+		<delete dir="${build_tools}"/>
 		<delete dir="${buildroot}/build_tiled_convertmaps"/>
 	</target>
 
@@ -92,9 +94,15 @@
 		<copy todir="${build_server}/data/conf" file="data/conf/stendhalcreateaccount.properties"/>
 		<copy todir="${build_server}/games/stendhal/server" file="${src}/games/stendhal/server/stendhal_init.sql"/>
 
-		<javac srcdir="${src}" destdir="${build_server}" debug="${javac.debug}" debuglevel="${javac.debuglevel}" source="1.5" target="1.5" deprecation="${javac.deprecation}"
-           includes="games/stendhal/server/**, games/stendhal/common/**"
-           excludes="games/stendhal/server/maps/**, games/stendhal/server/script/**, games/stendhal/client/**, games/stendhal/tools/**">
+		<javac srcdir="${src}" destdir="${build_server}" debug="${javac.debug}" debuglevel="${javac.debuglevel}" source="1.5" target="1.5" deprecation="${javac.deprecation}">
+			<include name="games/stendhal/common/*.java"/>
+			<include name="games/stendhal/common/**/*.java"/>
+
+			<include name="games/stendhal/server/*.java"/>
+			<include name="games/stendhal/server/**/*.java"/>
+			<exclude name="games/stendhal/server/maps/**"/>
+			<exclude name="games/stendhal/server/script/**"/>
+
 			<compilerarg value="-encoding"/>
 			<compilerarg value="utf8"/>
 			<compilerarg value="-Xlint:unchecked"/>
@@ -115,11 +123,15 @@
 
 		<mkdir dir="${build_server_maps}"/>
 
-		<javac srcdir="${src}" destdir="${build_server_maps}" debug="${javac.debug}" debuglevel="${javac.debuglevel}" source="1.5" target="1.5" deprecation="${javac.deprecation}"
-           includes="games/stendhal/server/maps/**/*.java">
+		<javac srcdir="${src}" destdir="${build_server_maps}" debug="${javac.debug}" debuglevel="${javac.debuglevel}" source="1.5" target="1.5" deprecation="${javac.deprecation}">
+			<include name="games/stendhal/server/maps/*.java"/>
+			<exclude name="games/stendhal/server/maps/ZoneConfigurator.java"/>
+			<include name="games/stendhal/server/maps/**/*.java"/>
+
 			<compilerarg value="-encoding"/>
 			<compilerarg value="utf-8"/>
 			<compilerarg value="-Xlint:unchecked"/>
+
 			<classpath>
 				<pathelement path="${build_server}"/>
 				<pathelement path="${marauroa_jar}"/>
@@ -152,11 +164,13 @@
 
 		<mkdir dir="${build_server_script}"/>
 
-		<javac srcdir="${src}" destdir="${build_server_script}" debug="${javac.debug}" debuglevel="${javac.debuglevel}"  source="1.5" target="1.5" deprecation="${javac.deprecation}"
-           includes="games/stendhal/server/script/**.java">
+		<javac srcdir="${src}" destdir="${build_server_script}" debug="${javac.debug}" debuglevel="${javac.debuglevel}"  source="1.5" target="1.5" deprecation="${javac.deprecation}">
+			<include name="games/stendhal/server/script/*.java"/>
+
 			<compilerarg value="-encoding"/>
 			<compilerarg value="utf-8"/>
 			<compilerarg value="-Xlint:unchecked"/>
+
 			<classpath>
 				<pathelement path="${marauroa_jar}"/>
 				<pathelement path="${log4j_jar}"/>
@@ -186,7 +200,7 @@
                 <fileset file="libs/marauroa.jar"/>
                 <fileset file="libs/log4j.jar"/>
             </copy>
-            <exec command="java -Xmx256m -cp run/ -jar run/${client_jarname}"/>
+            <exec command="java -Xmx256m -cp run -jar run/${client_jarname}"/>
             <!-- we've run the program, so delete the jars -->
             <delete dir="run"/>
 
@@ -200,12 +214,18 @@
 
        	<copy todir="${build_client}/games/stendhal/client/gui" file="${src}/games/stendhal/client/gui/credits.txt"/>
 
-		<javac srcdir="${src}" destdir="${build_client}" debug="${javac.debug}" debuglevel="${javac.debuglevel}" source="1.5" target="1.5" deprecation="${javac.deprecation}"
-           includes="games/stendhal/client/**, games/stendhal/common/**"
-           excludes="games/stendhal/server/**, games/stendhal/tools/**, games/stendhal/client/update/Starter.java">
+		<javac srcdir="${src}" destdir="${build_client}" debug="${javac.debug}" debuglevel="${javac.debuglevel}" source="1.5" target="1.5" deprecation="${javac.deprecation}">
+			<include name="games/stendhal/client/*.java"/>
+			<include name="games/stendhal/client/**/*.java"/>
+			<exclude name="games/stendhal/client/update/Starter.java"/>
+
+			<include name="games/stendhal/common/*.java"/>
+			<include name="games/stendhal/common/**/*.java"/>
+
 			<compilerarg value="-encoding"/>
 			<compilerarg value="utf-8"/>
 			<compilerarg value="-Xlint:unchecked"/>
+
 			<classpath>
 				<pathelement path="${marauroa_jar}"/>
 				<pathelement path="${log4j_jar}"/>
@@ -215,11 +235,13 @@
 
 		<!-- compile Starter.java for Java 1.2. So we will be able to
   		 display a dialogbox if running on an old Java Version -->
-		<javac srcdir="${src}" destdir="${build_client}" debug="${javac.debug}" debuglevel="${javac.debuglevel}" source="1.2" target="1.2" deprecation="${javac.deprecation}"
-           includes="games/stendhal/client/update/Starter.java">
+		<javac srcdir="${src}" destdir="${build_client}" debug="${javac.debug}" debuglevel="${javac.debuglevel}" source="1.2" target="1.2" deprecation="${javac.deprecation}">
+			<include name="games/stendhal/client/update/Starter.java"/>
+
 			<compilerarg value="-encoding"/>
 			<compilerarg value="utf-8"/>
 		</javac>
+
 		<copy todir="${build_client}/games/stendhal/client/update">
 			<fileset file="${src}/games/stendhal/client/update/game*.properties"/>
 		</copy>
@@ -447,11 +469,13 @@
 	<target name="rendermaps" description="Converts the *.tmx files to PNG images scaled 1:16">
 		<mkdir dir="${build_tiled_convertmaps}"/>
 
-		<javac srcdir="${src}" destdir="${build_tiled_convertmaps}" debug="${javac.debug}" debuglevel="${javac.debuglevel}" deprecation="${javac.deprecation}"
-           includes="games/stendhal/tools/MapConverter.java">
+		<javac srcdir="${src}" destdir="${build_tiled_convertmaps}" debug="${javac.debug}" debuglevel="${javac.debuglevel}" deprecation="${javac.deprecation}">
+			<include name="games/stendhal/tools/MapConverter.java"/>
+
 			<compilerarg value="-encoding"/>
 			<compilerarg value="utf-8"/>
 			<compilerarg value="-Xlint:unchecked"/>
+
 			<classpath>
 				<pathelement path="${build_tiled_convertmaps}"/>
 				<pathelement path="${marauroa_jar}"/>
@@ -478,10 +502,12 @@
 	<target name="updatemaps" description="Load and save TMX files to fix tilesets changes.">
 		<mkdir dir="${build_tiled_convertmaps}"/>
 
-		<javac srcdir="${src}" destdir="${build_tiled_convertmaps}" debug="${javac.debug}" debuglevel="${javac.debuglevel}" deprecation="${javac.deprecation}"
-           includes="games/stendhal/tools/MapUpdater.java">
+		<javac srcdir="${src}" destdir="${build_tiled_convertmaps}" debug="${javac.debug}" debuglevel="${javac.debuglevel}" deprecation="${javac.deprecation}">
+			<include name="games/stendhal/tools/MapUpdater.java"/>
+
 			<compilerarg value="-encoding"/>
 			<compilerarg value="utf-8"/>
+
 			<classpath>
 				<pathelement path="${build_tiled_convertmaps}"/>
 				<pathelement path="${marauroa_jar}"/>
