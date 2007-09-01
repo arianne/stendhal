@@ -55,8 +55,7 @@ public class AdminSign extends ScriptImpl {
 			}
 
 			games.stendhal.server.entity.Sign sign = new games.stendhal.server.entity.Sign();
-			sign.setX(x);
-			sign.setY(y);
+			sign.setPosition(x, y);
 
 			// concat text ignoring first 3 args
 			StringBuffer sb = new StringBuffer();
