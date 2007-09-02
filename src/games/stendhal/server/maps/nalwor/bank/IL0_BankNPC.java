@@ -3,7 +3,6 @@ package games.stendhal.server.maps.nalwor.bank;
 import games.stendhal.common.Direction;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Node;
@@ -18,9 +17,6 @@ import java.util.Map;
  * @author kymara
  */
 public class IL0_BankNPC implements ZoneConfigurator {
-
-	private NPCList npcs = NPCList.get();
-
 	//
 	// ZoneConfigurator
 	//
@@ -57,7 +53,7 @@ public class IL0_BankNPC implements ZoneConfigurator {
 				//remaning behaviour defined in Take Gold for Grafindle quest
 			}
 		};
-		npcs.add(oldnpc);
+
 		zone.assignRPObjectID(oldnpc);
 		oldnpc.setDirection(Direction.DOWN);
 		oldnpc.setEntityClass("elfbankeroldnpc");
@@ -94,7 +90,6 @@ public class IL0_BankNPC implements ZoneConfigurator {
 			}
 		};
 		ladynpc.setDescription("You see a pretty female elf in a beautiful dress.");
-		npcs.add(ladynpc);
 		zone.assignRPObjectID(ladynpc);
 		ladynpc.setEntityClass("elfbankladynpc");
 		ladynpc.setDirection(Direction.DOWN);

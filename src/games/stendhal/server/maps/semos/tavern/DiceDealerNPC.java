@@ -4,7 +4,6 @@ import games.stendhal.common.Direction;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
 import games.stendhal.server.entity.npc.CroupierNPC;
-import games.stendhal.server.entity.npc.NPCList;
 
 import java.awt.Rectangle;
 import java.util.Map;
@@ -13,9 +12,6 @@ import java.util.Map;
  * Inside Semos Tavern - Level 0 (ground floor)
  */
 public class DiceDealerNPC implements ZoneConfigurator {
-
-	private NPCList npcs = NPCList.get();
-
 	/**
 	 * Configure a zone.
 	 *
@@ -47,8 +43,6 @@ public class DiceDealerNPC implements ZoneConfigurator {
 				addGoodbye();
 			}
 		};
-
-		npcs.add(ricardo);
 
 		zone.assignRPObjectID(ricardo);
 

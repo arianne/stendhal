@@ -3,7 +3,6 @@ package games.stendhal.server.maps.ados.goldsmith;
 import games.stendhal.common.Direction;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.ProducerBehaviour;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.pathfinder.FixedPath;
@@ -21,9 +20,6 @@ import java.util.Map;
  * @author dine
  */
 public class GoldsmithNPC implements ZoneConfigurator {
-
-	private NPCList npcs = NPCList.get();
-
 	/**
 	 * Configure a zone.
 	 *
@@ -90,7 +86,7 @@ public class GoldsmithNPC implements ZoneConfigurator {
 
 			}
 		};
-		npcs.add(goldsmith);
+
 		zone.assignRPObjectID(goldsmith);
 		goldsmith.setEntityClass("goldsmithnpc");
 		goldsmith.setDirection(Direction.DOWN);

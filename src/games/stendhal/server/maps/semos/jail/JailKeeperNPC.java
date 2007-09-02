@@ -2,7 +2,6 @@ package games.stendhal.server.maps.semos.jail;
 
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Node;
@@ -17,9 +16,6 @@ import java.util.Map;
  * @author hendrik
  */
 public class JailKeeperNPC implements ZoneConfigurator {
-
-	private NPCList npcs = NPCList.get();
-
 	/**
 	 * Configure a zone.
 	 *
@@ -52,7 +48,6 @@ public class JailKeeperNPC implements ZoneConfigurator {
 				addGoodbye();
 			}
 		};
-		npcs.add(npc);
 
 		zone.assignRPObjectID(npc);
 		npc.setEntityClass("youngsoldiernpc");

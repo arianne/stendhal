@@ -3,14 +3,11 @@ package games.stendhal.server.maps.semos.tavern;
 import games.stendhal.common.Direction;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
 import java.util.Map;
 
 public class RichardStallmanNPC implements ZoneConfigurator {
-	private NPCList npcs = NPCList.get();
-
 	/**
 	 * Configure a zone.
 	 *
@@ -51,7 +48,7 @@ public class RichardStallmanNPC implements ZoneConfigurator {
 				addGoodbye();
 			}
 		};
-		npcs.add(stallman);
+
 		zone.assignRPObjectID(stallman);
 		stallman.setEntityClass("richardstallmannpc");
 		stallman.setPosition(26, 11);

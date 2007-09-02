@@ -3,7 +3,6 @@ package games.stendhal.server.maps.athor.dressingroom_female;
 import games.stendhal.common.Direction;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.OutfitChangerBehaviour;
 import games.stendhal.server.entity.npc.ProducerBehaviour;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -74,7 +73,7 @@ public class LifeguardNPC implements ZoneConfigurator {
 
 			}
 		};
-		NPCList.get().add(pam);
+
 		zone.assignRPObjectID(pam);
 		pam.setEntityClass("lifeguardfemalenpc");
 		pam.setDirection(Direction.LEFT);

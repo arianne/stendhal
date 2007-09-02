@@ -4,16 +4,12 @@ import games.stendhal.common.Direction;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
 import java.util.Arrays;
 import java.util.Map;
 
 public class SmithNPC implements ZoneConfigurator {
-
-	private NPCList npcs = NPCList.get();
-
 	/**
 	 * Configure a zone.
 	 *
@@ -57,6 +53,5 @@ public class SmithNPC implements ZoneConfigurator {
 		smith.setDirection(Direction.DOWN);
 		smith.initHP(100);
 		zone.add(smith);
-		npcs.add(smith);
 	}
 }

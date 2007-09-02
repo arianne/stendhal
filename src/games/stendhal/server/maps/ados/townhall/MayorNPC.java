@@ -2,7 +2,6 @@ package games.stendhal.server.maps.ados.townhall;
 
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SellerBehaviour;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -20,9 +19,6 @@ import java.util.Map;
  * @author kymara
  */
 public class MayorNPC implements ZoneConfigurator {
-
-	private NPCList npcs = NPCList.get();
-
 	private ShopList shops = ShopList.get();
 
 	/**
@@ -65,7 +61,6 @@ public class MayorNPC implements ZoneConfigurator {
 			}
 		};
 		mayor.setDescription("You see the respected mayor of Ados");
-		npcs.add(mayor);
 		zone.assignRPObjectID(mayor);
 		mayor.setEntityClass("badmayornpc");
 		mayor.setPosition(3, 10);

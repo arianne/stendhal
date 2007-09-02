@@ -4,7 +4,6 @@ import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
 import games.stendhal.server.entity.npc.BuyerBehaviour;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.pathfinder.FixedPath;
@@ -19,9 +18,6 @@ import java.util.Map;
  * Inside Semos Tavern - Level 1 (upstairs)
  */
 public class RareWeaponsSellerNPC implements ZoneConfigurator {
-
-	private NPCList npcs = NPCList.get();
-
 	private ShopList shops = ShopList.get();
 
 	/**
@@ -72,7 +68,6 @@ public class RareWeaponsSellerNPC implements ZoneConfigurator {
 		mcpegleg.setDescription("You see a dubious man with a patched eye and a wooden leg.");
 
 		// Add our new NPC to the game world
-		npcs.add(mcpegleg);
 		zone.assignRPObjectID(mcpegleg);
 		mcpegleg.setEntityClass("pirate_sailornpc");
 		mcpegleg.setPosition(16, 3);

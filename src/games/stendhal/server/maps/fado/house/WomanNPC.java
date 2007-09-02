@@ -2,7 +2,6 @@ package games.stendhal.server.maps.fado.house;
 
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Node;
@@ -17,9 +16,6 @@ import java.util.Map;
  * @author kymara
  */
 public class WomanNPC implements ZoneConfigurator {
-
-	private NPCList npcs = NPCList.get();
-
 	//
 	// ZoneConfigurator
 	//
@@ -63,7 +59,6 @@ public class WomanNPC implements ZoneConfigurator {
 			}
 		};
 		woman.setDescription("You see a fashionably dressed young woman. She looks like a bit of a flirt.");
-		npcs.add(woman);
 		zone.assignRPObjectID(woman);
 		woman.setEntityClass("youngwomannpc");
 		woman.setPosition(3, 4);

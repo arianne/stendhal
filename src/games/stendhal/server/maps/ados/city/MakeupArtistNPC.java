@@ -3,7 +3,6 @@ package games.stendhal.server.maps.ados.city;
 import games.stendhal.common.Direction;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.OutfitChangerBehaviour;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
@@ -16,9 +15,6 @@ import java.util.Map;
  * @author hendrik
  */
 public class MakeupArtistNPC implements ZoneConfigurator {
-
-	private NPCList npcs = NPCList.get();
-
 	/**
 	 * Configure a zone.
 	 *
@@ -56,7 +52,7 @@ public class MakeupArtistNPC implements ZoneConfigurator {
 				addOutfitChanger(behaviour, "buy");
 			}
 		};
-		npcs.add(npc);
+
 		zone.assignRPObjectID(npc);
 		npc.setEntityClass("woman_008_npc");
 		npc.setPosition(20, 13);

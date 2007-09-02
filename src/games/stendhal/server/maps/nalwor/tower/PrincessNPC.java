@@ -3,7 +3,6 @@ package games.stendhal.server.maps.nalwor.tower;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Node;
@@ -18,10 +17,6 @@ import java.util.Map;
  * @author kymara
  */
 public class PrincessNPC implements ZoneConfigurator {
-
-	private NPCList npcs = NPCList.get();
-
-
 	/**
 	 * Configure a zone.
 	 *
@@ -61,7 +56,6 @@ public class PrincessNPC implements ZoneConfigurator {
 			}
 		};
 		npc.setDescription("You see a beautiful but forlorn High Elf.");
-		npcs.add(npc);
 		zone.assignRPObjectID(npc);
 		npc.setEntityClass("elfprincessnpc");
 		npc.setPosition(17, 13);

@@ -5,7 +5,6 @@ import games.stendhal.server.config.ZoneConfigurator;
 import games.stendhal.server.entity.npc.BuyerBehaviour;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.pathfinder.FixedPath;
@@ -22,9 +21,6 @@ import java.util.Map;
  * @author kymara
  */
 public class CraftsmanNPC implements ZoneConfigurator {
-
-	private NPCList npcs = NPCList.get();
-
 	private ShopList shops = ShopList.get();
 
 	/**
@@ -62,7 +58,6 @@ public class CraftsmanNPC implements ZoneConfigurator {
 			}
 		};
 		npc.setDescription("You see Lupos, an albino elf.");
-		npcs.add(npc);
 		zone.assignRPObjectID(npc);
 		npc.setEntityClass("albinoelfnpc");
 		npc.setPosition(3, 11);

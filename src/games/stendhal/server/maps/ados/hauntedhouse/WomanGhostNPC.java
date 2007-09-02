@@ -2,7 +2,6 @@ package games.stendhal.server.maps.ados.hauntedhouse;
 
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Node;
@@ -17,9 +16,6 @@ import java.util.Map;
  * @author kymara
  */
 public class WomanGhostNPC implements ZoneConfigurator {
-
-	private NPCList npcs = NPCList.get();
-
 	//
 	// ZoneConfigurator
 	//
@@ -67,7 +63,6 @@ public class WomanGhostNPC implements ZoneConfigurator {
 		woman.setDescription("You see a ghostly figure of a woman. She appears somehow sad.");
 		woman.setResistance(0);
 
-		npcs.add(woman);
 		zone.assignRPObjectID(woman);
 		woman.setEntityClass("woman_011_npc");
 		// She is a ghost so she is see through

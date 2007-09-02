@@ -2,7 +2,6 @@ package games.stendhal.server.maps.fado.tavern;
 
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SellerBehaviour;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.pathfinder.FixedPath;
@@ -13,17 +12,12 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-
 /**
  * Builds the tavern maid NPC.
  *
  * @author timothyb89/kymara
  */
 public class MaidNPC implements ZoneConfigurator {
-
-	private NPCList npcs = NPCList.get();
-
-
 	//
 	// ZoneConfigurator
 	//
@@ -79,7 +73,7 @@ public class MaidNPC implements ZoneConfigurator {
 				addGoodbye("Goodbye, all you customers do work me hard ...");
 			}
 		};
-		npcs.add(tavernMaid);
+
 		zone.assignRPObjectID(tavernMaid);
 		tavernMaid.setEntityClass("oldmaidnpc");
 		tavernMaid.setPosition(10, 16);

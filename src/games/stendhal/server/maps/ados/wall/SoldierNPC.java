@@ -2,7 +2,6 @@ package games.stendhal.server.maps.ados.wall;
 
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Node;
@@ -17,9 +16,6 @@ import java.util.Map;
  * @author hendrik
  */
 public class SoldierNPC implements ZoneConfigurator {
-
-	private NPCList npcs = NPCList.get();
-
 	/**
 	 * Configure a zone.
 	 *
@@ -61,7 +57,6 @@ public class SoldierNPC implements ZoneConfigurator {
 		npc.setEntityClass("youngsoldiernpc");
 		npc.setPosition(84, 109);
 		npc.initHP(100);
-		npcs.add(npc);
 		zone.assignRPObjectID(npc);
 		zone.add(npc);
 	}

@@ -3,7 +3,6 @@ package games.stendhal.server.maps.orril.dwarfmine;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Node;
@@ -19,13 +18,6 @@ import java.util.Map;
  * @author kymara
  */
 public class BlacksmithNPC implements ZoneConfigurator {
-
-	private NPCList npcs;
-
-	public BlacksmithNPC() {
-		this.npcs = NPCList.get();
-	}
-
 	/**
 	 * Configure a zone.
 	 *
@@ -78,7 +70,6 @@ public class BlacksmithNPC implements ZoneConfigurator {
 		hogart.setEntityClass("olddwarfnpc");
 		hogart.setPosition(20, 11);
 		hogart.initHP(100);
-		npcs.add(hogart);
 		zone.add(hogart);
 	}
 }

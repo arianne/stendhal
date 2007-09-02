@@ -3,7 +3,6 @@ package games.stendhal.server.maps.fado.dressingrooms;
 import games.stendhal.common.Direction;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.OutfitChangerBehaviour;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
@@ -51,7 +50,7 @@ public class BrideAssistantNPC implements ZoneConfigurator {
 				addOutfitChanger(behaviour, "wear");
 			}
 		};
-		NPCList.get().add(npc);
+
 		zone.assignRPObjectID(npc);
 		npc.setEntityClass("woman_003_npc");
 		npc.setDirection(Direction.RIGHT);

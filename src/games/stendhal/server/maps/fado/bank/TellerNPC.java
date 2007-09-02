@@ -2,7 +2,6 @@ package games.stendhal.server.maps.fado.bank;
 
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Node;
@@ -17,9 +16,6 @@ import java.util.Map;
  * @author timothyb89
  */
 public class TellerNPC implements ZoneConfigurator {
-
-	private NPCList npcs = NPCList.get();
-
 	//
 	// ZoneConfigurator
 	//
@@ -58,7 +54,6 @@ public class TellerNPC implements ZoneConfigurator {
 			}
 		};
 
-		npcs.add(bankNPC);
 		zone.assignRPObjectID(bankNPC);
 		bankNPC.setEntityClass("youngnpc");
 		bankNPC.setPosition(15, 3);

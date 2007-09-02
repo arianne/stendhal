@@ -2,7 +2,6 @@ package games.stendhal.server.maps.orril.magician_house;
 
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Node;
@@ -15,13 +14,6 @@ import java.util.Map;
  * Configure Orril Jynath House (Inside/Level 0).
  */
 public class WitchNPC implements ZoneConfigurator {
-
-	private NPCList npcs;
-
-	public WitchNPC() {
-		this.npcs = NPCList.get();
-	}
-
 	/**
 	 * Configure a zone.
 	 *
@@ -67,7 +59,6 @@ public class WitchNPC implements ZoneConfigurator {
 				addGoodbye();
 			}
 		};
-		npcs.add(npc);
 
 		zone.assignRPObjectID(npc);
 		npc.setEntityClass("witchnpc");

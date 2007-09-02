@@ -4,7 +4,6 @@ import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.pathfinder.FixedPath;
@@ -21,9 +20,6 @@ import java.util.Map;
  * @author kymara
  */
 public class GhostNPC implements ZoneConfigurator {
-
-	private NPCList npcs = NPCList.get();
-
 	//
 	// ZoneConfigurator
 	//
@@ -88,7 +84,6 @@ public class GhostNPC implements ZoneConfigurator {
 		ghost.setDescription("You see a ghostly figure of a man. You have no idea how he died.");
 		ghost.setResistance(0);
 
-		npcs.add(ghost);
 		zone.assignRPObjectID(ghost);
 		ghost.setEntityClass("man_000_npc");
 		// he is a ghost so he is see through

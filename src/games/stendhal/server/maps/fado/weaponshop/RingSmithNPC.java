@@ -3,7 +3,6 @@ package games.stendhal.server.maps.fado.weaponshop;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
 import games.stendhal.server.entity.npc.BuyerBehaviour;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SellerBehaviour;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -22,9 +21,6 @@ import java.util.Map;
  * @author kymara
  */
 public class RingSmithNPC implements ZoneConfigurator {
-
-	private NPCList npcs = NPCList.get();
-
 	private ShopList shops = ShopList.get();
 
 	/**
@@ -65,7 +61,6 @@ public class RingSmithNPC implements ZoneConfigurator {
 			}
 		};
 		npc.setDescription("You see Ognir, a friendly bearded chap.");
-		npcs.add(npc);
 		zone.assignRPObjectID(npc);
 		npc.setEntityClass("ringsmithnpc");
 		npc.setPosition(18, 8);

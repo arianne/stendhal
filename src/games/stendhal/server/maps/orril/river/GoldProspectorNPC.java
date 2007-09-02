@@ -5,7 +5,6 @@ import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
 import java.util.Arrays;
@@ -15,13 +14,6 @@ import java.util.Map;
  * Configure Orril River South Campfire (Outside/Level 0).
  */
 public class GoldProspectorNPC implements ZoneConfigurator {
-
-	private NPCList npcs;
-
-	public GoldProspectorNPC() {
-		this.npcs = NPCList.get();
-	}
-
 	/**
 	 * Configure a zone.
 	 *
@@ -74,7 +66,6 @@ public class GoldProspectorNPC implements ZoneConfigurator {
 
 			}
 		};
-		npcs.add(bill);
 
 		zone.assignRPObjectID(bill);
 		bill.setEntityClass("oldcowboynpc");

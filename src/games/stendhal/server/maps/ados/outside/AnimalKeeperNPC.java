@@ -8,7 +8,6 @@ import games.stendhal.server.config.ZoneConfigurator;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.creature.AttackableCreature;
 import games.stendhal.server.entity.creature.Creature;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.spawner.CreatureRespawnPoint;
@@ -23,8 +22,6 @@ import java.util.List;
 import java.util.Map;
 
 public class AnimalKeeperNPC implements ZoneConfigurator {
-	private NPCList npcs = NPCList.get();
-
 	private static class AdosAttackableCreature extends AttackableCreature implements TurnListener {
 
 		private static long lastShoutTime;
@@ -102,7 +99,7 @@ public class AnimalKeeperNPC implements ZoneConfigurator {
 			}
 			// remaining behaviour is defined in maps.quests.ZooFood.
 		};
-		npcs.add(npc);
+
 		zone.assignRPObjectID(npc);
 		npc.setEntityClass("woman_007_npc");
 		npc.setPosition(41, 40);

@@ -3,7 +3,6 @@ package games.stendhal.server.maps.fado.bakery;
 import games.stendhal.common.Direction;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.ProducerBehaviour;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.pathfinder.FixedPath;
@@ -21,9 +20,6 @@ import java.util.Map;
  * @author timothyb89/kymara
  */
 public class BakerNPC implements ZoneConfigurator {
-
-	private NPCList npcs = NPCList.get();
-
 	//
 	// ZoneConfigurator
 	//
@@ -102,7 +98,6 @@ public class BakerNPC implements ZoneConfigurator {
 			}
 		};
 
-		npcs.add(baker);
 		zone.assignRPObjectID(baker);
 		baker.setEntityClass("bakernpc");
 		baker.setDirection(Direction.DOWN);

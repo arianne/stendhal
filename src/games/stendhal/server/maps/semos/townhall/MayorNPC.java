@@ -2,7 +2,6 @@ package games.stendhal.server.maps.semos.townhall;
 
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Node;
@@ -12,9 +11,6 @@ import java.util.List;
 import java.util.Map;
 
 public class MayorNPC implements ZoneConfigurator {
-
-	private NPCList npcs = NPCList.get();
-
 	/**
 	 * Configure a zone.
 	 *
@@ -52,7 +48,6 @@ public class MayorNPC implements ZoneConfigurator {
 		npc.setEntityClass("mayornpc");
 		npc.setPosition(13, 3);
 		npc.initHP(100);
-		npcs.add(npc);
 		zone.assignRPObjectID(npc);
 		zone.add(npc);
 	}

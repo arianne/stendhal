@@ -2,7 +2,6 @@ package games.stendhal.server.maps.fado.church;
 
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Node;
@@ -12,9 +11,6 @@ import java.util.List;
 import java.util.Map;
 
 public class VergerNPC implements ZoneConfigurator {
-
-	private NPCList npcs = NPCList.get();
-
 	/**
 	 * Configure a zone.
 	 *
@@ -53,7 +49,6 @@ public class VergerNPC implements ZoneConfigurator {
 			}
 		};
 		npc.setDescription("You see Lukas, the humble church verger.");
-		npcs.add(npc);
 		zone.assignRPObjectID(npc);
 		npc.setEntityClass("vergernpc");
 		npc.setPosition(22, 9);

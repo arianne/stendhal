@@ -3,7 +3,6 @@ package games.stendhal.server.maps.semos.house;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.TeleporterBehaviour;
 
@@ -15,9 +14,6 @@ import java.util.Map;
  * @author kymara
  */
 public class FlowerSellerNPC implements ZoneConfigurator {
-
-	private NPCList npcs = NPCList.get();
-
 	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
 
         	new TeleporterBehaviour(buildSemosHouseArea(), "Flowers! Get your fresh flowers here!");
@@ -39,7 +35,7 @@ public class FlowerSellerNPC implements ZoneConfigurator {
 			}
 
 		};
-		npcs.add(rose);
+
 		rose.setEntityClass("gypsywomannpc");
 		rose.initHP(100);
 

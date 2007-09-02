@@ -3,16 +3,12 @@ package games.stendhal.server.maps.semos.townhall;
 import games.stendhal.common.Direction;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Map;
 
 public class BoyNPC implements ZoneConfigurator {
-
-	private NPCList npcs = NPCList.get();
-
 	/**
 	 * Configure a zone.
 	 *
@@ -54,7 +50,7 @@ public class BoyNPC implements ZoneConfigurator {
 				addGoodbye();
 			}
 		};
-		npcs.add(npc);
+
 		zone.assignRPObjectID(npc);
 		npc.addInitChatMessage(null, new SpeakerNPC.ChatAction() {
 

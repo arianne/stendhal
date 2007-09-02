@@ -5,7 +5,6 @@ import games.stendhal.server.config.ZoneConfigurator;
 import games.stendhal.server.entity.npc.BuyerBehaviour;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.pathfinder.FixedPath;
@@ -21,9 +20,6 @@ import java.util.Map;
  * @author kymara
  */
 public class BuyerNPC implements ZoneConfigurator {
-
-	private NPCList npcs = NPCList.get();
-
 	private ShopList shops = ShopList.get();
 
 	/**
@@ -66,7 +62,6 @@ public class BuyerNPC implements ZoneConfigurator {
 			}
 		};
 		npc.setDescription("You see Yorphin Baos, the friendly shop keeper.");
-		npcs.add(npc);
 		zone.assignRPObjectID(npc);
 		npc.setEntityClass("weaponsellernpc");
 		npc.setPosition(4, 5);

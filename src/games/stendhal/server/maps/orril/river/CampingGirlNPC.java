@@ -3,7 +3,6 @@ package games.stendhal.server.maps.orril.river;
 import games.stendhal.common.Direction;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
 import java.util.Map;
@@ -12,13 +11,6 @@ import java.util.Map;
  * Configure Orril River South Campfire (Outside/Level 0).
  */
 public class CampingGirlNPC implements ZoneConfigurator {
-
-	private NPCList npcs;
-
-	public CampingGirlNPC() {
-		this.npcs = NPCList.get();
-	}
-
 	/**
 	 * Configure a zone.
 	 *
@@ -47,7 +39,6 @@ public class CampingGirlNPC implements ZoneConfigurator {
 				// remaining behaviour is defined in maps.quests.Campfire.				
 			}
 		};
-		npcs.add(sally);
 
 		zone.assignRPObjectID(sally);
 		sally.setEntityClass("littlegirlnpc");

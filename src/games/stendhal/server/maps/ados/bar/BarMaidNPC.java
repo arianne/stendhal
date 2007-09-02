@@ -4,7 +4,6 @@ import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.BuyerBehaviour;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -22,7 +21,6 @@ import java.util.Map;
  */
 public class BarMaidNPC implements ZoneConfigurator {
 
-	private NPCList npcs = NPCList.get();
 	private ShopList shops = ShopList.get();
 
 
@@ -69,7 +67,6 @@ public class BarMaidNPC implements ZoneConfigurator {
 			}
 		};
 		npc.setDescription("You see a pretty young bar maid.");
-		npcs.add(npc);
 		zone.assignRPObjectID(npc);
 		npc.setEntityClass("woman_004_npc");
 		npc.setPosition(8, 27);

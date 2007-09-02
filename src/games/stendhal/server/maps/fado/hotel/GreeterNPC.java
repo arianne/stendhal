@@ -2,7 +2,6 @@ package games.stendhal.server.maps.fado.hotel;
 
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Node;
@@ -17,9 +16,6 @@ import java.util.Map;
  * @author timothyb89
  */
 public class GreeterNPC implements ZoneConfigurator {
-
-	private NPCList npcs = NPCList.get();
-
 	//
 	// ZoneConfigurator
 	//
@@ -64,7 +60,6 @@ public class GreeterNPC implements ZoneConfigurator {
 			}
 		};
 
-		npcs.add(greeterNPC);
 		zone.assignRPObjectID(greeterNPC);
 		greeterNPC.setEntityClass("hotelreceptionistnpc");
 		greeterNPC.setPosition(16, 50);

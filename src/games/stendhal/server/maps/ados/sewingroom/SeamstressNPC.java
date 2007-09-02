@@ -4,7 +4,6 @@ import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
 import games.stendhal.server.entity.npc.BuyerBehaviour;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.pathfinder.FixedPath;
@@ -18,9 +17,6 @@ import java.util.Map;
  * Ados City, house with a woman who makes sails for the ships
  */
 public class SeamstressNPC implements ZoneConfigurator {
-
-	private NPCList npcs = NPCList.get();
-
 	private ShopList shops = ShopList.get();
 
 	/**
@@ -58,7 +54,6 @@ public class SeamstressNPC implements ZoneConfigurator {
 				addGoodbye("Bye, thanks for stepping in.");
 			}
 		};
-		npcs.add(seamstress);
 
 		zone.assignRPObjectID(seamstress);
 		seamstress.setEntityClass("woman_002_npc");

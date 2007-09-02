@@ -5,7 +5,6 @@ import games.stendhal.server.config.ZoneConfigurator;
 import games.stendhal.server.entity.npc.SellerBehaviour;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.pathfinder.FixedPath;
@@ -21,9 +20,6 @@ import java.util.Map;
  * @author kymara
  */
 public class GreeterNPC implements ZoneConfigurator {
-
-	private NPCList npcs = NPCList.get();
-
 	private ShopList shops = ShopList.get();
 
 	/**
@@ -75,7 +71,6 @@ public class GreeterNPC implements ZoneConfigurator {
 			}
 		};
 		npc.setDescription("You see Orchiwald, an albino elf.");
-		npcs.add(npc);
 		zone.assignRPObjectID(npc);
 		npc.setEntityClass("albinoelf2npc");
 		npc.setPosition(3, 11);

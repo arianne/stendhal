@@ -4,7 +4,6 @@ import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
 import games.stendhal.server.entity.creature.Sheep;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SellerBehaviour;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
@@ -98,7 +97,6 @@ public class SheepSellerNPC implements ZoneConfigurator {
 						"If you find any wild or abandoned sheep, you can right-click on them and select OWN to tame them. Sheep need to be looked after!");
 			}
 		};
-		NPCList.get().add(npc);
 
 		zone.assignRPObjectID(npc);
 		npc.setEntityClass("sellernpc");

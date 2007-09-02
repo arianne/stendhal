@@ -3,7 +3,6 @@ package games.stendhal.server.maps.fado.church;
 import games.stendhal.common.Direction;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
 import java.util.Map;
@@ -19,9 +18,6 @@ import java.util.Map;
  *
  */
 public class PriestNPC implements ZoneConfigurator {
-
-	private NPCList npcs = NPCList.get();
-
 	private SpeakerNPC priest;
 
 	/**
@@ -54,7 +50,6 @@ public class PriestNPC implements ZoneConfigurator {
 			}
 		};
 		priest.setDescription("You see the holy Priest of Fado Church");
-		npcs.add(priest);
 		zone.assignRPObjectID(priest);
 		priest.setEntityClass("priestnpc");
 		priest.setPosition(11, 5);

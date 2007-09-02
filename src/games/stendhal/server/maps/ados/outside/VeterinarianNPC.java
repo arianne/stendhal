@@ -2,7 +2,6 @@ package games.stendhal.server.maps.ados.outside;
 
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SellerBehaviour;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -14,8 +13,6 @@ import java.util.List;
 import java.util.Map;
 
 public class VeterinarianNPC implements ZoneConfigurator {
-
-	private NPCList npcs = NPCList.get();
 	private ShopList shops = ShopList.get();
 
 		/**
@@ -67,7 +64,7 @@ public class VeterinarianNPC implements ZoneConfigurator {
 			}
 			// remaining behaviour is defined in maps.quests.ZooFood.
 		};
-		npcs.add(npc);
+
 		zone.assignRPObjectID(npc);
 		npc.setEntityClass("doctornpc");
 		npc.setPosition(53, 28);

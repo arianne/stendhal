@@ -2,7 +2,6 @@ package games.stendhal.server.maps.semos.tavern;
 
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SellerBehaviour;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -17,9 +16,6 @@ import java.util.Map;
  * Inside Semos Tavern - Level 0 (ground floor)
  */
 public class BarMaidNPC implements ZoneConfigurator {
-
-	private NPCList npcs = NPCList.get();
-
 	private ShopList shops = ShopList.get();
 
 	/**
@@ -61,7 +57,7 @@ public class BarMaidNPC implements ZoneConfigurator {
 				addGoodbye();
 			}
 		};
-		npcs.add(margaret);
+
 		zone.assignRPObjectID(margaret);
 		margaret.setEntityClass("tavernbarmaidnpc");
 		margaret.setPosition(17, 13);

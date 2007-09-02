@@ -3,7 +3,6 @@ package games.stendhal.server.maps.fado.city;
 import games.stendhal.common.Direction;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
 import java.util.Map;
@@ -14,9 +13,6 @@ import java.util.Map;
  * @author kymara
  */
 public class NunNPC implements ZoneConfigurator {
-
-	private NPCList npcs = NPCList.get();
-
 	//
 	// ZoneConfigurator
 	//
@@ -52,7 +48,6 @@ public class NunNPC implements ZoneConfigurator {
 			}
 		};
 		nunnpc.setDescription("You see Sister Benedicta, a holy nun.");
-		npcs.add(nunnpc);
 		zone.assignRPObjectID(nunnpc);
 		nunnpc.setEntityClass("nunnpc");
 		nunnpc.setDirection(Direction.RIGHT);

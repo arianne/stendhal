@@ -2,7 +2,6 @@ package games.stendhal.server.maps.semos.tavern;
 
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SellerBehaviour;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -17,9 +16,6 @@ import java.util.Map;
  * Inside Semos Tavern - Level 1 (upstairs)
  */
 public class BowAndArrowSellerNPC implements ZoneConfigurator {
-
-	private NPCList npcs = NPCList.get();
-
 	private ShopList shops = ShopList.get();
 
 	/**
@@ -56,7 +52,7 @@ public class BowAndArrowSellerNPC implements ZoneConfigurator {
 				addGoodbye();
 			}
 		};
-		npcs.add(ouchit);
+
 		zone.assignRPObjectID(ouchit);
 		ouchit.setEntityClass("weaponsellernpc");
 		ouchit.setPosition(21, 3);

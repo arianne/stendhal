@@ -3,7 +3,6 @@ package games.stendhal.server.maps.ados.fishermans_hut;
 import games.stendhal.common.Direction;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Node;
@@ -18,9 +17,6 @@ import java.util.Map;
  * @author dine
  */
 public class TeacherNPC implements ZoneConfigurator {
-
-	private NPCList npcs = NPCList.get();
-
 	/**
 	 * Configure a zone.
 	 *
@@ -54,7 +50,7 @@ public class TeacherNPC implements ZoneConfigurator {
 				addGoodbye("Goodbye.");
 			}
 		};
-		npcs.add(fisherman);
+
 		zone.assignRPObjectID(fisherman);
 		fisherman.setEntityClass("fishermannpc");
 		fisherman.setDirection(Direction.DOWN);

@@ -5,7 +5,6 @@ import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Node;
@@ -20,9 +19,6 @@ import java.util.Map;
  * @author hendrik
  */
 public class KidsNPCs implements ZoneConfigurator {
-
-	private NPCList npcs = NPCList.get();
-
 	/**
 	 * Configure a zone.
 	 *
@@ -76,7 +72,6 @@ public class KidsNPCs implements ZoneConfigurator {
 					addGoodbye("Bye bye!");
 				}
 			};
-			npcs.add(npc);
 
 			zone.assignRPObjectID(npc);
 			npc.setEntityClass(classes[i]);

@@ -5,7 +5,6 @@ import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.pathfinder.FixedPath;
@@ -19,9 +18,6 @@ import java.util.Map;
  * Entrance to Deathmatch
  */
 public class DeathmatchRecruiterNPC implements ZoneConfigurator {
-
-	private NPCList npcs = NPCList.get();
-
 	/**
 	 * Configure a zone.
 	 *
@@ -84,7 +80,6 @@ public class DeathmatchRecruiterNPC implements ZoneConfigurator {
 		npc.setEntityClass("youngsoldiernpc");
 		npc.setPosition(40, 36);
 		npc.initHP(100);
-		npcs.add(npc);
 		zone.assignRPObjectID(npc);
 		zone.add(npc);
 	}

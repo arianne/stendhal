@@ -6,7 +6,6 @@ import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.StandardInteraction;
 import games.stendhal.server.entity.player.Player;
@@ -27,9 +26,6 @@ import java.util.Arrays;
  * Creating the Stendhal Deathmatch Game
  */
 public class AdosDeathmatch extends AbstractQuest implements LoginListener {
-
-	private NPCList npcs = NPCList.get();
-
 	private StendhalRPZone zone;
 
 	private Area arena;
@@ -150,7 +146,6 @@ public class AdosDeathmatch extends AbstractQuest implements LoginListener {
 		npc.setPosition(x, y);
 		npc.setDirection(Direction.DOWN);
 		npc.initHP(100);
-		npcs.add(npc);
 		zone.assignRPObjectID(npc);
 		zone.add(npc);
 	}

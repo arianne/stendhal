@@ -2,7 +2,6 @@ package games.stendhal.server.maps.orril.bridge;
 
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Node;
@@ -17,9 +16,6 @@ import java.util.Map;
  * @author kymara
  */
 public class GuardNPC implements ZoneConfigurator {
-
-	private NPCList npcs = NPCList.get();
-
 	/**
 	 * Configure a zone.
 	 *
@@ -56,7 +52,6 @@ public class GuardNPC implements ZoneConfigurator {
 			}
 		};
 		npc.setDescription("You see a bored looking guard.");
-		npcs.add(npc);
 		zone.assignRPObjectID(npc);
 		npc.setEntityClass("recruiter1npc");
 		npc.setPosition(62, 105);

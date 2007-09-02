@@ -3,7 +3,6 @@ package games.stendhal.server.maps.orril.dwarfmine;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
 import games.stendhal.server.entity.npc.BuyerBehaviour;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.pathfinder.FixedPath;
@@ -17,13 +16,9 @@ import java.util.Map;
  * Configure Orril Dwarf Mine (Underground/Level -2).
  */
 public class IronBuyerNPC implements ZoneConfigurator {
-
-	private NPCList npcs;
-
 	private ShopList shops;
 
 	public IronBuyerNPC() {
-		this.npcs = NPCList.get();
 		this.shops = ShopList.get();
 	}
 
@@ -60,7 +55,6 @@ public class IronBuyerNPC implements ZoneConfigurator {
 				addGoodbye("Farewell - and be careful: the other dwarves don't like strangers running around here!");
 			}
 		};
-		npcs.add(loretta);
 
 		loretta.setDescription("You see Loretta, an elderly female dwarf. She is working on the mine-cart rails.");
 		zone.assignRPObjectID(loretta);

@@ -2,7 +2,6 @@ package games.stendhal.server.maps.wofol.blacksmith;
 
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Node;
@@ -17,13 +16,6 @@ import java.util.Map;
  * @author kymara
  */
 public class BlacksmithNPC implements ZoneConfigurator {
-
-	private NPCList npcs;
-
-	public BlacksmithNPC() {
-		this.npcs = NPCList.get();
-	}
-
 	/**
 	 * Configure a zone.
 	 *
@@ -66,7 +58,6 @@ public class BlacksmithNPC implements ZoneConfigurator {
 		dwarf.setEntityClass("dwarfnpc");
 		dwarf.setPosition(22, 8);
 		dwarf.initHP(100);
-		npcs.add(dwarf);
 		zone.add(dwarf);
 	}
 }
