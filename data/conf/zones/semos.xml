@@ -75,7 +75,6 @@
   <entity x="36" y="108">
     <implementation class-name="games.stendhal.server.maps.semos.plains.LittleBoyNPC">
       <parameter name="name">Plink</parameter>
-      <parameter name="class">plinknpc</parameter>
       <parameter name="node0">36,109</parameter>
       <parameter name="node1">37,109</parameter>
       <parameter name="node2">37,106</parameter>
@@ -92,7 +91,10 @@
       <parameter name="node13">46,100</parameter>
       <parameter name="node14">36,100</parameter>
     </implementation>
+
+    <attribute name="class">plinknpc</attribute>
   </entity>
+
   <portal x="92" y="101" ref="catacombs_entrance">
    <destination zone="-1_semos_catacombs_se" ref="entrance"/>
    <implementation class-name="games.stendhal.server.entity.portal.QuestCheckingPortal">
@@ -124,9 +126,10 @@ South: Semos city
    <entity x="19" y="39">
      <implementation class-name="games.stendhal.server.maps.semos.plains.MillerNPC">
        <parameter name="name">Jenny</parameter>
-       <parameter name="class">woman_003_npc</parameter>
        <parameter name="direction">down</parameter>
      </implementation>
+
+     <attribute name="class">woman_003_npc</attribute>
    </entity>
 
   <entity x="25" y="46">
@@ -354,7 +357,6 @@ Awww... so you're a coward, then? Huh.
   <entity x="46" y="20">
     <implementation class-name="games.stendhal.server.maps.semos.city.GossipNPC">
       <parameter name="name">Nomyr Ahba</parameter>
-      <parameter name="class">thiefnpc</parameter>
       <parameter name="node0">46,20</parameter>
       <parameter name="node1">46,21</parameter>
       <parameter name="node2">50,21</parameter>
@@ -362,28 +364,32 @@ Awww... so you're a coward, then? Huh.
       <parameter name="node4">50,21</parameter>
       <parameter name="node5">46,21</parameter>
     </implementation>
+
+    <attribute name="class">thiefnpc</attribute>
   </entity>
+
   <entity x="26" y="22">
     <implementation class-name="games.stendhal.server.maps.semos.city.GreeterNPC">
       <parameter name="name">Monogenes</parameter>
-      <parameter name="class">oldmannpc</parameter>
       <parameter name="direction">left</parameter>
     </implementation>
+
+    <parameter name="class">oldmannpc</parameter>
   </entity>
+
   <entity x="5" y="46">
     <implementation class-name="games.stendhal.server.maps.semos.city.HealerNPC">
       <parameter name="name">Carmen</parameter>
-      <parameter name="class">welcomernpc</parameter>
       <parameter name="node0">5,46</parameter>
       <parameter name="node1">18,46</parameter>
     </implementation>
+
+    <attribute name="class">welcomernpc</attribute>
   </entity>
+
   <entity x="27" y="38">
     <implementation class-name="games.stendhal.server.maps.semos.city.RetiredAdventurerNPC">
       <parameter name="name">Hayunn Naratha</parameter>
-      <parameter name="class">oldheronpc</parameter>
-      <parameter name="level">18</parameter>
-      <parameter name="hp">98</parameter>
       <parameter name="node0">27,38</parameter>
       <parameter name="node1">27,39</parameter>
       <parameter name="node2">29,39</parameter>
@@ -391,11 +397,15 @@ Awww... so you're a coward, then? Huh.
       <parameter name="node4">29,39</parameter>
       <parameter name="node5">27,39</parameter>
     </implementation>
+
+    <attribute name="class">oldheronpc</attribute>
+    <attribute name="level">18</attribute>
+    <attribute name="hp">98</attribute>
   </entity>
+
   <entity x="24" y="43">
     <implementation class-name="games.stendhal.server.maps.semos.city.RetireeNPC">
       <parameter name="name">Diogenes</parameter>
-      <parameter name="class">beggarnpc</parameter>
       <parameter name="node0">22,43</parameter>
       <parameter name="node1">26,43</parameter>
       <parameter name="node2">26,45</parameter>
@@ -405,11 +415,13 @@ Awww... so you're a coward, then? Huh.
       <parameter name="node6">35,29</parameter>
       <parameter name="node7">22,29</parameter>
     </implementation>
+
+    <attribute name="class">beggarnpc</attribute>
   </entity>
+
   <entity x="40" y="45">
     <implementation class-name="games.stendhal.server.maps.semos.city.SheepBuyerNPC">
       <parameter name="name">Sato</parameter>
-      <parameter name="class">buyernpc</parameter>
       <parameter name="node0">40,45</parameter>
       <parameter name="node1">58,45</parameter>
       <parameter name="node2">58,22</parameter>
@@ -418,6 +430,8 @@ Awww... so you're a coward, then? Huh.
       <parameter name="node5">23,15</parameter>
       <parameter name="node6">23,45</parameter>
     </implementation>
+
+    <attribute name="class">buyernpc</attribute>
   </entity>
 
 <!-- TEST
@@ -640,7 +654,6 @@ Shepherds please note: keep watch for the wolves while searching for berries her
     <entity x="23" y="12">
       <implementation class-name="games.stendhal.server.maps.semos.blacksmith.BlacksmithNPC">
         <parameter name="name">Xoderos</parameter>
-        <parameter name="class">blacksmithnpc</parameter>
         <parameter name="node0">23,12</parameter>
         <parameter name="node1">29,12</parameter>
         <parameter name="node2">29,5</parameter>
@@ -649,11 +662,13 @@ Shepherds please note: keep watch for the wolves while searching for berries her
         <parameter name="node5">28,9</parameter>
         <parameter name="node6">28,12</parameter>
       </implementation>
+
+      <attribute name="class">blacksmithnpc</attribute>
     </entity>
+
     <entity x="5" y="2">
       <implementation class-name="games.stendhal.server.maps.semos.blacksmith.BlacksmithAssistantNPC">
         <parameter name="name">Hackim Easso</parameter>
-        <parameter name="class">naughtyteennpc</parameter>
         <parameter name="node0">5,2</parameter>
         <parameter name="node1">8,2</parameter>
         <parameter name="node2">7,2</parameter>
@@ -666,6 +681,8 @@ Shepherds please note: keep watch for the wolves while searching for berries her
         <parameter name="node9">7,7</parameter>
         <parameter name="node10">7,2</parameter>
       </implementation>
+
+      <attribute name="class">naughtyteennpc</attribute>
     </entity>
 
     <portal x="15" y="14" ref="entrance">
@@ -765,10 +782,11 @@ Holy mackerel! These chips are tasty.
     <entity x="9" y="23">
       <implementation class-name="games.stendhal.server.maps.semos.bank.CustomerAdvisorNPC">
         <parameter name="name">Dagobert</parameter>
-        <parameter name="class">youngnpc</parameter>
-        <parameter name="hp">95</parameter>
         <parameter name="direction">down</parameter>
       </implementation>
+
+      <attribute name="class">youngnpc</attribute>
+      <attribute name="hp">95</attribute>
     </entity>
 
     <portal x="9" y="30" ref="entrance">
@@ -936,7 +954,6 @@ Holy mackerel! These chips are tasty.
      <entity x="15" y="3">
        <implementation class-name="games.stendhal.server.maps.semos.bakery.ChefNPC">
          <parameter name="name">Leander</parameter>
-         <parameter name="class">chefnpc</parameter>
          <!-- to the well -->
          <parameter name="node0">15,3</parameter>
          <!-- to a barrel -->
@@ -963,11 +980,13 @@ Holy mackerel! These chips are tasty.
          <!-- towards the well-->
          <parameter name="node13">15,4</parameter>
        </implementation>
+
+       <attribute name="class">chefnpc</attribute>
      </entity>
+
      <entity x="26" y="9">
        <implementation class-name="games.stendhal.server.maps.semos.bakery.ShopAssistantNPC">
          <parameter name="name">Erna</parameter>
-         <parameter name="class">housewifenpc</parameter>
          <parameter name="node0">26,9</parameter>
          <parameter name="node1">26,6</parameter>
          <parameter name="node2">28,6</parameter>
@@ -978,6 +997,8 @@ Holy mackerel! These chips are tasty.
          <parameter name="node7">22,7</parameter>
          <parameter name="node8">26,7</parameter>
        </implementation>
+
+       <attribute name="class">housewifenpc</attribute>
      </entity>
 
     <!-- This must be after the NPC -->
@@ -999,11 +1020,13 @@ Holy mackerel! These chips are tasty.
       <entity x="6" y="11">
        <implementation class-name="games.stendhal.server.maps.semos.house.AdminHelpNPC">
          <parameter name="name">Skye</parameter>
-         <parameter name="class">beautifulgirlnpc</parameter>
          <parameter name="node0">6,11</parameter>
          <parameter name="node1">12,11</parameter>
        </implementation>
+
+       <attribute name="class">beautifulgirlnpc</attribute>
      </entity>
+
     <portal x="1" y="11" ref="exit_1">
      <destination zone="0_semos_city" ref="house_exit_1"/>
     </portal>
@@ -1304,20 +1327,24 @@ Mature sheep wanted: please speak to Sato
   <entity x="9" y="7">
 	  <implementation class-name="games.stendhal.server.maps.semos.jail.GuardNPC">
 		  <parameter name="name">Marcus</parameter>
-		  <parameter name="class">youngsoldiernpc</parameter>
 		  <parameter name="node0">9,7</parameter>
 		  <parameter name="node1">21,7</parameter>
 		  <parameter name="node2">21,8</parameter>
 		  <parameter name="node3">9,8</parameter>
 	  </implementation>
+
+    <attribute name="class">youngsoldiernpc</attribute>
    </entity>
+
    <entity x="13" y="3">
 	   <implementation class-name="games.stendhal.server.maps.semos.jail.InmateNPC">
 		   <parameter name="name">Conual</parameter>
-		   <parameter name="class">militiaelfnpc</parameter>
 		   <parameter name="direction">down</parameter>
 	   </implementation>
+
+    <attribute name="class">militiaelfnpc</attribute>
    </entity>
+
    <configurator class-name="games.stendhal.server.maps.semos.jail.NoTeleport"/>
   <!--for the admin house-->
  <portal x="15" y="7" ref="house_exit_4">
@@ -1567,11 +1594,12 @@ Mature sheep wanted: please speak to Sato
 		   special SpeakerNPC factory for him. -->
 	  <implementation class-name="games.stendhal.server.entity.npc.SpeakerNPC">
 		  <parameter name="name">Markovich</parameter>
-		  <parameter name="class">sickvampirenpc</parameter>
-		  <parameter name="hp">10</parameter>
-		  <parameter name="description">You see a sick vampire.</parameter>
 		  <parameter name="direction">left</parameter>
 	  </implementation>
+
+   <attribute name="class">sickvampirenpc</attribute>
+   <attribute name="hp">10</attribute>
+   <attribute name="description">You see a sick vampire.</attribute>
   </entity>
 
   <portal x="30" y="57" ref="upstairs" replacing="true">
@@ -1586,12 +1614,13 @@ Mature sheep wanted: please speak to Sato
    <entity x="67" y="13">
 	   <implementation class-name="games.stendhal.server.maps.semos.dungeon.SheepBuyerNPC">
 		   <parameter name="name">Tor'Koom</parameter>
-		   <parameter name="class">orcbuyernpc</parameter>
 		   <parameter name="node0">67,13</parameter>
 		   <parameter name="node1">59,13</parameter>
 		   <parameter name="node2">59,17</parameter>
 		   <parameter name="node3">67,17</parameter>
 	   </implementation>
+
+    <attribute name="class">orcbuyernpc</attribute>
    </entity>
  </zone>
 
@@ -1610,23 +1639,26 @@ Mature sheep wanted: please speak to Sato
          special SpeakerNPC factory for him. -->
     <implementation class-name="games.stendhal.server.entity.npc.SpeakerNPC">
       <parameter name="name">Henry</parameter>
-      <parameter name="class">youngsoldiernpc</parameter>
-      <parameter name="level">5</parameter>
-      <parameter name="hp">20</parameter>
       <parameter name="node0">57,113</parameter>
       <parameter name="node1">59,113</parameter>
       <parameter name="node2">59,115</parameter>
     </implementation>
+
+    <attribute name="class">youngsoldiernpc</attribute>
+    <attribute name="level">5</attribute>
+    <attribute name="hp">20</attribute>
   </entity>
+
   <entity x="66" y="46">
     <implementation class-name="games.stendhal.server.maps.semos.dungeon.SergeantNPC">
       <parameter name="name">Sergeant James</parameter>
-      <parameter name="class">royalguardnpc</parameter>
-      <parameter name="level">20</parameter>
-      <parameter name="hp">75</parameter>
       <parameter name="node0">66,46</parameter>
       <parameter name="node1">66,48</parameter>
     </implementation>
+
+    <attribute name="class">royalguardnpc</attribute>
+    <attribute name="level">20</attribute>
+    <attribute name="hp">75</attribute>
   </entity>
 
  </zone>

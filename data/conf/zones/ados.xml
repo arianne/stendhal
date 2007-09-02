@@ -1003,7 +1003,6 @@ Southeast: Docks
   <entity x="26" y="5">
     <implementation class-name="games.stendhal.server.maps.ados.church.HealerNPC">
       <parameter name="name">Valo</parameter>
-      <parameter name="class">grandadnpc</parameter>
       <parameter name="node0">26,5</parameter>
       <parameter name="node1">33,5</parameter>
       <parameter name="node2">33,16</parameter>
@@ -1012,7 +1011,10 @@ Southeast: Docks
       <parameter name="node5">7,13</parameter>
       <parameter name="node6">7,5</parameter>
     </implementation>
+
+    <attribute name="class">grandadnpc</attribute>
   </entity>
+
     <portal x="4" y="4" ref="downstairs">
      <destination zone="int_ados_church_0" ref="upstairs"/>
    </portal>
@@ -1022,9 +1024,10 @@ Southeast: Docks
    <entity x="101" y="103">
      <implementation class-name="games.stendhal.server.maps.ados.coast.FerryConveyerNPC">
        <parameter name="name">Eliza</parameter>
-       <parameter name="class">woman_008_npc</parameter>
        <parameter name="direction">left</parameter>
      </implementation>
+
+     <attribute name="class">woman_008_npc</attribute>
    </entity>
  </zone>
  

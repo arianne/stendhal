@@ -258,10 +258,12 @@ where panning for gold is possible. this spot is south of Or'ril castle.
 	 <entity x="3" y="5">
 	  <implementation class-name="games.stendhal.server.maps.fado.hut.SellerNPC">
 	   <parameter name="name">Sarzina</parameter>
-	   <parameter name="class">wizardwomannpc</parameter>
 	   <parameter name="direction">down</parameter>
 	   </implementation>
+
+	   <attribute name="class">wizardwomannpc</attribute>
 	  </entity>
+
 	   <portal x="3" y="10" ref="entrance">
              <destination zone="0_fado_city" ref="hut_entrance"/>
        </portal>

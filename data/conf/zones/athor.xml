@@ -30,17 +30,21 @@
        <entity x="22" y="38">
          <implementation class-name="games.stendhal.server.maps.athor.ship.CaptainNPC">
            <parameter name="name">Captain</parameter>
-           <parameter name="class">piratenpc</parameter>
            <parameter name="direction">down</parameter>
          </implementation>
+
+         <attribute name="class">piratenpc</attribute>
        </entity>
+
        <entity x="29" y="34">
          <implementation class-name="games.stendhal.server.maps.athor.ship.CoastConveyerNPC">
            <parameter name="name">Jackie</parameter>
-           <parameter name="class">pirate_sailor2npc</parameter>
            <parameter name="direction">left</parameter>
          </implementation>
+
+         <attribute name="class">pirate_sailor2npc</attribute>
        </entity>
+
        <entity x="34" y="39">
     	   <implementation class-name="games.stendhal.server.entity.FishSource">
      	   <parameter name="species">mackerel</parameter>
@@ -128,51 +132,62 @@
        <entity x="16" y="90">
          <implementation class-name="games.stendhal.server.maps.athor.holiday_area.FerryConveyerNPC">
            <parameter name="name">Jessica</parameter>
-           <parameter name="class">woman_008_npc</parameter>
            <parameter name="direction">left</parameter>
          </implementation>
+
+         <attribute name="class">woman_008_npc</attribute>
        </entity>
+
        <entity x="36" y="28">
          <implementation class-name="games.stendhal.server.maps.athor.holiday_area.DiverNPC">
            <parameter name="name">Dorinel</parameter>
-           <parameter name="class">swimmer2npc</parameter>
            <parameter name="node0">36,21</parameter>
            <parameter name="node1">36,28</parameter>
          </implementation>
+
+         <attribute name="class">swimmer2npc</attribute>
        </entity>
+
        <entity x="27" y="44">
          <implementation class-name="games.stendhal.server.maps.athor.holiday_area.HusbandNPC">
            <parameter name="name">John</parameter>
-           <parameter name="class">swimmer5npc</parameter>
            <parameter name="direction">down</parameter>
          </implementation>
+
+         <attribute name="class">swimmer5npc</attribute>
        </entity>
+
        <entity x="44" y="40">
          <implementation class-name="games.stendhal.server.maps.athor.holiday_area.SunbatherNPC">
            <parameter name="name">Cyk</parameter>
-           <parameter name="class">swimmer1npc</parameter>
            <parameter name="direction">down</parameter>
          </implementation>
+
+         <attribute name="class">swimmer1npc</attribute>
        </entity>
+
        <entity x="67" y="63">
          <implementation class-name="games.stendhal.server.maps.athor.holiday_area.SwimmerNPC">
            <parameter name="name">Enrique</parameter>
-           <parameter name="class">swimmer3npc</parameter>
            <parameter name="node0">67,68</parameter>
            <parameter name="node1">67,63</parameter>
          </implementation>
+
+         <attribute name="class">swimmer3npc</attribute>
        </entity>
+
        <entity x="60" y="33">
          <implementation class-name="games.stendhal.server.maps.athor.holiday_area.TouristFromAdosNPC">
            <parameter name="name">Zara</parameter>
-           <parameter name="class">swimmer8npc</parameter>
            <parameter name="direction">down</parameter>
          </implementation>
+
+         <attribute name="class">swimmer8npc</attribute>
        </entity>
+
        <entity x="5" y="49">
          <implementation class-name="games.stendhal.server.maps.athor.holiday_area.WalkingWomanNPC">
            <parameter name="name">Kelicia</parameter>
-           <parameter name="class">swimmer7npc</parameter>
            <!-- walking along the beach -->
            <parameter name="node0">5,49</parameter>
            <parameter name="node1">6,48</parameter>
@@ -257,20 +272,26 @@
            <parameter name="node79">8,47</parameter>
            <parameter name="node80">6,47</parameter>
          </implementation>
+
+         <attribute name="class">swimmer7npc</attribute>
        </entity>
+
        <entity x="28" y="44">
          <implementation class-name="games.stendhal.server.maps.athor.holiday_area.WifeNPC">
            <parameter name="name">Jane</parameter>
-           <parameter name="class">swimmer6npc</parameter>
            <parameter name="direction">down</parameter>
          </implementation>
+
+         <attribute name="class">swimmer6npc</attribute>
        </entity>
+
        <entity x="62" y="72">
          <implementation class-name="games.stendhal.server.maps.athor.holiday_area.YanNPC">
            <parameter name="name">Yan</parameter>
-           <parameter name="class">swimmer4npc</parameter>
            <parameter name="direction">down</parameter>
          </implementation>
+
+         <attribute name="class">swimmer4npc</attribute>
        </entity>
 
        <entity x="83" y="42">
@@ -360,9 +381,10 @@
        <entity x="3" y="11">
          <implementation class-name="games.stendhal.server.maps.athor.dressingroom_male.LifeguardNPC">
            <parameter name="name">David</parameter>
-           <parameter name="class">lifeguardmalenpc</parameter>
            <parameter name="direction">right</parameter>
          </implementation>
+
+         <attribute name="class">lifeguardmalenpc</attribute>
        </entity>
 
         <!-- This must be after the NPC configurator -->
@@ -400,7 +422,6 @@
        <entity x="27" y="28">
          <implementation class-name="games.stendhal.server.maps.athor.ship.CookNPC">
            <parameter name="name">Laura</parameter>
-           <parameter name="class">tavernbarmaidnpc</parameter>
            <!-- to the oven -->
            <parameter name="node0">27,28</parameter>
            <!-- to the table -->
@@ -410,6 +431,8 @@
            <!-- to the barrel -->
            <parameter name="node2">28,31</parameter>
          </implementation>
+
+    <attribute name="class">tavernbarmaidnpc</attribute>
    </entity>
 
    <entity x="24" y="35">
@@ -463,7 +486,6 @@ You get your stake back when there is a draw. If you win, you get the double of 
    <entity x="24" y="42">
      <implementation class-name="games.stendhal.server.maps.athor.ship.CargoWorkerNPC">
        <parameter name="name">Klaas</parameter>
-       <parameter name="class">seller2npc</parameter>
 
        <!-- to the bucket -->
        <parameter name="node0">24,42</parameter>
@@ -478,7 +500,10 @@ You get your stake back when there is a draw. If you win, you get the double of 
        <!-- towards the bow -->
        <parameter name="node5">22,42</parameter>
      </implementation>
+
+     <attribute name="class">seller2npc</attribute>
    </entity>
+
     <!-- This must be after the NPC factory -->
    <entity x="22" y="30">
      <implementation class-name="games.stendhal.server.entity.NPCOwnedChest">
