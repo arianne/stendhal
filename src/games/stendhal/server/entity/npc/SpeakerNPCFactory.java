@@ -1,5 +1,5 @@
 /*
- * @(#) src/games/stendhal/server/entity/SignFactory.java
+ * @(#) src/games/stendhal/server/entity/SpeakerNPCFactory.java
  *
  * $Id$
  */
@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * A base factory for <code>Sign</code> objects.
+ * A base factory for <code>SpeakerNPC</code> objects.
  */
 public class SpeakerNPCFactory implements ConfigurableFactory {
 
@@ -50,8 +50,7 @@ public class SpeakerNPCFactory implements ConfigurableFactory {
 	 * @throws	IllegalArgumentException If the attribute is missing.
 	 */
 	protected String getClass(ConfigurableFactoryContext ctx) {
-		return ctx.getRequiredString("class");
-
+		return ctx.getString("class", null);
 	}
 
 	/**
@@ -146,7 +145,7 @@ public class SpeakerNPCFactory implements ConfigurableFactory {
 	 *
 	 * @param	ctx		Configuration context.
 	 *
-	 * @return	A Sign.
+	 * @return	A SpeakerNPC.
 	 *
 	 * @throws	IllegalArgumentException
 	 *				If there is a problem with the
@@ -154,17 +153,23 @@ public class SpeakerNPCFactory implements ConfigurableFactory {
 	 *				should be a value sutable for
 	 *				meaningful user interpretation.
 	 *
-	 * @see		games.stendhal.server.entity.npc.SpeakerNPC
+	 * @see		SpeakerNPC
 	 */
 	public Object create(ConfigurableFactoryContext ctx) {
 		SpeakerNPC npc = instantiate(getName(ctx));
 
-		npc.setEntityClass(getClass(ctx));
 		npc.setBaseHP(100);
 		npc.setHP(getHP(ctx));
 		npc.setLevel(getLevel(ctx));
 
+		String clazz = getClass(ctx);
+
+		if(clazz != null) {
+			npc.setEntityClass(clazz);
+		}
+
 		String description = getDescription(ctx);
+
 		if (description != null) {
 			npc.setDescription(description);
 		}
