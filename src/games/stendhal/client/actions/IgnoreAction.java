@@ -17,14 +17,13 @@ class IgnoreAction implements SlashAction  {
 	 * @return	<code>true</code> if command was handled.
 	 */
 	public boolean execute(String[] params, String remainder) {
-		String duration;
-
+		String duration = params[1];
 		RPAction action = new RPAction();
 
 		action.put("type", "ignore");
 		action.put("target", params[0]);
 
-		if ((duration = params[1]) != null) {
+		if (duration != null) {
 			/*
 			 * Ignore "forever" values
 			 */
