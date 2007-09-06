@@ -656,7 +656,8 @@ class Pathfinder {
 		public boolean equals(Object obj) {
 			if (obj instanceof TreeNode) {
 				TreeNode treeN = (TreeNode) obj;
-				return this.nodeNumber == treeN.nodeNumber;
+				return this.nodeNumber.intValue() == treeN.nodeNumber.intValue()
+				;
 			}
 			return false;
 		}
