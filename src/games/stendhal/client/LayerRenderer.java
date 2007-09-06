@@ -27,7 +27,8 @@ public abstract class LayerRenderer {
 	protected int height;
 
 	public LayerRenderer() {
-		width = height = 0;
+		width = 0;
+		height = 0;
 	}
 
 	/** Returns the widht in world units */

@@ -696,7 +696,7 @@ public class GameScreen {
 		if (isTalking) {
 			// Point alignment: left, bottom
 			sy -= sprite.getHeight();
-		} else { 
+		} else {
 			// Point alignment: left-right centered, bottom
 			sx -= (sprite.getWidth() / 2);
 			sy -= sprite.getHeight();
@@ -1210,12 +1210,13 @@ public class GameScreen {
 		text = text.trim();
 		while (text.length() > 0) {
 			int pos = positionStringOfSize(text, width - delta);
-			int nlpos;
+
 
 			/*
 			 * Hard line breaks
 			 */
-			if (((nlpos = text.indexOf('\n', 1)) != -1) && (nlpos < pos)) {
+			int nlpos = text.indexOf('\n', 1);
+			if ((nlpos  != -1) && (nlpos < pos)) {
 				pos = nlpos;
 			}
 
