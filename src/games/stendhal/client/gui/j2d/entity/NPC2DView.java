@@ -9,7 +9,6 @@ package games.stendhal.client.gui.j2d.entity;
 //
 //
 
-import games.stendhal.client.GameScreen;
 import games.stendhal.client.OutfitStore;
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.NPC;

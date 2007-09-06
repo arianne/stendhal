@@ -9,7 +9,6 @@ import games.stendhal.server.entity.npc.fsm.PreTransitionCondition;
 import games.stendhal.server.entity.npc.fsm.Transition;
 import games.stendhal.server.entity.player.Player;
 
-import java.awt.geom.Rectangle2D;
 import java.util.LinkedList;
 import java.util.List;
 

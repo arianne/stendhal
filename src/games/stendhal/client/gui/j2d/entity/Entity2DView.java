@@ -27,7 +27,6 @@ import java.awt.Color;
 import java.awt.Composite;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
-import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -166,7 +165,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 		/*
 		 * Handle entity changes
 		 */
-		if(changed) {
+		if (changed) {
 			update();
 			changed = false;
 		}

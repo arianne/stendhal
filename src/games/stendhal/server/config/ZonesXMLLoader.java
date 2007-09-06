@@ -11,11 +11,8 @@ package games.stendhal.server.config;
 
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.config.zone.ConfiguratorDescriptor;
 import games.stendhal.server.config.zone.ConfiguratorXMLReader;
-import games.stendhal.server.config.zone.EntitySetupDescriptor;
 import games.stendhal.server.config.zone.EntitySetupXMLReader;
-import games.stendhal.server.config.zone.PortalSetupDescriptor;
 import games.stendhal.server.config.zone.PortalSetupXMLReader;
 import games.stendhal.server.config.zone.SetupDescriptor;
 import games.stendhal.server.config.zone.SetupXMLReader;

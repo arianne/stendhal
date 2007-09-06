@@ -92,6 +92,7 @@ public class EntitySetupXMLReader extends SetupXMLReader {
 	 *
 	 * @return	A setup descriptor, or <code>null</code> if invalid.
 	 */
+	@Override
 	public SetupDescriptor read(final Element element) {
 		int x;
 		int y;

@@ -11,11 +11,8 @@ package games.stendhal.server.config.zone;
 
 import games.stendhal.server.config.XMLUtil;
 
-import java.util.LinkedList;
 import java.util.List;
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-
 import marauroa.common.Log4J;
 import marauroa.common.Logger;
 

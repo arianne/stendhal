@@ -17,7 +17,6 @@ import games.stendhal.client.sprite.SpriteStore;
 import games.stendhal.common.Direction;
 
 import java.awt.Graphics2D;
-import java.util.List;
 import java.util.Map;
 
 import marauroa.common.game.RPAction;

@@ -95,6 +95,7 @@ public class PortalSetupXMLReader extends EntitySetupXMLReader {
 	 *
 	 * @return	A setup descriptor, or <code>null</code> if invalid.
 	 */
+	@Override
 	protected EntitySetupDescriptor read(final Element element, final int x, final int y) {
 		Object identifier;
 

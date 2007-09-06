@@ -15,9 +15,6 @@ package games.stendhal.client.entity;
 import games.stendhal.client.soundreview.SoundMaster;
 import games.stendhal.common.Rand;
 
-import java.awt.Rectangle;
-import java.awt.geom.Rectangle2D;
-
 import marauroa.common.game.RPObject;
 
 /**

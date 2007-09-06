@@ -52,6 +52,7 @@ public class ConfiguratorXMLReader extends SetupXMLReader {
 	 *
 	 * @return	A setup descriptor, or <code>null</code> if invalid.
 	 */
+	@Override
 	public SetupDescriptor read(final Element element) {
 		if(!element.hasAttribute("class-name")) {
 			logger.error("Implmentation without class-name");

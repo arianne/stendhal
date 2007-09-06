@@ -16,7 +16,6 @@ import games.stendhal.client.GameScreen;
 import games.stendhal.client.sprite.Sprite;
 
 import java.awt.Rectangle;
-import java.awt.geom.Rectangle2D;
 
 public class Text {
 	public static final long STANDARD_PERSISTENCE_TIME = 5000;

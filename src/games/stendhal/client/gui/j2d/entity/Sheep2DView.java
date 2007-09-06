@@ -44,6 +44,7 @@ public class Sheep2DView extends DomesticAnimal2DView {
 	 *
 	 * @return	A weight.
 	 */
+	@Override
 	protected int getBigWeight() {
 		return BIG_WEIGHT;
 	}
