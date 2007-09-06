@@ -652,8 +652,19 @@ class Pathfinder {
 			this.open = open;
 		}
 
-		public boolean equals(TreeNode obj) {
-			return this.nodeNumber == obj.nodeNumber;
+		@Override
+		public boolean equals(Object obj) {
+			if (obj instanceof TreeNode) {
+				TreeNode treeN = (TreeNode) obj;
+				return this.nodeNumber == treeN.nodeNumber;
+			}
+			return false;
 		}
+
+		@Override
+		public int hashCode() {
+			return nodeNumber.hashCode();
+		}
+
 	}
 }
