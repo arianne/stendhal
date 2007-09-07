@@ -84,7 +84,7 @@ public class StackableItem2DView extends Item2DView {
 			label = Integer.toString(quantity);
 		}
 
-		return GameScreen.get().createString(label, Color.white);
+		return screen.createString(label, Color.white);
 	}
 
 

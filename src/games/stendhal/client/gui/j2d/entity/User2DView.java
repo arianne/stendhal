@@ -40,8 +40,8 @@ public class User2DView extends Player2DView {
 
 		this.user = user;
 
-		GameScreen.get().place(user.getX(), user.getY());
-		GameScreen.get().center();
+		screen.place(user.getX(), user.getY());
+		screen.center();
 	}
 
 
@@ -108,7 +108,7 @@ public class User2DView extends Player2DView {
 		super.entityChanged(entity, property);
 
 		if(property == Entity.PROP_POSITION) {
-			GameScreen.get().place(user.getX(), user.getY());
+			screen.place(user.getX(), user.getY());
 		}
 	}
 

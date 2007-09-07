@@ -153,7 +153,7 @@ public class Sign2DView extends Entity2DView {
 
 				Rectangle area = getArea();
 
-				GameScreen.get().addText(
+				screen.addText(
 					area.x + (area.width / 2), area.y,
 					text, NotificationType.RESPONSE, false);
 

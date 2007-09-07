@@ -78,7 +78,7 @@ public class Item2DView extends Entity2DView {
 			sprite = store.getAnimatedSprite(sprite, 0, 0, width / GameScreen.SIZE_UNIT_PIXELS, GameScreen.SIZE_UNIT_PIXELS, GameScreen.SIZE_UNIT_PIXELS, 100);
 		} else if(sprite.getHeight() > GameScreen.SIZE_UNIT_PIXELS) {
 			sprite = store.getTile(sprite, 0, 0, GameScreen.SIZE_UNIT_PIXELS, GameScreen.SIZE_UNIT_PIXELS);
-			logger.info("WARNING: Multi-row item image for: " + getClassResourcePath());
+			logger.warn("Multi-row item image for: " + getClassResourcePath());
 		}
 
 		setSprite(sprite);

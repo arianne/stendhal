@@ -14,10 +14,19 @@ import games.stendhal.client.entity.Entity;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 
+import marauroa.common.Log4J;
+import marauroa.common.Logger;
+
 /**
  * The 2D view of an entity that always loops images.
  */
 public class AnimatedLoopEntity2DView extends Entity2DView {
+	/**
+	 * Log4J.
+	 */
+	private static final Logger logger = Log4J.getLogger(AnimatedLoopEntity2DView.class);
+
+
 	/**
 	 * Create a 2D view of an animated loop visual.
 	 *
@@ -51,7 +60,7 @@ public class AnimatedLoopEntity2DView extends Entity2DView {
 			sprite = store.getAnimatedSprite(sprite, 0, 0, width / GameScreen.SIZE_UNIT_PIXELS, GameScreen.SIZE_UNIT_PIXELS, GameScreen.SIZE_UNIT_PIXELS, 100);
 		} else if(sprite.getHeight() > GameScreen.SIZE_UNIT_PIXELS) {
 			sprite = store.getTile(sprite, 0, 0, GameScreen.SIZE_UNIT_PIXELS, GameScreen.SIZE_UNIT_PIXELS);
-//			logger.info("WARNING: Multi-row image for: " + getClassResourcePath());
+			logger.warn("Multi-row image for: " + translate(entity.getType()));
 		}
 
 		setSprite(sprite);
