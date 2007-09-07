@@ -27,6 +27,7 @@ import java.awt.Color;
 import java.awt.Composite;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -93,9 +94,19 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	protected int		x;
 
 	/**
+	 * The X alignment offset.
+	 */
+	protected int		xoffset;
+
+	/**
 	 * The screen Y coordinate.
 	 */
 	protected int		y;
+
+	/**
+	 * The Y alignment offset.
+	 */
+	protected int		yoffset;
 
 
 	/**
@@ -111,6 +122,8 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 
 		x = 0;
 		y = 0;
+		xoffset = 0;
+		yoffset = 0;
 
 		entityComposite = AlphaComposite.SrcOver;
 		contained = false;
@@ -144,6 +157,37 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 */
 	protected void buildRepresentation() {
 		setSprite(SpriteStore.get().getSprite(translate(entity.getType())));
+	}
+
+
+	/**
+	 * Calculate sprite image offset for the entity.
+	 *
+	 * @param	swidth		The sprite width (in pixels).
+	 * @param	sheight		The sprite height (in pixels).
+	 */
+	protected void calculateOffset(final int swidth, final int sheight) {
+		Rectangle2D area = entity.getArea();
+
+		calculateOffset(swidth, sheight, screen.convertWorldToScreen(area.getWidth()), screen.convertWorldToScreen(area.getHeight()));
+	}
+
+
+	/**
+	 * Calculate sprite image offset (default centered).
+	 * Sub-classes may override this to change alignment.
+	 *
+	 * @param	swidth		The sprite width (in pixels).
+	 * @param	sheight		The sprite height (in pixels).
+	 * @param	ewidth		The entity width (in pixels).
+	 * @param	eheight		The entity height (in pixels).
+	 */
+	protected void calculateOffset(final int swidth, final int sheight, final int ewidth, final int eheight) {
+		/*
+		 * X alignment centered, Y alignment centered
+		 */
+		xoffset = (ewidth - swidth) / 2;
+		yoffset = (eheight - sheight) / 2;
 	}
 
 
@@ -397,7 +441,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 * @return	The X offset (in pixels).
 	 */
 	protected int getXOffset() {
-		return 0;
+		return xoffset;
 	}
 
 
@@ -417,7 +461,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 * @return	The Y offset (in pixels).
 	 */
 	protected int getYOffset() {
-		return 0;
+		return yoffset;
 	}
 
 

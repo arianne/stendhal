@@ -25,7 +25,6 @@ import java.awt.Color;
 import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
-import java.awt.geom.Rectangle2D;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -77,16 +76,6 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	 */
 	protected int		width;
 
-	/**
-	 * The X alignment offset.
-	 */
-	protected int		xoffset;
-
-	/**
-	 * The Y alignment offset.
-	 */
-	protected int		yoffset;
-
 
 	static {
 		SpriteStore st = SpriteStore.get();
@@ -119,9 +108,6 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 
 		titleSprite = createTitleSprite();
 		titleChanged = false;
-
-		xoffset = 0;
-		yoffset = 0;
 	}
 
 
@@ -154,6 +140,7 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	 * @param	ewidth		The entity width (in pixels).
 	 * @param	eheight		The entity height (in pixels).
 	 */
+	@Override
 	protected void calculateOffset(final int swidth, final int sheight, final int ewidth, final int eheight) {
 		/*
 		 * X alignment centered, Y alignment bottom
@@ -193,7 +180,7 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 			}
 		}
 
-		return GameScreen.get().createString(entity.getTitle(), nameColor);
+		return screen.createString(entity.getTitle(), nameColor);
 	}
 
 
@@ -374,8 +361,7 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 
 		buildSprites(map, tiles, wwidth, wheight);
 
-		Rectangle2D area = rpentity.getArea();
-		calculateOffset(width, height, (int) (area.getWidth() * GameScreen.SIZE_UNIT_PIXELS), (int) (area.getHeight() * GameScreen.SIZE_UNIT_PIXELS));
+		calculateOffset(width, height);
 	}
 
 
@@ -582,28 +568,6 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	@Override
 	public int getWidth() {
 		return width;
-	}
-
-
-	/**
-	 * Get the X offset alignment adjustment.
-	 *
-	 * @return	The X offset (in pixels).
-	 */
-	@Override
-	protected int getXOffset() {
-		return xoffset;
-	}
-
-
-	/**
-	 * Get the Y offset alignment adjustment.
-	 *
-	 * @return	The Y offset (in pixels).
-	 */
-	@Override
-	protected int getYOffset() {
-		return yoffset;
 	}
 
 

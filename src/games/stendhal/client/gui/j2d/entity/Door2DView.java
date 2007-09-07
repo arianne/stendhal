@@ -18,7 +18,6 @@ import games.stendhal.client.entity.Entity;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 
-import java.awt.geom.Rectangle2D;
 import java.util.List;
 import java.util.Map;
 
@@ -35,16 +34,6 @@ public class Door2DView extends StateEntity2DView {
 	 * The open state.
 	 */
 	protected final static String	STATE_OPEN	= "open";
-
-	/*
-	 * The drawing X offset from the entity position.
-	 */
-	protected int		xoffset;
-
-	/*
-	 * The drawing Y offset from the entity position.
-	 */
-	protected int		yoffset;
 
 	/*
 	 * The drawn width.
@@ -72,8 +61,6 @@ public class Door2DView extends StateEntity2DView {
 
 		this.door = door;
 
-		xoffset = 0;
-		yoffset = 0;
 		width = GameScreen.SIZE_UNIT_PIXELS;
 		height = GameScreen.SIZE_UNIT_PIXELS;
 	}
@@ -112,8 +99,7 @@ public class Door2DView extends StateEntity2DView {
 			map.put(STATE_OPEN, store.getTile(tiles, 0, height, width, height));
 		}
 
-		Rectangle2D area = door.getArea();
-		calculateOffset(width, height, (int) (area.getWidth() * GameScreen.SIZE_UNIT_PIXELS), (int) (area.getHeight() * GameScreen.SIZE_UNIT_PIXELS));
+		calculateOffset(width, height);
 	}
 
 
@@ -152,24 +138,6 @@ public class Door2DView extends StateEntity2DView {
 
 
 	/**
-	 * Calculate sprite image offset.
-	 * Sub-classes may override this to change alignment.
-	 *
-	 * @param	swidth		The sprite width (in pixels).
-	 * @param	sheight		The sprite height (in pixels).
-	 * @param	ewidth		The entity width (in pixels).
-	 * @param	eheight		The entity height (in pixels).
-	 */
-	protected void calculateOffset(final int swidth, final int sheight, final int ewidth, final int eheight) {
-		/*
-		 * X alignment centered, Y alignment center
-		 */
-		xoffset = (ewidth - swidth) / 2;
-		yoffset = (eheight - sheight) / 2;
-	}
-
-
-	/**
 	 * Get the height.
 	 *
 	 * @return	The height (in pixels).
@@ -188,28 +156,6 @@ public class Door2DView extends StateEntity2DView {
 	@Override
 	public int getWidth() {
 		return width;
-	}
-
-
-	/**
-	 * Get the X offset alignment adjustment.
-	 *
-	 * @return	The X offset (in pixels).
-	 */
-	@Override
-	protected int getXOffset() {
-		return xoffset;
-	}
-
-
-	/**
-	 * Get the Y offset alignment adjustment.
-	 *
-	 * @return	The Y offset (in pixels).
-	 */
-	@Override
-	protected int getYOffset() {
-		return yoffset;
 	}
 
 
