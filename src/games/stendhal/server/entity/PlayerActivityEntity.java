@@ -23,6 +23,14 @@ import java.lang.ref.WeakReference;
  * before being initiated again.
  */
 public abstract class PlayerActivityEntity extends Entity implements UseListener {
+	/**
+	 * Create a player activity entity.
+	 */
+	public PlayerActivityEntity() {
+		setResistance(0);
+	}
+
+
 	//
 	// PlayerActivityEntity
 	//
