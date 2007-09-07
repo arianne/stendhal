@@ -397,5 +397,4 @@ public class Creature2DView extends RPEntity2DView {
 			this.y = y;
 		}
 	}
-
 }

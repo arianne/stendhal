@@ -19,6 +19,7 @@ import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 
 import java.util.List;
+import java.awt.geom.Rectangle2D;
 
 /**
  * The 2D view of a corpse.
@@ -49,6 +50,16 @@ public class Corpse2DView extends Entity2DView {
 	 */
 	private EntityContainer wtEntityContainer;
 
+	/**
+	 * The X alignment offset.
+	 */
+	protected int		xoffset;
+
+	/**
+	 * The Y alignment offset.
+	 */
+	protected int		yoffset;
+
 
 	/**
 	 * Create a 2D view of an entity.
@@ -62,6 +73,9 @@ public class Corpse2DView extends Entity2DView {
 
 		height = GameScreen.SIZE_UNIT_PIXELS;
 		width = GameScreen.SIZE_UNIT_PIXELS;
+
+		xoffset = 0;
+		yoffset = 0;
 	}
 
 
@@ -115,6 +129,27 @@ public class Corpse2DView extends Entity2DView {
 		height = sprite.getHeight();
 
 		setSprite(sprite);
+
+		Rectangle2D area = corpse.getArea();
+		calculateOffset(width, height, (int) (area.getWidth() * GameScreen.SIZE_UNIT_PIXELS), (int) (area.getHeight() * GameScreen.SIZE_UNIT_PIXELS));
+	}
+
+
+	/**
+	 * Calculate sprite image offset.
+	 * Sub-classes may override this to change alignment.
+	 *
+	 * @param	swidth		The sprite width (in pixels).
+	 * @param	sheight		The sprite height (in pixels).
+	 * @param	ewidth		The entity width (in pixels).
+	 * @param	eheight		The entity height (in pixels).
+	 */
+	protected void calculateOffset(final int swidth, final int sheight, final int ewidth, final int eheight) {
+		/*
+		 * X alignment centered, Y alignment centered
+		 */
+		xoffset = (ewidth - swidth) / 2;
+		yoffset = (eheight - sheight) / 2;
 	}
 
 
@@ -137,6 +172,28 @@ public class Corpse2DView extends Entity2DView {
 	@Override
 	public int getWidth() {
 		return width;
+	}
+
+
+	/**
+	 * Get the X offset alignment adjustment.
+	 *
+	 * @return	The X offset (in pixels).
+	 */
+	@Override
+	protected int getXOffset() {
+		return xoffset;
+	}
+
+
+	/**
+	 * Get the Y offset alignment adjustment.
+	 *
+	 * @return	The Y offset (in pixels).
+	 */
+	@Override
+	protected int getYOffset() {
+		return yoffset;
 	}
 
 

@@ -9,6 +9,7 @@ package games.stendhal.client.gui.j2d.entity;
 //
 //
 
+import games.stendhal.client.GameScreen;
 import games.stendhal.client.entity.Blood;
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.sprite.Sprite;
@@ -61,8 +62,12 @@ public class Blood2DView extends StateEntity2DView {
 		SpriteStore store = SpriteStore.get();
 		Sprite tiles = store.getSprite("data/sprites/combat/blood_" + clazz + ".png");
 
-		for(int i = 0; i < 4; i++) {
-			map.put(new Integer(i), store.getSprite(tiles, 0, i, 1.0, 1.0));
+		int theight = tiles.getHeight();
+		int i = 0;
+
+		// TODO: Allow animated frames
+		for(int y = 0; y < theight; y += GameScreen.SIZE_UNIT_PIXELS) {
+			map.put(new Integer(i++), store.getTile(tiles, 0, y, GameScreen.SIZE_UNIT_PIXELS, GameScreen.SIZE_UNIT_PIXELS));
 		}
 	}
 

@@ -106,6 +106,25 @@ public class SpriteStore {
 
 
 	/**
+	 * Create an animated sprite from a tile sprite using pixel units.
+	 *
+	 * @param	sprite		The image which contains the different
+	 *				frames.
+	 * @param	x		The base X coordinate (in pixels).
+	 * @param	y		The base Y coordinate (in pixels).
+	 * @param	frameCount	The number of frames in this animation.
+	 * @param	width		The tile width (in pixels).
+	 * @param	height		The tile height (in pixels).
+	 * @param	delay		The minimum delay between frames.
+	 *
+	 * @return	An animated sprite.
+	 */
+	public AnimatedSprite getAnimatedSprite(final Sprite sprite, final int x, final int y, final int frameCount, final int width, final int height, final int delay) {
+		return new AnimatedSprite(getTiles(sprite, x, y, frameCount, width, height), delay, true);
+	}
+
+
+	/**
 	 * Create a sprite tile (sub-region) using tile units.
 	 *
 	 *
@@ -151,13 +170,34 @@ public class SpriteStore {
 		int pixelWidth = (int) (width * GameScreen.SIZE_UNIT_PIXELS);
 		int pixelHeight = (int) (height * GameScreen.SIZE_UNIT_PIXELS);
 
-		Sprite[] animatedSprite = new Sprite[frameCount];
+		return getTiles(animImage, 0, row * pixelHeight, frameCount, pixelWidth, pixelHeight);
+	}
 
-		for (int i = 0; i < frameCount; i++) {
-			animatedSprite[i] = getTile(animImage, i * pixelWidth, row * pixelHeight, pixelWidth, pixelHeight);
+
+	/**
+	 * Get sprite tiles from a sprite using pixel units.
+	 *
+	 * @param	sprite		The base image.
+	 * @param	x		The base X coordinate (in pixels).
+	 * @param	y		The base Y coordinate (in pixels).
+	 * @param	count		The number of tiles.
+	 * @param	width		The tile width (in pixels).
+	 * @param	height		The tile height (in pixels).
+	 * @param	delay		The minimum delay between frames.
+	 *
+	 * @return	An array of sprites.
+	 */
+	public Sprite [] getTiles(final Sprite sprite, final int x, final int y, final int count, final int width, final int height) {
+		Sprite [] sprites = new Sprite[count];
+
+		int tx = x;
+
+		for (int i = 0; i < count; i++) {
+			sprites[i] = getTile(sprite, tx, y, width, height);
+			tx += width;
 		}
 		
-		return animatedSprite;
+		return sprites;
 	}
 
 	/**

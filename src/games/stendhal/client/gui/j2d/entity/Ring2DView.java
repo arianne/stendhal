@@ -9,6 +9,7 @@ package games.stendhal.client.gui.j2d.entity;
 //
 //
 
+import games.stendhal.client.GameScreen;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.Ring;
@@ -68,10 +69,10 @@ public class Ring2DView extends Item2DView {
 	@Override
 	protected void buildRepresentation() {
 		SpriteStore store = SpriteStore.get();
-
 		Sprite tiles = store.getSprite(translate(getClassResourcePath()));
-		working = store.getSprite(tiles, 0, 0, 1.0, 1.0);
-		broken = store.getSprite(tiles, 0, 1, 1.0, 1.0);
+
+		working = store.getTile(tiles, 0, 0, GameScreen.SIZE_UNIT_PIXELS, GameScreen.SIZE_UNIT_PIXELS);
+		broken = store.getTile(tiles, 0, GameScreen.SIZE_UNIT_PIXELS, GameScreen.SIZE_UNIT_PIXELS, GameScreen.SIZE_UNIT_PIXELS);
 
 		setSprite(getStateSprite());
 		stateChanged = false;

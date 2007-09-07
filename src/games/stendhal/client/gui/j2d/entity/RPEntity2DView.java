@@ -91,11 +91,13 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	static {
 		SpriteStore st = SpriteStore.get();
 
+		Sprite tiles = st.getSprite("data/sprites/combat/blade_strike.png");
+
 		bladeStrikeSprites = new HashMap<Object, Sprite[]>();
-		bladeStrikeSprites.put(STATE_UP, st.getSprites("data/sprites/combat/blade_strike.png", 0, 3, 3, 4));
-		bladeStrikeSprites.put(STATE_RIGHT, st.getSprites("data/sprites/combat/blade_strike.png", 1, 3, 3, 4));
-		bladeStrikeSprites.put(STATE_DOWN, st.getSprites("data/sprites/combat/blade_strike.png", 2, 3, 3, 4));
-		bladeStrikeSprites.put(STATE_LEFT, st.getSprites("data/sprites/combat/blade_strike.png", 3, 3, 3, 4));
+		bladeStrikeSprites.put(STATE_UP, st.getSprites(tiles, 0, 3, 3, 4));
+		bladeStrikeSprites.put(STATE_RIGHT, st.getSprites(tiles, 1, 3, 3, 4));
+		bladeStrikeSprites.put(STATE_DOWN, st.getSprites(tiles, 2, 3, 3, 4));
+		bladeStrikeSprites.put(STATE_LEFT, st.getSprites(tiles, 3, 3, 3, 4));
 
 		hitSprite = st.getSprite("data/sprites/combat/hitted.png");
 		blockedSprite = st.getSprite("data/sprites/combat/blocked.png");

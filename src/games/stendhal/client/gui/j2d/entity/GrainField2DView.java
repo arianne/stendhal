@@ -87,7 +87,9 @@ public class GrainField2DView extends StateEntity2DView {
 		Sprite tiles = store.getSprite(translate(clazz));
 
 		states = grainField.getMaximumRipeness() + 1;
-		int imageStates = tiles.getHeight() / height;
+
+		int theight = tiles.getHeight();
+		int imageStates = theight / height;
 
 		if(imageStates != states) {
 			logger.warn("State count mismatch: " + imageStates + " != " + states);
@@ -97,11 +99,11 @@ public class GrainField2DView extends StateEntity2DView {
 			}
 		}
 
-		double wheight = (double) height / GameScreen.SIZE_UNIT_PIXELS;
-		double wwidth = (double) width / GameScreen.SIZE_UNIT_PIXELS;
+		int i = 0;
 
-		for(int i = 0; i < states; i++) {
-			map.put(new Integer(i), store.getSprite(tiles, 0, i, wwidth, wheight));
+		// TODO: Allow animated frames
+		for(int y = 0; y < theight; y += height) {
+			map.put(new Integer(i++), store.getTile(tiles, 0, y, width, height));
 		}
 	}
 
