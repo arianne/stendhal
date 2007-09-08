@@ -81,26 +81,32 @@ public class WeddingRing extends Ring {
 	 * @param player The ring's owner.
 	 */
 	private void teleportToSpouse(Player player) {
-		if (has("infostring")) {
-			String spouseName = get("infostring");
-			Player spouse = StendhalRPRuleProcessor.get().getPlayer(spouseName);
-			if (spouse == null) {
-				player.sendPrivateText(spouseName + " is not online.");
-			} else if (spouse.isEquipped("wedding_ring")) {
-				StendhalRPZone zone = spouse.getZone();
-				int x = spouse.getX();
-				int y = spouse.getY();
-				Direction dir = spouse.getDirection();
-
-				player.teleport(zone, x, y, dir, player);
-			} else {
-				// This means trouble ;)
-				player.sendPrivateText(spouseName + " is not wearing the wedding ring.");
-			}
-		} else {
+		if (!has("infostring")) {
 			player.sendPrivateText("This wedding ring hasn't been engraved yet.");
 			logger.debug(player.getName() + "tried to use a wedding ring without a spouse name engraving.");
+			return;
 		}
+
+		String spouseName = get("infostring");
+		Player spouse = StendhalRPRuleProcessor.get().getPlayer(spouseName);
+		if (spouse == null) {
+			player.sendPrivateText(spouseName + " is not online.");
+			return;
+		}
+
+		if (!spouse.isEquipped("wedding_ring")) {
+			// This means trouble ;)
+			player.sendPrivateText(spouseName + " is not wearing the wedding ring.");
+			return;
+		}
+
+
+		StendhalRPZone zone = spouse.getZone();
+		int x = spouse.getX();
+		int y = spouse.getY();
+		Direction dir = spouse.getDirection();
+
+		player.teleport(zone, x, y, dir, player);
 	}
 
 	@Override
