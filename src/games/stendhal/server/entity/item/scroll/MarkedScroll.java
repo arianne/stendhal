@@ -79,8 +79,7 @@ public class MarkedScroll extends TeleportScroll {
 				if (temp == null) {
 					// invalid zone (the scroll may have been marked in an
 					// old version and the zone was removed)
-					player
-					        .sendPrivateText("Oh oh. For some strange reason the scroll did not teleport me to the right place.");
+					player.sendPrivateText("Oh oh. For some strange reason the scroll did not teleport me to the right place.");
 					logger.warn("marked_scroll to unknown zone " + infostring + " teleported " + player.getName()
 					        + " to Semos instead");
 				} else {
@@ -90,10 +89,7 @@ public class MarkedScroll extends TeleportScroll {
 						return false;
 					} else {
 						if (!zone.isTeleportAllowed()) {
-							player
-							        .sendPrivateText("The strong anti magic aura in the destination area prevents the scroll from working!");
-							logger.warn("marked_scroll to zone " + infostring + " teleported " + player.getName()
-							        + " to Semos instead");
+							player.sendPrivateText("The strong anti magic aura in the destination area prevents the scroll from working!");
 						} else {
 							zone = temp;
 							x = Integer.parseInt(st.nextToken());
@@ -103,6 +99,7 @@ public class MarkedScroll extends TeleportScroll {
 				}
 			}
 		}
+
 		// we use the player as teleporter (last parameter) to give feedback
 		// if something goes wrong.
 		return player.teleport(zone, x, y, null, player);
