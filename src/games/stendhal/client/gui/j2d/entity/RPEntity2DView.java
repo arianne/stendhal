@@ -83,10 +83,21 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 		Sprite tiles = st.getSprite("data/sprites/combat/blade_strike.png");
 
 		bladeStrikeSprites = new HashMap<Object, Sprite[]>();
-		bladeStrikeSprites.put(STATE_UP, st.getSprites(tiles, 0, 3, 3, 4));
-		bladeStrikeSprites.put(STATE_RIGHT, st.getSprites(tiles, 1, 3, 3, 4));
-		bladeStrikeSprites.put(STATE_DOWN, st.getSprites(tiles, 2, 3, 3, 4));
-		bladeStrikeSprites.put(STATE_LEFT, st.getSprites(tiles, 3, 3, 3, 4));
+
+		int twidth = 3 * GameScreen.SIZE_UNIT_PIXELS;
+		int theight = 4 * GameScreen.SIZE_UNIT_PIXELS;
+
+		int y = 0;
+		bladeStrikeSprites.put(STATE_UP, st.getTiles(tiles, 0, y, 3, twidth, theight));
+
+		y += theight;
+		bladeStrikeSprites.put(STATE_RIGHT, st.getTiles(tiles, 0, y, 3, twidth, theight));
+
+		y += theight;
+		bladeStrikeSprites.put(STATE_DOWN, st.getTiles(tiles, 0, y, 3, twidth, theight));
+
+		y += theight;
+		bladeStrikeSprites.put(STATE_LEFT, st.getTiles(tiles, 0, y, 3, twidth, theight));
 
 		hitSprite = st.getSprite("data/sprites/combat/hitted.png");
 		blockedSprite = st.getSprite("data/sprites/combat/blocked.png");

@@ -63,49 +63,6 @@ public class SpriteStore {
 
 
 	/**
-	 * Create an animated sprite from a tile resource.
-	 *
-	 * @param	ref		The image resource name.
-	 * @param	row		The vertical position of these
-	 *				frames inside the image.
-	 * @param	frameCount	The number of frames in this animation.
-	 * @param	width		The width of one sprite frame,
-	 *				in tiles.
-	 * @param	height		The height of one sprite frame,
-	 *				in tiles.
-	 * @param	delay		The minimum delay between frames.
-	 * @param	animating	The animating state.
-	 *
-	 * @return	An animated sprite.
-	 */
-	public AnimatedSprite getAnimatedSprite(final String ref, final int row, final int frameCount, final double width, final double height, final int delay, final boolean animating) {
-		return getAnimatedSprite(getSprite(ref), row, frameCount, width, height, delay, animating);
-	}
-
-
-	/**
-	 * Create an animated sprite from a tile sprite.
-	 *
-	 * @param	sprite		The image which contains the different
-	 *				frames.
-	 * @param	row		The vertical position of these
-	 *				frames inside the image.
-	 * @param	frameCount	The number of frames in this animation.
-	 * @param	width		The width of one sprite frame,
-	 *				in tiles.
-	 * @param	height		The height of one sprite frame,
-	 *				in tiles.
-	 * @param	delay		The minimum delay between frames.
-	 * @param	animating	The animating state.
-	 *
-	 * @return	An animated sprite.
-	 */
-	public AnimatedSprite getAnimatedSprite(final Sprite sprite, final int row, final int frameCount, final double width, final double height, final int delay, final boolean animating) {
-		return new AnimatedSprite(getSprites(sprite, row, frameCount, width, height), delay, animating);
-	}
-
-
-	/**
 	 * Create an animated sprite from a tile sprite using pixel units.
 	 *
 	 * @param	sprite		The image which contains the different
@@ -137,24 +94,6 @@ public class SpriteStore {
 		return getTile(sprite, column * pixelWidth, row * pixelHeight, pixelWidth, pixelHeight);
 	}
 
-
-	/**
-	 * Retrieve a collection of sprites from the store.
-	 *
-	 * @param ref
-	 *            the sprite name
-	 * @param row
-	 *            The row position of the frames starting at 0.
-	 * @param width
-	 *            of the frame
-	 * @param height
-	 *            of the frame
-	 *
-	 * @return	An array of sprites.
-	 */
-	public Sprite[] getSprites(String ref, int row, int frames, double width, double height) {
-		return getSprites(getSprite(ref), row, frames, width, height);
-	}
 
 	/**
 	 * @param animImage The image which contains the different frames
