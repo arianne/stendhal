@@ -199,13 +199,13 @@ public class Creature2DView extends RPEntity2DView {
 	 *
 	 * @param	map		The map to populate.
 	 * @param	tiles		The master sprite.
-	 * @param	width		The image width in tile units.
-	 * @param	height		The image height in tile units.
+	 * @param	width		The image width (in pixels).
+	 * @param	height		The image height (in pixels).
 	 */
 	@Override
-	protected void buildSprites(final Map<Object, Sprite> map, final Sprite tiles, final double width, final double height) {
-		this.width = (int) (width * GameScreen.SIZE_UNIT_PIXELS);
-		this.height = (int) (height * GameScreen.SIZE_UNIT_PIXELS);
+	protected void buildSprites(final Map<Object, Sprite> map, final Sprite tiles, final int width, final int height) {
+		this.width = width;
+		this.height = height;
 
 		super.buildSprites(map, tiles, width, height);
 	}

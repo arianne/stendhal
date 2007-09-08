@@ -40,15 +40,15 @@ public class BossCreature2DView extends Creature2DView {
 	 *
 	 * @param	map		The map to populate.
 	 * @param	tiles		The master sprite.
-	 * @param	width		The image width in tile units.
-	 * @param	height		The image height in tile units.
+	 * @param	width		The image width (in pixels).
+	 * @param	height		The image height (in pixels).
 	 */
 	@Override
-	protected void buildSprites(final Map<Object, Sprite> map, final Sprite tiles, final double width, final double height) {
+	protected void buildSprites(final Map<Object, Sprite> map, final Sprite tiles, final int width, final int height) {
 		SpriteStore store = SpriteStore.get();
 
-		Sprite right = store.getSprite(tiles, 0, 0, width, height);
-		Sprite left = store.getSprite(tiles, 0, 1, width, height);
+		Sprite right = store.getTile(tiles, 0, 0, width, height);
+		Sprite left = store.getTile(tiles, 0, height, width, height);
 
 		map.put(STATE_RIGHT, right);
 		map.put(STATE_LEFT, left);

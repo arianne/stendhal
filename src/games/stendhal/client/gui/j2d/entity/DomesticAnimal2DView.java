@@ -113,36 +113,44 @@ public abstract class DomesticAnimal2DView extends RPEntity2DView {
 	 *
 	 * @param	map		The map to populate.
 	 * @param	tiles		The master sprite.
-	 * @param	width		The image width in tile units.
-	 * @param	height		The image height in tile units.
+	 * @param	width		The image width (in pixels).
+	 * @param	height		The image height (in pixels).
 	 */
 	@Override
-	protected void buildSprites(final Map<Object, Sprite> map, final Sprite tiles, final double width, final double height) {
-		SpriteStore store = SpriteStore.get();
+	protected void buildSprites(final Map<Object, Sprite> map, final Sprite tiles, final int width, final int height) {
+		int y = 0;
+		map.put(STATE_UP, createWalkSprite(tiles, y, width, height));
 
-		map.put(STATE_UP,
-			store.getAnimatedSprite(tiles, 0, 3, width, height, 100, false));
+		y += height;
+		map.put(STATE_RIGHT, createWalkSprite(tiles, y, width, height));
 
-		map.put(STATE_RIGHT,
-			store.getAnimatedSprite(tiles, 1, 3, width, height, 100, false));
+		y += height;
+		map.put(STATE_DOWN, createWalkSprite(tiles, y, width, height));
 
-		map.put(STATE_DOWN,
-			store.getAnimatedSprite(tiles, 2, 3, width, height, 100, false));
+		y += height;
+		map.put(STATE_LEFT, createWalkSprite(tiles, y, width, height));
 
-		map.put(STATE_LEFT,
-			store.getAnimatedSprite(tiles, 3, 3, width, height, 100, false));
+		y += height;
+		map.put(STATE_BIG_UP, createWalkSprite(tiles, y, width, height));
 
-		map.put(STATE_BIG_UP,
-			store.getAnimatedSprite(tiles, 4, 3, width, height, 100, false));
+		y += height;
+		map.put(STATE_BIG_RIGHT, createWalkSprite(tiles, y, width, height));
 
-		map.put(STATE_BIG_RIGHT,
-			store.getAnimatedSprite(tiles, 5, 3, width, height, 100, false));
+		y += height;
+		map.put(STATE_BIG_DOWN, createWalkSprite(tiles, y, width, height));
 
-		map.put(STATE_BIG_DOWN,
-			store.getAnimatedSprite(tiles, 6, 3, width, height, 100, false));
+		y += height;
+		map.put(STATE_BIG_LEFT, createWalkSprite(tiles, y, width, height));
+	}
 
-		map.put(STATE_BIG_LEFT,
-			store.getAnimatedSprite(tiles, 7, 3, width, height, 100, false));
+
+	/**
+	 * Get the full directional animation tile set for this entity.
+	 *
+	 * @return	A tile sprite containing all animation images.
+	 */
+	protected Sprite getAnimationSprite() {
+		return SpriteStore.get().getSprite(translate(entity.getType()));
 	}
 
 

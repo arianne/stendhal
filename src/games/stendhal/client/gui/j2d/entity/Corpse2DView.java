@@ -18,12 +18,20 @@ import games.stendhal.client.gui.wt.EntityContainer;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 
+import marauroa.common.Log4J;
+import marauroa.common.Logger;
+
 import java.util.List;
 
 /**
  * The 2D view of a corpse.
  */
 public class Corpse2DView extends Entity2DView {
+	/**
+	 * Log4J.
+	 */
+	private static final Logger logger = Log4J.getLogger(Corpse2DView.class);
+
 	/**
 	 * The RP entity this view is for.
 	 */
@@ -106,6 +114,8 @@ public class Corpse2DView extends Entity2DView {
 				corpseType = corpseType + "_giantrat";
 			} else if (clazz.equals("enormous_creature")) {
 				corpseType = corpseType + "_enormous_creature";
+			} else if (!clazz.equals("animal")) {
+				logger.warn("Unknown corpse type: " + clazz);
 			}
 		}
 

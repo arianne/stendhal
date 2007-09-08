@@ -120,14 +120,21 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	 *
 	 * @param	map		The map to populate.
 	 * @param	tiles		The master sprite.
-	 * @param	width		The image width in tile units.
-	 * @param	height		The image height in tile units.
+	 * @param	width		The tile width (in pixels).
+	 * @param	height		The tile height (in pixels).
 	 */
-	protected void buildSprites(final Map<Object, Sprite> map, final Sprite tiles, final double width, final double height) {
-		map.put(STATE_UP, getAnimatedWalk(tiles, 0, width, height));
-		map.put(STATE_RIGHT, getAnimatedWalk(tiles, 1, width, height));
-		map.put(STATE_DOWN, getAnimatedWalk(tiles, 2, width, height));
-		map.put(STATE_LEFT, getAnimatedWalk(tiles, 3, width, height));
+	protected void buildSprites(final Map<Object, Sprite> map, final Sprite tiles, final int width, final int height) {
+		int y = 0;
+		map.put(STATE_UP, createWalkSprite(tiles, y, width, height));
+
+		y += height;
+		map.put(STATE_RIGHT, createWalkSprite(tiles, y, width, height));
+
+		y += height;
+		map.put(STATE_DOWN, createWalkSprite(tiles, y, width, height));
+
+		y += height;
+		map.put(STATE_LEFT, createWalkSprite(tiles, y, width, height));
 	}
 
 
@@ -181,6 +188,37 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 		}
 
 		return screen.createString(entity.getTitle(), nameColor);
+	}
+
+
+	/**
+	 * Extract a walking animation for a specific row. The source sprite
+	 * contains 3 animation tiles, but this is converted to 4 frames.
+	 *
+	 * @param	tiles		The tile image.
+	 * @param	y		The base Y coordinate.
+	 * @param	width		The frame width.
+	 * @param	height		The frame height.
+	 *
+	 * @return	A sprite.
+	 */
+	protected Sprite createWalkSprite(final Sprite tiles, final int y, final int width, final int height) {
+		SpriteStore store = SpriteStore.get();
+
+		Sprite [] frames = new Sprite[4];
+
+		int x = 0;
+		frames[0] = store.getTile(tiles, x, y, width, height);
+
+		x += width;
+		frames[1] = store.getTile(tiles, x, y, width, height);
+
+		x += width;
+		frames[2] = store.getTile(tiles, x, y, width, height);
+
+		frames[3] = frames[1];
+
+		return new AnimatedSprite(frames, 100, false);
 	}
 
 
@@ -276,30 +314,11 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 
 
 	/**
-	 * Extract a walking animation for a specific row. The source sprite
-	 * contains 3 animation tiles, but this is converted to 4 frames.
-	 *
-	 *
-	 *
-	 * @return	An animated sprite.
-	 */
-	protected AnimatedSprite getAnimatedWalk(final Sprite tiles, final int row, final double width, final double height) {
-		Sprite [] frames = SpriteStore.get().getSprites(tiles, row, 4, width, height);
-
-		frames[3] = frames[1];
-
-		return new AnimatedSprite(frames, 100, false);
-	}
-
-
-	/**
 	 * Get the full directional animation tile set for this entity.
 	 *
 	 * @return	A tile sprite containing all animation images.
 	 */
-	protected Sprite getAnimationSprite() {
-		return SpriteStore.get().getSprite(translate(entity.getType()));
-	}
+	protected abstract Sprite getAnimationSprite();
 
 
 	/**
@@ -346,21 +365,10 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	protected void buildSprites(final Map<Object, Sprite> map) {
 		Sprite tiles = getAnimationSprite();
 
-		double tw = (double) tiles.getWidth() / getTilesX();
-		double th = (double) tiles.getHeight() / getTilesY();
+		width = tiles.getWidth() / getTilesX();
+		height = tiles.getHeight() / getTilesY();
 
-		/*
-		 * Round to the nearest 0.5 world units to adjust for
-		 * slightly wrong sized PNG files.
-		 */
-		double wwidth = Math.round(tw / GameScreen.SIZE_UNIT_PIXELS * 2.0) / 2.0;
-		double wheight = Math.round(th / GameScreen.SIZE_UNIT_PIXELS * 2.0) / 2.0;
-
-		width = (int) (wwidth * GameScreen.SIZE_UNIT_PIXELS);
-		height = (int) (wheight * GameScreen.SIZE_UNIT_PIXELS);
-
-		buildSprites(map, tiles, wwidth, wheight);
-
+		buildSprites(map, tiles, width, height);
 		calculateOffset(width, height);
 	}
 
