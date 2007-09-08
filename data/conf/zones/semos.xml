@@ -288,8 +288,17 @@ The tavern has moved into a more central location in Semos. Please come join us 
    <dialog states="idle" next-state="attending">
     <!-- 'ref' maps to a predefined alias list -->
     <trigger ref="greeting"/>
+
     <!-- This returns a SpeakerNPC.ChatAction -->
-    <action class-name="games.stendhal.server.maps.semos.city.TheifGreetAction"/>
+    <action class-name="games.stendhal.server.entity.npc.action.PriorChatResponseAction">
+     <parameter name="first-response">
+Heh heh... Oh, hello stranger! You look a bit disoriented... d'you want to hear the latest gossip?
+     </parameter>
+
+     <parameter name="later-response">
+Hi again, ${player.name}. How can I #help you this time?
+     </parameter>
+    </action>
    </dialog>
 
    <!-- Attending -->
@@ -345,11 +354,8 @@ Awww... so you're a coward, then? Huh.
     </reply>
    </dialog>
 
-   <dialog states="*" next-state="idle">
-    <trigger ref="goodbye"/>
-    <reply>Bye.</reply>
-    <action class-name="games.stendhal.server.entity.npc.GoodbyeAction"/>
-   </dialog>
+   <!-- This is a special internal dialog handler -->
+   <goodbye>Bye.</goodbye>
   </npc>
   <!-- XXX: End of Hypothtical "NPC" element. -->
 ]]>
@@ -374,7 +380,7 @@ Awww... so you're a coward, then? Huh.
       <parameter name="direction">left</parameter>
     </implementation>
 
-    <parameter name="class">oldmannpc</parameter>
+    <attribute name="class">oldmannpc</attribute>
   </entity>
 
   <entity x="5" y="46">
