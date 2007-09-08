@@ -63,22 +63,16 @@ public class Corpse extends PassiveEntity implements TurnListener,
 	}
 
 	private void decideSize(String clazz) {
-		int width = 1;
-		int height = 1;
-
 		if (clazz.equals("giant_animal") || clazz.equals("giant_human")
-				|| clazz.equals("huge_animal")) {
-			width = 2;
-			height = 2;
-		} else if (clazz.equals("mythical_animal") || clazz.equals("boss")) {
-			width = 6;
-			height = 6;
+		 || clazz.equals("huge_animal") || clazz.equals("boss")) {
+			setSize(2, 2);
+		} else if (clazz.equals("mythical_animal")) {
+			setSize(6, 6);
 		} else if (clazz.equals("enormous_creature")) {
-			width = 16;
-			height = 16;
+			setSize(16, 16);
+		} else {
+			setSize(1, 1);
 		}
-
-		setSize(width, height);
 	}
 
 	public Corpse(String clazz, int x, int y) {
@@ -146,13 +140,11 @@ public class Corpse extends PassiveEntity implements TurnListener,
 			remove("killer");
 		}
 
-		// Consider rewriting this section once we get corpses larger
-		// than 2x2.
-		//
-		// TODO: decideSize() has been called, width/height are set.
-		// Center corpse area on victim area.
 		Rectangle2D rect = victim.getArea();
-		setPosition((int) Math.round(rect.getCenterX() - 1), (int) Math.round(rect.getCenterY() - 1));
+
+		setPosition(
+		 (int) (rect.getX() + ((rect.getWidth() - getWidth()) / 2.0)),
+		 (int) (rect.getY() + ((rect.getHeight() - getHeight()) / 2.0)));
 
 		TurnNotifier.get().notifyInSeconds(DEGRADATION_STEP_TIMEOUT, this);
 		stage = 0;
@@ -161,6 +153,7 @@ public class Corpse extends PassiveEntity implements TurnListener,
 		RPSlot slot = new LootableSlot(this);
 		addSlot(slot);
 	}
+
 
 	//
 	// Corpse
@@ -283,5 +276,4 @@ public class Corpse extends PassiveEntity implements TurnListener,
 	public boolean canBeEquippedIn(String slot) {
 		return false;
 	}
-
 }
