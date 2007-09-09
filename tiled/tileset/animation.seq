@@ -65,6 +65,34 @@ tileset/ground/water/pool_grassy.png	20	20:23:26:23
 tileset/ground/water/pool_grassy.png	23	20:23:26:23
 tileset/ground/water/pool_grassy.png	26	20:23:26:23
 
+tileset/ground/water/pool_icy.png	0	0:3:6:3
+tileset/ground/water/pool_icy.png	3	0:3:6:3
+tileset/ground/water/pool_icy.png	6	0:3:6:3
+tileset/ground/water/pool_icy.png	1	1:4:7:4
+tileset/ground/water/pool_icy.png	4	1:4:7:4
+tileset/ground/water/pool_icy.png	7	1:4:7:4
+tileset/ground/water/pool_icy.png	2	2:5:8:5
+tileset/ground/water/pool_icy.png	5	2:5:8:5
+tileset/ground/water/pool_icy.png	8	2:5:8:5
+tileset/ground/water/pool_icy.png	9	9:12:15:12
+tileset/ground/water/pool_icy.png	12	9:12:15:12
+tileset/ground/water/pool_icy.png	15	9:12:15:12
+tileset/ground/water/pool_icy.png	10	10:13:16:13
+tileset/ground/water/pool_icy.png	13	10:13:16:13
+tileset/ground/water/pool_icy.png	16	10:13:16:13
+tileset/ground/water/pool_icy.png	11	11:14:17:14
+tileset/ground/water/pool_icy.png	14	11:14:17:14
+tileset/ground/water/pool_icy.png	17	11:14:17:14
+tileset/ground/water/pool_icy.png	18	18:21:24:21
+tileset/ground/water/pool_icy.png	21	18:21:24:21
+tileset/ground/water/pool_icy.png	24	18:21:24:21
+tileset/ground/water/pool_icy.png	19	19:22:25:22
+tileset/ground/water/pool_icy.png	22	19:22:25:22
+tileset/ground/water/pool_icy.png	25	19:22:25:22
+tileset/ground/water/pool_icy.png	20	20:23:26:23
+tileset/ground/water/pool_icy.png	23	20:23:26:23
+tileset/ground/water/pool_icy.png	26	20:23:26:23
+
 tileset/ground/water/water_corners.png	0	0:2:4:2
 tileset/ground/water/water_corners.png	2	0:2:4:2
 tileset/ground/water/water_corners.png	4	0:2:4:2
