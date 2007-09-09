@@ -1,4 +1,4 @@
-package tools.newrp;
+package newrp;
 
 
 public enum Skill {
