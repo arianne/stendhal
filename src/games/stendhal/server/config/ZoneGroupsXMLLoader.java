@@ -114,17 +114,17 @@ public class ZoneGroupsXMLLoader extends DefaultHandler {
 		/*
 		 * Load each group
 		 */
-		for (URI uri : zoneGroups) {
-			logger.debug("Loading zone group [" + uri + "]");
+		for (URI tempUri : zoneGroups) {
+			logger.debug("Loading zone group [" + tempUri + "]");
 
-			loader = new ZonesXMLLoader(uri);
+			loader = new ZonesXMLLoader(tempUri);
 
 			try {
 				loader.load();
 			} catch (SAXException ex) {
-				logger.error("Error loading zone group: " + uri, ex);
+				logger.error("Error loading zone group: " + tempUri, ex);
 			} catch (IOException ex) {
-				logger.error("Error loading zone group: " + uri, ex);
+				logger.error("Error loading zone group: " + tempUri, ex);
 			}
 		}
 	}

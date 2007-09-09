@@ -194,13 +194,13 @@ public class CreaturesXMLLoader extends DefaultHandler {
 		} else if (qName.equals("drops")) {
 			drops = true;
 		} else if (qName.equals("item") && drops) {
-			String name = null;
+			String tempName = null;
 			Double probability = null;
 			String range = null;
 
 			for (int i = 0; i < attrs.getLength(); i++) {
 				if (attrs.getQName(i).equals("value")) {
-					name = attrs.getValue(i);
+					tempName = attrs.getValue(i);
 				} else if (attrs.getQName(i).equals("probability")) {
 					probability = Double.parseDouble(attrs.getValue(i));
 				} else if (attrs.getQName(i).equals("quantity")) {
@@ -208,17 +208,17 @@ public class CreaturesXMLLoader extends DefaultHandler {
 				}
 			}
 
-			if ((name != null) && (probability != null) && (range != null)) {
-				logger.debug(name + ":" + probability + ":" + range);
+			if ((tempName != null) && (probability != null) && (range != null)) {
+				logger.debug(tempName + ":" + probability + ":" + range);
 				if (range.contains("[")) {
 					range = range.replace("[", "");
 					range = range.replace("]", "");
 					String[] amount = range.split(",");
 
-					dropsItems.add(new DropItem(name, probability, Integer
+					dropsItems.add(new DropItem(tempName, probability, Integer
 							.parseInt(amount[0]), Integer.parseInt(amount[1])));
 				} else {
-					dropsItems.add(new DropItem(name, probability, Integer
+					dropsItems.add(new DropItem(tempName, probability, Integer
 							.parseInt(range)));
 				}
 			}

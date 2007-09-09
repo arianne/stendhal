@@ -153,10 +153,7 @@ public class ItemsXMLLoader extends DefaultHandler {
 		} else if (qName.equals("attributes")) {
 			attributesTag = true;
 		} else if (attributesTag) {
-			String name = qName;
-			String value = attrs.getValue("value");
-
-			attributes.put(name, value);
+			attributes.put(qName, attrs.getValue("value"));
 		}
 	}
 

@@ -22,5 +22,5 @@ public interface ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes);
+	void configureZone(StendhalRPZone zone, Map<String, String> attributes);
 }

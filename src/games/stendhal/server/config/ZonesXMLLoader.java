@@ -48,17 +48,17 @@ public class ZonesXMLLoader {
 	/**
 	 * The ConfiguratorDescriptor XML reader.
 	 */
-	protected static final SetupXMLReader	configuratorReader = new ConfiguratorXMLReader();
+	protected static final SetupXMLReader configuratorReader = new ConfiguratorXMLReader();
 
 	/**
 	 * The EntitySetupDescriptor XML reader.
 	 */
-	protected static final SetupXMLReader	entitySetupReader = new EntitySetupXMLReader();
+	protected static final SetupXMLReader entitySetupReader = new EntitySetupXMLReader();
 
 	/**
 	 * The PortalSetupDescriptor XML reader.
 	 */
-	protected static final SetupXMLReader	portalSetupReader = new PortalSetupXMLReader();
+	protected static final SetupXMLReader portalSetupReader = new PortalSetupXMLReader();
 
 	/**
 	 * The zone group file.
@@ -117,10 +117,11 @@ public class ZonesXMLLoader {
 		/*
 		 * Load each zone
 		 */
-		for(Element element : XMLUtil.getElements(doc.getDocumentElement(), "zone")) {
+		for (Element element : XMLUtil.getElements(doc.getDocumentElement(),
+				"zone")) {
 			ZoneDesc zdesc = readZone(element);
 
-			if(zdesc == null) {
+			if (zdesc == null) {
 				continue;
 			}
 
@@ -129,7 +130,8 @@ public class ZonesXMLLoader {
 			logger.info("Loading zone: " + name);
 
 			try {
-				StendhalMapStructure zonedata = ServerTMXLoader.load(StendhalRPWorld.MAPS_FOLDER + zdesc.getFile());
+				StendhalMapStructure zonedata = ServerTMXLoader
+						.load(StendhalRPWorld.MAPS_FOLDER + zdesc.getFile());
 
 				if (verifyMap(zdesc, zonedata)) {
 					StendhalRPZone zone = load(zdesc, zonedata);
@@ -155,7 +157,8 @@ public class ZonesXMLLoader {
 	private boolean verifyMap(ZoneDesc zdesc, StendhalMapStructure zonedata) {
 		for (String layer : REQUIRED_LAYERS) {
 			if (!zonedata.hasLayer(layer)) {
-				logger.error("Required layer " + layer + " missing in zone " + zdesc.getFile());
+				logger.error("Required layer " + layer + " missing in zone "
+						+ zdesc.getFile());
 				return false;
 			}
 		}
@@ -163,12 +166,13 @@ public class ZonesXMLLoader {
 	}
 
 	/**
-	 * Load zone data and create a zone from it.
-	 * Most of this should be moved directly into ZoneXMLLoader.
+	 * Load zone data and create a zone from it. Most of this should be moved
+	 * directly into ZoneXMLLoader.
 	 *
 	 *
 	 */
-	protected StendhalRPZone load(ZoneDesc desc, StendhalMapStructure zonedata) throws SAXException, IOException {
+	protected StendhalRPZone load(ZoneDesc desc, StendhalMapStructure zonedata)
+			throws SAXException, IOException {
 		String name = desc.getName();
 		StendhalRPZone zone = new StendhalRPZone(name);
 
@@ -184,8 +188,10 @@ public class ZonesXMLLoader {
 			zone.addLayer(name + ".4_roof_add", layer);
 		}
 
-		zone.addCollisionLayer(name + ".collision", zonedata.getLayer("collision"));
-		zone.addProtectionLayer(name + ".protection", zonedata.getLayer("protection"));
+		zone.addCollisionLayer(name + ".collision", zonedata
+				.getLayer("collision"));
+		zone.addProtectionLayer(name + ".protection", zonedata
+				.getLayer("protection"));
 
 		if (desc.isInterior()) {
 			zone.setPosition();
@@ -200,16 +206,15 @@ public class ZonesXMLLoader {
 		return zone;
 	}
 
-
 	public ZoneDesc readZone(final Element element) {
-		if(!element.hasAttribute("name")) {
+		if (!element.hasAttribute("name")) {
 			logger.error("Unnamed zone");
 			return null;
 		}
 
 		String name = element.getAttribute("name");
 
-		if(!element.hasAttribute("file")) {
+		if (!element.hasAttribute("file")) {
 			logger.error("Zone [" + name + "] without 'file' attribute");
 			return null;
 		}
@@ -223,7 +228,7 @@ public class ZonesXMLLoader {
 		/**
 		 * Interior zones don't have levels (why not?)
 		 */
-		if(!element.hasAttribute("level")) {
+		if (!element.hasAttribute("level")) {
 			level = ZoneDesc.UNSET;
 			x = ZoneDesc.UNSET;
 			y = ZoneDesc.UNSET;
@@ -237,7 +242,7 @@ public class ZonesXMLLoader {
 				return null;
 			}
 
-			if(!element.hasAttribute("x")) {
+			if (!element.hasAttribute("x")) {
 				logger.error("Zone [" + name + "] without x coordinate");
 				return null;
 			} else {
@@ -246,12 +251,13 @@ public class ZonesXMLLoader {
 				try {
 					x = Integer.parseInt(s);
 				} catch (NumberFormatException ex) {
-					logger.error("Zone [" + name + "] has invalid x coordinate: " + s);
+					logger.error("Zone [" + name
+							+ "] has invalid x coordinate: " + s);
 					return null;
 				}
 			}
 
-			if(!element.hasAttribute("y")) {
+			if (!element.hasAttribute("y")) {
 				logger.error("Zone [" + name + "] without y coordinate");
 				return null;
 			} else {
@@ -260,7 +266,8 @@ public class ZonesXMLLoader {
 				try {
 					y = Integer.parseInt(s);
 				} catch (NumberFormatException ex) {
-					logger.error("Zone [" + name + "] has invalid y coordinate: " + s);
+					logger.error("Zone [" + name
+							+ "] has invalid y coordinate: " + s);
 					return null;
 				}
 			}
@@ -273,8 +280,8 @@ public class ZonesXMLLoader {
 		 */
 		List<Element> list = XMLUtil.getElements(element, "title");
 
-		if(!list.isEmpty()) {
-			if(list.size() > 1) {
+		if (!list.isEmpty()) {
+			if (list.size() > 1) {
 				logger.error("Zone [" + name + "] has multiple title elements");
 			}
 
@@ -284,18 +291,18 @@ public class ZonesXMLLoader {
 		/*
 		 * Setup elements
 		 */
-		for(Element child : XMLUtil.getElements(element)) {
+		for (Element child : XMLUtil.getElements(element)) {
 			String tag = child.getTagName();
 
 			SetupDescriptor setupDesc;
 
-			if(tag.equals("configurator")) {
+			if (tag.equals("configurator")) {
 				setupDesc = configuratorReader.read(child);
-			} else if(tag.equals("entity")) {
+			} else if (tag.equals("entity")) {
 				setupDesc = entitySetupReader.read(child);
-			} else if(tag.equals("portal")) {
+			} else if (tag.equals("portal")) {
 				setupDesc = portalSetupReader.read(child);
-			} else if(tag.equals("title")) {
+			} else if (tag.equals("title")) {
 				// Ignore
 				continue;
 			} else {
@@ -303,7 +310,7 @@ public class ZonesXMLLoader {
 				continue;
 			}
 
-			if(setupDesc != null) {
+			if (setupDesc != null) {
 				desc.addDescriptor(setupDesc);
 			}
 		}
@@ -319,7 +326,8 @@ public class ZonesXMLLoader {
 	 */
 	public static void main(String[] args) throws Exception {
 		if (args.length != 1) {
-			System.err.println("Usage: java " + ZonesXMLLoader.class.getName() + " <filename>");
+			System.err.println("Usage: java " + ZonesXMLLoader.class.getName()
+					+ " <filename>");
 			System.exit(1);
 		}
 
@@ -328,7 +336,8 @@ public class ZonesXMLLoader {
 		try {
 			loader.load();
 		} catch (org.xml.sax.SAXParseException ex) {
-			System.err.print("Source " + args[0] + ":" + ex.getLineNumber() + "<" + ex.getColumnNumber() + ">");
+			System.err.print("Source " + args[0] + ":" + ex.getLineNumber()
+					+ "<" + ex.getColumnNumber() + ">");
 
 			throw ex;
 		}
