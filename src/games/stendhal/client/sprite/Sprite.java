@@ -23,7 +23,7 @@ public interface Sprite {
 	 *
 	 * @return	A new copy of the sprite.
 	 */
-	public Sprite copy();
+	Sprite copy();
 
 
 	/**
@@ -38,12 +38,12 @@ public interface Sprite {
 	 *
 	 * @return	A new sprite.
 	 */
-	public Sprite createRegion(final int x, final int y, final int width, final int height, final Object ref);
+	Sprite createRegion(final int x, final int y, final int width, final int height, final Object ref);
 
 
 	/**
 	 * Draw the sprite onto the graphics context provided
-	 * 
+	 *
 	 * @param g
 	 *            The graphics context on which to draw the sprite
 	 * @param x
@@ -51,11 +51,11 @@ public interface Sprite {
 	 * @param y
 	 *            The y location at which to draw the sprite
 	 */
-	public void draw(Graphics g, int x, int y);
+	void draw(Graphics g, int x, int y);
 
 	/**
 	 * Draws the image
-	 * 
+	 *
 	 * @param g
 	 *            the graphics context where to draw to
 	 * @param destx
@@ -71,14 +71,14 @@ public interface Sprite {
 	 * @param h
 	 *            the height
 	 */
-	public void draw(Graphics g, int destx, int desty, int x, int y, int w, int h);
+	void draw(Graphics g, int destx, int desty, int x, int y, int w, int h);
 
 	/**
 	 * Get the height of the drawn sprite
-	 * 
+	 *
 	 * @return The height in pixels of this sprite
 	 */
-	public int getHeight();
+	int getHeight();
 
 
 	/**
@@ -89,13 +89,13 @@ public interface Sprite {
 	 * @return	The reference identifier, or <code>null</code> if
 	 *		not referencable.
 	 */
-	public Object getReference();
+	Object getReference();
 
 
 	/**
 	 * Get the width of the drawn sprite
-	 * 
+	 *
 	 * @return The width in pixels of this sprite
 	 */
-	public int getWidth();
+	int getWidth();
 }

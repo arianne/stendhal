@@ -18,63 +18,70 @@ public class SpriteTileset implements Tileset {
 	/**
 	 * The sprite tiles.
 	 */
-	protected Sprite []	tiles;
-
+	protected Sprite[] tiles;
 
 	/**
 	 * Create a tileset.
 	 *
-	 * @param	store		A sprite store.
-	 * @param	filename	A sprite resource path.
+	 * @param store
+	 *            A sprite store.
+	 * @param filename
+	 *            A sprite resource path.
 	 */
 	public SpriteTileset(final SpriteStore store, final String filename) {
 		this(store, store.getSprite(filename), GameScreen.SIZE_UNIT_PIXELS);
 	}
 
-
 	/**
 	 * Create a tileset.
 	 *
-	 * @param	store		A sprite store.
-	 * @param	sprite		A source sprite.
-	 * @param	size		The tile size.
+	 * @param store
+	 *            A sprite store.
+	 * @param sprite
+	 *            A source sprite.
+	 * @param size
+	 *            The tile size.
 	 */
-	public SpriteTileset(final SpriteStore store, final Sprite sprite, final int size) {
-		if(sprite == null) {
+	public SpriteTileset(final SpriteStore store, final Sprite sprite,
+			final int size) {
+		if (sprite == null) {
 			tiles = new Sprite[0];
 		} else {
 			tiles = extractTiles(store, sprite, size);
 		}
 	}
 
-
 	//
 	// SpriteTileset
 	//
 
 	/**
-	 * Extract all the tiles from a source sprite in left-right,
-	 * top-bottom scan order.
+	 * Extract all the tiles from a source sprite in left-right, top-bottom scan
+	 * order.
 	 *
-	 * @param	store		A sprite store.
-	 * @param	sprite		The master sprite.
-	 * @param	size		The tile size.
+	 * @param store
+	 *            A sprite store.
+	 * @param sprite
+	 *            The master sprite.
+	 * @param size
+	 *            The tile size.
 	 *
-	 * @return	An array of sprites.
+	 * @return An array of sprites.
 	 */
-	protected Sprite [] extractTiles(final SpriteStore store, final Sprite sprite, final int size) {
+	protected Sprite[] extractTiles(final SpriteStore store,
+			final Sprite sprite, final int size) {
 		int rows = sprite.getHeight() / size;
 		int cols = sprite.getWidth() / size;
 
-		Sprite [] sprites = new Sprite[rows * cols];
+		Sprite[] sprites = new Sprite[rows * cols];
 		int idx = 0;
 
 		int y = 0;
 
-		for(int row = 0; row < rows; row++) {
+		for (int row = 0; row < rows; row++) {
 			int x = 0;
 
-			for(int col = 0; col < cols; col++) {
+			for (int col = 0; col < cols; col++) {
 				sprites[idx++] = store.getTile(sprite, x, y, size, size);
 
 				x += size;
@@ -86,7 +93,6 @@ public class SpriteTileset implements Tileset {
 		return sprites;
 	}
 
-
 	//
 	// Tileset
 	//
@@ -94,22 +100,22 @@ public class SpriteTileset implements Tileset {
 	/**
 	 * Get the number of tiles.
 	 *
-	 * @return	The number of tiles.
+	 * @return The number of tiles.
 	 */
 	public int getSize() {
 		return tiles.length;
 	}
 
-
 	/**
 	 * Get the sprite for an index tile of a tileset.
 	 *
-	 * @param	index		The index with-in the tileset.
+	 * @param index
+	 *            The index with-in the tileset.
 	 *
-	 * @return	A sprite, or <code>null</code> if no mapped sprite.
+	 * @return A sprite, or <code>null</code> if no mapped sprite.
 	 */
 	public Sprite getSprite(final int index) {
-		if(index < tiles.length) {
+		if (index < tiles.length) {
 			return tiles[index];
 		} else {
 			return null;

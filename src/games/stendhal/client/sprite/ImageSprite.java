@@ -23,7 +23,7 @@ import java.awt.image.BufferedImage;
  * information, i.e. its just the image and not the location. This allows us to
  * use a single sprite in lots of different places without having to store
  * multiple copies of the image.
- * 
+ *
  * @author Kevin Glass
  */
 public class ImageSprite implements Sprite {
@@ -39,12 +39,11 @@ public class ImageSprite implements Sprite {
 	/**
 	 * The identifier reference.
 	 */
-	protected Object	reference;
-
+	protected Object reference;
 
 	/**
 	 * Create a new sprite based on an image
-	 * 
+	 *
 	 * @param image
 	 *            The image that is this sprite
 	 */
@@ -52,43 +51,45 @@ public class ImageSprite implements Sprite {
 		this(image, null);
 	}
 
-
 	/**
 	 * Create a new sprite based on an image
-	 * 
-	 * @param	image		The image that is this sprite.
-	 * @param	reference	The sprite reference, or null.
+	 *
+	 * @param image
+	 *            The image that is this sprite.
+	 * @param reference
+	 *            The sprite reference, or null.
 	 */
 	public ImageSprite(Image image, Object reference) {
 		this.image = image;
 		this.reference = reference;
 	}
 
-
 	/**
 	 * Create an image sprite from another sprite.
 	 *
-	 * @param	sprite		The source sprite.
+	 * @param sprite
+	 *            The source sprite.
 	 */
 	public ImageSprite(Sprite sprite) {
 		this(sprite, null);
 	}
 
-
 	/**
 	 * Create a copy of another sprite.
-	 * 
-	 * @param	sprite		The source sprite.
-	 * @param	reference	The sprite reference, or null.
+	 *
+	 * @param sprite
+	 *            The source sprite.
+	 * @param reference
+	 *            The sprite reference, or null.
 	 */
 	public ImageSprite(Sprite sprite, String reference) {
 		this.reference = reference;
 
-		image = getGC().createCompatibleImage(sprite.getWidth(), sprite.getHeight(), Transparency.BITMASK);
+		image = getGC().createCompatibleImage(sprite.getWidth(),
+				sprite.getHeight(), Transparency.BITMASK);
 
 		sprite.draw(image.getGraphics(), 0, 0);
 	}
-
 
 	//
 	// ImageSprite
@@ -97,40 +98,42 @@ public class ImageSprite implements Sprite {
 	/**
 	 * Create a sprite with the image flipped horizontally.
 	 *
-	 * @return	A horizontally flipped sprite.
+	 * @return A horizontally flipped sprite.
 	 */
 	public static ImageSprite flipped(Sprite sprite) {
-		Image image = getGC().createCompatibleImage(sprite.getWidth(), sprite.getHeight(), Transparency.BITMASK);
+		Image image = getGC().createCompatibleImage(sprite.getWidth(),
+				sprite.getHeight(), Transparency.BITMASK);
 
 		int width = sprite.getWidth();
 
-		sprite.draw(image.getGraphics(), width, 0, width, 0, -width, sprite.getHeight());
+		sprite.draw(image.getGraphics(), width, 0, width, 0, -width, sprite
+				.getHeight());
 
 		return new ImageSprite(image);
 	}
 
-
 	protected static GraphicsConfiguration getGC() {
-		return GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
+		return GraphicsEnvironment.getLocalGraphicsEnvironment()
+				.getDefaultScreenDevice().getDefaultConfiguration();
 	}
-
 
 	/**
 	 * Get the graphics context of the underlying image.
 	 *
-	 * @return	The graphics context.
+	 * @return The graphics context.
 	 */
 	public Graphics getGraphics() {
 		return image.getGraphics();
 	}
 
-
 	/** overlays the image with the given color and returns a new image. */
 	private Image getModifiedImage(Color color, float alpha) {
-		BufferedImage i = getGC().createCompatibleImage(getWidth(), getHeight(), Transparency.TRANSLUCENT);
+		BufferedImage i = getGC().createCompatibleImage(getWidth(),
+				getHeight(), Transparency.TRANSLUCENT);
 		draw(i.getGraphics(), 0, 0);
 		Graphics2D g = i.createGraphics();
-		g.setColor(new Color(color.getRed(), color.getGreen(), color.getBlue(), (int) (alpha * 255)));
+		g.setColor(new Color(color.getRed(), color.getGreen(), color.getBlue(),
+				(int) (alpha * 255)));
 		g.fillRect(0, 0, i.getWidth(), i.getHeight());
 
 		return i;
@@ -139,7 +142,8 @@ public class ImageSprite implements Sprite {
 	/** returns a brighter version of the sprite */
 	public synchronized ImageSprite brighter() {
 		if (brighterSprite == null) {
-			brighterSprite = new ImageSprite(getModifiedImage(Color.WHITE, 0.3f));
+			brighterSprite = new ImageSprite(
+					getModifiedImage(Color.WHITE, 0.3f));
 			brighterSprite.darkerSprite = this;
 		}
 		return brighterSprite;
@@ -154,7 +158,6 @@ public class ImageSprite implements Sprite {
 		return darkerSprite;
 	}
 
-
 	//
 	// Sprite
 	//
@@ -162,53 +165,65 @@ public class ImageSprite implements Sprite {
 	/**
 	 * Copy the sprite.
 	 *
-	 * @return	A new copy of the sprite.
+	 * @return A new copy of the sprite.
 	 */
 	public Sprite copy() {
 		return new ImageSprite(this);
 	}
 
 	/**
-	 * Create a sub-region of this sprite.
-	 * <strong>NOTE: This does not use caching.</strong>
+	 * Create a sub-region of this sprite. <strong>NOTE: This does not use
+	 * caching.</strong>
 	 *
-	 * @param	x		The starting X coordinate.
-	 * @param	y		The starting Y coordinate.
-	 * @param	width		The region width.
-	 * @param	height		The region height.
-	 * @param	ref		The sprite reference.
+	 * @param x
+	 *            The starting X coordinate.
+	 * @param y
+	 *            The starting Y coordinate.
+	 * @param width
+	 *            The region width.
+	 * @param height
+	 *            The region height.
+	 * @param ref
+	 *            The sprite reference.
 	 *
-	 * @return	A new sprite.
+	 * @return A new sprite.
 	 */
-	public Sprite createRegion(final int x, final int y, final int width, final int height, final Object ref) {
+	public Sprite createRegion(final int x, final int y, final int width,
+			final int height, final Object ref) {
 		int iwidth = getWidth();
 		int iheight = getHeight();
 
-		if((x >= iwidth) || (y >= iheight)) {
+		if ((x >= iwidth) || (y >= iheight)) {
 			/*
 			 * Outside of image (nothing to draw)
 			 */
 			return new EmptySprite(width, height, ref);
 
-// TODO: Figure out if this can be resurected without *horrible* performance
-//		} else if(image instanceof BufferedImage) {
-//			/*
-//			 * BufferedImage allows shared sub-images
-//			 */
-//			return new ImageSprite(((BufferedImage) image).getSubimage(x, y, Math.min(width, iwidth - x), Math.min(height, iheight - y)), ref);
-//		} else {
-//			/*
-//			 * Virtual region
-//			 */
-//			return new TileSprite(this, x, y, width, height, ref);
+			// TODO: Figure out if this can be resurected without *horrible*
+			// performance
+			// } else if(image instanceof BufferedImage) {
+			// /*
+			// * BufferedImage allows shared sub-images
+			// */
+			// return new ImageSprite(((BufferedImage) image).getSubimage(x, y,
+			// Math.min(width, iwidth - x), Math.min(height, iheight - y)),
+			// ref);
+			// } else {
+			// /*
+			// * Virtual region
+			// */
+			// return new TileSprite(this, x, y, width, height, ref);
 		}
 
 		/*
 		 * Full copy method (the memory hog)
 		 */
-		GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
+		GraphicsConfiguration gc = GraphicsEnvironment
+				.getLocalGraphicsEnvironment().getDefaultScreenDevice()
+				.getDefaultConfiguration();
 
-		Image image = gc.createCompatibleImage(width, height, Transparency.BITMASK);
+		Image image = gc.createCompatibleImage(width, height,
+				Transparency.BITMASK);
 
 		draw(image.getGraphics(), 0, 0, x, y, width, height);
 
@@ -217,7 +232,7 @@ public class ImageSprite implements Sprite {
 
 	/**
 	 * Draw the sprite onto the graphics context provided
-	 * 
+	 *
 	 * @param g
 	 *            The graphics context on which to draw the sprite
 	 * @param x
@@ -231,7 +246,7 @@ public class ImageSprite implements Sprite {
 
 	/**
 	 * Draws the image
-	 * 
+	 *
 	 * @param g
 	 *            the graphics context where to draw to
 	 * @param destx
@@ -247,13 +262,15 @@ public class ImageSprite implements Sprite {
 	 * @param h
 	 *            the height
 	 */
-	public void draw(Graphics g, int destx, int desty, int x, int y, int w, int h) {
-		g.drawImage(image, destx, desty, destx + w, desty + h, x, y, x + w, y + h, null);
+	public void draw(Graphics g, int destx, int desty, int x, int y, int w,
+			int h) {
+		g.drawImage(image, destx, desty, destx + w, desty + h, x, y, x + w, y
+				+ h, null);
 	}
 
 	/**
 	 * Get the height of the drawn sprite
-	 * 
+	 *
 	 * @return The height in pixels of this sprite
 	 */
 	public int getHeight() {
@@ -261,21 +278,20 @@ public class ImageSprite implements Sprite {
 	}
 
 	/**
-	 * Get the sprite reference. This identifier is an externally
-	 * opaque object that implements equals() and hashCode() to
-	 * uniquely/repeatably reference a keyed sprite.
+	 * Get the sprite reference. This identifier is an externally opaque object
+	 * that implements equals() and hashCode() to uniquely/repeatably reference
+	 * a keyed sprite.
 	 *
-	 * @return	The reference identifier, or <code>null</code> if
-	 *		not referencable.
+	 * @return The reference identifier, or <code>null</code> if not
+	 *         referencable.
 	 */
 	public Object getReference() {
 		return reference;
 	}
 
-
 	/**
 	 * Get the width of the drawn sprite
-	 * 
+	 *
 	 * @return The width in pixels of this sprite
 	 */
 	public int getWidth() {

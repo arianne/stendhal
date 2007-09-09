@@ -15,7 +15,7 @@ public interface Tileset {
 	 *
 	 * @return	The number of tiles.
 	 */
-	public int getSize();
+	int getSize();
 
 
 	/**
@@ -25,5 +25,5 @@ public interface Tileset {
 	 *
 	 * @return	A sprite, or <code>null</code> if no mapped sprite.
 	 */
-	public Sprite getSprite(final int index);
+	Sprite getSprite(final int index);
 }

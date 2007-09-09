@@ -91,7 +91,7 @@ public class EmptySprite implements Sprite {
 
 	/**
 	 * Draw the sprite onto the graphics context provided
-	 * 
+	 *
 	 * @param g
 	 *            The graphics context on which to draw the sprite
 	 * @param x
@@ -105,7 +105,7 @@ public class EmptySprite implements Sprite {
 
 	/**
 	 * Draws the image
-	 * 
+	 *
 	 * @param g
 	 *            the graphics context where to draw to
 	 * @param destx
@@ -127,7 +127,7 @@ public class EmptySprite implements Sprite {
 
 	/**
 	 * Get the height of the drawn sprite
-	 * 
+	 *
 	 * @return The height in pixels of this sprite
 	 */
 	public int getHeight() {
@@ -150,7 +150,7 @@ public class EmptySprite implements Sprite {
 
 	/**
 	 * Get the width of the drawn sprite
-	 * 
+	 *
 	 * @return The width in pixels of this sprite
 	 */
 	public int getWidth() {
@@ -180,18 +180,18 @@ public class EmptySprite implements Sprite {
 
 		@Override
 		public boolean equals(Object obj) {
-			if(this == obj) {
+			if (this == obj) {
 				return true;
 			}
 
-			if(obj instanceof ESRef) {
+			if (obj instanceof ESRef) {
 				ESRef esref = (ESRef) obj;
 
-				if(width != esref.width) {
+				if (width != esref.width) {
 					return false;
 				}
 
-				if(height != esref.height) {
+				if (height != esref.height) {
 					return false;
 				}
 

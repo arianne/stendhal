@@ -26,10 +26,10 @@ import marauroa.common.Log4J;
 import marauroa.common.Logger;
 
 /**
- * A resource manager for sprites in the game. Its often quite important how
- * and where you get your game resources from. In most cases it makes sense
- * to have a central resource loader that goes away, gets your resources and
- * caches them for future use.
+ * A resource manager for sprites in the game. Its often quite important how and
+ * where you get your game resources from. In most cases it makes sense to have
+ * a central resource loader that goes away, gets your resources and caches them
+ * for future use.
  * <p>
  * [singleton]
  * <p>
@@ -44,12 +44,13 @@ public class SpriteStore {
 	/**
 	 * Screen graphics configuration.
 	 */
-	protected GraphicsConfiguration	gc;
+	protected GraphicsConfiguration gc;
 
 	private static boolean doOldBootstrapClassloaderWorkaroundFirst = true;
 
 	protected SpriteStore() {
-		gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
+		gc = GraphicsEnvironment.getLocalGraphicsEnvironment()
+				.getDefaultScreenDevice().getDefaultConfiguration();
 	}
 
 	/**
@@ -61,41 +62,56 @@ public class SpriteStore {
 		return single;
 	}
 
-
 	/**
 	 * Create an animated sprite from a tile sprite using pixel units.
 	 *
-	 * @param	sprite		The image which contains the different
-	 *				frames.
-	 * @param	x		The base X coordinate (in pixels).
-	 * @param	y		The base Y coordinate (in pixels).
-	 * @param	frameCount	The number of frames in this animation.
-	 * @param	width		The tile width (in pixels).
-	 * @param	height		The tile height (in pixels).
-	 * @param	delay		The minimum delay between frames.
+	 * @param sprite
+	 *            The image which contains the different frames.
+	 * @param x
+	 *            The base X coordinate (in pixels).
+	 * @param y
+	 *            The base Y coordinate (in pixels).
+	 * @param frameCount
+	 *            The number of frames in this animation.
+	 * @param width
+	 *            The tile width (in pixels).
+	 * @param height
+	 *            The tile height (in pixels).
+	 * @param delay
+	 *            The minimum delay between frames.
 	 *
-	 * @return	An animated sprite.
+	 * @return An animated sprite.
 	 */
-	public AnimatedSprite getAnimatedSprite(final Sprite sprite, final int x, final int y, final int frameCount, final int width, final int height, final int delay) {
-		return new AnimatedSprite(getTiles(sprite, x, y, frameCount, width, height), delay, true);
+	public AnimatedSprite getAnimatedSprite(final Sprite sprite, final int x,
+			final int y, final int frameCount, final int width,
+			final int height, final int delay) {
+		return new AnimatedSprite(getTiles(sprite, x, y, frameCount, width,
+				height), delay, true);
 	}
-
 
 	/**
 	 * Get sprite tiles from a sprite using pixel units.
 	 *
-	 * @param	sprite		The base image.
-	 * @param	x		The base X coordinate (in pixels).
-	 * @param	y		The base Y coordinate (in pixels).
-	 * @param	count		The number of tiles.
-	 * @param	width		The tile width (in pixels).
-	 * @param	height		The tile height (in pixels).
-	 * @param	delay		The minimum delay between frames.
+	 * @param sprite
+	 *            The base image.
+	 * @param x
+	 *            The base X coordinate (in pixels).
+	 * @param y
+	 *            The base Y coordinate (in pixels).
+	 * @param count
+	 *            The number of tiles.
+	 * @param width
+	 *            The tile width (in pixels).
+	 * @param height
+	 *            The tile height (in pixels).
+	 * @param delay
+	 *            The minimum delay between frames.
 	 *
-	 * @return	An array of sprites.
+	 * @return An array of sprites.
 	 */
-	public Sprite [] getTiles(final Sprite sprite, final int x, final int y, final int count, final int width, final int height) {
-		Sprite [] sprites = new Sprite[count];
+	public Sprite[] getTiles(final Sprite sprite, final int x, final int y,
+			final int count, final int width, final int height) {
+		Sprite[] sprites = new Sprite[count];
 
 		int tx = x;
 
@@ -103,19 +119,19 @@ public class SpriteStore {
 			sprites[i] = getTile(sprite, tx, y, width, height);
 			tx += width;
 		}
-		
+
 		return sprites;
 	}
 
 	/**
 	 * Get the failsafe sprite.
 	 *
-	 * @return	The failsafe sprite.
+	 * @return The failsafe sprite.
 	 */
 	public Sprite getFailsafe() {
 		/*
-		 * TODO: Create in-line sprite, incase missing all png's is
-		 * why we need a failsafe. Otherwise infinite loop will occur.
+		 * TODO: Create in-line sprite, incase missing all png's is why we need
+		 * a failsafe. Otherwise infinite loop will occur.
 		 */
 		return getSprite("data/sprites/failsafe.png");
 	}
@@ -131,11 +147,12 @@ public class SpriteStore {
 	public Sprite getSprite(String ref) {
 		SpriteCache cache = SpriteCache.get();
 
-
 		Sprite sprite = cache.get(ref);
 
-		if(sprite == null) {
-			if((sprite = loadSprite(ref)) != null) {
+		if (sprite == null) {
+
+			sprite = loadSprite(ref);
+			if (sprite != null) {
 				cache.add(ref, sprite);
 			}
 		}
@@ -143,24 +160,25 @@ public class SpriteStore {
 		return sprite;
 	}
 
-
 	/**
 	 * Checks if a file exists.
-	 * 
-	 * @param ref the file name
+	 *
+	 * @param ref
+	 *            the file name
 	 * @return
 	 */
 	public boolean existsSprite(String ref) {
 		URL url = getResourceURL(ref);
-		return url!=null;
+		return url != null;
 	}
-	
+
 	/**
 	 * Load a sprite from a resource reference.
 	 *
-	 * @param	ref		The image resource name.
+	 * @param ref
+	 *            The image resource name.
 	 *
-	 * @return	A sprite, or <code>null</code> if missing/on error.
+	 * @return A sprite, or <code>null</code> if missing/on error.
 	 */
 	protected Sprite loadSprite(String ref) {
 		BufferedImage sourceImage = null;
@@ -168,11 +186,11 @@ public class SpriteStore {
 		try {
 			URL url;
 			if (!ref.startsWith("http://")) {
-                                url = getResourceURL(ref);
-                        } else {
-                        	logger.info("Loading sprite from a URL...");
-                        	url = new URL(ref);
-                        }
+				url = getResourceURL(ref);
+			} else {
+				logger.info("Loading sprite from a URL...");
+				url = new URL(ref);
+			}
 			if (url == null) {
 				logger.error("Can't find ref: " + ref);
 				return getFailsafe();
@@ -181,7 +199,7 @@ public class SpriteStore {
 			// use ImageIO to read the image in
 			sourceImage = ImageIO.read(url);
 		} catch (IOException e) {
-			logger.error("Failed to load: " + ref,e);
+			logger.error("Failed to load: " + ref, e);
 			return null;
 		}
 
@@ -191,7 +209,8 @@ public class SpriteStore {
 		// ALPHA channel makes it runs 30% slower.
 		// mode=Transparency.TRANSLUCENT;
 
-		Image image = gc.createCompatibleImage(sourceImage.getWidth(), sourceImage.getHeight(), mode);
+		Image image = gc.createCompatibleImage(sourceImage.getWidth(),
+				sourceImage.getHeight(), mode);
 
 		// draw our source image into the accelerated image
 		image.getGraphics().drawImage(sourceImage, 0, 0, null);
@@ -202,24 +221,25 @@ public class SpriteStore {
 		return sprite;
 	}
 
-
 	/**
 	 * Get an empty sprite with the size of a single tile.
 	 *
-	 * @return	An empty sprite.
+	 * @return An empty sprite.
 	 */
 	public Sprite getEmptySprite() {
-		return getEmptySprite(GameScreen.SIZE_UNIT_PIXELS, GameScreen.SIZE_UNIT_PIXELS);
+		return getEmptySprite(GameScreen.SIZE_UNIT_PIXELS,
+				GameScreen.SIZE_UNIT_PIXELS);
 	}
-
 
 	/**
 	 * Get an empty sprite.
 	 *
-	 * @param	width		The width.
-	 * @param	height		The height.
+	 * @param width
+	 *            The width.
+	 * @param height
+	 *            The height.
 	 *
-	 * @return	An empty sprite.
+	 * @return An empty sprite.
 	 */
 	public Sprite getEmptySprite(final int width, final int height) {
 		SpriteCache cache = SpriteCache.get();
@@ -228,7 +248,7 @@ public class SpriteStore {
 
 		Sprite sprite = cache.get(reference);
 
-		if(sprite == null) {
+		if (sprite == null) {
 			sprite = new EmptySprite(width, height, reference);
 			cache.add(reference, sprite);
 		}
@@ -236,27 +256,29 @@ public class SpriteStore {
 		return sprite;
 	}
 
-
 	/**
 	 * Create a sprite tile (sub-region).
 	 *
 	 *
 	 *
-	 * @param	width		The width.
-	 * @param	height		The height.
+	 * @param width
+	 *            The width.
+	 * @param height
+	 *            The height.
 	 */
 	public Sprite getTile(Sprite sprite, int x, int y, int width, int height) {
 		SpriteCache cache = SpriteCache.get();
 
-		Object reference = TileSprite.createReference(sprite, x, y, width, height);
+		Object reference = TileSprite.createReference(sprite, x, y, width,
+				height);
 
 		Sprite tile = cache.get(reference);
 
-		if(tile == null) {
+		if (tile == null) {
 			tile = sprite.createRegion(x, y, width, height, reference);
-//			tile = new TileSprite(sprite, x, y, width, height, reference);
+			// tile = new TileSprite(sprite, x, y, width, height, reference);
 
-			if(reference != null) {
+			if (reference != null) {
 				cache.add(reference, tile);
 			}
 		}
@@ -264,15 +286,15 @@ public class SpriteStore {
 		return tile;
 	}
 
-
 	/**
 	 * gets a resource URL. Use this method instead of classLoader.getResouce()
 	 * because there are still clients around with a broken classloader
-	 * prefering old resources. This method ensures we get the sprite
-	 * from the appropriate place, this helps with deploying the game
-	 * with things like webstart and updates.
+	 * prefering old resources. This method ensures we get the sprite from the
+	 * appropriate place, this helps with deploying the game with things like
+	 * webstart and updates.
 	 *
-	 * @param ref name of resource
+	 * @param ref
+	 *            name of resource
 	 * @return URL to this resouce
 	 */
 	public URL getResourceURL(String ref) {
@@ -280,18 +302,20 @@ public class SpriteStore {
 	}
 
 	/**
-	 * Warning, ugly workaround for a bug in Bootstrap.java prior (including) version 0.57.
-	 * There are still old version of Bootstrap araound as this file cannot be updated with
-	 * the automatic updater.
+	 * Warning, ugly workaround for a bug in Bootstrap.java prior (including)
+	 * version 0.57. There are still old version of Bootstrap araound as this
+	 * file cannot be updated with the automatic updater.
 	 *
-	 * @param ref resource name
+	 * @param ref
+	 *            resource name
 	 * @return URL to that resource or null in case it was not found
 	 */
 	private URL doOldBootstrapClassloaderWorkaround(String ref) {
 		URL url = null;
 		try {
 			ClassLoader classloader = this.getClass().getClassLoader();
-			Method method = ClassLoader.class.getDeclaredMethod("findResource", String.class);
+			Method method = ClassLoader.class.getDeclaredMethod("findResource",
+					String.class);
 			method.setAccessible(true);
 
 			url = (URL) method.invoke(classloader, ref);
