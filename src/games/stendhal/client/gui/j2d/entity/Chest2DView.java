@@ -30,43 +30,43 @@ public class Chest2DView extends StateEntity2DView {
 	/*
 	 * The closed state.
 	 */
-	protected final static String	STATE_CLOSED	= "close";
+	protected static final String STATE_CLOSED = "close";
 
 	/*
 	 * The open state.
 	 */
-	protected final static String	STATE_OPEN	= "open";
+	protected static final String STATE_OPEN = "open";
 
 	/**
 	 * The chest entity.
 	 */
-	protected Chest		chest;
+	protected Chest chest;
 
 	/**
 	 * The chest model open value changed.
 	 */
-	protected boolean	openChanged;
+	protected boolean openChanged;
 
 	/**
 	 * The slot content inspector.
 	 */
-	private Inspector	inspector;
+	private Inspector inspector;
 
 	/**
 	 * Whether the user requested to open this chest.
 	 */
-	private boolean		requestOpen;
+	private boolean requestOpen;
 
 	/**
 	 * The current content inspector.
 	 */
-	private EntityContainer	wtEntityContainer;
-
+	private EntityContainer wtEntityContainer;
 
 	/**
 	 * Create a 2D view of a chest.
 	 *
-	 * @param	chest		The entity to render.
+	 * @param chest
+	 *            The entity to render.
 	 */
 	public Chest2DView(final Chest chest) {
 		super(chest);
@@ -76,7 +76,6 @@ public class Chest2DView extends StateEntity2DView {
 		requestOpen = false;
 	}
 
-
 	//
 	// StateEntity2DView
 	//
@@ -84,38 +83,41 @@ public class Chest2DView extends StateEntity2DView {
 	/**
 	 * Populate named state sprites.
 	 *
-	 * @param	map		The map to populate.
+	 * @param map
+	 *            The map to populate.
 	 */
 	@Override
 	protected void buildSprites(final Map<Object, Sprite> map) {
 		SpriteStore store = SpriteStore.get();
 		Sprite tiles = store.getSprite(translate(entity.getType()));
 
-		map.put(STATE_CLOSED, store.getTile(tiles, 0, 0, GameScreen.SIZE_UNIT_PIXELS, GameScreen.SIZE_UNIT_PIXELS));
-		map.put(STATE_OPEN, store.getTile(tiles, 0, GameScreen.SIZE_UNIT_PIXELS, GameScreen.SIZE_UNIT_PIXELS, GameScreen.SIZE_UNIT_PIXELS));
+		map.put(STATE_CLOSED, store.getTile(tiles, 0, 0,
+				GameScreen.SIZE_UNIT_PIXELS, GameScreen.SIZE_UNIT_PIXELS));
+		map.put(STATE_OPEN, store.getTile(tiles, 0,
+				GameScreen.SIZE_UNIT_PIXELS, GameScreen.SIZE_UNIT_PIXELS,
+				GameScreen.SIZE_UNIT_PIXELS));
 	}
-
 
 	/**
 	 * Get the current entity state.
 	 *
-	 * @return	The current state.
+	 * @return The current state.
 	 */
 	@Override
 	protected Object getState() {
 		return chest.isOpen() ? STATE_OPEN : STATE_CLOSED;
 	}
 
-
 	//
 	// Entity2DView
 	//
 
 	/**
-	 * Build a list of entity specific actions.
-	 * <strong>NOTE: The first entry should be the default.</strong>
+	 * Build a list of entity specific actions. <strong>NOTE: The first entry
+	 * should be the default.</strong>
 	 *
-	 * @param	list		The list to populate.
+	 * @param list
+	 *            The list to populate.
 	 */
 	@Override
 	protected void buildActions(final List<String> list) {
@@ -129,32 +131,30 @@ public class Chest2DView extends StateEntity2DView {
 		}
 	}
 
-
 	/**
-	 * Determines on top of which other entities this entity should be
-	 * drawn. Entities with a high Z index will be drawn on top of ones
-	 * with a lower Z index.
-	 * 
+	 * Determines on top of which other entities this entity should be drawn.
+	 * Entities with a high Z index will be drawn on top of ones with a lower Z
+	 * index.
+	 *
 	 * Also, players can only interact with the topmost entity.
-	 * 
-	 * @return	The drawing index.
+	 *
+	 * @return The drawing index.
 	 */
 	@Override
 	public int getZIndex() {
 		return 5000;
 	}
 
-
 	/**
 	 * Set the content inspector for this entity.
 	 *
-	 * @param	inspector	The inspector.
+	 * @param inspector
+	 *            The inspector.
 	 */
 	@Override
 	public void setInspector(final Inspector inspector) {
 		this.inspector = inspector;
 	}
-
 
 	/**
 	 * Handle updates.
@@ -163,15 +163,16 @@ public class Chest2DView extends StateEntity2DView {
 	protected void update() {
 		super.update();
 
-		if(openChanged) {
+		if (openChanged) {
 			if (chest.isOpen()) {
 				// we're wanted to open this?
 				if (requestOpen) {
-					wtEntityContainer = inspector.inspectMe(chest, chest.getContent(), wtEntityContainer);
+					wtEntityContainer = inspector.inspectMe(chest, chest
+							.getContent(), wtEntityContainer);
 				}
 			} else {
 
-				if(wtEntityContainer != null) {
+				if (wtEntityContainer != null) {
 					wtEntityContainer.destroy();
 					wtEntityContainer = null;
 				}
@@ -182,7 +183,6 @@ public class Chest2DView extends StateEntity2DView {
 		}
 	}
 
-
 	//
 	// EntityChangeListener
 	//
@@ -190,20 +190,20 @@ public class Chest2DView extends StateEntity2DView {
 	/**
 	 * An entity was changed.
 	 *
-	 * @param	entity		The entity that was changed.
-	 * @param	property	The property identifier.
+	 * @param entity
+	 *            The entity that was changed.
+	 * @param property
+	 *            The property identifier.
 	 */
 	@Override
-	public void entityChanged(final Entity entity, final Object property)
-	{
+	public void entityChanged(final Entity entity, final Object property) {
 		super.entityChanged(entity, property);
 
-		if(property == Chest.PROP_OPEN) {
+		if (property == Chest.PROP_OPEN) {
 			stateChanged = true;
 			openChanged = true;
 		}
 	}
-
 
 	//
 	// EntityView
@@ -212,42 +212,43 @@ public class Chest2DView extends StateEntity2DView {
 	/**
 	 * Perform an action.
 	 *
-	 * @param	at		The action.
+	 * @param at
+	 *            The action.
 	 */
 	@Override
 	public void onAction(final ActionType at) {
 		switch (at) {
-			case INSPECT:
-				wtEntityContainer = inspector.inspectMe(chest, chest.getContent(), wtEntityContainer);
-				break;
+		case INSPECT:
+			wtEntityContainer = inspector.inspectMe(chest, chest.getContent(),
+					wtEntityContainer);
+			break;
 
-			case OPEN:
-				if (!chest.isOpen()) {
-					// If it was closed, open it and inspect it...
-					requestOpen = true;
-				}
+		case OPEN:
+			if (!chest.isOpen()) {
+				// If it was closed, open it and inspect it...
+				requestOpen = true;
+			}
 
-				/* no break */
+			/* no break */
 
-			case CLOSE:
-				RPAction rpaction = new RPAction();
+		case CLOSE:
+			RPAction rpaction = new RPAction();
 
-				rpaction.put("type", at.toString());
-				rpaction.put("target", chest.getID().getObjectID());
+			rpaction.put("type", at.toString());
+			rpaction.put("target", chest.getID().getObjectID());
 
-				at.send(rpaction);
-				break;
+			at.send(rpaction);
+			break;
 
-			default:
-				super.onAction(at);
-				break;
+		default:
+			super.onAction(at);
+			break;
 		}
 	}
 
-
 	/**
-	 * Release any view resources. This view should not be used after
-	 * this is called.
+	 * Release any view resources. This view should not be used after this is
+	 * called.
 	 */
 	@Override
 	public void release() {

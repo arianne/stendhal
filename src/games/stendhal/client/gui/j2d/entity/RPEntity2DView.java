@@ -36,46 +36,45 @@ import java.util.Map;
 public abstract class RPEntity2DView extends ActiveEntity2DView {
 	private static Map<Object, Sprite[]> bladeStrikeSprites;
 
-	private static Sprite	eatingSprite;
+	private static Sprite eatingSprite;
 
-	private static Sprite	poisonedSprite;
+	private static Sprite poisonedSprite;
 
-	private static Sprite	hitSprite;
+	private static Sprite hitSprite;
 
-	private static Sprite	blockedSprite;
+	private static Sprite blockedSprite;
 
-	private static Sprite	missedSprite;
-	
+	private static Sprite missedSprite;
+
 	/**
 	 * The RP entity this view is for.
 	 */
-	protected RPEntity	rpentity;
+	protected RPEntity rpentity;
 
 	/**
 	 * Blade strike frame.
 	 */
-	private int		frameBladeStrike;
+	private int frameBladeStrike;
 
 	/**
 	 * Model attributes effecting the title changed.
 	 */
-	private boolean		titleChanged;
+	private boolean titleChanged;
 
 	/**
 	 * The title image sprite.
 	 */
-	private Sprite		titleSprite;
+	private Sprite titleSprite;
 
 	/*
 	 * The drawn height.
 	 */
-	protected int		height;
+	protected int height;
 
 	/*
 	 * The drawn width.
 	 */
-	protected int		width;
-
+	protected int width;
 
 	static {
 		SpriteStore st = SpriteStore.get();
@@ -88,16 +87,20 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 		int theight = 4 * GameScreen.SIZE_UNIT_PIXELS;
 
 		int y = 0;
-		bladeStrikeSprites.put(STATE_UP, st.getTiles(tiles, 0, y, 3, twidth, theight));
+		bladeStrikeSprites.put(STATE_UP, st.getTiles(tiles, 0, y, 3, twidth,
+				theight));
 
 		y += theight;
-		bladeStrikeSprites.put(STATE_RIGHT, st.getTiles(tiles, 0, y, 3, twidth, theight));
+		bladeStrikeSprites.put(STATE_RIGHT, st.getTiles(tiles, 0, y, 3, twidth,
+				theight));
 
 		y += theight;
-		bladeStrikeSprites.put(STATE_DOWN, st.getTiles(tiles, 0, y, 3, twidth, theight));
+		bladeStrikeSprites.put(STATE_DOWN, st.getTiles(tiles, 0, y, 3, twidth,
+				theight));
 
 		y += theight;
-		bladeStrikeSprites.put(STATE_LEFT, st.getTiles(tiles, 0, y, 3, twidth, theight));
+		bladeStrikeSprites.put(STATE_LEFT, st.getTiles(tiles, 0, y, 3, twidth,
+				theight));
 
 		hitSprite = st.getSprite("data/sprites/combat/hitted.png");
 		blockedSprite = st.getSprite("data/sprites/combat/blocked.png");
@@ -106,11 +109,11 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 		poisonedSprite = st.getSprite("data/sprites/ideas/poisoned.png");
 	}
 
-
 	/**
 	 * Create a 2D view of an entity.
 	 *
-	 * @param	rpentity	The entity to render.
+	 * @param rpentity
+	 *            The entity to render.
 	 */
 	public RPEntity2DView(final RPEntity rpentity) {
 		super(rpentity);
@@ -121,7 +124,6 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 		titleChanged = false;
 	}
 
-
 	//
 	// RPEntity2DView
 	//
@@ -129,12 +131,17 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	/**
 	 * Populate keyed state sprites.
 	 *
-	 * @param	map		The map to populate.
-	 * @param	tiles		The master sprite.
-	 * @param	width		The tile width (in pixels).
-	 * @param	height		The tile height (in pixels).
+	 * @param map
+	 *            The map to populate.
+	 * @param tiles
+	 *            The master sprite.
+	 * @param width
+	 *            The tile width (in pixels).
+	 * @param height
+	 *            The tile height (in pixels).
 	 */
-	protected void buildSprites(final Map<Object, Sprite> map, final Sprite tiles, final int width, final int height) {
+	protected void buildSprites(final Map<Object, Sprite> map,
+			final Sprite tiles, final int width, final int height) {
 		int y = 0;
 		map.put(STATE_UP, createWalkSprite(tiles, y, width, height));
 
@@ -148,18 +155,22 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 		map.put(STATE_LEFT, createWalkSprite(tiles, y, width, height));
 	}
 
-
 	/**
-	 * Calculate sprite image offset.
-	 * Sub-classes may override this to change alignment.
+	 * Calculate sprite image offset. Sub-classes may override this to change
+	 * alignment.
 	 *
-	 * @param	swidth		The sprite width (in pixels).
-	 * @param	sheight		The sprite height (in pixels).
-	 * @param	ewidth		The entity width (in pixels).
-	 * @param	eheight		The entity height (in pixels).
+	 * @param swidth
+	 *            The sprite width (in pixels).
+	 * @param sheight
+	 *            The sprite height (in pixels).
+	 * @param ewidth
+	 *            The entity width (in pixels).
+	 * @param eheight
+	 *            The entity height (in pixels).
 	 */
 	@Override
-	protected void calculateOffset(final int swidth, final int sheight, final int ewidth, final int eheight) {
+	protected void calculateOffset(final int swidth, final int sheight,
+			final int ewidth, final int eheight) {
 		/*
 		 * X alignment centered, Y alignment bottom
 		 */
@@ -167,11 +178,10 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 		yoffset = eheight - sheight;
 	}
 
-
 	/**
 	 * Create the title sprite.
 	 *
-	 * @return	The title sprite.
+	 * @return The title sprite.
 	 */
 	protected Sprite createTitleSprite() {
 		String titleType = rpentity.getTitleType();
@@ -186,7 +196,7 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 			}
 		}
 
-		if(nameColor == null) {
+		if (nameColor == null) {
 			if (adminlevel >= 800) {
 				nameColor = new Color(200, 200, 0);
 			} else if (adminlevel >= 400) {
@@ -201,22 +211,26 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 		return screen.createString(entity.getTitle(), nameColor);
 	}
 
-
 	/**
 	 * Extract a walking animation for a specific row. The source sprite
 	 * contains 3 animation tiles, but this is converted to 4 frames.
 	 *
-	 * @param	tiles		The tile image.
-	 * @param	y		The base Y coordinate.
-	 * @param	width		The frame width.
-	 * @param	height		The frame height.
+	 * @param tiles
+	 *            The tile image.
+	 * @param y
+	 *            The base Y coordinate.
+	 * @param width
+	 *            The frame width.
+	 * @param height
+	 *            The frame height.
 	 *
-	 * @return	A sprite.
+	 * @return A sprite.
 	 */
-	protected Sprite createWalkSprite(final Sprite tiles, final int y, final int width, final int height) {
+	protected Sprite createWalkSprite(final Sprite tiles, final int y,
+			final int width, final int height) {
 		SpriteStore store = SpriteStore.get();
 
-		Sprite [] frames = new Sprite[4];
+		Sprite[] frames = new Sprite[4];
 
 		int x = 0;
 		frames[0] = store.getTile(tiles, x, y, width, height);
@@ -232,46 +246,53 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 		return new AnimatedSprite(frames, 100, false);
 	}
 
-
 	/**
 	 * Draw the floating text indicators (floaters).
 	 *
-	 * @param	g2d		The graphics context.
-	 * @param	x		The drawn X coordinate.
-	 * @param	y		The drawn Y coordinate.
+	 * @param g2d
+	 *            The graphics context.
+	 * @param x
+	 *            The drawn X coordinate.
+	 * @param y
+	 *            The drawn Y coordinate.
 	 */
 	protected void drawFloaters(final Graphics2D g2d, final int x, final int y) {
 		FontMetrics fm = g2d.getFontMetrics();
 
 		Iterator<RPEntity.TextIndicator> iter = rpentity.getTextIndicators();
 
-		while(iter.hasNext()) {
+		while (iter.hasNext()) {
 			RPEntity.TextIndicator indicator = iter.next();
 
 			int age = indicator.getAge();
 			String text = indicator.getText();
 
-			int width = fm.stringWidth(text) + 2;
+			int stringwidth = fm.stringWidth(text) + 2;
 
-			int tx = x + 20 - (width / 2);
+			int tx = x + 20 - (stringwidth / 2);
 			int ty = y - (int) (age * 5L / 300L);
 
-			Color color = ((j2DClient) StendhalUI.get()).getNotificationColor(indicator.getType());
+			Color color = ((j2DClient) StendhalUI.get())
+					.getNotificationColor(indicator.getType());
 
 			screen.drawOutlineString(g2d, color, text, tx, ty + 10);
 		}
 	}
 
-
 	/**
 	 * Draw the entity HP bar.
 	 *
-	 * @param	g2d		The graphics context.
-	 * @param	x		The drawn X coordinate.
-	 * @param	y		The drawn Y coordinate.
-	 * @param	width		The drawn width.
+	 * @param g2d
+	 *            The graphics context.
+	 * @param x
+	 *            The drawn X coordinate.
+	 * @param y
+	 *            The drawn Y coordinate.
+	 * @param width
+	 *            The drawn width.
 	 */
-	protected void drawHPbar(final Graphics2D g2d, final int x, final int y, final int width) {
+	protected void drawHPbar(final Graphics2D g2d, final int x, final int y,
+			final int width) {
 		int bx = x + ((width - 32) / 2);
 		int by = y - 3;
 
@@ -290,29 +311,35 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 		g2d.drawRect(bx, by, 32, 3);
 	}
 
-
 	/**
-	 * Draw the entity status bar. The status bar show the title and
-	 * HP bar.
+	 * Draw the entity status bar. The status bar show the title and HP bar.
 	 *
-	 * @param	g2d		The graphics context.
-	 * @param	x		The drawn X coordinate.
-	 * @param	y		The drawn Y coordinate.
-	 * @param	width		The drawn width.
+	 * @param g2d
+	 *            The graphics context.
+	 * @param x
+	 *            The drawn X coordinate.
+	 * @param y
+	 *            The drawn Y coordinate.
+	 * @param width
+	 *            The drawn width.
 	 */
-	protected void drawStatusBar(final Graphics2D g2d, final int x, final int y, final int width) {
+	protected void drawStatusBar(final Graphics2D g2d, final int x,
+			final int y, final int width) {
 		drawTitle(g2d, x, y, width);
 		drawHPbar(g2d, x, y, width);
 	}
 
-
 	/**
 	 * Draw the entity title.
 	 *
-	 * @param	g2d		The graphics context.
-	 * @param	x		The drawn X coordinate.
-	 * @param	y		The drawn Y coordinate.
-	 * @param	width		The drawn width.
+	 * @param g2d
+	 *            The graphics context.
+	 * @param x
+	 *            The drawn X coordinate.
+	 * @param y
+	 *            The drawn Y coordinate.
+	 * @param width
+	 *            The drawn width.
 	 */
 	protected void drawTitle(final Graphics2D g2d, int x, int y, final int width) {
 		if (titleSprite != null) {
@@ -323,45 +350,40 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 		}
 	}
 
-
 	/**
 	 * Get the full directional animation tile set for this entity.
 	 *
-	 * @return	A tile sprite containing all animation images.
+	 * @return A tile sprite containing all animation images.
 	 */
 	protected abstract Sprite getAnimationSprite();
-
 
 	/**
 	 * Get the number of tiles in the X axis of the base sprite.
 	 *
-	 * @return	The number of tiles.
+	 * @return The number of tiles.
 	 */
 	protected int getTilesX() {
 		return 3;
 	}
 
-
 	/**
 	 * Get the number of tiles in the Y axis of the base sprite.
 	 *
-	 * @return	The number of tiles.
+	 * @return The number of tiles.
 	 */
 	protected int getTilesY() {
 		return 4;
 	}
 
-
 	/**
 	 * Determine is the user can see this entity while in ghostmode.
 	 *
-	 * @return	<code>true</code> if the client user can see this
-	 *		entity while in ghostmode.
+	 * @return <code>true</code> if the client user can see this entity while
+	 *         in ghostmode.
 	 */
 	protected boolean isVisibleGhost() {
 		return false;
 	}
-
 
 	//
 	// StateEntity2DView
@@ -370,7 +392,8 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	/**
 	 * Populate keyed state sprites.
 	 *
-	 * @param	map		The map to populate.
+	 * @param map
+	 *            The map to populate.
 	 */
 	@Override
 	protected void buildSprites(final Map<Object, Sprite> map) {
@@ -383,16 +406,16 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 		calculateOffset(width, height);
 	}
 
-
 	//
 	// Entity2DView
 	//
 
 	/**
-	 * Build a list of entity specific actions.
-	 * <strong>NOTE: The first entry should be the default.</strong>
+	 * Build a list of entity specific actions. <strong>NOTE: The first entry
+	 * should be the default.</strong>
 	 *
-	 * @param	list		The list to populate.
+	 * @param list
+	 *            The list to populate.
 	 */
 	@Override
 	protected void buildActions(final List<String> list) {
@@ -407,18 +430,23 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 		list.add(ActionType.PUSH.getRepresentation());
 	}
 
-
 	/**
 	 * Draw the entity.
 	 *
-	 * @param	g2d		The graphics context.
-	 * @param	x		The drawn X coordinate.
-	 * @param	y		The drawn Y coordinate.
-	 * @param	width		The drawn entity width.
-	 * @param	height		The drawn entity height.
+	 * @param g2d
+	 *            The graphics context.
+	 * @param x
+	 *            The drawn X coordinate.
+	 * @param y
+	 *            The drawn Y coordinate.
+	 * @param width
+	 *            The drawn entity width.
+	 * @param height
+	 *            The drawn entity height.
 	 */
 	@Override
-	protected void draw(final Graphics2D g2d, final int x, final int y, final int width, final int height) {
+	protected void draw(final Graphics2D g2d, final int x, final int y,
+			final int width, final int height) {
 		Rectangle srect = screen.convertWorldToScreenView(entity.getArea());
 
 		if (rpentity.isBeingAttacked()) {
@@ -428,13 +456,15 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 			g2d.drawRect(srect.x, srect.y, srect.width, srect.height);
 
 			g2d.setColor(Color.black);
-			g2d.drawRect(srect.x - 1, srect.y - 1, srect.width + 2, srect.height + 2);
+			g2d.drawRect(srect.x - 1, srect.y - 1, srect.width + 2,
+					srect.height + 2);
 		}
 
 		if (rpentity.isAttackingUser()) {
 			// Draw orange box around
 			g2d.setColor(Color.orange);
-			g2d.drawRect(srect.x + 1, srect.y + 1, srect.width - 2, srect.height - 2);
+			g2d.drawRect(srect.x + 1, srect.y + 1, srect.width - 2,
+					srect.height - 2);
 		}
 
 		if (rpentity.isAttacking() && rpentity.isBeingStruck()) {
@@ -448,37 +478,37 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 				int sy;
 
 				/*
-				 * Align swipe image to be 16 px past the
-				 * facing edge, centering in other axis.
+				 * Align swipe image to be 16 px past the facing edge, centering
+				 * in other axis.
 				 *
-				 * Swipe image is 3x4 tiles, but really only
-				 * uses partial areas. Adjust positions to
-				 * match (or fix images to be uniform/centered).
+				 * Swipe image is 3x4 tiles, but really only uses partial areas.
+				 * Adjust positions to match (or fix images to be
+				 * uniform/centered).
 				 */
-				switch(rpentity.getDirection()) {
-					case UP:
-						sx = x + ((width - sw) / 2) + 16;
-						sy = y - 16 - 32;
-						break;
+				switch (rpentity.getDirection()) {
+				case UP:
+					sx = x + ((width - sw) / 2) + 16;
+					sy = y - 16 - 32;
+					break;
 
-					case DOWN:
-						sx = x + ((width - sw) / 2);
-						sy = y + height - sh + 16;
-						break;
+				case DOWN:
+					sx = x + ((width - sw) / 2);
+					sy = y + height - sh + 16;
+					break;
 
-					case LEFT:
-						sx = x - 16;
-						sy = y + ((height - sh) / 2) - 16;
-						break;
+				case LEFT:
+					sx = x - 16;
+					sy = y + ((height - sh) / 2) - 16;
+					break;
 
-					case RIGHT:
-						sx = x + width - sw + 16;
-						sy = y + ((height - sh) / 2) - 8;
-						break;
+				case RIGHT:
+					sx = x + width - sw + 16;
+					sy = y + ((height - sh) / 2) - 8;
+					break;
 
-					default:
-						sx = x + ((width - sw) / 2);
-						sy = y + ((height - sh) / 2);
+				default:
+					sx = x + ((width - sw) / 2);
+					sy = y + ((height - sh) / 2);
 				}
 
 				sprite.draw(g2d, sx, sy);
@@ -506,22 +536,22 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 			int sy = y + height - 8;
 
 			switch (rpentity.getResolution()) {
-				case BLOCKED:
-					blockedSprite.draw(g2d, sx, sy);
-					break;
+			case BLOCKED:
+				blockedSprite.draw(g2d, sx, sy);
+				break;
 
-				case MISSED:
-					missedSprite.draw(g2d, sx, sy);
-					break;
+			case MISSED:
+				missedSprite.draw(g2d, sx, sy);
+				break;
 
-				case HIT:
-					hitSprite.draw(g2d, sx, sy);
-					break;
+			case HIT:
+				hitSprite.draw(g2d, sx, sy);
+				break;
 			}
 		}
 
 		// Enable this to debug entity view area
-		if(false) {
+		if (false) {
 			g2d.setColor(Color.cyan);
 			g2d.drawRect(x, y, width, height);
 		}
@@ -529,46 +559,49 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 		drawFloaters(g2d, x, y);
 	}
 
-
 	/**
-	 * Draw the top layer parts of an entity. This will be on down after
-	 * all other game layers are rendered.
+	 * Draw the top layer parts of an entity. This will be on down after all
+	 * other game layers are rendered.
 	 *
-	 * @param	g2d		The graphics context.
-	 * @param	x		The drawn X coordinate.
-	 * @param	y		The drawn Y coordinate.
-	 * @param	width		The drawn entity width.
-	 * @param	height		The drawn entity height.
+	 * @param g2d
+	 *            The graphics context.
+	 * @param x
+	 *            The drawn X coordinate.
+	 * @param y
+	 *            The drawn Y coordinate.
+	 * @param width
+	 *            The drawn entity width.
+	 * @param height
+	 *            The drawn entity height.
 	 */
 	@Override
-	protected void drawTop(final Graphics2D g2d, final int x, final int y, final int width, final int height) {
+	protected void drawTop(final Graphics2D g2d, final int x, final int y,
+			final int width, final int height) {
 		drawStatusBar(g2d, x, y, width);
 	}
-
 
 	/**
 	 * Get the height.
 	 *
-	 * @return	The height (in pixels).
+	 * @return The height (in pixels).
 	 */
 	@Override
 	public int getHeight() {
 		return height;
 	}
 
-
 	/**
 	 * Get the entity's visibility.
 	 *
-	 * @return	The visibility value (0-100).
+	 * @return The visibility value (0-100).
 	 */
 	@Override
 	protected int getVisibility() {
 		/*
 		 * Hide while in ghostmode.
 		 */
-		if(rpentity.isGhostMode()) {
-			if(isVisibleGhost()) {
+		if (rpentity.isGhostMode()) {
+			if (isVisibleGhost()) {
 				return super.getVisibility() / 2;
 			} else {
 				return 0;
@@ -578,32 +611,29 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 		}
 	}
 
-
 	/**
 	 * Get the width.
 	 *
-	 * @return	The width (in pixels).
+	 * @return The width (in pixels).
 	 */
 	@Override
 	public int getWidth() {
 		return width;
 	}
 
-
 	/**
-	 * Determines on top of which other entities this entity should be
-	 * drawn. Entities with a high Z index will be drawn on top of ones
-	 * with a lower Z index.
-	 * 
+	 * Determines on top of which other entities this entity should be drawn.
+	 * Entities with a high Z index will be drawn on top of ones with a lower Z
+	 * index.
+	 *
 	 * Also, players can only interact with the topmost entity.
-	 * 
-	 * @return	The drawing index.
+	 *
+	 * @return The drawing index.
 	 */
 	@Override
 	public int getZIndex() {
 		return 8000;
 	}
-
 
 	/**
 	 * Handle updates.
@@ -612,12 +642,11 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	protected void update() {
 		super.update();
 
-		if(titleChanged) {
+		if (titleChanged) {
 			titleSprite = createTitleSprite();
 			titleChanged = false;
 		}
 	}
-
 
 	//
 	// EntityChangeListener
@@ -626,70 +655,70 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	/**
 	 * An entity was changed.
 	 *
-	 * @param	entity		The entity that was changed.
-	 * @param	property	The property identifier.
+	 * @param entity
+	 *            The entity that was changed.
+	 * @param property
+	 *            The property identifier.
 	 */
 	@Override
-	public void entityChanged(final Entity entity, final Object property)
-	{
+	public void entityChanged(final Entity entity, final Object property) {
 		super.entityChanged(entity, property);
 
-		if(property == RPEntity.PROP_ADMIN_LEVEL) {
+		if (property == RPEntity.PROP_ADMIN_LEVEL) {
 			titleChanged = true;
 			visibilityChanged = true;
-		} else if(property == RPEntity.PROP_GHOSTMODE) {
+		} else if (property == RPEntity.PROP_GHOSTMODE) {
 			visibilityChanged = true;
-		} else if(property == RPEntity.PROP_OUTFIT) {
+		} else if (property == RPEntity.PROP_OUTFIT) {
 			representationChanged = true;
-		} else if(property == Entity.PROP_TITLE) {
+		} else if (property == Entity.PROP_TITLE) {
 			titleChanged = true;
-		} else if(property == RPEntity.PROP_TITLE_TYPE) {
+		} else if (property == RPEntity.PROP_TITLE_TYPE) {
 			titleChanged = true;
 		}
 	}
 
-
 	/**
 	 * Perform an action.
 	 *
-	 * @param	at		The action.
+	 * @param at
+	 *            The action.
 	 */
 	@Override
 	public void onAction(final ActionType at) {
 		RPAction rpaction;
 
-
 		switch (at) {
-			case ATTACK:
-				rpaction = new RPAction();
+		case ATTACK:
+			rpaction = new RPAction();
 
-				rpaction.put("type", at.toString());
-				rpaction.put("target", rpentity.getID().getObjectID());
+			rpaction.put("type", at.toString());
+			rpaction.put("target", rpentity.getID().getObjectID());
 
-				at.send(rpaction);
-				break;
+			at.send(rpaction);
+			break;
 
-			case STOP_ATTACK:
-				rpaction = new RPAction();
+		case STOP_ATTACK:
+			rpaction = new RPAction();
 
-				rpaction.put("type", at.toString());
-				rpaction.put("attack", "");
+			rpaction.put("type", at.toString());
+			rpaction.put("attack", "");
 
-				at.send(rpaction);
-				break;
+			at.send(rpaction);
+			break;
 
-			case PUSH:
-				rpaction = new RPAction();
+		case PUSH:
+			rpaction = new RPAction();
 
-				rpaction.put("type", at.toString());
-				rpaction.put("target", rpentity.getID().getObjectID());
+			rpaction.put("type", at.toString());
+			rpaction.put("target", rpentity.getID().getObjectID());
 
-				at.send(rpaction);
-				break;
+			at.send(rpaction);
+			break;
 
-			default:
-				super.onAction(at);
-				break;
+		default:
+			super.onAction(at);
+			break;
 		}
 	}
 }

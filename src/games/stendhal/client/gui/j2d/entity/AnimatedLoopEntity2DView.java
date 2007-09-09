@@ -24,18 +24,18 @@ public class AnimatedLoopEntity2DView extends Entity2DView {
 	/**
 	 * Log4J.
 	 */
-	private static final Logger logger = Log4J.getLogger(AnimatedLoopEntity2DView.class);
-
+	private static final Logger logger = Log4J
+			.getLogger(AnimatedLoopEntity2DView.class);
 
 	/**
 	 * Create a 2D view of an animated loop visual.
 	 *
-	 * @param	entity		The entity to render.
+	 * @param entity
+	 *            The entity to render.
 	 */
 	public AnimatedLoopEntity2DView(final Entity entity) {
 		super(entity);
 	}
-
 
 	//
 	// Entity2DView
@@ -50,31 +50,32 @@ public class AnimatedLoopEntity2DView extends Entity2DView {
 		Sprite sprite = store.getSprite(translate(entity.getType()));
 
 		/*
-		 * Entities are [currently] always 1x1.
-		 * Extra columns are animation.
+		 * Entities are [currently] always 1x1. Extra columns are animation.
 		 * Extra rows are ignored.
 		 */
 		int width = sprite.getWidth();
 
-		if(width > GameScreen.SIZE_UNIT_PIXELS) {
-			sprite = store.getAnimatedSprite(sprite, 0, 0, width / GameScreen.SIZE_UNIT_PIXELS, GameScreen.SIZE_UNIT_PIXELS, GameScreen.SIZE_UNIT_PIXELS, 100);
-		} else if(sprite.getHeight() > GameScreen.SIZE_UNIT_PIXELS) {
-			sprite = store.getTile(sprite, 0, 0, GameScreen.SIZE_UNIT_PIXELS, GameScreen.SIZE_UNIT_PIXELS);
+		if (width > GameScreen.SIZE_UNIT_PIXELS) {
+			sprite = store.getAnimatedSprite(sprite, 0, 0, width
+					/ GameScreen.SIZE_UNIT_PIXELS, GameScreen.SIZE_UNIT_PIXELS,
+					GameScreen.SIZE_UNIT_PIXELS, 100);
+		} else if (sprite.getHeight() > GameScreen.SIZE_UNIT_PIXELS) {
+			sprite = store.getTile(sprite, 0, 0, GameScreen.SIZE_UNIT_PIXELS,
+					GameScreen.SIZE_UNIT_PIXELS);
 			logger.warn("Multi-row image for: " + translate(entity.getType()));
 		}
 
 		setSprite(sprite);
 	}
 
-
 	/**
-	 * Determines on top of which other entities this entity should be
-	 * drawn. Entities with a high Z index will be drawn on top of ones
-	 * with a lower Z index.
-	 * 
+	 * Determines on top of which other entities this entity should be drawn.
+	 * Entities with a high Z index will be drawn on top of ones with a lower Z
+	 * index.
+	 *
 	 * Also, players can only interact with the topmost entity.
-	 * 
-	 * @return	The drawing index.
+	 *
+	 * @return The drawing index.
 	 */
 	@Override
 	public int getZIndex() {

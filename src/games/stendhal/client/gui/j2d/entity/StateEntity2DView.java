@@ -26,23 +26,24 @@ public abstract class StateEntity2DView extends Entity2DView {
 	/**
 	 * Log4J.
 	 */
-	private static final Logger logger = Log4J.getLogger(StateEntity2DView.class);
+	private static final Logger logger = Log4J
+			.getLogger(StateEntity2DView.class);
 
 	/**
 	 * Map of named sprites.
 	 */
-	protected Map<Object, Sprite>	sprites;
+	protected Map<Object, Sprite> sprites;
 
 	/**
 	 * The model state value changed.
 	 */
-	protected boolean	stateChanged;
-
+	protected boolean stateChanged;
 
 	/**
 	 * Create a 2D view of an entity.
 	 *
-	 * @param	entity		The entity to render.
+	 * @param entity
+	 *            The entity to render.
 	 */
 	public StateEntity2DView(final Entity entity) {
 		super(entity);
@@ -50,7 +51,6 @@ public abstract class StateEntity2DView extends Entity2DView {
 		sprites = new HashMap<Object, Sprite>();
 		stateChanged = false;
 	}
-
 
 	//
 	// StateEntity2DView
@@ -63,39 +63,37 @@ public abstract class StateEntity2DView extends Entity2DView {
 		buildSprites(sprites);
 	}
 
-
 	/**
 	 * Populate named state sprites.
 	 *
-	 * @param	map		The map to populate.
+	 * @param map
+	 *            The map to populate.
 	 */
 	protected abstract void buildSprites(final Map<Object, Sprite> map);
-
 
 	/**
 	 * Get a keyed state sprite.
 	 *
-	 * @param	state		The state.
+	 * @param state
+	 *            The state.
 	 *
-	 * @return	The appropriete sprite for the given state.
+	 * @return The appropriete sprite for the given state.
 	 */
 	protected Sprite getSprite(final Object state) {
 		return sprites.get(state);
 	}
 
-
 	/**
 	 * Get the current model state.
 	 *
-	 * @return	The model state.
+	 * @return The model state.
 	 */
 	protected abstract Object getState();
-
 
 	/**
 	 * Get the current animated sprite.
 	 *
-	 * @return	The appropriete sprite for the current state.
+	 * @return The appropriete sprite for the current state.
 	 */
 	protected Sprite getStateSprite() {
 		Object state = getState();
@@ -109,14 +107,13 @@ public abstract class StateEntity2DView extends Entity2DView {
 		return sprite;
 	}
 
-
 	//
 	// Entity2DView
 	//
 
 	/**
-	 * Build the visual representation of this entity.
-	 * This builds all the animation sprites and sets the default frame.
+	 * Build the visual representation of this entity. This builds all the
+	 * animation sprites and sets the default frame.
 	 */
 	@Override
 	protected void buildRepresentation() {
@@ -126,7 +123,6 @@ public abstract class StateEntity2DView extends Entity2DView {
 		stateChanged = false;
 	}
 
-
 	/**
 	 * Handle updates.
 	 */
@@ -134,7 +130,7 @@ public abstract class StateEntity2DView extends Entity2DView {
 	protected void update() {
 		super.update();
 
-		if(stateChanged) {
+		if (stateChanged) {
 			setSprite(getStateSprite());
 			stateChanged = false;
 		}

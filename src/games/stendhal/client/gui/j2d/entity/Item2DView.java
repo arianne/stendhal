@@ -34,22 +34,23 @@ public class Item2DView extends Entity2DView {
 	/**
 	 * Create a 2D view of an item.
 	 *
-	 * @param	entity		The entity to render.
+	 * @param entity
+	 *            The entity to render.
 	 */
 	public Item2DView(final Item item) {
 		super(item);
 	}
-
 
 	//
 	// Entity2DView
 	//
 
 	/**
-	 * Build a list of entity specific actions.
-	 * <strong>NOTE: The first entry should be the default.</strong>
+	 * Build a list of entity specific actions. <strong>NOTE: The first entry
+	 * should be the default.</strong>
 	 *
-	 * @param	list		The list to populate.
+	 * @param list
+	 *            The list to populate.
 	 */
 	@Override
 	protected void buildActions(final List<String> list) {
@@ -57,7 +58,6 @@ public class Item2DView extends Entity2DView {
 
 		super.buildActions(list);
 	}
-
 
 	/**
 	 * Build the visual representation of this entity.
@@ -68,50 +68,50 @@ public class Item2DView extends Entity2DView {
 		Sprite sprite = store.getSprite(translate(getClassResourcePath()));
 
 		/*
-		 * Items are always 1x1 (they need to fit in entity slots).
-		 * Extra columns are animation.
-		 * Extra rows are ignored.
+		 * Items are always 1x1 (they need to fit in entity slots). Extra
+		 * columns are animation. Extra rows are ignored.
 		 */
 		int width = sprite.getWidth();
 
-		if(width > GameScreen.SIZE_UNIT_PIXELS) {
-			sprite = store.getAnimatedSprite(sprite, 0, 0, width / GameScreen.SIZE_UNIT_PIXELS, GameScreen.SIZE_UNIT_PIXELS, GameScreen.SIZE_UNIT_PIXELS, 100);
-		} else if(sprite.getHeight() > GameScreen.SIZE_UNIT_PIXELS) {
-			sprite = store.getTile(sprite, 0, 0, GameScreen.SIZE_UNIT_PIXELS, GameScreen.SIZE_UNIT_PIXELS);
+		if (width > GameScreen.SIZE_UNIT_PIXELS) {
+			sprite = store.getAnimatedSprite(sprite, 0, 0, width
+					/ GameScreen.SIZE_UNIT_PIXELS, GameScreen.SIZE_UNIT_PIXELS,
+					GameScreen.SIZE_UNIT_PIXELS, 100);
+		} else if (sprite.getHeight() > GameScreen.SIZE_UNIT_PIXELS) {
+			sprite = store.getTile(sprite, 0, 0, GameScreen.SIZE_UNIT_PIXELS,
+					GameScreen.SIZE_UNIT_PIXELS);
 			logger.warn("Multi-row item image for: " + getClassResourcePath());
 		}
 
 		setSprite(sprite);
 	}
 
-
 	/**
-	 * Determines on top of which other entities this entity should be
-	 * drawn. Entities with a high Z index will be drawn on top of ones
-	 * with a lower Z index.
-	 * 
+	 * Determines on top of which other entities this entity should be drawn.
+	 * Entities with a high Z index will be drawn on top of ones with a lower Z
+	 * index.
+	 *
 	 * Also, players can only interact with the topmost entity.
-	 * 
-	 * @return	The drawing index.
+	 *
+	 * @return The drawing index.
 	 */
 	@Override
 	public int getZIndex() {
 		return 7000;
 	}
 
-
 	/**
 	 * Translate a resource name into it's sprite image path.
 	 *
-	 * @param	name		The resource name.
+	 * @param name
+	 *            The resource name.
 	 *
-	 * @return	The full resource name.
+	 * @return The full resource name.
 	 */
 	@Override
 	protected String translate(final String name) {
 		return "data/sprites/items/" + name + ".png";
 	}
-
 
 	//
 	// EntityChangeListener
@@ -120,19 +120,19 @@ public class Item2DView extends Entity2DView {
 	/**
 	 * An entity was changed.
 	 *
-	 * @param	entity		The entity that was changed.
-	 * @param	property	The property identifier.
+	 * @param entity
+	 *            The entity that was changed.
+	 * @param property
+	 *            The property identifier.
 	 */
 	@Override
-	public void entityChanged(final Entity entity, final Object property)
-	{
+	public void entityChanged(final Entity entity, final Object property) {
 		super.entityChanged(entity, property);
 
-		if(property == Entity.PROP_CLASS) {
+		if (property == Entity.PROP_CLASS) {
 			representationChanged = true;
 		}
 	}
-
 
 	//
 	// EntityView
@@ -141,13 +141,12 @@ public class Item2DView extends Entity2DView {
 	/**
 	 * Determine if this entity can be moved (e.g. via dragging).
 	 *
-	 * @return	<code>true</code> if the entity is movable.
+	 * @return <code>true</code> if the entity is movable.
 	 */
 	@Override
 	public boolean isMovable() {
 		return true;
 	}
-
 
 	/**
 	 * Perform the default action.
@@ -157,27 +156,27 @@ public class Item2DView extends Entity2DView {
 		onAction(ActionType.USE);
 	}
 
-
 	/**
 	 * Perform an action.
 	 *
-	 * @param	at		The action.
+	 * @param at
+	 *            The action.
 	 */
 	@Override
 	public void onAction(final ActionType at) {
 		switch (at) {
-			case USE:
-				RPAction rpaction = new RPAction();
+		case USE:
+			RPAction rpaction = new RPAction();
 
-				rpaction.put("type", at.toString());
-				getEntity().fillTargetInfo(rpaction);
+			rpaction.put("type", at.toString());
+			getEntity().fillTargetInfo(rpaction);
 
-				at.send(rpaction);
-				break;
+			at.send(rpaction);
+			break;
 
-			default:
-				super.onAction(at);
-				break;
+		default:
+			super.onAction(at);
+			break;
 		}
 	}
 }

@@ -35,18 +35,18 @@ public class GrainField2DView extends StateEntity2DView {
 	/**
 	 * The grain field entity.
 	 */
-	private GrainField	grainField;
+	private GrainField grainField;
 
 	/**
 	 * The number of states.
 	 */
-	protected int		states;
-
+	protected int states;
 
 	/**
 	 * Create a 2D view of a grain field.
 	 *
-	 * @param	grainField	The entity to render.
+	 * @param grainField
+	 *            The entity to render.
 	 */
 	public GrainField2DView(final GrainField grainField) {
 		super(grainField);
@@ -56,7 +56,6 @@ public class GrainField2DView extends StateEntity2DView {
 		states = 0;
 	}
 
-
 	//
 	// StateEntity2DView
 	//
@@ -64,21 +63,21 @@ public class GrainField2DView extends StateEntity2DView {
 	/**
 	 * Populate named state sprites.
 	 *
-	 * @param	map		The map to populate.
+	 * @param map
+	 *            The map to populate.
 	 */
 	@Override
 	protected void buildSprites(final Map<Object, Sprite> map) {
-		int	height;
-		int	width;
-		String	clazz;
-
+		int height;
+		int width;
+		String clazz;
 
 		height = getHeight();
 		width = getWidth();
 
 		clazz = grainField.getEntityClass();
 
-		if(clazz == null)  {
+		if (clazz == null) {
 			logger.warn("No entity class set");
 			clazz = "grain_field";
 		}
@@ -91,10 +90,11 @@ public class GrainField2DView extends StateEntity2DView {
 		int theight = tiles.getHeight();
 		int imageStates = theight / height;
 
-		if(imageStates != states) {
-			logger.warn("State count mismatch: " + imageStates + " != " + states);
+		if (imageStates != states) {
+			logger.warn("State count mismatch: " + imageStates + " != "
+					+ states);
 
-			if(imageStates < states) {
+			if (imageStates < states) {
 				states = imageStates;
 			}
 		}
@@ -102,32 +102,33 @@ public class GrainField2DView extends StateEntity2DView {
 		int i = 0;
 
 		// TODO: Allow animated frames
-		for(int y = 0; y < theight; y += height) {
-			map.put(new Integer(i++), store.getTile(tiles, 0, y, width, height));
+		for (int y = 0; y < theight; y += height) {
+			map
+					.put(new Integer(i++), store.getTile(tiles, 0, y, width,
+							height));
 		}
 	}
-
 
 	/**
 	 * Get the current entity state.
 	 *
-	 * @return	The current state.
+	 * @return The current state.
 	 */
 	@Override
 	protected Object getState() {
 		return new Integer(grainField.getRipeness());
 	}
 
-
 	//
 	// Entity2DView
 	//
 
 	/**
-	 * Build a list of entity specific actions.
-	 * <strong>NOTE: The first entry should be the default.</strong>
+	 * Build a list of entity specific actions. <strong>NOTE: The first entry
+	 * should be the default.</strong>
 	 *
-	 * @param	list		The list to populate.
+	 * @param list
+	 *            The list to populate.
 	 */
 	@Override
 	protected void buildActions(final List<String> list) {
@@ -136,43 +137,39 @@ public class GrainField2DView extends StateEntity2DView {
 		super.buildActions(list);
 	}
 
-
 	/**
 	 * Get the height.
 	 *
-	 * @return	The height (in pixels).
+	 * @return The height (in pixels).
 	 */
 	@Override
 	public int getHeight() {
 		return (int) (grainField.getHeight() * GameScreen.SIZE_UNIT_PIXELS);
 	}
 
-
 	/**
 	 * Get the width.
 	 *
-	 * @return	The width (in pixels).
+	 * @return The width (in pixels).
 	 */
 	@Override
 	public int getWidth() {
 		return (int) (grainField.getWidth() * GameScreen.SIZE_UNIT_PIXELS);
 	}
 
-
 	/**
-	 * Determines on top of which other entities this entity should be
-	 * drawn. Entities with a high Z index will be drawn on top of ones
-	 * with a lower Z index.
-	 * 
+	 * Determines on top of which other entities this entity should be drawn.
+	 * Entities with a high Z index will be drawn on top of ones with a lower Z
+	 * index.
+	 *
 	 * Also, players can only interact with the topmost entity.
-	 * 
-	 * @return	The drawing index.
+	 *
+	 * @return The drawing index.
 	 */
 	@Override
 	public int getZIndex() {
 		return 3000;
 	}
-
 
 	//
 	// EntityChangeListener
@@ -181,21 +178,21 @@ public class GrainField2DView extends StateEntity2DView {
 	/**
 	 * An entity was changed.
 	 *
-	 * @param	entity		The entity that was changed.
-	 * @param	property	The property identifier.
+	 * @param entity
+	 *            The entity that was changed.
+	 * @param property
+	 *            The property identifier.
 	 */
 	@Override
-	public void entityChanged(final Entity entity, final Object property)
-	{
+	public void entityChanged(final Entity entity, final Object property) {
 		super.entityChanged(entity, property);
 
-		if(property == Entity.PROP_CLASS) {
+		if (property == Entity.PROP_CLASS) {
 			representationChanged = true;
-		} else if(property == GrainField.PROP_RIPENESS) {
+		} else if (property == GrainField.PROP_RIPENESS) {
 			stateChanged = true;
 		}
 	}
-
 
 	//
 	// EntityView
@@ -209,27 +206,27 @@ public class GrainField2DView extends StateEntity2DView {
 		onAction(ActionType.HARVEST);
 	}
 
-
 	/**
 	 * Perform an action.
 	 *
-	 * @param	at		The action.
+	 * @param at
+	 *            The action.
 	 */
 	@Override
 	public void onAction(final ActionType at) {
 		switch (at) {
-			case HARVEST:
-				RPAction rpaction = new RPAction();
+		case HARVEST:
+			RPAction rpaction = new RPAction();
 
-				rpaction.put("type", at.toString());
-				rpaction.put("target", grainField.getID().getObjectID());
+			rpaction.put("type", at.toString());
+			rpaction.put("target", grainField.getID().getObjectID());
 
-				at.send(rpaction);
-				break;
+			at.send(rpaction);
+			break;
 
-			default:
-				super.onAction(at);
-				break;
+		default:
+			super.onAction(at);
+			break;
 		}
 	}
 }

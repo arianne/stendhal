@@ -28,33 +28,33 @@ public class Door2DView extends StateEntity2DView {
 	/*
 	 * The closed state.
 	 */
-	protected final static String	STATE_CLOSED	= "close";
+	protected static final String STATE_CLOSED = "close";
 
 	/*
 	 * The open state.
 	 */
-	protected final static String	STATE_OPEN	= "open";
+	protected static final String STATE_OPEN = "open";
 
 	/*
 	 * The drawn width.
 	 */
-	protected int		width;
+	protected int width;
 
 	/*
 	 * The drawn height.
 	 */
-	protected int		height;
+	protected int height;
 
 	/**
 	 * The door entity.
 	 */
-	private Door		door;
-
+	private Door door;
 
 	/**
 	 * Create a 2D view of a door.
 	 *
-	 * @param	entity		The entity to render.
+	 * @param entity
+	 *            The entity to render.
 	 */
 	public Door2DView(final Door door) {
 		super(door);
@@ -65,7 +65,6 @@ public class Door2DView extends StateEntity2DView {
 		height = GameScreen.SIZE_UNIT_PIXELS;
 	}
 
-
 	//
 	// StateEntity2DView
 	//
@@ -73,7 +72,8 @@ public class Door2DView extends StateEntity2DView {
 	/**
 	 * Populate named state sprites.
 	 *
-	 * @param	map		The map to populate.
+	 * @param map
+	 *            The map to populate.
 	 */
 	@Override
 	protected void buildSprites(final Map<Object, Sprite> map) {
@@ -81,7 +81,7 @@ public class Door2DView extends StateEntity2DView {
 
 		SpriteStore store = SpriteStore.get();
 
-		if(name == null) {
+		if (name == null) {
 			width = GameScreen.SIZE_UNIT_PIXELS;
 			height = GameScreen.SIZE_UNIT_PIXELS;
 
@@ -102,27 +102,26 @@ public class Door2DView extends StateEntity2DView {
 		calculateOffset(width, height);
 	}
 
-
 	/**
 	 * Get the current entity state.
 	 *
-	 * @return	The current state.
+	 * @return The current state.
 	 */
 	@Override
 	protected Object getState() {
 		return door.isOpen() ? STATE_OPEN : STATE_CLOSED;
 	}
 
-
 	//
 	// Entity2DView
 	//
 
 	/**
-	 * Build a list of entity specific actions.
-	 * <strong>NOTE: The first entry should be the default.</strong>
+	 * Build a list of entity specific actions. <strong>NOTE: The first entry
+	 * should be the default.</strong>
 	 *
-	 * @param	list		The list to populate.
+	 * @param list
+	 *            The list to populate.
 	 */
 	@Override
 	protected void buildActions(final List<String> list) {
@@ -136,56 +135,52 @@ public class Door2DView extends StateEntity2DView {
 		}
 	}
 
-
 	/**
 	 * Get the height.
 	 *
-	 * @return	The height (in pixels).
+	 * @return The height (in pixels).
 	 */
 	@Override
 	public int getHeight() {
 		return height;
 	}
 
-
 	/**
 	 * Get the width.
 	 *
-	 * @return	The width (in pixels).
+	 * @return The width (in pixels).
 	 */
 	@Override
 	public int getWidth() {
 		return width;
 	}
 
-
 	/**
-	 * Determines on top of which other entities this entity should be
-	 * drawn. Entities with a high Z index will be drawn on top of ones
-	 * with a lower Z index.
-	 * 
+	 * Determines on top of which other entities this entity should be drawn.
+	 * Entities with a high Z index will be drawn on top of ones with a lower Z
+	 * index.
+	 *
 	 * Also, players can only interact with the topmost entity.
-	 * 
-	 * @return	The drawing index.
+	 *
+	 * @return The drawing index.
 	 */
 	@Override
 	public int getZIndex() {
 		return 5000;
 	}
 
-
 	/**
 	 * Translate a resource name into it's sprite image path.
 	 *
-	 * @param	name		The resource name.
+	 * @param name
+	 *            The resource name.
 	 *
-	 * @return	The full resource name.
+	 * @return The full resource name.
 	 */
 	@Override
 	protected String translate(final String name) {
 		return "data/sprites/doors/" + name + ".png";
 	}
-
 
 	//
 	// EntityChangeListener
@@ -194,21 +189,21 @@ public class Door2DView extends StateEntity2DView {
 	/**
 	 * An entity was changed.
 	 *
-	 * @param	entity		The entity that was changed.
-	 * @param	property	The property identifier.
+	 * @param entity
+	 *            The entity that was changed.
+	 * @param property
+	 *            The property identifier.
 	 */
 	@Override
-	public void entityChanged(final Entity entity, final Object property)
-	{
+	public void entityChanged(final Entity entity, final Object property) {
 		super.entityChanged(entity, property);
 
-		if(property == Entity.PROP_CLASS) {
+		if (property == Entity.PROP_CLASS) {
 			representationChanged = true;
-		} else if(property == Door.PROP_OPEN) {
+		} else if (property == Door.PROP_OPEN) {
 			stateChanged = true;
 		}
 	}
-
 
 	//
 	// EntityView
@@ -217,24 +212,25 @@ public class Door2DView extends StateEntity2DView {
 	/**
 	 * Perform an action.
 	 *
-	 * @param	at		The action.
+	 * @param at
+	 *            The action.
 	 */
 	@Override
 	public void onAction(final ActionType at) {
 		switch (at) {
-			case OPEN:
-			case CLOSE:
-				RPAction rpaction = new RPAction();
+		case OPEN:
+		case CLOSE:
+			RPAction rpaction = new RPAction();
 
-				rpaction.put("type", at.toString());
-				rpaction.put("target", door.getID().getObjectID());
+			rpaction.put("type", at.toString());
+			rpaction.put("target", door.getID().getObjectID());
 
-				at.send(rpaction);
-				break;
+			at.send(rpaction);
+			break;
 
-			default:
-				super.onAction(at);
-				break;
+		default:
+			super.onAction(at);
+			break;
 		}
 	}
 }

@@ -53,18 +53,18 @@ public class Entity2DViewFactory { // implements EntityViewFactory {
 	/**
 	 * Log4J.
 	 */
-	private static final Logger logger = Log4J.getLogger(Entity2DViewFactory.class);
+	private static final Logger logger = Log4J
+			.getLogger(Entity2DViewFactory.class);
 
 	/**
 	 * The shared instance.
 	 */
-	private static final Entity2DViewFactory	sharedInstance = new Entity2DViewFactory();
+	private static final Entity2DViewFactory sharedInstance = new Entity2DViewFactory();
 
 	/**
 	 * The model-to-view class map.
 	 */
-	protected Map<Class, Class>	map;
-
+	protected Map<Class, Class> map;
 
 	/**
 	 * Create an entity view factory.
@@ -75,7 +75,6 @@ public class Entity2DViewFactory { // implements EntityViewFactory {
 		configure();
 	}
 
-
 	//
 	// Entity2DViewFactory
 	//
@@ -83,15 +82,16 @@ public class Entity2DViewFactory { // implements EntityViewFactory {
 	/**
 	 * Create an entity view from an entity.
 	 *
-	 * @param	entity		An entity.
+	 * @param entity
+	 *            An entity.
 	 *
-	 * @return	The corresponding view, or <code>null</code>.
+	 * @return The corresponding view, or <code>null</code>.
 	 */
 	public Entity2DView create(Entity entity) {
 		Class entityClass = entity.getClass();
 		Class viewClass = getViewClass(entityClass);
 
-		if(viewClass == null) {
+		if (viewClass == null) {
 			return null;
 		}
 
@@ -99,17 +99,19 @@ public class Entity2DViewFactory { // implements EntityViewFactory {
 		 * Is it an Entity2DView?
 		 */
 		if (!Entity2DView.class.isAssignableFrom(viewClass)) {
-			logger.error("Class is not an Entity2DView: " + viewClass.getName());
+			logger
+					.error("Class is not an Entity2DView: "
+							+ viewClass.getName());
 			return null;
 		}
 
 		/*
-		 * Search for a constructor with a compatible parameter type.
-		 * The VM doesn't implicitely match super-classes.
+		 * Search for a constructor with a compatible parameter type. The VM
+		 * doesn't implicitely match super-classes.
 		 */
 		Constructor cnstr = null;
 
-		while(entityClass != null) {
+		while (entityClass != null) {
 			try {
 				cnstr = viewClass.getConstructor(new Class[] { entityClass });
 				break;
@@ -119,8 +121,9 @@ public class Entity2DViewFactory { // implements EntityViewFactory {
 			entityClass = entityClass.getSuperclass();
 		}
 
-		if(cnstr == null) {
-			logger.error("Unable to find sutable contructor for: " + viewClass.getName());
+		if (cnstr == null) {
+			logger.error("Unable to find sutable contructor for: "
+					+ viewClass.getName());
 			return null;
 		}
 
@@ -140,7 +143,6 @@ public class Entity2DViewFactory { // implements EntityViewFactory {
 			return null;
 		}
 	}
-
 
 	/**
 	 * Configure the view map.
@@ -175,7 +177,6 @@ public class Entity2DViewFactory { // implements EntityViewFactory {
 		register(WellSource.class, WellSource2DView.class);
 	}
 
-
 	/**
 	 * Get the shared [singleton] instance.
 	 */
@@ -183,19 +184,19 @@ public class Entity2DViewFactory { // implements EntityViewFactory {
 		return sharedInstance;
 	}
 
-
 	/**
 	 * Get the appropriete view class for a given entity class.
 	 *
-	 * @param	entityClass	The entity class.
+	 * @param entityClass
+	 *            The entity class.
 	 *
-	 * @return	A view class, or <code>null</code> if unknown.
+	 * @return A view class, or <code>null</code> if unknown.
 	 */
 	protected Class getViewClass(Class entityClass) {
-		while(entityClass != null) {
+		while (entityClass != null) {
 			Class viewClass = map.get(entityClass);
 
-			if(viewClass != null) {
+			if (viewClass != null) {
 				return viewClass;
 			}
 
@@ -205,12 +206,13 @@ public class Entity2DViewFactory { // implements EntityViewFactory {
 		return null;
 	}
 
-
 	/**
 	 * Register an enity model-to-view mapping.
 	 *
-	 * @param	entityClass	The entity model class.
-	 * @param	viewClass	The entity view class.
+	 * @param entityClass
+	 *            The entity model class.
+	 * @param viewClass
+	 *            The entity view class.
 	 */
 	public void register(Class entityClass, Class viewClass) {
 		map.put(entityClass, viewClass);

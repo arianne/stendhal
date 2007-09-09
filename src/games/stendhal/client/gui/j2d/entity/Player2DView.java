@@ -35,33 +35,32 @@ public class Player2DView extends RPEntity2DView {
 	/**
 	 * Sprite representing away.
 	 */
-	private static Sprite	awaySprite;
+	private static Sprite awaySprite;
 
 	/**
 	 * The player entity.
 	 */
 	private Player player;
 
-
 	static {
 		SpriteStore store = SpriteStore.get();
 		Sprite tiles = store.getSprite("data/sprites/ideas/away.png");
 
-		awaySprite = store.getAnimatedSprite(tiles, 0, 0, 4, GameScreen.SIZE_UNIT_PIXELS, GameScreen.SIZE_UNIT_PIXELS, 2000);
+		awaySprite = store.getAnimatedSprite(tiles, 0, 0, 4,
+				GameScreen.SIZE_UNIT_PIXELS, GameScreen.SIZE_UNIT_PIXELS, 2000);
 	}
-
 
 	/**
 	 * Create a 2D view of a player.
 	 *
-	 * @param	player		The entity to render.
+	 * @param player
+	 *            The entity to render.
 	 */
 	public Player2DView(final Player player) {
 		super(player);
 
 		this.player = player;
 	}
-
 
 	//
 	// RPEntity2DView
@@ -70,24 +69,28 @@ public class Player2DView extends RPEntity2DView {
 	/**
 	 * Draw the entity status bar.
 	 *
-	 * @param	g2d		The graphics context.
-	 * @param	x		The drawn X coordinate.
-	 * @param	y		The drawn Y coordinate.
-	 * @param	width		The drawn width.
+	 * @param g2d
+	 *            The graphics context.
+	 * @param x
+	 *            The drawn X coordinate.
+	 * @param y
+	 *            The drawn Y coordinate.
+	 * @param width
+	 *            The drawn width.
 	 */
 	@Override
-	protected void drawStatusBar(final Graphics2D g2d, final int x, final int y, final int width) {
+	protected void drawStatusBar(final Graphics2D g2d, final int x,
+			final int y, final int width) {
 		/*
 		 * Shift bar slightly to avoid overlap with smaller entities
 		 */
 		super.drawStatusBar(g2d, x, y + 6, width);
 	}
 
-
 	/**
 	 * Get the full directional animation tile set for this entity.
 	 *
-	 * @return	A tile sprite containing all animation images.
+	 * @return A tile sprite containing all animation images.
 	 */
 	@Override
 	protected Sprite getAnimationSprite() {
@@ -101,35 +104,34 @@ public class Player2DView extends RPEntity2DView {
 		}
 	}
 
-
 	/**
 	 * Determine is the user can see this entity while in ghostmode.
 	 *
-	 * @return	<code>true</code> if the client user can see this
-	 *		entity while in ghostmode.
+	 * @return <code>true</code> if the client user can see this entity while
+	 *         in ghostmode.
 	 */
 	@Override
 	protected boolean isVisibleGhost() {
 		/*
 		 * Admins see all
 		 */
-		if(User.isAdmin()) {
+		if (User.isAdmin()) {
 			return true;
 		}
 
 		return false;
 	}
 
-
 	//
 	// Entity2DView
 	//
 
 	/**
-	 * Build a list of entity specific actions.
-	 * <strong>NOTE: The first entry should be the default.</strong>
+	 * Build a list of entity specific actions. <strong>NOTE: The first entry
+	 * should be the default.</strong>
 	 *
-	 * @param	list		The list to populate.
+	 * @param list
+	 *            The list to populate.
 	 */
 	@Override
 	protected void buildActions(final List<String> list) {
@@ -139,21 +141,20 @@ public class Player2DView extends RPEntity2DView {
 		list.add(ActionType.ADD_BUDDY.getRepresentation());
 	}
 
-
 	/**
 	 * Draw the entity.
 	 *
-	 * @param	g2d		The graphics to drawn on.
+	 * @param g2d
+	 *            The graphics to drawn on.
 	 */
 	@Override
 	protected void draw(Graphics2D g2d, int x, int y, int width, int height) {
 		super.draw(g2d, x, y, width, height);
 
-		if(player.isAway()) {
+		if (player.isAway()) {
 			awaySprite.draw(g2d, x + (width * 3 / 4), y - 10);
 		}
 	}
-
 
 	//
 	// EntityView
@@ -162,26 +163,26 @@ public class Player2DView extends RPEntity2DView {
 	/**
 	 * Perform an action.
 	 *
-	 * @param	at		The action.
+	 * @param at
+	 *            The action.
 	 */
 	@Override
 	public void onAction(final ActionType at) {
 		RPAction rpaction;
 
-
 		switch (at) {
-			case ADD_BUDDY:
-				rpaction = new RPAction();
+		case ADD_BUDDY:
+			rpaction = new RPAction();
 
-				rpaction.put("type", at.toString());
-				rpaction.put("target", player.getName());
+			rpaction.put("type", at.toString());
+			rpaction.put("target", player.getName());
 
-				at.send(rpaction);
-				break;
+			at.send(rpaction);
+			break;
 
-			default:
-				super.onAction(at);
-				break;
+		default:
+			super.onAction(at);
+			break;
 		}
 	}
 }

@@ -23,13 +23,13 @@ public class Portal2DView extends InvisibleEntity2DView {
 	/**
 	 * The portal entity.
 	 */
-	protected Portal	portal;
-
+	protected Portal portal;
 
 	/**
 	 * Create a 2D view of a portal.
 	 *
-	 * @param	portal		The entity to render.
+	 * @param portal
+	 *            The entity to render.
 	 */
 	public Portal2DView(final Portal portal) {
 		super(portal);
@@ -37,16 +37,16 @@ public class Portal2DView extends InvisibleEntity2DView {
 		this.portal = portal;
 	}
 
-
 	//
 	// Entity2DView
 	//
 
 	/**
-	 * Build a list of entity specific actions.
-	 * <strong>NOTE: The first entry should be the default.</strong>
+	 * Build a list of entity specific actions. <strong>NOTE: The first entry
+	 * should be the default.</strong>
 	 *
-	 * @param	list		The list to populate.
+	 * @param list
+	 *            The list to populate.
 	 */
 	@Override
 	protected void buildActions(final List<String> list) {
@@ -59,7 +59,6 @@ public class Portal2DView extends InvisibleEntity2DView {
 		}
 	}
 
-
 	//
 	// EntityView
 	//
@@ -69,32 +68,32 @@ public class Portal2DView extends InvisibleEntity2DView {
 	 */
 	@Override
 	public void onAction() {
-		if(!portal.isHidden()) {
+		if (!portal.isHidden()) {
 			onAction(ActionType.USE);
 		}
 	}
 
-
 	/**
 	 * Perform an action.
 	 *
-	 * @param	at		The action.
+	 * @param at
+	 *            The action.
 	 */
 	@Override
 	public void onAction(final ActionType at) {
 		switch (at) {
-			case USE:
-				RPAction rpaction = new RPAction();
+		case USE:
+			RPAction rpaction = new RPAction();
 
-				rpaction.put("type", at.toString());
-				rpaction.put("target", portal.getID().getObjectID());
+			rpaction.put("type", at.toString());
+			rpaction.put("target", portal.getID().getObjectID());
 
-				at.send(rpaction);
-				break;
+			at.send(rpaction);
+			break;
 
-			default:
-				super.onAction(at);
-				break;
+		default:
+			super.onAction(at);
+			break;
 		}
 	}
 }

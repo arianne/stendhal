@@ -18,7 +18,6 @@ import games.stendhal.client.sprite.SpriteStore;
 
 import java.util.List;
 
-
 /**
  * The 2D view of a ring.
  */
@@ -41,22 +40,21 @@ public class Ring2DView extends Item2DView {
 	/**
 	 * The state changed.
 	 */
-	private boolean	stateChanged;
-
+	private boolean stateChanged;
 
 	/**
 	 * Create a 2D view of a chest.
 	 *
-	 * @param	ring		The entity to render.
+	 * @param ring
+	 *            The entity to render.
 	 */
 	public Ring2DView(final Ring ring) {
 		super(ring);
-		this.ring=ring;
+		this.ring = ring;
 
 		setSprite(getStateSprite());
 		stateChanged = false;
 	}
-
 
 	//
 	// Entity2DView
@@ -64,28 +62,31 @@ public class Ring2DView extends Item2DView {
 
 	/**
 	 * Populate named state sprites.
-	 * @param	map		The map to populate.
+	 *
+	 * @param map
+	 *            The map to populate.
 	 */
 	@Override
 	protected void buildRepresentation() {
 		SpriteStore store = SpriteStore.get();
 		Sprite tiles = store.getSprite(translate(getClassResourcePath()));
 
-		working = store.getTile(tiles, 0, 0, GameScreen.SIZE_UNIT_PIXELS, GameScreen.SIZE_UNIT_PIXELS);
-		broken = store.getTile(tiles, 0, GameScreen.SIZE_UNIT_PIXELS, GameScreen.SIZE_UNIT_PIXELS, GameScreen.SIZE_UNIT_PIXELS);
+		working = store.getTile(tiles, 0, 0, GameScreen.SIZE_UNIT_PIXELS,
+				GameScreen.SIZE_UNIT_PIXELS);
+		broken = store.getTile(tiles, 0, GameScreen.SIZE_UNIT_PIXELS,
+				GameScreen.SIZE_UNIT_PIXELS, GameScreen.SIZE_UNIT_PIXELS);
 
 		setSprite(getStateSprite());
 		stateChanged = false;
 	}
 
-
 	/**
 	 * Get the appropriete sprite for the current state.
 	 *
-	 * @return	A sprite.
+	 * @return A sprite.
 	 */
 	protected Sprite getStateSprite() {
-		if(ring.isWorking()) {
+		if (ring.isWorking()) {
 			return working;
 		} else {
 			return broken;
@@ -97,31 +98,30 @@ public class Ring2DView extends Item2DView {
 	//
 
 	/**
-	 * Determines on top of which other entities this entity should be
-	 * drawn. Entities with a high Z index will be drawn on top of ones
-	 * with a lower Z index.
+	 * Determines on top of which other entities this entity should be drawn.
+	 * Entities with a high Z index will be drawn on top of ones with a lower Z
+	 * index.
 	 *
 	 * Also, players can only interact with the topmost entity.
 	 *
-	 * @return	The drawing index.
+	 * @return The drawing index.
 	 */
 	@Override
 	public int getZIndex() {
 		return 5000;
 	}
 
-
 	/**
 	 * Reorder the actions list (if needed). Please use as last resort.
 	 *
-	 * @param	list		The list to reorder.
+	 * @param list
+	 *            The list to reorder.
 	 */
 	@Override
 	protected void reorderActions(final List<String> list) {
 		list.remove(ActionType.LOOK.getRepresentation());
 		list.add(0, ActionType.LOOK.getRepresentation());
 	}
-
 
 	/**
 	 * Handle updates.
@@ -130,12 +130,11 @@ public class Ring2DView extends Item2DView {
 	protected void update() {
 		super.update();
 
-		if(stateChanged) {
+		if (stateChanged) {
 			setSprite(getStateSprite());
 			stateChanged = false;
 		}
 	}
-
 
 	//
 	// EntityChangeListener
@@ -144,19 +143,19 @@ public class Ring2DView extends Item2DView {
 	/**
 	 * An entity was changed.
 	 *
-	 * @param	entity		The entity that was changed.
-	 * @param	property	The property identifier.
+	 * @param entity
+	 *            The entity that was changed.
+	 * @param property
+	 *            The property identifier.
 	 */
 	@Override
-	public void entityChanged(final Entity entity, final Object property)
-	{
+	public void entityChanged(final Entity entity, final Object property) {
 		super.entityChanged(entity, property);
 
-		if(property == Ring.PROP_WORKING) {
+		if (property == Ring.PROP_WORKING) {
 			stateChanged = true;
 		}
 	}
-
 
 	//
 	// EntityView

@@ -31,12 +31,12 @@ public class NPC2DView extends RPEntity2DView {
 	/**
 	 * Create a 2D view of an NPC.
 	 *
-	 * @param	npc		The entity to render.
+	 * @param npc
+	 *            The entity to render.
 	 */
 	public NPC2DView(final NPC npc) {
 		super(npc);
 	}
-
 
 	//
 	// RPEntity2DView
@@ -45,12 +45,11 @@ public class NPC2DView extends RPEntity2DView {
 	/**
 	 * Get the full directional animation tile set for this entity.
 	 *
-	 * @return	A tile sprite containing all animation images.
+	 * @return A tile sprite containing all animation images.
 	 */
 	@Override
 	protected Sprite getAnimationSprite() {
 		SpriteStore store = SpriteStore.get();
-
 
 		try {
 			int code = rpentity.getOutfit();
@@ -59,14 +58,14 @@ public class NPC2DView extends RPEntity2DView {
 				return OutfitStore.get().getOutfit(code);
 			} else {
 				// This NPC's outfit is read from a single file.
-				return store.getSprite(translate("npc/" + entity.getEntityClass()));
+				return store.getSprite(translate("npc/"
+						+ entity.getEntityClass()));
 			}
 		} catch (Exception e) {
 			logger.error("Cannot build animations", e);
 			return store.getSprite(translate(entity.getEntityClass()));
 		}
 	}
-
 
 	//
 	// EntityChangeListener
@@ -75,15 +74,16 @@ public class NPC2DView extends RPEntity2DView {
 	/**
 	 * An entity was changed.
 	 *
-	 * @param	entity		The entity that was changed.
-	 * @param	property	The property identifier.
+	 * @param entity
+	 *            The entity that was changed.
+	 * @param property
+	 *            The property identifier.
 	 */
 	@Override
-	public void entityChanged(final Entity entity, final Object property)
-	{
+	public void entityChanged(final Entity entity, final Object property) {
 		super.entityChanged(entity, property);
 
-		if(property == Entity.PROP_CLASS) {
+		if (property == Entity.PROP_CLASS) {
 			representationChanged = true;
 		}
 	}

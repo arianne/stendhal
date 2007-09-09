@@ -24,19 +24,20 @@ public class Food2DView extends StateEntity2DView {
 	/**
 	 * The food entity.
 	 */
-	protected Food	food;
+	protected Food food;
 
 	/**
 	 * The number of states.
 	 */
-	protected int	states;
-
+	protected int states;
 
 	/**
 	 * Create a 2D view of food.
 	 *
-	 * @param	entity		The entity to render.
-	 * @param	states		The number of states.
+	 * @param entity
+	 *            The entity to render.
+	 * @param states
+	 *            The number of states.
 	 */
 	public Food2DView(final Food food, int states) {
 		super(food);
@@ -45,7 +46,6 @@ public class Food2DView extends StateEntity2DView {
 		this.states = states;
 	}
 
-
 	//
 	// StateEntity2DView
 	//
@@ -53,7 +53,8 @@ public class Food2DView extends StateEntity2DView {
 	/**
 	 * Populate named state sprites.
 	 *
-	 * @param	map		The map to populate.
+	 * @param map
+	 *            The map to populate.
 	 */
 	@Override
 	protected void buildSprites(final Map<Object, Sprite> map) {
@@ -64,41 +65,39 @@ public class Food2DView extends StateEntity2DView {
 		int i = 0;
 
 		// TODO: Allow animated frames
-		for(int y = 0; y < theight; y += GameScreen.SIZE_UNIT_PIXELS) {
-			map.put(new Integer(i++), store.getTile(tiles, 0, y, GameScreen.SIZE_UNIT_PIXELS, GameScreen.SIZE_UNIT_PIXELS));
+		for (int y = 0; y < theight; y += GameScreen.SIZE_UNIT_PIXELS) {
+			map.put(new Integer(i++), store.getTile(tiles, 0, y,
+					GameScreen.SIZE_UNIT_PIXELS, GameScreen.SIZE_UNIT_PIXELS));
 		}
 	}
-
 
 	/**
 	 * Get the current entity state.
 	 *
-	 * @return	The current state.
+	 * @return The current state.
 	 */
 	@Override
 	protected Object getState() {
 		return new Integer(food.getAmount());
 	}
 
-
 	//
 	// Entity2DView
 	//
 
 	/**
-	 * Determines on top of which other entities this entity should be
-	 * drawn. Entities with a high Z index will be drawn on top of ones
-	 * with a lower Z index.
-	 * 
+	 * Determines on top of which other entities this entity should be drawn.
+	 * Entities with a high Z index will be drawn on top of ones with a lower Z
+	 * index.
+	 *
 	 * Also, players can only interact with the topmost entity.
-	 * 
-	 * @return	The drawing index.
+	 *
+	 * @return The drawing index.
 	 */
 	@Override
 	public int getZIndex() {
 		return 6000;
 	}
-
 
 	//
 	// EntityChangeListener
@@ -107,15 +106,16 @@ public class Food2DView extends StateEntity2DView {
 	/**
 	 * An entity was changed.
 	 *
-	 * @param	entity		The entity that was changed.
-	 * @param	property	The property identifier.
+	 * @param entity
+	 *            The entity that was changed.
+	 * @param property
+	 *            The property identifier.
 	 */
 	@Override
-	public void entityChanged(final Entity entity, final Object property)
-	{
+	public void entityChanged(final Entity entity, final Object property) {
 		super.entityChanged(entity, property);
 
-		if(property == Food.PROP_AMOUNT) {
+		if (property == Food.PROP_AMOUNT) {
 			stateChanged = true;
 		}
 	}
