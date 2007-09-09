@@ -85,6 +85,13 @@ tileset/ground/water/channels_grassy.png	3	3:4:5:4
 tileset/ground/water/channels_grassy.png	4	3:4:5:4
 tileset/ground/water/channels_grassy.png	5	3:4:5:4
 
+tileset/ground/water/channels_icy.png	0	0:1:2:1
+tileset/ground/water/channels_icy.png	1	0:1:2:1
+tileset/ground/water/channels_icy.png	2	0:1:2:1
+tileset/ground/water/channels_icy.png	3	3:4:5:4
+tileset/ground/water/channels_icy.png	4	3:4:5:4
+tileset/ground/water/channels_icy.png	5	3:4:5:4
+
 tileset/ground/water/water.png	0	0:1:2:1
 tileset/ground/water/water.png	1	0:1:2:1
 tileset/ground/water/water.png	2	0:1:2:1
