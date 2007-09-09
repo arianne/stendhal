@@ -82,38 +82,6 @@ public class SpriteStore {
 
 
 	/**
-	 * Create a sprite tile (sub-region) using tile units.
-	 *
-	 *
-	 * @see-also	#getTile(Sprite,int,int,int,int)
-	 */
-	public Sprite getSprite(Sprite sprite, int column, int row, double width, double height) {
-		int pixelWidth = (int) (width * GameScreen.SIZE_UNIT_PIXELS);
-		int pixelHeight = (int) (height * GameScreen.SIZE_UNIT_PIXELS);
-
-		return getTile(sprite, column * pixelWidth, row * pixelHeight, pixelWidth, pixelHeight);
-	}
-
-
-	/**
-	 * @param animImage The image which contains the different frames
-	 * @param row The vertical position of the frames inside the image
-	 * @param frameCount The number of frames in this row
-	 * @param width The width of each sprite, in tiles
-	 * @param height The height of each sprite, in tiles
-	 * @return array of sprites
-	 */
-	public Sprite[] getSprites(Sprite animImage, int row, int frameCount, double width, double height) {
-		// calculate width and height in pixels from width and height
-		// in tiles
-		int pixelWidth = (int) (width * GameScreen.SIZE_UNIT_PIXELS);
-		int pixelHeight = (int) (height * GameScreen.SIZE_UNIT_PIXELS);
-
-		return getTiles(animImage, 0, row * pixelHeight, frameCount, pixelWidth, pixelHeight);
-	}
-
-
-	/**
 	 * Get sprite tiles from a sprite using pixel units.
 	 *
 	 * @param	sprite		The base image.
@@ -276,8 +244,6 @@ public class SpriteStore {
 	 *
 	 * @param	width		The width.
 	 * @param	height		The height.
-	 *
-	 * @see-also	#getSprite(Sprite,int,int,double,double)
 	 */
 	public Sprite getTile(Sprite sprite, int x, int y, int width, int height) {
 		SpriteCache cache = SpriteCache.get();
