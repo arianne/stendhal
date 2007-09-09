@@ -20,16 +20,17 @@ public class KeyRing extends EntityContainer implements FeatureChangeListener {
 	/**
 	 * Create a key ring.
 	 *
-	 * @param	client		The stendhal client.
+	 * @param client
+	 *            The stendhal client.
 	 */
 	public KeyRing(StendhalClient client) {
-	    // Remember if you change these numbers change also a number in src/games/stendhal/server/entity/RPEntity.java
+		// Remember if you change these numbers change also a number in
+		// src/games/stendhal/server/entity/RPEntity.java
 		super(client, "keyring", 2, 4);
 
 		// Not yet
 		// client.addFeatureChangeListener(this);
 	}
-
 
 	//
 	// KeyRing
@@ -38,21 +39,20 @@ public class KeyRing extends EntityContainer implements FeatureChangeListener {
 	public void update() {
 		User user = User.get();
 
-		if(user != null) {
-			if(user.hasFeature("keyring")) {
-				if(!isMinimizeable()) {
+		if (user != null) {
+			if (user.hasFeature("keyring")) {
+				if (!isMinimizeable()) {
 					setMinimizeable(true);
 					setMinimized(false);
 				}
 			} else {
-				if(isMinimizeable()) {
+				if (isMinimizeable()) {
 					setMinimizeable(false);
 					setMinimized(true);
 				}
 			}
 		}
 	}
-
 
 	//
 	// FeatureChangeListener
@@ -61,27 +61,29 @@ public class KeyRing extends EntityContainer implements FeatureChangeListener {
 	/**
 	 * A feature was disabled.
 	 *
-	 * @param	name		The name of the feature.
+	 * @param name
+	 *            The name of the feature.
 	 */
 	public void featureDisabled(String name) {
-		if(name.equals("keyring")) {
-			if(isMinimizeable()) {
+		if (name.equals("keyring")) {
+			if (isMinimizeable()) {
 				setMinimizeable(false);
 				setMinimized(true);
 			}
 		}
 	}
 
-
 	/**
 	 * A feature was enabled.
 	 *
-	 * @param	name		The name of the feature.
-	 * @param	value		Optional feature specific data.
+	 * @param name
+	 *            The name of the feature.
+	 * @param value
+	 *            Optional feature specific data.
 	 */
 	public void featureEnabled(String name, String value) {
-		if(name.equals("keyring")) {
-			if(!isMinimizeable()) {
+		if (name.equals("keyring")) {
+			if (!isMinimizeable()) {
 				setMinimizeable(true);
 				setMinimized(false);
 			}

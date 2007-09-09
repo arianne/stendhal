@@ -52,83 +52,82 @@ import javax.swing.SwingUtilities;
  */
 public class InternalManagedDialog implements ManagedWindow {
 	/** size of the titlebar */
-	private static final int TITLEBAR_HEIGHT	= 13;
-
+	private static final int TITLEBAR_HEIGHT = 13;
 
 	/**
 	 * The close button.
 	 */
-	protected JButton		closeButton;
+	protected JButton closeButton;
 
 	/**
 	 * The window content.
 	 */
-	protected JComponent		content;
+	protected JComponent content;
 
 	/**
 	 * Listeners interesting in close notifications.
 	 */
-	protected List<WtCloseListener>	closeListeners;
+	protected List<WtCloseListener> closeListeners;
 
 	/**
 	 * The simulated dialog.
 	 */
-	protected Panel			dialog;
+	protected Panel dialog;
 
 	/**
 	 * Start of a window drag.
 	 */
-	protected Point			dragStart;
+	protected Point dragStart;
 
 	/**
 	 * The content pane.
 	 */
-	protected StyledJPanel		contentPane;
+	protected StyledJPanel contentPane;
 
 	/**
 	 * Whether the dialog is minimized.
 	 */
-	protected boolean		minimized;
+	protected boolean minimized;
 
 	/**
 	 * The minimize button.
 	 */
-	protected JButton		minimizeButton;
+	protected JButton minimizeButton;
 
 	/**
 	 * If the window can be moved.
 	 */
-	protected boolean		movable;
+	protected boolean movable;
 
 	/**
 	 * The window name.
 	 */
-	protected String		name;
+	protected String name;
 
-	protected ContentSizeChangeCB	sizeChangeListener;
+	protected ContentSizeChangeCB sizeChangeListener;
 
 	/**
 	 * The titlebar.
 	 */
-	protected JComponent		titlebar;
+	protected JComponent titlebar;
 
 	/**
 	 * The title label.
 	 */
-	protected JLabel		titleLabel;
-
+	protected JLabel titleLabel;
 
 	/**
 	 * Create a managed dialog window.
 	 *
-	 * @param	name		The logical name.
-	 * @param	title		The dialog window title.
+	 * @param name
+	 *            The logical name.
+	 * @param title
+	 *            The dialog window title.
 	 */
 	public InternalManagedDialog(String name, String title) {
-		Style		style;
-		Font		font;
-		Color		color;
-
+		Style style;
+		Font font;
+		Color color;
 
 		this.name = name;
 
@@ -149,7 +148,6 @@ public class InternalManagedDialog implements ManagedWindow {
 
 		dialog.add(contentPane);
 
-
 		/*
 		 * Titlebar
 		 */
@@ -158,7 +156,6 @@ public class InternalManagedDialog implements ManagedWindow {
 		titlebar.setLayout(new BoxLayout(titlebar, BoxLayout.X_AXIS));
 		titlebar.addMouseListener(new TBDragClickCB());
 		titlebar.addMouseMotionListener(new TBDragMoveCB());
-
 
 		contentPane.add(titlebar);
 
@@ -169,13 +166,13 @@ public class InternalManagedDialog implements ManagedWindow {
 		titleLabel.setOpaque(false);
 		titleLabel.setBorder(BorderFactory.createEmptyBorder());
 
-		if((font = style.getFont()) != null) {
+		if ((font = style.getFont()) != null) {
 			font = titleLabel.getFont();
 		}
 
 		titleLabel.setFont(font.deriveFont(Font.BOLD));
 
-		if((color = style.getForeground()) != null) {
+		if ((color = style.getForeground()) != null) {
 			titleLabel.setForeground(color);
 		}
 
@@ -221,7 +218,6 @@ public class InternalManagedDialog implements ManagedWindow {
 		WtWindowManager.getInstance().formatWindow(this);
 	}
 
-
 	//
 	// InternalManagedDialog
 	//
@@ -233,7 +229,6 @@ public class InternalManagedDialog implements ManagedWindow {
 		setVisible(false);
 	}
 
-
 	/**
 	 * Toggle minimization.
 	 */
@@ -241,19 +236,17 @@ public class InternalManagedDialog implements ManagedWindow {
 		setMinimized(!isMinimized());
 	}
 
-
 	/**
 	 * Do simulated dialog layout.
 	 */
 	protected void pack() {
-		Dimension	tbSize;
-		Dimension	cSize;
-		int		width;
-
+		Dimension tbSize;
+		Dimension cSize;
+		int width;
 
 		tbSize = titlebar.getPreferredSize();
 
-		if(content != null) {
+		if (content != null) {
 			cSize = content.getPreferredSize();
 		} else {
 			cSize = new Dimension(0, 0);
@@ -264,30 +257,25 @@ public class InternalManagedDialog implements ManagedWindow {
 		titlebar.setBounds(0, 0, width, tbSize.height);
 		titlebar.validate();
 
-		if(content != null) {
-			content.setBounds(
-				0, tbSize.height, width, cSize.height);
+		if (content != null) {
+			content.setBounds(0, tbSize.height, width, cSize.height);
 
 			content.validate();
 		}
 
-		if(isMinimized()) {
+		if (isMinimized()) {
 			dialog.setBounds(0, 0, width, tbSize.height);
 			contentPane.setBounds(0, 0, width, tbSize.height);
 		} else {
-			dialog.setSize(
-				width, tbSize.height + cSize.height);
+			dialog.setSize(width, tbSize.height + cSize.height);
 
-			contentPane.setSize(
-				width, tbSize.height + cSize.height);
+			contentPane.setSize(width, tbSize.height + cSize.height);
 		}
 	}
-
 
 	protected void setTitle(String title) {
 		titleLabel.setText(title);
 	}
-
 
 	//
 	// ManagedDialog
@@ -296,23 +284,24 @@ public class InternalManagedDialog implements ManagedWindow {
 	/**
 	 * Handle titlebar clicks.
 	 *
-	 * @param	count		The click count.
+	 * @param count
+	 *            The click count.
 	 */
 	protected void tbClicked(int count) {
-		if(count == 1) {
+		if (count == 1) {
 			/*
 			 * Raise the window if possible.
 			 */
 			Container parent = dialog.getParent();
 
-			if(parent instanceof JLayeredPane) {
+			if (parent instanceof JLayeredPane) {
 				((JLayeredPane) parent).moveToFront(dialog);
 			}
-		} else if(count == 2) {
+		} else if (count == 2) {
 			/*
 			 * Toggle minimization
 			 */
-			if(isMinimizable()) {
+			if (isMinimizable()) {
 				setMinimized(!isMinimized());
 			}
 		}
@@ -321,22 +310,24 @@ public class InternalManagedDialog implements ManagedWindow {
 	/**
 	 * Handle begining of titlebar drag.
 	 *
-	 * @param	x		The X coordinate.
-	 * @param	y		The Y coordinate.
+	 * @param x
+	 *            The X coordinate.
+	 * @param y
+	 *            The Y coordinate.
 	 */
 	protected void tbDragBegin(int x, int y) {
-		if(isMovable()) {
-			dragStart = SwingUtilities.convertPoint(
-				titlebar, x, y, dialog);
+		if (isMovable()) {
+			dragStart = SwingUtilities.convertPoint(titlebar, x, y, dialog);
 		}
 	}
-
 
 	/**
 	 * Handle end of titlebar drag.
 	 *
-	 * @param	x		The X coordinate.
-	 * @param	y		The Y coordinate.
+	 * @param x
+	 *            The X coordinate.
+	 * @param y
+	 *            The Y coordinate.
 	 */
 	protected void tbDragEnd(int x, int y) {
 		tbDragMovement(x, y);
@@ -344,19 +335,19 @@ public class InternalManagedDialog implements ManagedWindow {
 		windowMoved();
 	}
 
-
 	/**
 	 * Handle titlebar drag movement.
 	 *
-	 * @param	x		The X coordinate.
-	 * @param	y		The Y coordinate.
+	 * @param x
+	 *            The X coordinate.
+	 * @param y
+	 *            The Y coordinate.
 	 */
 	protected void tbDragMovement(int x, int y) {
-		Point		p;
-		Container	parent;
+		Point p;
+		Container parent;
 
-
-		if(dragStart != null) {
+		if (dragStart != null) {
 			parent = dialog.getParent();
 
 			p = SwingUtilities.convertPoint(titlebar, x, y, parent);
@@ -366,61 +357,56 @@ public class InternalManagedDialog implements ManagedWindow {
 			/*
 			 * Keep in parent window
 			 */
-			if(p.x < 0) {
+			if (p.x < 0) {
 				p.x = 0;
-			} else if((p.x + dialog.getWidth()) > parent.getWidth()) {
+			} else if ((p.x + dialog.getWidth()) > parent.getWidth()) {
 				p.x = parent.getWidth() - dialog.getWidth();
 			}
 
-			if(p.y < 0) {
+			if (p.y < 0) {
 				p.y = 0;
-			} else if((p.y + dialog.getHeight()) > parent.getHeight()) {
+			} else if ((p.y + dialog.getHeight()) > parent.getHeight()) {
 				p.y = parent.getHeight() - dialog.getHeight();
 			}
-
 
 			dialog.setLocation(p);
 		}
 	}
 
-
 	/**
 	 * Get the actual dialog.
 	 *
-	 * @return	The dialog.
+	 * @return The dialog.
 	 */
 	public Container getDialog() {
 		return dialog;
 	}
 
-
 	/**
 	 * Call all registered close listeners.
 	 */
 	protected void fireCloseListeners() {
-		WtCloseListener []	listeners;
+		WtCloseListener[] listeners;
 
+		listeners = closeListeners.toArray(new WtCloseListener[closeListeners
+				.size()]);
 
-		listeners = closeListeners.toArray(
-			new WtCloseListener[closeListeners.size()]);
-
-		for(WtCloseListener l : listeners) {
+		for (WtCloseListener l : listeners) {
 			l.onClose(getName());
 		}
 	}
 
-
 	/**
-	 * Set the content component.
-	 * For now, if the content wishes to resize the dialog, it should
-	 * set a client property named <code>size-change</code> on itself.
+	 * Set the content component. For now, if the content wishes to resize the
+	 * dialog, it should set a client property named <code>size-change</code>
+	 * on itself.
 	 *
-	 * @param	content		A component to implement the content.
+	 * @param content
+	 *            A component to implement the content.
 	 */
 	public void setContent(JComponent content) {
-		if(this.content != null) {
-			this.content.removePropertyChangeListener(
-				sizeChangeListener);
+		if (this.content != null) {
+			this.content.removePropertyChangeListener(sizeChangeListener);
 
 			contentPane.remove(this.content);
 		}
@@ -429,12 +415,10 @@ public class InternalManagedDialog implements ManagedWindow {
 
 		contentPane.add(content);
 
-		content.addPropertyChangeListener(
-			"size-change", sizeChangeListener);
+		content.addPropertyChangeListener("size-change", sizeChangeListener);
 
 		pack();
 	}
-
 
 	/**
 	 * Called when the window's position changes.
@@ -446,7 +430,6 @@ public class InternalManagedDialog implements ManagedWindow {
 		WtWindowManager.getInstance().moveTo(this, getX(), getY());
 	}
 
-
 	//
 	// ManagedWindow
 	//
@@ -454,175 +437,162 @@ public class InternalManagedDialog implements ManagedWindow {
 	/**
 	 * Get the managed window name.
 	 *
-	 * @return	The logical window name (not title).
+	 * @return The logical window name (not title).
 	 */
 	public String getName() {
 		return name;
 	}
 
-
 	/**
 	 * Get X coordinate of the window.
 	 *
-	 * @return	A value sutable for passing to <code>moveTo()</code>.
+	 * @return A value sutable for passing to <code>moveTo()</code>.
 	 */
 	public int getX() {
 		return dialog.getX();
 	}
 
-
 	/**
 	 * Get Y coordinate of the window.
 	 *
-	 * @return	A value sutable for passing to <code>moveTo()</code>.
+	 * @return A value sutable for passing to <code>moveTo()</code>.
 	 */
 	public int getY() {
 		return dialog.getY();
 	}
 
-
 	/**
 	 * Determine if the window is minimizable.
 	 *
-	 * @return	<code>true</code> if minimizable.
+	 * @return <code>true</code> if minimizable.
 	 */
 	public boolean isMinimizable() {
 		return minimizeButton.isEnabled();
 	}
 
-
 	/**
 	 * Determine if the window is minimized.
 	 *
-	 * @return	<code>true</code> if the window is minimized.
+	 * @return <code>true</code> if the window is minimized.
 	 */
 	public boolean isMinimized() {
 		return minimized;
 	}
 
-
 	/**
 	 * Determine if the window is movable.
 	 *
-	 * @return	<code>true</code> if the window is movable.
+	 * @return <code>true</code> if the window is movable.
 	 */
 	public boolean isMovable() {
 		return movable;
 	}
 
-
 	/**
 	 * Determine if the window is visible.
 	 *
-	 * @return	<code>true</code> if the window is visible.
+	 * @return <code>true</code> if the window is visible.
 	 */
 	public boolean isVisible() {
 		return dialog.isVisible();
 	}
 
-
 	/**
-	 * Move to a location. This may be subject to internal representation,
-	 * and should only use what was passed from <code>getX()</code> and
+	 * Move to a location. This may be subject to internal representation, and
+	 * should only use what was passed from <code>getX()</code> and
 	 * <code>getY()</code>.
 	 *
-	 * @param	x		The X coordinate
-	 * @param	y		The Y coordinate
+	 * @param x
+	 *            The X coordinate
+	 * @param y
+	 *            The Y coordinate
 	 *
-	 * @return	<code>true</code> if the move was allowed.
+	 * @return <code>true</code> if the move was allowed.
 	 */
 	public boolean moveTo(int x, int y) {
 		dialog.setLocation(x, y);
 		return true;
 	}
 
-
 	/**
 	 * Register a close listener.
 	 *
-	 * @param	listener	A close listener.
+	 * @param listener
+	 *            A close listener.
 	 */
 	public void registerCloseListener(WtCloseListener listener) {
 		closeListeners.add(listener);
 	}
 
-
 	/**
 	 * Unregister a close listener.
 	 *
-	 * @param	listener	A close listener.
+	 * @param listener
+	 *            A close listener.
 	 */
 	public void removeCloseListener(WtCloseListener listener) {
 		closeListeners.remove(listener);
 	}
 
-
 	/**
 	 * Set whether the window is minimizable.
 	 *
-	 * @param	minimizable	<code>true</code> if minimizable.
+	 * @param minimizable
+	 *            <code>true</code> if minimizable.
 	 */
 	public void setMinimizable(boolean minimizable) {
 		minimizeButton.setEnabled(minimizable);
 	}
 
-
 	/**
 	 * Set the window as minimized.
 	 *
-	 * @param	minimized	Whether the window should be minimized.
+	 * @param minimized
+	 *            Whether the window should be minimized.
 	 */
 	public void setMinimized(boolean minimized) {
-		int	cheight;
-
+		int cheight;
 
 		this.minimized = minimized;
 
-		if(minimized) {
-			if(content != null) {
+		if (minimized) {
+			if (content != null) {
 				content.setVisible(false);
 			}
 
-			dialog.setSize(
-				titlebar.getWidth(),
-				titlebar.getHeight());
+			dialog.setSize(titlebar.getWidth(), titlebar.getHeight());
 
-			contentPane.setSize(
-				titlebar.getWidth(),
-				titlebar.getHeight());
+			contentPane.setSize(titlebar.getWidth(), titlebar.getHeight());
 		} else {
-			if(content != null) {
+			if (content != null) {
 				content.setVisible(true);
 				cheight = content.getHeight();
 			} else {
 				cheight = 0;
 			}
 
-			dialog.setSize(
-				titlebar.getWidth(),
-				titlebar.getHeight() + cheight);
+			dialog.setSize(titlebar.getWidth(), titlebar.getHeight() + cheight);
 
-			contentPane.setSize(
-				titlebar.getWidth(),
-				titlebar.getHeight() + cheight);
+			contentPane.setSize(titlebar.getWidth(), titlebar.getHeight()
+					+ cheight);
 		}
 	}
-
 
 	/**
 	 * Set whether the window is movable.
 	 *
-	 * @param	movable		<code>true</code> if movable.
+	 * @param movable
+	 *            <code>true</code> if movable.
 	 */
 	public void setMovable(boolean movable) {
 		this.movable = movable;
 	}
 
-
 	/**
 	 * Set the window as visible (or hidden).
 	 *
-	 * @param	visible		Whether the window should be visible.
+	 * @param visible
+	 *            Whether the window should be visible.
 	 */
 	public void setVisible(boolean visible) {
 		dialog.setVisible(visible);
@@ -635,7 +605,7 @@ public class InternalManagedDialog implements ManagedWindow {
 		/*
 		 * Notify close listeners
 		 */
-		if(!visible) {
+		if (!visible) {
 			fireCloseListeners();
 		}
 	}
@@ -657,7 +627,6 @@ public class InternalManagedDialog implements ManagedWindow {
 		}
 	}
 
-
 	/**
 	 * Handle close button.
 	 */
@@ -667,7 +636,6 @@ public class InternalManagedDialog implements ManagedWindow {
 		}
 	}
 
-
 	/**
 	 * Handle minimzation button.
 	 */
@@ -676,7 +644,6 @@ public class InternalManagedDialog implements ManagedWindow {
 			minimizeCB();
 		}
 	}
-
 
 	/**
 	 * Disabled button icon.
@@ -690,16 +657,13 @@ public class InternalManagedDialog implements ManagedWindow {
 			return TITLEBAR_HEIGHT;
 		}
 
-
 		public int getIconWidth() {
 			return TITLEBAR_HEIGHT;
 		}
 
-
 		public void paintIcon(Component c, Graphics g, int x, int y) {
 		}
 	}
-
 
 	/**
 	 * Close button icon.
@@ -713,17 +677,14 @@ public class InternalManagedDialog implements ManagedWindow {
 			return TITLEBAR_HEIGHT;
 		}
 
-
 		public int getIconWidth() {
 			return TITLEBAR_HEIGHT;
 		}
 
-
 		public void paintIcon(Component c, Graphics g, int x, int y) {
-			Color	oldColor;
-			int	height;
-			int	width;
-
+			Color oldColor;
+			int height;
+			int width;
 
 			oldColor = g.getColor();
 
@@ -735,46 +696,27 @@ public class InternalManagedDialog implements ManagedWindow {
 
 			g.setColor(Color.BLACK);
 
+			/*
+			 * \\ \\\ \\
+			 */
+			g.drawLine(x + 1, y + 2, x + width - 3, y + height - 2);
+
+			g.drawLine(x + 1, y + 1, x + width - 2, y + height - 2);
+
+			g.drawLine(x + 2, y + 1, x + width - 2, y + height - 3);
 
 			/*
-			 * \\
-			 * \\\
-			 *  \\
+			 * // /// //
 			 */
-			g.drawLine(
-				x + 1, y + 2,
-				x + width - 3, y + height - 2);
+			g.drawLine(x + width - 3, y + 1, x + 1, y + height - 3);
 
-			g.drawLine(
-				x + 1, y + 1,
-				x + width - 2, y + height - 2);
+			g.drawLine(x + width - 2, y + 1, x + 1, y + height - 2);
 
-			g.drawLine(
-				x + 2, y + 1,
-				x + width - 2, y + height - 3);
-
-			/*
-			 *  //
-			 * ///
-			 * //
-			 */
-			g.drawLine(
-				x + width - 3, y + 1,
-				x + 1, y + height - 3);
-
-			g.drawLine(
-				x + width - 2, y + 1,
-				x + 1, y + height - 2);
-
-			g.drawLine(
-				x + width - 2, y + 2,
-				x + 2, y + height - 2);
-
+			g.drawLine(x + width - 2, y + 2, x + 2, y + height - 2);
 
 			g.setColor(oldColor);
 		}
 	}
-
 
 	/**
 	 * Minmization button icon.
@@ -788,17 +730,14 @@ public class InternalManagedDialog implements ManagedWindow {
 			return TITLEBAR_HEIGHT;
 		}
 
-
 		public int getIconWidth() {
 			return TITLEBAR_HEIGHT;
 		}
 
-
 		public void paintIcon(Component c, Graphics g, int x, int y) {
-			Color	oldColor;
-			int	height;
-			int	width;
-
+			Color oldColor;
+			int height;
+			int width;
 
 			oldColor = g.getColor();
 
@@ -815,7 +754,6 @@ public class InternalManagedDialog implements ManagedWindow {
 		}
 	}
 
-
 	/**
 	 * Mouse drag event handler for the titlebar.
 	 */
@@ -823,14 +761,14 @@ public class InternalManagedDialog implements ManagedWindow {
 		/**
 		 * Handle mouse drag event.
 		 *
-		 * @param	ev		The mouse event.
+		 * @param ev
+		 *            The mouse event.
 		 */
 		@Override
 		public void mouseDragged(MouseEvent ev) {
 			tbDragMovement(ev.getX(), ev.getY());
 		}
 	}
-
 
 	/**
 	 * Mouse click event handler for the titlebar.
@@ -839,37 +777,38 @@ public class InternalManagedDialog implements ManagedWindow {
 		/**
 		 * Handle mouse pressed event.
 		 *
-		 * @param	ev		The mouse event.
+		 * @param ev
+		 *            The mouse event.
 		 */
 		@Override
 		public void mousePressed(MouseEvent ev) {
-			if(ev.getButton() == MouseEvent.BUTTON1) {
+			if (ev.getButton() == MouseEvent.BUTTON1) {
 				tbDragBegin(ev.getX(), ev.getY());
 			}
 		}
 
-
 		/**
 		 * Handle mouse released event.
 		 *
-		 * @param	ev		The mouse event.
+		 * @param ev
+		 *            The mouse event.
 		 */
 		@Override
 		public void mouseReleased(MouseEvent ev) {
-			if(ev.getButton() == MouseEvent.BUTTON1) {
+			if (ev.getButton() == MouseEvent.BUTTON1) {
 				tbDragEnd(ev.getX(), ev.getY());
 			}
 		}
 
-
 		/**
 		 * Handle mouse click event.
 		 *
-		 * @param	ev		The mouse event.
+		 * @param ev
+		 *            The mouse event.
 		 */
 		@Override
 		public void mouseClicked(MouseEvent ev) {
-			if(ev.getButton() == MouseEvent.BUTTON1) {
+			if (ev.getButton() == MouseEvent.BUTTON1) {
 				tbClicked(ev.getClickCount());
 			}
 		}

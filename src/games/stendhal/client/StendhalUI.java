@@ -16,7 +16,7 @@ import javax.swing.JPopupMenu;
 
 /**
  * A base class for the stendhal client UI (not GUI).
- *
+ * 
  * This should have minimal UI-implementation dependent code. That's what
  * sub-classes are for!
  */
@@ -24,23 +24,22 @@ public abstract class StendhalUI {
 	/**
 	 * A shared [singleton] copy.
 	 */
-	private static StendhalUI	sharedUI;
+	private static StendhalUI sharedUI;
 
 	/**
 	 * The stendhal client.
 	 */
-	protected StendhalClient	client;
-
+	protected StendhalClient client;
 
 	/**
 	 * Create a stendhal UI.
-	 *
-	 * @param	client		The client.
+	 * 
+	 * @param client
+	 *            The client.
 	 */
 	public StendhalUI(StendhalClient client) {
 		this.client = client;
 	}
-
 
 	//
 	// StendhalUI
@@ -48,28 +47,28 @@ public abstract class StendhalUI {
 
 	/**
 	 * Add an event line.
-	 *
+	 * 
 	 */
 	public abstract void addEventLine(String text);
 
 	/**
 	 * Add an event line.
-	 *
+	 * 
 	 */
 	public abstract void addEventLine(String header, String text);
 
 	/**
 	 * Add an event line.
-	 *
+	 * 
 	 */
 	public abstract void addEventLine(String text, NotificationType type);
 
 	/**
 	 * Add an event line.
-	 *
+	 * 
 	 */
-	public abstract void addEventLine(String header, String text, NotificationType type);
-
+	public abstract void addEventLine(String header, String text,
+			NotificationType type);
 
 	/**
 	 * Initiate outfit selection by the user.
@@ -77,93 +76,86 @@ public abstract class StendhalUI {
 	public abstract void chooseOutfit();
 
 	/**
-	 *Like chooseOutfit(), but for Guilds
+	 * Like chooseOutfit(), but for Guilds
 	 */
 	public abstract void ManageGuilds();
-	
+
 	/**
 	 * Get the default UI.
-	 *
-	 *
+	 * 
+	 * 
 	 */
 	public static StendhalUI get() {
 		return sharedUI;
 	}
 
-
 	/**
 	 * Get the client.
-	 *
-	 * @return	The client.
+	 * 
+	 * @return The client.
 	 */
 	public StendhalClient getClient() {
 		return client;
 	}
 
-
 	/**
 	 * Get the current game screen height.
-	 *
-	 * @return	The height.
+	 * 
+	 * @return The height.
 	 */
 	public abstract int getHeight();
 
-
 	/**
 	 * Get the entity inspector.
-	 *
-	 * @return	The inspector.
+	 * 
+	 * @return The inspector.
 	 */
 	public abstract Inspector getInspector();
 
-
 	/**
 	 * Get the game screen.
-	 *
-	 * @return	The game screen.
+	 * 
+	 * @return The game screen.
 	 */
 	public abstract GameScreen getScreen();
 
-
 	/**
 	 * Get the current game screen width.
-	 *
-	 * @return	The width.
+	 * 
+	 * @return The width.
 	 */
 	public abstract int getWidth();
-
 
 	/**
 	 * Request quit confirmation from the user.
 	 */
 	public abstract void requestQuit();
 
-
 	/**
 	 * Set the shared [singleton] value.
-	 *
-	 * @param sharedUI The stendhal UI.
+	 * 
+	 * @param sharedUI
+	 *            The stendhal UI.
 	 */
 	public static void setDefault(StendhalUI sharedUI) {
 		StendhalUI.sharedUI = sharedUI;
 	}
 
-
 	/**
 	 * Set the input chat line text.
-	 *
-	 * @param	text		The text.
+	 * 
+	 * @param text
+	 *            The text.
 	 */
 	public abstract void setChatLine(String text);
 
-
 	/**
 	 * Set the offline indication state.
-	 *
-	 * @param	offline		<code>true</code> if offline.
+	 * 
+	 * @param offline
+	 *            <code>true</code> if offline.
 	 */
 	public abstract void setOffline(boolean offline);
-
 
 	//
 	// <StendhalGUI>
@@ -175,8 +167,9 @@ public abstract class StendhalUI {
 
 	/**
 	 * Add a new window.
-	 *
-	 * @param	mw		A managed window.
+	 * 
+	 * @param mw
+	 *            A managed window.
 	 */
 	public abstract void addWindow(ManagedWindow mw);
 
@@ -196,8 +189,8 @@ public abstract class StendhalUI {
 	public abstract boolean isShiftDown();
 
 	/**
-	 * Sets the context menu. It is closed automatically one the user
-	 * clicks outside of it.
+	 * Sets the context menu. It is closed automatically one the user clicks
+	 * outside of it.
 	 */
-	 public abstract void setContextMenu(JPopupMenu contextMenu);
+	public abstract void setContextMenu(JPopupMenu contextMenu);
 }

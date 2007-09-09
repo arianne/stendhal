@@ -31,12 +31,12 @@ import javax.swing.JPopupMenu;
 /**
  * Frame is the main gui container. It spans the whole screen and does not have
  * a parent.
- * 
+ *
  * This is the main glue to AWT/Swing event handling. All AWT-Events are
  * preprocessed here and forwarded to the clients.
- * 
+ *
  * Note: This object is thread safe.
- * 
+ *
  * @author mtotz
  */
 public class WtBaseframe extends WtPanel implements MouseListener, MouseMotionListener {
@@ -114,7 +114,7 @@ public class WtBaseframe extends WtPanel implements MouseListener, MouseMotionLi
 
 	/**
 	 * draws the frame into the graphics object
-	 * 
+	 *
 	 * @param g
 	 *            graphics where to render to
 	 */
@@ -164,7 +164,7 @@ public class WtBaseframe extends WtPanel implements MouseListener, MouseMotionLi
 		if (e.getButton() == MouseEvent.BUTTON3) {
 			rightMouseButtonPressed = true;
 		}
-		
+
 		timeOfLastMousePress = System.currentTimeMillis();
 	}
 
@@ -178,7 +178,7 @@ public class WtBaseframe extends WtPanel implements MouseListener, MouseMotionLi
 		if (e.getButton() == MouseEvent.BUTTON3) {
 			rightMouseButtonPressed = false;
 		}
-		
+
 		// Handle as a click if the button wasn't held for > a second
 		if ((System.currentTimeMillis() - timeOfLastMousePress) < 1000) {
 			onMouseClick(e);
@@ -192,11 +192,11 @@ public class WtBaseframe extends WtPanel implements MouseListener, MouseMotionLi
 	 */
 	public synchronized void mouseClicked(MouseEvent e) {
 	}
-	
+
 	/**
 	 * Invoked when the mouse button has been clicked (pressed and released) on
 	 * a component. This event is propagated to all childs.
-	 * 
+	 *
 	 * @param e
 	 *            the mouse event
 	 */
@@ -209,13 +209,10 @@ public class WtBaseframe extends WtPanel implements MouseListener, MouseMotionLi
 		int onmask = InputEvent.CTRL_DOWN_MASK;
 		if (System.getProperty("os.name").toLowerCase().contains("os x") && ((e.getModifiersEx() & onmask) == onmask)) {
 			onMouseRightClick(p);
-		}
-
-		else if (e.getButton() == MouseEvent.BUTTON1) {
+		} else if (e.getButton() == MouseEvent.BUTTON1) {
 			if (e.getClickCount() == 1) {
 				lastClickWasHandled = onMouseClick(p);
-			} 
-			else if (e.getClickCount() >= 2) {
+			} else if (e.getClickCount() >= 2) {
 				if (lastClickWasHandled) {
 					lastClickWasHandled = onMouseClick(p);
 				} else {
@@ -289,7 +286,7 @@ public class WtBaseframe extends WtPanel implements MouseListener, MouseMotionLi
 	/**
 	 * Invoked when the mouse cursor has been moved onto a component but no
 	 * buttons have been pushed.
-	 * 
+	 *
 	 * This event stopps all dragging operations.
 	 */
 	public synchronized void mouseMoved(java.awt.event.MouseEvent e) {

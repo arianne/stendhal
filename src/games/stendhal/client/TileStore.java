@@ -47,21 +47,19 @@ public class TileStore implements Tileset {
 	protected static TilesetGroupAnimationMap animationMap = createAnimationMap();
 
 	/**
-	 * A cache of loaded tilesets.
-	 * TODO: Better GC
+	 * A cache of loaded tilesets. TODO: Better GC
 	 */
 	protected static Map<String, Tileset> tilesetsLoaded = new HashMap<String, Tileset>();
 
 	/**
 	 * The sprite store.
 	 */
-	protected SpriteStore		store;
+	protected SpriteStore store;
 
 	/**
 	 * The tile sprites
 	 */
-	protected ArrayList<Sprite>	tiles;
-
+	protected ArrayList<Sprite> tiles;
 
 	/**
 	 * Create a tile store.
@@ -70,11 +68,11 @@ public class TileStore implements Tileset {
 		this(SpriteStore.get());
 	}
 
-
 	/**
 	 * Create a tile store with a specific sprite store.
-	 *
-	 * @param	store		A sprite store.
+	 * 
+	 * @param store
+	 *            A sprite store.
 	 */
 	public TileStore(final SpriteStore store) {
 		this.store = store;
@@ -83,23 +81,23 @@ public class TileStore implements Tileset {
 		tiles.add(store.getEmptySprite());
 	}
 
-
 	//
 	// TileStore
 	//
 
 	/**
 	 * Add a tileset.
-	 *
-	 * @param	tsdef		The tileset definition.
+	 * 
+	 * @param tsdef
+	 *            The tileset definition.
 	 */
 	private void add(final TileSetDefinition tsdef) {
 		String ref = tsdef.getSource();
 		int baseindex = tsdef.getFirstGid();
 
 		/*
-		 * Strip off leading path info
-		 * TODO: Remove this earlier in the stage (server side?)
+		 * Strip off leading path info TODO: Remove this earlier in the stage
+		 * (server side?)
 		 */
 		if (ref.startsWith("../../")) {
 			ref = ref.substring(6);
@@ -111,9 +109,11 @@ public class TileStore implements Tileset {
 		int mapsize = tiles.size();
 
 		if (mapsize > baseindex) {
-			logger.error("Tileset base index mismatch (" + mapsize + " > " + baseindex + "): " + ref);
+			logger.error("Tileset base index mismatch (" + mapsize + " > "
+					+ baseindex + "): " + ref);
 		} else if (mapsize < baseindex) {
-			logger.debug("Tileset base index mismatch (" + mapsize + " < " + baseindex + "): " + ref);
+			logger.debug("Tileset base index mismatch (" + mapsize + " < "
+					+ baseindex + "): " + ref);
 			/*
 			 * Pad missing entries
 			 */
@@ -153,34 +153,36 @@ public class TileStore implements Tileset {
 		}
 	}
 
-
 	/**
 	 * Add tilesets.
-	 *
-	 * @param	in		The object stream.
-	 *
-	 * @throws	IOException
-	 * @throws	ClassNotFoundException
+	 * 
+	 * @param in
+	 *            The object stream.
+	 * 
+	 * @throws IOException
+	 * @throws ClassNotFoundException
 	 */
-	public void addTilesets(InputSerializer in) throws IOException, ClassNotFoundException {
+	public void addTilesets(InputSerializer in) throws IOException,
+			ClassNotFoundException {
 		int amount = in.readInt();
 
 		for (int i = 0; i < amount; i++) {
-			TileSetDefinition tileset = (TileSetDefinition) in.readObject(new TileSetDefinition(null, -1));
+			TileSetDefinition tileset = (TileSetDefinition) in
+					.readObject(new TileSetDefinition(null, -1));
 			add(tileset);
 		}
 	}
 
-
 	/**
 	 * Create the tileset animation map.
-	 *
-	 * @return	A tileset animation map.
+	 * 
+	 * @return A tileset animation map.
 	 */
 	protected static TilesetGroupAnimationMap createAnimationMap() {
 		TilesetGroupAnimationMap map = new TilesetGroupAnimationMap();
 
-		URL url = SpriteStore.get().getResourceURL(baseFolder + "tileset/animation.seq");
+		URL url = SpriteStore.get().getResourceURL(
+				baseFolder + "tileset/animation.seq");
 
 		if (url != null) {
 			try {
@@ -199,24 +201,23 @@ public class TileStore implements Tileset {
 		return map;
 	}
 
-
 	/**
 	 * Get the base directory for tileset resources.
-	 *
-	 * Hack: Read the tileset directly from tiled/tileset if started
-	 * from an IDE.
+	 * 
+	 * Hack: Read the tileset directly from tiled/tileset if started from an
+	 * IDE.
 	 */
 	private static String getResourceBase() {
 		String path = "data/";
 
 		if (SpriteStore.get().getResourceURL("tiled/tileset/README") != null) {
-			logger.warn("Developing mode, loading tileset from tiled/tileset instead of data/tileset");
+			logger
+					.warn("Developing mode, loading tileset from tiled/tileset instead of data/tileset");
 			path = "tiled/";
 		}
 
 		return path;
 	}
-
 
 	//
 	// Tileset
@@ -224,20 +225,20 @@ public class TileStore implements Tileset {
 
 	/**
 	 * Get the number of tiles.
-	 *
-	 * @return	The number of tiles.
+	 * 
+	 * @return The number of tiles.
 	 */
 	public int getSize() {
 		return tiles.size();
 	}
 
-
 	/**
 	 * Get the sprite for an index tile of the tileset.
-	 *
-	 * @param	index		The index with-in the tileset.
-	 *
-	 * @return	A sprite, or <code>null</code> if no mapped sprite.
+	 * 
+	 * @param index
+	 *            The index with-in the tileset.
+	 * 
+	 * @return A sprite, or <code>null</code> if no mapped sprite.
 	 */
 	public Sprite getSprite(final int index) {
 		if (index >= tiles.size()) {

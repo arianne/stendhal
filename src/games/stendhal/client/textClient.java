@@ -44,7 +44,8 @@ public class textClient extends Thread {
 
 	private PerceptionHandler handler;
 
-	public textClient(String h, String u, String p, String c, String P, boolean t) throws SocketException {
+	public textClient(String h, String u, String p, String c, String P,
+			boolean t) throws SocketException {
 		host = h;
 		username = u;
 		password = p;
@@ -56,47 +57,49 @@ public class textClient extends Thread {
 		handler = new PerceptionHandler(new IPerceptionListener() {
 
 			public boolean onAdded(RPObject object) {
-	            return false;
-            }
+				return false;
+			}
 
 			public boolean onClear() {
-	            return false;
-            }
+				return false;
+			}
 
 			public boolean onDeleted(RPObject object) {
-	            return false;
-            }
+				return false;
+			}
 
-			public void onException(Exception exception, MessageS2CPerception perception) {
-	            exception.printStackTrace();
-            }
+			public void onException(Exception exception,
+					MessageS2CPerception perception) {
+				exception.printStackTrace();
+			}
 
 			public boolean onModifiedAdded(RPObject object, RPObject changes) {
-	            return false;
-            }
+				return false;
+			}
 
 			public boolean onModifiedDeleted(RPObject object, RPObject changes) {
-	            return false;
-            }
+				return false;
+			}
 
 			public boolean onMyRPObject(RPObject added, RPObject deleted) {
-	            return false;
-            }
+				return false;
+			}
 
 			public void onPerceptionBegin(byte type, int timestamp) {
-            }
+			}
 
 			public void onPerceptionEnd(byte type, int timestamp) {
-            }
+			}
 
 			public void onSynced() {
-            }
+			}
 
 			public void onUnsynced() {
-            }
+			}
 		});
 
-		clientManager = new marauroa.client.ClientFramework("games/stendhal/log4j.properties") {
+		clientManager = new marauroa.client.ClientFramework(
+				"games/stendhal/log4j.properties") {
 
 			@Override
 			protected String getGameName() {
@@ -111,7 +114,8 @@ public class textClient extends Thread {
 			@Override
 			protected void onPerception(MessageS2CPerception message) {
 				try {
-					System.out.println("Received perception "+message.getPerceptionTimestamp());
+					System.out.println("Received perception "
+							+ message.getPerceptionTimestamp());
 
 					handler.apply(message, world_objects);
 					int i = message.getPerceptionTimestamp();
@@ -127,13 +131,15 @@ public class textClient extends Thread {
 						clientManager.send(action);
 					}
 					if (ShowWorld) {
-						System.out.println("<World contents ------------------------------------->");
+						System.out
+								.println("<World contents ------------------------------------->");
 						int j = 0;
 						for (RPObject object : world_objects.values()) {
 							j++;
 							System.out.println(j + ". " + object);
 						}
-						System.out.println("</World contents ------------------------------------->");
+						System.out
+								.println("</World contents ------------------------------------->");
 					}
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -141,7 +147,8 @@ public class textClient extends Thread {
 			}
 
 			@Override
-			protected List<TransferContent> onTransferREQ(List<TransferContent> items) {
+			protected List<TransferContent> onTransferREQ(
+					List<TransferContent> items) {
 				for (TransferContent item : items) {
 					item.ack = true;
 				}
@@ -180,12 +187,12 @@ public class textClient extends Thread {
 			}
 
 			@Override
-            protected void onPreviousLogins(List<String> previousLogins) {
+			protected void onPreviousLogins(List<String> previousLogins) {
 				System.out.println("Previous logins");
 				for (String info_string : previousLogins) {
 					System.out.println(info_string);
 				}
-            }
+			}
 		};
 
 	}
@@ -196,9 +203,9 @@ public class textClient extends Thread {
 			clientManager.connect(host, Integer.parseInt(port));
 			clientManager.login(username, password);
 		} catch (Exception e) {
-	        e.printStackTrace();
+			e.printStackTrace();
 			return;
-        }
+		}
 
 		boolean cond = true;
 
@@ -243,23 +250,29 @@ public class textClient extends Thread {
 					i++;
 				}
 
-				if ((username != null) && (password != null) && (character != null) && (host != null) && (port != null)) {
+				if ((username != null) && (password != null)
+						&& (character != null) && (host != null)
+						&& (port != null)) {
 					System.out.println("Parameter operation");
-					new textClient(host, username, password, character, port, tcp).start();
+					new textClient(host, username, password, character, port,
+							tcp).start();
 					return;
 				}
 			}
 
 			System.out.println("Stendhal textClient");
 			System.out.println();
-			System.out.println("  games.stendhal.textClient -u username -p pass -h host -P port -c character");
+			System.out
+					.println("  games.stendhal.textClient -u username -p pass -h host -P port -c character");
 			System.out.println();
 			System.out.println("Required parameters");
 			System.out.println("* -h\tHost that is running Marauroa server");
-			System.out.println("* -P\tPort on which Marauroa server is running");
+			System.out
+					.println("* -P\tPort on which Marauroa server is running");
 			System.out.println("* -u\tUsername to log into Marauroa server");
 			System.out.println("* -p\tPassword to log into Marauroa server");
-			System.out.println("* -c\tCharacter used to log into Marauroa server");
+			System.out
+					.println("* -c\tCharacter used to log into Marauroa server");
 			System.out.println("Optional parameters");
 			System.out.println("* -W\tShow world content? 0 or 1");
 		} catch (Exception e) {

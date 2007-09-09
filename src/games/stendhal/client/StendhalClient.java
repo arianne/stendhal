@@ -47,11 +47,11 @@ import marauroa.common.net.message.MessageS2CPerception;
 import marauroa.common.net.message.TransferContent;
 
 /**
- * This class is the glue to Marauroa, it extends ClientFramework and allow us to
- * easily connect to an marauroa server and operate it easily.
- *
- * This class should be limited to functionality independant of the UI
- * (that goes in StendhalUI or a subclass).
+ * This class is the glue to Marauroa, it extends ClientFramework and allow us
+ * to easily connect to an marauroa server and operate it easily.
+ * 
+ * This class should be limited to functionality independant of the UI (that
+ * goes in StendhalUI or a subclass).
  */
 public class StendhalClient extends ClientFramework {
 
@@ -75,38 +75,39 @@ public class StendhalClient extends ClientFramework {
 	private ArrayList<Direction> directions;
 
 	private static final String LOG4J_PROPERTIES = "data/conf/log4j.properties";
+
 	protected GameScreen screen;
 
-//	protected PerceptionListenerMulticaster listeners;
+	// protected PerceptionListenerMulticaster listeners;
 
-	private String userName="";
+	private String userName = "";
 
-	private UserContext	userContext;
+	private UserContext userContext;
 
-	public Vector <String> whoplayers;
+	public Vector<String> whoplayers;
 
 	/**
 	 * The amount of content yet to be transfered.
 	 */
 	private int contentToLoad;
 
+	public void generateWhoPlayers(String text) {
 
-	public void generateWhoPlayers(String text){
-
-		Matcher matcher = Pattern.compile("^[0-9]+ Players online:( .+)$").matcher(text);
+		Matcher matcher = Pattern.compile("^[0-9]+ Players online:( .+)$")
+				.matcher(text);
 
 		if (matcher.find()) {
 			String[] nombres = matcher.group(1).split(" ");
 
 			whoplayers.removeAllElements();
-			for (int i=0;i<nombres.length;i++){
-				matcher = Pattern.compile("^([-_a-zA-Z0-9]+)\\([0-9]+\\)$").matcher(nombres[i]);
+			for (int i = 0; i < nombres.length; i++) {
+				matcher = Pattern.compile("^([-_a-zA-Z0-9]+)\\([0-9]+\\)$")
+						.matcher(nombres[i]);
 				if (matcher.find()) {
 					whoplayers.addElement(matcher.group(1));
 				}
 			}
 		}
-
 
 	}
 
@@ -117,7 +118,6 @@ public class StendhalClient extends ClientFramework {
 
 		return client;
 	}
-
 
 	protected StendhalClient(String loggingProperties) {
 		super(loggingProperties);
@@ -136,7 +136,6 @@ public class StendhalClient extends ClientFramework {
 
 		directions = new ArrayList<Direction>(2);
 	}
-
 
 	@Override
 	protected String getGameName() {
@@ -168,6 +167,7 @@ public class StendhalClient extends ClientFramework {
 	 * connect to the Stendhal game server and if successfull, check, if the
 	 * server runs StendhalHttpServer extension. In that case it checks, if
 	 * server version equals the client's.
+	 * 
 	 * @throws IOException
 	 */
 	@Override
@@ -180,11 +180,16 @@ public class StendhalClient extends ClientFramework {
 		if (version != null) {
 			if (!Version.checkCompatibility(version, stendhal.VERSION)) {
 				// custom title, warning icon
-				JOptionPane.showMessageDialog(null,
-				        "Your client may not function properly.\nThe version of this server is " + version
-				                + " but your client is version " + stendhal.VERSION
-				                + ".\nPlease download the new version from http://arianne.sourceforge.net ",
-				        "Version Mismatch With Server", JOptionPane.WARNING_MESSAGE);
+				JOptionPane
+						.showMessageDialog(
+								null,
+								"Your client may not function properly.\nThe version of this server is "
+										+ version
+										+ " but your client is version "
+										+ stendhal.VERSION
+										+ ".\nPlease download the new version from http://arianne.sourceforge.net ",
+								"Version Mismatch With Server",
+								JOptionPane.WARNING_MESSAGE);
 			}
 		}
 	}
@@ -212,8 +217,9 @@ public class StendhalClient extends ClientFramework {
 			}
 
 			/** This code emulate a perception loss. */
-			if (Debug.EMULATE_PERCEPTION_LOSS && (message.getPerceptionType() != Perception.SYNC)
-			        && ((message.getPerceptionTimestamp() % 30) == 0)) {
+			if (Debug.EMULATE_PERCEPTION_LOSS
+					&& (message.getPerceptionType() != Perception.SYNC)
+					&& ((message.getPerceptionTimestamp() % 30) == 0)) {
 				return;
 			}
 
@@ -247,15 +253,16 @@ public class StendhalClient extends ClientFramework {
 					is.close();
 				} catch (Exception e) {
 					e.printStackTrace();
-					logger.fatal(e,e);
+					logger.fatal(e, e);
 					System.exit(1);
 				}
 			} else {
-				logger.debug("Content " + item.name + " is NOT on cache. We have to transfer");
+				logger.debug("Content " + item.name
+						+ " is NOT on cache. We have to transfer");
 				item.ack = true;
 			}
 
-			if(item.ack) {
+			if (item.ack) {
 				contentToLoad++;
 			}
 		}
@@ -263,9 +270,10 @@ public class StendhalClient extends ClientFramework {
 		/*
 		 * All done, or onTransfer() yet to be called?
 		 */
-		if(contentToLoad == 0) {
+		if (contentToLoad == 0) {
 			staticLayers.invalidate();
-			screen.setMaxWorldSize(staticLayers.getWidth(), staticLayers.getHeight());
+			screen.setMaxWorldSize(staticLayers.getWidth(), staticLayers
+					.getHeight());
 			screen.clear();
 			screen.center();
 		}
@@ -273,18 +281,17 @@ public class StendhalClient extends ClientFramework {
 		return items;
 	}
 
-
 	/**
 	 * Determine if we are in the middle of transfering new content.
-	 *
-	 * @return	<code>true</code> if more content is to be transfered.
+	 * 
+	 * @return <code>true</code> if more content is to be transfered.
 	 */
 	public boolean isInTransfer() {
 		return (contentToLoad != 0);
 	}
 
-
-	private void contentHandling(String name, InputStream in) throws IOException, ClassNotFoundException {
+	private void contentHandling(String name, InputStream in)
+			throws IOException, ClassNotFoundException {
 		staticLayers.addLayer(name, in);
 	}
 
@@ -305,14 +312,15 @@ public class StendhalClient extends ClientFramework {
 		/*
 		 * Sanity check
 		 */
-		if(contentToLoad < 0) {
+		if (contentToLoad < 0) {
 			logger.warn("More data transfer than expected");
 			contentToLoad = 0;
 		}
 
-		if(contentToLoad == 0) {
+		if (contentToLoad == 0) {
 			staticLayers.invalidate();
-			screen.setMaxWorldSize(staticLayers.getWidth(), staticLayers.getHeight());
+			screen.setMaxWorldSize(staticLayers.getWidth(), staticLayers
+					.getHeight());
 			screen.clear();
 			screen.center();
 		}
@@ -324,20 +332,20 @@ public class StendhalClient extends ClientFramework {
 		 * Check we have characters and if not offer us to create one.
 		 */
 		if (characters.length > 0) {
-		try {
-			chooseCharacter(characters[0]);
-		} catch (Exception e) {
-			logger.error("StendhalClient::onAvailableCharacters", e);
-		}
+			try {
+				chooseCharacter(characters[0]);
+			} catch (Exception e) {
+				logger.error("StendhalClient::onAvailableCharacters", e);
+			}
 		} else {
 			RPObject template = new RPObject();
 			// TODO: Account Username can be != of Character username.
 			try {
-	            createCharacter(getAccountUsername(), template);
-	            // TODO: check result of createCharacter
-            } catch (Exception e) {
-	            e.printStackTrace();
-            }
+				createCharacter(getAccountUsername(), template);
+				// TODO: check result of createCharacter
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 
 	}
@@ -348,15 +356,17 @@ public class StendhalClient extends ClientFramework {
 	}
 
 	@Override
-    protected void onPreviousLogins(List<String> previousLogins) {
+	protected void onPreviousLogins(List<String> previousLogins) {
 
-    }
+	}
 
 	/**
 	 * Add an active player movement direction.
-	 *
-	 * @param	dir		The direction.
-	 * @param	face		If to face direction only.
+	 * 
+	 * @param dir
+	 *            The direction.
+	 * @param face
+	 *            If to face direction only.
 	 */
 	public void addDirection(Direction dir, boolean face) {
 		RPAction action;
@@ -368,7 +378,7 @@ public class StendhalClient extends ClientFramework {
 		 */
 		odir = dir.oppositeDirection();
 
-		if(directions.remove(odir)) {
+		if (directions.remove(odir)) {
 			/*
 			 * Send direction release
 			 */
@@ -382,11 +392,11 @@ public class StendhalClient extends ClientFramework {
 		/*
 		 * Handle existing
 		 */
-		if((idx = directions.indexOf(dir)) != -1) {
+		if ((idx = directions.indexOf(dir)) != -1) {
 			/*
 			 * Already highest priority? Don't send to server.
 			 */
-			if(idx == (directions.size() - 1)) {
+			if (idx == (directions.size() - 1)) {
 				logger.debug("Ignoring same direction: " + dir);
 				return;
 			}
@@ -406,17 +416,17 @@ public class StendhalClient extends ClientFramework {
 		send(action);
 	}
 
-
 	/**
 	 * Remove a player movement direction.
-	 *
-	 * @param	dir		The direction.
-	 * @param	face		If to face direction only.
+	 * 
+	 * @param dir
+	 *            The direction.
+	 * @param face
+	 *            If to face direction only.
 	 */
 	public void removeDirection(Direction dir, boolean face) {
 		RPAction action;
 		int size;
-
 
 		/*
 		 * Send direction release
@@ -426,7 +436,6 @@ public class StendhalClient extends ClientFramework {
 		action.put("dir", -dir.get());
 
 		send(action);
-
 
 		/*
 		 * Client side direction tracking (for now)
@@ -446,7 +455,6 @@ public class StendhalClient extends ClientFramework {
 		send(action);
 	}
 
-
 	/**
 	 * Stop the player.
 	 */
@@ -461,7 +469,6 @@ public class StendhalClient extends ClientFramework {
 		send(rpaction);
 	}
 
-
 	/**
 	 * Handle player changes
 	 */
@@ -469,54 +476,46 @@ public class StendhalClient extends ClientFramework {
 		/*
 		 * Ignore no-changes
 		 */
-		if(player != object) {
+		if (player != object) {
 			player = object;
 
 			firePlayerAssignment(player);
 		}
 	}
 
-
-
-/*
-	public void addPlayerChangeListener(PlayerChangeListener l) {
-	}
-
-
-	public void removePlayerChangeListener(PlayerChangeListener l) {
-	}
-*/
-
+	/*
+	 * public void addPlayerChangeListener(PlayerChangeListener l) { }
+	 * 
+	 * 
+	 * public void removePlayerChangeListener(PlayerChangeListener l) { }
+	 */
 
 	public void addFeatureChangeListener(FeatureChangeListener l) {
 		userContext.addFeatureChangeListener(l);
 	}
 
-
 	public void removeFeatureChangeListener(FeatureChangeListener l) {
 		userContext.removeFeatureChangeListener(l);
 	}
-
 
 	public void addBuddyChangeListener(BuddyChangeListener l) {
 		userContext.addBuddyChangeListener(l);
 	}
 
-
 	public void removeBuddyChangeListener(BuddyChangeListener l) {
 		userContext.removeBuddyChangeListener(l);
 	}
 
-
 	protected void firePlayerAssignment(RPObject object) {
 	}
 
-
 	/**
 	 * Dispatch object added event.
-	 *
-	 * @param	object		The object.
-	 * @param	user		If this is the private user object.
+	 * 
+	 * @param object
+	 *            The object.
+	 * @param user
+	 *            If this is the private user object.
 	 */
 	protected void dispatchAdded(RPObject object, boolean user) {
 		try {
@@ -528,12 +527,13 @@ public class StendhalClient extends ClientFramework {
 		}
 	}
 
-
 	/**
 	 * Dispatch object removed event.
-	 *
-	 * @param	object		The object.
-	 * @param	user		If this is the private user object.
+	 * 
+	 * @param object
+	 *            The object.
+	 * @param user
+	 *            If this is the private user object.
 	 */
 	protected void dispatchRemoved(RPObject object, boolean user) {
 		try {
@@ -545,15 +545,18 @@ public class StendhalClient extends ClientFramework {
 		}
 	}
 
-
 	/**
 	 * Dispatch object added/changed attribute(s) event.
-	 *
-	 * @param	object		The base object.
-	 * @param	changes		The changes.
-	 * @param	user		If this is the private user object.
+	 * 
+	 * @param object
+	 *            The base object.
+	 * @param changes
+	 *            The changes.
+	 * @param user
+	 *            If this is the private user object.
 	 */
-	protected void dispatchModifyAdded(RPObject object, RPObject changes, boolean user) {
+	protected void dispatchModifyAdded(RPObject object, RPObject changes,
+			boolean user) {
 		try {
 			logger.debug("Object(" + object.getID() + ") modified in client");
 			fixContainers(object);
@@ -561,20 +564,24 @@ public class StendhalClient extends ClientFramework {
 			fireChangedAdded(object, changes, user);
 			object.applyDifferences(changes, null);
 		} catch (Exception e) {
-			logger.debug("onModifiedAdded failed, object is " + object + ", changes is " + changes, e);
+			logger.debug("onModifiedAdded failed, object is " + object
+					+ ", changes is " + changes, e);
 		}
 
 	}
 
-
 	/**
 	 * Dispatch object removed attribute(s) event.
-	 *
-	 * @param	object		The base object.
-	 * @param	changes		The changes.
-	 * @param	user		If this is the private user object.
+	 * 
+	 * @param object
+	 *            The base object.
+	 * @param changes
+	 *            The changes.
+	 * @param user
+	 *            If this is the private user object.
 	 */
-	protected void dispatchModifyRemoved(RPObject object, RPObject changes, boolean user) {
+	protected void dispatchModifyRemoved(RPObject object, RPObject changes,
+			boolean user) {
 		try {
 			logger.debug("Object(" + object.getID() + ") modified in client");
 			logger.debug("Original(" + object + ") modified in client");
@@ -587,35 +594,35 @@ public class StendhalClient extends ClientFramework {
 			logger.debug("Modified(" + object + ") modified in client");
 			logger.debug("Changes(" + changes + ") modified in client");
 		} catch (Exception e) {
-			logger.error("onModifiedDeleted failed, object is " + object + ", changes is " + changes, e);
+			logger.error("onModifiedDeleted failed, object is " + object
+					+ ", changes is " + changes, e);
 		}
 	}
 
-
 	/**
-	 * Dump an object out in an easily readable format.
-	 * TEMP!! TEST METHOD - USED FOR DEBUGING.
-	 * Probably should be in a common util class if useful long term.
+	 * Dump an object out in an easily readable format. TEMP!! TEST METHOD -
+	 * USED FOR DEBUGING. Probably should be in a common util class if useful
+	 * long term.
 	 */
 	public static void dumpObject(RPObject object) {
-		System.err.println(object.getRPClass().getName() + "[" + object.getID().getObjectID() + "]");
+		System.err.println(object.getRPClass().getName() + "["
+				+ object.getID().getObjectID() + "]");
 
-		for(String name : object) {
+		for (String name : object) {
 			System.err.println("  " + name + ": " + object.get(name));
 		}
 
 		System.err.println();
 	}
 
-
 	/**
-	 * Fix parent <-> child linkage.
-	 * THIS WILL PROBABLY NOT BE NEEDED AFTER 2.0's FIXES.
+	 * Fix parent <-> child linkage. THIS WILL PROBABLY NOT BE NEEDED AFTER
+	 * 2.0's FIXES.
 	 */
 	protected void fixContainers(final RPObject object) {
-		for(RPSlot slot : object.slots()) {
-			for(RPObject sobject : slot) {
-				if(!sobject.isContained()) {
+		for (RPSlot slot : object.slots()) {
+			for (RPObject sobject : slot) {
+				if (!sobject.isContained()) {
 					logger.debug("Fixing container: " + slot);
 					sobject.setContainer(object, slot);
 				}
@@ -625,89 +632,96 @@ public class StendhalClient extends ClientFramework {
 		}
 	}
 
-
 	/**
 	 * Notify listeners that an object was added.
-	 *
-	 * @param	object		The object.
-	 * @param	user		If this is the private user object.
+	 * 
+	 * @param object
+	 *            The object.
+	 * @param user
+	 *            If this is the private user object.
 	 */
 	protected void fireAdded(RPObject object, boolean user) {
-// TEST CODE:
-//System.err.println("fireAdded()");
-//dumpObject(object);
+		// TEST CODE:
+		// System.err.println("fireAdded()");
+		// dumpObject(object);
 		gameObjects.onAdded(object);
 
-// NEW CODE:
-//		/*
-//		 * Walk each slot
-//		 */
-//		for(RPSlot slot : object.slots()) {
-//			for(RPObject sobject : slot) {
-//				fireAdded(sobject, user);
-//			}
-//		}
+		// NEW CODE:
+		// /*
+		// * Walk each slot
+		// */
+		// for(RPSlot slot : object.slots()) {
+		// for(RPObject sobject : slot) {
+		// fireAdded(sobject, user);
+		// }
+		// }
 	}
-
 
 	/**
 	 * Notify listeners that an object was removed.
-	 *
-	 * @param	object		The object.
-	 * @param	user		If this is the private user object.
+	 * 
+	 * @param object
+	 *            The object.
+	 * @param user
+	 *            If this is the private user object.
 	 */
 	protected void fireRemoved(RPObject object, boolean user) {
-// TEST CODE:
-//System.err.println("fireRemoved()");
-//dumpObject(object);
+		// TEST CODE:
+		// System.err.println("fireRemoved()");
+		// dumpObject(object);
 
-// NEW CODE:
-//		/*
-//		 * Walk each slot
-//		 */
-//		for(RPSlot slot : object.slots()) {
-//			for(RPObject sobject : slot) {
-//				fireRemoved(sobject, user);
-//			}
-//		}
+		// NEW CODE:
+		// /*
+		// * Walk each slot
+		// */
+		// for(RPSlot slot : object.slots()) {
+		// for(RPObject sobject : slot) {
+		// fireRemoved(sobject, user);
+		// }
+		// }
 
 		gameObjects.onRemoved(object);
 	}
 
-
 	/**
-	 * Notify listeners that an object added/changed attribute(s).
-	 * This will cascade down slot trees.
-	 *
-	 * @param	object		The base object.
-	 * @param	changes		The changes.
-	 * @param	user		If this is the private user object.
+	 * Notify listeners that an object added/changed attribute(s). This will
+	 * cascade down slot trees.
+	 * 
+	 * @param object
+	 *            The base object.
+	 * @param changes
+	 *            The changes.
+	 * @param user
+	 *            If this is the private user object.
 	 */
-	protected void fireChangedAdded(RPObject object, RPObject changes, boolean user) {
+	protected void fireChangedAdded(RPObject object, RPObject changes,
+			boolean user) {
 		gameObjects.onChangedAdded(object, changes);
 
-		if(user) {
+		if (user) {
 			userContext.onChangedAdded(object, changes);
 		}
 
 		/*
 		 * Walk each slot
 		 */
-		for(RPSlot cslot : changes.slots()) {
-			if(cslot.size() != 0) {
+		for (RPSlot cslot : changes.slots()) {
+			if (cslot.size() != 0) {
 				fireChangedAdded(object, cslot, user);
 			}
 		}
 	}
 
-
 	/**
-	 * Notify listeners that an object slot added/changed attribute(s).
-	 * This will cascade down object trees.
-	 *
-	 * @param	object		The base object.
-	 * @param	cslot		The changes slot.
-	 * @param	user		If this is the private user object.
+	 * Notify listeners that an object slot added/changed attribute(s). This
+	 * will cascade down object trees.
+	 * 
+	 * @param object
+	 *            The base object.
+	 * @param cslot
+	 *            The changes slot.
+	 * @param user
+	 *            If this is the private user object.
 	 */
 	protected void fireChangedAdded(RPObject object, RPSlot cslot, boolean user) {
 		String slotName = cslot.getName();
@@ -716,7 +730,7 @@ public class StendhalClient extends ClientFramework {
 		/*
 		 * Find the original slot entry (if any)
 		 */
-		if(object.hasSlot(slotName)) {
+		if (object.hasSlot(slotName)) {
 			slot = object.getSlot(slotName);
 		} else {
 			slot = null;
@@ -725,72 +739,79 @@ public class StendhalClient extends ClientFramework {
 		/*
 		 * Walk the changes
 		 */
-		for(RPObject schanges : cslot) {
+		for (RPObject schanges : cslot) {
 			RPObject.ID id = object.getID();
 
-			if((slot != null) && slot.has(id)) {
+			if ((slot != null) && slot.has(id)) {
 				RPObject sobject = slot.get(id);
 
 				gameObjects.onChangedAdded(object, slotName, sobject, schanges);
 
-				if(user) {
-					userContext.onChangedAdded(object, slotName, sobject, schanges);
+				if (user) {
+					userContext.onChangedAdded(object, slotName, sobject,
+							schanges);
 				}
 
 				fireChangedAdded(sobject, schanges, user);
 			} else {
-//				gameObjects.onAdded(object, slotName, schanges);
-//
-//				if(user) {
-//					userContext.onAdded(object, slotName, schanges);
-//				}
+				// gameObjects.onAdded(object, slotName, schanges);
+				//
+				// if(user) {
+				// userContext.onAdded(object, slotName, schanges);
+				// }
 
-if(!schanges.isContained()) {
-logger.warn("!!! Not contained! - " + schanges);
-}
+				if (!schanges.isContained()) {
+					logger.warn("!!! Not contained! - " + schanges);
+				}
 
-// NEW CODE:
-//				fireAdded(schanges, user);
+				// NEW CODE:
+				// fireAdded(schanges, user);
 			}
 		}
 	}
 
-
 	/**
-	 * Notify listeners that an object removed attribute(s).
-	 * This will cascade down slot trees.
-	 *
-	 * @param	object		The base object.
-	 * @param	changes		The changes.
-	 * @param	user		If this is the private user object.
+	 * Notify listeners that an object removed attribute(s). This will cascade
+	 * down slot trees.
+	 * 
+	 * @param object
+	 *            The base object.
+	 * @param changes
+	 *            The changes.
+	 * @param user
+	 *            If this is the private user object.
 	 */
-	protected void fireChangedRemoved(RPObject object, RPObject changes, boolean user) {
+	protected void fireChangedRemoved(RPObject object, RPObject changes,
+			boolean user) {
 		gameObjects.onChangedRemoved(object, changes);
 
-		if(user) {
+		if (user) {
 			userContext.onChangedRemoved(object, changes);
 		}
 
 		/*
 		 * Walk each slot
 		 */
-		for(RPSlot cslot : changes.slots()) {
-			if(cslot.size() != 0) {
+		for (RPSlot cslot : changes.slots()) {
+			if (cslot.size() != 0) {
 				fireChangedRemoved(object, cslot, user);
 			}
 		}
 	}
 
-
 	/**
-	 * Notify listeners that an object slot removed attribute(s).
-	 * This will cascade down object trees.
-	 *
-	 * @param	object		The base object.
-	 * @param	cslot		The changes slot.
-	 * @param	user		If this is the private user object.
+	 * Notify listeners that an object slot removed attribute(s). This will
+	 * cascade down object trees.
+	 * 
+	 * @param object
+	 *            The base object.
+	 * @param cslot
+	 *            The changes slot.
+	 * @param user
+	 *            If this is the private user object.
 	 */
-	protected void fireChangedRemoved(RPObject object, RPSlot cslot, boolean user) {
+	protected void fireChangedRemoved(RPObject object, RPSlot cslot,
+			boolean user) {
 		String slotName = cslot.getName();
 
 		/*
@@ -801,29 +822,31 @@ logger.warn("!!! Not contained! - " + schanges);
 		/*
 		 * Walk the changes
 		 */
-		for(RPObject schanges : cslot) {
+		for (RPObject schanges : cslot) {
 			RPObject sobject = slot.get(schanges.getID());
 
 			/*
 			 * Remove attrs vs. object [see applyDifferences()]
 			 */
-			if(schanges.size() > 1) {
-				gameObjects.onChangedRemoved(object, slotName, sobject, schanges);
+			if (schanges.size() > 1) {
+				gameObjects.onChangedRemoved(object, slotName, sobject,
+						schanges);
 
-				if(user) {
-					userContext.onChangedRemoved(object, slotName, sobject, schanges);
+				if (user) {
+					userContext.onChangedRemoved(object, slotName, sobject,
+							schanges);
 				}
 
 				fireChangedRemoved(sobject, schanges, user);
 			} else {
-//				gameObjects.onRemoved(object, slotName, sobject);
-//
-//				if(user) {
-//					userContext.onRemoved(object, slotName, sobject);
-//				}
+				// gameObjects.onRemoved(object, slotName, sobject);
+				//
+				// if(user) {
+				// userContext.onRemoved(object, slotName, sobject);
+				// }
 
-// NEW CODE:
-//				fireRemoved(sobject, user);
+				// NEW CODE:
+				// fireRemoved(sobject, user);
 			}
 		}
 	}
@@ -882,7 +905,8 @@ logger.warn("!!! Not contained! - " + schanges);
 					dispatchModifyAdded(object, added, true);
 				}
 			} catch (Exception e) {
-				logger.error("onMyRPObject failed, added=" + added + " deleted=" + deleted, e);
+				logger.error("onMyRPObject failed, added=" + added
+						+ " deleted=" + deleted, e);
 			}
 
 			return true;
@@ -894,7 +918,8 @@ logger.warn("!!! Not contained! - " + schanges);
 			StendhalUI.get().setOffline(false);
 
 			logger.debug("Synced with server state.");
-			StendhalUI.get().addEventLine("Synchronized", NotificationType.CLIENT);
+			StendhalUI.get().addEventLine("Synchronized",
+					NotificationType.CLIENT);
 		}
 
 		private int times;
@@ -904,28 +929,30 @@ logger.warn("!!! Not contained! - " + schanges);
 
 			if (times > 3) {
 				logger.debug("Request resync");
-				StendhalUI.get().addEventLine("Unsynced: Resynchronizing...", NotificationType.CLIENT);
+				StendhalUI.get().addEventLine("Unsynced: Resynchronizing...",
+						NotificationType.CLIENT);
 			}
 		}
 
-		public void onException(Exception e, marauroa.common.net.message.MessageS2CPerception perception) {
+		public void onException(Exception e,
+				marauroa.common.net.message.MessageS2CPerception perception) {
 			logger.error("perception caused an error: " + perception, e);
 			System.exit(-1);
 		}
 
 		public boolean onClear() {
-	        return false;
-        }
+			return false;
+		}
 
 		public void onPerceptionBegin(byte type, int timestamp) {
-        }
+		}
 
 		public void onPerceptionEnd(byte type, int timestamp) {
-        }
+		}
 	}
 
 	public void setAccountUsername(String username) {
-		userName=username;
+		userName = username;
 	}
 
 	public String getAccountUsername() {

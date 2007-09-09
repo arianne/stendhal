@@ -38,7 +38,8 @@ import java.util.Map;
  *
  * @author mtotz
  */
-public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseListener {
+public class SettingsPanel extends WtPanel implements WtClickListener,
+		WtCloseListener {
 
 	/** width of this panel */
 	private static final int WIDTH = 165;
@@ -56,11 +57,12 @@ public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseLi
 
 	/** the buddy list panel */
 	private BuddyListDialog nbuddies;
+
 	private ManagedWindow buddies;
 
 	public BuyWindow buywindow;
 
-        private GameButtonHelper gbh;
+	private GameButtonHelper gbh;
 
 	/** the minimap panel */
 	private Minimap minimap;
@@ -74,8 +76,8 @@ public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseLi
 	/** map of the buttons (for faster access) ) */
 	private Map<String, WtButton> buttonMap;
 
-	private static final boolean newCode =
-			(System.getProperty("stendhal.newgui") != null);
+	private static final boolean newCode = (System
+			.getProperty("stendhal.newgui") != null);
 
 	/** Creates a new instance of OptionsPanel */
 	public SettingsPanel(StendhalUI ui, WtPanel frame) {
@@ -101,7 +103,7 @@ public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseLi
 		keyring.registerCloseListener(this);
 		ui.addWindow(keyring);
 
-		if(newCode) {
+		if (newCode) {
 			nbuddies = new BuddyListDialog(StendhalUI.get());
 			buddies = nbuddies;
 		} else {
@@ -115,12 +117,12 @@ public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseLi
 		buywindow = new BuyWindow(StendhalUI.get());
 		buywindow.registerCloseListener(this);
 		buywindow.setVisible(false);
-		ui.addWindow(buywindow); 
+		ui.addWindow(buywindow);
 
-	      	gbh = new GameButtonHelper(this, StendhalUI.get());
+		gbh = new GameButtonHelper(this, StendhalUI.get());
 		gbh.registerCloseListener(this);
 		gbh.setVisible(false);
-		ui.addWindow(gbh); 
+		ui.addWindow(gbh);
 
 		inventory = new EntityContainer(client, "bag", 3, 4);
 		inventory.registerCloseListener(this);
@@ -167,12 +169,12 @@ public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseLi
 		addChild(button);
 		buttonMap.put("buddies", button);
 
-		/*	button = new WtButton("gametools", 150, 25, "Enable Game Tools");
-		button.moveTo(5, 155);
-		button.setPressed(gbh.isVisible());
-		button.registerClickListener(this);
-		addChild(button);
-		buttonMap.put("gametools", button); */
+		/*
+		 * button = new WtButton("gametools", 150, 25, "Enable Game Tools");
+		 * button.moveTo(5, 155); button.setPressed(gbh.isVisible());
+		 * button.registerClickListener(this); addChild(button);
+		 * buttonMap.put("gametools", button);
+		 */
 
 	}
 
@@ -183,21 +185,22 @@ public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseLi
 	}
 
 	/** updates the minimap */
-	public void updateMinimap(CollisionDetection cd, GraphicsConfiguration gc, String zone) {
+	public void updateMinimap(CollisionDetection cd, GraphicsConfiguration gc,
+			String zone) {
 		minimap.update(cd, gc, zone);
 	}
 
 	/** updates the minimap */
 	public void setPlayer(User user) {
-		if(user == null) {
+		if (user == null) {
 			return;
 		}
 
-		if(newCode) {
+		if (newCode) {
 			/*
 			 * Hack! Need to update list when changes arrive
 			 */
-			if(nbuddies.isVisible()) {
+			if (nbuddies.isVisible()) {
 				nbuddies.update();
 			}
 		}
@@ -217,7 +220,7 @@ public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseLi
 		/*
 		 * Hack! Need to update when changes arrive
 		 */
-		if(keyring.isVisible()) {
+		if (keyring.isVisible()) {
 			keyring.update();
 		}
 	}
@@ -241,11 +244,12 @@ public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseLi
 		} else if (name.equals("buddies")) {
 			// check buddy panel
 			buddies.setVisible(state);
-			/*	} else if (name.equals("gametools")) {
-			// check gametools panel
-			gbh.setVisible(state); */
+			/*
+			 * } else if (name.equals("gametools")) { // check gametools panel
+			 * gbh.setVisible(state);
+			 */
 
-                }
+		}
 	}
 
 	/** a window is closed */
@@ -255,7 +259,7 @@ public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseLi
 		 */
 		WtButton button = buttonMap.get(name);
 
-		if(button != null) {
+		if (button != null) {
 			button.setPressed(false);
 		}
 	}

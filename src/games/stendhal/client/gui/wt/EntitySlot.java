@@ -56,7 +56,7 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 	/**
 	 * The entity view being held.
 	 */
-	private Entity2DView	view;
+	private Entity2DView view;
 
 	/**
 	 * The client.
@@ -66,16 +66,15 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 	/** The placeholder sprite. */
 	private Sprite placeholder;
 
-
 	static {
 		background = SpriteStore.get().getSprite("data/gui/slot.png");
 	}
 
-
 	/**
 	 * Create an entity slot.
 	 */
-	public EntitySlot(StendhalClient client, String name, Sprite placeholder, int x, int y) {
+	public EntitySlot(StendhalClient client, String name, Sprite placeholder,
+			int x, int y) {
 		super(name, x, y, background.getWidth(), background.getHeight());
 		this.client = client;
 		this.placeholder = placeholder;
@@ -83,16 +82,13 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 		view = null;
 	}
 
-
 	public static int getDefaultHeight() {
 		return background.getHeight();
 	}
 
-
 	public static int getDefaultWidth() {
 		return background.getWidth();
 	}
-
 
 	/**
 	 * Set the parent entity.
@@ -103,7 +99,7 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 
 	/** called when an object is dropped. */
 	public boolean onDrop(final int x, final int y, WtDraggable droppedObject) {
-		if(parent == null) {
+		if (parent == null) {
 			return false;
 		}
 
@@ -135,21 +131,20 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 		return true;
 	}
 
-
 	/**
 	 * Set the slot entity.
 	 *
 	 *
 	 */
 	public void setEntity(final Entity entity) {
-		if(view != null) {
+		if (view != null) {
 			view.release();
 		}
 
-		if(entity != null) {
+		if (entity != null) {
 			view = GameScreen.get().createView(entity);
 
-			if(view != null) {
+			if (view != null) {
 				view.setContained(true);
 			}
 		} else {
@@ -157,12 +152,12 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 		}
 	}
 
-
 	/**
 	 * Draw the panel contents. This is only called while open and not
 	 * minimized.
 	 *
-	 * @param	g		The graphics context to draw with.
+	 * @param g
+	 *            The graphics context to draw with.
 	 */
 	@Override
 	protected void drawContent(Graphics2D childArea) {
@@ -177,7 +172,8 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 			int x = (getWidth() - GameScreen.SIZE_UNIT_PIXELS) / 2;
 			int y = (getHeight() - GameScreen.SIZE_UNIT_PIXELS) / 2;
 
-			Graphics2D vg = (Graphics2D) childArea.create(0, 0, getWidth(), getHeight());
+			Graphics2D vg = (Graphics2D) childArea.create(0, 0, getWidth(),
+					getHeight());
 			vg.translate(x, y);
 			view.draw(vg);
 			vg.dispose();
@@ -206,7 +202,8 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 	public synchronized boolean onMouseRightClick(Point p) {
 		if (view != null) {
 			// create the context menu
-			CommandList list = new CommandList(getName(), view.getActions(), view);
+			CommandList list = new CommandList(getName(), view.getActions(),
+					view);
 			setContextMenu(list);
 		}
 		return true;

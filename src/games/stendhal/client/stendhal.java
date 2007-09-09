@@ -30,7 +30,7 @@ public class stendhal extends Thread {
 
 	private static final Logger logger = Log4J.getLogger(stendhal.class);
 
-	public static boolean doLogin ;
+	public static boolean doLogin;
 
 	public static String STENDHAL_FOLDER;
 
@@ -43,8 +43,8 @@ public class stendhal extends Thread {
 		}
 
 		/** We set the main game folder to the game name */
-		String gameName=ClientGameConfiguration.get("GAME_NAME");
-		STENDHAL_FOLDER = "/"+gameName.toLowerCase()+"/";
+		String gameName = ClientGameConfiguration.get("GAME_NAME");
+		STENDHAL_FOLDER = "/" + gameName.toLowerCase() + "/";
 	}
 
 	public static final String VERSION = Version.VERSION;
@@ -61,8 +61,9 @@ public class stendhal extends Thread {
 
 	/**
 	 * Parses command line arguments
-	 *
-	 * @param args command line arguments
+	 * 
+	 * @param args
+	 *            command line arguments
 	 */
 	private static void parseCommandlineArguments(String[] args) {
 		String size = null;
@@ -72,8 +73,12 @@ public class stendhal extends Thread {
 			if (args[i].equals("-s")) {
 				size = args[i + 1];
 			} else if (args[i].equals("-wouterwens.bat")) {
-				JOptionPane.showConfirmDialog(null, "Do not use command line parameters, that you do not understand",
-						"Stendhal", JOptionPane.OK_OPTION, JOptionPane.QUESTION_MESSAGE);
+				JOptionPane
+						.showConfirmDialog(
+								null,
+								"Do not use command line parameters, that you do not understand",
+								"Stendhal", JOptionPane.OK_OPTION,
+								JOptionPane.QUESTION_MESSAGE);
 			}
 			i++;
 		}
@@ -91,7 +96,8 @@ public class stendhal extends Thread {
 
 		logger.info("Setting base at :" + STENDHAL_FOLDER);
 		logger.info("Stendhal " + VERSION);
-		logger.info("OS: " + System.getProperty("os.name") + " " + System.getProperty("os.version"));
+		logger.info("OS: " + System.getProperty("os.name") + " "
+				+ System.getProperty("os.version"));
 		logger.info("Java: " + System.getProperty("java.version"));
 	}
 
@@ -100,19 +106,25 @@ public class stendhal extends Thread {
 	 */
 	private static void startSwingLookAndFeel() {
 		try {
-			// only enable SystemLookAndFeelClassName for MS Windows because of bug
+			// only enable SystemLookAndFeelClassName for MS Windows because of
+			// bug
 			// http://sourceforge.net/tracker/index.php?func=detail&aid=1601437&group_id=1111&atid=101111
-			/*if (System.getProperty("os.name", "").toLowerCase().indexOf("windows") > -1) {
-			 UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-			 }*/
+			/*
+			 * if (System.getProperty("os.name",
+			 * "").toLowerCase().indexOf("windows") > -1) {
+			 * UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName()); }
+			 */
 		} catch (Exception e) {
-			logger.error("Can't change Look&Feel to match your OS. Using the Cross-Platform look & feel", e);
+			logger
+					.error(
+							"Can't change Look&Feel to match your OS. Using the Cross-Platform look & feel",
+							e);
 		}
 	}
 
 	/**
 	 * Starts the client and show the first screen
-	 *
+	 * 
 	 * @return StendhalClient
 	 */
 	private static StendhalClient startClient() {
@@ -136,26 +148,27 @@ public class stendhal extends Thread {
 
 	/**
 	 * Starts the real game gui
-	 *
-	 * @param client StendhalClient
+	 * 
+	 * @param client
+	 *            StendhalClient
 	 */
 	private static void startGameGUI(StendhalClient client) {
-
 
 		new j2DClient(client);
 	}
 
 	/**
 	 * Main Entry point.
-	 *
-	 * @param args command line arguments
+	 * 
+	 * @param args
+	 *            command line arguments
 	 */
 	public static void main(String[] args) {
-		//get size string
+		// get size string
 		if (System.getProperty("stendhal.refactoringgui") != null) {
 			SCREEN_SIZE = "1000x480";
 		} else {
-			SCREEN_SIZE="640x480";
+			SCREEN_SIZE = "640x480";
 		}
 		parseCommandlineArguments(args);
 		startLogSystem();

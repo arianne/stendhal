@@ -22,10 +22,10 @@ import marauroa.common.game.RPSlot;
  * The player user context. This class holds/manages the data for the user of
  * this client. This is independent of any on-screen representation Entity that,
  * while related, serves an entirely different purpose.
- *
+ * 
  * Currently this is just a helper class for StendhalClient. Maybe it will be
  * directly used by other code later.
- *
+ * 
  * THIS CLASS IS STILL UNDER DEVELOPMENT/TESTING.
  */
 public class UserContext implements RPObjectChangeListener {
@@ -80,7 +80,7 @@ public class UserContext implements RPObjectChangeListener {
 
 	/**
 	 * Add a buddy change listener.
-	 *
+	 * 
 	 * @param l
 	 *            The listener.
 	 */
@@ -98,7 +98,7 @@ public class UserContext implements RPObjectChangeListener {
 
 	/**
 	 * Add a feature change listener.
-	 *
+	 * 
 	 * @param l
 	 *            The listener.
 	 */
@@ -116,7 +116,7 @@ public class UserContext implements RPObjectChangeListener {
 
 	/**
 	 * Fire admin level change event to all registered listeners.
-	 *
+	 * 
 	 * @param adminLevel
 	 *            The new admin level.
 	 */
@@ -126,7 +126,7 @@ public class UserContext implements RPObjectChangeListener {
 
 	/**
 	 * Fire buddy added to all registered listeners.
-	 *
+	 * 
 	 * @param buddyName
 	 *            The name of the buddy.
 	 */
@@ -141,7 +141,7 @@ public class UserContext implements RPObjectChangeListener {
 
 	/**
 	 * Fire buddy offline to all registered listeners.
-	 *
+	 * 
 	 * @param buddyName
 	 *            The name of the buddy.
 	 */
@@ -155,7 +155,7 @@ public class UserContext implements RPObjectChangeListener {
 
 	/**
 	 * Fire buddy online to all registered listeners.
-	 *
+	 * 
 	 * @param buddyName
 	 *            The name of the buddy.
 	 */
@@ -169,7 +169,7 @@ public class UserContext implements RPObjectChangeListener {
 
 	/**
 	 * Fire buddy removed to all registered listeners.
-	 *
+	 * 
 	 * @param buddyName
 	 *            The name of the buddy.
 	 */
@@ -184,7 +184,7 @@ public class UserContext implements RPObjectChangeListener {
 
 	/**
 	 * Fire feature enabled to all registered listeners.
-	 *
+	 * 
 	 * @param name
 	 *            The name of the feature.
 	 */
@@ -198,7 +198,7 @@ public class UserContext implements RPObjectChangeListener {
 
 	/**
 	 * Fire feature enabled to all registered listeners.
-	 *
+	 * 
 	 * @param name
 	 *            The name of the feature.
 	 * @param value
@@ -214,7 +214,7 @@ public class UserContext implements RPObjectChangeListener {
 
 	/**
 	 * Fire name change event to all registered listeners.
-	 *
+	 * 
 	 * @param name
 	 *            The new player name.
 	 */
@@ -224,7 +224,7 @@ public class UserContext implements RPObjectChangeListener {
 
 	/**
 	 * Get the admin level.
-	 *
+	 * 
 	 * @return The admin level.
 	 */
 	public int getAdminLevel() {
@@ -233,7 +233,7 @@ public class UserContext implements RPObjectChangeListener {
 
 	/**
 	 * Get the player character name.
-	 *
+	 * 
 	 * @return The player character name.
 	 */
 	public String getName() {
@@ -242,7 +242,7 @@ public class UserContext implements RPObjectChangeListener {
 
 	/**
 	 * Get the player's owned sheep RPObject ID.
-	 *
+	 * 
 	 * @return The RPObject ID of the sheep the player owns, or <code>0</code>
 	 *         if none.
 	 */
@@ -252,7 +252,7 @@ public class UserContext implements RPObjectChangeListener {
 
 	/**
 	 * Determine if the user is an admin.
-	 *
+	 * 
 	 * @return <code>true</code> is the user is an admin.
 	 */
 	public boolean isAdmin() {
@@ -261,7 +261,7 @@ public class UserContext implements RPObjectChangeListener {
 
 	/**
 	 * Remove a buddy change listener.
-	 *
+	 * 
 	 * @param listener
 	 *            The listener.
 	 */
@@ -292,7 +292,7 @@ public class UserContext implements RPObjectChangeListener {
 
 	/**
 	 * Remove a feature change listener.
-	 *
+	 * 
 	 * @param listener
 	 *            The listener.
 	 */
@@ -323,7 +323,7 @@ public class UserContext implements RPObjectChangeListener {
 
 	/**
 	 * A buddy list object added/changed attribute(s).
-	 *
+	 * 
 	 * @param changes
 	 *            The object changes.
 	 */
@@ -359,7 +359,7 @@ public class UserContext implements RPObjectChangeListener {
 
 	/**
 	 * A buddy list object removed attribute(s).
-	 *
+	 * 
 	 * @param changes
 	 *            The object changes.
 	 */
@@ -382,7 +382,7 @@ public class UserContext implements RPObjectChangeListener {
 
 	/**
 	 * A feature object added/changed attribute(s).
-	 *
+	 * 
 	 * @param changes
 	 *            The object changes.
 	 */
@@ -399,7 +399,7 @@ public class UserContext implements RPObjectChangeListener {
 
 	/**
 	 * A feature object removed attribute(s).
-	 *
+	 * 
 	 * @param changes
 	 *            The object changes.
 	 */
@@ -418,7 +418,7 @@ public class UserContext implements RPObjectChangeListener {
 
 	/**
 	 * An object was added.
-	 *
+	 * 
 	 * @param object
 	 *            The object.
 	 */
@@ -439,7 +439,7 @@ public class UserContext implements RPObjectChangeListener {
 
 	/**
 	 * The object added/changed attribute(s).
-	 *
+	 * 
 	 * @param object
 	 *            The base object.
 	 * @param changes
@@ -464,7 +464,7 @@ public class UserContext implements RPObjectChangeListener {
 
 	/**
 	 * A slot object added/changed attribute(s).
-	 *
+	 * 
 	 * @param container
 	 *            The base container object.
 	 * @param slotName
@@ -486,7 +486,7 @@ public class UserContext implements RPObjectChangeListener {
 
 	/**
 	 * An object removed attribute(s).
-	 *
+	 * 
 	 * @param object
 	 *            The base object.
 	 * @param changes
@@ -511,7 +511,7 @@ public class UserContext implements RPObjectChangeListener {
 
 	/**
 	 * A slot object removed attribute(s).
-	 *
+	 * 
 	 * @param container
 	 *            The base container object.
 	 * @param slotName
@@ -530,7 +530,7 @@ public class UserContext implements RPObjectChangeListener {
 
 	/**
 	 * An object was removed.
-	 *
+	 * 
 	 * @param object
 	 *            The object.
 	 */

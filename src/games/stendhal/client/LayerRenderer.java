@@ -43,8 +43,9 @@ public abstract class LayerRenderer {
 
 	/**
 	 * Render the layer to screen. We assume that game screen will clip.
-	 *
-	 * @param	screen		The screen to draw on.
+	 * 
+	 * @param screen
+	 *            The screen to draw on.
 	 */
 	public void draw(GameScreen screen) {
 		int x = (int) screen.getViewX();
@@ -57,12 +58,17 @@ public abstract class LayerRenderer {
 
 	/**
 	 * Render the layer to screen. We assume that game screen will clip.
-	 *
-	 * @param	screen		The screen to draw on.
-	 * @param	x		The view X world coordinate.
-	 * @param	y		The view Y world coordinate.
-	 * @param	w		The view world width.
-	 * @param	h		The view world height.
+	 * 
+	 * @param screen
+	 *            The screen to draw on.
+	 * @param x
+	 *            The view X world coordinate.
+	 * @param y
+	 *            The view Y world coordinate.
+	 * @param w
+	 *            The view world width.
+	 * @param h
+	 *            The view world height.
 	 */
 	public abstract void draw(GameScreen screen, int x, int y, int w, int h);
 

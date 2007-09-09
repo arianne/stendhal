@@ -37,7 +37,7 @@ import marauroa.common.game.RPSlot;
 
 /**
  * This is the panel where the character can be outfittet.
- * 
+ *
  * @author mtotz
  */
 public class Character extends WtPanel {
@@ -71,7 +71,8 @@ public class Character extends WtPanel {
 
 	/** Creates a new instance of Character */
 	public Character(StendhalUI ui) {
-		super("character", ui.getWidth() - PANEL_WIDTH, 0, PANEL_WIDTH, PANEL_HEIGHT);
+		super("character", ui.getWidth() - PANEL_WIDTH, 0, PANEL_WIDTH,
+				PANEL_HEIGHT);
 
 		StendhalClient client = ui.getClient();
 
@@ -88,41 +89,54 @@ public class Character extends WtPanel {
 		// Offset to center the slot holders
 		int xoff = (getClientWidth() - ((SLOT_SIZE * 3) + (SLOT_SPACING * 2))) / 2;
 
-		slotPanels.put("head", new EntitySlot(client, "head", st.getSprite("data/gui/helmet-slot.png"),
+		slotPanels.put("head", new EntitySlot(client, "head", st
+				.getSprite("data/gui/helmet-slot.png"),
 				((SLOT_SIZE + SLOT_SPACING) * 1) + xoff, 0));
 
-		slotPanels.put("armor", new EntitySlot(client, "armor", st.getSprite("data/gui/armor-slot.png"),
-				((SLOT_SIZE + SLOT_SPACING) * 1) + xoff, ((SLOT_SIZE + SLOT_SPACING) * 1)));
+		slotPanels.put("armor", new EntitySlot(client, "armor", st
+				.getSprite("data/gui/armor-slot.png"),
+				((SLOT_SIZE + SLOT_SPACING) * 1) + xoff,
+				((SLOT_SIZE + SLOT_SPACING) * 1)));
 
-		slotPanels.put("rhand", new EntitySlot(client, "rhand", st.getSprite("data/gui/weapon-slot.png"),
-				xoff, ((SLOT_SIZE + SLOT_SPACING) * 1) + 10));
+		slotPanels.put("rhand", new EntitySlot(client, "rhand", st
+				.getSprite("data/gui/weapon-slot.png"), xoff,
+				((SLOT_SIZE + SLOT_SPACING) * 1) + 10));
 
-		slotPanels.put("lhand", new EntitySlot(client, "lhand", st.getSprite("data/gui/shield-slot.png"),
-				((SLOT_SIZE + SLOT_SPACING) * 2) + xoff, ((SLOT_SIZE + SLOT_SPACING) * 1) + 10));
-		
-		slotPanels.put("finger", new EntitySlot(client, "finger", st.getSprite("data/gui/ring-slot.png"),
-				xoff, ((SLOT_SIZE + SLOT_SPACING) * 2) + 10));
-		
-		slotPanels.put("cloak", new EntitySlot(client, "cloak", st.getSprite("data/gui/cloak-slot.png"),
-				((SLOT_SIZE + SLOT_SPACING) * 2) + xoff, ((SLOT_SIZE + SLOT_SPACING) * 2) + 10));
+		slotPanels.put("lhand", new EntitySlot(client, "lhand", st
+				.getSprite("data/gui/shield-slot.png"),
+				((SLOT_SIZE + SLOT_SPACING) * 2) + xoff,
+				((SLOT_SIZE + SLOT_SPACING) * 1) + 10));
 
-		slotPanels.put("legs", new EntitySlot(client, "legs", st.getSprite("data/gui/legs-slot.png"),
-				((SLOT_SIZE + SLOT_SPACING) * 1) + xoff, ((SLOT_SIZE + SLOT_SPACING) * 2)));
+		slotPanels.put("finger", new EntitySlot(client, "finger", st
+				.getSprite("data/gui/ring-slot.png"), xoff,
+				((SLOT_SIZE + SLOT_SPACING) * 2) + 10));
 
-		slotPanels.put("feet", new EntitySlot(client, "feet", st.getSprite("data/gui/boots-slot.png"),
-				((SLOT_SIZE + SLOT_SPACING) * 1) + xoff, ((SLOT_SIZE + SLOT_SPACING) * 3)));
+		slotPanels.put("cloak", new EntitySlot(client, "cloak", st
+				.getSprite("data/gui/cloak-slot.png"),
+				((SLOT_SIZE + SLOT_SPACING) * 2) + xoff,
+				((SLOT_SIZE + SLOT_SPACING) * 2) + 10));
+
+		slotPanels.put("legs", new EntitySlot(client, "legs", st
+				.getSprite("data/gui/legs-slot.png"),
+				((SLOT_SIZE + SLOT_SPACING) * 1) + xoff,
+				((SLOT_SIZE + SLOT_SPACING) * 2)));
+
+		slotPanels.put("feet", new EntitySlot(client, "feet", st
+				.getSprite("data/gui/boots-slot.png"),
+				((SLOT_SIZE + SLOT_SPACING) * 1) + xoff,
+				((SLOT_SIZE + SLOT_SPACING) * 3)));
 
 		for (EntitySlot slot : slotPanels.values()) {
 			addChild(slot);
 		}
 
 		statsPanel = new WtTextPanel(
-		        "stats",
-		        5,
-		        ((SLOT_SIZE + SLOT_SPACING) * 4),
-		        170,
-		        100,
-		        "HP: ${hp}/${maxhp}\nATK: ${atk}+${atkitem} (${atkxp})\nDEF: ${def}+${defitem} (${defxp})\nXP:${xp}\nNext Level: ${xptonextlevel}\nMoney: $${money}");
+				"stats",
+				5,
+				((SLOT_SIZE + SLOT_SPACING) * 4),
+				170,
+				100,
+				"HP: ${hp}/${maxhp}\nATK: ${atk}+${atkitem} (${atkxp})\nDEF: ${def}+${defitem} (${defxp})\nXP:${xp}\nNext Level: ${xptonextlevel}\nMoney: $${money}");
 		statsPanel.setFrame(false);
 		statsPanel.setTitleBar(false);
 		addChild(statsPanel);
@@ -152,7 +166,8 @@ public class Character extends WtPanel {
 		money = 0;
 
 		// taverse all carrying slots
-		String[] slotsCarrying = { "bag", "rhand", "lhand", "head", "armor", "legs", "feet", "finger", "cloak", "keyring" };
+		String[] slotsCarrying = { "bag", "rhand", "lhand", "head", "armor",
+				"legs", "feet", "finger", "cloak", "keyring" };
 
 		for (String slotName : slotsCarrying) {
 			RPSlot slot = playerEntity.getSlot(slotName);
@@ -168,7 +183,7 @@ public class Character extends WtPanel {
 
 				Iterator<RPObject> iter = slot.iterator();
 
-				if(iter.hasNext()) {
+				if (iter.hasNext()) {
 					RPObject object = iter.next();
 
 					entitySlot.setEntity(EntityFactory.createEntity(object));
@@ -179,7 +194,8 @@ public class Character extends WtPanel {
 
 			// count all money
 			for (RPObject content : slot) {
-				if (content.get("class").equals("money") && content.has("quantity")) {
+				if (content.get("class").equals("money")
+						&& content.has("quantity")) {
 					money += content.getInt("quantity");
 				}
 			}
@@ -198,19 +214,20 @@ public class Character extends WtPanel {
 		statsPanel.set("atkxp", playerEntity.getAtkXp());
 		statsPanel.set("defxp", playerEntity.getDefXp());
 		statsPanel.set("xp", playerEntity.getXp());
-		int level=Level.getLevel(playerEntity.getXp());
-		statsPanel.set("xptonextlevel", Level.getXP(level+1)-playerEntity.getXp());
+		int level = Level.getLevel(playerEntity.getXp());
+		statsPanel.set("xptonextlevel", Level.getXP(level + 1)
+				- playerEntity.getXp());
 		statsPanel.set("money", money);
 
 		oldPlayerModificationCount = playerEntity.getModificationCount();
 	}
 
-
 	/**
 	 * Draw the panel contents. This is only called while open and not
 	 * minimized.
 	 *
-	 * @param	g		The graphics context to draw with.
+	 * @param g
+	 *            The graphics context to draw with.
 	 */
 	@Override
 	protected void drawContent(Graphics2D g) {

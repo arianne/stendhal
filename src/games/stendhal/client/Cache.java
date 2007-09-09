@@ -17,13 +17,19 @@ import marauroa.common.io.Persistence;
 import marauroa.common.net.message.TransferContent;
 
 /**
- * <p>Manages a two level cache which one or both levels are optional:</p>
- *
- * <p>The first level is prefilled readonly cache in a .jar file on class path.
- * At the time of writing we use this for Webstart because we are unsure
- * how large the webstart PersistenceService may grow.</p>
- *
- * <p>The second level is a normal cache on filesystem.</p>
+ * <p>
+ * Manages a two level cache which one or both levels are optional:
+ * </p>
+ * 
+ * <p>
+ * The first level is prefilled readonly cache in a .jar file on class path. At
+ * the time of writing we use this for Webstart because we are unsure how large
+ * the webstart PersistenceService may grow.
+ * </p>
+ * 
+ * <p>
+ * The second level is a normal cache on filesystem.
+ * </p>
  */
 public class Cache {
 
@@ -49,26 +55,32 @@ public class Cache {
 			// init caching-directory
 			if (!Debug.WEB_START_SANDBOX) {
 				// Create file object
-				File file = new File(System.getProperty("user.home") + "/" + stendhal.STENDHAL_FOLDER);
+				File file = new File(System.getProperty("user.home") + "/"
+						+ stendhal.STENDHAL_FOLDER);
 				if (!file.exists() && !file.mkdir()) {
-					logger.error("Can't create " + file.getAbsolutePath() + " folder");
+					logger.error("Can't create " + file.getAbsolutePath()
+							+ " folder");
 				} else if (file.exists() && file.isFile()) {
 					if (!file.delete() || !file.mkdir()) {
-						logger.error("Can't removing file " + file.getAbsolutePath()
-						        + " and creating a folder instead.");
+						logger.error("Can't removing file "
+								+ file.getAbsolutePath()
+								+ " and creating a folder instead.");
 					}
 				}
 
-				file = new File(System.getProperty("user.home") + stendhal.STENDHAL_FOLDER + "cache/");
+				file = new File(System.getProperty("user.home")
+						+ stendhal.STENDHAL_FOLDER + "cache/");
 				if (!file.exists() && !file.mkdir()) {
-					logger.error("Can't create " + file.getAbsolutePath() + " folder");
+					logger.error("Can't create " + file.getAbsolutePath()
+							+ " folder");
 				}
 
-				String cacheFile=System.getProperty("user.home") + stendhal.STENDHAL_FOLDER + "cache/stendhal.cache";
-				new File(cacheFile)
-				        .createNewFile();
+				String cacheFile = System.getProperty("user.home")
+						+ stendhal.STENDHAL_FOLDER + "cache/stendhal.cache";
+				new File(cacheFile).createNewFile();
 			}
-			Configuration.setConfigurationFile(true, stendhal.STENDHAL_FOLDER, "cache/stendhal.cache");
+			Configuration.setConfigurationFile(true, stendhal.STENDHAL_FOLDER,
+					"cache/stendhal.cache");
 			cacheManager = Configuration.getConfiguration();
 		} catch (Exception e) {
 			logger.error("cannot create StendhalClient", e);
@@ -78,15 +90,18 @@ public class Cache {
 	private InputStream getItemFromPrefilledCache(TransferContent item) {
 		String name = "cache/" + item.name;
 
-		// note: timestamp may contain a checksum. So we have to do an "equal"-compare.
+		// note: timestamp may contain a checksum. So we have to do an
+		// "equal"-compare.
 		String timestamp = prefilledCacheManager.getProperty(item.name);
-		if ((timestamp != null) && (Integer.parseInt(timestamp) == item.timestamp)) {
+		if ((timestamp != null)
+				&& (Integer.parseInt(timestamp) == item.timestamp)) {
 
 			// get the stream
 			URL url = SpriteStore.get().getResourceURL(name);
 			if (url != null) {
 				try {
-					logger.debug("Content " + item.name + " is in prefilled cache.");
+					logger.debug("Content " + item.name
+							+ " is in prefilled cache.");
 					return url.openStream();
 				} catch (IOException e) {
 					logger.error(e, e);
@@ -100,12 +115,15 @@ public class Cache {
 	private InputStream getItemFromCache(TransferContent item) {
 
 		// check cache
-		if (cacheManager.has(item.name) && (Integer.parseInt(cacheManager.get(item.name)) == item.timestamp)) {
-			logger.debug("Content " + item.name + " is on cache. We save transfer");
+		if (cacheManager.has(item.name)
+				&& (Integer.parseInt(cacheManager.get(item.name)) == item.timestamp)) {
+			logger.debug("Content " + item.name
+					+ " is on cache. We save transfer");
 
 			// get the stream
 			try {
-				return Persistence.get().getInputStream(true, stendhal.STENDHAL_FOLDER + "cache/", item.name);
+				return Persistence.get().getInputStream(true,
+						stendhal.STENDHAL_FOLDER + "cache/", item.name);
 			} catch (IOException e) {
 				logger.error(e, e);
 			}
@@ -115,8 +133,9 @@ public class Cache {
 
 	/**
 	 * Gets an item from cache
-	 *
-	 * @param item key
+	 * 
+	 * @param item
+	 *            key
 	 * @return InputStream or null if not in cache
 	 */
 	public InputStream getItem(TransferContent item) {
@@ -132,17 +151,21 @@ public class Cache {
 
 	/**
 	 * Stores an item in cache
-	 *
-	 * @param item key
-	 * @param data data
+	 * 
+	 * @param item
+	 *            key
+	 * @param data
+	 *            data
 	 */
 	public void store(TransferContent item, byte[] data) {
 		try {
-			OutputStream os = Persistence.get().getOutputStream(true, stendhal.STENDHAL_FOLDER + "cache/", item.name);
+			OutputStream os = Persistence.get().getOutputStream(true,
+					stendhal.STENDHAL_FOLDER + "cache/", item.name);
 			os.write(data);
 			os.close();
 
-			logger.debug("Content " + item.name + " cached now. Timestamp: " + Integer.toString(item.timestamp));
+			logger.debug("Content " + item.name + " cached now. Timestamp: "
+					+ Integer.toString(item.timestamp));
 
 			cacheManager.set(item.name, Integer.toString(item.timestamp));
 		} catch (java.io.IOException e) {

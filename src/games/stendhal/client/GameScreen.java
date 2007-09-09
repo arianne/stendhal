@@ -74,12 +74,12 @@ public class GameScreen {
 	/**
 	 * Comparator used to sort entities to display.
 	 */
-	protected static final EntityViewComparator	entityViewComparator = new EntityViewComparator();
+	protected static final EntityViewComparator entityViewComparator = new EntityViewComparator();
 
 	/**
 	 * A scale factor for panning delta (to allow non-float precision).
 	 */
-	protected static final int	PAN_SCALE	= 8;
+	protected static final int PAN_SCALE = 8;
 
 	private BufferStrategy strategy;
 
@@ -88,7 +88,7 @@ public class GameScreen {
 	/**
 	 * Client.
 	 */
-	protected StendhalClient	client;
+	protected StendhalClient client;
 
 	/**
 	 * The text bubbles.
@@ -103,12 +103,12 @@ public class GameScreen {
 	/**
 	 * The entity views.
 	 */
-	protected List<Entity2DView>	views;
+	protected List<Entity2DView> views;
 
 	/**
 	 * The entity to view map.
 	 */
-	protected Map<Entity, Entity2DView>	entities;
+	protected Map<Entity, Entity2DView> entities;
 
 	private static Sprite offlineIcon;
 
@@ -119,12 +119,12 @@ public class GameScreen {
 	/**
 	 * The targeted center of view X coordinate (truncated).
 	 */
-	private int	x;
+	private int x;
 
 	/**
 	 * The targeted center of view Y coordinate (truncated).
 	 */
-	private int	y;
+	private int y;
 
 	/** Actual size of the screen in pixels */
 	private int sw, sh;
@@ -141,38 +141,37 @@ public class GameScreen {
 	/**
 	 * The difference between current and target screen view X.
 	 */
-	private int	dvx;
+	private int dvx;
 
 	/**
 	 * The difference between current and target screen view Y.
 	 */
-	private int	dvy;
+	private int dvy;
 
 	/**
 	 * The current screen view X.
 	 */
-	private int	svx;
+	private int svx;
 
 	/**
 	 * The current screen view Y.
 	 */
-	private int	svy;
+	private int svy;
 
 	/**
 	 * The pan speed.
 	 */
-	private int	speed;
-
+	private int speed;
 
 	static {
 		offlineIcon = SpriteStore.get().getSprite("data/gui/offline.png");
 	}
 
-
 	/**
 	 * Set the default [singleton] screen.
-	 *
-	 * @param	screen		The screen.
+	 * 
+	 * @param screen
+	 *            The screen.
 	 */
 	public static void setDefaultScreen(GameScreen screen) {
 		GameScreen.screen = screen;
@@ -203,7 +202,8 @@ public class GameScreen {
 		return sh / SIZE_UNIT_PIXELS;
 	}
 
-	public GameScreen(StendhalClient client, BufferStrategy strategy, int sw, int sh) {
+	public GameScreen(StendhalClient client, BufferStrategy strategy, int sw,
+			int sh) {
 		this.client = client;
 		this.strategy = strategy;
 		this.sw = sw;
@@ -226,7 +226,6 @@ public class GameScreen {
 		g = (Graphics2D) strategy.getDrawGraphics();
 	}
 
-
 	/** Prepare screen for the next frame to be rendered and move it if needed */
 	public void nextFrame() {
 		g.dispose();
@@ -237,26 +236,26 @@ public class GameScreen {
 		g = (Graphics2D) strategy.getDrawGraphics();
 	}
 
-
 	/**
 	 * Add an entity.
-	 *
-	 * @param	entity		An entity.
+	 * 
+	 * @param entity
+	 *            An entity.
 	 */
 	public void addEntity(Entity entity) {
 		Entity2DView view = createView(entity);
 
-		if(view != null) {
+		if (view != null) {
 			entities.put(entity, view);
 			addEntityView(view);
 		}
 	}
 
-
 	/**
 	 * Add an entity view.
-	 *
-	 * @param	view		A view.
+	 * 
+	 * @param view
+	 *            A view.
 	 */
 	protected void addEntityView(Entity2DView view) {
 		views.add(view);
@@ -264,31 +263,30 @@ public class GameScreen {
 		view.setInspector(StendhalUI.get().getInspector());
 	}
 
-
 	/**
 	 * Remove an entity.
-	 *
-	 * @param	entity		An entity.
+	 * 
+	 * @param entity
+	 *            An entity.
 	 */
 	public void removeEntity(final Entity entity) {
 		Entity2DView view = entities.remove(entity);
 
-		if(view != null) {
+		if (view != null) {
 			removeEntityView(view);
 		}
 	}
 
-
 	/**
 	 * Remove an entity view.
-	 *
-	 * @param	view		A view.
+	 * 
+	 * @param view
+	 *            A view.
 	 */
 	protected void removeEntityView(Entity2DView view) {
 		view.release();
 		views.remove(view);
 	}
-
 
 	/**
 	 * Returns the Graphics2D object in case you want to operate it directly.
@@ -298,7 +296,6 @@ public class GameScreen {
 		return g;
 	}
 
-
 	/**
 	 * Update the view position to center the target position.
 	 */
@@ -306,45 +303,44 @@ public class GameScreen {
 		/*
 		 * Already centered?
 		 */
-		if((dvx == 0) && (dvy == 0)) {
+		if ((dvx == 0) && (dvy == 0)) {
 			return;
 		}
 
 		int sx = convertWorldXToScreenView(x) + (SIZE_UNIT_PIXELS / 2);
 		int sy = convertWorldYToScreenView(y) + (SIZE_UNIT_PIXELS / 2);
 
-		if((sx < 0) || (sx >= sw) || (sy < -SIZE_UNIT_PIXELS) || (sy > sh)) {
+		if ((sx < 0) || (sx >= sw) || (sy < -SIZE_UNIT_PIXELS) || (sy > sh)) {
 			/*
 			 * If off screen, just center
 			 */
 			center();
 		} else {
 			/*
-			 * Calculate the target speed.
-			 * The farther away, the faster.
+			 * Calculate the target speed. The farther away, the faster.
 			 */
 			int dux = dvx / 40;
 			int duy = dvy / 40;
 
 			int tspeed = ((dux * dux) + (duy * duy)) * PAN_SCALE;
 
-			if(speed > tspeed) {
+			if (speed > tspeed) {
 				speed = (speed + speed + tspeed) / 3;
 
 				/*
 				 * Don't stall
 				 */
-				if((dvx != 0) || (dvy != 0)) {
+				if ((dvx != 0) || (dvy != 0)) {
 					speed = Math.max(speed, 1);
 				}
-			} else if(speed < tspeed) {
+			} else if (speed < tspeed) {
 				speed += 2;
 			}
 
 			/*
 			 * Moving?
 			 */
-			if(speed != 0) {
+			if (speed != 0) {
 				/*
 				 * Not a^2 + b^2 = c^2, but good enough
 				 */
@@ -354,33 +350,32 @@ public class GameScreen {
 				int dy = speed * dvy / scalediv;
 
 				/*
-				 * Don't overshoot.
-				 * Don't stall.
+				 * Don't overshoot. Don't stall.
 				 */
-				if(dvx < 0) {
-					if(dx == 0) {
+				if (dvx < 0) {
+					if (dx == 0) {
 						dx = -1;
-					} else if(dx < dvx) {
+					} else if (dx < dvx) {
 						dx = dvx;
 					}
-				} else if(dvx > 0) {
-					if(dx == 0) {
+				} else if (dvx > 0) {
+					if (dx == 0) {
 						dx = 1;
-					} else if(dx > dvx) {
+					} else if (dx > dvx) {
 						dx = dvx;
 					}
 				}
 
-				if(dvy < 0) {
-					if(dy == 0) {
+				if (dvy < 0) {
+					if (dy == 0) {
 						dy = -1;
-					} else if(dy < dvy) {
+					} else if (dy < dvy) {
 						dy = dvy;
 					}
-				} else if(dvy > 0) {
-					if(dy == 0) {
+				} else if (dvy > 0) {
+					if (dy == 0) {
 						dy = 1;
-					} else if(dy > dvy) {
+					} else if (dy > dvy) {
 						dy = dvy;
 					}
 				}
@@ -397,11 +392,11 @@ public class GameScreen {
 		}
 	}
 
-
 	/**
 	 * Update the view position to center the target position.
-	 *
-	 * @param	immediate	Center on the coodinates immediately.
+	 * 
+	 * @param immediate
+	 *            Center on the coodinates immediately.
 	 */
 	protected void calculateView() {
 		int cvx = (x * SIZE_UNIT_PIXELS) + (SIZE_UNIT_PIXELS / 2) - (sw / 2);
@@ -410,22 +405,22 @@ public class GameScreen {
 		/*
 		 * Keep the world with-in the screen view
 		 */
-		if(cvx < 0) {
+		if (cvx < 0) {
 			cvx = 0;
 		} else {
 			int max = (ww * SIZE_UNIT_PIXELS) - sw;
 
-			if(cvx > max) {
+			if (cvx > max) {
 				cvx = max;
 			}
 		}
 
-		if(cvy < 0) {
+		if (cvy < 0) {
 			cvy = 0;
 		} else {
 			int max = (wh * SIZE_UNIT_PIXELS) - sh;
 
-			if(cvy > max) {
+			if (cvy > max) {
 				cvy = max;
 			}
 		}
@@ -433,7 +428,6 @@ public class GameScreen {
 		dvx = cvx - svx;
 		dvy = cvy - svy;
 	}
-
 
 	/**
 	 * Center the view.
@@ -448,11 +442,9 @@ public class GameScreen {
 		speed = 0;
 	}
 
-
 	public Entity2DView createView(final Entity entity) {
 		return Entity2DViewFactory.get().create(entity);
 	}
-
 
 	/*
 	 * Draw the screen.
@@ -461,8 +453,8 @@ public class GameScreen {
 		Collections.sort(views, entityViewComparator);
 
 		/*
-		 * Draw the GameLayers from bootom to top, relies on exact
-		 * naming of the layers
+		 * Draw the GameLayers from bootom to top, relies on exact naming of the
+		 * layers
 		 */
 		StaticGameLayers gameLayers = client.getStaticGameLayers();
 		String set = gameLayers.getRPZoneLayerSet();
@@ -477,28 +469,28 @@ public class GameScreen {
 		 */
 		int px = convertWorldXToScreenView(Math.max(x, 0));
 
-		if(px > 0) {
+		if (px > 0) {
 			g.setColor(Color.black);
 			g.fillRect(0, 0, px, sh);
 		}
 
 		px = convertWorldXToScreenView(Math.min(x + w, ww));
 
-		if(px < sw) {
+		if (px < sw) {
 			g.setColor(Color.black);
 			g.fillRect(px, 0, sw - px, sh);
 		}
 
 		int py = convertWorldYToScreenView(Math.max(y, 0));
 
-		if(py > 0) {
+		if (py > 0) {
 			g.setColor(Color.black);
 			g.fillRect(0, 0, sw, py);
 		}
 
 		py = convertWorldYToScreenView(Math.min(y + h, wh));
 
-		if(py < sh) {
+		if (py < sh) {
 			g.setColor(Color.black);
 			g.fillRect(0, py, sw, sh - py);
 		}
@@ -534,7 +526,6 @@ public class GameScreen {
 		}
 	}
 
-
 	/**
 	 * Draw the screen entities.
 	 */
@@ -546,7 +537,6 @@ public class GameScreen {
 		}
 	}
 
-
 	/**
 	 * Draw the top portion screen entities (such as HP/title bars).
 	 */
@@ -557,7 +547,6 @@ public class GameScreen {
 			view.drawTop(g2d);
 		}
 	}
-
 
 	/**
 	 * Draw the screen text bubbles.
@@ -577,8 +566,8 @@ public class GameScreen {
 
 	/**
 	 * Get the view X world coordinate.
-	 *
-	 * @return	The X coordinate of the left side.
+	 * 
+	 * @return The X coordinate of the left side.
 	 */
 	public double getViewX() {
 		return (double) getScreenViewX() / SIZE_UNIT_PIXELS;
@@ -586,8 +575,8 @@ public class GameScreen {
 
 	/**
 	 * Get the view Y world coordinate.
-	 *
-	 * @return	The Y coordinate of the left side.
+	 * 
+	 * @return The Y coordinate of the left side.
 	 */
 	public double getViewY() {
 		return (double) getScreenViewY() / SIZE_UNIT_PIXELS;
@@ -595,9 +584,11 @@ public class GameScreen {
 
 	/**
 	 * Set the target coordinates that the screen centers on.
-	 *
-	 * @param	x		The world X coordinate.
-	 * @param	y		The world Y coordinate.
+	 * 
+	 * @param x
+	 *            The world X coordinate.
+	 * @param y
+	 *            The world Y coordinate.
 	 */
 	public void place(double x, double y) {
 		int ix = (int) x;
@@ -606,7 +597,7 @@ public class GameScreen {
 		/*
 		 * Save CPU cycles
 		 */
-		if((ix != this.x) || (iy != this.y)) {
+		if ((ix != this.x) || (iy != this.y)) {
 			this.x = ix;
 			this.y = iy;
 
@@ -616,9 +607,11 @@ public class GameScreen {
 
 	/**
 	 * Sets the world size.
-	 *
-	 * @param	width		The world width.
-	 * @param	height		The height width.
+	 * 
+	 * @param width
+	 *            The world width.
+	 * @param height
+	 *            The height width.
 	 */
 	public void setMaxWorldSize(double width, double height) {
 		ww = (int) width;
@@ -629,13 +622,13 @@ public class GameScreen {
 
 	/**
 	 * Set the offline indication state.
-	 *
-	 * @param	offline		<code>true</code> if offline.
+	 * 
+	 * @param offline
+	 *            <code>true</code> if offline.
 	 */
 	public void setOffline(boolean offline) {
 		this.offline = offline;
 	}
-
 
 	/**
 	 * Helper to get notification type color.
@@ -644,53 +637,64 @@ public class GameScreen {
 		return ((j2DClient) StendhalUI.get()).getNotificationColor(type);
 	}
 
-
 	/**
 	 * Add a text bubble.
-	 *
-	 *
-	 *
+	 * 
+	 * 
+	 * 
 	 */
-	public void addText(double x, double y, String text, NotificationType type, boolean isTalking) {
+	public void addText(double x, double y, String text, NotificationType type,
+			boolean isTalking) {
 		addText(x, y, text, getNotificationColor(type), isTalking);
 	}
 
-
 	/**
 	 * Add a text bubble.
-	 *
-	 *
-	 *
+	 * 
+	 * 
+	 * 
 	 */
-	public void addText(final double x, final double y, final String text, final Color color, final boolean talking) {
-		addText(convertWorldToScreen(x), convertWorldToScreen(y), text, color, talking);
+	public void addText(final double x, final double y, final String text,
+			final Color color, final boolean talking) {
+		addText(convertWorldToScreen(x), convertWorldToScreen(y), text, color,
+				talking);
 	}
 
-
 	/**
 	 * Add a text bubble.
-	 *
-	 * @param	sx		The screen X coordinate.
-	 * @param	sy		The screen Y coordinate.
-	 * @param	text		The text.
-	 * @param	type		The type of notification text.
-	 * @param	talking		Is it is a talking text bubble.
+	 * 
+	 * @param sx
+	 *            The screen X coordinate.
+	 * @param sy
+	 *            The screen Y coordinate.
+	 * @param text
+	 *            The text.
+	 * @param type
+	 *            The type of notification text.
+	 * @param talking
+	 *            Is it is a talking text bubble.
 	 */
-	public void addText(final int sx, final int sy, final String text, final NotificationType type, final boolean talking) {
+	public void addText(final int sx, final int sy, final String text,
+			final NotificationType type, final boolean talking) {
 		addText(sx, sy, text, getNotificationColor(type), talking);
 	}
 
-
 	/**
 	 * Add a text bubble.
-	 *
-	 * @param	sx		The screen X coordinate.
-	 * @param	sy		The screen Y coordinate.
-	 * @param	text		The text.
-	 * @param	color		The text color.
-	 * @param	talking		Is it is a talking text bubble.
+	 * 
+	 * @param sx
+	 *            The screen X coordinate.
+	 * @param sy
+	 *            The screen Y coordinate.
+	 * @param text
+	 *            The text.
+	 * @param color
+	 *            The text color.
+	 * @param talking
+	 *            Is it is a talking text bubble.
 	 */
-	public void addText(int sx, int sy, final String text, final Color color, final boolean isTalking) {
+	public void addText(int sx, int sy, final String text, final Color color,
+			final boolean isTalking) {
 		Sprite sprite = createTextBox(text, 240, color, Color.white, isTalking);
 
 		if (isTalking) {
@@ -700,33 +704,31 @@ public class GameScreen {
 			// Point alignment: left-right centered, bottom
 			sx -= (sprite.getWidth() / 2);
 			sy -= sprite.getHeight();
-                }
-
+		}
 
 		/*
-		 * Try to keep the text on screen.
-		 * This could mess up the "talk" origin positioning.
+		 * Try to keep the text on screen. This could mess up the "talk" origin
+		 * positioning.
 		 */
-		if(sx < 0) {
+		if (sx < 0) {
 			sx = 0;
 		} else {
 			int max = getScreenWidth() - sprite.getWidth();
 
-			if(sx > max) {
+			if (sx > max) {
 				sx = max;
 			}
 		}
 
-		if(sy < 0) {
+		if (sy < 0) {
 			sy = 0;
 		} else {
 			int max = getScreenHeight() - sprite.getHeight();
 
-			if(sy > max) {
+			if (sy > max) {
 				sy = max;
 			}
 		}
-
 
 		boolean found = true;
 
@@ -742,10 +744,10 @@ public class GameScreen {
 			}
 		}
 
-		texts.add(new Text(sprite, sx, sy,
-			Math.max(Text.STANDARD_PERSISTENCE_TIME, text.length() * Text.STANDARD_PERSISTENCE_TIME / 50)));
+		texts.add(new Text(sprite, sx, sy, Math.max(
+				Text.STANDARD_PERSISTENCE_TIME, text.length()
+						* Text.STANDARD_PERSISTENCE_TIME / 50)));
 	}
-
 
 	/**
 	 * Remove a text bubble.
@@ -753,7 +755,6 @@ public class GameScreen {
 	public void removeText(Text entity) {
 		textsToRemove.add(entity);
 	}
-
 
 	/**
 	 * Remove all objects from the screen.
@@ -763,7 +764,6 @@ public class GameScreen {
 		texts.clear();
 		textsToRemove.clear();
 	}
-
 
 	/**
 	 * Clear the screen.
@@ -782,14 +782,15 @@ public class GameScreen {
 		}
 	}
 
-
 	/**
 	 * Get an entity view at given coordinates.
-	 *
-	 * @param	x		The X world coordinate.
-	 * @param	y		The Y world coordinate.
-	 *
-	 * @return	The entity view, or <code>null</code> if none found.
+	 * 
+	 * @param x
+	 *            The X world coordinate.
+	 * @param y
+	 *            The Y world coordinate.
+	 * 
+	 * @return The entity view, or <code>null</code> if none found.
 	 */
 	public Entity2DView getEntityViewAt(double x, double y) {
 		ListIterator<Entity2DView> it;
@@ -826,14 +827,15 @@ public class GameScreen {
 		return null;
 	}
 
-
 	/**
 	 * Get an entity view that is movable at given coordinates.
-	 *
-	 * @param	x		The X world coordinate.
-	 * @param	y		The Y world coordinate.
-	 *
-	 * @return	The entity view, or <code>null</code> if none found.
+	 * 
+	 * @param x
+	 *            The X world coordinate.
+	 * @param y
+	 *            The Y world coordinate.
+	 * 
+	 * @return The entity view, or <code>null</code> if none found.
 	 */
 	public Entity2DView getMovableEntityViewAt(final double x, final double y) {
 		ListIterator<Entity2DView> it;
@@ -846,7 +848,7 @@ public class GameScreen {
 		while (it.hasPrevious()) {
 			Entity2DView view = it.previous();
 
-			if(view.isMovable()) {
+			if (view.isMovable()) {
 				if (view.getEntity().getArea().contains(x, y)) {
 					return view;
 				}
@@ -864,7 +866,7 @@ public class GameScreen {
 		while (it.hasPrevious()) {
 			Entity2DView view = it.previous();
 
-			if(view.isMovable()) {
+			if (view.isMovable()) {
 				if (view.getArea().contains(sx, sy)) {
 					return view;
 				}
@@ -874,12 +876,11 @@ public class GameScreen {
 		return null;
 	}
 
-
 	/**
 	 * Get the text bubble at specific coordinates.
-	 *
-	 *
-	 *
+	 * 
+	 * 
+	 * 
 	 */
 	public Text getTextAt(double x, double y) {
 		ListIterator<Text> it = texts.listIterator(texts.size());
@@ -898,7 +899,6 @@ public class GameScreen {
 		return null;
 	}
 
-
 	/** Translate to world coordinates the given screen coordinate */
 	public Point2D translate(Point2D point) {
 		double tx = (point.getX() + svx) / SIZE_UNIT_PIXELS;
@@ -911,111 +911,116 @@ public class GameScreen {
 		return convertWorldToScreenView(point.getX(), point.getY());
 	}
 
-
 	/**
 	 * Convert world X coordinate to screen view coordinate.
-	 *
-	 * @param	wx		World X coordinate.
-	 *
-	 * @return	Screen X coordinate (in integer value).
+	 * 
+	 * @param wx
+	 *            World X coordinate.
+	 * 
+	 * @return Screen X coordinate (in integer value).
 	 */
 	public int convertWorldXToScreenView(double wx) {
 		return convertWorldToScreen(wx) - svx;
 	}
 
-
 	/**
 	 * Convert world Y coordinate to screen view coordinate.
-	 *
-	 * @param	wy		World Y coordinate.
-	 *
-	 * @return	Screen Y coordinate (in integer value).
+	 * 
+	 * @param wy
+	 *            World Y coordinate.
+	 * 
+	 * @return Screen Y coordinate (in integer value).
 	 */
 	public int convertWorldYToScreenView(double wy) {
 		return convertWorldToScreen(wy) - svy;
 	}
 
-
 	/**
 	 * Convert world coordinates to screen view coordinates.
-	 *
-	 * This does have some theorical range limits. Assuming a tile size
-	 * of 256x256 pixels (very high def), world coordinates are limited
-	 * to a little over +/-8 million, before the int (31-bit) values
-	 * returned from this are wrapped. So I see no issues, even if
-	 * absolute world coordinates are used.
-	 *
-	 * @param	wx		World X coordinate.
-	 * @param	wy		World Y coordinate.
-	 *
-	 * @return	Screen view coordinates (in integer values).
+	 * 
+	 * This does have some theorical range limits. Assuming a tile size of
+	 * 256x256 pixels (very high def), world coordinates are limited to a little
+	 * over +/-8 million, before the int (31-bit) values returned from this are
+	 * wrapped. So I see no issues, even if absolute world coordinates are used.
+	 * 
+	 * @param wx
+	 *            World X coordinate.
+	 * @param wy
+	 *            World Y coordinate.
+	 * 
+	 * @return Screen view coordinates (in integer values).
 	 */
 	public Point convertWorldToScreenView(double wx, double wy) {
-		return new Point(
-			convertWorldXToScreenView(wx),
-			convertWorldYToScreenView(wy));
+		return new Point(convertWorldXToScreenView(wx),
+				convertWorldYToScreenView(wy));
 	}
-
 
 	/**
 	 * Convert world coordinates to screen coordinates.
-	 *
-	 * @param	wrect		World area.
-	 *
-	 * @return	Screen rectangle (in integer values).
+	 * 
+	 * @param wrect
+	 *            World area.
+	 * 
+	 * @return Screen rectangle (in integer values).
 	 */
 	public Rectangle convertWorldToScreenView(Rectangle2D wrect) {
-		return convertWorldToScreenView(wrect.getX(), wrect.getY(), wrect.getWidth(), wrect.getHeight());
+		return convertWorldToScreenView(wrect.getX(), wrect.getY(), wrect
+				.getWidth(), wrect.getHeight());
 	}
-
 
 	/**
 	 * Convert world coordinates to screen coordinates.
-	 *
-	 * @param	wx		World X coordinate.
-	 * @param	wy		World Y coordinate.
-	 * @param	wwidth		World area width.
-	 * @param	wheight		World area height.
-	 *
-	 * @return	Screen rectangle (in integer values).
+	 * 
+	 * @param wx
+	 *            World X coordinate.
+	 * @param wy
+	 *            World Y coordinate.
+	 * @param wwidth
+	 *            World area width.
+	 * @param wheight
+	 *            World area height.
+	 * 
+	 * @return Screen rectangle (in integer values).
 	 */
-	public Rectangle convertWorldToScreenView(double wx, double wy, double wwidth, double wheight) {
-		return new Rectangle(
-			convertWorldXToScreenView(wx),
-			convertWorldYToScreenView(wy),
-			(int) (wwidth * SIZE_UNIT_PIXELS),
-			(int) (wheight * SIZE_UNIT_PIXELS));
+	public Rectangle convertWorldToScreenView(double wx, double wy,
+			double wwidth, double wheight) {
+		return new Rectangle(convertWorldXToScreenView(wx),
+				convertWorldYToScreenView(wy),
+				(int) (wwidth * SIZE_UNIT_PIXELS),
+				(int) (wheight * SIZE_UNIT_PIXELS));
 	}
-
 
 	/**
 	 * Determine if an area is in the screen view.
-	 *
-	 * @param	srect		Screen area.
-	 *
-	 * @return	<code>true</code> if some part of area in in the
-	 *		visible screen, otherwise <code>false</code>.
+	 * 
+	 * @param srect
+	 *            Screen area.
+	 * 
+	 * @return <code>true</code> if some part of area in in the visible
+	 *         screen, otherwise <code>false</code>.
 	 */
 	public boolean isInScreen(Rectangle srect) {
 		return isInScreen(srect.x, srect.y, srect.width, srect.height);
 	}
 
-
 	/**
 	 * Determine if an area is in the screen view.
-	 *
-	 * @param	sx		Screen X coordinate.
-	 * @param	sy		Screen Y coordinate.
-	 * @param	swidth		Screen area width.
-	 * @param	sheight		Screen area height.
-	 *
-	 * @return	<code>true</code> if some part of area in in the
-	 *		visible screen, otherwise <code>false</code>.
+	 * 
+	 * @param sx
+	 *            Screen X coordinate.
+	 * @param sy
+	 *            Screen Y coordinate.
+	 * @param swidth
+	 *            Screen area width.
+	 * @param sheight
+	 *            Screen area height.
+	 * 
+	 * @return <code>true</code> if some part of area in in the visible
+	 *         screen, otherwise <code>false</code>.
 	 */
 	public boolean isInScreen(int sx, int sy, int swidth, int sheight) {
 		return (((sx >= -swidth) && (sx < sw)) && ((sy >= -sheight) && (sy < sh)));
 	}
-
 
 	/** Draw a sprite in screen given its world coordinates */
 	public void draw(Sprite sprite, double wx, double wy) {
@@ -1025,7 +1030,8 @@ public class GameScreen {
 			int spritew = sprite.getWidth() + 2;
 			int spriteh = sprite.getHeight() + 2;
 
-			if (((p.x >= -spritew) && (p.x < sw)) && ((p.y >= -spriteh) && (p.y < sh))) {
+			if (((p.x >= -spritew) && (p.x < sw))
+					&& ((p.y >= -spriteh) && (p.y < sh))) {
 				sprite.draw(g, p.x, p.y);
 			}
 		}
@@ -1035,32 +1041,36 @@ public class GameScreen {
 		sprite.draw(g, sx, sy);
 	}
 
-
 	/**
 	 * Create a sprite representation of some text.
-	 *
-	 * @param	text		The text.
-	 * @param	type		The type.
-	 *
-	 * @return	A sprite.
+	 * 
+	 * @param text
+	 *            The text.
+	 * @param type
+	 *            The type.
+	 * 
+	 * @return A sprite.
 	 */
 	public Sprite createString(final String text, final NotificationType type) {
 		return createString(text, getNotificationColor(type));
 	}
 
-
 	/**
 	 * Create a sprite representation of some text.
-	 *
-	 * @param	text		The text.
-	 * @param	color		The text color.
-	 *
-	 * @return	A sprite.
+	 * 
+	 * @param text
+	 *            The text.
+	 * @param color
+	 *            The text color.
+	 * 
+	 * @return A sprite.
 	 */
 	public Sprite createString(String text, Color textColor) {
-		GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice()
-		        .getDefaultConfiguration();
-		Image image = gc.createCompatibleImage(g.getFontMetrics().stringWidth(text) + 2, 16, Transparency.BITMASK);
+		GraphicsConfiguration gc = GraphicsEnvironment
+				.getLocalGraphicsEnvironment().getDefaultScreenDevice()
+				.getDefaultConfiguration();
+		Image image = gc.createCompatibleImage(g.getFontMetrics().stringWidth(
+				text) + 2, 16, Transparency.BITMASK);
 		Graphics g2d = image.getGraphics();
 
 		drawOutlineString(g2d, textColor, text, 1, 10);
@@ -1068,45 +1078,58 @@ public class GameScreen {
 		return new ImageSprite(image);
 	}
 
-
 	/**
 	 * Draw a text string (like <em>Graphics</em><code>.drawString()</code>)
-	 * only with an outline border. The area drawn extends 1 pixel out
-	 * on all side from what would normal be drawn by drawString().
-	 *
-	 * @param	g		The graphics context.
-	 * @param	textColor	The text color.
-	 * @param	outlineColor	The outline color.
-	 * @param	text		The text to draw.
-	 * @param	x		The X position.
-	 * @param	y		The Y position.
+	 * only with an outline border. The area drawn extends 1 pixel out on all
+	 * side from what would normal be drawn by drawString().
+	 * 
+	 * @param g
+	 *            The graphics context.
+	 * @param textColor
+	 *            The text color.
+	 * @param outlineColor
+	 *            The outline color.
+	 * @param text
+	 *            The text to draw.
+	 * @param x
+	 *            The X position.
+	 * @param y
+	 *            The Y position.
 	 */
-	public void drawOutlineString(final Graphics g, final Color textColor, final String text, final int x, final int y) {
+	public void drawOutlineString(final Graphics g, final Color textColor,
+			final String text, final int x, final int y) {
 		/*
-		 * Use light gray as outline for colors < 25% bright.
-		 * Luminance = 0.299R + 0.587G + 0.114B
+		 * Use light gray as outline for colors < 25% bright. Luminance = 0.299R +
+		 * 0.587G + 0.114B
 		 */
-		int lum = ((textColor.getRed() * 299)
-			+ (textColor.getGreen() * 587)
-			+ (textColor.getBlue() * 114)) / 1000;
+		int lum = ((textColor.getRed() * 299) + (textColor.getGreen() * 587) + (textColor
+				.getBlue() * 114)) / 1000;
 
-		drawOutlineString(g, textColor, (lum >= 64) ? Color.black : Color.lightGray, text, x, y);
+		drawOutlineString(g, textColor, (lum >= 64) ? Color.black
+				: Color.lightGray, text, x, y);
 	}
 
-
 	/**
 	 * Draw a text string (like <em>Graphics</em><code>.drawString()</code>)
-	 * only with an outline border. The area drawn extends 1 pixel out
-	 * on all side from what would normal be drawn by drawString().
-	 *
-	 * @param	g		The graphics context.
-	 * @param	textColor	The text color.
-	 * @param	outlineColor	The outline color.
-	 * @param	text		The text to draw.
-	 * @param	x		The X position.
-	 * @param	y		The Y position.
+	 * only with an outline border. The area drawn extends 1 pixel out on all
+	 * side from what would normal be drawn by drawString().
+	 * 
+	 * @param g
+	 *            The graphics context.
+	 * @param textColor
+	 *            The text color.
+	 * @param outlineColor
+	 *            The outline color.
+	 * @param text
+	 *            The text to draw.
+	 * @param x
+	 *            The X position.
+	 * @param y
+	 *            The Y position.
 	 */
-	public void drawOutlineString(final Graphics g, final Color textColor, final Color outlineColor, final String text, final int x, final int y) {
+	public void drawOutlineString(final Graphics g, final Color textColor,
+			final Color outlineColor, final String text, final int x,
+			final int y) {
 		g.setColor(outlineColor);
 		g.drawString(text, x - 1, y - 1);
 		g.drawString(text, x - 1, y + 1);
@@ -1116,7 +1139,6 @@ public class GameScreen {
 		g.setColor(textColor);
 		g.drawString(text, x, y);
 	}
-
 
 	private int positionStringOfSize(String text, int width) {
 		String[] words = text.split(" ");
@@ -1128,7 +1150,9 @@ public class GameScreen {
 			textUnderWidth = words[0];
 		}
 
-		while ((i < words.length) && (g.getFontMetrics().stringWidth(textUnderWidth + " " + words[i]) < width)) {
+		while ((i < words.length)
+				&& (g.getFontMetrics().stringWidth(
+						textUnderWidth + " " + words[i]) < width)) {
 			textUnderWidth = textUnderWidth + " " + words[i];
 			i++;
 		}
@@ -1138,8 +1162,9 @@ public class GameScreen {
 		}
 
 		if (g.getFontMetrics().stringWidth(textUnderWidth) > width) {
-			return (int) ((float) width / (float) g.getFontMetrics().stringWidth(textUnderWidth) * textUnderWidth
-			        .length());
+			return (int) ((float) width
+					/ (float) g.getFontMetrics().stringWidth(textUnderWidth) * textUnderWidth
+					.length());
 		}
 
 		return textUnderWidth.length();
@@ -1150,13 +1175,18 @@ public class GameScreen {
 	// ToDo: optimize the alghorithm, it's a little long ;)
 
 	/**
-	 * Formats a text by changing the  color of words starting with {@link #clone()}.S
-	 *
-	 * @param line the text
-	 * @param fontNormal the font
-	 * @param colorNormal normal color (for non-special text)
+	 * Formats a text by changing the color of words starting with
+	 * {@link #clone()}.S
+	 * 
+	 * @param line
+	 *            the text
+	 * @param fontNormal
+	 *            the font
+	 * @param colorNormal
+	 *            normal color (for non-special text)
 	 */
-	public AttributedString formatLine(String line, Font fontNormal, Color colorNormal) {
+	public AttributedString formatLine(String line, Font fontNormal,
+			Color colorNormal) {
 		Font specialFont = fontNormal.deriveFont(Font.ITALIC);
 
 		// tokenize the string
@@ -1185,8 +1215,10 @@ public class GameScreen {
 				color = Color.blue;
 			}
 			if (tok.length() > 0) {
-				aStyledText.addAttribute(TextAttribute.FONT, font, s, s + tok.length() + 1);
-				aStyledText.addAttribute(TextAttribute.FOREGROUND, color, s, s + tok.length() + 1);
+				aStyledText.addAttribute(TextAttribute.FONT, font, s, s
+						+ tok.length() + 1);
+				aStyledText.addAttribute(TextAttribute.FOREGROUND, color, s, s
+						+ tok.length() + 1);
 			}
 			s += tok.length() + 1;
 		}
@@ -1195,7 +1227,8 @@ public class GameScreen {
 
 	}
 
-	public Sprite createTextBox(String text, int width, Color textColor, Color fillColor, boolean isTalking) {
+	public Sprite createTextBox(String text, int width, Color textColor,
+			Color fillColor, boolean isTalking) {
 		java.util.List<String> lines = new java.util.LinkedList<String>();
 
 		int i = 0;
@@ -1211,12 +1244,11 @@ public class GameScreen {
 		while (text.length() > 0) {
 			int pos = positionStringOfSize(text, width - delta);
 
-
 			/*
 			 * Hard line breaks
 			 */
 			int nlpos = text.indexOf('\n', 1);
-			if ((nlpos  != -1) && (nlpos < pos)) {
+			if ((nlpos != -1) && (nlpos < pos)) {
 				pos = nlpos;
 			}
 
@@ -1235,10 +1267,12 @@ public class GameScreen {
 			}
 		}
 
-		GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice()
-		        .getDefaultConfiguration();
+		GraphicsConfiguration gc = GraphicsEnvironment
+				.getLocalGraphicsEnvironment().getDefaultScreenDevice()
+				.getDefaultConfiguration();
 
-		int imageWidth = ((lineLengthPixels + delta < width) ? lineLengthPixels + delta : width) + 4;
+		int imageWidth = ((lineLengthPixels + delta < width) ? lineLengthPixels
+				+ delta : width) + 4;
 		int imageHeight = 16 * numLines;
 
 		// Workaround for X-Windows not supporting images of height 0 pixel.
@@ -1247,28 +1281,40 @@ public class GameScreen {
 			logger.warn("Created textbox for empty text");
 		}
 
-		Image image = gc.createCompatibleImage(imageWidth, imageHeight, Transparency.BITMASK);
+		Image image = gc.createCompatibleImage(imageWidth, imageHeight,
+				Transparency.BITMASK);
 
 		Graphics2D g2d = (Graphics2D) image.getGraphics();
-		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+				RenderingHints.VALUE_ANTIALIAS_ON);
 
 		if (fillColor != null) {
 			Composite xac = g2d.getComposite();
-			AlphaComposite ac = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.8f);
+			AlphaComposite ac = AlphaComposite.getInstance(
+					AlphaComposite.SRC_OVER, 0.8f);
 			g2d.setComposite(ac);
 			g2d.setColor(fillColor);
-			g2d.fillRoundRect(10, 0, ((lineLengthPixels < width) ? lineLengthPixels : width) + 3, 16 * numLines - 1, 4,
-			        4);
+			g2d
+					.fillRoundRect(10, 0,
+							((lineLengthPixels < width) ? lineLengthPixels
+									: width) + 3, 16 * numLines - 1, 4, 4);
 			g2d.setColor(textColor);
 			if (isTalking) {
-				g2d.drawRoundRect(10, 0, ((lineLengthPixels < width) ? lineLengthPixels : width) + 3,
-				        16 * numLines - 1, 4, 4);
+				g2d
+						.drawRoundRect(10, 0,
+								((lineLengthPixels < width) ? lineLengthPixels
+										: width) + 3, 16 * numLines - 1, 4, 4);
 			} else {
 				float[] dash = { 4, 2 };
-				BasicStroke newStroke = new BasicStroke(2, BasicStroke.CAP_ROUND, BasicStroke.JOIN_MITER, 1, dash, 0);
+				BasicStroke newStroke = new BasicStroke(2,
+						BasicStroke.CAP_ROUND, BasicStroke.JOIN_MITER, 1, dash,
+						0);
 				Stroke oldStroke = g2d.getStroke();
 				g2d.setStroke(newStroke);
-				g2d.drawRect(10, 0, ((lineLengthPixels < width) ? lineLengthPixels : width) + 3, 16 * numLines - 1);
+				g2d
+						.drawRect(10, 0,
+								((lineLengthPixels < width) ? lineLengthPixels
+										: width) + 3, 16 * numLines - 1);
 				g2d.setStroke(oldStroke);
 			}
 			g2d.setComposite(xac);
@@ -1287,7 +1333,8 @@ public class GameScreen {
 
 		i = 0;
 		for (String line : lines) {
-			AttributedString aStyledText = formatLine(line, g2d.getFont(), textColor);
+			AttributedString aStyledText = formatLine(line, g2d.getFont(),
+					textColor);
 
 			if (fillColor == null) {
 				g2d.setColor(Color.black);
@@ -1299,13 +1346,13 @@ public class GameScreen {
 
 			g2d.setColor(textColor);
 
-			g2d.drawString(aStyledText.getIterator(), 2 + delta, 2 + i * 16 + 10);
+			g2d.drawString(aStyledText.getIterator(), 2 + delta,
+					2 + i * 16 + 10);
 			i++;
 		}
 
 		return new ImageSprite(image);
 	}
-
 
 	//
 	// <GameScreen2D>
@@ -1313,10 +1360,11 @@ public class GameScreen {
 
 	/**
 	 * Convert a world unit value to a screen unit value.
-	 *
-	 * @param	w		World value.
-	 *
-	 * @return	A screen value (in pixels).
+	 * 
+	 * @param w
+	 *            World value.
+	 * 
+	 * @return A screen value (in pixels).
 	 */
 	public int convertWorldToScreen(double w) {
 		return (int) (w * SIZE_UNIT_PIXELS);
@@ -1324,8 +1372,8 @@ public class GameScreen {
 
 	/**
 	 * Get the full screen height in pixels.
-	 *
-	 * @return	The height.
+	 * 
+	 * @return The height.
 	 */
 	public int getScreenHeight() {
 		return convertWorldToScreen(wh);
@@ -1333,8 +1381,8 @@ public class GameScreen {
 
 	/**
 	 * Get the full screen width in pixels.
-	 *
-	 * @return	The width.
+	 * 
+	 * @return The width.
 	 */
 	public int getScreenWidth() {
 		return convertWorldToScreen(ww);
@@ -1342,8 +1390,8 @@ public class GameScreen {
 
 	/**
 	 * Get the view height in pixels.
-	 *
-	 * @return	The view height.
+	 * 
+	 * @return The view height.
 	 */
 	public int getScreenViewHeight() {
 		return sh;
@@ -1351,8 +1399,8 @@ public class GameScreen {
 
 	/**
 	 * Get the view width in pixels.
-	 *
-	 * @return	The view width.
+	 * 
+	 * @return The view width.
 	 */
 	public int getScreenViewWidth() {
 		return sw;
@@ -1360,8 +1408,8 @@ public class GameScreen {
 
 	/**
 	 * Get the view X screen coordinate.
-	 *
-	 * @return	The X coordinate of the left side.
+	 * 
+	 * @return The X coordinate of the left side.
 	 */
 	public int getScreenViewX() {
 		return svx;
@@ -1369,8 +1417,8 @@ public class GameScreen {
 
 	/**
 	 * Get the view Y screen coordinate.
-	 *
-	 * @return	The Y coordinate of the left side.
+	 * 
+	 * @return The Y coordinate of the left side.
 	 */
 	public int getScreenViewY() {
 		return svy;
@@ -1379,24 +1427,24 @@ public class GameScreen {
 	//
 	//
 
-	public static class EntityViewComparator implements Comparator<Entity2DView> {
+	public static class EntityViewComparator implements
+			Comparator<Entity2DView> {
 		//
 		// Comparator
 		//
 
 		public int compare(Entity2DView view1, Entity2DView view2) {
-			int	rv;
-
+			int rv;
 
 			rv = view1.getZIndex() - view2.getZIndex();
 
-			if(rv == 0) {
+			if (rv == 0) {
 				Rectangle area1 = view1.getArea();
 				Rectangle area2 = view2.getArea();
 
 				rv = (area1.y + area1.height) - (area2.y + area2.height);
 
-				if(rv == 0) {
+				if (rv == 0) {
 					rv = area1.x - area2.x;
 				}
 			}

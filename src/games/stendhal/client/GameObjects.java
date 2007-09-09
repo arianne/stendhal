@@ -67,7 +67,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 
 	/**
 	 * constructor
-	 *
+	 * 
 	 * @param collisionMap
 	 *            =layers that make floor and building
 	 */
@@ -80,7 +80,6 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 	public Iterator<Entity> iterator() {
 		return objects.values().iterator();
 	}
-
 
 	public Entity get(RPObject object) {
 		return objects.get(FQID.create(object));
@@ -95,7 +94,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 		// invalidate all entity objects
 		Iterator<Entity> it = iterator();
 
-		while(it.hasNext()) {
+		while (it.hasNext()) {
 			Entity entity = it.next();
 			entity.release();
 		}
@@ -113,7 +112,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 		}
 
 		for (Entity other : objects.values()) {
-			if(other.isObstacle(entity) && area.intersects(other.getArea())) {
+			if (other.isObstacle(entity) && area.intersects(other.getArea())) {
 				return true;
 			}
 		}
@@ -122,10 +121,10 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 	}
 
 	/**
-	 * Update objects based on the lapsus of time ellapsed since the
-	 * last call.
-	 *
-	 * @param	delta		The time since last update (in ms).
+	 * Update objects based on the lapsus of time ellapsed since the last call.
+	 * 
+	 * @param delta
+	 *            The time since last update (in ms).
 	 */
 	public void update(int delta) {
 		for (Entity entity : objects.values()) {
@@ -133,24 +132,23 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 		}
 	}
 
-
 	/**
 	 * Create an add an Entity. This does not add to the screen list.
-	 *
-	 * @param	object		The object.
-	 *
-	 * @return	An entity.
+	 * 
+	 * @param object
+	 *            The object.
+	 * 
+	 * @return An entity.
 	 */
 	protected Entity add(final RPObject object) {
 		Entity entity = EntityFactory.createEntity(object);
 
-		if(entity != null) {
+		if (entity != null) {
 			objects.put(FQID.create(object), entity);
 		}
 
 		return entity;
 	}
-
 
 	//
 	// RPObjectChangeListener
@@ -158,27 +156,28 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 
 	/**
 	 * An object was added.
-	 *
-	 * @param	object		The object.
+	 * 
+	 * @param object
+	 *            The object.
 	 */
 	public void onAdded(final RPObject object) {
-		if(!object.getRPClass().subclassOf("entity")) {
+		if (!object.getRPClass().subclassOf("entity")) {
 			logger.warn("Non-entity object added: " + object);
 		}
 
 		if (!object.has("server-only")) {
-			if(!object.has("type")) {
+			if (!object.has("type")) {
 				logger.error("Entity without type: " + object);
 				return;
 			}
 
 			Entity entity = add(object);
 
-			if(entity != null) {
+			if (entity != null) {
 				/*
 				 * Only non-contained objects are on screen
 				 */
-				if(!object.isContained()) {
+				if (!object.isContained()) {
 					GameScreen.get().addEntity(entity);
 				}
 
@@ -191,12 +190,13 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 		}
 	}
 
-
 	/**
 	 * The object added/changed attribute(s).
-	 *
-	 * @param	object		The base object.
-	 * @param	changes		The changes.
+	 * 
+	 * @param object
+	 *            The base object.
+	 * @param changes
+	 *            The changes.
 	 */
 	public void onChangedAdded(final RPObject object, final RPObject changes) {
 		Entity entity = objects.get(FQID.create(object));
@@ -206,16 +206,20 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 		}
 	}
 
-
 	/**
 	 * A slot object added/changed attribute(s).
-	 *
-	 * @param	container	The base container object.
-	 * @param	slotName	The container's slot name.
-	 * @param	object		The base slot object.
-	 * @param	changes		The slot changes.
+	 * 
+	 * @param container
+	 *            The base container object.
+	 * @param slotName
+	 *            The container's slot name.
+	 * @param object
+	 *            The base slot object.
+	 * @param changes
+	 *            The slot changes.
 	 */
-	public void onChangedAdded(final RPObject container, final String slotName, final RPObject object, final RPObject changes) {
+	public void onChangedAdded(final RPObject container, final String slotName,
+			final RPObject object, final RPObject changes) {
 		Entity entity = objects.get(FQID.create(container));
 
 		if (entity != null) {
@@ -223,12 +227,13 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 		}
 	}
 
-
 	/**
 	 * An object removed attribute(s).
-	 *
-	 * @param	object		The base object.
-	 * @param	changes		The changes.
+	 * 
+	 * @param object
+	 *            The base object.
+	 * @param changes
+	 *            The changes.
 	 */
 	public void onChangedRemoved(final RPObject object, final RPObject changes) {
 		Entity entity = objects.get(FQID.create(object));
@@ -238,16 +243,20 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 		}
 	}
 
-
 	/**
 	 * A slot object removed attribute(s).
-	 *
-	 * @param	container	The base container object.
-	 * @param	slotName	The container's slot name.
-	 * @param	object		The base slot object.
-	 * @param	changes		The slot changes.
+	 * 
+	 * @param container
+	 *            The base container object.
+	 * @param slotName
+	 *            The container's slot name.
+	 * @param object
+	 *            The base slot object.
+	 * @param changes
+	 *            The slot changes.
 	 */
-	public void onChangedRemoved(final RPObject container, final String slotName, final RPObject object, final RPObject changes) {
+	public void onChangedRemoved(final RPObject container,
+			final String slotName, final RPObject object, final RPObject changes) {
 		Entity entity = objects.get(FQID.create(container));
 
 		if (entity != null) {
@@ -255,11 +264,11 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 		}
 	}
 
-
 	/**
 	 * An object was removed.
-	 *
-	 * @param	object		The object.
+	 * 
+	 * @param object
+	 *            The object.
 	 */
 	public void onRemoved(final RPObject object) {
 		RPObject.ID id = object.getID();
@@ -278,25 +287,24 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 	//
 
 	/**
-	 * A fully qualified ID. This will make an nested ID unique, even
-	 * when in a slot tree.
+	 * A fully qualified ID. This will make an nested ID unique, even when in a
+	 * slot tree.
 	 */
 	protected static class FQID {
 		/**
 		 * The ID path.
 		 */
-		protected RPObject.ID []	path;
-
+		protected RPObject.ID[] path;
 
 		/**
 		 * Create a fully qualified ID.
-		 *
-		 * @param	path		An ID path.
+		 * 
+		 * @param path
+		 *            An ID path.
 		 */
-		public FQID(final RPObject.ID [] path) {
+		public FQID(final RPObject.ID[] path) {
 			this.path = path;
 		}
-
 
 		//
 		// FQID
@@ -304,10 +312,11 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 
 		/**
 		 * Create a FQID from an object tree.
-		 *
-		 * @param	object		The leaf object.
-		 *
-		 * @return	A FQID.
+		 * 
+		 * @param object
+		 *            The leaf object.
+		 * 
+		 * @return A FQID.
 		 */
 		public static FQID create(final RPObject object) {
 			RPObject node;
@@ -316,16 +325,16 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 
 			node = object;
 
-			while(node != null) {
+			while (node != null) {
 				len++;
 				node = node.getContainer();
 			}
 
-			RPObject.ID [] path = new RPObject.ID[len];
+			RPObject.ID[] path = new RPObject.ID[len];
 
 			node = object;
 
-			while(node != null) {
+			while (node != null) {
 				path[--len] = node.getID();
 				node = node.getContainer();
 			}
@@ -333,16 +342,14 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 			return new FQID(path);
 		}
 
-
 		/**
 		 * Get the tree path of IDs.
-		 *
-		 * @return	The ID path.
+		 * 
+		 * @return The ID path.
 		 */
-		public RPObject.ID [] getPath() {
+		public RPObject.ID[] getPath() {
 			return path;
 		}
-
 
 		//
 		// Object
@@ -350,25 +357,26 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 
 		/**
 		 * Check if this equals another object.
-		 *
-		 * @param	obj		The object to compare to.
+		 * 
+		 * @param obj
+		 *            The object to compare to.
 		 */
 		@Override
 		public boolean equals(final Object obj) {
-			if(!(obj instanceof FQID)) {
+			if (!(obj instanceof FQID)) {
 				return false;
 			}
 
-			RPObject.ID [] opath = ((FQID) obj).getPath();
+			RPObject.ID[] opath = ((FQID) obj).getPath();
 
-			if(path.length != opath.length) {
+			if (path.length != opath.length) {
 				return false;
 			}
 
 			int i = path.length;
 
-			while(i-- != 0) {
-				if(!path[i].equals(opath[i])) {
+			while (i-- != 0) {
+				if (!path[i].equals(opath[i])) {
 					return false;
 				}
 			}
@@ -376,17 +384,16 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 			return true;
 		}
 
-
 		/**
 		 * Get the hash code.
-		 *
-		 * @return	The hash code.
+		 * 
+		 * @return The hash code.
 		 */
 		@Override
 		public int hashCode() {
 			int value = 0;
 
-			for(RPObject.ID id : path) {
+			for (RPObject.ID id : path) {
 				value ^= id.hashCode();
 			}
 

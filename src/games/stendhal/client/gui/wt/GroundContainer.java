@@ -34,11 +34,11 @@ import marauroa.common.game.RPAction;
 import marauroa.common.game.RPSlot;
 
 /**
- * 
+ *
  * This container is the ground
- * 
+ *
  * @author mtotz
- * 
+ *
  */
 
 public class GroundContainer extends WtPanel implements WtDropTarget, Inspector {
@@ -52,7 +52,6 @@ public class GroundContainer extends WtPanel implements WtDropTarget, Inspector 
 
 	/** the game screen */
 	private GameScreen screen;
-
 
 	/** creates a new groundcontainer */
 	public GroundContainer(StendhalUI ui) {
@@ -69,7 +68,6 @@ public class GroundContainer extends WtPanel implements WtDropTarget, Inspector 
 		screen = ui.getScreen();
 	}
 
-
 	/** drags an item from the ground */
 	@Override
 	protected WtDraggable getDragged(int x, int y) {
@@ -80,7 +78,8 @@ public class GroundContainer extends WtPanel implements WtDropTarget, Inspector 
 		}
 
 		Point2D point = screen.translate(new Point2D.Double(x, y));
-		EntityView view = screen.getMovableEntityViewAt(point.getX(), point.getY());
+		EntityView view = screen.getMovableEntityViewAt(point.getX(), point
+				.getY());
 
 		// only Items can be dragged
 		if (view != null) {
@@ -91,9 +90,9 @@ public class GroundContainer extends WtPanel implements WtDropTarget, Inspector 
 	}
 
 	/**
-	 * 
-	 * 
-	 * 
+	 *
+	 *
+	 *
 	 */
 	@Override
 	public synchronized boolean onMouseClick(Point p) {
@@ -124,7 +123,7 @@ public class GroundContainer extends WtPanel implements WtDropTarget, Inspector 
 				return true;
 			}
 		}
-		
+
 		return false;
 	}
 
@@ -183,15 +182,15 @@ public class GroundContainer extends WtPanel implements WtDropTarget, Inspector 
 			if (actions.length > 0) {
 				Entity entity = view.getEntity();
 
-				CommandList list = new CommandList(entity.getType(), actions, view);
+				CommandList list = new CommandList(entity.getType(), actions,
+						view);
 				ui.setContextMenu(list);
 			}
 			return true;
 		}
-		
+
 		return false;
 	}
-
 
 	//
 	// WtDropTarget
@@ -208,7 +207,7 @@ public class GroundContainer extends WtPanel implements WtDropTarget, Inspector 
 
 		RPAction action = new RPAction();
 
-		if(container.isContained()) {
+		if (container.isContained()) {
 			// looks like an drop
 			action.put("type", "drop");
 		} else {
@@ -233,12 +232,12 @@ public class GroundContainer extends WtPanel implements WtDropTarget, Inspector 
 		return true;
 	}
 
-
 	//
 	// Inspector
 	//
 
-	public EntityContainer inspectMe(Entity suspect, RPSlot content, EntityContainer container) {
+	public EntityContainer inspectMe(Entity suspect, RPSlot content,
+			EntityContainer container) {
 		if ((container == null) || !container.isVisible()) {
 			if (suspect instanceof Chest) {
 				container = new EntityContainer(client, suspect.getType(), 5, 6);

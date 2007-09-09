@@ -1,14 +1,14 @@
 /*
  *  WorldObjects in games.stendhal.client
  *  file: WorldObjects.java
- * 
+ *
  *  Project stendhal
  *  @author Jane Hunt
  *  Created 23.01.2006
  *  Version
- * 
+ *
  This program is free software. You can use, redistribute and/or modify it under
- the termsof the GNU General Public License as published by the Free Software 
+ the termsof the GNU General Public License as published by the Free Software
  Foundation, version 2 of the License.
 
  This program is distributed in the hope that it will be useful, but WITHOUT
@@ -32,7 +32,7 @@ import java.util.List;
  * zones. Events shall be reported dependent on succession of game flow and in
  * particular free from events caused by perceptions and sync operations of the
  * lower client layers.
- * 
+ *
  * Currently works for zone events.
  */
 public class WorldObjects {
@@ -42,13 +42,13 @@ public class WorldObjects {
 	public static interface WorldListener {
 
 		/** Called when a world zone has been loaded. */
-		public void zoneEntered(String zoneName);
+		void zoneEntered(String zoneName);
 
 		/** Called when a world zone has been unloaded. */
-		public void zoneLeft(String zoneName);
+		void zoneLeft(String zoneName);
 
 		/** Called when the player arrives at a map location. */
-		public void playerMoved();
+		void playerMoved();
 	}
 
 	/** Adds a WorldListener to this event distributor. */

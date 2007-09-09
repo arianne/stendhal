@@ -32,7 +32,7 @@ import marauroa.common.io.Persistence;
 /**
  * This manager keeps track of all the windows and their positions/ minimized
  * state.
- * 
+ *
  * @author mtotz
  */
 // TODO: Split this class into parts (the property file handling)
@@ -98,7 +98,7 @@ public class WtWindowManager {
 			writer.close();
 		} catch (IOException e) {
 			// ignore exception
-			logger.error("Can't write " + stendhal.STENDHAL_FOLDER + FILE_NAME,e);
+			logger.error("Can't write " + stendhal.STENDHAL_FOLDER + FILE_NAME, e);
 		}
 	}
 
@@ -176,7 +176,7 @@ public class WtWindowManager {
 	/** the panels minimized state changed, update the internal representation */
 	public void setMinimized(ManagedWindow panel, boolean state) {
 		WindowConfiguration config = getConfig(panel);
-		
+
 		if (config.minimized != state) {
 			if (!state) {
 				if (config.name.equals("bag")) {

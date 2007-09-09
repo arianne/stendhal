@@ -31,7 +31,7 @@ import marauroa.common.game.RPSlot;
 
 /**
  * This panel is a container showing all items in a slot
- * 
+ *
  * @author mtotz
  */
 public class EntityContainer extends WtPanel {
@@ -54,7 +54,8 @@ public class EntityContainer extends WtPanel {
 	private RPSlot shownSlot;
 
 	/** creates the panel */
-	public EntityContainer(StendhalClient client, String name, int width, int height) {
+	public EntityContainer(StendhalClient client, String name, int width,
+			int height) {
 		super(name, 0, 300, 100, 100);
 
 		setTitletext(name);
@@ -72,13 +73,15 @@ public class EntityContainer extends WtPanel {
 		// add the slots
 		for (int y = 0; y < height; y++) {
 			for (int x = 0; x < width; x++) {
-				EntitySlot entitySlot = new EntitySlot(client, name, null, x * spriteWidth + x, y * spriteHeight + y);
+				EntitySlot entitySlot = new EntitySlot(client, name, null, x
+						* spriteWidth + x, y * spriteHeight + y);
 				slotPanels.add(entitySlot);
 			}
 		}
 
 		// resize panel
-		this.resizeToFitClientArea(width * spriteWidth + (width - 1), height * spriteHeight + (height - 1));
+		this.resizeToFitClientArea(width * spriteWidth + (width - 1), height
+				* spriteHeight + (height - 1));
 
 		for (EntitySlot entitySlot : slotPanels) {
 			addChild(entitySlot);
@@ -107,7 +110,7 @@ public class EntityContainer extends WtPanel {
 				entitySlot.setEntity(null);
 			}
 
-		// TODO: fix the non existing "keyring slot" for old server
+			// TODO: fix the non existing "keyring slot" for old server
 			return;
 		}
 
@@ -140,19 +143,21 @@ public class EntityContainer extends WtPanel {
 		int py = (int) User.get().getY();
 		int ix = (int) parent.getX();
 		int iy = (int) parent.getY();
-		
 
 		if (User.get().getID().equals(parent.getID())) {
 			// We don't want to close our own stuff
 			return;
 		}
 
-		Rectangle2D orig=parent.getArea();
-		orig.setRect(orig.getX()-MAX_DISTANCE, orig.getY()-MAX_DISTANCE, 
-				orig.getWidth()+MAX_DISTANCE*2, orig.getHeight()+MAX_DISTANCE*2);
+		Rectangle2D orig = parent.getArea();
+		orig.setRect(orig.getX() - MAX_DISTANCE, orig.getY() - MAX_DISTANCE,
+				orig.getWidth() + MAX_DISTANCE * 2, orig.getHeight()
+						+ MAX_DISTANCE * 2);
 
-		if(!orig.contains(px, py)) {
-			logger.debug("Closing " + slotName + " container because " + px + "," + py + " is too far from ("+ix+","+iy+"):" + orig);			
+		if (!orig.contains(px, py)) {
+			logger.debug("Closing " + slotName + " container because " + px
+					+ "," + py + " is too far from (" + ix + "," + iy + "):"
+					+ orig);
 			destroy();
 		}
 	}
@@ -164,12 +169,12 @@ public class EntityContainer extends WtPanel {
 		rescanSlotContent();
 	}
 
-
 	/**
 	 * Draw the panel contents. This is only called while open and not
 	 * minimized.
 	 *
-	 * @param	g		The graphics context to draw with.
+	 * @param g
+	 *            The graphics context to draw with.
 	 */
 	@Override
 	protected void drawContent(Graphics2D g) {

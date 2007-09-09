@@ -34,34 +34,38 @@ public class TileRenderer extends LayerRenderer {
 
 	private int[] map;
 
-	private Sprite [] spriteMap;
+	private Sprite[] spriteMap;
 
 	public TileRenderer() {
 		map = null;
 		spriteMap = null;
 	}
 
-	/** Sets the data that will be rendered
-	 * @throws ClassNotFoundException */
-	public void setMapData(InputStream in) throws IOException, ClassNotFoundException {
-		LayerDefinition layer=LayerDefinition.decode(in);
-		width=layer.getWidth();
-		height=layer.getHeight();
+	/**
+	 * Sets the data that will be rendered
+	 * 
+	 * @throws ClassNotFoundException
+	 */
+	public void setMapData(InputStream in) throws IOException,
+			ClassNotFoundException {
+		LayerDefinition layer = LayerDefinition.decode(in);
+		width = layer.getWidth();
+		height = layer.getHeight();
 
-		logger.debug("Layer("+layer.getName()+"): " +width+"x"+height);
+		logger.debug("Layer(" + layer.getName() + "): " + width + "x" + height);
 
-		map=layer.expose();
+		map = layer.expose();
 	}
-
 
 	/**
 	 * Set the tileset.
-	 *
-	 * @param	tileset		The tileset.
+	 * 
+	 * @param tileset
+	 *            The tileset.
 	 */
 	@Override
 	public void setTileset(final Tileset tileset) {
-		if(tileset != null) {
+		if (tileset != null) {
 			/*
 			 * Cache sprites
 			 */
@@ -69,7 +73,7 @@ public class TileRenderer extends LayerRenderer {
 
 			int i = spriteMap.length;
 
-			while(i-- != 0) {
+			while (i-- != 0) {
 				spriteMap[i] = tileset.getSprite(map[i]);
 			}
 		} else {
@@ -77,32 +81,36 @@ public class TileRenderer extends LayerRenderer {
 		}
 	}
 
-
 	/**
 	 * Render the layer to screen. We assume that game screen will clip.
-	 *
-	 * @param	screen		The screen to draw on.
-	 * @param	x		The view X world coordinate.
-	 * @param	y		The view Y world coordinate.
-	 * @param	w		The view world width.
-	 * @param	h		The view world height.
+	 * 
+	 * @param screen
+	 *            The screen to draw on.
+	 * @param x
+	 *            The view X world coordinate.
+	 * @param y
+	 *            The view Y world coordinate.
+	 * @param w
+	 *            The view world width.
+	 * @param h
+	 *            The view world height.
 	 */
 	@Override
 	public void draw(GameScreen screen, int x, int y, int w, int h) {
-		if(spriteMap == null) {
+		if (spriteMap == null) {
 			return;
 		}
 
 		int x2 = Math.min(x + w + 1, getWidth());
 		int y2 = Math.min(y + h + 1, getHeight());
 
-		if(x > 0) {
+		if (x > 0) {
 			x--;
 		} else {
 			x = 0;
 		}
 
-		if(y > 0) {
+		if (y > 0) {
 			y--;
 		} else {
 			y = 0;

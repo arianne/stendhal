@@ -57,8 +57,8 @@ import marauroa.common.Logger;
  * </li>
  * </ul>
  * <b>Note:</b> This class is not thread safe.
- * 
- * 
+ *
+ *
  * See http://www.grsites.com/ for the textures
  * @author mtotz
  */
@@ -283,7 +283,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 
 	/**
 	 * Moves the panel by dx pixels to the right and dy pixels down.
-	 * 
+	 *
 	 * @param dx
 	 *            amount of pixels to move rights ( < 0 is allowed, will move
 	 *            left)
@@ -298,7 +298,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 
 	/**
 	 * Moves the panel to the given position.
-	 * 
+	 *
 	 * @param x
 	 *            x-coordinale
 	 * @param y
@@ -312,7 +312,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 
 	/**
 	 * Moves the panel to the given position.
-	 * 
+	 *
 	 * @param x
 	 *            x-coordinale
 	 * @param y
@@ -635,7 +635,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 
 	/**
 	 * resizes the panel so that the client area has the given width and height
-	 * 
+	 *
 	 * @param width
 	 *            width of client area
 	 * @param height
@@ -763,7 +763,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 
 	/**
 	 * draws the panel into the graphics object
-	 * 
+	 *
 	 * @param g
 	 *            graphics where to render to
 	 */
@@ -822,14 +822,14 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 
 	/**
 	 * draws all children
-	 * 
+	 *
 	 * @param clientArea
 	 *            Graphics object clipped to the client region.
 	 */
 	protected void drawChildren(Graphics2D g) {
 		int i = children.size();
 
-		while(i-- != 0) {
+		while (i-- != 0) {
 			WtPanel child = children.get(i);
 
 			// get correct clipped graphics
@@ -844,7 +844,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	/**
 	 * Checks if the Point p is inside the Panel. Note that the coordinates are
 	 * local to the parent, not local to this Panel.
-	 * 
+	 *
 	 * @param p
 	 *            point to check (in parents coordinate space)
 	 * @return true when the point is in this panel, false otherwise
@@ -856,7 +856,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	/**
 	 * Checks if the point is inside the Panel. Note that the coordinates are
 	 * local to the parent, not local to this Panel.
-	 * 
+	 *
 	 * @param x
 	 *            x-coordinate to check (in parents coordinate space)
 	 * @param y
@@ -888,7 +888,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 			return false;
 		}
 
-		// 
+		//
 		if ((x < FRAME_SIZE) || (y < FRAME_SIZE) || (x > width - FRAME_SIZE) || (y > FRAME_SIZE + TITLEBAR_SIZE)) {
 			return false;
 		}
@@ -941,7 +941,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 
 	/**
 	 * checks if there is a droptarget direct under the position (x,y)
-	 * 
+	 *
 	 * @param x
 	 *            x-coordinate in client space
 	 * @param y

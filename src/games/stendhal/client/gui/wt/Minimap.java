@@ -54,7 +54,8 @@ public class Minimap extends WtPanel {
 	private static final int MINIMAP_MINIMUM_SCALE = 2;
 
 	/** Enable X-ray vision (aka Superman) minimap? */
-	private static final boolean mininps = (System.getProperty("stendhal.superman") != null);
+	private static final boolean mininps = (System
+			.getProperty("stendhal.superman") != null);
 
 	/** scale of map */
 	private int scale;
@@ -68,22 +69,22 @@ public class Minimap extends WtPanel {
 	/**
 	 * The view X offset.
 	 */
-	private int	panx;
+	private int panx;
 
 	/**
 	 * The view Y offset.
 	 */
-	private int	pany;
+	private int pany;
 
 	/**
 	 * The player X coordinate.
 	 */
-	private double	playerX;
+	private double playerX;
 
 	/**
 	 * The player Y coordinate.
 	 */
-	private double	playerY;
+	private double playerY;
 
 	/** minimap image */
 	private BufferedImage image;
@@ -92,7 +93,6 @@ public class Minimap extends WtPanel {
 	private Player player;
 
 	private StendhalClient client;
-
 
 	/** Creates a new instance of Minimap */
 	public Minimap(StendhalClient client) {
@@ -104,11 +104,15 @@ public class Minimap extends WtPanel {
 	/**
 	 * Update the map with new data.
 	 *
-	 * @param	cd		The collision map.
-	 * @param	gc		A graphics configuration.
-	 * @param	zone		The zone name.
+	 * @param cd
+	 *            The collision map.
+	 * @param gc
+	 *            A graphics configuration.
+	 * @param zone
+	 *            The zone name.
 	 */
-	public void update(CollisionDetection cd, GraphicsConfiguration gc, String zone) {
+	public void update(CollisionDetection cd, GraphicsConfiguration gc,
+			String zone) {
 		setTitletext(zone);
 
 		// calculate size and scale
@@ -117,7 +121,8 @@ public class Minimap extends WtPanel {
 
 		// calculate scale
 		scale = MINIMAP_MINIMUM_SCALE;
-		while ((w * (scale + 1) < MINIMAP_WIDTH) && (h * (scale + 1) < MINIMAP_HEIGHT)) {
+		while ((w * (scale + 1) < MINIMAP_WIDTH)
+				&& (h * (scale + 1) < MINIMAP_HEIGHT)) {
 			scale++;
 		}
 
@@ -130,14 +135,13 @@ public class Minimap extends WtPanel {
 
 		Graphics2D mapgrapics = image.createGraphics();
 		Color freeColor = new Color(0.8f, 0.8f, 0.8f);
-		mapgrapics.setColor(freeColor );
+		mapgrapics.setColor(freeColor);
 		mapgrapics.fillRect(0, 0, w * scale, h * scale);
 		Color blockedColor = new Color(1.0f, 0.0f, 0.0f);
 		mapgrapics.setColor(blockedColor);
 		for (int x = 0; x < w; x++) {
 			for (int y = 0; y < h; y++) {
-				if (!cd.walkable(x, y))
-				{
+				if (!cd.walkable(x, y)) {
 					mapgrapics.fillRect(x * scale, y * scale, scale, scale);
 				}
 			}
@@ -157,10 +161,9 @@ public class Minimap extends WtPanel {
 		return true;
 	}
 
-
 	/**
-	 * Update the player view coordinates.
-	 * TODO: Replace with listener based update later.
+	 * Update the player view coordinates. TODO: Replace with listener based
+	 * update later.
 	 */
 	private void updatePosition() {
 		playerX = player.getX();
@@ -169,16 +172,15 @@ public class Minimap extends WtPanel {
 		updateView();
 	}
 
-
 	/**
-	 * Update the view pan. This should be done when the map size or
-	 * player position changes.
+	 * Update the view pan. This should be done when the map size or player
+	 * position changes.
 	 */
 	private void updateView() {
 		panx = 0;
 		pany = 0;
 
-		if(image == null) {
+		if (image == null) {
 			return;
 		}
 
@@ -209,11 +211,11 @@ public class Minimap extends WtPanel {
 		}
 	}
 
-
 	/**
 	 * Draws the minimap.
 	 *
-	 * @param g graphics object for the game main window
+	 * @param g
+	 *            graphics object for the game main window
 	 */
 	@Override
 	protected void drawContent(Graphics2D g) {
@@ -245,10 +247,11 @@ public class Minimap extends WtPanel {
 			if (entity instanceof Player) {
 				Player aPlayer = (Player) entity;
 
-				if(!aPlayer.isGhostMode()) {
-					drawCross(vg, (int) ((aPlayer.getX() * scale) + 0.5), (int) ((aPlayer.getY() * scale) + 0.5), Color.WHITE);
+				if (!aPlayer.isGhostMode()) {
+					drawCross(vg, (int) ((aPlayer.getX() * scale) + 0.5),
+							(int) ((aPlayer.getY() * scale) + 0.5), Color.WHITE);
 				}
-			} else if( entity instanceof Portal) {
+			} else if (entity instanceof Portal) {
 				Portal portal = (Portal) entity;
 
 				if (!portal.isHidden()) {
@@ -258,15 +261,19 @@ public class Minimap extends WtPanel {
 		}
 
 		// draw myself
-		drawCross(vg, (int) ((playerX * scale) + 0.5), (int) ((playerY * scale) + 0.5), Color.BLUE);
+		drawCross(vg, (int) ((playerX * scale) + 0.5),
+				(int) ((playerY * scale) + 0.5), Color.BLUE);
 
 		vg.dispose();
 	}
 
 	/**
 	 * draws NPC as rectangle to Minimap selecting color by class of Entity
-	 * @param g Graphics
-	 * @param entity the entity dto be drawn
+	 *
+	 * @param g
+	 *            Graphics
+	 * @param entity
+	 *            the entity dto be drawn
 	 */
 	protected void drawNPC(final Graphics g, final Entity entity) {
 		if (entity instanceof Sheep) {
@@ -281,17 +288,25 @@ public class Minimap extends WtPanel {
 	}
 
 	/**
-	 * calculates position of NPC rectangle and draws it to Minimap in the sepecified color
-	 * @param g graphics
-	 * @param entity the Entity to be drawn
-	 * @param color the Color to be used
+	 * calculates position of NPC rectangle and draws it to Minimap in the
+	 * sepecified color
+	 *
+	 * @param g
+	 *            graphics
+	 * @param entity
+	 *            the Entity to be drawn
+	 * @param color
+	 *            the Color to be used
 	 */
-	protected void drawNPC(final Graphics g, final Entity entity, final Color color) {
+	protected void drawNPC(final Graphics g, final Entity entity,
+			final Color color) {
 		Rectangle2D area;
 		area = entity.getArea();
 		g.setColor(color);
-		g.drawRect(((int) (area.getX() + 0.5)) * scale, ((int) (area.getY() + 0.5)) * scale,
-		        (((int) area.getWidth()) * scale) - 1, (((int) area.getHeight()) * scale) - 1);
+		g.drawRect(((int) (area.getX() + 0.5)) * scale,
+				((int) (area.getY() + 0.5)) * scale,
+				(((int) area.getWidth()) * scale) - 1,
+				(((int) area.getHeight()) * scale) - 1);
 	}
 
 	/** draws a cross at the given position */
@@ -308,24 +323,26 @@ public class Minimap extends WtPanel {
 		g.drawLine(x, y + size, x, y - size);
 	}
 
-	private void drawDot(final Graphics g, final Entity entity, final Color color) {
+	private void drawDot(final Graphics g, final Entity entity,
+			final Color color) {
 		Rectangle2D area = entity.getArea();
 
 		int x = ((int) (area.getX() + 0.5)) * scale;
 		int y = ((int) (area.getY() + 0.5)) * scale;
 
-		int width =  (((int) area.getWidth()) * scale) - 1;
-		int height = (((int) area.getHeight()) * scale) - 1;
+		int dotWidth = (((int) area.getWidth()) * scale) - 1;
+		int dotHeight = (((int) area.getHeight()) * scale) - 1;
 
 		g.setColor(color);
-		g.fillRect(x, y, width, height);
+		g.fillRect(x, y, dotWidth, dotHeight);
 
 		g.setColor(Color.BLACK);
-		g.drawRect(x, y, width, height);
+		g.drawRect(x, y, dotWidth, dotHeight);
 	}
 
 	/**
 	 * sets the current Player
+	 *
 	 * @param player
 	 */
 	public void setPlayer(final Player player) {

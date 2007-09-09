@@ -42,16 +42,15 @@ public class MoveableEntityContainer implements WtDraggable {
 	 */
 	private Entity2DView view;
 
-
 	/**
 	 * Create an entity drag container.
 	 *
-	 * @param	entity		The entity being moved.
+	 * @param entity
+	 *            The entity being moved.
 	 */
 	public MoveableEntityContainer(final Entity entity) {
 		this.entity = entity;
 	}
-
 
 	//
 	// MoveableEntityContainer
@@ -61,35 +60,33 @@ public class MoveableEntityContainer implements WtDraggable {
 	public void fillRPAction(RPAction action) {
 		RPObject rpObject = entity.getRPObject();
 
-		if(rpObject.isContained()) {
+		if (rpObject.isContained()) {
 			// the item is inside a container
-			action.put("baseobject", rpObject.getContainer().getID().getObjectID());
+			action.put("baseobject", rpObject.getContainer().getID()
+					.getObjectID());
 			action.put("baseslot", rpObject.getContainerSlot().getName());
 		}
 
 		action.put("baseitem", rpObject.getID().getObjectID());
 	}
 
-
 	/**
 	 * Get the entity being moved.
 	 *
-	 * @return	The entity.
+	 * @return The entity.
 	 */
 	public Entity getEntity() {
 		return entity;
 	}
 
-
 	/**
 	 * Determine if this is in a container slot.
 	 *
-	 * @return	<code>true</code> if the item is in a container.
+	 * @return <code>true</code> if the item is in a container.
 	 */
 	public boolean isContained() {
 		return entity.getRPObject().isContained();
 	}
-
 
 	//
 	// WtDraggable
@@ -99,16 +96,16 @@ public class MoveableEntityContainer implements WtDraggable {
 	public boolean dragStarted() {
 		view = GameScreen.get().createView(entity);
 
-		if(view != null) {
+		if (view != null) {
 			view.setContained(true);
 
 			/*
-			 * Hide quantity until it can be made context
-			 * sensitive to drag modifiers.
+			 * Hide quantity until it can be made context sensitive to drag
+			 * modifiers.
 			 *
 			 * TODO: Find a better way
 			 */
-			if(view instanceof StackableItem2DView) {
+			if (view instanceof StackableItem2DView) {
 				((StackableItem2DView) view).setShowQuantity(false);
 			}
 		}
@@ -118,7 +115,7 @@ public class MoveableEntityContainer implements WtDraggable {
 
 	/** drag finished */
 	public boolean dragFinished(Point p) {
-		if(view != null) {
+		if (view != null) {
 			view.release();
 			view = null;
 		}
@@ -137,7 +134,7 @@ public class MoveableEntityContainer implements WtDraggable {
 	 * draws the entity
 	 */
 	public void drawDragged(Graphics g) {
-		if(view != null) {
+		if (view != null) {
 			Graphics2D cg = (Graphics2D) g.create();
 
 			cg.translate(x, y);

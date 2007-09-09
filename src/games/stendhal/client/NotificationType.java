@@ -14,32 +14,25 @@ package games.stendhal.client;
  * This would be similar to logical styles vs. physical styles in HTML.
  */
 public enum NotificationType {
-	CLIENT("client"),
-	INFORMATION("information"),
-	NEGATIVE("negative"),
-	NORMAL("normal"),
-	POSITIVE("positive"),
-	PRIVMSG("privmsg"),
-	RESPONSE("response"),
-	SIGNIFICANT_NEGATIVE("significant_negative"),
-	SIGNIFICANT_POSITIVE("significant_positive"),
-	TUTORIAL("tutorial");
+	CLIENT("client"), INFORMATION("information"), NEGATIVE("negative"), NORMAL(
+			"normal"), POSITIVE("positive"), PRIVMSG("privmsg"), RESPONSE(
+			"response"), SIGNIFICANT_NEGATIVE("significant_negative"), SIGNIFICANT_POSITIVE(
+			"significant_positive"), TUTORIAL("tutorial");
 
 	/**
 	 * The mapping mnemonic.
 	 */
-	protected String	mnemonic;
-
+	protected String mnemonic;
 
 	/**
 	 * Create a notification type.
-	 *
-	 * @param	mnemonic	The mapping mnemonic.
+	 * 
+	 * @param mnemonic
+	 *            The mapping mnemonic.
 	 */
 	private NotificationType(final String mnemonic) {
 		this.mnemonic = mnemonic;
 	}
-
 
 	//
 	// NotificationType
@@ -47,8 +40,8 @@ public enum NotificationType {
 
 	/**
 	 * Get the mapping mnemonic (programatic name).
-	 *
-	 * @return	The mapping mnemonic.
+	 * 
+	 * @return The mapping mnemonic.
 	 */
 	public String getMnemonic() {
 		return mnemonic;

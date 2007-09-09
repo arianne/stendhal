@@ -13,7 +13,7 @@ import org.apache.log4j.spi.ThrowableInformation;
 
 /**
  * Log4J appender which logs to the game console
- *
+ * 
  * @author Matthias Totz
  */
 public class GameConsoleAppender extends AppenderSkeleton {
@@ -36,7 +36,7 @@ public class GameConsoleAppender extends AppenderSkeleton {
 	}
 
 	public void close() {
-		//implementation of abstract method
+		// implementation of abstract method
 		// yet nothing do to
 	}
 

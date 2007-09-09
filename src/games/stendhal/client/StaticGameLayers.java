@@ -32,7 +32,8 @@ import marauroa.common.net.InputSerializer;
 public class StaticGameLayers {
 
 	/** the logger instance. */
-	private static final Logger logger = Log4J.getLogger(StaticGameLayers.class);
+	private static final Logger logger = Log4J
+			.getLogger(StaticGameLayers.class);
 
 	/**
 	 * Area collision maps.
@@ -57,12 +58,12 @@ public class StaticGameLayers {
 	/**
 	 * The current area height.
 	 */
-	private double	height;
+	private double height;
 
 	/**
 	 * The current area width.
 	 */
-	private double	width;
+	private double width;
 
 	/** Name of the layers set that we are rendering right now */
 	private String area;
@@ -101,14 +102,18 @@ public class StaticGameLayers {
 		return height;
 	}
 
-	/** Add a new Layer to the set
-	 * @throws ClassNotFoundException */
-	public void addLayer(String name, InputStream in) throws IOException, ClassNotFoundException {
+	/**
+	 * Add a new Layer to the set
+	 * 
+	 * @throws ClassNotFoundException
+	 */
+	public void addLayer(String name, InputStream in) throws IOException,
+			ClassNotFoundException {
 		logger.debug("Layer name: " + name);
 
 		int i = name.indexOf('.');
 
-		if(i == -1) {
+		if (i == -1) {
 			logger.error("Old server, please upgrade");
 			return;
 		}
@@ -117,67 +122,68 @@ public class StaticGameLayers {
 		String layer = name.substring(i + 1);
 
 		/**
-		 * TODO: Encode area name into the data sent from server, so it is simpler to encode the
-		 * area name.
+		 * TODO: Encode area name into the data sent from server, so it is
+		 * simpler to encode the area name.
 		 */
 
-			if (layer.equals("collision")) {
-				/*
-				 * Add a collision layer.
-				 */
-				if(collisions.containsKey(area)) {
-					// Repeated layers should be ignored.
-					return;
-				}
-
-				CollisionDetection collision = new CollisionDetection();
-				collision.setCollisionData(LayerDefinition.decode(in));
-
-				collisions.put(area, collision);
-			} else if (layer.equals("tilesets")) {
-				/*
-				 * Add tileset
-				 */
-				TileStore tileset = new TileStore();
-				tileset.addTilesets(new InputSerializer(in));
-
-				tilesets.put(area, tileset);
-			} else if (layer.endsWith("_map")) {
-				/*
-				 * It is the minimap image for this zone.
-				 */
-			} else {
-				/*
-				 * It is a tile layer.
-				 */
-				if(layers.containsKey(name)) {
-					// Repeated layers should be ignored.
-					return;
-				}
-
-				LayerRenderer content = null;
-
-				URL url = getClass().getClassLoader().getResource("data/layers/" + area + "/" + layer + ".jpg");
-
-				if (url != null) {
-					content = new ImageRenderer(url);
-				}
-
-				if (content == null) {
-					content = new TileRenderer();
-					((TileRenderer) content).setMapData(in);
-				}
-
-				layers.put(name, content);
+		if (layer.equals("collision")) {
+			/*
+			 * Add a collision layer.
+			 */
+			if (collisions.containsKey(area)) {
+				// Repeated layers should be ignored.
+				return;
 			}
 
-			valid = false;
+			CollisionDetection collision = new CollisionDetection();
+			collision.setCollisionData(LayerDefinition.decode(in));
+
+			collisions.put(area, collision);
+		} else if (layer.equals("tilesets")) {
+			/*
+			 * Add tileset
+			 */
+			TileStore tileset = new TileStore();
+			tileset.addTilesets(new InputSerializer(in));
+
+			tilesets.put(area, tileset);
+		} else if (layer.endsWith("_map")) {
+			/*
+			 * It is the minimap image for this zone.
+			 */
+		} else {
+			/*
+			 * It is a tile layer.
+			 */
+			if (layers.containsKey(name)) {
+				// Repeated layers should be ignored.
+				return;
+			}
+
+			LayerRenderer content = null;
+
+			URL url = getClass().getClassLoader().getResource(
+					"data/layers/" + area + "/" + layer + ".jpg");
+
+			if (url != null) {
+				content = new ImageRenderer(url);
+			}
+
+			if (content == null) {
+				content = new TileRenderer();
+				((TileRenderer) content).setMapData(in);
+			}
+
+			layers.put(name, content);
+		}
+
+		valid = false;
 	}
 
 	public boolean collides(Rectangle2D shape) {
 		validate();
 
-		if(collision != null && !User.get().isGhostMode()) {
+		if (collision != null && !User.get().isGhostMode()) {
 			return collision.collides(shape);
 		}
 
@@ -194,13 +200,12 @@ public class StaticGameLayers {
 
 	/** Set the set of layers that is going to be rendered */
 	public void setRPZoneLayersSet(String area) {
-		logger.info("Area: "+area);
+		logger.info("Area: " + area);
 
 		this.area = area;
 		this.areaChanged = true;
 		invalidate();
 	}
-
 
 	/**
 	 * Invalidate any cached settings.
@@ -209,13 +214,12 @@ public class StaticGameLayers {
 		valid = false;
 	}
 
-
 	protected void validate() {
-		if(valid == true) {
+		if (valid == true) {
 			return;
 		}
 
-		if(area == null) {
+		if (area == null) {
 			height = 0.0;
 			width = 0.0;
 			collision = null;
@@ -229,14 +233,12 @@ public class StaticGameLayers {
 		 */
 		collision = collisions.get(area);
 
-		if(collision != null) {
+		if (collision != null) {
 			collisions.put(area, collision);
 		}
 
-
 		/*
-		 * Get maximum layer size.
-		 * Assign tileset to layers.
+		 * Get maximum layer size. Assign tileset to layers.
 		 */
 		TileStore tileset = tilesets.get(area);
 		height = 0.0;
@@ -244,8 +246,8 @@ public class StaticGameLayers {
 
 		String prefix = area + ".";
 
-		for(Map.Entry<String, LayerRenderer> entry : layers.entrySet()) {
-			if(entry.getKey().startsWith(prefix)) {
+		for (Map.Entry<String, LayerRenderer> entry : layers.entrySet()) {
+			if (entry.getKey().startsWith(prefix)) {
 				LayerRenderer lr = entry.getValue();
 
 				lr.setTileset(tileset);
@@ -257,26 +259,25 @@ public class StaticGameLayers {
 		valid = true;
 	}
 
-
 	public String getRPZoneLayerSet() {
 		return area;
 	}
 
-
-	public void draw(GameScreen screen, String area, String layer, int x, int y, int width, int height) {
+	public void draw(GameScreen screen, String area, String layer, int x,
+			int y, int width, int height) {
 		validate();
 
 		LayerRenderer lr = getLayer(area, layer);
 
-		if(lr != null) {
+		if (lr != null) {
 			lr.draw(screen, x, y, width, height);
 		}
 	}
 
 	/**
-	 *
+	 * 
 	 * @return the CollisionDetection Layer for the current map
-	 *
+	 * 
 	 */
 	public CollisionDetection getCollisionDetection() {
 		validate();
@@ -285,24 +286,22 @@ public class StaticGameLayers {
 	}
 
 	/**
-	 *
+	 * 
 	 * @return the current area/map
-	 *
+	 * 
 	 */
 	public String getArea() {
 		return area;
 	}
 
-
 	/**
 	 * Get a layer renderer.
-	 *
-	 * @return	A layer renderer, or <code>null</code>,
+	 * 
+	 * @return A layer renderer, or <code>null</code>,
 	 */
 	public LayerRenderer getLayer(String area, String layer) {
 		return layers.get(area + "." + layer);
 	}
-
 
 	/**
 	 * @return true if the area has changed since the last
