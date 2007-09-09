@@ -24,6 +24,9 @@ public interface Effect {
  *
  */
 class HealEffect implements Effect {
+	/**
+	 * How much do we heal? 
+	 */
 	int amount;
 
 	public HealEffect(int amount) {
@@ -31,6 +34,10 @@ class HealEffect implements Effect {
 	}
 
 	public void apply(RPEntity source, RPEntity target, int rulingAttribute) {
+		/*
+		 * TODO: Alter the healing effect based on level.
+		 */
+		
 		/*
 		 * Simply add the new HP.
 		 */
@@ -45,7 +52,22 @@ class HealEffect implements Effect {
  *
  */
 enum DamageType {
-	SLASH, BASH, STAB, FIRE, COLD, ACID, DISEASE, LIGHT, DEATH,
+	/** Damage caused by a sword for example. */
+	SLASH, 
+	/** Damage caused by a hammer. */
+	BASH, 
+	/** Damage caused by a knife or an arrow */
+	STAB, 
+	/** Damage caused by a fire */ 
+	FIRE, 
+	/** Damage caused by ice or by a ice spell */
+	COLD, 
+	/** Damage caused by acid element */
+	ACID, 
+	/** Damage because of disease or a spell */
+	DISEASE, 
+	/** Damage because of light. */
+	LIGHT, 
 }
 
 /**
@@ -55,8 +77,14 @@ enum DamageType {
  *
  */
 class DamageEffect implements Effect {
+	/**
+	 * Type of damage done.
+	 */
 	DamageType type;
 
+	/**
+	 * Amount of damage done.
+	 */
 	int amount;
 
 	public DamageEffect(DamageType type, int amount) {
