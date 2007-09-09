@@ -69,7 +69,7 @@ public class GameScreen {
 	private static final Logger logger = Log4J.getLogger(GameScreen.class);
 
 	/** The width / height of one tile. */
-	public final static int SIZE_UNIT_PIXELS = 32;
+	public static final int SIZE_UNIT_PIXELS = 32;
 
 	/**
 	 * Comparator used to sort entities to display.
@@ -169,7 +169,7 @@ public class GameScreen {
 
 	/**
 	 * Set the default [singleton] screen.
-	 * 
+	 *
 	 * @param screen
 	 *            The screen.
 	 */
@@ -238,7 +238,7 @@ public class GameScreen {
 
 	/**
 	 * Add an entity.
-	 * 
+	 *
 	 * @param entity
 	 *            An entity.
 	 */
@@ -253,7 +253,7 @@ public class GameScreen {
 
 	/**
 	 * Add an entity view.
-	 * 
+	 *
 	 * @param view
 	 *            A view.
 	 */
@@ -265,7 +265,7 @@ public class GameScreen {
 
 	/**
 	 * Remove an entity.
-	 * 
+	 *
 	 * @param entity
 	 *            An entity.
 	 */
@@ -279,7 +279,7 @@ public class GameScreen {
 
 	/**
 	 * Remove an entity view.
-	 * 
+	 *
 	 * @param view
 	 *            A view.
 	 */
@@ -394,7 +394,7 @@ public class GameScreen {
 
 	/**
 	 * Update the view position to center the target position.
-	 * 
+	 *
 	 * @param immediate
 	 *            Center on the coodinates immediately.
 	 */
@@ -566,7 +566,7 @@ public class GameScreen {
 
 	/**
 	 * Get the view X world coordinate.
-	 * 
+	 *
 	 * @return The X coordinate of the left side.
 	 */
 	public double getViewX() {
@@ -575,7 +575,7 @@ public class GameScreen {
 
 	/**
 	 * Get the view Y world coordinate.
-	 * 
+	 *
 	 * @return The Y coordinate of the left side.
 	 */
 	public double getViewY() {
@@ -584,7 +584,7 @@ public class GameScreen {
 
 	/**
 	 * Set the target coordinates that the screen centers on.
-	 * 
+	 *
 	 * @param x
 	 *            The world X coordinate.
 	 * @param y
@@ -607,7 +607,7 @@ public class GameScreen {
 
 	/**
 	 * Sets the world size.
-	 * 
+	 *
 	 * @param width
 	 *            The world width.
 	 * @param height
@@ -622,7 +622,7 @@ public class GameScreen {
 
 	/**
 	 * Set the offline indication state.
-	 * 
+	 *
 	 * @param offline
 	 *            <code>true</code> if offline.
 	 */
@@ -639,9 +639,9 @@ public class GameScreen {
 
 	/**
 	 * Add a text bubble.
-	 * 
-	 * 
-	 * 
+	 *
+	 *
+	 *
 	 */
 	public void addText(double x, double y, String text, NotificationType type,
 			boolean isTalking) {
@@ -650,9 +650,9 @@ public class GameScreen {
 
 	/**
 	 * Add a text bubble.
-	 * 
-	 * 
-	 * 
+	 *
+	 *
+	 *
 	 */
 	public void addText(final double x, final double y, final String text,
 			final Color color, final boolean talking) {
@@ -662,7 +662,7 @@ public class GameScreen {
 
 	/**
 	 * Add a text bubble.
-	 * 
+	 *
 	 * @param sx
 	 *            The screen X coordinate.
 	 * @param sy
@@ -681,7 +681,7 @@ public class GameScreen {
 
 	/**
 	 * Add a text bubble.
-	 * 
+	 *
 	 * @param sx
 	 *            The screen X coordinate.
 	 * @param sy
@@ -732,7 +732,7 @@ public class GameScreen {
 
 		boolean found = true;
 
-		while (found == true) {
+		while (found) {
 			found = false;
 
 			for (Text item : texts) {
@@ -784,12 +784,12 @@ public class GameScreen {
 
 	/**
 	 * Get an entity view at given coordinates.
-	 * 
+	 *
 	 * @param x
 	 *            The X world coordinate.
 	 * @param y
 	 *            The Y world coordinate.
-	 * 
+	 *
 	 * @return The entity view, or <code>null</code> if none found.
 	 */
 	public Entity2DView getEntityViewAt(double x, double y) {
@@ -829,12 +829,12 @@ public class GameScreen {
 
 	/**
 	 * Get an entity view that is movable at given coordinates.
-	 * 
+	 *
 	 * @param x
 	 *            The X world coordinate.
 	 * @param y
 	 *            The Y world coordinate.
-	 * 
+	 *
 	 * @return The entity view, or <code>null</code> if none found.
 	 */
 	public Entity2DView getMovableEntityViewAt(final double x, final double y) {
@@ -878,9 +878,9 @@ public class GameScreen {
 
 	/**
 	 * Get the text bubble at specific coordinates.
-	 * 
-	 * 
-	 * 
+	 *
+	 *
+	 *
 	 */
 	public Text getTextAt(double x, double y) {
 		ListIterator<Text> it = texts.listIterator(texts.size());
@@ -913,10 +913,10 @@ public class GameScreen {
 
 	/**
 	 * Convert world X coordinate to screen view coordinate.
-	 * 
+	 *
 	 * @param wx
 	 *            World X coordinate.
-	 * 
+	 *
 	 * @return Screen X coordinate (in integer value).
 	 */
 	public int convertWorldXToScreenView(double wx) {
@@ -925,10 +925,10 @@ public class GameScreen {
 
 	/**
 	 * Convert world Y coordinate to screen view coordinate.
-	 * 
+	 *
 	 * @param wy
 	 *            World Y coordinate.
-	 * 
+	 *
 	 * @return Screen Y coordinate (in integer value).
 	 */
 	public int convertWorldYToScreenView(double wy) {
@@ -937,17 +937,17 @@ public class GameScreen {
 
 	/**
 	 * Convert world coordinates to screen view coordinates.
-	 * 
+	 *
 	 * This does have some theorical range limits. Assuming a tile size of
 	 * 256x256 pixels (very high def), world coordinates are limited to a little
 	 * over +/-8 million, before the int (31-bit) values returned from this are
 	 * wrapped. So I see no issues, even if absolute world coordinates are used.
-	 * 
+	 *
 	 * @param wx
 	 *            World X coordinate.
 	 * @param wy
 	 *            World Y coordinate.
-	 * 
+	 *
 	 * @return Screen view coordinates (in integer values).
 	 */
 	public Point convertWorldToScreenView(double wx, double wy) {
@@ -957,10 +957,10 @@ public class GameScreen {
 
 	/**
 	 * Convert world coordinates to screen coordinates.
-	 * 
+	 *
 	 * @param wrect
 	 *            World area.
-	 * 
+	 *
 	 * @return Screen rectangle (in integer values).
 	 */
 	public Rectangle convertWorldToScreenView(Rectangle2D wrect) {
@@ -970,7 +970,7 @@ public class GameScreen {
 
 	/**
 	 * Convert world coordinates to screen coordinates.
-	 * 
+	 *
 	 * @param wx
 	 *            World X coordinate.
 	 * @param wy
@@ -979,7 +979,7 @@ public class GameScreen {
 	 *            World area width.
 	 * @param wheight
 	 *            World area height.
-	 * 
+	 *
 	 * @return Screen rectangle (in integer values).
 	 */
 	public Rectangle convertWorldToScreenView(double wx, double wy,
@@ -992,10 +992,10 @@ public class GameScreen {
 
 	/**
 	 * Determine if an area is in the screen view.
-	 * 
+	 *
 	 * @param srect
 	 *            Screen area.
-	 * 
+	 *
 	 * @return <code>true</code> if some part of area in in the visible
 	 *         screen, otherwise <code>false</code>.
 	 */
@@ -1005,7 +1005,7 @@ public class GameScreen {
 
 	/**
 	 * Determine if an area is in the screen view.
-	 * 
+	 *
 	 * @param sx
 	 *            Screen X coordinate.
 	 * @param sy
@@ -1014,7 +1014,7 @@ public class GameScreen {
 	 *            Screen area width.
 	 * @param sheight
 	 *            Screen area height.
-	 * 
+	 *
 	 * @return <code>true</code> if some part of area in in the visible
 	 *         screen, otherwise <code>false</code>.
 	 */
@@ -1043,12 +1043,12 @@ public class GameScreen {
 
 	/**
 	 * Create a sprite representation of some text.
-	 * 
+	 *
 	 * @param text
 	 *            The text.
 	 * @param type
 	 *            The type.
-	 * 
+	 *
 	 * @return A sprite.
 	 */
 	public Sprite createString(final String text, final NotificationType type) {
@@ -1057,12 +1057,12 @@ public class GameScreen {
 
 	/**
 	 * Create a sprite representation of some text.
-	 * 
+	 *
 	 * @param text
 	 *            The text.
 	 * @param color
 	 *            The text color.
-	 * 
+	 *
 	 * @return A sprite.
 	 */
 	public Sprite createString(String text, Color textColor) {
@@ -1082,7 +1082,7 @@ public class GameScreen {
 	 * Draw a text string (like <em>Graphics</em><code>.drawString()</code>)
 	 * only with an outline border. The area drawn extends 1 pixel out on all
 	 * side from what would normal be drawn by drawString().
-	 * 
+	 *
 	 * @param g
 	 *            The graphics context.
 	 * @param textColor
@@ -1113,7 +1113,7 @@ public class GameScreen {
 	 * Draw a text string (like <em>Graphics</em><code>.drawString()</code>)
 	 * only with an outline border. The area drawn extends 1 pixel out on all
 	 * side from what would normal be drawn by drawString().
-	 * 
+	 *
 	 * @param g
 	 *            The graphics context.
 	 * @param textColor
@@ -1177,7 +1177,7 @@ public class GameScreen {
 	/**
 	 * Formats a text by changing the color of words starting with
 	 * {@link #clone()}.S
-	 * 
+	 *
 	 * @param line
 	 *            the text
 	 * @param fontNormal
@@ -1360,10 +1360,10 @@ public class GameScreen {
 
 	/**
 	 * Convert a world unit value to a screen unit value.
-	 * 
+	 *
 	 * @param w
 	 *            World value.
-	 * 
+	 *
 	 * @return A screen value (in pixels).
 	 */
 	public int convertWorldToScreen(double w) {
@@ -1372,7 +1372,7 @@ public class GameScreen {
 
 	/**
 	 * Get the full screen height in pixels.
-	 * 
+	 *
 	 * @return The height.
 	 */
 	public int getScreenHeight() {
@@ -1381,7 +1381,7 @@ public class GameScreen {
 
 	/**
 	 * Get the full screen width in pixels.
-	 * 
+	 *
 	 * @return The width.
 	 */
 	public int getScreenWidth() {
@@ -1390,7 +1390,7 @@ public class GameScreen {
 
 	/**
 	 * Get the view height in pixels.
-	 * 
+	 *
 	 * @return The view height.
 	 */
 	public int getScreenViewHeight() {
@@ -1399,7 +1399,7 @@ public class GameScreen {
 
 	/**
 	 * Get the view width in pixels.
-	 * 
+	 *
 	 * @return The view width.
 	 */
 	public int getScreenViewWidth() {
@@ -1408,7 +1408,7 @@ public class GameScreen {
 
 	/**
 	 * Get the view X screen coordinate.
-	 * 
+	 *
 	 * @return The X coordinate of the left side.
 	 */
 	public int getScreenViewX() {
@@ -1417,7 +1417,7 @@ public class GameScreen {
 
 	/**
 	 * Get the view Y screen coordinate.
-	 * 
+	 *
 	 * @return The Y coordinate of the left side.
 	 */
 	public int getScreenViewY() {

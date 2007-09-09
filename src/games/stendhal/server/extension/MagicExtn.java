@@ -81,10 +81,10 @@ public class MagicExtn extends StendhalServerExtension implements ActionListener
 			text = usage;
 		}
 
-		String AvailableSpells = player.getQuest("spells"); //the list of spells
+		String availableSpells = player.getQuest("spells"); //the list of spells
 
 		// Checks to see if the list of spells available to the player contains the spell they tried to cast
-		if (AvailableSpells.contains(castSpell)) {
+		if (availableSpells.contains(castSpell)) {
 			canCastSpell = true; //lets player cast spell 
 		} else {
 			player.sendPrivateText("You can not cast this spell.");

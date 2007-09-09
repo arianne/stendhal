@@ -74,7 +74,7 @@ public class StaticGameLayers {
 	/**
 	 * Whether the internal state is valid
 	 */
-	private boolean valid;
+	private boolean isValid;
 
 	public StaticGameLayers() {
 		collisions = new HashMap<String, CollisionDetection>();
@@ -85,7 +85,7 @@ public class StaticGameLayers {
 		width = 0.0;
 		area = null;
 		areaChanged = true;
-		valid = true;
+		isValid = true;
 	}
 
 	/** Returns width in world units */
@@ -104,7 +104,7 @@ public class StaticGameLayers {
 
 	/**
 	 * Add a new Layer to the set
-	 * 
+	 *
 	 * @throws ClassNotFoundException
 	 */
 	public void addLayer(String name, InputStream in) throws IOException,
@@ -177,7 +177,7 @@ public class StaticGameLayers {
 			layers.put(name, content);
 		}
 
-		valid = false;
+		isValid = false;
 	}
 
 	public boolean collides(Rectangle2D shape) {
@@ -211,11 +211,11 @@ public class StaticGameLayers {
 	 * Invalidate any cached settings.
 	 */
 	public void invalidate() {
-		valid = false;
+		isValid = false;
 	}
 
 	protected void validate() {
-		if (valid == true) {
+		if (isValid) {
 			return;
 		}
 
@@ -224,7 +224,7 @@ public class StaticGameLayers {
 			width = 0.0;
 			collision = null;
 
-			valid = true;
+			isValid = true;
 			return;
 		}
 
@@ -256,7 +256,7 @@ public class StaticGameLayers {
 			}
 		}
 
-		valid = true;
+		isValid = true;
 	}
 
 	public String getRPZoneLayerSet() {
@@ -275,9 +275,9 @@ public class StaticGameLayers {
 	}
 
 	/**
-	 * 
+	 *
 	 * @return the CollisionDetection Layer for the current map
-	 * 
+	 *
 	 */
 	public CollisionDetection getCollisionDetection() {
 		validate();
@@ -286,9 +286,9 @@ public class StaticGameLayers {
 	}
 
 	/**
-	 * 
+	 *
 	 * @return the current area/map
-	 * 
+	 *
 	 */
 	public String getArea() {
 		return area;
@@ -296,7 +296,7 @@ public class StaticGameLayers {
 
 	/**
 	 * Get a layer renderer.
-	 * 
+	 *
 	 * @return A layer renderer, or <code>null</code>,
 	 */
 	public LayerRenderer getLayer(String area, String layer) {
