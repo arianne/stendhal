@@ -9,8 +9,17 @@ import java.util.List;
  *
  */
 enum ItemType {
+	/**
+	 * Anything with an offensive profile.
+	 */
 	WEAPON,
+	/**
+	 * Passive defense item.
+	 */
 	ARMOR,
+	/**
+	 * A active defense item.
+	 */
 	SHIELD
 }
 
@@ -80,10 +89,20 @@ public class Item {
 		protect = new LinkedList<Effect>();
 	}
 
+	/**
+	 * Adds a damage effect on the item.
+	 * @param type
+	 * @param amount
+	 */
 	public void setDamage(DamageType type, int amount) {
 		damage.add(new DamageEffect(type, amount));
 	}
 
+	/**
+	 * Adds a protective effect on the item.
+	 * @param type
+	 * @param amount
+	 */
 	public void setProtection(DamageType type, int amount) {
 		protect.add(new DamageEffect(type, amount));
 	}
