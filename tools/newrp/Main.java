@@ -1,31 +1,55 @@
 package newrp;
 
+/**
+ * Main class.
+ * 
+ * Create a few items and run a combat between two entities.
+ * 
+ * @author miguel
+ *
+ */
 public class Main {
-	static final int LEVELS_TO_DO = 100;
-
 	public static void main(String[] args) {
+		/*
+		 * Creates a sword.
+		 */
 		Item sword = new Item(ItemType.WEAPON, "sword", 4, Skill.SWORDING);
 		sword.setDamage(DamageType.SLASH, 10);
 
+		/*
+		 * Creates a leather armor.
+		 */
 		Item armor = new Item(ItemType.ARMOR, "leather armor", 8,
 				Skill.LIGHT_ARMOR);
 		armor.setProtection(DamageType.SLASH, 10);
 		armor.setProtection(DamageType.BASH, 15);
 		armor.setProtection(DamageType.STAB, 6);
 
+		/*
+		 * Creates a shield.
+		 */
 		Item shield = new Item(ItemType.SHIELD, "leather shield", 10,
 				Skill.SHIELDING);
 		shield.setProtection(DamageType.SLASH, 10);
 		shield.setProtection(DamageType.BASH, 10);
 		shield.setProtection(DamageType.STAB, 8);
 
+		/*
+		 * Define the spell Ball of fire.
+		 */
 		Spell balloffire = new Spell("Ball of fire", Skill.ILLUSION, 0, 10, 0);
 		balloffire.setDamageEffect(DamageType.FIRE, 10);
 		balloffire.setDamageEffect(DamageType.BASH, 4);
 
+		/*
+		 * Define the spell Heal.
+		 */
 		Spell heal = new Spell("Heal", Skill.ALCHEMY, 0, 3, 0);
 		heal.setHealingEffect(10);
 
+		/*
+		 * Create one of the entities. 
+		 */
 		RPEntity attacker = new RPEntity(Race.HUMAN, School.WARRIOR, Sex.MALE);
 		attacker.set(16, 12, 8, 12, 7, 7);
 		attacker.equip(sword);
@@ -33,16 +57,25 @@ public class Main {
 		attacker.equip(shield);
 		attacker.level(1);
 
+		/*
+		 * And the other one.
+		 */
 		RPEntity defender = new RPEntity(Race.ELF, School.MAGE, Sex.MALE);
 		defender.set(6, 6, 8, 12, 16, 13);
 		defender.equip(sword);
 		defender.equip(armor);
 		defender.level(1);
 
+		/*
+		 * Define for both the combat attitude.
+		 */
 		attacker.setAttitude(0.66f);
 		defender.setAttitude(0.66f);
 
 		int turn = 0;
+		/*
+		 * And run the combat until one of them die. 
+		 */
 		while (!attacker.isDeath() && !defender.isDeath()) {
 			attacker.attack(defender, turn);
 			defender.cast(balloffire, attacker, turn);
