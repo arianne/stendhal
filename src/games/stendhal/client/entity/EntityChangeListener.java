@@ -19,5 +19,5 @@ public interface EntityChangeListener {
 	 * @param	entity		The entity that was changed.
 	 * @param	property	The property identifier.
 	 */
-	public void entityChanged(Entity entity, Object property);
+	void entityChanged(Entity entity, Object property);
 }

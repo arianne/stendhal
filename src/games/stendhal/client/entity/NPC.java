@@ -28,9 +28,10 @@ public class NPC extends RPEntity {
 	/**
 	 * Initialize this entity for an object.
 	 *
-	 * @param	object		The object.
+	 * @param object
+	 *            The object.
 	 *
-	 * @see-also	#release()
+	 * @see-also #release()
 	 */
 	@Override
 	public void initialize(final RPObject object) {
@@ -42,32 +43,37 @@ public class NPC extends RPEntity {
 			setAudibleRange(3);
 			if (name.equals("Diogenes")) {
 				moveSounds = new String[2];
-				moveSounds[0]="laugh-1.wav";
-				moveSounds[1]="laugh-2.wav";
-			//	SoundSystem.startSoundCycle(this, "Diogenes-patrol", 10000, 20, 50, 100);
+				moveSounds[0] = "laugh-1.wav";
+				moveSounds[1] = "laugh-2.wav";
+				// SoundSystem.startSoundCycle(this, "Diogenes-patrol", 10000,
+				// 20, 50, 100);
 			} else if (name.equals("Carmen")) {
 				moveSounds = new String[2];
-				moveSounds[0]="giggle-1.wav";
-				moveSounds[1]="giggle-2.wav";
+				moveSounds[0] = "giggle-1.wav";
+				moveSounds[1] = "giggle-2.wav";
 
-				//SoundSystem.startSoundCycle(this, "Carmen-patrol", 60000, 20, 50, 75);
+				// SoundSystem.startSoundCycle(this, "Carmen-patrol", 60000, 20,
+				// 50, 75);
 			} else if (name.equals("Nishiya")) {
 				moveSounds = new String[3];
-				moveSounds[0]="cough-11.wav";
-				moveSounds[1]="cough-2.wav";
-				moveSounds[2]="cough-3.wav";
-			//	SoundSystem.startSoundCycle(this, "Nishiya-patrol", 40000, 20, 50, 80);
+				moveSounds[0] = "cough-11.wav";
+				moveSounds[1] = "cough-2.wav";
+				moveSounds[2] = "cough-3.wav";
+				// SoundSystem.startSoundCycle(this, "Nishiya-patrol", 40000,
+				// 20, 50, 80);
 			} else if (name.equals("Margaret")) {
 				moveSounds = new String[3];
-				moveSounds[0]="hiccup-1.aiff";
-				moveSounds[1]="hiccup-2.wav";
-				moveSounds[2]="hiccup-3.wav";
+				moveSounds[0] = "hiccup-1.aiff";
+				moveSounds[1] = "hiccup-2.wav";
+				moveSounds[2] = "hiccup-3.wav";
 
-				//SoundSystem.startSoundCycle(this, "Margaret-patrol", 30000, 10, 30, 70);
+				// SoundSystem.startSoundCycle(this, "Margaret-patrol", 30000,
+				// 10, 30, 70);
 			} else if (name.equals("Sato")) {
-				moveSounds= new String[1];
-				moveSounds[0]="sneeze-1.wav";
-				//SoundSystem.startSoundCycle(this, "Sato-patrol", 60000, 30, 50, 70);
+				moveSounds = new String[1];
+				moveSounds[0] = "sneeze-1.wav";
+				// SoundSystem.startSoundCycle(this, "Sato-patrol", 60000, 30,
+				// 50, 70);
 			}
 		}
 	}
@@ -77,18 +83,21 @@ public class NPC extends RPEntity {
 	/**
 	 * When the entity's position changed.
 	 *
-	 * @param	x		The new X coordinate.
-	 * @param	y		The new Y coordinate.
+	 * @param x
+	 *            The new X coordinate.
+	 * @param y
+	 *            The new Y coordinate.
 	 */
 	@Override
 	protected void onPosition(final double x, final double y) {
 		super.onPosition(x, y);
 
-		if(soundWait < System.currentTimeMillis()&&Rand.rand(1000)<5) {
+		if (soundWait < System.currentTimeMillis() && Rand.rand(1000) < 5) {
 
 			try {
-				SoundMaster.play(moveSounds[Rand.rand(moveSounds.length)], x, y);
-			} catch(NullPointerException e){
+				SoundMaster
+						.play(moveSounds[Rand.rand(moveSounds.length)], x, y);
+			} catch (NullPointerException e) {
 			}
 
 			soundWait = System.currentTimeMillis() + 2000L;

@@ -24,20 +24,18 @@ public class Blood extends PassiveEntity {
 	/**
 	 * Amount property.
 	 */
-	public final static Object	PROP_AMOUNT	= new Object();
+	public static final Object PROP_AMOUNT = new Object();
 
 	/**
 	 * The amount of blood.
 	 */
-	private int	amount;
-
+	private int amount;
 
 	/**
 	 * Create a blood entity.
 	 */
 	public Blood() {
 	}
-
 
 	//
 	// Blood
@@ -46,12 +44,11 @@ public class Blood extends PassiveEntity {
 	/**
 	 * Get the current amount.
 	 *
-	 * @return	The current amount.
+	 * @return The current amount.
 	 */
 	public int getAmount() {
 		return amount;
 	}
-
 
 	//
 	// Entity
@@ -60,9 +57,10 @@ public class Blood extends PassiveEntity {
 	/**
 	 * Initialize this entity for an object.
 	 *
-	 * @param	object		The object.
+	 * @param object
+	 *            The object.
 	 *
-	 * @see-also	#release()
+	 * @see-also #release()
 	 */
 	@Override
 	public void initialize(final RPObject object) {
@@ -78,7 +76,6 @@ public class Blood extends PassiveEntity {
 		}
 	}
 
-
 	//
 	// RPObjectChangeListener
 	//
@@ -86,8 +83,10 @@ public class Blood extends PassiveEntity {
 	/**
 	 * The object added/changed attribute(s).
 	 *
-	 * @param	object		The base object.
-	 * @param	changes		The changes.
+	 * @param object
+	 *            The base object.
+	 * @param changes
+	 *            The changes.
 	 */
 	@Override
 	public void onChangedAdded(final RPObject object, final RPObject changes) {
@@ -102,12 +101,13 @@ public class Blood extends PassiveEntity {
 		}
 	}
 
-
 	/**
 	 * The object removed attribute(s).
 	 *
-	 * @param	object		The base object.
-	 * @param	changes		The changes.
+	 * @param object
+	 *            The base object.
+	 * @param changes
+	 *            The changes.
 	 */
 	@Override
 	public void onChangedRemoved(final RPObject object, final RPObject changes) {

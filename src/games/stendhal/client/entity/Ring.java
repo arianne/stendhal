@@ -21,7 +21,7 @@ public class Ring extends Item {
 	/**
 	 * Working property.
 	 */
-	public final static Object	PROP_WORKING	= new Object();
+	public static final Object	PROP_WORKING	= new Object();
 
 	/**
 	 * Whether the ring is currently working.
@@ -68,7 +68,7 @@ public class Ring extends Item {
 		/*
 		 * A ring works either by not having amount or having amount > 0
 		 */
-		if(object.has("amount")) {
+		if (object.has("amount")) {
 			working = object.getInt("amount") > 0;
 		} else {
 			working = true;
@@ -90,7 +90,7 @@ public class Ring extends Item {
 	public void onChangedAdded(final RPObject object, final RPObject changes) {
 		super.onChangedAdded(object, changes);
 
-		if(changes.has("amount")) {
+		if (changes.has("amount")) {
 			/*
 			 * A ring works either by not having amount of
 			 * having amount > 0

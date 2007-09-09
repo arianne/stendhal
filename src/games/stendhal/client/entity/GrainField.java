@@ -23,12 +23,12 @@ public class GrainField extends Entity {
 	/**
 	 * Maximum ripeness property.
 	 */
-	public final static Object	PROP_MAX_RIPENESS	= new Object();
+	public static final Object	PROP_MAX_RIPENESS	= new Object();
 
 	/**
 	 * Ripeness property.
 	 */
-	public final static Object	PROP_RIPENESS		= new Object();
+	public static final Object	PROP_RIPENESS		= new Object();
 
 
 	/**

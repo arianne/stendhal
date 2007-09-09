@@ -24,7 +24,7 @@ import marauroa.common.Pair;
  *
  */
 public final class EntityMap {
-	private static Map<Pair<String, String>, Class> entityMap= new HashMap<Pair<String, String>, Class>();
+	private static Map<Pair<String, String>, Class> entityMap = new HashMap<Pair<String, String>, Class>();
 
 	static {
 		register();
@@ -42,9 +42,8 @@ public final class EntityMap {
 		register("sheep", null, Sheep.class);
 
 		/*
-		 * Not sure whether to register individual pets from child
-		 * classes, or the whole parent class Pet.
-		 * suggestions welcome.
+		 * Not sure whether to register individual pets from child classes, or
+		 * the whole parent class Pet. suggestions welcome.
 		 */
 		register("cat", null, Pet.class);
 		register("pet", null, Pet.class);
@@ -52,7 +51,8 @@ public final class EntityMap {
 		register("npc", null, NPC.class);
 
 		register("plant_grower", null, PlantGrower.class);
-		register("growing_entity_spawner", "items/grower/carrot_grower", CarrotGrower.class);
+		register("growing_entity_spawner", "items/grower/carrot_grower",
+				CarrotGrower.class);
 		register("growing_entity_spawner", null, GrainField.class);
 
 		register("gold_source", null, GoldSource.class);
@@ -84,7 +84,7 @@ public final class EntityMap {
 		register("item", "resource", StackableItem.class);
 
 		register("item", "scroll", StackableItem.class);
-		register("item", "jewellery",StackableItem.class);
+		register("item", "jewellery", StackableItem.class);
 
 		register("portal", null, Portal.class);
 		register("door", null, Door.class);
@@ -101,7 +101,8 @@ public final class EntityMap {
 	 * @param entityClass
 	 *            the java class of the Entity
 	 */
-	private static void register(final String type, final String eclass, final Class entityClazz) {
+	private static void register(final String type, final String eclass,
+			final Class entityClazz) {
 		entityMap.put(new Pair<String, String>(type, eclass), entityClazz);
 	}
 

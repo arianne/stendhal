@@ -18,7 +18,7 @@ public class Sign extends Entity {
 	/**
 	 * Text property.
 	 */
-	public final static Object	PROP_TEXT		= new Object();
+	public static final Object	PROP_TEXT		= new Object();
 
 	/**
 	 * The sign text.

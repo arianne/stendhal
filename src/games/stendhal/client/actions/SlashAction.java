@@ -21,21 +21,21 @@ public interface SlashAction {
 	 *
 	 * @return	<code>true</code> if command was handled.
 	 */
-	public boolean execute(String[] params, String remainder);
+	boolean execute(String[] params, String remainder);
 
 	/**
 	 * Get the maximum number of formal parameters.
 	 *
 	 * @return	The parameter count.
 	 */
-	public int getMaximumParameters();
+	int getMaximumParameters();
 
 	/**
 	 * Get the minimum number of formal parameters.
 	 *
 	 * @return	The parameter count.
 	 */
-	public int getMinimumParameters();
+	int getMinimumParameters();
 
 	//Not yet
 	//	/**

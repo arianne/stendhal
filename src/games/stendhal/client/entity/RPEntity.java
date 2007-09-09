@@ -37,42 +37,43 @@ public abstract class RPEntity extends ActiveEntity {
 	/**
 	 * Admin Level property.
 	 */
-	public final static Object	PROP_ADMIN_LEVEL	= new Object();
+	public static final Object PROP_ADMIN_LEVEL = new Object();
 
 	/**
 	 * Ghostmode property.
 	 */
-	public final static Object	PROP_GHOSTMODE		= new Object();
+	public static final Object PROP_GHOSTMODE = new Object();
 
 	/**
 	 * Indicator text property.
 	 */
-	public final static Object	PROP_TEXT_INDICATORS	= new Object();
+	public static final Object PROP_TEXT_INDICATORS = new Object();
 
 	/**
 	 * Outfit property.
 	 */
-	public final static Object	PROP_OUTFIT	= new Object();
+	public static final Object PROP_OUTFIT = new Object();
 
 	/**
 	 * Title Type property.
 	 */
-	public final static Object	PROP_TITLE_TYPE	= new Object();
+	public static final Object PROP_TITLE_TYPE = new Object();
 
 	/**
 	 * The value of an outfit that isn't set.
 	 */
-	public static final int	OUTFIT_UNSET	= -1;
+	public static final int OUTFIT_UNSET = -1;
 
 	private boolean showBladeStrike;
 
-	String[] attackSounds={
-		"punch-1.wav","punch-2.wav","punch-3.wav"
-		,"punch-4.wav","punch-5.wav","punch-6.wav",
-		"swingaxe-1.wav","slap-1.wav","arrow-1.wav"};
+	String[] attackSounds = { "punch-1.wav", "punch-2.wav", "punch-3.wav",
+			"punch-4.wav", "punch-5.wav", "punch-6.wav", "swingaxe-1.wav",
+			"slap-1.wav", "arrow-1.wav" };
 
 	public enum Resolution {
-		HIT(0), BLOCKED(1), MISSED(2);
+		HIT(0),
+		BLOCKED(1),
+		MISSED(2);
 
 		private final int val;
 
@@ -98,7 +99,7 @@ public abstract class RPEntity extends ActiveEntity {
 	/**
 	 * The outfit code.
 	 */
-	private int	outfit;
+	private int outfit;
 
 	private int base_hp;
 
@@ -127,8 +128,7 @@ public abstract class RPEntity extends ActiveEntity {
 	private String titleType;
 
 	/**
-	 * Entity we are attacking.
-	 * (need to reconsile this with 'attacking')
+	 * Entity we are attacking. (need to reconsile this with 'attacking')
 	 */
 	protected RPEntity attackTarget;
 
@@ -140,8 +140,8 @@ public abstract class RPEntity extends ActiveEntity {
 	/**
 	 * The type of effect to show.
 	 *
-	 * These are NOT mutually exclusive
-	 * - Maybe use bitmask and apply in priority order.
+	 * These are NOT mutually exclusive - Maybe use bitmask and apply in
+	 * priority order.
 	 */
 	private Resolution resolution;
 
@@ -153,15 +153,12 @@ public abstract class RPEntity extends ActiveEntity {
 
 	private int defItem = -1;
 
-
-
 	/** Create a new game entity */
-	RPEntity()  {
+	RPEntity() {
 		textIndicators = new LinkedList<TextIndicator>();
 		attackTarget = null;
 		attackers = new LinkedList<Entity>();
 	}
-
 
 	//
 	// RPEntity
@@ -170,19 +167,21 @@ public abstract class RPEntity extends ActiveEntity {
 	/**
 	 * Create/add a text indicator message.
 	 *
-	 * @param	text		The text message.
-	 * @param	type		The indicator type.
+	 * @param text
+	 *            The text message.
+	 * @param type
+	 *            The indicator type.
 	 */
-	protected void addTextIndicator(final String text, final NotificationType type) {
+	protected void addTextIndicator(final String text,
+			final NotificationType type) {
 		textIndicators.add(new TextIndicator(text, type));
 		fireChange(PROP_TEXT_INDICATORS);
 	}
 
-
 	/**
 	 * Get the admin level.
 	 *
-	 * @return	The admin level.
+	 * @return The admin level.
 	 */
 	public int getAdminLevel() {
 		return adminlevel;
@@ -245,7 +244,7 @@ public abstract class RPEntity extends ActiveEntity {
 	}
 
 	public String getGuild() {
-	    return guild;
+		return guild;
 	}
 
 	public int getHP() {
@@ -255,22 +254,20 @@ public abstract class RPEntity extends ActiveEntity {
 	/**
 	 * Get the ratio of HP to base HP.
 	 *
-	 * @return	The HP ratio (0.0 - 1.0).
+	 * @return The HP ratio (0.0 - 1.0).
 	 */
 	public float getHPRatio() {
 		return hp_base_hp;
 	}
 
-
 	/**
 	 * Get the list of text indicator elements.
 	 *
-	 * @return	An iterator of text indicators.
+	 * @return An iterator of text indicators.
 	 */
 	public Iterator<TextIndicator> getTextIndicators() {
 		return textIndicators.iterator();
 	}
-
 
 	public int getLevel() {
 		return level;
@@ -286,7 +283,7 @@ public abstract class RPEntity extends ActiveEntity {
 	/**
 	 * Get the outfit code.
 	 *
-	 * @return	The outfit code.
+	 * @return The outfit code.
 	 */
 	public int getOutfit() {
 		return outfit;
@@ -299,36 +296,34 @@ public abstract class RPEntity extends ActiveEntity {
 	/**
 	 * Get the nicely formatted entity title.
 	 *
-	 * This searches the follow attribute order:
-	 *	title, name (w/o underscore), class (w/o underscore), type (w/o underscore).
+	 * This searches the follow attribute order: title, name (w/o underscore),
+	 * class (w/o underscore), type (w/o underscore).
 	 *
-	 * @return	The title, or <code>null</code> if unknown.
+	 * @return The title, or <code>null</code> if unknown.
 	 */
 	@Override
 	public String getTitle() {
-		if(title != null) {
+		if (title != null) {
 			return title;
-		} else if(name != null) {
+		} else if (name != null) {
 			return name.replace('_', ' ');
-		} else if(clazz != null) {
+		} else if (clazz != null) {
 			return clazz.replace('_', ' ');
-		} else if(type != null) {
+		} else if (type != null) {
 			return type.replace('_', ' ');
 		} else {
 			return null;
 		}
 	}
 
-
 	/**
 	 * Get title type.
 	 *
-	 * @return	The title type.
+	 * @return The title type.
 	 */
 	public String getTitleType() {
 		return titleType;
 	}
-
 
 	/**
 	 * @return Returns the xp.
@@ -337,14 +332,12 @@ public abstract class RPEntity extends ActiveEntity {
 		return xp;
 	}
 
-
 	public boolean isAttacking() {
 		return (attacking != null);
 	}
 
 	public boolean isAttackingUser() {
-		return ((attacking != null)
-			&& attacking.equals(User.get().getID()));
+		return ((attacking != null) && attacking.equals(User.get().getID()));
 	}
 
 	public boolean isBeingAttacked() {
@@ -354,7 +347,7 @@ public abstract class RPEntity extends ActiveEntity {
 	public boolean isBeingAttackedByUser() {
 		User user = User.get();
 
-		if(user == null) {
+		if (user == null) {
 			return false;
 		}
 
@@ -370,8 +363,8 @@ public abstract class RPEntity extends ActiveEntity {
 	}
 
 	public boolean isDefending() {
-                return (isBeingAttacked()
-			&& (System.currentTimeMillis() - combatIconTime < 4 * 300));
+		return (isBeingAttacked() && (System.currentTimeMillis()
+				- combatIconTime < 4 * 300));
 	}
 
 	public boolean isEating() {
@@ -381,7 +374,7 @@ public abstract class RPEntity extends ActiveEntity {
 	/**
 	 * Determine if in full ghostmode.
 	 *
-	 * @return	<code>true</code> is in full ghostmode.
+	 * @return <code>true</code> is in full ghostmode.
 	 */
 	public boolean isGhostMode() {
 		return ghostmode;
@@ -391,14 +384,11 @@ public abstract class RPEntity extends ActiveEntity {
 		return poisoned;
 	}
 
-
-
 	// TODO: this is just an ugly workaround to avoid cyclic dependencies with
 	// Creature
 	protected void nonCreatureClientAddEventLine(final String text) {
 		StendhalUI.get().addEventLine(getTitle(), text);
 	}
-
 
 	// When this entity attacks target.
 	public void onAttack(final Entity target) {
@@ -436,33 +426,35 @@ public abstract class RPEntity extends ActiveEntity {
 	public void onDamaged(final Entity attacker, final int damage) {
 		combatIconTime = System.currentTimeMillis();
 		resolution = Resolution.HIT;
-		 try{
+		try {
 
-			    SoundMaster.play(attackSounds[Rand.rand(attackSounds.length)], x, y);
-			}
-			catch(NullPointerException e){
+			SoundMaster
+					.play(attackSounds[Rand.rand(attackSounds.length)], x, y);
+		} catch (NullPointerException e) {
 
-			}
+		}
 
-		//playSound("punch-mix", 20, 60, 80);
+		// playSound("punch-mix", 20, 60, 80);
 
 		boolean showAttackInfoForPlayer = (!User.isNull())
-		        && (this.equals(User.get()) || attacker.equals(User.get()));
-		showAttackInfoForPlayer = showAttackInfoForPlayer & (!stendhal.FILTER_ATTACK_MESSAGES);
+				&& (this.equals(User.get()) || attacker.equals(User.get()));
+		showAttackInfoForPlayer = showAttackInfoForPlayer
+				& (!stendhal.FILTER_ATTACK_MESSAGES);
 
 		if (stendhal.SHOW_EVERYONE_ATTACK_INFO || showAttackInfoForPlayer) {
 			StendhalUI.get().addEventLine(
-				getTitle() + " suffers "
-				+ Grammar.quantityplnoun(damage, "point")
-				+ " of damage from " + attacker.getTitle(),
-				NotificationType.NEGATIVE);
+					getTitle() + " suffers "
+							+ Grammar.quantityplnoun(damage, "point")
+							+ " of damage from " + attacker.getTitle(),
+					NotificationType.NEGATIVE);
 		}
 	}
 
 	// Called when entity is killed by killer
 	public void onDeath(final Entity killer) {
 		if (killer != null) {
-			StendhalUI.get().addEventLine(getTitle() + " has been killed by " + killer.getTitle());
+			StendhalUI.get().addEventLine(
+					getTitle() + " has been killed by " + killer.getTitle());
 		}
 
 		/*
@@ -490,10 +482,11 @@ public abstract class RPEntity extends ActiveEntity {
 	// When entity adjusts HP
 	public void onHPChange(final int amount) {
 		if (distanceToUser() < 15 * 15) {
-			if(amount > 0) {
+			if (amount > 0) {
 				addTextIndicator("+" + amount, NotificationType.POSITIVE);
 			} else {
-				addTextIndicator(String.valueOf(amount), NotificationType.NEGATIVE);
+				addTextIndicator(String.valueOf(amount),
+						NotificationType.NEGATIVE);
 			}
 		}
 	}
@@ -514,8 +507,9 @@ public abstract class RPEntity extends ActiveEntity {
 			poisoned = true;
 
 			StendhalUI.get().addEventLine(
-			        getTitle() + " is poisoned, losing " + Grammar.quantityplnoun(amount, "health point") + ".",
-				NotificationType.NEGATIVE);
+					getTitle() + " is poisoned, losing "
+							+ Grammar.quantityplnoun(amount, "health point")
+							+ ".", NotificationType.NEGATIVE);
 		}
 	}
 
@@ -527,8 +521,8 @@ public abstract class RPEntity extends ActiveEntity {
 	public void onPrivateListen(final String text) {
 		NotificationType type;
 
-
-		// TODO: replace this with its own RPEvent type after port to Marauroa 2.0
+		// TODO: replace this with its own RPEvent type after port to Marauroa
+		// 2.0
 		if (text.startsWith("Tutorial: ")) {
 			type = NotificationType.TUTORIAL;
 		} else {
@@ -539,7 +533,8 @@ public abstract class RPEntity extends ActiveEntity {
 		StendhalUI.get().addEventLine(text, type);
 
 		// TODO: Position based on visual part
-		GameScreen.get().addText(getX() + (getWidth() / 2.0), getY(), text.replace("|", ""), type, false);
+		GameScreen.get().addText(getX() + (getWidth() / 2.0), getY(),
+				text.replace("|", ""), type, false);
 	}
 
 	// When this entity stops attacking
@@ -591,11 +586,10 @@ public abstract class RPEntity extends ActiveEntity {
 			}
 
 			// TODO: Position based on visual part
-			GameScreen.get().addText(
-				getX() + getWidth(), getY(), line, NotificationType.NORMAL, true);
+			GameScreen.get().addText(getX() + getWidth(), getY(), line,
+					NotificationType.NORMAL, true);
 		}
 	}
-
 
 	//
 	// Entity
@@ -604,20 +598,20 @@ public abstract class RPEntity extends ActiveEntity {
 	/**
 	 * Get the resistance this has on other entities (0-100).
 	 *
-	 * @return	The resistance, or 0 if in ghostmode.
+	 * @return The resistance, or 0 if in ghostmode.
 	 */
 	@Override
 	public int getResistance() {
 		return (isGhostMode() ? 0 : super.getResistance());
 	}
 
-
 	/**
 	 * Initialize this entity for an object.
 	 *
-	 * @param	object		The object.
+	 * @param object
+	 *            The object.
 	 *
-	 * @see-also	#release()
+	 * @see-also #release()
 	 */
 	@Override
 	public void initialize(final RPObject object) {
@@ -694,7 +688,7 @@ public abstract class RPEntity extends ActiveEntity {
 		 * Ghost mode feature.
 		 */
 		if (object.has("ghostmode")) {
-		    ghostmode = true;
+			ghostmode = true;
 		}
 
 		/*
@@ -710,35 +704,36 @@ public abstract class RPEntity extends ActiveEntity {
 		if (object.has("target")) {
 			int target = object.getInt("target");
 
-			RPObject.ID targetEntityID = new RPObject.ID(target, object.get("zoneid"));
+			RPObject.ID targetEntityID = new RPObject.ID(target, object
+					.get("zoneid"));
 
 			/*
-			 * XXX - This is probably meaningless, as create order
-			 * is unpredictable, and the target entity may not
-			 * have been added yet
+			 * XXX - This is probably meaningless, as create order is
+			 * unpredictable, and the target entity may not have been added yet
 			 */
-			attackTarget = (RPEntity) GameObjects.getInstance().get(targetEntityID);
+			attackTarget = (RPEntity) GameObjects.getInstance().get(
+					targetEntityID);
 
 			if (attackTarget != null) {
 				onAttack(attackTarget);
 				attackTarget.onAttacked(this);
-				//attackTarget.onAttacked(this,risk,damage);
+				// attackTarget.onAttacked(this,risk,damage);
 			}
 		} else {
 			attackTarget = null;
 		}
 
-		if(attackTarget != null) {
+		if (attackTarget != null) {
 			int risk;
 			int damage;
 
-			if(object.has("risk")) {
+			if (object.has("risk")) {
 				risk = object.getInt("risk");
 			} else {
 				risk = 0;
 			}
 
-			if(object.has("damage")) {
+			if (object.has("damage")) {
 				damage = object.getInt("damage");
 			} else {
 				damage = 0;
@@ -775,13 +770,11 @@ public abstract class RPEntity extends ActiveEntity {
 		}
 	}
 
-
 	/**
-	 * Release this entity. This should clean anything that isn't
-	 * automatically released (such as unregister callbacks, cancel
-	 * external operations, etc).
+	 * Release this entity. This should clean anything that isn't automatically
+	 * released (such as unregister callbacks, cancel external operations, etc).
 	 *
-	 * @see-also	#initialize(RPObject)
+	 * @see-also #initialize(RPObject)
 	 */
 	@Override
 	public void release() {
@@ -795,23 +788,23 @@ public abstract class RPEntity extends ActiveEntity {
 		super.release();
 	}
 
-
 	/**
 	 * Update cycle.
 	 *
-	 * @param	delta		The time (in ms) since last call.
+	 * @param delta
+	 *            The time (in ms) since last call.
 	 */
 	@Override
 	public void update(final int delta) {
 		super.update(delta);
 
-		if(!textIndicators.isEmpty()) {
+		if (!textIndicators.isEmpty()) {
 			Iterator<TextIndicator> iter = textIndicators.iterator();
 
-			while(iter.hasNext()) {
+			while (iter.hasNext()) {
 				TextIndicator textIndicator = iter.next();
 
-				if(textIndicator.addAge(delta) > 2000L) {
+				if (textIndicator.addAge(delta) > 2000L) {
 					iter.remove();
 				}
 			}
@@ -820,7 +813,6 @@ public abstract class RPEntity extends ActiveEntity {
 		}
 	}
 
-
 	//
 	// RPObjectChangeListener
 	//
@@ -828,8 +820,10 @@ public abstract class RPEntity extends ActiveEntity {
 	/**
 	 * The object added/changed attribute(s).
 	 *
-	 * @param	object		The base object.
-	 * @param	changes		The changes.
+	 * @param object
+	 *            The base object.
+	 * @param changes
+	 *            The changes.
 	 */
 	@Override
 	public void onChangedAdded(final RPObject object, final RPObject changes) {
@@ -880,7 +874,6 @@ public abstract class RPEntity extends ActiveEntity {
 				onHealed(changes.getInt("heal"));
 			}
 
-
 			boolean hpRatioChange = false;
 
 			/*
@@ -911,7 +904,7 @@ public abstract class RPEntity extends ActiveEntity {
 			/*
 			 * HP ratio
 			 */
-			if(hpRatioChange) {
+			if (hpRatioChange) {
 				if (hp >= base_hp) {
 					hp_base_hp = 1.0f;
 				} else if (hp <= 0) {
@@ -920,11 +913,10 @@ public abstract class RPEntity extends ActiveEntity {
 					hp_base_hp = hp / (float) base_hp;
 				}
 
-				if(hp == 0) {
+				if (hp == 0) {
 					onDeath(attackers.isEmpty() ? null : attackers.get(0));
 				}
 			}
-
 
 			/*
 			 * Attack Target
@@ -932,9 +924,11 @@ public abstract class RPEntity extends ActiveEntity {
 			if (changes.has("target")) {
 				int target = changes.getInt("target");
 
-				RPObject.ID targetEntityID = new RPObject.ID(target, changes.get("zoneid"));
+				RPObject.ID targetEntityID = new RPObject.ID(target, changes
+						.get("zoneid"));
 
-				RPEntity targetEntity = (RPEntity) GameObjects.getInstance().get(targetEntityID);
+				RPEntity targetEntity = (RPEntity) GameObjects.getInstance()
+						.get(targetEntityID);
 
 				if (targetEntity != attackTarget) {
 					onStopAttack();
@@ -945,21 +939,21 @@ public abstract class RPEntity extends ActiveEntity {
 
 					attackTarget = targetEntity;
 
-					if(attackTarget != null) {
+					if (attackTarget != null) {
 						onAttack(attackTarget);
 						attackTarget.onAttacked(this);
-						//attackTarget.onAttacked(this,risk,damage);
+						// attackTarget.onAttacked(this,risk,damage);
 					}
 				}
 			}
 
-			if(attackTarget != null) {
+			if (attackTarget != null) {
 				int risk;
 				int damage;
 
 				boolean thereIsEvent = false;
 
-				if(changes.has("risk")) {
+				if (changes.has("risk")) {
 					risk = changes.getInt("risk");
 					thereIsEvent = true;
 				} else if (object.has("risk")) {
@@ -968,7 +962,7 @@ public abstract class RPEntity extends ActiveEntity {
 					risk = 0;
 				}
 
-				if(changes.has("damage")) {
+				if (changes.has("damage")) {
 					damage = changes.getInt("damage");
 					thereIsEvent = true;
 				} else if (object.has("damage")) {
@@ -977,7 +971,7 @@ public abstract class RPEntity extends ActiveEntity {
 					damage = 0;
 				}
 
-				if(thereIsEvent) {
+				if (thereIsEvent) {
 					if (risk == 0) {
 						onAttackMissed(attackTarget);
 						attackTarget.onMissed(this);
@@ -1010,7 +1004,8 @@ public abstract class RPEntity extends ActiveEntity {
 			/*
 			 * Title
 			 */
-			if (changes.has("class") || changes.has("name") || changes.has("title") || changes.has("type")) {
+			if (changes.has("class") || changes.has("name")
+					|| changes.has("title") || changes.has("type")) {
 				fireChange(PROP_TITLE);
 			}
 		}
@@ -1061,24 +1056,32 @@ public abstract class RPEntity extends ActiveEntity {
 		}
 
 		if (changes.has("guild")) {
-		    guild = changes.get("guild");
+			guild = changes.get("guild");
 		}
 
 		if (changes.has("xp") && object.has("xp")) {
 			if (distanceToUser() < 15 * 15) {
-				int amount=(changes.getInt("xp") - object.getInt("xp"));
-				if(amount>0) {
-					addTextIndicator("+" + amount, NotificationType.SIGNIFICANT_POSITIVE);
+				int amount = (changes.getInt("xp") - object.getInt("xp"));
+				if (amount > 0) {
+					addTextIndicator("+" + amount,
+							NotificationType.SIGNIFICANT_POSITIVE);
 
-					StendhalUI.get().addEventLine( getTitle() + " earns "
-							+ Grammar.quantityplnoun(amount, "experience point")
-							+ ".", NotificationType.SIGNIFICANT_POSITIVE);
-				} else if(amount<0) {
-					addTextIndicator(""+amount, NotificationType.SIGNIFICANT_NEGATIVE);
+					StendhalUI.get().addEventLine(
+							getTitle()
+									+ " earns "
+									+ Grammar.quantityplnoun(amount,
+											"experience point") + ".",
+							NotificationType.SIGNIFICANT_POSITIVE);
+				} else if (amount < 0) {
+					addTextIndicator("" + amount,
+							NotificationType.SIGNIFICANT_NEGATIVE);
 
-					StendhalUI.get().addEventLine( getTitle() + " loses "
-							+ Grammar.quantityplnoun(amount, "experience point")
-							+ ".", NotificationType.SIGNIFICANT_NEGATIVE);
+					StendhalUI.get().addEventLine(
+							getTitle()
+									+ " loses "
+									+ Grammar.quantityplnoun(amount,
+											"experience point") + ".",
+							NotificationType.SIGNIFICANT_NEGATIVE);
 				}
 			}
 		}
@@ -1087,20 +1090,23 @@ public abstract class RPEntity extends ActiveEntity {
 			if (distanceToUser() < 15 * 15) {
 				String text = getTitle() + " reaches Level " + getLevel();
 
-				StendhalUI.get().addEventLine(text, NotificationType.SIGNIFICANT_POSITIVE);
+				StendhalUI.get().addEventLine(text,
+						NotificationType.SIGNIFICANT_POSITIVE);
 
 				// TODO: Position based on visual part
-				GameScreen.get().addText(getX() + (getWidth() / 2.0), getY(), text, NotificationType.SIGNIFICANT_POSITIVE, false);
+				GameScreen.get().addText(getX() + (getWidth() / 2.0), getY(),
+						text, NotificationType.SIGNIFICANT_POSITIVE, false);
 			}
 		}
 	}
 
-
 	/**
 	 * The object removed attribute(s).
 	 *
-	 * @param	object		The base object.
-	 * @param	changes		The changes.
+	 * @param object
+	 *            The base object.
+	 * @param changes
+	 *            The changes.
 	 */
 	@Override
 	public void onChangedRemoved(final RPObject object, final RPObject changes) {
@@ -1153,24 +1159,25 @@ public abstract class RPEntity extends ActiveEntity {
 		/**
 		 * The age of the message (in ms).
 		 */
-		protected int		age;
+		protected int age;
 
 		/**
 		 * The message text.
 		 */
-		protected String	text;
+		protected String text;
 
 		/**
 		 * The indicator type.
 		 */
-		protected NotificationType	type;
-
+		protected NotificationType type;
 
 		/**
 		 * Create a floating message.
 		 *
-		 * @param	text		The text to drawn.
-		 * @param	type		The indicator type.
+		 * @param text
+		 *            The text to drawn.
+		 * @param type
+		 *            The indicator type.
 		 */
 		public TextIndicator(final String text, final NotificationType type) {
 			this.text = text;
@@ -1179,7 +1186,6 @@ public abstract class RPEntity extends ActiveEntity {
 			age = 0;
 		}
 
-
 		//
 		// TextIndicator
 		//
@@ -1187,9 +1193,10 @@ public abstract class RPEntity extends ActiveEntity {
 		/**
 		 * Add to the age of this message.
 		 *
-		 * @param	time		The amout to add.
+		 * @param time
+		 *            The amout to add.
 		 *
-		 * @return	The new age (in milliseconds).
+		 * @return The new age (in milliseconds).
 		 */
 		public int addAge(final int time) {
 			age += time;
@@ -1197,31 +1204,28 @@ public abstract class RPEntity extends ActiveEntity {
 			return age;
 		}
 
-
 		/**
 		 * Get the age of this message.
 		 *
-		 * @return	The age (in milliseconds).
+		 * @return The age (in milliseconds).
 		 */
 		public int getAge() {
 			return age;
 		}
 
-
 		/**
 		 * Get the text message.
 		 *
-		 * @return	The text message.
+		 * @return The text message.
 		 */
 		public String getText() {
 			return text;
 		}
 
-
 		/**
 		 * Get the indicator type.
 		 *
-		 * @return	The indicator type.
+		 * @return The indicator type.
 		 */
 		public NotificationType getType() {
 			return type;

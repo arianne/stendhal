@@ -33,19 +33,19 @@ class DropAction implements SlashAction  {
 			return true;
 		}
 		String itemName = params[1];
-		for (String slotName : CARRYING_SLOTS) { 
+		for (String slotName : CARRYING_SLOTS) {
 			int itemID = findItem(slotName, itemName);
 			if (itemID != -1) {
 				RPAction drop = new RPAction();
-	
+
 				drop.put("type", "drop");
-				drop.put("baseobject",User.get().getObjectID());
+				drop.put("baseobject", User.get().getObjectID());
 				drop.put("baseslot", slotName);
-				drop.put("x", (int)User.get().getX());
-				drop.put("y", (int)User.get().getY());
+				drop.put("x", (int) User.get().getX());
+				drop.put("y", (int) User.get().getY());
 				drop.put("quantity", quantity);
 				drop.put("baseitem", itemID);
-	
+
 				StendhalClient.get().send(drop);
 				return true;
 			}
@@ -56,13 +56,13 @@ class DropAction implements SlashAction  {
 
 	/**
 	 * returns the objectid for the named item
-	 * 
+	 *
 	 * @param slotName name of slot to search
 	 * @param itemName name of item
 	 * @return objectid or <code>-1</code> in case there is no such item
 	 */
 	private int findItem(String slotName, String itemName) {
-		
+
 		for (RPObject item : User.get().getSlot(slotName)) {
 			if (item.get("name").equals(itemName)) {
 				int itemID = item.getID().getObjectID();

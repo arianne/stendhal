@@ -10,31 +10,28 @@ import games.stendhal.common.Grammar;
 import java.awt.geom.Rectangle2D;
 import marauroa.common.game.RPObject;
 
-
 public class User extends Player {
 
-	private static User _instance;
+	private static User instance;
 
 	/**
 	 * Client features.
 	 */
-	private FeatureList	features;
+	private FeatureList features;
 
+	public static boolean isNull() {
 
-	public static boolean isNull(){
-
-		return _instance==null;
+		return instance == null;
 
 	}
 
-	public static User get(){
-		return _instance;
+	public static User get() {
+		return instance;
 	}
 
-
-	public User()  {
+	public User() {
 		super();
-		_instance = this;
+		instance = this;
 		modificationCount = 0;
 		features = new FeatureList();
 	}
@@ -42,8 +39,10 @@ public class User extends Player {
 	/**
 	 * When the entity's position changed.
 	 *
-	 * @param	x		The new X coordinate.
-	 * @param	y		The new Y coordinate.
+	 * @param x
+	 *            The new X coordinate.
+	 * @param y
+	 *            The new Y coordinate.
 	 */
 	@Override
 	protected void onPosition(final double x, final double y) {
@@ -54,6 +53,7 @@ public class User extends Player {
 	}
 
 	private int modificationCount;
+
 	/**
 	 * returns the modificationCount. This counter is increased each time a
 	 * perception is received from the server (so all serverside changes
@@ -64,112 +64,113 @@ public class User extends Player {
 		return modificationCount;
 	}
 
-
 	@Override
 	protected void onAway(final String message) {
-	    super.onAway(message);
+		super.onAway(message);
 
-	    StendhalUI.get().addEventLine(
-		        (message != null)
-				? "You have been marked as being away."
-		                : "You are no longer marked as being away.",
-			NotificationType.INFORMATION);
+		StendhalUI.get().addEventLine(
+				(message != null) ? "You have been marked as being away."
+						: "You are no longer marked as being away.",
+				NotificationType.INFORMATION);
 	}
 
-
-	public static  boolean isAdmin() {
+	public static boolean isAdmin() {
 
 		if (isNull()) {
-	        return false;
-        }
+			return false;
+		}
 		User me = User.get();
-		if (me.rpObject== null) {
-	        return false;
-        }
+		if (me.rpObject == null) {
+			return false;
+		}
 
-		return me.rpObject.has("adminlevel") && (me.rpObject.getInt("adminlevel") >= 600);
+		return me.rpObject.has("adminlevel")
+				&& (me.rpObject.getInt("adminlevel") >= 600);
 
 	}
 
 	public int getObjectID() {
-	    return rpObject.getID().getObjectID();
-    }
+		return rpObject.getID().getObjectID();
+	}
 
-	public  boolean hasSheep() {
-		if (rpObject== null) {
-	        return false;
-        }
+	public boolean hasSheep() {
+		if (rpObject == null) {
+			return false;
+		}
 		return rpObject.has("sheep");
-    }
+	}
 
-	public  boolean hasPet() {
-		if (rpObject== null) {
-	        return false;
-        }
+	public boolean hasPet() {
+		if (rpObject == null) {
+			return false;
+		}
 		return rpObject.has("pet");
-    }
+	}
 
 	@Override
-    public void onHealed(final int amount) {
+	public void onHealed(final int amount) {
 
-	    super.onHealed(amount);
+		super.onHealed(amount);
 
-			StendhalUI.get().addEventLine(
-			        getTitle() + " heals " + Grammar.quantityplnoun(amount, "health point") + ".", NotificationType.POSITIVE);
+		StendhalUI.get().addEventLine(
+				getTitle() + " heals "
+						+ Grammar.quantityplnoun(amount, "health point") + ".",
+				NotificationType.POSITIVE);
 
-    }
+	}
 
 	/**
-     * the absolute world area (coordinates) where the player can possibly hear
-     * sounds
-     * @return Rectangle2D area
-     */
-    public Rectangle2D getHearingArea() {
-    	final double HEARING_RANGE = 20;
-    	double width = HEARING_RANGE * 2;
-    	return new Rectangle2D.Double(getX() - HEARING_RANGE, getY() - HEARING_RANGE, width, width);
-    }
-
+	 * the absolute world area (coordinates) where the player can possibly hear
+	 * sounds
+	 *
+	 * @return Rectangle2D area
+	 */
+	public Rectangle2D getHearingArea() {
+		final double HEARING_RANGE = 20;
+		double width = HEARING_RANGE * 2;
+		return new Rectangle2D.Double(getX() - HEARING_RANGE, getY()
+				- HEARING_RANGE, width, width);
+	}
 
 	public String getFeature(String name) {
 		return features.get(name);
 	}
 
-
 	public boolean hasFeature(String name) {
 		return features.has(name);
 	}
 
-
 	/**
 	 * Initialize this entity for an object.
 	 *
-	 * @param	object		The object.
+	 * @param object
+	 *            The object.
 	 *
-	 * @see-also	#release()
+	 * @see-also #release()
 	 */
 	@Override
 	public void initialize(final RPObject object) {
 		super.initialize(object);
 
-		if(object.has("features")) {
+		if (object.has("features")) {
 			features.decode(object.get("features"));
 		}
-      }
-
+	}
 
 	/**
 	 * The object added/changed attribute(s).
 	 *
-	 * @param	object		The base object.
-	 * @param	changes		The changes.
+	 * @param object
+	 *            The base object.
+	 * @param changes
+	 *            The changes.
 	 */
 	@Override
 	public void onChangedAdded(final RPObject object, final RPObject changes) {
 		super.onChangedAdded(object, changes);
 		modificationCount++;
 
-		if(changes.has("features")) {
+		if (changes.has("features")) {
 			features.decode(changes.get("features"));
 		}
 
@@ -178,28 +179,32 @@ public class User extends Player {
 			if (changes.has("online")) {
 				String[] players = changes.get("online").split(",");
 				for (String playerName : players) {
-					StendhalUI.get().addEventLine(playerName + " has joined Stendhal.", NotificationType.INFORMATION);
+					StendhalUI.get().addEventLine(
+							playerName + " has joined Stendhal.",
+							NotificationType.INFORMATION);
 				}
 			}
 
 			if (changes.has("offline")) {
 				String[] players = changes.get("offline").split(",");
 				for (String playername : players) {
-					StendhalUI.get().addEventLine(playername + " has left Stendhal.", NotificationType.INFORMATION);
+					StendhalUI.get().addEventLine(
+							playername + " has left Stendhal.",
+							NotificationType.INFORMATION);
 				}
 			}
 		}
 	}
 
 	@Override
-    public void onChangedRemoved(final RPObject base, final RPObject diff) {
+	public void onChangedRemoved(final RPObject base, final RPObject diff) {
 		modificationCount++;
-	    super.onChangedRemoved(base, diff);
+		super.onChangedRemoved(base, diff);
 
-		if(diff.has("features")) {
+		if (diff.has("features")) {
 			features.clear();
 		}
-    }
+	}
 
 	/**
 	 * Returns true when the entity was modified since the
@@ -215,7 +220,7 @@ public class User extends Player {
 	}
 
 	public static void setNull() {
-		_instance =null;
+		instance = null;
 
 	}
 }

@@ -22,7 +22,7 @@ public abstract class Food extends Entity {
 	/**
 	 * Amount property.
 	 */
-	public final static Object	PROP_AMOUNT	= new Object();
+	public static final Object	PROP_AMOUNT	= new Object();
 
 	/**
 	 * The current amount of food.

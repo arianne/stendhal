@@ -18,7 +18,7 @@ public interface EntityView {
 	 *
 	 * @return	The list of actions.
 	 */
-	public String [] getActions();
+	String [] getActions();
 
 
 	/**
@@ -26,7 +26,7 @@ public interface EntityView {
 	 *
 	 * @return	The view's entity.
 	 */
-	public Entity getEntity();
+	Entity getEntity();
 
 
 	/**
@@ -34,13 +34,13 @@ public interface EntityView {
 	 *
 	 * @return	<code>true</code> if the entity is movable.
 	 */
-	public boolean isMovable();
+	boolean isMovable();
 
 
 	/**
 	 * Perform the default action.
 	 */
-	public void onAction();
+	void onAction();
 
 
 	/**
@@ -48,12 +48,12 @@ public interface EntityView {
 	 *
 	 * @param	at		The action.
 	 */
-	public void onAction(ActionType at);
+	void onAction(ActionType at);
 
 
 	/**
 	 * Release any view resources. This view should not be used after
 	 * this is called.
 	 */
-	public void release();
+	void release();
 }

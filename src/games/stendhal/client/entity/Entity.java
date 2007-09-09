@@ -25,54 +25,55 @@ public class Entity implements RPObjectChangeListener {
 	/**
 	 * Animated property.
 	 */
-	public static final Object	PROP_ANIMATED	= new Object();
+	public static final Object PROP_ANIMATED = new Object();
 
 	/**
 	 * Entity class/subclass property.
 	 */
-	public static final Object	PROP_CLASS	= new Object();
+	public static final Object PROP_CLASS = new Object();
 
 	/**
 	 * Name property.
 	 */
-	public static final Object	PROP_NAME	= new Object();
+	public static final Object PROP_NAME = new Object();
 
 	/**
 	 * Position property.
 	 */
-	public static final Object	PROP_POSITION	= new Object();
+	public static final Object PROP_POSITION = new Object();
 
 	/**
 	 * Size property.
 	 */
-	public static final Object	PROP_SIZE	= new Object();
+	public static final Object PROP_SIZE = new Object();
 
 	/**
 	 * Title property.
 	 */
-	public static final Object	PROP_TITLE	= new Object();
+	public static final Object PROP_TITLE = new Object();
 
 	/**
 	 * Type property.
 	 */
-	public static final Object	PROP_TYPE	= new Object();
+	public static final Object PROP_TYPE = new Object();
 
 	/**
 	 * Visibility property.
 	 */
-	public static final Object	PROP_VISIBILITY	= new Object();
-
+	public static final Object PROP_VISIBILITY = new Object();
 
 	/**
-	 *  an array of sounds.
-	 *  out of these randomnly chosen sounds are played while moving.
+	 * an array of sounds. out of these randomnly chosen sounds are played while
+	 * moving.
 	 */
 	protected String[] moveSounds;
-	/** session wide instance identifier for this class.
-	 * TODO: get rid of this only used by Soundsystem
+
+	/**
+	 * session wide instance identifier for this class. TODO: get rid of this
+	 * only used by Soundsystem
 	 *
-	**/
-public final byte[] ID_Token = new byte[0];
+	 */
+	public final byte[] ID_Token = new byte[0];
 
 	/** The current x location of this entity */
 	protected double x;
@@ -83,27 +84,27 @@ public final byte[] ID_Token = new byte[0];
 	/**
 	 * The entity width.
 	 */
-	private double		width;
+	private double width;
 
 	/**
 	 * The entity height.
 	 */
-	private double		height;
+	private double height;
 
 	/**
 	 * Amount of entity-to-entity resistance (0-100).
 	 */
-	protected int		resistance;
+	protected int resistance;
 
 	/**
 	 * The entity visibility.
 	 */
-	protected int		visibility;
+	protected int visibility;
 
 	/**
 	 * Change listeners.
 	 */
-	protected EntityChangeListener []	changeListeners;
+	protected EntityChangeListener[] changeListeners;
 
 	/** The arianne object associated with this game entity */
 	protected RPObject rpObject;
@@ -138,14 +139,12 @@ public final byte[] ID_Token = new byte[0];
 	 */
 	protected double audibleRange = Double.POSITIVE_INFINITY;
 
-
 	/**
-	 * Quick work-around to prevent fireMovementEvent() from calling
-	 * in onChangedAdded() from other initialize() hack.
-	 * TODO: Need to fix it all to work right, but not now.
+	 * Quick work-around to prevent fireMovementEvent() from calling in
+	 * onChangedAdded() from other initialize() hack. TODO: Need to fix it all
+	 * to work right, but not now.
 	 */
 	protected boolean inAdd;
-
 
 	Entity() {
 		clazz = null;
@@ -159,7 +158,6 @@ public final byte[] ID_Token = new byte[0];
 		changeListeners = new EntityChangeListener[0];
 	}
 
-
 	//
 	// Entity
 	//
@@ -167,11 +165,11 @@ public final byte[] ID_Token = new byte[0];
 	/**
 	 * Add a change listener.
 	 *
-	 * @param	listener	The listener.
+	 * @param listener
+	 *            The listener.
 	 */
 	public void addChangeListener(final EntityChangeListener listener) {
-		EntityChangeListener []	newListeners;
-
+		EntityChangeListener[] newListeners;
 
 		int len = changeListeners.length;
 
@@ -182,18 +180,19 @@ public final byte[] ID_Token = new byte[0];
 		changeListeners = newListeners;
 	}
 
-
 	/**
-	 * Fill the action with the entity's target info.
-	 * This will set the <code>baseobject</code>, and <code>baseslot</code> attributes.
+	 * Fill the action with the entity's target info. This will set the
+	 * <code>baseobject</code>, and <code>baseslot</code> attributes.
 	 *
-	 * @param	action		The RP action.
+	 * @param action
+	 *            The RP action.
 	 */
 	public void fillTargetInfo(RPAction action) {
 		int id = rpObject.getID().getObjectID();
 
-		if(rpObject.isContained()) {
-			action.put("baseobject", rpObject.getContainer().getID().getObjectID());
+		if (rpObject.isContained()) {
+			action.put("baseobject", rpObject.getContainer().getID()
+					.getObjectID());
 			action.put("baseslot", rpObject.getContainerSlot().getName());
 			action.put("baseitem", id);
 		} else {
@@ -201,75 +200,69 @@ public final byte[] ID_Token = new byte[0];
 		}
 	}
 
-
 	/**
 	 * Fire change to all registered listeners.
 	 *
-	 * @param	property	The changed property.
+	 * @param property
+	 *            The changed property.
 	 */
 	protected void fireChange(final Object property) {
-		EntityChangeListener [] listeners = changeListeners;
+		EntityChangeListener[] listeners = changeListeners;
 
-		for(EntityChangeListener l : listeners) {
+		for (EntityChangeListener l : listeners) {
 			l.entityChanged(this, property);
 		}
 	}
 
-
 	/**
 	 * Get the area the entity occupies.
 	 *
-	 * @return	A rectange (in world coordinate units).
+	 * @return A rectange (in world coordinate units).
 	 */
 	public Rectangle2D getArea() {
 		return new Rectangle.Double(getX(), getY(), getWidth(), getHeight());
 	}
 
-
 	/**
 	 * Get the entity visibility.
 	 *
-	 * @return	The entity visibility (0 - 100).
+	 * @return The entity visibility (0 - 100).
 	 */
 	public int getVisibility() {
 		return visibility;
 	}
 
-
 	/**
 	 * Get the entity height.
 	 *
-	 * @return	The height.
+	 * @return The height.
 	 */
 	public double getHeight() {
 		return height;
 	}
 
-
 	/** @return the represented arianne object id. */
 	public final RPObject.ID getID() {
-		if (rpObject == null)	{
+		if (rpObject == null) {
 			return null;
 		} else {
-			return  rpObject.getID();
+			return rpObject.getID();
 		}
 	}
-
 
 	/**
 	 * Get the entity class.
 	 *
-	 * @return	The entity class.
+	 * @return The entity class.
 	 */
 	public String getEntityClass() {
 		return clazz;
 	}
 
-
 	/**
 	 * Get the name.
 	 *
-	 * @return	The name.
+	 * @return The name.
 	 */
 	public String getName() {
 		return name;
@@ -278,110 +271,103 @@ public final byte[] ID_Token = new byte[0];
 	/**
 	 * Get the entity sub-class.
 	 *
-	 * @return	The entity sub-class.
+	 * @return The entity sub-class.
 	 */
 	public String getEntitySubClass() {
 		return subclazz;
 	}
 
-
 	/**
 	 * Get the nicely formatted entity title.
 	 *
-	 * This searches the follow attribute order:
-	 *	title, name (w/o underscore), type (w/o underscore).
+	 * This searches the follow attribute order: title, name (w/o underscore),
+	 * type (w/o underscore).
 	 *
-	 * @return	The title, or <code>null</code> if unknown.
+	 * @return The title, or <code>null</code> if unknown.
 	 */
 	public String getTitle() {
-		if(title != null) {
+		if (title != null) {
 			return title;
-		} else if(name != null) {
+		} else if (name != null) {
 			return name.replace('_', ' ');
-		} else if(type != null) {
+		} else if (type != null) {
 			return type.replace('_', ' ');
 		} else {
 			return null;
 		}
 	}
 
-
 	/**
 	 * Get the entity type.
 	 *
-	 * @return	The type.
+	 * @return The type.
 	 */
 	public String getType() {
 		return type;
 	}
 
-
 	/**
 	 * Get the X coordinate.
 	 *
-	 * @return	The X coordinate.
+	 * @return The X coordinate.
 	 */
 	public double getX() {
 		return x;
 	}
 
-
 	/**
 	 * Get the Y coordinate.
 	 *
-	 * @return	The Y coordinate.
+	 * @return The Y coordinate.
 	 */
 	public double getY() {
 		return y;
 	}
 
-
 	/**
 	 * Get the RPObject this represents.
 	 *
-	 * @return	The RPObject.
+	 * @return The RPObject.
 	 */
 	public RPObject getRPObject() {
 		return rpObject;
 	}
 
-
 	/**
 	 * Get the entity width.
 	 *
-	 * @return	The width.
+	 * @return The width.
 	 */
 	public double getWidth() {
 		return width;
 	}
 
-
 	/**
 	 * Determine if this entity represents an instance of an RPClass.
 	 *
-	 * @param	clazz		The class name.
+	 * @param clazz
+	 *            The class name.
 	 *
-	 * @return	<code>true</code> if the entity represents that class,
-	 *		or a subclass.
+	 * @return <code>true</code> if the entity represents that class, or a
+	 *         subclass.
 	 */
 	public boolean isInstanceOf(String clazz) {
 		return rpObject.getRPClass().subclassOf(clazz);
 	}
 
-
 	/**
-	 * @param user the current player's character
+	 * @param user
+	 *            the current player's character
 	 * @return a double value representing the square of the distance in tiles
-	 *  or Double.Positiveinfinity if User is null
+	 *         or Double.Positiveinfinity if User is null
 	 */
 	public double distanceToUser() {
 		if (User.isNull()) {
 			return Double.POSITIVE_INFINITY;
 		}
 		return (User.get().getX() - getX()) * (User.get().getX() - getX())
-			+ (User.get().getY() - getY()) * (User.get().getY() - getY());
+				+ (User.get().getY() - getY()) * (User.get().getY() - getY());
 	}
-
 
 	/**
 	 * Returns the absolute world area (coordinates) to which audibility of
@@ -394,7 +380,8 @@ public final byte[] ID_Token = new byte[0];
 		}
 
 		double width = audibleRange * 2;
-		return new Rectangle2D.Double(getX() - audibleRange, getY() - audibleRange, width, width);
+		return new Rectangle2D.Double(getX() - audibleRange, getY()
+				- audibleRange, width, width);
 	}
 
 	/**
@@ -411,12 +398,14 @@ public final byte[] ID_Token = new byte[0];
 	}
 
 	/**
-	 * Process attribute changes that may affect positioning. This is
-	 * needed because different entities may want to process coordinate
-	 * changes more gracefully.
+	 * Process attribute changes that may affect positioning. This is needed
+	 * because different entities may want to process coordinate changes more
+	 * gracefully.
 	 *
-	 * @param	base		The previous values.
-	 * @param	diff		The changes.
+	 * @param base
+	 *            The previous values.
+	 * @param diff
+	 *            The changes.
 	 */
 	protected void processPositioning(final RPObject base, final RPObject diff) {
 		boolean moved = false;
@@ -424,7 +413,7 @@ public final byte[] ID_Token = new byte[0];
 		if (diff.has("x")) {
 			int nx = diff.getInt("x");
 
-			if(nx != x) {
+			if (nx != x) {
 				x = nx;
 				moved = true;
 			}
@@ -433,7 +422,7 @@ public final byte[] ID_Token = new byte[0];
 		if (diff.has("y")) {
 			int ny = diff.getInt("y");
 
-			if(ny != y) {
+			if (ny != y) {
 				y = ny;
 				moved = true;
 			}
@@ -447,35 +436,35 @@ public final byte[] ID_Token = new byte[0];
 	/**
 	 * When the entity's position changed.
 	 *
-	 * @param	x		The new X coordinate.
-	 * @param	y		The new Y coordinate.
+	 * @param x
+	 *            The new X coordinate.
+	 * @param y
+	 *            The new Y coordinate.
 	 */
 	protected void onPosition(final double x, final double y) {
 		fireChange(PROP_POSITION);
 	}
 
-
 	/**
 	 * Get the resistance this has on other entities (0-100).
 	 *
-	 * @return	The resistance.
+	 * @return The resistance.
 	 */
 	public int getResistance() {
 		return resistance;
 	}
 
-
 	/**
 	 * Get the amount of resistance between this and another entity (0-100).
 	 *
-	 * @param	entity		The entity to check against.
+	 * @param entity
+	 *            The entity to check against.
 	 *
-	 * @return	The effective resistance.
+	 * @return The effective resistance.
 	 */
 	public int getResistance(final Entity entity) {
 		return ((getResistance() * entity.getResistance()) / 100);
 	}
-
 
 	/**
 	 * returns the slot with the specified name or null if the entity does not
@@ -489,13 +478,13 @@ public final byte[] ID_Token = new byte[0];
 		return null;
 	}
 
-
 	/**
 	 * Initialize this entity for an object.
 	 *
-	 * @param	object		The object.
+	 * @param object
+	 *            The object.
 	 *
-	 * @see-also	#release()
+	 * @see-also #release()
 	 */
 	public void initialize(final RPObject object) {
 		rpObject = object;
@@ -530,13 +519,13 @@ public final byte[] ID_Token = new byte[0];
 		/*
 		 * Size
 		 */
-		if(object.has("height")) {
+		if (object.has("height")) {
 			height = object.getDouble("height");
 		} else {
 			height = 1.0;
 		}
 
-		if(object.has("width")) {
+		if (object.has("width")) {
 			width = object.getDouble("width");
 		} else {
 			width = 1.0;
@@ -563,7 +552,7 @@ public final byte[] ID_Token = new byte[0];
 		/*
 		 * Resistance
 		 */
-		if(object.has("resistance")) {
+		if (object.has("resistance")) {
 			resistance = object.getInt("resistance");
 		} else {
 			resistance = 0;
@@ -572,7 +561,7 @@ public final byte[] ID_Token = new byte[0];
 		/*
 		 * Visibility
 		 */
-		if(object.has("visibility")) {
+		if (object.has("visibility")) {
 			visibility = object.getInt("visibility");
 		} else {
 			visibility = 100;
@@ -593,7 +582,6 @@ public final byte[] ID_Token = new byte[0];
 			y = 0.0;
 		}
 
-
 		/*
 		 * Notify placement
 		 */
@@ -605,14 +593,13 @@ public final byte[] ID_Token = new byte[0];
 		inAdd = false;
 	}
 
-
 	/**
 	 * Determine if this is an obstacle for another entity.
 	 *
-	 * @param	entity		The entity to check against.
+	 * @param entity
+	 *            The entity to check against.
 	 *
-	 * @return	<code>true</code> the entity can not enter this
-	 *		entity's area.
+	 * @return <code>true</code> the entity can not enter this entity's area.
 	 */
 	public boolean isObstacle(final Entity entity) {
 		// >= 30% resistance = stall on client (simulates resistance)
@@ -620,49 +607,39 @@ public final byte[] ID_Token = new byte[0];
 		return ((entity != this) && (getResistance(entity) >= 30));
 	}
 
-
 	/**
-	 * Release this entity. This should clean anything that isn't
-	 * automatically released (such as unregister callbacks, cancel
-	 * external operations, etc).
+	 * Release this entity. This should clean anything that isn't automatically
+	 * released (such as unregister callbacks, cancel external operations, etc).
 	 *
-	 * @see-also	#initialize(RPObject)
+	 * @see-also #initialize(RPObject)
 	 */
 	public void release() {
 		SoundSystem.stopSoundCycle(ID_Token);
 	}
 
-
 	/**
 	 * Remove a change listener.
 	 *
-	 * @param	listener	The listener.
+	 * @param listener
+	 *            The listener.
 	 */
 	public void removeChangeListener(final EntityChangeListener listener) {
-		EntityChangeListener []	newListeners;
-		int			idx;
-
+		EntityChangeListener[] newListeners;
+		int idx;
 
 		idx = changeListeners.length;
 
-		while(idx-- != 0) {
-			if(changeListeners[idx] == listener) {
-				newListeners =
-					new EntityChangeListener[
-						changeListeners.length - 1];
+		while (idx-- != 0) {
+			if (changeListeners[idx] == listener) {
+				newListeners = new EntityChangeListener[changeListeners.length - 1];
 
-				if(idx != 0) {
-					System.arraycopy(
-						changeListeners, 0,
-						newListeners, 0,
-						idx);
+				if (idx != 0) {
+					System.arraycopy(changeListeners, 0, newListeners, 0, idx);
 				}
 
-				if(++idx != changeListeners.length) {
-					System.arraycopy(
-						changeListeners, idx,
-						newListeners, idx - 1,
-						changeListeners.length - idx);
+				if (++idx != changeListeners.length) {
+					System.arraycopy(changeListeners, idx, newListeners,
+							idx - 1, changeListeners.length - idx);
 				}
 
 				changeListeners = newListeners;
@@ -671,15 +648,14 @@ public final byte[] ID_Token = new byte[0];
 		}
 	}
 
-
 	/**
 	 * Update cycle.
 	 *
-	 * @param	delta		The time (in ms) since last call.
+	 * @param delta
+	 *            The time (in ms) since last call.
 	 */
 	public void update(final int delta) {
 	}
-
 
 	//
 	// RPObjectChangeListener
@@ -688,24 +664,25 @@ public final byte[] ID_Token = new byte[0];
 	/**
 	 * An object was added.
 	 *
-	 * @param	object		The object.
+	 * @param object
+	 *            The object.
 	 */
 	public final void onAdded(final RPObject object) {
 		// DEPRECATED - Moving to different listener. Use initialize().
 	}
 
-
 	/**
 	 * The object added/changed attribute(s).
 	 *
-	 * @param	object		The base object.
-	 * @param	changes		The changes.
+	 * @param object
+	 *            The base object.
+	 * @param changes
+	 *            The changes.
 	 */
 	public void onChangedAdded(final RPObject object, final RPObject changes) {
 		if (inAdd) {
 			return;
 		}
-
 
 		/*
 		 * Class
@@ -747,7 +724,7 @@ public final byte[] ID_Token = new byte[0];
 			sizeChange = true;
 		}
 
-		if(sizeChange) {
+		if (sizeChange) {
 			fireChange(PROP_SIZE);
 		}
 
@@ -771,18 +748,17 @@ public final byte[] ID_Token = new byte[0];
 		/*
 		 * Resistance
 		 */
-		if(changes.has("resistance")) {
+		if (changes.has("resistance")) {
 			resistance = changes.getInt("resistance");
 		}
 
 		/*
 		 * Entity visibility
 		 */
-		if(changes.has("visibility")) {
+		if (changes.has("visibility")) {
 			visibility = changes.getInt("visibility");
 			fireChange(PROP_VISIBILITY);
 		}
-
 
 		/*
 		 * Position changes
@@ -790,24 +766,29 @@ public final byte[] ID_Token = new byte[0];
 		processPositioning(object, changes);
 	}
 
-
 	/**
 	 * A slot object added/changed attribute(s).
 	 *
-	 * @param	container	The base container object.
-	 * @param	slotName	The container's slot name.
-	 * @param	object		The base slot object.
-	 * @param	changes		The slot changes.
+	 * @param container
+	 *            The base container object.
+	 * @param slotName
+	 *            The container's slot name.
+	 * @param object
+	 *            The base slot object.
+	 * @param changes
+	 *            The slot changes.
 	 */
-	public void onChangedAdded(final RPObject container, final String slotName, final RPObject object, final RPObject changes) {
+	public void onChangedAdded(final RPObject container, final String slotName,
+			final RPObject object, final RPObject changes) {
 	}
-
 
 	/**
 	 * The object removed attribute(s).
 	 *
-	 * @param	object		The base object.
-	 * @param	changes		The changes.
+	 * @param object
+	 *            The base object.
+	 * @param changes
+	 *            The changes.
 	 */
 	public void onChangedRemoved(final RPObject object, final RPObject changes) {
 		/*
@@ -821,7 +802,7 @@ public final byte[] ID_Token = new byte[0];
 		/*
 		 * Name
 		 */
-		 if (changes.has("name")) {
+		if (changes.has("name")) {
 			name = null;
 			fireChange(PROP_NAME);
 			fireChange(PROP_TITLE);
@@ -850,7 +831,7 @@ public final byte[] ID_Token = new byte[0];
 			sizeChange = true;
 		}
 
-		if(sizeChange) {
+		if (sizeChange) {
 			fireChange(PROP_SIZE);
 		}
 
@@ -874,36 +855,40 @@ public final byte[] ID_Token = new byte[0];
 		/*
 		 * Resistance
 		 */
-		if(changes.has("resistance")) {
+		if (changes.has("resistance")) {
 			resistance = 0;
 		}
 
 		/*
 		 * Visibility
 		 */
-		if(changes.has("visibility")) {
+		if (changes.has("visibility")) {
 			visibility = 100;
 			fireChange(PROP_VISIBILITY);
 		}
 	}
 
-
 	/**
 	 * A slot object removed attribute(s).
 	 *
-	 * @param	container	The base container object.
-	 * @param	slotName	The container's slot name.
-	 * @param	object		The base slot object.
-	 * @param	changes		The slot changes.
+	 * @param container
+	 *            The base container object.
+	 * @param slotName
+	 *            The container's slot name.
+	 * @param object
+	 *            The base slot object.
+	 * @param changes
+	 *            The slot changes.
 	 */
-	public void onChangedRemoved(final RPObject container, final String slotName, final RPObject object, final RPObject changes) {
+	public void onChangedRemoved(final RPObject container,
+			final String slotName, final RPObject object, final RPObject changes) {
 	}
-
 
 	/**
 	 * An object was removed.
 	 *
-	 * @param	object		The object.
+	 * @param object
+	 *            The object.
 	 * @deprecated Moving to different listener. Use release().
 	 */
 	@Deprecated

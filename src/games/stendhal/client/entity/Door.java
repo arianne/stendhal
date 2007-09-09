@@ -21,7 +21,7 @@ public class Door extends Entity {
 	/**
 	 * Open state property.
 	 */
-	public final static Object	PROP_OPEN		= new Object();
+	public static final Object	PROP_OPEN		= new Object();
 
 	/**
 	 * Whether the door is open.

@@ -23,10 +23,10 @@ import marauroa.common.game.RPObject;
  * @author astridemma
  */
 public class EntityFactory {
-	private final static Logger logger = Log4J.getLogger(EntityFactory.class);
+	private static final Logger logger = Log4J.getLogger(EntityFactory.class);
 
 
-   protected EntityFactory(){
+   protected EntityFactory() {
    }
 	/**
 	 *  Create a Entity of the correct type depending of the arianne object
@@ -38,8 +38,8 @@ public class EntityFactory {
 		try {
 			String type = object.get("type");
 
-			if (type.equals("player") && object.has("name")){
-				if (StendhalClient.get().getAccountUsername().equalsIgnoreCase(object.get("name"))){
+			if (type.equals("player") && object.has("name")) {
+				if (StendhalClient.get().getAccountUsername().equalsIgnoreCase(object.get("name"))) {
 					User me = new User();
 					me.initialize(object);
 					return me;
@@ -56,7 +56,7 @@ public class EntityFactory {
 				// If there is no entity, let's try without using class.
 				entityClass = EntityMap.getClass(type, null);
 
-				if(entityClass == null) {
+				if (entityClass == null) {
 					return null;
 				}
 			}

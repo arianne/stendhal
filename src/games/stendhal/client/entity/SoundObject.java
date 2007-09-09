@@ -38,15 +38,15 @@ public class SoundObject extends InvisibleEntity {
 	private String name;
 
 	private int volume;
-	 Map<String, String[]> soundArray;
 
-	private void soundInit(){
+	Map<String, String[]> soundArray;
+
+	private void soundInit() {
 		soundArray = Sound.soundArray;
 	}
 
 	public SoundObject() {
 	}
-
 
 	public SoundObject(final int x, final int y) {
 		super();
@@ -55,20 +55,16 @@ public class SoundObject extends InvisibleEntity {
 
 	}
 
-
-
-	public SoundObject(final Point2D soundPos,final  int radius) {
+	public SoundObject(final Point2D soundPos, final int radius) {
 		x = soundPos.getX();
 		y = soundPos.getY();
 		audibleRange = radius;
 	}
 
-
 	@Override
 	public Rectangle2D getArea() {
 		return null;
 	}
-
 
 	public void setLocation(final Point2D position) {
 		x = position.getX();
@@ -106,16 +102,15 @@ public class SoundObject extends InvisibleEntity {
 		this.volume = volume;
 	}
 
-
 	public DataLine playSound(String token, int volBot, int volTop, int chance) {
-		if (soundArray==null) {
+		if (soundArray == null) {
 			soundInit();
 		}
-		if (Rand.rand(100)<chance){
-			if (soundArray.containsKey(token)){
+		if (Rand.rand(100) < chance) {
+			if (soundArray.containsKey(token)) {
 
-				SoundMaster.play(soundArray.get(token)[Rand.rand(soundArray.get(token).length)],x,y);
-
+				SoundMaster.play(soundArray.get(token)[Rand.rand(soundArray
+						.get(token).length)], x, y);
 
 			}
 		}

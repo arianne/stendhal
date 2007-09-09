@@ -19,12 +19,12 @@ public abstract class DomesticAnimal extends RPEntity {
 	/**
 	 * DomesticAnimal idea property.
 	 */
-	public final static Object	PROP_IDEA	= new Object();
+	public static final Object	PROP_IDEA	= new Object();
 
 	/**
 	 * DomesticAnimal weight property.
 	 */
-	public final static Object	PROP_WEIGHT	= new Object();
+	public static final Object	PROP_WEIGHT	= new Object();
 
 	/**
 	 * The animal's weight (0-100).
@@ -67,7 +67,7 @@ public abstract class DomesticAnimal extends RPEntity {
 	 * @param	idea		The idea, or <code>null</code>.
 	 */
 	protected void onIdea(final String idea) {
-		if(idea == null) {
+		if (idea == null) {
 			// No "idea" - Do nothing
 		} else if ("eat".equals(idea)) {
 			probableChat(15);
@@ -113,7 +113,7 @@ public abstract class DomesticAnimal extends RPEntity {
 		/*
 		 * Weight
 		 */
-		if (object.has("weight")){
+		if (object.has("weight")) {
 			weight = object.getInt("weight");
 		} else {
 			weight = 0;

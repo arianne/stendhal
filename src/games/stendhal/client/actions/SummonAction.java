@@ -29,8 +29,8 @@ class SummonAction implements SlashAction  {
 		} else if (params[1] != null) {
 			return false;
 		} else {
-			summon.put("x",(int)User.get().getX());
-			summon.put("y",(int)User.get().getY());
+			summon.put("x", (int) User.get().getX());
+			summon.put("y", (int) User.get().getY());
 		}
 		StendhalClient.get().send(summon);
 
