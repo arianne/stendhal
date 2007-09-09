@@ -1,5 +1,3 @@
-package tools.newrp;
-
 import java.util.Random;
 
 /**
@@ -255,6 +253,10 @@ public class RPEntity {
 		int turn = 0;
 
 		/*
+		 * TODO: Check bonus/penalty on innate armor.
+		 */
+		
+		/*
 		 * Check if we can use shield to block it.
 		 */
 		if (target.shield != null && turn % target.getShieldRate() == 0) {
@@ -263,6 +265,10 @@ public class RPEntity {
 			 */
 			amount = target.shieldAbsorb(type, amount, target.attitude);
 		}
+
+		/*
+		 * TODO: Check if we can use weapon to block it.
+		 */
 
 		/*
 		 * Absorb damage with armor
