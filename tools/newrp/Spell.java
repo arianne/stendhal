@@ -3,6 +3,14 @@ package newrp;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * Represent a spell.
+ * Conceptually a spell is sometype of item, but it is shared among all the players.
+ * There is only need for one instance of each spell.
+ * 
+ * @author miguel
+ *
+ */
 public class Spell {
 	/**
 	 * Name of the spell *useless*

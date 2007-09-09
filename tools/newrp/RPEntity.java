@@ -462,6 +462,12 @@ public class RPEntity {
 		hp = hp - amount;
 	}
 
+	/**
+	 * Attack the entity target in the given turn.
+	 * 
+	 * @param target
+	 * @param turn
+	 */
 	public void attack(RPEntity target, int turn) {
 		/*
 		 * Check if it is our turn to attack
@@ -504,6 +510,9 @@ public class RPEntity {
 		return hp <= 0;
 	}
 
+	/**
+	 * Textual representation of the entity.
+	 */
 	@Override
 	public String toString() {
 		StringBuffer os = new StringBuffer();
@@ -524,18 +533,37 @@ public class RPEntity {
 		return os.toString();
 	}
 
+	/**
+	 * Set the attitude about how offensive(1) or defensive(0) the entity is.
+	 * @param att
+	 */
 	public void setAttitude(float att) {
 		attitude = att;
 	}
 
+	/**
+	 * How many turns should be spent until we can cast a spell again.
+	 */
 	int turnToCastAgain;
 
+	/**
+	 * How good or bad was the spell we casted.
+	 * @param spell
+	 * @param attitude
+	 * @return
+	 */
 	public float getCastQuality(Spell spell, float attitude) {
 		float quality = ((inteligence + wisdom) / 2 - (level - spell.level))
 				* attitude;
 		return quality;
 	}
 
+	/**
+	 * Roll a dice to see if we are able to cast the spell with the given attitude.
+	 * @param spell
+	 * @param attitude
+	 * @return
+	 */
 	private DiceResult doCast(Spell spell, float attitude) {
 		int roll = Dice.rND6(2);
 		if ((roll - (int) getCastQuality(spell, attitude) - level / 10f) >= 0) {
@@ -545,6 +573,13 @@ public class RPEntity {
 		}
 	}
 
+	/**
+	 * Cast the given spell on the target entity at the given turn.
+	 * 
+	 * @param spell
+	 * @param target
+	 * @param turn
+	 */
 	public void cast(Spell spell, RPEntity target, int turn) {
 		/*
 		 * Each spell takes a time to reload. The harder the spell the more time
@@ -577,6 +612,7 @@ public class RPEntity {
 	}
 
 	public int distanceTo(RPEntity target) {
+		/* TODO: implement it */
 		return 0;
 	}
 
@@ -584,6 +620,7 @@ public class RPEntity {
 
 /**
  * Sex of the entity.
+ * It is not relevant at all.
  *
  * @author miguel
  *
@@ -594,14 +631,17 @@ enum Sex {
 
 /**
  * Races available and bonus they have for main stats.
+ * Each race has bonus and penalties that apply to the stats.
  *
  * @author miguel
  *
  */
 enum Race {
-	/* STR AGI DEX CON INT WIS */
-	HUMAN(0, 0, 0, 0, 0, 0), DWARF(3, -1, 0, 1, -1, 0), ORC(2, -1, 0, 1, -3, 1), ELF(
-			-1, 2, 1, -1, 1, 0);
+		/* STR AGI DEX CON INT WIS */
+	HUMAN	(0, 0, 0, 0, 0, 0), 
+	DWARF	(3, -1, 0, 1, -1, 0), 
+	ORC		(2, -1, 0, 1, -3, 1), 
+	ELF		(-1, 2, 1, -1, 1, 0);
 
 	Race(double str, double dex, double agi, double con, double inte, double wis) {
 		this.strengh = str;
@@ -627,14 +667,18 @@ enum Race {
 
 /**
  * Class of the entity. It applies a modifier to each
+ * It gives more or less importance to each attribute based on the 
+ * class that the player chose for his avatar. 
  *
  * @author miguel
  *
  */
 enum School {
 	/* STR AGI DEX CON INT WIS */
-	SCOUT(0.9, 1.5, 1.5, 0.8, 0.4, 0.8), WARRIOR(1.6, 0.8, 1.0, 1.6, 0.2, 0.6), PRIEST(
-			0.6, 0.8, 0.9, 0.7, 1.0, 2.0), MAGE(0.3, 0.8, 0.7, 0.5, 2.0, 1.0);
+	SCOUT(0.9, 1.5, 1.5, 0.8, 0.4, 0.8), 
+	WARRIOR(1.6, 0.8, 1.0, 1.6, 0.2, 0.6), 
+	PRIEST(0.6, 0.8, 0.9, 0.7, 1.0, 2.0), 
+	MAGE(0.3, 0.8, 0.7, 0.5, 2.0, 1.0);
 
 	School(double str, double dex, double agi, double con, double inte,
 			double wis) {
@@ -666,7 +710,10 @@ enum School {
  *
  */
 enum DiceResult {
-	SUCCESS, CRITICAL_SUCCESS, FAILURE, CRITICAL_FAILURE;
+	SUCCESS, 
+	CRITICAL_SUCCESS, 
+	FAILURE, 
+	CRITICAL_FAILURE;
 
 	public boolean success() {
 		return this == SUCCESS || this == CRITICAL_SUCCESS;
