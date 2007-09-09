@@ -80,16 +80,16 @@ import marauroa.common.game.RPObject;
 /** The main class that create the screen and starts the arianne client. */
 public class j2DClient extends StendhalUI {
 
-	protected final static Color COLOR_CLIENT = Color.gray;
-	protected final static Color COLOR_INFORMATION = Color.orange;
-	protected final static Color COLOR_NEGATIVE = Color.red;
-	protected final static Color COLOR_NORMAL = Color.black;
-	protected final static Color COLOR_POSITIVE = Color.green;
-	protected final static Color COLOR_PRIVMSG = Color.darkGray;
-	protected final static Color COLOR_RESPONSE = new Color(0x006400);
-	protected final static Color COLOR_SIGNIFICANT_NEGATIVE	= Color.pink;
-	protected final static Color COLOR_SIGNIFICANT_POSITIVE	= new Color(65, 105, 225);
-	protected final static Color COLOR_TUTORIAL = new Color(172, 0, 172);
+	protected static final Color COLOR_CLIENT = Color.gray;
+	protected static final Color COLOR_INFORMATION = Color.orange;
+	protected static final Color COLOR_NEGATIVE = Color.red;
+	protected static final Color COLOR_NORMAL = Color.black;
+	protected static final Color COLOR_POSITIVE = Color.green;
+	protected static final Color COLOR_PRIVMSG = Color.darkGray;
+	protected static final Color COLOR_RESPONSE = new Color(0x006400);
+	protected static final Color COLOR_SIGNIFICANT_NEGATIVE	= Color.pink;
+	protected static final Color COLOR_SIGNIFICANT_POSITIVE	= new Color(65, 105, 225);
+	protected static final Color COLOR_TUTORIAL = new Color(172, 0, 172);
 
 	private static final long serialVersionUID = 3356310866399084117L;
 
@@ -206,7 +206,7 @@ public class j2DClient extends StendhalUI {
 
 		if (System.getProperty("stendhal.refactoringgui") != null) {
 		    canvas = new Canvas();
-		    canvas.setBounds(200, 0, 600, SCREEN_HEIGHT);// A bit repetitive... oh well
+		    canvas.setBounds(200, 0, 600, SCREEN_HEIGHT); // A bit repetitive... oh well
 		} else {
 		    canvas = new Canvas();
 		    canvas.setBounds(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -503,7 +503,7 @@ public class j2DClient extends StendhalUI {
 //System.err.println("init mem = " + mem + "k");
 //}
 
-		boolean canExit=false;
+		boolean canExit = false;
 		while (!canExit) {
 			fps++;
 			// figure out what time it is right after the screen flip then
@@ -538,7 +538,7 @@ public class j2DClient extends StendhalUI {
 
 			settings.setPlayer(User.get());
 
-			if(!client.isInTransfer()) {
+			if (!client.isInTransfer()) {
 				if (frame.getState() != Frame.ICONIFIED) {
 					logger.debug("Draw screen");
 					screen.draw(baseframe);
@@ -557,7 +557,7 @@ public class j2DClient extends StendhalUI {
 			/*
 			 * Process delayed direction release
 			 */
-			if((directionRelease != null) && directionRelease.hasExpired()) {
+			if ((directionRelease != null) && directionRelease.hasExpired()) {
 				client.removeDirection(
 					directionRelease.getDirection(),
 					directionRelease.isFacing());
@@ -565,7 +565,7 @@ public class j2DClient extends StendhalUI {
 				directionRelease = null;
 			}
 
-			if(logger.isDebugEnabled()) {
+			if (logger.isDebugEnabled()) {
 				if ((refreshTime - lastFpsTime) >= 1000L) {
 					logger.debug("FPS: " + fps);
 					long freeMemory = Runtime.getRuntime().freeMemory() / 1024;
@@ -724,7 +724,7 @@ public class j2DClient extends StendhalUI {
 
 		switch (e.getKeyCode()) {
 			case KeyEvent.VK_L:
-				if(e.isControlDown()) {
+				if (e.isControlDown()) {
 					/*
 					 * Ctrl+L
 					 * Make game log visible
@@ -735,7 +735,7 @@ public class j2DClient extends StendhalUI {
 				break;
 
 			case KeyEvent.VK_R:
-				if(e.isControlDown()) {
+				if (e.isControlDown()) {
 					/*
 					 * Ctrl+R
 					 * Remove text bubbles
@@ -769,7 +769,7 @@ public class j2DClient extends StendhalUI {
 
 					if (view != null) {
 						Entity entity = view.getEntity();
-						if(!entity.equals(user)) {
+						if (!entity.equals(user)) {
 							view.onAction();
 							// TODO: Do we want  to move also? Or just 'return' here?
 						}
@@ -804,8 +804,8 @@ public class j2DClient extends StendhalUI {
 	 * @param	facing		If facing only.
 	 */
 	protected void processDirectionPress(Direction direction, boolean facing) {
-		if(directionRelease != null) {
-			if(directionRelease.check(direction, facing)) {
+		if (directionRelease != null) {
+			if (directionRelease.check(direction, facing)) {
 				/*
 				 * Cancel pending release
 				 */
@@ -835,8 +835,8 @@ public class j2DClient extends StendhalUI {
 	 * @param	facing		If facing only.
 	 */
 	protected void processDirectionRelease(Direction direction, boolean facing) {
-		if(directionRelease != null) {
-			if(directionRelease.check(direction, facing)) {
+		if (directionRelease != null) {
+			if (directionRelease.check(direction, facing)) {
 				/*
 				 * Ignore repeats
 				 */
@@ -901,9 +901,9 @@ public class j2DClient extends StendhalUI {
 	 */
 	@Override
 	public void addWindow(ManagedWindow mw) {
-		if(mw instanceof InternalManagedDialog) {
+		if (mw instanceof InternalManagedDialog) {
 			addDialog(((InternalManagedDialog) mw).getDialog());
-		} else if(mw instanceof WtPanel) {
+		} else if (mw instanceof WtPanel) {
 			ground.addChild((WtPanel) mw);
 		} else {
 			throw new IllegalArgumentException(
@@ -1007,7 +1007,7 @@ public class j2DClient extends StendhalUI {
 
 		RPObject player = client.getPlayer();
 
-		if(player.has("outfit_org")) {
+		if (player.has("outfit_org")) {
 			outfit = player.getInt("outfit_org");
 		} else {
 			outfit = player.getInt("outfit");
@@ -1030,8 +1030,7 @@ public class j2DClient extends StendhalUI {
 	 * @return	The height.
 	 */
 	@Override
-	public int getHeight()
-	{
+	public int getHeight() {
 		return SCREEN_HEIGHT;
 	}
 
@@ -1276,17 +1275,17 @@ public class j2DClient extends StendhalUI {
 		 * @return	<code>true</code> if this is a repeat.
 		 */
 		public boolean check(Direction dir, boolean facing) {
-			if(!this.dir.equals(dir)) {
+			if (!this.dir.equals(dir)) {
 				return false;
 			}
 
-			if(this.facing != facing) {
+			if (this.facing != facing) {
 				return false;
 			}
 
 			long now = System.currentTimeMillis();
 
-			if(now >= expiration) {
+			if (now >= expiration) {
 				return false;
 			}
 

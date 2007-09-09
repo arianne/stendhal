@@ -220,7 +220,7 @@ public class Creature2DView extends RPEntity2DView {
 	protected Sprite getAnimationSprite() {
 		String resource = creature.getMetamorphosis();
 
-		if(resource == null) {
+		if (resource == null) {
 			resource = getClassResourcePath();
 		}
 
@@ -265,12 +265,13 @@ public class Creature2DView extends RPEntity2DView {
 	 */
 	@Override
 	protected void draw(Graphics2D g2d, int x, int y, int width, int height) {
-		List<Node>	path;
 
 
 		super.draw(g2d, x, y, width, height);
 
 		if (Debug.CREATURES_DEBUG_CLIENT && !hidePath) {
+			List<Node>	path;
+
 			if ((path = getTargetMovedPath()) != null) {
 				int delta = GameScreen.SIZE_UNIT_PIXELS / 2;
 				g2d.setColor(Color.red);
@@ -297,7 +298,7 @@ public class Creature2DView extends RPEntity2DView {
 	 */
 	@Override
 	protected void reorderActions(final List<String> list) {
-		if(list.remove(ActionType.ATTACK.getRepresentation())) {
+		if (list.remove(ActionType.ATTACK.getRepresentation())) {
 			list.add(0, ActionType.ATTACK.getRepresentation());
 		}
 	}
@@ -327,15 +328,14 @@ public class Creature2DView extends RPEntity2DView {
 	 * @param	property	The property identifier.
 	 */
 	@Override
-	public void entityChanged(final Entity entity, final Object property)
-	{
+	public void entityChanged(final Entity entity, final Object property) {
 		super.entityChanged(entity, property);
 
-		if(property == Entity.PROP_CLASS) {
+		if (property == Entity.PROP_CLASS) {
 			representationChanged = true;
-		} else if(property == Creature.PROP_DEBUG) {
+		} else if (property == Creature.PROP_DEBUG) {
 			handleDebug(creature.getDebug());
-		} else if(property == Creature.PROP_METAMORPHOSIS) {
+		} else if (property == Creature.PROP_METAMORPHOSIS) {
 			representationChanged = true;
 		}
 	}

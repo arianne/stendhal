@@ -27,7 +27,7 @@ import marauroa.common.Logger;
 
 public class StendhalChatLineListener implements ActionListener, KeyListener {
 
-	private static final String CHAT_LOG_FILE = System.getProperty("user.home")+"/"+stendhal.STENDHAL_FOLDER+"chat.log";
+	private static final String CHAT_LOG_FILE = System.getProperty("user.home") + "/" + stendhal.STENDHAL_FOLDER + "chat.log";
 
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(StendhalChatLineListener.class);
@@ -78,24 +78,23 @@ public class StendhalChatLineListener implements ActionListener, KeyListener {
 		actual = lines.size();
 	}
 
-	public void save (){
+	public void save() {
 		// Save chat log file
 		FileOutputStream fo;
 		try {
 			fo = new FileOutputStream(CHAT_LOG_FILE);
-			PrintStream ps=new PrintStream(fo);
+			PrintStream ps = new PrintStream(fo);
 
 			/*
 			 * Keep size of chat.log in a reasonable size.
 			 */
-			while(lines.size()>200) {
+			while (lines.size() > 200) {
 				lines.removeFirst();
 			}
 
 			ListIterator< String > iterator = lines.listIterator();
-			while ( iterator.hasNext() )
-			{
-				ps.println( iterator.next());
+			while (iterator.hasNext()) {
+				ps.println(iterator.next());
 			}
 			ps.close();
 			fo.close();
@@ -109,7 +108,7 @@ public class StendhalChatLineListener implements ActionListener, KeyListener {
 		int keypressed = e.getKeyCode();
 
 		if (e.isShiftDown()) {
-			switch (keypressed) {
+			switch(keypressed) {
 				case KeyEvent.VK_UP:
 					if (actual > 0) {
 						playerChatText.setText(lines.get(actual - 1));
@@ -125,13 +124,13 @@ public class StendhalChatLineListener implements ActionListener, KeyListener {
 			}
 		}
 
-		if(keypressed==KeyEvent.VK_TAB){
+		if (keypressed == KeyEvent.VK_TAB) {
 			String[] strwords = playerChatText.getText().split(" ");
 
-			for (int i=0; i < playersonline.size();i++){
-				if (playersonline.elementAt(i).startsWith(strwords[strwords.length-1])){
+			for (int i = 0; i < playersonline.size(); i++) {
+				if (playersonline.elementAt(i).startsWith(strwords[strwords.length - 1])) {
 					String output = "";
-					for (int j=0; j<strwords.length-1;j++){
+					for (int j = 0; j < strwords.length - 1; j++) {
 						output = output + strwords[j] + " ";
 					}
 					output = output + playersonline.elementAt(i) + " ";
