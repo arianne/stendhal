@@ -200,7 +200,8 @@ class SoundCycle extends Thread implements Cloneable {
 
 			// if object bound sound cycle
 			if (entityRef != null) {
-				if ((o = entityRef) != null) {
+				o = entityRef;
+				if (o  != null) {
 					logger.debug("- start cyclic sound for entity: " + o.getType());
 					dataline = ((SoundObject) o).playSound(token, volBot, volTop, chance);
 				} else {

@@ -31,7 +31,7 @@ import marauroa.common.Logger;
 /**
  * Cliprunner encapsulates a sound clip. This clip consists of one or more
  * alternative samples.
- * 
+ *
  * @author Jane Hunt
  */
 class ClipRunner implements LineListener {
@@ -40,7 +40,7 @@ class ClipRunner implements LineListener {
 	private static final Logger logger = Log4J.getLogger(ClipRunner.class);
 
 	/** name of this clip */
-	private String _name;
+	private String name;
 
 	/** length */
 	private long maxLength;
@@ -49,22 +49,22 @@ class ClipRunner implements LineListener {
 	private List<AudioClip> samples;
 
 	/**
-	 * Creates an empty named ClipRunner instance 
+	 * Creates an empty named ClipRunner instance
 	 *  Volume setting is set to 100%.
-	 * @param name 
-	 * 
+	 * @param name
+	 *
 	 */
 	ClipRunner(String name) {
-		_name = name;
+		this.name = name;
 		samples = new ArrayList<AudioClip>();
 	}
 
 	/**
 	 * Adds another clip as an alternate sound to be run under this clip.
 	 * Alternative sounds are played by random and equal chance.
-	 * 
+	 *
 	 * @param clip alternate sound clip
-	 * 
+	 *
 	 */
 	void addSample(AudioClip clip) {
 		samples.add(clip);
@@ -73,7 +73,7 @@ class ClipRunner implements LineListener {
 
 	/**
 	 * The maximum play length of this clip in milliseconds.
-	 * 
+	 *
 	 * @return long milliseconds, 0 if undefined
 	 */
 	long maxPlayLength() {
@@ -82,7 +82,7 @@ class ClipRunner implements LineListener {
 
 	/**
 	 * Starts this clip to play with the given volume settings.
-	 * 
+	 *
 	 * @param volume
 	 *            loudness in 0 .. 100
 	 * @param correctionDB
@@ -102,10 +102,10 @@ class ClipRunner implements LineListener {
 
 	/**
 	 * Starts this clip to loop endlessly with the given start volume setting.
-	 * 
+	 *
 	 * @param volume
 	 *            loudness in 0 .. 100
-	 * @param volumeDelta 
+	 * @param volumeDelta
 	 * @return the AudioSystem <code>Clip</code> object that is being played,
 	 *         or <b>null</b> on error
 	 */
@@ -119,12 +119,12 @@ class ClipRunner implements LineListener {
 	//	}
 	/**
 	 * Returns a runnable AudioSystem sound clip with the given volume settings.
-	 * 
+	 *
 	 * @param volume
 	 *            loudness in 0 .. 100
 	 * @param correctionDB
 	 *            decibel correction value from outward sources
-	 * @param volumeDelta 
+	 * @param volumeDelta
 	 * @return an AudioSystem sound <code>Clip</code> that represents this
 	 *         sound, or <b>null</b> on error
 	 */
@@ -154,7 +154,7 @@ class ClipRunner implements LineListener {
 				line.addLineListener(this);
 				return line;
 			} catch (Exception ex) {
-				logger.error("** AudioSystem: clip line unavailable for: " + this._name, ex);
+				logger.error("** AudioSystem: clip line unavailable for: " + this.name, ex);
 				return null;
 			}
 		}

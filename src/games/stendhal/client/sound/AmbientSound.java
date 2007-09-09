@@ -31,7 +31,7 @@ import marauroa.common.Logger;
  * and cycle sounds. Loop sounds play continuously without interruption, cycle
  * sounds work as described in class SoundCycle. The ambient sound can be played
  * global or fixed to a map location.
- * 
+ *
  * @author Jane Hunt
  */
 class AmbientSound {
@@ -67,12 +67,12 @@ class AmbientSound {
 	private static class LoopSoundInfo implements Cloneable {
 
 		/**
-		 *  the String representing the LoopSoundInfo
+		 * the String representing the LoopSoundInfo
 		 */
 		private String name;
 
 		/**
-		 *  the loudness 
+		 * the loudness
 		 */
 		private float loudnessDB;
 
@@ -82,20 +82,25 @@ class AmbientSound {
 
 		/**
 		 * constructor
-		 * @param sound the sounds name
-		 * @param volume the volume 0..100
-		 * @param delay  
+		 *
+		 * @param sound
+		 *            the sounds name
+		 * @param volume
+		 *            the volume 0..100
+		 * @param delay
 		 */
-		public LoopSoundInfo(final String sound, final int volume, final int delay) {
+		public LoopSoundInfo(final String sound, final int volume,
+				final int delay) {
 			name = sound;
 			loudnessDB = DBValues.getDBValue(volume);
 			this.delay = delay;
 		}
 
 		/**
-		 * copies LoopSoundInfo with <code>clip</code> set to
-		 * <b>null</b> (clip not playing).
-		 * @return LoopsoundInfo copy 
+		 * copies LoopSoundInfo with <code>clip</code> set to <b>null</b>
+		 * (clip not playing).
+		 *
+		 * @return LoopsoundInfo copy
 		 */
 		@Override
 		public LoopSoundInfo clone() {
@@ -113,7 +118,7 @@ class AmbientSound {
 		}
 
 		/**
-		 *  stops the current clip and sets it to null
+		 * stops the current clip and sets it to null
 		 */
 		public synchronized void stopClip() {
 			if (clip != null) {
@@ -124,9 +129,9 @@ class AmbientSound {
 	}
 
 	/**
-	 * Soundstarter is the inner class of Ambientsound 
-	 * that actually starts playing the current clip 
-	 * 
+	 * Soundstarter is the inner class of Ambientsound that actually starts
+	 * playing the current clip
+	 *
 	 *
 	 */
 	private class SoundStarter extends Thread {
@@ -137,6 +142,7 @@ class AmbientSound {
 
 		/**
 		 * Starts a looping sound.
+		 *
 		 * @param loopInfo
 		 * @param correctionDB
 		 */
@@ -145,7 +151,9 @@ class AmbientSound {
 			this.correctionDB = correctionDB;
 		}
 
-		/* (non-Javadoc)
+		/*
+		 * (non-Javadoc)
+		 *
 		 * @see java.lang.Thread#run()
 		 */
 		@Override
@@ -155,7 +163,8 @@ class AmbientSound {
 			// get the library sound clip
 			libClip = SoundEffectMap.getInstance().getSoundClip(soundInfo.name);
 			if (libClip == null) {
-				throw new IllegalArgumentException("sound unknown: " + soundInfo.name);
+				throw new IllegalArgumentException("sound unknown: "
+						+ soundInfo.name);
 			}
 
 			// handle delay phase request on sample start
@@ -171,8 +180,9 @@ class AmbientSound {
 				soundInfo.stopClip();
 
 				// start playing
-				soundInfo.clip = libClip.getAudioClip(SoundSystem.get().getVolume(), loudnessDB + soundInfo.loudnessDB
-				        + correctionDB, getVolumeDelta());
+				soundInfo.clip = libClip.getAudioClip(SoundSystem.get()
+						.getVolume(), loudnessDB + soundInfo.loudnessDB
+						+ correctionDB, getVolumeDelta());
 				if (soundInfo.clip != null) {
 					soundInfo.clip.loop(Clip.LOOP_CONTINUOUSLY);
 				}
@@ -185,10 +195,13 @@ class AmbientSound {
 	/**
 	 * Creates an unlocalized ambient sound (plays everywhere) with the given
 	 * overall volume setting.
-	 * @param name String representing the name of the Sound
-	 * 
-	 * @param volume int 0..100 loudness of ambient sound in total
-	 *            
+	 *
+	 * @param name
+	 *            String representing the name of the Sound
+	 *
+	 * @param volume
+	 *            int 0..100 loudness of ambient sound in total
+	 *
 	 */
 	public AmbientSound(String name, int volume) {
 		this(name, null, 0, volume);
@@ -197,7 +210,7 @@ class AmbientSound {
 	/**
 	 * Creates a map-localized ambient sound with the given overall volume
 	 * setting.
-	 * 
+	 *
 	 * @param name
 	 *            ambient sound name
 	 * @param point
@@ -230,8 +243,9 @@ class AmbientSound {
 		}
 
 		if (soundObject != null) {
-			hstr = "-- created LOC AMBIENT: " + name + " at (" + (int) soundObject.getX() + ","
-			        + (int) soundObject.getY() + "), rad=" + radius + " vol=" + volume;
+			hstr = "-- created LOC AMBIENT: " + name + " at ("
+					+ (int) soundObject.getX() + "," + (int) soundObject.getY()
+					+ "), rad=" + radius + " vol=" + volume;
 		} else {
 			hstr = "-- created GLOB AMBIENT: " + name + ", vol=" + volume;
 		}
@@ -244,7 +258,7 @@ class AmbientSound {
 	 * sound composition taken from the parameter ambient sound. (The paradigm
 	 * presets content equivalent to <code>addCycle()</code> and
 	 * <code>addLoop()</code> calls.)
-	 * 
+	 *
 	 * @param sound
 	 *            <code>AmbientSound</code> as paradigm for sound composition
 	 * @param name
@@ -257,7 +271,8 @@ class AmbientSound {
 	 * @param volume
 	 *            int 0..100 loudness of ambient sound in total
 	 */
-	public AmbientSound(AmbientSound sound, String name, Point2D point, int radius, int volume) {
+	public AmbientSound(AmbientSound sound, String name, Point2D point,
+			int radius, int volume) {
 		this(name, point, radius, volume);
 
 		for (LoopSoundInfo c : sound.loopSounds) {
@@ -267,21 +282,21 @@ class AmbientSound {
 		for (SoundCycle c : sound.cycleList) {
 			SoundCycle cycle = c.clone();
 			if (soundObject != null) {
-				cycle.entityRef =soundObject;
+				cycle.entityRef = soundObject;
 			} else {
 				cycle.entityRef = null;
 			}
 			cycleList.add(cycle);
 		}
 
-		String hstr = "-- content supplied to " + name + ": " + loopSounds.size() + " loops, " + cycleList.size()
-		        + " cycles";
+		String hstr = "-- content supplied to " + name + ": "
+				+ loopSounds.size() + " loops, " + cycleList.size() + " cycles";
 		logger.debug(hstr);
 	} // constructor
 
 	/**
 	 * This adds a loop sound to the ambient sound definition.
-	 * 
+	 *
 	 * @param sound
 	 *            library sound name
 	 * @param volume
@@ -295,7 +310,8 @@ class AmbientSound {
 
 		sys = SoundSystem.get();
 		if (!sys.contains(sound)) {
-			logger.error("*** Ambient Sound: missing sound definition (" + sound + ")");
+			logger.error("*** Ambient Sound: missing sound definition ("
+					+ sound + ")");
 			return;
 		}
 
@@ -304,13 +320,14 @@ class AmbientSound {
 	} // addLoop
 
 	/**
-	 * @param token 
+	 * @param token
 	 * @param period
 	 * @param volBot
 	 * @param volTop
 	 * @param chance
 	 */
-	public void addCycle(final String token, final int period, final int volBot, final int volTop, final int chance) {
+	public void addCycle(final String token, final int period,
+			final int volBot, final int volTop, final int chance) {
 		try {
 			SoundCycle cycle;
 			cycle = new SoundCycle(soundObject, token, period, volBot, volTop,
@@ -318,15 +335,15 @@ class AmbientSound {
 			cycleList.add(cycle);
 		} catch (Exception e) {
 			// TODO: handle undefined Soundsample
-		}		
+		}
 	} // addCycle
 
 	private boolean canPlay() {
 		return (soundPos == null)
-		        || (HearingArea.contains(soundPos.getX(),soundPos.getY()) && soundObject.getAudibleArea().contains(User.get().getX(),User.get().getY()));
+				|| (HearingArea.contains(soundPos.getX(), soundPos.getY()) && soundObject
+						.getAudibleArea().contains(User.get().getX(),
+								User.get().getY()));
 	}
-
-	
 
 	/**
 	 * Starts playing this ambient sound with the given player's hearing
@@ -349,14 +366,12 @@ class AmbientSound {
 		if (soundPos != null) {
 			// adjust to player settings
 			if (!User.isNull()) {
-				
+
 				// return if sound object is out of range
 				if (!canPlay()) {
 					return;
 				}
-			}
-			// return undone if no player
-			else {
+			} else {
 				return;
 			}
 		}
@@ -377,7 +392,7 @@ class AmbientSound {
 		isPlaying = true;
 		String hstr = "- playing ambient: " + name;
 		logger.debug(hstr);
-		
+
 	} // play
 
 	/** (Temporarily) stops playing this ambient sound. */
@@ -401,7 +416,7 @@ class AmbientSound {
 		isPlaying = false;
 		String hstr = "- stopped ambient: " + name;
 		logger.debug(hstr);
-		
+
 	} // stop
 
 	/** Unrevokably terminates this ambient sound. */
@@ -422,14 +437,14 @@ class AmbientSound {
 
 		String hstr = "- terminated ambient: " + name;
 		logger.debug(hstr);
-		
+
 	} // terminate
 
 	/**
 	 * Returns the sound volume for this ambient sound relative to the current
 	 * player position (fog correction value). Returns 0.0 if this sound is not
 	 * map-localized.
-	 * 
+	 *
 	 * @return float dB correction of loudness
 	 */
 	private float getPlayerVolume() {
@@ -440,19 +455,20 @@ class AmbientSound {
 		// if the sound is global (no position)
 		if (soundPos == null) {
 			return 0;
-		} 
-		
-			// maximum fog if no player infos available
-			if ((User.isNull())) {
-				return DBValues.getDBValue(0);
-			}
+		}
 
-			// determine sound volume cutoff due to distance (fog value)
-			distance = soundPos.distance(User.get().getX(),User.get().getY());
-			maxDist = HearingArea.HEARINGDIST;
-			fogVolume = (int) Math.max(0, (95 * (maxDist - distance) / maxDist + 5));
-			return DBValues.getDBValue(fogVolume);
-		
+		// maximum fog if no player infos available
+		if ((User.isNull())) {
+			return DBValues.getDBValue(0);
+		}
+
+		// determine sound volume cutoff due to distance (fog value)
+		distance = soundPos.distance(User.get().getX(), User.get().getY());
+		maxDist = HearingArea.HEARINGDIST;
+		fogVolume = (int) Math
+				.max(0, (95 * (maxDist - distance) / maxDist + 5));
+		return DBValues.getDBValue(fogVolume);
+
 	} // getPlayerVolume
 
 	/**
@@ -461,10 +477,10 @@ class AmbientSound {
 	 * map-localized. (Otherwise this will adjust sound fog loudness.)
 	 */
 	public void performPlayerMoved() {
-		//SoundSystem sys;
+		// SoundSystem sys;
 
 		// operation control
-		//sys = SoundSystem.get();
+		// sys = SoundSystem.get();
 		if (soundPos == null) {
 			return;
 		}
@@ -484,8 +500,8 @@ class AmbientSound {
 	} // performPlayerPosition
 
 	/**
-	 * detects player loudness fog value
-	 * and sets corrected volume to all running clips
+	 * detects player loudness fog value and sets corrected volume to all
+	 * running clips
 	 */
 	public void updateVolume() {
 		FloatControl volCtrl;
@@ -498,12 +514,13 @@ class AmbientSound {
 		synchronized (loopSounds) {
 			for (LoopSoundInfo info : loopSounds) {
 				if (info.clip != null) {
-					volCtrl = (FloatControl) info.clip.getControl(FloatControl.Type.MASTER_GAIN);
-					volCtrl.setValue(SoundSystem.get().getVolumeDelta() + loudnessDB + info.loudnessDB + fogDB);
+					volCtrl = (FloatControl) info.clip
+							.getControl(FloatControl.Type.MASTER_GAIN);
+					volCtrl.setValue(SoundSystem.get().getVolumeDelta()
+							+ loudnessDB + info.loudnessDB + fogDB);
 				}
 			}
 		}
 	} // updateVolume
-
 
 }
