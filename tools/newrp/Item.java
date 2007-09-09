@@ -1,5 +1,4 @@
-package newrp;
-
+package tools.newrp;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -17,6 +16,7 @@ enum ItemType {
 
 /**
  * Represent an item.
+ *
  * @author miguel
  *
  */
@@ -25,6 +25,7 @@ public class Item {
 	 * Type of item
 	 */
 	ItemType type;
+
 	/**
 	 * Name of the item *useless*
 	 */
@@ -34,10 +35,12 @@ public class Item {
 	 * How much kg weigth the item.
 	 */
 	float weight;
+
 	/**
 	 * List of damages the item does.
 	 */
 	List<Effect> damage;
+
 	/**
 	 * List of damages this item protect from.
 	 */
@@ -52,6 +55,7 @@ public class Item {
 	 * If this weapon is designed to be thrown.
 	 */
 	boolean throwable;
+
 	/**
 	 * How much range it has if so.
 	 */
@@ -59,20 +63,21 @@ public class Item {
 
 	/**
 	 * Constructor.
+	 *
 	 * @param type
 	 * @param name
 	 * @param weight
 	 * @param skill
 	 */
 	public Item(ItemType type, String name, float weight, Skill skill) {
-		this.type=type;
-		this.name=name;
-		this.weight=weight;
-		this.skill=skill;
-		this.throwable=false;
-		this.range=0;
-		damage=new LinkedList<Effect>();
-		protect=new LinkedList<Effect>();
+		this.type = type;
+		this.name = name;
+		this.weight = weight;
+		this.skill = skill;
+		this.throwable = false;
+		this.range = 0;
+		damage = new LinkedList<Effect>();
+		protect = new LinkedList<Effect>();
 	}
 
 	public void setDamage(DamageType type, int amount) {

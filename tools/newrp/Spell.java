@@ -1,4 +1,4 @@
-package newrp;
+package tools.newrp;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -33,11 +33,12 @@ public class Spell {
 	 * If this spell is designed to be thrown.
 	 */
 	boolean throwable;
+
 	/**
-	 * How much range it has if so.
-	 * -1 stands for self.
+	 * How much range it has if so. -1 stands for self.
 	 */
 	int range;
+
 	/**
 	 * How much area does it affect
 	 */
@@ -45,25 +46,26 @@ public class Spell {
 
 	/**
 	 * Constructor.
+	 *
 	 * @param type
 	 * @param name
 	 * @param weight
 	 * @param skill
 	 */
 	public Spell(String name, Skill skill, int level, int range, int area) {
-		this.name=name;
-		this.skill=skill;
-		this.level=level;
-		this.effects=new LinkedList<Effect>();
+		this.name = name;
+		this.skill = skill;
+		this.level = level;
+		this.effects = new LinkedList<Effect>();
 
-		if(range>0) {
-			throwable=true;
-			this.range=range;
-			this.area=area;
+		if (range > 0) {
+			throwable = true;
+			this.range = range;
+			this.area = area;
 		} else {
-			throwable=false;
-			this.range=range;
-			this.area=area;
+			throwable = false;
+			this.range = range;
+			this.area = area;
 		}
 	}
 
@@ -79,11 +81,11 @@ public class Spell {
 		/*
 		 * Check target is in range.
 		 */
-		if(source.distanceTo(target)<=range || source==target){
+		if (source.distanceTo(target) <= range || source == target) {
 			/*
 			 * For each effect apply to target.
 			 */
-			for(Effect effect: effects) {
+			for (Effect effect : effects) {
 				/*
 				 * Apply bonus/penalty to the effect.
 				 */
@@ -96,8 +98,8 @@ public class Spell {
 		/*
 		 * Apply the effects to ourselves with less inteligence.
 		 */
-		for(Effect effect: effects) {
-			effect.apply(source, source, source.inteligence/3);
+		for (Effect effect : effects) {
+			effect.apply(source, source, source.inteligence / 3);
 		}
 	}
 }
