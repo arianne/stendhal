@@ -1,3 +1,5 @@
+package tools.newrp;
+
 public class Main {
 	static final int LEVELS_TO_DO = 100;
 

@@ -1,3 +1,5 @@
+package tools.newrp;
+
 
 public enum Skill {
 	SWORDING,

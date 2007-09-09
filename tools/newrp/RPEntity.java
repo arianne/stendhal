@@ -1,3 +1,5 @@
+package tools.newrp;
+
 import java.util.Random;
 
 /**
