@@ -3507,7 +3507,7 @@
     </equips>
     <ai>
       <says>
-        <noise value="The Cataclysm cometh"/>
+        <noise value="The Cataclysm cometh!"/>
         <noise value="Hail to the greater Power!"/>
       </says>
       <profile name="brave"/>
