@@ -13,13 +13,13 @@ public class Main {
 		/*
 		 * Creates a sword.
 		 */
-		Item sword = new Weapon("sword", 4, Skill.SWORDING);
+		Item sword = new Weapon("sword", 4, SkillType.SWORDING);
 		sword.setDamage(DamageType.SLASH, 10);
 
 		/*
 		 * Creates a leather armor.
 		 */
-		Item armor = new Armor("leather armor", 8, Skill.LIGHT_ARMOR);
+		Item armor = new Armor("leather armor", 8, SkillType.LIGHT_ARMOR);
 		armor.setProtection(DamageType.SLASH, 10);
 		armor.setProtection(DamageType.BASH, 15);
 		armor.setProtection(DamageType.STAB, 6);
@@ -27,7 +27,7 @@ public class Main {
 		/*
 		 * Creates a shield.
 		 */
-		Item shield = new Shield("leather shield", 10, Skill.SHIELDING);
+		Item shield = new Shield("leather shield", 10, SkillType.SHIELDING);
 		shield.setProtection(DamageType.SLASH, 10);
 		shield.setProtection(DamageType.BASH, 10);
 		shield.setProtection(DamageType.STAB, 8);
@@ -35,14 +35,14 @@ public class Main {
 		/*
 		 * Define the spell Ball of fire.
 		 */
-		Spell balloffire = new RangeSpell("Ball of fire", Skill.ILLUSION, 0, 10, 0);
+		Spell balloffire = new RangeSpell("Ball of fire", SkillType.ILLUSION, 0, 10, 0);
 		balloffire.setDamageEffect(DamageType.FIRE, 10);
 		balloffire.setDamageEffect(DamageType.BASH, 4);
 
 		/*
 		 * Define the spell Heal.
 		 */
-		Spell heal = new Spell("Heal", Skill.ALCHEMY, 0);
+		Spell heal = new Spell("Heal", SkillType.ALCHEMY, 0);
 		heal.setHealingEffect(10);
 
 		/*

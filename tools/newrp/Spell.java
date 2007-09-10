@@ -20,7 +20,7 @@ public class Spell {
 	/**
 	 * Skill this spell uses.
 	 */
-	Skill skill;
+	SkillType skill;
 
 	/**
 	 * List of the effects this spell causes
@@ -45,7 +45,7 @@ public class Spell {
 	 * @param weight
 	 * @param skill
 	 */
-	public Spell(String name, Skill skill, int level) {
+	public Spell(String name, SkillType skill, int level) {
 		this.name = name;
 		this.skill = skill;
 		this.level = level;
@@ -120,7 +120,7 @@ class RangeSpell extends Spell {
 	 */
 	int area;
 
-	public RangeSpell(String name, Skill skill, int level, int range, int area) {
+	public RangeSpell(String name, SkillType skill, int level, int range, int area) {
 		super(name, skill, level);
 		this.range=range;
 		this.area=area;

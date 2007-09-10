@@ -58,7 +58,7 @@ public class Item {
 	/**
 	 * Skill this item uses.
 	 */
-	Skill skill;
+	SkillType skill;
 
 	/**
 	 * If this weapon is designed to be thrown.
@@ -78,7 +78,7 @@ public class Item {
 	 * @param weight
 	 * @param skill
 	 */
-	public Item(ItemType type, String name, int weight, Skill skill) {
+	public Item(ItemType type, String name, int weight, SkillType skill) {
 		this.type = type;
 		this.name = name;
 		this.weight = weight;
@@ -115,7 +115,7 @@ public class Item {
  *
  */
 class Weapon extends Item {
-	public Weapon(String name, int weight, Skill skill) {
+	public Weapon(String name, int weight, SkillType skill) {
 		super(ItemType.WEAPON, name, weight, skill);
 	}
 }
@@ -127,7 +127,7 @@ class Weapon extends Item {
  *
  */
 class Armor extends Item {
-	public Armor(String name, int weight, Skill skill) {
+	public Armor(String name, int weight, SkillType skill) {
 		super(ItemType.ARMOR, name, weight, skill);
 	}
 }
@@ -139,7 +139,7 @@ class Armor extends Item {
  *
  */
 class Shield extends Item {
-	public Shield(String name, int weight, Skill skill) {
+	public Shield(String name, int weight, SkillType skill) {
 		super(ItemType.SHIELD, name, weight, skill);
 	}
 }
