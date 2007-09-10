@@ -26,36 +26,47 @@ public class RPEntity {
 	Item shield;
 
 	/**
-	 * Determine: - Attack and damage done - Weight that can be carried - Damage
-	 * that can be absorbed with the shield.
+	 * Determine: 
+	 * - Attack and damage done 
+	 * - Weight that can be carried 
+	 * - Damage that can be absorbed with the shield.
 	 */
 	int strengh;
 
 	/**
-	 * Determine: - Attack rate - Handle of weapons
+	 * Determine: 
+	 * - Attack rate 
+	 * - Handle of weapons
 	 */
 	int dextrexity;
 
 	/**
-	 * Determine: - How fast we can move - How good we can dodge
+	 * Determine: 
+	 * - How fast we can move 
+	 * - How good we can dodge
 	 */
 	int agility;
 
 	/**
-	 * Determine: - Amount of HP points - How fast we can restore HP and MP
-	 * points
+	 * Determine: 
+	 * - Amount of HP points 
+	 * - How fast we can restore HP and MP points
 	 */
 	int constitution;
 
 	/**
-	 * Determine: - Amount of faith to your god. - How strong your prayers are. -
-	 * Amount of MP points
+	 * Determine: 
+	 * - Amount of faith to your god. 
+	 * - How strong your prayers are.
+	 * - Amount of MP points
 	 */
 	int wisdom;
 
 	/**
-	 * Determine: - Strengh of the spells. - Amount of MP points - Some NPC
-	 * related actions and effect of some spells.
+	 * Determine: 
+	 * - Strengh of the spells. 
+	 * - Amount of MP points 
+	 * - Some NPC related actions and effect of some spells.
 	 */
 	int inteligence;
 
@@ -88,7 +99,10 @@ public class RPEntity {
 	 * Base MP (Mana points)
 	 */
 	int basemp;
-
+	
+	/**
+	 * Actual MP
+	 */
 	int mp;
 
 	/**
@@ -96,6 +110,9 @@ public class RPEntity {
 	 */
 	int basehp;
 
+	/**
+	 * Actual HP
+	 */
 	int hp;
 
 	/**
@@ -153,7 +170,7 @@ public class RPEntity {
 	 * Generate random stats for entity such that all the basic attributes sum
 	 * 60.
 	 */
-	public void rand() {
+	public void randomizeStats() {
 		Random rand = new Random();
 		int sum = 0;
 
@@ -182,7 +199,7 @@ public class RPEntity {
 	 * @param inte
 	 * @param wis
 	 */
-	public void set(int str, int dex, int agi, int con, int inte, int wis) {
+	public void setStats(int str, int dex, int agi, int con, int inte, int wis) {
 		this.strengh = str;
 		this.dextrexity = dex;
 		this.agility = agi;
@@ -193,6 +210,10 @@ public class RPEntity {
 		initialize();
 	}
 
+	/**
+	 * Initialize the secondary attributes and apply the race bonus.
+	 *
+	 */
 	protected void initialize() {
 		applyRaceBonus();
 
@@ -256,6 +277,8 @@ public class RPEntity {
 
 		/*
 		 * TODO: Check bonus/penalty on innate armor.
+		 *   For example, trolls get a penalty for fire attack but a fire giant won't get it.
+		 * NOTE: It can be done later 
 		 */
 		
 		/*
@@ -273,7 +296,8 @@ public class RPEntity {
 		 */
 
 		/*
-		 * Absorb damage with armor
+		 * Absorb damage with armor.
+		 * We can always use armor because it is a passive defense. 
 		 */
 		if (target.armor != null) {
 			amount = target.armorAbsorb(type, amount);
@@ -293,7 +317,7 @@ public class RPEntity {
 	 *
 	 * @return
 	 */
-	private int getAttackRate() {
+	protected int getAttackRate() {
 		int rate = 1 + (int) (weapon.weight * 256) / (dextrexity * strengh);
 		return rate;
 	}
@@ -303,7 +327,7 @@ public class RPEntity {
 	 * do. Doing a hit is relatively simply as long as you are strong enough to
 	 * handle the weapon with your dextrexity.
 	 */
-	private float getHitQuality(float attitude) {
+	protected float getHitQuality(float attitude) {
 		float quality = dextrexity * (strengh / (float)weapon.weight) * attitude * 100
 				/ 256f;
 		return quality;
@@ -317,7 +341,7 @@ public class RPEntity {
 	 * @param attitude
 	 * @return
 	 */
-	private RollResult doHit(float attitude) {
+	protected RollResult doHit(float attitude) {
 		int roll = Dice.rND6(2);
 		if ((roll - (int) getHitQuality(attitude) - level / 10f) >= 0) {
 			return RollResult.FAILURE;
@@ -333,7 +357,7 @@ public class RPEntity {
 	 *
 	 * @return
 	 */
-	private int getDodgeRate() {
+	protected int getDodgeRate() {
 		int rate = 1 + (int) (armor.weight * 256) / (agility * strengh);
 		return rate;
 	}
@@ -343,7 +367,7 @@ public class RPEntity {
 	 * do. Doing a dodge is hard, even worse when we have armor. Don't expect to
 	 * dodge with your full plate armor
 	 */
-	private float getDodgeQuality(float attitude) {
+	protected float getDodgeQuality(float attitude) {
 		float quality = agility * (strengh / (float)armor.weight) * (1 - attitude);
 		return quality;
 	}
@@ -356,7 +380,7 @@ public class RPEntity {
 	 * @param attitude
 	 * @return
 	 */
-	private RollResult doDodge(float attitude) {
+	protected RollResult doDodge(float attitude) {
 		int roll = Dice.rND6(4);
 		if ((roll - (int) getDodgeQuality(attitude) - level / 20.0) >= 0) {
 			return RollResult.FAILURE;
@@ -373,7 +397,7 @@ public class RPEntity {
 	 *
 	 * @return
 	 */
-	private int getShieldRate() {
+	protected int getShieldRate() {
 		int rate = 1 + (int) (shield.weight * 256) / (dextrexity * strengh);
 		return rate;
 	}
@@ -382,7 +406,7 @@ public class RPEntity {
 	 * The higher the better. It is a measure of how good are we handle the
 	 * shield.
 	 */
-	private float getShieldQuality(float attitude) {
+	protected float getShieldQuality(float attitude) {
 		float quality = dextrexity * (strengh / (float)shield.weight) * (1 - attitude);
 		return quality;
 	}
@@ -395,7 +419,7 @@ public class RPEntity {
 	 * @param damage
 	 * @param attitude
 	 */
-	private int shieldAbsorb(DamageType type, int amount, float attitude) {
+	protected int shieldAbsorb(DamageType type, int amount, float attitude) {
 		/* Missing skill: *(skill level/10f) */
 		float min_coef = getShieldQuality(attitude)
 				* ((level * level / 10000.0f) + level / 40f + 0.25f);
@@ -429,7 +453,7 @@ public class RPEntity {
 	 *
 	 * @param damage
 	 */
-	private int armorAbsorb(DamageType type, int amount) {
+	protected int armorAbsorb(DamageType type, int amount) {
 		/* Missing skill: *(skill level/10f) */
 		float min_coef = ((level * level / 1200.0f) + level / 40f + 0.25f);
 		float max_coef = ((level * level / 300.0f) + level / 10f + 1);
@@ -552,7 +576,7 @@ public class RPEntity {
 	 * @param attitude
 	 * @return
 	 */
-	public float getCastQuality(Spell spell, float attitude) {
+	protected float getCastQuality(Spell spell, float attitude) {
 		float quality = ((inteligence + wisdom) / 2 - (level - spell.level))
 				* attitude;
 		return quality;
@@ -564,7 +588,7 @@ public class RPEntity {
 	 * @param attitude
 	 * @return
 	 */
-	private RollResult doCast(Spell spell, float attitude) {
+	protected RollResult doCast(Spell spell, float attitude) {
 		int roll = Dice.rND6(2);
 		if ((roll - (int) getCastQuality(spell, attitude) - level / 10f) >= 0) {
 			return RollResult.FAILURE;
@@ -586,6 +610,9 @@ public class RPEntity {
 		 * until you can cast another again.
 		 */
 		if (turn > turnToCastAgain) {
+			/*
+			 * TODO: We could have a turn to cast delay for each spell.
+			 */
 			turnToCastAgain = turn + spell.delay;
 
 			RollResult dice = doCast(spell, attitude);

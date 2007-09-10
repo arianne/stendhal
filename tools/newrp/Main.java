@@ -49,7 +49,7 @@ public class Main {
 		 * Create one of the entities. 
 		 */
 		RPEntity attacker = new RPEntity(Race.HUMAN, School.WARRIOR, Sex.MALE);
-		attacker.set(16, 12, 8, 12, 7, 7);
+		attacker.setStats(16, 12, 8, 12, 7, 7);
 		attacker.equip(sword);
 		attacker.equip(armor);
 		attacker.equip(shield);
@@ -59,7 +59,7 @@ public class Main {
 		 * And the other one.
 		 */
 		RPEntity defender = new RPEntity(Race.ELF, School.MAGE, Sex.MALE);
-		defender.set(6, 6, 8, 12, 16, 13);
+		defender.setStats(6, 6, 8, 12, 16, 13);
 		defender.equip(sword);
 		defender.equip(armor);
 		defender.level(1);
