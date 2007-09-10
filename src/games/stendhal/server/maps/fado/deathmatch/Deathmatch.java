@@ -10,9 +10,9 @@ import java.util.Map;
 
 /**
  * This is just a Deathmatch for Fado (the battle_arena)
- * 
+ *
  * @author timothyb89
- * 
+ *
  */
 public class Deathmatch implements ZoneConfigurator {
 
@@ -38,15 +38,14 @@ public class Deathmatch implements ZoneConfigurator {
 	 * @param zone StendhalRPZone
 	 */
 	private void buildDeathmatch(StendhalRPZone zone) {
-		String zoneName = zone.getID().getID();
 		Rectangle2D shape = new Rectangle2D.Double();
 		shape.setRect(5, 4, 38, 52);
 		Area arena = new Area(zone, shape);
-		FadoDeathmatch deathmatch = new FadoDeathmatch(zoneName, zone, arena);
+		FadoDeathmatch deathmatch = new FadoDeathmatch(zone, arena);
 		deathmatch.createLegs(27, 40);
 		deathmatch.createNPC("Thonatun", 29, 17);
-		
-		
+
+
 	}
 
 }

@@ -36,7 +36,7 @@ public class FadoDeathmatch extends AbstractQuest implements LoginListener {
 		// constructor for quest system
 	}
 
-	public FadoDeathmatch(String zoneName, StendhalRPZone zone, Area arena) {
+	public FadoDeathmatch(StendhalRPZone zone, Area arena) {
 		this.zone = zone;
 		this.arena = arena;
 		deathmatchInfo = new DeathmatchInfo(arena, zone);
@@ -48,7 +48,7 @@ public class FadoDeathmatch extends AbstractQuest implements LoginListener {
 
 	/**
 	 * show the player the potential prize
-	 * 
+	 *
 	 * @param x
 	 *            x-position of legs
 	 * @param y

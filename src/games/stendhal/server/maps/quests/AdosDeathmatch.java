@@ -36,7 +36,7 @@ public class AdosDeathmatch extends AbstractQuest implements LoginListener {
 		// constructor for quest system
 	}
 
-	public AdosDeathmatch(String zoneName, StendhalRPZone zone, Area arena) {
+	public AdosDeathmatch(StendhalRPZone zone, Area arena) {
 		this.zone = zone;
 		this.arena = arena;
 		deathmatchInfo = new DeathmatchInfo(arena, zone);
