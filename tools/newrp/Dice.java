@@ -69,3 +69,21 @@ public class Dice {
 		return total;
 	}
 }
+
+
+/**
+ * Result of the roll of the Dice.
+ *
+ * @author miguel
+ *
+ */
+enum DiceResult {
+	SUCCESS, 
+	CRITICAL_SUCCESS, 
+	FAILURE, 
+	CRITICAL_FAILURE;
+
+	public boolean success() {
+		return this == SUCCESS || this == CRITICAL_SUCCESS;
+	}
+}

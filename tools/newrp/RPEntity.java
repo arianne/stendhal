@@ -703,19 +703,3 @@ enum School {
 	double inteligence;
 }
 
-/**
- * Result of the roll of the Dice.
- *
- * @author miguel
- *
- */
-enum DiceResult {
-	SUCCESS, 
-	CRITICAL_SUCCESS, 
-	FAILURE, 
-	CRITICAL_FAILURE;
-
-	public boolean success() {
-		return this == SUCCESS || this == CRITICAL_SUCCESS;
-	}
-}
