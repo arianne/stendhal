@@ -14,16 +14,22 @@ import java.util.List;
 
 /**
  * QUEST: Cloak Collector
- *
+ * <p>
  * PARTICIPANTS: - Josephine, a young woman who live in Ados/Fado
- *
- * STEPS: - Josephine asks you to bring her a cloak in every colour available on
- * the mainland - You bring cloaks to Josephine - Repeat until Josephine
+ * <p>
+ * STEPS:
+ * <ul>
+ * <li> Josephine asks you to bring her a cloak in every colour available on
+ * the mainland 
+ * <li> You bring cloaks to Josephine 
+ * <li> Repeat until Josephine
  * received all cloaks. (Of course you can bring several cloaks at the same
- * time.) - Josephine gives you a reward
- *
+ * time.) 
+ * <li> Josephine gives you a reward
+ * </ul>
+ * <p>
  * REWARD: - black cloak - 2500 XP
- *
+ * <p>
  * REPETITIONS: - None.
  */
 public class CloakCollector extends AbstractQuest {
@@ -44,22 +50,24 @@ public class CloakCollector extends AbstractQuest {
 	 * @return A list of cloak names
 	 */
 	private List<String> missingcloaks(Player player, boolean hash) {
-		List<String> result = new LinkedList<String>();
 
 		String doneText = player.getQuest("cloaks_collector");
+		List<String> neededCopy = new LinkedList<String>(NEEDEDCLOAKS);
+
 		if (doneText == null) {
 			doneText = "";
 		}
 		List<String> done = Arrays.asList(doneText.split(";"));
-		for (String cloak : NEEDEDCLOAKS) {
-			if (!done.contains(cloak)) {
-				if (hash) {
-					cloak = "#" + cloak;
-				}
-				result.add(cloak);
+		neededCopy.removeAll(done);
+		if (hash) {
+			List<String> result = new LinkedList<String>();
+			for (String cloak : neededCopy) {
+				result.add("#" + cloak);
 			}
+			return result;
 		}
-		return result;
+
+		return neededCopy;
 	}
 
 	private void step_1() {
@@ -97,8 +105,8 @@ public class CloakCollector extends AbstractQuest {
 							engine
 									.say("At the moment I'm obsessed with #cloaks! They come in so many colours. I want all the pretty ones!");
 						} else { // to be honest i don't understand when this
-									// would be implemented. i put the text i
-									// want down in stage 3 and it works fine.
+							// would be implemented. i put the text i
+							// want down in stage 3 and it works fine.
 							engine.say("The cloaks are great! Thanks!");
 							engine
 									.setCurrentState(ConversationStates.ATTENDING);
@@ -136,12 +144,12 @@ public class CloakCollector extends AbstractQuest {
 
 		// player is not willing to help
 		npc.add(ConversationStates.QUEST_OFFERED, "no", null,
-				ConversationStates.IDLE, null,
-				new SpeakerNPC.ChatAction() {
+				ConversationStates.IDLE, null, new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, String text,
 							SpeakerNPC engine) {
-						engine.say("Oh ... you're not very friendly. Bye then.");
+						engine
+								.say("Oh ... you're not very friendly. Bye then.");
 						player.addKarma(-5.0);
 					}
 				});
@@ -217,6 +225,7 @@ public class CloakCollector extends AbstractQuest {
 						public void fire(Player player, String text,
 								SpeakerNPC engine) {
 							List<String> missing = missingcloaks(player, false);
+
 							if (missing.contains(text)) {
 								if (player.drop(text)) {
 									// register cloak as done
@@ -227,25 +236,18 @@ public class CloakCollector extends AbstractQuest {
 									// check if the player has brought all
 									// cloaks
 									missing = missingcloaks(player, true);
-									if (missing.size() > 0) {
+									if (!missing.isEmpty()) {
 										engine
 												.say("Wow, thank you! What else did you bring?");
 									} else {
-										Item blackcloak = StendhalRPWorld.get()
-												.getRuleManager()
-												.getEntityManager().getItem(
-														"black_cloak");
-										blackcloak.put("bound", player
-												.getName());
-										player.equip(blackcloak, true);
-										player.addKarma(5.0);
-										player.addXP(2500);
+										rewardPlayer(player);
 										engine
 												.say("Oh, they look so beautiful all together, thank you. Please take this black cloak in return, I don't like the colour.");
 										player.setQuest("cloaks_collector",
 												"done");
 										player.notifyWorldAboutChanges();
-										engine.setCurrentState(ConversationStates.ATTENDING);
+										engine
+												.setCurrentState(ConversationStates.ATTENDING);
 									}
 								} else {
 									engine
@@ -258,6 +260,8 @@ public class CloakCollector extends AbstractQuest {
 										.say("You've already brought that cloak to me.");
 							}
 						}
+
+
 					});
 		}
 
@@ -310,5 +314,16 @@ public class CloakCollector extends AbstractQuest {
 		step_1();
 		step_2();
 		step_3();
+	}
+	private static void rewardPlayer(Player player) {
+		Item blackcloak = StendhalRPWorld.get()
+				.getRuleManager()
+				.getEntityManager().getItem(
+						"black_cloak");
+		blackcloak.put("bound", player
+				.getName());
+		player.equip(blackcloak, true);
+		player.addKarma(5.0);
+		player.addXP(2500);
 	}
 }
