@@ -12,17 +12,23 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * QUEST: Suntan Cream for Zara PARTICIPANTS: - Zara, a woman at the Athos beach -
- * David or Pam, the lifeguards.
- * 
- * STEPS: - Zara asks you to bring her some suntan cream from the lifeguards. -
- * Pam or David want to have some ingredients. After you brought it to them they
- * mix a cream. - Zara sees your suntan cream and asks for it and then thanks
- * you.
- * 
- * REWARD: - 1000 XP - The key for a house in Ados where a personal chest with
- * new slots is inside
- * 
+ * QUEST: Suntan Cream for Zara
+ * <p>
+ * PARTICIPANTS:
+ * <li> Zara, a woman at the Athos beach
+ * <li> David or Pam, the lifeguards.
+ * <p>
+ * STEPS:
+ * <li> Zara asks you to bring her some suntan cream from the lifeguards.
+ * <li> Pam or David want to have some ingredients. After you brought it to them
+ * they mix a cream.
+ * <li> Zara sees your suntan cream and asks for it and then thanks you.
+ * <p>
+ * REWARD:
+ * <li> 1000 XP
+ * <li> The key for a house in Ados where a personal chest with new slots is
+ * inside
+ * <p>
  * REPETITIONS: - None.
  */
 public class SuntanCreamForZara extends AbstractQuest {

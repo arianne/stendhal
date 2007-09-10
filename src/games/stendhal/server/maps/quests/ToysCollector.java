@@ -14,16 +14,20 @@ import java.util.List;
 
 /**
  * QUEST: Toys Collector
- * 
- * PARTICIPANTS: - Anna, a girl who live in Ados
- * 
- * STEPS: - Anna asks for some toys - You guess she might like a teddy, dice or
- * dress - You bring the toy to Anna - Repeat until Anna received all toys. (Of
- * course you can bring several toys at the same time.) - Anna gives you a
- * reward
- * 
- * REWARD: - ? some pies? - 100 XP
- * 
+ * <p>
+ * PARTICIPANTS:
+ * <li> Anna, a girl who live in Ados
+ * <p>
+ * STEPS:
+ * <li> Anna asks for some toys
+ * <li> You guess she might like a teddy, dice or dress
+ * <li> You bring the toy to Anna
+ * <li> Repeat until Anna received all toys. (Of course you can bring several
+ * toys at the same time.)
+ * <li> Anna gives you a reward
+ * <p>
+ * REWARD: <li> ? some pies? <li> 100 XP
+ * <p>
  * REPETITIONS: - None.
  */
 public class ToysCollector extends AbstractQuest {
@@ -34,7 +38,7 @@ public class ToysCollector extends AbstractQuest {
 	/**
 	 * Returns a list of the names of all toys that the given player still has
 	 * to bring to fulfil the quest.
-	 * 
+	 *
 	 * @param player
 	 *            The player doing the quest
 	 * @param hash
@@ -95,8 +99,8 @@ public class ToysCollector extends AbstractQuest {
 							engine
 									.say("I'm not sure what toys, but whatever would be fun for me to play with! Will you bring me some please?");
 						} else { // to be honest i don't understand when this
-									// would be implemented. i put the text i
-									// want down in stage 3 and it works fine.
+							// would be implemented. i put the text i
+							// want down in stage 3 and it works fine.
 							engine.say("The toys are great! Thanks!");
 							engine
 									.setCurrentState(ConversationStates.ATTENDING);
@@ -188,7 +192,8 @@ public class ToysCollector extends AbstractQuest {
 										player.setQuest("toys_collector",
 												"done");
 										player.notifyWorldAboutChanges();
-										engine.setCurrentState(ConversationStates.ATTENDING);
+										engine
+												.setCurrentState(ConversationStates.ATTENDING);
 									}
 								} else {
 									engine

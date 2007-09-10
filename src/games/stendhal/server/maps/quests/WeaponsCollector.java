@@ -14,18 +14,30 @@ import java.util.List;
 
 /**
  * QUEST: The Weapons Collector
- * 
- * PARTICIPANTS: - Balduin, a hermit living on a mountain between Semos and Ados
- * 
- * STEPS: - Balduin asks you for some weapons. - You get one of the weapons
- * somehow, e.g. by killing a monster. - You bring the weapon up the mountain
- * and give it to Balduin. - Repeat until Balduin received all weapons. (Of
- * course you can bring up several weapons at the same time.) - Balduin gives
- * you an ice sword in exchange.
- * 
- * REWARD: - ice sword - 1000 XP
- * 
- * REPETITIONS: - None.
+ * <p>
+ * PARTICIPANTS:
+ * <ul>
+ * <li> Balduin, a hermit living on a mountain between Semos and Ados
+ * </ul>
+ * <p>
+ * STEPS:
+ * <ul>
+ * <li> Balduin asks you for some weapons.
+ * <li> You get one of the weapons somehow, e.g. by killing a monster.
+ * <li> You bring the weapon up the mountain and give it to Balduin.
+ * <li> Repeat until Balduin received all weapons. (Of course you can bring up
+ * several weapons at the same time.)
+ * <li> Balduin gives you an ice sword in exchange.
+ * </ul>
+ * <p>
+ * REWARD:
+ * <ul>
+ * <li> ice sword
+ * <li> 1000 XP
+ * </ul>
+ * <p>
+ * REPETITIONS:
+ * <li> None.
  */
 public class WeaponsCollector extends AbstractQuest {
 
@@ -36,7 +48,7 @@ public class WeaponsCollector extends AbstractQuest {
 	/**
 	 * Returns a list of the names of all weapons that the given player still
 	 * has to bring to fulfil the quest.
-	 * 
+	 *
 	 * @param player
 	 *            The player doing the quest
 	 * @param hash
@@ -206,7 +218,8 @@ public class WeaponsCollector extends AbstractQuest {
 										player.setQuest("weapons_collector",
 												"done");
 										player.notifyWorldAboutChanges();
-										engine.setCurrentState(ConversationStates.ATTENDING);
+										engine
+												.setCurrentState(ConversationStates.ATTENDING);
 									}
 								} else {
 									engine

@@ -17,14 +17,14 @@ import java.util.Map;
 
 /**
  * QUEST: The Vampire Sword
- * 
+ * <p>
  * PARTICIPANTS:
  * <ul>
  * <li>Hogart, a retired master dwarf smith, forgotten below the dwarf mines in
  * Orril.</li>
  * <li>Markovich, a sick vampire who will fill the goblet.</li>
  * </ul>
- * 
+ * <p>
  * STEPS:
  * <ul>
  * <li>Hogart tells you the story of the Vampire Lord.</li>
@@ -39,13 +39,13 @@ import java.util.Map;
  * casting in Semos.</li>
  * <li>Hogart forges the Vampire Sword for you.</li>
  * </ul>
- * 
+ * <p>
  * REWARD:
  * <ul>
  * <li>Vampire Sword</li>
  * <li>5000 XP</li>
  * </ul>
- * 
+ * <p>
  * REPETITIONS:
  * <ul>
  * <li>None</li>

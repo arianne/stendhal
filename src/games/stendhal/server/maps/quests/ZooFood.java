@@ -11,16 +11,24 @@ import java.util.List;
 
 /**
  * QUEST: Zoo Food
- * 
- * PARTICIPANTS: - Katinka, the keeper at the Ados Wildlife Refuge - Dr.
- * Feelgood, the veterinary
- * 
- * STEPS: - Katinka asks you for ham for the animals - You get the ham, e.g. by
- * killing other animals ;) - You give the ham to Katinka. - Katinka thanks you. -
- * You can then buy cheap medicine from Dr. Feelgood.
- * 
+ * <p>
+ * PARTICIPANTS:
+ * <ul>
+ * <li> Katinka, the keeper at the Ados Wildlife Refuge
+ * <li> Dr.Feelgood, the veterinary
+ * </ul>
+ * <p>
+ * STEPS:
+ * <ul>
+ * <li> Katinka asks you for ham for the animals.
+ * <li> You get the ham, e.g. by killing other animals ;)
+ * <li> You give the ham to Katinka.
+ * <li> Katinka thanks you.
+ * <li> You can then buy cheap medicine from Dr. Feelgood.
+ * </ul>
+ * <p>
  * REWARD: - 200 XP - everlasting supply for cheap medicine
- * 
+ * <p>
  * REPETITIONS: - None.
  */
 public class ZooFood extends AbstractQuest {

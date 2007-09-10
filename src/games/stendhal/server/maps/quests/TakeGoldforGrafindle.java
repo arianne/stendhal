@@ -12,14 +12,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * QUEST: Take gold for Grafindle PARTICIPANTS: - Grafindle - Lorithien
- * 
- * STEPS: - Talk with Grafindle to activate the quest. - Talk with Lorithien for
- * the money. - Return the gold bars to Grafindle
- * 
- * REWARD: - 200 XP - key to nalwor bank customer room
- * 
- * REPETITIONS: - None.
+ * QUEST: Take gold for Grafindle
+ * <p>
+ * PARTICIPANTS:
+ * <li> Grafindle
+ * <li> Lorithien
+ * <p>
+ * STEPS:
+ * <li> Talk with Grafindle to activate the quest.
+ * <li> Talk with Lorithien for the money.
+ * <li> Return the gold bars to Grafindle
+ * <p>
+ * REWARD:
+ * <li> 200 XP
+ * <li> key to nalwor bank customer room
+ * <p>
+ * REPETITIONS: <li> None.
  */
 public class TakeGoldforGrafindle extends AbstractQuest {
 	private static final int GOLD_AMOUNT = 25;
