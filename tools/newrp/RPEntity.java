@@ -304,7 +304,7 @@ public class RPEntity {
 	 * handle the weapon with your dextrexity.
 	 */
 	private float getHitQuality(float attitude) {
-		float quality = dextrexity * (strengh / weapon.weight) * attitude * 100
+		float quality = dextrexity * (strengh / (float)weapon.weight) * attitude * 100
 				/ 256f;
 		return quality;
 	}
@@ -344,7 +344,7 @@ public class RPEntity {
 	 * dodge with your full plate armor
 	 */
 	private float getDodgeQuality(float attitude) {
-		float quality = agility * (strengh / armor.weight) * (1 - attitude);
+		float quality = agility * (strengh / (float)armor.weight) * (1 - attitude);
 		return quality;
 	}
 
@@ -383,7 +383,7 @@ public class RPEntity {
 	 * shield.
 	 */
 	private float getShieldQuality(float attitude) {
-		float quality = dextrexity * (strengh / shield.weight) * (1 - attitude);
+		float quality = dextrexity * (strengh / (float)shield.weight) * (1 - attitude);
 		return quality;
 	}
 

@@ -13,14 +13,13 @@ public class Main {
 		/*
 		 * Creates a sword.
 		 */
-		Item sword = new Item(ItemType.WEAPON, "sword", 4, Skill.SWORDING);
+		Item sword = new Weapon("sword", 4, Skill.SWORDING);
 		sword.setDamage(DamageType.SLASH, 10);
 
 		/*
 		 * Creates a leather armor.
 		 */
-		Item armor = new Item(ItemType.ARMOR, "leather armor", 8,
-				Skill.LIGHT_ARMOR);
+		Item armor = new Armor("leather armor", 8, Skill.LIGHT_ARMOR);
 		armor.setProtection(DamageType.SLASH, 10);
 		armor.setProtection(DamageType.BASH, 15);
 		armor.setProtection(DamageType.STAB, 6);
@@ -28,8 +27,7 @@ public class Main {
 		/*
 		 * Creates a shield.
 		 */
-		Item shield = new Item(ItemType.SHIELD, "leather shield", 10,
-				Skill.SHIELDING);
+		Item shield = new Shield("leather shield", 10, Skill.SHIELDING);
 		shield.setProtection(DamageType.SLASH, 10);
 		shield.setProtection(DamageType.BASH, 10);
 		shield.setProtection(DamageType.STAB, 8);

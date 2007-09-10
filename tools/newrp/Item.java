@@ -43,7 +43,7 @@ public class Item {
 	/**
 	 * How much kg weigth the item.
 	 */
-	float weight;
+	int weight;
 
 	/**
 	 * List of damages the item does.
@@ -78,7 +78,7 @@ public class Item {
 	 * @param weight
 	 * @param skill
 	 */
-	public Item(ItemType type, String name, float weight, Skill skill) {
+	public Item(ItemType type, String name, int weight, Skill skill) {
 		this.type = type;
 		this.name = name;
 		this.weight = weight;
@@ -106,5 +106,41 @@ public class Item {
 	public void setProtection(DamageType type, int amount) {
 		protect.add(new DamageEffect(type, amount));
 	}
-
 }
+
+/**
+ * Subclass for weapons.
+ * 
+ * @author miguel
+ *
+ */
+class Weapon extends Item {
+	public Weapon(String name, int weight, Skill skill) {
+		super(ItemType.WEAPON, name, weight, skill);
+	}
+}
+
+/**
+ * Subclass for armors.
+ * 
+ * @author miguel
+ *
+ */
+class Armor extends Item {
+	public Armor(String name, int weight, Skill skill) {
+		super(ItemType.ARMOR, name, weight, skill);
+	}
+}
+
+/**
+ * Subclass for shields.
+ * 
+ * @author miguel
+ *
+ */
+class Shield extends Item {
+	public Shield(String name, int weight, Skill skill) {
+		super(ItemType.SHIELD, name, weight, skill);
+	}
+}
+
