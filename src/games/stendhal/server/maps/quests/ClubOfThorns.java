@@ -9,16 +9,20 @@ import games.stendhal.server.StendhalRPWorld;
 
 /**
  * QUEST: Club of Thorns
- * 
- * PARTICIPANTS: - Orc Saman
- * 
- * STEPS: - Orc Saman asks you to kill mountain orc chief in prison for revenge -
- * Go kill mountain orc chief in prison using key given by Saman to get in -
- * Return and you get Club of Thorns as reward
- * 
- * REWARD: - 1000 XP
- * 
- * REPETITIONS: - None.
+ * <p>
+ * PARTICIPANTS:
+ * <li> Orc Saman
+ * <p>
+ * STEPS:
+ * <li> Orc Saman asks you to kill mountain orc chief in prison for revenge
+ * <li> Go kill mountain orc chief in prison using key given by Saman to get in
+ * <li> Return and you get Club of Thorns as reward
+ * <p>
+ * REWARD:
+ * <li> 1000 XP
+ * <p>
+ * REPETITIONS:
+ * <li> None.
  */
 public class ClubOfThorns extends AbstractQuest {
 
@@ -33,42 +37,36 @@ public class ClubOfThorns extends AbstractQuest {
 					public void fire(Player player, String text,
 							SpeakerNPC engine) {
 						if (!player.hasQuest("club_thorns")) {
-							engine
-									.say("Make revenge! Kill de Mountain Orc Chief! unnerstand?");
+							engine.say("Make revenge! Kill de Mountain Orc Chief! unnerstand?");
 						} else if (!player.isQuestCompleted("club_thorns")) {
-							engine
-									.say("Make revenge! #Kill Mountain Orc Chief!");
-							engine
-									.setCurrentState(ConversationStates.ATTENDING);
+							engine.say("Make revenge! #Kill Mountain Orc Chief!");
+							engine.setCurrentState(ConversationStates.ATTENDING);
 						} else {
 							engine.say("Saman has revenged! dis Good!");
-							engine
-									.setCurrentState(ConversationStates.ATTENDING);
+							engine.setCurrentState(ConversationStates.ATTENDING);
 						}
 					}
 				});
 
-		npc
-				.add(
-						ConversationStates.QUEST_OFFERED,
-						ConversationPhrases.YES_MESSAGES,
-						null,
-						ConversationStates.ATTENDING,
-						"Take dat key. he in jail. Kill! Denn, say me #kill! Say me #kill!",
-						new SpeakerNPC.ChatAction() {
-							@Override
-							public void fire(Player player, String text,
-									SpeakerNPC engine) {
-								player.addKarma(6.0);
-								player.setQuest("club_thorns", "start");
-								player.removeKill("mountain_orc_chief");
-								Item key = StendhalRPWorld.get()
-										.getRuleManager().getEntityManager()
-										.getItem("kotoch_prison_key");
-								player.equip(key, true);
+		npc.add(
+				ConversationStates.QUEST_OFFERED,
+				ConversationPhrases.YES_MESSAGES,
+				null,
+				ConversationStates.ATTENDING,
+				"Take dat key. he in jail. Kill! Denn, say me #kill! Say me #kill!",
+				new SpeakerNPC.ChatAction() {
+					@Override
+					public void fire(Player player, String text,
+							SpeakerNPC engine) {
+						player.addKarma(6.0);
+						player.setQuest("club_thorns", "start");
+						player.removeKill("mountain_orc_chief");
+						Item key = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
+								"kotoch_prison_key");
+						player.equip(key, true);
 
-							}
-						});
+					}
+				});
 
 		npc.add(ConversationStates.QUEST_OFFERED,
 				ConversationPhrases.NO_MESSAGES, null,
@@ -110,21 +108,17 @@ public class ClubOfThorns extends AbstractQuest {
 					public void fire(Player player, String text,
 							SpeakerNPC engine) {
 						if (player.hasKilled("mountain_orc_chief")) {
-							engine
-									.say("Revenge! Good! Take club of hooman blud.");
+							engine.say("Revenge! Good! Take club of hooman blud.");
 							player.addKarma(3.0);
 							player.addXP(1000);
-							Item item = StendhalRPWorld.get().getRuleManager()
-									.getEntityManager().getItem(
-											"club_of_thorns");
+							Item item = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
+									"club_of_thorns");
 							item.put("bound", player.getName());
 							player.equip(item, true);
 							player.setQuest("club_thorns", "done");
-							engine
-									.setCurrentState(ConversationStates.ATTENDING);
+							engine.setCurrentState(ConversationStates.ATTENDING);
 						} else {
-							engine
-									.say("kill Mountain Orc Chief! Kotoch orcs nid revenge!");
+							engine.say("kill Mountain Orc Chief! Kotoch orcs nid revenge!");
 						}
 					}
 				});

@@ -9,12 +9,12 @@ import java.util.Arrays;
 
 /**
  * QUEST: Carmen senses a Cataclysm
- *
- * PARTICIPANTS: - Carmen
- *
- * STEPS: - Carmen tells you that she can sense big changes
- *
- * REPETITIONS: - Always
+ *<p>
+ * PARTICIPANTS: <li> Carmen
+ *<p>
+ * STEPS: <li> Carmen tells you that she can sense big changes
+ *<p>
+ * REPETITIONS: <li> Always
  */
 public class CarmenCataclysm extends AbstractQuest {
 

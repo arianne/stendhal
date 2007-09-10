@@ -15,16 +15,19 @@ import java.util.List;
 
 /**
  * QUEST: Campfire
- *
- * PARTICIPANTS: - Sally, a scout sitting next to a campfire near Or'rill
- *
- * STEPS: - Sally asks you for wood for her campfire - You collect 10 pieces of
- * wood in the forest - You give the wood to Sally. - Katinka gives you 10 meat
- * or ham in return.
- *
- * REWARD: - 10 meat or ham - 50 XP
- *
- * REPETITIONS: - Unlimited, but 1000 turns (ca. 5 minutes) of waiting are
+ * <p>
+ * PARTICIPANTS:
+ * <li> Sally, a scout sitting next to a campfire near Or'rill
+ * <p>
+ * STEPS:
+ * <li> Sally asks you for wood for her campfire
+ * <li> You collect 10 pieces of wood in the forest
+ * <li> You give the wood to Sally.
+ * <li> Katinka gives you 10 meat or ham in return.
+ * <p>
+ * REWARD: <li> 10 meat or ham <li> 50 XP
+ * <p>
+ * REPETITIONS: <li> Unlimited, but 1000 turns (ca. 5 minutes) of waiting are
  * required between repetitions
  */
 public class Campfire extends AbstractQuest {

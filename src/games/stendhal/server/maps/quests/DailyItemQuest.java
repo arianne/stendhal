@@ -14,16 +14,22 @@ import java.util.List;
 
 /**
  * QUEST: Daily Item Fetch Quest
- * 
- * PARTICIPANTS: - Mayor of Ados - some items
- * 
- * STEPS: - talk to Mayor of Ados to get a quest to fetch an item - bring the
- * item to the mayor - if you cannot bring it in one week he offers you the
- * chance to fetch another instead
- * 
- * REWARD: - xp
- * 
- * REPETITIONS: - once a day
+ * <p>
+ * PARTICIPANTS:
+ * <li> Mayor of Ados
+ * <li> some items
+ * <p>
+ * STEPS:
+ * <li> talk to Mayor of Ados to get a quest to fetch an item
+ * <li> bring the item to the mayor
+ * <li> if you cannot bring it in one week he offers you the chance to fetch
+ * another instead
+ * <p>
+ * REWARD:
+ * <li> xp
+ * <p>
+ * REPETITIONS:
+ * <li> once a day
  */
 public class DailyItemQuest extends AbstractQuest {
 
@@ -87,9 +93,8 @@ public class DailyItemQuest extends AbstractQuest {
 							- System.currentTimeMillis();
 
 					if (timeRemaining < 0L) {
-						engine
-								.say(sayText
-										+ " Perhaps there are no supplies of that left at all! You could fetch #another item if you like, or return with what I first asked you.");
+						engine.say(sayText
+								+ " Perhaps there are no supplies of that left at all! You could fetch #another item if you like, or return with what I first asked you.");
 						return;
 					}
 				}
@@ -102,11 +107,9 @@ public class DailyItemQuest extends AbstractQuest {
 						- System.currentTimeMillis();
 
 				if (timeRemaining > 0L) {
-					engine
-							.say("I can only give you a new quest once a day. Please check back in "
-									+ TimeUtil
-											.approxTimeUntil((int) (timeRemaining / 1000L))
-									+ ".");
+					engine.say("I can only give you a new quest once a day. Please check back in "
+							+ TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L))
+							+ ".");
 					return;
 				}
 			}
@@ -141,8 +144,7 @@ public class DailyItemQuest extends AbstractQuest {
 				questCount = "0";
 			}
 			if ("done".equals(questKill)) {
-				engine
-						.say("You already completed the last quest I had given to you.");
+				engine.say("You already completed the last quest I had given to you.");
 				return;
 			}
 			if (player.drop(questKill)) {
@@ -152,15 +154,16 @@ public class DailyItemQuest extends AbstractQuest {
 				if (player.getLevel() >= Level.maxLevel()) {
 					reward = 0;
 				}
-				engine
-						.say("Good work! Let me thank you on behalf of the people of Ados!");
+				engine.say("Good work! Let me thank you on behalf of the people of Ados!");
 				player.addXP(reward);
 				questCount = "" + (new Integer(questCount) + 1);
 				questLast = "" + (new Date()).getTime();
 				player.setQuest("daily_item", "done" + ";" + questLast + ";"
 						+ questCount);
 			} else {
-				engine.say("You didn't fetch " + Grammar.a_noun(questKill) + " yet. Go and get it and say #complete only once you're done.");
+				engine.say("You didn't fetch "
+						+ Grammar.a_noun(questKill)
+						+ " yet. Go and get it and say #complete only once you're done.");
 			}
 		}
 	}
@@ -188,8 +191,7 @@ public class DailyItemQuest extends AbstractQuest {
 							- System.currentTimeMillis();
 
 					if (timeRemaining < 0L) {
-						engine
-								.say("I see. Please, ask me for another #quest when you think you can help Ados again.");
+						engine.say("I see. Please, ask me for another #quest when you think you can help Ados again.");
 						// Don't make the player wait any longer and don't
 						// credit the player with a count increase?
 						// questCount = "" + (new Integer(questCount) + 1 );
@@ -199,8 +201,7 @@ public class DailyItemQuest extends AbstractQuest {
 						return;
 					}
 				}
-				engine
-						.say("It hasn't been long since you've started your quest, I won't let you give up so soon.");
+				engine.say("It hasn't been long since you've started your quest, I won't let you give up so soon.");
 				return;
 			}
 			engine.say("I'm afraid I didn't send you on a #quest yet.");
@@ -235,10 +236,9 @@ public class DailyItemQuest extends AbstractQuest {
 
 	private void step_4() {
 		SpeakerNPC npc = npcs.get("Mayor Chalmers");
-		npc
-				.add(ConversationStates.ATTENDING, Arrays.asList("another",
-						"abort"), null, ConversationStates.ATTENDING, null,
-						new DailyQuestAbortAction());
+		npc.add(ConversationStates.ATTENDING,
+				Arrays.asList("another", "abort"), null,
+				ConversationStates.ATTENDING, null, new DailyQuestAbortAction());
 	}
 
 	@Override

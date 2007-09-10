@@ -22,24 +22,27 @@ import marauroa.common.Logger;
 
 /**
  * QUEST: Daily Monster Kill Quest
- * 
- * PARTICIPANTS: - Mayor - some creatures
- * 
- * STEPS: - talk to Mayor to get a quest to kill one of a named creature class -
- * kill one creature of that class - tell Mayor that you are done - if after 7
- * days you were not able to kill the creature, you have an option to get
- * another quest
- * 
+ * <p>
+ * PARTICIPANTS:
+ * <li> Mayor
+ * <li> some creatures
+ * <p>
+ * STEPS:
+ * <li> talk to Mayor to get a quest to kill one of a named creature class
+ * <li> kill one creature of that class
+ * <li> tell Mayor that you are done
+ * <li> if after 7 days you were not able to kill the creature, you have an
+ * option to get another quest
+ * <p>
  * REWARD: - xp
- * 
+ * <p>
  * REPETITIONS: - once a day
  */
 public class DailyMonsterQuest extends AbstractQuest {
 
 	private static final String QUEST_SLOT = "daily";
 
-	private static final Logger logger = Log4J
-			.getLogger(DailyMonsterQuest.class);
+	private static final Logger logger = Log4J.getLogger(DailyMonsterQuest.class);
 
 	class DailyQuestAction extends SpeakerNPC.ChatAction {
 
@@ -49,8 +52,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 		private String debugString;
 
 		public DailyQuestAction() {
-			Collection<Creature> creatures = StendhalRPWorld.get()
-					.getRuleManager().getEntityManager().getCreatures();
+			Collection<Creature> creatures = StendhalRPWorld.get().getRuleManager().getEntityManager().getCreatures();
 			sortedcreatures = new LinkedList<Creature>();
 			sortedcreatures.addAll(creatures);
 			Collections.sort(sortedcreatures, new LevelBasedComparator());
@@ -90,9 +92,8 @@ public class DailyMonsterQuest extends AbstractQuest {
 							- System.currentTimeMillis();
 
 					if (timeRemaining < 0L) {
-						engine
-								.say(sayText
-										+ " If you can't find one, perhaps it won't bother Semos either. You could kill #another creature if you like.");
+						engine.say(sayText
+								+ " If you can't find one, perhaps it won't bother Semos either. You could kill #another creature if you like.");
 						return;
 					}
 				}
@@ -105,11 +106,9 @@ public class DailyMonsterQuest extends AbstractQuest {
 						- System.currentTimeMillis();
 
 				if (timeRemaining > 0L) {
-					engine
-							.say("I can only give you a new quest once a day. Please check back in "
-									+ TimeUtil
-											.approxTimeUntil((int) (timeRemaining / 1000L))
-									+ ".");
+					engine.say("I can only give you a new quest once a day. Please check back in "
+							+ TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L))
+							+ ".");
 					return;
 				}
 			}
@@ -120,8 +119,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 
 			// shouldn't happen
 			if (pickedCreature == null) {
-				engine
-						.say("Thanks for asking, but there's nothing you can do for me now.");
+				engine.say("Thanks for asking, but there's nothing you can do for me now.");
 				return;
 			}
 
@@ -258,8 +256,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 				questCount = "0";
 			}
 			if ("done".equals(questKill)) {
-				engine
-						.say("You already completed the last quest I had given to you.");
+				engine.say("You already completed the last quest I had given to you.");
 				return;
 			}
 			if (player.hasKilled(questKill)) {
@@ -269,18 +266,16 @@ public class DailyMonsterQuest extends AbstractQuest {
 				if (player.getLevel() >= Level.maxLevel()) {
 					reward = 0;
 				}
-				engine
-						.say("Good work! Let me thank you in the name of the people of Semos!");
+				engine.say("Good work! Let me thank you in the name of the people of Semos!");
 				player.addXP(reward);
 				questCount = "" + (new Integer(questCount) + 1);
 				questLast = "" + (new Date()).getTime();
 				player.setQuest("daily", "done" + ";" + questLast + ";"
 						+ questCount);
 			} else {
-				engine
-						.say("You didn't kill a "
-								+ questKill
-								+ " yet. Go and do it and say #complete only after you're done.");
+				engine.say("You didn't kill a "
+						+ questKill
+						+ " yet. Go and do it and say #complete only after you're done.");
 			}
 		}
 	}
@@ -308,8 +303,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 							- System.currentTimeMillis();
 
 					if (timeRemaining < 0L) {
-						engine
-								.say("As you wish, ask me for another #quest when you think you have what it takes to help Semos again.");
+						engine.say("As you wish, ask me for another #quest when you think you have what it takes to help Semos again.");
 						// Don't make the player wait any longer and don't
 						// credit the player with a count increase?
 						// questCount = "" + (new Integer(questCount) + 1 );
@@ -319,8 +313,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 						return;
 					}
 				}
-				engine
-						.say("It hasn't been long since you've started your quest, I won't let you give up so soon.");
+				engine.say("It hasn't been long since you've started your quest, I won't let you give up so soon.");
 				return;
 			}
 			engine.say("I'm afraid I didn't send you on a #quest yet.");
@@ -353,10 +346,9 @@ public class DailyMonsterQuest extends AbstractQuest {
 
 	private void step_4() {
 		SpeakerNPC npc = npcs.get("Mayor Sakhs");
-		npc
-				.add(ConversationStates.ATTENDING, Arrays.asList("another",
-						"abort"), null, ConversationStates.ATTENDING, null,
-						new DailyQuestAbortAction());
+		npc.add(ConversationStates.ATTENDING,
+				Arrays.asList("another", "abort"), null,
+				ConversationStates.ATTENDING, null, new DailyQuestAbortAction());
 	}
 
 	@Override
