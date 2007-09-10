@@ -35,14 +35,14 @@ public class Main {
 		/*
 		 * Define the spell Ball of fire.
 		 */
-		Spell balloffire = new Spell("Ball of fire", Skill.ILLUSION, 0, 10, 0);
+		Spell balloffire = new RangeSpell("Ball of fire", Skill.ILLUSION, 0, 10, 0);
 		balloffire.setDamageEffect(DamageType.FIRE, 10);
 		balloffire.setDamageEffect(DamageType.BASH, 4);
 
 		/*
 		 * Define the spell Heal.
 		 */
-		Spell heal = new Spell("Heal", Skill.ALCHEMY, 0, 3, 0);
+		Spell heal = new Spell("Heal", Skill.ALCHEMY, 0);
 		heal.setHealingEffect(10);
 
 		/*
