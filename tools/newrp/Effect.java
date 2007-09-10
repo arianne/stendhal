@@ -15,6 +15,11 @@ public interface Effect {
 	 * @param rulingAttribute
 	 */
 	void apply(RPEntity source, RPEntity target, int rulingAttribute);
+	
+	/* TODO: Add apply interface for a area too 
+	 *
+	 * void apply(RPEntity source, int x, int y, int rulingAttribute);
+	 */
 }
 
 /**
@@ -96,6 +101,11 @@ class DamageEffect implements Effect {
 		/* Missing skill: *(skill level/10f) */
 		int level = source.level;
 
+		/*
+		 * Compute the min and the max value.
+		 * TODO: The result is not clearly related to <b>amount</b> attribute.
+		 *   It would be good that it is a simple relation damage<->amount.
+		 */
 		int min = (int) ((amount / 10f)
 				* ((level * level / 1000.0f) + level / 4f + 2) * (rulingAttribute
 				* rulingAttribute / 256f));
@@ -103,8 +113,14 @@ class DamageEffect implements Effect {
 				* ((level * level / 250.0f) + level + 4) * (rulingAttribute
 				* rulingAttribute / 256f));
 
+		/*
+		 * Randomly choose a value between min and max
+		 */
 		int done = Dice.between(min, max);
 
+		/*
+		 * Make source does that amount to target.
+		 */
 		source.damage(target, type, done);
 	}
 }
