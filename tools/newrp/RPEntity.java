@@ -317,12 +317,12 @@ public class RPEntity {
 	 * @param attitude
 	 * @return
 	 */
-	private DiceResult doHit(float attitude) {
+	private RollResult doHit(float attitude) {
 		int roll = Dice.rND6(2);
 		if ((roll - (int) getHitQuality(attitude) - level / 10f) >= 0) {
-			return DiceResult.FAILURE;
+			return RollResult.FAILURE;
 		} else {
-			return DiceResult.SUCCESS;
+			return RollResult.SUCCESS;
 		}
 	}
 
@@ -356,12 +356,12 @@ public class RPEntity {
 	 * @param attitude
 	 * @return
 	 */
-	private DiceResult doDodge(float attitude) {
+	private RollResult doDodge(float attitude) {
 		int roll = Dice.rND6(4);
 		if ((roll - (int) getDodgeQuality(attitude) - level / 20.0) >= 0) {
-			return DiceResult.FAILURE;
+			return RollResult.FAILURE;
 		} else {
-			return DiceResult.SUCCESS;
+			return RollResult.SUCCESS;
 		}
 	}
 
@@ -476,7 +476,7 @@ public class RPEntity {
 			/*
 			 * Roll dice to see if we are able to do a hit.
 			 */
-			DiceResult dice = doHit(attitude);
+			RollResult dice = doHit(attitude);
 			if (dice.success()) {
 				/*
 				 * Check if our oponent can dodge it.
@@ -564,12 +564,12 @@ public class RPEntity {
 	 * @param attitude
 	 * @return
 	 */
-	private DiceResult doCast(Spell spell, float attitude) {
+	private RollResult doCast(Spell spell, float attitude) {
 		int roll = Dice.rND6(2);
 		if ((roll - (int) getCastQuality(spell, attitude) - level / 10f) >= 0) {
-			return DiceResult.FAILURE;
+			return RollResult.FAILURE;
 		} else {
-			return DiceResult.SUCCESS;
+			return RollResult.SUCCESS;
 		}
 	}
 
@@ -588,7 +588,7 @@ public class RPEntity {
 		if (turn > turnToCastAgain) {
 			turnToCastAgain = turn + spell.delay;
 
-			DiceResult dice = doCast(spell, attitude);
+			RollResult dice = doCast(spell, attitude);
 
 			if (dice.success()) {
 				/*

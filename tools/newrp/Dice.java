@@ -77,7 +77,7 @@ public class Dice {
  * @author miguel
  *
  */
-enum DiceResult {
+enum RollResult {
 	SUCCESS, 
 	CRITICAL_SUCCESS, 
 	FAILURE, 
