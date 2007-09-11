@@ -95,7 +95,7 @@ public class Item {
 	 * @param amount
 	 */
 	public void setDamage(DamageType type, int amount) {
-		damage.add(new DamageEffect(type, amount));
+		damage.add(new SimpleDamageEffect(type, amount));
 	}
 
 	/**
@@ -104,7 +104,7 @@ public class Item {
 	 * @param amount
 	 */
 	public void setProtection(DamageType type, int amount) {
-		protect.add(new DamageEffect(type, amount));
+		protect.add(new SimpleDamageEffect(type, amount));
 	}
 }
 
