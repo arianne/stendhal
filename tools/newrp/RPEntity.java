@@ -563,7 +563,9 @@ public class RPEntity {
 	 * @param damage
 	 */
 	private void apply(DamageType type, int amount) {
-		hp = hp - amount;
+		if(amount>0) {
+			hp = hp - amount;
+		}
 	}
 
 	/**

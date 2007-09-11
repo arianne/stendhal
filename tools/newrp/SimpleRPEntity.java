@@ -129,8 +129,10 @@ public class SimpleRPEntity extends RPEntity {
 			if (effect instanceof DamageEffect) {
 				DamageEffect damage=(DamageEffect)effect;
 				
-				int absorbed = calculateAbsorb(damage,dextrexity);
-				amount=amount-absorbed;
+				if(damage.type==type) {
+					int absorbed = calculateAbsorb(damage,dextrexity);
+					amount=amount-absorbed;
+				}
 			}				
 		}
 		
@@ -142,8 +144,10 @@ public class SimpleRPEntity extends RPEntity {
 			if (effect instanceof DamageEffect) {
 				DamageEffect damage=(DamageEffect)effect;
 				
-				int absorbed = calculateAbsorb(damage,strengh);
-				amount=amount-absorbed;
+				if(damage.type==type) {
+					int absorbed = calculateAbsorb(damage,strengh);
+					amount=amount-absorbed;
+				}
 			}				
 		}
 		
@@ -155,11 +159,13 @@ public class SimpleRPEntity extends RPEntity {
 			if (effect instanceof DamageEffect) {
 				DamageEffect damage=(DamageEffect)effect;
 				
-				/*
-				 * Armor is a passive element and so is not ruled by any attribute.
-				 */
-				int absorbed = calculateAbsorb(damage,10);
-				amount=amount-absorbed;
+				if(damage.type==type) {
+					/*
+					 * Armor is a passive element and so is not ruled by any attribute.
+					 */
+					int absorbed = calculateAbsorb(damage,10);
+					amount=amount-absorbed;
+				}
 			}				
 		}
 		
