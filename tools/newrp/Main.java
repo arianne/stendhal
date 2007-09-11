@@ -14,7 +14,7 @@ public class Main {
 		 * Creates a sword.
 		 */
 		Item sword = new Weapon("sword", 4, SkillType.SWORDING);
-		sword.setDamage(DamageType.SLASH, 7);
+		sword.setDamage(DamageType.SLASH, 10);
 
 		/*
 		 * Creates a leather armor.

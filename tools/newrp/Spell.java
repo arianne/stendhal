@@ -60,7 +60,7 @@ public class Spell {
 	 * @param amount
 	 */
 	public void setDamageEffect(DamageType type, int amount) {
-		effects.add(new DamageEffect(type, amount));
+		effects.add(new SimpleDamageEffect(type, amount));
 	}
 
 	/**
