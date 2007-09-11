@@ -14,7 +14,7 @@ public class Main {
 		 * Creates a sword.
 		 */
 		Item sword = new Weapon("sword", 4, SkillType.SWORDING);
-		sword.setDamage(DamageType.SLASH, 10);
+		sword.setDamage(DamageType.SLASH, 7);
 
 		/*
 		 * Creates a leather armor.
@@ -35,14 +35,14 @@ public class Main {
 		/*
 		 * Define the spell Ball of fire.
 		 */
-		Spell balloffire = new RangeSpell("Ball of fire", SkillType.ILLUSION, 0, 10, 0);
+		Spell balloffire = new RangeSpell("Ball of fire", SkillType.ILLUSION, 0, 10, 0,7);
 		balloffire.setDamageEffect(DamageType.FIRE, 10);
 		balloffire.setDamageEffect(DamageType.BASH, 4);
 
 		/*
 		 * Define the spell Heal.
 		 */
-		Spell heal = new Spell("Heal", SkillType.ALCHEMY, 0);
+		Spell heal = new Spell("Heal", SkillType.ALCHEMY, 0,5);
 		heal.setHealingEffect(10);
 
 		/*

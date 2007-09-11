@@ -19,7 +19,7 @@ public class SimpleRPEntity extends RPEntity {
     	 *   The more the weapon weight the slower.
     	 *   The stronger we are the faster.    
     	 */
-    	int rate=20+weapon.weight-(int)(strength*type.strengh);
+    	int rate=20+3*weapon.weight-(int)(strength*type.strengh);
     	
     	if(rate<=0) {
     		rate=1;    	
@@ -48,7 +48,7 @@ public class SimpleRPEntity extends RPEntity {
 			shieldWeight=shield.weight;
 		}
 		
-		int rate= 10+weaponWeight+armorWeight+shieldWeight - (int)(agility*type.agility);
+		int rate= 10+3*(weaponWeight+armorWeight+shieldWeight) - (int)(agility*type.agility);
 
 		if(rate<=0) {
     		rate=1;    	
@@ -63,7 +63,7 @@ public class SimpleRPEntity extends RPEntity {
 		 *   The more our shield weight the less often we can use it.
 		 *   The more dextrexity we have the more often we can use it.
 		 */
-		int rate= 10+shield.weight - (int)(dexterity*type.dextrexity);
+		int rate= 15+3*shield.weight - (int)(dexterity*type.dextrexity);
 
 		if(rate<=0) {
     		rate=1;    	

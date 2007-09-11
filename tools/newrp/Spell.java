@@ -45,10 +45,11 @@ public class Spell {
 	 * @param weight
 	 * @param skill
 	 */
-	public Spell(String name, SkillType skill, int level) {
+	public Spell(String name, SkillType skill, int level, int delay) {
 		this.name = name;
 		this.skill = skill;
 		this.level = level;
+		this.delay=delay;
 		this.effects = new LinkedList<Effect>();
 	}
 
@@ -120,8 +121,8 @@ class RangeSpell extends Spell {
 	 */
 	int area;
 
-	public RangeSpell(String name, SkillType skill, int level, int range, int area) {
-		super(name, skill, level);
+	public RangeSpell(String name, SkillType skill, int level, int delay, int range, int area) {
+		super(name, skill, level, delay);
 		this.range=range;
 		this.area=area;
 	}
