@@ -48,7 +48,7 @@ public class Main {
 		/*
 		 * Create one of the entities. 
 		 */
-		RPEntity attacker = new RPEntity(Race.HUMAN, School.WARRIOR, Sex.MALE);
+		RPEntity attacker = new SimpleRPEntity(Race.HUMAN, School.WARRIOR, Sex.MALE);
 		attacker.setStats(16, 12, 8, 12, 7, 7);
 		attacker.equip(sword);
 		attacker.equip(armor);
@@ -58,7 +58,7 @@ public class Main {
 		/*
 		 * And the other one.
 		 */
-		RPEntity defender = new RPEntity(Race.ELF, School.MAGE, Sex.MALE);
+		RPEntity defender = new SimpleRPEntity(Race.ELF, School.MAGE, Sex.MALE);
 		defender.setStats(6, 6, 8, 12, 16, 13);
 		defender.equip(sword);
 		defender.equip(armor);
@@ -78,8 +78,8 @@ public class Main {
 			attacker.attack(defender, turn);
 			defender.cast(balloffire, attacker, turn);
 			turn++;
+			System.out.println(turn + "=>" + attacker.hp + ":" + defender.hp);
 		}
-		System.out.println(turn + "=>" + attacker.hp + ":" + defender.hp);
 	}
 	
 	static int turn;

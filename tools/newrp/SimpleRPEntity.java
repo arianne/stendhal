@@ -34,7 +34,21 @@ public class SimpleRPEntity extends RPEntity {
 		 * REASONING:
 		 *   The more our inventory weight the less often we can dodge.
 		 */
-		int rate= 10+weapon.weight+armor.weight+shield.weight - agility;
+		int weaponWeight=0;
+		int armorWeight=0;
+		int shieldWeight=0;
+		
+		if(weapon!=null) {
+			weaponWeight=weapon.weight;
+		}
+		if(armor!=null) {
+			armorWeight=armor.weight;
+		}
+		if(shield!=null) {
+			shieldWeight=shield.weight;
+		}
+		
+		int rate= 10+weaponWeight+armorWeight+shieldWeight - agility;
 
 		if(rate<=0) {
     		rate=1;    	
@@ -97,19 +111,6 @@ public class SimpleRPEntity extends RPEntity {
     	}
 	}
 
-	protected int shieldAbsorb(DamageType type, int amount, float attitude) {
-		for (Effect effect : shield.protect) {
-			if (effect instanceof DamageEffect) {
-				DamageEffect damage=(DamageEffect)effect;
-				
-				int absorbed = calculateAbsorb(damage,dextrexity);
-				amount=amount-absorbed;
-			}				
-		}
-		
-		return amount;
-	}
-
 	private int calculateAbsorb(DamageEffect damage, int rulingAttribute) {
 	    int base=damage.amount+damage.amount/5*(rulingAttribute-10);
 	    
@@ -122,6 +123,19 @@ public class SimpleRPEntity extends RPEntity {
 	    int absorbed=Dice.between(min, max);
 	    return absorbed;
     }
+
+	protected int shieldAbsorb(DamageType type, int amount, float attitude) {
+		for (Effect effect : shield.protect) {
+			if (effect instanceof DamageEffect) {
+				DamageEffect damage=(DamageEffect)effect;
+				
+				int absorbed = calculateAbsorb(damage,dextrexity);
+				amount=amount-absorbed;
+			}				
+		}
+		
+		return amount;
+	}
 
 	protected int weaponAbsorb(DamageType type, int amount, float attitude) {
 		for (Effect effect : weapon.protect) {
@@ -137,7 +151,7 @@ public class SimpleRPEntity extends RPEntity {
 	}
 
 	protected int armorAbsorb(DamageType type, int amount) {
-		for (Effect effect : shield.protect) {
+		for (Effect effect : armor.protect) {
 			if (effect instanceof DamageEffect) {
 				DamageEffect damage=(DamageEffect)effect;
 				
