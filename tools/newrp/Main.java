@@ -36,8 +36,8 @@ public class Main {
 		 * Define the spell Ball of fire.
 		 */
 		Spell balloffire = new RangeSpell("Ball of fire", SkillType.ILLUSION, 0, 10, 0,7);
-		balloffire.setDamageEffect(DamageType.FIRE, 10);
-		balloffire.setDamageEffect(DamageType.BASH, 4);
+		balloffire.setDamageEffect(DamageType.FIRE, 7);
+		balloffire.setDamageEffect(DamageType.BASH, 1);
 
 		/*
 		 * Define the spell Heal.
