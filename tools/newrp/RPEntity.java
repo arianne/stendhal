@@ -138,6 +138,27 @@ public class RPEntity {
 	float attitude;
 
 	/**
+	 * How many turns should be spent until we can cast a spell again.
+	 */
+	int turnToCastAgain;
+	
+	/**
+	 * How many turns should be spent until we can attack again
+	 */
+	int turnToAttackAgain;
+
+	/**
+	 * How many turns should be spent until we can use shield again.
+	 */
+	int turnToUseShieldAgain;
+
+	/**
+	 * How many turns should be spent until we can use weapon as a shield again.
+	 */
+	int turnToUseWeaponAsShieldAgain;
+
+
+	/**
 	 * Constructor. Creates the entity with level 0.
 	 *
 	 * @param race
@@ -293,7 +314,12 @@ public class RPEntity {
 		/*
 		 * Check if we can use shield to block it.
 		 */
-		if (target.shield != null && turn % target.getShieldRate() == 0) {
+		if (target.shield != null && turn>= turnToUseShieldAgain) {
+			/*
+			 * We make shield usable only after <i>rate</i> turns
+			 */
+			turnToUseShieldAgain=turn+ target.getShieldRate();
+			
 			/*
 			 * Absorb damage with shield
 			 */
@@ -303,7 +329,12 @@ public class RPEntity {
 		/*
 		 * Check if we can use weapon to block it.
 		 */
-		if (target.weapon != null && turn % target.getAttackRate() == 0) {
+		if (target.weapon != null && turn>=turnToUseWeaponAsShieldAgain) {
+			/*
+			 * We make weapon as a shield usable only after <i>rate</i> turns
+			 */
+			turnToUseWeaponAsShieldAgain=turn+ target.getAttackRate();
+			
 			/*
 			 * Absorb damage with shield
 			 */
@@ -545,7 +576,12 @@ public class RPEntity {
 		/*
 		 * Check if it is our turn to attack
 		 */
-		if (turn % getAttackRate() == 0) {
+		if (turn>=turnToAttackAgain) {
+			/*
+			 * We make weapon usable only after <i>rate</i> turns
+			 */
+			turnToAttackAgain=turn+ getAttackRate();
+			
 			/*
 			 * Roll dice to see if we are able to do a hit.
 			 */
@@ -613,11 +649,6 @@ public class RPEntity {
 	public void setAttitude(float att) {
 		attitude = att;
 	}
-
-	/**
-	 * How many turns should be spent until we can cast a spell again.
-	 */
-	int turnToCastAgain;
 
 	/**
 	 * How good or bad was the spell we casted.
