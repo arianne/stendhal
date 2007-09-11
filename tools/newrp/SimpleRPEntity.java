@@ -19,7 +19,7 @@ public class SimpleRPEntity extends RPEntity {
     	 *   The more the weapon weight the slower.
     	 *   The stronger we are the faster.    
     	 */
-    	int rate=20+3*weapon.weight-(int)(strength*type.strengh);
+    	int rate=20+3*weapon.weight-(int)(strength*type.strength);
     	
     	if(rate<=0) {
     		rate=1;    	
@@ -63,7 +63,7 @@ public class SimpleRPEntity extends RPEntity {
 		 *   The more our shield weight the less often we can use it.
 		 *   The more dextrexity we have the more often we can use it.
 		 */
-		int rate= 15+3*shield.weight - (int)(dexterity*type.dextrexity);
+		int rate= 15+3*shield.weight - (int)(dexterity*type.dexterity);
 
 		if(rate<=0) {
     		rate=1;    	
@@ -78,7 +78,7 @@ public class SimpleRPEntity extends RPEntity {
     	 * REASONING:
     	 *   The stronger and the more dextrexity we are the simpler is to do a hit.
     	 */
-    	if(Dice.r1D20()<(strength*type.strengh+dexterity*type.dextrexity)*attitude) {
+    	if(Dice.r1D20()<(strength*type.strength+dexterity*type.dexterity)*attitude) {
     		return RollResult.SUCCESS; 
     	} else {
     		return RollResult.FAILURE;
@@ -91,7 +91,7 @@ public class SimpleRPEntity extends RPEntity {
     	 *   The stronger and the more agile we are the simpler is to dodge a hit.
     	 *   Dodge a hit is harder than doing a hit. ( Twice as harder )
     	 */
-    	if(Dice.rND20(2)<(strength*type.strengh+agility*type.agility)*attitude) {
+    	if(Dice.rND20(2)<(strength*type.strength+agility*type.agility)*attitude) {
     		return RollResult.SUCCESS; 
     	} else {
     		return RollResult.FAILURE;
@@ -104,7 +104,7 @@ public class SimpleRPEntity extends RPEntity {
     	 *   The more inteligent the simpler.
     	 *   The harder the spell the more hard to cast it.
     	 */
-    	if(Dice.r1D20()+(spell.level-level)<(intelligence*type.inteligence+faith*type.wisdom)*attitude) {
+    	if(Dice.r1D20()+(spell.level-level)<(intelligence*type.inteligence+faith*type.faith)*attitude) {
     		return RollResult.SUCCESS; 
     	} else {
     		return RollResult.FAILURE;
@@ -130,7 +130,7 @@ public class SimpleRPEntity extends RPEntity {
 				DamageEffect damage=(DamageEffect)effect;
 				
 				if(damage.type==type) {
-					int absorbed = calculateAbsorb(damage,level, (int)(dexterity*this.type.dextrexity));
+					int absorbed = calculateAbsorb(damage,level, (int)(dexterity*this.type.dexterity));
 					amount=amount-absorbed;
 				}
 			}				
@@ -145,7 +145,7 @@ public class SimpleRPEntity extends RPEntity {
 				DamageEffect damage=(DamageEffect)effect;
 				
 				if(damage.type==type) {
-					int absorbed = calculateAbsorb(damage, level, (int)(strength*this.type.strengh));
+					int absorbed = calculateAbsorb(damage, level, (int)(strength*this.type.strength));
 					amount=amount-absorbed;
 				}
 			}				

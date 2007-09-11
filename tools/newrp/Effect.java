@@ -81,7 +81,7 @@ enum DamageType {
  * @author miguel
  *
  */
-class DamageEffect implements Effect {
+abstract class DamageEffect implements Effect {
 	/**
 	 * Type of damage done.
 	 */
@@ -97,33 +97,8 @@ class DamageEffect implements Effect {
 		this.amount = amount;
 	}
 
-	public void apply(RPEntity source, RPEntity target, int rulingAttribute) {
-		/* Missing skill: *(skill level/10f) */
-		int level = source.level;
-
-		/*
-		 * Compute the min and the max value.
-		 * TODO: The result is not clearly related to <b>amount</b> attribute.
-		 *   It would be good that it is a simple relation damage<->amount.
-		 */
-		int min = (int) ((amount / 10f)
-				* ((level * level / 1000.0f) + level / 4f + 2) * (rulingAttribute
-				* rulingAttribute / 256f));
-		int max = (int) ((amount / 10f)
-				* ((level * level / 250.0f) + level + 4) * (rulingAttribute
-				* rulingAttribute / 256f));
-
-		/*
-		 * Randomly choose a value between min and max
-		 */
-		int done = Dice.between(min, max);
-
-		/*
-		 * Make source does that amount to target.
-		 */
-		source.damage(target, type, done);
+	abstract public void apply(RPEntity source, RPEntity target, int rulingAttribute);
 	}
-}
 
 /**
  * A simpler approach to damage effect
@@ -137,8 +112,7 @@ class SimpleDamageEffect extends DamageEffect {
     }
 	
 	public void apply(RPEntity source, RPEntity target, int rulingAttribute) {
-		int done=SimpleRPEntity.calculateAbsorb(this, source.level, rulingAttribute);
-		
+		int done=SimpleRPEntity.calculateAbsorb(this, source.level, rulingAttribute);		
 		source.damage(target, type, done);
 	}
 }

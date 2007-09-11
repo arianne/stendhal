@@ -262,7 +262,7 @@ public class RPEntity {
 		agility += race.agility;
 		constitution += race.constitution;
 		intelligence += race.inteligence;
-		faith += race.wisdom;
+		faith += race.faith;
 	}
 
 	/**
@@ -280,10 +280,10 @@ public class RPEntity {
 				* (int) (constitution * constitution * type.constitution / 10.0);
 		basemp = basemp
 				+ diff
-				* (int) (((intelligence + faith) / 2.0) * ((type.inteligence + type.wisdom) / 2.0));
+				* (int) (((intelligence + faith) / 2.0) * ((type.inteligence + type.faith) / 2.0));
 		weight = weight
 				+ diff
-				* (int) ((type.strengh + type.constitution + type.agility)
+				* (int) ((type.strength + type.constitution + type.agility)
 						* (strength + constitution + agility) / (3.0 * 3.0));
 		speed = speed + diff * (agility / 2000f);
 
@@ -782,22 +782,22 @@ enum Race {
 
 	Race(double str, double dex, double agi, double con, double inte, double wis) {
 		this.strengh = str;
-		this.dextrexity = dex;
+		this.dexterity = dex;
 		this.agility = agi;
 		this.constitution = con;
 		this.inteligence = inte;
-		this.wisdom = wis;
+		this.faith = wis;
 	}
 
 	double strengh;
 
-	double dextrexity;
+	double dexterity;
 
 	double agility;
 
 	double constitution;
 
-	double wisdom;
+	double faith;
 
 	double inteligence;
 }
@@ -819,23 +819,23 @@ enum School {
 
 	School(double str, double dex, double agi, double con, double inte,
 			double wis) {
-		this.strengh = str;
-		this.dextrexity = dex;
+		this.strength = str;
+		this.dexterity = dex;
 		this.agility = agi;
 		this.constitution = con;
 		this.inteligence = inte;
-		this.wisdom = wis;
+		this.faith = wis;
 	}
 
-	double strengh;
+	double strength;
 
-	double dextrexity;
+	double dexterity;
 
 	double agility;
 
 	double constitution;
 
-	double wisdom;
+	double faith;
 
 	double inteligence;
 }
