@@ -124,3 +124,34 @@ class DamageEffect implements Effect {
 		source.damage(target, type, done);
 	}
 }
+
+/**
+ * A simpler approach to damage effect
+ * @author miguel
+ *
+ */
+class SimpleDamageEffect extends DamageEffect {
+
+	public SimpleDamageEffect(DamageType type, int amount) {
+	    super(type, amount);
+    }
+	
+	public void apply(RPEntity source, RPEntity target, int rulingAttribute) {
+		/*
+		 * REASONING:
+		 *   The amount of damage done is increased by how good we are in the ruling attribute.
+		 *   The better the more damage. 
+		 */
+		int base=amount+amount/5*(rulingAttribute-10);
+		
+		/*
+		 * We calculate a min and max values and apply bonus for level.
+		 */
+		int min=base+base/3*source.level;
+		int max=base+base/2*source.level;
+		
+		int done=Dice.between(min, max);
+		
+		source.damage(target, type, done);
+	}
+}
