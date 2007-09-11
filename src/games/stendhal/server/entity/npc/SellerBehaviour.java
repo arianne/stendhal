@@ -12,6 +12,7 @@
 
 package games.stendhal.server.entity.npc;
 
+import games.stendhal.common.Grammar;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
@@ -92,11 +93,10 @@ public class SellerBehaviour extends MerchantBehaviour {
 		if (player.isEquipped("money", getCharge(player))) {
 			if (player.equip(item)) {
 				player.drop("money", getCharge(player));
-				seller.say("Congratulations! Here is your " + chosenItem + "!");
+				seller.say("Congratulations! Here " + Grammar.isare(getAmount()) + " your " + Grammar.plnoun(getAmount(), chosenItem) + "!");
 				return true;
 			} else {
-				seller.say("Sorry, but you cannot equip the " + chosenItem
-						+ ".");
+				seller.say("Sorry, but you cannot equip the " + Grammar.plnoun(getAmount(), chosenItem) + ".");
 				return false;
 			}
 		} else {
