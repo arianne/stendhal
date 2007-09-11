@@ -77,9 +77,8 @@ public class GroundContainer extends WtPanel implements WtDropTarget, Inspector 
 			return other;
 		}
 
-		Point2D point = screen.translate(new Point2D.Double(x, y));
-		EntityView view = screen.getMovableEntityViewAt(point.getX(), point
-				.getY());
+		Point2D point = screen.convertScreenViewToWorld(x, y);
+		EntityView view = screen.getMovableEntityViewAt(point.getX(), point.getY());
 
 		// only Items can be dragged
 		if (view != null) {
@@ -103,7 +102,7 @@ public class GroundContainer extends WtPanel implements WtDropTarget, Inspector 
 		}
 
 		// get clicked entity
-		Point2D point = screen.translate(p);
+		Point2D point = screen.convertScreenViewToWorld(p);
 
 		// for the text pop up....
 		Text text = screen.getTextAt(point.getX(), point.getY());
@@ -135,7 +134,7 @@ public class GroundContainer extends WtPanel implements WtDropTarget, Inspector 
 			return true;
 		}
 		// doubleclick is outside of all windows
-		Point2D point = screen.translate(p);
+		Point2D point = screen.convertScreenViewToWorld(p);
 
 		// for the text pop up....
 		Text text = screen.getTextAt(point.getX(), point.getY());
@@ -171,7 +170,7 @@ public class GroundContainer extends WtPanel implements WtDropTarget, Inspector 
 			return true;
 		}
 		// doubleclick is outside of all windows
-		Point2D point = screen.translate(p);
+		Point2D point = screen.convertScreenViewToWorld(p);
 
 		Entity2DView view = screen.getEntityViewAt(point.getX(), point.getY());
 
@@ -224,7 +223,7 @@ public class GroundContainer extends WtPanel implements WtDropTarget, Inspector 
 		container.fillRPAction(action);
 
 		// 'move to'
-		Point2D point = screen.translate(new Point2D.Double(x, y));
+		Point2D point = screen.convertScreenViewToWorld(x, y);
 		action.put("x", (int) point.getX());
 		action.put("y", (int) point.getY());
 

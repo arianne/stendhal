@@ -899,18 +899,6 @@ public class GameScreen {
 		return null;
 	}
 
-	/** Translate to world coordinates the given screen coordinate */
-	public Point2D translate(Point2D point) {
-		double tx = (point.getX() + svx) / SIZE_UNIT_PIXELS;
-		double ty = (point.getY() + svy) / SIZE_UNIT_PIXELS;
-		return new Point.Double(tx, ty);
-	}
-
-	/** Translate to screen coordinates the given world coordinate */
-	public Point2D invtranslate(Point2D point) {
-		return convertWorldToScreenView(point.getX(), point.getY());
-	}
-
 	/**
 	 * Convert world X coordinate to screen view coordinate.
 	 *
@@ -1368,6 +1356,42 @@ public class GameScreen {
 	 */
 	public int convertWorldToScreen(double w) {
 		return (int) (w * SIZE_UNIT_PIXELS);
+	}
+
+	/**
+	 * Convert screen coordinates to world coordinates.
+	 *
+	 * @param	x		The virtual screen X coordinate.
+	 * @param	y		The virtual screen Y coordinate.
+	 *
+	 * @return	World coordinates.
+	 */
+	public Point2D convertScreenToWorld(final int x, final int y) {
+		return new Point.Double((double) x / SIZE_UNIT_PIXELS, (double) y / SIZE_UNIT_PIXELS);
+
+	}
+
+	/**
+	 * Convert screen view coordinates to world coordinates.
+	 *
+	 * @param	p		The screen view coordinates.
+	 *
+	 * @return	World coordinates.
+	 */
+	public Point2D convertScreenViewToWorld(final Point p) {
+		return convertScreenViewToWorld(p.x, p.y);
+	}
+
+	/**
+	 * Convert screen view coordinates to world coordinates.
+	 *
+	 * @param	x		The screen view X coordinate.
+	 * @param	y		The screen view Y coordinate.
+	 *
+	 * @return	World coordinates.
+	 */
+	public Point2D convertScreenViewToWorld(final int x, final int y) {
+		return convertScreenToWorld(x + getScreenViewX(), y + getScreenViewY());
 	}
 
 	/**
