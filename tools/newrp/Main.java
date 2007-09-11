@@ -70,7 +70,7 @@ public class Main {
 		attacker.setAttitude(0.66f);
 		defender.setAttitude(0.66f);
 
-		int turn = 0;
+		turn = 0;
 		/*
 		 * And run the combat until one of them die. 
 		 */
@@ -81,5 +81,11 @@ public class Main {
 		}
 		System.out.println(turn + "=>" + attacker.hp + ":" + defender.hp);
 	}
+	
+	static int turn;
+
+	public static int getTurn() {
+		return turn;
+    }
 
 }

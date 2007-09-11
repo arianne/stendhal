@@ -279,7 +279,10 @@ public class RPEntity {
 	 * @param amount
 	 */
 	void damage(RPEntity target, DamageType type, int amount) {
-		int turn = 0;
+		/**
+		 * NOTE: Turn is obtained from RP.
+		 */
+		int turn = Main.getTurn();
 
 		/*
 		 * TODO: Check bonus/penalty on innate armor.
