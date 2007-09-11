@@ -117,6 +117,15 @@ public class Item {
 class Weapon extends Item {
 	public Weapon(String name, int weight, SkillType skill) {
 		super(ItemType.WEAPON, name, weight, skill);
+		this.throwable=false;
+	}
+}
+
+class RangeWeapon extends Weapon {
+	public RangeWeapon(String name, int weight, SkillType skill, int range) {
+		super(name, weight, skill);
+		this.throwable=true;
+		this.range=range;
 	}
 }
 

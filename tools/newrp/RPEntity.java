@@ -574,6 +574,34 @@ public class RPEntity {
 	 * @param target
 	 * @param turn
 	 */
+	public void rangeAttack(RPEntity target, int turn) {
+		/*
+		 * Check if it is our turn to attack
+		 */
+		if (turn>=turnToAttackAgain && distanceTo(target)<=weapon.range) {
+			/*
+			 * We make weapon usable only after <i>rate</i> turns
+			 */
+			turnToAttackAgain=turn+ getAttackRate();
+			
+			/*
+			 * Roll dice to see if we are able to do a hit.
+			 */
+			RollResult dice = doHit(attitude);
+			if (dice.success()) {
+				for (Effect effect : weapon.damage) {
+					effect.apply(this, target, strength);
+				}
+			}
+		}
+	}
+
+	/**
+	 * Attack the entity target in the given turn.
+	 * 
+	 * @param target
+	 * @param turn
+	 */
 	public void attack(RPEntity target, int turn) {
 		/*
 		 * Check if it is our turn to attack
