@@ -37,14 +37,14 @@ public class RPEntity {
 	 * - Weight that can be carried 
 	 * - Damage that can be absorbed with the shield.
 	 */
-	int strengh;
+	int strength;
 
 	/**
 	 * Determine: 
 	 * - Attack rate 
 	 * - Handle of weapons
 	 */
-	int dextrexity;
+	int dexterity;
 
 	/**
 	 * Determine: 
@@ -66,7 +66,7 @@ public class RPEntity {
 	 * - How strong your prayers are.
 	 * - Amount of MP points
 	 */
-	int wisdom;
+	int faith;
 
 	/**
 	 * Determine: 
@@ -74,7 +74,7 @@ public class RPEntity {
 	 * - Amount of MP points 
 	 * - Some NPC related actions and effect of some spells.
 	 */
-	int inteligence;
+	int intelligence;
 
 	/**
 	 * It is an RP related attribute to measure how good/evil you are.
@@ -202,15 +202,15 @@ public class RPEntity {
 		int sum = 0;
 
 		while (sum != 60) {
-			strengh = rand.nextInt(10) + 6;
-			dextrexity = rand.nextInt(10) + 6;
+			strength = rand.nextInt(10) + 6;
+			dexterity = rand.nextInt(10) + 6;
 			agility = rand.nextInt(10) + 6;
 			constitution = rand.nextInt(10) + 6;
-			inteligence = rand.nextInt(10) + 6;
-			wisdom = rand.nextInt(10) + 6;
+			intelligence = rand.nextInt(10) + 6;
+			faith = rand.nextInt(10) + 6;
 
-			sum = strengh + dextrexity + agility + constitution + inteligence
-					+ wisdom;
+			sum = strength + dexterity + agility + constitution + intelligence
+					+ faith;
 		}
 
 		initialize();
@@ -227,12 +227,12 @@ public class RPEntity {
 	 * @param wis
 	 */
 	public void setStats(int str, int dex, int agi, int con, int inte, int wis) {
-		this.strengh = str;
-		this.dextrexity = dex;
+		this.strength = str;
+		this.dexterity = dex;
 		this.agility = agi;
 		this.constitution = con;
-		this.inteligence = inte;
-		this.wisdom = wis;
+		this.intelligence = inte;
+		this.faith = wis;
 
 		initialize();
 	}
@@ -257,12 +257,12 @@ public class RPEntity {
 	 *
 	 */
 	private void applyRaceBonus() {
-		strengh += race.strengh;
-		dextrexity += race.strengh;
+		strength += race.strengh;
+		dexterity += race.strengh;
 		agility += race.agility;
 		constitution += race.constitution;
-		inteligence += race.inteligence;
-		wisdom += race.wisdom;
+		intelligence += race.inteligence;
+		faith += race.wisdom;
 	}
 
 	/**
@@ -280,11 +280,11 @@ public class RPEntity {
 				* (int) (constitution * constitution * type.constitution / 10.0);
 		basemp = basemp
 				+ diff
-				* (int) (((inteligence + wisdom) / 2.0) * ((type.inteligence + type.wisdom) / 2.0));
+				* (int) (((intelligence + faith) / 2.0) * ((type.inteligence + type.wisdom) / 2.0));
 		weight = weight
 				+ diff
 				* (int) ((type.strengh + type.constitution + type.agility)
-						* (strengh + constitution + agility) / (3.0 * 3.0));
+						* (strength + constitution + agility) / (3.0 * 3.0));
 		speed = speed + diff * (agility / 2000f);
 
 		hp = basehp;
@@ -364,7 +364,7 @@ public class RPEntity {
 	 * @return
 	 */
 	protected int getAttackRate() {
-		int rate = 1 + (int) (weapon.weight * 256) / (dextrexity * strengh);
+		int rate = 1 + (int) (weapon.weight * 256) / (dexterity * strength);
 		return rate;
 	}
 
@@ -374,7 +374,7 @@ public class RPEntity {
 	 * handle the weapon with your dextrexity.
 	 */
 	protected float getHitQuality(float attitude) {
-		float quality = dextrexity * (strengh / (float)weapon.weight) * attitude * 100
+		float quality = dexterity * (strength / (float)weapon.weight) * attitude * 100
 				/ 256f;
 		return quality;
 	}
@@ -404,7 +404,7 @@ public class RPEntity {
 	 * @return
 	 */
 	protected int getDodgeRate() {
-		int rate = 1 + (int) (armor.weight * 256) / (agility * strengh);
+		int rate = 1 + (int) (armor.weight * 256) / (agility * strength);
 		return rate;
 	}
 
@@ -414,7 +414,7 @@ public class RPEntity {
 	 * dodge with your full plate armor
 	 */
 	protected float getDodgeQuality(float attitude) {
-		float quality = agility * (strengh / (float)armor.weight) * (1 - attitude);
+		float quality = agility * (strength / (float)armor.weight) * (1 - attitude);
 		return quality;
 	}
 
@@ -444,7 +444,7 @@ public class RPEntity {
 	 * @return
 	 */
 	protected int getShieldRate() {
-		int rate = 1 + (int) (shield.weight * 256) / (dextrexity * strengh);
+		int rate = 1 + (int) (shield.weight * 256) / (dexterity * strength);
 		return rate;
 	}
 
@@ -453,7 +453,7 @@ public class RPEntity {
 	 * shield.
 	 */
 	protected float getShieldQuality(float attitude) {
-		float quality = dextrexity * (strengh / (float)shield.weight) * (1 - attitude);
+		float quality = dexterity * (strength / (float)shield.weight) * (1 - attitude);
 		return quality;
 	}
 
@@ -605,7 +605,7 @@ public class RPEntity {
 
 				if (!dodge) {
 					for (Effect effect : weapon.damage) {
-						effect.apply(this, target, strengh);
+						effect.apply(this, target, strength);
 					}
 				}
 			}
@@ -629,12 +629,12 @@ public class RPEntity {
 		StringBuffer os = new StringBuffer();
 		os.append("ENTITY: " + sex + " " + race + " " + type + "\n");
 		os.append("Level: " + level + "\n");
-		os.append("STR: " + strengh + "\n");
-		os.append("DEX: " + dextrexity + "\n");
+		os.append("STR: " + strength + "\n");
+		os.append("DEX: " + dexterity + "\n");
 		os.append("AGI: " + agility + "\n");
 		os.append("CON: " + constitution + "\n");
-		os.append("INT: " + inteligence + "\n");
-		os.append("WIS: " + wisdom + "\n");
+		os.append("INT: " + intelligence + "\n");
+		os.append("WIS: " + faith + "\n");
 		os.append("\n");
 		os.append("HP: " + basehp + "\n");
 		os.append("MP: " + basemp + "\n");
@@ -659,7 +659,7 @@ public class RPEntity {
 	 * @return
 	 */
 	protected float getCastQuality(Spell spell, float attitude) {
-		float quality = ((inteligence + wisdom) / 2 - (level - spell.level))
+		float quality = ((intelligence + faith) / 2 - (level - spell.level))
 				* attitude;
 		return quality;
 	}

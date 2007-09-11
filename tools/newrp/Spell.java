@@ -84,7 +84,7 @@ public class Spell {
 			/*
 			 * Apply bonus/penalty to the effect.
 			 */
-			effect.apply(source, target, source.inteligence);
+			effect.apply(source, target, source.intelligence);
 		}
 	}
 
@@ -98,7 +98,7 @@ public class Spell {
 		 * Apply the effects to ourselves with less inteligence.
 		 */
 		for (Effect effect : effects) {
-			effect.apply(source, source, source.inteligence / 3);
+			effect.apply(source, source, source.intelligence / 3);
 		}
 	}
 }
