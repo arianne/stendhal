@@ -75,11 +75,15 @@ public class Main {
 		 * And run the combat until one of them die. 
 		 */
 		while (!attacker.isDeath() && !defender.isDeath()) {
+			System.out.println(turn + "=>" + attacker.hp + ":" + defender.hp);
+
 			attacker.attack(defender, turn);
 			defender.cast(balloffire, attacker, turn);
+			
 			turn++;
-			System.out.println(turn + "=>" + attacker.hp + ":" + defender.hp);
 		}
+
+		System.out.println(turn + "=>" + attacker.hp + ":" + defender.hp);
 	}
 	
 	static int turn;

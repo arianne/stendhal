@@ -111,14 +111,14 @@ public class SimpleRPEntity extends RPEntity {
     	}
 	}
 
-	private int calculateAbsorb(DamageEffect damage, int rulingAttribute) {
+	static int calculateAbsorb(DamageEffect damage, int level, int rulingAttribute) {
 	    int base=damage.amount+damage.amount/5*(rulingAttribute-10);
 	    
 	    /*
 	     * We calculate a min and max values and apply bonus for level.
 	     */
-	    int min=base+base/3*level;
-	    int max=base+base/2*level;
+	    int min=base+base/4*level/3;
+	    int max=base+base/2*level/3;
 	    
 	    int absorbed=Dice.between(min, max);
 	    return absorbed;
@@ -130,7 +130,7 @@ public class SimpleRPEntity extends RPEntity {
 				DamageEffect damage=(DamageEffect)effect;
 				
 				if(damage.type==type) {
-					int absorbed = calculateAbsorb(damage,dextrexity);
+					int absorbed = calculateAbsorb(damage,level, dextrexity);
 					amount=amount-absorbed;
 				}
 			}				
@@ -145,7 +145,7 @@ public class SimpleRPEntity extends RPEntity {
 				DamageEffect damage=(DamageEffect)effect;
 				
 				if(damage.type==type) {
-					int absorbed = calculateAbsorb(damage,strengh);
+					int absorbed = calculateAbsorb(damage, level, strengh);
 					amount=amount-absorbed;
 				}
 			}				
@@ -163,7 +163,7 @@ public class SimpleRPEntity extends RPEntity {
 					/*
 					 * Armor is a passive element and so is not ruled by any attribute.
 					 */
-					int absorbed = calculateAbsorb(damage,10);
+					int absorbed = calculateAbsorb(damage,level, 10);
 					amount=amount-absorbed;
 				}
 			}				
