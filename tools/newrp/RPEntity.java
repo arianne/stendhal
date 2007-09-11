@@ -153,6 +153,11 @@ abstract public class RPEntity {
 	int turnToUseShieldAgain;
 
 	/**
+	 * How many turns should be spent until we can dodge again.
+	 */
+	int turnToDodgeAgain;
+
+	/**
 	 * How many turns should be spent until we can use weapon as a shield again.
 	 */
 	int turnToUseWeaponAsShieldAgain;
@@ -314,11 +319,11 @@ abstract public class RPEntity {
 		/*
 		 * Check if we can use shield to block it.
 		 */
-		if (target.shield != null && turn>= turnToUseShieldAgain) {
+		if (target.shield != null && turn>= target.turnToUseShieldAgain) {
 			/*
 			 * We make shield usable only after <i>rate</i> turns
 			 */
-			turnToUseShieldAgain=turn+ target.getShieldRate();
+			target.turnToUseShieldAgain=turn+ target.getShieldRate();
 			
 			/*
 			 * Absorb damage with shield
@@ -329,11 +334,11 @@ abstract public class RPEntity {
 		/*
 		 * Check if we can use weapon to block it.
 		 */
-		if (target.weapon != null && turn>=turnToUseWeaponAsShieldAgain) {
+		if (target.weapon != null && turn>=target.turnToUseWeaponAsShieldAgain) {
 			/*
 			 * We make weapon as a shield usable only after <i>rate</i> turns
 			 */
-			turnToUseWeaponAsShieldAgain=turn+ target.getAttackRate();
+			target.turnToUseWeaponAsShieldAgain=turn+ target.getAttackRate();
 			
 			/*
 			 * Absorb damage with shield
@@ -497,7 +502,9 @@ abstract public class RPEntity {
 				 * Check if our oponent can dodge it.
 				 */
 				boolean dodge = false;
-				if (turn % target.getDodgeRate() == 0) {
+				if (turn >= target.turnToDodgeAgain) {
+					target.turnToDodgeAgain=turn+target.getDodgeRate();
+					
 					/*
 					 * Roll dice to see if we dodge it.
 					 */
