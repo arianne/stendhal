@@ -1,5 +1,6 @@
 package newrp;
 
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -24,6 +25,11 @@ public class RPEntity {
 	 * The shield it has.
 	 */
 	Item shield;
+	
+	/**
+	 * List of skills that this entity has.
+	 */
+	List<Skill> skills;
 
 	/**
 	 * Determine: 
@@ -292,8 +298,14 @@ public class RPEntity {
 		}
 
 		/*
-		 * TODO: Check if we can use weapon to block it.
+		 * Check if we can use weapon to block it.
 		 */
+		if (target.weapon != null && turn % target.getAttackRate() == 0) {
+			/*
+			 * Absorb damage with shield
+			 */
+			amount = target.weaponAbsorb(type, amount, target.attitude);
+		}
 
 		/*
 		 * Absorb damage with armor.
@@ -446,6 +458,40 @@ public class RPEntity {
 		return amount;
 	}
 
+	/**
+	 * Once damage is done check how much of it is absorbed by the weapon used as a shield. Damage
+	 * absorbed is always between two not rand values min and max, then damage
+	 * absorbed is randomly choosen between them.
+	 *
+	 * @param damage
+	 * @param attitude
+	 */
+	protected int weaponAbsorb(DamageType type, int amount, float attitude) {
+		/* Missing skill: *(skill level/10f) */
+		float min_coef = getShieldQuality(attitude)
+				* ((level * level / 1000.0f) + level / 40f + 0.25f);
+		float max_coef = getShieldQuality(attitude)
+				* ((level * level / 200.0f) + level / 10f + 1);
+
+		for (Effect effect : shield.protect) {
+			if (effect instanceof DamageEffect) {
+				DamageEffect absorb = (DamageEffect) effect;
+
+				if (absorb.type == type) {
+					int min = (int) ((absorb.amount / 10f) * min_coef);
+					int max = (int) ((absorb.amount / 10f) * max_coef);
+
+					int shieldtakes = Dice.between(min, max);
+
+					// System.out.println("shield removes
+					// ["+min+","+max+"]->"+shieldtakes);
+					amount = amount - shieldtakes;
+				}
+			}
+		}
+
+		return amount;
+	}
 	/**
 	 * Once damage is done check how much of it is absorbed by armor. Damage
 	 * absorbed is always between two not rand values min and max, then damage
