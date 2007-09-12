@@ -157,14 +157,6 @@ public abstract class StendhalUI {
 	//
 
 	/**
-	 * Add a new window.
-	 * 
-	 * @param mw
-	 *            A managed window.
-	 */
-	public abstract void addWindow(ManagedWindow mw);
-
-	/**
 	 * @return Returns the altDown.
 	 */
 	public abstract boolean isAltDown();
