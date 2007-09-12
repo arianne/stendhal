@@ -18,17 +18,12 @@
 
 package games.stendhal.client.gui.wt;
 
-import games.stendhal.client.StendhalClient;
-import games.stendhal.client.StendhalUI;
-import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.ManagedWindow;
 import games.stendhal.client.gui.wt.core.WtButton;
 import games.stendhal.client.gui.wt.core.WtClickListener;
 import games.stendhal.client.gui.wt.core.WtCloseListener;
 import games.stendhal.client.gui.wt.core.WtPanel;
-import games.stendhal.common.CollisionDetection;
 
-import java.awt.GraphicsConfiguration;
 import java.awt.Point;
 import java.util.HashMap;
 import java.util.Map;
@@ -40,50 +35,30 @@ import java.util.Map;
  */
 public class SettingsPanel extends WtPanel implements WtClickListener,
 		WtCloseListener {
+	/**
+	 * The button height.
+	 */
+	private static final int BUTTON_HEIGHT = 25;
+
+	/**
+	 * The button width.
+	 */
+	private static final int BUTTON_WIDTH = 150;
+
+	/**
+	 * The button spacing.
+	 */
+	private static final int SPACING = 5;
 
 	/** width of this panel */
-	private static final int WIDTH = 165;
-
-	/** height of this panel */
-	private static final int HEIGHT = 180;
-
-	private StendhalClient client;
-
-	/** the Character panel */
-	private Character character;
-
-	/** the Key ring panel */
-	private KeyRing keyring;
-
-	/** the buddy list panel */
-	private BuddyListDialog nbuddies;
-
-	private ManagedWindow buddies;
-
-	public BuyWindow buywindow;
-
-	private GameButtonHelper gbh;
-
-	/** the minimap panel */
-	private Minimap minimap;
-
-	/** the inventory */
-	private EntityContainer inventory;
-
-	/** the player */
-	private User player;
+	private static final int WIDTH = BUTTON_WIDTH + SPACING + SPACING;
 
 	/** map of the buttons (for faster access) ) */
-	private Map<String, WtButton> buttonMap;
-
-	private static final boolean newCode = (System
-			.getProperty("stendhal.newgui") != null);
+	private Map<String, Entry> entries;
 
 	/** Creates a new instance of OptionsPanel */
-	public SettingsPanel(StendhalUI ui, final int frameWidth) {
-		super("settings", (frameWidth - WIDTH) / 2, 0, WIDTH, HEIGHT);
-
-		this.client = ui.getClient();
+	public SettingsPanel(final int frameWidth) {
+		super("settings", (frameWidth - WIDTH) / 2, 0, WIDTH, SPACING * 2);
 
 		setTitletext("Settings");
 
@@ -93,89 +68,33 @@ public class SettingsPanel extends WtPanel implements WtClickListener,
 		setMinimized(true);
 		setCloseable(false);
 
-		buttonMap = new HashMap<String, WtButton>();
+		entries = new HashMap<String, Entry>();
+	}
 
-		character = new Character(ui);
-		character.registerCloseListener(this);
-		ui.addWindow(character);
 
-		keyring = new KeyRing(client);
-		keyring.registerCloseListener(this);
-		ui.addWindow(keyring);
+	/**
+	 * Add a window entry.
+	 *
+	 * @param	window		The window.
+	 * @param	label		The menu label.
+	 */
+	public void add(final ManagedWindow window, final String label) {
+		window.registerCloseListener(this);
 
-		if (newCode) {
-			nbuddies = new BuddyListDialog(StendhalUI.get());
-			buddies = nbuddies;
-		} else {
-			Buddies obuddies = new Buddies(StendhalUI.get());
-			buddies = obuddies;
-		}
+		String mnemonic = window.getName();
 
-		buddies.registerCloseListener(this);
-		ui.addWindow(buddies);
+		int y = SPACING + (entries.size() * (BUTTON_HEIGHT + SPACING));
 
-		buywindow = new BuyWindow(StendhalUI.get());
-		buywindow.registerCloseListener(this);
-		buywindow.setVisible(false);
-		ui.addWindow(buywindow);
+		WtButton button = new WtButton(mnemonic, BUTTON_WIDTH, BUTTON_HEIGHT, label);
 
-		gbh = new GameButtonHelper(this, StendhalUI.get());
-		gbh.registerCloseListener(this);
-		gbh.setVisible(false);
-		ui.addWindow(gbh);
-
-		inventory = new EntityContainer(client, "bag", 3, 4);
-		inventory.registerCloseListener(this);
-		ui.addWindow(inventory);
-
-		minimap = new Minimap(client);
-		minimap.registerCloseListener(this);
-		ui.addWindow(minimap);
-
-		WtButton button;
-
-		button = new WtButton("minimap", 150, 25, "Enable Minimap");
-		button.moveTo(5, 5);
-		button.setPressed(minimap.isVisible());
+		button.moveTo(SPACING, y);
+		button.setPressed(window.isVisible());
 		button.registerClickListener(this);
+
+		resizeToFitClientArea(SPACING + BUTTON_WIDTH + SPACING, y + BUTTON_HEIGHT + SPACING);
+
 		addChild(button);
-		buttonMap.put("minimap", button);
-
-		button = new WtButton("character", 150, 25, "Enable Character");
-		button.moveTo(5, 35);
-		button.setPressed(character.isVisible());
-		button.registerClickListener(this);
-		addChild(button);
-		buttonMap.put("character", button);
-
-		button = new WtButton("bag", 150, 25, "Enable Inventory");
-		button.moveTo(5, 65);
-		button.setPressed(inventory.isVisible());
-		button.registerClickListener(this);
-		addChild(button);
-		buttonMap.put("bag", button);
-
-		button = new WtButton("keyring", 150, 25, "Enable Key Ring");
-		button.moveTo(5, 95);
-		button.setPressed(keyring.isVisible());
-		button.registerClickListener(this);
-		addChild(button);
-		buttonMap.put("keyring", button);
-
-		button = new WtButton("buddies", 150, 25, "Enable Buddies");
-		button.moveTo(5, 125);
-		button.setPressed(buddies.isVisible());
-		button.registerClickListener(this);
-		addChild(button);
-		buttonMap.put("buddies", button);
-
-		/*
-		 * button = new WtButton("gametools", 150, 25, "Enable Game Tools");
-		 * button.moveTo(5, 155); button.setPressed(gbh.isVisible());
-		 * button.registerClickListener(this); addChild(button);
-		 * buttonMap.put("gametools", button);
-		 */
-
+		entries.put(mnemonic, new Entry(button, window));
 	}
 
 	/** we're using the window manager */
@@ -184,71 +103,15 @@ public class SettingsPanel extends WtPanel implements WtClickListener,
 		return true;
 	}
 
-	/** updates the minimap */
-	public void updateMinimap(CollisionDetection cd, GraphicsConfiguration gc,
-			String zone) {
-		minimap.update(cd, gc, zone);
-	}
-
-	/** updates the minimap */
-	public void setPlayer(User user) {
-		if (user == null) {
-			return;
-		}
-
-		if (newCode) {
-			/*
-			 * Hack! Need to update list when changes arrive
-			 */
-			if (nbuddies.isVisible()) {
-				nbuddies.update();
-			}
-		}
-
-		// check if the player object has changed.
-		// Note: this is an exact object reference check
-		if (user != player) {
-			this.player = user;
-
-			character.setPlayer(player);
-			keyring.setSlot(player, "keyring");
-			inventory.setSlot(player, "bag");
-			minimap.setPlayer(player);
-
-		}
-
-		/*
-		 * Hack! Need to update when changes arrive
-		 */
-		if (keyring.isVisible()) {
-			keyring.update();
-		}
-	}
-
 	/** a button was clicked */
 	public void onClick(String name, Point point) {
-		boolean state = buttonMap.get(name).isPressed();
+		/*
+		 * Set window visibility
+		 */
+		Entry entry = entries.get(name);
 
-		if (name.equals("minimap")) {
-			// check minimap panel
-			minimap.setVisible(state);
-		} else if (name.equals("character")) {
-			// check character panel
-			character.setVisible(state);
-		} else if (name.equals("bag")) {
-			// check inventory panel
-			inventory.setVisible(state);
-		} else if (name.equals("keyring")) {
-			// check keyring panel
-			keyring.setVisible(state);
-		} else if (name.equals("buddies")) {
-			// check buddy panel
-			buddies.setVisible(state);
-			/*
-			 * } else if (name.equals("gametools")) { // check gametools panel
-			 * gbh.setVisible(state);
-			 */
-
+		if (entry != null) {
+			entry.setVisible(entry.isPressed());
 		}
 	}
 
@@ -257,10 +120,42 @@ public class SettingsPanel extends WtPanel implements WtClickListener,
 		/*
 		 * Unset button
 		 */
-		WtButton button = buttonMap.get(name);
+		Entry entry = entries.get(name);
 
-		if (button != null) {
-			button.setPressed(false);
+		if (entry != null) {
+			entry.setPressed(false);
+		}
+	}
+
+	//
+	//
+
+	/**
+	 * A menu entry.
+	 */
+	protected static class Entry {
+		protected WtButton button;
+		protected ManagedWindow window;
+
+
+		public Entry(final WtButton button, final ManagedWindow window) {
+			this.button = button;
+			this.window = window;
+		}
+
+
+		public boolean isPressed() {
+			return button.isPressed();
+		}
+
+
+		public void setPressed(final boolean pressed) {
+			button.setPressed(pressed);
+		}
+
+
+		public void setVisible(final boolean visible) {
+			window.setVisible(visible);
 		}
 	}
 }

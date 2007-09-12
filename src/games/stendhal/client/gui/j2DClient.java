@@ -26,7 +26,15 @@ import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.styled.Style;
 import games.stendhal.client.gui.styled.WoodStyle;
 import games.stendhal.client.gui.styled.swing.StyledJButton;
+import games.stendhal.client.gui.wt.Buddies;
+import games.stendhal.client.gui.wt.BuddyListDialog;
+import games.stendhal.client.gui.wt.BuyWindow;
+import games.stendhal.client.gui.wt.Character;
+import games.stendhal.client.gui.wt.EntityContainer;
+import games.stendhal.client.gui.wt.GameButtonHelper;
 import games.stendhal.client.gui.wt.InternalManagedDialog;
+import games.stendhal.client.gui.wt.KeyRing;
+import games.stendhal.client.gui.wt.Minimap;
 import games.stendhal.client.gui.wt.SettingsPanel;
 import games.stendhal.client.gui.wt.core.WtPanel;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
@@ -122,9 +130,6 @@ public class j2DClient extends StendhalUI {
 	/** NOTE: It sounds bad to see here a GUI component. Try other way. */
 	private JTextField playerChatText;
 
-// Not currently used (maybe later?)
-//	private FXLayer fx;
-
 	private boolean ctrlDown;
 
 	private boolean shiftDown;
@@ -134,6 +139,29 @@ public class j2DClient extends StendhalUI {
 	/** settings panel */
 	private SettingsPanel settings;
 
+	/** the Character panel */
+	private Character character;
+
+	/** the Key ring panel */
+	private KeyRing keyring;
+
+	/** the buddy list panel */
+	private BuddyListDialog nbuddies;
+
+	private ManagedWindow buddies;
+
+	public BuyWindow buywindow;
+
+	private GameButtonHelper gbh;
+
+	/** the minimap panel */
+	private Minimap minimap;
+
+	/** the inventory */
+	private EntityContainer inventory;
+
+	private User lastuser;
+
 	private Component	quitDialog;
 
 	/**
@@ -141,12 +169,9 @@ public class j2DClient extends StendhalUI {
 	 */
 	protected DelayedDirectionRelease	directionRelease;
 
-	/**
-	 * Not currently used - but will likely be later
-	 * if so uncomment it regards AstridEmma
-	 */
-//	private static final boolean newCode =
-//			(System.getProperty("stendhal.newgui") != null);
+	private static final boolean newCode =
+			(System.getProperty("stendhal.newgui") != null);
+
 
 	public j2DClient(StendhalClient client) {
 		super(client);
@@ -365,9 +390,49 @@ public class j2DClient extends StendhalUI {
 
 		frame.toFront();
 
-		// the settings panel creates all other
-		settings = new SettingsPanel(this, SCREEN_WIDTH);
+		/*
+		 * In-screen dialogs
+		 */
+		settings = new SettingsPanel(SCREEN_WIDTH);
 		screen.addDialog(settings);
+
+		minimap = new Minimap(client);
+		addWindow(minimap);
+		settings.add(minimap, "Enable Minimap");
+
+		character = new Character(this);
+		addWindow(character);
+		settings.add(character, "Enable Character");
+
+		inventory = new EntityContainer(client, "bag", 3, 4);
+		addWindow(inventory);
+		settings.add(inventory, "Enable Inventory");
+
+		keyring = new KeyRing(client);
+		addWindow(keyring);
+		settings.add(keyring, "Enable Key Ring");
+
+		if (newCode) {
+			nbuddies = new BuddyListDialog(this);
+			buddies = nbuddies;
+		} else {
+			Buddies obuddies = new Buddies(this);
+			buddies = obuddies;
+		}
+
+		addWindow(buddies);
+		settings.add(buddies, "Enable Buddies");
+
+//		buywindow = new BuyWindow(this);
+//		buywindow.setVisible(false);
+//		addWindow(buywindow);
+//		settings.add(buywindow, "Enable Buy Window");
+
+//		gbh = new GameButtonHelper(this, this);
+//		gbh.setVisible(false);
+//		addWindow(gbh);
+//		settings.add(gbh, "Enable Game Tools");
+
 
 		// set some default window positions
 		WtWindowManager windowManager = WtWindowManager.getInstance();
@@ -500,23 +565,52 @@ public class j2DClient extends StendhalUI {
 				CollisionDetection cd = gameLayers.getCollisionDetection();
 				if (cd != null) {
 					gameLayers.resetChangedArea();
-					settings.updateMinimap(cd, screen.expose().getDeviceConfiguration(), gameLayers.getArea());
+
+					minimap.update(cd, screen.expose().getDeviceConfiguration(), gameLayers.getArea());
 				}
 			}
 
-			settings.setPlayer(User.get());
+			User user = User.get();
+
+			if(user != null) {
+				if (newCode) {
+					/*
+					 * Hack! Need to update list when
+					 * changes arrive
+					 */
+					if (nbuddies.isVisible()) {
+						nbuddies.update();
+					}
+				}
+
+				/*
+				 * Hack! Need to update when changes arrive
+				 */
+				if (keyring.isVisible()) {
+					keyring.update();
+				}
+
+				// check if the player object has changed.
+				// Note: this is an exact object reference check
+				if(user != lastuser) {
+					character.setPlayer(user);
+					keyring.setSlot(user, "keyring");
+					inventory.setSlot(user, "bag");
+					minimap.setPlayer(user);
+
+					lastuser = user;
+				}
+			}
 
 			if (!client.isInTransfer()) {
 				if (frame.getState() != Frame.ICONIFIED) {
 					logger.debug("Draw screen");
 					screen.draw();
 				}
-
-				// TODO: only draw it if it is required to save cpu time
-				// fx.draw(screen.expose());
 			}
 
 			logger.debug("Query network");
+
 			if (client.loop(0)) {
 				lastMessageHandle = refreshTime;
 			}
