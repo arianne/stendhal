@@ -62,10 +62,8 @@ public class StendhalRPWorld extends RPWorld {
 	static {
 		MAPS_FOLDER = "data/maps/";
 
-		if (StendhalRPWorld.class.getClassLoader().getResource(
-				"tiled/tileset/README") != null) {
-			logger
-					.warn("Developing mode, loading maps from tiled/ instead of data/maps");
+		if (StendhalRPWorld.class.getClassLoader().getResource("tiled/tileset/README") != null) {
+			logger.warn("Developing mode, loading maps from tiled/ instead of data/maps");
 			MAPS_FOLDER = "tiled/";
 		}
 	}
