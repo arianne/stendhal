@@ -17,13 +17,15 @@ import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.gui.j2d.Text;
 import games.stendhal.client.gui.j2d.entity.Entity2DView;
 import games.stendhal.client.gui.j2d.entity.Entity2DViewFactory;
-import games.stendhal.client.gui.wt.core.WtBaseframe;
+import games.stendhal.client.gui.wt.GroundContainer;
+import games.stendhal.client.gui.wt.core.WtPanel;
 import games.stendhal.client.sprite.ImageSprite;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 
 import java.awt.AlphaComposite;
 import java.awt.BasicStroke;
+import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Composite;
@@ -59,9 +61,7 @@ import marauroa.common.Log4J;
 import marauroa.common.Logger;
 
 /**
- * This class is an abstraction of the game screen, so that we can think of it
- * as a window to the world, we can move it, place it and draw object usings
- * World coordinates. This class is based on the singleton pattern.
+ * The game screen. This manages and renders the visual elements of the game.
  */
 public class GameScreen {
 
@@ -86,9 +86,14 @@ public class GameScreen {
 	private Graphics2D g;
 
 	/**
-	 * Client.
+	 * The ground layer.
 	 */
-	protected StendhalClient client;
+	private GroundContainer ground;
+
+	/**
+	 * Static game layers.
+	 */
+	protected StaticGameLayers gameLayers;
 
 	/**
 	 * The text bubbles.
@@ -135,9 +140,6 @@ public class GameScreen {
 	/** the singleton instance */
 	private static GameScreen screen;
 
-	/** the awt-component which this screen belongs to */
-	private Component component;
-
 	/**
 	 * The difference between current and target screen view X.
 	 */
@@ -182,16 +184,6 @@ public class GameScreen {
 		return screen;
 	}
 
-	/** sets the awt-component which this screen belongs to */
-	public void setComponent(Component component) {
-		this.component = component;
-	}
-
-	/** returns the awt-component which this screen belongs to */
-	public Component getComponent() {
-		return component;
-	}
-
 	/** Returns screen width in world units */
 	public double getViewWidth() {
 		return sw / SIZE_UNIT_PIXELS;
@@ -202,12 +194,18 @@ public class GameScreen {
 		return sh / SIZE_UNIT_PIXELS;
 	}
 
-	public GameScreen(StendhalClient client, BufferStrategy strategy, int sw,
-			int sh) {
-		this.client = client;
-		this.strategy = strategy;
-		this.sw = sw;
-		this.sh = sh;
+
+	/**
+	 * Create a game screen.
+	 *
+	 * @param	client		The client.
+	 * @param	canvas		The canvas to render in.
+	 */
+	public GameScreen(final StendhalClient client, final Canvas canvas) {
+		gameLayers = client.getStaticGameLayers();
+
+		sw = canvas.getWidth();
+		sh = canvas.getHeight();
 
 		x = 0;
 		y = 0;
@@ -223,6 +221,20 @@ public class GameScreen {
 		views = new LinkedList<Entity2DView>();
 		entities = new HashMap<Entity, Entity2DView>();
 
+		// create ground
+		ground = new GroundContainer(client, this, sw, sh);
+
+		// register native event handler
+		canvas.addMouseListener(ground);
+		canvas.addMouseMotionListener(ground);
+
+		/*
+		 * Create the buffering strategy which will allow AWT
+		 * to manage our accelerated graphics
+		 */
+		canvas.createBufferStrategy(2);
+		strategy = canvas.getBufferStrategy();
+
 		g = (Graphics2D) strategy.getDrawGraphics();
 	}
 
@@ -235,6 +247,17 @@ public class GameScreen {
 
 		g = (Graphics2D) strategy.getDrawGraphics();
 	}
+
+
+	/**
+	 * Add a legacy dialog to the screen.
+	 *
+	 * @param	panel		The dialog to add.
+	 */
+        public void addDialog(final WtPanel panel) {
+		ground.addChild(panel);
+	}
+
 
 	/**
 	 * Add an entity.
@@ -260,7 +283,7 @@ public class GameScreen {
 	protected void addEntityView(Entity2DView view) {
 		views.add(view);
 
-		view.setInspector(StendhalUI.get().getInspector());
+		view.setInspector(ground);
 	}
 
 	/**
@@ -449,14 +472,13 @@ public class GameScreen {
 	/*
 	 * Draw the screen.
 	 */
-	public void draw(WtBaseframe baseframe) {
+	public void draw() {
 		Collections.sort(views, entityViewComparator);
 
 		/*
 		 * Draw the GameLayers from bootom to top, relies on exact naming of the
 		 * layers
 		 */
-		StaticGameLayers gameLayers = client.getStaticGameLayers();
 		String set = gameLayers.getRPZoneLayerSet();
 
 		int x = (int) getViewX();
@@ -510,7 +532,7 @@ public class GameScreen {
 		/*
 		 * Dialogs
 		 */
-		baseframe.draw(g);
+		ground.draw(g);
 
 		/*
 		 * Offline

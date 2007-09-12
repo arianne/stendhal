@@ -26,10 +26,8 @@ import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.styled.Style;
 import games.stendhal.client.gui.styled.WoodStyle;
 import games.stendhal.client.gui.styled.swing.StyledJButton;
-import games.stendhal.client.gui.wt.GroundContainer;
 import games.stendhal.client.gui.wt.InternalManagedDialog;
 import games.stendhal.client.gui.wt.SettingsPanel;
-import games.stendhal.client.gui.wt.core.WtBaseframe;
 import games.stendhal.client.gui.wt.core.WtPanel;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.client.sound.SoundSystem;
@@ -57,7 +55,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.awt.image.BufferStrategy;
 import java.net.URL;
 
 import javax.swing.BoxLayout;
@@ -68,7 +65,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
-import javax.swing.JPopupMenu;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
@@ -134,12 +130,6 @@ public class j2DClient extends StendhalUI {
 	private boolean shiftDown;
 
 	private boolean altDown;
-
-	/** the main frame */
-	private WtBaseframe baseframe;
-
-	/** this is the ground */
-	private GroundContainer ground;
 
 	/** settings panel */
 	private SettingsPanel settings;
@@ -368,38 +358,16 @@ public class j2DClient extends StendhalUI {
 		frame.setResizable(false);
 		frame.setVisible(true);
 
-
-		/*
-		 * create the buffering strategy which will allow AWT
-		 * to manage our accelerated graphics
-		 */
-		BufferStrategy strategy;
-		canvas.createBufferStrategy(2);
-		strategy = canvas.getBufferStrategy();
-
-		screen = new GameScreen(client, strategy, SCREEN_WIDTH, SCREEN_HEIGHT);
-		screen.setComponent(canvas);
+		screen = new GameScreen(client, canvas);
 
 		GameScreen.setDefaultScreen(screen);
 		client.setScreen(screen);
 
-// Not currently used (maybe later?)
-//		fx = new FXLayer(SCREEN_WIDTH, SCREEN_HEIGHT);
-
 		frame.toFront();
 
-		// create the baseframe
-		baseframe = new WtBaseframe(SCREEN_WIDTH, SCREEN_HEIGHT);
-		// register native event handler
-		canvas.addMouseListener(baseframe);
-		canvas.addMouseMotionListener(baseframe);
-		// create ground
-		ground = new GroundContainer(this);
-
-		baseframe.addChild(ground);
 		// the settings panel creates all other
-		settings = new SettingsPanel(this, ground);
-		ground.addChild(settings);
+		settings = new SettingsPanel(this, SCREEN_WIDTH);
+		screen.addDialog(settings);
 
 		// set some default window positions
 		WtWindowManager windowManager = WtWindowManager.getInstance();
@@ -541,7 +509,7 @@ public class j2DClient extends StendhalUI {
 			if (!client.isInTransfer()) {
 				if (frame.getState() != Frame.ICONIFIED) {
 					logger.debug("Draw screen");
-					screen.draw(baseframe);
+					screen.draw();
 				}
 
 				// TODO: only draw it if it is required to save cpu time
@@ -904,7 +872,7 @@ public class j2DClient extends StendhalUI {
 		if (mw instanceof InternalManagedDialog) {
 			addDialog(((InternalManagedDialog) mw).getDialog());
 		} else if (mw instanceof WtPanel) {
-			ground.addChild((WtPanel) mw);
+			screen.addDialog((WtPanel) mw);
 		} else {
 			throw new IllegalArgumentException(
 				"Unsupport ManagedWindow type: "
@@ -941,15 +909,6 @@ public class j2DClient extends StendhalUI {
 	@Override
 	public boolean isShiftDown() {
 		return shiftDown;
-	}
-
-	/**
-	 * Sets the context menu. It is closed automatically one the user
-	 * clicks outside of it.
-	 */
-	@Override
-	public void setContextMenu(JPopupMenu contextMenu) {
-		baseframe.setContextMenu(contextMenu);
 	}
 
 
@@ -1032,17 +991,6 @@ public class j2DClient extends StendhalUI {
 	@Override
 	public int getHeight() {
 		return SCREEN_HEIGHT;
-	}
-
-
-	/**
-	 * Get the entity inspector.
-	 *
-	 * @return	The inspector.
-	 */
-	@Override
-	public Inspector getInspector() {
-		return ground;
 	}
 
 

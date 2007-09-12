@@ -12,8 +12,6 @@ package games.stendhal.client;
 import games.stendhal.client.entity.Inspector;
 import games.stendhal.client.gui.ManagedWindow;
 
-import javax.swing.JPopupMenu;
-
 /**
  * A base class for the stendhal client UI (not GUI).
  * 
@@ -106,13 +104,6 @@ public abstract class StendhalUI {
 	public abstract int getHeight();
 
 	/**
-	 * Get the entity inspector.
-	 * 
-	 * @return The inspector.
-	 */
-	public abstract Inspector getInspector();
-
-	/**
 	 * Get the game screen.
 	 * 
 	 * @return The game screen.
@@ -187,10 +178,4 @@ public abstract class StendhalUI {
 	 * @return Returns the shiftDown.
 	 */
 	public abstract boolean isShiftDown();
-
-	/**
-	 * Sets the context menu. It is closed automatically one the user clicks
-	 * outside of it.
-	 */
-	public abstract void setContextMenu(JPopupMenu contextMenu);
 }

@@ -80,8 +80,8 @@ public class SettingsPanel extends WtPanel implements WtClickListener,
 			.getProperty("stendhal.newgui") != null);
 
 	/** Creates a new instance of OptionsPanel */
-	public SettingsPanel(StendhalUI ui, WtPanel frame) {
-		super("settings", (frame.getWidth() - WIDTH) / 2, 0, WIDTH, HEIGHT);
+	public SettingsPanel(StendhalUI ui, final int frameWidth) {
+		super("settings", (frameWidth - WIDTH) / 2, 0, WIDTH, HEIGHT);
 
 		this.client = ui.getClient();
 

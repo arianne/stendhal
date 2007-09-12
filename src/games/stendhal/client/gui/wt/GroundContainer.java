@@ -23,6 +23,7 @@ import games.stendhal.client.entity.EntityView;
 import games.stendhal.client.entity.Inspector;
 import games.stendhal.client.gui.j2d.Text;
 import games.stendhal.client.gui.j2d.entity.Entity2DView;
+import games.stendhal.client.gui.wt.core.WtBaseframe;
 import games.stendhal.client.gui.wt.core.WtDraggable;
 import games.stendhal.client.gui.wt.core.WtDropTarget;
 import games.stendhal.client.gui.wt.core.WtPanel;
@@ -40,8 +41,7 @@ import marauroa.common.game.RPSlot;
  * @author mtotz
  *
  */
-
-public class GroundContainer extends WtPanel implements WtDropTarget, Inspector {
+public class GroundContainer extends WtBaseframe implements WtDropTarget, Inspector {
 	/** the game client */
 	private StendhalClient client;
 
@@ -54,18 +54,13 @@ public class GroundContainer extends WtPanel implements WtDropTarget, Inspector 
 	private GameScreen screen;
 
 	/** creates a new groundcontainer */
-	public GroundContainer(StendhalUI ui) {
-		super("ground", 0, 0, ui.getWidth(), ui.getHeight());
+	public GroundContainer(final StendhalClient client, final GameScreen screen, final int width, final int height) {
+		super(width, height);
 
-		this.ui = ui;
+		this.client = client;
+		this.screen = screen;
 
-		setMovable(false);
-		setCloseable(false);
-		setFrame(false);
-		setTitleBar(false);
-
-		client = ui.getClient();
-		screen = ui.getScreen();
+		ui = StendhalUI.get();
 	}
 
 	/** drags an item from the ground */
@@ -181,9 +176,7 @@ public class GroundContainer extends WtPanel implements WtDropTarget, Inspector 
 			if (actions.length > 0) {
 				Entity entity = view.getEntity();
 
-				CommandList list = new CommandList(entity.getType(), actions,
-						view);
-				ui.setContextMenu(list);
+				setContextMenu(new CommandList(entity.getType(), actions, view));
 			}
 			return true;
 		}
