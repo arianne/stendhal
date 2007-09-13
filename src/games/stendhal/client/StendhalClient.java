@@ -62,6 +62,8 @@ public class StendhalClient extends ClientFramework {
 
 	private PerceptionHandler handler;
 
+	private RPObjectChangeDispatcher rpobjDispatcher;
+
 	private RPObject player;
 
 	private StaticGameLayers staticLayers;
@@ -122,12 +124,15 @@ public class StendhalClient extends ClientFramework {
 	protected StendhalClient(String loggingProperties) {
 		super(loggingProperties);
 
+		// TODO: Move this to the UI init code
 		SoundSystem.get();
 
 		world_objects = new HashMap<RPObject.ID, RPObject>();
 		staticLayers = new StaticGameLayers();
 		gameObjects = GameObjects.createInstance(staticLayers);
 		userContext = new UserContext();
+
+		rpobjDispatcher = new RPObjectChangeDispatcher(gameObjects, userContext);
 
 		handler = new PerceptionHandler(new StendhalPerceptionListener());
 
@@ -509,370 +514,28 @@ public class StendhalClient extends ClientFramework {
 	protected void firePlayerAssignment(RPObject object) {
 	}
 
-	/**
-	 * Dispatch object added event.
-	 * 
-	 * @param object
-	 *            The object.
-	 * @param user
-	 *            If this is the private user object.
-	 */
-	protected void dispatchAdded(RPObject object, boolean user) {
-		try {
-			logger.debug("Object(" + object.getID() + ") added to client");
-			fixContainers(object);
-			fireAdded(object, user);
-		} catch (Exception e) {
-			logger.error("onAdded failed, object is " + object, e);
-		}
-	}
-
-	/**
-	 * Dispatch object removed event.
-	 * 
-	 * @param object
-	 *            The object.
-	 * @param user
-	 *            If this is the private user object.
-	 */
-	protected void dispatchRemoved(RPObject object, boolean user) {
-		try {
-			logger.debug("Object(" + object.getID() + ") removed from client");
-			fixContainers(object);
-			fireRemoved(object, user);
-		} catch (Exception e) {
-			logger.error("onDeleted failed, object is " + object, e);
-		}
-	}
-
-	/**
-	 * Dispatch object added/changed attribute(s) event.
-	 * 
-	 * @param object
-	 *            The base object.
-	 * @param changes
-	 *            The changes.
-	 * @param user
-	 *            If this is the private user object.
-	 */
-	protected void dispatchModifyAdded(RPObject object, RPObject changes,
-			boolean user) {
-		try {
-			logger.debug("Object(" + object.getID() + ") modified in client");
-			fixContainers(object);
-			fixContainers(changes);
-			fireChangedAdded(object, changes, user);
-			object.applyDifferences(changes, null);
-		} catch (Exception e) {
-			logger.debug("onModifiedAdded failed, object is " + object
-					+ ", changes is " + changes, e);
-		}
-
-	}
-
-	/**
-	 * Dispatch object removed attribute(s) event.
-	 * 
-	 * @param object
-	 *            The base object.
-	 * @param changes
-	 *            The changes.
-	 * @param user
-	 *            If this is the private user object.
-	 */
-	protected void dispatchModifyRemoved(RPObject object, RPObject changes,
-			boolean user) {
-		try {
-			logger.debug("Object(" + object.getID() + ") modified in client");
-			logger.debug("Original(" + object + ") modified in client");
-
-			fixContainers(object);
-			fixContainers(changes);
-			fireChangedRemoved(object, changes, user);
-			object.applyDifferences(null, changes);
-
-			logger.debug("Modified(" + object + ") modified in client");
-			logger.debug("Changes(" + changes + ") modified in client");
-		} catch (Exception e) {
-			logger.error("onModifiedDeleted failed, object is " + object
-					+ ", changes is " + changes, e);
-		}
-	}
-
-	/**
-	 * Dump an object out in an easily readable format. TEMP!! TEST METHOD -
-	 * USED FOR DEBUGING. Probably should be in a common util class if useful
-	 * long term.
-	 */
-	public static void dumpObject(RPObject object) {
-		System.err.println(object.getRPClass().getName() + "["
-				+ object.getID().getObjectID() + "]");
-
-		for (String name : object) {
-			System.err.println("  " + name + ": " + object.get(name));
-		}
-
-		System.err.println();
-	}
-
-	/**
-	 * Fix parent <-> child linkage. THIS WILL PROBABLY NOT BE NEEDED AFTER
-	 * 2.0's FIXES.
-	 */
-	protected void fixContainers(final RPObject object) {
-		for (RPSlot slot : object.slots()) {
-			for (RPObject sobject : slot) {
-				if (!sobject.isContained()) {
-					logger.debug("Fixing container: " + slot);
-					sobject.setContainer(object, slot);
-				}
-
-				fixContainers(sobject);
-			}
-		}
-	}
-
-	/**
-	 * Notify listeners that an object was added.
-	 * 
-	 * @param object
-	 *            The object.
-	 * @param user
-	 *            If this is the private user object.
-	 */
-	protected void fireAdded(RPObject object, boolean user) {
-		// TEST CODE:
-		// System.err.println("fireAdded()");
-		// dumpObject(object);
-		gameObjects.onAdded(object);
-
-		// NEW CODE:
-		// /*
-		// * Walk each slot
-		// */
-		// for(RPSlot slot : object.slots()) {
-		// for(RPObject sobject : slot) {
-		// fireAdded(sobject, user);
-		// }
-		// }
-	}
-
-	/**
-	 * Notify listeners that an object was removed.
-	 * 
-	 * @param object
-	 *            The object.
-	 * @param user
-	 *            If this is the private user object.
-	 */
-	protected void fireRemoved(RPObject object, boolean user) {
-		// TEST CODE:
-		// System.err.println("fireRemoved()");
-		// dumpObject(object);
-
-		// NEW CODE:
-		// /*
-		// * Walk each slot
-		// */
-		// for(RPSlot slot : object.slots()) {
-		// for(RPObject sobject : slot) {
-		// fireRemoved(sobject, user);
-		// }
-		// }
-
-		gameObjects.onRemoved(object);
-	}
-
-	/**
-	 * Notify listeners that an object added/changed attribute(s). This will
-	 * cascade down slot trees.
-	 * 
-	 * @param object
-	 *            The base object.
-	 * @param changes
-	 *            The changes.
-	 * @param user
-	 *            If this is the private user object.
-	 */
-	protected void fireChangedAdded(RPObject object, RPObject changes,
-			boolean user) {
-		gameObjects.onChangedAdded(object, changes);
-
-		if (user) {
-			userContext.onChangedAdded(object, changes);
-		}
-
-		/*
-		 * Walk each slot
-		 */
-		for (RPSlot cslot : changes.slots()) {
-			if (cslot.size() != 0) {
-				fireChangedAdded(object, cslot, user);
-			}
-		}
-	}
-
-	/**
-	 * Notify listeners that an object slot added/changed attribute(s). This
-	 * will cascade down object trees.
-	 * 
-	 * @param object
-	 *            The base object.
-	 * @param cslot
-	 *            The changes slot.
-	 * @param user
-	 *            If this is the private user object.
-	 */
-	protected void fireChangedAdded(RPObject object, RPSlot cslot, boolean user) {
-		String slotName = cslot.getName();
-		RPSlot slot;
-
-		/*
-		 * Find the original slot entry (if any)
-		 */
-		if (object.hasSlot(slotName)) {
-			slot = object.getSlot(slotName);
-		} else {
-			slot = null;
-		}
-
-		/*
-		 * Walk the changes
-		 */
-		for (RPObject schanges : cslot) {
-			RPObject.ID id = object.getID();
-
-			if ((slot != null) && slot.has(id)) {
-				RPObject sobject = slot.get(id);
-
-				gameObjects.onChangedAdded(object, slotName, sobject, schanges);
-
-				if (user) {
-					userContext.onChangedAdded(object, slotName, sobject,
-							schanges);
-				}
-
-				fireChangedAdded(sobject, schanges, user);
-			} else {
-				// gameObjects.onAdded(object, slotName, schanges);
-				//
-				// if(user) {
-				// userContext.onAdded(object, slotName, schanges);
-				// }
-
-				if (!schanges.isContained()) {
-					logger.warn("!!! Not contained! - " + schanges);
-				}
-
-				// NEW CODE:
-				// fireAdded(schanges, user);
-			}
-		}
-	}
-
-	/**
-	 * Notify listeners that an object removed attribute(s). This will cascade
-	 * down slot trees.
-	 * 
-	 * @param object
-	 *            The base object.
-	 * @param changes
-	 *            The changes.
-	 * @param user
-	 *            If this is the private user object.
-	 */
-	protected void fireChangedRemoved(RPObject object, RPObject changes,
-			boolean user) {
-		gameObjects.onChangedRemoved(object, changes);
-
-		if (user) {
-			userContext.onChangedRemoved(object, changes);
-		}
-
-		/*
-		 * Walk each slot
-		 */
-		for (RPSlot cslot : changes.slots()) {
-			if (cslot.size() != 0) {
-				fireChangedRemoved(object, cslot, user);
-			}
-		}
-	}
-
-	/**
-	 * Notify listeners that an object slot removed attribute(s). This will
-	 * cascade down object trees.
-	 * 
-	 * @param object
-	 *            The base object.
-	 * @param cslot
-	 *            The changes slot.
-	 * @param user
-	 *            If this is the private user object.
-	 */
-	protected void fireChangedRemoved(RPObject object, RPSlot cslot,
-			boolean user) {
-		String slotName = cslot.getName();
-
-		/*
-		 * Find the original slot entry
-		 */
-		RPSlot slot = object.getSlot(slotName);
-
-		/*
-		 * Walk the changes
-		 */
-		for (RPObject schanges : cslot) {
-			RPObject sobject = slot.get(schanges.getID());
-
-			/*
-			 * Remove attrs vs. object [see applyDifferences()]
-			 */
-			if (schanges.size() > 1) {
-				gameObjects.onChangedRemoved(object, slotName, sobject,
-						schanges);
-
-				if (user) {
-					userContext.onChangedRemoved(object, slotName, sobject,
-							schanges);
-				}
-
-				fireChangedRemoved(sobject, schanges, user);
-			} else {
-				// gameObjects.onRemoved(object, slotName, sobject);
-				//
-				// if(user) {
-				// userContext.onRemoved(object, slotName, sobject);
-				// }
-
-				// NEW CODE:
-				// fireRemoved(sobject, user);
-			}
-		}
-	}
-
 	//
 	//
 
 	class StendhalPerceptionListener implements IPerceptionListener {
 
 		public boolean onAdded(RPObject object) {
-			fireAdded(object, false);
+			rpobjDispatcher.dispatchAdded(object, false);
 			return false;
 		}
 
 		public boolean onModifiedAdded(RPObject object, RPObject changes) {
-			dispatchModifyAdded(object, changes, false);
+			rpobjDispatcher.dispatchModifyAdded(object, changes, false);
 			return true;
 		}
 
 		public boolean onModifiedDeleted(RPObject object, RPObject changes) {
-			dispatchModifyRemoved(object, changes, false);
+			rpobjDispatcher.dispatchModifyRemoved(object, changes, false);
 			return true;
 		}
 
 		public boolean onDeleted(RPObject object) {
-			dispatchRemoved(object, false);
+			rpobjDispatcher.dispatchRemoved(object, false);
 			return false;
 		}
 
@@ -898,11 +561,11 @@ public class StendhalClient extends ClientFramework {
 				setPlayer(object);
 
 				if (deleted != null) {
-					dispatchModifyRemoved(object, deleted, true);
+					rpobjDispatcher.dispatchModifyRemoved(object, deleted, true);
 				}
 
 				if (added != null) {
-					dispatchModifyAdded(object, added, true);
+					rpobjDispatcher.dispatchModifyAdded(object, added, true);
 				}
 			} catch (Exception e) {
 				logger.error("onMyRPObject failed, added=" + added
