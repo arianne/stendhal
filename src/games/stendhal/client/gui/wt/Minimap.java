@@ -336,17 +336,17 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 	protected void drawEntity(final Graphics g, final Entity entity, final Color color, final Color borderColor) {
 		Rectangle2D area = entity.getArea();
 
-		int x = ((int) (area.getX() + 0.5)) * scale;
-		int y = ((int) (area.getY() + 0.5)) * scale;
-		int width = (((int) area.getWidth()) * scale) - 1;
-		int height = (((int) area.getHeight()) * scale) - 1;
+		int x = (int) ((area.getX() * scale) + 0.5);
+		int y = (int) ((area.getY() * scale) + 0.5);
+		int width = ((int) area.getWidth()) * scale;
+		int height = ((int) area.getHeight()) * scale;
 
 		g.setColor(color);
 		g.fillRect(x, y, width, height);
 
 		if(borderColor != null) {
 			g.setColor(borderColor);
-			g.drawRect(x, y, width, height);
+			g.drawRect(x, y, width - 1, height - 1);
 		}
 	}
 
