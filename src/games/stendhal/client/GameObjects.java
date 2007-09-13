@@ -17,6 +17,7 @@ import games.stendhal.client.entity.EntityFactory;
 import games.stendhal.client.events.RPObjectChangeListener;
 
 import java.awt.geom.Rectangle2D;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -86,7 +87,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 	}
 
 	public Entity get(RPObject.ID id) {
-		return objects.get(new FQID(new RPObject.ID[] { id }));
+		return objects.get(new FQID(new int[] { id.getObjectID() }));
 	}
 
 	/** Removes all the object entities */
@@ -174,10 +175,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 			Entity entity = add(object);
 
 			if (entity != null) {
-				/*
-				 * Only non-contained objects are on screen
-				 */
-				if (!object.isContained()) {
+				if (entity.isOnGround()) {
 					GameScreen.get().addEntity(entity);
 				}
 
@@ -292,9 +290,9 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 	 */
 	protected static class FQID {
 		/**
-		 * The ID path.
+		 * The object ID path.
 		 */
-		protected RPObject.ID[] path;
+		protected int [] path;
 
 		/**
 		 * Create a fully qualified ID.
@@ -302,7 +300,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 		 * @param path
 		 *            An ID path.
 		 */
-		public FQID(final RPObject.ID[] path) {
+		public FQID(final int [] path) {
 			this.path = path;
 		}
 
@@ -330,12 +328,12 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 				node = node.getContainer();
 			}
 
-			RPObject.ID[] path = new RPObject.ID[len];
+			int [] path = new int[len];
 
 			node = object;
 
 			while (node != null) {
-				path[--len] = node.getID();
+				path[--len] = node.getID().getObjectID();
 				node = node.getContainer();
 			}
 
@@ -343,11 +341,11 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 		}
 
 		/**
-		 * Get the tree path of IDs.
+		 * Get the tree path of object IDs.
 		 * 
 		 * @return The ID path.
 		 */
-		public RPObject.ID[] getPath() {
+		public int [] getPath() {
 			return path;
 		}
 
@@ -367,21 +365,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 				return false;
 			}
 
-			RPObject.ID[] opath = ((FQID) obj).getPath();
-
-			if (path.length != opath.length) {
-				return false;
-			}
-
-			int i = path.length;
-
-			while (i-- != 0) {
-				if (!path[i].equals(opath[i])) {
-					return false;
-				}
-			}
-
-			return true;
+			return Arrays.equals(getPath(), ((FQID) obj).getPath());
 		}
 
 		/**
@@ -393,11 +377,33 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 		public int hashCode() {
 			int value = 0;
 
-			for (RPObject.ID id : path) {
-				value ^= id.hashCode();
+			for (int id : getPath()) {
+				value ^= id;
 			}
 
 			return value;
+		}
+
+
+		/**
+		 * Get the string representation.
+		 *
+		 * @return	The string representation.
+		 */
+		public String toString() {
+			StringBuffer sbuf = new StringBuffer();
+
+			sbuf.append('[');
+			sbuf.append(path[0]);
+
+			for(int i = 1; i < path.length; i++) {
+				sbuf.append(':');
+				sbuf.append(path[i]);
+			}
+
+			sbuf.append(']');
+
+			return sbuf.toString();
 		}
 	}
 }

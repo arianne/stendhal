@@ -18,11 +18,12 @@ package games.stendhal.client.gui.wt;
 
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.entity.Creature;
+import games.stendhal.client.entity.DomesticAnimal;
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.NPC;
 import games.stendhal.client.entity.Player;
 import games.stendhal.client.entity.Portal;
-import games.stendhal.client.entity.Sheep;
+import games.stendhal.client.entity.RPEntity;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.events.PositionChangeListener;
 import games.stendhal.client.gui.wt.core.WtPanel;
@@ -53,6 +54,11 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 	 * The color of blocked areas.
 	 */
 	private static final Color COLOR_BLOCKED = new Color(1.0f, 0.0f, 0.0f);
+
+	/**
+	 * The color of a general entity.
+	 */
+	private static final Color COLOR_ENTITY = new Color(200, 255, 200);
 
 	/** width of the minimap */
 	private static final int MINIMAP_WIDTH = 129;
@@ -239,16 +245,12 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 		// draw minimap
 		vg.drawImage(image, 0, 0, null);
 
-		// Enabled with -Dstendhal.superman=x.
-		if (mininps && admin) {
-			// draw npcs (and creatures/sheeps)
-			for (Entity entity : client.getGameObjects()) {
-				drawNPC(vg, entity);
-			}
-		}
-
-		// draw players
+		// Draw on ground entities
 		for (Entity entity : client.getGameObjects()) {
+			if(!entity.isOnGround()) {
+				continue;
+			}
+
 			if (entity instanceof Player) {
 				Player player = (Player) entity;
 
@@ -261,7 +263,15 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 				Portal portal = (Portal) entity;
 
 				if (!portal.isHidden()) {
-					drawDot(vg, entity, Color.WHITE);
+					drawEntity(vg, entity, Color.WHITE, Color.BLACK);
+				}
+			} else if (mininps && admin) {
+				// Enabled with -Dstendhal.superman=x.
+
+				if (entity instanceof RPEntity) {
+					drawRPEntity(vg, (RPEntity) entity);
+				} else {
+					drawEntity(vg, entity, COLOR_ENTITY);
 				}
 			}
 		}
@@ -279,28 +289,25 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 	}
 
 	/**
-	 * draws NPC as rectangle to Minimap selecting color by class of Entity
+	 * Draws an RPEntity on the map.
 	 *
 	 * @param g
 	 *            Graphics
 	 * @param entity
 	 *            The entity to be drawn
 	 */
-	protected void drawNPC(final Graphics g, final Entity entity) {
-		if (entity instanceof Sheep) {
-			drawNPC(g, entity, Color.ORANGE);
+	protected void drawRPEntity(final Graphics g, final RPEntity entity) {
+		if (entity instanceof DomesticAnimal) {
+			drawEntity(g, entity, Color.ORANGE);
 		} else if (entity instanceof Creature) {
-			drawNPC(g, entity, Color.YELLOW);
+			drawEntity(g, entity, Color.YELLOW);
 		} else if (entity instanceof NPC) {
-			drawNPC(g, entity, Color.BLUE);
-		} else {
-			drawNPC(g, entity, new Color(200, 255, 200));
+			drawEntity(g, entity, Color.BLUE);
 		}
 	}
 
 	/**
-	 * calculates position of NPC rectangle and draws it to Minimap in the
-	 * sepecified color
+	 * Draw an entity on the map as a colored rectangle.
 	 *
 	 * @param g
 	 *            graphics
@@ -309,15 +316,38 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 	 * @param color
 	 *            the Color to be used
 	 */
-	protected void drawNPC(final Graphics g, final Entity entity,
-			final Color color) {
-		Rectangle2D area;
-		area = entity.getArea();
+	protected void drawEntity(final Graphics g, final Entity entity, final Color color) {
+		drawEntity(g, entity, color, null);
+	}
+
+	/**
+	 * Draw an entity on the map as a colored rectangle, with an
+	 * optional border (for non 1x1 entities).
+	 *
+	 * @param g
+	 *	The graphics context.
+	 * @param entity
+	 *	The Entity to be drawn.
+	 * @param color
+	 *	The color to draw.
+	 * @param borderColor
+	 *	The (optional) border color.
+	 */
+	protected void drawEntity(final Graphics g, final Entity entity, final Color color, final Color borderColor) {
+		Rectangle2D area = entity.getArea();
+
+		int x = ((int) (area.getX() + 0.5)) * scale;
+		int y = ((int) (area.getY() + 0.5)) * scale;
+		int width = (((int) area.getWidth()) * scale) - 1;
+		int height = (((int) area.getHeight()) * scale) - 1;
+
 		g.setColor(color);
-		g.drawRect(((int) (area.getX() + 0.5)) * scale,
-				((int) (area.getY() + 0.5)) * scale,
-				(((int) area.getWidth()) * scale) - 1,
-				(((int) area.getHeight()) * scale) - 1);
+		g.fillRect(x, y, width, height);
+
+		if(borderColor != null) {
+			g.setColor(borderColor);
+			g.drawRect(x, y, width, height);
+		}
 	}
 
 
@@ -346,23 +376,6 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 		g.setColor(color);
 		g.drawLine(x - size, y, x + size, y);
 		g.drawLine(x, y + size, x, y - size);
-	}
-
-	private void drawDot(final Graphics g, final Entity entity,
-			final Color color) {
-		Rectangle2D area = entity.getArea();
-
-		int x = ((int) (area.getX() + 0.5)) * scale;
-		int y = ((int) (area.getY() + 0.5)) * scale;
-
-		int dotWidth = (((int) area.getWidth()) * scale) - 1;
-		int dotHeight = (((int) area.getHeight()) * scale) - 1;
-
-		g.setColor(color);
-		g.fillRect(x, y, dotWidth, dotHeight);
-
-		g.setColor(Color.BLACK);
-		g.drawRect(x, y, dotWidth, dotHeight);
 	}
 
 

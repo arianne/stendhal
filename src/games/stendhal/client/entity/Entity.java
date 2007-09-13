@@ -356,6 +356,18 @@ public class Entity implements RPObjectChangeListener {
 	}
 
 	/**
+	 * Determine if this entity is on the ground.
+	 *
+	 * @param clazz
+	 *	The class name.
+	 *
+	 * @return	<code>true</code> if the entity is on the ground.
+	 */
+	public boolean isOnGround() {
+		return !rpObject.isContained();
+	}
+
+	/**
 	 * @param user
 	 *            the current player's character
 	 * @return a double value representing the square of the distance in tiles
