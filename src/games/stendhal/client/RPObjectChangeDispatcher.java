@@ -158,7 +158,7 @@ public class RPObjectChangeDispatcher {
 
 	/**
 	 * Fix parent <-> child linkage.
-	 * THIS WILL PROBABLY NOT BE NEEDED AFTER 2.0's FIXES.
+	 * TODO: Remove once containers are set right on creation.
 	 */
 	protected void fixContainers(final RPObject object) {
 		for (RPSlot slot : object.slots()) {
@@ -183,19 +183,20 @@ public class RPObjectChangeDispatcher {
 	 */
 	protected void fireAdded(RPObject object, boolean user) {
 		// TEST CODE:
-		// System.err.println("fireAdded()");
-		// dumpObject(object);
+		//System.err.println("fireAdded()");
+		//dumpObject(object);
+
 		listener.onAdded(object);
 
 		// NEW CODE:
-		// /*
-		// * Walk each slot
-		// */
-		// for(RPSlot slot : object.slots()) {
-		// for(RPObject sobject : slot) {
-		// fireAdded(sobject, user);
-		// }
-		// }
+		/*
+		 * Walk each slot
+		 */
+		for(RPSlot slot : object.slots()) {
+			for(RPObject sobject : slot) {
+				fireAdded(sobject, user);
+			}
+		}
 	}
 
 	/**
@@ -208,18 +209,18 @@ public class RPObjectChangeDispatcher {
 	 */
 	protected void fireRemoved(RPObject object, boolean user) {
 		// TEST CODE:
-		// System.err.println("fireRemoved()");
-		// dumpObject(object);
+		//System.err.println("fireRemoved()");
+		//dumpObject(object);
 
 		// NEW CODE:
-		// /*
-		// * Walk each slot
-		// */
-		// for(RPSlot slot : object.slots()) {
-		// for(RPObject sobject : slot) {
-		// fireRemoved(sobject, user);
-		// }
-		// }
+		/*
+		 * Walk each slot
+		 */
+		for(RPSlot slot : object.slots()) {
+			for(RPObject sobject : slot) {
+				fireRemoved(sobject, user);
+			}
+		}
 
 		listener.onRemoved(object);
 	}
@@ -236,6 +237,10 @@ public class RPObjectChangeDispatcher {
 	 *		If this is the private user object.
 	 */
 	protected void fireChangedAdded(RPObject object, RPObject changes, boolean user) {
+		// TEST CODE:
+		//System.err.println("fireChangedAdded()");
+		//dumpObject(changes);
+
 		listener.onChangedAdded(object, changes);
 
 		if (user) {
@@ -293,18 +298,12 @@ public class RPObjectChangeDispatcher {
 
 				fireChangedAdded(sobject, schanges, user);
 			} else {
-				// listener.onAdded(object, slotName, schanges);
-				//
-				// if(user) {
-				// userListener.onAdded(object, slotName, schanges);
-				// }
-
 				if (!schanges.isContained()) {
 					logger.warn("!!! Not contained! - " + schanges);
 				}
 
 				// NEW CODE:
-				// fireAdded(schanges, user);
+				fireAdded(schanges, user);
 			}
 		}
 	}
@@ -321,6 +320,10 @@ public class RPObjectChangeDispatcher {
 	 *		If this is the private user object.
 	 */
 	protected void fireChangedRemoved(RPObject object, RPObject changes, boolean user) {
+		// TEST CODE:
+		//System.err.println("fireChangedRemoved()");
+		//dumpObject(changes);
+
 		listener.onChangedRemoved(object, changes);
 
 		if (user) {
@@ -374,14 +377,8 @@ public class RPObjectChangeDispatcher {
 
 				fireChangedRemoved(sobject, schanges, user);
 			} else {
-				// listener.onRemoved(object, slotName, sobject);
-				//
-				// if(user) {
-				// userListener.onRemoved(object, slotName, sobject);
-				// }
-
 				// NEW CODE:
-				// fireRemoved(sobject, user);
+				fireRemoved(sobject, user);
 			}
 		}
 	}

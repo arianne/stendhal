@@ -18,8 +18,10 @@
 
 package games.stendhal.client.gui.wt;
 
+import games.stendhal.client.GameObjects;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.StendhalUI;
+import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.EntityFactory;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.wt.core.WtPanel;
@@ -165,6 +167,8 @@ public class Character extends WtPanel {
 
 		money = 0;
 
+		GameObjects gameObjects = GameObjects.getInstance();
+
 		// taverse all carrying slots
 		String[] slotsCarrying = { "bag", "rhand", "lhand", "head", "armor",
 				"legs", "feet", "finger", "cloak", "keyring" };
@@ -186,7 +190,17 @@ public class Character extends WtPanel {
 				if (iter.hasNext()) {
 					RPObject object = iter.next();
 
-					entitySlot.setEntity(EntityFactory.createEntity(object));
+					Entity entity = gameObjects.get(object);
+
+					/*
+					 * TODO: Remove once object mapping
+					 * verified to work in all cases.
+					 */
+					if(entity == null) {
+						entity = EntityFactory.createEntity(object);
+					}
+
+					entitySlot.setEntity(entity);
 				} else {
 					entitySlot.setEntity(null);
 				}

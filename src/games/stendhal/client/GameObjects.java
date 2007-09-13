@@ -162,11 +162,13 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 	 *            The object.
 	 */
 	public void onAdded(final RPObject object) {
-		if (!object.getRPClass().subclassOf("entity")) {
-			logger.warn("Non-entity object added: " + object);
-		}
-
 		if (!object.has("server-only")) {
+			if (!object.getRPClass().subclassOf("entity")) {
+				logger.debug("Skipping non-entity object: " + object);
+				return;
+			}
+
+			// TODO: Remove once 'type' isn't used anymore
 			if (!object.has("type")) {
 				logger.error("Entity without type: " + object);
 				return;
