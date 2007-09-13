@@ -134,10 +134,17 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 	/**
 	 * Set the slot entity.
 	 *
-	 *
+	 * @param	entity		The new entity, or <code>null</code>.
 	 */
 	public void setEntity(final Entity entity) {
 		if (view != null) {
+			/*
+			 * Don't replace the same object
+			 */
+			if(view.getEntity() == entity) {
+				return;
+			}
+
 			view.release();
 		}
 
