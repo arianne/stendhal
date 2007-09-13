@@ -78,12 +78,12 @@
  </layer>
  <layer name="2_object" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgIA50QekePGpmAvEsJL4HEHsCsReRdqADbyD2AWJfItXPBuI5SHw/IPYH4gAksa149M8F4nmkOBANzAfiBRToHw5gCRAvo0D/KiBeQyW3oIO1QLwOj/xCAvo3AvEm6jlnUAAAaSzF6gAEAAA=
+   H4sIAAAAAAAAAGNgIA50QekePGpmAvEsJL4HEHsCsReS2GYi7QMBbyD2AWJfJLEteNTPBuI5SHw/IPYH4gAksa149M8F4nkkuA8dzAfiBRToHw5gCRAvo0D/KiBeQyW3oIO1QLwOj/xCAvo3AvEm6jlnUAAAfQFKuQAEAAA=
   </data>
  </layer>
  <layer name="3_roof" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgIB4cJkEtLrCZQv1bqOCGUTBwYPpAO2AUoAAA7I8MaAAEAAA=
+   H4sIAAAAAAAAAGNgIB4cJkHtKBgF2MD0gXbAKEABAPiigzsABAAA
   </data>
  </layer>
  <layer name="4_roof_add" width="16" height="16">
