@@ -140,6 +140,16 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	// Entity2DView
 	//
 
+	/*
+	 * Handle entity changes
+	 */
+	protected void applyChanges() {
+		if (changed) {
+			update();
+			changed = false;
+		}
+	}
+
 	/**
 	 * Build a list of entity specific actions. <strong>NOTE: The first entry
 	 * should be the default.</strong>
@@ -203,6 +213,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 		changed = true;
 	}
 
+
 	/**
 	 * Draw the entity.
 	 *
@@ -210,13 +221,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 *            The graphics to drawn on.
 	 */
 	public void draw(final Graphics2D g2d) {
-		/*
-		 * Handle entity changes
-		 */
-		if (changed) {
-			update();
-			changed = false;
-		}
+		applyChanges();
 
 		Rectangle r = getArea();
 

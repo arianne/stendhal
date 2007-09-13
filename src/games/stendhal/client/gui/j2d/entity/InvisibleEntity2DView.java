@@ -46,6 +46,7 @@ public class InvisibleEntity2DView extends Entity2DView {
 	 */
 	@Override
 	public void draw(final Graphics2D g2d) {
+		applyChanges();
 	}
 
 
