@@ -13,6 +13,7 @@
 package games.stendhal.client;
 
 import games.stendhal.client.entity.Entity;
+import games.stendhal.client.events.PositionChangeListener;
 import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.gui.j2d.Text;
 import games.stendhal.client.gui.j2d.entity.Entity2DView;
@@ -63,7 +64,7 @@ import marauroa.common.Logger;
 /**
  * The game screen. This manages and renders the visual elements of the game.
  */
-public class GameScreen {
+public class GameScreen implements PositionChangeListener {
 
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(GameScreen.class);
@@ -602,29 +603,6 @@ public class GameScreen {
 	 */
 	public double getViewY() {
 		return (double) getScreenViewY() / SIZE_UNIT_PIXELS;
-	}
-
-	/**
-	 * Set the target coordinates that the screen centers on.
-	 *
-	 * @param x
-	 *            The world X coordinate.
-	 * @param y
-	 *            The world Y coordinate.
-	 */
-	public void place(double x, double y) {
-		int ix = (int) x;
-		int iy = (int) y;
-
-		/*
-		 * Save CPU cycles
-		 */
-		if ((ix != this.x) || (iy != this.y)) {
-			this.x = ix;
-			this.y = iy;
-
-			calculateView();
-		}
 	}
 
 	/**
@@ -1468,6 +1446,33 @@ public class GameScreen {
 	 */
 	public int getScreenViewY() {
 		return svy;
+	}
+
+
+	//
+	// PositionChangeListener
+	//
+
+	/**
+	 * The user position changed.
+	 * This sets the target coordinates that the screen centers on.
+	 *
+	 * @param	x		The X coordinate (in world units).
+	 * @param	y		The Y coordinate (in world units).
+	 */
+	public void positionChanged(final double x, final double y) {
+		int ix = (int) x;
+		int iy = (int) y;
+
+		/*
+		 * Save CPU cycles
+		 */
+		if ((ix != this.x) || (iy != this.y)) {
+			this.x = ix;
+			this.y = iy;
+
+			calculateView();
+		}
 	}
 
 	//

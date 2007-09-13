@@ -24,6 +24,7 @@ import games.stendhal.client.entity.Player;
 import games.stendhal.client.entity.Portal;
 import games.stendhal.client.entity.Sheep;
 import games.stendhal.client.entity.User;
+import games.stendhal.client.events.PositionChangeListener;
 import games.stendhal.client.gui.wt.core.WtPanel;
 import games.stendhal.common.CollisionDetection;
 
@@ -42,7 +43,16 @@ import marauroa.common.game.RPAction;
  *
  * @author mtotz
  */
-public class Minimap extends WtPanel {
+public class Minimap extends WtPanel implements PositionChangeListener {
+	/**
+	 * The color of the background.
+	 */
+	private static final Color COLOR_BACKGROUND = new Color(0.8f, 0.8f, 0.8f);
+
+	/**
+	 * The color of blocked areas.
+	 */
+	private static final Color COLOR_BLOCKED = new Color(1.0f, 0.0f, 0.0f);
 
 	/** width of the minimap */
 	private static final int MINIMAP_WIDTH = 129;
@@ -89,9 +99,6 @@ public class Minimap extends WtPanel {
 	/** minimap image */
 	private BufferedImage image;
 
-	/** list of players */
-	private Player player;
-
 	private StendhalClient client;
 
 	/** Creates a new instance of Minimap */
@@ -99,6 +106,14 @@ public class Minimap extends WtPanel {
 		super("minimap", 0, 0, 100, 100);
 
 		this.client = client;
+
+		setTitleBar(true);
+		setFrame(true);
+		setMovable(true);
+		setMinimizeable(true);
+
+		// Show nothing until there is map data
+		resizeToFitClientArea(100, 0);
 	}
 
 	/**
@@ -134,11 +149,12 @@ public class Minimap extends WtPanel {
 		image = gc.createCompatibleImage(w * scale, h * scale);
 
 		Graphics2D mapgrapics = image.createGraphics();
-		Color freeColor = new Color(0.8f, 0.8f, 0.8f);
-		mapgrapics.setColor(freeColor);
+
+		mapgrapics.setColor(COLOR_BACKGROUND);
 		mapgrapics.fillRect(0, 0, w * scale, h * scale);
-		Color blockedColor = new Color(1.0f, 0.0f, 0.0f);
-		mapgrapics.setColor(blockedColor);
+
+		mapgrapics.setColor(COLOR_BLOCKED);
+
 		for (int x = 0; x < w; x++) {
 			for (int y = 0; y < h; y++) {
 				if (!cd.walkable(x, y)) {
@@ -147,12 +163,12 @@ public class Minimap extends WtPanel {
 			}
 		}
 
-		setTitleBar(true);
-		setFrame(true);
-		setMovable(true);
-		setMinimizeable(true);
+		mapgrapics.dispose();
+
 		// now resize the panel to match the size of the map
 		resizeToFitClientArea(width, height);
+
+		updateView();
 	}
 
 	/** we're using the window manager */
@@ -161,16 +177,6 @@ public class Minimap extends WtPanel {
 		return true;
 	}
 
-	/**
-	 * Update the player view coordinates. TODO: Replace with listener based
-	 * update later.
-	 */
-	private void updatePosition() {
-		playerX = player.getX();
-		playerY = player.getY();
-
-		updateView();
-	}
 
 	/**
 	 * Update the view pan. This should be done when the map size or player
@@ -221,12 +227,11 @@ public class Minimap extends WtPanel {
 	protected void drawContent(Graphics2D g) {
 		super.drawContent(g);
 
-		if ((player == null) || (image == null)) {
+		if (image == null) {
 			return;
 		}
 
-		// TODO: Update position via events instead
-		updatePosition();
+		boolean admin = User.isAdmin();
 
 		Graphics vg = g.create();
 		vg.translate(-panx, -pany);
@@ -235,7 +240,7 @@ public class Minimap extends WtPanel {
 		vg.drawImage(image, 0, 0, null);
 
 		// Enabled with -Dstendhal.superman=x.
-		if (mininps && User.isAdmin()) {
+		if (mininps && admin) {
 			// draw npcs (and creatures/sheeps)
 			for (Entity entity : client.getGameObjects()) {
 				drawNPC(vg, entity);
@@ -245,11 +250,12 @@ public class Minimap extends WtPanel {
 		// draw players
 		for (Entity entity : client.getGameObjects()) {
 			if (entity instanceof Player) {
-				Player aPlayer = (Player) entity;
+				Player player = (Player) entity;
 
-				if (!aPlayer.isGhostMode()) {
-					drawCross(vg, (int) ((aPlayer.getX() * scale) + 0.5),
-							(int) ((aPlayer.getY() * scale) + 0.5), Color.WHITE);
+				if (!player.isGhostMode()) {
+					drawPlayer(vg, player, Color.WHITE);
+				} else if(admin) {
+					drawPlayer(vg, player, Color.GRAY);
 				}
 			} else if (entity instanceof Portal) {
 				Portal portal = (Portal) entity;
@@ -260,9 +266,14 @@ public class Minimap extends WtPanel {
 			}
 		}
 
-		// draw myself
-		drawCross(vg, (int) ((playerX * scale) + 0.5),
-				(int) ((playerY * scale) + 0.5), Color.BLUE);
+		/*
+		 * Draw the current user
+		 */
+		User user = User.get();
+
+		if(user != null) {
+			drawPlayer(vg, user, Color.BLUE);
+		}
 
 		vg.dispose();
 	}
@@ -273,7 +284,7 @@ public class Minimap extends WtPanel {
 	 * @param g
 	 *            Graphics
 	 * @param entity
-	 *            the entity dto be drawn
+	 *            The entity to be drawn
 	 */
 	protected void drawNPC(final Graphics g, final Entity entity) {
 		if (entity instanceof Sheep) {
@@ -309,6 +320,20 @@ public class Minimap extends WtPanel {
 				(((int) area.getHeight()) * scale) - 1);
 	}
 
+
+	/**
+	 * Draw a player entity.
+	 *
+	 * @param	g		The graphics context.
+	 * @param	player		The player to be drawn.
+	 * @param	color		The color to draw with.
+	 */
+	protected void drawPlayer(final Graphics g, final Player player, final Color color) {
+		drawCross(g, (int) ((player.getX() * scale) + 0.5),
+			(int) ((player.getY() * scale) + 0.5), color);
+	}
+
+
 	/** draws a cross at the given position */
 	private void drawCross(Graphics g, int x, int y, Color color) {
 		int scale_2 = scale / 2;
@@ -340,14 +365,6 @@ public class Minimap extends WtPanel {
 		g.drawRect(x, y, dotWidth, dotHeight);
 	}
 
-	/**
-	 * sets the current Player
-	 *
-	 * @param player
-	 */
-	public void setPlayer(final Player player) {
-		this.player = player;
-	}
 
 	@Override
 	public synchronized boolean onMouseDoubleClick(Point p) {
@@ -364,5 +381,23 @@ public class Minimap extends WtPanel {
 
 		client.send(action);
 		return true;
+	}
+
+
+	//
+	// PositionChangeListener
+	//
+
+	/**
+	 * The user position changed.
+	 *
+	 * @param	x		The X coordinate (in world units).
+	 * @param	y		The Y coordinate (in world units).
+	 */
+	public void positionChanged(final double x, final double y) {
+		playerX = x;
+		playerY = y;
+
+		updateView();
 	}
 }

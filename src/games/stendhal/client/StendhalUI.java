@@ -148,6 +148,15 @@ public abstract class StendhalUI {
 	 */
 	public abstract void setOffline(boolean offline);
 
+	/**
+	 * Set the user's positiion.
+	 *
+	 * @param	x		The user's X coordinate.
+	 * @param	y		The user's Y coordinate.
+	 */
+	public abstract void setPosition(double x, double y);
+
+
 	//
 	// <StendhalGUI>
 	//

@@ -39,7 +39,7 @@ public class User2DView extends Player2DView {
 
 		this.user = user;
 
-		screen.place(user.getX(), user.getY());
+		StendhalUI.get().setPosition(user.getX(), user.getY());
 		screen.center();
 	}
 
@@ -106,7 +106,7 @@ public class User2DView extends Player2DView {
 		super.entityChanged(entity, property);
 
 		if (property == Entity.PROP_POSITION) {
-			screen.place(user.getX(), user.getY());
+			StendhalUI.get().setPosition(user.getX(), user.getY());
 		}
 	}
 

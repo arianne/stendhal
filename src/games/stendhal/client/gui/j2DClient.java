@@ -23,6 +23,8 @@ import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.EntityView;
 import games.stendhal.client.entity.Inspector;
 import games.stendhal.client.entity.User;
+import games.stendhal.client.events.PositionChangeListener;
+import games.stendhal.client.events.PositionChangeMulticaster;
 import games.stendhal.client.gui.styled.Style;
 import games.stendhal.client.gui.styled.WoodStyle;
 import games.stendhal.client.gui.styled.swing.StyledJButton;
@@ -164,6 +166,8 @@ public class j2DClient extends StendhalUI {
 
 	private Component	quitDialog;
 
+	private PositionChangeMulticaster	positionChangeListener;
+
 	/**
 	 * Delayed direction release holder.
 	 */
@@ -194,6 +198,7 @@ public class j2DClient extends StendhalUI {
 		// but show a confirmation dialog.
 		frame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 
+		positionChangeListener = new PositionChangeMulticaster();
 
 		Container content = frame.getContentPane();
 		content.setLayout(new BoxLayout(content, BoxLayout.Y_AXIS));
@@ -388,6 +393,8 @@ public class j2DClient extends StendhalUI {
 		GameScreen.setDefaultScreen(screen);
 		client.setScreen(screen);
 
+		positionChangeListener.add(screen);
+
 		frame.toFront();
 
 		/*
@@ -399,6 +406,8 @@ public class j2DClient extends StendhalUI {
 		minimap = new Minimap(client);
 		addWindow(minimap);
 		settings.add(minimap, "Enable Minimap");
+
+		positionChangeListener.add(minimap);
 
 		character = new Character(this);
 		addWindow(character);
@@ -596,7 +605,6 @@ public class j2DClient extends StendhalUI {
 					character.setPlayer(user);
 					keyring.setSlot(user, "keyring");
 					inventory.setSlot(user, "bag");
-					minimap.setPlayer(user);
 
 					lastuser = user;
 				}
@@ -1146,6 +1154,18 @@ public class j2DClient extends StendhalUI {
 	@Override
 	public void setChatLine(String text) {
 		playerChatText.setText(text);
+	}
+
+
+	/**
+	 * Set the user's positiion.
+	 *
+	 * @param	x		The user's X coordinate.
+	 * @param	y		The user's Y coordinate.
+	 */
+	@Override
+	public void setPosition(double x, double y) {
+		positionChangeListener.positionChanged(x, y);
 	}
 
 
