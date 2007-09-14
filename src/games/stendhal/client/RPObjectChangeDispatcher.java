@@ -188,7 +188,6 @@ public class RPObjectChangeDispatcher {
 
 		listener.onAdded(object);
 
-		// NEW CODE:
 		/*
 		 * Walk each slot
 		 */
@@ -212,7 +211,6 @@ public class RPObjectChangeDispatcher {
 		//System.err.println("fireRemoved()");
 		//dumpObject(object);
 
-		// NEW CODE:
 		/*
 		 * Walk each slot
 		 */
@@ -302,7 +300,6 @@ public class RPObjectChangeDispatcher {
 					logger.warn("!!! Not contained! - " + schanges);
 				}
 
-				// NEW CODE:
 				fireAdded(schanges, user);
 			}
 		}
@@ -365,6 +362,12 @@ public class RPObjectChangeDispatcher {
 		for (RPObject schanges : cslot) {
 			RPObject sobject = slot.get(schanges.getID());
 
+			// TODO: Find out why this happens with bank contents
+			if(sobject == null) {
+				logger.debug("Unable to find existing: " + schanges);
+				continue;
+			}
+
 			/*
 			 * Remove attrs vs. object [see applyDifferences()]
 			 */
@@ -377,7 +380,6 @@ public class RPObjectChangeDispatcher {
 
 				fireChangedRemoved(sobject, schanges, user);
 			} else {
-				// NEW CODE:
 				fireRemoved(sobject, user);
 			}
 		}

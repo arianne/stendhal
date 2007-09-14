@@ -12,10 +12,13 @@
  ***************************************************************************/
 package games.stendhal.client.gui.wt;
 
+import games.stendhal.client.GameObjects;
 import games.stendhal.client.StendhalClient;
+import games.stendhal.client.entity.Corpse;
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.EntityFactory;
 import games.stendhal.client.entity.User;
+import games.stendhal.client.events.PositionChangeListener;
 import games.stendhal.client.gui.wt.core.WtPanel;
 
 import java.awt.Graphics2D;
@@ -34,7 +37,7 @@ import marauroa.common.game.RPSlot;
  *
  * @author mtotz
  */
-public class EntityContainer extends WtPanel {
+public class EntityContainer extends WtPanel implements PositionChangeListener {
 
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(EntityContainer.class);
@@ -76,16 +79,13 @@ public class EntityContainer extends WtPanel {
 				EntitySlot entitySlot = new EntitySlot(client, name, null, x
 						* spriteWidth + x, y * spriteHeight + y);
 				slotPanels.add(entitySlot);
+				addChild(entitySlot);
 			}
 		}
 
 		// resize panel
-		this.resizeToFitClientArea(width * spriteWidth + (width - 1), height
-				* spriteHeight + (height - 1));
-
-		for (EntitySlot entitySlot : slotPanels) {
-			addChild(entitySlot);
-		}
+		resizeToFitClientArea(width * spriteWidth + (width - 1),
+			height * spriteHeight + (height - 1));
 	}
 
 	/** we're using the window manager */
@@ -102,70 +102,101 @@ public class EntityContainer extends WtPanel {
 
 		RPSlot rpslot = parent.getSlot(slotName);
 
-		if (rpslot == null) {
-			/*
-			 * Clear all slots
-			 */
-			for (EntitySlot entitySlot : slotPanels) {
-				entitySlot.setEntity(null);
-			}
-
-			// TODO: fix the non existing "keyring slot" for old server
+		// Skip if not changed
+		if ((shownSlot != null) && shownSlot.equals(rpslot)) {
 			return;
 		}
 
-		shownSlot = (RPSlot) rpslot.clone();
+		if(logger.isDebugEnabled()) {
+			logger.debug("DIFFERENT");
+			logger.debug("SHOWN: " + shownSlot);
+			logger.debug("ORIGINAL: " + rpslot);
+		}
 
-		Iterator<RPObject> it = shownSlot.iterator();
+		GameObjects gameObjects = GameObjects.getInstance();
 
-		for (EntitySlot entitySlot : slotPanels) {
-			// be sure to update the name
-			entitySlot.setName(shownSlot.getName());
+		Iterator<EntitySlot> iter = slotPanels.iterator();
 
-			// tell 'em the the parent
-			entitySlot.setParent(parent);
+		/*
+		 * Fill from contents
+		 */
+		if (rpslot != null) {
+			shownSlot = (RPSlot) rpslot.clone();
 
-			// Set the entity
-			if (it.hasNext()) {
-				entitySlot.setEntity(EntityFactory.createEntity(it.next()));
-			} else {
-				entitySlot.setEntity(null);
+			for (RPObject object : shownSlot) {
+				if(!iter.hasNext()) {
+					logger.error("More objects than slots: " + slotName);
+					break;
+				}
+
+				Entity entity = gameObjects.get(object);
+
+				if(entity == null) {
+					logger.warn("Unable to find entity for: " + object);
+					entity = EntityFactory.createEntity(object);
+				}
+
+				iter.next().setEntity(entity);
 			}
+		} else {
+			shownSlot = null;
+			logger.error("No slot found: " + slotName);
+		}
+
+		/*
+		 * Clear remaining holders
+		 */
+		while(iter.hasNext()) {
+			iter.next().setEntity(null);
 		}
 	}
 
 	/**
-	 * Check the distance of the player to the base item. When the player is too
-	 * far away, this panel closes itself. Note that this is clientside only.
+	 * Check the distance of the player to the base item.
+	 * When the player is too far away, this panel closes itself.
+	 *
+	 * TODO: Change to event model, rather than polling
 	 */
 	private void checkDistance() {
-		int px = (int) User.get().getX();
-		int py = (int) User.get().getY();
-		int ix = (int) parent.getX();
-		int iy = (int) parent.getY();
+		User user = User.get();
 
-		if (User.get().getID().equals(parent.getID())) {
-			// We don't want to close our own stuff
-			return;
-		}
+		if(user != null) {
+			if (user.getID().equals(parent.getID())) {
+				// We don't want to close our own stuff
+				return;
+			}
 
-		Rectangle2D orig = parent.getArea();
-		orig.setRect(orig.getX() - MAX_DISTANCE, orig.getY() - MAX_DISTANCE,
-				orig.getWidth() + MAX_DISTANCE * 2, orig.getHeight()
-						+ MAX_DISTANCE * 2);
-
-		if (!orig.contains(px, py)) {
-			logger.debug("Closing " + slotName + " container because " + px
-					+ "," + py + " is too far from (" + ix + "," + iy + "):"
-					+ orig);
-			destroy();
+			positionChanged(user.getX(), user.getY());
 		}
 	}
+
+
+	/*
+	 * Clear all holders.
+	 */
+	protected void clear() {
+		for (EntitySlot entitySlot : slotPanels) {
+			entitySlot.setEntity(null);
+		}
+
+		shownSlot = null;
+	}
+
 
 	/** sets the player entity */
 	public void setSlot(Entity parent, String slot) {
 		this.parent = parent;
 		this.slotName = slot;
+
+		/*
+		 * Reset the container info for all holders
+		 */
+		for (EntitySlot entitySlot : slotPanels) {
+			entitySlot.setParent(parent);
+			entitySlot.setName(slot);
+		}
+
+		shownSlot = null;
 		rescanSlotContent();
 	}
 
@@ -178,24 +209,64 @@ public class EntityContainer extends WtPanel {
 	 */
 	@Override
 	protected void drawContent(Graphics2D g) {
-		if ((parent != null) && (slotName != null) && !isClosed()) {
-			RPSlot rpslot = parent.getSlot(slotName);
-			// rescan the content if the size changes
-			if ((shownSlot == null) || !shownSlot.equals(rpslot)) {
-				logger.debug("DIFFERENT");
-				logger.debug("SHOWN: " + shownSlot);
-				logger.debug("ORIGINAL: " + rpslot);
-				rescanSlotContent();
-			} else {
-				if (parent instanceof games.stendhal.client.entity.Corpse) {
-					logger.debug("EQUAL");
-					logger.debug("SHOWN: " + shownSlot);
-					logger.debug("ORIGINAL: " + rpslot);
-				}
-			}
-			checkDistance();
-		}
-
+		rescanSlotContent();
 		super.drawContent(g);
+
+	 	// TODO: Change to event model, rather than polling
+		checkDistance();
+	}
+
+
+	/**
+	 * Close the panel.
+	 */
+	public void close() {
+		clear();
+		super.close();
+	}
+
+
+	/**
+	 * Destroy the panel.
+	 */
+	public void destroy() {
+		clear();
+		parent = null;
+
+		super.destroy();
+	}
+
+
+	//
+	// PositionChangeListener
+	//
+
+	/**
+	 * The user position changed.
+	 *
+	 * @param	x		The X coordinate (in world units).
+	 * @param	y		The Y coordinate (in world units).
+	 */
+	public void positionChanged(final double x, final double y) {
+		/*
+		 * Check if the user has moved too far away
+		 */
+		int px = (int) x;
+		int py = (int) y;
+
+		int ix = (int) parent.getX();
+		int iy = (int) parent.getY();
+
+		Rectangle2D orig = parent.getArea();
+		orig.setRect(orig.getX() - MAX_DISTANCE, orig.getY() - MAX_DISTANCE,
+				orig.getWidth() + MAX_DISTANCE * 2, orig.getHeight()
+						+ MAX_DISTANCE * 2);
+
+		if (!orig.contains(px, py)) {
+			logger.debug("Closing " + slotName + " container because " + px
+					+ "," + py + " is too far from (" + ix + "," + iy + "):"
+					+ orig);
+			destroy();
+		}
 	}
 }
