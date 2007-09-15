@@ -202,6 +202,8 @@ lion_shield_+1 enhanced_lion_shield
 		// Client side features
 		player.addAttribute("features", Type.LONG_STRING, Definition.PRIVATE);
 
+		// Last time this player attacked another player
+		player.addAttribute("last_pvp_action_time", Type.FLOAT, Definition.HIDDEN);
 	}
 
 	/**

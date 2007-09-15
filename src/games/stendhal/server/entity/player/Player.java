@@ -1054,6 +1054,14 @@ public class Player extends RPEntity {
 	}
 
 	/**
+	 * Is this a new player?
+	 *
+	 * @return true if it is a new player, false otherwise
+	 */
+	public boolean isNew() {
+		return getAge() < 2 * 60 || getATK() < 15 || getDEF() < 15 || getLevel() < 5;
+	}
+	/**
 	 * Sets the number of minutes that this player has been logged in on the
 	 * server.
 	 *
@@ -1066,6 +1074,25 @@ public class Player extends RPEntity {
 		TutorialNotifier.aged(this, age);
 	}
 
+	/**
+	 * Updates teh last pvp action time with the current time.
+	 */
+	public void storeLastPVPActionTime() {
+	    put("last_pvp_action_time", (float) System.currentTimeMillis());
+    }
+
+	/**
+	 * returns the time the player last did an PVP action
+	 *
+	 * @return time in milliseconds
+	 */
+	public long getLastPVPActionTime() {
+		if (has("last_pvp_action_time")) {
+			return (long) Float.parseFloat(get("last_pvp_action_time"));
+		}
+		return -1;
+    }
+	
 	/**
 	 * Notifies this player that the given player has logged in.
 	 *
