@@ -290,6 +290,8 @@ public class StendhalRPAction {
 
 		defender.onAttacked(attacker, true);
 
+		setPVPTimeIfDoingPVP(attacker, defender);
+
 		if (! attacker.nextTo(defender)) {
 			// The attacker is not directly standing next to the defender.
 			// Find out if he can attack from the distance.
@@ -363,6 +365,12 @@ public class StendhalRPAction {
 
 		return result;
 	}
+
+	private static void setPVPTimeIfDoingPVP(RPEntity attacker, RPEntity defender) {
+	    if (attacker instanceof Player && defender instanceof Player) {
+	    	((Player) attacker).storeLastPVPActionTime();
+	    }
+    }
 
 	/**
 	 * Calculate lifesteal and update hp of source

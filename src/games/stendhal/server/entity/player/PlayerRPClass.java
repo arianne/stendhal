@@ -199,6 +199,8 @@ lion_shield_+1 enhanced_lion_shield
 		// Client side features
 		player.add("features", RPClass.LONG_STRING, RPClass.PRIVATE);
 
+		player.add("last_pvp_action_time", RPClass.FLOAT, RPClass.HIDDEN);
+
 	}
 
 	/**

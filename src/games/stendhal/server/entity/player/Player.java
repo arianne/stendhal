@@ -14,6 +14,7 @@ package games.stendhal.server.entity.player;
 
 import games.stendhal.common.Direction;
 import games.stendhal.common.FeatureList;
+import games.stendhal.common.MathHelper;
 import games.stendhal.common.Rand;
 import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.StendhalRPRuleProcessor;
@@ -1088,6 +1089,25 @@ public class Player extends RPEntity {
 	}
 
 	/**
+	 * Updates teh last pvp action time with the current time.
+	 */
+	public void storeLastPVPActionTime() {
+	    put("last_pvp_action_time", (float) System.currentTimeMillis());
+    }
+
+	/**
+	 * returns the time the player last did an PVP action
+	 *
+	 * @return time in milliseconds
+	 */
+	public long getLastPVPActionTime() {
+		if (has("last_pvp_action_time")) {
+			return (long) Float.parseFloat(get("last_pvp_action_time"));
+		}
+		return -1;
+    }
+	
+	/**
 	 * Notifies this player that the given player has logged in.
 	 * @param who The name of the player who has logged in.
 	 */
@@ -1762,4 +1782,5 @@ public class Player extends RPEntity {
 	public String toString() {
 		return "Player [" + getName() + ", " + hashCode() + "]";
 	}
+
 }

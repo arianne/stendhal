@@ -192,9 +192,16 @@ class BehaviourAdder {
 				        if (cost > 0) {
 					        engine.say("Healing costs " + cost + ". Do you have that much?");
 				        } else {
-					        engine.say("There, you are healed. How else may I help you?");
-					        healerBehaviour.heal(player);
-
+				        	
+				        	if (player.getATK() > 35 || player.getDEF() > 35) {
+				        		engine.say("Sorry, i cannot heal you because you are way to strong for my limited powers");
+				        	} else if (player.getATK() >= 12 && player.getDEF() >= 12 && player.getLevel() >= 2 && player.getLastPVPActionTime() > System.currentTimeMillis() - 5 * 60 * 60 * 1000) {
+				        		// ignore the PVP flag for very young characters (low atk, low def AND low level)
+				        		engine.say("Sorry, but you have a bad aura, so that i am unable to heal you right now.");
+				        	} else {
+						        engine.say("There, you are healed. How else may I help you?");
+						        healerBehaviour.heal(player);
+				        	}
 					        engine.setCurrentState(ConversationStates.ATTENDING);
 				        }
 			        }
