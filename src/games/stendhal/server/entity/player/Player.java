@@ -1078,6 +1078,15 @@ public class Player extends RPEntity {
 	}
 
 	/**
+	 * Is this a new player?
+	 *
+	 * @return true if it is a new player, false otherwise
+	 */
+	public boolean isNew() {
+		return getAge() < 2 * 60 || getATK() < 15 || getDEF() < 15 || getLevel() < 5;
+	}
+
+	/**
 	 * Sets the number of minutes that this player has been logged in on the
 	 * server.
 	 * @param age minutes
