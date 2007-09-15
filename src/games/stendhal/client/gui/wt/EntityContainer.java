@@ -132,7 +132,7 @@ public class EntityContainer extends WtPanel implements PositionChangeListener {
 				Entity entity = gameObjects.get(object);
 
 				if(entity == null) {
-					logger.warn("Unable to find entity for: " + object);
+					logger.warn("Unable to find entity for: " + object, new Throwable("here"));
 					entity = EntityFactory.createEntity(object);
 				}
 

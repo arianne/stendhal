@@ -1,5 +1,5 @@
 /*
- * @(#) xxxxx/RPObjectChangeDispatcher.java
+ * @(#) src/games/stendhal/client/RPObjectChangeDispatcher.java
  *
  * $Id$
  */
@@ -186,41 +186,49 @@ public class RPObjectChangeDispatcher {
 		//System.err.println("fireAdded()");
 		//dumpObject(object);
 
+		/*
+		 * Call before children have been notified
+		 */
 		listener.onAdded(object);
 
 		/*
 		 * Walk each slot
 		 */
 		for(RPSlot slot : object.slots()) {
+			String slotName = slot.getName();
+
 			for(RPObject sobject : slot) {
-				fireAdded(sobject, user);
+				fireAdded(object, slotName, sobject, user);
 			}
 		}
 	}
 
 	/**
-	 * Notify listeners that an object was removed.
+	 * Notify listeners that a slot object was added.
 	 * 
 	 * @param object
-	 *		The object.
+	 *		The parent object.
+	 * @param slotName
+	 *		The slot name.
+	 * @param sobject
+	 *		The slot object.
 	 * @param user
 	 *		If this is the private user object.
 	 */
-	protected void fireRemoved(RPObject object, boolean user) {
-		// TEST CODE:
-		//System.err.println("fireRemoved()");
-		//dumpObject(object);
+	protected void fireAdded(final RPObject object, final String slotName, final RPObject sobject, final boolean user) {
+		/*
+		 * Notify child
+		 */
+		fireAdded(sobject, user);
 
 		/*
-		 * Walk each slot
+		 * Call after the child has been notified
 		 */
-		for(RPSlot slot : object.slots()) {
-			for(RPObject sobject : slot) {
-				fireRemoved(sobject, user);
-			}
-		}
+		listener.onSlotAdded(object, slotName, sobject);
 
-		listener.onRemoved(object);
+		if(user) {
+			userListener.onSlotAdded(object, slotName, sobject);
+		}
 	}
 
 	/**
@@ -239,12 +247,6 @@ public class RPObjectChangeDispatcher {
 		//System.err.println("fireChangedAdded()");
 		//dumpObject(changes);
 
-		listener.onChangedAdded(object, changes);
-
-		if (user) {
-			userListener.onChangedAdded(object, changes);
-		}
-
 		/*
 		 * Walk each slot
 		 */
@@ -252,6 +254,15 @@ public class RPObjectChangeDispatcher {
 			if (cslot.size() != 0) {
 				fireChangedAdded(object, cslot, user);
 			}
+		}
+
+		/*
+		 * Call after children have been notified
+		 */
+		listener.onChangedAdded(object, changes);
+
+		if (user) {
+			userListener.onChangedAdded(object, changes);
 		}
 	}
 
@@ -288,10 +299,10 @@ public class RPObjectChangeDispatcher {
 			if ((slot != null) && slot.has(id)) {
 				RPObject sobject = slot.get(id);
 
-				listener.onChangedAdded(object, slotName, sobject, schanges);
+				listener.onSlotChangedAdded(object, slotName, sobject, schanges);
 
 				if (user) {
-					userListener.onChangedAdded(object, slotName, sobject, schanges);
+					userListener.onSlotChangedAdded(object, slotName, sobject, schanges);
 				}
 
 				fireChangedAdded(sobject, schanges, user);
@@ -300,7 +311,7 @@ public class RPObjectChangeDispatcher {
 					logger.warn("!!! Not contained! - " + schanges);
 				}
 
-				fireAdded(schanges, user);
+				fireAdded(object, slotName, schanges, user);
 			}
 		}
 	}
@@ -321,6 +332,9 @@ public class RPObjectChangeDispatcher {
 		//System.err.println("fireChangedRemoved()");
 		//dumpObject(changes);
 
+		/*
+		 * Call before children have been notified
+		 */
 		listener.onChangedRemoved(object, changes);
 
 		if (user) {
@@ -372,16 +386,74 @@ public class RPObjectChangeDispatcher {
 			 * Remove attrs vs. object [see applyDifferences()]
 			 */
 			if (schanges.size() > 1) {
-				listener.onChangedRemoved(object, slotName, sobject, schanges);
+				listener.onSlotChangedRemoved(object, slotName, sobject, schanges);
 
 				if (user) {
-					userListener.onChangedRemoved(object, slotName, sobject, schanges);
+					userListener.onSlotChangedRemoved(object, slotName, sobject, schanges);
 				}
 
 				fireChangedRemoved(sobject, schanges, user);
 			} else {
-				fireRemoved(sobject, user);
+				fireRemoved(object, slotName, sobject, user);
 			}
 		}
+	}
+
+	/**
+	 * Notify listeners that an object was removed.
+	 * 
+	 * @param object
+	 *		The object.
+	 * @param user
+	 *		If this is the private user object.
+	 */
+	protected void fireRemoved(RPObject object, boolean user) {
+		// TEST CODE:
+		//System.err.println("fireRemoved()");
+		//dumpObject(object);
+
+		/*
+		 * Walk each slot
+		 */
+		for(RPSlot slot : object.slots()) {
+			String slotName = slot.getName();
+
+			for(RPObject sobject : slot) {
+				fireRemoved(object, slotName, sobject, user);
+			}
+		}
+
+		/*
+		 * Call after children have been notified
+		 */
+		listener.onRemoved(object);
+	}
+
+	/**
+	 * Notify listeners that a slot object was removed.
+	 * 
+	 * @param object
+	 *		The container object.
+	 * @param slotName
+	 *		The slot name.
+	 * @param sobject
+	 *		The slot object.
+	 * @param user
+	 *		If this is the private user object.
+	 */
+	protected void fireRemoved(final RPObject object, final String slotName, final RPObject sobject, final boolean user) {
+		/*
+		 * Call before the child is notified
+		 */
+		listener.onSlotRemoved(object, slotName, sobject);
+
+		if(user) {
+			userListener.onSlotRemoved(object, slotName, sobject);
+		}
+
+		/*
+		 * Notify child
+		 */
+		fireRemoved(sobject, user);
 	}
 }

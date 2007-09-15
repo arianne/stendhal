@@ -776,22 +776,6 @@ public class Entity implements RPObjectChangeListener {
 	}
 
 	/**
-	 * A slot object added/changed attribute(s).
-	 *
-	 * @param container
-	 *            The base container object.
-	 * @param slotName
-	 *            The container's slot name.
-	 * @param object
-	 *            The base slot object.
-	 * @param changes
-	 *            The slot changes.
-	 */
-	public void onChangedAdded(final RPObject container, final String slotName,
-			final RPObject object, final RPObject changes) {
-	}
-
-	/**
 	 * The object removed attribute(s).
 	 *
 	 * @param object
@@ -878,22 +862,6 @@ public class Entity implements RPObjectChangeListener {
 	}
 
 	/**
-	 * A slot object removed attribute(s).
-	 *
-	 * @param container
-	 *            The base container object.
-	 * @param slotName
-	 *            The container's slot name.
-	 * @param object
-	 *            The base slot object.
-	 * @param changes
-	 *            The slot changes.
-	 */
-	public void onChangedRemoved(final RPObject container,
-			final String slotName, final RPObject object, final RPObject changes) {
-	}
-
-	/**
 	 * An object was removed.
 	 *
 	 * @param object
@@ -902,5 +870,47 @@ public class Entity implements RPObjectChangeListener {
 	 */
 	@Deprecated
 	public final void onRemoved(final RPObject object) {
+	}
+
+	/**
+	 * A slot object was added.
+	 *
+	 * @param	object		The container object.
+	 * @param	slotName	The slot name.
+	 * @param	sobject		The slot object.
+	 */
+	public void onSlotAdded(final RPObject object, final String slotName, final RPObject sobject) {
+	}
+
+	/**
+	 * A slot object added/changed attribute(s).
+	 *
+	 * @param	object		The base container object.
+	 * @param	slotName	The container's slot name.
+	 * @param	sobject		The slot object.
+	 * @param	schanges	The slot object changes.
+	 */
+	public void onSlotChangedAdded(final RPObject object, final String slotName, final RPObject sobject, final RPObject schanges) {
+	}
+
+	/**
+	 * A slot object removed attribute(s).
+	 *
+	 * @param	object		The base container object.
+	 * @param	slotName	The container's slot name.
+	 * @param	sobject		The slot object.
+	 * @param	schanges	The slot object changes.
+	 */
+	public void onSlotChangedRemoved(final RPObject object, final String slotName, final RPObject sobject, final RPObject schanges) {
+	}
+
+	/**
+	 * A slot object was removed.
+	 *
+	 * @param	object		The container object.
+	 * @param	slotName	The slot name.
+	 * @param	sobject		The slot object.
+	 */
+	public void onSlotRemoved(final RPObject object, final String slotName, final RPObject sobject) {
 	}
 }

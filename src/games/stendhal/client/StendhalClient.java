@@ -93,6 +93,12 @@ public class StendhalClient extends ClientFramework {
 	 */
 	private int contentToLoad;
 
+	/**
+	 * Synchronization lock object.
+	 */
+	private Object lock;
+
+
 	public void generateWhoPlayers(String text) {
 
 		Matcher matcher = Pattern.compile("^[0-9]+ Players online:( .+)$")
@@ -168,6 +174,41 @@ public class StendhalClient extends ClientFramework {
 		return player;
 	}
 
+
+	/**
+	 * Handle sync events before they are dispatched.
+	 *
+	 * @param	zoneid		The zone entered.
+	 */
+	protected void onBeforeSync(final String zoneid) {
+		/*
+		 * Simulate object disassembly
+		 */
+		for(RPObject object : world_objects.values()) {
+			if(object != player) {
+				rpobjDispatcher.dispatchRemoved(object, false);
+			}
+		}
+
+		if(player != null) {
+			rpobjDispatcher.dispatchRemoved(player, true);
+		}
+
+		// Needed after disassembly?
+		// TODO: Remove after 0.70 if unneeded
+		gameObjects.clear();
+
+		// If player exists, notify zone leaving.
+		if (!User.isNull()) {
+			WorldObjects.fireZoneLeft(User.get().getID().getZoneID());
+		}
+
+		// Notify zone entering.
+		WorldObjects.fireZoneEntered(zoneid);
+
+		staticLayers.setRPZoneLayersSet(zoneid);
+	}
+
 	/**
 	 * connect to the Stendhal game server and if successfull, check, if the
 	 * server runs StendhalHttpServer extension. In that case it checks, if
@@ -206,25 +247,14 @@ public class StendhalClient extends ClientFramework {
 				logger.debug("message: " + message);
 			}
 
-			if (message.getPerceptionType() == 1/* Perception.SYNC */) {
-				logger.debug("UPDATING screen position");
-
-				// If player exists, notify zone leaving.
-				if (!User.isNull()) {
-					WorldObjects.fireZoneLeft(User.get().getID().getZoneID());
-				}
-
-				// Notify zone entering.
-				WorldObjects.fireZoneEntered(message.getRPZoneID().getID());
-
-				String zoneid = message.getRPZoneID().getID();
-				staticLayers.setRPZoneLayersSet(zoneid);
+			if (message.getPerceptionType() == Perception.SYNC) {
+				onBeforeSync(message.getRPZoneID().getID());
 			}
 
 			/** This code emulate a perception loss. */
 			if (Debug.EMULATE_PERCEPTION_LOSS
-					&& (message.getPerceptionType() != Perception.SYNC)
-					&& ((message.getPerceptionTimestamp() % 30) == 0)) {
+			 && (message.getPerceptionType() != Perception.SYNC)
+			 && ((message.getPerceptionTimestamp() % 30) == 0)) {
 				return;
 			}
 
@@ -241,9 +271,11 @@ public class StendhalClient extends ClientFramework {
 		logger.debug("CLEANING static object list");
 		staticLayers.clear();
 
-		// TODO: Does this go back somewhere, or did I just enter
-		// the wrong variable name???
-		gameObjects.clear();
+		/*
+		 * Remove screen objects (like text bubbles)
+		 */
+		logger.debug("CLEANING screen object list");
+		screen.removeAll();
 
 		contentToLoad = 0;
 

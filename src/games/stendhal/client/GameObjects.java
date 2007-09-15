@@ -92,16 +92,21 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 
 	/** Removes all the object entities */
 	public void clear() {
-		// invalidate all entity objects
-		Iterator<Entity> it = iterator();
+		// SHOULD NEVER HAPPEN!!!
+		// TODO: Remove after 0.70 release, if this warning never shows
+		if(!objects.isEmpty()) {
+			logger.error("Game objects not empty!");
 
-		while (it.hasNext()) {
-			Entity entity = it.next();
-			entity.release();
+			// invalidate all entity objects
+			Iterator<Entity> it = iterator();
+
+			while (it.hasNext()) {
+				Entity entity = it.next();
+				entity.release();
+			}
+
+			objects.clear();
 		}
-
-		objects.clear();
-		GameScreen.get().removeAll();
 	}
 
 	public boolean collides(Entity entity) {
@@ -207,27 +212,6 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 	}
 
 	/**
-	 * A slot object added/changed attribute(s).
-	 * 
-	 * @param container
-	 *            The base container object.
-	 * @param slotName
-	 *            The container's slot name.
-	 * @param object
-	 *            The base slot object.
-	 * @param changes
-	 *            The slot changes.
-	 */
-	public void onChangedAdded(final RPObject container, final String slotName,
-			final RPObject object, final RPObject changes) {
-		Entity entity = objects.get(FQID.create(container));
-
-		if (entity != null) {
-			entity.onChangedAdded(container, slotName, object, changes);
-		}
-	}
-
-	/**
 	 * An object removed attribute(s).
 	 * 
 	 * @param object
@@ -240,27 +224,6 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 
 		if (entity != null) {
 			entity.onChangedRemoved(object, changes);
-		}
-	}
-
-	/**
-	 * A slot object removed attribute(s).
-	 * 
-	 * @param container
-	 *            The base container object.
-	 * @param slotName
-	 *            The container's slot name.
-	 * @param object
-	 *            The base slot object.
-	 * @param changes
-	 *            The slot changes.
-	 */
-	public void onChangedRemoved(final RPObject container,
-			final String slotName, final RPObject object, final RPObject changes) {
-		Entity entity = objects.get(FQID.create(container));
-
-		if (entity != null) {
-			entity.onChangedRemoved(container, slotName, object, changes);
 		}
 	}
 
@@ -281,6 +244,58 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 			GameScreen.get().removeEntity(entity);
 			entity.release();
 		}
+	}
+
+	/**
+	 * A slot object was added.
+	 *
+	 * @param	object		The container object.
+	 * @param	slotName	The slot name.
+	 * @param	sobject		The slot object.
+	 */
+	public void onSlotAdded(final RPObject object, final String slotName, final RPObject sobject) {
+	}
+
+	/**
+	 * A slot object added/changed attribute(s).
+	 *
+	 * @param	object		The base container object.
+	 * @param	slotName	The container's slot name.
+	 * @param	sobject		The slot object.
+	 * @param	schanges	The slot object changes.
+	 */
+	public void onSlotChangedAdded(final RPObject object, final String slotName, final RPObject sobject, final RPObject schanges) {
+		Entity entity = objects.get(FQID.create(object));
+
+		if (entity != null) {
+			entity.onSlotChangedAdded(object, slotName, sobject, schanges);
+		}
+	}
+
+	/**
+	 * A slot object removed attribute(s).
+	 *
+	 * @param	object		The base container object.
+	 * @param	slotName	The container's slot name.
+	 * @param	sobject		The slot object.
+	 * @param	schanges	The slot object changes.
+	 */
+	public void onSlotChangedRemoved(final RPObject object, final String slotName, final RPObject sobject, final RPObject schanges) {
+		Entity entity = objects.get(FQID.create(object));
+
+		if (entity != null) {
+			entity.onSlotChangedRemoved(object, slotName, sobject, schanges);
+		}
+	}
+
+	/**
+	 * A slot object was removed.
+	 *
+	 * @param	object		The container object.
+	 * @param	slotName	The slot name.
+	 * @param	sobject		The slot object.
+	 */
+	public void onSlotRemoved(final RPObject object, final String slotName, final RPObject sobject) {
 	}
 
 	//

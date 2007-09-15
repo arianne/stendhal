@@ -9,12 +9,17 @@ package games.stendhal.client;
 //
 //
 
+import games.stendhal.client.entity.Entity;
 import games.stendhal.client.events.BuddyChangeListener;
+import games.stendhal.client.events.EntityHolderListener;
+import games.stendhal.client.events.EntityHolderMulticaster;
 import games.stendhal.client.events.FeatureChangeListener;
 import games.stendhal.client.events.RPObjectChangeListener;
 
 import java.util.HashMap;
 
+import marauroa.common.Log4J;
+import marauroa.common.Logger;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
@@ -25,10 +30,13 @@ import marauroa.common.game.RPSlot;
  * 
  * Currently this is just a helper class for StendhalClient. Maybe it will be
  * directly used by other code later.
- * 
- * THIS CLASS IS STILL UNDER DEVELOPMENT/TESTING.
  */
 public class UserContext implements RPObjectChangeListener {
+	/**
+	 * The logger.
+	 */
+	private static final Logger logger = Log4J.getLogger(UserContext.class);
+
 	/**
 	 * The currently known buddies
 	 */
@@ -55,6 +63,16 @@ public class UserContext implements RPObjectChangeListener {
 	protected int adminlevel;
 
 	/**
+	 * The game objects.
+	 */
+	protected GameObjects gameObjects;
+
+	/**
+	 * The entity slot event multicaster.
+	 */
+	protected EntityHolderMulticaster entitySlotListener;
+
+	/**
 	 * The player character's name.
 	 */
 	protected String name;
@@ -64,8 +82,11 @@ public class UserContext implements RPObjectChangeListener {
 	 */
 	protected int sheepID;
 
+
 	public UserContext() {
 		adminlevel = 0;
+		entitySlotListener = new EntityHolderMulticaster();
+		gameObjects = GameObjects.getInstance();
 		name = null;
 		sheepID = 0;
 		buddies = new HashMap<String, Boolean>();
@@ -94,6 +115,16 @@ public class UserContext implements RPObjectChangeListener {
 		newListeners[len] = l;
 
 		buddyListeners = newListeners;
+	}
+
+	/**
+	 * Add an entity slot listener.
+	 * 
+	 * @param l
+	 *		The listener.
+	 */
+	public void addEntitySlotListener(EntityHolderListener l) {
+		entitySlotListener.add(l);
 	}
 
 	/**
@@ -291,6 +322,16 @@ public class UserContext implements RPObjectChangeListener {
 	}
 
 	/**
+	 * Remove an entity slot listener.
+	 * 
+	 * @param l
+	 *		The listener.
+	 */
+	public void removeEntitySlotListener(EntityHolderListener l) {
+		entitySlotListener.remove(l);
+	}
+
+	/**
 	 * Remove a feature change listener.
 	 * 
 	 * @param listener
@@ -330,7 +371,8 @@ public class UserContext implements RPObjectChangeListener {
 	protected void processBuddiesAdded(final RPObject changes) {
 		for (String key : changes) {
 			/*
-			 * FIXME60 - Remove underscore prefix before DB reset.
+			 * TODO: Drop underscore prefix when 'id' is not forced
+			 * into the RPObject attributes
 			 */
 			if (!key.startsWith("_")) {
 				continue;
@@ -366,7 +408,8 @@ public class UserContext implements RPObjectChangeListener {
 	protected void processBuddiesRemoved(final RPObject changes) {
 		for (String key : changes) {
 			/*
-			 * FIXME60 - Remove underscore prefix before DB reset.
+			 * TODO: Drop underscore prefix when 'id' is not forced
+			 * into the RPObject attributes
 			 */
 			if (!key.startsWith("_")) {
 				continue;
@@ -463,28 +506,6 @@ public class UserContext implements RPObjectChangeListener {
 	}
 
 	/**
-	 * A slot object added/changed attribute(s).
-	 * 
-	 * @param container
-	 *            The base container object.
-	 * @param slotName
-	 *            The container's slot name.
-	 * @param object
-	 *            The base slot object.
-	 * @param changes
-	 *            The slot changes.
-	 */
-	public void onChangedAdded(final RPObject container, final String slotName,
-			final RPObject object, final RPObject changes) {
-		// System.err.println("onChangedAdded() - slotName = " + slotName);
-
-		if (slotName.equals("!buddy")) {
-			processBuddiesAdded(changes);
-		}
-
-	}
-
-	/**
 	 * An object removed attribute(s).
 	 * 
 	 * @param object
@@ -506,25 +527,6 @@ public class UserContext implements RPObjectChangeListener {
 		if (changes.has("sheep")) {
 			sheepID = 0;
 			// fireOwnedSheep(sheepID);
-		}
-	}
-
-	/**
-	 * A slot object removed attribute(s).
-	 * 
-	 * @param container
-	 *            The base container object.
-	 * @param slotName
-	 *            The container's slot name.
-	 * @param object
-	 *            The base slot object.
-	 * @param changes
-	 *            The slot changes.
-	 */
-	public void onChangedRemoved(final RPObject container,
-			final String slotName, final RPObject object, final RPObject changes) {
-		if (slotName.equals("!buddy")) {
-			processBuddiesRemoved(changes);
 		}
 	}
 
@@ -552,5 +554,77 @@ public class UserContext implements RPObjectChangeListener {
 		}
 
 		buddies.clear();
+	}
+
+	/**
+	 * A slot object was added.
+	 *
+	 * @param	object		The container object.
+	 * @param	slotName	The slot name.
+	 * @param	sobject		The slot object.
+	 */
+	public void onSlotAdded(final RPObject object, final String slotName, final RPObject sobject) {
+		Entity entity = gameObjects.get(sobject);
+
+		if(entity != null) {
+			Entity parent = gameObjects.get(object);
+
+			if(logger.isDebugEnabled()) {
+				logger.debug("Added: " + entity);
+				logger.debug("   To: " + parent + "  [" + slotName + "]");
+			}
+
+			entitySlotListener.entityAdded(parent, slotName, entity);
+		}
+	}
+
+	/**
+	 * A slot object added/changed attribute(s).
+	 *
+	 * @param	object		The base container object.
+	 * @param	slotName	The container's slot name.
+	 * @param	sobject		The slot object.
+	 * @param	schanges	The slot object changes.
+	 */
+	public void onSlotChangedAdded(final RPObject object, final String slotName, final RPObject sobject, final RPObject schanges) {
+		if (slotName.equals("!buddy")) {
+			processBuddiesAdded(schanges);
+		}
+	}
+
+	/**
+	 * A slot object removed attribute(s).
+	 *
+	 * @param	object		The base container object.
+	 * @param	slotName	The container's slot name.
+	 * @param	sobject		The slot object.
+	 * @param	schanges	The slot object changes.
+	 */
+	public void onSlotChangedRemoved(final RPObject object, final String slotName, final RPObject sobject, final RPObject schanges) {
+		if (slotName.equals("!buddy")) {
+			processBuddiesRemoved(schanges);
+		}
+	}
+
+	/**
+	 * A slot object was removed.
+	 *
+	 * @param	object		The container object.
+	 * @param	slotName	The slot name.
+	 * @param	sobject		The slot object.
+	 */
+	public void onSlotRemoved(final RPObject object, final String slotName, final RPObject sobject) {
+		Entity entity = gameObjects.get(sobject);
+
+		if(entity != null) {
+			Entity parent = gameObjects.get(object);
+
+			if(logger.isDebugEnabled()) {
+				logger.debug("Removed: " + entity);
+				logger.debug("   From: " + parent + "  [" + slotName + "]");
+			}
+
+			entitySlotListener.entityRemoved(parent, slotName, entity);
+		}
 	}
 }

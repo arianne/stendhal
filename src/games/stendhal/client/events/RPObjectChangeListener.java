@@ -10,6 +10,7 @@ package games.stendhal.client.events;
 //
 
 import marauroa.common.game.RPObject;
+import marauroa.common.game.RPSlot;
 
 /**
  * A listener of RPObject changes.
@@ -31,16 +32,6 @@ public interface RPObjectChangeListener {
 	public void onChangedAdded(RPObject object, RPObject changes);
 
 	/**
-	 * A slot object added/changed attribute(s).
-	 *
-	 * @param	container	The base container object.
-	 * @param	slotName	The container's slot name.
-	 * @param	object		The base slot object.
-	 * @param	changes		The slot changes.
-	 */
-	public void onChangedAdded(RPObject container, String slotName, RPObject object, RPObject changes);
-
-	/**
 	 * The object removed attribute(s).
 	 *
 	 * @param	object		The base object.
@@ -49,19 +40,47 @@ public interface RPObjectChangeListener {
 	public void onChangedRemoved(RPObject object, RPObject changes);
 
 	/**
-	 * A slot object removed attribute(s).
-	 *
-	 * @param	container	The base container object.
-	 * @param	slotName	The container's slot name.
-	 * @param	object		The base slot object.
-	 * @param	changes		The slot changes.
-	 */
-	public void onChangedRemoved(RPObject container, String slotName, RPObject object, RPObject changes);
-
-	/**
 	 * An object was removed.
 	 *
 	 * @param	object		The object.
 	 */
 	public void onRemoved(RPObject object);
+
+	/**
+	 * A slot object was added.
+	 *
+	 * @param	object		The container object.
+	 * @param	slotName	The slot name.
+	 * @param	sobject		The slot object.
+	 */
+	public void onSlotAdded(RPObject object, String slotName, RPObject sobject);
+
+	/**
+	 * A slot object added/changed attribute(s).
+	 *
+	 * @param	object		The base container object.
+	 * @param	slotName	The container's slot name.
+	 * @param	sobject		The slot object.
+	 * @param	schanges	The slot object changes.
+	 */
+	public void onSlotChangedAdded(RPObject object, String slotName, RPObject sobject, RPObject schanges);
+
+	/**
+	 * A slot object removed attribute(s).
+	 *
+	 * @param	object		The base container object.
+	 * @param	slotName	The container's slot name.
+	 * @param	sobject		The slot object.
+	 * @param	schanges	The slot object changes.
+	 */
+	public void onSlotChangedRemoved(RPObject object, String slotName, RPObject sobject, RPObject schanges);
+
+	/**
+	 * A slot object was removed.
+	 *
+	 * @param	object		The container object.
+	 * @param	slotName	The slot name.
+	 * @param	sobject		The slot object.
+	 */
+	public void onSlotRemoved(RPObject object, String slotName, RPObject sobject);
 }
