@@ -19,12 +19,23 @@ import marauroa.common.game.RPSlot;
 /**
  * A dispatcher for RPObjectChangeListeners.
  * This normalizes the tree deltas into individual object deltas.
+ *
+ * NOTE: The order of dispatch between contained objects and when their
+ * container is very specific. Children objects are given a chance to
+ * perform creation/updates before their parent is notified it happened
+ * to that specific child. For cases of object removal, the parent is
+ * notified first, incase the child does destruction/cleanup.
  */
 public class RPObjectChangeDispatcher {
 	/**
 	 * The logger.
 	 */
 	private static final Logger logger = Log4J.getLogger(RPObjectChangeDispatcher.class);
+
+	/**
+	 * The dump logger.
+	 */
+	private static final Logger dlogger = Log4J.getLogger(Dump.class);
 
 	/**
 	 * The normal listener.
@@ -146,28 +157,33 @@ public class RPObjectChangeDispatcher {
 	 * Probably should be in a common util class if useful long term.
 	 */
 	public static void dumpObject(RPObject object) {
-		System.err.print(object.getRPClass().getName() + "[");
-		dumpIDPath(object);
-		System.err.println("]");
+		StringBuffer sbuf = new StringBuffer();
+
+		sbuf.append(object.getRPClass().getName());
+		sbuf.append('[');
+		buildIDPath(sbuf, object);
+		sbuf.append(']');
+
+		System.err.println(sbuf);
 
 		for (String name : object) {
 			System.err.println("  " + name + ": " + object.get(name));
 		}
 
-		System.err.println();
+		System.err.println("");
 	}
 
-	protected static void dumpIDPath(final RPObject object) {
+	protected static void buildIDPath(final StringBuffer sbuf, final RPObject object) {
 		RPSlot slot = object.getContainerSlot();
 
 		if(slot != null) {
-			dumpIDPath(object.getContainer());
-			System.err.print(':');
-			System.err.print(slot.getName());
-			System.err.print(':');
+			buildIDPath(sbuf, object.getContainer());
+			sbuf.append(':');
+			sbuf.append(slot.getName());
+			sbuf.append(':');
 		}
 
-		System.err.print(object.getID().getObjectID());
+		sbuf.append(object.getID().getObjectID());
 	}
 
 	/**
@@ -197,8 +213,10 @@ public class RPObjectChangeDispatcher {
 	 */
 	protected void fireAdded(RPObject object, boolean user) {
 		// TEST CODE:
-		//System.err.println("fireAdded()");
-		//dumpObject(object);
+		if(dlogger.isDebugEnabled()) {
+			System.err.println("fireAdded()");
+			dumpObject(object);
+		}
 
 		/*
 		 * Call before children have been notified
@@ -258,8 +276,10 @@ public class RPObjectChangeDispatcher {
 	 */
 	protected void fireChangedAdded(RPObject object, RPObject changes, boolean user) {
 		// TEST CODE:
-		//System.err.println("fireChangedAdded()");
-		//dumpObject(changes);
+		if(dlogger.isDebugEnabled()) {
+			System.err.println("fireChangedAdded()");
+			dumpObject(changes);
+		}
 
 		/*
 		 * Walk each slot
@@ -343,8 +363,10 @@ public class RPObjectChangeDispatcher {
 	 */
 	protected void fireChangedRemoved(RPObject object, RPObject changes, boolean user) {
 		// TEST CODE:
-		//System.err.println("fireChangedRemoved()");
-		//dumpObject(changes);
+		if(dlogger.isDebugEnabled()) {
+			System.err.println("fireChangedRemoved()");
+			dumpObject(changes);
+		}
 
 		/*
 		 * Call before children have been notified
@@ -423,8 +445,10 @@ public class RPObjectChangeDispatcher {
 	 */
 	protected void fireRemoved(RPObject object, boolean user) {
 		// TEST CODE:
-		//System.err.println("fireRemoved()");
-		//dumpObject(object);
+		if(dlogger.isDebugEnabled()) {
+			System.err.println("fireRemoved()");
+			dumpObject(object);
+		}
 
 		/*
 		 * Walk each slot
@@ -469,5 +493,14 @@ public class RPObjectChangeDispatcher {
 		 * Notify child
 		 */
 		fireRemoved(sobject, user);
+	}
+
+	//
+	//
+
+	/**
+	 * Dummy class for getLogger(). This is getting hackier by the minute.
+	 */
+	protected static class Dump {
 	}
 }
