@@ -146,14 +146,28 @@ public class RPObjectChangeDispatcher {
 	 * Probably should be in a common util class if useful long term.
 	 */
 	public static void dumpObject(RPObject object) {
-		System.err.println(object.getRPClass().getName() + "["
-				+ object.getID().getObjectID() + "]");
+		System.err.print(object.getRPClass().getName() + "[");
+		dumpIDPath(object);
+		System.err.println("]");
 
 		for (String name : object) {
 			System.err.println("  " + name + ": " + object.get(name));
 		}
 
 		System.err.println();
+	}
+
+	protected static void dumpIDPath(final RPObject object) {
+		RPSlot slot = object.getContainerSlot();
+
+		if(slot != null) {
+			dumpIDPath(object.getContainer());
+			System.err.print(':');
+			System.err.print(slot.getName());
+			System.err.print(':');
+		}
+
+		System.err.print(object.getID().getObjectID());
 	}
 
 	/**
@@ -294,7 +308,7 @@ public class RPObjectChangeDispatcher {
 		 * Walk the changes
 		 */
 		for (RPObject schanges : cslot) {
-			RPObject.ID id = object.getID();
+			RPObject.ID id = schanges.getID();
 
 			if ((slot != null) && slot.has(id)) {
 				RPObject sobject = slot.get(id);

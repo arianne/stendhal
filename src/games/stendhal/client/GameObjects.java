@@ -20,11 +20,13 @@ import java.awt.geom.Rectangle2D;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.Map;
 
 import marauroa.common.Log4J;
 import marauroa.common.Logger;
 import marauroa.common.game.RPObject;
+import marauroa.common.game.RPSlot;
 
 /** This class stores the objects that exists on the World right now */
 public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
@@ -87,7 +89,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 	}
 
 	public Entity get(RPObject.ID id) {
-		return objects.get(new FQID(new int[] { id.getObjectID() }));
+		return objects.get(new FQID(id));
 	}
 
 	/** Removes all the object entities */
@@ -307,17 +309,27 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 	 */
 	protected static class FQID {
 		/**
-		 * The object ID path.
+		 * The object identification path.
 		 */
-		protected int [] path;
+		protected Object [] path;
+
+		/**
+		 * Create a fully qualified ID.
+		 * 
+		 * @param id
+		 *		And object ID.
+		 */
+		public FQID(RPObject.ID id) {
+			this(new Object [] { new Integer(id.getObjectID()) });
+		}
 
 		/**
 		 * Create a fully qualified ID.
 		 * 
 		 * @param path
-		 *            An ID path.
+		 *            An identification path.
 		 */
-		public FQID(final int [] path) {
+		public FQID(Object [] path) {
 			this.path = path;
 		}
 
@@ -329,40 +341,36 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 		 * Create a FQID from an object tree.
 		 * 
 		 * @param object
-		 *            The leaf object.
+		 *            An object.
 		 * 
 		 * @return A FQID.
 		 */
 		public static FQID create(final RPObject object) {
-			RPObject node;
+			LinkedList<Object> path = new LinkedList<Object>();
+			RPObject node = object;
 
-			int len = 0;
+			while (true) {
+				path.addFirst(new Integer(node.getID().getObjectID()));
 
-			node = object;
+				RPSlot slot = node.getContainerSlot();
 
-			while (node != null) {
-				len++;
+				if(slot == null) {
+					break;
+				}
+
+				path.addFirst(slot.getName());
 				node = node.getContainer();
 			}
 
-			int [] path = new int[len];
-
-			node = object;
-
-			while (node != null) {
-				path[--len] = node.getID().getObjectID();
-				node = node.getContainer();
-			}
-
-			return new FQID(path);
+			return new FQID(path.toArray());
 		}
 
 		/**
-		 * Get the tree path of object IDs.
+		 * Get the tree path of object identifiers.
 		 * 
-		 * @return The ID path.
+		 * @return The identifier path.
 		 */
-		public int [] getPath() {
+		public Object [] getPath() {
 			return path;
 		}
 
@@ -394,8 +402,8 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 		public int hashCode() {
 			int value = 0;
 
-			for (int id : getPath()) {
-				value ^= id;
+			for (Object obj : getPath()) {
+				value ^= obj.hashCode();
 			}
 
 			return value;
