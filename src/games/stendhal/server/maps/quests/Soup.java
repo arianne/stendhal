@@ -82,7 +82,7 @@ public class Soup extends AbstractQuest {
 		// place on table. note: it's not equippable so must be eaten in tavern
 		soup.setPosition(17, 23);
 		// only allow player who made soup to eat the soup
-		soup.put("bound", player.getName());
+		soup.setBoundTo(player.getName());
 		// here the soup is altered to have the same heal value as the player's
 		// base HP.
 		soup.put("amount", player.getBaseHP());

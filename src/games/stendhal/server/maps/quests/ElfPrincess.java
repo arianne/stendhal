@@ -129,7 +129,7 @@ public class ElfPrincess extends AbstractQuest {
 								.getEntityManager().getItem("rhosyd");
 						engine
 								.say("Hello dearie. My far sight tells me you need a pretty flower for some fair maiden. Here ye arr.");
-						item.put("bound", player.getName());
+						item.setBoundTo(player.getName());
 						player.equip(item, true);
 						player.setQuest(QUEST_SLOT, "got_flower");
 					}
@@ -162,7 +162,7 @@ public class ElfPrincess extends AbstractQuest {
 								.get().getRuleManager().getEntityManager()
 								.getItem("gold_bar");
 						goldbars.setQuantity(GOLD_AMOUNT);
-						// goldbars.put("bound", player.getName()); <- not sure
+						// goldbars.setBoundTo(player.getName()); <- not sure
 						// if these should get bound or not.
 						player.equip(goldbars, true);
 						player.setQuest(QUEST_SLOT, "flower_brought");

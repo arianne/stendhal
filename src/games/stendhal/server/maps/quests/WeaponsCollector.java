@@ -210,7 +210,7 @@ public class WeaponsCollector extends AbstractQuest {
 												.getRuleManager()
 												.getEntityManager().getItem(
 														"ice_sword");
-										iceSword.put("bound", player.getName());
+										iceSword.setBoundTo(player.getName());
 										player.equip(iceSword, true);
 										player.addXP(1000);
 										engine

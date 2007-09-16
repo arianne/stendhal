@@ -60,7 +60,7 @@ public class EmptyScroll extends Scroll {
 		if (zone.isTeleportAllowed()) {
 			Item markedScroll = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("marked_scroll");
 			markedScroll.put("infostring", player.getID().getZoneID() + " " + player.getX() + " " + player.getY());
-			markedScroll.put("bound", player.getName());
+			markedScroll.setBoundTo(player.getName());
 			player.equip(markedScroll, true);
 			return true;
 		} else {

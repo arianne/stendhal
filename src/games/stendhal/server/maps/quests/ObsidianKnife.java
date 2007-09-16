@@ -249,7 +249,7 @@ public class ObsidianKnife extends AbstractQuest {
 								.say("Ah, the mountain dwarf! Hope he enjoys the gem_book.");
 						Item item = StendhalRPWorld.get().getRuleManager()
 								.getEntityManager().getItem("book_blue");
-						item.put("bound", player.getName());
+						item.setBoundTo(player.getName());
 						player.equip(item, true);
 						player.setQuest(QUEST_SLOT, "got_book");
 					}
@@ -476,7 +476,7 @@ public class ObsidianKnife extends AbstractQuest {
 						player.addXP(10000);
 						Item knife = StendhalRPWorld.get().getRuleManager()
 								.getEntityManager().getItem("obsidian_knife");
-						knife.put("bound", player.getName());
+						knife.setBoundTo(player.getName());
 						player.equip(knife, true);
 						player.setQuest(QUEST_SLOT, "done");
 						player.notifyWorldAboutChanges();

@@ -150,7 +150,7 @@ public class RingMaker extends AbstractQuest {
 						Item emeraldRing = StendhalRPWorld.get()
 								.getRuleManager().getEntityManager().getItem(
 										"emerald_ring");
-						emeraldRing.put("bound", player.getName());
+						emeraldRing.setBoundTo(player.getName());
 						player.equip(emeraldRing, true);
 						player.setQuest(QUEST_SLOT, "done");
 						player.notifyWorldAboutChanges();

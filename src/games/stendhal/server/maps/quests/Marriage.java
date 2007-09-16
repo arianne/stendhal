@@ -346,7 +346,7 @@ public class Marriage extends AbstractQuest {
 						Item weddingRing = StendhalRPWorld.get()
 								.getRuleManager().getEntityManager().getItem(
 										"wedding_ring");
-						weddingRing.put("bound", player.getName());
+						weddingRing.setBoundTo(player.getName());
 						player.equip(weddingRing, true);
 						player.setQuest(QUEST_SLOT, "engaged_with_ring");
 						player.notifyWorldAboutChanges();
@@ -612,7 +612,7 @@ public class Marriage extends AbstractQuest {
 		Item ring = StendhalRPWorld.get().getRuleManager().getEntityManager()
 				.getItem("wedding_ring");
 		ring.put("infostring", partner.getName());
-		ring.put("bound", player.getName());
+		ring.setBoundTo(player.getName());
 		player.equip(ring, true);
 	}
 

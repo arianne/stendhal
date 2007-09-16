@@ -128,7 +128,7 @@ public class KillDarkElves extends AbstractQuest {
 								Item emeraldring = StendhalRPWorld.get()
 										.getRuleManager().getEntityManager()
 										.getItem("emerald_ring");
-								emeraldring.put("bound", player.getName());
+								emeraldring.setBoundTo(player.getName());
 								player.equip(emeraldring, true);
 								player.addKarma(5.0);
 								player.addXP(10000);

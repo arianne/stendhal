@@ -200,7 +200,7 @@ public class TakeGoldforGrafindle extends AbstractQuest {
 										.get().getRuleManager()
 										.getEntityManager().getItem("gold_bar");
 								goldbars.setQuantity(GOLD_AMOUNT);
-								goldbars.put("bound", player.getName());
+								goldbars.setBoundTo(player.getName());
 								player.equip(goldbars, true);
 							}
 						});
@@ -269,7 +269,7 @@ public class TakeGoldforGrafindle extends AbstractQuest {
 							Item nalworkey = StendhalRPWorld.get()
 									.getRuleManager().getEntityManager()
 									.getItem("nalwor_bank_key");
-							nalworkey.put("bound", player.getName());
+							nalworkey.setBoundTo(player.getName());
 							player.equip(nalworkey);
 							player.addXP(200);
 							player.addKarma(5.0);

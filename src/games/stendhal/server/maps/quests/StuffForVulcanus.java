@@ -288,7 +288,7 @@ public class StuffForVulcanus extends AbstractQuest {
 						Item magicSword = StendhalRPWorld.get()
 								.getRuleManager().getEntityManager().getItem(
 										"immortal_sword");
-						magicSword.put("bound", player.getName());
+						magicSword.setBoundTo(player.getName());
 						player.equip(magicSword, true);
 						player.notifyWorldAboutChanges();
 						player.setQuest(QUEST_SLOT, "done");

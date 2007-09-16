@@ -21,7 +21,7 @@ public class DoneAction extends SpeakerNPC.ChatAction {
 	 */
 	private Item createTrophyHelmet(Player player) {
 		Item helmet = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("trophy_helmet");
-		helmet.put("bound", player.getName());
+		helmet.setBoundTo(player.getName());
 		helmet.put("def", 1);
 		helmet.put("infostring", player.getName());
 		helmet.setPersistent(true);

@@ -282,7 +282,7 @@ public class VampireSword extends AbstractQuest {
 						Item vampireSword = StendhalRPWorld.get()
 								.getRuleManager().getEntityManager().getItem(
 										"vampire_sword");
-						vampireSword.put("bound", player.getName());
+						vampireSword.setBoundTo(player.getName());
 						player.equip(vampireSword, true);
 						player.setQuest(QUEST_SLOT, "done");
 						player.notifyWorldAboutChanges();

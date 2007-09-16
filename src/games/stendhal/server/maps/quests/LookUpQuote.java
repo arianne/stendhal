@@ -173,7 +173,7 @@ public class LookUpQuote extends AbstractQuest {
 							Item fishingRod = StendhalRPWorld.get()
 									.getRuleManager().getEntityManager()
 									.getItem("fishing_rod");
-							fishingRod.put("bound", player.getName());
+							fishingRod.setBoundTo(player.getName());
 							player.equip(fishingRod, true);
 							player.addXP(750);
 							player.setQuest(QUEST_SLOT, "done");

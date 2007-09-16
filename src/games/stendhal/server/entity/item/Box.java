@@ -106,7 +106,7 @@ public class Box extends Item implements UseListener {
 		}
 		Item item = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(itemName);
 		if (itemName == "easter_egg") {
-			item.put("bound", player.getName());
+			item.setBoundTo(player.getName());
 			// item.put("infostring", Bunny);
 			// it'd be nice to store the fact that these came from Bunny?
 		}

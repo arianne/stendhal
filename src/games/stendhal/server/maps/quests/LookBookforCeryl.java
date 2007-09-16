@@ -189,7 +189,7 @@ public class LookBookforCeryl extends AbstractQuest {
 								Item item = StendhalRPWorld.get()
 										.getRuleManager().getEntityManager()
 										.getItem("book_black");
-								item.put("bound", player.getName());
+								item.setBoundTo(player.getName());
 								player.equip(item, true);
 							}
 						});

@@ -926,6 +926,7 @@ public class Player extends RPEntity {
 				for (RPObject objectInSlot : slot) {
 					// don't drop special quest rewards as there is no way to
 					// get them again
+					// TODO: Assert these as Item's and use getBoundTo()
 					if (objectInSlot.has("bound")) {
 						continue;
 					}

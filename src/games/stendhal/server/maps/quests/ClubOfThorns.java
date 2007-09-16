@@ -113,7 +113,7 @@ public class ClubOfThorns extends AbstractQuest {
 							player.addXP(1000);
 							Item item = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
 									"club_of_thorns");
-							item.put("bound", player.getName());
+							item.setBoundTo(player.getName());
 							player.equip(item, true);
 							player.setQuest("club_thorns", "done");
 							engine.setCurrentState(ConversationStates.ATTENDING);

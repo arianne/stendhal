@@ -306,7 +306,7 @@ public class ProducerBehaviour extends Behaviour {
 			products.setQuantity(numberOfProductItems);
 
 			if (isProductBound()) {
-				products.put("bound", player.getName());
+				products.setBoundTo(player.getName());
 			}
 
 			player.equip(products, true);

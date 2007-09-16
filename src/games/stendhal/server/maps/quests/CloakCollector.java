@@ -320,8 +320,7 @@ public class CloakCollector extends AbstractQuest {
 				.getRuleManager()
 				.getEntityManager().getItem(
 						"black_cloak");
-		blackcloak.put("bound", player
-				.getName());
+		blackcloak.setBoundTo(player.getName());
 		player.equip(blackcloak, true);
 		player.addKarma(5.0);
 		player.addXP(2500);

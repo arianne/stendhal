@@ -61,7 +61,7 @@ public class ItemGuardCreature extends Creature {
 			RPEntity killerRPEntity = (RPEntity) killer;
 			if (!killerRPEntity.isEquipped(itemType)) {
 				Item item = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(itemType);
-				item.put("bound", killerRPEntity.getName());
+				item.setBoundTo(killerRPEntity.getName());
 				killerRPEntity.equip(item, true);
 			}
 		}

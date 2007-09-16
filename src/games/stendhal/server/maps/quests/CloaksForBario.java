@@ -207,7 +207,7 @@ public class CloaksForBario extends AbstractQuest {
 							} else {
 								Item goldenShield = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
 										"golden_shield");
-								goldenShield.put("bound", player.getName());
+								goldenShield.setBoundTo(player.getName());
 								player.equip(goldenShield, true);
 								player.addXP(1500);
 								player.notifyWorldAboutChanges();

@@ -165,7 +165,7 @@ public class SevenCherubs extends AbstractQuest {
 											.getItem(
 													items[Rand
 															.rand(items.length)]);
-									item.put("bound", player.getName());
+									item.setBoundTo(player.getName());
 									player.equip(item, true);
 									player.addXP(2000);
 								}

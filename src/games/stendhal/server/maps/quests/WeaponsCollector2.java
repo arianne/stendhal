@@ -208,15 +208,13 @@ public class WeaponsCollector2 extends AbstractQuest {
 												.getRuleManager()
 												.getEntityManager().getItem(
 														"l_hand_sword");
-										lhandsword.put("bound", player
-												.getName());
+										lhandsword.setBoundTo(player.getName());
 										player.equip(lhandsword, true);
 										Item rhandsword = StendhalRPWorld.get()
 												.getRuleManager()
 												.getEntityManager().getItem(
 														"r_hand_sword");
-										rhandsword.put("bound", player
-												.getName());
+										rhandsword.setBoundTo(player.getName());
 										player.equip(rhandsword, true);
 										player.addXP(3000);
 										engine

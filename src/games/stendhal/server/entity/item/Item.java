@@ -296,6 +296,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	}
 
 	/** returns the name of the item */
+	// TODO: Remove once Entity returns the literal 'name' attribute
 	@Override
 	public String getName() {
 		return get("name");
@@ -313,6 +314,34 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	/** returns the list of possible slots for this item */
 	public List<String> getPossibleSlots() {
 		return possibleSlots;
+	}
+
+	/**
+	 * Get the player this is bound to. A bound item can only be used by
+	 * that player.
+	 *
+	 * @return	The player name, or <code>null</code>.
+	 */
+	public String getBoundTo() {
+		if(has("bound")) {
+			return get("bound");
+		} else {
+			return null;
+		}
+	}
+
+	/**
+	 * Bind this item to a player. A bound item can only be used by that
+	 * player.
+	 *
+	 * @param	name		The player name, or <code>null</code>.
+	 */
+	public void setBoundTo(String name) {
+		if(name != null) {
+			put("bound", name);
+		} else if(has("bound")) {
+			remove("bound");
+		}
 	}
 
 	@Override
@@ -362,9 +391,11 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 		if (hasDescription()) {
 			text = getDescription();
 		}
-		if (has("bound")) {
-			text = text + " It is a special quest reward for " + get("bound")
-					+ " and cannot be used by others.";
+
+		String boundTo = getBoundTo();
+
+		if (boundTo != null) {
+			text = text + " It is a special quest reward for " + boundTo + ", and cannot be used by others.";
 		}
 
 		if (has("atk")) {

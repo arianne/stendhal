@@ -179,8 +179,7 @@ public class ElvishArmor extends AbstractQuest {
 									    //			.getRuleManager()
 									    //			.getEntityManager().getItem(
 									    //					"black_item");
-									    //	blackitem.put("bound", player
-									    //			.getName());
+									    //	blackitem.setBoundTo(player.getName());
 									//	player.equip(blackitem, true);
 										player.addKarma(10.0);
 										player.addXP(10000);

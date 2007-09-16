@@ -585,12 +585,12 @@ lion_shield_+1 enhanced_lion_shield
 	private static void boundOldItemsToPlayer(Player player, Item item) {
 
 		// No special processing needed, if the item is already bound
-		if (item.has("bound")) {
+		if (item.getBoundTo() != null) {
 			return;
 		}
 
 		if (ITEMS_TO_BIND.contains(item.getName())) {
-			item.put("bound", player.getName());
+			item.setBoundTo(player.getName());
 		}
 	}
 

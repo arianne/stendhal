@@ -133,7 +133,7 @@ public class WellSource extends PlayerActivityEntity {
 				/*
 				 * Bound powerful items.
 				 */
-				item.put("bound", player.getName());
+				item.setBoundTo(player.getName());
 			} else if (itemName.equals("money")) {
 				/*
 				 * Assign a random amount of money.

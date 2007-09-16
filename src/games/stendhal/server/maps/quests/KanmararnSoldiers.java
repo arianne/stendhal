@@ -261,7 +261,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 
 				Item item = StendhalRPWorld.get().getRuleManager()
 						.getEntityManager().getItem("steel_boots");
-				item.put("bound", player.getName());
+				item.setBoundTo(player.getName());
 				// Is this infostring really needed?
 				item.put("infostring", npc.get("name"));
 				player.equip(item);

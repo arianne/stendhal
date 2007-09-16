@@ -191,7 +191,7 @@ public class SuntanCreamForZara extends AbstractQuest {
 								Item zaraKey = StendhalRPWorld.get()
 										.getRuleManager().getEntityManager()
 										.getItem("small_key");
-								zaraKey.put("bound", player.getName());
+								zaraKey.setBoundTo(player.getName());
 								player.equip(zaraKey, true);
 								player.addXP(1000);
 								player.setQuest("suntan_cream_zara", "done");
