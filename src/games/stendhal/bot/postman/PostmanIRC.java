@@ -8,7 +8,6 @@ import marauroa.common.Log4J;
 import marauroa.common.Logger;
 
 import org.jibble.pircbot.IrcException;
-import org.jibble.pircbot.NickAlreadyInUseException;
 import org.jibble.pircbot.PircBot;
 
 /**
@@ -22,7 +21,7 @@ public class PostmanIRC extends PircBot {
 
 	private Properties prop = new Properties();
 
-	private String gameServer ;
+	private String gameServer;
 
 	/**
 	 * Creates a new PostmanIRC
@@ -46,7 +45,7 @@ public class PostmanIRC extends PircBot {
 	 * @throws NickAlreadyInUseException
 	 * @throws InterruptedException
 	 */
-	public void connect() throws NickAlreadyInUseException, IOException, IrcException, InterruptedException {
+	public void connect() throws IOException, IrcException, InterruptedException {
 		if (Boolean.parseBoolean(prop.getProperty("irc"))) {
 			String nick = prop.getProperty("name");
 			String pass = prop.getProperty("pass");
@@ -99,7 +98,7 @@ public class PostmanIRC extends PircBot {
 	 * @throws IrcException IrcException
 	 * @throws InterruptedException InterruptedException
 	 */
-	public static void main(String[] args) throws NickAlreadyInUseException, IOException, IrcException,
+	public static void main(String[] args) throws IOException, IrcException,
 	        InterruptedException {
 		// Now start our bot up.
 		PostmanIRC bot = new PostmanIRC(null);
