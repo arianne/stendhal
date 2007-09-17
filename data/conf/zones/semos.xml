@@ -1692,6 +1692,8 @@ Mature sheep wanted: please speak to Sato
 
  <!--  Level 1 -->
 
+ <zone name="dreamscape" file="interiors/abstract/dreamscape.tmx">
+ </zone>
 
  <!--  Level 2 -->
 
