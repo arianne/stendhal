@@ -16,5 +16,5 @@ public interface PositionChangeListener {
 	 * @param	x		The X coordinate (in world units).
 	 * @param	y		The Y coordinate (in world units).
 	 */
-	public void positionChanged(double x, double y);
+	void positionChanged(double x, double y);
 }

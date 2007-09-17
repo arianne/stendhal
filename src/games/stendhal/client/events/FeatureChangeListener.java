@@ -15,7 +15,7 @@ public interface FeatureChangeListener {
 	 *
 	 * @param	name		The name of the feature.
 	 */
-	public void featureDisabled(String name);
+	void featureDisabled(String name);
 
 
 	/**
@@ -24,5 +24,5 @@ public interface FeatureChangeListener {
 	 * @param	name		The name of the feature.
 	 * @param	value		Optional feature specific data.
 	 */
-	public void featureEnabled(String name, String value);
+	void featureEnabled(String name, String value);
 }

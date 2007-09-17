@@ -22,7 +22,7 @@ public interface EntityHolderListener {
 	 * @param	name		The name of the holder.
 	 * @param	entity		The entity.
 	 */
-	public void entityAdded(Entity parent, String name, Entity entity);
+	void entityAdded(Entity parent, String name, Entity entity);
 
 	/**
 	 * An entity was removed.
@@ -31,5 +31,5 @@ public interface EntityHolderListener {
 	 * @param	name		The name of the holder.
 	 * @param	entity		The entity.
 	 */
-	public void entityRemoved(Entity parent, String name, Entity entity);
+	void entityRemoved(Entity parent, String name, Entity entity);
 }
