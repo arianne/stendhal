@@ -3,7 +3,6 @@ package games.stendhal.server.entity.creature;
 import games.stendhal.server.entity.RPEntity;
 
 import java.awt.Shape;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -29,21 +28,16 @@ public class ArenaCreature extends Creature {
 
 	@Override
 	protected List<RPEntity> getEnemyList() {
-		// get the normal enemy list and clone it
+		// only return those enemies which are in the arena
 		List<RPEntity> standardEnemyList = super.getEnemyList();
-		List<RPEntity> res = new LinkedList<RPEntity>(standardEnemyList);
+		List<RPEntity> resultList = new LinkedList<RPEntity>();
 
-		// then remove all enemies which are outside the arena
-		if (arena != null) {
-			Iterator<RPEntity> itr = res.iterator();
-			while (itr.hasNext()) {
-				RPEntity possibleTarget = itr.next();
-				if (!arena.contains(possibleTarget.getX(), possibleTarget.getY())) {
-					itr.remove();
-				}
+		for (RPEntity enemy : standardEnemyList) {
+			if (arena.contains(enemy.getX(), enemy.getY())) {
+				resultList.add(enemy);
 			}
 		}
-		return res;
+		return resultList;
 	}
 
 	@Override
