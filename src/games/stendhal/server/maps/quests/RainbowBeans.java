@@ -1,0 +1,221 @@
+package games.stendhal.server.maps.quests;
+
+import games.stendhal.server.StendhalRPWorld;
+import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.npc.ConversationPhrases;
+import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.util.TimeUtil;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * QUEST: Rainbow Beans
+ * 
+ * PARTICIPANTS:
+ * <ul>
+ * <li>Pdiddi, a dealer in rainbow beans
+ * </ul>
+ * 
+ * STEPS:
+ * <ul>
+ * <li>The NPC sells rainbow beans to players above level 30</li>
+ * <li>When used, rainbow beans teleport you to a dreamworld full of strange sights, hallucinations
+ and the creatures of your nightmares</li>
+ * <li>You can remain there for up to 30 minutes</li>
+ * </ul>
+ * 
+ * REWARD:
+ * <ul>
+ * <li>The dream world is really cool!</li>
+ * <li>XP from creatures you kill there</li>
+ * </ul>
+ * 
+ * REPETITIONS:
+ * <ul>
+ * <li>No more than once every 6 hours</li>
+ * </ul>
+ * 
+ * NOTES:
+ * <ul>
+ * <li>The area of the dreamworld will be a no teleport zone</li>
+ * <li>You can exit via a portal if you want to exit before the 30 minutes is up</li>
+ * </ul>
+ */
+public class RainbowBeans extends AbstractQuest {
+    
+        private static final int REQUIRED_LEVEL = 30;
+
+	private static final int REQUIRED_MONEY = 2000;
+
+	private static final int REQUIRED_MINUTES = 6 * 60;
+
+	private static final int ALLOWED_MINUTES = 30;
+
+	private static final String QUEST_SLOT = "rainbow_beans";
+
+
+	@Override
+	public void init(String name) {
+		super.init(name, QUEST_SLOT);
+	}
+
+	private void step_1() {
+		SpeakerNPC npc = npcs.get("Pdiddi");
+
+		// player says hi before starting the quest
+		npc
+				.add(
+						ConversationStates.IDLE,
+						ConversationPhrases.GREETING_MESSAGES,
+						new SpeakerNPC.ChatCondition() {
+							@Override
+							public boolean fire(Player player, String text,
+									SpeakerNPC npc) {
+								return !player.hasQuest(QUEST_SLOT);
+							}
+						},
+						ConversationStates.INFORMATION_1,
+						"SHHH! Don't want all n' sundry knowin' wot I #deal in.",
+						null);
+
+		// player returns after finishing the quest (it is repeatable) after the
+		// time as finished
+		npc.add(
+				ConversationStates.IDLE,
+				ConversationPhrases.GREETING_MESSAGES,
+				new SpeakerNPC.ChatCondition() {
+					@Override
+					public boolean fire(Player player, String text,
+							SpeakerNPC npc) {
+						// we don't set quest slot to done so we can't check
+						// this
+						// return player.isQuestCompleted(QUEST_SLOT);
+						boolean questdone = player.hasQuest(QUEST_SLOT)
+								&& player.getQuest(QUEST_SLOT).startsWith(
+										"done");
+						if (!questdone) {
+							return false; // we haven't done the quest yet
+						}
+
+						String[] tokens = player.getQuest(QUEST_SLOT)
+								.split(";");
+						long delay = REQUIRED_MINUTES * 60 * 1000; // minutes
+																	// ->
+																	// milliseconds
+						long timeRemaining = (Long.parseLong(tokens[1]) + delay)
+								- System.currentTimeMillis();
+						return (timeRemaining <= 0L);
+					}
+				}, ConversationStates.QUEST_OFFERED,
+				"Oi, you. Back for more rainbow beans?",
+				null);
+
+		// player returns after finishing the quest (it is repeatable) before
+		// the time as finished
+		npc.add(
+				ConversationStates.IDLE,
+				ConversationPhrases.GREETING_MESSAGES,
+				new SpeakerNPC.ChatCondition() {
+					@Override
+					public boolean fire(Player player, String text,
+							SpeakerNPC npc) {
+						// we don't set quest slot to done so we can't check
+						// this
+						// return player.isQuestCompleted(QUEST_SLOT);
+						boolean questdone = player.hasQuest(QUEST_SLOT)
+								&& player.getQuest(QUEST_SLOT).startsWith(
+										"done");
+						if (!questdone) {
+							return false; // we haven't done the quest yet
+						}
+
+						String[] tokens = player.getQuest(QUEST_SLOT)
+								.split(";");
+						long delay = REQUIRED_MINUTES * 60 * 1000; // minutes
+																	// ->
+																	// milliseconds
+						long timeRemaining = (Long.parseLong(tokens[1]) + delay)
+								- System.currentTimeMillis();
+						return (timeRemaining > 0L);
+					}
+				}, ConversationStates.ATTENDING, null,
+				new SpeakerNPC.ChatAction() {
+					@Override
+					public void fire(Player player, String text, SpeakerNPC npc) {
+						String[] tokens = player.getQuest(QUEST_SLOT)
+								.split(";");
+						long delay = REQUIRED_MINUTES * 60 * 1000; // minutes
+																	// ->
+																	// milliseconds
+						long timeRemaining = (Long.parseLong(tokens[1]) + delay)
+								- System.currentTimeMillis();
+						npc
+								.say("Alright? I hope you don't want more beans. You can't take more of that stuff for at least another "
+										+ TimeUtil
+												.approxTimeUntil((int) (timeRemaining / 1000L))
+										+ ".");
+						return;
+					}
+				});
+
+		// player responds to word 'revive'
+		npc.add(ConversationStates.INFORMATION_1, "deal",
+				new SpeakerNPC.ChatCondition() {
+					@Override
+					public boolean fire(Player player, String text,
+							SpeakerNPC npc) {
+						return !player.hasQuest(QUEST_SLOT);
+					}
+				}, ConversationStates.QUEST_OFFERED, null,
+				new SpeakerNPC.ChatAction() {
+					@Override
+					public void fire(Player player, String text, SpeakerNPC npc) {
+						if (player.getLevel() >= 30) {
+							npc.say("Nosy, aint yer? I deal in rainbow beans. You take some, and who knows where the trip will take yer. You want to buy some? It'll cost you " + REQUIRED_MONEY
+						+ " money.");
+						} else { 
+					                npc.say("Get out of 'ere! An don't you come back till you've got more hairs on that chest!");
+							npc.setCurrentState(ConversationStates.ATTENDING);
+						}
+					}
+				});
+
+		// player wants to take the beans
+		npc.add(ConversationStates.QUEST_OFFERED,
+				ConversationPhrases.YES_MESSAGES, null,
+				ConversationStates.ATTENDING, null,
+				new SpeakerNPC.ChatAction() {
+					@Override
+					public void fire(Player player, String text, SpeakerNPC npc) {
+					    if(player.isEquipped("money", REQUIRED_MONEY)) {
+						player.drop("money", REQUIRED_MONEY);
+						npc.say("Alright, here's the beans. Once you take them, you come down in about 30 minutes. And if you get nervous up there, hit one of the green panic squares to take you back here.");
+						player.setQuest(QUEST_SLOT, "done;" + System.currentTimeMillis());
+						Item rainbowBeans = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("rainbow_beans");				                           
+						player.equip(rainbowBeans, true);
+					    }
+					    else{
+						npc.say("Scammer! You don't have the cash.");
+					        npc.setCurrentState(ConversationStates.ATTENDING);
+					    }
+					}
+				});
+
+		// player is not willing to experiment
+		npc.add(ConversationStates.QUEST_OFFERED,
+				ConversationPhrases.NO_MESSAGES, null,
+				ConversationStates.ATTENDING, "Aight, ain't for everyone. Anythin else you want?",
+			null);
+	}
+
+    // TODO: Make player leave zone after 30 minutes
+	@Override
+	public void addToWorld() {
+		super.addToWorld();
+		step_1();
+
+	}
+}

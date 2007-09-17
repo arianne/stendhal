@@ -92,7 +92,8 @@ public class StendhalQuestSystem {
 		// loadQuest("NomyrCataclysm");
 		loadQuest("ObsidianKnife");
 		loadQuest("PizzaDelivery");
-		loadQuest("PlinksToy");
+		loadQuest("PlinksToy");		
+		loadQuest("RainbowBeans");
 		loadQuest("ReverseArrow");
 		loadQuest("RingMaker");
 		// loadQuest("SatoCataclysm");
