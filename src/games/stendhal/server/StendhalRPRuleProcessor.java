@@ -416,6 +416,10 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	public synchronized void beginTurn() {
 		long start = System.nanoTime();
 
+		/*
+		 * Debug statement for inspecting list of things.
+		 * Most of our memories leaks came from list keep adding and adding elements.
+		 */
 		if (Debug.SHOW_LIST_SIZES && rpman.getTurn() % 1000 == 0) {
 			int creatures = 0;
 			for (CreatureRespawnPoint point : respawnPoints) {
@@ -446,6 +450,13 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		try {
 			// We keep the number of players logged.
 			Statistics.getStatistics().set("Players logged", players.size());
+			
+			/*
+			 * TODO: Refactor.
+			 * Entities should care about really dying themselves.
+			 * This is here because there is a split between last hit and the moment a entity die so
+			 * that the last hit is visible on client. 
+			 */
 			// In order for the last hit to be visible dead happens at two
 			// steps.
 			for (Pair<RPEntity, Entity> entry : entityToKill) {
@@ -456,18 +467,32 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 				}
 			}
 			entityToKill.clear();
+			
+			/*
+			 * TODO: Refactor
+			 * NPC should be stored on zones instead of duplicating that info.
+			 */
 			// Done this way because a problem with comodification... :(
 			npcs.removeAll(npcsToRemove);
 			npcs.addAll(npcsToAdd);
 			npcsToAdd.clear();
 			npcsToRemove.clear();
 
+			/*
+			 * TODO: Refactor
+			 * Use RPEvent that is the correct way and it is handled by marauroa itself.
+			 */
 			for (Player player : playersRmPrivateText) {
 				if (player.has("private_text")) {
 					player.remove("private_text");
 					player.notifyWorldAboutChanges();
 				}
 			}
+
+			/*
+			 * TODO: Refactor
+			 * May be done by the zone itself.
+			 */
 			for (Player player : players) {
 				try {
 					player.logic();
@@ -476,6 +501,10 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 				}
 			}
 
+			/*
+			 * TODO: Refactor
+			 * Definitively must be done by the zone itself.
+			 */
 			for (NPC npc : npcs) {
 				try {
 					npc.logic();
@@ -484,6 +513,10 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 				}
 			}
 
+			/*
+			 * TODO: Refactor
+			 * Removable once RPEvent for chat is added.
+			 */
 			for (Player player : playersRmText) {
 				if (player.has("text")) {
 					player.remove("text");
@@ -503,11 +536,15 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		long start = System.nanoTime();
 		int currentTurn = getTurn();
 		try {
+			/*
+			 * TODO: Refactor
+			 * Should be done by the zone itself.
+			 */
 			// Creatures
 			for (CreatureRespawnPoint point : respawnPoints) {
 				point.logic();
 			}
-
+	
 			// Registeres classes for this turn
 			TurnNotifier.get().logic(currentTurn);
 
@@ -522,14 +559,26 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		try {
 			PlayerEntry entry = PlayerEntryContainer.getContainer().get(object);
 
+			/*
+			 * TODO: Refactor
+			 * This is a hack, it should use instead RPObjectFactory.
+			 */
 			Player player = Player.create(object);
-			// TODO: This is a hack, it should use instead RPObjectFactory.
 			entry.object = player;
 
+			/*
+			 * TODO: Refactor
+			 * Removable once RPEvent chat is added.
+			 */ 
 			playersRmText.add(player);
 			playersRmPrivateText.add(player);
+			
 			players.add(player);
 
+			/*
+			 * TODO: Refactor
+			 * Hide implementation
+			 */ 
 			if (!player.isGhost()) {
 				// Notify other players about this event
 				for (Player p : getPlayers()) {
@@ -558,6 +607,10 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 				player.onDead(killerOf(player));
 			}
 
+			/*
+			 * TODO: Refactor
+			 * Hide implementation.
+			 */ 
 			// Notify other players about this event
 			for (Player p : getPlayers()) {
 				p.notifyOffline(player.getName());
@@ -565,6 +618,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 			Player.destroy(player);
 			players.remove(player);
+			
 			addGameEvent(player.getName(), "logout");
 			logger.debug("removed player " + player);
 
@@ -577,13 +631,18 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 	public synchronized void onTimeout(RPObject object) {
 		/*
-		 * TODO: Check new syntax of onTimeout.
+		 * TODO: Refactor
+		 *  Check new syntax of onTimeout.
 		 *  It is expected to kickout the player, it can't fail.
 		 */
 		onExit(object);
 	}
 
 	public AccountResult createAccount(String username, String password, String email) {
+		/*
+		 * TODO: Refactor
+		 * Invalid patterns for username should be stored in a text file or XML file.
+		 */ 
 		if (!isValidUsername(username)) {
 			return new AccountResult(Result.FAILED_EXCEPTION, username);
 		}
@@ -623,6 +682,11 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 				return new CharacterResult(Result.FAILED_PLAYER_EXISTS, character, template);
 		}
 
+			/*
+			 * TODO: Refactor
+			 * OMG! Hide in a method.
+			 * Even better, move it to player class as it is its duty to provide a empty level 0 player.
+			 */ 
 			/*
 			 * Create the player character object
 			 */

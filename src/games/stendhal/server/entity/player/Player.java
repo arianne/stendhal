@@ -1659,6 +1659,10 @@ public class Player extends RPEntity {
 	 */
 	@Override
 	public void logic() {
+		/*
+		 * TODO: Refactor
+		 * Most of these things can be handled as RPEvents
+		 */
 		if (has("risk")) {
 			remove("risk");
 			notifyWorldAboutChanges();
@@ -1693,19 +1697,29 @@ public class Player extends RPEntity {
 
 		int turn = StendhalRPRuleProcessor.get().getTurn();
 
-		// 1 round = 5 turns
-		if (isAttacking()
-				&& ((turn % StendhalRPAction.getAttackRate(this)) == 0)) {
+		/*
+		 * TODO: Refactor
+		 * Implement the attack rate into attack itself.
+		 * Done in the new RP.
+		 */
+		if (isAttacking() && ((turn % StendhalRPAction.getAttackRate(this)) == 0)) {
 			StendhalRPAction.attack(this, getAttackTarget());
 		}
 
-		if ((turn % 180) == 0) {
+		agePlayer(turn);
+		
+		consume(turn);
+	}
+
+	private void agePlayer(int turn) {
+		/*
+		 * 180 means 60 seconds x 3 turns per second.
+		 */
+	    if ((turn % 180) == 0) {
 			setAge(getAge() + 1);
 			notifyWorldAboutChanges();
 		}
-
-		consume(turn);
-	}
+    }
 
 	/**
 	 * Called when this object is added to a zone.
