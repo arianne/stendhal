@@ -2164,6 +2164,24 @@
     </equipable>
   </item>
 
+  <item name="fairy_cake">
+    <type class="food" subclass="fairy_cake" tileid="-1"/>
+    <description>You see a luscious fairy cake with icing and sprinkles on top.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Food"/>    <attributes>
+      <amount value="50"/>
+      <frequency value="10"/>
+      <quantity value="1"/>
+      <regen value="5"/>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="5"/>
+    <equipable>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
+    </equipable>
+  </item>
+
   <item name="sandwich">
     <type class="food" subclass="sandwich" tileid="-1"/>
     <description>You see a ham and cheese sandwich.</description>
