@@ -13,13 +13,13 @@ import java.io.PrintStream;
  */
 public class ScriptRecorder {
 
-	private String classname ;
+	private String classname;
 
-	private String filename ;
+	private String filename;
 
-	private PrintStream ps ;
+	private PrintStream ps;
 
-	private long lastTimestamp ;
+	private long lastTimestamp;
 
 	/**
 	 * Creates a new ScriptRecorder

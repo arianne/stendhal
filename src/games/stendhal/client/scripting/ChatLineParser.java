@@ -96,7 +96,7 @@ public class ChatLineParser {
 		/*
 		 * Must be non-space after slash
 		 */
-		if(Character.isWhitespace(ch)) {
+		if (Character.isWhitespace(ch)) {
 			return false;
 		}
 
@@ -104,7 +104,7 @@ public class ChatLineParser {
 		/*
 		 * Extract command name
 		 */
-		if(Character.isLetterOrDigit(ch)) {
+		if (Character.isLetterOrDigit(ch)) {
 			/*
 			 * Word command
 			 */
@@ -125,7 +125,8 @@ public class ChatLineParser {
 		/*
 		 * Find command handler
 		 */
-		if((command = SlashActionRepository.get(name)) != null) {
+		command = SlashActionRepository.get(name);
+		if (command != null) {
 			minimum = command.getMinimumParameters();
 			maximum = command.getMaximumParameters();
 		} else {
@@ -143,22 +144,22 @@ public class ChatLineParser {
 		 */
 		params = new String[maximum];
 
-		for(i = 0; i < maximum; i++) {
+		for (i = 0; i < maximum; i++) {
 			/*
 			 * Skip leading spaces
 			 */
-			while(Character.isWhitespace(ch)) {
+			while (Character.isWhitespace(ch)) {
 				ch = ci.next();
 			}
 
 			/*
 			 * EOL?
 			 */
-			if(ch == CharacterIterator.DONE) {
+			if (ch == CharacterIterator.DONE) {
 				/*
 				 * Incomplete parameters?
 				 */
-				if(i < minimum) {
+				if (i < minimum) {
 					return false;
 				}
 
@@ -171,17 +172,17 @@ public class ChatLineParser {
 			sbuf = new StringBuffer();
 			quote = CharacterIterator.DONE;
 
-			while(ch != CharacterIterator.DONE) {
-				if(ch == quote) {
+			while (ch != CharacterIterator.DONE) {
+				if (ch == quote) {
 					// End of quote
 					quote = CharacterIterator.DONE;
-				} else if(quote != CharacterIterator.DONE) {
+				} else if (quote != CharacterIterator.DONE) {
 					// Quoted character
 					sbuf.append(ch);
-				} else if((ch == '"') || (ch == '\'')) {
+				} else if ((ch == '"') || (ch == '\'')) {
 					// Start of quote
 					quote = ch;
-				} else if(Character.isWhitespace(ch)) {
+				} else if (Character.isWhitespace(ch)) {
 					// End of token
 					break;
 				} else {
@@ -195,7 +196,7 @@ public class ChatLineParser {
 			/*
 			 * Unterminated quote?
 			 */
-			if(quote != CharacterIterator.DONE) {
+			if (quote != CharacterIterator.DONE) {
 				return false;
 			}
 
@@ -206,13 +207,13 @@ public class ChatLineParser {
 		/*
 		 * Remainder text
 		 */
-		while(Character.isWhitespace(ch)) {
+		while (Character.isWhitespace(ch)) {
 			ch = ci.next();
 		}
 
 		sbuf = new StringBuffer(ci.getEndIndex() - ci.getIndex() + 1);
 
-		while(ch != CharacterIterator.DONE) {
+		while (ch != CharacterIterator.DONE) {
 			sbuf.append(ch);
 			ch = ci.next();
 		}
@@ -223,7 +224,7 @@ public class ChatLineParser {
 		/*
 		 * Execute
 		 */
-		if(command != null) {
+		if (command != null) {
 			return command.execute(params, remainder);
 		} else {
 			/*
@@ -233,7 +234,7 @@ public class ChatLineParser {
 
 			extension.put("type", name);
 
-			if(params[0] != null) {
+			if (params[0] != null) {
 				extension.put("target", params[0]);
 				extension.put("args", remainder);
 			}

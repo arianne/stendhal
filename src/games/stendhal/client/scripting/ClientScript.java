@@ -10,5 +10,5 @@ public interface ClientScript {
 	 *
 	 * @param args arguments
 	 */
-	public void run(String args);
+	void run(String args);
 }
