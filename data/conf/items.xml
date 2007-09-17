@@ -3431,8 +3431,8 @@
   </item>
 
   <item name="spotted_egg">
-    <type class="resource" subclass="spotted_egg" tileid="-1"/>
-    <description>You see a huge spotted egg. They are said to be very delicious.</description>
+    <type class="food" subclass="spotted_egg" tileid="-1"/>
+    <description>You see a spotted egg. They are said to be delicious.</description>
     <implementation class-name="games.stendhal.server.entity.item.Food"/>    <attributes>
       <amount value="1000"/>
       <frequency value="10"/>
@@ -3637,6 +3637,22 @@
     </attributes>
     <weight value="0.01"/>
     <value value="4000"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+    </equipable>
+  </item>
+
+  <item name="rainbow_beans">
+    <type class="scroll" subclass="rainbow_beans" tileid="-1"/>
+    <description>You see a small pile of rainbow beans. One says something odd.</description>
+    <implementation class-name="games.stendhal.server.entity.item.scroll.MarkedScroll"/>    <attributes>
+      <infostring value="dreamscape 77 35"/>
+      <quantity value="1"/>
+    </attributes>
+    <weight value="0.01"/>
+    <value value="1000"/>
     <equipable>
       <slot name="bag"/>
       <slot name="lhand"/>
