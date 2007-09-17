@@ -196,7 +196,7 @@ public class Character extends WtPanel {
 					 * TODO: Remove once object mapping
 					 * verified to work in all cases.
 					 */
-					if(entity == null) {
+					if (entity == null) {
 						entity = EntityFactory.createEntity(object);
 					}
 

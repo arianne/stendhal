@@ -141,7 +141,7 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 			/*
 			 * Don't replace the same object
 			 */
-			if(view.getEntity() == entity) {
+			if (view.getEntity() == entity) {
 				return;
 			}
 

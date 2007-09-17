@@ -14,7 +14,6 @@ package games.stendhal.client.gui.wt;
 
 import games.stendhal.client.GameObjects;
 import games.stendhal.client.StendhalClient;
-import games.stendhal.client.entity.Corpse;
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.EntityFactory;
 import games.stendhal.client.entity.User;
@@ -107,7 +106,7 @@ public class EntityContainer extends WtPanel implements PositionChangeListener {
 			return;
 		}
 
-		if(logger.isDebugEnabled()) {
+		if (logger.isDebugEnabled()) {
 			logger.debug("DIFFERENT");
 			logger.debug("SHOWN: " + shownSlot);
 			logger.debug("ORIGINAL: " + rpslot);
@@ -124,14 +123,14 @@ public class EntityContainer extends WtPanel implements PositionChangeListener {
 			shownSlot = (RPSlot) rpslot.clone();
 
 			for (RPObject object : shownSlot) {
-				if(!iter.hasNext()) {
+				if (!iter.hasNext()) {
 					logger.error("More objects than slots: " + slotName);
 					break;
 				}
 
 				Entity entity = gameObjects.get(object);
 
-				if(entity == null) {
+				if (entity == null) {
 					logger.warn("Unable to find entity for: " + object, new Throwable("here"));
 					entity = EntityFactory.createEntity(object);
 				}
@@ -146,7 +145,7 @@ public class EntityContainer extends WtPanel implements PositionChangeListener {
 		/*
 		 * Clear remaining holders
 		 */
-		while(iter.hasNext()) {
+		while (iter.hasNext()) {
 			iter.next().setEntity(null);
 		}
 	}
@@ -160,7 +159,7 @@ public class EntityContainer extends WtPanel implements PositionChangeListener {
 	private void checkDistance() {
 		User user = User.get();
 
-		if(user != null) {
+		if (user != null) {
 			if (user.getID().equals(parent.getID())) {
 				// We don't want to close our own stuff
 				return;
@@ -220,6 +219,7 @@ public class EntityContainer extends WtPanel implements PositionChangeListener {
 	/**
 	 * Close the panel.
 	 */
+	@Override
 	public void close() {
 		clear();
 		super.close();
@@ -229,6 +229,7 @@ public class EntityContainer extends WtPanel implements PositionChangeListener {
 	/**
 	 * Destroy the panel.
 	 */
+	@Override
 	public void destroy() {
 		clear();
 		parent = null;

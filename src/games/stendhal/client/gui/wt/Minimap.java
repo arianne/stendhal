@@ -247,7 +247,7 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 
 		// Draw on ground entities
 		for (Entity entity : client.getGameObjects()) {
-			if(!entity.isOnGround()) {
+			if (!entity.isOnGround()) {
 				continue;
 			}
 
@@ -256,7 +256,7 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 
 				if (!player.isGhostMode()) {
 					drawPlayer(vg, player, Color.WHITE);
-				} else if(admin) {
+				} else if (admin) {
 					drawPlayer(vg, player, Color.GRAY);
 				}
 			} else if (entity instanceof Portal) {
@@ -281,7 +281,7 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 		 */
 		User user = User.get();
 
-		if(user != null) {
+		if (user != null) {
 			drawPlayer(vg, user, Color.BLUE);
 		}
 
@@ -344,7 +344,7 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 		g.setColor(color);
 		g.fillRect(x, y, width, height);
 
-		if(borderColor != null) {
+		if (borderColor != null) {
 			g.setColor(borderColor);
 			g.drawRect(x, y, width - 1, height - 1);
 		}

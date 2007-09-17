@@ -26,7 +26,6 @@ import games.stendhal.client.gui.j2d.entity.Entity2DView;
 import games.stendhal.client.gui.wt.core.WtBaseframe;
 import games.stendhal.client.gui.wt.core.WtDraggable;
 import games.stendhal.client.gui.wt.core.WtDropTarget;
-import games.stendhal.client.gui.wt.core.WtPanel;
 
 import java.awt.Point;
 import java.awt.geom.Point2D;
