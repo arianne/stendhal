@@ -48,6 +48,14 @@ import simple.http.serve.FileContext;
 import simple.http.serve.ProtocolHandlerFactory;
 import simple.template.View;
 
+/*
+ * TODO: Refactor
+ * - Remove Groovy
+ * - Make it work
+ * - Integrate with mblanch.homeip.net/stendhal_website
+ */ 
+
+
 public class StendhalHttpServer extends StendhalServerExtension implements ProtocolHandler {
 
 	private static final Logger logger = Log4J.getLogger(StendhalHttpServer.class);

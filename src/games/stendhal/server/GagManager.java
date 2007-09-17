@@ -13,6 +13,11 @@ import marauroa.common.Logger;
  * Manages gags
  */
 public class GagManager implements LoginListener {
+	/*
+	 * TODO: Refactor
+	 * Don't use a quest entry for it.
+	 * Why tryExpire? just expire on turn reached.
+	 */ 
 
 	private static final Logger logger = Log4J.getLogger(GagManager.class);
 

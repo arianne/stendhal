@@ -130,6 +130,10 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	}
 
 	private void registerActions() {
+		/*
+		 * TODO: Refactor
+		 * Autoregister?
+		 */ 
 		AdministrationAction.register();
 		AttackAction.register();
 		AwayAction.register();

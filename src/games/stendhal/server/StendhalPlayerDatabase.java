@@ -327,67 +327,6 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 		}
 	}
 
-	/*
-	 * TODO: Remove once the above is done.
-	 *
-	 *
-	 * @Override public synchronized int storeRPObject(Transaction trans,
-	 * RPObject object) throws SQLException { Connection connection =
-	 * ((JDBCTransaction) trans).getConnection();
-	 *
-	 * int object_id = -1;
-	 *
-	 * ByteArrayOutputStream array = new ByteArrayOutputStream();
-	 * DeflaterOutputStream out_stream = new DeflaterOutputStream(array);
-	 * OutputSerializer serializer = new OutputSerializer(out_stream);
-	 *
-	 * try { object.writeObject(serializer, DetailLevel.FULL);
-	 * out_stream.close(); } catch (IOException e) { logger.error("Problem while
-	 * serializing rpobject: " + object, e); throw new SQLException("Problem
-	 * while serializing rpobject"); } byte[] content = array.toByteArray();
-	 *  // setup stream for blob ByteArrayInputStream inStream = new
-	 * ByteArrayInputStream(content);
-	 *
-	 * String objectid = null;
-	 *
-	 * if (object.has("#db_id")) { objectid = object.get("#db_id"); object_id =
-	 * object.getInt("#db_id"); }
-	 *
-	 * String name = null; if (object.has("name")) { name = object.get("name"); }
-	 *
-	 * String outfit = "0"; if (object.has("outfit_org")) { outfit =
-	 * object.get("outfit_org"); } else if (object.has("outfit")) { outfit =
-	 * object.get("outfit"); }
-	 *
-	 * int level = 0; if (object.has("level")) { level = object.getInt("level"); }
-	 *
-	 * int xp = 0; if (object.has("xp")) { xp = object.getInt("xp"); }
-	 *
-	 * String query;
-	 *
-	 * if ((objectid != null) && hasRPObject(trans, object_id)) { query =
-	 * "update avatars set name='" + name + "',outfit='" + outfit + "',level=" +
-	 * level + ",xp=" + xp + ",data=? where object_id=" + objectid; } else {
-	 * query = "insert into avatars(object_id,name,outfit,level,xp,data)
-	 * values(" + objectid + ",'" + name + "','" + outfit + "'," + level + "," +
-	 * xp + ",?)"; } logger.debug("storeRPObject is executing query " + query);
-	 *
-	 * PreparedStatement ps = connection.prepareStatement(query);
-	 * ps.setBinaryStream(1, inStream, inStream.available());
-	 * ps.executeUpdate(); ps.close();
-	 *  // If object is new, get the objectid we gave it. if (objectid == null) {
-	 * Statement stmt = connection.createStatement(); query = "select
-	 * LAST_INSERT_ID() as inserted_id from avatars";
-	 * logger.debug("storeRPObject is executing query " + query); ResultSet
-	 * result = stmt.executeQuery(query);
-	 *
-	 * result.next(); object_id = result.getInt("inserted_id");
-	 *
-	 * stmt.close(); }
-	 *
-	 * return object_id; }
-	 */
-
 	private static StendhalPlayerDatabase playerDatabase;
 
 	/**
@@ -458,6 +397,11 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 		}
 	}
 
+	/*
+	 * TODO: Refactor
+	 * We could make room for hall of fame points in the character_stats table itself.
+	 */
+	
 	/**
 	 * Returns the points in the specified hall of fame
 	 *

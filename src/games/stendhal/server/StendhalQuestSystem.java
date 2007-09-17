@@ -42,6 +42,11 @@ public class StendhalQuestSystem {
 	 * initiales the QuestSystem
 	 */
 	public void init() {
+		/*
+		 * TODO: Refactor
+		 * What about loading this from a XML file like zones?
+		 */ 
+
 		questInfos = QuestsXMLLoader.get();
 		loadQuest("AdosDeathmatch");
 		loadQuest("ArmorForDagobert");

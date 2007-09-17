@@ -37,6 +37,13 @@ import marauroa.common.Logger;
 import marauroa.common.game.RPObjectNotFoundException;
 import marauroa.server.game.rp.RPServerManager;
 
+/*
+ * TODO: Refactor
+ * Remove this class. 
+ * Move to a proper OOP approach.
+ * Replace RP with new RP once it is agreed.
+ */ 
+
 public class StendhalRPAction {
 
 	/** the logger instance. */
