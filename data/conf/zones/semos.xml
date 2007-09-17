@@ -1092,7 +1092,18 @@ East: Ados city
   <entity x="123" y="1">
     <implementation class-name="games.stendhal.server.entity.WellSource"/>
   </entity>
+
+  <portal x="108" y="47" ref="pad_entrance">
+    <destination zone="int_semos_swanky_pad" ref="entrance"/>
+  </portal>
  </zone>
+ 
+<zone name="int_semos_swanky_pad" file="interiors/semos/swanky_pad.tmx">
+   <configurator class-name="games.stendhal.server.maps.semos.pad.DealerNPC"/>
+ <portal x="7" y="18" ref="entrance">
+    <destination zone="0_semos_road_e" ref="pad_entrance"/>
+  </portal>
+</zone>
 
  <zone name="0_semos_road_se" level="0" x="500128" y="500064" file="Level 0/semos/road_se.tmx">
  </zone>
@@ -1125,6 +1136,15 @@ TO SEMOS
 Mature sheep wanted: please speak to Sato
    </attribute>
   </entity>
+  <portal x="74" y="28" ref="dream_exit1">
+    <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+  </portal>
+  <portal x="49" y="49" ref="dream_exit2">
+    <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+  </portal>
+  <portal x="72" y="58" ref="dream_exit3">
+    <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+  </portal>
  </zone>
 
  <zone name="0_semos_forest_s" level="0" x="500000" y="500128" file="Level 0/semos/forest_s.tmx">
@@ -1693,6 +1713,15 @@ Mature sheep wanted: please speak to Sato
  <!--  Level 1 -->
 
  <zone name="dreamscape" file="interiors/abstract/dreamscape.tmx">
+  <portal x="43" y="49" ref="exit1">
+   <destination zone="0_semos_plains_s" ref="dream_exit1"/>
+  </portal>
+  <portal x="40" y="88" ref="exit2">
+   <destination zone="0_semos_plains_s" ref="dream_exit2"/>
+  </portal>
+  <portal x="76" y="115" ref="exit3">
+   <destination zone="0_semos_plains_s" ref="dream_exit3"/>
+  </portal>
  </zone>
 
  <!--  Level 2 -->
