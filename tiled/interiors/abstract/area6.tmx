@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<map version="0.99b" orientation="orthogonal" width="32" height="32" tilewidth="32" tileheight="32">
+ <tileset name="grey dark wall" firstgid="1" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/wall/int_grey_dark.png"/>
+ </tileset>
+ <tileset name="grey green wall" firstgid="17" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/wall/int_grey_green.png"/>
+ </tileset>
+ <tileset name="fairy pool" firstgid="66" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/decoration/fairypool.png"/>
+ </tileset>
+ <tileset name="floor tiles" firstgid="70" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/indoor/tiles.png"/>
+ </tileset>
+ <tileset name="Untitled" firstgid="78" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/greenGround.png"/>
+ </tileset>
+ <tileset name="Untitled" firstgid="79" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/decoration/pool.png"/>
+ </tileset>
+ <tileset name="Untitled" firstgid="88" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/entrance/grey.png"/>
+ </tileset>
+ <tileset name="Untitled" firstgid="104" tilewidth="32" tileheight="32">
+  <image source="../../tileset/plant/indoor/pot_plant_1.png"/>
+ </tileset>
+ <tileset name="Untitled" firstgid="116" tilewidth="32" tileheight="32">
+  <image source="../../tileset/plant/indoor/pot_plant.png"/>
+ </tileset>
+ <layer name="0_floor" width="32" height="32">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3XuwrCMBjF8b6BFBRRJ1EU8YaT+goO3i+7gr7/G3g6BGpI8p02CQXp8F8y9HemNk2TJEkrrk3UQU2yFvlM1s/sLuqRDckNjK/sPpqQDcgNkq/bOzJ2g8svaxfZYPN9bXaDyQ9lMxt0P7Qtbcj7sWzXBuXHtm0blD9CY8HeF8y1YYpmJfwDOgqdIvpndBG61n7t/6l/Q3ehR0Tf9o7xff/M0QIthQ2+Zc9eoQ3aJr/fn9gbdNv0/Y21wWTb7h+hN9hs1/0r1AaXLd0/fTdINnP/LruBsdn/D30DE2Ozfn7DWuuJXoZzxi7iqw0NrTf6GM4ZO+9X2Rc3SQG0ABAAAA==
+  </data>
+ </layer>
+ <layer name="1_terrain" width="32" height="32">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ8HFAAAAPBuEQAcxwAQAAA=
+  </data>
+ </layer>
+ <layer name="2_object" width="32" height="32">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ8HFAAAAPBuEQAcxwAQAAA=
+  </data>
+ </layer>
+ <layer name="3_roof" width="32" height="32">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ8HFAAAAPBuEQAcxwAQAAA=
+  </data>
+ </layer>
+ <layer name="4_roof_add" width="32" height="32">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ8HFAAAAPBuEQAcxwAQAAA=
+  </data>
+ </layer>
+ <layer name="objects" width="32" height="32">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ8HFAAAAPBuEQAcxwAQAAA=
+  </data>
+ </layer>
+ <layer name="collision" width="32" height="32">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ8HFAAAAPBuEQAcxwAQAAA=
+  </data>
+ </layer>
+ <layer name="protection" width="32" height="32">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ8HFAAAAPBuEQAcxwAQAAA=
+  </data>
+ </layer>
+</map>
