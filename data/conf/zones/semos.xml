@@ -1274,6 +1274,51 @@ Mature sheep wanted: please speak to Sato
    </portal>
   </zone>
 
+ <zone name="int_wofol_library_0" file="interiors/wofol/library_0.tmx">
+  <portal x="4" y="13" ref="entrance">
+     <destination zone="-1_semos_mine_nw" ref="library_entrance"/>
+   </portal>
+   <portal x="21" y="3" ref="upstairs">
+     <destination zone="int_wofol_library_1" ref="downstairs"/>
+   </portal>
+  </zone>
+ <zone name="int_wofol_library_1" file="interiors/wofol/library_1.tmx">
+   <portal x="21" y="3" ref="downstairs">
+    <destination zone="int_wofol_library_0" ref="upstairs"/>
+   </portal>
+   <portal x="17" y="3" ref="upstairs">
+     <destination zone="int_wofol_library_2" ref="downstairs"/>
+   </portal>
+ </zone>
+ <zone name="int_wofol_library_2" file="interiors/wofol/library_2.tmx">
+   <portal x="17" y="3" ref="downstairs">
+    <destination zone="int_wofol_library_1" ref="upstairs"/>
+   </portal>
+ </zone>
+
+ <zone name="int_wofol_bar" file="interiors/wofol/bar.tmx">
+  <portal x="3" y="8" ref="entrance">
+     <destination zone="-1_semos_mine_nw" ref="bar_entrance"/>
+   </portal>
+ </zone>
+
+ <zone name="int_wofol_bakery" file="interiors/wofol/bakery.tmx">
+  <portal x="5" y="14" ref="entrance">
+     <destination zone="-1_semos_mine_nw" ref="bakery_entrance"/>
+   </portal>
+ </zone>
+ <zone name="int_wofol_townhall" file="interiors/wofol/townhall.tmx">
+  <portal x="5" y="31" ref="entrance_left">
+     <destination zone="-1_semos_mine_nw" ref="townhall_entrance_left"/>
+   </portal>
+  <portal x="45" y="31" ref="entrance_centre">
+     <destination zone="-1_semos_mine_nw" ref="townhall_entrance_centre"/>
+   </portal>
+  <portal x="56" y="31" ref="entrance_right">
+     <destination zone="-1_semos_mine_nw" ref="townhall_entrance_right"/>
+   </portal>
+ </zone>
+
  <zone name="-1_semos_mine_nw" level="-1" x="499872" y="499872" file="Level -1/semos/mine_nw.tmx">
    <portal x="6" y="23" ref="house4_entrance">
      <destination zone="int_wofol_house4" ref="entrance"/>
@@ -1283,6 +1328,9 @@ Mature sheep wanted: please speak to Sato
    </portal>
    <portal x="40" y="25" ref="house7_entrance">
      <destination zone="int_wofol_house7" ref="entrance"/>
+   </portal>   
+   <portal x="5" y="65" ref="bar_entrance">
+     <destination zone="int_wofol_bar" ref="entrance"/>
    </portal>
    <portal x="17" y="65" ref="blacksmith_entrance_left">
      <destination zone="int_wofol_blacksmith" ref="entrance_left"/>
@@ -1296,13 +1344,27 @@ Mature sheep wanted: please speak to Sato
    <portal x="58" y="65" ref="house5_entrance">
      <destination zone="int_wofol_house5" ref="entrance"/>
    </portal>
-  <portal x="63" y="86" ref="house6_entrance">
+   <portal x="63" y="86" ref="house6_entrance">
      <destination zone="int_wofol_house6" ref="entrance"/>
+   </portal>
+   <portal x="4" y="76" ref="bakery_entrance">
+     <destination zone="int_wofol_bakery" ref="entrance"/>
+   </portal>
+   <portal x="59" y="79" ref="library_entrance">
+     <destination zone="int_wofol_library_0" ref="entrance"/>
    </portal>
    <portal x="30" y="94" ref="house10_entrance">
      <destination zone="int_wofol_house10" ref="entrance"/>
    </portal>
-
+   <portal x="56" y="99" ref="townhall_entrance_left">
+     <destination zone="int_wofol_townhall" ref="entrance_left"/>
+   </portal> 
+   <portal x="65" y="99" ref="townhall_entrance_centre">
+     <destination zone="int_wofol_townhall" ref="entrance_centre"/>
+   </portal>
+   <portal x="70" y="99" ref="townhall_entrance_right">
+     <destination zone="int_wofol_townhall" ref="entrance_right"/>
+   </portal>
   <!-- Spikes -->
   <entity x="77" y="20">
    <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
@@ -1713,6 +1775,8 @@ Mature sheep wanted: please speak to Sato
  <!--  Level 1 -->
 
  <zone name="dreamscape" file="interiors/abstract/dreamscape.tmx">
+<!--Don't allow teleporting as we don't want marked scrolls made or ring abused-->
+  <configurator class-name="games.stendhal.server.maps.semos.jail.NoTeleport"/>
   <portal x="43" y="49" ref="exit1">
    <destination zone="0_semos_plains_s" ref="dream_exit1"/>
   </portal>
