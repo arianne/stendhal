@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
 <map version="0.99b" orientation="orthogonal" width="128" height="128" tilewidth="32" tileheight="32">
  <tileset name="Unbenannt" firstgid="1" tilewidth="32" tileheight="32">
-  <image source="../../tiled/tileset/building/wall/int_grey_dark.png"/>
+  <image source="../../tileset/building/wall/int_grey_dark.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="17" tilewidth="32" tileheight="32">
-  <image source="../../tiled/tileset/building/wall/int_grey_green.png"/>
+  <image source="../../tileset/building/wall/int_grey_green.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="66" tilewidth="32" tileheight="32">
-  <image source="../../tiled/tileset/building/entrance/grey.png"/>
+  <image source="../../tileset/building/entrance/grey.png"/>
  </tileset>
  <layer name="0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">
