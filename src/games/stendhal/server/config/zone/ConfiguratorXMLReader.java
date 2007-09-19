@@ -23,7 +23,6 @@ public class ConfiguratorXMLReader extends SetupXMLReader {
 	 */
 	private static final Logger logger = Log4J.getLogger(ConfiguratorXMLReader.class);
 
-
 	//
 	// ConfiguratorXMLReader
 	//
@@ -31,15 +30,17 @@ public class ConfiguratorXMLReader extends SetupXMLReader {
 	/**
 	 * Create a configurator descriptor.
 	 *
-	 * @param	element		The configurator XML element.
-	 * @param	className	The handler class name.
+	 * @param element
+	 *            The configurator XML element.
+	 * @param className
+	 *            The handler class name.
 	 *
-	 * @return	A configurator.
+	 * @return A configurator.
 	 */
-	protected ConfiguratorDescriptor read(final Element element, final String className) {
+	protected ConfiguratorDescriptor read(final Element element,
+			final String className) {
 		return new ConfiguratorDescriptor(className);
 	}
-
 
 	//
 	// SetupXMLReader
@@ -48,13 +49,14 @@ public class ConfiguratorXMLReader extends SetupXMLReader {
 	/**
 	 * Create a setup descriptor from XML data.
 	 *
-	 * @param	element		The descriptor XML element.
+	 * @param element
+	 *            The descriptor XML element.
 	 *
-	 * @return	A setup descriptor, or <code>null</code> if invalid.
+	 * @return A setup descriptor, or <code>null</code> if invalid.
 	 */
 	@Override
 	public SetupDescriptor read(final Element element) {
-		if(!element.hasAttribute("class-name")) {
+		if (!element.hasAttribute("class-name")) {
 			logger.error("Implmentation without class-name");
 			return null;
 		} else {

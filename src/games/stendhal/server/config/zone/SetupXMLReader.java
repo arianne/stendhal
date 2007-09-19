@@ -25,7 +25,6 @@ public abstract class SetupXMLReader {
 	 */
 	private static final Logger logger = Log4J.getLogger(SetupXMLReader.class);
 
-
 	//
 	// SetupXMLReader
 	//
@@ -33,27 +32,31 @@ public abstract class SetupXMLReader {
 	/**
 	 * Create a setup descriptor from XML data.
 	 *
-	 * @param	element		The descriptor XML element.
+	 * @param element
+	 *            The descriptor XML element.
 	 *
-	 * @return	A setup descriptor, or <code>null</code> if invalid.
+	 * @return A setup descriptor, or <code>null</code> if invalid.
 	 */
 	public abstract SetupDescriptor read(final Element element);
-
 
 	/**
 	 * Read paramaters from an XML element.
 	 *
-	 * @param	desc		The descriptor to load.
-	 * @param	element		The XML element.
+	 * @param desc
+	 *            The descriptor to load.
+	 * @param element
+	 *            The XML element.
 	 */
-	protected void readParameters(final SetupDescriptor desc, final Element element) {
+	protected void readParameters(final SetupDescriptor desc,
+			final Element element) {
 		List<Element> list = XMLUtil.getElements(element, "parameter");
 
-		for(Element param : list) {
-			if(!param.hasAttribute("name")) {
+		for (Element param : list) {
+			if (!param.hasAttribute("name")) {
 				logger.error("Unnamed parameter");
 			} else {
-				desc.setParameter(param.getAttribute("name"), XMLUtil.getText(param).trim());
+				desc.setParameter(param.getAttribute("name"), XMLUtil.getText(
+						param).trim());
 			}
 		}
 	}

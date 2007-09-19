@@ -26,7 +26,6 @@ public class PortalSetupXMLReader extends EntitySetupXMLReader {
 	 */
 	private static final Logger logger = Log4J.getLogger(PortalSetupXMLReader.class);
 
-
 	//
 	// PortalSetupXMLReader
 	//
@@ -34,37 +33,43 @@ public class PortalSetupXMLReader extends EntitySetupXMLReader {
 	/**
 	 * Create a portal setup descriptor.
 	 *
-	 * @param	element		The entity setup XML element.
-	 * @param	x		The X coordinate.
-	 * @param	y		The Y coordinate.
-	 * @param	identifier	The portal identifier.
+	 * @param element
+	 *            The entity setup XML element.
+	 * @param x
+	 *            The X coordinate.
+	 * @param y
+	 *            The Y coordinate.
+	 * @param identifier
+	 *            The portal identifier.
 	 *
-	 * @return	A portal setup descriptor.
+	 * @return A portal setup descriptor.
 	 */
-	protected PortalSetupDescriptor read(final Element element, final int x, final int y, final Object identifier) {
+	protected PortalSetupDescriptor read(final Element element, final int x,
+			final int y, final Object identifier) {
 		return new PortalSetupDescriptor(x, y, identifier);
 	}
-
 
 	/**
 	 * Read destination information from an XML element.
 	 *
-	 * @param	desc		The descriptor to load.
-	 * @param	element		The XML element.
+	 * @param desc
+	 *            The descriptor to load.
+	 * @param element
+	 *            The XML element.
 	 */
-	protected void readDestination(final PortalSetupDescriptor desc, final Element element) {
+	protected void readDestination(final PortalSetupDescriptor desc,
+			final Element element) {
 		String zone;
 		Object identifier;
 
-
-		if(!element.hasAttribute("zone")) {
+		if (!element.hasAttribute("zone")) {
 			logger.error("Portal destination without zone");
 			return;
 		} else {
 			zone = element.getAttribute("zone");
 		}
 
-		if(!element.hasAttribute("ref")) {
+		if (!element.hasAttribute("ref")) {
 			logger.error("Portal destination without 'ref' value");
 			return;
 		} else {
@@ -83,7 +88,6 @@ public class PortalSetupXMLReader extends EntitySetupXMLReader {
 		desc.setDestination(zone, identifier);
 	}
 
-
 	//
 	// EntitySetupXMLReader
 	//
@@ -91,16 +95,17 @@ public class PortalSetupXMLReader extends EntitySetupXMLReader {
 	/**
 	 * Create a setup descriptor from XML data.
 	 *
-	 * @param	element		The descriptor XML element.
+	 * @param element
+	 *            The descriptor XML element.
 	 *
-	 * @return	A setup descriptor, or <code>null</code> if invalid.
+	 * @return A setup descriptor, or <code>null</code> if invalid.
 	 */
 	@Override
-	protected EntitySetupDescriptor read(final Element element, final int x, final int y) {
+	protected EntitySetupDescriptor read(final Element element, final int x,
+			final int y) {
 		Object identifier;
 
-
-		if(!element.hasAttribute("ref")) {
+		if (!element.hasAttribute("ref")) {
 			logger.warn("Portal without 'ref' value");
 			return null;
 		} else {
@@ -123,8 +128,8 @@ public class PortalSetupXMLReader extends EntitySetupXMLReader {
 		 */
 		List<Element> list = XMLUtil.getElements(element, "destination");
 
-		if(!list.isEmpty()) {
-			if(list.size() > 1) {
+		if (!list.isEmpty()) {
+			if (list.size() > 1) {
 				logger.warn("More than one destination specified");
 			}
 
@@ -134,12 +139,12 @@ public class PortalSetupXMLReader extends EntitySetupXMLReader {
 		/*
 		 * Replacing
 		 */
-		if(element.hasAttribute("replacing")) {
+		if (element.hasAttribute("replacing")) {
 			String s = element.getAttribute("replacing");
 
-			if(s.equals("true")) {
+			if (s.equals("true")) {
 				desc.setReplacing(true);
-			} else if(s.equals("false")) {
+			} else if (s.equals("false")) {
 				desc.setReplacing(false);
 			} else {
 				logger.error("Invalid 'replacing' value: " + s);
