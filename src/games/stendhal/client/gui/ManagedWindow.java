@@ -21,35 +21,35 @@ public interface ManagedWindow {
 	 *
 	 *
 	 */
-	public String getName();
+	String getName();
 
 	/**
 	 * Get X coordinate of the window.
 	 *
 	 * @return	A value sutable for passing to <code>moveTo()</code>.
 	 */
-	public int getX();
+	int getX();
 
 	/**
 	 * Get Y coordinate of the window.
 	 *
 	 * @return	A value sutable for passing to <code>moveTo()</code>.
 	 */
-	public int getY();
+	int getY();
 
 	/**
 	 * Determine if the window is minimized.
 	 *
 	 * @return	<code>true</code> if the window is minimized.
 	 */
-	public boolean isMinimized();
+	boolean isMinimized();
 
 	/**
 	 * Determine if the window is visible.
 	 *
 	 * @return	<code>true</code> if the window is visible.
 	 */
-	public boolean isVisible();
+	boolean isVisible();
 
 	/**
 	 * Move to a location. This may be subject to internal representation,
@@ -61,33 +61,33 @@ public interface ManagedWindow {
 	 *
 	 * @return	<code>true</code> if the move was allowed.
 	 */
-	public boolean moveTo(int x, int y);
+	boolean moveTo(int x, int y);
 
 	/**
 	 * Register a close listener.
 	 *
 	 * @param	listener	A close listener.
 	 */
-	public void registerCloseListener(WtCloseListener listener);
+	void registerCloseListener(WtCloseListener listener);
 
 	/**
 	 * Unregister a close listener.
 	 *
 	 * @param	listener	A close listener.
 	 */
-	public void removeCloseListener(WtCloseListener listener);
+	void removeCloseListener(WtCloseListener listener);
 
 	/**
 	 * Set the window as minimized.
 	 *
 	 * @param	minimized	Whether the window should be minimized.
 	 */
-	public void setMinimized(boolean minimized);
+	void setMinimized(boolean minimized);
 
 	/**
 	 * Set the window as visible (or hidden).
 	 *
 	 * @param	visible		Whether the window should be visible.
 	 */
-	public void setVisible(boolean visible);
+	void setVisible(boolean visible);
 }
