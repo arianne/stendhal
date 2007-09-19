@@ -204,10 +204,9 @@ public class Marriage extends AbstractQuest {
 				.getRuleManager().getEntityManager().getItem(
 						"invitation_scroll");
 		invite.setQuantity(4);
-		invite.put("infostring", "int_fado_church 12 20"); /*
-															 * location of
-															 * church
-															 */
+		// location of church
+		invite.setInfoString("int_fado_church 12 20");
+
 		// perhaps change this to a hotel room where they can get dressed into
 		// wedding outfits?
 		// then they walk to the church?
@@ -611,7 +610,7 @@ public class Marriage extends AbstractQuest {
 		player.drop("wedding_ring");
 		Item ring = StendhalRPWorld.get().getRuleManager().getEntityManager()
 				.getItem("wedding_ring");
-		ring.put("infostring", partner.getName());
+		ring.setInfoString(partner.getName());
 		ring.setBoundTo(player.getName());
 		player.equip(ring, true);
 	}
@@ -664,11 +663,8 @@ public class Marriage extends AbstractQuest {
 									.get().getRuleManager().getEntityManager()
 									.getItem("invitation_scroll");
 							invite.setQuantity(1);
-							invite.put("infostring", "int_fado_hotel_0 4 40"); /*
-																				 * interior
-																				 * of
-																				 * hotel
-																				 */
+																				 							// interior of hotel
+							invite.setInfoString("int_fado_hotel_0 4 40");
 							player.equip(invite, true);
 							StendhalRPZone zone = StendhalRPWorld.get()
 									.getZone("int_fado_lovers_room_" + text);

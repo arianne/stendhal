@@ -23,7 +23,7 @@ public class DoneAction extends SpeakerNPC.ChatAction {
 		Item helmet = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("trophy_helmet");
 		helmet.setBoundTo(player.getName());
 		helmet.put("def", 1);
-		helmet.put("infostring", player.getName());
+		helmet.setInfoString(player.getName());
 		helmet.setPersistent(true);
 		helmet.setDescription("This is " + player.getName()
 		        + "'s grand prize for Deathmatch winners. Wear it with pride.");

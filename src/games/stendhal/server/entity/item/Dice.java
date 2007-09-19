@@ -37,8 +37,7 @@ public class Dice extends Item {
 	}
 
 	public Dice() {
-		super("dice", "misc", "dice", null);
-		randomize(null);
+		this((Map<String, String>) null);
 	}
 
 	/**
@@ -54,7 +53,7 @@ public class Dice extends Item {
 
 	public void setCroupierNPC(CroupierNPC croupierNPC) {
 		this.croupierNPC = croupierNPC;
-		put("infostring", croupierNPC.getName());
+		setInfoString(croupierNPC.getName());
 	}
 
 	/**
@@ -68,9 +67,12 @@ public class Dice extends Item {
 	 * running.
 	 */
 	private void updateCroupierNPC() {
-		if ((croupierNPC == null) && has("infostring")) {
-			String name = get("infostring");
-			croupierNPC = (CroupierNPC) NPCList.get().get(name);
+		if (croupierNPC == null) {
+			String name = getInfoString();
+
+			if(name != null) {
+				croupierNPC = (CroupierNPC) NPCList.get().get(name);
+			}
 		}
 	}
 
@@ -114,11 +116,13 @@ public class Dice extends Item {
 
 	@Override
 	public String describe() {
-
 		return "You see a set of dice. The top faces are "
 				+ getTopFacesString() + ".";
 	}
 
+	// TODO: Check why this is done. This could be VERY bad, as dropped
+	// dice may end up removing an object in a different zone that has
+	// the same ID on ground timeout.
 	@Override
 	public StendhalRPZone getZone() {
 		if (croupierNPC != null) {

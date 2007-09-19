@@ -84,10 +84,15 @@ public class KanmararnSoldiers extends AbstractQuest {
 		}
 
 		private boolean equalsExpectedItem(Item item) {
-			return item.getName().equals(itemName)
-					&& item.getDescription().equals(description)
-					&& item.has("infostring")
-					&& item.get("infostring").equals(corpse.get("name"));
+			if (!item.getName().equals(itemName)) {
+				return false;
+			}
+
+			if (!item.getDescription().equals(description)) {
+				return false;
+			}
+
+			return corpse.get("name").equals(item.getInfoString());
 		}
 
 		public void onTurnReached(int currentTurn, String message) {
@@ -107,7 +112,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 					// recreate the item and fill the corpse
 					Item item = StendhalRPWorld.get().getRuleManager()
 							.getEntityManager().getItem(itemName);
-					item.put("infostring", corpse.get("name"));
+					item.setInfoString(corpse.get("name"));
 					item.setDescription(description);
 					corpse.add(item);
 					corpse.notifyWorldAboutChanges();
@@ -175,9 +180,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 			List<Item> allLeatherLegs = player.getAllEquipped("leather_legs");
 			Item questLeatherLegs = null;
 			for (Item leatherLegs : allLeatherLegs) {
-				if (leatherLegs.has("infostring")
-						&& "tom"
-								.equalsIgnoreCase(leatherLegs.get("infostring"))) {
+				if ("tom".equalsIgnoreCase(leatherLegs.getInfoString())) {
 					questLeatherLegs = leatherLegs;
 					break;
 				}
@@ -186,8 +189,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 			List<Item> allNotes = player.getAllEquipped("note");
 			Item questNote = null;
 			for (Item note : allNotes) {
-				if (note.has("infostring")
-						&& "charles".equalsIgnoreCase(note.get("infostring"))) {
+				if ("charles".equalsIgnoreCase(note.getInfoString())) {
 					questNote = note;
 					break;
 				}
@@ -196,9 +198,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 			List<Item> allScaleArmors = player.getAllEquipped("scale_armor");
 			Item questScaleArmor = null;
 			for (Item scaleArmor : allScaleArmors) {
-				if (scaleArmor.has("infostring")
-						&& "peter".equalsIgnoreCase(scaleArmor
-								.get("infostring"))) {
+				if ("peter".equalsIgnoreCase(scaleArmor.getInfoString())) {
 					questScaleArmor = scaleArmor;
 					break;
 				}
@@ -213,7 +213,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 				player.drop(questScaleArmor);
 				Item map = StendhalRPWorld.get().getRuleManager()
 						.getEntityManager().getItem("map");
-				map.put("infostring", npc.get("name"));
+				map.setInfoString(npc.get("name"));
 				map
 						.setDescription("You see a hand drawn map, but no matter how you look at it, nothing on it looks familiar.");
 				player.equip(map);
@@ -247,8 +247,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 			List<Item> allMaps = player.getAllEquipped("map");
 			Item questMap = null;
 			for (Item map : allMaps) {
-				if (map.has("infostring")
-						&& "henry".equalsIgnoreCase(map.get("infostring"))) {
+				if ("henry".equalsIgnoreCase(map.getInfoString())) {
 					questMap = map;
 					break;
 				}
@@ -263,7 +262,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 						.getEntityManager().getItem("steel_boots");
 				item.setBoundTo(player.getName());
 				// Is this infostring really needed?
-				item.put("infostring", npc.get("name"));
+				item.setInfoString(npc.get("name"));
 				player.equip(item);
 				player.setQuest(QUEST_SLOT, "done");
 				npc.setCurrentState(ConversationStates.ATTENDING);

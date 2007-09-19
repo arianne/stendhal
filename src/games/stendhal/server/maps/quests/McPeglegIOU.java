@@ -57,9 +57,7 @@ public class McPeglegIOU extends AbstractQuest {
 						List<Item> notes = player.getAllEquipped("note");
 						Item iouNote = null;
 						for (Item note : notes) {
-							if (note.has("infostring")
-									&& "charles".equalsIgnoreCase(note
-											.get("infostring"))) {
+							if("charles".equalsIgnoreCase(note.getInfoString())) {
 								iouNote = note;
 								break;
 							}

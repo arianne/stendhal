@@ -155,7 +155,7 @@ public class AdminMaker extends ScriptImpl {
 
 			//before we send the player off into the unknown give a marked scroll
 			Item markedScroll = sandbox.getItem("marked_scroll");
-			markedScroll.put("infostring", player.getID().getZoneID() + " " + player.getX() + " " + player.getY());
+			markedScroll.setInfoString(player.getID().getZoneID() + " " + player.getX() + " " + player.getY());
 			markedScroll.setBoundTo(player.getName());
 
 			if (player.equip(markedScroll, false)) {

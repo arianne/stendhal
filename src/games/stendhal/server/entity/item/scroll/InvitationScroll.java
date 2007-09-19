@@ -100,16 +100,10 @@ public class InvitationScroll extends TeleportScroll {
 	 */
 	@Override
 	protected boolean useTeleportScroll(Player player) {
-		if (!has("infostring")) {
-			player.sendPrivateText("This invitation has not been filled in.");
+		String dest = getInfoString();
 
-			return false;
-		}
-
-		String dest = get("infostring");
 		if (dest == null) {
-			player.sendPrivateText("You do not recognize the event.");
-
+			player.sendPrivateText("This invitation has not been filled in.");
 			return false;
 		}
 
@@ -131,7 +125,5 @@ public class InvitationScroll extends TeleportScroll {
 		} else {
 			return "An invitation to an event.";
 		}
-
-
 	}
 }

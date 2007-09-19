@@ -65,6 +65,7 @@ public class Scroll extends StackableItem implements UseListener {
 		return (getItemClass().equals(otheri.getItemClass()) && getItemSubclass().equals(otheri.getItemSubclass()));
 	}
 
+	// TODO: Move up to Item, use useItem() for real impl's
 	public boolean onUsed(RPEntity user) {
 		RPObject base = this;
 
@@ -105,8 +106,11 @@ public class Scroll extends StackableItem implements UseListener {
 	@Override
 	public String describe() {
 		String text = super.describe();
-		if (has("infostring") && (get("infostring") != null)) {
-			text += " Upon it is written: " + get("infostring");
+
+		String infostring = getInfoString();
+
+		if (infostring != null) {
+			text += " Upon it is written: " + infostring;
 		}
 		return (text);
 	}

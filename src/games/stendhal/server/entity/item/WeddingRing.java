@@ -81,13 +81,14 @@ public class WeddingRing extends Ring {
 	 * @param player The ring's owner.
 	 */
 	private void teleportToSpouse(Player player) {
-		if (!has("infostring")) {
+		String spouseName = getInfoString();
+
+		if (spouseName == null) {
 			player.sendPrivateText("This wedding ring hasn't been engraved yet.");
 			logger.debug(player.getName() + "tried to use a wedding ring without a spouse name engraving.");
 			return;
 		}
 
-		String spouseName = get("infostring");
 		Player spouse = StendhalRPRuleProcessor.get().getPlayer(spouseName);
 		if (spouse == null) {
 			player.sendPrivateText(spouseName + " is not online.");
@@ -121,8 +122,10 @@ public class WeddingRing extends Ring {
 
 	@Override
 	public String describe() {
-		if (has("infostring")) {
-			return "You see a wedding ring. Its engraving says: \"In eternal love to " + get("infostring") + "\".";
+		String spouseName = getInfoString();
+
+		if (spouseName != null) {
+			return "You see a wedding ring. Its engraving says: \"In eternal love to " + spouseName + "\".";
 		} else {
 			return "You see a wedding ring.";
 		}

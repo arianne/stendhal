@@ -331,6 +331,20 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	}
 
 	/**
+	 * Get the item's infostring. The infostring contains context specific
+	 * information that is used by the implementation.
+	 *
+	 * @return	The infostring.
+	 */
+	public String getInfoString() {
+		if(has("infostring")) {
+			return get("infostring");
+		} else {
+			return null;
+		}
+	}
+
+	/**
 	 * Bind this item to a player. A bound item can only be used by that
 	 * player.
 	 *
@@ -341,6 +355,20 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 			put("bound", name);
 		} else if(has("bound")) {
 			remove("bound");
+		}
+	}
+
+	/**
+	 * Set the item's infostring. The infostring contains context specific
+	 * information that is used by the implementation.
+	 *
+	 * @param	infostring	The item's infostring.
+	 */
+	public void setInfoString(String infostring) {
+		if(infostring != null) {
+			put("infostring", infostring);
+		} else if(has("infostring")) {
+			remove("infostring");
 		}
 	}
 
@@ -385,8 +413,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 
 	@Override
 	public String describe() {
-		String text = "You see " + Grammar.a_noun(getName().replace("_", " "))
-				+ ".";
+		String text = "You see " + Grammar.a_noun(getTitle()) + ".";
 		String stats = "";
 		if (hasDescription()) {
 			text = getDescription();

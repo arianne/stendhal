@@ -69,8 +69,9 @@ public class MarkedScroll extends TeleportScroll {
 		 * Marked scrolls have a destination which is stored in the
 		 * infostring, existing of a zone name and x and y coordinates
 		 */
-		if (has("infostring")) {
-			String infostring = get("infostring");
+		String infostring = getInfoString();
+
+		if (infostring != null) {
 			StringTokenizer st = new StringTokenizer(infostring);
 			if (st.countTokens() == 3) {
 				// check destination

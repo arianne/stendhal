@@ -43,6 +43,8 @@ public class InfoStringScroll extends Scroll {
 		super(item);
 	}
 
+
+	// TODO: Move up to stackable item?
 	@Override
 	public boolean isStackable(Stackable other) {
 		StackableItem otheri = (StackableItem) other;
@@ -53,11 +55,14 @@ public class InfoStringScroll extends Scroll {
 		}
 
 		// scroll can be stacked if they have the same infostring
-		if (has("infostring") && otheri.has("infostring")) {
-			return (get("infostring").equals(otheri.get("infostring")));
-		}
+		String infostring = getInfoString();
+		String oinfostring = otheri.getInfoString();
 
-		// scrolls without infostring can be stacked as well
-		return (!has("infostring") && !otheri.has("infostring"));
+		if(infostring != null) {
+			return infostring.equals(oinfostring);
+		} else {
+			// scrolls without infostring can be stacked as well
+			return (oinfostring == null);
+		}
 	}
 }

@@ -298,7 +298,7 @@ public class PizzaDelivery extends AbstractQuest {
 
 		Item pizza = StendhalRPWorld.get().getRuleManager().getEntityManager()
 				.getItem("pizza");
-		pizza.put("infostring", data.flavor);
+		pizza.setInfoString(data.flavor);
 		pizza.setDescription("You see a " + data.flavor + ".");
 		player.equip(pizza, true);
 
@@ -347,7 +347,7 @@ public class PizzaDelivery extends AbstractQuest {
 		if (player.isEquipped("pizza")) {
 			CustomerData data = customerDB.get(npc.getName());
 			for (Item pizza : player.getAllEquipped("pizza")) {
-				String flavor = pizza.get("infostring");
+				String flavor = pizza.getInfoString();
 				if (data.flavor.equals(flavor)) {
 					player.drop(pizza);
 					// Check whether the player was supposed to deliver the

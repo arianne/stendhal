@@ -85,13 +85,13 @@ public class SummonScroll extends InfoStringScroll {
 		EntityManager manager = StendhalRPWorld.get().getRuleManager().getEntityManager();
 
 		Creature pickedCreature = null;
-		if (has("infostring")) {
 
+		String type = getInfoString();
+
+		if (type != null) {
 			// scroll for special monster
-			String type = get("infostring");
 			pickedCreature = manager.getCreature(type);
 		} else {
-
 			// pick it randomly
 			Collection<Creature> creatures = manager.getCreatures();
 			int magiclevel = 4;
