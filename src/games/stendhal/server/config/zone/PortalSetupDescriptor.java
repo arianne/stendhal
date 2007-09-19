@@ -160,10 +160,10 @@ public class PortalSetupDescriptor extends EntitySetupDescriptor {
 			portal.setPosition(getX(), getY());
 			portal.setIdentifier(getIdentifier());
 
-			Object identifier = getDestinationIdentifier();
+			Object destIdentifier = getDestinationIdentifier();
 
-			if (identifier != null) {
-				portal.setDestination(getDestinationZone(), identifier);
+			if (destIdentifier != null) {
+				portal.setDestination(getDestinationZone(), destIdentifier);
 			}
 
 			if (isReplacing()) {
