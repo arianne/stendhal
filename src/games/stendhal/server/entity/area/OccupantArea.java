@@ -203,13 +203,13 @@ public class OccupantArea extends AreaEntity implements MovementListener, TurnLi
 		 */
 		zone = getZone();
 
-		if(zone != null) {
+		if (zone != null) {
 			zone.removeMovementListener(this);
 		}
 
 		super.update();
 
-		if(zone != null) {
+		if (zone != null) {
 			zone.addMovementListener(this);
 		}
 	}

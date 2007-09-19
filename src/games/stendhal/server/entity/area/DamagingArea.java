@@ -131,7 +131,7 @@ public class DamagingArea extends OccupantArea {
 		/*
 		 * Can't touch a ghost
 		 */
-		if(entity.isGhost()) {
+		if (entity.isGhost()) {
 			return true;
 		}
 

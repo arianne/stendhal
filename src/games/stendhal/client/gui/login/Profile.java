@@ -23,7 +23,6 @@ public class Profile {
 
 	protected String password;
 
-
 	public Profile() {
 		this("", DEFAULT_SERVER_PORT, "", "");
 	}
@@ -43,7 +42,7 @@ public class Profile {
 	/**
 	 * Encode the login profile as a string.
 	 *
-	 * @return	A string excoded form (with newlines).
+	 * @return A string excoded form (with newlines).
 	 */
 	public String encode() {
 		StringBuffer sbuf;
@@ -78,19 +77,18 @@ public class Profile {
 		return user;
 	}
 
-
 	/**
 	 * Decode a login profile from a string.
 	 *
-	 * @param	info	The string encoded profile.
+	 * @param info
+	 *            The string encoded profile.
 	 *
-	 * @return	A login profile.
+	 * @return A login profile.
 	 */
 	public static Profile decode(String info) {
-		String [] params;
+		String[] params;
 		Profile profile;
 		String s;
-
 
 		params = info.split("\n");
 
@@ -99,7 +97,7 @@ public class Profile {
 		/*
 		 * Server Host
 		 */
-		if(params.length > 0) {
+		if (params.length > 0) {
 			s = params[0];
 
 			for (String host : OLD_SERVER_HOSTS) {
@@ -117,7 +115,7 @@ public class Profile {
 		/*
 		 * User
 		 */
-		if(params.length > 1) {
+		if (params.length > 1) {
 			s = params[1];
 
 			if (s.length() != 0) {
@@ -128,7 +126,7 @@ public class Profile {
 		/*
 		 * Password
 		 */
-		if(params.length > 2) {
+		if (params.length > 2) {
 			s = params[2];
 
 			if (s.length() != 0) {
@@ -139,7 +137,7 @@ public class Profile {
 		/*
 		 * Server Port
 		 */
-		if(params.length > 3) {
+		if (params.length > 3) {
 			s = params[3];
 
 			if (s.length() != 0) {
@@ -158,7 +156,6 @@ public class Profile {
 		//
 		// ignore this token for compatibility reasons
 		// just add what every you want behind it
-
 		return profile;
 	}
 
@@ -211,10 +208,9 @@ public class Profile {
 	}
 
 	/**
-	 * Get the label string. This label is used for the profile selection
-	 * list.
+	 * Get the label string. This label is used for the profile selection list.
 	 *
-	 * @return	The label in the form of <em>user</em><strong>@</strong><em>server-host</em>[<strong>:</strong><em>port</em>].
+	 * @return The label in the form of <em>user</em><strong>@</strong><em>server-host</em>[<strong>:</strong><em>port</em>].
 	 */
 	@Override
 	public String toString() {
