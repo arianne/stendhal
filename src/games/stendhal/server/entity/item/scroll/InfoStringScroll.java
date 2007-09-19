@@ -58,7 +58,7 @@ public class InfoStringScroll extends Scroll {
 		String infostring = getInfoString();
 		String oinfostring = otheri.getInfoString();
 
-		if(infostring != null) {
+		if (infostring != null) {
 			return infostring.equals(oinfostring);
 		} else {
 			// scrolls without infostring can be stacked as well

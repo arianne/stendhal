@@ -164,7 +164,7 @@ public class SpeakerNPCFactory implements ConfigurableFactory {
 
 		String clazz = getClass(ctx);
 
-		if(clazz != null) {
+		if (clazz != null) {
 			npc.setEntityClass(clazz);
 		}
 
