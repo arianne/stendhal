@@ -70,7 +70,7 @@ public class Dice extends Item {
 		if (croupierNPC == null) {
 			String name = getInfoString();
 
-			if(name != null) {
+			if (name != null) {
 				croupierNPC = (CroupierNPC) NPCList.get().get(name);
 			}
 		}

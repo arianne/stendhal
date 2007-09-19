@@ -123,7 +123,8 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	 * @param attributes
 	 *            attributes (like attack). may be empty or <code>null</code>
 	 */
-	public Item(String name, String clazz, String subclass, Map<String, String> attributes) {
+	public Item(String name, String clazz, String subclass,
+			Map<String, String> attributes) {
 		this();
 
 		setEntityClass(clazz);
@@ -249,20 +250,19 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 		return false;
 	}
 
-
 	/**
 	 * Set the item's persistence.
 	 *
-	 * @param	persistent	If the item's stats are persistent.
+	 * @param persistent
+	 *            If the item's stats are persistent.
 	 */
 	public void setPersistent(boolean persistent) {
-		if(persistent) {
+		if (persistent) {
 			put("persistent", 1);
-		} else if(has("persistent")) {
+		} else if (has("persistent")) {
 			remove("persistent");
 		}
 	}
-
 
 	/**
 	 * Checks if the item is of type <i>type</i>
@@ -317,13 +317,13 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	}
 
 	/**
-	 * Get the player this is bound to. A bound item can only be used by
-	 * that player.
+	 * Get the player this is bound to. A bound item can only be used by that
+	 * player.
 	 *
-	 * @return	The player name, or <code>null</code>.
+	 * @return The player name, or <code>null</code>.
 	 */
 	public String getBoundTo() {
-		if(has("bound")) {
+		if (has("bound")) {
 			return get("bound");
 		} else {
 			return null;
@@ -334,10 +334,10 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	 * Get the item's infostring. The infostring contains context specific
 	 * information that is used by the implementation.
 	 *
-	 * @return	The infostring.
+	 * @return The infostring.
 	 */
 	public String getInfoString() {
-		if(has("infostring")) {
+		if (has("infostring")) {
 			return get("infostring");
 		} else {
 			return null;
@@ -345,15 +345,15 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	}
 
 	/**
-	 * Bind this item to a player. A bound item can only be used by that
-	 * player.
+	 * Bind this item to a player. A bound item can only be used by that player.
 	 *
-	 * @param	name		The player name, or <code>null</code>.
+	 * @param name
+	 *            The player name, or <code>null</code>.
 	 */
 	public void setBoundTo(String name) {
-		if(name != null) {
+		if (name != null) {
 			put("bound", name);
-		} else if(has("bound")) {
+		} else if (has("bound")) {
 			remove("bound");
 		}
 	}
@@ -362,12 +362,13 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	 * Set the item's infostring. The infostring contains context specific
 	 * information that is used by the implementation.
 	 *
-	 * @param	infostring	The item's infostring.
+	 * @param infostring
+	 *            The item's infostring.
 	 */
 	public void setInfoString(String infostring) {
-		if(infostring != null) {
+		if (infostring != null) {
 			put("infostring", infostring);
-		} else if(has("infostring")) {
+		} else if (has("infostring")) {
 			remove("infostring");
 		}
 	}
@@ -422,7 +423,8 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 		String boundTo = getBoundTo();
 
 		if (boundTo != null) {
-			text = text + " It is a special quest reward for " + boundTo + ", and cannot be used by others.";
+			text = text + " It is a special quest reward for " + boundTo
+					+ ", and cannot be used by others.";
 		}
 
 		if (has("atk")) {
