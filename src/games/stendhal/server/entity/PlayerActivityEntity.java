@@ -116,7 +116,7 @@ public abstract class PlayerActivityEntity extends Entity implements UseListener
 
 		Player player = (Player) entity;
 
-		if(isPrepared(player)) {
+		if (isPrepared(player)) {
 			Activity activity = new Activity(player);
 
 			/*
@@ -216,7 +216,7 @@ public abstract class PlayerActivityEntity extends Entity implements UseListener
 				/*
 				 * Equal in context of same parent entity
 				 */
-				if(getEntity() != activity.getEntity()) {
+				if (getEntity() != activity.getEntity()) {
 					return false;
 				}
 

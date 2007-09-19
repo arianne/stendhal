@@ -101,7 +101,7 @@ public class GoldSource extends PlayerActivityEntity {
 	 */
 	@Override
 	protected boolean isPrepared(final Player player) {
-		if(player.isEquipped(NEEDED_EQUIPMENT)) {
+		if (player.isEquipped(NEEDED_EQUIPMENT)) {
 			return true;
 		}
 
@@ -130,7 +130,7 @@ public class GoldSource extends PlayerActivityEntity {
 	 */
 	@Override
 	protected void onFinished(final Player player, final boolean successful) {
-		if(successful) {
+		if (successful) {
 			Item item = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(itemName);
 
 			player.equip(item, true);

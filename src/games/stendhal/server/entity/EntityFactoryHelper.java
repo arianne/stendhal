@@ -41,8 +41,7 @@ public class EntityFactoryHelper {
 	 * @see-also ConfigurableFactory
 	 */
 	public static Entity create(String className,
-			Map<String, String> parameters, Map<String, String> attributes)
-			throws IllegalArgumentException {
+			Map<String, String> parameters, Map<String, String> attributes) {
 
 		ConfigurableFactory	factory = ConfigurableFactoryHelper.getFactory(className);
 		if (factory == null) {

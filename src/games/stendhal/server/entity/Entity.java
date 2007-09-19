@@ -661,12 +661,12 @@ public abstract class Entity extends RPObject {
 	 *            The y position (in world units).
 	 */
 	public void setPosition(final int x, final int y) {
-		if(this.x != x) {
+		if (this.x != x) {
 			this.x = x;
 			put("x", x);
 		}
 
-		if(this.y != y) {
+		if (this.y != y) {
 			this.y = y;
 			put("y", y);
 		}

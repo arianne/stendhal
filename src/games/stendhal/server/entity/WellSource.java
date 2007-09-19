@@ -123,7 +123,7 @@ public class WellSource extends PlayerActivityEntity {
 	 */
 	@Override
 	protected void onFinished(final Player player, final boolean successful) {
-		if(successful) {
+		if (successful) {
 			String itemName = items[Rand.rand(items.length)];
 			Item item = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(itemName);
 
