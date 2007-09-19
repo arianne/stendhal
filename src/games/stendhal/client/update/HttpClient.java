@@ -42,14 +42,14 @@ public class HttpClient {
 		 *
 		 * @param downloadedBytes bytes downloaded now
 		 */
-		public void onDownloading(int downloadedBytes);
+		void onDownloading(int downloadedBytes);
 
 		/**
 		 * completed download of this file
 		 *
 		 * @param downloadedBytes completed download
 		 */
-		public void onDownloadCompleted(int downloadedBytes);
+		void onDownloadCompleted(int downloadedBytes);
 	}
 
 	/**

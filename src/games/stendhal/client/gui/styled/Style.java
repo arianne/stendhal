@@ -26,26 +26,26 @@ public interface Style {
 	 *
 	 * @return	A texture sprite.
 	 */
-	public Sprite getBackground();
+	Sprite getBackground();
 
 	/**
 	 * Get component border.
 	 *
 	 * @return	A border, or <code>null</code> to use default.
 	 */
-	public Border getBorder();
+	Border getBorder();
 
 	/**
 	 * Get the normal font.
 	 *
 	 * @return	A font.
 	 */
-	public Font getFont();
+	Font getFont();
 
 	/**
 	 * Get the foreground color appropriete for the background texture.
 	 *
 	 * @return	A color.
 	 */
-	public Color getForeground();
+	Color getForeground();
 }
