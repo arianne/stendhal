@@ -56,7 +56,7 @@ public class Jail implements LoginListener {
 			/*
 			 * TODO: Refactor
 			 * If player is not present, we should be able to manipulate the db object.
-			 */ 
+			 */
 
 			if (!release(_name)) {
 				// The player has logged out. Release him when he logs in again.
@@ -88,7 +88,7 @@ public class Jail implements LoginListener {
 	/*
 	 * TODO: Refactor
 	 * Don't use quest for this.
-	 */ 
+	 */
 	// TODO: make this persistent, e.g. by replacing this list with a
 	// quest slot reserved for jail.
 	private List<String> namesOfPlayersToRelease;
@@ -136,7 +136,7 @@ public class Jail implements LoginListener {
 		 * TODO: Refactor
 		 * Instantiate once, use many.
 		 * Zone object is going to be the same during the whole server life.
-		 */ 
+		 */
 		IRPZone.ID zoneid = new IRPZone.ID("-1_semos_jail");
 		if (!world.hasRPZone(zoneid)) {
 			String text = "Zone " + zoneid + " not found";
@@ -163,11 +163,8 @@ public class Jail implements LoginListener {
 				+ " jailed " + criminalName + " for " + minutes
 				+ " minutes. Reason: " + reason + ".");
 
-		/*
-		 * TODO: Refactor
-		 * Creating 2 jailer objects, we could save one.
-		 */ 
-		TurnNotifier.get().dontNotify(new Jailer(criminalName));
+		Jailer jailer = new Jailer(criminalName);
+		TurnNotifier.get().dontNotify(jailer);
 
 		// Set a timer so that the inmate is automatically released after
 		// serving his sentence. We're using the TurnNotifier; we use
@@ -175,7 +172,7 @@ public class Jail implements LoginListener {
 		// NOTE: The player won't be automatically released if the
 		// server is restarted before the player could be released.
 		TurnNotifier.get().notifyInSeconds(minutes * 60,
-				new Jailer(criminalName));
+				jailer);
 	}
 
 	/**
@@ -236,7 +233,7 @@ public class Jail implements LoginListener {
 		 * TODO: Refactor
 		 * Use a better approach.
 		 * We should be able to manipulate the offline object.
-		 */ 
+		 */
 		String name = player.getName();
 		if (namesOfPlayersToRelease.contains(name)) {
 			release(name);
