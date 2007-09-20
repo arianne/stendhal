@@ -10,6 +10,7 @@ import games.stendhal.server.util.TimeUtil;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Arrays;
 
 /**
  * QUEST: Rainbow Beans
@@ -161,7 +162,7 @@ public class RainbowBeans extends AbstractQuest {
 					}
 				});
 
-		// player responds to word 'revive'
+		// player responds to word 'deal'
 		npc.add(ConversationStates.INFORMATION_1, "deal",
 				new SpeakerNPC.ChatCondition() {
 					@Override
@@ -174,10 +175,10 @@ public class RainbowBeans extends AbstractQuest {
 					@Override
 					public void fire(Player player, String text, SpeakerNPC npc) {
 						if (player.getLevel() >= 30) {
-							npc.say("Nosy, aint yer? I deal in rainbow beans. You take some, and who knows where the trip will take yer. You want to buy some? It'll cost you " + REQUIRED_MONEY
-						+ " money.");
+							npc.say("Nosy, aint yer? I deal in rainbow beans. You take some, and who knows where the trip will take yer. It'll cost you " + REQUIRED_MONEY
+						+ " money. You want to buy some?");
 						} else { 
-					                npc.say("Get out of 'ere! An don't you come back till you've got more hairs on that chest!");
+					                npc.say("It's not stuff you're ready for, pal. Now get out of 'ere! An don't you come back till you've got more hairs on that chest!");
 							npc.setCurrentState(ConversationStates.ATTENDING);
 						}
 					}
@@ -207,8 +208,23 @@ public class RainbowBeans extends AbstractQuest {
 		// player is not willing to experiment
 		npc.add(ConversationStates.QUEST_OFFERED,
 				ConversationPhrases.NO_MESSAGES, null,
-				ConversationStates.ATTENDING, "Aight, ain't for everyone. Anythin else you want?",
+				ConversationStates.ATTENDING, "Aight, ain't for everyone. Anythin else you want, you say so.",
 			null);
+
+		// player says 'deal' or asks about beans when NPC is ATTENDING, not just in information state (like if they said no then changed mind and are trying to get him to deal again)
+		npc.add(ConversationStates.ATTENDING,
+			Arrays.asList("deal", "beans", "rainbow_beans", "yes"),				
+			        ConversationStates.ATTENDING, null,
+				new SpeakerNPC.ChatAction() {
+					@Override
+					public void fire(Player player, String text, SpeakerNPC npc) {
+						if (player.getLevel() >= 30) {
+							npc.say("We already talked about this, conversation's moved on now mate, keep up! Try another time.");
+						} else { 
+					                npc.say("That stuff's too strong for you. No chance mate!");
+						}
+					}
+				});
 	}
 
     // TODO: Make player leave zone after 30 minutes

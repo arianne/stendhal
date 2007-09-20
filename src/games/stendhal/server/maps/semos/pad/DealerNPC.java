@@ -9,6 +9,7 @@ import games.stendhal.server.pathfinder.Node;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Arrays;
 
 /**
  * Builds the NPC who deals in rainbow beans
@@ -58,7 +59,8 @@ public class DealerNPC implements ZoneConfigurator {
 			protected void createDialog() {
 				addJob("I think you already know what I do.");
 				addHelp("To be honest mate I can't help you with much, you're better off in the city for that.");
-				addQuest("I'm not really up for that.");
+				addQuest("Haven't got anything for you, pal.");
+				addReply("offer","Ha! The sign on the door's a cover! This is no inn. If you want a drink, you better go back into town.");				
 				addGoodbye("Bye.");
 			}
 		};
