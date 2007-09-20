@@ -25,32 +25,36 @@ import javax.swing.JOptionPane;
  */
 public class Bootstrap {
 
-	private String pathSep = null;
+	private String pathSep;
 
-	private String jarFolder = null;
+	private String jarFolder;
 
-	private Properties bootProp = null;
+	private Properties bootProp;
 
-	private Properties bootPropOrg = null;
+	private Properties bootPropOrg;
 
 	/**
 	 * An URLClassLoader with does load its classes first and only delegates
-	 * missing classes to the parent classloader (default is the other way round)
+	 * missing classes to the parent classloader (default is the other way
+	 * round)
 	 */
 	private static class ButtomUpOrderClassLoader extends URLClassLoader {
 
 		/**
 		 * Creates a buttom up order class loader
 		 *
-		 * @param urls   classpath
-		 * @param parent parent classloader
+		 * @param urls
+		 *            classpath
+		 * @param parent
+		 *            parent classloader
 		 */
 		ButtomUpOrderClassLoader(URL[] urls, ClassLoader parent) {
 			super(urls, parent);
 		}
 
 		@Override
-		protected synchronized Class<?> loadClass(String name, boolean resolve) throws ClassNotFoundException {
+		protected synchronized Class< ? > loadClass(String name, boolean resolve)
+				throws ClassNotFoundException {
 			ClassLoader parent = super.getParent();
 			Class clazz = findLoadedClass(name);
 			if (clazz == null) {
@@ -82,7 +86,8 @@ public class Bootstrap {
 	/**
 	 * saves modifed boot properties to disk
 	 *
-	 * @throws IOException if an IO-error occurs
+	 * @throws IOException
+	 *             if an IO-error occurs
 	 */
 	public void saveBootProp() throws IOException {
 		// only try to save it, if it was changed (so that we do not have to
@@ -102,11 +107,12 @@ public class Bootstrap {
 	void init() {
 		// discover folder for .jar-files
 		pathSep = System.getProperty("file.separator");
-		
-		String stendhal=ClientGameConfiguration.get("GAME_NAME").toLowerCase();
+
+		String stendhal = ClientGameConfiguration.get("GAME_NAME").toLowerCase();
 		System.out.println("GAME: " + stendhal);
-		
-		jarFolder = System.getProperty("user.home") + pathSep + stendhal + pathSep + "jar" + pathSep;
+
+		jarFolder = System.getProperty("user.home") + pathSep + stendhal
+				+ pathSep + "jar" + pathSep;
 		File folder = new File(jarFolder);
 		if (!folder.exists()) {
 			folder.mkdirs();
@@ -118,7 +124,8 @@ public class Bootstrap {
 	 * Sets a dynamic classpath up and returns a Class reference loaded from it
 	 *
 	 * @return ClassLoader object
-	 * @throws Exception if an unexpected error occurs
+	 * @throws Exception
+	 *             if an unexpected error occurs
 	 */
 	ClassLoader createClassloader() throws Exception {
 		// load jar.properties
@@ -156,7 +163,8 @@ public class Bootstrap {
 
 		// Create new class loader which the list of .jar-files as classpath
 		URL[] urlArray = jarFiles.toArray(new URL[jarFiles.size()]);
-		ClassLoader loader = new ButtomUpOrderClassLoader(urlArray, this.getClass().getClassLoader());
+		ClassLoader loader = new ButtomUpOrderClassLoader(urlArray,
+				this.getClass().getClassLoader());
 		return loader;
 	}
 
@@ -165,15 +173,17 @@ public class Bootstrap {
 	 */
 	private class PrivilegedBoot<T> implements PrivilegedAction<T> {
 
-		private String className = null;
+		private String className;
 
-		private String[] args = null;
+		private String[] args;
 
 		/**
 		 * Creates a PrivilagedBoot object
 		 *
-		 * @param className className to boot
-		 * @param args arguments for the main-method
+		 * @param className
+		 *            className to boot
+		 * @param args
+		 *            arguments for the main-method
 		 */
 		public PrivilegedBoot(String className, String[] args) {
 			this.className = className;
@@ -187,14 +197,16 @@ public class Bootstrap {
 			// invoke update handling first
 			try {
 				ClassLoader classLoader = createClassloader();
-				// is this the initial download (or do we already have the program downloaded)?
+				// is this the initial download (or do we already have the
+				// program downloaded)?
 				boolean initialDownload = false;
 				try {
 					classLoader.loadClass(className);
 					classLoader.loadClass("marauroa.common.Logger");
 					classLoader.loadClass("marauroa.client.ClientFramework");
 					if (classLoader.getResource(ClientGameConfiguration.get("GAME_ICON")) == null) {
-						throw new ClassNotFoundException(ClientGameConfiguration.get("GAME_ICON"));
+						throw new ClassNotFoundException(
+								ClientGameConfiguration.get("GAME_ICON"));
 					}
 				} catch (ClassNotFoundException e) {
 					initialDownload = true;
@@ -202,16 +214,19 @@ public class Bootstrap {
 				}
 
 				// start update handling
-				Class<?> clazz = classLoader.loadClass("games.stendhal.client.update.UpdateManager");
-				Method method = clazz.getMethod("process", String.class, Properties.class, Boolean.class);
-				method.invoke(clazz.newInstance(), jarFolder, bootProp, initialDownload);
+				Class< ? > clazz = classLoader.loadClass("games.stendhal.client.update.UpdateManager");
+				Method method = clazz.getMethod("process", String.class,
+						Properties.class, Boolean.class);
+				method.invoke(clazz.newInstance(), jarFolder, bootProp,
+						initialDownload);
 			} catch (SecurityException e) {
 				throw e;
 			} catch (Exception e) {
 				e.printStackTrace(System.err);
-				JOptionPane.showMessageDialog(null,
-				    "Something nasty happened while trying to build classpath for UpdateManager.\r\nPlease open a bug report at http://sf.net/projects/arianne with this error message:\r\n"
-                    + e);
+				JOptionPane.showMessageDialog(
+						null,
+						"Something nasty happened while trying to build classpath for UpdateManager.\r\nPlease open a bug report at http://sf.net/projects/arianne with this error message:\r\n"
+								+ e);
 			}
 		}
 
@@ -222,8 +237,9 @@ public class Bootstrap {
 			try {
 				saveBootProp();
 			} catch (IOException e) {
-				JOptionPane.showMessageDialog(null,
-				        "Sorry, an error occured while downloading the update. Could not write bootProperties");
+				JOptionPane.showMessageDialog(
+						null,
+						"Sorry, an error occured while downloading the update. Could not write bootProperties");
 			}
 		}
 
@@ -236,7 +252,7 @@ public class Bootstrap {
 
 			try {
 				ClassLoader classLoader = createClassloader();
-				Class<?> clazz = classLoader.loadClass(className);
+				Class< ? > clazz = classLoader.loadClass(className);
 				Method method = clazz.getMethod("main", args.getClass());
 				method.invoke(null, (Object) args);
 			} catch (Throwable e) {
@@ -261,16 +277,19 @@ public class Bootstrap {
 	 * @return true, if there is some kind of signature; false otherwise
 	 */
 	private boolean isSigned() {
-		URL url = Bootstrap.class.getClassLoader().getResource(ClientGameConfiguration.get("UPDATE_SIGNER_FILE_NAME"));
+		URL url = Bootstrap.class.getClassLoader().getResource(
+				ClientGameConfiguration.get("UPDATE_SIGNER_FILE_NAME"));
 		return url != null;
 	}
 
 	/**
-	 * Starts the main-method of specified class after
-	 * dynamically building the classpath
+	 * Starts the main-method of specified class after dynamically building the
+	 * classpath
 	 *
-	 * @param className name of class with "main"-method
-	 * @param args command line arguments
+	 * @param className
+	 *            name of class with "main"-method
+	 * @param args
+	 *            command line arguments
 	 */
 	public void boot(String className, String[] args) {
 		try {
@@ -282,13 +301,16 @@ public class Bootstrap {
 		boolean startSelfBuild = true;
 		if (isSigned()) {
 			startSelfBuild = false;
-			// official client, look for updates and integrate additinal .jar files
+			// official client, look for updates and integrate additinal .jar
+			// files
 			System.err.println("Integrating old updates and looking for new ones");
 			try {
-				AccessController.doPrivileged(new PrivilegedBoot<Object>(className, args));
+				AccessController.doPrivileged(new PrivilegedBoot<Object>(
+						className, args));
 			} catch (SecurityException e) {
 				// partly update
-				System.err.println("Got SecurityException most likly because singed jars files from the official distribution have been included into a self build client." + e);
+				System.err.println("Got SecurityException most likly because singed jars files from the official distribution have been included into a self build client."
+						+ e);
 				startSelfBuild = true;
 			}
 		}
@@ -297,13 +319,14 @@ public class Bootstrap {
 			// self build client, do not try to update it
 			System.err.println("Self build client, starting without update .jar-files");
 			try {
-				Class<?> clazz = Class.forName(className);
+				Class< ? > clazz = Class.forName(className);
 				Method method = clazz.getMethod("main", args.getClass());
 				method.invoke(null, (Object) args);
 			} catch (Exception err) {
 				err.printStackTrace(System.err);
 				JOptionPane.showMessageDialog(null,
-				        "Something nasty happened while trying to start your self build client: " + err);
+						"Something nasty happened while trying to start your self build client: "
+								+ err);
 			}
 		}
 	}
@@ -311,7 +334,8 @@ public class Bootstrap {
 	/**
 	 * Handles exceptions during program invocation
 	 *
-	 * @param t exception
+	 * @param t
+	 *            exception
 	 */
 	void unexspectedErrorHandling(Throwable t) {
 		// unwrap chained expections
@@ -323,21 +347,28 @@ public class Bootstrap {
 		e.printStackTrace();
 
 		if (e instanceof OutOfMemoryError) {
-			JOptionPane.showMessageDialog(null, "Sorry, an OutOfMemoryError occured. Please restart Stendhal.");
+			JOptionPane.showMessageDialog(null,
+					"Sorry, an OutOfMemoryError occured. Please restart Stendhal.");
 		} else if (e instanceof LinkageError) {
-			int res = JOptionPane.showConfirmDialog(null, "Sorry an error occured because of an inconsistant update state. (Note: Krakow Mobile - a game derived of Stendhal - is known to have a bug which causes their updates to be merged into Stendhal). Delete update files so that they are downloaded again after you restart Stendhal?", 
-					"Stendhal", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+			int res = JOptionPane.showConfirmDialog(
+					null,
+					"Sorry an error occured because of an inconsistant update state. (Note: Krakow Mobile - a game derived of Stendhal - is known to have a bug which causes their updates to be merged into Stendhal). Delete update files so that they are downloaded again after you restart Stendhal?",
+					"Stendhal", JOptionPane.YES_NO_OPTION,
+					JOptionPane.QUESTION_MESSAGE);
 			if (res == JOptionPane.YES_OPTION) {
 				bootProp.remove("load");
 				try {
 					saveBootProp();
 				} catch (IOException e1) {
-					JOptionPane.showMessageDialog(null, "Could not write jar.properties");
+					JOptionPane.showMessageDialog(null,
+							"Could not write jar.properties");
 				}
 			}
 		} else {
-			JOptionPane.showMessageDialog(null, "An unexspected error occured.\r\nPlease open a bug report at http://sf.net/projects/arianne with this error message:\r\n"
-			                        + e);
+			JOptionPane.showMessageDialog(
+					null,
+					"An unexspected error occured.\r\nPlease open a bug report at http://sf.net/projects/arianne with this error message:\r\n"
+							+ e);
 		}
 		System.exit(1);
 	}

@@ -246,7 +246,7 @@ public class Creature extends NPC {
 
 		setLevel(level);
 
-		if(Level.getLevel(xp) != level) {
+		if (Level.getLevel(xp) != level) {
 			logger.debug("Wrong level for xp [" + name + "]: " + xp + " -> " + Level.getLevel(xp) + " (!" + level + ")");
 		}
 

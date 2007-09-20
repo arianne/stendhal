@@ -16,13 +16,13 @@ import java.util.Properties;
  */
 public class UpdateManager {
 
-	private String jarFolder ;
+	private String jarFolder;
 
-	private Properties bootProp ;
+	private Properties bootProp;
 
-	private String serverFolder ;
+	private String serverFolder;
 
-	private Properties updateProp ;
+	private Properties updateProp;
 
 	private UpdateProgressBar updateProgressBar;
 
@@ -31,24 +31,32 @@ public class UpdateManager {
 	 * information about the files available for update.
 	 */
 	private void init(boolean initialDownload) {
-		String updatePropertiesFile = ClientGameConfiguration.get("UPDATE_SERVER_FOLDER") + "/update.properties";
+		String updatePropertiesFile = ClientGameConfiguration.get("UPDATE_SERVER_FOLDER")
+				+ "/update.properties";
 		if (bootProp != null) {
-			serverFolder = bootProp.getProperty("server.folder", ClientGameConfiguration.get("UPDATE_SERVER_FOLDER"))
-			        + "/";
-			updatePropertiesFile = bootProp.getProperty("server.update-prop", serverFolder + "update.properties");
+			serverFolder = bootProp.getProperty("server.folder",
+					ClientGameConfiguration.get("UPDATE_SERVER_FOLDER"))
+					+ "/";
+			updatePropertiesFile = bootProp.getProperty("server.update-prop",
+					serverFolder + "update.properties");
 		}
-		HttpClient httpClient = new HttpClient(updatePropertiesFile, initialDownload);
+		HttpClient httpClient = new HttpClient(updatePropertiesFile,
+				initialDownload);
 		updateProp = httpClient.fetchProperties();
 	}
 
 	/**
 	 * Processes the update
 	 *
-	 * @param jarFolder folder where the .jar files are stored
-	 * @param bootProp  boot properties
-	 * @param initialDownload true, if only the small starter.jar is available
+	 * @param jarFolder
+	 *            folder where the .jar files are stored
+	 * @param bootProp
+	 *            boot properties
+	 * @param initialDownload
+	 *            true, if only the small starter.jar is available
 	 */
-	public void process(String jarFolder, Properties bootProp, Boolean initialDownload) {
+	public void process(String jarFolder, Properties bootProp,
+			Boolean initialDownload) {
 		if (!Boolean.parseBoolean(ClientGameConfiguration.get("UPDATE_ENABLE_AUTO_UPDATE"))) {
 			System.out.println("Automatic Update disabled");
 			return;
@@ -58,8 +66,9 @@ public class UpdateManager {
 		init(initialDownload.booleanValue());
 		if (updateProp == null) {
 			if (initialDownload.booleanValue()) {
-				UpdateGUIDialogs.messageBox("Sorry, we need to download additional files from " + serverFolder
-				        + " but that server is not reachable at the moment. Please try again later.");
+				UpdateGUIDialogs.messageBox("Sorry, we need to download additional files from "
+						+ serverFolder
+						+ " but that server is not reachable at the moment. Please try again later.");
 				System.exit(1);
 			}
 			return;
@@ -68,63 +77,63 @@ public class UpdateManager {
 		if (initialDownload.booleanValue()) {
 			versionState = VersionState.INITIAL_DOWNLOAD;
 		} else {
-			String versionStateString = updateProp.getProperty("version." + Version.VERSION);
+			String versionStateString = updateProp.getProperty("version."
+					+ Version.VERSION);
 			versionState = VersionState.getFromString(versionStateString);
 		}
 
 		switch (versionState) {
-			case CURRENT:
-				System.out.println("Current Version");
-				break;
+		case CURRENT:
+			System.out.println("Current Version");
+			break;
 
-			case ERROR:
-				UpdateGUIDialogs.messageBox("An error occured while trying to update");
-				break;
+		case ERROR:
+			UpdateGUIDialogs.messageBox("An error occured while trying to update");
+			break;
 
-			case OUTDATED:
-				UpdateGUIDialogs
-				        .messageBox("Sorry, your client is too outdated for the update to work. Please download the current version.");
-				break;
+		case OUTDATED:
+			UpdateGUIDialogs.messageBox("Sorry, your client is too outdated for the update to work. Please download the current version.");
+			break;
 
-			case INITIAL_DOWNLOAD:
-				List<String> files = getFilesForFirstDownload();
-				String version = updateProp.getProperty("init.version");
-				// just check if there is already an update for the inital version
-				if (version != null) {
-					files.addAll(getFilesToUpdate(version));
+		case INITIAL_DOWNLOAD:
+			List<String> files = getFilesForFirstDownload();
+			String version = updateProp.getProperty("init.version");
+			// just check if there is already an update for the inital version
+			if (version != null) {
+				files.addAll(getFilesToUpdate(version));
+			}
+			List<String> filesToAddToClasspath = new ArrayList<String>(files);
+			removeAlreadyExistingFiles(files);
+			int updateSize = getSizeOfFilesToUpdate(files);
+			if (UpdateGUIDialogs.askForDownload(updateSize, false)) {
+				if (downloadFiles(files, updateSize)) {
+					updateClasspathConfig(filesToAddToClasspath);
 				}
-				List<String> filesToAddToClasspath = new ArrayList<String>(files);
-				removeAlreadyExistingFiles(files);
-				int updateSize = getSizeOfFilesToUpdate(files);
-				if (UpdateGUIDialogs.askForDownload(updateSize, false)) {
-					if (downloadFiles(files, updateSize)) {
-						updateClasspathConfig(filesToAddToClasspath);
-					}
-				} else {
-					System.exit(1);
+			} else {
+				System.exit(1);
+			}
+			break;
+
+		case UPDATE_NEEDED:
+			version = Version.VERSION;
+			files = getFilesToUpdate(version);
+			filesToAddToClasspath = new ArrayList<String>(files);
+			removeAlreadyExistingFiles(files);
+			updateSize = getSizeOfFilesToUpdate(files);
+			if (UpdateGUIDialogs.askForDownload(updateSize, true)) {
+				if (downloadFiles(files, updateSize)) {
+					updateClasspathConfig(filesToAddToClasspath);
 				}
-				break;
+			}
+			break;
 
-			case UPDATE_NEEDED:
-				version = Version.VERSION;
-				files = getFilesToUpdate(version);
-				filesToAddToClasspath = new ArrayList<String>(files);
-				removeAlreadyExistingFiles(files);
-				updateSize = getSizeOfFilesToUpdate(files);
-				if (UpdateGUIDialogs.askForDownload(updateSize, true)) {
-					if (downloadFiles(files, updateSize)) {
-						updateClasspathConfig(filesToAddToClasspath);
-					}
-				}
-				break;
+		case UNKOWN:
+			System.out.println("Unkown state of update");
+			break;
 
-			case UNKOWN:
-				System.out.println("Unkown state of update");
-				break;
-
-			default:
-				System.out.println("Internal Error on Update");
-				break;
+		default:
+			System.out.println("Internal Error on Update");
+			break;
 
 		}
 	}
@@ -133,7 +142,8 @@ public class UpdateManager {
 	 * Removes all files from the download list which have already been
 	 * downloaded.
 	 *
-	 * @param files list of files to check and clean
+	 * @param files
+	 *            list of files to check and clean
 	 */
 	private void removeAlreadyExistingFiles(List<String> files) {
 		Iterator<String> itr = files.iterator();
@@ -145,7 +155,8 @@ public class UpdateManager {
 			}
 			try {
 				// TODO: use hash of files instead of size
-				long sizeShould = Integer.parseInt(updateProp.getProperty("file-size." + file, ""));
+				long sizeShould = Integer.parseInt(updateProp.getProperty(
+						"file-size." + file, ""));
 				long sizeIs = new File(jarFolder + file).length();
 				if (sizeShould == sizeIs) {
 					itr.remove();
@@ -175,7 +186,8 @@ public class UpdateManager {
 	/**
 	 * returns the list of all files to download for transitive update
 	 *
-	 * @param startVersion the version to start the path at
+	 * @param startVersion
+	 *            the version to start the path at
 	 * @return list of files
 	 */
 	private List<String> getFilesToUpdate(String startVersion) {
@@ -200,14 +212,17 @@ public class UpdateManager {
 	/**
 	 * calculates the sum of the file sizes
 	 *
-	 * @param files list of files
+	 * @param files
+	 *            list of files
 	 * @return total size of download
 	 */
 	private int getSizeOfFilesToUpdate(List<String> files) {
 		int res = 0;
 		for (String file : files) {
 			try {
-				res = res + Integer.parseInt(updateProp.getProperty("file-size." + file, ""));
+				res = res
+						+ Integer.parseInt(updateProp.getProperty("file-size."
+								+ file, ""));
 			} catch (NumberFormatException e) {
 				e.printStackTrace(System.err);
 			}
@@ -218,8 +233,10 @@ public class UpdateManager {
 	/**
 	 * Downloads the files listed for update
 	 *
-	 * @param files list of files to download
-	 * @param size file size
+	 * @param files
+	 *            list of files to download
+	 * @param size
+	 *            file size
 	 * @return true on success, false otherwise
 	 */
 	private boolean downloadFiles(List<String> files, int size) {
@@ -230,15 +247,21 @@ public class UpdateManager {
 			HttpClient httpClient = new HttpClient(serverFolder + file, true);
 			httpClient.setProgressListener(updateProgressBar);
 			if (!httpClient.fetchFile(jarFolder + file)) {
-				UpdateGUIDialogs.messageBox("Sorry, an error occured while downloading the update at file " + file);
+				UpdateGUIDialogs.messageBox("Sorry, an error occured while downloading the update at file "
+						+ file);
 				return false;
 			}
 			try {
 				File fileObj = new File(jarFolder + file);
-				int shouldSize = Integer.parseInt(updateProp.getProperty("file-size." + file, ""));
+				int shouldSize = Integer.parseInt(updateProp.getProperty(
+						"file-size." + file, ""));
 				if (fileObj.length() != shouldSize) {
 					UpdateGUIDialogs.messageBox("Sorry, an error occured while downloading the update. File size of "
-					        + file + " does not match. We got " + fileObj.length() + " but it should be " + shouldSize);
+							+ file
+							+ " does not match. We got "
+							+ fileObj.length()
+							+ " but it should be "
+							+ shouldSize);
 					updateProgressBar.dispose();
 					return false;
 				}

@@ -82,9 +82,8 @@ public class UseAction implements ActionListener {
 
 				invokeUseListener(player, object);
 			}
-		}
-		// When use is cast over something on the floor
-		else if (action.has("target")) {
+		} else if (action.has("target")) {
+			//	use is cast over something on the floor
 			int usedObject = action.getInt("target");
 
 			StendhalRPZone zone = player.getZone();
@@ -125,7 +124,7 @@ public class UseAction implements ActionListener {
 			// Make sure nobody uses items bound to someone else.
 			if (listener instanceof Item) {
 				Item item = (Item) listener;
-				if (item.has("bound") && ! item.get("bound").equals(player.getName())) {
+				if (item.has("bound") && !item.get("bound").equals(player.getName())) {
 					player.sendPrivateText("This " + ((Item) listener).getName() + " is a special reward for " + item.get("bound")
 							+ ". You do not deserve to use it.");
 					return;

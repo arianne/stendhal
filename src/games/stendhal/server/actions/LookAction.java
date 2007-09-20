@@ -87,9 +87,8 @@ public class LookAction implements ActionListener {
 			player.sendPrivateText(entity.describe());
 			world.modify(player);
 			return;
-		}
-		// When use is cast over something on the floor
-		else if (action.has("target")) {
+		} else if (action.has("target")) {
+			//	use is cast over something on the floor
 			int usedObject = action.getInt("target");
 
 			StendhalRPZone zone = player.getZone();

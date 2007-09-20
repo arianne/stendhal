@@ -145,7 +145,7 @@ public class Base64 {
 				accum <<= 6; // bits shift up by 6 each time thru
 				shift += 6; // loop, with new bits being put in
 				accum |= value; // at the bottom.
-				if (shift >= 8){ // whenever there are 8 or more shifted in,
+				if (shift >= 8) { // whenever there are 8 or more shifted in,
 					shift -= 8; // write them out (from the top, leaving any
 					out[index++] = // excess at the bottom for next iteration.
 					(byte) ((accum >> shift) & 0xff);

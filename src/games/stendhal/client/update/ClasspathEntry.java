@@ -9,7 +9,7 @@ public class ClasspathEntry implements Comparable<ClasspathEntry> {
 
 	private String filename;
 
-	private String type ;
+	private String type;
 
 	private String version;
 
