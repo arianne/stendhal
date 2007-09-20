@@ -209,7 +209,7 @@ k*/ground/water/water_corners.png
 ./ground/water/water_shimmery.png
 k*/ground/water/waterfall.png
 k*/ground/water/waterfall_2.png
-./ground/water/whirlpool.png
+k*/ground/water/whirlpool.png
 ./item/book.png // big one is by kiheru
 b*/item/brush.png
 ./item/button.png
