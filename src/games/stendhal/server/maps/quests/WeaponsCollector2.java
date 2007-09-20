@@ -16,14 +16,17 @@ import java.util.List;
  * QUEST: The Weapons Collector Part 2
  * <p>
  * PARTICIPANTS:
- * <ul><li> Balduin, a hermit living on a mountain between Semos and Ados
+ * <ul>
+ * <li> Balduin, a hermit living on a mountain between Semos and Ados
  * </ul>
  * <p>
- * STEPS: <ul>
+ * STEPS:
+ * <ul>
  * <li> Balduin asks you for some new weapons.
  * <li> You get one of the weapons somehow, e.g. by killing a monster.
  * <li> You bring the weapon up the mountain and give it to Balduin.
- * <li> Repeat until Balduin received all weapons. (Of course you can bring up several weapons at the same time.)
+ * <li> Repeat until Balduin received all weapons. (Of course you can bring up
+ * several weapons at the same time.)
  * <li> Balduin gives you a pair of swords in exchange.
  * </ul>
  * <p>
@@ -72,23 +75,20 @@ public class WeaponsCollector2 extends AbstractQuest {
 		SpeakerNPC npc = npcs.get("Balduin");
 
 		// player says hi before starting the quest
-		npc
-				.add(
-						ConversationStates.IDLE,
-						ConversationPhrases.GREETING_MESSAGES,
-						new SpeakerNPC.ChatCondition() {
-							@Override
-							public boolean fire(Player player, String text,
-									SpeakerNPC engine) {
-								return player
-										.isQuestCompleted("weapons_collector")
-										&& !player
-												.hasQuest("weapons_collector2");
-							}
-						},
-						ConversationStates.ATTENDING,
-						"Greetings, old friend. If you are willing, I have another #quest for you.",
-						null);
+		npc.add(
+				ConversationStates.IDLE,
+				ConversationPhrases.GREETING_MESSAGES,
+				new SpeakerNPC.ChatCondition() {
+					@Override
+					public boolean fire(Player player, String text,
+							SpeakerNPC engine) {
+						return player.isQuestCompleted("weapons_collector")
+								&& !player.hasQuest("weapons_collector2");
+					}
+				},
+				ConversationStates.ATTENDING,
+				"Greetings, old friend. If you are willing, I have another #quest for you.",
+				null);
 
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
@@ -105,13 +105,10 @@ public class WeaponsCollector2 extends AbstractQuest {
 					public void fire(Player player, String text,
 							SpeakerNPC engine) {
 						if (!player.isQuestCompleted("weapons_collector2")) {
-							engine
-									.say("Recent adventurers to these parts describe strange new creatures with weapons I have never seen. Would you fight these creatures and bring their weapons to me?");
+							engine.say("Recent adventurers to these parts describe strange new creatures with weapons I have never seen. Would you fight these creatures and bring their weapons to me?");
 						} else {
-							engine
-									.say("My collection is now complete! Thanks again.");
-							engine
-									.setCurrentState(ConversationStates.ATTENDING);
+							engine.say("My collection is now complete! Thanks again.");
+							engine.setCurrentState(ConversationStates.ATTENDING);
 						}
 					}
 				});
@@ -124,8 +121,7 @@ public class WeaponsCollector2 extends AbstractQuest {
 					@Override
 					public void fire(Player player, String text,
 							SpeakerNPC engine) {
-						engine
-								.say("Wonderful. Now, the #list is small but the risk may be great. If you return safely, I have another reward for you.");
+						engine.say("Wonderful. Now, the #list is small but the risk may be great. If you return safely, I have another reward for you.");
 						player.setQuest("weapons_collector2", "");
 					}
 				});
@@ -144,8 +140,7 @@ public class WeaponsCollector2 extends AbstractQuest {
 					public boolean fire(Player player, String text,
 							SpeakerNPC engine) {
 						return player.hasQuest("weapons_collector2")
-								&& !player
-										.isQuestCompleted("weapons_collector2");
+								&& !player.isQuestCompleted("weapons_collector2");
 					}
 				}, ConversationStates.QUESTION_2, null,
 				new SpeakerNPC.ChatAction() {
@@ -193,46 +188,37 @@ public class WeaponsCollector2 extends AbstractQuest {
 							if (missing.contains(text)) {
 								if (player.drop(text)) {
 									// register weapon as done
-									String doneText = player
-											.getQuest("weapons_collector2");
+									String doneText = player.getQuest("weapons_collector2");
 									player.setQuest("weapons_collector2",
 											doneText + ";" + text);
 									// check if the player has brought all
 									// weapons
 									missing = missingWeapons(player, true);
 									if (missing.size() > 0) {
-										engine
-												.say("Thank you very much! Do you have anything more for me?");
+										engine.say("Thank you very much! Do you have anything more for me?");
 									} else {
-										Item lhandsword = StendhalRPWorld.get()
-												.getRuleManager()
-												.getEntityManager().getItem(
-														"l_hand_sword");
+										Item lhandsword = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
+												"l_hand_sword");
 										lhandsword.setBoundTo(player.getName());
 										player.equip(lhandsword, true);
-										Item rhandsword = StendhalRPWorld.get()
-												.getRuleManager()
-												.getEntityManager().getItem(
-														"r_hand_sword");
+										Item rhandsword = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
+												"r_hand_sword");
 										rhandsword.setBoundTo(player.getName());
 										player.equip(rhandsword, true);
 										player.addXP(3000);
-										engine
-												.say("At last, my collection is complete! Thank you very much; here, take this pair of swords in exchange!");
+										engine.say("At last, my collection is complete! Thank you very much; here, take this pair of swords in exchange!");
 										player.setQuest("weapons_collector2",
 												"done");
 										player.notifyWorldAboutChanges();
 										engine.setCurrentState(ConversationStates.ATTENDING);
 									}
 								} else {
-									engine
-											.say("I may be old, but I'm not senile, and you clearly don't have "
-													+ Grammar.a_noun(text)
-													+ ". What do you really have for me?");
+									engine.say("I may be old, but I'm not senile, and you clearly don't have "
+											+ Grammar.a_noun(text)
+											+ ". What do you really have for me?");
 								}
 							} else {
-								engine
-										.say("I already have that one. Do you have any other weapon for me?");
+								engine.say("I already have that one. Do you have any other weapon for me?");
 							}
 						}
 					});
@@ -255,8 +241,7 @@ public class WeaponsCollector2 extends AbstractQuest {
 					public boolean fire(Player player, String text,
 							SpeakerNPC engine) {
 						return player.hasQuest("weapons_collector2")
-								&& !player
-										.isQuestCompleted("weapons_collector2");
+								&& !player.isQuestCompleted("weapons_collector2");
 					}
 				},
 				ConversationStates.ATTENDING,
