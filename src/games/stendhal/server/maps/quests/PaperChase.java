@@ -8,7 +8,7 @@ import java.util.StringTokenizer;
 
 /**
  * A kind of paper chase
- * 
+ *
  * @author hendrik
  */
 public class PaperChase extends AbstractQuest {
@@ -21,8 +21,8 @@ public class PaperChase extends AbstractQuest {
 			// inactive
 			"Margaret", "Balduin",
 			// TODO: load groovy before quest are inited (or convert
-			// deathmatch_entry.groovy to java) "Deathmatch Recruiter", // TODO:
-			// ignore if groovy is inactive
+			// deathmatch_entry.groovy to java) "Deathmatch Recruiter",
+			// TODO: ignore if groovy is inactive
 			"Katinka", "Haizen", "Bario", "Ceryl", "Nishiya", "Marcus",
 			"Jynath", "Loretta", "Fidorea" };
 
@@ -78,7 +78,7 @@ public class PaperChase extends AbstractQuest {
 	/**
 	 * Adds the task to the specified NPC. Note that the start and end of this
 	 * quest have to be coded specially.
-	 * 
+	 *
 	 * @param idx
 	 *            index of way point
 	 */

@@ -12,13 +12,13 @@ import java.util.List;
 
 /**
  * QUEST: Speak with Hackim
- * 
+ *
  * PARTICIPANTS: - Hackim Easso, the blacksmith's assistant
- * 
+ *
  * STEPS: - Talk to Hackim to activate the quest and keep speaking with Hackim.
- * 
+ *
  * REWARD: - 10 XP - 5 gold coins
- * 
+ *
  * REPETITIONS: - As much as wanted, but you only get the reward once.
  */
 public class MeetHackim extends AbstractQuest {
@@ -109,7 +109,6 @@ public class MeetHackim extends AbstractQuest {
 								ConversationStates.INFORMATION_1,
 								ConversationStates.INFORMATION_2,
 								ConversationStates.INFORMATION_3 },
-						// TODO
 						"no",
 						null,
 						ConversationStates.ATTENDING,

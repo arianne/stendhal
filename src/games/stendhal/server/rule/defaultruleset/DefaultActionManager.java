@@ -23,7 +23,7 @@ import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
 /**
- * 
+ *
  * @author Matthias Totz
  */
 public class DefaultActionManager implements ActionManager {
@@ -48,7 +48,7 @@ public class DefaultActionManager implements ActionManager {
 
 	/**
 	 * returns the name of the slot in which the entity can equip the item.
-	 * 
+	 *
 	 * @return the slot name for the item or null if there is no matching slot
 	 *         in the entity
 	 */
@@ -57,7 +57,7 @@ public class DefaultActionManager implements ActionManager {
 		List<String> slotNames = item.getPossibleSlots();
 
 		if (item instanceof Stackable) {
-			// first try to put the item on an existing stack 
+			// first try to put the item on an existing stack
 			Stackable stackEntity = (Stackable) item;
 			for (String slotName : slotNames) {
 				if (entity.hasSlot(slotName)) {
@@ -93,8 +93,7 @@ public class DefaultActionManager implements ActionManager {
 			return false;
 		}
 
-		// TODO:
-		// // recheck if the item can be equipped
+		// TODO: recheck if the item can be equipped
 		// if (!item.getPossibleSlots().contains(slotName))
 		// {
 		// logger.warn("tried to equip the item ["+item.getName()+"] in a

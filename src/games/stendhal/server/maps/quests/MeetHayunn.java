@@ -12,11 +12,11 @@ import java.util.List;
 
 /**
  * QUEST: Speak with Hayunn PARTICIPANTS: - Hayunn Naratha
- * 
+ *
  * STEPS: - Talk to Hayunn to activate the quest and keep speaking with Hayunn.
- * 
+ *
  * REWARD: - 10 XP - 5 gold coins
- * 
+ *
  * REPETITIONS: - As much as wanted, but you only get the reward once.
  */
 public class MeetHayunn extends AbstractQuest {
@@ -142,14 +142,12 @@ public class MeetHayunn extends AbstractQuest {
 						ConversationStates.INFORMATION_3,
 						ConversationStates.INFORMATION_4,
 						ConversationStates.INFORMATION_6 },
-				// TODO
 				"no", null, ConversationStates.ATTENDING,
 				"Oh well, I'm sure someone else will stop by for a chat soon.",
 				null);
 
 		npc.add(new int[] { ConversationStates.INFORMATION_2,
 				ConversationStates.INFORMATION_5 },
-				// TODO
 				"yes", null, ConversationStates.ATTENDING,
 				"Hmm. You think I have nothing to teach you, eh? I see.", null);
 	}

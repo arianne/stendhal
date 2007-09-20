@@ -71,9 +71,8 @@ static final Logger logger = Log4J.getLogger(CreatureSpawner.class);
 	/**
 	 * be nice to the player and give him his daily quest creature
 	 * if he hasn't found it yet
-	 * @param engine TODO
-	 * @param player TODO
-	 * @param dmInfo
+	 * @param player the player taking the Deathmatch
+	 * @param dmInfo the Deathmatch's Info
 	 */
 	void spawnDailyMonster(Player player, DeathmatchInfo dmInfo) {
 		String dailyInfo = player.getQuest("daily");
@@ -93,7 +92,6 @@ static final Logger logger = Log4J.getLogger(CreatureSpawner.class);
 	/**
 	 * Calculate which type of creature should be spawned next
 	 *
-	 * @param engine TODO
 	 * @param questLevel level of creature / deathmatch status
 	 * @return creature template
 	 */
@@ -123,12 +121,9 @@ static final Logger logger = Log4J.getLogger(CreatureSpawner.class);
 	/**
 	 * creates a new creature of the named type and adds it to the world
 	 *
-	 * @param engine TODO
 	 * @param template Creature to create
-	 * @param x x-pos
-	 * @param y y-pos
-	 * @param player TODO
-	 * @param deathmatchInfo TODO
+	 * @param player the player who takes the deatchmatch
+	 * @param deathmatchInfo the deatchmatch's info
 	 * @return Creature or <code>null</code> in case it cannot be created
 	 */
 	DeathMatchCreature spawnNewCreature(Creature template, Player player, DeathmatchInfo deathmatchInfo) {
