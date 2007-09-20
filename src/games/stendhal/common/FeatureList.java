@@ -55,11 +55,12 @@ public class FeatureList {
 		pos = 0;
 
 		while (pos < len) {
-			if ((cpos = encoded.indexOf(':', pos)) == -1) {
+			cpos = encoded.indexOf(':', pos);
+			if (cpos == -1) {
 				cpos = len;
 			}
-
-			if (((epos = encoded.indexOf('=', pos)) == -1) || (epos > cpos)) {
+			epos = encoded.indexOf('=', pos);
+			if ((epos == -1) || (epos > cpos)) {
 				epos = cpos;
 			}
 
