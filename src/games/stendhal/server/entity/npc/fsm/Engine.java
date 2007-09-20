@@ -37,6 +37,7 @@ public class Engine {
 	 * Creates a new FSM.
 	 *
 	 * @param speakerNPC the speaker npc for which this FSM is created
+	 * must not be null
 	 */
 	public Engine(SpeakerNPC speakerNPC) {
 		if (speakerNPC == null) {
