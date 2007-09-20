@@ -15,6 +15,9 @@ class DeathmatchState {
 
 	private long date;
 
+	protected DeathmatchState() {
+	};
+
 	/**
 	 * creates a start state
 	 *
@@ -35,7 +38,8 @@ class DeathmatchState {
 	/**
 	 * parses the questString
 	 *
-	 * @param questString quest string
+	 * @param questString
+	 *            quest string
 	 * @return start state
 	 */
 	public static DeathmatchState createFromQuestString(String questString) {
@@ -59,7 +63,8 @@ class DeathmatchState {
 	/**
 	 * Sets the quest level
 	 *
-	 * @param level quest level
+	 * @param level
+	 *            quest level
 	 */
 	void setQuestLevel(int level) {
 		this.level = level;
@@ -77,7 +82,8 @@ class DeathmatchState {
 	/**
 	 * sets the current lifecycle state
 	 *
-	 * @param lifecycleState DeathmatchLifecycle
+	 * @param lifecycleState
+	 *            DeathmatchLifecycle
 	 */
 	void setLifecycleState(DeathmatchLifecycle lifecycleState) {
 		this.lifecycleState = lifecycleState;
@@ -104,5 +110,9 @@ class DeathmatchState {
 	 */
 	public void refreshTimestamp() {
 		date = new Date().getTime();
+	}
+
+	public long getStateTime() {
+		return date;
 	}
 }

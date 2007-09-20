@@ -1,10 +1,8 @@
 package games.stendhal.server.maps.deathmatch;
 
 import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.Area;
-
-import java.util.LinkedList;
-import java.util.List;
 
 /**
  * Stores information about the place of the deathmatch.
@@ -13,23 +11,26 @@ import java.util.List;
  */
 public class DeathmatchInfo {
 
-	private static List<DeathmatchInfo> deathmatches = new LinkedList<DeathmatchInfo>();
+	private final DeathmatchArea arena;
 
-	private final Area arena;
-
+	private final Spot entranceSpot;
 
 	private final StendhalRPZone zone;
 
 	/**
 	 * Creates a new DeathmatchInfo
 	 *
-	 * @param arena    combat area
-	 * @param zone     zone
+	 * @param arena
+	 *            combat area
+	 * @param zone
+	 *            zone
 	 */
-	public DeathmatchInfo(final Area arena, final StendhalRPZone zone) {
+	public DeathmatchInfo(final Area arena, final StendhalRPZone zone,
+			final Spot entrance) {
 		super();
-		this.arena = arena;
+		this.arena = new DeathmatchArea(arena);
 		this.zone = zone;
+		this.entranceSpot = entrance;
 	}
 
 	/**
@@ -38,7 +39,7 @@ public class DeathmatchInfo {
 	 * @return combat area
 	 */
 	public Area getArena() {
-		return arena;
+		return arena.getArea();
 	}
 
 	/**
@@ -50,22 +51,11 @@ public class DeathmatchInfo {
 		return zone;
 	}
 
-
-	/**
-	 * Registers a new deathmatch
-	 *
-	 * @param deathmatchInfo deathmatchInfo
-	 */
-	public static void add(DeathmatchInfo deathmatchInfo) {
-		deathmatches.add(deathmatchInfo);
+	public boolean isInArena(Player player) {
+		return arena.contains(player);
 	}
 
-	/**
-	 * returns a list of all Deathmachtes
-	 *
-	 * @return list of deathmatches
-	 */
-	static List<DeathmatchInfo> getDeathmatches() {
-		return deathmatches;
+	Spot getEntranceSpot() {
+		return entranceSpot;
 	}
 }

@@ -8,15 +8,13 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.StandardInteraction;
-import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.events.LoginListener;
-import games.stendhal.server.events.LoginNotifier;
-import games.stendhal.server.events.TurnNotifier;
+
 import games.stendhal.server.maps.deathmatch.BailAction;
-import games.stendhal.server.maps.deathmatch.DealWithLogoutCoward;
+
 import games.stendhal.server.maps.deathmatch.DeathmatchInfo;
 import games.stendhal.server.maps.deathmatch.DoneAction;
 import games.stendhal.server.maps.deathmatch.LeaveAction;
+import games.stendhal.server.maps.deathmatch.Spot;
 import games.stendhal.server.maps.deathmatch.StartAction;
 import games.stendhal.server.util.Area;
 
@@ -25,7 +23,7 @@ import java.util.Arrays;
 /**
  * Creating the Stendhal Deathmatch Game for Fado
  */
-public class FadoDeathmatch extends AbstractQuest implements LoginListener {
+public class FadoDeathmatch extends AbstractQuest {
 	private StendhalRPZone zone;
 
 	private Area arena;
@@ -37,13 +35,11 @@ public class FadoDeathmatch extends AbstractQuest implements LoginListener {
 	}
 
 	public FadoDeathmatch(StendhalRPZone zone, Area arena) {
+		Spot entrance = new Spot(zone, 96, 75);
 		this.zone = zone;
 		this.arena = arena;
-		deathmatchInfo = new DeathmatchInfo(arena, zone);
+		deathmatchInfo = new DeathmatchInfo(arena, zone, entrance);
 		zone.setTeleportAllowed(false);
-		DeathmatchInfo.add(deathmatchInfo);
-
-		LoginNotifier.get().addListener(this);
 	}
 
 	/**
@@ -202,8 +198,5 @@ public class FadoDeathmatch extends AbstractQuest implements LoginListener {
 		zone.add(npc1);
 	}
 
-	public void onLoggedIn(Player player) {
-		// need to do this on the next turn
-		TurnNotifier.get().notifyInTurns(1, new DealWithLogoutCoward(player));
-	}
+
 }
