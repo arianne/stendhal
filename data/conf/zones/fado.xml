@@ -673,6 +673,41 @@ black halberd     12000
 </zone>
 
  <!--  Level -1 -->
+<zone name="-1_fado_great_cave_n_w2" level="-1" x="499616" y="500512" file="Level -1/fado/great_cave_n_w2.tmx">
+</zone>
+
+<zone name="-1_fado_great_cave_nw" level="-1" x="499744" y="500512" file="Level -1/fado/great_cave_nw.tmx">
+</zone>
+
+<zone name="-1_fado_great_cave_n" level="-1" x="499872" y="500512" file="Level -1/fado/great_cave_n.tmx">
+</zone>
+
+<zone name="-1_fado_great_cave_ne" level="-1" x="500000" y="500512" file="Level -1/fado/great_cave_ne.tmx">
+</zone>
+
+<zone name="-1_fado_great_cave_n_e2" level="-1" x="500128" y="500512" file="Level -1/fado/great_cave_n_e2.tmx">
+</zone>
+
+<zone name="-1_fado_great_cave_n_e3" level="-1" x="500256" y="500512" file="Level -1/fado/great_cave_n_e3.tmx">
+</zone>
+
+<zone name="-1_fado_great_cave_w2" level="-1" x="499616" y="500640" file="Level -1/fado/great_cave_w2.tmx">
+</zone>
+
+<zone name="-1_fado_great_cave_w" level="-1" x="499744" y="500640" file="Level -1/fado/great_cave_w.tmx">
+</zone>
+
+<zone name="-1_fado_great_cave" level="-1" x="499872" y="500640" file="Level -1/fado/great_cave.tmx">
+</zone>
+
+<zone name="-1_fado_great_cave_e" level="-1" x="500000" y="500640" file="Level -1/fado/great_cave_e.tmx">
+</zone>
+
+<zone name="-1_fado_great_cave_e2" level="-1" x="500128" y="500640" file="Level -1/fado/great_cave_e2.tmx">
+</zone>
+
+<zone name="-1_fado_great_cave_e3" level="-1" x="500256" y="500640" file="Level -1/fado/great_cave_e3.tmx">
+</zone>
 
 
  <!--  Level -2 -->
