@@ -255,8 +255,10 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	 *            The drawn X coordinate.
 	 * @param y
 	 *            The drawn Y coordinate.
+	 * @param width
+	 *            The drawn width.
 	 */
-	protected void drawFloaters(final Graphics2D g2d, final int x, final int y) {
+	protected void drawFloaters(final Graphics2D g2d, final int x, final int y, final int width) {
 		FontMetrics fm = g2d.getFontMetrics();
 
 		Iterator<RPEntity.TextIndicator> iter = rpentity.getTextIndicators();
@@ -269,7 +271,7 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 
 			int stringwidth = fm.stringWidth(text) + 2;
 
-			int tx = x + 20 - (stringwidth / 2);
+			int tx = x + ((width - stringwidth) / 2);
 			int ty = y - (int) (age * 5L / 300L);
 
 			Color color = ((j2DClient) StendhalUI.get())
@@ -293,7 +295,9 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	 */
 	protected void drawHPbar(final Graphics2D g2d, final int x, final int y,
 			final int width) {
-		int bx = x + ((width - 32) / 2);
+		int barWidth = Math.max(width * 2 / 3, GameScreen.SIZE_UNIT_PIXELS);
+
+		int bx = x + ((width - barWidth) / 2);
 		int by = y - 3;
 
 		float hpRatio = rpentity.getHPRatio();
@@ -302,13 +306,13 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 		float g = Math.min(hpRatio * 2.0f, 1.0f);
 
 		g2d.setColor(Color.gray);
-		g2d.fillRect(bx, by, 32, 3);
+		g2d.fillRect(bx, by, barWidth, 3);
 
 		g2d.setColor(new Color(r, g, 0.0f));
-		g2d.fillRect(bx, by, (int) (hpRatio * 32.0), 3);
+		g2d.fillRect(bx, by, (int) (hpRatio * barWidth), 3);
 
 		g2d.setColor(Color.black);
-		g2d.drawRect(bx, by, 32, 3);
+		g2d.drawRect(bx, by, barWidth, 3);
 	}
 
 	/**
@@ -556,7 +560,7 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 			g2d.drawRect(x, y, width, height);
 		}
 
-		drawFloaters(g2d, x, y);
+		drawFloaters(g2d, x, y, width);
 	}
 
 	/**
