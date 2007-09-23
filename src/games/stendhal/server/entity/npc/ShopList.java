@@ -43,16 +43,23 @@ public class ShopList {
 
 		shops.add("scrolls", "home_scroll", 250);
 		shops.add("scrolls", "summon_scroll", 200);
-		shops.add("scrolls", "empty_scroll", 1200);
+		shops.add("scrolls", "empty_scroll", 2000);
 
 		shops.add("fadoscrolls", "fado_city_scroll", 600);
-		shops.add("fadoscrolls", "empty_scroll", 1400);
+		shops.add("fadoscrolls", "empty_scroll", 2200);
 
 		shops.add("nalworscrolls", "nalwor_city_scroll", 400);
-		shops.add("nalworscrolls", "empty_scroll", 1200);
+		shops.add("nalworscrolls", "empty_scroll", 2000);
 
 		shops.add("adosscrolls", "ados_city_scroll", 400);
-		shops.add("adosscrolls", "empty_scroll", 1200);
+		shops.add("adosscrolls", "empty_scroll", 2000);
+
+		shops.add("allscrolls", "home_scroll", 250);
+		shops.add("allscrolls", "summon_scroll", 200);
+		shops.add("allscrolls", "empty_scroll", 2000);
+		shops.add("allscrolls", "ados_city_scroll", 400);
+		shops.add("allscrolls", "nalwor_city_scroll", 400);
+		shops.add("allscrolls", "fado_city_scroll", 600);
 
 		shops.add("sellstuff", "knife", 15);
 		shops.add("sellstuff", "club", 10);
