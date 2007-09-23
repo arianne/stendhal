@@ -708,6 +708,12 @@ black halberd     12000
 
 <zone name="-1_fado_great_cave_e3" level="-1" x="500256" y="500640" file="Level -1/fado/great_cave_e3.tmx">
  <configurator class-name="games.stendhal.server.maps.fado.great_cave.GreeterNPC" />
+  <entity x="60" y="35">
+    <implementation class-name="games.stendhal.server.entity.WellSource"/>
+  </entity>
+  <entity x="61" y="35">
+    <implementation class-name="games.stendhal.server.entity.WellSource"/>
+  </entity>
 </zone>
 
 
