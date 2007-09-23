@@ -66,19 +66,22 @@
  <tileset name="../../tileset/logic/protection.png" firstgid="204" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/protection.png"/>
  </tileset>
+ <tileset name="long_front_on_pal" firstgid="205" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/furniture/table/long_front_on_pale.png"/>
+ </tileset>
  <layer name="0_floor" width="50" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3RsQkAIAxFwRTp3X9bV4ioGPCK1368mBGR0geNYq/fycHBwcHRK45e3XJUd1fqfB8ODg6OquPWLbo5srCxs+s/ODg4OM44pNUmSJ3MhQAZAAA=
+   H4sIAAAAAAAAAO3RMQ4AIQgAQQp6//9bv8AlGtGbYlvCQEZESj9oFDu9JwcHBwdHrzh6tctRnfulzvfh4ODgqDp23aKbIwszbnC88g8ODg4OaVUTcz1uBwAZAAA=
   </data>
  </layer>
  <layer name="1_terrain" width="50" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3XvVLCQBSG4XMJio1ii3/YIqAyYqHBQIAOuA0YadARFb1vv+IUkHE22ZPdsMnsmXmaZJOddyjYnBLRITTghjX5WlFU4QiuoQVtdgsXAnNYCJ+VqkOFO87gDu5Zh2TzCsuUaz+Ee8SnRrsdNmcFb1veSd3xBM8JAl6bZ8d/o+rowUuCkNeWueMxYW+T99eKdVk6HnLWtdTh0vgOt8Z3uDVl6ejDIEHEa3U60pwTdARkbnQ60vzOOkIyN77Dd/iOYnbY+o7Ku0O13yd8kex/0KWOb9iUoOMHfkvQEX+H7/Ad++5Ic47WEZF6bJ3bXZ7tjis4FxjCCMbC503scckdJ3AgNIEpzDK8w8Qex/AHaMftvwAZAAA=
+   H4sIAAAAAAAAAO3Xv1LCQBDH8X0ElEaxRURoERUcoMDIP6FDXkMGGqAA0ccDXolfsUVkmEtuuYQjczvzacgmN9+hINwR0RWU4ImV+bNLkYE0FOEZXtgrPAh8w1h4r1QBrrnjHipQZW8kmwlMQ+5uhGccTpb+d0Q5M5j7LGCr2G/CewCPd+PsODaqjg9oBWjzbpI7GgFnm7y+U+yd0lGLWT2iDpvGddg1rsOuSUpHB7oBeryr0xHmPUGHR+ZGpyPM96yjTebGdbgO13GZHVH9j4q7Q3XeElYk+x20qeMH1gno+IW/BHQcPsN1uI5zd4R5j9bRI/VE9d5u8/g7HiEn8Al9GAjvN3FGnjtuISU0hC8YnfAME2fcwB7Xhw84ABkAAA==
   </data>
  </layer>
  <layer name="2_object" width="50" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2XywrCMBBF58fU1O79Dz/Cdy34oFvBr3UCCuM0pJvUGew9cCAzTctNmi5KlKdV9YW9DtwDABiXPXuwDlGAI3uyDlGAhj1bhwAAAMFDjJ9mKcBUWVkHmDAt9f/f/oX1SM/txDioayHR80ZQ9ZLdsLWoZ+xC9LwRM97oO1/sbVWveusZnU+vI2T0jFzH50zNE3o7Z0HV+n1UGb0QM9+p/33sEj09zxupffW016XohqcAAH7MC9MnxXoAGQAA
+   H4sIAAAAAAAAAO2XTQrCMBBG52Jqqnvv4S38LbRKt4J3Uq/kBBTGaUg3qTPY78GDzDQtX9J0UaI8taobth24BwAwLlt2Zx2iAHv2YB2iAEf2ZB0CAAAEVzG+maUAU2VtHWDC1NT/f/sXNiM9txPjoK6FRM8bQdVL9s6uRD1jF6LnjZjxTN/5Yu+hetVbz+h8eh0ho2fkOj5nap7Q2zkLqtbvo8rohZj5Qv3v45no6XneSO2rp70uRTc8BQDwY14NA4GIABkAAA==
   </data>
  </layer>
  <layer name="3_roof" width="50" height="32">
