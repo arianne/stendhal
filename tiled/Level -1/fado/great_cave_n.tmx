@@ -99,6 +99,9 @@
  <tileset name="large_pebble" firstgid="373" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/rock/large_pebble.png"/>
  </tileset>
+ <tileset name="madaram" firstgid="374" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/creature/madaram.png"/>
+ </tileset>
  <layer name="0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3cQU7DMBBA0aDmcux6WA7IglaKLLdJUNyxPW/xxAKpmsx3U0Clt2VZbgAAAANaH6LnIK59KXqu0a2br73v0xlov8sR9jrSrD060n6EnY42b7Sj3Ufb50izjtLeTueif27656V9btqjf27aoz21cxA9DwAAAAAAXOX760/0HHy+z/OxnYE+te7yfPz7gzPQl9Y9yv7OQC5l+7vXglT0z03/3Gqv/34GyGH7e5/+uey1139e5d98au31n9eR577+83n3vHf/n1fZ/V17/efy3/b6j+1o71ft9R/b2f61+0T0NRDTPnp+Ptdf+zntnYHt938W7WdUe01/JXpWYvpHz0jMGYieCwAAAAAAAAAAAAAAAAAAAAAAAFrwmVu5+dy1NtYOZjjTXf/r+5eiZ9prr3+ec6B97v7bMxA9RwY9nwP05zNnoDwL0TP1Its+nAG7yHa9+qM9tfb656M9AAAAAAAAAADQO+9zy23W7rNeV6s9ndnXCP+X6b5mTzNf29W7saNczvT/BVMywboAAAEA
@@ -126,7 +129,7 @@
  </layer>
  <layer name="objects" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3cOQ7CMBAAwPAHJCQ6PkABFYcogL/xbap0AQfk+JwpoYhl1tldm2QYAACAWJ6r9Nd8ZLhmajnm9ZOSxkI9xA2xnSdiauoz4Lse6ijiuIiVrKxVRjHqavH0u1NgzkLfAwBQl1DNrP7rg94JAAAAAACgXJ5RAQAAAIB22O8DAACANnl3HQAAAAAAAPTBu5wBAAD6oxcEaNPSz/4f5Q8mHMQFFOmfmt96BiBkK1dAtXbWLzPY+wEAAKjbXl8HTbN30xdnMgD8Qi8AbfFfToA6rN2voziZR/5wFjcAJLaRewBmUasz0u/TGnuBAOmE6gg9OgAjOQGoxX3ifvVKP4xmXeQDWETuMx/nDO3KHVslMAd9uRX8e889/6o1Zq+VjpvP1P6k9AYaQJmTAAABAA==
+   H4sIAAAAAAAAAO3dO04DMRAAULgDEhIdF6CAKgmiAM7E/99wbQRSBMX+suzaa897ZVJk1x7bM0682dsDAACmcr2f/jOvMnxmajnatc2SroVyiBumtm6IqabXgG4R8iimsRErWRmrbE2RV4un3a162qzvfQAAytKXM8v/YlA7AQAA7OZGHQVVeDeWw3jV1wAUrtYzKo+V3hfL0ZYHqgXoIj7oci8+Zvehjavxoi/DKCGvtz/IUNZ6IJVa9/uIp4RckHbPM/RfCXX9WwHXCKQTfU6YYy1gefQzpOXZdQBABP/ZB4xeiwNEYb4Hvk1xNuPBfAKLZb3nL+fxiCrqs5yNeWAKdz1ziXoQAFiqqLUgDHFrfFCwuc/+nxkfNDgNFhd9+0Hk96SPfozJ+aONZ4CpRcgTjgq/R3kCkR2Lfwaw9wOwmwg1AAAsjf2dbifaB7Ka+5m59m5iKf07GRhr7FwqTyQ6tQDUxW85gdrVcnbvoJL7yM3/UDHGWtwAkNihtQdmUUt9yC99ypZ6n9rYCwRIZ9Uz56rRAdiyJgCluGyYrz7TX0a1NtYDmEXu32f17Q9QrtyxtQTaIJaLBff30O+/So3Z80Kvm3Zyf1L6AhcGabwAAAEA
   </data>
  </layer>
  <layer name="collision" width="128" height="128" opacity="0.37">
