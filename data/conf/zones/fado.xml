@@ -714,8 +714,25 @@ black halberd     12000
   <entity x="61" y="35">
     <implementation class-name="games.stendhal.server.entity.WellSource"/>
   </entity>
+  <portal x="12" y="105" ref="theater_entrance_left">
+   <destination zone="int_fado_theater" ref="entrance_left"/>
+  </portal>
+  <portal x="13" y="105" ref="theater_entrance_right">
+   <destination zone="int_fado_theater" ref="entrance_right"/>
+  </portal>
 </zone>
 
+<zone name="int_fado_theater" file="interiors/fado/theater.tmx">
+  <portal x="30" y="1" ref="entrance_left">
+   <destination zone="-1_fado_great_cave_e3" ref="theater_entrance_left"/>
+  </portal>
+  <portal x="31" y="1" ref="entrance">
+   <destination zone="-1_fado_great_cave_e3" ref="theater_entrance_right"/>
+  </portal>
+  <portal x="32" y="1" ref="entrance_right">
+   <destination zone="-1_fado_great_cave_e3" ref="theater_entrance_right"/>
+  </portal>
+</zone>
 
  <!--  Level -2 -->
 
