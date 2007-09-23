@@ -363,6 +363,20 @@
     </equipable>
   </item>
 
+  <item name="xeno_armor">
+    <type class="armor" subclass="xeno_armor" tileid="-1"/>
+    <description>You see a suit of xeno armor. The colours remind you of the xenocium hybrid creature.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <def value="21"/>
+    </attributes>
+    <weight value="45.0"/>
+    <value value="76000"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="armor"/>
+    </equipable>
+  </item>
+
   <item name="magic_plate_armor">
     <type class="armor" subclass="magic_plate_armor" tileid="-1"/>
     <description>You see a suit of plate armor. The steel is well tempered and the suit is very strong. It has been magically enhanced.</description>
@@ -809,6 +823,20 @@
     </equipable>
   </item>
 
+  <item name="xeno_boots">
+    <type class="boots" subclass="xeno_boots" tileid="-1"/>
+    <description>You see a fine specimen of craftmanship, a pair of xeno boots.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <def value="13"/>
+    </attributes>
+    <weight value="17.0"/>
+    <value value="23625"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="feet"/>
+    </equipable>
+  </item>
+
   <item name="black_boots">
     <type class="boots" subclass="black_boots" tileid="-1"/>
     <description>You stub your toe on this pair of black boots. Perhaps they bring you bad luck?</description>
@@ -1058,8 +1086,8 @@
   </item>
 
   <item name="mainio_cloak">
-    <type class="cloak" subclass="lion_clan_cloak" tileid="-1"/>
-    <description>You see a mainio cloak. It's heavy and thick, giving you a good protection.</description>
+    <type class="cloak" subclass="primary_coloured_cloak" tileid="-1"/>
+    <description>You see a mainio cloak. It's flashing colours are absurd! But you wear it because it's very well made.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="21"/>
     </attributes>
@@ -1071,13 +1099,28 @@
     </equipable>
   </item>
 
+  <item name="xeno_cloak">
+    <type class="cloak" subclass="xeno_cloak" tileid="-1"/>
+    <description>You see a xeno cloak. It's heavy and thick, giving you a good protection.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <def value="22"/>
+    </attributes>
+    <weight value="6.0"/>
+    <value value="73000"/>
+    <equipable>
+      <slot name="cloak"/>
+      <slot name="bag"/>
+    </equipable>
+  </item>
+
+
   <item name="black_cloak">
     <type class="cloak" subclass="trueblack_cloak" tileid="-1"/>
     <description>You see a black cloak. The last owner had black thoughts. Will you?</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="25"/>
     </attributes>
-    <weight value="5.0"/>
+    <weight value="8.0"/>
     <value value="109375"/>
     <equipable>
       <slot name="bag"/>
@@ -2436,6 +2479,20 @@
     </equipable>
   </item>
 
+  <item name="liberty_helmet">
+    <type class="helmet" subclass="liberty_helmet" tileid="-1"/>
+    <description>You see the liberty helmet. It's light and strong, you feel free wearing it.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <def value="24"/>
+    </attributes>
+    <weight value="5.0"/>
+    <value value="100208"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="head"/>
+    </equipable>
+  </item>
+
   <item name="black_helmet">
     <type class="helmet" subclass="black_helmet" tileid="-1"/>
     <description>You see a black helmet.</description>
@@ -2850,12 +2907,40 @@
 
   <item name="chaos_legs">
     <type class="legs" subclass="chaos_legs" tileid="-1"/>
-    <description>You see a pair of chaos legs.</description>
+    <description>You see a pair of chaos legs. The strange colours confuse you.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="11"/>
     </attributes>
     <weight value="25.0"/>
     <value value="9317"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="legs"/>
+    </equipable>
+  </item>
+
+  <item name="xeno_legs">
+    <type class="legs" subclass="xeno_legs" tileid="-1"/>
+    <description>You see a pair of xeno legs. They're very strong and look brand new.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <def value="11"/>
+    </attributes>
+    <weight value="25.0"/>
+    <value value="10017"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="legs"/>
+    </equipable>
+  </item>
+
+  <item name="jewelled_legs">
+    <type class="legs" subclass="jewelled_legs" tileid="-1"/>
+    <description>You see a beautiful pair of jewelled legs. A large red gem glints at you and they're encrusted all over with sapphires.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <def value="13"/>
+    </attributes>
+    <weight value="25.0"/>
+    <value value="15017"/>
     <equipable>
       <slot name="bag"/>
       <slot name="legs"/>
@@ -3885,6 +3970,21 @@
     </equipable>
   </item>
 
+  <item name="xeno_shield">
+    <type class="shield" subclass="xeno_shield" tileid="-1"/>
+    <description>You see a lightweight but strong xeno shield, in the colours of the creature it was looted from.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <def value="41"/>
+    </attributes>
+    <weight value="22.0"/>
+    <value value="488000"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+    </equipable>
+  </item>
+
   <item name="black_shield">
     <type class="shield" subclass="black_shield" tileid="-1"/>
     <description>You see a black shield. Its darkness will surely protect you.</description>
@@ -4305,7 +4405,7 @@
       <atk value="34"/>
       <rate value="10"/>
     </attributes>
-    <weight value="4.0"/>
+    <weight value="8.0"/>
     <value value="196520"/>
     <equipable>
       <slot name="bag"/>
@@ -4321,7 +4421,7 @@
       <atk value="33"/>
       <rate value="9"/>
     </attributes>
-    <weight value="4.0"/>
+    <weight value="8.0"/>
     <value value="199650"/>
     <equipable>
       <slot name="bag"/>
@@ -4369,7 +4469,7 @@
       <atk value="45"/>
       <rate value="15"/>
     </attributes>
-    <weight value="4.0"/>
+    <weight value="8.0"/>
     <value value="303750"/>
     <equipable>
       <slot name="bag"/>
@@ -4385,7 +4485,7 @@
       <atk value="38"/>
       <rate value="9"/>
     </attributes>
-    <weight value="4.0"/>
+    <weight value="9.0"/>
     <value value="304844"/>
     <equipable>
       <slot name="bag"/>
@@ -4403,6 +4503,22 @@
     </attributes>
     <weight value="9.0"/>
     <value value="357291"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+    </equipable>
+  </item>
+
+  <item name="xeno_sword">
+    <type class="sword" subclass="xeno_sword" tileid="-1"/>
+    <description>You wield a xeno sword. Despite the great strength it is strangely light.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <atk value="38"/>
+      <rate value="6"/>
+    </attributes>
+    <weight value="6.0"/>
+    <value value="457142"/>
     <equipable>
       <slot name="bag"/>
       <slot name="lhand"/>

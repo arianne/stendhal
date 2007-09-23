@@ -4329,6 +4329,7 @@
       <item value="greater_antidote" quantity="[1,3]" probability="50.0"/>
       <item value="perch" quantity="[1,3]" probability="25.0"/>
       <item value="mackerel" quantity="[1,4]" probability="25.0"/>
+      <item value="liberty_helmet" quantity="[1,1]" probability="0.01"/>
     </drops>
     <equips>
     </equips>
@@ -6609,6 +6610,7 @@
       <item value="fairycake" quantity="[1,5]" probability="10.0"/>
       <item value="empty_scroll" quantity="[1,2]" probability="5.0"/>
       <item value="golden_cloak" quantity="[1,1]" probability="2.0"/>
+      <item value="liberty_helmet" quantity="[1,1]" probability="0.1"/>
     </drops>
     <equips>
     </equips>
@@ -6640,7 +6642,7 @@
     <drops>
       <item value="money" quantity="[5,40]" probability="100.0"/>
       <item value="greater_poison" quantity="[1,2]" probability="5.0"/>
-      <item value="mainio_legs" quantity="[1,1]" probability="1.5"/>
+      <item value="mainio_boots" quantity="[1,1]" probability="1.5"/>
       <item value="spotted_egg" quantity="[1,1]" probability=".5"/>
     </drops>
     <equips>
@@ -6925,7 +6927,7 @@
       <item value="chaos_boots" quantity="[1,1]" probability="2.0"/>
       <item value="shadow_cloak" quantity="[1,1]" probability="1.0"/>
       <item value="chaos_cloak" quantity="[1,1]" probability="0.1"/>
-      <item value="chaos_helmet" quantity="[1,1]" probability="0.7"/>
+      <item value="liberty_helmet" quantity="[1,1]" probability="0.05"/>
       <item value="chaos_shield" quantity="[1,1]" probability="1.0"/>
       <item value="chaos_sword" quantity="[1,1]" probability="1.0"/>
     </drops>
@@ -7026,6 +7028,7 @@
       <item value="money" quantity="[20,110]" probability="100.0"/>
       <item value="greater_potion" quantity="[1,2]" probability="80.0"/>
       <item value="mainio_shield" quantity="[1,1]" probability="1.5"/>
+      <item value="mainio_legs" quantity="[1,1]" probability="0.5"/>
       <item value="spotted_egg" quantity="[1,1]" probability="0.05"/>
     </drops>
     <equips>
@@ -7345,8 +7348,9 @@
       <item value="greater_potion" quantity="[1,2]" probability="30.0"/>
       <item value="gold_bar" quantity="[1,2]" probability="5.0"/>
       <item value="golden_cloak" quantity="[1,1]" probability="1.0"/>
-      <item value="horned_golden_helmet" quantity="[1,1]" probability="1.0"/>
+      <item value="liberty_helmet" quantity="[1,1]" probability="0.1"/>
       <item value="aventail" quantity="[1,1]" probability="10.0"/>
+
     </drops>
     <equips>
     </equips>
@@ -7378,7 +7382,7 @@
       <item value="greater_poison" quantity="[1,1]" probability="50.0"/>
       <item value="money" quantity="[30,150]" probability="100.0"/>
       <item value="empty_scroll" quantity="[1,2]" probability="25.0"/>
-      <item value="black_cloak" quantity="[1,1]" probability="0.0050"/>
+      <item value="jewelled_legs" quantity="[1,1]" probability="0.0050"/>
     </drops>
     <equips>
     </equips>
@@ -7680,7 +7684,7 @@
       <item value="money" quantity="[100,400]" probability="100.0"/>
       <item value="black_armor" quantity="[1,1]" probability="0.0050"/>
       <item value="black_cloak" quantity="[1,1]" probability="0.05"/>
-      <item value="black_sword" quantity="[1,1]" probability="0.05"/>
+      <item value="jewelled_legs" quantity="[1,1]" probability="0.05"/>
     </drops>
     <equips>
     </equips>
@@ -7803,11 +7807,13 @@
     <experience value="50800"/>
     <respawn value="3000"/>
     <drops>
-      <item value="money" quantity="[30,150]" probability="100.0"/>
-      <item value="greater_potion" quantity="[1,2]" probability="50.0"/>
-      <item value="mainio_shield" quantity="[1,1]" probability="2.0"/>
-      <item value="mainio_helmet" quantity="[1,1]" probability="3.0"/>
-      <item value="mainio_cloak" quantity="[1,1]" probability="1.5"/>
+      <item value="money" quantity="[30,100]" probability="100.0"/>
+      <item value="xeno_shield" quantity="[1,1]" probability="1.0"/>
+      <item value="xeno_cloak" quantity="[1,1]" probability="1.5"/>
+      <item value="xeno_boots" quantity="[1,1]" probability="2.5"/>
+      <item value="xeno_sword" quantity="[1,1]" probability="0.5"/>
+      <item value="xeno_armor" quantity="[1,1]" probability="1.5"/>
+      <item value="xeno_legs" quantity="[1,1]" probability="1.5"/>
     </drops>
     <equips>
     </equips>
@@ -8062,7 +8068,7 @@
     </ai>
   </creature>
 
-  <creature name="worm_witch_fire_hybrid">
+  <creature name="necrosophia">
     <type class="hybrid" subclass="worm_witch_fire_hybrid" tileid="hybrid.png:7"/>
     <description></description>
     <attributes>
@@ -8151,7 +8157,7 @@
       <item value="mega_potion" quantity="[2,4]" probability="60.0"/>
       <item value="black_armor" quantity="[1,1]" probability="3.0"/>
       <item value="black_shield" quantity="[1,1]" probability="3.0"/>
-      <item value="emerald_ring" quantity="[1,1]" probability="5.0"/>
+      <item value="emerald_ring" quantity="[1,1]" probability="1.0"/>
       <item value="demon_fire_sword" quantity="[1,1]" probability="0.1"/>
     </drops>
     <equips>
@@ -8187,9 +8193,9 @@
       <item value="giant_heart" quantity="[1,2]" probability="85.0"/>
       <item value="money" quantity="[3000,30000]" probability="100.0"/>
       <item value="magic_plate_armor" quantity="[1,1]" probability="2.0"/>
-      <item value="black_legs" quantity="[1,1]" probability="3.0"/>
+      <item value="jewelled_legs" quantity="[1,1]" probability="3.0"/>
       <item value="black_cloak" quantity="[1,1]" probability="4.0"/>
-      <item value="magic_chain_helmet" quantity="[1,1]" probability="1.0"/>
+      <item value="liberty_helmet" quantity="[1,1]" probability="1.0"/>
       <item value="magic_twoside_axe" quantity="[1,1]" probability="2.0"/>
     </drops>
     <equips>
