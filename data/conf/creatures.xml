@@ -14,8 +14,9 @@
     <experience value="0"/>
     <respawn value="900"/>
     <drops>
-      <item value="meat" quantity="[1,6]" probability="60.0"/>
-      <item value="ham" quantity="[1,3]" probability="30.0"/>
+      <item value="meat" quantity="[1,3]" probability="60.0"/>
+      <item value="ham" quantity="[1,2]" probability="30.0"/>
+      <item value="antidote" quantity="[1,1]" probability="5.0"/>
     </drops>
     <equips>
     </equips>
@@ -327,7 +328,7 @@
     <respawn value="900"/>
     <drops>
       <item value="money" quantity="[2,5]" probability="70.0"/>
-      <item value="minor_potion" quantity="[1,1]" probability="5.0"/>
+      <item value="antidote" quantity="[1,1]" probability="10.0"/>
       <item value="porcini" quantity="[1,10]" probability="10.0"/>
       <item value="leather_armor" quantity="[1,1]" probability="10.0"/>
     </drops>
@@ -5312,6 +5313,39 @@
       <profile name="offensive"/>
       <profile name="patrolling"/>
       <profile name="poisonous" params="5,greater_poison"/>
+    </ai>
+  </creature>
+
+  <creature name="cave_troll">
+    <type class="troll" subclass="cave_troll" tileid="troll.png:1"/>
+    <description></description>
+    <attributes>
+      <atk value="174"/>
+      <def value="28"/>
+      <hp value="1000"/>
+      <speed value="0.7"/>
+      <size value="2,2"/>
+    </attributes>
+    <level value="63"/>
+    <experience value="3100"/>
+    <respawn value="1870"/>
+    <drops>
+      <item value="money" quantity="[1,30]" probability="100.0"/>
+      <item value="meat" quantity="[1,5]" probability="10.5"/>
+      <item value="ugmash" quantity="[1,1]" probability="0.0001"/>
+      <item value="barbarian_armor" quantity="[1,1]" probability="5.5"/>
+      <item value="stone_boots" quantity="[1,1]" probability="2.5"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise value="Uggga yggga arghhhhh"/>
+        <noise value="Ooggga UGGga arhhh"/>
+      </says>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
