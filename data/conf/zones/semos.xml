@@ -801,91 +801,91 @@ Holy mackerel! These chips are tasty.
     <entity x="2" y="2">
      <implementation class-name="games.stendhal.server.entity.PersonalChest"/>
     </entity>
-<!--
-    <entity x="2" y="3">
+
+    <entity x="2" y="2">
      <implementation class-name="games.stendhal.server.entity.area.OnePlayerArea">
-      <parameter name="width">1</parameter>
+      <parameter name="width">2</parameter>
       <parameter name="height">4</parameter>
      </implementation>
     </entity>
--->
-    <entity x="8" y="2">
+
+    <entity x="9" y="2">
      <implementation class-name="games.stendhal.server.entity.PersonalChest"/>
     </entity>
-<!--
-    <entity x="8" y="3">
+
+    <entity x="8" y="2">
      <implementation class-name="games.stendhal.server.entity.area.OnePlayerArea">
-      <parameter name="width">1</parameter>
+      <parameter name="width">2</parameter>
       <parameter name="height">4</parameter>
      </implementation>
     </entity>
--->
+
     <entity x="14" y="2">
      <implementation class-name="games.stendhal.server.entity.PersonalChest"/>
     </entity>
-<!--
-    <entity x="14" y="3">
+
+    <entity x="14" y="2">
      <implementation class-name="games.stendhal.server.entity.area.OnePlayerArea">
-      <parameter name="width">1</parameter>
+      <parameter name="width">2</parameter>
       <parameter name="height">4</parameter>
      </implementation>
     </entity>
--->
+
+    <entity x="21" y="2">
+     <implementation class-name="games.stendhal.server.entity.PersonalChest"/>
+    </entity>
+
     <entity x="20" y="2">
-     <implementation class-name="games.stendhal.server.entity.PersonalChest"/>
-    </entity>
-<!--
-    <entity x="20" y="3">
      <implementation class-name="games.stendhal.server.entity.area.OnePlayerArea">
-      <parameter name="width">1</parameter>
+      <parameter name="width">2</parameter>
       <parameter name="height">4</parameter>
      </implementation>
     </entity>
--->
-    <entity x="2" y="14">
+
+    <entity x="2" y="15">
      <implementation class-name="games.stendhal.server.entity.PersonalChest"/>
     </entity>
-<!--
-    <entity x="2" y="10">
+
+    <entity x="2" y="12">
      <implementation class-name="games.stendhal.server.entity.area.OnePlayerArea">
-      <parameter name="width">1</parameter>
+      <parameter name="width">2</parameter>
       <parameter name="height">4</parameter>
      </implementation>
     </entity>
--->
-    <entity x="8" y="14">
+
+    <entity x="9" y="15">
      <implementation class-name="games.stendhal.server.entity.PersonalChest"/>
     </entity>
-<!--
-    <entity x="8" y="10">
+
+    <entity x="8" y="12">
      <implementation class-name="games.stendhal.server.entity.area.OnePlayerArea">
-      <parameter name="width">1</parameter>
+      <parameter name="width">2</parameter>
       <parameter name="height">4</parameter>
      </implementation>
     </entity>
--->
-    <entity x="14" y="14">
+
+    <entity x="14" y="15">
      <implementation class-name="games.stendhal.server.entity.PersonalChest"/>
     </entity>
-<!--
-    <entity x="14" y="10">
+
+    <entity x="14" y="12">
      <implementation class-name="games.stendhal.server.entity.area.OnePlayerArea">
-      <parameter name="width">1</parameter>
+      <parameter name="width">2</parameter>
       <parameter name="height">4</parameter>
      </implementation>
     </entity>
--->
-    <entity x="20" y="14">
+
+    <entity x="21" y="15">
      <implementation class-name="games.stendhal.server.entity.PersonalChest"/>
     </entity>
-<!--
-    <entity x="20" y="10">
+
+    <entity x="20" y="12">
      <implementation class-name="games.stendhal.server.entity.area.OnePlayerArea">
-      <parameter name="width">1</parameter>
+      <parameter name="width">2</parameter>
       <parameter name="height">4</parameter>
      </implementation>
     </entity>
--->
+
 <!-- Prevent table dancing (this is a family friendly bank) -->
 
     <entity x="39" y="4">
