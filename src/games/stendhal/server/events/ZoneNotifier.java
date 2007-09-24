@@ -73,6 +73,18 @@ public class ZoneNotifier {
 			process(player, ZoneEventType.VISIT_KIKAREUKIN_ISLANDS);
 		} else if (destinationZone.equals("-7_kanmararn_prison")) {
 			process(player, ZoneEventType.VISIT_KANMARARN_PRISON);
+		} else if (destinationZone.equals("-1_fado_great_cave_w2")) {
+			process(player, ZoneEventType.VISIT_IMPERIAL_CAVES);
+		} else if (destinationZone.equals("-1_fado_great_cave_n_e2")) {
+			process(player, ZoneEventType.VISIT_MAGIC_CITY_N);
+		} else if (destinationZone.equals("-1_fado_great_cave_e2")) {
+			process(player, ZoneEventType.VISIT_MAGIC_CITY);
+		} else if (destinationZone.equals("dreamscape")) {
+			process(player, ZoneEventType.VISIT_DREAMSCAPE);
+		} else if (destinationZone.equals("-1_semos_caves")) {
+			process(player, ZoneEventType.VISIT_SEMOS_CAVES);
+		} else if (destinationZone.equals("int_ados_castle_entrance")) {
+			process(player, ZoneEventType.VISIT_ADOS_CASTLE);
 		}
 
 	}
