@@ -745,6 +745,43 @@ black halberd     12000
    <destination zone="-1_fado_great_cave_?" ref="house1_entrance"/>
   </portal> -->
 </zone>
+
+<zone name="int_fado_wizard_bank" file="interiors/fado/wizard_bank.tmx">
+ <!-- <portal x="15" y="18" ref="entrance">
+   <destination zone="-1_fado_great_cave_?" ref="bank_entrance"/>
+  </portal> -->
+   <entity x="2" y="9">
+      <implementation class-name="games.stendhal.server.entity.PersonalChest">
+         <parameter name="slot">bank</parameter>
+      </implementation>
+   </entity>
+   <entity x="2" y="13">
+      <implementation class-name="games.stendhal.server.entity.PersonalChest">
+         <parameter name="slot">bank_nalwor</parameter>
+      </implementation>
+   </entity>
+   <entity x="2" y="17">
+      <implementation class-name="games.stendhal.server.entity.PersonalChest">
+         <parameter name="slot">bank_fado</parameter>
+      </implementation>
+   </entity>
+  <!-- <entity x="27" y="9">
+      <implementation class-name="games.stendhal.server.entity.PersonalChest">
+         <parameter name="slot">bank_wizard</parameter>
+      </implementation>
+   </entity>-->
+   <entity x="27" y="13">
+      <implementation class-name="games.stendhal.server.entity.PersonalChest">
+         <parameter name="slot">bank_ados</parameter>
+      </implementation>
+   </entity>
+   <entity x="27" y="17">
+      <implementation class-name="games.stendhal.server.entity.PersonalChest">
+         <parameter name="slot">zaras_chest_ados</parameter>
+      </implementation>
+   </entity>
+</zone>
+
  <!--  Level -2 -->
 
 
