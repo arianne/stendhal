@@ -162,6 +162,7 @@ public class ShopList {
 		// cloaks shop
 		shops.add("buycloaks", "blue_elf_cloak", 300);
 		shops.add("buycloaks", "green_dragon_cloak", 400);
+		shops.add("buycloaks", "blue_dragon_cloak", 2000);
 		shops.add("buycloaks", "shadow_cloak", 3000);
 		shops.add("buycloaks", "black_dragon_cloak", 4000);
 		shops.add("buycloaks", "golden_cloak", 5000);
