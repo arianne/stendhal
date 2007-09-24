@@ -49,11 +49,10 @@ import simple.http.serve.ProtocolHandlerFactory;
 import simple.template.View;
 
 /*
- * TODO: Refactor
- * - Remove Groovy
+ * TODO: Refactor - Remove Groovy
  * - Make it work
  * - Integrate with mblanch.homeip.net/stendhal_website
- */ 
+ */
 
 
 public class StendhalHttpServer extends StendhalServerExtension implements ProtocolHandler {

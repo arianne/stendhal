@@ -43,9 +43,8 @@ public class StendhalQuestSystem {
 	 */
 	public void init() {
 		/*
-		 * TODO: Refactor
-		 * What about loading this from a XML file like zones?
-		 */ 
+		 * TODO: Refactor What about loading this from a XML file like zones?
+		 */
 
 		questInfos = QuestsXMLLoader.get();
 		loadQuest("AdosDeathmatch");
@@ -92,7 +91,7 @@ public class StendhalQuestSystem {
 		// loadQuest("NomyrCataclysm");
 		loadQuest("ObsidianKnife");
 		loadQuest("PizzaDelivery");
-		loadQuest("PlinksToy");		
+		loadQuest("PlinksToy");
 		loadQuest("RainbowBeans");
 		loadQuest("ReverseArrow");
 		loadQuest("RingMaker");

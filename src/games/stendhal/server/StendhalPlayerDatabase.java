@@ -398,10 +398,9 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 	}
 
 	/*
-	 * TODO: Refactor
-	 * We could make room for hall of fame points in the character_stats table itself.
+	 * TODO: Refactor We could make room for hall of fame points in the character_stats table itself.
 	 */
-	
+
 	/**
 	 * Returns the points in the specified hall of fame
 	 *

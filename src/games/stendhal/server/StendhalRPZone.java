@@ -423,10 +423,9 @@ public class StendhalRPZone extends MarauroaRPZone {
 		logger.debug("creating " + clazz + ":" + type + " at " + x + "," + y);
 
 		/*
-		 * TODO: Refactor
-		 * Stinky code... hardcoded... uuuaaarrgghh!
+		 * TODO: Refactor Stinky code... hardcoded... uuuaaarrgghh!
 		 * No idea how to improve it...
-		 */ 
+		 */
 
 		try {
 			if (clazz.contains("logic/portal")) {

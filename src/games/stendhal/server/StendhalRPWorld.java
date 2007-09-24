@@ -157,10 +157,9 @@ public class StendhalRPWorld extends RPWorld {
 
 	private void createRPClasses() {
 		/*
-		 * TODO: Refactor
-		 * Do as Chadf proposed so the clases self initialize.
+		 * TODO: Refactor Do as Chadf proposed so the clases self initialize.
 		 * This method is prone to be forgotten on addition of new classes.
-		 */ 
+		 */
 		Entity.generateRPClass();
 
 		// Entity sub-classes
@@ -198,11 +197,10 @@ public class StendhalRPWorld extends RPWorld {
 		// PassiveEntityRespawnPoint sub-class
 		GrowingPassiveEntityRespawnPoint.generateRPClass();
 		SheepFood.generateRPClass();
-		
+
 		/*
-		 * TODO: Refactor
-		 * Create RPClasses for actions
-		 */ 
+		 * TODO: Refactor Create RPClasses for actions
+		 */
 
 		// Chat action class
 		RPClass chatAction = new RPClass("chat");
@@ -231,9 +229,8 @@ public class StendhalRPWorld extends RPWorld {
 			loader.load();
 
 			/*
-			 * TODO: Refactor
-			 * Extract to new method.
-			 */ 
+			 * TODO: Refactor Extract to new method.
+			 */
 			/**
 			 * After all the zones has been loaded, check how many portals are
 			 * unpaired
@@ -353,9 +350,8 @@ public class StendhalRPWorld extends RPWorld {
 	 */
 	public void createHouse(StendhalRPZone zone, int x, int y) throws Exception {
 		/*
-		 * TODO: Refactor
-		 * Delete method and do as text output suggests.
-		 */ 
+		 * TODO: Refactor Delete method and do as text output suggests.
+		 */
 		Portal door = new Portal();
 		door.setPosition(x, y);
 		Object dest = zone.assignPortalID(door);

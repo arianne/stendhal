@@ -54,8 +54,7 @@ public class Jail implements LoginListener {
 
 		public void onTurnReached(int currentTurn, String message) {
 			/*
-			 * TODO: Refactor
-			 * If player is not present, we should be able to manipulate the db object.
+			 * TODO: If player is not present, we should be able to manipulate the db object.
 			 */
 
 			if (!release(_name)) {
@@ -72,8 +71,7 @@ public class Jail implements LoginListener {
 	private static Jail instance;
 
 	/*
-	 * TODO: Refactor
-	 * Bad smell, hard coded list of points in the jail zone for where to land.
+	 * TODO: Bad smell, hard coded list of points in the jail zone for where to land.
 	 */
 	private static List<Point> cellEntryPoints = Arrays.asList(new Point(3, 2),
 			new Point(8, 2),
@@ -86,8 +84,7 @@ public class Jail implements LoginListener {
 			new Rectangle(7, 10, 30, 12) };
 
 	/*
-	 * TODO: Refactor
-	 * Don't use quest for this.
+	 * TODO: Don't use quest for this.
 	 */
 	// TODO: make this persistent, e.g. by replacing this list with a
 	// quest slot reserved for jail.
@@ -133,8 +130,7 @@ public class Jail implements LoginListener {
 		}
 
 		/*
-		 * TODO: Refactor
-		 * Instantiate once, use many.
+		 * TODO: Instantiate once, use many.
 		 * Zone object is going to be the same during the whole server life.
 		 */
 		IRPZone.ID zoneid = new IRPZone.ID("-1_semos_jail");
@@ -230,9 +226,8 @@ public class Jail implements LoginListener {
 
 	public void onLoggedIn(Player player) {
 		/*
-		 * TODO: Refactor
-		 * Use a better approach.
-		 * We should be able to manipulate the offline object.
+		 * TODO: Refactor We should be able to manipulate the offline object.
+		 *
 		 */
 		String name = player.getName();
 		if (namesOfPlayersToRelease.contains(name)) {

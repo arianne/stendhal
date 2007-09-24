@@ -131,9 +131,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 	private void registerActions() {
 		/*
-		 * TODO: Refactor
-		 * Autoregister?
-		 */ 
+		 * TODO: Refactor Autoregister?
+		 */
 		AdministrationAction.register();
 		AttackAction.register();
 		AwayAction.register();
@@ -251,7 +250,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			StendhalRPAction.initialize(rpman);
 			/* Initialize quests */
 			StendhalQuestSystem.get().init();
-			
+
 			for (IRPZone zone : StendhalRPWorld.get()) {
 				StendhalRPZone szone = (StendhalRPZone) zone;
 				npcs.addAll(szone.getNPCList());
@@ -454,12 +453,11 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		try {
 			// We keep the number of players logged.
 			Statistics.getStatistics().set("Players logged", players.size());
-			
+
 			/*
-			 * TODO: Refactor.
-			 * Entities should care about really dying themselves.
+			 * TODO: Refactor. Entities should care about really dying themselves.
 			 * This is here because there is a split between last hit and the moment a entity die so
-			 * that the last hit is visible on client. 
+			 * that the last hit is visible on client.
 			 */
 			// In order for the last hit to be visible dead happens at two
 			// steps.
@@ -471,10 +469,9 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 				}
 			}
 			entityToKill.clear();
-			
+
 			/*
-			 * TODO: Refactor
-			 * NPC should be stored on zones instead of duplicating that info.
+			 * TODO: Refactor NPC should be stored on zones instead of duplicating that info.
 			 */
 			// Done this way because a problem with comodification... :(
 			npcs.removeAll(npcsToRemove);
@@ -483,8 +480,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			npcsToRemove.clear();
 
 			/*
-			 * TODO: Refactor
-			 * Use RPEvent that is the correct way and it is handled by marauroa itself.
+			 * TODO: Refactor Use RPEvent that is the correct way and it is handled by marauroa itself.
 			 */
 			for (Player player : playersRmPrivateText) {
 				if (player.has("private_text")) {
@@ -494,8 +490,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			}
 
 			/*
-			 * TODO: Refactor
-			 * May be done by the zone itself.
+			 * TODO: Refactor May be done by the zone itself.
 			 */
 			for (Player player : players) {
 				try {
@@ -506,8 +501,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			}
 
 			/*
-			 * TODO: Refactor
-			 * Definitively must be done by the zone itself.
+			 * TODO: Refactor Definitively must be done by the zone itself.
 			 */
 			for (NPC npc : npcs) {
 				try {
@@ -518,8 +512,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			}
 
 			/*
-			 * TODO: Refactor
-			 * Removable once RPEvent for chat is added.
+			 * TODO: Refactor Removable once RPEvent for chat is added.
 			 */
 			for (Player player : playersRmText) {
 				if (player.has("text")) {
@@ -541,14 +534,13 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		int currentTurn = getTurn();
 		try {
 			/*
-			 * TODO: Refactor
-			 * Should be done by the zone itself.
+			 * TODO: Refactor Should be done by the zone itself.
 			 */
 			// Creatures
 			for (CreatureRespawnPoint point : respawnPoints) {
 				point.logic();
 			}
-	
+
 			// Registeres classes for this turn
 			TurnNotifier.get().logic(currentTurn);
 
@@ -564,25 +556,22 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			PlayerEntry entry = PlayerEntryContainer.getContainer().get(object);
 
 			/*
-			 * TODO: Refactor
-			 * This is a hack, it should use instead RPObjectFactory.
+			 * TODO: This is a hack, it should use instead RPObjectFactory.
 			 */
 			Player player = Player.create(object);
 			entry.object = player;
 
 			/*
-			 * TODO: Refactor
-			 * Removable once RPEvent chat is added.
-			 */ 
+			 * TODO: Removable once RPEvent chat is added.
+			 */
 			playersRmText.add(player);
 			playersRmPrivateText.add(player);
-			
+
 			players.add(player);
 
 			/*
-			 * TODO: Refactor
-			 * Hide implementation
-			 */ 
+			 * TODO: Hide implementation
+			 */
 			if (!player.isGhost()) {
 				// Notify other players about this event
 				for (Player p : getPlayers()) {
@@ -612,9 +601,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			}
 
 			/*
-			 * TODO: Refactor
-			 * Hide implementation.
-			 */ 
+			 * TODO: Hide implementation.
+			 */
 			// Notify other players about this event
 			for (Player p : getPlayers()) {
 				p.notifyOffline(player.getName());
@@ -622,7 +610,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 			Player.destroy(player);
 			players.remove(player);
-			
+
 			addGameEvent(player.getName(), "logout");
 			logger.debug("removed player " + player);
 
@@ -635,8 +623,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 	public synchronized void onTimeout(RPObject object) {
 		/*
-		 * TODO: Refactor
-		 *  Check new syntax of onTimeout.
+		 * TODO: Refactor Check new syntax of onTimeout.
 		 *  It is expected to kickout the player, it can't fail.
 		 */
 		onExit(object);
@@ -644,9 +631,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 	public AccountResult createAccount(String username, String password, String email) {
 		/*
-		 * TODO: Refactor
-		 * Invalid patterns for username should be stored in a text file or XML file.
-		 */ 
+		 * TODO: Refactor Invalid patterns for username should be stored in a text file or XML file.
+		 */
 		if (!isValidUsername(username)) {
 			return new AccountResult(Result.FAILED_EXCEPTION, username);
 		}
@@ -687,10 +673,9 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		}
 
 			/*
-			 * TODO: Refactor
-			 * OMG! Hide in a method.
+			 * TODO: Refactor OMG! Hide in a method.
 			 * Even better, move it to player class as it is its duty to provide a empty level 0 player.
-			 */ 
+			 */
 			/*
 			 * Create the player character object
 			 */

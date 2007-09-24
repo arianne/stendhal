@@ -1093,7 +1093,7 @@ public class Player extends RPEntity {
 		}
 		return -1;
     }
-	
+
 	/**
 	 * Notifies this player that the given player has logged in.
 	 *
@@ -1660,8 +1660,7 @@ public class Player extends RPEntity {
 	@Override
 	public void logic() {
 		/*
-		 * TODO: Refactor
-		 * Most of these things can be handled as RPEvents
+		 * TODO: Refactor Most of these things can be handled as RPEvents
 		 */
 		if (has("risk")) {
 			remove("risk");
@@ -1698,8 +1697,7 @@ public class Player extends RPEntity {
 		int turn = StendhalRPRuleProcessor.get().getTurn();
 
 		/*
-		 * TODO: Refactor
-		 * Implement the attack rate into attack itself.
+		 * TODO: Refactor Implement the attack rate into attack itself.
 		 * Done in the new RP.
 		 */
 		if (isAttacking() && ((turn % StendhalRPAction.getAttackRate(this)) == 0)) {
@@ -1707,7 +1705,7 @@ public class Player extends RPEntity {
 		}
 
 		agePlayer(turn);
-		
+
 		consume(turn);
 	}
 
