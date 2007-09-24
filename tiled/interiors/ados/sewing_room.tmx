@@ -78,6 +78,18 @@
  <tileset name="nain_rug.png" firstgid="462" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/carpet/nain_rug.png"/>
  </tileset>
+ <tileset name="sewing machine" firstgid="478" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/sewing_machine.png"/>
+ </tileset>
+ <tileset name="table" firstgid="479" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/furniture/table/wooden_rectangular.png"/>
+ </tileset>
+ <tileset name="chair" firstgid="485" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/furniture/chair/wooden.png"/>
+ </tileset>
+ <tileset name="loom" firstgid="490" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/furniture/other/loom.png"/>
+ </tileset>
  <layer name="0_floor" width="20" height="20">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAANvHyMCwbxSP4lE8ikfxKCYRAwBZcigqQAYAAA==
@@ -85,17 +97,17 @@
  </layer>
  <layer name="1_terrain" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2SSwrCMBCGZ0R8InpLQXDlHXxs1JO4qO0ttL7fehf/0gTStDWtzcKFAx+EmT8fCQkTUckAZcgElEEdVMCAiRzBUlvLcrS+zAV7q5jXhK8v9rgc4nF0LcvV+p4y73HcV6R+1Te1eN8F9s0MvnVOt8ln+3x5a/7/L5l8PjIbsAU7kS/yHntkDuAITkr+W98ZmQu4gpuF892ReYAneCn5T/9lVeBdVF8DdDnKEIw43k+jSaGvBdoJjJGZcPIsjQ54A4S77ftABgAA
+   H4sIAAAAAAAAAM2SWQrCMBCGMyKuiN5SEHzyDi4v6kl8qO0t3PcV1yeXO/hLU0jTtNA2oAMfhMk3P2kZYowlNJEEWZACNWLM4PSls1OG1He872wa9xmeV+UzJtlY5D47ZUp9S7ivkDcvTv0i74T+WeIiue0Q33tF/yZxF9wezh3N/09nXtD7hhEzu3+8Lw/MPTW+74W5d8S8EZwxmICpwg+bN4MzBwuwFPww+yzWCs4abMCW+3H2eQdnDw7gKPhB+zKIsTdiXg6UyU0dNMjb9yPP7LwCKCpowmmR+s6PEvgAPJ6Yg0AGAAA=
   </data>
  </layer>
  <layer name="2_object" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNggIANjJRhdLATKLaDkXwaHewGiu1iJJ8eamAx0M1LgHjpALt9PZ3sPwm05xTUrvlDML4GGsDSC4we7gA5vZAC6JWeR0oaBgAEmWVfQAYAAA==
+   H4sIAAAAAAAAAGNggIANjLjxDjxyMIwOdkL1kUujg91AsV2M5NMDDZ6R6IbFQPVLgHgpDn336OSn9XSy5yTQnlODIJ6GKoClFxg93AG56YVe6Xn+CIgDEAAAQFUmakAGAAA=
   </data>
  </layer>
  <layer name="3_roof" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAXUAAsYGRgWAvEixoF2CXZwFOiuY1C3zaWCG48DzTgBNWfeIPXzYAagtAJLMwsGYfghpxdqAOT0Qg1AjTSMDEZ6Gu4A+r+TjDAAAEWKt/VABgAA
+   H4sIAAAAAAAAAGNgwA82MKLiUYAdLACGzUIgXjRIw+go0F3HqOi240CzTgxSvw4FAEorsDSzgMhwfAVU95pOYT7Y08tcKofDvBGeljuA/u8kIwwAMLKn9EAGAAA=
   </data>
  </layer>
  <layer name="4_roof_add" width="20" height="20">
@@ -110,7 +122,7 @@
  </layer>
  <layer name="collision" width="20" height="20" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAANvDyMCwZ4hgSgA1zaKHeeSaDVNPLfcRMo9a7kM2lxQz6e1fSsylV3oZTuFHTHoZTu5DNpeY+B3oMhkA4EdkoEAGAAA=
+   H4sIAAAAAAAAANvDyMCwZwhgSsFQMw+b2cSEDYxPjPuobR6x/iTWbkrNo6b7KAX0TC/Emo+sdrD6l17pZbC4D9lcSsoEemEAZ7RkKEAGAAA=
   </data>
  </layer>
  <layer name="protection" width="20" height="20">
