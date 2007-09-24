@@ -1966,6 +1966,36 @@
     </ai>
   </creature>
 
+  <creature name="red_troll">
+    <type class="troll" subclass="red_troll" tileid="troll.png:2"/>
+    <description></description>
+    <attributes>
+      <atk value="60"/>
+      <def value="24"/>
+      <hp value="110"/>
+      <speed value="0.7"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="16"/>
+    <experience value="200"/>
+    <respawn value="930"/>
+    <drops>
+      <item value="money" quantity="[3,17]" probability="90.0"/>
+      <item value="scale_armor" quantity="[1,1]" probability="3.0"/>
+      <item value="chain_legs" quantity="[1,1]" probability="4.0"/>
+      <item value="flail" quantity="[1,1]" probability="30.0"/>
+      <item value="ugmash" quantity="[1,1]" probability="0.0001"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="offensive"/>
+      <profile name="coward" params="fire"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
   <creature name="elder_ogre">
     <type class="giant" subclass="elder_ogre" tileid="giant.png:1"/>
     <description></description>
