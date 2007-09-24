@@ -258,6 +258,21 @@
  <tileset name="fallen" firstgid="801" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/undead_fallen.png"/>
  </tileset>
+ <tileset name="sink dark side on" firstgid="810" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/furniture/sink/dark_side_on.png"/>
+ </tileset>
+ <tileset name="sink ns" firstgid="816" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/furniture/sink/dark_front_on.png"/>
+ </tileset>
+ <tileset name="chaos" firstgid="822" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/creature/chaos.png"/>
+ </tileset>
+ <tileset name="madaram" firstgid="829" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/creature/madaram.png"/>
+ </tileset>
+ <tileset name="gnome" firstgid="842" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/creature/gnome.png"/>
+ </tileset>
  <layer name="0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3WMW7EMBAEwQMO8P+f7NSZE0lDoSuonIuegN/P5/PlCD8D65vRn017/c+hf5v+bfq36d+mf9eqvf5n0L9N/zb92/Rv079N/zb92/Rv079N/zb92/Rv079N/zb92/Rv079N/zb92/RH/zb92/Rv079NfxY7WN+L/mza638W/dv0b9O/Tf82/dv0b9O/Tf82/dv0b9Mf/XlyC+sb2e5hfRPbDazvYbuB9S3oj/7oz/MbWN/Bdgvrt6M/+nPtv07/99G/Tf82/dv0b9O/Tf82/dv0b9O/Tf82/dv05+kdrG9Ff/Rns4H1nWx3sL6P7QbWt7HdwPouthtY38R2A+t72G5gfQv6s9vA+g70R382G1jfgP7oj/7oj/7oj/7c217/99K/66r2+r+T/l1Xttf/Xa5ur/973NFe//fQv+uu9vqf7872+p9P/6a7u+t/Nv27nmqv/1me7K7/efRv079N/zb92/Rv079N/zb92/Rv079N/zb92/Rv079Nf57eyPoe7t3Kfxtav5Hn/e3/CylE1H4AAAEA
