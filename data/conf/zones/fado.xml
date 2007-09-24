@@ -739,6 +739,12 @@ black halberd     12000
    <destination zone="-1_fado_great_cave_?" ref="lounge_entrance"/>
   </portal> -->
 </zone>
+
+<zone name="int_fado_wizard_house1" file="interiors/fado/wizard_house1.tmx">
+ <!-- <portal x="10" y="18" ref="entrance">
+   <destination zone="-1_fado_great_cave_?" ref="house1_entrance"/>
+  </portal> -->
+</zone>
  <!--  Level -2 -->
 
 
