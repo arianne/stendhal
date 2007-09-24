@@ -57,7 +57,7 @@
  <tileset name="../../tileset/logic/creature/elf.png" firstgid="233" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/elf.png"/>
  </tileset>
- <tileset name="../../tileset/logic/collision.png" firstgid="242" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/collision.png" firstgid="243" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
  <layer name="0_floor" width="15" height="13">
@@ -72,7 +72,7 @@
  </layer>
  <layer name="2_object" width="15" height="13">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAALXOMQqDQBCF4T11iBjsJIVWghEUjKAYFEktRMUjiJL75C+2cbGYFfLgg4GZ2Vml9onwQIIYqZInwxMFcpSCnQuuuq5QW9xz4Or6hcbob/gKdlt0Rn/BKti1zQ2ert+aND7ugrnQ9lMn0mPAByMmzAdzgfA96dw/8wPSIkZlDAMAAA==
+   H4sIAAAAAAAAAGNgQAWTgHgaEE8H4qlAPIuBeDAbiOcD8QIgngfEi4nQUwbEFSTYgQwqgbgayl4CxMvQ5C8D8VUi9K4C4jVo8heA+BIRekkFNUBcB2Wvg2JiQSsQtxOhrodUR5EBdgDxHiDeDcR7gXgfEB/Aoq6bSPOIVUdLAAB4rOzIDAMAAA==
   </data>
  </layer>
  <layer name="3_roof" width="15" height="13">
@@ -92,7 +92,7 @@
  </layer>
  <layer name="collision" width="15" height="13" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAPvEwMDwaRBgBhzswa4XGdDaXmIBJXqx6SfWDkrcTUw40RoDANweijcMAwAA
+   H4sIAAAAAAAAAPvMwMDweRBgdECqXmxseuilp5uJBZToxaafWDsocTcx4URrDAAa9fg5DAMAAA==
   </data>
  </layer>
  <layer name="protection" width="15" height="13">
