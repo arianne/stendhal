@@ -273,6 +273,48 @@
  <tileset name="gnome" firstgid="843" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/gnome.png"/>
  </tileset>
+ <tileset name="table wooden rec" firstgid="845" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/furniture/table/wooden_rectangular.png"/>
+ </tileset>
+ <tileset name="statue metal and stone" firstgid="851" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/furniture/statue/metal_and_stone.png"/>
+ </tileset>
+ <tileset name="statue grey stone" firstgid="857" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/furniture/statue/grey_stone.png"/>
+ </tileset>
+ <tileset name="fire" firstgid="861" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/fire/fire.png"/>
+ </tileset>
+ <tileset name="castle" firstgid="888" tilewidth="32" tileheight="32">
+  <image source="../../tileset/object/castle.png"/>
+ </tileset>
+ <tileset name="banner" firstgid="1208" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/decoration/banner.png"/>
+ </tileset>
+ <tileset name="earthen entrance" firstgid="1217" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/entrance/earthen_3.png"/>
+ </tileset>
+ <tileset name="church" firstgid="1223" tilewidth="32" tileheight="32">
+  <image source="../../tileset/object/church.png"/>
+ </tileset>
+ <tileset name="shelf book n bottle" firstgid="1279" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/furniture/shelve/pale_book_bottle_shelf.png"/>
+ </tileset>
+ <tileset name="dishes" firstgid="1291" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/furniture/crockery/dishes.png"/>
+ </tileset>
+ <tileset name="pot golden" firstgid="1297" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/pot/pot_golden.png"/>
+ </tileset>
+ <tileset name="bench" firstgid="1301" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/furniture/table/bench.png"/>
+ </tileset>
+ <tileset name="table long front on pale" firstgid="1304" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/furniture/table/long_front_on_pale.png"/>
+ </tileset>
+ <tileset name="table long side pale" firstgid="1307" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/furniture/table/long_side_on_pale.png"/>
+ </tileset>
  <layer name="0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3XQW6EQBAEQaSV/P8n+w94RQ3OOOSdnmjQ8Lmu6yNJkiRJelU/N1o/s+65fav17NWW5vz3rd358+fPf30O1dbu/Pnz578+h2prd/78+fNfn0O1tTt//vztwPoMyq3t+Z8Tfy32YD2vtnuwnlPbHVjPqO0OrOcTf23s+Z+b+187/t2esud/Zvy7PWnP/7z4d3vanv9Z8e+2sOd/Tvzb8W/Hv9vKnv8Z8W/Hvx3/bkt7/vv4i387/t18/8W/Hf92/NvxF/92/MVf/MVf/MW/HX/xF3/xb8df/MVf/NvxF/9u3n/xb8e/Hf92/MW/Hf92/MW/m/df/Nvxb8e/HX/xb8df/MVf/Nvxb8e/Hf92/Lu5/3fz/9/trj3/d/cXd/7v7hv2/N8b/3b82/Fvx78d/3b82/Fvx78d/3b82/Fvx///9y1j/mf3hDP/c+Pfjr/4a7EH63nFX/zFX/zLPW3P/6z4N1u48z8n/lrtwXpm8dfO/xef4mFbAAABAA==
