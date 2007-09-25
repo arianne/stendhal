@@ -689,6 +689,35 @@ black halberd     12000
 </zone>
 
 <zone name="-1_fado_great_cave_n_e3" level="-1" x="500256" y="500512" file="Level -1/fado/great_cave_n_e3.tmx">
+  <entity x="86" y="23">
+    <implementation class-name="games.stendhal.server.entity.Sign"/>
+    <attribute name="text">You see a grill, ready to barbecue some meat. Careful, it's hot!</attribute>
+    <attribute name="class">transparent</attribute>
+  </entity>
+  <entity x="121" y="68">
+    <implementation class-name="games.stendhal.server.entity.Sign"/>
+    <attribute name="text">You see a sizzling grill, for barbecuing meat. You can't see a man around but you can smell the burnt food, so one must be close.</attribute>
+    <attribute name="class">transparent</attribute>
+  </entity>
+  <entity x="122" y="68">
+    <implementation class-name="games.stendhal.server.entity.Sign"/>
+    <attribute name="text">You see a barbecue, ready to grill some fish. Careful, it will be hot!</attribute>
+    <attribute name="class">transparent</attribute>
+  </entity>
+  <entity x="123" y="68">
+    <implementation class-name="games.stendhal.server.entity.Sign"/>
+    <attribute name="text">You see a flaming grill, just right to cook some tasty food on.</attribute>
+    <attribute name="class">transparent</attribute>
+  </entity>
+  <portal x="85" y="112" ref="house2_entrance">
+   <destination zone="int_fado_wizard_house2" ref="entrance"/>
+  </portal>
+  <portal x="47" y="61" ref="lounge_entrance">
+   <destination zone="int_fado_wizard_lounge" ref="entrance"/>
+  </portal>
+  <portal x="21" y="37" ref="bank_entrance">
+   <destination zone="int_fado_wizard_bank" ref="entrance"/>
+  </portal>
 </zone>
 
 <zone name="-1_fado_great_cave_w2" level="-1" x="499616" y="500640" file="Level -1/fado/great_cave_w2.tmx">
@@ -714,11 +743,14 @@ black halberd     12000
   <entity x="61" y="35">
     <implementation class-name="games.stendhal.server.entity.WellSource"/>
   </entity>
-  <portal x="12" y="105" ref="theater_entrance_left">
+  <portal x="12" y="106" ref="theater_entrance_left">
    <destination zone="int_fado_theater" ref="entrance_left"/>
   </portal>
-  <portal x="13" y="105" ref="theater_entrance_right">
+  <portal x="13" y="106" ref="theater_entrance_right">
    <destination zone="int_fado_theater" ref="entrance_right"/>
+  </portal>
+  <portal x="77" y="50" ref="house3_entrance">
+   <destination zone="int_fado_wizard_house3" ref="entrance"/>
   </portal>
 </zone>
 
@@ -735,20 +767,25 @@ black halberd     12000
 </zone>
 
 <zone name="int_fado_wizard_lounge" file="interiors/fado/wizard_lounge.tmx">
- <!-- <portal x="10" y="18" ref="entrance">
-   <destination zone="-1_fado_great_cave_?" ref="lounge_entrance"/>
-  </portal> -->
+  <portal x="10" y="18" ref="entrance">
+   <destination zone="-1_fado_great_cave_n_e3" ref="lounge_entrance"/>
+  </portal> 
 </zone>
 
 <zone name="int_fado_wizard_house1" file="interiors/fado/wizard_house1.tmx">
- <!-- <portal x="10" y="18" ref="entrance">
-   <destination zone="-1_fado_great_cave_?" ref="house1_entrance"/>
+<!-- <portal x="10" y="18" ref="entrance">
+   <destination zone="-1_fado_great_cave_n_e2" ref="house1_entrance"/>
   </portal> -->
 </zone>
 <zone name="int_fado_wizard_house2" file="interiors/fado/wizard_house2.tmx">
- <!-- <portal x="10" y="18" ref="entrance">
-   <destination zone="-1_fado_great_cave_?" ref="house2_entrance"/>
-  </portal> -->
+ <portal x="10" y="18" ref="entrance">
+   <destination zone="-1_fado_great_cave_n_e3" ref="house2_entrance"/>
+  </portal>
+</zone>
+<zone name="int_fado_wizard_house3" file="interiors/fado/wizard_house3.tmx">
+ <portal x="10" y="18" ref="entrance">
+   <destination zone="-1_fado_great_cave_e3" ref="house3_entrance"/>
+  </portal>
 </zone>
 
 
@@ -784,9 +821,9 @@ black halberd     12000
     </entity>
 
 
- <!-- <portal x="15" y="18" ref="entrance">
-   <destination zone="-1_fado_great_cave_?" ref="bank_entrance"/>
-  </portal> -->
+ <portal x="15" y="18" ref="entrance">
+   <destination zone="-1_fado_great_cave_n_e3" ref="bank_entrance"/>
+  </portal>
  <!-- The one player areas may not be strictly necessary because the NPC will
    control access so only one person is in at one time. But it's better to be
    safe than sorry, something might go wrong -->
