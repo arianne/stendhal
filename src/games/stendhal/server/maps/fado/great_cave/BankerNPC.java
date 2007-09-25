@@ -3,11 +3,7 @@ package games.stendhal.server.maps.fado.great_cave;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.pathfinder.FixedPath;
-import games.stendhal.server.pathfinder.Node;
 
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -32,9 +28,8 @@ public class BankerNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createPath() {
-				List<Node> nodes = new LinkedList<Node>();
 				// doesn't move
-				setPath(new FixedPath(nodes, false));
+				setPath(null);
 			}
 
 			@Override
