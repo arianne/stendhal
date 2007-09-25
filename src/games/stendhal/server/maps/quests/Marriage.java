@@ -161,8 +161,8 @@ public class Marriage extends AbstractQuest {
 	private void startEngagement(SpeakerNPC nun, Player player,
 			String partnerName) {
 		IRPZone outsideChurchZone = nun.getZone();
-		Area inFrontOfNun = new Area(outsideChurchZone, new Rectangle(51, 49,
-				5, 5));
+		Area inFrontOfNun = new Area(outsideChurchZone, new Rectangle(51, 52,
+				6, 5));
 		groom = player;
 		bride = StendhalRPRuleProcessor.get().getPlayer(partnerName);
 
@@ -536,7 +536,7 @@ public class Marriage extends AbstractQuest {
 	private void startMarriage(SpeakerNPC priest, Player player,
 			String partnerName) {
 		IRPZone churchZone = priest.getZone();
-		Area inFrontOfAltar = new Area(churchZone, new Rectangle(10, 8, 4, 1));
+		Area inFrontOfAltar = new Area(churchZone, new Rectangle(10, 9, 4, 1));
 
 		groom = player;
 		bride = StendhalRPRuleProcessor.get().getPlayer(partnerName);
