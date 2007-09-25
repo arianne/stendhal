@@ -690,24 +690,61 @@ black halberd     12000
 
 <zone name="-1_fado_great_cave_n_e3" level="-1" x="500256" y="500512" file="Level -1/fado/great_cave_n_e3.tmx">
   <entity x="86" y="23">
-    <implementation class-name="games.stendhal.server.entity.Sign"/>
-    <attribute name="text">You see a grill, ready to barbecue some meat. Careful, it's hot!</attribute>
-    <attribute name="class">transparent</attribute>
+    <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
+    <attribute name="description">You see a grill, ready to barbecue some meat. Careful, it's hot!</attribute>
+  </entity>
+  <entity x="82" y="23">
+   <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
+   <attribute name="description">You see a picnic bench to eat your barbecued food from.</attribute>
   </entity>
   <entity x="121" y="68">
-    <implementation class-name="games.stendhal.server.entity.Sign"/>
-    <attribute name="text">You see a sizzling grill, for barbecuing meat. You can't see a man around but you can smell the burnt food, so one must be close.</attribute>
-    <attribute name="class">transparent</attribute>
+   <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
+   <attribute name="description">You see a sizzling grill, for barbecuing meat. You can't see a man around but you can smell the burnt food, so one must be close.</attribute>
   </entity>
   <entity x="122" y="68">
-    <implementation class-name="games.stendhal.server.entity.Sign"/>
-    <attribute name="text">You see a barbecue, ready to grill some fish. Careful, it will be hot!</attribute>
-    <attribute name="class">transparent</attribute>
+   <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
+   <attribute name="description">You see a barbecue, ready to grill some fish. Careful, it will be hot!</attribute>
   </entity>
   <entity x="123" y="68">
-    <implementation class-name="games.stendhal.server.entity.Sign"/>
-    <attribute name="text">You see a flaming grill, just right to cook some tasty food on.</attribute>
-    <attribute name="class">transparent</attribute>
+   <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
+   <attribute name="description">You see a flaming grill, just right to cook some tasty food on.</attribute>
+  </entity>
+  <entity x="121" y="71">
+   <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
+   <attribute name="description">You see a picnic bench to eat your barbecued food from.</attribute>
+  </entity>
+  <entity x="122" y="71">
+   <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
+   <attribute name="description">You see a picnic bench to eat your barbecued food from.</attribute>
+  </entity>
+  <entity x="123" y="71">
+   <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
+   <attribute name="description">You see a picnic bench to eat your barbecued food from.</attribute>
+  </entity>
+  <entity x="124" y="71">
+   <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
+   <attribute name="description">You see a picnic bench to eat your barbecued food from.</attribute>
+  </entity>
+  <entity x="121" y="76">
+   <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
+   <attribute name="description">You see a picnic bench to eat your barbecued food from.</attribute>
+  </entity>
+  <entity x="122" y="76">
+   <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
+   <attribute name="description">You see a picnic bench to eat your barbecued food from.</attribute>
+  </entity>
+  <entity x="123" y="76">
+   <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
+   <attribute name="description">You see a picnic bench to eat your barbecued food from.</attribute>
+  </entity>
+  <entity x="124" y="76">
+   <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
+   <attribute name="description">You see a picnic bench to eat your barbecued food from.</attribute>
+  </entity>
+  <entity x="91" y="70">
+   <implementation class-name="games.stendhal.server.entity.Sign"/>
+   <attribute name="text">The TrailBlazer, by Best Broom, ltd.</attribute>
+   <attribute name="class">transparent</attribute>
   </entity>
   <portal x="85" y="112" ref="house2_entrance">
    <destination zone="int_fado_wizard_house2" ref="entrance"/>
@@ -752,6 +789,16 @@ black halberd     12000
   <portal x="77" y="50" ref="house3_entrance">
    <destination zone="int_fado_wizard_house3" ref="entrance"/>
   </portal>
+  <entity x="54" y="48">
+   <implementation class-name="games.stendhal.server.entity.Sign"/>
+   <attribute name="text">Sweeper 3000 series</attribute>
+   <attribute name="class">transparent</attribute>
+  </entity>
+  <entity x="88" y="113">
+   <implementation class-name="games.stendhal.server.entity.Sign"/>
+   <attribute name="text">LightningBolt 100, property of B. Fly.</attribute>
+   <attribute name="class">transparent</attribute>
+  </entity>
 </zone>
 
 <zone name="int_fado_theater" file="interiors/fado/theater.tmx">
