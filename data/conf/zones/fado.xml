@@ -762,7 +762,7 @@ black halberd     12000
       <parameter name="new-x">13</parameter>
       <parameter name="new-y">15</parameter>
      </implementation>
-     <attribute name="name">deathmatch spikes</attribute>
+     <attribute name="name">enchanted area</attribute>
     </entity>
     <entity x="11" y="2">
      <implementation class-name="games.stendhal.server.entity.area.NoLoginArea">
@@ -771,7 +771,7 @@ black halberd     12000
       <parameter name="new-x">15</parameter>
       <parameter name="new-y">15</parameter>
      </implementation>
-     <attribute name="name">deathmatch spikes</attribute>
+     <attribute name="name">enchanted area</attribute>
     </entity>
     <entity x="20" y="2">
      <implementation class-name="games.stendhal.server.entity.area.NoLoginArea">
@@ -780,7 +780,7 @@ black halberd     12000
       <parameter name="new-x">17</parameter>
       <parameter name="new-y">15</parameter>
      </implementation>
-     <attribute name="name">deathmatch spikes</attribute>
+     <attribute name="name">enchanted area</attribute>
     </entity>
 
 
