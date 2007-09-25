@@ -76,13 +76,13 @@ public class GreeterNPC implements ZoneConfigurator {
 						return (int) (1.50f * priceList.get(item));
 					}
 				});
-				addQuest("I require nothing at present. Perhaps some time in the future someone here will need you.");
+				addQuest("Neither can live while the other survives! The Dark Lord must be killed...no ... wait... that was some other time. Forgive me for confusing you, I need nothing.");
  				addGoodbye("Adieu.");
 			}
 		};
-		npc.setDescription("You see an imposing looking wizard.");
+		npc.setDescription("You see a friendly looking elderly wizard.");
 		zone.assignRPObjectID(npc);
-		npc.setEntityClass("pinkwizardnpc");
+		npc.setEntityClass("friendlywizardnpc");
 		npc.setPosition(99, 111);
 		npc.initHP(100);
 		zone.add(npc);
