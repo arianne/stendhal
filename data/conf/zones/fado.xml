@@ -757,8 +757,8 @@ black halberd     12000
  <configurator class-name="games.stendhal.server.maps.fado.great_cave.BankerNPC" />
     <entity x="2" y="2">
      <implementation class-name="games.stendhal.server.entity.area.NoLoginArea">
-      <parameter name="width">8</parameter>
-      <parameter name="height">15</parameter>
+      <parameter name="width">9</parameter>
+      <parameter name="height">16</parameter>
       <parameter name="new-x">13</parameter>
       <parameter name="new-y">15</parameter>
      </implementation>
@@ -766,8 +766,8 @@ black halberd     12000
     </entity>
     <entity x="11" y="2">
      <implementation class-name="games.stendhal.server.entity.area.NoLoginArea">
-      <parameter name="width">8</parameter>
-      <parameter name="height">10</parameter>
+      <parameter name="width">9</parameter>
+      <parameter name="height">11</parameter>
       <parameter name="new-x">15</parameter>
       <parameter name="new-y">15</parameter>
      </implementation>
@@ -775,8 +775,8 @@ black halberd     12000
     </entity>
     <entity x="20" y="2">
      <implementation class-name="games.stendhal.server.entity.area.NoLoginArea">
-      <parameter name="width">8</parameter>
-      <parameter name="height">15</parameter>
+      <parameter name="width">9</parameter>
+      <parameter name="height">16</parameter>
       <parameter name="new-x">17</parameter>
       <parameter name="new-y">15</parameter>
      </implementation>
@@ -787,30 +787,69 @@ black halberd     12000
  <!-- <portal x="15" y="18" ref="entrance">
    <destination zone="-1_fado_great_cave_?" ref="bank_entrance"/>
   </portal> -->
+ <!-- The one player areas may not be strictly necessary because the NPC will
+   control access so only one person is in at one time. But it's better to be
+   safe than sorry, something might go wrong -->
+   <entity x="2" y="8">
+    <implementation class-name="games.stendhal.server.entity.area.OnePlayerArea">
+     <parameter name="width">4</parameter>
+     <parameter name="height">2</parameter>
+    </implementation>
+   </entity>
    <entity x="2" y="9">
       <implementation class-name="games.stendhal.server.entity.PersonalChest">
          <parameter name="slot">bank</parameter>
       </implementation>
+   </entity>
+   <entity x="2" y="12">
+    <implementation class-name="games.stendhal.server.entity.area.OnePlayerArea">
+     <parameter name="width">4</parameter>
+     <parameter name="height">2</parameter>
+    </implementation>
    </entity>
    <entity x="2" y="13">
       <implementation class-name="games.stendhal.server.entity.PersonalChest">
          <parameter name="slot">bank_nalwor</parameter>
       </implementation>
    </entity>
+   <entity x="2" y="16">
+    <implementation class-name="games.stendhal.server.entity.area.OnePlayerArea">
+     <parameter name="width">4</parameter>
+     <parameter name="height">2</parameter>
+    </implementation>
+   </entity>
    <entity x="2" y="17">
       <implementation class-name="games.stendhal.server.entity.PersonalChest">
          <parameter name="slot">bank_fado</parameter>
       </implementation>
+   </entity>
+   <entity x="24" y="8">
+    <implementation class-name="games.stendhal.server.entity.area.OnePlayerArea">
+     <parameter name="width">4</parameter>
+     <parameter name="height">2</parameter>
+    </implementation>
    </entity>
   <!-- <entity x="27" y="9">
       <implementation class-name="games.stendhal.server.entity.PersonalChest">
          <parameter name="slot">bank_wizard</parameter>
       </implementation>
    </entity>-->
+   <entity x="24" y="12">
+    <implementation class-name="games.stendhal.server.entity.area.OnePlayerArea">
+     <parameter name="width">4</parameter>
+     <parameter name="height">2</parameter>
+    </implementation>
+   </entity>
    <entity x="27" y="13">
       <implementation class-name="games.stendhal.server.entity.PersonalChest">
          <parameter name="slot">bank_ados</parameter>
       </implementation>
+   </entity>   
+   <entity x="24" y="16">
+    <implementation class-name="games.stendhal.server.entity.area.OnePlayerArea">
+     <parameter name="width">4</parameter>
+     <parameter name="height">2</parameter>
+    </implementation>
    </entity>
    <entity x="27" y="17">
       <implementation class-name="games.stendhal.server.entity.PersonalChest">
