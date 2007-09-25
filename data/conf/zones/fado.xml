@@ -745,8 +745,45 @@ black halberd     12000
    <destination zone="-1_fado_great_cave_?" ref="house1_entrance"/>
   </portal> -->
 </zone>
+<zone name="int_fado_wizard_house2" file="interiors/fado/wizard_house2.tmx">
+ <!-- <portal x="10" y="18" ref="entrance">
+   <destination zone="-1_fado_great_cave_?" ref="house2_entrance"/>
+  </portal> -->
+</zone>
+
 
 <zone name="int_fado_wizard_bank" file="interiors/fado/wizard_bank.tmx">
+ <configurator class-name="games.stendhal.server.maps.semos.jail.NoTeleport"/>
+ <configurator class-name="games.stendhal.server.maps.fado.great_cave.BankerNPC" />
+    <entity x="2" y="2">
+     <implementation class-name="games.stendhal.server.entity.area.NoLoginArea">
+      <parameter name="width">8</parameter>
+      <parameter name="height">15</parameter>
+      <parameter name="new-x">13</parameter>
+      <parameter name="new-y">15</parameter>
+     </implementation>
+     <attribute name="name">deathmatch spikes</attribute>
+    </entity>
+    <entity x="11" y="2">
+     <implementation class-name="games.stendhal.server.entity.area.NoLoginArea">
+      <parameter name="width">8</parameter>
+      <parameter name="height">10</parameter>
+      <parameter name="new-x">15</parameter>
+      <parameter name="new-y">15</parameter>
+     </implementation>
+     <attribute name="name">deathmatch spikes</attribute>
+    </entity>
+    <entity x="20" y="2">
+     <implementation class-name="games.stendhal.server.entity.area.NoLoginArea">
+      <parameter name="width">8</parameter>
+      <parameter name="height">15</parameter>
+      <parameter name="new-x">17</parameter>
+      <parameter name="new-y">15</parameter>
+     </implementation>
+     <attribute name="name">deathmatch spikes</attribute>
+    </entity>
+
+
  <!-- <portal x="15" y="18" ref="entrance">
    <destination zone="-1_fado_great_cave_?" ref="bank_entrance"/>
   </portal> -->
