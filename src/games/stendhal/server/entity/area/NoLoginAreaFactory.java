@@ -31,16 +31,62 @@ public class NoLoginAreaFactory implements ConfigurableFactory {
 	}
 
 
+	/**
+	 * Get the message to send to the player.
+	 *
+	 * @param	ctx		The configuration context.
+	 *
+	 * @return	The message to send to the player.
+	 */
+	protected String getMessage(ConfigurableFactoryContext ctx) {
+		return ctx.getString("message", null);
+	}
+
+
+	/**
+	 * Get the new player X coordinate.
+	 *
+	 * @param	ctx		The configuration context.
+	 *
+	 * @return	The new player X coordinate.
+	 *
+	 * @throws	IllegalArgumentException
+	 *				If the attribute is missing/invalid.
+	 */
 	protected int getNewX(ConfigurableFactoryContext ctx) {
 		return ctx.getRequiredInt("new-x");
 	}
 
+	/**
+	 * Get the new player Y coordinate.
+	 *
+	 * @param	ctx		The configuration context.
+	 *
+	 * @return	The new player Y coordinate.
+	 *
+	 * @throws	IllegalArgumentException
+	 *				If the attribute is missing/invalid.
+	 */
 	protected int getNewY(ConfigurableFactoryContext ctx) {
 		return ctx.getRequiredInt("new-y");
 	}
 
 
+	/**
+	 * Create an object.
+	 *
+	 * @param	ctx		The configuration context.
+	 *
+	 * @return	A new object, or <code>null</code> if allowed by
+	 *		the factory type.
+	 *
+	 * @throws	IllegalArgumentException
+	 *				If there is a problem with the
+	 *				attributes. The exception message
+	 *				should be a value sutable for
+	 *				meaningful user interpretation.
+	 */
 	public NoLoginArea create(ConfigurableFactoryContext ctx) {
-		return new NoLoginArea(getWidth(ctx), getHeight(ctx), getNewX(ctx), getNewY(ctx));
+		return new NoLoginArea(getWidth(ctx), getHeight(ctx), getNewX(ctx), getNewY(ctx), getMessage(ctx));
 	}
 }
