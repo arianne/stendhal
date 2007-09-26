@@ -565,6 +565,16 @@ public class Marriage extends AbstractQuest {
 			new SpeakerNPC.ChatCondition() {
 			@Override
 			public boolean fire(Player player, String text, SpeakerNPC npc) {
+				return (player.getQuest(QUEST_SLOT).equals("just_married")) &&
+					player.isEquipped("wedding_ring") ;
+			}
+		}, ConversationStates.QUESTION_3,
+				"You haven't even been on your honeymoon yet. Are you sure you want to divorce so soon?", null);
+
+		clerk.add(ConversationStates.ATTENDING, "divorce",
+			new SpeakerNPC.ChatCondition() {
+			@Override
+			public boolean fire(Player player, String text, SpeakerNPC npc) {
 				return !player.isQuestCompleted(QUEST_SLOT);
 			}
 		}, ConversationStates.ATTENDING,
@@ -601,20 +611,27 @@ public class Marriage extends AbstractQuest {
 				husband = player;
 				partnerName = husband.getQuest(SPOUSE_QUEST_SLOT);
 				wife = StendhalRPRuleProcessor.get().getPlayer(partnerName);
-				if (wife != null)
-				    { if(wife.isEquipped("wedding_ring")){
-					wife.drop("wedding_ring");}
+				// check wife is online and check that they're still married to the current husband
+				if (wife != null && wife.hasQuest(QUEST_SLOT) && wife.getQuest(SPOUSE_QUEST_SLOT).equals(husband.getName()))
+				    { 
+					if(wife.isEquipped("wedding_ring")){
+					    wife.drop("wedding_ring");
+					}
+					int xp = (int) (wife.getXP() * 0.03);
+					wife.subXP(xp);
 					wife.removeQuest(QUEST_SLOT);
 					wife.removeQuest(SPOUSE_QUEST_SLOT);
 					wife.sendPrivateText(husband.getName() + " has divorced from you.");
 					npc.say("What a pity...what a pity...and you two were married so happily, too...");
-				}
+				    }
 				else
 				{
 					Player postman = StendhalRPRuleProcessor.get().getPlayer("postman");
 					if (postman != null)
 						postman.sendPrivateText("Wilfred tells you: msg " + partnerName + " " + husband.getName() + " has divorced from you!");
 				}
+				int xp = (int) (husband.getXP() * 0.03);
+				husband.subXP(xp);
 				husband.drop("wedding_ring");
 				husband.removeQuest(QUEST_SLOT);
 				husband.removeQuest(SPOUSE_QUEST_SLOT);
