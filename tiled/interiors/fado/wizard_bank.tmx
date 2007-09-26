@@ -54,6 +54,9 @@
  <tileset name="banners" firstgid="137" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/decoration/chests_banner.png"/>
  </tileset>
+ <tileset name="banner2" firstgid="143" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/decoration/banner.png"/>
+ </tileset>
  <layer name="0_floor" width="30" height="20">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAONhYGBgojPmBmIWIJYBYgk6YWkgZobaKwbEBnTCoqP20t1eKSAWR8JKVLRHEc1sSSR70dOzChXtVWYYTc+j8Tsav6PxO/zilxhsCMRGQGxMoj5Y/HIBMSMZ2AqIrYHYhgy9nEAMANgK7JRgCQAA
@@ -66,7 +69,7 @@
  </layer>
  <layer name="2_object" width="30" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNggIBCBlRAiI8LUMuckQ5KgbiMCLFRMDhBJw3M7KKBmaOAPNBNpLpyJEwI9JDvnFFAZdBLAzP7aGDmKBjcAAD07naeYAkAAA==
+   H4sIAAAAAAAAAGNggIBCBlRAiI8LUMuckQ5KgbiMCLFRMDhBJw3MnE4DM0cBeaCbBmb20MDMUUAe6KWBmX00MHMUDG4AAKS5j65gCQAA
   </data>
  </layer>
  <layer name="3_roof" width="30" height="20">
