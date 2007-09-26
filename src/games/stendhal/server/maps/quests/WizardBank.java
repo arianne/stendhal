@@ -157,7 +157,8 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 							SpeakerNPC engine) {
 						if (player.drop("money", COST)) {
 							engine.say("Semos, Nalwor and Fado bank chests are to my right. The chests owned by Ados Bank Merchants and your friend Zara are to my left. If you are finished before your time here is done, please say #leave.");
-							teleportAway(player);
+							player.teleport(zone,10,10,Direction.DOWN, player);
+
 
 							TurnNotifier.get().notifyInTurns(0,
 									new Timer(player));
