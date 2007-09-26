@@ -1765,7 +1765,7 @@ Mature sheep wanted: please speak to Sato
 
  <!--  Level 1 -->
 
- <zone name="dreamscape" file="interiors/abstract/dreamscape.tmx">
+ <zone name="1_dreamscape" file="interiors/abstract/dreamscape.tmx">
 <!--Don't allow teleporting as we don't want marked scrolls made or ring abused-->
   <configurator class-name="games.stendhal.server.maps.semos.jail.NoTeleport"/>
   <portal x="43" y="49" ref="exit1">

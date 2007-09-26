@@ -3733,7 +3733,7 @@
     <type class="scroll" subclass="rainbow_beans" tileid="-1"/>
     <description>You see a small pile of rainbow beans. One says something odd.</description>
     <implementation class-name="games.stendhal.server.entity.item.scroll.MarkedScroll"/>    <attributes>
-      <infostring value="dreamscape 77 35"/>
+      <infostring value="1_dreamscape 77 35"/>
       <quantity value="1"/>
     </attributes>
     <weight value="0.01"/>
