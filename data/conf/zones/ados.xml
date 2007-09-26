@@ -514,6 +514,12 @@ in roaches.
    </zone> 
    
    <zone name="int_ados_town_hall_1" file="interiors/ados/buraucrazy_1.tmx">
+   <configurator class-name="games.stendhal.server.maps.ados.townhall.ClerkNPC" />
+    <entity x="25" y="6">
+     <implementation class-name="games.stendhal.server.entity.Sign"/>
+     <attribute name="text">The rules and statutes of Marriage and Divorce throughout the island of Faiumoni are complex and require much ... </attribute>
+     <attribute name="class">transparent</attribute>
+    </entity>
     <portal x="36" y="3" ref="upstairs">
      <destination zone="int_ados_town_hall_2" ref="downstairs"/>
     </portal>
@@ -532,6 +538,16 @@ in roaches.
     <portal x="3" y="3" ref="upstairs">
      <destination zone="int_ados_town_hall_3" ref="downstairs"/>
     </portal>
+   <entity x="4" y="7">
+     <implementation class-name="games.stendhal.server.entity.Sign"/>
+     <attribute name="text">So Billy and Betty were very tired at the end of their long day, and they went to sleep dreaming of castles and drawbridges.</attribute>
+     <attribute name="class">transparent</attribute>
+    </entity>
+   <entity x="5" y="7">
+     <implementation class-name="games.stendhal.server.entity.Sign"/>
+     <attribute name="text">The next day Billy and Betty's mother said they must stay indoors and help her wash sheets, they were very disappointed not to be able to visit the castle again.</attribute>
+     <attribute name="class">transparent</attribute>
+    </entity>
    </zone> 
    
    <zone name="int_ados_town_hall_3" file="interiors/ados/buraucrazy_3.tmx">
