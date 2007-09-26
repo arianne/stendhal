@@ -138,8 +138,8 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 							String reply;
 							if (player.isQuestCompleted(QUEST_SLOT)) {
 								reply = " Do you wish to pay to access your chest again?";
-							} else if (!player.hasQuest(QUEST_SLOT)){
-							    reply = "";
+							} else if (!player.hasQuest(QUEST_SLOT)) {
+								reply = "";
 							} else {
 								reply = " You may #leave sooner, if required.";
 							}
@@ -155,54 +155,51 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 					@Override
 					public void fire(Player player, String text,
 							SpeakerNPC engine) {
-					    if (player.isQuestCompleted(QUEST_SLOT)||!player.hasQuest(QUEST_SLOT)) {
-						engine.say("The fee is " + COST
-						+ " money. Do you want to pay?");
-					    }
-					    else{
-						engine.say("As you already know, the fee is " + COST
-							   + " money.");
-					    }
+						if (player.isQuestCompleted(QUEST_SLOT)
+								|| !player.hasQuest(QUEST_SLOT)) {
+							engine.say("The fee is " + COST
+									+ " money. Do you want to pay?");
+						} else {
+							engine.say("As you already know, the fee is "
+									+ COST + " money.");
+						}
 					}
-				    }
-				);
+				});
 				addReply("yes", null, new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, String text,
 							SpeakerNPC engine) {
-					    if (player.isQuestCompleted(QUEST_SLOT)||!player.hasQuest(QUEST_SLOT)) {
-						if (player.drop("money", COST)) {
-							engine.say("Semos, Nalwor and Fado bank chests are to my right. The chests owned by Ados Bank Merchants and your friend Zara are to my left. If you are finished before your time here is done, please say #leave.");
-							player.teleport(zone,10,10,Direction.DOWN, player);
+						if (player.isQuestCompleted(QUEST_SLOT)
+								|| !player.hasQuest(QUEST_SLOT)) {
+							if (player.drop("money", COST)) {
+								engine.say("Semos, Nalwor and Fado bank chests are to my right. The chests owned by Ados Bank Merchants and your friend Zara are to my left. If you are finished before your time here is done, please say #leave.");
+								player.teleport(zone, 10, 10, Direction.DOWN,
+										player);
 
+								TurnNotifier.get().notifyInTurns(0,
+										new Timer(player));
 
-							TurnNotifier.get().notifyInTurns(0,
-									new Timer(player));
-
-							player.setQuest(QUEST_SLOT, "start");
+								player.setQuest(QUEST_SLOT, "start");
+							} else {
+								engine.say("You do not have enough money!");
+							}
 						} else {
-							engine.say("You do not have enough money!");
+							engine.say("Hm, I do not understand you. If you wish to #leave, just say");
 						}
-				            }
-					    else {
-						engine.say("Hm, I do not understand you. If you wish to #leave, just say");
-					    }
 					}
-				}
-				);
+				});
 				addReply("no", "Very well.");
 				addReply("leave", null, new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, String text,
 							SpeakerNPC engine) {
-					    if (!player.isQuestCompleted(QUEST_SLOT)){
-						teleportAway(player);
-						// remove the players Timer
-						TurnNotifier.get().dontNotify(new Timer(player));
-						engine.say("Thank you for using the Wizard's Bank");
-					    }
-						else {
-						    engine.say("Leave where?");
+						if (!player.isQuestCompleted(QUEST_SLOT)) {
+							teleportAway(player);
+							// remove the players Timer
+							TurnNotifier.get().dontNotify(new Timer(player));
+							engine.say("Thank you for using the Wizard's Bank");
+						} else {
+							engine.say("Leave where?");
 						}
 					}
 				});
