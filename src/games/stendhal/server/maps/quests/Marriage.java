@@ -73,6 +73,8 @@ public class Marriage extends AbstractQuest {
 
 	private SpeakerNPC priest;
 
+	private SpeakerNPC clerk;
+
 	private void EngagementStep() {
 		nun = npcs.get("Sister Benedicta");
 		nun.add(ConversationStates.ATTENDING,
@@ -533,6 +535,95 @@ public class Marriage extends AbstractQuest {
 
 	}
 
+	public void DivorceStep()
+	{
+
+		/**
+		 * Creates a clerk NPC who can divorce couples.
+		 * 
+		 * Note: in this class, the Player variables are called husband and wife.
+		 * However, the game doesn't know the concept of genders. The player who
+		 * initiates the divorce is just called husband, the other wife.
+		 * 
+		 * @author immibis
+		 * 
+		 */
+
+		clerk = npcs.get("Wilfred");
+
+		clerk.add(ConversationStates.ATTENDING, "divorce",
+			new SpeakerNPC.ChatCondition() {
+			@Override
+			public boolean fire(Player player, String text, SpeakerNPC npc) {
+				return (player.isQuestCompleted(QUEST_SLOT)) &&
+					player.isEquipped("wedding_ring") ;
+			}
+		}, ConversationStates.QUESTION_3,
+				"Are you sure you want to divorce?", null);
+
+		clerk.add(ConversationStates.ATTENDING, "divorce",
+			new SpeakerNPC.ChatCondition() {
+			@Override
+			public boolean fire(Player player, String text, SpeakerNPC npc) {
+				return !player.isQuestCompleted(QUEST_SLOT);
+			}
+		}, ConversationStates.ATTENDING,
+			"You're not even married. Stop wasting my time!", null);
+
+		clerk.add(ConversationStates.ATTENDING, "divorce",
+			new SpeakerNPC.ChatCondition() {
+			@Override
+			public boolean fire(Player player, String text, SpeakerNPC npc) {
+				return !player.isEquipped("wedding_ring");
+			}
+		}, ConversationStates.ATTENDING,
+			"Where's your wedding ring?", null);
+
+		// If they say no
+		clerk.add(ConversationStates.QUESTION_3,
+			ConversationPhrases.NO_MESSAGES,
+			null,
+			ConversationStates.ATTENDING,
+			"I hope you have a happy marriage, then.",
+			null);
+
+		// If they say yes
+		clerk.add(ConversationStates.QUESTION_3,
+			ConversationPhrases.YES_MESSAGES,
+			null,
+			ConversationStates.ATTENDING,
+		        null,
+			new SpeakerNPC.ChatAction() {
+			@Override
+			public void fire(Player player,String text,SpeakerNPC npc) {
+				Player husband, wife;
+				String partnerName;
+				husband = player;
+				partnerName = husband.getQuest(SPOUSE_QUEST_SLOT);
+				wife = StendhalRPRuleProcessor.get().getPlayer(partnerName);
+				if (wife != null)
+				    { if(wife.isEquipped("wedding_ring")){
+					wife.drop("wedding_ring");}
+					wife.removeQuest(QUEST_SLOT);
+					wife.removeQuest(SPOUSE_QUEST_SLOT);
+					wife.sendPrivateText(husband.getName() + " has divorced from you.");
+					npc.say("What a pity...what a pity...and you two were married so happily, too...");
+				}
+				else
+				{
+					Player postman = StendhalRPRuleProcessor.get().getPlayer("postman");
+					if (postman != null)
+						postman.sendPrivateText("Wilfred tells you: msg " + partnerName + " " + husband.getName() + " has divorced from you!");
+				}
+				husband.drop("wedding_ring");
+				husband.removeQuest(QUEST_SLOT);
+				husband.removeQuest(SPOUSE_QUEST_SLOT);
+				npc.say("What a pity...what a pity...and you two were married so happily, too...");
+			}
+			});
+
+	}
+
 	private void startMarriage(SpeakerNPC priest, Player player,
 			String partnerName) {
 		IRPZone churchZone = priest.getZone();
@@ -715,6 +806,7 @@ public class Marriage extends AbstractQuest {
 		GetDressedStep();
 		MarriageStep();
 		HoneymoonStep();
+		DivorceStep();
 	}
 
 }
