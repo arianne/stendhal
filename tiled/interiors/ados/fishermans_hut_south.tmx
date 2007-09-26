@@ -63,6 +63,9 @@
  <tileset name="../../tileset/logic/collision.png" firstgid="171" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
+ <tileset name="fish" firstgid="172" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/decoration/swordfish.png"/>
+ </tileset>
  <layer name="0_floor" width="16" height="16">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAADNiYGAwGgRYDQ8eCfpH8SgeCAwAKIWzzgAEAAA=
@@ -75,7 +78,7 @@
  </layer>
  <layer name="2_object" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNggAATBgSIAuJoIM5mIB6YIrFjgDgWiHNI0D+JBLWjYBSMAuoAAJ84m6kABAAA
+   H4sIAAAAAAAAAGNggAATBgSIAuJoIM5GElsDxGsZcANTJHYMEMcCcQ4e9ehgEglqR8EoGAXUAQBT9LyOAAQAAA==
   </data>
  </layer>
  <layer name="3_roof" width="16" height="16">
@@ -93,7 +96,7 @@
    H4sIAAAAAAAAAGNgGAWjYBQMVrBioB0wCkbBKBgQQI+8DwDndsLbAAgAAA==
   </data>
  </layer>
- <layer name="collision" width="16" height="16" opacity="0.44">
+ <layer name="collision" width="16" height="16" visible="0" opacity="0.44">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAFvNwMCwepBgQoASvcSYgWwWIXOpbT+99OMyhxK7iQ0zfGaQCmihn5K0SIndxIYrLTAAD5LbGQAEAAA=
   </data>
