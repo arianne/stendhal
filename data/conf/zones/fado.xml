@@ -755,6 +755,12 @@ black halberd     12000
   <portal x="21" y="37" ref="bank_entrance">
    <destination zone="int_fado_wizard_bank" ref="entrance"/>
   </portal>
+  <entity x="48" y="113">
+    <implementation class-name="games.stendhal.server.entity.WellSource"/>
+  </entity>
+  <entity x="49" y="113">
+    <implementation class-name="games.stendhal.server.entity.WellSource"/>
+  </entity>
 </zone>
 
 <zone name="-1_fado_great_cave_w2" level="-1" x="499616" y="500640" file="Level -1/fado/great_cave_w2.tmx">
@@ -834,11 +840,15 @@ black halberd     12000
    <destination zone="-1_fado_great_cave_e3" ref="house3_entrance"/>
   </portal>
 </zone>
-
+<zone name="int_fado_wizard_house4" file="interiors/fado/wizard_house4.tmx">
+ <!--<portal x="10" y="18" ref="entrance">
+   <destination zone="-1_fado_great_cave_?" ref="house4_entrance"/>
+  </portal>-->
+</zone>
 
 <zone name="int_fado_wizard_bank" file="interiors/fado/wizard_bank.tmx">
  <configurator class-name="games.stendhal.server.maps.semos.jail.NoTeleport"/>
- <configurator class-name="games.stendhal.server.maps.fado.great_cave.BankerNPC" />
+ <!--<configurator class-name="games.stendhal.server.maps.fado.great_cave.BankerNPC" />-->
     <entity x="2" y="2">
      <implementation class-name="games.stendhal.server.entity.area.NoLoginArea">
       <parameter name="width">9</parameter>
