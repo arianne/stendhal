@@ -1,38 +1,26 @@
 package games.stendhal.server.maps.quests;
 
 import games.stendhal.common.Direction;
-import games.stendhal.common.Grammar;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.entity.RPEntity;
-import games.stendhal.server.entity.Sign;
-import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.LoginListener;
 import games.stendhal.server.events.LoginNotifier;
 import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
-import games.stendhal.server.rule.EntityManager;
 import games.stendhal.server.util.TimeUtil;
-
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.LinkedList;
-import java.util.List;
-
 import marauroa.common.game.IRPZone;
 
 /**
- * Controls player access to the Wizard's Bank
- * via an NPC. He takes a fee to enter.
- * Players are allowed only 5 minutes access at once.
+ * Controls player access to the Wizard's Bank via an NPC. He takes a fee to
+ * enter. Players are allowed only 5 minutes access at once.
  *
  * @author kymara
  */
 
-public class WizardBank extends AbstractQuest implements
-		 LoginListener {
+public class WizardBank extends AbstractQuest implements LoginListener {
 
 	// constants
 	private static final String QUEST_SLOT = "wizard_bank";
@@ -46,38 +34,16 @@ public class WizardBank extends AbstractQuest implements
 	/** Time (in Seconds) allowed in the bank */
 	private static final int TIME = 60 * 5;
 
-        // Cost to access chests
-        private static final int COST = 1000;
+	// Cost to access chests
+	private static final int COST = 1000;
 
 	// "static" data
 	protected StendhalRPZone zone;
 
 	protected SpeakerNPC npc;
 
-
 	// quest instance data
 	protected Player player;
-
-
-
-
-	/**
-	 * Teleports the player out
-	 */
-	protected class FinishNotifier implements TurnListener {
-		private Player player;
-
-		public FinishNotifier( Player player) {
-			this.player = player;
-		}
-
-		/**
-		 * invoked shortly after the player did his job.
-		 */
-		public void onTurnReached(int currentTurn, String message) {
-			finish(player);
-		}
-	}
 
 	/**
 	 * Tells the player the remaining time and teleports him out when his time
@@ -88,7 +54,7 @@ public class WizardBank extends AbstractQuest implements
 
 		/**
 		 * Starts a teleport-out-timer
-		 * 
+		 *
 		 * @param player
 		 *            the player who started the timer
 		 */
@@ -97,31 +63,29 @@ public class WizardBank extends AbstractQuest implements
 		}
 
 		private int counter = TIME;
-		
-		
+
 		// override equals
-		
+
 		@Override
 		public boolean equals(Object obj) {
-			if (obj instanceof Timer){
-			   Timer  newTim= (Timer)obj;
-			   return timerPlayer == newTim.timerPlayer;
+			if (obj instanceof Timer) {
+				Timer newTim = (Timer) obj;
+				return timerPlayer == newTim.timerPlayer;
 			} else {
 				return false;
 			}
 		}
-		//override hash
-		
+
+		// override hash
+
 		@Override
 		public int hashCode() {
-			if (timerPlayer!=null){
-				return timerPlayer.hashCode() + super.hashCode(); 
+			if (timerPlayer != null) {
+				return timerPlayer.hashCode() + super.hashCode();
 			}
 			return super.hashCode();
 		}
-		
-		
-		
+
 		public void onTurnReached(int currentTurn, String message) {
 			// check that the player is still in game and stop the timer
 			// in case the player is not playing anymore.
@@ -133,18 +97,15 @@ public class WizardBank extends AbstractQuest implements
 
 				if (playerZone.equals(zone)) {
 					if (counter > 0) {
-						npc.say( timerPlayer.getName() + ", you have " + TimeUtil.timeUntil(counter) + " left.");
+						npc.say(timerPlayer.getName() + ", you have "
+								+ TimeUtil.timeUntil(counter) + " left.");
 						counter = counter - 10 * 6;
 						TurnNotifier.get().notifyInTurns(10 * 3 * 6, this);
 					} else {
 						// teleport the player out
-						npc.say("Sorry, " + timerPlayer.getName() + ", your time here is up.");
-						timerPlayer.teleport(zone, 15, 16,Direction.DOWN, timerPlayer);
-						//TurnNotifier.get().notifyInTurns(1,
-						//		new FinishNotifier(timerPlayer)); // need to
-																	// do this
-																	// on the
-																	// next turn
+						npc.say("Sorry, " + timerPlayer.getName()
+								+ ", your time here is up.");
+						teleportAway(timerPlayer);
 					}
 				}
 			}
@@ -156,12 +117,7 @@ public class WizardBank extends AbstractQuest implements
 		super.init(name, QUEST_SLOT);
 	}
 
-	private void step_1() {
-		zone = StendhalRPWorld.get().getZone(ZONE_NAME);
-		step1CreateNPC();
-	}
-
-	private void step1CreateNPC() {
+	private void createNPC() {
 		npc = new SpeakerNPC("Javier X") {
 			@Override
 			protected void createPath() {
@@ -175,59 +131,66 @@ public class WizardBank extends AbstractQuest implements
 					@Override
 					public void fire(Player player, String text,
 							SpeakerNPC engine) {
-						if (player.isQuestCompleted(GRAFINDLE_QUEST_SLOT)&&player.isQuestCompleted(ZARA_QUEST_SLOT)) {
-						    String reply;
-						    if(player.isQuestCompleted(QUEST_SLOT)){
-							reply = " Do you wish to pay to access your chest again?";
-							    }
-						    else{ reply = "";}
-							engine.say("Welcome to the Wizard's Bank, " + player.getName() + "." + reply);
+						if (player.isQuestCompleted(GRAFINDLE_QUEST_SLOT)
+								&& player.isQuestCompleted(ZARA_QUEST_SLOT)) {
+							String reply;
+							if (player.isQuestCompleted(QUEST_SLOT)) {
+								reply = " Do you wish to pay to access your chest again?";
+							} else {
+								reply = "";
+							}
+							engine.say("Welcome to the Wizard's Bank, "
+									+ player.getName() + "." + reply);
 						} else {
 							engine.say("You may not use this bank if you have not gained the right to use the chests at Nalwor, nor if you have not earned the trust of a certain young woman. Goodbye!");
 							engine.setCurrentState(ConversationStates.IDLE);
 						}
 					}
 				});
-				addReply("fee","The fee is " + COST + " money. Do you want to pay?");
-				addReply("yes",null, new SpeakerNPC.ChatAction(){
+				addReply("fee", "The fee is " + COST
+						+ " money. Do you want to pay?");
+				addReply("yes", null, new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, String text,
 							SpeakerNPC engine) {
-					    if (player.drop("money",COST)){
-						engine.say("Semos, Nalwor and Fado bank chests are to my right. The chests owned by Ados Bank Merchants and your friend Zara are to my left. If you are finished before your time here is done, please say #leave.");
-						// kym says: do we have to check it's still in the zone? 
-						//(like in the finish method)
-						player.teleport(zone,10,10,Direction.DOWN, player);
-						// kym says: start counting ??
-						TurnNotifier.get().notifyInTurns(0, new Timer(player));
+						if (player.drop("money", COST)) {
+							engine.say("Semos, Nalwor and Fado bank chests are to my right. The chests owned by Ados Bank Merchants and your friend Zara are to my left. If you are finished before your time here is done, please say #leave.");
+							teleportAway(player);
 
-						player.setQuest(QUEST_SLOT, "done");
-					    }
-					    else{ 
-						engine.say("You do not have enough money!");
-					    }
+							TurnNotifier.get().notifyInTurns(0,
+									new Timer(player));
+
+							player.setQuest(QUEST_SLOT, "done");
+						} else {
+							engine.say("You do not have enough money!");
+						}
 					}
-				    }
+				}
 
-                                );
-				addReply("no","Very well.");
-				addReply("leave",null, new SpeakerNPC.ChatAction(){
+				);
+				addReply("no", "Very well.");
+				addReply("leave", null, new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, String text,
 							SpeakerNPC engine) {
-					    player.teleport(zone, 15, 16,Direction.DOWN, player);
-					    // reset timer					  
-					    TurnNotifier.get().dontNotify(new Timer(player));
+						teleportAway(player);
+						// remove the players Timer
+						TurnNotifier.get().dontNotify(new Timer(player));
 					}
-				    }
-                                );
+				});
 				addJob("I control access to the bank. My spells ensure people cannot simply come and go as they please. We charge a #fee.");
-				addReply("magic","Have you not heard of magic? It is what makes the grass grow here. Perhaps in time your kind will learn how to use this fine art.");
-				addReply("offer","I would have thought that the offer of these #fiscal services is enough for you.");
-				addReply("fiscal","You do not understand the meaning of the word? You should spend more time in libraries, I hear the one in Ados is excellent.");
+				addReply(
+						"magic",
+						"Have you not heard of magic? It is what makes the grass grow here. Perhaps in time your kind will learn how to use this fine art.");
+				addReply(
+						"offer",
+						"I would have thought that the offer of these #fiscal services is enough for you.");
+				addReply(
+						"fiscal",
+						"You do not understand the meaning of the word? You should spend more time in libraries, I hear the one in Ados is excellent.");
 				addHelp("This bank is suffused with #magic, and as such you may access any vault you own. There will be a #fee to pay for this privilege, as we are not a charity.");
 				addQuest("You may only use this bank if you have gained the right to use the chests at Nalwor, and if you have earned the trust of a young woman.");
- 				addGoodbye("Goodbye.");
+				addGoodbye("Goodbye.");
 			}
 		};
 		npc.setDescription("You see a wizard who you should be afraid to mess with.");
@@ -238,26 +201,22 @@ public class WizardBank extends AbstractQuest implements
 		zone.add(npc);
 	}
 
-    // kym says: this was in reverse arrow. don't know what it's for.
+	// kym says: this was in reverse arrow. don't know what it's for.
 	public void onLoggedIn(Player player) {
-		// need to do this on the next turn
-		player.teleport(zone, 15, 16, Direction.DOWN, player);
-		//TurnNotifier.get().notifyInTurns(1, new FinishNotifier(player));
+		teleportAway(player);
 	}
-
 
 	/**
 	 * Finishes the time and teleports the player out.
-	 * 
+	 *
 	 * @param player
 	 *            the player to teleport out
 	 */
-	protected void finish( Player player) {
+	void teleportAway(Player player) {
 		if (player != null) {
 			IRPZone playerZone = player.getZone();
 			if (playerZone.equals(zone)) {
-				player.teleport(zone, 15, 16,
-						Direction.DOWN, player);
+				player.teleport(zone, 15, 16, Direction.DOWN, player);
 			}
 		}
 	}
@@ -268,6 +227,7 @@ public class WizardBank extends AbstractQuest implements
 
 		LoginNotifier.get().addListener(this);
 
-		step_1();
+		zone = StendhalRPWorld.get().getZone(ZONE_NAME);
+		createNPC();
 	}
 }
