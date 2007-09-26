@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+that works <?xml version="1.0" encoding="UTF-8"?>
 <!-- <!DOCTYPE zones SYSTEM "zones.dtd"> -->
 <zones>
  <!--
@@ -749,16 +749,19 @@ black halberd     12000
   <portal x="85" y="112" ref="house2_entrance">
    <destination zone="int_fado_wizard_house2" ref="entrance"/>
   </portal>
+  <portal x="74" y="102" ref="house4_entrance">
+   <destination zone="int_fado_wizard_house4" ref="entrance"/>
+  </portal>
   <portal x="47" y="61" ref="lounge_entrance">
    <destination zone="int_fado_wizard_lounge" ref="entrance"/>
   </portal>
   <portal x="21" y="37" ref="bank_entrance">
    <destination zone="int_fado_wizard_bank" ref="entrance"/>
   </portal>
-  <entity x="48" y="113">
+  <entity x="48" y="112">
     <implementation class-name="games.stendhal.server.entity.WellSource"/>
   </entity>
-  <entity x="49" y="113">
+  <entity x="49" y="112">
     <implementation class-name="games.stendhal.server.entity.WellSource"/>
   </entity>
 </zone>
@@ -841,14 +844,13 @@ black halberd     12000
   </portal>
 </zone>
 <zone name="int_fado_wizard_house4" file="interiors/fado/wizard_house4.tmx">
- <!--<portal x="10" y="18" ref="entrance">
-   <destination zone="-1_fado_great_cave_?" ref="house4_entrance"/>
-  </portal>-->
+ <portal x="15" y="18" ref="entrance">
+   <destination zone="-1_fado_great_cave_n_e3" ref="house4_entrance"/>
+  </portal>
 </zone>
 
 <zone name="int_fado_wizard_bank" file="interiors/fado/wizard_bank.tmx">
  <configurator class-name="games.stendhal.server.maps.semos.jail.NoTeleport"/>
- <!--<configurator class-name="games.stendhal.server.maps.fado.great_cave.BankerNPC" />-->
     <entity x="2" y="2">
      <implementation class-name="games.stendhal.server.entity.area.NoLoginArea">
       <parameter name="width">9</parameter>
@@ -881,9 +883,6 @@ black halberd     12000
  <portal x="15" y="18" ref="entrance">
    <destination zone="-1_fado_great_cave_n_e3" ref="bank_entrance"/>
   </portal>
- <!-- The one player areas may not be strictly necessary because the NPC will
-   control access so only one person is in at one time. But it's better to be
-   safe than sorry, something might go wrong -->
    <entity x="2" y="8">
     <implementation class-name="games.stendhal.server.entity.area.OnePlayerArea">
      <parameter name="width">4</parameter>
@@ -923,7 +922,9 @@ black halberd     12000
      <parameter name="height">2</parameter>
     </implementation>
    </entity>
-  <!-- <entity x="27" y="9">
+  <!-- Not sure yet if we want a new chest for this city, or to leave blank
+  for another city?
+   <entity x="27" y="9">
       <implementation class-name="games.stendhal.server.entity.PersonalChest">
          <parameter name="slot">bank_wizard</parameter>
       </implementation>
@@ -950,6 +951,48 @@ black halberd     12000
          <parameter name="slot">zaras_chest_ados</parameter>
       </implementation>
    </entity>
+<!-- make books say something -->
+  <entity x="12" y="3">
+   <implementation class-name="games.stendhal.server.entity.Sign"/>
+   <attribute name="text">Spells ensuring the safety of deposits include many complex jinxes and charms...</attribute>
+   <attribute name="class">transparent</attribute>
+  </entity>
+  <entity x="13" y="3">
+   <implementation class-name="games.stendhal.server.entity.Sign"/>
+   <attribute name="text">Simple spells to detect an intruder can raise an alarm, even if they cannot protect valuables, so it is well worth considering taking even basic safety precautions.</attribute>
+   <attribute name="class">transparent</attribute>
+  </entity>
+  <entity x="17" y="3">
+   <implementation class-name="games.stendhal.server.entity.Sign"/>
+   <attribute name="text">Gold which has been summoned using magical powers is easy to detect with a ...</attribute>
+   <attribute name="class">transparent</attribute>
+  </entity>
+  <entity x="18" y="3">
+   <implementation class-name="games.stendhal.server.entity.Sign"/>
+   <attribute name="text">Stolen heirlooms or other valuables may reveal their true owner upon inspection of certain areas using a particular light called ...</attribute>
+   <attribute name="class">transparent</attribute>
+  </entity>
+  <entity x="14" y="11">
+   <implementation class-name="games.stendhal.server.entity.Sign"/>
+   <attribute name="text">
+List of felons to bar from entry:
+Conual
+Bario
+Nomyr Ahba
+Sister Benedicta
+</attribute>
+   <attribute name="class">book_red</attribute>
+  </entity>
+  <entity x="15" y="11">
+   <implementation class-name="games.stendhal.server.entity.Sign"/>
+   <attribute name="text">In addition to these names, those who beg for items should be ignored.</attribute>
+   <attribute name="class">book_blue</attribute>
+  </entity>
+  <entity x="16" y="11">
+   <implementation class-name="games.stendhal.server.entity.Sign"/>
+   <attribute name="text">Suspicion should be cast upon any who appear to loiter too long in a bank. This is not likely to be for a law abiding reason.</attribute>
+   <attribute name="class">book_red</attribute>
+  </entity>
 </zone>
 
  <!--  Level -2 -->
