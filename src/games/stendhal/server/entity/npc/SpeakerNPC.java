@@ -592,6 +592,11 @@ public class SpeakerNPC extends NPC {
 		addReply(ConversationPhrases.HELP_MESSAGES, helpDescription);
 	}
 
+	public void addOffer(String offerDescription) {
+		addReply(ConversationPhrases.OFFER_MESSAGES, offerDescription);
+	}
+
+
 	public void addGoodbye() {
 		addGoodbye("Bye.");
 	}

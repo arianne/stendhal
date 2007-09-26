@@ -211,6 +211,15 @@ public class ShopList {
 		shops.add("buyelvish", "elvish_cloak", 400);
 		shops.add("buyelvish", "elvish_armor", 400);
 
+		// magic items or 'relics' (witch in magic city)
+		shops.add("buymagic", "demon_sword", 4000);
+		shops.add("buymagic", "dark_dagger", 6000);
+		shops.add("buymagic", "liberty_helmet", 8000);
+		shops.add("buymagic", "immortal_sword", 10000);
+		shops.add("buymagic", "jewelled_legs", 12000);
+		shops.add("buymagic", "magic_plate_shield", 16000);
+		shops.add("buymagic", "magic_plate_armor", 20000);
+
 	}
 
 	private static ShopList instance;
