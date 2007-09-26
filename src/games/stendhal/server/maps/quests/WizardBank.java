@@ -1,5 +1,7 @@
 package games.stendhal.server.maps.quests;
 
+import java.lang.ref.WeakReference;
+
 import games.stendhal.common.Direction;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
@@ -50,7 +52,7 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 	 * is up.
 	 */
 	class Timer implements TurnListener {
-		private Player timerPlayer;
+		private WeakReference<Player> timerPlayer;
 
 		/**
 		 * Starts a teleport-out-timer
@@ -59,7 +61,7 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 		 *            the player who started the timer
 		 */
 		protected Timer(Player player) {
-			timerPlayer = player;
+			timerPlayer = new WeakReference<Player>(player);
 		}
 
 		private int counter = TIME;
@@ -70,7 +72,7 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 		public boolean equals(Object obj) {
 			if (obj instanceof Timer) {
 				Timer newTim = (Timer) obj;
-				return timerPlayer == newTim.timerPlayer;
+				return timerPlayer.get() == newTim.timerPlayer.get();
 			} else {
 				return false;
 			}
@@ -92,20 +94,20 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 			// Note that "player" always refers to the current player
 			// in order not to teleport the next player out too early,
 			// we have to compare it to the player who started this timer
-			if ((timerPlayer != null)) {
-				IRPZone playerZone = timerPlayer.getZone();
+			if ((timerPlayer.get() != null)) {
+				IRPZone playerZone = timerPlayer.get().getZone();
 
 				if (playerZone.equals(zone)) {
 					if (counter > 0) {
-						npc.say(timerPlayer.getName() + ", you have "
+						npc.say(timerPlayer.get().getName() + ", you have "
 								+ TimeUtil.timeUntil(counter) + " left.");
 						counter = counter - 10 * 6;
 						TurnNotifier.get().notifyInTurns(10 * 3 * 6, this);
 					} else {
 						// teleport the player out
-						npc.say("Sorry, " + timerPlayer.getName()
+						npc.say("Sorry, " + timerPlayer.get().getName()
 								+ ", your time here is up.");
-						teleportAway(timerPlayer);
+						teleportAway(timerPlayer.get());
 					}
 				}
 			}
