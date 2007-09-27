@@ -20,7 +20,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 /**
  * Checks if all sound files can be played on the current system. For example
  * some sounds can only be played on MS Windows but not on Linux based systems.
- * 
+ *
  * @author mtotz
  */
 public class CheckSounds {
@@ -159,9 +159,9 @@ public class CheckSounds {
 		System.out.println("done");
 	}
 
-	// ------------------------------------------------------------------------ 
+	// ------------------------------------------------------------------------
 	//              TODO: clean up this copied code from SoundSystem
-	// ------------------------------------------------------------------------ 
+	// ------------------------------------------------------------------------
 
 	/** expected location of the sound definition file (classloader). */
 	private static final String STORE_PROPERTYFILE = "data/sounds/stensounds.properties";
@@ -180,7 +180,7 @@ public class CheckSounds {
 	}
 
 	/**
-	 * A key/value pair is assumed valid if 	
+	 * A key/value pair is assumed valid if
 	 * <ul>
 	 *    <li>key starts with "sfx." <b>and </b></li>
 	 *    <li>key does not end with ",x"</li>
@@ -194,7 +194,8 @@ public class CheckSounds {
 		boolean load;
 		int pos1;
 		if (key.startsWith("sfx.")) {
-			if ((pos1 = value.indexOf(',')) > -1) {
+			pos1 = value.indexOf(',');
+			if (pos1 > -1) {
 				load = value.substring(pos1 + 1).charAt(0) != 'x';
 			} else {
 				load = true;
@@ -205,7 +206,7 @@ public class CheckSounds {
 			return false;
 		}
 	}
-	// ------------------------------------------------------------------------ 
+	// ------------------------------------------------------------------------
 	//              copied code end
-	// ------------------------------------------------------------------------ 
+	// ------------------------------------------------------------------------
 }

@@ -192,7 +192,7 @@ public class BalanceRPGame {
 			for (int level = minlevel; level < maxlevel; level++) {
 				boolean balanced = false;
 
-				while (balanced == false) {
+				while (!balanced) {
 					player.setLevel(level);
 					player.setBaseHP(100 + 10 * level);
 					player.setATK(atkLevels[level]);
@@ -273,7 +273,7 @@ public class BalanceRPGame {
 		// OUTPUT: System.out.println (st);
 	}
 
-	static private double score(int turns, double leftHP, int level, Creature creature) {
+	private static double score(int turns, double leftHP, int level, Creature creature) {
 		double score = 0;
 
 		int creatureLevel = creature.getLevel();
@@ -303,7 +303,7 @@ public class BalanceRPGame {
 		return score;
 	}
 
-	static private Creature[] children(Creature creature) {
+	private static Creature[] children(Creature creature) {
 		Creature[] creatures = new Creature[9];
 
 		for (int i = 0; i < 9; i++) {
@@ -316,7 +316,7 @@ public class BalanceRPGame {
 		return creatures;
 	}
 
-	static private boolean isCorrectResult(int level, int levelDiff, int meanTurns, double meanLeftHP) {
+	private static boolean isCorrectResult(int level, int levelDiff, int meanTurns, double meanLeftHP) {
 		if ((levelDiff > 0) && (meanTurns > 100 + level / 10.0)) {
 			// OUTPUT: System.out.println ("FAILED beacause takes too much time
 			// to kill");

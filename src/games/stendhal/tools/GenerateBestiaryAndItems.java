@@ -30,13 +30,14 @@ public class GenerateBestiaryAndItems {
 
 		int level = -1;
 
-		 for(DefaultCreature creature: creatures)
-		 {
-		 System.out.println(creature.getLevel()+";"+creature.getATK()+";"+creature.getDEF()+";"+creature.getHP()+";"+creature.getXP());
-		 }
-		 System.out.println ();
-		    
-		 System.exit(0);
+		for (DefaultCreature creature : creatures) {
+			System.out.println(creature.getLevel() + ";" + creature.getATK()
+					+ ";" + creature.getDEF() + ";" + creature.getHP() + ";"
+					+ creature.getXP());
+		}
+		System.out.println();
+
+		System.exit(0);
 
 		for (DefaultCreature creature : creatures) {
 			if (creature.getLevel() != level) {
@@ -59,7 +60,8 @@ public class GenerateBestiaryAndItems {
 			System.out.println("|loot = ");
 
 			for (DropItem item : creature.getDropItems()) {
-				System.out.println(item.min + "-" + item.max + " " + item.name + "<br>");
+				System.out.println(item.min + "-" + item.max + " " + item.name
+						+ "<br>");
 			}
 
 			System.out.println("}}");
@@ -80,7 +82,8 @@ public class GenerateBestiaryAndItems {
 			}
 
 			System.out.println("{{Item|");
-			System.out.println("|name       = " + item.getItemName().replace("_", " "));
+			System.out.println("|name       = "
+					+ item.getItemName().replace("_", " "));
 			System.out.println("|class      = " + item.getItemClass());
 			System.out.println("|image      = " + item.getItemName());
 			System.out.println("|description= TODO");
@@ -109,9 +112,9 @@ public class GenerateBestiaryAndItems {
 	 * |location = All around. They are a plague. You can find lots of them at
 	 * forest. |strategy = Just hit first. Rats are not strong opponents. |loot =
 	 * 0-7 GP }}
-	 * 
-	 * 
-	 * 
+	 *
+	 *
+	 *
 	 * {{Item| |name = Club |class = Weapon |image = club |description= This
 	 * common club, a bit more sofisticated than a wood stick. |attributes =
 	 * Attack 10<br>
