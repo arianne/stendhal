@@ -52,8 +52,6 @@ public class RainbowBeans extends AbstractQuest {
 
 	private static final int REQUIRED_MINUTES = 6 * 60;
 
-	private static final int ALLOWED_MINUTES = 30;
-
 	private static final String QUEST_SLOT = "rainbow_beans";
 
 	@Override
@@ -161,7 +159,7 @@ public class RainbowBeans extends AbstractQuest {
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, String text, SpeakerNPC npc) {
-						if (player.getLevel() >= 30) {
+						if (player.getLevel() >= REQUIRED_LEVEL) {
 							npc.say("Nosy, aint yer? I deal in rainbow beans. You take some, and who knows where the trip will take yer. It'll cost you "
 									+ REQUIRED_MONEY
 									+ " money. You want to buy some?");
