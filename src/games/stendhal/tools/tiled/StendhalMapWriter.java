@@ -41,7 +41,7 @@ public class StendhalMapWriter implements MapWriter {
 
 	/**
 	 * Method writeMap
-	 * 
+	 *
 	 * @param map
 	 * @param filename
 	 * @throws Exception
@@ -83,7 +83,7 @@ public class StendhalMapWriter implements MapWriter {
 		String x = (String) prop.get("x");
 		String y = (String) prop.get("y");
 
-		if (level.equals("int") == false) {
+		if (!level.equals("int")) {
 			writer.println("  <location level=\"" + level + "\" x=\"" + x + "\" y=\"" + y + "\"/>");
 		} else {
 			writer.println("  <location level=\"int\"/>");
@@ -121,7 +121,7 @@ public class StendhalMapWriter implements MapWriter {
 
 	/**
 	 * Method writeTileset. Tilesets won't be written.
-	 * 
+	 *
 	 * @param set
 	 * @param filename
 	 * @throws Exception
@@ -132,7 +132,7 @@ public class StendhalMapWriter implements MapWriter {
 
 	/**
 	 * Method writeMap. Writing to an outputstream is not supported
-	 * 
+	 *
 	 * @param map
 	 * @param out
 	 * @throws Exception
@@ -143,7 +143,7 @@ public class StendhalMapWriter implements MapWriter {
 
 	/**
 	 * Method writeTileset. Tilesets won't be written.
-	 * 
+	 *
 	 * @param set
 	 * @param out
 	 * @throws Exception
