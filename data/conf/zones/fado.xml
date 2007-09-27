@@ -871,16 +871,20 @@ black halberd     12000
  <portal x="18" y="3" ref="downstairs">
    <destination zone="int_fado_wizard_school_cellar" ref="upstairs"/>
   </portal>
- <!--<portal x="21" y="3" ref="upstairs">
+ <portal x="21" y="3" ref="upstairs">
    <destination zone="int_fado_wizard_school_1" ref="downstairs"/>
-  </portal>-->
+  </portal>
 </zone>
 <zone name="int_fado_wizard_school_cellar" file="interiors/fado/wizard_school_cellar.tmx">
  <portal x="16" y="3" ref="upstairs">
    <destination zone="int_fado_wizard_school_0" ref="downstairs"/>
   </portal>
 </zone>
-
+<zone name="int_fado_wizard_school_1" file="interiors/fado/wizard_school_1.tmx">
+ <portal x="21" y="3" ref="downstairs">
+  <destination zone="int_fado_wizard_school_0" ref="upstairs"/>
+ </portal>
+</zone>
 <zone name="int_fado_bric_a_brac" file="interiors/fado/wizard_bric_a_brac.tmx">
  <configurator class-name="games.stendhal.server.maps.fado.great_cave.BuyerNPC" />
  <portal x="14" y="13" ref="entrance_left">
