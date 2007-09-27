@@ -14,13 +14,13 @@ import java.util.List;
 
 /**
  * QUEST: Introduce new players to game PARTICIPANTS: - Tad - Margaret - Ilisa
- * 
+ *
  * STEPS: - Tad asks you to buy a flask to give it to Margaret. - Margaret sells
  * you a flask - Tad thanks you and asks you to take the flask to Ilisa - Ilisa
  * asks you for a few herbs. - Return the created dress potion to Tad.
- * 
+ *
  * REWARD: - 170 XP - 10 gold coins
- * 
+ *
  * REPETITIONS: - None.
  */
 public class IntroducePlayers extends AbstractQuest {

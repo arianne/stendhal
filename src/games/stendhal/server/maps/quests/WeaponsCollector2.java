@@ -233,6 +233,13 @@ public class WeaponsCollector2 extends AbstractQuest {
 		SpeakerNPC npc = npcs.get("Balduin");
 
 		// player returns while quest is still active
+		playerReturnsWhileQuestIsActive(npc);
+
+		// player returns after finishing the quest
+		playerReturnsAfterFinishingQuest(npc);
+	}
+
+	private void playerReturnsWhileQuestIsActive(SpeakerNPC npc) {
 		npc.add(
 				ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
@@ -247,8 +254,9 @@ public class WeaponsCollector2 extends AbstractQuest {
 				ConversationStates.ATTENDING,
 				"Welcome back. I hope you have come to help me with my latest #list of weapons.",
 				null);
+	}
 
-		// player returns after finishing the quest
+	private void playerReturnsAfterFinishingQuest(SpeakerNPC npc) {
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
