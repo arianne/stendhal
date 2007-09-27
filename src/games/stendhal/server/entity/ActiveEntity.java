@@ -147,7 +147,6 @@ public abstract class ActiveEntity extends Entity {
 
 	private void move(int x, int y, int nx, int ny) {
 		setPosition(nx, ny);
-		onMoved(x, y, nx, ny);
 	}
 
 
@@ -313,7 +312,7 @@ public abstract class ActiveEntity extends Entity {
 	}
 
 	/**
-	 * Notify of intra-zone movement.
+	 * Notification of intra-zone position change.
 	 *
 	 * @param oldX
 	 *            The old X coordinate.
@@ -324,6 +323,7 @@ public abstract class ActiveEntity extends Entity {
 	 * @param newY
 	 *            The new Y coordinate.
 	 */
+	@Override
 	protected void onMoved(int oldX, int oldY, int newX, int newY) {
 		getZone().notifyMovement(this, oldX, oldY, newX, newY);
 	}
@@ -369,6 +369,33 @@ public abstract class ActiveEntity extends Entity {
 	//
 	// Entity
 	//
+
+	/**
+	 * Called when this object is added to a zone.
+	 *
+	 * @param zone
+	 *		The zone this was added to.
+	 */
+	@Override
+	public void onAdded(StendhalRPZone zone) {
+		super.onAdded(zone);
+
+		zone.notifyEntered(this, getX(), getY());
+	}
+
+	/**
+	 * Called when this object is removed from a zone.
+	 *
+	 * @param zone
+	 *		The zone this was removed from.
+	 */
+	@Override
+	public void onRemoved(StendhalRPZone zone) {
+		zone.notifyExited(this, getX(), getY());
+
+		super.onRemoved(zone);
+	}
+
 
 	@Override
 	public void update() {

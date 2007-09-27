@@ -354,46 +354,45 @@ lion_shield_+1 enhanced_lion_shield
 	 * @param player Player-object
 	 */
 	static void placePlayerIntoWorldOnLogin(RPObject object, Player player) {
-		StendhalRPWorld world = StendhalRPWorld.get();
-
-		boolean firstVisit = false;
+		StendhalRPZone zone = null;
 
 		try {
-			if (!object.has("zoneid") || !object.has("x") || !object.has("y")) {
-				firstVisit = true;
+			if (object.has("zoneid") && object.has("x") && object.has("y")) {
+				if(!object.get("release").equals(Debug.VERSION)) {
+					player.put("release", Debug.VERSION);
+				} else {
+					zone = StendhalRPWorld.get().getZone(object.get("zoneid"));
+				}
 			}
-
-			boolean newReleaseHappened = !object.get("release").equals(Debug.VERSION);
-			if (newReleaseHappened) {
-				firstVisit = true;
-				player.put("release", Debug.VERSION);
-			}
-
-			IRPZone tempZone = StendhalRPWorld.get().getZone(object.get("zoneid"));
-			if (tempZone == null) {
-				firstVisit = true;
-			}
-
-			if (firstVisit) {
-				player.put("zoneid", DEFAULT_ENTRY_ZONE);
-			}
-
-			world.add(player);
-		} catch (Exception e) { // If placing the player at its last position
+		} catch (Exception e) {
+			// If placing the player at its last position
 			// fails, we reset it to city entry point
 			logger.warn("cannot place player at its last position. reseting to semos city entry point", e);
-
-			firstVisit = true;
-			player.put("zoneid", DEFAULT_ENTRY_ZONE);
-
-			player.notifyWorldAboutChanges();
 		}
 
-		StendhalRPAction.transferContent(player);
+		/*
+		 * Clear out any old/invalid ID
+		 */
+		if(player.has("id")) {
+			player.remove("id");
+		}
 
-		StendhalRPZone zone = player.getZone();
+		/*
+		 * Put the player in a zone
+		 */
+		if (zone != null) {
+			zone.add(player);
+		} else {
+			/*
+			 * Fallback to default zone
+			 */
+			zone = StendhalRPWorld.get().getZone(DEFAULT_ENTRY_ZONE);
 
-		if (firstVisit) {
+			if(zone == null) {
+				logger.error("Unable to locate default zone [" + DEFAULT_ENTRY_ZONE + "]");
+				return;
+			}
+
 			zone.placeObjectAtEntryPoint(player);
 		}
 
@@ -405,21 +404,17 @@ lion_shield_+1 enhanced_lion_shield
 			if (player.hasSheep()) {
 				logger.debug("Player has a sheep");
 				Sheep sheep = player.getPlayerSheepManager().retrieveSheep();
-				sheep.put("zoneid", player.get("zoneid"));
+
 				if (!sheep.has("base_hp")) {
-					sheep.put("base_hp", "10");
-					sheep.put("hp", "10");
+					sheep.initHP(10);
 				}
 
-				world.add(sheep);
-
-				/*
-				 * Sheep needs to be added to the NPC list.
-				 */
-				player.setSheep(sheep);
-
-				StendhalRPAction.placeat(zone, sheep, x, y);
-//				zone.addPlayerAndFriends(sheep);
+				if(StendhalRPAction.placeat(zone, sheep, x, y)) {
+					/*
+					 * Sheep needs to be added to the NPC list.
+					 */
+					player.setSheep(sheep);
+				}
 			}
 		} catch (Exception e) {
 			/**
@@ -440,29 +435,26 @@ lion_shield_+1 enhanced_lion_shield
 				player.removeSlot("#flock");
 			}
 		}
-//		 load pet
+
+		// load pet
 		if (player.hasPet()) {
-				logger.debug("Player has a cat");
-				Pet pet = player.getPlayerPetManager().retrievePet();
-				pet.put("zoneid", player.get("zoneid"));
-				if (!pet.has("base_hp")) {
-					pet.put("base_hp", "200");
-					pet.put("hp", "200");
-				}
+			logger.debug("Player has a pet");
+			Pet pet = player.getPlayerPetManager().retrievePet();
 
-				world.add(pet);
+			if (!pet.has("base_hp")) {
+				pet.initHP(200);
+			}
 
+			if(StendhalRPAction.placeat(zone, pet, x, y)) {
 				/*
-				 * Sheep needs to be added to the NPC list.
+				 * Pet needs to be added to the NPC list.
 				 */
 				player.setPet(pet);
-
-				StendhalRPAction.placeat(zone, pet, x, y);
-//				zone.addPlayerAndFriends(cat);
+			}
 		}
-		StendhalRPAction.placeat(zone, player, x, y);
-//		zone.addPlayerAndFriends(player);
 
+		player.notifyWorldAboutChanges();
+		StendhalRPAction.transferContent(player);
 	}
 
 	/**

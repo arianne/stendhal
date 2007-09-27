@@ -574,9 +574,7 @@ public class AdministrationAction implements ActionListener {
 					return;
 				}
 
-				zone.assignRPObjectID(entity);
 				StendhalRPAction.placeat(zone, entity, x, y);
-				zone.add(entity);
 			}
 		}
 

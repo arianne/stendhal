@@ -147,13 +147,30 @@ public abstract class Entity extends RPObject {
 	}
 
 	public void update() {
+		int oldX = x;
+		int oldY = y;
+		boolean moved = false;
+
 		if (has("x")) {
 			x = getInt("x");
+
+			if(x != oldX) {
+				moved = true;
+			}
 		}
 
 		if (has("y")) {
 			y = getInt("y");
+
+			if(y != oldY) {
+				moved = true;
+			}
 		}
+
+		if(moved && (getZone() != null)) {
+			onMoved(oldX, oldY, x, y);
+		}
+
 
 		if (has("height")) {
 			height = getInt("height");
@@ -549,6 +566,21 @@ public abstract class Entity extends RPObject {
 	}
 
 	/**
+	 * Notification of intra-zone position change.
+	 *
+	 * @param oldX
+	 *	The old X coordinate.
+	 * @param oldY
+	 *	The old Y coordinate.
+	 * @param newX
+	 *	The new X coordinate.
+	 * @param newY
+	 *	The new Y coordinate.
+	 */
+	protected void onMoved(int oldX, int oldY, int newX, int newY) {
+	}
+
+	/**
 	 * Called when this object is being removed from a zone.
 	 *
 	 * @param zone
@@ -654,6 +686,13 @@ public abstract class Entity extends RPObject {
 
 	/**
 	 * Set the entity position.
+	 * </p>
+	 *
+	 * <p>
+	 * This calls <code>onMoved()</code>.
+	 * <strong>Note: When placing during a zone change, this call should
+	 * be done after being removed from the old zone, but before adding to
+	 * the zone to prevent an erronious position jump in the zone.</strong>
 	 *
 	 * @param x
 	 *            The x position (in world units).
@@ -661,14 +700,24 @@ public abstract class Entity extends RPObject {
 	 *            The y position (in world units).
 	 */
 	public void setPosition(final int x, final int y) {
-		if (this.x != x) {
+		int oldX = this.x;
+		int oldY = this.y;
+		boolean moved = false;
+
+		if (x != oldX) {
 			this.x = x;
 			put("x", x);
+			moved = true;
 		}
 
-		if (this.y != y) {
+		if (y != oldY) {
 			this.y = y;
 			put("y", y);
+			moved = true;
+		}
+
+		if(moved && (getZone() != null)) {
+			onMoved(oldX, oldY, x, y);
 		}
 	}
 

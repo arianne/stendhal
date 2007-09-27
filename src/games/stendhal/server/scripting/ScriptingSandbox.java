@@ -131,7 +131,6 @@ public abstract class ScriptingSandbox {
 		if (zone != null) {
 			zone.assignRPObjectID(creature);
 			if (StendhalRPAction.placeat(zone, creature, x, y)) {
-				zone.add(creature);
 				StendhalRPRuleProcessor.get().addNPC(creature);
 				loadedNPCs.put(creature, null);
 				logger.info(filename + " added creature: " + creature);

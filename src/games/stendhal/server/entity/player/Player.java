@@ -902,8 +902,13 @@ public class Player extends RPEntity {
 		// Penalize: Respawn on afterlive zone and
 		StendhalRPZone zone = world.getZone(DEFAULT_DEAD_AREA);
 
-		zone.placeObjectAtEntryPoint(this);
-		StendhalRPAction.changeZone(this, zone);
+		if(zone != null) {
+			if(!zone.placeObjectAtEntryPoint(this)) {
+				logger.error("Unable to place player in zone " + zone + ": " + getName());
+			}
+		} else {
+			logger.error("Unable to find dead area [" + DEFAULT_DEAD_AREA + "] for player: " + getName());
+		}
 	}
 
 	@Override
@@ -1499,7 +1504,6 @@ public class Player extends RPEntity {
 	public boolean teleport(StendhalRPZone zone, int x, int y, Direction dir,
 			Player teleporter) {
 		if (StendhalRPAction.placeat(zone, this, x, y)) {
-			StendhalRPAction.changeZone(this, zone);
 			if (dir != null) {
 				this.setDirection(dir);
 			}

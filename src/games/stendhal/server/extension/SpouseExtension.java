@@ -170,11 +170,10 @@ public class SpouseExtension extends StendhalServerExtension implements ActionLi
 			// TODO: use Player.teleport()
 
 			if (StendhalRPAction.placeat(zone, player, x, y)) {
-				StendhalRPAction.changeZone(player, zone);
-
 				StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "teleportto",
 				        teleported.getName() + "(spouse)");
 			}
+
 			player.notifyWorldAboutChanges();
 		}
 

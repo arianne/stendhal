@@ -507,24 +507,29 @@ public class StendhalRPAction {
 				origin.getLevel(), entity_x, entity_y, entity);
 
 		if (zone != null) {
-			entity.setPosition(entity_x - zone.getX(), entity_y - zone.getY());
+			int nx = entity_x - zone.getX();
+			int ny = entity_y - zone.getY();
 
-			logger.debug(entity.getTitle() + " pos would be (" + entity.getX()
-					+ "," + entity.getY() + ")");
+			if(logger.isDebugEnabled()) {
+				logger.debug("Placing " + entity.getName() + " at " + zone.getID().getID() + "[" + nx + "," + ny + "]");
+			}
 
-			// TODO: Refactor changeZone to not require Player
-			changeZone((Player) entity, zone);
+			if(!placeat(zone, entity, nx, ny)) {
+				logger.warn("Could not place " + entity.getName() + " at " + zone.getID().getID() + "[" + nx + "," + ny + "]");
+			}
 		} else {
 			logger.warn("Unable to choose a new zone for entity: "
-					+ entity.getName() + " at (" + entity_x + "," + entity_y
-					+ ") source was " + origin.getID().getID() + " at (" + x
-					+ ", " + y + ")");
+				+ entity.getName() + " at (" + entity_x + "," + entity_y
+				+ ") source was " + origin.getID().getID() + " at (" + x
+				+ ", " + y + ")");
 		}
 	}
 
 	/**
 	 * Places an entity at a specified position in a specified zone. If this
 	 * point is occupied the entity is moved slightly.
+	 * This will remove the entity from any existing zone and add it to 
+	 * the target zone if needed.
 	 *
 	 * @param zone
 	 *            zone to place the entity in
@@ -536,13 +541,14 @@ public class StendhalRPAction {
 	 *            y
 	 * @return true, if it was possible to place the entity, false otherwise
 	 */
-	public static boolean placeat(StendhalRPZone zone, Entity entity, int x,
-			int y) {
+	public static boolean placeat(StendhalRPZone zone, Entity entity, int x, int y) {
 		return placeat(zone, entity, x, y, null);
 	}
 
 	/**
-	 * Places an entity at a specified position in a specified zone
+	 * Places an entity at a specified position in a specified zone.
+	 * This will remove the entity from any existing zone and add it to 
+	 * the target zone if needed.
 	 *
 	 * @param zone
 	 *            zone to place the entity in
@@ -556,15 +562,15 @@ public class StendhalRPAction {
 	 *            only search within this area for a possible new position
 	 * @return true, if it was possible to place the entity, false otherwise
 	 */
-	public static boolean placeat(StendhalRPZone zone, Entity entity, int x,
-			int y, Shape allowedArea) {
-		boolean found = false;
-		boolean checkPath = true;
-
+	public static boolean placeat(StendhalRPZone zone, Entity entity, int x, int y, Shape allowedArea) {
+		/*
+		 * Look for new position
+		 */
 		int nx = x;
 		int ny = y;
 
 		if (zone.collides(entity, x, y)) {
+			boolean checkPath = true;
 
 			if (zone.collides(entity, x, y, false)
 					&& (entity instanceof Player)) {
@@ -573,6 +579,8 @@ public class StendhalRPAction {
 				// Try to put him anywhere possible without checking the path.
 				checkPath = false;
 			}
+
+			boolean found = false;
 
 			// We cannot place the entity on the orginal spot. Let's search
 			// for a new destination up to maxDestination tiles in every way.
@@ -615,7 +623,6 @@ public class StendhalRPAction {
 								if (!checkPath || !path.isEmpty()) {
 
 									// We found a place!
-									entity.setPosition(nx, ny);
 
 									found = true;
 									break outerLoop; // break all for-loops
@@ -627,143 +634,138 @@ public class StendhalRPAction {
 			}
 
 			if (!found) {
-				logger.debug("Unable to place " + entity + " at (" + x + ","
-						+ y + ")");
+				logger.debug("Unable to place " + entity + " at (" + x + "," + y + ")");
+				return false;
 			}
-		} else {
-			entity.setPosition(x, y);
-
-			found = true;
 		}
 
-		if (found) {
-			if (entity instanceof Player) {
-				Player player = (Player) entity;
-				if (player.hasSheep()) {
-					try {
-						Sheep sheep = player.getSheep();
-						// Call placeat for the sheep on the same spot as the
-						// player to ensure that there will be a path between
-						// the
-						// player and his/her sheep.
-						sheep.put("zoneid", entity.get("zoneid"));
-						placeat(zone, sheep, nx, ny);
-						sheep.clearPath();
-						sheep.stop();
-					} catch (RPObjectNotFoundException e) {
-						/*
-						 * No idea how but some players get a sheep but they
-						 * don't have it really. Me thinks that it is a player
-						 * that has been running for a while the game and was
-						 * kicked of server because shutdown on a pre 1.00
-						 * version of Marauroa. We shouldn't see this anymore.
-						 */
-						logger.error("Pre 1.00 Marauroa sheep bug. (player = "
-								+ player.getName() + ")", e);
+		//
+		// At this point the valid position [nx,ny] has been found
+		//
 
-						if (player.has("sheep")) {
-							player.remove("sheep");
-						}
+		/*
+		 * Remove (and remember) dependents and prepare for zone change
+		 */
+		Sheep sheep = null;
+		Pet pet = null;
 
-						if (player.hasSlot("#flock")) {
-							player.removeSlot("#flock");
-						}
+		if (entity instanceof Player) {
+			Player player = (Player) entity;
+
+			player.stop();
+			player.stopAttack();
+			player.clearPath();
+
+			if (player.hasSheep()) {
+				try {
+					sheep = player.getSheep();
+					sheep.clearPath();
+					sheep.stop();
+
+					player.removeSheep(sheep);
+				} catch (RPObjectNotFoundException e) {
+					// TODO: Remove catch after DB Reset
+					/*
+					 * No idea how but some players get a sheep but they
+					 * don't have it really. Me thinks that it is a player
+					 * that has been running for a while the game and was
+					 * kicked of server because shutdown on a pre 1.00
+					 * version of Marauroa. We shouldn't see this anymore.
+					 */
+					logger.error("Pre 1.00 Marauroa sheep bug. (player = " + player.getName() + ")", e);
+
+					if (player.has("sheep")) {
+						player.remove("sheep");
+					}
+
+					if (player.hasSlot("#flock")) {
+						player.removeSlot("#flock");
 					}
 				}
-				if (player.hasPet()) {
-					// Note there is now a better getSheep method so there
-					// should also be a better getPet method
-					Pet pet = (Pet) StendhalRPWorld.get().get(player.getPet());
-					// Call placeat for the pet on the same spot as the
-					// player to ensure that there will be a path between the
-					// player and his/her cat.
-					pet.put("zoneid", entity.get("zoneid"));
-					placeat(zone, pet, nx, ny);
-					pet.clearPath();
-					pet.stop();
+			}
+
+			if (player.hasPet()) {
+				// TODO: Change getPet() to be like getSheep()
+				pet = (Pet) StendhalRPWorld.get().get(player.getPet());
+				pet.clearPath();
+				pet.stop();
+
+				player.removePet(pet);
+			}
+		}
+
+
+		/*
+		 * Remove from old [incompatable] zone?
+		 */
+		boolean zoneChanged = false;
+		StendhalRPZone oldZone = entity.getZone();
+
+		if(oldZone == null) {
+			zoneChanged = true;
+		} else if(oldZone != zone) {
+			oldZone.remove(entity);
+			zoneChanged = true;
+		}
+
+
+		/*
+		 * [Re]position (possibly while between zones)
+		 */
+		entity.setPosition(nx, ny);
+
+
+		/*
+		 * Place in new zone (if needed)
+		 */
+		if(zoneChanged) {
+			zone.add(entity);
+		}
+
+
+		/*
+		 * Move and re-add dependents
+		 */
+		if (entity instanceof Player) {
+			Player player = (Player) entity;
+
+			if(sheep != null) {
+				if(placeat(zone, sheep, nx, ny)) {
+					player.setSheep(sheep);
+				} else {
+					// Didn't fit?
+					player.sendPrivateText("You seemed to have lost your sheep while trying to squeeze in.");
+				}
+			}
+
+			if(pet != null) {
+				if(!placeat(zone, pet, nx, ny)) {
+					player.setPet(pet);
+				} else {
+					// Didn't fit?
+					player.sendPrivateText("You seemed to have lost your pet while trying to squeeze in.");
+				}
+			}
+
+			if (zoneChanged) {
+				transferContent(player);
+
+				if(oldZone != null) {
+					String source = oldZone.getID().getID();
+					String destination = zone.getID().getID();
+
+					StendhalRPRuleProcessor.get().addGameEvent(
+						player.getName(), "change zone", destination);
+
+					TutorialNotifier.zoneChange(player, source, destination);
+					ZoneNotifier.zoneChange(player, source, destination);
 				}
 			}
 		}
-		return found;
 
+		return true;
 	}
 
-	/**
-	 * ???
-	 *
-	 * @param player
-	 * @param zone
-	 * @throws AttributeNotFoundException
-	 * @throws NoRPZoneException
-	 */
-	public static void changeZone(Player player, StendhalRPZone zone) {
-		StendhalRPWorld world = StendhalRPWorld.get();
-
-		String destination = zone.getID().getID();
-
-		StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
-				"change zone", destination);
-
-		player.clearPath();
-
-		String source = player.getID().getZoneID();
-
-		// TODO: FIX ME
-		// XXX: Refactor.
-
-		if (player.hasSheep() && player.hasPet()) {
-			Sheep sheep = player.getSheep();
-			Pet pet = (Pet) world.get(player.getPet());
-			player.removeSheep(sheep);
-			player.removePet(pet);
-			world.changeZone(destination, sheep);
-			world.changeZone(destination, pet);
-			world.changeZone(destination, player);
-			player.setSheep(sheep);
-			player.setPet(pet);
-			// oldzone.removePlayerAndFriends(sheep);
-			// zone.addPlayerAndFriends(sheep);
-		} else if (player.hasPet()) {
-			Pet pet = (Pet) world.get(player.getPet());
-			player.removePet(pet);
-			world.changeZone(destination, pet);
-			world.changeZone(destination, player);
-			player.setPet(pet);
-			// oldzone.removePlayerAndFriends(cat);
-			// zone.addPlayerAndFriends(cat);
-		} else if (player.hasSheep()) {
-			Sheep sheep = player.getSheep();
-			player.removeSheep(sheep);
-			world.changeZone(destination, sheep);
-			world.changeZone(destination, player);
-			player.setSheep(sheep);
-		} else {
-			world.changeZone(destination, player);
-		}
-
-		placeat(zone, player, player.getX(), player.getY());
-		player.stop();
-		player.stopAttack();
-
-		/*
-		 * placeat on player does this - so we don't need it again, if
-		 * (player.hasSheep()) { Sheep sheep = (Sheep)
-		 * world.get(player.getSheep()); placeat(zone, sheep, player.getX() + 1,
-		 * player.getY() + 1); sheep.clearPath(); sheep.stop(); }
-		 *
-		 */
-
-		if (!source.equals(destination)) {
-			transferContent(player);
-			TutorialNotifier.zoneChange(player, source, destination);
-			ZoneNotifier.zoneChange(player, source, destination);
-		}
-
-		/*
-		 * There isn't any world.modify because there is already considered
-		 * inside the implicit world.add call at changeZone
-		 */
-	}
 
 	/**
 	 * Tell this message all players

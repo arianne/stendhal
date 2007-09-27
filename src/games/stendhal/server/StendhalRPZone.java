@@ -279,9 +279,11 @@ public class StendhalRPZone extends MarauroaRPZone {
 		entryPoint = new Point(x, y);
 	}
 
-	public void placeObjectAtEntryPoint(Entity object) {
+	public boolean placeObjectAtEntryPoint(Entity entity) {
 		if (entryPoint != null) {
-			object.setPosition(entryPoint.x, entryPoint.y);
+			return StendhalRPAction.placeat(this, entity, entryPoint.x, entryPoint.y);
+		} else {
+			return false;
 		}
 	}
 
@@ -722,6 +724,14 @@ public class StendhalRPZone extends MarauroaRPZone {
 	 * @throws RPObjectInvalidException
 	 */
 	public synchronized void add(RPObject object, Player player) {
+		/*
+		 * Assign [zone relative] ID info (if not already set).
+		 * TODO: Move up to MarauroaRPZone
+		 */
+		if(!object.has("id") || !object.has("zoneid")) {
+			assignRPObjectID(object);
+		}
+
 		super.add(object);
 
 		/*
@@ -765,6 +775,9 @@ public class StendhalRPZone extends MarauroaRPZone {
 		if (object instanceof Entity) {
 			((Entity) object).onAdded(this);
 		}
+
+		// TODO: Move up to MarauroaRPZone?
+		StendhalRPWorld.get().requestSync(object);
 	}
 
 	@Override
@@ -832,8 +845,13 @@ public class StendhalRPZone extends MarauroaRPZone {
 	}
 
 	public synchronized RPObject remove(RPObject object) {
+		RPObject removed;
+
+
 		if (object.isContained()) {
 			// We modify the base container if the object change.
+
+			// TODO: Remove? Isn't this the same as _in_ modify()?
 			RPObject base = object.getContainer();
 
 			while (base.isContained()) {
@@ -843,10 +861,26 @@ public class StendhalRPZone extends MarauroaRPZone {
 			modify(base);
 
 			RPSlot slot = object.getContainerSlot();
-			return slot.remove(object.getID());
+			removed = slot.remove(object.getID());
 		} else {
-			return remove(object.getID());
+			removed = remove(object.getID());
 		}
+
+		/*
+		 * Revoke now invalid [zone relative] ID info.
+		 * TODO: Move up to MarauroaRPZone
+		 */
+		if(object.has("id")) {
+			object.remove("id");
+		}
+
+		if(object.has("zoneid")) {
+			object.remove("zoneid");
+		}
+
+
+		// TODO: Find out why the (same?) object is returned
+		return removed;
 	}
 
 	@Override
@@ -952,15 +986,21 @@ public class StendhalRPZone extends MarauroaRPZone {
 	private Entity getCollidingObject(Entity entity, Rectangle2D area) {
 		Rectangle2D otherArea = new Rectangle.Double();
 		for (RPObject other : objects.values()) {
+			/*
+			 * Ignore same object
+			 */
+			if(entity == other) {
+				continue;
+			}
+
 			Entity otherEntity = (Entity) other;
 
 			if (otherEntity.isObstacle(entity)) {
 				// There is something the entity couldn't stand upon.
 				// Check if it's in the way.
-				otherEntity.getArea(otherArea, otherEntity.getX(), otherEntity
-						.getY());
-				if (area.intersects(otherArea)
-						&& !entity.getID().equals(otherEntity.getID())) {
+				otherEntity.getArea(otherArea, otherEntity.getX(), otherEntity .getY());
+
+				if (area.intersects(otherArea)) {
 					return otherEntity;
 				}
 			}

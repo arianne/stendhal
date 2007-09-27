@@ -168,14 +168,12 @@ public class CreatureRespawnPoint implements TurnListener {
 			newentity.setATK(Rand.rand(newentity.getATK(), newentity.getATK() / 10));
 			newentity.setDEF(Rand.rand(newentity.getDEF(), newentity.getDEF() / 10));
 
-			zone.assignRPObjectID(newentity);
 			StendhalRPAction.placeat(zone, newentity, x, y);
 
-			newentity.setRespawnPoint(this);
-			creatures.add(newentity);
-
-			zone.add(newentity);
 			newentity.init();
+			newentity.setRespawnPoint(this);
+
+			creatures.add(newentity);
 		} catch (Exception e) {
 			logger.error("error respawning entity " + prototypeCreature, e);
 		} finally {

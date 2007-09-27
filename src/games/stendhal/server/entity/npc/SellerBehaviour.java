@@ -86,7 +86,7 @@ public class SellerBehaviour extends MerchantBehaviour {
 			setAmount(1);
 		}
 
-		item.put("zoneid", player.get("zoneid"));
+		// TODO: Is pre-assignment needed?? [done in zone.add()]
 		IRPZone zone = player.getZone();
 		zone.assignRPObjectID(item);
 

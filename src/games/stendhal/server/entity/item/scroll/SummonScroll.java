@@ -114,9 +114,7 @@ public class SummonScroll extends InfoStringScroll {
 		// create it
 		AttackableCreature creature = new AttackableCreature(pickedCreature);
 
-		zone.assignRPObjectID(creature);
 		StendhalRPAction.placeat(zone, creature, x, y);
-		zone.add(creature);
 
 		creature.init();
 		creature.setMaster(player);

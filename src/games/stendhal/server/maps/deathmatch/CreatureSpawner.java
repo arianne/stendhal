@@ -131,7 +131,6 @@ static final Logger logger = Log4J.getLogger(CreatureSpawner.class);
 		        new ArenaCreature(template.getInstance(), deathmatchInfo.getArena().getShape()));
 		deathmatchInfo.getZone().assignRPObjectID(creature);
 		if (StendhalRPAction.placeat(deathmatchInfo.getZone(), creature, player.getX(), player.getY(), deathmatchInfo.getArena().getShape())) {
-			deathmatchInfo.getZone().add(creature);
 			StendhalRPRuleProcessor.get().addNPC(creature);
 
 			creature.clearDropItemList();
