@@ -565,7 +565,8 @@ public class Marriage extends AbstractQuest {
 			new SpeakerNPC.ChatCondition() {
 			@Override
 			public boolean fire(Player player, String text, SpeakerNPC npc) {
-				return (player.getQuest(QUEST_SLOT).equals("just_married")) &&
+				return (player.hasQuest(QUEST_SLOT) && 
+					player.getQuest(QUEST_SLOT).equals("just_married")) &&
 					player.isEquipped("wedding_ring") ;
 			}
 		}, ConversationStates.QUESTION_3,
