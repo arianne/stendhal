@@ -634,7 +634,7 @@ public class StendhalRPAction {
 			}
 
 			if (!found) {
-				logger.debug("Unable to place " + entity + " at (" + x + "," + y + ")");
+				logger.info("Unable to place " + entity.getTitle() + " at " + zone.getID().getID() + "[" + x + "," + y + "]");
 				return false;
 			}
 		}
@@ -662,6 +662,7 @@ public class StendhalRPAction {
 					sheep.clearPath();
 					sheep.stop();
 
+					sheep.setOwner(null);
 					player.removeSheep(sheep);
 				} catch (RPObjectNotFoundException e) {
 					// TODO: Remove catch after DB Reset
@@ -690,6 +691,7 @@ public class StendhalRPAction {
 				pet.clearPath();
 				pet.stop();
 
+				pet.setOwner(null);
 				player.removePet(pet);
 			}
 		}
@@ -732,6 +734,7 @@ public class StendhalRPAction {
 			if(sheep != null) {
 				if(placeat(zone, sheep, nx, ny)) {
 					player.setSheep(sheep);
+					sheep.setOwner(player);
 				} else {
 					// Didn't fit?
 					player.sendPrivateText("You seemed to have lost your sheep while trying to squeeze in.");
@@ -739,8 +742,9 @@ public class StendhalRPAction {
 			}
 
 			if(pet != null) {
-				if(!placeat(zone, pet, nx, ny)) {
+				if(placeat(zone, pet, nx, ny)) {
 					player.setPet(pet);
+					pet.setOwner(player);
 				} else {
 					// Didn't fit?
 					player.sendPrivateText("You seemed to have lost your pet while trying to squeeze in.");
@@ -761,6 +765,10 @@ public class StendhalRPAction {
 					ZoneNotifier.zoneChange(player, source, destination);
 				}
 			}
+		}
+
+		if(logger.isDebugEnabled()) {
+			logger.debug("Placed " + entity.getTitle() + " at " + zone.getID().getID() + "[" + nx + "," + ny + "]");
 		}
 
 		return true;
