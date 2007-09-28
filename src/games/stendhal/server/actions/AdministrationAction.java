@@ -52,6 +52,11 @@ import marauroa.common.game.Definition.Type;
  * Most /commands for admins are handled here.
  */
 public class AdministrationAction implements ActionListener {
+	/*
+	 * TODO: Refactor.
+	 * This class is monstrously big.
+	 * Split it in smaller more coherent classes.
+	 */
 
 	private static final Logger logger = Log4J
 			.getLogger(AdministrationAction.class);
@@ -63,6 +68,10 @@ public class AdministrationAction implements ActionListener {
 	private static final Map<String, Integer> REQUIRED_ADMIN_LEVELS = new HashMap<String, Integer>();
 
 	public static void register() {
+		/*
+		 * TODO: Refactor.
+		 * Make action definition and level a single event so there can't be one without the other.
+		 */
 		AdministrationAction administration = new AdministrationAction();
 		StendhalRPRuleProcessor.register("inspect", administration);
 		StendhalRPRuleProcessor.register("destroy", administration);
@@ -164,6 +173,11 @@ public class AdministrationAction implements ActionListener {
 			return;
 		}
 
+		/*
+		 * Refactor.
+		 * Bad smell but on the other hand the correct way of doing it may 
+		 * be even worse?
+		 */
 		if (type.equals("tellall")) {
 			onTellEverybody(player, action);
 		} else if (type.equals("supportanswer")) {
