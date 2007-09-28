@@ -36,6 +36,10 @@ public class AwayAction implements ActionListener {
 
 
 		if (action.has("message")) {
+			/*
+			 * Refactor.
+			 * Hide implementation.
+			 */
 			player.put("away", action.get("message"));
 		} else if (player.has("away")) {
 			player.remove("away");
