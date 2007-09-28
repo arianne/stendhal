@@ -23,7 +23,7 @@ public class WalkBlocker extends AreaEntity {
 	public WalkBlocker() {
 		super(1, 1);
 
-		setResistance(0);
+		setResistance(40);
 	}
 
 	/**
