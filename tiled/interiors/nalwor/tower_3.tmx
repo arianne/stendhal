@@ -30,7 +30,7 @@
  <tileset name="../../tileset/logic/creature/elf.png" firstgid="64" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/elf.png"/>
  </tileset>
- <tileset name="../../tileset/logic/portal.png" firstgid="73" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/portal.png" firstgid="74" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
  <layer name="0_floor" width="20" height="20">

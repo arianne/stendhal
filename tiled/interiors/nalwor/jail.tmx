@@ -72,19 +72,19 @@
  <tileset name="../../tileset/logic/creature/elf.png" firstgid="178" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/elf.png"/>
  </tileset>
- <tileset name="../../tileset/logic/portal.png" firstgid="187" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/portal.png" firstgid="188" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset name="../../tileset/logic/creature/human.png" firstgid="194" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/creature/human.png" firstgid="195" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/human.png"/>
  </tileset>
- <tileset name="../../tileset/logic/creature/kobold.png" firstgid="203" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/creature/kobold.png" firstgid="204" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/kobold.png"/>
  </tileset>
- <tileset name="../../tileset/logic/creature/golem.png" firstgid="208" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/creature/golem.png" firstgid="209" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/golem.png"/>
  </tileset>
- <tileset name="../../tileset/logic/collision.png" firstgid="210" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/collision.png" firstgid="211" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
  <layer name="0_floor" width="30" height="20">
@@ -114,12 +114,12 @@
  </layer>
  <layer name="objects" width="30" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAVDAZymkjlriVS3Hol9kUp2YwNHaGj2KBgFQwHsHGH2kgp2MgwNt+4YaAfQCGylgx376WDHQAAAQMUImGAJAAA=
+   H4sIAAAAAAAAAGNgGAVDAZyhkjlriVS3Hol9iUp2YwNHaWj2KBgFQwHsHGH2kgp2MgwNt+4YaAfQCGylgx0H6GDHQAAA/PIYx2AJAAA=
   </data>
  </layer>
  <layer name="collision" width="30" height="20" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAOWTUQoAIAhDvf/xPFH/ojWnRZEgRLW9tFIR0Q/ThpoxokEi8mD9qtxOb4/DcKP7sPNd3Nl6lXvLe65G5HmKe7ruXfWutDdxV/2d/YMMF/lP2WC1Hjdzpk5utM/jsH3L1IXqWS5a08s5AM8sBcNgCQAA
+   H4sIAAAAAAAAAOWTUQoAIAhDvf/1vFD/ojWnRZEgRLW9tFIR0Q/ThpoxokEi8mD9qtxOb4/DcKP7sPNd3Nl6lXvLe65G5HmKe7ruXfWutDdxV/2d/YMMF/lP2WC1Hjdzpk5utM/jsH3L1IXqWS5a08s5AD5V4+VgCQAA
   </data>
  </layer>
  <layer name="protection" width="30" height="20">

@@ -243,10 +243,10 @@
  <tileset name="../../tileset/logic/creature/elf.png" firstgid="669" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/elf.png"/>
  </tileset>
- <tileset name="../../tileset/logic/portal.png" firstgid="678" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/portal.png" firstgid="679" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset name="../../tileset/logic/collision.png" firstgid="685" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/collision.png" firstgid="686" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
  <layer name="0_floor" width="46" height="30">
@@ -276,12 +276,12 @@
  </layer>
  <layer name="objects" width="46" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3XwQ6AIAgGYOf7v0K1qFNPWW45T5EhKFv/t3GyCTE5EAJ4t8YxeQ/lvDtzH3X8R66Olm+llivHdsfoWr5IdVNF3dK7n8yN+SzrBh9q5gngbybMBEu7P+g3D/3uC/2BUaQ7HsUS1jR33rSn5LCmvavDO25HrTn3osf79CTNSg5vTrRi7HGQFQAA
+   H4sIAAAAAAAAAO3XwQ6AIAgGYOf7v0K1qFsvWW45T5EhKFv/t3GyCTE5EAJ4t8YxeQ/lvDtzH3X8R66Olm+llivHdsfoWr5IdVNF3dK7n8yN+SzrBh9q5gngbybMBEu7P+g3D/3uC/2BUaQ7HsUS1jR33rSn5LCmvavDO25HrTn3osf79CTNSg5vTp5oR5OQFQAA
   </data>
  </layer>
  <layer name="collision" width="46" height="30" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2TSw6AMAhEG+9/Fe9o3JFmoJSCTqMk3bR8HuN4Hq2d/4HnDob+MrR7+YbC01vmanUoR+uP8kZ7ePSxGEY8FoeH2xsRrbU6tLe3fwW35b3V/6iKe/a/YOC2+mZxe/fy5s7WsHBHmRm4Z3eJeKrCJxlaPs2NPB7RL8NzX+WO+uTpyND7jT0y9Gbg7nfYgbu/f5vNCsSTqenKd4vOZeXOeO8ZZV0lt6YRI3c/B83agVvjYePe1Seov5zNzj2K2T7ZjJWHmfsCDUezb5AVAAA=
+   H4sIAAAAAAAAAO2TSw6AMAhEG+9/Fs9o3JFmoJSCTqMk3bR8HuN4Hq2d/4HnDob+MrR7+YbC01vmanUoR+uP8kZ7ePSxGEY8FoeH2xsRrbU6tLe3fwW35b3V/6iKe/a/YOC2+mZxe/fy5s7WsHBHmRm4Z3eJeKrCJxlaPs2NPB7RL8NzX+WO+uTpyND7jT0y9Gbg7nfYgbu/f5vNCsSTqenKd4vOZeXOeO8ZZV0lt6YRI3c/B83agVvjYePe1Seov5zNzj2K2T7ZjJWHmfsCE36SzJAVAAA=
   </data>
  </layer>
  <layer name="protection" width="46" height="30" visible="0">

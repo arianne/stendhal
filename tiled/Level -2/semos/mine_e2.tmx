@@ -15,7 +15,7 @@
  <tileset name="Sin nombre" firstgid="70" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/chaos.png"/>
  </tileset>
- <tileset name="Sin nombre" firstgid="76" tilewidth="32" tileheight="32">
+ <tileset name="Sin nombre" firstgid="77" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/mythical_animal.png"/>
  </tileset>
  <layer name="0_floor" width="128" height="128">
@@ -45,7 +45,7 @@
  </layer>
  <layer name="objects" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3dSw5AQBAFwDkdCe5/HiuJiN/4pIepWlm+6NZj06QEwNu66ABAqC6ZA7VTfwAAAAAAAAAAAAAAAPbYP6mTuqMHgDVmQ53UnYleAAAAgLL10QFmSsryF8t72oSkgHzmAXP6AZ7jeQIAAAAAAHhfGx0AqJp9PuDrvEvd5ywAOGZWAgAAAAAAAAAAAAA8a4gOAPBDV3ZgznyH3H9LyrVV85xe6DeuASCCnV4AAAAAAAAAAAAAAAAAvmIEY19kLwAAAQA=
+   H4sIAAAAAAAAAO3dSwqAMAwFwJ5OQfH+13EliPirH1LtzMrlw8TUTTQlAN7WRQcAQnXJHKid+gMAAAAAAAAAAAAAALDH/kmd1B09AKwxG+qk7kz0AgAAAJStjw4wU1KWv1je0yYkBeQzD5jTD/AczxMAAAAAAMD72ugAQNXs8wFf513qPmcBwDGzEgAAAAAAAAAAAADgWUN0AIAfurIDc+Y75P5bUq6tmuf0Qr9xDQAR7PQCAAAAAAAAAAAAAAAA8BUjOH2e+QAAAQA=
   </data>
  </layer>
  <layer name="collision" width="128" height="128" opacity="0.3">

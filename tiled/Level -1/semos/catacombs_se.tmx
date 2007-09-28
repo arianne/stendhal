@@ -81,7 +81,7 @@
  <tileset name="../../tileset/logic/creature/undead.png" firstgid="246" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/undead.png"/>
  </tileset>
- <tileset name="../../tileset/logic/collision.png" firstgid="258" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/collision.png" firstgid="259" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
  <layer name="0_floor" width="64" height="64">
@@ -116,7 +116,7 @@
  </layer>
  <layer name="collision" width="64" height="64" visible="0" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2U4QrDQAiDt73/Q+9XoYxajSZ6bSccDHpqvujt8369Pk1ni0zOPrw7Vl6m/xX4Pd4V+Kv9PYaV+Rn9PY4sf4c36Bysb2r+s95M7qOenk5vB5AeiEamB9VZITWRdxPxj8nP8D6a59WsBqqx+t+A5nk1PTbvu4I/+98SuWd9j+aq+bNvK1LbumP5YHFHtFrh3WXyZzxC3kcmPBaEP+JdtffvNxZvF/9+x9WHwZD1rYuRyc/Yn7vze/WezI/41MUe1ZEJBT8zP8PveaHoreTP9vUC2aHq/LKh7Ncxh2p07E0Hf9azjOYqd3SOyjmwZ6naXaX2CQ881k49E/yTfS0d2++JvtPsEzpW5rfepaLvpPeVYPfP1Jhir3rAqFnlP5vDmSY1f7RulR+JI+9Us6/W79p/Ze9O5upOKDxfdeaIRjTvKvz7euieRXWy+bfaqBcs7zJzWnkHWLx35GdpUr2BCU5Uj4Id9eAor0uHkj/TW6Gtyl/V9Jt7Vq+bP9In6xviycr8Vh2WPjW/50GlzooalT5P8bP7ZWoqNUVjcvZHuSxdSDA9UOqMMkyxZ2tOBYNdyR/ds0l2Nj9Tl+eNssfT+ZH6Kl0dXle1d7Kr/azO/Q4eRO8f5V2Vn7EzT2H3PJjW9T//oz5fAWl96wBAAAA=
+   H4sIAAAAAAAAAO2U4QrDQAiDN/b+77xfhTJqNZrotZ1wMOip+aK3z/v1+jSdLTI5+/DuWHmZ/lfg93hX4K/29xhW5mf09ziy/B3eoHOwvqn5z3ozuY96ejq9HUB6IBqZHlRnhdRE3k3EPyY/w/tonlezGqjG6n8DmufV9Ni87wr+7H9L5J71PZqr5s++rUht647lg8Ud0WqFd5fJn/EIeR+Z8FgQ/oh31d6/31i8Xfz7HVcfBkPWty5GJj9jf+7O79V7Mj/iUxd7VEcmFPzM/Ay/54Wit5I/29cLZIeq88uGsl/HHKrRsTcd/FnPMpqr3NE5KufAnqVqd5XaJzzwWDv1TPBP9rV0bL8n+k6zT+hYmd96l4q+k95Xgt0/U2OKveoBo2aV/2wOZ5rU/NG6VX4kjrxTzb5av2v/lb07mas7ofB81ZkjGtG8q/Dv66F7FtXJ5t9qo16wvMvMaeUdYPHekZ+lSfUGJjhRPQp21IOjvC4dSv5Mb4W2Kn9V02/uWb1u/kifrG+IJyvzW3VY+tT8ngeVOitqVPo8xc/ul6mp1BSNydkf5bJ0IcH0QKkzyjDFnq05FQx2JX90zybZ2fxMXZ43yh5P50fqq3R1eF3V3smu9rM69zt4EL1/lHdVfsbOPIXd82Ba1//8j/p8AZh5QlEAQAAA
   </data>
  </layer>
  <layer name="protection" width="64" height="64" visible="0">

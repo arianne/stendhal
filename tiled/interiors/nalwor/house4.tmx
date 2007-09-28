@@ -57,13 +57,13 @@
  <tileset name="../../tileset/logic/creature/elf.png" firstgid="153" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/elf.png"/>
  </tileset>
- <tileset name="../../tileset/logic/creature/sheep.png" firstgid="162" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/creature/sheep.png" firstgid="163" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/sheep.png"/>
  </tileset>
- <tileset name="../../tileset/logic/item/sheepfood.png" firstgid="163" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/item/sheepfood.png" firstgid="164" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/item/sheepfood.png"/>
  </tileset>
- <tileset name="../../tileset/logic/collision.png" firstgid="164" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/collision.png" firstgid="165" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
  <layer name="0_floor" width="20" height="20">
@@ -93,12 +93,12 @@
  </layer>
  <layer name="objects" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGBpg2gDbP2eA7ScFDCW30hrQOywWUdGMxVQym1rmkGrPcAIzCfAHC6B3OQkAwZ172UAGAAA=
+   H4sIAAAAAAAAAGNgGBpg2gDbP2eA7ScFDCW30hrQOywWU9GMJVQym1rmkGrPcAIzCfAHC6B3OQkAUjdnDkAGAAA=
   </data>
  </layer>
  <layer name="collision" width="20" height="20" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAFvCwMCwZAhgSgEl5i/BQlPDPFLcR2oY0MMsSgAtzcJmJrXTHzXCkJB5uOwg1X3EpEdy3EfITkLuG6gygV7lCwMRNLFmkRIm1AhbYjEAoNzgbUAGAAA=
+   H4sIAAAAAAAAAFvKwMCwdAhgSgEl5i/FQlPDPFLcR2oY0MMsSgAtzcJmJrXTHzXCkJB5uOwg1X3EpEdy3EfITkLuG6gygV7lCwMRNLFmkRIm1AhbYjEAjb3Hs0AGAAA=
   </data>
  </layer>
  <layer name="protection" width="20" height="20">
