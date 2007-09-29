@@ -251,9 +251,12 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			/* Initialize quests */
 			StendhalQuestSystem.get().init();
 
+			/*
+			 * TODO: Have these directly added here when added
+			 * to zone, or let zone handle all of them directly
+			 */
 			for (IRPZone zone : StendhalRPWorld.get()) {
 				StendhalRPZone szone = (StendhalRPZone) zone;
-				npcs.addAll(szone.getNPCList());
 				respawnPoints.addAll(szone.getRespawnPointList());
 				plantGrowers.addAll(szone.getPlantGrowers());
 			}
@@ -303,7 +306,11 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	}
 
 	public void addNPC(NPC npc) {
-		npcsToAdd.add(npc);
+		npcsToRemove.remove(npc);
+
+		if(!npcs.contains(npc)) {
+			npcsToAdd.add(npc);
+		}
 	}
 
 	public void killRPEntity(RPEntity entity, Entity killer) {
