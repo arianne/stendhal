@@ -406,11 +406,11 @@ public class Creature extends NPC {
 				continue;
 			}
 
-			if (enemy.has("invisible")) {
+			if (enemy.isInvisible()) {
 				continue;
 			}
 
-			if (enemy.get("zoneid").equals(get("zoneid"))) {
+			if (enemy.getZone() == getZone()) {
 				java.awt.geom.Rectangle2D rect = enemy.getArea(enemy.getX(), enemy.getY());
 				int fx = (int) rect.getCenterX();
 				int fy = (int) rect.getCenterY();
@@ -477,11 +477,11 @@ public class Creature extends NPC {
 				continue;
 			}
 
-			if (playerOrFriend.has("invisible")) {
+			if (playerOrFriend.isInvisible()) {
 				continue;
 			}
 
-			if (playerOrFriend.get("zoneid").equals(get("zoneid"))) {
+			if (playerOrFriend.getZone() == getZone()) {
 				int fx = playerOrFriend.getX();
 				int fy = playerOrFriend.getY();
 

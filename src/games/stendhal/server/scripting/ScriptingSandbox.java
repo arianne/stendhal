@@ -81,10 +81,7 @@ public abstract class ScriptingSandbox {
 	}
 
 	public boolean playerIsInZone(Player player, String zoneName) {
-		if (zoneName.equals(player.get("zoneid"))) {
-			return (zone.has(player.getID()));
-		}
-		return (false);
+		return player.getZone().getID().getID().equals(zoneName);
 	}
 
 	public void add(NPC npc) {

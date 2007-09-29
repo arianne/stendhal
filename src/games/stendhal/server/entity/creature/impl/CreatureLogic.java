@@ -497,8 +497,9 @@ public class CreatureLogic {
 			if (creature.isAttacked() && (target == null)) {
 				logicWeAreNotAttackingButGotAttacked();
 			} else if ((target == null)
-			        || (!target.get("zoneid").equals(creature.get("zoneid")) && world.has(target
-			                .getID())) || !world.has(target.getID()) || target.has("invisible")) {
+			        || (target.getZone() != creature.getZone())
+				|| target.isInvisible()
+			        || !world.has(target.getID())) {
 				// no target or current target left the zone (or is dead) or target became invisible (admin)
 				logicForgetCurrentTarget();
 				logicFindNewTarget();

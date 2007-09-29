@@ -1,6 +1,7 @@
 package games.stendhal.server.script;
 
 import games.stendhal.server.StendhalRPRuleProcessor;
+import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.scripting.ScriptImpl;
 
@@ -14,7 +15,6 @@ import java.util.TreeMap;
  * @author hendrik
  */
 public class WhereWho extends ScriptImpl {
-
 	@Override
 	public void execute(Player admin, List<String> args) {
 		super.execute(admin, args);
@@ -23,25 +23,39 @@ public class WhereWho extends ScriptImpl {
 		List<Player> players = StendhalRPRuleProcessor.get().getPlayers();
 		Map<String, StringBuilder> maps = new TreeMap<String, StringBuilder>();
 		for (Player player : players) {
+			StendhalRPZone zone = player.getZone();
+			String zoneid;
+
+			if(zone != null) {
+				zoneid = zone.getID().getID();
+			} else {
+				// Indicate players in world, but not zone
+				zoneid = "(none)";
+			}
 
 			// get zone and add it to map
-			StringBuilder sb = maps.get(player.get("zoneid"));
+			StringBuilder sb = maps.get(zoneid);
 			if (sb == null) {
 				sb = new StringBuilder();
-				sb.append(player.get("zoneid") + ": ");
-				maps.put(player.get("zoneid"), sb);
+				sb.append(zoneid);
+				sb.append(": ");
+				maps.put(zoneid, sb);
 			}
 
 			// add player
-			sb.append(player.getName() + " (" + player.getLevel() + ")  ");
+			sb.append(player.getName());
+			sb.append(" (");
+			sb.append(player.getLevel());
+			sb.append(")  ");
 		}
 
 		// create response
 		StringBuilder sb = new StringBuilder();
 		for (StringBuilder mapString : maps.values()) {
-			sb.append(mapString + "\n");
+			sb.append(mapString);
+			sb.append('\n');
 		}
+
 		admin.sendPrivateText(sb.toString());
 	}
-
 }

@@ -13,6 +13,8 @@
 package games.stendhal.server.actions;
 
 import games.stendhal.server.StendhalRPRuleProcessor;
+import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.entity.creature.Pet;
 import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.player.Player;
 
@@ -102,30 +104,46 @@ public class PlayersQuery implements ActionListener {
 	}
 
 	public void onWhere(Player player, RPAction action) {
-
-		StendhalRPRuleProcessor rules = StendhalRPRuleProcessor.get();
 		if (action.has("target")) {
 			String whoName = action.get("target");
+
+			StendhalRPRuleProcessor rules = StendhalRPRuleProcessor.get();
 
 			rules.addGameEvent(player.getName(), "where", whoName);
 
 			Player who = rules.getPlayer(whoName);
 			if (who != null && !who.isGhost()) {
-				player.sendPrivateText(who.getName() + " is in "
-						+ who.get("zoneid") + " at (" + who.getX() + ","
+				StendhalRPZone zone = who.getZone();
+
+				if(zone != null) {
+					player.sendPrivateText(who.getName() + " is in "
+						+ zone.getID().getID() + " at (" + who.getX() + ","
 						+ who.getY() + ")");
-				player.notifyWorldAboutChanges();
-			} else if (whoName.equals("sheep") && player.hasSheep()) {
+				}
+			} else if (whoName.equals("sheep")) {
 				Sheep sheep = player.getSheep();
-				player.sendPrivateText("Your sheep is in "
-						+ sheep.get("zoneid") + " at (" + sheep.getX() + ","
-						+ sheep.getY() + ")");
-				player.notifyWorldAboutChanges();
+
+				if(sheep != null) {
+					player.sendPrivateText("Your sheep is at (" + sheep.getX() + "," + sheep.getY() + ")");
+
+				} else {
+					player.sendPrivateText("You currently have no sheep.");
+				}
+			} else if (whoName.equals("pet")) {
+				Pet pet = player.getPet();
+
+				if(pet != null) {
+					player.sendPrivateText("Your pet is at (" + pet.getX() + "," + pet.getY() + ")");
+
+				} else {
+					player.sendPrivateText("You currently have no pet.");
+				}
 			} else {
 				player.sendPrivateText("No player named \""
-						+ action.get("target") + "\" is currently logged in.");
+						+ whoName + "\" is currently logged in.");
 			}
-		}
 
+			player.notifyWorldAboutChanges();
+		}
 	}
 }

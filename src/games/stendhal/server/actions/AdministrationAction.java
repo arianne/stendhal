@@ -636,33 +636,30 @@ public class AdministrationAction implements ActionListener {
 			} else {
 				player.sendPrivateText("Not an item.");
 			}
-
 		}
-
 	}
 
 	private void onInvisible(Player player, RPAction action) {
 
-		if (player.has("invisible")) {
-			player.remove("invisible");
+		if (player.isInvisible()) {
+			player.setInvisible(false);
 			StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
 					"invisible", "off");
 		} else {
-			player.put("invisible", "");
+			player.setInvisible(true);
 			StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
 					"invisible", "on");
 		}
-
 	}
 
 	private void onGhostMode(Player player, RPAction action) {
 
-		if (player.has("ghostmode")) {
+		if (player.isGhost()) {
 			player.remove("ghostmode");
 			StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
 					"ghostmode", "off");
 
-			player.remove("invisible");
+			player.setInvisible(false);
 			StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
 					"invisible", "off");
 
@@ -674,7 +671,7 @@ public class AdministrationAction implements ActionListener {
 			/*
 			 * When we enter ghostmode we want our player to be also invisible.
 			 */
-			player.put("invisible", "");
+			player.setInvisible(true);
 			StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
 					"invisible", "on");
 

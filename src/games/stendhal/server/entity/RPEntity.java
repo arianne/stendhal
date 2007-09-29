@@ -987,6 +987,20 @@ public abstract class RPEntity extends GuidedEntity {
 
 	protected abstract void dropItemsOn(Corpse corpse);
 
+	/**
+	 * Determine if the entity is invisible to creatures.
+	 *
+	 * @return	<code>true</code> if invisible.
+	 */
+	public boolean isInvisible() {
+		// By default entities aren't invisible
+		//
+		// TODO: Use this to let specific types not be visible (like
+		// most npc's) and replace playersAndFriends code?
+		return false;
+	}
+
+
 	/** Return true if this entity is attacked */
 	public boolean isAttacked() {
 		return !attackSources.isEmpty();

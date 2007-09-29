@@ -55,6 +55,11 @@ public class Player extends RPEntity {
 	protected static final String	ATTR_AWAY	= "away";
 
 	/**
+	 * The attack invisible attribute name.
+	 */
+	protected static final String	ATTR_INVISIBLE	= "invisible";
+
+	/**
 	 * The pet ID attribute name.
 	 */
 	protected static final String	ATTR_PET	= "pet";
@@ -315,8 +320,14 @@ public class Player extends RPEntity {
 
 	@Override
 	public boolean isObstacle(Entity entity) {
-		if (get("zoneid").equals(DEFAULT_DEAD_AREA) && entity instanceof Player) {
-			return false;
+		if (entity instanceof Player) {
+			/*
+			 * TODO: Create a world cached reference of this
+			 * zone for identity compares instead?
+			 */
+			if(getZone().getID().getID().equals(DEFAULT_DEAD_AREA)) {
+				return false;
+			}
 		}
 
 		return super.isObstacle(entity);
@@ -798,6 +809,33 @@ public class Player extends RPEntity {
 			put("features", features.encode());
 		}
 	}
+
+
+	/**
+	 * Determine if the entity is invisible to creatures.
+	 *
+	 * @return	<code>true</code> if invisible.
+	 */
+	@Override
+	public boolean isInvisible() {
+		return has(ATTR_INVISIBLE);
+	}
+
+
+	/**
+	 * Set whether this player is invisible to creatures.
+	 *
+	 * @param	invisible
+	 *		<code>true</code> if invisible.
+	 */
+	public void setInvisible(final boolean invisible) {
+		if(invisible) {
+			put(ATTR_INVISIBLE, "");
+		} else if(has(ATTR_INVISIBLE)) {
+			remove(ATTR_INVISIBLE);
+		}
+	}
+
 
 	/**
 	 * Sends a message that only this player can read.
@@ -1846,6 +1884,4 @@ public class Player extends RPEntity {
 		// TODO: Sentence here.
 		return "";
 	}
-
-
 }

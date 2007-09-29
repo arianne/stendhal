@@ -28,6 +28,10 @@ import marauroa.common.game.Definition.Type;
  * A portal which teleports the player to another portal if used.
  */
 public class Portal extends Entity implements UseListener {
+	/**
+	 * The hidden flags attribute name.
+	 */
+	protected static final String	ATTR_HIDDEN	= "hidden";
 
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(Portal.class);
@@ -44,7 +48,7 @@ public class Portal extends Entity implements UseListener {
 		try {
 			RPClass portal = new RPClass("portal");
 			portal.isA("entity");
-			portal.addAttribute("hidden", Type.FLAG);
+			portal.addAttribute(ATTR_HIDDEN, Type.FLAG);
 		} catch (SyntaxException e) {
 			logger.error("cannot generate RPClass", e);
 		}
@@ -104,13 +108,43 @@ public class Portal extends Entity implements UseListener {
 		return destinationZone;
 	}
 
+
+	/**
+	 * Determine if this portal is hidden from players.
+	 *
+	 * @return	<code>true</code> if hidden.
+	 */
+	public boolean isHidden() {
+		return has(ATTR_HIDDEN);
+	}
+
 	public boolean loaded() {
 		return settedDestination;
 	}
 
 	@Override
 	public String toString() {
-		return "Portal at " + get("zoneid") + "[" + getX() + "," + getY() + "]";
+		StringBuffer sbuf = new StringBuffer();
+		sbuf.append("Portal");
+
+		StendhalRPZone zone = getZone();
+
+		if(zone != null) {
+			sbuf.append(" at ");
+			sbuf.append(zone.getID().getID());
+		}
+
+		sbuf.append('[');
+		sbuf.append(getX());
+		sbuf.append(',');
+		sbuf.append(getX());
+		sbuf.append(']');
+
+		if(isHidden()) {
+			sbuf.append(", hidden");
+		}
+
+		return sbuf.toString();
 	}
 
 	/**
@@ -134,14 +168,20 @@ public class Portal extends Entity implements UseListener {
 
 		StendhalRPZone destZone = StendhalRPWorld.get().getZone(getDestinationZone());
 
+		if (destZone == null) {
+			logger.error(this + " has invalid destination zone: " + getDestinationZone());
+			return false;
+		}
+
 		Portal dest = destZone.getPortal(getDestinationReference());
 
 		if (dest == null) {
 			// This portal is incomplete
-			logger.error(this + " has invalid destination");
+			logger.error(this + " has invalid destination identitifer: " + getDestinationReference());
 			return false;
 		}
 
+		// TODO: Check if teleport worked and skip rest if not
 		player.teleport(destZone, dest.getX(), dest.getY(), null, null);
 		player.stop();
 

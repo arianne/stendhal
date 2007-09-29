@@ -1,6 +1,7 @@
 package games.stendhal.server.script;
 
 import games.stendhal.server.StendhalRPRuleProcessor;
+import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
@@ -38,14 +39,31 @@ public class PlayerPositionMonitoring extends ScriptImpl {
 
 		private void list() {
 			// create player list
-			List<Player> players = StendhalRPRuleProcessor.get().getPlayers();
-			StringBuilder sb = new StringBuilder(counter + ": ");
-			for (Player player : players) {
+			StringBuilder sb = new StringBuilder(String.valueOf(counter));
+			sb.append(": ");
+
+			for (Player player : StendhalRPRuleProcessor.get().getPlayers()) {
 				if (sb.length() > 10) {
 					sb.append(", ");
 				}
-				sb.append(player.getName() + " " + player.get("zoneid") + " " + player.getX() + " " + player.getY());
+
+				sb.append(player.getName());
+				sb.append(' ');
+
+				StendhalRPZone zone = player.getZone();
+
+				if(zone != null) {
+					sb.append(zone.getID().getID());
+				} else {
+					sb.append("(none)");
+				}
+
+				sb.append(' ');
+				sb.append(player.getX());
+				sb.append(' ');
+				sb.append(player.getY());
 			}
+
 			admin.sendPrivateText(sb.toString());
 		}
 
@@ -56,7 +74,6 @@ public class PlayerPositionMonitoring extends ScriptImpl {
 			}
 			counter++;
 		}
-
 	}
 
 	@Override

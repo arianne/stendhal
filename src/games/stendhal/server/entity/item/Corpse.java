@@ -232,7 +232,7 @@ public class Corpse extends PassiveEntity implements TurnListener,
 
 			// Mark this object as modified if it has been added to the
 			// world already.
-			if (has("zoneid")) {
+			if (getZone() != null) {
 				modify();
 			}
 		}
