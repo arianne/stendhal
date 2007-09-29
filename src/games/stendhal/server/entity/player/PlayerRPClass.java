@@ -371,13 +371,6 @@ lion_shield_+1 enhanced_lion_shield
 		}
 
 		/*
-		 * Clear out any old/invalid ID
-		 */
-		if(player.has("id")) {
-			player.remove("id");
-		}
-
-		/*
 		 * Put the player in a zone
 		 */
 		if (zone != null) {
