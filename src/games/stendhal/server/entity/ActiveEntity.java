@@ -118,7 +118,9 @@ public abstract class ActiveEntity extends Entity {
 
 		if (!collision) {
 			if (!isMoveCompleted()) {
-				logger.debug(get("type") + ") move not completed");
+				if (logger.isDebugEnabled()) {
+					logger.debug(get("type") + ") move not completed");
+				}
 				return;
 			}
 

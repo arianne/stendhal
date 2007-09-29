@@ -22,7 +22,7 @@ import marauroa.common.Log4J;
 import marauroa.common.Logger;
 
 public class CreatureLogic {
-	private static int counter;
+	private int turnReaction;
 
 	private static Logger logger = Log4J.getLogger(CreatureLogic.class);
 
@@ -53,8 +53,9 @@ public class CreatureLogic {
 	private StringBuilder debug;
 
 	public CreatureLogic(Creature creature) {
-		counter++;
 		this.creature = creature;
+
+		turnReaction = Rand.rand(3);
 		attackTurn = Rand.rand(5);
 
 		if (Debug.CREATURES_DEBUG_SERVER) {
@@ -68,6 +69,14 @@ public class CreatureLogic {
 	 * @return true, if additional action is required; false if we may sleep
 	 */
 	private boolean logicSleep() {
+		/*
+		 * TODO: Ideally use proximity events to notify others that
+		 * something may be worth looking at nearby. Perhaps with
+		 * zone macro-blocks to minimize overhead.
+		 *
+		 * TODO: Maybe add an awareness attribute for per-creature
+		 * reaction times.
+		 */
 		// if there is no player near and none will see us...
 		// sleep so we don't waste cpu resources
 		if (!creature.isEnemyNear(30)) {
@@ -449,8 +458,12 @@ public class CreatureLogic {
 		creature.applyMovement();
 	}
 
-	private void logicDoAttack() {
-		if ((StendhalRPRuleProcessor.get().getTurn() % StendhalRPAction.getAttackRate(creature) == attackTurn) && creature.isAttacking()) {
+	private void logicDoAttack(final int turn) {
+		if(!creature.isAttacking()) {
+			return;
+		}
+
+		if ((turn % StendhalRPAction.getAttackRate(creature)) == attackTurn) {
 			StendhalRPAction.attack(creature, creature.getAttackTarget());
 			creature.tryToPoison();
 		}
@@ -463,19 +476,19 @@ public class CreatureLogic {
 		}
 	}
 
-	private int turnToThink;
-
 	public void logic() {
 		StendhalRPWorld world = StendhalRPWorld.get();
 		healer.heal(creature);
+
+		int turn = StendhalRPRuleProcessor.get().getTurn();
+
 		/*
-		 * We only *think* once each 2 turns.
+		 * We only *think* once each few turns.
 		 * So we save CPU time.
-		 * Counter%2 makes that processing is split on turns so not all the creatures do it on the same one.
+		 * Each creature [logic] uses a random turn slice.
 		 * TODO: Improve this in a event oriented way.
 		 */
-		if (turnToThink++ % 2 == (counter % 2)) {
-
+		if ((turn % 3) == turnReaction) {
 			if (!logicSleep()) {
 				return;
 			}
@@ -512,16 +525,14 @@ public class CreatureLogic {
 			}
 		}
 
-
 		logicDoMove();
-		logicDoAttack();
+		logicDoAttack(turn);
 		logicDoNoice();
 
 		if (Debug.CREATURES_DEBUG_SERVER) {
 			creature.put("debug", debug.toString());
 		}
 		creature.notifyWorldAboutChanges();
-		//
 	}
 
 	/**
