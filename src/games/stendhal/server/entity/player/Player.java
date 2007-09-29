@@ -227,12 +227,8 @@ public class Player extends RPEntity {
 		 * "resume" zone info, or save just before removing from zone
 		 * instead.
 		 */
-		String zoneid = player.get("zoneid");
-
 		// TODO: Create <Entity>.remove(void) ?
 		player.getZone().remove(player);
-
-		player.put("zoneid", zoneid);
 	}
 
 	public Player(RPObject object) {
