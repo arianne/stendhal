@@ -87,7 +87,6 @@ public class GoldsmithNPC implements ZoneConfigurator {
 			}
 		};
 
-		zone.assignRPObjectID(goldsmith);
 		goldsmith.setEntityClass("goldsmithnpc");
 		goldsmith.setDirection(Direction.DOWN);
 		goldsmith.setPosition(18, 3);

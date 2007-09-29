@@ -64,7 +64,6 @@ public class BuyerNPC implements ZoneConfigurator {
 			}
 		};
 		npc.setDescription("You see Mrotho, guarding over Ados Barracks.");
-		zone.assignRPObjectID(npc);
 		npc.setEntityClass("barracksbuyernpc");
 		npc.setPosition(45, 49);
 		npc.initHP(500);

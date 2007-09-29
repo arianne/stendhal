@@ -121,11 +121,11 @@ public class PlinksToy extends AbstractQuest {
 		StendhalRPZone zone = StendhalRPWorld.get().getZone("0_semos_plains_n");
 		PassiveEntityRespawnPoint teddyRespawner = new PassiveEntityRespawnPoint(
 				"teddy", 1500);
-		zone.assignRPObjectID(teddyRespawner);
 		teddyRespawner.setPosition(107, 84);
 		teddyRespawner.setDescription("There's a teddy-bear-shaped depression in the sand here.");
-		teddyRespawner.setToFullGrowth();
 		zone.add(teddyRespawner);
+
+		teddyRespawner.setToFullGrowth();
 
 		StendhalRPRuleProcessor.get().getPlantGrowers().add(teddyRespawner);
 	}

@@ -359,7 +359,6 @@ public class StendhalRPWorld extends RPWorld {
 		String name = "int_" + zone.getID().getID() + "_house_" + dest;
 
 		door.setDestination(name, Integer.valueOf(0));
-		zone.assignRPObjectID(door);
 		zone.add(door);
 
 		StendhalRPZone house = addArea(name, "interiors/abstract/house_000.tmx");
@@ -367,7 +366,6 @@ public class StendhalRPWorld extends RPWorld {
 		portal.setDestination(zone.getID().getID(), dest);
 		portal.setPosition(7, 14);
 		portal.setIdentifier(Integer.valueOf(0));
-		house.assignRPObjectID(portal);
 		house.add(portal);
 
 		/*

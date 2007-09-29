@@ -155,8 +155,6 @@ public class PortalSetupDescriptor extends EntitySetupDescriptor {
 				return;
 			}
 
-			zone.assignRPObjectID(portal);
-
 			portal.setPosition(getX(), getY());
 			portal.setIdentifier(getIdentifier());
 

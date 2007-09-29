@@ -57,8 +57,8 @@ public class MayorNPC implements ZoneConfigurator {
 				addGoodbye("Farewell, human.");
 			}
 		};
+
 		npc.setDescription("You see a regal elf. Something about him makes you uneasy.");
-		zone.assignRPObjectID(npc);
 		npc.setEntityClass("elfmayornpc");
 		npc.setPosition(9, 23);
 		npc.initHP(100);

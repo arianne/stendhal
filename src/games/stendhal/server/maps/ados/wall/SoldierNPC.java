@@ -57,7 +57,6 @@ public class SoldierNPC implements ZoneConfigurator {
 		npc.setEntityClass("youngsoldiernpc");
 		npc.setPosition(84, 109);
 		npc.initHP(100);
-		zone.assignRPObjectID(npc);
 		zone.add(npc);
 	}
 }

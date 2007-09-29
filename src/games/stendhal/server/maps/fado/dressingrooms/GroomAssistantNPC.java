@@ -56,7 +56,6 @@ public class GroomAssistantNPC implements ZoneConfigurator {
 			}
 		};
 
-		zone.assignRPObjectID(npc);
 		npc.setEntityClass("executivenpc");
 		npc.setPosition(20, 10);
 		npc.initHP(100);

@@ -216,7 +216,7 @@ public abstract class Pet extends DomesticAnimal {
 			moveToOwner();
 		} else {
 			logger.debug("Pet has nothing to do");
-			setIdea("stop");
+			setIdea(null);
 			stop();
 			clearPath();
 		}

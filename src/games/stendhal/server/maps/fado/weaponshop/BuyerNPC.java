@@ -61,8 +61,8 @@ public class BuyerNPC implements ZoneConfigurator {
 				addGoodbye("Bye - and see you soon.");
 			}
 		};
+
 		npc.setDescription("You see Yorphin Baos, the friendly shop keeper.");
-		zone.assignRPObjectID(npc);
 		npc.setEntityClass("weaponsellernpc");
 		npc.setPosition(4, 5);
 		npc.initHP(100);

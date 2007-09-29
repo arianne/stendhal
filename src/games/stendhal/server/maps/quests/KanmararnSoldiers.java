@@ -348,7 +348,6 @@ public class KanmararnSoldiers extends AbstractQuest {
 		tom.put("name", "Tom");
 		tom.put("killer", "a Dwarven patrol");
 		// Add our new Ex-NPC to the game world
-		zone.assignRPObjectID(tom);
 		zone.add(tom);
 
 		// Add a refiller to automatically fill the corpse of unlucky Tom
@@ -363,7 +362,6 @@ public class KanmararnSoldiers extends AbstractQuest {
 		charles.put("name", "Charles");
 		charles.put("killer", "a Dwarven patrol");
 		// Add our new Ex-NPC to the game world
-		zone.assignRPObjectID(charles);
 		zone.add(charles);
 		// Add a refiller to automatically fill the corpse of unlucky Charles
 		CorpseRefiller charlesRefiller = new CorpseRefiller(charles, "note",
@@ -377,7 +375,6 @@ public class KanmararnSoldiers extends AbstractQuest {
 		peter.put("name", "Peter");
 		peter.put("killer", "a Dwarven patrol");
 		// Add our new Ex-NPC to the game world
-		zone.assignRPObjectID(peter);
 		zone.add(peter);
 		// Add a refiller to automatically fill the corpse of unlucky Peter
 		CorpseRefiller peterRefiller = new CorpseRefiller(

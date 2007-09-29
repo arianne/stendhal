@@ -36,7 +36,6 @@ public class WeaponsCollectorNPC implements ZoneConfigurator {
 			// remaining behaviour is defined in maps.quests.WeaponsCollector.
 		};
 
-		zone.assignRPObjectID(npc);
 		npc.setEntityClass("oldwizardnpc");
 		npc.setPosition(16, 8);
 		npc.setDirection(Direction.DOWN);

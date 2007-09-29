@@ -48,8 +48,8 @@ public class VergerNPC implements ZoneConfigurator {
 				addGoodbye("Goodbye, go safely.");
 			}
 		};
+
 		npc.setDescription("You see Lukas, the humble church verger.");
-		zone.assignRPObjectID(npc);
 		npc.setEntityClass("vergernpc");
 		npc.setPosition(22, 9);
 		npc.initHP(100);

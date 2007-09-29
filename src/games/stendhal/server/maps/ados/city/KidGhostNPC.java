@@ -86,8 +86,6 @@ public class KidGhostNPC implements ZoneConfigurator {
 		};
 		ghost.setDescription("You see a ghostly figure of a small boy.");
 		ghost.setResistance(0);
-
-		zone.assignRPObjectID(ghost);
 		ghost.setEntityClass("kid7npc");
 		// He is a ghost so he is see through
 		ghost.setVisibility(50);

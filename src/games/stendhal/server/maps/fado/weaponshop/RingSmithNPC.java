@@ -60,8 +60,8 @@ public class RingSmithNPC implements ZoneConfigurator {
 				addGoodbye("Bye, my friend.");
 			}
 		};
+
 		npc.setDescription("You see Ognir, a friendly bearded chap.");
-		zone.assignRPObjectID(npc);
 		npc.setEntityClass("ringsmithnpc");
 		npc.setPosition(18, 8);
 		npc.initHP(100);

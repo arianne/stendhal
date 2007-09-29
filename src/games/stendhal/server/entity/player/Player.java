@@ -49,7 +49,25 @@ import marauroa.common.game.RPSlot;
 import marauroa.common.game.SyntaxException;
 
 public class Player extends RPEntity {
+	/**
+	 * The away message attribute name.
+	 */
+	protected static final String	ATTR_AWAY	= "away";
 
+	/**
+	 * The pet ID attribute name.
+	 */
+	protected static final String	ATTR_PET	= "pet";
+
+	/**
+	 * The sheep ID attribute name.
+	 */
+	protected static final String	ATTR_SHEEP	= "sheep";
+
+	/**
+	 * The name of the zone placed in when killed.
+	 * TODO: Move to common class (maybe via method for runtime config)?
+	 */
 	public static final String DEFAULT_DEAD_AREA = "int_afterlife";
 
 	/** the logger instance. */
@@ -137,8 +155,8 @@ public class Player extends RPEntity {
 		player.stop();
 		player.stopAttack();
 
-		if (player.has("away")) {
-			player.remove("away");
+		if (player.has(ATTR_AWAY)) {
+			player.remove(ATTR_AWAY);
 		}
 
 		PlayerRPClass.readAdminsFromFile(player);
@@ -170,40 +188,27 @@ public class Player extends RPEntity {
 	}
 
 	public static void destroy(Player player) {
-		StendhalRPWorld world = StendhalRPWorld.get();
+		Sheep sheep = player.getSheep();
 
-		try {
-			if (player.hasSheep()) {
-				Sheep sheep = player.getSheep();
-				world.remove(sheep.getID());
-				StendhalRPRuleProcessor.get().removeNPC(sheep);
+		if (sheep != null) {
+			sheep.getZone().remove(sheep);
 
-				/*
-				 * NOTE: Once the sheep is stored there is no more trace of
-				 * zoneid.
-				 */
-				player.playerSheepManager.storeSheep(sheep);
-			} else {
-				// Bug on pre 0.20 released
-				if (player.hasSlot("#flock")) {
-					player.removeSlot("#flock");
-				}
-			}
-		} catch (Exception e) {
-			logger.error("Pre 1.00 Marauroa sheep bug. (player = "
-					+ player.getName() + ")", e);
-
-			if (player.has("sheep")) {
-				player.remove("sheep");
-			}
-
+			/*
+			 * NOTE: Once the sheep is stored there is no more trace of
+			 * zoneid.
+			 */
+			player.playerSheepManager.storeSheep(sheep);
+		} else {
+			// Bug on pre 0.20 released
 			if (player.hasSlot("#flock")) {
 				player.removeSlot("#flock");
 			}
 		}
-		if (player.hasPet()) {
-			Pet pet = (Pet) world.remove(player.getPet());
-			StendhalRPRuleProcessor.get().removeNPC(pet);
+
+		Pet pet = player.getPet();
+
+		if (pet != null) {
+			pet.getZone().remove(pet);
 
 			/*
 			 * NOTE: Once the pet is stored there is no more trace of zoneid.
@@ -213,7 +218,21 @@ public class Player extends RPEntity {
 		player.stop();
 		player.stopAttack();
 
-		world.remove(player.getID());
+		/*
+		 * Normally a zoneid attribute shouldn't logically exist after
+		 * an entity is removed from a zone, but we need to keep it for
+		 * players so that it can be serialized.
+		 *
+		 * TODO: Find a better way to decouple "active" zone info from
+		 * "resume" zone info, or save just before removing from zone
+		 * instead.
+		 */
+		String zoneid = player.get("zoneid");
+
+		// TODO: Create <Entity>.remove(void) ?
+		player.getZone().remove(player);
+
+		player.put("zoneid", zoneid);
 	}
 
 	public Player(RPObject object) {
@@ -322,7 +341,23 @@ public class Player extends RPEntity {
 	 * @return The away message, or <code>null</code> if unset.
 	 */
 	public String getAwayMessage() {
-		return has("away") ? get("away") : null;
+		return has(ATTR_AWAY) ? get(ATTR_AWAY) : null;
+	}
+
+	/**
+	 * Set the away message.
+	 *
+	 * @param	message
+	 *	An away message, or <code>null</code>.
+	 */
+	public void setAwayMessage(final String message) {
+		if(message != null) {
+			put(ATTR_AWAY, message);
+		} else if(has(ATTR_AWAY)) {
+			remove(ATTR_AWAY);
+		}
+
+		resetAwayReplies();
 	}
 
 	/**
@@ -826,31 +861,19 @@ public class Player extends RPEntity {
 
 	@Override
 	public void onDead(Entity killer) {
-		StendhalRPWorld world = StendhalRPWorld.get();
 		put("dead", "");
 
-		if (hasSheep()) {
-			// We make the sheep ownerless so someone can use it
-			try {
-				getSheep().setOwner(null);
-			} catch (RPObjectInvalidException ex) {
-				logger
-						.warn("INCOHERENCE: Player has sheep but sheep doesn't exists");
-			}
+		// Abandon dependants
+		Sheep sheep = getSheep();
 
-			remove("sheep");
+		if (sheep != null) {
+			removeSheep(sheep);
 		}
-		// TODO Sheep stuff changed above! Must Pet stuff change?
-		if (hasPet()) {
-			// We make the pet ownerless so someone can use it
-			if (world.has(getPet())) {
-				Pet pet = (Pet) world.get(getPet());
-				pet.setOwner(null);
-			} else {
-				logger
-						.warn("INCOHERENCE: Player has pet but pet doesn't exist");
-			}
-			remove("pet");
+
+		Pet pet = getPet();
+
+		if (pet != null) {
+			removePet(pet);
 		}
 
 		// We stop eating anything
@@ -900,7 +923,7 @@ public class Player extends RPEntity {
 		}
 
 		// Penalize: Respawn on afterlive zone and
-		StendhalRPZone zone = world.getZone(DEFAULT_DEAD_AREA);
+		StendhalRPZone zone = StendhalRPWorld.get().getZone(DEFAULT_DEAD_AREA);
 
 		if(zone != null) {
 			if(!zone.placeObjectAtEntryPoint(this)) {
@@ -970,49 +993,55 @@ public class Player extends RPEntity {
 	}
 
 	public void removeSheep(Sheep sheep) {
+		sheep.setOwner(null);
 
-		if (has("sheep")) {
-			remove("sheep");
+		if (has(ATTR_SHEEP)) {
+			remove(ATTR_SHEEP);
 		} else {
 			logger.warn("Called removeSheep but player has not sheep: " + this);
 		}
-		StendhalRPRuleProcessor.get().removeNPC(sheep);
-
 	}
 
 	public void removePet(Pet pet) {
+		pet.setOwner(null);
 
-		if (has("pet")) {
-			remove("pet");
+		if (has(ATTR_PET)) {
+			remove(ATTR_PET);
 		} else {
 			logger.warn("Called removePet but player has not pet: " + this);
 		}
-		StendhalRPRuleProcessor.get().removeNPC(pet);
-
 	}
 
 	public boolean hasSheep() {
-		return has("sheep");
+		return has(ATTR_SHEEP);
 	}
 
 	public boolean hasPet() {
-		return has("pet");
+		return has(ATTR_PET);
 	}
 
+	/**
+	 * Set the player's pet.
+	 * This will also set the pet's owner.
+	 *
+	 * @param	pet
+	 *	The pet.
+	 */
 	public void setPet(Pet pet) {
-
-		put("pet", pet.getID().getObjectID());
-
-		StendhalRPRuleProcessor.get().addNPC(pet);
-
+		put(ATTR_PET, pet.getID().getObjectID());
+		pet.setOwner(this);
 	}
 
+	/**
+	 * Set the player's sheep.
+	 * This will also set the sheep's owner.
+	 *
+	 * @param	sheep
+	 *	The sheep.
+	 */
 	public void setSheep(Sheep sheep) {
-
-		put("sheep", sheep.getID().getObjectID());
-
-		StendhalRPRuleProcessor.get().addNPC(sheep);
-
+		put(ATTR_SHEEP, sheep.getID().getObjectID());
+		sheep.setOwner(this);
 	}
 
 	public static class NoSheepException extends RuntimeException {
@@ -1030,8 +1059,27 @@ public class Player extends RPEntity {
 	 * @return The sheep.
 	 */
 	public Sheep getSheep() {
-		return (Sheep) StendhalRPWorld.get().get(
-				new RPObject.ID(getInt("sheep"), get("zoneid")));
+		if(has(ATTR_SHEEP)) {
+			try {
+				return (Sheep) StendhalRPWorld.get().get(
+					new RPObject.ID(getInt(ATTR_SHEEP), get("zoneid")));
+			} catch (Exception e) {
+				// TODO: Remove catch after DB reset
+				logger.error("Pre 1.00 Marauroa sheep bug. (player = " + getName() + ")", e);
+
+				if (has(ATTR_SHEEP)) {
+					remove(ATTR_SHEEP);
+				}
+
+				if (hasSlot("#flock")) {
+					removeSlot("#flock");
+				}
+
+				return null;
+			}
+		} else {
+			return null;
+		}
 	}
 
 	public static class NoPetException extends RuntimeException {
@@ -1047,8 +1095,13 @@ public class Player extends RPEntity {
 		}
 	}
 
-	public RPObject.ID getPet() {
-		return new RPObject.ID(getInt("pet"), get("zoneid"));
+	public Pet getPet() {
+		if(has(ATTR_PET)) {
+			return (Pet) StendhalRPWorld.get().get(
+				new RPObject.ID(getInt(ATTR_PET), get("zoneid")));
+		} else {
+			return null;
+		}
 	}
 
 	/**

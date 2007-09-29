@@ -47,7 +47,6 @@ public class HousewifeNPC implements ZoneConfigurator {
 			}
 		};
 
-		zone.assignRPObjectID(npc);
 		npc.setEntityClass("welcomernpc");
 		npc.setPosition(4, 13);
 		npc.initHP(100);

@@ -55,7 +55,6 @@ public class FadoDeathmatch extends AbstractQuest {
 				.getItem("golden_legs");
 		// we are using these until better
 		// ones are found/commitited. TODO: trophy_legs
-		zone.assignRPObjectID(legs);
 		legs.put("def", "10");
 		legs.setDescription("This is the grand prize for the Battle Arena winners.");
 		legs.setPosition(x, y);
@@ -145,7 +144,6 @@ public class FadoDeathmatch extends AbstractQuest {
 		npc.setPosition(x, y);
 		npc.setDirection(Direction.DOWN);
 		npc.initHP(100);
-		zone.assignRPObjectID(npc);
 		zone.add(npc);
 
 		// We create another NPC
@@ -194,9 +192,6 @@ public class FadoDeathmatch extends AbstractQuest {
 		npc1.setPosition(33, 41);
 		npc1.setDirection(Direction.DOWN);
 		npc1.initHP(100);
-		zone.assignRPObjectID(npc1);
 		zone.add(npc1);
 	}
-
-
 }

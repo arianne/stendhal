@@ -60,8 +60,8 @@ public class MayorNPC implements ZoneConfigurator {
 				addGoodbye("Good day to you.");
 			}
 		};
+
 		mayor.setDescription("You see the respected mayor of Ados");
-		zone.assignRPObjectID(mayor);
 		mayor.setEntityClass("badmayornpc");
 		mayor.setPosition(3, 10);
 		mayor.initHP(100);

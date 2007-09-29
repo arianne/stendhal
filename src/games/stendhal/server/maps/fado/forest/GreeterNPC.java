@@ -68,8 +68,8 @@ public class GreeterNPC implements ZoneConfigurator {
  				addGoodbye("Bye then.");
 			}
 		};
+
 		npc.setDescription("You see Orchiwald, an albino elf.");
-		zone.assignRPObjectID(npc);
 		npc.setEntityClass("albinoelf2npc");
 		npc.setPosition(3, 11);
 		npc.initHP(100);

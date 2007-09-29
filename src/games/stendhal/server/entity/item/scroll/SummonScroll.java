@@ -121,7 +121,6 @@ public class SummonScroll extends InfoStringScroll {
 		creature.clearDropItemList();
 		creature.put("title_type", "friend");
 
-		StendhalRPRuleProcessor.get().addNPC(creature);
 		return true;
 	}
 }

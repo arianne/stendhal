@@ -96,12 +96,10 @@ public class TeleporterBehaviour implements TurnListener {
 			x = Rand.rand(zone.getWidth() - 4) + 2;
 			y = Rand.rand(zone.getHeight() - 5) + 2;
 			if (!zone.collides(x, y) && !zone.collides(x, y + 1)) {
-				zone.assignRPObjectID(speakerNPC);
 				speakerNPC.setPosition(x, y);
 				speakerNPC.setDirection(Direction.RIGHT);
 
 				zone.add(speakerNPC);
-				StendhalRPRuleProcessor.get().addNPC(speakerNPC);
 				found = true;
 				logger.debug("Placing teleporting NPC at " + zone.getID().getID() + " " + x + " " + y);
 			} else {

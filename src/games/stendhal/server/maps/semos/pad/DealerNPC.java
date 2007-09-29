@@ -65,7 +65,6 @@ public class DealerNPC implements ZoneConfigurator {
 			}
 		};
 
-		zone.assignRPObjectID(dealerNPC);
 		dealerNPC.setEntityClass("drugsdealernpc");
 		dealerNPC.setPosition(4, 12);
 		dealerNPC.initHP(100);

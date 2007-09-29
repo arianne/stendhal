@@ -50,7 +50,6 @@ public class DwarfGuardianNPC implements ZoneConfigurator {
 			}
 		};
 
-		zone.assignRPObjectID(npc);
 		npc.addInitChatMessage(null, new SpeakerNPC.ChatAction() {
 			@Override
 			public void fire(Player player, String text, SpeakerNPC engine) {
@@ -67,6 +66,5 @@ public class DwarfGuardianNPC implements ZoneConfigurator {
 		npc.setDirection(Direction.RIGHT);
 		npc.initHP(25);
 		zone.add(npc);
-
 	}
 }

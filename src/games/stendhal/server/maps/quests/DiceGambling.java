@@ -73,7 +73,6 @@ public class DiceGambling extends AbstractQuest {
 		StendhalRPZone zone = ricardo.getZone();
 
 		Sign blackboard = new Sign();
-		zone.assignRPObjectID(blackboard);
 		blackboard.setPosition(25, 0);
 		blackboard.setEntityClass("blackboard");
 		StringBuffer prizelistBuffer = new StringBuffer("PRIZES:\n");
@@ -84,7 +83,6 @@ public class DiceGambling extends AbstractQuest {
 		zone.add(blackboard);
 
 		blackboard = new Sign();
-		zone.assignRPObjectID(blackboard);
 		blackboard.setPosition(26, 0);
 		blackboard.setEntityClass("blackboard");
 		prizelistBuffer = new StringBuffer("PRIZES:\n");

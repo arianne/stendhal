@@ -70,7 +70,6 @@ public class BattleArenaRecruiterNPC implements ZoneConfigurator {
 		npc.setEntityClass("youngsoldiernpc");
 		npc.setPosition(42, 39);
 		npc.initHP(100);
-		zone.assignRPObjectID(npc);
 		zone.add(npc);
 	}
 }

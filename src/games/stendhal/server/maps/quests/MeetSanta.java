@@ -80,7 +80,6 @@ public class MeetSanta extends AbstractQuest {
 
 		// start in int_admin_playground
 		zone = StendhalRPWorld.get().getZone("int_admin_playground");
-		zone.assignRPObjectID(santa);
 		santa.setPosition(17, 13);
 		zone.add(santa);
 

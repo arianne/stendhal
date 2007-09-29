@@ -216,8 +216,8 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 				addGoodbye("Goodbye.");
 			}
 		};
+
 		npc.setDescription("You see a wizard who you should be afraid to mess with.");
-		zone.assignRPObjectID(npc);
 		npc.setEntityClass("brownwizardnpc");
 		npc.setPosition(15, 10);
 		npc.initHP(100);

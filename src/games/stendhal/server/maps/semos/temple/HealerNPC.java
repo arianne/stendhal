@@ -47,7 +47,6 @@ public class HealerNPC implements ZoneConfigurator {
 			}
 		};
 
-		zone.assignRPObjectID(npc);
 		npc.setEntityClass("welcomernpc");
 		npc.setPosition(9, 6);
 		npc.initHP(100);

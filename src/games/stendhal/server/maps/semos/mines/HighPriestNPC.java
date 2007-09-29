@@ -54,7 +54,6 @@ public class HighPriestNPC implements ZoneConfigurator {
 			}
 		};
 
-		zone.assignRPObjectID(npc);
 		npc.addInitChatMessage(null, new SpeakerNPC.ChatAction() {
 			@Override
 			public void fire(Player player, String text, SpeakerNPC engine) {

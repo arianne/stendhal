@@ -51,8 +51,8 @@ public class GuardNPC implements ZoneConfigurator {
 				addGoodbye("Goodbye and come back soon, I get bored here.");
 			}
 		};
+
 		npc.setDescription("You see a bored looking guard.");
-		zone.assignRPObjectID(npc);
 		npc.setEntityClass("recruiter1npc");
 		npc.setPosition(62, 105);
 		npc.initHP(100);

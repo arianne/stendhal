@@ -54,7 +54,6 @@ public class IL0_BankNPC implements ZoneConfigurator {
 			}
 		};
 
-		zone.assignRPObjectID(oldnpc);
 		oldnpc.setDirection(Direction.DOWN);
 		oldnpc.setEntityClass("elfbankeroldnpc");
 		oldnpc.setPosition(13, 17);
@@ -89,8 +88,8 @@ public class IL0_BankNPC implements ZoneConfigurator {
 				addGoodbye("Goodbye, thank you for your time.");
 			}
 		};
+
 		ladynpc.setDescription("You see a pretty female elf in a beautiful dress.");
-		zone.assignRPObjectID(ladynpc);
 		ladynpc.setEntityClass("elfbankladynpc");
 		ladynpc.setDirection(Direction.DOWN);
 		ladynpc.setPosition(17, 31);

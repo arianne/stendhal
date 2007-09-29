@@ -455,7 +455,6 @@ public class StendhalRPZone extends MarauroaRPZone {
 				}
 			} else if (clazz.contains("sheep.png")) {
 				Sheep sheep = new Sheep();
-				assignRPObjectID(sheep);
 				sheep.setPosition(x, y);
 				add(sheep);
 			} else if (clazz.contains("logic/creature")) {
@@ -572,7 +571,6 @@ public class StendhalRPZone extends MarauroaRPZone {
 					return;
 				}
 
-				assignRPObjectID(plantGrower);
 				plantGrower.setPosition(x, y);
 				add(plantGrower);
 
@@ -604,7 +602,6 @@ public class StendhalRPZone extends MarauroaRPZone {
 			portal = new OneWayPortalDestination();
 		}
 
-		assignRPObjectID(portal);
 		portal.setPosition(x, y);
 		assignPortalID(portal);
 		add(portal);
@@ -725,13 +722,10 @@ public class StendhalRPZone extends MarauroaRPZone {
 	 */
 	public synchronized void add(RPObject object, Player player) {
 		/*
-		 * Assign [zone relative] ID info (if not already set).
+		 * Assign [zone relative] ID info.
 		 * TODO: Move up to MarauroaRPZone
 		 */
-		if(!object.has("id") || !object.has("zoneid")) {
-			assignRPObjectID(object);
-		}
-
+		assignRPObjectID(object);
 		super.add(object);
 
 		/*
@@ -758,18 +752,24 @@ public class StendhalRPZone extends MarauroaRPZone {
 			players.add((Player) object);
 			playersAndFriends.add((Player) object);
 		} else if (object instanceof AttackableCreature) {
-			npcs.add((AttackableCreature) object);
 			playersAndFriends.add((AttackableCreature) object);
 		} else if (object instanceof Sheep) {
-			npcs.add((Sheep) object);
 			playersAndFriends.add((Sheep) object);
 		} else if (object instanceof SheepFood) {
 			sheepFoods.add((SheepFood) object);
 		} else if (object instanceof SpeakerNPC) {
-			npcs.add((SpeakerNPC) object);
 			NPCList.get().add((SpeakerNPC) object);
 		} else if (object instanceof Portal) {
 			portals.add((Portal) object);
+		}
+
+		if (object instanceof NPC) {
+			/*
+			 * TODO: Move NPC (and all entity) handling to zone
+			 * scoped/managed/dispatched.
+			 */
+			//npcs.add((NPC) object);
+			StendhalRPRuleProcessor.get().addNPC((NPC) object);
 		}
 
 		if (object instanceof Entity) {
@@ -788,15 +788,13 @@ public class StendhalRPZone extends MarauroaRPZone {
 			((Entity) object).onRemoved(this);
 		}
 
-		/*
-		 * Remove from secondary lists
-		 */
 		if (object instanceof NPC) {
-			npcs.remove(object);
+			/*
+			 * TODO: Move NPC (and all entity) handling to zone
+			 * scoped/managed/dispatched.
+			 */
+			//npcs.remove((NPC) object);
 			StendhalRPRuleProcessor.get().removeNPC((NPC) object);
-		}
-		if (object instanceof SpeakerNPC) {
-			NPCList.get().remove(((SpeakerNPC) object).getName());
 		}
 
 		/*
@@ -812,23 +810,13 @@ public class StendhalRPZone extends MarauroaRPZone {
 			players.remove(object);
 			playersAndFriends.remove(object);
 		} else if (object instanceof AttackableCreature) {
-			npcs.remove(object);
 			playersAndFriends.remove(object);
 		} else if (object instanceof Sheep) {
 			playersAndFriends.remove(object);
-			npcs.remove(object);
 		} else if (object instanceof SheepFood) {
 			sheepFoods.remove(object);
 		} else if (object instanceof SpeakerNPC) {
-			/*
-			 * BUG: I am not sure this works as expected as npcs list is loaded
-			 * just once on startup and never used again, so these removes are
-			 * useless IMHO.
-			 *
-			 * TODO: Move NPC (and all entity) handling to zone
-			 * scoped/managed/dispatched.
-			 */
-			npcs.remove(object);
+			NPCList.get().remove(((SpeakerNPC) object).getName());
 		} else if (object instanceof Portal) {
 			portals.remove(object);
 		}
@@ -844,10 +832,8 @@ public class StendhalRPZone extends MarauroaRPZone {
 		return object;
 	}
 
+	// TODO: Find out why the (same?) object is returned
 	public synchronized RPObject remove(RPObject object) {
-		RPObject removed;
-
-
 		if (object.isContained()) {
 			// We modify the base container if the object change.
 
@@ -861,26 +847,10 @@ public class StendhalRPZone extends MarauroaRPZone {
 			modify(base);
 
 			RPSlot slot = object.getContainerSlot();
-			removed = slot.remove(object.getID());
+			return slot.remove(object.getID());
 		} else {
-			removed = remove(object.getID());
+			return remove(object.getID());
 		}
-
-		/*
-		 * Revoke now invalid [zone relative] ID info.
-		 * TODO: Move up to MarauroaRPZone
-		 */
-		if(object.has("id")) {
-			object.remove("id");
-		}
-
-		if(object.has("zoneid")) {
-			object.remove("zoneid");
-		}
-
-
-		// TODO: Find out why the (same?) object is returned
-		return removed;
 	}
 
 	@Override

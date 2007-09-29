@@ -68,7 +68,6 @@ public class RareWeaponsSellerNPC implements ZoneConfigurator {
 		mcpegleg.setDescription("You see a dubious man with a patched eye and a wooden leg.");
 
 		// Add our new NPC to the game world
-		zone.assignRPObjectID(mcpegleg);
 		mcpegleg.setEntityClass("pirate_sailornpc");
 		mcpegleg.setPosition(16, 3);
 		mcpegleg.initHP(100);

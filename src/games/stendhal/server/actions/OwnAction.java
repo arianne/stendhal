@@ -40,9 +40,6 @@ public class OwnAction implements ActionListener {
 			Sheep sheep = player.getSheep();
 			player.removeSheep(sheep);
 
-			sheep.setOwner(null);
-			StendhalRPRuleProcessor.get().addNPC(sheep);
-
 			// HACK: Avoid a problem on database
 			if (sheep.has("#db_id")) {
 				sheep.remove("#db_id");

@@ -53,7 +53,6 @@ public class AdosDeathmatch extends AbstractQuest {
 	public void createHelmet(int x, int y) {
 		Item helmet = StendhalRPWorld.get().getRuleManager().getEntityManager()
 				.getItem("trophy_helmet");
-		zone.assignRPObjectID(helmet);
 		helmet.put("def", "20");
 		helmet.setDescription("This is the grand prize for Deathmatch winners.");
 		helmet.setPosition(x, y);
@@ -142,9 +141,6 @@ public class AdosDeathmatch extends AbstractQuest {
 		npc.setPosition(x, y);
 		npc.setDirection(Direction.DOWN);
 		npc.initHP(100);
-		zone.assignRPObjectID(npc);
 		zone.add(npc);
 	}
-
-
 }

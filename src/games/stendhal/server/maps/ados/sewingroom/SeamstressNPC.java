@@ -55,7 +55,6 @@ public class SeamstressNPC implements ZoneConfigurator {
 			}
 		};
 
-		zone.assignRPObjectID(seamstress);
 		seamstress.setEntityClass("woman_002_npc");
 		seamstress.setPosition(7, 7);
 		seamstress.initHP(100);

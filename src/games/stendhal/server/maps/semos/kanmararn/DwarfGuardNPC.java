@@ -49,7 +49,6 @@ public class DwarfGuardNPC implements ZoneConfigurator {
 			// remaining behaviour is defined in maps.quests.JailedDwarf.
 		};
 
-		zone.assignRPObjectID(npc);
 		npc.setEntityClass("dwarfguardnpc");
 		npc.setPosition(10, 23);
 		npc.initHP(100);

@@ -25,18 +25,17 @@ public class ItemsOnTable implements ZoneConfigurator {
 
 		// Plant grower for poison
 		PassiveEntityRespawnPoint plantGrower = new PassiveEntityRespawnPoint("poison", 1500);
-		zone.assignRPObjectID(plantGrower);
 		plantGrower.setPosition(3, 6);
 		plantGrower.setDescription("Haizen tends to put his magic drinks here.");
+		zone.add(plantGrower);
+
 		plantGrower.setToFullGrowth();
 
-		zone.add(plantGrower);
 		StendhalRPRuleProcessor.get().getPlantGrowers().add(plantGrower);
 	}
 
 	private Item addPersistentItem(String name, StendhalRPZone zone, int x, int y) {
 		Item item = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(name);
-		zone.assignRPObjectID(item);
 		item.setPosition(x, y);
 		item.setPersistent(true);
 		zone.add(item);

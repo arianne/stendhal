@@ -51,7 +51,6 @@ public class BoyNPC implements ZoneConfigurator {
 			}
 		};
 
-		zone.assignRPObjectID(npc);
 		npc.addInitChatMessage(null, new SpeakerNPC.ChatAction() {
 
 			@Override

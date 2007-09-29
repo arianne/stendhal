@@ -574,7 +574,6 @@ public class AdministrationAction implements ActionListener {
 					StendhalRPRuleProcessor.get().addGameEvent(
 							player.getName(), "summon", type);
 					entity = new RaidCreature(manager.getCreature(type));
-					StendhalRPRuleProcessor.get().addNPC((Creature) entity);
 				} else if (manager.isItem(type)) {
 					StendhalRPRuleProcessor.get().addGameEvent(
 							player.getName(), "summon", type);

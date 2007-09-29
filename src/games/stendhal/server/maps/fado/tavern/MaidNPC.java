@@ -74,7 +74,6 @@ public class MaidNPC implements ZoneConfigurator {
 			}
 		};
 
-		zone.assignRPObjectID(tavernMaid);
 		tavernMaid.setEntityClass("oldmaidnpc");
 		tavernMaid.setPosition(10, 16);
 		tavernMaid.initHP(100);

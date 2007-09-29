@@ -643,71 +643,54 @@ public class StendhalRPAction {
 		// At this point the valid position [nx,ny] has been found
 		//
 
-		/*
-		 * Remove (and remember) dependents and prepare for zone change
-		 */
-		Sheep sheep = null;
-		Pet pet = null;
+		StendhalRPZone oldZone = entity.getZone();
+		boolean zoneChanged = (oldZone != zone);
 
-		if (entity instanceof Player) {
-			Player player = (Player) entity;
+		if (entity instanceof RPEntity) {
+			RPEntity rpentity = (RPEntity) entity;
 
-			player.stop();
-			player.stopAttack();
-			player.clearPath();
-
-			if (player.hasSheep()) {
-				try {
-					sheep = player.getSheep();
-					sheep.clearPath();
-					sheep.stop();
-
-					sheep.setOwner(null);
-					player.removeSheep(sheep);
-				} catch (RPObjectNotFoundException e) {
-					// TODO: Remove catch after DB Reset
-					/*
-					 * No idea how but some players get a sheep but they
-					 * don't have it really. Me thinks that it is a player
-					 * that has been running for a while the game and was
-					 * kicked of server because shutdown on a pre 1.00
-					 * version of Marauroa. We shouldn't see this anymore.
-					 */
-					logger.error("Pre 1.00 Marauroa sheep bug. (player = " + player.getName() + ")", e);
-
-					if (player.has("sheep")) {
-						player.remove("sheep");
-					}
-
-					if (player.hasSlot("#flock")) {
-						player.removeSlot("#flock");
-					}
-				}
-			}
-
-			if (player.hasPet()) {
-				// TODO: Change getPet() to be like getSheep()
-				pet = (Pet) StendhalRPWorld.get().get(player.getPet());
-				pet.clearPath();
-				pet.stop();
-
-				pet.setOwner(null);
-				player.removePet(pet);
-			}
+			rpentity.stop();
+			rpentity.stopAttack();
+			rpentity.clearPath();
 		}
 
 
-		/*
-		 * Remove from old [incompatable] zone?
-		 */
-		boolean zoneChanged = false;
-		StendhalRPZone oldZone = entity.getZone();
+		Sheep sheep = null;
+		Pet pet = null;
 
-		if(oldZone == null) {
-			zoneChanged = true;
-		} else if(oldZone != zone) {
+		/*
+		 * Remove from old zone (if any) during zone change
+		 */
+		if(zoneChanged && (oldZone != null)) {
+			/*
+			 * Player specific pre-remove handling
+			 */
+			if(entity instanceof Player) {
+				Player player = (Player) entity;
+
+				/*
+				 * Remove and remember dependents
+				 */
+				sheep = player.getSheep();
+
+				if(sheep != null) {
+					sheep.clearPath();
+					sheep.stop();
+
+					player.removeSheep(sheep);
+				}
+
+				pet = player.getPet();
+
+				if (pet != null) {
+					pet.clearPath();
+					pet.stop();
+
+					player.removePet(pet);
+				}
+			}
+
 			oldZone.remove(entity);
-			zoneChanged = true;
 		}
 
 
@@ -726,11 +709,14 @@ public class StendhalRPAction {
 
 
 		/*
-		 * Move and re-add dependents
+		 * Player specific post-change handling
 		 */
-		if (entity instanceof Player) {
+		if (zoneChanged && (entity instanceof Player)) {
 			Player player = (Player) entity;
 
+			/*
+			 * Move and re-add removed dependents
+			 */
 			if(sheep != null) {
 				if(placeat(zone, sheep, nx, ny)) {
 					player.setSheep(sheep);
@@ -751,19 +737,21 @@ public class StendhalRPAction {
 				}
 			}
 
-			if (zoneChanged) {
-				transferContent(player);
 
-				if(oldZone != null) {
-					String source = oldZone.getID().getID();
-					String destination = zone.getID().getID();
+			/*
+			 * Zone change notifications/updates
+			 */
+			transferContent(player);
 
-					StendhalRPRuleProcessor.get().addGameEvent(
-						player.getName(), "change zone", destination);
+			if(oldZone != null) {
+				String source = oldZone.getID().getID();
+				String destination = zone.getID().getID();
 
-					TutorialNotifier.zoneChange(player, source, destination);
-					ZoneNotifier.zoneChange(player, source, destination);
-				}
+				StendhalRPRuleProcessor.get().addGameEvent(
+					player.getName(), "change zone", destination);
+
+				TutorialNotifier.zoneChange(player, source, destination);
+				ZoneNotifier.zoneChange(player, source, destination);
 			}
 		}
 

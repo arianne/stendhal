@@ -62,8 +62,8 @@ public class IL0_PostNPC implements ZoneConfigurator {
 				addGoodbye("Bye - nice to meet you!");
 			}
 		};
+
 		npc.setDescription("You see a pretty elf girl.");
-		zone.assignRPObjectID(npc);
 		npc.setEntityClass("postelfnpc");
 		npc.setPosition(11, 3);
 		npc.initHP(100);

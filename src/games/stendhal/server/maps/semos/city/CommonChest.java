@@ -22,13 +22,11 @@ public class CommonChest implements ZoneConfigurator {
 	private void buildSemosCityAreaChest(StendhalRPZone zone) {
 
 		Chest chest = new Chest();
-		zone.assignRPObjectID(chest);
 		chest.setPosition(44, 60);
 		chest.add(StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("knife"));
 		chest.add(StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("wooden_shield"));
 		chest.add(StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("leather_armor"));
 		chest.add(StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("money"));
 		zone.add(chest);
-
 	}
 }

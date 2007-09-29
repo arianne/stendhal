@@ -49,8 +49,8 @@ public class PriestNPC implements ZoneConfigurator {
 
 			}
 		};
+
 		priest.setDescription("You see the holy Priest of Fado Church");
-		zone.assignRPObjectID(priest);
 		priest.setEntityClass("priestnpc");
 		priest.setPosition(11, 5);
 		priest.setDirection(Direction.DOWN);

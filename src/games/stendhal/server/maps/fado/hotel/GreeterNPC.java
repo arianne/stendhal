@@ -60,7 +60,6 @@ public class GreeterNPC implements ZoneConfigurator {
 			}
 		};
 
-		zone.assignRPObjectID(greeterNPC);
 		greeterNPC.setEntityClass("hotelreceptionistnpc");
 		greeterNPC.setPosition(16, 50);
 		greeterNPC.initHP(1000);

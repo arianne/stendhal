@@ -51,7 +51,6 @@ public class TeacherNPC implements ZoneConfigurator {
 			}
 		};
 
-		zone.assignRPObjectID(fisherman);
 		fisherman.setEntityClass("fishermannpc");
 		fisherman.setDirection(Direction.DOWN);
 		fisherman.setPosition(3, 3);

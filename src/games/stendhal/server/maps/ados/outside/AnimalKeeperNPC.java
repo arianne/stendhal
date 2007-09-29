@@ -100,7 +100,6 @@ public class AnimalKeeperNPC implements ZoneConfigurator {
 			// remaining behaviour is defined in maps.quests.ZooFood.
 		};
 
-		zone.assignRPObjectID(npc);
 		npc.setEntityClass("woman_007_npc");
 		npc.setPosition(41, 40);
 		//npc.setDirection(Direction.DOWN);

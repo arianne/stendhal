@@ -126,7 +126,6 @@ public class PassiveEntityRespawnPoint extends Entity implements TurnListener {
 			grownItem.setPlantGrower(this);
 			grownItem.setPosition(getX(), getY());
 
-			zone.assignRPObjectID(grownItem);
 			zone.add(grownItem);
 			hasPickableFruit = true;
 		}

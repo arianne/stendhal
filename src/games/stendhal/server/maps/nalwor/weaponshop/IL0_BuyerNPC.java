@@ -65,8 +65,8 @@ public class IL0_BuyerNPC implements ZoneConfigurator {
 				addGoodbye("Bye - be careful not to annoy the other elves as much.");
 			}
 		};
+
 		npc.setDescription("You see Elodrin, a mean looking elf.");
-		zone.assignRPObjectID(npc);
 		npc.setEntityClass("elfbuyernpc");
 		npc.setPosition(4, 5);
 		npc.initHP(100);

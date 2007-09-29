@@ -153,8 +153,8 @@ public class SemosMineTownRevivalWeeks extends AbstractQuest {
 						ConversationStates.ATTENDING, "I need a #friend.", null);
 			}
 		};
+
 		npcs.add(npc);
-		zone.assignRPObjectID(npc);
 		npc.setEntityClass("girlnpc");
 		npc.setPosition(95, 120);
 		npc.setDirection(Direction.DOWN);
@@ -167,7 +167,6 @@ public class SemosMineTownRevivalWeeks extends AbstractQuest {
 		StendhalRPZone zone = StendhalRPWorld.get().getZone(
 				"0_semos_mountain_n2");
 		Sign sign = new Sign();
-		zone.assignRPObjectID(sign);
 		sign.setPosition(105, 114);
 		sign.setText("Because of the missing guard rail it is too dangerous to enter the tower.");
 		zone.add(sign);

@@ -55,8 +55,8 @@ public class PrincessNPC implements ZoneConfigurator {
  				addGoodbye("Goodbye, strange one.");
 			}
 		};
+
 		npc.setDescription("You see a beautiful but forlorn High Elf.");
-		zone.assignRPObjectID(npc);
 		npc.setEntityClass("elfprincessnpc");
 		npc.setPosition(17, 13);
 		npc.initHP(100);

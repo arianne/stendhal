@@ -98,10 +98,9 @@ public class GhostNPC implements ZoneConfigurator {
 			}
 
 		};
+
 		ghost.setDescription("You see a ghostly figure of a woman.");
 		ghost.setResistance(0);
-
-		zone.assignRPObjectID(ghost);
 		ghost.setEntityClass("woman_005_npc");
 		// she is a ghost so she is see through
 		ghost.setVisibility(50);

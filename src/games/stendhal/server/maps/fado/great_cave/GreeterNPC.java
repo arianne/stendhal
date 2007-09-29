@@ -80,8 +80,8 @@ public class GreeterNPC implements ZoneConfigurator {
  				addGoodbye("Adieu.");
 			}
 		};
+
 		npc.setDescription("You see a friendly looking elderly wizard.");
-		zone.assignRPObjectID(npc);
 		npc.setEntityClass("friendlywizardnpc");
 		npc.setPosition(99, 111);
 		npc.initHP(100);

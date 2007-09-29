@@ -60,15 +60,13 @@ public class CatSellerNPC implements ZoneConfigurator {
 								return false;
 							}
 							seller.say("Here you go, a cute little kitten! Take good care of it, now...");
-							StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get()
-									.getRPZone(seller.getID());
 
 							Cat cat = new Cat(player);
-							zone.assignRPObjectID(cat);
 
 							cat.setPosition(seller.getX(), seller.getY() + 1);
 
-							StendhalRPWorld.get().add(cat);
+							StendhalRPZone zone = seller.getZone();
+							zone.add(cat);
 
 							player.setPet(cat);
 							player.notifyWorldAboutChanges();
@@ -100,7 +98,6 @@ public class CatSellerNPC implements ZoneConfigurator {
 			}
 		};
 
-		zone.assignRPObjectID(npc);
 		npc.setEntityClass("woman_009_npc");
 		npc.setPosition(7, 8);
 		npc.initHP(100);

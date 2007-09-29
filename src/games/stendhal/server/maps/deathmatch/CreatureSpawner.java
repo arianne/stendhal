@@ -129,19 +129,16 @@ static final Logger logger = Log4J.getLogger(CreatureSpawner.class);
 	DeathMatchCreature spawnNewCreature(Creature template, Player player, DeathmatchInfo deathmatchInfo) {
 		DeathMatchCreature creature = new DeathMatchCreature(
 		        new ArenaCreature(template.getInstance(), deathmatchInfo.getArena().getShape()));
-		deathmatchInfo.getZone().assignRPObjectID(creature);
 		if (StendhalRPAction.placeat(deathmatchInfo.getZone(), creature, player.getX(), player.getY(), deathmatchInfo.getArena().getShape())) {
-			StendhalRPRuleProcessor.get().addNPC(creature);
-
 			creature.clearDropItemList();
 			creature.attack(player);
 			creature.setPlayerToReward(player);
 
+			spawnedCreatures.add(creature);
 		} else {
 			logger.info(" could not add a creature: " + creature);
 			creature = null;
 		}
-		spawnedCreatures.add(creature);
 		return creature;
 	}
 

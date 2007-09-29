@@ -59,14 +59,12 @@ public class SheepSellerNPC implements ZoneConfigurator {
 								return false;
 							}
 							seller.say("Here you go, a nice fluffy little sheep! Take good care of it, now...");
-							StendhalRPZone zone = seller.getZone();
 
 							Sheep sheep = new Sheep(player);
-							zone.assignRPObjectID(sheep);
 
 							sheep.setPosition(seller.getX(), seller.getY() + 1);
 
-							StendhalRPWorld.get().add(sheep);
+							seller.getZone().add(sheep);
 
 							player.setSheep(sheep);
 							player.notifyWorldAboutChanges();
@@ -98,7 +96,6 @@ public class SheepSellerNPC implements ZoneConfigurator {
 			}
 		};
 
-		zone.assignRPObjectID(npc);
 		npc.setEntityClass("sellernpc");
 		npc.setPosition(33, 45);
 		npc.initHP(100);

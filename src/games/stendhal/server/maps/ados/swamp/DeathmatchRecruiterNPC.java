@@ -80,7 +80,6 @@ public class DeathmatchRecruiterNPC implements ZoneConfigurator {
 		npc.setEntityClass("youngsoldiernpc");
 		npc.setPosition(40, 36);
 		npc.initHP(100);
-		zone.assignRPObjectID(npc);
 		zone.add(npc);
 	}
 }

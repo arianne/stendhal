@@ -44,8 +44,6 @@ public class DiceDealerNPC implements ZoneConfigurator {
 			}
 		};
 
-		zone.assignRPObjectID(ricardo);
-
 		ricardo.setEntityClass("naughtyteen2npc");
 		ricardo.setPosition(28, 4);
 		ricardo.setDirection(Direction.LEFT);

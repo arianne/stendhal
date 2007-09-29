@@ -47,8 +47,8 @@ public class NunNPC implements ZoneConfigurator {
 				addGoodbye("Goodbye, may peace be with you.");
 			}
 		};
+
 		nunnpc.setDescription("You see Sister Benedicta, a holy nun.");
-		zone.assignRPObjectID(nunnpc);
 		nunnpc.setEntityClass("nunnpc");
 		nunnpc.setDirection(Direction.RIGHT);
 		nunnpc.setPosition(53, 54);

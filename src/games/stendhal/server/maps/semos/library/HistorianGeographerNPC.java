@@ -88,7 +88,6 @@ public class HistorianGeographerNPC implements ZoneConfigurator {
 			}
 		};
 
-		zone.assignRPObjectID(npc);
 		npc.setEntityClass("wisemannpc");
 		npc.setPosition(15, 3);
 		npc.initHP(100);

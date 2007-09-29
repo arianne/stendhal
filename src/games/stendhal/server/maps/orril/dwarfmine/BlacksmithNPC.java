@@ -66,7 +66,6 @@ public class BlacksmithNPC implements ZoneConfigurator {
 		};
 
 		hogart.setDescription("You see Hogart, a retired master dwarf smith.");
-		zone.assignRPObjectID(hogart);
 		hogart.setEntityClass("olddwarfnpc");
 		hogart.setPosition(20, 11);
 		hogart.initHP(100);

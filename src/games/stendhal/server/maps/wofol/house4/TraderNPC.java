@@ -58,7 +58,6 @@ public class TraderNPC implements ZoneConfigurator {
 			}
 		};
 
-		zone.assignRPObjectID(trader);
 		trader.setEntityClass("koboldnpc");
 		trader.setPosition(4, 4);
 		trader.initHP(100);

@@ -78,7 +78,6 @@ public class Soup extends AbstractQuest {
 		Item soup = StendhalRPWorld.get().getRuleManager().getEntityManager()
 				.getItem("soup");
 		IRPZone zone = StendhalRPWorld.get().getZone("int_fado_tavern");
-		zone.assignRPObjectID(soup);
 		// place on table. note: it's not equippable so must be eaten in tavern
 		soup.setPosition(17, 23);
 		// only allow player who made soup to eat the soup

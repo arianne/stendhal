@@ -154,8 +154,6 @@ public class EntitySetupDescriptor extends SetupDescriptor {
 				return;
 			}
 
-			zone.assignRPObjectID(entity);
-
 			entity.setPosition(getX(), getY());
 
 			zone.add(entity);

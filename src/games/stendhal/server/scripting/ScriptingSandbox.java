@@ -89,9 +89,7 @@ public abstract class ScriptingSandbox {
 
 	public void add(NPC npc) {
 		if (zone != null) {
-			zone.assignRPObjectID(npc);
 			zone.add(npc);
-			StendhalRPRuleProcessor.get().addNPC(npc);
 			loadedNPCs.put(npc, null);
 			logger.info(filename + " added NPC: " + npc);
 		}
@@ -99,7 +97,6 @@ public abstract class ScriptingSandbox {
 
 	public void add(RPObject object) {
 		if (zone != null) {
-			zone.assignRPObjectID(object);
 			zone.add(object);
 			loadedRPObjects.put(object, null);
 			logger.info(filename + " added object: " + object);
@@ -119,19 +116,13 @@ public abstract class ScriptingSandbox {
 	}
 
 	public Item getItem(String name) {
-		Item item = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(name);
-		if (zone != null) {
-			zone.assignRPObjectID(item);
-		}
-		return (item);
+		return StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(name);
 	}
 
 	public Creature add(Creature template, int x, int y) {
 		Creature creature = template.getInstance();
 		if (zone != null) {
-			zone.assignRPObjectID(creature);
 			if (StendhalRPAction.placeat(zone, creature, x, y)) {
-				StendhalRPRuleProcessor.get().addNPC(creature);
 				loadedNPCs.put(creature, null);
 				logger.info(filename + " added creature: " + creature);
 			} else {

@@ -66,7 +66,6 @@ public class GreeterNPC implements ZoneConfigurator {
 			}
 		};
 
-		zone.assignRPObjectID(greeterNPC);
 		greeterNPC.setOutfit(new Outfit(05, 01, 06, 01));
 		greeterNPC.setPosition(39, 29);
 		greeterNPC.initHP(1000);

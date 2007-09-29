@@ -58,7 +58,6 @@ public class TraderNPC implements ZoneConfigurator {
 			}
 		};
 
-		zone.assignRPObjectID(xinBlanca);
 		xinBlanca.setEntityClass("weaponsellernpc");
 		xinBlanca.setPosition(2, 15);
 		xinBlanca.initHP(100);

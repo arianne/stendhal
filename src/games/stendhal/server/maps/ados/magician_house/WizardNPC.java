@@ -87,7 +87,6 @@ public class WizardNPC implements ZoneConfigurator {
 			}
 		};
 
-		zone.assignRPObjectID(npc);
 		npc.setEntityClass("wisemannpc");
 		npc.setPosition(7, 2);
 		npc.initHP(100);

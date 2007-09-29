@@ -59,8 +59,8 @@ public class ClerkNPC implements ZoneConfigurator {
 				addGoodbye("Good day.");
 			}
 		};
+
 		clerk.setDescription("You see a clerk, hard at work.");
-		zone.assignRPObjectID(clerk);
 		clerk.setEntityClass("executivenpc");
 		clerk.setPosition(23, 10);
 		clerk.initHP(100);

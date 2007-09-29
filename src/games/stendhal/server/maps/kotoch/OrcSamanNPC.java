@@ -51,8 +51,8 @@ public class OrcSamanNPC implements ZoneConfigurator {
  				addGoodbye("see yoo.");
 			}
 		};
+
 		npc.setDescription("You see an Orc Saman.");
-		zone.assignRPObjectID(npc);
 		npc.setEntityClass("orcsamannpc");
 		npc.setPosition(8, 113);
 		npc.initHP(100);
