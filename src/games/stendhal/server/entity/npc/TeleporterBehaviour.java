@@ -69,7 +69,7 @@ public class TeleporterBehaviour implements TurnListener {
 		badZones.add("0_ados_wall_n");
 		while (itr.hasNext()) {
 			StendhalRPZone aZone = (StendhalRPZone) itr.next();
-			String zoneName = aZone.getID().getID();
+			String zoneName = aZone.getName();
 			if (zoneName.startsWith("0") && !badZones.contains(zoneName)) {
 				zones.add(aZone);
 			}
@@ -101,9 +101,9 @@ public class TeleporterBehaviour implements TurnListener {
 
 				zone.add(speakerNPC);
 				found = true;
-				logger.debug("Placing teleporting NPC at " + zone.getID().getID() + " " + x + " " + y);
+				logger.debug("Placing teleporting NPC at " + zone.getName() + " " + x + " " + y);
 			} else {
-				logger.info("Cannot place teleporting NPC at " + zone.getID().getID() + " " + x + " " + y);
+				logger.info("Cannot place teleporting NPC at " + zone.getName() + " " + x + " " + y);
 			}
 		}
 

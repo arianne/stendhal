@@ -24,7 +24,7 @@ public class ListNPCs extends ScriptImpl {
 		for (String name : npcs.getNPCs()) {
 			SpeakerNPC npc = npcs.get(name);
 			res.append("\r\n" + name + "\t is in ");
-			res.append(npc.getZone().getID().getID() + " at (");
+			res.append(npc.getZone().getName() + " at (");
 			res.append(npc.getX() + ", " + npc.getY() + ")");
 		}
 		admin.sendPrivateText(res.toString());

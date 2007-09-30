@@ -102,7 +102,8 @@ public class UseAction implements ActionListener {
 
 		// HACK: No item transfer in jail (we don't want a jailed player to
 		//       use items like home scroll.
-		String zonename = StendhalRPWorld.get().getRPZone(player.getID()).getID().getID();
+		String zonename = player.getZone().getName();
+
 		if ((object instanceof Item) && (zonename.endsWith("_jail"))) {
 			player.sendPrivateText("For security reasons items may not be used in jail.");
 			return;

@@ -657,11 +657,10 @@ public class StendhalRPZone extends MarauroaRPZone {
 			}
 
 			if (type != 5) {
-				portal.setDestination(zone.getID().getID(), zone
-						.assignPortalID(target));
+				portal.setDestination(zone.getName(), zone.assignPortalID(target));
 			}
 
-			target.setDestination(getID().getID(), portal.getIdentifier());
+			target.setDestination(getName(), portal.getIdentifier());
 
 			logger.debug("Portals LINKED");
 			logger.debug(portal);
@@ -994,6 +993,18 @@ public class StendhalRPZone extends MarauroaRPZone {
 		}
 		return null;
 	}
+
+
+	/**
+	 * Get the zone name. This is the same as <code>getID().getID()</code>,
+	 * only cleaner to use.
+	 *
+	 * @return	The zone name.
+	 */
+	public String getName() {
+		return getID().getID();
+	}
+
 
 	/**
 	 * Notify anything interested in when an entity entered.

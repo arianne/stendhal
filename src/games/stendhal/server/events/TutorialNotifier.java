@@ -69,7 +69,7 @@ public class TutorialNotifier {
 	 * @param player Player
 	 */
 	public static void move(Player player) {
-		if (player.getZone().getID().getID().equals("int_semos_townhall")) {
+		if (player.getZone().getName().equals("int_semos_townhall")) {
 			process(player, TutorialEventType.FIRST_MOVE);
 		}
 	}

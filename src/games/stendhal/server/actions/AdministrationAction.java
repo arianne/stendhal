@@ -276,7 +276,7 @@ public class AdministrationAction implements ActionListener {
 				Iterator itr = StendhalRPWorld.get().iterator();
 				while (itr.hasNext()) {
 					StendhalRPZone zone = (StendhalRPZone) itr.next();
-					zoneNames.add(zone.getID().getID());
+					zoneNames.add(zone.getName());
 				}
 				player.sendPrivateText(text + " Valid zones: " + zoneNames);
 				return;
@@ -288,7 +288,7 @@ public class AdministrationAction implements ActionListener {
 			int y = action.getInt("y");
 
 			StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
-					"teleport", action.get("target"), zone.getID().getID(),
+					"teleport", action.get("target"), zone.getName(),
 					Integer.toString(x), Integer.toString(y));
 			teleported.teleport(zone, x, y, null, player);
 		}
@@ -316,7 +316,7 @@ public class AdministrationAction implements ActionListener {
 
 			player.teleport(zone, x, y, null, player);
 			StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
-					"teleportto", action.get("target"), zone.getID().getID(),
+					"teleportto", action.get("target"), zone.getName(),
 					Integer.toString(x), Integer.toString(y));
 		}
 	}
@@ -902,8 +902,7 @@ public class AdministrationAction implements ActionListener {
 		if (id != null) {
 			StendhalRPZone zone = player.getZone();
 
-			RPObject.ID oid = new RPObject.ID(Integer.parseInt(id), zone
-					.getID().getID());
+			RPObject.ID oid = new RPObject.ID(Integer.parseInt(id), zone.getName());
 			if (zone.has(oid)) {
 				RPObject object = zone.get(oid);
 				if (object instanceof Entity) {

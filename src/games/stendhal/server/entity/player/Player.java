@@ -325,7 +325,7 @@ public class Player extends RPEntity {
 			 * TODO: Create a world cached reference of this
 			 * zone for identity compares instead?
 			 */
-			if(getZone().getID().getID().equals(DEFAULT_DEAD_AREA)) {
+			if(getZone().getName().equals(DEFAULT_DEAD_AREA)) {
 				return false;
 			}
 		}

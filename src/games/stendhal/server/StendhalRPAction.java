@@ -511,16 +511,16 @@ public class StendhalRPAction {
 			int ny = entity_y - zone.getY();
 
 			if(logger.isDebugEnabled()) {
-				logger.debug("Placing " + entity.getName() + " at " + zone.getID().getID() + "[" + nx + "," + ny + "]");
+				logger.debug("Placing " + entity.getName() + " at " + zone.getName() + "[" + nx + "," + ny + "]");
 			}
 
 			if(!placeat(zone, entity, nx, ny)) {
-				logger.warn("Could not place " + entity.getName() + " at " + zone.getID().getID() + "[" + nx + "," + ny + "]");
+				logger.warn("Could not place " + entity.getName() + " at " + zone.getName() + "[" + nx + "," + ny + "]");
 			}
 		} else {
 			logger.warn("Unable to choose a new zone for entity: "
 				+ entity.getName() + " at (" + entity_x + "," + entity_y
-				+ ") source was " + origin.getID().getID() + " at (" + x
+				+ ") source was " + origin.getName() + " at (" + x
 				+ ", " + y + ")");
 		}
 	}
@@ -634,7 +634,7 @@ public class StendhalRPAction {
 			}
 
 			if (!found) {
-				logger.info("Unable to place " + entity.getTitle() + " at " + zone.getID().getID() + "[" + x + "," + y + "]");
+				logger.info("Unable to place " + entity.getTitle() + " at " + zone.getName() + "[" + x + "," + y + "]");
 				return false;
 			}
 		}
@@ -744,8 +744,8 @@ public class StendhalRPAction {
 			transferContent(player);
 
 			if(oldZone != null) {
-				String source = oldZone.getID().getID();
-				String destination = zone.getID().getID();
+				String source = oldZone.getName();
+				String destination = zone.getName();
 
 				StendhalRPRuleProcessor.get().addGameEvent(
 					player.getName(), "change zone", destination);
@@ -756,7 +756,7 @@ public class StendhalRPAction {
 		}
 
 		if(logger.isDebugEnabled()) {
-			logger.debug("Placed " + entity.getTitle() + " at " + zone.getID().getID() + "[" + nx + "," + ny + "]");
+			logger.debug("Placed " + entity.getTitle() + " at " + zone.getName() + "[" + nx + "," + ny + "]");
 		}
 
 		return true;

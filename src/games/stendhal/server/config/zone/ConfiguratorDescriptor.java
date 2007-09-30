@@ -100,7 +100,7 @@ public class ConfiguratorDescriptor extends SetupDescriptor {
 		 * Apply class
 		 */
 		if (obj instanceof ZoneConfigurator) {
-			logger.info("Configuring zone [" + zone.getID().getID()
+			logger.info("Configuring zone [" + zone.getName()
 					+ "] with: " + className);
 
 			((ZoneConfigurator) obj).configureZone(zone, getParameters());

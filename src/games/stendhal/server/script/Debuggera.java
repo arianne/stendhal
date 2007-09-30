@@ -215,9 +215,10 @@ public class Debuggera extends ScriptImpl {
 
 			zones = new ArrayList<String>();
 			Iterator itr = world.iterator();
+
 			while (itr.hasNext()) {
 				StendhalRPZone zone = (StendhalRPZone) itr.next();
-				zones.add(zone.getID().getID());
+				zones.add(zone.getName());
 			}
 		}
 

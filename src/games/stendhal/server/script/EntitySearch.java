@@ -61,11 +61,13 @@ public class EntitySearch extends ScriptImpl {
 		}
 
 		// count for each zone
-		for (IRPZone zone : StendhalRPWorld.get()) {
-			for (CreatureRespawnPoint p : ((StendhalRPZone) zone).getRespawnPointList()) {
+		for (IRPZone irpzone : StendhalRPWorld.get()) {
+			StendhalRPZone zone = (StendhalRPZone) irpzone;
+
+			for (CreatureRespawnPoint p : zone.getRespawnPointList()) {
 				Creature c = p.getPrototypeCreature();
 				if (targetName.equals(c.getName())) {
-					String zoneName = zone.getID().getID();
+					String zoneName = zone.getName();
 					if (zoneCount.containsKey(zoneName)) {
 						int tempi = zoneCount.get(zoneName) + 1;
 						zoneCount.put(zoneName, tempi);
@@ -91,12 +93,14 @@ public class EntitySearch extends ScriptImpl {
 
 		res.append("\r\nNon-Respawn creatures (minus sheep):");
 
-		for (IRPZone zone : StendhalRPWorld.get()) {
-			for (RPObject n : ((StendhalRPZone) zone)) {
+		for (IRPZone irpzone : StendhalRPWorld.get()) {
+			StendhalRPZone zone = (StendhalRPZone) irpzone;
+
+			for (RPObject n : zone) {
 				if ((n instanceof Creature) && !(n instanceof Sheep)) {
 					Creature c = (Creature) n;
 					if (c.getRespawnPoint() == null) {
-						String zoneName = zone.getID().getID();
+						String zoneName = zone.getName();
 						res.append("\r\n" + c.getName() + " (" + c.getLevel() + ")");
 						res.append("\t" + zoneName + " " + c.getX() + " " + c.getY());
 					}
@@ -113,12 +117,14 @@ public class EntitySearch extends ScriptImpl {
 		StringBuilder res = new StringBuilder();
 
 		res.append("\r\nRespawn points for zone names containing: " + targetName);
-		for (IRPZone zone : StendhalRPWorld.get()) {
-			String zoneName = zone.getID().getID();
+		for (IRPZone irpzone : StendhalRPWorld.get()) {
+			StendhalRPZone zone = (StendhalRPZone) irpzone;
+
+			String zoneName = zone.getName();
 			if (zoneName.contains(targetName)) {
 				// Count one zone
 				Map<String, Integer> creatureCount = new HashMap<String, Integer>();
-				for (CreatureRespawnPoint p : ((StendhalRPZone) zone).getRespawnPointList()) {
+				for (CreatureRespawnPoint p : zone.getRespawnPointList()) {
 					Creature c = p.getPrototypeCreature();
 					String cn = c.getName() + "(" + c.getLevel() + ")";
 

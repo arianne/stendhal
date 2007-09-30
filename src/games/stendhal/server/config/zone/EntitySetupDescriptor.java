@@ -140,7 +140,7 @@ public class EntitySetupDescriptor extends SetupDescriptor {
 
 		if (className == null) {
 			logger.error("Entity without factory at "
-				+ zone.getID().getID()
+				+ zone.getName()
 				+ "[" + getX() + "," + getY() + "]");
 			return;
 		}

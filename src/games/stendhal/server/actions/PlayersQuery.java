@@ -117,7 +117,7 @@ public class PlayersQuery implements ActionListener {
 
 				if(zone != null) {
 					player.sendPrivateText(who.getName() + " is in "
-						+ zone.getID().getID() + " at (" + who.getX() + ","
+						+ zone.getName() + " at (" + who.getX() + ","
 						+ who.getY() + ")");
 				}
 			} else if (whoName.equals("sheep")) {

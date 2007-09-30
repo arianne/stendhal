@@ -27,6 +27,7 @@ import marauroa.common.game.IRPZone;
  * @author daniel
  */
 public class Jail implements LoginListener {
+	protected static final String	DEFAULT_JAIL_ZONE = "-1_semos_jail";
 
 	private final class Jailer implements TurnListener {
 		@Override
@@ -133,7 +134,7 @@ public class Jail implements LoginListener {
 		 * TODO: Instantiate once, use many.
 		 * Zone object is going to be the same during the whole server life.
 		 */
-		IRPZone.ID zoneid = new IRPZone.ID("-1_semos_jail");
+		IRPZone.ID zoneid = new IRPZone.ID(DEFAULT_JAIL_ZONE);
 		if (!world.hasRPZone(zoneid)) {
 			String text = "Zone " + zoneid + " not found";
 			policeman.sendPrivateText(text);
@@ -212,9 +213,9 @@ public class Jail implements LoginListener {
 	 * @return true, if it is in jail, false otherwise.
 	 */
 	public static boolean isInJail(Player inmate) {
-		StendhalRPWorld world = StendhalRPWorld.get();
-		String zoneName = world.getRPZone(inmate.getID()).getID().getID();
-		if ((zoneName != null) && zoneName.equals("-1_semos_jail")) {
+		String zoneName = inmate.getZone().getName();
+
+		if ((zoneName != null) && zoneName.equals(DEFAULT_JAIL_ZONE)) {
 			for (Rectangle cellBlock : cellBlocks) {
 				if (cellBlock.contains(inmate.getX(), inmate.getY())) {
 					return true;

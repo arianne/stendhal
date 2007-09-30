@@ -27,7 +27,7 @@ public class WhereWho extends ScriptImpl {
 			String zoneid;
 
 			if(zone != null) {
-				zoneid = zone.getID().getID();
+				zoneid = zone.getName();
 			} else {
 				// Indicate players in world, but not zone
 				zoneid = "(none)";

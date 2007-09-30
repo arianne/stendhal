@@ -95,12 +95,9 @@ public class TeleportSendExtension extends StendhalServerExtension implements Ac
 			
 			/*StendhalRPRuleProcessor.get().addGameEvent(admin.getName(), "teleportsend", 
 					action.get("target") + " -> " + action.get("args"),
-			        zone.getID().getID(), Integer.toString(x), Integer.toString(y));*/
+			        zone.getName(), Integer.toString(x), Integer.toString(y));*/
 		} else {
 			admin.sendPrivateText(CMD_USAGE);
 		}
-
-		
 	}
-
 }

@@ -107,9 +107,7 @@ public class AdminSign extends ScriptImpl {
 	}
 
 	private void signToString(StringBuilder sb, Sign sign) {
-		StendhalRPWorld world = StendhalRPWorld.get();
-		String zone = world.getRPZone(sign.getID()).getID().getID();
-		sb.append(zone);
+		sb.append(sign.getZone().getName());
 		sb.append(" ");
 		sb.append(sign.getX());
 		sb.append(" ");

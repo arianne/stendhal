@@ -356,14 +356,14 @@ public class StendhalRPWorld extends RPWorld {
 		door.setPosition(x, y);
 		Object dest = zone.assignPortalID(door);
 
-		String name = "int_" + zone.getID().getID() + "_house_" + dest;
+		String name = "int_" + zone.getName() + "_house_" + dest;
 
 		door.setDestination(name, Integer.valueOf(0));
 		zone.add(door);
 
 		StendhalRPZone house = addArea(name, "interiors/abstract/house_000.tmx");
 		Portal portal = new Portal();
-		portal.setDestination(zone.getID().getID(), dest);
+		portal.setDestination(zone.getName(), dest);
 		portal.setPosition(7, 14);
 		portal.setIdentifier(Integer.valueOf(0));
 		house.add(portal);
@@ -378,13 +378,13 @@ public class StendhalRPWorld extends RPWorld {
 			sbuf.append(" <zone name=\"" + name
 					+ "\" file=\"interiors/abstract/house_000.tmx\">\n");
 			sbuf.append("  <portal x=\"7\" y=\"14\" ref=\"entrance\">\n");
-			sbuf.append("   <destination zone=\"" + zone.getID().getID()
+			sbuf.append("   <destination zone=\"" + zone.getName()
 					+ "\" ref=\"house_" + dest + "_entrance\"/>\n");
 			sbuf.append("  </portal>\n");
 			sbuf.append(" </zone>\n");
 
 			sbuf.append("\n");
-			sbuf.append(" <!-- Zone: " + zone.getID().getID() + " -->\n");
+			sbuf.append(" <!-- Zone: " + zone.getName() + " -->\n");
 			sbuf.append("  <portal x=\"" + x + "\" y=\"" + y
 					+ "\" ref=\"house_" + dest + "_entrance\">\n");
 			sbuf.append("   <destination zone=\"" + name

@@ -131,7 +131,7 @@ public class Portal extends Entity implements UseListener {
 
 		if(zone != null) {
 			sbuf.append(" at ");
-			sbuf.append(zone.getID().getID());
+			sbuf.append(zone.getName());
 		}
 
 		sbuf.append('[');
