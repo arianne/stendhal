@@ -21,27 +21,37 @@ import marauroa.common.game.IRPZone;
 
 /**
  * QUEST: Marriage
+ * <p>
+ * PARTICIPANTS:
+ * <li> Sister Benedicta, the nun of Fado Church
+ * <li> the Priest of Fado Church
+ * <li> Ognir, the Ring Maker in Fado
+ * <p>
+ * STEPS:
+ * <li> The nun explains that when two people are married, they can be together
+ * whenever they want
+ * <li> When two players wish to become engaged, they tell the nun
+ * <li> The nun gives them invitation scrolls for the wedding, marked with the
+ * church
+ * <li>The players get a wedding ring made to give the other at the wedding
+ * <li> They can get dressed into an outfit in the hotel
+ * <li> When an engaged player goes to the priest, he knows they are there to be
+ * married
+ * <li> The marriage rites are performed
+ * <li> The players are given rings
+ * <li> When they go to the Hotel they choose a lovers room
+ * <li> Champagne and fruit baskets is put in their bag (room if possible)
+ * <li> They leave the lovers room when desired with another marked scroll
  *
- * PARTICIPANTS: - Sister Benedicta, the nun of Fado Church - the Priest of Fado
- * Church - Ognir, the Ring Maker in Fado
+ * <p>
+ * REWARD:
+ * <li> Wedding Ring that teleports you to your spouse if worn - 1500 XP in
+ * total
+ * <li> nice food in the lovers room
+ * <p>
  *
- * STEPS: - The nun explains that when two people are married, they can be
- * together whenever they want - When two players wish to become engaged, they
- * tell the nun - The nun gives them invitation scrolls for the wedding, marked
- * with the church - The players get a wedding ring made to give the other at
- * the wedding - They can get dressed into an outfit in the hotel - When an
- * engaged player goes to the priest, he knows they are there to be married -
- * The marriage rites are performed - The players are given rings - When they go
- * to the Hotel they choose a lovers room - Champagne and fruit baskets is put
- * in their bag (room if possible) - They leave the lovers room when desired
- * with another marked scroll
- *
- *
- * REWARD: - Wedding Ring that teleports you to your spouse if worn - 1500 XP in
- * total - nice food in the lovers room
- *
- *
- * REPETITIONS: - None.
+ * REPETITIONS:
+ * <li> None.
  *
  * @author kymara
  */
@@ -75,7 +85,7 @@ public class Marriage extends AbstractQuest {
 
 	private SpeakerNPC clerk;
 
-	private void EngagementStep() {
+	private void engagementStep() {
 		nun = npcs.get("Sister Benedicta");
 		nun.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES, null,
@@ -228,7 +238,7 @@ public class Marriage extends AbstractQuest {
 		return player.hasQuest(SPOUSE_QUEST_SLOT);
 	}
 
-	private void MakeRingsStep() {
+	private void makeRingsStep() {
 		SpeakerNPC npc = npcs.get("Ognir");
 
 		npc.add(ConversationStates.ATTENDING,
@@ -392,14 +402,14 @@ public class Marriage extends AbstractQuest {
 
 	}
 
-	private void GetDressedStep() {
+	private void getDressedStep() {
 
 		// Just go to the NPCs Tamara and Timothy
 		// you can only get into the room if you have the quest slot for
 		// marriage
 	}
 
-	private void MarriageStep() {
+	private void marriageStep() {
 
 		/**
 		 * Creates a priest NPC who can celebrate marriages between two players.
@@ -509,7 +519,7 @@ public class Marriage extends AbstractQuest {
 
 	}
 
-	public void DivorceStep() {
+	private void divorceStep() {
 
 		/**
 		 * Creates a clerk NPC who can divorce couples.
@@ -713,7 +723,7 @@ public class Marriage extends AbstractQuest {
 		giveRing(bride, groom);
 	}
 
-	private void HoneymoonStep() {
+	private void honeymoonStep() {
 
 		SpeakerNPC linda = npcs.get("Linda");
 		// tell her you want a honeymoon
@@ -797,12 +807,12 @@ public class Marriage extends AbstractQuest {
 	public void addToWorld() {
 		super.addToWorld();
 
-		EngagementStep();
-		MakeRingsStep();
-		GetDressedStep();
-		MarriageStep();
-		HoneymoonStep();
-		DivorceStep();
+		engagementStep();
+		makeRingsStep();
+		getDressedStep();
+		marriageStep();
+		honeymoonStep();
+		divorceStep();
 	}
 
 }
