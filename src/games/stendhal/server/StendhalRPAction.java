@@ -34,19 +34,17 @@ import java.util.List;
 
 import marauroa.common.Log4J;
 import marauroa.common.Logger;
-import marauroa.common.game.RPObjectNotFoundException;
 import marauroa.server.game.rp.RPServerManager;
 
 /*
- * TODO: Refactor Remove this class. Move to a proper OOP approach.
- * Replace RP with new RP once it is agreed.
+ * TODO: Refactor Remove this class. Move to a proper OOP approach. Replace RP
+ * with new RP once it is agreed.
  */
 
 public class StendhalRPAction {
 
 	/** the logger instance. */
-	private static final Logger logger = Log4J
-			.getLogger(StendhalRPAction.class);
+	private static final Logger logger = Log4J.getLogger(StendhalRPAction.class);
 
 	/** server manager */
 	private static RPServerManager rpman;
@@ -164,8 +162,7 @@ public class StendhalRPAction {
 		/*
 		 * Account for karma (+/-10%)
 		 */
-		attackerComponent += (attackerComponent * (float) attacker
-				.useKarma(0.1));
+		attackerComponent += (attackerComponent * (float) attacker.useKarma(0.1));
 
 		logger.debug("ATK MAX: " + maxAttackerComponent + "\t ATK VALUE: "
 				+ attackerComponent);
@@ -173,16 +170,16 @@ public class StendhalRPAction {
 		// TODO: docu
 		float armor = defender.getItemDef();
 		int targetDef = defender.getDEF();
-		double maxDefenderComponent = (0.6f * targetDef + armor) * (10 + 0.5f * defender.getLevel());
+		double maxDefenderComponent = (0.6f * targetDef + armor)
+				* (10 + 0.5f * defender.getLevel());
 
-		double  defenderComponent = (Rand.roll1D100() / 100.0f)
+		double defenderComponent = (Rand.roll1D100() / 100.0f)
 				* maxDefenderComponent;
 
 		/*
 		 * Account for karma (+/-10%)
 		 */
-		defenderComponent += (defenderComponent * (float) defender
-				.useKarma(0.1));
+		defenderComponent += (defenderComponent * (float) defender.useKarma(0.1));
 
 		if (logger.isDebugEnabled()) {
 			logger.debug("DEF MAX: " + maxDefenderComponent + "\t DEF VALUE: "
@@ -190,8 +187,7 @@ public class StendhalRPAction {
 		}
 
 		int damage = (int) (((attackerComponent - defenderComponent) / maxAttackerComponent)
-				* (maxAttackerComponent / maxDefenderComponent) * (attacker
-				.getATK() / 10.0f));
+				* (maxAttackerComponent / maxDefenderComponent) * (attacker.getATK() / 10.0f));
 
 		if (attacker.canDoRangeAttack(defender)) {
 			// The attacker is attacking either using a range weapon with
@@ -257,9 +253,8 @@ public class StendhalRPAction {
 					}
 				}
 
-				player
-						.sendPrivateText("The powerful protective aura in this place prevents you from attacking "
-								+ name + ".");
+				player.sendPrivateText("The powerful protective aura in this place prevents you from attacking "
+						+ name + ".");
 				return;
 			}
 
@@ -342,8 +337,7 @@ public class StendhalRPAction {
 				}
 				if (projectilesItem == null) {
 					// no arrows... but maybe a spear?
-					projectilesItem = attacker
-							.getMissileIfNotHoldingOtherWeapon();
+					projectilesItem = attacker.getMissileIfNotHoldingOtherWeapon();
 				}
 				// Creatures can attack without having projectiles, but players
 				// will lose a projectile for each shot.
@@ -405,11 +399,12 @@ public class StendhalRPAction {
 		return result;
 	}
 
-	private static void setPVPTimeIfDoingPVP(RPEntity attacker, RPEntity defender) {
-	    if (attacker instanceof Player && defender instanceof Player) {
-	    	((Player) attacker).storeLastPVPActionTime();
-	    }
-    }
+	private static void setPVPTimeIfDoingPVP(RPEntity attacker,
+			RPEntity defender) {
+		if (attacker instanceof Player && defender instanceof Player) {
+			((Player) attacker).storeLastPVPActionTime();
+		}
+	}
 
 	/**
 	 * Calculate lifesteal and update hp of source
@@ -510,26 +505,27 @@ public class StendhalRPAction {
 			int nx = entity_x - zone.getX();
 			int ny = entity_y - zone.getY();
 
-			if(logger.isDebugEnabled()) {
-				logger.debug("Placing " + entity.getName() + " at " + zone.getName() + "[" + nx + "," + ny + "]");
+			if (logger.isDebugEnabled()) {
+				logger.debug("Placing " + entity.getName() + " at "
+						+ zone.getName() + "[" + nx + "," + ny + "]");
 			}
 
-			if(!placeat(zone, entity, nx, ny)) {
-				logger.warn("Could not place " + entity.getName() + " at " + zone.getName() + "[" + nx + "," + ny + "]");
+			if (!placeat(zone, entity, nx, ny)) {
+				logger.warn("Could not place " + entity.getName() + " at "
+						+ zone.getName() + "[" + nx + "," + ny + "]");
 			}
 		} else {
 			logger.warn("Unable to choose a new zone for entity: "
-				+ entity.getName() + " at (" + entity_x + "," + entity_y
-				+ ") source was " + origin.getName() + " at (" + x
-				+ ", " + y + ")");
+					+ entity.getName() + " at (" + entity_x + "," + entity_y
+					+ ") source was " + origin.getName() + " at (" + x + ", "
+					+ y + ")");
 		}
 	}
 
 	/**
 	 * Places an entity at a specified position in a specified zone. If this
-	 * point is occupied the entity is moved slightly.
-	 * This will remove the entity from any existing zone and add it to 
-	 * the target zone if needed.
+	 * point is occupied the entity is moved slightly. This will remove the
+	 * entity from any existing zone and add it to the target zone if needed.
 	 *
 	 * @param zone
 	 *            zone to place the entity in
@@ -541,14 +537,15 @@ public class StendhalRPAction {
 	 *            y
 	 * @return true, if it was possible to place the entity, false otherwise
 	 */
-	public static boolean placeat(StendhalRPZone zone, Entity entity, int x, int y) {
+	public static boolean placeat(StendhalRPZone zone, Entity entity, int x,
+			int y) {
 		return placeat(zone, entity, x, y, null);
 	}
 
 	/**
-	 * Places an entity at a specified position in a specified zone.
-	 * This will remove the entity from any existing zone and add it to 
-	 * the target zone if needed.
+	 * Places an entity at a specified position in a specified zone. This will
+	 * remove the entity from any existing zone and add it to the target zone if
+	 * needed.
 	 *
 	 * @param zone
 	 *            zone to place the entity in
@@ -562,7 +559,8 @@ public class StendhalRPAction {
 	 *            only search within this area for a possible new position
 	 * @return true, if it was possible to place the entity, false otherwise
 	 */
-	public static boolean placeat(StendhalRPZone zone, Entity entity, int x, int y, Shape allowedArea) {
+	public static boolean placeat(StendhalRPZone zone, Entity entity, int x,
+			int y, Shape allowedArea) {
 		/*
 		 * Look for new position
 		 */
@@ -634,7 +632,8 @@ public class StendhalRPAction {
 			}
 
 			if (!found) {
-				logger.info("Unable to place " + entity.getTitle() + " at " + zone.getName() + "[" + x + "," + y + "]");
+				logger.info("Unable to place " + entity.getTitle() + " at "
+						+ zone.getName() + "[" + x + "," + y + "]");
 				return false;
 			}
 		}
@@ -654,18 +653,17 @@ public class StendhalRPAction {
 			rpentity.clearPath();
 		}
 
-
 		Sheep sheep = null;
 		Pet pet = null;
 
 		/*
 		 * Remove from old zone (if any) during zone change
 		 */
-		if(zoneChanged && (oldZone != null)) {
+		if (zoneChanged && (oldZone != null)) {
 			/*
 			 * Player specific pre-remove handling
 			 */
-			if(entity instanceof Player) {
+			if (entity instanceof Player) {
 				Player player = (Player) entity;
 
 				/*
@@ -673,7 +671,7 @@ public class StendhalRPAction {
 				 */
 				sheep = player.getSheep();
 
-				if(sheep != null) {
+				if (sheep != null) {
 					sheep.clearPath();
 					sheep.stop();
 
@@ -693,20 +691,17 @@ public class StendhalRPAction {
 			oldZone.remove(entity);
 		}
 
-
 		/*
 		 * [Re]position (possibly while between zones)
 		 */
 		entity.setPosition(nx, ny);
 
-
 		/*
 		 * Place in new zone (if needed)
 		 */
-		if(zoneChanged) {
+		if (zoneChanged) {
 			zone.add(entity);
 		}
-
 
 		/*
 		 * Player specific post-change handling
@@ -717,8 +712,8 @@ public class StendhalRPAction {
 			/*
 			 * Move and re-add removed dependents
 			 */
-			if(sheep != null) {
-				if(placeat(zone, sheep, nx, ny)) {
+			if (sheep != null) {
+				if (placeat(zone, sheep, nx, ny)) {
 					player.setSheep(sheep);
 					sheep.setOwner(player);
 				} else {
@@ -727,8 +722,8 @@ public class StendhalRPAction {
 				}
 			}
 
-			if(pet != null) {
-				if(placeat(zone, pet, nx, ny)) {
+			if (pet != null) {
+				if (placeat(zone, pet, nx, ny)) {
 					player.setPet(pet);
 					pet.setOwner(player);
 				} else {
@@ -737,31 +732,30 @@ public class StendhalRPAction {
 				}
 			}
 
-
 			/*
 			 * Zone change notifications/updates
 			 */
 			transferContent(player);
 
-			if(oldZone != null) {
+			if (oldZone != null) {
 				String source = oldZone.getName();
 				String destination = zone.getName();
 
-				StendhalRPRuleProcessor.get().addGameEvent(
-					player.getName(), "change zone", destination);
+				StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
+						"change zone", destination);
 
 				TutorialNotifier.zoneChange(player, source, destination);
 				ZoneNotifier.zoneChange(player, source, destination);
 			}
 		}
 
-		if(logger.isDebugEnabled()) {
-			logger.debug("Placed " + entity.getTitle() + " at " + zone.getName() + "[" + nx + "," + ny + "]");
+		if (logger.isDebugEnabled()) {
+			logger.debug("Placed " + entity.getTitle() + " at "
+					+ zone.getName() + "[" + nx + "," + ny + "]");
 		}
 
 		return true;
 	}
-
 
 	/**
 	 * Tell this message all players

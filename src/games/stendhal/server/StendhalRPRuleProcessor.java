@@ -99,6 +99,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	 * ???
 	 */
 	private List<Player> playersRmText;
+
 	private List<Player> playersRmPrivateText;
 
 	private List<NPC> npcs;
@@ -121,9 +122,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		if (actionsMap.get(action) != null) {
 			logger.error("Registering twice (previous was "
 					+ actionsMap.get(action).getClass()
-					+ ") the same action handler: "
-					+ action
-					+ " with "
+					+ ") the same action handler: " + action + " with "
 					+ actionClass.getClass());
 		}
 		actionsMap.put(action, actionClass);
@@ -194,15 +193,18 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	/**
 	 * Gets the points of named player in the specified hall of fame
 	 *
-	 * @param playername name of the player
-	 * @param fametype   type of the hall of fame
-	 * @return points     points to add
+	 * @param playername
+	 *            name of the player
+	 * @param fametype
+	 *            type of the hall of fame
+	 * @return points points to add
 	 */
 	public int getHallOfFamePoints(String playername, String fametype) {
 		int res = 0;
 		try {
 			Transaction transaction = database.getTransaction();
-			res = database.getHallOfFamePoints(transaction, playername, fametype);
+			res = database.getHallOfFamePoints(transaction, playername,
+					fametype);
 			transaction.commit();
 		} catch (Exception e) {
 			logger.warn("Can't store game event", e);
@@ -213,16 +215,22 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	/**
 	 * Add points to the named player in the specified hall of fame
 	 *
-	 * @param playername name of the player
-	 * @param fametype   type of the hall of fame
-	 * @param points     points to add
+	 * @param playername
+	 *            name of the player
+	 * @param fametype
+	 *            type of the hall of fame
+	 * @param points
+	 *            points to add
 	 */
-	public void addHallOfFamePoints(String playername, String fametype, int points) {
+	public void addHallOfFamePoints(String playername, String fametype,
+			int points) {
 		try {
 			Transaction transaction = database.getTransaction();
-			int oldPoints = database.getHallOfFamePoints(transaction, playername, fametype);
+			int oldPoints = database.getHallOfFamePoints(transaction,
+					playername, fametype);
 			int totalPoints = oldPoints + points;
-			database.setHallOfFamePoints(transaction, playername, fametype, totalPoints);
+			database.setHallOfFamePoints(transaction, playername, fametype,
+					totalPoints);
 			transaction.commit();
 		} catch (Exception e) {
 			logger.warn("Can't store game event", e);
@@ -231,16 +239,13 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 	/**
 	 *
-	 * Set the context where the actions are executed.
-	 * Load/Run optional StendhalServerExtension(s) as defined in marauroa.ini file
-	 * example:
-	 *  groovy=games.stendhal.server.scripting.StendhalGroovyRunner
-	 *  myservice=games.stendhal.server.MyService
-	 *  server_extension=groovy,myservice
-	 * if no server_extension property is found, only the groovy extension is loaded
-	 * to surpress loading groovy extension use
-	 *  server_extension=
-	 * in the properties file.
+	 * Set the context where the actions are executed. Load/Run optional
+	 * StendhalServerExtension(s) as defined in marauroa.ini file example:
+	 * groovy=games.stendhal.server.scripting.StendhalGroovyRunner
+	 * myservice=games.stendhal.server.MyService
+	 * server_extension=groovy,myservice if no server_extension property is
+	 * found, only the groovy extension is loaded to surpress loading groovy
+	 * extension use server_extension= in the properties file.
 	 *
 	 * @param rpman
 	 */
@@ -252,8 +257,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			StendhalQuestSystem.get().init();
 
 			/*
-			 * TODO: Have these directly added here when added
-			 * to zone, or let zone handle all of them directly
+			 * TODO: Have these directly added here when added to zone, or let
+			 * zone handle all of them directly
 			 */
 			for (IRPZone zone : StendhalRPWorld.get()) {
 				StendhalRPZone szone = (StendhalRPZone) zone;
@@ -264,16 +269,19 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 			Configuration config = Configuration.getConfiguration();
 			try {
-				String[] extensionsToLoad = config.get("server_extension").split(",");
+				String[] extensionsToLoad = config.get("server_extension").split(
+						",");
 				for (int i = 0; i < extensionsToLoad.length; i++) {
 					String extension = null;
 					try {
 						extension = extensionsToLoad[i];
 						if (extension.length() > 0) {
-							StendhalServerExtension.getInstance(config.get(extension)).init();
+							StendhalServerExtension.getInstance(
+									config.get(extension)).init();
 						}
 					} catch (Exception ex) {
-						logger.error("Error while loading extension: " + extension, ex);
+						logger.error("Error while loading extension: "
+								+ extension, ex);
 					}
 				}
 			} catch (Exception ep) {
@@ -298,7 +306,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		if (username.indexOf(' ') != -1) {
 			return false;
 		}
-		// TODO: Fix bug [ 1672627 ] 'admin' not allowed in username but GM_ and _GM are
+		// TODO: Fix bug [ 1672627 ] 'admin' not allowed in username but GM_ and
+		// _GM are
 		if (username.toLowerCase().contains("admin")) {
 			return false;
 		}
@@ -308,7 +317,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	public void addNPC(NPC npc) {
 		npcsToRemove.remove(npc);
 
-		if(!npcs.contains(npc)) {
+		if (!npcs.contains(npc)) {
 			npcsToAdd.add(npc);
 		}
 	}
@@ -319,7 +328,9 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 	/**
 	 * Checks whether the given RPEntity has been killed this turn.
-	 * @param entity The entity to check.
+	 *
+	 * @param entity
+	 *            The entity to check.
 	 * @return true if the given entity has been killed this turn.
 	 */
 	private boolean wasKilled(RPEntity entity) {
@@ -332,11 +343,12 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	}
 
 	/**
-	 * Returns the entity which has killed the given RPEntity this
-	 * turn.
-	 * @param entity The killed RPEntity.
-	 * @return The killer, or null if the given RPEntity hasn't been
-	 *         killed this turn.
+	 * Returns the entity which has killed the given RPEntity this turn.
+	 *
+	 * @param entity
+	 *            The killed RPEntity.
+	 * @return The killer, or null if the given RPEntity hasn't been killed this
+	 *         turn.
 	 */
 	private Entity killerOf(RPEntity entity) {
 		for (Pair<RPEntity, Entity> entry : entityToKill) {
@@ -357,6 +369,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 	/**
 	 * Gets all players who are currently online.
+	 *
 	 * @return A list of all online players
 	 */
 	public List<Player> getPlayers() {
@@ -365,9 +378,11 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 	/**
 	 * Finds an online player with a specific name.
-	 * @param name The player's name
-	 * @return The player, or null if no player with the given name is
-	 *         currently online.
+	 *
+	 * @param name
+	 *            The player's name
+	 * @return The player, or null if no player with the given name is currently
+	 *         online.
 	 */
 	public Player getPlayer(String name) {
 		for (Player player : getPlayers()) {
@@ -398,7 +413,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		return npcsToRemove.add(npc);
 	}
 
-	public boolean onActionAdd(RPObject caster, RPAction action, List<RPAction> actionList) {
+	public boolean onActionAdd(RPObject caster, RPAction action,
+			List<RPAction> actionList) {
 		return true;
 	}
 
@@ -427,8 +443,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		long start = System.nanoTime();
 
 		/*
-		 * Debug statement for inspecting list of things.
-		 * Most of our memories leaks came from list keep adding and adding elements.
+		 * Debug statement for inspecting list of things. Most of our memories
+		 * leaks came from list keep adding and adding elements.
 		 */
 		if (Debug.SHOW_LIST_SIZES && rpman.getTurn() % 1000 == 0) {
 			int creatures = 0;
@@ -450,7 +466,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			os.append("plantGrowers: " + plantGrowers.size() + "\n");
 			os.append("players: " + players.size() + "\n");
 			os.append("playersRmText: " + playersRmText.size() + "\n");
-			os.append("playersRmPrivateText: " + playersRmPrivateText.size() + "\n");
+			os.append("playersRmPrivateText: " + playersRmPrivateText.size()
+					+ "\n");
 			os.append("respawnPoints: " + respawnPoints.size() + "\n");
 			os.append("creatures: " + creatures + "\n");
 			os.append("objects: " + objects + "\n");
@@ -462,9 +479,10 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			Statistics.getStatistics().set("Players logged", players.size());
 
 			/*
-			 * TODO: Refactor. Entities should care about really dying themselves.
-			 * This is here because there is a split between last hit and the moment a entity die so
-			 * that the last hit is visible on client.
+			 * TODO: Refactor. Entities should care about really dying
+			 * themselves. This is here because there is a split between last
+			 * hit and the moment a entity die so that the last hit is visible
+			 * on client.
 			 */
 			// In order for the last hit to be visible dead happens at two
 			// steps.
@@ -478,7 +496,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			entityToKill.clear();
 
 			/*
-			 * TODO: Refactor NPC should be stored on zones instead of duplicating that info.
+			 * TODO: Refactor NPC should be stored on zones instead of
+			 * duplicating that info.
 			 */
 			// Done this way because a problem with comodification... :(
 			npcs.removeAll(npcsToRemove);
@@ -487,7 +506,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			npcsToRemove.clear();
 
 			/*
-			 * TODO: Refactor Use RPEvent that is the correct way and it is handled by marauroa itself.
+			 * TODO: Refactor Use RPEvent that is the correct way and it is
+			 * handled by marauroa itself.
 			 */
 			for (Player player : playersRmPrivateText) {
 				if (player.has("private_text")) {
@@ -532,7 +552,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		} catch (Exception e) {
 			logger.error("error in beginTurn", e);
 		} finally {
-			logger.debug("Begin turn: " + (System.nanoTime() - start) / 1000000.0);
+			logger.debug("Begin turn: " + (System.nanoTime() - start)
+					/ 1000000.0);
 		}
 	}
 
@@ -554,7 +575,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		} catch (Exception e) {
 			logger.error("error in endTurn", e);
 		} finally {
-			logger.debug("End turn: " + (System.nanoTime() - start) / 1000000.0 + " (" + (currentTurn % 5) + ")");
+			logger.debug("End turn: " + (System.nanoTime() - start) / 1000000.0
+					+ " (" + (currentTurn % 5) + ")");
 		}
 	}
 
@@ -630,15 +652,17 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 	public synchronized void onTimeout(RPObject object) {
 		/*
-		 * TODO: Refactor Check new syntax of onTimeout.
-		 *  It is expected to kickout the player, it can't fail.
+		 * TODO: Refactor Check new syntax of onTimeout. It is expected to
+		 * kickout the player, it can't fail.
 		 */
 		onExit(object);
 	}
 
-	public AccountResult createAccount(String username, String password, String email) {
+	public AccountResult createAccount(String username, String password,
+			String email) {
 		/*
-		 * TODO: Refactor Invalid patterns for username should be stored in a text file or XML file.
+		 * TODO: Refactor Invalid patterns for username should be stored in a
+		 * text file or XML file.
 		 */
 		if (!isValidUsername(username)) {
 			return new AccountResult(Result.FAILED_EXCEPTION, username);
@@ -667,21 +691,23 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			TestHelper.fail();
 			return new AccountResult(Result.FAILED_EXCEPTION, username);
 		}
-    }
+	}
 
-	public CharacterResult createCharacter(String username, String character, RPObject template) {
+	public CharacterResult createCharacter(String username, String character,
+			RPObject template) {
 		JDBCDatabase database = (JDBCDatabase) DatabaseFactory.getDatabase();
 		Transaction trans = database.getTransaction();
 
 		try {
 			if (database.hasCharacter(trans, username, character)) {
 				logger.warn("Character already exist: " + character);
-				return new CharacterResult(Result.FAILED_PLAYER_EXISTS, character, template);
-		}
+				return new CharacterResult(Result.FAILED_PLAYER_EXISTS,
+						character, template);
+			}
 
 			/*
-			 * TODO: Refactor OMG! Hide in a method.
-			 * Even better, move it to player class as it is its duty to provide a empty level 0 player.
+			 * TODO: Refactor OMG! Hide in a method. Even better, move it to
+			 * player class as it is its duty to provide a empty level 0 player.
 			 */
 			/*
 			 * Create the player character object
@@ -730,11 +756,12 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			}
 			logger.error("Can't create character", e);
 			TestHelper.fail();
-			return new CharacterResult(Result.FAILED_EXCEPTION, character, template);
+			return new CharacterResult(Result.FAILED_EXCEPTION, character,
+					template);
 		}
-    }
+	}
 
 	public RPServerManager getRPManager() {
-	    return rpman;
+		return rpman;
 	}
 }
