@@ -515,7 +515,7 @@ public class OutfitDialog extends JDialog {
 	// </editor-fold>//GEN-END:initComponents
 
 	/** this is called everytime the user moves the slider */
-	private void jsliderDirectionStateChanged(ChangeEvent evt) {// GEN-FIRST:event_jsliderDirectionStateChanged
+	private void jsliderDirectionStateChanged(ChangeEvent evt) { // GEN-FIRST:event_jsliderDirectionStateChanged
 		direction = jsliderDirection.getValue();
 
 		redrawFinalPlayer(jlblFinalResult.getGraphics());
@@ -523,16 +523,16 @@ public class OutfitDialog extends JDialog {
 		redrawHead(heads_index, jlblHeads.getGraphics());
 		redrawBase(bodies_index, jlblBodies.getGraphics());
 		redrawDress(clothes_index, jlblClothes.getGraphics());
-	}// GEN-LAST:event_jsliderDirectionStateChanged
+	} // GEN-LAST:event_jsliderDirectionStateChanged
 
 	/** when user closes this window */
-	private void formWindowClosing(WindowEvent evt) {// GEN-FIRST:event_formWindowClosing
+	private void formWindowClosing(WindowEvent evt) { // GEN-FIRST:event_formWindowClosing
 		timer.cancel();
 		this.dispose();
-	}// GEN-LAST:event_formWindowClosing
+	} // GEN-LAST:event_formWindowClosing
 
 	/** Clothes Right button */
-	private void jbtRightClothesActionPerformed(ActionEvent evt) {// GEN-FIRST:event_jbtRightClothesActionPerformed
+	private void jbtRightClothesActionPerformed(ActionEvent evt) { // GEN-FIRST:event_jbtRightClothesActionPerformed
 		if (clothes_index < clothes.length - 1) {
 			clothes_index++;
 		} else {
@@ -541,10 +541,10 @@ public class OutfitDialog extends JDialog {
 
 		redrawDress(clothes_index, jlblClothes.getGraphics());
 		redrawFinalPlayer(jlblFinalResult.getGraphics());
-	}// GEN-LAST:event_jbtRightClothesActionPerformed
+	} // GEN-LAST:event_jbtRightClothesActionPerformed
 
 	/** Clothes Left button */
-	private void jbtLeftClothesActionPerformed(ActionEvent evt) {// GEN-FIRST:event_jbtLeftClothesActionPerformed
+	private void jbtLeftClothesActionPerformed(ActionEvent evt) { // GEN-FIRST:event_jbtLeftClothesActionPerformed
 		if (clothes_index > 0) {
 			clothes_index--;
 		} else {
@@ -553,10 +553,10 @@ public class OutfitDialog extends JDialog {
 
 		redrawDress(clothes_index, jlblClothes.getGraphics());
 		redrawFinalPlayer(jlblFinalResult.getGraphics());
-	}// GEN-LAST:event_jbtLeftClothesActionPerformed
+	} // GEN-LAST:event_jbtLeftClothesActionPerformed
 
 	/** Bodies Right button */
-	private void jbtRightBodiesActionPerformed(ActionEvent evt) {// GEN-FIRST:event_jbtRightBodiesActionPerformed
+	private void jbtRightBodiesActionPerformed(ActionEvent evt) { // GEN-FIRST:event_jbtRightBodiesActionPerformed
 		if (bodies_index < bodies.length - 1) {
 			bodies_index++;
 		} else {
@@ -565,10 +565,10 @@ public class OutfitDialog extends JDialog {
 
 		redrawBase(bodies_index, jlblBodies.getGraphics());
 		redrawFinalPlayer(jlblFinalResult.getGraphics());
-	}// GEN-LAST:event_jbtRightBodiesActionPerformed
+	} // GEN-LAST:event_jbtRightBodiesActionPerformed
 
 	/** Bodies Left button */
-	private void jbtLeftBodiesActionPerformed(ActionEvent evt) {// GEN-FIRST:event_jbtLeftBodiesActionPerformed
+	private void jbtLeftBodiesActionPerformed(ActionEvent evt) { // GEN-FIRST:event_jbtLeftBodiesActionPerformed
 		if (bodies_index > 0) {
 			bodies_index--;
 		} else {
@@ -577,10 +577,10 @@ public class OutfitDialog extends JDialog {
 
 		redrawBase(bodies_index, jlblBodies.getGraphics());
 		redrawFinalPlayer(jlblFinalResult.getGraphics());
-	}// GEN-LAST:event_jbtLeftBodiesActionPerformed
+	} // GEN-LAST:event_jbtLeftBodiesActionPerformed
 
 	/** Heads Right button */
-	private void jbtRightHeadsActionPerformed(ActionEvent evt) {// GEN-FIRST:event_jbtRightHeadsActionPerformed
+	private void jbtRightHeadsActionPerformed(ActionEvent evt) { // GEN-FIRST:event_jbtRightHeadsActionPerformed
 		if (heads_index < heads.length - 1) {
 			heads_index++;
 		} else {
@@ -589,10 +589,10 @@ public class OutfitDialog extends JDialog {
 
 		redrawHead(heads_index, jlblHeads.getGraphics());
 		redrawFinalPlayer(jlblFinalResult.getGraphics());
-	}// GEN-LAST:event_jbtRightHeadsActionPerformed
+	} // GEN-LAST:event_jbtRightHeadsActionPerformed
 
 	/** Heads Left button */
-	private void jbtLeftHeadsActionPerformed(ActionEvent evt) {// GEN-FIRST:event_jbtLeftHeadsActionPerformed
+	private void jbtLeftHeadsActionPerformed(ActionEvent evt) { // GEN-FIRST:event_jbtLeftHeadsActionPerformed
 		if (heads_index > 0) {
 			heads_index--;
 		} else {
@@ -601,10 +601,10 @@ public class OutfitDialog extends JDialog {
 
 		redrawHead(heads_index, jlblHeads.getGraphics());
 		redrawFinalPlayer(jlblFinalResult.getGraphics());
-	}// GEN-LAST:event_jbtLeftHeadsActionPerformed
+	} // GEN-LAST:event_jbtLeftHeadsActionPerformed
 
 	/** Hairs Right button */
-	private void jbtRightHairsActionPerformed(ActionEvent evt) {// GEN-FIRST:event_jbtRightHairsActionPerformed
+	private void jbtRightHairsActionPerformed(ActionEvent evt) { // GEN-FIRST:event_jbtRightHairsActionPerformed
 		if (hairs_index < hairs.length - 1) {
 			hairs_index++;
 		} else {
@@ -613,10 +613,10 @@ public class OutfitDialog extends JDialog {
 
 		redrawHair(hairs_index, jlblHairs.getGraphics());
 		redrawFinalPlayer(jlblFinalResult.getGraphics());
-	}// GEN-LAST:event_jbtRightHairsActionPerformed
+	} // GEN-LAST:event_jbtRightHairsActionPerformed
 
 	/** Hairs Left button */
-	private void jbtLeftHairsActionPerformed(ActionEvent evt) {// GEN-FIRST:event_jbtLeftHairsActionPerformed
+	private void jbtLeftHairsActionPerformed(ActionEvent evt) { // GEN-FIRST:event_jbtLeftHairsActionPerformed
 		if (hairs_index > 0) {
 			hairs_index--;
 		} else {
@@ -625,15 +625,15 @@ public class OutfitDialog extends JDialog {
 
 		redrawHair(hairs_index, jlblHairs.getGraphics());
 		redrawFinalPlayer(jlblFinalResult.getGraphics());
-	}// GEN-LAST:event_jbtLeftHairsActionPerformed
+	} // GEN-LAST:event_jbtLeftHairsActionPerformed
 
 	/** Button OK action */
-	private void jbtOKActionPerformed(ActionEvent evt) {// GEN-FIRST:event_jbtOKActionPerformed
+	private void jbtOKActionPerformed(ActionEvent evt) { // GEN-FIRST:event_jbtOKActionPerformed
 		sendAction();
 
 		timer.cancel();
 		this.dispose();
-	}// GEN-LAST:event_jbtOKActionPerformed
+	} // GEN-LAST:event_jbtOKActionPerformed
 
 	private void sendAction() {
 		if (client == null) {

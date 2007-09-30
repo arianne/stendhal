@@ -59,7 +59,8 @@ public class CreditsDialog extends JDialog {
 	/**
 	 * creates a new credits dialog
 	 *
-	 * @param owner owner window
+	 * @param owner
+	 *            owner window
 	 */
 	public CreditsDialog(Frame owner) {
 		super(owner, true);
@@ -69,10 +70,10 @@ public class CreditsDialog extends JDialog {
 		logger.debug("about dialog event handling ready");
 
 		this.setTitle("Stendhal Credits");
-		//		this.setResizable(false);
-		//		this.pack();
+		// this.setResizable(false);
+		// this.pack();
 		if (owner != null) {
-			this.setLocation(owner.getX()+25, owner.getY()+25);
+			this.setLocation(owner.getX() + 25, owner.getY() + 25);
 			this.setSize(owner.getSize());
 		} else {
 			this.setLocationByPlatform(true);
@@ -85,10 +86,12 @@ public class CreditsDialog extends JDialog {
 		this.getContentPane().setLayout(new BorderLayout());
 		this.getContentPane().setBackground(backgroundColor);
 
-		// read the credits from an external file because code format gets it unreadable if inlined 
+		// read the credits from an external file because code format gets it
+		// unreadable if inlined
 		List<String> creditsList = readCredits();
 		String[] credits = creditsList.toArray(new String[creditsList.size()]);
-		sp = new ScrollerPanel(credits, textFont, 0, textColor, backgroundColor, 20);
+		sp = new ScrollerPanel(credits, textFont, 0, textColor,
+				backgroundColor, 20);
 
 		buttonPane.setOpaque(false);
 		buttonPane.add(closeButton);
@@ -103,10 +106,12 @@ public class CreditsDialog extends JDialog {
 	 * @return list of lines
 	 */
 	private List<String> readCredits() {
-		URL url = SpriteStore.get().getResourceURL("games/stendhal/client/gui/credits.txt");
+		URL url = SpriteStore.get().getResourceURL(
+				"games/stendhal/client/gui/credits.txt");
 		List<String> res = new LinkedList<String>();
 		try {
-			BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()));
+			BufferedReader br = new BufferedReader(new InputStreamReader(
+					url.openStream()));
 			String line = br.readLine();
 			while (line != null) {
 				res.add(line);
