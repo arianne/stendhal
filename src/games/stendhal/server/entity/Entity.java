@@ -601,7 +601,10 @@ public abstract class Entity extends RPObject {
 	 * TODO: Find a way to move this up to RPObject.
 	 */
 	public void notifyWorldAboutChanges() {
-		StendhalRPWorld.get().modify(this);
+		// Only possible if in a zone
+		if(getZone() != null) {
+			StendhalRPWorld.get().modify(this);
+		}
 	}
 
 	/**
