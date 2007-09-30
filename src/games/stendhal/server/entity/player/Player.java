@@ -50,9 +50,19 @@ import marauroa.common.game.SyntaxException;
 
 public class Player extends RPEntity {
 	/**
+	 * The admin level attribute name.
+	 */
+	protected static final String	ATTR_ADMINLEVEL	= "adminlevel";
+
+	/**
 	 * The away message attribute name.
 	 */
 	protected static final String	ATTR_AWAY	= "away";
+
+	/**
+	 * The ghostmode attribute name.
+	 */
+	protected static final String	ATTR_GHOSTMODE	= "ghostmode";
 
 	/**
 	 * The attack invisible attribute name.
@@ -68,6 +78,11 @@ public class Player extends RPEntity {
 	 * The sheep ID attribute name.
 	 */
 	protected static final String	ATTR_SHEEP	= "sheep";
+
+	/**
+	 * The teleclick mode attribute name.
+	 */
+	protected static final String	ATTR_TELECLICKMODE = "teleclickmode";
 
 	/**
 	 * The name of the zone placed in when killed.
@@ -878,10 +893,21 @@ public class Player extends RPEntity {
 	 */
 	public int getAdminLevel() {
 		// normal user are adminlevel 0.
-		if (!has("adminlevel")) {
+		if (!has(ATTR_ADMINLEVEL)) {
 			return 0;
 		}
-		return getInt("adminlevel");
+		return getInt(ATTR_ADMINLEVEL);
+	}
+
+
+	/**
+	 * Set the player's admin level.
+	 *
+	 * @param	adminlevel
+	 *	The new admin level.
+	 */
+	public void setAdminLevel(final int adminlevel) {
+		put(ATTR_ADMINLEVEL, adminlevel);
 	}
 
 
@@ -1804,11 +1830,58 @@ public class Player extends RPEntity {
 		/*
 		 * 180 means 60 seconds x 3 turns per second.
 		 */
-	    if ((turn % 180) == 0) {
+		if ((turn % 180) == 0) {
 			setAge(getAge() + 1);
 			notifyWorldAboutChanges();
 		}
-    }
+	}
+
+	/**
+	 * Checks whether an entity is a ghost (non physically interactive).
+	 *
+	 * @return <code>true</code> if in ghost mode.
+	 */
+	@Override
+	public boolean isGhost() {
+		return has(ATTR_GHOSTMODE);
+	}
+
+	/**
+	 * Set whether this player is a ghost (invisible/non-interactive).
+	 *
+	 * @param	ghost
+	 *	<code>true</code> if a ghost.
+	 */
+	public void setGhost(final boolean ghost) {
+		if(ghost) {
+			put(ATTR_GHOSTMODE, "");
+		} else if(has(ATTR_GHOSTMODE)) {
+			remove(ATTR_GHOSTMODE);
+		}
+	}
+
+	/**
+	 * Checks whether a player has teleclick enabled.
+	 *
+	 * @return <code>true</code> if teleclick is enabled.
+	 */
+	public boolean isTeleclickEnabled() {
+		return has(ATTR_TELECLICKMODE);
+	}
+
+	/**
+	 * Set whether this player has teleclick enabled.
+	 *
+	 * @param	teleclick
+	 *	<code>true</code> if teleclick enabled.
+	 */
+	public void setTeleclickEnabled(final boolean teleclick) {
+		if(teleclick) {
+			put(ATTR_TELECLICKMODE, "");
+		} else if(has(ATTR_TELECLICKMODE)) {
+			remove(ATTR_TELECLICKMODE);
+		}
+	}
 
 	/**
 	 * Called when this object is added to a zone.

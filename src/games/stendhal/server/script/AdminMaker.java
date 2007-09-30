@@ -84,7 +84,7 @@ public class AdminMaker extends ScriptImpl {
 		private void admin(Player player) {
 			if (player.getAdminLevel() == 0) {
 				//can't use destroy/summon/alter/script
-				player.put("adminlevel", 600);
+				player.setAdminLevel(600);
 				player.update();
 				player.notifyWorldAboutChanges();
 			}

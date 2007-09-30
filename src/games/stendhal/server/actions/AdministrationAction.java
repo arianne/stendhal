@@ -383,7 +383,7 @@ public class AdministrationAction implements ActionListener {
 					StendhalRPRuleProcessor.get().addGameEvent(
 							player.getName(), "adminlevel", target.getName(),
 							"adminlevel", action.get("newlevel"));
-					target.put("adminlevel", newlevel);
+					target.setAdminLevel(newlevel);
 					target.update();
 					target.notifyWorldAboutChanges();
 
@@ -397,7 +397,6 @@ public class AdministrationAction implements ActionListener {
 
 			player.sendPrivateText(response);
 		}
-
 	}
 
 	private void onAlter(Player player, RPAction action) {
@@ -518,7 +517,6 @@ public class AdministrationAction implements ActionListener {
 				changed.notifyWorldAboutChanges();
 			}
 		}
-
 	}
 
 	private void onAlterCreature(Player player, RPAction action) {
@@ -553,7 +551,6 @@ public class AdministrationAction implements ActionListener {
 				creature.notifyWorldAboutChanges();
 			}
 		}
-
 	}
 
 	private void onSummon(Player player, RPAction action) {
@@ -590,7 +587,6 @@ public class AdministrationAction implements ActionListener {
 				StendhalRPAction.placeat(zone, entity, x, y);
 			}
 		}
-
 	}
 
 	private void onSummonAt(Player player, RPAction action) {
@@ -655,7 +651,7 @@ public class AdministrationAction implements ActionListener {
 	private void onGhostMode(Player player, RPAction action) {
 
 		if (player.isGhost()) {
-			player.remove("ghostmode");
+			player.setGhost(false);
 			StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
 					"ghostmode", "off");
 
@@ -666,7 +662,6 @@ public class AdministrationAction implements ActionListener {
 			for (Player p : StendhalRPRuleProcessor.get().getPlayers()) {
 				p.notifyOnline(player.getName());
 			}
-
 		} else {
 			/*
 			 * When we enter ghostmode we want our player to be also invisible.
@@ -675,7 +670,7 @@ public class AdministrationAction implements ActionListener {
 			StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
 					"invisible", "on");
 
-			player.put("ghostmode", "");
+			player.setGhost(true);
 			StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
 					"ghostmode", "on");
 
@@ -685,21 +680,19 @@ public class AdministrationAction implements ActionListener {
 		}
 
 		player.notifyWorldAboutChanges();
-
 	}
 
 	private void onTeleClickMode(Player player, RPAction action) {
 
-		if (player.has("teleclickmode")) {
-			player.remove("teleclickmode");
+		if (player.isTeleclickEnabled()) {
+			player.setTeleclickEnabled(false);
 			StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
 					"teleclickmode", "off");
 		} else {
-			player.put("teleclickmode", "");
+			player.setTeleclickEnabled(true);
 			StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
 					"teleclickmode", "on");
 		}
-
 	}
 
 	private void onInspect(Player player, RPAction action) {
@@ -772,8 +765,8 @@ public class AdministrationAction implements ActionListener {
 					+ " and has attributes:\r\n");
 			st.append(target.toString());
 		}
-		player.sendPrivateText(st.toString());
 
+		player.sendPrivateText(st.toString());
 	}
 
 	private void onDestroy(Player player, RPAction action) {
@@ -816,12 +809,11 @@ public class AdministrationAction implements ActionListener {
 				player.getName(),
 				"removed",
 				name,
-				StendhalRPWorld.get().getRPZone(inspected.getID()).getID()
-						.getID(), Integer.toString(inspected.getX()),
+				inspected.getZone().getName(),
+				Integer.toString(inspected.getX()),
 				Integer.toString(inspected.getY()));
 
 		player.sendPrivateText("Removed entity " + action.get("targetid"));
-
 	}
 
 	private void onJail(Player player, RPAction action) {
@@ -865,7 +857,6 @@ public class AdministrationAction implements ActionListener {
 		} else {
 			player.sendPrivateText("Usage: /gag name minutes reason");
 		}
-
 	}
 
 	/**

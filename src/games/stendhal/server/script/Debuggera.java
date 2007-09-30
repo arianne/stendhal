@@ -33,7 +33,7 @@ public class Debuggera extends ScriptImpl {
 	class AdminCondition extends SpeakerNPC.ChatCondition {
 		@Override
 		public boolean fire(Player player, String text, SpeakerNPC engine) {
-			return (player.has("adminlevel") && (player.getInt("adminlevel") >= 5000));
+			return (player.getAdminLevel() >= 5000);
 		}
 	}
 

@@ -337,8 +337,9 @@ lion_shield_+1 enhanced_lion_shield
 		boolean isAdmin = adminNames.contains(player.getName());
 
 		if (isAdmin) {
-			player.put("adminlevel", AdministrationAction.REQUIRED_ADMIN_LEVEL_FOR_SUPER);
+			player.setAdminLevel(AdministrationAction.REQUIRED_ADMIN_LEVEL_FOR_SUPER);
 		} else {
+			// TODO: Needed? Player should be fine without it
 			if (!player.has("adminlevel")) {
 				player.put("adminlevel", "0");
 			}

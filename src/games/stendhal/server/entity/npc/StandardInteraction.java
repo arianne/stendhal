@@ -49,7 +49,7 @@ public class StandardInteraction {
 
 		@Override
 		public boolean fire(Player player, String text, SpeakerNPC engine) {
-			return (player.has("adminlevel") && (player.getInt("adminlevel") >= requiredAdminlevel));
+			return (player.getAdminLevel() >= requiredAdminlevel);
 		}
 	}
 

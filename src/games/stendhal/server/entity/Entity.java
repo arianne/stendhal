@@ -326,7 +326,8 @@ public abstract class Entity extends RPObject {
 	 * @return <code>true</code> if in ghost mode.
 	 */
 	public boolean isGhost() {
-		return has("ghostmode");
+		// 'ghostmode' attribute is at player level
+		return false;
 	}
 
 	/**
