@@ -281,7 +281,8 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 	public boolean placeObjectAtEntryPoint(Entity entity) {
 		if (entryPoint != null) {
-			return StendhalRPAction.placeat(this, entity, entryPoint.x, entryPoint.y);
+			return StendhalRPAction.placeat(this, entity, entryPoint.x,
+					entryPoint.y);
 		} else {
 			return false;
 		}
@@ -403,8 +404,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 					 * When the value is 0, it means that there is no tile at
 					 * that point.
 					 */
-					TileSetDefinition tileset = objectsLayer
-							.getTilesetFor(value);
+					TileSetDefinition tileset = objectsLayer.getTilesetFor(value);
 					createEntityAt(tileset.getSource(), value
 							- tileset.getFirstGid(), x, y);
 				}
@@ -425,8 +425,8 @@ public class StendhalRPZone extends MarauroaRPZone {
 		logger.debug("creating " + clazz + ":" + type + " at " + x + "," + y);
 
 		/*
-		 * TODO: Refactor Stinky code... hardcoded... uuuaaarrgghh!
-		 * No idea how to improve it...
+		 * TODO: Refactor Stinky code... hardcoded... uuuaaarrgghh! No idea how
+		 * to improve it...
 		 */
 
 		try {
@@ -459,8 +459,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 				add(sheep);
 			} else if (clazz.contains("logic/creature")) {
 				// get the default EntityManager
-				EntityManager manager = StendhalRPWorld.get().getRuleManager()
-						.getEntityManager();
+				EntityManager manager = StendhalRPWorld.get().getRuleManager().getEntityManager();
 
 				// Is the entity a creature
 				if (manager.isCreature(clazz, type)) {
@@ -511,8 +510,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 						// teddies and whatever. We should also consider making
 						// them
 						// non-clickable.
-						plantGrower
-								.setDescription("You see a small vein of iron ore.");
+						plantGrower.setDescription("You see a small vein of iron ore.");
 						break;
 					}
 				} else if (clazz.contains("sheepfood")) {
@@ -657,7 +655,8 @@ public class StendhalRPZone extends MarauroaRPZone {
 			}
 
 			if (type != 5) {
-				portal.setDestination(zone.getName(), zone.assignPortalID(target));
+				portal.setDestination(zone.getName(),
+						zone.assignPortalID(target));
 			}
 
 			target.setDestination(getName(), portal.getIdentifier());
@@ -721,8 +720,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 	 */
 	public synchronized void add(RPObject object, Player player) {
 		/*
-		 * Assign [zone relative] ID info.
-		 * TODO: Move up to MarauroaRPZone
+		 * Assign [zone relative] ID info. TODO: Move up to MarauroaRPZone
 		 */
 		assignRPObjectID(object);
 		super.add(object);
@@ -767,7 +765,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 			 * TODO: Move NPC (and all entity) handling to zone
 			 * scoped/managed/dispatched.
 			 */
-			//npcs.add((NPC) object);
+			// npcs.add((NPC) object);
 			StendhalRPRuleProcessor.get().addNPC((NPC) object);
 		}
 
@@ -792,7 +790,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 			 * TODO: Move NPC (and all entity) handling to zone
 			 * scoped/managed/dispatched.
 			 */
-			//npcs.remove((NPC) object);
+			// npcs.remove((NPC) object);
 			StendhalRPRuleProcessor.get().removeNPC((NPC) object);
 		}
 
@@ -958,19 +956,19 @@ public class StendhalRPZone extends MarauroaRPZone {
 			/*
 			 * Ignore same object
 			 */
-			if(entity == other) {
-				continue;
-			}
+			if (entity != other) {
 
-			Entity otherEntity = (Entity) other;
+				Entity otherEntity = (Entity) other;
 
-			if (otherEntity.isObstacle(entity)) {
-				// There is something the entity couldn't stand upon.
-				// Check if it's in the way.
-				otherEntity.getArea(otherArea, otherEntity.getX(), otherEntity .getY());
+				if (otherEntity.isObstacle(entity)) {
+					// There is something the entity couldn't stand upon.
+					// Check if it's in the way.
+					otherEntity.getArea(otherArea, otherEntity.getX(),
+							otherEntity.getY());
 
-				if (area.intersects(otherArea)) {
-					return otherEntity;
+					if (area.intersects(otherArea)) {
+						return otherEntity;
+					}
 				}
 			}
 		}
@@ -994,17 +992,15 @@ public class StendhalRPZone extends MarauroaRPZone {
 		return null;
 	}
 
-
 	/**
 	 * Get the zone name. This is the same as <code>getID().getID()</code>,
 	 * only cleaner to use.
 	 *
-	 * @return	The zone name.
+	 * @return The zone name.
 	 */
 	public String getName() {
 		return getID().getID();
 	}
-
 
 	/**
 	 * Notify anything interested in when an entity entered.
