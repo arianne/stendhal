@@ -53,7 +53,7 @@ import marauroa.common.net.InvalidVersionException;
 
 /**
  * Server login dialog.
- * 
+ *
  */
 public class LoginDialog extends JDialog {
 
@@ -116,8 +116,8 @@ public class LoginDialog extends JDialog {
 		l = new JLabel("Account profiles");
 
 		c.insets = new Insets(4, 4, 15, 4);
-		c.gridx = 0;// column
-		c.gridy = 0;// row
+		c.gridx = 0; // column
+		c.gridy = 0; // row
 		contentPane.add(l, c);
 
 		profilesComboBox = new JComboBox();
@@ -132,8 +132,8 @@ public class LoginDialog extends JDialog {
 		 */
 		l = new JLabel("Server name");
 		c.insets = new Insets(4, 4, 4, 4);
-		c.gridx = 0;// column
-		c.gridy = 1;// row
+		c.gridx = 0; // column
+		c.gridy = 1; // row
 		contentPane.add(l, c);
 
 		serverField = new JTextField(ClientGameConfiguration.get("DEFAULT_SERVER"));
@@ -261,7 +261,7 @@ public class LoginDialog extends JDialog {
 		if (!isEnabled()) {
 			return;
 		}
-		
+
 		profile = new Profile();
 
 		profile.setHost((serverField.getText()).trim());
@@ -384,15 +384,13 @@ public class LoginDialog extends JDialog {
 	 * Load saves profiles.
 	 */
 	private ProfileList loadProfiles() {
-		ProfileList profiles;
-
-		profiles = new ProfileList();
+		ProfileList tmpProfiles = new ProfileList();
 
 		try {
 			InputStream is = Persistence.get().getInputStream(true, "stendhal", "user.dat");
 
 			try {
-				profiles.load(is);
+				tmpProfiles.load(is);
 			} finally {
 				is.close();
 			}
@@ -404,7 +402,7 @@ public class LoginDialog extends JDialog {
 			        "Error Loading Login Information", JOptionPane.WARNING_MESSAGE);
 		}
 
-		return profiles;
+		return tmpProfiles;
 	}
 
 	/**
@@ -425,7 +423,8 @@ public class LoginDialog extends JDialog {
 		/*
 		 * The last profile (if any) is the default.
 		 */
-		if ((count = profilesComboBox.getItemCount()) != 0) {
+		count = profilesComboBox.getItemCount();
+		if (count != 0) {
 			profilesComboBox.setSelectedIndex(count - 1);
 		}
 	}

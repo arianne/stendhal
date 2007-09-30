@@ -31,17 +31,19 @@ public class ProgressBar extends JFrame {
 
 	private int m_sleepTime = 210;
 
-	private int m_stepSize = 2;//makes for 10 normal steps. 100/10
+	private int m_stepSize = 2; // makes for 10 normal steps. 100/10
 
 	private int m_stepSizeMultiplier = 1;
 
-	private int m_stepCounter;//keeps track of how amny times it has lookp with a multiplier greater then 0
+	private int m_stepCounter; // keeps track of how amny times it has lookp
+								// with a multiplier greater then 0
 
-	private boolean m_con = true;//continue while true
+	private boolean m_con = true; // continue while true
 
 	public ProgressBar(Window w) {
 		super("Connecting...");
-		URL url = SpriteStore.get().getResourceURL(ClientGameConfiguration.get("GAME_ICON"));
+		URL url = SpriteStore.get().getResourceURL(
+				ClientGameConfiguration.get("GAME_ICON"));
 		setIconImage(new ImageIcon(url).getImage());
 		this.frame = w;
 
@@ -78,7 +80,7 @@ public class ProgressBar extends JFrame {
 	public void start() {
 		m_run = new Thread() {
 
-			int counter ;
+			int counter;
 
 			@Override
 			public void run() {
@@ -111,18 +113,18 @@ public class ProgressBar extends JFrame {
 		m_run.start();
 	}
 
-	public void step() {//temporary speed up bar
+	public void step() { // temporary speed up bar
 		m_stepCounter = 3;
 		m_stepSizeMultiplier = 2;
 	}
 
 	public void finish() {
-		m_stepCounter = 20;//speed up to quickly finish
+		m_stepCounter = 20; // speed up to quickly finish
 		m_stepSizeMultiplier = 2;
 		m_sleepTime = 15;
 	}
 
-	public void cancel() {//exit quickly
+	public void cancel() { // exit quickly
 		m_con = false;
 		this.dispose();
 	}

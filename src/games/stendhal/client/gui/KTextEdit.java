@@ -247,7 +247,7 @@ public class KTextEdit extends JPanel {
 						public void run() {
 							scrollToBottom();
 						}
-					}.start();
+					} .start();
 				} else {
 					scrollToBottom();
 				}

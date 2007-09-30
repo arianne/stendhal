@@ -61,7 +61,7 @@ public class FXLayer {
 			case DISABLED:
 				return;
 			default:
-				return;
+
 		}
 
 		g.fillRect(0, 0, width, height);

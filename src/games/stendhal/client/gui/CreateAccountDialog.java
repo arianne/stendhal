@@ -53,8 +53,8 @@ import marauroa.common.net.InvalidVersionException;
 public class CreateAccountDialog extends JDialog {
 
 	private static final long serialVersionUID = 4436228792112530975L;
-	private static final Logger logger = Log4J.getLogger(CreateAccountDialog.class);
 
+	private static final Logger logger = Log4J.getLogger(CreateAccountDialog.class);
 
 	// Variables declaration
 	private JLabel usernameLabel;
@@ -109,10 +109,12 @@ public class CreateAccountDialog extends JDialog {
 	 */
 	private void initializeComponent() {
 		serverLabel = new JLabel("Server name");
-		serverField = new JTextField(ClientGameConfiguration.get("DEFAULT_SERVER"));
+		serverField = new JTextField(
+				ClientGameConfiguration.get("DEFAULT_SERVER"));
 		serverField.setEditable(true);
 		serverPortLabel = new JLabel("Server port");
-		serverPortField = new JTextField(ClientGameConfiguration.get("DEFAULT_PORT"));
+		serverPortField = new JTextField(
+				ClientGameConfiguration.get("DEFAULT_PORT"));
 
 		usernameLabel = new JLabel("Choose a username");
 		usernameField = new JTextField();
@@ -130,7 +132,6 @@ public class CreateAccountDialog extends JDialog {
 		createAccountButton = new JButton();
 		contentPane = (JPanel) this.getContentPane();
 
-
 		// createAccountButton
 		//
 		createAccountButton.setText("Create Account");
@@ -146,15 +147,16 @@ public class CreateAccountDialog extends JDialog {
 		// contentPane
 		//
 		contentPane.setLayout(new GridBagLayout());
-		contentPane.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createEtchedBorder(),
+		contentPane.setBorder(BorderFactory.createCompoundBorder(
+				BorderFactory.createEtchedBorder(),
 				BorderFactory.createEmptyBorder(5, 5, 5, 5)));
 		GridBagConstraints c = new GridBagConstraints();
 
-		//row 0
+		// row 0
 		c.anchor = GridBagConstraints.LINE_START;
 		c.insets = new Insets(4, 4, 4, 4);
-		c.gridx = 0;//column
-		c.gridy = 0;//row
+		c.gridx = 0; // column
+		c.gridy = 0; // row
 		c.fill = GridBagConstraints.NONE;
 		contentPane.add(serverLabel, c);
 		c.gridx = 1;
@@ -162,7 +164,7 @@ public class CreateAccountDialog extends JDialog {
 		c.fill = GridBagConstraints.BOTH;
 		contentPane.add(serverField, c);
 
-		//row 1
+		// row 1
 		c.insets = new Insets(4, 4, 4, 4);
 		c.gridx = 0;
 		c.gridy = 1;
@@ -174,7 +176,7 @@ public class CreateAccountDialog extends JDialog {
 		c.fill = GridBagConstraints.BOTH;
 		contentPane.add(serverPortField, c);
 
-		//row 2
+		// row 2
 		c.insets = new Insets(4, 4, 4, 4);
 		c.gridx = 0;
 		c.gridy = 2;
@@ -186,7 +188,7 @@ public class CreateAccountDialog extends JDialog {
 		// TODO: put the caret into the username field, does not work?!
 		usernameField.requestFocusInWindow();
 
-		//row 3
+		// row 3
 		c.gridx = 0;
 		c.gridy = 3;
 		c.fill = GridBagConstraints.NONE;
@@ -196,7 +198,7 @@ public class CreateAccountDialog extends JDialog {
 		c.fill = GridBagConstraints.BOTH;
 		contentPane.add(passwordField, c);
 
-		//row 4
+		// row 4
 		c.gridx = 0;
 		c.gridy = 4;
 		c.fill = GridBagConstraints.NONE;
@@ -206,7 +208,7 @@ public class CreateAccountDialog extends JDialog {
 		c.fill = GridBagConstraints.BOTH;
 		contentPane.add(passwordretypeField, c);
 
-		//row 5
+		// row 5
 		c.gridx = 0;
 		c.gridy = 5;
 		c.fill = GridBagConstraints.NONE;
@@ -216,7 +218,7 @@ public class CreateAccountDialog extends JDialog {
 		c.fill = GridBagConstraints.BOTH;
 		contentPane.add(emailField, c);
 
-		//row 6
+		// row 6
 		c.gridx = 1;
 		c.gridy = 6;
 		c.anchor = GridBagConstraints.CENTER;
@@ -231,19 +233,22 @@ public class CreateAccountDialog extends JDialog {
 
 	}
 
-	private void createAccountButton_actionPerformed(ActionEvent e, boolean saveLoginBoxStatus) {
+	private void createAccountButton_actionPerformed(ActionEvent e,
+			boolean saveLoginBoxStatus) {
 		final String accountUsername = usernameField.getText();
 		final String password = new String(passwordField.getPassword());
-		final String passwordretype = new String(passwordretypeField.getPassword());
+		final String passwordretype = new String(
+				passwordretypeField.getPassword());
 
 		// If this window isn't enabled, we shouldn't act.
 		if (!this.isEnabled()) {
 			return;
 		}
-		
+
 		if (!password.equals(passwordretype)) {
-			JOptionPane.showMessageDialog(owner, "The passwords do not match. Please retype both.",
-			        "Password Mismatch", JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(owner,
+					"The passwords do not match. Please retype both.",
+					"Password Mismatch", JOptionPane.WARNING_MESSAGE);
 			return;
 		}
 
@@ -251,64 +256,72 @@ public class CreateAccountDialog extends JDialog {
 		final String server = serverField.getText();
 		int port = 32160;
 
-		final int finalPort;//port couldnt be accessed from inner class
+		final int finalPort; // port couldnt be accessed from inner class
 		final ProgressBar progressBar = new ProgressBar(owner);
 
 		try {
 			port = Integer.parseInt(serverPortField.getText());
 		} catch (Exception ex) {
-			JOptionPane.showMessageDialog(owner, "That is not a valid port number. Please try again.", "Invalid Port",
-			        JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(owner,
+					"That is not a valid port number. Please try again.",
+					"Invalid Port", JOptionPane.WARNING_MESSAGE);
 			return;
 		}
 		finalPort = port;
 
-		/*seprate thread for connection proccess added by TheGeneral*/
-		//run the connection procces in separate thread
+		/* seprate thread for connection proccess added by TheGeneral */
+		// run the connection procces in separate thread
 		Thread m_connectionThread = new Thread() {
 
 			@Override
 			public void run() {
-				progressBar.start();//intialize progress bar
-				setEnabled(false);//disable this screen when attempting to connect
+				progressBar.start(); // intialize progress bar
+				setEnabled(false); // disable this screen when attempting to
+									// connect
 
 				try {
 					client.connect(server, finalPort);
-					progressBar.step();//for each major connection milestone call step()
+					progressBar.step(); // for each major connection milestone
+										// call step()
 				} catch (Exception ex) {
-					progressBar.cancel();//if something goes horribly just cancel the progressbar
+					progressBar.cancel(); // if something goes horribly just
+											// cancel the progressbar
 					setEnabled(true);
-					JOptionPane.showMessageDialog(owner,
-						"Stendhal cannot connect to the Internet. Please check that your connection is set up and active, then try again.");
-					
+					JOptionPane.showMessageDialog(
+							owner,
+							"Stendhal cannot connect to the Internet. Please check that your connection is set up and active, then try again.");
+
 					logger.error(ex, ex);
 
 					return;
 				}
 
 				try {
-                	AccountResult result = client.createAccount(accountUsername, password, email);
-                	if (result.failed()) {
-                		/*
-                		 * If the account can't be created, show an error message and don't continue.
-                		 */
+					AccountResult result = client.createAccount(
+							accountUsername, password, email);
+					if (result.failed()) {
+						/*
+						 * If the account can't be created, show an error
+						 * message and don't continue.
+						 */
 						progressBar.cancel();
-    					setEnabled(true);
-    					JOptionPane.showMessageDialog(owner, 
-    							result.getResult().getText(),
-    							"Create account failed",
-						        JOptionPane.ERROR_MESSAGE);
+						setEnabled(true);
+						JOptionPane.showMessageDialog(owner,
+								result.getResult().getText(),
+								"Create account failed",
+								JOptionPane.ERROR_MESSAGE);
 					} else {
 
 						/*
-						 * Print username returned by server, as server can modify it at will
-						 * to match account names rules. 
+						 * Print username returned by server, as server can
+						 * modify it at will to match account names rules.
 						 */
 
 						progressBar.step();
 						progressBar.finish();
 
-						// TODO: Check mental conflict bewteen username and account name.
+						// TODO: Check mental conflict bewteen username and
+						// account name.
 						// Be sure to fix all the variable names.
 						client.setAccountUsername(accountUsername);
 
@@ -324,35 +337,32 @@ public class CreateAccountDialog extends JDialog {
 
 						stendhal.doLogin = true;
 					}
-                } catch (TimeoutException e) {
+				} catch (TimeoutException e) {
 					progressBar.cancel();
 					setEnabled(true);
 					JOptionPane.showMessageDialog(
-						owner,
-						"Unable to connect to server to create your account. The server may be down or, if you are using a custom server, you may have entered its name and port number incorrectly.",
-						"Error Creating Account", 
-						JOptionPane.ERROR_MESSAGE);
-                } catch (InvalidVersionException e) {
+							owner,
+							"Unable to connect to server to create your account. The server may be down or, if you are using a custom server, you may have entered its name and port number incorrectly.",
+							"Error Creating Account", JOptionPane.ERROR_MESSAGE);
+				} catch (InvalidVersionException e) {
 					progressBar.cancel();
 					setEnabled(true);
-					JOptionPane.showMessageDialog(owner, 
-							"You are running an incompatible version of Stendhal. Please update", 
-							"Invalid version",
-							JOptionPane.ERROR_MESSAGE);
-                } catch (BannedAddressException e) {
+					JOptionPane.showMessageDialog(
+							owner,
+							"You are running an incompatible version of Stendhal. Please update",
+							"Invalid version", JOptionPane.ERROR_MESSAGE);
+				} catch (BannedAddressException e) {
 					progressBar.cancel();
 					setEnabled(true);
-					JOptionPane.showMessageDialog(owner, 
+					JOptionPane.showMessageDialog(
+							owner,
 							"You IP is banned. If you think this is not right. Please send a Support request to http://sourceforge.net/tracker/?func=add&group_id=1111&atid=201111",
-							"IP Banned",
-							JOptionPane.ERROR_MESSAGE);
-                } catch(LoginFailedException e) {
+							"IP Banned", JOptionPane.ERROR_MESSAGE);
+				} catch (LoginFailedException e) {
 					progressBar.cancel();
 					setEnabled(true);
-					JOptionPane.showMessageDialog(owner, 
-							e.getMessage(), 
-							"Login failed", 
-							JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(owner, e.getMessage(),
+							"Login failed", JOptionPane.INFORMATION_MESSAGE);
 				}
 			}
 		};
@@ -363,10 +373,11 @@ public class CreateAccountDialog extends JDialog {
 		private static final long serialVersionUID = -5123268875802709841L;
 
 		@Override
-		public void insertString(int offs, String str, AttributeSet a) throws BadLocationException {
+		public void insertString(int offs, String str, AttributeSet a)
+				throws BadLocationException {
 			String lower = str.toLowerCase();
 			boolean ok = true;
-			for(int i = lower.length() - 1; i >= 0; i--) {
+			for (int i = lower.length() - 1; i >= 0; i--) {
 				char chr = lower.charAt(i);
 				if ((chr < 'a' || chr > 'z') && (chr < '0' || chr > '9')) {
 					ok = false;

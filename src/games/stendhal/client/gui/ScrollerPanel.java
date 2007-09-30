@@ -69,37 +69,47 @@ public class ScrollerPanel extends JPanel {
 	 * creates an ScrollerPane wich scrolls the given text and using defaults
 	 * for the other attributes.
 	 *
-	 * @param text the text araay whis should be scrolled - one string per line
-	 *             is scrolled
+	 * @param text
+	 *            the text araay whis should be scrolled - one string per line
+	 *            is scrolled
 	 */
 	public ScrollerPanel(String[] text) {
-		this(text, new Font("SansSerif", Font.BOLD, 12), 0, Color.GRAY, Color.WHITE, 20);
+		this(text, new Font("SansSerif", Font.BOLD, 12), 0, Color.GRAY,
+				Color.WHITE, 20);
 	}
 
 	/**
 	 * creates an ScrollerPane wich scrolls the given text and uses the given
 	 * attributes
 	 *
-	 * @param text the text araay whis should be scrolled - one string per line is scrolled
-	 * @param font the font which is rendered
-	 * @param lineSpacing the gap between the lines
-	 * @param textColor color of the text
-	 * @param backgroundColor the background color of the panel
-	 * @param scrollSpeed defines the scroller speed (pixel per second);
+	 * @param text
+	 *            the text araay whis should be scrolled - one string per line
+	 *            is scrolled
+	 * @param font
+	 *            the font which is rendered
+	 * @param lineSpacing
+	 *            the gap between the lines
+	 * @param textColor
+	 *            color of the text
+	 * @param backgroundColor
+	 *            the background color of the panel
+	 * @param scrollSpeed
+	 *            defines the scroller speed (pixel per second);
 	 */
-	public ScrollerPanel(String[] text, Font font, int lineSpacing, Color textColor, Color backgroundColor,
-	        int scrollSpeed) {
+	public ScrollerPanel(String[] text, Font font, int lineSpacing,
+			Color textColor, Color backgroundColor, int scrollSpeed) {
 		this.text = text;
 		this.font = font;
 		this.lineSpacing = lineSpacing;
 		this.textColor = textColor;
 		this.backgroundColor = backgroundColor;
-		this.t = new Timer((int) (1.0 / scrollSpeed * 1000.0), new ActionListener() {
+		this.t = new Timer((int) (1.0 / scrollSpeed * 1000.0),
+				new ActionListener() {
 
-			public void actionPerformed(ActionEvent e) {
-				moveText();
-			}
-		});
+					public void actionPerformed(ActionEvent e) {
+						moveText();
+					}
+				});
 		logger.debug("Created a new scrolling panel");
 		calculateSizes();
 		// seting up event handling
@@ -127,20 +137,22 @@ public class ScrollerPanel extends JPanel {
 	@Override
 	public void paint(Graphics g) {
 		int width;
-		if (scrollingStarted){
+		if (scrollingStarted) {
 			// super.paint( g );
 			Graphics2D g2d = (Graphics2D) g;
-			g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+			g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+					RenderingHints.VALUE_ANTIALIAS_ON);
 			g2d.setBackground(backgroundColor);
 			g2d.clearRect(0, 0, this.getWidth(), this.getHeight());
-			GradientPaint gp = new GradientPaint(0f, 0f, backgroundColor, 0f, this.getHeight() / 2, textColor, true);
+			GradientPaint gp = new GradientPaint(0f, 0f, backgroundColor, 0f,
+					this.getHeight() / 2, textColor, true);
 			g2d.setPaint(gp);
 			g2d.setFont(font);
 			FontMetrics metrics = g2d.getFontMetrics();
 			for (int i = 0, n = text.length; i < n; i++) {
 				width = metrics.stringWidth(text[i]);
-				g2d.drawString(text[i], this.getWidth() / 2 - width / 2, textPos
-				        + ((metrics.getHeight() + lineSpacing) * i));
+				g2d.drawString(text[i], this.getWidth() / 2 - width / 2,
+						textPos + ((metrics.getHeight() + lineSpacing) * i));
 			}
 		}
 	}
@@ -161,7 +173,7 @@ public class ScrollerPanel extends JPanel {
 	 * reset the textposition
 	 */
 	private void resetTextPos() {
-		textPos = this.getHeight() - (lineSpacing + lineHeight)*2;
+		textPos = this.getHeight() - (lineSpacing + lineHeight) * 2;
 	}
 
 	/**
@@ -178,16 +190,19 @@ public class ScrollerPanel extends JPanel {
 	 */
 	private void calculateSizes() {
 		this.prefferedSize = new Dimension();
-		BufferedImage image = new BufferedImage(100, 100, BufferedImage.TYPE_INT_RGB);
+		BufferedImage image = new BufferedImage(100, 100,
+				BufferedImage.TYPE_INT_RGB);
 		Graphics2D g2d = image.createGraphics();
 		g2d.setFont(font);
 		FontMetrics metrics = g2d.getFontMetrics();
 		this.lineHeight = metrics.getHeight();
 		this.prefferedSize.height = this.lineHeight * 8;
 		for (int i = 0, n = text.length; i < n; i++) {
-			prefferedSize.width = Math.max(prefferedSize.width, metrics.stringWidth(text[i]));
+			prefferedSize.width = Math.max(prefferedSize.width,
+					metrics.stringWidth(text[i]));
 		}
-		this.prefferedSize.width = prefferedSize.width + 6 * metrics.stringWidth(" ");
+		this.prefferedSize.width = prefferedSize.width + 6
+				* metrics.stringWidth(" ");
 	}
 
 	@Override
