@@ -957,21 +957,20 @@ public class StendhalRPZone extends MarauroaRPZone {
 			 * Ignore same object
 			 */
 			if (entity != other) {
-
 				Entity otherEntity = (Entity) other;
 
-				if (otherEntity.isObstacle(entity)) {
-					// There is something the entity couldn't stand upon.
-					// Check if it's in the way.
-					otherEntity.getArea(otherArea, otherEntity.getX(),
-							otherEntity.getY());
+				// Check if the objects overlap
+				otherEntity.getArea(otherArea, otherEntity.getX(), otherEntity.getY());
 
-					if (area.intersects(otherArea)) {
+				if (area.intersects(otherArea)) {
+					// Check if it's blocking
+					if (otherEntity.isObstacle(entity)) {
 						return otherEntity;
 					}
 				}
 			}
 		}
+
 		return null;
 	}
 

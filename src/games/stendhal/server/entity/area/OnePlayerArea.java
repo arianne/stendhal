@@ -87,6 +87,13 @@ public class OnePlayerArea extends AreaEntity implements MovementListener {
 
 		for (RPEntity zentity : getZone().getPlayerAndFriends()) {
 			/*
+			 * Only players (ignore friends)
+			 */
+			if (!(zentity instanceof Player)) {
+				continue;
+			}
+
+			/*
 			 * Ignore same entity
 			 */
 			if (zentity.getID().equals(entity.getID())) {
@@ -97,13 +104,6 @@ public class OnePlayerArea extends AreaEntity implements MovementListener {
 			 * Ghosts don't count
 			 */
 			if (zentity.isGhost()) {
-				continue;
-			}
-
-			/*
-			 * Only players (ignore friends)
-			 */
-			if (!(zentity instanceof Player)) {
 				continue;
 			}
 

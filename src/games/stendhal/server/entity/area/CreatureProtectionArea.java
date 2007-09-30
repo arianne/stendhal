@@ -115,15 +115,21 @@ public class CreatureProtectionArea extends AreaEntity {
 		String clazz;
 		String subclazz;
 
-		/**
-		 * No class/subclass defined?
+		/*
+		 * Allow for optional class data. Technically all creatures
+		 * should at least have an entity class type.
 		 */
-		if (!creature.has("class") || !creature.has("subclass")) {
-			return false;
+		if (creature.has("class")) {
+			clazz = creature.get("class");
+		} else {
+			clazz = "";
 		}
 
-		clazz = creature.get("class");
-		subclazz = creature.get("subclass");
+		if (creature.has("subclass")) {
+			subclazz = creature.get("subclass");
+		} else {
+			subclazz = "";
+		}
 
 		for (Entry entry : entries) {
 			if (entry.matches(clazz, subclazz)) {

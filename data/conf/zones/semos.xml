@@ -886,6 +886,16 @@ Holy mackerel! These chips are tasty.
      </implementation>
     </entity>
 
+    <!-- Keep creatures from blocking trading area -->
+    <entity x="31" y="2">
+     <implementation class-name="games.stendhal.server.entity.area.CreatureProtectionArea">
+      <parameter name="width">15</parameter>
+      <parameter name="height">7</parameter>
+      <parameter name="default">block</parameter>
+      <parameter name="rules"></parameter>
+     </implementation>
+    </entity>
+
 <!-- Prevent table dancing (this is a family friendly bank) -->
 
     <entity x="39" y="4">
