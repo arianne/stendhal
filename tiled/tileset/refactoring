@@ -118,7 +118,7 @@ K*./building/wall/int_wall_dark_red.png
 K*./building/wall/int_wall_dark_red_corners.png
 K*/building/wall/int_wall_light_red.png
 k*/building/wall/stone.png
-./building/wall/stone_grey.png
+k*/building/wall/stone_grey.png
 k*/building/wall/wall_brown.png
 k*/building/wall/wood.png
 z*/building/wall/bamboo.png
