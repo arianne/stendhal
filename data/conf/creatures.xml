@@ -3024,6 +3024,33 @@
     </ai>
   </creature>
 
+  <creature name="kalavan_housewife">
+    <type class="human" subclass="kalavan__housewife" tileid="human_kalavan.png:2"/>
+    <description></description>
+    <attributes>
+      <atk value="119"/>
+      <def value="19"/>
+      <hp value="200"/>
+      <speed value="0.8"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="29"/>
+    <experience value="530"/>
+    <respawn value="1010"/>
+    <drops>
+      <item value="money" quantity="[5,30]" probability="100.0"/>
+      <item value="cloak" quantity="[1,1]" probability="10.0"/>
+      <item value="fish_pie" quantity="[1,1]" probability="2.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
   <creature name="death">
     <type class="undead" subclass="death" tileid="undead.png:2"/>
     <description></description>
@@ -3158,6 +3185,35 @@
     </ai>
   </creature>
 
+  <creature name="kalavan_peasant">
+    <type class="human" subclass="kalavan_peasant" tileid="human_kalavan.png:3"/>
+    <description></description>
+    <attributes>
+      <atk value="115"/>
+      <def value="20"/>
+      <hp value="240"/>
+      <speed value="0.9"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="31"/>
+    <experience value="600"/>
+    <respawn value="1070"/>
+    <drops>
+      <item value="money" quantity="[3,10]" probability="100.0"/>
+      <item value="studded_boots" quantity="[1,1]" probability="20.0"/>
+      <item value="old_scythe" quantity="[1,1]" probability="40.0"/>
+      <item value="hammer" quantity="[1,1]" probability="10.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
   <creature name="stone_golem">
     <type class="golem" subclass="stone_golem" tileid="golem.png:0"/>
     <attributes>
@@ -3231,6 +3287,62 @@
     <respawn value="1080"/>
     <drops>
       <item value="money" quantity="[6,31]" probability="100.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="kalavan_wisewoman">
+    <type class="human" subclass="kalavan_wisewoman" tileid="human_kalavan.png:4"/>
+    <description></description>
+    <attributes>
+      <atk value="125"/>
+      <def value="20"/>
+      <hp value="250"/>
+      <speed value="0.3"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="33"/>
+    <experience value="640"/>
+    <respawn value="1080"/>
+    <drops>
+      <item value="money" quantity="[5,30]" probability="100.0"/>
+      <item value="greater_antidote" quantity="[1,1]" probability="30.0"/>
+      <item value="spinach" quantity="[2,4]" probability="40.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="kalavan_citizen">
+    <type class="human" subclass="kalavan_citizen" tileid="human_kalavan.png:1"/>
+    <description></description>
+    <attributes>
+      <atk value="129"/>
+      <def value="21"/>
+      <hp value="210"/>
+      <speed value="0.8"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="34"/>
+    <experience value="730"/>
+    <respawn value="1110"/>
+    <drops>
+      <item value="money" quantity="[5,30]" probability="100.0"/>
+      <item value="axe" quantity="[1,1]" probability="20.0"/>
+      <item value="fado_city_scroll" quantity="[1,1]" probability="5.0"/>
     </drops>
     <equips>
     </equips>
@@ -3470,6 +3582,34 @@
       <item value="studded_boots" quantity="[1,1]" probability="3.0"/>
       <item value="cloak" quantity="[1,1]" probability="5.5"/>
       <item value="dagger" quantity="[1,1]" probability="5.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="imperial_veteran">
+    <type class="human" subclass="imperial_veteran" tileid="human_kalavan.png:0"/>
+    <description></description>
+    <attributes>
+      <atk value="139"/>
+      <def value="20"/>
+      <hp value="230"/>
+      <speed value="0.5"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="37"/>
+    <experience value="870"/>
+    <respawn value="1160"/>
+    <drops>
+      <item value="money" quantity="[5,30]" probability="100.0"/>
+      <item value="pauldroned_leather_cuirass" quantity="[1,1]" probability="20.0"/>
+      <item value="plate_shield" quantity="[1,1]" probability="30.0"/>
     </drops>
     <equips>
     </equips>
