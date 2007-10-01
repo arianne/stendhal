@@ -112,6 +112,35 @@
     </ai>
   </creature>
 
+  <creature name="chicken">
+    <type class="animal" subclass="chicken" tileid="animal.png:25"/>
+    <description></description>
+    <attributes>
+      <atk value="20"/>
+      <def value="12"/>
+      <hp value="25"/>
+      <speed value="0.5"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="1"/>
+    <experience value="10"/>
+    <respawn value="900"/>
+    <drops>
+      <item value="chicken" quantity="[1,2]" probability="50.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise value="cluck cluck cluck"/>
+        <noise value="cluck cluck"/>
+      </says>
+      <profile name="animal"/>
+      <profile name="offensive"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
   <creature name="caverat">
     <type class="small_animal" subclass="caverat" tileid="small_animal.png:0"/>
     <attributes>
@@ -274,6 +303,30 @@
       <says>
         <noise value="Aooooooouuhhh!!"/>
       </says>
+      <profile name="animal"/>
+      <profile name="offensive"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="fox">
+    <type class="animal" subclass="fox" tileid="animal.png:24"/>
+    <attributes>
+      <atk value="25"/>
+      <def value="14"/>
+      <hp value="35"/>
+      <speed value="0.8"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="2"/>
+    <experience value="20"/>
+    <respawn value="900"/>
+    <drops>
+      <item value="meat" quantity="[1,4]" probability="60.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
       <profile name="animal"/>
       <profile name="offensive"/>
       <profile name="patrolling"/>

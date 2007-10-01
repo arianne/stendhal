@@ -2117,6 +2117,24 @@
     </equipable>
   </item>
 
+  <item name="chicken">
+    <type class="food" subclass="chicken" tileid="-1"/>
+    <description>You see a tasty leg of chicken.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Food"/>    <attributes>
+      <amount value="50"/>
+      <frequency value="20"/>
+      <quantity value="1"/>
+      <regen value="5"/>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="2"/>
+    <equipable>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
+    </equipable>
+  </item>
+
   <item name="meat">
     <type class="food" subclass="meat" tileid="-1"/>
     <description>You see a piece of meat.</description>
