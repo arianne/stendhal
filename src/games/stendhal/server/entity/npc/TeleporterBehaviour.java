@@ -117,7 +117,7 @@ public class TeleporterBehaviour implements TurnListener {
 				for (int j = path.size() - 1; j > 0; j--) {
 					path.add(path.get(j));
 				}
-				logger.info(path);
+				logger.debug(path);
 				speakerNPC.setPath(new FixedPath(path, true));
 				break;
 			}
