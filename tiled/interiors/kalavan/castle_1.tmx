@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<map version="0.99b" orientation="orthogonal" width="64" height="64" tilewidth="32" tileheight="32">
+ <tileset name="castle" firstgid="1" tilewidth="32" tileheight="32">
+  <image source="../../tileset/object/castle.png"/>
+ </tileset>
+ <tileset name="collision" firstgid="321" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/collision.png"/>
+ </tileset>
+ <tileset name="torch iron lamp" firstgid="322" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/furniture/light/iron_lamp.png"/>
+ </tileset>
+ <tileset name="flames" firstgid="325" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/furniture/light/flames.png"/>
+ </tileset>
+ <tileset name="floor sparkle" firstgid="327" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/decoration/floor_sparkle.png"/>
+ </tileset>
+ <tileset name="stairs" firstgid="345" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/stairs/stairs.png"/>
+ </tileset>
+ <layer name="0_floor" width="64" height="64">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3WMQ6DMAxA0VQ9DkNPVe5/BCakSoBaYVsh5Q1vyBLpJ4M9t9ZmAAAAADjhnaR3h/7z/a8g/f079OvXv237RUb/FWeE/nhbFv369evXr7+is2q2Z/ZX7QX6r93+7Q3069evP3sm9u7d669o1Z/fX7FTjNT/D/8fMT22oneO1v9533oepT/qqP8unjfrBQAAgN4WAqSabABAAAA=
+  </data>
+ </layer>
+ <layer name="1_terrain" width="64" height="64">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO2Z3U3DMBSF4wUQ7QjQdoSW9hnECqBOAbMgsQKCIaArBMEIeWCEPiB8JVvcBsexfZ2fovNJR31ocuOjpPeeuEUBAAAAAAAAAAAAAEA8r1pvmbTrdKXdsDefp0om4nswF+lY/59aM5Wm0tQ4Zv9fWhcqTZWpccz+ae2PWs+ReqjVODb42u8Szr8v4H+s/kNm27s5Nof/j4Dr9TkjY2ab1P8YZ2TMbFuodP9nI52RMbNtI/C/HOmMjJ1tLwnXeAqoO9SMlPb2XAw1I+D/95rwPxzc/1Tlr9+Uc6TZJhchGUmSi/ae7yTZJhc8IzUh+V2ceOpS9knNNpatPv9W8NzajFR6junKP2Wf1GyTC5uRKs8xXfm32Scl2+SCMhLPQC4kfbHN/5D33sJ7oAup/6b3renAz76F+6+vc6Jk/vn719yIv2+NzT/15HN1qIXAP/WWldHaiL9vxfq/1Lpq0XVkTe6fevJaHWqTORfZnpDin9bq2zvaJdbsMgPW4f63Rfv95Loxa3Xtm5TCmkSf/kP25Fyi7OzaN6mENYm+/Ev+z5oodybJUbcP/yF7cj7NG3qytO6soW5ulupvj42Vqyfbvb7QGiuHcvd6AAAAAAAAAADgv/ADevGzngBAAAA=
+  </data>
+ </layer>
+ <layer name="2_object" width="64" height="64">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3VMQoAIAwEwfg2wf8/ydouoAEDM/U1V20EAAAAAMC9Nd5supqJb5kNAP+p7FeHNlb2SxsBAAAAAAAAAOC0AXL2UT4AQAAA
+  </data>
+ </layer>
+ <layer name="3_roof" width="64" height="64">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3BMQEAAADCoPVPbQwfoAAAAAAAAAAAAAAAAAAAAIC3AYbSVKsAQAAA
+  </data>
+ </layer>
+ <layer name="4_roof_add" width="64" height="64">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3BMQEAAADCoPVPbQwfoAAAAAAAAAAAAAAAAAAAAIC3AYbSVKsAQAAA
+  </data>
+ </layer>
+ <layer name="objects" width="64" height="64">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3BMQEAAADCoPVPbQwfoAAAAAAAAAAAAAAAAAAAAIC3AYbSVKsAQAAA
+  </data>
+ </layer>
+ <layer name="collision" width="64" height="64" opacity="0.33">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3PwQkAIAwEQS0t/TdlDUrgkMzBfEO29loFAAAAAAA8uV36X/369evXr7+7rWvpbv369evXr1//zP709Ov/pT95Uz8AAAAAMM0BPKKqiQBAAAA=
+  </data>
+ </layer>
+ <layer name="protection" width="64" height="64">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3BMQEAAADCoPVPbQwfoAAAAAAAAAAAAAAAAAAAAIC3AYbSVKsAQAAA
+  </data>
+ </layer>
+</map>

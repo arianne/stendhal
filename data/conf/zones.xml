@@ -8,6 +8,7 @@
 	<zone-group uri="zones/semos.xml"/>
 	<zone-group uri="zones/misc.xml"/>
 	<zone-group uri="zones/kikareukin.xml"/>
+	<zone-group uri="zones/kalavan.xml"/>
  <!--
  XXX: Disabled
 
