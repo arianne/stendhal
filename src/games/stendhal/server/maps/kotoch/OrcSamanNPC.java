@@ -46,8 +46,7 @@ public class OrcSamanNPC implements ZoneConfigurator {
 				addGreeting("Oof.");
 				addJob("Me, Orc Saman.");
 				addHelp("Orc Saman need help! Make #task.");
-				add(ConversationStates.ATTENDING, "offer", null, ConversationStates.ATTENDING,
-				        "No trade.", null);
+				addOffer("No trade.");
  				addGoodbye("see yoo.");
 			}
 		};

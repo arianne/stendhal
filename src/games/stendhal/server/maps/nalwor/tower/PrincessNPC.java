@@ -2,7 +2,6 @@ package games.stendhal.server.maps.nalwor.tower;
 
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
-import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Node;
@@ -50,8 +49,7 @@ public class PrincessNPC implements ZoneConfigurator {
 				addGreeting("Hail to thee, human.");
 				addJob("I'm a princess. What can I do?");
 				addHelp("A persistent person could do a #task for me.");
-				add(ConversationStates.ATTENDING, "offer", null, ConversationStates.ATTENDING,
-				        "I don't trade. My parents would have considered it beneath me.", null);
+				addOffer("I don't trade. My parents would have considered it beneath me.");
  				addGoodbye("Goodbye, strange one.");
 			}
 		};

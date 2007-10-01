@@ -4,7 +4,6 @@ import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
 import games.stendhal.server.entity.npc.BuyerBehaviour;
 import games.stendhal.server.entity.npc.ConversationPhrases;
-import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.pathfinder.FixedPath;
@@ -54,11 +53,8 @@ public class BuyerNPC implements ZoneConfigurator {
 				addReply("no", "Good! You wouldn't have fit in here anyway.");
 				addJob("I'm looking after the weaponry here. We're running low. I see you have some armor you might #offer though.");
 				addHelp("I buy armor for the barracks here, make me an #offer.");
-				add(ConversationStates.ATTENDING, "offer", null, ConversationStates.ATTENDING,
-				        "Please look at the blackboard by the shields rack to see what we are short of, and what we pay.", null);
-				add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES, null,
-				        ConversationStates.ATTENDING,
-				        "Oh, thanks but no thanks. I don't need anything.", null);
+				addOffer("Please look at the blackboard by the shields rack to see what we are short of, and what we pay.");
+				addQuest("Oh, thanks but no thanks. I don't need anything.");
 				addBuyer(new BuyerBehaviour(shops.get("buyrare3")), false);
 				addGoodbye("Goodbye, comrade.");
 			}

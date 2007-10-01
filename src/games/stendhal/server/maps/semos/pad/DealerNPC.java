@@ -60,7 +60,7 @@ public class DealerNPC implements ZoneConfigurator {
 				addJob("I think you already know what I do.");
 				addHelp("To be honest mate I can't help you with much, you're better off in the city for that.");
 				addQuest("Haven't got anything for you, pal.");
-				addReply("offer","Ha! The sign on the door's a cover! This is no inn. If you want a drink, you better go back into town.");				
+				addOffer("Ha! The sign on the door's a cover! This is no inn. If you want a drink, you better go back into town.");				
 				addGoodbye("Bye.");
 			}
 		};

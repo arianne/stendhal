@@ -18,7 +18,7 @@ import java.util.Map;
  * Now she sells nalwor scrolls
  * @author kymara
  */
-public class IL0_PostNPC implements ZoneConfigurator {
+public class PostNPC implements ZoneConfigurator {
 	private ShopList shops = ShopList.get();
 
 	/**

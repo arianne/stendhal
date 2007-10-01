@@ -3,7 +3,6 @@ package games.stendhal.server.maps.ados.bar;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
 import games.stendhal.server.entity.npc.ConversationPhrases;
-import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.BuyerBehaviour;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -59,9 +58,7 @@ public class BarMaidNPC implements ZoneConfigurator {
 				addGreeting("Hi!");
 				addJob("I'm a bar maid. But we've run out of food to feed our customers, can you #offer any?");
 				addHelp("If you could #offer any meat, ham or cheese to restock our larders I'd be grateful.");
-				add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES, null,
-				        ConversationStates.ATTENDING,
-				        "Just #offers of food is enough, thank you.", null);
+				addQuest("Just #offers of food is enough, thank you.");
  				addGoodbye("Bye bye!");
 				addBuyer(new BuyerBehaviour(shops.get("buyfood")));
 			}

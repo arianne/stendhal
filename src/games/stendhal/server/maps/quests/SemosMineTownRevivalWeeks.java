@@ -64,9 +64,7 @@ public class SemosMineTownRevivalWeeks extends AbstractQuest {
 						ConversationStates.ATTENDING,
 						"She is my crazy twin sister.", null);
 				addQuest("Just have fun.");
-				add(ConversationStates.ATTENDING, Arrays.asList("offer"),
-						ConversationStates.ATTENDING,
-						"I can offer you my #friendship.", null);
+				addOffer("I can offer you my #friendship.");
 
 				// Revival Weeks
 				add(

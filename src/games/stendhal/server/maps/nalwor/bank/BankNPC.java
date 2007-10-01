@@ -16,7 +16,7 @@ import java.util.Map;
  *
  * @author kymara
  */
-public class IL0_BankNPC implements ZoneConfigurator {
+public class BankNPC implements ZoneConfigurator {
 	//
 	// ZoneConfigurator
 	//
@@ -34,7 +34,7 @@ public class IL0_BankNPC implements ZoneConfigurator {
 
 	//
 	// name inspired by a name in lotr
-	// I want him to complain if someone steals something from his chest: they should be sent to elf jail.
+	// TODO: He complains if someone steals something from his chest: they should be sent to elf jail.
 
 	private void buildoldNPC(StendhalRPZone zone, Map<String, String> attributes) {
 		SpeakerNPC oldnpc = new SpeakerNPC("Grafindle") {
@@ -50,7 +50,7 @@ public class IL0_BankNPC implements ZoneConfigurator {
 				addJob("I work here in the bank.");
 				addHelp("That room has two chests owned by this bank and two owned by Semos bank.");
 				addGoodbye("Goodbye, young human.");
-				//remaning behaviour defined in Take Gold for Grafindle quest
+				//remaining behaviour defined in Take Gold for Grafindle quest
 			}
 		};
 
@@ -83,6 +83,7 @@ public class IL0_BankNPC implements ZoneConfigurator {
 			protected void createDialog() {
 				addGreeting("Welcome to Nalwor Bank. I'm here to #help.");
 				addHelp("Customers can deposit their items in the chests in that small room behind me. The two chests on the right are under Semos management.");
+				addOffer("I can #help you.");
 				addJob("I help customers of the bank, elves and even humans.");
 				addQuest("I don't need anything, thank you.");
 				addGoodbye("Goodbye, thank you for your time.");

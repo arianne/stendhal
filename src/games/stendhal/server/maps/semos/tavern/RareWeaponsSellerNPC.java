@@ -48,18 +48,17 @@ public class RareWeaponsSellerNPC implements ZoneConfigurator {
 			protected void createDialog() {
 				addGreeting("Yo matey! You look like you need #help.");
 				addJob("I'm a trader of ... let's say ... #rare things.");
-				addHelp("Not sure if I can trust you ....");
+				addHelp("Not sure if I can trust you .... a #pirate with a bandy #leg has got to keep his #eye on new people.");
 				addQuest("Perhaps if you find some #rare #armor or #weapon ...");
 				addGoodbye("I see you!");
 				add(ConversationStates.ATTENDING, Arrays.asList("weapon", "armor", "rare"),
 				        ConversationStates.ATTENDING,
 				        "Ssshh! I'm occasionally buying rare weapons and armor. Got any? Ask for my #offer", null);
-				add(ConversationStates.ATTENDING, "offer", null, ConversationStates.ATTENDING,
-				        "Have a look at the blackboard on the wall to see my offers.", null);
+				addOffer("Have a look at the blackboard on the wall to see my offers.");
 				add(ConversationStates.ATTENDING, Arrays.asList("eye", "leg", "wood", "patch"),
 				        ConversationStates.ATTENDING, "Not every day is a lucky day ...", null);
 				add(ConversationStates.ATTENDING, "pirate", null, ConversationStates.ATTENDING,
-				        "That's none of you business!", null);
+				        "That's none of your business!", null);
 				addBuyer(new BuyerBehaviour(shops.get("buyrare")), false);
 			}
 		};

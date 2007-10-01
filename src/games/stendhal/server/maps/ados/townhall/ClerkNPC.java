@@ -55,7 +55,7 @@ public class ClerkNPC implements ZoneConfigurator {
 				addJob("I'm the clerk of Ados. I can #divorce married people.");
 				addHelp("I can #divorce people, if they are unhappily married.");
 				addQuest("I don't have anything for you.");
-				addReply("offer","The Mayor, who is upstairs, has a supply of scrolls for the city.");
+				addOffer("The Mayor, who is upstairs, has a supply of scrolls for the city.");
 				addGoodbye("Good day.");
 			}
 		};

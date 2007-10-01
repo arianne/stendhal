@@ -52,8 +52,8 @@ public class TraderNPC implements ZoneConfigurator {
 				addHelp("I buy and sell several items, ask me for my #offer.");
 				addSeller(new SellerBehaviour(shops.get("sellstuff")), false);
 				addBuyer(new BuyerBehaviour(shops.get("buystuff")), false);
-				add(ConversationStates.ATTENDING, "offer", null, ConversationStates.ATTENDING,
-				        "Have a look at the blackboards on the wall to see my offers.", null);
+				addOffer("Have a look at the blackboards on the wall to see my offers.");
+				addQuest("Talk to Hackim Easso in the smithy, he might want you.");
 				addGoodbye();
 			}
 		};

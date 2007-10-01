@@ -3,8 +3,6 @@ package games.stendhal.server.maps.fado.forest;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
 import games.stendhal.server.entity.npc.BuyerBehaviour;
-import games.stendhal.server.entity.npc.ConversationPhrases;
-import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.pathfinder.FixedPath;
@@ -57,11 +55,8 @@ public class WoodCutterNPC implements ZoneConfigurator {
 				addGreeting("Welcome to this forest, south of Or'ril river.");
 				addJob("I'm a wood cutter by trade. Can you #offer me any axes?");
 				addHelp("You can sometimes collect wood that's lying around the forest. Oh, and I take #offers of any good axe you might sell.");
-				add(ConversationStates.ATTENDING, "offer", null, ConversationStates.ATTENDING,
-				        "My axes become blunt fast. Please check the sign I made outside my lodge to see the axes I buy.", null);
-				add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES, null,
-				        ConversationStates.ATTENDING,
-				        "What's that you say? I don't need anything, though my young friend Sally over the river might need a hand.", null);
+				addOffer("My axes become blunt fast. Please check the sign I made outside my lodge to see the axes I buy.");
+				addQuest("What's that you say? I don't need anything, though my young friend Sally over the river might need a hand.");
 				addBuyer(new BuyerBehaviour(shops.get("buyaxe")), false);
  				addGoodbye("Bye.");
 			}

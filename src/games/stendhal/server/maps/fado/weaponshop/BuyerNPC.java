@@ -3,8 +3,6 @@ package games.stendhal.server.maps.fado.weaponshop;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
 import games.stendhal.server.entity.npc.BuyerBehaviour;
-import games.stendhal.server.entity.npc.ConversationPhrases;
-import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.pathfinder.FixedPath;
@@ -49,14 +47,11 @@ public class BuyerNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-				addGreeting("Welcome to my shop. I take #offers to buy items.");
-				addJob("I buy and sell weapons. I sell only to the locals here in Fado, but I will buy from you.");
-				addHelp("I buy rare weapons, ask me for my #offer.");
-				add(ConversationStates.ATTENDING, "offer", null, ConversationStates.ATTENDING,
-				        "Please look at the blackboard on the wall to see what I buy.", null);
-				add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES, null,
-				        ConversationStates.ATTENDING,
-				        "Oh, thanks but no thanks. I don't need anything.", null);
+				addGreeting("Welcome to my shop.");
+				addJob("I #trade in weapons. I sell only to the locals here in Fado, but I will buy from you.");
+				addHelp("I #deal in rare weapons. Ognir there is the ring maker, he buys the odd gem too.");
+				addOffer("Please look at the blackboard on the wall to see what I buy.");
+				addQuest("Thanks, but no thanks. I don't need anything.");
 				addBuyer(new BuyerBehaviour(shops.get("buyrare2")), false); 
 				addGoodbye("Bye - and see you soon.");
 			}

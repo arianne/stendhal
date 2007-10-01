@@ -19,7 +19,7 @@ import java.util.Map;
  *
  * @author kymara
  */
-public class IL0_BuyerNPC implements ZoneConfigurator {
+public class BuyerNPC implements ZoneConfigurator {
 	private ShopList shops = ShopList.get();
 
 	/**
@@ -51,16 +51,9 @@ public class IL0_BuyerNPC implements ZoneConfigurator {
 			protected void createDialog() {
 				addGreeting("*grrr* You dare come in my shop?");
 				addJob("I buy weapons. I pay more to elves. Ha!");
-				addHelp("I buy rare weapons, ask me for my #offer.");
-				add(ConversationStates.ATTENDING, "offer", null, ConversationStates.ATTENDING,
-				        "Look at the blackboard on the wall to see what I will buy.", null);
-				add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES, null,
-				        ConversationStates.ATTENDING,
-				        "You think I'd trust a human with anything important? You're wrong!", null);
-
-				// Why does this false go here? What is it? -- addBuyer() adds an FSM trigger
-				// to "offer" listing all items the player can sell. But "offer" should refer to
-				// the blackboard, so do not make addBuyer() add "offer".
+				addHelp("I #trade rare weapons.");
+				addOffer("Look at the blackboard on the wall to see what I will buy.");
+				addQuest("You think I'd trust a human with anything important? You're wrong!");
 				addBuyer(new BuyerBehaviour(shops.get("elfbuyrare")), false);
 				addGoodbye("Bye - be careful not to annoy the other elves as much.");
 			}

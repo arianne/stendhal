@@ -96,7 +96,7 @@
  </zone> 
   
  <zone name="int_nalwor_weaponshop" file="interiors/nalwor/weaponshop.tmx">
-  <configurator class-name="games.stendhal.server.maps.nalwor.weaponshop.IL0_BuyerNPC"/>
+  <configurator class-name="games.stendhal.server.maps.nalwor.weaponshop.BuyerNPC"/>
 
   <portal x="3" y="11" ref="entrance">
    <destination zone="0_nalwor_city" ref="weaponshop_entrance"/>
@@ -152,7 +152,7 @@
  </zone> 
  
  <zone name="int_nalwor_postoffice" file="interiors/nalwor/postoffice.tmx">
-  <configurator class-name="games.stendhal.server.maps.nalwor.postoffice.IL0_PostNPC"/>
+  <configurator class-name="games.stendhal.server.maps.nalwor.postoffice.PostNPC"/>
    <portal x="3" y="10" ref="entrance">
     <destination zone="0_nalwor_city" ref="postoffice_entrance"/>
    </portal>
@@ -259,7 +259,7 @@
  </zone>
  
  <zone name="int_nalwor_bank" file="interiors/nalwor/bank.tmx">
- <configurator class-name="games.stendhal.server.maps.nalwor.bank.IL0_BankNPC"/>
+ <configurator class-name="games.stendhal.server.maps.nalwor.bank.BankNPC"/>
    <portal x="6" y="38" ref="entrance_left">
     <destination zone="0_nalwor_city" ref="bank_entrance_left"/>
    </portal>

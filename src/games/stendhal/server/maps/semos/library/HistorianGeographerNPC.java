@@ -69,12 +69,9 @@ public class HistorianGeographerNPC implements ZoneConfigurator {
 				addHelp("I can best help you by sharing my knowledge of Faiumoni's #geography and #history, as well as the latest #news.");
 				addJob("I'm a historian and geographer, committed to writing down every objective fact about Faiumoni. Did you know I wrote most of the books in this library? Well, apart from \"Know How To Kill Creatures\", of course... Hayunn Naratha wrote that.");
 
-				add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES, null,
-				        ConversationStates.ATTENDING,
-				        "I don't think there's really anything you could do for me right now. But thanks for asking!",
-				        null);
+				addQuest("I don't think there's really anything you could do for me right now. But thanks for asking!");
 
-				add(ConversationStates.ATTENDING, Arrays.asList("offer", "buy", "scroll", "scrolls", "home", "empty",
+				add(ConversationStates.ATTENDING, Arrays.asList("offer", "buy", "trade", "deal", "scroll", "scrolls", "home", "empty",
 				        "marked", "summon", "magic", "wizard", "sorcerer"), null, ConversationStates.ATTENDING,
 				        "I don't sell scrolls anymore... I had a big argument with my supplier, #Haizen.", null);
 
