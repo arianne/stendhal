@@ -105,12 +105,14 @@ public class StendhalClient extends ClientFramework {
 				.matcher(text);
 
 		if (matcher.find()) {
-			String[] nombres = matcher.group(1).split(" ");
+			String[] names = matcher.group(1).split(" ");
 
 			whoplayers.removeAllElements();
-			for (int i = 0; i < nombres.length; i++) {
-				matcher = Pattern.compile("^([-_a-zA-Z0-9]+)\\([0-9]+\\)$")
-						.matcher(nombres[i]);
+			for (int i = 0; i < names.length; i++) {
+				/*
+				 * NOTE: On the future Players names won't have any non ascii character. 
+				 */
+				matcher = Pattern.compile("^([-_a-zA-Z0-9äöüßÄÖÜ]+)\\([0-9]+\\)$").matcher(names[i]);
 				if (matcher.find()) {
 					whoplayers.addElement(matcher.group(1));
 				}
