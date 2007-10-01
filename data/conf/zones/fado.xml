@@ -692,6 +692,14 @@ black halberd     12000
   <portal x="113" y="17" ref="school_entrance_right">
    <destination zone="int_fado_wizard_school_0" ref="entrance_right"/>
   </portal>
+  <entity x="117" y="122">
+   <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
+   <attribute name="description">You see a burning hot grill, for barbecuing meat, or maybe chicken.</attribute>
+  </entity>
+  <entity x="118" y="122">
+   <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
+   <attribute name="description">You see a barbecue, with a pot on top. Maybe it has stew inside.</attribute>
+  </entity>
 </zone>
 
 <zone name="-1_fado_great_cave_n_e3" level="-1" x="500256" y="500512" file="Level -1/fado/great_cave_n_e3.tmx">
