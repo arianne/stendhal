@@ -3078,7 +3078,7 @@
   </creature>
 
   <creature name="kalavan_housewife">
-    <type class="human" subclass="kalavan__housewife" tileid="human_kalavan.png:2"/>
+    <type class="human" subclass="kalavan_housewife" tileid="human_kalavan.png:2"/>
     <description></description>
     <attributes>
       <atk value="119"/>
