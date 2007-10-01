@@ -2851,6 +2851,33 @@
     </ai>
   </creature>
 
+  <creature name="littlewitch">
+    <type class="human" subclass="littlewitch" tileid="human_little.png:0"/>
+    <description></description>
+    <attributes>
+      <atk value="112"/>
+      <def value="19"/>
+      <hp value="160"/>
+      <speed value="0.7"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="26"/>
+    <experience value="430"/>
+    <respawn value="1010"/>
+    <drops>
+      <item value="money" quantity="[3,27]" probability="90.0"/>
+      <item value="cherry" quantity="[1,2]" probability="30.0"/>
+      <item value="apple" quantity="[1,1]" probability="30.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
   <creature name="monk">
     <type class="human" subclass="monk" tileid="human.png:4"/>
     <attributes>
@@ -7903,8 +7930,8 @@
       <size value="1,1"/>
     </attributes>
     <level value="130"/>
-    <experience value="14000"/>
-    <respawn value="5300"/>
+    <experience value="21000"/>
+    <respawn value="8300"/>
     <drops>
       <item value="money" quantity="[80,200]" probability="100.0"/>
       <item value="greater_potion" quantity="[1,2]" probability="30.0"/>
@@ -7924,6 +7951,41 @@
       </says>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="dark_elf_admiral">
+    <type class="dark_elf" subclass="dark_elf_admiral" tileid="dark_elf.png:13"/>
+    <description></description>
+    <attributes>
+      <atk value="256"/>
+      <def value="35"/>
+      <hp value="900"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="133"/>
+    <experience value="24000"/>
+    <respawn value="9000"/>
+    <drops>
+      <item value="money" quantity="[30,100]" probability="100.0"/>
+      <item value="greater_potion" quantity="[1,2]" probability="50.0"/>
+      <item value="greater_poison" quantity="[1,2]" probability="75.0"/>
+      <item value="skull_shield" quantity="[1,1]" probability="15.0"/>
+      <item value="dark_dagger" quantity="[1,1]" probability="1.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise value="Fear the dark elf armies!"/>
+        <noise value="We are the darkness you fear!"/>
+      </says>
+      <profile name="poisonous" params="15,greater_poison"/>
+      <profile name="brave"/>
+      <profile name="animal"/>
+      <profile name="offensive"/>
       <profile name="patrolling"/>
     </ai>
   </creature>
@@ -7974,7 +8036,7 @@
       <size value="1,1"/>
     </attributes>
     <level value="138"/>
-    <experience value="25800"/>
+    <experience value="26000"/>
     <respawn value="10300"/>
     <drops>
       <item value="money" quantity="[30,200]" probability="100.0"/>
