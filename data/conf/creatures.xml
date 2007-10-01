@@ -7491,7 +7491,7 @@
       <item value="chaos_shield" quantity="[1,1]" probability="1.0"/>
       <item value="chaos_cloak" quantity="[1,1]" probability="1.5"/>
       <item value="empty_scroll" quantity="[1,1]" probability="1.0"/>
-      <item value="firesword" quantity="[1,1]" probability="2.0"/>
+      <item value="fire_sword" quantity="[1,1]" probability="2.0"/>
     </drops>
     <equips>
     </equips>
