@@ -54,12 +54,12 @@ public class DeathmatchRecruiterNPC implements ZoneConfigurator {
 			protected void createDialog() {
 				addGreeting("Hey there. You look like a reasonable fighter.");
 				addJob("I'm recruiter for the Ados #deathmatch.");
-				addHelp("Have you ever heard of the Semos #deathmatch.");
+				addHelp("Have you ever heard of the Ados #deathmatch.");
 				add(ConversationStates.ATTENDING, "deathmatch", null, ConversationStates.ATTENDING,
 				        "The deathmatch is the ultimate challenge for true #heroes.", null);
 				add(ConversationStates.ATTENDING, "heroes", null, ConversationStates.ATTENDING,
 				        "Are you such a hero? I can take you to the #challenge.", null);
-				addGoodbye("I hope you will enjoy the Semos #Deathmatch!");
+				addGoodbye("I hope you will enjoy the Ados #Deathmatch!");
 
 				add(ConversationStates.ATTENDING, "challenge", null, ConversationStates.ATTENDING, null,
 				        new SpeakerNPC.ChatAction() {
