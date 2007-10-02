@@ -251,6 +251,20 @@
     </equipable>
   </item>
 
+  <item name="red_armor">
+    <type class="armor" subclass="red_armor" tileid="-1"/>
+    <description>You see a suit of red armor. The colour is a striking crimson.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <def value="12"/>
+    </attributes>
+    <weight value="45.0"/>
+    <value value="12000"/>
+    <equipable>
+      <slot name="armor"/>
+      <slot name="bag"/>
+    </equipable>
+  </item>
+
   <item name="elvish_armor">
     <type class="armor" subclass="elvish_armor" tileid="-1"/>
     <description>You see a suit of elvish armor. It's made from tree leaves! But somehow constructed to give strong defence.</description>
@@ -711,6 +725,20 @@
     </equipable>
   </item>
 
+  <item name="red_boots">
+    <type class="boots" subclass="red_boots" tileid="-1"/>
+    <description>You see a pair of red boots, the colour reminds you of fresh blood.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <def value="5"/>
+    </attributes>
+    <weight value="10.0"/>
+    <value value="848"/>
+    <equipable>
+      <slot name="feet"/>
+      <slot name="bag"/>
+    </equipable>
+  </item>
+
   <item name="steel_boots">
     <type class="boots" subclass="steel_boots" tileid="-1"/>
     <description>You see a pair of steel boots, fit for any soldier.</description>
@@ -911,6 +939,20 @@
     </attributes>
     <weight value="5.0"/>
     <value value="448"/>
+    <equipable>
+      <slot name="cloak"/>
+      <slot name="bag"/>
+    </equipable>
+  </item>
+
+  <item name="red_cloak">
+    <type class="cloak" subclass="red_spotted_cloak" tileid="-1"/>
+    <description>You see a red cloak covered in polka dots. It's terribly snazzy.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <def value="5"/>
+    </attributes>
+    <weight value="5.0"/>
+    <value value="948"/>
     <equipable>
       <slot name="cloak"/>
       <slot name="bag"/>
@@ -2413,6 +2455,20 @@
     </equipable>
   </item>
 
+  <item name="red_helmet">
+    <type class="helmet" subclass="red_helmet" tileid="-1"/>
+    <description>You see a red helmet, it reminds you of a jester's hat but you can be sure it has better protection than that.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <def value="7"/>
+    </attributes>
+    <weight value="6.0"/>
+    <value value="1512"/>
+    <equipable>
+      <slot name="head"/>
+      <slot name="bag"/>
+    </equipable>
+  </item>
+
   <item name="golden_helmet">
     <type class="helmet" subclass="golden_helmet" tileid="-1"/>
     <description>You see a heavy golden helmet. The thick metal should protect you against almost anything.</description>
@@ -3161,6 +3217,20 @@
     </attributes>
     <weight value="15.0"/>
     <value value="448"/>
+    <equipable>
+      <slot name="legs"/>
+      <slot name="bag"/>
+    </equipable>
+  </item>
+
+  <item name="red_legs">
+    <type class="legs" subclass="red_legs" tileid="-1"/>
+    <description>A pair of red legs are in your grasp.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <def value="5"/>
+    </attributes>
+    <weight value="12.0"/>
+    <value value="1512"/>
     <equipable>
       <slot name="legs"/>
       <slot name="bag"/>
@@ -4191,6 +4261,21 @@
     </attributes>
     <weight value="24.0"/>
     <value value="96768"/>
+    <equipable>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
+    </equipable>
+  </item>
+
+  <item name="red_shield">
+    <type class="shield" subclass="red_shield" tileid="-1"/>
+    <description>You see a red shield. It is a stunning shade of scarlet.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <def value="27"/>
+    </attributes>
+    <weight value="24.0"/>
+    <value value="136768"/>
     <equipable>
       <slot name="lhand"/>
       <slot name="rhand"/>
