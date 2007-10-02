@@ -68,6 +68,7 @@ public class StendhalQuestSystem {
 		loadQuest("FishermansLicenseCollector");
 		loadQuest("HatForMonogenes");
 		// loadQuest("HayunnCataclysm");
+		loadQuest("HouseBuying");
 		loadQuest("HungryJoshua");
 		loadQuest("IntroducePlayers");
 		loadQuest("JailedDwarf");
