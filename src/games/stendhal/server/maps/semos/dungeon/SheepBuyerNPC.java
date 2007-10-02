@@ -1,7 +1,5 @@
 package games.stendhal.server.maps.semos.dungeon;
 
-import games.stendhal.server.StendhalRPRuleProcessor;
-import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.npc.BuyerBehaviour;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -40,19 +38,20 @@ public class SheepBuyerNPC extends SpeakerNPCFactory {
 			@Override
 			public boolean transactAgreedDeal(SpeakerNPC seller, Player player) {
 				// amount is currently ignored.
-				if (player.hasSheep()) {
-					Sheep sheep = player.getSheep();
+				Sheep sheep = player.getSheep();
+
+				if (sheep != null) {
 					if (seller.squaredDistance(sheep) > 5 * 5) {
 						seller.say("*drool* Sheep flesh! Bring da sheep here!");
 					} else {
 						seller.say("Mmm... Is look yummy! Here, you take dis gold!");
 						payPlayer(player);
 
-						StendhalRPRuleProcessor.get().removeNPC(sheep);
-						StendhalRPWorld.get().remove(sheep.getID());
 						player.removeSheep(sheep);
-
 						player.notifyWorldAboutChanges();
+
+						sheep.getZone().remove(sheep);
+
 						return true;
 					}
 				} else {

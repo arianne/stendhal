@@ -67,10 +67,6 @@ public class OwnAction implements ActionListener {
 						List<Node> path = Path.searchPath(player, player.getX(), player.getY(), sheep.getArea(sheep
 						        .getX(), sheep.getY()), 7);
 						if (!path.isEmpty()) {
-
-							sheep.setOwner(player);
-							StendhalRPRuleProcessor.get().removeNPC(sheep);
-
 							player.setSheep(sheep);
 							player.notifyWorldAboutChanges();
 						} else {
@@ -85,7 +81,5 @@ public class OwnAction implements ActionListener {
 				}
 			}
 		}
-
-
 	}
 }

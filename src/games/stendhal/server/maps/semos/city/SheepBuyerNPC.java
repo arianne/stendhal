@@ -1,7 +1,5 @@
 package games.stendhal.server.maps.semos.city;
 
-import games.stendhal.server.StendhalRPRuleProcessor;
-import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.npc.BuyerBehaviour;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -41,8 +39,10 @@ public class SheepBuyerNPC extends SpeakerNPCFactory {
 			@Override
 			public boolean transactAgreedDeal(SpeakerNPC seller, Player player) {
 				// amount is currently ignored.
-				if (player.hasSheep()) {
-					Sheep sheep = player.getSheep();
+
+				Sheep sheep = player.getSheep();
+
+				if (sheep != null) {
 					if (seller.squaredDistance(sheep) > 5 * 5) {
 						seller.say("I can't see that sheep from here! Bring it over so I can assess it properly.");
 					} else if (getValue(sheep) < SheepSellerNPC.BUYING_PRICE) {
@@ -51,12 +51,11 @@ public class SheepBuyerNPC extends SpeakerNPCFactory {
 					} else {
 						seller.say("Thanks! Here is your money.");
 						payPlayer(player);
-
-						StendhalRPRuleProcessor.get().removeNPC(sheep);
-						StendhalRPWorld.get().remove(sheep.getID());
 						player.removeSheep(sheep);
 
 						player.notifyWorldAboutChanges();
+
+						sheep.getZone().remove(sheep);
 						return true;
 					}
 				} else {

@@ -157,11 +157,9 @@ public abstract class ScriptingSandbox {
 	public void remove(NPC npc) {
 		logger.info("Removing " + filename + " added NPC: " + npc);
 		try {
-			String id = npc.getID().getZoneID();
-			zone = StendhalRPWorld.get().getZone(id);
 			NPCList.get().remove(npc.getName());
-			StendhalRPRuleProcessor.get().removeNPC(npc);
-			zone.getNPCList().remove(npc);
+
+			zone = npc.getZone();
 			zone.remove(npc);
 			loadedNPCs.remove(npc);
 		} catch (Exception e) {
@@ -181,12 +179,10 @@ public abstract class ScriptingSandbox {
 		}
 	}
 
-
 	@SuppressWarnings("unchecked")
-    public void unload(Player player, String[] args) {
-
-
+	public void unload(Player player, String[] args) {
 		Set<NPC> setNPC = new HashSet<NPC>(loadedNPCs.keySet());
+
 		for (NPC npc : setNPC) {
 			remove(npc);
 		}
@@ -195,13 +191,10 @@ public abstract class ScriptingSandbox {
 		for (RPObject object : setRPObject) {
 			remove(object);
 		}
-
-
 	}
 
 	public boolean execute(Player player, String[] args) {
 		// do nothing
 		return true;
 	}
-
 }

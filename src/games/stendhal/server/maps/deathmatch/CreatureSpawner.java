@@ -29,13 +29,11 @@ static final Logger logger = Log4J.getLogger(CreatureSpawner.class);
 	private List<Creature> sortedCreatures = new LinkedList<Creature>();
 	private List<DeathMatchCreature> spawnedCreatures = new ArrayList<DeathMatchCreature>();
 	CreatureSpawner() {
-		super();
-
 		Collection<Creature> creatures = StendhalRPWorld.get().getRuleManager().getEntityManager().getCreatures();
 		sortedCreatures.addAll(creatures);
 		Collections.sort(sortedCreatures, new LevelBasedComparator());
-
 	}
+
 	/**
 	 * remove the critters that the player was supposed to kill
 	 */
@@ -43,18 +41,12 @@ static final Logger logger = Log4J.getLogger(CreatureSpawner.class);
 		for (Creature creature : spawnedCreatures) {
 			StendhalRPZone monsterZone = creature.getZone();
 
-			try {
-				StendhalRPRuleProcessor.get().removeNPC(creature);
-				monsterZone.getNPCList().remove(creature);
-				if (monsterZone.has(creature.getID())) {
-					monsterZone.remove(creature);
-				}
-			} catch (RPObjectNotFoundException e) {
-	//				// don't log errors here because the player may have killed a few of the monsters
-	//				logger.debug(e, e);
+			if(monsterZone != null) {
+				monsterZone.remove(creature);
 			}
 		}
 	}
+
 	/**
 	 * check if all our enemies are dead
 	 *
@@ -66,8 +58,10 @@ static final Logger logger = Log4J.getLogger(CreatureSpawner.class);
 				return false;
 			}
 		}
+
 		return true;
 	}
+
 	/**
 	 * be nice to the player and give him his daily quest creature
 	 * if he hasn't found it yet
@@ -79,6 +73,7 @@ static final Logger logger = Log4J.getLogger(CreatureSpawner.class);
 		if (dailyInfo != null) {
 			String[] dTokens = dailyInfo.split(";");
 			String daily = dTokens[0];
+
 			if (!player.hasKilled(daily)) {
 				for (Creature creature : sortedCreatures) {
 					if (creature.getName().equals(daily)) {
@@ -98,26 +93,32 @@ static final Logger logger = Log4J.getLogger(CreatureSpawner.class);
 	private Creature calculateNextCreature(int questLevel) {
 		List<Creature> possibleCreaturesToSpawn = new ArrayList<Creature>();
 		int lastLevel = 0;
+
 		for (Creature creature : sortedCreatures) {
 			if (creature.getLevel() > questLevel) {
 				break;
 			}
+
 			if (creature.getLevel() > lastLevel) {
 				possibleCreaturesToSpawn.clear();
 				lastLevel = creature.getLevel();
 			}
+
 			possibleCreaturesToSpawn.add(creature);
 		}
 
 		Creature creatureToSpawn = null;
+
 		if (possibleCreaturesToSpawn.size() == 0) {
 			creatureToSpawn = sortedCreatures.get(sortedCreatures.size() - 1);
 		} else {
 			Collections.shuffle(possibleCreaturesToSpawn);
 			creatureToSpawn = possibleCreaturesToSpawn.get(0);
 		}
+
 		return creatureToSpawn;
 	}
+
 	/**
 	 * creates a new creature of the named type and adds it to the world
 	 *
@@ -129,6 +130,7 @@ static final Logger logger = Log4J.getLogger(CreatureSpawner.class);
 	DeathMatchCreature spawnNewCreature(Creature template, Player player, DeathmatchInfo deathmatchInfo) {
 		DeathMatchCreature creature = new DeathMatchCreature(
 		        new ArenaCreature(template.getInstance(), deathmatchInfo.getArena().getShape()));
+
 		if (StendhalRPAction.placeat(deathmatchInfo.getZone(), creature, player.getX(), player.getY(), deathmatchInfo.getArena().getShape())) {
 			creature.clearDropItemList();
 			creature.attack(player);
@@ -139,6 +141,7 @@ static final Logger logger = Log4J.getLogger(CreatureSpawner.class);
 			logger.info(" could not add a creature: " + creature);
 			creature = null;
 		}
+
 		return creature;
 	}
 
@@ -148,9 +151,11 @@ static final Logger logger = Log4J.getLogger(CreatureSpawner.class);
 
 	int calculatePoints() {
 		int sum = 0;
+
 		for (DeathMatchCreature creature : spawnedCreatures) {
 			sum += creature.getDMPoints();
 		}
+
 		return sum;
 	}
 }
