@@ -35,6 +35,15 @@ import marauroa.common.game.Definition.Type;
 
 public class Corpse extends PassiveEntity implements TurnListener,
 		EquipListener {
+	/**
+	 * The killer's name attribute name.
+	 */
+	protected static final String	ATTR_KILLER	= "killer";
+
+	/**
+	 * The name attribute name.
+	 */
+	protected static final String	ATTR_NAME	= "name";
 
 	private static final Logger logger = Log4J.getLogger(Corpse.class);
 
@@ -56,8 +65,8 @@ public class Corpse extends PassiveEntity implements TurnListener,
 		entity.addAttribute("class", Type.STRING);
 		entity.addAttribute("stage", Type.BYTE);
 
-		entity.addAttribute("name", Type.STRING);
-		entity.addAttribute("killer", Type.STRING);
+		entity.addAttribute(ATTR_NAME, Type.STRING);
+		entity.addAttribute(ATTR_KILLER, Type.STRING);
 
 		entity.addRPSlot("content", 4);
 	}
@@ -132,12 +141,12 @@ public class Corpse extends PassiveEntity implements TurnListener,
 		decideSize(get("class"));
 
 		if ((killerName != null) && (victim instanceof Player)) {
-			put("name", victim.getName());
-			put("killer", killerName);
-		} else if (has("killer")) {
+			put(ATTR_NAME, victim.getName());
+			put(ATTR_KILLER, killerName);
+		} else if (has(ATTR_KILLER)) {
 			logger.error("Corpse: (" + victim + ") with null killer: ("
 					+ killerName + ")");
-			remove("killer");
+			remove(ATTR_KILLER);
 		}
 
 		Rectangle2D rect = victim.getArea();
@@ -159,11 +168,33 @@ public class Corpse extends PassiveEntity implements TurnListener,
 	// Corpse
 	//
 
+	/**
+	 * Set the killer name of the corpse.
+	 *
+	 * @param	name		The corpse's killer name.
+	 */
+	public void setKiller(final String killer) {
+		put(ATTR_KILLER, killer);
+	}
+
+
+	/**
+	 * Set the name of the corpse.
+	 *
+	 * @param	name		The corpse name.
+	 */
+	public void setName(final String name) {
+		put(ATTR_NAME, name);
+	}
+
+
 	private void modify() {
-		if (isContained()) {
-			StendhalRPWorld.get().modify(getBase());
-		} else {
-			notifyWorldAboutChanges();
+		if (getZone() != null) {
+			if (isContained()) {
+				StendhalRPWorld.get().modify(getBase());
+			} else {
+				notifyWorldAboutChanges();
+			}
 		}
 	}
 
@@ -229,12 +260,7 @@ public class Corpse extends PassiveEntity implements TurnListener,
 		if ((newStage >= 0) && (newStage <= MAX_STAGE)) {
 			stage = newStage;
 			put("stage", stage);
-
-			// Mark this object as modified if it has been added to the
-			// world already.
-			if (getZone() != null) {
-				modify();
-			}
+			modify();
 		}
 	}
 
@@ -261,15 +287,25 @@ public class Corpse extends PassiveEntity implements TurnListener,
 	public String describe() {
 		String[] stageText = { "new", "fresh", "cold", "slightly rotten",
 				"rotten", "very rotten" };
+
 		String text = "You see the " + stageText[stage] + " corpse of ";
+
 		if (hasDescription()) {
 			text = getDescription();
-		} else if (!has("name")) {
-			text += Grammar.a_noun(get("class")).replace("_", " ");
+		} else if (has(ATTR_NAME)) {
+			text += get(ATTR_NAME);
+
+			if(has(ATTR_KILLER)) {
+				text += ", killed by " + get(ATTR_KILLER);
+			}
 		} else {
-			text += get("name") + ", killed by " + get("killer");
+			// TODO: Just set name up front and use class only
+			// for client representation
+			text += Grammar.a_noun(get("class")).replace("_", " ");
 		}
-		text = text + ". You can #inspect it to see its contents.";
+
+		text += ". You can #inspect it to see its contents.";
+
 		return (text);
 	}
 

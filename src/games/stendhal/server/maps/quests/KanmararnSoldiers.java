@@ -345,8 +345,9 @@ public class KanmararnSoldiers extends AbstractQuest {
 		Corpse tom = new Corpse("youngsoldiernpc", 5, 47);
 		tom.setDegrading(false);
 		tom.setStage(4); // he died first
-		tom.put("name", "Tom");
-		tom.put("killer", "a Dwarven patrol");
+		tom.setName("Tom");
+		// TODO: Use a_noun() in Corpse?
+		tom.setKiller("a Dwarven patrol");
 		// Add our new Ex-NPC to the game world
 		zone.add(tom);
 
@@ -359,8 +360,9 @@ public class KanmararnSoldiers extends AbstractQuest {
 		Corpse charles = new Corpse("youngsoldiernpc", 94, 5);
 		charles.setDegrading(false);
 		charles.setStage(3); // he died second
-		charles.put("name", "Charles");
-		charles.put("killer", "a Dwarven patrol");
+		charles.setName("Charles");
+		// TODO: Use a_noun() in Corpse?
+		charles.setKiller("a Dwarven patrol");
 		// Add our new Ex-NPC to the game world
 		zone.add(charles);
 		// Add a refiller to automatically fill the corpse of unlucky Charles
@@ -372,8 +374,9 @@ public class KanmararnSoldiers extends AbstractQuest {
 		Corpse peter = new Corpse("youngsoldiernpc", 11, 63);
 		peter.setDegrading(false);
 		peter.setStage(2); // he died recently
-		peter.put("name", "Peter");
-		peter.put("killer", "a Dwarven patrol");
+		peter.setName("Peter");
+		// TODO: Use a_noun() in Corpse?
+		peter.setKiller("a Dwarven patrol");
 		// Add our new Ex-NPC to the game world
 		zone.add(peter);
 		// Add a refiller to automatically fill the corpse of unlucky Peter
@@ -432,5 +435,4 @@ public class KanmararnSoldiers extends AbstractQuest {
 		prepareCorpses();
 		prepareSergeant();
 	}
-
 }

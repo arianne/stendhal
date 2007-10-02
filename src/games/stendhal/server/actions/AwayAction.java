@@ -17,8 +17,6 @@ import marauroa.common.game.RPAction;
  * Process /away commands.
  */
 public class AwayAction implements ActionListener {
-
-
 	/**
 	 * Registers action.
 	 */
@@ -33,22 +31,13 @@ public class AwayAction implements ActionListener {
 	 * @param	action		The action.
 	 */
 	protected void onAway(Player player, RPAction action) {
-
-
 		if (action.has("message")) {
-			/*
-			 * Refactor.
-			 * Hide implementation.
-			 */
-			player.put("away", action.get("message"));
-		} else if (player.has("away")) {
-			player.remove("away");
+			player.setAwayMessage(action.get("message"));
+		} else {
+			player.setAwayMessage(null);
 		}
 
-		player.resetAwayReplies();
 		player.notifyWorldAboutChanges();
-
-
 	}
 
 	/**
