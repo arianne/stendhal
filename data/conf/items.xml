@@ -2707,6 +2707,306 @@
     </equipable>
   </item>
 
+ <item name="private_key_1">
+    <type class="key" subclass="red" tileid="-1"/>
+    <description>You see a private key to House 1 in Kalavan City.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="keyring"/>
+    </equipable>
+  </item>
+ <item name="private_key_2">
+    <type class="key" subclass="red" tileid="-1"/>
+    <description>You see a private key to House 2 in Kalavan City.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="keyring"/>
+    </equipable>
+  </item>
+ <item name="private_key_3">
+    <type class="key" subclass="red" tileid="-1"/>
+    <description>You see a private key to House 3 in Kalavan City.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="keyring"/>
+    </equipable>
+  </item>
+ <item name="private_key_4">
+    <type class="key" subclass="red" tileid="-1"/>
+    <description>You see a private key to House 4 in Kalavan City.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="keyring"/>
+    </equipable>
+  </item>
+ <item name="private_key_5">
+    <type class="key" subclass="red" tileid="-1"/>
+    <description>You see a private key to House 5 in Kalavan City.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="keyring"/>
+    </equipable>
+  </item>
+ <item name="private_key_6">
+    <type class="key" subclass="red" tileid="-1"/>
+    <description>You see a private key to House 6 in Kalavan City.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="keyring"/>
+    </equipable>
+  </item>
+ <item name="private_key_7">
+    <type class="key" subclass="red" tileid="-1"/>
+    <description>You see a private key to House 7 in Kalavan City.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="keyring"/>
+    </equipable>
+  </item>
+ <item name="private_key_8">
+    <type class="key" subclass="red" tileid="-1"/>
+    <description>You see a private key to House 8 in Kalavan City.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="keyring"/>
+    </equipable>
+  </item>
+ <item name="private_key_9">
+    <type class="key" subclass="red" tileid="-1"/>
+    <description>You see a private key to House 9 in Kalavan City.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="keyring"/>
+    </equipable>
+  </item>
+ <item name="private_key_10">
+    <type class="key" subclass="red" tileid="-1"/>
+    <description>You see a private key to House 10 in Kalavan City.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="keyring"/>
+    </equipable>
+  </item>
+ <item name="private_key_11">
+    <type class="key" subclass="red" tileid="-1"/>
+    <description>You see a private key to House 11 in Kalavan City.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="keyring"/>
+    </equipable>
+  </item>
+ <item name="private_key_12">
+    <type class="key" subclass="red" tileid="-1"/>
+    <description>You see a private key to House 12 in Kalavan City.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="keyring"/>
+    </equipable>
+  </item>
+ <item name="private_key_13">
+    <type class="key" subclass="red" tileid="-1"/>
+    <description>You see a private key to House 13 in Kalavan City.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="keyring"/>
+    </equipable>
+  </item>
+ <item name="private_key_14">
+    <type class="key" subclass="red" tileid="-1"/>
+    <description>You see a private key to House 14 in Kalavan City.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="keyring"/>
+    </equipable>
+  </item>
+ <item name="private_key_15">
+    <type class="key" subclass="red" tileid="-1"/>
+    <description>You see a private key to House 15 in Kalavan City.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="keyring"/>
+    </equipable>
+  </item>
+ <item name="private_key_16">
+    <type class="key" subclass="red" tileid="-1"/>
+    <description>You see a private key to House 16 in Kalavan City.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="keyring"/>
+    </equipable>
+  </item>
+ <item name="private_key_17">
+    <type class="key" subclass="red" tileid="-1"/>
+    <description>You see a private key to House 17 in Kalavan City.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="keyring"/>
+    </equipable>
+  </item>
+ <item name="private_key_18">
+    <type class="key" subclass="red" tileid="-1"/>
+    <description>You see a private key to House 18 in Kalavan City.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="keyring"/>
+    </equipable>
+  </item>
+ <item name="private_key_19">
+    <type class="key" subclass="red" tileid="-1"/>
+    <description>You see a private key to House 19 in Kalavan City.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="keyring"/>
+    </equipable>
+  </item>
+ <item name="private_key_20">
+    <type class="key" subclass="red" tileid="-1"/>
+    <description>You see a private key to House 20 in Kalavan City.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="keyring"/>
+    </equipable>
+  </item>
+ <item name="private_key_21">
+    <type class="key" subclass="red" tileid="-1"/>
+    <description>You see a private key to House 21 in Kalavan City.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="keyring"/>
+    </equipable>
+  </item>
+ <item name="private_key_23">
+    <type class="key" subclass="red" tileid="-1"/>
+    <description>You see a private key to House 23 in Kalavan City.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="keyring"/>
+    </equipable>
+  </item>
+ <item name="private_key_23">
+    <type class="key" subclass="red" tileid="-1"/>
+    <description>You see a private key to House 23 in Kalavan City.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="keyring"/>
+    </equipable>
+  </item>
+ <item name="private_key_24">
+    <type class="key" subclass="red" tileid="-1"/>
+    <description>You see a private key to House 24 in Kalavan City.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="keyring"/>
+    </equipable>
+  </item>
+ <item name="private_key_25">
+    <type class="key" subclass="red" tileid="-1"/>
+    <description>You see a private key to House 25 in Kalavan City.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="keyring"/>
+    </equipable>
+  </item>
 
   <item name="fado_hotel_key_001">
     <type class="key" subclass="hotel" tileid="-1"/>
