@@ -113,7 +113,7 @@ public class AdminSign extends ScriptImpl {
 		sb.append(" ");
 		sb.append(sign.getY());
 		sb.append(" ");
-		sb.append("\"" + sign.get("text") + "\"");
+		sb.append("\"" + sign.getText() + "\"");
 	}
 
 	/**

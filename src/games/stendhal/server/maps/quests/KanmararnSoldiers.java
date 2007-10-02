@@ -92,7 +92,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 				return false;
 			}
 
-			return corpse.get("name").equals(item.getInfoString());
+			return corpse.getName().equals(item.getInfoString());
 		}
 
 		public void onTurnReached(int currentTurn, String message) {
@@ -112,7 +112,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 					// recreate the item and fill the corpse
 					Item item = StendhalRPWorld.get().getRuleManager()
 							.getEntityManager().getItem(itemName);
-					item.setInfoString(corpse.get("name"));
+					item.setInfoString(corpse.getName());
 					item.setDescription(description);
 					corpse.add(item);
 					corpse.notifyWorldAboutChanges();
@@ -120,7 +120,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 			} catch (SlotIsFullException e) {
 				// ignore, just don't refill the corpse until someone removes
 				// the other items from the corpse
-				logger.warn("Quest corpse is full: " + corpse.get("name"));
+				logger.warn("Quest corpse is full: " + corpse.getName());
 			}
 			// continue the checking cycle
 			TurnNotifier.get().notifyInSeconds(CORPSE_REFILL_SECONDS, this);
@@ -213,7 +213,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 				player.drop(questScaleArmor);
 				Item map = StendhalRPWorld.get().getRuleManager()
 						.getEntityManager().getItem("map");
-				map.setInfoString(npc.get("name"));
+				map.setInfoString(npc.getName());
 				map
 						.setDescription("You see a hand drawn map, but no matter how you look at it, nothing on it looks familiar.");
 				player.equip(map);
@@ -262,7 +262,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 						.getEntityManager().getItem("steel_boots");
 				item.setBoundTo(player.getName());
 				// Is this infostring really needed?
-				item.setInfoString(npc.get("name"));
+				item.setInfoString(npc.getName());
 				player.equip(item);
 				player.setQuest(QUEST_SLOT, "done");
 				npc.setCurrentState(ConversationStates.ATTENDING);

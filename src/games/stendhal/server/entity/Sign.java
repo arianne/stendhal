@@ -23,6 +23,10 @@ import marauroa.common.game.Definition.Type;
  * players to be read.
  */
 public class Sign extends Entity {
+	/**
+	 * The sign text attribute name.
+	 */
+	protected static final String	ATTR_TEXT	= "text";
 
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(Sign.class);
@@ -32,7 +36,7 @@ public class Sign extends Entity {
 		try {
 			RPClass sign = new RPClass("sign");
 			sign.isA("entity");
-			sign.addAttribute("text", Type.LONG_STRING);
+			sign.addAttribute(ATTR_TEXT, Type.LONG_STRING);
 			sign.addAttribute("class", Type.STRING);
 		} catch (SyntaxException e) {
 			logger.error("cannot generate RPClass", e);
@@ -49,6 +53,21 @@ public class Sign extends Entity {
 		setResistance(100);
 	}
 
+
+	/**
+	 * Get the sign's text.
+	 *
+	 * @return	The sign text.
+	 */
+	public String getText() {
+		if(has(ATTR_TEXT)) {
+			return get(ATTR_TEXT);
+		} else {
+			return null;
+		}
+	}
+
+
 	/**
 	 * Set the sign text.
 	 * 
@@ -56,6 +75,6 @@ public class Sign extends Entity {
 	 *            The sign text.
 	 */
 	public void setText(String text) {
-		put("text", text);
+		put(ATTR_TEXT, text);
 	}
 }

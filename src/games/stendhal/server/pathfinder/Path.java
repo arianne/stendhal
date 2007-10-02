@@ -112,7 +112,7 @@ public abstract class Path {
 		if (logger.isDebugEnabled()
 				&& pathfinder.getStatus() == Pathfinder.PATH_NOT_FOUND) {
 			logger.debug("Pathfinding aborted: " + zone.getID() + " "
-					+ sourceEntity.get("name") + " (" + x + ", " + y + ") "
+					+ sourceEntity.getName() + " (" + x + ", " + y + ") "
 					+ destination + " Pathfinding time: "
 					+ (System.currentTimeMillis() - startTime));
 		}

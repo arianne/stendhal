@@ -45,8 +45,8 @@ public class AnimalKeeperNPC implements ZoneConfigurator {
 				long currentTime = System.currentTimeMillis();
 				if (lastShoutTime + 5 * 60 * 1000 < currentTime) {
 					lastShoutTime = currentTime;
-					cryForHelp = "Katinka shouts: Help! " + Grammar.A_noun(killer.get("name")) + " is eating our "
-					        + Grammar.plural(this.get("name")) + ".";
+					cryForHelp = "Katinka shouts: Help! " + Grammar.A_noun(killer.getName()) + " is eating our "
+					        + Grammar.plural(getName()) + ".";
 					// HACK: we need to wait a turn because the message is lost otherwise
 					TurnNotifier.get().notifyInTurns(0, this);
 				}

@@ -59,7 +59,7 @@ public class SheepBuyerNPC extends SpeakerNPCFactory {
 						return true;
 					}
 				} else {
-					seller.say("You don't have any sheep, " + player.get("name") + "! What are you trying to pull?");
+					seller.say("You don't have any sheep, " + player.getName() + "! What are you trying to pull?");
 				}
 
 				return false;
