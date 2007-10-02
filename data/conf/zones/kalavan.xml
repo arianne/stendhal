@@ -99,6 +99,169 @@
       <parameter name="rejected">The door to this house is locked.</parameter>
     </implementation>
   </portal>
+<!--
+  <portal x="118" y="10" ref="house_3_entrance">
+   <destination zone="int_kalavan_house_3" ref="entrance"/>
+    <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+      <parameter name="key">private_key_3</parameter>
+      <parameter name="rejected">The door to this house is locked.</parameter>
+    </implementation>
+  </portal>
+  <portal x="117" y="27" ref="house_4_entrance">
+   <destination zone="int_kalavan_house_4" ref="entrance"/>
+    <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+      <parameter name="key">private_key_4</parameter>
+      <parameter name="rejected">The door to this house is locked.</parameter>
+    </implementation>
+  </portal>
+  <portal x="121" y="43" ref="house_5_entrance">
+   <destination zone="int_kalavan_house_5" ref="entrance"/>
+    <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+      <parameter name="key">private_key_5</parameter>
+      <parameter name="rejected">The door to this house is locked.</parameter>
+    </implementation>
+  </portal>
+  <portal x="121" y="59" ref="house_6_entrance">
+   <destination zone="int_kalavan_house_6" ref="entrance"/>
+    <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+      <parameter name="key">private_key_6</parameter>
+      <parameter name="rejected">The door to this house is locked.</parameter>
+    </implementation>
+  </portal>
+  <portal x="121" y="74" ref="house_7_entrance">
+   <destination zone="int_kalavan_house_7" ref="entrance"/>
+    <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+      <parameter name="key">private_key_7</parameter>
+      <parameter name="rejected">The door to this house is locked.</parameter>
+    </implementation>
+  </portal>
+  <portal x="118" y="91" ref="house_8_entrance">
+   <destination zone="int_kalavan_house_8" ref="entrance"/>
+    <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+      <parameter name="key">private_key_8</parameter>
+      <parameter name="rejected">The door to this house is locked.</parameter>
+    </implementation>
+  </portal>
+  <portal x="118" y="106" ref="house_9_entrance">
+   <destination zone="int_kalavan_house_9" ref="entrance"/>
+    <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+      <parameter name="key">private_key_9</parameter>
+      <parameter name="rejected">The door to this house is locked.</parameter>
+    </implementation>
+  </portal>
+  <portal x="118" y="120" ref="house_10_entrance">
+   <destination zone="int_kalavan_house_10" ref="entrance"/>
+    <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+      <parameter name="key">private_key_10</parameter>
+      <parameter name="rejected">The door to this house is locked.</parameter>
+    </implementation>
+  </portal>
+  <portal x="101" y="121" ref="house_11_entrance">
+   <destination zone="int_kalavan_house_11" ref="entrance"/>
+    <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+      <parameter name="key">private_key_11</parameter>
+      <parameter name="rejected">The door to this house is locked.</parameter>
+    </implementation>
+  </portal>
+  <portal x="78" y="121" ref="house_12_entrance">
+   <destination zone="int_kalavan_house_12" ref="entrance"/>
+    <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+      <parameter name="key">private_key_12</parameter>
+      <parameter name="rejected">The door to this house is locked.</parameter>
+    </implementation>
+  </portal>
+  <portal x="61" y="121" ref="house_13_entrance">
+   <destination zone="int_kalavan_house_13" ref="entrance"/>
+    <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+      <parameter name="key">private_key_13</parameter>
+      <parameter name="rejected">The door to this house is locked.</parameter>
+    </implementation>
+  </portal>
+  <portal x="39" y="121" ref="house_14_entrance">
+   <destination zone="int_kalavan_house_14" ref="entrance"/>
+    <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+      <parameter name="key">private_key_14</parameter>
+      <parameter name="rejected">The door to this house is locked.</parameter>
+    </implementation>
+  </portal>
+  <portal x="21" y="121" ref="house_15_entrance">
+   <destination zone="int_kalavan_house_15" ref="entrance"/>
+    <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+      <parameter name="key">private_key_15</parameter>
+      <parameter name="rejected">The door to this house is locked.</parameter>
+    </implementation>
+  </portal>
+  <portal x="9" y="121" ref="house_16_entrance">
+   <destination zone="int_kalavan_house_16" ref="entrance"/>
+    <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+      <parameter name="key">private_key_16</parameter>
+      <parameter name="rejected">The door to this house is locked.</parameter>
+    </implementation>
+  </portal>
+  <portal x="6" y="106" ref="house_17_entrance">
+   <destination zone="int_kalavan_house_17" ref="entrance"/>
+    <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+      <parameter name="key">private_key_17</parameter>
+      <parameter name="rejected">The door to this house is locked.</parameter>
+    </implementation>
+  </portal>
+  <portal x="9" y="91" ref="house_18_entrance">
+   <destination zone="int_kalavan_house_18" ref="entrance"/>
+    <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+      <parameter name="key">private_key_18</parameter>
+      <parameter name="rejected">The door to this house is locked.</parameter>
+    </implementation>
+  </portal>
+  <portal x="7" y="74" ref="house_19_entrance">
+   <destination zone="int_kalavan_house_19" ref="entrance"/>
+    <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+      <parameter name="key">private_key_19</parameter>
+      <parameter name="rejected">The door to this house is locked.</parameter>
+    </implementation>
+  </portal>
+  <portal x="9" y="60" ref="house_20_entrance">
+   <destination zone="int_kalavan_house_20" ref="entrance"/>
+    <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+      <parameter name="key">private_key_20</parameter>
+      <parameter name="rejected">The door to this house is locked.</parameter>
+    </implementation>
+  </portal>
+  <portal x="6" y="44" ref="house_21_entrance">
+   <destination zone="int_kalavan_house_21" ref="entrance"/>
+    <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+      <parameter name="key">private_key_21</parameter>
+      <parameter name="rejected">The door to this house is locked.</parameter>
+    </implementation>
+  </portal>
+  <portal x="9" y="27" ref="house_22_entrance">
+   <destination zone="int_kalavan_house_22" ref="entrance"/>
+    <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+      <parameter name="key">private_key_22</parameter>
+      <parameter name="rejected">The door to this house is locked.</parameter>
+    </implementation>
+  </portal>
+  <portal x="7" y="10" ref="house_23_entrance">
+   <destination zone="int_kalavan_house_23" ref="entrance"/>
+    <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+      <parameter name="key">private_key_23</parameter>
+      <parameter name="rejected">The door to this house is locked.</parameter>
+    </implementation>
+  </portal>
+  <portal x="27" y="10" ref="house_24_entrance">
+   <destination zone="int_kalavan_house_24" ref="entrance"/>
+    <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+      <parameter name="key">private_key_24</parameter>
+      <parameter name="rejected">The door to this house is locked.</parameter>
+    </implementation>
+  </portal>
+  <portal x="45" y="10" ref="house_25_entrance">
+   <destination zone="int_kalavan_house_25" ref="entrance"/>
+    <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+      <parameter name="key">private_key_25</parameter>
+      <parameter name="rejected">The door to this house is locked.</parameter>
+    </implementation>
+  </portal>
+-->
   <entity x="69" y="47">
   	<implementation class-name="games.stendhal.server.entity.FishSource">
     	<parameter name="species">trout</parameter>
@@ -168,12 +331,126 @@
    <destination zone="0_kalavan_city" ref="house_1_entrance"/>
   </portal>
  </zone>
-
  <zone name="int_kalavan_house_2" file="interiors/kalavan/house_2.tmx">
   <portal x="12" y="23" ref="entrance">
    <destination zone="0_kalavan_city" ref="house_2_entrance"/>
   </portal>
  </zone>
+ <!-- <zone name="int_kalavan_house_3" file="interiors/kalavan/house_3.tmx">
+  <portal x="12" y="23" ref="entrance">
+   <destination zone="0_kalavan_city" ref="house_3_entrance"/>
+  </portal>
+ </zone>
+ <zone name="int_kalavan_house_4" file="interiors/kalavan/house_4.tmx">
+  <portal x="12" y="23" ref="entrance">
+   <destination zone="0_kalavan_city" ref="house_4_entrance"/>
+  </portal>
+ </zone>
+ <zone name="int_kalavan_house_5" file="interiors/kalavan/house_5.tmx">
+  <portal x="12" y="23" ref="entrance">
+   <destination zone="0_kalavan_city" ref="house_5_entrance"/>
+  </portal>
+ </zone>
+ <zone name="int_kalavan_house_6" file="interiors/kalavan/house_6.tmx">
+  <portal x="12" y="23" ref="entrance">
+   <destination zone="0_kalavan_city" ref="house_6_entrance"/>
+  </portal>
+ </zone>
+ <zone name="int_kalavan_house_7" file="interiors/kalavan/house_7.tmx">
+  <portal x="12" y="23" ref="entrance">
+   <destination zone="0_kalavan_city" ref="house_7_entrance"/>
+  </portal>
+ </zone>
+ <zone name="int_kalavan_house_8" file="interiors/kalavan/house_8.tmx">
+  <portal x="12" y="23" ref="entrance">
+   <destination zone="0_kalavan_city" ref="house_8_entrance"/>
+  </portal>
+ </zone>
+ <zone name="int_kalavan_house_9" file="interiors/kalavan/house_9.tmx">
+  <portal x="12" y="23" ref="entrance">
+   <destination zone="0_kalavan_city" ref="house_9_entrance"/>
+  </portal>
+ </zone>
+ <zone name="int_kalavan_house_10" file="interiors/kalavan/house_10.tmx">
+  <portal x="12" y="23" ref="entrance">
+   <destination zone="0_kalavan_city" ref="house_10_entrance"/>
+  </portal>
+ </zone>
+ <zone name="int_kalavan_house_11" file="interiors/kalavan/house_11.tmx">
+  <portal x="12" y="23" ref="entrance">
+   <destination zone="0_kalavan_city" ref="house_11_entrance"/>
+  </portal>
+ </zone>
+ <zone name="int_kalavan_house_12" file="interiors/kalavan/house_12.tmx">
+  <portal x="12" y="23" ref="entrance">
+   <destination zone="0_kalavan_city" ref="house_12_entrance"/>
+  </portal>
+ </zone>
+ <zone name="int_kalavan_house_13" file="interiors/kalavan/house_13.tmx">
+  <portal x="12" y="23" ref="entrance">
+   <destination zone="0_kalavan_city" ref="house_13_entrance"/>
+  </portal>
+ </zone>
+ <zone name="int_kalavan_house_14" file="interiors/kalavan/house_14.tmx">
+  <portal x="12" y="23" ref="entrance">
+   <destination zone="0_kalavan_city" ref="house_14_entrance"/>
+  </portal>
+ </zone>
+ <zone name="int_kalavan_house_15" file="interiors/kalavan/house_15.tmx">
+  <portal x="12" y="23" ref="entrance">
+   <destination zone="0_kalavan_city" ref="house_15_entrance"/>
+  </portal>
+ </zone>
+ <zone name="int_kalavan_house_16" file="interiors/kalavan/house_16.tmx">
+  <portal x="12" y="23" ref="entrance">
+   <destination zone="0_kalavan_city" ref="house_16_entrance"/>
+  </portal>
+ </zone>
+ <zone name="int_kalavan_house_17" file="interiors/kalavan/house_17.tmx">
+  <portal x="12" y="23" ref="entrance">
+   <destination zone="0_kalavan_city" ref="house_17_entrance"/>
+  </portal>
+ </zone>
+ <zone name="int_kalavan_house_18" file="interiors/kalavan/house_18.tmx">
+  <portal x="12" y="23" ref="entrance">
+   <destination zone="0_kalavan_city" ref="house_18_entrance"/>
+  </portal>
+ </zone>
+ <zone name="int_kalavan_house_19" file="interiors/kalavan/house_19.tmx">
+  <portal x="12" y="23" ref="entrance">
+   <destination zone="0_kalavan_city" ref="house_19_entrance"/>
+  </portal>
+ </zone>
+ <zone name="int_kalavan_house_20" file="interiors/kalavan/house_20.tmx">
+  <portal x="12" y="23" ref="entrance">
+   <destination zone="0_kalavan_city" ref="house_20_entrance"/>
+  </portal>
+ </zone>
+ <zone name="int_kalavan_house_21" file="interiors/kalavan/house_21.tmx">
+  <portal x="12" y="23" ref="entrance">
+   <destination zone="0_kalavan_city" ref="house_21_entrance"/>
+  </portal>
+ </zone>
+ <zone name="int_kalavan_house_22" file="interiors/kalavan/house_22.tmx">
+  <portal x="12" y="23" ref="entrance">
+   <destination zone="0_kalavan_city" ref="house_22_entrance"/>
+  </portal>
+ </zone>
+ <zone name="int_kalavan_house_23" file="interiors/kalavan/house_23.tmx">
+  <portal x="12" y="23" ref="entrance">
+   <destination zone="0_kalavan_city" ref="house_23_entrance"/>
+  </portal>
+ </zone>
+ <zone name="int_kalavan_house_24" file="interiors/kalavan/house_24.tmx">
+  <portal x="12" y="23" ref="entrance">
+   <destination zone="0_kalavan_city" ref="house_24_entrance"/>
+  </portal>
+ </zone>
+ <zone name="int_kalavan_house_25" file="interiors/kalavan/house_25.tmx">
+  <portal x="12" y="23" ref="entrance">
+   <destination zone="0_kalavan_city" ref="house_25_entrance"/>
+  </portal>
+ </zone> -->
  <!--  Level -1 -->
 
 
