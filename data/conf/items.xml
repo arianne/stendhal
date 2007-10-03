@@ -3027,18 +3027,6 @@
       <slot name="keyring"/>
     </equipable>
   </item>
- <item name="private_key_23">
-    <type class="key" subclass="pink" tileid="-1"/>
-    <description>You see a private key to House 23 in Kalavan City.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
-    </attributes>
-    <weight value="1.0"/>
-    <value value="1"/>
-    <equipable>
-      <slot name="bag"/>
-      <slot name="keyring"/>
-    </equipable>
-  </item>
  <item name="private_key_24">
     <type class="key" subclass="red" tileid="-1"/>
     <description>You see a private key to House 24 in Kalavan City.</description>
@@ -3052,7 +3040,7 @@
     </equipable>
   </item>
  <item name="private_key_25">
-    <type class="key" subclass="purple" tileid="-1"/>
+    <type class="key" subclass="pink" tileid="-1"/>
     <description>You see a private key to House 25 in Kalavan City.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
     </attributes>
