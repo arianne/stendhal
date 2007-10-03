@@ -3820,7 +3820,7 @@
       <item value="potion" quantity="[1,3]" probability="10.0"/>
       <item value="stone_cloak" quantity="[1,1]" probability="0.5"/>
       <item value="perch" quantity="[1,1]" probability="1.0"/>
-      <item value="assassin_dagger" quantity="[1,1]" probability="0.05"/>
+      <item value="night_dagger" quantity="[1,1]" probability="0.05"/>
     </drops>
     <equips>
     </equips>
@@ -4053,6 +4053,7 @@
     <drops>
       <item value="money" quantity="[3,30]" probability="90.0"/>
       <item value="demon_sword" quantity="[1,1]" probability="1.0"/>
+      <item value="hell_dagger" quantity="[1,1]" probability="1.0"/>
     </drops>
     <equips>
     </equips>
@@ -4874,6 +4875,7 @@
       <item value="shadow_boots" quantity="[1,1]" probability="1.5"/>
       <item value="shadow_helmet" quantity="[1,1]" probability="0.35"/>
       <item value="fire_sword" quantity="[1,1]" probability="0.5"/>
+      <item value="night_dagger" quantity="[1,1]" probability="1.0"/>
     </drops>
     <equips>
     </equips>
@@ -4902,6 +4904,7 @@
     <drops>
       <item value="money" quantity="[10,50]" probability="100.0"/>
       <item value="great_sword" quantity="[1,1]" probability="3.0"/>
+      <item value="night_dagger" quantity="[1,1]" probability="1.0"/>
     </drops>
     <equips>
     </equips>
@@ -5916,6 +5919,38 @@
     </ai>
   </creature>
 
+  <creature name="amazoness_archer">
+    <type class="amazon" subclass="amazoness_archer" tileid="amazon.png:1"/>
+    <description></description>
+    <attributes>
+      <atk value="130"/>
+      <def value="26"/>
+      <hp value="600"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="63"/>
+    <experience value="3100"/>
+    <respawn value="1870"/>
+    <drops>
+      <item value="money" quantity="[1,30]" probability="100.0"/>
+      <item value="steel_arrow" quantity="[1,5]" probability="40.5"/>
+      <item value="hunter_crossbow" quantity="[1,1]" probability="1.0"/>
+      <item value="red_boots" quantity="[1,1]" probability="5.0"/>
+      <item value="red_armor" quantity="[1,1]" probability="0.5"/>
+    </drops>
+    <equips>      
+      <slot name="lhand" item="power_arrow" quantity="10000"/>
+      <slot name="rhand" item="composite_bow" quantity="1"/>
+    </equips>
+    <ai>
+      <profile name="archer"/>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
   <creature name="barbarian_leader">
     <type class="human" subclass="barbarian_leader" tileid="human_barbarian.png:2"/>
     <description></description>
@@ -6036,6 +6071,35 @@
       <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="amazoness_hunter">
+    <type class="amazon" subclass="amazoness_hunter" tileid="amazon.png:5"/>
+    <description></description>
+    <attributes>
+      <atk value="170"/>
+      <def value="33"/>
+      <hp value="700"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="64"/>
+    <experience value="3390"/>
+    <respawn value="2000"/>
+    <drops>
+      <item value="money" quantity="[1,30]" probability="100.0"/>
+      <item value="wooden_spear" quantity="[2,5]" probability="10.0"/>
+      <item value="hunter_crossbow" quantity="[1,1]" probability="3.0"/>
+      <item value="red_legs" quantity="[1,1]" probability="3.0"/>
+      <item value="red_cloak" quantity="[1,1]" probability="2.5"/>
+    </drops>
+    <equips>      
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
       <profile name="patrolling"/>
     </ai>
   </creature>
@@ -6277,6 +6341,34 @@
       <profile name="offensive"/>
       <profile name="human"/>
       <profile name="archer"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="amazoness_coastguard">
+    <type class="amazon" subclass="amazoness_coastguard" tileid="amazon.png:3"/>
+    <description></description>
+    <attributes>
+      <atk value="190"/>
+      <def value="35"/>
+      <hp value="700"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="69"/>
+    <experience value="4110"/>
+    <respawn value="2000"/>
+    <drops>
+      <item value="money" quantity="[1,30]" probability="100.0"/>
+      <item value="red_shield" quantity="[1,1]" probability="1.0"/>
+      <item value="red_legs" quantity="[1,1]" probability="2.5"/>
+      <item value="sandwich" quantity="[1,1]" probability="5.5"/>
+    </drops>
+    <equips>      
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
       <profile name="patrolling"/>
     </ai>
   </creature>
@@ -6558,6 +6650,37 @@
     </ai>
   </creature>
 
+  <creature name="amazoness_archer_commander">
+    <type class="amazon" subclass="amazoness_archer_commander" tileid="amazon.png:0"/>
+    <description></description>
+    <attributes>
+      <atk value="140"/>
+      <def value="30"/>
+      <hp value="700"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="73"/>
+    <experience value="4620"/>
+    <respawn value="2400"/>
+    <drops>
+      <item value="money" quantity="[1,30]" probability="100.0"/>
+      <item value="power_arrow" quantity="[2,4]" probability="30.0"/>
+      <item value="red_legs" quantity="[1,1]" probability="2.5"/>
+      <item value="red_boots" quantity="[1,1]" probability="5.5"/>
+    </drops>
+    <equips>
+      <slot name="lhand" item="power_arrow" quantity="10000"/>
+      <slot name="rhand" item="composite_bow" quantity="1"/>
+    </equips>
+    <ai>
+      <profile name="archer"/>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
   <creature name="naga">
     <type class="mutant" subclass="naga" tileid="naga.png:2"/>
     <description></description>
@@ -6611,6 +6734,35 @@
       <profile name="offensive"/>
       <profile name="human"/>
       <profile name="heal" params="5,50"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+ <creature name="amazoness_elite_coastguard">
+    <type class="amazon" subclass="amazoness_elite_coastguard" tileid="amazon.png:5"/>
+    <description></description>
+    <attributes>
+      <atk value="190"/>
+      <def value="35"/>
+      <hp value="700"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="75"/>
+    <experience value="4960"/>
+    <respawn value="2500"/>
+    <drops>
+      <item value="money" quantity="[5,30]" probability="100.0"/>
+      <item value="red_armor" quantity="[1,1]" probability="2.0"/>
+      <item value="red_cloak" quantity="[1,1]" probability="5.5"/>
+      <item value="red_boots" quantity="[1,1]" probability="5.5"/>
+      <item value="fish_pie" quantity="[1,1]" probability="3.5"/>
+    </drops>
+    <equips>      
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
       <profile name="patrolling"/>
     </ai>
   </creature>
@@ -6701,6 +6853,33 @@
       <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+ <creature name="amazoness_bodyguard">
+    <type class="amazon" subclass="amazoness_bodyguard" tileid="amazon.png:2"/>
+    <description></description>
+    <attributes>
+      <atk value="195"/>
+      <def value="30"/>
+      <hp value="500"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="77"/>
+    <experience value="5290"/>
+    <respawn value="2590"/>
+    <drops>
+      <item value="money" quantity="[15,40]" probability="100.0"/>
+      <item value="red_armor" quantity="[1,1]" probability="2.0"/>
+      <item value="red_shield" quantity="[1,1]" probability="5.5"/>
+     </drops>
+    <equips>      
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
       <profile name="patrolling"/>
     </ai>
   </creature>
@@ -6966,6 +7145,33 @@
       <profile name="offensive"/>
       <profile name="human"/>
       <profile name="heal" params="5,50"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+ <creature name="amazoness_commander">
+    <type class="amazon" subclass="amazoness_commander" tileid="amazon.png:4"/>
+    <description></description>
+    <attributes>
+      <atk value="220"/>
+      <def value="32"/>
+      <hp value="500"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="82"/>
+    <experience value="6330"/>
+    <respawn value="2990"/>
+    <drops>
+      <item value="money" quantity="[10,40]" probability="100.0"/>
+      <item value="red_helmet" quantity="[1,1]" probability="12.0"/>
+      <item value="red_cloak" quantity="[1,1]" probability="4.5"/>
+     </drops>
+    <equips>      
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
       <profile name="patrolling"/>
     </ai>
   </creature>
@@ -7529,6 +7735,34 @@
     </ai>
   </creature>
 
+ <creature name="amazoness_vigilance">
+    <type class="amazon" subclass="amazoness_vigilance" tileid="amazon.png:8"/>
+    <description></description>
+    <attributes>
+      <atk value="220"/>
+      <def value="33"/>
+      <hp value="900"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="95"/>
+    <experience value="9520"/>
+    <respawn value="3990"/>
+    <drops>
+      <item value="money" quantity="[10,70]" probability="100.0"/>
+      <item value="red_armor" quantity="[1,1]" probability="5.0"/>
+      <item value="red_cloak" quantity="[1,1]" probability="6.5"/>
+      <item value="red_helmet" quantity="[1,1]" probability="5.0"/>
+     </drops>
+    <equips>      
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
   <creature name="mithrilbourgh_general">
     <type class="human" subclass="soldier_general" tileid="human_soldier.png:4"/>
     <description></description>
@@ -7737,7 +7971,7 @@
     </attributes>
     <level value="104"/>
     <experience value="12800"/>
-    <respawn value="2950"/>
+    <respawn value="5950"/>
     <drops>
       <item value="mega_potion" quantity="[1,1]" probability="20.0"/>
       <item value="money" quantity="[40,100]" probability="100.0"/>
@@ -7752,6 +7986,34 @@
       <profile name="offensive"/>
       <profile name="human"/>
       <profile name="heal" params="5,50"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+ <creature name="amazoness_imperator">
+    <type class="amazon" subclass="amazoness_imperator" tileid="amazon.png:7"/>
+    <description></description>
+    <attributes>
+      <atk value="210"/>
+      <def value="32"/>
+      <hp value="800"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="105"/>
+    <experience value="13000"/>
+    <respawn value="5990"/>
+    <drops>
+      <item value="money" quantity="[10,70]" probability="100.0"/>
+      <item value="imperator_sword" quantity="[1,1]" probability="7.0"/>
+      <item value="red_cloak" quantity="[1,1]" probability="8.5"/>
+      <item value="red_helmet" quantity="[1,1]" probability="6.0"/>
+     </drops>
+    <equips>      
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
       <profile name="patrolling"/>
     </ai>
   </creature>
@@ -8166,7 +8428,7 @@
       <item value="greater_potion" quantity="[1,2]" probability="50.0"/>
       <item value="greater_poison" quantity="[1,2]" probability="75.0"/>
       <item value="skull_shield" quantity="[1,1]" probability="15.0"/>
-      <item value="dark_dagger" quantity="[1,1]" probability="1.0"/>
+      <item value="hell_dagger" quantity="[1,1]" probability="1.0"/>
     </drops>
     <equips>
     </equips>
@@ -8563,6 +8825,36 @@
       <item value="greater_antidote" quantity="[1,6]" probability="80.0"/>
       <item value="money" quantity="[100,400]" probability="100.0"/>
       <item value="green_thing_boots" quantity="[1,1]" probability="3.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="animal"/>
+      <profile name="offensive"/>
+      <profile name="heal" params="20,50"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+    <creature name="amazoness_giant">
+    <type class="giant_human" subclass="amazoness_giant" tileid="giant_human.png:10"/>
+    <description></description>
+    <attributes>
+      <atk value="270"/>
+      <def value="42"/>
+      <hp value="1700"/>
+      <speed value="1.0"/>
+      <size value="2,2"/>
+    </attributes>
+    <level value="175"/>
+    <experience value="55300"/>
+    <respawn value="17300"/>
+    <drops>
+      <item value="money" quantity="[80,100]" probability="100.0"/>
+      <item value="red_armor" quantity="[1,1]" probability="20.0"/>
+      <item value="red_shield" quantity="[1,1]" probability="10.0"/>
+      <item value="greater_potion" quantity="[2,5]" probability="80.0"/>
     </drops>
     <equips>
     </equips>

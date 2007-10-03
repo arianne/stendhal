@@ -4483,6 +4483,22 @@
     </equipable>
   </item>
 
+  <item name="night_dagger">
+    <type class="sword" subclass="black_dagger" tileid="-1"/>
+    <description>You see a night dagger, to be used with stealth.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <atk value="2"/>
+      <rate value="1"/>
+    </attributes>
+    <weight value="0.1"/>
+    <value value="6250"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+    </equipable>
+  </item>
+
   <item name="obsidian_knife">
     <type class="sword" subclass="obsidian_knife" tileid="-1"/>
     <description>You see a knife whose blade is crafted to a lethal edge from finest obsidian.</description>
@@ -4536,6 +4552,22 @@
     <description>You see a dark dagger. It's designed to be used with a fast motion.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="8"/>
+      <rate value="2"/>
+    </attributes>
+    <weight value="0.2"/>
+    <value value="12800"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+    </equipable>
+  </item>
+
+  <item name="hell_dagger">
+    <type class="sword" subclass="hell_dagger" tileid="-1"/>
+    <description>You see a hell dagger. Is the colour that of the burning fires of Hell?.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <atk value="9"/>
       <rate value="2"/>
     </attributes>
     <weight value="0.2"/>
@@ -4601,6 +4633,22 @@
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="14"/>
       <rate value="4"/>
+    </attributes>
+    <weight value="4.0"/>
+    <value value="34300"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+    </equipable>
+  </item>
+
+  <item name="imperator_sword">
+    <type class="sword" subclass="imperator_sword" tileid="-1"/>
+    <description>You see a an imperator sword, crafted from you know not what.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <atk value="14"/>
+      <rate value="3"/>
     </attributes>
     <weight value="4.0"/>
     <value value="34300"/>
