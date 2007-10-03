@@ -26,10 +26,15 @@ public class HouseBuying extends AbstractQuest {
 	// constants
 	private static final String QUEST_SLOT = "house";
 
-	// Cost to buy house
-	private static final int COST = 10000;
+	// Cost to buy house (lots!)
+	private static final int COST = 100000;
         // Cost to buy spare keys
 	private static final int COST2 = 1000;
+        /* age required to buy a house. Note, age is in minutes, not seconds! 
+	 * So this is 300 hours */
+	private static final int REQUIRED_AGE = 300 * 60;
+	
+
         /* This is the initial postman quest slot
 	 * It would be around 50 long when all 25 houses full.
 	 * If more houses get added (in other zones?) then we must 
@@ -88,7 +93,12 @@ public class HouseBuying extends AbstractQuest {
 					@Override
 					public void fire(Player player, String text,
 							SpeakerNPC engine) {
-						if (!player.hasQuest(QUEST_SLOT)) {
+					        if ( player.getAge()< REQUIRED_AGE){ 
+						    engine.say("The cost of a new house is " + COST
+									+ " money. But I am afraid I cannot trust you with house ownership just yet, as you have not been a part of this world long enough.");
+					        }
+
+                                                else if (!player.hasQuest(QUEST_SLOT)) {
 							engine.say("The cost of a new house is " + COST
 									+ " money. If you have a house in mind, please tell me the number now. I will check availability.");
 							engine.setCurrentState(ConversationStates.QUEST_OFFERED);
@@ -120,11 +130,12 @@ public class HouseBuying extends AbstractQuest {
 						    //it's available, so take money
 						    if (player.drop("money", COST)) {
 							        Item key = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("private_key_"+text);
-						         	engine.say("Congratulations, here is your key to house " + text + "!");
+						         	engine.say("Congratulations, here is your key to house " + text + "! Do you want to buy a spare key, at a price of " + COST2 + " money?");
 							        player.equip(key);
 								//remember what house they own
 								player.setQuest(QUEST_SLOT, text);
 								postman.setQuest(QUEST_SLOT, postmanslot + ";" + text);
+								engine.setCurrentState(ConversationStates.QUESTION_1);
 							} else {
 								engine.say("You do not have enough money to buy a house!");
 							}
@@ -141,15 +152,17 @@ public class HouseBuying extends AbstractQuest {
 					
 				});
 				}
-				//player wants spare keys
-				add(ConversationStates.QUESTION_1, ConversationPhrases.YES_MESSAGES, null, ConversationStates.ATTENDING, null, new SpeakerNPC.ChatAction() {
+				// we need to warn people who buy spare keys about the chest being accessible to other players with a key
+				add(ConversationStates.QUESTION_1, ConversationPhrases.YES_MESSAGES, null, ConversationStates.QUESTION_2, "Before we go on, I must warn you that anyone with a key to your house can access the chest in it, and take any items you left there. Of course they can also leave items there themselves. Do you still wish to buy a spare key?", null);
+				// player wants spare keys and is ok with chest being accessible to other person.
+				add(ConversationStates.QUESTION_2, ConversationPhrases.YES_MESSAGES, null, ConversationStates.ATTENDING, null, new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, String text,
 							SpeakerNPC engine) {
 					    if (player.drop("money", COST2)) {
 						String house = player.getQuest(QUEST_SLOT);
 						Item key = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("private_key_"+house);
-					      	engine.say("Here you go, a spare key to your house. Remember, only give spare keys to people you trust!");
+					      	engine.say("Here you go, a spare key to your house. Please remember, only give spare keys to people you #really, #really, trust!");
 						player.equip(key);
 					    }
 					    else {
@@ -158,11 +171,13 @@ public class HouseBuying extends AbstractQuest {
 					}
 				    }
 				);
+				add(ConversationStates.QUESTION_2, ConversationPhrases.NO_MESSAGES, null, ConversationStates.ATTENDING, "That is wise of you. It is certainly better to restrict use of your house to those you can really trust.", null);
 				add(ConversationStates.QUESTION_1, ConversationPhrases.NO_MESSAGES, null, ConversationStates.ATTENDING, "No problem! If I can help you with anything else, just ask.", null);
 				addJob("I'm an estate agent. In simple terms, I sell houses to anyone who wants to buy one. They #cost a lot, of course.");
-				addOffer("I sell houses.");
+				addReply("really","That's right, really, really, really. Really.");
+				addOffer("I sell houses, please ask about the #cost.");
 				addHelp("You can buy a house if there are any available. If you can pay the #cost, I'll give you a key. As a house owner you can buy spare keys to give your friends. Inside each house is a chest to store items. You can also safely leave your sheep inside.");
-				addQuest("You may buy houses from me.");
+				addQuest("You may buy houses from me, please ask the #cost if you are interested.");
 				addGoodbye("Goodbye.");
 			}
 		};
