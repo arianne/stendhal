@@ -127,7 +127,7 @@ class DestinationObject extends MoveableObject {
 			// check if someone tried to put an item into itself (maybe
 			// through
 			// various levels of indirection)
-			if (rpslot.hasAsParent(entity)) {
+			if (rpslot.hasAsAncestor(entity)) {
 				logger.warn("tried to put item " + entity.getID()
 						+ " into itself, equip rejected");
 				return false;
