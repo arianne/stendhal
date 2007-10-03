@@ -228,3 +228,6 @@ tileset/item/flag.png	*@300	0:1:2
 tileset/item/flag.png   *@300   3:4:5
 tileset/item/flag.png   *@300   6:7:8
 tileset/item/flag.png   *@300   9:10:11
+
+tileset/item/chemistry/bottle.png	*@300	0:1:2:3:4
+tileset/item/chemistry/flask.png	*@300	0:1:2

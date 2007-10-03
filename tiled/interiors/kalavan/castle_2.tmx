@@ -21,39 +21,63 @@
  <tileset name="stairs" firstgid="350" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/stairs.png"/>
  </tileset>
+ <tileset name="imperial" firstgid="354" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/creature/human_imperial.png"/>
+ </tileset>
+ <tileset name="edges" firstgid="368" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/wall/bricked_edges.png"/>
+ </tileset>
+ <tileset name="kalavan" firstgid="383" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/creature/human_kalavan.png"/>
+ </tileset>
+ <tileset name="iron bars" firstgid="388" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/entrance/int_iron_bars.png"/>
+ </tileset>
+ <tileset name="fence" firstgid="394" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/fence/fence_chunky.png"/>
+ </tileset>
+ <tileset name="wall thin bricks" firstgid="403" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/wall/int_wall_thin_bricks.png"/>
+ </tileset>
+ <tileset name="blood" firstgid="415" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/blood/nsew_stains.png"/>
+ </tileset>
+ <tileset name="lamp" firstgid="419" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/candle/lamp.png"/>
+ </tileset>
  <layer name="0_floor" width="32" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAItkZGCIHMWjeBDhcwy0wbR2L7nygxHrMVAXj9o/aj+xeA8DcRhmNrHqBzpPDUYMAE0/sYUACAAA
+   H4sIAAAAAAAAAItkZGCIHMWjeBDhcwy0wbR2L7nygxHrMVAXU2r/VArdNNT9P5Ls38NAHIaZTaz6gc5TgxEDAITRchMACAAA
   </data>
  </layer>
  <layer name="1_terrain" width="32" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjYPCA/UB8gEb4IBH28zEyMFwD0iqM1MWXgGYKMRJn/ysgbcFIXfyMBPv/AenpQLyKSngKEP8i0f5CwkqJBkU0tD+BCDNpaT8xgBz7o4HYFQ+OQdLjRUBtBIn2X2UgLj/vgWIzItReJtJ+JSrne2SsRoT9ZlTO98jYCov9ABoI5SYACAAA
+   H4sIAAAAAAAAAGNgGAWjYPCA/UB8gEb4IBH28zEyMFwD0iqM1MWXgGYKMRJn/ysgbcGIiuehYXR5QvgZCfb/A9I1QLoICU9GsnsGmhwhXA3Ev0i0vwRN7VQk+2cRYQ4yKKaC/bhAAhHqaGk/MYAc+8uBdCEBDAOE1JWRaP9VBuLy8x4oNkMThwFksctE2q9E5XyPjNWIsN+MjLxNLLbCYj8AlRVmLQAIAAA=
   </data>
  </layer>
  <layer name="2_object" width="32" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjYBSMglEwCoYOMAFiUyg2GwD7WYCYFYjZgJh9AOyXAGJJIJYCYmkKzAEAB2eXqQAIAAA=
+   H4sIAAAAAAAAAGNgGAWjYBQMdlDDyMBQxAhhz2ekvX2LqWgHNcxqB5rRAcWddPD/KBjcoBqYBkwZILhmANIDCxCzAjEbELPT33oGCSCWBGIpIJamwBwAxUY1mAAIAAA=
   </data>
  </layer>
  <layer name="3_roof" width="32" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjYBSMglEwCgYPOEAE3gPFZkSoJRWoMFIXD1YAAF+b3TgACAAA
+   H4sIAAAAAAAAAGNgGAWjYBQMdlDDyMBQBMXVjPS3vwVoZysUtw2A/aNgZIEDBPAeNExIPalAhZG6eLACAJWSSvgACAAA
   </data>
  </layer>
  <layer name="4_roof_add" width="32" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjYBSMglEwCoYOMAFiUyg2GwD7WYCYFYjZgJh9AOyXAGJJIJYCYmkKzAEAB2eXqQAIAAA=
+   H4sIAAAAAAAAAGNgGAWjYBSMAvxgPuNAu2AUjAIEMAFiUyg2GwD7WYCYFYjZgJh9AOyXAGJJIJYCYmkKzAEAaHHJIQAIAAA=
   </data>
  </layer>
  <layer name="objects" width="32" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjYBSMglEwCkbBSAMAnrro8QAIAAA=
+   H4sIAAAAAAAAAGNgGAWjYBSMAsKgkZF4tekkqMUGMijUDwNZVDJnIMBgczu5cZoyyPwxChAAABb9/VAACAAA
   </data>
  </layer>
  <layer name="collision" width="32" height="16" opacity="0.33">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAHNkZGBwHMWjeBSPYiRMbTBq/6j9tEqjA51HhrL9AP6wLb8ACAAA
+   H4sIAAAAAAAAAHNkZGBwHMWjeBQPaowO6G0nMh+be/ABWviXVECp/ZSCUftplz7pmQ+Hm/0AU1cxWgAIAAA=
   </data>
  </layer>
  <layer name="protection" width="32" height="16">
