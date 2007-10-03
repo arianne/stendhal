@@ -36,7 +36,6 @@ import java.util.Set;
 import marauroa.common.Log4J;
 import marauroa.common.Logger;
 import marauroa.common.game.Definition;
-import marauroa.common.game.IRPZone;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
@@ -119,9 +118,10 @@ public abstract class RPEntity extends GuidedEntity {
 			"lhand", "armor", "finger", "cloak", "legs", "feet", "keyring" };
 
 	public static void generateRPClass() {
-		stats = Statistics.getStatistics();
+
 
 		try {
+			stats = Statistics.getStatistics();
 			RPClass entity = new RPClass("rpentity");
 			entity.isA("active_entity");
 			entity.addAttribute("name", Type.STRING);
@@ -881,21 +881,6 @@ public abstract class RPEntity extends GuidedEntity {
 		}
 	}
 
-	private void letAttackersStopAttack() {
-		// a bit awkward, but we need to make sure there are no
-		// concurrent modification exceptions.
-		List<RPEntity> rpEntitiesThatAttacked = new LinkedList<RPEntity>();
-		for (Entity attacker : attackSources) {
-			if (attacker instanceof RPEntity) {
-				rpEntitiesThatAttacked.add((RPEntity) attacker);
-			}
-		}
-		for (RPEntity attacker : rpEntitiesThatAttacked) {
-			if (attacker.attackTarget == this) {
-				attacker.stopAttack();
-			}
-		}
-	}
 
 	/**
 	 * This method is called when the entity has been killed ( hp==0 ).
@@ -952,8 +937,6 @@ public abstract class RPEntity extends GuidedEntity {
 		stopAttack();
 		int oldLevel = this.getLevel();
 		int oldXP = this.getXP();
-
-		letAttackersStopAttack();
 
 		// Establish how much xp points your are rewarded
 		if (oldXP > 0) {
@@ -1750,9 +1733,9 @@ public abstract class RPEntity extends GuidedEntity {
 	 *	The title, or <code>null</code>.
 	 */
 	public void setTitle(final String title) {
-		if(title != null) {
+		if (title != null) {
 			put(ATTR_TITLE, title);
-		} else if(has(ATTR_TITLE)) {
+		} else if (has(ATTR_TITLE)) {
 			remove(ATTR_TITLE);
 		}
 	}
