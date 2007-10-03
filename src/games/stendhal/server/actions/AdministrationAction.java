@@ -427,7 +427,7 @@ public class AdministrationAction implements ActionListener {
 				return;
 			}
 
-			if (stat.equals("title") && (changed instanceof RPEntity)) {
+			if (stat.equals("title") && (changed instanceof Player)) {
 				player.sendPrivateText("The title attribute may not be changed directly.");
 				return;
 			}
