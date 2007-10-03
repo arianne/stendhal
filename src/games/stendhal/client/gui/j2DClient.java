@@ -583,13 +583,6 @@ public class j2DClient extends StendhalUI {
 					}
 				}
 
-				/*
-				 * Hack! Need to update when changes arrive
-				 */
-				if (keyring.isVisible()) {
-					keyring.update();
-				}
-
 				// check if the player object has changed.
 				// Note: this is an exact object reference check
 				if (user != lastuser) {

@@ -554,7 +554,7 @@ public class StendhalClient extends ClientFramework {
 	class StendhalPerceptionListener implements IPerceptionListener {
 
 		public boolean onAdded(RPObject object) {
-			rpobjDispatcher.dispatchAdded(object, false);
+			rpobjDispatcher.dispatchAdded(object, isUser(object));
 			return false;
 		}
 
@@ -569,7 +569,7 @@ public class StendhalClient extends ClientFramework {
 		}
 
 		public boolean onDeleted(RPObject object) {
-			rpobjDispatcher.dispatchRemoved(object, false);
+			rpobjDispatcher.dispatchRemoved(object, isUser(object));
 			return false;
 		}
 
@@ -654,5 +654,24 @@ public class StendhalClient extends ClientFramework {
 
 	public String getAccountUsername() {
 		return userName;
+	}
+
+
+	/**
+	 * Check to see if the object is the connected user.
+	 * This is an ungly hack needed because the perception protocol
+	 * distinquishes between normal and private (my) object changes,
+	 * but not full add/removes.
+	 *
+	 * @param	object		An object.
+	 *
+	 * @return	<code>true</code> if it is the user object.
+	 */
+	public boolean isUser(final RPObject object) {
+		if(object.getRPClass().subclassOf("player")) {
+			return getAccountUsername().equalsIgnoreCase(object.get("name"));
+		} else {
+			return false;
+		}
 	}
 }

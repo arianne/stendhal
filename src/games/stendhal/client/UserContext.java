@@ -164,7 +164,8 @@ public class UserContext implements RPObjectChangeListener {
 	protected void fireBuddyAdded(String buddyName) {
 		BuddyChangeListener[] listeners = buddyListeners;
 
-		// System.err.println("fireBuddyAdded() - buddyName = " + buddyName);
+		logger.debug("Buddy added = " + buddyName);
+
 		for (BuddyChangeListener l : listeners) {
 			l.buddyAdded(buddyName);
 		}
@@ -178,6 +179,8 @@ public class UserContext implements RPObjectChangeListener {
 	 */
 	protected void fireBuddyOffline(String buddyName) {
 		BuddyChangeListener[] listeners = buddyListeners;
+
+		logger.debug("Buddy offline = " + buddyName);
 
 		for (BuddyChangeListener l : listeners) {
 			l.buddyOffline(buddyName);
@@ -193,6 +196,8 @@ public class UserContext implements RPObjectChangeListener {
 	protected void fireBuddyOnline(String buddyName) {
 		BuddyChangeListener[] listeners = buddyListeners;
 
+		logger.debug("Buddy online = " + buddyName);
+
 		for (BuddyChangeListener l : listeners) {
 			l.buddyOnline(buddyName);
 		}
@@ -207,7 +212,8 @@ public class UserContext implements RPObjectChangeListener {
 	protected void fireBuddyRemoved(String buddyName) {
 		BuddyChangeListener[] listeners = buddyListeners;
 
-		// System.err.println("fireBuddyRemoved() - buddyName = " + buddyName);
+		logger.debug("Buddy removed = " + buddyName);
+
 		for (BuddyChangeListener l : listeners) {
 			l.buddyRemoved(buddyName);
 		}
@@ -221,6 +227,8 @@ public class UserContext implements RPObjectChangeListener {
 	 */
 	protected void fireFeatureDisabled(String name) {
 		FeatureChangeListener[] listeners = featureListeners;
+
+		logger.debug("Feature disabled: " + name);
 
 		for (FeatureChangeListener l : listeners) {
 			l.featureDisabled(name);
@@ -237,6 +245,8 @@ public class UserContext implements RPObjectChangeListener {
 	 */
 	protected void fireFeatureEnabled(String name, String value) {
 		FeatureChangeListener[] listeners = featureListeners;
+
+		logger.debug("Feature enabled: " + name + " = " + value);
 
 		for (FeatureChangeListener l : listeners) {
 			l.featureEnabled(name, value);
@@ -429,8 +439,13 @@ public class UserContext implements RPObjectChangeListener {
 	 * @param changes
 	 *            The object changes.
 	 */
-	protected void processFeatureAdded(final RPObject changes) {
+	protected void processFeaturesAdded(final RPObject changes) {
 		for (String featureName : changes) {
+			// Skip internal ID field
+			if(featureName.equals("id")) {
+				continue;
+			}
+
 			if (!features.containsKey(featureName)) {
 				String value = changes.get(featureName);
 
@@ -446,8 +461,13 @@ public class UserContext implements RPObjectChangeListener {
 	 * @param changes
 	 *            The object changes.
 	 */
-	protected void processFeatureRemoved(final RPObject changes) {
+	protected void processFeaturesRemoved(final RPObject changes) {
 		for (String featureName : changes) {
+			// Skip internal ID field
+			if(featureName.equals("id")) {
+				continue;
+			}
+
 			if (features.containsKey(featureName)) {
 				features.remove(featureName);
 				fireFeatureDisabled(featureName);
@@ -469,14 +489,6 @@ public class UserContext implements RPObjectChangeListener {
 		if (object.has("adminlevel")) {
 			adminlevel = object.getInt("adminlevel");
 			// fireAdminLevelChanged(adminlevel);
-		}
-
-		if (object.hasSlot("!buddy")) {
-			RPSlot slot = object.getSlot("!buddy");
-
-			if (slot.size() != 0) {
-				processBuddiesAdded(slot.getFirst());
-			}
 		}
 	}
 
@@ -545,15 +557,6 @@ public class UserContext implements RPObjectChangeListener {
 
 		sheepID = 0;
 		// fireSheepOwned(sheepID);
-
-		/*
-		 * When object goes away, buddies also go
-		 */
-		for (String buddyName : buddies.keySet()) {
-			fireBuddyRemoved(buddyName);
-		}
-
-		buddies.clear();
 	}
 
 	/**
@@ -564,17 +567,23 @@ public class UserContext implements RPObjectChangeListener {
 	 * @param	sobject		The slot object.
 	 */
 	public void onSlotAdded(final RPObject object, final String slotName, final RPObject sobject) {
-		Entity entity = gameObjects.get(sobject);
+		if (slotName.equals("!buddy")) {
+			processBuddiesAdded(sobject);
+		} if (slotName.equals("!features")) {
+			processFeaturesAdded(sobject);
+		} else if(sobject.getRPClass().subclassOf("entity")) {
+			Entity entity = gameObjects.get(sobject);
 
-		if(entity != null) {
-			Entity parent = gameObjects.get(object);
+			if(entity != null) {
+				Entity parent = gameObjects.get(object);
 
-			if(logger.isDebugEnabled()) {
-				logger.debug("Added: " + entity);
-				logger.debug("   To: " + parent + "  [" + slotName + "]");
+				if(logger.isDebugEnabled()) {
+					logger.debug("Added: " + entity);
+					logger.debug("   To: " + parent + "  [" + slotName + "]");
+				}
+
+				entitySlotListener.entityAdded(parent, slotName, entity);
 			}
-
-			entitySlotListener.entityAdded(parent, slotName, entity);
 		}
 	}
 
@@ -589,6 +598,8 @@ public class UserContext implements RPObjectChangeListener {
 	public void onSlotChangedAdded(final RPObject object, final String slotName, final RPObject sobject, final RPObject schanges) {
 		if (slotName.equals("!buddy")) {
 			processBuddiesAdded(schanges);
+		} else if (slotName.equals("!features")) {
+			processFeaturesAdded(schanges);
 		}
 	}
 
@@ -603,6 +614,8 @@ public class UserContext implements RPObjectChangeListener {
 	public void onSlotChangedRemoved(final RPObject object, final String slotName, final RPObject sobject, final RPObject schanges) {
 		if (slotName.equals("!buddy")) {
 			processBuddiesRemoved(schanges);
+		} else if (slotName.equals("!features")) {
+			processFeaturesRemoved(schanges);
 		}
 	}
 
@@ -614,17 +627,23 @@ public class UserContext implements RPObjectChangeListener {
 	 * @param	sobject		The slot object.
 	 */
 	public void onSlotRemoved(final RPObject object, final String slotName, final RPObject sobject) {
-		Entity entity = gameObjects.get(sobject);
+		if (slotName.equals("!buddy")) {
+			processBuddiesRemoved(sobject);
+		} else if (slotName.equals("!features")) {
+			processFeaturesRemoved(sobject);
+		} else if(sobject.getRPClass().subclassOf("entity")) {
+			Entity entity = gameObjects.get(sobject);
 
-		if(entity != null) {
-			Entity parent = gameObjects.get(object);
+			if(entity != null) {
+				Entity parent = gameObjects.get(object);
 
-			if(logger.isDebugEnabled()) {
-				logger.debug("Removed: " + entity);
-				logger.debug("   From: " + parent + "  [" + slotName + "]");
+				if(logger.isDebugEnabled()) {
+					logger.debug("Removed: " + entity);
+					logger.debug("   From: " + parent + "  [" + slotName + "]");
+				}
+
+				entitySlotListener.entityRemoved(parent, slotName, entity);
 			}
-
-			entitySlotListener.entityRemoved(parent, slotName, entity);
 		}
 	}
 }

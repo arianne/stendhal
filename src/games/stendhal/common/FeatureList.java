@@ -10,11 +10,12 @@ package games.stendhal.common;
 //
 
 import java.util.HashMap;
+import java.util.Iterator;
 
 /**
  * A list of [enabled] features.
  */
-public class FeatureList {
+public class FeatureList implements Iterable<String> {
 	protected HashMap<String, String> list;
 
 	/**
@@ -125,6 +126,7 @@ public class FeatureList {
 		return list.containsKey(name);
 	}
 
+
 	/**
 	 * Enable/disable a feature.
 	 *
@@ -162,5 +164,17 @@ public class FeatureList {
 		}
 
 		return true;
+	}
+
+
+	//
+	// Iterable
+	//
+
+	/**
+	 * Get the feature names.
+	 */
+	public Iterator<String> iterator() {
+		return list.keySet().iterator();
 	}
 }

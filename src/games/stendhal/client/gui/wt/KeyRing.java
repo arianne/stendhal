@@ -10,7 +10,6 @@ package games.stendhal.client.gui.wt;
 //
 
 import games.stendhal.client.StendhalClient;
-import games.stendhal.client.entity.User;
 import games.stendhal.client.events.FeatureChangeListener;
 
 /**
@@ -28,31 +27,12 @@ public class KeyRing extends EntityContainer implements FeatureChangeListener {
 		// src/games/stendhal/server/entity/RPEntity.java
 		super(client, "keyring", 2, 4);
 
-		// Not yet
-		// client.addFeatureChangeListener(this);
+		/*
+		 * Register feature listener
+		 */
+		client.addFeatureChangeListener(this);
 	}
 
-	//
-	// KeyRing
-	//
-
-	public void update() {
-		User user = User.get();
-
-		if (user != null) {
-			if (user.hasFeature("keyring")) {
-				if (!isMinimizeable()) {
-					setMinimizeable(true);
-					setMinimized(false);
-				}
-			} else {
-				if (isMinimizeable()) {
-					setMinimizeable(false);
-					setMinimized(true);
-				}
-			}
-		}
-	}
 
 	//
 	// FeatureChangeListener
@@ -88,5 +68,21 @@ public class KeyRing extends EntityContainer implements FeatureChangeListener {
 				setMinimized(false);
 			}
 		}
+	}
+
+
+	//
+	// WtPanel
+	//
+
+	/**
+	 * Destroy the panel.
+	 */
+	@Override
+	public void destroy() {
+		// TODO: Could be cleaner reference
+		StendhalClient.get().removeFeatureChangeListener(this);
+
+		super.destroy();
 	}
 }

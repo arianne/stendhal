@@ -223,6 +223,10 @@ public class RPObjectChangeDispatcher {
 		 */
 		listener.onAdded(object);
 
+		if(user) {
+			userListener.onAdded(object);
+		}
+
 		/*
 		 * Walk each slot
 		 */
@@ -465,6 +469,10 @@ public class RPObjectChangeDispatcher {
 		 * Call after children have been notified
 		 */
 		listener.onRemoved(object);
+
+		if(user) {
+			userListener.onRemoved(object);
+		}
 	}
 
 	/**

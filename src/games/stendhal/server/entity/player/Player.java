@@ -186,11 +186,11 @@ public class Player extends RPEntity {
 		if (player.getSlot("!buddy").size() > 0) {
 			RPObject buddies = player.getSlot("!buddy").iterator().next();
 			for (String name : buddies) {
-				// what is this underscore supposed to do?
+				// TODO: Remove '_' prefix if ID is made completely virtual
 				if (name.charAt(0) == '_') {
-					// cut off the strange underscore
-					Player buddy = StendhalRPRuleProcessor.get().getPlayer(
-							name.substring(1));
+					name = name.substring(1);
+
+					Player buddy = StendhalRPRuleProcessor.get().getPlayer(name);
 					if (buddy != null && !buddy.isGhost()) {
 						player.notifyOnline(buddy.getName());
 					} else {
@@ -199,6 +199,21 @@ public class Player extends RPEntity {
 				}
 			}
 		}
+
+		// Convert old features list
+		if (player.has("features")) {
+			logger.info("Converting features for " + player.getName() + ": " + player.get("features"));
+
+			FeatureList features = new FeatureList();
+			features.decode(player.get("features"));
+
+			for(String name : features) {
+				player.setFeature(name, features.get(name));
+			}
+
+			player.remove("features");
+		}
+
 		player.updateItemAtkDef();
 
 		PlayerRPClass.welcome(player);
@@ -268,7 +283,6 @@ public class Player extends RPEntity {
 		poisonToConsume = new LinkedList<ConsumableItem>();
 		directions = new ArrayList<Direction>();
 		awayReplies = new HashMap<String, Long>();
-		features = new FeatureList();
 
 		// Beginner's luck (unless overriden by update)
 		karma = 10.0;
@@ -572,14 +586,6 @@ public class Player extends RPEntity {
 		if (has("karma")) {
 			karma = getDouble("karma");
 		}
-
-		if (features != null) {
-			if (has("features")) {
-				features.decode(get("features"));
-			} else {
-				features.clear();
-			}
-		}
 	}
 
 	/**
@@ -781,7 +787,7 @@ public class Player extends RPEntity {
 	 * @return The feature value, or <code>null</code> is not-enabled.
 	 */
 	public String getFeature(String name) {
-		return features.get(name);
+		return getKeyedSlot("!features", name);
 	}
 
 	/**
@@ -793,7 +799,7 @@ public class Player extends RPEntity {
 	 * @return <code>true</code> if the feature is enabled.
 	 */
 	public boolean hasFeature(String name) {
-		return features.has(name);
+		return (getKeyedSlot("!features", name) != null);
 	}
 
 	/**
@@ -805,8 +811,10 @@ public class Player extends RPEntity {
 	 *            Flag indicating if enabled.
 	 */
 	public void setFeature(String name, boolean enabled) {
-		if (features.set(name, enabled)) {
-			put("features", features.encode());
+		if(enabled) {
+			setFeature(name, "");
+		} else {
+			setFeature(name, null);
 		}
 	}
 
@@ -820,9 +828,7 @@ public class Player extends RPEntity {
 	 *            The feature value, or <code>null</code> to disable.
 	 */
 	public void setFeature(String name, String value) {
-		if (features.set(name, value)) {
-			put("features", features.encode());
-		}
+		setKeyedSlot("!features", name, value);
 	}
 
 

@@ -199,7 +199,10 @@ lion_shield_+1 enhanced_lion_shield
 		// Does player have full ghostmode?
 		player.addAttribute("fullghostmode", Type.INT); // 0 for off, 1 for on
 
-		// Client side features
+		// Player features
+		player.addRPSlot("!features", 1, Definition.PRIVATE);
+
+		// TODO: Obsolete - Remove before DB reset
 		player.addAttribute("features", Type.LONG_STRING, Definition.PRIVATE);
 
 		// Last time this player attacked another player
@@ -215,7 +218,7 @@ lion_shield_+1 enhanced_lion_shield
 		String[] slotsNormal = { "bag", "rhand", "lhand", "head", "armor", "legs", "feet", "finger", "cloak", "bank",
 		        "bank_ados", "zaras_chest_ados", "bank_fado", "bank_nalwor", "spells", "keyring" };
 
-		String[] slotsSpecial = { "!quests", "!kills", "!buddy", "!ignore", "!visited", "skills", "!tutorial"};
+		String[] slotsSpecial = { "!quests", "!kills", "!buddy", "!ignore", "!visited", "skills", "!tutorial", "!features" };
 
 		// Port from 0.03 to 0.10
 		if (!object.has("base_hp")) {
