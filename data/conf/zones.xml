@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <zone-groups>
 	<zone-group uri="zones/ados.xml"/>
+	<zone-group uri="zones/amazon.xml"/>
 	<zone-group uri="zones/athor.xml"/>
 	<zone-group uri="zones/fado.xml"/>
 	<zone-group uri="zones/nalwor.xml"/>
