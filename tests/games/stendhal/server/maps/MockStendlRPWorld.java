@@ -24,10 +24,4 @@ public class MockStendlRPWorld extends StendhalRPWorld {
 
 	}
 
-	@Override
-	public int getTurnsInSeconds(int seconds) {
-		return seconds;
-	}
-
-
 }
