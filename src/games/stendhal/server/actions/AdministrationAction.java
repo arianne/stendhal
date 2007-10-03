@@ -427,6 +427,11 @@ public class AdministrationAction implements ActionListener {
 				return;
 			}
 
+			if (stat.equals("title") && (changed instanceof RPEntity)) {
+				player.sendPrivateText("The title attribute may not be changed directly.");
+				return;
+			}
+
 			RPClass clazz = changed.getRPClass();
 
 			boolean isNumerical = false;
