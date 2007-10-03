@@ -759,6 +759,7 @@ black halberd     12000
    <implementation class-name="games.stendhal.server.entity.Sign"/>
    <attribute name="text">The TrailBlazer, by Best Broom, ltd.</attribute>
    <attribute name="class">transparent</attribute>
+   <attribute name="resistance">0</attribute>
   </entity>
   <portal x="85" y="112" ref="house2_entrance">
    <destination zone="int_fado_wizard_house2" ref="entrance"/>
@@ -822,11 +823,13 @@ black halberd     12000
    <implementation class-name="games.stendhal.server.entity.Sign"/>
    <attribute name="text">Sweeper 3000 series</attribute>
    <attribute name="class">transparent</attribute>
+   <attribute name="resistance">0</attribute>
   </entity>
   <entity x="88" y="113">
    <implementation class-name="games.stendhal.server.entity.Sign"/>
    <attribute name="text">LightningBolt 100, property of B. Fly.</attribute>
    <attribute name="class">transparent</attribute>
+   <attribute name="resistance">0</attribute>
   </entity>
 </zone>
 
