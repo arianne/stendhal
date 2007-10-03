@@ -106,9 +106,8 @@ public abstract class RPEntity extends GuidedEntity {
 	 * To prevent players from gaining attack and defense experience by fighting
 	 * against very weak creatures, they only gain atk and def xp for so many
 	 * turns after they have actually been damaged by the enemy.
-	 */
-	private static final int TURNS_WHILE_FIGHT_XP_INCREASES = StendhalRPWorld.get()
-			.getTurnsInSeconds(12);
+//	 */
+	private static final int TURNS_WHILE_FIGHT_XP_INCREASES =12;
 
 	/**
 	 * All the slots considered to be "with" the entity. Listed in priority
