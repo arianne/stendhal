@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package games.stendhal.server.maps;
 
@@ -18,4 +18,16 @@ public class MockStendlRPWorld extends StendhalRPWorld {
 		}
 		return instance;
 	}
+
+	@Override
+	protected void initialize() {
+
+	}
+
+	@Override
+	public int getTurnsInSeconds(int seconds) {
+		return seconds;
+	}
+
+
 }
