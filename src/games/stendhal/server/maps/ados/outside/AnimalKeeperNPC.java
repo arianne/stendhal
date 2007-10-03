@@ -41,12 +41,13 @@ public class AnimalKeeperNPC implements ZoneConfigurator {
 		@Override
 		public void onDead(Entity killer) {
 			super.onDead(killer);
+
 			if (!(killer instanceof Player)) {
 				long currentTime = System.currentTimeMillis();
 				if (lastShoutTime + 5 * 60 * 1000 < currentTime) {
 					lastShoutTime = currentTime;
-					cryForHelp = "Katinka shouts: Help! " + Grammar.A_noun(killer.getName()) + " is eating our "
-					        + Grammar.plural(getName()) + ".";
+					cryForHelp = "Katinka shouts: Help! " + Grammar.A_noun(killer.getTitle()) + " is eating our "
+					        + Grammar.plural(getTitle()) + ".";
 					// HACK: we need to wait a turn because the message is lost otherwise
 					TurnNotifier.get().notifyInTurns(0, this);
 				}
@@ -61,7 +62,7 @@ public class AnimalKeeperNPC implements ZoneConfigurator {
 		public void onTurnReached(int currentTurn, String message) {
 			// HACK: we need to wait a turn because the message is lost otherwise
 			// sends the message to all players
-			StendhalRPAction.shout(cryForHelp.replace('_', ' '));
+			StendhalRPAction.shout(cryForHelp);
 		}
 	}
 

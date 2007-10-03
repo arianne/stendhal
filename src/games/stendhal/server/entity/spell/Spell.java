@@ -28,6 +28,10 @@ import marauroa.common.game.Definition.Type;
  * @author timothyb89
  */
 public class Spell extends PassiveEntity implements EquipListener {
+	/**
+	 * The spell name attribute name.
+	 */
+	protected static final String	ATTR_NAME	= "name";
 
 	/** list of possible slots for this item */
 	private List<String> possibleSlots = Arrays.asList("spells");
@@ -41,7 +45,7 @@ public class Spell extends PassiveEntity implements EquipListener {
 		RPClass entity = new RPClass("spell");
 		entity.isA("entity");
 		entity.addAttribute("class", Type.STRING); // the spell class (other purposes, just to code old code for now)
-		entity.addAttribute("name", Type.STRING); // name of spell (such as "heal")
+		entity.addAttribute(ATTR_NAME, Type.STRING); // name of spell (such as "heal")
                 
 	}
 
@@ -55,7 +59,7 @@ public class Spell extends PassiveEntity implements EquipListener {
 	public Spell(String name, Map<String, String> attributes) {
 		this();
 
-		put("name", name);
+		put(ATTR_NAME, name);
 
 		if (attributes != null) {
 			// store all attributes
@@ -67,7 +71,6 @@ public class Spell extends PassiveEntity implements EquipListener {
 
 	/** no public 'default' item */
 	private Spell() {
-		super();
 		setRPClass("spell");
 		put("type", "spell");
 		update();
@@ -80,12 +83,74 @@ public class Spell extends PassiveEntity implements EquipListener {
 
 	@Override
 	public String describe() {
-		String text = "You see " + Grammar.a_noun(getName().replace("_", " ")) + ".";
-		return (text);
+		String name = getName();
+
+		if(name != null) {
+			return "You see " + Grammar.a_noun(name) + ".";
+		} else {
+			return super.describe();
+		}
 	}
 
 
 	public boolean canBeEquippedIn(String slot) {
 		return possibleSlots.contains(slot);
+	}
+
+
+	/**
+	 * Get the entity name.
+	 *
+	 * @return The entity's name, or <code>null</code> if undefined.
+	 */
+	public String getName() {
+		if (has(ATTR_NAME)) {
+			return get(ATTR_NAME);
+		} else {
+			return null;
+		}
+	}
+
+
+	//
+	// Entity
+	//
+
+	/**
+	 * Returns the name or something that can be used to identify the
+	 * entity for the player
+	 *
+	 * @param definite
+	 *	<code>true</code> for "the", and <code>false</code> for "a/an"
+	 *	in case the entity has no name.
+	 *
+	 * @return	The description name.
+	 */
+	@Override
+	public String getDescriptionName(final boolean definite) {
+		String name = getName();
+
+		if (name != null) {
+			return name;
+		} else {
+			return super.getDescriptionName(definite);
+		}
+	}
+
+
+	/**
+	 * Get the nicely formatted entity title/name.
+	 *
+	 * @return The title, or <code>null</code> if unknown.
+	 */
+	@Override
+	public String getTitle() {
+		String name = getName();
+
+		if (name != null) {
+			return name.replace("_", " ");
+		} else {
+			return super.getTitle();
+		}
 	}
 }

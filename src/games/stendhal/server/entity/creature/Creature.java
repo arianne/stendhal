@@ -153,8 +153,7 @@ public class Creature extends NPC {
 		setDEF(copy.getDEF());
 		setXP(copy.getXP());
 		initHP(copy.getBaseHP());
-		setName(copy.get("name"));
-		//setName(copy.getName());
+		setName(copy.getName());
 
 		setLevel(copy.getLevel());
 
@@ -233,7 +232,7 @@ public class Creature extends NPC {
 
 		setEntityClass(clazz);
 		setEntitySubClass(subclass);
-		put("name", name);
+		setName(name);
 
 		put("x", 0);
 		put("y", 0);
@@ -525,7 +524,8 @@ public class Creature extends NPC {
 						if (player.poison(item)) {
 							StendhalRPRuleProcessor.get().addGameEvent(getName(), "poison", player.getName());
 
-							player.sendPrivateText("You have been poisoned by a " + getName());
+							// TODO: Use a_noun()?
+							player.sendPrivateText("You have been poisoned by a " + getTitle());
 						}
 					}
 				}

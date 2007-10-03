@@ -179,32 +179,32 @@ public class BetManager extends ScriptImpl implements TurnListener {
 
 			// wrong syntax
 			if (error) {
-				engine.say("Sorry " + player.getName() + ", i did not understand you.");
+				engine.say("Sorry " + player.getTitle() + ", i did not understand you.");
 				return;
 			}
 
 			// check that item is a Consumeable Item
 			Item item = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(betInfo.itemName);
 			if (!(item instanceof ConsumableItem)) {
-				engine.say("Sorry " + player.getName() + ", i only accept food and drinks.");
+				engine.say("Sorry " + player.getTitle() + ", i only accept food and drinks.");
 				return;
 			}
 
 			// check target
 			if (!targets.contains(betInfo.target)) {
-				engine.say("Sorry " + player.getName() + ", i only accept bets on " + targets);
+				engine.say("Sorry " + player.getTitle() + ", i only accept bets on " + targets);
 				return;
 			}
 
 			// drop item
 			if (!player.drop(betInfo.itemName, betInfo.amount)) {
-				engine.say("Sorry " + player.getName() + ", you don't have " + betInfo.amount + " " + betInfo.itemName);
+				engine.say("Sorry " + player.getTitle() + ", you don't have " + betInfo.amount + " " + betInfo.itemName);
 				return;
 			}
 
 			// store bet in list and confirm it
 			betInfos.add(betInfo);
-			engine.say(player.getName() + " your bet " + betInfo.betToString() + " was accepted");
+			engine.say(player.getTitle() + ", your bet " + betInfo.betToString() + " was accepted");
 
 			// TODO: put items on ground
 			// TODO: mark items on ground with: playername "betted" amount itemname "on" target.

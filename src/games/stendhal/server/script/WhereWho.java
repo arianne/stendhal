@@ -43,7 +43,7 @@ public class WhereWho extends ScriptImpl {
 			}
 
 			// add player
-			sb.append(player.getName());
+			sb.append(player.getTitle());
 			sb.append(" (");
 			sb.append(player.getLevel());
 			sb.append(")  ");

@@ -80,8 +80,7 @@ public class StackableItem extends Item implements Stackable {
 		}
 
 		if (quantity >= amountToSplitOff) {
-			StackableItem newItem = (StackableItem) StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
-			        get("name"));
+			StackableItem newItem = (StackableItem) StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(getName());
 
 			newItem.setQuantity(amountToSplitOff);
 

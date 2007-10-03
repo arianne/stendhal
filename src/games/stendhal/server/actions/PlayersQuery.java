@@ -65,10 +65,7 @@ public class PlayersQuery implements ActionListener {
 		for (Player p : getSortedPlayers()) {
 			if (!p.isGhost()
 					|| player.getAdminLevel() > REQUIRED_LEVEL_TO_SEE_GHOST) {
-				String playername = p.getName();
-				if (p.has("title")) {
-					playername = p.get("title");
-				}
+				String playername = p.getTitle();
 
 				online.append(playername);
 
@@ -97,7 +94,7 @@ public class PlayersQuery implements ActionListener {
 		Collections.sort(players, new Comparator<Player>() {
 
 			public int compare(Player o1, Player o2) {
-				return o1.getName().compareToIgnoreCase(o2.getName());
+				return o1.getTitle().compareToIgnoreCase(o2.getTitle());
 			}
 		});
 		return players;
@@ -116,7 +113,7 @@ public class PlayersQuery implements ActionListener {
 				StendhalRPZone zone = who.getZone();
 
 				if(zone != null) {
-					player.sendPrivateText(who.getName() + " is in "
+					player.sendPrivateText(who.getTitle() + " is in "
 						+ zone.getName() + " at (" + who.getX() + ","
 						+ who.getY() + ")");
 				}

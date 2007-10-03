@@ -82,10 +82,15 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 
 		@Override
 		public int hashCode() {
-			if (timerPlayer != null) {
-				return timerPlayer.hashCode() + super.hashCode();
+			// TODO: This is broken. If player gets GC'd, then
+			// hash code changes. (not good)
+			Player player = timerPlayer.get();
+
+			if (player != null) {
+				return player.hashCode();
+			} else {
+				return 0;
 			}
-			return super.hashCode();
 		}
 
 		public void onTurnReached(int currentTurn, String message) {
@@ -94,20 +99,23 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 			// Note that "player" always refers to the current player
 			// in order not to teleport the next player out too early,
 			// we have to compare it to the player who started this timer
-			if ((timerPlayer.get() != null)) {
-				IRPZone playerZone = timerPlayer.get().getZone();
+
+			Player player = timerPlayer.get();
+
+			if (player != null) {
+				IRPZone playerZone = player.getZone();
 
 				if (playerZone.equals(zone)) {
 					if (counter > 0) {
-						npc.say(timerPlayer.get().getName() + ", you have "
+						npc.say(player.getTitle() + ", you have "
 								+ TimeUtil.timeUntil(counter) + " left.");
 						counter = counter - 10 * 6;
 						TurnNotifier.get().notifyInTurns(10 * 3 * 6, this);
 					} else {
 						// teleport the player out
-						npc.say("Sorry, " + timerPlayer.get().getName()
+						npc.say("Sorry, " + player.getTitle()
 								+ ", your time here is up.");
-						teleportAway(timerPlayer.get());
+						teleportAway(player);
 					}
 				}
 			}
@@ -144,7 +152,7 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 								reply = " You may #leave sooner, if required.";
 							}
 							engine.say("Welcome to the Wizard's Bank, "
-									+ player.getName() + "." + reply);
+									+ player.getTitle() + "." + reply);
 						} else {
 							engine.say("You may not use this bank if you have not gained the right to use the chests at Nalwor, nor if you have not earned the trust of a certain young woman. Goodbye!");
 							engine.setCurrentState(ConversationStates.IDLE);

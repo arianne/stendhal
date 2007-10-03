@@ -78,7 +78,7 @@ public class GagManager implements LoginListener {
 		policeman.sendPrivateText("You have gagged " + criminalName + " for "
 				+ minutes + " minutes. Reason: " + reason + ".");
 		criminal.sendPrivateText("You have been gagged by "
-				+ policeman.getName() + " for " + minutes
+				+ policeman.getTitle() + " for " + minutes
 				+ " minutes. Reason: " + reason + ".");
 		ChatAction.sendMessageToSupporters("GagManager", policeman.getName()
 				+ " gagged " + criminalName + " for " + minutes

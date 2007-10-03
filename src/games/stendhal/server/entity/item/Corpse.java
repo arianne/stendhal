@@ -141,7 +141,7 @@ public class Corpse extends PassiveEntity implements TurnListener,
 		decideSize(get("class"));
 
 		if ((killerName != null) && (victim instanceof Player)) {
-			put(ATTR_NAME, victim.getName());
+			put(ATTR_NAME, victim.getTitle());
 			put(ATTR_KILLER, killerName);
 		} else if (has(ATTR_KILLER)) {
 			logger.error("Corpse: (" + victim + ") with null killer: ("
@@ -169,6 +169,19 @@ public class Corpse extends PassiveEntity implements TurnListener,
 	//
 
 	/**
+	 * Get the entity name.
+	 *
+	 * @return The entity's name, or <code>null</code> if undefined.
+	 */
+	public String getName() {
+		if (has(ATTR_NAME)) {
+			return get(ATTR_NAME);
+		} else {
+			return null;
+		}
+	}
+
+	/**
 	 * Set the killer name of the corpse.
 	 *
 	 * @param	name		The corpse's killer name.
@@ -176,7 +189,6 @@ public class Corpse extends PassiveEntity implements TurnListener,
 	public void setKiller(final String killer) {
 		put(ATTR_KILLER, killer);
 	}
-
 
 	/**
 	 * Set the name of the corpse.
@@ -311,5 +323,47 @@ public class Corpse extends PassiveEntity implements TurnListener,
 
 	public boolean canBeEquippedIn(String slot) {
 		return false;
+	}
+
+
+	//
+	// Entity
+	//
+
+	/**
+	 * Returns the name or something that can be used to identify the
+	 * entity for the player
+	 *
+	 * @param definite
+	 *	<code>true</code> for "the", and <code>false</code> for "a/an"
+	 *	in case the entity has no name.
+	 *
+	 * @return	The description name.
+	 */
+	@Override
+	public String getDescriptionName(final boolean definite) {
+		String name = getName();
+
+		if (name != null) {
+			return name;
+		} else {
+			return super.getDescriptionName(definite);
+		}
+	}
+
+	/**
+	 * Get the nicely formatted entity title/name.
+	 *
+	 * @return The title, or <code>null</code> if unknown.
+	 */
+	@Override
+	public String getTitle() {
+		String name = getName();
+
+		if (name != null) {
+			return name;
+		} else {
+			return super.getTitle();
+		}
 	}
 }

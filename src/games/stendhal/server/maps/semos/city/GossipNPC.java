@@ -33,7 +33,7 @@ public class GossipNPC extends SpeakerNPCFactory {
 					        npc.say("Heh heh... Oh, hello stranger! You look a bit disoriented... d'you want to hear the latest gossip?");
 					        player.setQuest("Nomyr", "done");
 				        } else {
-					        npc.say("Hi again, " + player.getName()
+					        npc.say("Hi again, " + player.getTitle()
 					                + ". How can I #help you this time?");
 				        }
 			        }

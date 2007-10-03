@@ -154,9 +154,9 @@ public class Jail implements LoginListener {
 		policeman.sendPrivateText("You have jailed " + criminalName + " for "
 				+ minutes + " minutes. Reason: " + reason + ".");
 		criminal.sendPrivateText("You have been jailed by "
-				+ policeman.getName() + " for " + minutes
+				+ policeman.getTitle() + " for " + minutes
 				+ " minutes. Reason: " + reason + ".");
-		ChatAction.sendMessageToSupporters("JailKeeper", policeman.getName()
+		ChatAction.sendMessageToSupporters("JailKeeper", policeman.getTitle()
 				+ " jailed " + criminalName + " for " + minutes
 				+ " minutes. Reason: " + reason + ".");
 

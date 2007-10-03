@@ -119,7 +119,7 @@ public class ChatAction implements ActionListener {
 			String message;
 
 			// find the target player
-			String senderName = player.getName();
+			String senderName = player.getTitle();
 			String receiverName = action.get("target");
 
 			Player receiver = StendhalRPRuleProcessor.get().getPlayer(
@@ -140,12 +140,11 @@ public class ChatAction implements ActionListener {
 
 			if (receiverName.equals("postman")) {
 				// HACK: Don't risk breaking postman messages
-				message = player.getName() + " tells you: " + text;
+				message = senderName + " tells you: " + text;
 			} else if (senderName.equals(receiverName)) {
 				message = "You mutter to yourself: " + text;
 			} else {
-				message = player.getName() + " tells " + receiverName + ": "
-						+ text;
+				message = senderName + " tells " + receiverName + ": " + text;
 			}
 
 			// HACK: extract sender from postman messages
@@ -182,8 +181,7 @@ public class ChatAction implements ActionListener {
 			receiver.sendPrivateText(message);
 
 			if (!senderName.equals(receiverName)) {
-				player.sendPrivateText("You tell " + receiver.getName() + ": "
-						+ text);
+				player.sendPrivateText("You tell " + receiverName + ": " + text);
 			}
 
 			/*
@@ -201,7 +199,7 @@ public class ChatAction implements ActionListener {
 				}
 			}
 
-			receiver.setLastPrivateChatter(player.getName());
+			receiver.setLastPrivateChatter(senderName);
 			StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
 					"chat", receiverName, Integer.toString(text.length()),
 					text.substring(0, Math.min(text.length(), 1000)));
@@ -216,7 +214,7 @@ public class ChatAction implements ActionListener {
 		if (action.has("text")) {
 
 			if (action.get("text").trim().equals("")) {
-				player.sendPrivateText("Useage /support <your message here>");
+				player.sendPrivateText("Usage /support <your message here>");
 				return;
 			}
 
@@ -239,13 +237,13 @@ public class ChatAction implements ActionListener {
 			}
 
 			String message = action.get("text")
-					+ "\r\nPlease use #/supportanswer #" + player.getName()
+					+ "\r\nPlease use #/supportanswer #" + player.getTitle()
 					+ " to answer.";
 
 			StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
 					"support", action.get("text"));
 
-			sendMessageToSupporters(player.getName(), message);
+			sendMessageToSupporters(player.getTitle(), message);
 
 			player
 					.sendPrivateText("You ask for support: "

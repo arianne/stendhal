@@ -45,6 +45,10 @@ import marauroa.common.game.Definition.Type;
 import marauroa.server.game.Statistics;
 
 public abstract class RPEntity extends GuidedEntity {
+	/**
+	 * The title attribute name.
+	 */
+	protected static final String	ATTR_TITLE	= "title";
 
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(RPEntity.class);
@@ -121,7 +125,7 @@ public abstract class RPEntity extends GuidedEntity {
 			RPClass entity = new RPClass("rpentity");
 			entity.isA("active_entity");
 			entity.addAttribute("name", Type.STRING);
-			entity.addAttribute("title", Type.STRING);
+			entity.addAttribute(ATTR_TITLE, Type.STRING);
 			entity.addAttribute("level", Type.SHORT);
 			entity.addAttribute("xp", Type.INT);
 			entity.addAttribute("mana", Type.INT);
@@ -371,7 +375,6 @@ public abstract class RPEntity extends GuidedEntity {
 	 *
 	 * @return The entity's name.
 	 */
-	@Override
 	public String getName() {
 		return name;
 	}
@@ -698,7 +701,7 @@ public abstract class RPEntity extends GuidedEntity {
 	public void onDamaged(Entity attacker, int damage) {
 		logger.debug("Damaged " + damage + " points by " + attacker.getID());
 
-		StendhalRPRuleProcessor.get().addGameEvent(attacker.getName(),
+		StendhalRPRuleProcessor.get().addGameEvent(attacker.getTitle(),
 				"damaged", getName(), Integer.toString(damage));
 
 		bleedOnGround();
@@ -1737,9 +1740,49 @@ public abstract class RPEntity extends GuidedEntity {
 		put("outfit", outfit.getCode());
 	}
 
+
+	/**
+	 * Set the entity's formatted title/name.
+	 *
+	 * TODO: Move up to Entity, with attribute
+	 *
+	 * @param	title
+	 *	The title, or <code>null</code>.
+	 */
+	public void setTitle(final String title) {
+		if(title != null) {
+			put(ATTR_TITLE, title);
+		} else if(has(ATTR_TITLE)) {
+			remove(ATTR_TITLE);
+		}
+	}
+
+
 	//
 	// Entity
 	//
+
+	/**
+	 * Returns the name or something that can be used to identify the
+	 * entity for the player
+	 *
+	 * @param definite
+	 *	<code>true</code> for "the", and <code>false</code> for "a/an"
+	 *	in case the entity has no name.
+	 *
+	 * @return	The description name.
+	 */
+	@Override
+	public String getDescriptionName(final boolean definite) {
+		String name = getName();
+
+		if (name != null) {
+			return name;
+		} else {
+			return super.getDescriptionName(definite);
+		}
+	}
+
 
 	/**
 	 * Get the nicely formatted entity title/name.
@@ -1748,16 +1791,16 @@ public abstract class RPEntity extends GuidedEntity {
 	 */
 	@Override
 	public String getTitle() {
-		if (has("title")) {
-			return get("title");
-		} else if (name != null) {
-			return name.replace('_', ' ');
-		} else if (has("class")) {
-			return get("class").replace('_', ' ');
-		} else if (has("type")) {
-			return get("type").replace('_', ' ');
+		if (has(ATTR_TITLE)) {
+			return get(ATTR_TITLE);
 		} else {
-			return null;
+			String name = getName();
+
+			if (name != null) {
+				return name;
+			} else {
+				return super.getTitle();
+			}
 		}
 	}
 

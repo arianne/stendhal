@@ -24,7 +24,7 @@ public class ServerReset extends ScriptImpl {
 		try {
 			List<Player> players = StendhalRPRuleProcessor.get().getPlayers();
 			for (Player player : players) {
-				player.sendPrivateText(admin.getName() + " started emergency shutdown of the server.");
+				player.sendPrivateText(admin.getTitle() + " started emergency shutdown of the server.");
 			}
 		} catch (Throwable e) {
 			// Yes, i know that you are not supposed to catch Throwable 
@@ -35,5 +35,4 @@ public class ServerReset extends ScriptImpl {
 
 		Runtime.getRuntime().halt(1);
 	}
-
 }

@@ -526,9 +526,9 @@ public class SpeakerNPC extends NPC {
 
 			@Override
 			public void fire(Player player, String text, SpeakerNPC npc) {
-				npc.say("Please wait, " + player.getName()
+				npc.say("Please wait, " + player.getTitle()
 						+ "! I am still attending to "
-						+ npc.getAttending().getName() + ".");
+						+ npc.getAttending().getTitle() + ".");
 			}
 		});
 	}
@@ -570,9 +570,9 @@ public class SpeakerNPC extends NPC {
 
 			@Override
 			public void fire(Player player, String text, SpeakerNPC npc) {
-				npc.say("Please wait, " + player.getName()
+				npc.say("Please wait, " + player.getTitle()
 						+ "! I am still attending to "
-						+ npc.getAttending().getName() + ".");
+						+ npc.getAttending().getTitle() + ".");
 			}
 		});
 	}

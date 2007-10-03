@@ -514,8 +514,8 @@ lion_shield_+1 enhanced_lion_shield
 						if (item.has("quantity")) {
 							quantity = item.getInt("quantity");
 						}
-						logger.warn("Cannot restore " + quantity + " " + item.get("name")
-						     + " on login of " + player.get("name") + " because this item"
+						logger.warn("Cannot restore " + quantity + " " + name
+						     + " on login of " + player.getName() + " because this item"
 						     + " was removed from items.xml");
 						continue;
 					}
@@ -537,8 +537,8 @@ lion_shield_+1 enhanced_lion_shield
 						((StackableItem) entity).setQuantity(quantity);
 
 						if (quantity <= 0) {
-							logger.warn("Ignoring item " + item.get("name") + " on login of player "
-									+ player.get("name") + " because this item has an invalid quantity: " + quantity);
+							logger.warn("Ignoring item " + name + " on login of player "
+									+ player.getName() + " because this item has an invalid quantity: " + quantity);
 							continue;
 						}
 					}

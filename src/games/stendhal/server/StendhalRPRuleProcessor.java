@@ -386,15 +386,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	 */
 	public Player getPlayer(String name) {
 		for (Player player : getPlayers()) {
-			/*
-			 * If player has the title attribute, it replaces name.
-			 */
-			String playername = player.getName();
-			if (player.has("title")) {
-				playername = player.get("title");
-			}
-
-			if (playername.equals(name)) {
+			if (player.getTitle().equals(name)) {
 				return player;
 			}
 		}

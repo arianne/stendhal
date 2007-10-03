@@ -215,7 +215,7 @@ public class AdministrationAction implements ActionListener {
 
 	private void onSupportAnswer(Player player, RPAction action) {
 		if (action.has("target") && action.has("text")) {
-			String message = player.getName() + " answers "
+			String message = player.getTitle() + " answers "
 					+ Grammar.suffix_s(action.get("target"))
 					+ " support question: " + action.get("text");
 
@@ -224,8 +224,8 @@ public class AdministrationAction implements ActionListener {
 
 			boolean found = false;
 			for (Player p : StendhalRPRuleProcessor.get().getPlayers()) {
-				if (p.getName().equals(action.get("target"))) {
-					p.sendPrivateText("Support (" + player.getName()
+				if (p.getTitle().equals(action.get("target"))) {
+					p.sendPrivateText("Support (" + player.getTitle()
 							+ ") tells you: " + action.get("text"));
 					p.notifyWorldAboutChanges();
 					found = true;
@@ -335,7 +335,7 @@ public class AdministrationAction implements ActionListener {
 			}
 
 			int oldlevel = target.getAdminLevel();
-			String response = target.getName() + " has adminlevel " + oldlevel;
+			String response = target.getTitle() + " has adminlevel " + oldlevel;
 
 			if (action.has("newlevel")) {
 				// verify newlevel is a number
@@ -371,7 +371,7 @@ public class AdministrationAction implements ActionListener {
 
 					/*
 					 * if (mylevel < oldlevel) { response = "Sorry, but the
-					 * adminlevel of " + target.getName() + " is " + oldlevel + ",
+					 * adminlevel of " + target.getTitle() + " is " + oldlevel + ",
 					 * and your level is only " + mylevel + "."; } else if
 					 * (mylevel < newlevel) { response = "Sorry, you cannot set
 					 * an adminlevel of " + newlevel + ", because your level is
@@ -387,9 +387,9 @@ public class AdministrationAction implements ActionListener {
 					target.update();
 					target.notifyWorldAboutChanges();
 
-					response = "Changed adminlevel of " + target.getName()
+					response = "Changed adminlevel of " + target.getTitle()
 							+ " from " + oldlevel + " to " + newlevel + ".";
-					target.sendPrivateText(player.getName()
+					target.sendPrivateText(player.getTitle()
 							+ " changed your adminlevel from " + +oldlevel
 							+ " to " + newlevel + ".");
 				}

@@ -17,6 +17,11 @@ import marauroa.common.game.Definition.Type;
  * A base area entity.
  */
 public abstract class AreaEntity extends Entity {
+	/**
+	 * The name attribute name.
+	 */
+	protected static final String	ATTR_NAME	= "name";
+
 // MAYBEDO (if Entity.RPCLASS added):
 //	/**
 //	 * The RPClass.
@@ -53,7 +58,7 @@ public abstract class AreaEntity extends Entity {
 
 		// MAYBEDO: rpclass.isA(Entity.RPCLASS)
 		rpclass.isA("entity");
-		rpclass.addAttribute("name", Type.STRING);
+		rpclass.addAttribute(ATTR_NAME, Type.STRING);
 
 		return rpclass;
 	}
@@ -68,6 +73,18 @@ public abstract class AreaEntity extends Entity {
 		createRPClass();
 	}
 
+	/**
+	 * Get the entity name.
+	 *
+	 * @return The entity's name, or <code>null</code> if undefined.
+	 */
+	public String getName() {
+		if (has(ATTR_NAME)) {
+			return get(ATTR_NAME);
+		} else {
+			return null;
+		}
+	}
 
 	/**
 	 * Set the name.
@@ -75,6 +92,48 @@ public abstract class AreaEntity extends Entity {
 	 * @param	name		The area name.
 	 */
 	public void setName(final String name) {
-		put("name", name);
+		put(ATTR_NAME, name);
+	}
+
+
+	//
+	// Entity
+	//
+
+	/**
+	 * Returns the name or something that can be used to identify the
+	 * entity for the player
+	 *
+	 * @param definite
+	 *	<code>true</code> for "the", and <code>false</code> for "a/an"
+	 *	in case the entity has no name.
+	 *
+	 * @return	The description name.
+	 */
+	@Override
+	public String getDescriptionName(final boolean definite) {
+		String name = getName();
+
+		if (name != null) {
+			return name;
+		} else {
+			return super.getDescriptionName(definite);
+		}
+	}
+
+	/**
+	 * Get the nicely formatted entity title/name.
+	 *
+	 * @return The title, or <code>null</code> if unknown.
+	 */
+	@Override
+	public String getTitle() {
+		String name = getName();
+
+		if (name != null) {
+			return name;
+		} else {
+			return super.getTitle();
+		}
 	}
 }

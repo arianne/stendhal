@@ -152,16 +152,20 @@ public class OutfitChangerBehaviour extends MerchantBehaviour implements  LoginL
 		}
 		@Override
 		public int hashCode() {
-			if (ref.get() == null) {
+			Player player = ref.get();
+
+			if (player != null) {
+				return player.hashCode();
+			} else {
 				return 0;
 			}
-			return ref.get().hashCode();
 		}
 
 		public void onTurnReached(int currentTurn, String message) {
+			Player player = ref.get();
 
-			if (ref.get() != null) {
-				onWornOff(ref.get());
+			if (player != null) {
+				onWornOff(player);
 			} else {
 				// The player has logged out before the outfit wore off.
 				// Remove it when the player logs in again.

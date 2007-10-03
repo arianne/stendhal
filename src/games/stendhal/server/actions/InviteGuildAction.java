@@ -43,7 +43,7 @@ public class InviteGuildAction implements ActionListener {
 			player1.put("guild", action.get("guildname"));
 
 			//set the description
-			String description = "You see " + player1.getName() + ".\n" + player1.getName() + " is level " + player1.getLevel() + " and is a member of the " + action.get("guildname") + " guild.";
+			String description = "You see " + player1.getTitle() + ".\n" + player1.getTitle() + " is level " + player1.getLevel() + " and is a member of the " + action.get("guildname") + " guild.";
 			player1.setDescription(description);
 
 			//update player
@@ -51,11 +51,11 @@ public class InviteGuildAction implements ActionListener {
 			player1.notifyWorldAboutChanges();
 
 			//notify player(s)
-			player1.sendPrivateText("You have beed added to the \"" + action.get("guildname") + "\" guild by " + player.getName() + ". If you did not want to be in this guild, open the Guild Management window and choose \"Leave Guild\".");
-			player.sendPrivateText(player1.getName() + " has been added to the \"" + action.get("guildname") + "\" guild.");
+			player1.sendPrivateText("You have beed added to the \"" + action.get("guildname") + "\" guild by " + player.getTitle() + ". If you did not want to be in this guild, open the Guild Management window and choose \"Leave Guild\".");
+			player.sendPrivateText(player1.getTitle() + " has been added to the \"" + action.get("guildname") + "\" guild.");
 		    } else {
-			player1.sendPrivateText(player.getName() + " tried to add you to a guild but you are already in one. If you would like to join it, please leave your old guild first, and have them re-invite you.");
-			player.sendPrivateText(player1.getName() + " was not added to the guild because he or she is already in one. Please have them remove themselves from their old guild and try again.");
+			player1.sendPrivateText(player.getTitle() + " tried to add you to a guild but you are already in one. If you would like to join it, please leave your old guild first, and have them re-invite you.");
+			player.sendPrivateText(player1.getTitle() + " was not added to the guild because he or she is already in one. Please have them remove themselves from their old guild and try again.");
 		    }
 
 		}

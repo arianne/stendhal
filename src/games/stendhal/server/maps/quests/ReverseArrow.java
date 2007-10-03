@@ -334,7 +334,7 @@ public class ReverseArrow extends AbstractQuest implements
 						} else {
 							engine
 									.say("Hi again "
-											+ player.getName()
+											+ player.getTitle()
 											+ ". I rembemer that you solved this problem already. You can do it again, of course.");
 						}
 					}

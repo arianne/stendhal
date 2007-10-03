@@ -23,6 +23,7 @@ public class Box extends Item implements UseListener {
 
 	private Logger logger = Log4J.getLogger(Box.class);
 
+	// TODO: Make these configurable
 	// for christmas presents
 	private static final String[] ITEMS = { "greater_potion", "pie", "sandwich", "carrot", "cherry", "blue_elf_cloak",
 	        "summon_scroll" };
@@ -75,6 +76,8 @@ public class Box extends Item implements UseListener {
 
 		Player player = (Player) user;
 		String name = getName();
+
+		// TODO: Eww.. Subclass!!!!!
 		if (name.equals("present")) {
 			usePresent(player);
 			return true;

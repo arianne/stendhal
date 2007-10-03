@@ -42,7 +42,7 @@ public class MeetMonogenes extends AbstractQuest {
 							engine
 									.setCurrentState(ConversationStates.INFORMATION_1);
 						} else {
-							engine.say("Hi again, " + player.getName()
+							engine.say("Hi again, " + player.getTitle()
 									+ ". How can I #help you this time?");
 						}
 					}

@@ -32,9 +32,9 @@ public class DropPlayerItems extends ScriptImpl {
 		}
 		
 		boolean res = player.drop(itemName, amount);
-		String msg = "Admin " + admin.getName() + " removed "
+		String msg = "Admin " + admin.getTitle() + " removed "
 			+ amount + " " + Grammar.plnoun(amount, itemName)
-			+ " from player " + player.getName() + ": " + res;
+			+ " from player " + player.getTitle() + ": " + res;
 		admin.sendPrivateText(msg);
 		if (res) {
 			player.sendPrivateText(msg);

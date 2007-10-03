@@ -1591,7 +1591,7 @@ public class Player extends RPEntity {
 		int hours = age / 60;
 		int minutes = age % 60;
 		String time = hours + " hours and " + minutes + " minutes";
-		String text = "You see " + getName() + ".\n" + getName() + " is level "
+		String text = "You see " + getTitle() + ".\n" + getTitle() + " is level "
 				+ getLevel() + " and has been playing " + time + ".";
 		return (text);
 	}

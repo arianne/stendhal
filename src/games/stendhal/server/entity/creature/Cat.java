@@ -75,11 +75,9 @@ public class Cat extends Pet {
 		super(owner);
 		setRPClass("cat");
 		put("type", "cat");
-		put("title", "cat");
-		baseSpeed = 0.9;
 
+		baseSpeed = 0.9;
 		update();
-		logger.debug("Created Cat: " + this);
 	}
 
 	/**
@@ -94,18 +92,21 @@ public class Cat extends Pet {
 
 		setRPClass("cat");
 		put("type", "cat");
+
 		baseSpeed = 0.9;
 		update();
-		logger.debug("Created Cat: " + this);
 	}
 
 	@Override
 	public String describe() {
-		String text = "You see a friendly cat; it looks like it weighs about " + weight + ".";
+		String text;
+
 		if (hasDescription()) {
 			text = getDescription();
+		} else {
+			text = "You see a friendly cat; it looks like it weighs about " + weight + ".";
 		}
+
 		return (text);
 	}
-
 }

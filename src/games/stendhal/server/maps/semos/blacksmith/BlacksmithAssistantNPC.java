@@ -28,7 +28,7 @@ public class BlacksmithAssistantNPC extends SpeakerNPCFactory {
 					        npc.say("Hi stranger, I'm Hackim Easso, the blacksmith's assistant. Have you come here to buy weapons?");
 					        player.setQuest("meet_hackim", "start");
 				        } else {
-					        npc.say("Hi again, " + player.getName()
+					        npc.say("Hi again, " + player.getTitle()
 					                + ". How can I #help you this time?");
 				        }
 			        }

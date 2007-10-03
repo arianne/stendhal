@@ -47,7 +47,7 @@ public class PlayerPositionMonitoring extends ScriptImpl {
 					sb.append(", ");
 				}
 
-				sb.append(player.getName());
+				sb.append(player.getTitle());
 				sb.append(' ');
 
 				StendhalRPZone zone = player.getZone();

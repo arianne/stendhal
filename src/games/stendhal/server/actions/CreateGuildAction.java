@@ -37,7 +37,7 @@ public class CreateGuildAction implements ActionListener {
 		    player.sendPrivateText("You are already in a guild! Please leave your old one and try again.");
 		} else {
 		    player.put("guild", action.get("value"));
-		    String description = "You see " + player.getName() + ".\n" + player.getName() + " is level " + player.getLevel() + " and is a member of the " + action.get("value") + " guild.";
+		    String description = "You see " + player.getTitle() + ".\n" + player.getTitle() + " is level " + player.getLevel() + " and is a member of the " + action.get("value") + " guild.";
 		    player.setDescription(description);
 		}
 		// done!

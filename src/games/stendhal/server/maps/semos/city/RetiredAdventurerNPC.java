@@ -32,7 +32,7 @@ public class RetiredAdventurerNPC extends SpeakerNPCFactory {
 					        npc.say("You've probably heard of me; Hayunn Naratha, a retired adventurer. Have you read my book? No? It's called \"Know How To Kill Creatures\". Maybe we could talk about adventuring, if you like?");
 					        player.setQuest("meet_hayunn", "start");
 				        } else {
-					        npc.say("Hi again, " + player.getName() + ". How can I #help you this time?");
+					        npc.say("Hi again, " + player.getTitle() + ". How can I #help you this time?");
 				        }
 			        }
 		        });

@@ -38,6 +38,6 @@ public class ResetTutorial extends ScriptImpl {
 		slot.add(new RPObject());
 
 		// notify the player
-		player.sendPrivateText("Your tutorial state was reset by " + admin.getName());
+		player.sendPrivateText("Your tutorial state was reset by " + admin.getTitle());
 	}
 }

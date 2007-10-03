@@ -45,7 +45,7 @@ public class AlterQuest extends ScriptImpl {
 			target.setQuest(questName, newQuestState);
 
 			// notify admin and altered player
-			target.sendPrivateText("Admin " + admin.getName() + " changed your state of the quest '" + questName
+			target.sendPrivateText("Admin " + admin.getTitle() + " changed your state of the quest '" + questName
 			        + "' from '" + oldQuestState + "' to '" + newQuestState + "'");
 			admin.sendPrivateText("Changed the state of quest '" + questName + "' from '" + oldQuestState + "' to '"
 			        + newQuestState + "'");

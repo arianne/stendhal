@@ -79,7 +79,7 @@ public class HouseBuying extends AbstractQuest {
 								reply = "";
 							}
 							engine.say("Hello, "
-									+ player.getName() + "." + reply);
+									+ player.getTitle() + "." + reply);
 					
 					}
 				    }

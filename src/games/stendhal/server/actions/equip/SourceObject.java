@@ -124,7 +124,7 @@ class SourceObject extends MoveableObject {
 	public boolean moveTo(DestinationObject dest, Player player) {
 		if (!((EquipListener) item).canBeEquippedIn(dest.slot)) {
 			// give some feedback
-			player.sendPrivateText("You can't carry this " + item.getName() + " on your " + dest.slot);
+			player.sendPrivateText("You can't carry this " + item.getTitle() + " on your " + dest.slot);
 			logger.warn("tried to equip an entity into disallowed slot: " + item.getClass() + "; equip rejected");
 			return false;
 		}

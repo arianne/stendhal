@@ -52,10 +52,11 @@ public abstract class CroupierNPC extends SpeakerNPC {
 				if (prizeName.equals("golden_legs")) {
 					prize.setBoundTo(player.getName());
 				}
-				say("Congratulations, " + player.getName() + ", you have " + sum + " points. " + text);
+
+				say("Congratulations, " + player.getTitle() + ", you have " + sum + " points. " + text);
 				player.equip(prize, true);
 			} else {
-				say("Sorry, " + player.getName() + ", you only have " + sum
+				say("Sorry, " + player.getTitle() + ", you only have " + sum
 				        + " points. You haven't won anything. Better luck next time!");
 			}
 			// The croupier takes the dice away from the table after some time.

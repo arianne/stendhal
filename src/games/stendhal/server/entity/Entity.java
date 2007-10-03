@@ -212,18 +212,6 @@ public abstract class Entity extends RPObject {
 		return description;
 	}
 
-	/**
-	 * Get the entity name.
-	 *
-	 * @return The entity's name, or <code>null</code> if undefined.
-	 */
-	public String getName() {
-		if (has("name")) {
-			return get("name").replace("_", " ");
-		} else {
-			return null;
-		}
-	}
 
 	/**
 	 * Get the nicely formatted entity title/name.
@@ -231,11 +219,7 @@ public abstract class Entity extends RPObject {
 	 * @return The title, or <code>null</code> if unknown.
 	 */
 	public String getTitle() {
-		if (has("title")) {
-			return get("title");
-		} else if (has("name")) {
-			return get("name").replace('_', ' ');
-		} else if (has("subclass")) {
+		if (has("subclass")) {
 			return get("subclass").replace('_', ' ');
 		} else if (has("class")) {
 			return get("class").replace('_', ' ');
@@ -630,10 +614,7 @@ public abstract class Entity extends RPObject {
 	 * @return name
 	 */
 	public String getDescriptionName(boolean definite) {
-		String name = getName();
-		if (name != null) {
-			return name;
-		} else if (has("subclass")) {
+		if (has("subclass")) {
 			return Grammar.article_noun(get("subclass"), definite);
 		} else if (has("class")) {
 			return Grammar.article_noun(get("class"), definite);

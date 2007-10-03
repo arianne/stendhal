@@ -43,7 +43,7 @@ public class MeetKetteh extends AbstractQuest {
 										"seen_naked")) {
 							// OK, player is NOT naked this time, but was last
 							// time.
-							engine.say("Hi again, " + player.getName()
+							engine.say("Hi again, " + player.getTitle()
 									+ ". How can I #shout at you this time?");
 							player.setQuest("Ketteh", "seen"); // don't be
 																// unforgiving
@@ -51,10 +51,10 @@ public class MeetKetteh extends AbstractQuest {
 						} else if (player.hasQuest("Ketteh")) {
 							// We have met the player before and he was NOT
 							// naked last time nor is he now
-							engine.say("Hi again, " + player.getName() + ".");
+							engine.say("Hi again, " + player.getTitle() + ".");
 						} else {
 							// We haver never seen the player before.
-							engine.say("Hi " + player.getName()
+							engine.say("Hi " + player.getTitle()
 									+ ", nice to meet you.");
 							player.setQuest("Ketteh", "seen");
 						}

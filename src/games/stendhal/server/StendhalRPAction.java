@@ -233,12 +233,13 @@ public class StendhalRPAction {
 				logger.info("REJECTED. " + entity.getName()
 						+ " is in a protection zone");
 
-				String name = entity.getName();
+				String name = entity.getTitle();
 
+				// TODO: Consolidate these two as DomesticAnimal
 				if (entity instanceof Sheep) {
 					Player owner = ((Sheep) entity).getOwner();
-					if (name != null) {
-						name = Grammar.suffix_s(owner.getName()) + " sheep";
+					if (owner != null) {
+						name = Grammar.suffix_s(owner.getTitle()) + " sheep";
 					} else {
 						name = "that sheep";
 					}
@@ -246,8 +247,8 @@ public class StendhalRPAction {
 
 				if (entity instanceof Pet) {
 					Player owner = ((Pet) entity).getOwner();
-					if (name != null) {
-						name = Grammar.suffix_s(owner.getName()) + " pet";
+					if (owner != null) {
+						name = Grammar.suffix_s(owner.getTitle()) + " pet";
 					} else {
 						name = "that poor little cat";
 					}
@@ -506,17 +507,17 @@ public class StendhalRPAction {
 			int ny = entity_y - zone.getY();
 
 			if (logger.isDebugEnabled()) {
-				logger.debug("Placing " + entity.getName() + " at "
+				logger.debug("Placing " + entity.getTitle() + " at "
 						+ zone.getName() + "[" + nx + "," + ny + "]");
 			}
 
 			if (!placeat(zone, entity, nx, ny)) {
-				logger.warn("Could not place " + entity.getName() + " at "
+				logger.warn("Could not place " + entity.getTitle() + " at "
 						+ zone.getName() + "[" + nx + "," + ny + "]");
 			}
 		} else {
 			logger.warn("Unable to choose a new zone for entity: "
-					+ entity.getName() + " at (" + entity_x + "," + entity_y
+					+ entity.getTitle() + " at (" + entity_x + "," + entity_y
 					+ ") source was " + origin.getName() + " at (" + x + ", "
 					+ y + ")");
 		}

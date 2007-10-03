@@ -76,7 +76,7 @@ public class OwnAction implements ActionListener {
 							player.sendPrivateText("That sheep is too far away.");
 						}
 					} else {
-						player.sendPrivateText("This sheep is owned by " + sheep.getOwner().getName());
+						player.sendPrivateText("This sheep is owned by " + sheep.getOwner().getTitle());
 					}
 				}
 			}

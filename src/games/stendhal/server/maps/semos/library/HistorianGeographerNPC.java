@@ -62,7 +62,7 @@ public class HistorianGeographerNPC implements ZoneConfigurator {
 							                .say("Hi, potential reader! Here you can find records of the history of Semos, and lots of interesting facts about this island of Faiumoni. If you like, I can give you a quick introduction to its #geography and #history! I also keep up with the #news, so feel free to ask me about that.");
 							        player.setQuest("Zynn", "done");
 						        } else {
-							        engine.say("Hi again, " + player.getName() + ". How can I #help you this time?");
+							        engine.say("Hi again, " + player.getTitle() + ". How can I #help you this time?");
 						        }
 					        }
 				        });

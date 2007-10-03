@@ -295,12 +295,15 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 				+ this);
 	}
 
-	/** returns the name of the item */
-	// TODO: Remove once Entity returns the literal 'name' attribute
-	@Override
+	/**
+	 * Get the name of the item.
+	 *
+	 * @return	The programatic item name.
+	 */
 	public String getName() {
 		return get("name");
 	}
+
 
 	/**
 	 * Get item count.
@@ -464,6 +467,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 		return possibleSlots.contains(slot) || slot.equals("content");
 	}
 
+	// TODO: Move this (in some form) up to Entity
 	public void removeFromWorld() {
 		if (isContained()) {
 			// We modify the base container if the object change.
@@ -479,6 +483,48 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 			StendhalRPWorld.get().modify(base);
 		} else {
 			StendhalRPWorld.get().remove(getID());
+		}
+	}
+
+
+	//
+	// Entity
+	//
+
+	/**
+	 * Returns the name or something that can be used to identify the
+	 * entity for the player
+	 *
+	 * @param definite
+	 *	<code>true</code> for "the", and <code>false</code> for "a/an"
+	 *	in case the entity has no name.
+	 *
+	 * @return	The description name.
+	 */
+	@Override
+	public String getDescriptionName(final boolean definite) {
+		String name = getName();
+
+		if (name != null) {
+			return name.replace('_', ' ');
+		} else {
+			return super.getDescriptionName(definite);
+		}
+	}
+
+	/**
+	 * Get the nicely formatted entity title/name.
+	 *
+	 * @return The title, or <code>null</code> if unknown.
+	 */
+	@Override
+	public String getTitle() {
+		String name = getName();
+
+		if (name != null) {
+			return name.replace('_', ' ');
+		} else {
+			return super.getTitle();
 		}
 	}
 }

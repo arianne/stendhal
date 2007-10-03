@@ -162,7 +162,7 @@ public class AdminMaker extends ScriptImpl {
 				//Teleport
 				if (RandomTeleport(player)) {
 					//todo: priv msg doesn't work
-					player.sendPrivateText(player.getName() + " use the scroll to come back here. Use /teleport <playername> <zonename> <x> <y> to beam to a different place.");
+					player.sendPrivateText(player.getTitle() + " use the scroll to come back here. Use /teleport <playername> <zonename> <x> <y> to beam to a different place.");
 				} else {
 					engine.say("oops, looks like you found a bug.");
 				}

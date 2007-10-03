@@ -18,31 +18,29 @@ public class NameChange extends ScriptImpl {
 
 	@Override
 	public void execute(Player admin, List<String> args) {
-
 		// check configuration
+		// TODO: Do this on load (allowing success/fail return value)?
 		try {
-	        if (!Configuration.getConfiguration().has(CONFIG_KEY)
-	        	|| !Boolean.parseBoolean(Configuration.getConfiguration().get(CONFIG_KEY))) {
-	        	admin.sendPrivateText("This script is disabled in the server configuration file key " + CONFIG_KEY);
-	        	return;
-	        }
-        } catch (Exception e) {
-	        admin.sendPrivateText(e.toString());
-	        return;
-        }
-
-        // do title change
-		if (args.get(0).equals("remove")) {
-			admin.remove("title");
-			admin.sendPrivateText("Your original name has been restored. Please change zones for the changes to take effect.");
-			admin.update();
-			admin.notifyWorldAboutChanges();
-		} else {
-			admin.put("title", args.get(0));
-			admin.sendPrivateText("Your name has been changed to " + admin.get("title") + ".");
-			admin.update();
-			admin.notifyWorldAboutChanges();
+			if (!Configuration.getConfiguration().has(CONFIG_KEY) || !Boolean.parseBoolean(Configuration.getConfiguration().get(CONFIG_KEY))) {
+				admin.sendPrivateText("This script is disabled in the server configuration file key " + CONFIG_KEY);
+				return;
+			}
+		} catch (Exception e) {
+			admin.sendPrivateText(e.toString());
+			return;
 		}
-	}
 
+		// do title change
+		if (args.get(0).equals("remove")) {
+			admin.setTitle(null);
+			admin.sendPrivateText("Your original name has been restored. Please change zones for the changes to take effect.");
+		} else {
+			String title = args.get(0);
+
+			admin.setTitle(title);
+			admin.sendPrivateText("Your name has been changed to " + title + ".");
+		}
+
+		admin.notifyWorldAboutChanges();
+	}
 }
