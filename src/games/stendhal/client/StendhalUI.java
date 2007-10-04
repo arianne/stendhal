@@ -6,12 +6,6 @@
 
 package games.stendhal.client;
 
-//
-//
-
-import games.stendhal.client.entity.Inspector;
-import games.stendhal.client.gui.ManagedWindow;
-
 /**
  * A base class for the stendhal client UI (not GUI).
  * 

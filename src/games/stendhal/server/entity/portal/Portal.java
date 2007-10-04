@@ -114,6 +114,7 @@ public class Portal extends Entity implements UseListener {
 	 *
 	 * @return	<code>true</code> if hidden.
 	 */
+	@Override
 	public boolean isHidden() {
 		return has(ATTR_HIDDEN);
 	}

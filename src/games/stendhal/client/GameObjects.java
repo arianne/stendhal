@@ -415,6 +415,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 		 *
 		 * @return	The string representation.
 		 */
+		@Override
 		public String toString() {
 			StringBuffer sbuf = new StringBuffer();
 

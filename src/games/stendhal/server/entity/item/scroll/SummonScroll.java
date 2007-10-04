@@ -13,7 +13,6 @@
 package games.stendhal.server.entity.item.scroll;
 
 import games.stendhal.server.StendhalRPAction;
-import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.creature.AttackableCreature;

@@ -3,7 +3,6 @@ package games.stendhal.server.entity.npc;
 
 import games.stendhal.common.Direction;
 import games.stendhal.common.Rand;
-import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.events.TurnListener;

@@ -14,7 +14,6 @@ import games.stendhal.server.pathfinder.FixedPath;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 /**
  * Controls house buying
  * 

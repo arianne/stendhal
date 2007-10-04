@@ -1,6 +1,5 @@
 package games.stendhal.server.maps.semos.village;
 
-import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
 import games.stendhal.server.entity.creature.Sheep;

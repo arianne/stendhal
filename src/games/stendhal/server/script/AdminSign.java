@@ -2,7 +2,6 @@
 package games.stendhal.server.script;
 
 import games.stendhal.common.MathHelper;
-import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.Sign;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.scripting.ScriptImpl;

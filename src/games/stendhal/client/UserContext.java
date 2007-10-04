@@ -21,7 +21,6 @@ import java.util.HashMap;
 import marauroa.common.Log4J;
 import marauroa.common.Logger;
 import marauroa.common.game.RPObject;
-import marauroa.common.game.RPSlot;
 
 /**
  * The player user context. This class holds/manages the data for the user of

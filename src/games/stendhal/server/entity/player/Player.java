@@ -44,7 +44,6 @@ import marauroa.common.Log4J;
 import marauroa.common.Logger;
 import marauroa.common.Pair;
 import marauroa.common.game.RPObject;
-import marauroa.common.game.RPObjectInvalidException;
 import marauroa.common.game.RPSlot;
 import marauroa.common.game.SyntaxException;
 

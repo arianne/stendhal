@@ -24,7 +24,6 @@ import java.util.Map;
 
 import marauroa.common.Log4J;
 import marauroa.common.Logger;
-import marauroa.common.game.IRPZone;
 
 /**
  * Represents the behaviour of a NPC who is able to sell items to a player.
