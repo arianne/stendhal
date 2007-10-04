@@ -10,6 +10,7 @@ package games.stendhal.server.rule;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.rule.defaultruleset.DefaultCreature;
 
 import java.util.Collection;
 
@@ -81,6 +82,17 @@ public interface EntityManager {
 	 *
 	 */
 	Creature getCreature(String clazz);
+
+	/**
+	 * returns the DefaultCreature or <code>null</code> if the clazz is unknown
+	 * 
+	 * @param clazz
+	 *            the creature class
+	 * @return the creature or <code>null</code>
+	 * @throws NullPointerException
+	 *             if clazz is <code>null</code>
+	 */
+	DefaultCreature getDefaultCreature(String clazz) throws NullPointerException;
 
 	/**
 	 * returns a list of all Items that are being used at least once

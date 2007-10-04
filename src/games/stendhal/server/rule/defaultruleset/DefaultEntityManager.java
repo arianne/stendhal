@@ -229,6 +229,21 @@ public class DefaultEntityManager implements EntityManager {
 		return null;
 	}
 
+	/**
+	 * returns the DefaultCreature or <code>null</code> if the clazz is unknown
+	 * 
+	 * @throws NullPointerException
+	 *             if clazz is <code>null</code>
+	 */
+	public DefaultCreature getDefaultCreature(String clazz) {
+		if (clazz == null) {
+			throw new NullPointerException("entity class is null");
+		}
+
+		// Lookup the clazz in the creature table
+		return classToCreature.get(clazz);
+	}
+
 	/** return true if the Entity is a creature */
 	public boolean isCreature(String tileset, int id) {
 		String clazz = idToClass.get(tileset + ":" + id);
