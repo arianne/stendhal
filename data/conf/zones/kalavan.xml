@@ -50,6 +50,8 @@
  </zone>
 
  <zone name="int_kalavan_castle" file="interiors/kalavan/castle.tmx">
+ <configurator class-name="games.stendhal.server.maps.kalavan.castle.PrincessNPC"/>
+ <configurator class-name="games.stendhal.server.maps.kalavan.castle.KingNPC"/>
   <portal x="31" y="63" ref="entrance_left">
    <destination zone="0_kalavan_castle" ref="castle_entrance_left"/>
   </portal>
