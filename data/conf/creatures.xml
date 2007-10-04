@@ -1354,7 +1354,7 @@
     <respawn value="910"/>
     <drops>
       <item value="money" quantity="[3,7]" probability="90.0"/>
-      <item value="fairycake" quantity="[1,2]" probability="20.0"/>
+      <item value="fairy_cake" quantity="[1,2]" probability="20.0"/>
     </drops>
     <equips>
     </equips>
@@ -7465,7 +7465,7 @@
     <respawn value="3530"/>
     <drops>
       <item value="money" quantity="[30,60]" probability="100.0"/>
-      <item value="fairycake" quantity="[1,5]" probability="10.0"/>
+      <item value="fairy_cake" quantity="[1,5]" probability="10.0"/>
       <item value="empty_scroll" quantity="[1,2]" probability="5.0"/>
       <item value="golden_cloak" quantity="[1,1]" probability="2.0"/>
       <item value="liberty_helmet" quantity="[1,1]" probability="0.1"/>
