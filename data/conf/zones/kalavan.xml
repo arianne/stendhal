@@ -43,6 +43,7 @@
  </zone>
 
  <zone name="int_kalavan_castle_basement" file="interiors/kalavan/castle_basement.tmx">
+ <configurator class-name="games.stendhal.server.maps.kalavan.castle.ItemsOnTable"/>
   <portal x="31" y="39" ref="upstairs">
    <destination zone="int_kalavan_castle" ref="downstairs"/>
   </portal>
