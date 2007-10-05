@@ -6947,6 +6947,35 @@
     </ai>
   </creature>
 
+ <creature name="amazoness_coastguard_mistress">
+    <type class="amazon" subclass="amazoness_coastguard_master" tileid="amazon.png:9"/>
+    <description></description>
+    <attributes>
+      <atk value="193"/>
+      <def value="35"/>
+      <hp value="700"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="78"/>
+    <experience value="5520"/>
+    <respawn value="2700"/>
+    <drops>
+      <item value="money" quantity="[5,40]" probability="100.0"/>
+      <item value="red_cloak" quantity="[1,1]" probability="5.5"/>
+      <item value="cod" quantity="[2,4]" probability="3.5"/>
+      <item value="fish_pie" quantity="[1,1]" probability="7.5"/>
+      <item value="coupon" quantity="[1,1]" probability="10.5"/
+    </drops>
+    <equips>      
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
   <creature name="incorporeal_armor">
     <type class="undead" subclass="incorporeal_armor" tileid="undead_fallen.png:5"/>
     <description></description>
@@ -8251,7 +8280,7 @@
       <def value="32"/>
       <hp value="1100"/>
       <speed value="1.0"/>
-      <size value="3,3"/>
+      <size value="2,2"/>
     </attributes>
     <level value="116"/>
     <experience value="16100"/>
@@ -8353,7 +8382,7 @@
       <def value="35"/>
       <hp value="1200"/>
       <speed value="1.0"/>
-      <size value="3,3"/>
+      <size value="3,2"/>
     </attributes>
     <level value="125"/>
     <experience value="20700"/>
@@ -8453,7 +8482,7 @@
       <def value="35"/>
       <hp value="1800"/>
       <speed value="1.0"/>
-      <size value="3,3"/>
+      <size value="2,2"/>
     </attributes>
     <level value="135"/>
     <experience value="25900"/>
@@ -8524,7 +8553,7 @@
       <def value="35"/>
       <hp value="1900"/>
       <speed value="1.0"/>
-      <size value="3,3"/>
+      <size value="3,2"/>
     </attributes>
     <level value="139"/>
     <experience value="26100"/>
@@ -8583,7 +8612,7 @@
       <def value="36"/>
       <hp value="2000"/>
       <speed value="1.0"/>
-      <size value="3,3"/>
+      <size value="2,2"/>
     </attributes>
     <level value="144"/>
     <experience value="30800"/>
@@ -8619,7 +8648,7 @@
       <def value="39"/>
       <hp value="2022"/>
       <speed value="1.0"/>
-      <size value="3,3"/>
+      <size value="3,2"/>
     </attributes>
     <level value="145"/>
     <experience value="31900"/>
@@ -8751,7 +8780,7 @@
       <def value="41"/>
       <hp value="2702"/>
       <speed value="1.0"/>
-      <size value="3,3"/>
+      <size value="3,2"/>
     </attributes>
     <level value="170"/>
     <experience value="50800"/>
@@ -8912,7 +8941,7 @@
       <def value="43"/>
       <hp value="3500"/>
       <speed value="1.0"/>
-      <size value="3,3"/>
+      <size value="3,2"/>
     </attributes>
     <level value="195"/>
     <experience value="75300"/>
@@ -8945,7 +8974,7 @@
       <def value="44"/>
       <hp value="2900"/>
       <speed value="1.0"/>
-      <size value="6,6"/>
+      <size value="6,5"/>
     </attributes>
     <level value="200"/>
     <experience value="82000"/>
@@ -8976,7 +9005,7 @@
       <def value="44"/>
       <hp value="3042"/>
       <speed value="1.0"/>
-      <size value="3,3"/>
+      <size value="3,2"/>
     </attributes>
     <level value="210"/>
     <experience value="90000"/>
@@ -9051,7 +9080,7 @@
       <def value="45"/>
       <hp value="4742"/>
       <speed value="1.0"/>
-      <size value="3,3"/>
+      <size value="3,2"/>
     </attributes>
     <level value="230"/>
     <experience value="123000"/>
@@ -9087,7 +9116,7 @@
       <def value="44"/>
       <hp value="4500"/>
       <speed value="0.8"/>
-      <size value="4,4"/>
+      <size value="4,3"/>
     </attributes>
     <level value="250"/>
     <experience value="150000"/>
@@ -9194,7 +9223,7 @@
       <def value="56"/>
       <hp value="12000"/>
       <speed value="1.0"/>
-      <size value="3,3"/>
+      <size value="3,2"/>
     </attributes>
     <level value="400"/>
     <experience value="623000"/>

@@ -32,8 +32,8 @@
  </zone>
  <zone name="0_amazon_island_sw" level="0" x="501024" y="499872" file="Level 0/amazon/island_sw.tmx">
  </zone>
- <!--<zone name="0_amazon_island_se" level="0" x="501152" y="499872" file="Level 0/amazon/island_se.tmx">
- </zone>-->
+ <zone name="0_amazon_island_se" level="0" x="501152" y="499872" file="Level 0/amazon/island_se.tmx">
+ </zone>
 
   <!--  Level -1 -->
 
