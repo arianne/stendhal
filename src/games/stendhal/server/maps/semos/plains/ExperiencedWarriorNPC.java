@@ -89,10 +89,10 @@ public class ExperiencedWarriorNPC extends SpeakerNPCFactory {
 		dangerLiterals.put(2.0, "%s is extremely dangerous for you, beware!");
 		dangerLiterals.put(1.8, "%S are very dangerous for you, be careful!");
 		dangerLiterals.put(1.7, "%S are dangerous for you, keep potions with you!");
-		dangerLiterals.put(1.4, "It is possibly dangerous for you, keep an eye on your health!");
-		dangerLiterals.put(1.2, "It may be a nice challenge for you to kill one!");
-		dangerLiterals.put(1.0, "Killing %s should be trivial for you.");
-		dangerLiterals.put(0.8, "Killing %s should be easy for you.");
+		dangerLiterals.put(1.2, "It is possibly dangerous for you, keep an eye on your health!");
+		dangerLiterals.put(0.8, "It may be a nice challenge for you to kill one!");
+		dangerLiterals.put(0.5, "Killing %s should be trivial for you.");
+		dangerLiterals.put(0.3, "Killing %s should be easy for you.");
 		dangerLiterals.put(0.0, "%s is probably not enough challenge for you.");
 	}
 
@@ -153,6 +153,7 @@ public class ExperiencedWarriorNPC extends SpeakerNPCFactory {
 
 		class StateInfo {
 			String creatureName;
+			int informationCost;
 
 			void setCreatureName(String creatureName) {
 				this.creatureName = creatureName;
@@ -160,6 +161,14 @@ public class ExperiencedWarriorNPC extends SpeakerNPCFactory {
 
 			String getCreatureName() {
 				return creatureName;
+			}
+
+			void setInformationCost(int informationCost) {
+				this.informationCost = informationCost;
+			}
+
+			int getInformationCost() {
+				return informationCost;
 			}
 		}
 		
@@ -197,7 +206,9 @@ public class ExperiencedWarriorNPC extends SpeakerNPCFactory {
 			    		} else {
 							stateInfo.setCreatureName(text);
 							if (INFORMATION_BASE_COST > 0) {
-								speakerNPC.say("This information costs " + getCost(player, creature) + ". Are you still interested?");
+								int informationCost = getCost(player, creature);
+								stateInfo.setInformationCost(informationCost);
+								speakerNPC.say("This information costs " + informationCost + ". Are you still interested?");
 								speakerNPC.setCurrentState(ConversationStates.BUY_PRICE_OFFERED);
 							} else {
 								speakerNPC.say(getCreatureInfo(player, stateInfo.getCreatureName())
@@ -219,7 +230,7 @@ public class ExperiencedWarriorNPC extends SpeakerNPCFactory {
 			        @Override
 			        public void fire(Player player, String text, SpeakerNPC speakerNPC) {
 			        	if (stateInfo.getCreatureName() != null) {
-					        if (player.drop("money", INFORMATION_BASE_COST)) {
+					        if (player.drop("money", stateInfo.getInformationCost())) {
 					        	String infoString = getCreatureInfo(player, stateInfo.getCreatureName());
 					        	infoString += " If you want to hear about another creature, just tell me which.";
 								speakerNPC.say(infoString);
