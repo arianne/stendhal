@@ -173,6 +173,7 @@ public class HouseBuying extends AbstractQuest {
 				add(ConversationStates.QUESTION_2, ConversationPhrases.NO_MESSAGES, null, ConversationStates.ATTENDING, "That is wise of you. It is certainly better to restrict use of your house to those you can really trust.", null);
 				add(ConversationStates.QUESTION_1, ConversationPhrases.NO_MESSAGES, null, ConversationStates.ATTENDING, "No problem! If I can help you with anything else, just ask.", null);
 				addJob("I'm an estate agent. In simple terms, I sell houses to anyone who wants to buy one. They #cost a lot, of course.");
+				addReply("buy","You should really enquire the #cost before you ask to buy.");
 				addReply("really","That's right, really, really, really. Really.");
 				addOffer("I sell houses, please ask about the #cost.");
 				addHelp("You can buy a house if there are any available. If you can pay the #cost, I'll give you a key. As a house owner you can buy spare keys to give your friends. Inside each house is a chest to store items. You can also safely leave your sheep inside.");
