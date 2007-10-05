@@ -84,6 +84,7 @@ public class Stendhal2D extends StendhalGUI {
 	 * Add an event line.
 	 * 
 	 */
+	@Override
 	public void addEventLine(final String text) {
 
 	}
@@ -92,6 +93,7 @@ public class Stendhal2D extends StendhalGUI {
 	 * Add an event line.
 	 * 
 	 */
+	@Override
 	public void addEventLine(final String header, final String text) {
 
 	}
@@ -100,6 +102,7 @@ public class Stendhal2D extends StendhalGUI {
 	 * Add an event line.
 	 * 
 	 */
+	@Override
 	public void addEventLine(final String text, final NotificationType type) {
 
 	}
@@ -108,6 +111,7 @@ public class Stendhal2D extends StendhalGUI {
 	 * Add an event line.
 	 * 
 	 */
+	@Override
 	public void addEventLine(final String header, final String text, final NotificationType type) {
 
 	}
@@ -115,6 +119,7 @@ public class Stendhal2D extends StendhalGUI {
 	/**
 	 * Initiate outfit selection by the user.
 	 */
+	@Override
 	public void chooseOutfit() {
 
 	}
@@ -122,6 +127,7 @@ public class Stendhal2D extends StendhalGUI {
 	/**
 	 * Initiate guild management by the user.
 	 */
+	@Override
 	public void ManageGuilds() {
 
 	}
@@ -132,6 +138,7 @@ public class Stendhal2D extends StendhalGUI {
 	 * 
 	 * @return The height.
 	 */
+	@Override
 	public int getHeight() {
 		return height;
 	}
@@ -142,6 +149,7 @@ public class Stendhal2D extends StendhalGUI {
 	 * 
 	 * @return The game screen.
 	 */
+	@Override
 	public GameScreen getScreen() {
 return null;
 	}
@@ -151,6 +159,7 @@ return null;
 	 * 
 	 * @return The width.
 	 */
+	@Override
 	public int getWidth() {
 		return width;
 	}
@@ -158,6 +167,7 @@ return null;
 	/**
 	 * Request quit confirmation from the user.
 	 */
+	@Override
 	public void requestQuit() {
 
 	}
@@ -169,6 +179,7 @@ return null;
 	 * @param text
 	 *	The text.
 	 */
+	@Override
 	public void setChatLine(String text) {
 
 	}
@@ -179,6 +190,7 @@ return null;
 	 * @param offline
 	 *	<code>true</code> if offline.
 	 */
+	@Override
 	public void setOffline(boolean offline) {
 
 	}
@@ -189,6 +201,7 @@ return null;
 	 * @param	x		The user's X coordinate.
 	 * @param	y		The user's Y coordinate.
 	 */
+	@Override
 	public void setPosition(double x, double y) {
 
 	}
