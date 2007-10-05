@@ -56,9 +56,9 @@ public class AdminMaker extends ScriptImpl {
 			player.addXP(Level.getXP(level + xlevel) - Level.getXP(level));
 		}
 
-		private final List<String> itemsSingle = Arrays.asList("rod_of_the_gm", "golden_shield", "golden_armor", "golden_cloak", "golden_helmet", "golden_legs", "golden_boots");
+		private final List<String> itemsSingle = Arrays.asList("rod_of_the_gm", "golden_shield", "golden_armor", "golden_cloak", "golden_helmet", "golden_legs", "golden_boots", "hunter_crossbow");
 
-		private final List<String> itemsStack = Arrays.asList("money", "greater_potion", "power_arrow", "deadly_poison");
+		private final List<String> itemsStack = Arrays.asList("money", "greater_potion", "greater_antidote", "power_arrow", "deadly_poison");
 
 		private void equip(Player player) {
 
