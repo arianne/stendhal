@@ -28,7 +28,7 @@ import marauroa.common.Logger;
 /**
  * RespawnPoints are points at which creatures can appear. Several creatures
  * can be spawned, until a maximum has been reached (note that this maximum
- * is usually 1); then the RespawnPoint will stop spawining creatures until 
+ * is usually 1); then the RespawnPoint will stop spawning creatures until 
  * at least one of the creatures has died. It will then continue to spawn
  * creatures. A certain time must pass between respawning creatures; this
  * respawn time is usually dependent of the type of the creatures that are
@@ -96,14 +96,14 @@ public class CreatureRespawnPoint implements TurnListener {
 		this.creatures = new LinkedList<Creature>();
 
 		respawning = true;
-		TurnNotifier.get().notifyInTurns(0, this); // respawn in next turn
+		TurnNotifier.get().notifyInTurns(Rand.rand(respawnTime), this); // don't respawn in next turn!
 	}
 	
 	public Creature getPrototypeCreature() {
 		return prototypeCreature;
 	}
 
-	/**
+ 	/**
 	 * Sets the time it takes to respawn a creature. Note that this value 
 	 * defaults to the creature's default respawn time. 
 	 */
@@ -122,7 +122,7 @@ public class CreatureRespawnPoint implements TurnListener {
 		if (!respawning) {
 			// start respawning a new creature
 			respawning = true;
-			TurnNotifier.get().notifyInTurns(Rand.rand(respawnTime, respawnTime / 30), this);
+			TurnNotifier.get().notifyInTurns(Rand.rand(respawnTime) + respawnTime / 2, this);
 		}
 
 		creatures.remove(dead);
@@ -140,8 +140,9 @@ public class CreatureRespawnPoint implements TurnListener {
 		if (creatures.size() == maximum) {
 			respawning = false;
 		} else {
-			// TODO: consider increasing the variance to increase randomization
-			TurnNotifier.get().notifyInTurns(Rand.rand(respawnTime, respawnTime / 30), this);
+			// Spawns a new creature with time equally distributed 
+		        // in [respawnTime/2,respawnTime + respawnTime/2]
+			TurnNotifier.get().notifyInTurns(Rand.rand(respawnTime) + respawnTime / 2, this);
 		}
 	}
 
