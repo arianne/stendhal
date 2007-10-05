@@ -151,14 +151,14 @@
       <parameter name="rejected">The door to this house is locked.</parameter>
     </implementation>
   </portal>
-<!-- 
   <portal x="118" y="120" ref="house_10_entrance">
-   <destination zone="int_kalavan_house_10" ref="entrance"/>
+   <destination zone="int_kalavan_house_10" ref="entrance_right"/>
     <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
       <parameter name="key">private_key_10</parameter>
       <parameter name="rejected">The door to this house is locked.</parameter>
     </implementation>
   </portal>
+<!-- 
   <portal x="101" y="121" ref="house_11_entrance">
    <destination zone="int_kalavan_house_11" ref="entrance"/>
     <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
@@ -389,13 +389,15 @@
    <destination zone="0_kalavan_city" ref="house_9_entrance"/>
   </portal>
  </zone>
-<!--
  <zone name="int_kalavan_house_10" file="interiors/kalavan/house_10.tmx">
    <configurator class-name="games.stendhal.server.maps.kalavan.house.CommonChest"/>
-  <portal x="12" y="23" ref="entrance">
+  <portal x="3" y="23" ref="entrance_left">
    <destination zone="0_kalavan_city" ref="house_10_entrance"/>
   </portal>
- </zone>
+  <portal x="4" y="23" ref="entrance_right">
+   <destination zone="0_kalavan_city" ref="house_10_entrance"/>
+  </portal>
+ </zone><!--
  <zone name="int_kalavan_house_11" file="interiors/kalavan/house_11.tmx">
    <configurator class-name="games.stendhal.server.maps.kalavan.house.CommonChest"/>
   <portal x="12" y="23" ref="entrance">
