@@ -6965,7 +6965,7 @@
       <item value="red_cloak" quantity="[1,1]" probability="5.5"/>
       <item value="cod" quantity="[2,4]" probability="3.5"/>
       <item value="fish_pie" quantity="[1,1]" probability="7.5"/>
-      <item value="coupon" quantity="[1,1]" probability="10.5"/
+      <item value="coupon" quantity="[1,1]" probability="10.5"/>
     </drops>
     <equips>      
     </equips>
