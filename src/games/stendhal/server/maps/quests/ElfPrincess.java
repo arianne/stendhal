@@ -1,5 +1,6 @@
 package games.stendhal.server.maps.quests;
 
+import games.stendhal.common.Rand;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
@@ -31,7 +32,7 @@ import java.util.Arrays;
  * REWARD:
  * <ul>
  * <li>5000 XP</li>
- * <li>Some gold bars</li>
+ * <li>Some gold bars, random between 5,10,15,20,25,30.</li>
  * </ul>
  *
  * REPETITIONS:
@@ -41,7 +42,6 @@ import java.util.Arrays;
  * </ul>
  */
 public class ElfPrincess extends AbstractQuest {
-	private static final int GOLD_AMOUNT = 5;
 
 	private static final String QUEST_SLOT = "elf_princess";
 
@@ -134,8 +134,21 @@ public class ElfPrincess extends AbstractQuest {
 						player.setQuest(QUEST_SLOT, "got_flower");
 					}
 				});
+	rose.add(ConversationStates.IDLE,
+				ConversationPhrases.GREETING_MESSAGES,
+				new SpeakerNPC.ChatCondition() {
+					@Override
+					public boolean fire(Player player, String text,
+							SpeakerNPC npc) {
+						return !(player.hasQuest(QUEST_SLOT)
+								&& player.getQuest(QUEST_SLOT).equals("start"));
+					}
+				}, ConversationStates.IDLE,"I've got nothing for you today, sorry dearie. I'll be on my way now, bye.", null
+				);
+
 
 	}
+
 
 	private void bringFlowerStep() {
 		SpeakerNPC npc = npcs.get("Tywysoga");
@@ -155,16 +168,18 @@ public class ElfPrincess extends AbstractQuest {
 					@Override
 					public void fire(Player player, String text, SpeakerNPC npc) {
 						player.drop("rhosyd");
-						npc
-								.say("Thank you! Take this gold, I have plenty. If you'd ever like to get me another, be sure to ask me first. Rose Leigh is superstitious, she won't give the bloom unless she senses you need it.");
 						player.addXP(5000);
 						StackableItem goldbars = (StackableItem) StendhalRPWorld
 								.get().getRuleManager().getEntityManager()
 								.getItem("gold_bar");
-						goldbars.setQuantity(GOLD_AMOUNT);
+						int goldamount;
+						goldamount = 5 * Rand.roll1D6();
+						goldbars.setQuantity(goldamount);
 						// goldbars.setBoundTo(player.getName()); <- not sure
 						// if these should get bound or not.
 						player.equip(goldbars, true);
+						npc
+								.say("Thank you! Take these " + Integer.toString(goldamount) + " gold bars, I have plenty. And, listen: If you'd ever like to get me another, be sure to ask me first. Rose Leigh is superstitious, she won't give the bloom unless she senses you need it.");
 						player.setQuest(QUEST_SLOT, "flower_brought");
 					}
 				});
