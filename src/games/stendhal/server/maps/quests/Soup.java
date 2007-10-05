@@ -337,6 +337,9 @@ public class Soup extends AbstractQuest {
 						@Override
 						public void fire(Player player, String text,
 								SpeakerNPC npc) {
+							if (text != null) {
+								text = text.toLowerCase();
+							}
 							List<String> missing = missingFood(player, false);
 							if (missing.contains(text)) {
 								if (player.drop(text)) {
