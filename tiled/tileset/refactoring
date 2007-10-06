@@ -329,7 +329,7 @@ b*/item/furniture/table/brick_base.png
 ./item/gothic/coffin.png
 ./item/gothic/large_gravestone.png
 ./item/gothic/slab.png
-b/item/pot/barrel.png
+b+k*/item/pot/barrel.png
 b/item/pot/barrel_flat.png
 b+k*/item/pot/barrel_tall.png
 b*/item/pot/box.png
