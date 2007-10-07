@@ -1496,6 +1496,16 @@ public class GameScreen implements PositionChangeListener {
 
 				if (rv == 0) {
 					rv = area1.x - area2.x;
+
+					/*
+					 * Quick workaround to stack items
+					 * in the same order they were added.
+					 *
+					 * TODO: Do it right on server side
+					 */
+					if(rv == 0) {
+						rv = view1.getEntity().getID().getObjectID() - view2.getEntity().getID().getObjectID();
+					}
 				}
 			}
 
