@@ -76,6 +76,12 @@ public class KHtmlEdit extends KTextEdit {
 
 			if (text.startsWith("say:")) {
 				text = text.substring(4);
+
+				try {
+					text = URLDecoder.decode(text, "UTF-8");
+				} catch(UnsupportedEncodingException ex) {
+					// Leave text as-is and hope for best
+				}
 			}
 		}
 
