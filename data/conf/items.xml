@@ -1799,6 +1799,24 @@
     </equipable>
   </item>
 
+ <item name="coconut">
+    <type class="food" subclass="coconut" tileid="-1"/>
+    <description>You see a coconut. If only you had a pick, you could drink from it.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Drink"/>    <attributes>
+      <amount value="50"/>
+      <frequency value="5"/>
+      <quantity value="1"/>
+      <regen value="2"/>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
+    </equipable>
+  </item>
+
   <item name="carrot">
     <type class="food" subclass="carrot" tileid="-1"/>
     <description>You see a carrot.  It can be an ingredient, or you can eat it.</description>
@@ -3006,6 +3024,18 @@
  <item name="private_key_21">
     <type class="key" subclass="lime" tileid="-1"/>
     <description>You see a private key to House 21 in Kalavan City.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="keyring"/>
+    </equipable>
+  </item>
+ <item name="private_key_22">
+    <type class="key" subclass="pink" tileid="-1"/>
+    <description>You see a private key to House 22 in Kalavan City.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
     </attributes>
     <weight value="1.0"/>
