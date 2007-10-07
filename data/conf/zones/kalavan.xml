@@ -200,7 +200,6 @@
       <parameter name="rejected">The door to this house is locked.</parameter>
     </implementation>
   </portal>
-<!--
   <portal x="6" y="106" ref="house_17_entrance">
    <destination zone="int_kalavan_house_17" ref="entrance"/>
     <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
@@ -209,12 +208,13 @@
     </implementation>
   </portal>
   <portal x="9" y="91" ref="house_18_entrance">
-   <destination zone="int_kalavan_house_18" ref="entrance"/>
+   <destination zone="int_kalavan_house_18" ref="entrance_right"/>
     <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
       <parameter name="key">private_key_18</parameter>
       <parameter name="rejected">The door to this house is locked.</parameter>
     </implementation>
   </portal>
+<!--
   <portal x="7" y="74" ref="house_19_entrance">
    <destination zone="int_kalavan_house_19" ref="entrance"/>
     <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
@@ -434,19 +434,22 @@
    <destination zone="0_kalavan_city" ref="house_16_entrance"/>
   </portal>
  </zone>
-<!--
  <zone name="int_kalavan_house_17" file="interiors/kalavan/house_17.tmx">
   <configurator class-name="games.stendhal.server.maps.kalavan.house.CommonChest"/>
-  <portal x="12" y="23" ref="entrance">
+  <portal x="4" y="23" ref="entrance">
    <destination zone="0_kalavan_city" ref="house_17_entrance"/>
   </portal>
  </zone>
  <zone name="int_kalavan_house_18" file="interiors/kalavan/house_18.tmx">
   <configurator class-name="games.stendhal.server.maps.kalavan.house.CommonChest"/>
-  <portal x="12" y="23" ref="entrance">
+  <portal x="16" y="23" ref="entrance_left">
+   <destination zone="0_kalavan_city" ref="house_18_entrance"/>
+  </portal>
+  <portal x="17" y="23" ref="entrance_right">
    <destination zone="0_kalavan_city" ref="house_18_entrance"/>
   </portal>
  </zone>
+<!--
  <zone name="int_kalavan_house_19" file="interiors/kalavan/house_19.tmx">
   <configurator class-name="games.stendhal.server.maps.kalavan.house.CommonChest"/>
    <portal x="12" y="23" ref="entrance">
