@@ -371,7 +371,7 @@ public class KHtmlEdit extends KTextEdit {
 		/*
 		 * Configure standard styles
 		 */
-		css.addRule("body { font-family: Dialog; font-size: " + TEXT_SIZE + "pt }");
+		css.addRule("body { font-family: Dialog; font-size: " + (TEXT_SIZE + 1) + "pt }");
 		css.addRule("a { color: blue; font-style: italic }");
 
 		css.addRule("._timestamp { color: " + colorToRGB(HEADER_COLOR) + "; font-size: " + (TEXT_SIZE - 1) + "pt; font-style: italic }");
