@@ -27,7 +27,9 @@ public class TimedTeleportScroll extends TeleportScroll {
 
 	private static final Logger logger = Log4J.getLogger(TimedTeleportScroll.class);
 
-	/* Note: the values here are for example only, they are overridden with the ones from items.xml infostring */
+	/* Note: the values here are for example only, they are overridden with the ones from items.xml infostring.
+	 * This class must be extended to call the initHandler method, see RainbowBeansScroll for an example.
+	 */
 
 	protected static String targetZoneName = "1_dreamscape";
 	protected static int targetX = -1;
@@ -40,7 +42,7 @@ public class TimedTeleportScroll extends TeleportScroll {
 	protected static int returnY = -1;
 
 	/**
-	 * initialize teleport parameters and the login notifier to teleport away players logging into the dream world.
+	 * initialize teleport parameters and the login notifier to teleport away players logging into the target zone.
 	 */
 	protected void initHandler() {
 		String infoString = getInfoString();
