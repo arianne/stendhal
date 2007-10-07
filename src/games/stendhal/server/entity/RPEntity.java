@@ -131,7 +131,8 @@ public abstract class RPEntity extends GuidedEntity {
 			entity.addAttribute("base_mana", Type.INT);
 
 			// TODO: Remove just prior to DB Reset
-			entity.addAttribute("hp/base_hp", Type.FLOAT, Definition.VOLATILE);
+			// TODO: Delete after 2007-10-20 if removal didn't break server
+			//entity.addAttribute("hp/base_hp", Type.FLOAT, Definition.VOLATILE);
 			entity.addAttribute("base_hp", Type.SHORT);
 			entity.addAttribute("hp", Type.SHORT);
 

@@ -64,8 +64,8 @@ public abstract class Entity extends RPObject {
 		// TODO: Try to remove this attribute later (at DB reset?)
 		entity.addAttribute("type", Type.STRING);
 
-		// TODO: Obsolete - Remove _right_before_ DB reset
-		entity.addAttribute("obstacle", Type.FLAG, Definition.VOLATILE);
+		// TODO: Delete after 2007-10-20 if removal didn't break server
+		//entity.addAttribute("obstacle", Type.FLAG, Definition.VOLATILE);
 
 		/**
 		 * Resistance to other entities (0-100).

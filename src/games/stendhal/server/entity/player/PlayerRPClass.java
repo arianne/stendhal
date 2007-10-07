@@ -191,18 +191,14 @@ lion_shield_+1 enhanced_lion_shield
 		// The guild name
 		player.addAttribute("guild", Type.STRING);
 
-		/*
-		 * TODO: Remove this one as it is repeated.
-		 * Correct one is ghostmode.
-		 */
-		// Does player have full ghostmode?
-		player.addAttribute("fullghostmode", Type.INT); // 0 for off, 1 for on
+		// TODO: Delete after 2007-10-20 if removal didn't break server
+		//player.addAttribute("fullghostmode", Type.INT); // 0 for off, 1 for on
 
 		// Player features
 		player.addRPSlot("!features", 1, Definition.PRIVATE);
 
-		// TODO: Obsolete - Remove before DB reset
-		player.addAttribute("features", Type.LONG_STRING, Definition.PRIVATE);
+		// TODO: Delete after 2007-10-20 if removal didn't break server
+		//player.addAttribute("features", Type.LONG_STRING, Definition.PRIVATE);
 
 		// Last time this player attacked another player
 		player.addAttribute("last_pvp_action_time", Type.FLOAT, Definition.HIDDEN);
