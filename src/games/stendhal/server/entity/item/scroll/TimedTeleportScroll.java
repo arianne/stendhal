@@ -228,6 +228,9 @@ public class TimedTeleportScroll extends TeleportScroll {
 		}
 
 		public void onTurnReached(int currentTurn, String message) {
+			if (player == null || player.getZone() == null || zone == null) {
+				return;
+			}
 			if (player.getZone().getName().equals(zone.getName())) {
 				player.sendPrivateText(warningMessage);
 			}
