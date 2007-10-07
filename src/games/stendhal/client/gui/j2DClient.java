@@ -303,7 +303,7 @@ public class j2DClient extends StendhalUI {
 		/*
 		 * Game log
 		 */
-		gameLog = new KTextEdit();
+		gameLog = new KHtmlEdit();
 		gameLog.setPreferredSize(new Dimension(SCREEN_WIDTH, 171));
 
 		if (System.getProperty("stendhal.onewindow") != null) {
@@ -1025,7 +1025,7 @@ public class j2DClient extends StendhalUI {
 	@Override
 	public void addEventLine(final String header, final String text,
 			final NotificationType type) {
-		gameLog.addLine(header, text, getNotificationColor(type));
+		gameLog.addLine(header, text, type);
 	}
 
 	/**

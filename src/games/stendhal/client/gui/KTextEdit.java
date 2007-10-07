@@ -1,5 +1,8 @@
 package games.stendhal.client.gui;
 
+import games.stendhal.client.NotificationType;
+import games.stendhal.client.StendhalUI;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -29,11 +32,11 @@ public class KTextEdit extends JPanel {
 	private static final long serialVersionUID = -698232821850852452L;
 	private static final Logger logger = Log4J.getLogger(KTextEdit.class);
 
-	private static final int TEXT_SIZE = 11;
+	protected static final int TEXT_SIZE = 11;
 
-	private static final Color HEADER_COLOR = Color.gray;
+	protected static final Color HEADER_COLOR = Color.gray;
 
-	private JTextPane textPane;
+	protected JTextPane textPane;
 
 	private JScrollPane scrollPane;
 
@@ -47,7 +50,7 @@ public class KTextEdit extends JPanel {
 	/**
 	 * This method builds the Gui
 	 */
-	private void buildGUI() {
+	protected void buildGUI() {
 		textPane = new JTextPane();
 		textPane.setEditable(false);
 		textPane.setAutoscrolls(true);
@@ -61,7 +64,7 @@ public class KTextEdit extends JPanel {
 	 * @param textPane
 	 *            the active text component
 	 */
-	private void initStylesForTextPane(JTextPane textPane) {
+	protected void initStylesForTextPane(JTextPane textPane) {
 		// Initialize the basics styles.
 		Style def = StyleContext.getDefaultStyleContext().getStyle(StyleContext.DEFAULT_STYLE);
 
@@ -112,7 +115,7 @@ public class KTextEdit extends JPanel {
 	/**
 	 * insert a header
 	 */
-	private void insertHeader(String header) {
+	protected void insertHeader(String header) {
 		Document doc = textPane.getDocument();
 		try {
 			if (header.length() > 0) {
@@ -123,7 +126,7 @@ public class KTextEdit extends JPanel {
 		}
 	}
 
-	private void insertTimestamp(String header) {
+	protected void insertTimestamp(String header) {
 		Document doc = textPane.getDocument();
 		try {
 			if (header.length() > 0) {
@@ -134,7 +137,9 @@ public class KTextEdit extends JPanel {
 		}
 	}
 
-	private void insertText(String text, Color color) {
+	protected void insertText(String text, NotificationType type) {
+		Color color = ((j2DClient) StendhalUI.get()).getNotificationColor(type);
+
 		Document doc = textPane.getDocument();
 		try {
 			String[] parts = text.split("#");
@@ -159,7 +164,7 @@ public class KTextEdit extends JPanel {
 		}
 	}
 
-	private void insertNewline() {
+	protected void insertNewline() {
 		Document doc = textPane.getDocument();
 		try {
 			doc.insertString(doc.getLength(), "\r\n", getColor(Color.black));
@@ -169,14 +174,15 @@ public class KTextEdit extends JPanel {
 	}
 
 
-	public void addLine(String header, String line) {
-		addLine(header, line, Color.black);
-	}
-
-
 	public void addLine(String line) {
-		addLine(line, Color.black);
+		addLine("", line);
 	}
+
+
+	public void addLine(String header, String line) {
+		addLine(header, line, NotificationType.NORMAL);
+	}
+
 
 	private void scrollToBottom() {
 		// This didn't scroll all the way down. :(
@@ -205,11 +211,10 @@ public class KTextEdit extends JPanel {
 	 *            a string with the header name
 	 * @param line
 	 *            a string representing the line to be printed
-	 * @param color
-	 *            the desired color
+	 * @param type
+	 *            The logical format type.
 	 */
-	public synchronized void addLine(String header, String line, Color color) {
-
+	public synchronized void addLine(String header, String line, NotificationType type) {
 		// Goal of the new code is making it easier to read older messages:
 		// The client should only scroll down automatically if the scrollbar
 		// was at the bottom before.
@@ -236,7 +241,7 @@ public class KTextEdit extends JPanel {
 		insertTimestamp(dateString);
 
 		insertHeader(header);
-		insertText(line, color);
+		insertText(line, type);
 
 		if (useNewCode) {
 			if (autoScroll) {
@@ -259,16 +264,6 @@ public class KTextEdit extends JPanel {
 	}
 
 	/**
-	 * @param line
-	 *            a string representing the line to be printed
-	 * @param color
-	 *            the desired color
-	 */
-	public void addLine(String line, Color color) {
-		addLine("", line, color);
-	}
-
-	/**
 	 * Da main to make unit tests
 	 */
 	public static void main(String[] args) {
@@ -282,7 +277,7 @@ public class KTextEdit extends JPanel {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		KTextEdit edit = new KTextEdit();
 		frame.getContentPane().add(edit);
-		edit.addLine("Well, there is really not #much to tell #about. !", Color.red);
+		edit.addLine("Well, there is really not #much to tell #about. !");
 		// edit.addLine("Well, there is really not much to tell about. !",
 		// Color.blue);
 		// edit.addLine("Well, there is really not much to tell about. !",
