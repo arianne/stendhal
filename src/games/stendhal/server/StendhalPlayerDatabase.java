@@ -1,5 +1,9 @@
 package games.stendhal.server;
 
+import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.player.Player;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -85,6 +89,9 @@ public class StendhalPlayerDatabase extends JDBCPlayerDatabase {
 	@Override
 	public RPObject loadRPObject(Transaction trans, int id) throws Exception {
 		Connection connection = ((JDBCTransaction) trans).getConnection();
+		
+		// init rpclasses
+		StendhalRPWorld.get();
 
 		String query = "select data from avatars where object_id=" + id;
 		logger.debug("storeRPObject is executing query " + query);
@@ -125,7 +132,6 @@ public class StendhalPlayerDatabase extends JDBCPlayerDatabase {
 		return null;
 	}
 
-	@Override
 	public synchronized int storeRPObject(Transaction trans, RPObject object) throws SQLException {
 		Connection connection = ((JDBCTransaction) trans).getConnection();
 
@@ -322,12 +328,12 @@ public class StendhalPlayerDatabase extends JDBCPlayerDatabase {
 	}
 
 	public static void main(String[] args) throws Exception {
-		System.out.println("PORTING RPOBJECT, RPATTRIBUTE and RPSLOT tables to AVATARS new system");
+		System.out.println("PORTING 'new' AVATARS system back to RPOBJECT, RPATTRIBUTE and RPSLOT tables");
 		System.out.println();
-		Configuration.setConfigurationFile("stendhal.ini");
-		JDBCPlayerDatabase odb = (JDBCPlayerDatabase) JDBCPlayerDatabase.getDatabase();
+		Configuration.setConfigurationFile("marauroa.ini");
+		JDBCPlayerDatabase odb = (JDBCPlayerDatabase) StendhalPlayerDatabase.resetDatabaseConnection();
 
-		JDBCPlayerDatabase sdb = (JDBCPlayerDatabase) StendhalPlayerDatabase.resetDatabaseConnection();
+		JDBCPlayerDatabase sdb = (JDBCPlayerDatabase) JDBCPlayerDatabase.getDatabase(); 
 
 		Transaction transA = odb.getTransaction();
 		Transaction transB = sdb.getTransaction();
