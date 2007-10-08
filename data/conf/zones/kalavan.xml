@@ -448,7 +448,7 @@
    <destination zone="0_kalavan_city" ref="house_18_entrance"/>
   </portal>
  </zone>
- <zone name="int_kalavan_house_19" file="interiors/kalavan/house_15.tmx">
+ <zone name="int_kalavan_house_19" file="interiors/kalavan/house_19.tmx">
   <configurator class-name="games.stendhal.server.maps.kalavan.house.CommonChest"/>
    <portal x="6" y="23" ref="entrance">
    <destination zone="0_kalavan_city" ref="house_19_entrance"/>
