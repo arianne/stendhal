@@ -79,7 +79,7 @@ public class ZoneNotifier {
 			process(player, ZoneEventType.VISIT_MAGIC_CITY_N);
 		} else if (destinationZone.equals("-1_fado_great_cave_e2")) {
 			process(player, ZoneEventType.VISIT_MAGIC_CITY);
-		} else if (destinationZone.equals("dreamscape")) {
+		} else if (destinationZone.equals("1_dreamscape")) {
 			process(player, ZoneEventType.VISIT_DREAMSCAPE);
 		} else if (destinationZone.equals("-1_semos_caves")) {
 			process(player, ZoneEventType.VISIT_SEMOS_CAVES);
