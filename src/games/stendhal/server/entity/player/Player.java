@@ -199,6 +199,20 @@ public class Player extends RPEntity {
 			}
 		}
 
+		// Convert old features list
+		if (player.has("features")) {
+			logger.info("Converting features for " + player.getName() + ": " + player.get("features"));
+
+			FeatureList features = new FeatureList();
+			features.decode(player.get("features"));
+
+			for(String name : features) {
+				player.setFeature(name, features.get(name));
+			}
+
+			player.remove("features");
+		}
+
 		player.updateItemAtkDef();
 
 		PlayerRPClass.welcome(player);
