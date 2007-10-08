@@ -24,6 +24,7 @@ public class HouseBuying extends AbstractQuest {
 
 	// constants
 	private static final String QUEST_SLOT = "house";
+    	private static final String PRINCESS_QUEST_SLOT = "imperial_princess";
 
 	// Cost to buy house (lots!)
 	private static final int COST = 100000;
@@ -96,6 +97,10 @@ public class HouseBuying extends AbstractQuest {
 						    engine.say("The cost of a new house is " + COST
 									+ " money. But I am afraid I cannot trust you with house ownership just yet, as you have not been a part of this world long enough.");
 					        }
+						else if (!player.isQuestCompleted(PRINCESS_QUEST_SLOT)) {
+						    engine.say("The cost of a new house is " + COST
+							       + " money. But I am afraid I cannot sell you a house until your citizenship has been approved by the King, who you will find north of here in Kalavan Castle. try speaking to his daughter first, she is ... friendlier.");
+						}
 
                                                 else if (!player.hasQuest(QUEST_SLOT)) {
 							engine.say("The cost of a new house is " + COST
@@ -172,12 +177,12 @@ public class HouseBuying extends AbstractQuest {
 				);
 				add(ConversationStates.QUESTION_2, ConversationPhrases.NO_MESSAGES, null, ConversationStates.ATTENDING, "That is wise of you. It is certainly better to restrict use of your house to those you can really trust.", null);
 				add(ConversationStates.QUESTION_1, ConversationPhrases.NO_MESSAGES, null, ConversationStates.ATTENDING, "No problem! If I can help you with anything else, just ask.", null);
-				addJob("I'm an estate agent. In simple terms, I sell houses to anyone who wants to buy one. They #cost a lot, of course.");
-				addReply("buy","You should really enquire the #cost before you ask to buy.");
+				addJob("I'm an estate agent. In simple terms, I sell houses to anyone who wants to buy one. They #cost a lot, of course. Our brochure is at #http://arianne.sourceforge.net/wiki/index.php?title=StendhalHouses.");
+				addReply("buy","You should really enquire the #cost before you ask to buy. And check our brochure, #http://arianne.sourceforge.net/wiki/index.php?title=StendhalHouses.");
 				addReply("really","That's right, really, really, really. Really.");
-				addOffer("I sell houses, please ask about the #cost.");
-				addHelp("You can buy a house if there are any available. If you can pay the #cost, I'll give you a key. As a house owner you can buy spare keys to give your friends. Inside each house is a chest to store items. You can also safely leave your sheep inside.");
-				addQuest("You may buy houses from me, please ask the #cost if you are interested.");
+				addOffer("I sell houses, please look at #http://arianne.sourceforge.net/wiki/index.php?title=StendhalHouses for examples of how they look inside. Then ask about the #cost when you are ready.");
+				addHelp("You can buy a house if there are any available. If you can pay the #cost, I'll give you a key. As a house owner you can buy spare keys to give your friends. See #http://arianne.sourceforge.net/wiki/index.php?title=StendhalHouses for pictures inside the houses and more details.");
+				addQuest("You may buy houses from me, please ask the #cost if you are interested. Perhaps you would first like to view our brochure, #http://arianne.sourceforge.net/wiki/index.php?title=StendhalHouses.");
 				addGoodbye("Goodbye.");
 			}
 		};

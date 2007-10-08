@@ -45,8 +45,8 @@ public class KingNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-			        add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES, null, ConversationStates.IDLE, "Leave me! I am trying to eat! Goodbye.", null);
-		 	     }
+			    // it's all in games.stendhal.server.maps.quests.ImperialPrincess
+			       		 	     }
 		};
 
 		kingNPC.setEntityClass("kingcozartnpc");

@@ -70,6 +70,7 @@ public class StendhalQuestSystem {
 		// loadQuest("HayunnCataclysm");
 		loadQuest("HouseBuying");
 		loadQuest("HungryJoshua");
+		loadQuest("ImperialPrincess");
 		loadQuest("IntroducePlayers");
 		loadQuest("JailedDwarf");
 		loadQuest("LearnAboutKarma");
