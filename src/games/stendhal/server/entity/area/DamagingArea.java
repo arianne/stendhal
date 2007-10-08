@@ -140,7 +140,7 @@ public class DamagingArea extends OccupantArea {
 		 */
 		attack = damage;
 		defense = calculateDefense(entity);
-		int actualDamage = Math.round(attack - defense);
+		int actualDamage = Math.round(Math.max(1, attack - defense));
 
 		//logger.info("attack: " + attack);
 		//logger.info("defense: " + defense);
