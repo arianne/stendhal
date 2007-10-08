@@ -135,6 +135,12 @@
  <tileset name="fence" firstgid="308" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/fence/fence_chunky.png"/>
  </tileset>
+ <tileset name="pillow" firstgid="317" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/furniture/bed/pillow_red.png"/>
+ </tileset>
+ <tileset name="pillow" firstgid="318" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/furniture/bed/pillow_yellow.png"/>
+ </tileset>
  <layer name="0_floor" width="25" height="25">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAABNnYGAQHyGYCQcetWNg7BjFwwuL4sEgeRkq4OFmRzaReNSOUTtG7aCNHehYkkRzGKA0Nn30sAMAsSnPuMQJAAA=
@@ -147,12 +153,12 @@
  </layer>
  <layer name="2_object" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgwA3k8MiRooZaYCEQL6JAvw0jYTWLgXgJje1YSYQ5z4H4BRC/JNMOSgHMDitGBDYj0l4VNP4yIJYE6pUmw92RUEwIfCPdaDCIBuIYKI6lwBxqgI5Bbt5gAz0U6u+miisQQBiYvmWAWBYtnSsA+YqMEHkYUIXSfSTaIQI0Qw6I5dHsUALylRkh8rQCKkCzVQmYr06HsolaoGsA7QCV79jKdkrtUMWpijDoJFH9fBLV4yuPRHGkmwVE2LMAiV0LxHVAXI9F3Xcg/knALHLBPih9AI8abRLF0cEhKH0ETRwAMryyhsQJAAA=
+   H4sIAAAAAAAAAGNgwA3k8MiRogYZ9JKoHhksBOJFBNTMxyG+AIhtGHHLgcA8IF4MxEugbHIALjuQwUoizHkOxC+A+CWZdlAKYHZYMSKwGZH2qqDxlwGxJFCvNBnujoRiQuAb6UaDQTQQx0BxLAXmUAN0DHLzBhvooVB/N5Hq3kExDAgCsQAUCyGJCwPTtwwQy6KlcwUgX5ERIg8DqlC6D0p/AuLPyGahYRgQAZohB8TyaHYoAfnKjBB5XOA7EP/ELU0QqADNVsVjvjqNy6V3hJWQBLqwiFE7/2OzAwRA5Tu2sp1SO1SxyNsyYmejg04S7UWva+0IxD++8kgUT92Mq05HVgMDtUBcB8T1WNRRmv7xgX1Q+gAeNdokiqODQ1D6CJo4ABxySM7ECQAA
   </data>
  </layer>
  <layer name="3_roof" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGBigwcjAoMlIWzu0gOZr08COJ0D8FIifUd/oAQFiwDCSoHFckAMikNhRA+aKUTAKhgdQG6A8bgC013AQli+4AKh8Hy5l+ygYXuAwFjEA+UGcw8QJAAA=
+   H4sIAAAAAAAAAGNgGBigwcjAoMlIWzu0gOZr08COJ0D8FIifUd/oAQFiwDCSoHFckAMikNhRA+aKUTAKhj5QG8D8bQC023AQli+4AKh8Hy5l+ygYXuAwFjEAcvLi0MQJAAA=
   </data>
  </layer>
  <layer name="4_roof_add" width="25" height="25">
@@ -167,7 +173,7 @@
  </layer>
  <layer name="collision" width="25" height="25" opacity="0.25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO1UWwoAIQj0/kfplPsbS6OjTrEsCUKE85C0YWbjR+kFg/HumPqVh8iX543lq2hEtVkMqs/gEV/HU8SPzioNT3unTmZnTuzl1ai/ecfDzIF432fPw0qfjWrPESbTB+Lf0Uc0Q4pQ9MFgFbOLcJ0dUfj56t/A5AMod+pwxAkAAA==
+   H4sIAAAAAAAAAO2UUQrAMAhDvf9Resr99iNqonaUMUEQqnkK2mVm62OOjKnxdCJ9lIvYmSnzTDGyXLXGy1fqPb1OT5m+F08xIvZJjnIvb9zkz8g1Pev0EFmlB8Q3y1kMA+UysyhzVPQjXoWh8iqM/R3FTG2VozImdrizV7f+DYw/3aGWbcQJAAA=
   </data>
  </layer>
  <layer name="protection" width="25" height="25">

@@ -144,6 +144,27 @@
  <tileset name="stove" firstgid="347" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/other/stove.png"/>
  </tileset>
+ <tileset name="table" firstgid="353" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/furniture/table/wooden_rectangular.png"/>
+ </tileset>
+ <tileset name="meals" firstgid="359" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/food/meals_2.png"/>
+ </tileset>
+ <tileset name="books" firstgid="361" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/book.png"/>
+ </tileset>
+ <tileset name="fruit" firstgid="365" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/food/fruit_basket.png"/>
+ </tileset>
+ <tileset name="shelf" firstgid="366" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/furniture/shelve/bright_bookshelf.png"/>
+ </tileset>
+ <tileset name="plant" firstgid="375" tilewidth="32" tileheight="32">
+  <image source="../../tileset/plant/indoor/pot_plant_1.png"/>
+ </tileset>
+ <tileset name="table2" firstgid="387" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/furniture/table/oriental_table.png"/>
+ </tileset>
  <layer name="0_floor" width="25" height="25">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAJNiYGCQGsWjeBSPYgqxBBTT0mx8WJJIdZRgetgxikfxKB44LIlGE1LHQKR6QnbIoGFi7QAAukTC0MQJAAA=
@@ -151,17 +172,17 @@
  </layer>
  <layer name="1_terrain" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAPNmZGDwoCH2AWIvIA4G4iga4BAg9oTaEQHEtADhVLBDC6hPG49eathBCNDCjm1AvJ2AHe+oYxVeOygFu4B4N43tQAcj0Q4dLPLYxHDZYU8kNgNicyi2IEGfPdQf/kSUPZZAbAXF1kSWVwFoYfUd6LcfUPyTjLDHF1b0jPNfDBD8h4Z20AIQsiMPiPOBuICGdpQAcSkQl9HQjlogrgPieirb0UaBecgAZg694zwQiCPJwAZQtxnhkA+C2uELxO5kYmMgNgFiUzxq/IAYAM3KelvECQAA
+   H4sIAAAAAAAAAOXUuQrCQBQF0Pg7aiHuS5HSfRdcOtdSLaKdWqj5JAX9J5fKBQuv+AQJSZyMGRsfHEJmXnIzE5i0Q5ISAmUgBWVoCFCBJGXUQERVOTIU9I1gTP1OXF0mz/JkWC0RGStYf8jY0dwc9wsbcs3WscS9ypChvP2bR21gy5hhV/1jhltnXm/MKENmFIQQCVt4TqZ15BnOnghESYzxvCpo9mqPtR3IkWPvzfbqlXHC2JlcBGVcpaebTe/Xy2CpJvpaGu0vzt0+DGAoMEOBEYwFZkxgCrO3sQ76uho9ixmqcbuler3n1+dVEeocPPRtXoP5EmVkIc7JB34ImPTk4A5AQ5g3xAkAAA==
   </data>
  </layer>
  <layer name="2_object" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoC9YCMSLaGzHYiBeQmM7VtLYfBgQY2RgEIdiCUaI2HMgfklFOySB5kpBsTQjFQ0mAagA7VWlwO5v1HMKTiCJFj5PgPgpED+jkvkdWMRAcf2Cgbz4XoBFbD4QzyPDLGygkwG7m+fhkSMFgMxZwABx80CA90D8AYo/EqnnHRSDQDQwrcRA04swkWlbBqhOloDar0D8CcqOBaqNg6oXIdIOOaA6eQJqvwPxTyg7Hqg2gQizfxNnPdkA5KYfDAh3UQq6iFAjSmF5SIwdJUC8AojLaGjHKBi+AADiqi4OxAkAAA==
+   H4sIAAAAAAAAAGNgoC9YCMSLyNRbyQihqxjxq1sMxEvItKOeEZXGBVaSaT4MNBIwHwbEgOrEoVgCquc5EL+k0H5kIAk0VwqKpYl0Fwg0IKmtJUEfNqAC1K9KgRnfKLAb2e1NeNwgiRY+T4D4KRA/o8BuZNCBRQwU1y8YyIvvBVjE5gPxPDLMwgY6GbC7eR4eOVIAyJwFDBA3DxXwDopBIBqYVmKg6UUYR7rKBYp/ANJ9UL4MkC9LIB98BeJPUHYsUG0cVL0IkflHDqhOnoDa70D8E8qOB6pNIMLs38RZTzYAuekHA8JdhEA6ATd3EWGGKA4z+tD4uTjUEWNHCRCvAOIyJLEMJPMygewsPH4hxo5RMHwBAOhvAuHECQAA
   </data>
  </layer>
  <layer name="3_roof" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGNxAjZGBQZ2RtnZoAM3XpJIdT4D4GXWMIgooAN2tSOPwUQKar0xjO/CBHUC8k4AaMaD7JAbQjaNgFIyCUTCYQNMgM2cU0AYAAEdXQnzECQAA
+   H4sIAAAAAAAAAGNgGFwgj5GBIR+ICxghfDUgrc5IXTsKgeYVAXEx1FwNIK2JZEcNBfY9AeJnFLmONKAAdKsiFvdWIomVUxh+SkD9ylSOA3wgDyn+QW7fAaR3AnE1HjeIAeUk6OjGUTAKRsEoGMygaZCZMwpoAwCsRRJGxAkAAA==
   </data>
  </layer>
  <layer name="4_roof_add" width="25" height="25">
@@ -176,7 +197,7 @@
  </layer>
  <layer name="collision" width="25" height="25" opacity="0.25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAN2U2w0AIAgD2X8Up3QBhBZbPyQhMUQ5ea6IWB+pQxSM7u2Jkdmn/6gY2ZnxWTEQn0xMjppP8q7qicoPk0OUoZ4TZh5RG8Po2C/2jWpfIfVBeuWW0d1nYpqKs2cz/1Wu3DPuZijktBPdDLUoZ9+5W1Dd/sRxZcQJAAA=
+   H4sIAAAAAAAAAN1UQQrAMAjz/0/xlbsOMTFaC2NC2ZCZpBrnZuY/Ohbeu+Hh+cbr4FaaIg7i2Lwf40C6ungoZ8Z1T3uL+qhiIDyl711PIA0MJ/PjCf6J3g5+dZ8qp+Ir3Lf/Nzc4WCheqWYw2fMsd8tbGcekhtWqflVn/WUOtY7VZt9tzhtxbMfmjm7v/eQ8nvwDJMQJAAA=
   </data>
  </layer>
  <layer name="protection" width="25" height="25">
