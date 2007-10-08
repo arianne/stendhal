@@ -77,6 +77,7 @@ public class MapConverter extends Task {
 		}
 
 		MapView myView = MapView.createViewforMap(map);
+		myView.setDoubleBuffered(false);
 		//myView.enableMode(MapView.PF_NOSPECIAL);
 		myView.setZoom(0.0625);
 		Dimension d = myView.getPreferredSize();
