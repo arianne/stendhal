@@ -391,6 +391,20 @@
     </equipable>
   </item>
 
+  <item name="mainio_armor">
+    <type class="armor" subclass="mainio_armor" tileid="-1"/>
+    <description>You see a strange strange suit of mainio armor. What it lacks in subtlety it makes up for with strength.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <def value="22"/>
+    </attributes>
+    <weight value="45.0"/>
+    <value value="86000"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="armor"/>
+    </equipable>
+  </item>
+
   <item name="magic_plate_armor">
     <type class="armor" subclass="magic_plate_armor" tileid="-1"/>
     <description>You see a suit of plate armor. The steel is well tempered and the suit is very strong. It has been magically enhanced.</description>
@@ -824,7 +838,7 @@
   </item>
 
   <item name="mainio_boots">
-    <type class="boots" subclass="darkangels_clan_boots" tileid="-1"/>
+    <type class="boots" subclass="mainio_boots" tileid="-1"/>
     <description>You see a pair of mainio boots. It's hard to believe that boots looking like this would protect your feet so well as they do.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="11"/>
