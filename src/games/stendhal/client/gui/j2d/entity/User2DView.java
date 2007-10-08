@@ -137,6 +137,7 @@ public class User2DView extends Player2DView {
 			rpaction = new RPAction();
 
 			rpaction.put("type", at.toString());
+			rpaction.put("species", "sheep");
 			rpaction.put("target", -1);
 
 			at.send(rpaction);
@@ -146,6 +147,7 @@ public class User2DView extends Player2DView {
 			rpaction = new RPAction();
 
 			rpaction.put("type", at.toString());
+			rpaction.put("species", "pet");
 			rpaction.put("target", -1);
 
 			at.send(rpaction);

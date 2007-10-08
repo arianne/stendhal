@@ -14,6 +14,8 @@ package games.stendhal.server.actions;
 
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.entity.creature.DomesticAnimal;
+import games.stendhal.server.entity.creature.Pet;
 import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.pathfinder.Node;
@@ -31,55 +33,79 @@ public class OwnAction implements ActionListener {
 	}
 
 	public void onAction(Player player, RPAction action) {
+		if (!action.has("target")) {
+			return;
+		}
 
+		int target = action.getInt("target");
 
 		// BUG: This features is potentially abusable right now. Consider
 		// removing it...
-		if (player.hasSheep() && action.has("target") && (action.getInt("target") == -1)) // Allow release of sheep
-		{
-			Sheep sheep = player.getSheep();
-			player.removeSheep(sheep);
+		if(target == -1) {
+			// Disown
+			if(action.has("species")) {
+				String species = action.get("species");
 
-			// HACK: Avoid a problem on database
-			if (sheep.has("#db_id")) {
-				sheep.remove("#db_id");
+				if(species.equals("sheep")) {
+					Sheep sheep = player.getSheep();
+					player.removeSheep(sheep);
+
+					// HACK: Avoid a problem on database
+					if (sheep.has("#db_id")) {
+						sheep.remove("#db_id");
+					}
+				} else if(species.equals("pet")) {
+					Pet pet = player.getPet();
+					player.removePet(pet);
+
+					// HACK: Avoid a problem on database
+					if (pet.has("#db_id")) {
+						pet.remove("#db_id");
+					}
+				}
 			}
-
-			player.notifyWorldAboutChanges();
-			return;
-		}
-
-		if (player.hasSheep()) {
-			return;
-		}
-
-		if (action.has("target")) {
-			int targetObject = action.getInt("target");
-
+		} else {
 			StendhalRPZone zone = player.getZone();
-			RPObject.ID targetid = new RPObject.ID(targetObject, zone.getID());
+			RPObject.ID targetid = new RPObject.ID(target, zone.getID());
+
 			if (zone.has(targetid)) {
 				RPObject object = zone.get(targetid);
-				if (object instanceof Sheep) {
-					Sheep sheep = (Sheep) object;
-					if (sheep.getOwner() == null) {
 
-						List<Node> path = Path.searchPath(player, player.getX(), player.getY(), sheep.getArea(sheep
-						        .getX(), sheep.getY()), 7);
-						if (!path.isEmpty()) {
-							player.setSheep(sheep);
-							player.notifyWorldAboutChanges();
+				// Make sure the entity is valid (hacked client?)
+				// TODO: Allow "Own" on client for all RPEntity's just for some humor?
+				if(!(object instanceof DomesticAnimal)) {
+					player.sendPrivateText("Maybe you should stick to owning domestic animals.");
+					return;
+				}
+
+				DomesticAnimal animal = (DomesticAnimal) object;
+				Player owner = animal.getOwner();
+
+				if (owner != null) {
+					player.sendPrivateText("This animal is already owned by " + owner.getTitle());
+				} else {
+					List<Node> path = Path.searchPath(player, player.getX(), player.getY(), animal.getArea(), 7);
+
+					if (path.isEmpty()) {
+						// The animal is too far away
+						player.sendPrivateText("That " + animal.getTitle() + " is too far away.");
+					} else if(animal instanceof Sheep) {
+						if(player.getSheep() != null) {
+							player.sendPrivateText("You already own a sheep.");
 						} else {
-							// There is no path between sheep and player so it
-							// is unreachable. But don't tell the player
-							// anything about pathfinding.
-							player.sendPrivateText("That sheep is too far away.");
+							player.setSheep((Sheep) animal);
 						}
-					} else {
-						player.sendPrivateText("This sheep is owned by " + sheep.getOwner().getTitle());
+					} else if(animal instanceof Pet) {
+						if(player.getPet() != null) {
+							player.sendPrivateText("You already own a pet.");
+						} else {
+							player.setPet((Pet) animal);
+						}
 					}
 				}
 			}
 		}
+
+		player.notifyWorldAboutChanges();
 	}
 }
