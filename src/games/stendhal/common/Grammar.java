@@ -161,7 +161,7 @@ public class Grammar {
 		result = lowString.replace("#", "");
 		if (result.equals("meat") || result.equals("ham")
 				|| result.equals("cheese") || result.equals("wood")
-				|| result.equals("paper") || result.equals("iron")) {
+				|| result.equals("paper") || result.equals("iron") || result.equals("chicken")) {
 			result = addPrefixIfNotAlreadyThere("piece of ", lowString);
 		} else if (result.endsWith(" ore") || result.endsWith("_ore")) {
 			result = addPrefixIfNotAlreadyThere("nugget of ", lowString);
