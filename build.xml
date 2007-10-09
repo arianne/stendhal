@@ -349,8 +349,6 @@
 	<target name="dist_server_binary" depends="server_build">
 		<mkdir dir="${buildroot}/stendhal-server-${version}"/>
 
-		<copy todir="${buildroot}/stendhal-server-${version}/data/conf" file="data/conf/admins.list"/>
-
 		<copy todir="${buildroot}/stendhal-server-${version}/data/script">
 			<fileset dir="data/script">
 				<include name="**"/>
