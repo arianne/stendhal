@@ -408,6 +408,12 @@ in roaches.
    </zone>
 -->   
 
+  <zone name="int_ados_felinas_house" file="interiors/ados/felinas_house.tmx">
+    <configurator class-name="games.stendhal.server.maps.ados.felinashouse.CatSellerNPC"/>
+    <portal x="12" y="23" ref="entrance">
+     <destination zone="0_ados_wall" ref="felina_entrance"/>
+    </portal>
+  </zone>
 
   <zone name="int_ados_barracks_0" file="interiors/ados/barracks_0.tmx">
     <configurator class-name="games.stendhal.server.maps.ados.barracks.BuyerNPC"/>
@@ -933,8 +939,10 @@ Southeast: Docks
    </zone>
    
    <zone name="0_ados_wall" level="0" x="500768" y="500000" file="Level 0/ados/wall.tmx">
-
-     <portal x="100" y="52" ref="barracks_entrance_left">
+    <portal x="101" y="22" ref="felina_entrance">
+     <destination zone="int_ados_felinas_house" ref="entrance"/>
+    </portal>
+    <portal x="100" y="52" ref="barracks_entrance_left">
       <destination zone="int_ados_barracks_0" ref="entrance_left"/>
     </portal>
     <portal x="101" y="52" ref="barracks_entrance_center">
