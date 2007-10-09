@@ -22,7 +22,7 @@ import marauroa.common.game.SyntaxException;
 
 /**
  * A cat is a domestic animal that can be owned by a player.
- * Ideally it eats meat from the ground.
+ * It eats chicken from the ground.
  * They move much faster than sheep
  * Ideally cats attack rats for you
  */
