@@ -38,8 +38,8 @@ public class KingNPC implements ZoneConfigurator {
 			@Override
 			protected void createPath() {
 				List<Node> nodes = new LinkedList<Node>();
-				nodes.add(new Node(40, 21));
-				nodes.add(new Node(42, 21));
+				nodes.add(new Node(40, 22));
+				nodes.add(new Node(42, 22));
 				setPath(new FixedPath(nodes, true));
 			}
 
@@ -50,7 +50,7 @@ public class KingNPC implements ZoneConfigurator {
 		};
 
 		kingNPC.setEntityClass("kingcozartnpc");
-		kingNPC.setPosition(40, 21);
+		kingNPC.setPosition(40, 22);
 		kingNPC.initHP(100);
 		zone.add(kingNPC);
 	}
