@@ -84,7 +84,7 @@ public class StackableItem extends Item implements Stackable {
 
 			newItem.setQuantity(amountToSplitOff);
 
-			String[] attributesToCopyOnSplit = new String[]{"infostring", "description", "bound", "persistent", "amount", "frequency", "regen", "atk", "range"};
+			String[] attributesToCopyOnSplit = new String[]{"infostring", "description", "bound", "persistent", "undroppableondeath", "amount", "frequency", "regen", "atk", "range"};
 			for (String attribute : attributesToCopyOnSplit) {
 				if (has(attribute)) {
 					newItem.put(attribute, get(attribute));
@@ -132,7 +132,7 @@ public class StackableItem extends Item implements Stackable {
 
 		// TODO: look at InfoStringScroll.java
 
-		String[] importantAttributes = new String[]{"infostring", "description", "bound", "persistent", "amount", "frequency", "regen", "atk", "range"};
+		String[] importantAttributes = new String[]{"infostring", "description", "bound", "persistent", "undroppableondeath", "amount", "frequency", "regen", "atk", "range"};
 		for (String iAtt : importantAttributes)	{
 			if (!has(iAtt) && !otheri.has(iAtt)) {
 				continue;

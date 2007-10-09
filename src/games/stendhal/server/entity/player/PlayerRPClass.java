@@ -547,7 +547,7 @@ lion_shield_+1 enhanced_lion_shield
 
 					// make sure saved individual information is
 					// restored
-					String[] individualAttributes = { "infostring", "description", "bound" };
+					String[] individualAttributes = { "infostring", "description", "bound", "undroppableondeath" };
 					for (String attribute : individualAttributes) {
 						if (item.has(attribute)) {
 							entity.put(attribute, item.get(attribute));

@@ -108,6 +108,9 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 		// Some items are quest rewards that other players
 		// don't deserve.
 		entity.addAttribute("bound", Type.STRING);
+
+		// Some items should not be dropped on death
+		entity.addAttribute("undroppableondeath", Type.SHORT);
 	}
 
 	/**
@@ -358,6 +361,32 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 			put("bound", name);
 		} else if (has("bound")) {
 			remove("bound");
+		}
+	}
+
+	/**
+	 * Is the item undroppable. Undroppable items will never be dropped if the player dies.
+	 *
+	 * @return true if item is undroppable.
+	 */
+	public boolean isUndroppableOnDeath() {
+		if (has("undroppableondeath")) {
+			return (getInt("undroppableondeath") == 1);
+		}
+
+		return false;
+	}
+
+	/**
+	 * Set is the item undroppable when player dies.
+	 *
+	 * @param unDroppableOnDeath If true, the item won't be dropped if the player dies.
+	 */
+	public void setUndroppableOnDeath(boolean unDroppableOnDeath) {
+		if (unDroppableOnDeath) {
+			put("undroppableondeath", 1);
+		} else if (has("undroppableondeath")) {
+			remove("undroppableondeath");
 		}
 	}
 
