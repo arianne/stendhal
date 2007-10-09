@@ -26,18 +26,33 @@
 
 
  <!--  Ground level -->
+ <zone name="int_amazon_princess_hut" file="interiors/amazon/princess_hut.tmx">
+  <portal x="10" y="18" ref="out">
+   <destination zone="0_amazon_island_ne" ref="in"/>
+  </portal>
+ </zone>
+
  <zone name="0_amazon_island_nw" level="0" x="501024" y="499744" file="Level 0/amazon/island_nw.tmx">
  </zone>
+
  <zone name="0_amazon_island_ne" level="0" x="501152" y="499744" file="Level 0/amazon/island_ne.tmx">
+  <portal x="48" y="98" ref="in">
+   <destination zone="int_amazon_princess_hut" ref="out"/>
+  </portal>
  </zone>
+
  <zone name="0_amazon_island_sw" level="0" x="501024" y="499872" file="Level 0/amazon/island_sw.tmx">
  </zone>
  <zone name="0_amazon_island_se" level="0" x="501152" y="499872" file="Level 0/amazon/island_se.tmx">
  </zone>
 
   <!--  Level -1 -->
+ <zone name="-1_amazon_caves" level="-1" x="501152" y="499744" file="Level -1/amazon/caves.tmx">
+ </zone>
 
-
+ <zone name="-1_amazon_tunnel_e" level="-1" x="501024" y="499744" file="Level -1/amazon/tunnel_e.tmx">
+ </zone>
+ 
  <!--  Level -2 -->
 
 
