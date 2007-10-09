@@ -3312,7 +3312,7 @@
   </item>
 
   <item name="mainio_legs">
-    <type class="legs" subclass="darkangels_clan_legs" tileid="-1"/>
+    <type class="legs" subclass="mainio_legs" tileid="-1"/>
     <description>You see a pair of odd looking legs. They are somewhat startling but they give you a good protection.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="10"/>
@@ -4361,7 +4361,7 @@
   </item>
 
   <item name="mainio_shield">
-    <type class="shield" subclass="elvish_shield" tileid="-1"/>
+    <type class="shield" subclass="mainio_shield" tileid="-1"/>
     <description>You see a strange looking shield. You have no idea what it's made of, but it seems to protect you well by distracting your enemies.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="37"/>
