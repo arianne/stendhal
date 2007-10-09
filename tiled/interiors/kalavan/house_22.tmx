@@ -222,6 +222,9 @@
  <tileset name="barrel bucket" firstgid="775" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/barrel.png"/>
  </tileset>
+ <tileset name="food" firstgid="777" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/item/sheepfood.png"/>
+ </tileset>
  <layer name="0_floor" width="25" height="25">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAHvKxMDwFAlrMkDwUybSMSG9NYwQWpYBgpHFiMXIegcSczCi4sFgxzJguCxnwKSp6aZVQPNWM2DS+PTcRcND1R/0wP8H2P5RjB8fguKBdgep+AEePGrHqB2D2Y5RjB8DACMxolbECQAA
@@ -229,7 +232,7 @@
  </layer>
  <layer name="1_terrain" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAJ2VSUsDMRiG01TwT1i0p7pXcTl7UBT0B7jhXUE9uItbN9FzwaMgKrW4oKDSm+gPUrAXPQi+IQl8k0lm6QcPk2beN29nMvNNhjHWThgHE8ZcJ8gYczZc3i7QDWogBSbBlBqLuR7QS3RjCXnOBvUKHfW2gDnMzRssgLShE/UN6mAR/IBf5q8l5veeJvy6E0tGmctzF+DSwZXy2zKueXiGrqo6VuC5UVSV/86R8Yb13g0+VIYuW8Ye1t1XHIRkiHoGL4pXh6456c04xLpHilyEDFuZuhJv/F7FzbgHDw4ewS7xtirvufCq+1Dkci0xZ2YUuDyvNRpa22DTyOgDbQ76SUaQLsg7AIZCGI6oYw6v6EMdMegM8DCHPstkH7L1H136t+4/QZ6UQ6+fq0/wxfzVlJSkDc8y9noFrHK/Z4v59aIq5Bm35ZieP2inif6We4n6ftCyZcySjBr3YsvIY75ukOfuDLOENieOatzodehyeQqgaPwnnaHvq63/RL0OUSVwbNGPgBnHXsfJWMMa64oN7tWPMu/eNZrh0gftxw4Zl7k/44zLb9QT+T7pou9HnF6ne1w2oof2xEEW3u/i9keq/we2pS1qxAkAAA==
+   H4sIAAAAAAAAAJ2VSUsDMRiG01TwT1i0p2pdqricPSgK+gPc8O5BPbiLWzfRc8GjICq1uKCg0pvoD1KwFz0IviEJfJNJZukHD5Nm3jdvZzLzTYYx1kmYAJPGXBZkjDkbLm836AF1kAJTYFqNxVwv6CO68YQ8Z4N6hY5628A85hYMFkHa0In6Bg2wBH7AL7OX6T1N+DUnlowKl+cuwKWDq4CMax6eoaumjlV4bhQ15b9zZLxhvXeDD5Why5axh3X3FQchGaKewYvi1aFrTXozDrHukSIfIcNWpq7Mm79XcTPuwYODR7BLvO3Key686j6UuFxLzJkZRS7Pa42G1jbYNDL6QYeDAZIRpAvyDoLhEEYi6pjDK/pQVwyyAR7m0OeY7EO2/qNL/9b9J8iTcuj1c/UJvpi/WpKStOFZxl6vgFXu92wxv15UlTzjthzT8wftDNHfci9R3w9atow5klHnXmwZBcw3DArcnWGW0ObFUY2bvQ5dLk8RlIz/pDP0fbX1n6jXIaoMji36UTDr2Os4GWtYY12xwb36Mebdu2YzXPqg/dgh4wr3Z5xx+Y16It8nXfT9iNPrdI/LRfTQnjjEwvtd3P5I9f9DI2RaxAkAAA==
   </data>
  </layer>
  <layer name="2_object" width="25" height="25">
@@ -249,7 +252,7 @@
  </layer>
  <layer name="objects" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ43oAAAeDP5i1XpxAkAAA==
+   H4sIAAAAAAAAAGNgGAWjgHaAk3mgXTAKRsEoGAWjYKSBkVL3AABeJYn2xAkAAA==
   </data>
  </layer>
  <layer name="collision" width="25" height="25" opacity="0.35">

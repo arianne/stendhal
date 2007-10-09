@@ -192,6 +192,9 @@
  <tileset name="gate fancy" firstgid="692" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/decoration/fancy_gate.png"/>
  </tileset>
+ <tileset name="food" firstgid="698" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/item/sheepfood.png"/>
+ </tileset>
  <layer name="0_floor" width="32" height="32">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNkYGBgHMVE4RYoboZibGqSmIjDtHIjNruWADE7UJIDiFMHwH6Q3WyMEBqf/a6MmJga9nMworqB3vYvRnLD0gHwP7Hpj5r2k5N2hoP96UC7M2mYv0bxKB7Fo3gUE8aUlOOjeBSPYuLwAiQ8Eu0fyhgAc0GnTgAQAAA=
@@ -219,7 +222,7 @@
  </layer>
  <layer name="objects" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ8HFAAAAPBuEQAcxwAQAAA=
+   H4sIAAAAAAAAAO3IMQ0AAAgDsAX/ilCHBRIOnvZsAgAA8KNrd8DdAP6gjqwAEAAA
   </data>
  </layer>
  <layer name="collision" width="32" height="32" opacity="0.35">
