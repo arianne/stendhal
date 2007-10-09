@@ -27,9 +27,10 @@ import marauroa.common.game.SyntaxException;
 import marauroa.common.game.Definition.Type;
 
 /**
- * A pet is a domestic animal that can be owned by a player. Ideally it eats
- * meat from the ground. They move faster than sheep Ideally pets attack weak
- * animals for you
+ * A pet is a domestic animal that can be owned by a player. It eats chicken 
+ * from the ground. They move faster than sheep.
+ *
+ * TODO: pets attack weak animals for you
  */
 /**
  * @author kymara
@@ -163,7 +164,7 @@ public abstract class Pet extends DomesticAnimal {
 
 	boolean canEat(Item i) {
 
-		return "meat".equals(i.getItemSubclass());
+		return "chicken".equals(i.getItemSubclass());
 
 	}
 
