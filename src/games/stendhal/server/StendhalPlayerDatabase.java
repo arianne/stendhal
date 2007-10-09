@@ -333,7 +333,8 @@ public class StendhalPlayerDatabase extends JDBCPlayerDatabase {
 		Configuration.setConfigurationFile("marauroa.ini");
 		JDBCPlayerDatabase odb = (JDBCPlayerDatabase) StendhalPlayerDatabase.resetDatabaseConnection();
 
-		JDBCPlayerDatabase sdb = (JDBCPlayerDatabase) JDBCPlayerDatabase.getDatabase(); 
+		JDBCPlayerDatabase sdb = (JDBCPlayerDatabase) JDBCPlayerDatabase.getDatabase();
+		sdb.porting = true;
 
 		Transaction transA = odb.getTransaction();
 		Transaction transB = sdb.getTransaction();
