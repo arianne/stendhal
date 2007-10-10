@@ -6076,7 +6076,7 @@
   </creature>
 
   <creature name="amazoness_hunter">
-    <type class="amazon" subclass="amazoness_hunter" tileid="amazon.png:5"/>
+    <type class="amazon" subclass="amazoness_hunter" tileid="amazon.png:6"/>
     <description></description>
     <attributes>
       <atk value="170"/>
