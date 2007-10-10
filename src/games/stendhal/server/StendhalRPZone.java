@@ -475,8 +475,18 @@ public class StendhalRPZone extends MarauroaRPZone {
 			} else if (clazz.contains("logic/item")) {
 				PassiveEntityRespawnPoint plantGrower = null;
 
-				if (clazz.contains("arandula")) {
-					plantGrower = new PassiveEntityRespawnPoint("arandula", 400);
+				if (clazz.contains("herb")) {
+				       switch (type) {
+				       case 0:	   
+					       plantGrower = new PassiveEntityRespawnPoint("arandula", 400);
+					       break;
+				       case 1:	   
+					       plantGrower = new PassiveEntityRespawnPoint("kekik", 800);
+					       break;
+				       case 2:	   
+					       plantGrower = new PassiveEntityRespawnPoint("sclaria", 800);
+					       break;
+				       }
 				} else if (clazz.contains("corn")) {
 					plantGrower = new GrainField();
 				} else if (clazz.contains("mushroom")) {
