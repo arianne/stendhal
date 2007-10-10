@@ -75,6 +75,9 @@
  <tileset name="../../tileset/logic/collision.png" firstgid="372" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
+ <tileset name="herb" firstgid="373" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/item/herb.png"/>
+ </tileset>
  <layer name="0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3ZwWqEMBRAURnopgMF29L//9R2MzCEqolm8qI5i7MTjd5nGMbbNE03AAAAAAAAAAAAAAAAAKArH4no9RDbf030WmnXf+vY6HUDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADACN4aiL7HnrxvuELvlqJ71u5fW3Sf0Wcg7fHVuP9IsxDdOuc9v//5XHFkPuaMc0Q3GmEO1hrdM+yZjzk5hxnoq3tJ/5z5SPt+Zx43Sv+WM1CyR9fo/98+sXbcqDPwfL+RzV/Vv8RoM7DVoWXzHvqPMgOlPVo076X/z8KaoptFtY+g/1i9z9C/x1mI7lTb47+ZyP5LvwF6mIPoPlfvXrIH7JmJ6Ofcm9661+jPebs/O/qd4QweHV7xneWs3a88B2nv3Ps/8gzmwuv16uwzkH772vsulIruVnsvqL03bu3BtUQ/uyvSBQAAAAAAAACW/QKj71YdAAABAA==
@@ -97,7 +100,7 @@
  </layer>
  <layer name="objects" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3biwnAIAwFQDtxf/tDNygUrKavdxMoYgi+2BoAAAAAAAAAAAAAAJBmX2avAAAgkz4LAAAAAACAFKvsC8qQRQMAX6efAcigngMA0NuhxwQ62tQUgOG8GT5XdS7PWfJXVe8kAAAAAAAAvOkuJ+uRocmgs5j3hXHUz37MhAAAVSX2fIl7AkhxqtEU4Q84jOV9FAAAAAAAAAAAAAAAAAAAAAAAmOkCOMbRBAAAAQA=
+   H4sIAAAAAAAAAO3b2w2AIAwFUJ3Y14frO4EmJgVqPWcCDNjc0DJNAAAAAAAAAABUcM6jV8AI9h1nAACAO5usCADQhJwFAAAAAABAFYveF6ShFw0AfJ08A1CDeg4AQLRdxgQCrWoKQHfuDN/LOpdnL/mrrP8kAAAAAAAAtPTUJ4vooelB12LeF/pRP+OYCQEAsqqY+Sp+E0AVhxpNEt6AQ1/uRwEAAAAAAAAAAAAAAAAAAAAAgJEuGPjT3gAAAQA=
   </data>
  </layer>
  <layer name="collision" width="128" height="128" opacity="0.41">
