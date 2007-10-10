@@ -700,6 +700,9 @@ black halberd     12000
    <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
    <attribute name="description">You see a barbecue, with a pot on top. Maybe it has stew inside.</attribute>
   </entity>
+  <portal x="102" y="50" ref="house1_entrance">
+   <destination zone="int_fado_wizard_house1" ref="entrance"/>
+  </portal>
 </zone>
 
 <zone name="-1_fado_great_cave_n_e3" level="-1" x="500256" y="500512" file="Level -1/fado/great_cave_n_e3.tmx">
@@ -853,9 +856,9 @@ black halberd     12000
 </zone>
 
 <zone name="int_fado_wizard_house1" file="interiors/fado/wizard_house1.tmx">
-<!-- <portal x="10" y="18" ref="entrance">
+ <portal x="10" y="18" ref="entrance">
    <destination zone="-1_fado_great_cave_n_e2" ref="house1_entrance"/>
-  </portal> -->
+  </portal>
 </zone>
 <zone name="int_fado_wizard_house2" file="interiors/fado/wizard_house2.tmx">
  <portal x="10" y="18" ref="entrance">
