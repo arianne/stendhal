@@ -137,6 +137,18 @@ tileset/ground/water/golden_whirlpool.png	0	0:4:8:4
 tileset/ground/water/golden_whirlpool.png	4	0:4:8:4
 tileset/ground/water/golden_whirlpool.png	8	0:4:8:4
 
+tileset/ground/water/golden_whirlpool.png	1	1:5:9:5
+tileset/ground/water/golden_whirlpool.png	5	1:5:9:5
+tileset/ground/water/golden_whirlpool.png	9	1:5:9:5
+
+tileset/ground/water/golden_whirlpool.png	2	2:6:10:6
+tileset/ground/water/golden_whirlpool.png	6	2:6:10:6
+tileset/ground/water/golden_whirlpool.png	10	2:6:10:6
+
+tileset/ground/water/golden_whirlpool.png	3	3:7:11:7
+tileset/ground/water/golden_whirlpool.png	7	3:7:11:7
+tileset/ground/water/golden_whirlpool.png	11	3:7:11:7
+
 tileset/ground/water/waterfall.png	*	2:9:16
 tileset/ground/water/waterfall.png	*	3:10:17
 tileset/ground/water/waterfall.png	*	4:11:18
