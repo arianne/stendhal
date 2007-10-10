@@ -73,8 +73,12 @@ public class Corpse extends PassiveEntity implements TurnListener,
 
 	private void decideSize(String clazz) {
 		if (clazz.equals("giant_animal") || clazz.equals("giant_human")
-		 || clazz.equals("huge_animal") || clazz.equals("boss")) {
+		 || clazz.equals("huge_animal") || clazz.equals("boss") 
+		 || clazz.equals("giant_troll") || clazz.equals("giant_madaram") 
+		 || clazz.equals("huge_hybrid")  ) {
 			setSize(2, 2);
+		} else if (clazz.equals("huger_animal") ||clazz.equals("huger_hybrid") ) {
+			setSize(4, 4);
 		} else if (clazz.equals("mythical_animal")) {
 			setSize(6, 6);
 		} else if (clazz.equals("enormous_creature")) {
@@ -99,7 +103,7 @@ public class Corpse extends PassiveEntity implements TurnListener,
 
 		RPSlot slot = new LootableSlot(this);
 
-		// BUG: Capacity is set at RPClass.
+		// TODO: BUG, Capacity is set at RPClass.
 		// slot.setCapacity(4);
 		addSlot(slot);
 	}
