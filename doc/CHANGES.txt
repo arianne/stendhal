@@ -1,6 +1,60 @@
 
 Changelog
 ---------
+0.63
+- Codebase ported to Marauroa 2.0
+- New Zones:
+ - dreamscape, take rainbow beans to get there for a short time until you come down
+ - fado great caves
+ - magic underground city (with wizard school, theater, etc)
+ - kalavan castle
+ - kalavan city 
+ - fado forest extensions
+- New Creatures:
+ - trolls
+ - madaram
+ - imperials
+ - albino elves
+ - wizards from different races
+ - foxes and chickens
+ - dark elf admiral
+ - hybrids
+- Quests:
+ - Elf Princess Flower quest improved
+ - an albino elf wants to learn secrets of Nalwor elves
+ - Princess of Kalavan wants to ease pain of captives in basement
+ - Divorce is possible
+- New NPCs (non-quest):
+ - veteran warrior gives information about any creatures you ask (for a small
+ fee)
+ - greeter in fado forest (albino elf)
+ - shop in magic city
+ - healer in magic city
+ - teacher in magic city
+ - greeter in magic city
+- New/improved Features:
+ - players can buy houses
+ - players can buy then care for cats
+ - players are informed when antidote wears off
+ - rings respect noTeleport zones
+ - big creatures can be walked behind
+ - big creatures have long HP bar
+ - creature respawns much more randomised (average is unchanged)
+ - server reset doesn't spawn all creatures at t=0
+ - tiles are animated once more
+- New Items:
+ - new low rate weapons (none better than soul dagger still)
+ - mainio items from hybrids
+ - xeno items from xenocium
+ - jewelled legs, liberty helmet
+ - chicken, fairy cakes, eggs
+- Other:
+ - Semos bank more secure (one player areas near chests)
+ - Magic bank where you can access all chests for fee and limited time
+ - more redrawn tiles
+ - ados bank, townhall_0 both easier to travel across 
+ - level 170-210 creatures rebalanced
+
 0.62
 - Keyring 2 slots bigger to accommodate new items players may acquire
 - On entering centre zone for first time, get atmospheric message
