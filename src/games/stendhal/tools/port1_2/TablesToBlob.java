@@ -58,8 +58,8 @@ public class TablesToBlob {
 		ResultSet result = stmt.executeQuery(query);
 
 		while (result.next()) {
-			String name = result.getString("name");
-			String value = result.getString("value");
+			String name = result.getString("name").trim();
+			String value = result.getString("value").trim();
 			object.put(name, value);
 		}
 
