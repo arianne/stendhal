@@ -21,9 +21,9 @@ import java.util.List;
  * REPETITIONS: - None.
  */
 public class ImperialPrincess extends AbstractQuest {
-	private static final int ARANDULA_DIVISOR = 5;
-        private static final int POTION_DIVISOR = 1;
-        private static final int ANTIDOTE_DIVISOR = 2;
+	private static final int ARANDULA_DIVISOR = 40;
+        private static final int POTION_DIVISOR = 10;
+        private static final int ANTIDOTE_DIVISOR = 20;
 
 	private static final String QUEST_SLOT = "imperial_princess";
 
@@ -49,7 +49,7 @@ public class ImperialPrincess extends AbstractQuest {
 						       
 						} else if (!player.hasQuest(QUEST_SLOT)){
 							engine
-									.say("I cannot free the trapped creatures in the basement but I could do one thing: make them more comfortable. I need #herbs for this.");
+									.say("I cannot free the captives in the basement but I could do one thing: ease their pain. I need #herbs for this.");
 						}
 						else if (player.getQuest(QUEST_SLOT).equals("recommended")){
 							engine
@@ -80,7 +80,7 @@ public class ImperialPrincess extends AbstractQuest {
 							@Override
 							public void fire(Player player, String text,
 									SpeakerNPC engine) {
-							    engine.say("I need " + Integer.toString(player.getLevel()/ARANDULA_DIVISOR) +" arandula, " + Integer.toString(player.getLevel()/POTION_DIVISOR) + " potions and " + Integer.toString(player.getLevel()/ANTIDOTE_DIVISOR) + " antidotes. Will you get these items?");
+							    engine.say("I need " + Integer.toString(1+ player.getLevel()/ARANDULA_DIVISOR)  + " arandula, 1 kokuda, 1 sclaria, 1 kekik, " + Integer.toString(1 + player.getLevel()/POTION_DIVISOR) + " potions and " + Integer.toString(1 + player.getLevel()/ANTIDOTE_DIVISOR) + " antidotes. Will you get these items?");
 							}
 						}
 						);
@@ -109,7 +109,13 @@ public class ImperialPrincess extends AbstractQuest {
 						ConversationStates.ATTENDING,
 						"So you'll just let them suffer! How despicable.",
 						null);
-
+		//give some hints of where to find herbs. No warranties!
+		npc
+		    .addReply("kokuda","I believe that herb can only be found on Athor, though they guard their secrets closely over there.");
+		npc
+		    .addReply("sclaria","Healers who use sclaria gather it in all sorts of places - around Or'ril, in Nalwor forest, I am sure you will find that without trouble.");
+		npc
+		    .addReply("kekik","My maid's friend Jenny has a source not far from her. The wooded areas at the eastern end of Nalwor river may have it. too.");
 	}
 
 	private void step_2() {
@@ -125,19 +131,27 @@ public class ImperialPrincess extends AbstractQuest {
 					@Override
 					public void fire(Player player, String text,
 							SpeakerNPC engine) {
+					                int required_arandula = 1 + Integer.valueOf(player.getQuest(QUEST_SLOT))/ARANDULA_DIVISOR;
+							int required_antidote = 1 + Integer.valueOf(player.getQuest(QUEST_SLOT))/ANTIDOTE_DIVISOR;
+						        int required_potion = 1 + Integer.valueOf(player.getQuest(QUEST_SLOT))/POTION_DIVISOR;
 						if (player.hasQuest(QUEST_SLOT)
 							  && !player.getQuest(QUEST_SLOT).equals(
 												"recommended")
-						    && player.isEquipped("arandula",												Integer.valueOf(player.getQuest(QUEST_SLOT))/ARANDULA_DIVISOR)
-						    && player.isEquipped("potion",												Integer.valueOf(player.getQuest(QUEST_SLOT))/POTION_DIVISOR)
-						    && player.isEquipped("antidote",												Integer.valueOf(player.getQuest(QUEST_SLOT))/ANTIDOTE_DIVISOR))
-						    {
-							player.drop("antidote",	Integer.valueOf(player.getQuest(QUEST_SLOT))/ANTIDOTE_DIVISOR);
-							player.drop("potion",	Integer.valueOf(player.getQuest(QUEST_SLOT))/POTION_DIVISOR);
-							player.drop("arandula",	Integer.valueOf(player.getQuest(QUEST_SLOT))/ARANDULA_DIVISOR);
+						    && player.isEquipped("kekik") && player.isEquipped("kokuda") 
+						    && player.isEquipped("sclaria") 
+						    && player.isEquipped("arandula", required_arandula)
+						    && player.isEquipped("potion", required_potion)						                               && player.isEquipped("antidote",required_antidote))
+						    
+						    {   
+							player.drop("kekik");
+							player.drop("kokuda");
+							player.drop("sclaria");						
+							player.drop("antidote",	required_antidote);
+							player.drop("potion",required_potion);
+							player.drop("arandula",required_arandula);
 							engine
 							       .say("Perfect! I will recommend you to my father, as a fine, helpful person. He will certainly agree you are eligible for citizenship of Kalavan.");
-							player.addXP(Integer.valueOf(player.getQuest(QUEST_SLOT))*300);
+							player.addXP(Integer.valueOf(player.getQuest(QUEST_SLOT))*400);
 							player.setQuest(QUEST_SLOT, "recommended");
 							player.notifyWorldAboutChanges();
 						}
@@ -146,7 +160,7 @@ public class ImperialPrincess extends AbstractQuest {
 						}
 						else { /*reminder*/
 							engine
-									.say("Shh! Don't say it till you have the " + Integer.toString(player.getLevel()/ARANDULA_DIVISOR) +" arandula, " + Integer.toString(player.getLevel()/POTION_DIVISOR) + " potions and " + Integer.toString(player.getLevel()/ANTIDOTE_DIVISOR) + " antidotes. I don't want anyone suspecting our code.");
+									.say("Shh! Don't say it till you have the " + required_arandula + " arandula, 1 #kokuda, 1 #sclaria, 1 #kekik, " + required_potion  + " potions and " + required_antidote + " antidotes. I don't want anyone suspecting our code.");
 						}
 					}
 				});
