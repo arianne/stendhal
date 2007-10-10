@@ -118,7 +118,7 @@
  </layer>
  <layer name="1_terrain" width="30" height="40">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2WOQvCQBCF5694NGpab1u1Ezuxi3biCYKNIB6NYOPxh33CFmvcJJvNbBDNwAfZJMMjkPdmHCLKJkwJ5EEL1ELYaryjQxPkhG6Fwmun8Y5OlSPqclWqm7xuA1Qt0QYd0BXnutAtgoxFeuI7+9K9AnDIbkYMhO6QzHLDFBeMwJjMcoOrvuF//jdd2b9ev3Hj51+V37hR+VflN7/Zbep9lX9devdb2OyO6v04/o3zT35r7xRsJGYJ6a4955V0vQcHcASnBHXP0vWFWXcB5hJL6dkV3MAdPJh1f7k36n5V1+xVZX3c/aqg0fvK+gl9Zn2c/UonnwdC15v1pvuVbj679Jn1aT6nvX61J3tzIahec2Ei4J4LQcU1F2zlZJQ9ljMng3qfTD54YsASAAA=
+   H4sIAAAAAAAAAO2WuQ7CMBBE91c4mgAtR4AW6IAO6AItp4REg4Q4Go6G44eZIoUJduI4dhRBVnpSnGQ1jWd2S0SUjZkiyIMmqAWwlfhHhgbIuboVCq6dxD8yVQ6pq6tS3fh166BqiBZog457tl3dAsgYpAt6oM+8s0CJzGbEAAzBiNRyQxUHjMGE1HJDVyXhPv+bLutfr990I/Ivz2+64fmX5zfR7Fb1Ps+/Dn36LWh2h/V+FP9GuZNJ7Z2CDcMsJt2157xinvfgAI7gFKPuGVzAFdw06y7AnGHJfLuDB3iCl2bdX+4Nu1/Zkr28rI+6X1kSvaKsj7JfyeSzKOtV9yvZfHboO+vTfE57RbUnc3PBr0zOBb/SNRdM5WSYPVZnTvr1vgH6Xps+wBIAAA==
   </data>
  </layer>
  <layer name="2_object" width="30" height="40">
@@ -128,7 +128,7 @@
  </layer>
  <layer name="3_roof" width="30" height="40">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjYBSMAtzAn0x91wnwCemNIFEPDNwgwCdGLyl66Amuo9H0AoM9XIYTIDe/UQoiBsjeUTA0wGcg/gLEX4H4G5QNwr8H0lEUgk4g7hpoRwxSwMWIwKOANmC0rB8F54H4AhH0YAeg+gFUNwzl+gAGRuuFoQEAmk+oIsASAAA=
+   H4sIAAAAAAAAAGNgGAWjYBSMAtyAj5E8fdcJ8AnpFWQkTQ8M3CDAJ0YvKXroCa6j0fQCgz1chhMgN79RCgQHyN5RMDTAZyD+AsRfgfgblA3Cv6lgdiMQN1HBHFKBKDDNi42me6yAixGBRwFtwGhZPwrOA/EFIujBDkD1A6huoEZ9AAOj9cIowAcAA86tQsASAAA=
   </data>
  </layer>
  <layer name="4_roof_add" width="30" height="40">
@@ -141,7 +141,7 @@
    H4sIAAAAAAAAAGNgGAUjHSgwQvBQAUPJraNg5AHtQZI+YfmE1vmFnvlxNO+PAmoCbOmJFmmMGmaqMEIwOpDFYzYl9iLbhc1eegBK7SXH/7jsxBfOtAC0tg9mPsy/ID45dmJrPxJqU9I7LEfBKBhoMBBl6ECV28MVjIbn4AIAGp0EYsASAAA=
   </data>
  </layer>
- <layer name="collision" width="30" height="40" opacity="0.49">
+ <layer name="collision" width="30" height="40" visible="0" opacity="0.49">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO2UXQ6AIAyD9ULc/3g+kRCzn24rSpQlJAp2H2PFdh5H24M2enjrWiDfIDky7CwLYbP5Ea7XH4vR1yM9numttzy9uXrvLU9a3pW0Fv+JWI2LnpWUx+No3JX9t7kcVsWTmf16PvW0aDDrXUUbPedKMLwR1Va4Xs5Zd0H7JqOt3i3mf2Fzv89F/awFoh3n789MrvQ+zqPa6FlaNXp7rtQr1YjUxogM1+pPJCeytz+OC1tShBXAEgAA
   </data>
