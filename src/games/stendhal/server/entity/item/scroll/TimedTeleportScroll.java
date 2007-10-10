@@ -8,8 +8,6 @@ import games.stendhal.common.Rand;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.events.LoginListener;
-import games.stendhal.server.events.LoginNotifier;
 import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
 
@@ -22,13 +20,15 @@ import marauroa.common.Logger;
 /**
  * Represents a teleport scroll that takes the player to a specified location for a specified time, after which
  * it will teleport the player to given location.
+ * 
+ * TODO: This class isn't fully self-containing as the LoginHandler (that handles the players logging in the target zone)
+ * must be implemented elsewhere.
  */
 public class TimedTeleportScroll extends TeleportScroll {
 
 	private static final Logger logger = Log4J.getLogger(TimedTeleportScroll.class);
 
 	/* Note: the values here are for example only, they are overridden with the ones from items.xml infostring.
-	 * This class must be extended to call the initHandler method, see RainbowBeansScroll for an example.
 	 */
 
 	protected static String targetZoneName = "1_dreamscape";
@@ -41,10 +41,13 @@ public class TimedTeleportScroll extends TeleportScroll {
 	protected static int returnX = -1;
 	protected static int returnY = -1;
 
+	/** set to true after the item has been initialized (infoString parsed) */
+	protected static boolean initialized = false;
+
 	/**
-	 * initialize teleport parameters and the login notifier to teleport away players logging into the target zone.
+	 * initialize scroll parameters.
 	 */
-	protected void initHandler() {
+	protected void init() {
 		String infoString = getInfoString();
 		if (infoString != null) {
 			StringTokenizer st = new StringTokenizer(infoString);
@@ -60,15 +63,7 @@ public class TimedTeleportScroll extends TeleportScroll {
 				throw new IllegalArgumentException("the infostring attribute is malformed");
 			}
 		}
-		/* login notifier to teleport away players logging into the dream world */
-		LoginNotifier.get().addListener(new LoginListener() {
-
-			public void onLoggedIn(Player player) {
-				StendhalRPZone zone = StendhalRPWorld.get().getZone(returnZoneName);
-				teleportBack(player, targetZoneName, zone, returnX, returnY);
-			}
-
-		});
+		initialized = true;
 	}
 
 	/**
@@ -80,7 +75,12 @@ public class TimedTeleportScroll extends TeleportScroll {
 	 * @param y
 	 * @return true if teleport was successful
 	 */
-	public boolean teleportBack(Player player, String targetZoneName, StendhalRPZone returnZone, int x, int y) {
+	public boolean teleportBack(Player player) {
+		if (!initialized) {
+			init();
+		}
+		int x = returnX;
+		int y = returnY;
 		if (player == null || player.getZone() == null || targetZoneName == null) {
 			return true;
 		}
@@ -89,12 +89,15 @@ public class TimedTeleportScroll extends TeleportScroll {
 			return true; /* player is already away from the target zone */
 		}
 
+		StendhalRPZone returnZone = StendhalRPWorld.get().getZone(returnZoneName);
+
 		if (x < 0) {
 			x = Rand.rand(returnZone.getWidth());
 		}
 		if (y < 0) {
 			y = Rand.rand(returnZone.getHeight());
 		}
+
 		boolean result = player.teleport(returnZone, x, y, null, player);
 
 		String afterReturnMessage = getAfterReturnMessage();
@@ -134,6 +137,9 @@ public class TimedTeleportScroll extends TeleportScroll {
 	 */
 	@Override
 	protected boolean useTeleportScroll(Player player) {
+		if (!initialized) {
+			init();
+		}
 		/* check destination */
 		StendhalRPZone targetZone = StendhalRPWorld.get().getZone(targetZoneName);
 
@@ -145,9 +151,7 @@ public class TimedTeleportScroll extends TeleportScroll {
 								beforeReturnMessage));
 			}
 			TurnNotifier.get().notifyInTurns(timeInTurns,
-					new TimedTeleportTurnListener(player, targetZoneName, StendhalRPWorld.get().getZone(returnZoneName),
-							returnX,
-							returnY));
+					new TimedTeleportTurnListener(player));
 
 			/* we use the player as teleporter (last parameter) to give feedback if something goes wrong */
 			return player.teleport(targetZone, targetX, targetY, null, player);
@@ -193,21 +197,13 @@ public class TimedTeleportScroll extends TeleportScroll {
 	class TimedTeleportTurnListener implements TurnListener {
 
 		private final Player player;
-		private final String targetZoneName;
-		private final StendhalRPZone zone;
-		private final int x;
-		private final int y;
 
-		TimedTeleportTurnListener(Player player, String targetZoneName, StendhalRPZone returnZone, int x, int y) {
+		TimedTeleportTurnListener(Player player) {
 			this.player = player;
-			this.targetZoneName = targetZoneName;
-			this.zone = returnZone;
-			this.x = x;
-			this.y = y;
 		}
 
 		public void onTurnReached(int currentTurn, String message) {
-			teleportBack(player, targetZoneName, zone, x, y);
+			teleportBack(player);
 		}
 	}
 

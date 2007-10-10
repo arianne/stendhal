@@ -2,10 +2,13 @@ package games.stendhal.server.maps.quests;
 
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.item.scroll.RainbowBeansScroll;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.events.LoginListener;
+import games.stendhal.server.events.LoginNotifier;
 import games.stendhal.server.util.TimeUtil;
 
 import java.util.Arrays;
@@ -53,10 +56,26 @@ public class RainbowBeans extends AbstractQuest {
 	private static final int REQUIRED_MINUTES = 6 * 60;
 
 	private static final String QUEST_SLOT = "rainbow_beans";
+	
+	private static RainbowBeansScroll scroll = null;
 
 	@Override
 	public void init(String name) {
 		super.init(name, QUEST_SLOT);
+		if (scroll == null) {
+			scroll = (RainbowBeansScroll) StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("rainbow_beans");
+		}
+
+		/* login notifier to teleport away players logging into the dream world.
+		 * TODO: this should be done in the TimedTeleportScroll class or it's subclass.
+		 */
+		LoginNotifier.get().addListener(new LoginListener() {
+
+			public void onLoggedIn(Player player) {
+				scroll.teleportBack(player);
+			}
+
+		});
 	}
 
 	private void step_1() {
@@ -218,7 +237,6 @@ public class RainbowBeans extends AbstractQuest {
 				});
 	}
 
-	// TODO: Make player leave zone after 30 minutes
 	@Override
 	public void addToWorld() {
 		super.addToWorld();

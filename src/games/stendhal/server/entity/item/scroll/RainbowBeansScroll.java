@@ -3,8 +3,6 @@
  */
 package games.stendhal.server.entity.item.scroll;
 
-import games.stendhal.server.StendhalRPWorld;
-
 import java.util.Map;
 
 /**
@@ -19,15 +17,6 @@ import java.util.Map;
  * 	-1 and -1 are the return x and y positions (negative value means a random position)
  */
 public class RainbowBeansScroll extends TimedTeleportScroll {
-
-	static {
-		try {
-			RainbowBeansScroll temp = (RainbowBeansScroll) StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("rainbow_beans");
-			temp.initHandler();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 
 	/**
 	 * Creates a new timed marked teleport scroll
