@@ -255,7 +255,7 @@ public class ElvishArmor extends AbstractQuest {
 						return player.isQuestCompleted("elvish_armor");
 					}
 				}, ConversationStates.ATTENDING,
-				"If you have found any more elvish armor, I'd be glad if you would #sell it to me.", null);	
+				"If you have found any more elvish items, I'd be glad if you would #sell them to me. I would buy elvish armor, shield, legs, boots, cloak or sword. I would also buy a drow sword if you have one.", null);	
 	// player returns after finishing the quest and says quest
 		npc.add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
