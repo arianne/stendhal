@@ -83,7 +83,7 @@ public class ElvishArmor extends AbstractQuest {
 				}, ConversationStates.QUEST_OFFERED, "Yes, those that dwell in the forest of Nalwor. They guard their #secrets closely, you know.", null);
 		// player asks what items are needed 
 		npc.add(ConversationStates.QUEST_OFFERED, "secrets", null,
-				ConversationStates.QUEST_OFFERED,"They won't share knowledge of how to create the green armor. You would call it elvish armor. I wonder if a traveller like you could bring me any?",null);
+				ConversationStates.QUEST_OFFERED,"They won't share knowledge of how to create the green armor, shields and the like. You would call them elvish items. I wonder if a traveller like you could bring me any?",null);
 		// player says yes 
 		npc.add(ConversationStates.QUEST_OFFERED, 
 				ConversationPhrases.YES_MESSAGES, null, 
