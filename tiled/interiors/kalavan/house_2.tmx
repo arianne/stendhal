@@ -153,6 +153,9 @@
  <tileset name="meals" firstgid="359" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/food/meals_2.png"/>
  </tileset>
+ <tileset name="picture" firstgid="361" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/furniture/picture/small_2.png"/>
+ </tileset>
  <layer name="0_floor" width="25" height="25">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAONgYGDgwINZqIDxmT9qx6gdtLCDGuaP2jEy7eAhgEftGLVj1I5ROwaLHQCHXqNLxAkAAA==
@@ -165,7 +168,7 @@
  </layer>
  <layer name="2_object" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoB/YgcTehUPNViidB8UgoM7IwLAYSC8B4qUk2HcAi1g1kh2FUAwCGkA7lgHp5UC8ggQ7iAUFNDATBJiB7mZhxC2fTyN7aeWfgQILgHghEC8aQDfUkKEnDBj34UAcgScNIINmJLYWkXrwgTLKjaCL+euBeAMUb6SSmehgExBvhuItROrJI6yEYlBIWAnFIB2IM4hUKw1Md7JUSHukgBigfXFE2EmKP9ABOfmXVPMbaWwHKaADiZ1GIzvagLgdan4qFvkmEs0jVf1QAAAvwnYVxAkAAA==
+   H4sIAAAAAAAAAGNgQIBsRgaqgEwc5uxAYu/CoXcrlM6DYhBQB5q3GEgvAeKlJLjjABaxaiQ7CqEYBDSAdiwD0suBeAUJdhALCmhgJggwA93Ngife8mlkL638M1BgARAvBOJFA+iGGjL0hAHjPhyII4jMu81IbC0q5Pcyyo2gi/nrgXgDFG+kkpnoYBMQb4biLUTqySOshGJQSFgJxSAdiDOIVCsNTHeyVKpriAUxQPviiLCTFH+gA3LyL6nmN9LYDlJABxI7jUZ2tAFxO9T8VCzyTSSaR6r6oQAAuJnA/cQJAAA=
   </data>
  </layer>
  <layer name="3_roof" width="25" height="25">
