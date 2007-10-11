@@ -207,6 +207,7 @@ public class ShopList {
                 shops.add("buyelvish", "elvish_boots", 300);
                 shops.add("buyelvish", "elvish_legs", 300);
                 shops.add("buyelvish", "elvish_sword", 800);
+                shops.add("buyelvish", "elvish_shield", 1000);
                 shops.add("buyelvish", "drow_sword", 1200);
 		shops.add("buyelvish", "elvish_cloak", 400);
 		shops.add("buyelvish", "elvish_armor", 400);

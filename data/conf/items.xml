@@ -1250,8 +1250,7 @@
 
   <item name="enhanced_mace">
     <type class="club" subclass="enhanced_mace" tileid="-1"/>
-    <description>You see an enhanced mace. The heavy attacking end makes it
-    hard to balance.</description>
+    <description>You see an enhanced mace. The heavy attacking end makes it hard to balance.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="19"/>
       <rate value="7"/>
@@ -4353,6 +4352,21 @@
     </attributes>
     <weight value="14.0"/>
     <value value="189000"/>
+    <equipable>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
+    </equipable>
+  </item>
+
+  <item name="elvish_shield">
+    <type class="shield" subclass="elvish_shield" tileid="-1"/>
+    <description>You see an elvish shield. It looks like one big tree leaf!</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <def value="32"/>
+    </attributes>
+    <weight value="34.0"/>
+    <value value="275128"/>
     <equipable>
       <slot name="lhand"/>
       <slot name="rhand"/>

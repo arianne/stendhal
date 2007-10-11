@@ -17,13 +17,13 @@ import java.util.List;
  *
  * STEPS: - Lupos wants to see every piece of elvish equipment you can bring him
  *
- * REWARD: - 10000 XP - 15 Karma - ability to sell elvish stuff and also drow sword
+ * REWARD: - 20000 XP - 25 Karma - ability to sell elvish stuff and also drow sword
  *
  * REPETITIONS: - None.
  */
 public class ElvishArmor extends AbstractQuest {
 
-	private static final List<String> NEEDEDITEMS = Arrays.asList("elvish_armor", "elvish_legs", "elvish_boots", "elvish_sword", "elvish_cloak");
+	private static final List<String> NEEDEDITEMS = Arrays.asList("elvish_armor", "elvish_legs", "elvish_boots", "elvish_sword", "elvish_cloak", "elvish_shield");
 
 	/**
 	 * Returns a list of the names of all items that the given player still has
@@ -181,8 +181,8 @@ public class ElvishArmor extends AbstractQuest {
 									    //					"black_item");
 									    //	blackitem.setBoundTo(player.getName());
 									//	player.equip(blackitem, true);
-										player.addKarma(10.0);
-										player.addXP(10000);
+										player.addKarma(20.0);
+										player.addXP(20000);
 										engine
 												.say("I will study these! The albino elves owe you a debt of thanks.");
 										player.setQuest("elvish_armor",
