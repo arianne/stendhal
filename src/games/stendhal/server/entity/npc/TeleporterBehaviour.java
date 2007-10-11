@@ -17,6 +17,7 @@ import java.util.List;
 
 import marauroa.common.Log4J;
 import marauroa.common.Logger;
+import marauroa.common.game.IRPZone;
 
 /**
  * teleports the SpeakerNPC to a random location on the outside world
@@ -58,7 +59,7 @@ public class TeleporterBehaviour implements TurnListener {
 	 * Creates an ArrayList of "outside" zones for NPC
 	 */
 	private void listZones() {
-		Iterator itr = StendhalRPWorld.get().iterator();
+		Iterator<IRPZone> itr = StendhalRPWorld.get().iterator();
 		zones = new ArrayList<StendhalRPZone>();
 		List<String> badZones = new ArrayList<String>();
 		badZones.add("0_nalwor_city");
