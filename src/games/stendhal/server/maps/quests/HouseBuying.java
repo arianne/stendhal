@@ -135,6 +135,7 @@ public class HouseBuying extends AbstractQuest {
 						    if (player.drop("money", COST)) {
 							        Item key = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("private_key_"+text);
 						         	engine.say("Congratulations, here is your key to house " + text + "! Do you want to buy a spare key, at a price of " + COST2 + " money?");
+								key.setUndroppableOnDeath(true);
 							        player.equip(key);
 								//remember what house they own
 								player.setQuest(QUEST_SLOT, text);
@@ -167,6 +168,7 @@ public class HouseBuying extends AbstractQuest {
 						String house = player.getQuest(QUEST_SLOT);
 						Item key = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("private_key_"+house);
 					      	engine.say("Here you go, a spare key to your house. Please remember, only give spare keys to people you #really, #really, trust!");
+						key.setUndroppableOnDeath(true);
 						player.equip(key);
 					    }
 					    else {
@@ -177,11 +179,12 @@ public class HouseBuying extends AbstractQuest {
 				);
 				add(ConversationStates.QUESTION_2, ConversationPhrases.NO_MESSAGES, null, ConversationStates.ATTENDING, "That is wise of you. It is certainly better to restrict use of your house to those you can really trust.", null);
 				add(ConversationStates.QUESTION_1, ConversationPhrases.NO_MESSAGES, null, ConversationStates.ATTENDING, "No problem! If I can help you with anything else, just ask.", null);
-				addJob("I'm an estate agent. In simple terms, I sell houses to anyone who wants to buy one. They #cost a lot, of course. Our brochure is at #http://arianne.sourceforge.net/wiki/index.php?title=StendhalHouses.");
+				addJob("I'm an estate agent. In simple terms, I sell houses to those who have been granted #citizenship. They #cost a lot, of course. Our brochure is at #http://arianne.sourceforge.net/wiki/index.php?title=StendhalHouses.");
+				addReply("citizenship","The royalty in Kalavan Castle decide that.");
 				addReply("buy","You should really enquire the #cost before you ask to buy. And check our brochure, #http://arianne.sourceforge.net/wiki/index.php?title=StendhalHouses.");
 				addReply("really","That's right, really, really, really. Really.");
 				addOffer("I sell houses, please look at #http://arianne.sourceforge.net/wiki/index.php?title=StendhalHouses for examples of how they look inside. Then ask about the #cost when you are ready.");
-				addHelp("You can buy a house if there are any available. If you can pay the #cost, I'll give you a key. As a house owner you can buy spare keys to give your friends. See #http://arianne.sourceforge.net/wiki/index.php?title=StendhalHouses for pictures inside the houses and more details.");
+				addHelp("You may be eligible to buy a house if there are any available. If you can pay the #cost, I'll give you a key. As a house owner you can buy spare keys to give your friends. See #http://arianne.sourceforge.net/wiki/index.php?title=StendhalHouses for pictures inside the houses and more details.");
 				addQuest("You may buy houses from me, please ask the #cost if you are interested. Perhaps you would first like to view our brochure, #http://arianne.sourceforge.net/wiki/index.php?title=StendhalHouses.");
 				addGoodbye("Goodbye.");
 			}
