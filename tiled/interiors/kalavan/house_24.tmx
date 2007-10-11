@@ -153,6 +153,9 @@
  <tileset name="flames" firstgid="649" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/light/flames.png"/>
  </tileset>
+ <tileset name="food" firstgid="651" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/item/sheepfood.png"/>
+ </tileset>
  <layer name="0_floor" width="32" height="32">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAMtkYGDIHMVE4UQoToBibGqkmYjDtHIjNrtCgPgAUO4gEMsNgP0gu/czQGh89v/Dgqlh/0EGVDfQ2/5gJDeEDoD/iU1/1LSfnLQzHOxXANqtRMP8RQ4uYoLggXbHKB7Fo3hk4FYseNT+UTyKhx8e6DQ+0PYPZQwAvYVbbgAQAAA=
@@ -180,12 +183,12 @@
  </layer>
  <layer name="objects" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ8HFAAAAPBuEQAcxwAQAAA=
+   H4sIAAAAAAAAAO3PwQ0AAAQAMbG+pa3gJ6Kd4C4CAACYqtwu2PX9Hy5rFVgwZQAQAAA=
   </data>
  </layer>
- <layer name="collision" width="32" height="32" visible="0" opacity="0.35">
+ <layer name="collision" width="32" height="32" opacity="0.35">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2UYQrAIAiFY8fs/geJ/Rkh6TSfLXKCMCrfpy2tVyn198dv6797k87S9TebidHoZOJL/3CWb9HZkU/3I/laHW3f7cC3GoqP6gEPPyLPUexKvjav7HwppwhbwbDyv66f62EuVqPL1TNbY8TMiuJz55B81B2cwvfMtZGmdxbSN4+u38L36HjjJI0sfNTbPMkbgMjfkAAQAAA=
+   H4sIAAAAAAAAAO2U4Q6AIAiEXY/p+z9I609zzC5OwJnExtbMuw8LqUcp9c87r2if20B75fpbjGg0Ppn46B+O8hmfFfnyfSRf66O9dyvw2fDie90BCz+izp52Jl9bV3Y+qikiZjBY/lfOjzTa/kFriBMxsxgfRve0z5Pv9Q124VvmWs/TOgtlf3ufn+FbfKw65JGF79WbO+UJEfoq9QAQAAA=
   </data>
  </layer>
  <layer name="protection" width="32" height="32">

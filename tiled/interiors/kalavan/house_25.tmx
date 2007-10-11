@@ -153,6 +153,9 @@
  <tileset name="gate fancy" firstgid="621" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/decoration/fancy_gate.png"/>
  </tileset>
+ <tileset name="food" firstgid="627" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/item/sheepfood.png"/>
+ </tileset>
  <layer name="0_floor" width="32" height="32">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNkYGBgHMVE4VQoToFibGpUmIjDtHIjNrtigfgkUO4UEKsPgP0gu08wQGh89rMzYmJq2H+KAdUN9LY/BskNcQPgf2LTHzXtJyftDAf7NYF2a9Mwf43iUTyKR/EoJowpKcdH8SgexcThUiQ8Eu0fyhgAikyvmQAQAAA=
@@ -170,7 +173,7 @@
  </layer>
  <layer name="3_roof" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNggIBtQLwdiIMYUMESIF7KgAmuAPFVIL5GQHweEM8noAcEdgDxTizipAJvJioYMgqGLBjq8T8biGMG2A0xUHeMAtJA8CBNezpAd+kCsd4gdd9gASuAeCUWml5gFRCvxkKPgqED+oF4IhAHMUHYE9D4EwfScaNg2IM8JuIwvcA6IF5PP+tGHBjq7d1RMLAAABqL7mMAEAAA
+   H4sIAAAAAAAAAGNggIBtQLwdiIMYUMESIF7KgAmuAPFVIL5GQHweEM8noAcEdgDxTizipAJvJioYMgqGLBjq8T8biGMG2A0xUHeMAtJA8CBNezpAd+kCsd4gdd9gASuAeCUWml5gFRCvxkKPgqED+oF4IhAHMUHYE9D4E/HozQLibDz8UTAKCIE8JuIwvcA6IF5PP+tGHBjq7d1RMLAAAEtWddEAEAAA
   </data>
  </layer>
  <layer name="4_roof_add" width="32" height="32">
@@ -180,12 +183,12 @@
  </layer>
  <layer name="objects" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ8HFAAAAPBuEQAcxwAQAAA=
+   H4sIAAAAAAAAAO3IsQkAAAgDsOLL/g++IDi4JGMSAACAH127A+4Gbm1MwgAQAAA=
   </data>
  </layer>
  <layer name="collision" width="32" height="32" opacity="0.35">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2UYQrAIAiFY1ft/ncY+zNCsqlPs209EGLL91lo9Sil7rjjUrtuNdpLvz/JkiPx2XyMj/pk8+m/LL5l7lbga+XFt9bgyY+ok8ufxdfU9Wf+qKYIzWBo+dnn52aYy5X4SucPqVsr5I41edy+WfwIn9X5yLvW80XfQtrz0ecf8REfLs/SA579/ya+V29+KU4nhxTUABAAAA==
+   H4sIAAAAAAAAAO2UXQoAIQiEY6/a/e+w7MsSkm7+jBWbIETlfBOY9SqlnnzziXbdhnSX7n+FpWZE5/B9fK/ObD49m8W3/LsV+NqI4ls9RPIRPrn6LL7G15/5kidEZDC0/F3eL9WM9o+0J3EQM0ujo6nj7mXxETqr8z1zrafrnYW0v9Hvl/geHa7O0gOR/b8TP6o3OQ9IfVTedFHKtQAQAAA=
   </data>
  </layer>
  <layer name="protection" width="32" height="32">
