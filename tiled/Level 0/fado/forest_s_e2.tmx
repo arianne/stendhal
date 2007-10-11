@@ -93,8 +93,11 @@
  <tileset name="animal" firstgid="443" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/animal.png"/>
  </tileset>
- <tileset name="portal" firstgid="467" tilewidth="32" tileheight="32">
+ <tileset name="portal" firstgid="469" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
+ </tileset>
+ <tileset name="herb" firstgid="476" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/item/herb.png"/>
  </tileset>
  <layer name="0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">
@@ -118,7 +121,7 @@
  </layer>
  <layer name="objects" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3cyw3CMAwAUFiZZYAF+I3AmRlgHU69IBCUtGkcvzdAVUVOHSepVysAAAAgs916nuduZnouAAAAAN/NtecDc7mJWQBIQ96HONSWQETuLAHAOA+5EwDSOTSe/y+Nvx9kZW6ylJPYA0ip9boFonAGQATqzemdOxtT9xh/8zqXjsatS9bJlJBzAQAAAACgf5H7Ot0/vLv+EdOKECORz0WdyY1nzIBBxO9B5JxF+/65OxlhrQcAAAAA0IurPVkqc54GRBfxO0ZdezESijlNZupBslLjUUJvXDKxViCLd72P9cHty1D7WwfSKzkboB5nQPWU/mPq/AegTXoIjLM1XpCOec9giVjQJ5Op2UfpR7Tvg9gDAAAAAAAAAAAAAABKPQErXqdRAAABAA==
+   H4sIAAAAAAAAAO3cO3LCMBAAULgyl4FcgJAcgTqHgMJ3YVK4YZyAkS202vdKCo9GrD4r2bvZAAAAAJkdtus8d7fScwEAAAB4bK0zn1LDRLumfiOfH3EAKZjzgV/WfYij1dwS4D/eWQKAea7WTgBI59j4+v/dePsgK2OTdzmJPYCUWs9bIAp3AEQg31zeV2d96j3G59yPpU/91iX7ZEpYcwEAAAAAoH+R6zpd/mi7+hHLihAjke9F3cnNp8+AUcT5IPKaRfteeXcywl4PAAAAAKAXZ2eyVOY+DYgu4jxGXR9iJBRjmszkg2Qlx6OE2rhkYq9AFlO1j9XB7cuY+9sH0itrNkA97oDqKf3G1P0PQJvUEJhnr78gHeOe0TtiQZ1Mllb7HGUQw6tpfX64/++d4QEAAAAAAAAAAAAAAKVu8ZaOlgAAAQA=
   </data>
  </layer>
  <layer name="collision" width="128" height="128" opacity="0.37">
