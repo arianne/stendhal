@@ -797,24 +797,27 @@ public class AdministrationAction implements ActionListener {
 			return;
 		}
 
+		StendhalRPZone zone = inspected.getZone();
+
 		if (inspected instanceof RPEntity) {
 			((RPEntity) inspected).onDead(player);
 		} else if ((inspected instanceof Item) || (inspected instanceof Portal)) {
-			StendhalRPWorld.get().remove(inspected.getID());
+			zone.remove(inspected);
 		} else {
-			String text = "You can't remove this type of entity";
-			player.sendPrivateText(text);
+			player.sendPrivateText("You can't remove this type of entity");
 			return;
 		}
+
 		String name = inspected.getRPClass().getName();
 		if (inspected.has("name")) {
 			name = inspected.get("name");
 		}
+
 		StendhalRPRuleProcessor.get().addGameEvent(
 				player.getName(),
 				"removed",
 				name,
-				inspected.getZone().getName(),
+				zone.getName(),
 				Integer.toString(inspected.getX()),
 				Integer.toString(inspected.getY()));
 
