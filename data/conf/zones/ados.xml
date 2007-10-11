@@ -1071,6 +1071,11 @@ Southeast: Docks
 
  <!--  Level -1 -->
 
+ <zone name="-1_ados_tunnel_w2" level="-1" x="500768" y="499744" file="Level -1/ados/tunnel_w2.tmx">
+ </zone>
+ <zone name="-1_ados_tunnel_w" level="-1" x="500640" y="499744" file="Level -1/ados/tunnel_w.tmx">
+ </zone>
+
  <zone name="-1_ados_caves" level="-1" x="500384" y="499872" file="Level -1/ados/caves.tmx">
  </zone>
 

@@ -27,6 +27,7 @@
 
  <!--  Ground level -->
  <zone name="int_amazon_princess_hut" file="interiors/amazon/princess_hut.tmx">
+ <configurator class-name="games.stendhal.server.maps.amazon.hut.PrincessNPC"/>
   <portal x="10" y="18" ref="out">
    <destination zone="0_amazon_island_ne" ref="in"/>
   </portal>
@@ -51,6 +52,9 @@
  </zone>
 
  <zone name="-1_amazon_tunnel_e" level="-1" x="501024" y="499744" file="Level -1/amazon/tunnel_e.tmx">
+ </zone>
+
+ <zone name="-1_amazon_tunnel_e2" level="-1" x="500896" y="499744" file="Level -1/amazon/tunnel_e2.tmx">
  </zone>
  
  <!--  Level -2 -->
