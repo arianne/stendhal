@@ -51,6 +51,7 @@ public class PrincessNPC implements ZoneConfigurator {
 			protected void createDialog() {
 			        addGreeting("Huh, what are you doing here?");
 				addReply("look","You better do not look around, it is all mine!");
+				addReply("nothing","Go away and do this somewhere else but not in mine hut!");
 				addJob("I do not need any help at the moment.");
 				addQuest("I do not have anything to do for you.");
 				addHelp("Beware of my sisters on the island, they do not like any strangers.");
