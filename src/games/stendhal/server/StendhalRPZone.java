@@ -570,6 +570,15 @@ public class StendhalRPZone extends MarauroaRPZone {
 					 * Ignore signs. The way to go is XML.
 					 */
 					return;
+				} else if (clazz.contains("fruits")) {
+					switch(type) {
+					case 0:
+						plantGrower = new PassiveEntityRespawnPoint("coconut",800);
+						break;
+					case 1:
+						plantGrower = new PassiveEntityRespawnPoint("tomato",800);
+						break;
+					}
 				}
 
 				if (plantGrower == null) {

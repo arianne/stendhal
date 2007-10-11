@@ -1866,6 +1866,24 @@
     </equipable>
   </item>
 
+  <item name="tomato">
+    <type class="food" subclass="tomato" tileid="-1"/>
+    <description>You see a tomato, put it in a salad or eat it.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Food"/>    <attributes>
+      <amount value="30"/>
+      <frequency value="20"/>
+      <quantity value="1"/>
+      <regen value="2"/>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
+    </equipable>
+  </item>
+
   <item name="apple">
     <type class="food" subclass="apple" tileid="-1"/>
     <description>You see a nice shiny apple.</description>
