@@ -240,41 +240,55 @@ Please leave my mail at my neighbour's house.
       <parameter name="slot">bank_ados</parameter>
      </implementation>
     </entity>
-<!--
-    <entity x="3" y="13">
+    <entity x="2" y="12">
+     <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
+     <attribute name="description">You see a small table which you might rest your items on if organising your chest.
+     </attribute>
+    </entity>
+
+    <entity x="2" y="12">
      <implementation class-name="games.stendhal.server.entity.area.OnePlayerArea">
-      <parameter name="width">1</parameter>
+      <parameter name="width">2</parameter>
       <parameter name="height">3</parameter>
      </implementation>
     </entity>
--->
+
     <entity x="5" y="12">
      <implementation class-name="games.stendhal.server.entity.PersonalChest">
       <parameter name="slot">bank_ados</parameter>
      </implementation>
     </entity>
-<!--
-    <entity x="5" y="13">
+    <entity x="6" y="12">
+     <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
+     <attribute name="description">You see a small table which you might rest your items on if organising your chest.
+     </attribute>
+    </entity>
+    <entity x="5" y="12">
      <implementation class-name="games.stendhal.server.entity.area.OnePlayerArea">
-      <parameter name="width">1</parameter>
+      <parameter name="width">2</parameter>
       <parameter name="height">3</parameter>
      </implementation>
     </entity>
--->
-    <entity x="10" y="12">
+
+    <entity x="11" y="12">
      <implementation class-name="games.stendhal.server.entity.PersonalChest">
       <!-- semos slot -->
       <parameter name="slot">bank</parameter>
      </implementation>
     </entity>
-<!--
-    <entity x="10" y="13">
+
+    <entity x="12" y="12">
+     <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
+     <attribute name="description">You see a small table which you might rest your items on if organising your chest.
+     </attribute>
+    </entity>
+    <entity x="11" y="12">
      <implementation class-name="games.stendhal.server.entity.area.OnePlayerArea">
-      <parameter name="width">1</parameter>
+      <parameter name="width">2</parameter>
       <parameter name="height">3</parameter>
      </implementation>
     </entity>
--->
+
 
     <entity x="8" y="1">
      <implementation class-name="games.stendhal.server.entity.Sign"/>

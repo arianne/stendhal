@@ -289,21 +289,45 @@
       <parameter name="slot">bank_nalwor</parameter>
      </implementation>
   </entity>
-  <entity x="20" y="17">
+    <entity x="18" y="17">
+     <implementation class-name="games.stendhal.server.entity.area.OnePlayerArea">
+      <parameter name="width">2</parameter>
+      <parameter name="height">3</parameter>
+     </implementation>
+    </entity>
+  <entity x="21" y="17">
      <implementation class-name="games.stendhal.server.entity.PersonalChest">
       <parameter name="slot">bank_nalwor</parameter>
      </implementation>
   </entity>
+    <entity x="21" y="17">
+     <implementation class-name="games.stendhal.server.entity.area.OnePlayerArea">
+      <parameter name="width">2</parameter>
+      <parameter name="height">3</parameter>
+     </implementation>
+    </entity>
   <entity x="25" y="17">
      <implementation class-name="games.stendhal.server.entity.PersonalChest">
       <parameter name="slot">bank</parameter>
      </implementation>
   </entity> 
-  <entity x="27" y="17">
+    <entity x="24" y="17">
+     <implementation class-name="games.stendhal.server.entity.area.OnePlayerArea">
+      <parameter name="width">2</parameter>
+      <parameter name="height">3</parameter>
+     </implementation>
+    </entity>
+  <entity x="28" y="17">
      <implementation class-name="games.stendhal.server.entity.PersonalChest">
       <parameter name="slot">bank</parameter>
      </implementation>
   </entity> 
+    <entity x="27" y="17">
+     <implementation class-name="games.stendhal.server.entity.area.OnePlayerArea">
+      <parameter name="width">2</parameter>
+      <parameter name="height">3</parameter>
+     </implementation>
+    </entity>
   <entity x="12" y="17">
     <implementation class-name="games.stendhal.server.entity.NPCOwnedChest">
       <parameter name="npc">Grafindle</parameter>

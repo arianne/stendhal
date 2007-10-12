@@ -801,7 +801,10 @@ Holy mackerel! These chips are tasty.
     <entity x="2" y="2">
      <implementation class-name="games.stendhal.server.entity.PersonalChest"/>
     </entity>
-
+    <entity x="3" y="2">
+     <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
+     <attribute name="description">You see a conveniently placed table.</attribute>
+    </entity>
     <entity x="2" y="2">
      <implementation class-name="games.stendhal.server.entity.area.OnePlayerArea">
       <parameter name="width">2</parameter>
@@ -811,6 +814,10 @@ Holy mackerel! These chips are tasty.
 
     <entity x="9" y="2">
      <implementation class-name="games.stendhal.server.entity.PersonalChest"/>
+    </entity>
+    <entity x="8" y="2">
+     <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
+     <attribute name="description">You see a conveniently placed table.</attribute>
     </entity>
 
     <entity x="8" y="2">
@@ -822,6 +829,10 @@ Holy mackerel! These chips are tasty.
 
     <entity x="14" y="2">
      <implementation class-name="games.stendhal.server.entity.PersonalChest"/>
+    </entity>    
+    <entity x="15" y="2">
+     <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
+     <attribute name="description">You see a conveniently placed table.</attribute>
     </entity>
 
     <entity x="14" y="2">
@@ -834,7 +845,10 @@ Holy mackerel! These chips are tasty.
     <entity x="21" y="2">
      <implementation class-name="games.stendhal.server.entity.PersonalChest"/>
     </entity>
-
+    <entity x="20" y="2">
+     <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
+     <attribute name="description">You see a conveniently placed table.</attribute>
+    </entity>
     <entity x="20" y="2">
      <implementation class-name="games.stendhal.server.entity.area.OnePlayerArea">
       <parameter name="width">2</parameter>
@@ -844,6 +858,10 @@ Holy mackerel! These chips are tasty.
 
     <entity x="2" y="15">
      <implementation class-name="games.stendhal.server.entity.PersonalChest"/>
+    </entity>
+    <entity x="3" y="15">
+     <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
+     <attribute name="description">You see a conveniently placed table.</attribute>
     </entity>
 
     <entity x="2" y="12">
@@ -856,6 +874,10 @@ Holy mackerel! These chips are tasty.
     <entity x="9" y="15">
      <implementation class-name="games.stendhal.server.entity.PersonalChest"/>
     </entity>
+    <entity x="8" y="15">
+     <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
+     <attribute name="description">You see a conveniently placed table.</attribute>
+    </entity>
 
     <entity x="8" y="12">
      <implementation class-name="games.stendhal.server.entity.area.OnePlayerArea">
@@ -867,6 +889,10 @@ Holy mackerel! These chips are tasty.
     <entity x="14" y="15">
      <implementation class-name="games.stendhal.server.entity.PersonalChest"/>
     </entity>
+    <entity x="15" y="15">
+     <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
+     <attribute name="description">You see a conveniently placed table.</attribute>
+    </entity>
 
     <entity x="14" y="12">
      <implementation class-name="games.stendhal.server.entity.area.OnePlayerArea">
@@ -877,6 +903,10 @@ Holy mackerel! These chips are tasty.
 
     <entity x="21" y="15">
      <implementation class-name="games.stendhal.server.entity.PersonalChest"/>
+    </entity>
+    <entity x="20" y="15">
+     <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
+     <attribute name="description">You see a conveniently placed table.</attribute>
     </entity>
 
     <entity x="20" y="12">
