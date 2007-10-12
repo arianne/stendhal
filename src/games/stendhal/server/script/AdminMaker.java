@@ -104,9 +104,13 @@ public class AdminMaker extends ScriptImpl {
 		private final List<Destination> DESTINATIONS = Arrays.asList(
 			new Destination("0_nalwor_city", 88, 85),
 			new Destination("-2_orril_dungeon", 106, 21),
-			new Destination("-1_semos_mine_nw", 122, 91),
+			new Destination("-1_semos_mine_nw", 22, 75),
 			new Destination("-6_kanmararn_city", 33, 52),
-			new Destination("-2_ados_outside_nw", 28, 4)
+			new Destination("-2_ados_outside_nw", 28, 4),
+			new Destination("1_kikareukin_cave", 18, 97),
+			new Destination("0_kalavan_city", 64, 13),
+			new Destination("-1_fado_great_cave_e3", 13, 100),
+			new Destination("0_athor_island", 77, 73)
 		);
 
 		private static final String TELE_QUEST_SLOT = "AdminMakerTele";
