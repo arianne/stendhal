@@ -1,8 +1,8 @@
 package games.stendhal.server;
 
-import games.stendhal.server.entity.Entity;
-import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.entity.player.PlayerRPClass;
+import games.stendhal.server.entity.slot.KeyedSlot;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -23,6 +23,7 @@ import marauroa.common.Configuration;
 import marauroa.common.Log4J;
 import marauroa.common.game.DetailLevel;
 import marauroa.common.game.RPObject;
+import marauroa.common.game.RPSlot;
 import marauroa.common.net.InputSerializer;
 import marauroa.common.net.OutputSerializer;
 import marauroa.server.game.GenericDatabaseException;
@@ -346,10 +347,26 @@ public class StendhalPlayerDatabase extends JDBCPlayerDatabase {
 
 			long p1 = System.currentTimeMillis();
 			RPObject object = odb.loadRPObject(transA, id);
-			System.out.println("Porting: " + object.get("name"));
+			object.put("#db_id", id);
+			
+			// port player object to most recent version, including feature hack.
+			PlayerRPClass.updatePlayerRPObject(object);
+			object.addSlot(new KeyedSlot("!features"));
+			RPSlot slot = object.getSlot("!features");
+			if (slot.size() == 0) {
+				RPObject singleObject = new RPObject();
+				slot.assignValidID(singleObject);
+				slot.add(singleObject);
+			}
+			Player player = new Player(object);
+			if (player.isQuestCompleted("hungry_joshua")) {
+				player.setKeyedSlot("!features", "keyring", "");
+			}
+			
+			System.out.println("Porting: " + player.get("name") + " " + id);
 
 			long p2 = System.currentTimeMillis();
-			sdb.storeRPObject(transB, object);
+			sdb.storeRPObject(transB, player);
 			transB.commit();
 			long p3 = System.currentTimeMillis();
 

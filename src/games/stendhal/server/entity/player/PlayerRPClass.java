@@ -49,7 +49,7 @@ import org.apache.log4j.Logger;
  * Handles the RPClass registration and updating old Player objects
  * created by an older version of Stendhal.
  */
-class PlayerRPClass {
+public class PlayerRPClass {
 
 	private static Logger logger = Logger.getLogger(PlayerRPClass.class);
 
@@ -198,6 +198,7 @@ lion_shield_+1 enhanced_lion_shield
 
 		// Client side features
 		player.add("features", RPClass.LONG_STRING, RPClass.PRIVATE);
+		player.addRPSlot("!features", 1, RPClass.PRIVATE);
 
 		player.add("last_pvp_action_time", RPClass.FLOAT, RPClass.HIDDEN);
 
@@ -208,7 +209,7 @@ lion_shield_+1 enhanced_lion_shield
 	 *
 	 * @param object RPObject representing a player
 	 */
-	static void updatePlayerRPObject(RPObject object) {
+	public static void updatePlayerRPObject(RPObject object) {
 		String[] slotsNormal = { "bag", "rhand", "lhand", "head", "armor", "legs", "feet", "finger", "cloak", "bank",
 		        "bank_ados", "zaras_chest_ados", "bank_fado", "bank_nalwor", "spells", "keyring" };
 
