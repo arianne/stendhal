@@ -77,7 +77,7 @@
  </layer>
  <layer name="3_roof" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoC+YTqH+GVRxxSgYBaMABABdMRyMAAQAAA==
+   H4sIAAAAAAAAAGNgoC+YTqH+GVRxxSgYKDBroB0wClAAAIgCRgsABAAA
   </data>
  </layer>
  <layer name="4_roof_add" width="16" height="16">
