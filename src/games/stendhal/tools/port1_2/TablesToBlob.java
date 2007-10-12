@@ -3,16 +3,21 @@
  */
 package games.stendhal.tools.port1_2;
 
+import games.stendhal.server.StendhalRPWorld;
+
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Properties;
 
 import marauroa.common.Configuration;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 import marauroa.server.game.db.JDBCDatabase;
 import marauroa.server.game.db.JDBCTransaction;
+import marauroa.server.game.db.NoDatabaseConfException;
 import marauroa.server.game.db.Transaction;
 
 import org.apache.log4j.Logger;
@@ -188,8 +193,9 @@ public class TablesToBlob {
 		System.out.println("PORTING RPOBJECT, RPATTRIBUTE and RPSLOT tables from Marauroa 1.0 to object_data of Marauroa 2.0");
 		System.out.println();
 		Configuration.setConfigurationFile("server.ini");
+		StendhalRPWorld.get();
 
-		JDBCDatabase db = JDBCDatabase.getDatabase(); 
+		PortJDBCDatabase db = new PortJDBCDatabase(); 
 
 		Transaction trans = db.getTransaction();
 
@@ -203,11 +209,34 @@ public class TablesToBlob {
 			System.out.println("Porting: " + object.get("name"));
 
 			long p2 = System.currentTimeMillis();
-			db.storeCharacter(trans, object.get("name"), object.get("name"), object);
+			db.storeRPObject(trans, object);
 			trans.commit();
 			long p3 = System.currentTimeMillis();
 
 			System.out.println("Times LOAD(" + (p2 - p1) / 1000.0 + ")\tSTORE(" + (p3 - p2) / 1000.0 + ")");
+		}
+	}
+	
+	/**
+	 * PortJDBCDatabase enables access to internal methods of JDBCDatabase
+	 * needed for low level access.
+	 *
+	 * @author hendrik
+	 */
+	class PortJDBCDatabase extends JDBCDatabase {
+
+		/**
+		 * creates a new PortJDBCDatabase
+		 *
+		 * @throws NoDatabaseConfException in case of an configuration error
+		 */
+		public PortJDBCDatabase() throws NoDatabaseConfException {
+			super(getInitProps());
+		}
+
+		@Override
+		public int storeRPObject(Transaction transaction, RPObject object) throws IOException, SQLException {
+			return super.storeRPObject(transaction, object);
 		}
 	}
 }
