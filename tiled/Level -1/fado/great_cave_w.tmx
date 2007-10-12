@@ -75,7 +75,7 @@
  <tileset name="animal" firstgid="590" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/animal.png"/>
  </tileset>
- <tileset name="small animal" firstgid="614" tilewidth="32" tileheight="32">
+ <tileset name="small animal" firstgid="616" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/small_animal.png"/>
  </tileset>
  <layer name="0_floor" width="128" height="128">
@@ -105,7 +105,7 @@
  </layer>
  <layer name="objects" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3dTQ6CMBAGUOKZ1BhjYryJK3/ufwEXbpGYUsoHvLckAUoznWm7KF0HAOvz3M3dAgDGusvlALBZD/OAyeljYAvsEQJAHfZqGcP6E2B+N7mYBXqLW36Q0wAA4Mu6CQAAAAAAAAAAAAAAAAAAAAAgy8u5MMAf9nIFoU49sdl3bQqXgfeknbt2DGsPpGs9ZpL+k1Oz5l8LnnUouKdV3m/pHP5NaXWutpKYUmvXaWi+V1P6mAcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFi6D/jM3TYAAAEA
+   H4sIAAAAAAAAAO3dTQ6CMBAGUOKZ1BhjYryJS3/uv3fhFokppXzAe0sSoDTTmbaL0nUAsD7P3dwtAGCsu1wOAJv1MA+YnD4GtsAeIQDUYa+WMaw/AeZ3k4tZoLe45Qc5DQAAvqybAAAAAAAAAAAAAAAAAAAAAACyvJwLA/xhL1cQ6tQTm33XpnAZeE/auWvHsPZAutZjJuk/OTVr/rXgWYeCe1rl/ZbO4d+UVudqK4kptXadhuZ7NaWPeQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgKX7AAQ+UZgAAAEA
   </data>
  </layer>
  <layer name="collision" width="128" height="128" opacity="0.37">

@@ -48,12 +48,12 @@
  <tileset name="Untitled" firstgid="117" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/animal.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="141" tilewidth="32" tileheight="32">
+ <tileset name="Untitled" firstgid="143" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/brown_2.png"/>
  </tileset>
  <layer name="0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3DAQkAAAwEoesP33lBpuCqqaqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq+v4BoTZjZgAAAQA=
+   H4sIAAAAAAAAAO3DQQ0AAAwDofP/qeUJGSSsmqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqu8fS5LhbQAAAQA=
   </data>
  </layer>
  <layer name="1_terrain" width="128" height="128">

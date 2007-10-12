@@ -111,10 +111,10 @@
  <tileset name="Untitled" firstgid="209" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/dark_elf.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="222" tilewidth="32" tileheight="32">
+ <tileset name="Untitled" firstgid="223" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/human_little.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="224" tilewidth="32" tileheight="32">
+ <tileset name="Untitled" firstgid="225" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/elf.png"/>
  </tileset>
  <layer name="0_floor" width="64" height="64">
@@ -144,7 +144,7 @@
  </layer>
  <layer name="objects" width="64" height="64">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3WMQ6DMAwAQP7/QtQFVWr/0YmFoQqpcXFyNyPLJI7tZQEgyxYc7xUcD6JrdGS/nJVzPu/57wSKMBdiqTt20X37HRzvqKd2r86JOJV6k52HarJ6obfBDOwWMC9zDoBRrA3f9My9lrhQwbdafqRlUddoe/No/wMZvJv7arkb9wcAAABAhg+4sXX3AEAAAA==
+   H4sIAAAAAAAAAO3WSwoCMRAE0Ln/CcVVIeg5XLkRFD89aZp5b51UatEk2TYAVklx3rU4D9JdYJA07T2qS3eBIbwLtcwdDynOuxXnPftldvfuRJ1Jd1O6C8CXVt2FWXQOdPK3gONKdwEAKHL6YE12yoUJ3s3yeVmLudJdoFi6C8BA6S7ASylaAwAAAAD/ugOM6hwhAEAAAA==
   </data>
  </layer>
  <layer name="collision" width="64" height="64" opacity="0.41">
