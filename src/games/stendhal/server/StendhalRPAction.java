@@ -660,7 +660,7 @@ public class StendhalRPAction {
 		/*
 		 * Remove from old zone (if any) during zone change
 		 */
-		if (zoneChanged && (oldZone != null)) {
+		if (oldZone != null) {
 			/*
 			 * Player specific pre-remove handling
 			 */
@@ -689,7 +689,9 @@ public class StendhalRPAction {
 				}
 			}
 
-			oldZone.remove(entity);
+			if (zoneChanged) {
+				oldZone.remove(entity);
+			}
 		}
 
 		/*
@@ -707,7 +709,7 @@ public class StendhalRPAction {
 		/*
 		 * Player specific post-change handling
 		 */
-		if (zoneChanged && (entity instanceof Player)) {
+		if (entity instanceof Player) {
 			Player player = (Player) entity;
 
 			/*
@@ -733,20 +735,22 @@ public class StendhalRPAction {
 				}
 			}
 
-			/*
-			 * Zone change notifications/updates
-			 */
-			transferContent(player);
+			if (zoneChanged) {
+				/*
+				 * Zone change notifications/updates
+				 */
+				transferContent(player);
 
-			if (oldZone != null) {
-				String source = oldZone.getName();
-				String destination = zone.getName();
+				if (oldZone != null) {
+					String source = oldZone.getName();
+					String destination = zone.getName();
 
-				StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
+					StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
 						"change zone", destination);
 
-				TutorialNotifier.zoneChange(player, source, destination);
-				ZoneNotifier.zoneChange(player, source, destination);
+					TutorialNotifier.zoneChange(player, source, destination);
+					ZoneNotifier.zoneChange(player, source, destination);
+				}
 			}
 		}
 
