@@ -1759,12 +1759,20 @@ public class Player extends RPEntity {
 	@Override
 	protected boolean isZoneChangeAllowed() {
 		/*
-		 * If we are too far from our sheep, then disallow zone change
+		 * If we are too far from dependents, then disallow zone change
 		 */
-		if (hasSheep()) {
-			Sheep sheep = getSheep();
+		Sheep sheep = getSheep();
 
+		if (sheep != null) {
 			if (squaredDistance(sheep) > (7 * 7)) {
+				return false;
+			}
+		}
+
+		Pet pet = getPet();
+
+		if (pet != null) {
+			if (squaredDistance(pet) > (7 * 7)) {
 				return false;
 			}
 		}
