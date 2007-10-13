@@ -44,6 +44,7 @@ class DeathmatchState {
 	 */
 	public static DeathmatchState createFromQuestString(String questString) {
 		DeathmatchState deathmatchState = new DeathmatchState();
+		//place an elephant in Cairo
 		String[] tokens = (questString + ";0;0").split(";");
 		deathmatchState.lifecycleState = DeathmatchLifecycle.getFromQuestStateString(tokens[0]);
 		deathmatchState.level = Integer.parseInt(tokens[1]);
@@ -68,6 +69,11 @@ class DeathmatchState {
 	 */
 	void setQuestLevel(int level) {
 		this.level = level;
+	}
+
+
+	void increaseQuestlevel() {
+		this.level++;
 	}
 
 	/**

@@ -21,7 +21,7 @@ class DeathmatchEngine implements TurnListener {
 	static Logger logger = Log4J.getLogger(DeathmatchEngine.class);
 
 
-	private final Player player;
+private final Player player;
 	DeathmatchInfo dmInfo;
 
     CreatureSpawner spawner;
@@ -38,6 +38,10 @@ class DeathmatchEngine implements TurnListener {
 		this.dmInfo = deathmatchInfo;
 		this.player = player;
 
+		initialize();
+	}
+
+	protected void initialize() {
 		spawner = new CreatureSpawner();
 	}
 
@@ -71,31 +75,31 @@ class DeathmatchEngine implements TurnListener {
 		DeathmatchState deathmatchState = DeathmatchState.createFromQuestString(player.getQuest("deathmatch"));
 
 
-		int questLevel = deathmatchState.getQuestLevel();
+		switch(deathmatchState.getLifecycleState()) {
 
 
-		// the player wants to leave the game
-		// this is delayed so the player can see the taunting
-		if (deathmatchState.getLifecycleState() == DeathmatchLifecycle.BAIL) {
-			if (((new Date()).getTime() - deathmatchState.getStateTime() > BAIL_DELAY)) {
-				handleBail();
+case BAIL:
+	if (((new Date()).getTime() - deathmatchState.getStateTime() > BAIL_DELAY)) {
+		handleBail();
 
-				keepRunning = false;
-				return;
-			}
-			// still have to wait until bailing is possible. just check whether all monsters are killed
-			// inbetween (see code below)
-		}
-		if (deathmatchState.getLifecycleState() == DeathmatchLifecycle.CANCEL) {
-			spawner.removePlayersMonsters();
+		keepRunning = false;
+		return;
+	}
+	break;
 
-			// and finally remove this ScriptAction
-			keepRunning = false;
-			return;
-		}
+case CANCEL:
+	spawner.removePlayersMonsters();
+
+	// and finally remove this ScriptAction
+	keepRunning = false;
+	return;
+
+
+}
+
 
 		// check wheter the deathmatch was completed
-		if (questLevel >= player.getLevel() + CreatureSpawner.NUMBER_OF_CREATURES - 2) {
+		if (deathmatchState.getQuestLevel() >= player.getLevel() + CreatureSpawner.NUMBER_OF_CREATURES - 2) {
 			//logger.info("May be done");
 			if (spawner.areAllCreaturesDead()) {
 				logger.info("Player " + player.getName() + " completed deathmatch");
@@ -112,13 +116,13 @@ class DeathmatchEngine implements TurnListener {
 
 		// spawn new monster
 		if (((new Date()).getTime() - deathmatchState.getStateTime() > CreatureSpawner.SPAWN_DELAY)) {
-			DeathMatchCreature mycreature = spawner.spawnNewCreature(questLevel, player, dmInfo);
+			DeathMatchCreature mycreature = spawner.spawnNewCreature(deathmatchState.getQuestLevel(), player, dmInfo);
 
 			// in case there is not enough space to place the creature, mycreature is null
 			if (mycreature != null) {
 
-				questLevel++;
-				deathmatchState.setQuestLevel(questLevel);
+				
+				deathmatchState.increaseQuestlevel();
 			}
 
 			deathmatchState.refreshTimestamp();
@@ -152,7 +156,7 @@ class DeathmatchEngine implements TurnListener {
 
 		// send the player back to the entrance area
 		//StendhalRPZone entranceZone = StendhalRPWorld.get().getZone(zoneName);
-		player.teleport(dmInfo.getEntranceSpot().getZone(), dmInfo.getEntranceSpot().getX(), dmInfo.getEntranceSpot().getY(), null, player);
+		player.teleport(dmInfo.getEntranceSpot().getZone(), dmInfo.getEntranceSpot().getX(), dmInfo.getEntranceSpot().getY(), null, null);
 
 		spawner.removePlayersMonsters();
 	}

@@ -1,7 +1,6 @@
 package games.stendhal.server.maps.deathmatch;
 
 import games.stendhal.server.StendhalRPAction;
-import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.creature.ArenaCreature;
@@ -9,6 +8,7 @@ import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.creature.DeathMatchCreature;
 import games.stendhal.server.entity.creature.LevelBasedComparator;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.events.TurnListener;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -18,11 +18,10 @@ import java.util.List;
 
 import marauroa.common.Log4J;
 import marauroa.common.Logger;
-import marauroa.common.game.RPObjectNotFoundException;
 
 
 
-public class CreatureSpawner {
+public class CreatureSpawner implements TurnListener {
 static final Logger logger = Log4J.getLogger(CreatureSpawner.class);
 	static final long SPAWN_DELAY = 15000; // spawn a new monster each 15 seconds
 	static final long NUMBER_OF_CREATURES = 10;
@@ -33,7 +32,6 @@ static final Logger logger = Log4J.getLogger(CreatureSpawner.class);
 		sortedCreatures.addAll(creatures);
 		Collections.sort(sortedCreatures, new LevelBasedComparator());
 	}
-
 	/**
 	 * remove the critters that the player was supposed to kill
 	 */
@@ -41,12 +39,11 @@ static final Logger logger = Log4J.getLogger(CreatureSpawner.class);
 		for (Creature creature : spawnedCreatures) {
 			StendhalRPZone monsterZone = creature.getZone();
 
-			if(monsterZone != null) {
+			if (monsterZone != null) {
 				monsterZone.remove(creature);
 			}
 		}
 	}
-
 	/**
 	 * check if all our enemies are dead
 	 *
@@ -157,5 +154,9 @@ static final Logger logger = Log4J.getLogger(CreatureSpawner.class);
 		}
 
 		return sum;
+	}
+	public void onTurnReached(int currentTurn, String message) {
+		// TODO Auto-generated method stub
+
 	}
 }
