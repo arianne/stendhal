@@ -35,7 +35,6 @@ import games.stendhal.server.events.TutorialNotifier;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
@@ -51,41 +50,41 @@ public class Player extends RPEntity {
 	/**
 	 * The admin level attribute name.
 	 */
-	protected static final String	ATTR_ADMINLEVEL	= "adminlevel";
+	protected static final String ATTR_ADMINLEVEL = "adminlevel";
 
 	/**
 	 * The away message attribute name.
 	 */
-	protected static final String	ATTR_AWAY	= "away";
+	protected static final String ATTR_AWAY = "away";
 
 	/**
 	 * The ghostmode attribute name.
 	 */
-	protected static final String	ATTR_GHOSTMODE	= "ghostmode";
+	protected static final String ATTR_GHOSTMODE = "ghostmode";
 
 	/**
 	 * The attack invisible attribute name.
 	 */
-	protected static final String	ATTR_INVISIBLE	= "invisible";
+	protected static final String ATTR_INVISIBLE = "invisible";
 
 	/**
 	 * The pet ID attribute name.
 	 */
-	protected static final String	ATTR_PET	= "pet";
+	protected static final String ATTR_PET = "pet";
 
 	/**
 	 * The sheep ID attribute name.
 	 */
-	protected static final String	ATTR_SHEEP	= "sheep";
+	protected static final String ATTR_SHEEP = "sheep";
 
 	/**
 	 * The teleclick mode attribute name.
 	 */
-	protected static final String	ATTR_TELECLICKMODE = "teleclickmode";
+	protected static final String ATTR_TELECLICKMODE = "teleclickmode";
 
 	/**
-	 * The name of the zone placed in when killed.
-	 * TODO: Move to common class (maybe via method for runtime config)?
+	 * The name of the zone placed in when killed. TODO: Move to common class
+	 * (maybe via method for runtime config)?
 	 */
 	public static final String DEFAULT_DEAD_AREA = "int_afterlife";
 
@@ -201,12 +200,13 @@ public class Player extends RPEntity {
 
 		// Convert old features list
 		if (player.has("features")) {
-			logger.info("Converting features for " + player.getName() + ": " + player.get("features"));
+			logger.info("Converting features for " + player.getName() + ": "
+					+ player.get("features"));
 
 			FeatureList features = new FeatureList();
 			features.decode(player.get("features"));
 
-			for(String name : features) {
+			for (String name : features) {
 				player.setFeature(name, features.get(name));
 			}
 
@@ -228,8 +228,7 @@ public class Player extends RPEntity {
 			sheep.getZone().remove(sheep);
 
 			/*
-			 * NOTE: Once the sheep is stored there is no more trace of
-			 * zoneid.
+			 * NOTE: Once the sheep is stored there is no more trace of zoneid.
 			 */
 			player.playerSheepManager.storeSheep(sheep);
 		} else {
@@ -253,13 +252,12 @@ public class Player extends RPEntity {
 		player.stopAttack();
 
 		/*
-		 * Normally a zoneid attribute shouldn't logically exist after
-		 * an entity is removed from a zone, but we need to keep it for
-		 * players so that it can be serialized.
+		 * Normally a zoneid attribute shouldn't logically exist after an entity
+		 * is removed from a zone, but we need to keep it for players so that it
+		 * can be serialized.
 		 *
-		 * TODO: Find a better way to decouple "active" zone info from
-		 * "resume" zone info, or save just before removing from zone
-		 * instead.
+		 * TODO: Find a better way to decouple "active" zone info from "resume"
+		 * zone info, or save just before removing from zone instead.
 		 */
 		// TODO: Create <Entity>.remove(void) ?
 		player.getZone().remove(player);
@@ -350,10 +348,10 @@ public class Player extends RPEntity {
 	public boolean isObstacle(Entity entity) {
 		if (entity instanceof Player) {
 			/*
-			 * TODO: Create a world cached reference of this
-			 * zone for identity compares instead?
+			 * TODO: Create a world cached reference of this zone for identity
+			 * compares instead?
 			 */
-			if(getZone().getName().equals(DEFAULT_DEAD_AREA)) {
+			if (getZone().getName().equals(DEFAULT_DEAD_AREA)) {
 				return false;
 			}
 		}
@@ -382,13 +380,13 @@ public class Player extends RPEntity {
 	/**
 	 * Set the away message.
 	 *
-	 * @param	message
-	 *	An away message, or <code>null</code>.
+	 * @param message
+	 *            An away message, or <code>null</code>.
 	 */
 	public void setAwayMessage(final String message) {
-		if(message != null) {
+		if (message != null) {
 			put(ATTR_AWAY, message);
-		} else if(has(ATTR_AWAY)) {
+		} else if (has(ATTR_AWAY)) {
 			remove(ATTR_AWAY);
 		}
 
@@ -810,7 +808,7 @@ public class Player extends RPEntity {
 	 *            Flag indicating if enabled.
 	 */
 	public void setFeature(String name, boolean enabled) {
-		if(enabled) {
+		if (enabled) {
 			setFeature(name, "");
 		} else {
 			setFeature(name, null);
@@ -830,32 +828,29 @@ public class Player extends RPEntity {
 		setKeyedSlot("!features", name, value);
 	}
 
-
 	/**
 	 * Determine if the entity is invisible to creatures.
 	 *
-	 * @return	<code>true</code> if invisible.
+	 * @return <code>true</code> if invisible.
 	 */
 	@Override
 	public boolean isInvisible() {
 		return has(ATTR_INVISIBLE);
 	}
 
-
 	/**
 	 * Set whether this player is invisible to creatures.
 	 *
-	 * @param	invisible
-	 *		<code>true</code> if invisible.
+	 * @param invisible
+	 *            <code>true</code> if invisible.
 	 */
 	public void setInvisible(final boolean invisible) {
-		if(invisible) {
+		if (invisible) {
 			put(ATTR_INVISIBLE, "");
-		} else if(has(ATTR_INVISIBLE)) {
+		} else if (has(ATTR_INVISIBLE)) {
 			remove(ATTR_INVISIBLE);
 		}
 	}
-
 
 	/**
 	 * Sends a message that only this player can read.
@@ -904,17 +899,15 @@ public class Player extends RPEntity {
 		return getInt(ATTR_ADMINLEVEL);
 	}
 
-
 	/**
 	 * Set the player's admin level.
 	 *
-	 * @param	adminlevel
-	 *	The new admin level.
+	 * @param adminlevel
+	 *            The new admin level.
 	 */
 	public void setAdminLevel(final int adminlevel) {
 		put(ATTR_ADMINLEVEL, adminlevel);
 	}
-
 
 	@Override
 	public void onAttacked(Entity attacker, boolean keepAttacking) {
@@ -990,12 +983,14 @@ public class Player extends RPEntity {
 		// Penalize: Respawn on afterlive zone and
 		StendhalRPZone zone = StendhalRPWorld.get().getZone(DEFAULT_DEAD_AREA);
 
-		if(zone != null) {
-			if(!zone.placeObjectAtEntryPoint(this)) {
-				logger.error("Unable to place player in zone " + zone + ": " + getName());
+		if (zone != null) {
+			if (!zone.placeObjectAtEntryPoint(this)) {
+				logger.error("Unable to place player in zone " + zone + ": "
+						+ getName());
 			}
 		} else {
-			logger.error("Unable to find dead area [" + DEFAULT_DEAD_AREA + "] for player: " + getName());
+			logger.error("Unable to find dead area [" + DEFAULT_DEAD_AREA
+					+ "] for player: " + getName());
 		}
 	}
 
@@ -1019,8 +1014,10 @@ public class Player extends RPEntity {
 				for (RPObject objectInSlot : slot) {
 					// don't drop special quest rewards as there is no way to
 					// get them again
-					// TODO: Assert these as Item's and use getBoundTo() and isUndroppableOnDeath()
-					if (objectInSlot.has("bound") || objectInSlot.has("undroppableondeath")) {
+					// TODO: Assert these as Item's and use getBoundTo() and
+					// isUndroppableOnDeath()
+					if (objectInSlot.has("bound")
+							|| objectInSlot.has("undroppableondeath")) {
 						continue;
 					}
 					objects.add(new Pair<RPObject, RPSlot>(objectInSlot, slot));
@@ -1039,13 +1036,11 @@ public class Player extends RPEntity {
 					// percentage.
 					// Get a random percentage between 26 % and 75 % to drop
 					double percentage = (Rand.rand(50) + 25) / 100.0;
-					int quantityToDrop = (int) Math.round(item
-							.getQuantity()
+					int quantityToDrop = (int) Math.round(item.getQuantity()
 							* percentage);
 
 					if (quantityToDrop > 0) {
-						StackableItem itemToDrop = item
-								.splitOff(quantityToDrop);
+						StackableItem itemToDrop = item.splitOff(quantityToDrop);
 						corpse.add(itemToDrop);
 					}
 				} else if (object.first() instanceof PassiveEntity) {
@@ -1086,11 +1081,10 @@ public class Player extends RPEntity {
 	}
 
 	/**
-	 * Set the player's pet.
-	 * This will also set the pet's owner.
+	 * Set the player's pet. This will also set the pet's owner.
 	 *
-	 * @param	pet
-	 *	The pet.
+	 * @param pet
+	 *            The pet.
 	 */
 	public void setPet(Pet pet) {
 		put(ATTR_PET, pet.getID().getObjectID());
@@ -1098,11 +1092,10 @@ public class Player extends RPEntity {
 	}
 
 	/**
-	 * Set the player's sheep.
-	 * This will also set the sheep's owner.
+	 * Set the player's sheep. This will also set the sheep's owner.
 	 *
-	 * @param	sheep
-	 *	The sheep.
+	 * @param sheep
+	 *            The sheep.
 	 */
 	public void setSheep(Sheep sheep) {
 		put(ATTR_SHEEP, sheep.getID().getObjectID());
@@ -1124,13 +1117,14 @@ public class Player extends RPEntity {
 	 * @return The sheep.
 	 */
 	public Sheep getSheep() {
-		if(has(ATTR_SHEEP)) {
+		if (has(ATTR_SHEEP)) {
 			try {
 				return (Sheep) StendhalRPWorld.get().get(
-					new RPObject.ID(getInt(ATTR_SHEEP), get("zoneid")));
+						new RPObject.ID(getInt(ATTR_SHEEP), get("zoneid")));
 			} catch (Exception e) {
 				// TODO: Remove catch after DB reset
-				logger.error("Pre 1.00 Marauroa sheep bug. (player = " + getName() + ")", e);
+				logger.error("Pre 1.00 Marauroa sheep bug. (player = "
+						+ getName() + ")", e);
 
 				if (has(ATTR_SHEEP)) {
 					remove(ATTR_SHEEP);
@@ -1161,9 +1155,9 @@ public class Player extends RPEntity {
 	}
 
 	public Pet getPet() {
-		if(has(ATTR_PET)) {
+		if (has(ATTR_PET)) {
 			return (Pet) StendhalRPWorld.get().get(
-				new RPObject.ID(getInt(ATTR_PET), get("zoneid")));
+					new RPObject.ID(getInt(ATTR_PET), get("zoneid")));
 		} else {
 			return null;
 		}
@@ -1183,8 +1177,10 @@ public class Player extends RPEntity {
 	 * @return true if it is a new player, false otherwise
 	 */
 	public boolean isNew() {
-		return getAge() < 2 * 60 || getATK() < 15 || getDEF() < 15 || getLevel() < 5;
+		return getAge() < 2 * 60 || getATK() < 15 || getDEF() < 15
+				|| getLevel() < 5;
 	}
+
 	/**
 	 * Sets the number of minutes that this player has been logged in on the
 	 * server.
@@ -1202,8 +1198,8 @@ public class Player extends RPEntity {
 	 * Updates teh last pvp action time with the current time.
 	 */
 	public void storeLastPVPActionTime() {
-	    put("last_pvp_action_time", (float) System.currentTimeMillis());
-    }
+		put("last_pvp_action_time", (float) System.currentTimeMillis());
+	}
 
 	/**
 	 * returns the time the player last did an PVP action
@@ -1215,7 +1211,7 @@ public class Player extends RPEntity {
 			return (long) Float.parseFloat(get("last_pvp_action_time"));
 		}
 		return -1;
-    }
+	}
 
 	/**
 	 * Notifies this player that the given player has logged in.
@@ -1287,7 +1283,7 @@ public class Player extends RPEntity {
 	 * @return true iff the quest has been completed by the player
 	 */
 	public boolean isQuestCompleted(String name) {
-		String info  = getKeyedSlot("!quests", name);
+		String info = getKeyedSlot("!quests", name);
 
 		if (info == null) {
 			return false;
@@ -1369,7 +1365,7 @@ public class Player extends RPEntity {
 	 * @return true, if the quest is in one of theses states, false otherwise
 	 */
 	public boolean isQuestInState(String name, String... states) {
-		String questState  = getQuest(name);
+		String questState = getQuest(name);
 
 		if (questState != null) {
 			for (String state : states) {
@@ -1508,50 +1504,27 @@ public class Player extends RPEntity {
 		return itemsToConsume.size() > 5;
 	}
 
-
 	public void eat(ConsumableItem item) {
 		put("eating", 0);
 		itemsToConsume.add(item);
 	}
 
 	public void setImmune() {
+		if (has("poisoned")) {
+
+			remove("poisoned");
+
+		}
 		poisonToConsume.clear();
 		isImmune = true;
 	}
+
 	public void removeImmunity() {
 		isImmune = false;
 		sendPrivateText("You are not immune from poison anymore.");
 	}
 
 	public void consume(int turn) {
-
-		if ((poisonToConsume.size() == 0)) {
-			if (has("poisoned")) {
-
-				remove("poisoned");
-
-			}
-		} else {
-			int sum = 0;
-			int amount = 0;
-			for (Iterator<ConsumableItem> it = poisonToConsume.iterator(); it
-					.hasNext();) {
-				ConsumableItem poison = it.next();
-				if (turn % poison.getFrecuency() == 0) {
-					if (poison.consumed()) {
-						it.remove();
-
-					} else {
-						amount = poison.consume();
-						damage(-amount, poison);
-						sum += amount;
-						put("poisoned", sum);
-
-					}
-				}
-
-			}
-		}
 
 		Collections.sort(itemsToConsume);
 		if (itemsToConsume.size() > 0) {
@@ -1577,6 +1550,31 @@ public class Player extends RPEntity {
 
 			}
 		}
+		if ((poisonToConsume.size() == 0)) {
+			if (has("poisoned")) {
+
+				remove("poisoned");
+
+			}
+		} else {
+			int sum = 0;
+			int amount = 0;
+			for (ConsumableItem poison : poisonToConsume) {
+				if (turn % poison.getFrecuency() == 0) {
+					if (poison.consumed()) {
+						poisonToConsume.remove(poison);
+
+					} else {
+						amount = poison.consume();
+						damage(-amount, poison);
+						sum += amount;
+						put("poisoned", sum);
+
+					}
+				}
+
+			}
+		}
 		notifyWorldAboutChanges();
 	}
 
@@ -1596,8 +1594,9 @@ public class Player extends RPEntity {
 		int hours = age / 60;
 		int minutes = age % 60;
 		String time = hours + " hours and " + minutes + " minutes";
-		String text = "You see " + getTitle() + ".\n" + getTitle() + " is level "
-				+ getLevel() + " and has been playing " + time + ".";
+		String text = "You see " + getTitle() + ".\n" + getTitle()
+				+ " is level " + getLevel() + " and has been playing " + time
+				+ ".";
 		return (text);
 	}
 
@@ -1827,10 +1826,11 @@ public class Player extends RPEntity {
 		int turn = StendhalRPRuleProcessor.get().getTurn();
 
 		/*
-		 * TODO: Refactor Implement the attack rate into attack itself.
-		 * Done in the new RP.
+		 * TODO: Refactor Implement the attack rate into attack itself. Done in
+		 * the new RP.
 		 */
-		if (isAttacking() && ((turn % StendhalRPAction.getAttackRate(this)) == 0)) {
+		if (isAttacking()
+				&& ((turn % StendhalRPAction.getAttackRate(this)) == 0)) {
 			StendhalRPAction.attack(this, getAttackTarget());
 		}
 
@@ -1862,13 +1862,13 @@ public class Player extends RPEntity {
 	/**
 	 * Set whether this player is a ghost (invisible/non-interactive).
 	 *
-	 * @param	ghost
-	 *	<code>true</code> if a ghost.
+	 * @param ghost
+	 *            <code>true</code> if a ghost.
 	 */
 	public void setGhost(final boolean ghost) {
-		if(ghost) {
+		if (ghost) {
 			put(ATTR_GHOSTMODE, "");
-		} else if(has(ATTR_GHOSTMODE)) {
+		} else if (has(ATTR_GHOSTMODE)) {
 			remove(ATTR_GHOSTMODE);
 		}
 	}
@@ -1885,13 +1885,13 @@ public class Player extends RPEntity {
 	/**
 	 * Set whether this player has teleclick enabled.
 	 *
-	 * @param	teleclick
-	 *	<code>true</code> if teleclick enabled.
+	 * @param teleclick
+	 *            <code>true</code> if teleclick enabled.
 	 */
 	public void setTeleclickEnabled(final boolean teleclick) {
-		if(teleclick) {
+		if (teleclick) {
 			put(ATTR_TELECLICKMODE, "");
-		} else if(has(ATTR_TELECLICKMODE)) {
+		} else if (has(ATTR_TELECLICKMODE)) {
 			remove(ATTR_TELECLICKMODE);
 		}
 	}
@@ -1918,8 +1918,8 @@ public class Player extends RPEntity {
 		/*
 		 * Remember zones we've been in
 		 */
-		setKeyedSlot("!visited", zoneName, Long.toString(System
-				.currentTimeMillis()));
+		setKeyedSlot("!visited", zoneName,
+				Long.toString(System.currentTimeMillis()));
 	}
 
 	/**
