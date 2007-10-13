@@ -218,7 +218,7 @@ public class KTextEdit extends JPanel {
 		// Goal of the new code is making it easier to read older messages:
 		// The client should only scroll down automatically if the scrollbar
 		// was at the bottom before.
-		// There were some bugs, so it is disabled until there is time to fix it.
+		// TODO: There were some bugs, so it is disabled until there is time to fix it.
 		boolean useNewCode = false;
 
 		// Determine whether the scrollbar is currently at the very bottom
