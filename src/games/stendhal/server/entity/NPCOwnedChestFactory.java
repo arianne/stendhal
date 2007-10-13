@@ -59,7 +59,7 @@ public class NPCOwnedChestFactory implements ConfigurableFactory {
 	 *
 	 * @see NPCOwnedChest
 	 */
-	public Object create(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
+	public Object create(ConfigurableFactoryContext ctx) {
 		return new NPCOwnedChest(getNPC(ctx));
 	}
 }
