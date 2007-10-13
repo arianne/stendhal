@@ -194,12 +194,13 @@ public class GameScreen implements PositionChangeListener {
 		return sh / SIZE_UNIT_PIXELS;
 	}
 
-
 	/**
 	 * Create a game screen.
 	 *
-	 * @param	client		The client.
-	 * @param	canvas		The canvas to render in.
+	 * @param client
+	 *            The client.
+	 * @param canvas
+	 *            The canvas to render in.
 	 */
 	public GameScreen(final StendhalClient client, final Canvas canvas) {
 		gameLayers = client.getStaticGameLayers();
@@ -229,8 +230,8 @@ public class GameScreen implements PositionChangeListener {
 		canvas.addMouseMotionListener(ground);
 
 		/*
-		 * Create the buffering strategy which will allow AWT
-		 * to manage our accelerated graphics
+		 * Create the buffering strategy which will allow AWT to manage our
+		 * accelerated graphics
 		 */
 		canvas.createBufferStrategy(2);
 		strategy = canvas.getBufferStrategy();
@@ -248,16 +249,15 @@ public class GameScreen implements PositionChangeListener {
 		g = (Graphics2D) strategy.getDrawGraphics();
 	}
 
-
 	/**
 	 * Add a legacy dialog to the screen.
 	 *
-	 * @param	panel		The dialog to add.
+	 * @param panel
+	 *            The dialog to add.
 	 */
-        public void addDialog(final WtPanel panel) {
+	public void addDialog(final WtPanel panel) {
 		ground.addChild(panel);
 	}
-
 
 	/**
 	 * Add an entity.
@@ -951,8 +951,8 @@ public class GameScreen implements PositionChangeListener {
 	 * @return Screen rectangle (in integer values).
 	 */
 	public Rectangle convertWorldToScreenView(Rectangle2D wrect) {
-		return convertWorldToScreenView(wrect.getX(), wrect.getY(), wrect
-				.getWidth(), wrect.getHeight());
+		return convertWorldToScreenView(wrect.getX(), wrect.getY(),
+				wrect.getWidth(), wrect.getHeight());
 	}
 
 	/**
@@ -1053,9 +1053,7 @@ public class GameScreen implements PositionChangeListener {
 	 * @return A sprite.
 	 */
 	public Sprite createString(String text, Color textColor) {
-		GraphicsConfiguration gc = GraphicsEnvironment
-				.getLocalGraphicsEnvironment().getDefaultScreenDevice()
-				.getDefaultConfiguration();
+		GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
 		Image image = gc.createCompatibleImage(g.getFontMetrics().stringWidth(
 				text) + 2, 16, Transparency.BITMASK);
 		Graphics g2d = image.getGraphics();
@@ -1089,8 +1087,7 @@ public class GameScreen implements PositionChangeListener {
 		 * Use light gray as outline for colors < 25% bright. Luminance = 0.299R +
 		 * 0.587G + 0.114B
 		 */
-		int lum = ((textColor.getRed() * 299) + (textColor.getGreen() * 587) + (textColor
-				.getBlue() * 114)) / 1000;
+		int lum = ((textColor.getRed() * 299) + (textColor.getGreen() * 587) + (textColor.getBlue() * 114)) / 1000;
 
 		drawOutlineString(g, textColor, (lum >= 64) ? Color.black
 				: Color.lightGray, text, x, y);
@@ -1150,8 +1147,7 @@ public class GameScreen implements PositionChangeListener {
 
 		if (g.getFontMetrics().stringWidth(textUnderWidth) > width) {
 			return (int) ((float) width
-					/ (float) g.getFontMetrics().stringWidth(textUnderWidth) * textUnderWidth
-					.length());
+					/ (float) g.getFontMetrics().stringWidth(textUnderWidth) * textUnderWidth.length());
 		}
 
 		return textUnderWidth.length();
@@ -1185,7 +1181,7 @@ public class GameScreen implements PositionChangeListener {
 			if (tok.startsWith("#")) {
 				tok = tok.substring(1);
 			}
-			temp.append(tok + " ");
+				temp.append(tok + " ");
 		}
 
 		// create the attribute string with the formatation
@@ -1254,9 +1250,7 @@ public class GameScreen implements PositionChangeListener {
 			}
 		}
 
-		GraphicsConfiguration gc = GraphicsEnvironment
-				.getLocalGraphicsEnvironment().getDefaultScreenDevice()
-				.getDefaultConfiguration();
+		GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
 
 		int imageWidth = ((lineLengthPixels + delta < width) ? lineLengthPixels
 				+ delta : width) + 4;
@@ -1281,16 +1275,18 @@ public class GameScreen implements PositionChangeListener {
 					AlphaComposite.SRC_OVER, 0.8f);
 			g2d.setComposite(ac);
 			g2d.setColor(fillColor);
-			g2d
-					.fillRoundRect(10, 0,
-							((lineLengthPixels < width) ? lineLengthPixels
-									: width) + 3, 16 * numLines - 1, 4, 4);
+			g2d.fillRoundRect(
+					10,
+					0,
+					((lineLengthPixels < width) ? lineLengthPixels : width) + 3,
+					16 * numLines - 1, 4, 4);
 			g2d.setColor(textColor);
 			if (isTalking) {
-				g2d
-						.drawRoundRect(10, 0,
-								((lineLengthPixels < width) ? lineLengthPixels
-										: width) + 3, 16 * numLines - 1, 4, 4);
+				g2d.drawRoundRect(
+						10,
+						0,
+						((lineLengthPixels < width) ? lineLengthPixels : width) + 3,
+						16 * numLines - 1, 4, 4);
 			} else {
 				float[] dash = { 4, 2 };
 				BasicStroke newStroke = new BasicStroke(2,
@@ -1298,10 +1294,11 @@ public class GameScreen implements PositionChangeListener {
 						0);
 				Stroke oldStroke = g2d.getStroke();
 				g2d.setStroke(newStroke);
-				g2d
-						.drawRect(10, 0,
-								((lineLengthPixels < width) ? lineLengthPixels
-										: width) + 3, 16 * numLines - 1);
+				g2d.drawRect(
+						10,
+						0,
+						((lineLengthPixels < width) ? lineLengthPixels : width) + 3,
+						16 * numLines - 1);
 				g2d.setStroke(oldStroke);
 			}
 			g2d.setComposite(xac);
@@ -1360,22 +1357,26 @@ public class GameScreen implements PositionChangeListener {
 	/**
 	 * Convert screen coordinates to world coordinates.
 	 *
-	 * @param	x		The virtual screen X coordinate.
-	 * @param	y		The virtual screen Y coordinate.
+	 * @param x
+	 *            The virtual screen X coordinate.
+	 * @param y
+	 *            The virtual screen Y coordinate.
 	 *
-	 * @return	World coordinates.
+	 * @return World coordinates.
 	 */
 	public Point2D convertScreenToWorld(final int x, final int y) {
-		return new Point.Double((double) x / SIZE_UNIT_PIXELS, (double) y / SIZE_UNIT_PIXELS);
+		return new Point.Double((double) x / SIZE_UNIT_PIXELS, (double) y
+				/ SIZE_UNIT_PIXELS);
 
 	}
 
 	/**
 	 * Convert screen view coordinates to world coordinates.
 	 *
-	 * @param	p		The screen view coordinates.
+	 * @param p
+	 *            The screen view coordinates.
 	 *
-	 * @return	World coordinates.
+	 * @return World coordinates.
 	 */
 	public Point2D convertScreenViewToWorld(final Point p) {
 		return convertScreenViewToWorld(p.x, p.y);
@@ -1384,10 +1385,12 @@ public class GameScreen implements PositionChangeListener {
 	/**
 	 * Convert screen view coordinates to world coordinates.
 	 *
-	 * @param	x		The screen view X coordinate.
-	 * @param	y		The screen view Y coordinate.
+	 * @param x
+	 *            The screen view X coordinate.
+	 * @param y
+	 *            The screen view Y coordinate.
 	 *
-	 * @return	World coordinates.
+	 * @return World coordinates.
 	 */
 	public Point2D convertScreenViewToWorld(final int x, final int y) {
 		return convertScreenToWorld(x + getScreenViewX(), y + getScreenViewY());
@@ -1447,17 +1450,18 @@ public class GameScreen implements PositionChangeListener {
 		return svy;
 	}
 
-
 	//
 	// PositionChangeListener
 	//
 
 	/**
-	 * The user position changed.
-	 * This sets the target coordinates that the screen centers on.
+	 * The user position changed. This sets the target coordinates that the
+	 * screen centers on.
 	 *
-	 * @param	x		The X coordinate (in world units).
-	 * @param	y		The Y coordinate (in world units).
+	 * @param x
+	 *            The X coordinate (in world units).
+	 * @param y
+	 *            The Y coordinate (in world units).
 	 */
 	public void positionChanged(final double x, final double y) {
 		int ix = (int) x;
@@ -1498,13 +1502,14 @@ public class GameScreen implements PositionChangeListener {
 					rv = area1.x - area2.x;
 
 					/*
-					 * Quick workaround to stack items
-					 * in the same order they were added.
+					 * Quick workaround to stack items in the same order they
+					 * were added.
 					 *
 					 * TODO: Do it right on server side
 					 */
-					if(rv == 0) {
-						rv = view1.getEntity().getID().getObjectID() - view2.getEntity().getID().getObjectID();
+					if (rv == 0) {
+						rv = view1.getEntity().getID().getObjectID()
+								- view2.getEntity().getID().getObjectID();
 					}
 				}
 			}
