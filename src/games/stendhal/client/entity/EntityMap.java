@@ -24,7 +24,7 @@ import marauroa.common.Pair;
  *
  */
 public final class EntityMap {
-	private static Map<Pair<String, String>, Class< ? >> entityMap = new HashMap<Pair<String, String>, Class< ? >>();
+	private static Map<Pair<String, String>, Class< ? extends Entity >> entityMap = new HashMap<Pair<String, String>, Class< ? extends Entity >>();
 
 	static {
 		register();
@@ -102,7 +102,7 @@ public final class EntityMap {
 	 *            the java class of the Entity
 	 */
 	private static void register(final String type, final String eclass,
-			final Class< ? > entityClazz) {
+			final Class< ? extends Entity> entityClazz) {
 		entityMap.put(new Pair<String, String>(type, eclass), entityClazz);
 	}
 
@@ -115,7 +115,7 @@ public final class EntityMap {
 	 *
 	 * @return the java class of the Entity belonging to type and eclass
 	 */
-	public static Class getClass(final String type, final String eclass) {
+	public static Class< ? extends Entity> getClass(final String type, final String eclass) {
 		return entityMap.get(new Pair<String, String>(type, eclass));
 	}
 }
