@@ -37,14 +37,14 @@ public abstract class Entity extends RPObject {
 	private int y;
 
 	/**
-	 * The width (in world units).
-	 * Using double instead of int to avoid type convertion in getArea().
+	 * The width (in world units). Using double instead of int to avoid type
+	 * convertion in getArea().
 	 */
 	private double width;
 
 	/**
-	 * The height (in world units).
-	 * Using double instead of int to avoid type convertion in getArea().
+	 * The height (in world units). Using double instead of int to avoid type
+	 * convertion in getArea().
 	 */
 	private double height;
 
@@ -65,11 +65,10 @@ public abstract class Entity extends RPObject {
 		entity.addAttribute("type", Type.STRING);
 
 		// TODO: Delete after 2007-10-20 if removal didn't break server
-		//entity.addAttribute("obstacle", Type.FLAG, Definition.VOLATILE);
+		// entity.addAttribute("obstacle", Type.FLAG, Definition.VOLATILE);
 
 		/**
-		 * Resistance to other entities (0-100).
-		 * 0=Phantom, 100=Obstacle.
+		 * Resistance to other entities (0-100). 0=Phantom, 100=Obstacle.
 		 */
 		entity.addAttribute("resistance", Type.BYTE, Definition.VOLATILE);
 
@@ -93,8 +92,8 @@ public abstract class Entity extends RPObject {
 		entity.addAttribute("effect", Type.STRING, Definition.VOLATILE);
 
 		/*
-		 * The visibility of the entity drawn on client (0-100).
-		 * 0=Invisible, 100=Solid. Useful when mixed with effect.
+		 * The visibility of the entity drawn on client (0-100). 0=Invisible,
+		 * 100=Solid. Useful when mixed with effect.
 		 */
 		entity.addAttribute("visibility", Type.INT, Definition.VOLATILE);
 	}
@@ -154,7 +153,7 @@ public abstract class Entity extends RPObject {
 		if (has("x")) {
 			x = getInt("x");
 
-			if(x != oldX) {
+			if (x != oldX) {
 				moved = true;
 			}
 		}
@@ -162,15 +161,14 @@ public abstract class Entity extends RPObject {
 		if (has("y")) {
 			y = getInt("y");
 
-			if(y != oldY) {
+			if (y != oldY) {
 				moved = true;
 			}
 		}
 
-		if(moved && (getZone() != null)) {
+		if (moved && (getZone() != null)) {
 			onMoved(oldX, oldY, x, y);
 		}
-
 
 		if (has("height")) {
 			height = getInt("height");
@@ -211,7 +209,6 @@ public abstract class Entity extends RPObject {
 		}
 		return description;
 	}
-
 
 	/**
 	 * Get the nicely formatted entity title/name.
@@ -326,7 +323,6 @@ public abstract class Entity extends RPObject {
 		// > 95% combined resistance = obstacle
 		return (getResistance(entity) > 95);
 	}
-
 
 	/**
 	 * Calculates the squared distance between the two given rectangles, i.e.
@@ -455,10 +451,8 @@ public abstract class Entity extends RPObject {
 	 */
 	public boolean nextTo(int x, int y, double step) {
 		Rectangle2D thisArea = getArea();
-		thisArea
-				.setRect(thisArea.getX() - step, thisArea.getY() - step,
-						thisArea.getWidth() + 2 * step, thisArea.getHeight()
-								+ 2 * step);
+		thisArea.setRect(thisArea.getX() - step, thisArea.getY() - step,
+				thisArea.getWidth() + 2 * step, thisArea.getHeight() + 2 * step);
 		return thisArea.contains(x, y);
 	}
 
@@ -554,13 +548,13 @@ public abstract class Entity extends RPObject {
 	 * Notification of intra-zone position change.
 	 *
 	 * @param oldX
-	 *	The old X coordinate.
+	 *            The old X coordinate.
 	 * @param oldY
-	 *	The old Y coordinate.
+	 *            The old Y coordinate.
 	 * @param newX
-	 *	The new X coordinate.
+	 *            The new X coordinate.
 	 * @param newY
-	 *	The new Y coordinate.
+	 *            The new Y coordinate.
 	 */
 	protected void onMoved(int oldX, int oldY, int newX, int newY) {
 	}
@@ -586,7 +580,7 @@ public abstract class Entity extends RPObject {
 	 */
 	public void notifyWorldAboutChanges() {
 		// Only possible if in a zone
-		if(getZone() != null) {
+		if (getZone() != null) {
 			StendhalRPWorld.get().modify(this);
 		}
 	}
@@ -654,7 +648,8 @@ public abstract class Entity extends RPObject {
 	/**
 	 * Set the entity class.
 	 *
-	 * @param	clazz		The class name.
+	 * @param clazz
+	 *            The class name.
 	 */
 	public void setEntityClass(final String clazz) {
 		put("class", clazz);
@@ -663,7 +658,8 @@ public abstract class Entity extends RPObject {
 	/**
 	 * Set the entity sub-class.
 	 *
-	 * @param	subclazz	The sub-class name.
+	 * @param subclazz
+	 *            The sub-class name.
 	 */
 	public void setEntitySubClass(final String subclazz) {
 		put("subclass", subclazz);
@@ -674,10 +670,10 @@ public abstract class Entity extends RPObject {
 	 * </p>
 	 *
 	 * <p>
-	 * This calls <code>onMoved()</code>.
-	 * <strong>Note: When placing during a zone change, this call should
-	 * be done after being removed from the old zone, but before adding to
-	 * the zone to prevent an erronious position jump in the zone.</strong>
+	 * This calls <code>onMoved()</code>. <strong>Note: When placing during a
+	 * zone change, this call should be done after being removed from the old
+	 * zone, but before adding to the zone to prevent an erronious position jump
+	 * in the zone.</strong>
 	 *
 	 * @param x
 	 *            The x position (in world units).
@@ -701,7 +697,7 @@ public abstract class Entity extends RPObject {
 			moved = true;
 		}
 
-		if(moved && (getZone() != null)) {
+		if (moved && (getZone() != null)) {
 			onMoved(oldX, oldY, x, y);
 		}
 	}

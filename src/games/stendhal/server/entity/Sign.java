@@ -19,7 +19,7 @@ import marauroa.common.game.SyntaxException;
 import marauroa.common.game.Definition.Type;
 
 /**
- * A sign which is placed on the ground and can be right clicked by 
+ * A sign which is placed on the ground and can be right clicked by
  * players to be read.
  */
 public class Sign extends Entity {
@@ -60,7 +60,7 @@ public class Sign extends Entity {
 	 * @return	The sign text.
 	 */
 	public String getText() {
-		if(has(ATTR_TEXT)) {
+		if (has(ATTR_TEXT)) {
 			return get(ATTR_TEXT);
 		} else {
 			return null;
@@ -70,7 +70,7 @@ public class Sign extends Entity {
 
 	/**
 	 * Set the sign text.
-	 * 
+	 *
 	 * @param text
 	 *            The sign text.
 	 */
