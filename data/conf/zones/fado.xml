@@ -785,6 +785,8 @@ black halberd     12000
   </entity>
 </zone>
 
+<!-- Imperial Undergroundcity starts here -->
+
 <zone name="-1_fado_great_cave_w2" level="-1" x="499616" y="500640" file="Level -1/fado/great_cave_w2.tmx">
   <portal x="69" y="92" ref="imp_house1_entrance">
    <destination zone="int_imperial_house1" ref="entrance"/>
@@ -793,7 +795,7 @@ black halberd     12000
    <destination zone="int_imperial_house2" ref="entrance"/>
   </portal>
   <portal x="121" y="105" ref="imp_house3_entrance">
-   <destination zone="int_imperial_house3" ref="entrance"/>
+   <destination zone="int_imperial_barracks_0" ref="entrance"/>
   </portal>
 </zone>
 
@@ -809,9 +811,39 @@ black halberd     12000
   </portal>
 </zone>
 
-<zone name="int_imperial_house3" file="interiors/kalavan/imp_house3.tmx">
+<zone name="int_imperial_barracks_0" file="interiors/kalavan/imp_house3.tmx">
   <portal x="16" y="28" ref="entrance">
    <destination zone="-1_fado_great_cave_w2" ref="imp_house3_entrance"/>
+  </portal>
+  <portal x="4" y="4" ref="up">
+   <destination zone="int_imperial_barracks_1" ref="down"/>
+  </portal>
+</zone>
+
+<zone name="int_imperial_barracks_1" file="interiors/kalavan/imp_house3_1.tmx">
+  <portal x="4" y="4" ref="down">
+   <destination zone="int_imperial_barracks_0" ref="up"/>
+  </portal>
+  <portal x="15" y="26" ref="up">
+   <destination zone="int_imperial_barracks_2" ref="down"/>
+  </portal>
+<!-- First need to be checked for spelling an grammar 
+  <entity x="15" y="3">
+   <implementation class-name="games.stendhal.server.entity.Sign"/>
+   <attribute name="text">
+When your guards starts you get 
+your armor and your weapon and 
+when your guards ends, you bring 
+it back as you got it!
+   </attribute>
+   <attribute name="class">book_red</attribute>
+  </entity>
+-->
+</zone>
+
+<zone name="int_imperial_barracks_2" file="interiors/kalavan/imp_house3_2.tmx">
+  <portal x="15" y="26" ref="down">
+   <destination zone="int_imperial_barracks_1" ref="up"/>
   </portal>
 </zone>
 
