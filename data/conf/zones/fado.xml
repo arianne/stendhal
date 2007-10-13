@@ -797,6 +797,9 @@ black halberd     12000
   <portal x="121" y="105" ref="imp_house3_entrance">
    <destination zone="int_imperial_barracks_0" ref="entrance"/>
   </portal>
+  <portal x="12" y="108" ref="imp_house4_entrance">
+   <destination zone="int_imperial_house4" ref="entrance"/>
+  </portal>
 </zone>
 
 <zone name="int_imperial_house1" file="interiors/kalavan/imp_house1.tmx">
@@ -808,6 +811,12 @@ black halberd     12000
 <zone name="int_imperial_house2" file="interiors/kalavan/imp_house2.tmx">
   <portal x="6" y="13" ref="entrance">
    <destination zone="-1_fado_great_cave_w2" ref="imp_house2_entrance"/>
+  </portal>
+</zone>
+
+<zone name="int_imperial_house4" file="interiors/kalavan/imp_house4.tmx">
+  <portal x="15" y="28" ref="entrance">
+   <destination zone="-1_fado_great_cave_w2" ref="imp_house4_entrance"/>
   </portal>
 </zone>
 
