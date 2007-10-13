@@ -107,7 +107,7 @@ public abstract class RPEntity extends GuidedEntity {
 	 * against very weak creatures, they only gain atk and def xp for so many
 	 * turns after they have actually been damaged by the enemy.
 //	 */
-	private static final int TURNS_WHILE_FIGHT_XP_INCREASES =12;
+	private static final int TURNS_WHILE_FIGHT_XP_INCREASES = 12;
 
 	/**
 	 * All the slots considered to be "with" the entity. Listed in priority
@@ -1757,8 +1757,6 @@ public abstract class RPEntity extends GuidedEntity {
 	 */
 	@Override
 	public String getDescriptionName(final boolean definite) {
-		String name = getName();
-
 		if (name != null) {
 			return name;
 		} else {
@@ -1777,7 +1775,6 @@ public abstract class RPEntity extends GuidedEntity {
 		if (has(ATTR_TITLE)) {
 			return get(ATTR_TITLE);
 		} else {
-			String name = getName();
 
 			if (name != null) {
 				return name;
