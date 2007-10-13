@@ -388,9 +388,9 @@ public class Entity implements RPObjectChangeListener {
 			return null;
 		}
 
-		double width = audibleRange * 2;
+		double tempWidth = audibleRange * 2;
 		return new Rectangle2D.Double(getX() - audibleRange, getY()
-				- audibleRange, width, width);
+				- audibleRange, tempWidth, tempWidth);
 	}
 
 	/**
