@@ -17,14 +17,14 @@ import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
 /**
- * A dispatcher for RPObjectChangeListeners.
- * This normalizes the tree deltas into individual object deltas.
+ * A dispatcher for RPObjectChangeListeners. This normalizes the tree deltas
+ * into individual object deltas.
  *
  * NOTE: The order of dispatch between contained objects and when their
- * container is very specific. Children objects are given a chance to
- * perform creation/updates before their parent is notified it happened
- * to that specific child. For cases of object removal, the parent is
- * notified first, incase the child does destruction/cleanup.
+ * container is very specific. Children objects are given a chance to perform
+ * creation/updates before their parent is notified it happened to that specific
+ * child. For cases of object removal, the parent is notified first, incase the
+ * child does destruction/cleanup.
  */
 public class RPObjectChangeDispatcher {
 	/**
@@ -40,25 +40,26 @@ public class RPObjectChangeDispatcher {
 	/**
 	 * The normal listener.
 	 */
-	protected RPObjectChangeListener	listener;
+	protected RPObjectChangeListener listener;
 
 	/**
 	 * The user object listener.
 	 */
-	protected RPObjectChangeListener	userListener;
-
+	protected RPObjectChangeListener userListener;
 
 	/**
 	 * Create an RPObjectChange event dispatcher.
 	 *
-	 * @param	listener	The normal listener.
-	 * @param	userListener	The user object listener.
+	 * @param listener
+	 *            The normal listener.
+	 * @param userListener
+	 *            The user object listener.
 	 */
-	public RPObjectChangeDispatcher(final RPObjectChangeListener listener, final RPObjectChangeListener userListener) {
+	public RPObjectChangeDispatcher(final RPObjectChangeListener listener,
+			final RPObjectChangeListener userListener) {
 		this.listener = listener;
 		this.userListener = userListener;
 	}
-
 
 	//
 	// RPObjectChangeDispatcher
@@ -66,11 +67,11 @@ public class RPObjectChangeDispatcher {
 
 	/**
 	 * Dispatch object added event.
-	 * 
+	 *
 	 * @param object
-	 *		The object.
+	 *            The object.
 	 * @param user
-	 *		If this is the private user object.
+	 *            If this is the private user object.
 	 */
 	public void dispatchAdded(RPObject object, boolean user) {
 		try {
@@ -84,11 +85,11 @@ public class RPObjectChangeDispatcher {
 
 	/**
 	 * Dispatch object removed event.
-	 * 
+	 *
 	 * @param object
-	 *		The object.
+	 *            The object.
 	 * @param user
-	 *		If this is the private user object.
+	 *            If this is the private user object.
 	 */
 	public void dispatchRemoved(RPObject object, boolean user) {
 		try {
@@ -96,21 +97,23 @@ public class RPObjectChangeDispatcher {
 			fixContainers(object);
 			fireRemoved(object, user);
 		} catch (Exception e) {
-			logger.error("dispatchRemovedonDeleted failed, object is " + object, e);
+			logger.error(
+					"dispatchRemovedonDeleted failed, object is " + object, e);
 		}
 	}
 
 	/**
 	 * Dispatch object added/changed attribute(s) event.
-	 * 
+	 *
 	 * @param object
-	 *		The base object.
+	 *            The base object.
 	 * @param changes
-	 *		The changes.
+	 *            The changes.
 	 * @param user
-	 *		If this is the private user object.
+	 *            If this is the private user object.
 	 */
-	public void dispatchModifyAdded(RPObject object, RPObject changes, boolean user) {
+	public void dispatchModifyAdded(RPObject object, RPObject changes,
+			boolean user) {
 		try {
 			logger.debug("Object(" + object.getID() + ") modified in client");
 			fixContainers(object);
@@ -118,22 +121,24 @@ public class RPObjectChangeDispatcher {
 			fireChangedAdded(object, changes, user);
 			object.applyDifferences(changes, null);
 		} catch (Exception e) {
-			logger.debug("dispatchModifyAdded failed, object is " + object + ", changes is " + changes, e);
+			logger.debug("dispatchModifyAdded failed, object is " + object
+					+ ", changes is " + changes, e);
 		}
 
 	}
 
 	/**
 	 * Dispatch object removed attribute(s) event.
-	 * 
+	 *
 	 * @param object
-	 *		The base object.
+	 *            The base object.
 	 * @param changes
-	 *		The changes.
+	 *            The changes.
 	 * @param user
-	 *		If this is the private user object.
+	 *            If this is the private user object.
 	 */
-	public void dispatchModifyRemoved(RPObject object, RPObject changes, boolean user) {
+	public void dispatchModifyRemoved(RPObject object, RPObject changes,
+			boolean user) {
 		try {
 			logger.debug("Object(" + object.getID() + ") modified in client");
 			logger.debug("Original(" + object + ") modified in client");
@@ -146,13 +151,14 @@ public class RPObjectChangeDispatcher {
 			logger.debug("Modified(" + object + ") modified in client");
 			logger.debug("Changes(" + changes + ") modified in client");
 		} catch (Exception e) {
-			logger.error("dispatchModifyRemoved failed, object is " + object + ", changes is " + changes, e);
+			logger.error("dispatchModifyRemoved failed, object is " + object
+					+ ", changes is " + changes, e);
 		}
 	}
 
 	/**
-	 * Dump an object out in an easily readable format.
-	 * TEMP!! TEST METHOD - USED FOR DEBUGING.
+	 * Dump an object out in an easily readable format. TEMP!! TEST METHOD -
+	 * USED FOR DEBUGING.
 	 *
 	 * Probably should be in a common util class if useful long term.
 	 */
@@ -173,10 +179,11 @@ public class RPObjectChangeDispatcher {
 		System.err.println("");
 	}
 
-	protected static void buildIDPath(final StringBuffer sbuf, final RPObject object) {
+	protected static void buildIDPath(final StringBuffer sbuf,
+			final RPObject object) {
 		RPSlot slot = object.getContainerSlot();
 
-		if(slot != null) {
+		if (slot != null) {
 			buildIDPath(sbuf, object.getContainer());
 			sbuf.append(':');
 			sbuf.append(slot.getName());
@@ -187,8 +194,8 @@ public class RPObjectChangeDispatcher {
 	}
 
 	/**
-	 * Fix parent <-> child linkage.
-	 * TODO: Remove once containers are set right on creation.
+	 * Fix parent <-> child linkage. TODO: Remove once containers are set right
+	 * on creation.
 	 */
 	protected void fixContainers(final RPObject object) {
 		for (RPSlot slot : object.slots()) {
@@ -205,15 +212,15 @@ public class RPObjectChangeDispatcher {
 
 	/**
 	 * Notify listeners that an object was added.
-	 * 
+	 *
 	 * @param object
-	 *		The object.
+	 *            The object.
 	 * @param user
-	 *		If this is the private user object.
+	 *            If this is the private user object.
 	 */
 	protected void fireAdded(RPObject object, boolean user) {
 		// TEST CODE:
-		if(dlogger.isDebugEnabled()) {
+		if (dlogger.isDebugEnabled()) {
 			System.err.println("fireAdded()");
 			dumpObject(object);
 		}
@@ -223,17 +230,17 @@ public class RPObjectChangeDispatcher {
 		 */
 		listener.onAdded(object);
 
-		if(user) {
+		if (user) {
 			userListener.onAdded(object);
 		}
 
 		/*
 		 * Walk each slot
 		 */
-		for(RPSlot slot : object.slots()) {
+		for (RPSlot slot : object.slots()) {
 			String slotName = slot.getName();
 
-			for(RPObject sobject : slot) {
+			for (RPObject sobject : slot) {
 				fireAdded(object, slotName, sobject, user);
 			}
 		}
@@ -241,17 +248,18 @@ public class RPObjectChangeDispatcher {
 
 	/**
 	 * Notify listeners that a slot object was added.
-	 * 
+	 *
 	 * @param object
-	 *		The parent object.
+	 *            The parent object.
 	 * @param slotName
-	 *		The slot name.
+	 *            The slot name.
 	 * @param sobject
-	 *		The slot object.
+	 *            The slot object.
 	 * @param user
-	 *		If this is the private user object.
+	 *            If this is the private user object.
 	 */
-	protected void fireAdded(final RPObject object, final String slotName, final RPObject sobject, final boolean user) {
+	protected void fireAdded(final RPObject object, final String slotName,
+			final RPObject sobject, final boolean user) {
 		/*
 		 * Notify child
 		 */
@@ -262,25 +270,26 @@ public class RPObjectChangeDispatcher {
 		 */
 		listener.onSlotAdded(object, slotName, sobject);
 
-		if(user) {
+		if (user) {
 			userListener.onSlotAdded(object, slotName, sobject);
 		}
 	}
 
 	/**
-	 * Notify listeners that an object added/changed attribute(s).
-	 * This will cascade down slot trees.
-	 * 
+	 * Notify listeners that an object added/changed attribute(s). This will
+	 * cascade down slot trees.
+	 *
 	 * @param object
-	 *		The base object.
+	 *            The base object.
 	 * @param changes
-	 *		The changes.
+	 *            The changes.
 	 * @param user
-	 *		If this is the private user object.
+	 *            If this is the private user object.
 	 */
-	protected void fireChangedAdded(RPObject object, RPObject changes, boolean user) {
+	protected void fireChangedAdded(RPObject object, RPObject changes,
+			boolean user) {
 		// TEST CODE:
-		if(dlogger.isDebugEnabled()) {
+		if (dlogger.isDebugEnabled()) {
 			System.err.println("fireChangedAdded()");
 			dumpObject(changes);
 		}
@@ -305,15 +314,15 @@ public class RPObjectChangeDispatcher {
 	}
 
 	/**
-	 * Notify listeners that an object slot added/changed attribute(s).
-	 * This will cascade down object trees.
-	 * 
+	 * Notify listeners that an object slot added/changed attribute(s). This
+	 * will cascade down object trees.
+	 *
 	 * @param object
-	 *		The base object.
+	 *            The base object.
 	 * @param cslot
-	 *		The changes slot.
+	 *            The changes slot.
 	 * @param user
-	 *		If this is the private user object.
+	 *            If this is the private user object.
 	 */
 	protected void fireChangedAdded(RPObject object, RPSlot cslot, boolean user) {
 		String slotName = cslot.getName();
@@ -340,7 +349,8 @@ public class RPObjectChangeDispatcher {
 				listener.onSlotChangedAdded(object, slotName, sobject, schanges);
 
 				if (user) {
-					userListener.onSlotChangedAdded(object, slotName, sobject, schanges);
+					userListener.onSlotChangedAdded(object, slotName, sobject,
+							schanges);
 				}
 
 				fireChangedAdded(sobject, schanges, user);
@@ -355,19 +365,20 @@ public class RPObjectChangeDispatcher {
 	}
 
 	/**
-	 * Notify listeners that an object removed attribute(s).
-	 * This will cascade down slot trees.
-	 * 
+	 * Notify listeners that an object removed attribute(s). This will cascade
+	 * down slot trees.
+	 *
 	 * @param object
-	 *		The base object.
+	 *            The base object.
 	 * @param changes
-	 *		The changes.
+	 *            The changes.
 	 * @param user
-	 *		If this is the private user object.
+	 *            If this is the private user object.
 	 */
-	protected void fireChangedRemoved(RPObject object, RPObject changes, boolean user) {
+	protected void fireChangedRemoved(RPObject object, RPObject changes,
+			boolean user) {
 		// TEST CODE:
-		if(dlogger.isDebugEnabled()) {
+		if (dlogger.isDebugEnabled()) {
 			System.err.println("fireChangedRemoved()");
 			dumpObject(changes);
 		}
@@ -394,15 +405,16 @@ public class RPObjectChangeDispatcher {
 	/**
 	 * Notify listeners that an object slot removed attribute(s). This will
 	 * cascade down object trees.
-	 * 
+	 *
 	 * @param object
-	 *		The base object.
+	 *            The base object.
 	 * @param cslot
-	 *		The changes slot.
+	 *            The changes slot.
 	 * @param user
-	 *		If this is the private user object.
+	 *            If this is the private user object.
 	 */
-	protected void fireChangedRemoved(RPObject object, RPSlot cslot, boolean user) {
+	protected void fireChangedRemoved(RPObject object, RPSlot cslot,
+			boolean user) {
 		String slotName = cslot.getName();
 
 		/*
@@ -417,7 +429,7 @@ public class RPObjectChangeDispatcher {
 			RPObject sobject = slot.get(schanges.getID());
 
 			// TODO: Find out why this happens with bank contents
-			if(sobject == null) {
+			if (sobject == null) {
 				logger.debug("Unable to find existing: " + schanges);
 				continue;
 			}
@@ -426,10 +438,12 @@ public class RPObjectChangeDispatcher {
 			 * Remove attrs vs. object [see applyDifferences()]
 			 */
 			if (schanges.size() > 1) {
-				listener.onSlotChangedRemoved(object, slotName, sobject, schanges);
+				listener.onSlotChangedRemoved(object, slotName, sobject,
+						schanges);
 
 				if (user) {
-					userListener.onSlotChangedRemoved(object, slotName, sobject, schanges);
+					userListener.onSlotChangedRemoved(object, slotName,
+							sobject, schanges);
 				}
 
 				fireChangedRemoved(sobject, schanges, user);
@@ -441,15 +455,15 @@ public class RPObjectChangeDispatcher {
 
 	/**
 	 * Notify listeners that an object was removed.
-	 * 
+	 *
 	 * @param object
-	 *		The object.
+	 *            The object.
 	 * @param user
-	 *		If this is the private user object.
+	 *            If this is the private user object.
 	 */
 	protected void fireRemoved(RPObject object, boolean user) {
 		// TEST CODE:
-		if(dlogger.isDebugEnabled()) {
+		if (dlogger.isDebugEnabled()) {
 			System.err.println("fireRemoved()");
 			dumpObject(object);
 		}
@@ -457,10 +471,10 @@ public class RPObjectChangeDispatcher {
 		/*
 		 * Walk each slot
 		 */
-		for(RPSlot slot : object.slots()) {
+		for (RPSlot slot : object.slots()) {
 			String slotName = slot.getName();
 
-			for(RPObject sobject : slot) {
+			for (RPObject sobject : slot) {
 				fireRemoved(object, slotName, sobject, user);
 			}
 		}
@@ -470,30 +484,31 @@ public class RPObjectChangeDispatcher {
 		 */
 		listener.onRemoved(object);
 
-		if(user) {
+		if (user) {
 			userListener.onRemoved(object);
 		}
 	}
 
 	/**
 	 * Notify listeners that a slot object was removed.
-	 * 
+	 *
 	 * @param object
-	 *		The container object.
+	 *            The container object.
 	 * @param slotName
-	 *		The slot name.
+	 *            The slot name.
 	 * @param sobject
-	 *		The slot object.
+	 *            The slot object.
 	 * @param user
-	 *		If this is the private user object.
+	 *            If this is the private user object.
 	 */
-	protected void fireRemoved(final RPObject object, final String slotName, final RPObject sobject, final boolean user) {
+	protected void fireRemoved(final RPObject object, final String slotName,
+			final RPObject sobject, final boolean user) {
 		/*
 		 * Call before the child is notified
 		 */
 		listener.onSlotRemoved(object, slotName, sobject);
 
-		if(user) {
+		if (user) {
 			userListener.onSlotRemoved(object, slotName, sobject);
 		}
 

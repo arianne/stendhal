@@ -26,7 +26,7 @@ import marauroa.common.game.RPObject;
  * The player user context. This class holds/manages the data for the user of
  * this client. This is independent of any on-screen representation Entity that,
  * while related, serves an entirely different purpose.
- * 
+ *
  * Currently this is just a helper class for StendhalClient. Maybe it will be
  * directly used by other code later.
  */
@@ -81,7 +81,6 @@ public class UserContext implements RPObjectChangeListener {
 	 */
 	protected int sheepID;
 
-
 	public UserContext() {
 		adminlevel = 0;
 		entitySlotListener = new EntityHolderMulticaster();
@@ -100,7 +99,7 @@ public class UserContext implements RPObjectChangeListener {
 
 	/**
 	 * Add a buddy change listener.
-	 * 
+	 *
 	 * @param l
 	 *            The listener.
 	 */
@@ -118,9 +117,9 @@ public class UserContext implements RPObjectChangeListener {
 
 	/**
 	 * Add an entity slot listener.
-	 * 
+	 *
 	 * @param l
-	 *		The listener.
+	 *            The listener.
 	 */
 	public void addEntitySlotListener(EntityHolderListener l) {
 		entitySlotListener.add(l);
@@ -128,7 +127,7 @@ public class UserContext implements RPObjectChangeListener {
 
 	/**
 	 * Add a feature change listener.
-	 * 
+	 *
 	 * @param l
 	 *            The listener.
 	 */
@@ -146,7 +145,7 @@ public class UserContext implements RPObjectChangeListener {
 
 	/**
 	 * Fire admin level change event to all registered listeners.
-	 * 
+	 *
 	 * @param adminLevel
 	 *            The new admin level.
 	 */
@@ -156,7 +155,7 @@ public class UserContext implements RPObjectChangeListener {
 
 	/**
 	 * Fire buddy added to all registered listeners.
-	 * 
+	 *
 	 * @param buddyName
 	 *            The name of the buddy.
 	 */
@@ -172,7 +171,7 @@ public class UserContext implements RPObjectChangeListener {
 
 	/**
 	 * Fire buddy offline to all registered listeners.
-	 * 
+	 *
 	 * @param buddyName
 	 *            The name of the buddy.
 	 */
@@ -188,7 +187,7 @@ public class UserContext implements RPObjectChangeListener {
 
 	/**
 	 * Fire buddy online to all registered listeners.
-	 * 
+	 *
 	 * @param buddyName
 	 *            The name of the buddy.
 	 */
@@ -204,7 +203,7 @@ public class UserContext implements RPObjectChangeListener {
 
 	/**
 	 * Fire buddy removed to all registered listeners.
-	 * 
+	 *
 	 * @param buddyName
 	 *            The name of the buddy.
 	 */
@@ -220,7 +219,7 @@ public class UserContext implements RPObjectChangeListener {
 
 	/**
 	 * Fire feature enabled to all registered listeners.
-	 * 
+	 *
 	 * @param name
 	 *            The name of the feature.
 	 */
@@ -236,7 +235,7 @@ public class UserContext implements RPObjectChangeListener {
 
 	/**
 	 * Fire feature enabled to all registered listeners.
-	 * 
+	 *
 	 * @param name
 	 *            The name of the feature.
 	 * @param value
@@ -254,7 +253,7 @@ public class UserContext implements RPObjectChangeListener {
 
 	/**
 	 * Fire name change event to all registered listeners.
-	 * 
+	 *
 	 * @param name
 	 *            The new player name.
 	 */
@@ -264,7 +263,7 @@ public class UserContext implements RPObjectChangeListener {
 
 	/**
 	 * Get the admin level.
-	 * 
+	 *
 	 * @return The admin level.
 	 */
 	public int getAdminLevel() {
@@ -273,7 +272,7 @@ public class UserContext implements RPObjectChangeListener {
 
 	/**
 	 * Get the player character name.
-	 * 
+	 *
 	 * @return The player character name.
 	 */
 	public String getName() {
@@ -282,7 +281,7 @@ public class UserContext implements RPObjectChangeListener {
 
 	/**
 	 * Get the player's owned sheep RPObject ID.
-	 * 
+	 *
 	 * @return The RPObject ID of the sheep the player owns, or <code>0</code>
 	 *         if none.
 	 */
@@ -292,7 +291,7 @@ public class UserContext implements RPObjectChangeListener {
 
 	/**
 	 * Determine if the user is an admin.
-	 * 
+	 *
 	 * @return <code>true</code> is the user is an admin.
 	 */
 	public boolean isAdmin() {
@@ -301,7 +300,7 @@ public class UserContext implements RPObjectChangeListener {
 
 	/**
 	 * Remove a buddy change listener.
-	 * 
+	 *
 	 * @param listener
 	 *            The listener.
 	 */
@@ -332,9 +331,9 @@ public class UserContext implements RPObjectChangeListener {
 
 	/**
 	 * Remove an entity slot listener.
-	 * 
+	 *
 	 * @param l
-	 *		The listener.
+	 *            The listener.
 	 */
 	public void removeEntitySlotListener(EntityHolderListener l) {
 		entitySlotListener.remove(l);
@@ -342,7 +341,7 @@ public class UserContext implements RPObjectChangeListener {
 
 	/**
 	 * Remove a feature change listener.
-	 * 
+	 *
 	 * @param listener
 	 *            The listener.
 	 */
@@ -373,15 +372,15 @@ public class UserContext implements RPObjectChangeListener {
 
 	/**
 	 * A buddy list object added/changed attribute(s).
-	 * 
+	 *
 	 * @param changes
 	 *            The object changes.
 	 */
 	protected void processBuddiesAdded(final RPObject changes) {
 		for (String key : changes) {
 			/*
-			 * TODO: Drop underscore prefix when 'id' is not forced
-			 * into the RPObject attributes
+			 * TODO: Drop underscore prefix when 'id' is not forced into the
+			 * RPObject attributes
 			 */
 			if (!key.startsWith("_")) {
 				continue;
@@ -410,15 +409,15 @@ public class UserContext implements RPObjectChangeListener {
 
 	/**
 	 * A buddy list object removed attribute(s).
-	 * 
+	 *
 	 * @param changes
 	 *            The object changes.
 	 */
 	protected void processBuddiesRemoved(final RPObject changes) {
 		for (String key : changes) {
 			/*
-			 * TODO: Drop underscore prefix when 'id' is not forced
-			 * into the RPObject attributes
+			 * TODO: Drop underscore prefix when 'id' is not forced into the
+			 * RPObject attributes
 			 */
 			if (!key.startsWith("_")) {
 				continue;
@@ -434,14 +433,14 @@ public class UserContext implements RPObjectChangeListener {
 
 	/**
 	 * A feature object added/changed attribute(s).
-	 * 
+	 *
 	 * @param changes
 	 *            The object changes.
 	 */
 	protected void processFeaturesAdded(final RPObject changes) {
 		for (String featureName : changes) {
 			// Skip internal ID field
-			if(featureName.equals("id")) {
+			if (featureName.equals("id")) {
 				continue;
 			}
 
@@ -456,14 +455,14 @@ public class UserContext implements RPObjectChangeListener {
 
 	/**
 	 * A feature object removed attribute(s).
-	 * 
+	 *
 	 * @param changes
 	 *            The object changes.
 	 */
 	protected void processFeaturesRemoved(final RPObject changes) {
 		for (String featureName : changes) {
 			// Skip internal ID field
-			if(featureName.equals("id")) {
+			if (featureName.equals("id")) {
 				continue;
 			}
 
@@ -480,7 +479,7 @@ public class UserContext implements RPObjectChangeListener {
 
 	/**
 	 * An object was added.
-	 * 
+	 *
 	 * @param object
 	 *            The object.
 	 */
@@ -493,7 +492,7 @@ public class UserContext implements RPObjectChangeListener {
 
 	/**
 	 * The object added/changed attribute(s).
-	 * 
+	 *
 	 * @param object
 	 *            The base object.
 	 * @param changes
@@ -518,7 +517,7 @@ public class UserContext implements RPObjectChangeListener {
 
 	/**
 	 * An object removed attribute(s).
-	 * 
+	 *
 	 * @param object
 	 *            The base object.
 	 * @param changes
@@ -543,7 +542,7 @@ public class UserContext implements RPObjectChangeListener {
 
 	/**
 	 * An object was removed.
-	 * 
+	 *
 	 * @param object
 	 *            The object.
 	 */
@@ -561,22 +560,27 @@ public class UserContext implements RPObjectChangeListener {
 	/**
 	 * A slot object was added.
 	 *
-	 * @param	object		The container object.
-	 * @param	slotName	The slot name.
-	 * @param	sobject		The slot object.
+	 * @param object
+	 *            The container object.
+	 * @param slotName
+	 *            The slot name.
+	 * @param sobject
+	 *            The slot object.
 	 */
-	public void onSlotAdded(final RPObject object, final String slotName, final RPObject sobject) {
+	public void onSlotAdded(final RPObject object, final String slotName,
+			final RPObject sobject) {
 		if (slotName.equals("!buddy")) {
 			processBuddiesAdded(sobject);
-		} if (slotName.equals("!features")) {
+		}
+		if (slotName.equals("!features")) {
 			processFeaturesAdded(sobject);
-		} else if(sobject.getRPClass().subclassOf("entity")) {
+		} else if (sobject.getRPClass().subclassOf("entity")) {
 			Entity entity = gameObjects.get(sobject);
 
-			if(entity != null) {
+			if (entity != null) {
 				Entity parent = gameObjects.get(object);
 
-				if(logger.isDebugEnabled()) {
+				if (logger.isDebugEnabled()) {
 					logger.debug("Added: " + entity);
 					logger.debug("   To: " + parent + "  [" + slotName + "]");
 				}
@@ -589,12 +593,18 @@ public class UserContext implements RPObjectChangeListener {
 	/**
 	 * A slot object added/changed attribute(s).
 	 *
-	 * @param	object		The base container object.
-	 * @param	slotName	The container's slot name.
-	 * @param	sobject		The slot object.
-	 * @param	schanges	The slot object changes.
+	 * @param object
+	 *            The base container object.
+	 * @param slotName
+	 *            The container's slot name.
+	 * @param sobject
+	 *            The slot object.
+	 * @param schanges
+	 *            The slot object changes.
 	 */
-	public void onSlotChangedAdded(final RPObject object, final String slotName, final RPObject sobject, final RPObject schanges) {
+	public void onSlotChangedAdded(final RPObject object,
+			final String slotName, final RPObject sobject,
+			final RPObject schanges) {
 		if (slotName.equals("!buddy")) {
 			processBuddiesAdded(schanges);
 		} else if (slotName.equals("!features")) {
@@ -605,12 +615,18 @@ public class UserContext implements RPObjectChangeListener {
 	/**
 	 * A slot object removed attribute(s).
 	 *
-	 * @param	object		The base container object.
-	 * @param	slotName	The container's slot name.
-	 * @param	sobject		The slot object.
-	 * @param	schanges	The slot object changes.
+	 * @param object
+	 *            The base container object.
+	 * @param slotName
+	 *            The container's slot name.
+	 * @param sobject
+	 *            The slot object.
+	 * @param schanges
+	 *            The slot object changes.
 	 */
-	public void onSlotChangedRemoved(final RPObject object, final String slotName, final RPObject sobject, final RPObject schanges) {
+	public void onSlotChangedRemoved(final RPObject object,
+			final String slotName, final RPObject sobject,
+			final RPObject schanges) {
 		if (slotName.equals("!buddy")) {
 			processBuddiesRemoved(schanges);
 		} else if (slotName.equals("!features")) {
@@ -621,22 +637,26 @@ public class UserContext implements RPObjectChangeListener {
 	/**
 	 * A slot object was removed.
 	 *
-	 * @param	object		The container object.
-	 * @param	slotName	The slot name.
-	 * @param	sobject		The slot object.
+	 * @param object
+	 *            The container object.
+	 * @param slotName
+	 *            The slot name.
+	 * @param sobject
+	 *            The slot object.
 	 */
-	public void onSlotRemoved(final RPObject object, final String slotName, final RPObject sobject) {
+	public void onSlotRemoved(final RPObject object, final String slotName,
+			final RPObject sobject) {
 		if (slotName.equals("!buddy")) {
 			processBuddiesRemoved(sobject);
 		} else if (slotName.equals("!features")) {
 			processFeaturesRemoved(sobject);
-		} else if(sobject.getRPClass().subclassOf("entity")) {
+		} else if (sobject.getRPClass().subclassOf("entity")) {
 			Entity entity = gameObjects.get(sobject);
 
-			if(entity != null) {
+			if (entity != null) {
 				Entity parent = gameObjects.get(object);
 
-				if(logger.isDebugEnabled()) {
+				if (logger.isDebugEnabled()) {
 					logger.debug("Removed: " + entity);
 					logger.debug("   From: " + parent + "  [" + slotName + "]");
 				}
