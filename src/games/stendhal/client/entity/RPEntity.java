@@ -1079,7 +1079,7 @@ public abstract class RPEntity extends ActiveEntity {
 					StendhalUI.get().addEventLine(
 							getTitle()
 									+ " loses "
-									+ Grammar.quantityplnoun(amount,
+									+ Grammar.quantityplnoun(-amount,
 											"experience point") + ".",
 							NotificationType.SIGNIFICANT_NEGATIVE);
 				}
