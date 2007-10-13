@@ -198,7 +198,17 @@ public class Player extends RPEntity {
 			}
 		}
 
-		// Convert old features list
+		convertOldfeaturesList(player);
+
+		player.updateItemAtkDef();
+
+		PlayerRPClass.welcome(player);
+
+		logger.debug("Finally player is :" + player);
+		return player;
+	}
+
+	private static void convertOldfeaturesList(Player player) {
 		if (player.has("features")) {
 			logger.info("Converting features for " + player.getName() + ": "
 					+ player.get("features"));
@@ -212,13 +222,6 @@ public class Player extends RPEntity {
 
 			player.remove("features");
 		}
-
-		player.updateItemAtkDef();
-
-		PlayerRPClass.welcome(player);
-
-		logger.debug("Finally player is :" + player);
-		return player;
 	}
 
 	public static void destroy(Player player) {
