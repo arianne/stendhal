@@ -31,7 +31,7 @@ public class Portal extends Entity implements UseListener {
 	/**
 	 * The hidden flags attribute name.
 	 */
-	protected static final String	ATTR_HIDDEN	= "hidden";
+	protected static final String ATTR_HIDDEN = "hidden";
 
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(Portal.class);
@@ -64,13 +64,13 @@ public class Portal extends Entity implements UseListener {
 		settedDestination = false;
 	}
 
-
 	/**
-	 * Set the portal reference to identify this specific portal with-in
-	 * a zone. This value is opaque and requires a working equals(), but
-	 * typically uses a String or Integer.
+	 * Set the portal reference to identify this specific portal with-in a zone.
+	 * This value is opaque and requires a working equals(), but typically uses
+	 * a String or Integer.
 	 *
-	 * @param	reference	A reference tag.
+	 * @param reference
+	 *            A reference tag.
 	 */
 	public void setIdentifier(Object reference) {
 		this.identifier = reference;
@@ -85,14 +85,15 @@ public class Portal extends Entity implements UseListener {
 		return identifier;
 	}
 
-
 	/**
-	 * Set the destination portal zone and reference. The reference should
-	 * match the same type/value as that passed to setReference() in the
-	 * corresponding portal.
+	 * Set the destination portal zone and reference. The reference should match
+	 * the same type/value as that passed to setReference() in the corresponding
+	 * portal.
 	 *
-	 * @param	zone		The target zone.
-	 * @param	reference	A reference tag.
+	 * @param zone
+	 *            The target zone.
+	 * @param reference
+	 *            A reference tag.
 	 */
 	public void setDestination(String zone, Object reference) {
 		this.destinationReference = reference;
@@ -108,11 +109,10 @@ public class Portal extends Entity implements UseListener {
 		return destinationZone;
 	}
 
-
 	/**
 	 * Determine if this portal is hidden from players.
 	 *
-	 * @return	<code>true</code> if hidden.
+	 * @return <code>true</code> if hidden.
 	 */
 	@Override
 	public boolean isHidden() {
@@ -130,7 +130,7 @@ public class Portal extends Entity implements UseListener {
 
 		StendhalRPZone zone = getZone();
 
-		if(zone != null) {
+		if (zone != null) {
 			sbuf.append(" at ");
 			sbuf.append(zone.getName());
 		}
@@ -141,7 +141,7 @@ public class Portal extends Entity implements UseListener {
 		sbuf.append(getX());
 		sbuf.append(']');
 
-		if(isHidden()) {
+		if (isHidden()) {
 			sbuf.append(", hidden");
 		}
 
@@ -151,9 +151,10 @@ public class Portal extends Entity implements UseListener {
 	/**
 	 * Use the portal.
 	 *
-	 * @param player the Player who wants to use this portal 
-	 * @return	<code>true</code> if the portal worked,
-	 *		<code>false</code> otherwise.
+	 * @param player
+	 *            the Player who wants to use this portal
+	 * @return <code>true</code> if the portal worked, <code>false</code>
+	 *         otherwise.
 	 */
 	protected boolean usePortal(Player player) {
 		if (!nextTo(player)) {
@@ -167,10 +168,12 @@ public class Portal extends Entity implements UseListener {
 			return false;
 		}
 
-		StendhalRPZone destZone = StendhalRPWorld.get().getZone(getDestinationZone());
+		StendhalRPZone destZone = StendhalRPWorld.get().getZone(
+				getDestinationZone());
 
 		if (destZone == null) {
-			logger.error(this + " has invalid destination zone: " + getDestinationZone());
+			logger.error(this + " has invalid destination zone: "
+					+ getDestinationZone());
 			return false;
 		}
 
@@ -178,7 +181,8 @@ public class Portal extends Entity implements UseListener {
 
 		if (dest == null) {
 			// This portal is incomplete
-			logger.error(this + " has invalid destination identitifer: " + getDestinationReference());
+			logger.error(this + " has invalid destination identitifer: "
+					+ getDestinationReference());
 			return false;
 		}
 
@@ -198,7 +202,8 @@ public class Portal extends Entity implements UseListener {
 	/**
 	 * if this portal is the destination of another portal used
 	 *
-	 * @param user the player who used the other portal teleporting to us
+	 * @param user
+	 *            the player who used the other portal teleporting to us
 	 */
 	@SuppressWarnings("unused")
 	public void onUsedBackwards(RPEntity user) {

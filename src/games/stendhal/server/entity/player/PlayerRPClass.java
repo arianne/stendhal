@@ -47,8 +47,8 @@ import marauroa.common.game.RPSlot;
 import marauroa.common.game.Definition.Type;
 
 /**
- * Handles the RPClass registration and updating old Player objects
- * created by an older version of Stendhal.
+ * Handles the RPClass registration and updating old Player objects created by
+ * an older version of Stendhal.
  */
 class PlayerRPClass {
 
@@ -61,61 +61,35 @@ class PlayerRPClass {
 	private static boolean firstWelcomeException = true;
 
 	/** these items should be bound */
-	private static final List<String> ITEMS_TO_BIND = Arrays.asList("dungeon_silver_key", "lich_gold_key", "trophy_helmet", "lucky_charm", "soup");
+	private static final List<String> ITEMS_TO_BIND = Arrays.asList(
+			"dungeon_silver_key", "lich_gold_key", "trophy_helmet",
+			"lucky_charm", "soup");
 
 	/*
 	 *
-leather_armor_+1 leather_scale_armor
-leather_cuirass_+1 pauldroned_leather_cuirass
-chain_armor_+1 enhanced_chainmail
-scale_armor_+1 iron_scale_armor
-chain_armor_+3 golden_chainmail
-scale_armor_+2 pauldroned_iron_cuirass
-twoside_axe_+3 golden_twoside_axe
-elf_cloak_+2 blue_elf_cloak
-mace_+1 enhanced_mace
-mace_+2 golden_mace
-hammer_+3 golden_hammer
-chain_helmet_+2 aventail
-golden_helmet_+3 horned_golden_helmet
-longbow_+1 composite_bow
-lion_shield_+1 enhanced_lion_shield
+	 * leather_armor_+1 leather_scale_armor leather_cuirass_+1
+	 * pauldroned_leather_cuirass chain_armor_+1 enhanced_chainmail
+	 * scale_armor_+1 iron_scale_armor chain_armor_+3 golden_chainmail
+	 * scale_armor_+2 pauldroned_iron_cuirass twoside_axe_+3 golden_twoside_axe
+	 * elf_cloak_+2 blue_elf_cloak mace_+1 enhanced_mace mace_+2 golden_mace
+	 * hammer_+3 golden_hammer chain_helmet_+2 aventail golden_helmet_+3
+	 * horned_golden_helmet longbow_+1 composite_bow lion_shield_+1
+	 * enhanced_lion_shield
 	 */
 	private static final List<String> ITEM_NAMES_OLD = Arrays.asList(
-			"flail_+2",
-			"leather_armor_+1",
-			"leather_cuirass_+1",
-			"chain_armor_+1",
-			"scale_armor_+1",
-			"chain_armor_+3",
-			"scale_armor_+2",
-			"twoside_axe_+3",
-			"elf_cloak_+2",
-			"mace_+1",
-			"mace_+2",
-			"hammer_+3",
-			"chain_helmet_+2",
-			"golden_helmet_+3",
-			"longbow_+1",
-			"lion_shield_+1");
+			"flail_+2", "leather_armor_+1", "leather_cuirass_+1",
+			"chain_armor_+1", "scale_armor_+1", "chain_armor_+3",
+			"scale_armor_+2", "twoside_axe_+3", "elf_cloak_+2", "mace_+1",
+			"mace_+2", "hammer_+3", "chain_helmet_+2", "golden_helmet_+3",
+			"longbow_+1", "lion_shield_+1");
 
 	private static final List<String> ITEM_NAMES_NEW = Arrays.asList(
-			"morning_star",
-			"leather_scale_armor",
-			"pauldroned_leather_cuirass",
-			"enhanced_chainmail",
-			"iron_scale_armor",
-			"golden_chainmail",
-			"pauldroned_iron_cuirass",
-			"golden_twoside_axe",
-			"blue_elf_cloak",
-			"enhanced_mace",
-			"golden_mace",
-			"golden_hammer",
-			"aventail",
-			"horned_golden_helmet",
-			"composite_bow",
-			"enhanced_lion_shield");
+			"morning_star", "leather_scale_armor",
+			"pauldroned_leather_cuirass", "enhanced_chainmail",
+			"iron_scale_armor", "golden_chainmail", "pauldroned_iron_cuirass",
+			"golden_twoside_axe", "blue_elf_cloak", "enhanced_mace",
+			"golden_mace", "golden_hammer", "aventail", "horned_golden_helmet",
+			"composite_bow", "enhanced_lion_shield");
 
 	/**
 	 * Generates the RPClass and specifies slots and attributes.
@@ -124,7 +98,8 @@ lion_shield_+1 enhanced_lion_shield
 		RPClass player = new RPClass("player");
 		player.isA("rpentity");
 		player.addAttribute("text", Type.LONG_STRING, Definition.VOLATILE);
-		player.addAttribute("private_text", Type.LONG_STRING, (byte) (Definition.PRIVATE | Definition.VOLATILE));
+		player.addAttribute("private_text", Type.LONG_STRING,
+				(byte) (Definition.PRIVATE | Definition.VOLATILE));
 
 		player.addAttribute("poisoned", Type.SHORT, Definition.VOLATILE);
 		player.addAttribute("eating", Type.SHORT, Definition.VOLATILE);
@@ -133,7 +108,7 @@ lion_shield_+1 enhanced_lion_shield
 
 		player.addAttribute("outfit", Type.INT);
 		player.addAttribute("outfit_org", Type.INT);
-		//player.addAttribute("outfit_path", Type.STRING);
+		// player.addAttribute("outfit_path", Type.STRING);
 
 		player.addAttribute("away", Type.LONG_STRING, Definition.VOLATILE);
 
@@ -170,8 +145,10 @@ lion_shield_+1 enhanced_lion_shield
 		// We use this for the buddy system
 		player.addRPSlot("!buddy", 1, Definition.PRIVATE);
 		player.addRPSlot("!ignore", 1, Definition.HIDDEN);
-		player.addAttribute("online", Type.LONG_STRING, (byte) (Definition.PRIVATE | Definition.VOLATILE));
-		player.addAttribute("offline", Type.LONG_STRING, (byte) (Definition.PRIVATE | Definition.VOLATILE));
+		player.addAttribute("online", Type.LONG_STRING,
+				(byte) (Definition.PRIVATE | Definition.VOLATILE));
+		player.addAttribute("offline", Type.LONG_STRING,
+				(byte) (Definition.PRIVATE | Definition.VOLATILE));
 
 		player.addRPSlot("!quests", 1, Definition.HIDDEN);
 		player.addRPSlot("!tutorial", 1, Definition.HIDDEN);
@@ -181,39 +158,48 @@ lion_shield_+1 enhanced_lion_shield
 		player.addRPSlot("skills", 1, Definition.HIDDEN);
 
 		// Non-removable while stored ones have values
-		player.addRPSlot("!skills", 1, (byte) (Definition.HIDDEN | Definition.VOLATILE));
+		player.addRPSlot("!skills", 1,
+				(byte) (Definition.HIDDEN | Definition.VOLATILE));
 
 		player.addRPSlot("!visited", 1, Definition.HIDDEN);
 
-		// This is the RPSlot for the spells. It's main purpose is to let us add a GUI for the spells later on.
+		// This is the RPSlot for the spells. It's main purpose is to let us add
+		// a GUI for the spells later on.
 		player.addRPSlot("spells", 9, Definition.PRIVATE);
 
 		// The guild name
 		player.addAttribute("guild", Type.STRING);
 
 		// TODO: Delete after 2007-10-20 if removal didn't break server
-		//player.addAttribute("fullghostmode", Type.INT); // 0 for off, 1 for on
+		// player.addAttribute("fullghostmode", Type.INT); // 0 for off, 1 for
+		// on
 
 		// Player features
 		player.addRPSlot("!features", 1, Definition.PRIVATE);
 
 		// TODO: Delete after 2007-10-20 if removal didn't break server
-		//player.addAttribute("features", Type.LONG_STRING, Definition.PRIVATE);
+		// player.addAttribute("features", Type.LONG_STRING,
+		// Definition.PRIVATE);
 
 		// Last time this player attacked another player
-		player.addAttribute("last_pvp_action_time", Type.FLOAT, Definition.HIDDEN);
+		player.addAttribute("last_pvp_action_time", Type.FLOAT,
+				Definition.HIDDEN);
 	}
 
 	/**
 	 * Updates a player RPObject from an old version of Stendhal.
 	 *
-	 * @param object RPObject representing a player
+	 * @param object
+	 *            RPObject representing a player
 	 */
 	static void updatePlayerRPObject(RPObject object) {
-		String[] slotsNormal = { "bag", "rhand", "lhand", "head", "armor", "legs", "feet", "finger", "cloak", "bank",
-		        "bank_ados", "zaras_chest_ados", "bank_fado", "bank_nalwor", "spells", "keyring" };
+		String[] slotsNormal = { "bag", "rhand", "lhand", "head", "armor",
+				"legs", "feet", "finger", "cloak", "bank", "bank_ados",
+				"zaras_chest_ados", "bank_fado", "bank_nalwor", "spells",
+				"keyring" };
 
-		String[] slotsSpecial = { "!quests", "!kills", "!buddy", "!ignore", "!visited", "skills", "!tutorial", "!features" };
+		String[] slotsSpecial = { "!quests", "!kills", "!buddy", "!ignore",
+				"!visited", "skills", "!tutorial", "!features" };
 
 		// Port from 0.03 to 0.10
 		if (!object.has("base_hp")) {
@@ -228,19 +214,19 @@ lion_shield_+1 enhanced_lion_shield
 
 		// create slots if they do not exist yet:
 
-		//     Port from 0.20 to 0.30: bag, rhand, lhand, armor, head, legs, feet
-		//     Port from 0.44 to 0.50: cloak, bank
-		//     Port from 0.57 to 0.58: bank_ados, bank_fado
-		//	   Port from 0.58 to ?: bank_nalwor, keyring, finger
+		// Port from 0.20 to 0.30: bag, rhand, lhand, armor, head, legs, feet
+		// Port from 0.44 to 0.50: cloak, bank
+		// Port from 0.57 to 0.58: bank_ados, bank_fado
+		// Port from 0.58 to ?: bank_nalwor, keyring, finger
 		for (String slotName : slotsNormal) {
 			if (!object.hasSlot(slotName)) {
 				object.addSlot(new EntitySlot(slotName));
 			}
 		}
 
-		//     Port from 0.44 to 0.50: !buddy
-		//     Port from 0.56 to 0.56.1: !ignore
-		//     Port from 0.57 to 0.58: skills
+		// Port from 0.44 to 0.50: !buddy
+		// Port from 0.56 to 0.56.1: !ignore
+		// Port from 0.57 to 0.58: skills
 		for (String slotName : slotsSpecial) {
 			if (!object.hasSlot(slotName)) {
 				object.addSlot(new KeyedSlot(slotName));
@@ -292,16 +278,17 @@ lion_shield_+1 enhanced_lion_shield
 		if (!object.has("height")) {
 			object.put("height", 2);
 		}
-                if (!object.has("width")) {
-					object.put("width", 1);
-				}
+		if (!object.has("width")) {
+			object.put("width", 1);
+		}
 
 	}
 
 	/**
 	 * reads the admins from admins.list
 	 *
-	 * @param player Player to check for super admin status.
+	 * @param player
+	 *            Player to check for super admin status.
 	 */
 	static void readAdminsFromFile(Player player) {
 		if (adminNames == null) {
@@ -310,25 +297,29 @@ lion_shield_+1 enhanced_lion_shield
 			String adminFilename = "data/conf/admins.list";
 
 			try {
-				InputStream is = player.getClass().getClassLoader().getResourceAsStream(adminFilename);
+				InputStream is = player.getClass().getClassLoader().getResourceAsStream(
+						adminFilename);
 
 				if (is == null) {
 					logger.info("data/conf/admins.list does not exist.");
 				} else {
 
-					BufferedReader in = new BufferedReader(new InputStreamReader(is));
+					BufferedReader in = new BufferedReader(
+							new InputStreamReader(is));
 					try {
 						String line;
 						while ((line = in.readLine()) != null) {
 							adminNames.add(line);
 						}
 					} catch (Exception e) {
-						logger.error("Error loading admin names from: " + adminFilename, e);
+						logger.error("Error loading admin names from: "
+								+ adminFilename, e);
 					}
 					in.close();
 				}
 			} catch (Exception e) {
-				logger.error("Error loading admin names from: " + adminFilename, e);
+				logger.error(
+						"Error loading admin names from: " + adminFilename, e);
 			}
 		}
 
@@ -347,17 +338,20 @@ lion_shield_+1 enhanced_lion_shield
 	public static final String DEFAULT_ENTRY_ZONE = "int_semos_townhall";
 
 	/**
-	 * Places the player (and his/her sheep if there is one) into the world on login
+	 * Places the player (and his/her sheep if there is one) into the world on
+	 * login
 	 *
-	 * @param object RPObject representing the player
-	 * @param player Player-object
+	 * @param object
+	 *            RPObject representing the player
+	 * @param player
+	 *            Player-object
 	 */
 	static void placePlayerIntoWorldOnLogin(RPObject object, Player player) {
 		StendhalRPZone zone = null;
 
 		try {
 			if (object.has("zoneid") && object.has("x") && object.has("y")) {
-				if(!object.get("release").equals(Debug.VERSION)) {
+				if (!object.get("release").equals(Debug.VERSION)) {
 					player.put("release", Debug.VERSION);
 				} else {
 					zone = StendhalRPWorld.get().getZone(object.get("zoneid"));
@@ -366,7 +360,9 @@ lion_shield_+1 enhanced_lion_shield
 		} catch (Exception e) {
 			// If placing the player at its last position
 			// fails, we reset it to city entry point
-			logger.warn("cannot place player at its last position. reseting to semos city entry point", e);
+			logger.warn(
+					"cannot place player at its last position. reseting to semos city entry point",
+					e);
 		}
 
 		/*
@@ -380,8 +376,9 @@ lion_shield_+1 enhanced_lion_shield
 			 */
 			zone = StendhalRPWorld.get().getZone(DEFAULT_ENTRY_ZONE);
 
-			if(zone == null) {
-				logger.error("Unable to locate default zone [" + DEFAULT_ENTRY_ZONE + "]");
+			if (zone == null) {
+				logger.error("Unable to locate default zone ["
+						+ DEFAULT_ENTRY_ZONE + "]");
 				return;
 			}
 
@@ -401,7 +398,7 @@ lion_shield_+1 enhanced_lion_shield
 					sheep.initHP(10);
 				}
 
-				if(StendhalRPAction.placeat(zone, sheep, x, y)) {
+				if (StendhalRPAction.placeat(zone, sheep, x, y)) {
 					/*
 					 * Sheep needs to be added to the NPC list.
 					 */
@@ -410,14 +407,13 @@ lion_shield_+1 enhanced_lion_shield
 			}
 		} catch (Exception e) {
 			/**
-			 * No idea how but some players get a sheep but
-			 * they don't have it really. Me thinks that it
-			 * is a player that has been running for a while
-			 * the game and was kicked of server because
-			 * shutdown on a pre 1.00 version of Marauroa.
-			 * We shouldn't see this anymore.
+			 * No idea how but some players get a sheep but they don't have it
+			 * really. Me thinks that it is a player that has been running for a
+			 * while the game and was kicked of server because shutdown on a pre
+			 * 1.00 version of Marauroa. We shouldn't see this anymore.
 			 */
-			logger.error("Pre 1.00 Marauroa sheep bug. (player = " + player.getName() + ")", e);
+			logger.error("Pre 1.00 Marauroa sheep bug. (player = "
+					+ player.getName() + ")", e);
 
 			if (player.has("sheep")) {
 				player.remove("sheep");
@@ -437,7 +433,7 @@ lion_shield_+1 enhanced_lion_shield
 				pet.initHP(200);
 			}
 
-			if(StendhalRPAction.placeat(zone, pet, x, y)) {
+			if (StendhalRPAction.placeat(zone, pet, x, y)) {
 				/*
 				 * Pet needs to be added to the NPC list.
 				 */
@@ -452,12 +448,15 @@ lion_shield_+1 enhanced_lion_shield
 	/**
 	 * Loads the items into the slots of the player on login.
 	 *
-	 * @param player Player
+	 * @param player
+	 *            Player
 	 */
 	static void loadItemsIntoSlots(Player player) {
 
 		// load items
-		String[] slotsItems = { "bag", "rhand", "lhand", "head", "armor", "legs", "feet", "finger", "cloak", "zaras_chest_ados", "keyring" };
+		String[] slotsItems = { "bag", "rhand", "lhand", "head", "armor",
+				"legs", "feet", "finger", "cloak", "zaras_chest_ados",
+				"keyring" };
 
 		try {
 			for (String slotName : slotsItems) {
@@ -479,11 +478,15 @@ lion_shield_+1 enhanced_lion_shield
 	/**
 	 * Loads the items into the slots of the player on login.
 	 *
-	 * @param player Player
-	 * @param slot original slot
-	 * @param newSlot new Stendhal specific slot
+	 * @param player
+	 *            Player
+	 * @param slot
+	 *            original slot
+	 * @param newSlot
+	 *            new Stendhal specific slot
 	 */
-	private static void loadSlotContent(Player player, RPSlot slot, RPSlot newSlot) {
+	private static void loadSlotContent(Player player, RPSlot slot,
+			RPSlot newSlot) {
 		StendhalRPWorld world = StendhalRPWorld.get();
 		List<RPObject> objects = new LinkedList<RPObject>();
 		for (RPObject objectInSlot : slot) {
@@ -504,7 +507,8 @@ lion_shield_+1 enhanced_lion_shield
 						name = ITEM_NAMES_NEW.get(ITEM_NAMES_OLD.indexOf(name));
 					}
 
-					Item entity = world.getRuleManager().getEntityManager().getItem(name);
+					Item entity = world.getRuleManager().getEntityManager().getItem(
+							name);
 
 					// log removed items
 					if (entity == null) {
@@ -513,14 +517,16 @@ lion_shield_+1 enhanced_lion_shield
 							quantity = item.getInt("quantity");
 						}
 						logger.warn("Cannot restore " + quantity + " " + name
-						     + " on login of " + player.getName() + " because this item"
-						     + " was removed from items.xml");
+								+ " on login of " + player.getName()
+								+ " because this item"
+								+ " was removed from items.xml");
 						continue;
 					}
 
 					entity.setID(item.getID());
 
-					if (item.has("persistent") && (item.getInt("persistent") == 1)) {
+					if (item.has("persistent")
+							&& (item.getInt("persistent") == 1)) {
 						entity.fill(item);
 					}
 
@@ -529,21 +535,27 @@ lion_shield_+1 enhanced_lion_shield
 						if (item.has("quantity")) {
 							quantity = item.getInt("quantity");
 						} else {
-							logger.warn("Adding quantity=1 to " + item
-							        + ". Most likly cause is that this item was not stackable in the past");
+							logger.warn("Adding quantity=1 to "
+									+ item
+									+ ". Most likly cause is that this item was not stackable in the past");
 						}
 						((StackableItem) entity).setQuantity(quantity);
 
 						if (quantity <= 0) {
-							logger.warn("Ignoring item " + name + " on login of player "
-									+ player.getName() + " because this item has an invalid quantity: " + quantity);
+							logger.warn("Ignoring item "
+									+ name
+									+ " on login of player "
+									+ player.getName()
+									+ " because this item has an invalid quantity: "
+									+ quantity);
 							continue;
 						}
 					}
 
 					// make sure saved individual information is
 					// restored
-					String[] individualAttributes = { "infostring", "description", "bound", "undroppableondeath" };
+					String[] individualAttributes = { "infostring",
+							"description", "bound", "undroppableondeath" };
 					for (String attribute : individualAttributes) {
 						if (item.has(attribute)) {
 							entity.put(attribute, item.get(attribute));
@@ -555,7 +567,8 @@ lion_shield_+1 enhanced_lion_shield
 					newSlot.add(entity);
 				}
 			} catch (Exception e) {
-				logger.error("Error adding " + item + " to player slot" + slot, e);
+				logger.error("Error adding " + item + " to player slot" + slot,
+						e);
 			}
 		}
 	}
@@ -563,8 +576,10 @@ lion_shield_+1 enhanced_lion_shield
 	/**
 	 * binds special items to the player.
 	 *
-	 * @param player Player
-	 * @param item Item
+	 * @param player
+	 *            Player
+	 * @param item
+	 *            Item
 	 */
 	private static void boundOldItemsToPlayer(Player player, Item item) {
 
@@ -579,12 +594,12 @@ lion_shield_+1 enhanced_lion_shield
 	}
 
 	/**
-	 * send a welcome message to the player which can be configured
-	 * in marauroa.ini file as "server_welcome". If the value is
-	 * an http:// adress, the first line of that adress is read
-	 * and used as the message
+	 * send a welcome message to the player which can be configured in
+	 * marauroa.ini file as "server_welcome". If the value is an http:// adress,
+	 * the first line of that adress is read and used as the message
 	 *
-	 * @param player Player
+	 * @param player
+	 *            Player
 	 */
 	static void welcome(Player player) {
 		String msg = "This release is EXPERIMENTAL. Please report problems, suggestions and bugs. You can find us at IRC irc.freenode.net #arianne. Note: remember to keep your password completely secret, never tell it to another friend, player, or even admin.";
@@ -596,7 +611,8 @@ lion_shield_+1 enhanced_lion_shield
 					URL url = new URL(msg);
 					HttpURLConnection.setFollowRedirects(false);
 					HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-					BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+					BufferedReader br = new BufferedReader(
+							new InputStreamReader(connection.getInputStream()));
 					msg = br.readLine();
 					br.close();
 					connection.disconnect();

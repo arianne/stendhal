@@ -46,13 +46,13 @@ public class Spell extends PassiveEntity implements EquipListener {
 		entity.isA("entity");
 		entity.addAttribute("class", Type.STRING); // the spell class (other purposes, just to code old code for now)
 		entity.addAttribute(ATTR_NAME, Type.STRING); // name of spell (such as "heal")
-                
+
 	}
 
 	/**
-	 * 
+	 *
 	 * Creates a new Item.
-	 * 
+	 *
 	 * @param name name of item
 	 * @param attributes attributes (like attack). may be empty or <code>null</code>
 	 */
@@ -85,7 +85,7 @@ public class Spell extends PassiveEntity implements EquipListener {
 	public String describe() {
 		String name = getName();
 
-		if(name != null) {
+		if (name != null) {
 			return "You see " + Grammar.a_noun(name) + ".";
 		} else {
 			return super.describe();
