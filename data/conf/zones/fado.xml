@@ -684,7 +684,7 @@ black halberd     12000
 
 <zone name="-1_fado_great_cave_ne" level="-1" x="500000" y="500512" file="Level -1/fado/great_cave_ne.tmx">
 </zone>
-
+<!-- Magic underground city is here -->
 <zone name="-1_fado_great_cave_n_e2" level="-1" x="500128" y="500512" file="Level -1/fado/great_cave_n_e2.tmx">
   <portal x="112" y="17" ref="school_entrance_left">
    <destination zone="int_fado_wizard_school_0" ref="entrance_left"/>
@@ -767,6 +767,12 @@ black halberd     12000
   </entity>
   <portal x="85" y="112" ref="house2_entrance">
    <destination zone="int_fado_wizard_house2" ref="entrance"/>
+  </portal>
+  <portal x="27" y="72" ref="temple_entrance_left">
+   <destination zone="int_fado_wizard_temple" ref="entrance_left"/>
+  </portal>
+  <portal x="28" y="72" ref="temple_entrance_right">
+   <destination zone="int_fado_wizard_temple" ref="entrance_right"/>
   </portal>
   <portal x="74" y="102" ref="house4_entrance">
    <destination zone="int_fado_wizard_house4" ref="entrance"/>
@@ -867,7 +873,7 @@ it back as you got it!
 
 <zone name="-1_fado_great_cave_e2" level="-1" x="500128" y="500640" file="Level -1/fado/great_cave_e2.tmx">
 </zone>
-
+<!-- Magic underground city is here -->
 <zone name="-1_fado_great_cave_e3" level="-1" x="500256" y="500640" file="Level -1/fado/great_cave_e3.tmx">
  <configurator class-name="games.stendhal.server.maps.fado.great_cave.GreeterNPC" />
   <entity x="60" y="35">
@@ -904,7 +910,7 @@ it back as you got it!
    <attribute name="resistance">0</attribute>
   </entity>
 </zone>
-
+<!-- Interiors for Magic underground city here -->
 <zone name="int_fado_theater" file="interiors/fado/theater.tmx">
   <portal x="30" y="1" ref="entrance_left">
    <destination zone="-1_fado_great_cave_e3" ref="theater_entrance_left"/>
@@ -914,6 +920,16 @@ it back as you got it!
   </portal>
   <portal x="32" y="1" ref="entrance_right">
    <destination zone="-1_fado_great_cave_e3" ref="theater_entrance_right"/>
+  </portal>
+</zone>
+
+<zone name="int_fado_wizard_temple" file="interiors/fado/wizard_temple.tmx">
+ <configurator class-name="games.stendhal.server.maps.fado.great_cave.PriestessNPC" />
+  <portal x="11" y="23" ref="entrance_left">
+   <destination zone="-1_fado_great_cave_n_e3" ref="temple_entrance_left"/>
+  </portal>
+  <portal x="12" y="23" ref="entrance_right">
+   <destination zone="-1_fado_great_cave_n_e3" ref="temple_entrance_right"/>
   </portal>
 </zone>
 
