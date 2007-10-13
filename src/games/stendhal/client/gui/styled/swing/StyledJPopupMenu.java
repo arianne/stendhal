@@ -54,18 +54,18 @@ public class StyledJPopupMenu extends JPopupMenu {
 
 	/**
 	 * Apply style information to a menu item.
-	 * 
+	 *
 	 */
 	protected void applyStyle(Style style, JMenuItem item) {
-		Color color;
-		Border border;
-		Font font;
+		Color color = style.getForeground();
+		Border border = style.getBorder();
+		Font font = style.getFont();
 
 		if (style.getBackground() != null) {
 			item.setOpaque(false);
 		}
 
-		if ((border = style.getBorder()) != null) {
+		if (border != null) {
 			item.setBorder(border);
 
 			/*
@@ -74,23 +74,23 @@ public class StyledJPopupMenu extends JPopupMenu {
 			item.setMargin(new Insets(0, 0, 0, 0));
 		}
 
-		if ((color = style.getForeground()) != null) {
+		if (color  != null) {
 			item.setForeground(color);
 		}
 
-		if ((font = style.getFont()) != null) {
+		if (font  != null) {
 			item.setFont(font);
 		}
 	}
 
 	/**
 	 * Apply style information to a menu.
-	 * 
+	 *
 	 */
 	protected void applyStyle(Style style, JPopupMenu menu) {
-		Border border;
+		Border border = style.getBorder();
 
-		if ((border = style.getBorder()) != null) {
+		if (border != null) {
 			menu.setBorder(border);
 		}
 
@@ -105,7 +105,7 @@ public class StyledJPopupMenu extends JPopupMenu {
 
 	/**
 	 * Add a menu item, applying style.
-	 * 
+	 *
 	 */
 	@Override
 	public JMenuItem add(JMenuItem item) {
@@ -125,9 +125,9 @@ public class StyledJPopupMenu extends JPopupMenu {
 	 */
 	@Override
 	protected void paintComponent(Graphics g) {
-		Sprite texture;
+		Sprite texture = style.getBackground();
 
-		if ((texture = style.getBackground()) != null) {
+		if (texture != null) {
 			int twidth;
 			int theight;
 			int width;

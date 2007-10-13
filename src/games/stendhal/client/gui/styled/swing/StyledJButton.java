@@ -47,23 +47,23 @@ public class StyledJButton extends JButton {
 
 	/**
 	 * Apply style information to a component.
-	 * 
+	 *
 	 */
 	protected void applyStyle(Style style, JButton panel) {
-		Border border;
-		Font font;
-		Color color;
+		Border border = style.getBorder();
+		Font font = style.getFont();
+		Color color = style.getForeground();
 
 
-		if ((border = style.getBorder()) != null) {
+		if (border != null) {
 			panel.setBorder(border);
 		}
 
-		if ((font = style.getFont()) != null) {
+		if (font != null) {
 			panel.setFont(font);
 		}
 
-		if ((color = style.getForeground()) != null) {
+		if (color != null) {
 			panel.setForeground(color);
 		}
 
@@ -82,9 +82,9 @@ public class StyledJButton extends JButton {
 	 */
 	@Override
 	protected void paintComponent(Graphics g) {
-		Sprite texture;
+		Sprite texture = style.getBackground();
 
-		if ((texture = style.getBackground()) != null) {
+		if (texture != null) {
 			int twidth;
 			int theight;
 			int width;
