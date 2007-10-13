@@ -48,7 +48,7 @@ import marauroa.common.net.message.TransferContent;
 /**
  * This class is the glue to Marauroa, it extends ClientFramework and allow us
  * to easily connect to an marauroa server and operate it easily.
- * 
+ *
  * This class should be limited to functionality independant of the UI (that
  * goes in StendhalUI or a subclass).
  */
@@ -92,16 +92,10 @@ public class StendhalClient extends ClientFramework {
 	 */
 	private int contentToLoad;
 
-	/**
-	 * Synchronization lock object.
-	 */
-	private Object lock;
-
-
 	public void generateWhoPlayers(String text) {
 
-		Matcher matcher = Pattern.compile("^[0-9]+ Players online:( .+)$")
-				.matcher(text);
+		Matcher matcher = Pattern.compile("^[0-9]+ Players online:( .+)$").matcher(
+				text);
 
 		if (matcher.find()) {
 			String[] names = matcher.group(1).split(" ");
@@ -109,9 +103,12 @@ public class StendhalClient extends ClientFramework {
 			whoplayers.removeAllElements();
 			for (int i = 0; i < names.length; i++) {
 				/*
-				 * NOTE: On the future Players names won't have any non ascii character. 
+				 * NOTE: On the future Players names won't have any non ascii
+				 * character.
 				 */
-				matcher = Pattern.compile("^([-_a-zA-Z0-9äöüßÄÖÜ]+)\\([0-9]+\\)$").matcher(names[i]);
+				matcher = Pattern.compile(
+						"^([-_a-zA-Z0-9äöüßÄÖÜ]+)\\([0-9]+\\)$").matcher(
+						names[i]);
 				if (matcher.find()) {
 					whoplayers.addElement(matcher.group(1));
 				}
@@ -175,23 +172,23 @@ public class StendhalClient extends ClientFramework {
 		return player;
 	}
 
-
 	/**
 	 * Handle sync events before they are dispatched.
 	 *
-	 * @param	zoneid		The zone entered.
+	 * @param zoneid
+	 *            The zone entered.
 	 */
 	protected void onBeforeSync(final String zoneid) {
 		/*
 		 * Simulate object disassembly
 		 */
-		for(RPObject object : world_objects.values()) {
-			if(object != player) {
+		for (RPObject object : world_objects.values()) {
+			if (object != player) {
 				rpobjDispatcher.dispatchRemoved(object, false);
 			}
 		}
 
-		if(player != null) {
+		if (player != null) {
 			rpobjDispatcher.dispatchRemoved(player, true);
 		}
 
@@ -214,7 +211,7 @@ public class StendhalClient extends ClientFramework {
 	 * connect to the Stendhal game server and if successfull, check, if the
 	 * server runs StendhalHttpServer extension. In that case it checks, if
 	 * server version equals the client's.
-	 * 
+	 *
 	 * @throws IOException
 	 */
 	@Override
@@ -227,16 +224,15 @@ public class StendhalClient extends ClientFramework {
 		if (version != null) {
 			if (!Version.checkCompatibility(version, stendhal.VERSION)) {
 				// custom title, warning icon
-				JOptionPane
-						.showMessageDialog(
-								null,
-								"Your client may not function properly.\nThe version of this server is "
-										+ version
-										+ " but your client is version "
-										+ stendhal.VERSION
-										+ ".\nPlease download the new version from http://arianne.sourceforge.net ",
-								"Version Mismatch With Server",
-								JOptionPane.WARNING_MESSAGE);
+				JOptionPane.showMessageDialog(
+						null,
+						"Your client may not function properly.\nThe version of this server is "
+								+ version
+								+ " but your client is version "
+								+ stendhal.VERSION
+								+ ".\nPlease download the new version from http://arianne.sourceforge.net ",
+						"Version Mismatch With Server",
+						JOptionPane.WARNING_MESSAGE);
 			}
 		}
 	}
@@ -254,8 +250,8 @@ public class StendhalClient extends ClientFramework {
 
 			/** This code emulate a perception loss. */
 			if (Debug.EMULATE_PERCEPTION_LOSS
-			 && (message.getPerceptionType() != Perception.SYNC)
-			 && ((message.getPerceptionTimestamp() % 30) == 0)) {
+					&& (message.getPerceptionType() != Perception.SYNC)
+					&& ((message.getPerceptionTimestamp() % 30) == 0)) {
 				return;
 			}
 
@@ -310,8 +306,8 @@ public class StendhalClient extends ClientFramework {
 		 */
 		if (contentToLoad == 0) {
 			staticLayers.invalidate();
-			screen.setMaxWorldSize(staticLayers.getWidth(), staticLayers
-					.getHeight());
+			screen.setMaxWorldSize(staticLayers.getWidth(),
+					staticLayers.getHeight());
 			screen.clear();
 			screen.center();
 		}
@@ -321,7 +317,7 @@ public class StendhalClient extends ClientFramework {
 
 	/**
 	 * Determine if we are in the middle of transfering new content.
-	 * 
+	 *
 	 * @return <code>true</code> if more content is to be transfered.
 	 */
 	public boolean isInTransfer() {
@@ -357,8 +353,8 @@ public class StendhalClient extends ClientFramework {
 
 		if (contentToLoad == 0) {
 			staticLayers.invalidate();
-			screen.setMaxWorldSize(staticLayers.getWidth(), staticLayers
-					.getHeight());
+			screen.setMaxWorldSize(staticLayers.getWidth(),
+					staticLayers.getHeight());
 			screen.clear();
 			screen.center();
 		}
@@ -400,7 +396,7 @@ public class StendhalClient extends ClientFramework {
 
 	/**
 	 * Add an active player movement direction.
-	 * 
+	 *
 	 * @param dir
 	 *            The direction.
 	 * @param face
@@ -456,7 +452,7 @@ public class StendhalClient extends ClientFramework {
 
 	/**
 	 * Remove a player movement direction.
-	 * 
+	 *
 	 * @param dir
 	 *            The direction.
 	 * @param face
@@ -523,8 +519,8 @@ public class StendhalClient extends ClientFramework {
 
 	/*
 	 * public void addPlayerChangeListener(PlayerChangeListener l) { }
-	 * 
-	 * 
+	 *
+	 *
 	 * public void removePlayerChangeListener(PlayerChangeListener l) { }
 	 */
 
@@ -655,19 +651,18 @@ public class StendhalClient extends ClientFramework {
 		return userName;
 	}
 
-
 	/**
-	 * Check to see if the object is the connected user.
-	 * This is an ungly hack needed because the perception protocol
-	 * distinquishes between normal and private (my) object changes,
-	 * but not full add/removes.
+	 * Check to see if the object is the connected user. This is an ungly hack
+	 * needed because the perception protocol distinquishes between normal and
+	 * private (my) object changes, but not full add/removes.
 	 *
-	 * @param	object		An object.
+	 * @param object
+	 *            An object.
 	 *
-	 * @return	<code>true</code> if it is the user object.
+	 * @return <code>true</code> if it is the user object.
 	 */
 	public boolean isUser(final RPObject object) {
-		if(object.getRPClass().subclassOf("player")) {
+		if (object.getRPClass().subclassOf("player")) {
 			return getAccountUsername().equalsIgnoreCase(object.get("name"));
 		} else {
 			return false;
