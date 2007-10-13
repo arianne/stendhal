@@ -17,14 +17,18 @@ public class WitchNPC implements ZoneConfigurator {
 	/**
 	 * Configure a zone.
 	 *
-	 * @param	zone		The zone to be configured.
-	 * @param	attributes	Configuration attributes.
+	 * @param zone
+	 *            The zone to be configured.
+	 * @param attributes
+	 *            Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone,
+			Map<String, String> attributes) {
 		buildJynathHouse(zone, attributes);
 	}
 
-	private void buildJynathHouse(StendhalRPZone zone, Map<String, String> attributes) {
+	private void buildJynathHouse(StendhalRPZone zone,
+			Map<String, String> attributes) {
 		SpeakerNPC npc = new SpeakerNPC("Jynath") {
 
 			@Override
@@ -52,8 +56,11 @@ public class WitchNPC implements ZoneConfigurator {
 			protected void createDialog() {
 				addGreeting();
 				addJob("I'm a witch, since you ask. I grow #collard as a hobby.");
-				addReply("collard","That cabbage in the pot. Be careful of it!");
-				/* addHelp("You may want to buy some potions or do some #task for me."); */
+				addReply("collard",	"That cabbage in the pot. Be careful of it!");
+				/*
+				 * addHelp("You may want to buy some potions or do some #task
+				 * for me.");
+				 */
 				addHelp("I can #heal you");
 				addHealer(200);
 				addGoodbye();

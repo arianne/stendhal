@@ -27,12 +27,16 @@ public class GhostNPC implements ZoneConfigurator {
 	/**
 	 * Configure a zone.
 	 *
-	 * @param	zone		The zone to be configured.
-	 * @param	attributes	Configuration attributes.
+	 * @param zone
+	 *            The zone to be configured.
+	 * @param attributes
+	 *            Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone,
+			Map<String, String> attributes) {
 		buildNPC(zone, attributes);
 	}
+
 	private void buildNPC(StendhalRPZone zone, Map<String, String> attributes) {
 		SpeakerNPC ghost = new SpeakerNPC("Goran") {
 			@Override
@@ -48,39 +52,39 @@ public class GhostNPC implements ZoneConfigurator {
 				nodes.add(new Node(216, 124));
 				setPath(new FixedPath(nodes, true));
 			}
-			
+
 			@Override
-		    protected void createDialog() {
-			    add(ConversationStates.IDLE,
-			    	ConversationPhrases.GREETING_MESSAGES,
-			    	null,
-			    	ConversationStates.IDLE,
-			    	null,
-			    	new SpeakerNPC.ChatAction() {
-			    		@Override
-			    		public void fire(Player player, String text,
-			    				SpeakerNPC npc) {
-			    			if (!player.hasQuest("find_ghosts")) {
-			    				player.setQuest("find_ghosts", "looking:said");
-			    			}
-			    			String npcQuestText = player.getQuest("find_ghosts");
-			    			String[] npcDoneText = npcQuestText.split(":");
-			    			List<String> list = Arrays.asList(npcDoneText[0].split(";"));
-						    if (!list.contains(npc.getName())) {
-							    player.setQuest("find_ghosts", npcDoneText[0]
-									    + ";" + npc.getName() + ":" +
-									    npcDoneText[1]);
-							    npc.say("Remember my name ... " + npc.getName() +
-							            " ... " + npc.getName() + " ...");
-							    player.addXP(100);
-							}    
-							else {
-							    npc.say("Let the dead rest in peace");
+			protected void createDialog() {
+				add(ConversationStates.IDLE,
+						ConversationPhrases.GREETING_MESSAGES, null,
+						ConversationStates.IDLE, null,
+						new SpeakerNPC.ChatAction() {
+							@Override
+							public void fire(Player player, String text,
+									SpeakerNPC npc) {
+								if (!player.hasQuest("find_ghosts")) {
+									player.setQuest("find_ghosts",
+											"looking:said");
+								}
+								String npcQuestText = player.getQuest("find_ghosts");
+								String[] npcDoneText = npcQuestText.split(":");
+								List<String> list = Arrays.asList(npcDoneText[0].split(";"));
+								if (!list.contains(npc.getName())) {
+									player.setQuest("find_ghosts",
+											npcDoneText[0] + ";"
+													+ npc.getName() + ":"
+													+ npcDoneText[1]);
+									npc.say("Remember my name ... "
+											+ npc.getName() + " ... "
+											+ npc.getName() + " ...");
+									player.addXP(100);
+								} else {
+									npc.say("Let the dead rest in peace");
+								}
 							}
-						}
-					});
+						});
 			}
-			
+
 		};
 
 		ghost.setDescription("You see a ghostly figure of a man. He appears to have died in battle.");
