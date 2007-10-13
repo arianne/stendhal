@@ -14,7 +14,6 @@ package games.stendhal.client;
 
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.events.PositionChangeListener;
-import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.gui.j2d.Text;
 import games.stendhal.client.gui.j2d.entity.Entity2DView;
 import games.stendhal.client.gui.j2d.entity.Entity2DViewFactory;
@@ -630,13 +629,6 @@ public class GameScreen implements PositionChangeListener {
 	}
 
 	/**
-	 * Helper to get notification type color.
-	 */
-	protected Color getNotificationColor(NotificationType type) {
-		return ((j2DClient) StendhalUI.get()).getNotificationColor(type);
-	}
-
-	/**
 	 * Add a text bubble.
 	 *
 	 *
@@ -644,7 +636,7 @@ public class GameScreen implements PositionChangeListener {
 	 */
 	public void addText(double x, double y, String text, NotificationType type,
 			boolean isTalking) {
-		addText(x, y, text, getNotificationColor(type), isTalking);
+		addText(x, y, text, type.getColor(), isTalking);
 	}
 
 	/**
@@ -675,7 +667,7 @@ public class GameScreen implements PositionChangeListener {
 	 */
 	public void addText(final int sx, final int sy, final String text,
 			final NotificationType type, final boolean talking) {
-		addText(sx, sy, text, getNotificationColor(type), talking);
+		addText(sx, sy, text, type.getColor(), talking);
 	}
 
 	/**
@@ -1039,7 +1031,7 @@ public class GameScreen implements PositionChangeListener {
 	 * @return A sprite.
 	 */
 	public Sprite createString(final String text, final NotificationType type) {
-		return createString(text, getNotificationColor(type));
+		return createString(text, type.getColor());
 	}
 
 	/**

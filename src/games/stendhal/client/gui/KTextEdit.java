@@ -1,7 +1,7 @@
 package games.stendhal.client.gui;
 
 import games.stendhal.client.NotificationType;
-import games.stendhal.client.StendhalUI;
+
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -138,7 +138,7 @@ public class KTextEdit extends JPanel {
 	}
 
 	protected void insertText(String text, NotificationType type) {
-		Color color = ((j2DClient) StendhalUI.get()).getNotificationColor(type);
+		Color color = type.getColor();
 
 		Document doc = textPane.getDocument();
 		try {

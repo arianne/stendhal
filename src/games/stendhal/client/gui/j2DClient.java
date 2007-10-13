@@ -46,7 +46,6 @@ import games.stendhal.common.CollisionDetection;
 import games.stendhal.common.Direction;
 
 import java.awt.Canvas;
-import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -84,26 +83,7 @@ import marauroa.common.game.RPObject;
 /** The main class that create the screen and starts the arianne client. */
 public class j2DClient extends StendhalUI {
 
-	protected static final Color COLOR_CLIENT = Color.gray;
 
-	protected static final Color COLOR_INFORMATION = Color.orange;
-
-	protected static final Color COLOR_NEGATIVE = Color.red;
-
-	protected static final Color COLOR_NORMAL = Color.black;
-
-	protected static final Color COLOR_POSITIVE = Color.green;
-
-	protected static final Color COLOR_PRIVMSG = Color.darkGray;
-
-	protected static final Color COLOR_RESPONSE = new Color(0x006400);
-
-	protected static final Color COLOR_SIGNIFICANT_NEGATIVE = Color.pink;
-
-	protected static final Color COLOR_SIGNIFICANT_POSITIVE = new Color(65,
-			105, 225);
-
-	protected static final Color COLOR_TUTORIAL = new Color(172, 0, 172);
 
 	private static final long serialVersionUID = 3356310866399084117L;
 
@@ -692,51 +672,22 @@ public class j2DClient extends StendhalUI {
 		SoundSystem.get().exit();
 	}
 
-	/**
-	 * Get the color that is tied to a notification type.
-	 *
-	 * @param type
-	 *            The notification type.
-	 *
-	 * @return The appropriete color.
-	 */
-	public Color getNotificationColor(NotificationType type) {
-		switch (type) {
-		case CLIENT:
-			return COLOR_CLIENT;
-
-		case INFORMATION:
-			return COLOR_INFORMATION;
-
-		case NEGATIVE:
-			return COLOR_NEGATIVE;
-
-		case NORMAL:
-			return COLOR_NORMAL;
-
-		case POSITIVE:
-			return COLOR_POSITIVE;
-
-		case PRIVMSG:
-			return COLOR_PRIVMSG;
-
-		case RESPONSE:
-			return COLOR_RESPONSE;
-
-		case SIGNIFICANT_NEGATIVE:
-			return COLOR_SIGNIFICANT_NEGATIVE;
-
-		case SIGNIFICANT_POSITIVE:
-			return COLOR_SIGNIFICANT_POSITIVE;
-
-		case TUTORIAL:
-			return COLOR_TUTORIAL;
-
-		default:
-			logger.warn("Unknown notification type: " + type);
-			return COLOR_NORMAL;
-		}
-	}
+//	/**
+//	 * Get the color that is tied to a notification type.
+//	 *
+//	 * @param type
+//	 *            The notification type.
+//	 *
+//	 * @return The appropriete color.
+//	 */
+//	public Color getNotificationColor(NotificationType type) {
+//		return	type.getColor();
+//
+////		default:
+////			logger.warn("Unknown notification type: " + type);
+////			return COLOR_NORMAL;
+////		}
+//	}
 
 	/**
 	 * Convert a keycode to the corresponding direction.

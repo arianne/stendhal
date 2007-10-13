@@ -11,7 +11,6 @@ package games.stendhal.client.gui;
 
 import games.stendhal.client.NotificationType;
 import games.stendhal.client.StendhalClient;
-import games.stendhal.client.StendhalUI;
 
 import java.awt.Color;
 import java.io.IOException;
@@ -23,7 +22,6 @@ import java.text.CharacterIterator;
 import java.text.StringCharacterIterator;
 
 import javax.swing.JTextPane;
-import javax.swing.SwingUtilities;
 import javax.swing.event.HyperlinkListener;
 import javax.swing.event.HyperlinkEvent;
 import javax.swing.text.BadLocationException;
@@ -39,9 +37,10 @@ import marauroa.common.game.RPAction;
  * TODO: Many of the general HTML functions can be moved to a common utility
  * class.
  *
- * TODO: Move the message formatting (and setup) code to a common class so
- * that the in-game text bubbles can use the same code for rendering.
+ * TODO: Move the message formatting (and setup) code to a common class so that
+ * the in-game text bubbles can use the same code for rendering.
  */
+@SuppressWarnings("serial")
 public class KHtmlEdit extends KTextEdit {
 	//
 	// KHtmlEdit
@@ -50,20 +49,20 @@ public class KHtmlEdit extends KTextEdit {
 	/**
 	 * Handle hypertext link activation.
 	 *
-	 * @param	ev
-	 *	The link event data.
+	 * @param ev
+	 *            The link event data.
 	 */
 	protected void activateLink(final HyperlinkEvent ev) {
 		String text;
 		URL url = ev.getURL();
 
-		if(url != null) {
+		if (url != null) {
 			if (url.getProtocol().equals("say")) {
 				text = url.getPath();
 
 				try {
 					text = URLDecoder.decode(text, "UTF-8");
-				} catch(UnsupportedEncodingException ex) {
+				} catch (UnsupportedEncodingException ex) {
 					// Leave text as-is and hope for best
 				}
 			} else {
@@ -79,7 +78,7 @@ public class KHtmlEdit extends KTextEdit {
 
 				try {
 					text = URLDecoder.decode(text, "UTF-8");
-				} catch(UnsupportedEncodingException ex) {
+				} catch (UnsupportedEncodingException ex) {
 					// Leave text as-is and hope for best
 				}
 			}
@@ -96,13 +95,12 @@ public class KHtmlEdit extends KTextEdit {
 		StendhalClient.get().send(rpaction);
 	}
 
-
 	/**
-	 * Append HTML text to the end of the content.
-	 * Note: Currently elements must be complete to be added correctly.
+	 * Append HTML text to the end of the content. Note: Currently elements must
+	 * be complete to be added correctly.
 	 *
-	 * @param	text
-	 *	The HTML text to add.
+	 * @param text
+	 *            The HTML text to add.
 	 */
 	protected void appendString(final String text) {
 		HTMLDocument doc = (HTMLDocument) textPane.getDocument();
@@ -114,47 +112,45 @@ public class KHtmlEdit extends KTextEdit {
 			ex.printStackTrace();
 		} catch (IOException ex) {
 			ex.printStackTrace();
-		} 
+		}
 	}
-
 
 	/**
 	 * Append a character to a buffer, escaping HTML meta-characters when
 	 * needed.
 	 *
-	 * @param	text
-	 *	Raw text.
+	 * @param text
+	 *            Raw text.
 	 *
-	 * @return	Escaped HTML.
+	 * @return Escaped HTML.
 	 */
 	protected void appendHTML(final StringBuilder sbuf, final char ch) {
-		switch(ch) {
-			case '<':
-				sbuf.append("&lt;");
-				break;
+		switch (ch) {
+		case '<':
+			sbuf.append("&lt;");
+			break;
 
-			case '>':
-				sbuf.append("&gt;");
-				break;
+		case '>':
+			sbuf.append("&gt;");
+			break;
 
-			case '&':
-				sbuf.append("&amp;");
-				break;
+		case '&':
+			sbuf.append("&amp;");
+			break;
 
-			default:
-				sbuf.append(ch);
-				break;
+		default:
+			sbuf.append(ch);
+			break;
 		}
 	}
-
 
 	/**
 	 * Escape text as HTML, escaping meta-characters.
 	 *
-	 * @param	text
-	 *	Raw text.
+	 * @param text
+	 *            Raw text.
 	 *
-	 * @return	Escaped HTML.
+	 * @return Escaped HTML.
 	 */
 	protected void appendHTML(final StringBuilder sbuf, final String text) {
 		StringCharacterIterator ci = new StringCharacterIterator(text);
@@ -166,14 +162,13 @@ public class KHtmlEdit extends KTextEdit {
 		}
 	}
 
-
 	/**
 	 * Translate a standard stendhal encoded to HTML encoded.
 	 *
-	 * @param	text
-	 *	The text to encode.
+	 * @param text
+	 *            The text to encode.
 	 *
-	 * @return	HTML encoded text.
+	 * @return HTML encoded text.
 	 */
 	protected String translateToHTML(final String text) {
 		StringBuilder sbuf = new StringBuilder();
@@ -182,13 +177,13 @@ public class KHtmlEdit extends KTextEdit {
 		char ch = ci.current();
 
 		while (ch != CharacterIterator.DONE) {
-			if(ch == '#') {
+			if (ch == '#') {
 				ch = ci.next();
 
 				/*
 				 * '##' means just a single '#'
 				 */
-				if(ch == '#') {
+				if (ch == '#') {
 					appendHTML(sbuf, ch);
 					ch = ci.next();
 				} else {
@@ -197,7 +192,7 @@ public class KHtmlEdit extends KTextEdit {
 					/*
 					 * Emit link (if any)
 					 */
-					if(link != null) {
+					if (link != null) {
 						buildLink(sbuf, link);
 					}
 
@@ -212,29 +207,28 @@ public class KHtmlEdit extends KTextEdit {
 		return sbuf.toString();
 	}
 
-
 	/**
-	 * Extract link content from a character iterator. It is assumed that
-	 * the '#' has already been eaten. It leaves the character iterator
-	 * at the first character after the link text.
+	 * Extract link content from a character iterator. It is assumed that the
+	 * '#' has already been eaten. It leaves the character iterator at the first
+	 * character after the link text.
 	 *
-	 * @param	ci
-	 *	The character iterator.
+	 * @param ci
+	 *            The character iterator.
 	 *
-	 * @return	Link text (or an empty string).
+	 * @return Link text (or an empty string).
 	 */
 	protected String extractLink(final CharacterIterator ci) {
 		StringBuilder sbuf = new StringBuilder();
 		char ch = ci.current();
 
 		while (ch != CharacterIterator.DONE) {
-			if(ch == ' ') {
+			if (ch == ' ') {
 				/*
 				 * Continued link (#abc #def)?
 				 */
 				ch = ci.next();
 
-				if(ch == '#') {
+				if (ch == '#') {
 					ch = ' ';
 				} else {
 					ci.previous();
@@ -251,7 +245,7 @@ public class KHtmlEdit extends KTextEdit {
 		 */
 		int len = sbuf.length();
 
-		while(len != 0) {
+		while (len != 0) {
 			if (!isWordDelim(sbuf.charAt(--len))) {
 				len++;
 				break;
@@ -264,59 +258,58 @@ public class KHtmlEdit extends KTextEdit {
 		/*
 		 * Nothing found?
 		 */
-		if(len == 0) {
+		if (len == 0) {
 			return null;
 		}
 
 		return sbuf.toString();
 	}
 
-
 	/**
-	 * Determine is a character is a word delimiter when followed by
-	 * a space or end-of-line. Care should be taken to avoid matching
-	 * characters that are typically at the end of valid URL's.
+	 * Determine is a character is a word delimiter when followed by a space or
+	 * end-of-line. Care should be taken to avoid matching characters that are
+	 * typically at the end of valid URL's.
 	 *
-	 * @param	ch
-	 *	A character;
+	 * @param ch
+	 *            A character;
 	 *
-	 * @return	<code>true</code> if a word delimiter.
+	 * @return <code>true</code> if a word delimiter.
 	 */
 	protected boolean isWordDelim(char ch) {
-		switch(ch) {
-			case '.':
-			case ',':
-			case '!':
-			case '?':
-			case ';':
-				return true;
+		switch (ch) {
+		case '.':
+		case ',':
+		case '!':
+		case '?':
+		case ';':
+			return true;
 
-			default:
-				return false;
+		default:
+			return false;
 		}
 	}
 
 	/**
-	 * Convert a text "link" to an HTML link. For well-known URL's, the
-	 * link is taken literally, otherwise a <code>say:</code> URL will
-	 * be generated.
+	 * Convert a text "link" to an HTML link. For well-known URL's, the link is
+	 * taken literally, otherwise a <code>say:</code> URL will be generated.
 	 *
-	 * @param	sbuf
-	 *	The string buffer to append to.
-	 * @param	text
-	 *	The text to convert.
+	 * @param sbuf
+	 *            The string buffer to append to.
+	 * @param text
+	 *            The text to convert.
 	 */
 	protected void buildLink(StringBuilder sbuf, String text) {
 		sbuf.append("<a href='");
 
-		if(text.startsWith("http://") || text.startsWith("https://") || text.startsWith("ftp://")) {
+		if (text.startsWith("http://") || text.startsWith("https://")
+				|| text.startsWith("ftp://")) {
 			sbuf.append(text);
 		} else {
 			sbuf.append("say:");
 
 			try {
 				sbuf.append(URLEncoder.encode(text, "UTF-8"));
-			} catch(UnsupportedEncodingException ex) {
+			} catch (UnsupportedEncodingException ex) {
 				// Nothing left to try
 				sbuf.append(text);
 			}
@@ -330,15 +323,15 @@ public class KHtmlEdit extends KTextEdit {
 	/**
 	 * Convert a color to a CSS color attribute value.
 	 *
-	 * @param	color
-	 *	An AWT color.
+	 * @param color
+	 *            An AWT color.
 	 *
-	 * @return	A <code>color:</code> CSS attribute value.
+	 * @return A <code>color:</code> CSS attribute value.
 	 */
 	protected String colorToRGB(final Color color) {
-		return String.format("#%02x%02x%02x", color.getRed(), color.getGreen(), color.getBlue());
+		return String.format("#%02x%02x%02x", color.getRed(), color.getGreen(),
+				color.getBlue());
 	}
-
 
 	//
 	// KTextEdit
@@ -354,12 +347,11 @@ public class KHtmlEdit extends KTextEdit {
 		textPane.addHyperlinkListener(new ActivateLinkCB());
 	}
 
-
 	/**
 	 * Initialize style information for a text pane.
 	 *
-	 * @param	textPane
-	 *	The text pane.
+	 * @param textPane
+	 *            The text pane.
 	 */
 	@Override
 	protected void initStylesForTextPane(final JTextPane textPane) {
@@ -371,26 +363,29 @@ public class KHtmlEdit extends KTextEdit {
 		/*
 		 * Configure standard styles
 		 */
-		css.addRule("body { font-family: Dialog; font-size: " + (TEXT_SIZE + 1) + "pt }");
+		css.addRule("body { font-family: Dialog; font-size: " + (TEXT_SIZE + 1)
+				+ "pt }");
 		css.addRule("a { color: blue; font-style: italic }");
 
-		css.addRule("._timestamp { color: " + colorToRGB(HEADER_COLOR) + "; font-size: " + (TEXT_SIZE - 1) + "pt; font-style: italic }");
+		css.addRule("._timestamp { color: " + colorToRGB(HEADER_COLOR)
+				+ "; font-size: " + (TEXT_SIZE - 1)
+				+ "pt; font-style: italic }");
 		css.addRule("._header { color: " + colorToRGB(HEADER_COLOR) + " }");
 
 		/*
 		 * Configure notification types
 		 */
-		j2DClient ui = (j2DClient) StendhalUI.get();
 
-		for(NotificationType type : NotificationType.values()) {
-			Color color = ui.getNotificationColor(type);
 
-			if(color != null) {
-				css.addRule("." + type.getMnemonic() + " { color: " + colorToRGB(color) + "; font-weight: bold; }");
+		for (NotificationType type : NotificationType.values()) {
+			Color color = type.getColor();
+
+			if (color != null) {
+				css.addRule("." + type.getMnemonic() + " { color: "
+						+ colorToRGB(color) + "; font-weight: bold; }");
 			}
 		}
 	}
-
 
 	@Override
 	protected void insertHeader(final String text) {
@@ -407,21 +402,19 @@ public class KHtmlEdit extends KTextEdit {
 		}
 	}
 
-
 	@Override
 	protected void insertNewline() {
 		appendString("<br>\n");
 	}
 
-
 	/**
-	 * Insert the text portion of the line using a specified notification
-	 * type for style.
+	 * Insert the text portion of the line using a specified notification type
+	 * for style.
 	 *
-	 * @param	text
-	 *	The text to insert.
-	 * @param	type
-	 *	The notification type.
+	 * @param text
+	 *            The text to insert.
+	 * @param type
+	 *            The notification type.
 	 */
 	@Override
 	protected void insertText(final String text, final NotificationType type) {
