@@ -810,7 +810,7 @@ black halberd     12000
 </zone>
 
 <zone name="int_imperial_house3" file="interiors/kalavan/imp_house3.tmx">
-  <portal x="15" y="28" ref="entrance">
+  <portal x="16" y="28" ref="entrance">
    <destination zone="-1_fado_great_cave_w2" ref="imp_house3_entrance"/>
   </portal>
 </zone>
