@@ -24,7 +24,6 @@
 package games.stendhal.client;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -69,33 +68,28 @@ public class WorldObjects {
 
 	/** Create a zone-entered event. */
 	public static void fireZoneEntered(String zoneName) {
-		Iterator it;
-
 		synchronized (worldListeners) {
-			for (it = worldListeners.iterator(); it.hasNext();) {
-				((WorldListener) it.next()).zoneEntered(zoneName);
+			for (WorldListener wl : worldListeners) {
+				wl.zoneEntered(zoneName);
 			}
 		}
 	} // fireZoneEntered
 
 	/** Create a zone-left event. */
 	public static void fireZoneLeft(String zoneName) {
-		Iterator it;
-
 		synchronized (worldListeners) {
-			for (it = worldListeners.iterator(); it.hasNext();) {
-				((WorldListener) it.next()).zoneLeft(zoneName);
+			for (WorldListener wl : worldListeners) {
+				wl.zoneLeft(zoneName);
 			}
 		}
 	} // fireZoneLeft
 
 	/** Create a player-moved event. */
 	public static void firePlayerMoved() {
-		Iterator it;
 
 		synchronized (worldListeners) {
-			for (it = worldListeners.iterator(); it.hasNext();) {
-				((WorldListener) it.next()).playerMoved();
+			for (WorldListener wl : worldListeners) {
+				wl.playerMoved();
 			}
 		}
 	} // firePlayerMoved
