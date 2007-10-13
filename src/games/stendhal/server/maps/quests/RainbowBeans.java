@@ -56,8 +56,8 @@ public class RainbowBeans extends AbstractQuest {
 	private static final int REQUIRED_MINUTES = 6 * 60;
 
 	private static final String QUEST_SLOT = "rainbow_beans";
-	
-	private static RainbowBeansScroll scroll = null;
+
+	private static RainbowBeansScroll scroll;
 
 	@Override
 	public void init(String name) {
