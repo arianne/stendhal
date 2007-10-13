@@ -128,8 +128,8 @@ public class DefaultItem {
 	 *
 	 * @return A creator, or <code>null</code> if none found.
 	 */
-	protected Creator buildCreator(Class implementation) {
-		Constructor construct;
+	protected Creator buildCreator(Class< ? > implementation) {
+		Constructor< ? > construct;
 
 		/*
 		 * <Class>(name, clazz, subclazz, attributes)
@@ -146,8 +146,7 @@ public class DefaultItem {
 		 * <Class>(attributes)
 		 */
 		try {
-			construct = implementation
-					.getConstructor(new Class[] { Map.class });
+			construct = implementation.getConstructor(new Class[] { Map.class });
 
 			return new AttributesCreator(construct);
 		} catch (NoSuchMethodException ex) {
