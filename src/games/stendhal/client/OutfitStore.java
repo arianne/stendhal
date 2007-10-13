@@ -57,7 +57,7 @@ public class OutfitStore {
 	 *
 	 * @return An walking state tileset.
 	 */
-	protected Sprite buildOutfit(int code) throws IllegalArgumentException {
+	protected Sprite buildOutfit(int code) {
 		int idx;
 
 		/*
