@@ -67,6 +67,9 @@ public class DailyItemQuest extends AbstractQuest {
 				"pauldroned_iron_cuirass", "blue_elf_cloak", "enhanced_mace",
 				"golden_mace", "golden_hammer", "aventail", "composite_bow",
 				"enhanced_lion_shield", "spinach", "courgette", "collard",
+				"fish_pie", "chicken", "elvish_armor", "elvish_boots",
+				"sclaria", "kekik", "elvish_cloak", "elvish_legs",
+				"shuriken", "coconut",				       
 				"cauliflower", "broccoli", "gold_nugget", "gold_bar");
 
 		@Override
