@@ -183,16 +183,16 @@ public class Player extends RPEntity {
 
 		if (player.getSlot("!buddy").size() > 0) {
 			RPObject buddies = player.getSlot("!buddy").iterator().next();
-			for (String name : buddies) {
+			for (String buddyName : buddies) {
 				// TODO: Remove '_' prefix if ID is made completely virtual
-				if (name.charAt(0) == '_') {
-					name = name.substring(1);
+				if (buddyName.charAt(0) == '_') {
+					buddyName = buddyName.substring(1);
 
-					Player buddy = StendhalRPRuleProcessor.get().getPlayer(name);
+					Player buddy = StendhalRPRuleProcessor.get().getPlayer(buddyName);
 					if (buddy != null && !buddy.isGhost()) {
 						player.notifyOnline(buddy.getName());
 					} else {
-						player.notifyOffline(name.substring(1));
+						player.notifyOffline(buddyName);
 					}
 				}
 			}
