@@ -132,7 +132,7 @@ public class ProfileList {
 			in.close();
 		}
 
-		Iterator iter = list.iterator();
+		Iterator< Profile > iter = list.iterator();
 
 		while (iter.hasNext()) {
 			System.out.println(iter.next());
