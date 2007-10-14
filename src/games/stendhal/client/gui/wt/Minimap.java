@@ -70,8 +70,7 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 	private static final int MINIMAP_MINIMUM_SCALE = 2;
 
 	/** Enable X-ray vision (aka Superman) minimap? */
-	private static final boolean mininps = (System
-			.getProperty("stendhal.superman") != null);
+	private static final boolean mininps = (System.getProperty("stendhal.superman") != null);
 
 	/** scale of map */
 	private int scale;
@@ -183,7 +182,6 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 		return true;
 	}
 
-
 	/**
 	 * Update the view pan. This should be done when the map size or player
 	 * position changes.
@@ -237,8 +235,6 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 			return;
 		}
 
-		boolean admin = User.isAdmin();
-
 		Graphics vg = g.create();
 		vg.translate(-panx, -pany);
 
@@ -256,7 +252,7 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 
 				if (!player.isGhostMode()) {
 					drawPlayer(vg, player, Color.WHITE);
-				} else if (admin) {
+				} else if (User.isAdmin()) {
 					drawPlayer(vg, player, Color.GRAY);
 				}
 			} else if (entity instanceof Portal) {
@@ -265,7 +261,7 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 				if (!portal.isHidden()) {
 					drawEntity(vg, entity, Color.WHITE, Color.BLACK);
 				}
-			} else if (mininps && admin) {
+			} else if (mininps && User.isAdmin()) {
 				// Enabled with -Dstendhal.superman=x.
 
 				if (entity instanceof RPEntity) {
@@ -276,16 +272,23 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 			}
 		}
 
-		/*
-		 * Draw the current user
-		 */
+		drawUser(vg);
+
+		vg.dispose();
+	}
+
+	/**
+	 * Draws the User
+	 *
+	 * @param vg
+	 *            graphics context
+	 */
+	private void drawUser(Graphics vg) {
 		User user = User.get();
 
 		if (user != null) {
 			drawPlayer(vg, user, Color.BLUE);
 		}
-
-		vg.dispose();
 	}
 
 	/**
@@ -316,24 +319,26 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 	 * @param color
 	 *            the Color to be used
 	 */
-	protected void drawEntity(final Graphics g, final Entity entity, final Color color) {
+	protected void drawEntity(final Graphics g, final Entity entity,
+			final Color color) {
 		drawEntity(g, entity, color, null);
 	}
 
 	/**
-	 * Draw an entity on the map as a colored rectangle, with an
-	 * optional border (for non 1x1 entities).
+	 * Draw an entity on the map as a colored rectangle, with an optional border
+	 * (for non 1x1 entities).
 	 *
 	 * @param g
-	 *	The graphics context.
+	 *            The graphics context.
 	 * @param entity
-	 *	The Entity to be drawn.
+	 *            The Entity to be drawn.
 	 * @param color
-	 *	The color to draw.
+	 *            The color to draw.
 	 * @param borderColor
-	 *	The (optional) border color.
+	 *            The (optional) border color.
 	 */
-	protected void drawEntity(final Graphics g, final Entity entity, final Color color, final Color borderColor) {
+	protected void drawEntity(final Graphics g, final Entity entity,
+			final Color color, final Color borderColor) {
 		Rectangle2D area = entity.getArea();
 
 		int x = (int) ((area.getX() * scale) + 0.5);
@@ -350,19 +355,21 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 		}
 	}
 
-
 	/**
 	 * Draw a player entity.
 	 *
-	 * @param	g		The graphics context.
-	 * @param	player		The player to be drawn.
-	 * @param	color		The color to draw with.
+	 * @param g
+	 *            The graphics context.
+	 * @param player
+	 *            The player to be drawn.
+	 * @param color
+	 *            The color to draw with.
 	 */
-	protected void drawPlayer(final Graphics g, final Player player, final Color color) {
+	protected void drawPlayer(final Graphics g, final Player player,
+			final Color color) {
 		drawCross(g, (int) ((player.getX() * scale) + 0.5),
-			(int) ((player.getY() * scale) + 0.5), color);
+				(int) ((player.getY() * scale) + 0.5), color);
 	}
-
 
 	/** draws a cross at the given position */
 	private void drawCross(Graphics g, int x, int y, Color color) {
@@ -377,7 +384,6 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 		g.drawLine(x - size, y, x + size, y);
 		g.drawLine(x, y + size, x, y - size);
 	}
-
 
 	@Override
 	public synchronized boolean onMouseDoubleClick(Point p) {
@@ -396,7 +402,6 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 		return true;
 	}
 
-
 	//
 	// PositionChangeListener
 	//
@@ -404,8 +409,10 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 	/**
 	 * The user position changed.
 	 *
-	 * @param	x		The X coordinate (in world units).
-	 * @param	y		The Y coordinate (in world units).
+	 * @param x
+	 *            The X coordinate (in world units).
+	 * @param y
+	 *            The Y coordinate (in world units).
 	 */
 	public void positionChanged(final double x, final double y) {
 		playerX = x;
