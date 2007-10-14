@@ -101,8 +101,10 @@ public class Corpse2DView extends Entity2DView {
 		if (clazz != null) {
 			if (clazz.equals("player")) {
 				corpseType = corpseType + "_player";
+			} else if (clazz.equals("youngsoldiernpc")) {
+				corpseType = corpseType + "_player";
 			} else if (clazz.equals("giant_animal")) {
-				corpseType = corpseType + "_giantrat";
+					corpseType = corpseType + "_giantrat";
 			} else if (clazz.equals("giant_human")) {
 				corpseType = corpseType + "_giantrat";
 			} else if (clazz.equals("huge_animal")) {
