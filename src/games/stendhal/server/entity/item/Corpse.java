@@ -48,7 +48,7 @@ public class Corpse extends PassiveEntity implements TurnListener,
 	private static final Logger logger = Log4J.getLogger(Corpse.class);
 
 	/** Time (in seconds) until a corpse disappears. */
-	private static final int DEGRADATION_TIMEOUT = 15 * 60; 
+	private static final int DEGRADATION_TIMEOUT = 15 * 60;
 
 	private static final int MAX_STAGE = 5; // number of degradation steps
 
@@ -56,8 +56,6 @@ public class Corpse extends PassiveEntity implements TurnListener,
 			/ MAX_STAGE;
 
 	private int stage;
-
-	private boolean isDegrading = true;
 
 	public static void generateRPClass() {
 		RPClass entity = new RPClass("corpse");
@@ -88,6 +86,13 @@ public class Corpse extends PassiveEntity implements TurnListener,
 		}
 	}
 
+
+	/**
+	 * non rotting corpse
+	 * @param clazz
+	 * @param x
+	 * @param y
+	 */
 	public Corpse(String clazz, int x, int y) {
 		setRPClass("corpse");
 		put("type", "corpse");
@@ -97,14 +102,10 @@ public class Corpse extends PassiveEntity implements TurnListener,
 		decideSize(clazz);
 
 		setPosition(x, y);
-		TurnNotifier.get().notifyInSeconds(DEGRADATION_STEP_TIMEOUT, this);
 		stage = 0;
 		put("stage", stage);
 
 		RPSlot slot = new LootableSlot(this);
-
-		// TODO: BUG, Capacity is set at RPClass.
-		// slot.setCapacity(4);
 		addSlot(slot);
 	}
 
@@ -227,20 +228,17 @@ public class Corpse extends PassiveEntity implements TurnListener,
 		return base;
 	}
 
-	private boolean decDegradation(int aktTurn) {
+	private boolean isCompletelyRotten() {
 		stage++;
 		put("stage", stage);
 
 		modify();
 
-		return stage <= MAX_STAGE;
+		return stage >= MAX_STAGE;
 	}
 
 	public void onTurnReached(int currentTurn, String message) {
-		if (!isDegrading) {
-			return;
-		}
-		if (!decDegradation(currentTurn)) {
+		if (isCompletelyRotten()) {
 			if (isContained()) {
 				// We modify the base container if the object change.
 
@@ -254,16 +252,6 @@ public class Corpse extends PassiveEntity implements TurnListener,
 		} else {
 			TurnNotifier.get().notifyInSeconds(DEGRADATION_STEP_TIMEOUT, this);
 		}
-	}
-
-	/**
-	 * Set to false to stop degrading. (Some corpse are used in quests).
-	 *
-	 * @param isDegrading
-	 *            true, if degrading, false otherwise
-	 */
-	public void setDegrading(boolean isDegrading) {
-		this.isDegrading = isDegrading;
 	}
 
 	/**

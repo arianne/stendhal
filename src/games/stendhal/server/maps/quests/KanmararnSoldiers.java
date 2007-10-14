@@ -351,7 +351,6 @@ public class KanmararnSoldiers extends AbstractQuest {
 
 		// Now we create the corpse of the second NPC
 		Corpse tom = new Corpse("youngsoldiernpc", 5, 47);
-		tom.setDegrading(false);
 		tom.setStage(4); // he died first
 		tom.setName("Tom");
 		// TODO: Use a_noun() in Corpse?
@@ -366,7 +365,6 @@ public class KanmararnSoldiers extends AbstractQuest {
 
 		// Now we create the corpse of the third NPC
 		Corpse charles = new Corpse("youngsoldiernpc", 94, 5);
-		charles.setDegrading(false);
 		charles.setStage(3); // he died second
 		charles.setName("Charles");
 		// TODO: Use a_noun() in Corpse?
@@ -380,7 +378,6 @@ public class KanmararnSoldiers extends AbstractQuest {
 
 		// Now we create the corpse of the fourth NPC
 		Corpse peter = new Corpse("youngsoldiernpc", 11, 63);
-		peter.setDegrading(false);
 		peter.setStage(2); // he died recently
 		peter.setName("Peter");
 		// TODO: Use a_noun() in Corpse?
