@@ -147,20 +147,6 @@ public class EquipmentAction implements ActionListener {
 			return;
 		}
 		
-		if ("content".equals(source.getSlot()) && "content".equals(dest.getSlot())) {
-			// TODO: Remove this hack after the bug is fixed:
-			// Items get invisible in bank if they are dragged and dropped
-			// within the bank chest. This is most likly caused by some bad 
-			// interaction between the bank-chest-slot-copy-hack and the
-			// client code.
-			//
-			// Note: This workarounds prevents player from reordering the stuff
-			// in chests. But this seems resonable because fixes for this
-			// problem have been promissed multiple times during the last three month
-			// without anything happening.
-			return;
-		}
-
 		logger.debug("Equip action agreed");
 
 		// looks good
