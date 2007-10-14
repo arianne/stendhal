@@ -31,7 +31,7 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 
 	private static final String ZARA_QUEST_SLOT = "suntan_cream_zara";
 
-	private static final String ZONE_NAME = "int_fado_wizard_bank";
+	private static final String ZONE_NAME = "int_magic_bank";
 
 	/** Time (in Seconds) allowed in the bank */
 	private static final int TIME = 60 * 5;
