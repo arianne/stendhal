@@ -500,6 +500,7 @@ class PlayerRPClass {
 			try {
 				// We simply ignore corpses...
 				if (item.get("type").equals("item")) {
+					// TODO: Move to Item.create(RPObject)?
 
 					// handle renamed items
 					String name = item.get("name");
@@ -527,7 +528,12 @@ class PlayerRPClass {
 
 					if (item.has("persistent")
 							&& (item.getInt("persistent") == 1)) {
+						/*
+						 * Keep [new] rpclass
+						 */
+						RPClass rpclass = entity.getRPClass();
 						entity.fill(item);
+						entity.setRPClass(rpclass);
 					}
 
 					if (entity instanceof StackableItem) {
@@ -565,6 +571,8 @@ class PlayerRPClass {
 					boundOldItemsToPlayer(player, entity);
 
 					newSlot.add(entity);
+				} else {
+					logger.warn("Non-item object found in " + player.getName() + "[" + slot.getName() + "]: " + item);
 				}
 			} catch (Exception e) {
 				logger.error("Error adding " + item + " to player slot" + slot,
