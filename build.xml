@@ -103,6 +103,11 @@
 			<exclude name="games/stendhal/server/maps/**"/>
 			<exclude name="games/stendhal/server/script/**"/>
 
+			<include name="games/stendhal/tools/tiled/LayerDefinition.java"/>
+			<include name="games/stendhal/tools/tiled/ServerTMXLoader.java"/>
+			<include name="games/stendhal/tools/tiled/StendhalMapStructure.java"/>
+			<include name="games/stendhal/tools/tiled/TileSetDefinition.java"/>
+
 			<compilerarg value="-encoding"/>
 			<compilerarg value="utf8"/>
 			<compilerarg value="-Xlint:unchecked"/>
