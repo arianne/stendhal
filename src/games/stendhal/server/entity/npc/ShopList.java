@@ -104,6 +104,7 @@ public class ShopList {
 		shops.add("buyprecious", "emerald", 200);
 		shops.add("buyprecious", "sapphire", 400);
 		shops.add("buyprecious", "carbuncle", 600);
+		shops.add("buyprecious", "diamond", 800);
 		shops.add("buyprecious", "obsidian", 1000);
 
 		// rare weapons shop

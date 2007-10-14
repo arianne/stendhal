@@ -8530,6 +8530,7 @@
       <item value="mega_potion" quantity="[1,1]" probability="50.0"/>
       <item value="money" quantity="[30,100]" probability="100.0"/>
       <item value="gold_nugget" quantity="[2,5]" probability="10.0"/>
+      <item value="diamond" quantity="[1,1]" probability="2.0"/>
       <item value="golden_cloak" quantity="[1,1]" probability="5.0"/>
     </drops>
     <equips>
