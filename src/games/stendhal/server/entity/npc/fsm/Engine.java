@@ -86,21 +86,8 @@ public class Engine {
 		Transition existing = get(state, trigger, condition);
 		if (existing != null) {
 			// A previous state, trigger combination exist.
-
-			// In case nextState is the same for both transitions, and ChatAction is null in both cases, as it is
-			// for addSeller(), addBuyer(), addHealer() and addOutfitChanger(), both replies can be merged together.
-			// ChatActions should not be merged as they might change the state by code,
-			// so that the result might not be intuitive for quest writers.
-
-			// In case the transitions cannot be merged, the second one will be discarded and a warning logged at the server.
-
-			if ((nextState == existing.getNextState()) && (action == null) && (existing.getAction() == null)) {
-				existing.setReply(existing.getReply() + " " + reply);
-			} else {
-				logger.warn("Discarded adding to " + existing + " the state [" + state + "," + trigger + "," + nextState + "]");
-			}
-
-			return;
+			logger.warn("Adding to " + existing + " the state [" + state + "," + trigger + "," + nextState + "]");
+			existing.setReply(existing.getReply() + " " + reply);
 		}
 
 		Transition item = new Transition(state, trigger, condition, nextState, reply, action);
