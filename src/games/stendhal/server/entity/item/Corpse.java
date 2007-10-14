@@ -38,17 +38,17 @@ public class Corpse extends PassiveEntity implements TurnListener,
 	/**
 	 * The killer's name attribute name.
 	 */
-	protected static final String	ATTR_KILLER	= "killer";
+	protected static final String ATTR_KILLER = "killer";
 
 	/**
 	 * The name attribute name.
 	 */
-	protected static final String	ATTR_NAME	= "name";
+	protected static final String ATTR_NAME = "name";
 
 	private static final Logger logger = Log4J.getLogger(Corpse.class);
 
 	/** Time (in seconds) until a corpse disappears. */
-	private static final int DEGRADATION_TIMEOUT = 15 * 60; // 3 minutes
+	private static final int DEGRADATION_TIMEOUT = 15 * 60; 
 
 	private static final int MAX_STAGE = 5; // number of degradation steps
 
@@ -73,11 +73,11 @@ public class Corpse extends PassiveEntity implements TurnListener,
 
 	private void decideSize(String clazz) {
 		if (clazz.equals("giant_animal") || clazz.equals("giant_human")
-		 || clazz.equals("huge_animal") || clazz.equals("boss") 
-		 || clazz.equals("giant_troll") || clazz.equals("giant_madaram") 
-		 || clazz.equals("huge_hybrid")  ) {
+				|| clazz.equals("huge_animal") || clazz.equals("boss")
+				|| clazz.equals("giant_troll") || clazz.equals("giant_madaram")
+				|| clazz.equals("huge_hybrid")) {
 			setSize(2, 2);
-		} else if (clazz.equals("huger_animal") ||clazz.equals("huger_hybrid") ) {
+		} else if (clazz.equals("huger_animal") || clazz.equals("huger_hybrid")) {
 			setSize(4, 4);
 		} else if (clazz.equals("mythical_animal")) {
 			setSize(6, 6);
@@ -156,8 +156,8 @@ public class Corpse extends PassiveEntity implements TurnListener,
 		Rectangle2D rect = victim.getArea();
 
 		setPosition(
-		 (int) (rect.getX() + ((rect.getWidth() - getWidth()) / 2.0)),
-		 (int) (rect.getY() + ((rect.getHeight() - getHeight()) / 2.0)));
+				(int) (rect.getX() + ((rect.getWidth() - getWidth()) / 2.0)),
+				(int) (rect.getY() + ((rect.getHeight() - getHeight()) / 2.0)));
 
 		TurnNotifier.get().notifyInSeconds(DEGRADATION_STEP_TIMEOUT, this);
 		stage = 0;
@@ -166,7 +166,6 @@ public class Corpse extends PassiveEntity implements TurnListener,
 		RPSlot slot = new LootableSlot(this);
 		addSlot(slot);
 	}
-
 
 	//
 	// Corpse
@@ -188,7 +187,8 @@ public class Corpse extends PassiveEntity implements TurnListener,
 	/**
 	 * Set the killer name of the corpse.
 	 *
-	 * @param	name		The corpse's killer name.
+	 * @param name
+	 *            The corpse's killer name.
 	 */
 	public void setKiller(final String killer) {
 		put(ATTR_KILLER, killer);
@@ -197,12 +197,12 @@ public class Corpse extends PassiveEntity implements TurnListener,
 	/**
 	 * Set the name of the corpse.
 	 *
-	 * @param	name		The corpse name.
+	 * @param name
+	 *            The corpse name.
 	 */
 	public void setName(final String name) {
 		put(ATTR_NAME, name);
 	}
-
 
 	private void modify() {
 		if (getZone() != null) {
@@ -311,7 +311,7 @@ public class Corpse extends PassiveEntity implements TurnListener,
 		} else if (has(ATTR_NAME)) {
 			text += get(ATTR_NAME);
 
-			if(has(ATTR_KILLER)) {
+			if (has(ATTR_KILLER)) {
 				text += ", killed by " + get(ATTR_KILLER);
 			}
 		} else {
@@ -329,20 +329,19 @@ public class Corpse extends PassiveEntity implements TurnListener,
 		return false;
 	}
 
-
 	//
 	// Entity
 	//
 
 	/**
-	 * Returns the name or something that can be used to identify the
-	 * entity for the player
+	 * Returns the name or something that can be used to identify the entity for
+	 * the player
 	 *
 	 * @param definite
-	 *	<code>true</code> for "the", and <code>false</code> for "a/an"
-	 *	in case the entity has no name.
+	 *            <code>true</code> for "the", and <code>false</code> for
+	 *            "a/an" in case the entity has no name.
 	 *
-	 * @return	The description name.
+	 * @return The description name.
 	 */
 	@Override
 	public String getDescriptionName(final boolean definite) {
