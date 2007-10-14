@@ -18,6 +18,7 @@ import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.actions.AdministrationAction;
 import games.stendhal.server.entity.Outfit;
+import games.stendhal.server.entity.creature.DomesticAnimal;
 import games.stendhal.server.entity.creature.Pet;
 import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.item.Item;
@@ -389,61 +390,84 @@ class PlayerRPClass {
 		int y = player.getY();
 
 		// load sheep
-		try {
-			if (player.hasSheep()) {
-				logger.debug("Player has a sheep");
-				Sheep sheep = player.getPlayerSheepManager().retrieveSheep();
+		Sheep sheep = player.getPlayerSheepManager().retrieveSheep();
 
-				if (!sheep.has("base_hp")) {
-					sheep.initHP(10);
-				}
+		if (sheep != null) {
+			logger.debug("Player has a sheep");
 
-				if (StendhalRPAction.placeat(zone, sheep, x, y)) {
-					/*
-					 * Sheep needs to be added to the NPC list.
-					 */
-					player.setSheep(sheep);
-				}
-			}
-		} catch (Exception e) {
-			/**
-			 * No idea how but some players get a sheep but they don't have it
-			 * really. Me thinks that it is a player that has been running for a
-			 * while the game and was kicked of server because shutdown on a pre
-			 * 1.00 version of Marauroa. We shouldn't see this anymore.
-			 */
-			logger.error("Pre 1.00 Marauroa sheep bug. (player = "
-					+ player.getName() + ")", e);
-
-			if (player.has("sheep")) {
-				player.remove("sheep");
+			// TODO: Is this needed?
+			if (!sheep.has("base_hp")) {
+				sheep.initHP(10);
 			}
 
-			if (player.hasSlot("#flock")) {
-				player.removeSlot("#flock");
+			if (placeAnimalIntoWorld(sheep, player)) {
+				player.setSheep(sheep);
+			} else {
+				logger.warn("Could not place sheep: " + sheep);
+				player.sendPrivateText("You can not seem to locate your " + sheep.getTitle() + ".");
 			}
+
+			sheep.notifyWorldAboutChanges();
 		}
 
 		// load pet
-		if (player.hasPet()) {
-			logger.debug("Player has a pet");
-			Pet pet = player.getPlayerPetManager().retrievePet();
+		Pet pet = player.getPlayerPetManager().retrievePet();
 
+		if (pet != null) {
+			logger.debug("Player has a pet");
+
+			// TODO: Is this needed?
 			if (!pet.has("base_hp")) {
 				pet.initHP(200);
 			}
 
-			if (StendhalRPAction.placeat(zone, pet, x, y)) {
-				/*
-				 * Pet needs to be added to the NPC list.
-				 */
+			if (placeAnimalIntoWorld(pet, player)) {
 				player.setPet(pet);
+			} else {
+				logger.warn("Could not place pet: " + pet);
+				player.sendPrivateText("You can not seem to locate your " + pet.getTitle() + ".");
 			}
+
+			pet.notifyWorldAboutChanges();
 		}
 
 		player.notifyWorldAboutChanges();
 		StendhalRPAction.transferContent(player);
 	}
+
+
+	/**
+	 * Places a domestic animal in the world. If it matches it's owner's
+	 * zone, then try to keep it's position.
+	 *
+	 * @param animal
+	 *	The domestic animal.
+	 * @param player
+	 *	The owner.
+	 *
+	 * @return	<code>true</code> if placed.
+	 */
+	protected static boolean placeAnimalIntoWorld(final DomesticAnimal animal, final Player player) {
+		StendhalRPZone playerZone = player.getZone();
+
+		/*
+		 * Only add directly if required attributes are present
+		 */
+		if (animal.has("zoneid") && animal.has("x") && animal.has("y")) {
+			StendhalRPZone zone = StendhalRPWorld.get().getZone(animal.get("zoneid"));
+
+			/*
+			 * Player could have been forced to change zones
+			 */
+			if (zone == playerZone) {
+				zone.add(animal);
+				return true;
+			}
+		}
+
+		return StendhalRPAction.placeat(playerZone, animal, player.getX(), player.getY());
+	}
+
 
 	/**
 	 * Loads the items into the slots of the player on login.

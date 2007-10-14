@@ -1105,15 +1105,6 @@ public class Player extends RPEntity {
 		sheep.setOwner(this);
 	}
 
-	public static class NoSheepException extends RuntimeException {
-
-		private static final long serialVersionUID = -6689072547778842040L;
-
-		public NoSheepException() {
-			super();
-		}
-	}
-
 	/**
 	 * Get the player's sheep.
 	 *
@@ -1141,19 +1132,6 @@ public class Player extends RPEntity {
 			}
 		} else {
 			return null;
-		}
-	}
-
-	public static class NoPetException extends RuntimeException {
-		// does this need to be a different number?
-		private static final long serialVersionUID = -6689072547778842040L;
-
-		public NoPetException() {
-			super();
-		}
-
-		public NoPetException(String except) {
-			super(except);
 		}
 	}
 
