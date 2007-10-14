@@ -916,6 +916,33 @@ it back as you got it!
 </zone>
 
 <zone name="-1_fado_great_cave_w" level="-1" x="499744" y="500640" file="Level -1/fado/great_cave_w.tmx">
+  <portal x="52" y="96" ref="shop_in">
+   <destination zone="int_sedah_supplier" ref="out"/>
+  </portal>
+  <portal x="37" y="116" ref="house5_in">
+   <destination zone="int_sedah_house5" ref="out"/>
+  </portal>
+  <portal x="92" y="102" ref="house6_in">
+   <destination zone="int_sedah_house6" ref="out"/>
+  </portal>
+</zone>
+
+<zone name="int_sedah_supplier" file="interiors/sedah/shop.tmx">
+  <portal x="17" y="28" ref="out">
+   <destination zone="-1_fado_great_cave_w" ref="shop_in"/>
+  </portal>
+</zone>
+
+<zone name="int_sedah_house5" file="interiors/sedah/house5.tmx">
+  <portal x="6" y="13" ref="out">
+   <destination zone="-1_fado_great_cave_w" ref="house5_in"/>
+  </portal>
+</zone>
+
+<zone name="int_sedah_house6" file="interiors/sedah/house6.tmx">
+  <portal x="6" y="13" ref="out">
+   <destination zone="-1_fado_great_cave_w" ref="house6_in"/>
+  </portal>
 </zone>
 
 <zone name="-1_fado_great_cave" level="-1" x="499872" y="500640" file="Level -1/fado/great_cave.tmx">
