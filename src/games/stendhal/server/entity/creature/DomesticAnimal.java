@@ -142,7 +142,7 @@ public abstract class DomesticAnimal extends Creature {
 	}
 
 	@Override
-	protected void handleSimpleCollission(int nx, int ny) {
+	protected void handleSimpleCollision(int nx, int ny) {
 		stop();
 		clearPath();
 	}

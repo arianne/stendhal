@@ -690,7 +690,7 @@ public class SpeakerNPC extends NPC {
 	}
 
 	@Override
-	protected void handleSimpleCollission(int nx, int ny) {
+	protected void handleSimpleCollision(int nx, int ny) {
 		stop();
 	}
 

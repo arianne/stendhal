@@ -24,7 +24,7 @@ import marauroa.common.game.RPObject;
 import marauroa.common.game.Definition.Type;
 
 /**
- * An entity that hase speed and direction.
+ * An entity that has speed and direction.
  */
 public abstract class ActiveEntity extends Entity {
 	/**
@@ -97,7 +97,7 @@ public abstract class ActiveEntity extends Entity {
 
 		StendhalRPZone zone = getZone();
 		if (zone.simpleCollides(this, nx, ny)) {
-			handleSimpleCollission(nx, ny);
+			handleSimpleCollision(nx, ny);
 			return;
 		}
 		Portal p = zone.getPortal(nx, ny);
@@ -161,25 +161,25 @@ public abstract class ActiveEntity extends Entity {
 	}
 
 	/**
-	 * a simplecollission is from tiled collission layer
+	 * a simple collision is from tiled collision layer
 	 * or the edge of the map.
 	 * @param ny
 	 * @param nx
 	 *
 	 */
-	protected void handleSimpleCollission(int nx, int ny) {
+	protected void handleSimpleCollision(int nx, int ny) {
 		if (isZoneChangeAllowed()) {
 			if (getZone().leavesZone(this, nx, ny)) {
 				handleLeaveZone(nx, ny);
 				return;
 			}
 		}
- if (isGhost()) {
-	 move(getX(), getY(), nx, ny);
- } else {
-		setCollides(true);
- }
-}
+		if (isGhost()) {
+		    move(getX(), getY(), nx, ny);
+		} else {
+		    setCollides(true);
+		}
+	}
 
 	protected void handleLeaveZone(int nx, int ny) {
 		logger.debug("Leaving zone from (" + getX() + "," + getY() + ") to ("

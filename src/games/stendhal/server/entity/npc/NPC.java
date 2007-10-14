@@ -242,8 +242,8 @@ public abstract class NPC extends RPEntity {
 	}
 
 	@Override
-	protected void handleSimpleCollission(int nx, int ny) {
+	protected void handleSimpleCollision(int nx, int ny) {
 
-		super.handleSimpleCollission(nx, ny);
+		super.handleSimpleCollision(nx, ny);
 	}
 }
