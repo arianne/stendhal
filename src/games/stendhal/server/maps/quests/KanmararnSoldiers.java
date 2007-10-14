@@ -20,32 +20,48 @@ import marauroa.common.game.RPObject;
 import marauroa.common.game.SlotIsFullException;
 
 /**
- * QUEST: Soldiers in Kanmararn
- * 
- * NOTE: It also starts a quest that needs NPC McPegleg that is created. It
- * doesn't harm if that script is missing, just that the IOU cannot be delivered
- * and hence the player can't get cash
- * 
- * PARTICIPANTS: - Henry - Sergeant James - corpse of Tom - corpse of Charles -
- * corpse of Peter
- * 
- * STEPS: - optional: speak to Sergeant James to get the task to find the map -
- * talk to Henry to get the task to find some proof that the other 3 soldiers
- * are dead. - collect the item in each of the corpses of the three other
- * soldiers - bring them back to Henry to get the map - bring the map to
- * Sergeant James
- * 
- * REWARD: - from Henry: - you can keep the IOU paper (for quest MCPeglegIOU) -
- * 2500 XP - from Sergeant James - steel boots
- * 
- * REPETITIONS: - None.
- * 
+ * QUEST:
+ * <p>
+ * Soldiers in Kanmararn
+ *
+ * NOTE:
+ * <p>
+ * It also starts a quest that needs NPC McPegleg that is created. It doesn't
+ * harm if that script is missing, just that the IOU cannot be delivered and
+ * hence the player can't get cash
+ *
+ * PARTICIPANTS:
+ * <li> Henry
+ * <li> Sergeant James
+ * <li> corpse of Tom
+ * <li> corpse of Charles
+ * <li> corpse of Peter
+ *
+ * STEPS:
+ * <li> optional: speak to Sergeant James to get the task to find the map
+ * <li> talk to Henry to get the task to find some proof that the other 3
+ * soldiers are dead.
+ * <li> collect the item in each of the corpses of the three other soldiers
+ * <li> bring them back to Henry to get the map - bring the map to Sergeant
+ * James
+ *
+ * REWARD:
+ * <p>
+ * from Henry:
+ * <li> you can keep the IOU paper (for quest MCPeglegIOU)
+ * <li> 2500 XP
+ * <p>
+ * from Sergeant James
+ * <li> steel boots
+ *
+ * REPETITIONS:
+ * <li> None.
+ *
  * @see McPeglegIOU
  */
 public class KanmararnSoldiers extends AbstractQuest {
 
-	private static final Logger logger = Log4J
-			.getLogger(KanmararnSoldiers.class);
+	private static final Logger logger = Log4J.getLogger(KanmararnSoldiers.class);
 
 	private static final String QUEST_SLOT = "soldier_henry";
 
@@ -62,9 +78,9 @@ public class KanmararnSoldiers extends AbstractQuest {
 
 	/**
 	 * A CorpseRefiller checks, in regular intervals, if the given corpse
-	 * 
+	 *
 	 * @author daniel
-	 * 
+	 *
 	 */
 	private class CorpseRefiller implements TurnListener {
 		private Corpse corpse;
@@ -110,8 +126,8 @@ public class KanmararnSoldiers extends AbstractQuest {
 			try {
 				if (!isStillFilled) {
 					// recreate the item and fill the corpse
-					Item item = StendhalRPWorld.get().getRuleManager()
-							.getEntityManager().getItem(itemName);
+					Item item = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
+							itemName);
 					item.setInfoString(corpse.getName());
 					item.setDescription(description);
 					corpse.add(item);
@@ -132,8 +148,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 		public void fire(Player player, String text, SpeakerNPC npc) {
 			if (!player.isQuestCompleted(QUEST_SLOT)
 					&& !"map".equals(player.getQuest(QUEST_SLOT))) {
-				npc
-						.say("Find my #group, Peter, Tom, and Charles, prove it and I will reward you. Will you do it?");
+				npc.say("Find my #group, Peter, Tom, and Charles, prove it and I will reward you. Will you do it?");
 			} else {
 				npc.say("I'm so sad that most of my friends are dead.");
 				npc.setCurrentState(ConversationStates.ATTENDING);
@@ -151,8 +166,8 @@ public class KanmararnSoldiers extends AbstractQuest {
 	private class HenryQuestStartedCondition extends SpeakerNPC.ChatCondition {
 		@Override
 		public boolean fire(Player player, String text, SpeakerNPC npc) {
-			return (player.hasQuest(QUEST_SLOT) && player.getQuest(QUEST_SLOT)
-					.equals("start"));
+			return (player.hasQuest(QUEST_SLOT) && player.getQuest(QUEST_SLOT).equals(
+					"start"));
 		}
 	}
 
@@ -160,16 +175,16 @@ public class KanmararnSoldiers extends AbstractQuest {
 			SpeakerNPC.ChatCondition {
 		@Override
 		public boolean fire(Player player, String text, SpeakerNPC npc) {
-			return (!player.hasQuest(QUEST_SLOT) || player.getQuest(QUEST_SLOT)
-					.equals("start"));
+			return (!player.hasQuest(QUEST_SLOT) || player.getQuest(QUEST_SLOT).equals(
+					"start"));
 		}
 	}
 
 	private class HenryQuestCompletedCondition extends SpeakerNPC.ChatCondition {
 		@Override
 		public boolean fire(Player player, String text, SpeakerNPC npc) {
-			return (player.hasQuest(QUEST_SLOT) && !player.getQuest(QUEST_SLOT)
-					.equals("start"));
+			return (player.hasQuest(QUEST_SLOT) && !player.getQuest(QUEST_SLOT).equals(
+					"start"));
 		}
 	}
 
@@ -206,16 +221,14 @@ public class KanmararnSoldiers extends AbstractQuest {
 
 			if ((questLeatherLegs != null) && (questNote != null)
 					&& (questScaleArmor != null)) {
-				npc
-						.say("Oh my! Peter, Tom, and Charles are all dead? *cries*. Anyway, here is your reward. And keep the IOU.");
+				npc.say("Oh my! Peter, Tom, and Charles are all dead? *cries*. Anyway, here is your reward. And keep the IOU.");
 				player.addXP(2500);
 				player.drop(questLeatherLegs);
 				player.drop(questScaleArmor);
-				Item map = StendhalRPWorld.get().getRuleManager()
-						.getEntityManager().getItem("map");
+				Item map = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
+						"map");
 				map.setInfoString(npc.getName());
-				map
-						.setDescription("You see a hand drawn map, but no matter how you look at it, nothing on it looks familiar.");
+				map.setDescription("You see a hand drawn map, but no matter how you look at it, nothing on it looks familiar.");
 				player.equip(map);
 				player.setQuest(QUEST_SLOT, "map");
 				npc.setCurrentState(ConversationStates.ATTENDING);
@@ -228,8 +241,8 @@ public class KanmararnSoldiers extends AbstractQuest {
 	private class JamesQuestCompleteCondition extends SpeakerNPC.ChatCondition {
 		@Override
 		public boolean fire(Player player, String text, SpeakerNPC npc) {
-			return (player.hasQuest(QUEST_SLOT) && player.getQuest(QUEST_SLOT)
-					.equals("map"));
+			return (player.hasQuest(QUEST_SLOT) && player.getQuest(QUEST_SLOT).equals(
+					"map"));
 		}
 	}
 
@@ -253,13 +266,12 @@ public class KanmararnSoldiers extends AbstractQuest {
 				}
 			}
 			if (questMap != null) {
-				npc
-						.say("The map! Wonderful! Thank you. And here is your reward.");
+				npc.say("The map! Wonderful! Thank you. And here is your reward.");
 				player.addXP(5000);
 				player.drop(questMap);
 
-				Item item = StendhalRPWorld.get().getRuleManager()
-						.getEntityManager().getItem("steel_boots");
+				Item item = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
+						"steel_boots");
 				item.setBoundTo(player.getName());
 				// Is this infostring really needed?
 				item.setInfoString(npc.getName());
@@ -281,15 +293,13 @@ public class KanmararnSoldiers extends AbstractQuest {
 		henry.addGreeting("Ssshh! Silence or you will attract more #dwarves.");
 		henry.addJob("I'm a soldier in the army.");
 		henry.addGoodbye("Bye and be careful with all those dwarves around!");
-		henry
-				.addHelp("I need help myself. I got seperated from my #group. Now I'm all alone.");
+		henry.addHelp("I need help myself. I got seperated from my #group. Now I'm all alone.");
 		henry.addReply(Arrays.asList("dwarf", "dwarves"),
 				"They are everywhere! Their #kingdom must be close.");
 		henry.addReply(Arrays.asList("kingdom", "Kanmararn"),
 				"Kanmararn, the legendary city of the #dwarves.");
-		henry
-				.addReply("group",
-						"The General sent five of us to explore this area in search for #treasure.");
+		henry.addReply("group",
+				"The General sent five of us to explore this area in search for #treasure.");
 		henry.addReply("treasure",
 				"A big treasure is rumored to be #somewhere in this dungeon.");
 		henry.addReply("somewhere", "If you #help me I might give you a clue.");
@@ -304,14 +314,13 @@ public class KanmararnSoldiers extends AbstractQuest {
 				"Thank you! I'll be waiting for your return.",
 				new HenryQuestAcceptAction());
 
-		henry
-				.add(
-						ConversationStates.QUEST_OFFERED,
-						"group",
-						null,
-						ConversationStates.QUEST_OFFERED,
-						"The General sent five of us to explore this area in search for #treasure. So, will you help me find them?",
-						null);
+		henry.add(
+				ConversationStates.QUEST_OFFERED,
+				"group",
+				null,
+				ConversationStates.QUEST_OFFERED,
+				"The General sent five of us to explore this area in search for #treasure. So, will you help me find them?",
+				null);
 
 		henry.add(ConversationStates.QUEST_OFFERED,
 				ConversationPhrases.NO_MESSAGES, null,
@@ -338,8 +347,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 	 * add corpses of ex-NPCs.
 	 */
 	private void prepareCorpses() {
-		StendhalRPZone zone = StendhalRPWorld.get()
-				.getZone("-6_kanmararn_city");
+		StendhalRPZone zone = StendhalRPWorld.get().getZone("-6_kanmararn_city");
 
 		// Now we create the corpse of the second NPC
 		Corpse tom = new Corpse("youngsoldiernpc", 5, 47);
@@ -394,18 +402,14 @@ public class KanmararnSoldiers extends AbstractQuest {
 		SpeakerNPC james = npcs.get("Sergeant James");
 
 		// quest related stuff
-		james
-				.addHelp("Think I need a little help myself. My #group got killed and #one of my men ran away. Too bad he had the #map.");
-		james
-				.addQuest("Find my fugitive soldier and bring him to me ... or at least the #map he's carrying.");
-		james
-				.addReply("group",
-						"We were five, three of us died. You probably passed their corpses.");
+		james.addHelp("Think I need a little help myself. My #group got killed and #one of my men ran away. Too bad he had the #map.");
+		james.addQuest("Find my fugitive soldier and bring him to me ... or at least the #map he's carrying.");
+		james.addReply("group",
+				"We were five, three of us died. You probably passed their corpses.");
 		james.addReply(Arrays.asList("one", "henry"),
 				"Yes, my youngest soldier. He ran away.");
-		james
-				.addReply("map",
-						"The #treasure map that leads into the heart of the #dwarven #kingdom.");
+		james.addReply("map",
+				"The #treasure map that leads into the heart of the #dwarven #kingdom.");
 		james.addReply("treasure",
 				"A big treasure is rumored to be somewhere in this dungeon.");
 		james.addReply(Arrays.asList("dwarf", "dwarves", "dwarven"),
