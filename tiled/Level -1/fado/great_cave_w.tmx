@@ -111,6 +111,9 @@
  <tileset name="drain" firstgid="739" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/drain.png"/>
  </tileset>
+ <tileset name="giant human" firstgid="743" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/creature/giant_human.png"/>
+ </tileset>
  <layer name="0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3aYW6DMAyG4W693k6yC+yowG2maa2ELCcEEscmeX88WsdYSfKZAGmfj8fjCQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD+sbUvj4AAAAwk/Xz3/L6ue1ev7cvr+2reL0q+75fe/cL5flvwrqrhbXwd/nau1/wMft8IM+l93y6t4rfU/t79+WK2eeDM/lvYtsmakLbZ69Fe38aORoT71x651/7HnJ+kPdh0fLP1cGM87/1caLmr9XBTPn3ut9pdX9glf++BuR1a9v9lM8Ud79f7NX+KNfUkvy1eyL53CnrITe2ufrRnklT+2j7nsk4d2zrcY/yfHD1nvDs2Gq5p/KVtZHaV6vJ0jYe1Zkcn9Hyr30mSNEyltss+nNmHiipk9pxyOUua693LbR4JoxGXkta5G/RztTagNe4jZL/mXx75r+J83y/XriQvwltbfbsfWKr/q8i72hrxKPmr51vpfeJLfsvr0dyLdh7rGryH6FWLLP/I+ttEXPR0f/2zvxK/hbt8szf8v2P1j/22VvOE5Hyj3TdsT6+/FxRWzvV1jisrhVX82+ZV6Tse5z/2ufJJWtmUfK3yj5C/tbH0DLPrXNaf05Qmr/F80HP7EvnNOv8c+vXqe8SeeU/siv10SJ3be3viNf1fwY9stfO+9T1X5v/Le8Dvc4R+V6541op6XOr/sv5XXv+y2VfumZw1/y9aiA1Drm/1xwn9Z2H3POg5f1gpPw9a+DM9aJG6llPXutT30nwnP8tjlvSpp75Wx8n9R2XHn28S/69M5HjYHmcCJnfJX+vsfBuR4t+3CX/SOMdrT21+dWabbyjtYf8yZ/8/fKP1DaP+pk5/4j3JyPlH3F8tfM/UvtGyd9jrrlaA6PzzF8e33ssyL9NHrn/1d4/Wg3MxOr8P/tsQQ2MlX9tW7zHZRaR8qcGyD/VLu9xGlXU/LX2ebdlRNHzT7XRu02juEP+V9ort0fvV/TxjC6V9d37Rf71/bhzv478AuPrJMoAAAEA
@@ -138,7 +141,7 @@
  </layer>
  <layer name="objects" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3dTQ6CMBAGUOKZ1BhjYryJS3/uv3fhFokppXzAe0sSoDTTmbaL0nUAsD7P3dwtAGCsu1wOAJv1MA+YnD4GtsAeIQDUYa+WMaw/AeZ3k4tZoLe45Qc5DQAAvqybAAAAAAAAAAAAAAAAAAAAAACyvJwLA/xhL1cQ6tQTm33XpnAZeE/auWvHsPZAutZjJuk/OTVr/rXgWYeCe1rl/ZbO4d+UVudqK4kptXadhuZ7NaWPeQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgKX7AAQ+UZgAAAEA
+   H4sIAAAAAAAAAO3dyw4BMRQAUPFL3kLEn1h6fDyfYGEnSNVM57bOWUpQ4/a20/RORyMAaM9pPHQLAPjVQS4HgL91NA/onWsM/ANrhADQDWu1/ML9J8Dw9nIxFbqIW96Q0wAA4MF9EwAAAAAAAAAAAAAAAAAAAABALGfPhQESTOUKglq+iM1Xr/Vh8+F7oj13bR6sPRBd6T4T6ZycLsf8XcZnzTLeUyrvl7QO/puijXNdy4kpY22bPs33uhS9zwMAAAAAQBQ3a+pUTgwPI2f/AgAAbSu1NwxSfLN/u8V90wBA/2N8Tr0WQAo1UQD0Rd02kGoiXwAAEMjC/JQnYiKeVcX/ybbitkNtrpX3N7V0AHxLjQ2QKvcMC/VQlFTz+g+0wBmHAADU5g70307AAAABAA==
   </data>
  </layer>
  <layer name="collision" width="128" height="128" visible="0" opacity="0.37">
