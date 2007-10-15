@@ -1559,6 +1559,24 @@
     </equipable>
   </item>
 
+  <item name="pina_colada">
+    <type class="drink" subclass="pina_colada" tileid="-1"/>
+    <description>You see a pina colada.  It looks delicious but tastes dangerously strong!.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Drink"/>    <attributes>
+      <amount value="28"/>
+      <frequency value="3"/>
+      <quantity value="1"/>
+      <regen value="4"/>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
+    </equipable>
+  </item>
+
   <item name="antidote">
     <type class="drink" subclass="antidote" tileid="-1"/>
     <description>You see an antidote, to cure you of poison and protect you for a while.</description>

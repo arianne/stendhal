@@ -88,6 +88,9 @@
        <portal x="123" y="15" ref="labyrinth_hut_entrance">
          <destination zone="int_athor_labyrinth_entrance" ref="out"/>
        </portal>
+       <portal x="16" y="50" ref="cocktail_bar_entrance">
+         <destination zone="int_athor_cocktail_bar" ref="entrance"/>
+       </portal>
        <portal x="87" y="40" ref="dressing_room_m_entrance">
          <destination zone="int_athor_dressing_room_m" ref="out"/>
        </portal>
@@ -406,6 +409,13 @@
          </implementation>
        </entity>
      </zone>
+
+     <zone name="int_athor_cocktail_bar" file="interiors/athor/cocktail_bar.tmx">
+       <configurator class-name="games.stendhal.server.maps.athor.cocktail_bar.BarmanNPC"/>
+       <portal x="9" y="17" ref="entrance">
+         <destination zone="0_athor_island" ref="cocktail_bar_entrance"/>
+       </portal>
+      </zone>
      
      <zone name="int_athor_labyrinth_entrance" file="interiors/athor/small_hut.tmx">
        <portal x="8" y="14" ref="out">
