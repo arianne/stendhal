@@ -54,7 +54,6 @@ public class PrincessNPC implements ZoneConfigurator {
 				addReply("look","You had better not poke around, this is all mine!");
 				addReply("nothing","Go away and do this somewhere else but not in my hut!");
 				addJob("Job? You expect that a princess like me would need to work? Ha!");
-				addQuest("I do not have anything to do for you. Come back another time and check, incase I need something from you in future.");
 				addHelp("Beware of my sisters on the island, they do not like strangers.");
 				addOffer("There is nothing to offer you.");				
 				addGoodbye("Goodbye, and beware of the barbarians.");

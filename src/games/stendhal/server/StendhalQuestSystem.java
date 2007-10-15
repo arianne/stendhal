@@ -111,6 +111,7 @@ public class StendhalQuestSystem {
 		loadQuest("WeaponsCollector2");
 		loadQuest("WizardBank");
 		loadQuest("ZooFood");
+		loadQuest("AmazonPrincess");
 
 	}
 
