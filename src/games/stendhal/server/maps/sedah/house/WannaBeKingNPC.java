@@ -1,0 +1,61 @@
+package games.stendhal.server.maps.sedah.house;
+
+import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.config.ZoneConfigurator;
+import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.pathfinder.FixedPath;
+import games.stendhal.server.pathfinder.Node;
+
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * Builds the NPC who wants to be the king of Kalavan.
+ *
+ * @author johnnnny
+ */
+public class WannaBeKingNPC implements ZoneConfigurator {
+
+	/**
+	 * Configure a zone.
+	 *
+	 * @param	zone		The zone to be configured.
+	 * @param	attributes	Configuration attributes.
+	 */
+	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+		buildNPC(zone, attributes);
+	}
+
+	/**
+	 * initialize the NPC.
+	 * 
+	 * @param zone
+	 * @param attributes
+	 */
+	private void buildNPC(StendhalRPZone zone, Map<String, String> attributes) {
+		SpeakerNPC npc = new SpeakerNPC("Ivan Abe") {
+
+			@Override
+			protected void createPath() {
+				List<Node> nodes = new LinkedList<Node>();
+				nodes.add(new Node(3, 7));
+				nodes.add(new Node(12, 7));
+				nodes.add(new Node(12, 3));
+				nodes.add(new Node(6, 3));
+				nodes.add(new Node(6, 7));
+				nodes.add(new Node(3, 7));
+				setPath(new FixedPath(nodes, true));
+			}
+
+			@Override
+			protected void createDialog() {
+			}
+		};
+
+		npc.setEntityClass("wannabekingnpc");
+		npc.setPosition(3, 7);
+		npc.initHP(100);
+		zone.add(npc);
+	}
+}

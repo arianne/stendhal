@@ -870,6 +870,7 @@ black halberd     12000
 </zone>
 
 <zone name="int_sedah_house4_1" file="interiors/sedah/house4_1.tmx">
+  <configurator class-name="games.stendhal.server.maps.sedah.house.WannaBeKingNPC"/>
   <portal x="3" y="3" ref="down">
    <destination zone="int_sedah_house4_0" ref="up"/>
   </portal>

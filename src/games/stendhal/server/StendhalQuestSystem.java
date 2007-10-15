@@ -57,6 +57,7 @@ public class StendhalQuestSystem {
 		loadQuest("CloakCollector");
 		loadQuest("CloaksForBario");
 		loadQuest("ClubOfThorns");
+		loadQuest("CrownForTheWannaBeKing");
 		loadQuest("DailyItemQuest");
 		loadQuest("DailyMonsterQuest");
 		loadQuest("DiceGambling");
