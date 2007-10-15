@@ -63,37 +63,52 @@
  <tileset name="../../tileset/logic/protection.png" firstgid="457" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/protection.png"/>
  </tileset>
+ <tileset name="menorah" firstgid="458" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/candle/menorah.png"/>
+ </tileset>
+ <tileset name="marble" firstgid="466" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/marble.png"/>
+ </tileset>
+ <tileset name="church" firstgid="467" tilewidth="32" tileheight="32">
+  <image source="../../tileset/object/church.png"/>
+ </tileset>
+ <tileset name="blue circle" firstgid="523" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/decoration/blue_circle.png"/>
+ </tileset>
+ <tileset name="block" firstgid="527" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/decoration/block.png"/>
+ </tileset>
  <layer name="0_floor" width="24" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAANWUsQ2EMAxFk11uCBgCpwbRsPIVN8IVN0KKE0bEUmQwxFFcUHwJop+H9fPDxzn38jZ6I/uH6vxR/cmaJMn7RfYfBX7X0khDUkx8en8qf8bn0JC/seaH5wOM3zIfSLxo1E84ycey/8Eg/zwf6/OdDPgTy+eqPyBI8lPeeX+k+TlzKPgGzydceCGbR8Mvvb/ED9k+Wivlk1+T/d38mn5qz5fzxxt/TT9Hxfw1fMv/M+UXXVmetfxNKwqfP2sACQAA
+   H4sIAAAAAAAAALvGwMCgwkgbfAlo9isgtmDExJZYxHBhXGqfAc3+B8S6UJzDSB0MM+8XieZHQDEtzIeZHQ7F1DY/HAmH0dh8WrifHvE7VM3PwIGpaf4lNDzUzKdl+Az19DNq/qj5A2W+HyMCU8v8CCQMAIE/SDgACQAA
   </data>
  </layer>
  <layer name="1_terrain" width="24" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGD4gjgpmFA1i88sZIZhW5hMDBqP5GYzYMTXNJ0ZsMJtPy/AhBYxE85uA2A0NN1LJfJDZa7CIL8dhB6nm4wuz1iFgfh4Qe2ARdwbiXCqYD7NjJRrGZja55pMChpv5pwngB0B8EIs5+4H4PhH6AUUHTnAACQAA
+   H4sIAAAAAAAAAO2UXQrCMBCEY1/9OZXiFQTBO+gdPIJQtQcQPYT47IN6huoZ1AfBDSS4jps0DVVBHBhCk9mvZaBR6lU78p58EM5icqicfCSfKspZDcx6Jl/IV3bWJneMu57cWODeas98lGb32HOfvQNl+ZbJpfkT2p8apyYzEjhDs2Je+n7On1FmbpwF8DFfxJfk46NcfN2Xi78gL8ErD1/qXsvFL6OYfv789/KL/t8Yvuv/rYov6Rf49USpRvLY4/cXOmUd27kifpMyLcbn9xc6Y3w7961+8H7DnlzCXOj9hj25hLlP97MN9IbNrEvM3QHiu8ttAAkAAA==
   </data>
  </layer>
  <layer name="2_object" width="24" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAN1U2QrCMBBM/t2reRJBEfVN8D5QhOLxF+r/OKUtpEvOJhVxYEi6x+x204ax38GRM3biYRpD5I/AsaQzL/ZnrBdetelyZCSSfYL9FJx59KnK6ZN8+kx7zJDynKaYb6BLag4a6EHWpPVKLBzqqmI6ClvPorWEfwWuwY1D3cRzRlv4d+AePFhiaf+x52PSjAGXbz8UtvOMjZjzqvM/le8rsLZr5Jv6F4XvivXGq/V8tXTIer6DD57XExaNluR3nVfIGanujBA0cWf+I97gy0IdbHlP8AMHiuH6AAkAAA==
+   H4sIAAAAAAAAAGNgYGDYy4iKyQHoZiCbQ2vzhxs4B/TbeSz+2wkU24VFHJd6UsFuoBl7hnG4jjSwjIi4JEbNKCAPjIY/cQC9/KJWeTYKhj64CsRXiMDogBg9l4EYALDmMtMACQAA
   </data>
  </layer>
  <layer name="3_roof" width="24" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgYGDYy8hAVYBuHiHz92GRxyaGbB613UwOQHfjViD/ACN+NSMJLCXC78SoGa5gNHxGwSgYBaNg4AAAA++m8wAJAAA=
+   H4sIAAAAAAAAAGNgoD14y0hbM7+imX8ByD9Ngp2nsKhHNxMZnAHKnSXBfFLV0wJQMw6wmYUvvEgF1DRrMIOlRPiTGDW0BvTOv9QAxJg5VMKfEEAvv0gt/wgB9PJrMJRn6GC0fBsF5AAAQ7W5BAAJAAA=
   </data>
  </layer>
  <layer name="objects" width="24" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjYBSMglEwCkbBKBia4CgjKiYWAAAhlK6IAAkAAA==
+   H4sIAAAAAAAAAGNgGAWjYBSMglEwCkbBKBi64CgjBJMCALQm51kACQAA
   </data>
  </layer>
- <layer name="collision" width="24" height="24" opacity="0.47">
+ <layer name="collision" width="24" height="24" visible="0" opacity="0.47">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAADvByMBwYphgEEDnw8SQ5ZDFsOnBZz41ALHmo4thU4dL32BwP63NJ8ZOaoUPJWoHynx6hg8pYKSZT0v1xJSJo+bTznx6qCcVDFfzSYlHYvUBADCLF8cACQAA
+   H4sIAAAAAAAAAO2WUQoAIAhD6/4X61j9S+I2swgS+pH5phHS6K2Nx88qvDyjizw8PaO1em82Np/pp3pehY/WoFzLr4jbfMQbef9VcYpf4YGw//3HOwnd7eh+U2fayVI8VW+v74iR4bMMNdR/AFMzAZ9pCZAACQAA
   </data>
  </layer>
- <layer name="protection" width="24" height="24" opacity="0.43">
+ <layer name="protection" width="24" height="24" visible="0" opacity="0.43">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAADvJyMBwchSP4lE8ikfxKB7Fo3gEYQCdlMwZAAkAAA==
   </data>
