@@ -16,14 +16,15 @@ import java.util.List;
 /**
  * QUEST: CrownForTheWannaBeKing
  * 
- * PARTICIPANTS: - Ivan Abe, the wannabe king who lives in Kalavan - Salva
- * Mattori, priestess living in Wizard City
+ * PARTICIPANTS: - Ivan Abe, the wannabe king who lives in Kalavan
+ *               - Kendra Mattori, priestess living in Wizard City
  * 
  * STEPS: - Ivan Abe wants you to bring him gems and gold for his crown which he
- * believes will help him to become the new king. - Salva Mattori gives the
- * reward after player brought all required items.
+ *          believes will help him to become the new king.
+ *        - Kendra Mattori gives the reward after player brought all required items.
  * 
- * REWARD: - TODO
+ * REWARD: - 10,000 XP
+ *         - Player's ATK XP is increased by 0.1% of his/her XP.
  * 
  * REPETITIONS: - None.
  */
@@ -37,7 +38,7 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 	/**
 	 * Name of the NPC giving the reward.
 	 */
-	private static final String NPC2_NAME = "Salva Mattori";
+	private static final String REWARD_NPC_NAME = "Kendra Mattori";
 
 	/**
 	 * required items for the quest as itemName=count;
@@ -99,15 +100,15 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 		/* player says yes */
 		npc.add(ConversationStates.QUEST_OFFERED,
 				ConversationPhrases.YES_MESSAGES, null,
-				ConversationStates.IDLE, null, new SpeakerNPC.ChatAction() {
+				ConversationStates.QUESTION_1, null, new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, String text,
 							SpeakerNPC engine) {
 						player.setQuest(QUEST_SLOT_NAME, NEEDED_ITEMS);
 						player.addKarma(5.0);
-						engine.say("I want my crown to be beautiful and shiny. Bring me "
+						engine.say("I want my crown to be beautiful and shiny. I need "
 									+ Grammar.enumerateCollection(getMissingItems(player, true))
-									+ ". Go now.");
+									+ ". Do you have some of those now with you?");
 					}
 				});
 
@@ -181,11 +182,12 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 						} else {
 							engine.say("You have served me well, my crown will be the mightiest of them all!"
 											+ " Go to see "
-											+ NPC2_NAME
+											+ REWARD_NPC_NAME
 											+ " in the Wizard City to get your #reward.");
 							player.setQuest(QUEST_SLOT_NAME, "reward");
+							player.addXP(XP_REWARD);
 							player.notifyWorldAboutChanges();
-							engine.setCurrentState(ConversationStates.IDLE);
+							engine.setCurrentState(ConversationStates.ATTENDING);
 						}
 					} else {
 						engine.say("You don't have " + text + " with you!");
@@ -230,6 +232,14 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 				}, ConversationStates.IDLE,
 				"Farewell, come back after you have what I need!", null);
 
+
+		/* player says reward */
+		npc.add(ConversationStates.ATTENDING,
+				"reward", null,
+				ConversationStates.IDLE, "As I said, find priestess " + REWARD_NPC_NAME
+					+ " in a temple at the city of wizards. She will give you your reward. Now go, I'm busy!",
+				null);
+
 		/*
 		 * player returns after finishing the quest or before collecting the
 		 * reward
@@ -254,7 +264,7 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 	 * initialize the rewarding NPC.
 	 */
 	private void step_3() {
-		SpeakerNPC npc = npcs.get(NPC2_NAME);
+		SpeakerNPC npc = npcs.get(REWARD_NPC_NAME);
 
 		npc.add(ConversationStates.ATTENDING, "reward",
 				new SpeakerNPC.ChatCondition() {
@@ -282,10 +292,8 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 	 * Returns a list of the names of all items that the given player still has
 	 * to bring to complete the quest.
 	 * 
-	 * @param player
-	 *            The player doing the quest
-	 * @param hash
-	 *            If true, sets a # character in front of every name
+	 * @param player The player doing the quest
+	 * @param hash If true, sets a # character in front of every name
 	 * @return A list of item names
 	 */
 	private List<String> getMissingItems(Player player, boolean hash) {
@@ -373,7 +381,6 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 		player.addKarma(10.0);
 		player.setATKXP(player.getATKXP()
 				+ (int) (player.getXP() * ATK_REWARD_RATE));
-		player.addXP(XP_REWARD);
 
 		player.incATKXP();
 	}
