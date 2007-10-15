@@ -146,10 +146,6 @@ public class OutfitStore {
 		}
 
 		String ref = "data/sprites/outfit/dress_" + index + ".png";
-		if (!store.existsSprite(ref)) {
-			return null;
-		}
-
 		return store.getSprite(ref);
 	}
 
