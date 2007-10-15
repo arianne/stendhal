@@ -157,9 +157,9 @@ public class HouseBuying extends AbstractQuest {
 					
 				});
 				}
-				// we need to warn people who buy spare keys about the chest being accessible to other players with a key
-				add(ConversationStates.QUESTION_1, ConversationPhrases.YES_MESSAGES, null, ConversationStates.QUESTION_2, "Before we go on, I must warn you that anyone with a key to your house can access the chest in it, and take any items you left there. Of course they can also leave items there themselves. Do you still wish to buy a spare key?", null);
-				// player wants spare keys and is ok with chest being accessible to other person.
+				// we need to warn people who buy spare keys about the house being accessible to other players with a key
+				add(ConversationStates.QUESTION_1, ConversationPhrases.YES_MESSAGES, null, ConversationStates.QUESTION_2, "Before we go on, I must warn you that anyone with a key to your house can enter it, and have access to any creature you left inside, whenever they like. Do you still wish to buy a spare key?", null);
+				// player wants spare keys and is ok with house being accessible to other person.
 				add(ConversationStates.QUESTION_2, ConversationPhrases.YES_MESSAGES, null, ConversationStates.ATTENDING, null, new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, String text,
