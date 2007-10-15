@@ -63,7 +63,7 @@ public class GateKeeperNPC implements ZoneConfigurator {
 			        addJob("I am the gatekeeper for the imperial city of Sedah. I am not supposed to let anyone, but perhaps you can make me an #offer.");
 				addHelp("You can't get into the imperial city of Sedah without a key.");
 				addQuest("The only favour I need is cold hard cash.");
-				addOffer("A little #bribe could persuade me.");
+				addOffer("Only a #bribe could persuade me to hand over the key to that gate.");
 				addReply("bribe", null, new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, String text,
