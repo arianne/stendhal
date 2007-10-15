@@ -8,6 +8,8 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.util.TimeUtil;
+
 
 import java.util.Arrays;
 
@@ -16,7 +18,7 @@ import java.util.Arrays;
  *
  * PARTICIPANTS:
  * <ul>
- * <li>Princess Esclare, the Amazon Princess in a Hut on Amazon Island</li>
+ * <li>Princess Esclara, the Amazon Princess in a Hut on Amazon Island</li>
  * </ul>
  *
  * STEPS:
@@ -29,18 +31,21 @@ import java.util.Arrays;
  *
  * REWARD:
  * <ul>
- * <li>Karma +15</li>
- * <li>Some fish pie, random between 1 and 6.</li>
+ * <li>Karma +25 in all</li>
+ * <li>Some fish pie, random between 2 and 7.</li>
  * </ul>
  *
  * REPETITIONS:
  * <ul>
- * <li>You can repeat it ones an hour.</li>
+ * <li>You can repeat it once an hour.</li>
  * </ul>
  */
 public class AmazonPrincess extends AbstractQuest {
 
 	private static final String QUEST_SLOT = "amazon_princess";
+
+        // The delay between repeating quests is 60 minutes
+        private static final int REQUIRED_MINUTES = 60;
 
 	@Override
 	public void init(String name) {
@@ -59,22 +64,37 @@ public class AmazonPrincess extends AbstractQuest {
 						if (!player.hasQuest(QUEST_SLOT)
 								|| player.getQuest(QUEST_SLOT).equals(
 										"rejected")) {
-							npc
-									.say("I'm looking for a drink, should be an exotic one. Can you bring me one?");
-							npc
-									.setCurrentState(ConversationStates.QUEST_OFFERED);
+							npc.say("I'm looking for a drink, should be an exotic one. Can you bring me one?");
+							npc.setCurrentState(ConversationStates.QUEST_OFFERED);
 						} else if (player.isQuestCompleted(QUEST_SLOT)) { // shouldn't happen
 							npc.say("I'm drunken now thank you!");
-						} else if (player.hasQuest(QUEST_SLOT)
-								&& player.getQuest(QUEST_SLOT).equals(
-										"drink_brought")) {
-							npc
-									.say("The last Pina Colada you brought me was so lovely. Will you bring me another?");
-							npc
-									.setCurrentState(ConversationStates.QUEST_OFFERED);
+						} else if (player.getQuest(QUEST_SLOT).startsWith("drinking;")){
+						    // She is still drunk from her previous pina colada, 
+						    // she doesn't want another yet
+						    String[] tokens = player.getQuest(QUEST_SLOT)
+							.split(";"); //this splits the time from the word drinking
+						    // tokens now is like an array with 'drinking' in tokens[0] and 
+						    // the time is in tokens[1]. so we use just tokens[1]
+						    
+						    long delay = REQUIRED_MINUTES * 60 * 1000; // minutes ->
+										        	// milliseconds
+						    // timeRemaining is ''time when quest was done + delay - time now''
+						    // if this is > 0, she's still drunk!
+						    long timeRemaining = (Long.parseLong(tokens[1]) + delay)
+								- System.currentTimeMillis();
+						    if (timeRemaining > 0L) {
+							npc.say("I'm sure I'll be too drunk to have another for at least "
+								+ TimeUtil.timeUntil((int) (timeRemaining / 1000L))
+									  + "!");
+							return;
+							// note: it is also possible to make the npc 
+							// say an approx time but this sounded wrong with the 'at least'
+						    }
+						    // She has recovered and is ready for another
+						    npc.say("The last Pina Colada you brought me was so lovely. Will you bring me another?");
+						    npc.setCurrentState(ConversationStates.QUEST_OFFERED);
 						} else {
-							npc
-									.say("I like these exotic drinks, i lost the name of this special one.");
+							npc.say("I like these exotic drinks, I forget the name of my favourite one.");
 						}
 					}
 				});
@@ -128,12 +148,14 @@ public class AmazonPrincess extends AbstractQuest {
 								.get().getRuleManager().getEntityManager()
 								.getItem("fish_pie");
 						int pieamount;
-						pieamount = Rand.roll1D6();
+						// make it from 2 to 7 just to avoid dealing with grammear of pie/pies 
+						pieamount = Rand.roll1D6() + 1;
 						fishpies.setQuantity(pieamount);
 						player.equip(fishpies, true);
-						npc
-								.say("Thank you!! Take these " + Integer.toString(pieamount) + " fish pies and this kiss from me.");
-						player.setQuest(QUEST_SLOT, "drink_brought");
+						npc.say("Thank you!! Take these " + Integer.toString(pieamount) + " fish pies from my cook, and this kiss, from me.");
+						// We set the slot to start with 'drinking' 
+						// and to also store the current time, split with a ';'
+						player.setQuest(QUEST_SLOT, "drinking;" + System.currentTimeMillis());
 					}
 				});
 		npc
