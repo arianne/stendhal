@@ -929,6 +929,7 @@ it back as you got it!
 </zone>
 
 <zone name="int_sedah_supplier" file="interiors/sedah/shop.tmx">
+ <configurator class-name="games.stendhal.server.maps.sedah.supplier.SupplierNPC"/>
   <portal x="17" y="28" ref="out">
    <destination zone="-1_fado_great_cave_w" ref="shop_in"/>
   </portal>

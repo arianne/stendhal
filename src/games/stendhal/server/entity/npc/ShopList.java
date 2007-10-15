@@ -222,6 +222,15 @@ public class ShopList {
 		shops.add("buymagic", "magic_plate_shield", 16000);
 		shops.add("buymagic", "magic_plate_armor", 20000);
 
+		// red items (supplier in sedah city)
+		shops.add("buyred", "red_armor", 300);
+		shops.add("buyred", "red_boots", 200);
+		shops.add("buyred", "red_cloak", 250);
+		shops.add("buyred", "red_helmet", 200);
+		shops.add("buyred", "red_legs", 200);
+		shops.add("buyred", "red_shield", 750);
+		
+
 	}
 
 	private static ShopList instance;
