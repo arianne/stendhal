@@ -87,16 +87,16 @@ public class OnePlayerArea extends AreaEntity implements MovementListener {
 
 		for (RPEntity zentity : getZone().getPlayerAndFriends()) {
 			/*
-			 * Only players (ignore friends)
+			 * Ignore same entity
 			 */
-			if (!(zentity instanceof Player)) {
+			if (zentity == entity) {
 				continue;
 			}
 
 			/*
-			 * Ignore same entity
+			 * Only players (ignore friends)
 			 */
-			if (zentity.getID().equals(entity.getID())) {
+			if (!(zentity instanceof Player)) {
 				continue;
 			}
 
