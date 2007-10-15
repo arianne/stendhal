@@ -578,6 +578,10 @@ public class StendhalRPZone extends MarauroaRPZone {
 					case 1:
 						plantGrower = new PassiveEntityRespawnPoint("tomato",800);
 						break;
+                                        case 2:
+					        plantGrower = new PassiveEntityRespawnPoint("pineapple",1200);
+					        break;
+
 					}
 				}
 

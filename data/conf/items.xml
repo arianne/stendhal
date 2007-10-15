@@ -1830,6 +1830,25 @@
     </equipable>
   </item>
 
+ <item name="pineapple">
+    <type class="food" subclass="pineapple" tileid="-1"/>
+    <description>You see a tropical pineapple.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Food"/>
+    <attributes>
+      <amount value="40"/>
+      <frequency value="7"/>
+      <quantity value="1"/>
+      <regen value="3"/>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
+    </equipable>
+  </item>
+
   <item name="carrot">
     <type class="food" subclass="carrot" tileid="-1"/>
     <description>You see a carrot.  It can be an ingredient, or you can eat it.</description>
