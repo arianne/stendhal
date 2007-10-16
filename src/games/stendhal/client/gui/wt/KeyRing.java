@@ -27,10 +27,28 @@ public class KeyRing extends EntityContainer implements FeatureChangeListener {
 		// src/games/stendhal/server/entity/RPEntity.java
 		super(client, "keyring", 2, 4);
 
+		// Disable by default
+		disable();
+
 		/*
 		 * Register feature listener
 		 */
 		client.addFeatureChangeListener(this);
+	}
+
+
+	//
+	// KeyRing
+	//
+
+	/**
+	 * Disable the keyring.
+	 */
+	protected void disable() {
+		if (isMinimizeable()) {
+			setMinimizeable(false);
+			setMinimized(true);
+		}
 	}
 
 
@@ -46,10 +64,7 @@ public class KeyRing extends EntityContainer implements FeatureChangeListener {
 	 */
 	public void featureDisabled(String name) {
 		if (name.equals("keyring")) {
-			if (isMinimizeable()) {
-				setMinimizeable(false);
-				setMinimized(true);
-			}
+			disable();
 		}
 	}
 
