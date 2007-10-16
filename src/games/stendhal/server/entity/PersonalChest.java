@@ -32,9 +32,7 @@ public class PersonalChest extends Chest {
 	 */
 	public static final String DEFAULT_BANK = "bank";
 
-	private Player attending;
-
-	private IRPZone zone;
+	private RPEntity attending;
 
 	private String bankName;
 
@@ -59,6 +57,8 @@ public class PersonalChest extends Chest {
 	/**
 	 * Copies an item
 	 *
+	 * TODO: Move this to Item.copy() to hide impl (and eventually remove
+	 * reflection).
 	 *
 	 * @param item
 	 *            item to copy
@@ -91,81 +91,32 @@ public class PersonalChest extends Chest {
 		return attending.getSlot(bankName);
 	}
 
-	@Override
-	public boolean onUsed(RPEntity user) {
-		Player player = (Player) user;
 
-		zone = player.getZone();
+	/**
+	 * Sync the slot contents.
+	 *
+	 * @return	<code>true</code> if it should be called again.
+	 */
+	protected boolean syncContent() {
+		if (attending != null) {
+			/* Can be replaced when we add Equip event */
+			/* Mirror chest content into player's bank slot */
+			RPSlot bank = getBankSlot();
+			bank.clear();
 
-		if (player.nextTo(this)) {
-			if (isOpen()) {
-				close();
-			} else {
-				TurnListener turnListener = new TurnListener() {
+			for (RPObject item : getSlot("content")) {
+				bank.addPreservingId(item);
+			}
 
-					/**
-					 * This method is called when the turn number is reached.
-					 * NOTE: The <em>message</em> parameter is deprecated.
-					 *
-					 * @param currentTurn
-					 *            The current turn number.
-					 * @param message
-					 *            The string that was used.
-					 */
-					public void onTurnReached(int currentTurn, String message) {
-						if (attending != null) {
-							/* Can be replaced when we add Equip event */
-							/* Mirror chest content into player's bank slot */
-							RPSlot bank = getBankSlot();
-							bank.clear();
+			RPSlot content = getSlot("content");
+			content.clear();
 
-							for (RPObject item : getSlot("content")) {
-								bank.addPreservingId(item);
-							}
-
-							RPSlot content = getSlot("content");
-							content.clear();
-
-							// if the player is next to the chest (and still
-							// logged in)
-							if (nextTo(attending)
-									&& zone.has(attending.getID())) {
-								// A hack to allow client update correctly the
-								// chest...
-								// by clearing the chest and copying the items
-								// back to it
-								// from the player's bank slot
-								for (RPObject item : getBankSlot()) {
-									try {
-										content
-												.addPreservingId(cloneItem(item));
-									} catch (Exception e) {
-										logger.error("Cannot clone item "
-												+ item, e);
-									}
-								}
-
-							} else {
-
-								// If player is not next to depot, clean it.
-								content.clear();
-								close();
-								PersonalChest.this.notifyWorldAboutChanges();
-
-								attending = null;
-							}
-
-							TurnNotifier.get().notifyInTurns(0, this);
-						}
-					}
-				};
-
-				TurnNotifier.get().notifyInTurns(0, turnListener);
-				attending = player;
-
-				RPSlot content = getSlot("content");
-				content.clear();
-
+			// Verify the user is next to the chest
+			if ((getZone() == attending.getZone()) && nextTo(attending)) {
+				// A hack to allow client update correctly the
+				// chest...
+				// by clearing the chest and copying the items
+				// back to it from the player's bank slot
 				for (RPObject item : getBankSlot()) {
 					try {
 						content.addPreservingId(cloneItem(item));
@@ -174,11 +125,100 @@ public class PersonalChest extends Chest {
 					}
 				}
 
-				open();
+				return true;
+			} else {
+				// If player is not next to depot, clean it.
+				close();
+				notifyWorldAboutChanges();
 			}
+		}
+
+		return false;
+	}
+
+
+	/**
+	 * Open the chest for an attending user.
+	 *
+	 * @param	user
+	 *	The attending user.
+	 */
+	public void open(RPEntity user) {
+		attending = user;
+
+		TurnNotifier.get().notifyInTurns(0, new SyncContent());
+
+		RPSlot content = getSlot("content");
+		content.clear();
+
+		for (RPObject item : getBankSlot()) {
+			try {
+				content.addPreservingId(cloneItem(item));
+			} catch (Exception e) {
+				logger.error("Cannot clone item " + item, e);
+			}
+		}
+
+		super.open();
+	}
+
+
+	/**
+	 * Close the chest.
+	 */
+	@Override
+	public void close() {
+		super.close();
+
+		attending = null;
+	}
+
+
+	/**
+	 * Don't let this be called directly for personal chests.
+	 */
+	@Override
+	public void open() {
+		throw new RuntimeException("User context required to open");
+	}
+
+
+	@Override
+	public boolean onUsed(RPEntity user) {
+		if (user.nextTo(this)) {
+			if (isOpen()) {
+				close();
+			} else {
+				open(user);
+			}
+
 			notifyWorldAboutChanges();
 			return true;
 		}
+
 		return false;
+	}
+
+	//
+	//
+
+	/**
+	 * A listener for syncing the slot contents.
+	 */
+	protected class SyncContent implements TurnListener {
+		/**
+		 * This method is called when the turn number is reached.
+		 * NOTE: The <em>message</em> parameter is deprecated.
+		 *
+		 * @param currentTurn
+		 *            The current turn number.
+		 * @param message
+		 *            The string that was used.
+		 */
+		public void onTurnReached(int currentTurn, String message) {
+			if (syncContent()) {
+				TurnNotifier.get().notifyInTurns(0, this);
+			}
+		}
 	}
 }
