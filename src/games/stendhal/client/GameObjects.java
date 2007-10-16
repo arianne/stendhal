@@ -104,6 +104,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 
 			while (it.hasNext()) {
 				Entity entity = it.next();
+				logger.error("Residual entity: " + entity);
 				entity.release();
 			}
 
