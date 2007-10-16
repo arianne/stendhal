@@ -65,7 +65,7 @@ public class MaidNPC implements ZoneConfigurator {
 				offers.put("beer", 10);
 				offers.put("wine", 15);
 				offers.put("cherry", 20);
-				offers.put("cheese", 20);
+				offers.put("chicken", 50);
 				offers.put("bread", 50);
 				offers.put("sandwich", 150);
 	 
