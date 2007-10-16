@@ -99,27 +99,35 @@
        </portal>
        <portal x="117" y="95" ref="quicksand_1">
          <destination zone="-1_athor_island" ref="quicksand_out"/>
+         <attribute name="hidden"/>
        </portal>
        <portal x="117" y="96" ref="quicksand_2">
          <destination zone="-1_athor_island" ref="quicksand_out"/>
+         <attribute name="hidden"/>
        </portal>
        <portal x="117" y="97" ref="quicksand_3">
          <destination zone="-1_athor_island" ref="quicksand_out"/>
+         <attribute name="hidden"/>
        </portal>
        <portal x="118" y="95" ref="quicksand_4">
          <destination zone="-1_athor_island" ref="quicksand_out"/>
+        <attribute name="hidden"/>
        </portal>
        <portal x="118" y="97" ref="quicksand_5">
          <destination zone="-1_athor_island" ref="quicksand_out"/>
+         <attribute name="hidden"/>
        </portal>
        <portal x="119" y="95" ref="quicksand_6">
          <destination zone="-1_athor_island" ref="quicksand_out"/>
+         <attribute name="hidden"/>
        </portal>
        <portal x="119" y="96" ref="quicksand_7">
          <destination zone="-1_athor_island" ref="quicksand_out"/>
+	 <attribute name="hidden"/>
        </portal>
        <portal x="119" y="97" ref="quicksand_8">
          <destination zone="-1_athor_island" ref="quicksand_out"/>
+         <attribute name="hidden"/>
        </portal>
        <portal x="60" y="66" ref="pool">
          <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>

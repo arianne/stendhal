@@ -1560,43 +1560,53 @@ Mature sheep wanted: please speak to Sato
 
  <zone name="-2_semos_catacombs" level="-2" x="500000" y="499872" file="Level -2/semos/catacombs.tmx">
   <portal x="9" y="6" ref="dragon_portal_1">
+   <attribute name="hidden"/>
    <destination zone="-2_semos_catacombs" ref="dragon_portal_2"/>
   </portal>
 
   <portal x="86" y="12" ref="dragon_portal_2">
+   <attribute name="hidden"/>
    <destination zone="-2_semos_catacombs" ref="dragon_portal_1"/>
   </portal>
 
   <portal x="84" y="8" ref="one_way_1a">
    <destination zone="-2_semos_catacombs" ref="one_way_1b"/>
+   <attribute name="hidden"/>
   </portal>
 
   <portal x="84" y="9" ref="one_way_2a">
    <destination zone="-2_semos_catacombs" ref="one_way_2b"/>
+   <attribute name="hidden"/>
   </portal>
 
   <portal x="84" y="10" ref="one_way_3a">
    <destination zone="-2_semos_catacombs" ref="one_way_3b"/>
+   <attribute name="hidden"/>
   </portal>
 
   <portal x="84" y="11" ref="one_way_4a">
    <destination zone="-2_semos_catacombs" ref="one_way_4b"/>
+   <attribute name="hidden"/>
   </portal>
 
   <portal x="84" y="12" ref="one_way_5a">
    <destination zone="-2_semos_catacombs" ref="one_way_5b"/>
+   <attribute name="hidden"/>
   </portal>
 
   <portal x="84" y="13" ref="one_way_6a">
    <destination zone="-2_semos_catacombs" ref="one_way_6b"/>
+   <attribute name="hidden"/>
   </portal>
 
   <portal x="84" y="14" ref="one_way_7a">
    <destination zone="-2_semos_catacombs" ref="one_way_7b"/>
+   <attribute name="hidden"/>
   </portal>
 
   <portal x="84" y="15" ref="one_way_8a">
    <destination zone="-2_semos_catacombs" ref="one_way_7b"/>
+   <attribute name="hidden"/>
   </portal>
 
   <portal x="83" y="8" ref="one_way_1b">
