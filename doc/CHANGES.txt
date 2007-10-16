@@ -7,13 +7,16 @@ Changelog
  - dreamscape, take rainbow beans to get there for a short time until you come down
  - fado great caves
  - magic underground city (with wizard school, theater, etc)
+ - imperial underground city (sedah)
  - kalavan castle
  - kalavan city 
  - fado forest extensions
+ - amazon island and tunnels
 - New Creatures:
  - trolls
  - madaram
  - imperials
+ - amazonesses
  - albino elves
  - wizards from different races
  - foxes and chickens
@@ -22,8 +25,10 @@ Changelog
 - Quests:
  - Elf Princess Flower quest improved
  - an albino elf wants to learn secrets of Nalwor elves
- - Princess of Kalavan wants to ease pain of captives in basement
+ - Imperial Princess of Kalavan wants to ease pain of captives in basement
+ - A wannabe King wants to overthrow King Cozart and needs a crown
  - Divorce is possible
+ - the Amazon Princess wants a cocktail
 - New NPCs (non-quest):
  - veteran warrior gives information about any creatures you ask (for a small
  fee)
@@ -32,6 +37,8 @@ Changelog
  - healer in magic city
  - teacher in magic city
  - greeter in magic city
+ - gatekeeper of sedah city
+ - shop in sedah city
 - New/improved Features:
  - players can buy houses
  - players can buy then care for cats
@@ -47,7 +54,7 @@ Changelog
  - mainio items from hybrids
  - xeno items from xenocium
  - jewelled legs, liberty helmet
- - chicken, fairy cakes, eggs
+ - chicken, fairy cakes, eggs, pineapples, coconuts, pina colada
 - Other:
  - Semos bank more secure (one player areas near chests)
  - Magic bank where you can access all chests for fee and limited time
