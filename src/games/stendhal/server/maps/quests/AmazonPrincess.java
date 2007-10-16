@@ -91,7 +91,7 @@ public class AmazonPrincess extends AbstractQuest {
 							// say an approx time but this sounded wrong with the 'at least'
 						    }
 						    // She has recovered and is ready for another
-						    npc.say("The last Pina Colada you brought me was so lovely. Will you bring me another?");
+						    npc.say("The last cocktail you brought me was so lovely. Will you bring me another?");
 						    npc.setCurrentState(ConversationStates.QUEST_OFFERED);
 						} else {
 							npc.say("I like these exotic drinks, I forget the name of my favourite one.");
@@ -124,7 +124,8 @@ public class AmazonPrincess extends AbstractQuest {
 				});
 	}
 
-
+    /*  Get Drink Step : src/games/stendhal/server/maps/athor/cocktail_bar/BarmanNPC.java 
+     *  he serves drinks to all, not just those with the quest */
 	private void bringCocktailStep() {
 		SpeakerNPC npc = npcs.get("Princess Esclara");
 		npc.add(ConversationStates.ATTENDING,
@@ -161,7 +162,7 @@ public class AmazonPrincess extends AbstractQuest {
 		npc
 				.add(
 						ConversationStates.ATTENDING,
-						Arrays.asList("drink", "pina_colada", "cocktail", "cheers"),
+						Arrays.asList("drink", "pina_colada", "cocktail", "cheers", "pina"),
 						new SpeakerNPC.ChatCondition() {
 							@Override
 							public boolean fire(Player player, String text,
@@ -170,7 +171,7 @@ public class AmazonPrincess extends AbstractQuest {
 							}
 						},
 						ConversationStates.ATTENDING,
-						"Don't lie to me. Go and you better get one!",
+						"You don't have any drink I like yet. Go, and you better get an exotic one!",
 						null);
 
 	}
