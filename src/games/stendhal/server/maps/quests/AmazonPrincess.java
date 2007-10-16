@@ -167,11 +167,26 @@ public class AmazonPrincess extends AbstractQuest {
 							@Override
 							public boolean fire(Player player, String text,
 									SpeakerNPC npc) {
-								return !player.isEquipped("pina_colada");
+								return(!player.isEquipped("pina_colada") && player.hasQuest(QUEST_SLOT)&& player.getQuest(QUEST_SLOT).equals("start"));
 							}
 						},
 						ConversationStates.ATTENDING,
 						"You don't have any drink I like yet. Go, and you better get an exotic one!",
+						null);
+
+	npc
+				.add(
+						ConversationStates.ATTENDING,
+						Arrays.asList("drink", "pina_colada", "cocktail", "cheers", "pina"),
+						new SpeakerNPC.ChatCondition() {
+							@Override
+							public boolean fire(Player player, String text,
+									SpeakerNPC npc) {
+								return!(player.hasQuest(QUEST_SLOT)&&player.getQuest(QUEST_SLOT).equals("start"));
+							}
+						},
+						ConversationStates.ATTENDING,
+						"Sometime you could do me a #favour ... ",
 						null);
 
 	}
