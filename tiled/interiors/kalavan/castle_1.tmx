@@ -75,7 +75,7 @@
  </layer>
  <layer name="objects" width="64" height="64">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3UOwqAMAwAUHt/8K/gbR1dIihWtPreUlraJkOSqgIAAAAAAMinTk9nwBPmFK/wZUs6t4dSTZlquQv+6fUJBRl+UK9Rn94p13yBtytpfpSUK3DNGPR7G5xF9/ZE75uDcQAAAACAzQrtA3yaAEAAAA==
+   H4sIAAAAAAAAAO3UOwqAMBAFwOT+hX/B21rarKAkgtGZJiTkV+zblAAAAAAAAKDMmuMRvmzL9+bQqqVSLQ/BPaOc0JDpB/Ua5fRJtfoLvF1L/aOlvwJl5iDvfbAW7TsTne8uvgMAAAAAHHYT+54lAEAAAA==
   </data>
  </layer>
  <layer name="collision" width="64" height="64" opacity="0.33">
