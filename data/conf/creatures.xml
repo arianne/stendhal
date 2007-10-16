@@ -2817,7 +2817,7 @@
       <atk value="95"/>
       <def value="19"/>
       <hp value="150"/>
-      <speed value="1.0"/>
+      <speed value="0.6"/>
       <size value="1,1"/>
     </attributes>
     <level value="25"/>
@@ -3705,7 +3705,7 @@
       <atk value="136"/>
       <def value="22"/>
       <hp value="241"/>
-      <speed value="1.0"/>
+      <speed value="0.4"/>
       <size value="1,1"/>
     </attributes>
     <level value="38"/>
@@ -4215,32 +4215,28 @@
       <atk value="136"/>
       <def value="22"/>
       <hp value="241"/>
-      <speed value="1.0"/>
+      <speed value="0.7"/>
       <size value="1,1"/>
     </attributes>
     <level value="43"/>
-    <experience value="920"/>
+    <experience value="1120"/>
     <respawn value="1180"/>
     <drops>
-      <item value="money" quantity="[10,35]" probability="100.0"/>
-      <item value="golden_chainmail" quantity="[1,1]" probability="10.0"/>
-      <item value="pauldroned_iron_cuirass" quantity="[1,1]" probability="2.5"/>
+      <item value="money" quantity="[10,45]" probability="100.0"/>
+      <item value="meat" quantity="[2,6]" probability="22.5"/>
       <item value="greater_poison" quantity="[1,1]" probability="7.0"/>
-      <item value="biting_sword" quantity="[1,1]" probability="0.5"/>
+      <item value="biting_sword" quantity="[1,1]" probability="2.5"/>
     </drops>
     <equips>
     </equips>
     <ai>
       <says>
-        <noise value="You're messing with the rats?!"/>
-        <noise value="Your death has come!"/>
-        <noise value="Feel my wrath!"/>
+        <noise value="Baaaaack away!"/>
       </says>
       <profile name="poisonous" params="40,greater_poison"/>
       <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="human"/>
-      <profile name="heal" params="5,50"/>
       <profile name="patrolling"/>
     </ai>
   </creature>
