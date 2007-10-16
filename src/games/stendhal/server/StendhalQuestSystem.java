@@ -48,6 +48,7 @@ public class StendhalQuestSystem {
 
 		questInfos = QuestsXMLLoader.get();
 		loadQuest("AdosDeathmatch");
+		loadQuest("AmazonPrincess");
 		loadQuest("ArmorForDagobert");
 		loadQuest("BeerForHayunn");
 		loadQuest("Blackjack");
@@ -111,8 +112,6 @@ public class StendhalQuestSystem {
 		loadQuest("WeaponsCollector2");
 		loadQuest("WizardBank");
 		loadQuest("ZooFood");
-		loadQuest("AmazonPrincess");
-
 	}
 
 	private boolean loadQuest(String name) {
