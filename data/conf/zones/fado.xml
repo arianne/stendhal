@@ -918,7 +918,7 @@ it back as you got it!
 
 <zone name="-1_fado_great_cave_w" level="-1" x="499744" y="500640" file="Level -1/fado/great_cave_w.tmx">
   <portal x="52" y="96" ref="shop_in">
-   <destination zone="int_sedah_supplier" ref="out"/>
+   <destination zone="int_sedah_storage" ref="out"/>
   </portal>
   <portal x="37" y="116" ref="house5_in">
    <destination zone="int_sedah_house5" ref="out"/>
@@ -928,8 +928,8 @@ it back as you got it!
   </portal>
 </zone>
 
-<zone name="int_sedah_supplier" file="interiors/sedah/shop.tmx">
- <configurator class-name="games.stendhal.server.maps.sedah.supplier.SupplierNPC"/>
+<zone name="int_sedah_storage" file="interiors/sedah/shop.tmx">
+ <configurator class-name="games.stendhal.server.maps.sedah.storage.StorageNPC"/>
   <portal x="17" y="28" ref="out">
    <destination zone="-1_fado_great_cave_w" ref="shop_in"/>
   </portal>

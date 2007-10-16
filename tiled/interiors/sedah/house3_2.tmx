@@ -105,6 +105,9 @@
  <tileset name="spear" firstgid="243" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/weapon/spear.png"/>
  </tileset>
+ <tileset name="imperials" firstgid="245" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/creature/human_imperial.png"/>
+ </tileset>
  <layer name="0_floor" width="30" height="30">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3DAQ0AAAzDoAqf+As5JKyaqqqq7x6ei383EA4AAA==
@@ -132,7 +135,7 @@
  </layer>
  <layer name="objects" width="30" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3OMQ0AAAgDsHnFvwck7CHhaRU0AQAAuDffAaoFmCUN+hAOAAA=
+   H4sIAAAAAAAAAO3RsQ0AIAwDwezK/gNQRMoCCOjc3NUuXnIV3HU6AADgYacDOFqfO//lDAD3jjkQDgAA
   </data>
  </layer>
  <layer name="collision" width="30" height="30" opacity="0.44">

@@ -81,6 +81,9 @@
  <tileset name="stairs" firstgid="208" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/stairs.png"/>
  </tileset>
+ <tileset name="imperials" firstgid="212" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/creature/human_imperial.png"/>
+ </tileset>
  <layer name="0_floor" width="30" height="30">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3DAQ0AAAzDoAqf+As5JKyaqqqq7x6ei383EA4AAA==
@@ -108,7 +111,7 @@
  </layer>
  <layer name="objects" width="30" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3WQREAAAjDsHnFvwdkcECioM8mfFLTAQAAcNi2324sApe7EA4AAA==
+   H4sIAAAAAAAAAGNgGAUjCSSj8W8OiCuGBhgNm1EwCoYXGM3To2AUDC0wmmdHwVAF6O3twQ4A0vIf/hAOAAA=
   </data>
  </layer>
  <layer name="collision" width="30" height="30" opacity="0.44">

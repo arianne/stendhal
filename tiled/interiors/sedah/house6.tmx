@@ -63,6 +63,9 @@
  <tileset name="flames" firstgid="145" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/light/flames.png"/>
  </tileset>
+ <tileset name="imperials" firstgid="147" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/creature/human_imperial.png"/>
+ </tileset>
  <layer name="0_floor" width="15" height="15">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAPNnYGDwH8WjeBQPGAYAzvTMqoQDAAA=
@@ -90,7 +93,7 @@
  </layer>
  <layer name="objects" width="15" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjYBTgA8k0Nh8AlW8hl4QDAAA=
+   H4sIAAAAAAAAAGNgGNlgKonigwlMGWgHjBCQTGPzAW0ZSnqEAwAA
   </data>
  </layer>
  <layer name="collision" width="15" height="15" opacity="0.44">
