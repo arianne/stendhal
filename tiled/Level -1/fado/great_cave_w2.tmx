@@ -121,7 +121,7 @@
   <image source="../../tileset/building/decoration/fancy_gate.png"/>
  </tileset>
  <tileset name="sword statue" firstgid="774" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/decoration/sword_statue.png"/>
+  <image source="../../tileset/item/statue/swordsman.png"/>
  </tileset>
  <tileset name="green paving" firstgid="794" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/green_paving.png"/>

@@ -118,7 +118,7 @@
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
  <tileset name="sword statue" firstgid="761" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/decoration/sword_statue.png"/>
+  <image source="../../tileset/item/statue/swordsman.png"/>
  </tileset>
  <layer name="0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">
