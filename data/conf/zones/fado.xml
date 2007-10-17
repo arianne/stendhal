@@ -849,6 +849,9 @@ black halberd     12000
   <portal x="12" y="108" ref="house4_entrance">
    <destination zone="int_sedah_house4_0" ref="entrance"/>
   </portal>
+  <portal x="120" y="67" ref="gatekeeper_entrance">
+   <destiantion zone="int_gatekeeper" ref="gatekeeper_in"/>
+  </portal>
 </zone>
 
 <zone name="int_sedah_house0" file="interiors/sedah/house0.tmx">
@@ -900,6 +903,12 @@ black halberd     12000
   </portal>
   <portal x="4" y="4" ref="up">
    <destination zone="int_sedah_barracks_1" ref="down"/>
+  </portal>
+</zone>
+
+<zone name="int_gatekeeper" file="interiors/sedah/gatekeeper.tmx">
+  <portal x="15" y="23" ref="gatekeeper_in">
+   <destination zone="-1_fado_great_cave_w2" ref="gatekeeper_entrance"/>
   </portal>
 </zone>
 
