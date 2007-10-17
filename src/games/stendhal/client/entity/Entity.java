@@ -913,4 +913,29 @@ public class Entity implements RPObjectChangeListener {
 	 */
 	public void onSlotRemoved(final RPObject object, final String slotName, final RPObject sobject) {
 	}
+
+	//
+	// Object
+	//
+
+	public String toString() {
+		StringBuffer sbuf = new StringBuffer();
+
+		sbuf.append(getClass().getName());
+
+		/*
+		 * Technically not all entities have 'name', but enough to
+		 * debug most when used
+		 */
+		if ((rpObject != null) && rpObject.has("name")) {
+			sbuf.append('[');
+			sbuf.append(rpObject.get("name"));
+			sbuf.append(']');
+		}
+
+		sbuf.append('@');
+		sbuf.append(System.identityHashCode(this));
+
+		return sbuf.toString();
+	}
 }
