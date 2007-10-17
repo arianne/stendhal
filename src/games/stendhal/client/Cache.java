@@ -1,6 +1,7 @@
 package games.stendhal.client;
 
 import games.stendhal.client.sprite.SpriteStore;
+import games.stendhal.client.update.ClientGameConfiguration;
 import games.stendhal.common.Debug;
 
 import java.io.File;
@@ -32,12 +33,10 @@ import marauroa.common.net.message.TransferContent;
  * </p>
  */
 public class Cache {
-
 	private static Logger logger = Log4J.getLogger(Cache.class);
-
 	private Configuration cacheManager;
-
 	private Properties prefilledCacheManager;
+	private static final String VERSION_KEY = "_VERSION";
 
 	/**
 	 * inits the cache
@@ -74,19 +73,60 @@ public class Cache {
 					logger.error("Can't create " + file.getAbsolutePath()
 							+ " folder");
 				}
-
-				String cacheFile = System.getProperty("user.home")
-						+ stendhal.STENDHAL_FOLDER + "cache/stendhal.cache";
-				new File(cacheFile).createNewFile();
 			}
-			Configuration.setConfigurationFile(true, stendhal.STENDHAL_FOLDER,
-					"cache/stendhal.cache");
-			cacheManager = Configuration.getConfiguration();
+			initCacheManager();
+			cleanCacheOnUpdate();
+			cacheManager.set(VERSION_KEY, stendhal.VERSION);
+			
 		} catch (Exception e) {
 			logger.error("cannot create StendhalClient", e);
 		}
 	}
 
+	/**
+	 * empty cache on update because stendhal is know to crash if incompatible
+	 * stuff is in cache.
+	 *
+	 * @throws IOException in case the cache folder is not writeable
+	 */
+	private void cleanCacheOnUpdate() throws IOException {
+		if (!cacheManager.has(VERSION_KEY) || !cacheManager.get(VERSION_KEY).equals(stendhal.VERSION)) {
+			cleanCache();
+			cacheManager.clear();
+			initCacheManager();
+		}
+	}
+	
+	/**
+	 * initializes the low level cache manager
+	 *
+	 * @throws IOException in case the cache folder is not readable
+	 */
+	private void initCacheManager() throws IOException {
+		String cacheFile = System.getProperty("user.home") + stendhal.STENDHAL_FOLDER + "cache/stendhal.cache";
+		new File(cacheFile).createNewFile();
+		Configuration.setConfigurationFile(true, stendhal.STENDHAL_FOLDER, "cache/stendhal.cache");
+		cacheManager = Configuration.getConfiguration();
+	}
+
+	/**
+	 * Deletes the cache
+	 */
+	private void cleanCache() {
+		String homeDir = System.getProperty("user.home");
+		String gameName = ClientGameConfiguration.get("GAME_NAME");
+		String gameFolder = "/" + gameName.toLowerCase() + "/";
+		String cache = "cache"; 
+		File cacheDir = new File(homeDir + gameFolder + cache);
+		if (cacheDir.isDirectory()) {
+			File files[] = cacheDir.listFiles();
+			for (File file : files) {
+				file.delete();
+			}
+		}
+	}
+
+	
 	private InputStream getItemFromPrefilledCache(TransferContent item) {
 		String name = "cache/" + item.name;
 
