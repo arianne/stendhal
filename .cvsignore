@@ -1,6 +1,5 @@
 .settings
 bin
-.classpath
 .project
 .externalToolBuilders
 build_client

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="lib/log4j.jar"/>
+	<classpathentry kind="lib" path="lib/groovy-all-1.0-jsr-05.jar"/>
+	<classpathentry kind="lib" path="lib/mysql-connector-java-3.1.12-bin.jar"/>
+	<classpathentry kind="lib" path="libs/pircbot.jar"/>
+	<classpathentry kind="lib" path="libs/simple.jar"/>
+	<classpathentry kind="lib" path="libs/tiled.jar"/>
+	<classpathentry kind="lib" path="libs/jardiff.jar"/>
+	<classpathentry kind="lib" path="libs/junit-4.1.jar"/>
+	<classpathentry kind="lib" path="libs/ant.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/marauroa"/>
+	<classpathentry kind="output" path="classes"/>
+</classpath>
