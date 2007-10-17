@@ -155,7 +155,8 @@ public class Cache {
 	private InputStream getItemFromCache(TransferContent item) {
 
 		// check cache
-		if (cacheManager.has(item.name)
+		// TODO: deactivated because the cache causes a black screen. Remove the "false &&" after that bug is fixed
+		if (false && cacheManager.has(item.name)
 				&& (Integer.parseInt(cacheManager.get(item.name)) == item.timestamp)) {
 			logger.debug("Content " + item.name
 					+ " is on cache. We save transfer");
