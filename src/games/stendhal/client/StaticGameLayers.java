@@ -118,7 +118,7 @@ public class StaticGameLayers {
 			return;
 		}
 
-		String area = name.substring(0, i);
+		area = name.substring(0, i);
 		String layer = name.substring(i + 1);
 
 		/**
