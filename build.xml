@@ -398,6 +398,7 @@
 			<fileset dir="doc"/>
 		</copy>
 		<copy todir="${buildroot}/stendhal-${version}" file="README.txt"/>
+		<copy todir="${buildroot}/stendhal-${version}" file=".hotspotrc"/>
 		<zip destfile="${buildroot}/stendhal-FULL-${version}.zip"
          	basedir="${buildroot}/stendhal-${version}"/>
 		<delete dir="${buildroot}/stendhal-${version}"/>
@@ -415,6 +416,7 @@
 			<fileset dir="doc"/>
 		</copy>
 		<copy todir="${buildroot}/stendhal-${version}" file="README.txt"/>
+		<copy todir="${buildroot}/stendhal-${version}" file=".hotspotrc"/>
 		<zip destfile="${buildroot}/stendhal-${version}.zip"
 			basedir="${buildroot}/stendhal-${version}"/>
 		<delete dir="${buildroot}/stendhal-${version}"/>
@@ -427,6 +429,7 @@
 			<fileset dir="doc"/>
 		</copy>
 		<copy todir="${buildroot}/stendhal-${version}" file="README.txt"/>
+		<copy todir="${buildroot}/stendhal-${version}" file=".hotspotrc"/>
 		<zip destfile="${buildroot}/stendhal-starter-${version}.zip"
 			basedir="${buildroot}/stendhal-${version}"/>
 		<delete dir="${buildroot}/stendhal-${version}"/>
