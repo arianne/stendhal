@@ -33,7 +33,7 @@ So what are you waiting for?! A whole new world awaits...
 Current Version
 ---------------
 
-Version 0.70
+Version 0.63
 
 
 How to play
@@ -46,7 +46,7 @@ Please download Stendhal from http://arianne.sourceforge.net
 
 Then just do:
 
-  java -jar stendhal-0.61.jar
+  java -jar stendhal-0.63.jar
 
 Alternatively you can run it using Java Webstart technology at:
 
