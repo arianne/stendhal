@@ -9,11 +9,14 @@ package games.stendhal.server.entity.area;
 //
 //
 
+import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.ActiveEntity;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.events.LoginListener;
+import games.stendhal.server.events.LoginNotifier;
 import games.stendhal.server.events.MovementListener;
 
 import java.awt.geom.Rectangle2D;
@@ -21,14 +24,15 @@ import java.awt.geom.Rectangle2D;
 /**
  * An area that only allows one play at a time to enter. This currently does not
  * account for being "placed" into the zone.
- * 
- * 
+ *
+ *
  * XXX Changed to full zone scan to assure this is secure. XXX Will improve
  * later once all ways to enter a zone are accounted for. XXX Commented out code
  * is that used for fast (but unreliable) check.
- * 
+ *
  */
-public class OnePlayerArea extends AreaEntity implements MovementListener {
+public class OnePlayerArea extends AreaEntity implements LoginListener,
+		MovementListener {
 	// /**
 	// * The entity ID currently in the area (if any).
 	// */
@@ -36,7 +40,7 @@ public class OnePlayerArea extends AreaEntity implements MovementListener {
 
 	/**
 	 * Create a one player area.
-	 * 
+	 *
 	 * @param width
 	 *            The area width.
 	 * @param height
@@ -46,7 +50,7 @@ public class OnePlayerArea extends AreaEntity implements MovementListener {
 		super(width, height);
 
 		put("server-only", "");
-
+		LoginNotifier.get().addListener(this);
 		// occupant = null;
 	}
 
@@ -124,10 +128,10 @@ public class OnePlayerArea extends AreaEntity implements MovementListener {
 
 	/**
 	 * Checks whether players, NPC's, etc. can walk over this entity.
-	 * 
+	 *
 	 * @param entity
 	 *            The entity trying to enter.
-	 * 
+	 *
 	 * @return <code>true</code> if an RPEntity is given and it is occupied by
 	 *         someone else.
 	 */
@@ -199,7 +203,7 @@ public class OnePlayerArea extends AreaEntity implements MovementListener {
 
 	/**
 	 * Invoked when an entity enters the object area.
-	 * 
+	 *
 	 * @param entity
 	 *            The entity that moved.
 	 * @param zone
@@ -238,7 +242,7 @@ public class OnePlayerArea extends AreaEntity implements MovementListener {
 
 	/**
 	 * Invoked when an entity leaves the object area.
-	 * 
+	 *
 	 * @param entity
 	 *            The entity that entered.
 	 * @param zone
@@ -247,7 +251,7 @@ public class OnePlayerArea extends AreaEntity implements MovementListener {
 	 *            The old X coordinate.
 	 * @param oldY
 	 *            The old Y coordinate.
-	 * 
+	 *
 	 */
 	public void onExited(ActiveEntity entity, StendhalRPZone zone, int oldX,
 			int oldY) {
@@ -260,7 +264,7 @@ public class OnePlayerArea extends AreaEntity implements MovementListener {
 
 	/**
 	 * Invoked when an entity moves while over the object area.
-	 * 
+	 *
 	 * @param entity
 	 *            The entity that left.
 	 * @param zone
@@ -276,5 +280,12 @@ public class OnePlayerArea extends AreaEntity implements MovementListener {
 	 */
 	public void onMoved(ActiveEntity entity, StendhalRPZone zone, int oldX,
 			int oldY, int newX, int newY) {
+	}
+
+	public void onLoggedIn(Player player) {
+		if (isObstacle(player) && this.getArea().contains(player.getX(), player.getY())) {
+			player.teleport(StendhalRPWorld.get().getZone("0_semos_city"), 30,
+					40, null, null);
+		}
 	}
 }
