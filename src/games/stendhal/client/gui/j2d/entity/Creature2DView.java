@@ -271,19 +271,19 @@ public class Creature2DView extends RPEntity2DView {
 
 		if (Debug.CREATURES_DEBUG_CLIENT && !hidePath) {
 			List<Node>	path;
-
-			if ((path = getTargetMovedPath()) != null) {
+			path = getTargetMovedPath();
+			if (path != null) {
 				int delta = GameScreen.SIZE_UNIT_PIXELS / 2;
 				g2d.setColor(Color.red);
 				drawPath(g2d, path, GameScreen.SIZE_UNIT_PIXELS / 2);
 			}
-
-			if ((path = getPatrolPath()) != null) {
+			path = getPatrolPath();
+			if (path != null) {
 				g2d.setColor(Color.green);
 				drawPath(g2d, path, GameScreen.SIZE_UNIT_PIXELS / 2 + 1);
 			}
-
-			if ((path = getMoveToTargetPath()) != null) {
+			path = getMoveToTargetPath();
+			if (path != null) {
 				g2d.setColor(Color.blue);
 				drawPath(g2d, path, GameScreen.SIZE_UNIT_PIXELS / 2 + 2);
 			}

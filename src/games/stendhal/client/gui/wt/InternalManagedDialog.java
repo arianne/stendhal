@@ -165,14 +165,14 @@ public class InternalManagedDialog implements ManagedWindow {
 		titleLabel = new JLabel(title, SwingConstants.LEFT);
 		titleLabel.setOpaque(false);
 		titleLabel.setBorder(BorderFactory.createEmptyBorder());
-
-		if ((font = style.getFont()) != null) {
+		font = style.getFont();
+		if (font != null) {
 			font = titleLabel.getFont();
 		}
 
 		titleLabel.setFont(font.deriveFont(Font.BOLD));
-
-		if ((color = style.getForeground()) != null) {
+		color = style.getForeground();
+		if (color != null) {
 			titleLabel.setForeground(color);
 		}
 

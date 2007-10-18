@@ -47,8 +47,8 @@ public abstract class WtPopupMenu extends StyledJPopupMenu {
 	 */
 	protected void redirectEvent(MenuKeyEvent ev) {
 		Component invoker;
-
-		if ((invoker = getInvoker()) != null) {
+		invoker = getInvoker();
+		if (invoker != null) {
 			KeyEvent nev;
 			KeyListener[] listeners;
 
