@@ -132,6 +132,19 @@ public abstract class Pet extends DomesticAnimal {
 	 */
 	@Override
 	public void onDead(String killername) {
+		cleanUpPet();
+
+		super.onDead(killername);
+	}
+
+	@Override
+	public void onDead(Entity killer) {
+		cleanUpPet();
+
+		super.onDead(killer);
+	}
+
+	private void cleanUpPet() {
 		if (owner != null) {
 			if (owner.hasPet()) {
 				owner.removePet(this);
@@ -139,11 +152,8 @@ public abstract class Pet extends DomesticAnimal {
 				logger.warn("INCOHERENCE: Pet " + this + " isn't owned by "
 						+ owner);
 			}
-		} else {
-			StendhalRPRuleProcessor.get().removeNPC(this);
 		}
-
-		super.onDead(killername);
+		StendhalRPRuleProcessor.get().removeNPC(this);
 	}
 
 	/**

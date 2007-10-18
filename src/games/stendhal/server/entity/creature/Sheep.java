@@ -143,6 +143,18 @@ public class Sheep extends DomesticAnimal {
 	 */
 	@Override
 	public void onDead(String killername) {
+		cleanUpSheep();
+
+		super.onDead(killername);
+	}
+	@Override
+	public void onDead(Entity killer) {
+		cleanUpSheep();
+
+		super.onDead(killer);
+	}
+
+	private void cleanUpSheep() {
 		if (owner != null) {
 			if (owner.hasSheep()) {
 				owner.removeSheep(this);
@@ -150,11 +162,9 @@ public class Sheep extends DomesticAnimal {
 				logger.warn("INCOHERENCE: Sheep " + this + " isn't owned by "
 						+ owner);
 			}
-		} else {
-			StendhalRPRuleProcessor.get().removeNPC(this);
 		}
+		StendhalRPRuleProcessor.get().removeNPC(this);
 
-		super.onDead(killername);
 	}
 
 	/**
