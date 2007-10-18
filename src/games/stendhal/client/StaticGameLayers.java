@@ -107,24 +107,10 @@ public class StaticGameLayers {
 	 *
 	 * @throws ClassNotFoundException
 	 */
-	public void addLayer(String name, InputStream in) throws IOException,
-			ClassNotFoundException {
+	public void addLayer(String area, String layer, InputStream in) throws IOException, ClassNotFoundException {
+		String name = getLayerKey(area, layer);
+
 		logger.debug("Layer name: " + name);
-
-		int i = name.indexOf('.');
-
-		if (i == -1) {
-			logger.error("Old server, please upgrade");
-			return;
-		}
-
-		area = name.substring(0, i);
-		String layer = name.substring(i + 1);
-
-		/**
-		 * TODO: Encode area name into the data sent from server, so it is
-		 * simpler to encode the area name.
-		 */
 
 		if (layer.equals("collision")) {
 			/*
@@ -177,7 +163,7 @@ public class StaticGameLayers {
 			layers.put(name, content);
 		}
 
-		isValid = false;
+		invalidate();
 	}
 
 	public boolean collides(Rectangle2D shape) {
@@ -198,8 +184,10 @@ public class StaticGameLayers {
 		area = null;
 	}
 
-	/** Set the set of layers that is going to be rendered */
-	public void setRPZoneLayersSet(String area) {
+	/**
+	 * Set the name of the area to be rendered.
+	 */
+	public void setAreaName(String area) {
 		logger.info("Area: " + area);
 
 		this.area = area;
@@ -259,6 +247,7 @@ public class StaticGameLayers {
 		isValid = true;
 	}
 
+	// TODO: Rename to getAreaName()
 	public String getRPZoneLayerSet() {
 		return area;
 	}
@@ -300,7 +289,18 @@ public class StaticGameLayers {
 	 * @return A layer renderer, or <code>null</code>,
 	 */
 	public LayerRenderer getLayer(String area, String layer) {
-		return layers.get(area + "." + layer);
+		return layers.get(getLayerKey(area, layer));
+	}
+
+	/**
+	 * Make a map "key" from an area/layer name.
+	 *
+	 *
+	 * TODO: Make the key an object with area/layer fields and replace
+	 * ugly code that uses startsWith('area.').
+	 */
+	protected String getLayerKey(final String area, final String layer) {
+		return area + "." + layer;
 	}
 
 	/**

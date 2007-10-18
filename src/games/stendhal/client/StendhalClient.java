@@ -92,6 +92,12 @@ public class StendhalClient extends ClientFramework {
 	 */
 	private int contentToLoad;
 
+	/**
+	 * Whether the client is in a batch update.
+	 */
+	private boolean batchUpdate;
+
+
 	public void generateWhoPlayers(String text) {
 
 		Matcher matcher = Pattern.compile("^[0-9]+ Players online:( .+)$").matcher(
@@ -172,6 +178,19 @@ public class StendhalClient extends ClientFramework {
 		return player;
 	}
 
+
+	/**
+	 * Check if the client is in the middle of a batch update.
+	 * A batch update starts when a content transfer starts and end
+	 * on the first perception event.
+	 *
+	 * @return	<code>true</code> if in a batch update.
+	 */
+	public boolean isInBatchUpdate() {
+		return batchUpdate;
+	}
+
+
 	/**
 	 * Handle sync events before they are dispatched.
 	 *
@@ -179,6 +198,7 @@ public class StendhalClient extends ClientFramework {
 	 *            The zone entered.
 	 */
 	protected void onBeforeSync(final String zoneid) {
+System.err.println("onBeforeSync()");
 		/*
 		 * Simulate object disassembly
 		 */
@@ -203,8 +223,6 @@ public class StendhalClient extends ClientFramework {
 
 		// Notify zone entering.
 		WorldObjects.fireZoneEntered(zoneid);
-
-		staticLayers.setRPZoneLayersSet(zoneid);
 	}
 
 	/**
@@ -244,6 +262,14 @@ public class StendhalClient extends ClientFramework {
 				logger.debug("message: " + message);
 			}
 
+			/*
+			 * End any batch updates if not transfering
+			 */
+			if(batchUpdate && !isInTransfer()) {
+				logger.debug("Batch update finished");
+				batchUpdate = false;
+			}
+
 			if (message.getPerceptionType() == Perception.SYNC) {
 				onBeforeSync(message.getRPZoneID().getID());
 			}
@@ -264,9 +290,31 @@ public class StendhalClient extends ClientFramework {
 
 	@Override
 	protected List<TransferContent> onTransferREQ(List<TransferContent> items) {
+		/*
+		 * A batch update has begun
+		 */
+		batchUpdate = true;
+		logger.debug("Batch update started");
+
 		/** We clean the game object container */
 		logger.debug("CLEANING static object list");
 		staticLayers.clear();
+
+		/*
+		 * Set the new area name
+		 */
+		if (!items.isEmpty()) {
+			String name = items.get(0).name;
+
+			int i = name.indexOf('.');
+
+			if (i == -1) {
+				logger.error("Old server, please upgrade");
+				return items;
+			}
+
+			staticLayers.setAreaName(name.substring(0, i));
+		}
 
 		/*
 		 * Remove screen objects (like text bubbles)
@@ -277,11 +325,11 @@ public class StendhalClient extends ClientFramework {
 		contentToLoad = 0;
 
 		for (TransferContent item : items) {
-
 			InputStream is = cache.getItem(item);
 
 			if (is != null) {
 				item.ack = false;
+
 				try {
 					contentHandling(item.name, is);
 					is.close();
@@ -301,19 +349,9 @@ public class StendhalClient extends ClientFramework {
 			}
 		}
 
-		/*
-		 * All done, or onTransfer() yet to be called?
-		 */
-		if (contentToLoad == 0) {
-			staticLayers.invalidate();
-			screen.setMaxWorldSize(staticLayers.getWidth(),
-					staticLayers.getHeight());
-			screen.clear();
-			screen.center();
-		}
-
 		return items;
 	}
+
 
 	/**
 	 * Determine if we are in the middle of transfering new content.
@@ -326,7 +364,21 @@ public class StendhalClient extends ClientFramework {
 
 	private void contentHandling(String name, InputStream in)
 			throws IOException, ClassNotFoundException {
-		staticLayers.addLayer(name, in);
+		/*
+		 * TODO: Encode area name into the data sent from server,
+		 * so it is simpler to extract area/layer parts.
+		 */
+		int i = name.indexOf('.');
+
+		if (i == -1) {
+			logger.error("Old server, please upgrade");
+			return;
+		}
+
+		String area = name.substring(0, i);
+		String layer = name.substring(i + 1);
+
+		staticLayers.addLayer(area, layer, in);
 	}
 
 	@Override
@@ -349,14 +401,6 @@ public class StendhalClient extends ClientFramework {
 		if (contentToLoad < 0) {
 			logger.warn("More data transfer than expected");
 			contentToLoad = 0;
-		}
-
-		if (contentToLoad == 0) {
-			staticLayers.invalidate();
-			screen.setMaxWorldSize(staticLayers.getWidth(),
-					staticLayers.getHeight());
-			screen.clear();
-			screen.center();
 		}
 	}
 

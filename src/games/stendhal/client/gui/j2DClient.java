@@ -559,16 +559,30 @@ public class j2DClient extends StendhalUI {
 			logger.debug("Move objects");
 			gameObjects.update(delta);
 
-			// create the map if there is none yet
-			if (gameLayers.changedArea()) {
+			/*
+			 * TODO: Consolidate the next 3 parts into one
+			 * isInBatchUpdate() check, if User update code
+			 * can be skipped [without side effects] while in it.
+			 */
+			if (!client.isInBatchUpdate() && gameLayers.changedArea()) {
+				/*
+				 * Update the screen
+				 */
+				screen.setMaxWorldSize(gameLayers.getWidth(), gameLayers.getHeight());
+				screen.clear();
+				screen.center();
+
+				// [Re]create the map
+				//
+				// TODO: Replace with listener notification
 				CollisionDetection cd = gameLayers.getCollisionDetection();
 				if (cd != null) {
-					gameLayers.resetChangedArea();
-
 					minimap.update(cd,
 							screen.expose().getDeviceConfiguration(),
 							gameLayers.getArea());
 				}
+
+				gameLayers.resetChangedArea();
 			}
 
 			User user = User.get();
@@ -594,7 +608,7 @@ public class j2DClient extends StendhalUI {
 				}
 			}
 
-			if (!client.isInTransfer()) {
+			if (!client.isInBatchUpdate()) {
 				if (frame.getState() != Frame.ICONIFIED) {
 					logger.debug("Draw screen");
 					screen.draw();
