@@ -288,8 +288,8 @@ public class UpdateManager {
 			sb.append(file + ",");
 		}
 
-		sb.append(bootProp.getProperty("load", ""));
+		sb.append(bootProp.getProperty("load-0.63", ""));
 
-		bootProp.put("load", sb.toString());
+		bootProp.put("load-0.63", sb.toString());
 	}
 }
