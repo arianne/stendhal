@@ -142,7 +142,7 @@ public class Sheep extends DomesticAnimal {
 	 *            The entity who caused the death
 	 */
 	@Override
-	public void onDead(Entity killer) {
+	public void onDead(String killername) {
 		if (owner != null) {
 			if (owner.hasSheep()) {
 				owner.removeSheep(this);
@@ -154,25 +154,7 @@ public class Sheep extends DomesticAnimal {
 			StendhalRPRuleProcessor.get().removeNPC(this);
 		}
 
-		super.onDead(killer);
-	}
-
-	/**
-	 * Set the owner.
-	 *
-	 * @param owner
-	 *            The new owner (or <code>null</code>).
-	 */
-	@Override
-	public void setOwner(Player owner) {
-		super.setOwner(owner);
-
-		/*
-		 * Reset idea/movement state (do in super??)
-		 */
-		setIdea(null);
-		stop();
-		clearPath();
+		super.onDead(killername);
 	}
 
 	/**
@@ -372,12 +354,14 @@ public class Sheep extends DomesticAnimal {
 		 */
 		if (hunger >= HUNGER_STARVATION) {
 			onStarve();
+
 		}
 
 		// TODO: Move to upper level logic()?, as it really seems to
 		// apply to all RPEntity's.
-		applyMovement();
-
+		if (HP > 0) {
+			applyMovement();
+		}
 		notifyWorldAboutChanges();
 
 	}
