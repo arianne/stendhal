@@ -776,7 +776,7 @@ public abstract class RPEntity extends GuidedEntity {
 	public int damage(final int amount, final Entity attacker) {
 		int taken = damage(amount);
 
-		if (hp == 0) {
+		if (hp <= 0) {
 			onDead(attacker);
 		}
 
