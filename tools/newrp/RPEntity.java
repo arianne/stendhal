@@ -9,7 +9,7 @@ import java.util.Random;
  * @author miguel
  *
  */
-abstract public class RPEntity {
+public abstract class RPEntity {
 
 	/**
 	 * The weapon it uses.
@@ -25,54 +25,43 @@ abstract public class RPEntity {
 	 * The shield it has.
 	 */
 	Item shield;
-	
+
 	/**
 	 * List of skills that this entity has.
 	 */
 	List<Skill> skills;
 
 	/**
-	 * Determine: 
-	 * - Attack and damage done 
-	 * - Weight that can be carried 
-	 * - Damage that can be absorbed with the shield.
+	 * Determine: - Attack and damage done - Weight that can be carried - Damage
+	 * that can be absorbed with the shield.
 	 */
 	int strength;
 
 	/**
-	 * Determine: 
-	 * - Attack rate 
-	 * - Handle of weapons
+	 * Determine: - Attack rate - Handle of weapons
 	 */
 	int dexterity;
 
 	/**
-	 * Determine: 
-	 * - How fast we can move 
-	 * - How good we can dodge
+	 * Determine: - How fast we can move - How good we can dodge
 	 */
 	int agility;
 
 	/**
-	 * Determine: 
-	 * - Amount of HP points 
-	 * - How fast we can restore HP and MP points
+	 * Determine: - Amount of HP points - How fast we can restore HP and MP
+	 * points
 	 */
 	int constitution;
 
 	/**
-	 * Determine: 
-	 * - Amount of faith to your god. 
-	 * - How strong your prayers are.
-	 * - Amount of MP points
+	 * Determine: - Amount of faith to your god. - How strong your prayers are. -
+	 * Amount of MP points
 	 */
 	int faith;
 
 	/**
-	 * Determine: 
-	 * - Strengh of the spells. 
-	 * - Amount of MP points 
-	 * - Some NPC related actions and effect of some spells.
+	 * Determine: - Strengh of the spells. - Amount of MP points - Some NPC
+	 * related actions and effect of some spells.
 	 */
 	int intelligence;
 
@@ -105,7 +94,7 @@ abstract public class RPEntity {
 	 * Base MP (Mana points)
 	 */
 	int basemp;
-	
+
 	/**
 	 * Actual MP
 	 */
@@ -141,7 +130,7 @@ abstract public class RPEntity {
 	 * How many turns should be spent until we can cast a spell again.
 	 */
 	int turnToCastAgain;
-	
+
 	/**
 	 * How many turns should be spent until we can attack again
 	 */
@@ -161,7 +150,6 @@ abstract public class RPEntity {
 	 * How many turns should be spent until we can use weapon as a shield again.
 	 */
 	int turnToUseWeaponAsShieldAgain;
-
 
 	/**
 	 * Constructor. Creates the entity with level 0.
@@ -311,20 +299,20 @@ abstract public class RPEntity {
 		int turn = Main.getTurn();
 
 		/*
-		 * TODO: Check bonus/penalty on innate armor.
-		 *   For example, trolls get a penalty for fire attack but a fire giant won't get it.
-		 * NOTE: It can be done later 
+		 * TODO: Check bonus/penalty on innate armor. For example, trolls get a
+		 * penalty for fire attack but a fire giant won't get it. NOTE: It can
+		 * be done later
 		 */
-		
+
 		/*
 		 * Check if we can use shield to block it.
 		 */
-		if (target.shield != null && turn>= target.turnToUseShieldAgain) {
+		if (target.shield != null && turn >= target.turnToUseShieldAgain) {
 			/*
 			 * We make shield usable only after <i>rate</i> turns
 			 */
-			target.turnToUseShieldAgain=turn+ target.getShieldRate();
-			
+			target.turnToUseShieldAgain = turn + target.getShieldRate();
+
 			/*
 			 * Absorb damage with shield
 			 */
@@ -334,12 +322,13 @@ abstract public class RPEntity {
 		/*
 		 * Check if we can use weapon to block it.
 		 */
-		if (target.weapon != null && turn>=target.turnToUseWeaponAsShieldAgain) {
+		if (target.weapon != null
+				&& turn >= target.turnToUseWeaponAsShieldAgain) {
 			/*
 			 * We make weapon as a shield usable only after <i>rate</i> turns
 			 */
-			target.turnToUseWeaponAsShieldAgain=turn+ target.getAttackRate();
-			
+			target.turnToUseWeaponAsShieldAgain = turn + target.getAttackRate();
+
 			/*
 			 * Absorb damage with shield
 			 */
@@ -347,8 +336,8 @@ abstract public class RPEntity {
 		}
 
 		/*
-		 * Absorb damage with armor.
-		 * We can always use armor because it is a passive defense. 
+		 * Absorb damage with armor. We can always use armor because it is a
+		 * passive defense.
 		 */
 		if (target.armor != null) {
 			amount = target.armorAbsorb(type, amount);
@@ -368,7 +357,7 @@ abstract public class RPEntity {
 	 *
 	 * @return
 	 */
-	abstract protected int getAttackRate();
+	protected abstract int getAttackRate();
 
 	/**
 	 * Roll a dice to see if hit was successfull. We roll 2D6 and substract our
@@ -378,8 +367,8 @@ abstract public class RPEntity {
 	 * @param attitude
 	 * @return
 	 */
-	abstract protected RollResult doHit(float attitude);
-	
+	protected abstract RollResult doHit(float attitude);
+
 	/**
 	 * Returns how many turns we need to spend between attacks. It is related to
 	 * how much armor weights ( the more the worse ) and how much is our agility
@@ -387,7 +376,7 @@ abstract public class RPEntity {
 	 *
 	 * @return
 	 */
-	abstract protected int getDodgeRate();
+	protected abstract int getDodgeRate();
 
 	/**
 	 * Roll a dice to see if dodge was successfull. We roll 4D6 and substract
@@ -397,7 +386,7 @@ abstract public class RPEntity {
 	 * @param attitude
 	 * @return
 	 */
-	abstract protected RollResult doDodge(float attitude);
+	protected abstract RollResult doDodge(float attitude);
 
 	/**
 	 * Returns how many turns we need to spend between shield defense. It is
@@ -407,7 +396,7 @@ abstract public class RPEntity {
 	 *
 	 * @return
 	 */
-	abstract protected int getShieldRate();
+	protected abstract int getShieldRate();
 
 	/**
 	 * Once damage is done check how much of it is absorbed by shield. Damage
@@ -417,17 +406,19 @@ abstract public class RPEntity {
 	 * @param damage
 	 * @param attitude
 	 */
-	abstract protected int shieldAbsorb(DamageType type, int amount, float attitude);
-	
+	protected abstract int shieldAbsorb(DamageType type, int amount,
+			float attitude);
+
 	/**
-	 * Once damage is done check how much of it is absorbed by the weapon used as a shield. Damage
-	 * absorbed is always between two not rand values min and max, then damage
-	 * absorbed is randomly choosen between them.
+	 * Once damage is done check how much of it is absorbed by the weapon used
+	 * as a shield. Damage absorbed is always between two not rand values min
+	 * and max, then damage absorbed is randomly choosen between them.
 	 *
 	 * @param damage
 	 * @param attitude
 	 */
-	abstract protected int weaponAbsorb(DamageType type, int amount, float attitude);
+	protected abstract int weaponAbsorb(DamageType type, int amount,
+			float attitude);
 
 	/**
 	 * Once damage is done check how much of it is absorbed by armor. Damage
@@ -436,7 +427,7 @@ abstract public class RPEntity {
 	 *
 	 * @param damage
 	 */
-	abstract protected int armorAbsorb(DamageType type, int amount);
+	protected abstract int armorAbsorb(DamageType type, int amount);
 
 	/**
 	 * Finally apply the rest of the not absorbed damage to entity.
@@ -444,14 +435,14 @@ abstract public class RPEntity {
 	 * @param damage
 	 */
 	private void apply(DamageType type, int amount) {
-		if(amount>0) {
+		if (amount > 0) {
 			hp = hp - amount;
 		}
 	}
 
 	/**
 	 * Attack the entity target in the given turn.
-	 * 
+	 *
 	 * @param target
 	 * @param turn
 	 */
@@ -459,12 +450,12 @@ abstract public class RPEntity {
 		/*
 		 * Check if it is our turn to attack
 		 */
-		if (turn>=turnToAttackAgain && distanceTo(target)<=weapon.range) {
+		if (turn >= turnToAttackAgain && distanceTo(target) <= weapon.range) {
 			/*
 			 * We make weapon usable only after <i>rate</i> turns
 			 */
-			turnToAttackAgain=turn+ getAttackRate();
-			
+			turnToAttackAgain = turn + getAttackRate();
+
 			/*
 			 * Roll dice to see if we are able to do a hit.
 			 */
@@ -479,7 +470,7 @@ abstract public class RPEntity {
 
 	/**
 	 * Attack the entity target in the given turn.
-	 * 
+	 *
 	 * @param target
 	 * @param turn
 	 */
@@ -487,12 +478,12 @@ abstract public class RPEntity {
 		/*
 		 * Check if it is our turn to attack
 		 */
-		if (turn>=turnToAttackAgain) {
+		if (turn >= turnToAttackAgain) {
 			/*
 			 * We make weapon usable only after <i>rate</i> turns
 			 */
-			turnToAttackAgain=turn+ getAttackRate();
-			
+			turnToAttackAgain = turn + getAttackRate();
+
 			/*
 			 * Roll dice to see if we are able to do a hit.
 			 */
@@ -503,8 +494,8 @@ abstract public class RPEntity {
 				 */
 				boolean dodge = false;
 				if (turn >= target.turnToDodgeAgain) {
-					target.turnToDodgeAgain=turn+target.getDodgeRate();
-					
+					target.turnToDodgeAgain = turn + target.getDodgeRate();
+
 					/*
 					 * Roll dice to see if we dodge it.
 					 */
@@ -557,6 +548,7 @@ abstract public class RPEntity {
 
 	/**
 	 * Set the attitude about how offensive(1) or defensive(0) the entity is.
+	 *
 	 * @param att
 	 */
 	public void setAttitude(float att) {
@@ -564,16 +556,18 @@ abstract public class RPEntity {
 	}
 
 	/**
-	 * Roll a dice to see if we are able to cast the spell with the given attitude.
+	 * Roll a dice to see if we are able to cast the spell with the given
+	 * attitude.
+	 *
 	 * @param spell
 	 * @param attitude
 	 * @return
 	 */
-	abstract protected RollResult doCast(Spell spell, float attitude);
+	protected abstract RollResult doCast(Spell spell, float attitude);
 
 	/**
 	 * Cast the given spell on the target entity at the given turn.
-	 * 
+	 *
 	 * @param spell
 	 * @param target
 	 * @param turn
@@ -620,8 +614,7 @@ abstract public class RPEntity {
 }
 
 /**
- * Sex of the entity.
- * It is not relevant at all.
+ * Sex of the entity. It is not relevant at all.
  *
  * @author miguel
  *
@@ -631,18 +624,18 @@ enum Sex {
 }
 
 /**
- * Races available and bonus they have for main stats.
- * Each race has bonus and penalties that apply to the stats.
+ * Races available and bonus they have for main stats. Each race has bonus and
+ * penalties that apply to the stats.
  *
  * @author miguel
  *
  */
 enum Race {
-		/* STR AGI DEX CON INT WIS */
-	HUMAN	(0, 0, 0, 0, 0, 0), 
-	DWARF	(3, -1, 0, 1, -1, 0), 
-	ORC		(2, -1, 0, 1, -3, 1), 
-	ELF		(-1, 2, 1, -1, 1, 0);
+	/* STR AGI DEX CON INT WIS */
+	HUMAN(0, 0, 0, 0, 0, 0),
+	DWARF(3, -1, 0, 1, -1, 0),
+	ORC(2, -1, 0, 1, -3, 1),
+	ELF(-1, 2, 1, -1, 1, 0);
 
 	Race(double str, double dex, double agi, double con, double inte, double wis) {
 		this.strengh = str;
@@ -667,18 +660,18 @@ enum Race {
 }
 
 /**
- * Class of the entity. It applies a modifier to each
- * It gives more or less importance to each attribute based on the 
- * class that the player chose for his avatar. 
+ * Class of the entity. It applies a modifier to each It gives more or less
+ * importance to each attribute based on the class that the player chose for his
+ * avatar.
  *
  * @author miguel
  *
  */
 enum School {
 	/* STR AGI DEX CON INT WIS */
-	SCOUT(0.9, 1.5, 1.5, 0.8, 0.4, 0.8), 
-	WARRIOR(1.6, 0.8, 1.0, 1.6, 0.2, 0.6), 
-	PRIEST(0.6, 0.8, 0.9, 0.7, 1.0, 2.0), 
+	SCOUT(0.9, 1.5, 1.5, 0.8, 0.4, 0.8),
+	WARRIOR(1.6, 0.8, 1.0, 1.6, 0.2, 0.6),
+	PRIEST(0.6, 0.8, 0.9, 0.7, 1.0, 2.0),
 	MAGE(0.3, 0.8, 0.7, 0.5, 2.0, 1.0);
 
 	School(double str, double dex, double agi, double con, double inte,
@@ -703,4 +696,3 @@ enum School {
 
 	double inteligence;
 }
-

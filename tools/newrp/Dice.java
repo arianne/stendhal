@@ -3,12 +3,13 @@ package newrp;
 import java.util.Random;
 
 /**
- * This class represent a Dice.
- * It provide methods for rolling a 1D100, 1D20 and 1D6.
- * 
+ * This class represent a Dice. It provide methods for rolling a 1D100, 1D20 and
+ * 1D6.
+ *
  * Also it has methods for rolling N 1D6 and N 1D20.
- * 
- * A finally it is also able to return a random number between min and max both inclusive.
+ *
+ * A finally it is also able to return a random number between min and max both
+ * inclusive.
  *
  * @author miguel
  *
@@ -18,6 +19,7 @@ public class Dice {
 
 	/**
 	 * Returns a number between min and max both included.
+	 *
 	 * @param min
 	 * @param max
 	 * @return
@@ -28,6 +30,7 @@ public class Dice {
 
 	/**
 	 * Roll a dice of 100 sides.
+	 *
 	 * @return
 	 */
 	public static int r1D100() {
@@ -37,6 +40,7 @@ public class Dice {
 
 	/**
 	 * Roll a dice of 20 sides.
+	 *
 	 * @return
 	 */
 	public static int r1D20() {
@@ -45,6 +49,7 @@ public class Dice {
 
 	/**
 	 * Roll a dice of 6 sides.
+	 *
 	 * @return
 	 */
 	public static int r1D6() {
@@ -70,7 +75,6 @@ public class Dice {
 	}
 }
 
-
 /**
  * Result of the roll of the Dice.
  *
@@ -78,10 +82,7 @@ public class Dice {
  *
  */
 enum RollResult {
-	SUCCESS, 
-	CRITICAL_SUCCESS, 
-	FAILURE, 
-	CRITICAL_FAILURE;
+	SUCCESS, CRITICAL_SUCCESS, FAILURE, CRITICAL_FAILURE;
 
 	public boolean success() {
 		return this == SUCCESS || this == CRITICAL_SUCCESS;

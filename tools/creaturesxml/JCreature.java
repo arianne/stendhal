@@ -6,7 +6,6 @@
 
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
-import games.stendhal.server.config.CreaturesXMLLoader;
 import games.stendhal.server.config.ItemsXMLLoader;
 import games.stendhal.server.entity.creature.impl.DropItem;
 import games.stendhal.server.entity.creature.impl.EquipItem;
@@ -21,15 +20,12 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringReader;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import org.xml.sax.SAXException;
 
 /**
@@ -132,8 +128,8 @@ public class JCreature extends javax.swing.JFrame {
 
 	private void clean(Graphics g) {
 		g.setColor(Color.WHITE);
-		g.fillRect(2, 2, creatureImage.getWidth() - 2, creatureImage
-				.getHeight() - 2);
+		g.fillRect(2, 2, creatureImage.getWidth() - 2,
+				creatureImage.getHeight() - 2);
 	}
 
 	private void drawSinglePart(Sprite sprite, double w, double h, Graphics g) {
@@ -212,8 +208,9 @@ public class JCreature extends javax.swing.JFrame {
 
 		creatureValue.setText(Integer.toString((int) value));
 
-		if (actual.getCreatureName() != null)
+		if (actual.getCreatureName() != null) {
 			creatureDrops.setText(os.toString());
+		}
 
 		os = new StringBuffer("");
 		for (EquipItem item : actual.getEquipedItems()) {
@@ -347,15 +344,12 @@ public class JCreature extends javax.swing.JFrame {
 				return strings[i];
 			}
 		});
-		creatureList
-				.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-		creatureList
-				.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
-					public void valueChanged(
-							javax.swing.event.ListSelectionEvent evt) {
-						creatureListValueChanged(evt);
-					}
-				});
+		creatureList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+		creatureList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+			public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+				creatureListValueChanged(evt);
+			}
+		});
 
 		jScrollPane1.setViewportView(creatureList);
 
@@ -377,17 +371,17 @@ public class JCreature extends javax.swing.JFrame {
 		creatureGFXLocation.setText("jTextField5");
 
 		creatureImage.setBackground(new java.awt.Color(255, 255, 255));
-		creatureImage.setBorder(javax.swing.BorderFactory
-				.createLineBorder(new java.awt.Color(0, 0, 0)));
+		creatureImage.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(
+				0, 0, 0)));
 		org.jdesktop.layout.GroupLayout creatureImageLayout = new org.jdesktop.layout.GroupLayout(
 				creatureImage);
 		creatureImage.setLayout(creatureImageLayout);
-		creatureImageLayout.setHorizontalGroup(creatureImageLayout
-				.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-				.add(0, 178, Short.MAX_VALUE));
-		creatureImageLayout.setVerticalGroup(creatureImageLayout
-				.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-				.add(0, 198, Short.MAX_VALUE));
+		creatureImageLayout.setHorizontalGroup(creatureImageLayout.createParallelGroup(
+				org.jdesktop.layout.GroupLayout.LEADING).add(0, 178,
+				Short.MAX_VALUE));
+		creatureImageLayout.setVerticalGroup(creatureImageLayout.createParallelGroup(
+				org.jdesktop.layout.GroupLayout.LEADING).add(0, 198,
+				Short.MAX_VALUE));
 
 		jLabel6.setText("Tiled ID");
 
@@ -413,174 +407,93 @@ public class JCreature extends javax.swing.JFrame {
 		org.jdesktop.layout.GroupLayout jPanel1Layout = new org.jdesktop.layout.GroupLayout(
 				jPanel1);
 		jPanel1.setLayout(jPanel1Layout);
-		jPanel1Layout
-				.setHorizontalGroup(jPanel1Layout
-						.createParallelGroup(
-								org.jdesktop.layout.GroupLayout.LEADING)
-						.add(
-								jPanel1Layout
-										.createSequentialGroup()
-										.addContainerGap()
-										.add(
-												jPanel1Layout
-														.createParallelGroup(
-																org.jdesktop.layout.GroupLayout.TRAILING)
-														.add(
-																jPanel1Layout
-																		.createSequentialGroup()
-																		.add(
-																				jPanel1Layout
-																						.createParallelGroup(
-																								org.jdesktop.layout.GroupLayout.LEADING)
-																						.add(
-																								jLabel2)
-																						.add(
-																								jLabel5)
-																						.add(
-																								jLabel4)
-																						.add(
-																								jLabel6)
-																						.add(
-																								jLabel3)
-																						.add(
-																								jLabel18))
-																		.add(
-																				jPanel1Layout
-																						.createParallelGroup(
-																								org.jdesktop.layout.GroupLayout.LEADING,
-																								false)
-																						.add(
-																								creatureTileid)
-																						.add(
-																								creatureGFXLocation)
-																						.add(
-																								creatureSize)
-																						.add(
-																								creatureSubclass)
-																						.add(
-																								creatureClass,
-																								0,
-																								256,
-																								Short.MAX_VALUE)
-																						.add(
-																								creatureValue,
-																								org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
-																								148,
-																								org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-														.add(updateGFXButton))
-										.addPreferredGap(
-												org.jdesktop.layout.LayoutStyle.RELATED,
-												86, Short.MAX_VALUE)
-										.add(
-												creatureImage,
+		jPanel1Layout.setHorizontalGroup(jPanel1Layout.createParallelGroup(
+				org.jdesktop.layout.GroupLayout.LEADING).add(
+				jPanel1Layout.createSequentialGroup().addContainerGap().add(
+						jPanel1Layout.createParallelGroup(
+								org.jdesktop.layout.GroupLayout.TRAILING).add(
+								jPanel1Layout.createSequentialGroup().add(
+										jPanel1Layout.createParallelGroup(
+												org.jdesktop.layout.GroupLayout.LEADING).add(
+												jLabel2).add(jLabel5).add(
+												jLabel4).add(jLabel6).add(
+												jLabel3).add(jLabel18)).add(
+										jPanel1Layout.createParallelGroup(
+												org.jdesktop.layout.GroupLayout.LEADING,
+												false).add(creatureTileid).add(
+												creatureGFXLocation).add(
+												creatureSize).add(
+												creatureSubclass).add(
+												creatureClass, 0, 256,
+												Short.MAX_VALUE).add(
+												creatureValue,
+												org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
+												148,
+												org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))).add(
+								updateGFXButton)).addPreferredGap(
+						org.jdesktop.layout.LayoutStyle.RELATED, 86,
+						Short.MAX_VALUE).add(creatureImage,
+						org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
+						org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
+						org.jdesktop.layout.GroupLayout.PREFERRED_SIZE).add(49,
+						49, 49)));
+		jPanel1Layout.setVerticalGroup(jPanel1Layout.createParallelGroup(
+				org.jdesktop.layout.GroupLayout.LEADING).add(
+				jPanel1Layout.createSequentialGroup().addContainerGap().add(
+						jPanel1Layout.createParallelGroup(
+								org.jdesktop.layout.GroupLayout.LEADING).add(
+								org.jdesktop.layout.GroupLayout.TRAILING,
+								jPanel1Layout.createSequentialGroup().add(
+										jPanel1Layout.createParallelGroup(
+												org.jdesktop.layout.GroupLayout.BASELINE).add(
+												jLabel2).add(
+												creatureClass,
 												org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
 												org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
-												org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-										.add(49, 49, 49)));
-		jPanel1Layout
-				.setVerticalGroup(jPanel1Layout
-						.createParallelGroup(
-								org.jdesktop.layout.GroupLayout.LEADING)
-						.add(
-								jPanel1Layout
-										.createSequentialGroup()
-										.addContainerGap()
-										.add(
-												jPanel1Layout
-														.createParallelGroup(
-																org.jdesktop.layout.GroupLayout.LEADING)
-														.add(
-																org.jdesktop.layout.GroupLayout.TRAILING,
-																jPanel1Layout
-																		.createSequentialGroup()
-																		.add(
-																				jPanel1Layout
-																						.createParallelGroup(
-																								org.jdesktop.layout.GroupLayout.BASELINE)
-																						.add(
-																								jLabel2)
-																						.add(
-																								creatureClass,
-																								org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
-																								org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
-																								org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-																		.addPreferredGap(
-																				org.jdesktop.layout.LayoutStyle.RELATED)
-																		.add(
-																				jPanel1Layout
-																						.createParallelGroup(
-																								org.jdesktop.layout.GroupLayout.BASELINE)
-																						.add(
-																								jLabel3)
-																						.add(
-																								creatureSubclass,
-																								org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
-																								org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
-																								org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-																		.addPreferredGap(
-																				org.jdesktop.layout.LayoutStyle.RELATED)
-																		.add(
-																				jPanel1Layout
-																						.createParallelGroup(
-																								org.jdesktop.layout.GroupLayout.BASELINE)
-																						.add(
-																								jLabel5)
-																						.add(
-																								creatureSize,
-																								org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
-																								org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
-																								org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-																		.addPreferredGap(
-																				org.jdesktop.layout.LayoutStyle.RELATED)
-																		.add(
-																				jPanel1Layout
-																						.createParallelGroup(
-																								org.jdesktop.layout.GroupLayout.BASELINE)
-																						.add(
-																								jLabel4)
-																						.add(
-																								creatureGFXLocation,
-																								org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
-																								org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
-																								org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-																		.addPreferredGap(
-																				org.jdesktop.layout.LayoutStyle.RELATED)
-																		.add(
-																				jPanel1Layout
-																						.createParallelGroup(
-																								org.jdesktop.layout.GroupLayout.BASELINE)
-																						.add(
-																								jLabel6)
-																						.add(
-																								creatureTileid,
-																								org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
-																								org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
-																								org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-																		.addPreferredGap(
-																				org.jdesktop.layout.LayoutStyle.RELATED)
-																		.add(
-																				jPanel1Layout
-																						.createParallelGroup(
-																								org.jdesktop.layout.GroupLayout.BASELINE)
-																						.add(
-																								creatureValue,
-																								org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
-																								28,
-																								Short.MAX_VALUE)
-																						.add(
-																								jLabel18))
-																		.add(
-																				19,
-																				19,
-																				19)
-																		.add(
-																				updateGFXButton))
-														.add(
-																creatureImage,
-																org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
-																org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
-																Short.MAX_VALUE))
-										.addContainerGap()));
+												org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)).addPreferredGap(
+										org.jdesktop.layout.LayoutStyle.RELATED).add(
+										jPanel1Layout.createParallelGroup(
+												org.jdesktop.layout.GroupLayout.BASELINE).add(
+												jLabel3).add(
+												creatureSubclass,
+												org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
+												org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
+												org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)).addPreferredGap(
+										org.jdesktop.layout.LayoutStyle.RELATED).add(
+										jPanel1Layout.createParallelGroup(
+												org.jdesktop.layout.GroupLayout.BASELINE).add(
+												jLabel5).add(
+												creatureSize,
+												org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
+												org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
+												org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)).addPreferredGap(
+										org.jdesktop.layout.LayoutStyle.RELATED).add(
+										jPanel1Layout.createParallelGroup(
+												org.jdesktop.layout.GroupLayout.BASELINE).add(
+												jLabel4).add(
+												creatureGFXLocation,
+												org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
+												org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
+												org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)).addPreferredGap(
+										org.jdesktop.layout.LayoutStyle.RELATED).add(
+										jPanel1Layout.createParallelGroup(
+												org.jdesktop.layout.GroupLayout.BASELINE).add(
+												jLabel6).add(
+												creatureTileid,
+												org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
+												org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
+												org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)).addPreferredGap(
+										org.jdesktop.layout.LayoutStyle.RELATED).add(
+										jPanel1Layout.createParallelGroup(
+												org.jdesktop.layout.GroupLayout.BASELINE).add(
+												creatureValue,
+												org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
+												28, Short.MAX_VALUE).add(
+												jLabel18)).add(19, 19, 19).add(
+										updateGFXButton)).add(creatureImage,
+								org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
+								org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
+								Short.MAX_VALUE)).addContainerGap()));
 
 		jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 		jLabel1.setFont(new java.awt.Font("Arial", 1, 11));
@@ -600,42 +513,25 @@ public class JCreature extends javax.swing.JFrame {
 				jPanel3Layout.createSequentialGroup().addContainerGap().add(
 						jLabel1).add(52, 52, 52).add(creatureName,
 						org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 198,
-						org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(
-								org.jdesktop.layout.LayoutStyle.RELATED, 187,
-								Short.MAX_VALUE).add(amountOfCreatures)
-						.addPreferredGap(
-								org.jdesktop.layout.LayoutStyle.RELATED).add(
-								jLabel17).addContainerGap()));
-		jPanel3Layout
-				.setVerticalGroup(jPanel3Layout
-						.createParallelGroup(
-								org.jdesktop.layout.GroupLayout.LEADING)
-						.add(
-								jPanel3Layout
-										.createSequentialGroup()
-										.addContainerGap()
-										.add(
-												jPanel3Layout
-														.createParallelGroup(
-																org.jdesktop.layout.GroupLayout.LEADING)
-														.add(
-																jPanel3Layout
-																		.createParallelGroup(
-																				org.jdesktop.layout.GroupLayout.BASELINE)
-																		.add(
-																				creatureName,
-																				org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
-																				org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
-																				org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-																		.add(
-																				jLabel17)
-																		.add(
-																				amountOfCreatures))
-														.add(jLabel1))
-										.addContainerGap(
-												org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
-												Short.MAX_VALUE)));
+						org.jdesktop.layout.GroupLayout.PREFERRED_SIZE).addPreferredGap(
+						org.jdesktop.layout.LayoutStyle.RELATED, 187,
+						Short.MAX_VALUE).add(amountOfCreatures).addPreferredGap(
+						org.jdesktop.layout.LayoutStyle.RELATED).add(jLabel17).addContainerGap()));
+		jPanel3Layout.setVerticalGroup(jPanel3Layout.createParallelGroup(
+				org.jdesktop.layout.GroupLayout.LEADING).add(
+				jPanel3Layout.createSequentialGroup().addContainerGap().add(
+						jPanel3Layout.createParallelGroup(
+								org.jdesktop.layout.GroupLayout.LEADING).add(
+								jPanel3Layout.createParallelGroup(
+										org.jdesktop.layout.GroupLayout.BASELINE).add(
+										creatureName,
+										org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
+										org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
+										org.jdesktop.layout.GroupLayout.PREFERRED_SIZE).add(
+										jLabel17).add(amountOfCreatures)).add(
+								jLabel1)).addContainerGap(
+						org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
+						Short.MAX_VALUE)));
 
 		jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 		jLabel7.setText("Attributes");
@@ -653,12 +549,11 @@ public class JCreature extends javax.swing.JFrame {
 		creatureRespawn.setText("jTextField8");
 
 		SuggestAttributeButton.setText("Suggest Attributes");
-		SuggestAttributeButton
-				.addActionListener(new java.awt.event.ActionListener() {
-					public void actionPerformed(java.awt.event.ActionEvent evt) {
-						SuggestAttributeButtonActionPerformed(evt);
-					}
-				});
+		SuggestAttributeButton.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				SuggestAttributeButtonActionPerformed(evt);
+			}
+		});
 
 		jLabel12.setText("ATK:");
 
@@ -706,286 +601,163 @@ public class JCreature extends javax.swing.JFrame {
 		org.jdesktop.layout.GroupLayout jPanel4Layout = new org.jdesktop.layout.GroupLayout(
 				jPanel4);
 		jPanel4.setLayout(jPanel4Layout);
-		jPanel4Layout
-				.setHorizontalGroup(jPanel4Layout
-						.createParallelGroup(
-								org.jdesktop.layout.GroupLayout.LEADING)
-						.add(
-								jPanel4Layout
-										.createSequentialGroup()
-										.addContainerGap()
-										.add(
-												jPanel4Layout
-														.createParallelGroup(
-																org.jdesktop.layout.GroupLayout.LEADING)
-														.add(
-																jPanel4Layout
-																		.createSequentialGroup()
-																		.add(
-																				jPanel4Layout
-																						.createParallelGroup(
-																								org.jdesktop.layout.GroupLayout.LEADING)
-																						.add(
-																								jLabel12)
-																						.add(
-																								jLabel14)
-																						.add(
-																								jLabel13)
-																						.add(
-																								jLabel15))
-																		.add(
-																				22,
-																				22,
-																				22)
-																		.add(
-																				jPanel4Layout
-																						.createParallelGroup(
-																								org.jdesktop.layout.GroupLayout.LEADING,
-																								false)
-																						.add(
-																								creatureSpeed)
-																						.add(
-																								creatureHP)
-																						.add(
-																								creatureDEF)
-																						.add(
-																								creatureATK,
-																								org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
-																								134,
-																								org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-																		.addPreferredGap(
-																				org.jdesktop.layout.LayoutStyle.RELATED)
-																		.add(
-																				jPanel4Layout
-																						.createParallelGroup(
-																								org.jdesktop.layout.GroupLayout.LEADING,
-																								false)
-																						.add(
-																								suggestedDEF)
-																						.add(
-																								suggestedHP)
-																						.add(
-																								suggestedATK,
-																								org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
-																								105,
-																								org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-																		.add(
-																				20,
-																				20,
-																				20)
-																		.add(
-																				jPanel4Layout
-																						.createParallelGroup(
-																								org.jdesktop.layout.GroupLayout.TRAILING)
-																						.add(
-																								jPanel4Layout
-																										.createSequentialGroup()
-																										.add(
-																												jPanel4Layout
-																														.createParallelGroup(
-																																org.jdesktop.layout.GroupLayout.LEADING)
-																														.add(
-																																jLabel9)
-																														.add(
-																																jLabel10)
-																														.add(
-																																jLabel8))
-																										.addPreferredGap(
-																												org.jdesktop.layout.LayoutStyle.RELATED)
-																										.add(
-																												jPanel4Layout
-																														.createParallelGroup(
-																																org.jdesktop.layout.GroupLayout.LEADING)
-																														.add(
-																																jPanel4Layout
-																																		.createSequentialGroup()
-																																		.add(
-																																				jPanel4Layout
-																																						.createParallelGroup(
-																																								org.jdesktop.layout.GroupLayout.LEADING,
-																																								false)
-																																						.add(
-																																								creatureRespawn)
-																																						.add(
-																																								creatureXP,
-																																								org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
-																																								95,
-																																								Short.MAX_VALUE))
-																																		.addPreferredGap(
-																																				org.jdesktop.layout.LayoutStyle.RELATED)
-																																		.add(
-																																				jPanel4Layout
-																																						.createParallelGroup(
-																																								org.jdesktop.layout.GroupLayout.LEADING,
-																																								false)
-																																						.add(
-																																								org.jdesktop.layout.GroupLayout.TRAILING,
-																																								suggestedXP,
-																																								org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
-																																								82,
-																																								Short.MAX_VALUE)
-																																						.add(
-																																								org.jdesktop.layout.GroupLayout.TRAILING,
-																																								suggestedRespawn))
-																																		.addPreferredGap(
-																																				org.jdesktop.layout.LayoutStyle.RELATED)
-																																		.add(
-																																				jLabel16)
-																																		.addPreferredGap(
-																																				org.jdesktop.layout.LayoutStyle.RELATED,
-																																				17,
-																																				Short.MAX_VALUE))
-																														.add(
-																																creatureLevel,
-																																org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
-																																245,
-																																Short.MAX_VALUE)))
-																						.add(
-																								jPanel4Layout
-																										.createSequentialGroup()
-																										.add(
-																												justEditCreature)
-																										.addPreferredGap(
-																												org.jdesktop.layout.LayoutStyle.RELATED,
-																												90,
-																												Short.MAX_VALUE)
-																										.add(
-																												SuggestAttributeButton))))
-														.add(jLabel7))
-										.addContainerGap()));
-		jPanel4Layout
-				.setVerticalGroup(jPanel4Layout
-						.createParallelGroup(
-								org.jdesktop.layout.GroupLayout.LEADING)
-						.add(
-								jPanel4Layout
-										.createSequentialGroup()
-										.addContainerGap()
-										.add(
-												jLabel7,
+		jPanel4Layout.setHorizontalGroup(jPanel4Layout.createParallelGroup(
+				org.jdesktop.layout.GroupLayout.LEADING).add(
+				jPanel4Layout.createSequentialGroup().addContainerGap().add(
+						jPanel4Layout.createParallelGroup(
+								org.jdesktop.layout.GroupLayout.LEADING).add(
+								jPanel4Layout.createSequentialGroup().add(
+										jPanel4Layout.createParallelGroup(
+												org.jdesktop.layout.GroupLayout.LEADING).add(
+												jLabel12).add(jLabel14).add(
+												jLabel13).add(jLabel15)).add(
+										22, 22, 22).add(
+										jPanel4Layout.createParallelGroup(
+												org.jdesktop.layout.GroupLayout.LEADING,
+												false).add(creatureSpeed).add(
+												creatureHP).add(creatureDEF).add(
+												creatureATK,
 												org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
-												16,
-												org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-										.addPreferredGap(
-												org.jdesktop.layout.LayoutStyle.RELATED)
-										.add(
-												jPanel4Layout
-														.createParallelGroup(
-																org.jdesktop.layout.GroupLayout.BASELINE)
-														.add(jLabel12)
-														.add(
-																creatureATK,
-																org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
-																org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
-																org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-														.add(
-																suggestedATK,
-																org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
-																org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
-																org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-										.addPreferredGap(
-												org.jdesktop.layout.LayoutStyle.RELATED)
-										.add(
-												jPanel4Layout
-														.createParallelGroup(
-																org.jdesktop.layout.GroupLayout.BASELINE)
-														.add(
-																creatureDEF,
-																org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
-																org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
-																org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-														.add(jLabel13)
-														.add(
-																suggestedDEF,
-																org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
-																org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
-																org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-										.addPreferredGap(
-												org.jdesktop.layout.LayoutStyle.RELATED)
-										.add(
-												jPanel4Layout
-														.createParallelGroup(
-																org.jdesktop.layout.GroupLayout.BASELINE)
-														.add(jLabel14)
-														.add(
-																creatureHP,
-																org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
-																org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
-																org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-														.add(
-																suggestedHP,
-																org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
-																org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
-																org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-										.addPreferredGap(
-												org.jdesktop.layout.LayoutStyle.RELATED)
-										.add(
-												jPanel4Layout
-														.createParallelGroup(
-																org.jdesktop.layout.GroupLayout.BASELINE)
-														.add(
-																creatureSpeed,
-																org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
-																org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
-																org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-														.add(jLabel15)
-														.add(
-																SuggestAttributeButton)
-														.add(justEditCreature))
-										.addContainerGap(
-												org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
-												Short.MAX_VALUE))
-						.add(
-								org.jdesktop.layout.GroupLayout.TRAILING,
-								jPanel4Layout
-										.createSequentialGroup()
-										.addContainerGap(24, Short.MAX_VALUE)
-										.add(
-												jPanel4Layout
-														.createParallelGroup(
-																org.jdesktop.layout.GroupLayout.BASELINE)
-														.add(jLabel8)
-														.add(
+												134,
+												org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)).addPreferredGap(
+										org.jdesktop.layout.LayoutStyle.RELATED).add(
+										jPanel4Layout.createParallelGroup(
+												org.jdesktop.layout.GroupLayout.LEADING,
+												false).add(suggestedDEF).add(
+												suggestedHP).add(
+												suggestedATK,
+												org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
+												105,
+												org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)).add(
+										20, 20, 20).add(
+										jPanel4Layout.createParallelGroup(
+												org.jdesktop.layout.GroupLayout.TRAILING).add(
+												jPanel4Layout.createSequentialGroup().add(
+														jPanel4Layout.createParallelGroup(
+																org.jdesktop.layout.GroupLayout.LEADING).add(
+																jLabel9).add(
+																jLabel10).add(
+																jLabel8)).addPreferredGap(
+														org.jdesktop.layout.LayoutStyle.RELATED).add(
+														jPanel4Layout.createParallelGroup(
+																org.jdesktop.layout.GroupLayout.LEADING).add(
+																jPanel4Layout.createSequentialGroup().add(
+																		jPanel4Layout.createParallelGroup(
+																				org.jdesktop.layout.GroupLayout.LEADING,
+																				false).add(
+																				creatureRespawn).add(
+																				creatureXP,
+																				org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
+																				95,
+																				Short.MAX_VALUE)).addPreferredGap(
+																		org.jdesktop.layout.LayoutStyle.RELATED).add(
+																		jPanel4Layout.createParallelGroup(
+																				org.jdesktop.layout.GroupLayout.LEADING,
+																				false).add(
+																				org.jdesktop.layout.GroupLayout.TRAILING,
+																				suggestedXP,
+																				org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
+																				82,
+																				Short.MAX_VALUE).add(
+																				org.jdesktop.layout.GroupLayout.TRAILING,
+																				suggestedRespawn)).addPreferredGap(
+																		org.jdesktop.layout.LayoutStyle.RELATED).add(
+																		jLabel16).addPreferredGap(
+																		org.jdesktop.layout.LayoutStyle.RELATED,
+																		17,
+																		Short.MAX_VALUE)).add(
 																creatureLevel,
-																org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
 																org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
-																org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-										.addPreferredGap(
-												org.jdesktop.layout.LayoutStyle.RELATED)
-										.add(
-												jPanel4Layout
-														.createParallelGroup(
-																org.jdesktop.layout.GroupLayout.BASELINE)
-														.add(jLabel9)
-														.add(
-																creatureXP,
-																org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
-																org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
-																org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-														.add(
-																suggestedXP,
-																org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
-																org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
-																org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-										.addPreferredGap(
-												org.jdesktop.layout.LayoutStyle.RELATED)
-										.add(
-												jPanel4Layout
-														.createParallelGroup(
-																org.jdesktop.layout.GroupLayout.BASELINE)
-														.add(jLabel10)
-														.add(jLabel16)
-														.add(
-																creatureRespawn,
-																org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
-																org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
-																org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-														.add(
-																suggestedRespawn,
-																org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
-																org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
-																org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-										.add(53, 53, 53)));
+																245,
+																Short.MAX_VALUE))).add(
+												jPanel4Layout.createSequentialGroup().add(
+														justEditCreature).addPreferredGap(
+														org.jdesktop.layout.LayoutStyle.RELATED,
+														90, Short.MAX_VALUE).add(
+														SuggestAttributeButton)))).add(
+								jLabel7)).addContainerGap()));
+		jPanel4Layout.setVerticalGroup(jPanel4Layout.createParallelGroup(
+				org.jdesktop.layout.GroupLayout.LEADING).add(
+				jPanel4Layout.createSequentialGroup().addContainerGap().add(
+						jLabel7,
+						org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 16,
+						org.jdesktop.layout.GroupLayout.PREFERRED_SIZE).addPreferredGap(
+						org.jdesktop.layout.LayoutStyle.RELATED).add(
+						jPanel4Layout.createParallelGroup(
+								org.jdesktop.layout.GroupLayout.BASELINE).add(
+								jLabel12).add(creatureATK,
+								org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
+								org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
+								org.jdesktop.layout.GroupLayout.PREFERRED_SIZE).add(
+								suggestedATK,
+								org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
+								org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
+								org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)).addPreferredGap(
+						org.jdesktop.layout.LayoutStyle.RELATED).add(
+						jPanel4Layout.createParallelGroup(
+								org.jdesktop.layout.GroupLayout.BASELINE).add(
+								creatureDEF,
+								org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
+								org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
+								org.jdesktop.layout.GroupLayout.PREFERRED_SIZE).add(
+								jLabel13).add(suggestedDEF,
+								org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
+								org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
+								org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)).addPreferredGap(
+						org.jdesktop.layout.LayoutStyle.RELATED).add(
+						jPanel4Layout.createParallelGroup(
+								org.jdesktop.layout.GroupLayout.BASELINE).add(
+								jLabel14).add(creatureHP,
+								org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
+								org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
+								org.jdesktop.layout.GroupLayout.PREFERRED_SIZE).add(
+								suggestedHP,
+								org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
+								org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
+								org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)).addPreferredGap(
+						org.jdesktop.layout.LayoutStyle.RELATED).add(
+						jPanel4Layout.createParallelGroup(
+								org.jdesktop.layout.GroupLayout.BASELINE).add(
+								creatureSpeed,
+								org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
+								org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
+								org.jdesktop.layout.GroupLayout.PREFERRED_SIZE).add(
+								jLabel15).add(SuggestAttributeButton).add(
+								justEditCreature)).addContainerGap(
+						org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
+						Short.MAX_VALUE)).add(
+				org.jdesktop.layout.GroupLayout.TRAILING,
+				jPanel4Layout.createSequentialGroup().addContainerGap(24,
+						Short.MAX_VALUE).add(
+						jPanel4Layout.createParallelGroup(
+								org.jdesktop.layout.GroupLayout.BASELINE).add(
+								jLabel8).add(creatureLevel,
+								org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
+								org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
+								org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)).addPreferredGap(
+						org.jdesktop.layout.LayoutStyle.RELATED).add(
+						jPanel4Layout.createParallelGroup(
+								org.jdesktop.layout.GroupLayout.BASELINE).add(
+								jLabel9).add(creatureXP,
+								org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
+								org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
+								org.jdesktop.layout.GroupLayout.PREFERRED_SIZE).add(
+								suggestedXP,
+								org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
+								org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
+								org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)).addPreferredGap(
+						org.jdesktop.layout.LayoutStyle.RELATED).add(
+						jPanel4Layout.createParallelGroup(
+								org.jdesktop.layout.GroupLayout.BASELINE).add(
+								jLabel10).add(jLabel16).add(creatureRespawn,
+								org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
+								org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
+								org.jdesktop.layout.GroupLayout.PREFERRED_SIZE).add(
+								suggestedRespawn,
+								org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
+								org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
+								org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)).add(
+						53, 53, 53)));
 
 		creatureDescription.setColumns(20);
 		creatureDescription.setLineWrap(true);
@@ -1085,35 +857,18 @@ public class JCreature extends javax.swing.JFrame {
 		org.jdesktop.layout.GroupLayout jPanel8Layout = new org.jdesktop.layout.GroupLayout(
 				jPanel8);
 		jPanel8.setLayout(jPanel8Layout);
-		jPanel8Layout
-				.setHorizontalGroup(jPanel8Layout
-						.createParallelGroup(
-								org.jdesktop.layout.GroupLayout.LEADING)
-						.add(
-								jPanel8Layout
-										.createSequentialGroup()
-										.addContainerGap()
-										.add(
-												jPanel8Layout
-														.createParallelGroup(
-																org.jdesktop.layout.GroupLayout.LEADING)
-														.add(
-																jScrollPane2,
-																org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
-																365,
-																Short.MAX_VALUE)
-														.add(
-																jPanel8Layout
-																		.createSequentialGroup()
-																		.add(
-																				jLabel11)
-																		.addPreferredGap(
-																				org.jdesktop.layout.LayoutStyle.RELATED,
-																				261,
-																				Short.MAX_VALUE)
-																		.add(
-																				pushIntoArea)
-																		.addContainerGap()))));
+		jPanel8Layout.setHorizontalGroup(jPanel8Layout.createParallelGroup(
+				org.jdesktop.layout.GroupLayout.LEADING).add(
+				jPanel8Layout.createSequentialGroup().addContainerGap().add(
+						jPanel8Layout.createParallelGroup(
+								org.jdesktop.layout.GroupLayout.LEADING).add(
+								jScrollPane2,
+								org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
+								365, Short.MAX_VALUE).add(
+								jPanel8Layout.createSequentialGroup().add(
+										jLabel11).addPreferredGap(
+										org.jdesktop.layout.LayoutStyle.RELATED,
+										261, Short.MAX_VALUE).add(pushIntoArea).addContainerGap()))));
 		jPanel8Layout.setVerticalGroup(jPanel8Layout.createParallelGroup(
 				org.jdesktop.layout.GroupLayout.LEADING).add(
 				jPanel8Layout.createSequentialGroup().addContainerGap().add(
@@ -1189,206 +944,114 @@ public class JCreature extends javax.swing.JFrame {
 		org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(
 				getContentPane());
 		getContentPane().setLayout(layout);
-		layout
-				.setHorizontalGroup(layout
-						.createParallelGroup(
-								org.jdesktop.layout.GroupLayout.LEADING)
-						.add(
-								layout
-										.createSequentialGroup()
-										.addContainerGap()
-										.add(
-												layout
-														.createParallelGroup(
-																org.jdesktop.layout.GroupLayout.LEADING,
-																false)
-														.add(
-																layout
-																		.createSequentialGroup()
-																		.addPreferredGap(
-																				org.jdesktop.layout.LayoutStyle.RELATED)
-																		.add(
-																				data,
-																				org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
-																				284,
-																				org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-																		.addPreferredGap(
-																				org.jdesktop.layout.LayoutStyle.RELATED)
-																		.add(
-																				jPanel8,
-																				org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
-																				org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
-																				Short.MAX_VALUE))
-														.add(
-																jPanel4,
-																org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
-																org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
-																Short.MAX_VALUE)
-														.add(
-																jPanel1,
-																org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
-																org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
-																Short.MAX_VALUE)
-														.add(
-																jPanel3,
-																org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
-																org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
-																Short.MAX_VALUE))
-										.addPreferredGap(
-												org.jdesktop.layout.LayoutStyle.RELATED)
-										.add(
-												layout
-														.createParallelGroup(
-																org.jdesktop.layout.GroupLayout.TRAILING)
-														.add(
-																layout
-																		.createSequentialGroup()
-																		.add(
-																				filteredField,
-																				org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
-																				org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
-																				org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-																		.addPreferredGap(
-																				org.jdesktop.layout.LayoutStyle.RELATED,
-																				9,
-																				Short.MAX_VALUE)
-																		.add(
-																				layout
-																						.createParallelGroup(
-																								org.jdesktop.layout.GroupLayout.LEADING)
-																						.add(
-																								org.jdesktop.layout.GroupLayout.TRAILING,
-																								layout
-																										.createSequentialGroup()
-																										.add(
-																												filter,
-																												org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
-																												84,
-																												org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-																										.addPreferredGap(
-																												org.jdesktop.layout.LayoutStyle.RELATED)
-																										.add(
-																												FilterButton))
-																						.add(
-																								org.jdesktop.layout.GroupLayout.TRAILING,
-																								ClearButton)))
-														.add(
-																org.jdesktop.layout.GroupLayout.LEADING,
-																layout
-																		.createSequentialGroup()
-																		.add(
-																				addButton)
-																		.addPreferredGap(
-																				org.jdesktop.layout.LayoutStyle.RELATED,
-																				127,
-																				Short.MAX_VALUE)
-																		.add(
-																				setButton))
-														.add(
-																org.jdesktop.layout.GroupLayout.LEADING,
-																jScrollPane1,
-																org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
-																239,
-																Short.MAX_VALUE))
-										.addContainerGap()));
-		layout
-				.setVerticalGroup(layout
-						.createParallelGroup(
-								org.jdesktop.layout.GroupLayout.LEADING)
-						.add(
-								layout
-										.createSequentialGroup()
-										.addContainerGap()
-										.add(
-												layout
-														.createParallelGroup(
-																org.jdesktop.layout.GroupLayout.LEADING)
-														.add(
-																jPanel3,
-																org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
-																org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
-																org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-														.add(
-																layout
-																		.createSequentialGroup()
-																		.add(
-																				layout
-																						.createParallelGroup(
-																								org.jdesktop.layout.GroupLayout.BASELINE)
-																						.add(
-																								FilterButton)
-																						.add(
-																								filter,
-																								org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
-																								org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
-																								org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-																		.addPreferredGap(
-																				org.jdesktop.layout.LayoutStyle.RELATED)
-																		.add(
-																				ClearButton))
-														.add(
-																filteredField,
-																org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
-																org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
-																org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-										.addPreferredGap(
-												org.jdesktop.layout.LayoutStyle.RELATED)
-										.add(
-												layout
-														.createParallelGroup(
-																org.jdesktop.layout.GroupLayout.LEADING)
-														.add(
-																org.jdesktop.layout.GroupLayout.TRAILING,
-																layout
-																		.createSequentialGroup()
-																		.add(
-																				jPanel1,
-																				org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
-																				org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
-																				org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-																		.addPreferredGap(
-																				org.jdesktop.layout.LayoutStyle.RELATED)
-																		.add(
-																				jPanel4,
-																				org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
-																				org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
-																				org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-																		.addPreferredGap(
-																				org.jdesktop.layout.LayoutStyle.RELATED)
-																		.add(
-																				layout
-																						.createParallelGroup(
-																								org.jdesktop.layout.GroupLayout.LEADING)
-																						.add(
-																								jPanel8,
-																								org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
-																								org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
-																								org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-																						.add(
-																								data,
-																								0,
-																								0,
-																								Short.MAX_VALUE)))
-														.add(
-																org.jdesktop.layout.GroupLayout.TRAILING,
-																layout
-																		.createSequentialGroup()
-																		.add(
-																				jScrollPane1,
-																				org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
-																				576,
-																				Short.MAX_VALUE)
-																		.addPreferredGap(
-																				org.jdesktop.layout.LayoutStyle.RELATED)
-																		.add(
-																				layout
-																						.createParallelGroup(
-																								org.jdesktop.layout.GroupLayout.BASELINE)
-																						.add(
-																								addButton)
-																						.add(
-																								setButton))))
-										.addContainerGap()));
+		layout.setHorizontalGroup(layout.createParallelGroup(
+				org.jdesktop.layout.GroupLayout.LEADING).add(
+				layout.createSequentialGroup().addContainerGap().add(
+						layout.createParallelGroup(
+								org.jdesktop.layout.GroupLayout.LEADING, false).add(
+								layout.createSequentialGroup().addPreferredGap(
+										org.jdesktop.layout.LayoutStyle.RELATED).add(
+										data,
+										org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
+										284,
+										org.jdesktop.layout.GroupLayout.PREFERRED_SIZE).addPreferredGap(
+										org.jdesktop.layout.LayoutStyle.RELATED).add(
+										jPanel8,
+										org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
+										org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
+										Short.MAX_VALUE)).add(jPanel4,
+								org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
+								org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
+								Short.MAX_VALUE).add(jPanel1,
+								org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
+								org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
+								Short.MAX_VALUE).add(jPanel3,
+								org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
+								org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
+								Short.MAX_VALUE)).addPreferredGap(
+						org.jdesktop.layout.LayoutStyle.RELATED).add(
+						layout.createParallelGroup(
+								org.jdesktop.layout.GroupLayout.TRAILING).add(
+								layout.createSequentialGroup().add(
+										filteredField,
+										org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
+										org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
+										org.jdesktop.layout.GroupLayout.PREFERRED_SIZE).addPreferredGap(
+										org.jdesktop.layout.LayoutStyle.RELATED,
+										9, Short.MAX_VALUE).add(
+										layout.createParallelGroup(
+												org.jdesktop.layout.GroupLayout.LEADING).add(
+												org.jdesktop.layout.GroupLayout.TRAILING,
+												layout.createSequentialGroup().add(
+														filter,
+														org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
+														84,
+														org.jdesktop.layout.GroupLayout.PREFERRED_SIZE).addPreferredGap(
+														org.jdesktop.layout.LayoutStyle.RELATED).add(
+														FilterButton)).add(
+												org.jdesktop.layout.GroupLayout.TRAILING,
+												ClearButton))).add(
+								org.jdesktop.layout.GroupLayout.LEADING,
+								layout.createSequentialGroup().add(addButton).addPreferredGap(
+										org.jdesktop.layout.LayoutStyle.RELATED,
+										127, Short.MAX_VALUE).add(setButton)).add(
+								org.jdesktop.layout.GroupLayout.LEADING,
+								jScrollPane1,
+								org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
+								239, Short.MAX_VALUE)).addContainerGap()));
+		layout.setVerticalGroup(layout.createParallelGroup(
+				org.jdesktop.layout.GroupLayout.LEADING).add(
+				layout.createSequentialGroup().addContainerGap().add(
+						layout.createParallelGroup(
+								org.jdesktop.layout.GroupLayout.LEADING).add(
+								jPanel3,
+								org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
+								org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
+								org.jdesktop.layout.GroupLayout.PREFERRED_SIZE).add(
+								layout.createSequentialGroup().add(
+										layout.createParallelGroup(
+												org.jdesktop.layout.GroupLayout.BASELINE).add(
+												FilterButton).add(
+												filter,
+												org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
+												org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
+												org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)).addPreferredGap(
+										org.jdesktop.layout.LayoutStyle.RELATED).add(
+										ClearButton)).add(filteredField,
+								org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
+								org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
+								org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)).addPreferredGap(
+						org.jdesktop.layout.LayoutStyle.RELATED).add(
+						layout.createParallelGroup(
+								org.jdesktop.layout.GroupLayout.LEADING).add(
+								org.jdesktop.layout.GroupLayout.TRAILING,
+								layout.createSequentialGroup().add(
+										jPanel1,
+										org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
+										org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
+										org.jdesktop.layout.GroupLayout.PREFERRED_SIZE).addPreferredGap(
+										org.jdesktop.layout.LayoutStyle.RELATED).add(
+										jPanel4,
+										org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
+										org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
+										org.jdesktop.layout.GroupLayout.PREFERRED_SIZE).addPreferredGap(
+										org.jdesktop.layout.LayoutStyle.RELATED).add(
+										layout.createParallelGroup(
+												org.jdesktop.layout.GroupLayout.LEADING).add(
+												jPanel8,
+												org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
+												org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
+												org.jdesktop.layout.GroupLayout.PREFERRED_SIZE).add(
+												data, 0, 0, Short.MAX_VALUE))).add(
+								org.jdesktop.layout.GroupLayout.TRAILING,
+								layout.createSequentialGroup().add(
+										jScrollPane1,
+										org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
+										576, Short.MAX_VALUE).addPreferredGap(
+										org.jdesktop.layout.LayoutStyle.RELATED).add(
+										layout.createParallelGroup(
+												org.jdesktop.layout.GroupLayout.BASELINE).add(
+												addButton).add(setButton)))).addContainerGap()));
 		pack();
 	} // </editor-fold>//GEN-END:initComponents
 
@@ -1397,8 +1060,8 @@ public class JCreature extends javax.swing.JFrame {
 	} // GEN-LAST:event_formWindowClosing
 
 	private void FilterButtonActionPerformed(java.awt.event.ActionEvent evt) { // GEN-FIRST:event_FilterButtonActionPerformed
-		updateCreatureList((String) filteredField.getSelectedItem(), filter
-				.getText());
+		updateCreatureList((String) filteredField.getSelectedItem(),
+				filter.getText());
 	} // GEN-LAST:event_FilterButtonActionPerformed
 
 	private void ClearButtonActionPerformed(java.awt.event.ActionEvent evt) { // GEN-FIRST:event_ClearButtonActionPerformed
@@ -1410,7 +1073,7 @@ public class JCreature extends javax.swing.JFrame {
 		justUpdateCreature = !justUpdateCreature;
 	} // GEN-LAST:event_justEditCreatureActionPerformed
 
-	private void pushIntoAreaActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_pushIntoAreaActionPerformed
+	private void pushIntoAreaActionPerformed(java.awt.event.ActionEvent evt) { // GEN-FIRST:event_pushIntoAreaActionPerformed
 		int i = data.getSelectedIndex();
 
 		if (itemList.getSelectedIndex() < 0) {
@@ -1419,21 +1082,24 @@ public class JCreature extends javax.swing.JFrame {
 		List<DefaultItem> items = xml.getItems();
 		switch (i) {
 		case 0:
-			creatureDescription.insert(items.get(itemList.getSelectedIndex())
-					.getItemName(), creatureDescription.getCaretPosition());
+			creatureDescription.insert(
+					items.get(itemList.getSelectedIndex()).getItemName(),
+					creatureDescription.getCaretPosition());
 			break;
 		case 1:
-			creatureDrops.insert(items.get(itemList.getSelectedIndex())
-					.getItemName(), creatureDrops.getCaretPosition());
+			creatureDrops.insert(
+					items.get(itemList.getSelectedIndex()).getItemName(),
+					creatureDrops.getCaretPosition());
 			break;
 		case 2:
-			creatureEquips.insert(items.get(itemList.getSelectedIndex())
-					.getItemName(), creatureEquips.getCaretPosition());
+			creatureEquips.insert(
+					items.get(itemList.getSelectedIndex()).getItemName(),
+					creatureEquips.getCaretPosition());
 			break;
 		}
 	} // GEN-LAST:event_pushIntoAreaActionPerformed
 
-	private void jLoadFromFileActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jLoadFromFileActionPerformed
+	private void jLoadFromFileActionPerformed(java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jLoadFromFileActionPerformed
 		String cdata = null;
 
 		JFileChooser fc = new JFileChooser(".");
@@ -1455,7 +1121,7 @@ public class JCreature extends javax.swing.JFrame {
 		}
 	} // GEN-LAST:event_jLoadFromFileActionPerformed
 
-	private void updateGFXButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_updateGFXButtonActionPerformed
+	private void updateGFXButtonActionPerformed(java.awt.event.ActionEvent evt) { // GEN-FIRST:event_updateGFXButtonActionPerformed
 		try {
 			String clazz = (String) creatureClass.getSelectedItem();
 			String subclass = creatureSubclass.getText();
@@ -1465,8 +1131,8 @@ public class JCreature extends javax.swing.JFrame {
 					"data/sprites/monsters" + gfxLocation);
 			String[] sizes = creatureSize.getText().split(",");
 
-			drawSinglePart(spr, Integer.parseInt(sizes[0]), Integer
-					.parseInt(sizes[1]), creatureImage.getGraphics());
+			drawSinglePart(spr, Integer.parseInt(sizes[0]),
+					Integer.parseInt(sizes[1]), creatureImage.getGraphics());
 			creatureGFXLocation.setText(gfxLocation);
 		} catch (NumberFormatException e) {
 		}
@@ -1520,7 +1186,7 @@ public class JCreature extends javax.swing.JFrame {
 		suggestedXP.setText(Integer.toString(xp));
 	} // GEN-LAST:event_SuggestAttributeButtonActionPerformed
 
-	private void jSaveToFileActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jSaveToFileActionPerformed
+	private void jSaveToFileActionPerformed(java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jSaveToFileActionPerformed
 		JFileChooser fc = new JFileChooser(".");
 		fc.setSelectedFile(new File(EditorXML.creaturesFile));
 		int returnVal = fc.showSaveDialog(this);
@@ -1543,34 +1209,33 @@ public class JCreature extends javax.swing.JFrame {
 		}
 	} // GEN-LAST:event_jSaveToFileActionPerformed
 
-	private void setButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_setButtonActionPerformed
+	private void setButtonActionPerformed(java.awt.event.ActionEvent evt) { // GEN-FIRST:event_setButtonActionPerformed
 		try {
 			xml.creaturesChange();
 			addButton.setEnabled(true);
 			setButton.setForeground(Color.BLACK);
 
 			int pos = creatureList.getSelectedIndex();
-			DefaultCreature actual = (DefaultCreature) filteredCreatures
-					.get(pos);
+			DefaultCreature actual = (DefaultCreature) filteredCreatures.get(pos);
 
 			actual.setCreatureName(creatureName.getText());
 			actual.setCreatureClass((String) creatureClass.getSelectedItem());
 			actual.setCreatureSubClass(creatureSubclass.getText());
 			String[] sizes = creatureSize.getText().split(",");
-			actual.setSize(Integer.parseInt(sizes[0]), Integer
-					.parseInt(sizes[1]));
+			actual.setSize(Integer.parseInt(sizes[0]),
+					Integer.parseInt(sizes[1]));
 			actual.setTileId(creatureTileid.getText());
 
-			actual.setLevel(Integer.parseInt(creatureLevel.getText()), Integer
-					.parseInt(creatureXP.getText()) * 20);
+			actual.setLevel(Integer.parseInt(creatureLevel.getText()),
+					Integer.parseInt(creatureXP.getText()) * 20);
 			actual.setRespawnTime(Integer.parseInt(creatureRespawn.getText()));
 
 			actual.setDescription(creatureDescription.getText());
 
-			actual.setRPStats(Integer.parseInt(creatureHP.getText()), Integer
-					.parseInt(creatureATK.getText()), Integer
-					.parseInt(creatureDEF.getText()), Double
-					.parseDouble(creatureSpeed.getText()));
+			actual.setRPStats(Integer.parseInt(creatureHP.getText()),
+					Integer.parseInt(creatureATK.getText()),
+					Integer.parseInt(creatureDEF.getText()),
+					Double.parseDouble(creatureSpeed.getText()));
 
 			/* Drops */
 			List<DropItem> dropList = new LinkedList<DropItem>();
@@ -1579,18 +1244,19 @@ public class JCreature extends javax.swing.JFrame {
 			String line = reader.readLine();
 			while (line != null) {
 				String[] tok = line.split(";");
-				String[] minmax = tok[1].replace("[", "").replace("]", "")
-						.split(",");
-				dropList.add(new DropItem(tok[0].trim(), Double
-						.parseDouble(tok[2].trim()), Integer.parseInt(minmax[0]
-						.trim()), Integer.parseInt(minmax[1].trim())));
+				String[] minmax = tok[1].replace("[", "").replace("]", "").split(
+						",");
+				dropList.add(new DropItem(tok[0].trim(),
+						Double.parseDouble(tok[2].trim()),
+						Integer.parseInt(minmax[0].trim()),
+						Integer.parseInt(minmax[1].trim())));
 				line = reader.readLine();
 			}
 			actual.setDropItems(dropList);
 
 			List<EquipItem> equipList = new LinkedList<EquipItem>();
-			reader = new BufferedReader(new StringReader(creatureEquips
-					.getText()));
+			reader = new BufferedReader(new StringReader(
+					creatureEquips.getText()));
 			line = reader.readLine();
 			while (line != null) {
 				String[] tok = line.split(";");
@@ -1607,9 +1273,7 @@ public class JCreature extends javax.swing.JFrame {
 			line = reader.readLine();
 			while (line != null) {
 				if (line.startsWith("says")) {
-					noises
-							.add(line.replace("says", "").replace(":", "")
-									.trim());
+					noises.add(line.replace("says", "").replace(":", "").trim());
 				} else {
 					int i = line.indexOf("=");
 					String key = null;
@@ -1639,7 +1303,7 @@ public class JCreature extends javax.swing.JFrame {
 		}
 	} // GEN-LAST:event_setButtonActionPerformed
 
-	private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_addButtonActionPerformed
+	private void addButtonActionPerformed(java.awt.event.ActionEvent evt) { // GEN-FIRST:event_addButtonActionPerformed
 		xml.getCreatures().add(new DefaultCreature(null, null, null, null));
 		updateItemLists();
 		updateCreatureList(null, filter.getText());

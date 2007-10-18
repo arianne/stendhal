@@ -21,13 +21,13 @@ import marauroa.common.net.message.TransferContent;
  * <p>
  * Manages a two level cache which one or both levels are optional:
  * </p>
- * 
+ *
  * <p>
  * The first level is prefilled readonly cache in a .jar file on class path. At
  * the time of writing we use this for Webstart because we are unsure how large
  * the webstart PersistenceService may grow.
  * </p>
- * 
+ *
  * <p>
  * The second level is a normal cache on filesystem.
  * </p>
@@ -77,7 +77,7 @@ public class Cache {
 			initCacheManager();
 			cleanCacheOnUpdate();
 			cacheManager.set(VERSION_KEY, stendhal.VERSION);
-			
+
 		} catch (Exception e) {
 			logger.error("cannot create StendhalClient", e);
 		}
@@ -96,7 +96,7 @@ public class Cache {
 			initCacheManager();
 		}
 	}
-	
+
 	/**
 	 * initializes the low level cache manager
 	 *
@@ -116,17 +116,17 @@ public class Cache {
 		String homeDir = System.getProperty("user.home");
 		String gameName = ClientGameConfiguration.get("GAME_NAME");
 		String gameFolder = "/" + gameName.toLowerCase() + "/";
-		String cache = "cache"; 
+		String cache = "cache";
 		File cacheDir = new File(homeDir + gameFolder + cache);
 		if (cacheDir.isDirectory()) {
-			File files[] = cacheDir.listFiles();
+			File[] files = cacheDir.listFiles();
 			for (File file : files) {
 				file.delete();
 			}
 		}
 	}
 
-	
+
 	private InputStream getItemFromPrefilledCache(TransferContent item) {
 		String name = "cache/" + item.name;
 
@@ -173,7 +173,7 @@ public class Cache {
 
 	/**
 	 * Gets an item from cache
-	 * 
+	 *
 	 * @param item
 	 *            key
 	 * @return InputStream or null if not in cache
@@ -191,7 +191,7 @@ public class Cache {
 
 	/**
 	 * Stores an item in cache
-	 * 
+	 *
 	 * @param item
 	 *            key
 	 * @param data

@@ -1,4 +1,5 @@
 package newrp;
+
 /**
  * Interface for effect. Mainly healing and damage.
  *
@@ -15,8 +16,9 @@ public interface Effect {
 	 * @param rulingAttribute
 	 */
 	void apply(RPEntity source, RPEntity target, int rulingAttribute);
-	
-	/* TODO: Add apply interface for a area too 
+
+	/*
+	 * TODO: Add apply interface for a area too
 	 *
 	 * void apply(RPEntity source, int x, int y, int rulingAttribute);
 	 */
@@ -30,7 +32,7 @@ public interface Effect {
  */
 class HealEffect implements Effect {
 	/**
-	 * How much do we heal? 
+	 * How much do we heal?
 	 */
 	int amount;
 
@@ -42,7 +44,7 @@ class HealEffect implements Effect {
 		/*
 		 * TODO: Alter the healing effect based on level.
 		 */
-		
+
 		/*
 		 * Simply add the new HP.
 		 */
@@ -58,21 +60,21 @@ class HealEffect implements Effect {
  */
 enum DamageType {
 	/** Damage caused by a sword for example. */
-	SLASH, 
+	SLASH,
 	/** Damage caused by a hammer. */
-	BASH, 
+	BASH,
 	/** Damage caused by a knife or an arrow */
-	STAB, 
-	/** Damage caused by a fire */ 
-	FIRE, 
+	STAB,
+	/** Damage caused by a fire */
+	FIRE,
 	/** Damage caused by ice or by a ice spell */
-	COLD, 
+	COLD,
 	/** Damage caused by acid element */
-	ACID, 
+	ACID,
 	/** Damage because of disease or a spell */
-	DISEASE, 
+	DISEASE,
 	/** Damage because of light. */
-	LIGHT, 
+	LIGHT,
 }
 
 /**
@@ -97,22 +99,25 @@ abstract class DamageEffect implements Effect {
 		this.amount = amount;
 	}
 
-	abstract public void apply(RPEntity source, RPEntity target, int rulingAttribute);
-	}
+	public abstract void apply(RPEntity source, RPEntity target,
+			int rulingAttribute);
+}
 
 /**
  * A simpler approach to damage effect
+ *
  * @author miguel
  *
  */
 class SimpleDamageEffect extends DamageEffect {
 
 	public SimpleDamageEffect(DamageType type, int amount) {
-	    super(type, amount);
-    }
-	
+		super(type, amount);
+	}
+
 	public void apply(RPEntity source, RPEntity target, int rulingAttribute) {
-		int done=SimpleRPEntity.calculateAbsorb(this, source.level, rulingAttribute);		
+		int done = SimpleRPEntity.calculateAbsorb(this, source.level,
+				rulingAttribute);
 		source.damage(target, type, done);
 	}
 }

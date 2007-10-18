@@ -4,10 +4,9 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Represent a spell.
- * Conceptually a spell is sometype of item, but it is shared among all the players.
- * There is only need for one instance of each spell.
- * 
+ * Represent a spell. Conceptually a spell is sometype of item, but it is shared
+ * among all the players. There is only need for one instance of each spell.
+ *
  * @author miguel
  *
  */
@@ -49,13 +48,13 @@ public class Spell {
 		this.name = name;
 		this.skill = skill;
 		this.level = level;
-		this.delay=delay;
+		this.delay = delay;
 		this.effects = new LinkedList<Effect>();
 	}
 
 	/**
-	 * Add damage effect to this spell. 
-	 * 
+	 * Add damage effect to this spell.
+	 *
 	 * @param type
 	 * @param amount
 	 */
@@ -65,6 +64,7 @@ public class Spell {
 
 	/**
 	 * Add healing effect to this spell.
+	 *
 	 * @param amount
 	 */
 	public void setHealingEffect(int amount) {
@@ -73,7 +73,7 @@ public class Spell {
 
 	/**
 	 * Apply the spell to target that is casted by source.
-	 * 
+	 *
 	 * @param source
 	 * @param target
 	 */
@@ -91,7 +91,7 @@ public class Spell {
 
 	/**
 	 * When a spell is failed by the caster it backfires.
-	 * 
+	 *
 	 * @param source
 	 */
 	public void backfire(RPEntity source) {
@@ -106,7 +106,7 @@ public class Spell {
 
 /**
  * Represents a subtype of spell that is a range spell.
- * 
+ *
  * @author miguel
  *
  */
@@ -121,10 +121,11 @@ class RangeSpell extends Spell {
 	 */
 	int area;
 
-	public RangeSpell(String name, SkillType skill, int level, int delay, int range, int area) {
+	public RangeSpell(String name, SkillType skill, int level, int delay,
+			int range, int area) {
 		super(name, skill, level, delay);
-		this.range=range;
-		this.area=area;
+		this.range = range;
+		this.area = area;
 	}
 
 	public void apply(RPEntity source, RPEntity target) {
@@ -133,6 +134,6 @@ class RangeSpell extends Spell {
 		 */
 		if (source.distanceTo(target) <= range) {
 			super.apply(source, target);
-		}		
+		}
 	}
 }

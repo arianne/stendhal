@@ -91,6 +91,7 @@ public class Item {
 
 	/**
 	 * Adds a damage effect on the item.
+	 *
 	 * @param type
 	 * @param amount
 	 */
@@ -100,6 +101,7 @@ public class Item {
 
 	/**
 	 * Adds a protective effect on the item.
+	 *
 	 * @param type
 	 * @param amount
 	 */
@@ -110,28 +112,28 @@ public class Item {
 
 /**
  * Subclass for weapons.
- * 
+ *
  * @author miguel
  *
  */
 class Weapon extends Item {
 	public Weapon(String name, int weight, SkillType skill) {
 		super(ItemType.WEAPON, name, weight, skill);
-		this.throwable=false;
+		this.throwable = false;
 	}
 }
 
 class RangeWeapon extends Weapon {
 	public RangeWeapon(String name, int weight, SkillType skill, int range) {
 		super(name, weight, skill);
-		this.throwable=true;
-		this.range=range;
+		this.throwable = true;
+		this.range = range;
 	}
 }
 
 /**
  * Subclass for armors.
- * 
+ *
  * @author miguel
  *
  */
@@ -143,7 +145,7 @@ class Armor extends Item {
 
 /**
  * Subclass for shields.
- * 
+ *
  * @author miguel
  *
  */
@@ -152,4 +154,3 @@ class Shield extends Item {
 		super(ItemType.SHIELD, name, weight, skill);
 	}
 }
-

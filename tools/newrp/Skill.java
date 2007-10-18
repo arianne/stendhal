@@ -14,7 +14,7 @@ enum SkillType {
 
 /**
  * A skill is composed of a type and the experience in that type of skill.
- * 
+ *
  * @author miguel
  *
  */

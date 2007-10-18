@@ -22,19 +22,19 @@ import marauroa.common.Logger;
  * A Stendhal user interface using 2D graphics.
  *
  * This is a place that developers can do GUI refactoring (hopefully) without
- * breaking the existing client until it is complete enough to replace the
- * old one.
+ * breaking the existing client until it is complete enough to replace the old
+ * one.
  */
 public class Stendhal2D extends StendhalGUI {
 	/**
 	 * The default game screen width.
 	 */
-	protected static final int	DEFAULT_WIDTH	= 640;
+	protected static final int DEFAULT_WIDTH = 640;
 
 	/**
 	 * The default game screen height.
 	 */
-	protected static final int	DEFAULT_HEIGHT	= 480;
+	protected static final int DEFAULT_HEIGHT = 480;
 
 	/**
 	 * The logger.
@@ -44,18 +44,16 @@ public class Stendhal2D extends StendhalGUI {
 	/**
 	 * The game screen height.
 	 */
-	protected int	height;
+	protected int height;
 
 	/**
 	 * The game screen width.
 	 */
-	protected int	width;
-
+	protected int width;
 
 	public Stendhal2D(final StendhalClient client) {
 		this(client, DEFAULT_WIDTH, DEFAULT_HEIGHT);
 	}
-
 
 	public Stendhal2D(StendhalClient client, final int width, final int height) {
 		super(client);
@@ -63,9 +61,7 @@ public class Stendhal2D extends StendhalGUI {
 		this.width = width;
 		this.height = height;
 
-
 	}
-
 
 	//
 	// Stendhal2D
@@ -75,14 +71,13 @@ public class Stendhal2D extends StendhalGUI {
 
 	}
 
-
 	//
 	// StendhalUI
 	//
 
 	/**
 	 * Add an event line.
-	 * 
+	 *
 	 */
 	@Override
 	public void addEventLine(final String text) {
@@ -91,7 +86,7 @@ public class Stendhal2D extends StendhalGUI {
 
 	/**
 	 * Add an event line.
-	 * 
+	 *
 	 */
 	@Override
 	public void addEventLine(final String header, final String text) {
@@ -100,7 +95,7 @@ public class Stendhal2D extends StendhalGUI {
 
 	/**
 	 * Add an event line.
-	 * 
+	 *
 	 */
 	@Override
 	public void addEventLine(final String text, final NotificationType type) {
@@ -109,10 +104,11 @@ public class Stendhal2D extends StendhalGUI {
 
 	/**
 	 * Add an event line.
-	 * 
+	 *
 	 */
 	@Override
-	public void addEventLine(final String header, final String text, final NotificationType type) {
+	public void addEventLine(final String header, final String text,
+			final NotificationType type) {
 
 	}
 
@@ -132,10 +128,9 @@ public class Stendhal2D extends StendhalGUI {
 
 	}
 
-
 	/**
 	 * Get the current game screen height.
-	 * 
+	 *
 	 * @return The height.
 	 */
 	@Override
@@ -143,20 +138,19 @@ public class Stendhal2D extends StendhalGUI {
 		return height;
 	}
 
-
 	/**
 	 * Get the game screen.
-	 * 
+	 *
 	 * @return The game screen.
 	 */
 	@Override
 	public GameScreen getScreen() {
-return null;
+		return null;
 	}
 
 	/**
 	 * Get the current game screen width.
-	 * 
+	 *
 	 * @return The width.
 	 */
 	@Override
@@ -172,12 +166,11 @@ return null;
 
 	}
 
-
 	/**
 	 * Set the input chat line text.
-	 * 
+	 *
 	 * @param text
-	 *	The text.
+	 *            The text.
 	 */
 	@Override
 	public void setChatLine(String text) {
@@ -186,9 +179,9 @@ return null;
 
 	/**
 	 * Set the offline indication state.
-	 * 
+	 *
 	 * @param offline
-	 *	<code>true</code> if offline.
+	 *            <code>true</code> if offline.
 	 */
 	@Override
 	public void setOffline(boolean offline) {
@@ -198,21 +191,24 @@ return null;
 	/**
 	 * Set the user's positiion.
 	 *
-	 * @param	x		The user's X coordinate.
-	 * @param	y		The user's Y coordinate.
+	 * @param x
+	 *            The user's X coordinate.
+	 * @param y
+	 *            The user's Y coordinate.
 	 */
 	@Override
 	public void setPosition(double x, double y) {
 
 	}
 
-
 	/**
 	 * Display command line usage.
 	 */
 	protected static void usage() {
 		System.err.println("Stendhal 2D\n");
-		System.err.println("java " + Stendhal2D.class.getName() + " [-u <username> -p <password> -h <hostname> -port <port>] [-s WxH]");
+		System.err.println("java "
+				+ Stendhal2D.class.getName()
+				+ " [-u <username> -p <password> -h <hostname> -port <port>] [-s WxH]");
 		System.err.println("  -h <hostname>       Host that is running Stendhal server");
 		System.err.println("  -port <port>        Port of the Stendhal server (try 32160)");
 		System.err.println("  -u <username>       Username to log into Stendhal server");
@@ -223,7 +219,7 @@ return null;
 	//
 	//
 
-	public static void main(final String [] args) {
+	public static void main(final String[] args) {
 		String username = null;
 		String password = null;
 		String host = null;
@@ -243,9 +239,9 @@ return null;
 			} else if (arg.equals("-port")) {
 				port = Integer.parseInt(args[++i]);
 			} else if (arg.equals("-s")) {
-				String [] size = args[++i].split("x");
+				String[] size = args[++i].split("x");
 
-				if(size.length != 2) {
+				if (size.length != 2) {
 					System.err.println("Invalid size: " + arg);
 					System.exit(1);
 				}
@@ -265,7 +261,8 @@ return null;
 
 		StendhalClient client = StendhalClient.get();
 
-		if ((username != null) && (password != null) && (host != null) && (port != 0)) {
+		if ((username != null) && (password != null) && (host != null)
+				&& (port != 0)) {
 			try {
 				client.connect(host, port);
 				client.login(username, password);
