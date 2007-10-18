@@ -481,36 +481,36 @@ public class GameScreen implements PositionChangeListener {
 		 */
 		String set = gameLayers.getRPZoneLayerSet();
 
-		int x = (int) getViewX();
-		int y = (int) getViewY();
+		int xTemp = (int) getViewX();
+		int yTemp = (int) getViewY();
 		int w = (int) getViewWidth();
 		int h = (int) getViewHeight();
 
 		/*
 		 * End of the world (map falls short of the view)?
 		 */
-		int px = convertWorldXToScreenView(Math.max(x, 0));
+		int px = convertWorldXToScreenView(Math.max(xTemp, 0));
 
 		if (px > 0) {
 			g.setColor(Color.black);
 			g.fillRect(0, 0, px, sh);
 		}
 
-		px = convertWorldXToScreenView(Math.min(x + w, ww));
+		px = convertWorldXToScreenView(Math.min(xTemp + w, ww));
 
 		if (px < sw) {
 			g.setColor(Color.black);
 			g.fillRect(px, 0, sw - px, sh);
 		}
 
-		int py = convertWorldYToScreenView(Math.max(y, 0));
+		int py = convertWorldYToScreenView(Math.max(yTemp, 0));
 
 		if (py > 0) {
 			g.setColor(Color.black);
 			g.fillRect(0, 0, sw, py);
 		}
 
-		py = convertWorldYToScreenView(Math.min(y + h, wh));
+		py = convertWorldYToScreenView(Math.min(yTemp + h, wh));
 
 		if (py < sh) {
 			g.setColor(Color.black);
@@ -520,12 +520,12 @@ public class GameScreen implements PositionChangeListener {
 		/*
 		 * Layers
 		 */
-		gameLayers.draw(this, set, "0_floor", x, y, w, h);
-		gameLayers.draw(this, set, "1_terrain", x, y, w, h);
-		gameLayers.draw(this, set, "2_object", x, y, w, h);
+		gameLayers.draw(this, set, "0_floor", xTemp, yTemp, w, h);
+		gameLayers.draw(this, set, "1_terrain", xTemp, yTemp, w, h);
+		gameLayers.draw(this, set, "2_object", xTemp, yTemp, w, h);
 		drawEntities();
-		gameLayers.draw(this, set, "3_roof", x, y, w, h);
-		gameLayers.draw(this, set, "4_roof_add", x, y, w, h);
+		gameLayers.draw(this, set, "3_roof", xTemp, yTemp, w, h);
+		gameLayers.draw(this, set, "4_roof_add", xTemp, yTemp, w, h);
 		drawTopEntities();
 		drawText();
 
