@@ -46,12 +46,12 @@ public abstract class Pet extends DomesticAnimal {
 	/**
 	 * The amount of hunger that indicates hungry.
 	 */
-	protected static final int HUNGER_HUNGRY = 50;
+	protected static final int HUNGER_HUNGRY = 100;
 
 	/**
 	 * The amount of hunger that indicates starvation.
 	 */
-	protected static final int HUNGER_STARVATION = 400;
+	protected static final int HUNGER_STARVATION = 750;
 
 	/**
 	 * The weight at which the pet will stop eating.
