@@ -118,10 +118,10 @@ public class FileTree extends JTree {
 
 				// Process the directories
 				for (int i = 0; i < names.length; i++) {
-					String name = names[i];
+					String nameTemp = names[i];
 					try {
 						// if (d.isDirectory()) {
-						FileTreeNode node = new FileTreeNode(file, name);
+						FileTreeNode node = new FileTreeNode(file, nameTemp);
 						this.add(node);
 						if (descend) {
 							node.populateDirectories(false);

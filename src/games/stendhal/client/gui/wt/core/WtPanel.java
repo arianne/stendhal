@@ -344,17 +344,17 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 				&& (parent.getHeight() - getHeight() < y)) {
 			this.y = parent.getHeight() - getHeight();
 		} else {
-			int height = 0;
+			int heightTemp = 0;
 			if (hasTitleBar()) {
-				height += TITLEBAR_SIZE;
+				heightTemp += TITLEBAR_SIZE;
 			}
 
 			if (hasFrame()) {
-				height += FRAME_SIZE;
+				heightTemp += FRAME_SIZE;
 			}
 
-			if (hasParent() && (parent.getHeight() - height < y)) {
-				this.y = parent.getHeight() - height;
+			if (hasParent() && (parent.getHeight() - heightTemp < y)) {
+				this.y = parent.getHeight() - heightTemp;
 			}
 		}
 
@@ -685,9 +685,9 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		int repeatx = width / woodTexture.getWidth() + 1;
 		int repeaty = height / woodTexture.getHeight() + 1;
 
-		for (int x = 0; x < repeatx; x++) {
-			for (int y = 0; y < repeaty; y++) {
-				woodTexture.draw(panelGraphics, x * woodTexture.getWidth(), y
+		for (int xTemp = 0; xTemp < repeatx; xTemp++) {
+			for (int yTemp = 0; yTemp < repeaty; yTemp++) {
+				woodTexture.draw(panelGraphics, xTemp * woodTexture.getWidth(), yTemp
 						* woodTexture.getHeight());
 			}
 		}
@@ -891,15 +891,15 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 			return false;
 		}
 
-		int height = this.height;
-		int width = this.width;
+		int heightTemp = this.height;
+		int widthTemp = this.width;
 
 		if (isMinimized()) {
-			height = TITLEBAR_SIZE + (frame ? FRAME_SIZE * 2 : 0);
+			heightTemp = TITLEBAR_SIZE + (frame ? FRAME_SIZE * 2 : 0);
 		}
 
-		if ((x < this.x) || (y < this.y) || (x > this.x + width)
-				|| (y > this.y + height)) {
+		if ((x < this.x) || (y < this.y) || (x > this.x + widthTemp)
+				|| (y > this.y + heightTemp)) {
 			return false;
 		}
 		return true;

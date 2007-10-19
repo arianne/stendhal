@@ -76,8 +76,8 @@ public abstract class ScriptingSandbox {
 	 */
 	@Deprecated
 	public boolean transferPlayer(Player player, String zoneName, int x, int y) {
-		StendhalRPZone zone = StendhalRPWorld.get().getZone(zoneName);
-		return player.teleport(zone, x, y, null, null);
+		StendhalRPZone zoneTemp = StendhalRPWorld.get().getZone(zoneName);
+		return player.teleport(zoneTemp, x, y, null, null);
 	}
 
 	public boolean playerIsInZone(Player player, String zoneName) {

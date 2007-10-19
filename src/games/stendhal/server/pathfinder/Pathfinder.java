@@ -597,15 +597,15 @@ class Pathfinder {
 
 			nodeStack.push(node);
 
-			TreeNode parent, child;
+			TreeNode parentTemp, child;
 			while (nodeStack.size() > 0) {
-				parent = nodeStack.pop();
-				c = parent.numChildren;
+				parentTemp = nodeStack.pop();
+				c = parentTemp.numChildren;
 				for (int i = 0; i < c; i++) {
-					child = parent.children[i];
+					child = parentTemp.children[i];
 
-					if (parent.g + 1 < child.g) {
-						parent.updateChild(child);
+					if (parentTemp.g + 1 < child.g) {
+						parentTemp.updateChild(child);
 
 						nodeStack.push(child);
 					}

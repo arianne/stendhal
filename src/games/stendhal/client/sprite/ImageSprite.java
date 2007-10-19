@@ -222,12 +222,12 @@ public class ImageSprite implements Sprite {
 				.getLocalGraphicsEnvironment().getDefaultScreenDevice()
 				.getDefaultConfiguration();
 
-		Image image = gc.createCompatibleImage(width, height,
+		Image imageTemp = gc.createCompatibleImage(width, height,
 				Transparency.BITMASK);
 
-		draw(image.getGraphics(), 0, 0, x, y, width, height);
+		draw(imageTemp.getGraphics(), 0, 0, x, y, width, height);
 
-		return new ImageSprite(image, reference);
+		return new ImageSprite(imageTemp, reference);
 	}
 
 	/**
