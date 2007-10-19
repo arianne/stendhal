@@ -186,7 +186,8 @@ public class Player extends RPEntity {
 			for (String buddyName : buddies) {
 				// TODO: Remove '_' prefix if ID is made completely virtual
 				if (buddyName.charAt(0) == '_') {
-					Player buddy = StendhalRPRuleProcessor.get().getPlayer(buddyName.substring(1));
+					Player buddy = StendhalRPRuleProcessor.get().getPlayer(
+							buddyName.substring(1));
 					if (buddy != null && !buddy.isGhost()) {
 						player.notifyOnline(buddy.getName());
 					} else {
@@ -1536,23 +1537,27 @@ public class Player extends RPEntity {
 
 			}
 		} else {
+			List<ConsumableItem> poisonstoRemove = new LinkedList<ConsumableItem>();
 			int sum = 0;
 			int amount = 0;
 			for (ConsumableItem poison : poisonToConsume) {
 				if (turn % poison.getFrecuency() == 0) {
 					if (poison.consumed()) {
-						poisonToConsume.remove(poison);
+						poisonstoRemove.add(poison);
 
 					} else {
 						amount = poison.consume();
 						damage(-amount, poison);
 						sum += amount;
-						put("poisoned", sum);
+						if (sum > 0) {
+							put("poisoned", sum);
+						}
 
 					}
 				}
 
 			}
+			poisonToConsume.remove(poisonstoRemove);
 		}
 		notifyWorldAboutChanges();
 	}
