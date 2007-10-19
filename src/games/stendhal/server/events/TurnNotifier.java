@@ -192,15 +192,10 @@ public class TurnNotifier {
 			// set. This is to avoid ConcurrentModificationExceptions.
 			Set<TurnListener> toBeRemoved = new HashSet<TurnListener>();
 			for (TurnListener currentEvent : set) {
-				try {
 					if (currentEvent.equals(turnListener)) {
 						toBeRemoved.add(currentEvent);
 					}
-				} catch (ClassCastException cce) {
-					// TODO: remove try catch after Marauroa 2.0
-					// this should never happen but RPObject equals thorws it
 				}
-			}
 			for (TurnListener event : toBeRemoved) {
 				set.remove(event);
 			}
