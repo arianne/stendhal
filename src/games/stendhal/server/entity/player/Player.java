@@ -186,9 +186,7 @@ public class Player extends RPEntity {
 			for (String buddyName : buddies) {
 				// TODO: Remove '_' prefix if ID is made completely virtual
 				if (buddyName.charAt(0) == '_') {
-					buddyName = buddyName.substring(1);
-
-					Player buddy = StendhalRPRuleProcessor.get().getPlayer(buddyName);
+					Player buddy = StendhalRPRuleProcessor.get().getPlayer(buddyName.substring(1));
 					if (buddy != null && !buddy.isGhost()) {
 						player.notifyOnline(buddy.getName());
 					} else {
