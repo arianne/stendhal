@@ -1554,8 +1554,11 @@ public class Player extends RPEntity {
 				}
 
 			}
-			poisonToConsume.remove(poisonstoRemove);
-		}
+			for (ConsumableItem poison : poisonstoRemove){
+				poisonToConsume.remove(poison);
+			}
+			
+			}
 		notifyWorldAboutChanges();
 	}
 
