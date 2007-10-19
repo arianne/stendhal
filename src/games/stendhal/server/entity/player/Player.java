@@ -188,7 +188,7 @@ public class Player extends RPEntity {
 				if (buddyName.charAt(0) == '_') {
 					Player buddy = StendhalRPRuleProcessor.get().getPlayer(
 							buddyName.substring(1));
-					if (buddy != null && !buddy.isGhost()) {
+					if ((buddy != null) && !buddy.isGhost()) {
 						player.notifyOnline(buddy.getName());
 					} else {
 						player.notifyOffline(buddyName);
@@ -1157,8 +1157,8 @@ public class Player extends RPEntity {
 	 * @return true if it is a new player, false otherwise
 	 */
 	public boolean isNew() {
-		return getAge() < 2 * 60 || getATK() < 15 || getDEF() < 15
-				|| getLevel() < 5;
+		return (getAge() < 2 * 60) || (getATK() < 15) || (getDEF() < 15)
+				|| (getLevel() < 5);
 	}
 
 	/**
@@ -1178,7 +1178,7 @@ public class Player extends RPEntity {
 	 * Updates teh last pvp action time with the current time.
 	 */
 	public void storeLastPVPActionTime() {
-		put("last_pvp_action_time", (float) System.currentTimeMillis());
+		put("last_pvp_action_time", System.currentTimeMillis());
 	}
 
 	/**
@@ -1312,7 +1312,7 @@ public class Player extends RPEntity {
 	public void setQuest(String name, String status) {
 		String oldStatus = getKeyedSlot("!quests", name);
 		setKeyedSlot("!quests", name, status);
-		if (status == null || !status.equals(oldStatus)) {
+		if ((status == null) || !status.equals(oldStatus)) {
 			StendhalRPRuleProcessor.get().addGameEvent(this.getName(), "quest",
 					name, status);
 		}
@@ -1549,10 +1549,7 @@ public class Player extends RPEntity {
 						amount = poison.consume();
 						damage(-amount, poison);
 						sum += amount;
-						if (sum > 0) {
 							put("poisoned", sum);
-						}
-
 					}
 				}
 
@@ -1654,8 +1651,8 @@ public class Player extends RPEntity {
 	 * @return
 	 */
 	public boolean canPush(RPEntity entity) {
-		return (this != entity && StendhalRPRuleProcessor.get().getTurn()
-				- pushCounter > 10);
+		return ((this != entity) && (StendhalRPRuleProcessor.get().getTurn()
+				- pushCounter > 10));
 	}
 
 	@Override
