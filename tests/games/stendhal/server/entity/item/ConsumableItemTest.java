@@ -2,6 +2,7 @@ package games.stendhal.server.entity.item;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import games.stendhal.server.entity.Entity;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -28,6 +29,8 @@ public class ConsumableItemTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		Entity.generateRPClass();
+		Item.generateRPClass();
 		Map<String, String> attributes = new HashMap<String, String>();
 		attributes.put("amount", "1");
 		attributes.put("regen", "200");
@@ -139,5 +142,8 @@ public class ConsumableItemTest {
 		assertEquals(0, d100_1.compareTo(c100_1));
 		assertEquals(0, c100_1.compareTo(c100_1));
 	}
+
+
+
 
 }
