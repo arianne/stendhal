@@ -11,16 +11,25 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * QUEST: Fisherman's license Collector PARTICIPANTS: - Santiago the fisherman
- * 
- * 
- * STEPS: - The player must bring all kinds of fishes to the fisherman
- * 
- * REWARD: - 2000 XP - The player gets a fisherman's license (i.e. fishing
- * skills increased by 0.2).
- * 
- * REPETITIONS: - No repetitions.
- * 
+ * QUEST: Fisherman's license Collector
+ * <p>
+ * PARTICIPANTS:
+ * <li> Santiago the fisherman
+ *
+ *
+ * <p>
+ * STEPS:
+ * <li> The player must bring all kinds of fishes to the fisherman
+ *
+ * <p>
+ * REWARD:
+ * <li> 2000 XP
+ * <li> The player gets a fisherman's license (i.e. fishing skills increased by
+ * 0.2).
+ *
+ * REPETITIONS:
+ * <li> No repetitions.
+ *
  * @author dine
  */
 
@@ -28,10 +37,10 @@ public class FishermansLicenseCollector extends AbstractQuest {
 
 	public static final String QUEST_SLOT = "fishermans_license2";
 
-	private static final List<String> neededFish = Arrays.asList("trout", // 
-			"perch", // 
-			"mackerel", // 
-			"cod", // 
+	private static final List<String> neededFish = Arrays.asList("trout", //
+			"perch", //
+			"mackerel", //
+			"cod", //
 			"roach", //
 			"char", //
 			"clownfish", //
@@ -41,7 +50,7 @@ public class FishermansLicenseCollector extends AbstractQuest {
 	/**
 	 * Returns a list of the names of all fish that the given player still has
 	 * to bring to fulfil the quest.
-	 * 
+	 *
 	 * @param player
 	 *            The player doing the quest
 	 * @param hash
@@ -78,8 +87,7 @@ public class FishermansLicenseCollector extends AbstractQuest {
 					@Override
 					public boolean fire(Player player, String text,
 							SpeakerNPC engine) {
-						return player
-								.isQuestCompleted(FishermansLicenseQuiz.QUEST_SLOT)
+						return player.isQuestCompleted(FishermansLicenseQuiz.QUEST_SLOT)
 								&& !player.hasQuest(QUEST_SLOT);
 					}
 				},
@@ -95,8 +103,7 @@ public class FishermansLicenseCollector extends AbstractQuest {
 					@Override
 					public void fire(Player player, String text,
 							SpeakerNPC engine) {
-						engine
-								.say("You have to bring me one fish of each #species so that I can see what you have learned so far.");
+						engine.say("You have to bring me one fish of each #species so that I can see what you have learned so far.");
 						player.setQuest(QUEST_SLOT, "");
 					}
 				});
@@ -138,10 +145,8 @@ public class FishermansLicenseCollector extends AbstractQuest {
 					public void fire(Player player, String text,
 							SpeakerNPC engine) {
 						List<String> missing = missingFish(player, false);
-						engine
-								.say("Let me know as soon as you find "
-										+ Grammar.itthem(missing.size())
-										+ ". Goodbye.");
+						engine.say("Let me know as soon as you find "
+								+ Grammar.itthem(missing.size()) + ". Goodbye.");
 					}
 				});
 
@@ -162,38 +167,33 @@ public class FishermansLicenseCollector extends AbstractQuest {
 							if (missing.contains(text)) {
 								if (player.drop(text)) {
 									// register fish as done
-									String doneText = player
-											.getQuest(QUEST_SLOT);
+									String doneText = player.getQuest(QUEST_SLOT);
 									player.setQuest(QUEST_SLOT, doneText + ";"
 											+ text);
 									// check if the player has brought all fish
 									missing = missingFish(player, true);
 									if (missing.size() > 0) {
-										engine
-												.say("This fish is looking very good! Do you have another one for me?");
+										engine.say("This fish is looking very good! Do you have another one for me?");
 									} else {
 										player.addXP(2000);
-										engine
-												.say("You did a great job! Now you are a real fisherman and you will be much more successful when you catch fish!");
+										engine.say("You did a great job! Now you are a real fisherman and you will be much more successful when you catch fish!");
 										player.setQuest(QUEST_SLOT, "done");
 										// once there are other ways to increase
 										// your
 										// fishing skills, increase the old
 										// skills
 										// instead of just setting to 0.2.
-										player.setSkill("fishing", Double
-												.toString(0.2));
+										player.setSkill("fishing",
+												Double.toString(0.2));
 										player.notifyWorldAboutChanges();
 									}
 								} else {
-									engine
-											.say("Don't try to cheat! I know that you don't have "
-													+ Grammar.a_noun(text)
-													+ ". What do you really have for me?");
+									engine.say("Don't try to cheat! I know that you don't have "
+											+ Grammar.a_noun(text)
+											+ ". What do you really have for me?");
 								}
 							} else {
-								engine
-										.say("You cannot cheat in this exam! I know that you already gave this fish to me. Do you have other fish for me?");
+								engine.say("You cannot cheat in this exam! I know that you already gave this fish to me. Do you have other fish for me?");
 							}
 						}
 					});
@@ -208,37 +208,35 @@ public class FishermansLicenseCollector extends AbstractQuest {
 		SpeakerNPC npc = npcs.get("Santiago");
 
 		// player returns while quest is still active
-		npc
-				.add(
-						ConversationStates.IDLE,
-						ConversationPhrases.GREETING_MESSAGES,
-						new SpeakerNPC.ChatCondition() {
-							@Override
-							public boolean fire(Player player, String text,
-									SpeakerNPC engine) {
-								return player.hasQuest(QUEST_SLOT)
-										&& !player.isQuestCompleted(QUEST_SLOT);
-							}
-						},
-						ConversationStates.ATTENDING,
-						"Welcome back. I hope you were not lazy and that you brought me some other fish #species.",
-						null);
+		npc.add(
+				ConversationStates.IDLE,
+				ConversationPhrases.GREETING_MESSAGES,
+				new SpeakerNPC.ChatCondition() {
+					@Override
+					public boolean fire(Player player, String text,
+							SpeakerNPC engine) {
+						return player.hasQuest(QUEST_SLOT)
+								&& !player.isQuestCompleted(QUEST_SLOT);
+					}
+				},
+				ConversationStates.ATTENDING,
+				"Welcome back. I hope you were not lazy and that you brought me some other fish #species.",
+				null);
 
 		// player returns after finishing the quest
-		npc
-				.add(
-						ConversationStates.IDLE,
-						ConversationPhrases.GREETING_MESSAGES,
-						new SpeakerNPC.ChatCondition() {
-							@Override
-							public boolean fire(Player player, String text,
-									SpeakerNPC engine) {
-								return player.isQuestCompleted(QUEST_SLOT);
-							}
-						},
-						ConversationStates.ATTENDING,
-						"Welcome fisherman! Nice to see you again. I wish you luck for fishing.",
-						null);
+		npc.add(
+				ConversationStates.IDLE,
+				ConversationPhrases.GREETING_MESSAGES,
+				new SpeakerNPC.ChatCondition() {
+					@Override
+					public boolean fire(Player player, String text,
+							SpeakerNPC engine) {
+						return player.isQuestCompleted(QUEST_SLOT);
+					}
+				},
+				ConversationStates.ATTENDING,
+				"Welcome fisherman! Nice to see you again. I wish you luck for fishing.",
+				null);
 	}
 
 	@Override

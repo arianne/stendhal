@@ -143,7 +143,7 @@ public class ElfPrincess extends AbstractQuest {
 						return !(player.hasQuest(QUEST_SLOT)
 								&& player.getQuest(QUEST_SLOT).equals("start"));
 					}
-				}, ConversationStates.IDLE,"I've got nothing for you today, sorry dearie. I'll be on my way now, bye.", null
+				}, ConversationStates.IDLE, "I've got nothing for you today, sorry dearie. I'll be on my way now, bye.", null
 				);
 
 
