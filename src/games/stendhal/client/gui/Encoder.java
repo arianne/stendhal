@@ -112,7 +112,8 @@ public class Encoder {
 		int len = 0;
 		for (int i = 0; i < theString.length(); i++) {
 			//convert string into a char then convert in to binnaryString then add to buffer
-			len = (binary = Integer.toBinaryString(theString.charAt(i))).length();
+			binary = Integer.toBinaryString(theString.charAt(i));
+			len = binary.length();
 			if (len < 7) { //somtimes integers do not take up the total 7 bits. So padding is necessary
 				paddingNeededSize = 7 - len; //how many binary digits are missing to be complete
 				for (int k = 0; k < paddingNeededSize; k++) {

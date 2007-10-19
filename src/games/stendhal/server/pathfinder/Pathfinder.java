@@ -409,8 +409,8 @@ class Pathfinder {
 		 * removing all children.
 		 */
 		private void init() {
-			this.weight = this.g = 0.0;
-
+			this.weight  = 0.0;
+			this.g = 0.0;
 			this.numChildren = 0;
 			for (int i = 0; i < 4; i++) {
 				this.children[i] = null;
