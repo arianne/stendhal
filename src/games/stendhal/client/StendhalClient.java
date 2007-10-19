@@ -97,7 +97,6 @@ public class StendhalClient extends ClientFramework {
 	 */
 	private boolean batchUpdate;
 
-
 	public void generateWhoPlayers(String text) {
 
 		Matcher matcher = Pattern.compile("^[0-9]+ Players online:( .+)$").matcher(
@@ -178,18 +177,16 @@ public class StendhalClient extends ClientFramework {
 		return player;
 	}
 
-
 	/**
-	 * Check if the client is in the middle of a batch update.
-	 * A batch update starts when a content transfer starts and end
-	 * on the first perception event.
+	 * Check if the client is in the middle of a batch update. A batch update
+	 * starts when a content transfer starts and end on the first perception
+	 * event.
 	 *
-	 * @return	<code>true</code> if in a batch update.
+	 * @return <code>true</code> if in a batch update.
 	 */
 	public boolean isInBatchUpdate() {
 		return batchUpdate;
 	}
-
 
 	/**
 	 * Handle sync events before they are dispatched.
@@ -198,7 +195,7 @@ public class StendhalClient extends ClientFramework {
 	 *            The zone entered.
 	 */
 	protected void onBeforeSync(final String zoneid) {
-System.err.println("onBeforeSync()");
+		System.err.println("onBeforeSync()");
 		/*
 		 * Simulate object disassembly
 		 */
@@ -265,7 +262,7 @@ System.err.println("onBeforeSync()");
 			/*
 			 * End any batch updates if not transfering
 			 */
-			if(batchUpdate && !isInTransfer()) {
+			if (batchUpdate && !isInTransfer()) {
 				logger.debug("Batch update finished");
 				batchUpdate = false;
 			}
@@ -352,7 +349,6 @@ System.err.println("onBeforeSync()");
 		return items;
 	}
 
-
 	/**
 	 * Determine if we are in the middle of transfering new content.
 	 *
@@ -365,8 +361,8 @@ System.err.println("onBeforeSync()");
 	private void contentHandling(String name, InputStream in)
 			throws IOException, ClassNotFoundException {
 		/*
-		 * TODO: Encode area name into the data sent from server,
-		 * so it is simpler to extract area/layer parts.
+		 * TODO: Encode area name into the data sent from server, so it is
+		 * simpler to extract area/layer parts.
 		 */
 		int i = name.indexOf('.');
 
@@ -470,10 +466,12 @@ System.err.println("onBeforeSync()");
 		/*
 		 * Handle existing
 		 */
-		if ((idx = directions.indexOf(dir)) != -1) {
+		idx = directions.indexOf(dir);
+		if (idx != -1) {
 			/*
 			 * Already highest priority? Don't send to server.
 			 */
+
 			if (idx == (directions.size() - 1)) {
 				logger.debug("Ignoring same direction: " + dir);
 				return;
@@ -522,8 +520,8 @@ System.err.println("onBeforeSync()");
 
 		// Existing one reusable???
 		action = new RPAction();
-
-		if ((size = directions.size()) == 0) {
+		size = directions.size();
+		if (size == 0) {
 			action.put("type", "stop");
 		} else {
 			action.put("type", face ? "face" : "move");
