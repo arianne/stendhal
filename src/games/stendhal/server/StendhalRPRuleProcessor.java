@@ -660,17 +660,17 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			return new AccountResult(Result.FAILED_EXCEPTION, username);
 		}
 
-		JDBCDatabase database = (JDBCDatabase) DatabaseFactory.getDatabase();
-		Transaction trans = database.getTransaction();
+		JDBCDatabase databaseTemp = (JDBCDatabase) DatabaseFactory.getDatabase();
+		Transaction trans = databaseTemp.getTransaction();
 		try {
 			trans.begin();
 
-			if (database.hasPlayer(trans, username)) {
+			if (databaseTemp.hasPlayer(trans, username)) {
 				logger.warn("Account already exist: " + username);
 				return new AccountResult(Result.FAILED_PLAYER_EXISTS, username);
 			}
 
-			database.addPlayer(trans, username, Hash.hash(password), email);
+			databaseTemp.addPlayer(trans, username, Hash.hash(password), email);
 
 			trans.commit();
 			return new AccountResult(Result.OK_CREATED, username);
@@ -687,11 +687,11 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 	public CharacterResult createCharacter(String username, String character,
 			RPObject template) {
-		JDBCDatabase database = (JDBCDatabase) DatabaseFactory.getDatabase();
-		Transaction trans = database.getTransaction();
+		JDBCDatabase databaseTemp = (JDBCDatabase) DatabaseFactory.getDatabase();
+		Transaction trans = databaseTemp.getTransaction();
 
 		try {
-			if (database.hasCharacter(trans, username, character)) {
+			if (databaseTemp.hasCharacter(trans, username, character)) {
 				logger.warn("Character already exist: " + character);
 				return new CharacterResult(Result.FAILED_PLAYER_EXISTS,
 						character, template);
@@ -738,7 +738,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			/*
 			 * Finally we add it to database.
 			 */
-			database.addCharacter(trans, username, character, object);
+			databaseTemp.addCharacter(trans, username, character, object);
 			return new CharacterResult(Result.OK_CREATED, character, object);
 		} catch (Exception e) {
 			try {
