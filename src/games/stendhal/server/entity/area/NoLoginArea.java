@@ -36,31 +36,38 @@ public class NoLoginArea extends AreaEntity implements LoginListener {
 	 */
 	private String message;
 
-
 	/**
 	 * Create a nologin area.
 	 *
-	 * @param   width       Width of  this area
-	 * @param   height      Height of this area
-	 * @param   newX        x position to place the player at
-	 * @param   newY        y position to place the player at
+	 * @param width
+	 *            Width of this area
+	 * @param height
+	 *            Height of this area
+	 * @param newX
+	 *            x position to place the player at
+	 * @param newY
+	 *            y position to place the player at
 	 */
 	public NoLoginArea(int width, int height, int newX, int newY) {
 		this(width, height, newX, newY, null);
 	}
 
-
 	/**
 	 * Create a nologin area.
 	 *
-	 * @param   width       Width of  this area
-	 * @param   height      Height of this area
-	 * @param   newX        x position to place the player at
-	 * @param   newY        y position to place the player at
-	 * @param   message	The message to send to the user when
-	 *			repositioned.
+	 * @param width
+	 *            Width of this area
+	 * @param height
+	 *            Height of this area
+	 * @param newX
+	 *            x position to place the player at
+	 * @param newY
+	 *            y position to place the player at
+	 * @param message
+	 *            The message to send to the user when repositioned.
 	 */
-	public NoLoginArea(final int width, final int height, final int newX, final int newY, final String message) {
+	public NoLoginArea(final int width, final int height, final int newX,
+			final int newY, final String message) {
 		super(width, height);
 
 		this.newX = newX;
@@ -72,16 +79,15 @@ public class NoLoginArea extends AreaEntity implements LoginListener {
 		LoginNotifier.get().addListener(this);
 	}
 
-
 	/**
 	 * Set the message to send to the user when repositioned.
 	 *
-	 * @param	message		The message to send.
+	 * @param message
+	 *            The message to send.
 	 */
 	public void setMessage(final String message) {
 		this.message = message;
 	}
-
 
 	public void onLoggedIn(Player player) {
 		if (player.getZone().equals(this.getZone())) {
@@ -89,7 +95,7 @@ public class NoLoginArea extends AreaEntity implements LoginListener {
 				logger.warn("Login in NoLoginArea, moving player to new location");
 				player.setPosition(newX, newY);
 
-				if(message != null) {
+				if (message != null) {
 					player.sendPrivateText(message);
 				}
 			}

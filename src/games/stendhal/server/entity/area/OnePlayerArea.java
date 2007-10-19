@@ -37,7 +37,6 @@ public class OnePlayerArea extends AreaEntity implements MovementListener {
 	 */
 	protected WeakReference<Player> occupantRef;
 
-
 	/**
 	 * Create a one player area.
 	 *
@@ -64,26 +63,25 @@ public class OnePlayerArea extends AreaEntity implements MovementListener {
 		occupantRef = null;
 	}
 
-
 	/**
 	 * Check if an entity is in this area.
 	 *
-	 * @param	entity
-	 *	The entity to check.
+	 * @param entity
+	 *            The entity to check.
 	 *
-	 * @return	<code>true</code> if the entity is in this area.
+	 * @return <code>true</code> if the entity is in this area.
 	 *
 	 * TODO: Move up to AreaEntity
 	 */
 	protected boolean contains(final Entity entity) {
-		return ((getZone() == entity.getZone()) && getArea().intersects(entity.getArea()));
+		return ((getZone() == entity.getZone()) && getArea().intersects(
+				entity.getArea()));
 	}
-
 
 	/**
 	 * Get the occupant.
 	 *
-	 * @return	The area occupant, or <code>null</code> in none.
+	 * @return The area occupant, or <code>null</code> in none.
 	 */
 	protected Player getOccupant() {
 		if (occupantRef != null) {
@@ -93,17 +91,15 @@ public class OnePlayerArea extends AreaEntity implements MovementListener {
 		}
 	}
 
-
 	/**
 	 * Set the occupant.
 	 *
-	 * @param	player
-	 *	The occupant to set.
+	 * @param player
+	 *            The occupant to set.
 	 */
 	protected void setOccupant(final Player player) {
 		occupantRef = new WeakReference<Player>(player);
 	}
-
 
 	//
 	// Entity
@@ -134,7 +130,6 @@ public class OnePlayerArea extends AreaEntity implements MovementListener {
 			return false;
 		}
 
-
 		Player occupant = getOccupant();
 
 		if (occupant != null) {
@@ -145,8 +140,8 @@ public class OnePlayerArea extends AreaEntity implements MovementListener {
 				/*
 				 * Allow if it's the occupant (quick check).
 				 *
-				 * But don't block entities that got in
-				 * the area (somehow) from leaving.
+				 * But don't block entities that got in the area (somehow) from
+				 * leaving.
 				 */
 				if ((entity == occupant) || contains(entity)) {
 					return false;
@@ -162,12 +157,13 @@ public class OnePlayerArea extends AreaEntity implements MovementListener {
 		return false;
 	}
 
-
 	/**
 	 * Called when this object is added to a zone.
 	 *
-	 * @param zone The zone this was added to.
+	 * @param zone
+	 *            The zone this was added to.
 	 */
+	@Override
 	public void onAdded(final StendhalRPZone zone) {
 		super.onAdded(zone);
 		zone.addMovementListener(this);
@@ -176,8 +172,10 @@ public class OnePlayerArea extends AreaEntity implements MovementListener {
 	/**
 	 * Called when this object is being removed from a zone.
 	 *
-	 * @param zone The zone this will be removed from.
+	 * @param zone
+	 *            The zone this will be removed from.
 	 */
+	@Override
 	public void onRemoved(final StendhalRPZone zone) {
 		zone.removeMovementListener(this);
 		super.onRemoved(zone);
@@ -186,6 +184,7 @@ public class OnePlayerArea extends AreaEntity implements MovementListener {
 	/**
 	 * Handle object attribute change(s).
 	 */
+	@Override
 	public void update() {
 		/*
 		 * Reregister incase coordinates/size changed (could be smarter)
@@ -224,12 +223,11 @@ public class OnePlayerArea extends AreaEntity implements MovementListener {
 		/*
 		 * Just players
 		 */
-		if(entity instanceof Player)
-		{
+		if (entity instanceof Player) {
 			/*
 			 * Ghosts don't occupy normal space
 			 */
-			if(entity.isGhost()) {
+			if (entity.isGhost()) {
 				return;
 			}
 
@@ -238,7 +236,7 @@ public class OnePlayerArea extends AreaEntity implements MovementListener {
 			/*
 			 * Check to make sure things aren't buggy
 			 */
-			if((occupant != null) && (occupant != entity)) {
+			if ((occupant != null) && (occupant != entity)) {
 				logger.error("Existing occupant: " + occupant.getName());
 			}
 
@@ -264,7 +262,7 @@ public class OnePlayerArea extends AreaEntity implements MovementListener {
 		/*
 		 * Check against occupant incase something else is existing
 		 */
-		if(entity == getOccupant()) {
+		if (entity == getOccupant()) {
 			clearOccupant();
 		}
 	}
