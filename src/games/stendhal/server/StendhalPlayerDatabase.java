@@ -248,9 +248,8 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 					+ instance.getNumberOfEquipped("money") + ", " + "atk="
 					+ instance.getATK() + ", " + "def=" + instance.getDEF()
 					+ ", " + "hp=" + instance.getBaseHP() + ", " + "karma="
-					+ (int) instance.getKarma() + ", " +
-
-					"head='" + StringChecker.escapeSQLString(head) + "', "
+					+ (int) instance.getKarma() + ", "
+					+ "head='" + StringChecker.escapeSQLString(head) + "', "
 					+ "armor='" + StringChecker.escapeSQLString(armor) + "', "
 					+ "lhand='" + StringChecker.escapeSQLString(lhand) + "', "
 					+ "rhand='" + StringChecker.escapeSQLString(rhand) + "', "
