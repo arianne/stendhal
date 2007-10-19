@@ -31,7 +31,6 @@ import games.stendhal.client.gui.wt.BuddyListDialog;
 import games.stendhal.client.gui.wt.BuyWindow;
 import games.stendhal.client.gui.wt.Character;
 import games.stendhal.client.gui.wt.EntityContainer;
-import games.stendhal.client.gui.wt.GameButtonHelper;
 import games.stendhal.client.gui.wt.InternalManagedDialog;
 import games.stendhal.client.gui.wt.KeyRing;
 import games.stendhal.client.gui.wt.Minimap;
@@ -161,8 +160,6 @@ public class j2DClient extends StendhalUI {
 	private ManagedWindow buddies;
 
 	public BuyWindow buywindow;
-
-	private GameButtonHelper gbh;
 
 	/** the minimap panel */
 	private Minimap minimap;
