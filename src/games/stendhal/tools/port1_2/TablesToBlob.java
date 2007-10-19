@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package games.stendhal.tools.port1_2;
 
@@ -10,14 +10,12 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Properties;
 
 import marauroa.common.Configuration;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 import marauroa.server.game.db.JDBCDatabase;
 import marauroa.server.game.db.JDBCTransaction;
-import marauroa.server.game.db.NoDatabaseConfException;
 import marauroa.server.game.db.Transaction;
 
 import org.apache.log4j.Logger;
@@ -100,7 +98,7 @@ public class TablesToBlob {
 		result.close();
 		stmt.close();
 	}
-	
+
 	/**
 	 * Loads an object from the old database structure
 	 *
@@ -160,7 +158,7 @@ public class TablesToBlob {
 		try {
 			Connection connection = ((JDBCTransaction) trans).getConnection();
 			Statement stmt = connection.createStatement();
-			String query = "select object_id from "+ oldDBName + ".rpobject where slot_id=0";
+			String query = "select object_id from " + oldDBName + ".rpobject where slot_id=0";
 
 			logger.debug("iterator is executing query " + query);
 			ResultSet result = stmt.executeQuery(query);
@@ -170,7 +168,7 @@ public class TablesToBlob {
 			return null;
 		}
 	}
-	
+
 	/**
 	 * Starts the transformation from the command line
 	 *
@@ -189,13 +187,13 @@ public class TablesToBlob {
 	 * @throws Exception in case of an unexspected error
 	 */
 	public void transformation() throws Exception {
-		
+
 		System.out.println("PORTING RPOBJECT, RPATTRIBUTE and RPSLOT tables from Marauroa 1.0 to object_data of Marauroa 2.0");
 		System.out.println();
 		Configuration.setConfigurationFile("server.ini");
 		StendhalRPWorld.get();
 
-		PortJDBCDatabase db = new PortJDBCDatabase(); 
+		PortJDBCDatabase db = new PortJDBCDatabase();
 
 		Transaction trans = db.getTransaction();
 
@@ -216,7 +214,7 @@ public class TablesToBlob {
 			System.out.println("Times LOAD(" + (p2 - p1) / 1000.0 + ")\tSTORE(" + (p3 - p2) / 1000.0 + ")");
 		}
 	}
-	
+
 	/**
 	 * PortJDBCDatabase enables access to internal methods of JDBCDatabase
 	 * needed for low level access.
@@ -230,7 +228,7 @@ public class TablesToBlob {
 		 *
 		 * @throws NoDatabaseConfException in case of an configuration error
 		 */
-		public PortJDBCDatabase() throws NoDatabaseConfException {
+		public PortJDBCDatabase() {
 			super(getInitProps());
 		}
 
