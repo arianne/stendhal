@@ -363,21 +363,24 @@ class PlayerRPClass {
 			//
 			// If placing the player at its last position
 			// fails, we reset to default zone
-			logger.warn("Cannot place player at its last position. Using default", e);
+			logger.warn(
+					"Cannot place player at its last position. Using default",
+					e);
 		}
 
 		if (zone != null) {
 			/*
-			 * Put the player in their zone
-			 * (use placeat() for collision rules)
+			 * Put the player in their zone (use placeat() for collision rules)
 			 */
-			if(!StendhalRPAction.placeat(zone, player, player.getX(), player.getY())) {
-				logger.warn("Cannot place player at their last position: " + player.getName());
+			if (!StendhalRPAction.placeat(zone, player, player.getX(),
+					player.getY())) {
+				logger.warn("Cannot place player at their last position: "
+						+ player.getName());
 				zone = null;
 			}
 		}
 
-		if(zone == null) {
+		if (zone == null) {
 			/*
 			 * Fallback to default zone
 			 */
@@ -410,7 +413,8 @@ class PlayerRPClass {
 				player.setSheep(sheep);
 			} else {
 				logger.warn("Could not place sheep: " + sheep);
-				player.sendPrivateText("You can not seem to locate your " + sheep.getTitle() + ".");
+				player.sendPrivateText("You can not seem to locate your "
+						+ sheep.getTitle() + ".");
 			}
 
 			sheep.notifyWorldAboutChanges();
@@ -431,7 +435,8 @@ class PlayerRPClass {
 				player.setPet(pet);
 			} else {
 				logger.warn("Could not place pet: " + pet);
-				player.sendPrivateText("You can not seem to locate your " + pet.getTitle() + ".");
+				player.sendPrivateText("You can not seem to locate your "
+						+ pet.getTitle() + ".");
 			}
 
 			pet.notifyWorldAboutChanges();
@@ -441,40 +446,42 @@ class PlayerRPClass {
 		StendhalRPAction.transferContent(player);
 	}
 
-
 	/**
-	 * Places a domestic animal in the world. If it matches it's owner's
-	 * zone, then try to keep it's position.
+	 * Places a domestic animal in the world. If it matches it's owner's zone,
+	 * then try to keep it's position.
 	 *
 	 * @param animal
-	 *	The domestic animal.
+	 *            The domestic animal.
 	 * @param player
-	 *	The owner.
+	 *            The owner.
 	 *
-	 * @return	<code>true</code> if placed.
+	 * @return <code>true</code> if placed.
 	 */
-	protected static boolean placeAnimalIntoWorld(final DomesticAnimal animal, final Player player) {
+	protected static boolean placeAnimalIntoWorld(final DomesticAnimal animal,
+			final Player player) {
 		StendhalRPZone playerZone = player.getZone();
 
 		/*
 		 * Only add directly if required attributes are present
 		 */
 		if (animal.has("zoneid") && animal.has("x") && animal.has("y")) {
-			StendhalRPZone zone = StendhalRPWorld.get().getZone(animal.get("zoneid"));
+			StendhalRPZone zone = StendhalRPWorld.get().getZone(
+					animal.get("zoneid"));
 
 			/*
 			 * Player could have been forced to change zones
 			 */
 			if (zone == playerZone) {
-				if(StendhalRPAction.placeat(zone, animal, animal.getX(), animal.getY())) {
+				if (StendhalRPAction.placeat(zone, animal, animal.getX(),
+						animal.getY())) {
 					return true;
 				}
 			}
 		}
 
-		return StendhalRPAction.placeat(playerZone, animal, player.getX(), player.getY());
+		return StendhalRPAction.placeat(playerZone, animal, player.getX(),
+				player.getY());
 	}
-
 
 	/**
 	 * Loads the items into the slots of the player on login.
@@ -603,7 +610,8 @@ class PlayerRPClass {
 
 					newSlot.add(entity);
 				} else {
-					logger.warn("Non-item object found in " + player.getName() + "[" + slot.getName() + "]: " + item);
+					logger.warn("Non-item object found in " + player.getName()
+							+ "[" + slot.getName() + "]: " + item);
 				}
 			} catch (Exception e) {
 				logger.error("Error adding " + item + " to player slot" + slot,

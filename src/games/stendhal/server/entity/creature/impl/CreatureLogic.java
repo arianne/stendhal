@@ -48,7 +48,6 @@ public class CreatureLogic {
 
 	private int attackTurn;
 
-
 	// creature will keep track of the logic so the client can display it
 	private StringBuilder debug;
 
@@ -64,18 +63,19 @@ public class CreatureLogic {
 	}
 
 	/**
-	 * Checks whether we have to do some again or sleeps in case no player is near.
+	 * Checks whether we have to do some again or sleeps in case no player is
+	 * near.
 	 *
 	 * @return true, if additional action is required; false if we may sleep
 	 */
 	private boolean logicSleep() {
 		/*
-		 * TODO: Ideally use proximity events to notify others that
-		 * something may be worth looking at nearby. Perhaps with
-		 * zone macro-blocks to minimize overhead.
+		 * TODO: Ideally use proximity events to notify others that something
+		 * may be worth looking at nearby. Perhaps with zone macro-blocks to
+		 * minimize overhead.
 		 *
-		 * TODO: Maybe add an awareness attribute for per-creature
-		 * reaction times.
+		 * TODO: Maybe add an awareness attribute for per-creature reaction
+		 * times.
 		 */
 		// if there is no player near and none will see us...
 		// sleep so we don't waste cpu resources
@@ -125,7 +125,9 @@ public class CreatureLogic {
 		}
 
 		if (logger.isDebugEnabled()) {
-			logger.debug(creature.getIDforDebug() + " Creature(" + creature.get("type") + ") has been attacked by " + target.get("type"));
+			logger.debug(creature.getIDforDebug() + " Creature("
+					+ creature.get("type") + ") has been attacked by "
+					+ target.get("type"));
 		}
 	}
 
@@ -150,10 +152,12 @@ public class CreatureLogic {
 	 */
 	private void logicFindNewTarget() {
 		// ...and find another target
-		target = creature.getNearestEnemy(7 + Math.max(creature.getWidth(), creature.getHeight()));
+		target = creature.getNearestEnemy(7 + Math.max(creature.getWidth(),
+				creature.getHeight()));
 		if (target != null) {
 			if (logger.isDebugEnabled()) {
-				logger.debug(creature.getIDforDebug() + " Creature(" + creature.get("type") + ") gets a new target.");
+				logger.debug(creature.getIDforDebug() + " Creature("
+						+ creature.get("type") + ") gets a new target.");
 			}
 			if (Debug.CREATURES_DEBUG_SERVER) {
 				debug.append("newtarget;");
@@ -169,7 +173,8 @@ public class CreatureLogic {
 	private void logicCreatePatrolPath() {
 		// Create a patrolpath
 		if (logger.isDebugEnabled()) {
-			logger.debug(creature.getIDforDebug() + " Creating Path for creature entity");
+			logger.debug(creature.getIDforDebug()
+					+ " Creating Path for creature entity");
 		}
 		List<Node> nodes = new LinkedList<Node>();
 		long time = System.nanoTime();
@@ -181,8 +186,10 @@ public class CreatureLogic {
 				Node actual = patrolPath.get(i);
 				Node next = patrolPath.get((i + 1) % size);
 
-				nodes.addAll(Path.searchPath(creature, actual.getX() + creature.getX(), actual.getY() + creature.getY(), new Rectangle2D.Double(next.getX()
-				        + creature.getX(), next.getY() + creature.getY(), 1.0, 1.0)));
+				nodes.addAll(Path.searchPath(creature, actual.getX()
+						+ creature.getX(), actual.getY() + creature.getY(),
+						new Rectangle2D.Double(next.getX() + creature.getX(),
+								next.getY() + creature.getY(), 1.0, 1.0)));
 			}
 		}
 		if (logger.isDebugEnabled()) {
@@ -215,7 +222,8 @@ public class CreatureLogic {
 	private void logicStopAttackBecauseTargetOutOfReach() {
 		// target out of reach
 		if (logger.isDebugEnabled()) {
-			logger.debug(creature.getIDforDebug() + " Attacker is too far. Creature stops attack");
+			logger.debug(creature.getIDforDebug()
+					+ " Attacker is too far. Creature stops attack");
 		}
 		target = null;
 		creature.clearPath();
@@ -233,7 +241,8 @@ public class CreatureLogic {
 	private void logicCreateNewPathToMovingTarget() {
 		// target not near but in reach and is moving
 		if (logger.isDebugEnabled()) {
-			logger.debug(creature.getIDforDebug() + " Moving to target. Searching new path");
+			logger.debug(creature.getIDforDebug()
+					+ " Moving to target. Searching new path");
 		}
 		creature.clearPath();
 		creature.setMovement(target, 0, 0, 20.0);
@@ -243,7 +252,8 @@ public class CreatureLogic {
 				creature.stopAttack();
 				target = null;
 				if (logger.isDebugEnabled()) {
-					logger.debug(creature.getIDforDebug() + " Large creature wall bug workaround");
+					logger.debug(creature.getIDforDebug()
+							+ " Large creature wall bug workaround");
 				}
 				return;
 			}
@@ -263,7 +273,8 @@ public class CreatureLogic {
 		}
 		// target is near
 		if (logger.isDebugEnabled()) {
-			logger.debug(creature.getIDforDebug() + " Next to target. Creature stops and attacks");
+			logger.debug(creature.getIDforDebug()
+					+ " Next to target. Creature stops and attacks");
 		}
 		creature.stop();
 		creature.attack(target);
@@ -273,8 +284,11 @@ public class CreatureLogic {
 
 	/**
 	 * Checks if the postion (x, y) is a good position for range combat.
-	 * @param x x value of the position
-	 * @param y y value of the position
+	 *
+	 * @param x
+	 *            x value of the position
+	 * @param y
+	 *            y value of the position
 	 * @return true if creature is a good position for range combat
 	 */
 	private boolean isGoodRangeCombatPosition(int x, int y) {
@@ -369,14 +383,15 @@ public class CreatureLogic {
 			int ny = creature.getY() + nextDir.getdy();
 			nodes.add(new Node(nx, ny));
 			creature.setPath(new FixedPath(nodes, false));
-			//Path.followPath(creature);
+			// Path.followPath(creature);
 		}
 	}
 
 	private void logicMoveToTargetAndAttack() {
 		// target in reach and not moving
 		if (logger.isDebugEnabled()) {
-			logger.debug(creature.getIDforDebug() + " Moving to target. Creature attacks");
+			logger.debug(creature.getIDforDebug()
+					+ " Moving to target. Creature attacks");
 		}
 		if (Debug.CREATURES_DEBUG_SERVER) {
 			debug.append("movetotarget");
@@ -409,7 +424,8 @@ public class CreatureLogic {
 			waitRounds = WAIT_ROUNDS_BECAUSE_TARGET_IS_BLOCKED;
 		}
 
-		// be sure to let the blocking creatures pass before trying to find a new path
+		// be sure to let the blocking creatures pass before trying to find a
+		// new path
 		if (waitRounds > 0) {
 			if (Debug.CREATURES_DEBUG_SERVER) {
 				debug.append(";waiting");
@@ -432,12 +448,13 @@ public class CreatureLogic {
 			if (!creature.hasPath()) {
 				// If creature is blocked, choose a new target
 				// TODO: if we are an archer and in range, creature is ok
-				//       don't get to near to the enemy.
+				// don't get to near to the enemy.
 				if (Debug.CREATURES_DEBUG_SERVER) {
 					debug.append(";blocked");
 				}
 				if (logger.isDebugEnabled()) {
-					logger.debug(creature.getIDforDebug() + " Blocked. Choosing a new target.");
+					logger.debug(creature.getIDforDebug()
+							+ " Blocked. Choosing a new target.");
 				}
 
 				target = null;
@@ -459,7 +476,7 @@ public class CreatureLogic {
 	}
 
 	private void logicDoAttack(final int turn) {
-		if(!creature.isAttacking()) {
+		if (!creature.isAttacking()) {
 			return;
 		}
 
@@ -483,10 +500,9 @@ public class CreatureLogic {
 		int turn = StendhalRPRuleProcessor.get().getTurn();
 
 		/*
-		 * We only *think* once each few turns.
-		 * So we save CPU time.
-		 * Each creature [logic] uses a random turn slice.
-		 * TODO: Improve this in a event oriented way.
+		 * We only *think* once each few turns. So we save CPU time. Each
+		 * creature [logic] uses a random turn slice. TODO: Improve this in a
+		 * event oriented way.
 		 */
 		if ((turn % 3) == turnReaction) {
 			if (!logicSleep()) {
@@ -497,10 +513,10 @@ public class CreatureLogic {
 			if (creature.isAttacked() && (target == null)) {
 				logicWeAreNotAttackingButGotAttacked();
 			} else if ((target == null)
-			        || (target.getZone() != creature.getZone())
-				|| target.isInvisible()
-			        || !world.has(target.getID())) {
-				// no target or current target left the zone (or is dead) or target became invisible (admin)
+					|| (target.getZone() != creature.getZone())
+					|| target.isInvisible() || !world.has(target.getID())) {
+				// no target or current target left the zone (or is dead) or
+				// target became invisible (admin)
 				logicForgetCurrentTarget();
 				logicFindNewTarget();
 			}
@@ -515,7 +531,8 @@ public class CreatureLogic {
 				logicFollowPatrolPath();
 			} else if (creature.squaredDistance(target) > 18 * 18) {
 				logicStopAttackBecauseTargetOutOfReach();
-			} else if (creature.nextTo(target) && !creature.canDoRangeAttack(target)) {
+			} else if (creature.nextTo(target)
+					&& !creature.canDoRangeAttack(target)) {
 				logicAttack();
 			} else if (creature.canDoRangeAttack(target)) {
 				logicRangeAttack();

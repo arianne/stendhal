@@ -14,8 +14,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Builds a priestess NPC 
- * She is a 
+ * Builds a priestess NPC
+ * She is a
  *
  * @author kymara
  */
@@ -47,7 +47,7 @@ public class PriestessNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-			        addGreeting(null,new SpeakerNPC.ChatAction() {
+			        addGreeting(null, new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, String text,
 							SpeakerNPC engine) {

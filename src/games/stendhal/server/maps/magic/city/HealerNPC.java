@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Builds a Healer NPC for the magic city  
+ * Builds a Healer NPC for the magic city
  *
  * @author kymara
  */
@@ -53,7 +53,7 @@ public class HealerNPC implements ZoneConfigurator {
 			        addGreeting("Greetings. Can I #help you?");
 				addJob("I practise alchemy and have the ability to #heal others.");
 				addHealer(500);
-				addReply("magical","We're all capable of magic here. There are different kinds, of course. My favourite is the Sunlight Spell to keep grass and flowers growing underground.");
+				addReply("magical", "We're all capable of magic here. There are different kinds, of course. My favourite is the Sunlight Spell to keep grass and flowers growing underground.");
 				addHelp("I have #magical powers to #heal your ailments.");
 				addQuest("I need nothing, thank you.");
  				addGoodbye("Fare thee well.");

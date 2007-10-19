@@ -26,7 +26,7 @@ public class WhereWho extends ScriptImpl {
 			StendhalRPZone zone = player.getZone();
 			String zoneid;
 
-			if(zone != null) {
+			if (zone != null) {
 				zoneid = zone.getName();
 			} else {
 				// Indicate players in world, but not zone

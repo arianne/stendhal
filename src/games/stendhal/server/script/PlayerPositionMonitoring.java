@@ -21,7 +21,7 @@ public class PlayerPositionMonitoring extends ScriptImpl {
 	 */
 	protected static class PlayerPositionListener implements TurnListener {
 
-		//5 10 15  30  60 120, 300
+		// 5 10 15 30 60 120, 300
 		private final int[] INTERVALS = new int[] { 5, 5, 5, 15, 30, 60, 280 };
 
 		private Player admin;
@@ -31,7 +31,8 @@ public class PlayerPositionMonitoring extends ScriptImpl {
 		/**
 		 * creates a new PlayerPositionListener
 		 *
-		 * @param admin the admin to notify
+		 * @param admin
+		 *            the admin to notify
 		 */
 		protected PlayerPositionListener(Player admin) {
 			this.admin = admin;
@@ -52,7 +53,7 @@ public class PlayerPositionMonitoring extends ScriptImpl {
 
 				StendhalRPZone zone = player.getZone();
 
-				if(zone != null) {
+				if (zone != null) {
 					sb.append(zone.getName());
 				} else {
 					sb.append("(none)");
@@ -70,7 +71,8 @@ public class PlayerPositionMonitoring extends ScriptImpl {
 		public void onTurnReached(int currentTurn, String message) {
 			list();
 			if (counter < INTERVALS.length) {
-				TurnNotifier.get().notifyInTurns((int) (INTERVALS[counter] * 1000 / 300f), this);
+				TurnNotifier.get().notifyInTurns(
+						(int) (INTERVALS[counter] * 1000 / 300f), this);
 			}
 			counter++;
 		}

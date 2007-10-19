@@ -23,10 +23,13 @@ public class PrincessNPC implements ZoneConfigurator {
 	/**
 	 * Configure a zone.
 	 *
-	 * @param	zone		The zone to be configured.
-	 * @param	attributes	Configuration attributes.
+	 * @param zone
+	 *            The zone to be configured.
+	 * @param attributes
+	 *            Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone,
+			Map<String, String> attributes) {
 		buildNPC(zone, attributes);
 	}
 
@@ -52,13 +55,13 @@ public class PrincessNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-			        addGreeting("How do you do?");
-				addReply("good","Good! Can I help you?");
-				addReply("bad","Oh dear ... Can I help you?");
-				addReply("well","Wonderful! Can I help you?");
+				addGreeting("How do you do?");
+				addReply("good", "Good! Can I help you?");
+				addReply("bad", "Oh dear ... Can I help you?");
+				addReply("well", "Wonderful! Can I help you?");
 				addJob("I am the princess of this kingdom. To become one of my citizens, speak to Barrett Holmes in the city. He may be able to sell you a house. But first, I have a #favour to ask of you...");
 				addHelp("Watch out for mad scientists. My father allowed them liberty to do some work in the basement and I am afraid things have got rather out of hand.");
-				addOffer("Sorry, but I do not have anything to offer you. You could do me a #favour, though...");				
+				addOffer("Sorry, but I do not have anything to offer you. You could do me a #favour, though...");
 				addGoodbye("Goodbye, and good luck.");
 			}
 		};

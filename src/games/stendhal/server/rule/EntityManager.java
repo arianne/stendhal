@@ -85,14 +85,14 @@ public interface EntityManager {
 
 	/**
 	 * returns the DefaultCreature or <code>null</code> if the clazz is unknown
-	 * 
+	 *
 	 * @param clazz
 	 *            the creature class
 	 * @return the creature or <code>null</code>
 	 * @throws NullPointerException
 	 *             if clazz is <code>null</code>
 	 */
-	DefaultCreature getDefaultCreature(String clazz) throws NullPointerException;
+	DefaultCreature getDefaultCreature(String clazz);
 
 	/**
 	 * returns a list of all Items that are being used at least once

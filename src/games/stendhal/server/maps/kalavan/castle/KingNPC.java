@@ -3,8 +3,6 @@ package games.stendhal.server.maps.kalavan.castle;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Node;
 
@@ -25,10 +23,13 @@ public class KingNPC implements ZoneConfigurator {
 	/**
 	 * Configure a zone.
 	 *
-	 * @param	zone		The zone to be configured.
-	 * @param	attributes	Configuration attributes.
+	 * @param zone
+	 *            The zone to be configured.
+	 * @param attributes
+	 *            Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone,
+			Map<String, String> attributes) {
 		buildNPC(zone, attributes);
 	}
 
@@ -45,8 +46,9 @@ public class KingNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-			    // it's all in games.stendhal.server.maps.quests.ImperialPrincess
-			       		 	     }
+				// it's all in
+				// games.stendhal.server.maps.quests.ImperialPrincess
+			}
 		};
 
 		kingNPC.setEntityClass("kingcozartnpc");

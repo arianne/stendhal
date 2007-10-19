@@ -15,8 +15,11 @@ import java.util.Map;
 
 /**
  * Builds an NPC to buy gems and gold and sell engagement ring
- * He is also the NPC who can fix a broken emerald ring (../../quests/Ringmaker.java)
- * He is also the NPC who casts the wedding ring  (../../quests/Marriage.java)
+ * <p>
+ * He is also the NPC who can fix a broken emerald ring
+ * (../../quests/Ringmaker.java)
+ * <p>
+ * He is also the NPC who casts the wedding ring (../../quests/Marriage.java)
  *
  * @author kymara
  */
@@ -26,10 +29,13 @@ public class RingSmithNPC implements ZoneConfigurator {
 	/**
 	 * Configure a zone.
 	 *
-	 * @param	zone		The zone to be configured.
-	 * @param	attributes	Configuration attributes.
+	 * @param zone
+	 *            The zone to be configured.
+	 * @param attributes
+	 *            Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone,
+			Map<String, String> attributes) {
 		buildNPC(zone);
 	}
 
@@ -52,11 +58,14 @@ public class RingSmithNPC implements ZoneConfigurator {
 			protected void createDialog() {
 				addJob("I work with #gold, to fix and make jewellery.");
 				addOffer("I sell diamond engagement rings which I make myself. I also buy gems and gold, see the red catalogue on the table.");
-				addReply("request","Just ask about the #task if you want me to make a wedding ring for someone.");
-				addReply("gold","It's cast from gold nuggets which you can pan for on Or'ril river. I don't cast it myself, but a smith in Ados does.");
+				addReply("request",
+						"Just ask about the #task if you want me to make a wedding ring for someone.");
+				addReply(
+						"gold",
+						"It's cast from gold nuggets which you can pan for on Or'ril river. I don't cast it myself, but a smith in Ados does.");
 				addHelp("You can sell weapons to Yorphin Baos over there. I #trade in precious items and I can also make a wedding ring as a special #request.");
-				addSeller(new SellerBehaviour(shops.get("sellrings")),false);
-				addBuyer(new BuyerBehaviour(shops.get("buyprecious")),false);
+				addSeller(new SellerBehaviour(shops.get("sellrings")), false);
+				addBuyer(new BuyerBehaviour(shops.get("buyprecious")), false);
 				addGoodbye("Bye, my friend.");
 			}
 		};

@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Builds a Wizard NPC who explains about the city  
+ * Builds a Wizard NPC who explains about the city
  *
  * @author kymara
  */
@@ -65,8 +65,8 @@ public class GreeterNPC implements ZoneConfigurator {
 			protected void createDialog() {
 			        addGreeting("Salutations, traveller.");
 				addJob("I am a wizard, like all who dwell in this magic underground city. We practise #magic here.");
-				addReply("magic","Indeed, enchantments such as our Sunlight Spell to keep the grass and flowers healthy down here. I suppose you are wondering why you have seen traditional enemies such as dark elves and green elves in company together here, let me #explain.");
-				addReply("explain","As a city for wizards only, we have much to learn from one another. Thus, old quarrels are forgotten and we live here in peace.");
+				addReply("magic", "Indeed, enchantments such as our Sunlight Spell to keep the grass and flowers healthy down here. I suppose you are wondering why you have seen traditional enemies such as dark elves and green elves in company together here, let me #explain.");
+				addReply("explain", "As a city for wizards only, we have much to learn from one another. Thus, old quarrels are forgotten and we live here in peace.");
 				addHelp("It is part of my #job to #offer you enchanted scrolls to travel to any major city in Faiumoni. I also have a supply of scrolls you may mark, and some scrolls to summon creatures. Be aware, they do not come cheap.");
 				addSeller(new SellerBehaviour(shops.get("allscrolls")) {
 

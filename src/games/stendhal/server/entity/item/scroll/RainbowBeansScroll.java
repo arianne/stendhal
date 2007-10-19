@@ -13,7 +13,7 @@ public class RainbowBeansScroll extends TimedTeleportScroll {
 
 	/**
 	 * Creates a new timed marked teleport scroll
-	 * 
+	 *
 	 * @param name
 	 * @param clazz
 	 * @param subclass
@@ -26,8 +26,9 @@ public class RainbowBeansScroll extends TimedTeleportScroll {
 
 	/**
 	 * copy constructor
-	 * 
-	 * @param item item to copy
+	 *
+	 * @param item
+	 *            item to copy
 	 */
 	public RainbowBeansScroll(RainbowBeansScroll item) {
 		super(item);
@@ -40,7 +41,7 @@ public class RainbowBeansScroll extends TimedTeleportScroll {
 
 	@Override
 	protected String getAfterReturnMessage() {
-		return "You find yourself in the forest with a bad headache." +
-				" That was a strange experience.";
+		return "You find yourself in the forest with a bad headache."
+				+ " That was a strange experience.";
 	}
 }

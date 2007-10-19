@@ -19,6 +19,7 @@ import java.util.Map;
  */
 public class StorageNPC implements ZoneConfigurator {
 	private ShopList shops = ShopList.get();
+
 	//
 	// ZoneConfigurator
 	//
@@ -26,10 +27,13 @@ public class StorageNPC implements ZoneConfigurator {
 	/**
 	 * Configure a zone.
 	 *
-	 * @param	zone		The zone to be configured.
-	 * @param	attributes	Configuration attributes.
+	 * @param zone
+	 *            The zone to be configured.
+	 * @param attributes
+	 *            Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone,
+			Map<String, String> attributes) {
 		buildNPC(zone, attributes);
 	}
 
@@ -60,12 +64,14 @@ public class StorageNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-			        addGreeting("Hello my friend. I should be busy.");
+				addGreeting("Hello my friend. I should be busy.");
 				addJob("My job is to serve the #Scarlet Army.");
-				addReply("scarlet", "The Scarlet Army is a special division of Kalavan's Army. They all wear a red armor.");
+				addReply(
+						"scarlet",
+						"The Scarlet Army is a special division of Kalavan's Army. They all wear a red armor.");
 				addHelp("Have you seen this, no armor left here. At the moment I'm not able to serve the #Scarlet Army!");
-				addOffer("Bring me some armor and i pay you out!");				
-				addBuyer(new BuyerBehaviour(shops.get("buyred")),false);
+				addOffer("Bring me some armor and i pay you out!");
+				addBuyer(new BuyerBehaviour(shops.get("buyred")), false);
 				addGoodbye("Have a nice day!");
 			}
 		};

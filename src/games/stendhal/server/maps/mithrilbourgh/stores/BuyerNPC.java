@@ -52,8 +52,8 @@ public class BuyerNPC implements ZoneConfigurator {
 			protected void createDialog() {
 				addGreeting("Welcome to the supply stores for the Mithrilbourgh Army.");
 				addJob("I proud to be the Quartermaster of the Mithrilbourgh Army. However, we are lacking in #boots and #helmets.");
-				addReply("boots","I seem to hand out stone boots very regularly, but our careless soldiers  always lose them. Thus, I buy any good boots that you can #offer, see the blue book for a price list.");
-				addReply("helmets","I do not have a good source of helmets. Any you can #trade with me would be appreciated, at the moment we only have enough for the lieutenants, and none for the soldiers. The red book has details.");
+				addReply("boots", "I seem to hand out stone boots very regularly, but our careless soldiers  always lose them. Thus, I buy any good boots that you can #offer, see the blue book for a price list.");
+				addReply("helmets", "I do not have a good source of helmets. Any you can #trade with me would be appreciated, at the moment we only have enough for the lieutenants, and none for the soldiers. The red book has details.");
 				addHelp("As Quartermaster, I take #offers for supplies which we are short of.");
 				addOffer("I buy #boots and #helmets on behalf of the Mithrilbourgh Army.");
 				addQuest("The Mithrilbourgh Army is not in need your services at present.");

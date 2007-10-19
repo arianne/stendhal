@@ -133,9 +133,8 @@ class Pathfinder {
 	private double maxDistance;
 
 	// private Rectangle maxBoundary;
-    Pathfinder(Entity entity, StendhalRPZone zone, int startX,
-			int startY, Rectangle2D destination, double maxDist,
-			boolean checkEntities) {
+	Pathfinder(Entity entity, StendhalRPZone zone, int startX, int startY,
+			Rectangle2D destination, double maxDist, boolean checkEntities) {
 		this.entity = entity;
 		this.zone = zone;
 		this.goalArea = destination;
@@ -264,8 +263,8 @@ class Pathfinder {
 			Entity otherEntity = (Entity) it.next();
 			if (!entity.getID().equals(otherEntity.getID())
 					&& otherEntity.isObstacle(entity)
-					&& (otherEntity.stopped() || otherEntity.nextTo(nodeStart
-							.getX(), nodeStart.getY(), 0.25))) {
+					&& (otherEntity.stopped() || otherEntity.nextTo(
+							nodeStart.getX(), nodeStart.getY(), 0.25))) {
 
 				Rectangle2D area = otherEntity.getArea(otherEntity.getX(),
 						otherEntity.getY());
@@ -637,8 +636,7 @@ class Pathfinder {
 		public boolean equals(Object obj) {
 			if (obj instanceof TreeNode) {
 				TreeNode treeN = (TreeNode) obj;
-				return this.nodeNumber.intValue() == treeN.nodeNumber.intValue()
-				;
+				return this.nodeNumber.intValue() == treeN.nodeNumber.intValue();
 			}
 			return false;
 		}
