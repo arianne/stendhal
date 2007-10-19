@@ -84,10 +84,10 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 		public int hashCode() {
 			// TODO: This is broken. If player gets GC'd, then
 			// hash code changes. (not good)
-			Player player = timerPlayer.get();
+			Player playerTemp = timerPlayer.get();
 
-			if (player != null) {
-				return player.hashCode();
+			if (playerTemp != null) {
+				return playerTemp.hashCode();
 			} else {
 				return 0;
 			}
@@ -100,22 +100,22 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 			// in order not to teleport the next player out too early,
 			// we have to compare it to the player who started this timer
 
-			Player player = timerPlayer.get();
+			Player playerTemp = timerPlayer.get();
 
-			if (player != null) {
-				IRPZone playerZone = player.getZone();
+			if (playerTemp != null) {
+				IRPZone playerZone = playerTemp.getZone();
 
 				if (playerZone.equals(zone)) {
 					if (counter > 0) {
-						npc.say(player.getTitle() + ", you have "
+						npc.say(playerTemp.getTitle() + ", you have "
 								+ TimeUtil.timeUntil(counter) + " left.");
 						counter = counter - 10 * 6;
 						TurnNotifier.get().notifyInTurns(10 * 3 * 6, this);
 					} else {
 						// teleport the player out
-						npc.say("Sorry, " + player.getTitle()
+						npc.say("Sorry, " + playerTemp.getTitle()
 								+ ", your time here is up.");
-						teleportAway(player);
+						teleportAway(playerTemp);
 					}
 				}
 			}
