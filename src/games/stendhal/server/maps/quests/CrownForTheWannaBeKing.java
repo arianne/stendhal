@@ -15,17 +15,17 @@ import java.util.List;
 
 /**
  * QUEST: CrownForTheWannaBeKing
- * 
+ *
  * PARTICIPANTS: - Ivan Abe, the wannabe king who lives in Kalavan
  *               - Kendra Mattori, priestess living in Wizard City
- * 
+ *
  * STEPS: - Ivan Abe wants you to bring him gems and gold for his crown which he
  *          believes will help him to become the new king.
  *        - Kendra Mattori gives the reward after player brought all required items.
- * 
+ *
  * REWARD: - 10,000 XP
  *         - Player's ATK XP is increased by 0.1% of his/her XP.
- * 
+ *
  * REPETITIONS: - None.
  */
 public class CrownForTheWannaBeKing extends AbstractQuest {
@@ -200,8 +200,8 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 
 		/* add triggers for the item names */
 		for (String item : NEEDED_ITEMS.split(";")) {
-			item = item.substring(0, item.indexOf('='));
-			npc.add(ConversationStates.QUESTION_1, item, null,
+			String tempItem = item.substring(0, item.indexOf('='));
+			npc.add(ConversationStates.QUESTION_1, tempItem, null,
 					ConversationStates.QUESTION_1, null, itemsChatAction);
 		}
 
@@ -291,7 +291,7 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 	/**
 	 * Returns a list of the names of all items that the given player still has
 	 * to bring to complete the quest.
-	 * 
+	 *
 	 * @param player The player doing the quest
 	 * @param hash If true, sets a # character in front of every name
 	 * @return A list of item names
@@ -303,11 +303,13 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 		if (missingText != null && missingText.length() > 0) {
 			List<String> missing = Arrays.asList(missingText.split(";"));
 			for (String item : missing) {
-				String pair[] = item.split("=");
+
 				if (hash) {
-					item = pair[1] + " #" + pair[0];
+					String[] pair = item.split("=");
+					result.add(pair[1] + " #" + pair[0]);
+				} else {
+				   result.add(item);
 				}
-				result.add(item);
 			}
 		}
 		return result;
@@ -316,7 +318,7 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 	/**
 	 * Drop specified amount of given item. If player doesn't have enough items,
 	 * all carried ones will be dropped and number of missing items is updated.
-	 * 
+	 *
 	 * @param player
 	 * @param itemName
 	 * @param itemCount
@@ -374,7 +376,7 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 
 	/**
 	 * Give the player the reward for completing the quest.
-	 * 
+	 *
 	 * @param player
 	 */
 	protected void rewardPlayer(Player player) {
