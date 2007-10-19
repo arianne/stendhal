@@ -68,9 +68,10 @@ public class FishermansLicenseCollector extends AbstractQuest {
 		for (String fish : neededFish) {
 			if (!done.contains(fish)) {
 				if (hash) {
-					fish = "#" + fish;
+					result.add("#" + fish);
+				} else {
+					result.add(fish);
 				}
-				result.add(fish);
 			}
 		}
 		return result;

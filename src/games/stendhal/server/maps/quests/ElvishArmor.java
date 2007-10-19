@@ -54,9 +54,10 @@ public class ElvishArmor extends AbstractQuest {
 		for (String item : NEEDEDITEMS) {
 			if (!done.contains(item)) {
 				if (hash) {
-					item = "#" + item;
+					result.add("#" + item);
+				} else {
+					result.add(item);
 				}
-				result.add(item);
 			}
 		}
 		return result;
