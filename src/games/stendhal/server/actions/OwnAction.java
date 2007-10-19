@@ -39,14 +39,14 @@ public class OwnAction implements ActionListener {
 
 		int target = action.getInt("target");
 
-		//TODO: BUG: This features is potentially abusable right now. Consider
+		// TODO: BUG: This features is potentially abusable right now. Consider
 		// removing it...
-		if(target == -1) {
+		if (target == -1) {
 			// Disown
-			if(action.has("species")) {
+			if (action.has("species")) {
 				String species = action.get("species");
 
-				if(species.equals("sheep")) {
+				if (species.equals("sheep")) {
 					Sheep sheep = player.getSheep();
 					player.removeSheep(sheep);
 
@@ -54,7 +54,7 @@ public class OwnAction implements ActionListener {
 					if (sheep.has("#db_id")) {
 						sheep.remove("#db_id");
 					}
-				} else if(species.equals("pet")) {
+				} else if (species.equals("pet")) {
 					Pet pet = player.getPet();
 					player.removePet(pet);
 
@@ -72,8 +72,9 @@ public class OwnAction implements ActionListener {
 				RPObject object = zone.get(targetid);
 
 				// Make sure the entity is valid (hacked client?)
-				// TODO: Allow "Own" on client for all RPEntity's just for some humor?
-				if(!(object instanceof DomesticAnimal)) {
+				// TODO: Allow "Own" on client for all RPEntity's just for some
+				// humor?
+				if (!(object instanceof DomesticAnimal)) {
 					player.sendPrivateText("Maybe you should stick to owning domestic animals.");
 					return;
 				}
@@ -82,21 +83,24 @@ public class OwnAction implements ActionListener {
 				Player owner = animal.getOwner();
 
 				if (owner != null) {
-					player.sendPrivateText("This animal is already owned by " + owner.getTitle());
+					player.sendPrivateText("This animal is already owned by "
+							+ owner.getTitle());
 				} else {
-					List<Node> path = Path.searchPath(player, player.getX(), player.getY(), animal.getArea(), 7);
+					List<Node> path = Path.searchPath(player, player.getX(),
+							player.getY(), animal.getArea(), 7);
 
 					if (path.isEmpty()) {
 						// The animal is too far away
-						player.sendPrivateText("That " + animal.getTitle() + " is too far away.");
-					} else if(animal instanceof Sheep) {
-						if(player.getSheep() != null) {
+						player.sendPrivateText("That " + animal.getTitle()
+								+ " is too far away.");
+					} else if (animal instanceof Sheep) {
+						if (player.getSheep() != null) {
 							player.sendPrivateText("You already own a sheep.");
 						} else {
 							player.setSheep((Sheep) animal);
 						}
-					} else if(animal instanceof Pet) {
-						if(player.getPet() != null) {
+					} else if (animal instanceof Pet) {
+						if (player.getPet() != null) {
 							player.sendPrivateText("You already own a pet.");
 						} else {
 							player.setPet((Pet) animal);

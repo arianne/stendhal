@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Builds an albino elf NPC 
+ * Builds an albino elf NPC
  *
  * @author kymara
  */
@@ -53,8 +53,8 @@ public class GreeterNPC implements ZoneConfigurator {
 			protected void createDialog() {
 			        addGreeting("Welcome to the humble dwellings of the albino elves.");
 				addJob("I just wander around. In fact, albino elves wander around a lot. We're #nomadic, you know.");
-				addReply("nomadic","We don't have a permanent home, we travel instead between forests and glens. When we find a clearing we like, we settle. We liked this one because of the ancient #stones near by.");
-				addReply("stones","They have some mystical quality. We like to be by them for the changing of the seasons.");
+				addReply("nomadic", "We don't have a permanent home, we travel instead between forests and glens. When we find a clearing we like, we settle. We liked this one because of the ancient #stones near by.");
+				addReply("stones", "They have some mystical quality. We like to be by them for the changing of the seasons.");
 				addHelp("I would sell you enchanted scrolls to return to Fado City. I have a source of cheap ones.");
 				addSeller(new SellerBehaviour(shops.get("fadoscrolls")) {
 

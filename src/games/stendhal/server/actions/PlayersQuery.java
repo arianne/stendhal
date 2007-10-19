@@ -43,8 +43,7 @@ public class PlayersQuery implements ActionListener {
 
 	public void onWho(Player player, RPAction action) {
 
-		final int REQUIRED_LEVEL_TO_SEE_GHOST = AdministrationAction
-				.getLevelForCommand("ghostmode");
+		final int REQUIRED_LEVEL_TO_SEE_GHOST = AdministrationAction.getLevelForCommand("ghostmode");
 
 		StendhalRPRuleProcessor rules = StendhalRPRuleProcessor.get();
 		if (player.has("title")) {
@@ -112,16 +111,17 @@ public class PlayersQuery implements ActionListener {
 			if (who != null && !who.isGhost()) {
 				StendhalRPZone zone = who.getZone();
 
-				if(zone != null) {
+				if (zone != null) {
 					player.sendPrivateText(who.getTitle() + " is in "
-						+ zone.getName() + " at (" + who.getX() + ","
-						+ who.getY() + ")");
+							+ zone.getName() + " at (" + who.getX() + ","
+							+ who.getY() + ")");
 				}
 			} else if (whoName.equals("sheep")) {
 				Sheep sheep = player.getSheep();
 
-				if(sheep != null) {
-					player.sendPrivateText("Your sheep is at (" + sheep.getX() + "," + sheep.getY() + ")");
+				if (sheep != null) {
+					player.sendPrivateText("Your sheep is at (" + sheep.getX()
+							+ "," + sheep.getY() + ")");
 
 				} else {
 					player.sendPrivateText("You currently have no sheep.");
@@ -129,15 +129,16 @@ public class PlayersQuery implements ActionListener {
 			} else if (whoName.equals("pet")) {
 				Pet pet = player.getPet();
 
-				if(pet != null) {
-					player.sendPrivateText("Your pet is at (" + pet.getX() + "," + pet.getY() + ")");
+				if (pet != null) {
+					player.sendPrivateText("Your pet is at (" + pet.getX()
+							+ "," + pet.getY() + ")");
 
 				} else {
 					player.sendPrivateText("You currently have no pet.");
 				}
 			} else {
-				player.sendPrivateText("No player named \""
-						+ whoName + "\" is currently logged in.");
+				player.sendPrivateText("No player named \"" + whoName
+						+ "\" is currently logged in.");
 			}
 
 			player.notifyWorldAboutChanges();
