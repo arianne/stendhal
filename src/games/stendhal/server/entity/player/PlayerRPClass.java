@@ -359,19 +359,25 @@ class PlayerRPClass {
 				}
 			}
 		} catch (Exception e) {
+			// TODO: Is this catch needed?
+			//
 			// If placing the player at its last position
-			// fails, we reset it to city entry point
-			logger.warn(
-					"cannot place player at its last position. reseting to semos city entry point",
-					e);
+			// fails, we reset to default zone
+			logger.warn("Cannot place player at its last position. Using default", e);
 		}
 
-		/*
-		 * Put the player in a zone
-		 */
 		if (zone != null) {
-			zone.add(player);
-		} else {
+			/*
+			 * Put the player in their zone
+			 * (use placeat() for collision rules)
+			 */
+			if(!StendhalRPAction.placeat(zone, player, player.getX(), player.getY())) {
+				logger.warn("Cannot place player at their last position: " + player.getName());
+				zone = null;
+			}
+		}
+
+		if(zone == null) {
 			/*
 			 * Fallback to default zone
 			 */
@@ -460,8 +466,9 @@ class PlayerRPClass {
 			 * Player could have been forced to change zones
 			 */
 			if (zone == playerZone) {
-				zone.add(animal);
-				return true;
+				if(StendhalRPAction.placeat(zone, animal, animal.getX(), animal.getY())) {
+					return true;
+				}
 			}
 		}
 
