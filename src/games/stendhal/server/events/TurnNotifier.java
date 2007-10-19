@@ -226,14 +226,9 @@ public class TurnNotifier {
 				.entrySet()) {
 			Set<TurnListener> set = mapEntry.getValue();
 			for (TurnListener currentEvent : set) {
-				try {
 					if (currentEvent.equals(turnListener)) {
 						matchingTurns.add(mapEntry.getKey());
 					}
-				} catch (ClassCastException e) {
-					// TODO: remove try catch after Marauroa 2.0
-					// this should never happen but RPObject equals thorws it
-				}
 			}
 		}
 		if (matchingTurns.size() > 0) {
