@@ -39,7 +39,7 @@ public class OwnAction implements ActionListener {
 
 		int target = action.getInt("target");
 
-		// BUG: This features is potentially abusable right now. Consider
+		//TODO: BUG: This features is potentially abusable right now. Consider
 		// removing it...
 		if(target == -1) {
 			// Disown

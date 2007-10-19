@@ -268,7 +268,7 @@ public class KTextEdit extends JPanel {
 	 */
 	public static void main(String[] args) {
 		/*
-		 * BUG: This short example doesn't work. It doesn't throw any exception
+		 *TODO: BUG: This short example doesn't work. It doesn't throw any exception
 		 * or anything. It just doesn't work. If you remove all teh edit.addLine
 		 * but one it works. Can anyone with Swing/AWT abilities have a look to
 		 * it?

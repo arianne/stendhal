@@ -23,7 +23,7 @@ import marauroa.common.Logger;
 /**
  * An area that only allows one play at a time to enter.
  *
- * KNOWN BUG: If a player enters, then goes into ghost mode, the area will
+ * TODO: KNOWN BUG: If a player enters, then goes into ghost mode, the area will
  * reject other players (exposing that there is a ghost present in area).
  */
 public class OnePlayerArea extends AreaEntity implements MovementListener {

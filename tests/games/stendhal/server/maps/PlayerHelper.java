@@ -9,7 +9,7 @@ public class PlayerHelper {
 	public static void addEmptySlots(Player player) {
 		player.addSlot(new EntitySlot("bag"));
 
-		// BUG: Capacity can only be set at the RPClass.
+		//TODO: BUG: Capacity can only be set at the RPClass.
 		// player.getSlot("bag").setCapacity(20);
 		player.addSlot(new EntitySlot("lhand"));
 		player.addSlot(new EntitySlot("rhand"));
