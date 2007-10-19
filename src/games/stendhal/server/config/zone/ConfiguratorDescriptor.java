@@ -68,15 +68,15 @@ public class ConfiguratorDescriptor extends SetupDescriptor {
 		Class clazz;
 		Object obj;
 
-		String className = getClassName();
+		String classNameTemp = getClassName();
 
 		/*
 		 * Load class
 		 */
 		try {
-			clazz = Class.forName(className);
+			clazz = Class.forName(classNameTemp);
 		} catch (ClassNotFoundException ex) {
-			logger.error("Unable to find zone configurator: " + className);
+			logger.error("Unable to find zone configurator: " + classNameTemp);
 
 			return;
 		}
@@ -87,11 +87,11 @@ public class ConfiguratorDescriptor extends SetupDescriptor {
 		try {
 			obj = clazz.newInstance();
 		} catch (InstantiationException ex) {
-			logger.error("Error creating zone configurator: " + className, ex);
+			logger.error("Error creating zone configurator: " + classNameTemp, ex);
 
 			return;
 		} catch (IllegalAccessException ex) {
-			logger.error("Error accessing zone configurator: " + className, ex);
+			logger.error("Error accessing zone configurator: " + classNameTemp, ex);
 
 			return;
 		}
@@ -101,11 +101,11 @@ public class ConfiguratorDescriptor extends SetupDescriptor {
 		 */
 		if (obj instanceof ZoneConfigurator) {
 			logger.info("Configuring zone [" + zone.getName()
-					+ "] with: " + className);
+					+ "] with: " + classNameTemp);
 
 			((ZoneConfigurator) obj).configureZone(zone, getParameters());
 		} else {
-			logger.warn("Unsupported zone configurator: " + className);
+			logger.warn("Unsupported zone configurator: " + classNameTemp);
 		}
 	}
 }

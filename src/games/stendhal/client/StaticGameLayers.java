@@ -121,10 +121,10 @@ public class StaticGameLayers {
 				return;
 			}
 
-			CollisionDetection collision = new CollisionDetection();
-			collision.setCollisionData(LayerDefinition.decode(in));
+			CollisionDetection collisionTemp = new CollisionDetection();
+			collisionTemp.setCollisionData(LayerDefinition.decode(in));
 
-			collisions.put(area, collision);
+			collisions.put(area, collisionTemp);
 		} else if (layer.equals("tilesets")) {
 			/*
 			 * Add tileset
