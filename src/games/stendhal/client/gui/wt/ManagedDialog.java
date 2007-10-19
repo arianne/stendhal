@@ -225,7 +225,7 @@ public abstract class ManagedDialog implements ManagedWindow {
 	 */
 	public boolean moveTo(int x, int y) {
 		/*
-		 * XXX -  Perhaps we should require some of it to remain on
+		 * TODO: XXX -  Perhaps we should require some of it to remain on
 		 * the screen (incase it was saved while in hi-res, then run
 		 * in low-res)
 		 */

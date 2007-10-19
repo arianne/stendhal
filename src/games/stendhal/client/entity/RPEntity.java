@@ -708,7 +708,7 @@ public abstract class RPEntity extends ActiveEntity {
 					.get("zoneid"));
 
 			/*
-			 * XXX - This is probably meaningless, as create order is
+			 * TODO: XXX - This is probably meaningless, as create order is
 			 * unpredictable, and the target entity may not have been added yet
 			 */
 			attackTarget = (RPEntity) GameObjects.getInstance().get(

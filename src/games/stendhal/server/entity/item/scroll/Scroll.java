@@ -97,7 +97,7 @@ public class Scroll extends StackableItem implements UseListener {
 	protected boolean useScroll(Player player) {
 		/*
 		 * Default behaviour
-		 * XXX - obsolete?? Can never really happen, make abstract?
+		 * TODO: XXX - obsolete?? Can never really happen, make abstract?
 		 */
 		player.sendPrivateText("What a strange scroll! You can't make heads or tails of it.");
 		return false;

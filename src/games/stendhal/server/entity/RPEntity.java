@@ -632,7 +632,7 @@ public abstract class RPEntity extends GuidedEntity {
 		if (attackTarget != null) {
 			attackTarget.attackSources.remove(this);
 
-			// XXX - Opponent could attack again, really remove?
+			// TODO: XXX - Opponent could attack again, really remove?
 			// Yes, because otherwise we would have a memory leak. When else
 			// should dead creatures be removed from the hash map? --mort
 			enemiesThatGiveFightXP.remove(attackTarget);
@@ -847,7 +847,7 @@ public abstract class RPEntity extends GuidedEntity {
 
 			/** We limit xp gain for up to eight levels difference */
 			/**
-			 * XXX: Disabled. double gainXpLimitation = 1 + ((oldLevel -
+			 * TODO: XXX: Disabled. double gainXpLimitation = 1 + ((oldLevel -
 			 * killer.getLevel()) / (20.0)); if (gainXpLimitation < 0.0) {
 			 * gainXpLimitation = 0.0; } else if (gainXpLimitation > 1.0) {
 			 * gainXpLimitation = 1.0; }

@@ -134,7 +134,7 @@ class DestinationObject extends MoveableObject {
 			}
 
 			/*
-			 * TODO: Broken. Marauroa 2.0 improved all the slot handling. XXX:
+			 * TODO: Broken. Marauroa 2.0 improved all the slot handling. TODO: XXX:
 			 * Recode.
 			 */
 			// // not very accurate...the containment level of this slot

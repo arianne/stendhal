@@ -390,7 +390,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 	/**
 	 * Populate a zone based on it's map content.
 	 *
-	 * XXX - This should be moved to the zone loader or something.
+	 * TODO: XXX - This should be moved to the zone loader or something.
 	 */
 	public void populate(LayerDefinition objectsLayer) throws IOException {
 		/* We build the layer data */

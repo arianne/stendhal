@@ -134,7 +134,7 @@ public class ServerTMXLoader {
 
 		layer.setName(getAttributeValue(t, "name"));
 
-		// XXX: Ignored by now.
+		// TODO: XXX: Ignored by now.
 		// readProperties(t.getChildNodes(), ml.getProperties());
 
 		for (Node child = t.getFirstChild(); child != null; child = child.getNextSibling()) {

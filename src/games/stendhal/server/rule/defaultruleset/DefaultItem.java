@@ -325,7 +325,7 @@ public class DefaultItem {
 		@Override
 		protected Object create() throws IllegalAccessException,
 				InstantiationException, InvocationTargetException {
-			// XXX - Is this a fast as <Class>.newInstance()
+			// TODO: XXX - Is this a fast as <Class>.newInstance()
 			return construct.newInstance(new Object[] {});
 		}
 	}
