@@ -1538,23 +1538,27 @@ public class Player extends RPEntity {
 
 			}
 		} else {
+			List<ConsumableItem> poisonstoRemove = new LinkedList<ConsumableItem>();
 			int sum = 0;
 			int amount = 0;
 			for (ConsumableItem poison : poisonToConsume) {
 				if (turn % poison.getFrecuency() == 0) {
 					if (poison.consumed()) {
-						poisonToConsume.remove(poison);
+						poisonstoRemove.add(poison);
 
 					} else {
 						amount = poison.consume();
 						damage(-amount, poison);
 						sum += amount;
-						put("poisoned", sum);
+						if (sum > 0) {
+							put("poisoned", sum);
+						}
 
 					}
 				}
 
 			}
+			poisonToConsume.remove(poisonstoRemove);
 		}
 		notifyWorldAboutChanges();
 	}
