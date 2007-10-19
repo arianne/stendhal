@@ -13,7 +13,8 @@
 package games.stendhal.server;
 
 import games.stendhal.common.Debug;
-import marauroa.common.Pair;
+import games.stendhal.server.account.AccountCreator;
+import games.stendhal.server.account.CharacterCreator;
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.actions.AdministrationAction;
 import games.stendhal.server.actions.AttackAction;
@@ -33,7 +34,6 @@ import games.stendhal.server.actions.StopAction;
 import games.stendhal.server.actions.UseAction;
 import games.stendhal.server.actions.equip.EquipmentAction;
 import games.stendhal.server.entity.Entity;
-import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.entity.player.Player;
@@ -42,11 +42,8 @@ import games.stendhal.server.entity.spawner.PassiveEntityRespawnPoint;
 import games.stendhal.server.events.LoginNotifier;
 import games.stendhal.server.events.TurnNotifier;
 import games.stendhal.server.events.TutorialNotifier;
-import games.stendhal.server.rule.RuleManager;
-import games.stendhal.server.rule.RuleSetFactory;
 import games.stendhal.server.scripting.ScriptRunner;
 
-import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -55,23 +52,18 @@ import java.util.Map;
 import marauroa.common.Configuration;
 import marauroa.common.Log4J;
 import marauroa.common.Logger;
-import marauroa.common.crypto.Hash;
+import marauroa.common.Pair;
 import marauroa.common.game.AccountResult;
 import marauroa.common.game.CharacterResult;
 import marauroa.common.game.IRPZone;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
-import marauroa.common.game.RPSlot;
-import marauroa.common.game.Result;
 import marauroa.server.game.Statistics;
 import marauroa.server.game.container.PlayerEntry;
 import marauroa.server.game.container.PlayerEntryContainer;
-import marauroa.server.game.db.DatabaseFactory;
-import marauroa.server.game.db.JDBCDatabase;
 import marauroa.server.game.db.Transaction;
 import marauroa.server.game.rp.IRPRuleProcessor;
 import marauroa.server.game.rp.RPServerManager;
-import marauroa.test.TestHelper;
 
 public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
@@ -299,19 +291,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			return true;
 		}
 		return false;
-	}
-
-	private boolean isValidUsername(String username) {
-		/** TODO: Complete this. Should read the list from XML file */
-		if (username.indexOf(' ') != -1) {
-			return false;
-		}
-		// TODO: Fix bug [ 1672627 ] 'admin' not allowed in username but GM_ and
-		// _GM are
-		if (username.toLowerCase().contains("admin")) {
-			return false;
-		}
-		return true;
 	}
 
 	public void addNPC(NPC npc) {
@@ -650,107 +629,14 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		onExit(object);
 	}
 
-	public AccountResult createAccount(String username, String password,
-			String email) {
-		/*
-		 * TODO: Refactor Invalid patterns for username should be stored in a
-		 * text file or XML file.
-		 */
-		if (!isValidUsername(username)) {
-			return new AccountResult(Result.FAILED_EXCEPTION, username);
-		}
-
-		JDBCDatabase databaseTemp = (JDBCDatabase) DatabaseFactory.getDatabase();
-		Transaction trans = databaseTemp.getTransaction();
-		try {
-			trans.begin();
-
-			if (databaseTemp.hasPlayer(trans, username)) {
-				logger.warn("Account already exist: " + username);
-				return new AccountResult(Result.FAILED_PLAYER_EXISTS, username);
-			}
-
-			databaseTemp.addPlayer(trans, username, Hash.hash(password), email);
-
-			trans.commit();
-			return new AccountResult(Result.OK_CREATED, username);
-		} catch (SQLException e) {
-			try {
-				trans.rollback();
-			} catch (SQLException e1) {
-				e1.printStackTrace();
-			}
-			TestHelper.fail();
-			return new AccountResult(Result.FAILED_EXCEPTION, username);
-		}
+	public AccountResult createAccount(String username, String password, String email) {
+		AccountCreator creator = new AccountCreator(username, password, email);
+		return creator.create();
 	}
 
-	public CharacterResult createCharacter(String username, String character,
-			RPObject template) {
-		JDBCDatabase databaseTemp = (JDBCDatabase) DatabaseFactory.getDatabase();
-		Transaction trans = databaseTemp.getTransaction();
-
-		try {
-			if (databaseTemp.hasCharacter(trans, username, character)) {
-				logger.warn("Character already exist: " + character);
-				return new CharacterResult(Result.FAILED_PLAYER_EXISTS,
-						character, template);
-			}
-
-			/*
-			 * TODO: Refactor OMG! Hide in a method. Even better, move it to
-			 * player class as it is its duty to provide a empty level 0 player.
-			 */
-			/*
-			 * Create the player character object
-			 */
-			Player object = new Player(new RPObject());
-			object.setID(RPObject.INVALID_ID);
-
-			object.put("type", "player");
-			object.put("name", character);
-			object.put("outfit", new Outfit().getCode());
-			object.put("base_hp", 100);
-			object.put("hp", 100);
-			object.put("atk", 10);
-			object.put("atk_xp", 0);
-			object.put("def", 10);
-			object.put("def_xp", 0);
-			object.put("xp", 0);
-
-			/*
-			 * TODO: Update the above to use Player and RPEntity methods.
-			 */
-			object.update();
-
-			RuleManager manager = RuleSetFactory.getRuleSet("default");
-
-			object.addSlot("armor");
-			Entity entity = manager.getEntityManager().getItem("leather_armor");
-			RPSlot slot = object.getSlot("armor");
-			slot.add(entity);
-
-			object.addSlot("rhand");
-			entity = manager.getEntityManager().getItem("club");
-			slot = object.getSlot("rhand");
-			slot.add(entity);
-
-			/*
-			 * Finally we add it to database.
-			 */
-			databaseTemp.addCharacter(trans, username, character, object);
-			return new CharacterResult(Result.OK_CREATED, character, object);
-		} catch (Exception e) {
-			try {
-				trans.rollback();
-			} catch (SQLException e1) {
-				e1.printStackTrace();
-			}
-			logger.error("Can't create character", e);
-			TestHelper.fail();
-			return new CharacterResult(Result.FAILED_EXCEPTION, character,
-					template);
-		}
+	public CharacterResult createCharacter(String username, String character, RPObject template) {
+		CharacterCreator creator = new CharacterCreator(username, character, template);
+		return creator.create();
 	}
 
 	public RPServerManager getRPManager() {
