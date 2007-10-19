@@ -395,9 +395,6 @@ class PlayerRPClass {
 			zone.placeObjectAtEntryPoint(player);
 		}
 
-		int x = player.getX();
-		int y = player.getY();
-
 		// load sheep
 		Sheep sheep = player.getPlayerSheepManager().retrieveSheep();
 
