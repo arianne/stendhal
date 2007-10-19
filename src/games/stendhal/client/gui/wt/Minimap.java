@@ -343,15 +343,15 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 
 		int x = (int) ((area.getX() * scale) + 0.5);
 		int y = (int) ((area.getY() * scale) + 0.5);
-		int width = ((int) area.getWidth()) * scale;
-		int height = ((int) area.getHeight()) * scale;
+		int widthTemp = ((int) area.getWidth()) * scale;
+		int heightTemp = ((int) area.getHeight()) * scale;
 
 		g.setColor(color);
-		g.fillRect(x, y, width, height);
+		g.fillRect(x, y, widthTemp, heightTemp);
 
 		if (borderColor != null) {
 			g.setColor(borderColor);
-			g.drawRect(x, y, width - 1, height - 1);
+			g.drawRect(x, y, widthTemp - 1, heightTemp - 1);
 		}
 	}
 

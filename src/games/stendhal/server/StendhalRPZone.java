@@ -396,9 +396,9 @@ public class StendhalRPZone extends MarauroaRPZone {
 		/* We build the layer data */
 		objectsLayer.build();
 
-		for (int y = 0; y < objectsLayer.getHeight(); y++) {
-			for (int x = 0; x < objectsLayer.getWidth(); x++) {
-				int value = objectsLayer.getTileAt(x, y);
+		for (int yTemp = 0; yTemp < objectsLayer.getHeight(); yTemp++) {
+			for (int xTemp = 0; xTemp < objectsLayer.getWidth(); xTemp++) {
+				int value = objectsLayer.getTileAt(xTemp, yTemp);
 				if (value > 0) {
 					/*
 					 * When the value is 0, it means that there is no tile at
@@ -406,7 +406,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 					 */
 					TileSetDefinition tileset = objectsLayer.getTilesetFor(value);
 					createEntityAt(tileset.getSource(), value
-							- tileset.getFirstGid(), x, y);
+							- tileset.getFirstGid(), xTemp, yTemp);
 				}
 			}
 		}
@@ -476,17 +476,20 @@ public class StendhalRPZone extends MarauroaRPZone {
 				PassiveEntityRespawnPoint plantGrower = null;
 
 				if (clazz.contains("herb")) {
-				       switch (type) {
-				       case 0:	   
-					       plantGrower = new PassiveEntityRespawnPoint("arandula", 400);
-					       break;
-				       case 1:	   
-					       plantGrower = new PassiveEntityRespawnPoint("kekik", 800);
-					       break;
-				       case 2:	   
-					       plantGrower = new PassiveEntityRespawnPoint("sclaria", 800);
-					       break;
-				       }
+					switch (type) {
+					case 0:
+						plantGrower = new PassiveEntityRespawnPoint("arandula",
+								400);
+						break;
+					case 1:
+						plantGrower = new PassiveEntityRespawnPoint("kekik",
+								800);
+						break;
+					case 2:
+						plantGrower = new PassiveEntityRespawnPoint("sclaria",
+								800);
+						break;
+					}
 				} else if (clazz.contains("corn")) {
 					plantGrower = new GrainField();
 				} else if (clazz.contains("mushroom")) {
@@ -571,16 +574,16 @@ public class StendhalRPZone extends MarauroaRPZone {
 					 */
 					return;
 				} else if (clazz.contains("fruits")) {
-					switch(type) {
+					switch (type) {
 					case 0:
-						plantGrower = new PassiveEntityRespawnPoint("coconut",800);
+						plantGrower = new PassiveEntityRespawnPoint("coconut", 800);
 						break;
 					case 1:
-						plantGrower = new PassiveEntityRespawnPoint("tomato",800);
+						plantGrower = new PassiveEntityRespawnPoint("tomato", 800);
 						break;
-                                        case 2:
-					        plantGrower = new PassiveEntityRespawnPoint("pineapple",1200);
-					        break;
+					case 2:
+						plantGrower = new PassiveEntityRespawnPoint("pineapple", 1200);
+						break;
 
 					}
 				}
@@ -983,7 +986,8 @@ public class StendhalRPZone extends MarauroaRPZone {
 				Entity otherEntity = (Entity) other;
 
 				// Check if the objects overlap
-				otherEntity.getArea(otherArea, otherEntity.getX(), otherEntity.getY());
+				otherEntity.getArea(otherArea, otherEntity.getX(),
+						otherEntity.getY());
 
 				if (area.intersects(otherArea)) {
 					// Check if it's blocking
@@ -1223,15 +1227,15 @@ public class StendhalRPZone extends MarauroaRPZone {
 		addToContent(name, mapData);
 	}
 
-	private int i;
+	private int debugturn;
 
 	@Override
 	public void nextTurn() {
 		super.nextTurn();
 
-		i++;
+		debugturn++;
 
-		if (Debug.SHOW_LIST_SIZES && i % 1000 == 0) {
+		if (Debug.SHOW_LIST_SIZES && debugturn % 1000 == 0) {
 			StringBuffer os = new StringBuffer("Name: " + this.getID());
 			os.append("blood: " + bloods.size() + "\n");
 			os.append("itemsOnGround: " + itemsOnGround.size() + "\n");
