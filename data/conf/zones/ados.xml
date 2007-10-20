@@ -895,7 +895,6 @@ in roaches.
 
 
  <zone name="int_ados_castle_garden" file="interiors/ados/castle_garden.tmx">
-
  <!-- entrance --> 
  <portal x="15" y="5" ref="ingardenleft">
    <destination zone="int_ados_castle_throne" ref="outgardenleft"/>
@@ -911,8 +910,7 @@ in roaches.
  </zone>
 
 
-   <zone name="int_ados_castle_dungeons" file="interiors/ados/castle_dungeons.tmx">
-
+ <zone name="int_ados_castle_dungeons" file="interiors/ados/castle_dungeons.tmx">
  <portal x="33" y="29" ref="entrance1">
    <destination zone="int_ados_castle_garden" ref="downstair"/>
   </portal>
@@ -921,7 +919,38 @@ in roaches.
   </portal>
  </zone>
 
-   
+ <zone name="int_ados_house_63" file="interiors/ados/house_63.tmx">
+  <portal x="21" y="17" ref="in">
+    <destination zone="0_ados_city" ref="house_63"/>
+  </portal>
+ </zone>
+ <zone name="int_ados_house_64" file="interiors/ados/house_64.tmx">
+  <portal x="21" y="17" ref="in">
+    <destination zone="0_ados_city" ref="house_64"/>
+  </portal>
+ </zone>
+ <zone name="int_ados_house_65" file="interiors/ados/house_65.tmx">
+  <portal x="21" y="18" ref="in">
+    <destination zone="0_ados_city" ref="house_65"/>
+  </portal>
+ </zone>
+ <zone name="int_ados_house_66" file="interiors/ados/house_66.tmx">
+  <portal x="20" y="19" ref="in">
+    <destination zone="0_ados_city" ref="house_66"/>
+  </portal>
+ </zone>
+ <zone name="int_ados_house_67" file="interiors/ados/house_67.tmx">
+  <portal x="11" y="21" ref="in">
+    <destination zone="0_ados_city" ref="house_67"/>
+  </portal>
+ </zone>
+ <zone name="int_ados_house_68" file="interiors/ados/house_68.tmx">
+  <portal x="13" y="21" ref="in">
+    <destination zone="0_ados_city" ref="house_68"/>
+  </portal>
+ </zone>
+
+
    <zone name="0_ados_forest_w2" level="0" x="500256" y="500000" file="Level 0/ados/forest_w2.tmx">
    </zone>
    
@@ -974,6 +1003,49 @@ Southeast: Docks
      	<parameter name="species">cod</parameter>
     	</implementation>
     </entity>
+  <portal x="5" y="52" ref="house_63">
+     <destination zone="int_ados_house_63" ref="in"/>
+     <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+     <parameter name="key">private_key_63</parameter>
+     <parameter name="rejected">The door is locked.</parameter>
+     </implementation>
+   </portal>
+   <portal x="5" y="60" ref="house_64">
+     <destination zone="int_ados_house_64" ref="in"/>
+     <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+     <parameter name="key">private_key_64</parameter>
+     <parameter name="rejected">The door is locked.</parameter>
+     </implementation>
+   </portal>
+   <portal x="5" y="69" ref="house_65">
+     <destination zone="int_ados_house_65" ref="in"/>
+     <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+     <parameter name="key">private_key_65</parameter>
+     <parameter name="rejected">The door is locked.</parameter>
+     </implementation>
+   </portal>
+   <portal x="5" y="76" ref="house_66">
+     <destination zone="int_ados_house_66" ref="in"/>
+     <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+     <parameter name="key">private_key_66</parameter>
+     <parameter name="rejected">The door is locked.</parameter>
+     </implementation>
+   </portal>
+   <portal x="18" y="55" ref="house_67">
+     <destination zone="int_ados_house_67" ref="in"/>
+     <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+     <parameter name="key">private_key_67</parameter>
+     <parameter name="rejected">The door is locked.</parameter>
+     </implementation>
+   </portal>
+   <portal x="18" y="61" ref="house_68">
+     <destination zone="int_ados_house_68" ref="in"/>
+     <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+     <parameter name="key">private_key_68</parameter>
+     <parameter name="rejected">The door is locked.</parameter>
+     </implementation>
+   </portal>
+
     <portal x="43" y="21" ref="library_entrance_left">
       <destination zone="int_ados_library" ref="entrance_left"/>
     </portal>

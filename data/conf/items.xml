@@ -3208,6 +3208,79 @@
     </equipable>
   </item>
 
+ <item name="private_key_63">
+    <type class="key" subclass="yellow" tileid="-1"/>
+    <description>You see a private key to House 63 in Ados City.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="keyring"/>
+    </equipable>
+  </item>
+ <item name="private_key_64">
+    <type class="key" subclass="lime" tileid="-1"/>
+    <description>You see a private key to House 64 in Ados City.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="keyring"/>
+    </equipable>
+  </item>
+ <item name="private_key_65">
+    <type class="key" subclass="pink" tileid="-1"/>
+    <description>You see a private key to House 65 in Ados City.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="keyring"/>
+    </equipable>
+  </item>
+ <item name="private_key_66">
+    <type class="key" subclass="red" tileid="-1"/>
+    <description>You see a private key to House 66 in Ados City.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="keyring"/>
+    </equipable>
+  </item>
+ <item name="private_key_67">
+    <type class="key" subclass="orange" tileid="-1"/>
+    <description>You see a private key to House 67 in Ados City.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="keyring"/>
+    </equipable>
+  </item>
+ <item name="private_key_68">
+    <type class="key" subclass="navy" tileid="-1"/>
+    <description>You see a private key to House 68 in Ados City.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="keyring"/>
+    </equipable>
+  </item>
+
   <item name="fado_hotel_key_001">
     <type class="key" subclass="hotel" tileid="-1"/>
     <description>You see a key to room #001 in the Fado Hotel.</description>
