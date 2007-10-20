@@ -220,7 +220,7 @@ public class ItemTest {
 		Item mo = new Item("name1", "myClass", "mySubclass",
 				new HashMap<String, String>());
 		assertEquals(
-				"Item, RPObject with Attributes of Class(item): [visibility=100][width=1][height=1][resistance=0][type=item][class=myClass][name=name1][subclass=mySubclass] and RPSlots  and RPLink  and RPEvents ",
+				"Item, RPObject with Attributes of Class(item): [visibility=100][width=1][resistance=0][height=1][type=item][class=myClass][y=0][name=name1][subclass=mySubclass][x=0] and RPSlots  and RPLink  and RPEvents ",
 				mo.toString());
 	}
 
