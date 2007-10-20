@@ -14,7 +14,6 @@ import games.stendhal.client.GameScreen;
 import games.stendhal.client.NotificationType;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.gui.KTextEdit;
-import games.stendhal.client.gui.StendhalChatLineListener;
 import games.stendhal.client.gui.StendhalGUI;
 import games.stendhal.client.gui.styled.WoodStyle;
 import games.stendhal.client.gui.styled.swing.StyledJPanel;
@@ -22,10 +21,10 @@ import games.stendhal.client.gui.styled.swing.StyledJPanel;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
@@ -38,8 +37,6 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JTextField;
-import javax.swing.OverlayLayout;
-import javax.swing.SwingUtilities;
 
 import marauroa.common.Log4J;
 import marauroa.common.Logger;
