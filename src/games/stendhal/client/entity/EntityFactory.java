@@ -51,7 +51,7 @@ public class EntityFactory {
 				eclass = object.get("class");
 			}
 
-			Class< ? > entityClass = EntityMap.getClass(type, eclass);
+			Class< ? extends Entity > entityClass = EntityMap.getClass(type, eclass);
 			if (entityClass == null) {
 				// If there is no entity, let's try without using class.
 				entityClass = EntityMap.getClass(type, null);
@@ -61,7 +61,7 @@ public class EntityFactory {
 				}
 			}
 
-			Entity en = (Entity) entityClass.newInstance();
+			Entity en = entityClass.newInstance();
 			en.initialize(object);
 
 			return en;
