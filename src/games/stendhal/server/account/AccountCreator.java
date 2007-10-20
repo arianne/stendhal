@@ -45,6 +45,12 @@ public class AccountCreator {
 		if (username.toLowerCase().contains("admin")) {
 			return false;
 		}
+		
+		// Ensure username is at least 4 characters length.
+		if( username.length()<4)  {
+			return false;
+		}
+		
 		return true;
 	}
 
