@@ -62,14 +62,16 @@ public class Level {
 
 		if (logger.isDebugEnabled()) {
 			for (int i = 0; i < LEVELS; i++) {
-				logger.debug("Level " + i + ": " + (int) ((wisdom[i] * 100.0) + 0.5) + " wisdom");
+				logger.debug("Level " + i + ": "
+						+ (int) ((wisdom[i] * 100.0) + 0.5) + " wisdom");
 			}
 		}
 	}
 
 	public static void main(String[] args) {
 		for (int i = 0; i < LEVELS; i++) {
-			System.out.println("<tr><td>" + i + "</td><td>" + xp[i] + "</td></tr>");
+			System.out.println("<tr><td>" + i + "</td><td>" + xp[i]
+					+ "</td></tr>");
 		}
 	}
 
@@ -77,6 +79,13 @@ public class Level {
 		return LEVELS - 1;
 	}
 
+	/**
+	 * calculates the level according to the experience.
+	 *
+	 * @param exp
+	 *            experience needed
+	 * @return level
+	 */
 	public static int getLevel(int exp) {
 
 		int first = 0;
@@ -98,6 +107,12 @@ public class Level {
 		return first;
 	}
 
+	/**
+	 * calculate the experienced needed for a level
+	 *
+	 * @param level
+	 * @return experience needed
+	 */
 	public static int getXP(int level) {
 		if ((level >= 0) && (level < xp.length)) {
 			return xp[level];
@@ -105,6 +120,16 @@ public class Level {
 		return -1;
 	}
 
+	/**
+	 * calculates how many levels to add when a certain amount of experience is
+	 * added
+	 *
+	 * @param exp
+	 *            the current Experience
+	 * @param added
+	 *            the added Experience
+	 * @return
+	 */
 	public static int changeLevel(int exp, int added) {
 		int i;
 		for (i = 0; i < LEVELS; i++) {
@@ -113,7 +138,7 @@ public class Level {
 			}
 		}
 
-		for (int j = i; j < LEVELS; j++) {
+		for (int j = i; j <=LEVELS; j++) {
 			if (exp + added < xp[j]) {
 				return j - i;
 			}
@@ -123,13 +148,14 @@ public class Level {
 	}
 
 	/**
-	 * Get an entity's wisdom factor based on their level. As no one
-	 * really has 100% (i.e. 1.0) wisdom, it should be scaled as needed.
+	 * Get an entity's wisdom factor based on their level. As no one really has
+	 * 100% (i.e. 1.0) wisdom, it should be scaled as needed.
 	 *
-	 * @param level A player level.
+	 * @param level
+	 *            A player level.
 	 *
-	 * @return	A value between <code>0.0</code> (inclusive) and
-	 *		<code>1.0</code> (exclusive).
+	 * @return A value between <code>0.0</code> (inclusive) and
+	 *         <code>1.0</code> (exclusive).
 	 */
 	public static double getWisdom(int level) {
 		if (level > LEVELS) {
