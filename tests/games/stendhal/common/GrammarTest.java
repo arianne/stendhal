@@ -104,10 +104,8 @@ public class GrammarTest {
 		Assert.assertEquals("short swords", Grammar.plural("short sword"));
 		Assert.assertEquals("swords", Grammar.plural("sword"));
 		Assert.assertEquals("scimitars", Grammar.plural("scimitar"));
-		Assert.assertEquals("katanas", Grammar.plural("katana")); // wikipedia
-		// says
-		// katana/katanas
-		// ok
+		Assert.assertEquals("wikipedia says katana/katanas ok", "katanas",
+				Grammar.plural("katana"));
 		Assert.assertEquals("claymores", Grammar.plural("claymore"));
 		Assert.assertEquals("broadswords", Grammar.plural("broadsword"));
 		Assert.assertEquals("biting swords", Grammar.plural("biting sword"));
@@ -124,10 +122,7 @@ public class GrammarTest {
 		Assert.assertEquals("scythes", Grammar.plural("scythe"));
 		Assert.assertEquals("twoside axes", Grammar.plural("twoside axe"));
 		Assert.assertEquals("halberds", Grammar.plural("halberd"));
-		Assert
-				.assertEquals("twoside axes +3", Grammar
-						.plural("twoside axe +3")); // i will make a set of
-		// names for these +s
+		Assert.assertEquals("twoside axes +3", Grammar.plural("twoside axe +3"));
 		Assert.assertEquals("clubs", Grammar.plural("club"));
 		Assert.assertEquals("staffs", Grammar.plural("staff"));
 		Assert.assertEquals("maces", Grammar.plural("mace"));
@@ -148,143 +143,128 @@ public class GrammarTest {
 		Assert.assertEquals("golden arrows", Grammar.plural("golden arrow"));
 		Assert.assertEquals("bucklers", Grammar.plural("buckler"));
 		Assert.assertEquals("wooden shields", Grammar.plural("wooden shield"));
-		Assert
-				.assertEquals("studded shields", Grammar
-						.plural("studded shield"));
+		Assert.assertEquals("studded shields", Grammar.plural("studded shield"));
 		Assert.assertEquals("plate shields", Grammar.plural("plate shield"));
 		Assert.assertEquals("lion shields", Grammar.plural("lion shield"));
-		Assert
-				.assertEquals("unicorn shields", Grammar
-						.plural("unicorn shield"));
-		Assert
-				.assertEquals("lion shields +1", Grammar
-						.plural("lion shield +1"));
+		Assert.assertEquals("unicorn shields", Grammar.plural("unicorn shield"));
+		Assert.assertEquals("lion shields +1", Grammar.plural("lion shield +1"));
 		Assert.assertEquals("skull shields", Grammar.plural("skull shield"));
 		Assert.assertEquals("crown shields", Grammar.plural("crown shield"));
 		Assert.assertEquals("golden shields", Grammar.plural("golden shield"));
 		Assert.assertEquals("dresses", Grammar.plural("dress"));
-		Assert.assertEquals("suits of leather armor", Grammar
-				.plural("suit of leather armor")); //
-		Assert.assertEquals("leather cuirasses", Grammar
-				.plural("leather cuirass"));
-		Assert.assertEquals("suits of leather armor +1", Grammar
-				.plural("suit of leather armor +1")); //
-		Assert.assertEquals("leather cuirasses +1", Grammar
-				.plural("leather cuirass +1"));
-		Assert.assertEquals("suits of studded armor", Grammar
-				.plural("suit of studded armor")); //
-		Assert.assertEquals("suits of chain armor", Grammar
-				.plural("suit of chain armor")); //
-		Assert.assertEquals("suits of chain armor +1", Grammar
-				.plural("suit of chain armor +1")); //
-		Assert.assertEquals("suits of scale armor", Grammar
-				.plural("suit of scale armor")); //
-		Assert.assertEquals("suits of scale armor +1", Grammar
-				.plural("suit of scale armor +1")); //
-		Assert.assertEquals("suits of scale armor +112", Grammar
-				.plural("suit of scale armor +112")); //
-		Assert.assertEquals("suits of chain armor +3", Grammar
-				.plural("suit of chain armor +3")); //
-		Assert.assertEquals("suits of scale armor +2", Grammar
-				.plural("suit of scale armor +2")); //
-		Assert.assertEquals("suits of plate armor", Grammar
-				.plural("suit of plate armor")); //
-		Assert.assertEquals("suits of golden armor", Grammar
-				.plural("suit of golden armor")); //
-		Assert
-				.assertEquals("leather helmets", Grammar
-						.plural("leather helmet"));
+		Assert.assertEquals("suits of leather armor",
+				Grammar.plural("suit of leather armor"));
+		Assert.assertEquals("leather cuirasses",
+				Grammar.plural("leather cuirass"));
+		Assert.assertEquals("suits of leather armor +1",
+				Grammar.plural("suit of leather armor +1"));
+		Assert.assertEquals("leather cuirasses +1",
+				Grammar.plural("leather cuirass +1"));
+		Assert.assertEquals("suits of studded armor",
+				Grammar.plural("suit of studded armor"));
+		Assert.assertEquals("suits of chain armor",
+				Grammar.plural("suit of chain armor"));
+		Assert.assertEquals("suits of chain armor +1",
+				Grammar.plural("suit of chain armor +1"));
+		Assert.assertEquals("suits of scale armor",
+				Grammar.plural("suit of scale armor"));
+		Assert.assertEquals("suits of scale armor +1",
+				Grammar.plural("suit of scale armor +1"));
+		Assert.assertEquals("suits of scale armor +112",
+				Grammar.plural("suit of scale armor +112"));
+		Assert.assertEquals("suits of chain armor +3",
+				Grammar.plural("suit of chain armor +3"));
+		Assert.assertEquals("suits of scale armor +2",
+				Grammar.plural("suit of scale armor +2"));
+		Assert.assertEquals("suits of plate armor",
+				Grammar.plural("suit of plate armor"));
+		Assert.assertEquals("suits of golden armor",
+				Grammar.plural("suit of golden armor"));
+		Assert.assertEquals("leather helmets", Grammar.plural("leather helmet"));
 		Assert.assertEquals("robins hats", Grammar.plural("robins hat"));
-		Assert
-				.assertEquals("studded helmets", Grammar
-						.plural("studded helmet"));
+		Assert.assertEquals("studded helmets", Grammar.plural("studded helmet"));
 		Assert.assertEquals("chain helmets", Grammar.plural("chain helmet"));
 		Assert.assertEquals("viking helmets", Grammar.plural("viking helmet"));
-		Assert.assertEquals("chain helmets +2", Grammar
-				.plural("chain helmet +2"));
+		Assert.assertEquals("chain helmets +2",
+				Grammar.plural("chain helmet +2"));
 		Assert.assertEquals("golden helmets", Grammar.plural("golden helmet"));
-		Assert.assertEquals("golden helmets +3", Grammar
-				.plural("golden helmet +3"));
+		Assert.assertEquals("golden helmets +3",
+				Grammar.plural("golden helmet +3"));
 		Assert.assertEquals("trophy helmets", Grammar.plural("trophy helmet"));
-		Assert.assertEquals("pairs of leather legs", Grammar
-				.plural("pair of leather legs")); //
-		Assert.assertEquals("pairs of studded legs", Grammar
-				.plural("pair of studded legs")); //
-		Assert.assertEquals("pairs of chain legs", Grammar
-				.plural("pair of chain legs")); //
-		Assert.assertEquals("pairs of golden legs", Grammar
-				.plural("pair of golden legs")); //
-		Assert.assertEquals("pairs of leather boots", Grammar
-				.plural("pair of leather boots")); //
-		Assert.assertEquals("pairs of studded boots", Grammar
-				.plural("pair of studded boots")); //
-		Assert.assertEquals("pairs of chain boots", Grammar
-				.plural("pair of chain boots")); //
-		Assert.assertEquals("pairs of steel boots", Grammar
-				.plural("pair of steel boots")); //
-		Assert.assertEquals("pairs of golden boots", Grammar
-				.plural("pair of golden boots")); //
+		Assert.assertEquals("pairs of leather legs",
+				Grammar.plural("pair of leather legs"));
+		Assert.assertEquals("pairs of studded legs",
+				Grammar.plural("pair of studded legs"));
+		Assert.assertEquals("pairs of chain legs",
+				Grammar.plural("pair of chain legs"));
+		Assert.assertEquals("pairs of golden legs",
+				Grammar.plural("pair of golden legs"));
+		Assert.assertEquals("pairs of leather boots",
+				Grammar.plural("pair of leather boots"));
+		Assert.assertEquals("pairs of studded boots",
+				Grammar.plural("pair of studded boots"));
+		Assert.assertEquals("pairs of chain boots",
+				Grammar.plural("pair of chain boots"));
+		Assert.assertEquals("pairs of steel boots",
+				Grammar.plural("pair of steel boots"));
+		Assert.assertEquals("pairs of golden boots",
+				Grammar.plural("pair of golden boots"));
 		Assert.assertEquals("cloaks", Grammar.plural("cloak"));
 		Assert.assertEquals("elf cloaks", Grammar.plural("elf cloak"));
 		Assert.assertEquals("dwarf cloaks", Grammar.plural("dwarf cloak"));
 		Assert.assertEquals("elf cloaks +2", Grammar.plural("elf cloak +2"));
-		Assert.assertEquals("green dragon cloaks", Grammar
-				.plural("green dragon cloak"));
+		Assert.assertEquals("green dragon cloaks",
+				Grammar.plural("green dragon cloak"));
 		Assert.assertEquals("lich cloaks", Grammar.plural("lich cloak"));
-		Assert.assertEquals("blue dragon cloaks", Grammar
-				.plural("blue dragon cloak"));
-		Assert.assertEquals("black dragon cloaks", Grammar
-				.plural("black dragon cloak"));
+		Assert.assertEquals("blue dragon cloaks",
+				Grammar.plural("blue dragon cloak"));
+		Assert.assertEquals("black dragon cloaks",
+				Grammar.plural("black dragon cloak"));
 		Assert.assertEquals("golden cloaks", Grammar.plural("golden cloak"));
 		Assert.assertEquals("cherries", Grammar.plural("cherry"));
-		Assert.assertEquals("pieces of cheese", Grammar
-				.plural("piece of cheese")); //
+		Assert.assertEquals("pieces of cheese",
+				Grammar.plural("piece of cheese"));
 		Assert.assertEquals("carrots", Grammar.plural("carrot"));
 		Assert.assertEquals("salads", Grammar.plural("salad"));
 		Assert.assertEquals("apples", Grammar.plural("apple"));
-		Assert.assertEquals("loaves of bread", Grammar.plural("loaf of bread")); //
-		Assert.assertEquals("chunks of meat", Grammar.plural("chunk of meat")); //
-		// Assert.assertEquals("hams", Grammar.plural("ham"));
+		Assert.assertEquals("loaves of bread", Grammar.plural("loaf of bread"));
+		Assert.assertEquals("chunks of meat", Grammar.plural("chunk of meat"));
+		Assert.assertEquals("pieces of ham", Grammar.plural("ham"));
 		Assert.assertEquals("sandwiches", Grammar.plural("sandwich"));
 		Assert.assertEquals("pies", Grammar.plural("pie"));
-		Assert.assertEquals("button mushrooms", Grammar
-				.plural("button mushroom"));
+		Assert.assertEquals("button mushrooms",
+				Grammar.plural("button mushroom"));
 		Assert.assertEquals("porcini", Grammar.plural("porcini"));
 		Assert.assertEquals("toadstools", Grammar.plural("toadstool"));
-		// Assert.assertEquals("beers", Grammar.plural("beer"));
-		Assert.assertEquals("flasks of wine", Grammar.plural("flask of wine")); //
+		Assert.assertEquals("bottles of beer", Grammar.plural("beer"));
+		Assert.assertEquals("flasks of wine", Grammar.plural("flask of wine"));
 		Assert.assertEquals("minor potions", Grammar.plural("minor potion"));
-		// Assert.assertEquals("antidotes", Grammar.plural("antidote"));
-		// Assert.assertEquals("potions", Grammar.plural("potion"));
-		Assert
-				.assertEquals("greater potions", Grammar
-						.plural("greater potion"));
-		// Assert.assertEquals("poisons", Grammar.plural("poison"));
-		// Assert.assertEquals("greater poisons", Grammar.plural("greater
-		// poison"));
-		// Assert.assertEquals("deadly poisons", Grammar.plural("deadly
-		// poison"));
+		Assert.assertEquals("bottles of antidote", Grammar.plural("antidote"));
+		Assert.assertEquals("potions", Grammar.plural("potion"));
+		Assert.assertEquals("greater potions", Grammar.plural("greater potion"));
+		Assert.assertEquals("bottles of poison", Grammar.plural("poison"));
+		Assert.assertEquals("bottles of greater poison",
+				Grammar.plural("greater poison"));
+		Assert.assertEquals("bottles of deadly poison",
+				Grammar.plural("deadly poison"));
 		Assert.assertEquals("flasks", Grammar.plural("flask"));
 		Assert.assertEquals("bottles", Grammar.plural("bottle"));
 		Assert.assertEquals("big bottles", Grammar.plural("big bottle"));
-		Assert.assertEquals("money", Grammar.plural("money")); // See my bug
-		// report! don't
-		// like this!
-		Assert.assertEquals("black books", Grammar.plural("black book")); //
-		// TODO: Assert.assertEquals("arandula", Grammar.plural("arandula"));
-		Assert.assertEquals("logs of wood", Grammar.plural("log of wood")); //
-		Assert.assertEquals("sheaves of grain", Grammar
-				.plural("sheaf of grain"));
-		Assert.assertEquals("bags of flour", Grammar.plural("bag of flour")); //
-		Assert.assertEquals("nuggets of iron ore", Grammar
-				.plural("nugget of iron ore")); //
-		Assert.assertEquals("bars of iron", Grammar.plural("bar of iron")); //
-		Assert.assertEquals("golden gm tokens", Grammar
-				.plural("golden gm token")); // Token spelt wrong
-		Assert.assertEquals("silvery gm tokens", Grammar
-				.plural("silvery gm token")); // Token spelt wrong
-		Assert.assertEquals("bronze gm tokens", Grammar
-				.plural("bronze gm token")); // Token spelt wrong
+
+		Assert.assertEquals("black books", Grammar.plural("black book"));
+		Assert.assertEquals("logs of wood", Grammar.plural("log of wood"));
+		Assert.assertEquals("sheaves of grain",
+				Grammar.plural("sheaf of grain"));
+		Assert.assertEquals("bags of flour", Grammar.plural("bag of flour"));
+		Assert.assertEquals("nuggets of iron ore",
+				Grammar.plural("nugget of iron ore"));
+		Assert.assertEquals("bars of iron", Grammar.plural("bar of iron"));
+		Assert.assertEquals("golden gm tokens",
+				Grammar.plural("golden gm token"));  //Token spelt wrong
+		Assert.assertEquals("silvery gm tokens",
+				Grammar.plural("silvery gm token"));  //Token spelt wrong
+		Assert.assertEquals("bronze gm tokens",
+				Grammar.plural("bronze gm token"));  //Token spelt wrong
 		Assert.assertEquals("tokens", Grammar.plural("token"));
 		Assert.assertEquals("notes", Grammar.plural("note"));
 		Assert.assertEquals("coupons", Grammar.plural("coupon"));
@@ -298,6 +278,11 @@ public class GrammarTest {
 		Assert.assertEquals("presents", Grammar.plural("present"));
 		Assert.assertEquals("rods of the gm", Grammar.plural("rod of the gm"));
 		Assert.assertEquals("rat keys", Grammar.plural("rat key"));
+		Assert.assertEquals("sprigs of arandula", Grammar.plural("arandula"));
+
+		// TODO: decide on name and plural of money
+		Assert.assertEquals("money", Grammar.plural("money"));
+
 	}
 
 	/**
@@ -326,39 +311,21 @@ public class GrammarTest {
 		Assert.assertEquals("tigers", Grammar.plural("tiger"));
 		Assert.assertEquals("skeletons", Grammar.plural("skeleton"));
 		Assert.assertEquals("gargoyles", Grammar.plural("gargoyle"));
-		Assert
-				.assertEquals("young beholders", Grammar
-						.plural("young beholder"));
+		Assert.assertEquals("young beholders", Grammar.plural("young beholder"));
 		Assert.assertEquals("zombie rats", Grammar.plural("zombie rat"));
-		Assert
-				.assertEquals("veteran goblins", Grammar
-						.plural("veteran goblin"));
-		Assert
-				.assertEquals("soldier kobolds", Grammar
-						.plural("soldier kobold"));
-		Assert.assertEquals("green slimes", Grammar.plural("green slime")); // plural
-		// of
-		// slime
-		// is
-		// slime
-		// but
-		// this
-		// is a
-		// creature....
+		Assert.assertEquals("veteran goblins", Grammar.plural("veteran goblin"));
+		Assert.assertEquals("soldier kobolds", Grammar.plural("soldier kobold"));
+		Assert.assertEquals(
+				"plural of slime is slime but this is a creature....",
+				"green slimes", Grammar.plural("green slime"));
 		Assert.assertEquals("archer kobolds", Grammar.plural("archer kobold"));
 		Assert.assertEquals("black bears", Grammar.plural("black bear"));
-		Assert
-				.assertEquals("elder gargoyles", Grammar
-						.plural("elder gargoyle"));
+		Assert.assertEquals("elder gargoyles", Grammar.plural("elder gargoyle"));
 		Assert.assertEquals("razorrats", Grammar.plural("razorrat"));
 		Assert.assertEquals("cyclopses", Grammar.plural("cyclops"));
 		Assert.assertEquals("beholders", Grammar.plural("beholder"));
-		Assert
-				.assertEquals("soldier goblins", Grammar
-						.plural("soldier goblin"));
-		Assert
-				.assertEquals("veteran kobolds", Grammar
-						.plural("veteran kobold"));
+		Assert.assertEquals("soldier goblins", Grammar.plural("soldier goblin"));
+		Assert.assertEquals("veteran kobolds", Grammar.plural("veteran kobold"));
 		Assert.assertEquals("trolls", Grammar.plural("troll"));
 		Assert.assertEquals("orcs", Grammar.plural("orc"));
 		Assert.assertEquals("dark gargoyles", Grammar.plural("dark gargoyle"));
@@ -373,47 +340,25 @@ public class GrammarTest {
 		Assert.assertEquals("dwarves", Grammar.plural("dwarf"));
 		Assert.assertEquals("ratmen", Grammar.plural("ratman"));
 		Assert.assertEquals("ratwomen", Grammar.plural("ratwoman"));
-		Assert
-				.assertEquals("elder beholders", Grammar
-						.plural("elder beholder"));
-		Assert.assertEquals("brown slimes", Grammar.plural("brown slime")); // plural
-		// of
-		// slime
-		// is
-		// slime
-		// but
-		// this
-		// is a
-		// creature....
-		Assert
-				.assertEquals("venom gargoyles", Grammar
-						.plural("venom gargoyle"));
+		Assert.assertEquals("elder beholders", Grammar.plural("elder beholder"));
+		Assert.assertEquals(
+				"plural of slime is slime but this is a creature....",
+				"brown slimes", Grammar.plural("brown slime"));
+		Assert.assertEquals("venom gargoyles", Grammar.plural("venom gargoyle"));
 		Assert.assertEquals("elder ogres", Grammar.plural("elder ogre"));
-		Assert
-				.assertEquals("dwarf guardians", Grammar
-						.plural("dwarf guardian"));
-		Assert.assertEquals("orc chiefs", Grammar.plural("orc chief")); // chief
-		// is an
-		// exception
-		// to
-		// the v
-		// rule
+		Assert.assertEquals("dwarf guardians", Grammar.plural("dwarf guardian"));
+		Assert.assertEquals("chief is an exception to the v rule",
+				"orc chiefs", Grammar.plural("orc chief"));
 		Assert.assertEquals("militia elves", Grammar.plural("militia elf"));
 		Assert.assertEquals("archer elves", Grammar.plural("archer elf"));
 		Assert.assertEquals("zombies", Grammar.plural("zombie"));
 		Assert.assertEquals("elder dwarves", Grammar.plural("elder dwarf"));
 		Assert.assertEquals("soldier elves", Grammar.plural("soldier elf"));
-		Assert.assertEquals("warrior skeletons", Grammar
-				.plural("warrior skeleton"));
-		Assert.assertEquals("black slimes", Grammar.plural("black slime")); // plural
-		// of
-		// slime
-		// is
-		// slime
-		// but
-		// this
-		// is a
-		// creature....
+		Assert.assertEquals("warrior skeletons",
+				Grammar.plural("warrior skeleton"));
+		Assert.assertEquals(
+				"plural of slime is slime but this is a creature....",
+				"black slimes", Grammar.plural("black slime"));
 		Assert.assertEquals("wooden golems", Grammar.plural("wooden golem"));
 		Assert.assertEquals("royal mummies", Grammar.plural("royal mummy"));
 		Assert.assertEquals("archrats", Grammar.plural("archrat"));
@@ -424,18 +369,14 @@ public class GrammarTest {
 		Assert.assertEquals("stone golems", Grammar.plural("stone golem"));
 		Assert.assertEquals("archmage elves", Grammar.plural("archmage elf"));
 		Assert.assertEquals("leader dwarves", Grammar.plural("leader dwarf"));
-		Assert
-				.assertEquals("demon skeletons", Grammar
-						.plural("demon skeleton"));
-		Assert.assertEquals("elf sacerdotists", Grammar
-				.plural("elf sacerdotist"));
-		Assert.assertEquals("earth elementals", Grammar
-				.plural("earth elemental"));
-		Assert
-				.assertEquals("fire elementals", Grammar
-						.plural("fire elemental"));
-		Assert.assertEquals("water elementals", Grammar
-				.plural("water elemental"));
+		Assert.assertEquals("demon skeletons", Grammar.plural("demon skeleton"));
+		Assert.assertEquals("elf sacerdotists",
+				Grammar.plural("elf sacerdotist"));
+		Assert.assertEquals("earth elementals",
+				Grammar.plural("earth elemental"));
+		Assert.assertEquals("fire elementals", Grammar.plural("fire elemental"));
+		Assert.assertEquals("water elementals",
+				Grammar.plural("water elemental"));
 		Assert.assertEquals("green dragons", Grammar.plural("green dragon"));
 		Assert.assertEquals("death knights", Grammar.plural("death knight"));
 		Assert.assertEquals("liches", Grammar.plural("lich"));
@@ -449,15 +390,11 @@ public class GrammarTest {
 	 */
 	@Test
 	public void testFullForm() {
-		Assert
-				.assertEquals("1 sandwich", Grammar.quantityplnoun(1,
-						"sandwich"));
+		Assert.assertEquals("1 sandwich", Grammar.quantityplnoun(1, "sandwich"));
 		Assert.assertEquals("2 sandwiches", Grammar.quantityplnoun(2,
 				"sandwich"));
 		Assert.assertEquals("1 piece of ham", Grammar.quantityplnoun(1, "ham"));
-		Assert
-				.assertEquals("2 pieces of ham", Grammar.quantityplnoun(2,
-						"ham"));
+		Assert.assertEquals("2 pieces of ham", Grammar.quantityplnoun(2, "ham"));
 		Assert.assertEquals("1 piece of cheese", Grammar.quantityplnoun(1,
 				"cheese"));
 		Assert.assertEquals("2 pieces of cheese", Grammar.quantityplnoun(2,
@@ -470,8 +407,8 @@ public class GrammarTest {
 				"#sandwich"));
 		Assert.assertEquals("2 #sandwiches", Grammar.quantityplnoun(2,
 				"#sandwich"));
-		Assert.assertEquals("1 piece of #ham", Grammar
-				.quantityplnoun(1, "#ham"));
+		Assert.assertEquals("1 piece of #ham",
+				Grammar.quantityplnoun(1, "#ham"));
 		Assert.assertEquals("2 pieces of #ham", Grammar.quantityplnoun(2,
 				"#ham"));
 		Assert.assertEquals("1 piece of #cheese", Grammar.quantityplnoun(1,
