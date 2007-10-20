@@ -78,7 +78,7 @@ public class Level {
 	}
 
 	public static int getLevel(int exp) {
-		// TODO: XXX - Use Arrays.binarySearch() instead?
+
 		int first = 0;
 		int last = LEVELS - 1;
 		if (exp <= xp[first]) {
