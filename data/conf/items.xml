@@ -3221,7 +3221,7 @@
     </equipable>
   </item>
  <item name="private_key_51">
-    <type class="key" subclass="yellow" tileid="-1"/>
+    <type class="key" subclass="red" tileid="-1"/>
     <description>You see a private key to House 51 in Ados City N.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
     </attributes>
@@ -3233,7 +3233,7 @@
     </equipable>
   </item>
  <item name="private_key_52">
-    <type class="key" subclass="yellow" tileid="-1"/>
+    <type class="key" subclass="orange" tileid="-1"/>
     <description>You see a private key to House 52 in Ados City N.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
     </attributes>
@@ -3245,7 +3245,7 @@
     </equipable>
   </item>
  <item name="private_key_53">
-    <type class="key" subclass="yellow" tileid="-1"/>
+    <type class="key" subclass="purple" tileid="-1"/>
     <description>You see a private key to House 53 in Ados City N.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
     </attributes>
