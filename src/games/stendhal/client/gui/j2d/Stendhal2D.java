@@ -47,6 +47,8 @@ import marauroa.common.Logger;
  * This is a place that developers can do GUI refactoring (hopefully) without
  * breaking the existing client until it is complete enough to replace the old
  * one.
+ *
+ * Currently some things are for demonstration and may be removed/changed.
  */
 public class Stendhal2D extends StendhalGUI {
 	/**
@@ -144,6 +146,12 @@ public class Stendhal2D extends StendhalGUI {
 		m = new JMenu("Game");
 		mb.add(m);
 
+		mi = new JMenuItem("Connect...", KeyEvent.VK_C);
+		m.add(mi);
+
+		mi = new JMenuItem("Create Account...", KeyEvent.VK_A);
+		m.add(mi);
+
 		mi = new JMenuItem("Reconnect", KeyEvent.VK_R);
 		mi.setEnabled(false);
 		m.add(mi);
@@ -197,6 +205,30 @@ public class Stendhal2D extends StendhalGUI {
 		cmi = new JCheckBoxMenuItem("Sound Enabled");
 		cmi.setState(true);
 		m.add(cmi);
+
+
+		/*
+		 * View menu
+		 */
+		m = new JMenu("View");
+		mb.add(m);
+
+		// These are hard-coded to illustration, but should be
+		// dynamically added like settings panel did
+		mi = new JCheckBoxMenuItem("Minimap");
+		m.add(mi);
+
+		mi = new JCheckBoxMenuItem("Character");
+		m.add(mi);
+
+		mi = new JCheckBoxMenuItem("Inventory");
+		m.add(mi);
+
+		mi = new JCheckBoxMenuItem("Key Ring");
+		m.add(mi);
+
+		mi = new JCheckBoxMenuItem("Buddies");
+		m.add(mi);
 
 
 		/*
