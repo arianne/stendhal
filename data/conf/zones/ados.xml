@@ -171,24 +171,6 @@ West: Semos
      <destination zone="int_ados_tavern_0" ref="entrance_right"/>
    </portal>
    
-   <portal x="19" y="85" ref="zaras_house_entrance">
-     <destination zone="int_ados_zaras_house_0" ref="entrance_zaras_house"/>
-     <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
-       <parameter name="key">small_key</parameter>
-       <parameter name="rejected">The door is locked.</parameter>
-     </implementation>
-   </portal>
-   
-   <entity x="18" y="85">
-     <implementation class-name="games.stendhal.server.entity.Sign"/>
-     <attribute name="text">
-Home of Zara 
-Dear postman, I'm on holiday!
-Please leave my mail at my neighbour's house.
-     </attribute>
-     <attribute name="class">transparent</attribute>
-   </entity>
-   
    <portal x="38" y="52" ref="goldsmith_entrance">
      <destination zone="int_ados_goldsmith" ref="entrance_goldsmith"/>
    </portal>
@@ -204,7 +186,118 @@ Please leave my mail at my neighbour's house.
    <portal x="12" y="38" ref="11">
      <destination zone="int_ados_haunted_house" ref="0"/>
    </portal>
+
+   <portal x="7" y="74" ref="house_50">
+     <destination zone="int_ados_house_50" ref="in"/>
+     <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+     <parameter name="key">private_key_50</parameter>
+     <parameter name="rejected">The door is locked.</parameter>
+     </implementation>
+   </portal>
+<!--   <portal x="12" y="74" ref="house_51">
+     <destination zone="int_ados_house_51" ref="in"/>
+     <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+     <parameter name="key">private_key_51</parameter>
+     <parameter name="rejected">The door is locked.</parameter>
+     </implementation>
+   </portal>
+   <portal x="17" y="74" ref="house_52">
+     <destination zone="int_ados_house_52" ref="in"/>
+     <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+     <parameter name="key">private_key_52</parameter>
+     <parameter name="rejected">The door is locked.</parameter>
+     </implementation>
+   </portal>
+   <portal x="22" y="74" ref="house_53">
+     <destination zone="int_ados_house_53" ref="in"/>
+     <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+     <parameter name="key">private_key_53</parameter>
+     <parameter name="rejected">The door is locked.</parameter>
+     </implementation>
+   </portal>
+   <portal x="27" y="74" ref="house_54">
+     <destination zone="int_ados_house_54" ref="in"/>
+     <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+     <parameter name="key">private_key_54</parameter>
+     <parameter name="rejected">The door is locked.</parameter>
+     </implementation>
+   </portal>
+   <portal x="32" y="74" ref="house_55">
+     <destination zone="int_ados_house_55" ref="in"/>
+     <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+     <parameter name="key">private_key_55</parameter>
+     <parameter name="rejected">The door is locked.</parameter>
+     </implementation>
+   </portal>
+   <portal x="37" y="74" ref="house_56">
+     <destination zone="int_ados_house_56" ref="in"/>
+     <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+     <parameter name="key">private_key_56</parameter>
+     <parameter name="rejected">The door is locked.</parameter>
+     </implementation>
+   </portal> -->
+
+   <portal x="14" y="85" ref="zaras_house_entrance">
+     <destination zone="int_ados_zaras_house_0" ref="entrance_zaras_house"/>
+     <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+       <parameter name="key">small_key</parameter>
+       <parameter name="rejected">The door is locked.</parameter>
+     </implementation>
+   </portal>
+
+<!--   <portal x="19" y="85" ref="house_57">
+     <destination zone="int_ados_house_57" ref="in"/>
+     <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+     <parameter name="key">private_key_57</parameter>
+     <parameter name="rejected">The door is locked.</parameter>
+     </implementation>
+   </portal>
+   <portal x="24" y="85" ref="house_58">
+     <destination zone="int_ados_house_58" ref="in"/>
+     <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+     <parameter name="key">private_key_58</parameter>
+     <parameter name="rejected">The door is locked.</parameter>
+     </implementation>
+   </portal>
+   <portal x="29" y="85" ref="house_59">
+     <destination zone="int_ados_house_59" ref="in"/>
+     <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+     <parameter name="key">private_key_59</parameter>
+     <parameter name="rejected">The door is locked.</parameter>
+     </implementation>
+   </portal>
+   <portal x="34" y="85" ref="house_60">
+     <destination zone="int_ados_house_60" ref="in"/>
+     <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+     <parameter name="key">private_key_60</parameter>
+     <parameter name="rejected">The door is locked.</parameter>
+     </implementation>
+   </portal>
+   <portal x="39" y="85" ref="house_61">
+     <destination zone="int_ados_house_61" ref="in"/>
+     <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+     <parameter name="key">private_key_61</parameter>
+     <parameter name="rejected">The door is locked.</parameter>
+     </implementation>
+   </portal>
+   <portal x="44" y="85" ref="house_62">
+     <destination zone="int_ados_house_62" ref="in"/>
+     <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+     <parameter name="key">private_key_62</parameter>
+     <parameter name="rejected">The door is locked.</parameter>
+     </implementation>
+   </portal>-->
    
+   <entity x="13" y="85">
+     <implementation class-name="games.stendhal.server.entity.Sign"/>
+     <attribute name="text">
+Home of Zara 
+Dear postman, I'm on holiday!
+Please leave my mail at my neighbour's house.
+     </attribute>
+     <attribute name="class">transparent</attribute>
+   </entity>
+
    <portal x="62" y="86" ref="storage_outside_1">
      <destination zone="int_ados_storage" ref="storage_inside_left"/>
    </portal>
@@ -919,6 +1012,79 @@ in roaches.
   </portal>
  </zone>
 
+ <zone name="int_ados_house_50" file="interiors/ados/house_50.tmx">
+  <portal x="7" y="14" ref="in">
+    <destination zone="0_ados_city_n" ref="house_50"/>
+  </portal>
+  <portal x="12" y="14" ref="up">
+    <destination zone="int_ados_house_50_1" ref="down"/>
+  </portal>
+ </zone>
+ <zone name="int_ados_house_50_1" file="interiors/ados/house_50_1.tmx">
+  <portal x="12" y="14" ref="down">
+    <destination zone="int_ados_house_50" ref="up"/>
+  </portal>
+ </zone>
+<!-- <zone name="int_ados_house_51" file="interiors/ados/house_51.tmx">
+  <portal x="21" y="17" ref="in">
+    <destination zone="0_ados_city_n" ref="house_51"/>
+  </portal>
+ </zone>
+ <zone name="int_ados_house_52" file="interiors/ados/house_52.tmx">
+  <portal x="21" y="17" ref="in">
+    <destination zone="0_ados_city_n" ref="house_52"/>
+  </portal>
+ </zone>
+ <zone name="int_ados_house_53" file="interiors/ados/house_53.tmx">
+  <portal x="21" y="17" ref="in">
+    <destination zone="0_ados_city_n" ref="house_53"/>
+  </portal>
+ </zone>
+ <zone name="int_ados_house_54" file="interiors/ados/house_54.tmx">
+  <portal x="21" y="17" ref="in">
+    <destination zone="0_ados_city_n" ref="house_54"/>
+  </portal>
+ </zone>
+ <zone name="int_ados_house_55" file="interiors/ados/house_55.tmx">
+  <portal x="21" y="18" ref="in">
+    <destination zone="0_ados_city_n" ref="house_55"/>
+  </portal>
+ </zone>
+ <zone name="int_ados_house_56" file="interiors/ados/house_56.tmx">
+  <portal x="20" y="19" ref="in">
+    <destination zone="0_ados_city_n" ref="house_56"/>
+  </portal>
+ </zone>
+ <zone name="int_ados_house_57" file="interiors/ados/house_57.tmx">
+  <portal x="11" y="21" ref="in">
+    <destination zone="0_ados_city_n" ref="house_57"/>
+  </portal>
+ </zone>
+ <zone name="int_ados_house_58" file="interiors/ados/house_58.tmx">
+  <portal x="13" y="21" ref="in">
+    <destination zone="0_ados_city_n" ref="house_58"/>
+  </portal>
+ </zone>
+ <zone name="int_ados_house_59" file="interiors/ados/house_53.tmx">
+  <portal x="21" y="17" ref="in">
+    <destination zone="0_ados_city_n" ref="house_53"/>
+  </portal>
+ </zone>
+ <zone name="int_ados_house_60" file="interiors/ados/house_60.tmx">
+  <portal x="21" y="17" ref="in">
+    <destination zone="0_ados_city_n" ref="house_60"/>
+  </portal>
+ </zone>
+ <zone name="int_ados_house_61" file="interiors/ados/house_61.tmx">
+  <portal x="21" y="17" ref="in">
+    <destination zone="0_ados_city_n" ref="house_61"/>
+  </portal>
+ </zone>
+ <zone name="int_ados_house_62" file="interiors/ados/house_62.tmx">
+  <portal x="21" y="17" ref="in">
+    <destination zone="0_ados_city_n" ref="house_62"/>
+  </portal>
+ </zone>-->
  <zone name="int_ados_house_63" file="interiors/ados/house_63.tmx">
   <portal x="21" y="17" ref="in">
     <destination zone="0_ados_city" ref="house_63"/>
