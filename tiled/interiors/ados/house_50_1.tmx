@@ -129,9 +129,6 @@
  <tileset name="pink chair" firstgid="321" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/chair/sofa_chair_pink.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="333" tilewidth="0" tileheight="0">
-  <image source="../../../../../public_html/images"/>
- </tileset>
  <tileset name="sheepfood" firstgid="333" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/item/sheepfood.png"/>
  </tileset>
