@@ -26,6 +26,8 @@ import org.junit.Test;
 
 public class IntroducePlayersTest {
 
+	private static final String SSSHH_COME_HERE = "Ssshh! Come here, player! I have a #task for you.";
+
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		Log4J.init();
@@ -54,7 +56,7 @@ public class IntroducePlayersTest {
 		Engine en = npc.getEngine();
 		en.step(player, "hi");
 		assertTrue(npc.isTalking());
-		assertEquals("Ssshh! Come here, null! I have a #task for you.", npc
+		assertEquals(IntroducePlayersTest.SSSHH_COME_HERE, npc
 				.get("text"));
 		en.step(player, "task");
 		assertTrue(npc.isTalking());
@@ -81,8 +83,7 @@ public class IntroducePlayersTest {
 		Engine en = npc.getEngine();
 		en.step(player, "hi");
 		assertTrue(npc.isTalking());
-		assertEquals("Ssshh! Come here, null! I have a #task for you.", npc
-				.get("text"));
+
 		en.step(player, "task");
 		assertTrue(npc.isTalking());
 		assertEquals(
@@ -98,7 +99,7 @@ public class IntroducePlayersTest {
 		assertEquals("Bye.", npc.get("text"));
 		en.step(player, "hi");
 		assertTrue(npc.isTalking());
-		assertEquals("Ssshh! Come here, null! I have a #task for you.", npc
+		assertEquals(IntroducePlayersTest.SSSHH_COME_HERE, npc
 				.get("text"));
 		en.step(player, "bye");
 	}
