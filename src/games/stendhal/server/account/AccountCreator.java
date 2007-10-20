@@ -54,6 +54,15 @@ public class AccountCreator {
 		return true;
 	}
 
+	private boolean isValidPassword(String password) {
+		// Ensure username is at least 4 characters length.
+		if( password.length()<4)  {
+			return false;
+		}
+		
+		return true;
+	}
+
 	/**
 	 * tries to create this account
 	 *
@@ -65,6 +74,10 @@ public class AccountCreator {
 		 * text file or XML file.
 		 */
 		if (!isValidUsername(username)) {
+			return new AccountResult(Result.FAILED_EXCEPTION, username);
+		}
+
+		if (!isValidPassword(password)) {
 			return new AccountResult(Result.FAILED_EXCEPTION, username);
 		}
 

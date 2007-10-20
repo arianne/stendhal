@@ -75,7 +75,7 @@ public class CharacterCreator {
 		 * TODO: Refactor Invalid patterns for username should be stored in a
 		 * text file or XML file.
 		 */
-		if (!isValidCharactername(username)) {
+		if (!isValidCharactername(character)) {
 			return new CharacterResult(Result.FAILED_EXCEPTION, character, template);
 		}
 
