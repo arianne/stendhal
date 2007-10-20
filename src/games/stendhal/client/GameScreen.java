@@ -51,7 +51,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.ConcurrentModificationException;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
@@ -776,8 +775,8 @@ public class GameScreen implements PositionChangeListener {
 	 * Removes all the text entities.
 	 */
 	public void clearTexts() {
-		for (Iterator it = texts.iterator(); it.hasNext();) {
-			textsToRemove.add((Text) it.next());
+		for (Text text : texts) {
+			textsToRemove.add(text);
 		}
 	}
 
