@@ -13,7 +13,33 @@ package games.stendhal.client.gui.j2d;
 import games.stendhal.client.GameScreen;
 import games.stendhal.client.NotificationType;
 import games.stendhal.client.StendhalClient;
+import games.stendhal.client.gui.KTextEdit;
+import games.stendhal.client.gui.StendhalChatLineListener;
 import games.stendhal.client.gui.StendhalGUI;
+import games.stendhal.client.gui.styled.WoodStyle;
+import games.stendhal.client.gui.styled.swing.StyledJPanel;
+
+import java.awt.BorderLayout;
+import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.ButtonGroup;
+import javax.swing.JCheckBoxMenuItem;
+import javax.swing.JFrame;
+import javax.swing.JLayeredPane;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.JRadioButtonMenuItem;
+import javax.swing.JTextField;
+import javax.swing.OverlayLayout;
+import javax.swing.SwingUtilities;
 
 import marauroa.common.Log4J;
 import marauroa.common.Logger;
@@ -36,6 +62,15 @@ public class Stendhal2D extends StendhalGUI {
 	 */
 	protected static final int DEFAULT_HEIGHT = 480;
 
+	public static final int		GAMELOG_HEIGHT		= 120;
+	public static final int		SIDEBAR_WIDTH		= 160;
+
+	public static final int		SIDEBAR_NONE		= 0;
+	public static final int		SIDEBAR_LEFT		= 1;
+	public static final int		SIDEBAR_RIGHT		= 2;
+	public static final int		SIDEBAR_BOTH		= 3;
+
+
 	/**
 	 * The logger.
 	 */
@@ -51,15 +86,207 @@ public class Stendhal2D extends StendhalGUI {
 	 */
 	protected int width;
 
+
+	/**
+	 * The window frame.
+	 */
+	protected JFrame	frame;
+
+	/**
+	 * The left sidebar.
+	 */
+	protected JPanel	leftSB;
+
+	/**
+	 * The right sidebar.
+	 */
+	protected JPanel	rightSB;
+
+
+	protected JTextField	chatText;
+
+
+	protected KTextEdit	gameLog;
+
+
+	protected JLayeredPane	pane;
+
+
 	public Stendhal2D(final StendhalClient client) {
 		this(client, DEFAULT_WIDTH, DEFAULT_HEIGHT);
 	}
 
+
+	/**
+	 *
+	 *
+	 *
+	 *
+	 */
 	public Stendhal2D(StendhalClient client, final int width, final int height) {
 		super(client);
 
 		this.width = width;
 		this.height = height;
+
+
+		frame = new JFrame();
+
+
+		JMenuBar mb = new JMenuBar();
+		frame.setJMenuBar(mb);
+
+		JMenu m;
+		JMenuItem mi;
+		JCheckBoxMenuItem cmi;
+		JMenu smi;
+
+		/*
+		 * Game menu
+		 */
+		m = new JMenu("Game");
+		mb.add(m);
+
+		mi = new JMenuItem("Reconnect", KeyEvent.VK_R);
+		mi.setEnabled(false);
+		m.add(mi);
+
+		mi = new JMenuItem("Exit", KeyEvent.VK_X);
+		mi.addActionListener(new ExitCB());
+		m.add(mi);
+
+
+		/*
+		 * Edit menu
+		 */
+		m = new JMenu("Edit");
+		mb.add(m);
+
+		mi = new JMenuItem("Set Outfit...", KeyEvent.VK_O);
+		mi.addActionListener(new ChooseOutfitCB());
+		m.add(mi);
+
+		mi = new JMenuItem("Profile Manager...", KeyEvent.VK_P);
+		m.add(mi);
+
+		/*
+		 * Layout (eventually use icon for choices)
+		 */
+		smi = new JMenu("Layout");
+		m.add(smi);
+
+		ButtonGroup bgroup = new ButtonGroup();
+
+		mi = new JRadioButtonMenuItem("SB - None");
+		mi.addActionListener(new SideBarLayoutCB(SIDEBAR_NONE));
+		smi.add(mi);
+		bgroup.add(mi);
+
+		mi = new JRadioButtonMenuItem("SB - Left");
+		mi.addActionListener(new SideBarLayoutCB(SIDEBAR_LEFT));
+		smi.add(mi);
+		bgroup.add(mi);
+
+		mi = new JRadioButtonMenuItem("SB - Right");
+		mi.addActionListener(new SideBarLayoutCB(SIDEBAR_RIGHT));
+		smi.add(mi);
+		bgroup.add(mi);
+
+		mi = new JRadioButtonMenuItem("SB - Both");
+		mi.addActionListener(new SideBarLayoutCB(SIDEBAR_BOTH));
+		smi.add(mi);
+		bgroup.add(mi);
+
+		cmi = new JCheckBoxMenuItem("Sound Enabled");
+		cmi.setState(true);
+		m.add(cmi);
+
+
+		/*
+		 * Player menu
+		 */
+		m = new JMenu("Player");
+		mb.add(m);
+
+		mi = new JCheckBoxMenuItem("Ghost Mode");
+		m.add(mi);
+
+
+		/*
+		 * Help menu
+		 */
+		mb.add(Box.createVerticalStrut(1));
+
+		m = new JMenu("Help");
+		mb.add(m);
+
+		mi = new JMenuItem("About Stendhal...");
+		m.add(mi);
+
+		mi = new JMenuItem("Credits...");
+		m.add(mi);
+
+
+
+		Container root = frame.getContentPane();
+		root.setLayout(new BoxLayout(root, BoxLayout.Y_AXIS));
+
+
+//		pane = new JLayeredPane();
+//		root.add(pane);
+
+		JPanel gameArea = new JPanel(new BorderLayout());
+		root.add(gameArea);
+
+		WoodStyle style = new WoodStyle();
+
+
+		/*
+		 * Left side area
+		 */
+		leftSB = new StyledJPanel(style);
+		leftSB.setPreferredSize(new Dimension(SIDEBAR_WIDTH, height));
+		gameArea.add(leftSB, BorderLayout.WEST);
+
+		/*
+		 * Right side area
+		 */
+		rightSB = new StyledJPanel(style);
+		rightSB.setPreferredSize(new Dimension(SIDEBAR_WIDTH, height));
+		gameArea.add(rightSB, BorderLayout.EAST);
+
+		/*
+		 * Wrap canvas in panel that can has setPreferredSize()
+		 */
+		JPanel panel = new JPanel(null);
+		Dimension size = new Dimension(width, height);
+		panel.setMinimumSize(size);
+		panel.setMaximumSize(size);
+		panel.setPreferredSize(size);
+		gameArea.add(panel, BorderLayout.CENTER);
+
+
+		/*
+		 * Chat input field
+		 */
+		chatText = new JTextField("");
+		root.add(chatText);
+
+		/*
+		 * Chat/game log
+		 */
+		gameLog = new KTextEdit();
+		gameLog.setPreferredSize(new Dimension(width, GAMELOG_HEIGHT));
+		root.add(gameLog);
+
+
+		//StendhalChatLineListener chatListener = new StendhalChatLineListener(client, chatText);
+
+		//chatText.addActionListener(chatListener);
+		//chatText.addKeyListener(chatListener);
+
+
+		frame.pack();
 
 	}
 
@@ -68,8 +295,41 @@ public class Stendhal2D extends StendhalGUI {
 	//
 
 	public void run() {
-
+		frame.setVisible(true);
 	}
+
+
+	/**
+	 * Set the sidebar layout.
+	 *
+	 *
+	 */
+	public void setSideBar(int mode) {
+		switch(mode) {
+			case SIDEBAR_NONE:
+				leftSB.setVisible(false);
+				rightSB.setVisible(false);
+				break;
+
+			case SIDEBAR_LEFT:
+				leftSB.setVisible(true);
+				rightSB.setVisible(false);
+				break;
+
+			case SIDEBAR_RIGHT:
+				leftSB.setVisible(false);
+				rightSB.setVisible(true);
+				break;
+
+			case SIDEBAR_BOTH:
+				leftSB.setVisible(true);
+				rightSB.setVisible(true);
+				break;
+		}
+
+		frame.pack();
+	}
+
 
 	//
 	// StendhalUI
@@ -81,7 +341,7 @@ public class Stendhal2D extends StendhalGUI {
 	 */
 	@Override
 	public void addEventLine(final String text) {
-
+		addEventLine("", text, NotificationType.NORMAL);
 	}
 
 	/**
@@ -90,7 +350,7 @@ public class Stendhal2D extends StendhalGUI {
 	 */
 	@Override
 	public void addEventLine(final String header, final String text) {
-
+		addEventLine(header, text, NotificationType.NORMAL);
 	}
 
 	/**
@@ -99,7 +359,7 @@ public class Stendhal2D extends StendhalGUI {
 	 */
 	@Override
 	public void addEventLine(final String text, final NotificationType type) {
-
+		addEventLine("", text, type);
 	}
 
 	/**
@@ -109,7 +369,7 @@ public class Stendhal2D extends StendhalGUI {
 	@Override
 	public void addEventLine(final String header, final String text,
 			final NotificationType type) {
-
+		gameLog.addLine(header, text, type);
 	}
 
 	/**
@@ -279,6 +539,58 @@ public class Stendhal2D extends StendhalGUI {
 		} catch (Exception ex) {
 			logger.error("Error running client", ex);
 			System.exit(3);
+		}
+	}
+
+	//
+	//
+
+	/**
+	 * Callback to show Choose Outfit dialog.
+	 */
+	protected class ChooseOutfitCB implements ActionListener {
+		//
+		// ActionListener
+		//
+
+		public void actionPerformed(ActionEvent ev) {
+			chooseOutfit();
+		}
+	}
+
+
+	/**
+	 * Callback to exit the game.
+	 */
+	protected class ExitCB implements ActionListener {
+		//
+		// ActionListener
+		//
+
+		public void actionPerformed(ActionEvent ev) {
+			requestQuit();
+		}
+	}
+
+
+	/**
+	 * Callback to set a specific layout.
+	 */
+	protected class SideBarLayoutCB implements ActionListener {
+		protected int	mode;
+
+
+		public SideBarLayoutCB(int mode) {
+			this.mode = mode;
+		}
+
+
+		//
+		// ActionListener
+		//
+
+		public void actionPerformed(ActionEvent ev) {
+			setSideBar(mode);
 		}
 	}
 }
