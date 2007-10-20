@@ -260,11 +260,11 @@ public class GrammarTest {
 				Grammar.plural("nugget of iron ore"));
 		Assert.assertEquals("bars of iron", Grammar.plural("bar of iron"));
 		Assert.assertEquals("golden gm tokens",
-				Grammar.plural("golden gm token"));  //Token spelt wrong
+				Grammar.plural("golden gm token"));
 		Assert.assertEquals("silvery gm tokens",
-				Grammar.plural("silvery gm token"));  //Token spelt wrong
+				Grammar.plural("silvery gm token"));
 		Assert.assertEquals("bronze gm tokens",
-				Grammar.plural("bronze gm token"));  //Token spelt wrong
+				Grammar.plural("bronze gm token"));
 		Assert.assertEquals("tokens", Grammar.plural("token"));
 		Assert.assertEquals("notes", Grammar.plural("note"));
 		Assert.assertEquals("coupons", Grammar.plural("coupon"));
