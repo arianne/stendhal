@@ -1,6 +1,8 @@
 package games.stendhal.server.account;
 
 import java.sql.SQLException;
+import java.util.LinkedList;
+import java.util.List;
 
 import marauroa.common.crypto.Hash;
 import marauroa.common.game.AccountResult;
@@ -17,11 +19,13 @@ import org.apache.log4j.Logger;
  */
 public class AccountCreator {
 	private static Logger logger = Logger.getLogger(AccountCreator.class);
+	private List<AccountParameterValidator> validators = new LinkedList<AccountParameterValidator>();
 
 	private String username;
 	private String password;
 	private String email;
-	private AccountResult result;
+
+	private AccountResult accountResult;
 
 	/**
 	 * creates a new AccountCreator
@@ -36,59 +40,59 @@ public class AccountCreator {
 		this.email = email.trim();
 	}
 
+	private void setupValidatorsForUsername() {
+		validators.add(new MinLengthValidator(username, 4));
+	}
+
+	private void setupValidatorsForPassword() {
+		validators.add(new MinLengthValidator(password, 4));
+	}
+
+	private void setupValidatorsForEMail() {
+		validators.add(new MinLengthValidator(email, 6));
+	}
+
+	private void setupAllValidators() {
+		setupValidatorsForUsername();
+		setupValidatorsForPassword();
+		setupValidatorsForEMail();
+	}
+
 	private void checkValidUsername() {
 		/** TODO: Complete this. Should read the list from XML file */
 		if (username.indexOf(' ') != -1) {
-			result = new AccountResult(Result.FAILED_INVALID_CHARACTER_USED, username);
+			accountResult = new AccountResult(Result.FAILED_INVALID_CHARACTER_USED, username);
 		}
 		// TODO: Fix bug [ 1672627 ] 'admin' not allowed in username but GM_ and
 		// _GM are
 		// TODO: Refactor Invalid patterns for username should be stored in a
 		// text file or XML file.
 		if (username.toLowerCase().contains("admin")) {
-			result = new AccountResult(Result.FAILED_INVALID_CHARACTER_USED, username);
-		}
-
-		if (username.length() == 0)  {
-			result = new AccountResult(Result.FAILED_EMPTY_STRING, username);
-		}
-
-		// Ensure username is at least 4 characters length.
-		if (username.length() < 4)  {
-			result = new AccountResult(Result.FAILED_STRING_SIZE, username);
+			accountResult = new AccountResult(Result.FAILED_INVALID_CHARACTER_USED, username);
 		}
 
 		// only lower case usernames are allowed
 		if (!username.toLowerCase().equals(username)) {
-			result = new AccountResult(Result.FAILED_INVALID_CHARACTER_USED, username);
+			accountResult = new AccountResult(Result.FAILED_INVALID_CHARACTER_USED, username);
 		}
 
 		// only letters are allowed (and numbers :-/)
 		for (int i = username.length() - 1; i >= 0; i--) {
 			char chr = username.charAt(i);
 			if ((chr < 'a' || chr > 'z') && (chr < '0' || chr > '9')) {
-				result = new AccountResult(Result.FAILED_INVALID_CHARACTER_USED, username);
+				accountResult = new AccountResult(Result.FAILED_INVALID_CHARACTER_USED, username);
 			}
 		}
 	}
 
-	private void checkValidPassword() {
-		if (username.length() == 0)  {
-			result = new AccountResult(Result.FAILED_EMPTY_STRING, username);
-		}
-
-		if (password.length() < 4)  {
-			result = new AccountResult(Result.FAILED_STRING_SIZE, username);
-		}
-	}
-
-	private void checkValidEMail() {
-		if (email.length() == 0)  {
-			result = new AccountResult(Result.FAILED_EMPTY_STRING, username);
-		}
-
-		if (email.length() < 4)  {
-			result = new AccountResult(Result.FAILED_STRING_SIZE, username);
+	private void runValidators() {
+		Result result = null;
+		for (AccountParameterValidator validator : validators) {
+			result = validator.validate();
+			if (result != null) {
+				this.accountResult = new AccountResult(result, username);
+				break;
+			}
 		}
 	}
 
@@ -98,20 +102,16 @@ public class AccountCreator {
 	 * @return AccountResult
 	 */
 	public AccountResult create() {
+		setupAllValidators();
 
 		checkValidUsername();
-		if (result != null) {
-			return result;
+		if (accountResult != null) {
+			return accountResult;
 		}
 
-		checkValidPassword();
-		if (result != null) {
-			return result;
-		}
-
-		checkValidEMail();
-		if (result != null) {
-			return result;
+		runValidators();
+		if (accountResult != null) {
+			return accountResult;
 		}
 
 		JDBCDatabase database = (JDBCDatabase) DatabaseFactory.getDatabase();
