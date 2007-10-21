@@ -42,14 +42,17 @@ public class AccountCreator {
 
 	private void setupValidatorsForUsername() {
 		validators.add(new MinLengthValidator(username, 4));
+		validators.add(new MaxLengthValidator(username, 20));
 	}
 
 	private void setupValidatorsForPassword() {
 		validators.add(new MinLengthValidator(password, 4));
+		validators.add(new MaxLengthValidator(password, 100));
 	}
 
 	private void setupValidatorsForEMail() {
 		validators.add(new MinLengthValidator(email, 6));
+		validators.add(new MaxLengthValidator(email, 100));
 	}
 
 	private void setupAllValidators() {
