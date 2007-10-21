@@ -25,8 +25,6 @@ public class AccountCreator {
 	private String password;
 	private String email;
 
-	private AccountResult accountResult;
-
 	/**
 	 * creates a new AccountCreator
 	 *
@@ -43,6 +41,10 @@ public class AccountCreator {
 	private void setupValidatorsForUsername() {
 		validators.add(new MinLengthValidator(username, 4));
 		validators.add(new MaxLengthValidator(username, 20));
+
+		validators.add(new LowerCaseValidator(username));
+		validators.add(new NameCharacterValidator(username));
+		validators.add(new ReservedSubStringValidator(username));
 	}
 
 	private void setupValidatorsForPassword() {
@@ -61,42 +63,15 @@ public class AccountCreator {
 		setupValidatorsForEMail();
 	}
 
-	private void checkValidUsername() {
-		/** TODO: Complete this. Should read the list from XML file */
-		if (username.indexOf(' ') != -1) {
-			accountResult = new AccountResult(Result.FAILED_INVALID_CHARACTER_USED, username);
-		}
-		// TODO: Fix bug [ 1672627 ] 'admin' not allowed in username but GM_ and
-		// _GM are
-		// TODO: Refactor Invalid patterns for username should be stored in a
-		// text file or XML file.
-		if (username.toLowerCase().contains("admin")) {
-			accountResult = new AccountResult(Result.FAILED_INVALID_CHARACTER_USED, username);
-		}
-
-		// only lower case usernames are allowed
-		if (!username.toLowerCase().equals(username)) {
-			accountResult = new AccountResult(Result.FAILED_INVALID_CHARACTER_USED, username);
-		}
-
-		// only letters are allowed (and numbers :-/)
-		for (int i = username.length() - 1; i >= 0; i--) {
-			char chr = username.charAt(i);
-			if ((chr < 'a' || chr > 'z') && (chr < '0' || chr > '9')) {
-				accountResult = new AccountResult(Result.FAILED_INVALID_CHARACTER_USED, username);
-			}
-		}
-	}
-
-	private void runValidators() {
+	private Result runValidators() {
 		Result result = null;
 		for (AccountParameterValidator validator : validators) {
 			result = validator.validate();
 			if (result != null) {
-				this.accountResult = new AccountResult(result, username);
 				break;
 			}
 		}
+		return result;
 	}
 
 	/**
@@ -107,14 +82,9 @@ public class AccountCreator {
 	public AccountResult create() {
 		setupAllValidators();
 
-		checkValidUsername();
-		if (accountResult != null) {
-			return accountResult;
-		}
-
-		runValidators();
-		if (accountResult != null) {
-			return accountResult;
+		Result result = runValidators();
+		if (result != null) {
+			return new AccountResult(result, username);
 		}
 
 		JDBCDatabase database = (JDBCDatabase) DatabaseFactory.getDatabase();
