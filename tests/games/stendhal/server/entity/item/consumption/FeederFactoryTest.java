@@ -23,7 +23,7 @@ public class FeederFactoryTest {
 	}
 
 	@Test
-	public final void testGet() {
+	public final void testGetEaterForSoup() {
 		Entity.generateRPClass();
 		Item.generateRPClass();
 		String name="soup";
@@ -37,5 +37,5 @@ public class FeederFactoryTest {
 	    map.put("regen", "25");
 
 		Drink soup = new Drink(name,clazz,subclass,map);
-				assertEquals(Eater.class,FeederFactory.get(soup));
+				assertEquals(Eater.class,FeederFactory.get(soup).getClass());
 }}
