@@ -411,9 +411,9 @@ public class CreateAccountDialog extends JDialog {
 
                         if (i == 0) {
                                 //yes
-                       } else {
-							return false;
-						}
+                        } else {
+				return false;
+			}
                 }
 
                 //
@@ -502,8 +502,8 @@ public class CreateAccountDialog extends JDialog {
                                         String subuser = username.substring(0, username.length() - i);
                                         debug("\tchecking for \"" + subuser + "\"...");
                                         if (subuser.length() <= min_user_length) {
-											break;
-										}
+						break;
+					}
 
                                         if (password.contains(subuser)) {
                                             hasUsername = true;
@@ -519,8 +519,8 @@ public class CreateAccountDialog extends JDialog {
                                                 String subuser = username.substring(i);
                                                 debug("\tchecking for \"" + subuser + "\"...");
                                                 if (subuser.length() <= min_user_length) {
-													break;
-												}
+							break;
+						}
                                                 if (password.contains(subuser)) {
                                                     hasUsername = true;
                                                     debug("Password contains username!");
@@ -541,22 +541,22 @@ public class CreateAccountDialog extends JDialog {
                 } else {
                     String text = "The password you provided is too short. It must be at least 6 characters long.";
                     if (isVisible()) {
-						JOptionPane.showMessageDialog(owner, text);
-					} else {
-						System.out.println(text);
-					}
+                            JOptionPane.showMessageDialog(owner, text);
+                    } else {
+                        System.out.println(text);
+                    }
                     return false;
                 }
 
-                return false;
+                return true;
         }
 
         /**
          * Prints text only when running stand-alone
          */
         public void debug(String text) {
-            if (client == null) {
-				System.out.println(text);
-			}
+                if (client == null) {
+                        System.out.println(text);
+                }
         }
 }
