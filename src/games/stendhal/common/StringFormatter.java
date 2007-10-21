@@ -26,7 +26,7 @@ import java.util.Map;
 
 /**
  * Each parameter name in the control string is replaced by its value.
- * 
+ *
  * @author matthias
  */
 public class StringFormatter {
@@ -120,20 +120,4 @@ public class StringFormatter {
 		return cachedString;
 	}
 
-	/** main method */
-	public static void main(String[] args) {
-		StringFormatter formatter = new StringFormatter("test");
-		System.out.println(formatter.toString());
-		formatter = new StringFormatter("<test>${test}</test>");
-		System.out.println(formatter.toString());
-		formatter.set("test", "hello");
-		System.out.println(formatter.toString());
-		formatter = new StringFormatter("<first>${first}</first><2nd>${2nd}</2nd><3rd>${3rd}</3rd>");
-		System.out.println(formatter.toString());
-		formatter.set("3rd", "last");
-		formatter.set("first", "winner");
-		formatter.set("2nd", "another one");
-		System.out.println(formatter.toString());
-
-	}
 }
