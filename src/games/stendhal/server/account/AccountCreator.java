@@ -21,6 +21,7 @@ public class AccountCreator {
 	private String username;
 	private String password;
 	private String email;
+	private AccountResult result;
 
 	/**
 	 * creates a new AccountCreator
@@ -30,37 +31,65 @@ public class AccountCreator {
 	 * @param email email contact
 	 */
 	public AccountCreator(String username, String password, String email) {
-		this.username = username;
-		this.password = password;
-		this.email = email;
+		this.username = username.trim();
+		this.password = password.trim();
+		this.email = email.trim();
 	}
 
-	private boolean isValidUsername(String username) {
+	private void checkValidUsername() {
 		/** TODO: Complete this. Should read the list from XML file */
 		if (username.indexOf(' ') != -1) {
-			return false;
+			result = new AccountResult(Result.FAILED_INVALID_CHARACTER_USED, username);
 		}
 		// TODO: Fix bug [ 1672627 ] 'admin' not allowed in username but GM_ and
 		// _GM are
+		// TODO: Refactor Invalid patterns for username should be stored in a
+		// text file or XML file.
 		if (username.toLowerCase().contains("admin")) {
-			return false;
+			result = new AccountResult(Result.FAILED_INVALID_CHARACTER_USED, username);
 		}
-		
+
+		if (username.length() == 0)  {
+			result = new AccountResult(Result.FAILED_EMPTY_STRING, username);
+		}
+
 		// Ensure username is at least 4 characters length.
-		if( username.length()<4)  {
-			return false;
+		if (username.length() < 4)  {
+			result = new AccountResult(Result.FAILED_STRING_SIZE, username);
 		}
-		
-		return true;
+
+		// only lower case usernames are allowed
+		if (!username.toLowerCase().equals(username)) {
+			result = new AccountResult(Result.FAILED_INVALID_CHARACTER_USED, username);
+		}
+
+		// only letters are allowed (and numbers :-/)
+		for (int i = username.length() - 1; i >= 0; i--) {
+			char chr = username.charAt(i);
+			if ((chr < 'a' || chr > 'z') && (chr < '0' || chr > '9')) {
+				result = new AccountResult(Result.FAILED_INVALID_CHARACTER_USED, username);
+			}
+		}
 	}
 
-	private boolean isValidPassword(String password) {
-		// Ensure username is at least 4 characters length.
-		if( password.length()<4)  {
-			return false;
+	private void checkValidPassword() {
+		if (username.length() == 0)  {
+			result = new AccountResult(Result.FAILED_EMPTY_STRING, username);
 		}
-		
-		return true;
+
+		if (password.length() < 4)  {
+			result = new AccountResult(Result.FAILED_STRING_SIZE, username);
+		}
+	}
+
+	private void checkValidEMail() {
+		if (email.length() == 0)  {
+			result = new AccountResult(Result.FAILED_EMPTY_STRING, username);
+		}
+
+		if (email.length() < 4)  {
+			result = new AccountResult(Result.FAILED_STRING_SIZE, username);
+		}
 	}
 
 	/**
@@ -69,16 +98,20 @@ public class AccountCreator {
 	 * @return AccountResult
 	 */
 	public AccountResult create() {
-		/*
-		 * TODO: Refactor Invalid patterns for username should be stored in a
-		 * text file or XML file.
-		 */
-		if (!isValidUsername(username)) {
-			return new AccountResult(Result.FAILED_EXCEPTION, username);
+
+		checkValidUsername();
+		if (result != null) {
+			return result;
 		}
 
-		if (!isValidPassword(password)) {
-			return new AccountResult(Result.FAILED_EXCEPTION, username);
+		checkValidPassword();
+		if (result != null) {
+			return result;
+		}
+
+		checkValidEMail();
+		if (result != null) {
+			return result;
 		}
 
 		JDBCDatabase database = (JDBCDatabase) DatabaseFactory.getDatabase();
@@ -105,6 +138,4 @@ public class AccountCreator {
 			return new AccountResult(Result.FAILED_EXCEPTION, username);
 		}
 	}
-
-
 }
