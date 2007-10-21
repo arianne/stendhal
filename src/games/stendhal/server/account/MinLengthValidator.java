@@ -23,13 +23,6 @@ public class MinLengthValidator implements AccountParameterValidator {
 	}
 
 	public Result validate() {
-
-		// provide a better error message in case the parameter-value is completly empty
-		if (parameterValue.length() == 0)  {
-			return Result.FAILED_EMPTY_STRING;
-		}
-
-		// check minimum length
 		if (parameterValue.length() < minLength)  {
 			return Result.FAILED_STRING_SIZE;
 		}
