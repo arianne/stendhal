@@ -189,9 +189,108 @@ East: Nalwor, Semos
   <entity x="1" y="8">
     <implementation class-name="games.stendhal.server.entity.WellSource" />
   </entity>
+  <entity x="48" y="112">
+   <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
+    <parameter name="interval">2</parameter>
+    <parameter name="damage">50</parameter>
+    <parameter name="probability">30</parameter>
+    <parameter name="players-only">true</parameter>
+   </implementation>
+   <attribute name="name">deep water</attribute>
+  </entity>
+  <entity x="50" y="113">
+   <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
+    <parameter name="interval">2</parameter>
+    <parameter name="damage">50</parameter>
+    <parameter name="probability">30</parameter>
+    <parameter name="players-only">true</parameter>
+   </implementation>
+   <attribute name="name">deep water</attribute>
+  </entity>
+  <entity x="51" y="113">
+   <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
+    <parameter name="interval">2</parameter>
+    <parameter name="damage">50</parameter>
+    <parameter name="probability">30</parameter>
+    <parameter name="players-only">true</parameter>
+   </implementation>
+   <attribute name="name">deep water</attribute>
+  </entity>
+  <entity x="50" y="115">
+   <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
+    <parameter name="interval">2</parameter>
+    <parameter name="damage">50</parameter>
+    <parameter name="probability">30</parameter>
+    <parameter name="players-only">true</parameter>
+   </implementation>
+   <attribute name="name">deep water</attribute>
+  </entity>
+  <entity x="51" y="117">
+   <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
+    <parameter name="interval">2</parameter>
+    <parameter name="damage">50</parameter>
+    <parameter name="probability">30</parameter>
+    <parameter name="players-only">true</parameter>
+   </implementation>
+   <attribute name="name">deep water</attribute>
+  </entity>
+  <entity x="44" y="122">
+   <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
+    <parameter name="interval">2</parameter>
+    <parameter name="damage">50</parameter>
+    <parameter name="probability">30</parameter>
+    <parameter name="players-only">true</parameter>
+   </implementation>
+   <attribute name="name">deep water</attribute>
+  </entity>
+  <entity x="46" y="122">
+   <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
+    <parameter name="interval">2</parameter>
+    <parameter name="damage">50</parameter>
+    <parameter name="probability">30</parameter>
+    <parameter name="players-only">true</parameter>
+   </implementation>
+   <attribute name="name">deep water</attribute>
+  </entity>
+  <entity x="43" y="123">
+   <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
+    <parameter name="interval">2</parameter>
+    <parameter name="damage">50</parameter>
+    <parameter name="probability">30</parameter>
+    <parameter name="players-only">true</parameter>
+   </implementation>
+   <attribute name="name">deep water</attribute>
+  </entity>
+  <entity x="48" y="123">
+   <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
+    <parameter name="interval">2</parameter>
+    <parameter name="damage">50</parameter>
+    <parameter name="probability">30</parameter>
+    <parameter name="players-only">true</parameter>
+   </implementation>
+   <attribute name="name">deep water</attribute>
+  </entity>
+  <entity x="43" y="124">
+   <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
+    <parameter name="interval">2</parameter>
+    <parameter name="damage">50</parameter>
+    <parameter name="probability">30</parameter>
+    <parameter name="players-only">true</parameter>
+   </implementation>
+   <attribute name="name">deep water</attribute>
+  </entity>
+  <entity x="45" y="124">
+   <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
+    <parameter name="interval">2</parameter>
+    <parameter name="damage">50</parameter>
+    <parameter name="probability">30</parameter>
+    <parameter name="players-only">true</parameter>
+   </implementation>
+   <attribute name="name">deep water</attribute>
+  </entity>
  </zone>
 
- <!-- Level -1 -->
+  <!-- Level -1 -->
 
  <zone name="-1_kotoch_entrance" level="-1" x="499744" y="500128" file="Level -1/kotoch/entrance.tmx">
  </zone>
