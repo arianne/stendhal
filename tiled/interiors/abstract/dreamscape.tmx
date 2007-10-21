@@ -30,8 +30,8 @@
  <tileset name="../../tileset/ground/eye.png" firstgid="201" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/eye.png" trans="ffffff"/>
  </tileset>
- <tileset name="../../tileset/object/suspension_bridge.png" firstgid="210" tilewidth="32" tileheight="32">
-  <image source="../../tileset/object/suspension_bridge.png" trans="ffffff"/>
+ <tileset name="../../tileset/object/suspension_bridge_obsolete.png" firstgid="210" tilewidth="32" tileheight="32">
+  <image source="../../tileset/object/suspension_bridge_obsolete.png" trans="ffffff"/>
  </tileset>
  <tileset name="../../tileset/logic/collision.png" firstgid="214" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>

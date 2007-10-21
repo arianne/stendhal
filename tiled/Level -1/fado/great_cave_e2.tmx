@@ -160,7 +160,7 @@
   <image source="../../tileset/building/entrance/earthen.png"/>
  </tileset>
  <tileset name="suspension bridge" firstgid="867" tilewidth="32" tileheight="32">
-  <image source="../../tileset/object/suspension_bridge.png"/>
+  <image source="../../tileset/object/suspension_bridge_obsolete.png"/>
  </tileset>
  <tileset name="rock cluster" firstgid="871" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/rock/rock_cluster.png"/>
