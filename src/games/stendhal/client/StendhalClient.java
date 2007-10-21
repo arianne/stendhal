@@ -195,7 +195,6 @@ public class StendhalClient extends ClientFramework {
 	 *            The zone entered.
 	 */
 	protected void onBeforeSync(final String zoneid) {
-		System.err.println("onBeforeSync()");
 		/*
 		 * Simulate object disassembly
 		 */
@@ -280,7 +279,7 @@ public class StendhalClient extends ClientFramework {
 
 			handler.apply(message, world_objects);
 		} catch (Exception e) {
-			logger.fatal("error processing message " + message, e);
+			logger.error("error processing message " + message, e);
 			System.exit(1);
 		}
 	}
@@ -332,7 +331,7 @@ public class StendhalClient extends ClientFramework {
 					is.close();
 				} catch (Exception e) {
 					e.printStackTrace();
-					logger.fatal(e, e);
+					logger.error(e, e);
 					System.exit(1);
 				}
 			} else {
@@ -384,7 +383,7 @@ public class StendhalClient extends ClientFramework {
 				cache.store(item, item.data);
 				contentHandling(item.name, new ByteArrayInputStream(item.data));
 			} catch (Exception e) {
-				logger.fatal("onTransfer", e);
+				logger.error("onTransfer", e);
 				System.exit(2);
 			}
 		}
