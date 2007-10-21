@@ -33,8 +33,8 @@
  <tileset name="../../tileset/item/furniture/shelve/pale_book_bottle_shelf.png" firstgid="100" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/shelve/pale_book_bottle_shelf.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/building/decoration/skullpedestal.png" firstgid="112" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/decoration/skullpedestal.png" trans="ff00ff"/>
+ <tileset name="../../tileset/item/statue/skullpedestal.png" firstgid="112" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/statue/skullpedestal.png" trans="ff00ff"/>
  </tileset>
  <tileset name="../../tileset/building/decoration/rocks_2.png" firstgid="114" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/decoration/rocks_2.png" trans="ffffff"/>
@@ -45,8 +45,8 @@
  <tileset name="../../tileset/item/pot/pot_golden.png" firstgid="117" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/pot_golden.png" trans="ffffff"/>
  </tileset>
- <tileset name="../../tileset/building/decoration/fairypool.png" firstgid="121" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/decoration/fairypool.png" trans="ff00ff"/>
+ <tileset name="../../tileset/item/statue/fairypool.png" firstgid="121" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/statue/fairypool.png" trans="ff00ff"/>
  </tileset>
  <tileset name="../../tileset/building/entrance/pale_red_ns.png" firstgid="125" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/pale_red_ns.png" trans="ff00ff"/>

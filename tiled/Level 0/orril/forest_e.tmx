@@ -24,8 +24,8 @@
  <tileset name="../../tileset/plant/flower/daisy_red.png" firstgid="68" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/flower/daisy_red.png" trans="ffffff"/>
  </tileset>
- <tileset name="../../tileset/building/decoration/skullpedestal.png" firstgid="76" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/decoration/skullpedestal.png" trans="ff00ff"/>
+ <tileset name="../../tileset/item/statue/skullpedestal.png" firstgid="76" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/statue/skullpedestal.png" trans="ff00ff"/>
  </tileset>
  <tileset name="../../tileset/plant/grass_2.png" firstgid="78" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/grass_2.png" trans="ffffff"/>

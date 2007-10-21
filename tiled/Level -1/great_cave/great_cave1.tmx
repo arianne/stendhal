@@ -21,14 +21,14 @@
  <tileset name="../../tileset/ground/rock/rocks_2.png" firstgid="85" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/rock/rocks_2.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/building/decoration/skull_carving.png" firstgid="89" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/decoration/skull_carving.png" trans="ff00ff"/>
+ <tileset name="../../tileset/item/statue/skull_carving.png" firstgid="89" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/statue/skull_carving.png" trans="ff00ff"/>
  </tileset>
  <tileset name="../../tileset/item/corpse/skull_pale.png" firstgid="93" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/corpse/skull_pale.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/building/decoration/eaglehead.png" firstgid="94" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/decoration/eaglehead.png" trans="ff00ff"/>
+ <tileset name="../../tileset/item/statue/eaglehead.png" firstgid="94" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/statue/eaglehead.png" trans="ff00ff"/>
  </tileset>
  <tileset name="../../tileset/logic/collision.png" firstgid="98" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>

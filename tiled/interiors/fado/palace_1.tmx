@@ -139,7 +139,7 @@
   <image source="../../tileset/building/decoration/longhorn_skull.png"/>
  </tileset>
  <tileset name="fairypool" firstgid="315" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/decoration/fairypool.png"/>
+  <image source="../../tileset/item/statue/fairypool.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="319" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>

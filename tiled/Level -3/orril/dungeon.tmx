@@ -126,11 +126,11 @@
  <tileset name="../../tileset/item/pot/huge_pot.png" firstgid="810" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/huge_pot.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/building/decoration/skull_carving.png" firstgid="814" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/decoration/skull_carving.png" trans="ff00ff"/>
+ <tileset name="../../tileset/item/statue/skull_carving.png" firstgid="814" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/statue/skull_carving.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/building/decoration/fairypool.png" firstgid="818" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/decoration/fairypool.png" trans="ff00ff"/>
+ <tileset name="../../tileset/item/statue/fairypool.png" firstgid="818" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/statue/fairypool.png" trans="ff00ff"/>
  </tileset>
  <tileset name="../../tileset/item/furniture/statue/grey_stone.png" firstgid="822" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/statue/grey_stone.png" trans="ff00ff"/>

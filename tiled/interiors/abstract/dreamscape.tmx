@@ -172,16 +172,16 @@
   <image source="../../tileset/object/letters.png"/>
  </tileset>
  <tileset name="blobcreature" firstgid="697" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/decoration/blobcreature.png"/>
+  <image source="../../tileset/item/statue/blobcreature.png"/>
  </tileset>
  <tileset name="green_block" firstgid="701" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/decoration/green_block.png"/>
  </tileset>
  <tileset name="eaglehead" firstgid="705" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/decoration/eaglehead.png"/>
+  <image source="../../tileset/item/statue/eaglehead.png"/>
  </tileset>
  <tileset name="fairypool" firstgid="709" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/decoration/fairypool.png"/>
+  <image source="../../tileset/item/statue/fairypool.png"/>
  </tileset>
  <tileset name="plain_colours" firstgid="713" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/carpet/plain_colours.png"/>

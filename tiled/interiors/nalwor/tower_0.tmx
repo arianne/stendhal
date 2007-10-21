@@ -39,8 +39,8 @@
  <tileset name="../../tileset/plant/bush/various_small.png" firstgid="89" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/bush/various_small.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/building/decoration/skullpedestal.png" firstgid="98" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/decoration/skullpedestal.png" trans="ff00ff"/>
+ <tileset name="../../tileset/item/statue/skullpedestal.png" firstgid="98" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/statue/skullpedestal.png" trans="ff00ff"/>
  </tileset>
  <tileset name="../../tileset/item/pot/dark_barrel.png" firstgid="100" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/dark_barrel.png" trans="ffffff"/>

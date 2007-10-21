@@ -87,8 +87,8 @@
  <tileset name="../../tileset/item/pot/pot_grey.png" firstgid="283" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/pot_grey.png"/>
  </tileset>
- <tileset name="../../tileset/building/decoration/skullpedestal.png" firstgid="284" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/decoration/skullpedestal.png" trans="ff00ff"/>
+ <tileset name="../../tileset/item/statue/skullpedestal.png" firstgid="284" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/statue/skullpedestal.png" trans="ff00ff"/>
  </tileset>
  <tileset name="../../tileset/item/furniture/light/dark_torch.png" firstgid="286" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/light/dark_torch.png" trans="ff00ff"/>
@@ -108,8 +108,8 @@
  <tileset name="../../tileset/item/book.png" firstgid="311" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/book.png"/>
  </tileset>
- <tileset name="../../tileset/building/decoration/blobcreature.png" firstgid="315" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/decoration/blobcreature.png" trans="ff00ff"/>
+ <tileset name="../../tileset/item/statue/blobcreature.png" firstgid="315" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/statue/blobcreature.png" trans="ff00ff"/>
  </tileset>
  <tileset name="../../tileset/building/entrance/earthen.png" firstgid="319" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/earthen.png" trans="ff00ff"/>

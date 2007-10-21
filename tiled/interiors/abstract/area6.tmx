@@ -7,7 +7,7 @@
   <image source="../../tileset/building/wall/int_grey_green.png"/>
  </tileset>
  <tileset name="fairy pool" firstgid="66" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/decoration/fairypool.png"/>
+  <image source="../../tileset/item/statue/fairypool.png"/>
  </tileset>
  <tileset name="floor tiles" firstgid="70" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/indoor/tiles.png"/>

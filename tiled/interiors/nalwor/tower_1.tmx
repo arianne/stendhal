@@ -16,10 +16,10 @@
   <image source="../../tileset/building/stairs/stairs.png"/>
  </tileset>
  <tileset name="fairypool" firstgid="64" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/decoration/fairypool.png"/>
+  <image source="../../tileset/item/statue/fairypool.png"/>
  </tileset>
  <tileset name="blobcreature" firstgid="68" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/decoration/blobcreature.png"/>
+  <image source="../../tileset/item/statue/blobcreature.png"/>
  </tileset>
  <tileset name="elf" firstgid="72" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/elf.png"/>
@@ -31,7 +31,7 @@
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
  <tileset name="pool_and_face" firstgid="90" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/decoration/pool_and_face.png"/>
+  <image source="../../tileset/item/statue/pool_and_face.png"/>
  </tileset>
  <tileset name="green_stone" firstgid="98" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/statue/green_stone.png"/>

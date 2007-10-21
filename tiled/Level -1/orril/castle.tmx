@@ -42,8 +42,8 @@
  <tileset name="../../tileset/item/furniture/carpet/brown_rug.png" firstgid="215" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/carpet/brown_rug.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/building/decoration/fairypool.png" firstgid="227" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/decoration/fairypool.png" trans="ff00ff"/>
+ <tileset name="../../tileset/item/statue/fairypool.png" firstgid="227" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/statue/fairypool.png" trans="ff00ff"/>
  </tileset>
  <tileset name="../../tileset/plant/bush/large_green.png" firstgid="231" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/bush/large_green.png" trans="ff00ff"/>
