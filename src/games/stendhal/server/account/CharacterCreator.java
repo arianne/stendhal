@@ -11,7 +11,6 @@ import games.stendhal.server.rule.RuleSetFactory;
 
 import java.sql.SQLException;
 
-import marauroa.common.game.AccountResult;
 import marauroa.common.game.CharacterResult;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
@@ -46,39 +45,12 @@ public class CharacterCreator {
 		this.template = template;
 	}
 
-	private boolean isValidCharactername(String username) {
-		/** TODO: Complete this. Should read the list from XML file */
-		if (username.indexOf(' ') != -1) {
-			return false;
-		}
-		// TODO: Fix bug [ 1672627 ] 'admin' not allowed in username but GM_ and
-		// _GM are
-		if (username.toLowerCase().contains("admin")) {
-			return false;
-		}
-		
-		// Ensure username is at least 4 characters length.
-		if( username.length()<4)  {
-			return false;
-		}
-		
-		return true;
-	}
-
 	/**
 	 * tries to create this character
 	 *
 	 * @return CharacterResult
 	 */
 	public CharacterResult create() {
-		/*
-		 * TODO: Refactor Invalid patterns for username should be stored in a
-		 * text file or XML file.
-		 */
-		if (!isValidCharactername(character)) {
-			return new CharacterResult(Result.FAILED_EXCEPTION, character, template);
-		}
-
 		JDBCDatabase database = (JDBCDatabase) DatabaseFactory.getDatabase();
 		Transaction trans = database.getTransaction();
 		

@@ -14,6 +14,8 @@ package games.stendhal.server;
 
 import games.stendhal.common.Debug;
 import marauroa.common.Pair;
+import games.stendhal.server.account.AccountCreator;
+import games.stendhal.server.account.CharacterCreator;
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.actions.AdministrationAction;
 import games.stendhal.server.actions.AttackAction;
@@ -650,107 +652,14 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		onExit(object);
 	}
 
-	public AccountResult createAccount(String username, String password,
-			String email) {
-		/*
-		 * TODO: Refactor Invalid patterns for username should be stored in a
-		 * text file or XML file.
-		 */
-		if (!isValidUsername(username)) {
-			return new AccountResult(Result.FAILED_EXCEPTION, username);
-		}
-
-		JDBCDatabase database = (JDBCDatabase) DatabaseFactory.getDatabase();
-		Transaction trans = database.getTransaction();
-		try {
-			trans.begin();
-
-			if (database.hasPlayer(trans, username)) {
-				logger.warn("Account already exist: " + username);
-				return new AccountResult(Result.FAILED_PLAYER_EXISTS, username);
-			}
-
-			database.addPlayer(trans, username, Hash.hash(password), email);
-
-			trans.commit();
-			return new AccountResult(Result.OK_CREATED, username);
-		} catch (SQLException e) {
-			try {
-				trans.rollback();
-			} catch (SQLException e1) {
-				e1.printStackTrace();
-			}
-			TestHelper.fail();
-			return new AccountResult(Result.FAILED_EXCEPTION, username);
-		}
+	public AccountResult createAccount(String username, String password, String email) {
+		AccountCreator creator = new AccountCreator(username, password, email);
+		return creator.create();
 	}
 
-	public CharacterResult createCharacter(String username, String character,
-			RPObject template) {
-		JDBCDatabase database = (JDBCDatabase) DatabaseFactory.getDatabase();
-		Transaction trans = database.getTransaction();
-
-		try {
-			if (database.hasCharacter(trans, username, character)) {
-				logger.warn("Character already exist: " + character);
-				return new CharacterResult(Result.FAILED_PLAYER_EXISTS,
-						character, template);
-			}
-
-			/*
-			 * TODO: Refactor OMG! Hide in a method. Even better, move it to
-			 * player class as it is its duty to provide a empty level 0 player.
-			 */
-			/*
-			 * Create the player character object
-			 */
-			Player object = new Player(new RPObject());
-			object.setID(RPObject.INVALID_ID);
-
-			object.put("type", "player");
-			object.put("name", character);
-			object.put("outfit", new Outfit().getCode());
-			object.put("base_hp", 100);
-			object.put("hp", 100);
-			object.put("atk", 10);
-			object.put("atk_xp", 0);
-			object.put("def", 10);
-			object.put("def_xp", 0);
-			object.put("xp", 0);
-
-			/*
-			 * TODO: Update the above to use Player and RPEntity methods.
-			 */
-			object.update();
-
-			RuleManager manager = RuleSetFactory.getRuleSet("default");
-
-			object.addSlot("armor");
-			Entity entity = manager.getEntityManager().getItem("leather_armor");
-			RPSlot slot = object.getSlot("armor");
-			slot.add(entity);
-
-			object.addSlot("rhand");
-			entity = manager.getEntityManager().getItem("club");
-			slot = object.getSlot("rhand");
-			slot.add(entity);
-
-			/*
-			 * Finally we add it to database.
-			 */
-			database.addCharacter(trans, username, character, object);
-			return new CharacterResult(Result.OK_CREATED, character, object);
-		} catch (Exception e) {
-			try {
-				trans.rollback();
-			} catch (SQLException e1) {
-				e1.printStackTrace();
-			}
-			logger.error("Can't create character", e);
-			TestHelper.fail();
-			return new CharacterResult(Result.FAILED_EXCEPTION, character,
-					template);
-		}
+	public CharacterResult createCharacter(String username, String character, RPObject template) {
+		CharacterCreator creator = new CharacterCreator(username, character, template);
+		return creator.create();
 	}
 
 	public RPServerManager getRPManager() {
