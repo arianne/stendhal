@@ -89,6 +89,8 @@ public class CreateAccountDialog extends JDialog {
 	private StendhalClient client;
 
 	private Frame owner;
+        
+        private String badPasswordReason = null;
 
 	public CreateAccountDialog(Frame owner, StendhalClient client) {
 		super(owner, true);
@@ -97,6 +99,11 @@ public class CreateAccountDialog extends JDialog {
 		initializeComponent();
 
 		this.setVisible(true);
+	}
+        
+        public CreateAccountDialog() {
+		super();
+		initializeComponent();
 	}
 
 
@@ -389,88 +396,20 @@ public class CreateAccountDialog extends JDialog {
                 //
                 // Password strength
                 //
-                String username = usernameField.getText();
-                if (password.length() > 5) {
-                    
-                        //check for all numbers
-                        boolean allNumbers = true;
-                        try {
-                            Integer.parseInt(password);
-                        } catch (Exception e) {
-                            allNumbers = false;
-                        }
-                        if (allNumbers) {
-                                String text = "You have used only numbers in your password. This is not a good security practice.\n" +
-                                    " Are you sure that you want to use this password?";
-                                int i = JOptionPane.showOptionDialog(owner, text,
-                                    "Bad Password", 
-                                    JOptionPane.YES_NO_OPTION, 
-                                    JOptionPane.WARNING_MESSAGE, 
-                                    null, null, 1);
-
-                                if (i == 0) {
-                                        //yes
-                                } else return false;
-                        }
-                        
-                        // check for username
-                        boolean hasUsername = false;
-                        if (password.contains(username)) {
-                            hasUsername = true;
-                        }
-                        
-                        if (!hasUsername) {
-                                // now we'll do some more checks to see if the password 
-                                // contains more than three letters of the username
-                                debug("Checking is password contains a derivitive of the username, trimming from the back...");
-                                int min_user_length = 3;
-                                for (int i = 1; i < username.length(); i++) {
-                                        String subuser = username.substring(0, username.length() - i);
-                                        debug("\tchecking for \"" + subuser + "\"...");
-                                        if (subuser.length() <= min_user_length) break;
-                                        
-                                        if (password.contains(subuser)) {
-                                            hasUsername = true;
-                                            debug("Password contians username!");
-                                            break;
-                                        }
-                                }
-                                
-                                if (!hasUsername) {
-                                        //now from the end of the password..
-                                        debug("Checking is password contains a derivitive of the username, trimming from the front...");
-                                        for (int i = 0; i < username.length(); i++) {
-                                                String subuser = username.substring(i);
-                                                debug("\tchecking for \"" + subuser + "\"...");
-                                                if (subuser.length() <= min_user_length) break;
-                                                if (password.contains(subuser)) {
-                                                    hasUsername = true;
-                                                    debug("Password contians username!");
-                                                    break;
-                                                }
-                                        }
-                                }
-                                
-                                
-                        }
-                        
-                        if (hasUsername) {
-                                String text = "You have used your username or a derivitive of your username in your password. This is a bad security practice.\n" +
-                                    " Are you sure that you want to use this password?";
-                                int i = JOptionPane.showOptionDialog(owner, text,
-                                    "Bad Password", 
-                                    JOptionPane.YES_NO_OPTION, 
-                                    JOptionPane.WARNING_MESSAGE, 
-                                    null, null, 1);
-
-                                if (i == 0) {
-                                        //yes
-                                } else return false;
-                        }
-                    
+                boolean valPass = validatePassword(usernameField.getText(), password);
+                if (valPass) {
+                        //no problems, keep going
                 } else {
-                    JOptionPane.showMessageDialog(owner, "The password you provided is too short. It must be at least 6 characters long.");
-                    return false;
+                        //didn't like the password for some reason, show a dialog and try again
+                        int i = JOptionPane.showOptionDialog(owner, badPasswordReason,
+                                "Bad Password", 
+                                JOptionPane.YES_NO_OPTION, 
+                                JOptionPane.WARNING_MESSAGE, 
+                                null, null, 1);
+
+                        if (i == 0) {
+                                //yes
+                       } else return false;
                 }
                 
                 //
@@ -528,6 +467,78 @@ public class CreateAccountDialog extends JDialog {
 			}
 		}
 	}
+        
+        public boolean validatePassword(String username, String password) {
+                if (password.length() > 5) {
+                    
+                        //check for all numbers
+                        boolean allNumbers = true;
+                        try {
+                            Integer.parseInt(password);
+                        } catch (Exception e) {
+                            allNumbers = false;
+                        }
+                        if (allNumbers) {
+                                badPasswordReason = "You have used only numbers in your password. This is not a good security practice.\n" +
+                                    " Are you sure that you want to use this password?";
+                        }
+                        
+                        // check for username
+                        boolean hasUsername = false;
+                        if (password.contains(username)) {
+                            hasUsername = true;
+                        }
+                        
+                        if (!hasUsername) {
+                                // now we'll do some more checks to see if the password 
+                                // contains more than three letters of the username
+                                debug("Checking is password contains a derivitive of the username, trimming from the back...");
+                                int min_user_length = 3;
+                                for (int i = 1; i < username.length(); i++) {
+                                        String subuser = username.substring(0, username.length() - i);
+                                        debug("\tchecking for \"" + subuser + "\"...");
+                                        if (subuser.length() <= min_user_length) break;
+                                        
+                                        if (password.contains(subuser)) {
+                                            hasUsername = true;
+                                            debug("Password contians username!");
+                                            break;
+                                        }
+                                }
+                                
+                                if (!hasUsername) {
+                                        //now from the end of the password..
+                                        debug("Checking is password contains a derivitive of the username, trimming from the front...");
+                                        for (int i = 0; i < username.length(); i++) {
+                                                String subuser = username.substring(i);
+                                                debug("\tchecking for \"" + subuser + "\"...");
+                                                if (subuser.length() <= min_user_length) break;
+                                                if (password.contains(subuser)) {
+                                                    hasUsername = true;
+                                                    debug("Password contians username!");
+                                                    break;
+                                                }
+                                        }
+                                }
+                                
+                                
+                        }
+                        
+                        if (hasUsername) {
+                                badPasswordReason = "You have used your username or a derivitive of your username in your password. This is a bad security practice.\n" +
+                                    " Are you sure that you want to use this password?";
+                                return false;
+                        }
+                    
+                } else {
+                    String text = "The password you provided is too short. It must be at least 6 characters long.";
+                    if (isVisible()) JOptionPane.showMessageDialog(owner, text);
+                    else System.out.println(text);
+                    return false;
+                }
+                
+                return false;
+        }
         
         /**
          * Prints text only when running stand-alone
