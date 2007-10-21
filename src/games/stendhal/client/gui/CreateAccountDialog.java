@@ -99,6 +99,8 @@ public class CreateAccountDialog extends JDialog {
 		this.setVisible(true);
 	}
 
+
+
 	/**
 	 * This method is called from within the constructor to initialize the form.
 	 * WARNING: Do NOT modify this code. The content of this method is always
@@ -237,25 +239,26 @@ public class CreateAccountDialog extends JDialog {
 			boolean saveLoginBoxStatus) {
 		final String accountUsername = usernameField.getText();
 		final String password = new String(passwordField.getPassword());
-		final String passwordretype = new String(
-				passwordretypeField.getPassword());
 
 		// If this window isn't enabled, we shouldn't act.
 		if (!this.isEnabled()) {
 			return;
 		}
 
-		if (!password.equals(passwordretype)) {
-			JOptionPane.showMessageDialog(owner,
-					"The passwords do not match. Please retype both.",
-					"Password Mismatch", JOptionPane.WARNING_MESSAGE);
-			return;
-		}
+                boolean ok = checkFields();
+                
+		if (!ok) return;
 
 		final String email = emailField.getText();
 		final String server = serverField.getText();
 		int port = 32160;
 
+                //standalone check
+                if (client == null) {
+                    JOptionPane.showMessageDialog(this, "Account not created (running standalone)!");
+                    return;
+                }
+                
 		final int finalPort; // port couldnt be accessed from inner class
 		final ProgressBar progressBar = new ProgressBar(owner);
 
@@ -268,7 +271,7 @@ public class CreateAccountDialog extends JDialog {
 			return;
 		}
 		finalPort = port;
-
+                
 		/* seprate thread for connection proccess added by TheGeneral */
 		// run the connection procces in separate thread
 		Thread m_connectionThread = new Thread() {
@@ -368,6 +371,54 @@ public class CreateAccountDialog extends JDialog {
 		};
 		m_connectionThread.start();
 	}
+        
+        /**
+         * Runs field checks, to, ex. confirm the passwords correct, etc.
+         */
+        private boolean checkFields() {
+                //
+                // Check the password
+                //
+                final String password = new String(passwordField.getPassword());
+		final String passwordretype = new String(passwordretypeField.getPassword());                
+                if (!password.equals(passwordretype)) {
+                        JOptionPane.showMessageDialog(owner, "The passwords do not match. Please retype both.","Password Mismatch", JOptionPane.WARNING_MESSAGE);
+			return false;
+                }
+                
+                //
+                // Check the email
+                //
+                String email = emailField.getText();
+                if (email.contains("@") && email.contains(".") && email.length() > 5) {
+                    //email looks ok
+                } else {
+                    String text = "The email you entered appears to be invalid.\n" +
+                            "You must provide a recover a lost password. Are you sure this email is correct? ";
+                    
+                    int i = JOptionPane.showOptionDialog(owner, text,
+                            "Invalid Email", 
+                            JOptionPane.YES_NO_OPTION, 
+                            JOptionPane.WARNING_MESSAGE, 
+                            null, null, 1);
+                    
+                    if (i == 0) {
+                        //yes
+                    } else {
+                        //no
+                        return false;
+                    }
+                }
+
+                return true;
+        }
+        
+        /**
+         * Used to preview the CreateAccountDialog
+         */
+        public static void main(String[] args) {
+            new CreateAccountDialog(null, null);
+        }
 
 	private static class LowerCaseLetterDocument extends PlainDocument {
 		private static final long serialVersionUID = -5123268875802709841L;
