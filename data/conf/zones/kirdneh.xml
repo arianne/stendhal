@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- <!DOCTYPE zones SYSTEM "zones.dtd"> -->
+<zones>
+ <!--
+   ** Load zones. Written from left to right and from top to bottom.
+   ** Please respect it!
+   -->
+
+ <!-- Level 6 -->
+
+ <!-- Level 5 -->
+
+ <!-- Level 4 -->
+
+ <!-- Level 3 -->
+
+ <!-- Level 2 -->
+
+ <!-- Level 1 -->
+
+ <!-- Level 0 (Ground) -->
+
+ <zone name="0_kirdneh_city" level="0" x="500000" y="500512" file="Level 0/kirdneh/city.tmx">
+  <portal x="50" y="7" ref="diving_board">
+   <destination zone="0_kirdneh_city" ref="pool"/>
+   <attribute name="hidden"/>
+  </portal>
+  <portal x="48" y="7" ref="pool">
+   <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+  </portal>
+  <entity x="20" y="57">
+    <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
+    <attribute name="description">You see a hot hot barbecue.</attribute>
+  </entity>
+  <entity x="102" y="72">
+    <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
+    <attribute name="description">You see a sizzling hot barbecue.</attribute>
+  </entity>
+  <entity x="23" y="101">
+    <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
+    <attribute name="description">You see a sizzling barbecue.</attribute>
+  </entity>
+  <entity x="24" y="101">
+    <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
+    <attribute name="description">You see a burning hot grill.</attribute>
+  </entity>
+  <entity x="58" y="100">
+    <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
+    <attribute name="description">You see a very hot grill.</attribute>
+  </entity>
+  <entity x="59" y="100">
+    <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
+    <attribute name="description">You see a sizzling barbecue.</attribute>
+  </entity>
+ </zone>
+
+ <!-- Level -1 -->
+
+ <!-- Level -2 -->
+
+ <!-- Level -3 -->
+
+ <!-- Level -4 -->
+
+ <!-- Level -5 -->
+
+ <!-- Level -6 -->
+
+ <!-- Level -7 -->
+
+</zones>
