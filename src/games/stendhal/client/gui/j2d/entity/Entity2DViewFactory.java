@@ -53,8 +53,7 @@ public class Entity2DViewFactory { // implements EntityViewFactory {
 	/**
 	 * Log4J.
 	 */
-	private static final Logger logger = Log4J
-			.getLogger(Entity2DViewFactory.class);
+	private static final Logger logger = Log4J.getLogger(Entity2DViewFactory.class);
 
 	/**
 	 * The shared instance.
@@ -99,9 +98,7 @@ public class Entity2DViewFactory { // implements EntityViewFactory {
 		 * Is it an Entity2DView?
 		 */
 		if (!Entity2DView.class.isAssignableFrom(viewClass)) {
-			logger
-					.error("Class is not an Entity2DView: "
-							+ viewClass.getName());
+			logger.error("Class is not an Entity2DView: " + viewClass.getName());
 			return null;
 		}
 
