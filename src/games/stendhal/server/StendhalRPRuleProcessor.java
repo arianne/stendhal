@@ -263,10 +263,10 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			try {
 				String[] extensionsToLoad = config.get("server_extension").split(
 						",");
-				for (int i = 0; i < extensionsToLoad.length; i++) {
+				for (String element : extensionsToLoad) {
 					String extension = null;
 					try {
-						extension = extensionsToLoad[i];
+						extension = element;
 						if (extension.length() > 0) {
 							StendhalServerExtension.getInstance(
 									config.get(extension)).init();
@@ -413,37 +413,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	public synchronized void beginTurn() {
 		long start = System.nanoTime();
 
-		/*
-		 * Debug statement for inspecting list of things. Most of our memories
-		 * leaks came from list keep adding and adding elements.
-		 */
-		if (Debug.SHOW_LIST_SIZES && rpman.getTurn() % 1000 == 0) {
-			int creatures = 0;
-			for (CreatureRespawnPoint point : respawnPoints) {
-				creatures += point.size();
-			}
-
-			int objects = 0;
-
-			for (IRPZone zone : StendhalRPWorld.get()) {
-				objects += zone.size();
-			}
-
-			StringBuffer os = new StringBuffer();
-			os.append("entityToKill: " + entityToKill.size() + "\n");
-			os.append("npcs: " + npcs.size() + "\n");
-			os.append("npcsToAdd: " + npcsToAdd.size() + "\n");
-			os.append("npcsToRemove: " + npcsToRemove.size() + "\n");
-			os.append("plantGrowers: " + plantGrowers.size() + "\n");
-			os.append("players: " + players.size() + "\n");
-			os.append("playersRmText: " + playersRmText.size() + "\n");
-			os.append("playersRmPrivateText: " + playersRmPrivateText.size()
-					+ "\n");
-			os.append("respawnPoints: " + respawnPoints.size() + "\n");
-			os.append("creatures: " + creatures + "\n");
-			os.append("objects: " + objects + "\n");
-			logger.info(os);
-		}
+		debugOutput();
 
 		try {
 			// We keep the number of players logged.
@@ -480,12 +450,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			 * TODO: Refactor Use RPEvent that is the correct way and it is
 			 * handled by marauroa itself.
 			 */
-			for (Player player : playersRmPrivateText) {
-				if (player.has("private_text")) {
-					player.remove("private_text");
-					player.notifyWorldAboutChanges();
-				}
-			}
+
 
 			/*
 			 * TODO: Refactor May be done by the zone itself.
@@ -519,12 +484,55 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 				}
 			}
 			playersRmText.clear();
+			
+			for (Player player : playersRmPrivateText) {
+				if (player.has("private_text")) {
+					player.remove("private_text");
+
+					player.notifyWorldAboutChanges();
+				}
+			}
 			playersRmPrivateText.clear();
+			
 		} catch (Exception e) {
 			logger.error("error in beginTurn", e);
 		} finally {
 			logger.debug("Begin turn: " + (System.nanoTime() - start)
 					/ 1000000.0);
+		}
+	}
+
+	private void debugOutput() {
+		/*
+		 * Debug statement for inspecting list of things. Most of our memories
+		 * leaks came from list keep adding and adding elements.
+		 */
+		if (Debug.SHOW_LIST_SIZES && (rpman.getTurn() % 1000 == 0)) {
+			int creatures = 0;
+			for (CreatureRespawnPoint point : respawnPoints) {
+				creatures += point.size();
+			}
+
+			int objects = 0;
+
+			for (IRPZone zone : StendhalRPWorld.get()) {
+				objects += zone.size();
+			}
+
+			StringBuffer os = new StringBuffer();
+			os.append("entityToKill: " + entityToKill.size() + "\n");
+			os.append("npcs: " + npcs.size() + "\n");
+			os.append("npcsToAdd: " + npcsToAdd.size() + "\n");
+			os.append("npcsToRemove: " + npcsToRemove.size() + "\n");
+			os.append("plantGrowers: " + plantGrowers.size() + "\n");
+			os.append("players: " + players.size() + "\n");
+			os.append("playersRmText: " + playersRmText.size() + "\n");
+			os.append("playersRmPrivateText: " + playersRmPrivateText.size()
+					+ "\n");
+			os.append("respawnPoints: " + respawnPoints.size() + "\n");
+			os.append("creatures: " + creatures + "\n");
+			os.append("objects: " + objects + "\n");
+			logger.info(os);
 		}
 	}
 
