@@ -402,18 +402,22 @@ public class CreateAccountDialog extends JDialog {
                 if (valPass) {
                         //no problems, keep going
                 } else {
-                        //didn't like the password for some reason, show a dialog and try again
-                        int i = JOptionPane.showOptionDialog(owner, badPasswordReason,
-                                "Bad Password",
-                                JOptionPane.YES_NO_OPTION,
-                                JOptionPane.WARNING_MESSAGE,
-                                null, null, 1);
+                        if (badPasswordReason != null) {
+                            //didn't like the password for some reason, show a dialog and try again
+                            int i = JOptionPane.showOptionDialog(owner, badPasswordReason,
+                                    "Bad Password",
+                                    JOptionPane.YES_NO_OPTION,
+                                    JOptionPane.WARNING_MESSAGE,
+                                    null, null, 1);
 
-                        if (i == 0) {
-                                //yes
+                            if (i == 0) {
+                                    //yes
+                            } else {
+                                    return false;
+                            }
                         } else {
-				return false;
-			}
+                                return false;
+                        }
                 }
 
                 //
