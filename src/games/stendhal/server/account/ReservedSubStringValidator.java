@@ -24,6 +24,15 @@ public class ReservedSubStringValidator implements AccountParameterValidator {
 			return Result.FAILED_INVALID_CHARACTER_USED;
 		}
 
+		// name must not be equal to "gm". We do not use a substring filter
+		// here, because these to letters may be part of normal names.
+		// Since neither spaces (and other special characters) nor uppercase
+		// letters are allowed, it should not be possible to "highlight" the
+		// "GM" in any way within the name.
+		if (parameterValue.toLowerCase().equals("gm")) {
+			return Result.FAILED_INVALID_CHARACTER_USED;
+		}
+
 		return null;
 	}
 }
