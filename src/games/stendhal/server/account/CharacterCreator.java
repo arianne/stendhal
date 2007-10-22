@@ -1,6 +1,3 @@
-/**
- * 
- */
 package games.stendhal.server.account;
 
 import games.stendhal.server.entity.Entity;
@@ -28,6 +25,8 @@ import org.apache.log4j.Logger;
  */
 public class CharacterCreator {
 	private static Logger logger = Logger.getLogger(CharacterCreator.class);
+	private ValidatorList validators = new ValidatorList();
+
 
 	private String username;
 	private String character;
@@ -44,26 +43,19 @@ public class CharacterCreator {
 		this.username = username;
 		this.character = character;
 		this.template = template;
+		setupValidatorsForCharacter();
+	}
+	
+	private void setupValidatorsForCharacter() {
+		validators.add(new NotEmptyValidator(character));
+		validators.add(new MinLengthValidator(character, 4));
+		validators.add(new MaxLengthValidator(character, 20));
+
+		validators.add(new LowerCaseValidator(character));
+		validators.add(new NameCharacterValidator(character));
+		validators.add(new ReservedSubStringValidator(character));
 	}
 
-	private boolean isValidCharactername(String username) {
-		/** TODO: Complete this. Should read the list from XML file */
-		if (username.indexOf(' ') != -1) {
-			return false;
-		}
-		// TODO: Fix bug [ 1672627 ] 'admin' not allowed in username but GM_ and
-		// _GM are
-		if (username.toLowerCase().contains("admin")) {
-			return false;
-		}
-		
-		// Ensure username is at least 4 characters length.
-		if( username.length()<4)  {
-			return false;
-		}
-		
-		return true;
-	}
 
 	/**
 	 * tries to create this character
@@ -71,12 +63,9 @@ public class CharacterCreator {
 	 * @return CharacterResult
 	 */
 	public CharacterResult create() {
-		/*
-		 * TODO: Refactor Invalid patterns for username should be stored in a
-		 * text file or XML file.
-		 */
-		if (!isValidCharactername(character)) {
-			return new CharacterResult(Result.FAILED_EXCEPTION, character, template);
+		Result result = validators.runValidators();
+		if (result != null) {
+			return new CharacterResult(result, character, template);
 		}
 
 		JDBCDatabase database = (JDBCDatabase) DatabaseFactory.getDatabase();
