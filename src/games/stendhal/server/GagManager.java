@@ -14,8 +14,8 @@ import marauroa.common.Logger;
  */
 public class GagManager implements LoginListener {
 	/*
-	 * TODO: Don't use a quest entry for it.
-	 * TODO: Why tryExpire? just expire on turn reached.
+	 * TODO: Don't use a quest entry for it. TODO: Why tryExpire? just expire on
+	 * turn reached.
 	 */
 
 	private static final Logger logger = Log4J.getLogger(GagManager.class);
@@ -63,10 +63,15 @@ public class GagManager implements LoginListener {
 			return;
 		}
 
+		gag(criminal, policeman, minutes, reason, criminalName);
+
+	}
+
+	void gag(final Player criminal, Player policeman, int minutes,
+			String reason, final String criminalName) {
 		// no -1
 		if (minutes < 0) {
-			policeman
-					.sendPrivateText("Infinity (negative numbers) is not supported.");
+			policeman.sendPrivateText("Infinity (negative numbers) is not supported.");
 			return;
 		}
 
@@ -85,7 +90,6 @@ public class GagManager implements LoginListener {
 				+ " minutes. Reason: " + reason + ".");
 
 		setupNotifier(criminal);
-
 	}
 
 	/**
@@ -159,8 +163,8 @@ public class GagManager implements LoginListener {
 				(int) (getTimeRemaining(criminal) / 1000), new TurnListener() {
 					public void onTurnReached(int currentTurn, String message) {
 
-						Player criminal2 = StendhalRPRuleProcessor.get()
-								.getPlayer(criminalName);
+						Player criminal2 = StendhalRPRuleProcessor.get().getPlayer(
+								criminalName);
 						if (criminal2 == null) {
 							logger.debug("Gagged player " + criminalName
 									+ "has logged out.");
