@@ -1,5 +1,8 @@
 package games.stendhal.server.entity.item.consumption;
 
+import static org.junit.Assert.assertTrue;
+import games.stendhal.server.StendhalRPWorld;
+import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.ActiveEntity;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
@@ -28,6 +31,7 @@ public class PoisonerTest {
 	}
 
 	@Test
+
 	public final void testFeed() {
 
 		DefaultEntityManager.getInstance();
@@ -41,11 +45,15 @@ public class PoisonerTest {
 		attributes.put("regen", "200");
 		attributes.put("frequency", "1");
 		attributes.put("id", "1");
-
+		StendhalRPWorld world = StendhalRPWorld.get();
+		StendhalRPZone zone = new StendhalRPZone("test");
+		world.addRPZone(zone);
 		ConsumableItem c200_1 = new ConsumableItem("cheese", "", "", attributes);
+		zone.add(c200_1);
 		Poisoner poisoner = new Poisoner();
 		Player bob = new Player(new RPObject());
 		poisoner.feed(c200_1, bob);
+		assertTrue(bob.isPoisoned());
 	}
 
 }
