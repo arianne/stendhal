@@ -71,9 +71,7 @@ public abstract class RPEntity extends ActiveEntity {
 			"slap-1.wav", "arrow-1.wav" };
 
 	public enum Resolution {
-		HIT(0),
-		BLOCKED(1),
-		MISSED(2);
+		HIT(0), BLOCKED(1), MISSED(2);
 
 		private final int val;
 
@@ -428,8 +426,7 @@ public abstract class RPEntity extends ActiveEntity {
 		resolution = Resolution.HIT;
 		try {
 
-			SoundMaster
-					.play(attackSounds[Rand.rand(attackSounds.length)], x, y);
+			SoundMaster.play(attackSounds[Rand.rand(attackSounds.length)], x, y);
 		} catch (NullPointerException e) {
 
 		}
@@ -549,7 +546,7 @@ public abstract class RPEntity extends ActiveEntity {
 
 	// Called when entity says text
 	public void onTalk(final String text) {
-		if (User.isAdmin() || distanceToUser() < 15 * 15) {
+		if (User.isAdmin() || (distanceToUser() < 15 * 15)) {
 			// TODO: Creature circle reference
 			nonCreatureClientAddEventLine(text);
 
@@ -681,7 +678,7 @@ public abstract class RPEntity extends ActiveEntity {
 		 */
 		if (object.has("poisoned")) {
 			// To remove the - sign on poison.
-			onPoisoned(Math.abs(object.getInt("poisoned")));
+			// onPoisoned(Math.abs(object.getInt("poisoned")));
 		}
 
 		/*
@@ -704,8 +701,8 @@ public abstract class RPEntity extends ActiveEntity {
 		if (object.has("target")) {
 			int target = object.getInt("target");
 
-			RPObject.ID targetEntityID = new RPObject.ID(target, object
-					.get("zoneid"));
+			RPObject.ID targetEntityID = new RPObject.ID(target,
+					object.get("zoneid"));
 
 			/*
 			 * TODO: XXX - This is probably meaningless, as create order is
@@ -924,11 +921,11 @@ public abstract class RPEntity extends ActiveEntity {
 			if (changes.has("target")) {
 				int target = changes.getInt("target");
 
-				RPObject.ID targetEntityID = new RPObject.ID(target, changes
-						.get("zoneid"));
+				RPObject.ID targetEntityID = new RPObject.ID(target,
+						changes.get("zoneid"));
 
-				RPEntity targetEntity = (RPEntity) GameObjects.getInstance()
-						.get(targetEntityID);
+				RPEntity targetEntity = (RPEntity) GameObjects.getInstance().get(
+						targetEntityID);
 
 				if (targetEntity != attackTarget) {
 					onStopAttack();
