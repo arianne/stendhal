@@ -24,6 +24,7 @@ import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.Sign;
 import games.stendhal.server.entity.WellSource;
 import games.stendhal.server.entity.area.AreaEntity;
+import games.stendhal.server.entity.creature.BabyDragon;
 import games.stendhal.server.entity.creature.Cat;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.creature.Pet;
@@ -195,6 +196,7 @@ public class StendhalRPWorld extends RPWorld {
 		Sheep.generateRPClass();
 		Pet.generateRPClass();
 		Cat.generateRPClass();
+		BabyDragon.generateRPClass();
 
 		// PassiveEntityRespawnPoint sub-class
 		GrowingPassiveEntityRespawnPoint.generateRPClass();
