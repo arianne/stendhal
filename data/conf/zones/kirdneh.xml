@@ -26,7 +26,7 @@
    <attribute name="hidden"/>
   </portal>
   <portal x="32" y="89" ref="tavern">
-   <destination zone="int_kirdneh_tavern" ref="entrance"/>
+   <destination zone="int_kirdneh_inn" ref="entrance"/>
   </portal>
   <portal x="48" y="7" ref="pool">
    <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
@@ -57,7 +57,7 @@
   </entity>
  </zone>
 
-<zone name="int_kirdneh_tavern" file="interiors/kirdneh/tavern.tmx">
+<zone name="int_kirdneh_inn" file="interiors/kirdneh/inn.tmx">
   <portal x="18" y="23" ref="entrance">
    <destination zone="0_kirdneh_city" ref="tavern"/>
   </portal>
