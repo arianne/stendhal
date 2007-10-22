@@ -1135,12 +1135,19 @@ public class Player extends RPEntity {
 	}
 
 	public Pet getPet() {
+	try {
 		if (has(ATTR_PET)) {
 			return (Pet) StendhalRPWorld.get().get(
 					new RPObject.ID(getInt(ATTR_PET), get("zoneid")));
 		} else {
 			return null;
 		}
+	} catch (ClassCastException e) {
+		remove(ATTR_PET);
+		logger.error("removed pets attribute" + e);
+		return null;
+	}
+
 	}
 
 	/**
@@ -1557,7 +1564,7 @@ public class Player extends RPEntity {
 			for (ConsumableItem poison : poisonstoRemove){
 				poisonToConsume.remove(poison);
 			}
-			
+
 			}
 		notifyWorldAboutChanges();
 	}
