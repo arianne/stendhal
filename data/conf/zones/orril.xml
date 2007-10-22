@@ -189,6 +189,20 @@ East: Nalwor, Semos
   <entity x="1" y="8">
     <implementation class-name="games.stendhal.server.entity.WellSource" />
   </entity>
+  <entity x="47" y="110">
+    <implementation class-name="games.stendhal.server.entity.Sign"/>
+    <attribute name="text">
+Danger! Deep Water!
+    </attribute>
+    <attribute name="class">signpost</attribute>
+  </entity>
+  <entity x="51" y="110">
+    <implementation class-name="games.stendhal.server.entity.Sign"/>
+    <attribute name="text">
+Danger! Deep Water!
+    </attribute>
+    <attribute name="class">signpost</attribute>
+  </entity>
   <entity x="48" y="112">
    <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
     <parameter name="interval">2</parameter>
@@ -287,6 +301,20 @@ East: Nalwor, Semos
     <parameter name="players-only">true</parameter>
    </implementation>
    <attribute name="name">deep water</attribute>
+  </entity>
+  <entity x="44" y="126">
+    <implementation class-name="games.stendhal.server.entity.Sign"/>
+    <attribute name="text">
+Danger! Deep Water!
+    </attribute>
+    <attribute name="class">signpost</attribute>
+  </entity>
+  <entity x="47" y="126">
+    <implementation class-name="games.stendhal.server.entity.Sign"/>
+    <attribute name="text">
+Danger! Deep Water!
+    </attribute>
+    <attribute name="class">signpost</attribute>
   </entity>
  </zone>
 
