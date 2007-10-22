@@ -186,12 +186,10 @@ public class Portal extends Entity implements UseListener {
 			return false;
 		}
 
-		// TODO: Check if teleport worked and skip rest if not
-		player.teleport(destZone, dest.getX(), dest.getY(), null, null);
-		player.stop();
-
-		dest.onUsedBackwards(player);
-
+		if (player.teleport(destZone, dest.getX(), dest.getY(), null, null)) {
+			player.stop();
+			dest.onUsedBackwards(player);
+		}
 		return true;
 	}
 
