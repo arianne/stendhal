@@ -132,8 +132,8 @@
  <tileset name="../../tileset/item/statue/fairypool.png" firstgid="818" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/fairypool.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/statue/grey_stone.png" firstgid="822" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/statue/grey_stone.png" trans="ff00ff"/>
+ <tileset name="../../tileset/item/statue/grey_stone.png" firstgid="822" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/statue/grey_stone.png" trans="ff00ff"/>
  </tileset>
  <tileset name="../../tileset/item/furniture/chair/wooden.png" firstgid="826" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/chair/wooden.png" trans="ff00ff"/>

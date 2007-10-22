@@ -159,8 +159,8 @@
  <tileset name="../../tileset/plant/bush/hedge_2.png" firstgid="559" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/bush/hedge_2.png" trans="ffffff"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/statue/grey_stone.png" firstgid="565" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/statue/grey_stone.png" trans="ff00ff"/>
+ <tileset name="../../tileset/item/statue/grey_stone.png" firstgid="565" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/statue/grey_stone.png" trans="ff00ff"/>
  </tileset>
  <tileset name="../../tileset/item/statue/fairypool.png" firstgid="569" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/fairypool.png" trans="ff00ff"/>

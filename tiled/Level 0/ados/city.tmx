@@ -54,8 +54,8 @@
  <tileset name="../../tileset/ground/green_paving_2.png" firstgid="520" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/green_paving_2.png" trans="ffffff"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/statue/green_stone.png" firstgid="524" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/statue/green_stone.png" trans="ffffff"/>
+ <tileset name="../../tileset/item/statue/green_stone.png" firstgid="524" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/statue/green_stone.png" trans="ffffff"/>
  </tileset>
  <tileset name="../../tileset/ground/green_paving_3.png" firstgid="536" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/green_paving_3.png" trans="ffffff"/>
@@ -63,8 +63,8 @@
  <tileset name="../../tileset/ground/cobbled_paving.png" firstgid="537" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/cobbled_paving.png" trans="ffffff"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/statue/bird.png" firstgid="538" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/statue/bird.png" trans="ffffff"/>
+ <tileset name="../../tileset/item/statue/bird.png" firstgid="538" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/statue/bird.png" trans="ffffff"/>
  </tileset>
  <tileset name="../../tileset/building/fence/fence_chunky.png" firstgid="546" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/fence/fence_chunky.png" trans="ffffff"/>
@@ -111,8 +111,8 @@
  <tileset name="../../tileset/item/furniture/table/wooden_pale.png" firstgid="710" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/table/wooden_pale.png"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/statue/grey_stone.png" firstgid="711" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/statue/grey_stone.png" trans="ff00ff"/>
+ <tileset name="../../tileset/item/statue/grey_stone.png" firstgid="711" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/statue/grey_stone.png" trans="ff00ff"/>
  </tileset>
  <tileset name="../../tileset/item/statue/fairypool.png" firstgid="715" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/fairypool.png" trans="ff00ff"/>
@@ -159,8 +159,8 @@
  <tileset name="../../tileset/building/decoration/chimney_big.png" firstgid="869" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/decoration/chimney_big.png"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/statue/green_stone_2.png" firstgid="871" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/statue/green_stone_2.png" trans="ffffff"/>
+ <tileset name="../../tileset/item/statue/green_stone_2.png" firstgid="871" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/statue/green_stone_2.png" trans="ffffff"/>
  </tileset>
  <tileset name="../../tileset/building/decoration/library_banner.png" firstgid="877" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/decoration/library_banner.png"/>

@@ -39,8 +39,8 @@
  <tileset name="../../tileset/item/furniture/shelve/dark_bookshelf.png" firstgid="431" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/shelve/dark_bookshelf.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/statue/grey_stone.png" firstgid="437" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/statue/grey_stone.png" trans="ff00ff"/>
+ <tileset name="../../tileset/item/statue/grey_stone.png" firstgid="437" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/statue/grey_stone.png" trans="ff00ff"/>
  </tileset>
  <tileset name="../../tileset/item/statue/fairypool.png" firstgid="441" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/fairypool.png" trans="ff00ff"/>

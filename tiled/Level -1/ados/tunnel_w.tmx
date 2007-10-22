@@ -22,7 +22,7 @@
   <image source="../../tileset/item/furniture/table/long_front_on_pale.png"/>
  </tileset>
  <tileset name="statue" firstgid="151" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/statue/metal_and_stone.png"/>
+  <image source="../../tileset/item/statue/metal_and_stone.png"/>
  </tileset>
  <tileset name="throne" firstgid="157" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/chair/throne.png"/>

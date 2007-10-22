@@ -90,8 +90,8 @@
  <tileset name="../../tileset/item/postbox.png" firstgid="277" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/postbox.png" trans="ffffff"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/statue/grey_stone.png" firstgid="281" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/statue/grey_stone.png" trans="ff00ff"/>
+ <tileset name="../../tileset/item/statue/grey_stone.png" firstgid="281" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/statue/grey_stone.png" trans="ff00ff"/>
  </tileset>
  <tileset name="../../tileset/plant/tree/tree_darkgreen.png" firstgid="285" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/tree/tree_darkgreen.png" trans="ffffff"/>

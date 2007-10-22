@@ -52,10 +52,10 @@
   <image source="../../tileset/plant/tree/tree_golden_small.png"/>
  </tileset>
  <tileset name="lion statue" firstgid="283" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/statue/green_stone.png"/>
+  <image source="../../tileset/item/statue/green_stone.png"/>
  </tileset>
  <tileset name="snakestatue" firstgid="295" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/statue/green_stone_2.png"/>
+  <image source="../../tileset/item/statue/green_stone_2.png"/>
  </tileset>
  <tileset name="bluedome" firstgid="301" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/decoration/blue_circle.png"/>

@@ -48,8 +48,8 @@
  <tileset name="../../tileset/plant/flower/daisy_white.png" firstgid="251" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/flower/daisy_white.png" trans="ffffff"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/statue/bird.png" firstgid="259" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/statue/bird.png" trans="ffffff"/>
+ <tileset name="../../tileset/item/statue/bird.png" firstgid="259" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/statue/bird.png" trans="ffffff"/>
  </tileset>
  <tileset name="../../tileset/logic/collision.png" firstgid="267" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>

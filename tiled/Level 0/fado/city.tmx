@@ -33,8 +33,8 @@
  <tileset name="../../tileset/plant/bush/bushes.png" firstgid="158" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/bush/bushes.png" trans="ffffff"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/statue/green_stone.png" firstgid="168" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/statue/green_stone.png" trans="ffffff"/>
+ <tileset name="../../tileset/item/statue/green_stone.png" firstgid="168" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/statue/green_stone.png" trans="ffffff"/>
  </tileset>
  <tileset name="../../tileset/building/roof/blue.png" firstgid="180" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/roof/blue.png"/>

@@ -133,7 +133,7 @@
   <image source="../../tileset/item/pot/oriental_jar.png"/>
  </tileset>
  <tileset name="statue" firstgid="241" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/statue/sea_horse.png"/>
+  <image source="../../tileset/item/statue/seahorse.png"/>
  </tileset>
  <layer name="0_floor" width="25" height="25">
   <data encoding="base64" compression="gzip">

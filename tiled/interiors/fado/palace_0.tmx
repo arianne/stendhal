@@ -31,7 +31,7 @@
   <image source="../../tileset/item/furniture/carpet/carpets.png"/>
  </tileset>
  <tileset name="statue" firstgid="97" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/statue/sea_horse.png"/>
+  <image source="../../tileset/item/statue/seahorse.png"/>
  </tileset>
  <tileset name="stairs" firstgid="109" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/blue_stone.png"/>

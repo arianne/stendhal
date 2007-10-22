@@ -69,8 +69,8 @@
  <tileset name="../../tileset/ground/ladder/vertical_dark.png" firstgid="288" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/ladder/vertical_dark.png" trans="ffffff"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/statue/green_stone.png" firstgid="291" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/statue/green_stone.png" trans="ffffff"/>
+ <tileset name="../../tileset/item/statue/green_stone.png" firstgid="291" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/statue/green_stone.png" trans="ffffff"/>
  </tileset>
  <tileset name="../../tileset/logic/creature/gnome.png" firstgid="303" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/gnome.png"/>

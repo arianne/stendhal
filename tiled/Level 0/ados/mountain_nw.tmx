@@ -42,8 +42,8 @@
  <tileset name="../../tileset/object/witch_hut.png" firstgid="193" tilewidth="32" tileheight="32">
   <image source="../../tileset/object/witch_hut.png"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/statue/green_stone.png" firstgid="228" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/statue/green_stone.png" trans="ffffff"/>
+ <tileset name="../../tileset/item/statue/green_stone.png" firstgid="228" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/statue/green_stone.png" trans="ffffff"/>
  </tileset>
  <tileset name="../../tileset/logic/creature/orc.png" firstgid="240" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/orc.png"/>

@@ -90,8 +90,8 @@
  <tileset name="../../tileset/item/furniture/shelve/bright_bookshelf_and_cupboard.png" firstgid="577" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/shelve/bright_bookshelf_and_cupboard.png"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/statue/metal_and_stone.png" firstgid="583" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/statue/metal_and_stone.png"/>
+ <tileset name="../../tileset/item/statue/metal_and_stone.png" firstgid="583" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/statue/metal_and_stone.png"/>
  </tileset>
  <tileset name="../../tileset/item/brush.png" firstgid="589" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/brush.png"/>

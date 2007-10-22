@@ -123,8 +123,8 @@
  <tileset name="../../tileset/ground/ladder/steps.png" firstgid="511" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/ladder/steps.png" trans="ffffff"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/statue/bird.png" firstgid="517" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/statue/bird.png" trans="ffffff"/>
+ <tileset name="../../tileset/item/statue/bird.png" firstgid="517" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/statue/bird.png" trans="ffffff"/>
  </tileset>
  <tileset name="../../tileset/item/statue/fairypool.png" firstgid="525" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/fairypool.png" trans="ff00ff"/>

@@ -118,7 +118,7 @@
   <image source="../../tileset/item/furniture/table/long_front_on_pale.png"/>
  </tileset>
  <tileset name="column" firstgid="219" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/statue/metal_and_stone.png"/>
+  <image source="../../tileset/item/statue/metal_and_stone.png"/>
  </tileset>
  <tileset name="curtain 1" firstgid="225" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/curtain/red_gold_gathered.png"/>

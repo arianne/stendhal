@@ -31,7 +31,7 @@
   <image source="../../tileset/item/armor/weapons_rack.png"/>
  </tileset>
  <tileset name="column" firstgid="102" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/statue/metal_and_stone.png"/>
+  <image source="../../tileset/item/statue/metal_and_stone.png"/>
  </tileset>
  <tileset name="barrel 1" firstgid="108" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/barrel_tall.png"/>

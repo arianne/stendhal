@@ -45,8 +45,8 @@
  <tileset name="../../tileset/item/pot/dark_barrel.png" firstgid="332" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/dark_barrel.png" trans="ffffff"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/statue/green_stone.png" firstgid="334" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/statue/green_stone.png" trans="ffffff"/>
+ <tileset name="../../tileset/item/statue/green_stone.png" firstgid="334" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/statue/green_stone.png" trans="ffffff"/>
  </tileset>
  <tileset name="../../tileset/logic/creature/orc.png" firstgid="346" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/orc.png"/>

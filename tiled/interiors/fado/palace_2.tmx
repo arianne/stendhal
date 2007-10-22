@@ -52,7 +52,7 @@
   <image source="../../tileset/building/entrance/blue_green_2.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="145" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/statue/green_stone_2.png"/>
+  <image source="../../tileset/item/statue/green_stone_2.png"/>
  </tileset>
  <tileset name="torch_top" firstgid="151" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/light/torch_top.png"/>

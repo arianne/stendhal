@@ -154,7 +154,7 @@
   <image source="../../tileset/item/furniture/sink/dark_side_on.png"/>
  </tileset>
  <tileset name="sea horse" firstgid="403" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/statue/sea_horse.png"/>
+  <image source="../../tileset/item/statue/seahorse.png"/>
  </tileset>
  <tileset name="pool" firstgid="415" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/decoration/pool.png"/>
@@ -187,7 +187,7 @@
   <image source="../../tileset/item/broom.png"/>
  </tileset>
  <tileset name="statue bird" firstgid="570" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/statue/bird.png"/>
+  <image source="../../tileset/item/statue/bird.png"/>
  </tileset>
  <tileset name="plant oriental" firstgid="578" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/oriental_plant.png"/>

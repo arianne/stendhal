@@ -111,8 +111,8 @@
  <tileset name="../../tileset/item/furniture/light/iron_lamp.png" firstgid="262" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/light/iron_lamp.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/statue/metal_and_stone.png" firstgid="265" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/statue/metal_and_stone.png"/>
+ <tileset name="../../tileset/item/statue/metal_and_stone.png" firstgid="265" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/statue/metal_and_stone.png"/>
  </tileset>
  <tileset name="../../tileset/item/furniture/chair/throne_small.png" firstgid="271" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/chair/throne_small.png"/>

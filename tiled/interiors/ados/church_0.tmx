@@ -37,7 +37,7 @@
   <image source="../../tileset/item/furniture/light/flames.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="383" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/statue/grey_stone.png"/>
+  <image source="../../tileset/item/statue/grey_stone.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="387" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/window/painted.png"/>
@@ -52,7 +52,7 @@
   <image source="../../tileset/item/furniture/statue/cross.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="395" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/statue/metal_and_stone.png"/>
+  <image source="../../tileset/item/statue/metal_and_stone.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="401" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>

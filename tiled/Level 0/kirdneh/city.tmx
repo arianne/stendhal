@@ -151,7 +151,7 @@
   <image source="../../tileset/item/furniture/sink/dark_side_on.png"/>
  </tileset>
  <tileset name="sea horse" firstgid="380" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/statue/sea_horse.png"/>
+  <image source="../../tileset/item/statue/seahorse.png"/>
  </tileset>
  <tileset name="pool" firstgid="392" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/decoration/pool.png"/>
@@ -190,7 +190,7 @@
   <image source="../../tileset/item/broom.png"/>
  </tileset>
  <tileset name="statue bird" firstgid="607" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/statue/bird.png"/>
+  <image source="../../tileset/item/statue/bird.png"/>
  </tileset>
  <tileset name="plant oriental" firstgid="615" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/oriental_plant.png"/>
@@ -211,10 +211,10 @@
   <image source="../../tileset/item/furniture/table/wooden_rectangular.png"/>
  </tileset>
  <tileset name="statue metal and stone" firstgid="649" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/statue/metal_and_stone.png"/>
+  <image source="../../tileset/item/statue/metal_and_stone.png"/>
  </tileset>
  <tileset name="statue grey stone" firstgid="655" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/statue/grey_stone.png"/>
+  <image source="../../tileset/item/statue/grey_stone.png"/>
  </tileset>
  <tileset name="fire" firstgid="659" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/fire/fire.png"/>
@@ -247,10 +247,10 @@
   <image source="../../tileset/item/furniture/table/long_side_on_pale.png"/>
  </tileset>
  <tileset name="statue green stone" firstgid="1102" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/statue/green_stone.png"/>
+  <image source="../../tileset/item/statue/green_stone.png"/>
  </tileset>
  <tileset name="green stone 2" firstgid="1114" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/statue/green_stone_2.png"/>
+  <image source="../../tileset/item/statue/green_stone_2.png"/>
  </tileset>
  <tileset name="hosta" firstgid="1120" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/bush/hosta.png"/>

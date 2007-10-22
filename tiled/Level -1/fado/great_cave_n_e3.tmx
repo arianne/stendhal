@@ -160,7 +160,7 @@
   <image source="../../tileset/item/furniture/sink/dark_side_on.png"/>
  </tileset>
  <tileset name="sea horse" firstgid="429" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/statue/sea_horse.png"/>
+  <image source="../../tileset/item/statue/seahorse.png"/>
  </tileset>
  <tileset name="stripey" firstgid="441" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/carpet/stripey.png"/>
@@ -190,7 +190,7 @@
   <image source="../../tileset/item/broom.png"/>
  </tileset>
  <tileset name="statue bird" firstgid="587" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/statue/bird.png"/>
+  <image source="../../tileset/item/statue/bird.png"/>
  </tileset>
  <tileset name="plant oriental" firstgid="595" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/oriental_plant.png"/>
@@ -244,10 +244,10 @@
   <image source="../../tileset/item/furniture/table/wooden_rectangular.png"/>
  </tileset>
  <tileset name="statue metal and stone" firstgid="713" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/statue/metal_and_stone.png"/>
+  <image source="../../tileset/item/statue/metal_and_stone.png"/>
  </tileset>
  <tileset name="statue grey stone" firstgid="719" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/statue/grey_stone.png"/>
+  <image source="../../tileset/item/statue/grey_stone.png"/>
  </tileset>
  <tileset name="fire" firstgid="723" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/fire/fire.png"/>
@@ -277,10 +277,10 @@
   <image source="../../tileset/plant/vine.png"/>
  </tileset>
  <tileset name="green stone" firstgid="1152" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/statue/green_stone.png"/>
+  <image source="../../tileset/item/statue/green_stone.png"/>
  </tileset>
  <tileset name="green stone 2" firstgid="1164" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/statue/green_stone_2.png"/>
+  <image source="../../tileset/item/statue/green_stone_2.png"/>
  </tileset>
  <layer name="0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">

@@ -49,7 +49,7 @@
   <image source="../../tileset/item/furniture/carpet/carpets.png"/>
  </tileset>
  <tileset name="statue" firstgid="157" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/statue/sea_horse.png"/>
+  <image source="../../tileset/item/statue/seahorse.png"/>
  </tileset>
  <tileset name="stairs" firstgid="169" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/blue_stone.png"/>
@@ -88,7 +88,7 @@
   <image source="../../tileset/building/entrance/blue_green_2.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="237" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/statue/green_stone_2.png"/>
+  <image source="../../tileset/item/statue/green_stone_2.png"/>
  </tileset>
  <tileset name="table1" firstgid="243" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/table/wooden_rectangular.png"/>
@@ -124,7 +124,7 @@
   <image source="../../tileset/item/furniture/bed/large_front_on_darker.png"/>
  </tileset>
  <tileset name="statue2" firstgid="293" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/statue/metal_and_stone.png"/>
+  <image source="../../tileset/item/statue/metal_and_stone.png"/>
  </tileset>
  <tileset name="curtain2" firstgid="299" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/curtain/red_gold_gathered.png"/>

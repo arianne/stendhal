@@ -36,8 +36,8 @@
  <tileset name="../../tileset/item/chest/wooden_pale.png" firstgid="405" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/chest/wooden_pale.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/statue/metal_and_stone.png" firstgid="406" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/statue/metal_and_stone.png"/>
+ <tileset name="../../tileset/item/statue/metal_and_stone.png" firstgid="406" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/statue/metal_and_stone.png"/>
  </tileset>
  <tileset name="../../tileset/item/logs.png" firstgid="412" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/logs.png"/>

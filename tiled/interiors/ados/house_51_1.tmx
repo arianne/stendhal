@@ -169,7 +169,7 @@
   <image source="../../tileset/item/furniture/bed/large_white.png"/>
  </tileset>
  <tileset name="seahorse" firstgid="430" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/statue/sea_horse.png"/>
+  <image source="../../tileset/item/statue/seahorse.png"/>
  </tileset>
  <tileset name="pot" firstgid="442" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/oriental_jar.png"/>

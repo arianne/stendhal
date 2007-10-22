@@ -166,10 +166,10 @@
   <image source="../../tileset/logic/creature/human_little.png"/>
  </tileset>
  <tileset name="statue metal and stone" firstgid="469" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/statue/metal_and_stone.png"/>
+  <image source="../../tileset/item/statue/metal_and_stone.png"/>
  </tileset>
  <tileset name="statue grey stone" firstgid="475" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/statue/grey_stone.png"/>
+  <image source="../../tileset/item/statue/grey_stone.png"/>
  </tileset>
  <tileset name="fire" firstgid="479" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/fire/fire.png"/>
@@ -232,7 +232,7 @@
   <image source="../../tileset/item/furniture/statue/broken_green_column.png"/>
  </tileset>
  <tileset name="broken lion" firstgid="1028" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/statue/broken_lion.png"/>
+  <image source="../../tileset/item/statue/broken_lion.png"/>
  </tileset>
  <tileset name="boulder" firstgid="1034" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/rock/large_boulder.png"/>

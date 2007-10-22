@@ -21,8 +21,8 @@
  <tileset name="../../tileset/item/furniture/light/dark_torch.png" firstgid="65" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/light/dark_torch.png"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/statue/metal_and_stone.png" firstgid="73" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/statue/metal_and_stone.png"/>
+ <tileset name="../../tileset/item/statue/metal_and_stone.png" firstgid="73" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/statue/metal_and_stone.png"/>
  </tileset>
  <tileset name="../../tileset/item/furniture/table/long_front_on.png" firstgid="79" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/table/long_front_on.png"/>
@@ -48,8 +48,8 @@
  <tileset name="../../tileset/item/furniture/light/flames.png" firstgid="99" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/light/flames.png"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/statue/grey_stone.png" firstgid="101" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/statue/grey_stone.png"/>
+ <tileset name="../../tileset/item/statue/grey_stone.png" firstgid="101" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/statue/grey_stone.png"/>
  </tileset>
  <tileset name="../../tileset/ground/ground_2.png" firstgid="105" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/ground_2.png"/>

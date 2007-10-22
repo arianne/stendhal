@@ -94,7 +94,7 @@
   <image source="../../tileset/item/furniture/light/flames.png"/>
  </tileset>
  <tileset name="sea horse" firstgid="283" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/statue/sea_horse.png"/>
+  <image source="../../tileset/item/statue/seahorse.png"/>
  </tileset>
  <tileset name="grass corners" firstgid="295" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/grass_corners.png"/>
@@ -106,7 +106,7 @@
   <image source="../../tileset/plant/tree/tree_golden_small.png"/>
  </tileset>
  <tileset name="statue bird" firstgid="361" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/statue/bird.png"/>
+  <image source="../../tileset/item/statue/bird.png"/>
  </tileset>
  <tileset name="plant pot 1" firstgid="369" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/pot_plant_1.png"/>
@@ -133,7 +133,7 @@
   <image source="../../tileset/logic/creature/madaram.png"/>
  </tileset>
  <tileset name="statue grey stone" firstgid="435" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/statue/grey_stone.png"/>
+  <image source="../../tileset/item/statue/grey_stone.png"/>
  </tileset>
  <tileset name="fire" firstgid="439" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/fire/fire.png"/>

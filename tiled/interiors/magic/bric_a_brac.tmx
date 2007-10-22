@@ -58,7 +58,7 @@
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
  <tileset name="statue" firstgid="162" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/statue/metal_and_stone.png"/>
+  <image source="../../tileset/item/statue/metal_and_stone.png"/>
  </tileset>
  <tileset name="baskets" firstgid="168" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/flower_baskets.png"/>
