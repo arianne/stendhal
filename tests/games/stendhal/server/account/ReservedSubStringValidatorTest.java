@@ -22,14 +22,12 @@ public class ReservedSubStringValidatorTest {
 
 	@Test
 	public final void testValidateGm() {
-		ReservedSubStringValidator rssv = new ReservedSubStringValidator("gmt");
-		assertNotNull("BUG: gm should not be allowed", rssv.validate());
+		ReservedSubStringValidator rssv = new ReservedSubStringValidator("gm");
+		assertNotNull(rssv.validate());
 
 		rssv = new ReservedSubStringValidator("tgm");
-		assertNotNull(rssv.validate());
-		rssv = new ReservedSubStringValidator("gm");
-		assertNotNull(rssv.validate());
+		assertNull(rssv.validate());
 		rssv = new ReservedSubStringValidator("egmond");
-		assertNotNull(rssv.validate());
+		assertNull(rssv.validate());
 	}
 }
