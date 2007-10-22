@@ -1,8 +1,6 @@
 package games.stendhal.server.account;
 
 import java.sql.SQLException;
-import java.util.LinkedList;
-import java.util.List;
 
 import marauroa.common.crypto.Hash;
 import marauroa.common.game.AccountResult;
@@ -19,7 +17,7 @@ import org.apache.log4j.Logger;
  */
 public class AccountCreator {
 	private static Logger logger = Logger.getLogger(AccountCreator.class);
-	private List<AccountParameterValidator> validators = new LinkedList<AccountParameterValidator>();
+	private ValidatorList validators = new ValidatorList();
 
 	private String username;
 	private String password;
@@ -66,17 +64,6 @@ public class AccountCreator {
 		setupValidatorsForEMail();
 	}
 
-	private Result runValidators() {
-		Result result = null;
-		for (AccountParameterValidator validator : validators) {
-			result = validator.validate();
-			if (result != null) {
-				break;
-			}
-		}
-		return result;
-	}
-
 	/**
 	 * tries to create this account
 	 *
@@ -85,7 +72,7 @@ public class AccountCreator {
 	public AccountResult create() {
 		setupAllValidators();
 
-		Result result = runValidators();
+		Result result = validators.runValidators();
 		if (result != null) {
 			return new AccountResult(result, username);
 		}
