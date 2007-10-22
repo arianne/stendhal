@@ -33,7 +33,9 @@ public class LootableSlotTest {
 
 	@Test
 	public final void testAddRPObject() {
-		LootableSlot ls = new LootableSlot(new Entity(){});
+
+		LootableSlot ls = new LootableSlot(new Entity() {
+		});
 		ls.add(new RPObject()); // NPE caused by not assigned Owner
 		ls.add(new RPObject());
 		ls.add(new RPObject());

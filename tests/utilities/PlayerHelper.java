@@ -1,4 +1,4 @@
-package games.stendhal.server.maps;
+package utilities;
 
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.slot.EntitySlot;

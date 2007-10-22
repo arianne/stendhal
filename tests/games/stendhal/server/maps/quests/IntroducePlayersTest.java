@@ -13,7 +13,6 @@ import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
-import games.stendhal.server.maps.PlayerHelper;
 import games.stendhal.server.maps.semos.townhall.BoyNPC;
 import marauroa.common.Log4J;
 import marauroa.common.game.RPObject;
@@ -23,6 +22,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
+
+import utilities.PlayerHelper;
 
 public class IntroducePlayersTest {
 

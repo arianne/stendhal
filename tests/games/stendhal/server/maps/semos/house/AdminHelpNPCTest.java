@@ -7,13 +7,14 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
-import games.stendhal.server.maps.PlayerHelper;
 import marauroa.common.game.RPObject;
 
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import utilities.PlayerHelper;
 
 public class AdminHelpNPCTest {
 

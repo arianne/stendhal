@@ -10,7 +10,6 @@ import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
-import games.stendhal.server.maps.PlayerHelper;
 import games.stendhal.server.maps.semos.city.RetiredAdventurerNPC;
 import marauroa.common.Log4J;
 import marauroa.common.game.RPObject;
@@ -19,6 +18,8 @@ import marauroa.common.game.RPObject.ID;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import utilities.PlayerHelper;
 
 public class BeerForHayunnTest {
 	private class MockRetiredAdventurer extends RetiredAdventurerNPC {
