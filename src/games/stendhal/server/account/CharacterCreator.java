@@ -8,7 +8,6 @@ import games.stendhal.server.rule.RuleSetFactory;
 
 import java.sql.SQLException;
 
-import marauroa.common.game.AccountResult;
 import marauroa.common.game.CharacterResult;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
