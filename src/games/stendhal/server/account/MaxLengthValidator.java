@@ -24,7 +24,7 @@ public class MaxLengthValidator implements AccountParameterValidator {
 
 	public Result validate() {
 		if (parameterValue.length() > maxLength)  {
-			return Result.FAILED_STRING_SIZE;
+			return Result.FAILED_STRING_TOO_LONG;
 		}
 
 		return null;

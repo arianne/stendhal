@@ -24,7 +24,7 @@ public class MinLengthValidator implements AccountParameterValidator {
 
 	public Result validate() {
 		if (parameterValue.length() < minLength)  {
-			return Result.FAILED_STRING_SIZE;
+			return Result.FAILED_STRING_TOO_SHORT;
 		}
 
 		return null;

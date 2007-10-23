@@ -21,7 +21,7 @@ public class ReservedSubStringValidator implements AccountParameterValidator {
 
 	public Result validate() {
 		if (parameterValue.toLowerCase().contains("admin")) {
-			return Result.FAILED_INVALID_CHARACTER_USED;
+			return Result.FAILED_RESERVED_NAME;
 		}
 
 		// name must not be equal to "gm". We do not use a substring filter
@@ -30,7 +30,7 @@ public class ReservedSubStringValidator implements AccountParameterValidator {
 		// letters are allowed, it should not be possible to "highlight" the
 		// "GM" in any way within the name.
 		if (parameterValue.toLowerCase().equals("gm")) {
-			return Result.FAILED_INVALID_CHARACTER_USED;
+			return Result.FAILED_RESERVED_NAME;
 		}
 
 		return null;
