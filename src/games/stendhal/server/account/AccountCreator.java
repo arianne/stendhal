@@ -17,8 +17,6 @@ import org.apache.log4j.Logger;
  */
 public class AccountCreator {
 	private static Logger logger = Logger.getLogger(AccountCreator.class);
-	private ValidatorList validators = new ValidatorList();
-
 	private String username;
 	private String password;
 	private String email;
@@ -36,42 +34,14 @@ public class AccountCreator {
 		this.email = email.trim();
 	}
 
-	private void setupValidatorsForUsername() {
-		validators.add(new NotEmptyValidator(username));
-		validators.add(new MinLengthValidator(username, 4));
-		validators.add(new MaxLengthValidator(username, 20));
-
-		validators.add(new LowerCaseValidator(username));
-		validators.add(new NameCharacterValidator(username));
-		validators.add(new ReservedSubStringValidator(username));
-	}
-
-	private void setupValidatorsForPassword() {
-		validators.add(new NotEmptyValidator(password));
-		validators.add(new MinLengthValidator(password, 4));
-		validators.add(new MaxLengthValidator(password, 100));
-		validators.add(new PasswordDiffersFromUsernameValidator(username, password));
-	}
-
-	private void setupValidatorsForEMail() {
-		validators.add(new NotEmptyValidator(email));
-		validators.add(new MinLengthValidator(email, 6));
-		validators.add(new MaxLengthValidator(email, 100));
-	}
-
-	private void setupAllValidators() {
-		setupValidatorsForUsername();
-		setupValidatorsForPassword();
-		setupValidatorsForEMail();
-	}
-
 	/**
 	 * tries to create this account
 	 *
 	 * @return AccountResult
 	 */
 	public AccountResult create() {
-		setupAllValidators();
+		AccountCreationRules rules = new AccountCreationRules(username, password, email);
+		ValidatorList validators = rules.getAllRules();
 
 		Result result = validators.runValidators();
 		if (result != null) {
