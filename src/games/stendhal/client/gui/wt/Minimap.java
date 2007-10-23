@@ -34,6 +34,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GraphicsConfiguration;
 import java.awt.Point;
+import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 
@@ -105,6 +106,17 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 	private BufferedImage image;
 
 	private StendhalClient client;
+	
+	/**
+	 * PATHFIND
+	 */
+	
+	private int nodo_actual=0;
+	
+	private Pathfind pathfind;
+	
+	private CollisionDetection collisiondetection;
+
 
 	/** Creates a new instance of Minimap */
 	public Minimap(StendhalClient client) {
@@ -117,6 +129,9 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 		setMovable(true);
 		setMinimizeable(true);
 
+		// INIT PATHFIND
+		pathfind = new Pathfind();
+		
 		// Show nothing until there is map data
 		resizeToFitClientArea(100, 0);
 	}
@@ -134,6 +149,11 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 	public void update(CollisionDetection cd, GraphicsConfiguration gc,
 			String zone) {
 		setTitletext(zone);
+
+		// FOR PATHFINDING THING
+		collisiondetection=cd;
+		pathfind.ClearPath();
+		nodo_actual=0;
 
 		// calculate size and scale
 		int w = cd.getWidth();
@@ -171,7 +191,7 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 		mapgrapics.dispose();
 
 		// now resize the panel to match the size of the map
-		resizeToFitClientArea(width, height);
+		resizeToFitClientArea(width, height+2);
 
 		updateView();
 	}
@@ -241,6 +261,50 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 		// draw minimap
 		vg.drawImage(image, 0, 0, null);
 
+		//		PATHFIND--------------------------------------
+		
+		pathfind.Reinice();
+		while (!pathfind.ReachedGoal()){
+			pathfind.PathNextNode();
+			vg.fillRect(pathfind.NodeGetX() * scale, pathfind.NodeGetY() * scale, scale, scale);
+		}		
+		pathfind.Reinice();
+
+		while (!pathfind.ReachedGoal()){
+			pathfind.PathJumpNode();
+			vg.setColor(Color.CYAN);
+			vg.fillRect(pathfind.NodeGetX() * scale, pathfind.NodeGetY() * scale, scale, scale);
+		}	
+		pathfind.Reinice();
+
+		
+		if(nodo_actual!=0){
+			pathfind.PathJumpToNode(nodo_actual);
+			int manhatan=(int)((Math.abs(playerX - pathfind.NodeGetX()) + Math.abs(playerY - pathfind.NodeGetY())));
+			
+			if (manhatan<6){
+					
+				pathfind.PathJumpNode();
+				
+				System.out.println("TO WAYPOINT: " + pathfind.NodeGetX() + " " + pathfind.NodeGetY() );
+				
+				RPAction action = new RPAction();
+				action.put("type", "moveto");
+				action.put("x", pathfind.NodeGetX());
+				action.put("y", pathfind.NodeGetY());
+
+				client.send(action);
+				
+				
+				nodo_actual = pathfind.final_path_index;
+				
+				if (pathfind.ReachedGoal()) pathfind.ClearPath();
+			}
+			
+		}
+
+		//--------------------------------------
+		
 		// Draw on ground entities
 		for (Entity entity : client.getGameObjects()) {
 			if (!entity.isOnGround()) {
@@ -391,14 +455,45 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 		// The p.y seems higher than it should after adjustment.
 
 		/*
-		 * Move the player to the coordinates
+		 * Move the player to the coordinates using Pathfinding
 		 */
-		RPAction action = new RPAction();
-		action.put("type", "moveto");
-		action.put("x", (p.x + panx - getClientX()) / scale);
-		action.put("y", ((p.y + pany - getClientY()) / scale) - 1);
 
-		client.send(action);
+		//check if destination is walkeable.
+		if (!collisiondetection.walkable((p.x + panx - getClientX()) / scale, ((p.y + pany - getClientY()) / scale) - 1))
+		{
+			return true;
+		}
+				
+		//System.out.println("TAMANO: "+ width + " "+ height + " "+panx + " "+pany + " " + getClientX() + " " +getClientY()) ;
+		nodo_actual=0;
+		
+		//Rectangle(int x, int y, int width, int height) 
+		int width2= width<192 ? width : 192;
+		int height2=height<192 ? height : 192;
+		Rectangle search_area = new Rectangle((panx)/scale,(pany)/scale,width2/scale,height2/scale);
+		
+		long computation_time = System.currentTimeMillis();
+		
+		if (pathfind.NewPath(collisiondetection,
+				(int) playerX,(int)playerY,
+				(p.x + panx - getClientX()) / scale,
+				((p.y + pany - getClientY()) / scale) - 1, search_area)){
+		
+			pathfind.PathJumpNode();
+			nodo_actual = pathfind.final_path_index;
+			
+			System.out.println("PATH SIZE: "+ pathfind.final_path_index);
+			System.out.println("FIRST WAYPOINT: " + " " + pathfind.NodeGetX()+ " " + pathfind.NodeGetY());
+			
+			RPAction action = new RPAction();
+			action.put("type", "moveto");
+			action.put("x", pathfind.NodeGetX());
+			action.put("y", pathfind.NodeGetY());
+	
+			client.send(action);
+		
+		}
+		System.out.println("PATH CALCULATION TIME: " + (System.currentTimeMillis() - computation_time) + "ms");
 		return true;
 	}
 
