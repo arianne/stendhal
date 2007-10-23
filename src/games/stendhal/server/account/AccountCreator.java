@@ -8,7 +8,6 @@ import marauroa.common.game.Result;
 import marauroa.server.game.db.DatabaseFactory;
 import marauroa.server.game.db.JDBCDatabase;
 import marauroa.server.game.db.Transaction;
-import marauroa.test.TestHelper;
 
 import org.apache.log4j.Logger;
 
@@ -40,14 +39,32 @@ public class AccountCreator {
 	 * @return AccountResult
 	 */
 	public AccountResult create() {
-		AccountCreationRules rules = new AccountCreationRules(username, password, email);
-		ValidatorList validators = rules.getAllRules();
-
-		Result result = validators.runValidators();
+		Result result = validate();
 		if (result != null) {
 			return new AccountResult(result, username);
 		}
 
+		return insertIntoDatabase();
+	}
+
+	/**
+	 * Checks the user provide parameters
+	 * 
+	 * @return null in case everything is ok, a Resul in case some validator failed
+	 */
+	private Result validate() {
+		AccountCreationRules rules = new AccountCreationRules(username, password, email);
+		ValidatorList validators = rules.getAllRules();
+		Result result = validators.runValidators();
+		return result;
+	}
+
+	/**
+	 * tries to create the player in the database
+	 *
+	 * @return Result.OK_CREATED on success
+	 */
+	private AccountResult insertIntoDatabase() {
 		JDBCDatabase database = (JDBCDatabase) DatabaseFactory.getDatabase();
 		Transaction trans = database.getTransaction();
 		try {
@@ -63,12 +80,12 @@ public class AccountCreator {
 			trans.commit();
 			return new AccountResult(Result.OK_CREATED, username);
 		} catch (SQLException e) {
+			logger.warn("SQL exception while trying to create a new account", e);
 			try {
 				trans.rollback();
-			} catch (SQLException e1) {
-				e1.printStackTrace();
+			} catch (SQLException rollbackException) {
+				logger.error("Rollback failed: ", rollbackException);
 			}
-			TestHelper.fail();
 			return new AccountResult(Result.FAILED_EXCEPTION, username);
 		}
 	}
