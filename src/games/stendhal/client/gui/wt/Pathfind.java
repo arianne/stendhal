@@ -134,7 +134,7 @@ public class Pathfind {
 
 		ClearPath();
 
-		//1) Añade el cuadro inicial a la lista abierta.
+		//1) Anyade el cuadro inicial a la lista abierta.
 		nodo_ini.padre=new Node();
 
 		lista_abierta.offer(nodo_ini);
@@ -148,11 +148,11 @@ public class Pathfind {
 				return false;
 			}
 
-			/* a) Busca el cuadro con el coste F más bajo en la lista abierta. 
+			/* a) Busca el cuadro con el coste F mas bajo en la lista abierta. 
 			 * Nos referimos a este como el cuadro actual. 
 			 */
 
-			//b) Cámbialo a la lista cerrada
+			//b) Cambialo a la lista cerrada
 
 			Node nodo_Fm = lista_abierta.poll();
 			lista_cerrada.add(nodo_Fm);
@@ -176,7 +176,7 @@ public class Pathfind {
 							continue;
 					if ((y_tmp!=nodo_Fm.y)&&(x_tmp!=nodo_Fm.x))	continue;
 
-//					//  Si no es transitable o si está en la lista cerrada, ignóralo. 
+//					//  Si no es transitable o si esta en la lista cerrada, ignoralo. 
 //					En cualquier otro caso haz lo siguiente.
 
 					if(nodeRegistryclose.get(x_tmp + y_tmp * collisiondetection.getWidth())!=null) continue;
@@ -213,11 +213,11 @@ public class Pathfind {
 						Node temp = nodeRegistry.get(nodo_UP.x + nodo_UP.y * collisiondetection.getWidth());
 
 						if(temp!=null){
-//							//Si ya está en la lista abierta, comprueba si el camino para ese 
+//							//Si ya esta en la lista abierta, comprueba si el camino para ese 
 //							es mejor usando el coste G como baremo. Un coste G menor significa 
-//							que este es un mejor camino. Si es así, cambia el padre del cuadrado 
-//							al cuadro actual y recalcula G y F del cuadro. Si estás manteniendo la 
-//							lista abierta por orden de puntuación F, podrías necesitar reordenar la 
+//							que este es un mejor camino. Si es asi, cambia el padre del cuadrado 
+//							al cuadro actual y recalcula G y F del cuadro. Si estas manteniendo la 
+//							lista abierta por orden de puntuacion F, podrias necesitar reordenar la 
 //							lista para llevar cuenta del cambio.
 							if (nodo_UP.G < temp.G){
 								temp.G = nodo_UP.G;
@@ -227,7 +227,7 @@ public class Pathfind {
 							}
 
 						}else{
-//							//Si no está en la lista abierta, añádelo a la lista abierta. 
+//							//Si no esta en la lista abierta, anyadelo a la lista abierta. 
 //							Haz que el cuadro actual sea el padre de este cuadro. Almacena los 
 //							costes F, G y H del cuadro.
 							//lista_abierta.add(nodo_UP);
