@@ -485,18 +485,4 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 		}
 	}
 
-	/**
-	 * Cleans the old chat log entries.
-	 */
-	public void cleanChatLog(Transaction trans) {
-		/*
-		 * try { Connection connection = ((JDBCTransaction)
-		 * trans).getConnection(); Statement stmt =
-		 * connection.createStatement(); logger.info("Cleaning chat log");
-		 * stmt.executeUpdate("UPDATE gameEvents SET param1=null, param2=null
-		 * WHERE param2 IS NOT NULL AND event='chat' AND timedate <
-		 * DATE_SUB(CURDATE(), INTERVAL 2 DAY);"); stmt.close(); } catch
-		 * (SQLException e) { logger.error(e, e); }
-		 */
-	}
 }

@@ -48,10 +48,6 @@ public class ChatAction implements ActionListener {
 		StendhalRPRuleProcessor.register("chat", chat);
 		StendhalRPRuleProcessor.register("tell", chat);
 		StendhalRPRuleProcessor.register("support", chat);
-
-		// start the logcleaner
-		LogCleaner logCleaner = new LogCleaner();
-		logCleaner.start();
 	}
 
 	public void onAction(Player player, RPAction action) {
@@ -280,28 +276,5 @@ public class ChatAction implements ActionListener {
 	 * outside the normal turn based processing because the SQL command may take
 	 * more then 100ms on MySQL.
 	 */
-	protected static class LogCleaner extends Thread {
 
-		public LogCleaner() {
-			super("ChatLogCleaner");
-			super.setDaemon(true);
-			super.setPriority(Thread.MIN_PRIORITY);
-		}
-
-		@Override
-		public void run() {
-			while (true) {
-				try {
-					StendhalPlayerDatabase database = StendhalPlayerDatabase
-							.getDatabase();
-					Transaction transaction = database.getTransaction();
-					database.cleanChatLog(transaction);
-					transaction.commit();
-					Thread.sleep(3600 * 1000);
-				} catch (Exception e) {
-					logger.error(e, e);
-				}
-			}
-		}
-	}
 }
