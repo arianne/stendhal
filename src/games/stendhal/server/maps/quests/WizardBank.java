@@ -105,7 +105,7 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 			if (player != null) {
 				IRPZone playerZone = player.getZone();
 
-				if (playerZone.equals(zone)) {
+				if ((playerZone != null) && playerZone.equals(zone)) {
 					if (counter > 0) {
 						npc.say(player.getTitle() + ", you have "
 								+ TimeUtil.timeUntil(counter) + " left.");
