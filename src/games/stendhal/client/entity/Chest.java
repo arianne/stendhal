@@ -43,7 +43,7 @@ public class Chest extends Entity {
 	/**
 	 * Create a chest entity.
 	 */
-	Chest() {
+	public Chest() {
 	}
 
 
