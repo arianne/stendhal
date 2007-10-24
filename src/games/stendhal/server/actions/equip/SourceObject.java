@@ -98,7 +98,7 @@ class SourceObject extends MoveableObject {
 			// item is not contained
 			if (StendhalRPWorld.get().has(baseItemId)) {
 				Entity entity = (Entity) StendhalRPWorld.get().get(baseItemId);
-				if (!(entity instanceof Item)) {
+				if (!(entity instanceof Item) || (entity == null)) {
 					return;
 				}
 				item = (Item) entity;
@@ -222,18 +222,23 @@ class SourceObject extends MoveableObject {
 	 * @return true, if it cannot be take; false otherwise
 	 */
 	private boolean isItemBelowOtherPlayer() {
-		// prevent taking of items which are below other players
-		List<Player> players = player.getZone().getPlayers();
-		for (Player otherPlayer : players) {
-			if (player.equals(otherPlayer)) {
-				continue;
+			// prevent taking of items which are below other players
+			List<Player> players = player.getZone().getPlayers();
+			for (Player otherPlayer : players) {
+				if (player.equals(otherPlayer)) {
+					continue;
+				}
+				try {
+					if (otherPlayer.getArea().intersects(item.getArea())) {
+						player.sendPrivateText("You cannot take items which are below other players");
+						return true;
+					}
+				} catch (RuntimeException e) {
+					logger.error(e + "otherPlayer=" + otherPlayer + " item=" + item + " area=" + (otherPlayer == null ? " ./. " : otherPlayer.getArea()), e);
+					return true;
+				}
 			}
-			if (otherPlayer.getArea().intersects(item.getArea())) {
-				player.sendPrivateText("You cannot take items which are below other players");
-				return true;
-			}
-		}
-		return false;
+			return false;
 	}
 }
 
