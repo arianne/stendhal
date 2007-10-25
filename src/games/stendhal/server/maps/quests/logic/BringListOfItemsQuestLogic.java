@@ -34,7 +34,7 @@ public class BringListOfItemsQuestLogic {
 	 * @param hash If true, sets a # character in front of every name
 	 * @return A list of weapon names
 	 */
-	protected List<String> missingItems(Player player, boolean hash) {
+	protected List<String> getListOfStillMissingItems(Player player, boolean hash) {
 		List<String> result = new LinkedList<String>();
 
 		String doneText = player.getQuest(concreteQuest.getSlotName());
@@ -53,11 +53,11 @@ public class BringListOfItemsQuestLogic {
 		return result;
 	}
 
-	private void step_1() {
-		SpeakerNPC npc = concreteQuest.getNPC();
-
-		// player says hi before starting the quest
-		npc.add(
+	/**
+	 * player says hi before starting the quest
+	 */
+	private void welcomeNewPlayer() {
+		concreteQuest.getNPC().add(
 			ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
 			new SpeakerNPC.ChatCondition() {
@@ -69,84 +69,108 @@ public class BringListOfItemsQuestLogic {
 			ConversationStates.ATTENDING,
 			concreteQuest.welcomeBeforeStartingQuest(),
 			null);
+	}
 
-		List<String> questTrigger = new LinkedList<String>(ConversationPhrases.QUEST_MESSAGES);
+	private void tellAboutQuest() {
+ 		List<String> questTrigger = new LinkedList<String>(ConversationPhrases.QUEST_MESSAGES);
 		List<String> additionalTrigger = concreteQuest.getAdditionalTriggerPhraseForQuest();
 		questTrigger.addAll(additionalTrigger);
 
-		npc.add(ConversationStates.ATTENDING,
-				questTrigger,
-				new SpeakerNPC.ChatCondition() {
-					@Override
-					public boolean fire(Player player, String text,	SpeakerNPC engine) {
-						return !player.hasQuest(concreteQuest.getSlotName());
+		concreteQuest.getNPC().add(ConversationStates.ATTENDING,
+			questTrigger,
+			new SpeakerNPC.ChatCondition() {
+				@Override
+				public boolean fire(Player player, String text,	SpeakerNPC engine) {
+					return !player.hasQuest(concreteQuest.getSlotName());
+				}
+			}, ConversationStates.QUEST_OFFERED, null,
+			new SpeakerNPC.ChatAction() {
+				@Override
+				public void fire(Player player, String text,
+						SpeakerNPC engine) {
+					if (!player.isQuestCompleted(concreteQuest.getSlotName())) {
+						engine.say(concreteQuest.respondToQuest());
+					} else {
+						engine.say(concreteQuest.respondToQuestAfterItHasAlreadyBeenCompleted());
+						engine.setCurrentState(ConversationStates.ATTENDING);
 					}
-				}, ConversationStates.QUEST_OFFERED, null,
-				new SpeakerNPC.ChatAction() {
-					@Override
-					public void fire(Player player, String text,
-							SpeakerNPC engine) {
-						if (!player.isQuestCompleted(concreteQuest.getSlotName())) {
-							engine.say(concreteQuest.respondToQuest());
-						} else {
-							engine.say(concreteQuest.respondToQuestAfterItHasAlreadyBeenCompleted());
-							engine.setCurrentState(ConversationStates.ATTENDING);
-						}
-					}
-				});
+				}
+			});
+	}
 
-		// player is willing to help
-		npc.add(ConversationStates.QUEST_OFFERED,
-				ConversationPhrases.YES_MESSAGES, null,
-				ConversationStates.ATTENDING, null,
-				new SpeakerNPC.ChatAction() {
-					@Override
-					public void fire(Player player, String text, SpeakerNPC engine) {
-						engine.say(concreteQuest.respondToQuestAcception());
-						player.setQuest(concreteQuest.getSlotName(), "");
-					}
-				});
+	/**
+	 * player is willing to help
+	 */
+	private void acceptQuest() {
+		concreteQuest.getNPC().add(ConversationStates.QUEST_OFFERED,
+			ConversationPhrases.YES_MESSAGES, null,
+			ConversationStates.ATTENDING, null,
+			new SpeakerNPC.ChatAction() {
+				@Override
+				public void fire(Player player, String text, SpeakerNPC engine) {
+					engine.say(concreteQuest.respondToQuestAcception());
+					player.setQuest(concreteQuest.getSlotName(), "");
+				}
+			});
+	}
 
-		// player is not willing to help
-		npc.add(ConversationStates.QUEST_OFFERED, ConversationPhrases.NO_MESSAGES, null,
-				ConversationStates.ATTENDING,
-				concreteQuest.respondToQuestRefusal(), null);
+	/**
+	 * player is not willing to help
+	 */
+	private void rejectQuest() {
+		concreteQuest.getNPC().add(ConversationStates.QUEST_OFFERED, ConversationPhrases.NO_MESSAGES, null,
+			ConversationStates.ATTENDING,
+			concreteQuest.respondToQuestRefusal(), null);
+	}
+	
+	/**
+	 * player asks what exactly is missing
+	 */
+	private void listMissingItems() {
+		concreteQuest.getNPC().add(ConversationStates.ATTENDING, concreteQuest.getTriggerPhraseToEnumerateMissingItems(),
+			new SpeakerNPC.ChatCondition() {
+				@Override
+				public boolean fire(Player player, String text, SpeakerNPC engine) {
+					return player.hasQuest(concreteQuest.getSlotName())
+							&& !player.isQuestCompleted(concreteQuest.getSlotName());
+				}
+			}, ConversationStates.QUESTION_1, null,
+			new SpeakerNPC.ChatAction() {
+				@Override
+				public void fire(Player player, String text, SpeakerNPC engine) {
+					List<String> missingItems = getListOfStillMissingItems(player, true);
+					engine.say(concreteQuest.askForMissingItems(missingItems));
+				}
+			});
+	}
 
-		// player asks what exactly is missing
-		npc.add(ConversationStates.ATTENDING, concreteQuest.getTriggerPhraseToEnumerateMissingItems(),
-				new SpeakerNPC.ChatCondition() {
-					@Override
-					public boolean fire(Player player, String text, SpeakerNPC engine) {
-						return player.hasQuest(concreteQuest.getSlotName())
-								&& !player.isQuestCompleted(concreteQuest.getSlotName());
-					}
-				}, ConversationStates.QUESTION_1, null,
-				new SpeakerNPC.ChatAction() {
-					@Override
-					public void fire(Player player, String text, SpeakerNPC engine) {
-						List<String> missingItems = missingItems(player, true);
-						engine.say(concreteQuest.askForMissingItems(missingItems));
-					}
-				});
+	/**
+	 * player says he doesn't have required items with him
+	 */
+	private void playerDoesNotWantToGiveItems() {
+		concreteQuest.getNPC().add(ConversationStates.QUESTION_1, "no", null,
+			ConversationStates.IDLE, null, new SpeakerNPC.ChatAction() {
+				@Override
+				public void fire(Player player, String text, SpeakerNPC engine) {
+					List<String> missingItems = getListOfStillMissingItems(player, false);
+					engine.say(concreteQuest.respondToPlayerSayingHeHasNoItems(missingItems));
+				}
+			});
+	}
 
-		// player says he doesn't have required weapons with him
-		npc.add(ConversationStates.QUESTION_1, "no", null,
-				ConversationStates.IDLE, null, new SpeakerNPC.ChatAction() {
-					@Override
-					public void fire(Player player, String text, SpeakerNPC engine) {
-						List<String> missingItems = missingItems(player, false);
-						engine.say(concreteQuest.respondToPlayerSayingHeHasNoItems(missingItems));
-					}
-				});
+	/**
+	 * player says he has a required weapon with him
+	 */
+	private void playerWantsToGiveItems() {
+		concreteQuest.getNPC().add(ConversationStates.QUESTION_1,
+			ConversationPhrases.YES_MESSAGES, null,
+			ConversationStates.QUESTION_1, concreteQuest.askForItemsAfterPlayerSaidHeHasItems(),
+			null);
+	}
 
-		// player says he has a required weapon with him
-		npc.add(ConversationStates.QUESTION_1,
-				ConversationPhrases.YES_MESSAGES, null,
-				ConversationStates.QUESTION_1, concreteQuest.askForItemsAfterPlayerSaidHeHasItems(),
-				null);
-
+	private void offerWeapon() {
 		for (String weapon : concreteQuest.getNeededItems()) {
-			npc.add(ConversationStates.QUESTION_1, weapon, null,
+			concreteQuest.getNPC().add(ConversationStates.QUESTION_1, weapon, null,
 					ConversationStates.QUESTION_1, null,
 					new SpeakerNPC.ChatAction() {
 						@Override
@@ -156,7 +180,7 @@ public class BringListOfItemsQuestLogic {
 								return;
 							}
 
-							List<String> missing = missingItems(player, false);
+							List<String> missing = getListOfStillMissingItems(player, false);
 							if (!missing.contains(text)) {
 								engine.say(concreteQuest.respondToOfferOfNotMissingItem());
 								return;
@@ -171,7 +195,7 @@ public class BringListOfItemsQuestLogic {
 							String doneText = player.getQuest(concreteQuest.getSlotName());
 							player.setQuest(concreteQuest.getSlotName(), doneText + ";" + text);
 							// check if the player has brought all weapons
-							missing = missingItems(player, true);
+							missing = getListOfStillMissingItems(player, true);
 							if (missing.size() > 0) {
 								engine.say(concreteQuest.respondToItemBrought());
 							} else {
@@ -186,15 +210,11 @@ public class BringListOfItemsQuestLogic {
 		}
 	}
 
-	private void step_2() {
-		// Just find some of the items somewhere and bring them to the NPC.
-	}
-
-	private void step_3() {
-		SpeakerNPC npc = concreteQuest.getNPC();
-
-		// player returns while quest is still active
-		npc.add(
+	/**
+	 * player returns while quest is still active
+	 */
+	private void welcomeKnownPlayer() {
+		concreteQuest.getNPC().add(
 			ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
 			new SpeakerNPC.ChatCondition() {
@@ -208,10 +228,14 @@ public class BringListOfItemsQuestLogic {
 			ConversationStates.ATTENDING,
 			concreteQuest.welcomeDuringActiveQuest(),
 			null);
+	}
 
-		// player returns after finishing the quest
+	/**
+	 * player returns after finishing the quest
+	 */
+	private void welcomePlayerAfterQuest() {
 		if (concreteQuest.shouldWelcomeAfterQuestIsCompleted()) {
-			npc.add(ConversationStates.IDLE,
+			concreteQuest.getNPC().add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
@@ -229,8 +253,20 @@ public class BringListOfItemsQuestLogic {
 	 * Adds the quest to the world
 	 */
 	public void addToWorld() {
-		step_1();
-		step_2();
-		step_3();
+
+		// talk about quest
+		welcomeNewPlayer();
+		tellAboutQuest();
+		acceptQuest();
+		rejectQuest();
+
+		// accept items
+		welcomeKnownPlayer();
+		listMissingItems();
+		playerDoesNotWantToGiveItems();
+		playerWantsToGiveItems();
+		offerWeapon();
+		
+		welcomePlayerAfterQuest();
 	}
 }
