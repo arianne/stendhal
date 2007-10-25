@@ -56,7 +56,7 @@ public class BringListOfItemsQuestLogic {
 	/**
 	 * player says hi before starting the quest
 	 */
-	private void welcomeNewPlayer() {
+	protected void welcomeNewPlayer() {
 		concreteQuest.getNPC().add(
 			ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
@@ -71,7 +71,10 @@ public class BringListOfItemsQuestLogic {
 			null);
 	}
 
-	private void tellAboutQuest() {
+	/**
+	 * player asks about quest
+	 */
+	protected void tellAboutQuest() {
  		List<String> questTrigger = new LinkedList<String>(ConversationPhrases.QUEST_MESSAGES);
 		List<String> additionalTrigger = concreteQuest.getAdditionalTriggerPhraseForQuest();
 		questTrigger.addAll(additionalTrigger);
@@ -101,7 +104,7 @@ public class BringListOfItemsQuestLogic {
 	/**
 	 * player is willing to help
 	 */
-	private void acceptQuest() {
+	protected void acceptQuest() {
 		concreteQuest.getNPC().add(ConversationStates.QUEST_OFFERED,
 			ConversationPhrases.YES_MESSAGES, null,
 			ConversationStates.ATTENDING, null,
@@ -117,7 +120,7 @@ public class BringListOfItemsQuestLogic {
 	/**
 	 * player is not willing to help
 	 */
-	private void rejectQuest() {
+	protected void rejectQuest() {
 		concreteQuest.getNPC().add(ConversationStates.QUEST_OFFERED, ConversationPhrases.NO_MESSAGES, null,
 			ConversationStates.ATTENDING,
 			concreteQuest.respondToQuestRefusal(), null);
@@ -126,7 +129,7 @@ public class BringListOfItemsQuestLogic {
 	/**
 	 * player asks what exactly is missing
 	 */
-	private void listMissingItems() {
+	protected void listMissingItems() {
 		concreteQuest.getNPC().add(ConversationStates.ATTENDING, concreteQuest.getTriggerPhraseToEnumerateMissingItems(),
 			new SpeakerNPC.ChatCondition() {
 				@Override
@@ -147,7 +150,7 @@ public class BringListOfItemsQuestLogic {
 	/**
 	 * player says he doesn't have required items with him
 	 */
-	private void playerDoesNotWantToGiveItems() {
+	protected void playerDoesNotWantToGiveItems() {
 		concreteQuest.getNPC().add(ConversationStates.QUESTION_1, "no", null,
 			ConversationStates.IDLE, null, new SpeakerNPC.ChatAction() {
 				@Override
@@ -161,59 +164,60 @@ public class BringListOfItemsQuestLogic {
 	/**
 	 * player says he has a required weapon with him
 	 */
-	private void playerWantsToGiveItems() {
+	protected void playerWantsToGiveItems() {
 		concreteQuest.getNPC().add(ConversationStates.QUESTION_1,
 			ConversationPhrases.YES_MESSAGES, null,
 			ConversationStates.QUESTION_1, concreteQuest.askForItemsAfterPlayerSaidHeHasItems(),
 			null);
 	}
 
-	private void offerWeapon() {
-		for (String weapon : concreteQuest.getNeededItems()) {
-			concreteQuest.getNPC().add(ConversationStates.QUESTION_1, weapon, null,
-					ConversationStates.QUESTION_1, null,
-					new SpeakerNPC.ChatAction() {
-						@Override
-						public void fire(Player player, String text, SpeakerNPC engine) {
-							if (!concreteQuest.getNeededItems().contains(text)) {
-								engine.say(concreteQuest.respondToOfferOfNotNeededItem());
-								return;
-							}
+	/**
+	 * player offers an item
+	 */
+	protected void offerItem() {
+		concreteQuest.getNPC().add(ConversationStates.QUESTION_1, concreteQuest.getNeededItems(), null,
+			ConversationStates.QUESTION_1, null,
+			new SpeakerNPC.ChatAction() {
+				@Override
+				public void fire(Player player, String text, SpeakerNPC engine) {
+					if (!concreteQuest.getNeededItems().contains(text)) {
+						engine.say(concreteQuest.respondToOfferOfNotNeededItem());
+						return;
+					}
 
-							List<String> missing = getListOfStillMissingItems(player, false);
-							if (!missing.contains(text)) {
-								engine.say(concreteQuest.respondToOfferOfNotMissingItem());
-								return;
-							}
+					List<String> missing = getListOfStillMissingItems(player, false);
+					if (!missing.contains(text)) {
+						engine.say(concreteQuest.respondToOfferOfNotMissingItem());
+						return;
+					}
 
-							if (!player.drop(text)) {
-								engine.say(concreteQuest.respondToOfferOfNotExistingItem(text));
-								return;
-							}
+					if (!player.drop(text)) {
+						engine.say(concreteQuest.respondToOfferOfNotExistingItem(text));
+						return;
+					}
 
-							// register weapon as done
-							String doneText = player.getQuest(concreteQuest.getSlotName());
-							player.setQuest(concreteQuest.getSlotName(), doneText + ";" + text);
-							// check if the player has brought all weapons
-							missing = getListOfStillMissingItems(player, true);
-							if (missing.size() > 0) {
-								engine.say(concreteQuest.respondToItemBrought());
-							} else {
-								concreteQuest.rewardPlayer(player);
-								player.notifyWorldAboutChanges();
-								engine.say(concreteQuest.respondToLastItemBrought());
-								player.setQuest(concreteQuest.getSlotName(), "done");
-								engine.setCurrentState(ConversationStates.ATTENDING);
-							}
-						}
-					});
-		}
+					// register weapon as done
+					String doneText = player.getQuest(concreteQuest.getSlotName());
+					player.setQuest(concreteQuest.getSlotName(), doneText + ";" + text);
+					// check if the player has brought all weapons
+					missing = getListOfStillMissingItems(player, true);
+					if (missing.size() > 0) {
+						engine.say(concreteQuest.respondToItemBrought());
+					} else {
+						concreteQuest.rewardPlayer(player);
+						player.notifyWorldAboutChanges();
+						engine.say(concreteQuest.respondToLastItemBrought());
+						player.setQuest(concreteQuest.getSlotName(), "done");
+						engine.setCurrentState(ConversationStates.ATTENDING);
+					}
+				}
+			});
 	}
 
 	/**
 	 * player returns while quest is still active
 	 */
-	private void welcomeKnownPlayer() {
+	protected void welcomeKnownPlayer() {
 		concreteQuest.getNPC().add(
 			ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
@@ -233,7 +237,7 @@ public class BringListOfItemsQuestLogic {
 	/**
 	 * player returns after finishing the quest
 	 */
-	private void welcomePlayerAfterQuest() {
+	protected void welcomePlayerAfterQuest() {
 		if (concreteQuest.shouldWelcomeAfterQuestIsCompleted()) {
 			concreteQuest.getNPC().add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
@@ -265,7 +269,7 @@ public class BringListOfItemsQuestLogic {
 		listMissingItems();
 		playerDoesNotWantToGiveItems();
 		playerWantsToGiveItems();
-		offerWeapon();
+		offerItem();
 		
 		welcomePlayerAfterQuest();
 	}
