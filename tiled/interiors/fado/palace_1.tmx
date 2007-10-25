@@ -16,7 +16,7 @@
   <image source="../../tileset/ground/greenGround2.png"/>
  </tileset>
  <tileset name="water" firstgid="50" tilewidth="32" tileheight="32">
-  <image source="../../tileset/ground/water/turbulent_water.png"/>
+  <image source="../../tileset/ground/blue_floor.png"/>
  </tileset>
  <tileset name="waterfall" firstgid="53" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/water/waterfall.png"/>

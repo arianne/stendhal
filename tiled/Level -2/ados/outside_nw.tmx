@@ -3,8 +3,8 @@
  <tileset name="../../tileset/ground/brown.png" firstgid="1" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/brown.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/ground/water/turbulent_water.png" firstgid="6" tilewidth="32" tileheight="32">
-  <image source="../../tileset/ground/water/turbulent_water.png" trans="ff00ff"/>
+ <tileset name="../../tileset/ground/blue_floor.png" firstgid="6" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/blue_floor.png" trans="ff00ff"/>
  </tileset>
  <tileset name="../../tileset/building/wall/earthen_2.png" firstgid="9" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/earthen_2.png" trans="ff00ff"/>
