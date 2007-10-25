@@ -758,15 +758,17 @@ public class OutfitDialog extends JDialog {
 						String name = Integer.toString(bodies_index
 								+ clothes_index * 100 + heads_index * 100 * 100
 								+ hairs_index * 100 * 100 * 100);
-						System.out.println("Creating " + name + ".png");
-						Image image = new BufferedImage(PLAYER_WIDTH,
-								PLAYER_HEIGHT, BufferedImage.TYPE_INT_ARGB);
-						drawFinalPlayer(getGraphics());
-						try {
-							ImageIO.write((RenderedImage) image, "png",
-									new File("outfits\\" + name + ".png"));
-						} catch (Exception e) {
-							logger.error(e, e);
+						File file = new File("outfits\\" + name + ".png");
+						if (!file.exists()) {
+							System.out.println("Creating " + name + ".png");
+							Image image = new BufferedImage(PLAYER_WIDTH,
+									PLAYER_HEIGHT, BufferedImage.TYPE_INT_ARGB);
+							drawFinalPlayer(getGraphics());
+							try {
+								ImageIO.write((RenderedImage) image, "png", file);
+							} catch (Exception e) {
+								logger.error(e, e);
+							}
 						}
 					}
 				}
