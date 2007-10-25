@@ -3,6 +3,7 @@ package games.stendhal.server.maps.quests;
 import games.stendhal.common.Grammar;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.item.StackableItem;
+import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
@@ -11,6 +12,7 @@ import games.stendhal.server.maps.quests.logic.BringListOfItemsQuestLogic;
 import games.stendhal.server.rule.RuleManager;
 
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -51,27 +53,6 @@ public class ToysCollector extends AbstractQuest implements BringListOfItemsQues
 
 	private void specialStuff() {
 		// treat "toys" as QUEST_MESSAGE
-		getNPC().add(ConversationStates.ATTENDING,
-			"toys",
-			new SpeakerNPC.ChatCondition() {
-				@Override
-				public boolean fire(Player player, String text,	SpeakerNPC engine) {
-					return !player.hasQuest(getSlotName());
-				}
-			}, ConversationStates.QUEST_OFFERED, null,
-			new SpeakerNPC.ChatAction() {
-				@Override
-				public void fire(Player player, String text,
-						SpeakerNPC engine) {
-					if (!player.isQuestCompleted(getSlotName())) {
-						engine.say(respondToQuest());
-					} else {
-						engine.say(respondToQuestAfterItHasAlreadyBeenCompleted());
-						engine.setCurrentState(ConversationStates.ATTENDING);
-					}
-				}
-			});
-
 		getNPC().add(
 			ConversationStates.ATTENDING,
 			"no",
@@ -100,6 +81,10 @@ public class ToysCollector extends AbstractQuest implements BringListOfItemsQues
 
 	public String getTriggerPhraseToEnumerateMissingItems() {
 		return "list";
+	}
+	
+	public List<String> getAdditionalTriggerPhraseForQuest() {
+		return Arrays.asList("toys");
 	}
 
 	public String welcomeBeforeStartingQuest() {

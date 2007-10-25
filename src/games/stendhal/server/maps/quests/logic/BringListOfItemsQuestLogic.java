@@ -70,8 +70,12 @@ public class BringListOfItemsQuestLogic {
 			concreteQuest.welcomeBeforeStartingQuest(),
 			null);
 
+		List<String> questTrigger = new LinkedList<String>(ConversationPhrases.QUEST_MESSAGES);
+		List<String> additionalTrigger = concreteQuest.getAdditionalTriggerPhraseForQuest();
+		questTrigger.addAll(additionalTrigger);
+
 		npc.add(ConversationStates.ATTENDING,
-				ConversationPhrases.QUEST_MESSAGES,
+				questTrigger,
 				new SpeakerNPC.ChatCondition() {
 					@Override
 					public boolean fire(Player player, String text,	SpeakerNPC engine) {

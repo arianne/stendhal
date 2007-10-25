@@ -3,6 +3,7 @@ package games.stendhal.server.maps.quests;
 import games.stendhal.common.Grammar;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.quests.logic.BringListOfItemsQuest;
@@ -71,6 +72,10 @@ public class WeaponsCollector extends AbstractQuest implements BringListOfItemsQ
 
 	public String getTriggerPhraseToEnumerateMissingItems() {
 		return "collection";
+	}
+
+	public List<String> getAdditionalTriggerPhraseForQuest() {
+		return ConversationPhrases.EMPTY;
 	}
 
 	public String welcomeBeforeStartingQuest() {
@@ -157,4 +162,5 @@ public class WeaponsCollector extends AbstractQuest implements BringListOfItemsQ
 	public String respondToOfferOfNotNeededItem() {
 		return "Oh, that is not an interesting weapon";
 	}
+
 }
