@@ -14,6 +14,7 @@ package games.stendhal.client.gui;
 
 import games.stendhal.client.GameObjects;
 import games.stendhal.client.GameScreen;
+import games.stendhal.client.IGameScreen;
 import games.stendhal.client.NotificationType;
 import games.stendhal.client.StaticGameLayers;
 import games.stendhal.client.StendhalClient;
@@ -1081,7 +1082,7 @@ public class j2DClient extends StendhalUI {
 	 * @return The game screen.
 	 */
 	@Override
-	public GameScreen getScreen() {
+	public IGameScreen getScreen() {
 		return screen;
 	}
 

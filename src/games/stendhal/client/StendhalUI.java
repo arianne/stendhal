@@ -102,7 +102,7 @@ public abstract class StendhalUI {
 	 * 
 	 * @return The game screen.
 	 */
-	public abstract GameScreen getScreen();
+	public abstract IGameScreen getScreen();
 
 	/**
 	 * Get the current game screen width.

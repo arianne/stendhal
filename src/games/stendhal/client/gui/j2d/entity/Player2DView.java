@@ -9,7 +9,7 @@ package games.stendhal.client.gui.j2d.entity;
 //
 //
 
-import games.stendhal.client.GameScreen;
+import games.stendhal.client.IGameScreen;
 import games.stendhal.client.OutfitStore;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.Player;
@@ -47,7 +47,7 @@ public class Player2DView extends RPEntity2DView {
 		Sprite tiles = store.getSprite("data/sprites/ideas/away.png");
 
 		awaySprite = store.getAnimatedSprite(tiles, 0, 0, 4,
-				GameScreen.SIZE_UNIT_PIXELS, GameScreen.SIZE_UNIT_PIXELS, 2000);
+				IGameScreen.SIZE_UNIT_PIXELS, IGameScreen.SIZE_UNIT_PIXELS, 2000);
 	}
 
 	/**

@@ -9,7 +9,7 @@ package games.stendhal.client.gui.j2d.entity;
 //
 //
 
-import games.stendhal.client.GameScreen;
+import games.stendhal.client.IGameScreen;
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
@@ -55,13 +55,13 @@ public class AnimatedLoopEntity2DView extends Entity2DView {
 		 */
 		int width = sprite.getWidth();
 
-		if (width > GameScreen.SIZE_UNIT_PIXELS) {
+		if (width > IGameScreen.SIZE_UNIT_PIXELS) {
 			sprite = store.getAnimatedSprite(sprite, 0, 0, width
-					/ GameScreen.SIZE_UNIT_PIXELS, GameScreen.SIZE_UNIT_PIXELS,
-					GameScreen.SIZE_UNIT_PIXELS, 100);
-		} else if (sprite.getHeight() > GameScreen.SIZE_UNIT_PIXELS) {
-			sprite = store.getTile(sprite, 0, 0, GameScreen.SIZE_UNIT_PIXELS,
-					GameScreen.SIZE_UNIT_PIXELS);
+					/ IGameScreen.SIZE_UNIT_PIXELS, IGameScreen.SIZE_UNIT_PIXELS,
+					IGameScreen.SIZE_UNIT_PIXELS, 100);
+		} else if (sprite.getHeight() > IGameScreen.SIZE_UNIT_PIXELS) {
+			sprite = store.getTile(sprite, 0, 0, IGameScreen.SIZE_UNIT_PIXELS,
+					IGameScreen.SIZE_UNIT_PIXELS);
 			logger.warn("Multi-row image for: " + translate(entity.getType()));
 		}
 

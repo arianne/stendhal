@@ -47,7 +47,7 @@ public abstract class LayerRenderer {
 	 * @param screen
 	 *            The screen to draw on.
 	 */
-	public void draw(GameScreen screen) {
+	public void draw(IGameScreen screen) {
 		int x = (int) screen.getViewX();
 		int y = (int) screen.getViewY();
 		int w = (int) screen.getViewWidth();
@@ -70,7 +70,7 @@ public abstract class LayerRenderer {
 	 * @param h
 	 *            The view world height.
 	 */
-	public abstract void draw(GameScreen screen, int x, int y, int w, int h);
+	public abstract void draw(IGameScreen screen, int x, int y, int w, int h);
 
 	// TODO: Cleanly remove from this level
 	public abstract void setTileset(Tileset tileset);

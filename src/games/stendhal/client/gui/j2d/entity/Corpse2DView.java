@@ -9,7 +9,7 @@ package games.stendhal.client.gui.j2d.entity;
 //
 //
 
-import games.stendhal.client.GameScreen;
+import games.stendhal.client.IGameScreen;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.Corpse;
 import games.stendhal.client.entity.Entity;
@@ -68,8 +68,8 @@ public class Corpse2DView extends Entity2DView {
 
 		this.corpse = corpse;
 
-		height = GameScreen.SIZE_UNIT_PIXELS;
-		width = GameScreen.SIZE_UNIT_PIXELS;
+		height = IGameScreen.SIZE_UNIT_PIXELS;
+		width = IGameScreen.SIZE_UNIT_PIXELS;
 	}
 
 	//

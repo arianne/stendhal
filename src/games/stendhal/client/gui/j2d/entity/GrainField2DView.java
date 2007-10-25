@@ -9,7 +9,7 @@ package games.stendhal.client.gui.j2d.entity;
 //
 //
 
-import games.stendhal.client.GameScreen;
+import games.stendhal.client.IGameScreen;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.GrainField;
@@ -144,7 +144,7 @@ public class GrainField2DView extends StateEntity2DView {
 	 */
 	@Override
 	public int getHeight() {
-		return (int) (grainField.getHeight() * GameScreen.SIZE_UNIT_PIXELS);
+		return (int) (grainField.getHeight() * IGameScreen.SIZE_UNIT_PIXELS);
 	}
 
 	/**
@@ -154,7 +154,7 @@ public class GrainField2DView extends StateEntity2DView {
 	 */
 	@Override
 	public int getWidth() {
-		return (int) (grainField.getWidth() * GameScreen.SIZE_UNIT_PIXELS);
+		return (int) (grainField.getWidth() * IGameScreen.SIZE_UNIT_PIXELS);
 	}
 
 	/**

@@ -12,7 +12,7 @@
  ***************************************************************************/
 package games.stendhal.client.gui.j2d;
 
-import games.stendhal.client.GameScreen;
+import games.stendhal.client.IGameScreen;
 import games.stendhal.client.sprite.Sprite;
 
 import java.awt.Rectangle;
@@ -42,7 +42,7 @@ public class Text {
 	}
 
 
-	public void draw(final GameScreen screen) {
+	public void draw(final IGameScreen screen) {
 		screen.drawInScreen(sprite, x - screen.getScreenViewX(), y - screen.getScreenViewY());
 
 		if (System.currentTimeMillis() >= removeTime) {

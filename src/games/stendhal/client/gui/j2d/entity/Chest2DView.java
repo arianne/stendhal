@@ -9,7 +9,7 @@ package games.stendhal.client.gui.j2d.entity;
 //
 //
 
-import games.stendhal.client.GameScreen;
+import games.stendhal.client.IGameScreen;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.Chest;
 import games.stendhal.client.entity.Entity;
@@ -92,10 +92,10 @@ public class Chest2DView extends StateEntity2DView {
 		Sprite tiles = store.getSprite(translate(entity.getType()));
 
 		map.put(STATE_CLOSED, store.getTile(tiles, 0, 0,
-				GameScreen.SIZE_UNIT_PIXELS, GameScreen.SIZE_UNIT_PIXELS));
+				IGameScreen.SIZE_UNIT_PIXELS, IGameScreen.SIZE_UNIT_PIXELS));
 		map.put(STATE_OPEN, store.getTile(tiles, 0,
-				GameScreen.SIZE_UNIT_PIXELS, GameScreen.SIZE_UNIT_PIXELS,
-				GameScreen.SIZE_UNIT_PIXELS));
+				IGameScreen.SIZE_UNIT_PIXELS, IGameScreen.SIZE_UNIT_PIXELS,
+				IGameScreen.SIZE_UNIT_PIXELS));
 	}
 
 	/**

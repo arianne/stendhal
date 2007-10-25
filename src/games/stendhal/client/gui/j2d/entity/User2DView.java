@@ -6,9 +6,6 @@
 
 package games.stendhal.client.gui.j2d.entity;
 
-//
-//
-
 import games.stendhal.client.StendhalUI;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.Entity;
@@ -39,8 +36,7 @@ public class User2DView extends Player2DView {
 
 		this.user = user;
 
-		StendhalUI.get().setPosition(user.getX(), user.getY());
-		screen.center();
+
 	}
 
 	//

@@ -11,7 +11,7 @@ package games.stendhal.client.gui.j2d.entity;
 
 import marauroa.common.game.RPAction;
 
-import games.stendhal.client.GameScreen;
+import games.stendhal.client.IGameScreen;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.Door;
 import games.stendhal.client.entity.Entity;
@@ -61,8 +61,8 @@ public class Door2DView extends StateEntity2DView {
 
 		this.door = door;
 
-		width = GameScreen.SIZE_UNIT_PIXELS;
-		height = GameScreen.SIZE_UNIT_PIXELS;
+		width = IGameScreen.SIZE_UNIT_PIXELS;
+		height = IGameScreen.SIZE_UNIT_PIXELS;
 	}
 
 	//
@@ -82,8 +82,8 @@ public class Door2DView extends StateEntity2DView {
 		SpriteStore store = SpriteStore.get();
 
 		if (name == null) {
-			width = GameScreen.SIZE_UNIT_PIXELS;
-			height = GameScreen.SIZE_UNIT_PIXELS;
+			width = IGameScreen.SIZE_UNIT_PIXELS;
+			height = IGameScreen.SIZE_UNIT_PIXELS;
 
 			Sprite emptySprite = store.getEmptySprite(width, height);
 

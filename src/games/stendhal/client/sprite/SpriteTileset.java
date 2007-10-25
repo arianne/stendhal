@@ -9,7 +9,7 @@ package games.stendhal.client.sprite;
 //
 //
 
-import games.stendhal.client.GameScreen;
+import games.stendhal.client.IGameScreen;
 
 /**
  * A tileset that is created from a source sprite.
@@ -29,7 +29,7 @@ public class SpriteTileset implements Tileset {
 	 *            A sprite resource path.
 	 */
 	public SpriteTileset(final SpriteStore store, final String filename) {
-		this(store, store.getSprite(filename), GameScreen.SIZE_UNIT_PIXELS);
+		this(store, store.getSprite(filename), IGameScreen.SIZE_UNIT_PIXELS);
 	}
 
 	/**

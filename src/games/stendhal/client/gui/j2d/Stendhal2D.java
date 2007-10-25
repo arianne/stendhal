@@ -10,7 +10,7 @@ package games.stendhal.client.gui.j2d;
 //
 //
 
-import games.stendhal.client.GameScreen;
+import games.stendhal.client.IGameScreen;
 import games.stendhal.client.NotificationType;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.gui.KTextEdit;
@@ -433,7 +433,7 @@ public class Stendhal2D extends StendhalGUI {
 	 * @return The game screen.
 	 */
 	@Override
-	public GameScreen getScreen() {
+	public IGameScreen getScreen() {
 		return null;
 	}
 

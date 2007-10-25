@@ -252,7 +252,7 @@ public class StaticGameLayers {
 		return area;
 	}
 
-	public void draw(GameScreen screen, String area, String layer, int x,
+	public void draw(IGameScreen screen, String area, String layer, int x,
 			int y, int width, int height) {
 		validate();
 

@@ -12,7 +12,7 @@ package games.stendhal.client.gui.j2d.entity;
 import marauroa.common.Log4J;
 import marauroa.common.Logger;
 
-import games.stendhal.client.GameScreen;
+import games.stendhal.client.IGameScreen;
 import games.stendhal.client.StendhalUI;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.Creature;
@@ -273,19 +273,19 @@ public class Creature2DView extends RPEntity2DView {
 			List<Node>	path;
 			path = getTargetMovedPath();
 			if (path != null) {
-				int delta = GameScreen.SIZE_UNIT_PIXELS / 2;
+				int delta = IGameScreen.SIZE_UNIT_PIXELS / 2;
 				g2d.setColor(Color.red);
-				drawPath(g2d, path, GameScreen.SIZE_UNIT_PIXELS / 2);
+				drawPath(g2d, path, IGameScreen.SIZE_UNIT_PIXELS / 2);
 			}
 			path = getPatrolPath();
 			if (path != null) {
 				g2d.setColor(Color.green);
-				drawPath(g2d, path, GameScreen.SIZE_UNIT_PIXELS / 2 + 1);
+				drawPath(g2d, path, IGameScreen.SIZE_UNIT_PIXELS / 2 + 1);
 			}
 			path = getMoveToTargetPath();
 			if (path != null) {
 				g2d.setColor(Color.blue);
-				drawPath(g2d, path, GameScreen.SIZE_UNIT_PIXELS / 2 + 2);
+				drawPath(g2d, path, IGameScreen.SIZE_UNIT_PIXELS / 2 + 2);
 			}
 		}
 	}

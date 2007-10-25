@@ -19,6 +19,7 @@
 package games.stendhal.client.gui.wt;
 
 import games.stendhal.client.GameScreen;
+import games.stendhal.client.IGameScreen;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.Player;
@@ -176,8 +177,8 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 		// draw the entity (if there is any)
 		if (view != null) {
 			// Center the entity view (assume 1x1 tile)
-			int x = (getWidth() - GameScreen.SIZE_UNIT_PIXELS) / 2;
-			int y = (getHeight() - GameScreen.SIZE_UNIT_PIXELS) / 2;
+			int x = (getWidth() - IGameScreen.SIZE_UNIT_PIXELS) / 2;
+			int y = (getHeight() - IGameScreen.SIZE_UNIT_PIXELS) / 2;
 
 			Graphics2D vg = (Graphics2D) childArea.create(0, 0, getWidth(),
 					getHeight());

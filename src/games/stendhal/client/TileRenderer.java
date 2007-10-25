@@ -96,7 +96,7 @@ public class TileRenderer extends LayerRenderer {
 	 *            The view world height.
 	 */
 	@Override
-	public void draw(GameScreen screen, int x, int y, int w, int h) {
+	public void draw(IGameScreen screen, int x, int y, int w, int h) {
 		if (spriteMap == null) {
 			return;
 		}
@@ -128,10 +128,10 @@ public class TileRenderer extends LayerRenderer {
 			for (int i = x; i < x2; i++) {
 				spriteMap[mapidx].draw(g, sx, sy);
 				mapidx++;
-				sx += GameScreen.SIZE_UNIT_PIXELS;
+				sx += IGameScreen.SIZE_UNIT_PIXELS;
 			}
 
-			sy += GameScreen.SIZE_UNIT_PIXELS;
+			sy += IGameScreen.SIZE_UNIT_PIXELS;
 		}
 	}
 }

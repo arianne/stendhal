@@ -13,7 +13,7 @@
 
 package games.stendhal.client.gui.wt;
 
-import games.stendhal.client.GameScreen;
+import games.stendhal.client.IGameScreen;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.StendhalUI;
 import games.stendhal.client.entity.ActionType;
@@ -50,10 +50,10 @@ public class GroundContainer extends WtBaseframe implements WtDropTarget, Inspec
 	private StendhalUI ui;
 
 	/** the game screen */
-	private GameScreen screen;
+	private IGameScreen screen;
 
 	/** creates a new groundcontainer */
-	public GroundContainer(final StendhalClient client, final GameScreen screen, final int width, final int height) {
+	public GroundContainer(final StendhalClient client, final IGameScreen screen, final int width, final int height) {
 		super(width, height);
 
 		this.client = client;

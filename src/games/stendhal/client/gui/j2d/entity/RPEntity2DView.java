@@ -11,7 +11,7 @@ package games.stendhal.client.gui.j2d.entity;
 
 import marauroa.common.game.RPAction;
 
-import games.stendhal.client.GameScreen;
+import games.stendhal.client.IGameScreen;
 import games.stendhal.client.StendhalUI;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.Entity;
@@ -83,8 +83,8 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 
 		bladeStrikeSprites = new HashMap<Object, Sprite[]>();
 
-		int twidth = 3 * GameScreen.SIZE_UNIT_PIXELS;
-		int theight = 4 * GameScreen.SIZE_UNIT_PIXELS;
+		int twidth = 3 * IGameScreen.SIZE_UNIT_PIXELS;
+		int theight = 4 * IGameScreen.SIZE_UNIT_PIXELS;
 
 		int y = 0;
 		bladeStrikeSprites.put(STATE_UP, st.getTiles(tiles, 0, y, 3, twidth,
@@ -295,7 +295,7 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	 */
 	protected void drawHPbar(final Graphics2D g2d, final int x, final int y,
 			final int width) {
-		int barWidth = Math.max(width * 2 / 3, GameScreen.SIZE_UNIT_PIXELS);
+		int barWidth = Math.max(width * 2 / 3, IGameScreen.SIZE_UNIT_PIXELS);
 
 		int bx = x + ((width - barWidth) / 2);
 		int by = y - 3;

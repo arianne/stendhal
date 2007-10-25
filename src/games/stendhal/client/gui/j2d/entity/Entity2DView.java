@@ -10,6 +10,7 @@ package games.stendhal.client.gui.j2d.entity;
 //
 
 import games.stendhal.client.GameScreen;
+import games.stendhal.client.IGameScreen;
 import games.stendhal.client.StendhalUI;
 import games.stendhal.client.stendhal;
 import games.stendhal.client.entity.ActionType;
@@ -81,7 +82,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	/**
 	 * The game screen this is for.
 	 */
-	protected GameScreen screen;
+	protected IGameScreen screen;
 
 	/**
 	 * The visibility value changed.
@@ -417,7 +418,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 * @return The height (in pixels).
 	 */
 	public int getHeight() {
-		return GameScreen.SIZE_UNIT_PIXELS;
+		return IGameScreen.SIZE_UNIT_PIXELS;
 	}
 
 	/**
@@ -444,7 +445,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 * @return The width (in pixels).
 	 */
 	public int getWidth() {
-		return GameScreen.SIZE_UNIT_PIXELS;
+		return IGameScreen.SIZE_UNIT_PIXELS;
 	}
 
 	/**

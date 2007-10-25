@@ -77,7 +77,7 @@ public class StendhalClient extends ClientFramework {
 
 	private static final String LOG4J_PROPERTIES = "data/conf/log4j.properties";
 
-	protected GameScreen screen;
+	protected IGameScreen screen;
 
 	// protected PerceptionListenerMulticaster listeners;
 
@@ -161,7 +161,7 @@ public class StendhalClient extends ClientFramework {
 		return stendhal.VERSION;
 	}
 
-	public void setScreen(GameScreen screen) {
+	public void setScreen(IGameScreen screen) {
 		this.screen = screen;
 	}
 

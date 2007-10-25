@@ -46,7 +46,7 @@ public class ImageRenderer extends LayerRenderer {
 	 *            The screen to draw on.
 	 */
 	@Override
-	public void draw(GameScreen screen) {
+	public void draw(IGameScreen screen) {
 		if (mySprite != null) {
 			screen.draw(mySprite, 0, 0);
 		}
@@ -67,7 +67,7 @@ public class ImageRenderer extends LayerRenderer {
 	 *            The view world height.
 	 */
 	@Override
-	public void draw(GameScreen screen, int x, int y, int w, int h) {
+	public void draw(IGameScreen screen, int x, int y, int w, int h) {
 		draw(screen);
 	}
 

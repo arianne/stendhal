@@ -9,7 +9,7 @@ package games.stendhal.client.sprite;
 //
 //
 
-import games.stendhal.client.GameScreen;
+import games.stendhal.client.IGameScreen;
 
 import java.awt.GraphicsConfiguration;
 import java.awt.GraphicsEnvironment;
@@ -227,8 +227,8 @@ public class SpriteStore {
 	 * @return An empty sprite.
 	 */
 	public Sprite getEmptySprite() {
-		return getEmptySprite(GameScreen.SIZE_UNIT_PIXELS,
-				GameScreen.SIZE_UNIT_PIXELS);
+		return getEmptySprite(IGameScreen.SIZE_UNIT_PIXELS,
+				IGameScreen.SIZE_UNIT_PIXELS);
 	}
 
 	/**
