@@ -3,7 +3,6 @@ package games.stendhal.server.maps.quests;
 import games.stendhal.common.Grammar;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.item.StackableItem;
-import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
@@ -12,7 +11,6 @@ import games.stendhal.server.maps.quests.logic.BringListOfItemsQuestLogic;
 import games.stendhal.server.rule.RuleManager;
 
 import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -29,18 +27,22 @@ import java.util.List;
  * toys at the same time.)
  * <li> Anna gives you a reward
  * <p>
- * REWARD: <li> ? some pies? <li> 100 XP
+ * REWARD:
+ * <li> ? some pies?
+ * <li> 100 XP
  * <p>
  * REPETITIONS: - None.
  */
-public class ToysCollector extends AbstractQuest implements BringListOfItemsQuest {
+public class ToysCollector extends AbstractQuest implements
+		BringListOfItemsQuest {
 
-	private static final List<String> neededToys = 
-		Arrays.asList("teddy", "dice", "dress");
+	private static final List<String> neededToys = Arrays.asList("teddy",
+			"dice", "dress");
 
 	private void setupAbstractQuest() {
 		BringListOfItemsQuest concreteQuest = this;
-		BringListOfItemsQuestLogic bringItems = new BringListOfItemsQuestLogic(concreteQuest);
+		BringListOfItemsQuestLogic bringItems = new BringListOfItemsQuestLogic(
+				concreteQuest);
 		bringItems.addToWorld();
 	}
 
@@ -54,17 +56,18 @@ public class ToysCollector extends AbstractQuest implements BringListOfItemsQues
 	private void specialStuff() {
 		// treat "toys" as QUEST_MESSAGE
 		getNPC().add(
-			ConversationStates.ATTENDING,
-			"no",
-			new SpeakerNPC.ChatCondition() {
-				@Override
-				public boolean fire(Player player, String text,	SpeakerNPC engine) {
-					return !player.isQuestCompleted("toys_collector");
-				}
-			},
-			ConversationStates.ATTENDING,
-			"Then you should go away before I get in trouble for talking to you.",
-			null);
+				ConversationStates.ATTENDING,
+				"no",
+				new SpeakerNPC.ChatCondition() {
+					@Override
+					public boolean fire(Player player, String text,
+							SpeakerNPC engine) {
+						return !player.isQuestCompleted("toys_collector");
+					}
+				},
+				ConversationStates.ATTENDING,
+				"Then you should go away before I get in trouble for talking to you.",
+				null);
 	}
 
 	public SpeakerNPC getNPC() {
@@ -82,7 +85,7 @@ public class ToysCollector extends AbstractQuest implements BringListOfItemsQues
 	public String getTriggerPhraseToEnumerateMissingItems() {
 		return "list";
 	}
-	
+
 	public List<String> getAdditionalTriggerPhraseForQuest() {
 		return Arrays.asList("toys");
 	}
@@ -112,7 +115,8 @@ public class ToysCollector extends AbstractQuest implements BringListOfItemsQues
 	}
 
 	public String respondToQuestAcception() {
-		return "Hooray! How exciting. See you soon."; // TODO: player.addKarma(8.0);
+		return "Hooray! How exciting. See you soon."; // TODO:
+														// player.addKarma(8.0);
 	}
 
 	public String respondToQuestRefusal() {
@@ -134,13 +138,15 @@ public class ToysCollector extends AbstractQuest implements BringListOfItemsQues
 	public String respondToItemBrought() {
 		return "Thank you very much! What else did you bring";
 	}
+
 	public String respondToLastItemBrought() {
 		return "These toys will keep me happy for ages! Please take these pies. Arlindo baked them for us but I think you should have them.";
 	}
 
 	public void rewardPlayer(Player player) {
 		RuleManager ruleManager = StendhalRPWorld.get().getRuleManager();
-		StackableItem pie = (StackableItem) ruleManager.getEntityManager().getItem("pie");
+		StackableItem pie = (StackableItem) ruleManager.getEntityManager().getItem(
+				"pie");
 		pie.setQuantity(3);
 		player.equip(pie, true);
 		player.addXP(100);
@@ -148,9 +154,10 @@ public class ToysCollector extends AbstractQuest implements BringListOfItemsQues
 	}
 
 	public String respondToOfferOfNotExistingItem(String itemName) {
-		return "Hey! It's bad to lie! You don't have " + Grammar.a_noun(itemName) + " with you.";
+		return "Hey! It's bad to lie! You don't have "
+				+ Grammar.a_noun(itemName) + " with you.";
 	}
-	
+
 	public String respondToOfferOfNotMissingItem() {
 		return "I already have that toy!";
 	}
