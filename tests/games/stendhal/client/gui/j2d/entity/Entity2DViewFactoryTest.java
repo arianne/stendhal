@@ -70,8 +70,7 @@ public class Entity2DViewFactoryTest {
 				Creature2DView.class);
 		assertEquals(Entity2DViewFactory.get().create(new Door()).getClass(),
 				Door2DView.class);
-		assertEquals(Entity2DViewFactory.get().create(new Fire()).getClass(),
-				AnimatedLoopEntity2DView.class);
+
 		assertEquals(
 				Entity2DViewFactory.get().create(new FishSource()).getClass(),
 				FishSource2DView.class);
@@ -123,5 +122,12 @@ public class Entity2DViewFactoryTest {
 		assertNotNull(new User2DView(new User()));
 		assertEquals(Entity2DViewFactory.get().create(new User()).getClass(),
 				User2DView.class);
+	}
+	@Test
+	public final void testCreateFire2Dview() {
+
+	assertNotNull(Entity2DViewFactory.get().create(new Fire()));
+	assertEquals(Entity2DViewFactory.get().create(new Fire()).getClass(),
+			AnimatedLoopEntity2DView.class);
 	}
 }

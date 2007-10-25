@@ -11,6 +11,7 @@ package games.stendhal.client.gui.j2d.entity;
 
 import games.stendhal.client.IGameScreen;
 import games.stendhal.client.entity.Entity;
+import games.stendhal.client.entity.Fire;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 
@@ -36,7 +37,15 @@ public class AnimatedLoopEntity2DView extends Entity2DView {
 	public AnimatedLoopEntity2DView(final Entity entity) {
 		super(entity);
 	}
-
+	/**
+	 * Create a 2D view of an animated loop visual.
+	 *
+	 * @param entity
+	 *            The entity to render.
+	 */
+	public AnimatedLoopEntity2DView(final Fire entity) {
+		super(entity);
+	}
 	//
 	// Entity2DView
 	//

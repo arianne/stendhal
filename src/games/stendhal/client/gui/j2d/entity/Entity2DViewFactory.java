@@ -12,12 +12,13 @@ package games.stendhal.client.gui.j2d.entity;
 import games.stendhal.client.entity.Blood;
 import games.stendhal.client.entity.BossCreature;
 import games.stendhal.client.entity.Box;
-import games.stendhal.client.entity.Chest;
 import games.stendhal.client.entity.CarrotGrower;
+import games.stendhal.client.entity.Chest;
 import games.stendhal.client.entity.Corpse;
 import games.stendhal.client.entity.Creature;
 import games.stendhal.client.entity.Door;
 import games.stendhal.client.entity.Entity;
+import games.stendhal.client.entity.EntityView;
 import games.stendhal.client.entity.Fire;
 import games.stendhal.client.entity.FishSource;
 import games.stendhal.client.entity.GoldSource;
@@ -63,13 +64,13 @@ public class Entity2DViewFactory { // implements EntityViewFactory {
 	/**
 	 * The model-to-view class map.
 	 */
-	protected Map<Class, Class> map;
+	protected Map<Class<?extends Entity>, Class<EntityView>> map;
 
 	/**
 	 * Create an entity view factory.
 	 */
 	public Entity2DViewFactory() {
-		map = new HashMap<Class, Class>();
+		map = new HashMap<Class<?extends Entity>, Class<EntityView>>();
 
 		configure();
 	}
@@ -86,59 +87,40 @@ public class Entity2DViewFactory { // implements EntityViewFactory {
 	 *
 	 * @return The corresponding view, or <code>null</code>.
 	 */
-	public Entity2DView create(Entity entity) {
-		Class entityClass = entity.getClass();
-		Class viewClass = getViewClass(entityClass);
+	public EntityView create(Entity entity) {
+		Class<? extends Entity> entityClass = entity.getClass();
+		Class<EntityView> viewClass = map.get(entityClass);
 
 		if (viewClass == null) {
 			return null;
 		}
 
-		/*
-		 * Is it an Entity2DView?
-		 */
-		if (!Entity2DView.class.isAssignableFrom(viewClass)) {
-			logger.error("Class is not an Entity2DView: " + viewClass.getName());
-			return null;
-		}
-
-		/*
-		 * Search for a constructor with a compatible parameter type. The VM
-		 * doesn't implicitely match super-classes.
-		 */
-		Constructor cnstr = null;
-
-		while (entityClass != null) {
-			try {
-				cnstr = viewClass.getConstructor(new Class[] { entityClass });
-				break;
-			} catch (NoSuchMethodException ex) {
-			}
-
-			entityClass = entityClass.getSuperclass();
-		}
-
-		if (cnstr == null) {
-			logger.error("Unable to find sutable contructor for: "
-					+ viewClass.getName());
-			return null;
-		}
-
-		/*
-		 * Create the view
-		 */
 		try {
-			return (Entity2DView) cnstr.newInstance(new Object[] { entity });
-		} catch (InstantiationException ex) {
-			logger.error("Unable to create class: " + viewClass.getName(), ex);
-			return null;
-		} catch (IllegalAccessException ex) {
-			logger.error("Unable to access class: " + viewClass.getName(), ex);
-			return null;
-		} catch (InvocationTargetException ex) {
-			logger.error("Error creating class: " + viewClass.getName(), ex);
-			return null;
+			Constructor<EntityView> cns =viewClass.getConstructor(entity.getClass());
+			EntityView view =  cns.newInstance(entity);
+
+			return view;
+		} catch (SecurityException e) {
+
+			logger.error(  e);
+		} catch (NoSuchMethodException e) {
+
+			logger.error(  e);
+		} catch (IllegalArgumentException e) {
+
+			logger.error(  e);
+		} catch (InstantiationException e) {
+
+			logger.error(  e);
+		} catch (IllegalAccessException e) {
+
+			logger.error(  e);
+		} catch (InvocationTargetException e) {
+
+			logger.error(  e);
 		}
+		return null;
+
 	}
 
 	/**
@@ -182,28 +164,6 @@ public class Entity2DViewFactory { // implements EntityViewFactory {
 	}
 
 	/**
-	 * Get the appropriete view class for a given entity class.
-	 *
-	 * @param entityClass
-	 *            The entity class.
-	 *
-	 * @return A view class, or <code>null</code> if unknown.
-	 */
-	protected Class getViewClass(Class entityClass) {
-		while (entityClass != null) {
-			Class viewClass = map.get(entityClass);
-
-			if (viewClass != null) {
-				return viewClass;
-			}
-
-			entityClass = entityClass.getSuperclass();
-		}
-
-		return null;
-	}
-
-	/**
 	 * Register an enity model-to-view mapping.
 	 *
 	 * @param entityClass
@@ -211,7 +171,7 @@ public class Entity2DViewFactory { // implements EntityViewFactory {
 	 * @param viewClass
 	 *            The entity view class.
 	 */
-	public void register(Class entityClass, Class viewClass) {
+	private void register(Class entityClass, Class viewClass) {
 		map.put(entityClass, viewClass);
 	}
 }
