@@ -749,7 +749,7 @@ public class OutfitDialog extends JDialog {
 		}
 	}
 
-	private void generateAllOutfits() {
+	private void generateAllOutfits(String baseDir) {
 		/** TEST METHOD: DON'T NO USE */
 		for (bodies_index = 0; bodies_index < bodies.length; bodies_index++) {
 			for (clothes_index = 0; clothes_index < clothes.length; clothes_index++) {
@@ -758,7 +758,7 @@ public class OutfitDialog extends JDialog {
 						String name = Integer.toString(bodies_index
 								+ clothes_index * 100 + heads_index * 100 * 100
 								+ hairs_index * 100 * 100 * 100);
-						File file = new File("outfits\\" + name + ".png");
+						File file = new File(baseDir + "outfits/" + name + ".png");
 						if (!file.exists()) {
 							System.out.println("Creating " + name + ".png");
 							Image image = new BufferedImage(PLAYER_WIDTH,
@@ -778,9 +778,15 @@ public class OutfitDialog extends JDialog {
 
 	// public OutfitDialog(Frame parent, String title, int outfit, int
 	// total_hairs, int total_heads, int total_bodies, int total_clothes) {
-	public static void main(String[] args) {
-		// TODO: the outfit is hardcoded because I was not able to find a way of
-		// iterating the jar resources to find the existing outfits. :(
-		new OutfitDialog(null, "Stendhal - Choose outfit", 0).generateAllOutfits();
+	public static void main(String[] args) throws InterruptedException {
+		String baseDir = "";
+		if (args.length > 0) {
+			baseDir = args[0] + "/";
+		}
+			
+		OutfitDialog f= new OutfitDialog(null, "Stendhal - Choose outfit", 0);
+		// show is required now, because getGraphics() returns null otherwise
+		f.show();
+		f.generateAllOutfits(baseDir);
 	}
 }
