@@ -10,6 +10,8 @@ import java.util.List;
  */
 public class ConversationPhrases {
 
+	public static final List<String> EMPTY = Arrays.asList();
+
 	public static final List<String> GREETING_MESSAGES = Arrays.asList("hi", "hello", "greetings", "hola");
 
 	public static final List<String> JOB_MESSAGES = Arrays.asList("job", "work");
