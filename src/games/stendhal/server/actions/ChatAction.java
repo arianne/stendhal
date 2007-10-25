@@ -15,7 +15,6 @@ package games.stendhal.server.actions;
 import games.stendhal.common.Grammar;
 import games.stendhal.server.GagManager;
 import games.stendhal.server.Jail;
-import games.stendhal.server.StendhalPlayerDatabase;
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
@@ -24,17 +23,13 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.StringTokenizer;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
 import marauroa.common.game.RPAction;
-import marauroa.server.game.db.Transaction;
 
 /**
  * Processes /chat, /tell (/msg) and /support
  */
 public class ChatAction implements ActionListener {
 
-	private static final Logger logger = Log4J.getLogger(ChatAction.class);
 
 	// HashMap <players_name, last_message_time>
 	private Map<String, Long> lastMsg = new HashMap<String, Long>();
@@ -124,10 +119,10 @@ public class ChatAction implements ActionListener {
 			 * If the receiver is not logged or if it is a ghost and you don't
 			 * have the level to see ghosts...
 			 */
-			if (receiver == null
-					|| receiver.isGhost()
-					&& player.getAdminLevel() < AdministrationAction
-							.getLevelForCommand("ghostmode")) {
+			if ((receiver == null)
+					|| (receiver.isGhost()
+					&& (player.getAdminLevel() < AdministrationAction
+							.getLevelForCommand("ghostmode")))) {
 				player.sendPrivateText("No player named \""
 						+ action.get("target") + "\" is currently active.");
 				player.notifyWorldAboutChanges();
