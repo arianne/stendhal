@@ -409,7 +409,7 @@ public class j2DClient extends StendhalUI {
 
 		inventory = new EntityContainer(client, "bag", 3, 4);
 		addWindow(inventory);
-		settings.add(inventory, "Enable Inventory");
+		settings.add(inventory, "Enable Bag");
 
 		keyring = new KeyRing(client);
 		addWindow(keyring);

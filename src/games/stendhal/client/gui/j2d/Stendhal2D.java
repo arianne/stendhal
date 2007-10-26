@@ -221,7 +221,7 @@ public class Stendhal2D extends StendhalGUI {
 		mi = new JCheckBoxMenuItem("Character");
 		m.add(mi);
 
-		mi = new JCheckBoxMenuItem("Inventory");
+		mi = new JCheckBoxMenuItem("Bag");
 		m.add(mi);
 
 		mi = new JCheckBoxMenuItem("Key Ring");
