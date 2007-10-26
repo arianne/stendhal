@@ -211,7 +211,7 @@
     <experience value="10"/>
     <respawn value="900"/>
     <drops>
-      <item value="meat" quantity="[1,2]" probability="50.0"/>
+      <item value="chicken" quantity="[1,2]" probability="40.0"/>
     </drops>
     <equips>
     </equips>
