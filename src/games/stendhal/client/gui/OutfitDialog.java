@@ -759,6 +759,8 @@ public class OutfitDialog extends JDialog {
 								+ clothes_index * 100 + heads_index * 100 * 100
 								+ hairs_index * 100 * 100 * 100);
 						File file = new File(baseDir + "outfits/" + name + ".png");
+						
+						// for performance reasons only write new files.
 						if (!file.exists()) {
 							System.out.println("Creating " + name + ".png");
 							Image image = new BufferedImage(PLAYER_WIDTH,
