@@ -233,23 +233,4 @@ public class TimeUtil {
 		}
 	}
 
-	//
-	//
-
-	public static void main(String[] args) throws Exception {
-		int seconds;
-
-		if (args.length == 0) {
-			args = new String[] { "5", "421", "82789", "6728282", "83736372" };
-		}
-
-		for (String arg : args) {
-			seconds = Integer.parseInt(arg);
-
-			System.out.println(seconds + ":");
-			System.out.println("  = " + timeUntil(seconds, true));
-			System.out.println("  ~ " + approxTimeUntil(seconds));
-			System.out.println();
-		}
-	}
 }
