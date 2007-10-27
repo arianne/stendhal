@@ -61,7 +61,7 @@ public class stendhal extends Thread {
 
 	/**
 	 * Parses command line arguments
-	 * 
+	 *
 	 * @param args
 	 *            command line arguments
 	 */
@@ -101,30 +101,30 @@ public class stendhal extends Thread {
 		logger.info("Java: " + System.getProperty("java.version"));
 	}
 
-	/**
-	 * Try to use the system look and feel.
-	 */
-	private static void startSwingLookAndFeel() {
-		try {
-			// only enable SystemLookAndFeelClassName for MS Windows because of
-			// bug
-			// http://sourceforge.net/tracker/index.php?func=detail&aid=1601437&group_id=1111&atid=101111
-			/*
-			 * if (System.getProperty("os.name",
-			 * "").toLowerCase().indexOf("windows") > -1) {
-			 * UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName()); }
-			 */
-		} catch (Exception e) {
-			logger
-					.error(
-							"Can't change Look&Feel to match your OS. Using the Cross-Platform look & feel",
-							e);
-		}
-	}
+//	/**
+//	 * Try to use the system look and feel.
+//	 */
+//	private static void startSwingLookAndFeel() {
+//		try {
+//			// only enable SystemLookAndFeelClassName for MS Windows because of
+//			// bug
+//			// http://sourceforge.net/tracker/index.php?func=detail&aid=1601437&group_id=1111&atid=101111
+//			/*
+//			 * if (System.getProperty("os.name",
+//			 * "").toLowerCase().indexOf("windows") > -1) {
+//			 * UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName()); }
+//			 */
+//		} catch (Exception e) {
+//			logger
+//					.error(
+//							"Can't change Look&Feel to match your OS. Using the Cross-Platform look & feel",
+//							e);
+//		}
+//	}
 
 	/**
 	 * Starts the client and show the first screen
-	 * 
+	 *
 	 * @return StendhalClient
 	 */
 	private static StendhalClient startClient() {
@@ -148,7 +148,7 @@ public class stendhal extends Thread {
 
 	/**
 	 * Starts the real game gui
-	 * 
+	 *
 	 * @param client
 	 *            StendhalClient
 	 */
@@ -159,7 +159,7 @@ public class stendhal extends Thread {
 
 	/**
 	 * Main Entry point.
-	 * 
+	 *
 	 * @param args
 	 *            command line arguments
 	 */
@@ -172,7 +172,7 @@ public class stendhal extends Thread {
 		}
 		parseCommandlineArguments(args);
 		startLogSystem();
-		startSwingLookAndFeel();
+
 		StendhalClient client = startClient();
 		waitForLogin();
 		startSoundMaster();
