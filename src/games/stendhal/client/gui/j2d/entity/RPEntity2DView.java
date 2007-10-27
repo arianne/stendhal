@@ -9,8 +9,6 @@ package games.stendhal.client.gui.j2d.entity;
 //
 //
 
-import marauroa.common.game.RPAction;
-
 import games.stendhal.client.IGameScreen;
 import games.stendhal.client.StendhalUI;
 import games.stendhal.client.entity.ActionType;
@@ -29,6 +27,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+
+import marauroa.common.game.RPAction;
 
 /**
  * The 2D view of an RP entity.
@@ -527,7 +527,7 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 		super.draw(g2d, x, y, width, height);
 
 		if (rpentity.isEating()) {
-			eatingSprite.draw(g2d, x + (width / 2) - 8, y + height - 8);
+			eatingSprite.draw(g2d, x + 8, y + height - 8);
 		}
 
 		if (rpentity.isPoisoned()) {
