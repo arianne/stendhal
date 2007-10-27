@@ -22,7 +22,7 @@
   <image source="../../tileset/building/decoration/dark_red.png"/>
  </tileset>
  <tileset name="table" firstgid="77" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/tree_stump_rectangular.png" trans="438e41"/>
+  <image source="../../tileset/plant/stump/stump_rectangular.png" trans="438e41"/>
  </tileset>
  <tileset name="stool" firstgid="81" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/chair/stool.png"/>
