@@ -5,10 +5,8 @@ import games.stendhal.client.StendhalUI;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.util.Date;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
@@ -103,14 +101,6 @@ public class KTextEdit extends JPanel {
 		StyleConstants.setForeground(s, desiredColor);
 		return s;
 	}
-
-	/**
-	 * clear the text
-	 */
-	// Not needed, consider deletion
-//	public void clearText() {
-//		textPane.setText("");
-//	}
 
 	/**
 	 * insert a header
@@ -227,12 +217,6 @@ public class KTextEdit extends JPanel {
 		final JScrollBar vbar = scrollPane.getVerticalScrollBar();
 
 		boolean autoScroll = (vbar.getValue() + vbar.getVisibleAmount() == vbar.getMaximum());
-//		System.out.println();
-//		System.out.println(line);
-//		System.out.println("value:      " + vbar.getValue());
-//		System.out.println("visible:    " + vbar.getVisibleAmount());
-//		System.out.println("maximum:    " + vbar.getMaximum());
-//		System.out.println("autoscroll: " + autoScroll);
 
 		insertNewline();
 
@@ -263,43 +247,4 @@ public class KTextEdit extends JPanel {
 
 	}
 
-	/**
-	 * Da main to make unit tests
-	 */
-	public static void main(String[] args) {
-		/*
-		 *TODO: BUG: This short example doesn't work. It doesn't throw any exception
-		 * or anything. It just doesn't work. If you remove all teh edit.addLine
-		 * but one it works. Can anyone with Swing/AWT abilities have a look to
-		 * it?
-		 */
-		JFrame frame = new JFrame("KTextEdit Test-Frame");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		KTextEdit edit = new KTextEdit();
-		frame.getContentPane().add(edit);
-		edit.addLine("Well, there is really not #much to tell #about. !");
-		// edit.addLine("Well, there is really not much to tell about. !",
-		// Color.blue);
-		// edit.addLine("Well, there is really not much to tell about. !",
-		// Color.green);
-		// edit.addLine("Well, there is really not much to tell about. !", new
-		// Color(240, 123, 56));
-		// edit.addLine("Well, there is really not much to tell about. !",
-		// Color.yellow);
-		//
-		// edit.addLine("Shaku", "Well, there is really not much to tell about.
-		// !", Color.red);
-		// edit.addLine("Keanu", "Well, there is really not much to tell about.
-		// !", Color.blue);
-		// edit.addLine("Bob", "Well, there is really not much to tell about.
-		// !", Color.green);
-		// edit.addLine("Dragon", "Well, there is really not much to tell about.
-		// !", new Color(240, 123, 56));
-		// edit.addLine("Little ant", "Well, there is really not much to tell
-		// about. !", Color.yellow);
-		//
-		frame.setPreferredSize(new Dimension(400, 200));
-		frame.pack();
-		frame.setVisible(true);
-	}
 }
