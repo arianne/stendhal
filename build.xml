@@ -588,7 +588,6 @@
 		</javac>
 	</target>
 
-	<!-- TODO: Split into run_{client,common,server}_tests -->
 	<target name="run_tests" description="Run tests">
 		<junit printsummary="yes" fork="no">
 			<classpath>
@@ -609,45 +608,7 @@
 
 			<batchtest>
 				<fileset dir="tests">
-					<include name="conf/PortalMatchTest.java"/>
-					<include name="conf/PortalMatchTestTest.java"/>
-					<include name="conf/TestPortalTest.java"/>
-					<include name="conf/TestRPClass.java"/>
-					<include name="games/stendhal/client/entity/EntityFactoryTest.java"/>
-					<include name="games/stendhal/client/entity/EntityMapTest.java"/>
-					<include name="games/stendhal/client/entity/EntityTest.java"/>
-					<include name="games/stendhal/client/entity/PlayerTest.java"/>
-					<include name="games/stendhal/client/entity/TestBuildOfferedActions.java"/>
-					<include name="games/stendhal/client/gui/PasswordDialogTest.java"/>
-					<include name="games/stendhal/client/sound/DBValuesTest.java"/>
-					<include name="games/stendhal/client/sound/SoundEffectMapTest.java"/>
-					<include name="games/stendhal/client/sound/SoundSystemTest.java"/>
-					<include name="games/stendhal/client/soundreview/AbsentFileMapTest.java"/>
-					<include name="games/stendhal/client/soundreview/HearingAreaTest.java"/>
-					<include name="games/stendhal/client/soundreview/SoundFileMapTest.java"/>
-					<include name="games/stendhal/client/soundreview/SoundTest.java"/>
-
-					<include name="games/stendhal/common/DirectionTest.java"/>
-					<include name="games/stendhal/common/GrammarTest.java"/>
-					<include name="games/stendhal/common/PairTest.java"/>
-					<include name="games/stendhal/common/TestClasspathEntry.java"/>
-					<include name="games/stendhal/common/TestVersion.java"/>
-
-					<include name="games/stendhal/server/actions/equip/EquipmentActionTest.java"/>
-					<include name="games/stendhal/server/entity/EntityTest.java"/>
-					<include name="games/stendhal/server/entity/FishSourceTest.java"/>
-					<include name="games/stendhal/server/entity/item/ConsumableItemTest.java"/>
-					<include name="games/stendhal/server/entity/item/ItemTest.java"/>
-					<include name="games/stendhal/server/entity/npc/fsm/EngineTest.java"/>
-					<include name="games/stendhal/server/maps/quests/BeerForHayunnTest.java"/>
-					<include name="games/stendhal/server/maps/quests/CampfireTest.java"/>
-					<include name="games/stendhal/server/maps/quests/CleanStorageSpaceTest.java"/>
-					<include name="games/stendhal/server/maps/quests/IntroducePlayersTest.java"/>
-					<include name="games/stendhal/server/maps/quests/ZooFoodTest.java"/>
-					<include name="games/stendhal/server/maps/semos/bakery/ChefNPCTest.java"/>
-					<include name="games/stendhal/server/maps/semos/house/AdminHelpNPCTest.java"/>
-					<include name="games/stendhal/server/tools/LayerDefinitionTest.java"/>
-					<include name="games/stendhal/server/tools/TileSetDefinitionTest.java"/>
+					<include name="**/*Test*.java"/>
 				</fileset>
 			</batchtest>
 		</junit>
