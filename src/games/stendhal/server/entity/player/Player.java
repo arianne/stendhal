@@ -169,7 +169,6 @@ public class Player extends RPEntity {
 		PlayerRPClass.updatePlayerRPObject(object);
 
 		Player player = new Player(object);
-
 		player.stop();
 		player.stopAttack();
 
@@ -189,9 +188,9 @@ public class Player extends RPEntity {
 					Player buddy = StendhalRPRuleProcessor.get().getPlayer(
 							buddyName.substring(1));
 					if ((buddy != null) && !buddy.isGhost()) {
-						player.notifyOnline(buddy.getName());
+						buddies.put(buddyName, 1);
 					} else {
-						player.notifyOffline(buddyName);
+						buddies.put(buddyName, 0);
 					}
 				}
 			}
