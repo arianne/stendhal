@@ -38,6 +38,8 @@ import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 
+import marauroa.common.Log4J;
+import marauroa.common.Logger;
 import marauroa.common.game.RPAction;
 
 /**
@@ -45,6 +47,7 @@ import marauroa.common.game.RPAction;
  *
  * @author mtotz
  */
+	
 public class Minimap extends WtPanel implements PositionChangeListener {
 	/**
 	 * The color of the background.
@@ -117,6 +120,8 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 	
 	private CollisionDetection collisiondetection;
 
+	/** the logger instance. */
+	private static final Logger logger = Log4J.getLogger(Minimap.class);
 
 	/** Creates a new instance of Minimap */
 	public Minimap(StendhalClient client) {
@@ -286,8 +291,9 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 					
 				pathfind.PathJumpNode();
 				
-				System.out.println("TO WAYPOINT: " + pathfind.NodeGetX() + " " + pathfind.NodeGetY() );
-				
+				if (logger.isDebugEnabled()) {
+					logger.debug("Pathfind: To waypoint: " + pathfind.NodeGetX() + " " + pathfind.NodeGetY() );
+				}
 				RPAction action = new RPAction();
 				action.put("type", "moveto");
 				action.put("x", pathfind.NodeGetX());
@@ -464,7 +470,6 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 			return true;
 		}
 				
-		//System.out.println("TAMANO: "+ width + " "+ height + " "+panx + " "+pany + " " + getClientX() + " " +getClientY()) ;
 		nodo_actual=0;
 		
 		//Rectangle(int x, int y, int width, int height) 
@@ -482,8 +487,10 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 			pathfind.PathJumpNode();
 			nodo_actual = pathfind.final_path_index;
 			
-			System.out.println("PATH SIZE: "+ pathfind.final_path_index);
-			System.out.println("FIRST WAYPOINT: " + " " + pathfind.NodeGetX()+ " " + pathfind.NodeGetY());
+			if (logger.isDebugEnabled()) {
+				logger.debug("Pathfind: Found, size: " + pathfind.final_path_index);
+				logger.debug("Pathfind: First waypoint: " + pathfind.NodeGetX()+ "," + pathfind.NodeGetY());
+			}
 			
 			RPAction action = new RPAction();
 			action.put("type", "moveto");
@@ -492,8 +499,16 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 	
 			client.send(action);
 		
+		}else{
+			if (logger.isDebugEnabled()) {
+				logger.debug("Pathfind: unreacheable.");
+			}
 		}
-		System.out.println("PATH CALCULATION TIME: " + (System.currentTimeMillis() - computation_time) + "ms");
+		
+		if (logger.isDebugEnabled()) {
+			logger.debug("Pathfind: calculation time: " + (System.currentTimeMillis() - computation_time) + "ms");
+		}
+		
 		return true;
 	}
 

@@ -117,12 +117,12 @@ public class Pathfind {
 	public boolean NewPath (CollisionDetection collisiondetection,int x_inicial, int y_inicial, int x_final, int y_final, Rectangle search_area2){
 
 
-		System.out.println("PATHFIND: " + x_inicial + " " + y_inicial + " " +x_final + " "+ y_final + " " +collisiondetection.toString());
+	//	System.out.println("PATHFIND: " + x_inicial + " " + y_inicial + " " +x_final + " "+ y_final + " " +collisiondetection.toString());
 		
 
 		search_area =  search_area2;
 
-		System.out.println("AREA: " + search_area.getMinX() + " " +  search_area.getMinY() + " " +search_area.getMaxX()  + " " + search_area.getMaxY());
+		//System.out.println("AREA: " + search_area.getMinX() + " " +  search_area.getMinY() + " " +search_area.getMaxX()  + " " + search_area.getMaxY());
 		/*if (colision( collisiondetection,x_final,y_final)!=0){
 			System.out.println("DESTINO NO CAMINABLE: " + x_inicial + " " + y_inicial + " " +x_final + " "+ y_final + " " );
 			return false;
@@ -144,7 +144,7 @@ public class Pathfind {
 			// NO HAY CAMINO
 			if (lista_abierta.size()==0) {
 				//	computation_time = System.currentTimeMillis() - computation_time;
-				System.out.println("NO HAY CAMINO!! "+ lista_cerrada.size());// elapsed time: " + computation_time);
+			//	System.out.println("NO HAY CAMINO!! "+ lista_cerrada.size());// elapsed time: " + computation_time);
 				return false;
 			}
 
@@ -270,7 +270,7 @@ public class Pathfind {
 
 		//	computation_time = System.currentTimeMillis() - computation_time;
 
-		System.out.println("CAMINO ENCONTRADO!! " + lista_cerrada.size());//elapsed time: " + computation_time);
+	//	System.out.println("CAMINO ENCONTRADO!! " + lista_cerrada.size());//elapsed time: " + computation_time);
 
 		return ((final_path.size() > 0) ? true:false);
 	}
