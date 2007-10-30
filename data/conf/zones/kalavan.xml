@@ -493,6 +493,7 @@
  </zone> 
 
  <zone name="0_kalavan_city_gardens" level="0" x="499744" y="500768" file="Level 0/kalavan/city_gardens.tmx">
+  <configurator class-name="games.stendhal.server.maps.kalavan.citygardens.GardenerNPC"/>
  </zone>
 
  <zone name="0_kalavan_forest" level="0" x="499872" y="500768" file="Level 0/kalavan/forest.tmx">
