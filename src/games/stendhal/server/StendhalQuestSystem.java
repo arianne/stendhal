@@ -56,6 +56,7 @@ public class StendhalQuestSystem {
 		// loadQuest("CarmenCataclysm");
 		loadQuest("CleanStorageSpace");
 		loadQuest("CloakCollector");
+		loadQuest("CloakCollector2");
 		loadQuest("CloaksForBario");
 		loadQuest("ClubOfThorns");
 		loadQuest("CrownForTheWannaBeKing");
@@ -72,6 +73,7 @@ public class StendhalQuestSystem {
 		// loadQuest("HayunnCataclysm");
 		loadQuest("HouseBuying");
 		loadQuest("HungryJoshua");
+		loadQuest("IcecreamForAnnie");
 		loadQuest("ImperialPrincess");
 		loadQuest("IntroducePlayers");
 		loadQuest("JailedDwarf");
