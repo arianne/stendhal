@@ -267,3 +267,15 @@ tileset/item/candle/menorah.png	0	0:6
 tileset/item/candle/menorah.png	1	1:7
 tileset/item/candle/menorah.png	6	0:6
 tileset/item/candle/menorah.png	7	1:7
+
+# water from ground.png
+# the waves travel north, if the map uses the first tile,
+# south, if the second.
+# north:
+tileset/ground/ground.png	9@150	9:12:15:18:21:24:27:30
+tileset/ground/ground.png	10@150	10:13:16:19:22:25:28:31
+tileset/ground/ground.png	11@150	11:14:17:20:23:26:29:32
+# south:
+tileset/ground/ground.png	12@150	12:9:30:27:24:21:18:15
+tileset/ground/ground.png	13@150	13:10:31:28:25:22:19:16
+tileset/ground/ground.png	14@150	14:11:32:29:26:23:20:17

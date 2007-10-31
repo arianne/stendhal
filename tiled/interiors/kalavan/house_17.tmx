@@ -129,25 +129,25 @@
  <tileset name="ground" firstgid="332" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/ground.png"/>
  </tileset>
- <tileset name="veg" firstgid="344" tilewidth="32" tileheight="32">
+ <tileset name="veg" firstgid="365" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/item/vegetable.png"/>
  </tileset>
- <tileset name="bed" firstgid="355" tilewidth="32" tileheight="32">
+ <tileset name="bed" firstgid="376" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/bed/large_front_on_darker.png"/>
  </tileset>
- <tileset name="sofa" firstgid="361" tilewidth="32" tileheight="32">
+ <tileset name="sofa" firstgid="382" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/chair/sofa_cream.png"/>
  </tileset>
- <tileset name="brush" firstgid="367" tilewidth="32" tileheight="32">
+ <tileset name="brush" firstgid="388" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/brush.png"/>
  </tileset>
- <tileset name="rack" firstgid="370" tilewidth="32" tileheight="32">
+ <tileset name="rack" firstgid="391" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/armor/weapons_rack.png"/>
  </tileset>
- <tileset name="plants" firstgid="388" tilewidth="32" tileheight="32">
+ <tileset name="plants" firstgid="409" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/pot_plant_1.png"/>
  </tileset>
- <tileset name="dress" firstgid="400" tilewidth="32" tileheight="32">
+ <tileset name="dress" firstgid="421" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/dress.png"/>
  </tileset>
  <layer name="0_floor" width="25" height="25">
@@ -157,27 +157,27 @@
  </layer>
  <layer name="1_terrain" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAALWVS0/CQBSFLz/Ax0bFx5/wzcY3akJFF+pO2GCiAVQS48od/idkry7EPeq/8Uy8pJcrvdIOPckXps1pz7TM6WSJaDxFZsAkyIGVFFgHE5yxBF7AK3gD1cwvNeCjRZXRUx33vWFuOUPmR6nBvxVcc5mxM3wl5+GT8Yh5Npkn9T6vcHwd8RwN8ldTjWXGGlgGO2AX7PGxL6ucMQ3GmAIIwJE4NwqyFPblFJyBc+rvkPT4dvAClECZ/nYoSU91B7Vc//S6aDFV9ryDDzHuiOMa2Wu3zv3TnmfGUhd88niYfmhPm7H0Bb5jZsyDBcNjSWfcDfBsUfj/bY8ggyJyfDTMu9qgsLObKWU4zyyYMzxxMtweofeHQfNoGfcMsN7z4JBJsnadrH4E6jufNMP14yHljPsI738Zvf0jD/bBAfV//6XHd/8ogmNwIs5NKU9c3PU/zfn+HMQJAAA=
+   H4sIAAAAAAAAALWVy07CUBRFDx/gY6Li4yd8O0FFERPrY6DM1A+QgSTGRBMJgj/gTL8EnasDde7jb9g3HtLDkR5oL93JCrfNbvdtubs3S0TDKTIBRsEKWEiBZTDCGXPgBbyCN1DL/HELfDSrMtqq474N5o4zZH6UKvx7hWuuM3aGr+Q8fDLuMc8H5lG9zxscVyOeo0L+aqixzFgC8yAPNsAmH/uyyBnjYIjZAQHYFecGQZbCvhyCI1Cizg5Jj28Hj8EJOKX/HUrSU91BLdc/vS6azBl73sGnGH+I4zLZa7fO/dOeJ8bSF/jmcT/90J5nxtIP+I2ZMQ1mDI8lnXHexbNG4f+3PoAMisjxUT/vKkdhZ1dTynCeSTBleOJkuD1C7w/d5tE07hlgvRfANpNk7TpZ/QjUdz5phuvHZcoZFxHeXhnt/aMAtkCROr//0uO7f+yBfXAgzo0pT1zc9S3E+U+hxAkAAA==
   </data>
  </layer>
  <layer name="2_object" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGHjQzohb7gwQnyXDzEw0M3vw2HEOiM+TYQctwT0gfjDQjsACJuAJx1EwcCCfyHjppCD+CojU20eEuj04xAupnL62UNc4nOASEF+mk12jYOBBEY3NLyFCjQsV8spWyo2AgzQK9dtj8c8GNPNTKbTDYRjWXwDDYN6kxAkAAA==
+   H4sIAAAAAAAAAGNgGHgwhxG33BkgPkuGmXVoZi7EY8c5ID5Phh20BPeA+MFAOwILWIonHEfBwIEWIuNlHgXx10qk3sVEqNuDQ7yNyulrC3WNwwkuAfFlOtk1CgYeFNHY/BIi1LhQIa9spdwIOEijUL89Fv9sQDM/lUI7HIZh/QUAv+fnJ8QJAAA=
   </data>
  </layer>
  <layer name="3_roof" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoB84AMQHgfgQHe0k1f48Isy5DcR3qeEgKoEiRgaGSiiuYkSVSwXy0xix68ulvdNGwTAAx4D4BBL7OBKfEMgEpr1sHOmPELgCxFfJ04oCLgDxRSqYQwuQQyd7RvM6ceAAw8DVT6NgFJADAPQ7qSrECQAA
+   H4sIAAAAAAAAAGNgoB84AMQHgfgQHe0k1f48Isy5DcR3qeEgKoF2RgaGPijuZ0SVqwLyqxmx68ulvdNGwTAAx4D4BBL7OBKfEKgDpr0GHOmPELgCxFfJ04oCLgDxRSqYQwuQQyd7RvM6ceAAw8DVT6NgFJADAPDr1JXECQAA
   </data>
  </layer>
  <layer name="4_roof_add" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGByghZH2dnTRwY6BAhOGsd9GwfAGbXRIu/2j+WMUjIJRMAwBAAYYvZzECQAA
+   H4sIAAAAAAAAAGNgGBxgJiPt7ZhPBzsGCiwdxn4bBcMbzKZD2l0ymj9GwSgYBcMQAACZTpfmxAkAAA==
   </data>
  </layer>
  <layer name="objects" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjYBSMglEwCkbBKBg4cIuGZkcy0t6OgQIA3YemncQJAAA=
+   H4sIAAAAAAAAAGNgGAWjYBSMglEwCkbBKBg4cIuGZucx0t6OgQIAUtHDwcQJAAA=
   </data>
  </layer>
  <layer name="collision" width="25" height="25" opacity="0.24">

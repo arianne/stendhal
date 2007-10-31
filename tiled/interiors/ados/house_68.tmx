@@ -162,10 +162,10 @@
  <tileset name="ground" firstgid="324" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/ground.png"/>
  </tileset>
- <tileset name="edges" firstgid="336" tilewidth="32" tileheight="32">
+ <tileset name="edges" firstgid="357" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/bricked_edges.png"/>
  </tileset>
- <tileset name="veg" firstgid="351" tilewidth="32" tileheight="32">
+ <tileset name="veg" firstgid="372" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/item/vegetable.png"/>
  </tileset>
  <layer name="0_floor" width="25" height="23">
@@ -175,7 +175,7 @@
  </layer>
  <layer name="1_terrain" width="25" height="23">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAALWVvU4CQRDHlwcQaPx4BgQNiGLDQYF2aqJ2+gQ2BGOgocEXgURjBXQWQmHsJBF4GBNq/5fsJpNlZm+PnJP8kg3z8d/ZXeb2lFLpf2QXZMEpKDuoeMRIeRmtUQJDxVsPFHXMivz+TNZvQm7RU8PElvS6DwbE12Lim4LG2FNDsg8wAVMrj2q4jGq8gNeIeEmj7aFB72AlxBp7ZzSi9nMCjhgCHVNlfMcxNaS3W9cxNcZnv92OUL+j1u+8C37A3LGvX8WfVSWF/ab4PuxeF2DJ1P4GM5Lnc1ZtQcPHNnm7n+DL8uXQ9z7IC/37aoT3WRd8SWm4jNN43EAjfPuB4Cug9gE4JBpm9kVp1EhO3DsfCRrm/1FF7cA626Q0XBZH4ylhjXv0e625I71LGtLc5WaJsVtS94asw2/Rg6UhzVQ6P01MA5yB84gcOnd3wFYMLsAluPKM3wZ/xbW9FPwIAAA=
+   H4sIAAAAAAAAALWVu05CQRCGlwcQaLw8g4AGRKHhQIF26mN4aRRCoLGRF8FEYiV0FEpB7DRBeBgSav+T7CaTZWbPHnKc5Es2zOXf2V3mHCil0v/IPsiCKig7qHjESHkZrVEC74q3Z1DUMWvye5+s34TcoqeGiS3p9QC8EF+LiX8QNMaeGpJ9gE8wtfKohsuoxisYRsRLGl0PDXoHayHW2ITRiNrPGThhCHRMjfGdxtSQ3m5Dx9QZn/12e0L9ntq88ycwB7+Ofa0Uf1aVFPab4vuwe12AJVP7G/yQPJ+z6goaPrbN252BL8t3iL5zIC/076sR3mdD8CWl4TJOo72FRvj2A8FXQO0jcEw0zOyL0qiTnLh3PhI0zP+jhtqBdbZJabgsjkYnYY0W+r3RPJLeJQ1p7nKzxNgdqXtL1uG36N7SkGYqnZ8mpgnOwUVEDp27e2AnBpfgClx7xu+CPxfIsdf8CAAA
   </data>
  </layer>
  <layer name="2_object" width="25" height="23">
@@ -195,7 +195,7 @@
  </layer>
  <layer name="objects" width="25" height="23">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjYBSMglEwCkbBYAcX6GR+AiONLRoEAABDI5L3/AgAAA==
+   H4sIAAAAAAAAAGNgGAWjYBSMglEwCkbBYAcX6GR+KSONLRoEAADpIbiy/AgAAA==
   </data>
  </layer>
  <layer name="collision" width="25" height="23" opacity="0.37">

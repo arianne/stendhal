@@ -132,7 +132,7 @@
  <tileset name="grass" firstgid="341" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/ground.png"/>
  </tileset>
- <tileset name="bricked edges" firstgid="353" tilewidth="32" tileheight="32">
+ <tileset name="bricked edges" firstgid="374" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/bricked_edges.png"/>
  </tileset>
  <layer name="0_floor" width="25" height="25">
@@ -142,7 +142,7 @@
  </layer>
  <layer name="1_terrain" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAMWVyU7DQAyGnTMPwIEH4HWQ4A3ggoQElKVn2qcBCY6FO/QA3EBikdgKDauAsu/LH9UW6cQznTStsPTJnRnbvyfJdCpEdNxBquACnIKuoP2coe45a3RjnIcvUt0OwCE4It2WwQpTBnvMPq9Ps+8JGjWKZiGlZllZk360nkyNTth/aIwZ68MZ6+cNjUvQi/EH/Cf/boZP7BXVNW5j/EQNBI1zNtLEVsAJ8wbeY+OIqhHjitWQZyVn8Av+m5JnKKTkOTVj42xhfpuSZ1AzeWchx2zAb1re8SpYA+tgB+xS8rsqeWjELWfR0vJFY9FTow++nxmw7L9k5KfVaGaT9FfL1FhS4u/APXgAj34STg3NnsAzeAGvnhqRSb+axqgR28qz0vLTfLuDMUYsOTklXzTGeX4WzHnsY8iiMQOmMuzDR2PCsQ+xebCQQUPrUTQKbdqHWIH0+8P2/x86Ylz3ieRfgxsHNY5p9T6J8n8B7BTGKsQJAAA=
+   H4sIAAAAAAAAAMWVyU7DQAyGnTMPwIEH4HWQ4CU4AWUpHNs+DUhwLNyhB+AGEovEVmhYxVL2Hf6otkgnnumkaYWlT+7M2P49SaZTJaLjLlIDF+AU9ASd5wx1z1mjF+M8fIkadgAOwRHptgxWmArYY/Z5fYp9X9CsUTILKTUrypr0o/VkanTD/kNj1Fgfzlg/b2hcgn6MP+A/+XcrfGKvqKFxG+MnaiBonrORJrYKTpg38B4bR9SMGFeshjwrOYNf8N+UPEMhJc+pGRtnC/PblDyDmsk7CzlmA37T8o5XwRpYBztgl5LfVdlDI245i5aWLxqLnhoD8IPMkGX/ZSM/rUYrm6C/WqbGkhJfB/fgATz6STg1NHsCz+AFvHpqRCb9ahojRmw7z0rLT/PtTscoWHJySr5ojPH8LJjz2MeMRaMAJjPsw0dj3LEPsXmwkEFD61E0ih3ah1iR9PvD9v8fOmJc94nkX4MbB3cc0+59EuX/AkrxWw/ECQAA
   </data>
  </layer>
  <layer name="2_object" width="25" height="25">

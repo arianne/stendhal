@@ -174,51 +174,51 @@
  <tileset name="ground" firstgid="324" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/ground.png"/>
  </tileset>
- <tileset name="bushes" firstgid="336" tilewidth="32" tileheight="32">
+ <tileset name="bushes" firstgid="357" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/bush/bushes.png"/>
  </tileset>
- <tileset name="vine" firstgid="346" tilewidth="32" tileheight="32">
+ <tileset name="vine" firstgid="367" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/vine.png"/>
  </tileset>
- <tileset name="mushrooms" firstgid="347" tilewidth="32" tileheight="32">
+ <tileset name="mushrooms" firstgid="368" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/mushroom2.png"/>
  </tileset>
- <tileset name="door detail 1" firstgid="348" tilewidth="32" tileheight="32">
+ <tileset name="door detail 1" firstgid="369" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/dark_red_ew_detail.png"/>
  </tileset>
- <tileset name="ground2" firstgid="360" tilewidth="32" tileheight="32">
+ <tileset name="ground2" firstgid="381" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/indoor/tiles.png"/>
  </tileset>
- <tileset name="drink shelf" firstgid="368" tilewidth="32" tileheight="32">
+ <tileset name="drink shelf" firstgid="389" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/shelve/dark_bottle_shelf.png"/>
  </tileset>
- <tileset name="dark book shelf" firstgid="374" tilewidth="32" tileheight="32">
+ <tileset name="dark book shelf" firstgid="395" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/shelve/dark_bookshelf.png"/>
  </tileset>
- <tileset name="dark book shelf 2" firstgid="380" tilewidth="32" tileheight="32">
+ <tileset name="dark book shelf 2" firstgid="401" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/shelve/dark_bookshelf_2.png"/>
  </tileset>
- <tileset name="detail ns" firstgid="386" tilewidth="32" tileheight="32">
+ <tileset name="detail ns" firstgid="407" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/dark_red_ns_detail.png"/>
  </tileset>
  <layer name="0_floor" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAMtlZGDIHQI4GwdGV+eKA2MzLxPJnEwqmDeS3DeKR/EoHsUA3dUN9kAGAAA=
+   H4sIAAAAAAAAAGtiZGBoGgK4AQdGV+eKA2Mzrw7JnDoqmDeS3DeKR/EoHsUAZKjYAUAGAAA=
   </data>
  </layer>
  <layer name="1_terrain" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAK2TawrCMBCENwdQwfr4Va0PfB9GVFDpMdTf6jU8jV6p7QGc0BRDmjRbcOGDZjMMQ7MbEtHQQwRCpm4ExiBwMAFTpm6hdG3wprwugugKbiI/9zU/qduhH6u7k/rei1yn+yVkL9PPVrHFLwWvGn6xlvNs8cv+nO/D9DuoXEfx89oafjPQczDX/Hw66bcEa7CqYKN0VZpCJ+d0QP5Z5RCRf065mPN8xz99gKdwPIyjApFjvq+rEirPum32uX6pwuzp+To18rn8zF3i+mVU3h3dX2brWvI10GuCFuM9zLx18rkyFxVY8lXtUQF57vV98+0RF7lvX+G/4UVABgAA
+   H4sIAAAAAAAAAK2TWwrCMBBFJwtQwfr4qtYHvrclKqh0Geq3+uFqdEttF+ANTTGkSTMFBw40k8vl0syERDT0EIGQqRuBMQgcTMCUqVsoXRu8Ka+LILqCm8jPfc1P6nbox+rupL73ItfpfgnZy/SzVWzxS8Grhl+s5Txb/LI/5/sw/Q4q11H8vLaG3wz0HMw1P59O+i3BGqwq2ChdlabQyTkdkH9WOUTkn1Mu5jzf8U8f4CkcD+OoQOSY7+uqhMqzbpt9rl+qMHt6vk6NfC4/c5e4fhmVd0f3l9m6lnwN9JqgxXgPM2+dfK7MRQWWfFV7VECee33ffHvERe7bFxnK1E5ABgAA
   </data>
  </layer>
  <layer name="2_object" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgIB1EMaJibGAXlC4AyhcCcREQz6XAPFzAAqjeEoitgNiaBL1yONTaAMVtgdgOiO1JME8Kh1oHoLgjEDsBsTMJ5u0hXumAg6NAfAyIj1PJvBNAfBKIT1HJvNNAfAaIz1LJvHNAfB6IL6CJz8aiVoARggcKRGOxeymVzcSV9okBWyhzClFgCZXN20xl8ygFA5n/AHgjdzlABgAA
+   H4sIAAAAAAAAAGNgIB3kM6JibGAXlG4FyrcBcTsQz6XAPFzAAqjeEoitgNiaBL1yONTaAMVtgdgOiO1JME8Kh1oHoLgjEDsBsTMJ5u0hXumAg6NAfAyIj1PJvBNAfBKIT1HJvNNAfAaIz1LJvHNAfB6IL6CJz8aiVoARggcKFGCxeymVzcSV9okBWyhzClFgCZXN20xl8ygFA5n/AOj35Y1ABgAA
   </data>
  </layer>
  <layer name="3_roof" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGPrAkpGBwYqReuYlAc1KpqJ5KUCzUqlo3nAHHcCw6gTiLiqFWTfQnB4g7qXAvBqg3logrhtm8SgA9I8gHfzEDrSDA4g5SbQL5DYhLHq4gGLcQMwzwPEhgMN9IwUAAOOwEZRABgAA
+   H4sIAAAAAAAAAGNgGPrAkpGBwYqReuaVA82qoKJ5lUCzqqho3nAHc4FhNQ+I51MpzBYAzVkIxIsoMG8iUO8kIJ48zOJRAOgfQTr4iR1oBwcQc5JoF8htQlj0cAHFuIGYZ4DjQwCH+0YKAABw/yGyQAYAAA==
   </data>
  </layer>
  <layer name="4_roof_add" width="20" height="20">

@@ -129,7 +129,7 @@
  <tileset name="ground" firstgid="332" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/ground.png"/>
  </tileset>
- <tileset name="veg" firstgid="344" tilewidth="32" tileheight="32">
+ <tileset name="veg" firstgid="365" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/item/vegetable.png"/>
  </tileset>
  <layer name="0_floor" width="25" height="25">
@@ -159,7 +159,7 @@
  </layer>
  <layer name="objects" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjYBSMglEwCkbBKBg4cIuGZkcy0t6OgQIA3YemncQJAAA=
+   H4sIAAAAAAAAAGNgGAWjYBSMglEwCkbBKBg4cIuGZucx0t6OgQIAUtHDwcQJAAA=
   </data>
  </layer>
  <layer name="collision" width="25" height="25" opacity="0.37">
