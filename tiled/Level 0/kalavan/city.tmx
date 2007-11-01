@@ -271,7 +271,7 @@
   <image source="../../tileset/plant/grasses.png"/>
  </tileset>
  <tileset name="flag" firstgid="1257" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/flag.png"/>
+  <image source="../../tileset/item/banners/flag.png"/>
  </tileset>
  <tileset name="table long front on" firstgid="1269" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/table/long_front_on.png"/>
