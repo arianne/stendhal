@@ -9,10 +9,12 @@ package games.stendhal.client;
 //
 //
 
+import org.apache.log4j.Logger;
+
 import games.stendhal.client.events.RPObjectChangeListener;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
@@ -30,12 +32,12 @@ public class RPObjectChangeDispatcher {
 	/**
 	 * The logger.
 	 */
-	private static final Logger logger = Log4J.getLogger(RPObjectChangeDispatcher.class);
+	private static final Logger logger = Logger.getLogger(RPObjectChangeDispatcher.class);
 
 	/**
 	 * The dump logger.
 	 */
-	private static final Logger dlogger = Log4J.getLogger(Dump.class);
+	private static final Logger dlogger =  Logger.getLogger(Dump.class);
 
 	/**
 	 * The normal listener.

@@ -77,8 +77,9 @@ import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+import org.apache.log4j.Logger;
+
+
 import marauroa.common.game.RPObject;
 
 /** The main class that create the screen and starts the arianne client. */
@@ -120,7 +121,7 @@ public class j2DClient extends StendhalUI {
 	}
 
 	/** the logger instance. */
-	private static final Logger logger = Log4J.getLogger(j2DClient.class);
+	private static final Logger logger = Logger.getLogger(j2DClient.class);
 
 	/**
 	 * The man window frame.

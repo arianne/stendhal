@@ -37,8 +37,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 import marauroa.common.game.Definition;
 import marauroa.common.game.IRPZone;
 import marauroa.common.game.RPAction;
@@ -58,7 +58,7 @@ public class AdministrationAction implements ActionListener {
 	 * Split it in smaller more coherent classes.
 	 */
 
-	private static final Logger logger = Log4J
+	private static final Logger logger = Logger
 			.getLogger(AdministrationAction.class);
 
 	public static final int REQUIRED_ADMIN_LEVEL_FOR_SUPPORT = 100;
@@ -175,7 +175,7 @@ public class AdministrationAction implements ActionListener {
 
 		/*
 		 * Refactor.
-		 * Bad smell but on the other hand the correct way of doing it may 
+		 * Bad smell but on the other hand the correct way of doing it may
 		 * be even worse?
 		 */
 		if (type.equals("tellall")) {

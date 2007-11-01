@@ -14,8 +14,8 @@ import games.stendhal.server.StendhalServerExtension;
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.actions.AdministrationAction;
 import games.stendhal.server.entity.player.Player;
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 import marauroa.common.game.RPAction;
 
 /**
@@ -38,7 +38,7 @@ public class SpouseExtension extends StendhalServerExtension implements ActionLi
 
 	private final String SPOUSE = "spouse";
 
-	private static final Logger logger = Log4J.getLogger(SpouseExtension.class);
+	private static final Logger logger = Logger.getLogger(SpouseExtension.class);
 
 	/**
 	 * 

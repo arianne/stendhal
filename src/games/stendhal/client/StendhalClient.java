@@ -37,8 +37,8 @@ import javax.swing.JOptionPane;
 import marauroa.client.ClientFramework;
 import marauroa.client.net.IPerceptionListener;
 import marauroa.client.net.PerceptionHandler;
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 import marauroa.common.game.Perception;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
@@ -55,7 +55,7 @@ import marauroa.common.net.message.TransferContent;
 public class StendhalClient extends ClientFramework {
 
 	/** the logger instance. */
-	private static final Logger logger = Log4J.getLogger(StendhalClient.class);
+	private static final Logger logger = Logger.getLogger(StendhalClient.class);
 
 	private Map<RPObject.ID, RPObject> world_objects;
 

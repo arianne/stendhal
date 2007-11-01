@@ -50,8 +50,8 @@ import java.util.List;
 import java.util.Map;
 
 import marauroa.common.Configuration;
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 import marauroa.common.Pair;
 import marauroa.common.game.AccountResult;
 import marauroa.common.game.CharacterResult;
@@ -68,7 +68,7 @@ import marauroa.server.game.rp.RPServerManager;
 public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 	/** the logger instance. */
-	private static final Logger logger = Log4J.getLogger(StendhalRPRuleProcessor.class);
+	private static final Logger logger = Logger.getLogger(StendhalRPRuleProcessor.class);
 
 	/** The Singleton instance */
 	protected static StendhalRPRuleProcessor instance;

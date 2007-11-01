@@ -25,8 +25,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 import marauroa.common.io.Persistence;
 
 /**
@@ -39,7 +39,7 @@ import marauroa.common.io.Persistence;
 public class WtWindowManager {
 
 	/** the logger instance. */
-	private static final Logger logger = Log4J.getLogger(WtWindowManager.class);
+	private static final Logger logger = Logger.getLogger(WtWindowManager.class);
 
 	/** filename for the settings persistence */
 	private static final String FILE_NAME = "windows.properties";

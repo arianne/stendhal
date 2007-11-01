@@ -17,8 +17,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.WeakHashMap;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 import marauroa.common.game.RPObject;
 
 public abstract class ScriptingSandbox {
@@ -35,7 +35,7 @@ public abstract class ScriptingSandbox {
 
 	private String filename;
 
-	private static final Logger logger = Log4J.getLogger(ScriptingSandbox.class);
+	private static final Logger logger = Logger.getLogger(ScriptingSandbox.class);
 
 	public ScriptingSandbox(String filename) {
 		this.filename = filename;

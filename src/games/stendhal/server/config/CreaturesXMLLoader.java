@@ -17,8 +17,8 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
@@ -30,7 +30,7 @@ public class CreaturesXMLLoader extends DefaultHandler {
 	private static CreaturesXMLLoader instance;
 
 	/** the logger instance. */
-	private static final Logger logger = Log4J
+	private static final Logger logger = Logger
 			.getLogger(CreaturesXMLLoader.class);
 
 	private String name;

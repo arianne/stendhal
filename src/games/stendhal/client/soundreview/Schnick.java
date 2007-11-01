@@ -14,12 +14,12 @@ import java.util.InvalidPropertiesFormatException;
 import java.util.Map;
 import java.util.Properties;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 
 //TODO: delete me when new soundsystem works
 public class Schnick {
-	private static final Logger logger = Log4J.getLogger(Schnick.class);
+	private static final Logger logger = Logger.getLogger(Schnick.class);
 
 	public static InputStream getResourceStream(String name) throws IOException {
 		URL url = SpriteStore.get().getResourceURL(name);

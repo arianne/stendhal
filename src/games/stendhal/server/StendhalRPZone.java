@@ -52,8 +52,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.Vector;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 import marauroa.common.game.IRPZone;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
@@ -64,7 +64,7 @@ import marauroa.server.game.rp.MarauroaRPZone;
 public class StendhalRPZone extends MarauroaRPZone {
 
 	/** the logger instance. */
-	private static final Logger logger = Log4J.getLogger(StendhalRPZone.class);
+	private static final Logger logger = Logger.getLogger(StendhalRPZone.class);
 
 	private List<TransferContent> contents;
 

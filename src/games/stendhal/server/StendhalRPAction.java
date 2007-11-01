@@ -32,8 +32,8 @@ import java.awt.Rectangle;
 import java.awt.Shape;
 import java.util.List;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 import marauroa.server.game.rp.RPServerManager;
 
 /*
@@ -44,7 +44,7 @@ import marauroa.server.game.rp.RPServerManager;
 public class StendhalRPAction {
 
 	/** the logger instance. */
-	private static final Logger logger = Log4J.getLogger(StendhalRPAction.class);
+	private static final Logger logger = Logger.getLogger(StendhalRPAction.class);
 
 	/** server manager */
 	private static RPServerManager rpman;

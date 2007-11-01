@@ -14,8 +14,8 @@ import games.stendhal.server.entity.RPEntity;
 
 import java.util.Random;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 
 /**
  * An area that damages an RPEntity while over it.
@@ -26,7 +26,7 @@ public class DamagingArea extends OccupantArea {
 	/**
 	 * The logger instance.
 	 */
-	private static final Logger logger = Log4J.getLogger(DamagingArea.class);
+	private static final Logger logger = Logger.getLogger(DamagingArea.class);
 
 	/**
 	 * The damage inflicted each hit.

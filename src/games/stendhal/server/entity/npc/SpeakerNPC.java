@@ -12,8 +12,8 @@ import games.stendhal.server.entity.player.Player;
 import java.util.LinkedList;
 import java.util.List;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 
 /**
  * This is a finite state machine that implements a chat system. See:
@@ -83,7 +83,7 @@ import marauroa.common.Logger;
  */
 public class SpeakerNPC extends NPC {
 	/** the logger instance. */
-	private static final Logger logger = Log4J.getLogger(SpeakerNPC.class);
+	private static final Logger logger = Logger.getLogger(SpeakerNPC.class);
 
 	private Engine engine = new Engine(this);
 

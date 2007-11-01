@@ -24,8 +24,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 
 /**
  * entity manager for the default ruleset
@@ -35,7 +35,7 @@ import marauroa.common.Logger;
 public class DefaultEntityManager implements EntityManager {
 
 	/** the logger instance. */
-	private static final Logger logger = Log4J
+	private static final Logger logger = Logger
 			.getLogger(DefaultEntityManager.class);
 
 	/** the singleton instance, lazy initialisation */
@@ -231,7 +231,7 @@ public class DefaultEntityManager implements EntityManager {
 
 	/**
 	 * returns the DefaultCreature or <code>null</code> if the clazz is unknown
-	 * 
+	 *
 	 * @throws NullPointerException
 	 *             if clazz is <code>null</code>
 	 */

@@ -11,8 +11,8 @@ package games.stendhal.server.config.zone;
 
 import org.w3c.dom.Element;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 
 /**
  * A generic entity setup xml reader.
@@ -21,7 +21,7 @@ public class ConfiguratorXMLReader extends SetupXMLReader {
 	/**
 	 * Logger
 	 */
-	private static final Logger logger = Log4J.getLogger(ConfiguratorXMLReader.class);
+	private static final Logger logger = Logger.getLogger(ConfiguratorXMLReader.class);
 
 	//
 	// ConfiguratorXMLReader

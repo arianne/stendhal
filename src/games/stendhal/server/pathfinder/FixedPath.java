@@ -13,8 +13,8 @@ import games.stendhal.server.entity.ActiveEntity;
 
 import java.util.List;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 
 /**
  * A path using a fixed route.
@@ -24,7 +24,7 @@ public class FixedPath {
 	/**
 	 * The logger.
 	 */
-	private static final Logger logger = Log4J.getLogger(FixedPath.class);
+	private static final Logger logger = Logger.getLogger(FixedPath.class);
 
 	/**
 	 * The current goal node.

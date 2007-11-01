@@ -39,8 +39,8 @@ import java.util.List;
 
 import javax.swing.JPopupMenu;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 
 /**
  * Base class for all kinds of panels/windows/buttons.
@@ -66,7 +66,7 @@ import marauroa.common.Logger;
 public class WtPanel implements ManagedWindow, WtDraggable {
 
 	/** the logger instance. */
-	private static final Logger logger = Log4J.getLogger(WtPanel.class);
+	private static final Logger logger = Logger.getLogger(WtPanel.class);
 
 	/** size of the titlebar */
 	private static final int TITLEBAR_SIZE = 14;

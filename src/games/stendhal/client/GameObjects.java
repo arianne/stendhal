@@ -23,8 +23,8 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Map;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+import org.apache.log4j.Logger;
+
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
@@ -32,7 +32,7 @@ import marauroa.common.game.RPSlot;
 public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 
 	/** the logger instance. */
-	private static final Logger logger = Log4J.getLogger(GameObjects.class);
+	private static final Logger logger = Logger.getLogger(GameObjects.class);
 
 	private Map<FQID, Entity> objects;
 

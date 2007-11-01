@@ -7,8 +7,8 @@ import games.stendhal.server.scripting.ScriptImpl;
 
 import java.util.List;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 import marauroa.server.game.container.PlayerEntry;
 import marauroa.server.game.container.PlayerEntryContainer;
 
@@ -19,7 +19,7 @@ import marauroa.server.game.container.PlayerEntryContainer;
  */
 public class LogoutPlayer extends ScriptImpl {
 
-	private static Logger logger = Log4J.getLogger(LogoutPlayer.class);
+	private static Logger logger = Logger.getLogger(LogoutPlayer.class);
 
 	@Override
 	public void execute(Player admin, List<String> args) {

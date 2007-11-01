@@ -21,8 +21,8 @@ import games.stendhal.server.events.UseListener;
 
 import java.util.Map;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 import marauroa.common.game.RPObject;
 
 /**
@@ -30,7 +30,7 @@ import marauroa.common.game.RPObject;
  */
 public class Scroll extends StackableItem implements UseListener {
 
-	private static final Logger logger = Log4J.getLogger(Scroll.class);
+	private static final Logger logger = Logger.getLogger(Scroll.class);
 
 	/**
 	 * Creates a new scroll

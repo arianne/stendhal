@@ -26,8 +26,8 @@ import games.stendhal.server.events.TurnNotifier;
 import java.awt.geom.Rectangle2D;
 import java.util.Iterator;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
@@ -45,7 +45,7 @@ public class Corpse extends PassiveEntity implements TurnListener,
 	 */
 	protected static final String ATTR_NAME = "name";
 
-	private static final Logger logger = Log4J.getLogger(Corpse.class);
+	private static final Logger logger = Logger.getLogger(Corpse.class);
 
 	/** Time (in seconds) until a corpse disappears. */
 	private static final int DEGRADATION_TIMEOUT = 15 * 60;

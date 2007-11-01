@@ -19,8 +19,8 @@ import games.stendhal.client.sprite.SpriteStore;
 
 import java.awt.Graphics2D;
 import java.util.List;
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 import marauroa.common.game.RPAction;
 
 /**
@@ -30,7 +30,7 @@ public class Player2DView extends RPEntity2DView {
 	/**
 	 * The logger.
 	 */
-	private static final Logger logger = Log4J.getLogger(Player2DView.class);
+	private static final Logger logger = Logger.getLogger(Player2DView.class);
 
 	/**
 	 * Sprite representing away.

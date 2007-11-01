@@ -44,10 +44,12 @@ import javax.swing.JTextField;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import org.apache.log4j.Logger;
+
 import marauroa.client.BannedAddressException;
 import marauroa.client.LoginFailedException;
 import marauroa.client.TimeoutException;
-import marauroa.common.Log4J;
+
 import marauroa.common.io.Persistence;
 import marauroa.common.net.InvalidVersionException;
 
@@ -330,7 +332,7 @@ public class LoginDialog extends JDialog {
 			progressBar.cancel();
 			setEnabled(true);
 
-			Log4J.getLogger(LoginDialog.class).error("unable to connect to server", ex);
+			Logger.getLogger(LoginDialog.class).error("unable to connect to server", ex);
 			JOptionPane.showMessageDialog(this,
 			        "Unable to connect to server. Did you misspell the server name?");
 			return;

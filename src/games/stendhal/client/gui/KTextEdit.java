@@ -18,8 +18,8 @@ import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyleContext;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 
 /**
  * User: lsoubrev122203 Date: May 9, 2005 Time: 10:02:40 AM
@@ -28,7 +28,7 @@ import marauroa.common.Logger;
 public class KTextEdit extends JPanel {
 
 	private static final long serialVersionUID = -698232821850852452L;
-	private static final Logger logger = Log4J.getLogger(KTextEdit.class);
+	private static final Logger logger = Logger.getLogger(KTextEdit.class);
 
 	protected static final int TEXT_SIZE = 11;
 

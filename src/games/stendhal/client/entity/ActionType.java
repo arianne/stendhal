@@ -1,7 +1,9 @@
 package games.stendhal.client.entity;
 
+import org.apache.log4j.Logger;
+
 import games.stendhal.client.StendhalClient;
-import marauroa.common.Log4J;
+
 import marauroa.common.game.RPAction;
 
 /**
@@ -10,31 +12,31 @@ import marauroa.common.game.RPAction;
  *
  */
 public enum ActionType {
-	LOOK("look", "Look"), 
-	READ("look", "Read"), 
-	INSPECT("inspect", "Inspect"), 
-	ATTACK("attack", "Attack"), 
-	STOP_ATTACK("stop", "Stop attack"), 
-	PUSH("push", "Push"), 
-	CLOSE("use", "Close"), 
-	OPEN("use", "Open"), 
-	OWN("own", "Own"), 
-	USE("use", "Use"), 
-	HARVEST("use", "Harvest"), 
-	PICK("use", "Pick"), 
-	PROSPECT("use", "Prospect"), 
+	LOOK("look", "Look"),
+	READ("look", "Read"),
+	INSPECT("inspect", "Inspect"),
+	ATTACK("attack", "Attack"),
+	STOP_ATTACK("stop", "Stop attack"),
+	PUSH("push", "Push"),
+	CLOSE("use", "Close"),
+	OPEN("use", "Open"),
+	OWN("own", "Own"),
+	USE("use", "Use"),
+	HARVEST("use", "Harvest"),
+	PICK("use", "Pick"),
+	PROSPECT("use", "Prospect"),
 	FISH("use", "Fish"),
-	WISH("use", "Make a Wish"), 
-	LEAVE_SHEEP("own", "Leave sheep"), 
-	LEAVE_PET("own", "Leave pet"), 
-	ADD_BUDDY("addbuddy", "Add to Buddies"), 
-	ADMIN_INSPECT("inspect", "(*)Inspect"), 
-	ADMIN_DESTROY("destroy", "(*)Destroy"), 
-	ADMIN_ALTER("alter", "(*)Alter"), 
-	DEBUG_SHOW_PATH("[show path]", "ShowPath"), 
-	DEBUG_HIDE_PATH("[hide path]", "HidePath"), 
-	DEBUG_ENABLE_WATCH("[enable watch]", "Enable Watch"), 
-	DEBUG_DISABLE_WATCH("[disable watch]", "Disable Watch"), 
+	WISH("use", "Make a Wish"),
+	LEAVE_SHEEP("own", "Leave sheep"),
+	LEAVE_PET("own", "Leave pet"),
+	ADD_BUDDY("addbuddy", "Add to Buddies"),
+	ADMIN_INSPECT("inspect", "(*)Inspect"),
+	ADMIN_DESTROY("destroy", "(*)Destroy"),
+	ADMIN_ALTER("alter", "(*)Alter"),
+	DEBUG_SHOW_PATH("[show path]", "ShowPath"),
+	DEBUG_HIDE_PATH("[hide path]", "HidePath"),
+	DEBUG_ENABLE_WATCH("[enable watch]", "Enable Watch"),
+	DEBUG_DISABLE_WATCH("[disable watch]", "Disable Watch"),
 	SET_OUTFIT("outfit", "Set outfit");
 	//JOIN_GUILD("guild", "Manage Guilds");
 
@@ -71,12 +73,12 @@ public enum ActionType {
 			}
 
 		}
-		Log4J.getLogger(ActionType.class).error(representation + " =code: not found");
+		Logger.getLogger(ActionType.class).error(representation + " =code: not found");
 		return null;
 	}
 
-	/** 
-	 * @return the command code for usage on server side 
+	/**
+	 * @return the command code for usage on server side
 	 **/
 	@Override
 	public String toString() {

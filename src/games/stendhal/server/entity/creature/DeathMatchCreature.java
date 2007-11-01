@@ -1,8 +1,10 @@
 package games.stendhal.server.entity.creature;
 
+import org.apache.log4j.Logger;
+
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.player.Player;
-import marauroa.common.Log4J;
+
 
 /**
  * An creature that will only reward the specified player
@@ -61,7 +63,7 @@ public class DeathMatchCreature extends Creature {
 			player.notifyWorldAboutChanges();
 
 		} else {
-			Log4J.getLogger(DeathMatchCreature.class).error(damageReceived);
+			Logger.getLogger(DeathMatchCreature.class).error(damageReceived);
 		}
 	}
 

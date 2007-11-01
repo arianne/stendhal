@@ -10,8 +10,8 @@ import games.stendhal.server.events.UseListener;
 
 import java.util.Map;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 import marauroa.common.game.RPObject;
 
 /**
@@ -21,7 +21,7 @@ import marauroa.common.game.RPObject;
  */
 public class Box extends Item implements UseListener {
 
-	private Logger logger = Log4J.getLogger(Box.class);
+	private Logger logger = Logger.getLogger(Box.class);
 
 	// TODO: Make these configurable
 	// for christmas presents

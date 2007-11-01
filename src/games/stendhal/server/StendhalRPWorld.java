@@ -48,8 +48,8 @@ import games.stendhal.tools.tiled.StendhalMapStructure;
 
 import java.net.URI;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 import marauroa.common.game.IRPZone;
 import marauroa.common.game.RPClass;
 import marauroa.server.game.rp.RPWorld;
@@ -58,7 +58,7 @@ import marauroa.common.game.Definition.Type;
 
 public class StendhalRPWorld extends RPWorld {
 	/** the logger instance. */
-	private static final Logger logger = Log4J.getLogger(StendhalRPWorld.class);
+	private static final Logger logger = Logger.getLogger(StendhalRPWorld.class);
 
 	static {
 		MAPS_FOLDER = "data/maps/";

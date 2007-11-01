@@ -9,7 +9,9 @@ import java.io.OutputStream;
 import java.net.URL;
 import java.util.Properties;
 
-import marauroa.common.Log4J;
+import org.apache.log4j.Logger;
+
+
 
 public class SoundFileReader {
 
@@ -40,7 +42,7 @@ public class SoundFileReader {
 	/**
 	 * Obtains a resource input stream. Fetches currently from the main
 	 * program's classloader.
-	 * 
+	 *
 	 * @param name
 	 * @return InputStream
 	 * @throws IOException
@@ -99,7 +101,7 @@ public class SoundFileReader {
 			transferData(in, bout, 4096);
 			in.close();
 		} catch (IOException e) {
-			Log4J.getLogger(SoundFileReader.class).error(
+			Logger.getLogger(SoundFileReader.class).error(
 					"could not open soundfile " + filename);
 			return null;
 		}
@@ -111,7 +113,7 @@ public class SoundFileReader {
 	/**
 	 * Transfers the contents of the input stream to the output stream until the
 	 * end of input stream is reached.
-	 * 
+	 *
 	 * @param input
 	 * @param output
 	 * @param bufferSize

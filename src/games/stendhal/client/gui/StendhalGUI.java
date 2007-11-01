@@ -17,8 +17,8 @@ import games.stendhal.common.Direction;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 
 /**
  * A base graphical user interface for Stendhal. This implements code
@@ -78,7 +78,7 @@ public abstract class StendhalGUI extends StendhalUI {
 	/**
 	 * The logger.
 	 */
-	private static final Logger logger = Log4J.getLogger(StendhalGUI.class);
+	private static final Logger logger = Logger.getLogger(StendhalGUI.class);
 
 	/**
 	 * Whether the Ctrl key is currently down.

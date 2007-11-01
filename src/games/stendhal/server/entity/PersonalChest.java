@@ -7,8 +7,8 @@ import games.stendhal.server.events.TurnNotifier;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
@@ -23,7 +23,7 @@ import marauroa.common.game.RPSlot;
  * the owner is looking at his items. TODO: fix this.
  */
 public class PersonalChest extends Chest {
-	private static Logger logger = Log4J.getLogger(PersonalChest.class);
+	private static Logger logger = Logger.getLogger(PersonalChest.class);
 
 	/**
 	 * The default bank slot name.

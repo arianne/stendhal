@@ -9,8 +9,8 @@ package games.stendhal.client.gui.j2d.entity;
 //
 //
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 
 import games.stendhal.client.IGameScreen;
 import games.stendhal.client.StendhalUI;
@@ -37,7 +37,7 @@ public class Creature2DView extends RPEntity2DView {
 	/**
 	 * The logger.
 	 */
-	private static final Logger logger = Log4J.getLogger(Creature2DView.class);
+	private static final Logger logger = Logger.getLogger(Creature2DView.class);
 
 	/**
 	 * The entity this view is for.

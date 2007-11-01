@@ -16,8 +16,8 @@ import games.stendhal.server.entity.portal.Portal;
 
 import java.awt.geom.Rectangle2D;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 import marauroa.common.game.Definition;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
@@ -30,7 +30,7 @@ public abstract class ActiveEntity extends Entity {
 	/**
 	 * The logger.
 	 */
-	private static final Logger logger = Log4J.getLogger(ActiveEntity.class);
+	private static final Logger logger = Logger.getLogger(ActiveEntity.class);
 
 	/*
 	 * The facing direction

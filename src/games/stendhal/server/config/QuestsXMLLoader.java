@@ -12,8 +12,8 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
@@ -25,7 +25,7 @@ public class QuestsXMLLoader extends DefaultHandler {
 	private static QuestsXMLLoader instance;
 
 	/** the logger instance. */
-	private static final Logger logger = Log4J.getLogger(QuestsXMLLoader.class);
+	private static final Logger logger = Logger.getLogger(QuestsXMLLoader.class);
 
 	private Map<String, QuestInfo> questInfos;
 

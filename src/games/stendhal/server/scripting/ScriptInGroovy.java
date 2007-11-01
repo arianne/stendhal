@@ -9,8 +9,8 @@ import groovy.lang.GroovyShell;
 import java.io.File;
 import java.util.HashMap;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 
 public class ScriptInGroovy extends ScriptingSandbox {
 
@@ -18,7 +18,7 @@ public class ScriptInGroovy extends ScriptingSandbox {
 
 	private Binding groovyBinding;
 
-	private static final Logger logger = Log4J.getLogger(ScriptInGroovy.class);
+	private static final Logger logger = Logger.getLogger(ScriptInGroovy.class);
 
 	public ScriptInGroovy(String filename) {
 		super(filename);

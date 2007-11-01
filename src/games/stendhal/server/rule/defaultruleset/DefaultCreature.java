@@ -24,13 +24,13 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 
 public class DefaultCreature {
 
 	/** the logger instance. */
-	private static final Logger logger = Log4J.getLogger(DefaultCreature.class);
+	private static final Logger logger = Logger.getLogger(DefaultCreature.class);
 
 	/** Creature class */
 	private String clazz;

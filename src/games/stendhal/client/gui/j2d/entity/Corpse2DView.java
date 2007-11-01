@@ -18,8 +18,8 @@ import games.stendhal.client.gui.wt.EntityContainer;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 
 import java.util.List;
 
@@ -30,7 +30,7 @@ public class Corpse2DView extends Entity2DView {
 	/**
 	 * Log4J.
 	 */
-	private static final Logger logger = Log4J.getLogger(Corpse2DView.class);
+	private static final Logger logger = Logger.getLogger(Corpse2DView.class);
 
 	/**
 	 * The RP entity this view is for.

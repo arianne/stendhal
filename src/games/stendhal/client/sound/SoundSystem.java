@@ -51,8 +51,8 @@ import javax.sound.sampled.FloatControl;
 import javax.sound.sampled.Mixer;
 import javax.sound.sampled.Mixer.Info;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 
 /**
  * This sound system makes available a library of sounds which can be performed
@@ -100,7 +100,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	private static final String ZERO_SEMOS_VILLAGE_W = "0_semos_village_w";
 
 	/** the logger instance. */
-	private static final Logger logger = Log4J.getLogger(SoundSystem.class);
+	private static final Logger logger = Logger.getLogger(SoundSystem.class);
 
 	/** expected location of the sound definition file (classloader). */
 	private static final String STORE_PROPERTYFILE = "data/sounds/stensounds.properties";

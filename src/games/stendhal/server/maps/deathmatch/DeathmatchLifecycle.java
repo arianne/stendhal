@@ -1,7 +1,7 @@
 package games.stendhal.server.maps.deathmatch;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 
 /**
  * life cycle of the deathmatch
@@ -23,7 +23,7 @@ public enum DeathmatchLifecycle {
 	/** deathmatch was completed sucessfully but the player did not claim "victory" yet */
 	VICTORY("victory");
 
-	private static Logger logger = Log4J.getLogger(DeathmatchLifecycle.class);
+	private static Logger logger = Logger.getLogger(DeathmatchLifecycle.class);
 
 	private String questString;
 

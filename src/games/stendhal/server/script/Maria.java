@@ -11,8 +11,8 @@ import games.stendhal.server.scripting.ScriptingSandbox;
 
 import java.util.List;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 
 /**
  * Creates a portable NPC which sell foods&drinks at meetings.
@@ -22,7 +22,7 @@ import marauroa.common.Logger;
  */
 public class Maria extends ScriptImpl {
 
-	private static Logger logger = Log4J.getLogger(Maria.class);
+	private static Logger logger = Logger.getLogger(Maria.class);
 
 	class MargaretCouponAction extends SpeakerNPC.ChatAction {
 

@@ -6,15 +6,15 @@ import games.stendhal.server.entity.player.Player;
 
 import java.util.List;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 import marauroa.common.game.RPObject;
 
 /**
  * Useful method to deal with equipable items
  */
 public class EquipUtil {
-	private static Logger logger = Log4J.getLogger(EquipUtil.class);
+	private static Logger logger = Logger.getLogger(EquipUtil.class);
 
 	/**
 	 * Gets the object for the given id. Returns null when the item is not

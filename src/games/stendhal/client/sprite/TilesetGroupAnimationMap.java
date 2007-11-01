@@ -17,8 +17,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.StringTokenizer;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 
 /**
  * A group of tileset animation maps. This might normally be called
@@ -29,7 +29,7 @@ public class TilesetGroupAnimationMap {
 	/**
 	 * The logger.
 	 */
-	private static final Logger logger = Log4J.getLogger(TilesetGroupAnimationMap.class);
+	private static final Logger logger = Logger.getLogger(TilesetGroupAnimationMap.class);
 
 	/**
 	 * The map of tileset animation maps.

@@ -32,7 +32,9 @@ import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.List;
 
-import marauroa.common.Log4J;
+import org.apache.log4j.Logger;
+
+
 import marauroa.common.game.RPAction;
 
 /**
@@ -738,7 +740,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 			break;
 
 		default:
-			Log4J.getLogger(Entity2DView.class).error(
+			Logger.getLogger(Entity2DView.class).error(
 					"Action not processed: " + at);
 			break;
 		}

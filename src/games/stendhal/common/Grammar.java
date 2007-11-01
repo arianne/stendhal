@@ -13,15 +13,15 @@ package games.stendhal.common;
 
 import java.util.Collection;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 
 /**
  * Helper functions for producing grammatically-correct sentences.
  */
 public class Grammar {
 
-	private static final Logger logger = Log4J.getLogger(Grammar.class);
+	private static final Logger logger = Logger.getLogger(Grammar.class);
 
 	/**
 	 * "it" or "them", depending on the quantity

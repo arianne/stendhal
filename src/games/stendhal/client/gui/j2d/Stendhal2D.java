@@ -38,8 +38,8 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JTextField;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 
 /**
  * A Stendhal user interface using 2D graphics.
@@ -73,7 +73,7 @@ public class Stendhal2D extends StendhalGUI {
 	/**
 	 * The logger.
 	 */
-	private static final Logger logger = Log4J.getLogger(StendhalGUI.class);
+	private static final Logger logger = Logger.getLogger(StendhalGUI.class);
 
 	/**
 	 * The game screen height.

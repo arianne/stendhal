@@ -17,8 +17,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 
 /**
  * QUEST: Daily Monster Kill Quest
@@ -42,7 +42,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 
 	private static final String QUEST_SLOT = "daily";
 
-	private static final Logger logger = Log4J.getLogger(DailyMonsterQuest.class);
+	private static final Logger logger = Logger.getLogger(DailyMonsterQuest.class);
 
 	class DailyQuestAction extends SpeakerNPC.ChatAction {
 

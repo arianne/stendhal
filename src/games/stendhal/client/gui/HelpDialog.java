@@ -23,8 +23,8 @@ import javax.swing.text.html.StyleSheet;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreeSelectionModel;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 
 /**
  * A help system that displays the manual
@@ -34,7 +34,7 @@ import marauroa.common.Logger;
  */
 public class HelpDialog extends JFrame {
 	private static final long serialVersionUID = 41013220176906825L;
-	private static Logger logger = Log4J.getLogger(HelpDialog.class);
+	private static Logger logger = Logger.getLogger(HelpDialog.class);
 
 	private HelpDialogPanel panel;
 

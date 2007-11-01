@@ -19,8 +19,8 @@ import games.stendhal.server.StendhalRPZone;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 import marauroa.common.game.Definition;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
@@ -30,7 +30,7 @@ public abstract class Entity extends RPObject {
 	/**
 	 * The logger.
 	 */
-	private static final Logger logger = Log4J.getLogger(Entity.class);
+	private static final Logger logger = Logger.getLogger(Entity.class);
 
 	private int x;
 

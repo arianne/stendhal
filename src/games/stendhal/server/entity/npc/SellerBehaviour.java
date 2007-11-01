@@ -22,8 +22,8 @@ import games.stendhal.server.rule.EntityManager;
 import java.util.HashMap;
 import java.util.Map;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 
 /**
  * Represents the behaviour of a NPC who is able to sell items to a player.
@@ -31,7 +31,7 @@ import marauroa.common.Logger;
 public class SellerBehaviour extends MerchantBehaviour {
 
 	/** the logger instance. */
-	private static final Logger logger = Log4J.getLogger(SellerBehaviour.class);
+	private static final Logger logger = Logger.getLogger(SellerBehaviour.class);
 
 	/**
 	 * Creates a new SellerBehaviour with an empty pricelist.

@@ -10,8 +10,8 @@ import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalServerExtension;
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.entity.player.Player;
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 import marauroa.common.game.RPAction;
 
 /**
@@ -25,7 +25,7 @@ import marauroa.common.game.RPAction;
  */
 public class MagicExtn extends StendhalServerExtension implements ActionListener {
 
-	private static final Logger logger = Log4J.getLogger(MagicExtn.class);
+	private static final Logger logger = Logger.getLogger(MagicExtn.class);
 
 	/**
 	 * 

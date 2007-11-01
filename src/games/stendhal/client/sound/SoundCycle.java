@@ -19,8 +19,8 @@ import games.stendhal.common.Rand;
 
 import javax.sound.sampled.DataLine;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 import marauroa.common.game.RPObject.ID;
 
 /**
@@ -36,7 +36,7 @@ import marauroa.common.game.RPObject.ID;
 class SoundCycle extends Thread implements Cloneable {
 
 	/** the logger */
-	private static final Logger logger = Log4J.getLogger(SoundCycle.class);
+	private static final Logger logger = Logger.getLogger(SoundCycle.class);
 
 	private byte[] ID_Token;
 

@@ -13,8 +13,8 @@ import java.util.List;
 import java.util.Properties;
 
 import marauroa.common.Configuration;
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 import marauroa.common.game.RPObject;
 import marauroa.server.game.db.IDatabase;
 import marauroa.server.game.db.JDBCDatabase;
@@ -27,8 +27,7 @@ import marauroa.server.game.db.Transaction;
 public class StendhalPlayerDatabase extends JDBCDatabase implements
 		Iterable<RPObject> {
 
-	private static final Logger logger = Log4J
-			.getLogger(StendhalPlayerDatabase.class);
+	private static final Logger logger = Logger.getLogger(StendhalPlayerDatabase.class);
 
 	private StendhalPlayerDatabase(Properties connInfo) {
 		super(connInfo);

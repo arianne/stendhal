@@ -19,8 +19,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.Map;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 
 /**
  * All default items which can be reduced to stuff that increase the attack
@@ -30,7 +30,7 @@ import marauroa.common.Logger;
  */
 public class DefaultItem {
 
-	private static final Logger logger = Log4J.getLogger(DefaultItem.class);
+	private static final Logger logger = Logger.getLogger(DefaultItem.class);
 
 	/** items class */
 	private String clazz;

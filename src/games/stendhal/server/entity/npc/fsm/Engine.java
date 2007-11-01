@@ -11,15 +11,15 @@ import games.stendhal.server.entity.player.Player;
 import java.util.LinkedList;
 import java.util.List;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 
 /**
  * a finate state machine.
  */
 public class Engine {
 
-	private static final Logger logger = Log4J.getLogger(Engine.class);
+	private static final Logger logger = Logger.getLogger(Engine.class);
 
 	// TODO: remove this dependency cicle, this is just here to simplify refactoring
 	// TODO: later: remove dependency on games.stendhal.server.entity.npc.* and Player

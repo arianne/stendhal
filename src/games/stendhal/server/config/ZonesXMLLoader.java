@@ -33,8 +33,8 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.xml.sax.SAXException;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 
 /**
  * Load and configure zones via an XML configuration file.
@@ -43,7 +43,7 @@ public class ZonesXMLLoader {
 	/**
 	 * Logger
 	 */
-	private static final Logger logger = Log4J.getLogger(ZonesXMLLoader.class);
+	private static final Logger logger = Logger.getLogger(ZonesXMLLoader.class);
 
 	/**
 	 * The ConfiguratorDescriptor XML reader.

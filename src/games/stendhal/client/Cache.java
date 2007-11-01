@@ -11,9 +11,10 @@ import java.io.OutputStream;
 import java.net.URL;
 import java.util.Properties;
 
+import org.apache.log4j.Logger;
+
 import marauroa.common.Configuration;
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
 import marauroa.common.io.Persistence;
 import marauroa.common.net.message.TransferContent;
 
@@ -33,7 +34,7 @@ import marauroa.common.net.message.TransferContent;
  * </p>
  */
 public class Cache {
-	private static Logger logger = Log4J.getLogger(Cache.class);
+	private static Logger logger = Logger.getLogger(Cache.class);
 	private Configuration cacheManager;
 	private Properties prefilledCacheManager;
 	private static final String VERSION_KEY = "_VERSION";

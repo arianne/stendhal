@@ -16,8 +16,8 @@ import games.stendhal.client.entity.RPEntity;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 
 /**
  * The 2D view of an NPC.
@@ -26,7 +26,7 @@ public class NPC2DView extends RPEntity2DView {
 	/**
 	 * Log4J.
 	 */
-	private static final Logger logger = Log4J.getLogger(NPC2DView.class);
+	private static final Logger logger = Logger.getLogger(NPC2DView.class);
 
 	/**
 	 * Create a 2D view of an NPC.

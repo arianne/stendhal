@@ -21,8 +21,8 @@ import java.awt.Point;
 import java.io.IOException;
 import java.io.InputStream;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 
 /**
  * This is a helper class to render coherent tiles based on the tileset. This
@@ -30,7 +30,7 @@ import marauroa.common.Logger;
  */
 public class TileRenderer extends LayerRenderer {
 	/** the logger instance. */
-	private static final Logger logger = Log4J.getLogger(TileRenderer.class);
+	private static final Logger logger = Logger.getLogger(TileRenderer.class);
 
 	private int[] map;
 

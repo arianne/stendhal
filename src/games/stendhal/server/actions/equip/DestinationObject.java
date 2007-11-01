@@ -10,8 +10,8 @@ import games.stendhal.server.entity.slot.EntitySlot;
 import java.util.Iterator;
 import java.util.List;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
@@ -20,7 +20,7 @@ import marauroa.common.game.RPSlot;
  * this encapsulates the equip/drop destination
  */
 class DestinationObject extends MoveableObject {
-	private static Logger logger = Log4J.getLogger(DestinationObject.class);
+	private static Logger logger = Logger.getLogger(DestinationObject.class);
 
 	/** true when this object is valid */
 	private boolean valid;

@@ -22,15 +22,15 @@ import java.util.Vector;
 
 import javax.swing.JTextField;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 
 public class StendhalChatLineListener implements ActionListener, KeyListener {
 
 	private static final String CHAT_LOG_FILE = System.getProperty("user.home") + "/" + stendhal.STENDHAL_FOLDER + "chat.log";
 
 	/** the logger instance. */
-	private static final Logger logger = Log4J.getLogger(StendhalChatLineListener.class);
+	private static final Logger logger = Logger.getLogger(StendhalChatLineListener.class);
 
 	private JTextField playerChatText;
 

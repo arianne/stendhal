@@ -38,8 +38,8 @@ import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 import marauroa.common.game.RPAction;
 
 /**
@@ -121,7 +121,7 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 	private CollisionDetection collisiondetection;
 
 	/** the logger instance. */
-	private static final Logger logger = Log4J.getLogger(Minimap.class);
+	private static final Logger logger = Logger.getLogger(Minimap.class);
 
 	/** Creates a new instance of Minimap */
 	public Minimap(StendhalClient client) {

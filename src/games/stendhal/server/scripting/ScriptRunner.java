@@ -15,8 +15,8 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 import marauroa.common.game.RPAction;
 
 /**
@@ -30,7 +30,7 @@ public class ScriptRunner extends StendhalServerExtension implements ActionListe
 
 	private final String scriptDir = "data/script/";
 
-	private static final Logger logger = Log4J.getLogger(ScriptRunner.class);
+	private static final Logger logger = Logger.getLogger(ScriptRunner.class);
 
 	/**
 	 * Constructor for StendhalGroovyRunner

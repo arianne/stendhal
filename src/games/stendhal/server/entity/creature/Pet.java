@@ -19,8 +19,8 @@ import games.stendhal.server.entity.player.Player;
 
 import java.util.Set;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.SyntaxException;
@@ -41,7 +41,7 @@ import marauroa.common.game.Definition.Type;
 public abstract class Pet extends DomesticAnimal {
 
 	/** the logger instance. */
-	private static final Logger logger = Log4J.getLogger(Pet.class);
+	private static final Logger logger = Logger.getLogger(Pet.class);
 
 	/**
 	 * The amount of hunger that indicates hungry.

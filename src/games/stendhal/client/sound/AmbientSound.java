@@ -23,8 +23,8 @@ import java.util.List;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 
 /**
  * An ambient sound is a compound sound consisting of any number of loop sounds
@@ -37,7 +37,7 @@ import marauroa.common.Logger;
 class AmbientSound {
 
 	/** the logger instance. */
-	private static final Logger logger = Log4J.getLogger(AmbientSound.class);
+	private static final Logger logger = Logger.getLogger(AmbientSound.class);
 
 	private List<LoopSoundInfo> loopSounds = new ArrayList<LoopSoundInfo>();
 

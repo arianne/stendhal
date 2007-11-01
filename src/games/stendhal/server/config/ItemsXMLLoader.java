@@ -15,8 +15,8 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
@@ -25,7 +25,7 @@ import org.xml.sax.helpers.DefaultHandler;
 public class ItemsXMLLoader extends DefaultHandler {
 
 	/** the logger instance. */
-	private static final Logger logger = Log4J.getLogger(ItemsXMLLoader.class);
+	private static final Logger logger = Logger.getLogger(ItemsXMLLoader.class);
 
 	private String name;
 

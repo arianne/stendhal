@@ -15,8 +15,8 @@ import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Item;
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 
 /**
  * An ItemChangeGuardCreature is a creature that is responsible for guarding a
@@ -27,7 +27,7 @@ import marauroa.common.Logger;
 public class ItemChangeGuardCreature extends Creature {
 
 	/** the logger instance. */
-	private static final Logger logger = Log4J.getLogger(ItemChangeGuardCreature.class);
+	private static final Logger logger = Logger.getLogger(ItemChangeGuardCreature.class);
 
 	private String itemType;
 

@@ -9,8 +9,8 @@ package games.stendhal.server.entity.area;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.LoginListener;
 import games.stendhal.server.events.LoginNotifier;
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 
 /**
  * An area prevents login to an area by moving the player somewhere else.
@@ -19,7 +19,7 @@ public class NoLoginArea extends AreaEntity implements LoginListener {
 	/**
 	 * The logger instance.
 	 */
-	private static final Logger logger = Log4J.getLogger(NoLoginArea.class);
+	private static final Logger logger = Logger.getLogger(NoLoginArea.class);
 
 	/**
 	 * The new player X coordinate.

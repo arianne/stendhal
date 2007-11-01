@@ -23,8 +23,7 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+import org.apache.log4j.Logger;
 import marauroa.common.net.InputSerializer;
 
 /** This class stores the layers that make the floor and the buildings */
@@ -32,8 +31,7 @@ import marauroa.common.net.InputSerializer;
 public class StaticGameLayers {
 
 	/** the logger instance. */
-	private static final Logger logger = Log4J
-			.getLogger(StaticGameLayers.class);
+	private static final Logger logger = Logger.getLogger(StaticGameLayers.class);
 
 	/**
 	 * Area collision maps.
@@ -107,7 +105,8 @@ public class StaticGameLayers {
 	 *
 	 * @throws ClassNotFoundException
 	 */
-	public void addLayer(String area, String layer, InputStream in) throws IOException, ClassNotFoundException {
+	public void addLayer(String area, String layer, InputStream in)
+			throws IOException, ClassNotFoundException {
 		String name = getLayerKey(area, layer);
 
 		logger.debug("Layer name: " + name);
@@ -296,8 +295,8 @@ public class StaticGameLayers {
 	 * Make a map "key" from an area/layer name.
 	 *
 	 *
-	 * TODO: Make the key an object with area/layer fields and replace
-	 * ugly code that uses startsWith('area.').
+	 * TODO: Make the key an object with area/layer fields and replace ugly code
+	 * that uses startsWith('area.').
 	 */
 	protected String getLayerKey(final String area, final String layer) {
 		return area + "." + layer;

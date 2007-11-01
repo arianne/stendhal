@@ -14,8 +14,8 @@ import games.stendhal.server.events.TurnNotifier;
 import java.util.Arrays;
 import java.util.List;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.SlotIsFullException;
 
@@ -61,7 +61,7 @@ import marauroa.common.game.SlotIsFullException;
  */
 public class KanmararnSoldiers extends AbstractQuest {
 
-	private static final Logger logger = Log4J.getLogger(KanmararnSoldiers.class);
+	private static final Logger logger = Logger.getLogger(KanmararnSoldiers.class);
 
 	private static final String QUEST_SLOT = "soldier_henry";
 

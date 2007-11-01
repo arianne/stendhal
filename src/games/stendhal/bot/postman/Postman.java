@@ -11,8 +11,8 @@ import java.util.Properties;
 import java.util.StringTokenizer;
 
 import marauroa.client.ClientFramework;
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 
@@ -23,7 +23,7 @@ import marauroa.common.game.RPObject;
  */
 public class Postman implements Runnable {
 
-	private static Logger logger = Log4J.getLogger(Postman.class);
+	private static Logger logger = Logger.getLogger(Postman.class);
 
 	private Properties messages = new Properties();
 

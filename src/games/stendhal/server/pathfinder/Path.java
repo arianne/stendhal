@@ -20,13 +20,13 @@ import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.util.List;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 
 public abstract class Path {
 
 	/** the logger instance. */
-	private static final Logger logger = Log4J.getLogger(Path.class);
+	private static final Logger logger = Logger.getLogger(Path.class);
 
 	//
 	// Path

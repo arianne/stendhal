@@ -56,8 +56,9 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+import org.apache.log4j.Logger;
+
+
 
 /**
  * The game screen. This manages and renders the visual elements of the game.
@@ -65,7 +66,7 @@ import marauroa.common.Logger;
 public class GameScreen implements PositionChangeListener, IGameScreen {
 
 	/** the logger instance. */
-	private static final Logger logger = Log4J.getLogger(GameScreen.class);
+	private static final Logger logger = Logger.getLogger(GameScreen.class);
 
 	/**
 	 * Comparator used to sort entities to display.

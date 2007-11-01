@@ -24,7 +24,7 @@ import java.util.Map;
  */
 public class EmptyScroll extends Scroll {
 
-	//	private static final Logger logger = Log4J.getLogger(EmptyScroll.class);
+	//	private static final Logger logger = Logger.getLogger(EmptyScroll.class);
 
 	/**
 	 * Creates a new empty scroll

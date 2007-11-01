@@ -17,8 +17,8 @@ import games.stendhal.server.events.MovementListener;
 
 import java.lang.ref.WeakReference;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 
 /**
  * An area that only allows one play at a time to enter.
@@ -30,7 +30,7 @@ public class OnePlayerArea extends AreaEntity implements MovementListener {
 	/**
 	 * The logger instance.
 	 */
-	private static final Logger logger = Log4J.getLogger(OnePlayerArea.class);
+	private static final Logger logger = Logger.getLogger(OnePlayerArea.class);
 
 	/**
 	 * The reference to the entity currently in the area.

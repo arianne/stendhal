@@ -39,8 +39,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 import marauroa.common.Configuration;
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 import marauroa.common.game.Definition;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
@@ -53,7 +53,7 @@ import marauroa.common.game.Definition.Type;
  */
 class PlayerRPClass {
 
-	private static Logger logger = Log4J.getLogger(PlayerRPClass.class);
+	private static Logger logger = Logger.getLogger(PlayerRPClass.class);
 
 	/** list of super admins read from admins.list */
 	private static List<String> adminNames;

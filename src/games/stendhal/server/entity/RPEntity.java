@@ -33,8 +33,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 import marauroa.common.game.Definition;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
@@ -50,7 +50,7 @@ public abstract class RPEntity extends GuidedEntity {
 	protected static final String	ATTR_TITLE	= "title";
 
 	/** the logger instance. */
-	private static final Logger logger = Log4J.getLogger(RPEntity.class);
+	private static final Logger logger = Logger.getLogger(RPEntity.class);
 
 	protected static Statistics stats;
 

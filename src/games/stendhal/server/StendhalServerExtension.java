@@ -10,13 +10,13 @@ package games.stendhal.server;
 import java.util.HashMap;
 import java.util.Map;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 
 public abstract class StendhalServerExtension {
 
 	/** the logger instance. */
-	private static final Logger logger = Log4J.getLogger(StendhalServerExtension.class);
+	private static final Logger logger = Logger.getLogger(StendhalServerExtension.class);
 
 	/** lists the instances of the loaded extensions */
 	private static Map<String, StendhalServerExtension> loadedInstances = new HashMap<String, StendhalServerExtension>();

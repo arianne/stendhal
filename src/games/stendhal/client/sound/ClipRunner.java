@@ -25,8 +25,8 @@ import javax.sound.sampled.Line;
 import javax.sound.sampled.LineEvent;
 import javax.sound.sampled.LineListener;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 
 /**
  * Cliprunner encapsulates a sound clip. This clip consists of one or more
@@ -37,7 +37,7 @@ import marauroa.common.Logger;
 class ClipRunner implements LineListener {
 
 	/** the logger */
-	private static final Logger logger = Log4J.getLogger(ClipRunner.class);
+	private static final Logger logger = Logger.getLogger(ClipRunner.class);
 
 	/** name of this clip */
 	private String name;

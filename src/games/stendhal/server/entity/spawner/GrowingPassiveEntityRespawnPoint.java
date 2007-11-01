@@ -17,8 +17,8 @@ import games.stendhal.server.events.TurnNotifier;
 
 import java.awt.geom.Rectangle2D;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.Definition.Type;
@@ -33,7 +33,7 @@ import marauroa.common.game.Definition.Type;
 public abstract class GrowingPassiveEntityRespawnPoint extends
 		PassiveEntityRespawnPoint {
 
-	private static Logger logger = Log4J
+	private static Logger logger = Logger
 			.getLogger(GrowingPassiveEntityRespawnPoint.class);
 
 	/** How long it takes for one regrowing step */

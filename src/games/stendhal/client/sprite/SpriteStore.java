@@ -22,8 +22,8 @@ import java.net.URL;
 
 import javax.imageio.ImageIO;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 
 /**
  * A resource manager for sprites in the game. Its often quite important how and
@@ -36,7 +36,7 @@ import marauroa.common.Logger;
  */
 public class SpriteStore {
 	/** the logger instance. */
-	private static final Logger logger = Log4J.getLogger(SpriteStore.class);
+	private static final Logger logger = Logger.getLogger(SpriteStore.class);
 
 	/** The single instance of this class */
 	private static SpriteStore single = new SpriteStore();

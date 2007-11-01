@@ -8,8 +8,8 @@ import games.stendhal.server.actions.AdministrationAction;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.player.Player;
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 import marauroa.common.game.RPAction;
 
 /**
@@ -33,7 +33,7 @@ public class TeleportSendExtension extends StendhalServerExtension implements Ac
 
 	private final String CMD_USAGE = "Usage: #/" + CMD_NAME + " #<Player> #<Player|NPC_Destination>";
 
-	private static final Logger logger = Log4J.getLogger(TeleportSendExtension.class);
+	private static final Logger logger = Logger.getLogger(TeleportSendExtension.class);
 
 	public TeleportSendExtension() {
 		super();

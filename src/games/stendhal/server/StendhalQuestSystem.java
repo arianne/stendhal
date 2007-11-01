@@ -9,8 +9,8 @@ import java.lang.reflect.Constructor;
 import java.util.LinkedList;
 import java.util.List;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 
 /**
  * Loads and manages all quests
@@ -18,8 +18,7 @@ import marauroa.common.Logger;
 public class StendhalQuestSystem {
 
 	/** the logger instance. */
-	private static final Logger logger = Log4J
-			.getLogger(StendhalQuestSystem.class);
+	private static final Logger logger = Logger.getLogger(StendhalQuestSystem.class);
 
 	private List<IQuest> quests = new LinkedList<IQuest>();
 

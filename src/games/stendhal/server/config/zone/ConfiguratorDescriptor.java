@@ -12,8 +12,8 @@ package games.stendhal.server.config.zone;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 
 /**
  * A zone configurator [setup] descriptor.
@@ -22,7 +22,7 @@ public class ConfiguratorDescriptor extends SetupDescriptor {
 	/**
 	 * Logger
 	 */
-	private static final Logger logger = Log4J.getLogger(ConfiguratorDescriptor.class);
+	private static final Logger logger = Logger.getLogger(ConfiguratorDescriptor.class);
 
 	/**
 	 * The class name of the configurator.

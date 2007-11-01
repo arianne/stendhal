@@ -18,13 +18,13 @@ import java.awt.geom.Rectangle2D;
 import java.util.LinkedList;
 import java.util.List;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 
 public class CreatureLogic {
 	private int turnReaction;
 
-	private static Logger logger = Log4J.getLogger(CreatureLogic.class);
+	private static Logger logger = Logger.getLogger(CreatureLogic.class);
 
 	/**
 	 * the number of rounds the creature should wait when the path to the target

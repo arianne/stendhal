@@ -19,8 +19,8 @@ import games.stendhal.client.sprite.SpriteStore;
 import java.util.List;
 import java.util.Map;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 import marauroa.common.game.RPAction;
 
 /**
@@ -30,7 +30,7 @@ public class GrainField2DView extends StateEntity2DView {
 	/**
 	 * Log4J.
 	 */
-	private static final Logger logger = Log4J.getLogger(RPEntity2DView.class);
+	private static final Logger logger = Logger.getLogger(RPEntity2DView.class);
 
 	/**
 	 * The grain field entity.

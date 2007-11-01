@@ -4,8 +4,8 @@ package games.stendhal.server.entity.npc;
 import games.stendhal.common.Grammar;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 
 /**
  * Internal helper class for SpeakerNPC
@@ -13,7 +13,7 @@ import marauroa.common.Logger;
 // TODO: This is just a first step to split it out of SpealerNPC. More refactoring is needed.
 class BehaviourAdder {
 
-	private static final Logger logger = Log4J.getLogger(BehaviourAdder.class);
+	private static final Logger logger = Logger.getLogger(BehaviourAdder.class);
 
 	private Engine engine;
 

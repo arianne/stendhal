@@ -16,13 +16,13 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 
 
 
 public class CreatureSpawner implements TurnListener {
-static final Logger logger = Log4J.getLogger(CreatureSpawner.class);
+static final Logger logger = Logger.getLogger(CreatureSpawner.class);
 	static final long SPAWN_DELAY = 15000; // spawn a new monster each 15 seconds
 	static final long NUMBER_OF_CREATURES = 10;
 	private List<Creature> sortedCreatures = new LinkedList<Creature>();

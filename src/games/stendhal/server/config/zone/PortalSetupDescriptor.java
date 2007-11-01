@@ -13,8 +13,8 @@ import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.EntityFactoryHelper;
 import games.stendhal.server.entity.portal.Portal;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 
 /**
  * A portal setup descriptor.
@@ -23,7 +23,7 @@ public class PortalSetupDescriptor extends EntitySetupDescriptor {
 	/**
 	 * Logger
 	 */
-	private static final Logger logger = Log4J.getLogger(PortalSetupDescriptor.class);
+	private static final Logger logger = Logger.getLogger(PortalSetupDescriptor.class);
 
 	/**
 	 * The named portal identifier.

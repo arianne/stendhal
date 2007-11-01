@@ -12,8 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.entity;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.SyntaxException;
 import marauroa.common.game.Definition.Type;
@@ -29,7 +29,7 @@ public class Sign extends Entity {
 	protected static final String	ATTR_TEXT	= "text";
 
 	/** the logger instance. */
-	private static final Logger logger = Log4J.getLogger(Sign.class);
+	private static final Logger logger = Logger.getLogger(Sign.class);
 
 
 	public static void generateRPClass() {

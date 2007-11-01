@@ -16,8 +16,8 @@ import games.stendhal.client.sprite.SpriteStore;
 import java.util.HashMap;
 import java.util.Map;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 
 /**
  * The 2D view of an animated entity.
@@ -26,7 +26,7 @@ public abstract class StateEntity2DView extends Entity2DView {
 	/**
 	 * Log4J.
 	 */
-	private static final Logger logger = Log4J
+	private static final Logger logger = Logger
 			.getLogger(StateEntity2DView.class);
 
 	/**

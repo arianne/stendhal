@@ -6,8 +6,8 @@ import games.stendhal.server.events.LoginListener;
 import games.stendhal.server.events.LoginNotifier;
 import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 
 /**
  * Manages gags
@@ -18,7 +18,7 @@ public class GagManager implements LoginListener {
 	 * turn reached.
 	 */
 
-	private static final Logger logger = Log4J.getLogger(GagManager.class);
+	private static final Logger logger = Logger.getLogger(GagManager.class);
 
 	/** The Singleton instance */
 	private static GagManager instance;

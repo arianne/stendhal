@@ -14,8 +14,8 @@ import java.lang.ref.SoftReference;
 import java.util.HashMap;
 import java.util.Map;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 
 /**
  * A cache of keyed sprites.
@@ -24,7 +24,7 @@ public class SpriteCache {
 	/**
 	 * The logger instance.
 	 */
-	private static final Logger logger = Log4J.getLogger(SpriteCache.class);
+	private static final Logger logger = Logger.getLogger(SpriteCache.class);
 
 	/**
 	 * The singleton.

@@ -20,8 +20,8 @@ import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.Definition.Type;
@@ -40,7 +40,7 @@ import marauroa.common.game.Definition.Type;
  *
  */
 public class PassiveEntityRespawnPoint extends Entity implements TurnListener {
-	private static Logger logger = Log4J.getLogger(PassiveEntityRespawnPoint.class);
+	private static Logger logger = Logger.getLogger(PassiveEntityRespawnPoint.class);
 
 	/**
 	 * Is there still a fruit that has not yet been picked up?

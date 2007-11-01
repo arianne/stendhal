@@ -26,8 +26,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
@@ -39,7 +39,7 @@ import marauroa.common.game.RPSlot;
 public class EntityContainer extends WtPanel implements PositionChangeListener {
 
 	/** the logger instance. */
-	private static final Logger logger = Log4J.getLogger(EntityContainer.class);
+	private static final Logger logger = Logger.getLogger(EntityContainer.class);
 
 	/** when the player is this far away from the container, the panel is closed */
 	private static final int MAX_DISTANCE = 4;

@@ -17,8 +17,8 @@ import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Food;
 import games.stendhal.server.entity.player.Player;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 import marauroa.common.game.RPObject;
 
 /**
@@ -29,7 +29,7 @@ import marauroa.common.game.RPObject;
 public abstract class DomesticAnimal extends Creature {
 
 	/** the logger instance. */
-	private static final Logger logger = Log4J.getLogger(DomesticAnimal.class);
+	private static final Logger logger = Logger.getLogger(DomesticAnimal.class);
 
 	protected int weight;
 

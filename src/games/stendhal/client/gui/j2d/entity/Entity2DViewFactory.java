@@ -44,8 +44,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 
 /**
  *
@@ -54,7 +54,7 @@ public class Entity2DViewFactory { // implements EntityViewFactory {
 	/**
 	 * Log4J.
 	 */
-	private static final Logger logger = Log4J.getLogger(Entity2DViewFactory.class);
+	private static final Logger logger = Logger.getLogger(Entity2DViewFactory.class);
 
 	/**
 	 * The shared instance.

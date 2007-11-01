@@ -18,8 +18,8 @@ import games.stendhal.server.entity.item.Item;
 
 import java.util.LinkedList;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 
 /**
  * An ItemGuardCreature is a creature that is responsible for guarding a
@@ -29,7 +29,7 @@ import marauroa.common.Logger;
 public class ItemGuardCreature extends Creature {
 
 	/** the logger instance. */
-	private static final Logger logger = Log4J.getLogger(ItemGuardCreature.class);
+	private static final Logger logger = Logger.getLogger(ItemGuardCreature.class);
 
 	private String itemType;
 

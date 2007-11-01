@@ -1,5 +1,8 @@
 package utilities;
 
+import games.stendhal.server.entity.ActiveEntity;
+import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.slot.EntitySlot;
 import marauroa.common.game.RPObject;
@@ -23,6 +26,14 @@ public class PlayerHelper {
 		player.getSlot("!kills").add(new RPObject());
 		player.addSlot(new RPSlot("!tutorial"));
 		player.getSlot("!tutorial").add(new RPObject());
+
+	}
+
+	public static void generatePlayerRPClasses() {
+		Entity.generateRPClass();
+		ActiveEntity.generateRPClass();
+		RPEntity.generateRPClass();
+		Player.generateRPClass();
 
 	}
 }

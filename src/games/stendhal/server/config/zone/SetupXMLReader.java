@@ -13,8 +13,8 @@ import games.stendhal.server.config.XMLUtil;
 
 import java.util.List;
 import org.w3c.dom.Element;
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 
 /**
  * A base setup xml reader.
@@ -23,7 +23,7 @@ public abstract class SetupXMLReader {
 	/**
 	 * Logger
 	 */
-	private static final Logger logger = Log4J.getLogger(SetupXMLReader.class);
+	private static final Logger logger = Logger.getLogger(SetupXMLReader.class);
 
 	//
 	// SetupXMLReader

@@ -8,8 +8,8 @@ import games.stendhal.server.events.TurnNotifier;
 
 import java.util.Date;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 
 /**
  * this is the internal class which handles an active deathmatch session
@@ -18,7 +18,7 @@ class DeathmatchEngine implements TurnListener {
 
 	private static final long BAIL_DELAY = 2000; // wait 2 seconds before bail takes effect
 
-	static Logger logger = Log4J.getLogger(DeathmatchEngine.class);
+	static Logger logger = Logger.getLogger(DeathmatchEngine.class);
 
 
 private final Player player;

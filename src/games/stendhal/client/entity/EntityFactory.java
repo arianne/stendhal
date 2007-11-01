@@ -13,8 +13,8 @@
 package games.stendhal.client.entity;
 
 import games.stendhal.client.StendhalClient;
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 import marauroa.common.game.RPObject;
 
 /**
@@ -23,7 +23,7 @@ import marauroa.common.game.RPObject;
  * @author astridemma
  */
 public class EntityFactory {
-	private static final Logger logger = Log4J.getLogger(EntityFactory.class);
+	private static final Logger logger = Logger.getLogger(EntityFactory.class);
 
 
    protected EntityFactory() {

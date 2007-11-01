@@ -32,8 +32,8 @@ import java.awt.image.BufferedImage;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 
 /**
  * ScrollerPanel can be used for displaying a scrolling text (as in movie
@@ -43,7 +43,7 @@ public class ScrollerPanel extends JPanel {
 
 	private static final long serialVersionUID = -9047582023793318785L;
 
-	private static final Logger logger = Log4J.getLogger(ScrollerPanel.class);
+	private static final Logger logger = Logger.getLogger(ScrollerPanel.class);
 
 	private String[] text;
 

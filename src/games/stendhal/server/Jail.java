@@ -15,8 +15,8 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 import marauroa.common.game.IRPZone;
 
 /**
@@ -69,7 +69,7 @@ public class Jail implements LoginListener {
 		}
 	}
 
-	private static final Logger logger = Log4J.getLogger(Jail.class);
+	private static final Logger logger = Logger.getLogger(Jail.class);
 
 	/** The Singleton instance */
 	private static Jail instance;
@@ -232,7 +232,7 @@ public class Jail implements LoginListener {
 	 */
 	public static boolean isInJail(Player inmate) {
 
-		if (inmate.getZone() == jailzone) {
+		if (inmate.getZone().equals(jailzone)) {
 			for (Rectangle cellBlock : cellBlocks) {
 				if (cellBlock.contains(inmate.getX(), inmate.getY())) {
 					return true;

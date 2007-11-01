@@ -16,8 +16,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 
 /**
  * Creates a portable NPC who gives ALL players powerful items,
@@ -32,7 +32,7 @@ import marauroa.common.Logger;
 
 public class AdminMaker extends ScriptImpl {
 
-	private static Logger logger = Log4J.getLogger(AdminMaker.class);
+	private static Logger logger = Logger.getLogger(AdminMaker.class);
 
 	protected class UpgradeAction extends SpeakerNPC.ChatAction {
 

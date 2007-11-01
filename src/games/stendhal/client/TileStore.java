@@ -27,14 +27,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 import marauroa.common.net.InputSerializer;
 
 /** It is class to get tiles from the tileset */
 public class TileStore implements Tileset {
 	/** the logger instance. */
-	private static final Logger logger = Log4J.getLogger(TileStore.class);
+	private static final Logger logger = Logger.getLogger(TileStore.class);
 
 	/**
 	 * The base directory for tileset resources.

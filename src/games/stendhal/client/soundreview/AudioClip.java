@@ -24,8 +24,8 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.Mixer;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 
 /**
  * This is an audio clip.
@@ -35,7 +35,7 @@ import marauroa.common.Logger;
 public class AudioClip {
 
 	/** the logger */
-	private static final Logger logger = Log4J.getLogger(AudioClip.class);
+	private static final Logger logger = Logger.getLogger(AudioClip.class);
 
 	/** the data stream */
 	private byte[] audioData;

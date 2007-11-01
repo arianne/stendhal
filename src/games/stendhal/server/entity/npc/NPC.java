@@ -23,8 +23,8 @@ import games.stendhal.server.pathfinder.Path;
 import java.util.ArrayList;
 import java.util.List;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 import marauroa.common.game.Definition;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
@@ -34,7 +34,7 @@ import marauroa.common.game.Definition.Type;
 public abstract class NPC extends RPEntity {
 
 	/** the logger instance. */
-	private static final Logger logger = Log4J.getLogger(NPC.class);
+	private static final Logger logger = Logger.getLogger(NPC.class);
 
 	/**
 	 * The NPC's current idea/thought.

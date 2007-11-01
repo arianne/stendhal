@@ -14,8 +14,8 @@ package games.stendhal.server.entity.creature;
 
 import games.stendhal.server.entity.player.Player;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.SyntaxException;
@@ -34,7 +34,7 @@ import marauroa.common.game.SyntaxException;
 public class BabyDragon extends Pet {
 
 	/** the logger instance. */
-	private static final Logger logger = Log4J.getLogger(BabyDragon.class);
+	private static final Logger logger = Logger.getLogger(BabyDragon.class);
 
 	static {
 		HP = 500;

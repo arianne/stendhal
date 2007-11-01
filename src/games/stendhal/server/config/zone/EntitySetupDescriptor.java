@@ -16,8 +16,8 @@ import games.stendhal.server.entity.EntityFactoryHelper;
 import java.util.HashMap;
 import java.util.Map;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 
 /**
  * A generic entity setup descriptor.
@@ -26,7 +26,7 @@ public class EntitySetupDescriptor extends SetupDescriptor {
 	/**
 	 * Logger
 	 */
-	private static final Logger logger = Log4J.getLogger(EntitySetupDescriptor.class);
+	private static final Logger logger = Logger.getLogger(EntitySetupDescriptor.class);
 
 	/**
 	 * The entity's X coordinate.

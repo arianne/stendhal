@@ -39,8 +39,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 import marauroa.common.Pair;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
@@ -89,7 +89,7 @@ public class Player extends RPEntity {
 	public static final String DEFAULT_DEAD_AREA = "int_afterlife";
 
 	/** the logger instance. */
-	private static final Logger logger = Log4J.getLogger(Player.class);
+	private static final Logger logger = Logger.getLogger(Player.class);
 
 	/**
 	 * The base log for karma use.

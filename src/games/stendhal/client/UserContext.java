@@ -18,8 +18,8 @@ import games.stendhal.client.events.RPObjectChangeListener;
 
 import java.util.HashMap;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 import marauroa.common.game.RPObject;
 
 /**
@@ -34,7 +34,7 @@ public class UserContext implements RPObjectChangeListener {
 	/**
 	 * The logger.
 	 */
-	private static final Logger logger = Log4J.getLogger(UserContext.class);
+	private static final Logger logger = Logger.getLogger(UserContext.class);
 
 	/**
 	 * The currently known buddies

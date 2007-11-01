@@ -23,12 +23,14 @@ import java.security.AccessControlException;
 
 import javax.swing.JOptionPane;
 
+
 import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 
 public class stendhal extends Thread {
 
-	private static final Logger logger = Log4J.getLogger(stendhal.class);
+	private static final Logger logger = Logger.getLogger(stendhal.class);
 
 	public static boolean doLogin;
 

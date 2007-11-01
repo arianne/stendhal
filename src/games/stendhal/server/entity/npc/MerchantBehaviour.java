@@ -18,15 +18,15 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 
 /**
  * Represents the behaviour of a NPC who is able to either sell items
  * to a player, or buy items from a player.
  */
 public abstract class MerchantBehaviour extends Behaviour {
-	private static Logger logger = Log4J.getLogger(MerchantBehaviour.class);
+	private static Logger logger = Logger.getLogger(MerchantBehaviour.class);
 
 	protected Map<String, Integer> priceList;
 

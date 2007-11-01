@@ -2,7 +2,6 @@ package games.stendhal.server.maps.quests;
 
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -11,7 +10,6 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.pathfinder.Node;
 import games.stendhal.server.pathfinder.FixedPath;
 
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -65,7 +63,7 @@ public class IcecreamForAnnie extends AbstractQuest {
 							npc.say("Mummy says I mustn't talk to you any more. You're a stranger.");
 							npc.setCurrentState(ConversationStates.IDLE);
 						    }
-						    else {  
+						    else {
 							npc.say("Hello. I'm hungry.");
 						    }
 					       	} else if (player.getQuest(QUEST_SLOT).equals("mummy")){
@@ -73,9 +71,9 @@ public class IcecreamForAnnie extends AbstractQuest {
 						         npc.say("Yummy! Is that icecream for me?");
 						         npc.setCurrentState(ConversationStates.QUESTION_1);
 						    }
-						    else {  
+						    else {
 							npc.say("Hello. I'm hungry.");
-						    }	   
+						    }
 					       	} else {//any other options? (like rejected quest slot)
 						     npc.say("Hello.");
 						}
@@ -218,8 +216,8 @@ public class IcecreamForAnnie extends AbstractQuest {
 					       	} else if (player.getQuest(QUEST_SLOT).equals("start")) {
 						    mummyNPC.say("Hello, I see you've met my daughter Annie. I hope she wasn't too demanding. You seem like a nice person.");
 						    player.setQuest(QUEST_SLOT, "mummy");
-						    
-					       	} else 
+
+					       	} else
 						     mummyNPC.say("Hello again.");
 						}
 					}

@@ -43,8 +43,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
+import org.apache.log4j.Logger;
 import marauroa.common.game.Definition;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
@@ -66,7 +66,7 @@ import marauroa.common.game.Definition.Type;
 public class Creature extends NPC {
 
 	/** the logger instance. */
-	private static final Logger logger = Log4J.getLogger(Creature.class);
+	private static final Logger logger = Logger.getLogger(Creature.class);
 
 
 	/**
