@@ -54,6 +54,9 @@ public class GrammarTest {
 		assertEquals("an eater", Grammar.a_noun("eater"));
 		assertEquals("a money", Grammar.a_noun("money"));
 		assertEquals("a youngster", Grammar.a_noun("youngster"));
+		assertEquals("a s",Grammar.a_noun("s"));
+		assertEquals("an a",Grammar.a_noun("a"));
+		assertEquals("a ",Grammar.a_noun(""));
 	}
 
 	@Test
@@ -87,6 +90,10 @@ public class GrammarTest {
 	public void testA_noun() {
 		assertEquals("An eater", Grammar.A_noun("eater"));
 		assertEquals("A money", Grammar.A_noun("money"));
+		assertEquals("A s",Grammar.A_noun("s"));
+		assertEquals("An a",Grammar.A_noun("a"));
+		assertEquals("A ",Grammar.A_noun(""));
+
 
 	}
 

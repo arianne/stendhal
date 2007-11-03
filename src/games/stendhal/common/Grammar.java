@@ -124,8 +124,8 @@ public class Grammar {
 			return null;
 		}
 		String enoun = fullform(noun);
-		char initial = Character.toLowerCase(enoun.charAt(0));
-		char second = Character.toLowerCase(enoun.charAt(1));
+		char initial = noun.length()>0? Character.toLowerCase(enoun.charAt(0)): ' ';
+		char second = noun.length()>1? Character.toLowerCase(enoun.charAt(1)): ' ';
 		if ((initial == 'e') && (second == 'u')) {
 			return "a " + enoun;
 		}
