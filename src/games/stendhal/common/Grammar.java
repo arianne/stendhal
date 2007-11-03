@@ -257,8 +257,6 @@ public class Grammar {
 				return enoun.substring(0, enoun.length() - 1) + "ves" + postfix;
 			} else if (enoun.endsWith("fe")) {
 				return enoun.substring(0, enoun.length() - 2) + "ves" + postfix;
-			} else if (enoun.endsWith("house")) {
-				return enoun + "es" + postfix;
 			} else if (enoun.endsWith("ouse")
 					&& ("mMlL".indexOf(enoun.charAt(enoun.length() - 5)) > -1)) {
 				return enoun.substring(0, enoun.length() - 5) + "ice" + postfix;
