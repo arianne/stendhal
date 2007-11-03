@@ -118,7 +118,7 @@ class PlayerRPClass {
 		player.addAttribute("adminlevel", Type.INT);
 		player.addAttribute("invisible", Type.FLAG, Definition.HIDDEN);
 		player.addAttribute("ghostmode", Type.FLAG);
-		player.addAttribute("teleclickmode", Type.FLAG, Definition.HIDDEN);
+		player.addAttribute("teleclickmode", Type.FLAG);
 
 		player.addAttribute("release", Type.STRING, Definition.HIDDEN);
 
