@@ -710,19 +710,24 @@ public class AdministrationAction implements ActionListener {
 			return;
 		}
 
-		StringBuffer st = new StringBuffer();
+		StringBuilder st = new StringBuilder();
 
 		if (target instanceof RPEntity) {
 			RPEntity inspected = (RPEntity) target;
 
-			// It would be nice if the entity's type would be shown, but I don't
-			// know if the type attribute is mandatory.
-			// st.append("Inspected " + inspected.get("type") + " is called " +
-			// inspected.getName() + " and has attributes:");
-			st.append("Inspected entity is called \"" + inspected.getName()
-					+ "\" and has the following attributes:");
+			 // display type and name of the entity if they are available
+
+			String type = inspected.get("type");
+			st.append("Inspected " + (type!=null? type: "entity") + " is ");
+
+			String name = inspected.getName();
+			st.append(name!=null? "called \""+name+"\"": "unnamed");
+
+			st.append(" and has the following attributes:");
+
 			// st.append(target.toString());
 			// st.append("\n===========================\n");
+
 			st.append("\nID:     " + inspected.getID());
 			st.append("\nATK:    " + inspected.getATK() + "("
 					+ inspected.getATKXP() + ")");
