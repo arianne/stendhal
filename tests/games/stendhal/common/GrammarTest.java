@@ -289,7 +289,8 @@ public class GrammarTest {
 
 		// TODO: decide on name and plural of money
 		Assert.assertEquals("money", Grammar.plural("money"));
-
+	    Assert.assertEquals("houses", Grammar.plural("house"));
+	    Assert.assertEquals("houses of sun", Grammar.plural("house of sun"));
 	}
 
 	/**
