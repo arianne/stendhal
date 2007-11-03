@@ -252,7 +252,7 @@ public class Grammar {
 				// ok and now all the special cases
 			} else if (enoun.endsWith("staff") || enoun.endsWith("chief")) {
 				return enoun + "s" + postfix;
-			} else if (enoun.endsWith("f")
+			} else if (enoun.endsWith("f") && enoun.length() >1
 					&& ("aeiourl".indexOf(enoun.charAt(enoun.length() - 2)) > -1)) {
 				return enoun.substring(0, enoun.length() - 1) + "ves" + postfix;
 			} else if (enoun.endsWith("fe")) {
@@ -301,11 +301,11 @@ public class Grammar {
 			} else if (enoun.endsWith("mumak")) {
 				return enoun + "il" + postfix;
 			} else if (enoun.endsWith("djinni") || enoun.endsWith("efreeti")) {
-				return enoun.substring(0, enoun.length() - 2) + postfix;
+				return enoun.substring(0, enoun.length() - 1) + postfix;
 			} else if (enoun.endsWith("ch") || enoun.endsWith("sh")
 					|| ("zxs".indexOf(enoun.charAt(enoun.length() - 1)) > -1)) {
 				return enoun + "es" + postfix;
-			} else if (enoun.endsWith("y")
+			} else if (enoun.endsWith("y")&& enoun.length()>1
 					&& consonant_p(enoun.charAt(enoun.length() - 2))) {
 				return enoun.substring(0, enoun.length() - 1) + "ies" + postfix;
 			} else if (enoun.endsWith("porcini") || (enoun.endsWith("porcino"))) {
@@ -316,8 +316,6 @@ public class Grammar {
 				return enoun + "s" + postfix;
 			}
 		} catch (StringIndexOutOfBoundsException e) {
-			// TODO: rewrite the code so that this exception is not thrown
-			// TODO: write test cases
 			logger.warn("Cannot pluralize noun " + enoun, e);
 			return enoun + postfix;
 		}
@@ -392,8 +390,7 @@ public class Grammar {
 		case 3:
 			return "third";
 		default:
-			logger.error("Gramar.ordered not implemented for: " + n,
-					new Throwable());
+			logger.error("Grammar.ordered not implemented for: " + n );
 			return Integer.toString(n);
 
 		}
@@ -409,6 +406,9 @@ public class Grammar {
 	 * @return A nice String representation of the collection
 	 */
 	public static String enumerateCollection(Collection<String> collection) {
+		if (collection ==null){
+			return "";
+		}
 		String[] elements = collection.toArray(new String[collection.size()]);
 		if (elements.length == 0) {
 			return "";

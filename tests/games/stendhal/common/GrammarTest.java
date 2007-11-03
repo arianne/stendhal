@@ -1,6 +1,10 @@
 package games.stendhal.common;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+
+import java.util.Collection;
+import java.util.LinkedList;
 
 import marauroa.common.Log4J;
 
@@ -42,7 +46,13 @@ public class GrammarTest {
 		assertEquals("They", Grammar.ItThey(2));
 		assertEquals("They", Grammar.ItThey(0));
 	}
-
+	@Test
+	public void testOrderedInt() {
+		assertEquals("first", Grammar.ordered(1));
+		assertEquals("second", Grammar.ordered(2));
+		assertEquals("third", Grammar.ordered(3));
+		assertEquals("4", Grammar.ordered(4));
+	}
 	@Test
 	public void testIsare() {
 		assertEquals("is", Grammar.isare(1));
@@ -50,6 +60,11 @@ public class GrammarTest {
 		assertEquals("are", Grammar.isare(0));
 	}
 
+	@Test
+	public void testarticle_noun(){
+		assertEquals("the test", Grammar.article_noun("test",true));
+		assertEquals("a test", Grammar.article_noun("test",false));
+	}
 	@Test
 	public void testIsAre() {
 		assertEquals("Is", Grammar.IsAre(1));
@@ -59,12 +74,16 @@ public class GrammarTest {
 
 	@Test
 	public void testa_noun() {
+		assertNull(Grammar.a_noun(null));
 		assertEquals("an eater", Grammar.a_noun("eater"));
 		assertEquals("a money", Grammar.a_noun("money"));
 		assertEquals("a youngster", Grammar.a_noun("youngster"));
+		assertEquals("an yclept", Grammar.a_noun("yclept"));
 		assertEquals("a s", Grammar.a_noun("s"));
 		assertEquals("an a", Grammar.a_noun("a"));
 		assertEquals("a ", Grammar.a_noun(""));
+		assertEquals("a eupepsia", Grammar.a_noun("eupepsia"));
+
 	}
 
 	@Test
@@ -315,13 +334,21 @@ public class GrammarTest {
 		Assert.assertEquals("dei", Grammar.plural("deus"));
 		Assert.assertEquals("vortices", Grammar.plural("vortex"));
 
-		// durkham doubts these
+
 		Assert.assertEquals("xxxxses", Grammar.plural("xxxxsis"));
 
 		Assert.assertEquals("matrices", Grammar.plural("matrix"));
 
 		Assert.assertEquals("wumpuses", Grammar.plural("wumpus"));
 		Assert.assertEquals("lotuses", Grammar.plural("lotus"));
+		Assert.assertEquals("mumakil", Grammar.plural("mumak"));
+
+		Assert.assertEquals("efreet", Grammar.plural("efreeti"));
+		Assert.assertEquals("djinn", Grammar.plural("djinni"));
+		Assert.assertEquals("ys", Grammar.plural("y"));
+		Assert.assertEquals("bies", Grammar.plural("by"));
+		Assert.assertEquals("fs", Grammar.plural("f"));
+
 
 	}
 
@@ -459,6 +486,20 @@ public class GrammarTest {
 				"#bread"));
 		Assert.assertEquals("2 loaves of #bread", Grammar.quantityplnoun(2,
 				"#bread"));
+
+	}
+
+	@Test
+	public void testenumerateCollectionCollection() throws Exception {
+		assertEquals("", Grammar.enumerateCollection(null));
+		Collection<String> source = new LinkedList<String>();
+		assertEquals("", Grammar.enumerateCollection(source));
+		source.add("first");
+		assertEquals("first", Grammar.enumerateCollection(source));
+		source.add("second");
+		assertEquals("first and second", Grammar.enumerateCollection(source));
+		source.add("third");
+		assertEquals("first, second, and third", Grammar.enumerateCollection(source));
 
 	}
 
