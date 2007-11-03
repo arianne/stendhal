@@ -2,10 +2,18 @@ package games.stendhal.common;
 
 import static org.junit.Assert.assertEquals;
 
+import marauroa.common.Log4J;
+
 import org.junit.Assert;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class GrammarTest {
+	@BeforeClass
+	public static void setupClass() {
+		Log4J.init();
+
+	}
 
 	@Test
 	public void testItthem() {
@@ -54,9 +62,9 @@ public class GrammarTest {
 		assertEquals("an eater", Grammar.a_noun("eater"));
 		assertEquals("a money", Grammar.a_noun("money"));
 		assertEquals("a youngster", Grammar.a_noun("youngster"));
-		assertEquals("a s",Grammar.a_noun("s"));
-		assertEquals("an a",Grammar.a_noun("a"));
-		assertEquals("a ",Grammar.a_noun(""));
+		assertEquals("a s", Grammar.a_noun("s"));
+		assertEquals("an a", Grammar.a_noun("a"));
+		assertEquals("a ", Grammar.a_noun(""));
 	}
 
 	@Test
@@ -90,10 +98,9 @@ public class GrammarTest {
 	public void testA_noun() {
 		assertEquals("An eater", Grammar.A_noun("eater"));
 		assertEquals("A money", Grammar.A_noun("money"));
-		assertEquals("A s",Grammar.A_noun("s"));
-		assertEquals("An a",Grammar.A_noun("a"));
-		assertEquals("A ",Grammar.A_noun(""));
-
+		assertEquals("A s", Grammar.A_noun("s"));
+		assertEquals("An a", Grammar.A_noun("a"));
+		assertEquals("A ", Grammar.A_noun(""));
 
 	}
 
@@ -105,6 +112,8 @@ public class GrammarTest {
 
 	@Test
 	public void testPluralItem() {
+		// TODO: decide on name and plural of money
+		Assert.assertEquals("money", Grammar.plural("money"));
 		Assert.assertEquals("sandwiches", Grammar.plural("sandwich"));
 		Assert.assertEquals("knives", Grammar.plural("knife"));
 		Assert.assertEquals("daggers", Grammar.plural("dagger"));
@@ -287,10 +296,33 @@ public class GrammarTest {
 		Assert.assertEquals("rat keys", Grammar.plural("rat key"));
 		Assert.assertEquals("sprigs of arandula", Grammar.plural("arandula"));
 
-		// TODO: decide on name and plural of money
-		Assert.assertEquals("money", Grammar.plural("money"));
-	    Assert.assertEquals("houses", Grammar.plural("house"));
-	    Assert.assertEquals("houses of sun", Grammar.plural("house of sun"));
+		Assert.assertEquals("mice", Grammar.plural("mouse"));
+
+		Assert.assertEquals("houses", Grammar.plural("house"));
+		Assert.assertEquals("houses of sun", Grammar.plural("house of sun"));
+		Assert.assertEquals("geese", Grammar.plural("goose"));
+		Assert.assertEquals("cabooses", Grammar.plural("caboose"));
+		Assert.assertEquals("teeth", Grammar.plural("tooth"));
+		Assert.assertEquals("feet", Grammar.plural("foot"));
+		Assert.assertEquals("children", Grammar.plural("child"));
+
+		Assert.assertEquals("tomatoes", Grammar.plural("tomato"));
+		Assert.assertEquals("algae", Grammar.plural("alga"));
+		Assert.assertEquals("larvae", Grammar.plural("larva"));
+		Assert.assertEquals("hyphae", Grammar.plural("hypha"));
+		Assert.assertEquals("bureaux", Grammar.plural("bureau"));
+		Assert.assertEquals("a", Grammar.plural("ium"));
+		Assert.assertEquals("dei", Grammar.plural("deus"));
+		Assert.assertEquals("vortices", Grammar.plural("vortex"));
+
+		// durkham doubts these
+		Assert.assertEquals("xxxxses", Grammar.plural("xxxxsis"));
+
+		Assert.assertEquals("matrices", Grammar.plural("matrix"));
+
+		Assert.assertEquals("wumpuses", Grammar.plural("wumpus"));
+		Assert.assertEquals("lotuses", Grammar.plural("lotus"));
+
 	}
 
 	/**

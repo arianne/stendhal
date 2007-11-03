@@ -259,15 +259,15 @@ public class Grammar {
 				return enoun.substring(0, enoun.length() - 2) + "ves" + postfix;
 			} else if (enoun.endsWith("ouse")
 					&& ("mMlL".indexOf(enoun.charAt(enoun.length() - 5)) > -1)) {
-				return enoun.substring(0, enoun.length() - 5) + "ice" + postfix;
+				return enoun.substring(0, enoun.length() - 4) + "ice" + postfix;
 			} else if (enoun.endsWith("oose") && !(enoun.endsWith("caboose"))) {
-				return enoun.substring(0, enoun.length() - 5) + "eese"
+				return enoun.substring(0, enoun.length() - 4) + "eese"
 						+ postfix;
 			} else if (enoun.endsWith("ooth")) {
-				return enoun.substring(0, enoun.length() - 5) + "eeth"
+				return enoun.substring(0, enoun.length() - 4) + "eeth"
 						+ postfix;
 			} else if (enoun.endsWith("foot")) {
-				return enoun.substring(0, enoun.length() - 5) + "feet"
+				return enoun.substring(0, enoun.length() - 4) + "feet"
 						+ postfix;
 			} else if (enoun.endsWith("child")) {
 				return enoun + "ren" + postfix;
@@ -282,15 +282,15 @@ public class Grammar {
 				return enoun + "e" + postfix;
 			} else if ((enoun.length() > 3) && enoun.endsWith("us")
 					&& !(enoun.endsWith("lotus") || enoun.endsWith("wumpus"))) {
-				return enoun.substring(0, enoun.length() - 3) + "i" + postfix;
+				return enoun.substring(0, enoun.length() - 2) + "i" + postfix;
 			} else if (enoun.endsWith("man")
 					&& !(enoun.endsWith("shaman") || enoun.endsWith("human"))) {
 				return enoun.substring(0, enoun.length() - 3) + "men" + postfix;
 			} else if (enoun.endsWith("rtex")) {
-				return enoun.substring(0, enoun.length() - 3) + "ices"
+				return enoun.substring(0, enoun.length() - 2) + "ices"
 						+ postfix;
 			} else if (enoun.endsWith("trix")) {
-				return enoun.substring(0, enoun.length() - 2) + "ces" + postfix;
+				return enoun.substring(0, enoun.length() - 1) + "ces" + postfix;
 			} else if (enoun.endsWith("sis")) {
 				return enoun.substring(0, enoun.length() - 2) + "es" + postfix;
 				/*
