@@ -460,55 +460,66 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 		// TODO: Check that titlebar height is calculated correctly.
 		// The p.y seems higher than it should after adjustment.
 
-		/*
-		 * Move the player to the coordinates using Pathfinding
-		 */
 
-		//check if destination is walkeable.
-		if (!collisiondetection.walkable((p.x + panx - getClientX()) / scale, ((p.y + pany - getClientY()) / scale) - 1))
-		{
-			return true;
-		}
-				
-		nodo_actual=0;
-		
-		//Rectangle(int x, int y, int width, int height) 
-		int width2= width<192 ? width : 192;
-		int height2=height<192 ? height : 192;
-		Rectangle search_area = new Rectangle((panx)/scale,(pany)/scale,width2/scale,height2/scale);
-		
-		long computation_time = System.currentTimeMillis();
-		
-		if (pathfind.NewPath(collisiondetection,
-				(int) playerX,(int)playerY,
-				(p.x + panx - getClientX()) / scale,
-				((p.y + pany - getClientY()) / scale) - 1, search_area)){
-		
-			pathfind.PathJumpNode();
-			nodo_actual = pathfind.final_path_index;
+		// If teleclickmode is disabled.
+		if (!client.getPlayer().has("teleclickmode")){
+			/*
+			 * Move the player to the coordinates using Pathfinding
+			 */
 			
-			if (logger.isDebugEnabled()) {
-				logger.debug("Pathfind: Found, size: " + pathfind.final_path_index);
-				logger.debug("Pathfind: First waypoint: " + pathfind.NodeGetX()+ "," + pathfind.NodeGetY());
+			//check if destination is walkeable.
+			if (!collisiondetection.walkable((p.x + panx - getClientX()) / scale, ((p.y + pany - getClientY()) / scale) - 1))
+			{
+				return true;
 			}
-			
+
+			nodo_actual=0;
+
+			//Rectangle(int x, int y, int width, int height) 
+			int width2= width<192 ? width : 192;
+			int height2=height<192 ? height : 192;
+			Rectangle search_area = new Rectangle((panx)/scale,(pany)/scale,width2/scale,height2/scale);
+
+			long computation_time = System.currentTimeMillis();
+
+			if (pathfind.NewPath(collisiondetection,
+					(int) playerX,(int)playerY,
+					(p.x + panx - getClientX()) / scale,
+					((p.y + pany - getClientY()) / scale) - 1, search_area)){
+
+				pathfind.PathJumpNode();
+				nodo_actual = pathfind.final_path_index;
+
+				if (logger.isDebugEnabled()) {
+					logger.debug("Pathfind: Found, size: " + pathfind.final_path_index);
+					logger.debug("Pathfind: First waypoint: " + pathfind.NodeGetX()+ "," + pathfind.NodeGetY());
+				}
+
+				RPAction action = new RPAction();
+				action.put("type", "moveto");
+				action.put("x", pathfind.NodeGetX());
+				action.put("y", pathfind.NodeGetY());
+
+				client.send(action);
+
+			}else{
+				if (logger.isDebugEnabled()) {
+					logger.debug("Pathfind: unreacheable.");
+				}
+			}
+
+			if (logger.isDebugEnabled()) {
+				logger.debug("Pathfind: calculation time: " + (System.currentTimeMillis() - computation_time) + "ms");
+			}
+		} else // If teleclickmode is enabled.
+		{
 			RPAction action = new RPAction();
 			action.put("type", "moveto");
-			action.put("x", pathfind.NodeGetX());
-			action.put("y", pathfind.NodeGetY());
-	
+			action.put("x", (p.x + panx - getClientX()) / scale);
+			action.put("y", ((p.y + pany - getClientY()) / scale) - 1);
+			  
 			client.send(action);
-		
-		}else{
-			if (logger.isDebugEnabled()) {
-				logger.debug("Pathfind: unreacheable.");
-			}
 		}
-		
-		if (logger.isDebugEnabled()) {
-			logger.debug("Pathfind: calculation time: " + (System.currentTimeMillis() - computation_time) + "ms");
-		}
-		
 		return true;
 	}
 
