@@ -25,13 +25,15 @@ public class NPCList {
 	 */
 	public static NPCList get() {
 		if (instance == null) {
-			instance = new NPCList();
+			new NPCList();
 		}
 		return instance;
 	}
 
-	private NPCList() {
+	protected NPCList() {
+		instance = this;
 		contents = new HashMap<String, SpeakerNPC>();
+
 	}
 
 	/**
