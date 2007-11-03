@@ -17,6 +17,7 @@ import games.stendhal.common.Rand;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.Creature;
+import games.stendhal.server.entity.creature.DomesticAnimal;
 import games.stendhal.server.entity.creature.Pet;
 import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.item.Item;
@@ -223,8 +224,7 @@ public class StendhalRPAction {
 		}
 
 		// Enabled PVP
-		if ((entity instanceof Player) || (entity instanceof Sheep)
-				|| (entity instanceof Pet)) {
+		if ((entity instanceof Player) || (entity instanceof DomesticAnimal)) {
 			StendhalRPZone zone = player.getZone();
 
 			// Make sure that you can't attack players or sheep (even wild
@@ -235,22 +235,16 @@ public class StendhalRPAction {
 
 				String name = entity.getTitle();
 
-				// TODO: Consolidate these two as DomesticAnimal
-				if (entity instanceof Sheep) {
-					Player owner = ((Sheep) entity).getOwner();
-					if (owner != null) {
-						name = Grammar.suffix_s(owner.getTitle()) + " sheep";
-					} else {
-						name = "that sheep";
-					}
-				}
+				if (entity instanceof DomesticAnimal) {
+					Player owner = ((DomesticAnimal) entity).getOwner();
 
-				if (entity instanceof Pet) {
-					Player owner = ((Pet) entity).getOwner();
 					if (owner != null) {
-						name = Grammar.suffix_s(owner.getTitle()) + " pet";
+	                    name = Grammar.suffix_s(owner.getTitle()) + " " + name;
 					} else {
-						name = "that poor little cat";
+                        if (entity instanceof Sheep)
+                            name = "that " + name;
+                        else
+                            name = "that poor little " + name;
 					}
 				}
 
