@@ -317,3 +317,8 @@ tileset/ground/water/pool_corners.png	14@150	14:5:68:59:50:41:32:23
 tileset/ground/water/pool_corners.png	15@150	15:6:69:60:51:42:33:24
 tileset/ground/water/pool_corners.png	16@150	16:7:70:61:52:43:34:25
 tileset/ground/water/pool_corners.png	17@150	17:8:71:62:53:44:35:26
+# north (pool_straight_edges)
+tileset/ground/water/pool_straight_edges.png	0@150 0:4:8:12:16:20:24:28
+tileset/ground/water/pool_straight_edges.png	1@150 1:5:9:13:17:21:25:29
+tileset/ground/water/pool_straight_edges.png	2@150 2:6:10:14:18:22:26:30
+tileset/ground/water/pool_straight_edges.png	3@150 3:7:11:15:19:23:27:31
