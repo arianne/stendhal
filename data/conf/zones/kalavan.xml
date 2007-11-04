@@ -495,7 +495,16 @@
  <zone name="0_kalavan_city_gardens" level="0" x="499744" y="500768" file="Level 0/kalavan/city_gardens.tmx">
   <configurator class-name="games.stendhal.server.maps.kalavan.citygardens.GardenerNPC"/>
   <configurator class-name="games.stendhal.server.maps.kalavan.citygardens.IceCreamSellerNPC"/>
+  <portal x="114" y="116" ref="greenhouse_1_entrance">
+   <destination zone="int_kalavan_greenhouse_1" ref="entrance"/>
+  </portal>
  </zone>
+
+ <zone name="int_kalavan_greenhouse_1" file="interiors/kalavan/greenhouse_1.tmx">
+  <portal x="7" y="19" ref="entrance">
+   <destination zone="0_kalavan_city_gardens" ref="greenhouse_1_entrance"/>
+  </portal>
+ </zone> 
 
  <zone name="0_kalavan_forest" level="0" x="499872" y="500768" file="Level 0/kalavan/forest.tmx">
  </zone>
