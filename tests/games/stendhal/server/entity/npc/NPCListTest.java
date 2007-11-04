@@ -30,8 +30,7 @@ public class NPCListTest {
 		NPCList npclist = new NPCList(){};
 		npclist.add(new SpeakerNPC("Bob"));
 		assertNotNull(npclist.get("Bob"));
-//		assertNotNull(npclist.get("BOB"));
-
+		assertNotNull(npclist.get("BOB"));
 	}
 
 	@Test
@@ -42,10 +41,10 @@ public class NPCListTest {
 		assertNotNull(npclist.get("Bob"));
 		assertNotNull(npclist.remove("Bob"));
 		assertNull(npclist.get("Bob"));
-//		npclist.add(new SpeakerNPC("Bob"));
-//		assertNotNull(npclist.get("bob"));
-//		npclist.remove("BOB");
-//		assertNull(npclist.get("BOB"));
+		npclist.add(new SpeakerNPC("Bob"));
+		assertNotNull(npclist.get("bob"));
+		npclist.remove("BOB");
+		assertNull(npclist.get("BOB"));
 	}
 
 	@Test
@@ -55,7 +54,7 @@ public class NPCListTest {
 		SpeakerNPC speakerNPC = new SpeakerNPC("Bob");
 		npclist.add(speakerNPC);
 		assertEquals(speakerNPC, npclist.get("Bob"));
-		//assertEquals(speakerNPC,npclist.get("BOB"));
+		assertEquals(speakerNPC, npclist.get("BOB"));
 	}
 
 }

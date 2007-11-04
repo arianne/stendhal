@@ -42,7 +42,7 @@ public class NPCList {
 	 * @return The NPC, or null if there is no NPC with this name
 	 */
 	public SpeakerNPC get(String name) {
-		return contents.get(name);
+		return contents.get(name.toLowerCase());
 	}
 
 	/**
@@ -52,7 +52,7 @@ public class NPCList {
 	 * @return true iff an NPC with the given name exists
 	 */
 	public boolean has(String name) {
-		return contents.containsKey(name);
+		return contents.containsKey(name.toLowerCase());
 	}
 
 	/**
@@ -63,8 +63,12 @@ public class NPCList {
 	 * @param npc The NPC that should be added
 	 */
 	public void add(SpeakerNPC npc) {
-		if (!contents.containsKey(npc.getName())) {
-			contents.put(npc.getName(), npc);
+	    // insert lower case names to allow case insensitive
+	    // searches for teleport commands, etc.
+	    String name = npc.getName().toLowerCase();
+
+		if (!contents.containsKey(name)) {
+			contents.put(name, npc);
 		}
 	}
 
@@ -76,7 +80,7 @@ public class NPCList {
 	 * @return SpeakerNPC or null in case it was not in the list
 	 */
 	public SpeakerNPC remove(String name) {
-		return contents.remove(name);
+		return contents.remove(name.toLowerCase());
 	}
 
 	/**
