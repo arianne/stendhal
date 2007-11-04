@@ -4824,6 +4824,21 @@
     </equipable>
   </item>
 
+  <item name="mythical_egg">
+    <type class="special" subclass="mythical_egg" tileid="-1"/>
+    <description>You see a mythical egg, but you do not know, what for it is.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="keyring"/>
+      <slot name="bag"/>
+    </equipable>
+  </item>
+
   <item name="golden_gm_token">
     <type class="special" subclass="GM_tokend_gold2" tileid="-1"/>
     <description/>

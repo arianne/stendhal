@@ -1075,6 +1075,7 @@ it back as you got it!
   </portal>
 </zone>
 <zone name="int_magic_school_1" file="interiors/magic/school_1.tmx">
+ <configurator class-name="games.stendhal.server.maps.magic.school.GroundskeeperNPC" />
  <portal x="21" y="3" ref="downstairs">
   <destination zone="int_magic_school_0" ref="upstairs"/>
  </portal>

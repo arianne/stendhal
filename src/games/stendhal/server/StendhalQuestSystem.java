@@ -113,6 +113,7 @@ public class StendhalQuestSystem {
 		loadQuest("WeaponsCollector2");
 		loadQuest("WizardBank");
 		loadQuest("ZooFood");
+		loadQuest("KillSpiders");
 	}
 
 	private boolean loadQuest(String name) {
