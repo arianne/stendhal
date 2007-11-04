@@ -100,7 +100,7 @@ public abstract class GrowingPassiveEntityRespawnPoint extends
 		if (ripeness < maxRipeness) {
 			setRipeness(ripeness + 1);
 
-			logger.info("Grow " + ripeness + " up to " + maxRipeness);
+			logger.debug("Grow " + ripeness + " up to " + maxRipeness);
 			TurnNotifier.get().notifyInTurns(getRandomTurnsForRegrow(), this);
 
 			notifyWorldAboutChanges();
