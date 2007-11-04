@@ -299,4 +299,21 @@ tileset/ground/water/pool.png	14@150	14:5:68:59:50:41:32:23
 tileset/ground/water/pool.png	15@150	15:6:69:60:51:42:33:24
 tileset/ground/water/pool.png	16@150	16:7:70:61:52:43:34:25
 tileset/ground/water/pool.png	17@150	17:8:71:62:53:44:35:26
-
+# north (pool_corners)
+tileset/ground/water/pool_corners.png	0@150	0:9:18:27:36:45:54:63
+tileset/ground/water/pool_corners.png	1@150	1:10:19:28:37:46:55:64
+tileset/ground/water/pool_corners.png	2@150	2:11:20:29:38:47:56:65
+tileset/ground/water/pool_corners.png	3@150	3:12:21:30:39:48:57:66
+tileset/ground/water/pool_corners.png	5@150	5:14:23:32:41:50:59:68
+tileset/ground/water/pool_corners.png	6@150	6:15:24:33:42:51:60:69
+tileset/ground/water/pool_corners.png	7@150	7:16:25:34:43:52:61:70
+tileset/ground/water/pool_corners.png	8@150	8:17:26:35:44:53:62:71
+# south (pool_corners)
+tileset/ground/water/pool_corners.png	9@150	9:0:63:54:45:36:27:18
+tileset/ground/water/pool_corners.png	10@150	10:1:64:55:46:37:28:19
+tileset/ground/water/pool_corners.png	11@150	11:2:65:56:47:38:29:20
+tileset/ground/water/pool_corners.png	12@150	12:3:66:57:48:39:30:21
+tileset/ground/water/pool_corners.png	14@150	14:5:68:59:50:41:32:23
+tileset/ground/water/pool_corners.png	15@150	15:6:69:60:51:42:33:24
+tileset/ground/water/pool_corners.png	16@150	16:7:70:61:52:43:34:25
+tileset/ground/water/pool_corners.png	17@150	17:8:71:62:53:44:35:26
