@@ -1,12 +1,10 @@
 package games.stendhal.server.entity.npc.fsm;
 
 import static org.junit.Assert.assertEquals;
-import games.stendhal.client.GameObjects;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPC.ChatAction;
 import games.stendhal.server.entity.npc.SpeakerNPC.ChatCondition;
 import games.stendhal.server.entity.player.Player;
-import marauroa.common.Log4J;
 import marauroa.common.game.RPObject;
 
 import org.junit.BeforeClass;
