@@ -1105,7 +1105,7 @@ in roaches.
 
  <zone name="int_ados_house_59" file="interiors/ados/house_53.tmx">
   <portal x="7" y="14" ref="in">
-    <destination zone="0_ados_city_n" ref="house_53"/>
+    <destination zone="0_ados_city_n" ref="house_59"/>
   </portal>
   <portal x="3" y="3" ref="up">
     <destination zone="int_ados_house_59_1" ref="down"/>
@@ -1125,6 +1125,7 @@ in roaches.
     <destination zone="int_ados_house_60_1" ref="down"/>
   </portal>
  </zone>
+
  <zone name="int_ados_house_60_1" file="interiors/ados/house_60_1.tmx">
   <portal x="3" y="3" ref="down">
    <destination zone="int_ados_house_60" ref="up"/>
@@ -1135,7 +1136,11 @@ in roaches.
   <portal x="7" y="14" ref="in">
     <destination zone="0_ados_city_n" ref="house_61"/>
   </portal>
+  <portal x="3" y="3" ref="up">
+    <destination zone="int_ados_house_61_1" ref="down"/>
+  </portal>
  </zone>
+
  <zone name="int_ados_house_61_1" file="interiors/ados/house_61_1.tmx">
   <portal x="3" y="3" ref="down">
    <destination zone="int_ados_house_61" ref="up"/>
@@ -1146,7 +1151,11 @@ in roaches.
   <portal x="7" y="14" ref="in">
     <destination zone="0_ados_city_n" ref="house_62"/>
   </portal>
+  <portal x="3" y="3" ref="up">
+    <destination zone="int_ados_house_62_1" ref="down"/>
+  </portal>
  </zone>
+
  <zone name="int_ados_house_62_1" file="interiors/ados/house_52_1.tmx">
   <portal x="3" y="3" ref="down">
    <destination zone="int_ados_house_62" ref="up"/>
