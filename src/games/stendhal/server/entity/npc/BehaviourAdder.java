@@ -10,7 +10,7 @@ import org.apache.log4j.Logger;
 /**
  * Internal helper class for SpeakerNPC
  */
-// TODO: This is just a first step to split it out of SpealerNPC. More refactoring is needed.
+// TODO: This is just a first step to split it out of SpeakerNPC. More refactoring is needed.
 class BehaviourAdder {
 
 	private static final Logger logger = Logger.getLogger(BehaviourAdder.class);
@@ -21,7 +21,7 @@ class BehaviourAdder {
 	private SpeakerNPC speakerNPC;
 
 	/**
-	 * creats a BehaviourAdder
+	 * creates a BehaviourAdder
 	 *
 	 * @param speakerNPC the speakerNPC the behaviour should be added to.
 	 * @param engine the FSM
