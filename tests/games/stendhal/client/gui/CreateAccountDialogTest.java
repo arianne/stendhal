@@ -9,6 +9,10 @@ package games.stendhal.client.gui;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+
+import marauroa.common.Log4J;
+
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
@@ -17,8 +21,15 @@ import org.junit.Test;
  */
 public class CreateAccountDialogTest {
 
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+		Log4J.init();
+	}
+
+
     @Test
     public void testInValidPass() {
+
         CreateAccountDialog cad = new CreateAccountDialog();
         assertFalse(cad.validatePassword(new String(), new String()));
 
