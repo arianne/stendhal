@@ -118,6 +118,9 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 *            The entity to render.
 	 */
 	public Entity2DView(final Entity entity) {
+		if (entity == null){
+			throw new IllegalArgumentException("entity must not be null");
+		}
 		this.entity = entity;
 
 		// TODO: Pass this in
