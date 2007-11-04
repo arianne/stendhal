@@ -327,11 +327,11 @@ public class Blackjack extends AbstractQuest {
 				ConversationStates.ATTENDING, null, new ChatAction() {
 					@Override
 					public void fire(Player player, String text, SpeakerNPC npc) {
-						String[] words = text.split(" ");
+						String[] words = text.split(" +");
 
 						if (words.length >= 2) {
 							try {
-								stake = Integer.parseInt(words[1].trim());
+								stake = Integer.parseInt(words[1]);
 							} catch (NumberFormatException e) {
 								npc
 										.say("Just tell me how much you want to risk, for example #stake #50.");

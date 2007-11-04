@@ -171,8 +171,8 @@ public class ScriptRunner extends StendhalServerExtension implements ActionListe
 			}
 
 			// split remaining args
-			String[] args = cmd.split(" ");
-			if ((args.length == 1) && args[0].trim().equals("")) {
+			String[] args = cmd.split(" +");
+			if ((args.length == 1) && args[0].equals("")) {
 				args = new String[0];
 			}
 

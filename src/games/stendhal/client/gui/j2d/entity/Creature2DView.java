@@ -82,15 +82,15 @@ public class Creature2DView extends RPEntity2DView {
 
 	public List<Node> decodePath(final String token) {
 		String[] values = token.replace(',', ' ').replace('(', ' ').replace(')', ' ').replace('[', ' ').replace(']',
-		        ' ').split(" ");
+		        ' ').split(" +");
 		List<Node> list = new ArrayList<Node>();
 
 		int x = 0;
 		int pass = 1;
 
 		for (String value : values) {
-			if (value.trim().length() > 0) {
-				int val = Integer.parseInt(value.trim());
+			if (value.length() > 0) {
+				int val = Integer.parseInt(value);
 				if (pass % 2 == 0) {
 					list.add(new Node(x, val));
 				} else {

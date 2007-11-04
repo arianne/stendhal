@@ -45,21 +45,21 @@ class BehaviourAdder {
 			        public void fire(Player player, String text, SpeakerNPC engine) {
 				        // find out what the player wants to buy, and how
 				        // much of it
-				        String[] words = text.split(" ");
+				        String[] words = text.split(" +");
 
 				        int amount = 1;
 				        String item = null;
 				        if (words.length > 2) {
 					        try {
-						        amount = Integer.parseInt(words[1].trim());
+						        amount = Integer.parseInt(words[1]);
 					        } catch (NumberFormatException e) {
 						        engine.say("Sorry, I did not understand you.");
 						        engine.setCurrentState(ConversationStates.ATTENDING);
 						        return;
 					        }
-					        item = words[2].trim().toLowerCase();
+					        item = words[2].toLowerCase();
 				        } else if (words.length > 1) {
-					        item = words[1].trim().toLowerCase();
+					        item = words[1].toLowerCase();
 				        }
 
 				        // find out if the NPC sells this item, and if so,
@@ -120,21 +120,21 @@ class BehaviourAdder {
 			        @Override
 			        public void fire(Player player, String text, SpeakerNPC engine) {
 
-				        String[] words = text.split(" ");
+				        String[] words = text.split(" +");
 
 				        int amount = 1;
 				        String item = null;
 				        if (words.length > 2) {
 					        try {
-						        amount = Integer.parseInt(words[1].trim());
+						        amount = Integer.parseInt(words[1]);
 					        } catch (NumberFormatException e) {
 						        engine.say("Sorry, I did not understand you.");
 						        engine.setCurrentState(ConversationStates.ATTENDING);
 						        return;
 					        }
-					        item = words[2].trim().toLowerCase();
+					        item = words[2].toLowerCase();
 				        } else if (words.length > 1) {
-					        item = words[1].trim().toLowerCase();
+					        item = words[1].toLowerCase();
 				        }
 
 				        if (behaviour.hasItem(item)) {
@@ -256,12 +256,12 @@ class BehaviourAdder {
 			        public void fire(Player player, String text, SpeakerNPC engine) {
 				        // find out what the player wants to buy, and how
 				        // much of it
-				        String[] words = text.split(" ");
+				        String[] words = text.split(" +");
 
 				        String item = null;
 				        // we ignore any amounts
 				        if (words.length > 1) {
-					        item = words[words.length - 1].trim().toLowerCase();
+					        item = words[words.length - 1].toLowerCase();
 				        } else if (behaviour.dealtItems().size() == 1) {
 				        	// The NPC only offers one type of outfit, so
 				        	// it's clear what the player wants.
@@ -362,10 +362,10 @@ class BehaviourAdder {
 				@Override
 				public void fire(Player player, String text, SpeakerNPC npc) {
 
-					String[] words = text.split(" ");
+					String[] words = text.split(" +");
 					int amount = 1;
 					if (words.length > 1) {
-						amount = Integer.parseInt(words[1].trim());
+						amount = Integer.parseInt(words[1]);
 					}
 					if (amount > 1000) {
 						logger.warn("Decreasing very large amount of " + amount + " to 1 for player " + player.getName() + " talking to " + npc.getName() + " saying " + text);

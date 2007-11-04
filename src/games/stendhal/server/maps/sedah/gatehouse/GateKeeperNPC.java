@@ -72,17 +72,17 @@ public class GateKeeperNPC implements ZoneConfigurator {
 					@Override
 					public void fire(Player player, String text,
 							SpeakerNPC engine) {
-						String[] words = text.split(" ");
+						String[] words = text.split(" +");
 						// This bit is just incase the player says 'bribe X
 						// potatoes', not money
 						if (words.length > 2
-								&& !words[2].trim().toLowerCase().equals(
+								&& !words[2].toLowerCase().equals(
 										"money")) {
 							engine.say("You can't bribe me with anything but money!");
 						} else if (words.length > 1) {
 							int amount = 1;
 							try {
-								amount = Integer.parseInt(words[1].trim());
+								amount = Integer.parseInt(words[1]);
 								if (amount < 300) {
 									// Less than 300 is not money for him
 									engine.say("You think that amount will persuade me?! That's more than my job is worth!");

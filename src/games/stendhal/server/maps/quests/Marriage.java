@@ -126,7 +126,7 @@ public class Marriage extends AbstractQuest {
 					@Override
 					public void fire(Player player, String text, SpeakerNPC npc) {
 						// find out whom the player wants to marry.
-						String[] words = text.split(" ");
+						String[] words = text.split(" +");
 
 						if (words.length >= 2) {
 							String brideName = words[1];
@@ -445,7 +445,7 @@ public class Marriage extends AbstractQuest {
 					@Override
 					public void fire(Player player, String text, SpeakerNPC npc) {
 						// find out whom the player wants to marry.
-						String[] words = text.split(" ");
+						String[] words = text.split(" +");
 
 						if (words.length >= 2) {
 							String brideName = words[1];

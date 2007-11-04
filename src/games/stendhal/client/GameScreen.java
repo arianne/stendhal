@@ -972,7 +972,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	}
 
 	private int positionStringOfSize(String text, int width) {
-		String[] words = text.split(" ");
+		String[] words = text.split(" +");
 
 		int i = 1;
 		// Bugfix: Prevent NPE for empty text intensifly@gmx.com
