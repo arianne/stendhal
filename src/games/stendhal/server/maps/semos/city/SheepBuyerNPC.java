@@ -1,4 +1,4 @@
-package games.stendhal.server.maps.semos.city;
+	package games.stendhal.server.maps.semos.city;
 
 import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.npc.BuyerBehaviour;

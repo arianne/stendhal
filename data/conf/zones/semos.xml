@@ -265,7 +265,7 @@ The tavern has moved into a more central location in Semos. Please come join us 
  <zone name="0_semos_city" level="0" x="500064" y="500000" file="Level 0/semos/city.tmx">
   <title>The City of Semos</title>
   <configurator class-name="games.stendhal.server.maps.semos.city.CommonChest" />
-
+	
 <![CDATA[
   <!-- XXX: Hypothtical "NPC" element. No used yet - Concept only -->
   <npc x="46" y="20" name="Nomyr Ahba">

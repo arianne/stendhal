@@ -33,6 +33,13 @@
   </portal>
  </zone>
 
+ <zone name="int_amazon_prison_hut" file="interiors/amazon/prison_hut.tmx">
+ <configurator class-name="games.stendhal.server.maps.amazon.hut.JailedBarbNPC"/>
+  <portal x="7" y="14" ref="out">
+   <destination zone="0_amazon_island_sw" ref="in"/>
+  </portal>
+ </zone>
+
  <zone name="0_amazon_island_nw" level="0" x="501024" y="499744" file="Level 0/amazon/island_nw.tmx">
  </zone>
 
@@ -43,7 +50,11 @@
  </zone>
 
  <zone name="0_amazon_island_sw" level="0" x="501024" y="499872" file="Level 0/amazon/island_sw.tmx">
+  <portal x="64" y="26" ref="in">
+   <destination zone="int_amazon_prison_hut" ref="out"/>
+  </portal>
  </zone>
+
  <zone name="0_amazon_island_se" level="0" x="501152" y="499872" file="Level 0/amazon/island_se.tmx">
  </zone>
 

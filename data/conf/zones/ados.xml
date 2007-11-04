@@ -228,7 +228,8 @@ West: Semos
      <parameter name="key">private_key_55</parameter>
      <parameter name="rejected">The door is locked.</parameter>
      </implementation>
-   </portal>
+   </portal> 
+-->
    <portal x="37" y="74" ref="house_56">
      <destination zone="int_ados_house_56" ref="in"/>
      <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
@@ -245,7 +246,7 @@ West: Semos
      </implementation>
    </portal>
 
-<!--   <portal x="19" y="85" ref="house_57">
+   <portal x="19" y="85" ref="house_57">
      <destination zone="int_ados_house_57" ref="in"/>
      <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
      <parameter name="key">private_key_57</parameter>
@@ -280,7 +281,7 @@ West: Semos
      <parameter name="rejected">The door is locked.</parameter>
      </implementation>
    </portal>
-   <portal x="44" y="85" ref="house_62">
+<!--   <portal x="44" y="85" ref="house_62">
      <destination zone="int_ados_house_62" ref="in"/>
      <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
      <parameter name="key">private_key_62</parameter>
@@ -1058,41 +1059,100 @@ in roaches.
     <destination zone="0_ados_city_n" ref="house_55"/>
   </portal>
  </zone>
+-->
+
  <zone name="int_ados_house_56" file="interiors/ados/house_56.tmx">
   <portal x="7" y="14" ref="in">
     <destination zone="0_ados_city_n" ref="house_56"/>
   </portal>
+  <portal x="3" y="3" ref="up">
+    <destination zone="int_ados_house_56_1" ref="down"/>
+  </portal>
  </zone>
+ <zone name="int_ados_house_56_1" file="interiors/ados/house_56_1.tmx">
+  <portal x="3" y="3" ref="down">
+   <destination zone="int_ados_house_56" ref="up"/>
+  </portal>
+ </zone>
+
  <zone name="int_ados_house_57" file="interiors/ados/house_57.tmx">
   <portal x="7" y="14" ref="in">
     <destination zone="0_ados_city_n" ref="house_57"/>
   </portal>
+  <portal x="3" y="3" ref="up">
+    <destination zone="int_ados_house_57_1" ref="down"/>
+  </portal>
  </zone>
+ <zone name="int_ados_house_57_1" file="interiors/ados/house_57_1.tmx">
+  <portal x="3" y="3" ref="down">
+   <destination zone="int_ados_house_57" ref="up"/>
+  </portal>
+ </zone>
+
  <zone name="int_ados_house_58" file="interiors/ados/house_58.tmx">
   <portal x="7" y="14" ref="in">
     <destination zone="0_ados_city_n" ref="house_58"/>
   </portal>
+  <portal x="3" y="3" ref="up">
+    <destination zone="int_ados_house_58_1" ref="down"/>
+  </portal>
  </zone>
+ <zone name="int_ados_house_58_1" file="interiors/ados/house_58_1.tmx">
+  <portal x="3" y="3" ref="down">
+   <destination zone="int_ados_house_58" ref="up"/>
+  </portal>
+ </zone>
+
  <zone name="int_ados_house_59" file="interiors/ados/house_53.tmx">
   <portal x="7" y="14" ref="in">
     <destination zone="0_ados_city_n" ref="house_53"/>
   </portal>
+  <portal x="3" y="3" ref="up">
+    <destination zone="int_ados_house_59_1" ref="down"/>
+  </portal>
  </zone>
+ <zone name="int_ados_house_59_1" file="interiors/ados/house_59_1.tmx">
+  <portal x="3" y="3" ref="down">
+   <destination zone="int_ados_house_59" ref="up"/>
+  </portal>
+ </zone>
+
  <zone name="int_ados_house_60" file="interiors/ados/house_60.tmx">
   <portal x="7" y="14" ref="in">
     <destination zone="0_ados_city_n" ref="house_60"/>
   </portal>
+  <portal x="3" y="3" ref="up">
+    <destination zone="int_ados_house_60_1" ref="down"/>
+  </portal>
  </zone>
+ <zone name="int_ados_house_60_1" file="interiors/ados/house_60_1.tmx">
+  <portal x="3" y="3" ref="down">
+   <destination zone="int_ados_house_60" ref="up"/>
+  </portal>
+ </zone>
+
  <zone name="int_ados_house_61" file="interiors/ados/house_61.tmx">
   <portal x="7" y="14" ref="in">
     <destination zone="0_ados_city_n" ref="house_61"/>
   </portal>
  </zone>
+ <zone name="int_ados_house_61_1" file="interiors/ados/house_61_1.tmx">
+  <portal x="3" y="3" ref="down">
+   <destination zone="int_ados_house_61" ref="up"/>
+  </portal>
+ </zone>
+
  <zone name="int_ados_house_62" file="interiors/ados/house_62.tmx">
   <portal x="7" y="14" ref="in">
     <destination zone="0_ados_city_n" ref="house_62"/>
   </portal>
- </zone>-->
+ </zone>
+ <zone name="int_ados_house_62_1" file="interiors/ados/house_52_1.tmx">
+  <portal x="3" y="3" ref="down">
+   <destination zone="int_ados_house_62" ref="up"/>
+  </portal>
+ </zone>
+
  <zone name="int_ados_house_63" file="interiors/ados/house_63.tmx">
   <portal x="21" y="17" ref="in">
     <destination zone="0_ados_city" ref="house_63"/>
