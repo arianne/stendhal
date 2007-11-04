@@ -39,13 +39,14 @@ import java.util.LinkedList;
 import java.util.List;
 
 import marauroa.common.Configuration;
-
-import org.apache.log4j.Logger;
 import marauroa.common.game.Definition;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 import marauroa.common.game.Definition.Type;
+import marauroa.common.io.UnicodeSupportingInputStreamReader;
+
+import org.apache.log4j.Logger;
 
 /**
  * Handles the RPClass registration and updating old Player objects created by
@@ -307,7 +308,7 @@ class PlayerRPClass {
 				} else {
 
 					BufferedReader in = new BufferedReader(
-							new InputStreamReader(is));
+							new UnicodeSupportingInputStreamReader(is));
 					try {
 						String line;
 						while ((line = in.readLine()) != null) {
