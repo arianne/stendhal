@@ -25,8 +25,9 @@ public class PortalMatchTest {
 			DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory
 					.newInstance();
 			DocumentBuilder docBuilder = docBuilderFactory.newDocumentBuilder();
-			String[] zonesxml = { "ados.xml", "athor.xml", "fado.xml",
-					"kikareukin.xml", "misc.xml", "nalwor.xml", "orril.xml",
+			//todo:make this read directory content
+			String[] zonesxml = { "ados.xml","amazon.xml", "athor.xml", "fado.xml","kalavan.xml",
+					"kikareukin.xml","kirdneh.xml", "misc.xml", "nalwor.xml", "orril.xml",
 					"semos.xml" };
 
 			for (int zone = 0; zone < zonesxml.length; zone++) {
