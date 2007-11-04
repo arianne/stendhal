@@ -7,9 +7,12 @@ import marauroa.common.game.RPObject;
 
 import org.junit.Test;
 
+import utilities.PlayerHelper;
+
 public class EntityTest {
 	@Test
 	public void testnextTo() throws Exception {
+		PlayerHelper.generatePlayerRPClasses();
 		Entity en = new MockEntity();
 		Player pl = new Player(new RPObject());
 		en.setPosition(2, 2);

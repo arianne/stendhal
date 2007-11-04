@@ -14,16 +14,20 @@ import games.stendhal.server.rule.defaultruleset.DefaultEntityManager;
 import java.util.HashMap;
 import java.util.Map;
 
+import marauroa.common.Log4J;
 import marauroa.common.game.RPObject;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import utilities.PlayerHelper;
+
 public class PoisonerTest {
 
 	@Before
 	public void setUp() throws Exception {
+		Log4J.init();
 	}
 
 	@After
@@ -52,6 +56,7 @@ public class PoisonerTest {
 		zone.add(c200_1);
 		Poisoner poisoner = new Poisoner();
 		Player bob = new Player(new RPObject());
+		PlayerHelper.addEmptySlots(bob);
 		poisoner.feed(c200_1, bob);
 		assertTrue(bob.isPoisoned());
 	}
