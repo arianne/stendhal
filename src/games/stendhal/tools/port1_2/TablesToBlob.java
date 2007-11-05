@@ -173,7 +173,7 @@ public class TablesToBlob {
 	 * Starts the transformation from the command line
 	 *
 	 * @param args the name of the old database
-	 * @throws Exception in case of an unexspected error
+	 * @throws Exception in case of an unexpected error
 	 */
 	public static void main(String[] args) throws Exception {
 		System.err.println("WARNING: THIS IS JUST A DIRTY, UNFINISHED, UNDOCUMENTED HACK");
@@ -184,7 +184,7 @@ public class TablesToBlob {
 	/**
 	 * Starts the transformation
 	 *
-	 * @throws Exception in case of an unexspected error
+	 * @throws Exception in case of an unexpected error
 	 */
 	public void transformation() throws Exception {
 

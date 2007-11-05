@@ -256,7 +256,7 @@ public class Bootstrap {
 				Method method = clazz.getMethod("main", args.getClass());
 				method.invoke(null, (Object) args);
 			} catch (Throwable e) {
-				unexspectedErrorHandling(e);
+				unexpectedErrorHandling(e);
 			}
 
 		}
@@ -337,7 +337,7 @@ public class Bootstrap {
 	 * @param t
 	 *            exception
 	 */
-	void unexspectedErrorHandling(Throwable t) {
+	void unexpectedErrorHandling(Throwable t) {
 		// unwrap chained expections
 		Throwable e = t;
 		while (e.getCause() != null) {
@@ -368,7 +368,7 @@ public class Bootstrap {
 		} else {
 			JOptionPane.showMessageDialog(
 					null,
-					"An unexspected error occured.\r\nPlease open a bug report at http://sf.net/projects/arianne with this error message:\r\n"
+					"An unexpected error occured.\r\nPlease open a bug report at http://sf.net/projects/arianne with this error message:\r\n"
 							+ e);
 		}
 		System.exit(1);

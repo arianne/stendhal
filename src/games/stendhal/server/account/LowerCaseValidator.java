@@ -3,7 +3,7 @@ package games.stendhal.server.account;
 import marauroa.common.game.Result;
 
 /**
- * checks the only lower case letters are used
+ * checks that only lower case letters are used
  *
  * @author hendrik
  */

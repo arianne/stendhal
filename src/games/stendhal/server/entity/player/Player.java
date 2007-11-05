@@ -1181,7 +1181,7 @@ public class Player extends RPEntity {
 	}
 
 	/**
-	 * Updates teh last pvp action time with the current time.
+	 * Updates the last pvp action time with the current time.
 	 */
 	public void storeLastPVPActionTime() {
 		put("last_pvp_action_time", System.currentTimeMillis());

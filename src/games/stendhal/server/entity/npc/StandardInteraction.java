@@ -23,7 +23,7 @@ public class StandardInteraction {
 
 		/**
 		 * before the ScriptAction is registered this method is called
-		 * to provide additonal data.
+		 * to provide additional data.
 		 *
 		 * @param player the player talking to the NPC
 		 * @param text   the text he said

@@ -8,9 +8,9 @@ public enum MatchType {
 	/** a transition that can happen from any state */
 	ABSOLUTE_JUMP,
 
-	/** a transition whose exspected input matches excatly to the actual input */
+	/** a transition whose expected input matches exactly to the actual input */
 	EXACT_MATCH,
 
-	/** a transition whose exspected input is very similary to the actual input */
+	/** a transition whose expected input is very similar to the actual input */
 	SIMILAR_MATCH;
 }

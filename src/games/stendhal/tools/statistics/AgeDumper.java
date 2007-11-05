@@ -43,7 +43,7 @@ public class AgeDumper {
 	 * dumps the items
 	 *
 	 * @throws Exception
-	 *             in case of an unexspected Exception
+	 *             in case of an unexpected Exception
 	 */
 	private void dump() throws Exception {
 		String query = "insert into age(datewhen, charname, age, version) values(?, ?, ?, ?)";
@@ -94,7 +94,7 @@ public class AgeDumper {
 	 * @param args
 	 *            ignored
 	 * @throws Exception
-	 *             in case of an unexspected item
+	 *             in case of an unexpected item
 	 */
 	public static void main(String[] args) throws Exception {
 		StendhalRPWorld.get();

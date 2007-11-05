@@ -215,7 +215,7 @@ public class Sheep extends DomesticAnimal {
 			}
 		} else {
 			/*
-			 * Only do something on occational hunger pains
+			 * Only do something on occasional hunger pains
 			 */
 			if ((hunger % 10) != 0) {
 				return false;

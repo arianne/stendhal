@@ -11,17 +11,16 @@ import games.stendhal.server.entity.player.Player;
 import java.util.LinkedList;
 import java.util.List;
 
-
 import org.apache.log4j.Logger;
 
 /**
- * a finate state machine.
+ * a finite state machine.
  */
 public class Engine {
 
 	private static final Logger logger = Logger.getLogger(Engine.class);
 
-	// TODO: remove this dependency cicle, this is just here to simplify refactoring
+	// TODO: remove this dependency cycle, this is just here to simplify refactoring
 	// TODO: later: remove dependency on games.stendhal.server.entity.npc.* and Player
 	private SpeakerNPC speakerNPC;
 

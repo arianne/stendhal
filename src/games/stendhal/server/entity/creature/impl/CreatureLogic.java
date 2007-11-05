@@ -283,7 +283,7 @@ public class CreatureLogic {
 	}
 
 	/**
-	 * Checks if the postion (x, y) is a good position for range combat.
+	 * Checks if the position (x, y) is a good position for range combat.
 	 *
 	 * @param x
 	 *            x value of the position
@@ -312,10 +312,10 @@ public class CreatureLogic {
 	}
 
 	/**
-	 * Attackts the target from distance. The creature does some pseudo random
+	 * Attacks the target from distance. The creature does some pseudo random
 	 * movement. The moves are done with a path with the size of 1. The higher
 	 * the distance, the higher is the chance to move and the pseudo random move
-	 * prefers potitions which are closer to the target.
+	 * prefers positions which are closer to the target.
 	 */
 	private void logicRangeAttack() {
 		if (Debug.CREATURES_DEBUG_SERVER) {

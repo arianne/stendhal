@@ -161,7 +161,7 @@ public abstract class NPC extends RPEntity {
 	 * <p>
 	 * <b>Note:</b> When the distance to the destination is less than
 	 * <code>min</code> the path is removed. <b>Warning:</b> The pathfinder
-	 * is not asynchonous, so this thread is blocked until a path is found.
+	 * is not asynchronous, so this thread is blocked until a path is found.
 	 *
 	 * @param destEntity
 	 *            the destination entity

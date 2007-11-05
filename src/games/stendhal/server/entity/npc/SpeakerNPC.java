@@ -491,7 +491,7 @@ public class SpeakerNPC extends NPC {
 
 	/** This function evolves the FSM */
 	private boolean tell(Player player, String text) {
-		// If we are no attending a player attend, this one.
+		// If we are not attending a player, attend this one.
 		if (engine.getCurrentState() == ConversationStates.IDLE) {
 			logger.debug("Attending player " + player.getName());
 			setAttending(player);

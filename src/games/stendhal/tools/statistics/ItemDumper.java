@@ -44,7 +44,7 @@ public class ItemDumper {
 	 * dumps the items
 	 *
 	 * @throws Exception
-	 *             in case of an unexspected Exception
+	 *             in case of an unexpected Exception
 	 */
 	private void dump() throws Exception {
 		String query = "insert into items(datewhen, charname, slotname, itemname, amount) values(?, ?, ?, ?, ?)";
@@ -103,7 +103,7 @@ public class ItemDumper {
 	 * @param args
 	 *            ignored
 	 * @throws Exception
-	 *             in case of an unexspected item
+	 *             in case of an unexpected item
 	 */
 	public static void main(String[] args) throws Exception {
 		StendhalRPWorld.get();
