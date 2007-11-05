@@ -13,7 +13,6 @@ package games.stendhal.common;
 
 import java.util.Collection;
 
-
 import org.apache.log4j.Logger;
 
 /**
@@ -124,8 +123,10 @@ public class Grammar {
 			return null;
 		}
 		String enoun = fullform(noun);
-		char initial = noun.length()>0? Character.toLowerCase(enoun.charAt(0)): ' ';
-		char second = noun.length()>1? Character.toLowerCase(enoun.charAt(1)): ' ';
+		char initial = noun.length() > 0 ? Character.toLowerCase(enoun.charAt(0))
+				: ' ';
+		char second = noun.length() > 1 ? Character.toLowerCase(enoun.charAt(1))
+				: ' ';
 		if ((initial == 'e') && (second == 'u')) {
 			return "a " + enoun;
 		}
@@ -161,7 +162,8 @@ public class Grammar {
 		result = lowString.replace("#", "");
 		if (result.equals("meat") || result.equals("ham")
 				|| result.equals("cheese") || result.equals("wood")
-				|| result.equals("paper") || result.equals("iron") || result.equals("chicken")) {
+				|| result.equals("paper") || result.equals("iron")
+				|| result.equals("chicken")) {
 			result = addPrefixIfNotAlreadyThere("piece of ", lowString);
 		} else if (result.endsWith(" ore") || result.endsWith("_ore")) {
 			result = addPrefixIfNotAlreadyThere("nugget of ", lowString);
@@ -235,8 +237,13 @@ public class Grammar {
 		String postfix = "";
 		int position = enoun.indexOf('+');
 		if (position != -1) {
-			postfix = enoun.substring(position - 1);
-			enoun = enoun.substring(0, position - 1);
+			if (enoun.charAt(position-1) == ' ') {
+				postfix = enoun.substring(position - 1);
+				enoun = enoun.substring(0, position - 1);
+			} else {
+				postfix = enoun.substring(position);
+				enoun = enoun.substring(0, position);
+			}
 		}
 		try {
 			// in "of"-phrases pluralize only the first part
@@ -252,7 +259,8 @@ public class Grammar {
 				// ok and now all the special cases
 			} else if (enoun.endsWith("staff") || enoun.endsWith("chief")) {
 				return enoun + "s" + postfix;
-			} else if (enoun.endsWith("f") && enoun.length() >1
+			} else if (enoun.endsWith("f")
+					&& enoun.length() > 1
 					&& ("aeiourl".indexOf(enoun.charAt(enoun.length() - 2)) > -1)) {
 				return enoun.substring(0, enoun.length() - 1) + "ves" + postfix;
 			} else if (enoun.endsWith("fe")) {
@@ -305,7 +313,7 @@ public class Grammar {
 			} else if (enoun.endsWith("ch") || enoun.endsWith("sh")
 					|| ("zxs".indexOf(enoun.charAt(enoun.length() - 1)) > -1)) {
 				return enoun + "es" + postfix;
-			} else if (enoun.endsWith("y")&& enoun.length()>1
+			} else if (enoun.endsWith("y") && enoun.length() > 1
 					&& consonant_p(enoun.charAt(enoun.length() - 2))) {
 				return enoun.substring(0, enoun.length() - 1) + "ies" + postfix;
 			} else if (enoun.endsWith("porcini") || (enoun.endsWith("porcino"))) {
@@ -390,7 +398,7 @@ public class Grammar {
 		case 3:
 			return "third";
 		default:
-			logger.error("Grammar.ordered not implemented for: " + n );
+			logger.error("Grammar.ordered not implemented for: " + n);
 			return Integer.toString(n);
 
 		}
@@ -406,7 +414,7 @@ public class Grammar {
 	 * @return A nice String representation of the collection
 	 */
 	public static String enumerateCollection(Collection<String> collection) {
-		if (collection ==null){
+		if (collection == null) {
 			return "";
 		}
 		String[] elements = collection.toArray(new String[collection.size()]);
