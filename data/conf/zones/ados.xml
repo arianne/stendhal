@@ -1103,7 +1103,7 @@ in roaches.
   </portal>
  </zone>
 
- <zone name="int_ados_house_59" file="interiors/ados/house_53.tmx">
+ <zone name="int_ados_house_59" file="interiors/ados/house_59.tmx">
   <portal x="7" y="14" ref="in">
     <destination zone="0_ados_city_n" ref="house_59"/>
   </portal>
