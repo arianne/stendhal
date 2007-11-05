@@ -168,6 +168,8 @@ public class GrammarTest {
 		Assert.assertEquals("flails +2", Grammar.plural("flail +2"));
 		Assert.assertEquals("hammers", Grammar.plural("hammer"));
 		Assert.assertEquals("hammers +3", Grammar.plural("hammer +3"));
+		Assert.assertEquals("hammers+3", Grammar.plural("hammer+3"));
+
 		Assert.assertEquals("war hammers", Grammar.plural("war hammer"));
 		Assert.assertEquals("wooden bows", Grammar.plural("wooden bow"));
 		Assert.assertEquals("longbows", Grammar.plural("longbow"));
