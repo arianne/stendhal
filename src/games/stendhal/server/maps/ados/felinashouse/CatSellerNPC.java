@@ -64,7 +64,7 @@ public class CatSellerNPC implements ZoneConfigurator {
 								seller.say("You don't seem to have enough money.");
 								return false;
 							}
-							seller.say("Here you go, a cute little kitten! Your kitten will eat any piece of chicken you place on the ground. Enjoy her!");
+							seller.say("Here you go, a cute little kitten! Your kitten will eat any piece of chicken or fish you place on the ground. Enjoy her!");
 
 							Cat cat = new Cat(player);
 
@@ -78,7 +78,7 @@ public class CatSellerNPC implements ZoneConfigurator {
 
 							return true;
 						} else {
-							say("Well, why don't you make sure you can look after that cat you already have first?");
+							say("Well, why don't you make sure you can look after that pet you already have first?");
 							return false;
 						}
 					}
@@ -93,7 +93,7 @@ public class CatSellerNPC implements ZoneConfigurator {
 				addGoodbye();
 				addSeller(new CatSellerBehaviour(items));
 				addReply("care",
-						"Cats love chicken. Just place a piece on the ground and your cat will run over to eat it. You can right-click on her and choose 'Look' at any time, to check up on her weight; she will gain one unit of weight for every piece of chicken she eats.");
+						"Cats love chicken and fish. Just place a piece on the ground and your cat will run over to eat it. You can right-click on her and choose 'Look' at any time, to check up on her weight; she will gain one unit of weight for every piece of chicken she eats.");
 				addReply("travel",
 						"You'll need your cat to be close by in order for her to follow you when you change zones; you can say #cat to call her if she's not paying attention. If you decide to abandon her instead, you can right-click on yourself and select 'Leave Pet'; but frankly I think that sort of behaviour is disgraceful.");
 				addReply("sell",

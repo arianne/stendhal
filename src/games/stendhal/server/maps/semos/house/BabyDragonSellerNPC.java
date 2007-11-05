@@ -49,7 +49,7 @@ public class BabyDragonSellerNPC implements ZoneConfigurator {
 								seller.say("You don't seem to have enough money.");
 								return false;
 							}
-							seller.say("Here you go, nippy little baby dragon. It will eat any piece of chicken you place on the ground.");
+							seller.say("Here you go, nippy little baby dragon. Try feeding it ham or meat. I hear some even like pizza.");
 
 							BabyDragon babydragon = new BabyDragon(player);
 
@@ -78,7 +78,7 @@ public class BabyDragonSellerNPC implements ZoneConfigurator {
 				addGoodbye();
 				addSeller(new BabyDragonSellerBehaviour(items));
 				addReply("care",
-						"Baby dragons love chicken. Just place a piece on the ground and your baby dragon will run over to eat it. You can right-click on it and choose 'Look' at any time, to check up on its weight; it will gain one unit of weight for every piece of chicken it eats.");
+						"Baby dragons eat meat, ham and even pizza. Just place a piece on the ground and your baby dragon will run over to eat it. You can right-click on it and choose 'Look' at any time, to check up on its weight; it will gain one unit of weight for every piece of chicken it eats.");
 				addReply("travel",
 						"You'll need your baby dragon to be close by in order for it to follow you when you change zones; you can say #pet to call it if it's not paying attention. If you decide to abandon it instead, you can right-click on yourself and select 'Leave Pet'; but frankly I think that sort of behaviour is disgraceful.");
 				addReply("sell",
