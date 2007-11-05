@@ -14,6 +14,8 @@ package games.stendhal.server.entity.creature;
 
 import games.stendhal.server.entity.player.Player;
 
+import java.util.Arrays;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 import marauroa.common.game.RPClass;
@@ -36,16 +38,28 @@ public class Cat extends Pet {
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(Cat.class);
 
-	static {
-		HP = 200;
+	private void setUp() {
 
-		incHP = 6;
+                foodName = Arrays.asList( "chicken", "trout", "cod", "mackerel", "char", "perch", "roach", "surgeonfish", "clownfish");
+
+		HP = 200;
+                
+		incHP = 4;	// each chicken or fish would give +5 HP
 
 		ATK = 10;
 
 		DEF = 30;
 
-		XP = 0;
+		XP = 100;
+
+		baseSpeed = 0.9;
+
+		setATK(ATK);
+		setDEF(DEF);
+		setXP(XP);
+		setBaseHP(HP);
+		setHP(HP);
+
 	}
 
 	public static void generateRPClass() {
@@ -72,11 +86,11 @@ public class Cat extends Pet {
 	 * @throws AttributeNotFoundException
 	 */
 	public Cat(Player owner) {
+	    // call set up before parent constructor is called as it needs those values
 		super(owner);
+		setUp();
 		setRPClass("cat");
 		put("type", "cat");
-
-		baseSpeed = 0.9;
 		update();
 	}
 
@@ -88,12 +102,11 @@ public class Cat extends Pet {
 	 * @throws AttributeNotFoundException
 	 */
 	public Cat(RPObject object, Player owner) {
+	    // call set up before parent constructor is called as it needs those values
 		super(object, owner);
-
+		setUp();
 		setRPClass("cat");
 		put("type", "cat");
-
-		baseSpeed = 0.9;
 		update();
 	}
 

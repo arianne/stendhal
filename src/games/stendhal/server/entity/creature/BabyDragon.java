@@ -14,6 +14,8 @@ package games.stendhal.server.entity.creature;
 
 import games.stendhal.server.entity.player.Player;
 
+import java.util.Arrays;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 import marauroa.common.game.RPClass;
@@ -22,9 +24,9 @@ import marauroa.common.game.SyntaxException;
 
 /**
  * A baby dragon is a domestic animal that can be owned by a player.
- * It eats chicken from the ground.
+ * It eats ham or pizza from the ground.
  * They move much faster than sheep
- * Ideally baby dragon attack animals for you
+ * Baby dragons attack animals which attack them
  */
 /**
  * @author kymara
@@ -36,16 +38,29 @@ public class BabyDragon extends Pet {
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(BabyDragon.class);
 
-	static {
+
+	private void setUp() {
+
+                foodName = Arrays.asList( "ham", "pizza", "meat" );
+
 		HP = 500;
 
-		incHP = 10;
+		incHP = 6;
 
 		ATK = 15;
 
 		DEF = 40;
 
 		XP = 100;
+		
+		baseSpeed = 0.9;
+
+		setATK(ATK);
+		setDEF(DEF);
+		setXP(XP);
+		setBaseHP(HP);
+		setHP(HP);
+
 	}
 
 	public static void generateRPClass() {
@@ -73,10 +88,10 @@ public class BabyDragon extends Pet {
 	 */
 	public BabyDragon(Player owner) {
 		super(owner);
+		setUp();
 		setRPClass("baby_dragon");
 		put("type", "baby_dragon");
 
-		baseSpeed = 0.9;
 		update();
 	}
 
@@ -89,11 +104,10 @@ public class BabyDragon extends Pet {
 	 */
 	public BabyDragon(RPObject object, Player owner) {
 		super(object, owner);
-
+		setUp();
 		setRPClass("baby_dragon");
 		put("type", "baby_dragon");
 
-		baseSpeed = 0.9;
 		update();
 	}
 

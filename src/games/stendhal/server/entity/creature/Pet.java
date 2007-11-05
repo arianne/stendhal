@@ -18,7 +18,8 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Set;
-
+import java.util.Arrays;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 import marauroa.common.game.RPClass;
@@ -46,7 +47,7 @@ public abstract class Pet extends DomesticAnimal {
 	/**
 	 * The amount of hunger that indicates hungry.
 	 */
-	protected static final int HUNGER_HUNGRY = 100;
+	protected static final int HUNGER_HUNGRY = 300;
 
 	/**
 	 * The amount of hunger that indicates starvation.
@@ -58,15 +59,17 @@ public abstract class Pet extends DomesticAnimal {
 	 */
 	public final int MAX_WEIGHT = 100;
 
-	protected static int HP = 100;
+        protected List<String> foodName = Arrays.asList("chicken");
 
-	protected static int incHP = 2;
+	protected int HP = 100;
 
-	protected static int ATK = 10;
+	protected int incHP = 2;
 
-	protected static int DEF = 20;
+	protected int ATK = 10;
 
-	protected static int XP;
+	protected int DEF = 20;
+
+	protected int XP;
 
 	protected int hunger;
 
@@ -98,7 +101,6 @@ public abstract class Pet extends DomesticAnimal {
 	public Pet(Player owner) {
 		super(owner);
 		baseSpeed = 0.5;
-
 		setATK(ATK);
 		setDEF(DEF);
 		setXP(XP);
@@ -186,10 +188,10 @@ public abstract class Pet extends DomesticAnimal {
 
 	boolean canEat(Item i) {
 
-		return "chicken".equals(i.getItemSubclass());
+		return foodName.contains(i.getName());	
 
 	}
-
+ 
 	private void eat(Item food) {
 		if (weight < MAX_WEIGHT) {
 			setWeight(weight + 1);
@@ -197,7 +199,7 @@ public abstract class Pet extends DomesticAnimal {
 		food.removeOne();
 		hunger = 0;
 		if (getHP() < getBaseHP()) {
-			healSelf(incHP, 100);
+			heal(incHP);	// directly increase the cat's health points
 		}
 	}
 
