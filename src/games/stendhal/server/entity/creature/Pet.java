@@ -199,7 +199,7 @@ public abstract class Pet extends DomesticAnimal {
 		food.removeOne();
 		hunger = 0;
 		if (getHP() < getBaseHP()) {
-			heal(incHP);	// directly increase the cat's health points
+			heal(incHP);	// directly increase the pet's health points
 		}
 	}
 
@@ -212,7 +212,8 @@ public abstract class Pet extends DomesticAnimal {
 	 */
 	@Override
 	public void logic() {
-
+                // call super class to perform common tasks like attacking targets
+                super.logic();
 		if (!isEnemyNear(20) && (owner == null)) {
 			// if noone near and noone owns us ....
 			stop();
