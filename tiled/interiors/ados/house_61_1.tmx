@@ -153,9 +153,12 @@
  <tileset name="bookshelfish" firstgid="369" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/shelve/dark_bookshelf_2.png"/>
  </tileset>
+ <tileset name="carpets" firstgid="375" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/furniture/carpet/carpets.png"/>
+ </tileset>
  <layer name="0_floor" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNkYGBgpDGWYqS9HcMNr0bDI03/KKYPBgBtCtlJAAQAAA==
+   H4sIAAAAAAAAAKtlZGCopTGWooMdww2vZkDFI03/KKYPBgAjMzA5AAQAAA==
   </data>
  </layer>
  <layer name="1_terrain" width="16" height="16">
@@ -170,7 +173,7 @@
  </layer>
  <layer name="3_roof" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGLwgmpF+dp2ln1VYwQsgfgnEr8jU/xqI3wDxWzxqrIHhaQPEtnQMV2zg3MBajxXgchO6+F0gvkdjt9ATAAB2mEg8AAQAAA==
+   H4sIAAAAAAAAAGNgGLwgmpFyM2KINOMs5VZRBF4A8UsgfkWm/tdA/AaI3+JRYw0MCxsgtqVCuFICzg2s9VgBLjehi98F4ns0dgs9AQCxEdvdAAQAAA==
   </data>
  </layer>
  <layer name="4_roof_add" width="16" height="16">
@@ -185,7 +188,7 @@
  </layer>
  <layer name="collision" width="16" height="16" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAALvJwMBwc5BgUgAxevHZQW39tHA/PfUTYxa14g6bWZTovYlFnFh91Aw/XOqIdcNAYACmMfJnAAQAAA==
+   H4sIAAAAAAAAALvJwMBwc5BgXOAmGg1jE9J7E4taUvTjU0eK+0kxd6D0kxMWA+V+XPYTkx5o5X5CaZAYNwwEBgCPMswAAAQAAA==
   </data>
  </layer>
  <layer name="protection" width="16" height="16">

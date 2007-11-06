@@ -90,9 +90,12 @@
  <tileset name="portals" firstgid="225" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
+ <tileset name="carpet" firstgid="232" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/furniture/carpet/carpets_2.png"/>
+ </tileset>
  <layer name="0_floor" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNkYGBgHAI4Cw0PNf2jeBSTin3poB8A/Ka80wAEAAA=
+   H4sIAAAAAAAAAHvPwMDwfgjgLDQ81PSP4lFMKvalg34A/assCwAEAAA=
   </data>
  </layer>
  <layer name="1_terrain" width="16" height="16">
