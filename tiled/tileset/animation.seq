@@ -34,8 +34,7 @@ tileset/plant/flower/daisy_blue.png	3	3:5:7:1@3500
 tileset/plant/flower/daisy_blue.png	5	5:7:1:3@3500
 tileset/plant/flower/daisy_blue.png	7	7:1:3:5@3500
 
-tileset/item/furniture/light/flames.png	0	0:1
-tileset/item/furniture/light/flames.png	1	0:1
+tileset/item/furniture/light/flames.png	*	0:1
 
 tileset/ground/water/pool_grassy.png	0	0:3:6:3
 tileset/ground/water/pool_grassy.png	3	0:3:6:3
@@ -207,15 +206,11 @@ tileset/item/furniture/light/dark_torch.png	1	1:3:5:3
 tileset/item/furniture/light/dark_torch.png	3	1:3:5:3
 tileset/item/furniture/light/dark_torch.png	5	1:3:5:3
 
-
 tileset/item/furniture/light/dark_torch.png	0	0:2:4:2
 tileset/item/furniture/light/dark_torch.png	2	0:2:4:2
 tileset/item/furniture/light/dark_torch.png	4	0:2:4:2
 
 tileset/item/furniture/light/torch_top.png * 0:1:2:3
-
-
-tileset/ground/water/water_bubbles.png	*	0:1
 
 tileset/ground/water/whirlpool.png	*	0:1:2:3
 
