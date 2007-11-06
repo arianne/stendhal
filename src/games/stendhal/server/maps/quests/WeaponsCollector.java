@@ -4,12 +4,13 @@ import games.stendhal.common.Grammar;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
-import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.quests.logic.BringListOfItemsQuest;
+import games.stendhal.server.maps.quests.logic.BringListOfItemsQuestLogic;
+import games.stendhal.server.rule.RuleManager;
 
 import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -39,247 +40,127 @@ import java.util.List;
  * REPETITIONS:
  * <li> None.
  */
-public class WeaponsCollector extends AbstractQuest {
+public class WeaponsCollector extends AbstractQuest implements BringListOfItemsQuest {
 
 	private static final List<String> neededWeapons = Arrays.asList("bardiche",
 			"battle_axe", "broadsword", "flail", "halberd", "katana",
 			"golden_mace", "scimitar", "scythe", "war_hammer");
 
-	/**
-	 * Returns a list of the names of all weapons that the given player still
-	 * has to bring to fulfil the quest.
-	 *
-	 * @param player
-	 *            The player doing the quest
-	 * @param hash
-	 *            If true, sets a # character in front of every name
-	 * @return A list of weapon names
-	 */
-	private List<String> missingWeapons(Player player, boolean hash) {
-		List<String> result = new LinkedList<String>();
-
-		String doneText = player.getQuest("weapons_collector");
-		if (doneText == null) {
-			doneText = "";
-		}
-		List<String> done = Arrays.asList(doneText.split(";"));
-		for (String weapon : neededWeapons) {
-			if (!done.contains(weapon)) {
-				if (hash) {
-					weapon = "#" + weapon;
-				}
-				result.add(weapon);
-			}
-		}
-		return result;
-	}
-
-	private void step_1() {
-		SpeakerNPC npc = npcs.get("Balduin");
-
-		// player says hi before starting the quest
-		npc
-				.add(
-						ConversationStates.IDLE,
-						ConversationPhrases.GREETING_MESSAGES,
-						new SpeakerNPC.ChatCondition() {
-							@Override
-							public boolean fire(Player player, String text,
-									SpeakerNPC engine) {
-								return !player.hasQuest("weapons_collector");
-							}
-						},
-						ConversationStates.ATTENDING,
-						"Greetings. I am Balduin. Are you interested in weapons? I certainly am, I have been collecting them since I was young. Maybe you can do a little #task for me.",
-						null);
-
-		npc.add(ConversationStates.ATTENDING,
-				ConversationPhrases.QUEST_MESSAGES,
-				new SpeakerNPC.ChatCondition() {
-					@Override
-					public boolean fire(Player player, String text,
-							SpeakerNPC engine) {
-						return !player.hasQuest("weapons_collector");
-					}
-				}, ConversationStates.QUEST_OFFERED, null,
-				new SpeakerNPC.ChatAction() {
-					@Override
-					public void fire(Player player, String text,
-							SpeakerNPC engine) {
-						if (!player.isQuestCompleted("weapons_collector")) {
-							engine
-									.say("Although I have collected weapons for such a long time, I still don't have everything I want. Do you think you can help me?");
-						} else {
-							engine
-									.say("My collection is now complete! Thanks again.");
-							engine
-									.setCurrentState(ConversationStates.ATTENDING);
-						}
-					}
-				});
-
-		// player is willing to help
-		npc.add(ConversationStates.QUEST_OFFERED,
-				ConversationPhrases.YES_MESSAGES, null,
-				ConversationStates.ATTENDING, null,
-				new SpeakerNPC.ChatAction() {
-					@Override
-					public void fire(Player player, String text,
-							SpeakerNPC engine) {
-						engine
-								.say("If you help me to complete my #collection, I will give you something very interesting and useful in exchange.");
-						player.setQuest("weapons_collector", "");
-					}
-				});
-
-		// player is not willing to help
-		npc.add(ConversationStates.QUEST_OFFERED, "no", null,
-				ConversationStates.ATTENDING,
-				"Well, maybe someone else will happen by and help me.", null);
-
-		// player asks what exactly is missing
-		npc.add(ConversationStates.ATTENDING, "collection",
-				new SpeakerNPC.ChatCondition() {
-					@Override
-					public boolean fire(Player player, String text,
-							SpeakerNPC engine) {
-						return player.hasQuest("weapons_collector")
-								&& !player
-										.isQuestCompleted("weapons_collector");
-					}
-				}, ConversationStates.QUESTION_1, null,
-				new SpeakerNPC.ChatAction() {
-					@Override
-					public void fire(Player player, String text,
-							SpeakerNPC engine) {
-						List<String> needed = missingWeapons(player, true);
-						engine
-								.say("There "
-										+ Grammar.isare(needed.size())
-										+ " "
-										+ Grammar.quantityplnoun(needed.size(),
-												"weapon")
-										+ " still missing from my collection: "
-										+ Grammar.enumerateCollection(needed)
-										+ ". Do you have anything of that nature with you?");
-					}
-				});
-
-		// player says he doesn't have required weapons with him
-		npc.add(ConversationStates.QUESTION_1, "no", null,
-				ConversationStates.IDLE, null, new SpeakerNPC.ChatAction() {
-					@Override
-					public void fire(Player player, String text,
-							SpeakerNPC engine) {
-						List<String> missing = missingWeapons(player, false);
-						engine.say("Let me know as soon as you find "
-								+ Grammar.itthem(missing.size())
-								+ ". Farewell.");
-					}
-				});
-
-		// player says he has a required weapon with him
-		npc.add(ConversationStates.QUESTION_1,
-				ConversationPhrases.YES_MESSAGES, null,
-				ConversationStates.QUESTION_1, "What is it that you found?",
-				null);
-
-		for (String weapon : neededWeapons) {
-			npc.add(ConversationStates.QUESTION_1, weapon, null,
-					ConversationStates.QUESTION_1, null,
-					new SpeakerNPC.ChatAction() {
-						@Override
-						public void fire(Player player, String text,
-								SpeakerNPC engine) {
-							List<String> missing = missingWeapons(player, false);
-							if (missing.contains(text)) {
-								if (player.drop(text)) {
-									// register weapon as done
-									String doneText = player
-											.getQuest("weapons_collector");
-									player.setQuest("weapons_collector",
-											doneText + ";" + text);
-									// check if the player has brought all
-									// weapons
-									missing = missingWeapons(player, true);
-									if (missing.size() > 0) {
-										engine
-												.say("Thank you very much! Do you have anything else for me?");
-									} else {
-										Item iceSword = StendhalRPWorld.get()
-												.getRuleManager()
-												.getEntityManager().getItem(
-														"ice_sword");
-										iceSword.setBoundTo(player.getName());
-										player.equip(iceSword, true);
-										player.addXP(1000);
-										engine
-												.say("At last, my collection is complete! Thank you very much; here, take this #ice #sword in exchange!");
-										player.setQuest("weapons_collector",
-												"done");
-										player.notifyWorldAboutChanges();
-										engine
-												.setCurrentState(ConversationStates.ATTENDING);
-									}
-								} else {
-									engine
-											.say("I may be old, but I'm not senile, and you clearly don't have "
-													+ Grammar.a_noun(text)
-													+ ". What do you really have for me?");
-								}
-							} else {
-								engine
-										.say("I already have that one. Do you have any other weapon for me?");
-							}
-						}
-					});
-		}
-	}
-
-	private void step_2() {
-		// Just find some of the weapons somewhere and bring them to Balduin.
-	}
-
-	private void step_3() {
-		SpeakerNPC npc = npcs.get("Balduin");
-
-		// player returns while quest is still active
-		npc
-				.add(
-						ConversationStates.IDLE,
-						ConversationPhrases.GREETING_MESSAGES,
-						new SpeakerNPC.ChatCondition() {
-							@Override
-							public boolean fire(Player player, String text,
-									SpeakerNPC engine) {
-								return player.hasQuest("weapons_collector")
-										&& !player
-												.isQuestCompleted("weapons_collector");
-							}
-						},
-						ConversationStates.ATTENDING,
-						"Welcome back. I hope you have come to help me with my #collection.",
-						null);
-
-		// player returns after finishing the quest
-		// npc.add(ConversationStates.IDLE,
-		// SpeakerNPC.GREETING_MESSAGES,
-		// new SpeakerNPC.ChatCondition() {
-		// @Override
-		// public boolean fire(Player player, String text, SpeakerNPC engine) {
-		// return player.isQuestCompleted("weapons_collector");
-		// }
-		// },
-		// ConversationStates.ATTENDING,
-		// "Welcome! Thanks again for completing my collection.",
-		// null);
+	private void setupAbstractQuest() {
+		BringListOfItemsQuest concreteQuest = this;
+		BringListOfItemsQuestLogic bringItems = new BringListOfItemsQuestLogic(concreteQuest);
+		bringItems.addToWorld();
 	}
 
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
-		step_1();
-		step_2();
-		step_3();
+		setupAbstractQuest();
 	}
+
+	public SpeakerNPC getNPC() {
+		return npcs.get("Balduin");
+	}
+
+	public List<String> getNeededItems() {
+		return neededWeapons;
+	}
+
+	public String getSlotName() {
+		return "weapons_collector";
+	}
+
+	public String getTriggerPhraseToEnumerateMissingItems() {
+		return "collection";
+	}
+
+	public List<String> getAdditionalTriggerPhraseForQuest() {
+		return ConversationPhrases.EMPTY;
+	}
+
+	public String welcomeBeforeStartingQuest() {
+		return "Greetings. I am Balduin. Are you interested in weapons? " +
+				"I certainly am, I have been collecting them since I was " +
+				"young. Maybe you can do a little #task for me.";
+	}
+
+	public String welcomeDuringActiveQuest() {
+		return "Welcome back. I hope you have come to help me with my #collection.";
+	}
+
+	public String welcomeAfterQuestIsCompleted() {
+		return "Welcome! Thanks again for completing my collection.";
+	}
+
+	public boolean shouldWelcomeAfterQuestIsCompleted() {
+		return false; // because of WeaponsCollector2
+	}
+
+	public String respondToQuest() {
+		return "Although I have collected weapons for such a long time, I " +
+				"still don't have everything I want. Do you think you can " +
+				"help me?";
+	}
+
+	public String respondToQuestAfterItHasAlreadyBeenCompleted() {
+		return "My collection is now complete! Thanks again.";
+	}
+
+	public String respondToQuestAcception() {
+		return "If you help me to complete my #collection, I will give you " +
+				"something very interesting and useful in exchange.";
+	}
+
+	public String respondToQuestRefusal() {
+		return "Well, maybe someone else will happen by and help me.";
+	}
+
+	public String askForMissingItems(List<String> missingItems) {
+		return "There " + Grammar.isare(missingItems.size())
+			+ " " + Grammar.quantityplnoun(missingItems.size(), "weapon")
+			+ " still missing from my collection: "
+			+ Grammar.enumerateCollection(missingItems)
+			+ ". Do you have anything of that nature with you?";
+	}
+
+	public String respondToPlayerSayingHeHasNoItems(List<String> missingItems) {
+		return "Let me know as soon as you find "
+			+ Grammar.itthem(missingItems.size())
+			+ ". Farewell.";
+	}
+
+	public String askForItemsAfterPlayerSaidHeHasItems() {
+		return "What is it that you found?";
+	}
+
+	public String respondToItemBrought() {
+		return "Thank you very much! Do you have anything else for me?";
+	}
+	public String respondToLastItemBrought() {
+		return "At last, my collection is complete! Thank you very much; " +
+				"here, take this #ice #sword in exchange!";
+	}
+
+	public void rewardPlayer(Player player) {
+		RuleManager ruleManager = StendhalRPWorld.get().getRuleManager();
+		Item iceSword = ruleManager.getEntityManager().getItem("ice_sword");
+		iceSword.setBoundTo(player.getName());
+		player.equip(iceSword, true);
+		player.addXP(1000);
+	}
+
+	public String respondToOfferOfNotExistingItem(String itemName) {
+		return "I may be old, but I'm not senile, and you clearly don't have "
+			+ Grammar.a_noun(itemName)
+			+ ". What do you really have for me?";
+	}
+	
+	public String respondToOfferOfNotMissingItem() {
+		return "I already have that one. Do you have any other weapon for me?";
+	}
+
+	public String respondToOfferOfNotNeededItem() {
+		return "Oh, that is not an interesting weapon";
+	}
+
 }
