@@ -281,13 +281,13 @@ West: Semos
      <parameter name="rejected">The door is locked.</parameter>
      </implementation>
    </portal>
-<!--   <portal x="44" y="85" ref="house_62">
+   <portal x="44" y="85" ref="house_62">
      <destination zone="int_ados_house_62" ref="in"/>
      <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
      <parameter name="key">private_key_62</parameter>
      <parameter name="rejected">The door is locked.</parameter>
      </implementation>
-   </portal>-->
+   </portal>
    
    <entity x="13" y="85">
      <implementation class-name="games.stendhal.server.entity.Sign"/>
