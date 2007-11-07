@@ -263,6 +263,17 @@ tileset/item/candle/menorah.png	1	1:7
 tileset/item/candle/menorah.png	6	0:6
 tileset/item/candle/menorah.png	7	1:7
 
+tileset/item/furniture/light/xmas_lights.png	*	0:1
+tileset/item/furniture/light/xmas_lights.png	*	2:3
+tileset/item/furniture/light/xmas_lights.png	*	4:5
+tileset/item/furniture/light/xmas_lights.png	*	6:7
+tileset/item/furniture/light/xmas_lights.png	*	8:9
+tileset/item/furniture/light/xmas_lights.png	*	10:11
+tileset/item/furniture/light/xmas_lights.png	*	12:13
+tileset/item/furniture/light/xmas_lights.png	*	14:15
+tileset/item/furniture/light/xmas_lights.png	*	16:17
+tileset/item/furniture/light/xmas_lights.png	*	18:19
+
 # water from ground.png
 # the waves travel north, if the map uses the first tile,
 # south, if the second.
