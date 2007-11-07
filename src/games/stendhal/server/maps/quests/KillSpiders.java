@@ -7,8 +7,6 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 
-import java.util.Arrays;
-
 /**
  * QUEST: Kill Spiders
  *
@@ -137,7 +135,7 @@ public class KillSpiders extends AbstractQuest {
 							engine
 									.say("Go down and kill the creatures, no time left.");
 						}
-		 			}			
+		 			}
 				});
 	}
 
