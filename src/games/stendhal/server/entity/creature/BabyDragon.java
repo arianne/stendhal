@@ -15,7 +15,7 @@ package games.stendhal.server.entity.creature;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Arrays;
-import java.util.List;
+
 
 import org.apache.log4j.Logger;
 import marauroa.common.game.RPClass;
@@ -52,7 +52,7 @@ public class BabyDragon extends Pet {
 		DEF = 40;
 
 		XP = 100;
-		
+
 		baseSpeed = 0.9;
 
 		setATK(ATK);

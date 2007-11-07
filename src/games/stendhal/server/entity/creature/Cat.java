@@ -15,7 +15,7 @@ package games.stendhal.server.entity.creature;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Arrays;
-import java.util.List;
+
 
 import org.apache.log4j.Logger;
 import marauroa.common.game.RPClass;
@@ -43,7 +43,7 @@ public class Cat extends Pet {
                 foodName = Arrays.asList( "chicken", "trout", "cod", "mackerel", "char", "perch", "roach", "surgeonfish", "clownfish");
 
 		HP = 200;
-                
+
 		incHP = 4;	// each chicken or fish would give +5 HP
 
 		ATK = 10;
