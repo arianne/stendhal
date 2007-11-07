@@ -20,7 +20,7 @@ class TeleportToAction implements SlashAction {
 		RPAction teleport = new RPAction();
 
 		teleport.put("type", "teleportto");
-		teleport.put("target", params[0]);
+		teleport.put("target", remainder);
 
 		StendhalClient.get().send(teleport);
 
@@ -33,7 +33,7 @@ class TeleportToAction implements SlashAction {
 	 * @return	The parameter count.
 	 */
 	public int getMaximumParameters() {
-		return 1;
+		return 0;
 	}
 
 	/**
@@ -42,6 +42,6 @@ class TeleportToAction implements SlashAction {
 	 * @return	The parameter count.
 	 */
 	public int getMinimumParameters() {
-		return 1;
+		return 0;
 	}
 }
