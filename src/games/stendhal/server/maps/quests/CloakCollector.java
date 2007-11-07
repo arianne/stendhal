@@ -99,7 +99,7 @@ public class CloakCollector extends AbstractQuest implements BringListOfItemsQue
 	}
 
 	public boolean shouldWelcomeAfterQuestIsCompleted() {
-		return true;
+		return false;
 	}
 
 	public String welcomeBeforeStartingQuest() {
@@ -124,8 +124,7 @@ public class CloakCollector extends AbstractQuest implements BringListOfItemsQue
 	}
 
 	public String respondToQuestAfterItHasAlreadyBeenCompleted() {
-		// TODO Auto-generated method stub
-		return null;
+		return "Hi again, lovely. The cloaks still look great. Thanks!";
 	}
 
 	public String respondToQuestRefusal() {
