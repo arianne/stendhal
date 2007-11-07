@@ -129,7 +129,7 @@
  </layer>
  <layer name="2_object" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgwAQqjAwMqowQ9i4k8SAgDsaiHgSuIbHVgHrVofp3I4mHAHEoEO/FYcZwBNuBWB4aFtJQWpRxwJwzZIEQMMx2UKBfDBrmikMk7PWgtAGZ+o2gtAkBdQDYhlrDAAQAAA==
+   H4sIAAAAAAAAAGNgwAQqjAwMqowQ9i4k8SAgDsaiHgSuIbHVgHrVofp3I8mFAHEoEO/FYcZwBNuBWB4aFtJQWpRxwJwzZIEQMMx2UKBfDBrmikMk7PWgtAGZ+o2gtAkBdQDREE1fAAQAAA==
   </data>
  </layer>
  <layer name="3_roof" width="16" height="16">
