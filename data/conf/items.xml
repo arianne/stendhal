@@ -4312,9 +4312,9 @@
     </equipable>
   </item>
 
-  <item name="dragon_egg">
+ <item name="reptile_egg">
     <type class="resource" subclass="green_egg" tileid="-1"/>
-    <description>You see a valuable dragon egg.</description>
+    <description>You see a valuable reptile egg.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
       <quantity value="1"/>
     </attributes>
@@ -4826,7 +4826,7 @@
 
   <item name="mythical_egg">
     <type class="special" subclass="mythical_egg" tileid="-1"/>
-    <description>You see a mythical egg, but you do not know, what for it is.</description>
+    <description>You see a mythical egg, but you do not know, what it is for.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
     </attributes>
     <weight value="1.0"/>
