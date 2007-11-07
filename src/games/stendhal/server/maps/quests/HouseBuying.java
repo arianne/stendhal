@@ -41,11 +41,14 @@ public class HouseBuying extends AbstractQuest {
 	private static final int REQUIRED_AGE = 300 * 60;
 
 	/*
-	 * This is the initial postman quest slot It would be around 50 long when
-	 * all 25 houses full. If more houses get added (in other zones?) then we
+	 * This is the initial postman quest slot It would be around 75 long when
+	 * all 25 houses in Kalavan full. As more houses get added (in other zones?) then we
 	 * must always make sure this postman quest slot stays under 255 characters
+	 * There are 18 Ados houses, taking us to 129 in house slot 
+	 * so we worry about the limit and put it to a new one, ados_house
 	 */
 	private static final String POSTMAN_SLOT = ";";
+	private static final String STORAGE_SLOT_2 = "ados_house";
 
 	private static final String ZONE_NAME = "0_kalavan_city";
 	private static final String ZONE_NAME2 = "int_ados_town_hall_3";
@@ -306,7 +309,7 @@ public class HouseBuying extends AbstractQuest {
 						} else if (!player.hasQuest(QUEST_SLOT)) {
 							engine2.say("The cost of a new house in Ados is "
 									+ COST_ADOS
-									+ " money. If you have a house in mind, please tell me the number now. I will check availability.");
+									+ " money. If you have a house in mind, please tell me the number now. I will check availability. The Ados houses are numbered from 50 to 68.");
 							engine2.setCurrentState(ConversationStates.QUEST_OFFERED);
 						} else {
 							engine2.say("The in Ados cost of a new house is "
@@ -330,11 +333,11 @@ public class HouseBuying extends AbstractQuest {
 									if (postman != null) {
 										// First, check if anyone has bought a
 										// house yet
-										if (!postman.hasQuest(QUEST_SLOT)) {
-											postman.setQuest(QUEST_SLOT,
+										if (!postman.hasQuest(STORAGE_SLOT_2)) {
+											postman.setQuest(STORAGE_SLOT_2,
 													POSTMAN_SLOT);
 										}
-										String postmanslot = postman.getQuest(QUEST_SLOT);
+										String postmanslot = postman.getQuest(STORAGE_SLOT_2);
 										String[] boughthouses = postmanslot.split(";");
 										List<String> doneList = Arrays.asList(boughthouses);
 										// now check if the house they said is
@@ -353,7 +356,7 @@ public class HouseBuying extends AbstractQuest {
 												// remember what house they own
 												player.setQuest(QUEST_SLOT,
 														text);
-												postman.setQuest(QUEST_SLOT,
+												postman.setQuest(STORAGE_SLOT_2,
 														postmanslot + ";"
 																+ text);
 												engine2.setCurrentState(ConversationStates.QUESTION_1);
@@ -418,10 +421,10 @@ public class HouseBuying extends AbstractQuest {
 						ConversationStates.ATTENDING,
 						"No problem! If I can help you with anything else, just ask.",
 						null);
-				addJob("I'm an estate agent. In simple terms, I sell houses for the city of Ados. They #cost a lot, of course. Our brochure is at #http://arianne.sourceforge.net/wiki/index.php?title=StendhalHouses.");
+				addJob("I'm an estate agent. In simple terms, I sell houses for the city of Ados. Please ask about the #cost if you are interested. Our brochure is at #http://arianne.sourceforge.net/wiki/index.php?title=StendhalHouses.");
 				addReply(
 						"buy",
-						"You should really enquire the #cost before you ask to buy. And check our brochure, #http://arianne.sourceforge.net/wiki/index.php?title=StendhalHouses.");
+						"You may wish to know the #cost before you buy. Perhaps our brochure, #http://arianne.sourceforge.net/wiki/index.php?title=StendhalHouses would also be of interest.");
 				addReply("really",
 						"That's right, really, really, really. Really.");
 				addOffer("I sell Ados houses, please look at #http://arianne.sourceforge.net/wiki/index.php?title=StendhalHouses for examples of how they look inside. Then ask about the #cost when you are ready.");
@@ -432,7 +435,7 @@ public class HouseBuying extends AbstractQuest {
 		};
 
 		npc2.setDescription("You see a smart looking man.");
-		npc2.setEntityClass("man_001_npc");
+		npc2.setEntityClass("estateagent2npc");
 		npc2.setPosition(37, 13);
 		npc2.initHP(100);
 		zone2.add(npc2);
