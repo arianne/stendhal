@@ -34,6 +34,23 @@ public class Grammar {
 	}
 
 	/**
+	 * Modify a word to upper case notation
+	 * 
+	 * @param word
+	 * @return word with first letter in upper case 
+	 */
+	public static String makeUpperCaseWord(String word) {
+		StringBuilder res = new StringBuilder();
+		if (word.length() > 0) {
+			res.append(Character.toUpperCase(word.charAt(0)));
+			if (word.length() > 1) {
+				res.append(word.substring(1));
+			}
+		}
+		return res.toString();
+	}
+
+	/**
 	 * "It" or "Them", depending on the quantity
 	 *
 	 * @param quantity
@@ -41,9 +58,7 @@ public class Grammar {
 	 * @return Either "It" or "Them" as appropriate
 	 */
 	public static String ItThem(int quantity) {
-		String s = itthem(quantity);
-		s = Character.toUpperCase(s.charAt(0)) + s.substring(1);
-		return s;
+		return makeUpperCaseWord(itthem(quantity));
 	}
 
 	/**
@@ -65,9 +80,7 @@ public class Grammar {
 	 * @return Either "It" or "They" as appropriate
 	 */
 	public static String ItThey(int quantity) {
-		String s = itthey(quantity);
-		s = Character.toUpperCase(s.charAt(0)) + s.substring(1);
-		return s;
+	    return makeUpperCaseWord(itthey(quantity));
 	}
 
 	/**
@@ -89,9 +102,7 @@ public class Grammar {
 	 * @return Either "Is" or "Are" as appropriate
 	 */
 	public static String IsAre(int quantity) {
-		String s = isare(quantity);
-		s = Character.toUpperCase(s.charAt(0)) + s.substring(1);
-		return s;
+	    return makeUpperCaseWord(isare(quantity));
 	}
 
 	/**
@@ -205,9 +216,7 @@ public class Grammar {
 	 * @return Either "A [noun]" or "An [noun]" as appropriate
 	 */
 	public static String A_noun(String noun) {
-		String s = a_noun(noun);
-		s = Character.toUpperCase(s.charAt(0)) + s.substring(1);
-		return s;
+		return makeUpperCaseWord(a_noun(noun));
 	}
 
 	/**
