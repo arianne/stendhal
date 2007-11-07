@@ -53,7 +53,7 @@ public class GroundskeeperNPC implements ZoneConfigurator {
 			protected void createDialog() {
 				addGreeting("Hello my friend. Nice day for walking isn't it?");
 				addReply("no","Oh sorry. Hope tomorrow your day is a better one.");
-				addReply("yes","Oh fine, so you could do a 'little' job for me.");
+				addReply("yes","Fine fine, i hope you enjoy your day.");
 				addJob("My job is to clean up school, repair broken things! Thats enough to do for a hole day!");
 				addHelp("I can not help you, i am busy all the day. But you could help me with a 'little' problem!");
 				addGoodbye("Bye.");

@@ -7,6 +7,8 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 
+import java.util.Arrays;
+
 /**
  * QUEST: Kill Spiders
  *
@@ -22,6 +24,9 @@ import games.stendhal.server.entity.player.Player;
 
 public class KillSpiders extends AbstractQuest {
 
+	private static final String QUEST_SLOT = "kill_all_spiders";
+
+
 	private void step_1() {
 		SpeakerNPC npc = npcs.get("Morgrin");
 
@@ -32,16 +37,26 @@ public class KillSpiders extends AbstractQuest {
 					@Override
 					public void fire(Player player, String text,
 							SpeakerNPC engine) {
-						if (!player.hasQuest("kill_all_spiders")
-								|| player.getQuest("kill_all_spiders").equals(
+						if (!player.hasQuest(QUEST_SLOT)
+								|| player.getQuest(QUEST_SLOT).equals(
 										"rejected")) {
 							engine
 									.say("Have you ever been to the basement of the school? The room is full of spiders and some could be dangerous, since the students do some experiments! Did you like to help me with this 'little' problem?");
-						} else if (!player.isQuestCompleted("kill_all_spiders")) {
+						}  else if (player.isQuestCompleted(QUEST_SLOT)) {
 							engine
 									.say("I already asked you to kill all creatures in the basement!");
 							engine
 									.setCurrentState(ConversationStates.ATTENDING);
+						}  else if (player.getQuest(QUEST_SLOT).startsWith(	"killed;")) {
+							String[] tokens = player.getQuest(QUEST_SLOT).split(";");
+							long delay = 7 * 24 * 60 *  10 * 60 * 1000;
+							long timeRemaining = (Long.parseLong(tokens[1]) + delay) - System.currentTimeMillis();
+							if (timeRemaining > 0) {
+								engine.say("Sorry there is nothing to do for you yet. But maybe you come back later. I have to clean school only ones a week!");
+								return;
+							}
+							engine.say("Did you like to help me again?");
+							engine.setCurrentState(ConversationStates.QUEST_OFFERED);
 						} else {
 							engine
 									.say("Thanks for your help. Now i am sleep well again.");
@@ -63,7 +78,7 @@ public class KillSpiders extends AbstractQuest {
 							public void fire(Player player, String text,
 									SpeakerNPC engine) {
 								player.addKarma(5.0);
-								player.setQuest("kill_all_spiders", "start");
+								player.setQuest(QUEST_SLOT, "start");
 								player.removeKill("spider");
 								player.removeKill("poisonous_spider");
 								player.removeKill("giant_spider");
@@ -78,7 +93,7 @@ public class KillSpiders extends AbstractQuest {
 					public void fire(Player player, String text,
 							SpeakerNPC engine) {
 						player.addKarma(-5.0);
-						player.setQuest("kill_all_spiders", "rejected");
+						player.setQuest(QUEST_SLOT, "rejected");
 					}
 				});
 	}
@@ -96,8 +111,8 @@ public class KillSpiders extends AbstractQuest {
 					@Override
 					public boolean fire(Player player, String text,
 							SpeakerNPC engine) {
-						return player.hasQuest("kill_all_spiders")
-								&& player.getQuest("kill_all_spiders").equals(
+						return player.hasQuest(QUEST_SLOT)
+								&& player.getQuest(QUEST_SLOT).equals(
 										"start");
 					}
 				}, ConversationStates.ATTENDING, null,
@@ -117,12 +132,12 @@ public class KillSpiders extends AbstractQuest {
 								player.equip(mythegg, true);
 								player.addKarma(5.0);
 								player.addXP(5000);
-								player.setQuest("kill_all_spiders", "done");
+								player.setQuest(QUEST_SLOT, "killed;" + System.currentTimeMillis());
 						} else {
 							engine
 									.say("Go down and kill the creatures, no time left.");
 						}
-		 			}
+		 			}			
 				});
 	}
 

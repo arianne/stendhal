@@ -87,9 +87,9 @@ public class AmazonPrincess extends AbstractQuest {
 							// if this is > 0, she's still drunk!
 							long timeRemaining = (Long.parseLong(tokens[1]) + delay)
 									- System.currentTimeMillis();
-							if (timeRemaining > 0L) {
+							if (timeRemaining > 0) {
 								npc.say("I'm sure I'll be too drunk to have another for at least "
-										+ TimeUtil.timeUntil((int) (timeRemaining / 1000L))
+										+ TimeUtil.timeUntil((int) (timeRemaining / 1000))
 										+ "!");
 								return;
 								// note: it is also possible to make the npc
@@ -165,8 +165,7 @@ public class AmazonPrincess extends AbstractQuest {
 								+ " fish pies from my cook, and this kiss, from me.");
 						// We set the slot to start with 'drinking'
 						// and to also store the current time, split with a ';'
-						player.setQuest(QUEST_SLOT, "drinking;"
-								+ System.currentTimeMillis());
+						player.setQuest(QUEST_SLOT, "drinking;" + System.currentTimeMillis());
 					}
 				});
 		npc.add(
