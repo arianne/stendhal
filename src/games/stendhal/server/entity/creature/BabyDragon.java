@@ -24,11 +24,10 @@ import marauroa.common.game.SyntaxException;
 
 /**
  * A baby dragon is a domestic animal that can be owned by a player.
- * It eats ham or pizza from the ground.
- * They move much faster than sheep
- * Baby dragons attack animals which attack them
- */
-/**
+ * <p>It eats ham or pizza from the ground.
+ * <p>They move much faster than sheep
+ * <p>Baby dragons attack animals which attack them
+ *
  * @author kymara
  * (based on sheep by Daniel Herding)
  *

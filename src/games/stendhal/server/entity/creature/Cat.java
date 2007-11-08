@@ -24,11 +24,10 @@ import marauroa.common.game.SyntaxException;
 
 /**
  * A cat is a domestic animal that can be owned by a player.
- * It eats chicken from the ground.
- * They move much faster than sheep
- * Ideally cats attack rats for you
- */
-/**
+ * <p>It eats chicken from the ground.
+ * <p>They move much faster than sheep
+ * <p>Ideally cats attack rats for you
+ *
  * @author kymara
  * (based on sheep by Daniel Herding)
  *

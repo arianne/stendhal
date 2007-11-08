@@ -22,8 +22,9 @@ import org.apache.log4j.Logger;
 import marauroa.common.game.RPObject;
 
 /**
- * A domestic animal can be owned by a player; each player can't own more
- * than one domestic animal. It has a weight; when it dies, it leaves an
+ * A domestic animal can be owned by a player; 
+ * <p>each player can't own more than one domestic animal. 
+ * <p> It has a weight; when it dies, it leaves an
  * amount of meat, depending on its weight.
  */
 public abstract class DomesticAnimal extends Creature {
