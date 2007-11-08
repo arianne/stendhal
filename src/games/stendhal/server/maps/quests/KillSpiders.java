@@ -39,7 +39,7 @@ public class KillSpiders extends AbstractQuest {
 								|| player.getQuest(QUEST_SLOT).equals(
 										"rejected")) {
 							engine
-									.say("Have you ever been to the basement of the school? The room is full of spiders and some could be dangerous, since the students do some experiments! Did you like to help me with this 'little' problem?");
+									.say("Have you ever been to the basement of the school? The room is full of spiders and some could be dangerous, since the students do experiments! Would you like to help me with this 'little' problem?");
 						}  else if (player.isQuestCompleted(QUEST_SLOT)) {
 							engine
 									.say("I already asked you to kill all creatures in the basement!");
@@ -50,14 +50,14 @@ public class KillSpiders extends AbstractQuest {
 							long delay = 7 * 24 * 60 *  10 * 60 * 1000;
 							long timeRemaining = (Long.parseLong(tokens[1]) + delay) - System.currentTimeMillis();
 							if (timeRemaining > 0) {
-								engine.say("Sorry there is nothing to do for you yet. But maybe you come back later. I have to clean school only ones a week!");
+								engine.say("Sorry there is nothing to do for you yet. But maybe you could come back later. I have to clean the school once a week.");
 								return;
 							}
-							engine.say("Did you like to help me again?");
+							engine.say("Would you like to help me again?");
 							engine.setCurrentState(ConversationStates.QUEST_OFFERED);
 						} else {
 							engine
-									.say("Thanks for your help. Now i am sleep well again.");
+									.say("Thanks for your help. Now I'm sleeping well again.");
 							engine
 									.setCurrentState(ConversationStates.ATTENDING);
 						}
@@ -70,7 +70,7 @@ public class KillSpiders extends AbstractQuest {
 						ConversationPhrases.YES_MESSAGES,
 						null,
 						ConversationStates.ATTENDING,
-						"Fine. Go down to the basement and kill all creatures there!",
+						"Fine. Go down to the basement and kill all the creatures there!",
 						new SpeakerNPC.ChatAction() {
 							@Override
 							public void fire(Player player, String text,
@@ -122,7 +122,7 @@ public class KillSpiders extends AbstractQuest {
 								&& player.hasKilled("poisonous_spider")
 								&& player.hasKilled("giant_spider")) {
 							engine
-										.say("Oh thank you my friend. Here you have something special, i got it from a Magican. Who it was i do not know. What it's good for, i do not know. I Only know, it could be usefull for you.");
+										.say("Oh thank you my friend. Here you have something special, I got it from a Magican. Who he was I do not know. What the egg's good for, I do not know. I only know, it could be useful for you.");
 								Item mythegg = StendhalRPWorld.get()
 										.getRuleManager().getEntityManager()
 										.getItem("mythical_egg");
