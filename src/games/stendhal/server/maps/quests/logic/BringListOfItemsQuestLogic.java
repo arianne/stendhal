@@ -129,8 +129,25 @@ public class BringListOfItemsQuestLogic {
 	/**
 	 * player asks what exactly is missing
 	 */
+	protected void listMissingItemsDuringQuestOffer() {
+		concreteQuest.getNPC().add(ConversationStates.QUEST_OFFERED, 
+			concreteQuest.getTriggerPhraseToEnumerateMissingItems(),
+			null, ConversationStates.QUEST_OFFERED, null,
+			new SpeakerNPC.ChatAction() {
+				@Override
+				public void fire(Player player, String text, SpeakerNPC engine) {
+					List<String> missingItems = getListOfStillMissingItems(player, true);
+					engine.say(concreteQuest.askForMissingItems(missingItems));
+				}
+			});
+	}
+
+	/**
+	 * player asks what exactly is missing
+	 */
 	protected void listMissingItems() {
-		concreteQuest.getNPC().add(ConversationStates.ATTENDING, concreteQuest.getTriggerPhraseToEnumerateMissingItems(),
+		concreteQuest.getNPC().add(ConversationStates.ATTENDING, 
+			concreteQuest.getTriggerPhraseToEnumerateMissingItems(),
 			new SpeakerNPC.ChatCondition() {
 				@Override
 				public boolean fire(Player player, String text, SpeakerNPC engine) {
@@ -261,6 +278,7 @@ public class BringListOfItemsQuestLogic {
 		// talk about quest
 		welcomeNewPlayer();
 		tellAboutQuest();
+		listMissingItemsDuringQuestOffer();
 		acceptQuest();
 		rejectQuest();
 

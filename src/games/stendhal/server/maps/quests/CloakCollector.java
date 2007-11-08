@@ -120,7 +120,7 @@ public class CloakCollector extends AbstractQuest implements BringListOfItemsQue
 
 	public String respondToQuestAcception() {
 		// player.addKarma(5.0);
-		return "Brilliant! I'm so excited! Bye!";
+		return "Brilliant! I'm so excited!";
 	}
 
 	public String respondToQuestAfterItHasAlreadyBeenCompleted() {
