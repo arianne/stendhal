@@ -3,14 +3,12 @@ package games.stendhal.server.maps.semos.caves;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
 import games.stendhal.server.entity.creature.BabyDragon;
-import games.stendhal.server.entity.npc.SellerBehaviour;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Node;
 import games.stendhal.server.util.TimeUtil;
 
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -76,7 +74,7 @@ public class BabyDragonSellerNPC implements ZoneConfigurator {
 					       	zone.add(babydragon);
 
 					       	player.setPet(babydragon);
-						// clear the quest slot completely when it's not 
+						// clear the quest slot completely when it's not
 						// being used to store egg hatching times
 						player.removeQuest(QUEST_SLOT);
 					       	player.notifyWorldAboutChanges();
@@ -127,7 +125,7 @@ public class BabyDragonSellerNPC implements ZoneConfigurator {
 		npc.setPosition(66, 8);
 		npc.initHP(100);
 		zone.add(npc);
-				
+
 		// Also put a dragon in the caves (people can't Own it as it is behind rocks)
 		BabyDragon drag = new BabyDragon();
                 drag.setPosition(62, 8);
