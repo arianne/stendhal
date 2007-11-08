@@ -4834,7 +4834,6 @@
     <equipable>
       <slot name="lhand"/>
       <slot name="rhand"/>
-      <slot name="keyring"/>
       <slot name="bag"/>
     </equipable>
   </item>
