@@ -64,6 +64,11 @@ public class BabyDragonSellerNPC implements ZoneConfigurator {
 										+ ".");
 								return;
 					        }
+						if (player.hasPet()){
+						    // we don't want him to give a dragon if player already has a pet
+						    engine.say("I cannot give your newly hatched dragon to you if I don't think you'll give it your full attention! Come back when you don't have another pet with you.");
+						    return;
+						}
 						engine.say("Your egg has hatched! So, here you go, a nippy little baby dragon of your own. Don't forget it'll want some #food soon. And remember to #protect it.");
 
 					       	BabyDragon babydragon = new BabyDragon(player);
@@ -101,6 +106,8 @@ public class BabyDragonSellerNPC implements ZoneConfigurator {
 						    engine.say("You don't have any dragon eggs with you. I can't hatch a dragon without an egg.");
 						}
 					    } else {
+						// there's actually also a check for this when the egg is hatched,
+						// but we might as well warn player here that they wouldn't be allowed two.
 							engine.say("You've already got a pet. If you get another they might fight ... or worse ...");
 					   }
 					}
