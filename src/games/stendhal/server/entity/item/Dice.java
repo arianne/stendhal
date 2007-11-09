@@ -102,32 +102,34 @@ public class Dice extends Item {
 			int topFace = Rand.roll1D6();
 			topFaces[i] = topFace;
 		}
+	}
+
+	@Override
+	public void onPutOnGround(Player player) {
+		super.onPutOnGround(player);
+		zoneFix(player);
+		randomize(player);
 		updateCroupierNPC();
 		if (croupierNPC != null) {
 			croupierNPC.onThrown(this, player);
 		}
 	}
 
-	@Override
-	public void onPutOnGround(Player player) {
-		super.onPutOnGround(player);
-		randomize(player);
+	// TODO: Find a real fix for this: In Marauroa 1.0 items had a zone even
+	// when in player's bags. So the above code in onPutOnGroupd (onThrown)
+	// was able to verify the zone before the item is actually put onto the 
+	// ground and the zone is updated. Bagged items do not have a zone in
+	// Marauroa 1.0 so this does not work anymore. We need to change the order
+	// in which the dropping of items is implemented.
+	private void zoneFix(Player player) {
+		if (getZone() == null) {
+			this.onAdded(player.getZone());
+		}
 	}
 
 	@Override
 	public String describe() {
 		return "You see a set of dice. The top faces are "
 				+ getTopFacesString() + ".";
-	}
-
-	// TODO: Check why this is done. This could be VERY bad, as dropped
-	// dice may end up removing an object in a different zone that has
-	// the same ID on ground timeout.
-	@Override
-	public StendhalRPZone getZone() {
-		if (croupierNPC != null) {
-			return croupierNPC.getZone();
-		}
-		return super.getZone();
 	}
 }
