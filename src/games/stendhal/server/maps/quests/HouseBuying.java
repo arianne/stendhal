@@ -149,7 +149,7 @@ public class HouseBuying extends AbstractQuest {
 										// free
 										if (!doneList.contains(text)) {
 											// it's available, so take money
-											if (player.drop("money", COST)) {
+											if (player.isEquipped("money", COST)) {
 												Item key = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
 														"private_key_" + text);
 												engine.say("Congratulations, here is your key to house "
@@ -157,14 +157,15 @@ public class HouseBuying extends AbstractQuest {
 														+ "! Do you want to buy a spare key, at a price of "
 														+ COST2 + " money?");
 												key.setUndroppableOnDeath(true);
-												player.equip(key);
-												// remember what house they own
-												player.setQuest(QUEST_SLOT,
-														text);
-												postman.setQuest(QUEST_SLOT,
-														postmanslot + ";"
-																+ text);
-												engine.setCurrentState(ConversationStates.QUESTION_1);
+												if (player.equip(key)) {
+													player.drop("money", COST);
+    												// remember what house they own
+    												player.setQuest(QUEST_SLOT, text);
+    												postman.setQuest(QUEST_SLOT, postmanslot + ";" + text);
+    												engine.setCurrentState(ConversationStates.QUESTION_1);
+												} else {
+													engine.say("Sorry, you can't carry more keys!");
+												}
 											} else {
 												engine.say("You do not have enough money to buy a house!");
 											}
@@ -200,13 +201,17 @@ public class HouseBuying extends AbstractQuest {
 							@Override
 							public void fire(Player player, String text,
 									SpeakerNPC engine) {
-								if (player.drop("money", COST2)) {
+								if (player.isEquipped("money", COST2)) {
 									String house = player.getQuest(QUEST_SLOT);
 									Item key = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
 											"private_key_" + house);
-									engine.say("Here you go, a spare key to your house. Please remember, only give spare keys to people you #really, #really, trust!");
 									key.setUndroppableOnDeath(true);
-									player.equip(key);
+									if (player.equip(key)) {
+										player.drop("money", COST2);
+										engine.say("Here you go, a spare key to your house. Please remember, only give spare keys to people you #really, #really, trust!");
+									} else {
+										engine.say("Sorry, you can't carry more keys!");
+									}
 								} else {
 									engine.say("You do not have enough money for another key!");
 								}
@@ -344,7 +349,7 @@ public class HouseBuying extends AbstractQuest {
 										// free
 										if (!doneList.contains(text)) {
 											// it's available, so take money
-											if (player.drop("money", COST)) {
+											if (player.isEquipped("money", COST)) {
 												Item key = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
 														"private_key_" + text);
 												engine2.say("Congratulations, here is your key to house "
@@ -352,14 +357,14 @@ public class HouseBuying extends AbstractQuest {
 														+ "! Do you want to buy a spare key, at a price of "
 														+ COST2 + " money?");
 												key.setUndroppableOnDeath(true);
-												player.equip(key);
-												// remember what house they own
-												player.setQuest(QUEST_SLOT,
-														text);
-												postman.setQuest(STORAGE_SLOT_2,
-														postmanslot + ";"
-																+ text);
-												engine2.setCurrentState(ConversationStates.QUESTION_1);
+												if (player.equip(key)) {
+													player.drop("money", COST);
+    												// remember what house they own
+    												player.setQuest(QUEST_SLOT, text);
+    												postman.setQuest(STORAGE_SLOT_2, postmanslot + ";" + text);
+    												engine2.setCurrentState(ConversationStates.QUESTION_1);
+												} else
+													engine2.say("Sorry, you can't carry more keys!");
 											} else {
 												engine2.say("You do not have enough money to buy a house!");
 											}
@@ -395,13 +400,16 @@ public class HouseBuying extends AbstractQuest {
 							@Override
 							public void fire(Player player, String text,
 									SpeakerNPC engine2) {
-								if (player.drop("money", COST2)) {
+								if (player.isEquipped("money", COST2)) {
 									String house = player.getQuest(QUEST_SLOT);
 									Item key = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
 											"private_key_" + house);
-									engine2.say("Here you go, a spare key to your house. Please remember, only give spare keys to people you #really, #really, trust!");
 									key.setUndroppableOnDeath(true);
-									player.equip(key);
+									if (player.equip(key)) {
+										player.drop("money", COST2);
+										engine2.say("Here you go, a spare key to your house. Please remember, only give spare keys to people you #really, #really, trust!");
+									} else
+										engine2.say("Sorry, you can't carry more keys!");
 								} else {
 									engine2.say("You do not have enough money for another key!");
 								}
