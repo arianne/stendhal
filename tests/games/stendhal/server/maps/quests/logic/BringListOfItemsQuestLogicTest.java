@@ -168,18 +168,36 @@ public class BringListOfItemsQuestLogicTest {
 		assertEquals("i have not brought anything yet it should be all needed items",hashList(quest.getNeededItems()).toString(), npc.get("text"));
 
 
-		StackableItem wood = new StackableItem("one", "", "", null);
-		wood.setQuantity(10);
-		wood.setID(new ID(2, "testzone"));
-		player.getSlot("bag").add(wood);
+		StackableItem item = new StackableItem("one", "", "", null);
+		item.setQuantity(10);
+		item.setID(new ID(2, "testzone"));
+		player.getSlot("bag").add(item);
 		en.step(player,"yes");
 		assertEquals("item brought",quest.askForItemsAfterPlayerSaidHeHasItems(), npc.get("text"));
 
 		en.step(player,"one");
 		assertEquals("item brought",quest.respondToItemBrought(), npc.get("text"));
-		en.step(player,quest.getTriggerPhraseToEnumerateMissingItems().get(0));
-		assertEquals("two and three are missing",hashList(quest.getNeededItems()).toString(), npc.get("text"));
+		en.step(player,"one");
+		assertEquals("item brought",quest.respondToOfferOfNotMissingItem(), npc.get("text"));
 
+		//en.step(player,quest.getTriggerPhraseToEnumerateMissingItems().get(0));
+	//	assertEquals("two and three are missing",hashList(quest.getNeededItems()).toString(), npc.get("text"));
+		en.step(player,"two");
+		assertEquals("item brought",quest.respondToOfferOfNotExistingItem("two"), npc.get("text"));
+
+		item = new StackableItem("two", "", "", null);
+		item.setQuantity(10);
+		item.setID(new ID(2, "testzone"));
+		player.getSlot("bag").add(item);
+		item = new StackableItem("three", "", "", null);
+		item.setQuantity(10);
+		item.setID(new ID(2, "testzone"));
+		player.getSlot("bag").add(item);
+		en.step(player,"three");
+		assertEquals("item brought",quest.respondToItemBrought(), npc.get("text"));
+		en.step(player,"two");
+		assertEquals("item brought",quest.respondToLastItemBrought(), npc.get("text"));
+	
 
 	}
 
@@ -291,7 +309,7 @@ public class BringListOfItemsQuestLogicTest {
 		}
 
 		public String respondToOfferOfNotExistingItem(String itemName) {
-			return "respondToOfferOfNotExistingItem";
+			return "respondToOfferOfNotExistingItem" + itemName;
 		}
 
 		public String respondToOfferOfNotMissingItem() {
