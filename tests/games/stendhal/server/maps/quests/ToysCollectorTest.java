@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.util.Arrays;
 
+import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
@@ -55,7 +56,7 @@ public class ToysCollectorTest {
 
 	@Test
 	public final void testGetTriggerPhraseToEnumerateMissingItems() {
-		assertEquals("list", quest.getTriggerPhraseToEnumerateMissingItems());
+		assertEquals(ConversationPhrases.YES_MESSAGES, quest.getTriggerPhraseToEnumerateMissingItems());
 	}
 
 	@Test
@@ -71,4 +72,5 @@ public class ToysCollectorTest {
 
 
 
-}
+	}
+
