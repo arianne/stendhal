@@ -131,16 +131,18 @@ public class BringListOfItemsQuestLogic {
 	 * player asks what exactly is missing
 	 */
 	protected void listMissingItemsDuringQuestOffer() {
-		concreteQuest.getNPC().add(ConversationStates.QUEST_OFFERED,
-			concreteQuest.getTriggerPhraseToEnumerateMissingItems(),
-			null, ConversationStates.QUEST_OFFERED, null,
-			new SpeakerNPC.ChatAction() {
-				@Override
-				public void fire(Player player, String text, SpeakerNPC engine) {
-					List<String> missingItems = getListOfStillMissingItems(player, true);
-					engine.say(concreteQuest.askForMissingItems(missingItems));
-				}
-			});
+		if (concreteQuest.getTriggerPhraseToEnumerateMissingItems() != ConversationPhrases.YES_MESSAGES) {
+			concreteQuest.getNPC().add(ConversationStates.QUEST_OFFERED,
+				concreteQuest.getTriggerPhraseToEnumerateMissingItems(),
+				null, ConversationStates.QUEST_OFFERED, null,
+				new SpeakerNPC.ChatAction() {
+					@Override
+					public void fire(Player player, String text, SpeakerNPC engine) {
+						List<String> missingItems = getListOfStillMissingItems(player, false);
+						engine.say(concreteQuest.askForMissingItems(missingItems));
+					}
+				});
+		}
 	}
 
 	/**
