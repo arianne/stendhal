@@ -1,11 +1,8 @@
 package utilities;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.entity.slot.EntitySlot;
-
 import marauroa.common.game.RPObject;
-import marauroa.common.game.RPSlot;
 
 import org.junit.After;
 import org.junit.Before;
