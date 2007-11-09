@@ -1,0 +1,46 @@
+package utilities;
+
+import static org.junit.Assert.*;
+import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.entity.slot.EntitySlot;
+
+import marauroa.common.game.RPObject;
+import marauroa.common.game.RPSlot;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
+public class PlayerHelperTest {
+
+	@Before
+	public void setUp() throws Exception {
+	}
+
+	@After
+	public void tearDown() throws Exception {
+	}
+
+	@Test
+	public final void testAddEmptySlots() {
+		PlayerHelper.generatePlayerRPClasses();
+		Player bob = new Player(new RPObject());
+		PlayerHelper.addEmptySlots(bob);
+		assertTrue(bob.hasSlot("!quests"));
+		assertTrue(bob.hasSlot("bag"));
+		assertTrue(bob.hasSlot("lhand"));
+		assertTrue(bob.hasSlot("rhand"));
+		assertTrue(bob.hasSlot("armor"));
+		assertTrue(bob.hasSlot("head"));
+		assertTrue(bob.hasSlot("legs"));
+		assertTrue(bob.hasSlot("feet"));
+		assertTrue(bob.hasSlot("finger"));
+		assertTrue(bob.hasSlot("cloak"));
+		assertTrue(bob.hasSlot("keyring"));
+		assertTrue(bob.hasSlot("!quests"));
+		assertTrue(bob.hasSlot("!kills"));
+		assertTrue(bob.hasSlot("!tutorial"));
+
+	}
+
+}
