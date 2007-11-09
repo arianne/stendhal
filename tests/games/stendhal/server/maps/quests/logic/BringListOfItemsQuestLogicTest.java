@@ -1,6 +1,7 @@
 package games.stendhal.server.maps.quests.logic;
 
 import static org.junit.Assert.*;
+import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
@@ -13,10 +14,12 @@ import java.util.List;
 
 import marauroa.common.Log4J;
 import marauroa.common.game.RPObject;
+import marauroa.common.game.RPObject.ID;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 
@@ -39,6 +42,7 @@ public class BringListOfItemsQuestLogicTest {
 	public void tearDown() throws Exception {
 	}
 
+	@Ignore
 	@Test
 	public final void testBringListOfItemsQuestLogic() {
 		BringListOfItemsQuestLogic logic = new BringListOfItemsQuestLogic(
@@ -49,6 +53,7 @@ public class BringListOfItemsQuestLogicTest {
 	@Test
 	public final void testGetListOfStillMissingItems() {
 		PlayerHelper.generatePlayerRPClasses();
+		PlayerHelper.generateItemRPClasses();
 		BringListOfItemsQuestLogic logic = new BringListOfItemsQuestLogic(
 				new NullValueMockBringListOfItemsQuest() {
 					@Override
@@ -131,7 +136,7 @@ public class BringListOfItemsQuestLogicTest {
 	}
 
 	@Test
-	public final void testTellAboutQuest() {
+	public final void doQuest() {
 		PlayerHelper.generateNPCRPClasses();
 		PlayerHelper.generatePlayerRPClasses();
 		MockBringListOfItemsQuest quest = new MockBringListOfItemsQuest() {
@@ -146,16 +151,46 @@ public class BringListOfItemsQuestLogicTest {
 		Engine en = npc.getEngine();
 		en.step(player, "hi");
 		assertTrue(npc.isTalking());
-		assertEquals(quest.welcomeBeforeStartingQuest(), npc.get("text"));
+		assertEquals("first hi",quest.welcomeBeforeStartingQuest(), npc.get("text"));
 		npc.put("text", "");
 
 		en.step(player, ConversationPhrases.QUEST_MESSAGES.get(0));
-		// List<String> questTrigger = new
-		// LinkedList<String>(ConversationPhrases.QUEST_MESSAGES);
-		// List<String> additionalTrigger =
-		// concreteQuest.getAdditionalTriggerPhraseForQuest();
-		assertEquals(quest.welcomeBeforeStartingQuest(), npc.get("text"));
+		assertEquals("answer to quest",quest.respondToQuest(), npc.get("text"));
 
+		en.step(player, ConversationPhrases.YES_MESSAGES.get(0));
+		assertEquals("answer to quests accepted",quest.respondToQuestAcception(), npc.get("text"));
+		assertTrue(player.hasQuest(quest.getSlotName()));
+		assertFalse(npc.isTalking());
+		en.step(player, ConversationPhrases.GREETING_MESSAGES.get(0));
+		assertTrue(npc.isTalking());
+
+		en.step(player, quest.getTriggerPhraseToEnumerateMissingItems().get(0));
+		assertEquals("i have not brought anything yet it should be all needed items",hashList(quest.getNeededItems()).toString(), npc.get("text"));
+
+
+		StackableItem wood = new StackableItem("one", "", "", null);
+		wood.setQuantity(10);
+		wood.setID(new ID(2, "testzone"));
+		player.getSlot("bag").add(wood);
+		en.step(player,"yes");
+		assertEquals("item brought",quest.askForItemsAfterPlayerSaidHeHasItems(), npc.get("text"));
+
+		en.step(player,"one");
+		assertEquals("item brought",quest.respondToItemBrought(), npc.get("text"));
+		en.step(player,quest.getTriggerPhraseToEnumerateMissingItems().get(0));
+		assertEquals("two and three are missing",hashList(quest.getNeededItems()).toString(), npc.get("text"));
+
+
+	}
+
+	private List<String> hashList(List<String> unhashed) {
+		List<String> hashed = new LinkedList<String>();
+		for (String hashme : unhashed){
+			hashed.add("#" + hashme);
+
+		}
+
+		return hashed;
 	}
 
 	@Test
@@ -219,12 +254,11 @@ public class BringListOfItemsQuestLogicTest {
 		}
 
 		public String askForMissingItems(List<String> missingItems) {
-			return "";
+			return missingItems.toString();
 		}
 
 		public List<String> getAdditionalTriggerPhraseForQuest() {
-			// TODO Auto-generated method stub
-			return null;
+			return Arrays.asList(new String[]{"getAdditionalTriggerPhraseForQuest"});
 		}
 
 		public SpeakerNPC getNPC() {
