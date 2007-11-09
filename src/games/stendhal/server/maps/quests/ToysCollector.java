@@ -3,6 +3,7 @@ package games.stendhal.server.maps.quests;
 import games.stendhal.common.Grammar;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.item.StackableItem;
+import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
@@ -82,8 +83,8 @@ public class ToysCollector extends AbstractQuest implements
 		return "toys_collector";
 	}
 
-	public String getTriggerPhraseToEnumerateMissingItems() {
-		return "list";
+	public List<String> getTriggerPhraseToEnumerateMissingItems() {
+		return ConversationPhrases.YES_MESSAGES;
 	}
 
 	public List<String> getAdditionalTriggerPhraseForQuest() {
@@ -124,7 +125,7 @@ public class ToysCollector extends AbstractQuest implements
 	}
 
 	public String askForMissingItems(List<String> missingItems) {
-		return respondToQuest();
+		return "What toys did you bring?";
 	}
 
 	public String respondToPlayerSayingHeHasNoItems(List<String> missingItems) {
