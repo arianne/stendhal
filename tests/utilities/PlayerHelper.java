@@ -1,8 +1,10 @@
 package utilities;
 
+
 import games.stendhal.server.entity.ActiveEntity;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.slot.EntitySlot;
@@ -42,6 +44,12 @@ public class PlayerHelper {
 		ActiveEntity.generateRPClass();
 		RPEntity.generateRPClass();
 		NPC.generateRPClass();
+
+	}
+	public static void generateItemRPClasses() {
+		Entity.generateRPClass();
+		Item.generateRPClass();
+
 
 	}
 }
