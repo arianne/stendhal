@@ -207,12 +207,12 @@
  </layer>
  <layer name="2_object" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgQAUujAw4gTdQzgePPAwcxqHGHygeQIT+Y0SoIRVcBJp5iQJzfwPxHwrsvwq0+xoe+x8D5V7SwN/UACJAd4lCsRgZbhQH6pGAYkkgTqG+EzHAXaA996BuvQrEaiS6+yFQ/SMsem4Dxe5QEE/3gXofDKJ4BgCU2c32AAQAAA==
+   H4sIAAAAAAAAAGNgQAUujAw4gTdQzgePPAwcxqHGHygeQIT+Y0SoIRVcBJp5iQJzfwPxHwrsvwq0+xoe+x8D5V7SwN/UACJAd4lCsRgZbhQH6pGAYkkgTiFS3y3SrYKDu0B77kHdehWI1Uh090Og+kdY9NwGit2hIJ7uA/U+GETxDADgNrUxAAQAAA==
   </data>
  </layer>
  <layer name="3_roof" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoC1oZmRgaEHDrYw0tpQG4DLQzVeGoLuHKrgJDOtbUPY5Ms24hSO+blAQj9eHWRoAAAdoHakABAAA
+   H4sIAAAAAAAAAGNgoC1oZmRgaEHDrYw0tpQG4DLQzVeGoLuHKriJFNbnyDTjFo74ukFBPF4fZmkAAHOHZW4ABAAA
   </data>
  </layer>
  <layer name="4_roof_add" width="16" height="16">
