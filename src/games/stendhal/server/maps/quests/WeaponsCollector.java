@@ -70,8 +70,8 @@ public class WeaponsCollector extends AbstractQuest implements BringListOfItemsQ
 		return "weapons_collector";
 	}
 
-	public String getTriggerPhraseToEnumerateMissingItems() {
-		return "collection";
+	public List<String> getTriggerPhraseToEnumerateMissingItems() {
+		return Arrays.asList("collection");
 	}
 
 	public List<String> getAdditionalTriggerPhraseForQuest() {
@@ -99,7 +99,7 @@ public class WeaponsCollector extends AbstractQuest implements BringListOfItemsQ
 	public String respondToQuest() {
 		return "Although I have collected weapons for such a long time, I " +
 				"still don't have everything I want. Do you think you can " +
-				"help me?";
+				"help me to complete my #collection?";
 	}
 
 	public String respondToQuestAfterItHasAlreadyBeenCompleted() {
@@ -107,12 +107,12 @@ public class WeaponsCollector extends AbstractQuest implements BringListOfItemsQ
 	}
 
 	public String respondToQuestAcception() {
-		return "If you help me to complete my #collection, I will give you " +
-				"something very interesting and useful in exchange.";
+		return "If you help me to complete my collection, I will give you " +
+				"something very interesting and useful in exchange. Bye";
 	}
 
 	public String respondToQuestRefusal() {
-		return "Well, maybe someone else will happen by and help me.";
+		return "Well, maybe someone else will happen by and help me. Bye";
 	}
 
 	public String askForMissingItems(List<String> missingItems) {

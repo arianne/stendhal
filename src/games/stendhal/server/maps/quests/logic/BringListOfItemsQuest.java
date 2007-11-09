@@ -23,7 +23,7 @@ public interface BringListOfItemsQuest {
 
 	public String getSlotName();
 
-	public String getTriggerPhraseToEnumerateMissingItems();
+	public List<String> getTriggerPhraseToEnumerateMissingItems();
 
 	public List<String> getAdditionalTriggerPhraseForQuest();
 

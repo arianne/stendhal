@@ -6,6 +6,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
 
+
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -17,6 +18,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+
 
 import utilities.PlayerHelper;
 
@@ -124,6 +127,7 @@ public class BringListOfItemsQuestLogicTest {
 		assertTrue(npc.isTalking());
 		assertEquals(quest.welcomeBeforeStartingQuest(), npc.get("text"));
 
+
 	}
 
 	@Test
@@ -200,6 +204,7 @@ public class BringListOfItemsQuestLogicTest {
 	}
 
 	class MockBringListOfItemsQuest implements BringListOfItemsQuest {
+
 		private SpeakerNPC npc;
 
 		private boolean isWelcomingAfterQuests;
@@ -239,8 +244,8 @@ public class BringListOfItemsQuestLogicTest {
 			return "MockBringListOfItemsQuest";
 		}
 
-		public String getTriggerPhraseToEnumerateMissingItems() {
-			return "getTriggerPhraseToEnumerateMissingItems";
+		public List<String> getTriggerPhraseToEnumerateMissingItems() {
+			return Arrays.asList("getTriggerPhraseToEnumerateMissingItems");
 		}
 
 		public String respondToItemBrought() {
@@ -334,10 +339,10 @@ public class BringListOfItemsQuestLogicTest {
 		}
 
 		public SpeakerNPC getNPC() {
-			if (npc == null) {
+			if (npc==null){
 
 				PlayerHelper.generateNPCRPClasses();
-				npc = new SpeakerNPC("MockBringListOfItemsQuest");
+				npc=new SpeakerNPC("MockBringListOfItemsQuest");
 			}
 			return npc;
 		}
@@ -351,7 +356,7 @@ public class BringListOfItemsQuestLogicTest {
 			return "NullValueMockBringListOfItemsQuest";
 		}
 
-		public String getTriggerPhraseToEnumerateMissingItems() {
+		public List<String> getTriggerPhraseToEnumerateMissingItems() {
 			return null;
 		}
 

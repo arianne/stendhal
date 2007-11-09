@@ -94,8 +94,8 @@ public class CloakCollector extends AbstractQuest implements BringListOfItemsQue
 		return QUEST_SLOT;
 	}
 
-	public String getTriggerPhraseToEnumerateMissingItems() {
-		return "cloaks";
+	public List<String> getTriggerPhraseToEnumerateMissingItems() {
+		return Arrays.asList("cloaks");
 	}
 
 	public boolean shouldWelcomeAfterQuestIsCompleted() {
