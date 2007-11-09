@@ -20,7 +20,7 @@ public class BringListOfItemsQuestLogic {
 	/**
 	 * Creates a new BringItems quest.
 	 *
-	 * @param concreteQuest the real quest 
+	 * @param concreteQuest the real quest
 	 */
 	public BringListOfItemsQuestLogic(BringListOfItemsQuest concreteQuest) {
 		this.concreteQuest = concreteQuest;
@@ -77,8 +77,9 @@ public class BringListOfItemsQuestLogic {
 	protected void tellAboutQuest() {
  		List<String> questTrigger = new LinkedList<String>(ConversationPhrases.QUEST_MESSAGES);
 		List<String> additionalTrigger = concreteQuest.getAdditionalTriggerPhraseForQuest();
-		questTrigger.addAll(additionalTrigger);
-
+		if (additionalTrigger!=null){
+			questTrigger.addAll(additionalTrigger);
+		}
 		concreteQuest.getNPC().add(ConversationStates.ATTENDING,
 			questTrigger,
 			new SpeakerNPC.ChatCondition() {
@@ -125,12 +126,12 @@ public class BringListOfItemsQuestLogic {
 			ConversationStates.ATTENDING,
 			concreteQuest.respondToQuestRefusal(), null);
 	}
-	
+
 	/**
 	 * player asks what exactly is missing
 	 */
 	protected void listMissingItemsDuringQuestOffer() {
-		concreteQuest.getNPC().add(ConversationStates.QUEST_OFFERED, 
+		concreteQuest.getNPC().add(ConversationStates.QUEST_OFFERED,
 			concreteQuest.getTriggerPhraseToEnumerateMissingItems(),
 			null, ConversationStates.QUEST_OFFERED, null,
 			new SpeakerNPC.ChatAction() {
@@ -146,7 +147,7 @@ public class BringListOfItemsQuestLogic {
 	 * player asks what exactly is missing
 	 */
 	protected void listMissingItems() {
-		concreteQuest.getNPC().add(ConversationStates.ATTENDING, 
+		concreteQuest.getNPC().add(ConversationStates.ATTENDING,
 			concreteQuest.getTriggerPhraseToEnumerateMissingItems(),
 			new SpeakerNPC.ChatCondition() {
 				@Override
@@ -168,7 +169,7 @@ public class BringListOfItemsQuestLogic {
 	 * player says he doesn't have required items with him
 	 */
 	protected void playerDoesNotWantToGiveItems() {
-		concreteQuest.getNPC().add(ConversationStates.QUESTION_1, "no", null,
+		concreteQuest.getNPC().add(ConversationStates.QUESTION_1, ConversationPhrases.NO_MESSAGES, null,
 			ConversationStates.IDLE, null, new SpeakerNPC.ChatAction() {
 				@Override
 				public void fire(Player player, String text, SpeakerNPC engine) {
@@ -288,7 +289,7 @@ public class BringListOfItemsQuestLogic {
 		playerDoesNotWantToGiveItems();
 		playerWantsToGiveItems();
 		offerItem();
-		
+
 		welcomePlayerAfterQuest();
 	}
 }
