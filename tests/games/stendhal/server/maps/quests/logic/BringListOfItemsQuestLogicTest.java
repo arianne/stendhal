@@ -1,10 +1,10 @@
 package games.stendhal.server.maps.quests.logic;
 
 import static org.junit.Assert.*;
+import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
-
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -17,8 +17,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-
-
 
 import utilities.PlayerHelper;
 
@@ -41,7 +39,7 @@ public class BringListOfItemsQuestLogicTest {
 	@Test
 	public final void testBringListOfItemsQuestLogic() {
 		BringListOfItemsQuestLogic logic = new BringListOfItemsQuestLogic(
-				new MockBringListOfItemsQuest());
+				new NullValueMockBringListOfItemsQuest());
 		logic.addToWorld();
 	}
 
@@ -49,7 +47,7 @@ public class BringListOfItemsQuestLogicTest {
 	public final void testGetListOfStillMissingItems() {
 		PlayerHelper.generatePlayerRPClasses();
 		BringListOfItemsQuestLogic logic = new BringListOfItemsQuestLogic(
-				new MockBringListOfItemsQuest() {
+				new NullValueMockBringListOfItemsQuest() {
 					@Override
 					public List<String> getNeededItems() {
 
@@ -59,7 +57,7 @@ public class BringListOfItemsQuestLogicTest {
 		assertEquals("emptyList", Arrays.asList(new String[] {}),
 				logic.getListOfStillMissingItems(new Player(new RPObject()),
 						false));
-		BringListOfItemsQuest quest = new MockBringListOfItemsQuest() {
+		BringListOfItemsQuest quest = new NullValueMockBringListOfItemsQuest() {
 			@Override
 			public List<String> getNeededItems() {
 
@@ -113,7 +111,7 @@ public class BringListOfItemsQuestLogicTest {
 	public final void testWelcomeNewPlayer() {
 		PlayerHelper.generateNPCRPClasses();
 		PlayerHelper.generatePlayerRPClasses();
-		MockBringListOfItemsQuest quest = new MockBringListOfItemsQuest();
+		NullValueMockBringListOfItemsQuest quest = new NullValueMockBringListOfItemsQuest();
 		SpeakerNPC npc = new SpeakerNPC("npc");
 		quest.setNpc(npc);
 		BringListOfItemsQuestLogic logic = new BringListOfItemsQuestLogic(quest);
@@ -126,12 +124,34 @@ public class BringListOfItemsQuestLogicTest {
 		assertTrue(npc.isTalking());
 		assertEquals(quest.welcomeBeforeStartingQuest(), npc.get("text"));
 
-
 	}
 
 	@Test
 	public final void testTellAboutQuest() {
-		fail("Not yet implemented");
+		PlayerHelper.generateNPCRPClasses();
+		PlayerHelper.generatePlayerRPClasses();
+		MockBringListOfItemsQuest quest = new MockBringListOfItemsQuest() {
+		};
+		SpeakerNPC npc = new SpeakerNPC("npc");
+		quest.setNpc(npc);
+		BringListOfItemsQuestLogic logic = new BringListOfItemsQuestLogic(quest);
+		logic.addToWorld();
+
+		Player player = new Player(new RPObject());
+		PlayerHelper.addEmptySlots(player);
+		Engine en = npc.getEngine();
+		en.step(player, "hi");
+		assertTrue(npc.isTalking());
+		assertEquals(quest.welcomeBeforeStartingQuest(), npc.get("text"));
+		npc.put("text", "");
+
+		en.step(player, ConversationPhrases.QUEST_MESSAGES.get(0));
+		// List<String> questTrigger = new
+		// LinkedList<String>(ConversationPhrases.QUEST_MESSAGES);
+		// List<String> additionalTrigger =
+		// concreteQuest.getAdditionalTriggerPhraseForQuest();
+		assertEquals(quest.welcomeBeforeStartingQuest(), npc.get("text"));
+
 	}
 
 	@Test
@@ -180,17 +200,21 @@ public class BringListOfItemsQuestLogicTest {
 	}
 
 	class MockBringListOfItemsQuest implements BringListOfItemsQuest {
-
 		private SpeakerNPC npc;
 
+		private boolean isWelcomingAfterQuests;
+
+		// makes our live easier
+		public void setNpc(SpeakerNPC npc) {
+			this.npc = npc;
+		}
+
 		public String askForItemsAfterPlayerSaidHeHasItems() {
-			// TODO Auto-generated method stub
-			return null;
+			return "askForItemsAfterPlayerSaidHeHasItems";
 		}
 
 		public String askForMissingItems(List<String> missingItems) {
-			// TODO Auto-generated method stub
-			return null;
+			return "";
 		}
 
 		public List<String> getAdditionalTriggerPhraseForQuest() {
@@ -199,78 +223,65 @@ public class BringListOfItemsQuestLogicTest {
 		}
 
 		public SpeakerNPC getNPC() {
-			if (npc==null){
+			if (npc == null) {
 
 				PlayerHelper.generateNPCRPClasses();
-				npc=new SpeakerNPC("MockBringListOfItemsQuest");
+				npc = new SpeakerNPC("MockBringListOfItemsQuest");
 			}
 			return npc;
 		}
 
 		public List<String> getNeededItems() {
-			// TODO Auto-generated method stub
-			return null;
+			return Arrays.asList(new String[] { "one", "two", "three" });
 		}
 
 		public String getSlotName() {
-
 			return "MockBringListOfItemsQuest";
 		}
 
 		public String getTriggerPhraseToEnumerateMissingItems() {
-			// TODO Auto-generated method stub
-			return null;
+			return "getTriggerPhraseToEnumerateMissingItems";
 		}
 
 		public String respondToItemBrought() {
-			// TODO Auto-generated method stub
-			return null;
+			return "respondToItemBrought";
 		}
 
 		public String respondToLastItemBrought() {
-			// TODO Auto-generated method stub
-			return null;
+			return "respondToLastItemBrought";
 		}
 
 		public String respondToOfferOfNotExistingItem(String itemName) {
-			// TODO Auto-generated method stub
-			return null;
+			return "respondToOfferOfNotExistingItem";
 		}
 
 		public String respondToOfferOfNotMissingItem() {
-			// TODO Auto-generated method stub
-			return null;
+			return "respondToOfferOfNotMissingItem";
 		}
 
 		public String respondToOfferOfNotNeededItem() {
-			// TODO Auto-generated method stub
-			return null;
+			return "respondToOfferOfNotNeededItem";
 		}
 
 		public String respondToPlayerSayingHeHasNoItems(
 				List<String> missingItems) {
-			// TODO Auto-generated method stub
-			return null;
+			return "respondToPlayerSayingHeHasNoItems";
 		}
 
 		public String respondToQuest() {
-			// TODO Auto-generated method stub
-			return null;
+			return "respondToQuest";
 		}
 
 		public String respondToQuestAcception() {
-			// TODO Auto-generated method stub
-			return null;
+			return "respondToQuestAcception";
 		}
 
 		public String respondToQuestAfterItHasAlreadyBeenCompleted() {
-			// TODO Auto-generated method stub
-			return null;
+			return "respondToQuestAfterItHasAlreadyBeenCompleted";
 		}
 
 		public String respondToQuestRefusal() {
-			// TODO Auto-generated method stub
-			return null;
+			return "respondToQuestAfterItHasAlreadyBeenCompleted";
 		}
 
 		public void rewardPlayer(Player player) {
@@ -279,13 +290,11 @@ public class BringListOfItemsQuestLogicTest {
 		}
 
 		public boolean shouldWelcomeAfterQuestIsCompleted() {
-			// TODO Auto-generated method stub
-			return false;
+			return isWelcomingAfterQuests;
 		}
 
 		public String welcomeAfterQuestIsCompleted() {
-			// TODO Auto-generated method stub
-			return null;
+			return "shouldWelcomeAfterQuestIsCompleted";
 		}
 
 		public String welcomeBeforeStartingQuest() {
@@ -293,7 +302,121 @@ public class BringListOfItemsQuestLogicTest {
 		}
 
 		public String welcomeDuringActiveQuest() {
-			// TODO Auto-generated method stub
+			return "welcomeDuringActiveQuest";
+		}
+
+		void setWelcomingAfterQuests(boolean isWelcomingAfterQuests) {
+			this.isWelcomingAfterQuests = isWelcomingAfterQuests;
+		}
+
+	}
+
+	/**
+	 * returns null for everything except name.
+	 *
+	 * @author astridemma
+	 *
+	 */
+	class NullValueMockBringListOfItemsQuest implements BringListOfItemsQuest {
+
+		private SpeakerNPC npc;
+
+		public String askForItemsAfterPlayerSaidHeHasItems() {
+			return null;
+		}
+
+		public String askForMissingItems(List<String> missingItems) {
+			return null;
+		}
+
+		public List<String> getAdditionalTriggerPhraseForQuest() {
+			return null;
+		}
+
+		public SpeakerNPC getNPC() {
+			if (npc == null) {
+
+				PlayerHelper.generateNPCRPClasses();
+				npc = new SpeakerNPC("MockBringListOfItemsQuest");
+			}
+			return npc;
+		}
+
+		public List<String> getNeededItems() {
+			return null;
+		}
+
+		public String getSlotName() {
+
+			return "NullValueMockBringListOfItemsQuest";
+		}
+
+		public String getTriggerPhraseToEnumerateMissingItems() {
+			return null;
+		}
+
+		public String respondToItemBrought() {
+
+			return null;
+		}
+
+		public String respondToLastItemBrought() {
+
+			return null;
+		}
+
+		public String respondToOfferOfNotExistingItem(String itemName) {
+
+			return null;
+		}
+
+		public String respondToOfferOfNotMissingItem() {
+
+			return null;
+		}
+
+		public String respondToOfferOfNotNeededItem() {
+			return null;
+		}
+
+		public String respondToPlayerSayingHeHasNoItems(
+				List<String> missingItems) {
+			return null;
+		}
+
+		public String respondToQuest() {
+			return null;
+		}
+
+		public String respondToQuestAcception() {
+			return null;
+		}
+
+		public String respondToQuestAfterItHasAlreadyBeenCompleted() {
+			return null;
+		}
+
+		public String respondToQuestRefusal() {
+			return null;
+		}
+
+		public void rewardPlayer(Player player) {
+
+		}
+
+		public boolean shouldWelcomeAfterQuestIsCompleted() {
+			return false;
+		}
+
+		public String welcomeAfterQuestIsCompleted() {
+			return null;
+		}
+
+		public String welcomeBeforeStartingQuest() {
+			return null;
+		}
+
+		public String welcomeDuringActiveQuest() {
 			return null;
 		}
 
