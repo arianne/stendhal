@@ -108,7 +108,7 @@ public class BringListOfItemsQuestLogic {
 	protected void acceptQuest() {
 		concreteQuest.getNPC().add(ConversationStates.QUEST_OFFERED,
 			ConversationPhrases.YES_MESSAGES, null,
-			ConversationStates.ATTENDING, null,
+			ConversationStates.IDLE, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
 				public void fire(Player player, String text, SpeakerNPC engine) {
@@ -123,7 +123,7 @@ public class BringListOfItemsQuestLogic {
 	 */
 	protected void rejectQuest() {
 		concreteQuest.getNPC().add(ConversationStates.QUEST_OFFERED, ConversationPhrases.NO_MESSAGES, null,
-			ConversationStates.ATTENDING,
+			ConversationStates.IDLE,
 			concreteQuest.respondToQuestRefusal(), null);
 	}
 
