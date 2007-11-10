@@ -4,6 +4,7 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.DecreaseKarmaAction;
+import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Arrays;
@@ -199,8 +200,16 @@ public class BringListOfItemsQuestLogic {
 	 * player says he has a required weapon with him
 	 */
 	protected void playerWantsToGiveItems() {
-		concreteQuest.getNPC().add(ConversationStates.QUESTION_1,
-			ConversationPhrases.YES_MESSAGES, null,
+		int[] states = new int[] {ConversationStates.ATTENDING, ConversationStates.QUESTION_1};
+		concreteQuest.getNPC().add(states,
+			ConversationPhrases.YES_MESSAGES, 
+			new SpeakerNPC.ChatCondition() {
+				@Override
+				public boolean fire(Player player, String text, SpeakerNPC engine) {
+					return player.hasQuest(concreteQuest.getSlotName())
+							&& !player.isQuestCompleted(concreteQuest.getSlotName());
+				}
+			},
 			ConversationStates.QUESTION_1, concreteQuest.askForItemsAfterPlayerSaidHeHasItems(),
 			null);
 	}
