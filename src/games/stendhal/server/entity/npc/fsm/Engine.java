@@ -149,6 +149,23 @@ public class Engine {
 		}
 	}
 
+	
+	/**
+	 * Do one transition of the finite state machine with debugging output
+	 * and reset of the previous response
+	 *
+	 * @param player Player
+	 * @param text   input
+	 * @return true if a transition was made, false otherwise
+	 */
+	public boolean stepTest(Player player, String text) {
+		logger.info(">>> " + text);
+		speakerNPC.remove("text");
+		boolean res = step(player, text);
+		logger.info("<<< " + speakerNPC.get("text"));
+		return res;
+	}
+
 	private boolean matchTransition(MatchType type, Player player, String text) {
 		List<Transition> listCondition = new LinkedList<Transition>();
 		List<Transition> listConditionLess = new LinkedList<Transition>();
