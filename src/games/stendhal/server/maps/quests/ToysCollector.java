@@ -37,8 +37,15 @@ import java.util.List;
 public class ToysCollector extends AbstractQuest implements
 		BringListOfItemsQuest {
 
-	private static final List<String> neededToys = Arrays.asList("teddy",
-			"dice", "dress");
+	private static final String QUEST_SLOT = "toys_collector";
+	
+	private static final List<String> neededToys = 
+		Arrays.asList("teddy", "dice", "dress");
+
+	@Override
+	public void init(String name) {
+		super.init(name, QUEST_SLOT);
+	}
 
 	private void setupAbstractQuest() {
 		BringListOfItemsQuest concreteQuest = this;
@@ -79,7 +86,7 @@ public class ToysCollector extends AbstractQuest implements
 	}
 
 	public String getSlotName() {
-		return "toys_collector";
+		return QUEST_SLOT;
 	}
 
 	public List<String> getTriggerPhraseToEnumerateMissingItems() {

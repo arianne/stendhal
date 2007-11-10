@@ -46,6 +46,12 @@ public class WeaponsCollector extends AbstractQuest implements BringListOfItemsQ
 			"battle_axe", "broadsword", "flail", "halberd", "katana",
 			"golden_mace", "scimitar", "scythe", "war_hammer");
 
+	private static final String QUEST_SLOT = "weapons_collector";
+
+	@Override
+	public void init(String name) {
+		super.init(name, QUEST_SLOT);
+	}
 	private void setupAbstractQuest() {
 		BringListOfItemsQuest concreteQuest = this;
 		BringListOfItemsQuestLogic bringItems = new BringListOfItemsQuestLogic(concreteQuest);
@@ -67,7 +73,7 @@ public class WeaponsCollector extends AbstractQuest implements BringListOfItemsQ
 	}
 
 	public String getSlotName() {
-		return "weapons_collector";
+		return QUEST_SLOT;
 	}
 
 	public List<String> getTriggerPhraseToEnumerateMissingItems() {
