@@ -78,6 +78,10 @@ public class WeaponsCollector extends AbstractQuest implements BringListOfItemsQ
 		return ConversationPhrases.EMPTY;
 	}
 
+	public double getKarmaDiffForQuestResponse() {
+		return 0;
+	}
+
 	public String welcomeBeforeStartingQuest() {
 		return "Greetings. I am Balduin. Are you interested in weapons? " +
 				"I certainly am, I have been collecting them since I was " +

@@ -98,6 +98,10 @@ public class CloakCollector extends AbstractQuest implements BringListOfItemsQue
 		return Arrays.asList("cloaks");
 	}
 
+	public double getKarmaDiffForQuestResponse() {
+		return 5.0;
+	}
+
 	public boolean shouldWelcomeAfterQuestIsCompleted() {
 		return false;
 	}

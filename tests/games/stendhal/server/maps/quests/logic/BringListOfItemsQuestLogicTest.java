@@ -141,7 +141,7 @@ public class BringListOfItemsQuestLogicTest {
 		logic.addToWorld();
 
 		// System.err.println(new DumpTransitions().getDump(npc));
-
+		
 		Player player = new Player(new RPObject());
 		PlayerHelper.addEmptySlots(player);
 		Engine en = npc.getEngine();
@@ -206,7 +206,7 @@ public class BringListOfItemsQuestLogicTest {
 		en.step(player,"two");
 		assertEquals("last item brought", quest.respondToLastItemBrought(),
 				npc.get("text"));
-
+	
 
 	}
 
@@ -389,6 +389,10 @@ public class BringListOfItemsQuestLogicTest {
 			this.isWelcomingAfterQuests = isWelcomingAfterQuests;
 		}
 
+		public double getKarmaDiffForQuestResponse() {
+			return 5.0;
+		}
+
 	}
 
 	/**
@@ -502,6 +506,10 @@ public class BringListOfItemsQuestLogicTest {
 
 		public void setNpc(SpeakerNPC npc) {
 			this.npc = npc;
+		}
+
+		public double getKarmaDiffForQuestResponse() {
+			return 0;
 		}
 
 	}

@@ -26,6 +26,8 @@ public interface BringListOfItemsQuest {
 	public List<String> getTriggerPhraseToEnumerateMissingItems();
 
 	public List<String> getAdditionalTriggerPhraseForQuest();
+	
+	public double getKarmaDiffForQuestResponse();
 
 	public String welcomeBeforeStartingQuest();
 

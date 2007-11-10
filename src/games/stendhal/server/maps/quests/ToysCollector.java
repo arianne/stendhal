@@ -55,7 +55,6 @@ public class ToysCollector extends AbstractQuest implements
 	}
 
 	private void specialStuff() {
-		// treat "toys" as QUEST_MESSAGE
 		getNPC().add(
 				ConversationStates.ATTENDING,
 				"no",
@@ -91,6 +90,10 @@ public class ToysCollector extends AbstractQuest implements
 		return Arrays.asList("toys");
 	}
 
+	public double getKarmaDiffForQuestResponse() {
+		return 8.0;
+	}
+
 	public String welcomeBeforeStartingQuest() {
 		return "Mummy said, we are not allowed to talk to strangers. She is worried about that lost girl. But I'm bored. I want some #toys!";
 	}
@@ -116,12 +119,11 @@ public class ToysCollector extends AbstractQuest implements
 	}
 
 	public String respondToQuestAcception() {
-		return "Hooray! How exciting. See you soon."; // TODO:
-														// player.addKarma(8.0);
+		return "Hooray! How exciting. See you soon.";
 	}
 
 	public String respondToQuestRefusal() {
-		return "Oh ... you're mean."; // TODO: player.addKarma(-8.0);
+		return "Oh ... you're mean.";
 	}
 
 	public String askForMissingItems(List<String> missingItems) {

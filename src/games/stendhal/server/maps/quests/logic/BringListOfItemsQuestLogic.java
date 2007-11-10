@@ -3,6 +3,7 @@ package games.stendhal.server.maps.quests.logic;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.DecreaseKarmaAction;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Arrays;
@@ -114,6 +115,7 @@ public class BringListOfItemsQuestLogic {
 				public void fire(Player player, String text, SpeakerNPC engine) {
 					engine.say(concreteQuest.respondToQuestAcception());
 					player.setQuest(concreteQuest.getSlotName(), "");
+					player.addKarma(concreteQuest.getKarmaDiffForQuestResponse());
 				}
 			});
 	}
@@ -124,7 +126,8 @@ public class BringListOfItemsQuestLogic {
 	protected void rejectQuest() {
 		concreteQuest.getNPC().add(ConversationStates.QUEST_OFFERED, ConversationPhrases.NO_MESSAGES, null,
 			ConversationStates.IDLE,
-			concreteQuest.respondToQuestRefusal(), null);
+			concreteQuest.respondToQuestRefusal(), 
+			new DecreaseKarmaAction(concreteQuest.getKarmaDiffForQuestResponse()));
 	}
 
 	/**
