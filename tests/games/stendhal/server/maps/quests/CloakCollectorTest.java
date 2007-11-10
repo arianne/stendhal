@@ -34,7 +34,7 @@ public class CloakCollectorTest {
 
 	@After
 	public void tearDown() throws Exception {
-
+		NPCList.get().remove("Josephine");
 	}
 
 	@Test
@@ -46,6 +46,7 @@ public class CloakCollectorTest {
 	}
 
 	@Test
+
 	public final void rejectQuest() {
 		NPCList.get().add(new SpeakerNPC("Josephine"));
 		CloakCollector cc = new CloakCollector();
@@ -64,6 +65,7 @@ public class CloakCollectorTest {
 		assertEquals(cc.askForMissingItems(cc.getNeededItems()),npc.get("text"));
 		en.step(monica, ConversationPhrases.NO_MESSAGES.get(0));
 		assertEquals(cc.respondToQuestRefusal(),npc.get("text"));
+
 	}
 		@Test
 		public final void doQuest() {
