@@ -72,6 +72,7 @@ public class CloakCollectorTest {
 			NPCList.get().add(new SpeakerNPC("Josephine"));
 			CloakCollector cc = new CloakCollector();
 			cc.addToWorld();
+			cc.init("CloaksCollector");
 			SpeakerNPC npc = cc.getNPC();
 			Engine en = npc.getEngine();
 			Player monica = new Player(new RPObject());
