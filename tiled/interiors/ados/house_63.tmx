@@ -168,7 +168,7 @@
  <tileset name="entrance" firstgid="428" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/bricks_ew.png"/>
  </tileset>
- <layer name="0_floor" width="23" height="25">
+ <layer name="0_floor" width="23" height="25" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAANNiYGDQGmRYmwCmlbmUmE1Ldw+k2bSMy6Fq9mBNg8SYTY2wwYaVoRibnB6SPCWYlmaP4lE8isnD2PIkDBOjnwFKY1OPzWwDNLWGaJhYswFfw5Ny/AgAAA==
   </data>
@@ -198,9 +198,9 @@
    H4sIAAAAAAAAAGNgGAWjYOSAAwPtgFEwCkbBKBgg8GOQmTOQAAAj1lT6/AgAAA==
   </data>
  </layer>
- <layer name="collision" width="23" height="25" visible="0" opacity="0.44">
+ <layer name="collision" width="23" height="25" opacity="0.44">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAANVTWwrAMAjz/pfyavstQdtoXNkCpcVHGny4mfnPzwq0e2BHfxaDfgU7zUzeNPepfhHvbd1Mf7NYdl6qurs1YWdY5e/+X9Ezta9f5I7yT7Vk/2SAfPhe790uKFD0d/g7eSpvpd8Zd3U3Fd1srZiZnMAbu3v7PATLeZb8CAAA
+   H4sIAAAAAAAAAN2TWwpAIQhE3f+m2lr/g9o4WlyuIPTQ4yS5zGz9xC3Y47kX78Xgfcc8diVvmh3FZ/14rTvTl+n22OwbTjFqT5i/O8FX61f0TMzpl9mYf+olW48xfAOuo3oRQ7GOfoWv5HW52X9h2dXZ7Ohme8XMwYTdmN3XvgFg7xtW/AgAAA==
   </data>
  </layer>
  <layer name="protection" width="23" height="25">
