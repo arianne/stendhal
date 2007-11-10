@@ -23,4 +23,10 @@ public class IncreaseKarmaAction extends SpeakerNPC.ChatAction {
 	public void fire(Player player, String text, SpeakerNPC engine) {
 		player.addKarma(karmaDiff);
 	}
+
+	@Override
+	public String toString() {
+		return "IncreaseKarma<" + karmaDiff +">";
+	}
+
 }
