@@ -3,7 +3,6 @@ package games.stendhal.server.maps.quests.logic;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -223,48 +222,62 @@ public class BringListOfItemsQuestLogicTest {
 
 	@Test
 	public final void testAcceptQuest() {
-		fail("Not yet implemented");
+		MockBringListOfItemsQuest quest = new MockBringListOfItemsQuest() {
+		};
+		SpeakerNPC npc = new SpeakerNPC("npcAccept");
+		quest.setNpc(npc);
+		BringListOfItemsQuestLogic logic = new BringListOfItemsQuestLogic(quest);
+		logic.addToWorld();
+
+		// System.err.println(new DumpTransitions().getDump(npc));
+
+		Player player = new Player(new RPObject());
+		PlayerHelper.addEmptySlots(player);
+		Engine en = npc.getEngine();
+		en.step(player, "hi");
+		assertTrue(npc.isTalking());
+		assertEquals("first hi", quest.welcomeBeforeStartingQuest(),
+				npc.get("text"));
+		npc.put("text", "");
+
+		en.step(player, ConversationPhrases.QUEST_MESSAGES.get(0));
+		assertEquals("answer to quest",quest.respondToQuest(), npc.get("text"));
+
+		en.step(player, ConversationPhrases.YES_MESSAGES.get(0));
+		assertEquals("answer to quests accepted",
+				quest.respondToQuestAcception(), npc.get("text"));
 	}
 
 	@Test
 	public final void testRejectQuest() {
-		fail("Not yet implemented");
+		MockBringListOfItemsQuest quest = new MockBringListOfItemsQuest() {
+		};
+		SpeakerNPC npc = new SpeakerNPC("npcReject");
+		quest.setNpc(npc);
+		BringListOfItemsQuestLogic logic = new BringListOfItemsQuestLogic(quest);
+		logic.addToWorld();
+
+		// System.err.println(new DumpTransitions().getDump(npc));
+
+		Player player = new Player(new RPObject());
+		PlayerHelper.addEmptySlots(player);
+		Engine en = npc.getEngine();
+		en.step(player, "hi");
+		assertTrue(npc.isTalking());
+		assertEquals("first hi", quest.welcomeBeforeStartingQuest(),
+				npc.get("text"));
+		npc.put("text", "");
+
+		en.step(player, ConversationPhrases.QUEST_MESSAGES.get(0));
+		assertEquals("answer to quest",quest.respondToQuest(), npc.get("text"));
+
+		en.step(player, ConversationPhrases.NO_MESSAGES.get(0));
+		assertEquals("answer to quests accepted",
+				quest.respondToQuestRefusal(), npc.get("text"));
+
 	}
 
-	@Test
-	public final void testListMissingItems() {
-		fail("Not yet implemented");
-	}
 
-	@Test
-	public final void testPlayerDoesNotWantToGiveItems() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public final void testPlayerWantsToGiveItems() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public final void testOfferItem() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public final void testWelcomeKnownPlayer() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public final void testWelcomePlayerAfterQuest() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public final void testAddToWorld() {
-		fail("Not yet implemented");
-	}
 
 	class MockBringListOfItemsQuest implements BringListOfItemsQuest {
 
