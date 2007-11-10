@@ -56,14 +56,14 @@ public class CloakCollectorTest {
 		Player monica = new Player(new RPObject());
 		PlayerHelper.addEmptySlots(monica);
 
-		en.step(monica, ConversationPhrases.GREETING_MESSAGES.get(0));
+		en.stepTest(monica, ConversationPhrases.GREETING_MESSAGES.get(0));
 		assertEquals(cc.welcomeBeforeStartingQuest(),npc.get("text"));
-		en.step(monica, cc.getAdditionalTriggerPhraseForQuest().get(0));
+		en.stepTest(monica, cc.getAdditionalTriggerPhraseForQuest().get(0));
 		assertEquals(cc.respondToQuest(),npc.get("text"));
-		en.step(monica, cc.getTriggerPhraseToEnumerateMissingItems().get(0));
+		en.stepTest(monica, cc.getTriggerPhraseToEnumerateMissingItems().get(0));
 
 		assertEquals(cc.askForMissingItems(cc.getNeededItems()),npc.get("text"));
-		en.step(monica, ConversationPhrases.NO_MESSAGES.get(0));
+		en.stepTest(monica, ConversationPhrases.NO_MESSAGES.get(0));
 		assertEquals(cc.respondToQuestRefusal(),npc.get("text"));
 
 	}
@@ -77,16 +77,16 @@ public class CloakCollectorTest {
 			Player monica = new Player(new RPObject());
 			PlayerHelper.addEmptySlots(monica);
 
-			en.step(monica, ConversationPhrases.GREETING_MESSAGES.get(0));
+			en.stepTest(monica, ConversationPhrases.GREETING_MESSAGES.get(0));
 			assertEquals(cc.welcomeBeforeStartingQuest(),npc.get("text"));
-			en.step(monica, cc.getAdditionalTriggerPhraseForQuest().get(0));
+			en.stepTest(monica, cc.getAdditionalTriggerPhraseForQuest().get(0));
 			assertEquals(cc.respondToQuest(),npc.get("text"));
 
-			en.step(monica, "elf_cloak");
+			en.stepTest(monica, "elf_cloak");
 			assertEquals("You haven't seen one before? Well, it's a white_cloak. So, will you find them all?",npc.get("text"));
 
 
-			en.step(monica, ConversationPhrases.YES_MESSAGES.get(0));
+			en.stepTest(monica, ConversationPhrases.YES_MESSAGES.get(0));
 			assertEquals(cc.respondToQuestAcception(),npc.get("text"));
 			assertFalse(npc.isTalking());
 			npc.remove("text");
@@ -95,12 +95,12 @@ public class CloakCollectorTest {
 			assertFalse(cc.isCompleted(monica));
 
 
-			en.step(monica, ConversationPhrases.GREETING_MESSAGES.get(0));
+			en.stepTest(monica, ConversationPhrases.GREETING_MESSAGES.get(0));
 			assertEquals(cc.welcomeDuringActiveQuest(),npc.get("text"));
 			npc.remove("text");
-			en.step(monica, ConversationPhrases.YES_MESSAGES.get(0));
+			en.stepTest(monica, ConversationPhrases.YES_MESSAGES.get(0));
 			// I would expect : 	[11:19] <Josephine> Great! What cloaks did you bring?
-			en.step(monica,"elf_cloak");
+			en.stepTest(monica,"elf_cloak");
 			assertEquals(cc.respondToItemBrought(),npc.get("text"));
 
 
