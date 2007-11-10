@@ -10,7 +10,6 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.script.DumpTransitions;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -117,8 +116,6 @@ public class BringListOfItemsQuestLogicTest {
 
 	@Test
 	public final void testWelcomeNewPlayer() {
-		PlayerHelper.generateNPCRPClasses();
-		PlayerHelper.generatePlayerRPClasses();
 		NullValueMockBringListOfItemsQuest quest = new NullValueMockBringListOfItemsQuest();
 		SpeakerNPC npc = new SpeakerNPC("npc");
 		quest.setNpc(npc);
@@ -137,8 +134,6 @@ public class BringListOfItemsQuestLogicTest {
 
 	@Test
 	public final void doQuest() {
-		PlayerHelper.generateNPCRPClasses();
-		PlayerHelper.generatePlayerRPClasses();
 		MockBringListOfItemsQuest quest = new MockBringListOfItemsQuest() {
 		};
 		SpeakerNPC npc = new SpeakerNPC("npc");
@@ -147,7 +142,7 @@ public class BringListOfItemsQuestLogicTest {
 		logic.addToWorld();
 
 		// System.err.println(new DumpTransitions().getDump(npc));
-		
+
 		Player player = new Player(new RPObject());
 		PlayerHelper.addEmptySlots(player);
 		Engine en = npc.getEngine();
@@ -210,9 +205,9 @@ public class BringListOfItemsQuestLogicTest {
 		assertEquals("item brought", quest.respondToItemBrought(),
 				npc.get("text"));
 		en.step(player,"two");
-		assertEquals("item brought", quest.respondToLastItemBrought(),
+		assertEquals("last item brought", quest.respondToLastItemBrought(),
 				npc.get("text"));
-	
+
 
 	}
 
