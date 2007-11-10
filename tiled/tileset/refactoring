@@ -263,7 +263,7 @@ D/item/furniture/carpet/rug_border.png
 D/item/furniture/carpet/black_grey.png
 D/item/furniture/carpet/stripey.png
 b*/item/furniture/chair/stool.png
-./item/furniture/chair/throne.png
+m/item/furniture/chair/throne.png
 ./item/furniture/chair/throne_small.png
 b*/item/furniture/chair/wooden.png
 b*/item/furniture/chair/wooden_pale.png
@@ -281,7 +281,7 @@ b*/item/furniture/crockery/knife_spoon.png
 ./item/furniture/light/torch_top.png
 ./item/furniture/other/drawer.png
 b*/item/furniture/other/drawer_with_mirror.png
-./item/furniture/other/piano.png
+b/item/furniture/other/piano.png
 z*./item/furniture/other/stick.png
 b*/item/furniture/other/warmer.png
 ./item/furniture/other/green.png
@@ -315,10 +315,10 @@ k*/item/furniture/statue/green_stone_3.png
 b*/item/furniture/table/long_front_on.png
 b*/item/furniture/table/long_front_on_pale.png
 b*/item/furniture/table/long_side_on_pale.png
-./item/furniture/table/orb_table.png
+m/item/furniture/table/orb_table.png
 ./item/furniture/table/rectangular_with_meals.png
 b/item/furniture/table/square_pale.png
-./item/furniture/table/table_with_beer.png
+b/item/furniture/table/table_with_beer.png
 b*/item/furniture/table/table_with_beer_dark.png
 ./item/furniture/table/table_with_hob.png
 ./item/furniture/table/table_with_hob_pale.png
@@ -352,7 +352,7 @@ k*/object/church.png
 ./object/letters.png
 ./object/mine_rails.png
 ./object/stalactite.png
-./object/suspension_bridge.png
+m/object/suspension_bridge.png
 k*/object/well.png
 k*/object/witch_hut.png
 ./plant/cactus.png
