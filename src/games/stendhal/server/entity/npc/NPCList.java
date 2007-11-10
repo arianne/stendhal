@@ -5,11 +5,14 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
+import org.apache.log4j.Logger;
+
 /**
  * This Singleton should contain all NPCs in the Stendhal world that are
  * unique.
  */
 public class NPCList {
+	private static Logger logger = Logger.getLogger(NPCList.class);
 
 	/**
 	 * The Singleton instance.
@@ -69,6 +72,8 @@ public class NPCList {
 
 		if (!contents.containsKey(name)) {
 			contents.put(name, npc);
+		} else {
+			logger.error("Not adding " + npc + " to NPCList because there is already an NPC called " + npc.getName());
 		}
 	}
 
