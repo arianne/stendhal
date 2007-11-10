@@ -2,6 +2,7 @@ package games.stendhal.server.maps.quests;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.NPCList;
@@ -87,8 +88,9 @@ public class CloakCollectorTest {
 			assertEquals(cc.respondToQuestAcception(),npc.get("text"));
 			assertFalse(npc.isTalking());
 			npc.remove("text");
-//			assertTrue(cc.isStarted(monica)); //TODO: why does this fail ?
-//			assertFalse(cc.isCompleted(monica));
+
+			assertTrue("the quest was accepted, so it should be started",cc.isStarted(monica)); 
+			assertFalse(cc.isCompleted(monica));
 
 
 			en.step(monica, ConversationPhrases.GREETING_MESSAGES.get(0));
