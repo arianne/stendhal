@@ -10,7 +10,7 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
-
+import games.stendhal.server.script.DumpTransitions;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -24,8 +24,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-
-
 
 import utilities.PlayerHelper;
 
@@ -148,6 +146,8 @@ public class BringListOfItemsQuestLogicTest {
 		BringListOfItemsQuestLogic logic = new BringListOfItemsQuestLogic(quest);
 		logic.addToWorld();
 
+		// System.err.println(new DumpTransitions().getDump(npc));
+		
 		Player player = new Player(new RPObject());
 		PlayerHelper.addEmptySlots(player);
 		Engine en = npc.getEngine();
@@ -188,10 +188,12 @@ public class BringListOfItemsQuestLogicTest {
 		en.step(player,"one");
 		assertEquals("item brought", quest.respondToOfferOfNotMissingItem(),
 				npc.get("text"));
-       assertEquals(ConversationStates.QUESTION_1, en.getCurrentState());
+		npc.remove("text");
+		assertEquals(ConversationStates.QUESTION_1, en.getCurrentState());
 		en.step(player, quest.getTriggerPhraseToEnumerateMissingItems().get(0));
-		assertEquals("two and three are missing", hashList(
-				quest.getNeededItems()).toString(), npc.get("text"));
+		List<String> missing = new LinkedList<String>(quest.getNeededItems());
+		missing.remove("one");
+		assertEquals("two and three are missing", hashList(missing).toString(), npc.get("text"));
 		en.step(player,"two");
 		assertEquals("item brought",
 				quest.respondToOfferOfNotExistingItem("two"), npc.get("text"));

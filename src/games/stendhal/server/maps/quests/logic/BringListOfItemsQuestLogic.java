@@ -149,7 +149,18 @@ public class BringListOfItemsQuestLogic {
 	 * player asks what exactly is missing
 	 */
 	protected void listMissingItems() {
-		concreteQuest.getNPC().add(ConversationStates.ATTENDING,
+		// List missing items at the beginning of the conversation and during
+		// the "giving items" states. Unless the trigger phrase is simply
+		// yes. In this case it is ignored during the "giving items" state because
+		// there is already a yes-trigger defined elsewhere.
+		int[] states;
+		if (concreteQuest.getTriggerPhraseToEnumerateMissingItems() != ConversationPhrases.YES_MESSAGES) {
+			states = new int[] {ConversationStates.ATTENDING, ConversationStates.QUESTION_1};
+		} else {
+			states = new int[] {ConversationStates.ATTENDING};
+		}
+
+		concreteQuest.getNPC().add(states,
 			concreteQuest.getTriggerPhraseToEnumerateMissingItems(),
 			new SpeakerNPC.ChatCondition() {
 				@Override
