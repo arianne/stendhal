@@ -27,7 +27,12 @@ public class HouseBuying extends AbstractQuest {
 	private static final String QUEST_SLOT = "house";
 
 	private static final String PRINCESS_QUEST_SLOT = "imperial_princess";
-	private static final String ADOS_QUEST_SLOT = "XXX";
+	private static final String ANNA_QUEST_SLOT = "toys_collector";
+        private static final String KEYRING_QUEST_SLOT = "hungry_joshua";
+        private static final String GHOSTS_QUEST_SLOT = "find_ghosts";
+        private static final String DAILY_ITEM_QUEST_SLOT = "daily_item";
+        private static final String FISHROD_QUEST_SLOT = "get_fishing_rod";
+        private static final String ZARA_QUEST_SLOT = "suntan_cream_zara";
 	// Cost to buy house (lots!)
 	private static final int COST = 100000;
 	private static final int COST_ADOS = 120000;
@@ -307,10 +312,10 @@ public class HouseBuying extends AbstractQuest {
 							engine2.say("The cost of a new house in Ados is "
 									+ COST_ADOS
 									+ " money. But I am afraid I cannot trust you with house ownership just yet, as you have not been a part of this world long enough.");
-						} else if (!player.isQuestCompleted(ADOS_QUEST_SLOT)) {
+						} else if (!(player.hasQuest(DAILY_ITEM_QUEST_SLOT)&&player.getQuest(DAILY_ITEM_QUEST_SLOT).startsWith("done")&&player.isQuestCompleted(ANNA_QUEST_SLOT)&&player.isQuestCompleted(KEYRING_QUEST_SLOT)&&player.isQuestCompleted(FISHROD_QUEST_SLOT)&&player.isQuestCompleted(GHOSTS_QUEST_SLOT)&&player.isQuestCompleted(ZARA_QUEST_SLOT))) {
 							engine2.say("The cost of a new house in Ados is "
 									+ COST_ADOS
-									+ " money. But I am afraid I cannot sell you a house yet because you have to complete a mission first. This will be difficult as it is unwritten.");
+									+ " money. But I am afraid I cannot sell you a house yet as you must first prove yourself a worthy #citizen.");
 						} else if (!player.hasQuest(QUEST_SLOT)) {
 							engine2.say("The cost of a new house in Ados is "
 									+ COST_ADOS
@@ -430,13 +435,14 @@ public class HouseBuying extends AbstractQuest {
 						"No problem! If I can help you with anything else, just ask.",
 						null);
 				addJob("I'm an estate agent. In simple terms, I sell houses for the city of Ados. Please ask about the #cost if you are interested. Our brochure is at #http://arianne.sourceforge.net/wiki/index.php?title=StendhalHouses.");
-				addReply(
-						"buy",
+                                addReply("citizen",
+					 "I conduct an informal survey amongst the Ados residents. If you have helped everyone in Ados, I see no reason why they shouldn't recommend you. I speak with my friend Joshua, the Mayor, the little girl Anna, Pequod the fisherman, Zara, and I even commune with Carena, of the spirit world. Together they give a reliable opnion.");
+				addReply("buy",
 						"You may wish to know the #cost before you buy. Perhaps our brochure, #http://arianne.sourceforge.net/wiki/index.php?title=StendhalHouses would also be of interest.");
 				addReply("really",
 						"That's right, really, really, really. Really.");
 				addOffer("I sell Ados houses, please look at #http://arianne.sourceforge.net/wiki/index.php?title=StendhalHouses for examples of how they look inside. Then ask about the #cost when you are ready.");
-				addHelp("You may be eligible to buy a house if there are any available in Ados. If you can pay the #cost, I'll give you a key. As a house owner you can buy spare keys to give your friends. See #http://arianne.sourceforge.net/wiki/index.php?title=StendhalHouses for pictures inside the houses and more details.");
+				addHelp("You may be eligible to become a #citizen. Of course there must also be houses available in Ados. If you can pay the #cost, I'll give you a key. As a house owner you can buy spare keys to give your friends. See #http://arianne.sourceforge.net/wiki/index.php?title=StendhalHouses for pictures inside the houses and more details.");
 				addQuest("You may buy houses from me, please ask the #cost if you are interested. Perhaps you would first like to view our brochure, #http://arianne.sourceforge.net/wiki/index.php?title=StendhalHouses.");
 				addGoodbye("Goodbye.");
 			}
