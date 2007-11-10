@@ -85,7 +85,7 @@ public class Engine {
 		Transition existing = get(state, trigger, condition);
 		if (existing != null) {
 			// A previous state, trigger combination exist.
-			logger.warn("Adding to " + existing + " the state [" + state + "," + trigger + "," + nextState + "]");
+			logger.warn("Adding to " + existing + " the state [" + state + "," + trigger + "," + nextState + "," + condition + "]");
 			existing.setReply(existing.getReply() + " " + reply);
 		}
 
