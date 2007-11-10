@@ -89,7 +89,7 @@ public class CloakCollectorTest {
 			assertFalse(npc.isTalking());
 			npc.remove("text");
 
-			assertTrue("the quest was accepted, so it should be started",cc.isStarted(monica)); 
+			assertTrue("the quest was accepted, so it should be started",cc.isStarted(monica));
 			assertFalse(cc.isCompleted(monica));
 
 
@@ -97,6 +97,7 @@ public class CloakCollectorTest {
 			assertEquals(cc.welcomeDuringActiveQuest(),npc.get("text"));
 			npc.remove("text");
 			en.step(monica, ConversationPhrases.YES_MESSAGES.get(0));
+			// I would expect : 	[11:19] <Josephine> Great! What cloaks did you bring?
 			en.step(monica,"elf_cloak");
 			assertEquals(cc.respondToItemBrought(),npc.get("text"));
 
