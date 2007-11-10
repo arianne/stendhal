@@ -10,6 +10,9 @@ import games.stendhal.server.util.Area;
  * This is a collection of standard actions and conditions. Although most of
  * them are very simply in normal Java-code, they are annoying in Groovy because
  * anon classes are not supported.
+ * 
+ * Note: This class will be deprecated after release of 0.64. Please
+ * use the sub packages (action and condition) *after* the release.
  *
  * @author hendrik
  */
