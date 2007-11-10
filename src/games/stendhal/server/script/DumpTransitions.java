@@ -46,12 +46,22 @@ public class DumpTransitions extends ScriptImpl {
 		admin.sendPrivateText("Transition table of " + npcName + "\r\n" + dumpedTable.toString());
 	}
 
-	private StringBuilder dump(SpeakerNPC npc) {
+	/**
+	 * returns the transition diagram as string
+	 *
+	 * @param npc SpeakerNPC
+	 * @return transition diagram
+	 */
+	public String getDump(SpeakerNPC npc) {
+		dump(npc);
+		return dumpedTable.toString();
+	}
+	
+	private void dump(SpeakerNPC npc) {
 		dumpedTable = new StringBuilder();
 		dumpHeader();
 		dumpNPC(npc);
 		dumpFooter();
-		return null;
 	}
 
 	private void dumpHeader() {
@@ -63,15 +73,20 @@ public class DumpTransitions extends ScriptImpl {
 		List<Transition> transitions = npc.getTransitions();
 		for (Transition transition : transitions) {
 			dumpedTable.append(getStateName(transition.getState()) + " -> " + getStateName(transition.getNextState()));
-			String transitionName = transition.getTrigger();
-			if (transition.getCondition() != null) {
-				transitionName = "~ " + transitionName;
-			}
-			if (transition.getAction() != null) {
-				transitionName = transitionName + " *";
-			}
+			String transitionName = getExtendedTransitionName(transition);
 			dumpedTable.append(" [ label = \"" + transitionName + "\" ];\r\n");
 		}
+	}
+	
+	private static String getExtendedTransitionName(Transition transition) {
+		String transitionName = transition.getTrigger();
+		if (transition.getCondition() != null) {
+			transitionName = "~ " + transitionName;
+		}
+		if (transition.getAction() != null) {
+			transitionName = transitionName + " *";
+		}
+		return transitionName;
 	}
 
 	private static String getStateName(int number) {
