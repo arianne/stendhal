@@ -8,6 +8,9 @@ import static org.junit.Assert.fail;
 
 import org.junit.Test;
 
+import utilities.PlayerTestHelper;
+import utilities.SpeakerNPCTestHelper;
+
 public class AdminConditionTest {
 
     @Test
