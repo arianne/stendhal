@@ -6,8 +6,9 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.StandardInteraction;
 import games.stendhal.server.entity.npc.TeleporterBehaviour;
+import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
+import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.player.Player;
 
 /**
@@ -47,14 +48,14 @@ public class MeetSanta extends AbstractQuest {
 			protected void createDialog() {
 				add(ConversationStates.IDLE,
 						ConversationPhrases.GREETING_MESSAGES,
-						new StandardInteraction.QuestCompletedCondition(
-								QUEST_SLOT), ConversationStates.ATTENDING,
+						new QuestCompletedCondition(QUEST_SLOT),
+						ConversationStates.ATTENDING,
 						"Hi again.", null);
 
 				add(ConversationStates.IDLE,
 						ConversationPhrases.GREETING_MESSAGES,
-						new StandardInteraction.QuestNotCompletedCondition(
-								QUEST_SLOT), ConversationStates.ATTENDING,
+						new QuestNotCompletedCondition(QUEST_SLOT),
+						ConversationStates.ATTENDING,
 						null, new SpeakerNPC.ChatAction() {
 
 							@Override

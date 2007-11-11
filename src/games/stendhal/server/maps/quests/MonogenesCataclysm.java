@@ -3,7 +3,7 @@ package games.stendhal.server.maps.quests;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.StandardInteraction;
+import games.stendhal.server.entity.npc.condition.AllwaysTrueCondition;
 
 /**
  * QUEST: Monogenes and the Cataclysm
@@ -23,7 +23,7 @@ public class MonogenesCataclysm extends AbstractQuest {
 				.add(
 						ConversationStates.IDLE,
 						ConversationPhrases.GREETING_MESSAGES,
-						new StandardInteraction.AllwaysTrue(),
+						new AllwaysTrueCondition(),
 						ConversationStates.ATTENDING,
 						"Hi. *cough* *splutter* The smoke is getting into my lungs. The #fire is spreading.",
 						null);

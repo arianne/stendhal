@@ -3,7 +3,7 @@ package games.stendhal.server.maps.quests;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.StandardInteraction;
+import games.stendhal.server.entity.npc.condition.AllwaysTrueCondition;
 
 /**
  * QUEST: Hayunn Naratha and the Cataclysm
@@ -23,7 +23,7 @@ public class HayunnCataclysm extends AbstractQuest {
 				.add(
 						ConversationStates.IDLE,
 						ConversationPhrases.GREETING_MESSAGES,
-						new StandardInteraction.AllwaysTrue(),
+						new AllwaysTrueCondition(),
 						ConversationStates.ATTENDING,
 						"Greetings. I'm ashamed to address you while I look #unwell. It's not fitting for my post.",
 						null);

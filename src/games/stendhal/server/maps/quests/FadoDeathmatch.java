@@ -7,10 +7,9 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.StandardInteraction;
-
+import games.stendhal.server.entity.npc.condition.NotCondition;
+import games.stendhal.server.entity.npc.condition.PlayerInAreaCondition;
 import games.stendhal.server.maps.deathmatch.BailAction;
-
 import games.stendhal.server.maps.deathmatch.DeathmatchInfo;
 import games.stendhal.server.maps.deathmatch.DoneAction;
 import games.stendhal.server.maps.deathmatch.LeaveAction;
@@ -79,9 +78,7 @@ public class FadoDeathmatch extends AbstractQuest {
 				add(
 						ConversationStates.IDLE,
 						ConversationPhrases.GREETING_MESSAGES,
-						new StandardInteraction.Not(
-								new StandardInteraction.PlayerInAreaCondition(
-										arena)),
+						new NotCondition(new PlayerInAreaCondition(arena)),
 						ConversationStates.INFORMATION_1,
 						"Welcome to the Fado Battle Arena! Please talk to #Thonatun if you want to join",
 						null);
@@ -96,7 +93,7 @@ public class FadoDeathmatch extends AbstractQuest {
 				// player is inside
 				add(ConversationStates.IDLE,
 						ConversationPhrases.GREETING_MESSAGES,
-						new StandardInteraction.PlayerInAreaCondition(arena),
+						new PlayerInAreaCondition(arena),
 						ConversationStates.ATTENDING,
 						"Welcome to Fado Battle Arena! Do you need #help?",
 						null);
@@ -161,9 +158,7 @@ public class FadoDeathmatch extends AbstractQuest {
 				add(
 						ConversationStates.IDLE,
 						ConversationPhrases.GREETING_MESSAGES,
-						new StandardInteraction.Not(
-								new StandardInteraction.PlayerInAreaCondition(
-										arena)),
+						new NotCondition(new PlayerInAreaCondition(arena)),
 						ConversationStates.INFORMATION_1,
 						"Welcome to the Fado Battle Arena! Please talk to #Brutus if you want to join",
 						null);

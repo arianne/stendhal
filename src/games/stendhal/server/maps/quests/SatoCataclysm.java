@@ -3,7 +3,7 @@ package games.stendhal.server.maps.quests;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.StandardInteraction;
+import games.stendhal.server.entity.npc.condition.AllwaysTrueCondition;
 
 /**
  * QUEST: Sato in hard times
@@ -20,18 +20,15 @@ public class SatoCataclysm extends AbstractQuest {
 		SpeakerNPC npc = npcs.get("Sato");
 
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-				new StandardInteraction.AllwaysTrue(),
+				new AllwaysTrueCondition(),
 				ConversationStates.ATTENDING,
 				"Hi. We've fallen on hard #times.", null);
 
-		npc
-				.addReply(
-						"times",
-						"All I know is, my sheep are getting sick. Maybe #Carmen can sense what is happening here.");
-		npc
-				.addReply(
-						"Carmen",
-						"She's a summon healer, she can sense anything strange with her powers. Me, I'm just a simple sheep dealer.");
+		npc.addReply("times",
+				"All I know is, my sheep are getting sick. Maybe #Carmen can sense what is happening here.");
+		npc.addReply(
+				"Carmen",
+				"She's a summon healer, she can sense anything strange with her powers. Me, I'm just a simple sheep dealer.");
 
 	}
 

@@ -63,48 +63,6 @@ public class ScriptingNPC extends SpeakerNPC {
 		}
 	}
 
-	public static class NotQuestCondition extends SpeakerNPC.ChatCondition {
-
-		String quest;
-
-		public NotQuestCondition(String quest) {
-			this.quest = quest;
-		}
-
-		@Override
-		public boolean fire(Player player, String text, SpeakerNPC engine) {
-			return (!player.hasQuest(quest));
-		}
-	}
-
-	public static class NotQuestCompletedCondition extends SpeakerNPC.ChatCondition {
-
-		String quest;
-
-		public NotQuestCompletedCondition(String quest) {
-			this.quest = quest;
-		}
-
-		@Override
-		public boolean fire(Player player, String text, SpeakerNPC engine) {
-			return (!player.isQuestCompleted(quest));
-		}
-	}
-
-	public static class QuestCompletedCondition extends SpeakerNPC.ChatCondition {
-
-		String quest;
-
-		public QuestCompletedCondition(String quest) {
-			this.quest = quest;
-		}
-
-		@Override
-		public boolean fire(Player player, String text, SpeakerNPC engine) {
-			return (player.isQuestCompleted(quest));
-		}
-	}
-
 	@Override
 	protected void createPath() {
 		// do nothing

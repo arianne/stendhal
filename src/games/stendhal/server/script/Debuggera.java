@@ -5,7 +5,9 @@ import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.StandardInteraction;
+import games.stendhal.server.entity.npc.action.SetQuestAction;
+import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
+import games.stendhal.server.entity.npc.condition.QuestNotInStateCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
@@ -303,16 +305,16 @@ public class Debuggera extends ScriptImpl {
 		npc.add(ConversationStates.ATTENDING, Arrays.asList("susi"), null, ConversationStates.ATTENDING, "Yes, she is my twin sister. People consider her normal because she hides her special abilities.", null);
 
 		// change
-		npc.add(ConversationStates.ATTENDING, Arrays.asList("change", "change"), new StandardInteraction.QuestInStateCondition("debuggera", "friends"), ConversationStates.ATTENDING, "I can teleport you.", null);
-		npc.add(ConversationStates.ATTENDING, Arrays.asList("change", "change"), new StandardInteraction.QuestNotInStateCondition("debuggera", "friends"), ConversationStates.ATTENDING, "Do you want to become my #friend?", null);
+		npc.add(ConversationStates.ATTENDING, Arrays.asList("change", "change"), new QuestInStateCondition("debuggera", "friends"), ConversationStates.ATTENDING, "I can teleport you.", null);
+		npc.add(ConversationStates.ATTENDING, Arrays.asList("change", "change"), new QuestNotInStateCondition("debuggera", "friends"), ConversationStates.ATTENDING, "Do you want to become my #friend?", null);
 
 		// friends
-		npc.add(ConversationStates.ATTENDING, Arrays.asList("friend", "friends"), new StandardInteraction.QuestInStateCondition("debuggera", "friends"), ConversationStates.ATTENDING, "We are friends.", null);
-		npc.add(ConversationStates.ATTENDING, Arrays.asList("friend", "friends"), new StandardInteraction.QuestNotInStateCondition("debuggera", "friends"), ConversationStates.INFORMATION_1, "Please repeat:\r\n                        \"A circle is round,\"", null);
+		npc.add(ConversationStates.ATTENDING, Arrays.asList("friend", "friends"), new QuestInStateCondition("debuggera", "friends"), ConversationStates.ATTENDING, "We are friends.", null);
+		npc.add(ConversationStates.ATTENDING, Arrays.asList("friend", "friends"), new QuestNotInStateCondition("debuggera", "friends"), ConversationStates.INFORMATION_1, "Please repeat:\r\n                        \"A circle is round,\"", null);
 		npc.add(ConversationStates.INFORMATION_1, Arrays.asList("A circle is round,", "A circle is round"), null, ConversationStates.INFORMATION_2, "\"it has no end.\"", null);
 		npc.add(ConversationStates.INFORMATION_2, Arrays.asList("it has no end.", "it has no end"), null, ConversationStates.INFORMATION_3, "\"That's how long,\"", null);
 		npc.add(ConversationStates.INFORMATION_3, Arrays.asList("That's how long,", "That's how long", "Thats how long,", "Thats how long"), null, ConversationStates.INFORMATION_4, "\"I will be your friend.\"", null);
-		npc.add(ConversationStates.INFORMATION_4, Arrays.asList("I will be your friend.", "I will be your friend"), null, ConversationStates.ATTENDING, "Cool. We are friends now.", new StandardInteraction.SetQuestAction("debuggera", "friends"));
+		npc.add(ConversationStates.INFORMATION_4, Arrays.asList("I will be your friend.", "I will be your friend"), null, ConversationStates.ATTENDING, "Cool. We are friends now.", new SetQuestAction("debuggera", "friends"));
 
 		// quests
 		npc.add(ConversationStates.ATTENDING, "quest", new AdminCondition(), ConversationStates.ATTENDING, null, new QuestsAction(sandbox));

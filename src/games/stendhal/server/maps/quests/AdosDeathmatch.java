@@ -7,8 +7,8 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.StandardInteraction;
-
+import games.stendhal.server.entity.npc.condition.NotCondition;
+import games.stendhal.server.entity.npc.condition.PlayerInAreaCondition;
 import games.stendhal.server.maps.deathmatch.BailAction;
 import games.stendhal.server.maps.deathmatch.DeathmatchInfo;
 import games.stendhal.server.maps.deathmatch.DoneAction;
@@ -77,9 +77,7 @@ public class AdosDeathmatch extends AbstractQuest {
 				add(
 						ConversationStates.IDLE,
 						ConversationPhrases.GREETING_MESSAGES,
-						new StandardInteraction.Not(
-								new StandardInteraction.PlayerInAreaCondition(
-										arena)),
+						new NotCondition(new PlayerInAreaCondition(arena)),
 						ConversationStates.INFORMATION_1,
 						"Welcome to Ados Deathmatch! Please talk to #Thonatus if you want to join",
 						null);
@@ -94,7 +92,7 @@ public class AdosDeathmatch extends AbstractQuest {
 				// player is inside
 				add(ConversationStates.IDLE,
 						ConversationPhrases.GREETING_MESSAGES,
-						new StandardInteraction.PlayerInAreaCondition(arena),
+						new PlayerInAreaCondition(arena),
 						ConversationStates.ATTENDING,
 						"Welcome to Ados Deathmatch! Do you need #help?", null);
 				addJob("I'm the deathmatch assistant. Tell me, if you need #help on that.");

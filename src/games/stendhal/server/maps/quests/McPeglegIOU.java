@@ -5,7 +5,8 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.StandardInteraction;
+import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
+import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Arrays;
@@ -46,7 +47,7 @@ public class McPeglegIOU extends AbstractQuest {
 
 		npc.add(ConversationStates.ATTENDING, Arrays.asList("iou", "henry",
 				"charles", "note"),
-				new StandardInteraction.QuestNotCompletedCondition(QUEST_SLOT),
+				new QuestNotCompletedCondition(QUEST_SLOT),
 				ConversationStates.ATTENDING, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
@@ -79,7 +80,7 @@ public class McPeglegIOU extends AbstractQuest {
 
 		npc.add(ConversationStates.ATTENDING, Arrays.asList("iou", "henry",
 				"charles", "note"),
-				new StandardInteraction.QuestCompletedCondition(QUEST_SLOT),
+				new QuestCompletedCondition(QUEST_SLOT),
 				ConversationStates.ATTENDING,
 				"You already got cash for that damned IOU!", null);
 	}

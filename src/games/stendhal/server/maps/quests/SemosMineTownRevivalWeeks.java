@@ -7,7 +7,9 @@ import games.stendhal.server.entity.Sign;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.StandardInteraction;
+import games.stendhal.server.entity.npc.action.SetQuestAction;
+import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
+import games.stendhal.server.entity.npc.condition.QuestNotInStateCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Node;
@@ -104,13 +106,13 @@ public class SemosMineTownRevivalWeeks extends AbstractQuest {
 				// friends
 				add(ConversationStates.ATTENDING, Arrays.asList("friend",
 						"friends"),
-						new StandardInteraction.QuestInStateCondition("susi",
+						new QuestInStateCondition("susi",
 								"friends"), ConversationStates.ATTENDING,
 						"We are friends.", null);
 				add(
 						ConversationStates.ATTENDING,
 						Arrays.asList("friend", "friends"),
-						new StandardInteraction.QuestNotInStateCondition(
+						new QuestNotInStateCondition(
 								"susi", "friends"),
 						ConversationStates.INFORMATION_1,
 						"Please repeat:\r\n                        \"A circle is round,\"",
@@ -132,22 +134,19 @@ public class SemosMineTownRevivalWeeks extends AbstractQuest {
 						"I will be your friend.", "I will be your friend"),
 						null, ConversationStates.ATTENDING,
 						"Cool. We are friends now.",
-						new StandardInteraction.SetQuestAction("susi",
-								"friends"));
+						new SetQuestAction("susi", "friends"));
 
 				// help
 				add(
 						ConversationStates.ATTENDING,
 						ConversationPhrases.HELP_MESSAGES,
-						new StandardInteraction.QuestInStateCondition("susi",
-								"friends"),
+						new QuestInStateCondition("susi", "friends"),
 						ConversationStates.ATTENDING,
 						"I have made a lot of friends during the #Semos #Mine #Town #Revival #Weeks.",
 						null);
 				add(ConversationStates.ATTENDING,
 						ConversationPhrases.HELP_MESSAGES,
-						new StandardInteraction.QuestNotInStateCondition(
-								"susi", "friends"),
+						new QuestNotInStateCondition("susi", "friends"),
 						ConversationStates.ATTENDING, "I need a #friend.", null);
 			}
 		};

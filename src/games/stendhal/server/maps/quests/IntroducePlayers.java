@@ -5,7 +5,8 @@ import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.StandardInteraction;
+import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
+import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.ArrayList;
@@ -74,7 +75,7 @@ public class IntroducePlayers extends AbstractQuest {
 		SpeakerNPC npc = npcs.get("Tad");
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
-				new StandardInteraction.QuestCompletedCondition(QUEST_SLOT),
+				new QuestCompletedCondition(QUEST_SLOT),
 				ConversationStates.ATTENDING, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
@@ -86,14 +87,13 @@ public class IntroducePlayers extends AbstractQuest {
 
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
-				new StandardInteraction.QuestNotCompletedCondition(QUEST_SLOT),
+				new QuestNotCompletedCondition(QUEST_SLOT),
 				ConversationStates.QUEST_OFFERED, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, String text,
 							SpeakerNPC engine) {
-						engine
-								.say("I'm not feeling well... I need to get a bottle of medicine made. Can you fetch me an empty #flask?");
+						engine.say("I'm not feeling well... I need to get a bottle of medicine made. Can you fetch me an empty #flask?");
 					}
 				});
 
