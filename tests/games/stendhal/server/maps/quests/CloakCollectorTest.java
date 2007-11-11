@@ -4,6 +4,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
+import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -11,6 +13,7 @@ import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.Log4J;
 import marauroa.common.game.RPObject;
+import marauroa.common.game.RPObject.ID;
 
 import org.junit.After;
 import org.junit.Before;
@@ -101,6 +104,12 @@ public class CloakCollectorTest {
 			npc.remove("text");
 			en.stepTest(monica, ConversationPhrases.YES_MESSAGES.get(0));
 			// I would expect : 	[11:19] <Josephine> Great! What cloaks did you bring?
+			en.stepTest(monica,"elf_cloak");
+			assertEquals(cc.respondToOfferOfNotExistingItem("elf_cloak"),npc.get("text"));
+
+			Item beer = new Item("elf_cloak", "", "", null);
+			beer.setID(new ID(2, "testzone"));
+			monica.getSlot("bag").add(beer);
 			en.stepTest(monica,"elf_cloak");
 			assertEquals(cc.respondToItemBrought(),npc.get("text"));
 
