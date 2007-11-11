@@ -38,18 +38,18 @@ public class AllwaysTrueConditionTest {
 		assertFalse(new AllwaysTrueCondition().equals(new AllwaysTrueCondition() {
 		}));
 	}
-
+	@Test
 	public void testFire() throws Throwable {
 		assertTrue(new AllwaysTrueCondition().fire(
 				PlayerTestHelper.createPlayer(),
 				"testAllwaysTrueConditionText",
 				SpeakerNPCTestHelper.createSpeakerNPC()));
 	}
-
+	@Test
 	public void testHashCode() throws Throwable {
 		assertEquals(1, new AllwaysTrueCondition().hashCode());
 	}
-
+	@Test
 	public void testToString() throws Throwable {
 		assertEquals("true", new AllwaysTrueCondition().toString());
 	}
