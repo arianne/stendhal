@@ -24,4 +24,10 @@ public class NotCondition extends SpeakerNPC.ChatCondition {
 		return !condition.fire(player, text, engine);
 	}
 
+
+	@Override
+	public String toString() {
+		return "not<" + condition + ">";
+	}
+
 }

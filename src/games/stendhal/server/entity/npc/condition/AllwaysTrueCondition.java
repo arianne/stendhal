@@ -14,4 +14,8 @@ public class AllwaysTrueCondition extends SpeakerNPC.ChatCondition {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return "true";
+	}
 }
