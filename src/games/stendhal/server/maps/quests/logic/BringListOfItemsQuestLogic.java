@@ -4,7 +4,10 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.DecreaseKarmaAction;
-import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
+import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
+import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
+import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
+import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Arrays;
@@ -62,12 +65,7 @@ public class BringListOfItemsQuestLogic {
 		concreteQuest.getNPC().add(
 			ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
-			new SpeakerNPC.ChatCondition() {
-				@Override
-				public boolean fire(Player player, String text, SpeakerNPC engine) {
-					return !player.hasQuest(concreteQuest.getSlotName());
-				}
-			},
+			new QuestNotStartedCondition(concreteQuest.getSlotName()),
 			ConversationStates.ATTENDING,
 			concreteQuest.welcomeBeforeStartingQuest(),
 			null);
@@ -84,24 +82,9 @@ public class BringListOfItemsQuestLogic {
 		}
 		concreteQuest.getNPC().add(ConversationStates.ATTENDING,
 			questTrigger,
-			new SpeakerNPC.ChatCondition() {
-				@Override
-				public boolean fire(Player player, String text,	SpeakerNPC engine) {
-					return !player.hasQuest(concreteQuest.getSlotName());
-				}
-			}, ConversationStates.QUEST_OFFERED, null,
-			new SpeakerNPC.ChatAction() {
-				@Override
-				public void fire(Player player, String text,
-						SpeakerNPC engine) {
-					if (!player.isQuestCompleted(concreteQuest.getSlotName())) {
-						engine.say(concreteQuest.respondToQuest());
-					} else {
-						engine.say(concreteQuest.respondToQuestAfterItHasAlreadyBeenCompleted());
-						engine.setCurrentState(ConversationStates.ATTENDING);
-					}
-				}
-			});
+			new QuestNotStartedCondition(concreteQuest.getSlotName()),
+			ConversationStates.QUEST_OFFERED, 
+			concreteQuest.respondToQuest(),	null);
 	}
 
 	/**
@@ -110,15 +93,8 @@ public class BringListOfItemsQuestLogic {
 	protected void acceptQuest() {
 		concreteQuest.getNPC().add(ConversationStates.QUEST_OFFERED,
 			ConversationPhrases.YES_MESSAGES, null,
-			ConversationStates.IDLE, null,
-			new SpeakerNPC.ChatAction() {
-				@Override
-				public void fire(Player player, String text, SpeakerNPC engine) {
-					engine.say(concreteQuest.respondToQuestAcception());
-					player.setQuest(concreteQuest.getSlotName(), "");
-					player.addKarma(concreteQuest.getKarmaDiffForQuestResponse());
-				}
-			});
+			ConversationStates.IDLE, concreteQuest.respondToQuestAcception(),
+			new SetQuestAndModifyKarmaAction(concreteQuest.getSlotName(), "", concreteQuest.getKarmaDiffForQuestResponse()));
 	}
 
 	/**
@@ -166,13 +142,8 @@ public class BringListOfItemsQuestLogic {
 
 		concreteQuest.getNPC().add(states,
 			concreteQuest.getTriggerPhraseToEnumerateMissingItems(),
-			new SpeakerNPC.ChatCondition() {
-				@Override
-				public boolean fire(Player player, String text, SpeakerNPC engine) {
-					return player.hasQuest(concreteQuest.getSlotName())
-							&& !player.isQuestCompleted(concreteQuest.getSlotName());
-				}
-			}, ConversationStates.QUESTION_1, null,
+			new QuestActiveCondition(concreteQuest.getSlotName()),
+			ConversationStates.QUESTION_1, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
 				public void fire(Player player, String text, SpeakerNPC engine) {
@@ -203,13 +174,7 @@ public class BringListOfItemsQuestLogic {
 		int[] states = new int[] {ConversationStates.ATTENDING, ConversationStates.QUESTION_1};
 		concreteQuest.getNPC().add(states,
 			ConversationPhrases.YES_MESSAGES, 
-			new SpeakerNPC.ChatCondition() {
-				@Override
-				public boolean fire(Player player, String text, SpeakerNPC engine) {
-					return player.hasQuest(concreteQuest.getSlotName())
-							&& !player.isQuestCompleted(concreteQuest.getSlotName());
-				}
-			},
+			new QuestActiveCondition(concreteQuest.getSlotName()),
 			ConversationStates.QUESTION_1, concreteQuest.askForItemsAfterPlayerSaidHeHasItems(),
 			null);
 	}
@@ -264,14 +229,7 @@ public class BringListOfItemsQuestLogic {
 		concreteQuest.getNPC().add(
 			ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
-			new SpeakerNPC.ChatCondition() {
-				@Override
-				public boolean fire(Player player, String text,
-						SpeakerNPC engine) {
-					return player.hasQuest(concreteQuest.getSlotName())
-							&& !player.isQuestCompleted(concreteQuest.getSlotName());
-				}
-			},
+			new QuestActiveCondition(concreteQuest.getSlotName()),
 			ConversationStates.ATTENDING,
 			concreteQuest.welcomeDuringActiveQuest(),
 			null);
@@ -284,12 +242,7 @@ public class BringListOfItemsQuestLogic {
 		if (concreteQuest.shouldWelcomeAfterQuestIsCompleted()) {
 			concreteQuest.getNPC().add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
-				new SpeakerNPC.ChatCondition() {
-					@Override
-					public boolean fire(Player player, String text, SpeakerNPC engine) {
-						return player.isQuestCompleted(concreteQuest.getSlotName());
-					}
-				},
+				new QuestCompletedCondition(concreteQuest.getSlotName()),
 				ConversationStates.ATTENDING,
 				concreteQuest.welcomeAfterQuestIsCompleted(),
 				null);
