@@ -40,20 +40,17 @@ public class AllwaysTrueConditionTest {
 	}
 
 	public void testFire() throws Throwable {
-		boolean result = new AllwaysTrueCondition().fire(
+		assertTrue(new AllwaysTrueCondition().fire(
 				PlayerTestHelper.createPlayer(),
 				"testAllwaysTrueConditionText",
-				SpeakerNPCTestHelper.createSpeakerNPC());
-		assertTrue("result", result);
+				SpeakerNPCTestHelper.createSpeakerNPC()));
 	}
 
 	public void testHashCode() throws Throwable {
-		int result = new AllwaysTrueCondition().hashCode();
-		assertEquals("result", 1, result);
+		assertEquals(1, new AllwaysTrueCondition().hashCode());
 	}
 
 	public void testToString() throws Throwable {
-		String result = new AllwaysTrueCondition().toString();
-		assertEquals("result", "true", result);
+		assertEquals("true", new AllwaysTrueCondition().toString());
 	}
 }
