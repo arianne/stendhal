@@ -23,4 +23,10 @@ public class QuestStartedCondition extends SpeakerNPC.ChatCondition {
 	public boolean fire(Player player, String text, SpeakerNPC engine) {
 		return (player.hasQuest(questname));
 	}
+
+
+	@Override
+	public String toString() {
+		return "QuestStarted<" + questname + ">";
+	}
 }

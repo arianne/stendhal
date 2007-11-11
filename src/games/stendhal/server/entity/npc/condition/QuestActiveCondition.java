@@ -24,4 +24,10 @@ public class QuestActiveCondition extends SpeakerNPC.ChatCondition {
 		return (player.hasQuest(questname) 
 						&& !player.isQuestCompleted(questname));
 	}
+
+
+	@Override
+	public String toString() {
+		return "QuestActive<" + questname + ">";
+	}
 }

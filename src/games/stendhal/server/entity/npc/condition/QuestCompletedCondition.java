@@ -10,6 +10,11 @@ public class QuestCompletedCondition extends SpeakerNPC.ChatCondition {
 
 	private String questname;
 
+	/**
+	 * Creates a new QuestCompletedCondition
+	 *
+	 * @param questname name of quest-slot
+	 */
 	public QuestCompletedCondition(String questname) {
 		this.questname = questname;
 	}
@@ -17,5 +22,11 @@ public class QuestCompletedCondition extends SpeakerNPC.ChatCondition {
 	@Override
 	public boolean fire(Player player, String text, SpeakerNPC engine) {
 		return (player.isQuestCompleted(questname));
+	}
+
+
+	@Override
+	public String toString() {
+		return "QuestCompleted<" + questname + ">";
 	}
 }

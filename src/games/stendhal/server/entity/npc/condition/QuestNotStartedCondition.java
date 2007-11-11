@@ -10,6 +10,11 @@ public class QuestNotStartedCondition extends SpeakerNPC.ChatCondition {
 
 	private String questname;
 
+	/**
+	 * Creates a new QuestNotStartedCondtion
+	 *
+	 * @param questname name of quest slot
+	 */
 	public QuestNotStartedCondition(String questname) {
 		this.questname = questname;
 	}
@@ -17,6 +22,11 @@ public class QuestNotStartedCondition extends SpeakerNPC.ChatCondition {
 	@Override
 	public boolean fire(Player player, String text, SpeakerNPC engine) {
 		return (!player.hasQuest(questname));
+	}
+
+	@Override
+	public String toString() {
+		return "QuestNotStarted<" + questname + ">";
 	}
 }
 

@@ -9,9 +9,14 @@ import games.stendhal.server.entity.player.Player;
 public class QuestInStateCondition extends SpeakerNPC.ChatCondition {
 
 	private String questname;
-
 	private String state;
 
+	/**
+	 * Creates a new QuestInStateCondition
+	 *
+	 * @param questname name of quest-slot
+	 * @param state state
+	 */
 	public QuestInStateCondition(String questname, String state) {
 		this.questname = questname;
 		this.state = state;
@@ -20,5 +25,11 @@ public class QuestInStateCondition extends SpeakerNPC.ChatCondition {
 	@Override
 	public boolean fire(Player player, String text, SpeakerNPC engine) {
 		return (player.hasQuest(questname) && player.getQuest(questname).equals(state));
+	}
+
+
+	@Override
+	public String toString() {
+		return "QuestInState<" + questname + "," + state + ">";
 	}
 }
