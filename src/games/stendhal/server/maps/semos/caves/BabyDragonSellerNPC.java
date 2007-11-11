@@ -1,4 +1,4 @@
-whopackage games.stendhal.server.maps.semos.caves;
+package games.stendhal.server.maps.semos.caves;
 
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
