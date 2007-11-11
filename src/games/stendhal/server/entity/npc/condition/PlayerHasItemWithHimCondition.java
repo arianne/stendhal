@@ -6,7 +6,7 @@ import games.stendhal.server.entity.player.Player;
 /**
  * Does the player carry the specified item?
  */
-public class PlayerHasItemWithHim extends SpeakerNPC.ChatCondition {
+public class PlayerHasItemWithHimCondition extends SpeakerNPC.ChatCondition {
 
 	private String itemName;
 	private int amount;
@@ -16,7 +16,7 @@ public class PlayerHasItemWithHim extends SpeakerNPC.ChatCondition {
 	 *
 	 * @param itemName name of item
 	 */
-	public PlayerHasItemWithHim(String itemName) {
+	public PlayerHasItemWithHimCondition(String itemName) {
 		this.itemName = itemName;
 		this.amount = 1;
 	}
@@ -27,7 +27,7 @@ public class PlayerHasItemWithHim extends SpeakerNPC.ChatCondition {
 	 * @param itemName name of item
 	 * @param amount for StackableItems
 	 */
-	public PlayerHasItemWithHim(String itemName, int amount) {
+	public PlayerHasItemWithHimCondition(String itemName, int amount) {
 		this.itemName = itemName;
 		this.amount = amount;
 	}
@@ -57,7 +57,7 @@ public class PlayerHasItemWithHim extends SpeakerNPC.ChatCondition {
 		if (this == obj) return true;
 		if (obj == null) return false;
 		if (getClass() != obj.getClass()) return false;
-		final PlayerHasItemWithHim other = (PlayerHasItemWithHim) obj;
+		final PlayerHasItemWithHimCondition other = (PlayerHasItemWithHimCondition) obj;
 		if (amount != other.amount) return false;
 		if (itemName == null) {
 			if (other.itemName != null) return false;
