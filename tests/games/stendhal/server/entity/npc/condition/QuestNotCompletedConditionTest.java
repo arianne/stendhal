@@ -1,0 +1,82 @@
+package games.stendhal.server.entity.npc.condition;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import games.stendhal.server.entity.player.Player;
+import marauroa.common.Log4J;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+import utilities.PlayerTestHelper;
+import utilities.SpeakerNPCTestHelper;
+
+public class QuestNotCompletedConditionTest {
+	@BeforeClass
+	public static void setUpClass() throws Exception {
+		Log4J.init();
+	}
+
+	@Before
+	public void setUp() throws Exception {
+	}
+
+	@After
+	public void tearDown() throws Exception {
+	}
+
+	@Test
+	public final void testFire() {
+		assertTrue(new QuestNotCompletedCondition("questname").fire(
+				PlayerTestHelper.createPlayer(), "testQuestNotCompletedCondition",
+				SpeakerNPCTestHelper.createSpeakerNPC()));
+		Player bob = PlayerTestHelper.createPlayer();
+
+		bob.setQuest("questname", "");
+		assertTrue(new QuestNotCompletedCondition("questname").fire(bob,
+				"testQuestNotCompletedCondition",
+				SpeakerNPCTestHelper.createSpeakerNPC()));
+
+		bob.setQuest("questname", null);
+		assertTrue(new QuestNotCompletedCondition("questname").fire(bob,
+				"testQuestNotCompletedCondition",
+				SpeakerNPCTestHelper.createSpeakerNPC()));
+
+		bob.setQuest("questname", "done");
+		assertFalse(new QuestNotCompletedCondition("questname").fire(bob,
+				"testQuestNotCompletedCondition",
+				SpeakerNPCTestHelper.createSpeakerNPC()));
+
+	}
+
+	@Test
+	public final void testQuestNotCompletedCondition() {
+		new QuestNotCompletedCondition("questname");
+	}
+
+	@Test
+	public final void testToString() {
+		assertEquals("QuestNotCompleted <questname>",
+				new QuestNotCompletedCondition("questname").toString());
+	}
+
+	@Test
+	public void testEquals() throws Throwable {
+		assertFalse(new QuestNotCompletedCondition("questname").equals(null));
+
+		QuestNotCompletedCondition obj = new QuestNotCompletedCondition("questname");
+		assertTrue(obj.equals(obj));
+
+		assertFalse(new QuestNotCompletedCondition("questname").equals(new Object()));
+
+		assertTrue(new QuestNotCompletedCondition("questname").equals(new QuestNotCompletedCondition(
+				"questname")));
+		assertFalse(new QuestNotCompletedCondition("questname").equals(new QuestNotCompletedCondition(
+				"questname") {
+		}));
+	}
+
+}
