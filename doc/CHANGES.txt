@@ -7,6 +7,7 @@ Changelog
 - kalavan city gardens
 - quest from annie in kalavan city gardens (buy icecream)
 - NPCs in kalavan city gardens
+- quest from Morgrin in wizard school in magic city (kill spiders)
 
 0.63
 - Codebase ported to Marauroa 2.0
