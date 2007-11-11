@@ -6,6 +6,7 @@ import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.quests.logic.BringListOfItemsQuest;
 import games.stendhal.server.maps.quests.logic.BringListOfItemsQuestLogic;
@@ -65,15 +66,9 @@ public class ToysCollector extends AbstractQuest implements
 		getNPC().add(
 				ConversationStates.ATTENDING,
 				"no",
-				new SpeakerNPC.ChatCondition() {
-					@Override
-					public boolean fire(Player player, String text,
-							SpeakerNPC engine) {
-						return !player.isQuestCompleted("toys_collector");
-					}
-				},
-				ConversationStates.ATTENDING,
-				"Then you should go away before I get in trouble for talking to you.",
+				new QuestNotCompletedCondition(QUEST_SLOT),
+				ConversationStates.IDLE,
+				"Then you should go away before I get in trouble for talking to you. Bye.",
 				null);
 	}
 
