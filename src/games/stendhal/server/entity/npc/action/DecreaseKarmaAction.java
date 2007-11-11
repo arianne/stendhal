@@ -28,4 +28,24 @@ public class DecreaseKarmaAction extends SpeakerNPC.ChatAction {
 	public String toString() {
 		return "DecreaseKarma<" + karmaDiff +">";
 	}
+
+	@Override
+	public int hashCode() {
+		final int PRIME = 31;
+		int result = 1;
+		long temp;
+		temp = Double.doubleToLongBits(karmaDiff);
+		result = PRIME * result + (int) (temp ^ (temp >>> 32));
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) return true;
+		if (obj == null) return false;
+		if (getClass() != obj.getClass()) return false;
+		final DecreaseKarmaAction other = (DecreaseKarmaAction) obj;
+		if (Double.doubleToLongBits(karmaDiff) != Double.doubleToLongBits(other.karmaDiff)) return false;
+		return true;
+	}
 }

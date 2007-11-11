@@ -24,10 +24,29 @@ public class NotCondition extends SpeakerNPC.ChatCondition {
 		return !condition.fire(player, text, engine);
 	}
 
-
 	@Override
 	public String toString() {
-		return "not<" + condition + ">";
+		return "not <" + condition + ">";
+	}
+
+	@Override
+	public int hashCode() {
+		final int PRIME = 31;
+		int result = 1;
+		result = PRIME * result + ((condition == null) ? 0 : condition.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) return true;
+		if (obj == null) return false;
+		if (getClass() != obj.getClass()) return false;
+		final NotCondition other = (NotCondition) obj;
+		if (condition == null) {
+			if (other.condition != null) return false;
+		} else if (!condition.equals(other.condition)) return false;
+		return true;
 	}
 
 }

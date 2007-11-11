@@ -27,6 +27,27 @@ public class PlayerInAreaCondition extends SpeakerNPC.ChatCondition {
 
 	@Override
 	public String toString() {
-		return "player in<" + area + ">";
+		return "player in <" + area + ">";
 	}
+
+	@Override
+	public int hashCode() {
+		final int PRIME = 31;
+		int result = 1;
+		result = PRIME * result + ((area == null) ? 0 : area.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) return true;
+		if (obj == null) return false;
+		if (getClass() != obj.getClass()) return false;
+		final PlayerInAreaCondition other = (PlayerInAreaCondition) obj;
+		if (area == null) {
+			if (other.area != null) return false;
+		} else if (!area.equals(other.area)) return false;
+		return true;
+	}
+
 }

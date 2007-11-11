@@ -34,4 +34,24 @@ public class MultipleActions extends SpeakerNPC.ChatAction {
 		return actions.toString();
 	}
 
+	@Override
+	public int hashCode() {
+		final int PRIME = 31;
+		int result = 1;
+		result = PRIME * result + ((actions == null) ? 0 : actions.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) return true;
+		if (obj == null) return false;
+		if (getClass() != obj.getClass()) return false;
+		final MultipleActions other = (MultipleActions) obj;
+		if (actions == null) {
+			if (other.actions != null) return false;
+		} else if (!actions.equals(other.actions)) return false;
+		return true;
+	}
+
 }
