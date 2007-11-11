@@ -40,7 +40,8 @@ public class AccountCreationRules {
 		validators.add(new NotEmptyValidator(password));
 		validators.add(new MinLengthValidator(password, 4));
 		validators.add(new MaxLengthValidator(password, 100));
-		validators.add(new PasswordDiffersFromUsernameValidator(username, password));
+		// This is only a warning in the client:
+		// validators.add(new PasswordDiffersFromUsernameValidator(username, password));
 	}
 
 	private void setupValidatorsForEMail() {
