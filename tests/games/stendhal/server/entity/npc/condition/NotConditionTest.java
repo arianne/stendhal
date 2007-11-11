@@ -43,11 +43,11 @@ public class NotConditionTest {
 
 	@Test
 	public void selftest() throws Exception {
-		assertTrue("empty And is true", trueCondition.fire(
-				PlayerTestHelper.createPlayer(), "testAndConditionText",
+		assertTrue("true", trueCondition.fire(
+				PlayerTestHelper.createPlayer(), "testNotConditionText",
 				SpeakerNPCTestHelper.createSpeakerNPC()));
-		assertFalse("empty And is true", falsecondition.fire(
-				PlayerTestHelper.createPlayer(), "testAndConditionText",
+		assertFalse("false", falsecondition.fire(
+				PlayerTestHelper.createPlayer(), "testNotConditionText",
 				SpeakerNPCTestHelper.createSpeakerNPC()));
 
 
