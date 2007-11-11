@@ -16,7 +16,7 @@
 ./building/decoration/arrows.png
 k*/building/decoration/banner.png
 k*/building/decoration/banner_long.png
-./building/decoration/blobcreature.png
+./building/decoration/blobcreature.png   not found
 k*/building/decoration/block.png
 ./building/decoration/blue_circle.png
 ./building/decoration/blue_green.png
@@ -24,7 +24,7 @@ k*/building/decoration/block.png
 k*/building/decoration/chimney.png
 k*/building/decoration/chimney_big.png
 ./building/decoration/dark_red.png
-./building/decoration/eaglehead.png
+./building/decoration/eaglehead.png     not found
 k*/building/decoration/fairypool.png
 k*/building/decoration/fancy_gate.png
 ./building/decoration/fireplace.png
@@ -41,15 +41,15 @@ k*/building/decoration/orbpedestal.png
 ./building/decoration/pool.png
 ./building/decoration/rocks.png
 ./building/decoration/rocks_2.png
-./building/decoration/skull_carving.png
-./building/decoration/skullpedestal.png
-./building/decoration/squares.png
+./building/decoration/skull_carving.png     not found
+./building/decoration/skullpedestal.png     not found
+./building/decoration/squares.png           not found
 ./building/decoration/squares_2.png
 ./building/decoration/stone_details.png
 ./building/decoration/toolset.png
 ./building/decoration/webs.png
-k/building/decoration/wooden_banisters.png
-./building/decoration/fireplace_purple.png
+k/building/decoration/wooden_banisters.png     
+./building/decoration/fireplace_purple.png    not found
 ./building/decoration/wall_feature.png
 k*/building/door/closed.png
 k*/building/door/closed_with_key.png
@@ -71,15 +71,15 @@ d*/building/entrance/earthen.png
 d*/building/entrance/earthen_2.png
 d*/building/entrance/earthen_3.png
 d*/building/entrance/earthen_4.png
-./building/entrance/earthen_5.png
+./building/entrance/earthen_5.png         not found
 ./building/entrance/earthen_6.png
 d/building/entrance/earthen_face.png
 d/building/entrance/earthen_face_2.png
-./building/entrance/earthen_face_3.png
+./building/entrance/earthen_face_3.png        not found
 ./building/entrance/earthen_face_4.png
 ./building/entrance/grey.png
 ./building/entrance/int_iron_bars.png
-./building/entrance/int_iron_bars_fancy.png
+./building/entrance/int_iron_bars_fancy.png     not found
 K*/building/entrance/light_red_ns_ew.png
 K*./building/entrance/pale_red_ew.png
 K*./building/entrance/pale_red_ns.png
@@ -186,11 +186,11 @@ K*/ground/ridge/ice.png
 K*/ground/ridge/ice_2.png
 ./ground/rock/green_crystal.png
 ./ground/rock/large_pebble.png
-./ground/rock/misc_black.png
+./ground/rock/misc_black.png         not found
 k*/ground/rock/pebbles.png
 ./ground/rock/rock_cluster.png
-./ground/rock/rocks.png
-./ground/rock/rocks_2.png
+m/ground/rock/rocks.png
+m/ground/rock/rocks_2.png
 k*/ground/water/channels_grassy.png
 k*/ground/water/channels_icy.png
 k*/ground/water/dungeon_water.png
@@ -203,11 +203,11 @@ k*/ground/water/pool_grassy.png
 k*/ground/water/pool_icy.png
 k*/ground/water/pool_small.png
 k*/ground/water/pool_straight_edges.png
-./ground/water/turbulent_water.png
+./ground/water/turbulent_water.png             not found
 k*/ground/water/water.png
 k*/ground/water/water_bubbles.png
 k*/ground/water/water_corners.png
-./ground/water/water_shimmery.png
+./ground/water/water_shimmery.png          not found
 k*/ground/water/waterfall.png
 k*/ground/water/waterfall_2.png
 k*/ground/water/whirlpool.png
@@ -279,7 +279,7 @@ b*/item/furniture/crockery/knife_spoon.png
 ./item/furniture/light/iron_lamp.png
 ./item/furniture/light/torch.png
 ./item/furniture/light/torch_top.png
-./item/furniture/other/drawer.png
+b/item/furniture/other/drawer.png
 b*/item/furniture/other/drawer_with_mirror.png
 b/item/furniture/other/piano.png
 z*./item/furniture/other/stick.png
@@ -304,8 +304,8 @@ k*/item/furniture/statue/bird.png
 k*/item/furniture/statue/green_stone.png
 k*/item/furniture/statue/green_stone_2.png
 k*/item/furniture/statue/green_stone_3.png
-./item/furniture/statue/grey_stone.png
-./item/furniture/statue/metal_and_stone.png
+./item/furniture/statue/grey_stone.png           not found
+./item/furniture/statue/metal_and_stone.png        not found
 ./item/furniture/table/fancy_blue_red.png
 ./item/furniture/table/grey_dark.png
 ./item/furniture/table/grey_fancy.png
@@ -355,8 +355,8 @@ k*/object/church.png
 m/object/suspension_bridge.png
 k*/object/well.png
 k*/object/witch_hut.png
-./plant/cactus.png
-./plant/grass.png
+K/m/plant/cactus.png
+./plant/grass.png       not found
 k*/plant/grass_2.png
 k*/plant/grass_corners.png
 k*/plant/grass_edges.png
@@ -398,3 +398,4 @@ z*/plant/tree/tree_fluffy.png
 z*/plant/tree/tree_golden_large.png
 z*/plant/tree/tree_golden_small.png
 z*/plant/tree/tree_green.png
+
