@@ -610,6 +610,11 @@ public class SpeakerNPC extends NPC {
 					public void fire(Player player, String text, SpeakerNPC npc) {
 						npc.onGoodbye(player);
 					}
+
+					@Override
+					public String toString() {
+						return "SpeakerNPC.onGoodbye";
+					}
 				});
 	}
 

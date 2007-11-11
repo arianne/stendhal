@@ -121,6 +121,11 @@ public class BringListOfItemsQuestLogic {
 						List<String> missingItems = getListOfStillMissingItems(player, false);
 						engine.say(concreteQuest.askForMissingItems(missingItems));
 					}
+
+					@Override
+					public String toString() {
+						return "list items";
+					}
 				});
 		}
 	}
@@ -150,6 +155,11 @@ public class BringListOfItemsQuestLogic {
 					List<String> missingItems = getListOfStillMissingItems(player, true);
 					engine.say(concreteQuest.askForMissingItems(missingItems));
 				}
+
+				@Override
+				public String toString() {
+					return "list items as triggers";
+				}
 			});
 	}
 
@@ -163,6 +173,11 @@ public class BringListOfItemsQuestLogic {
 				public void fire(Player player, String text, SpeakerNPC engine) {
 					List<String> missingItems = getListOfStillMissingItems(player, false);
 					engine.say(concreteQuest.respondToPlayerSayingHeHasNoItems(missingItems));
+				}
+
+				@Override
+				public String toString() {
+					return "respond to player not wanting to give any items";
 				}
 			});
 	}
@@ -219,6 +234,13 @@ public class BringListOfItemsQuestLogic {
 						engine.setCurrentState(ConversationStates.ATTENDING);
 					}
 				}
+
+
+				@Override
+				public String toString() {
+					return "accept or reject offered item";
+				}
+
 			});
 	}
 
