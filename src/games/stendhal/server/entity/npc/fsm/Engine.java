@@ -149,7 +149,7 @@ public class Engine {
 		}
 	}
 
-	
+
 	/**
 	 * Do one transition of the finite state machine with debugging output
 	 * and reset of the previous response
@@ -159,10 +159,10 @@ public class Engine {
 	 * @return true if a transition was made, false otherwise
 	 */
 	public boolean stepTest(Player player, String text) {
-		logger.info(">>> " + text);
+		logger.debug(">>> " + text);
 		speakerNPC.remove("text");
 		boolean res = step(player, text);
-		logger.info("<<< " + speakerNPC.get("text"));
+		logger.debug("<<< " + speakerNPC.get("text"));
 		return res;
 	}
 
