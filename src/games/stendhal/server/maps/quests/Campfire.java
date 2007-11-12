@@ -8,8 +8,11 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
+import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
+import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
+import games.stendhal.server.entity.npc.condition.QuestNotInStateCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.rule.EntityManager;
 
@@ -108,36 +111,51 @@ public class Campfire extends AbstractQuest {
 	private void prepareRequestingStep() {
 		SpeakerNPC npc = npcs.get("Sally");
 
-		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-				null, ConversationStates.ATTENDING, null,
-				new SpeakerNPC.ChatAction() {
-					@Override
-					public void fire(Player player, String text, SpeakerNPC npc) {
-						if (player.getQuest(QUEST_SLOT).equals("start")) {
-							if (player.isEquipped("wood", REQUIRED_WOOD)) {
-								npc.say("Hi again! You've got wood, I see; do you have those 10 pieces of wood I asked about earlier?");
-								npc.setCurrentState(ConversationStates.QUEST_ITEM_BROUGHT);
-							} else {
-								npc.say("You're back already? Don't forget that you promised to collect ten pieces of wood for me!");
-							}
-						} else if (canStartQuestNow(npc, player)) {
-							npc.say("Hi! Could you do me a #favor?");
-						} else {
-							// TODO: say how many minutes are left.
-							npc.say("Oh, I still have plenty of wood from the last time you helped me. Thank you for helping!");
-						}
+		npc.add(ConversationStates.IDLE, 
+			ConversationPhrases.GREETING_MESSAGES,
+			new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"), new PlayerHasItemWithHimCondition("wood", REQUIRED_WOOD)),
+			ConversationStates.QUEST_ITEM_BROUGHT, 
+			"Hi again! You've got wood, I see; do you have those 10 pieces of wood I asked about earlier?",
+			null);
+
+		npc.add(ConversationStates.IDLE, 
+			ConversationPhrases.GREETING_MESSAGES,
+			new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"), new NotCondition(new PlayerHasItemWithHimCondition("wood", REQUIRED_WOOD))),
+			ConversationStates.ATTENDING, 
+			"You're back already? Don't forget that you promised to collect ten pieces of wood for me!",
+			null);
+
+		npc.add(ConversationStates.IDLE, 
+			ConversationPhrases.GREETING_MESSAGES,
+			new QuestNotInStateCondition(QUEST_SLOT, "start"),
+			ConversationStates.ATTENDING, null,
+			new SpeakerNPC.ChatAction() {
+				@Override
+				public void fire(Player player, String text, SpeakerNPC npc) {
+					if (canStartQuestNow(npc, player)) {
+						npc.say("Hi! Could you do me a #favor?");
+					} else {
+						// TODO: say how many minutes are left.
+						npc.say("Oh, I still have plenty of wood from the last time you helped me. Thank you for helping!");
 					}
-				});
+				}
+			});
 
 		npc.add(ConversationStates.ATTENDING,
-			ConversationPhrases.QUEST_MESSAGES, null,
+			ConversationPhrases.QUEST_MESSAGES, 
+			new QuestInStateCondition(QUEST_SLOT, "start"),
+			ConversationStates.QUEST_OFFERED,
+			"You already promised me to bring me some wood! Ten pieces, remember?",
+			null);
+
+		npc.add(ConversationStates.ATTENDING,
+			ConversationPhrases.QUEST_MESSAGES,
+			new QuestNotInStateCondition(QUEST_SLOT, "start"),
 			ConversationStates.QUEST_OFFERED, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
 				public void fire(Player player, String text, SpeakerNPC npc) {
-					if (player.getQuest(QUEST_SLOT).equals("start")) {
-						npc.say("You already promised me to bring me some wood! Ten pieces, remember?");
-					} else if (canStartQuestNow(npc, player)) {
+					if (canStartQuestNow(npc, player)) {
 						npc.say("I need more wood to keep my campfire running, But I can't leave it unattended to go get some! Could you please get some from the forest for me? I need ten pieces.");
 					} else {
 						npc.say("I don't need any more wood at the moment, but thanks for asking.");
