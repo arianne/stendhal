@@ -126,7 +126,7 @@ public class Corpse2DView extends Entity2DView {
 			} else if (clazz.equals("enormous_creature")) {
 				corpseType = corpseType + "_enormous_creature";
 			} else if (!clazz.equals("animal")) {
-				logger.debug("Unknown corpse type: " + clazz);
+			    //	logger.debug("Unknown corpse type: " + clazz);
 			}
 		}
 
