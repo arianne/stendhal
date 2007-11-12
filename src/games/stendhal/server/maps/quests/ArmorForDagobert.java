@@ -1,14 +1,24 @@
 package games.stendhal.server.maps.quests;
 
-import games.stendhal.server.StendhalRPWorld;
-import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.DropItemAction;
+import games.stendhal.server.entity.npc.action.EquipItemAction;
+import games.stendhal.server.entity.npc.action.IncreaseXPAction;
+import games.stendhal.server.entity.npc.action.MultipleActions;
+import games.stendhal.server.entity.npc.action.SetQuestAction;
+import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.NotCondition;
+import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
+import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
+import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
+import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -73,20 +83,21 @@ public class ArmorForDagobert extends AbstractQuest {
 	private void prepareRequestingStep() {
 		SpeakerNPC npc = npcs.get("Dagobert");
 
-		npc.add(ConversationStates.ATTENDING,
-			ConversationPhrases.QUEST_MESSAGES, null,
-			ConversationStates.QUEST_OFFERED, null,
-			new SpeakerNPC.ChatAction() {
-				@Override
-				public void fire(Player player, String text, SpeakerNPC npc) {
-					if (!player.isQuestCompleted(QUEST_SLOT)) {
-						npc.say("I'm so afraid of being robbed. I don't have any protection. Do you think you can help me?");
-					} else {
-						npc.say("Thank you very much for the armor, but I don't have any other task for you.");
-						npc.setCurrentState(ConversationStates.ATTENDING);
-					}
-				}
-			});
+		npc.add(
+			ConversationStates.ATTENDING,
+			ConversationPhrases.QUEST_MESSAGES,
+			new QuestNotCompletedCondition(QUEST_SLOT),
+			ConversationStates.QUEST_OFFERED, 
+			"I'm so afraid of being robbed. I don't have any protection. Do you think you can help me?",
+			null);
+
+		npc.add(
+			ConversationStates.ATTENDING,
+			ConversationPhrases.QUEST_MESSAGES,
+			new QuestCompletedCondition(QUEST_SLOT),
+			ConversationStates.ATTENDING, 
+			"Thank you very much for the armor, but I don't have any other task for you.",
+			null);
 
 		// player is willing to help
 		npc.add(
@@ -95,25 +106,15 @@ public class ArmorForDagobert extends AbstractQuest {
 			null,
 			ConversationStates.ATTENDING,
 			"Once I had a nice #leather_cuirass, but it was destroyed during the last robbery. If you find a new one, I'll give you a reward.",
-			new SpeakerNPC.ChatAction() {
-				@Override
-				public void fire(Player player, String text,
-						SpeakerNPC npc) {
-					player.setQuest(QUEST_SLOT, "start");
-				}
-			});
+			new SetQuestAction(QUEST_SLOT, "start"));
 
 		// player is not willing to help
-		npc.add(ConversationStates.QUEST_OFFERED,
+		npc.add(
+			ConversationStates.QUEST_OFFERED,
 			ConversationPhrases.NO_MESSAGES, null,
 			ConversationStates.ATTENDING,
 			"Well, then I guess I'll just duck and cover.",
-			new SpeakerNPC.ChatAction() {
-				@Override
-				public void fire(Player player, String text, SpeakerNPC npc) {
-					player.setQuest(QUEST_SLOT, "rejected");
-				}
-			});
+			new SetQuestAction(QUEST_SLOT, "rejected"));
 
 		// player wants to know what a leather_cuirass is
 		npc.add(
@@ -130,55 +131,31 @@ public class ArmorForDagobert extends AbstractQuest {
 
 		// player returns while quest is still active
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-			new SpeakerNPC.ChatCondition() {
-				@Override
-				public boolean fire(Player player, String text,
-						SpeakerNPC npc) {
-					return player.hasQuest(QUEST_SLOT)
-							&& player.getQuest(QUEST_SLOT).equals("start");
-				}
-			}, ConversationStates.ATTENDING, null,
-			new SpeakerNPC.ChatAction() {
-				@Override
-				public void fire(Player player, String text, SpeakerNPC npc) {
-					if (player.isEquipped("leather_cuirass")) {
-						npc.say("Excuse me, please! I have noticed the leather_cuirass you're carrying. Is it for me?");
-						npc.setCurrentState(ConversationStates.QUEST_ITEM_BROUGHT);
-					} else {
-						npc.say("Luckily I haven't been robbed while you were away. I would be glad to receive a leather_cuirass. Anyway, how can I #help you?");
-					}
-				}
-			});
+			new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"), new PlayerHasItemWithHimCondition("leather_cuirass")),
+			ConversationStates.QUEST_ITEM_BROUGHT, 
+			"Excuse me, please! I have noticed the leather_cuirass you're carrying. Is it for me?",
+			null);
+
+		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
+			new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"), new NotCondition(new PlayerHasItemWithHimCondition("leather_cuirass"))),
+			ConversationStates.ATTENDING, 
+			"Luckily I haven't been robbed while you were away. I would be glad to receive a leather_cuirass. Anyway, how can I #help you?",
+			null);
+
+		List<SpeakerNPC.ChatAction> reward = new LinkedList<SpeakerNPC.ChatAction>();
+		reward.add(new DropItemAction("leather_cuirass"));
+		reward.add(new EquipItemAction("money", 80));
+		reward.add(new IncreaseXPAction(50));
+		reward.add(new SetQuestAction(QUEST_SLOT, "done"));
 
 		npc.add(
 			ConversationStates.QUEST_ITEM_BROUGHT,
 			ConversationPhrases.YES_MESSAGES,
 			// make sure the player isn't cheating by putting the armor
 			// away and then saying "yes"
-			new SpeakerNPC.ChatCondition() {
-				@Override
-				public boolean fire(Player player, String text,
-						SpeakerNPC npc) {
-					return player.isEquipped("leather_cuirass");
-				}
-			}, ConversationStates.ATTENDING, null,
-			new SpeakerNPC.ChatAction() {
-				@Override
-				public void fire(Player player, String text, SpeakerNPC npc) {
-					player.drop("leather_cuirass");
-
-					StackableItem money = (StackableItem) StendhalRPWorld
-							.get().getRuleManager().getEntityManager()
-							.getItem("money");
-					money.setQuantity(80);
-					player.equip(money);
-					player.addXP(50);
-
-					player.notifyWorldAboutChanges();
-					player.setQuest(QUEST_SLOT, "done");
-					npc.say("Oh, I am so thankful! Here is some gold I found ... ehm ... somewhere.");
-				}
-			});
+			new PlayerHasItemWithHimCondition("leather_cuirass"), 
+			ConversationStates.ATTENDING, "Oh, I am so thankful! Here is some gold I found ... ehm ... somewhere.",
+			new MultipleActions(reward));
 
 		npc.add(
 			ConversationStates.QUEST_ITEM_BROUGHT,
