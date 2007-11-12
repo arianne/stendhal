@@ -11,7 +11,6 @@ import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.Log4J;
 import marauroa.common.game.RPObject;
-import marauroa.common.game.RPObject.ID;
 
 import org.junit.After;
 import org.junit.Before;
@@ -96,139 +95,33 @@ public class CloakCollectorTest {
 			assertEquals(cc.welcomeDuringActiveQuest(),npc.get("text"));
 			npc.remove("text");
 			en.stepTest(monica, ConversationPhrases.YES_MESSAGES.get(0));
-			// I would expect : 	[11:19] <Josephine> Great! What cloaks did you bring?
+			assertEquals(cc.askForItemsAfterPlayerSaidHeHasItems(),npc.get("text"));
+
 			en.stepTest(monica,"elf_cloak");
 			assertEquals(cc.respondToOfferOfNotExistingItem("elf_cloak"),npc.get("text"));
 
-			Item beer = new Item("elf_cloak", "", "", null);
-			beer.setID(new ID(2, "testzone"));
-			monica.getSlot("bag").add(beer);
+			Item cloak = new Item("elf_cloak", "", "", null);
+			monica.getSlot("bag").add(cloak);
 			en.stepTest(monica,"elf_cloak");
 			assertEquals(cc.respondToItemBrought(),npc.get("text"));
+			en.stepTest(monica,"elf_cloak");
+			assertEquals(cc.respondToOfferOfNotMissingItem(),npc.get("text"));
 
 
-//		[11:18] <monica> hi
-//		[11:18] <Josephine> Hello! Did you bring any cloaks with you?
-//		[11:18] <monica> elf_cloak
-//		[11:18] <monica> dwarf_cloak
-//		[11:18] <monica> stone_cloak
-//		[11:18] <monica> hi
-//		[11:18] <monica> oge
-//		[11:18] <ogetester> hi
-//		[11:18] <monica> yes
-//		[11:19] <monica> bye
-//		[11:19] <Josephine> Bye bye now!
-//		[11:19] <monica> hi
-//		[11:19] <Josephine> Hello! Did you bring any cloaks with you?
-//		[11:19] <monica> yes
-//		[11:19] <monica> cloaks
-//		[11:19] <Josephine> I want 10 cloaks. That's cloak, elf_cloak, dwarf_cloak, blue_elf_cloak, stone_cloak, green_dragon_cloak, bone_dragon_cloak, lich_cloak, vampire_cloak, and blue_dragon_cloak. Did you bring any?
-//		[11:19] <monica> yes
-//		[11:19] <Josephine> Great! What cloaks did you bring?
-//		[11:19] <monica> elf_cloak
-//		[11:19] <Josephine> Wow, thank you! What else did you bring?
-//		[11:19] <monica> dwarf_cloak
-//		[11:19] <Josephine> Wow, thank you! What else did you bring?
-//		[11:20] <Josephine> Bye bye now!
-//		[11:20] <monica> hi
-//		[11:20] <Josephine> Hello! Did you bring any cloaks with you?
-//		[11:20] <monica> yes
-//		[11:20] <monica> cloaks
-//		[11:20] <Josephine> I want 8 cloaks. That's cloak, blue_elf_cloak, stone_cloak, green_dragon_cloak, bone_dragon_cloak, lich_cloak, vampire_cloak, and blue_dragon_cloak. Did you bring any?
-//		[11:20] <monica> yes
-//		[11:20] <Josephine> Great! What cloaks did you bring?
-//		[11:20] <monica> blue_elf_cloak
-//		[11:20] <Josephine> Wow, thank you! What else did you bring?
-//		[11:20] <monica> stone_cloak
-//		[11:20] <Josephine> Wow, thank you! What else did you bring?
-//		[11:20] <monica> black_cloak
-//		[11:21] <Josephine> Bye bye now!
-//		[11:22] <monica> hi
-//		[11:22] <Josephine> Hello! Did you bring any cloaks with you?
-//		[11:23] <monica> yes
-//		[11:23] <monica> cloaks
-//		[11:23] <Josephine> I want 6 cloaks. That's cloak, green_dragon_cloak, bone_dragon_cloak, lich_cloak, vampire_cloak, and blue_dragon_cloak. Did you bring any?
-//		[11:23] <monica> green_dragon_cloak
-//		[11:23] <Josephine> Wow, thank you! What else did you bring?
-//		[11:23] <monica> bone_dragon_cloak
-//		[11:23] <Josephine> Wow, thank you! What else did you bring?
-//		[11:23] <monica> vampire_cloak
-//		[11:23] <Josephine> Wow, thank you! What else did you bring?
-//		[11:23] <monica> blue_dragon_cloak
-//		[11:23] <Josephine> Wow, thank you! What else did you bring?
-//		[11:23] <monica> lich_cloak
-//		[11:24] <monica> lich_cloak
-//		[11:24] <Josephine> Wow, thank you! What else did you bring?
-//		[11:24] <monica> cloaks
-//		[11:24] <Josephine> That's not a real cloak...
-//		[11:24] <monica> ice_sword
-//		[11:24] <monica> bye
-//		[11:24] <Josephine> Bye bye now!
-//		[11:24] <monica> hi
-//		[11:24] <Josephine> Hello! Did you bring any cloaks with you?
-//		[11:24] <monica> cloaks
-//		[11:24] <Josephine> I want 1 cloak. That's cloak. Did you bring any?
-//		[11:24] <monica> cloak
-//		[11:24] monica earns 2500 experience points.
-//		[11:24] <Josephine> Oh, they look so beautiful all together, thank you. Please take this black cloak in return, I don't like the colour.
-//		[11:25] <monica> bye
-//		[11:25] <Josephine> Bye bye now!
-//		[11:25] <monica> hi
-//		[11:25] <Josephine> Hi again! I hear there's some new cloaks out, and I'm regretting not asking you about the ones I didn't like before. It feels like my collection isn't complete...
-//		[11:25] <monica> collection
-//		[11:25] <Josephine> It's missing 8 cloaks. That's red_cloak, shadow_cloak, xeno_cloak, elvish_cloak, chaos_cloak, mainio_cloak, golden_cloak, and black_dragon_cloak. Will you find them?
-//		[11:26] <Josephine> Bye bye now!
-//		[11:26] You put a valuable item on the ground. Please note that it will expire in 10 minutes, as all items do. But in this case there is no way to restore it.
-//		[11:26] You put a valuable item on the ground. Please note that it will expire in 10 minutes, as all items do. But in this case there is no way to restore it.
-//		[11:26] <monica> hi
-//		[11:26] <Josephine> Hi again! I hear there's some new cloaks out, and I'm regretting not asking you about the ones I didn't like before. It feels like my collection isn't complete...
-//		[11:26] <monica> collection
-//		[11:26] <Josephine> It's missing 8 cloaks. That's red_cloak, shadow_cloak, xeno_cloak, elvish_cloak, chaos_cloak, mainio_cloak, golden_cloak, and black_dragon_cloak. Will you find them?
-//		[11:27] <monica> red_cloak
-//		[11:27] <Josephine> You haven't seen one before? Well, it's a red_spotted_cloak. Sorry if that's not much help, it's all I know! So, will you find them all?
-//		[11:27] <monica> shadow_cloak
-//		[11:27] <Josephine> You haven't seen one before? Well, it's a shadow_cloak. Sorry if that's not much help, it's all I know! So, will you find them all?
-//		[11:27] <monica> xeno_cloak
-//		[11:27] <Josephine> You haven't seen one before? Well, it's a xeno_cloak. Sorry if that's not much help, it's all I know! So, will you find them all?
-//		[11:27] <monica> elvish_cloak
-//		[11:27] <Josephine> You haven't seen one before? Well, it's a elvish_cloak. Sorry if that's not much help, it's all I know! So, will you find them all?
-//		[11:27] <monica> crap
-//		[11:27] <monica> yes
-//		[11:27] <Josephine> Brilliant! I'm all excited again! Bye!
-//		[11:27] <monica> elvish_cloak
-//		[11:28] <monica> hi
-//		[11:28] <Josephine> Welcome back! Have you brought any cloaks with you?
-//		[11:28] <monica> yes
-//		[11:28] <Josephine> Woo! What cloaks did you bring?
-//		[11:28] <monica> elvish_cloak
-//		[11:28] <Josephine> Wow, thank you! What else did you bring?
-//		[11:28] <monica> shadow_cloak
-//		[11:28] <Josephine> Wow, thank you! What else did you bring?
-//		[11:28] <monica> red_cloak
-//		[11:28] <Josephine> Wow, thank you! What else did you bring?
-//		[11:28] <monica> xeno_cloak
-//		[11:28] <Josephine> Wow, thank you! What else did you bring?
-//		[11:28] <monica> cloaks
-//		[11:28] <Josephine> I want 4 cloaks. That's chaos_cloak, mainio_cloak, golden_cloak, and black_dragon_cloak. Did you bring any?
-//		[11:28] ogetester tells monica: hi monica, do u know what i have to say to annie so she can have the icecream?
-//		[11:29] <Josephine> Bye bye now!
-//		[11:29] onSummon: Entity "manio_cloak" not found.
-//		[11:30] <monica> hi
-//		[11:30] <Josephine> Welcome back! Have you brought any cloaks with you?
-//		[11:30] <monica> yes
-//		[11:30] <Josephine> Woo! What cloaks did you bring?
-//		[11:30] <monica> chaos_cloak
-//		[11:30] <Josephine> Wow, thank you! What else did you bring?
-//		[11:31] <monica> mainio_cloak
-//		[11:31] <Josephine> Wow, thank you! What else did you bring?
-//		[11:31] <monica> golden_cloak
-//		[11:31] <Josephine> Wow, thank you! What else did you bring?
-//		[11:31] <monica> black_dragon_cloak
-//		[11:31] monica earns 25000 experience points.
-//		[11:31] <Josephine> Oh, yay! My collection is complete, at least for now! You're so kind, I bet you'll have great Karma now!
-//		[11:31] <Josephine> Bye bye now!
-//		[11:33] 2 Players online: monica(217) ogetester(40)
-//		[11:33] ogetester is in 0_kalavan_city_gardens at (86,88)
+			cloak = new Item("stone_cloak", "", "", null);
+			monica.getSlot("bag").add(cloak);
+
+
+			for ( String cloakName : cc.getNeededItems()){
+				cloak = new Item(cloakName, "", "", null);
+				monica.getSlot("bag").add(cloak);
+				en.step(monica,cloakName);
+			}
+
+			assertEquals(cc.respondToLastItemBrought(),npc.get("text"));
+			en.step(monica,ConversationPhrases.GOODBYE_MESSAGES.get(0));
+			assertTrue(cc.isCompleted(monica));
+
 
 
 	}
@@ -254,10 +147,16 @@ public class CloakCollectorTest {
 
 	@Test
 	public final void testRewardPlayer() {
+
 		CloakCollector cc = new CloakCollector();
 		Player player = PlayerTestHelper.createPlayer();
+		double oldKarma = player.getKarma();
 		cc.rewardPlayer(player);
 		assertTrue(player.isEquipped("black_cloak"));
+		assertEquals(oldKarma + 5.0,player.getKarma(),0.01);
+		assertEquals(2500,player.getXP());
+
+
 	}
 
 }
