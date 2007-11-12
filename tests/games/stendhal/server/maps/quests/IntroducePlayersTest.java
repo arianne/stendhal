@@ -33,6 +33,9 @@ public class IntroducePlayersTest {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		Log4J.init();
+		PlayerHelper.generatePlayerRPClasses();
+		PlayerHelper.generateItemRPClasses();
+
 		MockStendhalRPRuleProcessor.get();
 		MockStendlRPWorld.get();
 		BoyNPC tad = new BoyNPC();
@@ -106,8 +109,8 @@ public class IntroducePlayersTest {
 		en.step(player, "bye");
 	}
 
-	@Ignore
 	@Test
+	@Ignore
 	public void testQuest() {
 		Player player;
 		player = new Player(new RPObject());
@@ -118,7 +121,7 @@ public class IntroducePlayersTest {
 		Engine engineTad = tad.getEngine();
 		engineTad.step(player, "hi");
 		assertTrue(tad.isTalking());
-		assertEquals("Ssshh! Come here, null! I have a #task for you.", tad
+		assertEquals("Ssshh! Come here, player! I have a #task for you.", tad
 				.get("text"));
 		engineTad.step(player, "task");
 		assertTrue(tad.isTalking());
@@ -131,7 +134,7 @@ public class IntroducePlayersTest {
 		assertFalse(tad.isTalking());
 		assertEquals("Bye.", tad.get("text"));
 
-		StackableItem flask = new StackableItem("flask", "", null, null);
+		StackableItem flask = new StackableItem("flask", "", "", null);
 		flask.setQuantity(1);
 		flask.setID(new ID(2, "testzone"));
 		player.getSlot("bag").add(flask);
