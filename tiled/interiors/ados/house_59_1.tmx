@@ -144,9 +144,12 @@
  <tileset name="drawner" firstgid="361" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/other/drawer_with_mirror.png"/>
  </tileset>
+ <tileset name="floor tiles" firstgid="363" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/indoor/floor_tiles.png"/>
+ </tileset>
  <layer name="0_floor" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNkYGBgpDFWY6S9HaN4FI9i0jEA8pqfLwAEAAA=
+   H4sIAAAAAAAAACtiZGAoojFWo4Mdo3gUj2LSMQCBTavQAAQAAA==
   </data>
  </layer>
  <layer name="1_terrain" width="16" height="16">
@@ -161,7 +164,7 @@
  </layer>
  <layer name="3_roof" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAXUANfoYMcXIP4KxN/I1P8diH8A8U8scg+B+BEWeqiAu0B8j8pm0iNOBxoAAGOCOeYABAAA
+   H4sIAAAAAAAAAGNgGN4ggJE+9lyjgx1fgPgrEH8jU/93IP4BxD+xyD0E4kdY6KEC7gLxPSqbSY84HWgAACwoE70ABAAA
   </data>
  </layer>
  <layer name="4_roof_add" width="16" height="16">
@@ -174,9 +177,9 @@
    H4sIAAAAAAAAAGNgGD5AinGgXTAKRsHQAgDUA1PJAAQAAA==
   </data>
  </layer>
- <layer name="collision" width="16" height="16" opacity="0.37">
+ <layer name="collision" width="16" height="16" visible="0" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAALvJwMBwc5BgGEBmo4ObSDQ2vehq8dlBa/34AD6zydFPqf3k6CElTkkxi4GBdL2kAHLcS4x+bOpItZ/eGABt+ib1AAQAAA==
+   H4sIAAAAAAAAALvJwMBwc5BgGEBmo4ObSDQ2vYTUMmARI2QfJfqJNZdUM6htPzl6SIlTUsxiYCBdLymAHPcSox+bOlLtpzcGAFWeA7IABAAA
   </data>
  </layer>
  <layer name="protection" width="16" height="16">

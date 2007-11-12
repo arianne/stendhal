@@ -135,9 +135,12 @@
  <tileset name="shelf" firstgid="327" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/shelve/dark_bottle_shelf.png"/>
  </tileset>
+ <tileset name="tiles" firstgid="333" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/indoor/floor_tiles.png"/>
+ </tileset>
  <layer name="0_floor" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNkYGBgpDFWY6RMLzY8UvSPYuJwFhoeavoHCgMAnfrp+wAEAAA=
+   H4sIAAAAAAAAAPNlZGDwpTFWo1AvNjxS9I9i4nAWAyoeavoHCgMAV0+E6wAEAAA=
   </data>
  </layer>
  <layer name="1_terrain" width="16" height="16">
@@ -165,7 +168,7 @@
    H4sIAAAAAAAAAGNgGD5AinGgXTAKhiq4MUjMoDcAANilRwQABAAA
   </data>
  </layer>
- <layer name="collision" width="16" height="16" opacity="0.37">
+ <layer name="collision" width="16" height="16" visible="0" opacity="0.37">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAALvJwMBwc5BgdHATjY2Nj0svIUAP/ZT4nVT7STWLVD3oaqmtn9QwoEX4UaofPX2SqncgMACZAWKZAAQAAA==
   </data>
