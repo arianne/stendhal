@@ -38,10 +38,11 @@ public class PlayerInAreaConditionTest {
 				new PlayerInAreaCondition(ar).hashCode());
 	}
 
+	@SuppressWarnings("serial")
 	@Test
 	public final void testFire() {
 		StendhalRPZone zone = new StendhalRPZone("test");
-		Area ar = new Area(zone, new Rectangle(-2,-2,4,4) {
+		Area ar = new Area(zone, new Rectangle(-2, -2, 4, 4) {
 		});
 		PlayerInAreaCondition cond = new PlayerInAreaCondition(ar);
 		Player player = PlayerTestHelper.createPlayer();
