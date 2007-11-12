@@ -485,7 +485,7 @@ public class CreateAccountDialog extends JDialog {
 			if (isVisible()) {
 				JOptionPane.showMessageDialog(owner, text);
 			} else {
-				System.out.println(text);
+				logger.warn(text);
 			}
 			return false;
 		}
@@ -497,8 +497,9 @@ public class CreateAccountDialog extends JDialog {
 	 * Prints text only when running stand-alone
 	 */
 	public void debug(String text) {
+
 		if (client == null) {
-			System.out.println(text);
+			logger.debug(text);
 		}
 	}
 }
