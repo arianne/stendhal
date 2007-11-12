@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.SpeakerNPC.ChatCondition;
 import games.stendhal.server.entity.player.Player;
 
 import org.junit.After;
@@ -60,10 +61,19 @@ public class AndConditionTest {
 
 		AndCondition obj = new AndCondition();
 		assertTrue(obj.equals(obj));
-
-		assertFalse(new AndCondition().equals(new Integer(100)));
-
 		assertTrue(new AndCondition().equals(new AndCondition()));
+		assertTrue(new AndCondition((ChatCondition)null).equals(new AndCondition((ChatCondition)null)));
+
+		assertFalse(new AndCondition((ChatCondition)null).equals(new AndCondition()));
+		assertFalse(new AndCondition().equals(new AndCondition((ChatCondition)null)));
+		assertFalse(new AndCondition((ChatCondition)null).equals(new AndCondition(new ChatCondition(){
+
+			@Override
+			public boolean fire(Player player, String text, SpeakerNPC npc) {
+
+				return false;
+			}})));
+		assertFalse(new AndCondition().equals(new Integer(100)));
 		assertFalse(new AndCondition().equals(new AndCondition() {
 		}));
 	}
@@ -100,7 +110,11 @@ public class AndConditionTest {
 
 	@Test
 	public void testHashCode() throws Throwable {
-		assertEquals(32, new AndCondition().hashCode());
+		AndCondition obj = new AndCondition();
+		assertEquals(obj.hashCode(),obj.hashCode());
+		assertEquals(new AndCondition().hashCode(),new AndCondition().hashCode());
+		assertEquals(new AndCondition((ChatCondition)null).hashCode(),new AndCondition((ChatCondition)null).hashCode());
+
 	}
 
 	@Test

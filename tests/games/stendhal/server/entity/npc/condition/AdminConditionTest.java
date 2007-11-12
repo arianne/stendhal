@@ -2,9 +2,7 @@ package games.stendhal.server.entity.npc.condition;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 import org.junit.Test;
 
@@ -49,14 +47,10 @@ public class AdminConditionTest {
     public void testToString() throws Throwable {
         assertEquals("result", "admin <100>", new AdminCondition(100).toString());
     }
-    @Test
+
+    @Test (expected=NullPointerException.class)
     public void testFireThrowsNullPointerException() throws Throwable {
-        try {
             new AdminCondition(100).fire(null, "testAdminConditionText", SpeakerNPCTestHelper.createSpeakerNPC());
-            fail("Expected NullPointerException to be thrown");
-        } catch (NullPointerException ex) {
-            assertNull("ex.getMessage()", ex.getMessage());
-       }
     }
 }
 

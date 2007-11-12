@@ -48,8 +48,8 @@ public class QuestStartedConditionTest {
 
 	@Test
 	public final void testToString() {
-		assertEquals("QuestStarted <questname>",
-				new QuestStartedCondition("questname").toString());
+		assertEquals("QuestStarted <questname>", new QuestStartedCondition(
+				"questname").toString());
 	}
 
 	@Test
@@ -58,14 +58,35 @@ public class QuestStartedConditionTest {
 
 		QuestStartedCondition obj = new QuestStartedCondition("questname");
 		assertTrue(obj.equals(obj));
+		assertTrue(new QuestStartedCondition("questname").equals(new QuestStartedCondition(
+		"questname")));
+		assertTrue(new QuestStartedCondition(null).equals(new QuestStartedCondition(
+		null)));
 
 		assertFalse(new QuestStartedCondition("questname").equals(new Object()));
 
-		assertTrue(new QuestStartedCondition("questname").equals(new QuestStartedCondition(
-				"questname")));
+
+		assertFalse(new QuestStartedCondition(null).equals(new QuestStartedCondition(
+		"questname")));
+		assertFalse(new QuestStartedCondition("questname").equals(new QuestStartedCondition(
+		null)));
+
 		assertFalse(new QuestStartedCondition("questname").equals(new QuestStartedCondition(
 				"questname") {
 		}));
+
 	}
 
+	@Test
+	public void testHashcode() throws Throwable {
+		QuestStartedCondition obj = new QuestStartedCondition("questname");
+		assertTrue(obj.equals(obj));
+assertEquals(obj.hashCode(), obj.hashCode());
+
+
+		assertTrue(new QuestStartedCondition("questname").equals(new QuestStartedCondition(
+				"questname")));
+		assertEquals(new QuestStartedCondition("questname").hashCode(), new QuestStartedCondition("questname").hashCode());
+		assertEquals(new QuestStartedCondition(null).hashCode(), new QuestStartedCondition(null).hashCode());
+	}
 }

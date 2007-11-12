@@ -59,13 +59,38 @@ public class QuestNotStartedConditionTest {
 		QuestNotStartedCondition obj = new QuestNotStartedCondition("questname");
 		assertTrue(obj.equals(obj));
 
-		assertFalse(new QuestNotStartedCondition("questname").equals(new Object()));
-
 		assertTrue(new QuestNotStartedCondition("questname").equals(new QuestNotStartedCondition(
 				"questname")));
+
+		assertTrue(new QuestNotStartedCondition(null).equals(new QuestNotStartedCondition(
+				null)));
+
+		assertFalse(new QuestNotStartedCondition("questname").equals(new Object()));
+
+		assertFalse(new QuestNotStartedCondition("questname").equals(new QuestNotStartedCondition(
+				null)));
+		assertFalse(new QuestNotStartedCondition(null).equals(new QuestNotStartedCondition(
+				"questname")));
+
 		assertFalse(new QuestNotStartedCondition("questname").equals(new QuestNotStartedCondition(
 				"questname") {
 		}));
 	}
 
+	@Test
+	public void testHashCode() throws Throwable {
+		QuestNotStartedCondition obj = new QuestNotStartedCondition("questname");
+		assertTrue(obj.equals(obj));
+		assertEquals(obj.hashCode(), obj.hashCode());
+		assertTrue(new QuestNotStartedCondition("questname").equals(new QuestNotStartedCondition(
+				"questname")));
+		assertEquals(new QuestNotStartedCondition("questname").hashCode(),
+				new QuestNotStartedCondition("questname").hashCode());
+
+		assertTrue(new QuestNotStartedCondition(null).equals(new QuestNotStartedCondition(
+				null)));
+
+		assertEquals(new QuestNotStartedCondition(null).hashCode(),
+				new QuestNotStartedCondition(null).hashCode());
+	}
 }

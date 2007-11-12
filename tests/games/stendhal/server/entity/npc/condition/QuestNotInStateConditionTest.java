@@ -34,28 +34,29 @@ public class QuestNotInStateConditionTest {
 	public final void testFire() {
 		String validState = "valid";
 		assertTrue(new QuestNotInStateCondition(QUESTNAME, validState).fire(
-				PlayerTestHelper.createPlayer(), "QuestNotInStateConditionTest",
+				PlayerTestHelper.createPlayer(),
+				"QuestNotInStateConditionTest",
 				SpeakerNPCTestHelper.createSpeakerNPC()));
 		Player bob = PlayerTestHelper.createPlayer();
 
 		bob.setQuest(QUESTNAME, "valid");
-		assertFalse(new QuestNotInStateCondition(QUESTNAME, validState).fire(bob,
-				"QuestNotInStateConditionTest",
+		assertFalse(new QuestNotInStateCondition(QUESTNAME, validState).fire(
+				bob, "QuestNotInStateConditionTest",
 				SpeakerNPCTestHelper.createSpeakerNPC()));
 
 		bob.setQuest(QUESTNAME, "");
-		assertTrue(new QuestNotInStateCondition(QUESTNAME, validState).fire(bob,
-				"QuestNotInStateConditionTest",
+		assertTrue(new QuestNotInStateCondition(QUESTNAME, validState).fire(
+				bob, "QuestNotInStateConditionTest",
 				SpeakerNPCTestHelper.createSpeakerNPC()));
 
 		bob.setQuest(QUESTNAME, null);
-		assertTrue(new QuestNotInStateCondition(QUESTNAME, validState).fire(bob,
-				"QuestNotInStateConditionTest",
+		assertTrue(new QuestNotInStateCondition(QUESTNAME, validState).fire(
+				bob, "QuestNotInStateConditionTest",
 				SpeakerNPCTestHelper.createSpeakerNPC()));
 
 		bob.setQuest(QUESTNAME, "done");
-		assertTrue(new QuestNotInStateCondition(QUESTNAME, validState).fire(bob,
-				"QuestNotInStateConditionTest",
+		assertTrue(new QuestNotInStateCondition(QUESTNAME, validState).fire(
+				bob, "QuestNotInStateConditionTest",
 				SpeakerNPCTestHelper.createSpeakerNPC()));
 
 	}
@@ -67,8 +68,9 @@ public class QuestNotInStateConditionTest {
 
 	@Test
 	public final void testToString() {
-		assertEquals("QuestNotInState <questname,testToString>", new QuestNotInStateCondition(
-				QUESTNAME, "testToString").toString());
+		assertEquals(
+				"QuestNotInState <questname,testToString>",
+				new QuestNotInStateCondition(QUESTNAME, "testToString").toString());
 	}
 
 	@Test
@@ -76,16 +78,56 @@ public class QuestNotInStateConditionTest {
 		String state = "state";
 		assertFalse(new QuestNotInStateCondition(QUESTNAME, state).equals(null));
 
-		QuestNotInStateCondition obj = new QuestNotInStateCondition(QUESTNAME, state);
+		QuestNotInStateCondition obj = new QuestNotInStateCondition(QUESTNAME,
+				state);
 		assertTrue(obj.equals(obj));
-
-		assertFalse(new QuestNotInStateCondition(QUESTNAME, state).equals(new Object()));
-
 		assertTrue(new QuestNotInStateCondition(QUESTNAME, state).equals(new QuestNotInStateCondition(
 				QUESTNAME, state)));
+		assertTrue(new QuestNotInStateCondition(null, null).equals(new QuestNotInStateCondition(
+				null, null)));
+		assertTrue(new QuestNotInStateCondition(null, state).equals(new QuestNotInStateCondition(
+				null, state)));
+		assertTrue(new QuestNotInStateCondition(QUESTNAME, null).equals(new QuestNotInStateCondition(
+				QUESTNAME, null)));
+
+
+
+		assertFalse(new QuestNotInStateCondition(QUESTNAME, state).equals(new QuestNotInStateCondition(
+				QUESTNAME, state+"2")));
+
+		assertFalse(new QuestNotInStateCondition(QUESTNAME, state).equals(new Object()));
+		assertFalse(new QuestNotInStateCondition(null, state).equals(new QuestNotInStateCondition(
+				QUESTNAME, state)));
+		assertFalse(new QuestNotInStateCondition(QUESTNAME, state).equals(new QuestNotInStateCondition(
+				null, state)));
+
+		assertFalse(new QuestNotInStateCondition(QUESTNAME, null).equals(new QuestNotInStateCondition(
+				QUESTNAME, state)));
+		assertFalse(new QuestNotInStateCondition(QUESTNAME, state).equals(new QuestNotInStateCondition(
+				QUESTNAME, null)));
+
+
+
 		assertFalse(new QuestNotInStateCondition(QUESTNAME, state).equals(new QuestNotInStateCondition(
 				QUESTNAME, state) {
 		}));
+	}
+
+	@Test
+	public void testhashcode() throws Throwable {
+		String state = "state";
+		QuestNotInStateCondition obj = new QuestNotInStateCondition(QUESTNAME,
+				state);
+
+		assertEquals(obj.hashCode(),obj.hashCode());
+		assertEquals(new QuestNotInStateCondition(QUESTNAME, state).hashCode(),new QuestNotInStateCondition(
+			QUESTNAME, state).hashCode());
+		assertEquals(new QuestNotInStateCondition(null, null).hashCode(),new QuestNotInStateCondition(
+			null, null).hashCode());
+		assertEquals(new QuestNotInStateCondition(null, state).hashCode(),new QuestNotInStateCondition(
+			null, state).hashCode());
+		assertEquals(new QuestNotInStateCondition(QUESTNAME, null).hashCode(),new QuestNotInStateCondition(
+			QUESTNAME, null).hashCode());
 	}
 
 }
