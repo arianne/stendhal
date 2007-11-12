@@ -67,8 +67,8 @@ public class QuestInStateConditionTest {
 
 	@Test
 	public final void testToString() {
-		assertEquals("QuestInState <questname,testToString>", new QuestInStateCondition(
-				QUESTNAME, "testToString").toString());
+		assertEquals("QuestInState <questname,testToString>",
+				new QuestInStateCondition(QUESTNAME, "testToString").toString());
 	}
 
 	@Test
@@ -79,13 +79,44 @@ public class QuestInStateConditionTest {
 		QuestInStateCondition obj = new QuestInStateCondition(QUESTNAME, state);
 		assertTrue(obj.equals(obj));
 
-		assertFalse(new QuestInStateCondition(QUESTNAME, state).equals(new Object()));
-
 		assertTrue(new QuestInStateCondition(QUESTNAME, state).equals(new QuestInStateCondition(
 				QUESTNAME, state)));
+		assertTrue(new QuestInStateCondition(null, state).equals(new QuestInStateCondition(
+				null, state)));
+		assertTrue(new QuestInStateCondition(QUESTNAME, null).equals(new QuestInStateCondition(
+				QUESTNAME, null)));
+
+		assertFalse(new QuestInStateCondition(QUESTNAME, state).equals(new Object()));
+
+		assertFalse(new QuestInStateCondition(null, state).equals(new QuestInStateCondition(
+				QUESTNAME, state)));
+		assertFalse(new QuestInStateCondition(QUESTNAME, null).equals(new QuestInStateCondition(
+				QUESTNAME, state)));
+		assertFalse(new QuestInStateCondition(QUESTNAME, null).equals(new QuestInStateCondition(
+				null, state)));
+		assertFalse(new QuestInStateCondition(QUESTNAME, state).equals(new QuestInStateCondition(
+				QUESTNAME, state + "2")));
+
 		assertFalse(new QuestInStateCondition(QUESTNAME, state).equals(new QuestInStateCondition(
 				QUESTNAME, state) {
 		}));
+	}
+
+	@Test
+	public void testHashCode() throws Throwable {
+
+		QuestInStateCondition obj = new QuestInStateCondition(QUESTNAME,
+				"state");
+		assertEquals(obj.hashCode(), obj.hashCode());
+
+		assertEquals(
+				new QuestInStateCondition("questname", "state").hashCode(),
+				new QuestInStateCondition("questname", "state").hashCode());
+		assertEquals(new QuestInStateCondition(null, "state").hashCode(),
+				new QuestInStateCondition(null, "state").hashCode());
+		assertEquals(new QuestInStateCondition("questname", null).hashCode(),
+				new QuestInStateCondition("questname", null).hashCode());
+
 	}
 
 }
