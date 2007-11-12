@@ -113,15 +113,15 @@ public class Campfire extends AbstractQuest {
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, String text, SpeakerNPC npc) {
-						if (canStartQuestNow(npc, player)) {
-							npc.say("Hi! Could you do me a #favor?");
-						} else if (player.getQuest(QUEST_SLOT).equals("start")) {
+						if (player.getQuest(QUEST_SLOT).equals("start")) {
 							if (player.isEquipped("wood", REQUIRED_WOOD)) {
 								npc.say("Hi again! You've got wood, I see; do you have those 10 pieces of wood I asked about earlier?");
 								npc.setCurrentState(ConversationStates.QUEST_ITEM_BROUGHT);
 							} else {
 								npc.say("You're back already? Don't forget that you promised to collect ten pieces of wood for me!");
 							}
+						} else if (canStartQuestNow(npc, player)) {
+							npc.say("Hi! Could you do me a #favor?");
 						} else {
 							// TODO: say how many minutes are left.
 							npc.say("Oh, I still have plenty of wood from the last time you helped me. Thank you for helping!");
@@ -135,10 +135,10 @@ public class Campfire extends AbstractQuest {
 			new SpeakerNPC.ChatAction() {
 				@Override
 				public void fire(Player player, String text, SpeakerNPC npc) {
-					if (canStartQuestNow(npc, player)) {
-						npc.say("I need more wood to keep my campfire running, But I can't leave it unattended to go get some! Could you please get some from the forest for me? I need ten pieces.");
-					} else if (player.getQuest(QUEST_SLOT).equals("start")) {
+					if (player.getQuest(QUEST_SLOT).equals("start")) {
 						npc.say("You already promised me to bring me some wood! Ten pieces, remember?");
+					} else if (canStartQuestNow(npc, player)) {
+						npc.say("I need more wood to keep my campfire running, But I can't leave it unattended to go get some! Could you please get some from the forest for me? I need ten pieces.");
 					} else {
 						npc.say("I don't need any more wood at the moment, but thanks for asking.");
 						npc.setCurrentState(ConversationStates.ATTENDING);
