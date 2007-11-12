@@ -54,8 +54,7 @@ public class BabyDragonSellerNPC implements ZoneConfigurator {
 					public void fire(Player player, String text,
 							SpeakerNPC engine) {
 					    if (player.hasQuest(QUEST_SLOT)){
-						// TODO: Remove the comments on numbers before commit!!
-						long delay = REQUIRED_DAYS * 60 */* 60 * 24 */ 1000;
+						long delay = REQUIRED_DAYS * 60 * 60 * 24 * 1000;
 						long timeRemaining = (Long.parseLong(player.getQuest(QUEST_SLOT))
 								      + delay) - System.currentTimeMillis();
 						if (timeRemaining > 0L) {

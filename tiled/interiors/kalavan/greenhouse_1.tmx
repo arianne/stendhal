@@ -105,9 +105,6 @@
  <tileset name="pot plant" firstgid="340" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/pot_plant_1.png"/>
  </tileset>
- <tileset name="table" firstgid="352" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/table/table_wooden_brown.png"/>
- </tileset>
  <layer name="0_floor" width="15" height="20">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNnYGBgH8WjeBSP4iGAAaC7rVmwBAAA

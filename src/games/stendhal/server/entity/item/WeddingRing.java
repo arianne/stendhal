@@ -99,6 +99,23 @@ public class WeddingRing extends Ring {
 			// This means trouble ;)
 			player.sendPrivateText(spouseName + " is not wearing the wedding ring.");
 			return;
+		} else { //spouse is equipped with ring but could be divorced and have another 
+			
+			Item weddingRing = spouse.getFirstEquipped("wedding_ring") ;
+				/// then it does not get the wedding ring here
+			
+			if (weddingRing.getInfoString() == null){ //divorced with ring and engaged again
+				player.sendPrivateText("Sorry, " + spouseName + " has divorced you and is now engaged to someone else.");
+				return;
+			} else if (!(weddingRing.getInfoString().equals(player.getName()))) { //divorced and remarried
+				player.sendPrivateText("Sorry, " + spouseName + " has divorced you and is now remarried.");
+				
+				return;
+			}
+				
+			
+			
+		
 		}
 
 		StendhalRPZone sourceZone = player.getZone();
