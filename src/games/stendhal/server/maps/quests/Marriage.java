@@ -567,7 +567,7 @@ public class Marriage extends AbstractQuest {
 					@Override
 					public boolean fire(Player player, String text,
 							SpeakerNPC npc) {
-						return !player.isQuestCompleted(QUEST_SLOT);
+						return !(player.isQuestCompleted(QUEST_SLOT)||(player.hasQuest(QUEST_SLOT) && player.getQuest(QUEST_SLOT).equals("just_married")));
 					}
 				}, ConversationStates.ATTENDING,
 				"You're not even married. Stop wasting my time!", null);
