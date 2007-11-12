@@ -3,9 +3,7 @@ package games.stendhal.server.maps.quests;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 import games.stendhal.server.entity.item.Item;
-import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -21,6 +19,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import utilities.PlayerHelper;
+import utilities.PlayerTestHelper;
 
 public class CloakCollectorTest {
 @BeforeClass
@@ -40,13 +39,7 @@ public class CloakCollectorTest {
 		NPCList.get().remove("Josephine");
 	}
 
-	@Test
-	public final void testAddToWorld() {
 
-
-
-
-	}
 
 	@Test
 
@@ -240,109 +233,31 @@ public class CloakCollectorTest {
 
 	}
 
-	@Test
-	public final void testGetNPC() {
-		fail("Not yet implemented");
-	}
 
-	@Test
-	public final void testGetNeededItems() {
-		fail("Not yet implemented");
-	}
 
 	@Test
 	public final void testGetSlotName() {
-		fail("Not yet implemented");
+
+		CloakCollector cc = new CloakCollector();
+		assertEquals("cloaks_collector", cc.getSlotName());
 	}
 
-	@Test
-	public final void testGetTriggerPhraseToEnumerateMissingItems() {
-		fail("Not yet implemented");
-	}
+
 
 	@Test
 	public final void testShouldWelcomeAfterQuestIsCompleted() {
-		fail("Not yet implemented");
+
+		CloakCollector cc = new CloakCollector();
+		assertFalse(cc.shouldWelcomeAfterQuestIsCompleted());
 	}
 
-	@Test
-	public final void testWelcomeBeforeStartingQuest() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public final void testWelcomeDuringActiveQuest() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public final void testWelcomeAfterQuestIsCompleted() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public final void testRespondToQuest() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public final void testRespondToQuestAcception() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public final void testRespondToQuestAfterItHasAlreadyBeenCompleted() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public final void testRespondToQuestRefusal() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public final void testAskForItemsAfterPlayerSaidHeHasItems() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public final void testAskForMissingItems() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public final void testRespondToItemBrought() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public final void testRespondToLastItemBrought() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public final void testRespondToOfferOfNotExistingItem() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public final void testRespondToOfferOfNotMissingItem() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public final void testRespondToOfferOfNotNeededItem() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public final void testRespondToPlayerSayingHeHasNoItems() {
-		fail("Not yet implemented");
-	}
 
 	@Test
 	public final void testRewardPlayer() {
-		fail("Not yet implemented");
+		CloakCollector cc = new CloakCollector();
+		Player player = PlayerTestHelper.createPlayer();
+		cc.rewardPlayer(player);
+		assertTrue(player.isEquipped("black_cloak"));
 	}
 
 }
