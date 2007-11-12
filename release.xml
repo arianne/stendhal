@@ -84,4 +84,27 @@
 		</signjar>
 	</target>
 
+	<target name="upload-diff">
+		 <exec executable="scp" failonerror="true">
+		    <arg value="${build}/lib/stendhal-diff-${version.old}-${version}.jar"/>
+		    <arg value="${build}/lib/stendhal-data-diff-${version.old}-${version}.jar"/>
+		    <arg value="${sf.username}@shell1.sf.net:${sf.homedir}/stendhal/stendhal/updates/"/>
+		  </exec>
+	</target>
+	<target name="upload-prop">
+		 <exec executable="scp" failonerror="true">
+		    <arg value="/tmp/update.properties.xxx"/>
+		    <arg value="${sf.username}@shell1.sf.net:${sf.homedir}/stendhal/stendhal/updates/"/>
+		  </exec>
+	</target>
+	<target name="upload-filerelease">
+		 <exec executable="scp" failonerror="true">
+		    <arg value="${build}/stendhal-${version}.zip"/>
+		    <arg value="${build}/stendhal-FULL-${version}.zip"/>
+		    <arg value="${build}/stendhal-server-${version}.zip.zip"/>
+		    <arg value="${build}/stendhal-${version}-src.tar.gz"/>
+		    <arg value="${sf.username}@shell1.sf.net:${sf.homedir}/stendhal/file-release/stendhal"/>
+		  </exec>
+	</target>
+	<target name="upload" depends="upload-diff,upload-prop,upload-filerelease" />
 </project>
