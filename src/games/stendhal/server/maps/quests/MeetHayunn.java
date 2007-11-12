@@ -1,13 +1,18 @@
 package games.stendhal.server.maps.quests;
 
-import games.stendhal.server.StendhalRPWorld;
-import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.EquipItemAction;
+import games.stendhal.server.entity.npc.action.IncreaseXPAction;
+import games.stendhal.server.entity.npc.action.MultipleActions;
+import games.stendhal.server.entity.npc.action.SetQuestAction;
+import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
+import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -101,39 +106,30 @@ public class MeetHayunn extends AbstractQuest {
 			"Simple, really; just double-click the place you want to move to. There's a lot more information than I can relate just off the top of my head... do you want to know where to read more?",
 			null);
 
+		String epilog = "You can find a list of all sorts of animals, monsters, and other foes at #http://arianne.sourceforge.net/wiki/index.php?title=StendhalBestiary\nYou can find out about experience points and levelling up at #http://arianne.sourceforge.net/wiki/index.php?title=LevelTables\nYou can read about some of the currently most powerful and successful warriors at #http://stendhal.game-host.org\n ";
+		
 		npc.add(ConversationStates.INFORMATION_7,
-				ConversationPhrases.YES_MESSAGES, null,
-				ConversationStates.IDLE, null, new SpeakerNPC.ChatAction() {
-					@Override
-					public void fire(Player player, String text, SpeakerNPC npc) {
-						String answer;
-						if (player.isQuestCompleted(QUEST_SLOT)) {
-							answer = "You know, you remind me of my younger self...";
-						} else {
-							answer = "Well, good luck in the dungeons! Here's hoping you find fame and glory, and keep watch for monsters!";
-							StackableItem money = (StackableItem) StendhalRPWorld
-									.get().getRuleManager().getEntityManager()
-									.getItem("money");
-							money.setQuantity(5);
-							player.equip(money);
+			ConversationPhrases.YES_MESSAGES, new QuestCompletedCondition(QUEST_SLOT),
+			ConversationStates.IDLE, 
+			epilog + "You know, you remind me of my younger self...",
+			null);
+		
+		List<SpeakerNPC.ChatAction> reward = new LinkedList<SpeakerNPC.ChatAction>();
+		reward.add(new EquipItemAction("money", 5));
+		reward.add(new IncreaseXPAction(10));
+		reward.add(new SetQuestAction(QUEST_SLOT, "done"));
 
-							player.addXP(10);
-							player.setQuest(QUEST_SLOT, "done");
-							player.notifyWorldAboutChanges();
+		npc.add(ConversationStates.INFORMATION_7,
+				ConversationPhrases.YES_MESSAGES, new QuestNotCompletedCondition(QUEST_SLOT),
+				ConversationStates.IDLE, 
+				epilog + "Well, good luck in the dungeons! Here's hoping you find fame and glory, and keep watch for monsters!",
+				new MultipleActions(reward));
 
-						}
-						// TODO generate clickable hyperlink
-						npc.say("You can find a list of all sorts of animals, monsters, and other foes at #http://arianne.sourceforge.net/wiki/index.php?title=StendhalBestiary\nYou can find out about experience points and levelling up at #http://arianne.sourceforge.net/wiki/index.php?title=LevelTables\nYou can read about some of the currently most powerful and successful warriors at #http://stendhal.game-host.org\n "
-										+ answer);
-					}
-				});
-
-		npc.add(
-				new int[] { ConversationStates.ATTENDING,
-						ConversationStates.INFORMATION_1,
-						ConversationStates.INFORMATION_3,
-						ConversationStates.INFORMATION_4,
-						ConversationStates.INFORMATION_6 },
+		npc.add(new int[] { ConversationStates.ATTENDING,
+					ConversationStates.INFORMATION_1,
+					ConversationStates.INFORMATION_3,
+					ConversationStates.INFORMATION_4,
+					ConversationStates.INFORMATION_6 },
 				"no", null, ConversationStates.ATTENDING,
 				"Oh well, I'm sure someone else will stop by for a chat soon.",
 				null);
