@@ -59,8 +59,8 @@ public class QuestActiveConditionTest {
 
 	@Test
 	public final void testToString() {
-		assertEquals("QuestActive <questname>",
-				new QuestActiveCondition("questname").toString());
+		assertEquals("QuestActive <questname>", new QuestActiveCondition(
+				"questname").toString());
 	}
 
 	@Test
@@ -69,14 +69,33 @@ public class QuestActiveConditionTest {
 
 		QuestActiveCondition obj = new QuestActiveCondition("questname");
 		assertTrue(obj.equals(obj));
+		assertTrue(new QuestActiveCondition("questname").equals(new QuestActiveCondition(
+				"questname")));
+		assertTrue(new QuestActiveCondition(null).equals(new QuestActiveCondition(
+				null)));
 
 		assertFalse(new QuestActiveCondition("questname").equals(new Object()));
 
-		assertTrue(new QuestActiveCondition("questname").equals(new QuestActiveCondition(
+		assertFalse(new QuestActiveCondition(null).equals(new QuestActiveCondition(
 				"questname")));
+		assertFalse(new QuestActiveCondition("questname").equals(new QuestActiveCondition(
+				null)));
+		assertFalse(new QuestActiveCondition("questname").equals(new QuestActiveCondition(
+				"questname2")));
 		assertFalse(new QuestActiveCondition("questname").equals(new QuestActiveCondition(
 				"questname") {
 		}));
+	}
+
+	@Test
+	public void testHashCode() throws Exception {
+		QuestActiveCondition obj = new QuestActiveCondition("questname");
+		assertEquals(obj.hashCode(), obj.hashCode());
+		assertEquals(new QuestActiveCondition("questname").hashCode(),
+				new QuestActiveCondition("questname").hashCode());
+		assertEquals(new QuestActiveCondition(null).hashCode(),
+				new QuestActiveCondition(null).hashCode());
+
 	}
 
 }
