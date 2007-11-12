@@ -13,6 +13,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import utilities.PlayerTestHelper;
+
 public class PlayerInAreaConditionTest {
 
 	@Before
