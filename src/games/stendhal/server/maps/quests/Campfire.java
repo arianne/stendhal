@@ -7,6 +7,9 @@ import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.SetQuestAction;
+import games.stendhal.server.entity.npc.condition.NotCondition;
+import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.rule.EntityManager;
 
@@ -88,9 +91,8 @@ public class Campfire extends AbstractQuest {
 				// completed quest
 				return true;
 			}
-			int turnsSinceLastBroughtWood = StendhalRPRuleProcessor.get()
-					.getTurn()
-					- turnWhenLastBroughtWood;
+			int turnsSinceLastBroughtWood = StendhalRPRuleProcessor.get().getTurn()
+				- turnWhenLastBroughtWood;
 			if (turnsSinceLastBroughtWood < 0) {
 				// TODO: use time instead of turn number, that will make such
 				// things easier.
@@ -150,13 +152,7 @@ public class Campfire extends AbstractQuest {
 			null,
 			ConversationStates.ATTENDING,
 			"Okay. You can find wood in the forest north of here. Come back when you get ten pieces of wood!",
-			new SpeakerNPC.ChatAction() {
-				@Override
-				public void fire(Player player, String text,
-						SpeakerNPC npc) {
-					player.setQuest(QUEST_SLOT, "start");
-				}
-			});
+			new SetQuestAction(QUEST_SLOT, "start"));
 
 		// player is not willing to help
 		npc.add(ConversationStates.QUEST_OFFERED,
@@ -169,14 +165,14 @@ public class Campfire extends AbstractQuest {
 
 	private void prepareBringingStep() {
 		SpeakerNPC npc = npcs.get("Sally");
-
 		npc.add(ConversationStates.QUEST_ITEM_BROUGHT,
-			ConversationPhrases.YES_MESSAGES, null,
+			ConversationPhrases.YES_MESSAGES, 
+			new PlayerHasItemWithHimCondition("wood", REQUIRED_WOOD),
 			ConversationStates.ATTENDING, null,
-			new SpeakerNPC.ChatAction() {
-				@Override
-				public void fire(Player player, String text, SpeakerNPC npc) {
-					if (player.drop("wood", REQUIRED_WOOD)) {
+				new SpeakerNPC.ChatAction() {
+					@Override
+					public void fire(Player player, String text, SpeakerNPC npc) {
+						player.drop("wood", REQUIRED_WOOD);
 						player.setQuest(QUEST_SLOT, Integer.toString(StendhalRPRuleProcessor.get().getTurn()));
 						player.addXP(50);
 
@@ -193,11 +189,15 @@ public class Campfire extends AbstractQuest {
 						reward.setQuantity(REQUIRED_WOOD);
 						player.equip(reward, true);
 						player.notifyWorldAboutChanges();
-					} else {
-						npc.say("Hey! Where did you put the wood?");
 					}
-				}
-			});
+				});
+
+		npc.add(ConversationStates.QUEST_ITEM_BROUGHT,
+			ConversationPhrases.YES_MESSAGES, 
+			new NotCondition(new PlayerHasItemWithHimCondition("wood", REQUIRED_WOOD)),
+			ConversationStates.ATTENDING, 
+			"Hey! Where did you put the wood?",
+			null);
 
 		npc.add(
 			ConversationStates.QUEST_ITEM_BROUGHT,
