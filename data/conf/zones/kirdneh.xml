@@ -130,37 +130,37 @@
  </zone>
 
  <zone name="int_kirdneh_house_26" file="interiors/kirdneh/house_26.tmx">
-  <portal x="18" y="23" ref="entrance">
+  <portal x="19" y="23" ref="entrance">
    <destination zone="0_kirdneh_city" ref="26"/>
   </portal>
  </zone>
  <zone name="int_kirdneh_house_27" file="interiors/kirdneh/house_27.tmx">
-  <portal x="18" y="23" ref="entrance">
+  <portal x="19" y="23" ref="entrance">
    <destination zone="0_kirdneh_city" ref="27"/>
   </portal>
  </zone>
  <zone name="int_kirdneh_house_28" file="interiors/kirdneh/house_28.tmx">
-  <portal x="18" y="23" ref="entrance">
+  <portal x="19" y="23" ref="entrance">
    <destination zone="0_kirdneh_city" ref="28"/>
   </portal>
  </zone>
  <zone name="int_kirdneh_house_29" file="interiors/kirdneh/house_29.tmx">
-  <portal x="18" y="23" ref="entrance">
+  <portal x="19" y="23" ref="entrance">
    <destination zone="0_kirdneh_city" ref="29"/>
   </portal>
  </zone>
  <zone name="int_kirdneh_house_30" file="interiors/kirdneh/house_30.tmx">
-  <portal x="18" y="23" ref="entrance">
+  <portal x="19" y="23" ref="entrance">
    <destination zone="0_kirdneh_city" ref="30"/>
   </portal>
  </zone>
  <zone name="int_kirdneh_house_31" file="interiors/kirdneh/house_31.tmx">
-  <portal x="18" y="23" ref="entrance">
+  <portal x="15" y="23" ref="entrance">
    <destination zone="0_kirdneh_city" ref="31"/>
   </portal>
  </zone>
  <zone name="int_kirdneh_house_32" file="interiors/kirdneh/house_32.tmx">
-  <portal x="18" y="23" ref="entrance">
+  <portal x="19" y="23" ref="entrance">
    <destination zone="0_kirdneh_city" ref="32"/>
   </portal>
  </zone>
@@ -170,12 +170,12 @@
   </portal>
  </zone>-->
  <zone name="int_kirdneh_house_34" file="interiors/kirdneh/house_34.tmx">
-  <portal x="18" y="23" ref="entrance">
+  <portal x="19" y="23" ref="entrance">
    <destination zone="0_kirdneh_city" ref="34"/>
   </portal>
  </zone>
  <zone name="int_kirdneh_house_35" file="interiors/kirdneh/house_35.tmx">
-  <portal x="18" y="23" ref="entrance">
+  <portal x="19" y="23" ref="entrance">
    <destination zone="0_kirdneh_city" ref="35"/>
   </portal>
  </zone>
@@ -190,7 +190,7 @@
   </portal>
  </zone>-->
  <zone name="int_kirdneh_house_38" file="interiors/kirdneh/house_38.tmx">
-  <portal x="18" y="23" ref="entrance">
+  <portal x="19" y="23" ref="entrance">
    <destination zone="0_kirdneh_city" ref="38"/>
   </portal>
  </zone>
@@ -220,7 +220,7 @@
   </portal>
  </zone>-->
  <zone name="int_kirdneh_house_44" file="interiors/kirdneh/house_44.tmx">
-  <portal x="18" y="23" ref="entrance">
+  <portal x="19" y="23" ref="entrance">
    <destination zone="0_kirdneh_city" ref="44"/>
   </portal>
  </zone>
