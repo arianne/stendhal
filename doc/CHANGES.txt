@@ -5,8 +5,14 @@ Changelog
 - new city of kirdneh, east of fado forest
 - player houses in ados
 - kalavan city gardens
-- quest from annie in kalavan city gardens (buy icecream)
 - NPCs in kalavan city gardens
+- new quest from annie in kalavan city gardens (buy icecream)
+- new quest from Morgrin in wizard school in magic city (kill spiders)
+- password quality check on account creation
+- development
+  - 14.2% of code is now covered by automated Junit tests
+  - started to improve the way quests are coded
+  - improved state transition diagrams for NPCs
 
 0.63
 - Codebase ported to Marauroa 2.0
