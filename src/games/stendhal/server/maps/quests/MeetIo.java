@@ -1,13 +1,18 @@
 package games.stendhal.server.maps.quests;
 
-import games.stendhal.server.StendhalRPWorld;
-import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.EquipItemAction;
+import games.stendhal.server.entity.npc.action.IncreaseXPAction;
+import games.stendhal.server.entity.npc.action.MultipleActions;
+import games.stendhal.server.entity.npc.action.SetQuestAction;
+import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
+import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -46,18 +51,18 @@ public class MeetIo extends AbstractQuest {
 		SpeakerNPC npc = npcs.get("Io Flotto");
 
 		npc.add(ConversationStates.ATTENDING,
-			ConversationPhrases.HELP_MESSAGES, null,
-			ConversationStates.ATTENDING, null,
-			new SpeakerNPC.ChatAction() {
-				@Override
-				public void fire(Player player, String text, SpeakerNPC npc) {
-					if (player.isQuestCompleted(QUEST_SLOT)) {
-						npc.say("Do you want to repeat the six basic elements of telepathy? I already know the answer but I'm being polite...");
-					} else {
-						npc.say("I'm a telepath and a telekinetic; I can help you by sharing my mental skills with you. Do you want me to teach you the six basic elements of telepathy? I already know the answer but I'm being polite...");
-					}
-				}
-			});
+			ConversationPhrases.HELP_MESSAGES,
+			new QuestNotCompletedCondition(QUEST_SLOT),
+			ConversationStates.ATTENDING,
+			"I'm a telepath and a telekinetic; I can help you by sharing my mental skills with you. Do you want me to teach you the six basic elements of telepathy? I already know the answer but I'm being polite...",
+			null);
+
+		npc.add(ConversationStates.ATTENDING,
+			ConversationPhrases.HELP_MESSAGES,
+			new QuestCompletedCondition(QUEST_SLOT),
+			ConversationStates.ATTENDING,
+			"Do you want to repeat the six basic elements of telepathy? I already know the answer but I'm being polite...",
+			null);
 
 		npc.add(
 			ConversationStates.ATTENDING,
@@ -116,34 +121,25 @@ public class MeetIo extends AbstractQuest {
 			null);
 
 		/** Give the reward to the patient newcomer user */
+		String answer = "*yawns* Maybe I'll show you later... I don't want to overload you with too much information at once. You can get a summary of all those lessons at any time, incidentally, just by typing #/help.\n";
 		npc.add(ConversationStates.INFORMATION_6,
-			ConversationPhrases.YES_MESSAGES, null,
-			ConversationStates.IDLE, null, new SpeakerNPC.ChatAction() {
-				@Override
-				public void fire(Player player, String text, SpeakerNPC npc) {
-					String answer;
-					if (player.isQuestCompleted(QUEST_SLOT)) {
-						answer = "Hey! I know what you're thinking, and I don't like it!";
-					} else {
-						// give the reward
-						StackableItem money = (StackableItem) StendhalRPWorld
-								.get().getRuleManager().getEntityManager()
-								.getItem("money");
+			ConversationPhrases.YES_MESSAGES, 
+			new QuestCompletedCondition(QUEST_SLOT),
+			ConversationStates.IDLE, 
+			answer + "Hey! I know what you're thinking, and I don't like it!",
+			null);
 
-						money.setQuantity(10);
-						player.equip(money);
+		List<SpeakerNPC.ChatAction> reward = new LinkedList<SpeakerNPC.ChatAction>();
+		reward.add(new EquipItemAction("money", 10));
+		reward.add(new IncreaseXPAction(10));
+		reward.add(new SetQuestAction(QUEST_SLOT, "done"));		
 
-						player.addXP(10);
-						player.setQuest(QUEST_SLOT, "done");
-						player.notifyWorldAboutChanges();
-
-						answer = "Remember, don't let anything disturb your concentration.";
-					}
-
-					npc.say("*yawns* Maybe I'll show you later... I don't want to overload you with too much information at once. You can get a summary of all those lessons at any time, incidentally, just by typing #/help.\n"
-									+ answer);
-				}
-			});
+		npc.add(ConversationStates.INFORMATION_6,
+			ConversationPhrases.YES_MESSAGES, 
+			new QuestNotCompletedCondition(QUEST_SLOT),
+			ConversationStates.IDLE, 
+			answer + "Remember, don't let anything disturb your concentration.",
+			new MultipleActions(reward));
 
 		npc.add(
 			ConversationStates.ANY,
