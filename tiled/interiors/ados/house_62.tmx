@@ -129,9 +129,12 @@
  <tileset name="notes" firstgid="324" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/note_board.png"/>
  </tileset>
+ <tileset name="tiles" firstgid="328" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/indoor/floor_tiles2.png"/>
+ </tileset>
  <layer name="0_floor" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNkYGBgHMVUw5uw4JGkf6BwFhoeavqxYV866AcAl+LMIwAEAAA=
+   H4sIAAAAAAAAAPNmZGDwHsVUw5sYMPFI0j9QOIsBFQ81/diwL4XmEKMfANhyrlMABAAA
   </data>
  </layer>
  <layer name="1_terrain" width="16" height="16">
@@ -159,9 +162,9 @@
    H4sIAAAAAAAAAGNgGD7g6UA7YBQMWXBjkJhBbwAAciPCaQAEAAA=
   </data>
  </layer>
- <layer name="collision" width="16" height="16" opacity="0.37">
+ <layer name="collision" width="16" height="16" visible="0" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAALvJwMBwc5BgXIASvcSaORT0D5T/sakjVT8yjU0/sfFPql5cbqU0DCmJB1LyA63zHAA/QTkTAAQAAA==
+   H4sIAAAAAAAAALvJwMBwc5BgXIASvcSaORT0D5T/samjtv3Exj+penG5ldIwpCQeSMkPtM5zAKFYesUABAAA
   </data>
  </layer>
  <layer name="protection" width="16" height="16">
