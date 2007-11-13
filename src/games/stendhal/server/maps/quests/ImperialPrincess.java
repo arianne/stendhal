@@ -3,6 +3,10 @@ package games.stendhal.server.maps.quests;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.IncreaseXPAction;
+import games.stendhal.server.entity.npc.action.MultipleActions;
+import games.stendhal.server.entity.npc.action.SetQuestAction;
+import games.stendhal.server.entity.npc.condition.QuestNotInStateCondition;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Arrays;
@@ -184,24 +188,19 @@ public class ImperialPrincess extends AbstractQuest {
 
 	private void step_3() {
 		SpeakerNPC npc = npcs.get("King Cozart");
+
 		/** Complete the quest by speaking to King */
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
+			new QuestNotInStateCondition(QUEST_SLOT, "recommended"), 
+			ConversationStates.IDLE,
+			"Greetings! My wonderful daughter requests that I grant you citizenship of Kalavan City. Consider it done. Now, forgive me while I go back to my meal. Goodbye.",
+			new MultipleActions(new IncreaseXPAction(500), new SetQuestAction(QUEST_SLOT, "done")));
 
-		null, ConversationStates.IDLE, null, new SpeakerNPC.ChatAction() {
-			@Override
-			public void fire(Player player, String text, SpeakerNPC engine) {
-				if (player.hasQuest(QUEST_SLOT)
-						&& player.getQuest(QUEST_SLOT).equals("recommended")) {
-
-					player.addXP(500);
-					engine.say("Greetings! My wonderful daughter requests that I grant you citizenship of Kalavan City. Consider it done. Now, forgive me while I go back to my meal. Goodbye.");
-					player.setQuest(QUEST_SLOT, "done");
-					player.notifyWorldAboutChanges();
-				} else {
-					engine.say("Leave me! Can't you see I am trying to eat?");
-				}
-			}
-		});
+		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
+			new QuestNotInStateCondition(QUEST_SLOT, "recommended"), 
+			ConversationStates.IDLE, 
+			"Leave me! Can't you see I am trying to eat?",
+			null);
 	}
 
 	@Override
