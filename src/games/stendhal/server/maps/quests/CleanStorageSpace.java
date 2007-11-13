@@ -3,9 +3,21 @@ package games.stendhal.server.maps.quests;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
+import games.stendhal.server.entity.npc.action.IncreaseXPAction;
+import games.stendhal.server.entity.npc.action.MultipleActions;
+import games.stendhal.server.entity.npc.action.SetQuestAction;
+import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
+import games.stendhal.server.entity.npc.action.StartRecodingKillsAction;
+import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.KilledCondition;
+import games.stendhal.server.entity.npc.condition.NotCondition;
+import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
+import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 
 import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * QUEST: CleanStorageSpace
@@ -25,55 +37,41 @@ import java.util.Arrays;
  * <li> None.
  */
 public class CleanStorageSpace extends AbstractQuest {
+	private static final String QUEST_SLOT = "clean_storage";
 
 	private void step_1() {
 		SpeakerNPC npc = npcs.get("Eonna");
 
 		npc.add(ConversationStates.ATTENDING,
-				ConversationPhrases.QUEST_MESSAGES, null,
-				ConversationStates.QUEST_OFFERED, null,
-				new SpeakerNPC.ChatAction() {
-					@Override
-					public void fire(Player player, String text,
-							SpeakerNPC engine) {
-						if (!player.isQuestCompleted("clean_storage")) {
-							engine.say("My #basement is absolutely crawling with rats. Will you help me?");
-						} else {
-							engine.say("Thanks again! I think it's still clear down there.");
-							engine.setCurrentState(ConversationStates.ATTENDING);
-						}
-					}
-				});
+				ConversationPhrases.QUEST_MESSAGES, 
+				new QuestNotCompletedCondition(QUEST_SLOT),
+				ConversationStates.QUEST_OFFERED,
+				"My #basement is absolutely crawling with rats. Will you help me?",
+				null);
 
+		npc.add(ConversationStates.ATTENDING,
+				ConversationPhrases.QUEST_MESSAGES, 
+				new QuestNotCompletedCondition(QUEST_SLOT),
+				ConversationStates.ATTENDING, 
+				"Thanks again! I think it's still clear down there.", null);
+
+		List<SpeakerNPC.ChatAction> start = new LinkedList<SpeakerNPC.ChatAction>();
+		start.add(new StartRecodingKillsAction("rat", "caverat", "snake"));
+		start.add(new IncreaseKarmaAction(2.0));
+		start.add(new SetQuestAction(QUEST_SLOT, "start"));
+		
 		npc.add(
 				ConversationStates.QUEST_OFFERED,
 				ConversationPhrases.YES_MESSAGES,
 				null,
 				ConversationStates.ATTENDING,
 				"Oh, thank you! I'll wait up here, and if any try to escape I'll hit them with the broom!",
-				new SpeakerNPC.ChatAction() {
-					@Override
-					public void fire(Player player, String text,
-							SpeakerNPC engine) {
-						player.addKarma(2.0);
-						player.setQuest("clean_storage", "start");
-						player.removeKill("rat");
-						player.removeKill("snake");
-						player.removeKill("caverat");
-					}
-				});
+				new MultipleActions(start));
 
 		npc.add(ConversationStates.QUEST_OFFERED, "no", null,
 				ConversationStates.ATTENDING,
 				"*sigh* Oh well, maybe someone else will be my hero...",
-				new SpeakerNPC.ChatAction() {
-					@Override
-					public void fire(Player player, String text,
-							SpeakerNPC engine) {
-						player.addKarma(-2.0);
-						player.setQuest("clean_storage", "rejected");
-					}
-				});
+				new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -2.0));
 
 		npc.add(
 				ConversationStates.QUEST_OFFERED,
@@ -91,37 +89,24 @@ public class CleanStorageSpace extends AbstractQuest {
 	private void step_3() {
 
 		SpeakerNPC npc = npcs.get("Eonna");
+		
+		List<SpeakerNPC.ChatAction> reward = new LinkedList<SpeakerNPC.ChatAction>();
+		reward.add(new IncreaseKarmaAction(3.0));
+		reward.add(new IncreaseXPAction(25));
+		reward.add(new SetQuestAction(QUEST_SLOT, "done"));
 
 		// the player returns to Eonna after having started the quest.
 		// Eonna checks if the player has killed one of each animal race.
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-				new SpeakerNPC.ChatCondition() {
-					@Override
-					public boolean fire(Player player, String text,
-							SpeakerNPC engine) {
-						return player.hasQuest("clean_storage")
-								&& player.getQuest("clean_storage").equals(
-										"start");
-					}
-				}, ConversationStates.QUEST_STARTED, null,
-				new SpeakerNPC.ChatAction() {
-					@Override
-					public void fire(Player player, String text,
-							SpeakerNPC engine) {
-						if (player.hasKilled("rat")
-								&& player.hasKilled("caverat")
-								&& player.hasKilled("snake")) {
-							engine.say("A hero at last! Thank you!");
+				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"), new KilledCondition("rat", "caverat", "snake")),
+				ConversationStates.ATTENDING, "A hero at last! Thank you!",
+				new MultipleActions(reward));
 
-							player.addKarma(3.0);
-							player.addXP(25);
-							player.setQuest("clean_storage", "done");
-							engine.setCurrentState(ConversationStates.ATTENDING);
-						} else {
-							engine.say("Don't you remember promising to clean out the rats from my #basement?");
-						}
-					}
-				});
+		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
+				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"), new NotCondition(new KilledCondition("rat", "caverat", "snake"))),
+				ConversationStates.QUEST_STARTED,
+				"Don't you remember promising to clean out the rats from my #basement?",
+				null);
 
 		npc.add(
 				ConversationStates.QUEST_STARTED,
