@@ -120,7 +120,6 @@ public class DailyItemQuest extends AbstractQuest {
 			engine.say("Ados is in need of supplies. Go fetch "
 					+ Grammar.a_noun(itemName)
 					+ " and say #complete, once you've brought it.");
-			player.removeKill(itemName);
 			questLast = "" + (new Date()).getTime();
 			player.setQuest("daily_item", itemName + ";" + questLast + ";"
 					+ questCount);
