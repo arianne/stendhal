@@ -180,6 +180,18 @@
  <tileset name="table gray plain" firstgid="368" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/table/grey_plain.png"/>
  </tileset>
+ <tileset name="detail ew" firstgid="377" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/entrance/detail_ew.png"/>
+ </tileset>
+ <tileset name="detail ns" firstgid="383" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/entrance/detail_ns.png"/>
+ </tileset>
+ <tileset name="detail ew" firstgid="389" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/entrance/dark_red_ew_detail.png"/>
+ </tileset>
+ <tileset name="detail ns" firstgid="401" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/entrance/dark_red_ns_detail.png"/>
+ </tileset>
  <layer name="0_floor" width="40" height="25">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3T0QYAIAxG4aZXSfT+L5jukmTWGHMO/3UfWSnkUf3YWRfdXgZ8+PDl8RFF1sS+cZn2RrS3gw+fh289vQ9frv/FF+MjWxOXOeIQoA8AAA==
@@ -197,7 +209,7 @@
  </layer>
  <layer name="3_roof" width="40" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWDFdgy4ubHosmNAvKAOxB7DLQjhjDwB+IAItRtp7VDgECAEZUeBYMPhELpcCqrpRaIgNJRVFZLCFRgESuF0tVAHD2apkcBAfAPSv8B4r9oYqNgYIE/MP8GU5iHWaD6mYA0MyOqGKUgBYijRsuYUTAKyAK0aqsAABDKFmqgDwAA
+   H4sIAAAAAAAAAGNgGAWDFdgy4ubHosmNAvKAOxB7DLQj8IBOYDx3DeK49gfiACLUbae1Q4BAgBGVHgWDD4QC8SRg/IRTWS21QAQQTwXaGUVltYRABRaxUihdDcTRo2l6FBAA/6D0HyD+iyY2CgYW+APzbzCFeZgFqp8JSDMzoopRClKAOGq0jBkFo4AsQKu2CgAYbP0JoA8AAA==
   </data>
  </layer>
  <layer name="4_roof_add" width="40" height="25">
@@ -210,7 +222,7 @@
    H4sIAAAAAAAAAO3BMQEAAADCoPVPbQwfoAAAAIC3Ab6TizqgDwAA
   </data>
  </layer>
- <layer name="collision" width="40" height="25" opacity="0.35">
+ <layer name="collision" width="40" height="25" visible="0" opacity="0.35">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO2TUQrAMAhDvf/Jeqz9jiBq7Kwtq+BPjfEN3RCRcXM6xXjHmjh9Wg/qM31Yx/DetTmosxisegWfFxEG1pOds4Ond9cMQ8aHZXvXvuKz9s+wRfUey0wy3pUcl+9ffBgZLfZFNJpfd5zIp/Fm9h6dydzNCj70ZL6D0VbfRhcf08/wCehW/FMr9jQTXfcUqUVuKpOV3rvmAyihZqugDwAA
   </data>
