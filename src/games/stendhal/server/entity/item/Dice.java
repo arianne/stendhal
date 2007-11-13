@@ -14,7 +14,6 @@ package games.stendhal.server.entity.item;
 
 import games.stendhal.common.Grammar;
 import games.stendhal.common.Rand;
-import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.npc.CroupierNPC;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.player.Player;
