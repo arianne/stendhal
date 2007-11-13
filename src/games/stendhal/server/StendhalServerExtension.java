@@ -36,7 +36,7 @@ public abstract class StendhalServerExtension {
 
 	public static StendhalServerExtension getInstance(String name) {
 		try {
-			Class extensionClass = Class.forName(name);
+			Class<?> extensionClass = Class.forName(name);
 
 			if (!StendhalServerExtension.class.isAssignableFrom(extensionClass)) {
 				logger.debug("Class is no instance of StendhalServerExtension.");
@@ -44,7 +44,7 @@ public abstract class StendhalServerExtension {
 			}
 
 			logger.info("Loading ServerExtension: " + name);
-			java.lang.reflect.Constructor constr = extensionClass.getConstructor();
+			java.lang.reflect.Constructor<?> constr = extensionClass.getConstructor();
 
 			// simply create a new instance. The constructor creates all
 			// additionally objects

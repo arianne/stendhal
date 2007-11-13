@@ -72,7 +72,7 @@ public class PersonalChest extends Chest {
 			InstantiationException, IllegalAccessException,
 			InvocationTargetException {
 		Class< ? > clazz = item.getClass();
-		Constructor ctor = clazz.getConstructor(clazz);
+		Constructor<?> ctor = clazz.getConstructor(clazz);
 		Item clone = (Item) ctor.newInstance(item);
 		return clone;
 	}

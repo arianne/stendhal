@@ -118,7 +118,7 @@ public class StendhalQuestSystem {
 
 	private boolean loadQuest(String name) {
 		try {
-			Class questClass = Class
+			Class<?> questClass = Class
 					.forName("games.stendhal.server.maps.quests." + name);
 
 			if (!IQuest.class.isAssignableFrom(questClass)) {
@@ -129,7 +129,7 @@ public class StendhalQuestSystem {
 
 			// Create a new instance.
 			logger.info("Loading Quest: " + name);
-			Constructor constr = questClass.getConstructor();
+			Constructor<?> constr = questClass.getConstructor();
 			IQuest quest = (IQuest) constr.newInstance();
 
 			// init and add to world

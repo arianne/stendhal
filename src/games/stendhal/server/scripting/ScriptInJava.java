@@ -57,13 +57,13 @@ public class ScriptInJava extends ScriptingSandbox {
 		File file = new File("./data/script");
 		ClassLoader loader = new URLClassLoader(new URL[] { file.toURL() });
 		// load class through new loader
-		Class aClass = loader.loadClass(classname);
+		Class<?> aClass = loader.loadClass(classname);
 		script = (Script) aClass.newInstance();
 	}
 
 	@Override
 	public boolean load(Player admin, String[] args) {
-		Class[] signature = new Class[] { Player.class, List.class, ScriptingSandbox.class };
+		Class<?>[] signature = new Class<?>[] { Player.class, List.class, ScriptingSandbox.class };
 		Object[] params = new Object[] { admin, Arrays.asList(args), this };
 
 		try {
@@ -84,7 +84,7 @@ public class ScriptInJava extends ScriptingSandbox {
 
 	@Override
 	public boolean execute(Player admin, String[] args) {
-		Class[] signature = new Class[] { Player.class, List.class };
+		Class<?>[] signature = new Class[] { Player.class, List.class };
 		Object[] params = new Object[] { admin, Arrays.asList(args) };
 
 		try {
@@ -100,7 +100,7 @@ public class ScriptInJava extends ScriptingSandbox {
 
 	@Override
 	public void unload(Player admin, String[] args) {
-		Class[] signature = new Class[] { Player.class, List.class };
+		Class<?>[] signature = new Class<?>[] { Player.class, List.class };
 		Object[] params = new Object[] { admin, Arrays.asList(args) };
 		try {
 			Method theMethod = script.getClass().getMethod("unload", signature);

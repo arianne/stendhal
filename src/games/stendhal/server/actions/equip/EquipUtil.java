@@ -49,8 +49,8 @@ public class EquipUtil {
 	 *            the object to check
 	 * @return true when the class is in the list, else false
 	 */
-	static boolean isCorrectClass(List<Class> validClasses, RPObject object) {
-		for (Class clazz : validClasses) {
+	static boolean isCorrectClass(List<Class<?>> validClasses, RPObject object) {
+		for (Class<?> clazz : validClasses) {
 			if (clazz.isInstance(object)) {
 				return true;
 			}

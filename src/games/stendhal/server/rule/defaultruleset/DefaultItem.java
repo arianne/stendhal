@@ -60,7 +60,7 @@ public class DefaultItem {
 	/** Implementation creator */
 	protected Creator creator;
 
-	private Class implementation;
+	private Class<?> implementation;
 
 	private int value;
 
@@ -103,12 +103,12 @@ public class DefaultItem {
 		return description;
 	}
 
-	public void setImplementation(Class implementation) {
+	public void setImplementation(Class<?> implementation) {
 		this.implementation = implementation;
 		creator = buildCreator(implementation);
 	}
 
-	public Class getImplementation() {
+	public Class<?> getImplementation() {
 		return implementation;
 	}
 
@@ -267,9 +267,9 @@ public class DefaultItem {
 	 */
 	protected abstract class Creator {
 
-		protected Constructor construct;
+		protected Constructor<?> construct;
 
-		public Creator(Constructor construct) {
+		public Creator(Constructor<?> construct) {
 			this.construct = construct;
 		}
 
@@ -302,7 +302,7 @@ public class DefaultItem {
 	 */
 	protected class AttributesCreator extends Creator {
 
-		public AttributesCreator(Constructor construct) {
+		public AttributesCreator(Constructor<?> construct) {
 			super(construct);
 		}
 
@@ -318,7 +318,7 @@ public class DefaultItem {
 	 */
 	protected class DefaultCreator extends Creator {
 
-		public DefaultCreator(Constructor construct) {
+		public DefaultCreator(Constructor<?> construct) {
 			super(construct);
 		}
 
@@ -337,7 +337,7 @@ public class DefaultItem {
 	 */
 	protected class FullCreator extends Creator {
 
-		public FullCreator(Constructor construct) {
+		public FullCreator(Constructor<?> construct) {
 			super(construct);
 		}
 

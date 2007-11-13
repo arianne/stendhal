@@ -64,13 +64,13 @@ public class Entity2DViewFactory { // implements EntityViewFactory {
 	/**
 	 * The model-to-view class map.
 	 */
-	protected Map<Class<?extends Entity>, Class<EntityView>> map;
+	protected Map<Class<? extends Entity>, Class<? extends EntityView>> map;
 
 	/**
 	 * Create an entity view factory.
 	 */
 	public Entity2DViewFactory() {
-		map = new HashMap<Class<?extends Entity>, Class<EntityView>>();
+		map = new HashMap<Class<? extends Entity>, Class<? extends EntityView>>();
 
 		configure();
 	}
@@ -89,14 +89,14 @@ public class Entity2DViewFactory { // implements EntityViewFactory {
 	 */
 	public EntityView create(Entity entity) {
 		Class<? extends Entity> entityClass = entity.getClass();
-		Class<EntityView> viewClass = map.get(entityClass);
+		Class<? extends EntityView> viewClass = map.get(entityClass);
 
 		if (viewClass == null) {
 			return null;
 		}
 
 		try {
-			Constructor<EntityView> cns =viewClass.getConstructor(entity.getClass());
+			Constructor<? extends EntityView> cns = viewClass.getConstructor(entity.getClass());
 			EntityView view =  cns.newInstance(entity);
 
 			return view;
@@ -164,14 +164,14 @@ public class Entity2DViewFactory { // implements EntityViewFactory {
 	}
 
 	/**
-	 * Register an enity model-to-view mapping.
+	 * Register an entity model-to-view mapping.
 	 *
 	 * @param entityClass
 	 *            The entity model class.
 	 * @param viewClass
 	 *            The entity view class.
 	 */
-	private void register(Class entityClass, Class viewClass) {
+	private void register(Class<? extends Entity> entityClass, Class<? extends EntityView> viewClass) {
 		map.put(entityClass, viewClass);
 	}
 }

@@ -52,11 +52,11 @@ public class EquipmentAction implements ActionListener {
 	static final Logger logger = Logger.getLogger(EquipmentAction.class);
 
 	/** the list of valid container classes */
-	private static final Class[] validContainerClasses = new Class[] {
+	private static final Class<?>[] validContainerClasses = new Class<?>[] {
 			Player.class, Chest.class, Corpse.class };
 
 	/** List of the valid container classes for easy access */
-	private List<Class> validContainerClassesList;
+	private List<Class<?>> validContainerClassesList;
 
 	/**
 	 * registers "equip" and "drop" action processors

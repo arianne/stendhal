@@ -411,7 +411,7 @@ public class LoginDialog extends JDialog {
 	 * Populate the profiles combobox and select the default.
 	 */
 	protected void populateProfiles(ProfileList profiles) {
-		Iterator iter;
+		Iterator<?> iter;
 		int count;
 
 		profilesComboBox.removeAllItems();

@@ -111,7 +111,7 @@ public class StendhalMapReader implements MapReader {
 		return "Stendhal Reader/Writer Plugin";
 	}
 
-	public void setErrorStack(Stack es) {
+	public void setErrorStack(Stack<?> es) {
 		// not implemented
 	}
 

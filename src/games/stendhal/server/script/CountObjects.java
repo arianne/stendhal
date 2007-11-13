@@ -9,6 +9,7 @@ import games.stendhal.server.scripting.ScriptImpl;
 import java.util.Iterator;
 import java.util.List;
 
+import marauroa.common.game.IRPZone;
 import marauroa.common.game.RPObject;
 
 /**
@@ -22,9 +23,8 @@ public class CountObjects extends ScriptImpl {
 	public void execute(Player admin, List<String> args) {
 		int count = 0;
 		StendhalRPWorld world = StendhalRPWorld.get();
-		Iterator itr = world.iterator();
-		while (itr.hasNext()) {
-			StendhalRPZone zone = (StendhalRPZone) itr.next();
+		for(IRPZone irpZone : world) {
+			StendhalRPZone zone = (StendhalRPZone) irpZone;
 			Iterator<RPObject> itr2 = zone.iterator();
 			while (itr2.hasNext()) {
 				itr2.next();

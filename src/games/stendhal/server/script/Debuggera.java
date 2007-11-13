@@ -17,9 +17,10 @@ import games.stendhal.server.scripting.ScriptingSandbox;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
+
+import marauroa.common.game.IRPZone;
 
 import org.apache.log4j.Logger;
 
@@ -218,10 +219,9 @@ public class Debuggera extends ScriptImpl {
 		//	this.sandbox = sandbox;
 
 			zones = new ArrayList<String>();
-			Iterator itr = world.iterator();
 
-			while (itr.hasNext()) {
-				StendhalRPZone zone = (StendhalRPZone) itr.next();
+			for(IRPZone irpZone : world) {
+				StendhalRPZone zone = (StendhalRPZone) irpZone;
 				zones.add(zone.getName());
 			}
 		}

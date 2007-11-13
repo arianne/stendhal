@@ -56,7 +56,7 @@ public class Bootstrap {
 		protected synchronized Class< ? > loadClass(String name, boolean resolve)
 				throws ClassNotFoundException {
 			ClassLoader parent = super.getParent();
-			Class clazz = findLoadedClass(name);
+			Class<?> clazz = findLoadedClass(name);
 			if (clazz == null) {
 				try {
 					clazz = findClass(name);

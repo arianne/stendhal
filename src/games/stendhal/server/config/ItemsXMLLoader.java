@@ -51,7 +51,7 @@ public class ItemsXMLLoader extends DefaultHandler {
 
 	private boolean attributesTag;
 
-	protected Class implementation;
+	protected Class<?> implementation;
 
 	public static void main(String[] argv) {
 		if (argv.length != 1) {

@@ -32,7 +32,6 @@ import games.stendhal.server.entity.portal.Portal;
 import games.stendhal.server.rule.EntityManager;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
@@ -273,9 +272,8 @@ public class AdministrationAction implements ActionListener {
 				logger.debug(text);
 
 				Set<String> zoneNames = new TreeSet<String>();
-				Iterator itr = StendhalRPWorld.get().iterator();
-				while (itr.hasNext()) {
-					StendhalRPZone zone = (StendhalRPZone) itr.next();
+				for(IRPZone irpZone : StendhalRPWorld.get()) {
+					StendhalRPZone zone = (StendhalRPZone) irpZone;
 					zoneNames.add(zone.getName());
 				}
 				player.sendPrivateText(text + " Valid zones: " + zoneNames);
