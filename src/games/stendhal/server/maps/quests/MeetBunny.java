@@ -2,14 +2,18 @@ package games.stendhal.server.maps.quests;
 
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.TeleporterBehaviour;
+import games.stendhal.server.entity.npc.action.EquipItemAction;
+import games.stendhal.server.entity.npc.action.MultipleActions;
+import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
-import games.stendhal.server.entity.player.Player;
+
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * QUEST: Meet the Easter Bunny anywhere around the World.
@@ -24,7 +28,7 @@ import games.stendhal.server.entity.player.Player;
  * REPETITIONS: - None
  */
 public class MeetBunny extends AbstractQuest {
-	private static final String QUEST_SLOT = "meet_bunny_07";
+	private static final String QUEST_SLOT = "meet_bunny_08";
 
 	/** the Bunny NPC */
 	protected SpeakerNPC bunny;
@@ -52,24 +56,16 @@ public class MeetBunny extends AbstractQuest {
 						ConversationStates.ATTENDING,
 						"Hi again!", null);
 
+				List<SpeakerNPC.ChatAction> reward = new LinkedList<SpeakerNPC.ChatAction>();
+				reward.add(new EquipItemAction("basket"));
+				reward.add(new SetQuestAction(QUEST_SLOT, "done"));
+				
 				add(ConversationStates.IDLE,
-						ConversationPhrases.GREETING_MESSAGES,
-						new QuestNotCompletedCondition(QUEST_SLOT), 
-						ConversationStates.ATTENDING,
-						null, new SpeakerNPC.ChatAction() {
-
-							@Override
-							public void fire(Player player, String text,
-									SpeakerNPC engine) {
-								Item item = StendhalRPWorld.get()
-										.getRuleManager().getEntityManager()
-										.getItem("basket");
-								engine
-										.say("Happy Easter! I have an easter basket for you.");
-								player.equip(item, true);
-								player.setQuest(QUEST_SLOT, "done");
-							}
-						});
+					ConversationPhrases.GREETING_MESSAGES,
+					new QuestNotCompletedCondition(QUEST_SLOT), 
+					ConversationStates.ATTENDING,
+					"Happy Easter! I have an easter basket for you.",
+					new MultipleActions(reward));
 
 				addJob("I am the Easter Bunny!");
 				addGoodbye("Don't eat too much this Easter! Bye!");

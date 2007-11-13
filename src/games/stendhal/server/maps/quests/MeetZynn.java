@@ -2,7 +2,8 @@ package games.stendhal.server.maps.quests;
 
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.entity.npc.condition.LevelGreaterThanCondition;
+import games.stendhal.server.entity.npc.condition.LevelLessThanCondition;
 
 /**
  * QUEST: Speak with Zynn PARTICIPANTS: - Zynn
@@ -114,21 +115,17 @@ public class MeetZynn extends AbstractQuest {
 		 * list of all the things the player has asked and reward him when the
 		 * list is complete?
 		 */
-		npc.add(ConversationStates.ATTENDING, "bye", null,
-				ConversationStates.IDLE, null, new SpeakerNPC.ChatAction() {
-					@Override
-					public void fire(Player player, String text,
-							SpeakerNPC engine) {
-						int level = player.getLevel();
-						if (level < 15) {
-							engine
-									.say("Bye. Hey, if you're going to hang around the library, don't forget to be quiet; people could be studying!");
-						} else {
-							engine
-									.say("Bye. Hey, you should consider getting a library card, you know.");
-						}
-					}
-				});
+		npc.add(ConversationStates.ATTENDING, "bye",
+			new LevelLessThanCondition(15),
+			ConversationStates.IDLE,
+			"Bye. Hey, if you're going to hang around the library, don't forget to be quiet; people could be studying!",
+			null);
+
+		npc.add(ConversationStates.ATTENDING, "bye",
+			new LevelGreaterThanCondition(14),
+			ConversationStates.IDLE,
+			"Bye. Hey, you should consider getting a library card, you know.",
+			null);
 	}
 
 	@Override
