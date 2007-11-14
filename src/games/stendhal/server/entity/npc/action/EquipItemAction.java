@@ -14,6 +14,7 @@ public class EquipItemAction extends SpeakerNPC.ChatAction {
 
 	private String itemName;
 	private int amount;
+	private boolean bind;
 
 	/**
 	 * Creates a new EquipItemAction
@@ -21,8 +22,7 @@ public class EquipItemAction extends SpeakerNPC.ChatAction {
 	 * @param itemName name of item
 	 */
 	public EquipItemAction(String itemName) {
-		this.itemName = itemName;
-		this.amount = 1;
+		this(itemName, 1, false);
 	}
 
 	/**
@@ -32,8 +32,20 @@ public class EquipItemAction extends SpeakerNPC.ChatAction {
 	 * @param amount for StackableItems
 	 */
 	public EquipItemAction(String itemName, int amount) {
+		this(itemName, amount, false);
+	}
+
+	/**
+	 * Creates a new EquipItemAction
+	 *
+	 * @param itemName name of item
+	 * @param amount for StackableItems
+	 * @param bind bind to player
+	 */
+	public EquipItemAction(String itemName, int amount, boolean bind) {
 		this.itemName = itemName;
 		this.amount = amount;
+		this.bind = bind;
 	}
 
 	@Override
@@ -44,12 +56,24 @@ public class EquipItemAction extends SpeakerNPC.ChatAction {
 			StackableItem stackableItem = (StackableItem) item;
 			stackableItem.setQuantity(amount);
 		}
+		if (bind) {
+			item.setBoundTo(player.getName());
+		}
 		player.equip(item, true);
 	}
 
 	@Override
 	public String toString() {
-		return "equip item <" + amount + " " + itemName + ">";
+		StringBuilder sb = new StringBuilder();
+		sb.append("equip item <");
+		sb.append(amount);
+		sb.append(" ");
+		sb.append(itemName);
+		if (bind) {
+			sb.append(" (bind)");
+		}
+		sb.append(">");
+		return sb.toString();
 	}
 
 	@Override
