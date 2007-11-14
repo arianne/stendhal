@@ -210,6 +210,9 @@
  <tileset name="holly garlands" firstgid="771" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/decoration/holly_garlands.png"/>
  </tileset>
+ <tileset name="roof borders xmas" firstgid="774" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/roof/roof_borders_xmas.png"/>
+ </tileset>
  <layer name="0_floor" width="64" height="64">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3aQQ7CIBBA0bZJT+GyO+7gxjt4CO9/ARe6oERAygyF6Tf5adSG8ErLRpdpmhbBtm+SY0rNqcW88OPHf74ZP378+PHjxy8zr60g6XlLdbbfZd5b8fday2etlznjx9/Kr3Ed8H9ywTEs9r0Vf6/rf/fK+ecgjf3iyLX0Xy44/vrMv+fCRvRr3LdH/ZrP4kj+tbIe/SX3aGt/zbhX8q+ZcfDjt+5PXYOYR+r80vDjx68ztrb/+Uea/pJ93+L6j+Z/eVnxp34jiJ3rIuOf7X8or39uPtJjt1j/0f2ljeC/zfvj1fxXX38r/tq5Eo1ci/2AiIiIiIiIKFXNfxAshF/f/wZPIXOyAEAAAA==
@@ -232,7 +235,7 @@
  </layer>
  <layer name="4_roof_add" width="64" height="64">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3ZXU+DMBQGYFYTf4r6G/zW6fy8NN75/2PiEjfFKXrhaSjJCdlhVCielvdJTkg2svWFQlvIMghlauSyzo1cKZj+MUdq+R898jwkdv4vqC6Fmgk5U8p/RXUt1A3yr4X8w7YzFJv/lupOqPsR5B/z+A/jlrN+/LGhT/vsCxDCjFWM+hg39k1ZGvFxM5QDUxa0N+R8ZUvxuWn7vGNB+70rznFIbTuiOg7QxmdTjvUrqlelx+CE2nVKdcbatzPJsl2qvUm33/5y+e0c50dp/i7yFpnsuf9MMHtMtI7xQ8EY38zep9+ovqle2HYsCsq6dOMU38aOr62b7tWFO/9LtoX41a9rzer9s/5cqOl7qW/Xr+sYSOurdeuNTWux4p+v54X7fx8++TWbs7m/1rVPSHOXPQ+Y3/aVpwGObfWexncevXL3nthV+UPPo6V7fPU53hUAtNfXezb7PGzbdH8eBgAAAAAAAAAAAAAA/fsFqJOGJgBAAAA=
+   H4sIAAAAAAAAAO2Z207DMAyGSyoNJgaCacAbAM/AOG6c4RJxx/sLiUmcxmFwgaMlmhVwk6bdmhR/0q9qTbPFcRPbWZIw06CRJsk8aMXzupBWbUExmjD+vqAl6Qlai5Hb304ndt4K9343yv5O5PZr/x+DTgidEvNSJ/+fgc4JXWTYXxf/+9rP/p/teMtG+/8SdEXo+h/43zf+1cH/RYjd/y0Y/xJo3fO6HLn9kiFa32+WHCjPswxTJrpWy6OQ6jOq1nQdYxs9tyPGsjHL+ITtW0H2raoxULHGNYbg/l0xlo1ZxiebfW2i3dVHVP8s5HdT66bstdFScVGSKt/Izxvq3hpq1+B2Gz65ipx73a+nxqTzOtu78QTPvQYU40z/78LY9kD7GWPspH7r7l6MY/076DGQOTBztQMY1yHoSEzubc4lyRZoe26Sn+l+GFvu9qnslznOdwX24710GjFs6GCT9P1HRb7H72zoNZY5l2ZenJUzU37Qa32nBjW2D9r/3RrU2D7gvd62T7+AvkAP6Bo7rdStxh6Brc8qTuFr7OB9ImuvHin/P6MrEz/mug6ZPPHPbKfebXNdh4zrf8gLqhb7q93M8UYVr+cn9fsumPWVSV/8ftYkpBxngHJ/l9onT11e9AxgFgyU7UNH+3Vdb9OGUYvfCboWL1r/uK4zine195SNq/+L1j9tNM89dFY4rfeM2uP1ff3ZtRZ3zX8pmob9XeI9C5Wy/G8S0j6TxRo663E9H8TEEGeyKPo/m66f5HlYQ4zPw9YttZQP9xHkp9MkT55URz4rOh9lGIZhGIZhGIZhGIZhGIapCz+yKF3fAEAAAA==
   </data>
  </layer>
  <layer name="objects" width="64" height="64" visible="0">
