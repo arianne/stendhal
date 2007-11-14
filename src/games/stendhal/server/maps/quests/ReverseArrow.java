@@ -28,7 +28,7 @@ import marauroa.common.game.IRPZone;
 /**
  * A quest where the player has to invert an arrow build out of stones by moving
  * only up to 3 tokens.
- * 
+ *
  * @author hendrik
  */
 // TODO: split this class, it does too many different things
@@ -77,7 +77,7 @@ public class ReverseArrow extends AbstractQuest implements
 
 		/**
 		 * Is the task solved?
-		 * 
+		 *
 		 * @return true on success, false on failure
 		 */
 		private boolean checkBoard() {
@@ -191,7 +191,7 @@ public class ReverseArrow extends AbstractQuest implements
 
 		/**
 		 * Starts a teleport-out-timer
-		 * 
+		 *
 		 * @param player
 		 *            the player who started the timer
 		 */
@@ -260,7 +260,7 @@ public class ReverseArrow extends AbstractQuest implements
 
 	/**
 	 * creates a token and adds it to the world
-	 * 
+	 *
 	 * @param x
 	 *            x-position
 	 * @param y
@@ -347,7 +347,6 @@ public class ReverseArrow extends AbstractQuest implements
 			}
 		};
 
-		npcs.add(npc);
 		npc.setEntityClass("oldwizardnpc"); // TODO change outfit
 		npc.setPosition(20, 8);
 		npc.setDirection(Direction.DOWN);
@@ -386,7 +385,7 @@ public class ReverseArrow extends AbstractQuest implements
 
 	/**
 	 * The player moved a token
-	 * 
+	 *
 	 * @param player
 	 *            Player
 	 */
@@ -409,7 +408,7 @@ public class ReverseArrow extends AbstractQuest implements
 
 	/**
 	 * A player entered the zone
-	 * 
+	 *
 	 * @param player
 	 *            Player
 	 */
@@ -428,7 +427,7 @@ public class ReverseArrow extends AbstractQuest implements
 
 	/**
 	 * Finishes the quest and teleports the player out.
-	 * 
+	 *
 	 * @param reset
 	 *            reset it for the next player (set to false on login)
 	 * @param player

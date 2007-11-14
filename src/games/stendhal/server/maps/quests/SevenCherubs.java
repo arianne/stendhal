@@ -20,9 +20,9 @@ import java.util.List;
  * QUEST: Find the seven cherubs that are all around the world. PARTICIPANTS: -
  * Cherubiel - Gabriel - Ophaniel - Raphael - Uriel - Zophiel - Azazel STEPS: -
  * Find them and they will reward you.
- * 
+ *
  * REWARD: -
- * 
+ *
  * REPETITIONS: - Just once.
  */
 public class SevenCherubs extends AbstractQuest {
@@ -132,24 +132,24 @@ public class SevenCherubs extends AbstractQuest {
 									 * this randomization anymore. There should
 									 * be one hard quest for each of the golden
 									 * items.
-									 * 
+									 *
 									 * I commented out the golden shield here
 									 * because you already get that from the
 									 * CloaksForBario quest.
-									 * 
+									 *
 									 * Golden legs was disabled because it can
 									 * be won in DiceGambling.
-									 * 
+									 *
 									 * Fire sword was disabled because it can be
 									 * earned by fighting, and because the
 									 * stronger ice sword is available through
 									 * other quest and through fighting.
-									 * 
+									 *
 									 * Once enough quests exist, this quest
 									 * should always give you golden boots
 									 * (because you have to walk much to fulfil
 									 * it).
-									 * 
+									 *
 									 */
 									String[] items = { "golden_boots",
 											"golden_armor", /*
@@ -195,37 +195,30 @@ public class SevenCherubs extends AbstractQuest {
 
 		zone = world.getZone("0_semos_village_w");
 		npc = new CherubNPC("Cherubiel", 48, 60);
-		npcs.add(npc);
 		zone.add(npc);
 
 		zone = world.getZone("0_nalwor_city");
 		npc = new CherubNPC("Gabriel", 105, 17);
-		npcs.add(npc);
 		zone.add(npc);
 
 		zone = world.getZone("0_orril_river_s");
 		npc = new CherubNPC("Ophaniel", 105, 79);
-		npcs.add(npc);
 		zone.add(npc);
 
 		zone = world.getZone("0_orril_river_s_w2");
 		npc = new CherubNPC("Raphael", 95, 30);
-		npcs.add(npc);
 		zone.add(npc);
 
 		zone = world.getZone("0_orril_mountain_w2");
 		npc = new CherubNPC("Uriel", 47, 27);
-		npcs.add(npc);
 		zone.add(npc);
 
 		zone = world.getZone("0_semos_mountain_n2_w2");
 		npc = new CherubNPC("Zophiel", 16, 3);
-		npcs.add(npc);
 		zone.add(npc);
 
 		zone = world.getZone("0_ados_rock");
 		npc = new CherubNPC("Azazel", 67, 24);
-		npcs.add(npc);
 		zone.add(npc);
 	}
 }

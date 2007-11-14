@@ -19,14 +19,14 @@ import java.util.List;
 
 /**
  * QUEST: Meet Santa anywhere around the World.
- * 
+ *
  * PARTICIPANTS: - Santa Claus
- * 
+ *
  * STEPS: - Find Santa - Say hi - Get reward - Get hat
- * 
+ *
  * REWARD: - a present which can be opened to obtain a random good reward: food,
  * money, potions, items, etc...
- * 
+ *
  * REPETITIONS: - None
  */
 public class MeetSanta extends AbstractQuest {
@@ -64,9 +64,9 @@ public class MeetSanta extends AbstractQuest {
 				reward.add(new ChatAction() {
 					@Override
 					public void fire(Player player, String text, SpeakerNPC npc) {
-					    /*sorry but I (kymara) don't know how to make a proper thing 
+					    /*sorry but I (kymara) don't know how to make a proper thing
 					     *out of this like for the other rewards. Hope this is ok*/
-				        
+
 				        // fetch old outfit as we want to know the current hair
 				        Outfit oldoutfit = player.getOutfit();
 					// all santa hat sprites are at 50 + current hair
@@ -89,7 +89,6 @@ public class MeetSanta extends AbstractQuest {
 				addGoodbye("Good bye, and remember to behave if you want a present next year!");
 			}
 		};
-		npcs.add(santa);
 		santa.setEntityClass("santaclausnpc");
 		santa.initHP(100);
 
