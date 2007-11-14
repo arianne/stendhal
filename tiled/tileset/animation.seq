@@ -274,6 +274,15 @@ tileset/item/furniture/light/xmas_lights.png	*	14:15
 tileset/item/furniture/light/xmas_lights.png	*	16:17
 tileset/item/furniture/light/xmas_lights.png	*	18:19
 
+tileset/building/roof/roof_borders_xmas.png     *       0:9     
+tileset/building/roof/roof_borders_xmas.png     *       1:10
+tileset/building/roof/roof_borders_xmas.png     *       2:11
+tileset/building/roof/roof_borders_xmas.png     *       3:12
+tileset/building/roof/roof_borders_xmas.png     *       5:14
+tileset/building/roof/roof_borders_xmas.png     *       6:15
+tileset/building/roof/roof_borders_xmas.png     *       7:16
+tileset/building/roof/roof_borders_xmas.png     *       8:17
+
 # water from ground.png
 # the waves travel north, if the map uses the first tile,
 # south, if the second.
@@ -333,3 +342,6 @@ tileset/ground/water/pool_straight_edges.png	3@150 3:7:11:15:19:23:27:31
 tileset/ground/water/water_bubbles.png	*@150	0:1:2:3:4:5:6:7
 # south, bubbles
 tileset/ground/water/water_bubbles.png	*@150	8:9:10:11:12:13:14:15
+
+
+
