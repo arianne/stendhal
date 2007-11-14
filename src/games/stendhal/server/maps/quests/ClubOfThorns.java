@@ -3,9 +3,24 @@ package games.stendhal.server.maps.quests;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.entity.item.Item;
-import games.stendhal.server.StendhalRPWorld;
+import games.stendhal.server.entity.npc.SpeakerNPC.ChatAction;
+import games.stendhal.server.entity.npc.action.EquipItemAction;
+import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
+import games.stendhal.server.entity.npc.action.IncreaseXPAction;
+import games.stendhal.server.entity.npc.action.MultipleActions;
+import games.stendhal.server.entity.npc.action.SetQuestAction;
+import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
+import games.stendhal.server.entity.npc.action.StartRecodingKillsAction;
+import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.KilledCondition;
+import games.stendhal.server.entity.npc.condition.NotCondition;
+import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
+import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
+import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
+import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
+
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * QUEST: Club of Thorns
@@ -25,62 +40,52 @@ import games.stendhal.server.StendhalRPWorld;
  * <li> None.
  */
 public class ClubOfThorns extends AbstractQuest {
+	private static final String QUEST_SLOT = "club_thorns";
 
 	private void step_1() {
 		SpeakerNPC npc = npcs.get("Orc Saman");
 
 		npc.add(ConversationStates.ATTENDING,
-				ConversationPhrases.QUEST_MESSAGES, null,
-				ConversationStates.QUEST_OFFERED, null,
-				new SpeakerNPC.ChatAction() {
-					@Override
-					public void fire(Player player, String text,
-							SpeakerNPC engine) {
-						if (!player.hasQuest("club_thorns")) {
-							engine.say("Make revenge! Kill de Mountain Orc Chief! unnerstand?");
-						} else if (!player.isQuestCompleted("club_thorns")) {
-							engine.say("Make revenge! #Kill Mountain Orc Chief!");
-							engine.setCurrentState(ConversationStates.ATTENDING);
-						} else {
-							engine.say("Saman has revenged! dis Good!");
-							engine.setCurrentState(ConversationStates.ATTENDING);
-						}
-					}
-				});
+			ConversationPhrases.QUEST_MESSAGES,
+			new QuestNotStartedCondition(QUEST_SLOT),
+			ConversationStates.QUEST_OFFERED,
+			"Make revenge! Kill de Mountain Orc Chief! unnerstand?",
+			null);
+
+		npc.add(ConversationStates.ATTENDING,
+			ConversationPhrases.QUEST_MESSAGES,
+			new QuestActiveCondition(QUEST_SLOT),
+			ConversationStates.QUEST_OFFERED, 
+			"Make revenge! #Kill Mountain Orc Chief!",
+			null);
+
+		npc.add(ConversationStates.ATTENDING,
+			ConversationPhrases.QUEST_MESSAGES,
+			new QuestCompletedCondition(QUEST_SLOT),
+			ConversationStates.ATTENDING,
+			"Saman has revenged! dis Good!",
+			null);
+
+
+		List<ChatAction> start = new LinkedList<ChatAction>();
+		start.add(new EquipItemAction("kotoch_prison_key", 1, true));
+		start.add(new StartRecodingKillsAction("mountain_orc_chief"));
+		start.add(new IncreaseKarmaAction(6.0));
+		start.add(new SetQuestAction(QUEST_SLOT, "start"));
 
 		npc.add(
-				ConversationStates.QUEST_OFFERED,
-				ConversationPhrases.YES_MESSAGES,
-				null,
-				ConversationStates.ATTENDING,
-				"Take dat key. he in jail. Kill! Denn, say me #kill! Say me #kill!",
-				new SpeakerNPC.ChatAction() {
-					@Override
-					public void fire(Player player, String text,
-							SpeakerNPC engine) {
-						player.addKarma(6.0);
-						player.setQuest("club_thorns", "start");
-						player.removeKill("mountain_orc_chief");
-						Item key = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
-								"kotoch_prison_key");
-						player.equip(key, true);
-
-					}
-				});
+			ConversationStates.QUEST_OFFERED,
+			ConversationPhrases.YES_MESSAGES,
+			null,
+			ConversationStates.ATTENDING,
+			"Take dat key. he in jail. Kill! Denn, say me #kill! Say me #kill!",
+			new MultipleActions(start));
 
 		npc.add(ConversationStates.QUEST_OFFERED,
-				ConversationPhrases.NO_MESSAGES, null,
-				ConversationStates.ATTENDING,
-				"Ugg! i want hooman make #task, kill!",
-				new SpeakerNPC.ChatAction() {
-					@Override
-					public void fire(Player player, String text,
-							SpeakerNPC engine) {
-						player.addKarma(-6.0);
-						player.setQuest("club_thorns", "rejected");
-					}
-				});
-
+			ConversationPhrases.NO_MESSAGES, null,
+			ConversationStates.ATTENDING,
+			"Ugg! i want hooman make #task, kill!",
+			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -6.0));
 	}
 
 	private void step_2() {
@@ -91,38 +96,25 @@ public class ClubOfThorns extends AbstractQuest {
 
 		SpeakerNPC npc = npcs.get("Orc Saman");
 
+		List<ChatAction> reward = new LinkedList<ChatAction>();
+		reward.add(new EquipItemAction("club_of_thorns", 1, true));
+		reward.add(new IncreaseKarmaAction(3.0));
+		reward.add(new IncreaseXPAction(1000));
+		reward.add(new SetQuestAction(QUEST_SLOT, "done"));
+
 		// the player returns after having started the quest.
 		// Saman checks if kill was made
 		npc.add(ConversationStates.ATTENDING, "kill",
-				new SpeakerNPC.ChatCondition() {
-					@Override
-					public boolean fire(Player player, String text,
-							SpeakerNPC engine) {
-						return player.hasQuest("club_thorns")
-								&& player.getQuest("club_thorns").equals(
-										"start");
-					}
-				}, ConversationStates.ATTENDING, null,
-				new SpeakerNPC.ChatAction() {
-					@Override
-					public void fire(Player player, String text,
-							SpeakerNPC engine) {
-						if (player.hasKilled("mountain_orc_chief")) {
-							engine.say("Revenge! Good! Take club of hooman blud.");
-							player.addKarma(3.0);
-							player.addXP(1000);
-							Item item = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
-									"club_of_thorns");
-							item.setBoundTo(player.getName());
-							player.equip(item, true);
-							player.setQuest("club_thorns", "done");
-							engine.setCurrentState(ConversationStates.ATTENDING);
-						} else {
-							engine.say("kill Mountain Orc Chief! Kotoch orcs nid revenge!");
-						}
-					}
-				});
+			new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"), new KilledCondition("mountain_orc_chief")),
+			ConversationStates.ATTENDING,
+			"Revenge! Good! Take club of hooman blud.",
+			new MultipleActions(reward));
 
+		npc.add(ConversationStates.ATTENDING, "kill",
+			new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"), new NotCondition(new KilledCondition("mountain_orc_chief"))),
+			ConversationStates.ATTENDING,
+			"kill Mountain Orc Chief! Kotoch orcs nid revenge!",
+			null);
 	}
 
 	@Override
