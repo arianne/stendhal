@@ -103,8 +103,6 @@ public class NPC2DView extends RPEntity2DView {
 
         @Override
         public void onAction(ActionType at) {
-                super.onAction(at);
-
                 switch (at) {
                         case ADMIN_VIEW_NPC_TRANSITIONS:
                                 RPAction action = new RPAction();
@@ -112,7 +110,13 @@ public class NPC2DView extends RPEntity2DView {
                                 action.put("target", "DumpTransitionsEx.class");
                                 action.put("args", this.getEntity().getTitle());
                                 at.send(action);
-                }
+                                break;
+                        default:
+                                super.onAction(at);
+                                break;
+                }    
+            
+                
         }
         
         
