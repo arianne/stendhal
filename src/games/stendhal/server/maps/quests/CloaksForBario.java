@@ -7,6 +7,11 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.SetQuestAction;
+import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
+import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
+import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
+import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
 import games.stendhal.server.entity.player.Player;
 
 /**
@@ -49,55 +54,30 @@ public class CloaksForBario extends AbstractQuest {
 		npc.add(
 				ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
-				new SpeakerNPC.ChatCondition() {
-					@Override
-					public boolean fire(Player player, String text,
-							SpeakerNPC engine) {
-						return !player.hasQuest(QUEST_SLOT);
-					}
-				},
+				new QuestNotStartedCondition(QUEST_SLOT),
 				ConversationStates.ATTENDING,
 				"Hey! How did you get down here? You did what? Huh. Well, I'm Bario. I don't suppose you could do a #task for me?",
 				null);
 
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
-				new SpeakerNPC.ChatCondition() {
-					@Override
-					public boolean fire(Player player, String text,
-							SpeakerNPC engine) {
-						return !player.hasQuest(QUEST_SLOT);
-					}
-				}, ConversationStates.QUEST_OFFERED, null,
-				new SpeakerNPC.ChatAction() {
-					@Override
-					public void fire(Player player, String text,
-							SpeakerNPC engine) {
-						engine.say("I don't dare go upstairs anymore because I stole a beer barrel from the dwarves. But it is so cold down here... Can you help me?");
-					}
-				});
+				new QuestNotStartedCondition(QUEST_SLOT),
+				ConversationStates.QUEST_OFFERED, 
+				"I don't dare go upstairs anymore because I stole a beer barrel from the dwarves. But it is so cold down here... Can you help me?",
+				null);
 
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
-				new SpeakerNPC.ChatCondition() {
-					@Override
-					public boolean fire(Player player, String text,
-							SpeakerNPC engine) {
-						return player.hasQuest(QUEST_SLOT);
-					}
-				}, ConversationStates.ATTENDING, null,
-				new SpeakerNPC.ChatAction() {
-					@Override
-					public void fire(Player player, String text,
-							SpeakerNPC engine) {
-						if (!player.isQuestCompleted(QUEST_SLOT)) {
-							engine.say("You promised me to bring me ten blue elven cloaks. Remember?");
-						} else {
-							// player has already finished the quest
-							engine.say("I don't have anything for you to do, really.");
-						}
-					}
-				});
+				new QuestActiveCondition(QUEST_SLOT),
+				ConversationStates.ATTENDING,
+				"You promised me to bring me ten blue elven cloaks. Remember?",
+				null);
+
+		npc.add(ConversationStates.ATTENDING,
+				ConversationPhrases.QUEST_MESSAGES,
+				new QuestCompletedCondition(QUEST_SLOT),
+				ConversationStates.ATTENDING,
+				"I don't have anything for you to do, really.", null);
 
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES, null,
@@ -123,16 +103,9 @@ public class CloaksForBario extends AbstractQuest {
 		// player is willing to help
 		npc.add(ConversationStates.QUEST_OFFERED,
 				ConversationPhrases.YES_MESSAGES, null,
-				ConversationStates.ATTENDING, null,
-				new SpeakerNPC.ChatAction() {
-					@Override
-					public void fire(Player player, String text,
-							SpeakerNPC engine) {
-						engine.say("I need some blue elven cloaks if I'm to survive the winter. Bring me ten of them, and I will give you a reward.");
-						player.setQuest(QUEST_SLOT,
-								Integer.toString(REQUIRED_CLOAKS));
-					}
-				});
+				ConversationStates.ATTENDING,
+				"I need some blue elven cloaks if I'm to survive the winter. Bring me ten of them, and I will give you a reward.",
+				new SetQuestAction(QUEST_SLOT, Integer.toString(REQUIRED_CLOAKS)));
 
 		// player is not willing to help
 		npc.add(ConversationStates.QUEST_OFFERED, "no", null,
@@ -149,36 +122,24 @@ public class CloaksForBario extends AbstractQuest {
 
 		// player returns while quest is still active
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-				new SpeakerNPC.ChatCondition() {
-					@Override
-					public boolean fire(Player player, String text,
-							SpeakerNPC engine) {
-						return player.hasQuest(QUEST_SLOT)
-								&& !player.isQuestCompleted(QUEST_SLOT);
-					}
-				}, ConversationStates.QUESTION_1, null,
+				new QuestActiveCondition(QUEST_SLOT),
+				ConversationStates.QUESTION_1, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, String text,
-							SpeakerNPC engine) {
+					public void fire(Player player, String text, SpeakerNPC engine) {
 						engine.say("Hi again! I still need "
-								+ player.getQuest(QUEST_SLOT)
-								+ " blue elven "
-								+ Grammar.plnoun(
-										MathHelper.parseInt(player.getQuest(QUEST_SLOT)),
-										"cloak") + ". Do you have any for me?");
+							+ player.getQuest(QUEST_SLOT)
+							+ " blue elven "
+							+ Grammar.plnoun(
+									MathHelper.parseInt(player.getQuest(QUEST_SLOT)),
+									"cloak") + ". Do you have any for me?");
 					}
 				});
 
 		// player returns after finishing the quest
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-				new SpeakerNPC.ChatCondition() {
-					@Override
-					public boolean fire(Player player, String text,
-							SpeakerNPC engine) {
-						return player.isQuestCompleted(QUEST_SLOT);
-					}
-				}, ConversationStates.ATTENDING,
+				new QuestCompletedCondition(QUEST_SLOT),
+				ConversationStates.ATTENDING,
 				"Welcome! Thanks again for those cloaks.", null);
 
 		// player says he doesn't have any blue elf cloaks with him
