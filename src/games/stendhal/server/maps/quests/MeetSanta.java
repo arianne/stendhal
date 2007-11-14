@@ -13,7 +13,12 @@ import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.events.LoginListener;
+import games.stendhal.server.events.LoginNotifier;
 
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -29,7 +34,7 @@ import java.util.List;
  *
  * REPETITIONS: - None
  */
-public class MeetSanta extends AbstractQuest {
+public class MeetSanta extends AbstractQuest implements LoginListener {
 	private static final String QUEST_SLOT = "meet_santa_07";
 
 	/** the Santa NPC */
@@ -64,17 +69,20 @@ public class MeetSanta extends AbstractQuest {
 				reward.add(new ChatAction() {
 					@Override
 					public void fire(Player player, String text, SpeakerNPC npc) {
-					    /*sorry but I (kymara) don't know how to make a proper thing
-					     *out of this like for the other rewards. Hope this is ok*/
 
-				        // fetch old outfit as we want to know the current hair
-				        Outfit oldoutfit = player.getOutfit();
-					// all santa hat sprites are at 50 + current hair
-					int hatnumber = oldoutfit.getHair() + 50;
-					// the new outfit only changes the hair, rest is null
-				        Outfit newOutfit = new Outfit(hatnumber, null, null, null);
-					    //put it on, and store old outfit.
-				        player.setOutfit(newOutfit.putOver(oldoutfit), true);
+					    // TODO: Put this into an action which can be called 
+					    // from the other IDLE state as well.
+				        
+					    // fetch old outfit as we want to know the current hair
+					    Outfit oldoutfit = player.getOutfit();
+					    // all santa hat sprites are at 50 + current hair
+					    if(oldoutfit.getHair() < 50){
+						int hatnumber = oldoutfit.getHair() + 50;
+						// the new outfit only changes the hair, rest is null
+						Outfit newOutfit = new Outfit(hatnumber, null, null, null);
+						//put it on, and store old outfit.
+						player.setOutfit(newOutfit.putOver(oldoutfit), true);
+					    }
 					}
 				}
 					   );
@@ -100,9 +108,27 @@ public class MeetSanta extends AbstractQuest {
 		return santa;
 	}
 
+	public void onLoggedIn(Player player) {
+	    // is it Christmas?
+		Outfit outfit = player.getOutfit();
+		int hairnumber = outfit.getHair();
+		if(hairnumber >= 50 && hairnumber < 90){
+		    Date now = new Date();
+		    GregorianCalendar notXmas = new GregorianCalendar(2008, Calendar.JANUARY, 6); 
+		    Date dateNotXmas = notXmas.getTime();
+		    if (now.after(dateNotXmas)){
+			int newhair = hairnumber - 50;
+			Outfit newOutfit = new Outfit(newhair, null, null, null);
+			player.setOutfit(newOutfit.putOver(outfit), false);
+		    }
+		}
+	
+	}
+
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
+		LoginNotifier.get().addListener(this);
 		createSanta();
 		new TeleporterBehaviour(santa, "Ho, ho, ho! Merry Christmas!");
 	}
