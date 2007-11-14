@@ -1,5 +1,6 @@
 package games.stendhal.server.entity.npc.condition;
 
+import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 
@@ -13,7 +14,8 @@ public class NakedCondition extends SpeakerNPC.ChatCondition {
 
 	@Override
 	public boolean fire(Player player, String text, SpeakerNPC engine) {
-		return true;
+		Outfit outfit = player.getOutfit();
+		return outfit.isNaked();
 	}
 
 	@Override
