@@ -61,31 +61,26 @@ public class MeetSanta extends AbstractQuest implements LoginListener {
 					ConversationPhrases.GREETING_MESSAGES,
 					new QuestCompletedCondition(QUEST_SLOT),
 					ConversationStates.ATTENDING,
-					"Hi again.", null);
+					"Hi again!",
+				        new SpeakerNPC.ChatAction() {
+					    @Override
+					    public void fire(Player player, String text,
+							     SpeakerNPC engine) { 
+						addHat(player);	    
+					    }
+					}
+				    );
 
 				List<SpeakerNPC.ChatAction> reward = new LinkedList<SpeakerNPC.ChatAction>();
 				reward.add(new EquipItemAction("present"));
 				reward.add(new SetQuestAction(QUEST_SLOT, "done"));
 				reward.add(new ChatAction() {
-					@Override
-					public void fire(Player player, String text, SpeakerNPC npc) {
-
-					    // TODO: Put this into an action which can be called 
-					    // from the other IDLE state as well.
-				        
-					    // fetch old outfit as we want to know the current hair
-					    Outfit oldoutfit = player.getOutfit();
-					    // all santa hat sprites are at 50 + current hair
-					    if(oldoutfit.getHair() < 50){
-						int hatnumber = oldoutfit.getHair() + 50;
-						// the new outfit only changes the hair, rest is null
-						Outfit newOutfit = new Outfit(hatnumber, null, null, null);
-						//put it on, and store old outfit.
-						player.setOutfit(newOutfit.putOver(oldoutfit), true);
-					    }
+				      	@Override
+				        public void fire(Player player, String text, SpeakerNPC npc) {
+					    addHat(player);
 					}
-				}
-					   );
+				    }
+				);
 				add(ConversationStates.IDLE,
 					ConversationPhrases.GREETING_MESSAGES,
 					new QuestNotCompletedCondition(QUEST_SLOT),
@@ -107,6 +102,20 @@ public class MeetSanta extends AbstractQuest implements LoginListener {
 
 		return santa;
 	}
+
+        private void addHat(Player player){
+	    // fetch old outfit as we want to know the current hair
+	    Outfit oldoutfit = player.getOutfit();
+	    // all santa hat sprites are at 50 + current hair
+	    if(oldoutfit.getHair() < 50){
+		int hatnumber = oldoutfit.getHair() + 50;
+		// the new outfit only changes the hair, rest is null
+		Outfit newOutfit = new Outfit(hatnumber, null, null, null);
+		//put it on, and store old outfit.
+		player.setOutfit(newOutfit.putOver(oldoutfit), true);
+	    }
+	}
+	
 
 	public void onLoggedIn(Player player) {
 	    // is it Christmas?
