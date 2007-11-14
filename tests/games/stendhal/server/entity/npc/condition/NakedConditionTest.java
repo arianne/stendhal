@@ -1,6 +1,9 @@
 package games.stendhal.server.entity.npc.condition;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.player.Player;
 
@@ -9,7 +12,6 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import utilities.PlayerHelper;
 import utilities.PlayerTestHelper;
 
 public class NakedConditionTest {
@@ -38,7 +40,7 @@ public class NakedConditionTest {
 		assertFalse("finally dressed", bob.getOutfit().isNaked());
 		assertFalse("should be false when dressed", new NakedCondition().fire(
 				bob, null, null));
-		fail("Not yet implemented");
+
 	}
 
 	@Test
