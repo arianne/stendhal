@@ -42,7 +42,6 @@ public class BringListOfItemsQuestLogicTest {
 	public void tearDown() throws Exception {
 	}
 
-
 	@Test
 	public final void testBringListOfItemsQuestLogic() {
 		BringListOfItemsQuestLogic logic = new BringListOfItemsQuestLogic(
@@ -128,7 +127,6 @@ public class BringListOfItemsQuestLogicTest {
 		assertTrue(npc.isTalking());
 		assertEquals(quest.welcomeBeforeStartingQuest(), npc.get("text"));
 
-
 	}
 
 	@Test
@@ -141,7 +139,7 @@ public class BringListOfItemsQuestLogicTest {
 		logic.addToWorld();
 
 		// System.err.println(new DumpTransitions().getDump(npc));
-		
+
 		Player player = new Player(new RPObject());
 		PlayerHelper.addEmptySlots(player);
 		Engine en = npc.getEngine();
@@ -152,7 +150,7 @@ public class BringListOfItemsQuestLogicTest {
 		npc.put("text", "");
 
 		en.step(player, ConversationPhrases.QUEST_MESSAGES.get(0));
-		assertEquals("answer to quest",quest.respondToQuest(), npc.get("text"));
+		assertEquals("answer to quest", quest.respondToQuest(), npc.get("text"));
 
 		en.step(player, ConversationPhrases.YES_MESSAGES.get(0));
 		assertEquals("answer to quests accepted",
@@ -167,19 +165,18 @@ public class BringListOfItemsQuestLogicTest {
 				"i have not brought anything yet it should be all needed items",
 				hashList(quest.getNeededItems()).toString(), npc.get("text"));
 
-
 		StackableItem item = new StackableItem("one", "", "", null);
 		item.setQuantity(10);
 		item.setID(new ID(2, "testzone"));
 		player.getSlot("bag").add(item);
-		en.step(player,"yes");
+		en.step(player, "yes");
 		assertEquals("item brought",
 				quest.askForItemsAfterPlayerSaidHeHasItems(), npc.get("text"));
 
-		en.step(player,"one");
+		en.step(player, "one");
 		assertEquals("item brought", quest.respondToItemBrought(),
 				npc.get("text"));
-		en.step(player,"one");
+		en.step(player, "one");
 		assertEquals("item brought", quest.respondToOfferOfNotMissingItem(),
 				npc.get("text"));
 		npc.remove("text");
@@ -187,8 +184,9 @@ public class BringListOfItemsQuestLogicTest {
 		en.step(player, quest.getTriggerPhraseToEnumerateMissingItems().get(0));
 		List<String> missing = new LinkedList<String>(quest.getNeededItems());
 		missing.remove("one");
-		assertEquals("two and three are missing", hashList(missing).toString(), npc.get("text"));
-		en.step(player,"two");
+		assertEquals("two and three are missing", hashList(missing).toString(),
+				npc.get("text"));
+		en.step(player, "two");
 		assertEquals("item brought",
 				quest.respondToOfferOfNotExistingItem("two"), npc.get("text"));
 
@@ -200,19 +198,18 @@ public class BringListOfItemsQuestLogicTest {
 		item.setQuantity(10);
 		item.setID(new ID(2, "testzone"));
 		player.getSlot("bag").add(item);
-		en.step(player,"three");
+		en.step(player, "three");
 		assertEquals("item brought", quest.respondToItemBrought(),
 				npc.get("text"));
-		en.step(player,"two");
+		en.step(player, "two");
 		assertEquals("last item brought", quest.respondToLastItemBrought(),
 				npc.get("text"));
-	
 
 	}
 
 	private List<String> hashList(List<String> unhashed) {
 		List<String> hashed = new LinkedList<String>();
-		for (String hashme : unhashed){
+		for (String hashme : unhashed) {
 			hashed.add("#" + hashme);
 
 		}
@@ -241,7 +238,7 @@ public class BringListOfItemsQuestLogicTest {
 		npc.put("text", "");
 
 		en.step(player, ConversationPhrases.QUEST_MESSAGES.get(0));
-		assertEquals("answer to quest",quest.respondToQuest(), npc.get("text"));
+		assertEquals("answer to quest", quest.respondToQuest(), npc.get("text"));
 
 		en.step(player, ConversationPhrases.YES_MESSAGES.get(0));
 		assertEquals("answer to quests accepted",
@@ -269,15 +266,13 @@ public class BringListOfItemsQuestLogicTest {
 		npc.put("text", "");
 
 		en.step(player, ConversationPhrases.QUEST_MESSAGES.get(0));
-		assertEquals("answer to quest",quest.respondToQuest(), npc.get("text"));
+		assertEquals("answer to quest", quest.respondToQuest(), npc.get("text"));
 
 		en.step(player, ConversationPhrases.NO_MESSAGES.get(0));
 		assertEquals("answer to quests accepted",
 				quest.respondToQuestRefusal(), npc.get("text"));
 
 	}
-
-
 
 	class MockBringListOfItemsQuest implements BringListOfItemsQuest {
 
@@ -299,7 +294,7 @@ public class BringListOfItemsQuestLogicTest {
 		}
 
 		public List<String> getAdditionalTriggerPhraseForQuest() {
-			return Arrays.asList(new String[]{"getAdditionalTriggerPhraseForQuest"});
+			return Arrays.asList(new String[] { "getAdditionalTriggerPhraseForQuest" });
 		}
 
 		public SpeakerNPC getNPC() {
@@ -418,10 +413,10 @@ public class BringListOfItemsQuestLogicTest {
 		}
 
 		public SpeakerNPC getNPC() {
-			if (npc==null){
+			if (npc == null) {
 
 				PlayerHelper.generateNPCRPClasses();
-				npc=new SpeakerNPC("MockBringListOfItemsQuest");
+				npc = new SpeakerNPC("MockBringListOfItemsQuest");
 			}
 			return npc;
 		}
