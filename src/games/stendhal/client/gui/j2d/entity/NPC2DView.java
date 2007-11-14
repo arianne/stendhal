@@ -10,13 +10,17 @@ package games.stendhal.client.gui.j2d.entity;
 //
 
 import games.stendhal.client.OutfitStore;
+import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.NPC;
 import games.stendhal.client.entity.RPEntity;
+import games.stendhal.client.entity.User;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 
 
+import java.util.List;
+import marauroa.common.game.RPAction;
 import org.apache.log4j.Logger;
 
 /**
@@ -87,4 +91,29 @@ public class NPC2DView extends RPEntity2DView {
 			representationChanged = true;
 		}
 	}
+
+        @Override
+        protected void buildActions(List<String> list) {
+            super.buildActions(list);
+        
+            if (User.isAdmin()) {
+                list.add(ActionType.ADMIN_VIEW_NPC_TRANSITIONS.getRepresentation());
+            }
+        }
+
+        @Override
+        public void onAction(ActionType at) {
+                super.onAction(at);
+
+                switch (at) {
+                        case ADMIN_VIEW_NPC_TRANSITIONS:
+                                RPAction action = new RPAction();
+                                action.put("type", "script");
+                                action.put("target", "DumpTransitionsEx.class");
+                                action.put("args", this.getEntity().getTitle());
+                                at.send(action);
+                }
+        }
+        
+        
 }
