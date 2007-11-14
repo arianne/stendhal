@@ -15,6 +15,11 @@ import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Map;
 
+import marauroa.common.game.Definition;
+import marauroa.common.game.RPClass;
+import marauroa.common.game.RPEvent;
+import marauroa.common.game.Definition.DefinitionClass;
+
 import org.apache.log4j.Logger;
 
 /**
@@ -30,9 +35,15 @@ public class DumpTransitionsEx extends ScriptImpl {
 	private CountingMap<PreTransitionCondition> conditions;
 	private CountingMap<PostTransitionAction> actions;
 	
+	public static void generateRPEvent() {
+		RPClass rpclass = new RPClass("transition_graph");
+		rpclass.add(DefinitionClass.RPEVENT, "transition_graph", Definition.STANDARD);
+	}
 
 	@Override
 	public void execute(Player admin, List<String> args) {
+		generateRPEvent();
+		
 		if (args.size() < 1) {
 			admin.sendPrivateText("/script DumpTransitions.class <npcname>");
 			return;
@@ -48,7 +59,10 @@ public class DumpTransitionsEx extends ScriptImpl {
 			return;
 		}
 		dump(npc);
-		admin.sendPrivateText("Transition table of " + npcName + "\r\n" + dumpedTable.toString());
+
+		RPEvent event = new RPEvent("transition_graph");
+		event.put("data", dumpedTable.toString());
+		admin.addEvent(event);
 	}
 
 	/**
