@@ -18,9 +18,10 @@ import games.stendhal.client.events.RPObjectChangeListener;
 
 import java.util.HashMap;
 
+import marauroa.common.game.RPEvent;
+import marauroa.common.game.RPObject;
 
 import org.apache.log4j.Logger;
-import marauroa.common.game.RPObject;
 
 /**
  * The player user context. This class holds/manages the data for the user of
@@ -488,6 +489,7 @@ public class UserContext implements RPObjectChangeListener {
 			adminlevel = object.getInt("adminlevel");
 			// fireAdminLevelChanged(adminlevel);
 		}
+		dispatchEvents(object, object);
 	}
 
 	/**
@@ -512,6 +514,22 @@ public class UserContext implements RPObjectChangeListener {
 		if (changes.has("sheep")) {
 			sheepID = changes.getInt("sheep");
 			// fireOwnedSheep(sheepID);
+		}
+		dispatchEvents(object, changes);
+	}
+
+	/**
+	 * Debugging code for events
+	 *
+	 * @param object the base object
+	 * @param changes the changes
+	 */
+	private void dispatchEvents(final RPObject object, final RPObject changes) {
+		for (RPEvent rpevent : object.events()) {
+			StendhalUI.get().addEventLine("event in object: " + rpevent);
+		}
+		for (RPEvent rpevent : changes.events()) {
+			StendhalUI.get().addEventLine("event in changes: " + rpevent);
 		}
 	}
 
