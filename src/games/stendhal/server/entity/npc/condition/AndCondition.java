@@ -6,6 +6,9 @@ import games.stendhal.server.entity.player.Player;
 import java.util.Arrays;
 import java.util.List;
 
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
+
 /**
  * An inverse condition
  */
@@ -40,22 +43,11 @@ public class AndCondition extends SpeakerNPC.ChatCondition {
 
 	@Override
 	public int hashCode() {
-		final int PRIME = 31;
-		int result = 1;
-		result = PRIME * result + ((conditions == null) ? 0 : conditions.hashCode());
-		return result;
+		return HashCodeBuilder.reflectionHashCode(this);
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj) return true;
-		if (obj == null) return false;
-		if (getClass() != obj.getClass()) return false;
-		final AndCondition other = (AndCondition) obj;
-		if (conditions == null) {
-			if (other.conditions != null) return false;
-		} else if (!conditions.equals(other.conditions)) return false;
-		return true;
+		return EqualsBuilder.reflectionEquals(this, obj, false, QuestStartedCondition.class);
 	}
-
 }

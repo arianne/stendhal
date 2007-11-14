@@ -81,7 +81,7 @@ public class QuestNotCompletedConditionTest {
 		null)));
 		assertFalse(new QuestNotCompletedCondition("questname").equals(new Object()));
 
-		assertFalse(new QuestNotCompletedCondition("questname").equals(new QuestNotCompletedCondition(
+		assertTrue(new QuestNotCompletedCondition("questname").equals(new QuestNotCompletedCondition(
 				"questname") {
 		}));
 	}

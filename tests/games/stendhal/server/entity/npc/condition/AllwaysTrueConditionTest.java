@@ -35,7 +35,7 @@ public class AllwaysTrueConditionTest {
 		assertFalse(new AllwaysTrueCondition().equals(new Integer(100)));
 
 		assertTrue(new AllwaysTrueCondition().equals(new AllwaysTrueCondition()));
-		assertFalse(new AllwaysTrueCondition().equals(new AllwaysTrueCondition() {
+		assertTrue(new AllwaysTrueCondition().equals(new AllwaysTrueCondition() {
 		}));
 	}
 	@Test
@@ -47,7 +47,7 @@ public class AllwaysTrueConditionTest {
 	}
 	@Test
 	public void testHashCode() throws Throwable {
-		assertEquals(1, new AllwaysTrueCondition().hashCode());
+		assertEquals(17, new AllwaysTrueCondition().hashCode());
 	}
 	@Test
 	public void testToString() throws Throwable {

@@ -106,8 +106,7 @@ public class PlayerInAreaConditionTest {
 		assertFalse((new PlayerInAreaCondition(ar)).equals(new PlayerInAreaCondition(
 				null)));
 
-		assertFalse(new PlayerInAreaCondition(ar).equals(new PlayerInAreaCondition(
-				ar) {
+		assertTrue(new PlayerInAreaCondition(ar).equals(new PlayerInAreaCondition(ar) {
 		}));
 	}
 

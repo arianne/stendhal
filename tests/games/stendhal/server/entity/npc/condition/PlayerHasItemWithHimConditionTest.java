@@ -93,7 +93,7 @@ public class PlayerHasItemWithHimConditionTest {
 				itemName)));
 		assertFalse(new PlayerHasItemWithHimCondition(itemName).equals(new Integer(
 				100)));
-		assertFalse(new PlayerHasItemWithHimCondition(itemName).equals(new PlayerHasItemWithHimCondition(
+		assertTrue(new PlayerHasItemWithHimCondition(itemName).equals(new PlayerHasItemWithHimCondition(
 				itemName) {
 		}));
 	}

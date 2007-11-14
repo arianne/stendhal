@@ -97,7 +97,7 @@ public class QuestInStateConditionTest {
 		assertFalse(new QuestInStateCondition(QUESTNAME, state).equals(new QuestInStateCondition(
 				QUESTNAME, state + "2")));
 
-		assertFalse(new QuestInStateCondition(QUESTNAME, state).equals(new QuestInStateCondition(
+		assertTrue(new QuestInStateCondition(QUESTNAME, state).equals(new QuestInStateCondition(
 				QUESTNAME, state) {
 		}));
 	}

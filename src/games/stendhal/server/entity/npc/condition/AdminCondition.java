@@ -1,5 +1,8 @@
 package games.stendhal.server.entity.npc.condition;
 
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
+
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 
@@ -38,17 +41,12 @@ public class AdminCondition extends SpeakerNPC.ChatCondition {
 
 	@Override
 	public int hashCode() {
-		return requiredAdminlevel;
+		return HashCodeBuilder.reflectionHashCode(this);
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj) return true;
-		if (obj == null) return false;
-		if (getClass() != obj.getClass()) return false;
-		final AdminCondition other = (AdminCondition) obj;
-		if (requiredAdminlevel != other.requiredAdminlevel) return false;
-		return true;
+		return EqualsBuilder.reflectionEquals(this, obj, false, QuestStartedCondition.class);
 	}
 
 }

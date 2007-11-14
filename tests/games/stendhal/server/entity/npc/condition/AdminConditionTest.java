@@ -14,13 +14,13 @@ public class AdminConditionTest {
     @Test
     public void testConstructor() throws Throwable {
         AdminCondition adminCondition = new AdminCondition();
-        assertEquals("adminCondition.hashCode()", 5000, adminCondition.hashCode());
+        assertEquals("adminCondition.hashCode()", 5629, adminCondition.hashCode());
     }
 
     @Test
     public void testConstructor1() throws Throwable {
         AdminCondition adminCondition = new AdminCondition(100);
-        assertEquals("adminCondition.hashCode()", 100, adminCondition.hashCode());
+        assertEquals("adminCondition.hashCode()", 729, adminCondition.hashCode());
     }
     @Test
     public void testEquals() throws Throwable {
@@ -30,7 +30,7 @@ public class AdminConditionTest {
         assertFalse(new AdminCondition(100).equals(new AdminCondition(1000)));
         assertFalse( new AdminCondition(100).equals("testString"));
         assertFalse(new AdminCondition(100).equals(null));
-        assertFalse("subclass is not equal",new AdminCondition(100).equals(new AdminCondition(100){}));
+        assertTrue("subclass is equal",new AdminCondition(100).equals(new AdminCondition(100){}));
     }
     @Test
     public void testFire() throws Throwable {
@@ -40,8 +40,8 @@ public class AdminConditionTest {
     }
     @Test
     public void testHashCode() throws Throwable {
-        assertEquals("result", 0, new AdminCondition(0).hashCode());
-        assertEquals("result", 100, new AdminCondition(100).hashCode());
+        assertEquals("result", 629, new AdminCondition(0).hashCode());
+        assertEquals("result", 729, new AdminCondition(100).hashCode());
     }
     @Test
     public void testToString() throws Throwable {

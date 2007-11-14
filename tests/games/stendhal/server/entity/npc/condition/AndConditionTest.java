@@ -74,7 +74,7 @@ public class AndConditionTest {
 				return false;
 			}})));
 		assertFalse(new AndCondition().equals(new Integer(100)));
-		assertFalse(new AndCondition().equals(new AndCondition() {
+		assertTrue(new AndCondition().equals(new AndCondition() {
 		}));
 	}
 

@@ -72,7 +72,7 @@ public class QuestNotStartedConditionTest {
 		assertFalse(new QuestNotStartedCondition(null).equals(new QuestNotStartedCondition(
 				"questname")));
 
-		assertFalse(new QuestNotStartedCondition("questname").equals(new QuestNotStartedCondition(
+		assertTrue(new QuestNotStartedCondition("questname").equals(new QuestNotStartedCondition(
 				"questname") {
 		}));
 	}

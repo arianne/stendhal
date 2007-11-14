@@ -108,7 +108,7 @@ public class QuestNotInStateConditionTest {
 
 
 
-		assertFalse(new QuestNotInStateCondition(QUESTNAME, state).equals(new QuestNotInStateCondition(
+		assertTrue(new QuestNotInStateCondition(QUESTNAME, state).equals(new QuestNotInStateCondition(
 				QUESTNAME, state) {
 		}));
 	}

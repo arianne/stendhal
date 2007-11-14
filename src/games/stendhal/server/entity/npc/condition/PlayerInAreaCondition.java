@@ -1,5 +1,8 @@
 package games.stendhal.server.entity.npc.condition;
 
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
+
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.Area;
@@ -32,22 +35,11 @@ public class PlayerInAreaCondition extends SpeakerNPC.ChatCondition {
 
 	@Override
 	public int hashCode() {
-		final int PRIME = 31;
-		int result = 1;
-		result = PRIME * result + ((area == null) ? 0 : area.hashCode());
-		return result;
+		return HashCodeBuilder.reflectionHashCode(this);
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj) return true;
-		if (obj == null) return false;
-		if (getClass() != obj.getClass()) return false;
-		final PlayerInAreaCondition other = (PlayerInAreaCondition) obj;
-		if (area == null) {
-			if (other.area != null) return false;
-		} else if (!area.equals(other.area)) return false;
-		return true;
+		return EqualsBuilder.reflectionEquals(this, obj, false, QuestStartedCondition.class);
 	}
-
 }

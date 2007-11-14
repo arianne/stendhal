@@ -1,5 +1,8 @@
 package games.stendhal.server.entity.npc.condition;
 
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
+
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 
@@ -45,25 +48,11 @@ public class PlayerHasItemWithHimCondition extends SpeakerNPC.ChatCondition {
 
 	@Override
 	public int hashCode() {
-		final int PRIME = 31;
-		int result = 1;
-		result = PRIME * result + amount;
-		result = PRIME * result + ((itemName == null) ? 0 : itemName.hashCode());
-		return result;
+		return HashCodeBuilder.reflectionHashCode(this);
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj) return true;
-		if (obj == null) return false;
-		if (getClass() != obj.getClass()) return false;
-		final PlayerHasItemWithHimCondition other = (PlayerHasItemWithHimCondition) obj;
-		if (amount != other.amount) return false;
-		if (itemName == null) {
-			if (other.itemName != null) return false;
-		} else if (!itemName.equals(other.itemName)) return false;
-		return true;
+		return EqualsBuilder.reflectionEquals(this, obj, false, QuestStartedCondition.class);
 	}
-
-
 }

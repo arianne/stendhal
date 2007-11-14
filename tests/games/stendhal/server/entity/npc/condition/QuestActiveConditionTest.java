@@ -82,7 +82,7 @@ public class QuestActiveConditionTest {
 				null)));
 		assertFalse(new QuestActiveCondition("questname").equals(new QuestActiveCondition(
 				"questname2")));
-		assertFalse(new QuestActiveCondition("questname").equals(new QuestActiveCondition(
+		assertTrue(new QuestActiveCondition("questname").equals(new QuestActiveCondition(
 				"questname") {
 		}));
 	}
