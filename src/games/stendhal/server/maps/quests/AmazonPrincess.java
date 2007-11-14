@@ -6,10 +6,17 @@ import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
+import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.NotCondition;
+import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
+import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
+import games.stendhal.server.entity.npc.condition.QuestNotInStateCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
 
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * QUEST: The Amazon Princess
@@ -44,6 +51,7 @@ public class AmazonPrincess extends AbstractQuest {
 
 	// The delay between repeating quests is 60 minutes
 	private static final int REQUIRED_MINUTES = 60;
+	private static final List<String> triggers = Arrays.asList("drink", "pina_colada", "cocktail", "cheers",	"pina");
 
 	@Override
 	public void init(String name) {
@@ -59,13 +67,10 @@ public class AmazonPrincess extends AbstractQuest {
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, String text, SpeakerNPC npc) {
-						if (!player.hasQuest(QUEST_SLOT)
-								|| player.getQuest(QUEST_SLOT).equals(
-										"rejected")) {
+						if (!player.hasQuest(QUEST_SLOT) || player.getQuest(QUEST_SLOT).equals("rejected")) {
 							npc.say("I'm looking for a drink, should be an exotic one. Can you bring me one?");
 							npc.setCurrentState(ConversationStates.QUEST_OFFERED);
-						} else if (player.isQuestCompleted(QUEST_SLOT)) { // shouldn't
-																			// happen
+						} else if (player.isQuestCompleted(QUEST_SLOT)) { // shouldn't happen
 							npc.say("I'm drunken now thank you!");
 						} else if (player.getQuest(QUEST_SLOT).startsWith(
 								"drinking;")) {
@@ -107,26 +112,15 @@ public class AmazonPrincess extends AbstractQuest {
 		// Player agrees to get the drink
 		npc.add(ConversationStates.QUEST_OFFERED,
 				ConversationPhrases.YES_MESSAGES, null,
-				ConversationStates.ATTENDING, null,
-				new SpeakerNPC.ChatAction() {
-					@Override
-					public void fire(Player player, String text, SpeakerNPC npc) {
-						npc.say("Thank you! If you have found some, say #drink to me so I know you have it. I'll be sure to give you a nice reward.");
-						player.setQuest(QUEST_SLOT, "start");
-						player.addKarma(10.0);
-					}
-				});
+				ConversationStates.ATTENDING,
+				"Thank you! If you have found some, say #drink to me so I know you have it. I'll be sure to give you a nice reward.",
+				new SetQuestAndModifyKarmaAction(QUEST_SLOT, "start", 10.0));
+
 		// Player says no, they've lost karma.
 		npc.add(ConversationStates.QUEST_OFFERED,
 				ConversationPhrases.NO_MESSAGES, null, ConversationStates.IDLE,
-				"Oh, never mind. Bye then.", new SpeakerNPC.ChatAction() {
-					@Override
-					public void fire(Player player, String text,
-							SpeakerNPC engine) {
-						player.addKarma(-10.0);
-						player.setQuest(QUEST_SLOT, "rejected");
-					}
-				});
+				"Oh, never mind. Bye then.",
+				new SetQuestAndModifyKarmaAction(QUEST_SLOT, "start", 10.0));
 	}
 
 	/*
@@ -136,68 +130,44 @@ public class AmazonPrincess extends AbstractQuest {
 	 */
 	private void bringCocktailStep() {
 		SpeakerNPC npc = npcs.get("Princess Esclara");
-		npc.add(ConversationStates.ATTENDING, Arrays.asList("drink",
-				"pina_colada", "cocktail", "cheers"),
-				new SpeakerNPC.ChatCondition() {
-					@Override
-					public boolean fire(Player player, String text,
-							SpeakerNPC npc) {
-						return player.hasQuest(QUEST_SLOT)
-								&& player.getQuest(QUEST_SLOT).equals("start")
-								&& player.isEquipped("pina_colada");
-					}
-				}, ConversationStates.ATTENDING, null,
-				new SpeakerNPC.ChatAction() {
-					@Override
-					public void fire(Player player, String text, SpeakerNPC npc) {
-						player.drop("pina_colada");
-						player.addKarma(15);
-						StackableItem fishpies = (StackableItem) StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
-								"fish_pie");
-						int pieamount;
-						// make it from 2 to 7 just to avoid dealing with
-						// grammear of pie/pies
-						pieamount = Rand.roll1D6() + 1;
-						fishpies.setQuantity(pieamount);
-						player.equip(fishpies, true);
-						npc.say("Thank you!! Take these "
-								+ Integer.toString(pieamount)
-								+ " fish pies from my cook, and this kiss, from me.");
-						// We set the slot to start with 'drinking'
-						// and to also store the current time, split with a ';'
-						player.setQuest(QUEST_SLOT, "drinking;" + System.currentTimeMillis());
-					}
-				});
 		npc.add(
-				ConversationStates.ATTENDING,
-				Arrays.asList("drink", "pina_colada", "cocktail", "cheers",
-						"pina"),
-				new SpeakerNPC.ChatCondition() {
-					@Override
-					public boolean fire(Player player, String text,
-							SpeakerNPC npc) {
-						return (!player.isEquipped("pina_colada")
-								&& player.hasQuest(QUEST_SLOT) && player.getQuest(
-								QUEST_SLOT).equals("start"));
-					}
-				},
-				ConversationStates.ATTENDING,
-				"You don't have any drink I like yet. Go, and you better get an exotic one!",
-				null);
+			ConversationStates.ATTENDING, triggers,
+			new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"), new PlayerHasItemWithHimCondition("pina_colada")),
+			ConversationStates.ATTENDING, null,
+			new SpeakerNPC.ChatAction() {
+				@Override
+				public void fire(Player player, String text, SpeakerNPC npc) {
+					player.drop("pina_colada");
+					player.addKarma(15);
+					StackableItem fishpies = (StackableItem) StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
+							"fish_pie");
+					int pieamount;
+					// make it from 2 to 7 just to avoid dealing with
+					// grammear of pie/pies
+					pieamount = Rand.roll1D6() + 1;
+					fishpies.setQuantity(pieamount);
+					player.equip(fishpies, true);
+					npc.say("Thank you!! Take these "
+							+ Integer.toString(pieamount)
+							+ " fish pies from my cook, and this kiss, from me.");
+					// We set the slot to start with 'drinking'
+					// and to also store the current time, split with a ';'
+					player.setQuest(QUEST_SLOT, "drinking;" + System.currentTimeMillis());
+				}
+			});
 
 		npc.add(
-				ConversationStates.ATTENDING,
-				Arrays.asList("drink", "pina_colada", "cocktail", "cheers",
-						"pina"),
-				new SpeakerNPC.ChatCondition() {
-					@Override
-					public boolean fire(Player player, String text,
-							SpeakerNPC npc) {
-						return !(player.hasQuest(QUEST_SLOT)
-								&& player.getQuest(QUEST_SLOT).equals("start"));
-					}
-				}, ConversationStates.ATTENDING,
-				"Sometime you could do me a #favour ... ", null);
+			ConversationStates.ATTENDING, triggers,
+			new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"), new NotCondition(new PlayerHasItemWithHimCondition("pina_colada"))),
+			ConversationStates.ATTENDING,
+			"You don't have any drink I like yet. Go, and you better get an exotic one!",
+			null);
+
+		npc.add(
+			ConversationStates.ATTENDING, triggers,
+			new QuestNotInStateCondition(QUEST_SLOT, "start"),
+			ConversationStates.ATTENDING,
+			"Sometime you could do me a #favour ... ", null);
 
 	}
 
