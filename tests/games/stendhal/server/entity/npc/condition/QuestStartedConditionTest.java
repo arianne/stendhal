@@ -71,11 +71,9 @@ public class QuestStartedConditionTest {
 		assertFalse(new QuestStartedCondition("questname").equals(new QuestStartedCondition(
 		null)));
 
-		assertFalse(new QuestStartedCondition("questname").equals(new QuestStartedCondition(
-				"questname") {
-		}));
 
 	}
+
 
 	@Test
 	public void testHashcode() throws Throwable {
