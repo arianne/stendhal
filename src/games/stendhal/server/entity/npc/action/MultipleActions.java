@@ -8,7 +8,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * executes a list of actions
+ * executes a list of actions.
+ * calls fire() of each action added, when its own fire() is called.
  */
 public class MultipleActions extends SpeakerNPC.ChatAction {
 
@@ -53,13 +54,23 @@ public class MultipleActions extends SpeakerNPC.ChatAction {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj) return true;
-		if (obj == null) return false;
-		if (getClass() != obj.getClass()) return false;
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
 		final MultipleActions other = (MultipleActions) obj;
 		if (actions == null) {
-			if (other.actions != null) return false;
-		} else if (!actions.equals(other.actions)) return false;
+			if (other.actions != null) {
+				return false;
+			}
+		} else if (!actions.equals(other.actions)) {
+			return false;
+		}
 		return true;
 	}
 
