@@ -35,7 +35,7 @@ public class LevelGreaterThanCondition extends SpeakerNPC.ChatCondition {
 
 	@Override
 	public int hashCode() {
-		return new HashCodeBuilder().append(level).toHashCode();
+		return HashCodeBuilder.reflectionHashCode(this);
 	}
 
 	@Override

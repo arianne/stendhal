@@ -4,6 +4,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
 
 /**
  * Is the player naked? (e. g. not wearing anything on his/her body)
@@ -22,7 +23,7 @@ public class NakedCondition extends SpeakerNPC.ChatCondition {
 
 	@Override
 	public int hashCode() {
-		return 23487126;
+		return HashCodeBuilder.reflectionHashCode(this);
 	}
 
 	@Override

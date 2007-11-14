@@ -58,7 +58,7 @@ public class KilledCondition extends ChatCondition {
 
 	@Override
 	public int hashCode() {
-		return new HashCodeBuilder().append(toKill).toHashCode();
+		return HashCodeBuilder.reflectionHashCode(this);
 	}
 
 }
