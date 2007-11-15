@@ -66,6 +66,9 @@
  <tileset name="brick_wood.png" firstgid="195" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_wall_brick_wood.png"/>
  </tileset>
+ <tileset name="sprout" firstgid="199" tilewidth="32" tileheight="32">
+  <image source="../../tileset/plant/indoor/pot_plant_sprout.png"/>
+ </tileset>
  <layer name="0_floor" width="16" height="16">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNjYGBgIwH3kKgehO3I0DMSMRcOTC/9o3jkYQAIpX3CAAQAAA==
@@ -73,7 +76,7 @@
  </layer>
  <layer name="1_terrain" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAMXOOQoCQRBA0b6FuxdwH5fEPVDRwDFTjyOKS+AKghfxfv6gAimnmxGFKXhJdX+6S8aYfAhzLLB825VRRBUdizEmOOKEs+xrKEjfQhZJhwuuuCGDpurj5nOm8DFT+1jI3ja/9E9H30VP6X/x/gBDZfTn/0fZ3/GI8H1Xn0ZCWcn9tdqnVF9HO8BG+m3AWUP6CnIWO+xxsJx7eAHDH9GjAAQAAA==
+   H4sIAAAAAAAAAMXOOQoCQRBA0b6FuxdwH5fEPVDRwDFTjyOKS+AKgkfyWP6gAimnmxGFKXhJdX+6S8aYfAhzLLB825VRRBUdizEmOOKEs+xrKEjfQhZJhwuuuCGDpurj5nOm8DFT+1jI3ja/9E9H30VP6X/x/gBDZfTn/0fZ3/GI8H1Xn0ZCWcn9tdqnVF9HO8BG+m3AWUP6CnIWO+xxsJx7eAHRtmh2AAQAAA==
   </data>
  </layer>
  <layer name="2_object" width="16" height="16">
@@ -83,7 +86,7 @@
  </layer>
  <layer name="3_roof" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgIB4cJkHtKBgF2MD0gXbAKEABAPiigzsABAAA
+   H4sIAAAAAAAAAGNgIB4cJkHtUARzgXgeATXH6eGQYQymD7QDRgEKAAAyTHIBAAQAAA==
   </data>
  </layer>
  <layer name="4_roof_add" width="16" height="16">
@@ -98,7 +101,7 @@
  </layer>
  <layer name="collision" width="16" height="16" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAANvGwMCwbYhgBhLUoatlwCGOTz8uQK4+QnYTCwazfmLMGqjwIyXtUGoOqWmWVvoJYQCjeDHPAAQAAA==
+   H4sIAAAAAAAAANvGwMCwbYhgBhLUoavFJoZLHyFArP2k6qXU/sGgn5IwoMRuYvSTknYoNYfUNEsr/YQwAEloEY0ABAAA
   </data>
  </layer>
  <layer name="protection" width="16" height="16">
