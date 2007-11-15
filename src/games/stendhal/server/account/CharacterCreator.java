@@ -44,7 +44,7 @@ public class CharacterCreator {
 		this.template = template;
 		setupValidatorsForCharacter();
 	}
-	
+
 	private void setupValidatorsForCharacter() {
 		validators.add(new NotEmptyValidator(character));
 		validators.add(new MinLengthValidator(character, 4));
@@ -69,52 +69,32 @@ public class CharacterCreator {
 
 		JDBCDatabase database = (JDBCDatabase) DatabaseFactory.getDatabase();
 		Transaction trans = database.getTransaction();
-		
+
 		try {
 			if (database.hasCharacter(trans, username, character)) {
 				logger.warn("Character already exist: " + character);
 				return new CharacterResult(Result.FAILED_PLAYER_EXISTS,
 						character, template);
 			}
-		
-			/*
-			 * TODO: Refactor OMG! Hide in a method. Even better, move it to
-			 * player class as it is its duty to provide a empty level 0 player.
-			 */
-			/*
-			 * Create the player character object
-			 */
-			Player object = new Player(new RPObject());
-			object.setID(RPObject.INVALID_ID);
-		
-			object.put("type", "player");
-			object.put("name", character);
-			object.put("outfit", new Outfit().getCode());
-			object.put("base_hp", 100);
-			object.put("hp", 100);
-			object.put("atk", 10);
-			object.put("atk_xp", 0);
-			object.put("def", 10);
-			object.put("def_xp", 0);
-			object.put("xp", 0);
-		
-			/*
-			 * TODO: Update the above to use Player and RPEntity methods.
-			 */
+
+
+			Player object = createEmptyZeroLevelPlayer();
+
+
 			object.update();
-		
+
 			RuleManager manager = RuleSetFactory.getRuleSet("default");
-		
+
 			object.addSlot("armor");
 			Entity entity = manager.getEntityManager().getItem("leather_armor");
 			RPSlot slot = object.getSlot("armor");
 			slot.add(entity);
-		
+
 			object.addSlot("rhand");
 			entity = manager.getEntityManager().getItem("club");
 			slot = object.getSlot("rhand");
 			slot.add(entity);
-		
+
 			/*
 			 * Finally we add it to database.
 			 */
@@ -130,5 +110,27 @@ public class CharacterCreator {
 			TestHelper.fail();
 			return new CharacterResult(Result.FAILED_EXCEPTION, character, template);
 		}
+	}
+
+	private Player createEmptyZeroLevelPlayer() {
+		/*
+		 * TODO: move it to player class as it is its duty to provide a empty level 0 player.
+		 *
+		 * TODO: Update to use Player and RPEntity methods.
+	     */
+		Player object = new Player(new RPObject());
+		object.setID(RPObject.INVALID_ID);
+
+		object.put("type", "player");
+		object.put("name", character);
+		object.put("outfit", new Outfit().getCode());
+		object.put("base_hp", 100);
+		object.put("hp", 100);
+		object.put("atk", 10);
+		object.put("atk_xp", 0);
+		object.put("def", 10);
+		object.put("def_xp", 0);
+		object.put("xp", 0);
+		return object;
 	}
 }
