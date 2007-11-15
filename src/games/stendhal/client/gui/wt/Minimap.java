@@ -38,7 +38,6 @@ import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 
-
 import org.apache.log4j.Logger;
 import marauroa.common.game.RPAction;
 
@@ -47,7 +46,7 @@ import marauroa.common.game.RPAction;
  *
  * @author mtotz
  */
-	
+
 public class Minimap extends WtPanel implements PositionChangeListener {
 	/**
 	 * The color of the background.
@@ -109,15 +108,15 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 	private BufferedImage image;
 
 	private StendhalClient client;
-	
+
 	/**
 	 * PATHFIND
 	 */
-	
-	private int nodo_actual=0;
-	
+
+	private int nodo_actual;
+
 	private Pathfind pathfind;
-	
+
 	private CollisionDetection collisiondetection;
 
 	/** the logger instance. */
@@ -136,7 +135,7 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 
 		// INIT PATHFIND
 		pathfind = new Pathfind();
-		
+
 		// Show nothing until there is map data
 		resizeToFitClientArea(100, 0);
 	}
@@ -156,9 +155,9 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 		setTitletext(zone);
 
 		// FOR PATHFINDING THING
-		collisiondetection=cd;
+		collisiondetection = cd;
 		pathfind.ClearPath();
-		nodo_actual=0;
+		nodo_actual = 0;
 
 		// calculate size and scale
 		int w = cd.getWidth();
@@ -196,7 +195,7 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 		mapgrapics.dispose();
 
 		// now resize the panel to match the size of the map
-		resizeToFitClientArea(width, height+2);
+		resizeToFitClientArea(width, height + 2);
 
 		updateView();
 	}
@@ -266,33 +265,36 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 		// draw minimap
 		vg.drawImage(image, 0, 0, null);
 
-		//		PATHFIND--------------------------------------
-		
+		// PATHFIND--------------------------------------
+
 		pathfind.Reinice();
-		while (!pathfind.ReachedGoal()){
+		while (!pathfind.ReachedGoal()) {
 			pathfind.PathNextNode();
-			vg.fillRect(pathfind.NodeGetX() * scale, pathfind.NodeGetY() * scale, scale, scale);
-		}		
+			vg.fillRect(pathfind.NodeGetX() * scale, pathfind.NodeGetY()
+					* scale, scale, scale);
+		}
 		pathfind.Reinice();
 
-		while (!pathfind.ReachedGoal()){
+		while (!pathfind.ReachedGoal()) {
 			pathfind.PathJumpNode();
 			vg.setColor(Color.CYAN);
-			vg.fillRect(pathfind.NodeGetX() * scale, pathfind.NodeGetY() * scale, scale, scale);
-		}	
+			vg.fillRect(pathfind.NodeGetX() * scale, pathfind.NodeGetY()
+					* scale, scale, scale);
+		}
 		pathfind.Reinice();
 
-		
-		if(nodo_actual!=0){
+		if (nodo_actual != 0) {
 			pathfind.PathJumpToNode(nodo_actual);
-			int manhatan=(int)((Math.abs(playerX - pathfind.NodeGetX()) + Math.abs(playerY - pathfind.NodeGetY())));
-			
-			if (manhatan<6){
-					
+			int manhatan = (int) ((Math.abs(playerX - pathfind.NodeGetX()) + Math.abs(playerY
+					- pathfind.NodeGetY())));
+
+			if (manhatan < 6) {
+
 				pathfind.PathJumpNode();
-				
+
 				if (logger.isDebugEnabled()) {
-					logger.debug("Pathfind: To waypoint: " + pathfind.NodeGetX() + " " + pathfind.NodeGetY() );
+					logger.debug("Pathfind: To waypoint: "
+							+ pathfind.NodeGetX() + " " + pathfind.NodeGetY());
 				}
 				RPAction action = new RPAction();
 				action.put("type", "moveto");
@@ -300,17 +302,18 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 				action.put("y", pathfind.NodeGetY());
 
 				client.send(action);
-				
-				
+
 				nodo_actual = pathfind.final_path_index;
-				
-				if (pathfind.ReachedGoal()) pathfind.ClearPath();
+
+				if (pathfind.ReachedGoal()) {
+					pathfind.ClearPath();
+				}
 			}
-			
+
 		}
 
-		//--------------------------------------
-		
+		// --------------------------------------
+
 		// Draw on ground entities
 		for (Entity entity : client.getGameObjects()) {
 			if (!entity.isOnGround()) {
@@ -460,39 +463,40 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 		// TODO: Check that titlebar height is calculated correctly.
 		// The p.y seems higher than it should after adjustment.
 
-
 		// If teleclickmode is disabled.
-		if (!client.getPlayer().has("teleclickmode")){
+		if (!client.getPlayer().has("teleclickmode")) {
 			/*
 			 * Move the player to the coordinates using Pathfinding
 			 */
-			
-			//check if destination is walkeable.
-			if (!collisiondetection.walkable((p.x + panx - getClientX()) / scale, ((p.y + pany - getClientY()) / scale) - 1))
-			{
+
+			// check if destination is walkeable.
+			if (!collisiondetection.walkable((p.x + panx - getClientX())
+					/ scale, ((p.y + pany - getClientY()) / scale) - 1)) {
 				return true;
 			}
 
-			nodo_actual=0;
+			nodo_actual = 0;
 
-			//Rectangle(int x, int y, int width, int height) 
-			int width2= width<192 ? width : 192;
-			int height2=height<192 ? height : 192;
-			Rectangle search_area = new Rectangle((panx)/scale,(pany)/scale,width2/scale,height2/scale);
+			// Rectangle(int x, int y, int width, int height)
+			int width2 = width < 192 ? width : 192;
+			int height2 = height < 192 ? height : 192;
+			Rectangle search_area = new Rectangle((panx) / scale, (pany)
+					/ scale, width2 / scale, height2 / scale);
 
 			long computation_time = System.currentTimeMillis();
 
-			if (pathfind.NewPath(collisiondetection,
-					(int) playerX,(int)playerY,
-					(p.x + panx - getClientX()) / scale,
-					((p.y + pany - getClientY()) / scale) - 1, search_area)){
+			if (pathfind.NewPath(collisiondetection, (int) playerX,
+					(int) playerY, (p.x + panx - getClientX()) / scale, ((p.y
+							+ pany - getClientY()) / scale) - 1, search_area)) {
 
 				pathfind.PathJumpNode();
 				nodo_actual = pathfind.final_path_index;
 
 				if (logger.isDebugEnabled()) {
-					logger.debug("Pathfind: Found, size: " + pathfind.final_path_index);
-					logger.debug("Pathfind: First waypoint: " + pathfind.NodeGetX()+ "," + pathfind.NodeGetY());
+					logger.debug("Pathfind: Found, size: "
+							+ pathfind.final_path_index);
+					logger.debug("Pathfind: First waypoint: "
+							+ pathfind.NodeGetX() + "," + pathfind.NodeGetY());
 				}
 
 				RPAction action = new RPAction();
@@ -502,22 +506,23 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 
 				client.send(action);
 
-			}else{
+			} else {
 				if (logger.isDebugEnabled()) {
 					logger.debug("Pathfind: unreacheable.");
 				}
 			}
 
 			if (logger.isDebugEnabled()) {
-				logger.debug("Pathfind: calculation time: " + (System.currentTimeMillis() - computation_time) + "ms");
+				logger.debug("Pathfind: calculation time: "
+						+ (System.currentTimeMillis() - computation_time)
+						+ "ms");
 			}
-		} else // If teleclickmode is enabled.
-		{
+		} else  { // If teleclickmode is enabled.
 			RPAction action = new RPAction();
 			action.put("type", "moveto");
 			action.put("x", (p.x + panx - getClientX()) / scale);
 			action.put("y", ((p.y + pany - getClientY()) / scale) - 1);
-			  
+
 			client.send(action);
 		}
 		return true;
