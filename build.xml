@@ -459,7 +459,7 @@
 		<copy todir="${buildroot}/stendhal-${version}-src" file="build.xml"/>
 		<copy todir="${buildroot}/stendhal-${version}-src" file="build.ant.properties"/>
 
-		<copy todir="${buildroot}/stendhal-${version}-src" file=".hotspot.rc"/>
+		<copy todir="${buildroot}/stendhal-${version}-src" file=".hotspotrc"/>
 
 		<copy todir="${buildroot}/stendhal-server-${version}-src/doc">
 			<fileset dir="doc"/>
