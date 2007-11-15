@@ -12,7 +12,6 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import games.stendhal.server.maps.semos.storage.HousewifeNPC;
-
 import marauroa.common.Log4J;
 import marauroa.common.game.RPObject;
 
@@ -75,6 +74,7 @@ public class CleanStorageSpaceTest {
 		SpeakerNPC npc = NPCList.get().get("Eonna");
 		assertNotNull(npc);
 		Engine en = npc.getEngine();
+		assertFalse(npc.isTalking());
 		en.step(player, "hi");
 		assertTrue(npc.isTalking());
 		assertEquals("Hi there, young hero.", npc.get("text"));
