@@ -75,7 +75,7 @@ public class CreateAccountDialog extends JDialog {
 	// End of variables declaration
 	private StendhalClient client;
 	private Frame owner;
-	private String badPasswordReason = null;
+	private String badPasswordReason;
 
 	public CreateAccountDialog(Frame owner, StendhalClient client) {
 		super(owner, true);
