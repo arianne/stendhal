@@ -106,7 +106,7 @@ public class Blackjack extends AbstractQuest {
 			sum += cardValues.get(card);
 		}
 		int numberOfAces = countAces(cards);
-		while (sum > 21 && numberOfAces > 0) {
+		while ((sum > 21) && (numberOfAces > 0)) {
 			sum -= 10;
 			numberOfAces--;
 		}
@@ -114,13 +114,13 @@ public class Blackjack extends AbstractQuest {
 	}
 
 	private boolean isBlackjack(List<String> cards) {
-		return sumValues(cards) == 21 && cards.size() == 2;
+		return (sumValues(cards) == 21) && (cards.size() == 2);
 	}
 
 	/**
 	 * Deals <i>number</i> cards to the player, if the player is not standing,
 	 * and to the bank, if the bank is not standing.
-	 * 
+	 *
 	 * @param number
 	 *            The number of cards that each player should draw.
 	 */
@@ -135,7 +135,7 @@ public class Blackjack extends AbstractQuest {
 				message += "You got a " + playerCard + ".\n";
 			}
 
-			if (playerStands && playerSum < bankSum) {
+			if (playerStands && (playerSum < bankSum)) {
 				message += "The bank stands.\n";
 				bankStands = true;
 			}
@@ -163,7 +163,7 @@ public class Blackjack extends AbstractQuest {
 		}
 		if (!bankStands) {
 			message += "The bank has " + bankSum + ".\n";
-			if (bankSum >= 17 && bankSum <= 21 && bankSum >= playerSum) {
+			if ((bankSum >= 17) && (bankSum <= 21) && (bankSum >= playerSum)) {
 				bankStands = true;
 				message += "The bank stands.\n";
 			}
@@ -236,7 +236,7 @@ public class Blackjack extends AbstractQuest {
 
 	/**
 	 * Gives the player <i>factor</i> times his stake.
-	 * 
+	 *
 	 * @param player
 	 *            The player.
 	 * @param factor
@@ -287,8 +287,6 @@ public class Blackjack extends AbstractQuest {
 				cleanUpTable();
 			}
 		};
-
-		npcs.add(ramon);
 
 		ramon.setEntityClass("naughtyteen2npc");
 		ramon.setPosition(26, 36);
