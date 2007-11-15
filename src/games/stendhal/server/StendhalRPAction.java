@@ -33,9 +33,11 @@ import java.awt.Rectangle;
 import java.awt.Shape;
 import java.util.List;
 
+import javax.management.AttributeNotFoundException;
+
+import marauroa.server.game.rp.RPServerManager;
 
 import org.apache.log4j.Logger;
-import marauroa.server.game.rp.RPServerManager;
 
 /*
  * TODO: Refactor Remove this class. Move to a proper OOP approach. Replace RP
@@ -241,10 +243,11 @@ public class StendhalRPAction {
 					if (owner != null) {
 	                    name = Grammar.suffix_s(owner.getTitle()) + " " + name;
 					} else {
-                        if (entity instanceof Sheep)
-                            name = "that " + name;
-                        else
-                            name = "that poor little " + name;
+                        if (entity instanceof Sheep) {
+							name = "that " + name;
+						} else {
+							name = "that poor little " + name;
+						}
 					}
 				}
 
@@ -349,7 +352,7 @@ public class StendhalRPAction {
 		// {lifesteal} uncomented following line, also changed name:
 		List<Item> weapons = attacker.getWeapons();
 
-		if (attacker instanceof Player && !(defender instanceof SpeakerNPC)
+		if ((attacker instanceof Player) && !(defender instanceof SpeakerNPC)
 				&& attacker.getsFightXpFrom(defender)) {
 			// disabled attack xp for attacking NPC's
 			attacker.incATKXP();
@@ -396,7 +399,7 @@ public class StendhalRPAction {
 
 	private static void setPVPTimeIfDoingPVP(RPEntity attacker,
 			RPEntity defender) {
-		if (attacker instanceof Player && defender instanceof Player) {
+		if ((attacker instanceof Player) && (defender instanceof Player)) {
 			((Player) attacker).storeLastPVPActionTime();
 		}
 	}
@@ -467,14 +470,23 @@ public class StendhalRPAction {
 	}
 
 	/**
-	 * ???
+	 * send the content of the zone the player is in to the client
 	 *
 	 * @param player
 	 * @throws AttributeNotFoundException
 	 */
 	public static void transferContent(Player player) {
-		StendhalRPZone zone = player.getZone();
-		rpman.transferContent(player, zone.getContents());
+
+		//added null check for the sake of testing
+		// TODO: remove the null check and refactor tests or whatever , astridEmma
+
+		if (rpman!=null) {
+			StendhalRPZone zone = player.getZone();
+				rpman.transferContent(player, zone.getContents());
+
+		} else {
+			logger.warn("rpmanager not found");
+		}
 	}
 
 	/**
