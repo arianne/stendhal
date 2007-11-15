@@ -49,11 +49,15 @@ public class Engine {
 	private Transition get(int state, String trigger, ChatCondition condition) {
 		for (Transition transition : stateTransitionTable) {
 			if (transition.matches(state, trigger)) {
-				if (transition.getCondition() == condition) {
+				PreTransitionCondition cond = transition.getCondition();
+
+				if (cond == condition)
 					return transition;
-				}
+    			else if (cond!=null && cond.equals(condition))
+    				return transition;
 			}
 		}
+
 		return null;
 	}
 
