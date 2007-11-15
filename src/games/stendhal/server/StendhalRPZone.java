@@ -853,7 +853,11 @@ public class StendhalRPZone extends MarauroaRPZone {
 		return object;
 	}
 
-	// TODO: Find out why the (same?) object is returned
+/**
+ * removes object from zone.
+ * @param object
+ * @return the removed object
+ */
 	public synchronized RPObject remove(RPObject object) {
 		if (object.isContained()) {
 			// We modify the base container if the object change.
