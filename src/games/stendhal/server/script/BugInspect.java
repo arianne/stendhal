@@ -35,7 +35,7 @@ public class BugInspect extends ScriptImpl implements TurnListener {
 		seen.clear();
 	}
 
-	public void onTurnReached(int currentTurn, String ignoreMe) {
+	public void onTurnReached(int currentTurn) {
 		
 		for (Player player : StendhalRPRuleProcessor.get().getPlayers()) {
 			if (seen.contains(player.getName())) {

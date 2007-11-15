@@ -112,9 +112,8 @@ public abstract class AccessCheckingPortal extends Portal {
 		 * This method is called when the turn number is reached.
 		 *
 		 * @param	currentTurn	Current turn number.
-		 * @param	message		The string that was used.
 		 */
-		public void onTurnReached(int currentTurn, String message) {
+		public void onTurnReached(int currentTurn) {
 			user.sendPrivateText(this.text);
 			user.notifyWorldAboutChanges();
 		}

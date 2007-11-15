@@ -59,7 +59,7 @@ public class AnimalKeeperNPC implements ZoneConfigurator {
 			return new AdosAttackableCreature(this);
 		}
 
-		public void onTurnReached(int currentTurn, String message) {
+		public void onTurnReached(int currentTurn) {
 			// HACK: we need to wait a turn because the message is lost otherwise
 			// sends the message to all players
 			StendhalRPAction.shout(cryForHelp);

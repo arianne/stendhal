@@ -247,7 +247,7 @@ public class ItemTest {
 
 		mo.put("id", 1);
 		mo.put("zoneid", ZONE_NAME);
-		mo.onTurnReached(1, "");
+		mo.onTurnReached(1);
 	}
 
 	@Test

@@ -160,7 +160,7 @@ public abstract class Door extends Portal implements TurnListener {
 		return (text);
 	}
 
-	public void onTurnReached(int currentTurn, String message) {
+	public void onTurnReached(int currentTurn) {
 		close();
 		notifyWorldAboutChanges();
 	}

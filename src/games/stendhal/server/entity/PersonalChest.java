@@ -205,10 +205,8 @@ public class PersonalChest extends Chest {
 		 *
 		 * @param currentTurn
 		 *            The current turn number.
-		 * @param message
-		 *            The string that was used.
 		 */
-		public void onTurnReached(int currentTurn, String message) {
+		public void onTurnReached(int currentTurn) {
 			if (syncContent()) {
 				TurnNotifier.get().notifyInTurns(0, this);
 			}

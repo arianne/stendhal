@@ -192,10 +192,8 @@ public abstract class PlayerActivityEntity extends Entity implements UseListener
 		 *
 		 * @param currentTurn
 		 *            The current turn number.
-		 * @param message
-		 *            The string that was used.
 		 */
-		public void onTurnReached(int currentTurn, String message) {
+		public void onTurnReached(int currentTurn) {
 			Player player = getPlayer();
 
 			if (player != null) {

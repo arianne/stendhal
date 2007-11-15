@@ -89,7 +89,7 @@ public class TurnNotifier {
 						logger.info(turnListener);
 					}
 
-					turnListener.onTurnReached(currentTurn, null);
+					turnListener.onTurnReached(currentTurn);
 				} catch (RuntimeException e) {
 					logger.error(e, e);
 				}

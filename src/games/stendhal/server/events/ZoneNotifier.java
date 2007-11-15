@@ -49,7 +49,7 @@ public class ZoneNotifier {
 			this.message = message;
 		}
 
-		public void onTurnReached(int currentTurn, String ignoreMe) {
+		public void onTurnReached(int currentTurn) {
 			player.sendPrivateText(message);
 		}
 		

@@ -21,7 +21,6 @@ public interface TurnListener {
 	 * NOTE: The <em>message</em> parameter is deprecated.
 	 *
 	 * @param currentTurn current turn number
-	 * @param message the string that was used
 	 */
-	void onTurnReached(int currentTurn, String message);
+	void onTurnReached(int currentTurn);
 }

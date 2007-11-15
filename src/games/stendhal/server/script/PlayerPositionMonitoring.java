@@ -68,7 +68,7 @@ public class PlayerPositionMonitoring extends ScriptImpl {
 			admin.sendPrivateText(sb.toString());
 		}
 
-		public void onTurnReached(int currentTurn, String message) {
+		public void onTurnReached(int currentTurn) {
 			list();
 			if (counter < INTERVALS.length) {
 				TurnNotifier.get().notifyInTurns(

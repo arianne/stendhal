@@ -83,10 +83,8 @@ public class Blood extends PassiveEntity implements TurnListener {
 	 * 
 	 * @param currentTurn
 	 *            The current turn number.
-	 * @param message
-	 *            The string that was used.
 	 */
-	public void onTurnReached(int currentTurn, String message) {
+	public void onTurnReached(int currentTurn) {
 		getZone().remove(this);
 	}
 }

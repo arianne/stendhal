@@ -319,9 +319,8 @@ public class OccupantArea extends AreaEntity implements MovementListener, TurnLi
 	 * This method is called when the turn number is reached.
 	 *
 	 * @param	currentTurn	Current turn number.
-	 * @param	message		The string that was used.
 	 */
-	public void onTurnReached(int currentTurn, String message) {
+	public void onTurnReached(int currentTurn) {
 		IRPZone zone;
 		Rectangle2D area;
 

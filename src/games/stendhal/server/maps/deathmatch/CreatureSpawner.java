@@ -155,7 +155,7 @@ static final Logger logger = Logger.getLogger(CreatureSpawner.class);
 
 		return sum;
 	}
-	public void onTurnReached(int currentTurn, String message) {
+	public void onTurnReached(int currentTurn) {
 		// TODO Auto-generated method stub
 
 	}

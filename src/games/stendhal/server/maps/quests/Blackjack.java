@@ -224,7 +224,7 @@ public class Blackjack extends AbstractQuest {
 		TurnNotifier.get().notifyInSeconds(1, new TurnListener() {
 			String name = playerName;
 
-			public void onTurnReached(int currentTurn, String message) {
+			public void onTurnReached(int currentTurn) {
 				if (name.equals(ramon.getAttending().getName())) {
 					dealCards(ramon.getAttending(), 1);
 				}

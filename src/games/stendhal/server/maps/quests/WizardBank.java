@@ -93,7 +93,7 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 			}
 		}
 
-		public void onTurnReached(int currentTurn, String message) {
+		public void onTurnReached(int currentTurn) {
 			// check that the player is still in game and stop the timer
 			// in case the player is not playing anymore.
 			// Note that "player" always refers to the current player

@@ -111,7 +111,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 			return corpse.getName().equals(item.getInfoString());
 		}
 
-		public void onTurnReached(int currentTurn, String message) {
+		public void onTurnReached(int currentTurn) {
 			boolean isStillFilled = false;
 			// Check if the item is still in the corpse. Note that somebody
 			// might have put other stuff into the corpse.

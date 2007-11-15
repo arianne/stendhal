@@ -140,7 +140,7 @@ public class PassiveEntityRespawnPoint extends Entity implements TurnListener {
 	}
 
 
-	public void onTurnReached(int currentTurn, String message) {
+	public void onTurnReached(int currentTurn) {
 		growNewFruit();
 	}
 

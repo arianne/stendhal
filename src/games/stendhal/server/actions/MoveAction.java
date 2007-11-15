@@ -58,7 +58,7 @@ public class MoveAction implements ActionListener {
 			tostop = entity;
 		}
 
-		public void onTurnReached(int currentTurn, String message) {
+		public void onTurnReached(int currentTurn) {
 			tostop.stop();
 			tostop.notifyWorldAboutChanges();
 		}

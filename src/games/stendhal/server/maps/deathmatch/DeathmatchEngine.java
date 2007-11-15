@@ -61,7 +61,7 @@ private final Player player;
 		}
 	}
 
-	public void onTurnReached(int currentTurn, String message) {
+	public void onTurnReached(int currentTurn) {
 		if (condition()) {
 			action();
 		}

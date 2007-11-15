@@ -55,7 +55,7 @@ public class Jail implements LoginListener {
 			_name = name;
 		}
 
-		public void onTurnReached(int currentTurn, String message) {
+		public void onTurnReached(int currentTurn) {
 			/*
 			 * TODO: If player is not present, we should be able to manipulate
 			 * the db object.

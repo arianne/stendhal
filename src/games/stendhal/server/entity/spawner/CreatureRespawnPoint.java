@@ -131,9 +131,9 @@ public class CreatureRespawnPoint implements TurnListener {
 
 	/**
 	 * Is called when a new creature is ready to pop up. 
-	 * @see games.stendhal.server.events.TurnListener#onTurnReached(int, java.lang.String)
+	 * @see games.stendhal.server.events.TurnListener#onTurnReached(int)
 	 */
-	public void onTurnReached(int currentTurn, String message) {
+	public void onTurnReached(int currentTurn) {
 		respawn();
 
 		// Is this all or should we spawn more creatures?

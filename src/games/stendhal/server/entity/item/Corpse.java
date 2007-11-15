@@ -237,7 +237,7 @@ public class Corpse extends PassiveEntity implements TurnListener,
 		return stage >= MAX_STAGE;
 	}
 
-	public void onTurnReached(int currentTurn, String message) {
+	public void onTurnReached(int currentTurn) {
 		if (isCompletelyRotten()) {
 			if (isContained()) {
 				// We modify the base container if the object change.

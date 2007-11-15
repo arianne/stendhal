@@ -212,7 +212,7 @@ public class BetManager extends ScriptImpl implements TurnListener {
 		}
 	}
 
-	public void onTurnReached(int currentTurn, String message) {
+	public void onTurnReached(int currentTurn) {
 		if (state != State.PAYING_BETS) {
 			logger.error("onTurnReached invoked but state is not PAYING_BETS: " + state);
 			return;

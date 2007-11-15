@@ -16,7 +16,7 @@ class AntidoteEater implements TurnListener {
 		ref = new WeakReference<Player>(player);
 	}
 
-	public void onTurnReached(int currentTurn, String message) {
+	public void onTurnReached(int currentTurn) {
 		if (ref.get() == null) {
 			return;
 		}

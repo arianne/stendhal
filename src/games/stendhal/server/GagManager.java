@@ -161,7 +161,7 @@ public class GagManager implements LoginListener {
 		// serving his sentence. We're using the TurnNotifier; we use
 		TurnNotifier.get().notifyInSeconds(
 				(int) (getTimeRemaining(criminal) / 1000), new TurnListener() {
-					public void onTurnReached(int currentTurn, String message) {
+					public void onTurnReached(int currentTurn) {
 
 						Player criminal2 = StendhalRPRuleProcessor.get().getPlayer(
 								criminalName);

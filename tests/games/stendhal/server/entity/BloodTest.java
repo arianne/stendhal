@@ -40,7 +40,7 @@ public class BloodTest {
 		Blood bl = new Blood();
 		zone.add(bl);
 		assertNotNull(zone.getBlood(0, 0));
-		bl.onTurnReached(1,"");
+		bl.onTurnReached(1);
 		assertNull(zone.getBlood(0, 0));
 	}
 

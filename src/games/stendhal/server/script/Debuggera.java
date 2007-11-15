@@ -136,7 +136,7 @@ public class Debuggera extends ScriptImpl {
 			this.sandbox = sandbox;
 		}
 
-		public void onTurnReached(int currentTurn, String message) {
+		public void onTurnReached(int currentTurn) {
 			boolean keepRunning = true;
 			counter++;
 			if (!beamed) {
@@ -234,7 +234,7 @@ public class Debuggera extends ScriptImpl {
 			TurnNotifier.get().notifyInTurns(10, this);
 		}
 
-		public void onTurnReached(int currentTurn, String message) {
+		public void onTurnReached(int currentTurn) {
 			try {
 				String zoneName = zones.get(counter);
 				StendhalRPZone zone = StendhalRPWorld.get().getZone(zoneName);

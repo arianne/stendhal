@@ -76,7 +76,7 @@ public class AthorFerry implements TurnListener {
 	/**
 	 * Is called when the ferry has either arrived at or departed from a harbor.
 	 */
-	public void onTurnReached(int currentTurn, String message) {
+	public void onTurnReached(int currentTurn) {
 		// cycle to the next state
 
 		current = current.next();

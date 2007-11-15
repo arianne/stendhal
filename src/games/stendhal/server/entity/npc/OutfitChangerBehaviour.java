@@ -161,7 +161,7 @@ public class OutfitChangerBehaviour extends MerchantBehaviour implements  LoginL
 			}
 		}
 
-		public void onTurnReached(int currentTurn, String message) {
+		public void onTurnReached(int currentTurn) {
 			Player player = ref.get();
 
 			if (player != null) {

@@ -48,7 +48,7 @@ public class TeleporterBehaviour implements TurnListener {
 		// say something every minute so that can be noticed more easily
 		TurnNotifier.get().notifyInTurns(60, new TurnListener() {
 
-			public void onTurnReached(int currentTurn, String message) {
+			public void onTurnReached(int currentTurn) {
 				speakerNPC.say(repeatedText);
 				TurnNotifier.get().notifyInTurns(60 * 3, this);
 			}
@@ -76,7 +76,7 @@ public class TeleporterBehaviour implements TurnListener {
 		}
 	}
 
-	public void onTurnReached(int currentTurn, String message) {
+	public void onTurnReached(int currentTurn) {
 		// Say bye
 		speakerNPC.say("Bye.");
 

@@ -97,7 +97,7 @@ public class LibrarianNPC implements ZoneConfigurator {
 			this.access = access;
 		}
 
-		public void onTurnReached(int currentTurn, String message) {
+		public void onTurnReached(int currentTurn) {
 			if (!access.isFinished()) {
 				TurnNotifier.get().notifyInTurns(3, new WikipediaWaiter(npc, access));
 				return;

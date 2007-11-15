@@ -220,7 +220,7 @@ public class TimedTeleportScroll extends TeleportScroll {
 			this.player = player;
 		}
 
-		public void onTurnReached(int currentTurn, String message) {
+		public void onTurnReached(int currentTurn) {
 			teleportBack(player);
 		}
 	}
@@ -243,7 +243,7 @@ public class TimedTeleportScroll extends TeleportScroll {
 			this.warningMessage = warningMessage;
 		}
 
-		public void onTurnReached(int currentTurn, String message) {
+		public void onTurnReached(int currentTurn) {
 			if (player == null || player.getZone() == null || zone == null) {
 				return;
 			}

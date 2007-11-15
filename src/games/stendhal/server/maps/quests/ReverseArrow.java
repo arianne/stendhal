@@ -132,7 +132,7 @@ public class ReverseArrow extends AbstractQuest implements
 		/**
 		 * invoked shortly after the player did his/her third move.
 		 */
-		public void onTurnReached(int currentTurn, String message) {
+		public void onTurnReached(int currentTurn) {
 			if (checkBoard() && (moveCount <= MAX_MOVES)) {
 				if (!player.isQuestCompleted(QUEST_SLOT)) {
 					npc.say("Congratulations, you solved the quiz.");
@@ -177,7 +177,7 @@ public class ReverseArrow extends AbstractQuest implements
 		/**
 		 * invoked shortly after the player did his job.
 		 */
-		public void onTurnReached(int currentTurn, String message) {
+		public void onTurnReached(int currentTurn) {
 			finish(reset, player);
 		}
 	}
@@ -201,7 +201,7 @@ public class ReverseArrow extends AbstractQuest implements
 
 		private int counter = TIME;
 
-		public void onTurnReached(int currentTurn, String message) {
+		public void onTurnReached(int currentTurn) {
 			// check that the player is still in game and stop the timer
 			// in case the player is not playing anymore.
 			// Note that "player" always refers to the current player
