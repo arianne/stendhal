@@ -49,7 +49,7 @@
   <image source="../../tileset/ground/ridge/ice_2.png"/>
  </tileset>
  <tileset name="../../tileset/plant/tree/tree_green.png" firstgid="274" tilewidth="32" tileheight="32">
-  <image source="../../../../../stendhal_mapeditor-2.00/stendhal_mapeditor/stendhal/tiled/tileset/plant/tree/tree_green.png" trans="ffffff"/>
+  <image source="../../tileset/plant/tree/tree_green.png" trans="ffffff"/>
  </tileset>
  <tileset name="../../tileset/plant/tree/tree_darkgreen.png" firstgid="354" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/tree/tree_darkgreen.png" trans="ffffff"/>
