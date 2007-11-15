@@ -1,24 +1,29 @@
 package games.stendhal.server;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
-import games.stendhal.server.entity.ActiveEntity;
-import games.stendhal.server.entity.Entity;
-import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;
-import marauroa.common.game.RPObject;
+import marauroa.common.Log4J;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import utilities.PlayerTestHelper;
+
 public class JailTest {
+	private static final String ZONE_CONTENT = "Level -1/semos/jail.tmx";
 
 	static String ZONE_NAME = "test";
 
+	@BeforeClass
+	public static void setUpClass() throws Exception {
+		Log4J.init();
+	}
 	@Before
 	public void setUp() throws Exception {
 	}
@@ -29,12 +34,9 @@ public class JailTest {
 
 	@Test
 	public final void testCriminalNotInworld() {
-		Entity.generateRPClass();
-		ActiveEntity.generateRPClass();
-		RPEntity.generateRPClass();
-		Player.generateRPClass();
-		Player policeman = new Player(new RPObject());
-		Player bob = new Player(new RPObject());
+
+		Player policeman = PlayerTestHelper.createPlayer();
+		Player bob = PlayerTestHelper.createPlayer();
 		bob.setName("bob");
 		Jail.get().imprison("bob", policeman, 1, "test");
 		assertEquals("Player bob not found", policeman.get("private_text"));
@@ -43,12 +45,8 @@ public class JailTest {
 
 	@Test
 	public final void testCriminalNofreeCell() {
-		Entity.generateRPClass();
-		ActiveEntity.generateRPClass();
-		RPEntity.generateRPClass();
-		Player.generateRPClass();
-		Player policeman = new Player(new RPObject());
-		Player bob = new Player(new RPObject());
+		Player policeman = PlayerTestHelper.createPlayer();
+		Player bob = PlayerTestHelper.createPlayer();
 		bob.setName("bob");
 		Jail.jailzone = new StendhalRPZone(Jail.DEFAULT_JAIL_ZONE);
 		Jail.get().imprison(bob, policeman, 1, "test");
@@ -57,19 +55,20 @@ public class JailTest {
 	}
 
 	@Test
-	public final void testCriminalimprison() {
-		Entity.generateRPClass();
-		ActiveEntity.generateRPClass();
-		RPEntity.generateRPClass();
-		Player.generateRPClass();
-		Player policeman = new Player(new RPObject());
-		Player bob = new Player(new RPObject());
+	public final void testCriminalimprison() throws Exception {
+		Player policeman = PlayerTestHelper.createPlayer();
+		Player bob = PlayerTestHelper.createPlayer();
 		bob.setName("bob");
-		Jail.jailzone = new StendhalRPZone(Jail.DEFAULT_JAIL_ZONE);
+		Jail.jailzone =  StendhalRPWorld.get().addArea(Jail.DEFAULT_JAIL_ZONE, ZONE_CONTENT);
+		 StendhalRPWorld.get().addArea("-3_semos_jail","Level -3/semos/jail_walk.tmx");
+
 
 		Jail.get().imprison(bob, policeman, 1, "test");
-		assertTrue("fail because durkham does not know how to load the data",
-				Jail.isInJail(bob));
+		assertTrue(Jail.isInJail(bob));
+		assertEquals("You have jailed bob for 1 minutes. Reason: test.",policeman.get("private_text"));
+		Jail.get().release(bob);
+		assertFalse(Jail.isInJail(bob));
+
 
 	}
 
@@ -80,13 +79,10 @@ public class JailTest {
 	}
 
 	@Test
-	public final void testIsInJail() {
-		Entity.generateRPClass();
-		ActiveEntity.generateRPClass();
-		RPEntity.generateRPClass();
-		Player.generateRPClass();
-		Player bob = new Player(new RPObject());
-		StendhalRPZone zone = new StendhalRPZone(Jail.DEFAULT_JAIL_ZONE);
+	public final void testIsInJail() throws Exception {
+
+		Player bob = PlayerTestHelper.createPlayer();
+		StendhalRPZone zone = StendhalRPWorld.get().addArea(Jail.DEFAULT_JAIL_ZONE, ZONE_CONTENT);
 		zone.add(bob);
 		Jail.jailzone = zone;
 		Jail.get().imprison("bob", bob, 1, "test");
@@ -94,7 +90,7 @@ public class JailTest {
 
 		bob.setPosition(1, 1);
 		assertTrue(Jail.isInJail(bob));
-		Player nobob = new Player(new RPObject());
+		Player nobob = PlayerTestHelper.createPlayer();
 		StendhalRPZone noJail = new StendhalRPZone("noJail");
 		noJail.add(nobob);
 		nobob.setPosition(0, 0);
