@@ -43,7 +43,6 @@ import marauroa.common.game.Definition;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
-import marauroa.common.game.Definition.DefinitionClass;
 import marauroa.common.game.Definition.Type;
 import marauroa.common.io.UnicodeSupportingInputStreamReader;
 
@@ -174,21 +173,13 @@ class PlayerRPClass {
 		// The guild name
 		player.addAttribute("guild", Type.STRING);
 
-		// TODO: Delete after 2007-10-20 if removal didn't break server
-		// player.addAttribute("fullghostmode", Type.INT); // 0 for off, 1 for
-		// on
-
 		// Player features
 		player.addRPSlot("!features", 1, Definition.PRIVATE);
-
-		// TODO: Delete after 2007-10-20 if removal didn't break server
-		// player.addAttribute("features", Type.LONG_STRING,
-		// Definition.PRIVATE);
 
 		// Last time this player attacked another player
 		player.addAttribute("last_pvp_action_time", Type.FLOAT,
 				Definition.HIDDEN);
-		
+
 		player.addRPEvent("transition_graph", Definition.STANDARD);
 	}
 

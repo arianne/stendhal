@@ -33,8 +33,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-
-import org.apache.log4j.Logger;
 import marauroa.common.game.Definition;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
@@ -42,6 +40,8 @@ import marauroa.common.game.RPSlot;
 import marauroa.common.game.SyntaxException;
 import marauroa.common.game.Definition.Type;
 import marauroa.server.game.Statistics;
+
+import org.apache.log4j.Logger;
 
 public abstract class RPEntity extends GuidedEntity {
 	/**
@@ -130,9 +130,6 @@ public abstract class RPEntity extends GuidedEntity {
 			entity.addAttribute("mana", Type.INT);
 			entity.addAttribute("base_mana", Type.INT);
 
-			// TODO: Remove just prior to DB Reset
-			// TODO: Delete after 2007-10-20 if removal didn't break server
-			//entity.addAttribute("hp/base_hp", Type.FLOAT, Definition.VOLATILE);
 			entity.addAttribute("base_hp", Type.SHORT);
 			entity.addAttribute("hp", Type.SHORT);
 
@@ -1681,17 +1678,17 @@ public abstract class RPEntity extends GuidedEntity {
 		StackableItem ammunition = getAmmunition();
 		StackableItem missiles = getMissileIfNotHoldingOtherWeapon();
 		int maxRange;
-		if (rangeWeapon != null && ammunition != null
-				&& ammunition.getQuantity() > 0) {
+		if ((rangeWeapon != null) && (ammunition != null)
+				&& (ammunition.getQuantity() > 0)) {
 			maxRange = rangeWeapon.getInt("range") + ammunition.getInt("range");
-		} else if (missiles != null && missiles.getQuantity() > 0) {
+		} else if ((missiles != null) && (missiles.getQuantity() > 0)) {
 			maxRange = missiles.getInt("range");
 		} else {
 			// The entity doesn't hold the necessary distance weapons.
 			return false;
 		}
-		return squaredDistance(target) >= 2 * 2
-				&& squaredDistance(target) <= maxRange * maxRange;
+		return (squaredDistance(target) >= 2 * 2)
+				&& (squaredDistance(target) <= maxRange * maxRange);
 	}
 
 	/**

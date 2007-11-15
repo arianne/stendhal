@@ -19,12 +19,12 @@ import games.stendhal.server.StendhalRPZone;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 
-
-import org.apache.log4j.Logger;
 import marauroa.common.game.Definition;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.Definition.Type;
+
+import org.apache.log4j.Logger;
 
 public abstract class Entity extends RPObject {
 	/**
@@ -63,9 +63,6 @@ public abstract class Entity extends RPObject {
 
 		// TODO: Try to remove this attribute later (at DB reset?)
 		entity.addAttribute("type", Type.STRING);
-
-		// TODO: Delete after 2007-10-20 if removal didn't break server
-		// entity.addAttribute("obstacle", Type.FLAG, Definition.VOLATILE);
 
 		/**
 		 * Resistance to other entities (0-100). 0=Phantom, 100=Obstacle.
