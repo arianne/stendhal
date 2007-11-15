@@ -15,9 +15,9 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import marauroa.common.game.IRPZone;
 
 import org.apache.log4j.Logger;
-import marauroa.common.game.IRPZone;
 
 /**
  * This class is responsible of keeping players who have misbehaved in a special
@@ -200,15 +200,21 @@ public class Jail implements LoginListener {
 	 * @return true if the player has not logged out before he was released
 	 */
 	public boolean release(String inmateName) {
-		StendhalRPWorld world = StendhalRPWorld.get();
+
 		Player inmate = StendhalRPRuleProcessor.get().getPlayer(inmateName);
 		if (inmate == null) {
 			logger.debug("Jailed player " + inmateName + "has logged out.");
 			return false;
 		}
 
+		release( inmate);
+		return true;
+	}
+
+	void release( Player inmate) {
 		// Only teleport the player if he is still in jail.
 		// It could be that an admin has teleported him out earlier.
+		StendhalRPWorld world = StendhalRPWorld.get();
 		if (isInJail(inmate)) {
 			IRPZone.ID zoneid = new IRPZone.ID("-3_semos_jail");
 			if (!world.hasRPZone(zoneid)) {
@@ -218,9 +224,8 @@ public class Jail implements LoginListener {
 
 			inmate.teleport(semosCity, 6, 3, Direction.RIGHT, null);
 			inmate.sendPrivateText("Your sentence is over. You can walk out now.");
-			logger.debug("Player " + inmateName + "released from jail.");
+			logger.debug("Player " + inmate.getName() + "released from jail.");
 		}
-		return true;
 	}
 
 	/**
