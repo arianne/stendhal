@@ -52,14 +52,17 @@ import java.util.List;
 import java.util.Set;
 import java.util.Vector;
 
+import javax.management.AttributeNotFoundException;
 
-import org.apache.log4j.Logger;
 import marauroa.common.game.IRPZone;
 import marauroa.common.game.RPObject;
+import marauroa.common.game.RPObjectInvalidException;
 import marauroa.common.game.RPSlot;
 import marauroa.common.net.OutputSerializer;
 import marauroa.common.net.message.TransferContent;
 import marauroa.server.game.rp.MarauroaRPZone;
+
+import org.apache.log4j.Logger;
 
 public class StendhalRPZone extends MarauroaRPZone {
 
@@ -108,8 +111,6 @@ public class StendhalRPZone extends MarauroaRPZone {
 	 */
 	private Set<Item> itemsOnGround;
 
-	private int numHouses;
-
 	/** contains data to if a certain area is walkable */
 	public CollisionDetection collisionMap;
 
@@ -132,8 +133,6 @@ public class StendhalRPZone extends MarauroaRPZone {
 		entryPoint = null;
 		portals = new LinkedList<Portal>();
 		itemsOnGround = new HashSet<Item>();
-		numHouses = 0;
-
 		bloods = new LinkedList<Blood>();
 		npcs = new LinkedList<NPC>();
 		sheepFoods = new LinkedList<SheepFood>();
@@ -446,12 +445,6 @@ public class StendhalRPZone extends MarauroaRPZone {
 				case 4: /* portal */
 					break;
 				case 6: /* door */
-					try {
-						StendhalRPWorld.get().createHouse(this, x, y);
-						numHouses++;
-					} catch (Exception e) {
-						logger.error("Error adding house to " + this, e);
-					}
 					break;
 				}
 			} else if (clazz.contains("sheep.png")) {
@@ -757,7 +750,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 		 * and zone to make them disappear. FIXME: Change later to a proper
 		 * event based system.
 		 */
-		if (object instanceof Item && player != null) {
+		if ((object instanceof Item) && (player != null)) {
 			Item item = (Item) object;
 			item.onPutOnGround(player);
 			itemsOnGround.add(item);
@@ -780,7 +773,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 		} else if (object instanceof Sheep) {
 			playersAndFriends.add((Sheep) object);
 		} else if (object instanceof SheepFood) {
-			sheepFoods.add((SheepFood) object);		
+			sheepFoods.add((SheepFood) object);
 		} else if (object instanceof BabyDragon) {
 			playersAndFriends.add((BabyDragon) object);
 		} else if (object instanceof SpeakerNPC) {
@@ -1240,7 +1233,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 		debugturn++;
 
-		if (Debug.SHOW_LIST_SIZES && debugturn % 1000 == 0) {
+		if (Debug.SHOW_LIST_SIZES && (debugturn % 1000 == 0)) {
 			StringBuffer os = new StringBuffer("Name: " + this.getID());
 			os.append("blood: " + bloods.size() + "\n");
 			os.append("itemsOnGround: " + itemsOnGround.size() + "\n");

@@ -169,7 +169,24 @@ Southeast: Farmhouse
   </entity>
  </zone>
 
+<zone name="int_0_semos_village_w_house_65" file="interiors/abstract/house_000.tmx">
+  <portal x="7" y="14" ref="entrance">
+   <destination zone="0_semos_village_w" ref="house_65_entrance"/>
+  </portal>
+ </zone>
+<zone name="int_0_semos_village_w_house_66" file="interiors/abstract/house_000.tmx">
+  <portal x="7" y="14" ref="entrance">
+   <destination zone="0_semos_village_w" ref="house_66_entrance"/>
+  </portal>
+ </zone>
+
  <zone name="0_semos_village_w" level="0" x="500000" y="500000" file="Level 0/semos/village_w.tmx">
+ <portal x="16" y="34" ref="house_65_entrance">
+   <destination zone="int_0_semos_village_w_house_65" ref="entrance"/>
+  </portal>
+   <portal x="29" y="40" ref="house_66_entrance">
+   <destination zone="int_0_semos_village_w_house_66" ref="entrance"/>
+  </portal>
   <configurator class-name="games.stendhal.server.maps.semos.village.SheepSellerNPC" />
 
   <entity x="26" y="41">

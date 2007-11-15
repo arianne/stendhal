@@ -48,13 +48,13 @@ import games.stendhal.tools.tiled.StendhalMapStructure;
 
 import java.net.URI;
 
-
-import org.apache.log4j.Logger;
 import marauroa.common.game.IRPZone;
 import marauroa.common.game.RPClass;
-import marauroa.server.game.rp.RPWorld;
 import marauroa.common.game.Definition.DefinitionClass;
 import marauroa.common.game.Definition.Type;
+import marauroa.server.game.rp.RPWorld;
+
+import org.apache.log4j.Logger;
 
 public class StendhalRPWorld extends RPWorld {
 	/** the logger instance. */
@@ -346,60 +346,7 @@ public class StendhalRPWorld extends RPWorld {
 		return area;
 	}
 
-	/**
-	 * Creates a new house and add it to the zone. num is the unique idenfier
-	 * for portals x and y are the position of the door of the house.
-	 *
-	 * @throws Exception
-	 */
-	public void createHouse(StendhalRPZone zone, int x, int y) throws Exception {
-		/*
-		 * TODO: Refactor Delete method and do as text output suggests.
-		 */
-		Portal door = new Portal();
-		door.setPosition(x, y);
-		Object dest = zone.assignPortalID(door);
 
-		String name = "int_" + zone.getName() + "_house_" + dest;
-
-		door.setDestination(name, Integer.valueOf(0));
-		zone.add(door);
-
-		StendhalRPZone house = addArea(name, "interiors/abstract/house_000.tmx");
-		Portal portal = new Portal();
-		portal.setDestination(zone.getName(), dest);
-		portal.setPosition(7, 14);
-		portal.setIdentifier(Integer.valueOf(0));
-		house.add(portal);
-
-		/*
-		 * Change to false to disable xml emit code
-		 */
-		if (true) {
-			StringBuffer sbuf = new StringBuffer();
-
-			sbuf.append("zones/*.xml:\n\n");
-			sbuf.append(" <zone name=\"" + name
-					+ "\" file=\"interiors/abstract/house_000.tmx\">\n");
-			sbuf.append("  <portal x=\"7\" y=\"14\" ref=\"entrance\">\n");
-			sbuf.append("   <destination zone=\"" + zone.getName()
-					+ "\" ref=\"house_" + dest + "_entrance\"/>\n");
-			sbuf.append("  </portal>\n");
-			sbuf.append(" </zone>\n");
-
-			sbuf.append("\n");
-			sbuf.append(" <!-- Zone: " + zone.getName() + " -->\n");
-			sbuf.append("  <portal x=\"" + x + "\" y=\"" + y
-					+ "\" ref=\"house_" + dest + "_entrance\">\n");
-			sbuf.append("   <destination zone=\"" + name
-					+ "\" ref=\"entrance\"/>\n");
-			sbuf.append("  </portal>\n");
-
-			sbuf.append("\n\n");
-
-			logger.info(sbuf.toString());
-		}
-	}
 
 	/**
 	 * Find a named zone.

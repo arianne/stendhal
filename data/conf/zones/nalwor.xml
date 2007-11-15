@@ -401,9 +401,45 @@
     <destination zone="int_nalwor_tower_5" ref="upstairs"/>
    </portal>
   </zone> 
-
+<zone name="int_0_nalwor_city_house_67" file="interiors/abstract/house_000.tmx">
+  <portal x="7" y="14" ref="entrance">
+   <destination zone="0_nalwor_city" ref="house_67_entrance"/>
+  </portal>
+ </zone>
+ <zone name="int_0_nalwor_city_house_68" file="interiors/abstract/house_000.tmx">
+  <portal x="7" y="14" ref="entrance">
+   <destination zone="0_nalwor_city" ref="house_68_entrance"/>
+  </portal>
+ </zone>
+ <zone name="int_0_nalwor_city_house_69" file="interiors/abstract/house_000.tmx">
+  <portal x="7" y="14" ref="entrance">
+   <destination zone="0_nalwor_city" ref="house_69_entrance"/>
+  </portal>
+ </zone>
+ 
+  <zone name="int_0_nalwor_city_house_70" file="interiors/abstract/house_000.tmx">
+  <portal x="7" y="14" ref="entrance">
+   <destination zone="0_nalwor_city" ref="house_70_entrance"/>
+  </portal>
+ </zone>
  
  <zone name="0_nalwor_city" level="0" x="500256" y="500256" file="Level 0/nalwor/city.tmx">
+  <portal x="73" y="82" ref="house_70_entrance">
+   <destination zone="int_0_nalwor_city_house_70" ref="entrance"/>
+  </portal>
+  
+  <portal x="67" y="82" ref="house_69_entrance">
+   <destination zone="int_0_nalwor_city_house_69" ref="entrance"/>
+  </portal>
+  
+   <portal x="57" y="82" ref="house_68_entrance">
+   <destination zone="int_0_nalwor_city_house_68" ref="entrance"/>
+  </portal>
+  
+  <portal x="42" y="82" ref="house_67_entrance">
+   <destination zone="int_0_nalwor_city_house_67" ref="entrance"/>
+  </portal>
+  
   <portal x="73" y="93" ref="pottery_entrance">
    <destination zone="int_nalwor_pottery" ref="entrance_left"/>
   </portal>
