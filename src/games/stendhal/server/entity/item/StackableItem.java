@@ -16,9 +16,9 @@ import games.stendhal.server.StendhalRPWorld;
 
 import java.util.Map;
 
+import marauroa.common.game.RPObject;
 
 import org.apache.log4j.Logger;
-import marauroa.common.game.RPObject;
 
 public class StackableItem extends Item implements Stackable {
 
@@ -75,7 +75,7 @@ public class StackableItem extends Item implements Stackable {
 	}
 
 	public StackableItem splitOff(int amountToSplitOff) {
-		if (quantity <= 0 || amountToSplitOff <= 0) {
+		if ((quantity <= 0) || (amountToSplitOff <= 0)) {
 			return null;
 		}
 
@@ -132,7 +132,7 @@ public class StackableItem extends Item implements Stackable {
 
 		// TODO: look at InfoStringScroll.java
 
-		String[] importantAttributes = new String[]{"infostring", "description", "bound", "persistent", "undroppableondeath", "amount", "frequency", "regen", "atk", "range"};
+		String[] importantAttributes = new String[]{"infostring", "bound", "persistent", "undroppableondeath", "amount", "frequency", "regen", "atk", "range"};
 		for (String iAtt : importantAttributes)	{
 			if (!has(iAtt) && !otheri.has(iAtt)) {
 				continue;
