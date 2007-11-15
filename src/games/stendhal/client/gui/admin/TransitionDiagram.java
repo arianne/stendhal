@@ -1,7 +1,12 @@
 package games.stendhal.client.gui.admin;
 
 import games.stendhal.client.update.ClientGameConfiguration;
+import java.awt.Dimension;
 import java.awt.Frame;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -48,10 +53,20 @@ public class TransitionDiagram {
                         
                         //open up the image
                         JDialog jd = new JDialog(parent, "NPC Transition Viewer", true);
-                        jd.add(new JLabel(new ImageIcon(image.toURI().toURL())));
+                        
+                        Image img = Toolkit.getDefaultToolkit().createImage(image.toURI().toURL());
+                        System.out.println("Checking image with size " + img.getWidth(jd) + "x" + img.getHeight(jd));
+                        ImageIcon icon = new ImageIcon(img);
+                        
+                        JLabel label = new JLabel(scale(icon));
+                        jd.add(label);
+                        
                         jd.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
                         jd.pack();
                         jd.setVisible(true);
+                        
+                        image.deleteOnExit();
+                        dat.deleteOnExit();
                 } catch (Exception e) {
                         //logger.error("Failed creating graph!", e);
                         e.printStackTrace();
@@ -78,4 +93,20 @@ public class TransitionDiagram {
 			"}");
 
 	}
+
+        private ImageIcon scale(ImageIcon image) {
+            Image img = image.getImage();
+            Dimension ssize = Toolkit.getDefaultToolkit().getScreenSize();
+            int ow = img.getWidth(null);
+            int oh = img.getHeight(null);
+            int w = ssize.width - 20; //screens are usually wide..
+            int h = ssize.height - 100;
+            
+            if (ow >= w || oh >= h) {
+                return new ImageIcon(img.getScaledInstance(w, h, Image.SCALE_AREA_AVERAGING));
+            } else {
+                return image;
+            }
+        }
+
 }
