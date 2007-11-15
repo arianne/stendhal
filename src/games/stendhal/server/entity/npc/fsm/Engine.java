@@ -88,7 +88,7 @@ public class Engine {
 
 		Transition existing = get(state, trigger, condition);
 		if (existing != null) {
-			// A previous state, trigger combination exist.
+			// A previous state, trigger, condition combination exist.
 			logger.warn("Adding to " + existing + " the state [" + state + "," + trigger + "," + nextState + "," + condition + "]");
 			existing.setReply(existing.getReply() + " " + reply);
 		}
@@ -104,7 +104,7 @@ public class Engine {
 	 * @param triggers a list of inputs for this transition
 	 * @param condition null or condition that has to return true for this transition to be considered
 	 * @param nextState the new state of the FSM
-	 * @param reply a simple text replay (may be null for no replay)
+	 * @param reply a simple text reply (may be null for no reply)
 	 * @param action a special action to be taken (may be null)
 	 */
 	public void add(int state, List<String> triggers, ChatCondition condition, int nextState, String reply,
