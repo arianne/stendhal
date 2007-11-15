@@ -29,6 +29,8 @@ public class PlayerHelper {
 		player.getSlot("!kills").add(new RPObject());
 		player.addSlot(new RPSlot("!tutorial"));
 		player.getSlot("!tutorial").add(new RPObject());
+		player.addSlot(new RPSlot("!visited"));
+		player.getSlot("!visited").add(new RPObject());
 
 	}
 

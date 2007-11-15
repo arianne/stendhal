@@ -37,6 +37,7 @@ public class PlayerHelperTest {
 		assertTrue(bob.hasSlot("!quests"));
 		assertTrue(bob.hasSlot("!kills"));
 		assertTrue(bob.hasSlot("!tutorial"));
+		assertTrue(bob.hasSlot("!visited"));
 
 	}
 
