@@ -14,6 +14,7 @@ import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import games.stendhal.server.maps.ados.outside.AnimalKeeperNPC;
 import games.stendhal.server.maps.ados.outside.VeterinarianNPC;
+import marauroa.common.Log4J;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPObject.ID;
 
@@ -29,6 +30,8 @@ public class ZooFoodTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		Log4J.init();
+
 		MockStendhalRPRuleProcessor.get();
 		MockStendlRPWorld.get();
 		AnimalKeeperNPC katinkaconf = new AnimalKeeperNPC();
