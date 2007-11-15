@@ -1,12 +1,12 @@
 package games.stendhal.server.maps.quests;
 
-import static org.junit.Assert.*;
-
-import java.util.Arrays;
-
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+
+import java.util.Arrays;
 
 import org.junit.After;
 import org.junit.Before;
@@ -32,12 +32,13 @@ public class ToysCollectorTest {
 
 	@After
 	public void tearDown() throws Exception {
+		NPCList.get().remove("Anna");
 	}
 
 	@Test
 	public final void testAddToWorld() {
 
-		NPCList.get().add(new SpeakerNPC("Anna"));
+
 		ToysCollector tc = new ToysCollector();
 		tc.addToWorld();
 	}
