@@ -375,6 +375,9 @@
  <tileset name="purple chest" firstgid="840" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/chest/chest_purple.png"/>
  </tileset>
+ <tileset name="sheep food" firstgid="842" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/item/sheepfood.png"/>
+ </tileset>
  <layer name="0_floor" width="40" height="25">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3OuwkAIBAEUT+NGVmUoSUoaLsKh6GZwokTvGCTZZIzJgEA8JnghZbfbMXa0YvTfbd+X1amqqBjp01dQQcA4L4B+IQ9+qAPAAA=
@@ -402,7 +405,7 @@
  </layer>
  <layer name="objects" width="40" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3BMQEAAADCoPVPbQwfoAAAAIC3Ab6TizqgDwAA
+   H4sIAAAAAAAAAO3GMQ0AAAgDsCW4w78gDHDz0F5NAACAa137gb8GNrIRjaAPAAA=
   </data>
  </layer>
  <layer name="collision" width="40" height="25" opacity="0.35">

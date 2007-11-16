@@ -174,6 +174,9 @@
  <tileset name="details" firstgid="403" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/dark_red_ns_detail.png"/>
  </tileset>
+ <tileset name="sheep food" firstgid="415" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/item/sheepfood.png"/>
+ </tileset>
  <layer name="0_floor" width="40" height="25">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO2WTQ5AMBBGiw0L/9zNFUSIheuycRGTIJEG09ZQSbt4md3My9efTOcw1hnKzFYoerVAr1iveo7gNhH5yTj5QLDV/qOzkMlrdwuQ/I64kKPHxKpofhXHk/xE3bwLv7OceL+/5Ud5/97I7+n7tVhMZrhBt5tOvxpBxS+Efy1CiAV3iTf8EpidImTEfjLo9msOWD96vxxmFwgl0a6t4qebv/uZygKuEQ3zoA8AAA==
@@ -201,7 +204,7 @@
  </layer>
  <layer name="objects" width="40" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3BMQEAAADCoPVPbQwfoAAAAIC3Ab6TizqgDwAA
+   H4sIAAAAAAAAAO3HIQEAAAgDsNM/BFVpgEWwuSUAAL907QeACwOXA0HAoA8AAA==
   </data>
  </layer>
  <layer name="collision" width="40" height="25" opacity="0.35">

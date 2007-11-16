@@ -171,6 +171,9 @@
  <tileset name="square table" firstgid="392" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/table/square.png"/>
  </tileset>
+ <tileset name="sheep food" firstgid="393" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/item/sheepfood.png"/>
+ </tileset>
  <layer name="0_floor" width="40" height="25">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3TMQ5AERCE4aHRe8lzInE9RyZRCw07kSm+bmP/wnoHeDEVJqy71Kc+BuqTUzKAAp53KwbWvpfF7lvMzG79xt3/XSLu26E+9Z3ezdi3u8Oij/EfydAAtKILvaAPAAA=
@@ -198,7 +201,7 @@
  </layer>
  <layer name="objects" width="40" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3BMQEAAADCoPVPbQwfoAAAAIC3Ab6TizqgDwAA
+   H4sIAAAAAAAAAO3GoQEAAAgDoHm+X/uA2SIkEgAA4FrXfuCvAdF8WNCgDwAA
   </data>
  </layer>
  <layer name="collision" width="40" height="25" opacity="0.35">
