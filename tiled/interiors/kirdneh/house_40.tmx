@@ -135,6 +135,15 @@
  <tileset name="household items" firstgid="318" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/household_items_2.png"/>
  </tileset>
+ <tileset name="dk red ns" firstgid="334" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/entrance/dark_red_ns.png"/>
+ </tileset>
+ <tileset name="dk red detail ns" firstgid="346" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/entrance/dark_red_ns_detail.png"/>
+ </tileset>
+ <tileset name="sheep food" firstgid="358" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/item/sheepfood.png"/>
+ </tileset>
  <layer name="0_floor" width="40" height="25">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3Stw2AQBBE0e0/xnvTDwEeargimAZWJJw0hzZ4+Q++ExFnjGJ6EWpfBDEkkBL2ZZBDASVhXwU1NNAS9nXQwwAjYZ8xoWH/2mffDItiJejbYFcc1md9nvtOuBQ3Qd8X2PvM/zwDLunqoA8AAA==
@@ -162,12 +171,12 @@
  </layer>
  <layer name="objects" width="40" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3BMQEAAADCoPVPbQwfoAAAAIC3Ab6TizqgDwAA
+   H4sIAAAAAAAAAO3KMQ0AAAgDsGEW/xIwwQFJezcBAD7p2jkAwC0DU8A00KAPAAA=
   </data>
  </layer>
  <layer name="collision" width="40" height="25" opacity="0.35">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO1VSRLAIAjj7b68d0e2BLV0mhlPYgirQ0TGf+ijwbJHuLW30fsM2Ngz3CIY1xz7KhcIvBijsXu9gcLKX6Y+1ptd+UP0Ze88ePFm6rvqO2Y2NH0ngewXTWfl3rD0IbuV2W+VPjrom7lv4kv6kNpGfWZmcre+mS9iw/b5LX2d+m+nz4r+u4GO+jS96GwwvOxfc5L3zfoe8bqSK6APAAA=
+   H4sIAAAAAAAAAO1VSRLAIAjj7b68d0e2BLV0mhlOagirQ0TGb7RpsO4j3Nrb6HkGbOwZbhGMa459lQsEXozR2L3eQGHlL1Mf682u/CH6smcevHgz9V31HTMbmr6TQPaLprNyb1j6kN3K7LdKHx30zdw38SV9SG2jPjMzuVvfzBe5w/b5LX2d+m+nz4r+u4GO+jS96GwwvOxfc5L3zfYAEBGqnKAPAAA=
   </data>
  </layer>
  <layer name="protection" width="40" height="25">
