@@ -36,8 +36,8 @@ public class GreeterNPC implements ZoneConfigurator {
 			@Override
 			protected void createPath() {
 				List<Node> nodes = new LinkedList<Node>();
-				nodes.add(new Node(3, 11));
-				nodes.add(new Node(40, 11));
+				nodes.add(new Node(3, 12));
+				nodes.add(new Node(40, 12));
 				nodes.add(new Node(40, 28));
 				nodes.add(new Node(58, 28));
 				nodes.add(new Node(58, 91));
@@ -71,7 +71,7 @@ public class GreeterNPC implements ZoneConfigurator {
 
 		npc.setDescription("You see Orchiwald, an albino elf.");
 		npc.setEntityClass("albinoelf2npc");
-		npc.setPosition(3, 11);
+		npc.setPosition(3, 12);
 		npc.initHP(100);
 		zone.add(npc);
 	}
