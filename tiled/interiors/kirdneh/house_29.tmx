@@ -120,6 +120,9 @@
  <tileset name="picture sheep" firstgid="222" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/picture/sheep_picture.png"/>
  </tileset>
+ <tileset name="details" firstgid="223" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/entrance/dark_red_ns_detail.png"/>
+ </tileset>
  <layer name="0_floor" width="40" height="25">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO2UQQoAIAgEfWH423peHT1UYGzogofBk8sgqoqIFhDaY0Xl3HKRWZ6+vhimnvKQjp4+69ZJ5xflxrB/jG63GymKKFB7nfG//HRjcIx2YXJjcMzsxuC4I9qJfX6FnwnKXZZqoA8AAA==
@@ -137,7 +140,7 @@
  </layer>
  <layer name="3_roof" width="40" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAUjCbgBsTsV1AwWMHOgHTAKSAajcTZygQmUNqOyWmoBcyhtSWW1tADOQDxhgOweBYMPJAFxChI7GY2fgk3TKBgRYBqNzL1KI3OpBe6QoWc21V1BXTBnoB2ABu4OtAMGAaBVWwUAT3fQEaAPAAA=
+   H4sIAAAAAAAAAGNgGAUjCbgBsTsV1AwWMHOgHTAKSAajcTZygQkQPwNiMyqrpRYwB+KXQGxJZbW0AM5APGGA7B4Fgw8kAXEKEjsZjZ+CTdMoGBFgGo3MvUojc6kF7pChZzbVXUFdMGegHYAG7g60AwYBMIHS1G6rAAAIZ6EeoA8AAA==
   </data>
  </layer>
  <layer name="4_roof_add" width="40" height="25">
