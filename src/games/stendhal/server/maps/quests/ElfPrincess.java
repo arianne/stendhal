@@ -2,11 +2,22 @@ package games.stendhal.server.maps.quests;
 
 import games.stendhal.common.Rand;
 import games.stendhal.server.StendhalRPWorld;
-import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.EquipItemAction;
+import games.stendhal.server.entity.npc.action.MultipleActions;
+import games.stendhal.server.entity.npc.action.SetQuestAction;
+import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
+import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.NotCondition;
+import games.stendhal.server.entity.npc.condition.OrCondition;
+import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
+import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
+import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
+import games.stendhal.server.entity.npc.condition.QuestNotInStateCondition;
+import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Arrays;
@@ -54,116 +65,70 @@ public class ElfPrincess extends AbstractQuest {
 		SpeakerNPC npc = npcs.get("Tywysoga");
 
 		npc.add(ConversationStates.ATTENDING,
-				ConversationPhrases.QUEST_MESSAGES, null,
-				ConversationStates.ATTENDING, null,
-				new SpeakerNPC.ChatAction() {
-					@Override
-					public void fire(Player player, String text, SpeakerNPC npc) {
-						if (!player.hasQuest(QUEST_SLOT)
-								|| player.getQuest(QUEST_SLOT).equals(
-										"rejected")) {
-							npc
-									.say("Will you find the wandering flower seller, Rose Leigh, and get from her my favourite flower, the Rhosyd?");
-							npc
-									.setCurrentState(ConversationStates.QUEST_OFFERED);
-						} else if (player.isQuestCompleted(QUEST_SLOT)) { // shouldn't happen
-							npc.say("I have plenty of blooms now thank you.");
-						} else if (player.hasQuest(QUEST_SLOT)
-								&& player.getQuest(QUEST_SLOT).equals(
-										"flower_brought")) {
-							npc
-									.say("The last Rhosyd you brought me was so lovely. Will you find me another from Rose Leigh?");
-							npc
-									.setCurrentState(ConversationStates.QUEST_OFFERED);
-						} else {
-							npc
-									.say("I do so love those pretty flowers from Rose Leigh ...");
-						}
-					}
-				});
+			ConversationPhrases.QUEST_MESSAGES,
+			new OrCondition(new QuestNotStartedCondition(QUEST_SLOT), new QuestInStateCondition(QUEST_SLOT, "rejected")),
+			ConversationStates.QUEST_OFFERED,
+			"Will you find the wandering flower seller, Rose Leigh, and get from her my favourite flower, the Rhosyd?",
+			null);
+
+		npc.add(ConversationStates.ATTENDING,
+			ConversationPhrases.QUEST_MESSAGES,
+			new QuestCompletedCondition("QUEST_SLOT"),
+			ConversationStates.ATTENDING,
+			"I have plenty of blooms now thank you.", null);
+
+		npc.add(ConversationStates.ATTENDING,
+			ConversationPhrases.QUEST_MESSAGES,
+			new QuestInStateCondition(QUEST_SLOT, "flower_brought"),
+			ConversationStates.QUEST_OFFERED,
+			"The last Rhosyd you brought me was so lovely. Will you find me another from Rose Leigh?",
+			null);
+
+		npc.add(ConversationStates.ATTENDING,
+			ConversationPhrases.QUEST_MESSAGES,
+			new OrCondition(new QuestInStateCondition(QUEST_SLOT, "start"), new QuestInStateCondition(QUEST_SLOT, "got_flowers")),
+			ConversationStates.ATTENDING,
+			"I do so love those pretty flowers from Rose Leigh ...",
+			null);
+
 		// Player agrees to collect flower
 		npc.add(ConversationStates.QUEST_OFFERED,
-				ConversationPhrases.YES_MESSAGES, null,
-				ConversationStates.ATTENDING, null,
-				new SpeakerNPC.ChatAction() {
-					@Override
-					public void fire(Player player, String text, SpeakerNPC npc) {
-						npc
-								.say("Thank you! Once you find it, say #flower to me so I know you have it. I'll be sure to give you a nice reward.");
-						player.setQuest(QUEST_SLOT, "start");
-						player.addKarma(10.0);
-					}
-				});
+			ConversationPhrases.YES_MESSAGES, null,
+			ConversationStates.ATTENDING,
+			"Thank you! Once you find it, say #flower to me so I know you have it. I'll be sure to give you a nice reward.",
+			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "start", 10.0));
+
 		// Player says no, they've lost karma.
 		npc.add(ConversationStates.QUEST_OFFERED,
-				ConversationPhrases.NO_MESSAGES, null, ConversationStates.IDLE,
-				"Oh, never mind. Bye then.", new SpeakerNPC.ChatAction() {
-					@Override
-					public void fire(Player player, String text,
-							SpeakerNPC engine) {
-						player.addKarma(-10.0);
-						player.setQuest(QUEST_SLOT, "rejected");
-					}
-				});
+			ConversationPhrases.NO_MESSAGES, null, ConversationStates.IDLE,
+			"Oh, never mind. Bye then.",
+			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -10.0));
 	}
 
 	private void getFlowerStep() {
 		SpeakerNPC rose = npcs.get("Rose Leigh");
 
 		rose.add(ConversationStates.IDLE,
-				ConversationPhrases.GREETING_MESSAGES,
-				new SpeakerNPC.ChatCondition() {
-					@Override
-					public boolean fire(Player player, String text,
-							SpeakerNPC npc) {
-						return player.hasQuest(QUEST_SLOT)
-								&& player.getQuest(QUEST_SLOT).equals("start");
-					}
-				}, ConversationStates.ATTENDING, null,
-				new SpeakerNPC.ChatAction() {
+			ConversationPhrases.GREETING_MESSAGES,
+			new QuestInStateCondition(QUEST_SLOT, "start"),
+			ConversationStates.ATTENDING, 
+			"Hello dearie. My far sight tells me you need a pretty flower for some fair maiden. Here ye arr.",
+			new MultipleActions(new EquipItemAction("rhosyd", 1, true), new SetQuestAction(QUEST_SLOT, "got_flower")));
 
-					@Override
-					public void fire(Player player, String text,
-							SpeakerNPC engine) {
-						Item item = StendhalRPWorld.get().getRuleManager()
-								.getEntityManager().getItem("rhosyd");
-						engine
-								.say("Hello dearie. My far sight tells me you need a pretty flower for some fair maiden. Here ye arr.");
-						item.setBoundTo(player.getName());
-						player.equip(item, true);
-						player.setQuest(QUEST_SLOT, "got_flower");
-					}
-				});
 	rose.add(ConversationStates.IDLE,
-				ConversationPhrases.GREETING_MESSAGES,
-				new SpeakerNPC.ChatCondition() {
-					@Override
-					public boolean fire(Player player, String text,
-							SpeakerNPC npc) {
-						return !(player.hasQuest(QUEST_SLOT)
-								&& player.getQuest(QUEST_SLOT).equals("start"));
-					}
-				}, ConversationStates.IDLE, "I've got nothing for you today, sorry dearie. I'll be on my way now, bye.", null
-				);
-
-
+			ConversationPhrases.GREETING_MESSAGES,
+			new QuestNotInStateCondition(QUEST_SLOT, "start"),
+			ConversationStates.IDLE,
+			"I've got nothing for you today, sorry dearie. I'll be on my way now, bye.", 
+			null);
 	}
-
 
 	private void bringFlowerStep() {
 		SpeakerNPC npc = npcs.get("Tywysoga");
 		npc.add(ConversationStates.ATTENDING,
 				Arrays.asList("flower", "Rhosyd"),
-				new SpeakerNPC.ChatCondition() {
-					@Override
-					public boolean fire(Player player, String text,
-							SpeakerNPC npc) {
-						return player.hasQuest(QUEST_SLOT)
-								&& player.getQuest(QUEST_SLOT).equals(
-										"got_flower")
-								&& player.isEquipped("rhosyd");
-					}
-				}, ConversationStates.ATTENDING, null,
+				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "got_flower"), new PlayerHasItemWithHimCondition("rhosyd")),
+				ConversationStates.ATTENDING, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, String text, SpeakerNPC npc) {
@@ -178,25 +143,17 @@ public class ElfPrincess extends AbstractQuest {
 						// goldbars.setBoundTo(player.getName()); <- not sure
 						// if these should get bound or not.
 						player.equip(goldbars, true);
-						npc
-								.say("Thank you! Take these " + Integer.toString(goldamount) + " gold bars, I have plenty. And, listen: If you'd ever like to get me another, be sure to ask me first. Rose Leigh is superstitious, she won't give the bloom unless she senses you need it.");
+						npc.say("Thank you! Take these " + Integer.toString(goldamount) + " gold bars, I have plenty. And, listen: If you'd ever like to get me another, be sure to ask me first. Rose Leigh is superstitious, she won't give the bloom unless she senses you need it.");
 						player.setQuest(QUEST_SLOT, "flower_brought");
 					}
 				});
-		npc
-				.add(
-						ConversationStates.ATTENDING,
-						Arrays.asList("flower", "Rhosyd"),
-						new SpeakerNPC.ChatCondition() {
-							@Override
-							public boolean fire(Player player, String text,
-									SpeakerNPC npc) {
-								return !player.isEquipped("rhosyd");
-							}
-						},
-						ConversationStates.ATTENDING,
-						"You don't seem to have a rhosyd bloom with you. But Rose Leigh wanders all over the island, I'm sure you'll find her one day!",
-						null);
+
+		npc.add(ConversationStates.ATTENDING,
+			Arrays.asList("flower", "Rhosyd"),
+			new NotCondition(new PlayerHasItemWithHimCondition("rhosyd")),
+			ConversationStates.ATTENDING,
+			"You don't seem to have a rhosyd bloom with you. But Rose Leigh wanders all over the island, I'm sure you'll find her one day!",
+			null);
 
 	}
 
