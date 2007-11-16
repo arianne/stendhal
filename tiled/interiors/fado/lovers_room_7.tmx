@@ -84,6 +84,9 @@
  <tileset name="resources.png" firstgid="266" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/item/resources.png"/>
  </tileset>
+ <tileset name="earthen 2" firstgid="268" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/wall/earthen_2.png"/>
+ </tileset>
  <layer name="0_floor" width="25" height="25">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNmYGBghuLvQPwDD81MAeamIR61Y9SOUTtG7Ri1Y9SOUTtG7RhsdtAaAwDKeCoIxAkAAA==
@@ -91,7 +94,7 @@
  </layer>
  <layer name="1_terrain" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAM2STQ7BQBTH5wSCHeIIWIiTuAB7d3AJQWwsfH+VUGFjQSysu+gZHMNfMhOTyXQ61VfxT35J30szv3ntSzHG0gmSAVlGkyM4KZxBjtBxAQ/gSTwlRwmULaiEOMTZPvfJDqo5PH62r5lDpBPwHMUhPEEOXWxdV3BTuEuOKqh9ca5NKP+HGkdx1EGTQxVX42hz4sTR9KgdrqZH4ViDjaEnO1qcqNmCnaFHsVd7cDD0ktxdEQrHMKSO6xiBsYYJkeN93ymYaZizzzxx5zA5RP7d8atvtQBLDSvpHeFo8LoLeqAPBrwOi83u5kEhQYrgBTvYbpbECQAA
+   H4sIAAAAAAAAAM3SOw4BQRzH8XEB8agQpRKFOIkLSHQijqByBAnRKLxfS1ihkSAK9RaOovaTzMRkMvtg/yv+yScxE9mvsRNmjEUCFIUYo5kd7BUHSBA2jnADS3KSGlnIeZB3aYhn33lPblCdw+LPvmvOIaZl8/mThujYNXTjtXWGi+IqNQpQ/OK5XobyfahjKI0GVCAeomuYSqMEdc7PGJo96oap2aNoLGDpsCcaTahBRvM+qi6NFawd9iju1Qa2DntB3l0xFI2ey9pvow8DjSFR4/V7RzDWmLD3efyew6kh5t8bv/qvpjDTmEvfEY0yXz+gDR3o8rXbeLm7SUgFKA1PE7jCFsQJAAA=
   </data>
  </layer>
  <layer name="2_object" width="25" height="25">
@@ -101,7 +104,7 @@
  </layer>
  <layer name="3_roof" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGD5AC4i1icA6A+XAEQYMgNhooB1BJJhEZ/vW4ZFLxIIDqWx/PRZMrB343E4tO4gFpNqxBojXEiGGDHKwYHx2rAfiDUSI0QMMpTw4CkYBNvCVAH+kAwCPlrM4xAkAAA==
+   H4sIAAAAAAAAAGNgGD5AC4i1icA6A+XAEQYMgNhooB1BJJhEZ/vW4ZETZkTFiUCxQCrbX4IFE2sHPrdTyw5iAal2rAHitUSIIQNVRlScRcCO9UC8gQgxeoChlAdHwSjABr4S4I90AAB9BHFUxAkAAA==
   </data>
  </layer>
  <layer name="4_roof_add" width="25" height="25">
