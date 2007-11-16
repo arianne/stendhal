@@ -96,7 +96,7 @@ public class ItemsXMLLoader extends DefaultHandler {
 
 			InputStream is = getClass().getClassLoader().getResourceAsStream(ref);
 			if (is == null) {
-				is = new File(ref).toURL().openStream();
+				is = new File(ref).toURI().toURL().openStream();
 			}
 
 			if (is == null) {

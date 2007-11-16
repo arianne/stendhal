@@ -55,7 +55,7 @@ public class ScriptInJava extends ScriptingSandbox {
 		// Create new class loader
 		// with current dir as CLASSPATH
 		File file = new File("./data/script");
-		ClassLoader loader = new URLClassLoader(new URL[] { file.toURL() });
+		ClassLoader loader = new URLClassLoader(new URL[] { file.toURI().toURL() });
 		// load class through new loader
 		Class<?> aClass = loader.loadClass(classname);
 		script = (Script) aClass.newInstance();
