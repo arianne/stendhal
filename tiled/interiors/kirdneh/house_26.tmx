@@ -165,6 +165,9 @@
  <tileset name="birds" firstgid="329" tilewidth="32" tileheight="32">
   <image source="../../tileset/object/birds.png"/>
  </tileset>
+ <tileset name="dark red ns detail" firstgid="333" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/entrance/dark_red_ns_detail.png"/>
+ </tileset>
  <layer name="0_floor" width="40" height="25">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO2WQQ6DMAwEQ0OhcG++0TfBm+CxvdUHkNCqsVLbRNBwGFlCyBo2IU7jnGsu1LwqOdjrRngFdYLfkwhQU/3uyqzaBD90C0Z+FSD12ys/Kz/N/suxvv/s9yC6CNPCvPDtnV75fRfl8t6pr3Ym+U2vdUYNxAh1iDzHin7aMwFpExy4msNP6maZX2xWHSU/zu/s+XH/Sin7j/OTuuXys8yPu3NI6H/MC7HMqmQ+9PCAlKAPAAA=
@@ -182,7 +185,7 @@
  </layer>
  <layer name="3_roof" width="40" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgwATz0ejBAkwZqatuFIyCoQIeo+FRgB2cGmgHjAK8wA5KO1BZLbWAI5R2pqLaGUA8k4CaM0TYd4SA/AsgfkmEOaNgYMAEIJ440I5gIJyOhgo4TaQYPYDLALQ5D5Kg1m0EtomPDbD95wjIH6eLKyBgPx3tGomAVm0VADKYr2igDwAA
+   H4sIAAAAAAAAAGNgwATz0ejBAkwZqatuFIyCoQIeo+FRgB2cGmgHjAK8wA6I/YDlswOV1VILOAJxINBOZyqqnQHEMwmoOUOEfUcIyL8A4pdEmDMKBgZMAOKJA+0IBsLpaKiA00SK0QO4DECb8yAJat1GYJv42ADbf46A/HG6uAIC9tPRrpEI7KC0A5XNBQAwEo7PoA8AAA==
   </data>
  </layer>
  <layer name="4_roof_add" width="40" height="25">
