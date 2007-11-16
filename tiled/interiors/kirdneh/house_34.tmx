@@ -180,6 +180,12 @@
  <tileset name="table gray plain" firstgid="358" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/table/grey_plain.png"/>
  </tileset>
+ <tileset name="details" firstgid="367" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/entrance/dark_red_ns_detail.png"/>
+ </tileset>
+ <tileset name="ew details" firstgid="379" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/entrance/dark_red_ew_detail.png"/>
+ </tileset>
  <layer name="0_floor" width="40" height="25">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO2WMQrAIAxF0yv0Ah2stdb7369ZOhRChp+KVD74FsHHE4dYFpEymFXGN0RJyg6QQVc29pLjPMB7naDLO4c62ce+Xn1VuQAa6GrGXnWchIwkMt82A9TXY75ZfajvcbLvn326XrBvrvedtS/yf7H6UB//L99yAwO9JKegDwAA
@@ -197,12 +203,12 @@
  </layer>
  <layer name="3_roof" width="40" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWDFRgz4uZHoMmRAvSAevWx6MclPpyBNRDbDLQjhjBwBmIXItTtpbVDgICNEZUeBYMPeEJpbyqrpRbwgdJ+VFZLCBRhEcuH0qVAHDiapkfBEAYf8Mi9p5sr8IOPRIqRA1yB+ddzEOfhCCAOGMTuGwWjYDADWrVVABlZ30OgDwAA
+   H4sIAAAAAAAAAGNgGAWDFRgz4uZHoMmRAvSAevWx6MclPpyBJBCLDbQj8IB6YHw0DOI4cQZiFyLU7aW1Q4CAjRGVHgWDD3gCcQEwfryprJZawAeIi4F2+lFZLSFQhEUsH0qXAnHgaJoeBUMYfMAj955ursAPPhIpRg5wBeZfz0GchyOAOGAQu28UjILBDDyhNLXbKgDYUakqoA8AAA==
   </data>
  </layer>
  <layer name="4_roof_add" width="40" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3BMQEAAADCoPVPbQwfoAAAAIC3Ab6TizqgDwAA
+   H4sIAAAAAAAAAO3OMQ0AAAgEMXyBf128Cwba5Pargr86zfUEAABALIoIcsKgDwAA
   </data>
  </layer>
  <layer name="objects" width="40" height="25">
