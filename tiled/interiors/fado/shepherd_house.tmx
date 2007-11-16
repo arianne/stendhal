@@ -63,24 +63,51 @@
  <tileset name="../../tileset/logic/collision.png" firstgid="227" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
+ <tileset name="sheep picture" firstgid="228" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/furniture/picture/sheep_picture.png"/>
+ </tileset>
+ <tileset name="tiles" firstgid="229" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/indoor/floor_tiles.png"/>
+ </tileset>
+ <tileset name="hosta" firstgid="238" tilewidth="32" tileheight="32">
+  <image source="../../tileset/plant/bush/hosta.png"/>
+ </tileset>
+ <tileset name="ground" firstgid="247" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/ground.png"/>
+ </tileset>
+ <tileset name="edges" firstgid="280" tilewidth="32" tileheight="32">
+  <image source="../../tileset/plant/grass_edges.png"/>
+ </tileset>
+ <tileset name="corners" firstgid="316" tilewidth="32" tileheight="32">
+  <image source="../../tileset/plant/grass_corners.png"/>
+ </tileset>
+ <tileset name="brown rug" firstgid="340" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/furniture/carpet/brown_rug2.png"/>
+ </tileset>
+ <tileset name="sacks" firstgid="352" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/sacks.png"/>
+ </tileset>
+ <tileset name="logs" firstgid="354" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/logs.png"/>
+ </tileset>
  <layer name="0_floor" width="20" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAONgYGDgGKFYHAseNW8Uj+JRPIpH8VDEwlTGLKN4WGMAP/9sjAAKAAA=
+   H4sIAAAAAAAAAONgYGDgGKE4hJGBIRQJhzFSZl44UH8EEo6k0LwooP5oJBxDoXmxQP1xSDieQvNGMfH4NRTjEsclT4x56Gbgwz9w4MFqngbj4HYfpebB/DdY3Udt8wjhwWwerjw7mMwTpjLmGcXDGgMAKIhKiwAKAAA=
   </data>
  </layer>
  <layer name="1_terrain" width="20" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3VuQoCMRAG4HkMj8YD1Dew8bYVfCLvuxM7sVMfwfsC79fyF7I4hAQjUbDYga/IkP232E0mTETeLwmBH/KQtpQDn8hLQonsKiHlPasMFaaqeG4vrU9w1uTVoM40FHlHaX2Bq0Xe4YO8JrSYtiJPrhvcNXk2xfOykIIOdIWe6JnKiLwgeIQ+e9+A9U0FIEyv/3vI8kZkfz7GMBGmZHc+bOuX39fNc/PcPHVeFIpfyCtABGLMDOawkPoqur1xZgkrWEt9Fd1efodtYAs7en/f6fb+e5nMLmfumcw8k7nlzD2TmfcA0xkolgAKAAA=
+   H4sIAAAAAAAAAO3WSW7CMBQG4MctmBZAJCgnYBNoKMsicQfuwTzvCjvaXeEIzB0k5mv1R3VUy7JDqIPEgid9CzvOv3HsF4OIAh6JQQhy8KjpCYIsLw0l0itTyDtVGSqcquS9L2G8ga0irwZ1TkOStxbGO9hr5H0L4wMcFXlNaHHakjxVyfJ0is/LQgY60GV6bM4ti+VFwc+8QJ8ZcPNuRcCgv+97CK/MG+mfj3cYMWPSOx9F3y+nSjo8/8/+3vPueZfkPSMvrHDN++WW8xJQ8CAvD3F44ExgCjNhXka1NsWZwwKWwryMai3/b7CCD/ik8/edbO3pDvRiL+wyr5Bn9zYndt871/Mscte37L7npuf9AN/20JoACgAA
   </data>
  </layer>
  <layer name="2_object" width="20" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjYBSMBHABSl8c5OZRCwxF8y4ykB+etHIfteL3JBCfwYJPUcn8UTAKRgFpAABiMrWmAAoAAA==
+   H4sIAAAAAAAAAGNgGDzgyUA7YBSMAhIBJWk2mZFqzgCDFBzmJQDFE4H4ApT/jUr2wcy7SGXzqAWGonmgsPxMRfMoAdROLyeB+AwWfIpCc2HpexTQH4zW2UMbAACQCmz6AAoAAA==
   </data>
  </layer>
  <layer name="3_roof" width="20" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3BAQEAAACCIP+vbkhAAQDwZEoWcfMACgAA
+   H4sIAAAAAAAAAGNgGAUDCY4A8dGBdsQoGAWjYBSMglEwCkYUAACcosLiAAoAAA==
   </data>
  </layer>
  <layer name="4_roof_add" width="20" height="32">
@@ -88,14 +115,14 @@
    H4sIAAAAAAAAAGNgoA2ooZG5o2AUkALuQDG1wH0oHgWjYBSMglEwCgYjILbOAwBL/zpZAAoAAA==
   </data>
  </layer>
- <layer name="objects" width="20" height="32" opacity="0.38">
+ <layer name="objects" width="20" height="32" visible="0" opacity="0.94">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNgGAWjYBSMJPCIRuY9pLK51AS0dBs1zX7EQFn8PMTBpgRQO72MglEwCgYHAADvOClKAAoAAA==
   </data>
  </layer>
- <layer name="collision" width="20" height="32" opacity="0.5">
+ <layer name="collision" width="20" height="32" visible="0" opacity="0.5">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAHvMwMDweIhgSgC1zKLUbehqqe1XWoQdNnOpbR66udROM8PdPGLAYzQaXW6wmIdLbiSYR434pbb7qBm/1EzPpNg10sxDNpeUMKeGGnqaN9gBNcOK1PxDjDoACqG3+gAKAAA=
+   H4sIAAAAAAAAAOWTXQoAIAiDvf81vUivIUnStigUfHJ8Dn/czPyTRILFQr1l2lf8VblsXuSyb6Ybb45YX+lO9qviZbUOPOR/Vf6Y+0XueMdF/VV6/MKL/16dOUNzm8cKFY81K0UOYlChagAKAAA=
   </data>
  </layer>
  <layer name="protection" width="20" height="32">
