@@ -188,12 +188,18 @@ public class Engine {
 		}
 
 		if (listCondition.size() > 0) {
+			if (listCondition.size() > 1)
+				logger.warn("Chosing random action because of "+listCondition.size()+" entries in listCondition: " + listCondition);
+
 			int i = Rand.rand(listCondition.size());
 			executeTransition(player, text, listCondition.get(i));
 			return true;
 		}
 
 		if (listConditionLess.size() > 0) {
+			if (listConditionLess.size() > 1)
+				logger.warn("Chosing random action because of "+listConditionLess.size()+" entries in listConditionLess: " + listConditionLess);
+
 			int i = Rand.rand(listConditionLess.size());
 			executeTransition(player, text, listConditionLess.get(i));
 			return true;
