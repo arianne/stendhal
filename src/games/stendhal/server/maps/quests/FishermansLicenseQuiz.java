@@ -40,7 +40,6 @@ public class FishermansLicenseQuiz extends AbstractQuest {
 
 	private int currentSpeciesNo;
 
-	// TODO: Account for possible zone reload
 	private static StendhalRPZone zone = StendhalRPWorld.get().getZone(
 			"int_ados_fishermans_hut_west");
 
@@ -118,19 +117,17 @@ public class FishermansLicenseQuiz extends AbstractQuest {
 	private void createQuizStep() {
 		SpeakerNPC fisherman = npcs.get("Santiago");
 
+		// Don't Use condition here, because of FishermansLicenseCollector
 		fisherman.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES, null,
 				ConversationStates.ATTENDING, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, String text, SpeakerNPC npc) {
-						if (player
-								.isQuestCompleted(FishermansLicenseCollector.QUEST_SLOT)) {
-							npc
-									.say("I don't have a task for you, and you already have a fisherman's license.");
+						if (player.isQuestCompleted(FishermansLicenseCollector.QUEST_SLOT)) {
+							npc.say("I don't have a task for you, and you already have a fisherman's license.");
 						} else {
-							npc
-									.say("I don't need anything from you, but if you like, you can do an #exam to get a fisherman's license.");
+							npc.say("I don't need anything from you, but if you like, you can do an #exam to get a fisherman's license.");
 						}
 					}
 				});
@@ -140,28 +137,20 @@ public class FishermansLicenseQuiz extends AbstractQuest {
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, String text, SpeakerNPC npc) {
-						if (player
-								.isQuestCompleted(FishermansLicenseCollector.QUEST_SLOT)) {
-							npc
-									.say("You have already got your fisherman's license.");
+						if (player.isQuestCompleted(FishermansLicenseCollector.QUEST_SLOT)) {
+							npc.say("You have already got your fisherman's license.");
 						} else if (player.isQuestCompleted(QUEST_SLOT)) {
-							npc
-									.say("Are you ready for the second part of your exam?");
-							npc
-									.setCurrentState(ConversationStates.QUEST_2_OFFERED);
+							npc.say("Are you ready for the second part of your exam?");
+							npc.setCurrentState(ConversationStates.QUEST_2_OFFERED);
 						} else {
 							long timeRemaining = remainingTimeToWait(player);
 							if (timeRemaining > 0L) {
-								npc
-										.say("You can only do the quiz once a day. Come back in "
-												+ TimeUtil
-														.approxTimeUntil((int) (timeRemaining / 1000L))
-												+ ".");
+								npc.say("You can only do the quiz once a day. Come back in "
+									+ TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L))
+									+ ".");
 							} else {
-								npc
-										.say("Are you ready for the first part of your exam?");
-								npc
-										.setCurrentState(ConversationStates.QUEST_OFFERED);
+								npc.say("Are you ready for the first part of your exam?");
+								npc.setCurrentState(ConversationStates.QUEST_OFFERED);
 							}
 						}
 					}
@@ -190,26 +179,21 @@ public class FishermansLicenseQuiz extends AbstractQuest {
 					public void fire(Player player, String text, SpeakerNPC npc) {
 						if (text.equals(getCurrentSpecies())) {
 							if (currentSpeciesNo == speciesList.size() - 1) {
-								npc
-										.say("Correct! Congratulations, you have passed the first part of the #exam.");
+								npc.say("Correct! Congratulations, you have passed the first part of the #exam.");
 								cleanUpTable();
 								player.setQuest(QUEST_SLOT, "done");
 								player.addXP(500);
 							} else {
-								npc
-										.say("Correct! So, what kind of fish is this?");
+								npc.say("Correct! So, what kind of fish is this?");
 								putNextFishOnTable();
-								npc
-										.setCurrentState(ConversationStates.QUESTION_1);
+								npc.setCurrentState(ConversationStates.QUESTION_1);
 							}
 						} else {
-							npc
-									.say("No, that's wrong. Unfortunatelly you have failed, but you can try again tomorrow.");
+							npc.say("No, that's wrong. Unfortunatelly you have failed, but you can try again tomorrow.");
 							cleanUpTable();
 							// remember the current time, as you can't do the
 							// quiz twice a day.
-							player.setQuest(QUEST_SLOT, ""
-									+ System.currentTimeMillis());
+							player.setQuest(QUEST_SLOT, "" + System.currentTimeMillis());
 						}
 					}
 				});
