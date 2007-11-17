@@ -20,7 +20,7 @@ public class FishSourceTest {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		Log4J.init();
-		MockStendhalRPRuleProcessor.get();
+		assertTrue(MockStendhalRPRuleProcessor.get() instanceof MockStendhalRPRuleProcessor);
 		MockStendlRPWorld.get();
 	}
 

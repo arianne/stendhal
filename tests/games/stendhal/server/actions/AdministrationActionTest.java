@@ -20,7 +20,7 @@ public class AdministrationActionTest {
 	@BeforeClass
 	public static void setUp() throws Exception {
 		MockStendlRPWorld.get();
-		MockStendhalRPRuleProcessor.get();
+		assertTrue(MockStendhalRPRuleProcessor.get() instanceof MockStendhalRPRuleProcessor);
 		Log4J.init();
 	}
 
