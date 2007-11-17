@@ -26,7 +26,7 @@ public class ScriptInGroovy extends ScriptingSandbox {
 		groovyBinding = new Binding();
 		groovyBinding.setVariable("game", this);
 		groovyBinding.setVariable("logger", logger);
-		groovyBinding.setVariable("storage", new HashMap());
+		groovyBinding.setVariable("storage", new HashMap<Object,Object>());
 
 		// TODO: get rid of these variables, use the Singleton getters
 		// in the scripts
