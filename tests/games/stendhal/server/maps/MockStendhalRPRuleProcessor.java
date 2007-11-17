@@ -5,6 +5,7 @@ import games.stendhal.server.entity.player.Player;
 
 public class MockStendhalRPRuleProcessor extends StendhalRPRuleProcessor {
 
+	//FIX The singleton pattern in the super class StendhalRPRuleProcessor conflicts with this one here.
 	public static StendhalRPRuleProcessor get() {
 		if (instance == null) {
 			instance = new MockStendhalRPRuleProcessor();
