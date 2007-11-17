@@ -5,6 +5,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
@@ -15,6 +16,7 @@ import games.stendhal.server.maps.semos.storage.HousewifeNPC;
 import marauroa.common.Log4J;
 import marauroa.common.game.RPObject;
 
+import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -40,26 +42,36 @@ public class CleanStorageSpaceTest {
 
 	}
 
+	@After
+	public void tearDown() throws Exception {
+		SpeakerNPC npc = NPCList.get().get("Eonna");
+
+		if (npc != null)
+			npc.setCurrentState(ConversationStates.IDLE);
+	}
+
 	@Test
 	public void testHiAndbye() {
 		Player player;
 		player = new Player(new RPObject());
 		PlayerHelper.addEmptySlots(player);
 
+		assertTrue(!player.hasKilled("rat"));
+
 		SpeakerNPC npc = NPCList.get().get("Eonna");
 		assertNotNull(npc);
 		Engine en = npc.getEngine();
-		en.step(player, "hi");
+		assertTrue(en.step(player, "hi"));
 		assertTrue(npc.isTalking());
 		assertEquals("Hi there, young hero.", npc.get("text"));
-		en.step(player, "job");
+		assertTrue(en.step(player, "job"));
 		assertTrue(npc.isTalking());
 		assertEquals("I'm just a regular housewife.", npc.get("text"));
-		en.step(player, "help");
+		assertTrue(en.step(player, "help"));
 		assertTrue(npc.isTalking());
-		assertEquals("I don't think I can help you with anything.", npc
-				.get("text"));
-		en.step(player, "bye");
+		assertEquals("I don't think I can help you with anything.",
+				npc.get("text"));
+		assertTrue(en.step(player, "bye"));
 		assertFalse(npc.isTalking());
 		assertEquals("Bye.", npc.get("text"));
 	}
@@ -75,31 +87,31 @@ public class CleanStorageSpaceTest {
 		assertNotNull(npc);
 		Engine en = npc.getEngine();
 		assertFalse(npc.isTalking());
-		en.step(player, "hi");
+		assertTrue(en.step(player, "hi"));
 		assertTrue(npc.isTalking());
 		assertEquals("Hi there, young hero.", npc.get("text"));
-		en.step(player, "task");
+		assertTrue(en.step(player, "task"));
 		assertTrue(npc.isTalking());
 		assertEquals(
 				"My #basement is absolutely crawling with rats. Will you help me?",
 				npc.get("text"));
-		en.step(player, "basement");
+		assertTrue(en.step(player, "basement"));
 		assertTrue(npc.isTalking());
 		assertEquals(
 				"Yes, it's just down the stairs, over there. A whole bunch of nasty-looking rats; I think I saw a snake as well! You should be careful... still want to help me?",
 				npc.get("text"));
-		en.step(player, "yes");
+		assertTrue(en.step(player, "yes"));
 		assertEquals(
 				"Oh, thank you! I'll wait up here, and if any try to escape I'll hit them with the broom!",
 				npc.get("text"));
-		en.step(player, "bye");
+		assertTrue(en.step(player, "bye"));
 		assertFalse(npc.isTalking());
 		assertEquals("Bye.", npc.get("text"));
 		player.setSoloKill("rat");
 		assertTrue(player.hasKilled("rat"));
 		player.setSharedKill("caverat");
 		player.setSharedKill("snake");
-		en.step(player, "hi");
+		assertTrue(en.step(player, "hi"));
 		assertTrue(npc.isTalking());
 		assertEquals("A hero at last! Thank you!", npc.get("text"));
 
