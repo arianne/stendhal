@@ -66,6 +66,18 @@
  <tileset name="../../tileset/building/window/int_windows_dark_red.png" firstgid="276" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/window/int_windows_dark_red.png"/>
  </tileset>
+ <tileset name="tools" firstgid="292" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/tools.png"/>
+ </tileset>
+ <tileset name="weapons" firstgid="301" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/armor/weapons_for_walls.png"/>
+ </tileset>
+ <tileset name="copper table" firstgid="317" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/furniture/table/table_copper.png"/>
+ </tileset>
+ <tileset name="ropes" firstgid="323" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/ropes.png"/>
+ </tileset>
  <layer name="0_floor" width="22" height="18">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNhYGBgwYFn4JEbqpgRDY+aS11zR/EoHsXDFwMAjGp3RDAGAAA=
@@ -73,12 +85,12 @@
  </layer>
  <layer name="1_terrain" width="22" height="18">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAALXTWQrCMBSF4RuRitDNOSAITjhswhdn3avgLCiK4ineYAmNtMlt6EdIKf9Dkt6J6JHSNuV3TzjCC/ZC3nDg7o7cRhPa0GFdOMNFoNuLrfvcveXUldiHAQzZSKhbh5pBd0OPbtLQ55ZH1/fcbF3f/ZXqVqBlqAp0o3s1gSmbQSOhm/V/i7pzGLOlpZv13HR3wWxdl31YwZpt/nRJ4YET/ZSNdRYF9e0WMQcxV7wLeQ6UmxJ8AKvT5wQwBgAA
+   H4sIAAAAAAAAAMXTCQrCMBCF4RmRitArueAVFLHuuFxesK6gKIoPOqUhWEnCFAMfIaX8hQm9E9HD0c7xvScc4QWpkjccpLuHFhN1wGclMIO5WMAZLgrdpXFeSfdWUVdjDmvYiO2XbhfNnmd3AH1L3o2lq7Xye6uia96bZtec77+7U4tWdwhtzoxKuub/FtJNSroh9+bSDZnDmIrZTn50Cd9lOFGhaZ191Djr1rFHhiuexbJHHKYBHyN21CkwBgAA
   </data>
  </layer>
  <layer name="2_object" width="22" height="18">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgQAWTgHgKEE8H4hlAPBOIZ0HlXjOQD2YD8VwgXgDEC4F4ERAvJsMcEUYGBlEgLgOyKyhwDzqQAJopCcSVQHY1VGwJEC8jwYzLQHwVhxyyuauAeA0J5l4A4ktEmEtNUAPEdVjE1yFhUsALKN0KxO0UuAsdvMEhvgOI9wDxbiDeC8T7gPgAFe0lBXRhEeumuysGF4DlY2oDWD7uoYJZ2OIIFJfEmB2DhpHNxKefA+h2TiDmIhA2ckB5eRLC7wsQW0FpfEAJaKYyHnMBYnlC3zAGAAA=
+   H4sIAAAAAAAAAGNgwASWjBDaCEprQenXWNSSAgyh5thAaTNGVHkVND42IAJUI0qEOmSgToR6CaAaSSzqXEiw6zIQXyVCnRvQTGcSzL0AxJeIV05TsA4JkwJe0MAtIPAGh/gOIN4DxLuBeC8Q7wPiAzRyAyHQhUWsm+6uoA+wBaZrOyi2x5PGSc3HxJoLy8c9VDAXWxyB4pIYsx2AZjlCsROSud0E9HMA1XICMReBsJEDysuTEH5fgNgKSuMDSkAzlfGYCwCduaoAMAYAAA==
   </data>
  </layer>
  <layer name="3_roof" width="22" height="18">
@@ -88,7 +100,7 @@
  </layer>
  <layer name="4_roof_add" width="22" height="18">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAXDEdyH0vcG1BWjYBSMgsEAuBkZGHiAmJeRMnMAYs8dDjAGAAA=
+   H4sIAAAAAAAAAGNgGAXDERgzQmg9xoF1xygYBaNg4AE3sBzgAWJeCssDAE0ZgFEwBgAA
   </data>
  </layer>
  <layer name="objects" width="22" height="18">
@@ -96,9 +108,9 @@
    H4sIAAAAAAAAAGNgGAWjYBSMglEwWMCTgXYAHgAATAZ7XzAGAAA=
   </data>
  </layer>
- <layer name="collision" width="22" height="18" opacity="0.37">
+ <layer name="collision" width="22" height="18" visible="0" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAHvOwMDwfAhjUgEp5pJix2AwlxRArrmk2kmpO8k1l9xwooV7qRVnxJhNLUCuuaTGC63MpUb6pCS/4VJPahkx2DAA2w7u1zAGAAA=
+   H4sIAAAAAAAAAHvOwMDwfAhjYsBzNDYp5pJiB7XcS2tzoykwl5ywp8T/5JpLbjjRwr3USgvEmE0tQK65pMYLrcylRvqkJL/hK0+IyXPE5k96YwDlPwbHMAYAAA==
   </data>
  </layer>
  <layer name="protection" width="22" height="18">

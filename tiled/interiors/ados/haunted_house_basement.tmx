@@ -110,7 +110,7 @@
  </tileset>
  <layer name="0_floor" width="18" height="18">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAABNhYGAQGcUDhmUGgRtG8SgexRAMAGH0XDYQBQAA
+   H4sIAAAAAAAAABNhYGAQGcUDhmUGgRtG8WgcjWIIBgAHEk4YEAUAAA==
   </data>
  </layer>
  <layer name="1_terrain" width="18" height="18">
@@ -128,14 +128,14 @@
    H4sIAAAAAAAAAGNnZGDgAGJKASfQDC4qmTMKRsEowA7EqGgOtcwaTgAAY13y7RAFAAA=
   </data>
  </layer>
- <layer name="objects" width="18" height="18">
+ <layer name="objects" width="18" height="18" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNgGAVajAPtAsqAJ53crz/Ew4lcoEcDf8viMJPctEjruLEeIXEPAGAWD9wQBQAA
   </data>
  </layer>
  <layer name="collision" width="18" height="18" opacity="0.52">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAABNlYGAQHeSYFECJ3lFzRs0ZKeaQaxYt8uhgwgAJtsNfEAUAAA==
+   H4sIAAAAAAAAABNlYGAQHeSYFECJ3lFzRs0ZKeaQaxY18ig+cwYaAwBco0Q5EAUAAA==
   </data>
  </layer>
  <layer name="protection" width="18" height="18" visible="0" opacity="0.31">

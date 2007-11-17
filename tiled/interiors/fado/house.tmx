@@ -73,7 +73,7 @@
  </layer>
  <layer name="1_terrain" width="20" height="12">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNkYGBgohJmAWJOIGYD4mJG0vF0IJ4BZbMDzeCAmpcL5JcBMTFgApK6mUD2LCg/ixHVPHLAbKC+OSSY54rEdiRg9lAzrxKLmZSY1wzErUBcQ0LczGdE0OjmNQBxEwlmTQGqnQrF09DM4wLidEZU3AbE7YyY4rgwNwPEPF4g5seCO4BqOhmxy+HCAkAMADB8+fTAAwAA
+   H4sIAAAAAAAAAGNkYGBgohJmAWJOIGYD4mJG0vF0IJ4BZbMDzeCAmpcL5JcBMTFgApK6mUD2LCg/ixHVPHLAbKC+OSSY54rEdiRg9lAzrxKLmZSYVwvE9UBcQ0LczGdE0OjmNQBxEwlmTQGqnQrF09DM4wLidEZU3AbE7YyY4rgwNwPEPF4g5seCO4BqOhmxy+HCAkAMAP8iOsfAAwAA
   </data>
  </layer>
  <layer name="2_object" width="20" height="12">

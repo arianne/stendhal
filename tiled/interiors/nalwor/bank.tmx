@@ -112,7 +112,7 @@
  </layer>
  <layer name="1_terrain" width="31" height="40">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAN2Xt04DQRCG5zEIzYERIufQEA5oEM9AEBJIQAd0QAd0hAZwQ2iRSA2hB1fAQ/FbOsvr1e7O7O1hwkhf4b3Z+87nmxlfjohqFVpAq7YmwXdfI6gHU2A8oQN0Kp+l+OybBHWJe5SqGyO/zD2bUG33vHJsAUyDsQxYAatgTVmLGXfx2ppATSDrYANsausR4y5eW47kNWPK3QLbYMeQz7n1GuRqRs/dBXtg35LPubk68K0Z7lnzOd8BOARH4NjD3QN6A90n4BScgbyHewAMBrrPwQW4BFcebsk9nyB3DceG3D7QL8h3uRtIVseRljsEhpl8l7uZ0tW0ZKa66nuG0tc0N1O5+uYiZA5yz9pPuRepPE9tfJdbEtdU7mU3nnvbQHuA+xbcgXvw4Lm3C3QHuB/BE3gGL557Tb/XHFjS8paTdZ0sf+9S6N/f9sxn4S7NsRC3rd/benpMlXMsrdvV7109PaKwe871e1dPV/u5r5vr966ebnsnkrpfQcFyjIvQ5/y/u21zpeh+S0HBw22Ld/CRgs8M3CHxF9y2WSJFn00+bsn/J1eY7qM+C9S+b3pfl2KaH/r5YqqcBWrft72vSzDND9P5IvAFhZOsG2ATAAA=
+   H4sIAAAAAAAAAN2Xt04DQRCG5zEIzYERIufQEA5oEM9AEBJIQAd0QAd0hAZwQ2iRSA2hMg0d8FD8ls7yerW7s3N7mDDSV3g9e9/57mbGlyOiWoUW0Kqt+SDd1wjqwRQYT+gAncpnXyT7JkFd4h6l6sbIL3PPJlTbPa98twCmwVgGrIBVsKasxYy7eG5NoCaQdbABNrX1iHEXzy1H/jVjyt0C22DHkM+59RrkakbP3QV7YN+Sz7m5OpDWDPesSY53AA7BETgWuHtAb6D7BJyCM5AXuAfAYKD7HFyAS3AlcPtc8wly13BsyO0D/R75LncD+dVxpOUOgWEm3+VupnQ17TNTXfU9Q+lrmpupXH1zETIHuWftp9yLVJ6nNr7L7RPXVO5lN8K9baA9wH0L7sA9eBDu7QLdAe5H8ASewYtwr+l+zYElLW85WdfJ8n6XQv/9tmc+C3dpjoW4bf3e1tNjqpxjad2ufu/q6RGFXXOu37t6utrPpW6u37t6uu2dyNddSEgToc/5W8J/ddvmSsldEPIqcNviHXyk4DMDd0j8BbdtlviizyaJ2+f/kytM11GfBWrfN72v+2KaH/rxYqqcBWrft72v+2CaH6bjReAL9XAsSWATAAA=
   </data>
  </layer>
  <layer name="2_object" width="31" height="40">
@@ -135,7 +135,7 @@
    H4sIAAAAAAAAAGNgGAWjgDigyzjQLhgFo4CBwZCMdDhQaZeQvRZQeWQ/keM/egGtQey2UTAKRsEoGAX0BbSuWwmZP9ouHQWjYPgDXPkcJk6PcgDdDmrZaUBlt1PbPFoBCyq7k9rmUQoA2NXN7mATAAA=
   </data>
  </layer>
- <layer name="collision" width="31" height="40" opacity="0.37">
+ <layer name="collision" width="31" height="40" visible="0" opacity="0.37">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO2USwrAIAxE7bm8/71cFaRoMvlpqA4IRZu8xExbn1LqwWsm6kx7jrIjlInd8yPmKZn3KezMd97vIe+++xKfcflGeSVsjo/WxgnNj8Z92Uidmtwr127uDn6mO5/VwfkFfab65hTFRmrJ2Hd0rFWRfXPfkcTjq9ioPOeNepuK9/i3aGu/7H+xR17TyKtvD+4sD7W/a94WXTbNtdY0ipf07O0fJM7bx97fhmU17U3KqGATAAA=
   </data>

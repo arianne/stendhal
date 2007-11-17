@@ -64,7 +64,7 @@
  </layer>
  <layer name="1_terrain" width="32" height="19">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2UOQ7CMBBFfYEADRCJip0Osa/XCJRJxXr/nh8plixrxkssUyBGekVGb/Ib66dCiIaBLkgtjo+n37TADIwIpqBpcXw87mYg6Ok7OD6e7WYBlmAVmJ9X+5y9oP+9BhuwDcx/ghd4e+bvwB4cAvNv4A4envl1HMorqn3B+LHzXcY3fwKGCkdwAmcwNni6K3fqjS2/AxINdcrvNuNRbqLc2PJ7gu4udWw9x7my/7j8ueD7KwMXcDU4Jtel/2JOnTf7z//NfKozYiP7h+uMb1D2zwdmoG08gAkAAA==
+   H4sIAAAAAAAAAO2USQrCQBBF+wJRN2rAlbM7cR6vEV0m4Hj/E/gDaWiaqh7StAux4C1SvMrfND8VQjQMdEFqcXw8/aYFZmBEMAVNi+PjcTcDQU/fwfHxbDcLsASrwPy82ufsBf3vNdiAbWD+DdzBwzN/B/bgEJj/BC/w9syv41BeUe0Lxo+d7zK++RMwVDiCEziDscHTXblTb2z5HZBoqFN+txmPchPlxpbfE3R3qWPrOc6V/cflzwXfXxm4gKvBMbku/Rdz6rzZf/5v5lOdERvZP1xnfIOyfz6PHoUjgAkAAA==
   </data>
  </layer>
  <layer name="2_object" width="32" height="19">

@@ -87,6 +87,9 @@
  <tileset name="book.png" firstgid="203" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/book.png"/>
  </tileset>
+ <tileset name="table" firstgid="207" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/furniture/table/table_wooden_brown.png"/>
+ </tileset>
  <layer name="0_floor" width="32" height="32">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3XSw6CMBSF4fKYCEwRQdfAQwl2A7L/JXkGkDQk1F6iJZIz+IY9f4dtppQKd5JCDDe4CL1g3HBudoVo6p+hhmZFC50j2465ly/6d3is6AV92465xz77R+wP8PxA/7Dvatm33Vt76H97n3322WefffbZ//++y79G8leS9l3elZK3mtmvoPCsnPoJBDs5wRt4CquBABAAAA==
@@ -94,17 +97,17 @@
  </layer>
  <layer name="1_terrain" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3TSQqAMAyF4R7H8XAOJxK8pwm4kKAYSIfN/8GjdNMktE0JXudPopYMZ0Rskv2xX1s1crP9qFEymcyZ6nnmLVnfo5P0JkPF+ur4WKPe7rsm/X+t3zwAAABQ0gX2O/p+ABAAAA==
+   H4sIAAAAAAAAAO3TQQqAIBCFYa9sdaUulJXXaYQWMQgN6Ojm/+At3PhG1BBgtf+kVeywR4tVsn3Wy6xBXnqe4pAklbNTn+W8nv0Wl+RWyQP7PdXue6Ty/2a/eQAAAMDTA8Hs2SEAEAAA
   </data>
  </layer>
  <layer name="2_object" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2QSw6CMABEe0A4grDjq2tUZKdcA8RbcAXUMzksTEjT0vJpG0Jf8tLNdJoOIRadvGBr4N3nyj30KUMF64Xvf6nzM5Kd8+cMngWZ/5sdfI/kWP+tBN0XeBVkltAo7LbMx+GoC5ejrt4D9Ch9yRwvO6V379j9zWL3N8ve9w9gCJOBscbeFB4pT4zc1P1le03T7zTcKCLr7S/Tq2qnrezPIoc3WCi+w+MOH7BUeOcHMnrFMgAQAAA=
+   H4sIAAAAAAAAAO2QyQ3CMBREXWAoIeEGhOXMltwgbYSlC1pgqYnhgBRZ/vE3ib+F4ic9+TIey6NURJIrvAV499xzj35yqOGp4/sv7Xy2ZH/58xpuLJnvm3f4aMmZ/ltburdwZ8lciJODSzYiR0IoxYhQqjeFmeaYmaOyLr1DJ+4flrh/WIa+/wRO4bxhLti7gEvNlSHnuj+3NzSfnZobzVR/+3N6fe30L/ub2MMClp7vUBzgEVYe77wBQAWNJQAQAAA=
   </data>
  </layer>
  <layer name="3_roof" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3QywkAIBBDQetUS/XbmXsWBD1F8Q3ktmwgzt0lWbKwv1iqsL9ZurAfwH+8JUyJm3er25O/v2N/LfbXYv83nO4P4F4D9LsrTgAQAAA=
+   H4sIAAAAAAAAAO3QwQ2AIBSDYeZER0XFCdSN7JmECPFQjP+X9PZCSUMYS1IWY/+qbMb+rOzG/ieHcha5rD8C8FZUpiJz413ttufdv2N/L/b3Yv9v6N0fwLhuc6AMGwAQAAA=
   </data>
  </layer>
  <layer name="4_roof_add" width="32" height="32">
