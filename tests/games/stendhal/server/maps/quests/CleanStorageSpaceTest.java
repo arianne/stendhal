@@ -28,7 +28,8 @@ public class CleanStorageSpaceTest {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		Log4J.init();
-		MockStendhalRPRuleProcessor.get();
+
+		assertTrue(MockStendhalRPRuleProcessor.get() instanceof MockStendhalRPRuleProcessor);
 		MockStendlRPWorld.get();
 		HousewifeNPC eonna = new HousewifeNPC();
 		eonna.configureZone(new StendhalRPZone("testzone"), null);

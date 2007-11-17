@@ -9,6 +9,7 @@ import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import marauroa.common.Log4J;
 import marauroa.common.game.RPObject;
 
@@ -22,11 +23,12 @@ import utilities.PlayerTestHelper;
 
 public class CloakCollectorTest {
 @BeforeClass
- static public void  setupclass(){
-	PlayerHelper.generateNPCRPClasses();
-	PlayerHelper.generatePlayerRPClasses();
-	Log4J.init();
-}
+    static public void setupclass() {
+    	Log4J.init();
+    	assertTrue(MockStendhalRPRuleProcessor.get() instanceof MockStendhalRPRuleProcessor);
+    	PlayerHelper.generateNPCRPClasses();
+    	PlayerHelper.generatePlayerRPClasses();
+    }
 
 	@Before
 	public void setUp() throws Exception {

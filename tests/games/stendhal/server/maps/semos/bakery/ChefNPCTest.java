@@ -32,7 +32,7 @@ public class ChefNPCTest {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		MockStendlRPWorld.get();
-		MockStendhalRPRuleProcessor.get();
+		assertTrue(MockStendhalRPRuleProcessor.get() instanceof MockStendhalRPRuleProcessor);
 		Log4J.init();
 	}
 

@@ -33,10 +33,11 @@ public class IntroducePlayersTest {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		Log4J.init();
+
 		PlayerHelper.generatePlayerRPClasses();
 		PlayerHelper.generateItemRPClasses();
 
-		MockStendhalRPRuleProcessor.get();
+		assertTrue(MockStendhalRPRuleProcessor.get() instanceof MockStendhalRPRuleProcessor);
 		MockStendlRPWorld.get();
 		BoyNPC tad = new BoyNPC();
 		tad.configureZone(new StendhalRPZone("testzone"), null);

@@ -32,7 +32,7 @@ public class ZooFoodTest {
 	public static void setUpBeforeClass() throws Exception {
 		Log4J.init();
 
-		MockStendhalRPRuleProcessor.get();
+		assertTrue(MockStendhalRPRuleProcessor.get() instanceof MockStendhalRPRuleProcessor);
 		MockStendlRPWorld.get();
 		AnimalKeeperNPC katinkaconf = new AnimalKeeperNPC();
 		katinkaconf.configureZone(new StendhalRPZone("testzone"), null);

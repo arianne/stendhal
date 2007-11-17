@@ -5,8 +5,11 @@ import static org.junit.Assert.assertTrue;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 
 import java.util.Arrays;
+
+import marauroa.common.Log4J;
 
 import org.junit.After;
 import org.junit.Before;
@@ -18,9 +21,10 @@ import utilities.PlayerHelper;
 public class ToysCollectorTest {
 	ToysCollector quest;
 	@BeforeClass
-	static public  void setupFixture(){
+	static public  void setupFixture() {
+		Log4J.init();
+		assertTrue(MockStendhalRPRuleProcessor.get() instanceof MockStendhalRPRuleProcessor);
 		PlayerHelper.generateNPCRPClasses();
-
 	}
 
 	@Before
