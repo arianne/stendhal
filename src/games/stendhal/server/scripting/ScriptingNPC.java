@@ -3,7 +3,6 @@ package games.stendhal.server.scripting;
 import games.stendhal.server.entity.npc.BuyerBehaviour;
 import games.stendhal.server.entity.npc.SellerBehaviour;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.player.Player;
 
 import java.util.List;
 import java.util.Map;
