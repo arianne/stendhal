@@ -388,7 +388,7 @@ public class SpeakerNPC extends NPC {
 	 * @param nextState
 	 *            the new state of the FSM
 	 * @param reply
-	 *            a simple text replay (may be null for no replay)
+	 *            a simple text reply (may be null for no reply)
 	 * @param action
 	 *            a special action to be taken (may be null)
 	 */
@@ -410,7 +410,7 @@ public class SpeakerNPC extends NPC {
 	 * @param nextState
 	 *            the new state of the FSM
 	 * @param reply
-	 *            a simple text replay (may be null for no replay)
+	 *            a simple text reply (may be null for no reply)
 	 * @param action
 	 *            a special action to be taken (may be null)
 	 */
@@ -434,7 +434,7 @@ public class SpeakerNPC extends NPC {
 	 * @param nextState
 	 *            the new state of the FSM
 	 * @param reply
-	 *            a simple text replay (may be null for no replay)
+	 *            a simple text reply (may be null for no reply)
 	 * @param action
 	 *            a special action to be taken (may be null)
 	 */
