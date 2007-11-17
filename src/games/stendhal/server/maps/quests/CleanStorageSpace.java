@@ -8,7 +8,7 @@ import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
-import games.stendhal.server.entity.npc.action.StartRecodingKillsAction;
+import games.stendhal.server.entity.npc.action.StartRecordingKillsAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.KilledCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
@@ -58,7 +58,7 @@ public class CleanStorageSpace extends AbstractQuest {
 				"Thanks again! I think it's still clear down there.", null);
 
 		List<SpeakerNPC.ChatAction> start = new LinkedList<SpeakerNPC.ChatAction>();
-		start.add(new StartRecodingKillsAction("rat", "caverat", "snake"));
+		start.add(new StartRecordingKillsAction("rat", "caverat", "snake"));
 		start.add(new IncreaseKarmaAction(2.0));
 		start.add(new SetQuestAction(QUEST_SLOT, "start"));
 		

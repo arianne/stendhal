@@ -10,7 +10,7 @@ import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
-import games.stendhal.server.entity.npc.action.StartRecodingKillsAction;
+import games.stendhal.server.entity.npc.action.StartRecordingKillsAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.KilledCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
@@ -69,7 +69,7 @@ public class ClubOfThorns extends AbstractQuest {
 
 		List<ChatAction> start = new LinkedList<ChatAction>();
 		start.add(new EquipItemAction("kotoch_prison_key", 1, true));
-		start.add(new StartRecodingKillsAction("mountain_orc_chief"));
+		start.add(new StartRecordingKillsAction("mountain_orc_chief"));
 		start.add(new IncreaseKarmaAction(6.0));
 		start.add(new SetQuestAction(QUEST_SLOT, "start"));
 
