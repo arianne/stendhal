@@ -140,11 +140,13 @@ public class Engine {
 	 * @return true if a transition was made, false otherwise
 	 */
 	public boolean step(Player player, String text) {
-		if (matchTransition(MatchType.ABSOLUTE_JUMP, player, text)) {
-			return true;
-		} else if (matchTransition(MatchType.EXACT_MATCH, player, text)) {
+		if (matchTransition(MatchType.EXACT_MATCH, player, text)) {
 			return true;
 		} else if (matchTransition(MatchType.SIMILAR_MATCH, player, text)) {
+			return true;
+		} else if (matchTransition(MatchType.ABSOLUTE_JUMP, player, text)) {
+			return true;
+		} else if (matchTransition(MatchType.SIMILAR_JUMP, player, text)) {
 			return true;
 		} else {
 			// Couldn't match the text with the current FSM state
@@ -173,6 +175,7 @@ public class Engine {
 	private boolean matchTransition(MatchType type, Player player, String text) {
 		List<Transition> listCondition = new LinkedList<Transition>();
 		List<Transition> listConditionLess = new LinkedList<Transition>();
+		int i;
 
 		// First we try to match with stateless transitions.
 		for (Transition transition : stateTransitionTable) {
@@ -188,19 +191,26 @@ public class Engine {
 		}
 
 		if (listCondition.size() > 0) {
-			if (listCondition.size() > 1)
+			if (listCondition.size() > 1) {
 				logger.warn("Chosing random action because of "+listCondition.size()+" entries in listCondition: " + listCondition);
+				i = Rand.rand(listCondition.size());
+			} else {
+				i = 0;
+			}
 
-			int i = Rand.rand(listCondition.size());
 			executeTransition(player, text, listCondition.get(i));
 			return true;
 		}
 
+		// Then look for transitions without conditions.
 		if (listConditionLess.size() > 0) {
-			if (listConditionLess.size() > 1)
+			if (listConditionLess.size() > 1) {
 				logger.warn("Chosing random action because of "+listConditionLess.size()+" entries in listConditionLess: " + listConditionLess);
+				i = Rand.rand(listConditionLess.size());
+    		} else {
+    			i = 0;
+    		}
 
-			int i = Rand.rand(listConditionLess.size());
 			executeTransition(player, text, listConditionLess.get(i));
 			return true;
 		}
@@ -209,22 +219,17 @@ public class Engine {
 	}
 
 	private boolean matchesTransition(MatchType type, String text, Transition transition) {
-		return isAbsoluteMatch(type, text, transition)
-		        || isExactMatch(type, text, transition)
-		        || isSimilarMatch(type, text, transition);
-	}
-
-	private boolean isSimilarMatch(MatchType type, String text, Transition transition) {
-		return ((type == MatchType.SIMILAR_MATCH) && transition.matchesBeginning(currentState, text));
-	}
-
-	private boolean isExactMatch(MatchType type, String text, Transition transition) {
-		return ((type == MatchType.EXACT_MATCH) && transition.matches(currentState, text));
-	}
-
-	private boolean isAbsoluteMatch(MatchType type, String text, Transition transition) {
-		return ((type == MatchType.ABSOLUTE_JUMP) && (currentState != ConversationStates.IDLE) && transition
-		        .isAbsoluteJump(text));
+		if (type ==  MatchType.EXACT_MATCH) {
+			return transition.matches(currentState, text);
+		} else if (type ==  MatchType.SIMILAR_MATCH) {
+			return transition.matchesBeginning(currentState, text);
+		} else if (type == MatchType.ABSOLUTE_JUMP) {
+			return (currentState != ConversationStates.IDLE) && transition.matchesWild(text);
+		} else if (type == MatchType.SIMILAR_JUMP) {
+			return (currentState != ConversationStates.IDLE) && transition.matchesWildBeginning(text);
+		} else {
+			return false;
+		}
 	}
 
 	private void executeTransition(Player player, String text, Transition state) {

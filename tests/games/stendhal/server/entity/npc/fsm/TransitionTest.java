@@ -36,12 +36,13 @@ public class TransitionTest {
 	@Test
 	public final void testIsAbsoluteJump() {
 		Transition t = new Transition(ConversationStates.ANY, "trigger",null,0, null,null);
-		assertTrue(t.isAbsoluteJump("trigger"));
+		assertTrue(t.matchesWild("trigger"));
+
 		t = new Transition(ConversationStates.ANY, "TRiggER",null,0, null,null);
-		assertTrue(t.isAbsoluteJump("trigger"));
+		assertTrue(t.matchesWild("trigger"));
 
 		t = new Transition(-2, "Trigger",null,0, null,null);
-		assertFalse(t.isAbsoluteJump("trigger"));
+		assertFalse(t.matchesWild("trigger"));
 	}
 
 	@Test

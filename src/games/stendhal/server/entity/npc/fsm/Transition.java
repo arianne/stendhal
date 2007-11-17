@@ -62,8 +62,20 @@ public class Transition {
 	 * @return true iff this is a wildcard transition and the triggering
 	 *         text has been said
 	 */
-	public boolean isAbsoluteJump(String text) {
+	public boolean matchesWild(String text) {
 		return (state == ConversationStates.ANY) && trigger.equalsIgnoreCase(text);
+	}
+
+	/**
+	 * Checks whether this is a "wildcard" transition (see class comment
+	 * of SpeakerNPC) and the text beginning matches the trigger.
+	 *
+	 * @param text trigger (possibly with additional text)
+	 * @return if the transition matches, false otherwise
+	 */
+	public boolean matchesWildBeginning(String text) {
+		String temp = text.toLowerCase();
+		return (state == ConversationStates.ANY) && temp.startsWith(trigger);
 	}
 
 	/**
