@@ -18,7 +18,7 @@ import org.junit.Test;
 import utilities.PlayerTestHelper;
 import utilities.SpeakerNPCTestHelper;
 
-public class AllwaysTrueConditionTest {
+public class AlwaysTrueConditionTest {
 
 	@Test
 	public void testConstructor() throws Throwable {
