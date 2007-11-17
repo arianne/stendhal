@@ -14,6 +14,8 @@ import games.stendhal.server.entity.npc.condition.KilledCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
+import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
+import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -44,14 +46,14 @@ public class CleanStorageSpace extends AbstractQuest {
 
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES, 
-				new QuestNotCompletedCondition(QUEST_SLOT),
+				new QuestNotStartedCondition(QUEST_SLOT),
 				ConversationStates.QUEST_OFFERED,
 				"My #basement is absolutely crawling with rats. Will you help me?",
 				null);
 
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES, 
-				new QuestNotCompletedCondition(QUEST_SLOT),
+				new AndCondition(new QuestStartedCondition(QUEST_SLOT), new QuestNotCompletedCondition(QUEST_SLOT)),
 				ConversationStates.ATTENDING, 
 				"Thanks again! I think it's still clear down there.", null);
 
