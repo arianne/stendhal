@@ -25,10 +25,10 @@ public class CompareConditionsTests {
 		Area ar = new Area(new StendhalRPZone("test"), new Rectangle() {
 		});
 		ChatCondition[] conarray = new ChatCondition[] { new AdminCondition(),
-				new AllwaysTrueCondition(),
-				new AndCondition(new AllwaysTrueCondition()),
+				new AlwaysTrueCondition(),
+				new AndCondition(new AlwaysTrueCondition()),
 				new NakedCondition(),
-				new NotCondition(new AllwaysTrueCondition()),
+				new NotCondition(new AlwaysTrueCondition()),
 				new PlayerHasItemWithHimCondition("itemName"),
 				new PlayerInAreaCondition(ar),
 				new QuestActiveCondition("questname"),
@@ -43,21 +43,22 @@ public class CompareConditionsTests {
 		conditionsB2 = Arrays.asList(conarray);
 
 	}
-@Test
-public void testname() throws Exception {
-	for(ChatCondition cond1 : conditionsA2){
-		for (ChatCondition cond2 : conditionsB2){
-			if (cond1==cond2){
-				continue;
-			}
-			assertFalse(cond1.equals(cond2));
-			assertFalse(cond2.equals(cond1));
 
+    @Test
+    public void testname() throws Exception {
+    	for(ChatCondition cond1 : conditionsA2){
+    		for (ChatCondition cond2 : conditionsB2){
+    			if (cond1==cond2){
+    				continue;
+    			}
+    			assertFalse(cond1.equals(cond2));
+    			assertFalse(cond2.equals(cond1));
 
-		}
-	}
-}
-	@After
+    		}
+    	}
+    }
+
+    @After
 	public void tearDown() throws Exception {
 	}
 

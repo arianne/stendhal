@@ -5,7 +5,7 @@ import java.util.Arrays;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.condition.AllwaysTrueCondition;
+import games.stendhal.server.entity.npc.condition.AlwaysTrueCondition;
 
 
 /**
@@ -22,7 +22,7 @@ public class Cataclysm extends AbstractQuest {
 		SpeakerNPC npc = npcs.get("Carmen");
 
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-				new AllwaysTrueCondition(),
+				new AlwaysTrueCondition(),
 				ConversationStates.ATTENDING,
 				"Hello. I can #heal you in these #troubled #times.", null);
 
@@ -42,7 +42,7 @@ public class Cataclysm extends AbstractQuest {
 		npc.add(
 			ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
-			new AllwaysTrueCondition(),
+			new AlwaysTrueCondition(),
 			ConversationStates.ATTENDING,
 			"Greetings. I expect you are wondering what strange things are happening here?",
 			null);
@@ -63,7 +63,7 @@ public class Cataclysm extends AbstractQuest {
 		npc.add(
 			ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
-			new AllwaysTrueCondition(),
+			new AlwaysTrueCondition(),
 			ConversationStates.ATTENDING,
 			"Greetings. I'm ashamed to address you while I look #unwell. It's not fitting for my post.",
 			null);
@@ -82,7 +82,7 @@ public class Cataclysm extends AbstractQuest {
 		npc.add(
 			ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
-			new AllwaysTrueCondition(),
+			new AlwaysTrueCondition(),
 			ConversationStates.ATTENDING,
 			"Hi. *cough* *splutter* The smoke is getting into my lungs. The #fire is spreading.",
 			null);
@@ -106,7 +106,7 @@ public class Cataclysm extends AbstractQuest {
 		npc.add(
 			ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
-			new AllwaysTrueCondition(),
+			new AlwaysTrueCondition(),
 			ConversationStates.ATTENDING,
 			"Hi. I'm guessing you knew to come to an old gossip, for #information.",
 			null);
@@ -127,7 +127,7 @@ public class Cataclysm extends AbstractQuest {
 		SpeakerNPC npc = npcs.get("Sato");
 
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-			new AllwaysTrueCondition(),
+			new AlwaysTrueCondition(),
 			ConversationStates.ATTENDING,
 			"Hi. We've fallen on hard #times.", null);
 

@@ -15,13 +15,13 @@ import utilities.PlayerTestHelper;
 import utilities.SpeakerNPCTestHelper;
 
 public class AndConditionTest {
-	AllwaysTrueCondition trueCondition;
-	AllwaysTrueCondition falsecondition;
+	AlwaysTrueCondition trueCondition;
+	AlwaysTrueCondition falsecondition;
 
 	@Before
 	public void setUp() throws Exception {
-		trueCondition = new AllwaysTrueCondition();
-		falsecondition = new AllwaysTrueCondition() {
+		trueCondition = new AlwaysTrueCondition();
+		falsecondition = new AlwaysTrueCondition() {
 
 			@Override
 			public boolean fire(Player player, String text, SpeakerNPC engine) {
@@ -47,9 +47,8 @@ public class AndConditionTest {
 		assertFalse("empty And is true", falsecondition.fire(
 				PlayerTestHelper.createPlayer(), "testAndConditionText",
 				SpeakerNPCTestHelper.createSpeakerNPC()));
-
-
 	}
+
 	@Test
 	public void testConstructor() throws Throwable {
 		new AndCondition();

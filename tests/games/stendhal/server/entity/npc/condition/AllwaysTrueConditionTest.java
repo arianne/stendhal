@@ -22,35 +22,35 @@ public class AllwaysTrueConditionTest {
 
 	@Test
 	public void testConstructor() throws Throwable {
-		new AllwaysTrueCondition();
+		new AlwaysTrueCondition();
 	}
 
 	@Test
 	public void testEquals() throws Throwable {
-		assertFalse(new AllwaysTrueCondition().equals(null));
+		assertFalse(new AlwaysTrueCondition().equals(null));
 
-		AllwaysTrueCondition obj = new AllwaysTrueCondition();
+		AlwaysTrueCondition obj = new AlwaysTrueCondition();
 		assertTrue(obj.equals(obj));
 
-		assertFalse(new AllwaysTrueCondition().equals(new Integer(100)));
+		assertFalse(new AlwaysTrueCondition().equals(new Integer(100)));
 
-		assertTrue(new AllwaysTrueCondition().equals(new AllwaysTrueCondition()));
-		assertTrue(new AllwaysTrueCondition().equals(new AllwaysTrueCondition() {
+		assertTrue(new AlwaysTrueCondition().equals(new AlwaysTrueCondition()));
+		assertTrue(new AlwaysTrueCondition().equals(new AlwaysTrueCondition() {
 		}));
 	}
 	@Test
 	public void testFire() throws Throwable {
-		assertTrue(new AllwaysTrueCondition().fire(
+		assertTrue(new AlwaysTrueCondition().fire(
 				PlayerTestHelper.createPlayer(),
 				"testAllwaysTrueConditionText",
 				SpeakerNPCTestHelper.createSpeakerNPC()));
 	}
 	@Test
 	public void testHashCode() throws Throwable {
-		assertEquals(17, new AllwaysTrueCondition().hashCode());
+		assertEquals(17, new AlwaysTrueCondition().hashCode());
 	}
 	@Test
 	public void testToString() throws Throwable {
-		assertEquals("true", new AllwaysTrueCondition().toString());
+		assertEquals("true", new AlwaysTrueCondition().toString());
 	}
 }

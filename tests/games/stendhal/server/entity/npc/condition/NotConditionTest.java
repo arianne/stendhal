@@ -28,12 +28,12 @@ public class NotConditionTest {
 		}
 	}
 
-	AllwaysTrueCondition trueCondition;
+	AlwaysTrueCondition trueCondition;
 	ChatCondition falsecondition;
 
 	@Before
 	public void setUp() throws Exception {
-		trueCondition = new AllwaysTrueCondition();
+		trueCondition = new AlwaysTrueCondition();
 		falsecondition = new AlwaysFalseCondition();
 	}
 

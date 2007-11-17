@@ -7,7 +7,7 @@ import static org.junit.Assert.assertTrue;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPC.ChatCondition;
-import games.stendhal.server.entity.npc.condition.AllwaysTrueCondition;
+import games.stendhal.server.entity.npc.condition.AlwaysTrueCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.player.Player;
 
@@ -68,9 +68,9 @@ public class TransitionTest {
 	public final void testIsConditionFulfilled() {
 		Transition t = new Transition(-2, "trigger",null,0, null,null);
 		assertTrue(t.isConditionFulfilled(PlayerTestHelper.createPlayer(), null,SpeakerNPCTestHelper.createSpeakerNPC() ));
-		t = new Transition(-2, "trigger",new AllwaysTrueCondition(),0, null,null);
+		t = new Transition(-2, "trigger",new AlwaysTrueCondition(),0, null,null);
 		assertTrue(t.isConditionFulfilled(PlayerTestHelper.createPlayer(), null,SpeakerNPCTestHelper.createSpeakerNPC() ));
-		t = new Transition(-2, "trigger",new NotCondition(new AllwaysTrueCondition()),0, null,null);
+		t = new Transition(-2, "trigger",new NotCondition(new AlwaysTrueCondition()),0, null,null);
 		assertFalse(t.isConditionFulfilled(PlayerTestHelper.createPlayer(), null,SpeakerNPCTestHelper.createSpeakerNPC() ));
 
 
