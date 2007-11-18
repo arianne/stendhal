@@ -51,10 +51,11 @@ public class Engine {
 			if (transition.matches(state, trigger)) {
 				PreTransitionCondition cond = transition.getCondition();
 
-				if (cond == condition)
+				if (cond == condition) {
 					return transition;
-    			else if (cond!=null && cond.equals(condition))
-    				return transition;
+				} else if ((cond!=null) && cond.equals(condition)) {
+					return transition;
+				}
 			}
 		}
 
