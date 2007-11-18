@@ -134,7 +134,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	/** List of registered ClickListener */
 	protected List<WtClickListener> clickListeners;
 
-	/** chanches the titlebar/frame image */
+	/** changes the titlebar/frame image */
 	private BufferedImage cachedImage;
 
 	/** true when the window is already closed */
