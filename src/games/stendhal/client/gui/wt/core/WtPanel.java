@@ -134,7 +134,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	/** List of registered ClickListener */
 	protected List<WtClickListener> clickListeners;
 
-	/** chaches the titlebar/frame image */
+	/** chanches the titlebar/frame image */
 	private BufferedImage cachedImage;
 
 	/** true when the window is already closed */
@@ -632,7 +632,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	}
 
 	/**
-	 * returns an unmodifiable list this panels childs. TODO: cache this
+	 * returns an unmodifiable list this panels children. TODO: cache this
 	 */
 	protected List<WtPanel> getChildren() {
 		return Collections.unmodifiableList(children);
@@ -941,7 +941,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		x -= getClientX();
 		y -= getClientY();
 
-		// check all childs
+		// check all children
 		for (WtPanel panel : children) {
 			// only if the point is inside the child
 			if (panel.isHit(x, y)) {
@@ -955,7 +955,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 					return draggedObject;
 				}
 
-				// this child don't want to be dragged. Ignore all childs below
+				// this child don't want to be dragged. Ignore all children below
 				// this one
 				return null;
 			}
@@ -1058,7 +1058,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		Point p2 = p.getLocation();
 		p2.translate(-getClientX(), -getClientY());
 
-		// be sure to inform all childs of the mouse click
+		// be sure to inform all children of the mouse click
 		for (WtPanel panel : children) {
 			// only if the point is inside the child
 			if (panel.isHit(p2.x, p2.y)) {
@@ -1083,7 +1083,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		Point p2 = p.getLocation();
 		p2.translate(-getClientX(), -getClientY());
 
-		// be sure to inform all childs of the mouse click
+		// be sure to inform all children of the mouse click
 		for (WtPanel panel : children) {
 			// only if the point is inside the child
 			if (panel.isHit(p2.x, p2.y)) {
@@ -1112,7 +1112,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		Point p2 = p.getLocation();
 		p2.translate(-getClientX(), -getClientY());
 
-		// be sure to inform all childs of the mouse click
+		// be sure to inform all children of the mouse click
 		for (WtPanel panel : children) {
 			// only if the point is inside the child
 			if (panel.isHit(p2.x, p2.y)) {

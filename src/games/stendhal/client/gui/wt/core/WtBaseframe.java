@@ -195,7 +195,7 @@ public class WtBaseframe extends WtPanel implements MouseListener, MouseMotionLi
 
 	/**
 	 * Invoked when the mouse button has been clicked (pressed and released) on
-	 * a component. This event is propagated to all childs.
+	 * a component. This event is propagated to all children.
 	 *
 	 * @param e
 	 *            the mouse event
