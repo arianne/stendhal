@@ -10,8 +10,10 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
+import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.common.Log4J;
 import marauroa.common.game.RPObject;
+
 
 import org.junit.After;
 import org.junit.Before;
@@ -25,6 +27,7 @@ public class CloakCollectorTest {
 @BeforeClass
     static public void setupclass() {
     	Log4J.init();
+    	MockStendlRPWorld.get();
     	assertTrue(MockStendhalRPRuleProcessor.get() instanceof MockStendhalRPRuleProcessor);
     	PlayerHelper.generateNPCRPClasses();
     	PlayerHelper.generatePlayerRPClasses();
@@ -66,6 +69,7 @@ public class CloakCollectorTest {
 	}
 		@Test
 		public final void doQuest() {
+
 			NPCList.get().add(new SpeakerNPC("Josephine"));
 			CloakCollector cc = new CloakCollector();
 			cc.addToWorld();
