@@ -9,13 +9,19 @@ package games.stendhal.client.sprite;
 //
 //
 
+import games.stendhal.server.script.AdminMaker;
+
 import java.util.Arrays;
 import java.awt.Graphics;
+
+import org.apache.log4j.Logger;
 
 /**
  * This is a sprite that transparently animates itself when drawn.
  */
 public class AnimatedSprite implements Sprite {
+	private static Logger logger = Logger.getLogger(AdminMaker.class);
+
 	/**
 	 * The identifier reference.
 	 */
@@ -163,7 +169,7 @@ public class AnimatedSprite implements Sprite {
 	public AnimatedSprite(final Sprite[] frames, final int[] delays, final boolean animating, final Object reference)
 			throws IllegalArgumentException {
 		if (frames.length == 0) {
-			throw new IllegalArgumentException("Must have at least one frame");
+			logger.warn("AnimatedSprite needs at least one frame");
 		}
 
 		if (delays.length != frames.length) {
@@ -200,7 +206,7 @@ public class AnimatedSprite implements Sprite {
 		}
 
 		index = 0;
-		sprite = frames[0];
+		sprite = frames.length>0? frames[0]: null;
 
 		cycleTime = 0;
 		lastUpdate = System.currentTimeMillis();

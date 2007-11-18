@@ -22,7 +22,6 @@ import java.net.URL;
 
 import javax.imageio.ImageIO;
 
-
 import org.apache.log4j.Logger;
 
 /**
@@ -111,6 +110,9 @@ public class SpriteStore {
 	 */
 	public Sprite[] getTiles(final Sprite sprite, final int x, final int y,
 			final int count, final int width, final int height) {
+		if (sprite == null)
+			return new Sprite[0];
+
 		Sprite[] sprites = new Sprite[count];
 
 		int tx = x;
@@ -123,6 +125,8 @@ public class SpriteStore {
 		return sprites;
 	}
 
+	private final static String FAILSAFE_ICON_REF = "data/sprites/failsafe.png";
+
 	/**
 	 * Get the failsafe sprite.
 	 *
@@ -131,9 +135,9 @@ public class SpriteStore {
 	public Sprite getFailsafe() {
 		/*
 		 * TODO: Create in-line sprite, incase missing all png's is why we need
-		 * a failsafe. Otherwise infinite loop will occur.
+		 * a failsafe. Otherwise we return null.
 		 */
-		return getSprite("data/sprites/failsafe.png");
+		return getSprite(FAILSAFE_ICON_REF);
 	}
 
 	/**
@@ -193,7 +197,13 @@ public class SpriteStore {
 			}
 			if (url == null) {
 				logger.error("Can't find ref: " + ref);
-				return getFailsafe();
+
+				// avoid infinite loop and stack overflow in case of missing failsafe icon
+				if (!ref.equals(FAILSAFE_ICON_REF)) {
+					return getFailsafe();
+				} else {
+					return null;
+				}
 			}
 
 			// use ImageIO to read the image in
