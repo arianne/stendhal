@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * Abstract class for quests. This is a default implementation of IQuest.
- * 
+ *
  * @author hendrik
  */
 public abstract class AbstractQuest implements IQuest {
@@ -24,13 +24,21 @@ public abstract class AbstractQuest implements IQuest {
 
 	private static final List<String> EMPTY_LIST = new ArrayList<String>();
 
+	/**
+	 * inits the quest by specifying the name.
+	 * <p>
+	 * Make sure to set slotname in the subclasses.
+	 *
+	 * @param name
+	 *            name of quest
+	 */
 	public void init(String name) {
 		this.name = name;
 	}
 
 	/**
 	 * inits this quest by specifing the name and quest slot
-	 * 
+	 *
 	 * @param name
 	 *            name of quest
 	 * @param slotName
@@ -56,8 +64,8 @@ public abstract class AbstractQuest implements IQuest {
 	public boolean isCompleted(Player player) {
 		return player.hasQuest(slotName)
 				&& (player.isQuestCompleted(slotName)
-						|| player.getQuest(slotName).equals("rejected") || player
-						.getQuest(slotName).equals("failed"));
+						|| player.getQuest(slotName).equals("rejected") || player.getQuest(
+						slotName).equals("failed"));
 	}
 
 	public boolean isRepeatable(Player player) {
