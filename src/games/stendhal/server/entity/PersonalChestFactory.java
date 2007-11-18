@@ -43,7 +43,7 @@ public class PersonalChestFactory implements ConfigurableFactory {
 	 *
 	 * @throws IllegalArgumentException
 	 *             If there is a problem with the attributes. The exception
-	 *             message should be a value sutable for meaningful user
+	 *             message should be a value suitable for meaningful user
 	 *             interpretation.
 	 *
 	 * @see PersonalChest

@@ -786,7 +786,7 @@ public abstract class RPEntity extends GuidedEntity {
 	 * @param amount
 	 *            The HP to take.
 	 * @param attackerName
-	 *            The name of the attacker (sutable for use with
+	 *            The name of the attacker (suitable for use with
 	 *            <em>onDead()</em>.)
 	 *
 	 * @return The damage actually taken (in case HP was < amount).
@@ -893,7 +893,7 @@ public abstract class RPEntity extends GuidedEntity {
 	 * This method is called when the entity has been killed ( hp==0 ).
 	 *
 	 * @param killerName
-	 *            The killer's name (a phrase sutable in the expression "<code>by</code>
+	 *            The killer's name (a phrase suitable in the expression "<code>by</code>
 	 *				<em>killerName</em>".
 	 */
 	public void onDead(String killerName) {
@@ -925,7 +925,7 @@ public abstract class RPEntity extends GuidedEntity {
 	 * This method is called when this entity has been killed (hp == 0).
 	 *
 	 * @param killerName
-	 *            The killer's name (a phrase sutable in the expression "<code>by</code>
+	 *            The killer's name (a phrase suitable in the expression "<code>by</code>
 	 *				<em>killerName</em>".
 	 * @param remove
 	 *            <code>true</code> to remove entity from world.

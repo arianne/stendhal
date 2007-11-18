@@ -446,7 +446,7 @@ public class InternalManagedDialog implements ManagedWindow {
 	/**
 	 * Get X coordinate of the window.
 	 *
-	 * @return A value sutable for passing to <code>moveTo()</code>.
+	 * @return A value suitable for passing to <code>moveTo()</code>.
 	 */
 	public int getX() {
 		return dialog.getX();
@@ -455,7 +455,7 @@ public class InternalManagedDialog implements ManagedWindow {
 	/**
 	 * Get Y coordinate of the window.
 	 *
-	 * @return A value sutable for passing to <code>moveTo()</code>.
+	 * @return A value suitable for passing to <code>moveTo()</code>.
 	 */
 	public int getY() {
 		return dialog.getY();

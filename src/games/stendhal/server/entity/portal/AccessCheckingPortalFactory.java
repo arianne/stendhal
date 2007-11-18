@@ -59,7 +59,7 @@ public abstract class AccessCheckingPortalFactory implements ConfigurableFactory
 	 * @throws	IllegalArgumentException
 	 *				If there is a problem with the
 	 *				attributes. The exception message
-	 *				should be a value sutable for
+	 *				should be a value suitable for
 	 *				meaningful user interpretation.
 	 *
 	 * @see		KeyedPortal

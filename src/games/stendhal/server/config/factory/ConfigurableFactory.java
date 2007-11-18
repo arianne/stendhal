@@ -22,7 +22,7 @@ public interface ConfigurableFactory {
 	 * @throws	IllegalArgumentException
 	 *				If there is a problem with the
 	 *				attributes. The exception message
-	 *				should be a value sutable for
+	 *				should be a value suitable for
 	 *				meaningful user interpretation.
 	 */
 	Object create(ConfigurableFactoryContext ctx);

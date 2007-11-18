@@ -180,7 +180,7 @@ public abstract class ManagedDialog implements ManagedWindow {
 	/**
 	 * Get X coordinate of the window.
 	 *
-	 * @return	A value sutable for passing to <code>moveTo()</code>.
+	 * @return	A value suitable for passing to <code>moveTo()</code>.
 	 */
 	public int getX() {
 		return (dialog.getX() - owner.getX());
@@ -189,7 +189,7 @@ public abstract class ManagedDialog implements ManagedWindow {
 	/**
 	 * Get Y coordinate of the window.
 	 *
-	 * @return	A value sutable for passing to <code>moveTo()</code>.
+	 * @return	A value suitable for passing to <code>moveTo()</code>.
 	 */
 	public int getY() {
 		return (dialog.getY() - owner.getY());

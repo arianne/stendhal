@@ -26,14 +26,14 @@ public interface ManagedWindow {
 	/**
 	 * Get X coordinate of the window.
 	 *
-	 * @return	A value sutable for passing to <code>moveTo()</code>.
+	 * @return	A value suitable for passing to <code>moveTo()</code>.
 	 */
 	int getX();
 
 	/**
 	 * Get Y coordinate of the window.
 	 *
-	 * @return	A value sutable for passing to <code>moveTo()</code>.
+	 * @return	A value suitable for passing to <code>moveTo()</code>.
 	 */
 	int getY();
 

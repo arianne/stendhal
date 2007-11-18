@@ -30,7 +30,7 @@ public class OnePlayerRoomDoorFactory extends DoorFactory {
 	 * @throws	IllegalArgumentException
 	 *				If there is a problem with the
 	 *				attributes. The exception message
-	 *				should be a value sutable for
+	 *				should be a value suitable for
 	 *				meaningful user interpretation.
 	 *
 	 * @see		OnePlayerRoomDoor
