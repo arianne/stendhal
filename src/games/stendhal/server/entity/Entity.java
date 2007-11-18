@@ -38,13 +38,13 @@ public abstract class Entity extends RPObject {
 
 	/**
 	 * The width (in world units). Using double instead of int to avoid type
-	 * convertion in getArea().
+	 * conversion in getArea().
 	 */
 	private double width;
 
 	/**
 	 * The height (in world units). Using double instead of int to avoid type
-	 * convertion in getArea().
+	 * conversion in getArea().
 	 */
 	private double height;
 
@@ -479,9 +479,9 @@ public abstract class Entity extends RPObject {
 	public boolean nextTo(Entity entity, double step) {
 		Rectangle2D thisArea = getArea();
 		Rectangle2D otherArea = entity.getArea();
-		thisArea.setRect(thisArea.getX() - step, thisArea.getY() - step,
+		thisArea.setRect(thisArea.getX(), thisArea.getY(),
 				thisArea.getWidth() + step, thisArea.getHeight() + step);
-		otherArea.setRect(otherArea.getX() - step, otherArea.getY() - step,
+		otherArea.setRect(otherArea.getX(), otherArea.getY(),
 				otherArea.getWidth() + step, otherArea.getHeight() + step);
 
 		return thisArea.intersects(otherArea);
