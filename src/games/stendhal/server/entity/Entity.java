@@ -259,7 +259,7 @@ public abstract class Entity extends RPObject {
 	/**
 	 * is this entity not moving
 	 *
-	 * TODO: Remove after the StendhalNavigableEntities dependancy is gone
+	 * TODO: Remove after the StendhalNavigableEntities dependency is gone
 	 *
 	 * @return true, if it stopped, false if it is moving
 	 */

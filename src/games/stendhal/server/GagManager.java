@@ -76,7 +76,7 @@ public class GagManager implements LoginListener {
 		}
 
 		// Set the gag
-		long expireDate = System.currentTimeMillis() + (1000L * 60L * minutes); // Miliseconds
+		long expireDate = System.currentTimeMillis() + (1000L * 60L * minutes); // Milliseconds
 		criminal.setQuest("gag", "" + expireDate);
 
 		// Send messages
@@ -178,9 +178,9 @@ public class GagManager implements LoginListener {
 	}
 
 	/*
-	 * gets time remaining in miliseconds
+	 * gets time remaining in milliseconds
 	 *
-	 * @param inmate player to check @return time remaining in miliseconds
+	 * @param inmate player to check @return time remaining in milliseconds
 	 */
 	public long getTimeRemaining(Player criminal) {
 		if (!isGagged(criminal)) {

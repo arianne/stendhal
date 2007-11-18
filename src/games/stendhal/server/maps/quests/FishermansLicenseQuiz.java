@@ -107,7 +107,7 @@ public class FishermansLicenseQuiz extends AbstractQuest {
 			return 0L;
 		}
 		long timeLastFailed = Long.parseLong(player.getQuest(QUEST_SLOT));
-		long delay = 60 * 60 * 24 * 1000; // Miliseconds in a day
+		long delay = 60 * 60 * 24 * 1000; // Milliseconds in a day
 		long timeRemaining = timeLastFailed + delay
 				- System.currentTimeMillis();
 
