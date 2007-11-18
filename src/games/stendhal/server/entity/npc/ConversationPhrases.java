@@ -11,6 +11,7 @@ import java.util.List;
 public class ConversationPhrases {
 
 	// do not use a mutable list here
+	@SuppressWarnings("unchecked")
 	public static final List<String> EMPTY = Arrays.asList();
 
 	public static final List<String> GREETING_MESSAGES = Arrays.asList("hi", "hello", "greetings", "hola");
