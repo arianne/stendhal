@@ -4,7 +4,6 @@ package games.stendhal.server.script;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.SpeakerNPC.ChatCondition;
 import games.stendhal.server.entity.npc.fsm.PreTransitionCondition;
 import games.stendhal.server.entity.npc.fsm.Transition;
 import games.stendhal.server.entity.npc.fsm.TransitionList;
