@@ -232,11 +232,12 @@
 			<compilerarg value="utf-8"/>
 			<compilerarg value="-Xlint:unchecked"/>
 
+			<!-- Only include the libraries which are distributed to detect
+				 unwanted dependencies (i. e. .jar which are not part of the 
+				client-distribution) during compile time -->
 			<classpath>
 				<pathelement path="${marauroa_jar}"/>
 				<pathelement path="${log4j_jar}"/>
-				<pathelement path="${junit_jar}"/>
-				<pathelement path="${groovy_jar}"/>
 			</classpath>
 		</javac>
 
