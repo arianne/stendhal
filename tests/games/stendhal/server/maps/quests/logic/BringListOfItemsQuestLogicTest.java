@@ -9,6 +9,7 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -30,6 +31,7 @@ public class BringListOfItemsQuestLogicTest {
 	@BeforeClass
 	public static void setupClass() {
 		Log4J.init();
+		assertTrue(MockStendhalRPRuleProcessor.get() instanceof MockStendhalRPRuleProcessor);
 		PlayerHelper.generatePlayerRPClasses();
 		PlayerHelper.generateItemRPClasses();
 	}

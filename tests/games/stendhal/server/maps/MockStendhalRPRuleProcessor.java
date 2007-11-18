@@ -1,15 +1,17 @@
 package games.stendhal.server.maps;
 
+import static org.junit.Assert.assertTrue;
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.entity.player.Player;
 
 public class MockStendhalRPRuleProcessor extends StendhalRPRuleProcessor {
 
-	//FIX The singleton pattern in the super class StendhalRPRuleProcessor conflicts with this one here.
 	public static StendhalRPRuleProcessor get() {
 		if (instance == null) {
 			instance = new MockStendhalRPRuleProcessor();
-
+		} else {
+			assertTrue("JUnit tests should only use MockStendhalRPRuleProcessor, not StendhalRPRuleProcessor",
+						instance instanceof MockStendhalRPRuleProcessor);
 		}
 
 		return instance;
