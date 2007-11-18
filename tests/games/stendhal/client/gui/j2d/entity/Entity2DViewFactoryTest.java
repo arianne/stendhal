@@ -30,7 +30,7 @@ import games.stendhal.client.entity.Spell;
 import games.stendhal.client.entity.StackableItem;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.entity.WellSource;
-
+import marauroa.common.Log4J;
 
 import org.junit.After;
 import org.junit.Before;
@@ -42,6 +42,8 @@ public class Entity2DViewFactoryTest {
 
 	@Before
 	public void setUp() throws Exception {
+		Log4J.init();
+
 		GameScreen.setDefaultScreen(new MockScreen());
 	}
 
