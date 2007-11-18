@@ -104,7 +104,7 @@ class SourceObject extends MoveableObject {
 				item = (Item) entity;
 			}
 
-			if (isItemBelowOtherPlayer()) {
+			if ((item != null) && isItemBelowOtherPlayer()) {
 				item = null;
 			}
 		}
