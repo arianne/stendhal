@@ -347,10 +347,6 @@
 		</signjar>
 	</target>
 
-
-	<target name="distworking" description="use dist instead">
-		<echo>Deprecated: Please use ant dist</echo>
-	</target>
 	<target name="dist" depends="sign_jars, dist_binary, dist_source" description="Creates all the packages needed for a Stendhal release"/>
 	<target name="dist_binary" depends="dist_server_binary,dist_client_binary,dist_client_no_sound_binary,dist_client_starter"/>
 
@@ -481,7 +477,7 @@
 	<target name="rendermaps" description="Converts the *.tmx files to PNG images scaled 1:16">
 		<mkdir dir="${build_tiled_convertmaps}"/>
 
-		<javac srcdir="${src}" destdir="${build_tiled_convertmaps}" debug="${javac.debug}" debuglevel="${javac.debuglevel}" deprecation="${javac.deprecation}">
+		<javac srcdir="${src}" destdir="${build_tiled_convertmaps}" source="1.5" target="1.5" debug="${javac.debug}" debuglevel="${javac.debuglevel}" deprecation="${javac.deprecation}">
 			<include name="games/stendhal/tools/MapConverter.java"/>
 
 			<compilerarg value="-encoding"/>
@@ -514,7 +510,7 @@
 	<target name="updatemaps" description="Load and save TMX files to fix tilesets changes.">
 		<mkdir dir="${build_tiled_convertmaps}"/>
 
-		<javac srcdir="${src}" destdir="${build_tiled_convertmaps}" debug="${javac.debug}" debuglevel="${javac.debuglevel}" deprecation="${javac.deprecation}">
+		<javac srcdir="${src}" destdir="${build_tiled_convertmaps}" source="1.5" target="1.5" debug="${javac.debug}" debuglevel="${javac.debuglevel}" deprecation="${javac.deprecation}">
 			<include name="games/stendhal/tools/MapUpdater.java"/>
 
 			<compilerarg value="-encoding"/>
