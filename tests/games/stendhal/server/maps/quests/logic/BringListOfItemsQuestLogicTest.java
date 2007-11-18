@@ -44,7 +44,7 @@ public class BringListOfItemsQuestLogicTest {
 	public void tearDown() throws Exception {
 	}
 
-	@Test
+	@Test (expected= IllegalArgumentException.class)
 	public final void testBringListOfItemsQuestLogic() {
 		BringListOfItemsQuestLogic logic = new BringListOfItemsQuestLogic(
 				new NullValueMockBringListOfItemsQuest());
