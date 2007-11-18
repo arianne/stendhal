@@ -479,6 +479,14 @@ public abstract class Entity extends RPObject {
 	public boolean nextTo(Entity entity, double step) {
 		Rectangle2D thisArea = getArea();
 		Rectangle2D otherArea = entity.getArea();
+
+		// To check the overlapping between 'this' and the other 'entity'
+		// we create two temporary rectangle objects and initialise them
+		// with the position of the two entities.
+		// The size is calculated from the original objects with the additional
+		// 'step' distance on both sides of the two rectangles.
+		// As the absolute position is not important, 'step' need not be
+		// subtracted from the values of getX() and getY().
 		thisArea.setRect(thisArea.getX(), thisArea.getY(),
 				thisArea.getWidth() + step, thisArea.getHeight() + step);
 		otherArea.setRect(otherArea.getX(), otherArea.getY(),
