@@ -1,5 +1,6 @@
 package games.stendhal.server.events;
 
+import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.player.Player;
 
 /**
@@ -69,8 +70,11 @@ public class TutorialNotifier {
 	 * @param player Player
 	 */
 	public static void move(Player player) {
-		if (player.getZone().getName().equals("int_semos_townhall")) {
-			process(player, TutorialEventType.FIRST_MOVE);
+		StendhalRPZone zone = player.getZone();
+		if (zone != null) {
+			if (zone.getName().equals("int_semos_townhall")) {
+				process(player, TutorialEventType.FIRST_MOVE);
+			}
 		}
 	}
 
