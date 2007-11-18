@@ -9,10 +9,8 @@ package games.stendhal.client.sprite;
 //
 //
 
-import games.stendhal.server.script.AdminMaker;
-
-import java.util.Arrays;
 import java.awt.Graphics;
+import java.util.Arrays;
 
 import org.apache.log4j.Logger;
 
@@ -20,7 +18,7 @@ import org.apache.log4j.Logger;
  * This is a sprite that transparently animates itself when drawn.
  */
 public class AnimatedSprite implements Sprite {
-	private static Logger logger = Logger.getLogger(AdminMaker.class);
+	private static Logger logger = Logger.getLogger(AnimatedSprite.class);
 
 	/**
 	 * The identifier reference.
