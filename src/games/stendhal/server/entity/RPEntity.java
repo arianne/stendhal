@@ -1037,7 +1037,7 @@ public abstract class RPEntity extends GuidedEntity {
 	 * @param item
 	 *            the item
 	 * @param putOnGroundIfItCannotEquiped
-	 *            put it on ground if it cannot equiped.
+	 *            put it on ground if it cannot equipped.
 	 * @return true if the item can be equipped, else false
 	 */
 	public boolean equip(Item item, boolean putOnGroundIfItCannotEquiped) {
@@ -1195,14 +1195,14 @@ public abstract class RPEntity extends GuidedEntity {
 	}
 
 	/**
-	 * Determine if this entity is equiped with a minimum quantity of an item.
+	 * Determine if this entity is equipped with a minimum quantity of an item.
 	 *
 	 * @param name
 	 *            The item name.
 	 * @param amount
 	 *            The minimum amount.
 	 *
-	 * @return <code>true</code> if the item is equiped with the minimum
+	 * @return <code>true</code> if the item is equipped with the minimum
 	 *         number.
 	 */
 	public boolean isEquipped(String name, int amount) {
@@ -1234,12 +1234,12 @@ public abstract class RPEntity extends GuidedEntity {
 	}
 
 	/**
-	 * Determine if this entity is equiped with an item.
+	 * Determine if this entity is equipped with an item.
 	 *
 	 * @param name
 	 *            The item name.
 	 *
-	 * @return <code>true</code> if the item is equiped.
+	 * @return <code>true</code> if the item is equipped.
 	 */
 	public boolean isEquipped(String name) {
 		return isEquipped(name, 1);

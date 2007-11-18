@@ -166,7 +166,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	}
 
 	/**
-	 * on which slots may this item be equiped
+	 * on which slots may this item be equipped
 	 *
 	 * @param slots
 	 *            list of allowed slots

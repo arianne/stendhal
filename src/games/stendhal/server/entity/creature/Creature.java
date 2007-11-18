@@ -548,18 +548,18 @@ public class Creature extends NPC {
 
 
 	public void equip(List<EquipItem> items) {
-		for (EquipItem equipedItem : items) {
-			if (!hasSlot(equipedItem.slot)) {
-				addSlot(new EntitySlot(equipedItem.slot));
+		for (EquipItem equippedItem : items) {
+			if (!hasSlot(equippedItem.slot)) {
+				addSlot(new EntitySlot(equippedItem.slot));
 			}
 
-			RPSlot slot = getSlot(equipedItem.slot);
+			RPSlot slot = getSlot(equippedItem.slot);
 			EntityManager manager = StendhalRPWorld.get().getRuleManager().getEntityManager();
 
-			Item item = manager.getItem(equipedItem.name);
+			Item item = manager.getItem(equippedItem.name);
 
 			if (item instanceof StackableItem) {
-				((StackableItem) item).setQuantity(equipedItem.quantity);
+				((StackableItem) item).setQuantity(equippedItem.quantity);
 			}
 
 			slot.add(item);

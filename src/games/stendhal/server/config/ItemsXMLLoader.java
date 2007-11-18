@@ -41,7 +41,7 @@ public class ItemsXMLLoader extends DefaultHandler {
 
 	private int value;
 
-	/** slots where this item can be equiped */
+	/** slots where this item can be equipped */
 	private List<String> slots;
 
 	/** Attributes of the item */

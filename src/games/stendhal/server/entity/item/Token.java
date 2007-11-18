@@ -17,7 +17,7 @@ import games.stendhal.server.entity.player.Player;
 import java.util.Map;
 
 /**
- * Tokens are items which tigger an event on movement. They may not be equiped.
+ * Tokens are items which trigger an event on movement. They may not be equipped.
  *
  * @author hendrik
  */

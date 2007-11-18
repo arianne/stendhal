@@ -48,7 +48,7 @@ public class DefaultItem {
 	@SuppressWarnings("unused")
 	private double weight;
 
-	/** slots where this item can be equiped */
+	/** slots where this item can be equipped */
 	private List<String> slots;
 
 	/** Map Tile Id */

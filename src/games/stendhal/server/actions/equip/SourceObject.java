@@ -90,7 +90,7 @@ class SourceObject extends MoveableObject {
 
 			Entity entity = (Entity) baseSlot.get(baseItemId);
 			if (!(entity instanceof Item)) {
-				player.sendPrivateText("Oh, that " + entity.getDescriptionName(true) + " is not an item and can therefor not be equiped");
+				player.sendPrivateText("Oh, that " + entity.getDescriptionName(true) + " is not an item and can therefor not be equipped");
 				return;
 			}
 			item = (Item) entity;
@@ -195,7 +195,7 @@ class SourceObject extends MoveableObject {
 	}
 
 	/**
-	 * gets the entity that should be equiped
+	 * gets the entity that should be equipped
 	 *
 	 * @return entity
 	 */
