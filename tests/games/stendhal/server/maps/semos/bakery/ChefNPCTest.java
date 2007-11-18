@@ -82,7 +82,7 @@ public class ChefNPCTest {
 		en.step(player, "make");
 		assertTrue(npc.isTalking());
 		assertEquals(
-				"I can only make 1 sandwich if you bring me 1 piece of #ham, 1 loaf of #bread, and 2 pieces of #cheese.",
+				"I can only make 1 sandwich if you bring me 1 loaf of #bread, 1 piece of #ham, and 2 pieces of #cheese.",
 				npc.get("text"));
 		en.step(player, "bye");
 		assertFalse(npc.isTalking());
@@ -115,7 +115,7 @@ public class ChefNPCTest {
 		en.step(player, "make");
 		assertTrue(npc.isTalking());
 		assertEquals(
-				"I need you to fetch me 1 piece of #ham, 1 loaf of #bread, and 2 pieces of #cheese for this job. Do you have it?",
+				"I need you to fetch me 1 loaf of #bread, 1 piece of #ham, and 2 pieces of #cheese for this job. Do you have it?",
 				npc.get("text"));
 		en.step(player, "yes");
 		String[] questStatus = player.getQuest("leander_make_sandwiches")
@@ -169,7 +169,7 @@ public class ChefNPCTest {
 		en.step(player, "make 2 sandwiches");
 		assertTrue(npc.isTalking());
 		assertEquals(
-				"I need you to fetch me 2 pieces of #ham, 4 pieces of #cheese, and 2 loaves of #bread for this job. Do you have it?",
+				"I need you to fetch me 2 loaves of #bread, 2 pieces of #ham, and 4 pieces of #cheese for this job. Do you have it?",
 				npc.get("text"));
 		en.step(player, "yes");
 		String[] questStatus = player.getQuest("leander_make_sandwiches")

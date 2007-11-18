@@ -9,10 +9,10 @@ import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Node;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * Ados Goldsmith (Inside / Level 0)
@@ -66,7 +66,7 @@ public class GoldsmithNPC implements ZoneConfigurator {
 				addGoodbye("Bye");
 
 				// Joshua makes gold if you bring him gold_nugget and wood
-				Map<String, Integer> requiredResources = new HashMap<String, Integer>();
+				Map<String, Integer> requiredResources = new TreeMap<String, Integer>();	// use sorted TreeMap instead of HashMap
 				requiredResources.put("wood", 2);
 				requiredResources.put("gold_nugget", 1);
 

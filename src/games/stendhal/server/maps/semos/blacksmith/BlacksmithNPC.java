@@ -7,8 +7,8 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPCFactory;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * The blacksmith (original name: Xoderos). Brother of the goldsmith in Ados.
@@ -41,7 +41,7 @@ public class BlacksmithNPC extends SpeakerNPCFactory {
 		npc.addSeller(new SellerBehaviour(ShopList.get().get("selltools")));
 
 		// Xoderos casts iron if you bring him wood and iron ore.
-		Map<String, Integer> requiredResources = new HashMap<String, Integer>();
+		Map<String, Integer> requiredResources = new TreeMap<String, Integer>();	// use sorted TreeMap instead of HashMap
 		requiredResources.put("wood", 1);
 		requiredResources.put("iron_ore", 1);
 

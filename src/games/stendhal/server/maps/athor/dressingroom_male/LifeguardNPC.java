@@ -8,6 +8,7 @@ import games.stendhal.server.entity.npc.SpeakerNPCFactory;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * Dressing rooms at the Athor island beach (Inside / Level 0)
@@ -28,7 +29,7 @@ public class LifeguardNPC extends SpeakerNPCFactory {
 		npc.addOutfitChanger(behaviour, "borrow");
 
 		// stuff needed for the SuntanCreamForZara quest
-		Map<String, Integer> requiredResources = new HashMap<String, Integer>();
+		Map<String, Integer> requiredResources = new TreeMap<String, Integer>();	// use sorted TreeMap instead of HashMap
 		requiredResources.put("arandula", 1);
 		requiredResources.put("kokuda", 1);
 		requiredResources.put("minor_potion", 1);

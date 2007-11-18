@@ -7,9 +7,9 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
 
 import java.util.Date;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * The behaviour of an NPC who is able to produce something for a player if the
@@ -176,7 +176,7 @@ public class ProducerBehaviour extends Behaviour {
 	 * @return A string describing the required resources.
 	 */
 	private String getRequiredResourceNamesWithHashes(int amount) {
-		Set<String> requiredResourcesWithHashes = new HashSet<String>();
+		Set<String> requiredResourcesWithHashes = new TreeSet<String>();	// use sorted TreeSet instead of HashSet
 		for (Map.Entry<String, Integer> entry : getRequiredResourcesPerItem()
 				.entrySet()) {
 			requiredResourcesWithHashes.add(Grammar.quantityplnoun(amount

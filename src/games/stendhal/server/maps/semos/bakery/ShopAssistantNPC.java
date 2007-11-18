@@ -4,8 +4,8 @@ import games.stendhal.server.entity.npc.ProducerBehaviour;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPCFactory;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * A woman who bakes bread for players.
@@ -23,7 +23,7 @@ public class ShopAssistantNPC extends SpeakerNPCFactory {
 		npc.addGoodbye();
 
 		// Erna bakes bread if you bring her flour.
-		Map<String, Integer> requiredResources = new HashMap<String, Integer>();
+		Map<String, Integer> requiredResources = new TreeMap<String, Integer>();
 		requiredResources.put("flour", 2);
 
 		ProducerBehaviour behaviour = new ProducerBehaviour("erna_bake_bread",

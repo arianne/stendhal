@@ -4,8 +4,8 @@ import games.stendhal.server.entity.npc.ProducerBehaviour;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPCFactory;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * The miller (original name: Jenny). She mills flour for players who bring
@@ -22,7 +22,7 @@ public class MillerNPC extends SpeakerNPCFactory {
 		npc.addGoodbye();
 
 		// Jenny mills flour if you bring her grain.
-		Map<String, Integer> requiredResources = new HashMap<String, Integer>();
+		Map<String, Integer> requiredResources = new TreeMap<String, Integer>();
 		requiredResources.put("grain", 5);
 
 		ProducerBehaviour behaviour = new ProducerBehaviour("jenny_mill_flour",

@@ -11,9 +11,9 @@ import games.stendhal.server.util.TimeUtil;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * QUEST: The Vampire Sword
@@ -140,7 +140,7 @@ public class VampireSword extends AbstractQuest {
 						Arrays.asList("empty_goblet", "goblet"),
 						"Only a powerful talisman like this cauldron or a special goblet should contain blood.");
 
-		Map<String, Integer> requiredResources = new HashMap<String, Integer>();
+		Map<String, Integer> requiredResources = new TreeMap<String, Integer>();	// use sorted TreeMap instead of HashMap
 		requiredResources.put("vampirette_entrails", 7);
 		requiredResources.put("bat_entrails", 7);
 		requiredResources.put("skull_ring", 1);

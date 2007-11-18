@@ -4,8 +4,8 @@ import games.stendhal.server.entity.npc.ProducerBehaviour;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPCFactory;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * The healer (original name: Valo). He makes mega potions. 
@@ -26,7 +26,7 @@ public class HealerNPC extends SpeakerNPCFactory {
 	    npc.addGoodbye("Fare thee well.");
 
 		// Valo makes mega potions if you bring giant heart and money
-		Map<String, Integer> requiredResources = new HashMap<String, Integer>();
+		Map<String, Integer> requiredResources = new TreeMap<String, Integer>();	// use sorted TreeMap instead of HashMap
 		requiredResources.put("money", 20);
 		requiredResources.put("giant_heart", 1);
 		ProducerBehaviour behaviour = new ProducerBehaviour("Valo_concoct_potion",

@@ -9,10 +9,10 @@ import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Node;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * Builds the bakery baker NPC.
@@ -84,7 +84,7 @@ public class BakerNPC implements ZoneConfigurator {
 				addGoodbye();
 
 				// Linzo makes fish pies if you bring him flour, leek, cod and mackerel
-				Map<String, Integer> requiredResources = new HashMap<String, Integer>();
+				Map<String, Integer> requiredResources = new TreeMap<String, Integer>();	// use sorted TreeMap instead of HashMap
 				requiredResources.put("flour", 1);
 				requiredResources.put("cod", 2);
 				requiredResources.put("mackerel", 1);
