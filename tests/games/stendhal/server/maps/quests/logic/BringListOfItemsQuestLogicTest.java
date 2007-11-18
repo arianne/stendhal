@@ -362,7 +362,7 @@ public class BringListOfItemsQuestLogicTest {
 		}
 
 		public void rewardPlayer(Player player) {
-			// TODO Auto-generated method stub
+		//TODO: implement me
 
 		}
 
