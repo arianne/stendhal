@@ -77,7 +77,7 @@ public abstract class StateEntity2DView extends Entity2DView {
 	 * @param state
 	 *            The state.
 	 *
-	 * @return The appropriete sprite for the given state.
+	 * @return The appropriate sprite for the given state.
 	 */
 	protected Sprite getSprite(final Object state) {
 		return sprites.get(state);
@@ -93,7 +93,7 @@ public abstract class StateEntity2DView extends Entity2DView {
 	/**
 	 * Get the current animated sprite.
 	 *
-	 * @return The appropriete sprite for the current state.
+	 * @return The appropriate sprite for the current state.
 	 */
 	protected Sprite getStateSprite() {
 		Object state = getState();

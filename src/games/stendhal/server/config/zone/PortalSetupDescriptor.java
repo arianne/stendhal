@@ -132,7 +132,7 @@ public class PortalSetupDescriptor extends EntitySetupDescriptor {
 	//
 
 	/**
-	 * Do appropriete zone setup.
+	 * Do appropriate zone setup.
 	 *
 	 * @param	zone		The zone.
 	 */

@@ -81,7 +81,7 @@ public class Ring2DView extends Item2DView {
 	}
 
 	/**
-	 * Get the appropriete sprite for the current state.
+	 * Get the appropriate sprite for the current state.
 	 *
 	 * @return A sprite.
 	 */

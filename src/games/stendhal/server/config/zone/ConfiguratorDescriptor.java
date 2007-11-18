@@ -59,7 +59,7 @@ public class ConfiguratorDescriptor extends SetupDescriptor {
 	//
 
 	/**
-	 * Do appropriete zone setup.
+	 * Do appropriate zone setup.
 	 *
 	 * @param	zone		The zone.
 	 */

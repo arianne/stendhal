@@ -105,7 +105,7 @@ public class WoodStyle implements Style {
 	}
 
 	/**
-	 * Get the foreground color appropriete for the background texture.
+	 * Get the foreground color appropriate for the background texture.
 	 *
 	 * @return	A color.
 	 */

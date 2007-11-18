@@ -124,7 +124,7 @@ public abstract class StendhalGUI extends StendhalUI {
 	 * @param type
 	 *	The notification type.
 	 *
-	 * @return The appropriete color.
+	 * @return The appropriate color.
 	 */
 	public Color getNotificationColor(final NotificationType type) {
 		switch (type) {

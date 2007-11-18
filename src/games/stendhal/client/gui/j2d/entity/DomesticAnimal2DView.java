@@ -170,7 +170,7 @@ public abstract class DomesticAnimal2DView extends RPEntity2DView {
 	//
 
 	/**
-	 * Get the appropriete named state for a direction.
+	 * Get the appropriate named state for a direction.
 	 *
 	 * @param direction
 	 *            The direction.

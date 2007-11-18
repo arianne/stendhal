@@ -43,7 +43,7 @@ public interface Style {
 	Font getFont();
 
 	/**
-	 * Get the foreground color appropriete for the background texture.
+	 * Get the foreground color appropriate for the background texture.
 	 *
 	 * @return	A color.
 	 */

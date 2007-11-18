@@ -711,7 +711,7 @@ public class j2DClient extends StendhalUI {
 	 * @param type
 	 *            The notification type.
 	 *
-	 * @return The appropriete color.
+	 * @return The appropriate color.
 	 */
 	public Color getNotificationColor(NotificationType type) {
 		switch (type) {
