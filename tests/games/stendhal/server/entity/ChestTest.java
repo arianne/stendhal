@@ -52,12 +52,6 @@ public class ChestTest {
 
 
 	@Test
-	@Ignore
-	public final void testGetContent() {
-
-	}
-
-	@Test
 	public final void testOnUsed() {
 		Entity.generateRPClass();
 		Chest.generateRPClass();

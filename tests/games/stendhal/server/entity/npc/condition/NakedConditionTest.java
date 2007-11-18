@@ -25,12 +25,6 @@ public class NakedConditionTest {
 	}
 
 	@Test
-	@Ignore
-	public final void testHashCode() {
-		fail("Not yet implemented");
-	}
-
-	@Test
 	public final void testFire() {
 		Player bob = PlayerTestHelper.createPlayer();
 		bob.setOutfit(new Outfit(0));
@@ -48,11 +42,6 @@ public class NakedConditionTest {
 		assertEquals("naked?", new NakedCondition().toString());
 	}
 
-	@Ignore
-	@Test
 
-	public final void testEqualsObject() {
-		fail("Not yet implemented");
-	}
 
 }

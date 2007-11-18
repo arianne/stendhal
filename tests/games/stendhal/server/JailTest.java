@@ -72,11 +72,7 @@ public class JailTest {
 
 	}
 
-	@Test
-	@Ignore
-	public final void testRelease() {
-		fail("Not yet implemented");
-	}
+
 
 	@Test
 	public final void testIsInJail() throws Exception {
@@ -102,10 +98,6 @@ public class JailTest {
 
 	}
 
-	@Test
-	@Ignore
-	public final void testOnLoggedIn() {
-		fail("Not yet implemented");
-	}
+
 
 }
