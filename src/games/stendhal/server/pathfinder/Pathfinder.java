@@ -313,13 +313,13 @@ class Pathfinder {
 	 * calculates the manhattan distance between to positions
 	 *
 	 * @param x1
-	 *            x value for postion 1
+	 *            x value for position 1
 	 * @param y1
-	 *            y value for postion 1
+	 *            y value for position 1
 	 * @param x2
-	 *            x value for postion 2
+	 *            x value for position 2
 	 * @param y2
-	 *            y value for postion 2
+	 *            y value for position 2
 	 * @return manhattan distance between to positions
 	 */
 	private static int manhattanDistance(int x1, int y1, int x2, int y2) {
@@ -330,13 +330,13 @@ class Pathfinder {
 	 * calculates the square distance between to positions
 	 *
 	 * @param x1
-	 *            x value for postion 1
+	 *            x value for position 1
 	 * @param y1
-	 *            y value for postion 1
+	 *            y value for position 1
 	 * @param x2
-	 *            x value for postion 2
+	 *            x value for position 2
 	 * @param y2
-	 *            y value for postion 2
+	 *            y value for position 2
 	 * @return square distance between to positions
 	 */
 	private static int squareDistance(int x1, int y1, int x2, int y2) {

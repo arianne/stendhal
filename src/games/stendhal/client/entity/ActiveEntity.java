@@ -117,13 +117,13 @@ public abstract class ActiveEntity extends Entity {
 
 	/**
 	 * calculates the movement if the server an client are out of sync. for some
-	 * miliseconds. (server turns are not exactly 300 ms) Most times this will
+	 * milliseconds. (server turns are not exactly 300 ms) Most times this will
 	 * slow down the client movement
 	 *
 	 * @param clientPos
-	 *            the postion the client has calculated
+	 *            the position the client has calculated
 	 * @param serverPos
-	 *            the postion the server has reported
+	 *            the position the server has reported
 	 * @param delta
 	 *            the movement based on direction
 	 * @return the new delta to correct the movement error

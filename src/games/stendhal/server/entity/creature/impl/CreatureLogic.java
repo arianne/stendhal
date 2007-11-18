@@ -352,7 +352,7 @@ public class CreatureLogic {
 		// The higher the distance, the higher is the chance to move
 		if (distance > rand) {
 
-			// move randomly but give closer postions a higher chance
+			// move randomly but give closer positions a higher chance
 			double nextRndDistance = distance + Rand.rand(7);
 
 			for (Direction dir : Direction.values()) {
