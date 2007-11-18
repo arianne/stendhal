@@ -36,20 +36,6 @@ public class ChestTest {
 		ch.add(new PassiveEntity() {});
 	}
 
-	@Test (expected= SlotIsFullException.class)
-	public final void testChestRPObject() {
-		Entity.generateRPClass();
-		Chest.generateRPClass();
-		Chest ch = new Chest(new RPObject());
-		assertEquals(0, ch.size());
-		for (int i = 0; i < 4; i++) {
-
-			ch.add(new PassiveEntity() {});
-		}
-
-	}
-
-
 	@Test
 	public final void testOpen() {
 		Entity.generateRPClass();
