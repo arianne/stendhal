@@ -18,19 +18,13 @@ import games.stendhal.client.gui.wt.EntityContainer;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 
-
-//import org.apache.log4j.Logger;
-
 import java.util.List;
 
 /**
  * The 2D view of a corpse.
  */
 public class Corpse2DView extends Entity2DView {
-	/**
-	 * Log4J.
-	 */
-//	private static final Logger logger = Logger.getLogger(Corpse2DView.class);
+
 
 	/**
 	 * The RP entity this view is for.
