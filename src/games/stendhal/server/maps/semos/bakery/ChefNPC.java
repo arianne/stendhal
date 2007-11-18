@@ -45,6 +45,6 @@ public class ChefNPC extends SpeakerNPCFactory {
 				requiredResources, 3 * 60);
 
 		npc.addProducer(behaviour,
-				"Hallo! Glad to see you in my kitchen where I make #pizza and #sandwiches.");
+				"Hello! Glad to see you in my kitchen where I make #pizza and #sandwiches.");
 	}
 }
