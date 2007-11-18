@@ -50,7 +50,7 @@ k*/building/decoration/orbpedestal.png
 ./building/decoration/webs.png
 k/building/decoration/wooden_banisters.png     
 ./building/decoration/fireplace_purple.png    not found
-./building/decoration/wall_feature.png
+K*./building/decoration/wall_feature.png but all i did was make it a plain wall!
 k*/building/door/closed.png
 k*/building/door/closed_with_key.png
 k*/building/door/closed_with_notice.png
@@ -131,7 +131,7 @@ K*./building/wall/int_wall_fancy_purple.png
 K*./building/wall/int_wall_brick_wood.png
 ./building/wall/bricked_edges.png
 ./building/window/broken_window.png
-./building/window/int_windows_dark_red.png
+K*./building/window/int_windows_dark_red.png
 ./building/window/painted.png
 k*/building/window/window_left.png
 k*/building/window/window_right.png
@@ -156,7 +156,7 @@ k/ground/ground_2.png
 ./ground/mud_2.png
 k*/ground/mud_patch.png
 k*/ground/pothole.png
-./ground/spikes.png
+z*./ground/spikes.png
 k*/ground/square_patch.png
 k*/ground/square_paving.png
 k*/ground/fire/fire.png
@@ -189,8 +189,8 @@ K*/ground/ridge/ice_2.png
 ./ground/rock/misc_black.png         not found
 k*/ground/rock/pebbles.png
 ./ground/rock/rock_cluster.png
-m/ground/rock/rocks.png
-m/ground/rock/rocks_2.png
+m*/ground/rock/rocks.png
+m*/ground/rock/rocks_2.png
 k*/ground/water/channels_grassy.png
 k*/ground/water/channels_icy.png
 k*/ground/water/dungeon_water.png
@@ -226,7 +226,7 @@ k*/item/sign_large.png
 K*/item/armor/armor.png
 ./item/armor/sword_rack.png
 ./item/armor/weapons_rack.png
-./item/blood/floor_stain.png
+k*./item/blood/floor_stain.png
 ./item/blood/floor_stains_2.png
 k*/item/blood/nsew_stains.png
 b*/item/candle/candelbra.png
@@ -263,8 +263,8 @@ D/item/furniture/carpet/rug_border.png
 D/item/furniture/carpet/black_grey.png
 D/item/furniture/carpet/stripey.png
 b*/item/furniture/chair/stool.png
-m/item/furniture/chair/throne.png
-./item/furniture/chair/throne_small.png
+m*/item/furniture/chair/throne.png
+m*./item/furniture/chair/throne_small.png
 b*/item/furniture/chair/wooden.png
 b*/item/furniture/chair/wooden_pale.png
 ./item/furniture/clock/wooden_clock.png
@@ -289,9 +289,9 @@ b*/item/furniture/other/warmer.png
 ./item/furniture/picture/large_island.png
 ./item/furniture/picture/projectleader.png
 ./item/furniture/picture/small.png
-b/item/furniture/shelve/bright_bookshelf.png
-b/item/furniture/shelve/bright_bookshelf_and_cupboard.png
-b/item/furniture/shelve/dark_bookshelf.png
+b*/item/furniture/shelve/bright_bookshelf.png
+b*/item/furniture/shelve/bright_bookshelf_and_cupboard.png
+b*/item/furniture/shelve/dark_bookshelf.png
 b*/item/furniture/shelve/dark_bottle_shelf.png
 b/item/furniture/shelve/narrow_bookshelf.png
 b*/item/furniture/shelve/pale_book_bottle_shelf.png
@@ -306,7 +306,7 @@ k*/item/furniture/statue/green_stone_2.png
 k*/item/furniture/statue/green_stone_3.png
 ./item/furniture/statue/grey_stone.png           not found
 ./item/furniture/statue/metal_and_stone.png        not found
-./item/furniture/table/fancy_blue_red.png
+K*./item/furniture/table/fancy_blue_red.png
 ./item/furniture/table/grey_dark.png
 ./item/furniture/table/grey_fancy.png
 ./item/furniture/table/grey_long.png
@@ -315,8 +315,8 @@ k*/item/furniture/statue/green_stone_3.png
 b*/item/furniture/table/long_front_on.png
 b*/item/furniture/table/long_front_on_pale.png
 b*/item/furniture/table/long_side_on_pale.png
-m/item/furniture/table/orb_table.png
-./item/furniture/table/rectangular_with_meals.png
+m*/item/furniture/table/orb_table.png
+K*./item/furniture/table/rectangular_with_meals.png
 b/item/furniture/table/square_pale.png
 b/item/furniture/table/table_with_beer.png
 b*/item/furniture/table/table_with_beer_dark.png
@@ -340,8 +340,8 @@ b*/item/pot/pot_burgundy.png
 K*/item/pot/pot_golden.png
 k*/item/pot/pot_golden_centred.png
 b*/item/pot/pot_grey.png
-F/item/pot/pot_on_metal.png
-F/item/pot/pot_on_stone.png
+F*/item/pot/pot_on_metal.png
+F*/item/pot/pot_on_stone.png
 b*/item/pot/pot_purple.png
 K*/item/pot/pot_tall.png
 b*/item/pot/small_barrel.png
@@ -352,10 +352,10 @@ k*/object/church.png
 ./object/letters.png
 ./object/mine_rails.png
 ./object/stalactite.png
-m/object/suspension_bridge.png
+m*/object/suspension_bridge.png
 k*/object/well.png
 k*/object/witch_hut.png
-K/m/plant/cactus.png
+K*/m*/plant/cactus.png
 ./plant/grass.png       not found
 k*/plant/grass_2.png
 k*/plant/grass_corners.png
