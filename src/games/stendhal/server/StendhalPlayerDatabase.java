@@ -346,6 +346,24 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 		}
 	}
 
+	/**
+	 * close the database connection
+	 * TODO This function is not yet used, it should be called
+	 * for clean shutdown of the game server. 
+	 */
+	public static void closeDatabase() {
+		try {
+			if (playerDatabase != null) {
+				logger.info("closing Stendhal JDBC Database");
+				playerDatabase.close();
+			}
+
+			playerDatabase = null;
+		} catch(Exception e) {
+			logger.error("cannot close database connection", e);
+		}
+	}
+
 	class PlayerIterator implements Iterator<RPObject> {
 		private ResultSet result;
 
