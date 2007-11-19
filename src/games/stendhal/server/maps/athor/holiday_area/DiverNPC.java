@@ -9,7 +9,7 @@ public class DiverNPC extends SpeakerNPCFactory {
 
 	@Override
 	protected void createDialog(SpeakerNPC npc) {
-		npc.addGreeting("Hello, my friend!");
+		npc.addGreeting("Hallo, my friend!");
 		npc.add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES, null,
 		        ConversationStates.ATTENDING, "No, thank you, I do not need help!", null);
 		npc.addJob("I am a diver, but I cannot see a single fish at the moment!");

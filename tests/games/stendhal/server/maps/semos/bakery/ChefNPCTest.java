@@ -59,7 +59,7 @@ public class ChefNPCTest {
 		en.step(player, "hi");
 		assertTrue(npc.isTalking());
 		assertEquals(
-				"Hello! Glad to see you in my kitchen where I make #pizza and #sandwiches.",
+				"Hallo! Glad to see you in my kitchen where I make #pizza and #sandwiches.",
 				npc.get("text"));
 		en.step(player, "bye");
 		assertFalse(npc.isTalking());
@@ -73,7 +73,7 @@ public class ChefNPCTest {
 		en.step(player, "hi");
 		assertTrue(npc.isTalking());
 		assertEquals(
-				"Hello! Glad to see you in my kitchen where I make #pizza and #sandwiches.",
+				"Hallo! Glad to see you in my kitchen where I make #pizza and #sandwiches.",
 				npc.get("text"));
 		en.step(player, "make");
 		assertTrue(npc.isTalking());
@@ -91,7 +91,7 @@ public class ChefNPCTest {
 		en.step(player, "hi");
 		assertTrue(npc.isTalking());
 		assertEquals(
-				"Hello! Glad to see you in my kitchen where I make #pizza and #sandwiches.",
+				"Hallo! Glad to see you in my kitchen where I make #pizza and #sandwiches.",
 				npc.get("text"));
 		StackableItem cheese = new StackableItem("cheese", "", "", null);
 		cheese.setQuantity(2);
@@ -144,7 +144,7 @@ public class ChefNPCTest {
 		en.step(player, "hi");
 		assertTrue(npc.isTalking());
 		assertEquals(
-				"Hello! Glad to see you in my kitchen where I make #pizza and #sandwiches.",
+				"Hallo! Glad to see you in my kitchen where I make #pizza and #sandwiches.",
 				npc.get("text"));
 		StackableItem cheese = new StackableItem("cheese", "", "", null);
 		cheese.setQuantity(4);

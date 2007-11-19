@@ -58,7 +58,7 @@ public class LifeguardNPC implements ZoneConfigurator {
 				ProducerBehaviour mixerBehaviour = new ProducerBehaviour("pamela_mix_cream",
 						"mix", "suntan_cream", requiredResources, 10 * 60);
 
-				addProducer(mixerBehaviour, "Hello!");
+				addProducer(mixerBehaviour, "Hallo!");
 
 				addReply(
 				        Arrays.asList("suntan", "cream", "suntan_cream"),

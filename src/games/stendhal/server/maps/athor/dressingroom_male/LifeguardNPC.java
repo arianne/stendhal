@@ -37,7 +37,7 @@ public class LifeguardNPC extends SpeakerNPCFactory {
 		ProducerBehaviour mixerBehaviour = new ProducerBehaviour("david_mix_cream",
 				"mix", "suntan_cream", requiredResources, 10 * 60);
 
-		npc.addProducer(mixerBehaviour, "Hello!");
+		npc.addProducer(mixerBehaviour, "Hallo!");
 
 		npc.addReply(
 		        Arrays.asList("suntan", "cream", "suntan_cream"),
