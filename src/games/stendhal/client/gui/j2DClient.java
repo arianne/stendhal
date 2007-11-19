@@ -608,6 +608,7 @@ public class j2DClient extends StendhalUI {
 			}
 
 			if (!client.isInBatchUpdate()) {
+				minimap.update_pathfind();
 				if (frame.getState() != Frame.ICONIFIED) {
 					logger.debug("Draw screen");
 					screen.draw();
