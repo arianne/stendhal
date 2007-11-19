@@ -11,5 +11,10 @@ public class PlayerTestHelper  {
 		PlayerHelper.addEmptySlots(pl);
 		return pl;
 	}
+	public static Player createPlayer(String name) {
+		Player pl = createPlayer();
+		pl.setName(name);
+		return pl;
+	}
 
 }
