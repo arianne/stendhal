@@ -364,7 +364,7 @@ k*/plant/grass_edges.png
 ./plant/grass_mud.png
 k*/plant/grasses.png
 ./plant/leaves.png
-./plant/vine.png
+m*/plant/vine.png
 ./plant/bush/blue_green.png
 z*/plant/bush/bushes.png
 k*/plant/bush/hedge.png
@@ -386,7 +386,7 @@ b./plant/indoor/small_tree.png
 ./plant/stump/int_small_stump.png
 ./plant/stump/int_small_stump_2.png
 k*/plant/stump/rectangular.png
-./plant/stump/small_stump.png
+m*/plant/stump/small_stump.png
 ./plant/stump/stump_blue_green.png
 k*/plant/stump/stump_brown.png
 k*/plant/stump/stump_green.png
