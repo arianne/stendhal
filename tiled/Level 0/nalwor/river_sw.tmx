@@ -60,6 +60,9 @@
  <tileset name="suspension bridge" firstgid="466" tilewidth="32" tileheight="32">
   <image source="../../tileset/object/suspension_bridge.png"/>
  </tileset>
+ <tileset name="elemental" firstgid="490" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/creature/elemental.png"/>
+ </tileset>
  <layer name="0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3a3UojQRSF0SDkZnyRmfd/wWFAIUg71m+fqjrrYoEXIl397SQm+vZ4PN4AAAAAAAAAAAAAILFfhaKvk5jutnCOnuY2sLeR7e1gL7Pa28AeZve3gbXd0d8O1nVnfxtYj/65lTR7f2EDZ6ntP2IL0Wemrr8NnKu3f+sGos/NuA3ov7fadl4DzhLV3wbW0bMB/fenP/rnpn9uLf172uu/Fv1z0z83r/+56Z+b/rnpn5v+ubX072mv/1r0z03/3Lz+59bSXv9z1DT3P2Dn6enfsoHo86I/4/rXbCD6rOhPTP/oc1LXv7R96Qaiz0ndBkb2jz4f5f1ru5dsIPp8lPXvaf9d/+izoT/z+3vu31dvf+33pn9u3vPl1tLf5z37m/V5b/S5qO8/qr3++3jtVdL+ajfan+H3D+3/LHCNzPPd64DHdg765/a/3wFt4Fz/mj4L+39+X/Q1M87zQ8n7vs/vnbkBzzVzO79+/ark/d/zy8+Z1d0Gxty7q86t7a828FVNu5LPkWyg776VbmBW/5Gi7/sKRt3L1vY/baD2c2I7uLf7lZb+Vxto+TuBHezVvJUNxLWO6H3XBqK7rdp7tfazNhDdUXf9dY/bQHTXVdpHN43aQHRb3fWPeq6PbrjCDqJbe7zHbiBD81O777iJu3pnbD5jD7s11338Bnq2oP067m6h/ZqiO+m9juiGWuuvu/666x99LzKKbq77WjRn1g6iz8T9W4i+dgAAAAAAAAAAAAA4yV+E9r9wAAABAA==
@@ -87,12 +90,12 @@
  </layer>
  <layer name="objects" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3bQQqAIBAAwPr/U6KgoEO/6xBBRGGUmdXMSfAiuuuiaFEAAAAAAEz68ukRAAAAALE0zvlAJO4NAQAAAAAAAAAAAAAAAACAPf4jAwAAAAAApFeV220AAACAmTeepFQH4i3UD7xHl2k+q3v3iTW3ucYOx6jl/5EqV+0JeWitw+cM1pSFs/Fgj+YO67hSg+AaNR8AAAAAAAAAAAAAAAAAAAAAAAAAAAB4wghCZdjFAAABAA==
+   H4sIAAAAAAAAAO3bQQqAIBAAQPv/U6KgoEOP6g8dIogIijKzmjkJXkTXXRQNAQAAAABg0hVPjwAAAACIpXbOByJxbwgAAAAAAAAAAHzR4G0UEOQCAAAAAIjBf2QAAAAAAID0ymK7DQAAADDzxpOUqp142+sH3qPNdD+re/eJNbe5xg7HqOX/kWqvygl5aKzD5/TWlIWz8SBHc4d1XKlBcI2aDwAAAAAAAAAAAAAAAAAAAAAAAAAAADxhBAivB7MAAAEA
   </data>
  </layer>
  <layer name="collision" width="128" height="128" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   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
+   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
   </data>
  </layer>
  <layer name="protection" width="128" height="128">
