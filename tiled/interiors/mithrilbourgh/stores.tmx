@@ -69,24 +69,27 @@
  <tileset name="carpets_2.png" firstgid="292" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/carpet/carpets_2.png"/>
  </tileset>
+ <tileset name="armor" firstgid="304" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/armor/suit_of_armor2.png"/>
+ </tileset>
  <layer name="0_floor" width="18" height="13">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNnYGBgx4Fn4JEDYWSATx0hTC1z2CkwhxEJDwZzqOWvUXPobw4IKFLJHBgAAGRg1UWoAwAA
+   H4sIAAAAAAAAAFNnZGBQx4FnMOCWGwyYnQETk2sOIxIeDOZQy1/UMGcUk44VqRzWAL13vTSoAwAA
   </data>
  </layer>
  <layer name="1_terrain" width="18" height="13">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAABNhYGDgohALAzEPEKsAsQKZWBmIuaHmyAGxOiNhjA3IjppDdXOw4ZFgjhIQy6NhQyxiMMyFxFaEmiMExJwUYkEgBgD/DH5iqAMAAA==
+   H4sIAAAAAAAAABNhYGDgohALAzEPEKsAsQKZWBmIuaHmyDGQD2RHzRk1h0wzjBlRzVECYnk0bIhFDIa5kNiKUHOEgJiTQiwIxABPmkU7qAMAAA==
   </data>
  </layer>
  <layer name="2_object" width="18" height="13">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAALXQyQrCQAyA4XkhEa++ieAzuG8H9/UiFEQEFRX07sWLK/TR/ActVMmYihj4KCSZNMSY15hgitnzO8fCfB9LrLDBGlvsIrzLIIu90pdS6gUUHbWDMKeFNjqON8E+R5xwwxUX+KE5XfTQV/ZzRTBngCFGyj6f5qQF/4oKqqj9OKeOBppCzd7+bB7390N5T+jV7vcedsZY6YkhgbhQyyEf8V82ko58CWUhfwdGXdWRqAMAAA==
+   H4sIAAAAAAAAALXQSQrCQBCF4b6QiFtvIngGjbOLOE97CYKKBpK9GzdxghzNXzSgUG0ZxYKPhq7uR1HGvNYcHhaPc4mVSV9rbOBjiwDhB/9KKGOnvCso/Spqlt5eyOmhj4HlTzJPhAMuOOOE+ClniBHGyny2SnImmGKmzPMupyj4VzXRQvvHHBcddIXebfdHc99/rORo+/umMsghK/QcVFJk5S33dTSE+ysbHuJjqAMAAA==
   </data>
  </layer>
  <layer name="3_roof" width="18" height="13">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoC5YS2XzKAUw96wH4g1AvAWINwPxJiDePoDuGUkAFPYbGSDhPxBhPtiAJRCbA7E1CXoAiwm5t6gDAAA=
+   H4sIAAAAAAAAAGNgoC5YS2XzKAUw96wH4g1AvAWINwPxJiDePoDuGUkAFPYbGSDhT4swN2SkgaE0BJZAbA7E1iToAQC18rRbqAMAAA==
   </data>
  </layer>
  <layer name="4_roof_add" width="18" height="13">
