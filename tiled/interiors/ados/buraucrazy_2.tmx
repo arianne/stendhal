@@ -111,6 +111,9 @@
  <tileset name="../../tileset/logic/protection.png" firstgid="219" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/protection.png"/>
  </tileset>
+ <tileset name="flower barrel" firstgid="220" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/pot/barrel_with_flower.png"/>
+ </tileset>
  <layer name="0_floor" width="40" height="19">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAONgYGDgGMUUY2ECeNR9EMwyyN032MNv1H2j7ht13ygexaN4FI9iQhgAn/+SueALAAA=
@@ -118,12 +121,12 @@
  </layer>
  <layer name="1_terrain" width="40" height="19">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAL2UuU4DQQyG/RIEmoTlaLgCDYeSAokCCCQhouB8DaBDgJAQFYdEB4gGkHhL/pFmtM5kPOtJAr/0aSexYztejzMiKikZB9kQ/TRxxsASmC9gEYwq/LV+KflmKdemfe6DA3AIjsCM4M91G/CrW5v2afQj5NsQ8pLg32L2VsQvRZ99xvH998AV6HjnQeuT8km6tIT8r5mfO2vi3oH7SE7p/cYU6p+pqeOdY3GXwZySBS9OzcbYAtugUVAfUXr/jG0CjCgpU+892wG7oMni1gJ5Tc9uKO+fOxfVZ2wZpe0/P07b+1wX8rYDv9HUp9mN0v6TpJ1XbX3G9gBeAjx6vlUKz+gxOAGn1D2vVc8Wm2u/vikwbW1P4MPWxJ/PrL4KyfPJ5ea1ItikueZapfz9rYFX8BbgnXSzypViK7Ee9SvNrJ6Bc3CRaOM94uL7b4V973aao0G9s7o+wH/Vyu2/Serurdtpjmagvv+QJucX+Cbd/R02/g7Q+Mbu719QTshpfH8BQcvoSOALAAA=
+   H4sIAAAAAAAAAL2Uy05CQQyG+xKiG/B42XhDN14CCxMXCgpIXHh9DXVn1Lj3krhT40Z9Kh7Gf5KZnDJM53QA/ZMvZ6ClLT2dZkRUUjINsjH6aeJMgTWwXMAqmFT4a/1S8i1Srl37PALH4AScggXBn+sh4Fe3Nu3TqCfk2xHykuDfZvZ2xC9FX0PG8f0PwS3oeudR65PySbqxhPzvmJ87a+L2LJKk9xtTqH+mpq53jsVdB0tKVrw4NRtjDzRAs6A+ovT+GdsMmFBSpsF7tg8OQIvFrQXymp7dU94/dy6qz9gyStt/fpyO97ku5O0EfqOpT7Mbpf0nSTuv2vqM7RG8BnjyfKsUntEzcA4uqH9eq54tNtd+fXNg3tqewaetiT9fWH0VkueTy81rRbBJc821Sfn72wJv4D3AB+lmlSvFVmI9GlaaWb0EV+A60cZ7xMX33wb73u00R5MGZ3V7hP+qldt/s9TfW7fTHK1Aff8hTc5v8EO6+ztu/B2g8Y3d37+gnJDT+P4Cse/dfOALAAA=
   </data>
  </layer>
  <layer name="2_object" width="40" height="19">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAUgsGOgHTAKhh1YN9AOIAFsoJM9q4B4NRCvJVHfRhq4ZRQMfQDKY4eh7PVQ9smBcw7VQTKZcvQCOWTKDScAKjuPA/EJJPYoGAWDAQAA9Fo4m+ALAAA=
+   H4sIAAAAAAAAAGNgGAUgsGOgHTAKhh1YR6a+NiDuoKZDiAAb6GTPKiBeDcRrSdS3kQZuGQVDH4Dy2GEoez2UfXLgnEN1kEymHL1ADplywwmAys7jQHwCiT0KRsFgAABqgY6L4AsAAA==
   </data>
  </layer>
  <layer name="3_roof" width="40" height="19">
