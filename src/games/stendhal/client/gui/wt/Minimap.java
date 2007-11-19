@@ -264,7 +264,7 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 
 		// draw minimap
 		vg.drawImage(image, 0, 0, null);
-
+/*
 		// PATHFIND--------------------------------------
 
 		pathfind.Reinice();
@@ -313,7 +313,7 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 		}
 
 		// --------------------------------------
-
+*/
 		// Draw on ground entities
 		for (Entity entity : client.getGameObjects()) {
 			if (!entity.isOnGround()) {
