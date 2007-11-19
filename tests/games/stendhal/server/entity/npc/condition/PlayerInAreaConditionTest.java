@@ -5,6 +5,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.MockStendlRPWorld;
 import games.stendhal.server.util.Area;
 
 import java.awt.Rectangle;
@@ -19,6 +20,7 @@ public class PlayerInAreaConditionTest {
 
 	@Before
 	public void setUp() throws Exception {
+		MockStendlRPWorld.get();
 	}
 
 	@After
