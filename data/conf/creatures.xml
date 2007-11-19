@@ -4725,6 +4725,62 @@
     </ai>
   </creature>
 
+
+  <creature name="air_elemental">
+    <type class="elemental" subclass="air_elemental" tileid="elemental.png:4"/>
+    <attributes>
+      <atk value="120"/>
+      <def value="21"/>
+      <hp value="250"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="50"/>
+    <experience value="1750"/>
+    <respawn value="1460"/>
+    <drops>
+      <item value="money" quantity="[5,40]" probability="100.0"/>
+      <item value="greater_antidote" quantity="[1,3]" probability="50.0"/>
+      <item value="liberty_helmet" quantity="[1,1]" probability="0.02"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="ice_elemental">
+    <type class="elemental" subclass="ice_elemental" tileid="elemental.png:5"/>
+    <attributes>
+      <atk value="120"/>
+      <def value="21"/>
+      <hp value="250"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="50"/>
+    <experience value="1750"/>
+    <respawn value="1460"/>
+    <drops>
+      <item value="money" quantity="[5,40]" probability="100.0"/>
+      <item value="greater_antidote" quantity="[1,3]" probability="50.0"/>
+      <item value="ice_sword" quantity="[1,3]" probability="0.01"/>
+      <item value="ice_armor" quantity="[1,1]" probability="0.01"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
   <creature name="green_dragon">
     <type class="huge_animal" subclass="green_dragon" tileid="huge_animal.png:6"/>
     <description></description>
