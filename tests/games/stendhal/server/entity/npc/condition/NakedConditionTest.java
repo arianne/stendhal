@@ -40,6 +40,21 @@ public class NakedConditionTest {
 		assertEquals("naked?", new NakedCondition().toString());
 	}
 
+	@Test
+	public void testEquals() throws Throwable {
 
+		assertFalse(new NakedCondition().equals(null));
 
+		NakedCondition obj = new NakedCondition();
+		assertTrue(obj.equals(obj));
+		assertTrue(new NakedCondition().equals(new NakedCondition()));
+
+	}
+	@Test
+	public final void testHashCode() {
+		NakedCondition obj = new NakedCondition();
+		assertEquals(obj.hashCode(),obj.hashCode());
+		assertEquals(new NakedCondition().hashCode(),new NakedCondition().hashCode());
+
+	}
 }
