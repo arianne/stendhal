@@ -245,6 +245,39 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 		}
 	}
 
+	public void update_pathfind(){
+		
+		if (nodo_actual != 0) {
+			pathfind.PathJumpToNode(nodo_actual);
+			int manhatan = (int) ((Math.abs(playerX - pathfind.NodeGetX()) + Math.abs(playerY
+					- pathfind.NodeGetY())));
+
+			if (manhatan < 6) {
+
+				pathfind.PathJumpNode();
+
+				if (logger.isDebugEnabled()) {
+					logger.debug("Pathfind: To waypoint: "
+							+ pathfind.NodeGetX() + " " + pathfind.NodeGetY());
+				}
+				RPAction action = new RPAction();
+				action.put("type", "moveto");
+				action.put("x", pathfind.NodeGetX());
+				action.put("y", pathfind.NodeGetY());
+
+				client.send(action);
+
+				nodo_actual = pathfind.final_path_index;
+
+				if (pathfind.ReachedGoal()) {
+					pathfind.ClearPath();
+				}
+			}
+
+		}
+		
+	}
+			
 	/**
 	 * Draws the minimap.
 	 *
@@ -282,38 +315,11 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 					* scale, scale, scale);
 		}
 		pathfind.Reinice();
-
-		if (nodo_actual != 0) {
-			pathfind.PathJumpToNode(nodo_actual);
-			int manhatan = (int) ((Math.abs(playerX - pathfind.NodeGetX()) + Math.abs(playerY
-					- pathfind.NodeGetY())));
-
-			if (manhatan < 6) {
-
-				pathfind.PathJumpNode();
-
-				if (logger.isDebugEnabled()) {
-					logger.debug("Pathfind: To waypoint: "
-							+ pathfind.NodeGetX() + " " + pathfind.NodeGetY());
-				}
-				RPAction action = new RPAction();
-				action.put("type", "moveto");
-				action.put("x", pathfind.NodeGetX());
-				action.put("y", pathfind.NodeGetY());
-
-				client.send(action);
-
-				nodo_actual = pathfind.final_path_index;
-
-				if (pathfind.ReachedGoal()) {
-					pathfind.ClearPath();
-				}
-			}
-
-		}
+*/
+		
 
 		// --------------------------------------
-*/
+
 		// Draw on ground entities
 		for (Entity entity : client.getGameObjects()) {
 			if (!entity.isOnGround()) {
