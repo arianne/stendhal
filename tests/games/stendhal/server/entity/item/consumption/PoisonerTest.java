@@ -15,13 +15,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 import marauroa.common.Log4J;
-import marauroa.common.game.RPObject;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import utilities.PlayerHelper;
+import utilities.PlayerTestHelper;
 
 public class PoisonerTest {
 
@@ -55,8 +54,7 @@ public class PoisonerTest {
 		ConsumableItem c200_1 = new ConsumableItem("cheese", "", "", attributes);
 		zone.add(c200_1);
 		Poisoner poisoner = new Poisoner();
-		Player bob = new Player(new RPObject());
-		PlayerHelper.addEmptySlots(bob);
+		Player bob = PlayerTestHelper.createPlayer();
 		poisoner.feed(c200_1, bob);
 		assertTrue(bob.isPoisoned());
 	}

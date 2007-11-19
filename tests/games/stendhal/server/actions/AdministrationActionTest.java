@@ -15,6 +15,8 @@ import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import utilities.PlayerTestHelper;
+
 public class AdministrationActionTest {
 
 	@BeforeClass
@@ -67,7 +69,7 @@ public class AdministrationActionTest {
 
 	@Test
 	public final void testIsPlayerAllowedToExecuteAdminCommand() {
-		Player pl = new Player(new RPObject());
+		Player pl = PlayerTestHelper.createPlayer();
 		assertFalse(AdministrationAction.isPlayerAllowedToExecuteAdminCommand(
 				pl, "", true));
 		assertEquals("Sorry, command \"\" is unknown.", pl.get("private_text"));
@@ -102,7 +104,7 @@ public class AdministrationActionTest {
 	// TODO fails because pl is not added to players in ruleprocessor
 	public final void testOnAction() {
 		AdministrationAction aa = new AdministrationAction();
-		Player pl = new Player(new RPObject());
+		Player pl = PlayerTestHelper.createPlayer();
 		aa.onAction(pl, new RPAction());
 		assertEquals("Sorry, command \"null\" is unknown.",
 				pl.get("private_text"));

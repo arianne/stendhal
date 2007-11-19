@@ -8,13 +8,12 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.common.Log4J;
-import marauroa.common.game.RPObject;
 import marauroa.common.game.RPObject.ID;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import utilities.PlayerHelper;
+import utilities.PlayerTestHelper;
 
 public class FishSourceTest {
 	@BeforeClass
@@ -28,9 +27,8 @@ public class FishSourceTest {
 	public void testOnUsed() {
 
 		FishSource fs = new FishSource("somefish");
-		Player player = new Player(new RPObject());
-		player.setName("bob");
-		PlayerHelper.addEmptySlots(player);
+		Player player = PlayerTestHelper.createPlayer("bob");
+
 		fs.onUsed(player);
 		assertEquals("You need a fishing rod for fishing.", player
 				.get("private_text"));
@@ -46,9 +44,8 @@ public class FishSourceTest {
 		player.remove("private_text");
 		fs.onUsed(player);
 		assertFalse(player.has("private_text"));
-		Player player2 = new Player(new RPObject());
-		player2.setName("bob");
-		PlayerHelper.addEmptySlots(player2);
+		Player player2 = PlayerTestHelper.createPlayer("bob");
+
 		player2.getSlot("bag").add(fishingRod);
 		fs.onUsed(player2);
 		assertEquals("You have started fishing.", player2.get("private_text"));

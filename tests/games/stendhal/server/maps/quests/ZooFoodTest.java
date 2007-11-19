@@ -16,7 +16,6 @@ import games.stendhal.server.maps.MockStendlRPWorld;
 import games.stendhal.server.maps.ados.outside.AnimalKeeperNPC;
 import games.stendhal.server.maps.ados.outside.VeterinarianNPC;
 import marauroa.common.Log4J;
-import marauroa.common.game.RPObject;
 import marauroa.common.game.RPObject.ID;
 
 import org.junit.After;
@@ -25,7 +24,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import utilities.PlayerHelper;
+import utilities.PlayerTestHelper;
 
 public class ZooFoodTest {
 
@@ -67,8 +66,8 @@ public class ZooFoodTest {
 	@Test
 	public void testHiAndBye() {
 		Player player;
-		player = new Player(new RPObject());
-		PlayerHelper.addEmptySlots(player);
+		player = PlayerTestHelper.createPlayer();
+
 
 		SpeakerNPC npc = NPCList.get().get("Katinka");
 		assertNotNull(npc);
@@ -102,9 +101,7 @@ public class ZooFoodTest {
 
 	@Test
 	public void testDoQuest() {
-		Player player;
-		player = new Player(new RPObject());
-		PlayerHelper.addEmptySlots(player);
+		Player player= PlayerTestHelper.createPlayer();
 
 		SpeakerNPC katinkaNpc = NPCList.get().get("Katinka");
 		assertNotNull(katinkaNpc);

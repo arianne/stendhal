@@ -14,14 +14,13 @@ import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import games.stendhal.server.maps.semos.storage.HousewifeNPC;
 import marauroa.common.Log4J;
-import marauroa.common.game.RPObject;
 
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import utilities.PlayerHelper;
+import utilities.PlayerTestHelper;
 
 public class CleanStorageSpaceTest {
 
@@ -47,15 +46,15 @@ public class CleanStorageSpaceTest {
 	public void tearDown() throws Exception {
 		SpeakerNPC npc = NPCList.get().get("Eonna");
 
-		if (npc != null)
+		if (npc != null) {
 			npc.setCurrentState(ConversationStates.IDLE);
+		}
 	}
 
 	@Test
 	public void testHiAndbye() {
 		Player player;
-		player = new Player(new RPObject());
-		PlayerHelper.addEmptySlots(player);
+		player = PlayerTestHelper.createPlayer();
 
 		assertTrue(!player.hasKilled("rat"));
 
@@ -79,10 +78,9 @@ public class CleanStorageSpaceTest {
 
 	@Test
 	public void doQuest() {
-		Player player;
-		player = new Player(new RPObject());
+		Player player = PlayerTestHelper.createPlayer();
 
-		PlayerHelper.addEmptySlots(player);
+
 
 		SpeakerNPC npc = NPCList.get().get("Eonna");
 		assertNotNull(npc);

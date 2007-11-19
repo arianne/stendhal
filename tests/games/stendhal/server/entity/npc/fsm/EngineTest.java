@@ -5,12 +5,12 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPC.ChatAction;
 import games.stendhal.server.entity.npc.SpeakerNPC.ChatCondition;
 import games.stendhal.server.entity.player.Player;
-import marauroa.common.game.RPObject;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import utilities.PlayerHelper;
+import utilities.PlayerTestHelper;
 
 public class EngineTest {
 
@@ -54,7 +54,7 @@ public class EngineTest {
 			}
 		};
 		en.add(state, triggers, null, nextState, reply, action);
-		Player pete = new Player(new RPObject());
+		Player pete = PlayerTestHelper.createPlayer();
 		en.step(pete, "boo");
 		assertEquals(nextState, en.getCurrentState());
 
@@ -90,7 +90,7 @@ public class EngineTest {
 			}
 		};
 		en.add(state, triggers, cc, nextState, reply, action);
-		Player pete = new Player(new RPObject());
+		Player pete = PlayerTestHelper.createPlayer();
 		en.step(pete, triggers);
 		assertEquals(nextState, en.getCurrentState());
 		assertEquals(bob.get("text"), reply);

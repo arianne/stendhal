@@ -12,8 +12,6 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.common.Log4J;
-import marauroa.common.game.RPObject;
-
 
 import org.junit.After;
 import org.junit.Before;
@@ -53,8 +51,7 @@ public class CloakCollectorTest {
 		cc.addToWorld();
 		SpeakerNPC npc = cc.getNPC();
 		Engine en = npc.getEngine();
-		Player monica = new Player(new RPObject());
-		PlayerHelper.addEmptySlots(monica);
+		Player monica = PlayerTestHelper.createPlayer();
 
 		en.stepTest(monica, ConversationPhrases.GREETING_MESSAGES.get(0));
 		assertEquals(cc.welcomeBeforeStartingQuest(),npc.get("text"));
@@ -76,8 +73,7 @@ public class CloakCollectorTest {
 			cc.init("CloaksCollector");
 			SpeakerNPC npc = cc.getNPC();
 			Engine en = npc.getEngine();
-			Player monica = new Player(new RPObject());
-			PlayerHelper.addEmptySlots(monica);
+			Player monica = PlayerTestHelper.createPlayer("monica");
 
 			en.stepTest(monica, ConversationPhrases.GREETING_MESSAGES.get(0));
 			assertEquals(cc.welcomeBeforeStartingQuest(),npc.get("text"));

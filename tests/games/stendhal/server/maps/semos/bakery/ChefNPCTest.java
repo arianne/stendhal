@@ -9,9 +9,7 @@ import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
-
 import marauroa.common.Log4J;
-import marauroa.common.game.RPObject;
 import marauroa.common.game.RPObject.ID;
 
 import org.junit.After;
@@ -20,7 +18,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import utilities.PlayerHelper;
+import utilities.PlayerTestHelper;
 
 public class ChefNPCTest {
 	private Engine en;
@@ -48,9 +46,7 @@ public class ChefNPCTest {
 		en = npc.getEngine();
 		cnpc.createDialog(npc);
 
-		player = new Player(new RPObject());
-		player.setName("bob");
-		PlayerHelper.addEmptySlots(player);
+		player = PlayerTestHelper.createPlayer("bob");
 	}
 
 	@After

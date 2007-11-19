@@ -7,13 +7,12 @@ import games.stendhal.server.entity.ActiveEntity;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;
-import marauroa.common.game.RPObject;
 
 import org.junit.After;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import utilities.PlayerHelper;
+import utilities.PlayerTestHelper;
 
 public class GagManagerTest {
 
@@ -31,10 +30,9 @@ public class GagManagerTest {
 
 	@Test
 	public final void testGagAbsentPlayer() {
-		Player policeman = new Player(new RPObject());
-		Player bob = new Player(new RPObject());
+		Player policeman = PlayerTestHelper.createPlayer();
+		Player bob = PlayerTestHelper.createPlayer("bob");
 
-		bob.setName("bob");
 		GagManager.get().gag("bob", policeman, 1, "test");
 		assertEquals("Player bob not found", policeman.get("private_text"));
 		assertFalse(GagManager.isGagged(bob));
@@ -42,10 +40,8 @@ public class GagManagerTest {
 
 	@Test
 	public final void testGagPlayer() {
-		Player policeman = new Player(new RPObject());
-		Player bob = new Player(new RPObject());
-		PlayerHelper.addEmptySlots(bob);
-		bob.setName("bob");
+		Player policeman = PlayerTestHelper.createPlayer();
+		Player bob = PlayerTestHelper.createPlayer("bob");
 		GagManager.get().gag(bob, policeman, 1, "test", bob.getName());
 		assertEquals("You have gagged bob for 1 minutes. Reason: test.",
 				policeman.get("private_text"));
@@ -56,10 +52,8 @@ public class GagManagerTest {
 
 	@Test
 	public final void testnegativ() {
-		Player policeman = new Player(new RPObject());
-		Player bob = new Player(new RPObject());
-		PlayerHelper.addEmptySlots(bob);
-		bob.setName("bob");
+		Player policeman = PlayerTestHelper.createPlayer();
+		Player bob = PlayerTestHelper.createPlayer("bob");
 		assertEquals(null, policeman.get("private_text"));
 		GagManager.get().gag(bob, policeman, -1, "test", bob.getName());
 		assertEquals("Infinity (negative numbers) is not supported.",
@@ -69,10 +63,10 @@ public class GagManagerTest {
 
 	@Test
 	public final void testOnLoggedIn() {
-		Player policeman = new Player(new RPObject());
-		Player bob = new Player(new RPObject());
-		PlayerHelper.addEmptySlots(bob);
-		bob.setName("bob");
+		Player policeman = PlayerTestHelper.createPlayer();
+		Player bob =PlayerTestHelper.createPlayer("bob");;
+
+
 		GagManager.get().gag(bob, policeman, 1, "test", bob.getName());
 		assertEquals("You have gagged bob for 1 minutes. Reason: test.",
 				policeman.get("private_text"));
@@ -86,8 +80,7 @@ public class GagManagerTest {
 
 	@Test
 	public final void testgetTimeremaining() {
-		Player bob = new Player(new RPObject());
-		PlayerHelper.addEmptySlots(bob);
+		Player bob = PlayerTestHelper.createPlayer();
 		assertEquals(0L, GagManager.get().getTimeRemaining(bob));
 
 	}

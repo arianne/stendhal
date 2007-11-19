@@ -6,7 +6,6 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.Entity;
-import games.stendhal.server.entity.player.Player;
 
 import java.awt.geom.Rectangle2D;
 import java.io.IOException;
@@ -14,14 +13,14 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 
-import marauroa.common.game.RPObject;
-
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.xml.sax.SAXException;
+
+import utilities.PlayerTestHelper;
 
 public class ItemTest {
 	private static final String ZONE_NAME = "0_semos_village_w";
@@ -228,7 +227,7 @@ public class ItemTest {
 	public void testOnPutOnGround() {
 		Item mo = new Item("name1", "myClass", "mySubclass",
 				new HashMap<String, String>());
-		mo.onPutOnGround(new Player(new RPObject()));
+		mo.onPutOnGround(PlayerTestHelper.createPlayer());
 
 	}
 

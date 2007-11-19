@@ -14,9 +14,7 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import games.stendhal.server.maps.semos.townhall.BoyNPC;
-
 import marauroa.common.Log4J;
-import marauroa.common.game.RPObject;
 import marauroa.common.game.RPObject.ID;
 
 import org.junit.Before;
@@ -25,6 +23,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import utilities.PlayerHelper;
+import utilities.PlayerTestHelper;
 
 public class IntroducePlayersTest {
 
@@ -54,8 +53,7 @@ public class IntroducePlayersTest {
 	@Test
 	public void testHiAndbye() {
 		Player player;
-		player = new Player(new RPObject());
-		PlayerHelper.addEmptySlots(player);
+		player = PlayerTestHelper.createPlayer();
 
 		SpeakerNPC npc = NPCList.get().get("Tad");
 		assertNotNull(npc);
@@ -81,8 +79,8 @@ public class IntroducePlayersTest {
 	@Test
 	public void testHiNoAndHiAgain() {
 		Player player;
-		player = new Player(new RPObject());
-		PlayerHelper.addEmptySlots(player);
+		player = PlayerTestHelper.createPlayer();
+
 
 		SpeakerNPC npc = NPCList.get().get("Tad");
 		assertNotNull(npc);
@@ -113,10 +111,7 @@ public class IntroducePlayersTest {
 	@Test
 	@Ignore
 	public void testQuest() {
-		Player player;
-		player = new Player(new RPObject());
-		PlayerHelper.addEmptySlots(player);
-
+		Player player = PlayerTestHelper.createPlayer();
 		SpeakerNPC tad = NPCList.get().get("Tad");
 		assertNotNull(tad);
 		Engine engineTad = tad.getEngine();

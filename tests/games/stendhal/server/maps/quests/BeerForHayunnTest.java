@@ -11,16 +11,14 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import games.stendhal.server.maps.semos.city.RetiredAdventurerNPC;
-
 import marauroa.common.Log4J;
-import marauroa.common.game.RPObject;
 import marauroa.common.game.RPObject.ID;
 
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import utilities.PlayerHelper;
+import utilities.PlayerTestHelper;
 
 public class BeerForHayunnTest {
 	private class MockRetiredAdventurer extends RetiredAdventurerNPC {
@@ -57,8 +55,8 @@ public class BeerForHayunnTest {
 
 	@Test
 	public void quest() {
-		Player player = new Player(new RPObject());
-		PlayerHelper.addEmptySlots(player);
+		Player player = PlayerTestHelper.createPlayer();
+
 		(new MockRetiredAdventurer()).createDialog(hayunn);
 		Engine en = hayunn.getEngine();
 		en.step(player, "hi");
@@ -85,8 +83,8 @@ public class BeerForHayunnTest {
 		assertEquals("done", player.getQuest("beer_hayunn"));
 		en.step(player, "bye");
 		// reject
-		Player player2 = new Player(new RPObject());
-		PlayerHelper.addEmptySlots(player2);
+		Player player2 = PlayerTestHelper.createPlayer();
+
 		en.step(player2, "hi");
 		assertTrue(hayunn.isTalking());
 		assertEquals(

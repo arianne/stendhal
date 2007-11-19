@@ -15,7 +15,6 @@ import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import games.stendhal.server.maps.orril.river.CampingGirlNPC;
 import marauroa.common.Log4J;
-import marauroa.common.game.RPObject;
 import marauroa.common.game.RPObject.ID;
 
 import org.junit.After;
@@ -24,7 +23,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import utilities.PlayerHelper;
+import utilities.PlayerTestHelper;
 
 public class CampfireTest {
 
@@ -53,15 +52,15 @@ public class CampfireTest {
 	public void tearDown() throws Exception {
 		SpeakerNPC npc = NPCList.get().get("Sally");
 
-		if (npc != null)
+		if (npc != null) {
 			npc.setCurrentState(ConversationStates.IDLE);
+		}
 	}
 
 	@Test
 	public void testHiAndbye() {
 		Player player;
-		player = new Player(new RPObject());
-		PlayerHelper.addEmptySlots(player);
+		player = PlayerTestHelper.createPlayer();
 
 		SpeakerNPC npc = NPCList.get().get("Sally");
 		assertNotNull(npc);
@@ -77,8 +76,8 @@ public class CampfireTest {
 	@Test
 	public void testDoQuest() {
 		Player player;
-		player = new Player(new RPObject());
-		PlayerHelper.addEmptySlots(player);
+		player = PlayerTestHelper.createPlayer();
+
 
 		SpeakerNPC npc = NPCList.get().get("Sally");
 		assertNotNull(npc);
@@ -110,8 +109,8 @@ public class CampfireTest {
 		assertEquals(0, player.getNumberOfEquipped("wood"));
 		assertTrue("Thank you! Here, take some meat!".equals(npc.get("text"))
 				|| "Thank you! Here, take some ham!".equals(npc.get("text")));
-		assertTrue(10 == player.getNumberOfEquipped("meat")
-				|| 10 == player.getNumberOfEquipped("ham"));
+		assertTrue((10 == player.getNumberOfEquipped("meat"))
+				|| (10 == player.getNumberOfEquipped("ham")));
 		assertTrue(en.step(player, "bye"));
 		assertFalse(npc.isTalking());
 		assertEquals("Bye.", npc.get("text"));
@@ -121,8 +120,8 @@ public class CampfireTest {
 	@Test
 	public void testJobAndOffer() {
 		Player player;
-		player = new Player(new RPObject());
-		PlayerHelper.addEmptySlots(player);
+		player = PlayerTestHelper.createPlayer();
+
 
 		SpeakerNPC npc = NPCList.get().get("Sally");
 		assertNotNull(npc);

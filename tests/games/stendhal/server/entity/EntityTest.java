@@ -1,21 +1,21 @@
 package games.stendhal.server.entity;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import games.stendhal.server.entity.player.Player;
-import marauroa.common.game.RPObject;
 
 import org.junit.Test;
 
 import utilities.PlayerHelper;
+import utilities.PlayerTestHelper;
 
 public class EntityTest {
 	@Test
 	public void testnextTo() throws Exception {
 		PlayerHelper.generatePlayerRPClasses();
 		Entity en = new MockEntity();
-		Player pl = new Player(new RPObject());
+		Player pl = PlayerTestHelper.createPlayer();
 
 		en.setPosition(2, 2);
 

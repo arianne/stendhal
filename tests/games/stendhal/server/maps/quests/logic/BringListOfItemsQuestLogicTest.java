@@ -16,7 +16,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 import marauroa.common.Log4J;
-import marauroa.common.game.RPObject;
 import marauroa.common.game.RPObject.ID;
 
 import org.junit.After;
@@ -25,6 +24,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import utilities.PlayerHelper;
+import utilities.PlayerTestHelper;
 
 public class BringListOfItemsQuestLogicTest {
 
@@ -62,7 +62,7 @@ public class BringListOfItemsQuestLogicTest {
 					}
 				});
 		assertEquals("emptyList", Arrays.asList(new String[] {}),
-				logic.getListOfStillMissingItems(new Player(new RPObject()),
+				logic.getListOfStillMissingItems(PlayerTestHelper.createPlayer(),
 						false));
 		BringListOfItemsQuest quest = new NullValueMockBringListOfItemsQuest() {
 			@Override
@@ -73,14 +73,13 @@ public class BringListOfItemsQuestLogicTest {
 		};
 		logic = new BringListOfItemsQuestLogic(quest);
 		assertEquals(Arrays.asList(new String[] { "one", "two", "three" }),
-				logic.getListOfStillMissingItems(new Player(new RPObject()),
+				logic.getListOfStillMissingItems(PlayerTestHelper.createPlayer(),
 						false));
 		assertEquals(Arrays.asList(new String[] { "#one", "#two", "#three" }),
-				logic.getListOfStillMissingItems(new Player(new RPObject()),
+				logic.getListOfStillMissingItems(PlayerTestHelper.createPlayer(),
 						true));
 
-		Player bob = new Player(new RPObject());
-		PlayerHelper.addEmptySlots(bob);
+		Player bob = PlayerTestHelper.createPlayer();
 		bob.setQuest(quest.getSlotName(), "");
 		assertTrue(bob.hasQuest(quest.getSlotName()));
 		assertEquals(Arrays.asList(new String[] { "one", "two", "three" }),
@@ -122,8 +121,7 @@ public class BringListOfItemsQuestLogicTest {
 		BringListOfItemsQuestLogic logic = new BringListOfItemsQuestLogic(quest);
 		logic.welcomeNewPlayer();
 
-		Player player = new Player(new RPObject());
-		PlayerHelper.addEmptySlots(player);
+		Player player = PlayerTestHelper.createPlayer();
 		Engine en = npc.getEngine();
 		en.step(player, "hi");
 		assertTrue(npc.isTalking());
@@ -140,8 +138,7 @@ public class BringListOfItemsQuestLogicTest {
 		BringListOfItemsQuestLogic logic = new BringListOfItemsQuestLogic(quest);
 		logic.addToWorld();
 
-		Player player = new Player(new RPObject());
-		PlayerHelper.addEmptySlots(player);
+		Player player = PlayerTestHelper.createPlayer();
 		Engine en = npc.getEngine();
 		en.step(player, "hi");
 		assertTrue(npc.isTalking());
@@ -226,8 +223,8 @@ public class BringListOfItemsQuestLogicTest {
 		BringListOfItemsQuestLogic logic = new BringListOfItemsQuestLogic(quest);
 		logic.addToWorld();
 
-		Player player = new Player(new RPObject());
-		PlayerHelper.addEmptySlots(player);
+		Player player = PlayerTestHelper.createPlayer();
+
 		Engine en = npc.getEngine();
 		en.step(player, "hi");
 		assertTrue(npc.isTalking());
@@ -252,8 +249,7 @@ public class BringListOfItemsQuestLogicTest {
 		BringListOfItemsQuestLogic logic = new BringListOfItemsQuestLogic(quest);
 		logic.addToWorld();
 
-		Player player = new Player(new RPObject());
-		PlayerHelper.addEmptySlots(player);
+		Player player = PlayerTestHelper.createPlayer();
 		Engine en = npc.getEngine();
 		en.step(player, "hi");
 		assertTrue(npc.isTalking());

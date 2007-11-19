@@ -7,14 +7,13 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
-import marauroa.common.game.RPObject;
 
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import utilities.PlayerHelper;
+import utilities.PlayerTestHelper;
 
 public class AdminHelpNPCTest {
 
@@ -41,9 +40,8 @@ public class AdminHelpNPCTest {
 		en = npc.getEngine();
 		adminHelper.createDialog(npc);
 
-		player = new Player(new RPObject());
-		player.setName("bob");
-		PlayerHelper.addEmptySlots(player);
+		player = PlayerTestHelper.createPlayer("bob");
+
 	}
 
 	@Test
