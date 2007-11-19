@@ -8,6 +8,7 @@
 # d means danter
 # D means durkham
 # F means DeusFigendi
+# J means Juan
 # m means from Mirage community
 # z means other who i don't know but i know was done 
 # letter then * means it's done and committed
@@ -18,7 +19,7 @@ k*/building/decoration/banner.png
 k*/building/decoration/banner_long.png
 ./building/decoration/blobcreature.png   not found
 k*/building/decoration/block.png
-./building/decoration/blue_circle.png
+J*./building/decoration/blue_circle.png
 ./building/decoration/blue_green.png
 ./building/decoration/blue_green_2.png
 k*/building/decoration/chimney.png
@@ -45,7 +46,7 @@ k*/building/decoration/orbpedestal.png
 ./building/decoration/skullpedestal.png     not found
 ./building/decoration/squares.png           not found
 ./building/decoration/squares_2.png
-./building/decoration/stone_details.png
+m/K*./building/decoration/stone_details.png
 ./building/decoration/toolset.png
 ./building/decoration/webs.png
 k/building/decoration/wooden_banisters.png     
@@ -213,8 +214,8 @@ k*/ground/water/waterfall_2.png
 k*/ground/water/whirlpool.png
 ./item/book.png // big one is by kiheru
 b*/item/brush.png
-./item/button.png
-./item/button_gold.png
+J*./item/button.png
+J*./item/button_gold.png
 ./item/button_grey.png
 ./item/flat_button.png
 ./item/hot_iron_piece.png
@@ -322,7 +323,7 @@ b/item/furniture/table/table_with_beer.png
 b*/item/furniture/table/table_with_beer_dark.png
 ./item/furniture/table/table_with_hob.png
 ./item/furniture/table/table_with_hob_pale.png
-./item/furniture/table/tree_stump_table.png
+J./item/furniture/table/tree_stump_table.png
 b/item/furniture/table/wooden.png
 b*/item/furniture/table/wooden_pale.png
 b*/item/furniture/table/wooden_rectangular.png
@@ -331,7 +332,7 @@ b*/item/furniture/table/brick_base.png
 ./item/gothic/large_gravestone.png
 ./item/gothic/slab.png
 b+k*/item/pot/barrel.png
-b/item/pot/barrel_flat.png
+J/item/pot/barrel_flat.png
 b+k*/item/pot/barrel_tall.png
 b*/item/pot/box.png
 b+k*/item/pot/dark_barrel.png
@@ -350,7 +351,7 @@ b*/item/pot/small_barrel.png
 k*/object/castle.png
 k*/object/church.png
 ./object/letters.png
-./object/mine_rails.png
+m*./object/mine_rails.png
 ./object/stalactite.png
 m*/object/suspension_bridge.png
 k*/object/well.png
