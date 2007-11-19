@@ -3,9 +3,7 @@ package games.stendhal.server.entity.npc.condition;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPC.ChatCondition;
-import games.stendhal.server.entity.player.Player;
 
 import org.junit.After;
 import org.junit.Before;
@@ -16,23 +14,14 @@ import utilities.SpeakerNPCTestHelper;
 
 public class AndConditionTest {
 	AlwaysTrueCondition trueCondition;
-	AlwaysTrueCondition falsecondition;
+	ChatCondition falsecondition;
 
 	@Before
 	public void setUp() throws Exception {
 		trueCondition = new AlwaysTrueCondition();
-		falsecondition = new AlwaysTrueCondition() {
+		falsecondition = new NotCondition(new AlwaysTrueCondition()) ;
 
-			@Override
-			public boolean fire(Player player, String text, SpeakerNPC engine) {
-				return false;
-			}
 
-			@Override
-			public String toString() {
-				return "false";
-			}
-		};
 	}
 
 	@After
@@ -41,10 +30,10 @@ public class AndConditionTest {
 
 	@Test
 	public void selftest() throws Exception {
-		assertTrue("empty And is true", trueCondition.fire(
+		assertTrue("false delivers false", trueCondition.fire(
 				PlayerTestHelper.createPlayer(), "testAndConditionText",
 				SpeakerNPCTestHelper.createSpeakerNPC()));
-		assertFalse("empty And is true", falsecondition.fire(
+		assertFalse("falscondition delivers false", falsecondition.fire(
 				PlayerTestHelper.createPlayer(), "testAndConditionText",
 				SpeakerNPCTestHelper.createSpeakerNPC()));
 	}
@@ -65,13 +54,7 @@ public class AndConditionTest {
 
 		assertFalse(new AndCondition((ChatCondition)null).equals(new AndCondition()));
 		assertFalse(new AndCondition().equals(new AndCondition((ChatCondition)null)));
-		assertFalse(new AndCondition((ChatCondition)null).equals(new AndCondition(new ChatCondition(){
-
-			@Override
-			public boolean fire(Player player, String text, SpeakerNPC npc) {
-
-				return false;
-			}})));
+		assertFalse(new AndCondition((ChatCondition)null).equals(new AndCondition(falsecondition)));
 		assertFalse(new AndCondition().equals(new Integer(100)));
 		assertTrue(new AndCondition().equals(new AndCondition() {
 		}));
@@ -121,8 +104,8 @@ public class AndConditionTest {
 		assertEquals("[]", new AndCondition().toString());
 
 		assertEquals("[true]", new AndCondition(trueCondition).toString());
-		assertEquals("[true, false]", new AndCondition(trueCondition,
+		assertEquals("[true, not <true>]", new AndCondition(trueCondition,
 				falsecondition).toString());
-		assertEquals("[false]", new AndCondition(falsecondition).toString());
+		assertEquals("[not <true>]", new AndCondition(falsecondition).toString());
 	}
 }
