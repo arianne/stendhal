@@ -140,8 +140,6 @@ public class BringListOfItemsQuestLogicTest {
 		BringListOfItemsQuestLogic logic = new BringListOfItemsQuestLogic(quest);
 		logic.addToWorld();
 
-		// System.err.println(new DumpTransitions().getDump(npc));
-
 		Player player = new Player(new RPObject());
 		PlayerHelper.addEmptySlots(player);
 		Engine en = npc.getEngine();
@@ -228,8 +226,6 @@ public class BringListOfItemsQuestLogicTest {
 		BringListOfItemsQuestLogic logic = new BringListOfItemsQuestLogic(quest);
 		logic.addToWorld();
 
-		// System.err.println(new DumpTransitions().getDump(npc));
-
 		Player player = new Player(new RPObject());
 		PlayerHelper.addEmptySlots(player);
 		Engine en = npc.getEngine();
@@ -255,8 +251,6 @@ public class BringListOfItemsQuestLogicTest {
 		quest.setNpc(npc);
 		BringListOfItemsQuestLogic logic = new BringListOfItemsQuestLogic(quest);
 		logic.addToWorld();
-
-		// System.err.println(new DumpTransitions().getDump(npc));
 
 		Player player = new Player(new RPObject());
 		PlayerHelper.addEmptySlots(player);
