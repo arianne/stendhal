@@ -13,7 +13,7 @@ public class MockStendlRPWorld extends StendhalRPWorld {
 	}
 
 	public static StendhalRPWorld get() {
-		if (instance == null) {
+		if (!(instance instanceof MockStendlRPWorld)) {
 			instance = new MockStendlRPWorld();
 		}
 		return instance;
