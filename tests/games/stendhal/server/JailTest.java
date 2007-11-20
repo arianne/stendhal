@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import marauroa.common.Log4J;
 
 import org.junit.After;
@@ -21,6 +22,7 @@ public class JailTest {
 	@BeforeClass
 	public static void setUpClass() throws Exception {
 		Log4J.init();
+		MockStendhalRPRuleProcessor.get();
 	}
 	@Before
 	public void setUp() throws Exception {
