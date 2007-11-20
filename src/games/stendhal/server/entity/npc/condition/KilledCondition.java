@@ -6,6 +6,8 @@ import games.stendhal.server.entity.player.Player;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
@@ -16,7 +18,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
  * @author hendrik
  */
 public class KilledCondition extends ChatCondition {
-	private List<String> toKill;
+	private Set<String> toKill;
 
 	/**
 	 * creates a new KilledCondition
@@ -24,7 +26,7 @@ public class KilledCondition extends ChatCondition {
 	 * @param toKill list of creatures which should be killed by the player
 	 */
 	public KilledCondition(List<String> toKill) {
-		this.toKill = toKill;
+		this.toKill = new TreeSet(toKill);
 	}
 
 	/**
@@ -33,7 +35,7 @@ public class KilledCondition extends ChatCondition {
 	 * @param toKill creatures which should be killed by the player
 	 */
 	public KilledCondition(String... toKill) {
-		this.toKill = Arrays.asList(toKill);
+		this.toKill = new TreeSet(Arrays.asList(toKill));
 	}
 
 	@Override
