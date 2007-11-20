@@ -31,7 +31,6 @@ public class ToysCollectorTest {
 	public void setUp() throws Exception {
 		NPCList.get().add(new SpeakerNPC("Anna"));
 		quest = new ToysCollector();
-		quest.addToWorld();
 	}
 
 	@After
@@ -39,13 +38,7 @@ public class ToysCollectorTest {
 		NPCList.get().remove("Anna");
 	}
 
-	@Test
-	public final void testAddToWorld() {
 
-
-		ToysCollector tc = new ToysCollector();
-		tc.addToWorld();
-	}
 
 	@Test
 	public final void testGetNeededItems() {
