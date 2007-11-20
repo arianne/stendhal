@@ -27,6 +27,8 @@ import utilities.PlayerTestHelper;
 
 public class CampfireTest {
 
+	private static final String CAMPFIRE = "campfire";
+
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		Log4J.init();
@@ -58,6 +60,41 @@ public class CampfireTest {
 	}
 
 	@Test
+	public void testCanStartQuestNow() throws Exception {
+		Player player;
+		player = PlayerTestHelper.createPlayer();
+
+		SpeakerNPC npc = NPCList.get().get("Sally");
+
+		assertNotNull(npc);
+		Engine en = npc.getEngine();
+
+		assertTrue(en.step(player, "hi"));
+		assertEquals("Hi! Could you do me a #favor?", npc.get("text"));
+		assertTrue(en.step(player, "bye"));
+
+		player.setQuest(CampfireTest.CAMPFIRE, "start");
+		assertTrue(en.step(player, "hi"));
+		assertEquals(
+				"You're back already? Don't forget that you promised to collect ten pieces of wood for me!",
+				npc.get("text"));
+		assertTrue(en.step(player, "bye"));
+
+		player.setQuest(CampfireTest.CAMPFIRE, "1");
+		en.step(player, "hi");
+		assertEquals(
+				"Oh, I still have plenty of wood from the last time you helped me. Thank you for helping!",
+				npc.get("text"));
+		assertTrue(en.step(player, "bye"));
+
+		player.setQuest(CampfireTest.CAMPFIRE, "-1000");
+		en.step(player, "hi");
+		assertEquals("Hi! Could you do me a #favor?", npc.get("text"));
+		assertTrue(en.step(player, "bye"));
+
+	}
+
+	@Test
 	public void testHiAndbye() {
 		Player player;
 		player = PlayerTestHelper.createPlayer();
@@ -77,7 +114,6 @@ public class CampfireTest {
 	public void testDoQuest() {
 		Player player;
 		player = PlayerTestHelper.createPlayer();
-
 
 		SpeakerNPC npc = NPCList.get().get("Sally");
 		assertNotNull(npc);
@@ -118,10 +154,26 @@ public class CampfireTest {
 	}
 
 	@Test
+	public void testIsRepeatable() throws Exception {
+		assertTrue(new Campfire().isRepeatable(null));
+	}
+
+	@Test
+	public void testIsCompleted() {
+		Player player = PlayerTestHelper.createPlayer();
+		assertFalse(new Campfire().isCompleted(player));
+
+		player.setQuest(CAMPFIRE, "start");
+		assertFalse(new Campfire().isCompleted(player));
+
+		player.setQuest(CAMPFIRE, "notStart");
+		assertTrue(new Campfire().isCompleted(player));
+	}
+
+	@Test
 	public void testJobAndOffer() {
 		Player player;
 		player = PlayerTestHelper.createPlayer();
-
 
 		SpeakerNPC npc = NPCList.get().get("Sally");
 		assertNotNull(npc);
@@ -133,7 +185,7 @@ public class CampfireTest {
 		assertTrue(en.step(player, "job"));
 		assertEquals("Work? I'm just a little girl! I'm a scout, you know.",
 				npc.get("text"));
-		assertFalse(en.step(player, "offers"));	// no matching state transition
+		assertFalse(en.step(player, "offers")); // no matching state transition
 		assertEquals("Work? I'm just a little girl! I'm a scout, you know.",
 				npc.get("text"));
 		assertTrue(en.step(player, "help"));
