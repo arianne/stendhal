@@ -30,7 +30,7 @@ public class AndConditionTest {
 
 	@Test
 	public void selftest() throws Exception {
-		assertTrue("false delivers false", trueCondition.fire(
+		assertTrue("true  delivers true", trueCondition.fire(
 				PlayerTestHelper.createPlayer(), "testAndConditionText",
 				SpeakerNPCTestHelper.createSpeakerNPC()));
 		assertFalse("falscondition delivers false", falsecondition.fire(
