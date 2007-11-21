@@ -84,7 +84,7 @@ No warranties. But let us know if it doesn't work.
 Stendhal in Eclipse
 -------------------
 
-For a description on who to setup the Eclipse project for Stendhal please see:
+For a description on how to setup the Eclipse project for Stendhal please see:
 
 http://arianne.sourceforge.net/wiki/index.php?title=StendhalonEclipse
 
