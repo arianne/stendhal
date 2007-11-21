@@ -105,7 +105,7 @@ d*/building/stairs/int_earthen.png
 K*./building/stairs/int_ew.png
 K*/building/stairs/int_green.png
 K*./building/stairs/int_ns.png
-./building/stairs/stairs.png
+m/K*./building/stairs/stairs.png
 d*/building/stairs/winding.png
 d*/building/stairs/winding_2.png
 d*/building/wall/earthen.png
@@ -166,14 +166,14 @@ k*/ground/ice/corners.png
 k*/ground/ice/edges.png
 ./ground/ice/glacier.png
 k*/ground/ice/ice.png
-K/ground/indoor/black_hole.png
+K*/ground/indoor/black_hole.png
 s/ground/indoor/blue_green.png
-K/ground/indoor/blue_hole.png
+K*/ground/indoor/blue_hole.png
 K/ground/indoor/brown_hole.png
 s/ground/indoor/church_tiles.png
-K/ground/indoor/grey_hole.png
+K*/ground/indoor/grey_hole.png
 s/ground/indoor/grey_skull.png
-K/ground/indoor/taupe_hole.png
+K*/ground/indoor/taupe_hole.png
 s/ground/indoor/tiles.png
 F/ground/ladder/horizontal_dark.png
 F/ground/ladder/horizontal_pale.png
@@ -181,8 +181,8 @@ F*/ground/ladder/small.png
 F*/ground/ladder/steps.png
 F/ground/ladder/vertical_dark.png
 F/ground/ladder/vertical_pale.png
-F/ground/ridge/earth_dark.png
-F/ground/ridge/earth_pale.png
+k/ground/ridge/earth_dark.png
+k/ground/ridge/earth_pale.png
 K*/ground/ridge/ice.png
 K*/ground/ridge/ice_2.png
 ./ground/rock/green_crystal.png
@@ -214,10 +214,10 @@ k*/ground/water/waterfall_2.png
 k*/ground/water/whirlpool.png
 ./item/book.png // big one is by kiheru
 b*/item/brush.png
-J*./item/button.png
-J*./item/button_gold.png
-./item/button_grey.png
-./item/flat_button.png
+J*/item/button.png
+J*/item/button_gold.png
+J*/item/button_grey.png
+J*/item/flat_button.png
 ./item/hot_iron_piece.png
 b*/item/logs.png
 k*/item/postbox.png
@@ -225,10 +225,10 @@ k*/item/postbox_2.png
 k*/item/sign.png
 k*/item/sign_large.png
 K*/item/armor/armor.png
-./item/armor/sword_rack.png
-./item/armor/weapons_rack.png
+K*/item/armor/sword_rack.png
+K*/item/armor/weapons_rack.png
 k*./item/blood/floor_stain.png
-./item/blood/floor_stains_2.png
+**/item/blood/floor_stains_2.png (it was from the blood item that we see from combat)
 k*/item/blood/nsew_stains.png
 b*/item/candle/candelbra.png
 b*/item/candle/lamp.png
@@ -239,7 +239,7 @@ b*/item/chest/wooden_dark.png
 b*/item/chest/wooden_pale.png
 k*/item/corpse/huge_animal.png
 ./item/corpse/skeleton.png
-./item/corpse/skull_dark.png
+./item/corpse/skull_dark.png a version of this is in mirage sets so must we replace?
 ./item/corpse/skull_pale.png
 K*/item/drink/bottle_and_glass.png
 k*/item/drink/cognac.png
@@ -248,8 +248,8 @@ k*/item/drink/white_wine.png
 k*/item/food/fruit_basket.png
 D*/item/food/meals_1.png
 K*/item/food/meals_2.png
-./item/food/rustic_meals.png
-b*./item/furniture/bed/front_on.png
+K*/item/food/rustic_meals.png
+b*/item/furniture/bed/front_on.png
 b*/item/furniture/bed/large_front_on.png
 b*/item/furniture/bed/large_front_on_darker.png
 b*/item/furniture/bed/side_on.png
@@ -318,8 +318,8 @@ b*/item/furniture/table/long_front_on_pale.png
 b*/item/furniture/table/long_side_on_pale.png
 m*/item/furniture/table/orb_table.png
 K*./item/furniture/table/rectangular_with_meals.png
-b/item/furniture/table/square_pale.png
-b/item/furniture/table/table_with_beer.png
+K*/item/furniture/table/square_pale.png
+b/K/item/furniture/table/table_with_beer.png
 b*/item/furniture/table/table_with_beer_dark.png
 ./item/furniture/table/table_with_hob.png
 ./item/furniture/table/table_with_hob_pale.png
@@ -328,7 +328,7 @@ b/item/furniture/table/wooden.png
 b*/item/furniture/table/wooden_pale.png
 b*/item/furniture/table/wooden_rectangular.png
 b*/item/furniture/table/brick_base.png
-./item/gothic/coffin.png
+./item/gothic/coffin.png  a version of this is in mirage sets so must we replace?
 ./item/gothic/large_gravestone.png
 ./item/gothic/slab.png
 b+k*/item/pot/barrel.png
@@ -366,18 +366,18 @@ k*/plant/grasses.png
 ./plant/leaves.png
 m*/plant/vine.png
 ./plant/bush/blue_green.png
-z*/plant/bush/bushes.png
+m*/plant/bush/bushes.png
 k*/plant/bush/hedge.png
 k*/plant/bush/hedge_2.png
 ./plant/bush/large_brown.png
 ./plant/bush/large_green.png
 ./plant/bush/various_small.png
 ./plant/flower/creepers.png
-z*/plant/flower/daisy_blue.png
-z*/plant/flower/daisy_red.png
-z*/plant/flower/daisy_white.png
-z*/plant/flower/daisy_yellow.png
-./plant/flower/purple.png
+m*/plant/flower/daisy_blue.png
+m*/plant/flower/daisy_red.png
+m*/plant/flower/daisy_white.png
+m*/plant/flower/daisy_yellow.png
+./plant/flower/purple.png a version of this is in mirage sets so must we replace?
 k*/plant/indoor/flower_baskets.png
 b*/plant/indoor/flower_vase.png
 b*/plant/indoor/flowering_plant.png
@@ -387,7 +387,7 @@ b./plant/indoor/small_tree.png
 ./plant/stump/int_small_stump_2.png
 k*/plant/stump/rectangular.png
 m*/plant/stump/small_stump.png
-./plant/stump/stump_blue_green.png
+m*/plant/stump/stump_blue_green.png
 k*/plant/stump/stump_brown.png
 k*/plant/stump/stump_green.png
 k*/plant/stump/stump_pale_brown.png
