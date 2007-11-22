@@ -29,7 +29,7 @@ import java.util.List;
  *
  * STEPS: - Find Santa - Say hi - Get reward - Get hat
  *
- * REWARD: - a present which can be opened to obtain a random good reward: food,
+ * REWARD: - a stocking which can be opened to obtain a random good reward: food,
  * money, potions, items, etc...
  *
  * REPETITIONS: - None
@@ -72,7 +72,7 @@ public class MeetSanta extends AbstractQuest implements LoginListener {
 				    );
 
 				List<SpeakerNPC.ChatAction> reward = new LinkedList<SpeakerNPC.ChatAction>();
-				reward.add(new EquipItemAction("present"));
+				reward.add(new EquipItemAction("stocking"));
 				reward.add(new SetQuestAction(QUEST_SLOT, "done"));
 				reward.add(new ChatAction() {
 				      	@Override
