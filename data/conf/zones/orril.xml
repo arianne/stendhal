@@ -39,6 +39,9 @@
  </zone>
 
  <zone name="0_orril_mountain_w" level="0" x="499744" y="500256" file="Level 0/orril/mountain_w.tmx">
+  <portal x="107" y="113" ref="orb_destination">
+   <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+  </portal>
  </zone>
 
  <zone name="0_orril_castle" level="0" x="499872" y="500256" file="Level 0/orril/castle.tmx">

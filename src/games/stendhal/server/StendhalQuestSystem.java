@@ -77,6 +77,7 @@ public class StendhalQuestSystem {
 		loadQuest("IntroducePlayers");
 		loadQuest("JailedDwarf");
 		loadQuest("LearnAboutKarma");
+		loadQuest("LearnAboutOrbs");
 		loadQuest("LookBookforCeryl");
 		loadQuest("LookUpQuote");
 		loadQuest("KanmararnSoldiers");
