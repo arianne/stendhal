@@ -1,7 +1,5 @@
 package games.stendhal.server.entity.item;
 
-import games.stendhal.common.Grammar;
-import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;

@@ -3,17 +3,11 @@ package games.stendhal.server.entity.item;
 import games.stendhal.common.Grammar;
 import games.stendhal.common.Rand;
 import games.stendhal.server.StendhalRPWorld;
-import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Box;
-import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.UseListener;
 
 import java.util.Map;
-
-
-import org.apache.log4j.Logger;
-import marauroa.common.game.RPObject;
 
 /**
  * a basket which can be unwrapped.
@@ -21,8 +15,6 @@ import marauroa.common.game.RPObject;
  * @author kymara
  */
 public class Stocking extends Box implements UseListener {
-
-	private Logger logger = Logger.getLogger(Stocking.class);
 
 	// TODO: Make these configurable
         // for christmas presents
@@ -50,7 +42,7 @@ public class Stocking extends Box implements UseListener {
 	public Stocking(Stocking item) {
 		super(item);
 	}
-    
+
         @Override
 	protected boolean useMe(Player player) {
 	    this.removeOne();
