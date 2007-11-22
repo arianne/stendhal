@@ -20,8 +20,9 @@ import utilities.PlayerHelper;
 
 public class ToysCollectorTest {
 	ToysCollector quest;
+
 	@BeforeClass
-	static public  void setupFixture() {
+	public static void setupFixture() {
 		Log4J.init();
 		assertTrue(MockStendhalRPRuleProcessor.get() instanceof MockStendhalRPRuleProcessor);
 		PlayerHelper.generateNPCRPClasses();
@@ -38,12 +39,11 @@ public class ToysCollectorTest {
 		NPCList.get().remove("Anna");
 	}
 
-
-
 	@Test
 	public final void testGetNeededItems() {
 
-		assertEquals(Arrays.asList(new String[]{"teddy","dice","dress"}), quest.getNeededItems());
+		assertEquals(Arrays.asList(new String[] { "teddy", "dice", "dress" }),
+				quest.getNeededItems());
 	}
 
 	@Test
@@ -54,12 +54,14 @@ public class ToysCollectorTest {
 
 	@Test
 	public final void testGetTriggerPhraseToEnumerateMissingItems() {
-		assertEquals(ConversationPhrases.YES_MESSAGES, quest.getTriggerPhraseToEnumerateMissingItems());
+		assertEquals(ConversationPhrases.YES_MESSAGES,
+				quest.getTriggerPhraseToEnumerateMissingItems());
 	}
 
 	@Test
 	public final void testGetAdditionalTriggerPhraseForQuest() {
-		assertEquals(Arrays.asList(new String[]{"toys"}), quest.getAdditionalTriggerPhraseForQuest());
+		assertEquals(Arrays.asList(new String[] { "toys" }),
+				quest.getAdditionalTriggerPhraseForQuest());
 
 	}
 
@@ -68,7 +70,4 @@ public class ToysCollectorTest {
 		assertTrue(quest.shouldWelcomeAfterQuestIsCompleted());
 	}
 
-
-
-	}
-
+}

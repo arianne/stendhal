@@ -15,13 +15,13 @@ import utilities.SpeakerNPCTestHelper;
 public class OrConditionTest {
 
 	AlwaysTrueCondition trueCondition;
+
 	ChatCondition falsecondition;
 
 	@Before
 	public void setUp() throws Exception {
 		trueCondition = new AlwaysTrueCondition();
-		falsecondition = new NotCondition(new AlwaysTrueCondition()) ;
-
+		falsecondition = new NotCondition(new AlwaysTrueCondition());
 
 	}
 
@@ -41,11 +41,14 @@ public class OrConditionTest {
 		OrCondition obj = new OrCondition();
 		assertTrue(obj.equals(obj));
 		assertTrue(new OrCondition().equals(new OrCondition()));
-		assertTrue(new OrCondition((ChatCondition)null).equals(new OrCondition((ChatCondition)null)));
+		assertTrue(new OrCondition((ChatCondition) null).equals(new OrCondition(
+				(ChatCondition) null)));
 
-		assertFalse(new OrCondition((ChatCondition)null).equals(new OrCondition()));
-		assertFalse(new OrCondition().equals(new OrCondition((ChatCondition)null)));
-		assertFalse(new OrCondition((ChatCondition)null).equals(new OrCondition(falsecondition)));
+		assertFalse(new OrCondition((ChatCondition) null).equals(new OrCondition()));
+		assertFalse(new OrCondition().equals(new OrCondition(
+				(ChatCondition) null)));
+		assertFalse(new OrCondition((ChatCondition) null).equals(new OrCondition(
+				falsecondition)));
 		assertFalse(new OrCondition().equals(new Integer(100)));
 		assertTrue(new OrCondition().equals(new OrCondition() {
 		}));
@@ -53,7 +56,6 @@ public class OrConditionTest {
 
 	@Test
 	public void testFire() throws Throwable {
-
 
 		assertFalse("empty OR is false", new OrCondition().fire(
 				PlayerTestHelper.createPlayer(), "testOrConditionText",
@@ -84,9 +86,10 @@ public class OrConditionTest {
 	@Test
 	public void testHashCode() throws Throwable {
 		OrCondition obj = new OrCondition();
-		assertEquals(obj.hashCode(),obj.hashCode());
-		assertEquals(new OrCondition().hashCode(),new OrCondition().hashCode());
-		assertEquals(new OrCondition((ChatCondition)null).hashCode(),new OrCondition((ChatCondition)null).hashCode());
+		assertEquals(obj.hashCode(), obj.hashCode());
+		assertEquals(new OrCondition().hashCode(), new OrCondition().hashCode());
+		assertEquals(new OrCondition((ChatCondition) null).hashCode(),
+				new OrCondition((ChatCondition) null).hashCode());
 
 	}
 
@@ -97,7 +100,8 @@ public class OrConditionTest {
 		assertEquals("or <[true]>", new OrCondition(trueCondition).toString());
 		assertEquals("or <[true, not <true>]>", new OrCondition(trueCondition,
 				falsecondition).toString());
-		assertEquals("or <[not <true>]>", new OrCondition(falsecondition).toString());
+		assertEquals("or <[not <true>]>",
+				new OrCondition(falsecondition).toString());
 	}
 
 }

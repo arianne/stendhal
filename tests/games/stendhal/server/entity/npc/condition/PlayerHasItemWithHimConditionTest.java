@@ -41,12 +41,13 @@ public class PlayerHasItemWithHimConditionTest {
 	@Test
 	public final void testFire() {
 		Player player = PlayerTestHelper.createPlayer();
-		PlayerHasItemWithHimCondition cond = new PlayerHasItemWithHimCondition("itemname");
+		PlayerHasItemWithHimCondition cond = new PlayerHasItemWithHimCondition(
+				"itemname");
 		assertFalse(cond.fire(player, null, null));
 		Item item = ItemTestHelper.createItem("itemname");
 		player.getSlot("bag").add(item);
 		assertTrue(cond.fire(player, null, null));
-		cond = new PlayerHasItemWithHimCondition("itemname",2);
+		cond = new PlayerHasItemWithHimCondition("itemname", 2);
 		assertFalse(cond.fire(player, null, null));
 		item = ItemTestHelper.createItem("itemname");
 
@@ -66,9 +67,12 @@ public class PlayerHasItemWithHimConditionTest {
 
 	@Test
 	public final void testToString() {
-		assertEquals("player has item <1 itemname>",new PlayerHasItemWithHimCondition("itemname").toString());
-		assertEquals("player has item <1 itemname>",new PlayerHasItemWithHimCondition("itemname", 1).toString());
-		assertEquals("player has item <2 itemname>",new PlayerHasItemWithHimCondition("itemname", 2).toString());
+		assertEquals("player has item <1 itemname>",
+				new PlayerHasItemWithHimCondition("itemname").toString());
+		assertEquals("player has item <1 itemname>",
+				new PlayerHasItemWithHimCondition("itemname", 1).toString());
+		assertEquals("player has item <2 itemname>",
+				new PlayerHasItemWithHimCondition("itemname", 2).toString());
 
 	}
 

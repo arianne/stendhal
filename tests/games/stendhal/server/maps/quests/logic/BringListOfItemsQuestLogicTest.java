@@ -44,7 +44,7 @@ public class BringListOfItemsQuestLogicTest {
 	public void tearDown() throws Exception {
 	}
 
-	@Test (expected= IllegalArgumentException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public final void testBringListOfItemsQuestLogic() {
 		BringListOfItemsQuestLogic logic = new BringListOfItemsQuestLogic(
 				new NullValueMockBringListOfItemsQuest());
@@ -62,8 +62,8 @@ public class BringListOfItemsQuestLogicTest {
 					}
 				});
 		assertEquals("emptyList", Arrays.asList(new String[] {}),
-				logic.getListOfStillMissingItems(PlayerTestHelper.createPlayer(),
-						false));
+				logic.getListOfStillMissingItems(
+						PlayerTestHelper.createPlayer(), false));
 		BringListOfItemsQuest quest = new NullValueMockBringListOfItemsQuest() {
 			@Override
 			public List<String> getNeededItems() {
@@ -73,11 +73,11 @@ public class BringListOfItemsQuestLogicTest {
 		};
 		logic = new BringListOfItemsQuestLogic(quest);
 		assertEquals(Arrays.asList(new String[] { "one", "two", "three" }),
-				logic.getListOfStillMissingItems(PlayerTestHelper.createPlayer(),
-						false));
+				logic.getListOfStillMissingItems(
+						PlayerTestHelper.createPlayer(), false));
 		assertEquals(Arrays.asList(new String[] { "#one", "#two", "#three" }),
-				logic.getListOfStillMissingItems(PlayerTestHelper.createPlayer(),
-						true));
+				logic.getListOfStillMissingItems(
+						PlayerTestHelper.createPlayer(), true));
 
 		Player bob = PlayerTestHelper.createPlayer();
 		bob.setQuest(quest.getSlotName(), "");
@@ -352,7 +352,7 @@ public class BringListOfItemsQuestLogicTest {
 		}
 
 		public void rewardPlayer(Player player) {
-		//TODO: implement me
+			// TODO: implement me
 
 		}
 

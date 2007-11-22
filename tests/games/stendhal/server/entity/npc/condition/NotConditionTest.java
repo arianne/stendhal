@@ -29,6 +29,7 @@ public class NotConditionTest {
 	}
 
 	AlwaysTrueCondition trueCondition;
+
 	ChatCondition falsecondition;
 
 	@Before
@@ -43,28 +44,35 @@ public class NotConditionTest {
 
 	@Test
 	public void selftest() throws Exception {
-		assertTrue("true", trueCondition.fire(
-				PlayerTestHelper.createPlayer(), "testNotConditionText",
-				SpeakerNPCTestHelper.createSpeakerNPC()));
+		assertTrue("true",
+				trueCondition.fire(PlayerTestHelper.createPlayer(),
+						"testNotConditionText",
+						SpeakerNPCTestHelper.createSpeakerNPC()));
 		assertFalse("false", falsecondition.fire(
 				PlayerTestHelper.createPlayer(), "testNotConditionText",
 				SpeakerNPCTestHelper.createSpeakerNPC()));
 
-
 	}
+
 	@Test
 	public final void testHashCode() {
 		NotCondition obj = new NotCondition(trueCondition);
-		assertEquals(obj.hashCode(),obj.hashCode());
-		assertEquals(new NotCondition(null).hashCode(),new NotCondition(null).hashCode());
-		assertEquals(new NotCondition(trueCondition).hashCode(),new NotCondition(trueCondition).hashCode());
+		assertEquals(obj.hashCode(), obj.hashCode());
+		assertEquals(new NotCondition(null).hashCode(),
+				new NotCondition(null).hashCode());
+		assertEquals(new NotCondition(trueCondition).hashCode(),
+				new NotCondition(trueCondition).hashCode());
 
 	}
 
 	@Test
 	public final void testFire() {
-		assertFalse(new NotCondition(trueCondition).fire(PlayerTestHelper.createPlayer(), "notconditiontest",SpeakerNPCTestHelper.createSpeakerNPC()));
-		assertTrue(new NotCondition(falsecondition).fire(PlayerTestHelper.createPlayer(), "notconditiontest",SpeakerNPCTestHelper.createSpeakerNPC()));
+		assertFalse(new NotCondition(trueCondition).fire(
+				PlayerTestHelper.createPlayer(), "notconditiontest",
+				SpeakerNPCTestHelper.createSpeakerNPC()));
+		assertTrue(new NotCondition(falsecondition).fire(
+				PlayerTestHelper.createPlayer(), "notconditiontest",
+				SpeakerNPCTestHelper.createSpeakerNPC()));
 	}
 
 	@Test
@@ -74,8 +82,8 @@ public class NotConditionTest {
 
 	@Test
 	public final void testToString() {
-		assertEquals("not <true>",new NotCondition(trueCondition).toString());
-		assertEquals("not <false>",new NotCondition(falsecondition).toString());
+		assertEquals("not <true>", new NotCondition(trueCondition).toString());
+		assertEquals("not <false>", new NotCondition(falsecondition).toString());
 	}
 
 	@Test
@@ -86,11 +94,15 @@ public class NotConditionTest {
 		NotCondition obj = new NotCondition(trueCondition);
 		assertTrue(obj.equals(obj));
 		assertTrue(new NotCondition(null).equals(new NotCondition(null)));
-		assertTrue(new NotCondition(trueCondition).equals(new NotCondition(trueCondition)));
-		assertFalse(new NotCondition(trueCondition).equals(new NotCondition(null)));
-		assertFalse(new NotCondition(null).equals(new NotCondition(trueCondition)));
+		assertTrue(new NotCondition(trueCondition).equals(new NotCondition(
+				trueCondition)));
+		assertFalse(new NotCondition(trueCondition).equals(new NotCondition(
+				null)));
+		assertFalse(new NotCondition(null).equals(new NotCondition(
+				trueCondition)));
 		assertFalse(new NotCondition(trueCondition).equals(new Integer(100)));
-		assertTrue(new NotCondition(trueCondition).equals(new NotCondition(trueCondition) {
+		assertTrue(new NotCondition(trueCondition).equals(new NotCondition(
+				trueCondition) {
 		}));
 	}
 

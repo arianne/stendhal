@@ -31,7 +31,8 @@ public class QuestNotCompletedConditionTest {
 	@Test
 	public final void testFire() {
 		assertTrue(new QuestNotCompletedCondition("questname").fire(
-				PlayerTestHelper.createPlayer(), "testQuestNotCompletedCondition",
+				PlayerTestHelper.createPlayer(),
+				"testQuestNotCompletedCondition",
 				SpeakerNPCTestHelper.createSpeakerNPC()));
 		Player bob = PlayerTestHelper.createPlayer();
 
@@ -67,18 +68,18 @@ public class QuestNotCompletedConditionTest {
 	public void testEquals() throws Throwable {
 		assertFalse(new QuestNotCompletedCondition("questname").equals(null));
 
-		QuestNotCompletedCondition obj = new QuestNotCompletedCondition("questname");
+		QuestNotCompletedCondition obj = new QuestNotCompletedCondition(
+				"questname");
 		assertTrue(obj.equals(obj));
 		assertTrue(new QuestNotCompletedCondition("questname").equals(new QuestNotCompletedCondition(
-		"questname")));
+				"questname")));
 		assertTrue(new QuestNotCompletedCondition(null).equals(new QuestNotCompletedCondition(
-		null)));
-
+				null)));
 
 		assertFalse(new QuestNotCompletedCondition(null).equals(new QuestNotCompletedCondition(
-		"questname")));
+				"questname")));
 		assertFalse(new QuestNotCompletedCondition("questname").equals(new QuestNotCompletedCondition(
-		null)));
+				null)));
 		assertFalse(new QuestNotCompletedCondition("questname").equals(new Object()));
 
 		assertTrue(new QuestNotCompletedCondition("questname").equals(new QuestNotCompletedCondition(
@@ -88,13 +89,14 @@ public class QuestNotCompletedConditionTest {
 
 	@Test
 	public void testHashCode() throws Exception {
-		QuestNotCompletedCondition obj = new QuestNotCompletedCondition("questname");
+		QuestNotCompletedCondition obj = new QuestNotCompletedCondition(
+				"questname");
 
-		assertEquals(obj.hashCode(),obj.hashCode());
-		assertEquals(new QuestNotCompletedCondition("questname").hashCode(),new QuestNotCompletedCondition(
-		"questname").hashCode());
-		assertEquals(new QuestNotCompletedCondition(null).hashCode(),new QuestNotCompletedCondition(
-		null).hashCode());
+		assertEquals(obj.hashCode(), obj.hashCode());
+		assertEquals(new QuestNotCompletedCondition("questname").hashCode(),
+				new QuestNotCompletedCondition("questname").hashCode());
+		assertEquals(new QuestNotCompletedCondition(null).hashCode(),
+				new QuestNotCompletedCondition(null).hashCode());
 
 	}
 

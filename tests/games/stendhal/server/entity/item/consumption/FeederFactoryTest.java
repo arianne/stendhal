@@ -26,16 +26,18 @@ public class FeederFactoryTest {
 	public final void testGetEaterForSoup() {
 		Entity.generateRPClass();
 		Item.generateRPClass();
-		String name="soup";
-	    String clazz="drink";
-	    String subclass="soup";
-	    Map<String,String> map= new HashMap<String, String>();
-	    map.put("description","You see a bowl of soup. Its contents fill you up.");
-	    map.put("amount", "2500");
-	    map.put("frequency", "10");
-	    map.put("quantity", "1");
-	    map.put("regen", "25");
+		String name = "soup";
+		String clazz = "drink";
+		String subclass = "soup";
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("description",
+				"You see a bowl of soup. Its contents fill you up.");
+		map.put("amount", "2500");
+		map.put("frequency", "10");
+		map.put("quantity", "1");
+		map.put("regen", "25");
 
-		Drink soup = new Drink(name,clazz,subclass,map);
-				assertEquals(Eater.class,FeederFactory.get(soup).getClass());
-}}
+		Drink soup = new Drink(name, clazz, subclass, map);
+		assertEquals(Eater.class, FeederFactory.get(soup).getClass());
+	}
+}

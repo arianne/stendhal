@@ -1,6 +1,5 @@
 package games.stendhal.server.entity.npc.condition;
 
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -36,20 +35,23 @@ public class LevelLessThanConditionTest {
 	@After
 	public void tearDown() throws Exception {
 
-
 	}
 
 	@Test
 	public final void testHashCode() {
-		assertEquals(new LevelLessThanCondition(101).hashCode(),new LevelLessThanCondition(101).hashCode());
+		assertEquals(new LevelLessThanCondition(101).hashCode(),
+				new LevelLessThanCondition(101).hashCode());
 
 	}
 
 	@Test
 	public final void testFire() {
-		assertFalse(new LevelLessThanCondition(99).fire(level100Player, "lessthan",null));
-		assertFalse(new LevelLessThanCondition(100).fire(level100Player, "lessthan",null));
-		assertTrue(new LevelLessThanCondition(101).fire(level100Player, "lessthan",null));
+		assertFalse(new LevelLessThanCondition(99).fire(level100Player,
+				"lessthan", null));
+		assertFalse(new LevelLessThanCondition(100).fire(level100Player,
+				"lessthan", null));
+		assertTrue(new LevelLessThanCondition(101).fire(level100Player,
+				"lessthan", null));
 	}
 
 	@Test
@@ -60,16 +62,18 @@ public class LevelLessThanConditionTest {
 
 	@Test
 	public final void testToString() {
-		assertEquals("level > 0 ",new LevelLessThanCondition(0).toString());
+		assertEquals("level > 0 ", new LevelLessThanCondition(0).toString());
 	}
 
 	@Test
 	public final void testEqualsObject() {
-		assertEquals(new LevelLessThanCondition(101),new LevelLessThanCondition(101));
-		assertFalse((new LevelLessThanCondition(101)).equals(new LevelLessThanCondition(102)));
-		assertFalse((new LevelLessThanCondition(102)).equals(new LevelLessThanCondition(101)));
+		assertEquals(new LevelLessThanCondition(101),
+				new LevelLessThanCondition(101));
+		assertFalse((new LevelLessThanCondition(101)).equals(new LevelLessThanCondition(
+				102)));
+		assertFalse((new LevelLessThanCondition(102)).equals(new LevelLessThanCondition(
+				101)));
 
 	}
-
 
 }

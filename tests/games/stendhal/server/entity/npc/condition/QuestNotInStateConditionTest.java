@@ -90,10 +90,8 @@ public class QuestNotInStateConditionTest {
 		assertTrue(new QuestNotInStateCondition(QUESTNAME, null).equals(new QuestNotInStateCondition(
 				QUESTNAME, null)));
 
-
-
 		assertFalse(new QuestNotInStateCondition(QUESTNAME, state).equals(new QuestNotInStateCondition(
-				QUESTNAME, state+"2")));
+				QUESTNAME, state + "2")));
 
 		assertFalse(new QuestNotInStateCondition(QUESTNAME, state).equals(new Object()));
 		assertFalse(new QuestNotInStateCondition(null, state).equals(new QuestNotInStateCondition(
@@ -106,8 +104,6 @@ public class QuestNotInStateConditionTest {
 		assertFalse(new QuestNotInStateCondition(QUESTNAME, state).equals(new QuestNotInStateCondition(
 				QUESTNAME, null)));
 
-
-
 		assertTrue(new QuestNotInStateCondition(QUESTNAME, state).equals(new QuestNotInStateCondition(
 				QUESTNAME, state) {
 		}));
@@ -119,15 +115,15 @@ public class QuestNotInStateConditionTest {
 		QuestNotInStateCondition obj = new QuestNotInStateCondition(QUESTNAME,
 				state);
 
-		assertEquals(obj.hashCode(),obj.hashCode());
-		assertEquals(new QuestNotInStateCondition(QUESTNAME, state).hashCode(),new QuestNotInStateCondition(
-			QUESTNAME, state).hashCode());
-		assertEquals(new QuestNotInStateCondition(null, null).hashCode(),new QuestNotInStateCondition(
-			null, null).hashCode());
-		assertEquals(new QuestNotInStateCondition(null, state).hashCode(),new QuestNotInStateCondition(
-			null, state).hashCode());
-		assertEquals(new QuestNotInStateCondition(QUESTNAME, null).hashCode(),new QuestNotInStateCondition(
-			QUESTNAME, null).hashCode());
+		assertEquals(obj.hashCode(), obj.hashCode());
+		assertEquals(new QuestNotInStateCondition(QUESTNAME, state).hashCode(),
+				new QuestNotInStateCondition(QUESTNAME, state).hashCode());
+		assertEquals(new QuestNotInStateCondition(null, null).hashCode(),
+				new QuestNotInStateCondition(null, null).hashCode());
+		assertEquals(new QuestNotInStateCondition(null, state).hashCode(),
+				new QuestNotInStateCondition(null, state).hashCode());
+		assertEquals(new QuestNotInStateCondition(QUESTNAME, null).hashCode(),
+				new QuestNotInStateCondition(QUESTNAME, null).hashCode());
 	}
 
 }

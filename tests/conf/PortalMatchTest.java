@@ -22,13 +22,12 @@ public class PortalMatchTest {
 
 		try {
 
-			DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory
-					.newInstance();
+			DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder docBuilder = docBuilderFactory.newDocumentBuilder();
-			//todo:make this read directory content
-			String[] zonesxml = { "ados.xml","amazon.xml", "athor.xml", "fado.xml","kalavan.xml",
-					"kikareukin.xml","kirdneh.xml", "misc.xml", "nalwor.xml", "orril.xml",
-					"semos.xml" };
+			// todo:make this read directory content
+			String[] zonesxml = { "ados.xml", "amazon.xml", "athor.xml",
+					"fado.xml", "kalavan.xml", "kikareukin.xml", "kirdneh.xml",
+					"misc.xml", "nalwor.xml", "orril.xml", "semos.xml" };
 
 			for (int zone = 0; zone < zonesxml.length; zone++) {
 				Document doc = docBuilder.parse(new File("data/conf/zones/"
@@ -67,19 +66,17 @@ public class PortalMatchTest {
 		if (listOfPortals.getLength() > 0) {
 			listOfPortals.item(0).getAttributes().item(0).toString();
 			for (int s = 0; s < listOfPortals.getLength(); s++) {
-				zone = listOfPortals.item(s).getParentNode().getAttributes()
-						.getNamedItem("name").getNodeValue();
-				name = listOfPortals.item(s).getAttributes()
-						.getNamedItem("ref").getNodeValue();
+				zone = listOfPortals.item(s).getParentNode().getAttributes().getNamedItem(
+						"name").getNodeValue();
+				name = listOfPortals.item(s).getAttributes().getNamedItem("ref").getNodeValue();
 				listOfPortals.item(s).getNodeName();
 				NodeList listofChildren = listOfPortals.item(s).getChildNodes();
 				for (int i = 0; i < listofChildren.getLength(); i++) {
-					if ("destination".equals(listofChildren.item(i)
-							.getNodeName())) {
-						destName = listofChildren.item(i).getAttributes()
-								.getNamedItem("ref").getNodeValue();
-						destZone = listofChildren.item(i).getAttributes()
-								.getNamedItem("zone").getNodeValue();
+					if ("destination".equals(listofChildren.item(i).getNodeName())) {
+						destName = listofChildren.item(i).getAttributes().getNamedItem(
+								"ref").getNodeValue();
+						destZone = listofChildren.item(i).getAttributes().getNamedItem(
+								"zone").getNodeValue();
 
 					}
 				}

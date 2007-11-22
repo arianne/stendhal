@@ -46,6 +46,7 @@ public class GrammarTest {
 		assertEquals("They", Grammar.ItThey(2));
 		assertEquals("They", Grammar.ItThey(0));
 	}
+
 	@Test
 	public void testOrderedInt() {
 		assertEquals("first", Grammar.ordered(1));
@@ -53,6 +54,7 @@ public class GrammarTest {
 		assertEquals("third", Grammar.ordered(3));
 		assertEquals("4", Grammar.ordered(4));
 	}
+
 	@Test
 	public void testIsare() {
 		assertEquals("is", Grammar.isare(1));
@@ -61,10 +63,11 @@ public class GrammarTest {
 	}
 
 	@Test
-	public void testarticle_noun(){
-		assertEquals("the test", Grammar.article_noun("test",true));
-		assertEquals("a test", Grammar.article_noun("test",false));
+	public void testarticle_noun() {
+		assertEquals("the test", Grammar.article_noun("test", true));
+		assertEquals("a test", Grammar.article_noun("test", false));
 	}
+
 	@Test
 	public void testIsAre() {
 		assertEquals("Is", Grammar.IsAre(1));
@@ -129,23 +132,28 @@ public class GrammarTest {
 		assertEquals("a's", Grammar.suffix_s("a"));
 	}
 
-	 private static void testPluralisationOfAGivenSingularWord(String message, String plural, String singular) {
-        Assert.assertEquals(message, plural, Grammar.plural(singular));
+	private static void testPluralisationOfAGivenSingularWord(String message,
+			String plural, String singular) {
+		Assert.assertEquals(message, plural, Grammar.plural(singular));
 
-        /* Calling plural() with words already in their plural form does not yet work.
-        Assert.assertEquals("no change expected", plural, Grammar.plural(plural)); */
-    }
+		/*
+		 * Calling plural() with words already in their plural form does not yet
+		 * work. Assert.assertEquals("no change expected", plural,
+		 * Grammar.plural(plural));
+		 */
+	}
 
+	private static void testPluralisationOfAGivenSingularWord(String plural,
+			String singular) {
+		testPluralisationOfAGivenSingularWord("building plural form", plural,
+				singular);
+	}
 
-    private static void testPluralisationOfAGivenSingularWord(String plural, String singular) {
-    	testPluralisationOfAGivenSingularWord("building plural form", plural, singular);
-    }
-
-    @Test
+	@Test
 	public void testPluralItem() {
 
-    	testPluralisationOfAGivenSingularWord("hammers+3","hammer+3");
-//		 TODO: decide on name and plural of money
+		testPluralisationOfAGivenSingularWord("hammers+3", "hammer+3");
+		// TODO: decide on name and plural of money
 		testPluralisationOfAGivenSingularWord("money", "money");
 		testPluralisationOfAGivenSingularWord("sandwiches", "sandwich");
 		testPluralisationOfAGivenSingularWord("knives", "knife");
@@ -153,8 +161,8 @@ public class GrammarTest {
 		testPluralisationOfAGivenSingularWord("short swords", "short sword");
 		testPluralisationOfAGivenSingularWord("swords", "sword");
 		testPluralisationOfAGivenSingularWord("scimitars", "scimitar");
-		testPluralisationOfAGivenSingularWord("wikipedia says katana/katanas ok", "katanas",
-				"katana");
+		testPluralisationOfAGivenSingularWord(
+				"wikipedia says katana/katanas ok", "katanas", "katana");
 		testPluralisationOfAGivenSingularWord("claymores", "claymore");
 		testPluralisationOfAGivenSingularWord("broadswords", "broadsword");
 		testPluralisationOfAGivenSingularWord("biting swords", "biting sword");
@@ -171,7 +179,8 @@ public class GrammarTest {
 		testPluralisationOfAGivenSingularWord("scythes", "scythe");
 		testPluralisationOfAGivenSingularWord("twoside axes", "twoside axe");
 		testPluralisationOfAGivenSingularWord("halberds", "halberd");
-		testPluralisationOfAGivenSingularWord("twoside axes +3", "twoside axe +3");
+		testPluralisationOfAGivenSingularWord("twoside axes +3",
+				"twoside axe +3");
 		testPluralisationOfAGivenSingularWord("clubs", "club");
 		testPluralisationOfAGivenSingularWord("staffs", "staff");
 		testPluralisationOfAGivenSingularWord("maces", "mace");
@@ -192,11 +201,14 @@ public class GrammarTest {
 		testPluralisationOfAGivenSingularWord("golden arrows", "golden arrow");
 		testPluralisationOfAGivenSingularWord("bucklers", "buckler");
 		testPluralisationOfAGivenSingularWord("wooden shields", "wooden shield");
-		testPluralisationOfAGivenSingularWord("studded shields", "studded shield");
+		testPluralisationOfAGivenSingularWord("studded shields",
+				"studded shield");
 		testPluralisationOfAGivenSingularWord("plate shields", "plate shield");
 		testPluralisationOfAGivenSingularWord("lion shields", "lion shield");
-		testPluralisationOfAGivenSingularWord("unicorn shields", "unicorn shield");
-		testPluralisationOfAGivenSingularWord("lion shields +1", "lion shield +1");
+		testPluralisationOfAGivenSingularWord("unicorn shields",
+				"unicorn shield");
+		testPluralisationOfAGivenSingularWord("lion shields +1",
+				"lion shield +1");
 		testPluralisationOfAGivenSingularWord("skull shields", "skull shield");
 		testPluralisationOfAGivenSingularWord("crown shields", "crown shield");
 		testPluralisationOfAGivenSingularWord("golden shields", "golden shield");
@@ -229,9 +241,11 @@ public class GrammarTest {
 				"suit of plate armor");
 		testPluralisationOfAGivenSingularWord("suits of golden armor",
 				"suit of golden armor");
-		testPluralisationOfAGivenSingularWord("leather helmets", "leather helmet");
+		testPluralisationOfAGivenSingularWord("leather helmets",
+				"leather helmet");
 		testPluralisationOfAGivenSingularWord("robins hats", "robins hat");
-		testPluralisationOfAGivenSingularWord("studded helmets", "studded helmet");
+		testPluralisationOfAGivenSingularWord("studded helmets",
+				"studded helmet");
 		testPluralisationOfAGivenSingularWord("chain helmets", "chain helmet");
 		testPluralisationOfAGivenSingularWord("viking helmets", "viking helmet");
 		testPluralisationOfAGivenSingularWord("chain helmets +2",
@@ -276,7 +290,8 @@ public class GrammarTest {
 		testPluralisationOfAGivenSingularWord("carrots", "carrot");
 		testPluralisationOfAGivenSingularWord("salads", "salad");
 		testPluralisationOfAGivenSingularWord("apples", "apple");
-		testPluralisationOfAGivenSingularWord("loaves of bread", "loaf of bread");
+		testPluralisationOfAGivenSingularWord("loaves of bread",
+				"loaf of bread");
 		testPluralisationOfAGivenSingularWord("chunks of meat", "chunk of meat");
 		testPluralisationOfAGivenSingularWord("pieces of ham", "ham");
 		testPluralisationOfAGivenSingularWord("sandwiches", "sandwich");
@@ -290,7 +305,8 @@ public class GrammarTest {
 		testPluralisationOfAGivenSingularWord("minor potions", "minor potion");
 		testPluralisationOfAGivenSingularWord("bottles of antidote", "antidote");
 		testPluralisationOfAGivenSingularWord("potions", "potion");
-		testPluralisationOfAGivenSingularWord("greater potions", "greater potion");
+		testPluralisationOfAGivenSingularWord("greater potions",
+				"greater potion");
 		testPluralisationOfAGivenSingularWord("bottles of poison", "poison");
 		testPluralisationOfAGivenSingularWord("bottles of greater poison",
 				"greater poison");
@@ -348,7 +364,6 @@ public class GrammarTest {
 		testPluralisationOfAGivenSingularWord("dei", "deus");
 		testPluralisationOfAGivenSingularWord("vortices", "vortex");
 
-
 		testPluralisationOfAGivenSingularWord("xxxxses", "xxxxsis");
 
 		testPluralisationOfAGivenSingularWord("matrices", "matrix");
@@ -362,7 +377,6 @@ public class GrammarTest {
 		testPluralisationOfAGivenSingularWord("ys", "y");
 		testPluralisationOfAGivenSingularWord("bies", "by");
 		testPluralisationOfAGivenSingularWord("fs", "f");
-
 
 	}
 
@@ -392,21 +406,27 @@ public class GrammarTest {
 		testPluralisationOfAGivenSingularWord("tigers", "tiger");
 		testPluralisationOfAGivenSingularWord("skeletons", "skeleton");
 		testPluralisationOfAGivenSingularWord("gargoyles", "gargoyle");
-		testPluralisationOfAGivenSingularWord("young beholders", "young beholder");
+		testPluralisationOfAGivenSingularWord("young beholders",
+				"young beholder");
 		testPluralisationOfAGivenSingularWord("zombie rats", "zombie rat");
-		testPluralisationOfAGivenSingularWord("veteran goblins", "veteran goblin");
-		testPluralisationOfAGivenSingularWord("soldier kobolds", "soldier kobold");
+		testPluralisationOfAGivenSingularWord("veteran goblins",
+				"veteran goblin");
+		testPluralisationOfAGivenSingularWord("soldier kobolds",
+				"soldier kobold");
 		testPluralisationOfAGivenSingularWord(
 				"plural of slime is slime but this is a creature....",
 				"green slimes", "green slime");
 		testPluralisationOfAGivenSingularWord("archer kobolds", "archer kobold");
 		testPluralisationOfAGivenSingularWord("black bears", "black bear");
-		testPluralisationOfAGivenSingularWord("elder gargoyles", "elder gargoyle");
+		testPluralisationOfAGivenSingularWord("elder gargoyles",
+				"elder gargoyle");
 		testPluralisationOfAGivenSingularWord("razorrats", "razorrat");
 		testPluralisationOfAGivenSingularWord("cyclopses", "cyclops");
 		testPluralisationOfAGivenSingularWord("beholders", "beholder");
-		testPluralisationOfAGivenSingularWord("soldier goblins", "soldier goblin");
-		testPluralisationOfAGivenSingularWord("veteran kobolds", "veteran kobold");
+		testPluralisationOfAGivenSingularWord("soldier goblins",
+				"soldier goblin");
+		testPluralisationOfAGivenSingularWord("veteran kobolds",
+				"veteran kobold");
 		testPluralisationOfAGivenSingularWord("trolls", "troll");
 		testPluralisationOfAGivenSingularWord("orcs", "orc");
 		testPluralisationOfAGivenSingularWord("dark gargoyles", "dark gargoyle");
@@ -421,15 +441,19 @@ public class GrammarTest {
 		testPluralisationOfAGivenSingularWord("dwarves", "dwarf");
 		testPluralisationOfAGivenSingularWord("ratmen", "ratman");
 		testPluralisationOfAGivenSingularWord("ratwomen", "ratwoman");
-		testPluralisationOfAGivenSingularWord("elder beholders", "elder beholder");
+		testPluralisationOfAGivenSingularWord("elder beholders",
+				"elder beholder");
 		testPluralisationOfAGivenSingularWord(
 				"plural of slime is slime but this is a creature....",
 				"brown slimes", "brown slime");
-		testPluralisationOfAGivenSingularWord("venom gargoyles", "venom gargoyle");
+		testPluralisationOfAGivenSingularWord("venom gargoyles",
+				"venom gargoyle");
 		testPluralisationOfAGivenSingularWord("elder ogres", "elder ogre");
-		testPluralisationOfAGivenSingularWord("dwarf guardians", "dwarf guardian");
-		testPluralisationOfAGivenSingularWord("chief is an exception to the v rule",
-				"orc chiefs", "orc chief");
+		testPluralisationOfAGivenSingularWord("dwarf guardians",
+				"dwarf guardian");
+		testPluralisationOfAGivenSingularWord(
+				"chief is an exception to the v rule", "orc chiefs",
+				"orc chief");
 		testPluralisationOfAGivenSingularWord("militia elves", "militia elf");
 		testPluralisationOfAGivenSingularWord("archer elves", "archer elf");
 		testPluralisationOfAGivenSingularWord("zombies", "zombie");
@@ -446,16 +470,19 @@ public class GrammarTest {
 		testPluralisationOfAGivenSingularWord("hero dwarves", "hero dwarf");
 		testPluralisationOfAGivenSingularWord("mage elves", "mage elf");
 		testPluralisationOfAGivenSingularWord("deaths", "death");
-		testPluralisationOfAGivenSingularWord("commander elves", "commander elf");
+		testPluralisationOfAGivenSingularWord("commander elves",
+				"commander elf");
 		testPluralisationOfAGivenSingularWord("stone golems", "stone golem");
 		testPluralisationOfAGivenSingularWord("archmage elves", "archmage elf");
 		testPluralisationOfAGivenSingularWord("leader dwarves", "leader dwarf");
-		testPluralisationOfAGivenSingularWord("demon skeletons", "demon skeleton");
+		testPluralisationOfAGivenSingularWord("demon skeletons",
+				"demon skeleton");
 		testPluralisationOfAGivenSingularWord("elf sacerdotists",
 				"elf sacerdotist");
 		testPluralisationOfAGivenSingularWord("earth elementals",
 				"earth elemental");
-		testPluralisationOfAGivenSingularWord("fire elementals", "fire elemental");
+		testPluralisationOfAGivenSingularWord("fire elementals",
+				"fire elemental");
 		testPluralisationOfAGivenSingularWord("water elementals",
 				"water elemental");
 		testPluralisationOfAGivenSingularWord("green dragons", "green dragon");
@@ -513,7 +540,8 @@ public class GrammarTest {
 		source.add("second");
 		assertEquals("first and second", Grammar.enumerateCollection(source));
 		source.add("third");
-		assertEquals("first, second, and third", Grammar.enumerateCollection(source));
+		assertEquals("first, second, and third",
+				Grammar.enumerateCollection(source));
 
 	}
 

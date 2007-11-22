@@ -29,7 +29,7 @@ public class BloodTest {
 
 	@Test
 	public final void testBloodStringInt() {
-		Blood bl = new Blood( "blabla", 1);
+		Blood bl = new Blood("blabla", 1);
 		assertEquals("blabla", bl.get("class"));
 		assertEquals("1", bl.get("amount"));
 	}

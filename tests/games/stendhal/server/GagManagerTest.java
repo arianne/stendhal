@@ -64,8 +64,7 @@ public class GagManagerTest {
 	@Test
 	public final void testOnLoggedIn() {
 		Player policeman = PlayerTestHelper.createPlayer();
-		Player bob =PlayerTestHelper.createPlayer("bob");;
-
+		Player bob = PlayerTestHelper.createPlayer("bob");
 
 		GagManager.get().gag(bob, policeman, 1, "test", bob.getName());
 		assertEquals("You have gagged bob for 1 minutes. Reason: test.",

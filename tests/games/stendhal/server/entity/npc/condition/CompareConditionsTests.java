@@ -15,8 +15,8 @@ import org.junit.Test;
 
 public class CompareConditionsTests {
 
-
 	private List<ChatCondition> conditionsA2;
+
 	private List<ChatCondition> conditionsB2;
 
 	@SuppressWarnings("serial")
@@ -44,21 +44,21 @@ public class CompareConditionsTests {
 
 	}
 
-    @Test
-    public void testname() throws Exception {
-    	for(ChatCondition cond1 : conditionsA2){
-    		for (ChatCondition cond2 : conditionsB2){
-    			if (cond1==cond2){
-    				continue;
-    			}
-    			assertFalse(cond1.equals(cond2));
-    			assertFalse(cond2.equals(cond1));
+	@Test
+	public void testname() throws Exception {
+		for (ChatCondition cond1 : conditionsA2) {
+			for (ChatCondition cond2 : conditionsB2) {
+				if (cond1 == cond2) {
+					continue;
+				}
+				assertFalse(cond1.equals(cond2));
+				assertFalse(cond2.equals(cond1));
 
-    		}
-    	}
-    }
+			}
+		}
+	}
 
-    @After
+	@After
 	public void tearDown() throws Exception {
 	}
 

@@ -37,15 +37,16 @@ public class LookBookforCerylTest {
 	}
 
 	SpeakerNPC jynath;
+
 	private SpeakerNPC ceryl;
 
 	@Before
 	public void setUp() throws Exception {
 		PlayerHelper.generateNPCRPClasses();
-		new WitchNPC().configureZone(new StendhalRPZone("testzone"),null);
+		new WitchNPC().configureZone(new StendhalRPZone("testzone"), null);
 		new LibrarianNPC().configureZone(new StendhalRPZone("testzone"), null);
-		jynath= NPCList.get().get("jynath");
-		ceryl= NPCList.get().get("ceryl");
+		jynath = NPCList.get().get("jynath");
+		ceryl = NPCList.get().get("ceryl");
 	}
 
 	@After
@@ -53,7 +54,6 @@ public class LookBookforCerylTest {
 		NPCList.get().remove("ceryl");
 		NPCList.get().remove("Jynath");
 	}
-
 
 	@Test
 	public final void askJynathWithoutQuest() {
@@ -67,12 +67,12 @@ public class LookBookforCerylTest {
 		Engine jynathEngine = jynath.getEngine();
 		jynathEngine.step(pl, "Hi");
 		assertTrue(jynath.isTalking());
-		assertEquals("Greetings! How may I help you?",
-				jynath.get("text"));
+		assertEquals("Greetings! How may I help you?", jynath.get("text"));
 
 		jynathEngine.step(pl, "book");
 		assertTrue(jynath.isTalking());
-		assertEquals("Sssh! I'm concentrating on this potion recipe... it's a tricky one.",
+		assertEquals(
+				"Sssh! I'm concentrating on this potion recipe... it's a tricky one.",
 				jynath.get("text"));
 
 		jynathEngine.step(pl, "bye");
@@ -87,16 +87,15 @@ public class LookBookforCerylTest {
 		Player pl = PlayerTestHelper.createPlayer("joe");
 		pl.setQuest(CERYL_BOOK, "jynath");
 
-
 		Engine cerylEngine = ceryl.getEngine();
 		cerylEngine.step(pl, "Hi");
 		assertTrue(ceryl.isTalking());
-		assertEquals("Haven't you got that #book back from #Jynath? Please go look for it, quickly!",
+		assertEquals(
+				"Haven't you got that #book back from #Jynath? Please go look for it, quickly!",
 				ceryl.get("text"));
 
 		assertFalse(pl.hasQuest(CERYL_BOOK));
 	}
-
 
 	@Test
 	public void doQuest() throws Exception {
@@ -128,8 +127,7 @@ public class LookBookforCerylTest {
 		assertEquals("start", pl.getQuest(LookBookforCerylTest.CERYL_BOOK));
 		cerylEngine.step(pl, "book");
 		assertTrue(ceryl.isTalking());
-		assertEquals(
-				"I really need that book now! Go to talk with #Jynath.",
+		assertEquals("I really need that book now! Go to talk with #Jynath.",
 				ceryl.get("text"));
 		cerylEngine.step(pl, ConversationPhrases.GOODBYE_MESSAGES.get(0));
 		assertFalse(ceryl.isTalking());
@@ -155,7 +153,6 @@ public class LookBookforCerylTest {
 				"You'd better take that book back to #Ceryl quickly... he'll be waiting for you.",
 				jynath.get("text"));
 
-
 		jynathEngine.step(pl, "bye");
 		assertFalse(jynath.isTalking());
 
@@ -173,9 +170,6 @@ public class LookBookforCerylTest {
 		assertEquals("I have nothing for you now.", ceryl.get("text"));
 
 	}
-
-
-
 
 	@Test
 	public final void testAddToWorld() {

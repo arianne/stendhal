@@ -50,11 +50,13 @@ public class NakedConditionTest {
 		assertTrue(new NakedCondition().equals(new NakedCondition()));
 
 	}
+
 	@Test
 	public final void testHashCode() {
 		NakedCondition obj = new NakedCondition();
-		assertEquals(obj.hashCode(),obj.hashCode());
-		assertEquals(new NakedCondition().hashCode(),new NakedCondition().hashCode());
+		assertEquals(obj.hashCode(), obj.hashCode());
+		assertEquals(new NakedCondition().hashCode(),
+				new NakedCondition().hashCode());
 
 	}
 }

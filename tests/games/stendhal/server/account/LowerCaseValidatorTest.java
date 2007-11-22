@@ -8,8 +8,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-
-
 public class LowerCaseValidatorTest {
 
 	@Before
@@ -23,12 +21,12 @@ public class LowerCaseValidatorTest {
 	@Test
 	public final void testLowerCaseValidator() {
 		LowerCaseValidator lcv = new LowerCaseValidator("A");
-		assertEquals(Result.FAILED_INVALID_CHARACTER_USED,lcv.validate());
+		assertEquals(Result.FAILED_INVALID_CHARACTER_USED, lcv.validate());
 		lcv = new LowerCaseValidator("a");
 		assertNull(lcv.validate());
 
 		lcv = new LowerCaseValidator("Ü");
-		assertEquals(Result.FAILED_INVALID_CHARACTER_USED,lcv.validate());
+		assertEquals(Result.FAILED_INVALID_CHARACTER_USED, lcv.validate());
 		lcv = new LowerCaseValidator("ü");
 		assertNull(lcv.validate());
 

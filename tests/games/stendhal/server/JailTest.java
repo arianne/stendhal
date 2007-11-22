@@ -24,6 +24,7 @@ public class JailTest {
 		Log4J.init();
 		MockStendhalRPRuleProcessor.get();
 	}
+
 	@Before
 	public void setUp() throws Exception {
 	}
@@ -59,26 +60,26 @@ public class JailTest {
 		Player policeman = PlayerTestHelper.createPlayer();
 		Player bob = PlayerTestHelper.createPlayer();
 		bob.setName("bob");
-		Jail.jailzone =  StendhalRPWorld.get().addArea(Jail.DEFAULT_JAIL_ZONE, ZONE_CONTENT);
-		 StendhalRPWorld.get().addArea("-3_semos_jail","Level -3/semos/jail_walk.tmx");
-
+		Jail.jailzone = StendhalRPWorld.get().addArea(Jail.DEFAULT_JAIL_ZONE,
+				ZONE_CONTENT);
+		StendhalRPWorld.get().addArea("-3_semos_jail",
+				"Level -3/semos/jail_walk.tmx");
 
 		Jail.get().imprison(bob, policeman, 1, "test");
 		assertTrue(Jail.isInJail(bob));
-		assertEquals("You have jailed bob for 1 minutes. Reason: test.",policeman.get("private_text"));
+		assertEquals("You have jailed bob for 1 minutes. Reason: test.",
+				policeman.get("private_text"));
 		Jail.get().release(bob);
 		assertFalse(Jail.isInJail(bob));
 
-
 	}
-
-
 
 	@Test
 	public final void testIsInJail() throws Exception {
 
 		Player bob = PlayerTestHelper.createPlayer();
-		StendhalRPZone zone = StendhalRPWorld.get().addArea(Jail.DEFAULT_JAIL_ZONE, ZONE_CONTENT);
+		StendhalRPZone zone = StendhalRPWorld.get().addArea(
+				Jail.DEFAULT_JAIL_ZONE, ZONE_CONTENT);
 		zone.add(bob);
 		Jail.jailzone = zone;
 		Jail.get().imprison("bob", bob, 1, "test");
@@ -97,7 +98,5 @@ public class JailTest {
 		assertFalse(Jail.isInJail(nobob));
 
 	}
-
-
 
 }

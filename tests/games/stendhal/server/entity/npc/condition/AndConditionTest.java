@@ -14,13 +14,13 @@ import utilities.SpeakerNPCTestHelper;
 
 public class AndConditionTest {
 	AlwaysTrueCondition trueCondition;
+
 	ChatCondition falsecondition;
 
 	@Before
 	public void setUp() throws Exception {
 		trueCondition = new AlwaysTrueCondition();
-		falsecondition = new NotCondition(new AlwaysTrueCondition()) ;
-
+		falsecondition = new NotCondition(new AlwaysTrueCondition());
 
 	}
 
@@ -50,11 +50,14 @@ public class AndConditionTest {
 		AndCondition obj = new AndCondition();
 		assertTrue(obj.equals(obj));
 		assertTrue(new AndCondition().equals(new AndCondition()));
-		assertTrue(new AndCondition((ChatCondition)null).equals(new AndCondition((ChatCondition)null)));
+		assertTrue(new AndCondition((ChatCondition) null).equals(new AndCondition(
+				(ChatCondition) null)));
 
-		assertFalse(new AndCondition((ChatCondition)null).equals(new AndCondition()));
-		assertFalse(new AndCondition().equals(new AndCondition((ChatCondition)null)));
-		assertFalse(new AndCondition((ChatCondition)null).equals(new AndCondition(falsecondition)));
+		assertFalse(new AndCondition((ChatCondition) null).equals(new AndCondition()));
+		assertFalse(new AndCondition().equals(new AndCondition(
+				(ChatCondition) null)));
+		assertFalse(new AndCondition((ChatCondition) null).equals(new AndCondition(
+				falsecondition)));
 		assertFalse(new AndCondition().equals(new Integer(100)));
 		assertTrue(new AndCondition().equals(new AndCondition() {
 		}));
@@ -62,7 +65,6 @@ public class AndConditionTest {
 
 	@Test
 	public void testFire() throws Throwable {
-
 
 		assertTrue("empty And is true", new AndCondition().fire(
 				PlayerTestHelper.createPlayer(), "testAndConditionText",
@@ -93,9 +95,11 @@ public class AndConditionTest {
 	@Test
 	public void testHashCode() throws Throwable {
 		AndCondition obj = new AndCondition();
-		assertEquals(obj.hashCode(),obj.hashCode());
-		assertEquals(new AndCondition().hashCode(),new AndCondition().hashCode());
-		assertEquals(new AndCondition((ChatCondition)null).hashCode(),new AndCondition((ChatCondition)null).hashCode());
+		assertEquals(obj.hashCode(), obj.hashCode());
+		assertEquals(new AndCondition().hashCode(),
+				new AndCondition().hashCode());
+		assertEquals(new AndCondition((ChatCondition) null).hashCode(),
+				new AndCondition((ChatCondition) null).hashCode());
 
 	}
 
@@ -106,6 +110,7 @@ public class AndConditionTest {
 		assertEquals("[true]", new AndCondition(trueCondition).toString());
 		assertEquals("[true, not <true>]", new AndCondition(trueCondition,
 				falsecondition).toString());
-		assertEquals("[not <true>]", new AndCondition(falsecondition).toString());
+		assertEquals("[not <true>]",
+				new AndCondition(falsecondition).toString());
 	}
 }

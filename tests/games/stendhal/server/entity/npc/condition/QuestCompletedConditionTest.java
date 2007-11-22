@@ -59,21 +59,21 @@ public class QuestCompletedConditionTest {
 
 	@Test
 	public final void testToString() {
-		assertEquals("QuestCompleted <questname>",
-				new QuestCompletedCondition("questname").toString());
+		assertEquals("QuestCompleted <questname>", new QuestCompletedCondition(
+				"questname").toString());
 	}
 
 	@Test
 	public void testEquals() throws Throwable {
 		assertTrue(new QuestCompletedCondition("questname").equals(new QuestCompletedCondition(
-		"questname")));
+				"questname")));
 		assertTrue(new QuestCompletedCondition(null).equals(new QuestCompletedCondition(
-		null)));
+				null)));
 
 		assertFalse(new QuestCompletedCondition(null).equals(new QuestCompletedCondition(
-		"questname")));
+				"questname")));
 		assertFalse(new QuestCompletedCondition("questname").equals(new QuestCompletedCondition(
-		null)));
+				null)));
 		assertFalse(new QuestCompletedCondition("questname").equals(null));
 
 		QuestCompletedCondition obj = new QuestCompletedCondition("questname");
@@ -82,16 +82,16 @@ public class QuestCompletedConditionTest {
 		assertFalse(new QuestCompletedCondition("questname").equals(new Object()));
 
 		assertTrue(new QuestCompletedCondition("questname").equals(new QuestCompletedCondition(
-			"questname") {
+				"questname") {
 		}));
 	}
 
 	@Test
 	public void testHashCode() throws Exception {
-		assertEquals(new QuestCompletedCondition("questname").hashCode(),new QuestCompletedCondition(
-		"questname").hashCode());
-		assertEquals(new QuestCompletedCondition(null).hashCode(),new QuestCompletedCondition(
-		null).hashCode());
+		assertEquals(new QuestCompletedCondition("questname").hashCode(),
+				new QuestCompletedCondition("questname").hashCode());
+		assertEquals(new QuestCompletedCondition(null).hashCode(),
+				new QuestCompletedCondition(null).hashCode());
 	}
 
 }

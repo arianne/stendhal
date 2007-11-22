@@ -19,37 +19,42 @@ public class StringFormatterTest {
 	@Test
 	public final void testStringFormatter() {
 		StringFormatter formatter = new StringFormatter("test");
-		assertEquals("test",formatter.toString());
+		assertEquals("test", formatter.toString());
 		formatter = new StringFormatter("<test>${test}</test>");
-		assertEquals("<test></test>",formatter.toString());
+		assertEquals("<test></test>", formatter.toString());
 
 		formatter.set("test", "hello");
-		assertEquals("<test>hello</test>",formatter.toString());
+		assertEquals("<test>hello</test>", formatter.toString());
 
-
-		}
+	}
 
 	@Test
 	public final void testSetStringString() {
-		StringFormatter formatter = new StringFormatter("<first>${first}</first><2nd>${2nd}</2nd><3rd>${3rd}</3rd>");
-		assertEquals("<first></first><2nd></2nd><3rd></3rd>",formatter.toString());
+		StringFormatter formatter = new StringFormatter(
+				"<first>${first}</first><2nd>${2nd}</2nd><3rd>${3rd}</3rd>");
+		assertEquals("<first></first><2nd></2nd><3rd></3rd>",
+				formatter.toString());
 		formatter.set("3rd", "last");
 		formatter.set("first", "winner");
 		formatter.set("2nd", "another one");
-		assertEquals("<first>winner</first><2nd>another one</2nd><3rd>last</3rd>",formatter.toString());
+		assertEquals(
+				"<first>winner</first><2nd>another one</2nd><3rd>last</3rd>",
+				formatter.toString());
 
 	}
 
 	@Test
 	public final void testSetStringInt() {
-		StringFormatter formatter = new StringFormatter("<first>${first}</first><2nd>${2nd}</2nd><3rd>${3rd}</3rd>");
-		assertEquals("<first></first><2nd></2nd><3rd></3rd>",formatter.toString());
+		StringFormatter formatter = new StringFormatter(
+				"<first>${first}</first><2nd>${2nd}</2nd><3rd>${3rd}</3rd>");
+		assertEquals("<first></first><2nd></2nd><3rd></3rd>",
+				formatter.toString());
 		formatter.set("3rd", 3);
 		formatter.set("first", 1);
 		formatter.set("2nd", 2);
-		assertEquals("<first>1</first><2nd>2</2nd><3rd>3</3rd>",formatter.toString());
+		assertEquals("<first>1</first><2nd>2</2nd><3rd>3</3rd>",
+				formatter.toString());
 
 	}
-
 
 }

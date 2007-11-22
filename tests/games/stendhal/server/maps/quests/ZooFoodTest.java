@@ -68,7 +68,6 @@ public class ZooFoodTest {
 		Player player;
 		player = PlayerTestHelper.createPlayer();
 
-
 		SpeakerNPC npc = NPCList.get().get("Katinka");
 		assertNotNull(npc);
 		Engine en1 = npc.getEngine();
@@ -101,7 +100,7 @@ public class ZooFoodTest {
 
 	@Test
 	public void testDoQuest() {
-		Player player= PlayerTestHelper.createPlayer();
+		Player player = PlayerTestHelper.createPlayer();
 
 		SpeakerNPC katinkaNpc = NPCList.get().get("Katinka");
 		assertNotNull(katinkaNpc);
@@ -109,7 +108,8 @@ public class ZooFoodTest {
 		SpeakerNPC feelgoodNpc = NPCList.get().get("Dr. Feelgood");
 		assertNotNull(feelgoodNpc);
 		Engine enFeelgood = feelgoodNpc.getEngine();
-		assertTrue("test saying 'Hallo' instead of 'hi'", enKatinka.step(player, "Hallo"));
+		assertTrue("test saying 'Hallo' instead of 'hi'", enKatinka.step(
+				player, "Hallo"));
 		assertEquals(
 				"Welcome to the Ados Wildlife Refuge! We rescue animals from being slaughtered by evil adventurers. But we need help... maybe you could do a #task for us?",
 				katinkaNpc.get("text"));

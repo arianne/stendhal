@@ -20,7 +20,7 @@ public class ChestTest {
 	public void tearDown() throws Exception {
 	}
 
-	@Test (expected= SlotIsFullException.class)
+	@Test(expected = SlotIsFullException.class)
 	public final void testSize() {
 		Entity.generateRPClass();
 		Chest.generateRPClass();
@@ -28,10 +28,12 @@ public class ChestTest {
 		assertEquals(0, ch.size());
 		for (int i = 0; i < 30; i++) {
 
-			ch.add(new PassiveEntity() {});
+			ch.add(new PassiveEntity() {
+			});
 		}
 		assertEquals(30, ch.size());
-		ch.add(new PassiveEntity() {});
+		ch.add(new PassiveEntity() {
+		});
 	}
 
 	@Test
@@ -48,14 +50,13 @@ public class ChestTest {
 
 	}
 
-
 	@Test
 	public final void testOnUsed() {
 		Entity.generateRPClass();
 		Chest.generateRPClass();
 		Chest ch = new Chest();
 		assertFalse(ch.isOpen());
-		ch.onUsed(new RPEntity(){
+		ch.onUsed(new RPEntity() {
 
 			@Override
 			protected void dropItemsOn(Corpse corpse) {
@@ -64,10 +65,11 @@ public class ChestTest {
 			@Override
 			public void logic() {
 
-			}});
+			}
+		});
 
 		assertTrue(ch.isOpen());
-		ch.onUsed(new RPEntity(){
+		ch.onUsed(new RPEntity() {
 
 			@Override
 			protected void dropItemsOn(Corpse corpse) {
@@ -76,7 +78,8 @@ public class ChestTest {
 			@Override
 			public void logic() {
 
-			}});
+			}
+		});
 		assertFalse(ch.isOpen());
 	}
 
