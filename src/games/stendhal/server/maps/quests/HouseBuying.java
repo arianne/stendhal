@@ -354,7 +354,7 @@ public class HouseBuying extends AbstractQuest {
 										// free
 										if (!doneList.contains(text)) {
 											// it's available, so take money
-											if (player.isEquipped("money", COST)) {
+											if (player.isEquipped("money", COST_ADOS)) {
 												Item key = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
 														"private_key_" + text);
 												engine2.say("Congratulations, here is your key to house "
@@ -363,7 +363,7 @@ public class HouseBuying extends AbstractQuest {
 														+ COST2 + " money?");
 												key.setUndroppableOnDeath(true);
 												if (player.equip(key)) {
-													player.drop("money", COST);
+													player.drop("money", COST_ADOS);
     												// remember what house they own
     												player.setQuest(QUEST_SLOT, text);
     												postman.setQuest(STORAGE_SLOT_2, postmanslot + ";" + text);
