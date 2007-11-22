@@ -47,9 +47,9 @@ public class LevelLessThanConditionTest {
 
 	@Test
 	public final void testFire() {
-		assertTrue(new LevelLessThanCondition(99).fire(level100Player, "lessthan",null));
+		assertFalse(new LevelLessThanCondition(99).fire(level100Player, "lessthan",null));
 		assertFalse(new LevelLessThanCondition(100).fire(level100Player, "lessthan",null));
-		assertFalse(new LevelLessThanCondition(101).fire(level100Player, "lessthan",null));
+		assertTrue(new LevelLessThanCondition(101).fire(level100Player, "lessthan",null));
 	}
 
 	@Test

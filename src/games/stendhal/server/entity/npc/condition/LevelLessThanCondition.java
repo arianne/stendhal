@@ -25,12 +25,12 @@ public class LevelLessThanCondition extends SpeakerNPC.ChatCondition {
 
 	@Override
 	public boolean fire(Player player, String text, SpeakerNPC engine) {
-		return (player.getLevel() > level);
+		return (player.getLevel() < level);
 	}
 
 	@Override
 	public String toString() {
-		return "level > " + level + " "; 
+		return "level > " + level + " ";
 	}
 
 	@Override

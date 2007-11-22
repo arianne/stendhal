@@ -45,9 +45,9 @@ public class LevelGreaterThanConditionTest {
 
 	@Test
 	public final void testFire() {
-		assertFalse(new LevelGreaterThanCondition(99).fire(level100Player, "greaterthan",null));
+		assertTrue(new LevelGreaterThanCondition(99).fire(level100Player, "greaterthan",null));
 		assertFalse(new LevelGreaterThanCondition(100).fire(level100Player, "greaterthan",null));
-		assertTrue(new LevelGreaterThanCondition(101).fire(level100Player, "greaterthan",null));
+		assertFalse(new LevelGreaterThanCondition(101).fire(level100Player, "greaterthan",null));
 	}
 
 	@Test
