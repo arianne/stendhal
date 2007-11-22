@@ -26,7 +26,7 @@ public class KilledCondition extends ChatCondition {
 	 * @param toKill list of creatures which should be killed by the player
 	 */
 	public KilledCondition(List<String> toKill) {
-		this.toKill = new TreeSet(toKill);
+		this.toKill = new TreeSet<String>(toKill);
 	}
 
 	/**
@@ -35,7 +35,7 @@ public class KilledCondition extends ChatCondition {
 	 * @param toKill creatures which should be killed by the player
 	 */
 	public KilledCondition(String... toKill) {
-		this.toKill = new TreeSet(Arrays.asList(toKill));
+		this.toKill = new TreeSet<String>(Arrays.asList(toKill));
 	}
 
 	@Override
@@ -50,7 +50,7 @@ public class KilledCondition extends ChatCondition {
 
 	@Override
 	public String toString() {
-		return "KilledCondition <" + toKill + ">"; 
+		return "KilledCondition <" + toKill + ">";
 	}
 
 	@Override
