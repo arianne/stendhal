@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * QUEST: Cloak Collector 2
  * <p>
- * PARTICIPANTS: - Josephine, a young woman who live in Ados/Fado
+ * PARTICIPANTS: - Josephine, a young woman who live in Fado
  * <p>
  * STEPS:
  * <ul>
@@ -26,7 +26,7 @@ import java.util.List;
  * <li> Josephine gives you a reward
  * </ul>
  * <p>
- * REWARD: - 105 Karma in all - 25000 XP - secnt (when ready)
+ * REWARD: - 105 Karma in all - 100000 XP - scent (when ready)
  * <p>
  * REPETITIONS: - None.
  */
@@ -224,7 +224,7 @@ public class CloakCollector2 extends AbstractQuest {
 										rewardPlayer(player);
 										// TODO: Make speech mention scent reward if applicable.
 										engine
-												.say("Oh, yay! My collection is complete, at least for now! You're so kind, I bet you'll have great Karma now!");
+												.say("Oh, yay! You're so kind, I bet you'll have great Karma now! Listen, I want to reward you with something special but it's not ready yet. So you make sure to come back and check with me some time soon. I won't forget!");
 										player.setQuest(QUEST_SLOT,
 												"done");
 										player.notifyWorldAboutChanges();
@@ -295,6 +295,6 @@ public class CloakCollector2 extends AbstractQuest {
 	    //	scent.setBoundTo(player.getName());
 	    //	player.equip(scent, true);
 		player.addKarma(100.0);
-		player.addXP(25000);
+		player.addXP(100000);
       	}
 }
