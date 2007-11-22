@@ -385,6 +385,61 @@ Danger! Deep Water!
   <portal x="55" y="57" ref="locked_inside_right">
    <destination zone="-2_orril_lich_palace" ref="locked_outside"/>
   </portal>
+
+  <portal x="54" y="113" ref="orb_table">
+   <destination zone="-2_orril_lich_palace" ref="2nd_room_in"/>
+   <implementation class-name="games.stendhal.server.entity.portal.QuestCheckingPortal">
+    <parameter name="quest">learn_scrying</parameter>
+    <parameter name="rejected">You do not know how to use the orb.</parameter>
+   </implementation>
+  </portal>
+
+  <portal x="77" y="117" ref="2nd_room_in">
+   <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+  </portal>
+
+  <portal x="76" y="117" ref="2nd_room_exit1">
+   <destination zone="-2_orril_lich_palace" ref="2nd_room_out1"/>
+  </portal>
+  <portal x="76" y="118" ref="2nd_room_exit2">
+   <destination zone="-2_orril_lich_palace" ref="2nd_room_out2"/>
+  </portal>
+
+  <portal x="71" y="117" ref="2nd_room_out1">
+   <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+  </portal>
+  <portal x="71" y="118" ref="2nd_room_out2">
+   <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+  </portal>
+
+  <portal x="84" y="108" ref="headstone">
+   <destination zone="-2_orril_lich_palace" ref="3rd_room_in"/>
+   <implementation class-name="games.stendhal.server.entity.portal.KeyDestroyingDoor">
+    <parameter name="class">headstone</parameter>
+    <parameter name="key">carbuncle</parameter>
+    <parameter name="rejected">The tombstone needs a gem to unlock it.</parameter>
+   </implementation>
+   <attribute name="description">Only a certain gem can unlock the secrets of the headstone.</attribute>
+  </portal>
+
+  <portal x="97" y="117" ref="3rd_room_in">
+   <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+  </portal>
+
+  <portal x="96" y="117" ref="3rd_room_exit1">
+   <destination zone="-2_orril_lich_palace" ref="3rd_room_out1"/>
+  </portal>
+  <portal x="96" y="118" ref="3rd_room_exit2">
+   <destination zone="-2_orril_lich_palace" ref="3rd_room_out2"/>
+  </portal>
+
+  <portal x="91" y="117" ref="3rd_room_out1">
+   <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+  </portal>
+  <portal x="91" y="118" ref="3rd_room_out2">
+   <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+  </portal>
+
  </zone>
 
  <zone name="-2_orril_dungeon" level="-2" x="499936" y="500224" file="Level -2/orril/dungeon.tmx">
