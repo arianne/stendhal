@@ -2,7 +2,7 @@ package games.stendhal.server.entity.portal;
 
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
 
@@ -14,14 +14,14 @@ import games.stendhal.server.events.TurnNotifier;
 public class OnePlayerRoomDoor extends Door {
 
 	/**
-	 * Tries periodicly to open the door. (Just in case the player left
+	 * Tries periodically to open the door. (Just in case the player left
 	 * zone event did not get fired).
 	 */
 	private class PeriodicOpener implements TurnListener {
 
 		public void onTurnReached(int currentTurn) {
 			if (!isOpen()) {
-				if (mayBeOpened(null)) {
+				if (isAllowed(null)) {
 					open();
 				}
 			}
@@ -41,7 +41,7 @@ public class OnePlayerRoomDoor extends Door {
 	}
 
 	@Override
-	protected boolean mayBeOpened(Player player) {
+	protected boolean isAllowed(RPEntity user) {
 		StendhalRPWorld world = StendhalRPWorld.get();
 		StendhalRPZone zone = world.getZone(super.getDestinationZone());
 		return (zone.getPlayerAndFriends().size() == 0);

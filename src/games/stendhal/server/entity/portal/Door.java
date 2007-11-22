@@ -28,7 +28,7 @@ import marauroa.common.game.Definition.Type;
  * require the key when walking in one direction and can walk in the
  * other direction without any key.
  */
-public abstract class Door extends Portal implements TurnListener {
+public abstract class Door extends AccessCheckingPortal implements TurnListener {
 
 	/**
 	 * How many turns it takes until door automatically closes itself
@@ -55,6 +55,18 @@ public abstract class Door extends Portal implements TurnListener {
 	 * @param clazz The class. Responsible for how this door looks like.
 	 */
 	public Door(String clazz) {
+		this(clazz,"This door is closed");
+	}
+
+	/**
+	 * Creates a new door.
+	 *
+	 * @param clazz The class. Responsible for how this door looks like.
+	 *
+	 * @param	rejectMessage	The message to given when rejected.
+	 */
+        public Door(String clazz, String rejectMessage) {
+	        super(rejectMessage);
 		setRPClass("door");
 		put("type", "door");
 		setEntityClass(clazz);
@@ -99,19 +111,15 @@ public abstract class Door extends Portal implements TurnListener {
 	}
 
 	/**
-	 * May this door be used?
-	 *
-	 * @param user user of the door
-	 * @return true, if it can be used; and false otherwise
-	 */
-	protected abstract boolean mayBeOpened(Player user);
-
-	/**
 	 * teleport (if the door is now open)
 	 */
 	@Override
 	public boolean onUsed(RPEntity user) {
-		if (mayBeOpened((Player) user)) {
+	    // check first could player use the door
+	        boolean couldUse = super.onUsed(user);
+
+		if (couldUse) {
+		    // open door, or stop door from closing
 			TurnNotifier turnNotifier = TurnNotifier.get();
 			if (isOpen()) {
 				// The door is still open because another player just used it.
@@ -124,19 +132,15 @@ public abstract class Door extends Portal implements TurnListener {
 
 			// register automatic close
 			turnNotifier.notifyInTurns(TURNS_TO_STAY_OPEN, this);
-
-			// use it
-			return super.onUsed(user);
-
 		} else { // player may not use it
 			if (isOpen()) {
 				// close now to make visible that the entity is not allowed
 				// to pass
 				close();
-				return false;
 			}
 		}
-		return false;
+		// finally let player use door
+		return couldUse;
 	}
 
 	@Override

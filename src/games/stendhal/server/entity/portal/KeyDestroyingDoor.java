@@ -13,15 +13,10 @@ import games.stendhal.server.entity.RPEntity;
  * If you add such a door to the world, don't forget to add a sign or an
  * NPC which tells the player how the door works.
  *
- * @author daniel
+ * @author daniel/kymara
  */
 public class KeyDestroyingDoor extends LockedDoor {
 
-	/**
-	 * The number of key items that are destroyed while
-	 * passing through the door
-	 */
-	private int requiredAmount;
 
 	/**
 	 * Creates a new KeyDestroying door which destroys 1 key when the player
@@ -41,19 +36,17 @@ public class KeyDestroyingDoor extends LockedDoor {
 	 *                       passing through the door
 	 */
 	public KeyDestroyingDoor(String key, String clazz, int requiredAmount) {
-		super(key, clazz);
-
-		this.requiredAmount = requiredAmount;
+		super(key, clazz, requiredAmount);
 	}
 
 	@Override
 	public boolean onUsed(RPEntity user) {
-		if (has("locked") && user.isEquipped(get("locked"), requiredAmount)) {
-			// destroy key(s)
-			user.drop(get("locked"), requiredAmount);
-			return super.onUsed(user);
-
-		}
-		return false;
+	    boolean result=super.onUsed(user);
+	    if(result){
+		user.drop(get("locked"), requiredAmount);
+	    }
+	    return result;
+	    
 	}
+    
 }
