@@ -95,8 +95,8 @@ public class Door2DView extends StateEntity2DView {
 			width = tiles.getWidth();
 			height = tiles.getHeight() / 2;
 
-			map.put(STATE_CLOSED, store.getTile(tiles, 0, 0, width, height));
-			map.put(STATE_OPEN, store.getTile(tiles, 0, height, width, height));
+			map.put(STATE_OPEN, store.getTile(tiles, 0, 0, width, height));
+			map.put(STATE_CLOSED, store.getTile(tiles, 0, height, width, height));
 		}
 
 		calculateOffset(width, height);
