@@ -268,7 +268,7 @@ m*/item/furniture/chair/throne.png
 m*./item/furniture/chair/throne_small.png
 b*/item/furniture/chair/wooden.png
 b*/item/furniture/chair/wooden_pale.png
-./item/furniture/clock/wooden_clock.png
+m/item/furniture/clock/wooden_clock.png
 b*/item/furniture/crockery/knife_spoon.png
 ./item/furniture/curtain/dark_red.png
 ./item/furniture/curtain/dark_red_central.png
