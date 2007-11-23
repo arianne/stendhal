@@ -869,11 +869,18 @@ public abstract class RPEntity extends GuidedEntity {
 			// certain creature without the help of others.
 			// Find out if the player killed this RPEntity on his own, but
 			// don't overwrite solo with shared.
-			if (damageDone == totalDamageReceived) {
-				killer.setSoloKill(getName());
-			} else if (!killer.hasKilledSolo(getName())) {
-				killer.setSharedKill(getName());
+			String killedName=getName();
+			
+			if(killedName==null) {
+				logger.warn("This entity returns null as name: "+this);
+			} else {
+				if (damageDone == totalDamageReceived) {
+					killer.setSoloKill(killedName);
+				} else if (!killer.hasKilledSolo(killedName)) {
+					killer.setSharedKill(killedName);
+				}
 			}
+			
 			killer.notifyWorldAboutChanges();
 		}
 	}
