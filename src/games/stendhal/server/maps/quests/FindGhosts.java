@@ -9,6 +9,7 @@ import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
+import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
 import games.stendhal.server.entity.npc.condition.TriggerInListCondition;
 import games.stendhal.server.entity.player.Player;
 
@@ -128,13 +129,8 @@ public class FindGhosts extends AbstractQuest {
 		// the player returns to Carena after having started the quest, or found
 		// some ghosts.
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-			new SpeakerNPC.ChatCondition() {
-				@Override
-				public boolean fire(Player player, String text, SpeakerNPC engine) {
-					return player.hasQuest(QUEST_SLOT)
-							&& player.getQuest(QUEST_SLOT).startsWith("looking");
-				}
-			}, ConversationStates.QUESTION_1,
+			new QuestStateStartsWithCondition(QUEST_SLOT, "looking"),
+			ConversationStates.QUESTION_1,
 			"If you found any #spirits, please tell me their name.", null);
 
 		npc.add(ConversationStates.QUESTION_1, NEEDED_SPIRITS, null,
