@@ -1951,6 +1951,9 @@ public class Player extends RPEntity {
 		return false;
 	}
 
+	// use a short readable output instead of the completed RPObject with all
+	// its attributes and slots. You can use /inspect <player> in game to get
+	// that.
 	@Override
 	public String toString() {
 		return "Player [" + getName() + ", " + hashCode() + "]";
