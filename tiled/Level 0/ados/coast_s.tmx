@@ -27,9 +27,12 @@
  <tileset name="../../tileset/logic/collision.png" firstgid="189" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
+ <tileset name="deep pool" firstgid="190" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/water/pool_deep.png"/>
+ </tileset>
  <layer name="0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3YO3LDMBBEQZZCy/c/ryOFovkBMAuwg86hfVgWxde2bS9K+dnxvuB3R/q3crx/6/b61zNy9/WvZa+9/mtLtNe/hh7t9a/vv+76r+lo9zvt9a/pTPveu69/7fZX+h/trr/2+q/T/0p7/cd0rLr7+j+7vf612vd+19e/ff9Pg1R7/XP97zRrSX/t9R/TP91b/1z/dGv9c/3TnXu0T/T/7FK6qf7Z/t+kW387b7p1j/aj+5/5P1yle8X+rdpX7p++B1X7t2w/sn/L76SJs6a792g/a/8Wd2Dk99mq7Uf1b93+7D2YpXWvxnt671vP9j08qf2Z/itJP8urtH9a/3Tnau1n759uN3v7mfun2+mv++ztZ+ufbrZS9yr90z2e3L53//S8K0l3Htk/PeuK0p1H9U/PuaJ04xH90zOuKt23d//0fCtLt23RPz3DmaXb3u2fnt/M0l2P+pxX+3WaXulPvoX+2uuvvf7a63+9ne5r9U/PaGV3Omg+v1HPW+2fQ3vO3of0GQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAID1/AG0IPevAAABAA==
+   H4sIAAAAAAAAAO3aTW7CMBCAUcSy5f7HaenN2i6QUNUEJ7E9Y+ct3hIp+PPkD66Xy+VKKm8r3nf4+nFbEP1dKe+/p/3HSnv98+k5+/rnstZe/7m1aP/q3K9/Di3al8y+/rm76z+n0u5H2uuf05b2R/qXXPv1z91+T//f7p+F7fWfr31pd/3n6r+nvf59OvaY/ZJ7Pf3nbL939vXP1b7lc57+bfo/GkS11z+u/5FmNel/3vZHrv36b+8f3bvm7Ou/rX90a/3j+kd3bnHuj+j/mKXopjP0Pzr7kf2XRLdeOt7o1i1mv3f/Lc/DWbpn7F+rfeb+0fsga/+a7Xv2r/meNOJYo7u3aD9q/xp7oOf72azte/Wv3X7rPhil9eO/O/9p0f5WeZ17t29htvmu1X8m0efyLO3P1j+6c7b2o/ePbjd6+5H7R7erocb727P1j2420+yP1j+6Wa3uLZ/nRusf3eOMM9+rf/R6Z5Kxfav+0WudUYZ7vR79o9c5o6yzX7N/9Bpnlbl9jf7R65tZ9vYl/aPXcGRZr/ml/aPXb2QjzP7t6Xi1L2u69Pt8r9/rW/Xndd/oVvq3bR/dQn/t9dde//J2f6/R942fjV7/aNEN93ZeazfT/Xmm/s8d7h2bR6/RzLY0+fs+q9U+OPs1uafS9xml59u79qfnfoyl/eB+DAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgJ6+AdYqENkAAAEA
   </data>
  </layer>
  <layer name="1_terrain" width="128" height="128">
@@ -57,7 +60,7 @@
    H4sIAAAAAAAAAO3BAQEAAACAkP6v7ggKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAauuOl9cAAAEA
   </data>
  </layer>
- <layer name="collision" width="128" height="128" opacity="0.37">
+ <layer name="collision" width="128" height="128" visible="0" opacity="0.37">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3SwY3DMBAEQeef0+XmAIx7GBbVXLEGqD+1rdfLJu3vYjZnV7fXf9b0P3v6n7sV7fWfsVXt9Z8x/c/dyvb67z/9z57+n5v89m+2uv3UG05++zfT/9zd0V7/PXdXe/332p3d9b9mV92xaK//b6ua6d+v7qZ/s7qX/t3qVvp3qzvp367upH+7upP+7epO+rerO+nfru6kf7e6kf73rm6if7e6h/7rV998JyetvvWOJq++3RNMXX23p5i2+l5PM2n1rZ6oXv39p1u5+tto+tffRNe//h6a/vV30PSv38/a/vX76PrXb6P7D+r3AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/OcN6hzeTAAAAQA=
   </data>

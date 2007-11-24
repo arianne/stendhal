@@ -18,9 +18,12 @@
  <tileset name="../../tileset/logic/collision.png" firstgid="174" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
+ <tileset name="deep pool" firstgid="175" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/water/pool_deep.png"/>
+ </tileset>
  <layer name="0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3TMRLCMBAEQZMC/38vH6CwAdl30nbQufamdNu27dbI/YMHw3Vpu6f6TqvSPVu33rrP21/3+ZzZUvf+ru6sfS/V7fXXv/oGybTPpn82/bPpn037bNpn0z6b/tm0z6Z/Nu2zaZ9N/2zaZ9M+m/7ZdM+mfTbt1/bcof2a9rrrv66j7X/tX72PMe2/7V+9jbHtj/av3kVd/+pNnNu/+s3Utdd/Db+2139u/3TXf04jmus/n9Hd9e/vrOb693dFe/370j/XVe3170n/XFe21z+ns/59VDfXX3v9tdc/u73+ud31X6uj/rrrr73+uuuvu/6a6699Wv+jO6vv3kV1L/9X/09dtc/oX32HVJpn0z2b5tn0zqZtNt2zaZ9NdwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACA914464TGAAABAA==
+   H4sIAAAAAAAAAO3aTU7DMBSF0XYK7H8bBVYIk0og9SdtHT/b9wzOPM6nV9tRj4fD4TiQtxveaW6UtvdUv6dV6Z5ttN66z9tf9/ns2VL38fXurP1Yqtvrr3/1O0imfTb9s+mfTf9s2mfTPpv22fTPpn02/bNpn037bPpn0z6b9tn0z6Z7Nu2zab+206/PG7Rf07n7xx36r+e0ofsr/avXR5v2j/avXhtt22/tX70utvneoX/1mti3f/Uz08Yzv/36r+HZ9vrPbesdX/91/P2e90p3/efSYtb1n0vrWdd/Hq+c6fSf3zN3ef3X0Gv29R9Tr9nXfzw9Z1//2s6X/o/Ts73+de17d9Z/DCO11z+7vf7Z7fXv073iXKf/Ph0fVd1X/zbdqzvpX9O+uo/+Nd1Xnnn9ddf/f/O07vpn7O9p/S/d0760X7L/pdbX1jnbvTy5/7nrpbk1v2v2v3YOm/W72ixGbM7a/RPv2aMy69l69NZ8XC3aOp/Ny76d7ZH21c9K//5mfm32cQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC47gcIlgVIAAABAA==
   </data>
  </layer>
  <layer name="1_terrain" width="128" height="128">
@@ -48,7 +51,7 @@
    H4sIAAAAAAAAAO3BAQEAAACAkP6v7ggKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAauuOl9cAAAEA
   </data>
  </layer>
- <layer name="collision" width="128" height="128" opacity="0.37">
+ <layer name="collision" width="128" height="128" visible="0" opacity="0.37">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3RwRGDQBADQfIPhhiJwsxhtar6v1pd1zdy8xNfSP2jf3Zy6t8sODH1T5aclPoXi05I/YNlJ6T+wbITUv9gWZ26/7o6df91der+6+rU/deVqbvTpe5Nt3/dGfvT7F/3xf40+9dd6fave2J/7M+7+9f9sD/N/nU3mv3rTnT7133o9q+7YH+a/esevLN/fS/N/vWdNPvX99HtX98GAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGx5AGN9ItoAAAEA
   </data>
