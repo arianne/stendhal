@@ -6,6 +6,11 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.DecreaseKarmaAction;
+import games.stendhal.server.entity.npc.action.SetQuestAction;
+import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
+import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
+import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.pathfinder.Node;
 import games.stendhal.server.pathfinder.FixedPath;
@@ -38,6 +43,7 @@ public class IcecreamForAnnie extends AbstractQuest {
 		super.init(name, QUEST_SLOT);
 	}
 
+	// TODO: move Annie Jones into map file and only add quest stuff here
 	private void createNPC() {
 		npc = new SpeakerNPC("Annie Jones") {
 			@Override
@@ -54,28 +60,25 @@ public class IcecreamForAnnie extends AbstractQuest {
 			protected void createDialog() {
 				addGreeting(null, new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, String text,
-							 SpeakerNPC npc){
-					       	if (!player.hasQuest(QUEST_SLOT)) {
-						    npc.say("Hello, my name is Annie. I am five years old.");
-					       	} else if (player.getQuest(QUEST_SLOT).equals("start")) {
-						    if (player.isEquipped("icecream")){
-							npc.say("Mummy says I mustn't talk to you any more. You're a stranger.");
-							npc.setCurrentState(ConversationStates.IDLE);
-						    }
-						    else {
-							npc.say("Hello. I'm hungry.");
-						    }
-					       	} else if (player.getQuest(QUEST_SLOT).equals("mummy")){
-					            if (player.isEquipped("icecream")){
-						         npc.say("Yummy! Is that icecream for me?");
-						         npc.setCurrentState(ConversationStates.QUESTION_1);
-						    }
-						    else {
-							npc.say("Hello. I'm hungry.");
-						    }
-					       	} else {//any other options? (like rejected quest slot)
-						     npc.say("Hello.");
+					public void fire(Player player, String text, SpeakerNPC npc){
+						if (!player.hasQuest(QUEST_SLOT)) {
+							npc.say("Hello, my name is Annie. I am five years old.");
+						} else if (player.getQuest(QUEST_SLOT).equals("start")) {
+							if (player.isEquipped("icecream")){
+								npc.say("Mummy says I mustn't talk to you any more. You're a stranger.");
+								npc.setCurrentState(ConversationStates.IDLE);
+							} else {
+								npc.say("Hello. I'm hungry.");
+							}
+						} else if (player.getQuest(QUEST_SLOT).equals("mummy")){
+							if (player.isEquipped("icecream")){
+								npc.say("Yummy! Is that icecream for me?");
+								npc.setCurrentState(ConversationStates.QUESTION_1);
+							} else {
+								npc.say("Hello. I'm hungry.");
+							}
+						} else {//any other options? (like rejected quest slot)
+							npc.say("Hello.");
 						}
 					}
 				});
@@ -86,20 +89,15 @@ public class IcecreamForAnnie extends AbstractQuest {
 					@Override
 					public void fire(Player player, String text, SpeakerNPC npc) {
 						if (!player.hasQuest(QUEST_SLOT)
-								|| player.getQuest(QUEST_SLOT).equals(
-										"rejected")) {
+								|| player.getQuest(QUEST_SLOT).equals("rejected")) {
 							npc.say("I'm hungry! I'd like an icecream, please. Vanilla, with a chocolate flake. Will you get me one?");
 							npc.setCurrentState(ConversationStates.QUEST_OFFERED);
-						} else if (player.isQuestCompleted(QUEST_SLOT)) { // shouldn't
-																			// happen
+						} else if (player.isQuestCompleted(QUEST_SLOT)) { // shouldn't happen
 							npc.say("I'm full up now thank you!");
-						} else if (player.getQuest(QUEST_SLOT).startsWith(
-								"eating;")) {
+						} else if (player.getQuest(QUEST_SLOT).startsWith("eating;")) {
 							// She is still full from her previous icecream,
 							// she doesn't want another yet
-							String[] tokens = player.getQuest(QUEST_SLOT).split(
-									";"); // this splits the time from the
-											// word eating
+							String[] tokens = player.getQuest(QUEST_SLOT).split(";"); // this splits the time from the word eating
 							// tokens now is like an array with 'eating' in
 							// tokens[0] and
 							// the time is in tokens[1]. so we use just
@@ -131,65 +129,47 @@ public class IcecreamForAnnie extends AbstractQuest {
 		// Player agrees to get the icecream
 		add(ConversationStates.QUEST_OFFERED,
 				ConversationPhrases.YES_MESSAGES, null,
-				ConversationStates.ATTENDING, null,
-				new SpeakerNPC.ChatAction() {
-					@Override
-					public void fire(Player player, String text, SpeakerNPC npc) {
-						npc.say("Thank you!");
-						player.setQuest(QUEST_SLOT, "start");
-						player.addKarma(10.0);
-					}
-				});
+				ConversationStates.ATTENDING, "Thank you!",
+				new SetQuestAndModifyKarmaAction(QUEST_SLOT, "start", 10.0));
+
 		// Player says no, they've lost karma
 		add(ConversationStates.QUEST_OFFERED,
 				ConversationPhrases.NO_MESSAGES, null, ConversationStates.IDLE,
-				"Ok, I'll ask my mummy instead.", new SpeakerNPC.ChatAction() {
-					@Override
-					public void fire(Player player, String text,
-							SpeakerNPC npc) {
-						player.addKarma(-5.0);
-						player.setQuest(QUEST_SLOT, "rejected");
-					}
-				});
+				"Ok, I'll ask my mummy instead.",
+				new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -5.0));
 
 		// Player has got icecream and spoken to mummy
 		add(ConversationStates.QUESTION_1,
-				ConversationPhrases.YES_MESSAGES, null,
-				ConversationStates.ATTENDING, null,
-				new SpeakerNPC.ChatAction() {
-					@Override
-					public void fire(Player player, String text, SpeakerNPC npc) {
-					    if (player.drop("icecream")){
-						        npc.say("Thank you EVER so much! You are very kind. Here, take this present.");
-					        	player.setQuest(QUEST_SLOT, "eating;"
-								+ System.currentTimeMillis());
-							player.addKarma(10.0);
-							player.addXP(500);
-							Item item = StendhalRPWorld.get()
-										.getRuleManager().getEntityManager()
-										.getItem("present");
-							player.equip(item, true);
-					    }
-					    else{
-						npc.say("Hey, where's my icecream gone?!");
-					    }
-					}
-				});
-		// Player says no, they've lost karma
-		add(ConversationStates.QUESTION_1,
+			ConversationPhrases.YES_MESSAGES, null,
+			ConversationStates.ATTENDING, null,
+			new SpeakerNPC.ChatAction() {
+				@Override
+				public void fire(Player player, String text, SpeakerNPC npc) {
+				    if (player.drop("icecream")){
+					        npc.say("Thank you EVER so much! You are very kind. Here, take this present.");
+				        	player.setQuest(QUEST_SLOT, "eating;"
+							+ System.currentTimeMillis());
+						player.addKarma(10.0);
+						player.addXP(500);
+						Item item = StendhalRPWorld.get()
+									.getRuleManager().getEntityManager()
+									.getItem("present");
+						player.equip(item, true);
+				    } else {
+				    	npc.say("Hey, where's my icecream gone?!");
+				    }
+				}
+			});
+			// Player says no, they've lost karma
+			add(ConversationStates.QUESTION_1,
 				ConversationPhrases.NO_MESSAGES, null, ConversationStates.IDLE,
-				"Waaaaaa! You're a big fat meanie.", new SpeakerNPC.ChatAction() {
-					@Override
-					public void fire(Player player, String text,
-							SpeakerNPC engine) {
-						player.addKarma(-5.0);
-					}
-				});
-                                addOffer("I'm a little girl, I haven't anything to offer.");
-                                addJob("I help my mummy.");
-                                addHelp("Ask my mummy.");
+				"Waaaaaa! You're a big fat meanie.",
+				new DecreaseKarmaAction(5.0));
+				addOffer("I'm a little girl, I haven't anything to offer.");
+				addJob("I help my mummy.");
+				addHelp("Ask my mummy.");
 				addGoodbye("Ta ta.");
-			}
+				}
 		};
 
 		npc.setDescription("You see a little girl, playing in the playground.");
@@ -198,6 +178,8 @@ public class IcecreamForAnnie extends AbstractQuest {
 		npc.initHP(100);
 		zone.add(npc);
 	}
+
+	// TODO: move Mrs Jones into map file and only add quest stuff here
 	private void createMummyNPC() {
 		mummyNPC = new SpeakerNPC("Mrs Jones") {
 			@Override
@@ -207,25 +189,27 @@ public class IcecreamForAnnie extends AbstractQuest {
 			}
 			@Override
 			protected void createDialog() {
-				addGreeting(null, new SpeakerNPC.ChatAction() {
-					@Override
-					public void fire(Player player, String text,
-							 SpeakerNPC mummyNPC){
-					       	if (!player.hasQuest(QUEST_SLOT)) {
-						    mummyNPC.say("Hello, nice to meet you.");
-					       	} else if (player.getQuest(QUEST_SLOT).equals("start")) {
-						    mummyNPC.say("Hello, I see you've met my daughter Annie. I hope she wasn't too demanding. You seem like a nice person.");
-						    player.setQuest(QUEST_SLOT, "mummy");
+				add(ConversationStates.IDLE, 
+					ConversationPhrases.GREETING_MESSAGES,
+					new QuestNotStartedCondition(QUEST_SLOT),
+					ConversationStates.ATTENDING, "Hello, nice to meet you.",
+					null);
 
-					       	} else
-						     mummyNPC.say("Hello again.");
-						}
-					}
-				);
-                                addOffer("I can't, I'm busy watching my daughter.");
-                                addQuest("Nothing, thank you.");
-                                addJob("I'm a mother.");
-                                addHelp("I'll help if I can, but I have to watch my daughter.");
+				add(ConversationStates.IDLE, 
+					ConversationPhrases.GREETING_MESSAGES, 
+					new QuestInStateCondition(QUEST_SLOT, "start"),
+					ConversationStates.ATTENDING, 
+					"Hello, I see you've met my daughter Annie. I hope she wasn't too demanding. You seem like a nice person.",
+					new SetQuestAction(QUEST_SLOT, "mummy"));
+
+				add(ConversationStates.IDLE, 
+					ConversationPhrases.GREETING_MESSAGES, null,
+					ConversationStates.ATTENDING, "Hello again.", null);
+
+				addOffer("I can't, I'm busy watching my daughter.");
+				addQuest("Nothing, thank you.");
+				addJob("I'm a mother.");
+				addHelp("I'll help if I can, but I have to watch my daughter.");
 				addGoodbye("Bye for now.");
 			}
 		};

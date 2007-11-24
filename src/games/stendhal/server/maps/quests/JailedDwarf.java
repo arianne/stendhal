@@ -34,23 +34,19 @@ public class JailedDwarf extends AbstractQuest {
 				null, ConversationStates.ATTENDING, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, String text,
-							SpeakerNPC engine) {
+					public void fire(Player player, String text, SpeakerNPC engine) {
 						if (!player.isQuestCompleted(QUEST_SLOT)) {
 							if (player.isEquipped("kanmararn_prison_key")) {
 								player.setQuest(QUEST_SLOT, "done");
 								player.addXP(2000);
-								engine
-										.say("You got the key to unlock me! *mumble*  Errrr ... it doesn't look too safe out there for me ... I think I'll just stay here ... perhaps someone could #offer me some good equipment ... ");
+								engine.say("You got the key to unlock me! *mumble*  Errrr ... it doesn't look too safe out there for me ... I think I'll just stay here ... perhaps someone could #offer me some good equipment ... ");
 							} else {
-								engine
-										.say("Help! The duergars have raided the prison and locked me up! I'm supposed to be the Guard! It's a shambles.");
+								engine.say("Help! The duergars have raided the prison and locked me up! I'm supposed to be the Guard! It's a shambles.");
 								player.setQuest(QUEST_SLOT, "start");
 								engine.setCurrentState(ConversationStates.IDLE);
 							}
 						} else {
-							engine
-									.say("Hi. As you see, I am still to nervous to leave ...");
+							engine.say("Hi. As you see, I am still to nervous to leave ...");
 						}
 					}
 				});

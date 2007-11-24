@@ -7,6 +7,9 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.SetQuestAction;
+import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
+import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
@@ -14,10 +17,10 @@ import games.stendhal.server.events.TurnNotifier;
 import java.util.Arrays;
 import java.util.List;
 
-
-import org.apache.log4j.Logger;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.SlotIsFullException;
+
+import org.apache.log4j.Logger;
 
 /**
  * QUEST:
@@ -82,7 +85,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 	 * @author daniel
 	 *
 	 */
-	private class CorpseRefiller implements TurnListener {
+	static class CorpseRefiller implements TurnListener {
 		private Corpse corpse;
 
 		private String itemName;
@@ -143,7 +146,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 		}
 	}
 
-	private class HenryQuestAction extends SpeakerNPC.ChatAction {
+	class HenryQuestAction extends SpeakerNPC.ChatAction {
 		@Override
 		public void fire(Player player, String text, SpeakerNPC npc) {
 			if (!player.isQuestCompleted(QUEST_SLOT)
@@ -156,39 +159,21 @@ public class KanmararnSoldiers extends AbstractQuest {
 		}
 	}
 
-	private class HenryQuestAcceptAction extends SpeakerNPC.ChatAction {
-		@Override
-		public void fire(Player player, String text, SpeakerNPC npc) {
-			player.setQuest(QUEST_SLOT, "start");
-		}
-	}
-
-	private class HenryQuestStartedCondition extends SpeakerNPC.ChatCondition {
+	class HenryQuestNotCompletedCondition extends SpeakerNPC.ChatCondition {
 		@Override
 		public boolean fire(Player player, String text, SpeakerNPC npc) {
-			return (player.hasQuest(QUEST_SLOT) && player.getQuest(QUEST_SLOT).equals(
-					"start"));
+			return (!player.hasQuest(QUEST_SLOT) || player.getQuest(QUEST_SLOT).equals("start"));
 		}
 	}
 
-	private class HenryQuestNotCompletedCondition extends
-			SpeakerNPC.ChatCondition {
+	class HenryQuestCompletedCondition extends SpeakerNPC.ChatCondition {
 		@Override
 		public boolean fire(Player player, String text, SpeakerNPC npc) {
-			return (!player.hasQuest(QUEST_SLOT) || player.getQuest(QUEST_SLOT).equals(
-					"start"));
+			return (player.hasQuest(QUEST_SLOT) && !player.getQuest(QUEST_SLOT).equals("start"));
 		}
 	}
 
-	private class HenryQuestCompletedCondition extends SpeakerNPC.ChatCondition {
-		@Override
-		public boolean fire(Player player, String text, SpeakerNPC npc) {
-			return (player.hasQuest(QUEST_SLOT) && !player.getQuest(QUEST_SLOT).equals(
-					"start"));
-		}
-	}
-
-	private class HenryQuestCompleteAction extends SpeakerNPC.ChatAction {
+	class HenryQuestCompleteAction extends SpeakerNPC.ChatAction {
 		@Override
 		public void fire(Player player, String text, SpeakerNPC npc) {
 
@@ -238,22 +223,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 		}
 	}
 
-	private class JamesQuestCompleteCondition extends SpeakerNPC.ChatCondition {
-		@Override
-		public boolean fire(Player player, String text, SpeakerNPC npc) {
-			return (player.hasQuest(QUEST_SLOT) && player.getQuest(QUEST_SLOT).equals(
-					"map"));
-		}
-	}
-
-	private class JamesQuestCompletedCondition extends SpeakerNPC.ChatCondition {
-		@Override
-		public boolean fire(Player player, String text, SpeakerNPC npc) {
-			return (player.isQuestCompleted(QUEST_SLOT));
-		}
-	}
-
-	private class JamesQuestCompleteAction extends SpeakerNPC.ChatAction {
+	class JamesQuestCompleteAction extends SpeakerNPC.ChatAction {
 		@Override
 		public void fire(Player player, String text, SpeakerNPC npc) {
 
@@ -295,52 +265,53 @@ public class KanmararnSoldiers extends AbstractQuest {
 		henry.addGoodbye("Bye and be careful with all those dwarves around!");
 		henry.addHelp("I need help myself. I got seperated from my #group. Now I'm all alone.");
 		henry.addReply(Arrays.asList("dwarf", "dwarves"),
-				"They are everywhere! Their #kingdom must be close.");
+			"They are everywhere! Their #kingdom must be close.");
 		henry.addReply(Arrays.asList("kingdom", "Kanmararn"),
-				"Kanmararn, the legendary city of the #dwarves.");
+			"Kanmararn, the legendary city of the #dwarves.");
 		henry.addReply("group",
-				"The General sent five of us to explore this area in search for #treasure.");
+			"The General sent five of us to explore this area in search for #treasure.");
 		henry.addReply("treasure",
-				"A big treasure is rumored to be #somewhere in this dungeon.");
+			"A big treasure is rumored to be #somewhere in this dungeon.");
 		henry.addReply("somewhere", "If you #help me I might give you a clue.");
 
 		henry.add(ConversationStates.ATTENDING,
-				ConversationPhrases.QUEST_MESSAGES, null,
-				ConversationStates.QUEST_OFFERED, null, new HenryQuestAction());
+			ConversationPhrases.QUEST_MESSAGES, null,
+			ConversationStates.QUEST_OFFERED, null, new HenryQuestAction());
 
 		henry.add(ConversationStates.QUEST_OFFERED,
-				ConversationPhrases.YES_MESSAGES, null,
-				ConversationStates.ATTENDING,
-				"Thank you! I'll be waiting for your return.",
-				new HenryQuestAcceptAction());
+			ConversationPhrases.YES_MESSAGES, null,
+			ConversationStates.ATTENDING,
+			"Thank you! I'll be waiting for your return.",
+			new SetQuestAction(QUEST_SLOT, "start"));
 
 		henry.add(
-				ConversationStates.QUEST_OFFERED,
-				"group",
-				null,
-				ConversationStates.QUEST_OFFERED,
-				"The General sent five of us to explore this area in search for #treasure. So, will you help me find them?",
-				null);
+			ConversationStates.QUEST_OFFERED,
+			"group",
+			null,
+			ConversationStates.QUEST_OFFERED,
+			"The General sent five of us to explore this area in search for #treasure. So, will you help me find them?",
+			null);
 
 		henry.add(ConversationStates.QUEST_OFFERED,
-				ConversationPhrases.NO_MESSAGES, null,
-				ConversationStates.ATTENDING,
-				"OK. I understand. I'm scared of the #dwarves myself.", null);
+			ConversationPhrases.NO_MESSAGES, null,
+			ConversationStates.ATTENDING,
+			"OK. I understand. I'm scared of the #dwarves myself.", null);
 
 		henry.add(ConversationStates.IDLE,
-				ConversationPhrases.GREETING_MESSAGES,
-				new HenryQuestStartedCondition(), ConversationStates.ATTENDING,
-				null, new HenryQuestCompleteAction());
+			ConversationPhrases.GREETING_MESSAGES,
+			new QuestInStateCondition(QUEST_SLOT, "start"),
+			ConversationStates.ATTENDING,
+			null, new HenryQuestCompleteAction());
 
 		henry.add(ConversationStates.ATTENDING, Arrays.asList("map", "group",
-				"help"), new HenryQuestCompletedCondition(),
-				ConversationStates.ATTENDING,
-				"I'm so sad that most of my friends are dead.", null);
+			"help"), new HenryQuestCompletedCondition(),
+			ConversationStates.ATTENDING,
+			"I'm so sad that most of my friends are dead.", null);
 
 		henry.add(ConversationStates.ATTENDING, Arrays.asList("map"),
-				new HenryQuestNotCompletedCondition(),
-				ConversationStates.ATTENDING,
-				"If you find my friends, i will give you the map", null);
+			new HenryQuestNotCompletedCondition(),
+			ConversationStates.ATTENDING,
+			"If you find my friends, i will give you the map", null);
 	}
 
 	/**
@@ -402,30 +373,30 @@ public class KanmararnSoldiers extends AbstractQuest {
 		james.addHelp("Think I need a little help myself. My #group got killed and #one of my men ran away. Too bad he had the #map.");
 		james.addQuest("Find my fugitive soldier and bring him to me ... or at least the #map he's carrying.");
 		james.addReply("group",
-				"We were five, three of us died. You probably passed their corpses.");
+			"We were five, three of us died. You probably passed their corpses.");
 		james.addReply(Arrays.asList("one", "henry"),
-				"Yes, my youngest soldier. He ran away.");
+			"Yes, my youngest soldier. He ran away.");
 		james.addReply("map",
-				"The #treasure map that leads into the heart of the #dwarven #kingdom.");
+			"The #treasure map that leads into the heart of the #dwarven #kingdom.");
 		james.addReply("treasure",
-				"A big treasure is rumored to be somewhere in this dungeon.");
+			"A big treasure is rumored to be somewhere in this dungeon.");
 		james.addReply(Arrays.asList("dwarf", "dwarves", "dwarven"),
-				"They are strong enemies! We're in their #kingdom.");
+			"They are strong enemies! We're in their #kingdom.");
 		james.addReply(Arrays.asList("peter", "tom", "charles"),
-				"He was a good soldier and fought bravely.");
+			"He was a good soldier and fought bravely.");
 		james.addReply(Arrays.asList("kingdom", "kanmararn"),
-				"Kanmararn, the legendary kingdom of the #dwarves.");
+			"Kanmararn, the legendary kingdom of the #dwarves.");
 
 		james.add(ConversationStates.ATTENDING, Arrays.asList("map", "henry"),
-				new JamesQuestCompleteCondition(),
-				ConversationStates.ATTENDING, null,
-				new JamesQuestCompleteAction());
+			new QuestInStateCondition(QUEST_SLOT, "map"),
+			ConversationStates.ATTENDING, null,
+			new JamesQuestCompleteAction());
 
 		james.add(ConversationStates.ATTENDING, Arrays.asList("map", "henry",
-				"quest", "task", "help", "group", "one"),
-				new JamesQuestCompletedCondition(),
-				ConversationStates.ATTENDING,
-				"Thanks again for bringing me the map!", null);
+			"quest", "task", "help", "group", "one"),
+			new QuestCompletedCondition(QUEST_SLOT),
+			ConversationStates.ATTENDING,
+			"Thanks again for bringing me the map!", null);
 	}
 
 	@Override

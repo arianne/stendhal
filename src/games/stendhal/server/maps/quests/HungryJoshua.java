@@ -3,10 +3,22 @@ package games.stendhal.server.maps.quests;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.SpeakerNPC.ChatAction;
+import games.stendhal.server.entity.npc.action.DropItemAction;
+import games.stendhal.server.entity.npc.action.IncreaseXPAction;
+import games.stendhal.server.entity.npc.action.MultipleActions;
+import games.stendhal.server.entity.npc.action.SetQuestAction;
+import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.NotCondition;
+import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
+import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
+import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
+import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -83,25 +95,16 @@ public class HungryJoshua extends AbstractQuest {
 
 		/** In case quest is completed */
 		npc.add(ConversationStates.ATTENDING, "food",
-			new SpeakerNPC.ChatCondition() {
-				@Override
-				public boolean fire(Player player, String text,
-						SpeakerNPC npc) {
-					return player.isQuestCompleted(QUEST_SLOT);
-				}
-			}, ConversationStates.ATTENDING,
+			new QuestCompletedCondition(QUEST_SLOT),
+			ConversationStates.ATTENDING,
 			"My brother has enough sandwiches now, thank you.", null);
 
 		/** If quest is not started yet, start it. */
 		npc.add(
 			ConversationStates.ATTENDING,
 			"food",
-			new SpeakerNPC.ChatCondition() {
-				@Override
-				public boolean fire(Player player, String text, SpeakerNPC npc) {
-					return !player.hasQuest(QUEST_SLOT);
-				}
-			},
+			new QuestNotStartedCondition(QUEST_SLOT),
+
 			ConversationStates.QUEST_OFFERED,
 			"I think five sandwiches would be enough. My brother is called #Joshua.",
 			null);
@@ -112,12 +115,7 @@ public class HungryJoshua extends AbstractQuest {
 			null,
 			ConversationStates.ATTENDING,
 			"Thank you. Please tell him #food or #sandwich so he knows you're not just a customer.",
-			new SpeakerNPC.ChatAction() {
-				@Override
-				public void fire(Player player, String text, SpeakerNPC engine) {
-					player.setQuest(QUEST_SLOT, "start");
-				}
-			});
+			new SetQuestAction(QUEST_SLOT, "start"));
 
 		npc.add(
 			ConversationStates.QUEST_OFFERED,
@@ -136,25 +134,14 @@ public class HungryJoshua extends AbstractQuest {
 			null);
 
 		/** Remind player about the quest */
-		npc.add(ConversationStates.ATTENDING, Arrays.asList("food", "sandwich",
-				"sandwiches"), new SpeakerNPC.ChatCondition() {
-				@Override
-				public boolean fire(Player player, String text, SpeakerNPC npc) {
-					return player.hasQuest(QUEST_SLOT)
-							&& player.getQuest(QUEST_SLOT).equals("start");
-				}
-			}, ConversationStates.ATTENDING,
+		npc.add(ConversationStates.ATTENDING, Arrays.asList("food", "sandwich", "sandwiches"), 
+			new QuestInStateCondition(QUEST_SLOT, "start"),
+			ConversationStates.ATTENDING,
 			"#Joshua will be getting hungry! Please hurry!", null);
 
 		npc.add(ConversationStates.ATTENDING, "Joshua",
-			new SpeakerNPC.ChatCondition() {
-				@Override
-				public boolean fire(Player player, String text,
-						SpeakerNPC npc) {
-					return player.hasQuest(QUEST_SLOT)
-							&& player.getQuest(QUEST_SLOT).equals("start");
-				}
-			}, ConversationStates.ATTENDING,
+			new QuestInStateCondition(QUEST_SLOT, "start"),
+			ConversationStates.ATTENDING,
 			"My brother, the goldsmith in Ados.", null);
 	}
 
@@ -165,35 +152,27 @@ public class HungryJoshua extends AbstractQuest {
 		npc.add(
 			ConversationStates.ATTENDING,
 			Arrays.asList("food", "sandwich", "sandwiches"),
-			new SpeakerNPC.ChatCondition() {
-				@Override
-				public boolean fire(Player player, String text, SpeakerNPC npc) {
-					return player.hasQuest(QUEST_SLOT) 
-							&& player.getQuest(QUEST_SLOT).equals("start")
-							&& player.isEquipped("sandwich", FOOD_AMOUNT);
-				}
-			},
+			new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"), new PlayerHasItemWithHimCondition("sandwich", FOOD_AMOUNT)),
 			ConversationStates.QUEST_ITEM_BROUGHT,
 			"Oh great! Did my brother Xoderos send you with those sandwiches?",
 			null);
 
+		List<ChatAction> reward = new LinkedList<ChatAction>();
+		reward.add(new DropItemAction("sandwich", FOOD_AMOUNT));
+		reward.add(new IncreaseXPAction(150));
+		reward.add(new SetQuestAction(QUEST_SLOT, "joshua"));
+
 		npc.add(ConversationStates.QUEST_ITEM_BROUGHT,
-			ConversationPhrases.YES_MESSAGES, null,
-			ConversationStates.ATTENDING, null,
-			new SpeakerNPC.ChatAction() {
-				@Override
-				public void fire(Player player, String text,
-						SpeakerNPC engine) {
-					if (player.drop("sandwich", FOOD_AMOUNT)) {
-						player.setQuest(QUEST_SLOT, "joshua");
-						player.addXP(150);
-						engine.say("Thank you! Please let Xoderos know that I am fine. Say my name, Joshua, so he knows that you saw me. He will probably give you something in return.");
-						player.notifyWorldAboutChanges();
-					} else {
-						engine.say("Hey! Where did you put the sandwiches?");
-					}
-				}
-			});
+			ConversationPhrases.YES_MESSAGES, 
+			new PlayerHasItemWithHimCondition("sandwich", FOOD_AMOUNT),
+			ConversationStates.ATTENDING,
+			"Thank you! Please let Xoderos know that I am fine. Say my name, Joshua, so he knows that you saw me. He will probably give you something in return.",
+			new MultipleActions(reward));
+
+		npc.add(ConversationStates.QUEST_ITEM_BROUGHT,
+			ConversationPhrases.YES_MESSAGES, 
+			new NotCondition(new PlayerHasItemWithHimCondition("sandwich", FOOD_AMOUNT)),
+			ConversationStates.ATTENDING, "Hey! Where did you put the sandwiches?", null);
 
 		npc.add(ConversationStates.QUEST_ITEM_BROUGHT,
 			ConversationPhrases.NO_MESSAGES, null,
@@ -207,20 +186,14 @@ public class HungryJoshua extends AbstractQuest {
 
 		/** Complete the quest */
 		npc.add(
+			ConversationStates.ATTENDING, "Joshua", 
+			new QuestInStateCondition(QUEST_SLOT, "joshua"),
 			ConversationStates.ATTENDING,
-			"Joshua",
-			new SpeakerNPC.ChatCondition() {
-				@Override
-				public boolean fire(Player player, String text, SpeakerNPC npc) {
-					return player.hasQuest(QUEST_SLOT)
-							&& player.getQuest(QUEST_SLOT).equals("joshua");
-				}
-			}, ConversationStates.ATTENDING, null,
+			"I'm glad Joshua is well. Now, what can I do for you? I know, I'll fix that broken key ring that you're carrying ... there, it should work now!",
 			new SpeakerNPC.ChatAction() {
 				@Override
 				public void fire(Player player, String text, SpeakerNPC engine) {
 					player.addXP(50);
-					engine.say("I'm glad Joshua is well. Now, what can I do for you? I know, I'll fix that broken key ring that you're carrying ... there, it should work now!");
 					// ideally, make it so that this slot being done means
 					// you get a keyring object instead what we currently
 					// have - a button in the settings panel

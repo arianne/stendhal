@@ -7,6 +7,7 @@ import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.condition.QuestNotInStateCondition;
+import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Arrays;
@@ -53,15 +54,13 @@ public class ImperialPrincess extends AbstractQuest {
 				ConversationStates.ATTENDING, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, String text,
-							SpeakerNPC engine) {
+					public void fire(Player player, String text, SpeakerNPC engine) {
 						if (player.isQuestCompleted(QUEST_SLOT)) {
 							engine.say("The trapped creatures looked much better last time I dared venture down to the basement, thank you!");
 
 						} else if (!player.hasQuest(QUEST_SLOT)) {
 							engine.say("I cannot free the captives in the basement but I could do one thing: ease their pain. I need #herbs for this.");
-						} else if (player.getQuest(QUEST_SLOT).equals(
-								"recommended")) {
+						} else if (player.getQuest(QUEST_SLOT).equals("recommended")) {
 							engine.say("Speak to my father, the King. I have asked him to grant you citizenship of Kalavan, to express my gratitude to you.");
 						} else {
 							engine.say("I'm sure I asked you to do something for me, already.");
@@ -71,13 +70,8 @@ public class ImperialPrincess extends AbstractQuest {
 
 		/** If quest is not started yet, start it. */
 		npc.add(ConversationStates.ATTENDING, "herbs",
-				new SpeakerNPC.ChatCondition() {
-					@Override
-					public boolean fire(Player player, String text,
-							SpeakerNPC npc) {
-						return !player.hasQuest(QUEST_SLOT);
-					}
-				}, ConversationStates.QUEST_OFFERED, null,
+				new QuestNotStartedCondition(QUEST_SLOT),
+				ConversationStates.QUEST_OFFERED, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, String text,
@@ -103,12 +97,10 @@ public class ImperialPrincess extends AbstractQuest {
 				"Thank you! We must be subtle about this, I do not want the scientists suspecting I interfere. When you return with the items, please say codeword #herbs.",
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, String text,
-							SpeakerNPC engine) {
+					public void fire(Player player, String text, SpeakerNPC engine) {
 						// store the current level incase it increases before
 						// she see them next.
-						player.setQuest(QUEST_SLOT,
-								Integer.toString(player.getLevel()));
+						player.setQuest(QUEST_SLOT, Integer.toString(player.getLevel()));
 					}
 				});
 
@@ -136,8 +128,7 @@ public class ImperialPrincess extends AbstractQuest {
 				null, ConversationStates.ATTENDING, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, String text,
-							SpeakerNPC engine) {
+					public void fire(Player player, String text, SpeakerNPC engine) {
 						int required_arandula = 1
 								+ Integer.valueOf(player.getQuest(QUEST_SLOT))
 								/ ARANDULA_DIVISOR;
@@ -169,8 +160,7 @@ public class ImperialPrincess extends AbstractQuest {
 							player.setQuest(QUEST_SLOT, "recommended");
 							player.notifyWorldAboutChanges();
 						} else if (player.hasQuest(QUEST_SLOT)
-								&& player.getQuest(QUEST_SLOT).equals(
-										"recommended")) {
+								&& player.getQuest(QUEST_SLOT).equals("recommended")) {
 							engine.say("The herbs you brought did a wonderful job. I told my father you can be trusted, you should go speak with him now.");
 						} else { /* reminder */
 							engine.say("Shh! Don't say it till you have the "

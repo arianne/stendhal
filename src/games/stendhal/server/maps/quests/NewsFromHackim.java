@@ -98,33 +98,32 @@ public class NewsFromHackim extends AbstractQuest {
 		SpeakerNPC npc = npcs.get("Xin Blanca");
 
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-				new QuestInStateCondition(QUEST_SLOT, "start"),
-				ConversationStates.ATTENDING, null,
-				new SpeakerNPC.ChatAction() {
-					@Override
-					public void fire(Player player, String text,
-							SpeakerNPC engine) {
-						String answer;
-						if (!player.isEquipped("leather_legs")) {
-							answer = "Take this set of brand new leather leg armour! Let me know if you want anything else.";
-						} else {
-							answer = "Take this set of brand new... oh, you already have leather leg armour. Well, maybe you can sell them off or something.";
-						}
-						// player.say("Well, to make a long story short; I know
-						// your business with Hackim and I'm here to tell you
-						// that the next shipment is ready.");
-						engine.say("Ah, it's ready at last! That is very good news indeed! Here, let me give you a little something for your help... "
-										+ answer);
-						player.setQuest(QUEST_SLOT, "done");
-
-						Item item = StendhalRPWorld.get().getRuleManager()
-								.getEntityManager().getItem("leather_legs");
-						player.equip(item, true);
-						player.addXP(10);
-
-						player.notifyWorldAboutChanges();
+			new QuestInStateCondition(QUEST_SLOT, "start"),
+			ConversationStates.ATTENDING, null,
+			new SpeakerNPC.ChatAction() {
+				@Override
+				public void fire(Player player, String text, SpeakerNPC engine) {
+					String answer;
+					if (!player.isEquipped("leather_legs")) {
+						answer = "Take this set of brand new leather leg armour! Let me know if you want anything else.";
+					} else {
+						answer = "Take this set of brand new... oh, you already have leather leg armour. Well, maybe you can sell them off or something.";
 					}
-				});
+					// player.say("Well, to make a long story short; I know
+					// your business with Hackim and I'm here to tell you
+					// that the next shipment is ready.");
+					engine.say("Ah, it's ready at last! That is very good news indeed! Here, let me give you a little something for your help... "
+									+ answer);
+					player.setQuest(QUEST_SLOT, "done");
+
+					Item item = StendhalRPWorld.get().getRuleManager()
+							.getEntityManager().getItem("leather_legs");
+					player.equip(item, true);
+					player.addXP(10);
+
+					player.notifyWorldAboutChanges();
+				}
+			});
 	}
 
 	@Override
