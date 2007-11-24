@@ -28,16 +28,16 @@ public class HouseBuying extends AbstractQuest {
 
 	private static final String PRINCESS_QUEST_SLOT = "imperial_princess";
 	private static final String ANNA_QUEST_SLOT = "toys_collector";
-        private static final String KEYRING_QUEST_SLOT = "hungry_joshua";
-        private static final String GHOSTS_QUEST_SLOT = "find_ghosts";
-        private static final String DAILY_ITEM_QUEST_SLOT = "daily_item";
-        private static final String FISHROD_QUEST_SLOT = "get_fishing_rod";
-        private static final String ZARA_QUEST_SLOT = "suntan_cream_zara";
+	private static final String KEYRING_QUEST_SLOT = "hungry_joshua";
+	private static final String GHOSTS_QUEST_SLOT = "find_ghosts";
+	private static final String DAILY_ITEM_QUEST_SLOT = "daily_item";
+	private static final String FISHROD_QUEST_SLOT = "get_fishing_rod";
+	private static final String ZARA_QUEST_SLOT = "suntan_cream_zara";
 	// Cost to buy house (lots!)
 	private static final int COST = 100000;
 	private static final int COST_ADOS = 120000;
 	// Cost to buy spare keys
-	private static final int COST2 = 1000;
+	private static final int COST_OF_SPARE_KEY = 1000;
 
 	/*
 	 * age required to buy a house. Note, age is in minutes, not seconds! So
@@ -52,8 +52,9 @@ public class HouseBuying extends AbstractQuest {
 	 * There are 18 Ados houses, taking us to 129 in house slot 
 	 * so we worry about the limit and put it to a new one, ados_house
 	 */
-	private static final String POSTMAN_SLOT = ";";
-	private static final String STORAGE_SLOT_2 = "ados_house";
+	private static final String POSTMAN_SLOT_INIT = ";";
+	private static final String POSTMAN_STORAGE_SLOT_1 = "house";
+	private static final String POSTMAN_STORAGE_SLOT_2 = "ados_house";
 
 	private static final String ZONE_NAME = "0_kalavan_city";
 	private static final String ZONE_NAME2 = "int_ados_town_hall_3";
@@ -65,6 +66,8 @@ public class HouseBuying extends AbstractQuest {
 	public void init(String name) {
 		super.init(name, QUEST_SLOT);
 	}
+
+	// TODO: Create Barrett Holmes in a map file and only add the quest specific stuff here
 
 	private void createNPC() {
 		npc = new SpeakerNPC("Barrett Holmes") {
@@ -94,7 +97,7 @@ public class HouseBuying extends AbstractQuest {
 						String reply;
 						if (player.hasQuest(QUEST_SLOT)) {
 							reply = " At the cost of "
-									+ COST2
+									+ COST_OF_SPARE_KEY
 									+ " money you can purchase a spare key for your house. Do you want to buy one now?";
 							engine.setCurrentState(ConversationStates.QUESTION_1);
 						} else {
@@ -143,9 +146,8 @@ public class HouseBuying extends AbstractQuest {
 									if (postman != null) {
 										// First, check if anyone has bought a
 										// house from this npc yet
-										if (!postman.hasQuest(QUEST_SLOT)) {
-											postman.setQuest(QUEST_SLOT,
-													POSTMAN_SLOT);
+										if (!postman.hasQuest(POSTMAN_STORAGE_SLOT_1)) {
+											postman.setQuest(POSTMAN_STORAGE_SLOT_1, POSTMAN_SLOT_INIT);
 										}
 										String postmanslot = postman.getQuest(QUEST_SLOT);
 										String[] boughthouses = postmanslot.split(";");
@@ -160,7 +162,7 @@ public class HouseBuying extends AbstractQuest {
 												engine.say("Congratulations, here is your key to house "
 														+ text
 														+ "! Do you want to buy a spare key, at a price of "
-														+ COST2 + " money?");
+														+ COST_OF_SPARE_KEY + " money?");
 												key.setUndroppableOnDeath(true);
 												if (player.equip(key)) {
 													player.drop("money", COST);
@@ -206,13 +208,13 @@ public class HouseBuying extends AbstractQuest {
 							@Override
 							public void fire(Player player, String text,
 									SpeakerNPC engine) {
-								if (player.isEquipped("money", COST2)) {
+								if (player.isEquipped("money", COST_OF_SPARE_KEY)) {
 									String house = player.getQuest(QUEST_SLOT);
 									Item key = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
 											"private_key_" + house);
 									key.setUndroppableOnDeath(true);
 									if (player.equip(key)) {
-										player.drop("money", COST2);
+										player.drop("money", COST_OF_SPARE_KEY);
 										engine.say("Here you go, a spare key to your house. Please remember, only give spare keys to people you #really, #really, trust!");
 									} else {
 										engine.say("Sorry, you can't carry more keys!");
@@ -258,6 +260,8 @@ public class HouseBuying extends AbstractQuest {
 		zone.add(npc);
 	}
 
+	// TODO: Create Reg Denson in a map file and only add the quest specific stuff here
+	
 	private void createNPC2() {
 		npc2 = new SpeakerNPC("Reg Denson") {
 			@Override
@@ -294,7 +298,7 @@ public class HouseBuying extends AbstractQuest {
 						String reply;
 						if (player.hasQuest(QUEST_SLOT)) {
 							reply = " At the cost of "
-									+ COST2
+									+ COST_OF_SPARE_KEY
 									+ " money you can purchase a spare key for your house. Do you want to buy one now?";
 							engine2.setCurrentState(ConversationStates.QUESTION_1);
 						} else {
@@ -343,11 +347,10 @@ public class HouseBuying extends AbstractQuest {
 									if (postman != null) {
 										// First, check if anyone has bought a
 										// house yet
-										if (!postman.hasQuest(STORAGE_SLOT_2)) {
-											postman.setQuest(STORAGE_SLOT_2,
-													POSTMAN_SLOT);
+										if (!postman.hasQuest(POSTMAN_STORAGE_SLOT_2)) {
+											postman.setQuest(POSTMAN_STORAGE_SLOT_2, POSTMAN_SLOT_INIT);
 										}
-										String postmanslot = postman.getQuest(STORAGE_SLOT_2);
+										String postmanslot = postman.getQuest(POSTMAN_STORAGE_SLOT_2);
 										String[] boughthouses = postmanslot.split(";");
 										List<String> doneList = Arrays.asList(boughthouses);
 										// now check if the house they said is
@@ -360,13 +363,13 @@ public class HouseBuying extends AbstractQuest {
 												engine2.say("Congratulations, here is your key to house "
 														+ text
 														+ "! Do you want to buy a spare key, at a price of "
-														+ COST2 + " money?");
+														+ COST_OF_SPARE_KEY + " money?");
 												key.setUndroppableOnDeath(true);
 												if (player.equip(key)) {
 													player.drop("money", COST_ADOS);
     												// remember what house they own
     												player.setQuest(QUEST_SLOT, text);
-    												postman.setQuest(STORAGE_SLOT_2, postmanslot + ";" + text);
+    												postman.setQuest(POSTMAN_STORAGE_SLOT_2, postmanslot + ";" + text);
     												engine2.setCurrentState(ConversationStates.QUESTION_1);
 												} else
 													engine2.say("Sorry, you can't carry more keys!");
@@ -405,13 +408,13 @@ public class HouseBuying extends AbstractQuest {
 							@Override
 							public void fire(Player player, String text,
 									SpeakerNPC engine2) {
-								if (player.isEquipped("money", COST2)) {
+								if (player.isEquipped("money", COST_OF_SPARE_KEY)) {
 									String house = player.getQuest(QUEST_SLOT);
 									Item key = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
 											"private_key_" + house);
 									key.setUndroppableOnDeath(true);
 									if (player.equip(key)) {
-										player.drop("money", COST2);
+										player.drop("money", COST_OF_SPARE_KEY);
 										engine2.say("Here you go, a spare key to your house. Please remember, only give spare keys to people you #really, #really, trust!");
 									} else
 										engine2.say("Sorry, you can't carry more keys!");
