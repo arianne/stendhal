@@ -100,8 +100,8 @@ public class ReverseArrow extends AbstractQuest implements
 					return d;
 				}
 			});
-			// 0
-			// 1 2 3
+			// * * 0 * *
+			// * 1 2 3 *
 			// 4 5 6 7 8
 
 			// get the position of the topmost token
@@ -143,16 +143,14 @@ public class ReverseArrow extends AbstractQuest implements
 					player.equip(money);
 					player.addXP(100);
 				} else {
-					npc
-							.say("Congratulations, you solved the quiz again. But unfortunatelly I don't have any further rewards for you.");
+					npc.say("Congratulations, you solved the quiz again. But unfortunatelly I don't have any further rewards for you.");
 				}
 				player.setQuest(QUEST_SLOT, "done");
 			} else {
 				if (!player.isQuestCompleted(QUEST_SLOT)) {
 					player.setQuest(QUEST_SLOT, "failed");
 				}
-				npc
-						.say("I am sorry. This does not look like an arrow pointing upwards to me.");
+				npc.say("I am sorry. This does not look like an arrow pointing upwards to me.");
 			}
 
 			// teleport the player out
@@ -219,10 +217,8 @@ public class ReverseArrow extends AbstractQuest implements
 						// teleport the player out
 						npc.say("Sorry, your time is up.");
 						TurnNotifier.get().notifyInTurns(1,
-								new FinishNotifier(true, player)); // need to
-																	// do this
-																	// on the
-																	// next turn
+								new FinishNotifier(true, player));
+						// need to do this on the next turn
 					}
 				}
 			}
@@ -282,8 +278,8 @@ public class ReverseArrow extends AbstractQuest implements
 	 */
 	private void addAllTokens() {
 		// 0 1 2 3 4
-		// 5 6 7
-		// 8
+		// * 5 6 7 *
+		// * * 8 * *
 		tokens = new LinkedList<Token>();
 		for (int i = 0; i < 5; i++) {
 			addTokenToWorld(OFFSET_X + i, OFFSET_Y);
@@ -326,16 +322,13 @@ public class ReverseArrow extends AbstractQuest implements
 			protected void createDialog() {
 				addGreeting(null, new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, String text,
-							SpeakerNPC engine) {
+					public void fire(Player player, String text, SpeakerNPC engine) {
 						if (!player.isQuestCompleted(QUEST_SLOT)) {
-							engine
-									.say("Hi, welcome to our small game. Your task is to let this arrow point upwards, by moving up to three tokens.");
+							engine.say("Hi, welcome to our small game. Your task is to let this arrow point upwards, by moving up to three tokens.");
 						} else {
-							engine
-									.say("Hi again "
-											+ player.getTitle()
-											+ ". I rembemer that you solved this problem already. You can do it again, of course.");
+							engine.say("Hi again "
+								+ player.getTitle()
+								+ ". I rembemer that you solved this problem already. You can do it again, of course.");
 						}
 					}
 				});

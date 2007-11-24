@@ -6,6 +6,13 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.SetQuestAction;
+import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.NotCondition;
+import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
+import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
+import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
+import games.stendhal.server.entity.npc.condition.TriggerInListCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
 
@@ -93,155 +100,129 @@ public class Soup extends AbstractQuest {
 		SpeakerNPC npc = npcs.get("Old Mother Helena");
 
 		// player says hi before starting the quest
-		npc
-				.add(
-						ConversationStates.IDLE,
-						ConversationPhrases.GREETING_MESSAGES,
-						new SpeakerNPC.ChatCondition() {
-							@Override
-							public boolean fire(Player player, String text,
-									SpeakerNPC npc) {
-								return !player.hasQuest(QUEST_SLOT);
-							}
-						},
-						ConversationStates.INFORMATION_1,
-						"Hello, stranger. You look weary from your travels. I know what would #revive you.",
-						null);
+		npc.add(
+			ConversationStates.IDLE,
+			ConversationPhrases.GREETING_MESSAGES,
+			new QuestNotStartedCondition(QUEST_SLOT),
+			ConversationStates.INFORMATION_1,
+			"Hello, stranger. You look weary from your travels. I know what would #revive you.",
+			null);
 
 		// player returns after finishing the quest (it is repeatable) after the
 		// time as finished
 		npc.add(
-				ConversationStates.IDLE,
-				ConversationPhrases.GREETING_MESSAGES,
-				new SpeakerNPC.ChatCondition() {
-					@Override
-					public boolean fire(Player player, String text,
-							SpeakerNPC npc) {
-						// we don't set quest slot to done so we can't check
-						// this
-						// return player.isQuestCompleted(QUEST_SLOT);
-						boolean questdone = player.hasQuest(QUEST_SLOT)
-								&& player.getQuest(QUEST_SLOT).startsWith(
-										"done");
-						if (!questdone) {
-							return false; // we haven't done the quest yet
-						}
-
-						String[] tokens = player.getQuest(QUEST_SLOT)
-								.split(";");
-						long delay = REQUIRED_MINUTES * 60 * 1000; // minutes
-																	// ->
-																	// milliseconds
-						long timeRemaining = (Long.parseLong(tokens[1]) + delay)
-								- System.currentTimeMillis();
-						return (timeRemaining <= 0L);
+			ConversationStates.IDLE,
+			ConversationPhrases.GREETING_MESSAGES,
+			new SpeakerNPC.ChatCondition() {
+				@Override
+				public boolean fire(Player player, String text, SpeakerNPC npc) {
+					// we don't set quest slot to done so we can't check
+					// this
+					// return player.isQuestCompleted(QUEST_SLOT);
+					boolean questdone = player.hasQuest(QUEST_SLOT)
+							&& player.getQuest(QUEST_SLOT).startsWith(
+									"done");
+					if (!questdone) {
+						return false; // we haven't done the quest yet
 					}
-				}, ConversationStates.QUEST_OFFERED,
-				"Hello again. Have you returned for more of my special soup?",
-				null);
+
+					String[] tokens = player.getQuest(QUEST_SLOT)
+							.split(";");
+					long delay = REQUIRED_MINUTES * 60 * 1000; // minutes
+																// ->
+																// milliseconds
+					long timeRemaining = (Long.parseLong(tokens[1]) + delay)
+							- System.currentTimeMillis();
+					return (timeRemaining <= 0L);
+				}
+			}, ConversationStates.QUEST_OFFERED,
+			"Hello again. Have you returned for more of my special soup?",
+			null);
 
 		// player returns after finishing the quest (it is repeatable) before
 		// the time as finished
 		npc.add(
-				ConversationStates.IDLE,
-				ConversationPhrases.GREETING_MESSAGES,
-				new SpeakerNPC.ChatCondition() {
-					@Override
-					public boolean fire(Player player, String text,
-							SpeakerNPC npc) {
-						// we don't set quest slot to done so we can't check
-						// this
-						// return player.isQuestCompleted(QUEST_SLOT);
-						boolean questdone = player.hasQuest(QUEST_SLOT)
-								&& player.getQuest(QUEST_SLOT).startsWith(
-										"done");
-						if (!questdone) {
-							return false; // we haven't done the quest yet
-						}
+			ConversationStates.IDLE,
+			ConversationPhrases.GREETING_MESSAGES,
+			new SpeakerNPC.ChatCondition() {
+				@Override
+				public boolean fire(Player player, String text,
+						SpeakerNPC npc) {
+					// we don't set quest slot to done so we can't check
+					// this
+					// return player.isQuestCompleted(QUEST_SLOT);
+					boolean questdone = player.hasQuest(QUEST_SLOT)
+							&& player.getQuest(QUEST_SLOT).startsWith(
+									"done");
+					if (!questdone) {
+						return false; // we haven't done the quest yet
+					}
 
-						String[] tokens = player.getQuest(QUEST_SLOT)
-								.split(";");
-						long delay = REQUIRED_MINUTES * 60 * 1000; // minutes
-																	// ->
-																	// milliseconds
-						long timeRemaining = (Long.parseLong(tokens[1]) + delay)
-								- System.currentTimeMillis();
-						return (timeRemaining > 0L);
-					}
-				}, ConversationStates.ATTENDING, null,
-				new SpeakerNPC.ChatAction() {
-					@Override
-					public void fire(Player player, String text, SpeakerNPC npc) {
-						String[] tokens = player.getQuest(QUEST_SLOT)
-								.split(";");
-						long delay = REQUIRED_MINUTES * 60 * 1000; // minutes
-																	// ->
-																	// milliseconds
-						long timeRemaining = (Long.parseLong(tokens[1]) + delay)
-								- System.currentTimeMillis();
-						npc
-								.say("I hope you don't want more soup, because I haven't finished washing the dishes. Please check back in "
-										+ TimeUtil
-												.approxTimeUntil((int) (timeRemaining / 1000L))
-										+ " and I will have more time for you.");
-						return;
-					}
-				});
+					String[] tokens = player.getQuest(QUEST_SLOT).split(";");
+					// minutes -> milliseconds
+					long delay = REQUIRED_MINUTES * 60 * 1000; 
+					long timeRemaining = (Long.parseLong(tokens[1]) + delay)
+							- System.currentTimeMillis();
+					return (timeRemaining > 0L);
+				}
+			}, ConversationStates.ATTENDING, null,
+			new SpeakerNPC.ChatAction() {
+				@Override
+				public void fire(Player player, String text, SpeakerNPC npc) {
+					String[] tokens = player.getQuest(QUEST_SLOT).split(";");
+					// minutes -> milliseconds
+					long delay = REQUIRED_MINUTES * 60 * 1000;
+					long timeRemaining = (Long.parseLong(tokens[1]) + delay)
+							- System.currentTimeMillis();
+					npc.say("I hope you don't want more soup, because I haven't finished washing the dishes. Please check back in "
+						+ TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L))
+						+ " and I will have more time for you.");
+					return;
+				}
+			});
 
 		// player responds to word 'revive'
 		npc.add(ConversationStates.INFORMATION_1, "revive",
-				new SpeakerNPC.ChatCondition() {
-					@Override
-					public boolean fire(Player player, String text,
-							SpeakerNPC npc) {
-						return !player.hasQuest(QUEST_SLOT);
+			new QuestNotStartedCondition(QUEST_SLOT),
+			ConversationStates.QUEST_OFFERED, null,
+			new SpeakerNPC.ChatAction() {
+				@Override
+				public void fire(Player player, String text, SpeakerNPC npc) {
+					if (!(player.hasQuest(QUEST_SLOT) && player.getQuest(
+							QUEST_SLOT).startsWith("done"))) {
+						npc.say("My special soup has a magic touch. "
+								+ "I need you to bring me the #ingredients.");
+					} else { // to be honest i don't understand when this
+								// would be implemented. i put the text i
+								// want down in stage 3 and it works fine.
+						npc.say("I have everything for the recipe now.");
+						npc.setCurrentState(ConversationStates.ATTENDING);
 					}
-				}, ConversationStates.QUEST_OFFERED, null,
-				new SpeakerNPC.ChatAction() {
-					@Override
-					public void fire(Player player, String text, SpeakerNPC npc) {
-						if (!(player.hasQuest(QUEST_SLOT) && player.getQuest(
-								QUEST_SLOT).startsWith("done"))) {
-							npc
-									.say("My special soup has a magic touch. "
-											+ "I need you to bring me the #ingredients.");
-						} else { // to be honest i don't understand when this
-									// would be implemented. i put the text i
-									// want down in stage 3 and it works fine.
-							npc.say("I have everything for the recipe now.");
-							npc.setCurrentState(ConversationStates.ATTENDING);
-						}
-					}
-				});
+				}
+			});
 
 		// player asks what exactly is missing
 		npc.add(ConversationStates.QUEST_OFFERED, "ingredients", null,
-				ConversationStates.QUEST_OFFERED, null,
-				new SpeakerNPC.ChatAction() {
-					@Override
-					public void fire(Player player, String text, SpeakerNPC npc) {
-						List<String> needed = missingFood(player, true);
-						npc.say("I need "
-								+ Grammar.quantityplnoun(needed.size(),
-										"ingredient")
-								+ " before I make the soup: "
-								+ Grammar.enumerateCollection(needed)
-								+ ". Will you collect them?");
-					}
-				});
+			ConversationStates.QUEST_OFFERED, null,
+			new SpeakerNPC.ChatAction() {
+				@Override
+				public void fire(Player player, String text, SpeakerNPC npc) {
+					List<String> needed = missingFood(player, true);
+					npc.say("I need "
+							+ Grammar.quantityplnoun(needed.size(),
+									"ingredient")
+							+ " before I make the soup: "
+							+ Grammar.enumerateCollection(needed)
+							+ ". Will you collect them?");
+				}
+			});
 
 		// player is willing to collect
 		npc.add(ConversationStates.QUEST_OFFERED,
-				ConversationPhrases.YES_MESSAGES, null,
-				ConversationStates.QUESTION_1, null,
-				new SpeakerNPC.ChatAction() {
-					@Override
-					public void fire(Player player, String text, SpeakerNPC npc) {
-						npc
-								.say("You made a wise choice. Do you have anything I need already?");
-						player.setQuest(QUEST_SLOT, "");
-					}
-				});
+			ConversationPhrases.YES_MESSAGES, null,
+			ConversationStates.QUESTION_1, 
+			"You made a wise choice. Do you have anything I need already?",
+			new SetQuestAction(QUEST_SLOT, ""));
 
 		// player is not willing to help
 		npc.add(ConversationStates.QUEST_OFFERED,
@@ -250,31 +231,28 @@ public class Soup extends AbstractQuest {
 				"Oh, never mind. It's your loss.", null);
 
 		// players asks about the vegetables individually
-		npc
-				.add(
-						ConversationStates.QUEST_OFFERED,
-						Arrays.asList("spinach", "courgette", "onion",
-								"cauliflower", "broccoli", "leek"),
-						null,
-						ConversationStates.QUEST_OFFERED,
-						"You will find that in allotments in Fado. So will you fetch the ingredients?",
-						null);
+		npc.add(
+			ConversationStates.QUEST_OFFERED,
+			Arrays.asList("spinach", "courgette", "onion", "cauliflower", "broccoli", "leek"),
+			null,
+			ConversationStates.QUEST_OFFERED,
+			"You will find that in allotments in Fado. So will you fetch the ingredients?",
+			null);
 
 		// players asks about the vegetables individually
 		npc.add(ConversationStates.QUEST_OFFERED, "collard", null,
-				ConversationStates.QUEST_OFFERED,
-				"That grows indoors in pots. Someone like a witch or an elf might grow it. "
-						+ "So will you fetch the ingredients?", null);
+			ConversationStates.QUEST_OFFERED,
+			"That grows indoors in pots. Someone like a witch or an elf might grow it. "
+					+ "So will you fetch the ingredients?", null);
 
 		// players asks about the vegetables individually
-		npc
-				.add(
-						ConversationStates.QUEST_OFFERED,
-						Arrays.asList("salad", "carrot"),
-						null,
-						ConversationStates.QUEST_OFFERED,
-						"I usually have to get them imported from Semos. So do you want the soup?",
-						null);
+		npc.add(
+			ConversationStates.QUEST_OFFERED,
+			Arrays.asList("salad", "carrot"),
+			null,
+			ConversationStates.QUEST_OFFERED,
+			"I usually have to get them imported from Semos. So do you want the soup?",
+			null);
 	}
 
 	private void step_2() {
@@ -285,150 +263,108 @@ public class Soup extends AbstractQuest {
 		SpeakerNPC npc = npcs.get("Old Mother Helena");
 
 		// player returns while quest is still active
-		npc
-				.add(
-						ConversationStates.IDLE,
-						ConversationPhrases.GREETING_MESSAGES,
-						new SpeakerNPC.ChatCondition() {
-							@Override
-							public boolean fire(Player player, String text,
-									SpeakerNPC npc) {
-								return player.hasQuest(QUEST_SLOT)
-										&& !player.getQuest(QUEST_SLOT)
-												.startsWith("done");
-							}
-						},
-						ConversationStates.QUESTION_1,
-						"Welcome back! I hope you collected some #ingredients for the soup.",
-						null);
+		npc.add(
+			ConversationStates.IDLE,
+			ConversationPhrases.GREETING_MESSAGES,
+			new AndCondition(new QuestStartedCondition(QUEST_SLOT), new NotCondition(new QuestStateStartsWithCondition(QUEST_SLOT, "done"))),
+			ConversationStates.QUESTION_1,
+			"Welcome back! I hope you collected some #ingredients for the soup.",
+			null);
 
 		// player asks what exactly is missing
 		npc.add(ConversationStates.QUESTION_1, "ingredients",
-				new SpeakerNPC.ChatCondition() {
-					@Override
-					public boolean fire(Player player, String text,
-							SpeakerNPC npc) {
-						return player.hasQuest(QUEST_SLOT)
-								&& !player.getQuest(QUEST_SLOT).startsWith(
-										"done");
-					}
-				}, ConversationStates.QUESTION_1, null,
-				new SpeakerNPC.ChatAction() {
-					@Override
-					public void fire(Player player, String text, SpeakerNPC npc) {
-						List<String> needed = missingFood(player, true);
-						npc.say("I still need "
-								+ Grammar.quantityplnoun(needed.size(),
-										"ingredient") + ": "
-								+ Grammar.enumerateCollection(needed)
-								+ ". Did you bring anything I need?");
-					}
-				});
+			new AndCondition(new QuestStartedCondition(QUEST_SLOT), new NotCondition(new QuestStateStartsWithCondition(QUEST_SLOT, "done"))),
+			ConversationStates.QUESTION_1, null,
+			new SpeakerNPC.ChatAction() {
+				@Override
+				public void fire(Player player, String text, SpeakerNPC npc) {
+					List<String> needed = missingFood(player, true);
+					npc.say("I still need "
+							+ Grammar.quantityplnoun(needed.size(),
+									"ingredient") + ": "
+							+ Grammar.enumerateCollection(needed)
+							+ ". Did you bring anything I need?");
+				}
+			});
 
 		// player says he has a required ingredient with him
 		npc.add(ConversationStates.QUESTION_1,
 				ConversationPhrases.YES_MESSAGES, null,
 				ConversationStates.QUESTION_1, "What did you bring?", null);
 
-		for (String ingredient : NEEDED_FOOD) {
-			npc.add(ConversationStates.QUESTION_1, ingredient, null,
-					ConversationStates.QUESTION_1, null,
-					new SpeakerNPC.ChatAction() {
-						@Override
-						public void fire(Player player, String text,
-								SpeakerNPC npc) {
-							if (text != null) {
-								text = text.toLowerCase();
-							}
-							List<String> missing = missingFood(player, false);
-							if (missing.contains(text)) {
-								if (player.drop(text)) {
-									// register ingredient as done
-									String doneText = player
-											.getQuest(QUEST_SLOT);
-									player.setQuest(QUEST_SLOT, doneText + ";"
-											+ text);
-									// check if the player has brought all Food
-									missing = missingFood(player, true);
-									if (missing.size() > 0) {
-										npc
-												.say("Thank you very much! What else did you bring?");
-									} else {
-										// had to comment out mana as not sure
-										// it's in game - added karma instead
-										player.addKarma(5.0);
-										// player.addBaseMana(10); // i don't
-										// know what number to choose here as i
-										// don't know about mana.
-										player.addXP(100);
-										/*
-										 * place soup after XP added otherwise
-										 * the XP change MIGHT change level and
-										 * player MIGHT gain health points which
-										 * changes the base HP, which is desired
-										 * to be accurate for the place soup
-										 * stage
-										 */
-										placeSoupFor(player);
-										player.healPoison();
-										npc
-												.say("The soup's on the table for you. It will heal you. "
-														+ "My magical method in making the soup had given you a little karma too.");
-										player.setQuest(QUEST_SLOT, "done;"
-												+ System.currentTimeMillis());
-										player.notifyWorldAboutChanges();
-										npc
-												.setCurrentState(ConversationStates.ATTENDING);
-									}
-								} else {
-									npc
-											.say("Don't take me for a fool, traveller. You don't have "
-													+ Grammar.a_noun(text)
-													+ " with you.");
-								}
+		npc.add(ConversationStates.QUESTION_1, NEEDED_FOOD, null,
+			ConversationStates.QUESTION_1, null,
+			new SpeakerNPC.ChatAction() {
+				@Override
+				public void fire(Player player, String text,
+						SpeakerNPC npc) {
+					if (text != null) {
+						text = text.toLowerCase();
+					}
+					List<String> missing = missingFood(player, false);
+					if (missing.contains(text)) {
+						if (player.drop(text)) {
+							// register ingredient as done
+							String doneText = player
+									.getQuest(QUEST_SLOT);
+							player.setQuest(QUEST_SLOT, doneText + ";"
+									+ text);
+							// check if the player has brought all Food
+							missing = missingFood(player, true);
+							if (missing.size() > 0) {
+								npc.say("Thank you very much! What else did you bring?");
 							} else {
-								npc
-										.say("You brought me that ingredient already.");
+								// had to comment out mana as not sure
+								// it's in game - added karma instead
+								player.addKarma(5.0);
+								// player.addBaseMana(10); // i don't
+								// know what number to choose here as i
+								// don't know about mana.
+								player.addXP(100);
+								/*
+								 * place soup after XP added otherwise
+								 * the XP change MIGHT change level and
+								 * player MIGHT gain health points which
+								 * changes the base HP, which is desired
+								 * to be accurate for the place soup
+								 * stage
+								 */
+								placeSoupFor(player);
+								player.healPoison();
+								npc.say("The soup's on the table for you. It will heal you. "
+										+ "My magical method in making the soup had given you a little karma too.");
+								player.setQuest(QUEST_SLOT, "done;"
+										+ System.currentTimeMillis());
+								player.notifyWorldAboutChanges();
+								npc.setCurrentState(ConversationStates.ATTENDING);
 							}
+						} else {
+							npc.say("Don't take me for a fool, traveller. You don't have "
+								+ Grammar.a_noun(text)
+								+ " with you.");
 						}
-					});
-		}
+					} else {
+						npc.say("You brought me that ingredient already.");
+					}
+				}
+			});
 
 		// player says something which isn't in the needed food list.
 		npc.add(ConversationStates.QUESTION_1, "",
-				new SpeakerNPC.ChatCondition() {
-					@Override
-					public boolean fire(Player player, String text,
-							SpeakerNPC npc) {
-						return !NEEDED_FOOD.contains(text);
-					}
-				}, ConversationStates.QUESTION_1,
-				"I won't put that in your soup.", null);
+			new NotCondition(new TriggerInListCondition(NEEDED_FOOD)),
+			ConversationStates.QUESTION_1,
+			"I won't put that in your soup.", null);
 
 		npc.add(ConversationStates.ATTENDING, ConversationPhrases.NO_MESSAGES,
-				new SpeakerNPC.ChatCondition() {
-					@Override
-					public boolean fire(Player player, String text,
-							SpeakerNPC npc) {
-						return player.hasQuest(QUEST_SLOT)
-								&& !player.getQuest(QUEST_SLOT).startsWith(
-										"done");
-					}
-				}, ConversationStates.ATTENDING,
-				"I'm not sure what you want from me, then.", null);
+			new AndCondition(new QuestStartedCondition(QUEST_SLOT), new NotCondition(new QuestStateStartsWithCondition(QUEST_SLOT, "done"))),
+			ConversationStates.ATTENDING,
+			"I'm not sure what you want from me, then.", null);
 
 		// player says he didn't bring any Food to different question
 		npc.add(ConversationStates.QUESTION_1, ConversationPhrases.NO_MESSAGES,
-				new SpeakerNPC.ChatCondition() {
-					@Override
-					public boolean fire(Player player, String text,
-							SpeakerNPC npc) {
-						return player.hasQuest(QUEST_SLOT)
-								&& !player.getQuest(QUEST_SLOT).startsWith(
-										"done");
-					}
-				}, ConversationStates.ATTENDING, "Okay then. Come back later.",
-				null);
+			new AndCondition(new QuestStartedCondition(QUEST_SLOT), new NotCondition(new QuestStateStartsWithCondition(QUEST_SLOT, "done"))),
+			ConversationStates.ATTENDING, "Okay then. Come back later.",
+			null);
 
 	}
 
