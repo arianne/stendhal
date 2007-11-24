@@ -586,6 +586,7 @@ public abstract class RPEntity extends GuidedEntity {
 			setBaseHP(getBaseHP() + (int) Math.signum(levels) * 10);
 			setHP(getHP() + (int) Math.signum(levels) * 10);
 
+			StendhalRPRuleProcessor.get().addGameEvent(getName(), "level", Integer.toString(newLevel));
 			setLevel(newLevel);
 		}
 	}
@@ -874,11 +875,11 @@ public abstract class RPEntity extends GuidedEntity {
 			if(killedName==null) {
 				logger.warn("This entity returns null as name: "+this);
 			} else {
-				if (damageDone == totalDamageReceived) {
+			if (damageDone == totalDamageReceived) {
 					killer.setSoloKill(killedName);
 				} else if (!killer.hasKilledSolo(killedName)) {
 					killer.setSharedKill(killedName);
-				}
+			}
 			}
 			
 			killer.notifyWorldAboutChanges();
