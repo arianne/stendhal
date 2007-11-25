@@ -13,7 +13,7 @@ import org.apache.log4j.Logger;
 // TODO: This is just a first step to split it out of SpeakerNPC. More refactoring is needed.
 class BehaviourAdder {
 
-	private static final Logger logger = Logger.getLogger(BehaviourAdder.class);
+	static final Logger logger = Logger.getLogger(BehaviourAdder.class);
 
 	private Engine engine;
 

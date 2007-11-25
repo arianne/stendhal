@@ -128,7 +128,7 @@ public class Level {
 	 *            the current Experience
 	 * @param added
 	 *            the added Experience
-	 * @return
+	 * @return difference of levels
 	 */
 	public static int changeLevel(int exp, int added) {
 		int i;

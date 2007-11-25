@@ -17,7 +17,7 @@ public class OnePlayerRoomDoor extends Door {
 	 * Tries periodically to open the door. (Just in case the player left
 	 * zone event did not get fired).
 	 */
-	private class PeriodicOpener implements TurnListener {
+	class PeriodicOpener implements TurnListener {
 
 		public void onTurnReached(int currentTurn) {
 			if (!isOpen()) {

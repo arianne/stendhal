@@ -230,7 +230,7 @@ public class TimedTeleportScroll extends TeleportScroll {
 	 * TurnListener interface for the timed teleport to send a warning message
 	 * to the player before teleporting back.
 	 */
-	class TimedTeleportWarningTurnListener implements TurnListener {
+	static class TimedTeleportWarningTurnListener implements TurnListener {
 
 		private final Player player;
 		private final StendhalRPZone zone;

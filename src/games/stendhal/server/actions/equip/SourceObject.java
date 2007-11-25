@@ -98,7 +98,7 @@ class SourceObject extends MoveableObject {
 			// item is not contained
 			if (StendhalRPWorld.get().has(baseItemId)) {
 				Entity entity = (Entity) StendhalRPWorld.get().get(baseItemId);
-				if (!(entity instanceof Item) || (entity == null)) {
+				if (!(entity instanceof Item)) {
 					return;
 				}
 				item = (Item) entity;

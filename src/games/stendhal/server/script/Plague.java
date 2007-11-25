@@ -36,10 +36,11 @@ public class Plague extends ScriptImpl {
 		if (args.size() >= 2) {
 			creatureClass = args.get(1);
 		}
-		Creature creature = new RaidCreature(sandbox.getCreature(creatureClass));
-		if (creature == null) {
+		Creature tempCreature = sandbox.getCreature(creatureClass);
+		if (tempCreature == null) {
 			admin.sendPrivateText("No such creature");
 		} else {
+			Creature creature = new RaidCreature(tempCreature);
 
 			// spawn the specified amout of them
 			if (args.size() == 1) {

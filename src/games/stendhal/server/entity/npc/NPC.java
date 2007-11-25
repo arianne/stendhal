@@ -101,59 +101,6 @@ public abstract class NPC extends RPEntity {
 		put("text", text);
 	}
 
-	// TODO: Re-enable/(refactor?) later if async needed.
-	// /**
-	// * Moves to the given entity. When the distance to the destination more
-	// than
-	// * <code>max</code> and this entity does not have a path already one is
-	// * searched and saved. If the destination is less than min
-	// <code>min</code>
-	// * the path is removed.
-	// * <p>
-	// *
-	// * @param destEntity
-	// * the destination entity
-	// * @param min
-	// * minimum distance to have a path
-	// * @param max
-	// * minimum distance to find a path
-	// */
-	// public void setAsynchonousMovement(Entity destEntity, double min, double
-	// max) {
-	// setAsynchonousMovement(destEntity, min, max, -1.0);
-	// }
-	//
-	// /**
-	// * Moves to the given entity. When the distance to the destination more
-	// than
-	// * <code>max</code> and this entity does not have a path already one is
-	// * searched and saved. If the destination is less than min
-	// <code>min</code>
-	// * the path is removed.
-	// * <p>
-	// *
-	// * @param destEntity
-	// * the destination entity
-	// * @param min
-	// * minimum distance to have a path
-	// * @param max
-	// * minimum distance to find a path
-	// * @param maxPathRadius
-	// * the maximum radius in which a path is searched
-	// */
-	// public void setAsynchonousMovement(Entity destEntity, double min, double
-	// max, double maxPathRadius) {
-	// int destX = destEntity.getX();
-	// int destY = destEntity.getY();
-	// if (nextTo(destX, destY, min) && hasPath()) {
-	// clearPath();
-	// }
-	//
-	// if ((squaredDistance(destX, destY) > max) && !hasPath()) {
-	// Path.searchPathAsynchonous(this, destEntity);
-	// }
-	// }
-
 	/**
 	 * moves to the given entity. When the distance to the destination is
 	 * between <code>min</code> and <code>max</code> and this entity does
@@ -235,15 +182,4 @@ public abstract class NPC extends RPEntity {
 
 	}
 
-	@Override
-	protected void handleObjectCollision() {
-
-		super.handleObjectCollision();
-	}
-
-	@Override
-	protected void handleSimpleCollision(int nx, int ny) {
-
-		super.handleSimpleCollision(nx, ny);
-	}
 }

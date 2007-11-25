@@ -494,10 +494,11 @@ public class AdministrationAction implements ActionListener {
 						}
 						break;
 					case INT:
+						/* as numberValue is currently of type integer, this is pointless:
 						if ((numberValue > Integer.MAX_VALUE)
 								|| (numberValue < Integer.MIN_VALUE)) {
 							return;
-						}
+						}*/
 						break;
 					}
 

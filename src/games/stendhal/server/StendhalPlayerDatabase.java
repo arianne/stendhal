@@ -27,7 +27,7 @@ import marauroa.server.game.db.Transaction;
 public class StendhalPlayerDatabase extends JDBCDatabase implements
 		Iterable<RPObject> {
 
-	private static final Logger logger = Logger.getLogger(StendhalPlayerDatabase.class);
+	static final Logger logger = Logger.getLogger(StendhalPlayerDatabase.class);
 
 	private StendhalPlayerDatabase(Properties connInfo) {
 		super(connInfo);
@@ -60,8 +60,7 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 	public void clearOnlineStatus() {
 		try {
 			JDBCTransaction transaction = (JDBCTransaction) getTransaction();
-			Connection connection = ((JDBCTransaction) transaction)
-					.getConnection();
+			Connection connection = transaction.getConnection();
 			Statement stmt = connection.createStatement();
 
 			// first try an update
@@ -77,8 +76,7 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 	public void setOnlineStatus(Player player, boolean online) {
 		try {
 			JDBCTransaction transaction = (JDBCTransaction) getTransaction();
-			Connection connection = ((JDBCTransaction) transaction)
-					.getConnection();
+			Connection connection = transaction.getConnection();
 			Statement stmt = connection.createStatement();
 
 			// first try an update
@@ -349,7 +347,7 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 	/**
 	 * close the database connection
 	 * TODO This function is not yet used, it should be called
-	 * for clean shutdown of the game server.
+	 * for clean shutdown of the game server. 
 	 */
 	public static void closeDatabase() {
 		try {
@@ -507,6 +505,5 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 		addGameEvent(transaction, source, event, params);
 		transaction.commit();
 
-	}
-
+}
 }

@@ -122,7 +122,6 @@ public abstract class TimedStackableItem extends StackableItem implements UseLis
 	/**
 	 * Called when the used item is finished. Implement this in a subclass.
 	 * @param player
-	 * @return
 	 */
 	public abstract void itemFinished(Player player);
 }

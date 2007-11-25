@@ -1,12 +1,12 @@
 package games.stendhal.server.maps.ados.swamp;
 
 import games.stendhal.common.Direction;
-import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.entity.npc.action.TeleportAction;
+import games.stendhal.server.entity.npc.condition.LevelGreaterThanCondition;
 import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Node;
 
@@ -61,19 +61,15 @@ public class DeathmatchRecruiterNPC implements ZoneConfigurator {
 				        "Are you such a hero? I can take you to the #challenge.", null);
 				addGoodbye("I hope you will enjoy the Ados #Deathmatch!");
 
-				add(ConversationStates.ATTENDING, "challenge", null, ConversationStates.ATTENDING, null,
-				        new SpeakerNPC.ChatAction() {
+				add(ConversationStates.ATTENDING, "challenge", 
+					new LevelGreaterThanCondition(19), 
+					ConversationStates.ATTENDING, null,
+					new TeleportAction("0_ados_wall_n", 100, 86, Direction.DOWN));
 
-					        @Override
-					        public void fire(Player player, String text, SpeakerNPC engine) {
-						        if (player.getLevel() >= 20) {
-							        StendhalRPZone zone = StendhalRPWorld.get().getZone("0_ados_wall_n");
-							        player.teleport(zone, 100, 86, Direction.DOWN, null);
-						        } else {
-							        engine.say("Sorry, you are too weak!");
-						        }
-					        }
-				        });
+				add(ConversationStates.ATTENDING, "challenge",
+					new LevelGreaterThanCondition(20), 
+					ConversationStates.ATTENDING, "Sorry, you are too weak!",
+					null);
 			}
 		};
 

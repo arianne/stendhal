@@ -108,7 +108,7 @@ public class Debuggera extends ScriptImpl {
 		}
 	}
 
-	class TeleportScriptAction implements TurnListener {
+	static class TeleportScriptAction implements TurnListener {
 		private ScriptingSandbox sandbox;
 
 		private Player player;

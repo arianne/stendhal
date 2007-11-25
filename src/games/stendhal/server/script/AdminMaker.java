@@ -115,7 +115,7 @@ public class AdminMaker extends ScriptImpl {
 
 		private static final String TELE_QUEST_SLOT = "AdminMakerTele";
 
-		private boolean RandomTeleport(Player player) {
+		private boolean randomTeleport(Player player) {
 			//Destination selection: random for first, then go in order
 			//todo: maybe mix in a second kind of random like bunny/santa?
 
@@ -164,7 +164,7 @@ public class AdminMaker extends ScriptImpl {
 
 			if (player.equip(markedScroll, false)) {
 				//Teleport
-				if (RandomTeleport(player)) {
+				if (randomTeleport(player)) {
 					//todo: priv msg doesn't work
 					player.sendPrivateText(player.getTitle() + " use the scroll to come back here. Use /teleport <playername> <zonename> <x> <y> to beam to a different place.");
 				} else {

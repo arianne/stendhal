@@ -61,8 +61,7 @@ public class KidGhostNPC implements ZoneConfigurator {
 			    	null,
 			    	new SpeakerNPC.ChatAction() {
 			    		@Override
-			    		public void fire(Player player, String text,
-			    				SpeakerNPC npc) {
+			    		public void fire(Player player, String text, SpeakerNPC npc) {
 			    			if (!player.hasQuest("find_ghosts")) {
 			    				player.setQuest("find_ghosts", "looking:said");
 			    			}

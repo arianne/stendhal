@@ -53,7 +53,7 @@ public class Basket extends Box implements UseListener {
 		itemName = ITEMS[Rand.rand(ITEMS.length)];
 	    }
 	    Item item = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(itemName);
-	    if (itemName == "easter_egg") {
+	    if (itemName.equals("easter_egg")) {
 		item.setBoundTo(player.getName());
 	    }
 	    player.sendPrivateText("Congratulations, you've got " + Grammar.a_noun(itemName));

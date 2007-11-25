@@ -1657,7 +1657,7 @@ public class Player extends RPEntity {
 	 * Return true if player can push entity.
 	 *
 	 * @param entity
-	 * @return
+	 * @return true iff pushing is possible
 	 */
 	public boolean canPush(RPEntity entity) {
 		return ((this != entity) && (StendhalRPRuleProcessor.get().getTurn()

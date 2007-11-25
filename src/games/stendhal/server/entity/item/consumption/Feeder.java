@@ -9,8 +9,8 @@ public interface Feeder {
 	 *
 	 * @param item
 	 * @param player
-	 * @return
+	 * @return true iff feeding is possible
 	 */
-	boolean feed(ConsumableItem item , Player player);
+	boolean feed(ConsumableItem item, Player player);
 
 }

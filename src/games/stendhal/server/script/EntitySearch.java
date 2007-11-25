@@ -44,7 +44,7 @@ import marauroa.common.game.RPObject;
 
 public class EntitySearch extends ScriptImpl {
 
-	public void FindByCreatureName(Player player, String targetName) {
+	public void findByCreatureName(Player player, String targetName) {
 		StringBuilder res = new StringBuilder();
 		Map<String, Integer> zoneCount = new HashMap<String, Integer>();
 
@@ -88,7 +88,7 @@ public class EntitySearch extends ScriptImpl {
 
 	}
 
-	public void FindNonRespawn(Player player) {
+	public void findNonRespawn(Player player) {
 		StringBuilder res = new StringBuilder();
 
 		res.append("\r\nNon-Respawn creatures (minus sheep):");
@@ -113,7 +113,7 @@ public class EntitySearch extends ScriptImpl {
 
 	}
 
-	public void FindByZoneName(Player player, String targetName) {
+	public void findByZoneName(Player player, String targetName) {
 		StringBuilder res = new StringBuilder();
 
 		res.append("\r\nRespawn points for zone names containing: " + targetName);
@@ -155,11 +155,11 @@ public class EntitySearch extends ScriptImpl {
 		super.execute(admin, args);
 
 		if (args.size() == 2 && args.get(0).equals("cname")) {
-			FindByCreatureName(admin, args.get(1));
+			findByCreatureName(admin, args.get(1));
 		} else if (args.size() == 1 && args.get(0).equals("nonrespawn")) {
-			FindNonRespawn(admin);
+			findNonRespawn(admin);
 		} else if (args.size() == 2 && args.get(0).equals("zname")) {
-			FindByZoneName(admin, args.get(1));
+			findByZoneName(admin, args.get(1));
 		} else {
 			admin.sendPrivateText("/script EntitySearch.class cname <creatureName>\n/script EntitySearch.class nonrespawn\n/script EntitySearch.class zname <partialZoneName>");
 		}

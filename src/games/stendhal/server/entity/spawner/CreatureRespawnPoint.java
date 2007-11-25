@@ -177,8 +177,6 @@ public class CreatureRespawnPoint implements TurnListener {
 			creatures.add(newentity);
 		} catch (Exception e) {
 			logger.error("error respawning entity " + prototypeCreature, e);
-		} finally {
-			
 		}
 	}
 
