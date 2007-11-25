@@ -174,9 +174,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 	public void addGameEvent(String source, String event, String... params) {
 		try {
-			Transaction transaction = database.getTransaction();
-			database.addGameEvent(transaction, source, event, params);
-			transaction.commit();
+			database.addGameEvent(source, event, params);
 		} catch (Exception e) {
 			logger.warn("Can't store game event", e);
 		}
@@ -451,7 +449,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			 * handled by marauroa itself.
 			 */
 
-
 			/*
 			 * TODO: Refactor May be done by the zone itself.
 			 */
@@ -484,7 +481,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 				}
 			}
 			playersRmText.clear();
-			
+
 			for (Player player : playersRmPrivateText) {
 				if (player.has("private_text")) {
 					player.remove("private_text");
@@ -493,7 +490,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 				}
 			}
 			playersRmPrivateText.clear();
-			
+
 		} catch (Exception e) {
 			logger.error("error in beginTurn", e);
 		} finally {
@@ -637,13 +634,16 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		onExit(object);
 	}
 
-	public AccountResult createAccount(String username, String password, String email) {
+	public AccountResult createAccount(String username, String password,
+			String email) {
 		AccountCreator creator = new AccountCreator(username, password, email);
 		return creator.create();
 	}
 
-	public CharacterResult createCharacter(String username, String character, RPObject template) {
-		CharacterCreator creator = new CharacterCreator(username, character, template);
+	public CharacterResult createCharacter(String username, String character,
+			RPObject template) {
+		CharacterCreator creator = new CharacterCreator(username, character,
+				template);
 		return creator.create();
 	}
 

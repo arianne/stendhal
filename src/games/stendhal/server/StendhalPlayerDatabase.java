@@ -349,7 +349,7 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 	/**
 	 * close the database connection
 	 * TODO This function is not yet used, it should be called
-	 * for clean shutdown of the game server. 
+	 * for clean shutdown of the game server.
 	 */
 	public static void closeDatabase() {
 		try {
@@ -500,6 +500,13 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 			logger.warn("error adding game event", sqle);
 			throw sqle;
 		}
+	}
+
+	public void addGameEvent(String source, String event, String[] params) throws SQLException {
+		Transaction transaction = getTransaction();
+		addGameEvent(transaction, source, event, params);
+		transaction.commit();
+
 	}
 
 }
