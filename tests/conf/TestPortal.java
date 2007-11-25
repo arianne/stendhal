@@ -28,7 +28,7 @@ public class TestPortal {
 		if (source == null) {
 			return false;
 		}
-		if (source.destName == "" || source.destZone == "") {
+		if (source.destName.equals("") || source.destZone.equals("")) {
 			return false;
 		}
 		return this.name.equals(source.destName)
