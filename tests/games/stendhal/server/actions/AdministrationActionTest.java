@@ -3,7 +3,8 @@ package games.stendhal.server.actions;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import games.stendhal.server.StendhalRPRuleProcessor;
+import games.stendhal.common.Direction;
+import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
@@ -13,27 +14,25 @@ import marauroa.common.game.RPObject;
 
 import org.junit.After;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 
+import utilities.PlayerHelper;
 import utilities.PlayerTestHelper;
 
 public class AdministrationActionTest {
 
 	@BeforeClass
-	public static void setUp() throws Exception {
+	public static void setUpBeforeClass() throws Exception {
+		AdministrationAction.register();
 		MockStendlRPWorld.get();
-		assertTrue(MockStendhalRPRuleProcessor.get() instanceof MockStendhalRPRuleProcessor);
+		MockStendhalRPRuleProcessor.get().getPlayers().clear();
 		Log4J.init();
 	}
 
 	@After
 	public void tearDown() throws Exception {
-	}
-
-	@Test
-	public final void testRegister() {
-		AdministrationAction.register();
+		MockStendhalRPRuleProcessor.get().getPlayers().clear();
+		
 	}
 
 	@Test
@@ -98,10 +97,10 @@ public class AdministrationActionTest {
 	}
 
 	@Test
-	public final void testOnAction() {
+	public final void testTellAllAction() {
 
 		AdministrationAction aa = new AdministrationAction();
-		AdministrationAction.register();
+
 		Player pl = PlayerTestHelper.createPlayer();
 		// bad bad
 		MockStendhalRPRuleProcessor.get().getPlayers().add(pl);
@@ -119,4 +118,94 @@ public class AdministrationActionTest {
 
 	}
 
+	@Test
+	public final void testSupportAnswerAction() {
+
+		AdministrationAction aa = new AdministrationAction();
+
+		Player pl = PlayerTestHelper.createPlayer();
+		Player bob = PlayerTestHelper.createPlayer("bob");
+		// bad bad
+		MockStendhalRPRuleProcessor.get().getPlayers().add(pl);
+		MockStendhalRPRuleProcessor.get().getPlayers().add(bob);
+
+		pl.put("adminlevel", 5000);
+		RPAction action = new RPAction();
+		action.put("type", "supportanswer");
+		action.put("text", "huhu");
+		action.put("target", "bob");
+		aa.onAction(pl, action);
+		assertEquals("Support (player) tells you: huhu", bob
+				.get("private_text"));
+
+	}
+
+	@Test
+	public final void testTeleportActionToInvalidZone() {
+
+		AdministrationAction aa = new AdministrationAction();
+
+		Player pl = PlayerTestHelper.createPlayer();
+		Player bob = PlayerTestHelper.createPlayer("bob");
+		// bad bad
+		MockStendhalRPRuleProcessor.get().getPlayers().add(pl);
+		MockStendhalRPRuleProcessor.get().getPlayers().add(bob);
+
+		pl.put("adminlevel", 5000);
+		RPAction action = new RPAction();
+		action.put("type", "teleport");
+		action.put("text", "huhu");
+		action.put("target", "bob");
+		action.put("zone", "zone1");
+		action.put("x", "0");
+		action.put("y", "0");
+
+		assertTrue(action.has("target") && action.has("zone")
+				&& action.has("x"));
+
+		aa.onAction(pl, action);
+		assertEquals("Zone \"IRPZone.ID [id=zone1]\" not found. Valid zones: []",
+		 pl.get("private_text"));
+
+	}
+	@Test
+	public final void testTeleportActionToValidZone() {
+
+		AdministrationAction aa = new AdministrationAction();
+		StendhalRPZone zoneTo =new StendhalRPZone("zoneTo");
+		Player pl = PlayerTestHelper.createPlayer();
+		MockStendhalRPRuleProcessor.get().getPlayers().add(pl);
+		PlayerHelper.generatePlayerRPClasses();
+		Player bob = new Player(new RPObject()){@Override
+		public boolean teleport(StendhalRPZone zone, int x, int y,
+				Direction dir, Player teleporter) {
+			assertEquals("zoneTo",zone.getName());
+			//added hack to have something to verify 
+				setName("hugo");
+			return true;
+			
+		}};
+		bob.setName("bob");
+		PlayerHelper.addEmptySlots(bob);
+		
+		MockStendhalRPRuleProcessor.get().getPlayers().add(bob);
+		
+		
+		MockStendlRPWorld.get().addRPZone(zoneTo);
+		pl.put("adminlevel", 5000);
+		RPAction action = new RPAction();
+		action.put("type", "teleport");
+		action.put("text", "huhu");
+		action.put("target", "bob");
+		action.put("zone", "zoneTo");
+		action.put("x", "0");
+		action.put("y", "0");
+
+		assertTrue(action.has("target") && action.has("zone")
+				&& action.has("x"));
+
+		aa.onAction(pl, action);
+		assertEquals("hugo", bob.getName());
+
+	}
 }
