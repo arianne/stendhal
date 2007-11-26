@@ -3,6 +3,7 @@ package games.stendhal.server.actions;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
@@ -45,8 +46,8 @@ public class AdministrationActionTest {
 		assertEquals(-1, AdministrationAction.getLevelForCommand(""));
 		assertEquals(0, AdministrationAction.getLevelForCommand("adminlevel"));
 		assertEquals(100, AdministrationAction.getLevelForCommand("support"));
-		assertEquals(50,
-				AdministrationAction.getLevelForCommand("supportanswer"));
+		assertEquals(50, AdministrationAction
+				.getLevelForCommand("supportanswer"));
 		assertEquals(200, AdministrationAction.getLevelForCommand("tellall"));
 		assertEquals(300, AdministrationAction.getLevelForCommand("teleportto"));
 		assertEquals(400, AdministrationAction.getLevelForCommand("teleport"));
@@ -54,15 +55,15 @@ public class AdministrationActionTest {
 		assertEquals(400, AdministrationAction.getLevelForCommand("gag"));
 		assertEquals(500, AdministrationAction.getLevelForCommand("invisible"));
 		assertEquals(500, AdministrationAction.getLevelForCommand("ghostmode"));
-		assertEquals(500,
-				AdministrationAction.getLevelForCommand("teleclickmode"));
+		assertEquals(500, AdministrationAction
+				.getLevelForCommand("teleclickmode"));
 		assertEquals(600, AdministrationAction.getLevelForCommand("inspect"));
 		assertEquals(700, AdministrationAction.getLevelForCommand("destroy"));
 		assertEquals(800, AdministrationAction.getLevelForCommand("summon"));
 		assertEquals(800, AdministrationAction.getLevelForCommand("summonat"));
 		assertEquals(900, AdministrationAction.getLevelForCommand("alter"));
-		assertEquals(900,
-				AdministrationAction.getLevelForCommand("altercreature"));
+		assertEquals(900, AdministrationAction
+				.getLevelForCommand("altercreature"));
 		assertEquals(5000, AdministrationAction.getLevelForCommand("super"));
 
 	}
@@ -77,20 +78,17 @@ public class AdministrationActionTest {
 				pl, "adminlevel", true));
 		pl.remove("private_text");
 
-		assertEquals(false,
-				AdministrationAction.isPlayerAllowedToExecuteAdminCommand(pl,
-						"support", true));
-		assertEquals("Sorry, you need to be an admin to run \"support\".",
-				pl.get("private_text"));
+		assertEquals(false, AdministrationAction
+				.isPlayerAllowedToExecuteAdminCommand(pl, "support", true));
+		assertEquals("Sorry, you need to be an admin to run \"support\".", pl
+				.get("private_text"));
 
 		pl.put("adminlevel", 50);
 		pl.remove("private_text");
-		assertEquals(true,
-				AdministrationAction.isPlayerAllowedToExecuteAdminCommand(pl,
-						"adminlevel", true));
-		assertEquals(false,
-				AdministrationAction.isPlayerAllowedToExecuteAdminCommand(pl,
-						"support", true));
+		assertEquals(true, AdministrationAction
+				.isPlayerAllowedToExecuteAdminCommand(pl, "adminlevel", true));
+		assertEquals(false, AdministrationAction
+				.isPlayerAllowedToExecuteAdminCommand(pl, "support", true));
 		assertEquals(
 				"Your admin level is only 50, but a level of 100 is required to run \"support\".",
 				pl.get("private_text"));
@@ -99,29 +97,26 @@ public class AdministrationActionTest {
 						"supportanswer", true));
 	}
 
-	@Ignore
 	@Test
-	// TODO fails because pl is not added to players in ruleprocessor
 	public final void testOnAction() {
-		AdministrationAction aa = new AdministrationAction();
-		Player pl = PlayerTestHelper.createPlayer();
-		aa.onAction(pl, new RPAction());
-		assertEquals("Sorry, command \"null\" is unknown.",
-				pl.get("private_text"));
-		pl = new Player(new RPObject());
 
+		AdministrationAction aa = new AdministrationAction();
+		AdministrationAction.register();
+		Player pl = PlayerTestHelper.createPlayer();
+		// bad bad
+		MockStendhalRPRuleProcessor.get().getPlayers().add(pl);
+		aa.onAction(pl, new RPAction());
+		assertEquals("Sorry, command \"null\" is unknown.", pl
+				.get("private_text"));
+
+		pl.remove("private_text");
 		pl.put("adminlevel", 5000);
 		RPAction action = new RPAction();
 		action.put("type", "tellall");
 		action.put("text", "huhu");
 		aa.onAction(pl, action);
-		assertEquals("Sorry, command \"null\" is unknown.",
-				pl.get("private_text"));
-		action.put("text", "blabla");
-		aa.onAction(pl, action);
+		assertEquals("Administrator SHOUTS: huhu", pl.get("private_text"));
 
-		assertEquals("Sorry, command \"null\" is unknown.",
-				pl.get("private_text"));
 	}
 
 }
