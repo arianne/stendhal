@@ -1,6 +1,7 @@
 package games.stendhal.server.scripting;
 
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.behaviour.adder.BuyerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
 import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
 
@@ -46,7 +47,7 @@ public class ScriptingNPC extends SpeakerNPC {
 
 	public void behave(String method, Map<String, Integer> items) throws NoSuchMethodException {
 		if ("buy".equalsIgnoreCase(method)) {
-			addBuyer(new BuyerBehaviour(items));
+			new BuyerAdder().add(this, new BuyerBehaviour(items), true);
 		} else if ("sell".equalsIgnoreCase(method)) {
 			addSeller(new SellerBehaviour(items));
 		} else {

@@ -4,6 +4,7 @@ import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.behaviour.adder.BuyerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
 import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Node;
@@ -57,7 +58,7 @@ public class WoodCutterNPC implements ZoneConfigurator {
 				addHelp("You can sometimes collect wood that's lying around the forest. Oh, and I take #offers of any good axe you might sell.");
 				addOffer("My axes become blunt fast. Please check the sign I made outside my lodge to see the axes I buy.");
 				addQuest("What's that you say? I don't need anything, though my young friend Sally over the river might need a hand.");
-				addBuyer(new BuyerBehaviour(shops.get("buyaxe")), false);
+				new BuyerAdder().add(this, new BuyerBehaviour(shops.get("buyaxe")), false);
  				addGoodbye("Bye.");
 			}
 		};

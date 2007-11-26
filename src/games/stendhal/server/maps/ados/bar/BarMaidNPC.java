@@ -4,6 +4,7 @@ import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.behaviour.adder.BuyerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
 import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Node;
@@ -59,7 +60,7 @@ public class BarMaidNPC implements ZoneConfigurator {
 				addHelp("If you could #offer any meat, ham or cheese to restock our larders I'd be grateful.");
 				addQuest("Just #offers of food is enough, thank you.");
  				addGoodbye("Bye bye!");
-				addBuyer(new BuyerBehaviour(shops.get("buyfood")));
+ 				new BuyerAdder().add(this, new BuyerBehaviour(shops.get("buyfood")), true);
 			}
 		};
 		npc.setDescription("You see a pretty young bar maid.");

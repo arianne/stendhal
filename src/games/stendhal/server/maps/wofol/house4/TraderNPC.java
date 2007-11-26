@@ -4,6 +4,7 @@ import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.behaviour.adder.BuyerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
 import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
 import games.stendhal.server.pathfinder.FixedPath;
@@ -49,7 +50,7 @@ public class TraderNPC implements ZoneConfigurator {
 				addHelp("I #deal in all sorts of items.");
 				addQuest("Try Alrak the mountain dwarf who lives here with the kobolds. He'd probably have more than one task to give you.");
 				addSeller(new SellerBehaviour(shops.get("sellstuff2")), false);
-				addBuyer(new BuyerBehaviour(shops.get("buystuff2")), false);
+				new BuyerAdder().add(this, new BuyerBehaviour(shops.get("buystuff2")), false);
 				addOffer("Please look at the each blackboard on the wall to see what I buy and sell at the moment.");
 				addGoodbye("Bye, and please don't attack too many of my friends.");
 

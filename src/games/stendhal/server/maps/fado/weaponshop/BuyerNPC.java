@@ -4,6 +4,7 @@ import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.behaviour.adder.BuyerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
 import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Node;
@@ -52,7 +53,7 @@ public class BuyerNPC implements ZoneConfigurator {
 				addHelp("I #deal in rare weapons. Ognir there is the ring maker, he buys the odd gem too.");
 				addOffer("Please look at the blackboard on the wall to see what I buy.");
 				addQuest("Thanks, but no thanks. I don't need anything.");
-				addBuyer(new BuyerBehaviour(shops.get("buyrare2")), false); 
+				new BuyerAdder().add(this, new BuyerBehaviour(shops.get("buyrare2")), false); 
 				addGoodbye("Bye - and see you soon.");
 			}
 		};

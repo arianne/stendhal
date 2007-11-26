@@ -5,6 +5,7 @@ import games.stendhal.server.config.ZoneConfigurator;
 import games.stendhal.server.entity.Sign;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.behaviour.adder.BuyerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
 import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Node;
@@ -57,7 +58,7 @@ public class BuyerNPC implements ZoneConfigurator {
 				addHelp("As Quartermaster, I take #offers for supplies which we are short of.");
 				addOffer("I buy #boots and #helmets on behalf of the Mithrilbourgh Army.");
 				addQuest("The Mithrilbourgh Army is not in need your services at present.");
-				addBuyer(new BuyerBehaviour(shops.get("boots&helm")), false);
+				new BuyerAdder().add(this, new BuyerBehaviour(shops.get("boots&helm")), false);
  				addGoodbye("Bye.");
 			}
 		};

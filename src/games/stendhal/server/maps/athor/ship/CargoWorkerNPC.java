@@ -2,6 +2,7 @@ package games.stendhal.server.maps.athor.ship;
 
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPCFactory;
+import games.stendhal.server.entity.npc.behaviour.adder.BuyerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
 import games.stendhal.server.maps.athor.ship.AthorFerry.Status;
 
@@ -27,7 +28,7 @@ public class CargoWorkerNPC extends SpeakerNPCFactory {
 		offerings.put("deadly_poison", 100);
 		offerings.put("mega_poison", 500);
 		offerings.put("disease_poison", 2000);
-		npc.addBuyer(new BuyerBehaviour(offerings));
+		new BuyerAdder().add(npc, new BuyerBehaviour(offerings), true);
 
 		npc.addGoodbye("Please kill some rats on your way up!");
 		new AthorFerry.FerryListener() {

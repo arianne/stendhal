@@ -4,6 +4,7 @@ import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.behaviour.adder.BuyerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
 import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Node;
@@ -52,7 +53,7 @@ public class BuyerNPC implements ZoneConfigurator {
 				addHelp("I #trade rare weapons.");
 				addOffer("Look at the blackboard on the wall to see what I will buy.");
 				addQuest("You think I'd trust a human with anything important? You're wrong!");
-				addBuyer(new BuyerBehaviour(shops.get("elfbuyrare")), false);
+				new BuyerAdder().add(this, new BuyerBehaviour(shops.get("elfbuyrare")), false);
 				addGoodbye("Bye - be careful not to annoy the other elves as much.");
 			}
 		};

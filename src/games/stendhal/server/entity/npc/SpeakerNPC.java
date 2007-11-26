@@ -631,14 +631,6 @@ public class SpeakerNPC extends NPC {
 		behaviourAdder.addSeller(behaviour, offer);
 	}
 
-	public void addBuyer(BuyerBehaviour behaviour) {
-		addBuyer(behaviour, true);
-	}
-
-	public void addBuyer(final BuyerBehaviour behaviour, boolean offer) {
-		behaviourAdder.addBuyer(behaviour, offer);
-	}
-
 	public void addHealer(int cost) {
 		behaviourAdder.addHealer(cost);
 	}

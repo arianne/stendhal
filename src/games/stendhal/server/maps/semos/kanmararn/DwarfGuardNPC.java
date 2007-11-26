@@ -4,6 +4,7 @@ import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.behaviour.adder.BuyerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
 import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Node;
@@ -38,11 +39,9 @@ public class DwarfGuardNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-			        addQuest("I'm too scared to leave here yet... can you offer me some really good equipment?");
+			    addQuest("I'm too scared to leave here yet... can you offer me some really good equipment?");
 				addJob("I'm was the guard of this Prison. Until .. well you know the rest.");
-				addBuyer(new BuyerBehaviour(shops.get("buychaos")) {
-
-				});
+				new BuyerAdder().add(this, new BuyerBehaviour(shops.get("buychaos")), true);
 
 				addGoodbye("Bye .. be careful ..");
 			}

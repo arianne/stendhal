@@ -5,6 +5,7 @@ import games.stendhal.server.config.ZoneConfigurator;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.behaviour.adder.BuyerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
 import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Node;
@@ -59,7 +60,7 @@ public class RareWeaponsSellerNPC implements ZoneConfigurator {
 				        ConversationStates.ATTENDING, "Not every day is a lucky day ...", null);
 				add(ConversationStates.ATTENDING, "pirate", null, ConversationStates.ATTENDING,
 				        "That's none of your business!", null);
-				addBuyer(new BuyerBehaviour(shops.get("buyrare")), false);
+				new BuyerAdder().add(this, new BuyerBehaviour(shops.get("buyrare")), false);
 			}
 		};
 

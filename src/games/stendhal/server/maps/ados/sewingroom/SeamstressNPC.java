@@ -4,6 +4,7 @@ import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.behaviour.adder.BuyerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
 import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Node;
@@ -47,7 +48,7 @@ public class SeamstressNPC implements ZoneConfigurator {
 				addJob("I'm a seamstress. I make sails for ships, like the Athor ferry.");
 				addHelp("If you want to go to the island Athor on the ferry, just go south once you've departed from Ados, and look for the pier.");
 				addQuest("If you could #offer me material I'd be grateful.");
-				addBuyer(new BuyerBehaviour(shops.get("buycloaks")), false);
+				new BuyerAdder().add(this, new BuyerBehaviour(shops.get("buycloaks")), false);
 				addOffer("I buy cloaks, because we are short of material to make sails with. The better the material, the more I pay. My notebook on the table has the price list.");
 				addGoodbye("Bye, thanks for stepping in.");
 			}

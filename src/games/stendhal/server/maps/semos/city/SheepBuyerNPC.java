@@ -3,6 +3,7 @@
 import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPCFactory;
+import games.stendhal.server.entity.npc.behaviour.adder.BuyerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.semos.village.SheepSellerNPC;
@@ -72,7 +73,7 @@ public class SheepBuyerNPC extends SpeakerNPCFactory {
 		npc.addGreeting();
 		npc.addJob("I buy sheep here in Semos, then I send them up to Ados where they are exported.");
 		npc.addHelp("I purchase sheep, at what I think is a fairly reasonable price. Just say if you want to #sell #sheep, and I will set up a deal!");
-		npc.addBuyer(new SheepBuyerBehaviour(buyitems));
+		new BuyerAdder().add(npc, new SheepBuyerBehaviour(buyitems), true);
 		npc.addGoodbye();
 	}
 }

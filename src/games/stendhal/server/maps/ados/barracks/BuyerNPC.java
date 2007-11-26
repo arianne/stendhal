@@ -4,6 +4,7 @@ import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.behaviour.adder.BuyerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
 import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Node;
@@ -54,7 +55,7 @@ public class BuyerNPC implements ZoneConfigurator {
 				addHelp("I buy armor for the barracks here, make me an #offer.");
 				addOffer("Please look at the blackboard by the shields rack to see what we are short of, and what we pay.");
 				addQuest("Oh, thanks but no thanks. I don't need anything.");
-				addBuyer(new BuyerBehaviour(shops.get("buyrare3")), false);
+				new BuyerAdder().add(this, new BuyerBehaviour(shops.get("buyrare3")), false);
 				addGoodbye("Goodbye, comrade.");
 			}
 		};

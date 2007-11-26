@@ -3,6 +3,7 @@ package games.stendhal.server.maps.semos.dungeon;
 import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPCFactory;
+import games.stendhal.server.entity.npc.behaviour.adder.BuyerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
 import games.stendhal.server.entity.player.Player;
 
@@ -68,7 +69,7 @@ public class SheepBuyerNPC extends SpeakerNPCFactory {
 		npc.addJob(npc.getName() + " is buy real cheep from hoomans.");
 		npc.addHelp(npc.getName() + " buy sheep! Sell me sheep! "
 				+ npc.getName()	+ " is hungry!");
-		npc.addBuyer(new SheepBuyerBehaviour(buyitems));
+		new BuyerAdder().add(npc, new SheepBuyerBehaviour(buyitems), true);
 		npc.addGoodbye();
 	}
 }
