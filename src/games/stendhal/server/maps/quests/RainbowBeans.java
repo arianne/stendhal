@@ -6,6 +6,7 @@ import games.stendhal.server.entity.item.scroll.RainbowBeansScroll;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.condition.AlwaysTrueCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.LoginListener;
@@ -212,8 +213,10 @@ public class RainbowBeans extends AbstractQuest {
 		// player says 'deal' or asks about beans when NPC is ATTENDING, not
 		// just in information state (like if they said no then changed mind and
 		// are trying to get him to deal again)
+		// Use AlwaysTrueCondition to override deal as defined in addOffer().
 		npc.add(ConversationStates.ATTENDING,
 			Arrays.asList("deal", "beans", "rainbow_beans", "yes"),
+			new AlwaysTrueCondition(),
 			ConversationStates.ATTENDING, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
