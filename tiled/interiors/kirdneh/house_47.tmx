@@ -166,7 +166,7 @@
  </layer>
  <layer name="1_terrain" width="32" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAALWWu0oDQRiFZxsDWkW8gDdivCJYiq2uCRhTeAHxro2KNuKj+ABa2PkAInjXFJrnUAu1iWBp4xnyL87+mdmdyeKBj9nsnP1PdnZmdtNCiGYLWkDa0muLrNkK2kAK+AophXbQxbwBR0TKEbVmA9gH3wpSP9Q2Me8iWBJhXQg38ZpSL+AVvFl4Tbqn9hbcsXNxNd/BB/hMkF8CY54QD2gf6bjEPAeONXXeCTAZc51JZ5qay2BF4/UN+dtg11Bf9u0QOo/u/lfBmkN+Eunufx1saLJ1+XsRtcui+syf0D7TcZl5+P13gEYiq/h66VynQ76tgvxu0EMMivD4Ss8A9WX+KV/dU4c1+UMR/VLBGLmijqm6p/YrtftE7b6p9gf/MRgjVzIiPKfPI8bLJD5G9bx/kqwp3RjV8/6Rc+qQ4PNLfcZZodcxGBd/a3YaFMCmPPbCTHnu+698xnx96JQDeTADimDBq6VgyK+AL0M+916x1kWmfJO495L1XxuuOwU+jfdJTP4smFc88vccnUuSn0NW3iI/SvXmm5Q0X6oi9PPF9A1lk39D2OSbpH5DFb3q+tsigvWX98zvv7i9Os4rGbHwBDXV91/cXm3rHXWo+QtFZ97CgAwAAA==
+   H4sIAAAAAAAAALWWu0oDQRiFZxsDWkW8gDdivCJYiq3GBIwpvIB410ZFG/FRfAAt7HwAEbxrCs1zqIXaRLC08Qz5B/+dzGRnsnjgYzY7Z/+TnZ2Z3aQQotmBFpB09Loia7aCNpAAGUaC0Q66NK/iiEh4wms2gH3wzZD6obZJ8y6CJRHWhfCTXlPqBbyCNwevTffU3oI77VxUzXfwAT5j5BfBWCDEA9pHOi5qngPPmibvBJiMuM6mM0PNZbBi8GYs+dtg11Jf9u0QJo/p/lfBmkd+HJnufx1sGLJN+Xs1apdE5Zk/oX2m45Lm0e+/AzQSaebrpXOdHvmuUvndoIcYFOHxlZ4B6kv9Uz7fU4cN+UM1+qXUGPnCx5Tvqf2sdp+o3jd5v/qPaox8SYnwnD6vMV426WNUz/snzpoyjVE97x85pw4JfX7xZ5wWZh2DcfG3ZqdBHmzK4yDMVOC//8pnrK8Pk7IgB2ZAASwE1eQt+WXwZcnXvVda6yNbvk2691Lrv7ZcdwoyNN4nEfmzYJ555O85OhcnP4usnEN+LdWbL6WeOVfcfKmyMM8X2zeUS/4N4ZJvE/+GKgSV9bdFqPWXC+zvv6i9OsorGXHwqJr8/Re1V7t6Rz1q/gIuX7XvgAwAAA==
   </data>
  </layer>
  <layer name="2_object" width="32" height="25">
@@ -191,7 +191,7 @@
  </layer>
  <layer name="collision" width="32" height="25" opacity="0.35">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2UCwrAMAhDva33v8FgMBhSa1IrdjBBOobJs18VEf3zThv6Gr36md56eTpGy9bO5lbBf+pH37MeWT7aC+LHrNMp/EygfKbPSIP62rPD8tH4Mh/1Wc1OPhtd3N18Zo29PjL9MHPM1np8T7NrryI+Wm//IdqIj969Kj7iscJH/E7d/+xbUfU2IHe5i83mBUtacH+ADAAA
+   H4sIAAAAAAAAAO2UCQqAMAwE+9v+/weCIEgwzWzTUAUDoSLZnfTsrbX+55k2+m306kd66+XpFK1aO5pbBf+qf/oe9ajyaS/ET1knwp/xVPmZoHylz0hDfe3ZUfk0vsynPrO5k6/GLu5qvrLGXh+ZfpQ5Zms9vqdZtVcRn9bbf0Qb8endq+ITjxk+8Xvr/mffiqq3gdzlXWw1D4g2DBuADAAA
   </data>
  </layer>
  <layer name="protection" width="32" height="25">
