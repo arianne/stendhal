@@ -8,6 +8,7 @@ import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
+import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.ArrayList;
@@ -84,7 +85,7 @@ public class MeetHackim extends AbstractQuest {
 		
 		npc.add(ConversationStates.INFORMATION_3,
 				ConversationPhrases.YES_MESSAGES,
-				new QuestCompletedCondition(QUEST_SLOT),
+				new QuestNotCompletedCondition(QUEST_SLOT),
 				ConversationStates.IDLE, 
 				answer + "If anybody asks, you don't know me!",
 				new MultipleActions(reward));
