@@ -97,9 +97,9 @@ public class StendhalFirstScreen extends JFrame {
 		// loginButton
 		//
 		JButton loginButton = new JButton();
-		loginButton.setText("Login to Stendhal");
+		loginButton.setText("Login to " + ClientGameConfiguration.get("GAME_NAME"));
 		loginButton.setMnemonic(KeyEvent.VK_L);
-		loginButton.setToolTipText("Press this button to login to a Stendhal server");
+		loginButton.setToolTipText("Press this button to login to a " + ClientGameConfiguration.get("GAME_NAME") + " server");
 		loginButton.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
@@ -112,7 +112,7 @@ public class StendhalFirstScreen extends JFrame {
 		JButton createAccountButton = new JButton();
 		createAccountButton.setText("Create an account");
 		createAccountButton.setMnemonic(KeyEvent.VK_A);
-		createAccountButton.setToolTipText("Press this button to create an account on a Stendhal server.");
+		createAccountButton.setToolTipText("Press this button to create an account on a " + ClientGameConfiguration.get("GAME_NAME") + " server.");
 		createAccountButton.setEnabled(true);
 		createAccountButton.addActionListener(new ActionListener() {
 
