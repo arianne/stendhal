@@ -1,8 +1,8 @@
 package games.stendhal.server.maps.ados.church;
 
-import games.stendhal.server.entity.npc.ProducerBehaviour;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPCFactory;
+import games.stendhal.server.entity.npc.behaviour.impl.ProducerBehaviour;
 
 import java.util.Map;
 import java.util.TreeMap;

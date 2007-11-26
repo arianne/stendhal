@@ -1,9 +1,9 @@
 package games.stendhal.server.maps.athor.dressingroom_male;
 
-import games.stendhal.server.entity.npc.OutfitChangerBehaviour;
-import games.stendhal.server.entity.npc.ProducerBehaviour;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPCFactory;
+import games.stendhal.server.entity.npc.behaviour.impl.OutfitChangerBehaviour;
+import games.stendhal.server.entity.npc.behaviour.impl.ProducerBehaviour;
 
 import java.util.Arrays;
 import java.util.HashMap;

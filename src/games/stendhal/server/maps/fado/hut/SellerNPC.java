@@ -1,9 +1,9 @@
 package games.stendhal.server.maps.fado.hut;
 
-import games.stendhal.server.entity.npc.SellerBehaviour;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPCFactory;
+import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
 
 /**
  * A lady wizard who sells potions and antidotes. Original name: Sarzina

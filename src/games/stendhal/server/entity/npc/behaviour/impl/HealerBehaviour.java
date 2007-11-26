@@ -10,7 +10,7 @@
  *                                                                         *
  ***************************************************************************/
 
-package games.stendhal.server.entity.npc;
+package games.stendhal.server.entity.npc.behaviour.impl;
 
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.player.Player;

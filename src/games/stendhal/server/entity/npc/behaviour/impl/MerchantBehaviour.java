@@ -9,7 +9,7 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.entity.npc;
+package games.stendhal.server.entity.npc.behaviour.impl;
 
 import games.stendhal.common.MathHelper;
 import games.stendhal.server.entity.player.Player;
@@ -30,7 +30,7 @@ public abstract class MerchantBehaviour extends Behaviour {
 
 	protected Map<String, Integer> priceList;
 
-	protected String chosenItem;
+	public String chosenItem;
 
 	private int amount;
 
@@ -64,7 +64,7 @@ public abstract class MerchantBehaviour extends Behaviour {
 	 * @param item the name of the item
 	 * @return the unit price
 	 */
-	protected int getUnitPrice(String item) {
+	public int getUnitPrice(String item) {
 		return priceList.get(item);
 	}
 
@@ -100,7 +100,7 @@ public abstract class MerchantBehaviour extends Behaviour {
 	 * @param player The player who considers buying/selling
 	 * @return The price; 0 if no item was chosen or if the amount is 0.
 	 */
-	protected int getCharge(Player player) {
+	public int getCharge(Player player) {
 		if (chosenItem == null) {
 			return 0;
 		} else {

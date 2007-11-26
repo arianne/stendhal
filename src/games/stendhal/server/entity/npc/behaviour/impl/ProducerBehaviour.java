@@ -1,8 +1,9 @@
-package games.stendhal.server.entity.npc;
+package games.stendhal.server.entity.npc.behaviour.impl;
 
 import games.stendhal.common.Grammar;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.item.StackableItem;
+import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
 
@@ -132,7 +133,7 @@ public class ProducerBehaviour extends Behaviour {
 		this.productBound = productBound;
 	}
 
-	protected String getQuestSlot() {
+	public String getQuestSlot() {
 		return questSlot;
 	}
 
@@ -140,7 +141,7 @@ public class ProducerBehaviour extends Behaviour {
 		return requiredResourcesPerItem;
 	}
 
-	protected String getProductionActivity() {
+	public String getProductionActivity() {
 		return productionActivity;
 	}
 
@@ -148,11 +149,11 @@ public class ProducerBehaviour extends Behaviour {
 	// return productUnit;
 	// }
 
-	protected String getProductName() {
+	public String getProductName() {
 		return productName;
 	}
 
-	protected int getProductionTime(int amount) {
+	public int getProductionTime(int amount) {
 		return productionTimePerItem * amount;
 	}
 

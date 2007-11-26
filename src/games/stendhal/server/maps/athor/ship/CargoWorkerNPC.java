@@ -1,8 +1,8 @@
 package games.stendhal.server.maps.athor.ship;
 
-import games.stendhal.server.entity.npc.BuyerBehaviour;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPCFactory;
+import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
 import games.stendhal.server.maps.athor.ship.AthorFerry.Status;
 
 import java.util.Arrays;

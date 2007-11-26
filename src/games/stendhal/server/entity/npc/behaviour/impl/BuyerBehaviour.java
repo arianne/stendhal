@@ -10,11 +10,12 @@
  *                                                                         *
  ***************************************************************************/
 
-package games.stendhal.server.entity.npc;
+package games.stendhal.server.entity.npc.behaviour.impl;
 
 import games.stendhal.common.Grammar;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.item.StackableItem;
+import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Map;

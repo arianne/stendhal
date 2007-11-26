@@ -1,5 +1,6 @@
-package games.stendhal.server.entity.npc;
+package games.stendhal.server.entity.npc.behaviour.impl;
 
+import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 
 public abstract class Behaviour {
@@ -11,5 +12,5 @@ public abstract class Behaviour {
 	 * @param player The player who buys/sells
 	 * @return true iff the transaction was successful.
 	 */
-	protected abstract boolean transactAgreedDeal(SpeakerNPC seller, Player player);
+	public abstract boolean transactAgreedDeal(SpeakerNPC seller, Player player);
 }

@@ -1,9 +1,9 @@
 	package games.stendhal.server.maps.semos.city;
 
 import games.stendhal.server.entity.creature.Sheep;
-import games.stendhal.server.entity.npc.BuyerBehaviour;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPCFactory;
+import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.semos.village.SheepSellerNPC;
 

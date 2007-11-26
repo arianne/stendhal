@@ -1,10 +1,10 @@
 package games.stendhal.server.maps.semos.blacksmith;
 
-import games.stendhal.server.entity.npc.ProducerBehaviour;
-import games.stendhal.server.entity.npc.SellerBehaviour;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPCFactory;
+import games.stendhal.server.entity.npc.behaviour.impl.ProducerBehaviour;
+import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
 
 import java.util.Arrays;
 import java.util.Map;

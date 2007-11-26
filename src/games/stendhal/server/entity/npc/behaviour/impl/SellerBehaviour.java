@@ -10,12 +10,13 @@
  *                                                                         *
  ***************************************************************************/
 
-package games.stendhal.server.entity.npc;
+package games.stendhal.server.entity.npc.behaviour.impl;
 
 import games.stendhal.common.Grammar;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
+import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.rule.EntityManager;
 
@@ -62,7 +63,7 @@ public class SellerBehaviour extends MerchantBehaviour {
 	 *         was able to equip the item(s).
 	 */
 	@Override
-	protected boolean transactAgreedDeal(SpeakerNPC seller, Player player) {
+	public boolean transactAgreedDeal(SpeakerNPC seller, Player player) {
 		StendhalRPWorld world = StendhalRPWorld.get();
 		EntityManager manager = world.getRuleManager().getEntityManager();
 

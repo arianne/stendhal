@@ -1,7 +1,17 @@
 // $Id$
-package games.stendhal.server.entity.npc;
+package games.stendhal.server.entity.npc.behaviour.adder;
 
 import games.stendhal.common.Grammar;
+import games.stendhal.server.entity.npc.ConversationPhrases;
+import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.SpeakerNPC.ChatAction;
+import games.stendhal.server.entity.npc.SpeakerNPC.ChatCondition;
+import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
+import games.stendhal.server.entity.npc.behaviour.impl.HealerBehaviour;
+import games.stendhal.server.entity.npc.behaviour.impl.OutfitChangerBehaviour;
+import games.stendhal.server.entity.npc.behaviour.impl.ProducerBehaviour;
+import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
 
@@ -11,9 +21,9 @@ import org.apache.log4j.Logger;
  * Internal helper class for SpeakerNPC
  */
 // TODO: This is just a first step to split it out of SpeakerNPC. More refactoring is needed.
-class BehaviourAdder {
+public class BehaviourAdderOld {
 
-	static final Logger logger = Logger.getLogger(BehaviourAdder.class);
+	static final Logger logger = Logger.getLogger(BehaviourAdderOld.class);
 
 	private Engine engine;
 
@@ -26,7 +36,7 @@ class BehaviourAdder {
 	 * @param speakerNPC the speakerNPC the behaviour should be added to.
 	 * @param engine the FSM
 	 */
-	BehaviourAdder(SpeakerNPC speakerNPC, Engine engine) {
+	public BehaviourAdderOld(SpeakerNPC speakerNPC, Engine engine) {
 		this.speakerNPC = speakerNPC;
 		this.engine = engine;
 	}

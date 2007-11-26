@@ -10,10 +10,11 @@
  *                                                                         *
  ***************************************************************************/
 
-package games.stendhal.server.entity.npc;
+package games.stendhal.server.entity.npc.behaviour.impl;
 
 import games.stendhal.common.Rand;
 import games.stendhal.server.entity.Outfit;
+import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.LoginListener;
 import games.stendhal.server.events.LoginNotifier;
@@ -122,7 +123,7 @@ public class OutfitChangerBehaviour extends MerchantBehaviour implements  LoginL
 	 *              player was able to equip the item(s).
 	 */
 	@Override
-	protected boolean transactAgreedDeal(SpeakerNPC seller, Player player) {
+	public boolean transactAgreedDeal(SpeakerNPC seller, Player player) {
 		String outfitType = chosenItem;
 		if (player.isEquipped("money", getCharge(player))) {
 			player.drop("money", getCharge(player));
