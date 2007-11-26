@@ -74,13 +74,6 @@ public class stendhal extends Thread {
 		while (i != args.length) {
 			if (args[i].equals("-s")) {
 				size = args[i + 1];
-			} else if (args[i].equals("-wouterwens.bat")) {
-				JOptionPane
-						.showConfirmDialog(
-								null,
-								"Do not use command line parameters, that you do not understand",
-								"Stendhal", JOptionPane.OK_OPTION,
-								JOptionPane.QUESTION_MESSAGE);
 			}
 			i++;
 		}
@@ -98,9 +91,17 @@ public class stendhal extends Thread {
 
 		logger.info("Setting base at :" + STENDHAL_FOLDER);
 		logger.info("Stendhal " + VERSION);
-		logger.info("OS: " + System.getProperty("os.name") + " "
-				+ System.getProperty("os.version"));
-		logger.info("Java: " + System.getProperty("java.version"));
+		
+        String patchLevel = System.getProperty("sun.os.patch.level");
+        if ((patchLevel == null) || (patchLevel.equals("unknown"))) {
+            patchLevel = "";
+        }
+		
+		logger.info("OS: " + System.getProperty("os.name") + " " + patchLevel + " " + System.getProperty("os.version") + " " + System.getProperty("os.arch"));
+		logger.info("Java-Runtime: " + System.getProperty("java.runtime.name") + " " + System.getProperty("java.runtime.version") + " from " + System.getProperty("java.home"));
+        logger.info("Java-VM: " + System.getProperty("java.vm.vendor") + " " + System.getProperty("java.vm.name") + " " + System.getProperty("java.vm.version"));
+
+        // TODO: Add some kind of user visible warning for non suppored java vms.
 	}
 
 //	/**
@@ -117,8 +118,7 @@ public class stendhal extends Thread {
 //			 * UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName()); }
 //			 */
 //		} catch (Exception e) {
-//			logger
-//					.error(
+//			logger.error(
 //							"Can't change Look&Feel to match your OS. Using the Cross-Platform look & feel",
 //							e);
 //		}
