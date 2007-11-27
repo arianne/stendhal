@@ -156,7 +156,7 @@ public class AdministrationActionTest {
 		action.put("type", "teleport");
 		action.put("text", "huhu");
 		action.put("target", "bob");
-		action.put("zone", "zone1");
+		action.put("zone", "non-existing-zone");
 		action.put("x", "0");
 		action.put("y", "0");
 
@@ -164,9 +164,9 @@ public class AdministrationActionTest {
 				&& action.has("x"));
 
 		aa.onAction(pl, action);
-		assertEquals(
-				"Zone \"IRPZone.ID [id=zone1]\" not found. Valid zones: []", pl
-						.get("private_text"));
+
+		// The list of existing zones depends on other tests, so we simply ignore it here.
+		assertTrue(pl.get("private_text").startsWith("Zone \"IRPZone.ID [id=non-existing-zone]\" not found. Valid zones: ["));
 
 	}
 
