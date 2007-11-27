@@ -4,6 +4,7 @@ import games.stendhal.common.Direction;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.behaviour.adder.OutfitChangerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.OutfitChangerBehaviour;
 import games.stendhal.server.entity.npc.behaviour.impl.ProducerBehaviour;
 
@@ -47,7 +48,7 @@ public class LifeguardNPC implements ZoneConfigurator {
 				Map<String, Integer> priceList = new HashMap<String, Integer>();
 				priceList.put("swimsuit", 5);
 				OutfitChangerBehaviour behaviour = new OutfitChangerBehaviour(priceList);
-				addOutfitChanger(behaviour, "borrow");
+				new OutfitChangerAdder().addOutfitChanger(this, behaviour, "borrow");
 
 				// stuff needed for the SuntanCreamForZara quest
 				Map<String, Integer> requiredResources = new TreeMap<String, Integer>();	// use sorted TreeMap instead of HashMap

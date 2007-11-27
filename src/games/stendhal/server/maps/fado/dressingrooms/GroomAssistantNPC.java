@@ -3,6 +3,7 @@ package games.stendhal.server.maps.fado.dressingrooms;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.behaviour.adder.OutfitChangerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.OutfitChangerBehaviour;
 import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Node;
@@ -52,7 +53,7 @@ public class GroomAssistantNPC implements ZoneConfigurator {
 				Map<String, Integer> priceList = new HashMap<String, Integer>();
 				priceList.put("suit", 50);
 				OutfitChangerBehaviour behaviour = new OutfitChangerBehaviour(priceList);
-				addOutfitChanger(behaviour, "wear");
+				new OutfitChangerAdder().addOutfitChanger(this, behaviour, "wear");
 			}
 		};
 

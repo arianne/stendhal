@@ -4,6 +4,7 @@ import games.stendhal.common.Direction;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.behaviour.adder.OutfitChangerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.OutfitChangerBehaviour;
 
 import java.util.HashMap;
@@ -49,7 +50,7 @@ public class MakeupArtistNPC implements ZoneConfigurator {
 				Map<String, Integer> priceList = new HashMap<String, Integer>();
 				priceList.put("mask", 2);
 				OutfitChangerBehaviour behaviour = new OutfitChangerBehaviour(priceList, 100, "Your mask has worn off.");
-				addOutfitChanger(behaviour, "buy");
+				new OutfitChangerAdder().addOutfitChanger(this, behaviour, "buy");
 			}
 		};
 

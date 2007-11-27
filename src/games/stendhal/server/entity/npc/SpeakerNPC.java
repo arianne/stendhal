@@ -631,39 +631,6 @@ public class SpeakerNPC extends NPC {
 		behaviourAdder.addSeller(behaviour, offer);
 	}
 
-	/**
-	 * Makes this NPC an outfit changer, i.e. someone who can give players
-	 * special outfits.
-	 *
-	 * @param behaviour
-	 *            The behaviour (which includes a pricelist).
-	 * @param command
-	 *            The action needed to get the outfit, e.g. "buy", "lend".
-	 */
-	public void addOutfitChanger(OutfitChangerBehaviour behaviour,
-			String command) {
-		behaviourAdder.addOutfitChanger(behaviour, command, true, true);
-	}
-
-	/**
-	 * Makes this NPC an outfit changer, i.e. someone who can give players
-	 * special outfits.
-	 *
-	 * @param behaviour
-	 *            The behaviour (which includes a pricelist).
-	 * @param command
-	 *            The action needed to get the outfit, e.g. "buy", "lend".
-	 * @param offer
-	 *            Defines if the NPC should react to the word "offer".
-	 * @param canReturn
-	 *            If true, a player can say "return" to get his original outfit
-	 *            back.
-	 */
-	public void addOutfitChanger(final OutfitChangerBehaviour behaviour,
-			final String command, boolean offer, final boolean canReturn) {
-		behaviourAdder.addOutfitChanger(behaviour, command, offer, canReturn);
-	}
-
 	public void addProducer(final ProducerBehaviour behaviour,
 			String welcomeMessage) {
 		behaviourAdder.addProducer(behaviour, welcomeMessage);

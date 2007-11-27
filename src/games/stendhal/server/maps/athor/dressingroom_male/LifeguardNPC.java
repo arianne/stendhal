@@ -2,6 +2,7 @@ package games.stendhal.server.maps.athor.dressingroom_male;
 
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPCFactory;
+import games.stendhal.server.entity.npc.behaviour.adder.OutfitChangerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.OutfitChangerBehaviour;
 import games.stendhal.server.entity.npc.behaviour.impl.ProducerBehaviour;
 
@@ -26,7 +27,7 @@ public class LifeguardNPC extends SpeakerNPCFactory {
 		Map<String, Integer> priceList = new HashMap<String, Integer>();
 		priceList.put("trunks", 5);
 		OutfitChangerBehaviour behaviour = new OutfitChangerBehaviour(priceList);
-		npc.addOutfitChanger(behaviour, "borrow");
+		new OutfitChangerAdder().addOutfitChanger(npc, behaviour, "borrow");
 
 		// stuff needed for the SuntanCreamForZara quest
 		Map<String, Integer> requiredResources = new TreeMap<String, Integer>();	// use sorted TreeMap instead of HashMap
