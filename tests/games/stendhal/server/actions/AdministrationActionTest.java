@@ -380,6 +380,28 @@ public class AdministrationActionTest {
 		assertEquals("Use #/adminlevel #<playername> #[<newlevel>] to display or change adminlevel.", pl.get("private_text"));
 
 	}
+	
+	@Test
+	public final void testOnAlterActionTitle() {
+
+		AdministrationAction aa = new AdministrationAction();
+
+		Player pl = PlayerTestHelper.createPlayer("bob");
+		pl.put("adminlevel", 5000);
+		
+		MockStendhalRPRuleProcessor.get().getPlayers().add(pl);
+		
+		RPAction action = new RPAction();
+		action.put("type", "alter");
+		action .put("target", "bob");
+		action.put("stat", "title");
+		action.put("mode", "0");
+		action.put("value", 0);
+		
+		aa.onAction(pl, action);
+		assertEquals("The title attribute may not be changed directly.", pl.get("private_text"));
+	
+	}
 	@Test
 	public final void testOnAlterActionHP() {
 
@@ -438,7 +460,7 @@ public class AdministrationActionTest {
 		aa.onAction(pl, action);
 		assertEquals(10, pl.getHP());
 		aa.onAction(pl, action);
-		assertEquals(10, pl.getHP());
+		assertEquals(-80, pl.getHP());
 	}
 	@Test
 	public final void testOnAlterActionHPadd() {
