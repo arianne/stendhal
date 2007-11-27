@@ -4,6 +4,7 @@ import games.stendhal.common.Direction;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.behaviour.adder.ProducerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.ProducerBehaviour;
 import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Node;
@@ -93,7 +94,7 @@ public class BakerNPC implements ZoneConfigurator {
 				ProducerBehaviour behaviour = new ProducerBehaviour("linzo_make_fish_pie", "make", "fish_pie",
 				        requiredResources, 5 * 60);
 
-				addProducer(behaviour,
+				new ProducerAdder().addProducer(this, behaviour,
 				        "Hi there. Have you come to try my fish pies? I can #make one for you.");
 			}
 		};

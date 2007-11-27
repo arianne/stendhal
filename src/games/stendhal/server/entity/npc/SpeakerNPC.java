@@ -623,11 +623,6 @@ public class SpeakerNPC extends NPC {
 				});
 	}
 
-	public void addProducer(final ProducerBehaviour behaviour,
-			String welcomeMessage) {
-		behaviourAdder.addProducer(behaviour, welcomeMessage);
-	}
-
 	/**
 	 * Returns a copy of the transition table
 	 *

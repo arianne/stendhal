@@ -3,6 +3,7 @@ package games.stendhal.server.maps.semos.blacksmith;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPCFactory;
+import games.stendhal.server.entity.npc.behaviour.adder.ProducerAdder;
 import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.ProducerBehaviour;
 import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
@@ -49,7 +50,7 @@ public class BlacksmithNPC extends SpeakerNPCFactory {
 		ProducerBehaviour behaviour = new ProducerBehaviour("xoderos_cast_iron",
 				"cast", "iron", requiredResources, 5 * 60);
 
-		npc.addProducer(behaviour,
+		new ProducerAdder().addProducer(npc, behaviour,
 		        "Greetings. I am sorry to tell you that, because of the war, I am not allowed to sell you any weapons. However, I can #cast iron for you. I can also #offer you tools.");
 	}
 }

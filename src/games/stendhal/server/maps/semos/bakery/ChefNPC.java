@@ -2,6 +2,7 @@ package games.stendhal.server.maps.semos.bakery;
 
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPCFactory;
+import games.stendhal.server.entity.npc.behaviour.adder.ProducerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.ProducerBehaviour;
 
 import java.util.Arrays;
@@ -44,7 +45,7 @@ public class ChefNPC extends SpeakerNPCFactory {
 				"leander_make_sandwiches", "make", "sandwich",
 				requiredResources, 3 * 60);
 
-		npc.addProducer(behaviour,
+		new ProducerAdder().addProducer(npc, behaviour,
 				"Hallo! Glad to see you in my kitchen where I make #pizza and #sandwiches.");
 	}
 }

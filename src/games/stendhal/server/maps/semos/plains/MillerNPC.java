@@ -2,6 +2,7 @@ package games.stendhal.server.maps.semos.plains;
 
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPCFactory;
+import games.stendhal.server.entity.npc.behaviour.adder.ProducerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.ProducerBehaviour;
 
 import java.util.Map;
@@ -28,7 +29,7 @@ public class MillerNPC extends SpeakerNPCFactory {
 		ProducerBehaviour behaviour = new ProducerBehaviour("jenny_mill_flour",
 				"mill", "flour", requiredResources, 2 * 60);
 
-		npc.addProducer(behaviour,
+		new ProducerAdder().addProducer(npc, behaviour,
 		        "Greetings! I am Jenny, the local miller. If you bring me some #grain, I can #mill it into flour for you.");
 	}
 }

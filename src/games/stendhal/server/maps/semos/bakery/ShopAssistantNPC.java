@@ -2,6 +2,7 @@ package games.stendhal.server.maps.semos.bakery;
 
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPCFactory;
+import games.stendhal.server.entity.npc.behaviour.adder.ProducerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.ProducerBehaviour;
 
 import java.util.Map;
@@ -29,7 +30,7 @@ public class ShopAssistantNPC extends SpeakerNPCFactory {
 		ProducerBehaviour behaviour = new ProducerBehaviour("erna_bake_bread",
 				"bake", "bread", requiredResources, 10 * 60);
 
-		npc.addProducer(behaviour,
+		new ProducerAdder().addProducer(npc, behaviour,
 		        "Welcome to the Semos bakery! We'll #bake fine bread for anyone who helps bring our #flour delivery from the mill.");
 	}
 }

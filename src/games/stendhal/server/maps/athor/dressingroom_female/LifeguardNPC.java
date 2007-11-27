@@ -5,6 +5,7 @@ import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.OutfitChangerAdder;
+import games.stendhal.server.entity.npc.behaviour.adder.ProducerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.OutfitChangerBehaviour;
 import games.stendhal.server.entity.npc.behaviour.impl.ProducerBehaviour;
 
@@ -59,7 +60,7 @@ public class LifeguardNPC implements ZoneConfigurator {
 				ProducerBehaviour mixerBehaviour = new ProducerBehaviour("pamela_mix_cream",
 						"mix", "suntan_cream", requiredResources, 10 * 60);
 
-				addProducer(mixerBehaviour, "Hallo!");
+				new ProducerAdder().addProducer(this, mixerBehaviour, "Hallo!");
 
 				addReply(
 				        Arrays.asList("suntan", "cream", "suntan_cream"),

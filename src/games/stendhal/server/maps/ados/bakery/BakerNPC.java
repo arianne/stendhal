@@ -4,6 +4,7 @@ import games.stendhal.common.Direction;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.behaviour.adder.ProducerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.ProducerBehaviour;
 import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Node;
@@ -84,7 +85,7 @@ public class BakerNPC implements ZoneConfigurator {
 				ProducerBehaviour behaviour = new ProducerBehaviour("arlindo_make_pie", "make", "pie",
 				        requiredResources, 7 * 60);
 
-				addProducer(behaviour,
+				new ProducerAdder().addProducer(this, behaviour,
 				        "Hi! I bet you've heard about my famous pie and want me to #make one for you, am I right?");
 			}
 		};

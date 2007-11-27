@@ -5,6 +5,7 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.behaviour.adder.ProducerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.ProducerBehaviour;
 import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
 import games.stendhal.server.entity.player.Player;
@@ -136,8 +137,7 @@ public class VampireSword extends AbstractQuest {
 		ProducerBehaviour behaviour = new ProducerBehaviour(
 				"sicky_fill_goblet", "fill", "goblet", requiredResources,
 				5 * 60, true);
-		npc.addProducer(
-			behaviour,
+		new ProducerAdder().addProducer(npc, behaviour,
 			"Please don't try to kill me...I'm just a sick old #vampire. Do you have any #blood I could drink? If you have an #empty_goblet I will #fill it with blood for you in my cauldron.");
 
 	}

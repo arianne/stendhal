@@ -2,6 +2,7 @@ package games.stendhal.server.maps.ados.church;
 
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPCFactory;
+import games.stendhal.server.entity.npc.behaviour.adder.ProducerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.ProducerBehaviour;
 
 import java.util.Map;
@@ -32,7 +33,7 @@ public class HealerNPC extends SpeakerNPCFactory {
 		ProducerBehaviour behaviour = new ProducerBehaviour("Valo_concoct_potion",
 				"concoct", "mega_potion", requiredResources, 2 * 60);
 
-		npc.addProducer(behaviour,
+		new ProducerAdder().addProducer(npc, behaviour,
 		        "Greetings, young one. I #heal and I #help.");
 	}
 }

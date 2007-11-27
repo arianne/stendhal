@@ -4,6 +4,7 @@ import games.stendhal.common.Direction;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.behaviour.adder.ProducerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.ProducerBehaviour;
 import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Node;
@@ -73,7 +74,7 @@ public class GoldsmithNPC implements ZoneConfigurator {
 				ProducerBehaviour behaviour = new ProducerBehaviour("joshua_cast_gold",
 						"cast", "gold_bar", requiredResources, 15 * 60);
 
-				addProducer(behaviour,
+				new ProducerAdder().addProducer(this, behaviour,
 				        "Hi! I'm the local goldsmith. If you require me to #cast you a #gold #bar just tell me!");
 				addReply("wood",
 		        		"I need some wood to keep my furnace lit. You can find any amount of it just lying around in the forest.");

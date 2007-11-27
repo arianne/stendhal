@@ -3,6 +3,7 @@ package games.stendhal.server.maps.athor.dressingroom_male;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPCFactory;
 import games.stendhal.server.entity.npc.behaviour.adder.OutfitChangerAdder;
+import games.stendhal.server.entity.npc.behaviour.adder.ProducerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.OutfitChangerBehaviour;
 import games.stendhal.server.entity.npc.behaviour.impl.ProducerBehaviour;
 
@@ -38,7 +39,7 @@ public class LifeguardNPC extends SpeakerNPCFactory {
 		ProducerBehaviour mixerBehaviour = new ProducerBehaviour("david_mix_cream",
 				"mix", "suntan_cream", requiredResources, 10 * 60);
 
-		npc.addProducer(mixerBehaviour, "Hallo!");
+		new ProducerAdder().addProducer(npc, mixerBehaviour, "Hallo!");
 
 		npc.addReply(
 		        Arrays.asList("suntan", "cream", "suntan_cream"),

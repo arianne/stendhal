@@ -3,6 +3,7 @@ package games.stendhal.server.maps.athor.cocktail_bar;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.behaviour.adder.ProducerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.ProducerBehaviour;
 import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Node;
@@ -53,7 +54,7 @@ public class BarmanNPC implements ZoneConfigurator {
 				requiredResources.put("pineapple", 1);
 				ProducerBehaviour mixerBehaviour = new ProducerBehaviour("barman_mix_pina",
 						"mix", "pina_colada", requiredResources, 2 * 60);
-				addProducer(mixerBehaviour, "Aloha!");
+				new ProducerAdder().addProducer(this, mixerBehaviour, "Aloha!");
 
 			}
 		};
