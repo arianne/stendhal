@@ -334,6 +334,134 @@ public class AdministrationActionTest {
 		assertEquals("Sorry, but you need an adminlevel of 5000 to change adminlevel.", pl.get("private_text"));
 
 	}
+	@Test
+	public final void testOnAlterActionWrongAttribute() {
 
+		AdministrationAction aa = new AdministrationAction();
 
+		Player pl = PlayerTestHelper.createPlayer("bob");
+		pl.put("adminlevel", 5000);
+		
+		MockStendhalRPRuleProcessor.get().getPlayers().add(pl);
+		
+		RPAction action = new RPAction();
+		action.put("type", "alter");
+		action .put("target", "bob");
+		action.put("stat", "0");
+		action.put("mode", "0");
+		action.put("value", 0);
+		
+		aa.onAction(pl, action);
+		assertEquals("Attribute you are altering is not defined in RPClass(player)", pl.get("private_text"));
+
+	}
+	@Test
+	public final void testOnAlterAction() {
+
+		AdministrationAction aa = new AdministrationAction();
+
+		Player pl = PlayerTestHelper.createPlayer("bob");
+		pl.put("adminlevel", 5000);
+		
+		MockStendhalRPRuleProcessor.get().getPlayers().add(pl);
+		
+		RPAction action = new RPAction();
+		action.put("type", "alter");
+		action .put("target", "bob");
+		action.put("stat", "name");
+		action.put("mode", "0");
+		action.put("value", 0);
+		
+		aa.onAction(pl, action);
+		assertEquals("Sorry, name cannot be changed.", pl.get("private_text"));
+		action.put("stat", "adminlevel");
+		pl.remove("private_text");
+		aa.onAction(pl, action);
+		assertEquals("Use #/adminlevel #<playername> #[<newlevel>] to display or change adminlevel.", pl.get("private_text"));
+
+	}
+	@Test
+	public final void testOnAlterActionHP() {
+
+		AdministrationAction aa = new AdministrationAction();
+
+		Player pl = PlayerTestHelper.createPlayer("bob");
+		pl.put("adminlevel", 5000);
+		pl.put("base_hp",100);
+		pl.setHP(100);
+		MockStendhalRPRuleProcessor.get().getPlayers().add(pl);
+		
+		RPAction action = new RPAction();
+		action.put("type", "alter");
+		action .put("target", "bob");
+		action.put("stat", "hp");
+		action.put("mode", "0");
+		action.put("value", 0);
+		assertEquals(100, pl.getHP());
+			
+		aa.onAction(pl, action);
+		assertEquals("may not change HP to 0 ",100, pl.getHP());
+		
+		
+		action.put("value", 120);
+		aa.onAction(pl, action);
+		assertEquals("may  not change HP over base_hp",100, pl.getHP());
+		
+		action.put("value", 90);
+		aa.onAction(pl, action);
+		assertEquals("may  change HP to 90 ",90, pl.getHP());
+		
+		action.put("value", 90);
+		action.put("mode", "sub");
+		assertEquals("may  change HP to 90 ",90, pl.getHP());
+	}
+	
+	@Test
+	public final void testOnAlterActionHPsub() {
+
+		AdministrationAction aa = new AdministrationAction();
+
+		Player pl = PlayerTestHelper.createPlayer("bob");
+		pl.put("adminlevel", 5000);
+		pl.put("base_hp",100);
+		pl.setHP(100);
+		MockStendhalRPRuleProcessor.get().getPlayers().add(pl);
+		
+		RPAction action = new RPAction();
+		action.put("type", "alter");
+		action .put("target", "bob");
+		action.put("stat", "hp");
+		action.put("mode", "sub");
+		action.put("value", 90);
+		assertEquals(100, pl.getHP());
+			
+		aa.onAction(pl, action);
+		assertEquals(10, pl.getHP());
+		aa.onAction(pl, action);
+		assertEquals(10, pl.getHP());
+	}
+	@Test
+	public final void testOnAlterActionHPadd() {
+
+		AdministrationAction aa = new AdministrationAction();
+
+		Player pl = PlayerTestHelper.createPlayer("bob");
+		pl.put("adminlevel", 5000);
+		pl.put("base_hp",100);
+		pl.setHP(10);
+		MockStendhalRPRuleProcessor.get().getPlayers().add(pl);
+		
+		RPAction action = new RPAction();
+		action.put("type", "alter");
+		action .put("target", "bob");
+		action.put("stat", "hp");
+		action.put("mode", "add");
+		action.put("value", 80);
+		assertEquals(10, pl.getHP());
+			
+		aa.onAction(pl, action);
+		assertEquals(90, pl.getHP());
+		aa.onAction(pl, action);
+		assertEquals(90, pl.getHP());
+	}
 }
