@@ -21,9 +21,6 @@ import games.stendhal.common.Debug;
 
 import java.security.AccessControlException;
 
-import javax.swing.JOptionPane;
-
-
 import marauroa.common.Log4J;
 
 import org.apache.log4j.Logger;
