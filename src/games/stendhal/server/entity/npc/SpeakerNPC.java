@@ -631,10 +631,6 @@ public class SpeakerNPC extends NPC {
 		behaviourAdder.addSeller(behaviour, offer);
 	}
 
-	public void addHealer(int cost) {
-		behaviourAdder.addHealer(cost);
-	}
-
 	/**
 	 * Makes this NPC an outfit changer, i.e. someone who can give players
 	 * special outfits.

@@ -3,6 +3,7 @@ package games.stendhal.server.maps.semos.house;
 
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPCFactory;
+import games.stendhal.server.entity.npc.behaviour.adder.HealerAdder;
 
 /**
  * A young lady (original name: Skye) who is lovely to admin.
@@ -20,7 +21,7 @@ public class AdminHelpNPC extends SpeakerNPCFactory {
 		npc.addReply("words", "Roses are red, violets are blue, Stendhal is great, and so are you!");
 		npc.addReply("portals", "The one with the Sun goes to semos city. It shows you where this house really is. The rest are clear, I hope. There is a door to the bank, the jail, and the Death Match in Ados. Of course they are all one way portals so you will not be disturbed by unexpected visitors.");
 		npc.addQuest("Now you're really testing how much thought went into making me!");
-		npc.addHealer(0);
+		new HealerAdder().addHealer(npc, 0);
 		npc.addGoodbye("Bye, remember to take care of yourself.");
 	}
 }

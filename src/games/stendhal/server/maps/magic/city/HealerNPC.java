@@ -3,6 +3,7 @@ package games.stendhal.server.maps.magic.city;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.behaviour.adder.HealerAdder;
 import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Node;
 
@@ -52,7 +53,7 @@ public class HealerNPC implements ZoneConfigurator {
 			protected void createDialog() {
 			        addGreeting("Greetings. Can I #help you?");
 				addJob("I practise alchemy and have the ability to #heal others.");
-				addHealer(500);
+				new HealerAdder().addHealer(this, 500);
 				addReply("magical", "We're all capable of magic here. There are different kinds, of course. My favourite is the Sunlight Spell to keep grass and flowers growing underground.");
 				addHelp("I have #magical powers to #heal your ailments.");
 				addQuest("I need nothing, thank you.");
