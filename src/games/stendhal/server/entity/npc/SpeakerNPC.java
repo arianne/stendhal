@@ -3,11 +3,6 @@ package games.stendhal.server.entity.npc;
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Corpse;
-import games.stendhal.server.entity.npc.behaviour.adder.BehaviourAdderOld;
-import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
-import games.stendhal.server.entity.npc.behaviour.impl.OutfitChangerBehaviour;
-import games.stendhal.server.entity.npc.behaviour.impl.ProducerBehaviour;
-import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.npc.fsm.PostTransitionAction;
 import games.stendhal.server.entity.npc.fsm.PreTransitionCondition;
@@ -16,7 +11,6 @@ import games.stendhal.server.entity.player.Player;
 
 import java.util.LinkedList;
 import java.util.List;
-
 
 import org.apache.log4j.Logger;
 
@@ -91,8 +85,6 @@ public class SpeakerNPC extends NPC {
 	private static final Logger logger = Logger.getLogger(SpeakerNPC.class);
 
 	private Engine engine = new Engine(this);
-
-	private BehaviourAdderOld behaviourAdder = new BehaviourAdderOld(this, engine);
 
 	/**
 	 * Determines how long a conversation can be paused before it will
