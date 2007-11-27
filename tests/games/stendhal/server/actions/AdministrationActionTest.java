@@ -32,7 +32,7 @@ public class AdministrationActionTest {
 	@After
 	public void tearDown() throws Exception {
 		MockStendhalRPRuleProcessor.get().getPlayers().clear();
-		
+
 	}
 
 	@Test
@@ -164,33 +164,36 @@ public class AdministrationActionTest {
 				&& action.has("x"));
 
 		aa.onAction(pl, action);
-		assertEquals("Zone \"IRPZone.ID [id=zone1]\" not found. Valid zones: []",
-		 pl.get("private_text"));
+		assertEquals(
+				"Zone \"IRPZone.ID [id=zone1]\" not found. Valid zones: []", pl
+						.get("private_text"));
 
 	}
+
 	@Test
 	public final void testTeleportActionToValidZone() {
 
 		AdministrationAction aa = new AdministrationAction();
-		StendhalRPZone zoneTo =new StendhalRPZone("zoneTo");
+		StendhalRPZone zoneTo = new StendhalRPZone("zoneTo");
 		Player pl = PlayerTestHelper.createPlayer();
 		MockStendhalRPRuleProcessor.get().getPlayers().add(pl);
 		PlayerHelper.generatePlayerRPClasses();
-		Player bob = new Player(new RPObject()){@Override
-		public boolean teleport(StendhalRPZone zone, int x, int y,
-				Direction dir, Player teleporter) {
-			assertEquals("zoneTo",zone.getName());
-			//added hack to have something to verify 
+		Player bob = new Player(new RPObject()) {
+			@Override
+			public boolean teleport(StendhalRPZone zone, int x, int y,
+					Direction dir, Player teleporter) {
+				assertEquals("zoneTo", zone.getName());
+				// added hack to have something to verify
 				setName("hugo");
-			return true;
-			
-		}};
+				return true;
+
+			}
+		};
 		bob.setName("bob");
 		PlayerHelper.addEmptySlots(bob);
-		
+
 		MockStendhalRPRuleProcessor.get().getPlayers().add(bob);
-		
-		
+
 		MockStendlRPWorld.get().addRPZone(zoneTo);
 		pl.put("adminlevel", 5000);
 		RPAction action = new RPAction();
@@ -208,4 +211,129 @@ public class AdministrationActionTest {
 		assertEquals("hugo", bob.getName());
 
 	}
+	@Test
+	public final void testTeleportToActionPlayerNotThere() {
+
+		AdministrationAction aa = new AdministrationAction();
+		Player pl = PlayerTestHelper.createPlayer();
+		pl.put("adminlevel", 5000);
+		RPAction action = new RPAction();
+		action.put("type", "teleportto");
+		action.put("target","blah");
+		aa.onAction(pl, action);
+		assertEquals("Player \"blah\" not found",pl.get("private_text"));
+
+	}
+	@Test
+	public final void testTeleportToActionPlayerThere() {
+
+		AdministrationAction aa = new AdministrationAction();
+		Player pl = PlayerTestHelper.createPlayer();
+		pl.setName("blah");
+		
+		pl.put("adminlevel", 5000);
+		
+		MockStendhalRPRuleProcessor.get().getPlayers().add(pl);
+		StendhalRPZone zone = new StendhalRPZone("zone");
+		zone.add(pl);
+		RPAction action = new RPAction();
+		action.put("type", "teleportto");
+		action.put("target","blah");
+		aa.onAction(pl, action);
+		assertEquals("Position [0,0] is occupied",pl.get("private_text"));
+		
+
+	}
+	@Test
+	public final void testAdminLevelActionPlayerNotFound() {
+
+		AdministrationAction aa = new AdministrationAction();
+
+		Player pl = PlayerTestHelper.createPlayer();
+		pl.put("adminlevel", 5000);
+		RPAction action = new RPAction();
+		action.put("type", "adminlevel");
+		action .put("target", "bob");
+		aa.onAction(pl, action);
+		assertEquals("Player \"bob\" not found", pl.get("private_text"));
+
+	}
+	@Test
+	public final void testAdminLevelActionPlayerFound() {
+
+		AdministrationAction aa = new AdministrationAction();
+
+		Player pl = PlayerTestHelper.createPlayer("bob");
+		pl.put("adminlevel", 5000);
+		
+		MockStendhalRPRuleProcessor.get().getPlayers().add(pl);
+		
+		RPAction action = new RPAction();
+		action.put("type", "adminlevel");
+		action .put("target", "bob");
+		aa.onAction(pl, action);
+		assertEquals("bob has adminlevel 5000", pl.get("private_text"));
+
+	}
+	@Test
+	public final void testAdminLevelActionPlayerFoundNoInteger() {
+
+		AdministrationAction aa = new AdministrationAction();
+
+		Player pl = PlayerTestHelper.createPlayer("bob");
+		pl.put("adminlevel", 5000);
+		
+		MockStendhalRPRuleProcessor.get().getPlayers().add(pl);
+		
+		RPAction action = new RPAction();
+		action.put("type", "adminlevel");
+		action .put("target", "bob");
+		action.put("newlevel", "1.3");
+		aa.onAction(pl, action);
+		assertEquals("The new adminlevel needs to be an Integer", pl.get("private_text"));
+
+	}
+	@Test
+	public final void testAdminLevelAction0() {
+
+		AdministrationAction aa = new AdministrationAction();
+		Player pl = PlayerTestHelper.createPlayer();
+		Player bob = PlayerTestHelper.createPlayer("bob");
+		// bad bad
+		MockStendhalRPRuleProcessor.get().getPlayers().add(pl);
+		MockStendhalRPRuleProcessor.get().getPlayers().add(bob);
+
+
+		pl.put("adminlevel", 5000);
+		
+		
+		RPAction action = new RPAction();
+		action.put("type", "adminlevel");
+		action .put("target", "bob");
+		action.put("newlevel", "0");
+		aa.onAction(pl, action);
+		assertEquals("Changed adminlevel of bob from 0 to 0.", pl.get("private_text"));
+		assertEquals("player changed your adminlevel from 0 to 0.", bob.get("private_text"));
+
+	}
+	@Test
+	public final void testAdminLevelActioncasterNotSuper() {
+
+		AdministrationAction aa = new AdministrationAction();
+
+		Player pl = PlayerTestHelper.createPlayer("bob");
+		pl.put("adminlevel", 4999);
+		
+		MockStendhalRPRuleProcessor.get().getPlayers().add(pl);
+		
+		RPAction action = new RPAction();
+		action.put("type", "adminlevel");
+		action .put("target", "bob");
+		action.put("newlevel", "0");
+		aa.onAction(pl, action);
+		assertEquals("Sorry, but you need an adminlevel of 5000 to change adminlevel.", pl.get("private_text"));
+
+	}
+
+
 }
