@@ -4,6 +4,7 @@ import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
 import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Node;
@@ -58,7 +59,7 @@ public class PostNPC implements ZoneConfigurator {
 				addGreeting("Hi, can I #help you?");
 				addJob("I work in this post office. But I'm new and I haven't been trusted with much yet.");
 				addHelp("I've not had this #job long ... come back soon and I might have been given something interesting to do.");
-				addSeller(new SellerBehaviour(shops.get("nalworscrolls")));
+				new SellerAdder().addSeller(this, new SellerBehaviour(shops.get("nalworscrolls")));
 				addGoodbye("Bye - nice to meet you!");
 			}
 		};

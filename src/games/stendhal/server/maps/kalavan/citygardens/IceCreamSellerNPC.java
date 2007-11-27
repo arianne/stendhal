@@ -3,6 +3,7 @@ package games.stendhal.server.maps.kalavan.citygardens;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
 
 import java.util.HashMap;
@@ -49,7 +50,7 @@ public class IceCreamSellerNPC implements ZoneConfigurator {
 
 				Map<String, Integer> offers = new HashMap<String, Integer>();
 				offers.put("icecream", 30);
-				addSeller(new SellerBehaviour(offers));
+				new SellerAdder().addSeller(this, new SellerBehaviour(offers));
 				addGoodbye("Bye, enjoy your day!");
 			}
 		};

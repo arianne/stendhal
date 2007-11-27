@@ -4,6 +4,7 @@ import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
 import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Node;
@@ -51,7 +52,7 @@ public class VeterinarianNPC implements ZoneConfigurator {
 				        "Sorry, I'm only licensed to heal animals, not humans. (But... ssshh! I can make you an #offer.)");
 
 				addJob("I'm the veterinarian.");
-				addSeller(new SellerBehaviour(shops.get("healing")) {
+				new SellerAdder().addSeller(this, new SellerBehaviour(shops.get("healing")) {
 
 					@Override
 					public int getUnitPrice(String item) {

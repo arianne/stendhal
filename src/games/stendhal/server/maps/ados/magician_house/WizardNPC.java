@@ -6,6 +6,7 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
 import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Node;
@@ -53,7 +54,7 @@ public class WizardNPC implements ZoneConfigurator {
 				addJob("I am a wizard who sells #magic #scrolls. Just ask me for an #offer!");
 				addHelp("You can take powerful magic with you on your adventures with the aid of my #magic #scrolls!");
 
-				addSeller(new SellerBehaviour(shops.get("scrolls")));
+				new SellerAdder().addSeller(this, new SellerBehaviour(shops.get("scrolls")));
 
 				add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES, null,
 				        ConversationStates.ATTENDING,

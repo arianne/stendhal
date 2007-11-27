@@ -5,6 +5,7 @@ import games.stendhal.server.config.ZoneConfigurator;
 import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
 import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Node;
@@ -61,7 +62,7 @@ public class GreeterNPC implements ZoneConfigurator {
 				        "Deniran is the jewel of the crown. Deniran is the center of Faiumoni and supports the army that tries to defeat enemies that wants to conquer Faiumoni.");
 				addJob("I greet all of the new-comers to Fado. I can #offer you a scroll if you'd like to come back here again.");
 				addHelp("You can head into the tavern to buy food and drinks. You can also visit the people in the houses, or visit the blacksmith or the city hotel.");
-				addSeller(new SellerBehaviour(shops.get("fadoscrolls")));
+				new SellerAdder().addSeller(this, new SellerBehaviour(shops.get("fadoscrolls")));
 				addGoodbye("Bye.");
 			}
 		};

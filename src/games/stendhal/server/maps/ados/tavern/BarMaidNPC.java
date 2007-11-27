@@ -4,6 +4,7 @@ import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
 import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Node;
@@ -54,7 +55,7 @@ public class BarMaidNPC implements ZoneConfigurator {
 				addGreeting();
 				addJob("I am the bar maid for this fair tavern. We sell both imported and local beers, and fine food.");
 				addHelp("This tavern is a great place to take a break and meet new people! Just ask if you want me to #offer you a drink.");
-				addSeller(new SellerBehaviour(shops.get("food&drinks")));
+				new SellerAdder().addSeller(this, new SellerBehaviour(shops.get("food&drinks")));
 				addGoodbye();
 			}
 		};

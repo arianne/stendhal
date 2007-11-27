@@ -2,6 +2,7 @@ package games.stendhal.server.maps.athor.ship;
 
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPCFactory;
+import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
 import games.stendhal.server.maps.athor.ship.AthorFerry.Status;
 
@@ -23,7 +24,7 @@ public class CookNPC extends SpeakerNPCFactory {
 		// more expensive than in normal taverns
 		offerings.put("ham", 100);
 		offerings.put("pie", 150);
-		npc.addSeller(new SellerBehaviour(offerings));
+		new SellerAdder().addSeller(npc, new SellerBehaviour(offerings));
 
 		npc.addGoodbye();
 		new AthorFerry.FerryListener() {

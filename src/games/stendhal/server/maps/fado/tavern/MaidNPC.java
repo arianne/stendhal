@@ -3,6 +3,7 @@ package games.stendhal.server.maps.fado.tavern;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
 import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Node;
@@ -69,7 +70,7 @@ public class MaidNPC implements ZoneConfigurator {
 				offers.put("bread", 50);
 				offers.put("sandwich", 150);
 	 
-				addSeller(new SellerBehaviour(offers));
+				new SellerAdder().addSeller(this, new SellerBehaviour(offers));
 				addGoodbye("Goodbye, all you customers do work me hard ...");
 			}
 		};

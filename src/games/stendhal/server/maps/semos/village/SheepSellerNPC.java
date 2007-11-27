@@ -4,6 +4,7 @@ import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
 import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.pathfinder.FixedPath;
@@ -83,7 +84,7 @@ public class SheepSellerNPC implements ZoneConfigurator {
 				addJob("I work as a sheep seller.");
 				addHelp("I sell sheep. To buy one, just tell me you want to #buy #sheep. If you're new to this business, I can tell you how to #travel with her, take #care of her, and finally give you tips on when to #sell her. If you find any wild sheep, incidentally, you can make them your #own.");
 				addGoodbye();
-				addSeller(new SheepSellerBehaviour(items));
+				new SellerAdder().addSeller(this, new SheepSellerBehaviour(items));
 				addReply("care",
 						"My sheep especially love to eat the red berries that grow on these little bushes. Just stand near one and your sheep will walk over to start eating. You can right-click and choose LOOK at any time, to check up on her weight; she will gain one unit of weight for every cherry she eats.");
 				addReply("travel",

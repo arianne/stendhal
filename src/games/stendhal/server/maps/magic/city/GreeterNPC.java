@@ -4,6 +4,7 @@ import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
 import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Node;
@@ -68,7 +69,7 @@ public class GreeterNPC implements ZoneConfigurator {
 				addReply("magic", "Indeed, enchantments such as our Sunlight Spell to keep the grass and flowers healthy down here. I suppose you are wondering why you have seen traditional enemies such as dark elves and green elves in company together here, let me #explain.");
 				addReply("explain", "As a city for wizards only, we have much to learn from one another. Thus, old quarrels are forgotten and we live here in peace.");
 				addHelp("It is part of my #job to #offer you enchanted scrolls to travel to any major city in Faiumoni. I also have a supply of scrolls you may mark, and some scrolls to summon creatures. Be aware, they do not come cheap.");
-				addSeller(new SellerBehaviour(shops.get("allscrolls")) {
+				new SellerAdder().addSeller(this, new SellerBehaviour(shops.get("allscrolls")) {
 
 					@Override
 					public int getUnitPrice(String item) {

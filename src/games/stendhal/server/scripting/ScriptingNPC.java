@@ -3,6 +3,7 @@ package games.stendhal.server.scripting;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.BuyerAdder;
 import games.stendhal.server.entity.npc.behaviour.adder.HealerAdder;
+import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
 import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
 
@@ -50,7 +51,7 @@ public class ScriptingNPC extends SpeakerNPC {
 		if ("buy".equalsIgnoreCase(method)) {
 			new BuyerAdder().add(this, new BuyerBehaviour(items), true);
 		} else if ("sell".equalsIgnoreCase(method)) {
-			addSeller(new SellerBehaviour(items));
+			new SellerAdder().addSeller(this, new SellerBehaviour(items));
 		} else {
 			throw new NoSuchMethodException("Behaviour.add(" + method + ") not supported.");
 		}

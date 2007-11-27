@@ -5,6 +5,7 @@ import games.stendhal.server.config.ZoneConfigurator;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.BuyerAdder;
+import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
 import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
 import games.stendhal.server.pathfinder.FixedPath;
@@ -50,7 +51,7 @@ public class TraderNPC implements ZoneConfigurator {
 				addGreeting();
 				addJob("Shhh! I sell stuff to adventurers.");
 				addHelp("I buy and sell several items, ask me for my #offer.");
-				addSeller(new SellerBehaviour(shops.get("sellstuff")), false);
+				new SellerAdder().addSeller(this, new SellerBehaviour(shops.get("sellstuff")), false);
 				new BuyerAdder().add(this, new BuyerBehaviour(shops.get("buystuff")), false);
 				addOffer("Have a look at the blackboards on the wall to see my offers.");
 				addQuest("Talk to Hackim Easso in the smithy, he might want you.");

@@ -4,6 +4,7 @@ import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.pathfinder.FixedPath;
@@ -58,7 +59,7 @@ public class PriestessNPC implements ZoneConfigurator {
 				);
 			        addJob("As a priestess I can #offer you a number of potions and antidotes.");
 				addHelp("My sister Salva has the gift of healing. She is out for a walk by the aqueduct, you should find her there if you need her.");
-				addSeller(new SellerBehaviour(shops.get("superhealing")), true);
+				new SellerAdder().addSeller(this, new SellerBehaviour(shops.get("superhealing")), true);
  				addGoodbye("Bye, for now.");
 			}
 		};

@@ -4,6 +4,7 @@ import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
 import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Node;
@@ -48,7 +49,7 @@ public class BowAndArrowSellerNPC implements ZoneConfigurator {
 				addGreeting();
 				addJob("I sell bows and arrows.");
 				addHelp("I sell several items, ask me for my #offer.");
-				addSeller(new SellerBehaviour(shops.get("sellrangedstuff")));
+				new SellerAdder().addSeller(this, new SellerBehaviour(shops.get("sellrangedstuff")));
 				addGoodbye();
 			}
 		};

@@ -623,14 +623,6 @@ public class SpeakerNPC extends NPC {
 				});
 	}
 
-	public void addSeller(SellerBehaviour behaviour) {
-		behaviourAdder.addSeller(behaviour, true);
-	}
-
-	public void addSeller(final SellerBehaviour behaviour, boolean offer) {
-		behaviourAdder.addSeller(behaviour, offer);
-	}
-
 	public void addProducer(final ProducerBehaviour behaviour,
 			String welcomeMessage) {
 		behaviourAdder.addProducer(behaviour, welcomeMessage);

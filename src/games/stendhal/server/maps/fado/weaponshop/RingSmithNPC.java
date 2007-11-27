@@ -5,6 +5,7 @@ import games.stendhal.server.config.ZoneConfigurator;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.BuyerAdder;
+import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
 import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
 import games.stendhal.server.pathfinder.FixedPath;
@@ -65,7 +66,7 @@ public class RingSmithNPC implements ZoneConfigurator {
 						"gold",
 						"It's cast from gold nuggets which you can pan for on Or'ril river. I don't cast it myself, but a smith in Ados does.");
 				addHelp("You can sell weapons to Yorphin Baos over there. I #trade in precious items and I can also make a wedding ring as a special #request.");
-				addSeller(new SellerBehaviour(shops.get("sellrings")), false);
+				new SellerAdder().addSeller(this, new SellerBehaviour(shops.get("sellrings")), false);
 				new BuyerAdder().add(this, new BuyerBehaviour(shops.get("buyprecious")), false);
 				addGoodbye("Bye, my friend.");
 			}

@@ -4,6 +4,7 @@ import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
 import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Node;
@@ -56,7 +57,7 @@ public class MayorNPC implements ZoneConfigurator {
 				addJob("I'm the mayor of Ados. I can #offer you the chance to return here easily.");
 				addHelp("Ask me about my #offer to return here.");
 				//addQuest("I don't know you well yet. Perhaps later in the year I can trust you with something.");
-				addSeller(new SellerBehaviour(shops.get("adosscrolls")));
+				new SellerAdder().addSeller(this, new SellerBehaviour(shops.get("adosscrolls")));
 				addGoodbye("Good day to you.");
 			}
 		};

@@ -5,6 +5,7 @@ import games.stendhal.server.config.ZoneConfigurator;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.HealerAdder;
+import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
 import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Node;
@@ -42,7 +43,7 @@ public class HealerNPC implements ZoneConfigurator {
 				addGreeting();
 				addJob("My special powers help me to heal wounded people. I also sell potions and antidotes.");
 				addHelp("I can #heal you here for free, or you can take one of my prepared medicines with you on your travels; just ask for an #offer.");
-				addSeller(new SellerBehaviour(shops.get("healing")));
+				new SellerAdder().addSeller(this, new SellerBehaviour(shops.get("healing")));
 				new HealerAdder().addHealer(this, 0);
 				addGoodbye();
 			}

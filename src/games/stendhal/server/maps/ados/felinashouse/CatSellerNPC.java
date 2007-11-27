@@ -4,6 +4,7 @@ import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
 import games.stendhal.server.entity.creature.Cat;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.pathfinder.FixedPath;
@@ -91,7 +92,7 @@ public class CatSellerNPC implements ZoneConfigurator {
 				addJob("I sell cats. Well, really they are just little kittens when I sell them to you but if you #care for them well they grow into cats.");
 				addHelp("I sell cats. To buy one, just tell me you want to #buy #cat. If you're new to this business, I can tell you how to #travel with her and take #care of her. If you find any wild cat, incidentally, you can make them your #own.");
 				addGoodbye();
-				addSeller(new CatSellerBehaviour(items));
+				new SellerAdder().addSeller(this, new CatSellerBehaviour(items));
 				addReply("care",
 						"Cats love chicken and fish. Just place a piece on the ground and your cat will run over to eat it. You can right-click on her and choose 'Look' at any time, to check up on her weight; she will gain one unit of weight for every piece of chicken she eats.");
 				addReply("travel",
