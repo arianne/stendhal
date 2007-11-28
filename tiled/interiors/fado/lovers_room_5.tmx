@@ -105,6 +105,9 @@
  <tileset name="../../tileset/logic/collision.png" firstgid="513" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
+ <tileset name="bread" firstgid="514" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/food/bread.png"/>
+ </tileset>
  <layer name="0_floor" width="25" height="25">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNiYGBgGsUjDvNA8UC7g1jszzjwbhjFIw9bAbE1ENtQSNsSYQelmBg7Rv0x6o+h5o9RjB8DAPk0tuzECQAA
@@ -117,7 +120,7 @@
  </layer>
  <layer name="2_object" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2TTQrCMBCFkxPak/RKLnTjTkFQa3Hhb621QtFFb+MbHGkMSUlqFqJ+8JiQSd9r00QIIWIpRA0RM65ErYyfrDG3hzaGdXovVtYMeDxBnctHtbFF7wDtDGvaesMWz9BM5Wu1kaF/gkroAlXQEepBK8uzsed3kFfBfhHnXaEzj3X6mBtZZCNiv0o2eRnnFYEycvam/cmVPcs5K0SGL9+SQfieq19mrOzVQjbyYSkbmXxVyDvp+H9SLcOG7/vruGT8cefd/XT5n5SRdsxJHM+86Zy70PVehcR2Hz/V92bwvQOTblBBxAkAAA==
+   H4sIAAAAAAAAAO2TTQrCMBCFE8Hz2ZP0Si50405BUGtx4b+CCkUXvY1v6JTGkilJ7ELUDx4TMsmb/CqlVKyVyiFixpHIjXbJGn17aGMZV8/FxpgBtyeIc11EiS1yB2hnGdOUGzZ4ts1Uv0aJI+eviDcog05QD1oJc2PPfZBXt1P4RTz3jngRfProHwmSiNgv47WXe4u4dhs1zuxN50Pt8syofbTMC6nhy7fUIHzf1S8zNs5qoSv5sNSVbL4m5J0E3k9aqyHhu/46LjX+uPPuebrcJ9VIA+skjm/e9s5dCP1XbSL9x0/1fVh8ny81wQXECQAA
   </data>
  </layer>
  <layer name="3_roof" width="25" height="25">
