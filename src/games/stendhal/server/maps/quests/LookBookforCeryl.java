@@ -1,18 +1,26 @@
 package games.stendhal.server.maps.quests;
 
-import games.stendhal.server.StendhalRPWorld;
-import games.stendhal.server.entity.item.Item;
-import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.SpeakerNPC.ChatAction;
+import games.stendhal.server.entity.npc.action.DropItemAction;
+import games.stendhal.server.entity.npc.action.EquipItemAction;
+import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
+import games.stendhal.server.entity.npc.action.IncreaseXPAction;
+import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
+import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.NotCondition;
+import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
+import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -33,50 +41,21 @@ public class LookBookforCeryl extends AbstractQuest {
 		super.init(name, QUEST_SLOT);
 	}
 
-	@Override
-	public List<String> getHistory(Player player) {
-		List<String> res = new ArrayList<String>();
-		if (!player.hasQuest(QUEST_SLOT)) {
-			return res;
-		}
-		res.add("FIRST_CHAT");
-		String questState = player.getQuest(QUEST_SLOT);
-		if (questState.equals("rejected")) {
-			res.add("QUEST_REJECTED");
-		}
-		if (player.isQuestInState(QUEST_SLOT, "start", "jynath", "done")) {
-			res.add("QUEST_ACCEPTED");
-		}
-		if ((questState.equals("jynath") && player.isEquipped("book_black"))
-				|| questState.equals("done")) {
-			res.add("FOUND_ITEM");
-		}
-		if (questState.equals("jynath") && !player.isEquipped("book_black")) {
-			res.add("LOST_ITEM");
-		}
-		if (questState.equals("done")) {
-			res.add("DONE");
-		}
-		return res;
-	}
-
-	private void step_1() {
+	private void step1LearnAboutQuest() {
 
 		SpeakerNPC npc = npcs.get("Ceryl");
 
 		npc.add(ConversationStates.ATTENDING,
-			ConversationPhrases.QUEST_MESSAGES, null,
-			ConversationStates.ATTENDING, null,
-			new SpeakerNPC.ChatAction() {
-				@Override
-				public void fire(Player player, String text, SpeakerNPC engine) {
-					if (player.isQuestCompleted(QUEST_SLOT)) {
-						engine.say("I have nothing for you now.");
-					} else {
-						engine.say("I am looking for a very special #book.");
-					}
-				}
-			});
+			ConversationPhrases.QUEST_MESSAGES, 
+			new QuestNotCompletedCondition(QUEST_SLOT),
+			ConversationStates.ATTENDING, 
+			"I am looking for a very special #book.", null);
+
+		npc.add(ConversationStates.ATTENDING,
+			ConversationPhrases.QUEST_MESSAGES,
+			new QuestCompletedCondition(QUEST_SLOT),
+			ConversationStates.ATTENDING, 
+			"I have nothing for you now.", null);
 
 		/** In case quest is completed */
 		npc.add(ConversationStates.ATTENDING, "book",
@@ -131,7 +110,7 @@ public class LookBookforCeryl extends AbstractQuest {
 			null);
 	}
 
-	private void step_2() {
+	private void step2getBook() {
 		SpeakerNPC npc = npcs.get("Jynath");
 
 		/**
@@ -144,18 +123,7 @@ public class LookBookforCeryl extends AbstractQuest {
 			new QuestInStateCondition(QUEST_SLOT, "start"),
 			ConversationStates.ATTENDING,
 			"Oh, Ceryl's looking for that book back? My goodness! I completely forgot about it... here you go!",
-			new SpeakerNPC.ChatAction() {
-				@Override
-				public void fire(Player player, String text, SpeakerNPC engine) {
-					player.setQuest(QUEST_SLOT, "jynath");
-
-					Item item = StendhalRPWorld.get()
-							.getRuleManager().getEntityManager()
-							.getItem("book_black");
-					item.setBoundTo(player.getName());
-					player.equip(item, true);
-				}
-			});
+			new MultipleActions(new EquipItemAction("book_black", 1, true), new SetQuestAction(QUEST_SLOT, "jynath")));
 
 		/** If player keep asking for book, just tell him to hurry up */
 		npc.add(
@@ -180,51 +148,74 @@ public class LookBookforCeryl extends AbstractQuest {
 			null);
 	}
 
-	private void step_3() {
+	private void step3returnBook() {
 		SpeakerNPC npc = npcs.get("Ceryl");
 
 		/** Complete the quest */
+		List<ChatAction> reward = new LinkedList<ChatAction>();
+		reward.add(new DropItemAction("book_black"));
+		reward.add(new EquipItemAction("money", 50));
+		reward.add(new IncreaseXPAction(100));
+		reward.add(new IncreaseKarmaAction(4.0));
+		reward.add(new SetQuestAction(QUEST_SLOT, "done"));
+
 		npc.add(
 			ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
 			new QuestInStateCondition(QUEST_SLOT, "jynath"),
-			ConversationStates.ATTENDING, null,
-			new SpeakerNPC.ChatAction() {
-				@Override
-				public void fire(Player player, String text, SpeakerNPC engine) {
-					if (player.drop("book_black")) {
-						engine.say("Oh, you got the book back! Phew, thanks!");
-						StackableItem money = (StackableItem) StendhalRPWorld
-								.get().getRuleManager().getEntityManager()
-								.getItem("money");
+			ConversationStates.ATTENDING,
+			"Oh, you got the book back! Phew, thanks!",
+			new MultipleActions(reward));
 
-						money.setQuantity(50);
-						player.equip(money);
-						player.addXP(100);
-						player.addKarma(4.0);
 
-						player.notifyWorldAboutChanges();
-
-						player.setQuest(QUEST_SLOT, "done");
-					} else {
-						engine.say("Haven't you got that #book back from #Jynath? Please go look for it, quickly!");
-						// There is no other way to get the book.
-						// Remove that quest slot so that the player can get
-						// it again from Jynath
-						// As the book is both bound and useless outside the
-						// quest, this is not a problem
-						player.removeQuest(QUEST_SLOT);
-					}
-				}
-			});
+		// There is no other way to get the book.
+		// Remove that quest slot so that the player can get
+		// it again from Jynath
+		// As the book is both bound and useless outside the
+		// quest, this is not a problem
+		npc.add(
+			ConversationStates.IDLE,
+			ConversationPhrases.GREETING_MESSAGES,
+			new AndCondition(new QuestInStateCondition(QUEST_SLOT, "jynath"), new NotCondition(new PlayerHasItemWithHimCondition("book_black"))),
+			ConversationStates.ATTENDING, 
+			"Haven't you got that #book back from #Jynath? Please go look for it, quickly!",
+			new SetQuestAction(QUEST_SLOT, null));
 	}
 
+	
+	@Override
+	public List<String> getHistory(Player player) {
+		List<String> res = new ArrayList<String>();
+		if (!player.hasQuest(QUEST_SLOT)) {
+			return res;
+		}
+		res.add("FIRST_CHAT");
+		String questState = player.getQuest(QUEST_SLOT);
+		if (questState.equals("rejected")) {
+			res.add("QUEST_REJECTED");
+		}
+		if (player.isQuestInState(QUEST_SLOT, "start", "jynath", "done")) {
+			res.add("QUEST_ACCEPTED");
+		}
+		if ((questState.equals("jynath") && player.isEquipped("book_black"))
+				|| questState.equals("done")) {
+			res.add("FOUND_ITEM");
+		}
+		if (questState.equals("jynath") && !player.isEquipped("book_black")) {
+			res.add("LOST_ITEM");
+		}
+		if (questState.equals("done")) {
+			res.add("DONE");
+		}
+		return res;
+	}
+	
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
 
-		step_1();
-		step_2();
-		step_3();
+		step1LearnAboutQuest();
+		step2getBook();
+		step3returnBook();
 	}
 }
