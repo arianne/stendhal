@@ -20,6 +20,7 @@ import marauroa.common.game.RPClass;
 import marauroa.common.game.RPEvent;
 import marauroa.common.game.Definition.DefinitionClass;
 
+import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.log4j.Logger;
 
 /**
@@ -83,8 +84,8 @@ public class DumpTransitionsEx extends ScriptImpl {
 
 		dumpHeader();
 		dumpNPC(npc);
-		dumpFooter();
 		dumpCaption();
+		dumpFooter();
 	}
 
 	private void dumpHeader() {
@@ -138,12 +139,27 @@ public class DumpTransitionsEx extends ScriptImpl {
 
 	private void dumpCaption() {
 		dumpedTable.append("\r\n");
+		dumpedTable.append("\"caption\" [\r\n");
+		dumpedTable.append("label = \"");
+		dumpedTable.append("Caption");
 		for (Map.Entry<String, PreTransitionCondition> entry : conditions) {
-			dumpedTable.append(entry.getKey() + "\t" + entry.getValue() + "\r\n");
+			dumpedTable.append(" | " + entry.getKey() + "\t" + captionEntryToString(entry.getValue().toString()));
 		}
-		dumpedTable.append("\r\n");
 		for (Map.Entry<String, PostTransitionAction> entry : actions) {
-			dumpedTable.append(entry.getKey() + "\t" + entry.getValue() + "\r\n");
+			dumpedTable.append(" | " + entry.getKey() + "\t" + captionEntryToString(entry.getValue()));
 		}
+		dumpedTable.append("\"\r\n");
+		dumpedTable.append("shape = \"record\"\r\n");
+		dumpedTable.append("];\r\n");
+	}
+
+	private String captionEntryToString(Object entry) {
+		String prefix = "games.stendhal.server.";
+		String entryName = entry.toString();
+		entryName = StringEscapeUtils.escapeHtml(entryName);
+		if (entryName.startsWith(prefix)) {
+			entryName = entryName.substring(prefix.length());
+		}
+		return entryName;
 	}
 }
