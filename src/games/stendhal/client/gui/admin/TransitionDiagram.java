@@ -1,13 +1,14 @@
 package games.stendhal.client.gui.admin;
 
+import games.stendhal.client.NotificationType;
+import games.stendhal.client.StendhalUI;
+
 import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.Image;
 import java.awt.Toolkit;
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.InputStreamReader;
 import java.io.PrintStream;
 
 import javax.swing.ImageIcon;
@@ -49,18 +50,10 @@ public class TransitionDiagram {
 
 			//execute
 			Process p = Runtime.getRuntime().exec(dotPath + " -Tpng -o " + image.getAbsolutePath() + " " + dat.getAbsolutePath());
-
-			//print output
-			BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
-			String line;
-			while ((line = br.readLine()) != null) {
-				logger.debug("dot output: " + line);
-			}
-			br.close();
 			p.waitFor();
 
 			//open up the image
-			JDialog jd = new JDialog(parent, "NPC Transition Viewer", true);
+			JDialog jd = new JDialog(parent, "NPC Transition Viewer", false);
 
 			Image img = Toolkit.getDefaultToolkit().createImage(image.toURI().toURL());
 			System.out.println("Checking image with size " + img.getWidth(jd) + "x" + img.getHeight(jd));
@@ -76,8 +69,8 @@ public class TransitionDiagram {
 			image.deleteOnExit();
 			dat.deleteOnExit();
 		} catch (Exception e) {
-			//logger.error("Failed creating graph!", e);
-			e.printStackTrace();
+			logger.error("Failed creating graph: ", e);
+			StendhalUI.get().addEventLine("Failed creating graph (Is graphviz installed and on your system search path?): " + e.getMessage(), NotificationType.ERROR);
 		}
 	}
 
