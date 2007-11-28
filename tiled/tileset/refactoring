@@ -133,7 +133,7 @@ K*./building/wall/int_wall_brick_wood.png
 ./building/wall/bricked_edges.png
 ./building/window/broken_window.png
 K*./building/window/int_windows_dark_red.png
-./building/window/painted.png
+J*./building/window/painted.png
 k*/building/window/window_left.png
 k*/building/window/window_right.png
 k*/building/window/window_long.png
@@ -218,7 +218,7 @@ J*/item/button.png
 J*/item/button_gold.png
 J*/item/button_grey.png
 J*/item/flat_button.png
-./item/hot_iron_piece.png
+J/K*./item/hot_iron_piece.png
 b*/item/logs.png
 k*/item/postbox.png
 k*/item/postbox_2.png
