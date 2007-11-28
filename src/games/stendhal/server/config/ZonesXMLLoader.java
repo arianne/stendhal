@@ -127,7 +127,7 @@ public class ZonesXMLLoader {
 
 			String name = zdesc.getName();
 
-			logger.info("Loading zone: " + name);
+			logger.debug("Loading zone: " + name);
 
 			try {
 				StendhalMapStructure zonedata = ServerTMXLoader
