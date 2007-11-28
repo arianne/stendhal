@@ -529,13 +529,11 @@ public class UserContext implements RPObjectChangeListener {
 		// TODO: clean this method, it is just a quick hack to understand the way RPEvents should be used
 		// TODO: We probably need a registry/factory to dispatch the different events to. 
 		for (RPEvent rpevent : object.events()) {
-			StendhalUI.get().addEventLine("event in object: " + rpevent);
 			if (rpevent.getName().equals("transition_graph")) {
 				new TransitionDiagram().showTransitionDiagram(rpevent.get("data"));
 			}
 		}
 		for (RPEvent rpevent : changes.events()) {
-			StendhalUI.get().addEventLine("event in changes: " + rpevent);
 			if (rpevent.getName().equals("transition_graph")) {
 				new TransitionDiagram().showTransitionDiagram(rpevent.get("data"));
 			}
