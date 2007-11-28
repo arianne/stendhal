@@ -87,6 +87,8 @@ public class j2DClient extends StendhalUI {
 
 	protected static final Color COLOR_CLIENT = Color.gray;
 
+	protected static final Color COLOR_ERROR = Color.red;
+
 	protected static final Color COLOR_INFORMATION = Color.orange;
 
 	protected static final Color COLOR_NEGATIVE = Color.red;
@@ -718,6 +720,9 @@ public class j2DClient extends StendhalUI {
 		switch (type) {
 		case CLIENT:
 			return COLOR_CLIENT;
+
+		case ERROR:
+			return COLOR_ERROR;
 
 		case INFORMATION:
 			return COLOR_INFORMATION;

@@ -14,7 +14,7 @@ package games.stendhal.client;
  * This would be similar to logical styles vs. physical styles in HTML.
  */
 public enum NotificationType {
-	CLIENT("client"), INFORMATION("information"), NEGATIVE("negative"), NORMAL(
+	CLIENT("client"), ERROR("error"), INFORMATION("information"), NEGATIVE("negative"), NORMAL(
 			"normal"), POSITIVE("positive"), PRIVMSG("privmsg"), RESPONSE(
 			"response"), SIGNIFICANT_NEGATIVE("significant_negative"), SIGNIFICANT_POSITIVE(
 			"significant_positive"), TUTORIAL("tutorial");
