@@ -70,7 +70,7 @@ public class ScriptInJava extends ScriptingSandbox {
 			newInstance();
 			Method[] methods = Script.class.getMethods();
 			for (Method method : methods) {
-				logger.warn(method);
+				logger.debug(method);
 			}
 			Method theMethod = Script.class.getMethod("load", signature);
 			theMethod.invoke(script, params);
