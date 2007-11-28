@@ -166,7 +166,7 @@ public class InternalManagedDialog implements ManagedWindow {
 		titleLabel.setOpaque(false);
 		titleLabel.setBorder(BorderFactory.createEmptyBorder());
 		font = style.getFont();
-		if (font != null) {
+		if (font == null) {
 			font = titleLabel.getFont();
 		}
 
@@ -662,6 +662,7 @@ public class InternalManagedDialog implements ManagedWindow {
 		}
 
 		public void paintIcon(Component c, Graphics g, int x, int y) {
+			// do nothing
 		}
 	}
 
