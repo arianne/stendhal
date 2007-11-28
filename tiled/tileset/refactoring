@@ -308,23 +308,23 @@ k*/item/furniture/statue/green_stone_3.png
 ./item/furniture/statue/grey_stone.png           not found
 ./item/furniture/statue/metal_and_stone.png        not found
 K*./item/furniture/table/fancy_blue_red.png
-./item/furniture/table/grey_dark.png
-./item/furniture/table/grey_fancy.png
-./item/furniture/table/grey_long.png
-./item/furniture/table/grey_pale.png
-./item/furniture/table/grey_plain.png
+K*./item/furniture/table/grey_dark.png
+K*./item/furniture/table/grey_fancy.png
+K*./item/furniture/table/grey_long.png
+K*./item/furniture/table/grey_pale.png
+K*./item/furniture/table/grey_plain.png
 b*/item/furniture/table/long_front_on.png
 b*/item/furniture/table/long_front_on_pale.png
 b*/item/furniture/table/long_side_on_pale.png
 m*/item/furniture/table/orb_table.png
 K*./item/furniture/table/rectangular_with_meals.png
 K*/item/furniture/table/square_pale.png
-b/K/item/furniture/table/table_with_beer.png
+K*/item/furniture/table/table_with_beer.png
 b*/item/furniture/table/table_with_beer_dark.png
-./item/furniture/table/table_with_hob.png
-./item/furniture/table/table_with_hob_pale.png
+K*./item/furniture/table/table_with_hob.png
+K*./item/furniture/table/table_with_hob_pale.png
 J./item/furniture/table/tree_stump_table.png
-b/item/furniture/table/wooden.png
+b*/item/furniture/table/wooden.png
 b*/item/furniture/table/wooden_pale.png
 b*/item/furniture/table/wooden_rectangular.png
 b*/item/furniture/table/brick_base.png
