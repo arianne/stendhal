@@ -116,7 +116,7 @@ public class MeetMonogenes extends AbstractQuest {
 		npc
 				.addReply(
 						"blacksmith",
-						"Head southwest to reach the smithy. There's a sword hanging above the door, you should be able to spot it.");
+						"Head southwest to reach the smithy. There's a picture of an anvil hanging above the door, you should be able to spot it.");
 		npc
 				.addReply(
 						"village",
