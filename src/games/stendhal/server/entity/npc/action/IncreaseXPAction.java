@@ -22,6 +22,7 @@ public class IncreaseXPAction extends SpeakerNPC.ChatAction {
 	@Override
 	public void fire(Player player, String text, SpeakerNPC engine) {
 		player.setXP(player.getXP() + xpDiff);
+		player.notifyWorldAboutChanges();
 	}
 
 	@Override

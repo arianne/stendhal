@@ -60,6 +60,7 @@ public class EquipItemAction extends SpeakerNPC.ChatAction {
 			item.setBoundTo(player.getName());
 		}
 		player.equip(item, true);
+		player.notifyWorldAboutChanges();
 	}
 
 	@Override

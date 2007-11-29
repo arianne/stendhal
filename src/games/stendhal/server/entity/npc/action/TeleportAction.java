@@ -38,6 +38,7 @@ public class TeleportAction extends SpeakerNPC.ChatAction {
 	public void fire(Player player, String text, SpeakerNPC engine) {
 		StendhalRPZone zone = StendhalRPWorld.get().getZone(zonename);
         player.teleport(zone, x, y, direction, player);
+		player.notifyWorldAboutChanges();
 	}
 
 	@Override

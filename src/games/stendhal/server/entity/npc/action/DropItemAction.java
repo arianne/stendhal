@@ -3,11 +3,13 @@ package games.stendhal.server.entity.npc.action;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 
+import org.apache.log4j.Logger;
+
 /**
  * equipts the specified item
  */
 public class DropItemAction extends SpeakerNPC.ChatAction {
-
+	private static Logger logger = Logger.getLogger(DropItemAction.class);
 	private String itemName;
 	private int amount;
 
@@ -34,7 +36,11 @@ public class DropItemAction extends SpeakerNPC.ChatAction {
 
 	@Override
 	public void fire(Player player, String text, SpeakerNPC npc) {
-		player.drop(itemName, amount);
+		boolean res = player.drop(itemName, amount);
+		if (!res) {
+			logger.error("Cannot drop " + amount + " " + itemName, new Throwable());
+		}
+		player.notifyWorldAboutChanges();
 	}
 
 	@Override
