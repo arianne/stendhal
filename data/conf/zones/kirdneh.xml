@@ -21,6 +21,7 @@
  <!-- Level 0 (Ground) -->
 
  <zone name="0_kirdneh_city" level="0" x="500000" y="500512" file="Level 0/kirdneh/city.tmx">
+  <configurator class-name="games.stendhal.server.maps.kirdneh.city.GossipNPC"/>
   <portal x="50" y="7" ref="diving_board">
    <destination zone="0_kirdneh_city" ref="pool"/>
    <attribute name="hidden"/>
