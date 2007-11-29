@@ -7,7 +7,7 @@ import games.stendhal.server.entity.Entity;
  *
  * @author hendrik
  */
-public class LootableSlot extends PlayerSlot {
+public class LootableSlot extends EntitySlot {
 	private Entity owner;
 
 	/**
