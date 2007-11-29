@@ -15,7 +15,7 @@ public enum Banks {
 	/** bank in Nalwor */
 	NALWOR("bank_nalwor"),
 	/** mini-bank in zaras house */
-	ZARAS("zaras_chest_slot");
+	ZARAS("zaras_chest_ados");
 
 	private String slotName;
 
