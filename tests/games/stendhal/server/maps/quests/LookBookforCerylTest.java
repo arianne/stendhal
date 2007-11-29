@@ -12,6 +12,8 @@ import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
+import games.stendhal.server.maps.MockStendlRPWorld;
 import games.stendhal.server.maps.orril.magician_house.WitchNPC;
 import games.stendhal.server.maps.semos.library.LibrarianNPC;
 
@@ -33,6 +35,9 @@ public class LookBookforCerylTest {
 
 	@BeforeClass
 	public static void setupClass() {
+		
+		MockStendhalRPRuleProcessor.get();
+		MockStendlRPWorld.get();
 		Log4J.init();
 	}
 
