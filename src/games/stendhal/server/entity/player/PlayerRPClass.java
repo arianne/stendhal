@@ -354,7 +354,7 @@ class PlayerRPClass {
 					zone = StendhalRPWorld.get().getZone(object.get("zoneid"));
 				}
 			}
-		} catch (Exception e) {
+		} catch (RuntimeException e) {
 			// TODO: Is this catch needed?
 			//
 			// If placing the player at its last position
@@ -486,8 +486,7 @@ class PlayerRPClass {
 
 		// load items
 		String[] slotsItems = { "bag", "rhand", "lhand", "head", "armor",
-				"legs", "feet", "finger", "cloak", "zaras_chest_ados",
-				"keyring" };
+				"legs", "feet", "finger", "cloak", "keyring" };
 
 		try {
 			for (String slotName : slotsItems) {
@@ -516,8 +515,7 @@ class PlayerRPClass {
 	 * @param newSlot
 	 *            new Stendhal specific slot
 	 */
-	private static void loadSlotContent(Player player, RPSlot slot,
-			RPSlot newSlot) {
+	private static void loadSlotContent(Player player, RPSlot slot, RPSlot newSlot) {
 		StendhalRPWorld world = StendhalRPWorld.get();
 		List<RPObject> objects = new LinkedList<RPObject>();
 		for (RPObject objectInSlot : slot) {
