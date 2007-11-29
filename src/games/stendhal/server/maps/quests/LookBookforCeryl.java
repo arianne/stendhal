@@ -15,7 +15,6 @@ import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
-import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.player.Player;
 
@@ -46,8 +45,8 @@ public class LookBookforCeryl extends AbstractQuest {
 		SpeakerNPC npc = npcs.get("Ceryl");
 
 		npc.add(ConversationStates.ATTENDING,
-			ConversationPhrases.QUEST_MESSAGES, 
-			new QuestNotCompletedCondition(QUEST_SLOT),
+			ConversationPhrases.QUEST_MESSAGES,
+			new QuestNotStartedCondition(QUEST_SLOT),
 			ConversationStates.ATTENDING, 
 			"I am looking for a very special #book.", null);
 
@@ -162,11 +161,10 @@ public class LookBookforCeryl extends AbstractQuest {
 		npc.add(
 			ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
-			new QuestInStateCondition(QUEST_SLOT, "jynath"),
+			new AndCondition(new QuestInStateCondition(QUEST_SLOT, "jynath"), new PlayerHasItemWithHimCondition("book_black")),
 			ConversationStates.ATTENDING,
 			"Oh, you got the book back! Phew, thanks!",
 			new MultipleActions(reward));
-
 
 		// There is no other way to get the book.
 		// Remove that quest slot so that the player can get
