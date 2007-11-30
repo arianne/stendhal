@@ -22,11 +22,13 @@ public class ChatTestCreator {
 	}
 
 	private void convert() throws IOException {
+		writer.header();
 		String line = br.readLine();
 		while (line != null) {
 			handleLine(line);
 			line = br.readLine();
 		}
+		writer.footer();
 	}
 	
 	private void handleLine(String line) {
