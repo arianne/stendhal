@@ -646,14 +646,14 @@ Shepherds please note: keep watch for the wolves while searching for berries her
     <portal x="11" y="8" ref="orb_left">
      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.QuestCheckingPortal">
       <parameter name="quest">learn_scrying</parameter>
-      <parameter name="rejected">Tell Ilisa #yes you have used the ball.</parameter>
+      <parameter name="rejected">If Ilisa asks, say #yes you have a message from the ball.</parameter>
       </implementation>
      <destination zone="0_orril_mountain_w" ref="orb_destination"/>
     </portal>
    <portal x="12" y="8" ref="orb_right">
     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.QuestCheckingPortal">
      <parameter name="quest">learn_scrying</parameter>
-     <parameter name="rejected">Tell Ilisa #yes you have used the ball.</parameter>
+     <parameter name="rejected">If Ilisa asks, say #yes you have a message from the ball.</parameter>
      </implementation>
      <destination zone="0_orril_mountain_w" ref="orb_destination"/>
     </portal>
