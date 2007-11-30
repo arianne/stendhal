@@ -1,5 +1,6 @@
-package games.stendhal.server.entity;
+package games.stendhal.server.entity.mapstuff.chest;
 
+import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 

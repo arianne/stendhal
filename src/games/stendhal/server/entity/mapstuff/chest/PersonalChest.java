@@ -1,5 +1,6 @@
-package games.stendhal.server.entity;
+package games.stendhal.server.entity.mapstuff.chest;
 
+import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;

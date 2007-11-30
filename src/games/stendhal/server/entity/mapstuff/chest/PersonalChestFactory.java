@@ -4,7 +4,7 @@
  * $Id$
  */
 
-package games.stendhal.server.entity;
+package games.stendhal.server.entity.mapstuff.chest;
 
 import games.stendhal.server.config.factory.ConfigurableFactory;
 import games.stendhal.server.config.factory.ConfigurableFactoryContext;

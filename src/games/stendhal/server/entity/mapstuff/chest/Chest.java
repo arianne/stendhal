@@ -10,8 +10,11 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.entity;
+package games.stendhal.server.entity.mapstuff.chest;
 
+import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.PassiveEntity;
+import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.slot.LootableSlot;
 import games.stendhal.server.events.UseListener;
 
