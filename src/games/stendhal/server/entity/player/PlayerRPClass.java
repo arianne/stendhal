@@ -113,6 +113,7 @@ class PlayerRPClass {
 		// player.addAttribute("outfit_path", Type.STRING);
 
 		player.addAttribute("away", Type.LONG_STRING, Definition.VOLATILE);
+		player.addAttribute("grumpy", Type.LONG_STRING, Definition.VOLATILE);
 
 		// Use this for admin menus and usage.
 		player.addAttribute("admin", Type.FLAG);
@@ -572,7 +573,7 @@ class PlayerRPClass {
 						} else {
 							logger.warn("Adding quantity=1 to "
 									+ item
-									+ ". Most likly cause is that this item was not stackable in the past");
+									+ ". Most likely cause is that this item was not stackable in the past");
 						}
 						((StackableItem) entity).setQuantity(quantity);
 
