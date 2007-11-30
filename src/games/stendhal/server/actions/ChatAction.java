@@ -24,6 +24,7 @@ import java.util.Map;
 import java.util.StringTokenizer;
 
 import marauroa.common.game.RPAction;
+import marauroa.common.game.RPObject;
 
 /**
  * Processes /chat, /tell (/msg) and /support
@@ -97,6 +98,7 @@ public class ChatAction implements ActionListener {
 	private void onTell(Player player, RPAction action) {
 		String away;
 		String reply;
+		String grumpy;
 
 		// TODO: find a cleaner way to implement it
 		if (Jail.isInJail(player)) {
@@ -168,6 +170,38 @@ public class ChatAction implements ActionListener {
 				return;
 			}
 
+			// check grumpiness
+			grumpy = receiver.getGrumpyMessage();
+			if (grumpy != null && receiver.getSlot("!buddy").size() > 0){
+				RPObject buddies = receiver.getSlot("!buddy").iterator().next();
+				boolean senderFound = false;
+				for (String buddyName : buddies) {
+					// TODO: as in Player.java, remove '_' prefix if ID is made completely virtual
+					if (buddyName.charAt(0) == '_') {
+					 buddyName = buddyName.substring(1);
+					}
+					if (buddyName.equals(senderName)){
+						senderFound = true;
+						break;
+					}
+				}
+				if(!senderFound){
+					// sender is not a buddy
+					// HACK: do not notify postman
+					if (!senderName.equals("postman")) {
+						if (grumpy.length() == 0) {
+							player
+								.sendPrivateText(receiverName
+											 + " has a closed mind, and is seeking solitude from all but close friends");
+						} else {
+							player.sendPrivateText(receiverName
+												   + " is seeking solitude from all but close friends: " + grumpy);
+						}
+						player.notifyWorldAboutChanges();
+					}
+					return;
+				}
+			}
 			// transmit the message
 			receiver.sendPrivateText(message);
 

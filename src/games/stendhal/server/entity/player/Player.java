@@ -1,14 +1,14 @@
 /* $Id$ */
 /***************************************************************************
- *                      (C) Copyright 2003 - Marauroa                      *
+ *						(C) Copyright 2003 - Marauroa					   *
  ***************************************************************************
  ***************************************************************************
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
+ *																		   *
+ *	 This program is free software; you can redistribute it and/or modify  *
+ *	 it under the terms of the GNU General Public License as published by  *
+ *	 the Free Software Foundation; either version 2 of the License, or	   *
+ *	 (at your option) any later version.								   *
+ *																		   *
  ***************************************************************************/
 package games.stendhal.server.entity.player;
 
@@ -66,6 +66,11 @@ public class Player extends RPEntity {
 	 * The attack invisible attribute name.
 	 */
 	protected static final String ATTR_INVISIBLE = "invisible";
+
+	/**
+	 * The grumpy attribute name.
+	 */
+	protected static final String ATTR_GRUMPY = "grumpy";
 
 	/**
 	 * The pet ID attribute name.
@@ -175,7 +180,7 @@ public class Player extends RPEntity {
 		if (player.has(ATTR_AWAY)) {
 			player.remove(ATTR_AWAY);
 		}
-
+				
 		PlayerRPClass.readAdminsFromFile(player);
 		PlayerRPClass.placePlayerIntoWorldOnLogin(object, player);
 		PlayerRPClass.loadItemsIntoSlots(player);
@@ -315,8 +320,8 @@ public class Player extends RPEntity {
 	 * Apply the most recent active client direction.
 	 *
 	 * @param stopOnNone
-	 *            Stop movement if no (valid) directions are active if
-	 *            <code>true</code>.
+	 *			  Stop movement if no (valid) directions are active if
+	 *			  <code>true</code>.
 	 */
 	public void applyClientDirection(boolean stopOnNone) {
 		int size;
@@ -382,7 +387,7 @@ public class Player extends RPEntity {
 	 * Set the away message.
 	 *
 	 * @param message
-	 *            An away message, or <code>null</code>.
+	 *			  An away message, or <code>null</code>.
 	 */
 	public void setAwayMessage(final String message) {
 		if (message != null) {
@@ -400,7 +405,7 @@ public class Player extends RPEntity {
 	 * reminded once an hour.
 	 *
 	 * @param name
-	 *            The name of the other player.
+	 *			  The name of the other player.
 	 *
 	 * @return <code>true</code> if the player should be notified.
 	 */
@@ -429,10 +434,34 @@ public class Player extends RPEntity {
 	}
 
 	/**
+	 * Get the grumpy message.
+	 *
+	 * @return The grumpy message, or <code>null</code> if unset.
+	 */
+	public String getGrumpyMessage() {
+		return has(ATTR_GRUMPY) ? get(ATTR_GRUMPY) : null;
+	}
+
+	/**
+	 * Set the grumpy message.
+	 *
+	 * @param message
+	 *			  A grumpy message, or <code>null</code>.
+	 */
+	public void setGrumpyMessage(final String message) {
+		if (message != null) {
+			put(ATTR_GRUMPY, message);
+		} else if (has(ATTR_GRUMPY)) {
+			remove(ATTR_GRUMPY);
+		}
+
+	}
+
+	/**
 	 * Give the player some karma (good or bad).
 	 *
 	 * @param karma
-	 *            An amount of karma to add/subtract.
+	 *			  An amount of karma to add/subtract.
 	 */
 	@Override
 	public void addKarma(double karma) {
@@ -459,7 +488,7 @@ public class Player extends RPEntity {
 	 * should cause no change on an action or outcome.
 	 *
 	 * @param scale
-	 *            A positive number.
+	 *			  A positive number.
 	 *
 	 * @return A number between -scale and scale.
 	 */
@@ -475,9 +504,9 @@ public class Player extends RPEntity {
 	 * <code>0.01</code> (%1 unit).
 	 *
 	 * @param negLimit
-	 *            The lowest negative value returned.
+	 *			  The lowest negative value returned.
 	 * @param posLimit
-	 *            The highest positive value returned.
+	 *			  The highest positive value returned.
 	 *
 	 * @return A number within negLimit &lt;= 0 &lt;= posLimit.
 	 */
@@ -492,11 +521,11 @@ public class Player extends RPEntity {
 	 * should cause no change on an action or outcome.
 	 *
 	 * @param negLimit
-	 *            The lowest negative value returned.
+	 *			  The lowest negative value returned.
 	 * @param posLimit
-	 *            The highest positive value returned.
+	 *			  The highest positive value returned.
 	 * @param granularity
-	 *            The amount that any extracted karma is a multiple of.
+	 *			  The amount that any extracted karma is a multiple of.
 	 *
 	 * @return A number within negLimit &lt;= 0 &lt;= posLimit.
 	 */
@@ -590,15 +619,15 @@ public class Player extends RPEntity {
 	 * Add a player ignore entry.
 	 *
 	 * @param name
-	 *            The player name.
+	 *			  The player name.
 	 * @param duration
-	 *            The ignore duration (in minutes), or <code>0</code> for
-	 *            infinite.
+	 *			  The ignore duration (in minutes), or <code>0</code> for
+	 *			  infinite.
 	 * @param reply
-	 *            The reply.
+	 *			  The reply.
 	 *
 	 * @return <code>true</code> if value changed, <code>false</code> if
-	 *         there was a problem.
+	 *		   there was a problem.
 	 */
 	public boolean addIgnore(String name, int duration, String reply) {
 		StringBuffer sbuf;
@@ -623,10 +652,10 @@ public class Player extends RPEntity {
 	 * message.
 	 *
 	 * @param name
-	 *            The player name.
+	 *			  The player name.
 	 *
 	 * @return The custom reply message (including an empty string), or
-	 *         <code>null</code> if not ignoring.
+	 *		   <code>null</code> if not ignoring.
 	 */
 	public String getIgnore(String name) {
 		String info = getKeyedSlot("!ignore", "_" + name);
@@ -669,10 +698,10 @@ public class Player extends RPEntity {
 	 * Remove a player ignore entry.
 	 *
 	 * @param name
-	 *            The player name.
+	 *			  The player name.
 	 *
 	 * @return <code>true</code> if value changed, <code>false</code> if
-	 *         there was a problem.
+	 *		   there was a problem.
 	 */
 	public boolean removeIgnore(String name) {
 		return setKeyedSlot("!ignore", "_" + name, null);
@@ -682,7 +711,7 @@ public class Player extends RPEntity {
 	 * Get a named skills value.
 	 *
 	 * @param key
-	 *            The skill key.
+	 *			  The skill key.
 	 *
 	 * @return The skill value, or <code>null</code> if not set.
 	 */
@@ -694,12 +723,12 @@ public class Player extends RPEntity {
 	 * Set a named skills value.
 	 *
 	 * @param key
-	 *            The skill key.
+	 *			  The skill key.
 	 * @param value
-	 *            The skill value.
+	 *			  The skill value.
 	 *
 	 * @return <code>true</code> if value changed, <code>false</code> if
-	 *         there was a problem.
+	 *		   there was a problem.
 	 */
 	public boolean setSkill(String key, String value) {
 		return setKeyedSlot("skills", key, value);
@@ -709,9 +738,9 @@ public class Player extends RPEntity {
 	 * Get a keyed string value on a named slot.
 	 *
 	 * @param name
-	 *            The slot name.
+	 *			  The slot name.
 	 * @param key
-	 *            The value key.
+	 *			  The value key.
 	 *
 	 * @return The keyed value of the slot, or <code>null</code> if not set.
 	 */
@@ -740,14 +769,14 @@ public class Player extends RPEntity {
 	 * Set a keyed string value on a named slot.
 	 *
 	 * @param name
-	 *            The slot name.
+	 *			  The slot name.
 	 * @param key
-	 *            The value key.
+	 *			  The value key.
 	 * @param value
-	 *            The value to assign (or remove if <code>null</code>).
+	 *			  The value to assign (or remove if <code>null</code>).
 	 *
 	 * @return <code>true</code> if value changed, <code>false</code> if
-	 *         there was a problem.
+	 *		   there was a problem.
 	 */
 	public boolean setKeyedSlot(String name, String key, String value) {
 		RPSlot slot;
@@ -780,7 +809,7 @@ public class Player extends RPEntity {
 	 * Get a client feature value.
 	 *
 	 * @param name
-	 *            The feature mnemonic.
+	 *			  The feature mnemonic.
 	 *
 	 * @return The feature value, or <code>null</code> is not-enabled.
 	 */
@@ -792,7 +821,7 @@ public class Player extends RPEntity {
 	 * Determine if a client feature is enabled.
 	 *
 	 * @param name
-	 *            The feature mnemonic.
+	 *			  The feature mnemonic.
 	 *
 	 * @return <code>true</code> if the feature is enabled.
 	 */
@@ -804,9 +833,9 @@ public class Player extends RPEntity {
 	 * Enable/disable a client feature.
 	 *
 	 * @param name
-	 *            The feature mnemonic.
+	 *			  The feature mnemonic.
 	 * @param enabled
-	 *            Flag indicating if enabled.
+	 *			  Flag indicating if enabled.
 	 */
 	public void setFeature(String name, boolean enabled) {
 		if (enabled) {
@@ -821,9 +850,9 @@ public class Player extends RPEntity {
 	 * contain <code>=</code> (equals), or <code>:</code> (colon).
 	 *
 	 * @param name
-	 *            The feature mnemonic.
+	 *			  The feature mnemonic.
 	 * @param value
-	 *            The feature value, or <code>null</code> to disable.
+	 *			  The feature value, or <code>null</code> to disable.
 	 */
 	public void setFeature(String name, String value) {
 		setKeyedSlot("!features", name, value);
@@ -843,7 +872,7 @@ public class Player extends RPEntity {
 	 * Set whether this player is invisible to creatures.
 	 *
 	 * @param invisible
-	 *            <code>true</code> if invisible.
+	 *			  <code>true</code> if invisible.
 	 */
 	public void setInvisible(final boolean invisible) {
 		if (invisible) {
@@ -857,7 +886,7 @@ public class Player extends RPEntity {
 	 * Sends a message that only this player can read.
 	 *
 	 * @param text
-	 *            The message.
+	 *			  The message.
 	 */
 	@Override
 	public void sendPrivateText(String text) {
@@ -904,7 +933,7 @@ public class Player extends RPEntity {
 	 * Set the player's admin level.
 	 *
 	 * @param adminlevel
-	 *            The new admin level.
+	 *			  The new admin level.
 	 */
 	public void setAdminLevel(final int adminlevel) {
 		put(ATTR_ADMINLEVEL, adminlevel);
@@ -1085,7 +1114,7 @@ public class Player extends RPEntity {
 	 * Set the player's pet. This will also set the pet's owner.
 	 *
 	 * @param pet
-	 *            The pet.
+	 *			  The pet.
 	 */
 	public void setPet(Pet pet) {
 		put(ATTR_PET, pet.getID().getObjectID());
@@ -1096,7 +1125,7 @@ public class Player extends RPEntity {
 	 * Set the player's sheep. This will also set the sheep's owner.
 	 *
 	 * @param sheep
-	 *            The sheep.
+	 *			  The sheep.
 	 */
 	public void setSheep(Sheep sheep) {
 		put(ATTR_SHEEP, sheep.getID().getObjectID());
@@ -1172,7 +1201,7 @@ public class Player extends RPEntity {
 	 * server.
 	 *
 	 * @param age
-	 *            minutes
+	 *			  minutes
 	 */
 	public void setAge(int age) {
 		this.age = age;
@@ -1203,7 +1232,7 @@ public class Player extends RPEntity {
 	 * Notifies this player that the given player has logged in.
 	 *
 	 * @param who
-	 *            The name of the player who has logged in.
+	 *			  The name of the player who has logged in.
 	 */
 	public void notifyOnline(String who) {
 		String playerOnline = "_" + who;
@@ -1234,7 +1263,7 @@ public class Player extends RPEntity {
 	 * Notifies this player that the given player has logged out.
 	 *
 	 * @param who
-	 *            The name of the player who has logged out.
+	 *			  The name of the player who has logged out.
 	 */
 	public void notifyOffline(String who) {
 		String playerOffline = "_" + who;
@@ -1265,7 +1294,7 @@ public class Player extends RPEntity {
 	 * Checks whether the player has completed the given quest or not.
 	 *
 	 * @param name
-	 *            The quest's name
+	 *			  The quest's name
 	 * @return true iff the quest has been completed by the player
 	 */
 	public boolean isQuestCompleted(String name) {
@@ -1284,7 +1313,7 @@ public class Player extends RPEntity {
 	 * started.
 	 *
 	 * @param name
-	 *            The quest's name
+	 *			  The quest's name
 	 * @return true iff the player has made any progress in the quest
 	 */
 	public boolean hasQuest(String name) {
@@ -1295,7 +1324,7 @@ public class Player extends RPEntity {
 	 * Gets the player's current status in the given quest.
 	 *
 	 * @param name
-	 *            The quest's name
+	 *			  The quest's name
 	 * @return the player's status in the quest
 	 */
 	public String getQuest(String name) {
@@ -1310,10 +1339,10 @@ public class Player extends RPEntity {
 	 * "done" has a special meaning: see isQuestComplete().
 	 *
 	 * @param name
-	 *            The quest's name
+	 *			  The quest's name
 	 * @param status
-	 *            the player's status in the quest. Set it to null to completely
-	 *            reset the player's status for the quest.
+	 *			  the player's status in the quest. Set it to null to completely
+	 *			  reset the player's status for the quest.
 	 */
 	public void setQuest(String name, String status) {
 		String oldStatus = getKeyedSlot("!quests", name);
@@ -1345,9 +1374,9 @@ public class Player extends RPEntity {
 	 * Is the named quest in one of the listed states?
 	 *
 	 * @param name
-	 *            quest
+	 *			  quest
 	 * @param states
-	 *            valid states
+	 *			  valid states
 	 * @return true, if the quest is in one of theses states, false otherwise
 	 */
 	public boolean isQuestInState(String name, String... states) {
@@ -1369,7 +1398,7 @@ public class Player extends RPEntity {
 	 * without the help of any other player.
 	 *
 	 * @param The
-	 *            name of the creature to check.
+	 *			  name of the creature to check.
 	 * @return true iff this player has ever killed this creature on his own.
 	 */
 	public boolean hasKilledSolo(String name) {
@@ -1386,7 +1415,7 @@ public class Player extends RPEntity {
 	 * of any other player.
 	 *
 	 * @param The
-	 *            name of the creature to check.
+	 *			  name of the creature to check.
 	 * @return true iff this player has ever killed this creature on his own.
 	 */
 	public boolean hasKilled(String name) {
@@ -1398,7 +1427,7 @@ public class Player extends RPEntity {
 	 * name.
 	 *
 	 * @param The
-	 *            name of the creature to check.
+	 *			  name of the creature to check.
 	 * @return either "solo", "shared", or null.
 	 */
 	public String getKill(String name) {
@@ -1409,9 +1438,9 @@ public class Player extends RPEntity {
 	 * Stores in which way the player has killed a creature with the given name.
 	 *
 	 * @param The
-	 *            name of the killed creature.
+	 *			  name of the killed creature.
 	 * @param mode
-	 *            either "solo", "shared", or null.
+	 *			  either "solo", "shared", or null.
 	 */
 	private void setKill(String name, String mode) {
 		setKeyedSlot("!kills", name, mode);
@@ -1444,7 +1473,7 @@ public class Player extends RPEntity {
 	 * creature of a specific type.
 	 *
 	 * @param name
-	 *            The name of the creature.
+	 *			  The name of the creature.
 	 */
 	public void removeKill(String name) {
 		setKeyedSlot("!kills", name, null);
@@ -1471,9 +1500,9 @@ public class Player extends RPEntity {
 	 * creature.
 	 *
 	 * @param item
-	 *            the poisonous item
+	 *			  the poisonous item
 	 * @return true iff the poisoning was effective, i.e. iff the player is not
-	 *         immune
+	 *		   immune
 	 */
 	public boolean poison(ConsumableItem item) {
 		if (isImmune) {
@@ -1594,18 +1623,18 @@ public class Player extends RPEntity {
 	 * Teleports this player to the given destination.
 	 *
 	 * @param zone
-	 *            The zone where this player should be teleported to.
+	 *			  The zone where this player should be teleported to.
 	 * @param x
-	 *            The destination's x coordinate
+	 *			  The destination's x coordinate
 	 * @param y
-	 *            The destination's y coordinate
+	 *			  The destination's y coordinate
 	 * @param dir
-	 *            The direction in which the player should look after
-	 *            teleporting, or null if the direction shouldn't change
+	 *			  The direction in which the player should look after
+	 *			  teleporting, or null if the direction shouldn't change
 	 * @param teleporter
-	 *            The player who initiated the teleporting, or null if no player
-	 *            is responsible. This is only to give feedback if something
-	 *            goes wrong. If no feedback is wanted, use null.
+	 *			  The player who initiated the teleporting, or null if no player
+	 *			  is responsible. This is only to give feedback if something
+	 *			  goes wrong. If no feedback is wanted, use null.
 	 * @return true iff teleporting was successful
 	 */
 	public boolean teleport(StendhalRPZone zone, int x, int y, Direction dir,
@@ -1634,7 +1663,7 @@ public class Player extends RPEntity {
 	 * doesn't remove anything.
 	 *
 	 * @param name
-	 *            The name of the item
+	 *			  The name of the item
 	 * @return true iff dropping the item was successful.
 	 */
 	public boolean dropAll(String name) {
@@ -1674,10 +1703,10 @@ public class Player extends RPEntity {
 	 * null parts, the current outfit will be kept for these parts.
 	 *
 	 * @param outfit
-	 *            The new outfit.
+	 *			  The new outfit.
 	 * @param temporary
-	 *            If true, the original outfit will be stored so that it can be
-	 *            restored later.
+	 *			  If true, the original outfit will be stored so that it can be
+	 *			  restored later.
 	 */
 	public void setOutfit(Outfit outfit, boolean temporary) {
 		// if the new outfit is temporary and the player is not wearing
@@ -1853,7 +1882,7 @@ public class Player extends RPEntity {
 	 * Set whether this player is a ghost (invisible/non-interactive).
 	 *
 	 * @param ghost
-	 *            <code>true</code> if a ghost.
+	 *			  <code>true</code> if a ghost.
 	 */
 	public void setGhost(final boolean ghost) {
 		if (ghost) {
@@ -1876,7 +1905,7 @@ public class Player extends RPEntity {
 	 * Set whether this player has teleclick enabled.
 	 *
 	 * @param teleclick
-	 *            <code>true</code> if teleclick enabled.
+	 *			  <code>true</code> if teleclick enabled.
 	 */
 	public void setTeleclickEnabled(final boolean teleclick) {
 		if (teleclick) {
@@ -1890,7 +1919,7 @@ public class Player extends RPEntity {
 	 * Called when this object is added to a zone.
 	 *
 	 * @param zone
-	 *            The zone this was added to.
+	 *			  The zone this was added to.
 	 */
 	@Override
 	public void onAdded(StendhalRPZone zone) {
@@ -1916,7 +1945,7 @@ public class Player extends RPEntity {
 	 * Called when this object is being removed from a zone.
 	 *
 	 * @param zone
-	 *            The zone this will be removed from.
+	 *			  The zone this will be removed from.
 	 */
 	@Override
 	public void onRemoved(StendhalRPZone zone) {

@@ -21,6 +21,7 @@ public class BuddyAction implements ActionListener {
 	public static void register() {
 		BuddyAction buddy = new BuddyAction();
 		StendhalRPRuleProcessor.register("addbuddy", buddy);
+		StendhalRPRuleProcessor.register("grumpy", buddy);
 		StendhalRPRuleProcessor.register("ignore", buddy);
 		StendhalRPRuleProcessor.register("removebuddy", buddy);
 		StendhalRPRuleProcessor.register("unignore", buddy);
@@ -35,7 +36,10 @@ public class BuddyAction implements ActionListener {
 			onIgnore(player, action);
 		} else if (action.get("type").equals("unignore")) {
 			onUnignore(player, action);
+		} else if (action.get("type").equals("grumpy")) {
+			onGrumpy(player, action);
 		}
+
 	}
 
 	private void onAddBuddy(Player player, RPAction action) {
@@ -104,5 +108,20 @@ public class BuddyAction implements ActionListener {
 			player.removeIgnore(who);
 		}
 
+	}
+
+	/**
+	 * Handle a Grumpy action.
+	 *
+	 * @param	player		The player.
+	 * @param	action		The action.
+	 */
+	protected void onGrumpy(Player player, RPAction action) {
+		if (action.has("reason")) {
+			player.setGrumpyMessage(action.get("reason"));
+		} else {
+			player.setGrumpyMessage(null);	
+		}
+		player.notifyWorldAboutChanges();
 	}
 }
