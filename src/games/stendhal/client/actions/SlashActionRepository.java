@@ -30,6 +30,7 @@ public class SlashActionRepository {
 		actions.put("gag", new GagAction());
 		actions.put("gmhelp_alter", new GMHelpAlterAction());
 		actions.put("gmhelp", new GMHelpAction());
+		actions.put("grumpy", new GrumpyAction());
 		actions.put("help", new HelpAction());
 		actions.put("ignore", new IgnoreAction());
 		actions.put("inspect", new InspectAction());
