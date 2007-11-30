@@ -6,9 +6,10 @@ import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.MockStendlRPWorld;
 import games.stendhal.server.maps.semos.plains.LittleBoyNPC;
 
-import marauroa.test.MockRPWorld;
+
 
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -27,7 +28,7 @@ public class PlinkToysTest {
 	
 	@Before
 	public void setUp() {
-		MockRPWorld.get().addRPZone(new StendhalRPZone("0_semos_plains_n"));
+		MockStendlRPWorld.get().addRPZone(new StendhalRPZone("0_semos_plains_n"));
 
 		npc = new SpeakerNPC("Plink");
 		NPCList.get().add(npc);
