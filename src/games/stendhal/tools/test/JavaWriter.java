@@ -2,10 +2,7 @@ package games.stendhal.tools.test;
 
 import java.io.PrintStream;
 
-import marauroa.common.Log4J;
-
 import org.apache.commons.lang.StringEscapeUtils;
-import org.junit.BeforeClass;
 
 /**
  * writes parts of the java file for a chat test case
@@ -30,6 +27,7 @@ class JavaWriter {
 		out.println("import org.junit.BeforeClass;");
 		out.println();
 		out.println("import utilities.QuestHelper;");
+		out.println();
 		out.println("public class TODO_Test {");
 		out.println();
 		out.println("\t@BeforeClass");
@@ -38,6 +36,9 @@ class JavaWriter {
 		out.println("\t}");
 		out.println();
 		out.println("\tpublic void testQuest() {");
+		out.println("\t\tPlayer player = null; // TODO");
+		out.println("\t\tSpeakerNPC npc = null; // TODO");
+		out.println("\t\tEngine en = null; // TODO");
 	}
 
 	public void emptyLine() {
@@ -57,7 +58,7 @@ class JavaWriter {
 	public void npc(String protagonist, String text) {
 		out.println("\t\tassertEquals(\""
 			+ StringEscapeUtils.escapeJava(text)
-			+ "\", " + protagonist + ".get(\"text\"));");
+			+ "\", npc.get(\"text\"));");
 	}
 	
 	public void footer() {
