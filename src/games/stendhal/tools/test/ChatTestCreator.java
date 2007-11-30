@@ -14,19 +14,28 @@ import java.io.PrintStream;
  */
 public class ChatTestCreator {
 	private BufferedReader br;
-	private PrintStream out;
 	private String playerName = "hendrikus"; // todo: do not hard code this
+	private JavaWriter writer;
 
 	public ChatTestCreator(BufferedReader br, PrintStream out) {
 		this.br = br;
-		this.out = out;
+		this.writer = new JavaWriter(out);
 	}
 
 	private void convert() throws IOException {
 		String line = br.readLine();
 		while (line != null) {
-			out.println("\t\t//" + line);
+			handleLine(line);
 			line = br.readLine();
+		}
+	}
+	
+	private void handleLine(String line) {
+		String trimmed = line.trim();
+		if (trimmed.equals("")) {
+			writer.emptyLine();
+		} else {
+			writer.comment(line);
 		}
 	}
 
