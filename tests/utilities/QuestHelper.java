@@ -19,6 +19,7 @@ public class QuestHelper {
 		Log4J.init();
 		PlayerHelper.generatePlayerRPClasses();
 		PlayerHelper.generateItemRPClasses();
+		PlayerHelper.generateNPCRPClasses();
 		assertTrue(MockStendhalRPRuleProcessor.get() instanceof MockStendhalRPRuleProcessor);
 		MockStendlRPWorld.get();
 	}
