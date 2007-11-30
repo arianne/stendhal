@@ -14,7 +14,6 @@ import java.io.PrintStream;
  */
 public class ChatTestCreator {
 	private BufferedReader br;
-	private String playerName = "hendrikus"; // todo: do not hard code this
 	private JavaWriter writer;
 
 	public ChatTestCreator(BufferedReader br, PrintStream out) {
@@ -31,9 +30,13 @@ public class ChatTestCreator {
 	}
 	
 	private void handleLine(String line) {
-		String trimmed = line.trim();
-		if (trimmed.equals("")) {
+		LineAnalyser analyser = new LineAnalyser(line);
+		if (analyser.isEmpty()) {
 			writer.emptyLine();
+		} else if (analyser.isPlayerSpeaking()) {
+			writer.player(analyser.getProtagonist(), analyser.getText());
+		} else if (analyser.isNPCSpeaking()) {
+			writer.npc(analyser.getProtagonist(), analyser.getText());
 		} else {
 			writer.comment(line);
 		}
