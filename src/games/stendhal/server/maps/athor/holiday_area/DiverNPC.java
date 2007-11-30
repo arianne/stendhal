@@ -8,7 +8,7 @@ import games.stendhal.server.entity.npc.SpeakerNPCFactory;
 public class DiverNPC extends SpeakerNPCFactory {
 
 	@Override
-	protected void createDialog(SpeakerNPC npc) {
+	public void createDialog(SpeakerNPC npc) {
 		npc.addGreeting("Hallo, my friend!");
 		npc.add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES, null,
 		        ConversationStates.ATTENDING, "No, thank you, I do not need help!", null);

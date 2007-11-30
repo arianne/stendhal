@@ -18,7 +18,7 @@ public class WifeNPC extends SpeakerNPCFactory {
 	}
 	
 	@Override
-	protected void createDialog(SpeakerNPC npc) {
+	public void createDialog(SpeakerNPC npc) {
 		npc.addGreeting("Hi!");
 		npc.addGoodbye("Bye!");
 	}

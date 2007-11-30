@@ -31,7 +31,7 @@ public class CoastConveyerNPC extends SpeakerNPCFactory {
 	protected Status ferryState;
 
 	@Override
-	protected void createDialog(final SpeakerNPC npc) {
+	public void createDialog(final SpeakerNPC npc) {
 		npc.addGoodbye("Goodbye!"); //TODO: sailor-style language
 		npc.addGreeting("Ahoy, Matey! How can I #help you?");
 		npc.addHelp("Ye can #disembark, but only when we're anchored a harbor. Just ask me for the #status if ye have no idea where we are.");

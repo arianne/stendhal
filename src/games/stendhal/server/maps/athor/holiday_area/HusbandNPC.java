@@ -18,7 +18,7 @@ public class HusbandNPC extends SpeakerNPCFactory {
 	}
 	
 	@Override
-	protected void createDialog(SpeakerNPC npc) {
+	public void createDialog(SpeakerNPC npc) {
 		npc.addGreeting("Hi!");
 		npc.addQuest("We have no tasks, we're here on holiday.");
 		npc.addJob("I am a coachman, but on this island there are no carriages!");

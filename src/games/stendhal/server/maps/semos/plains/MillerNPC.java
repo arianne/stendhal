@@ -15,7 +15,7 @@ import java.util.TreeMap;
 public class MillerNPC extends SpeakerNPCFactory {
 
 	@Override
-	protected void createDialog(SpeakerNPC npc) {
+	public void createDialog(SpeakerNPC npc) {
 		npc.addJob("I run this windmill, where I can #mill people's #grain into flour for them. I also supply the bakery in Semos.");
 		npc.addReply("grain",
 		        "There's a farm nearby; they usually let people harvest there. You'll need a scythe, of course.");

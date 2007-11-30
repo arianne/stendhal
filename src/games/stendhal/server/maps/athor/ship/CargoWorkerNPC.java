@@ -14,7 +14,7 @@ import java.util.Map;
 public class CargoWorkerNPC extends SpeakerNPCFactory {
 
 	@Override
-	protected void createDialog(final SpeakerNPC npc) {
+	public void createDialog(final SpeakerNPC npc) {
 		npc.addGreeting("Ahoy! Nice to see you in the cargo hold!");
 		npc.addJob("I'm taking care of the cargo. My job would be much easier without all these #rats.");
 		npc.addHelp("You could earn some money if you'd #offer me something to poison these damn #rats.");

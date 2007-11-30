@@ -15,7 +15,7 @@ import games.stendhal.server.entity.player.Player;
 public class GuardNPC extends SpeakerNPCFactory {
 
 	@Override
-	protected void createDialog(SpeakerNPC npc) {
+	public void createDialog(SpeakerNPC npc) {
 		npc.addGreeting("Greetings! How may I #help you?");
 		
 		npc.add(ConversationStates.ATTENDING,

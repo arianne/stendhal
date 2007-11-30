@@ -16,7 +16,7 @@ import java.util.TreeMap;
 public class ShopAssistantNPC extends SpeakerNPCFactory {
 
 	@Override
-	protected void createDialog(SpeakerNPC npc) {
+	public void createDialog(SpeakerNPC npc) {
 		npc.addJob("I'm the shop assistant at this bakery.");
 		npc.addReply("flour",
 		        "We usually get our #flour from a mill northeast of here, but the wolves ate their delivery boy! If you help us out by bringing some, we can #bake delicious bread for you.");

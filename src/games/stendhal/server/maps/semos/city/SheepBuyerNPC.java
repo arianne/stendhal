@@ -17,7 +17,7 @@ import java.util.Map;
 public class SheepBuyerNPC extends SpeakerNPCFactory {
 
 	@Override
-	protected void createDialog(SpeakerNPC npc) {
+	public void createDialog(SpeakerNPC npc) {
 		class SheepBuyerBehaviour extends BuyerBehaviour {
 			SheepBuyerBehaviour(Map<String, Integer> items) {
 				super(items);

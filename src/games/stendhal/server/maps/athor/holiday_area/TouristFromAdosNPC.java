@@ -18,7 +18,7 @@ public class TouristFromAdosNPC extends SpeakerNPCFactory {
 	}
 	
 	@Override
-	protected void createDialog(SpeakerNPC npc) {
+	public void createDialog(SpeakerNPC npc) {
 		npc.addGreeting("Nice to meet you!");
 		npc.addJob("I'm on holiday! Let's talk about anything else!");
 		npc.addHelp("Be careful! On this island is a desert where many adventurers found their death...");

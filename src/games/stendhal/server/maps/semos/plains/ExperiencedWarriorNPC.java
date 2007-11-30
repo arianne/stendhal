@@ -141,7 +141,7 @@ public class ExperiencedWarriorNPC extends SpeakerNPCFactory {
 			LOCATION_UNKNOWN_TEXTS);
 
 	@Override
-	protected void createDialog(SpeakerNPC npc) {
+	public void createDialog(SpeakerNPC npc) {
 
 		class StateInfo {
 			String creatureName;

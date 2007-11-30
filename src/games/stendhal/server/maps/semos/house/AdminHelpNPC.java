@@ -11,7 +11,7 @@ import games.stendhal.server.entity.npc.behaviour.adder.HealerAdder;
 public class AdminHelpNPC extends SpeakerNPCFactory {
 
 	@Override
-	protected void createDialog(SpeakerNPC npc) {
+	public void createDialog(SpeakerNPC npc) {
 		npc.addGreeting("Hello! You're looking particularly good today. In fact, you look great every day!");
 		npc.addJob("I'm here to make you feel happy. And you can come here easily if you #/teleportto me. Also, I can explain the #portals here.");
 		npc.addHelp("I can #heal you if you like. Or I can just say #nice #things. If you need to know about the #portals, just ask.");

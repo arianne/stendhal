@@ -109,7 +109,7 @@ public class SpeakerNPCFactory implements ConfigurableFactory {
 		}
 	}
 
-	protected void createDialog(SpeakerNPC npc) {
+	public void createDialog(SpeakerNPC npc) {
 
 	}
 

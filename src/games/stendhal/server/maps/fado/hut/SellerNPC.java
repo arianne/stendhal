@@ -12,7 +12,7 @@ import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
 public class SellerNPC extends SpeakerNPCFactory {
 
 	@Override
-	protected void createDialog(SpeakerNPC npc) {
+	public void createDialog(SpeakerNPC npc) {
 		npc.addGreeting();
 		npc.addJob("I make potions and antidotes, to #offer to warriors.");
 		npc.addHelp("You can take one of my prepared medicines with you on your travels; just ask for an #offer.");

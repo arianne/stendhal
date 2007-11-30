@@ -7,7 +7,7 @@ import games.stendhal.server.entity.npc.SpeakerNPCFactory;
 public class SwimmerNPC extends SpeakerNPCFactory {
 
 	@Override
-	protected void createDialog(SpeakerNPC npc) {
+	public void createDialog(SpeakerNPC npc) {
 		npc.addGreeting("Don't disturb me, I'm trying to establish a record!");
 		npc.addQuest("I don't have a task for you, I'm too busy.");
 		npc.addJob("I am a swimmer!");

@@ -24,7 +24,7 @@ import java.util.TreeMap;
 public class BlacksmithNPC extends SpeakerNPCFactory {
 
 	@Override
-	protected void createDialog(SpeakerNPC npc) {
+	public void createDialog(SpeakerNPC npc) {
 		npc.addReply("wood",
 		        "I need some wood to keep my furnace lit. You can find any amount of it just lying around in the forest.");
 

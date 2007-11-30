@@ -20,7 +20,7 @@ import java.util.TreeMap;
 public class LifeguardNPC extends SpeakerNPCFactory {
 
 	@Override
-	protected void createDialog(SpeakerNPC npc) {
+	public void createDialog(SpeakerNPC npc) {
 		npc.addJob("I'm one of the lifeguards at this beach. And as you can see, I also take care of the men's dressing room.");
 		npc.addHelp("Just tell me if you want to #borrow #trunks!");
 		npc.addGoodbye("Have fun!");

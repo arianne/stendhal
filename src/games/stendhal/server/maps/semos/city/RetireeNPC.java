@@ -14,7 +14,7 @@ import games.stendhal.server.entity.player.Player;
 public class RetireeNPC  extends SpeakerNPCFactory {
 
 	@Override
-	protected void createDialog(SpeakerNPC npc) {
+	public void createDialog(SpeakerNPC npc) {
 		npc.addGreeting();
 		npc.addJob("Ha ha! Job? I retired decades ago! Ha ha!");
 		npc.addHelp("I can't help you, but you can help Stendhal; tell all your friends, and help out with development! Visit http://arianne.sourceforge.net and see how you can help!");

@@ -18,7 +18,7 @@ public class SunbatherNPC extends SpeakerNPCFactory {
 	}
 	
 	@Override
-	protected void createDialog(SpeakerNPC npc) {
+	public void createDialog(SpeakerNPC npc) {
 		npc.addGreeting("Hey there!");
 		npc.addQuest("I don't have a task for you, I'm perfectly happy!");
 		npc.addJob("Don't remind me of my job, I'm on holiday!");

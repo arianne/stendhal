@@ -29,7 +29,7 @@ Status ferrystate;
 	}
 
 	@Override
-	protected void createDialog(final SpeakerNPC npc) {
+	public void createDialog(final SpeakerNPC npc) {
 		npc.addGreeting("Yo-ho-ho, me bucko!");
 		npc.addGoodbye("So long...");
 		// if you can make up a help message that is more helpful to the,

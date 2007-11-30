@@ -14,7 +14,7 @@ import java.util.TreeMap;
 public class HealerNPC extends SpeakerNPCFactory {
 
 	@Override
-	protected void createDialog(SpeakerNPC npc) {
+	public void createDialog(SpeakerNPC npc) {
 	    npc.addJob("Long ago I was a priest of this church. But my #ideas were not approved of by all."); 
 	    npc.addReply("ideas",
 		        "I have read many texts and learnt of strange ways. My healing powers became so strong I can now #concoct a special #mega_potion for warriors like you.");

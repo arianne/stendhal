@@ -13,7 +13,7 @@ import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
 public class HealerNPC extends SpeakerNPCFactory {
 
 	@Override
-	protected void createDialog(SpeakerNPC npc) {
+	public void createDialog(SpeakerNPC npc) {
 		npc.addGreeting();
 		npc.addJob("My special powers help me to heal wounded people. I also sell potions and antidotes.");
 		npc.addHelp("I can #heal you here for free, or you can take one of my prepared medicines with you on your travels; just ask for an #offer.");

@@ -17,7 +17,7 @@ import java.util.Map;
 public class SheepBuyerNPC extends SpeakerNPCFactory {
 
 	@Override
-	protected void createDialog(SpeakerNPC npc) {
+	public void createDialog(SpeakerNPC npc) {
 		// TODO: The code is similar to Sato's SheepBuyerBehaviour.
 		// Only the phrasing is different, and Sato doesn't buy
 		// skinny sheep. Get rid of the code duplication.

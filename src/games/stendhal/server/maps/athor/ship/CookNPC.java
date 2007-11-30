@@ -13,7 +13,7 @@ import java.util.Map;
 public class CookNPC extends SpeakerNPCFactory {
 
 	@Override
-	protected void createDialog(final SpeakerNPC npc) {
+	public void createDialog(final SpeakerNPC npc) {
 		npc.addGreeting("Ahoy! Welcome to the galley!");
 		npc.addJob("I'm running the galley on this ship. I #offer fine foods for the passengers and alcohol for the crew.");
 		npc.addHelp("The crew mates drink beer and grog all day. But if you want some more exclusive drinks, go to the cocktail bar at Athor beach.");

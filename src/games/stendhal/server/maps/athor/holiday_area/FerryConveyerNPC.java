@@ -30,7 +30,7 @@ public class FerryConveyerNPC extends SpeakerNPCFactory {
 	}
 
 	@Override
-	protected void createDialog(final SpeakerNPC npc) {
+	public void createDialog(final SpeakerNPC npc) {
 		npc.addGoodbye("Goodbye!");
 		npc
 				.addGreeting("Welcome to the Athor #ferry service! How can I #help you?");

@@ -31,7 +31,7 @@ public class FerryConveyerNPC extends SpeakerNPCFactory {
 		return shipZone;
 	}
 	@Override
-	protected void createDialog(final SpeakerNPC npc) {
+	public void createDialog(final SpeakerNPC npc) {
 		npc.addGoodbye("Goodbye!");
 		npc.addGreeting("Welcome to the #ferry service to #Athor #island! How can I #help you?");
 		npc.addHelp("You can #board the #ferry for only "
