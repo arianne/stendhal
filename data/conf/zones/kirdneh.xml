@@ -59,7 +59,7 @@
     <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
     <attribute name="description">You see a sizzling barbecue.</attribute>
   </entity>
-  <portal x="31" y="26" ref="26">
+ <!-- <portal x="31" y="26" ref="26">
    <destination zone="int_kirdneh_house_26" ref="entrance"/>
   </portal>
   <portal x="51" y="26" ref="27">
@@ -112,11 +112,15 @@
   </portal>
   <portal x="79" y="89" ref="43">
    <destination zone="int_kirdneh_house_43" ref="entrance"/>
-  </portal>
+  </portal>-->
   <portal x="96" y="89" ref="44">
+   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
+    <parameter name="key">private_key_44</parameter>
+    <parameter name="rejected">The door is locked.</parameter>
+   </implementation>
    <destination zone="int_kirdneh_house_44" ref="entrance"/>
   </portal>
-  <portal x="32" y="105" ref="45">
+<!--  <portal x="32" y="105" ref="45">
    <destination zone="int_kirdneh_house_45" ref="entrance"/>
   </portal>
   <portal x="50" y="105" ref="46">
@@ -125,7 +129,7 @@
   <portal x="77" y="104" ref="47">
    <destination zone="int_kirdneh_house_47" ref="entrance"/>
   </portal>
-<!-- <portal x="91" y="104" ref="48">
+  <portal x="91" y="104" ref="48">
    <destination zone="int_kirdneh_house_48" ref="entrance"/>
   </portal>
   <portal x="101" y="104" ref="49">
@@ -133,7 +137,7 @@
   </portal> -->
  </zone>
 
- <zone name="int_kirdneh_house_26" file="interiors/kirdneh/house_26.tmx">
+<!-- <zone name="int_kirdneh_house_26" file="interiors/kirdneh/house_26.tmx">
   <portal x="19" y="23" ref="entrance">
    <destination zone="0_kirdneh_city" ref="26"/>
   </portal>
@@ -246,13 +250,13 @@
   <portal x="22" y="23" ref="entrance">
    <destination zone="0_kirdneh_city" ref="43"/>
   </portal>
- </zone>
+ </zone>-->
  <zone name="int_kirdneh_house_44" file="interiors/kirdneh/house_44.tmx">
   <portal x="20" y="23" ref="entrance">
    <destination zone="0_kirdneh_city" ref="44"/>
   </portal>
  </zone>
- <zone name="int_kirdneh_house_45" file="interiors/kirdneh/house_45.tmx">
+ <!--<zone name="int_kirdneh_house_45" file="interiors/kirdneh/house_45.tmx">
   <portal x="19" y="23" ref="entrance">
    <destination zone="0_kirdneh_city" ref="45"/>
   </portal>
@@ -267,7 +271,7 @@
    <destination zone="0_kirdneh_city" ref="47"/>
   </portal>
  </zone>
-<!-- <zone name="int_kirdneh_house_48" file="interiors/kirdneh/house_48.tmx">
+ <zone name="int_kirdneh_house_48" file="interiors/kirdneh/house_48.tmx">
   <portal x="18" y="23" ref="entrance">
    <destination zone="0_kirdneh_city" ref="48"/>
   </portal>

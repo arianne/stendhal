@@ -3240,6 +3240,20 @@
     </equipable>
   </item>
 
+ <item name="private_key_44">
+    <type class="key" subclass="navy" tileid="-1"/>
+    <description>You see a private key to House 44 in Kirdneh City.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="keyring"/>
+    </equipable>
+  </item>
+
+
  <item name="private_key_50">
     <type class="key" subclass="yellow" tileid="-1"/>
     <description>You see a private key to House 50 in Ados City N.</description>
