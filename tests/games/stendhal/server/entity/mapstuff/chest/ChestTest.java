@@ -1,8 +1,11 @@
-package games.stendhal.server.entity;
+package games.stendhal.server.entity.mapstuff.chest;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import games.stendhal.server.entity.PassiveEntity;
+import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Corpse;
 import marauroa.common.game.SlotIsFullException;
 

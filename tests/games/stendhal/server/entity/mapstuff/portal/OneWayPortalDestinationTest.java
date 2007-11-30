@@ -1,8 +1,10 @@
-package games.stendhal.server.entity.portal;
+package games.stendhal.server.entity.mapstuff.portal;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination;
+import games.stendhal.server.entity.mapstuff.portal.Portal;
 
 import org.junit.After;
 import org.junit.AfterClass;

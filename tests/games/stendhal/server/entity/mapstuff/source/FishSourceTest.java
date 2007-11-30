@@ -1,9 +1,10 @@
-package games.stendhal.server.entity;
+package games.stendhal.server.entity.mapstuff.source;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import games.stendhal.server.entity.item.StackableItem;
+import games.stendhal.server.entity.mapstuff.source.FishSource;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
