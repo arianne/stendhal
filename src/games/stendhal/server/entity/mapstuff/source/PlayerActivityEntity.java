@@ -4,11 +4,13 @@
  * $Id$
  */
 
-package games.stendhal.server.entity;
+package games.stendhal.server.entity.mapstuff.source;
 
 //
 //
 
+import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
