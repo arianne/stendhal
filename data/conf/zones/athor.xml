@@ -46,7 +46,7 @@
        </entity>
 
        <entity x="34" y="39">
-    	   <implementation class-name="games.stendhal.server.entity.FishSource">
+    	   <implementation class-name="games.stendhal.server.entity.mapstuff.source.FishSource">
      	   <parameter name="species">mackerel</parameter>
     	   </implementation>
   	   </entity>
@@ -54,7 +54,7 @@
 
      <zone name="0_athor_island_w" level="0" x="500896" y="500384" file="Level 0/athor/island_w.tmx">
      	<entity x="90" y="45">
-    		<implementation class-name="games.stendhal.server.entity.FishSource">
+    		<implementation class-name="games.stendhal.server.entity.mapstuff.source.FishSource">
      		<parameter name="species">clownfish</parameter>
     		</implementation>
   		</entity>
@@ -130,11 +130,11 @@
          <attribute name="hidden"/>
        </portal>
        <portal x="60" y="66" ref="pool">
-         <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+         <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
        </portal>
        
        <portal x="63" y="64" ref="diving_board_destination">
-         <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+         <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
        </portal>
        <portal x="63" y="67" ref="diving_board">
          <destination zone="0_athor_island" ref="diving_board_destination"/>
@@ -306,32 +306,32 @@
        </entity>
 
        <entity x="83" y="42">
-         <implementation class-name="games.stendhal.server.entity.Sign"/>
+         <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
          <attribute name="text">Changing Room for Women</attribute>
        </entity>
 
        <entity x="88" y="42">
-         <implementation class-name="games.stendhal.server.entity.Sign"/>
+         <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
          <attribute name="text">Changing Room for Men</attribute>
        </entity>
 
        <entity x="112" y="96">
-         <implementation class-name="games.stendhal.server.entity.Sign"/>
+         <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
          <attribute name="text">DANGER! Quicksand!</attribute>
        </entity>
 
        <entity x="119" y="89">
-         <implementation class-name="games.stendhal.server.entity.Sign"/>
+         <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
          <attribute name="text">DANGER! Quicksand!</attribute>
        </entity>
 
        <entity x="120" y="104">
-         <implementation class-name="games.stendhal.server.entity.Sign"/>
+         <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
          <attribute name="text">DANGER! Quicksand!</attribute>
        </entity>
 
        <entity x="12" y="88">
-    		<implementation class-name="games.stendhal.server.entity.FishSource">
+    		<implementation class-name="games.stendhal.server.entity.mapstuff.source.FishSource">
      		<parameter name="species">surgeonfish</parameter>
     		</implementation>
   		</entity>
@@ -400,7 +400,7 @@
 
         <!-- This must be after the NPC configurator -->
         <entity x="3" y="10">
-          <implementation class-name="games.stendhal.server.entity.NPCOwnedChest">
+          <implementation class-name="games.stendhal.server.entity.mapstuff.chest.NPCOwnedChest">
             <parameter name="npc">David</parameter>
           </implementation>
         </entity>
@@ -412,7 +412,7 @@
        </portal>
        <configurator class-name="games.stendhal.server.maps.athor.dressingroom_female.LifeguardNPC"/>
        <entity x="12" y="10">
-         <implementation class-name="games.stendhal.server.entity.NPCOwnedChest">
+         <implementation class-name="games.stendhal.server.entity.mapstuff.chest.NPCOwnedChest">
            <parameter name="npc">Pam</parameter>
          </implementation>
        </entity>
@@ -454,7 +454,7 @@
    </entity>
 
    <entity x="24" y="35">
-         <implementation class-name="games.stendhal.server.entity.Sign"/>
+         <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
          <attribute name="text">
 BLACKJACK RULES
 
@@ -473,14 +473,14 @@ You get your stake back when there is a draw. If you win, you get the double of 
     <configurator class-name="games.stendhal.server.maps.athor.cave.MinotaurCreature"/>
     <configurator class-name="games.stendhal.server.maps.athor.cave.GhostNPC"/>
     <portal x="118" y="96" ref="quicksand_out">
-      <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
     </portal>
     <portal x="60" y="66" ref="under_pool">
       <destination zone="0_athor_island" ref="pool"/>
     </portal>
     <portal x="124" y="118" ref="labyrinth_locked_door">
       <destination zone="-1_athor_island_e" ref="labyrinth2"/>
-      <implementation class-name="games.stendhal.server.entity.portal.LockedDoor">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.LockedDoor">
         <parameter name="class">skulldoor_w</parameter>
         <parameter name="key">minotaur_key</parameter>
       </implementation>
@@ -524,7 +524,7 @@ You get your stake back when there is a draw. If you win, you get the double of 
 
     <!-- This must be after the NPC factory -->
    <entity x="22" y="30">
-     <implementation class-name="games.stendhal.server.entity.NPCOwnedChest">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.chest.NPCOwnedChest">
        <parameter name="npc">Klaas</parameter>
      </implementation>
    </entity>

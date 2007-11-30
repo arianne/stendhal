@@ -13,7 +13,7 @@
    <destination zone="1_kikareukin_cave" ref="entrance"/>
   </portal>
   <portal x="68" y="132" ref="kikareukin_exit">
-   <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
   </portal>
  </zone>
 
@@ -54,10 +54,10 @@
   </portal>
  <!-- wishing well-->
   <entity x="87" y="61">
-    <implementation class-name="games.stendhal.server.entity.WellSource"/>
+    <implementation class-name="games.stendhal.server.entity.mapstuff.source.WellSource"/>
   </entity>
   <entity x="88" y="61">
-    <implementation class-name="games.stendhal.server.entity.WellSource"/>
+    <implementation class-name="games.stendhal.server.entity.mapstuff.source.WellSource"/>
   </entity>
  </zone>
 
@@ -66,7 +66,7 @@
 
  <zone name="0_semos_mountain_n_w2" level="0" x="499872" y="499872" file="Level 0/semos/mountain_n_w2.tmx">
   <entity x="39" y="23">
-   <implementation class-name="games.stendhal.server.entity.Sign"/>
+   <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
    <attribute name="text">Warning: The mountain pass has been blocked by a landslide!</attribute>
   </entity>
  </zone>
@@ -97,14 +97,14 @@
 
   <portal x="92" y="101" ref="catacombs_entrance">
    <destination zone="-1_semos_catacombs_se" ref="entrance"/>
-   <implementation class-name="games.stendhal.server.entity.portal.QuestCheckingPortal">
+   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.QuestCheckingPortal">
     <parameter name="quest">vs_quest</parameter>
     <parameter name="rejected">You find it hard to enter. Perhaps you're not
   prepared for what is below.</parameter>
    </implementation>
   </portal>
   <entity x="82" y="63">
-    <implementation class-name="games.stendhal.server.entity.Sign"/>
+    <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
     <attribute name="text">
 North: Old mine
 East: Mill
@@ -114,10 +114,10 @@ South: Semos city
   </entity>
 
   <entity x="101" y="74">
-    <implementation class-name="games.stendhal.server.entity.WellSource"/>
+    <implementation class-name="games.stendhal.server.entity.mapstuff.source.WellSource"/>
   </entity>
   <entity x="102" y="74">
-    <implementation class-name="games.stendhal.server.entity.WellSource"/>
+    <implementation class-name="games.stendhal.server.entity.mapstuff.source.WellSource"/>
   </entity>
  
  </zone>
@@ -133,7 +133,7 @@ South: Semos city
    </entity>
 
   <entity x="25" y="46">
-    <implementation class-name="games.stendhal.server.entity.Sign"/>
+    <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
     <attribute name="text">
 Southwest: Semos city
 East: Ados (road destroyed)
@@ -163,7 +163,7 @@ Southeast: Farmhouse
   </portal>
 
   <entity x="53" y="26">
-    <implementation class-name="games.stendhal.server.entity.FishSource">
+    <implementation class-name="games.stendhal.server.entity.mapstuff.source.FishSource">
      <parameter name="species">roach</parameter>
     </implementation>
   </entity>
@@ -190,7 +190,7 @@ Southeast: Farmhouse
   <configurator class-name="games.stendhal.server.maps.semos.village.SheepSellerNPC" />
 
   <entity x="26" y="41">
-   <implementation class-name="games.stendhal.server.entity.Sign"/>
+   <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
    <attribute name="text">
 NISHIYA'S SHEEP FARM
 
@@ -199,14 +199,14 @@ Buy sheep from Nishiya to get the best prices!
   </entity>
 
   <entity x="43" y="40">
-   <implementation class-name="games.stendhal.server.entity.Sign"/>
+   <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
    <attribute name="text">
 Talk to Sato about selling your sheep. His prices aren't very good, but unfortunately it's a buyer's market... He pays more for bigger sheep (try to get a weight of at least 100).
    </attribute>
   </entity>
 
   <entity x="23" y="61">
-   <implementation class-name="games.stendhal.server.entity.Sign"/>
+   <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
    <attribute name="text">
 TO THE PLAINS
 
@@ -215,7 +215,7 @@ Shepherds please note: keep watch for the wolves while searching for berries her
   </entity>
 
   <entity x="23" y="48">
-   <implementation class-name="games.stendhal.server.entity.Sign"/>
+   <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
    <attribute name="text">
 West: Jail
 East: Semos city
@@ -225,7 +225,7 @@ South: Or'ril castle
   </entity>
 
   <entity x="24" y="49">
-   <implementation class-name="games.stendhal.server.entity.Sign"/>
+   <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
    <attribute name="text">Welcome to Semos</attribute>
    <attribute name="class">transparent</attribute>
    <attribute name="resistance">0</attribute>
@@ -233,35 +233,35 @@ South: Or'ril castle
 
   <!-- writing on the wooden arch -->
   <entity x="24" y="49">
-   <implementation class-name="games.stendhal.server.entity.Sign"/>
+   <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
    <attribute name="text">Welcome to Semos</attribute>
    <attribute name="class">transparent</attribute>
    <attribute name="resistance">0</attribute>
   </entity>
 
   <entity x="25" y="49">
-   <implementation class-name="games.stendhal.server.entity.Sign"/>
+   <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
    <attribute name="text">Welcome to Semos</attribute>
    <attribute name="class">transparent</attribute>
    <attribute name="resistance">0</attribute>
   </entity>
 
   <entity x="26" y="49">
-   <implementation class-name="games.stendhal.server.entity.Sign"/>
+   <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
    <attribute name="text">Welcome to Semos</attribute>
    <attribute name="class">transparent</attribute>
    <attribute name="resistance">0</attribute>
   </entity>
 
   <entity x="27" y="49">
-   <implementation class-name="games.stendhal.server.entity.Sign"/>
+   <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
    <attribute name="text">Welcome to Semos</attribute>
    <attribute name="class">transparent</attribute>
    <attribute name="resistance">0</attribute>
   </entity>
 
   <entity x="60" y="47">
-   <implementation class-name="games.stendhal.server.entity.Sign"/>
+   <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
    <attribute name="text">
 TO SEMOS
 
@@ -270,7 +270,7 @@ Mature sheep wanted: please speak to Sato.
   </entity>
 
   <entity x="16" y="35">
-   <implementation class-name="games.stendhal.server.entity.Sign"/>
+   <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
    <attribute name="text">
 [CLOSED]
 
@@ -459,7 +459,7 @@ Awww... so you're a coward, then? Huh.
 
 <!-- TEST
   <entity x="35" y="35">
-   <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
+   <implementation class-name="games.stendhal.server.entity.mapstuff.area.DamagingArea">
     <parameter name="width">1</parameter>
     <parameter name="height">3</parameter>
     <parameter name="interval">3</parameter>
@@ -472,10 +472,10 @@ Awww... so you're a coward, then? Huh.
 
  <!-- wishing well outside Bank-->
   <entity x="15" y="29">
-    <implementation class-name="games.stendhal.server.entity.WellSource"/>
+    <implementation class-name="games.stendhal.server.entity.mapstuff.source.WellSource"/>
   </entity>
   <entity x="16" y="29">
-    <implementation class-name="games.stendhal.server.entity.WellSource"/>
+    <implementation class-name="games.stendhal.server.entity.mapstuff.source.WellSource"/>
   </entity>
 
 
@@ -485,7 +485,7 @@ Awww... so you're a coward, then? Huh.
 
  <!--for the admin house -->
   <portal x="59" y="37" ref="house_exit_1">
-   <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
   </portal>
 
   <portal x="53" y="37" ref="temple_entrance">
@@ -529,7 +529,7 @@ Awww... so you're a coward, then? Huh.
   </portal>
 
   <entity x="4" y="41">
-   <implementation class-name="games.stendhal.server.entity.Sign"/>
+   <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
    <attribute name="text">
 TO OLD SEMOS VILLAGE
 
@@ -538,7 +538,7 @@ Shepherds wanted: please ask Nishiya
   </entity>
 
   <entity x="26" y="40">
-   <implementation class-name="games.stendhal.server.entity.Sign"/>
+   <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
    <attribute name="text">
 DUNGEONS
 
@@ -547,7 +547,7 @@ Caution: These dungeons contain many rats, and more dangerous creatures. Enter a
   </entity>
 
   <entity x="41" y="20">
-   <implementation class-name="games.stendhal.server.entity.Sign"/>
+   <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
    <attribute name="text">Assistance needed, to help with pizza deliveries.</attribute>
   </entity>
 
@@ -555,7 +555,7 @@ Caution: These dungeons contain many rats, and more dangerous creatures. Enter a
 <!-- TEST - Make the bird statue in semos a semi-safe zone -->
 <!--
   <entity x="26" y="40">
-   <implementation class-name="games.stendhal.server.entity.area.CreatureProtectionArea">
+   <implementation class-name="games.stendhal.server.entity.mapstuff.area.CreatureProtectionArea">
     <parameter name="width">6</parameter>
     <parameter name="height">6</parameter>
     <parameter name="default">block</parameter>
@@ -570,7 +570,7 @@ Caution: These dungeons contain many rats, and more dangerous creatures. Enter a
 -->
 
   <entity x="44" y="62">
-   <implementation class-name="games.stendhal.server.entity.Sign"/>
+   <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
    <attribute name="text">
 TO THE PLAINS
 
@@ -585,7 +585,7 @@ Shepherds please note: keep watch for the wolves while searching for berries her
     <configurator class-name="games.stendhal.server.maps.semos.tavern.TraderNPC" />
 
     <entity x="2" y="11">
-     <implementation class-name="games.stendhal.server.entity.ShopSign">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
       <parameter name="shop">sellstuff</parameter>
       <parameter name="title">-- I sell --</parameter>
      </implementation>
@@ -594,7 +594,7 @@ Shepherds please note: keep watch for the wolves while searching for berries her
     </entity>
 
     <entity x="3" y="11">
-     <implementation class-name="games.stendhal.server.entity.ShopSign">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
       <parameter name="shop">buystuff</parameter>
       <parameter name="title">-- I buy --</parameter>
      </implementation>
@@ -606,7 +606,7 @@ Shepherds please note: keep watch for the wolves while searching for berries her
 
     <!-- This must be after the NPC configurator -->
     <entity x="2" y="16">
-     <implementation class-name="games.stendhal.server.entity.NPCOwnedChest">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.chest.NPCOwnedChest">
       <parameter name="npc">Xin Blanca</parameter>
      </implementation>
     </entity>
@@ -624,7 +624,7 @@ Shepherds please note: keep watch for the wolves while searching for berries her
     <configurator class-name="games.stendhal.server.maps.semos.tavern.RareWeaponsSellerNPC" />
 
     <entity x="11" y="4">
-     <implementation class-name="games.stendhal.server.entity.ShopSign">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
       <parameter name="shop">buyrare</parameter>
       <parameter name="title">-- Buying --</parameter>
      </implementation>
@@ -644,14 +644,14 @@ Shepherds please note: keep watch for the wolves while searching for berries her
     <configurator class-name="games.stendhal.server.maps.semos.temple.TelepathNPC" />
 
     <portal x="11" y="8" ref="orb_left">
-     <implementation class-name="games.stendhal.server.entity.portal.QuestCheckingPortal">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.QuestCheckingPortal">
       <parameter name="quest">learn_scrying</parameter>
       <parameter name="rejected">Tell Ilisa #yes you have used the ball.</parameter>
       </implementation>
      <destination zone="0_orril_mountain_w" ref="orb_destination"/>
     </portal>
    <portal x="12" y="8" ref="orb_right">
-    <implementation class-name="games.stendhal.server.entity.portal.QuestCheckingPortal">
+    <implementation class-name="games.stendhal.server.entity.mapstuff.portal.QuestCheckingPortal">
      <parameter name="quest">learn_scrying</parameter>
      <parameter name="rejected">Tell Ilisa #yes you have used the ball.</parameter>
      </implementation>
@@ -675,7 +675,7 @@ Shepherds please note: keep watch for the wolves while searching for berries her
     </portal>
 
     <portal x="11" y="10" ref="restart_life">
-   	 <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+   	 <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
   	</portal>
    </zone>
 
@@ -724,7 +724,7 @@ Shepherds please note: keep watch for the wolves while searching for berries her
     <configurator class-name="games.stendhal.server.maps.semos.library.LibrarianNPC" />
 
 	<entity x="25" y="18">
-    	<implementation class-name="games.stendhal.server.entity.Sign"/>
+    	<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
       	<attribute name="text">
 QUOTES OF FAMOUS FISHERMEN
 
@@ -763,7 +763,7 @@ Holy mackerel! These chips are tasty.
      <destination zone="0_semos_city" ref="library_entrance_right"/>
     </portal>
     <entity x="26" y="5">
-     <implementation class-name="games.stendhal.server.entity.Sign"/>
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
      <attribute name="text">
        The island of Athor is famous for its golden beaches. Having long been an untouched piece of nature, it has become a holiday paradise since a ferry service was installed. Little do the tourists know about the dangers that lurk under the surface...
      </attribute>
@@ -771,7 +771,7 @@ Holy mackerel! These chips are tasty.
     </entity>
 
     <entity x="27" y="5">
-     <implementation class-name="games.stendhal.server.entity.Sign"/>
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
      <attribute name="text">
        The dwarf mine west of Or'ril castle is one of the main iron ore resources of Faiumoni. Even rumors of a dragon living under the earth cannot stop the industrious dwarves from digging further and further into the mountain.
      </attribute>
@@ -779,7 +779,7 @@ Holy mackerel! These chips are tasty.
     </entity>
 
     <entity x="4" y="28">
-     <implementation class-name="games.stendhal.server.entity.Sign"/>
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
      <attribute name="text">
        Adventurers have described the effects of poisonous creatures and mushrooms as not only unhealthy, but also as confusing for the orientation. They recommend always to take an antidote with you.
      </attribute>
@@ -827,122 +827,122 @@ Holy mackerel! These chips are tasty.
     </portal>
 <!-- for the admin house-->
     <portal x="24" y="8" ref="house_exit_3">
-     <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
     </portal>
 
     <entity x="2" y="2">
-     <implementation class-name="games.stendhal.server.entity.PersonalChest"/>
+     <implementation class-name="games.stendhal.server.entity.mapstuff.chest.PersonalChest"/>
     </entity>
     <entity x="3" y="2">
-     <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
+     <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
      <attribute name="description">You see a conveniently placed table.</attribute>
     </entity>
     <entity x="2" y="2">
-     <implementation class-name="games.stendhal.server.entity.area.OnePlayerArea">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.area.OnePlayerArea">
       <parameter name="width">2</parameter>
       <parameter name="height">4</parameter>
      </implementation>
     </entity>
 
     <entity x="9" y="2">
-     <implementation class-name="games.stendhal.server.entity.PersonalChest"/>
+     <implementation class-name="games.stendhal.server.entity.mapstuff.chest.PersonalChest"/>
     </entity>
     <entity x="8" y="2">
-     <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
+     <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
      <attribute name="description">You see a conveniently placed table.</attribute>
     </entity>
 
     <entity x="8" y="2">
-     <implementation class-name="games.stendhal.server.entity.area.OnePlayerArea">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.area.OnePlayerArea">
       <parameter name="width">2</parameter>
       <parameter name="height">4</parameter>
      </implementation>
     </entity>
 
     <entity x="14" y="2">
-     <implementation class-name="games.stendhal.server.entity.PersonalChest"/>
+     <implementation class-name="games.stendhal.server.entity.mapstuff.chest.PersonalChest"/>
     </entity>    
     <entity x="15" y="2">
-     <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
+     <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
      <attribute name="description">You see a conveniently placed table.</attribute>
     </entity>
 
     <entity x="14" y="2">
-     <implementation class-name="games.stendhal.server.entity.area.OnePlayerArea">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.area.OnePlayerArea">
       <parameter name="width">2</parameter>
       <parameter name="height">4</parameter>
      </implementation>
     </entity>
 
     <entity x="21" y="2">
-     <implementation class-name="games.stendhal.server.entity.PersonalChest"/>
+     <implementation class-name="games.stendhal.server.entity.mapstuff.chest.PersonalChest"/>
     </entity>
     <entity x="20" y="2">
-     <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
+     <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
      <attribute name="description">You see a conveniently placed table.</attribute>
     </entity>
     <entity x="20" y="2">
-     <implementation class-name="games.stendhal.server.entity.area.OnePlayerArea">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.area.OnePlayerArea">
       <parameter name="width">2</parameter>
       <parameter name="height">4</parameter>
      </implementation>
     </entity>
 
     <entity x="2" y="15">
-     <implementation class-name="games.stendhal.server.entity.PersonalChest"/>
+     <implementation class-name="games.stendhal.server.entity.mapstuff.chest.PersonalChest"/>
     </entity>
     <entity x="3" y="15">
-     <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
+     <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
      <attribute name="description">You see a conveniently placed table.</attribute>
     </entity>
 
     <entity x="2" y="12">
-     <implementation class-name="games.stendhal.server.entity.area.OnePlayerArea">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.area.OnePlayerArea">
       <parameter name="width">2</parameter>
       <parameter name="height">4</parameter>
      </implementation>
     </entity>
 
     <entity x="9" y="15">
-     <implementation class-name="games.stendhal.server.entity.PersonalChest"/>
+     <implementation class-name="games.stendhal.server.entity.mapstuff.chest.PersonalChest"/>
     </entity>
     <entity x="8" y="15">
-     <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
+     <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
      <attribute name="description">You see a conveniently placed table.</attribute>
     </entity>
 
     <entity x="8" y="12">
-     <implementation class-name="games.stendhal.server.entity.area.OnePlayerArea">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.area.OnePlayerArea">
       <parameter name="width">2</parameter>
       <parameter name="height">4</parameter>
      </implementation>
     </entity>
 
     <entity x="14" y="15">
-     <implementation class-name="games.stendhal.server.entity.PersonalChest"/>
+     <implementation class-name="games.stendhal.server.entity.mapstuff.chest.PersonalChest"/>
     </entity>
     <entity x="15" y="15">
-     <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
+     <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
      <attribute name="description">You see a conveniently placed table.</attribute>
     </entity>
 
     <entity x="14" y="12">
-     <implementation class-name="games.stendhal.server.entity.area.OnePlayerArea">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.area.OnePlayerArea">
       <parameter name="width">2</parameter>
       <parameter name="height">4</parameter>
      </implementation>
     </entity>
 
     <entity x="21" y="15">
-     <implementation class-name="games.stendhal.server.entity.PersonalChest"/>
+     <implementation class-name="games.stendhal.server.entity.mapstuff.chest.PersonalChest"/>
     </entity>
     <entity x="20" y="15">
-     <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
+     <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
      <attribute name="description">You see a conveniently placed table.</attribute>
     </entity>
 
     <entity x="20" y="12">
-     <implementation class-name="games.stendhal.server.entity.area.OnePlayerArea">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.area.OnePlayerArea">
       <parameter name="width">2</parameter>
       <parameter name="height">4</parameter>
      </implementation>
@@ -950,7 +950,7 @@ Holy mackerel! These chips are tasty.
 
     <!-- Keep creatures from blocking trading area -->
     <entity x="31" y="2">
-     <implementation class-name="games.stendhal.server.entity.area.CreatureProtectionArea">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.area.CreatureProtectionArea">
       <parameter name="width">15</parameter>
       <parameter name="height">7</parameter>
       <parameter name="default">block</parameter>
@@ -961,37 +961,37 @@ Holy mackerel! These chips are tasty.
 <!-- Prevent table dancing (this is a family friendly bank) -->
 
     <entity x="39" y="4">
-     <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
+     <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
      <attribute name="description">Place your item here to trade. Both walk around to make the exchange.</attribute>
     </entity>
 
     <entity x="40" y="4">
-     <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
+     <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
      <attribute name="description">Place your item here to trade. Both walk around to make the exchange.</attribute>
     </entity>
 
     <entity x="41" y="4">
-     <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
+     <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
      <attribute name="description">Place your item here to trade. Both walk around to make the exchange.</attribute>
     </entity>
 
     <entity x="39" y="6">
-     <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
+     <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
      <attribute name="description">Place your item here to trade. Both walk around to make the exchange.</attribute>
     </entity>
 
     <entity x="40" y="6">
-     <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
+     <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
      <attribute name="description">Place your item here to trade. Both walk around to make the exchange.</attribute>
     </entity>
 
     <entity x="41" y="6">
-     <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
+     <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
      <attribute name="description">Place your item here to trade. Both walk around to make the exchange.</attribute>
     </entity>
     
     <entity x="32" y="1">
-     <implementation class-name="games.stendhal.server.entity.area.NoLoginArea">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.area.NoLoginArea">
       <parameter name="width">15</parameter>
       <parameter name="height">8</parameter>
       <parameter name="new-x">29</parameter>
@@ -1072,7 +1072,7 @@ Holy mackerel! These chips are tasty.
 
     <!-- This must be after the NPC -->
     <entity x="29" y="7">
-     <implementation class-name="games.stendhal.server.entity.NPCOwnedChest">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.chest.NPCOwnedChest">
       <parameter name="npc">Erna</parameter>
      </implementation>
     </entity>
@@ -1112,34 +1112,34 @@ Holy mackerel! These chips are tasty.
     </portal>
 
     <entity x="2" y="6">
-     <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
+     <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
      <attribute name="description">You see a table which looks clean enough to eat from.</attribute>
     </entity>
     <entity x="2" y="7">
-     <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
+     <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
      <attribute name="description">You see a table which looks clean enough to eat from.</attribute>
     </entity>
     <entity x="2" y="8">
-     <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
+     <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
      <attribute name="description">You see a table which looks clean enough to eat from.</attribute>
     </entity>
     <entity x="16" y="8">
-     <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
+     <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
      <attribute name="description">You see a table which looks clean enough to eat from.</attribute>
     </entity>
    <entity x="16" y="9">
-     <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
+     <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
      <attribute name="description">You see a table which looks clean enough to eat from.</attribute>
     </entity>
    <entity x="16" y="10">
-     <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
+     <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
      <attribute name="description">You see a table which looks clean enough to eat from.</attribute>
     </entity>
     </zone>
 
  <zone name="0_semos_road_e" level="0" x="500128" y="500000" file="Level 0/semos/road_e.tmx">
    <entity x="113" y="51">
-     <implementation class-name="games.stendhal.server.entity.Sign"/>
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
      <attribute name="text">
 West: Semos city
 East: Ados city
@@ -1149,10 +1149,10 @@ East: Ados city
 
     <!-- wishing well-->
   <entity x="122" y="1">
-    <implementation class-name="games.stendhal.server.entity.WellSource"/>
+    <implementation class-name="games.stendhal.server.entity.mapstuff.source.WellSource"/>
   </entity>
   <entity x="123" y="1">
-    <implementation class-name="games.stendhal.server.entity.WellSource"/>
+    <implementation class-name="games.stendhal.server.entity.mapstuff.source.WellSource"/>
   </entity>
 
   <portal x="108" y="47" ref="pad_entrance">
@@ -1172,7 +1172,7 @@ East: Ados city
 
  <zone name="0_semos_plains_s" level="0" x="500000" y="500064" file="Level 0/semos/plains_s.tmx">
   <entity x="118" y="43">
-   <implementation class-name="games.stendhal.server.entity.Sign"/>
+   <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
    <attribute name="text">
 TO THE FOREST
 
@@ -1182,7 +1182,7 @@ the wolves while searching for berries here
   </entity>
 
   <entity x="38" y="3">
-   <implementation class-name="games.stendhal.server.entity.Sign"/>
+   <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
    <attribute name="text">
 TO OLD SEMOS VILLAGE
 
@@ -1191,7 +1191,7 @@ Shepherds wanted: please ask Nishiya
   </entity>
 
   <entity x="113" y="3">
-   <implementation class-name="games.stendhal.server.entity.Sign"/>
+   <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
    <attribute name="text">
 TO SEMOS
 
@@ -1213,23 +1213,23 @@ Mature sheep wanted: please speak to Sato
   </entity>
 
   <portal x="74" y="28" ref="dream_exit1">
-    <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+    <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
   </portal>
   <portal x="49" y="49" ref="dream_exit2">
-    <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+    <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
   </portal>
   <portal x="72" y="58" ref="dream_exit3">
-    <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+    <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
   </portal>
  </zone>
 
  <zone name="0_semos_forest_s" level="0" x="500000" y="500128" file="Level 0/semos/forest_s.tmx">
   <!-- wishing well-->
   <entity x="44" y="70">
-    <implementation class-name="games.stendhal.server.entity.WellSource"/>
+    <implementation class-name="games.stendhal.server.entity.mapstuff.source.WellSource"/>
   </entity>
   <entity x="45" y="70">
-    <implementation class-name="games.stendhal.server.entity.WellSource"/>
+    <implementation class-name="games.stendhal.server.entity.mapstuff.source.WellSource"/>
   </entity>
  
  </zone>
@@ -1291,7 +1291,7 @@ Mature sheep wanted: please speak to Sato
   <configurator class-name="games.stendhal.server.maps.wofol.house4.TraderNPC"/>
 
   <entity x="4" y="1">
-   <implementation class-name="games.stendhal.server.entity.ShopSign">
+   <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
     <parameter name="shop">sellstuff2</parameter>
     <parameter name="title">-- I sell --</parameter>
    </implementation>
@@ -1300,7 +1300,7 @@ Mature sheep wanted: please speak to Sato
   </entity>
 
   <entity x="6" y="1">
-   <implementation class-name="games.stendhal.server.entity.ShopSign">
+   <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
     <parameter name="shop">buystuff2</parameter>
     <parameter name="title">-- I buy --</parameter>
    </implementation>
@@ -1443,7 +1443,7 @@ Mature sheep wanted: please speak to Sato
    </portal>
   <!-- Spikes -->
   <entity x="77" y="20">
-   <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
+   <implementation class-name="games.stendhal.server.entity.mapstuff.area.DamagingArea">
     <parameter name="width">3</parameter>
     <parameter name="height">3</parameter>
     <parameter name="interval">2</parameter>
@@ -1455,7 +1455,7 @@ Mature sheep wanted: please speak to Sato
   </entity>
 
   <entity x="77" y="26">
-   <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
+   <implementation class-name="games.stendhal.server.entity.mapstuff.area.DamagingArea">
     <parameter name="width">2</parameter>
     <parameter name="height">2</parameter>
     <parameter name="interval">2</parameter>
@@ -1467,7 +1467,7 @@ Mature sheep wanted: please speak to Sato
   </entity>
 
   <entity x="77" y="28">
-   <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
+   <implementation class-name="games.stendhal.server.entity.mapstuff.area.DamagingArea">
     <parameter name="interval">2</parameter>
     <parameter name="damage">50</parameter>
     <parameter name="probability">30</parameter>
@@ -1514,7 +1514,7 @@ Mature sheep wanted: please speak to Sato
    <configurator class-name="games.stendhal.server.maps.semos.jail.NoTeleport"/>
   <!--for the admin house-->
  <portal x="15" y="7" ref="house_exit_4">
-    <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+    <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
   </portal>
 
   <portal x="28" y="17" ref="entrance">
@@ -1644,40 +1644,40 @@ Mature sheep wanted: please speak to Sato
   </portal>
 
   <portal x="83" y="8" ref="one_way_1b">
-   <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
   </portal>
 
   <portal x="83" y="9" ref="one_way_2b">
-   <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
   </portal>
 
   <portal x="83" y="10" ref="one_way_3b">
-   <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
   </portal>
 
   <portal x="83" y="11" ref="one_way_4b">
-   <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
   </portal>
 
   <portal x="83" y="12" ref="one_way_5b">
-   <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
   </portal>
 
   <portal x="83" y="13" ref="one_way_6b">
-   <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
   </portal>
 
   <portal x="83" y="14" ref="one_way_7b">
-   <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
   </portal>
 
   <portal x="83" y="15" ref="one_way_8b">
-   <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
   </portal>
 
   <portal x="94" y="57" ref="downstairs" replacing="true">
    <destination zone="-3_semos_catacombs" ref="upstairs"/>
-   <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
     <parameter name="key">vampirette_entrails</parameter>
     <parameter name="quantity">7</parameter>
     <parameter name="rejected">
@@ -1688,7 +1688,7 @@ Mature sheep wanted: please speak to Sato
 
   <!-- Spikes -->
   <entity x="4" y="57">
-   <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
+   <implementation class-name="games.stendhal.server.entity.mapstuff.area.DamagingArea">
     <parameter name="width">3</parameter>
     <parameter name="height">4</parameter>
     <parameter name="interval">2</parameter>
@@ -1700,7 +1700,7 @@ Mature sheep wanted: please speak to Sato
   </entity>
 
   <entity x="4" y="61">
-   <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
+   <implementation class-name="games.stendhal.server.entity.mapstuff.area.DamagingArea">
     <parameter name="interval">2</parameter>
     <parameter name="damage">100</parameter>
     <parameter name="probability">30</parameter>
@@ -1710,7 +1710,7 @@ Mature sheep wanted: please speak to Sato
   </entity>
 
   <entity x="65" y="18">
-   <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
+   <implementation class-name="games.stendhal.server.entity.mapstuff.area.DamagingArea">
     <parameter name="width">2</parameter>
     <parameter name="height">1</parameter>
     <parameter name="interval">3</parameter>
@@ -1722,7 +1722,7 @@ Mature sheep wanted: please speak to Sato
   </entity>
 
   <entity x="61" y="19">
-   <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
+   <implementation class-name="games.stendhal.server.entity.mapstuff.area.DamagingArea">
     <parameter name="width">6</parameter>
     <parameter name="height">1</parameter>
     <parameter name="interval">3</parameter>
@@ -1734,7 +1734,7 @@ Mature sheep wanted: please speak to Sato
   </entity>
 
   <entity x="55" y="20">
-   <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
+   <implementation class-name="games.stendhal.server.entity.mapstuff.area.DamagingArea">
     <parameter name="width">9</parameter>
     <parameter name="height">1</parameter>
     <parameter name="interval">3</parameter>
@@ -1746,7 +1746,7 @@ Mature sheep wanted: please speak to Sato
   </entity>
 
   <entity x="55" y="21">
-   <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
+   <implementation class-name="games.stendhal.server.entity.mapstuff.area.DamagingArea">
     <parameter name="width">7</parameter>
     <parameter name="height">1</parameter>
     <parameter name="interval">3</parameter>
@@ -1848,56 +1848,48 @@ Mature sheep wanted: please speak to Sato
   <configurator class-name="games.stendhal.server.maps.semos.kanmararn.DuergarKingCreature"/>
   <portal x="11" y="18" ref="jail_lock_outside">
    <destination zone="-7_kanmararn_prison" ref="jail_lock_inside"/>
-   <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
     <parameter name="key">kanmararn_prison_key</parameter>
     <parameter name="rejected">You do not have the key to open the lock.</parameter>
    </implementation>
   </portal>
   <portal x="11" y="22" ref="jail_lock_inside">
    <destination zone="-7_kanmararn_prison" ref="jail_lock_outside"/>
-   <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
-    <parameter name="key">kanmararn_prison_key</parameter>
-    <parameter name="rejected">You do not have the key to open the lock.</parameter>
-   </implementation>
   </portal>
   <portal x="19" y="9" ref="jail_lock_inside2">
    <destination zone="-7_kanmararn_prison" ref="jail_lock_outside2"/>
-   <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
-    <parameter name="key">kanmararn_prison_key</parameter>
-    <parameter name="rejected">You do not have the key to open the lock.</parameter>
-   </implementation>
   </portal>
   <portal x="19" y="13" ref="jail_lock_outside2">
    <destination zone="-7_kanmararn_prison" ref="jail_lock_inside2"/>
-   <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
     <parameter name="key">kanmararn_prison_key</parameter>
     <parameter name="rejected">You do not have the key to open the lock.</parameter>
    </implementation>
   </portal>
   <portal x="36" y="18" ref="jail_lock_outside3">
    <destination zone="-7_kanmararn_prison" ref="jail_lock_inside3"/>
-   <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
     <parameter name="key">kanmararn_prison_key</parameter>
     <parameter name="rejected">You do not have the key to open the lock.</parameter>
    </implementation>
   </portal>
   <portal x="36" y="22" ref="jail_lock_inside3">
    <destination zone="-7_kanmararn_prison" ref="jail_lock_outside3"/>
-   <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
     <parameter name="key">kanmararn_prison_key</parameter>
     <parameter name="rejected">You do not have the key to open the lock.</parameter>
    </implementation>
   </portal>
   <portal x="44" y="9" ref="jail_lock_inside4">
    <destination zone="-7_kanmararn_prison" ref="jail_lock_outside4"/>
-   <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
     <parameter name="key">kanmararn_prison_key</parameter>
     <parameter name="rejected">You do not have the key to open the lock.</parameter>
    </implementation>
   </portal>
   <portal x="44" y="13" ref="jail_lock_outside4">
    <destination zone="-7_kanmararn_prison" ref="jail_lock_inside4"/>
-   <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
     <parameter name="key">kanmararn_prison_key</parameter>
     <parameter name="rejected">You do not have the key to open the lock.</parameter>
    </implementation>

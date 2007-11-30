@@ -15,7 +15,7 @@
   </portal>
             
   <entity x="29" y="22">
-   <implementation class-name="games.stendhal.server.entity.Sign"/>
+   <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
    <attribute name="text">
 Sorry, you have died.
 You lost some of your items and 10% of your experience points.
@@ -26,7 +26,7 @@ Walk on, and you will be returned to the land of the living...
   </entity>
 
   <entity x="33" y="22">
-   <implementation class-name="games.stendhal.server.entity.Sign"/>
+   <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
    <attribute name="text">
 Sorry, you have died.
 You lost some of your items and 10% of your experience points.
@@ -45,7 +45,7 @@ Walk on, and you will be returned to the land of the living...
 
   <portal x="50" y="10" ref="locked_outside">
    <destination zone="int_pathfinding" ref="locked_inside"/>
-   <implementation class-name="games.stendhal.server.entity.portal.LockedDoor">
+   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.LockedDoor">
     <parameter name="class">skulldoor_s</parameter>
     <parameter name="key">key_golden</parameter>
    </implementation>

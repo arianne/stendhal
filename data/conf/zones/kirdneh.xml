@@ -30,33 +30,33 @@
    <destination zone="int_kirdneh_inn" ref="entrance"/>
   </portal>
   <portal x="48" y="7" ref="pool">
-   <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
   </portal>
   <portal x="77" y="58" ref="townhall">
    <destination zone="int_kirdneh_townhall" ref="entrance"/>
   </portal>
   <entity x="20" y="57">
-    <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
+    <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
     <attribute name="description">You see a hot hot barbecue.</attribute>
   </entity>
   <entity x="102" y="72">
-    <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
+    <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
     <attribute name="description">You see a sizzling hot barbecue.</attribute>
   </entity>
   <entity x="23" y="101">
-    <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
+    <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
     <attribute name="description">You see a sizzling barbecue.</attribute>
   </entity>
   <entity x="24" y="101">
-    <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
+    <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
     <attribute name="description">You see a burning hot grill.</attribute>
   </entity>
   <entity x="58" y="100">
-    <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
+    <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
     <attribute name="description">You see a very hot grill.</attribute>
   </entity>
   <entity x="59" y="100">
-    <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
+    <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
     <attribute name="description">You see a sizzling barbecue.</attribute>
   </entity>
   <portal x="31" y="26" ref="26">

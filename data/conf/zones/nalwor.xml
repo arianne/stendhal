@@ -56,7 +56,7 @@
   </portal>
 
   <portal x="87" y="92" ref="outside_exit">
-   <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
   </portal>
 
   <portal x="114" y="91" ref="inside_entrance">
@@ -64,7 +64,7 @@
   </portal>
 
   <portal x="117" y="91" ref="inside_exit">
-   <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
   </portal>
  </zone>
  
@@ -103,7 +103,7 @@
   </portal>
 
   <entity x="3" y="1">
-   <implementation class-name="games.stendhal.server.entity.ShopSign">
+   <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
     <parameter name="shop">elfbuyrare</parameter>
     <parameter name="title">-- Buying --</parameter>
    </implementation>
@@ -173,14 +173,14 @@
    </portal> 
   <portal x="34" y="23" ref="secret_entrance_1">
   	<destination zone="int_nalwor_secret_room" ref="exit_1"/>
-  	<implementation class-name="games.stendhal.server.entity.portal.QuestCheckingPortal">
+  	<implementation class-name="games.stendhal.server.entity.mapstuff.portal.QuestCheckingPortal">
      <parameter name="quest">kill_dark_elves</parameter>
      <parameter name="rejected">You find it hard to enter. Perhaps you're not prepared for what is below.</parameter>
    </implementation>
   </portal> 
   <portal x="34" y="24" ref="secret_entrance_2">
   	<destination zone="int_nalwor_secret_room" ref="exit_2"/>
-  	<implementation class-name="games.stendhal.server.entity.portal.QuestCheckingPortal">
+  	<implementation class-name="games.stendhal.server.entity.mapstuff.portal.QuestCheckingPortal">
      <parameter name="quest">kill_dark_elves</parameter>
      <parameter name="rejected">You find it hard to enter. Perhaps you're not prepared for what is below.</parameter>
    </implementation>
@@ -271,7 +271,7 @@
    </portal> 
   <portal x="15" y="21" ref="customer_room_entrance">
     <destination zone="int_nalwor_bank" ref="customer_room_exit"/>
-    <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+    <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
       <parameter name="key">nalwor_bank_key</parameter>
       <parameter name="rejected">The door is locked.</parameter>
     </implementation>
@@ -279,57 +279,57 @@
   <!-- seems strange to lock it from the inside? Else, a player will leave their key in the nalwor bank chest -->
   <portal x="16" y="21" ref="customer_room_exit">
     <destination zone="int_nalwor_bank" ref="customer_room_entrance"/>
-    <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+    <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
       <parameter name="key">nalwor_bank_key</parameter>
       <parameter name="rejected">The door is locked.</parameter>
     </implementation>
   </portal>
   <entity x="18" y="17">
-     <implementation class-name="games.stendhal.server.entity.PersonalChest">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.chest.PersonalChest">
       <parameter name="slot">bank_nalwor</parameter>
      </implementation>
   </entity>
     <entity x="18" y="17">
-     <implementation class-name="games.stendhal.server.entity.area.OnePlayerArea">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.area.OnePlayerArea">
       <parameter name="width">2</parameter>
       <parameter name="height">3</parameter>
      </implementation>
     </entity>
   <entity x="21" y="17">
-     <implementation class-name="games.stendhal.server.entity.PersonalChest">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.chest.PersonalChest">
       <parameter name="slot">bank_nalwor</parameter>
      </implementation>
   </entity>
     <entity x="21" y="17">
-     <implementation class-name="games.stendhal.server.entity.area.OnePlayerArea">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.area.OnePlayerArea">
       <parameter name="width">2</parameter>
       <parameter name="height">3</parameter>
      </implementation>
     </entity>
   <entity x="25" y="17">
-     <implementation class-name="games.stendhal.server.entity.PersonalChest">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.chest.PersonalChest">
       <parameter name="slot">bank</parameter>
      </implementation>
   </entity> 
     <entity x="24" y="17">
-     <implementation class-name="games.stendhal.server.entity.area.OnePlayerArea">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.area.OnePlayerArea">
       <parameter name="width">2</parameter>
       <parameter name="height">3</parameter>
      </implementation>
     </entity>
   <entity x="28" y="17">
-     <implementation class-name="games.stendhal.server.entity.PersonalChest">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.chest.PersonalChest">
       <parameter name="slot">bank</parameter>
      </implementation>
   </entity> 
     <entity x="27" y="17">
-     <implementation class-name="games.stendhal.server.entity.area.OnePlayerArea">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.area.OnePlayerArea">
       <parameter name="width">2</parameter>
       <parameter name="height">3</parameter>
      </implementation>
     </entity>
   <entity x="12" y="17">
-    <implementation class-name="games.stendhal.server.entity.NPCOwnedChest">
+    <implementation class-name="games.stendhal.server.entity.mapstuff.chest.NPCOwnedChest">
       <parameter name="npc">Grafindle</parameter>
     </implementation>
   </entity>
@@ -501,7 +501,7 @@
 
  <zone name="0_nalwor_river_se" level="0" x="500384" y="500384" file="Level 0/nalwor/river_se.tmx">
  <entity x="185" y="64">
-    <implementation class-name="games.stendhal.server.entity.FishSource">
+    <implementation class-name="games.stendhal.server.entity.mapstuff.source.FishSource">
      <parameter name="species">perch</parameter>
     </implementation>
   </entity>

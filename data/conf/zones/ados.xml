@@ -24,14 +24,14 @@
 
  <zone name="0_ados_mountain_nw" level="0" x="500512" y="499872" file="Level 0/ados/mountain_nw.tmx">
   <entity x="126" y="107">
-   <implementation class-name="games.stendhal.server.entity.Sign"/>
+   <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
    <attribute name="text">
     Beware of bandits beyond!
    </attribute>
   </entity>
 
   <entity x="77" y="82">
-    <implementation class-name="games.stendhal.server.entity.Sign"/>
+    <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
     <attribute name="text">
 North: Haizen's house
 East: Ados
@@ -41,7 +41,7 @@ West: Semos
   </entity>
 
   <entity x="126" y="115">
-   <implementation class-name="games.stendhal.server.entity.Sign"/>
+   <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
    <attribute name="text">
     Beware of bandits beyond!
    </attribute>
@@ -60,7 +60,7 @@ West: Semos
    <destination zone="0_ados_mountain_nw" ref="magician_house_entrance"/>
   </portal>
   <entity x="9" y="6">
-    <implementation class-name="games.stendhal.server.entity.Sign"/>
+    <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
     <attribute name="text">
 Summon scrolls will immediately
 summon a creature that will attack
@@ -84,7 +84,7 @@ areas.
   </portal>
 
   <entity x="53" y="48">
-   <implementation class-name="games.stendhal.server.entity.Sign"/>
+   <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
    <attribute name="text">
 Ados Wildlife Refuge
 Home for endangered animals
@@ -92,7 +92,7 @@ Home for endangered animals
   </entity>
 
   <entity x="52" y="107">
-    <implementation class-name="games.stendhal.server.entity.Sign"/>
+    <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
     <attribute name="text">
 North: Wildlife refuge
 East: Ados
@@ -106,7 +106,7 @@ West: Semos
    <configurator class-name="games.stendhal.server.maps.ados.wall.Deathmatch"/>
    <configurator class-name="games.stendhal.server.maps.ados.wall.SoldierNPC"/>
    <entity x="88" y="78">
-     <implementation class-name="games.stendhal.server.entity.area.LifeDrainArea">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.area.LifeDrainArea">
       <parameter name="width">25</parameter>
       <parameter name="height">2</parameter>
       <parameter name="interval">2</parameter>
@@ -118,7 +118,7 @@ West: Semos
    </entity>
 
    <entity x="88" y="93">
-     <implementation class-name="games.stendhal.server.entity.area.LifeDrainArea">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.area.LifeDrainArea">
       <parameter name="width">25</parameter>
       <parameter name="height">2</parameter>
       <parameter name="interval">2</parameter>
@@ -130,7 +130,7 @@ West: Semos
    </entity>
 
    <entity x="88" y="80">
-     <implementation class-name="games.stendhal.server.entity.area.LifeDrainArea">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.area.LifeDrainArea">
       <parameter name="width">2</parameter>
       <parameter name="height">13</parameter>
       <parameter name="interval">2</parameter>
@@ -142,7 +142,7 @@ West: Semos
    </entity>
 
    <entity x="111" y="80">
-     <implementation class-name="games.stendhal.server.entity.area.LifeDrainArea">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.area.LifeDrainArea">
       <parameter name="width">2</parameter>
       <parameter name="height">13</parameter>
       <parameter name="interval">2</parameter>
@@ -155,7 +155,7 @@ West: Semos
 
    <!-- exit for the admin house -->
   <portal x="97" y="74" ref="house_exit_2">
-   <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
   </portal>
  </zone>
 
@@ -189,49 +189,49 @@ West: Semos
 
    <portal x="7" y="74" ref="house_50">
      <destination zone="int_ados_house_50" ref="in"/>
-     <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
      <parameter name="key">private_key_50</parameter>
      <parameter name="rejected">The door is locked.</parameter>
      </implementation>
    </portal>
    <portal x="12" y="74" ref="house_51">
      <destination zone="int_ados_house_51" ref="in"/>
-     <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
      <parameter name="key">private_key_51</parameter>
      <parameter name="rejected">The door is locked.</parameter>
      </implementation>
    </portal>
    <portal x="17" y="74" ref="house_52">
      <destination zone="int_ados_house_52" ref="in"/>
-     <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
      <parameter name="key">private_key_52</parameter>
      <parameter name="rejected">The door is locked.</parameter>
      </implementation>
    </portal>
    <portal x="22" y="74" ref="house_53">
      <destination zone="int_ados_house_53" ref="in"/>
-     <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
      <parameter name="key">private_key_53</parameter>
      <parameter name="rejected">The door is locked.</parameter>
      </implementation>
    </portal>
    <portal x="27" y="74" ref="house_54">
      <destination zone="int_ados_house_54" ref="in_left"/>
-     <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
      <parameter name="key">private_key_54</parameter>
      <parameter name="rejected">The door is locked.</parameter>
      </implementation>
    </portal>
    <portal x="32" y="74" ref="house_55">
      <destination zone="int_ados_house_55" ref="in_left"/>
-     <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
      <parameter name="key">private_key_55</parameter>
      <parameter name="rejected">The door is locked.</parameter>
      </implementation>
    </portal> 
    <portal x="37" y="74" ref="house_56">
      <destination zone="int_ados_house_56" ref="in"/>
-     <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
      <parameter name="key">private_key_56</parameter>
      <parameter name="rejected">The door is locked.</parameter>
      </implementation>
@@ -239,7 +239,7 @@ West: Semos
 
    <portal x="14" y="85" ref="zaras_house_entrance">
      <destination zone="int_ados_zaras_house_0" ref="entrance_zaras_house"/>
-     <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
        <parameter name="key">small_key</parameter>
        <parameter name="rejected">The door is locked.</parameter>
      </implementation>
@@ -247,49 +247,49 @@ West: Semos
 
    <portal x="19" y="85" ref="house_57">
      <destination zone="int_ados_house_57" ref="in"/>
-     <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
      <parameter name="key">private_key_57</parameter>
      <parameter name="rejected">The door is locked.</parameter>
      </implementation>
    </portal>
    <portal x="24" y="85" ref="house_58">
      <destination zone="int_ados_house_58" ref="in"/>
-     <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
      <parameter name="key">private_key_58</parameter>
      <parameter name="rejected">The door is locked.</parameter>
      </implementation>
    </portal>
    <portal x="29" y="85" ref="house_59">
      <destination zone="int_ados_house_59" ref="in"/>
-     <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
      <parameter name="key">private_key_59</parameter>
      <parameter name="rejected">The door is locked.</parameter>
      </implementation>
    </portal>
    <portal x="34" y="85" ref="house_60">
      <destination zone="int_ados_house_60" ref="in"/>
-     <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
      <parameter name="key">private_key_60</parameter>
      <parameter name="rejected">The door is locked.</parameter>
      </implementation>
    </portal>
    <portal x="39" y="85" ref="house_61">
      <destination zone="int_ados_house_61" ref="in"/>
-     <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
      <parameter name="key">private_key_61</parameter>
      <parameter name="rejected">The door is locked.</parameter>
      </implementation>
    </portal>
    <portal x="44" y="85" ref="house_62">
      <destination zone="int_ados_house_62" ref="in"/>
-     <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
      <parameter name="key">private_key_62</parameter>
      <parameter name="rejected">The door is locked.</parameter>
      </implementation>
    </portal>
    
    <entity x="13" y="85">
-     <implementation class-name="games.stendhal.server.entity.Sign"/>
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
      <attribute name="text">
 Home of Zara 
 Dear postman, I'm on holiday!
@@ -329,54 +329,54 @@ Please leave my mail at my neighbour's house.
     </portal>
 
     <entity x="3" y="12">
-     <implementation class-name="games.stendhal.server.entity.PersonalChest">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.chest.PersonalChest">
       <parameter name="slot">bank_ados</parameter>
      </implementation>
     </entity>
     <entity x="2" y="12">
-     <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
+     <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
      <attribute name="description">You see a small table which you might rest your items on if organising your chest.
      </attribute>
     </entity>
 
     <entity x="2" y="12">
-     <implementation class-name="games.stendhal.server.entity.area.OnePlayerArea">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.area.OnePlayerArea">
       <parameter name="width">2</parameter>
       <parameter name="height">3</parameter>
      </implementation>
     </entity>
 
     <entity x="5" y="12">
-     <implementation class-name="games.stendhal.server.entity.PersonalChest">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.chest.PersonalChest">
       <parameter name="slot">bank_ados</parameter>
      </implementation>
     </entity>
     <entity x="6" y="12">
-     <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
+     <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
      <attribute name="description">You see a small table which you might rest your items on if organising your chest.
      </attribute>
     </entity>
     <entity x="5" y="12">
-     <implementation class-name="games.stendhal.server.entity.area.OnePlayerArea">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.area.OnePlayerArea">
       <parameter name="width">2</parameter>
       <parameter name="height">3</parameter>
      </implementation>
     </entity>
 
     <entity x="11" y="12">
-     <implementation class-name="games.stendhal.server.entity.PersonalChest">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.chest.PersonalChest">
       <!-- semos slot -->
       <parameter name="slot">bank</parameter>
      </implementation>
     </entity>
 
     <entity x="12" y="12">
-     <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
+     <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
      <attribute name="description">You see a small table which you might rest your items on if organising your chest.
      </attribute>
     </entity>
     <entity x="11" y="12">
-     <implementation class-name="games.stendhal.server.entity.area.OnePlayerArea">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.area.OnePlayerArea">
       <parameter name="width">2</parameter>
       <parameter name="height">3</parameter>
      </implementation>
@@ -384,7 +384,7 @@ Please leave my mail at my neighbour's house.
 
 
     <entity x="8" y="1">
-     <implementation class-name="games.stendhal.server.entity.Sign"/>
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
      <attribute name="text">
 Under new management. Chest to the right is still held by Semos Bank Merchants Ltd.
      </attribute>
@@ -420,7 +420,7 @@ Under new management. Chest to the right is still held by Semos Bank Merchants L
     <configurator class-name="games.stendhal.server.maps.ados.library.LibrarianNPC" />
 
     <entity x="4" y="27">
-    	<implementation class-name="games.stendhal.server.entity.Sign"/>
+    	<implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
       	<attribute name="text">
 FISHING SPOTS IN FAIUMONI
 The best spot to fish for cod is in 
@@ -466,7 +466,7 @@ in roaches.
    <zone name="int_ados_zaras_house_0" file="interiors/ados/zaras_house_0.tmx">
     <portal x="8" y="14" ref="entrance_zaras_house">
      <destination zone="0_ados_city_n" ref="zaras_house_entrance"/>
-     <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
      <parameter name="key">small_key</parameter>
      <parameter name="rejected">Zara would be angry if you forgot the key inside her house.</parameter>
      </implementation>
@@ -481,7 +481,7 @@ in roaches.
      <destination zone="int_ados_zaras_house_0" ref="up_zaras_house"/>
     </portal>
     <entity x="3" y="3">
-     <implementation class-name="games.stendhal.server.entity.PersonalChest">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.chest.PersonalChest">
       <parameter name="slot">zaras_chest_ados</parameter>
      </implementation>
     </entity>
@@ -526,7 +526,7 @@ in roaches.
     <configurator class-name="games.stendhal.server.maps.ados.barracks.BuyerNPC"/>
 
     <entity x="35" y="52">
-     <implementation class-name="games.stendhal.server.entity.ShopSign">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
       <parameter name="shop">buyrare3</parameter>
       <parameter name="title">-- Required --</parameter>
      </implementation>
@@ -578,7 +578,7 @@ in roaches.
     <configurator class-name="games.stendhal.server.maps.ados.sewingroom.SeamstressNPC" />
 
     <entity x="16" y="8">
-     <implementation class-name="games.stendhal.server.entity.ShopSign">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
       <parameter name="shop">buycloaks</parameter>
       <parameter name="title">-- Buying --</parameter>
      </implementation>
@@ -629,7 +629,7 @@ in roaches.
    <zone name="int_ados_town_hall_1" file="interiors/ados/buraucrazy_1.tmx">
    <configurator class-name="games.stendhal.server.maps.ados.townhall.ClerkNPC" />
     <entity x="25" y="6">
-     <implementation class-name="games.stendhal.server.entity.Sign"/>
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
      <attribute name="text">The rules and statutes of Marriage and Divorce throughout the island of Faiumoni are complex and require much ... </attribute>
      <attribute name="class">transparent</attribute>
     </entity>
@@ -652,12 +652,12 @@ in roaches.
      <destination zone="int_ados_town_hall_3" ref="downstairs"/>
     </portal>
    <entity x="4" y="7">
-     <implementation class-name="games.stendhal.server.entity.Sign"/>
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
      <attribute name="text">So Billy and Betty were very tired at the end of their long day, and they went to sleep dreaming of castles and drawbridges.</attribute>
      <attribute name="class">transparent</attribute>
     </entity>
    <entity x="5" y="7">
-     <implementation class-name="games.stendhal.server.entity.Sign"/>
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
      <attribute name="text">The next day Billy and Betty's mother said they must stay indoors and help her wash sheets, they were very disappointed not to be able to visit the castle again.</attribute>
      <attribute name="class">transparent</attribute>
     </entity>
@@ -1235,7 +1235,7 @@ in roaches.
    
    <zone name="0_ados_rock_w" level="0" x="500384" y="500000" file="Level 0/ados/rock_w.tmx">
     <entity x="14" y="50">
-     <implementation class-name="games.stendhal.server.entity.Sign"/>
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
      <attribute name="text">
 West: Semos
 Northeast: Ados
@@ -1248,12 +1248,12 @@ Southeast: Docks
    <zone name="0_ados_rock" level="0" x="500512" y="500000" file="Level 0/ados/rock.tmx">
      <configurator class-name="games.stendhal.server.maps.ados.rock.WeaponsCollectorNPC"/>
      <entity x="61" y="36">
-    	<implementation class-name="games.stendhal.server.entity.FishSource">
+    	<implementation class-name="games.stendhal.server.entity.mapstuff.source.FishSource">
      	<parameter name="species">char</parameter>
     	</implementation>
   	 </entity>
   <portal x="118" y="103" ref="caves_exit">
-   <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
   </portal>
    </zone>
    
@@ -1278,48 +1278,48 @@ Southeast: Docks
    
    <zone name="0_ados_city" level="0" x="500896" y="500000" file="Level 0/ados/city.tmx">
    <entity x="89" y="63">
-    	<implementation class-name="games.stendhal.server.entity.FishSource">
+    	<implementation class-name="games.stendhal.server.entity.mapstuff.source.FishSource">
      	<parameter name="species">cod</parameter>
     	</implementation>
     </entity>
   <portal x="5" y="52" ref="house_63">
      <destination zone="int_ados_house_63" ref="in"/>
-     <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
      <parameter name="key">private_key_63</parameter>
      <parameter name="rejected">The door is locked.</parameter>
      </implementation>
    </portal>
    <portal x="5" y="60" ref="house_64">
      <destination zone="int_ados_house_64" ref="in"/>
-     <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
      <parameter name="key">private_key_64</parameter>
      <parameter name="rejected">The door is locked.</parameter>
      </implementation>
    </portal>
    <portal x="5" y="69" ref="house_65">
      <destination zone="int_ados_house_65" ref="in"/>
-     <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
      <parameter name="key">private_key_65</parameter>
      <parameter name="rejected">The door is locked.</parameter>
      </implementation>
    </portal>
    <portal x="5" y="76" ref="house_66">
      <destination zone="int_ados_house_66" ref="in"/>
-     <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
      <parameter name="key">private_key_66</parameter>
      <parameter name="rejected">The door is locked.</parameter>
      </implementation>
    </portal>
    <portal x="18" y="55" ref="house_67">
      <destination zone="int_ados_house_67" ref="in"/>
-     <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
      <parameter name="key">private_key_67</parameter>
      <parameter name="rejected">The door is locked.</parameter>
      </implementation>
    </portal>
    <portal x="18" y="61" ref="house_68">
      <destination zone="int_ados_house_68" ref="in"/>
-     <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
      <parameter name="key">private_key_68</parameter>
      <parameter name="rejected">The door is locked.</parameter>
      </implementation>
@@ -1476,7 +1476,7 @@ Southeast: Docks
   <configurator class-name="games.stendhal.server.maps.ados.outside.CloaksCollectorNPC" />
   <!-- This must be after the NPC configurator -->
   <entity x="17" y="23">
-    <implementation class-name="games.stendhal.server.entity.NPCOwnedChest">
+    <implementation class-name="games.stendhal.server.entity.mapstuff.chest.NPCOwnedChest">
       <parameter name="npc">Bario</parameter>
     </implementation>
   </entity>

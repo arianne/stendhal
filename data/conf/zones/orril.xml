@@ -40,7 +40,7 @@
 
  <zone name="0_orril_mountain_w" level="0" x="499744" y="500256" file="Level 0/orril/mountain_w.tmx">
   <portal x="107" y="113" ref="orb_destination">
-   <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
   </portal>
  </zone>
 
@@ -120,21 +120,21 @@
 
  <zone name="0_orril_forest_e" level="0" x="500000" y="500256" file="Level 0/orril/forest_e.tmx">
   <entity x="43" y="103">
-    <implementation class-name="games.stendhal.server.entity.WellSource" />
+    <implementation class-name="games.stendhal.server.entity.mapstuff.source.WellSource" />
   </entity>
   <entity x="44" y="103">
-    <implementation class-name="games.stendhal.server.entity.WellSource" />
+    <implementation class-name="games.stendhal.server.entity.mapstuff.source.WellSource" />
   </entity>
  </zone>
 
   <zone name="0_orril_river_s_w2" level="0" x="499616" y="500384" file="Level 0/orril/river_s_w2.tmx">
   <entity x="36" y="26">
-    <implementation class-name="games.stendhal.server.entity.FishSource">
+    <implementation class-name="games.stendhal.server.entity.mapstuff.source.FishSource">
      <parameter name="species">trout</parameter>
     </implementation>
   </entity>
   <entity x="61" y="77">
-    <implementation class-name="games.stendhal.server.entity.FishSource">
+    <implementation class-name="games.stendhal.server.entity.mapstuff.source.FishSource">
      <parameter name="species">trout</parameter>
     </implementation>
   </entity>
@@ -148,18 +148,18 @@
   <configurator class-name="games.stendhal.server.maps.orril.river.GoldProspectorNPC" />  
   <!-- This must be after the NPC configurator -->
   <entity x="37" y="60">
-    <implementation class-name="games.stendhal.server.entity.NPCOwnedChest">
+    <implementation class-name="games.stendhal.server.entity.mapstuff.chest.NPCOwnedChest">
       <parameter name="npc">Sally</parameter>
     </implementation>
   </entity>
   <entity x="101" y="67">
-    <implementation class-name="games.stendhal.server.entity.GoldSource" />
+    <implementation class-name="games.stendhal.server.entity.mapstuff.source.GoldSource" />
   </entity>
   <entity x="108" y="59">
-    <implementation class-name="games.stendhal.server.entity.GoldSource" />
+    <implementation class-name="games.stendhal.server.entity.mapstuff.source.GoldSource" />
   </entity>
   <entity x="120" y="67">
-    <implementation class-name="games.stendhal.server.entity.GoldSource" />
+    <implementation class-name="games.stendhal.server.entity.mapstuff.source.GoldSource" />
   </entity>
 
   <portal x="39" y="5" ref="jynath_house_entrance">
@@ -167,7 +167,7 @@
   </portal>
 
   <entity x="67" y="9">
-    <implementation class-name="games.stendhal.server.entity.Sign"/>
+    <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
     <attribute name="text">
 North: Or'ril castle
 West: Fado
@@ -187,27 +187,27 @@ East: Nalwor, Semos
 
  <zone name="0_orril_river_se" level="0" x="500000" y="500384" file="Level 0/orril/river_se.tmx">
   <entity x="0" y="8">
-    <implementation class-name="games.stendhal.server.entity.WellSource" />
+    <implementation class-name="games.stendhal.server.entity.mapstuff.source.WellSource" />
   </entity>
   <entity x="1" y="8">
-    <implementation class-name="games.stendhal.server.entity.WellSource" />
+    <implementation class-name="games.stendhal.server.entity.mapstuff.source.WellSource" />
   </entity>
   <entity x="47" y="110">
-    <implementation class-name="games.stendhal.server.entity.Sign"/>
+    <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
     <attribute name="text">
 Danger! Deep Water!
     </attribute>
     <attribute name="class">signpost</attribute>
   </entity>
   <entity x="51" y="110">
-    <implementation class-name="games.stendhal.server.entity.Sign"/>
+    <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
     <attribute name="text">
 Danger! Deep Water!
     </attribute>
     <attribute name="class">signpost</attribute>
   </entity>
   <entity x="48" y="112">
-   <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
+   <implementation class-name="games.stendhal.server.entity.mapstuff.area.DamagingArea">
     <parameter name="interval">2</parameter>
     <parameter name="damage">50</parameter>
     <parameter name="probability">30</parameter>
@@ -216,7 +216,7 @@ Danger! Deep Water!
    <attribute name="name">deep water</attribute>
   </entity>
   <entity x="50" y="113">
-   <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
+   <implementation class-name="games.stendhal.server.entity.mapstuff.area.DamagingArea">
     <parameter name="interval">2</parameter>
     <parameter name="damage">50</parameter>
     <parameter name="probability">30</parameter>
@@ -225,7 +225,7 @@ Danger! Deep Water!
    <attribute name="name">deep water</attribute>
   </entity>
   <entity x="51" y="113">
-   <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
+   <implementation class-name="games.stendhal.server.entity.mapstuff.area.DamagingArea">
     <parameter name="interval">2</parameter>
     <parameter name="damage">50</parameter>
     <parameter name="probability">30</parameter>
@@ -234,7 +234,7 @@ Danger! Deep Water!
    <attribute name="name">deep water</attribute>
   </entity>
   <entity x="50" y="115">
-   <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
+   <implementation class-name="games.stendhal.server.entity.mapstuff.area.DamagingArea">
     <parameter name="interval">2</parameter>
     <parameter name="damage">50</parameter>
     <parameter name="probability">30</parameter>
@@ -243,7 +243,7 @@ Danger! Deep Water!
    <attribute name="name">deep water</attribute>
   </entity>
   <entity x="51" y="117">
-   <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
+   <implementation class-name="games.stendhal.server.entity.mapstuff.area.DamagingArea">
     <parameter name="interval">2</parameter>
     <parameter name="damage">50</parameter>
     <parameter name="probability">30</parameter>
@@ -252,7 +252,7 @@ Danger! Deep Water!
    <attribute name="name">deep water</attribute>
   </entity>
   <entity x="44" y="122">
-   <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
+   <implementation class-name="games.stendhal.server.entity.mapstuff.area.DamagingArea">
     <parameter name="interval">2</parameter>
     <parameter name="damage">50</parameter>
     <parameter name="probability">30</parameter>
@@ -261,7 +261,7 @@ Danger! Deep Water!
    <attribute name="name">deep water</attribute>
   </entity>
   <entity x="46" y="122">
-   <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
+   <implementation class-name="games.stendhal.server.entity.mapstuff.area.DamagingArea">
     <parameter name="interval">2</parameter>
     <parameter name="damage">50</parameter>
     <parameter name="probability">30</parameter>
@@ -270,7 +270,7 @@ Danger! Deep Water!
    <attribute name="name">deep water</attribute>
   </entity>
   <entity x="43" y="123">
-   <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
+   <implementation class-name="games.stendhal.server.entity.mapstuff.area.DamagingArea">
     <parameter name="interval">2</parameter>
     <parameter name="damage">50</parameter>
     <parameter name="probability">30</parameter>
@@ -279,7 +279,7 @@ Danger! Deep Water!
    <attribute name="name">deep water</attribute>
   </entity>
   <entity x="48" y="123">
-   <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
+   <implementation class-name="games.stendhal.server.entity.mapstuff.area.DamagingArea">
     <parameter name="interval">2</parameter>
     <parameter name="damage">50</parameter>
     <parameter name="probability">30</parameter>
@@ -288,7 +288,7 @@ Danger! Deep Water!
    <attribute name="name">deep water</attribute>
   </entity>
   <entity x="43" y="124">
-   <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
+   <implementation class-name="games.stendhal.server.entity.mapstuff.area.DamagingArea">
     <parameter name="interval">2</parameter>
     <parameter name="damage">50</parameter>
     <parameter name="probability">30</parameter>
@@ -297,7 +297,7 @@ Danger! Deep Water!
    <attribute name="name">deep water</attribute>
   </entity>
   <entity x="45" y="124">
-   <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
+   <implementation class-name="games.stendhal.server.entity.mapstuff.area.DamagingArea">
     <parameter name="interval">2</parameter>
     <parameter name="damage">50</parameter>
     <parameter name="probability">30</parameter>
@@ -306,14 +306,14 @@ Danger! Deep Water!
    <attribute name="name">deep water</attribute>
   </entity>
   <entity x="44" y="126">
-    <implementation class-name="games.stendhal.server.entity.Sign"/>
+    <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
     <attribute name="text">
 Danger! Deep Water!
     </attribute>
     <attribute name="class">signpost</attribute>
   </entity>
   <entity x="47" y="126">
-    <implementation class-name="games.stendhal.server.entity.Sign"/>
+    <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
     <attribute name="text">
 Danger! Deep Water!
     </attribute>
@@ -337,7 +337,7 @@ Danger! Deep Water!
 
   <portal x="69" y="37" ref="0">
    <destination zone="-2_orril_lich_palace" ref="0"/>
-   <implementation class-name="games.stendhal.server.entity.portal.LockedDoor">
+   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.LockedDoor">
     <parameter name="class">skulldoor_s</parameter>
     <parameter name="key">dungeon_silver_key</parameter>
    </implementation>
@@ -375,7 +375,7 @@ Danger! Deep Water!
 
   <portal x="54" y="53" ref="locked_outside">
    <destination zone="-2_orril_lich_palace" ref="locked_inside_left"/>
-   <implementation class-name="games.stendhal.server.entity.portal.LockedDoor">
+   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.LockedDoor">
     <parameter name="class">skulldoor_n</parameter>
     <parameter name="key">lich_gold_key</parameter>
    </implementation>
@@ -391,14 +391,14 @@ Danger! Deep Water!
 
   <portal x="54" y="113" ref="orb_table">
    <destination zone="-2_orril_lich_palace" ref="2nd_room_in"/>
-   <implementation class-name="games.stendhal.server.entity.portal.QuestCheckingPortal">
+   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.QuestCheckingPortal">
     <parameter name="quest">learn_scrying</parameter>
     <parameter name="rejected">You do not know how to use the orb.</parameter>
    </implementation>
   </portal>
 
   <portal x="77" y="117" ref="2nd_room_in">
-   <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
   </portal>
 
   <portal x="76" y="117" ref="2nd_room_exit1">
@@ -409,15 +409,15 @@ Danger! Deep Water!
   </portal>
 
   <portal x="71" y="117" ref="2nd_room_out1">
-   <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
   </portal>
   <portal x="71" y="118" ref="2nd_room_out2">
-   <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
   </portal>
 
   <portal x="84" y="108" ref="headstone">
    <destination zone="-2_orril_lich_palace" ref="3rd_room_in"/>
-   <implementation class-name="games.stendhal.server.entity.portal.KeyDestroyingDoor">
+   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyDestroyingDoor">
     <parameter name="class">headstone</parameter>
     <parameter name="key">carbuncle</parameter>
     <parameter name="rejected">The tombstone needs a gem to unlock it.</parameter>
@@ -426,7 +426,7 @@ Danger! Deep Water!
   </portal>
 
   <portal x="97" y="117" ref="3rd_room_in">
-   <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
   </portal>
 
   <portal x="96" y="117" ref="3rd_room_exit1">
@@ -437,10 +437,10 @@ Danger! Deep Water!
   </portal>
 
   <portal x="91" y="117" ref="3rd_room_out1">
-   <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
   </portal>
   <portal x="91" y="118" ref="3rd_room_out2">
-   <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
   </portal>
 
  </zone>
@@ -454,19 +454,19 @@ Danger! Deep Water!
  <zone name="-3_kotoch_prison" level="-3" x="499744" y="500224" file="Level -3/kotoch/prison.tmx">
   <portal x="15" y="10" ref="kotoch_lock_outside">
    <destination zone="-3_kotoch_prison" ref="kotoch_lock_inside"/>
-   <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
     <parameter name="key">kotoch_prison_key</parameter>
     <parameter name="rejected">You do not have the key to open the lock.</parameter>
    </implementation>
   </portal>
   <portal x="15" y="8" ref="kotoch_lock_inside">
-   <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
   </portal>
   <portal x="15" y="9" ref="kotoch_exit_inside">
    <destination zone="-3_kotoch_prison" ref="kotoch_exit_outside"/>
   </portal>
   <portal x="15" y="11" ref="kotoch_exit_outside">
-   <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
   </portal>
  </zone>
 
