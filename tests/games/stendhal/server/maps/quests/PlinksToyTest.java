@@ -20,7 +20,7 @@ import utilities.ItemTestHelper;
 import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
 
-public class PlinkToysTest {
+public class PlinksToyTest {
 	private Player player = null;
 	private SpeakerNPC npc = null;
 	private Engine en = null;
