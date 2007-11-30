@@ -4,12 +4,13 @@
  * $Id$
  */
 
-package games.stendhal.server.entity;
+package games.stendhal.server.entity.mapstuff.area;
 
 //
 //
 
-import games.stendhal.server.entity.area.AreaEntity;
+import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.RPEntity;
 
 /**
  * An entity that just acts as an obsticle. This is a temporary workaround to
