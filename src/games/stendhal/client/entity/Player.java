@@ -21,18 +21,25 @@ public class Player extends RPEntity {
 	 * Away property.
 	 */
 	public static final Object	PROP_AWAY	= new Object();
-
+	/**
+	 * Grumpy property.
+	 */
+	public static final Object	PROP_GRUMPY	= new Object();
 	/**
 	 * The away message of this player.
 	 */
 	private String	away;
-
+	/**
+	 * The grumpy message of this player.
+	 */
+	private String	grumpy;
 
 	/**
 	 * Create a player entity.
 	 */
 	public Player() {
 		away = null;
+		grumpy = null;
 	}
 
 
@@ -70,6 +77,36 @@ public class Player extends RPEntity {
 		addTextIndicator(((message != null) ? "Away" : "Back"), NotificationType.INFORMATION);
 	}
 
+	/**
+	 * Determine if the player is grumpy.
+	 *
+	 * @return	<code>true</code> if the player is grumpy.
+	 */
+	public boolean isGrumpy() {
+		return (getGrumpy() != null);
+	}
+
+
+	/**
+	 * Get the grumpy message.
+	 *
+	 * @return	The grumpy text, or <code>null</code> if not grumpy.
+	 */
+	public String getGrumpy() {
+		return grumpy;
+	}
+
+
+	/**
+	 * An away message was set/cleared.
+	 *
+	 * @param	message		The away message, or <code>null</code>
+	 *				if no-longer away.
+	 */
+	protected void onGrumpy(final String message) {
+		addTextIndicator(((message != null) ? "Grumpy" : "Receptive"), NotificationType.INFORMATION);
+	}
+
 
 	//
 	// RPObjectChangeListener
@@ -95,6 +132,16 @@ public class Player extends RPEntity {
 				onAway(away);
 			}
 		}
+		if (changes.has("grumpy")) {
+			/*
+			 * Filter out a player "changing" to the same message
+			 */
+			if (!object.has("grumpy") || !object.get("grumpy").equals(changes.get("grumpy"))) {
+				grumpy = changes.get("grumpy");
+				fireChange(PROP_GRUMPY);
+				onGrumpy(grumpy);
+			}
+		}
 	}
 
 	/**
@@ -111,6 +158,11 @@ public class Player extends RPEntity {
 			away = null;
 			fireChange(PROP_AWAY);
 			onAway(null);
+		}
+		if (changes.has("grumpy")) {
+			grumpy = null;
+			fireChange(PROP_GRUMPY);
+			onGrumpy(null);
 		}
 	}
 }

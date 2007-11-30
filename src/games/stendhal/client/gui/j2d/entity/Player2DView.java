@@ -38,6 +38,11 @@ public class Player2DView extends RPEntity2DView {
 	private static Sprite awaySprite;
 
 	/**
+	 * Sprite representing grumpy.
+	 */
+	private static Sprite grumpySprite;
+
+	/**
 	 * The player entity.
 	 */
 	private Player player;
@@ -45,8 +50,10 @@ public class Player2DView extends RPEntity2DView {
 	static {
 		SpriteStore store = SpriteStore.get();
 		Sprite tiles = store.getSprite("data/sprites/ideas/away.png");
-
+		Sprite tiles2 = store.getSprite("data/sprites/ideas/grumpy.png");
 		awaySprite = store.getAnimatedSprite(tiles, 0, 0, 4,
+				IGameScreen.SIZE_UNIT_PIXELS, IGameScreen.SIZE_UNIT_PIXELS, 2000);
+		grumpySprite = store.getAnimatedSprite(tiles2, 0, 0, 4,
 				IGameScreen.SIZE_UNIT_PIXELS, IGameScreen.SIZE_UNIT_PIXELS, 2000);
 	}
 
@@ -153,6 +160,9 @@ public class Player2DView extends RPEntity2DView {
 
 		if (player.isAway()) {
 			awaySprite.draw(g2d, x + (width * 3 / 4), y - 10);
+		}
+		if (player.isGrumpy()) {
+			grumpySprite.draw(g2d, x - (width * 1 / 6), y - 6);
 		}
 	}
 
