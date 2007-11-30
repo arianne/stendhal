@@ -5,7 +5,7 @@ import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
 import games.stendhal.server.entity.item.Item;
-import games.stendhal.server.entity.spawner.PassiveEntityRespawnPoint;
+import games.stendhal.server.entity.mapstuff.spawner.PassiveEntityRespawnPoint;
 
 import java.util.Map;
 

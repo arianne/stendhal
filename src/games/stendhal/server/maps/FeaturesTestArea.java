@@ -8,7 +8,7 @@ import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.AttackableCreature;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.item.Item;
-import games.stendhal.server.entity.spawner.CreatureRespawnPoint;
+import games.stendhal.server.entity.mapstuff.spawner.CreatureRespawnPoint;
 import games.stendhal.server.rule.defaultruleset.DefaultEntityManager;
 import games.stendhal.server.rule.defaultruleset.DefaultItem;
 

@@ -3,7 +3,7 @@ package games.stendhal.server.maps.semos.city;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
-import games.stendhal.server.entity.Chest;
+import games.stendhal.server.entity.mapstuff.chest.Chest;
 
 import java.util.Map;
 

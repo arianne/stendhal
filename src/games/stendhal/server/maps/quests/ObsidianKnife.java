@@ -6,10 +6,23 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.SpeakerNPC.ChatAction;
+import games.stendhal.server.entity.npc.action.EquipItemAction;
+import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
+import games.stendhal.server.entity.npc.action.IncreaseXPAction;
+import games.stendhal.server.entity.npc.action.MultipleActions;
+import games.stendhal.server.entity.npc.action.SetQuestAction;
+import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
+import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.NotCondition;
+import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
+import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
+import games.stendhal.server.entity.npc.condition.TriggerInListCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
 
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -47,8 +60,7 @@ public class ObsidianKnife extends AbstractQuest {
 
 	private static final int REQUIRED_FOOD = 100;
 
-	private static final List<String> FOOD_LIST = Arrays.asList("ham", "meat",
-			"cheese");
+	private static final List<String> FOOD_LIST = Arrays.asList("ham", "meat", "cheese");
 
 	private static final int REQUIRED_DAYS = 3;
 
@@ -118,13 +130,7 @@ public class ObsidianKnife extends AbstractQuest {
 			null,
 			ConversationStates.IDLE,
 			"I'm not sure how I'll survive next year now. Good bye, cruel soul.",
-			new SpeakerNPC.ChatAction() {
-				@Override
-				public void fire(Player player, String text, SpeakerNPC engine) {
-					player.addKarma(-5.0);
-					player.setQuest(QUEST_SLOT, "rejected");
-				}
-			});
+			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -5.0));
 
 		// Player asks what supplies he needs, and a random choice of what he
 		// wants is made.
@@ -144,32 +150,30 @@ public class ObsidianKnife extends AbstractQuest {
 
 	private void bringFoodStep() {
 		SpeakerNPC npc = npcs.get("Alrak");
+
+		List<ChatAction> reward = new LinkedList<ChatAction>();
+		reward.add(new SpeakerNPC.ChatAction() {
+				@Override
+				public void fire(Player player, String text, SpeakerNPC npc) {
+					if (player.drop(text, REQUIRED_FOOD)) {
+						npc.say("Great! You brought the " + text + "!");
+					}
+				}});
+		reward.add(new IncreaseXPAction(1000));
+		reward.add(new IncreaseKarmaAction(35.0));
+		reward.add(new SetQuestAction(QUEST_SLOT, "food_brought"));
+
 		/** If player has quest and has brought the food, and says so, take it */
-		for (String item : FOOD_LIST) {
-			npc.add(ConversationStates.ATTENDING, item,
-				new SpeakerNPC.ChatCondition() {
-					@Override
-					public boolean fire(Player player, String text, SpeakerNPC npc) {
-						return player.hasQuest(QUEST_SLOT)
-								&& player.getQuest(QUEST_SLOT).equals(text)
-								&& player.isEquipped(text, REQUIRED_FOOD);
-					}
-				}, ConversationStates.ATTENDING, null,
-				new SpeakerNPC.ChatAction() {
-					@Override
-					public void fire(Player player, String text,
-							SpeakerNPC npc) {
-						if (player.drop(text, REQUIRED_FOOD)) {
-							player.addKarma(35.0);
-							player.addXP(1000);
-							npc.say("Great! You brought the " + text + "!");
-							player.setQuest(QUEST_SLOT, "food_brought");
-							player.notifyWorldAboutChanges();
-							npc.setCurrentState(ConversationStates.ATTENDING);
-						}
-					}
-				});
-		}
+		npc.add(ConversationStates.ATTENDING, FOOD_LIST,
+			new SpeakerNPC.ChatCondition() {
+				@Override
+				public boolean fire(Player player, String text, SpeakerNPC npc) {
+					return player.hasQuest(QUEST_SLOT)
+							&& player.getQuest(QUEST_SLOT).equals(text)
+							&& player.isEquipped(text, REQUIRED_FOOD);
+				}
+			}, ConversationStates.ATTENDING, null,
+			new MultipleActions(reward));
 	}
 
 	private void requestBookStep() {
@@ -193,17 +197,8 @@ public class ObsidianKnife extends AbstractQuest {
 
 		npc.add(ConversationStates.QUEST_ITEM_BROUGHT,
 			ConversationPhrases.YES_MESSAGES, null,
-			ConversationStates.ATTENDING, null,
-			new SpeakerNPC.ChatAction() {
-				@Override
-				public void fire(Player player, String text, SpeakerNPC npc) {
-					player.addKarma(10.0);
-					npc
-							.say("Thanks. Try asking at a library for a 'gem_book'.");
-					player.setQuest(QUEST_SLOT, "seeking_book");
-					player.notifyWorldAboutChanges();
-				}
-			});
+			ConversationStates.ATTENDING, "Thanks. Try asking at a library for a 'gem_book'.",
+			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "seeking_book", 10.0));
 	}
 
 	private void getBookStep() {
@@ -211,62 +206,35 @@ public class ObsidianKnife extends AbstractQuest {
 
 		npc.add(
 			ConversationStates.ATTENDING,
-			"gem_book",
-			new SpeakerNPC.ChatCondition() {
-				@Override
-				public boolean fire(Player player, String text, SpeakerNPC npc) {
-					return player.hasQuest(QUEST_SLOT)
-							&& player.getQuest(QUEST_SLOT).equals("seeking_book");
-				}
-			},
+			"gem_book", new QuestInStateCondition(QUEST_SLOT, "seeking_book"),
 			ConversationStates.QUESTION_1,
 			"You're in luck! Ognir brought it back just last week. Now, who is it for?",
 			null);
 
 		npc.add(ConversationStates.QUESTION_1, NAME, null,
-			ConversationStates.QUESTION_1, null,
-			new SpeakerNPC.ChatAction() {
-				@Override
-				public void fire(Player player, String text, SpeakerNPC npc) {
-					npc.say("Ah, the mountain dwarf! Hope he enjoys the gem_book.");
-					Item item = StendhalRPWorld.get().getRuleManager()
-							.getEntityManager().getItem("book_blue");
-					item.setBoundTo(player.getName());
-					player.equip(item, true);
-					player.setQuest(QUEST_SLOT, "got_book");
-				}
-			});
+			ConversationStates.QUESTION_1, 
+			"Ah, the mountain dwarf! Hope he enjoys the gem_book.",
+			new MultipleActions(new EquipItemAction("book_blue", 1, true), new SetQuestAction(QUEST_SLOT, "got_book")));
 
 		// player says something which isn't the dwarf's name.
 		npc.add(ConversationStates.QUESTION_1, "",
-			new SpeakerNPC.ChatCondition() {
-				@Override
-				public boolean fire(Player player, String text,	SpeakerNPC npc) {
-					return !text.equalsIgnoreCase(NAME);
-				}
-			}, ConversationStates.QUESTION_1,
+			new NotCondition(new TriggerInListCondition(NAME.toLowerCase())),
+			ConversationStates.QUESTION_1,
 			"Hm, you better check who it's really for.", null);
 	}
 
 	private void bringBookStep() {
 		SpeakerNPC npc = npcs.get("Alrak");
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-			new SpeakerNPC.ChatCondition() {
-				@Override
-				public boolean fire(Player player, String text,	SpeakerNPC npc) {
-					return player.hasQuest(QUEST_SLOT)
-							&& player.getQuest(QUEST_SLOT).equals("got_book")
-							&& player.isEquipped("book_blue");
-				}
-			}, ConversationStates.IDLE, null, new SpeakerNPC.ChatAction() {
+			new AndCondition(new QuestInStateCondition(QUEST_SLOT, "got_book"), new PlayerHasItemWithHimCondition("book_blue")),
+			ConversationStates.IDLE, 
+			"Great! I think I'll read this for a while. Bye!",
+			new SpeakerNPC.ChatAction() {
 				@Override
 				public void fire(Player player, String text, SpeakerNPC npc) {
 					player.drop("book_blue");
-					npc.say("Great! I think I'll read this for a while. Bye!");
 					player.addXP(500);
-					player.setQuest(QUEST_SLOT, "reading;"
-							+ System.currentTimeMillis());
-					npc.setCurrentState(ConversationStates.IDLE);
+					player.setQuest(QUEST_SLOT, "reading;" + System.currentTimeMillis());
 				}
 			});
 

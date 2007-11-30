@@ -2,8 +2,8 @@ package games.stendhal.server.maps.quests;
 
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.entity.Sign;
 import games.stendhal.server.entity.item.Dice;
+import games.stendhal.server.entity.mapstuff.sign.Sign;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.CroupierNPC;

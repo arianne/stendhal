@@ -2,7 +2,7 @@ package games.stendhal.server.maps.mithrilbourgh.stores;
 
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
-import games.stendhal.server.entity.Sign;
+import games.stendhal.server.entity.mapstuff.sign.Sign;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.BuyerAdder;
