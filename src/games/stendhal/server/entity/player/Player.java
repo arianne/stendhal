@@ -180,6 +180,11 @@ public class Player extends RPEntity {
 		if (player.has(ATTR_AWAY)) {
 			player.remove(ATTR_AWAY);
 		}
+		// remove grumpy on login to give postman a chance to deliver messages
+		// (and in the hope that player is receptive now)
+		if (player.has(ATTR_GRUMPY)) {
+			player.remove(ATTR_GRUMPY);
+		}
 				
 		PlayerRPClass.readAdminsFromFile(player);
 		PlayerRPClass.placePlayerIntoWorldOnLogin(object, player);
