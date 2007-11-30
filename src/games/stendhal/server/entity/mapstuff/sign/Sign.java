@@ -10,8 +10,10 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.entity;
+package games.stendhal.server.entity.mapstuff.sign;
 
+
+import games.stendhal.server.entity.Entity;
 
 import org.apache.log4j.Logger;
 import marauroa.common.game.RPClass;

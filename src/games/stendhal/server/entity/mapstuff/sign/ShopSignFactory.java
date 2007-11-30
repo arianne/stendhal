@@ -4,7 +4,7 @@
  * $Id$
  */
 
-package games.stendhal.server.entity;
+package games.stendhal.server.entity.mapstuff.sign;
 
 //
 //
