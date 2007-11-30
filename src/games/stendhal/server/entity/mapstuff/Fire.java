@@ -1,5 +1,7 @@
-package games.stendhal.server.entity;
+package games.stendhal.server.entity.mapstuff;
 
+import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.events.UseListener;
 
 import marauroa.common.game.RPClass;

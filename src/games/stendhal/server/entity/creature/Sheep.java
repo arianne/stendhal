@@ -15,8 +15,8 @@ package games.stendhal.server.entity.creature;
 import games.stendhal.common.Rand;
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.mapstuff.spawner.SheepFood;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.entity.spawner.SheepFood;
 
 
 import org.apache.log4j.Logger;

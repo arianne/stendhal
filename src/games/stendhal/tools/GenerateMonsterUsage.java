@@ -5,7 +5,7 @@ import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.CreaturesXMLLoader;
 import games.stendhal.server.config.ZoneGroupsXMLLoader;
 import games.stendhal.server.entity.creature.Creature;
-import games.stendhal.server.entity.spawner.CreatureRespawnPoint;
+import games.stendhal.server.entity.mapstuff.spawner.CreatureRespawnPoint;
 import games.stendhal.server.rule.defaultruleset.DefaultCreature;
 
 import java.io.IOException;

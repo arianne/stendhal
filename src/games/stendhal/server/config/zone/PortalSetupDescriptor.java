@@ -11,7 +11,7 @@ package games.stendhal.server.config.zone;
 
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.EntityFactoryHelper;
-import games.stendhal.server.entity.portal.Portal;
+import games.stendhal.server.entity.mapstuff.portal.Portal;
 
 
 import org.apache.log4j.Logger;

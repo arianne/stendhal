@@ -2,7 +2,7 @@
 package games.stendhal.server.script;
 
 import games.stendhal.common.MathHelper;
-import games.stendhal.server.entity.Sign;
+import games.stendhal.server.entity.mapstuff.sign.Sign;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.scripting.ScriptImpl;
 
@@ -53,7 +53,7 @@ public class AdminSign extends ScriptImpl {
 				y = MathHelper.parseInt(args.get(2));
 			}
 
-			games.stendhal.server.entity.Sign sign = new games.stendhal.server.entity.Sign();
+			games.stendhal.server.entity.mapstuff.sign.Sign sign = new games.stendhal.server.entity.mapstuff.sign.Sign();
 			sign.setPosition(x, y);
 
 			// concat text ignoring first 3 args

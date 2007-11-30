@@ -4,8 +4,8 @@ import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.creature.Sheep;
+import games.stendhal.server.entity.mapstuff.spawner.CreatureRespawnPoint;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.entity.spawner.CreatureRespawnPoint;
 import games.stendhal.server.rule.EntityManager;
 import games.stendhal.server.scripting.ScriptImpl;
 
