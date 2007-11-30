@@ -9,7 +9,7 @@ import java.util.List;
  * @author hendrik
  */
 class LineAnalyser {
-	private List<String> playerNames = Arrays.asList("hendrikus"); // todo: do not hard code this
+	private List<String> playerNames = Arrays.asList("hendrikus", "player"); // todo: do not hard code this
 
 	private String line;
 	private String stripped;
@@ -22,11 +22,12 @@ class LineAnalyser {
 	}
 
 	private void stripTimeStamp() {
-		int pos = line.indexOf(']');
+		stripped = line.trim();
+		int pos = stripped.indexOf(']');
 		if (pos < 0) {
-			stripped = line;
+			return;
 		}
-		stripped = line.substring(pos);
+		stripped = stripped.substring(pos + 2);
 	}
 
 	private void extractProtagonist() {
@@ -35,7 +36,7 @@ class LineAnalyser {
 		if (posEnd < posStart || posStart < 0) {
 			return;
 		}
-		protagonist = stripped.substring(posStart, posEnd);
+		protagonist = stripped.substring(posStart + 1, posEnd);
 	}
 
 	protected String getLine() {
@@ -48,6 +49,13 @@ class LineAnalyser {
 
 	protected String getStripped() {
 		return stripped;
+	}
+
+	public String getText() {
+		if (protagonist == null) {
+			return stripped;
+		}
+		return line.substring(line.indexOf("> ") + 1).trim();
 	}
 
 	public boolean isPlayerSpeaking() {
@@ -63,6 +71,6 @@ class LineAnalyser {
 	}
 	
 	public boolean isStatus() {
-		return protagonist == null;
+		return !isEmpty() && (protagonist == null);
 	}
 }
