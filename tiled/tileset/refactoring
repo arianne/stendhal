@@ -39,7 +39,7 @@ k*/building/decoration/longhorn_skull.png
 k*/building/decoration/magician_banner.png
 k*/building/decoration/orbpedestal.png
 ./building/decoration/pale_red.png
-./building/decoration/pool.png
+m/K*./building/decoration/pool.png
 ./building/decoration/rocks.png
 ./building/decoration/rocks_2.png
 ./building/decoration/skull_carving.png     not found
@@ -47,7 +47,7 @@ k*/building/decoration/orbpedestal.png
 ./building/decoration/squares.png           not found
 ./building/decoration/squares_2.png
 m/K*./building/decoration/stone_details.png
-./building/decoration/toolset.png
+m/K*./building/decoration/toolset.png
 ./building/decoration/webs.png
 k/building/decoration/wooden_banisters.png     
 ./building/decoration/fireplace_purple.png    not found
@@ -286,7 +286,7 @@ b/item/furniture/other/piano.png
 z*./item/furniture/other/stick.png
 b*/item/furniture/other/warmer.png
 ./item/furniture/other/green.png
-./item/furniture/other/tools_rack.png
+J*/item/furniture/other/tools_rack.png
 ./item/furniture/picture/large_island.png
 ./item/furniture/picture/projectleader.png
 ./item/furniture/picture/small.png
@@ -296,10 +296,10 @@ b*/item/furniture/shelve/dark_bookshelf.png
 b*/item/furniture/shelve/dark_bottle_shelf.png
 b/item/furniture/shelve/narrow_bookshelf.png
 b*/item/furniture/shelve/pale_book_bottle_shelf.png
-./item/furniture/sink/dark_front_on.png
-./item/furniture/sink/dark_grassy.png
-./item/furniture/sink/dark_side_on.png
-./item/furniture/sink/pale_grassy.png
+m/K*/item/furniture/sink/dark_front_on.png
+m/K*/item/furniture/sink/dark_grassy.png
+m/K*/item/furniture/sink/dark_side_on.png
+m/K*/item/furniture/sink/pale_grassy.png
 k*/item/furniture/statue/bird.png
 ./item/furniture/statue/cross.png
 k*/item/furniture/statue/green_stone.png
