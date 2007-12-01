@@ -1,18 +1,21 @@
 package games.stendhal.server.maps.quests;
 
-import java.lang.ref.WeakReference;
-
 import games.stendhal.common.Direction;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
+import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.LoginListener;
 import games.stendhal.server.events.LoginNotifier;
 import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
 import games.stendhal.server.util.TimeUtil;
+
+import java.lang.ref.WeakReference;
+
 import marauroa.common.game.IRPZone;
 
 /**
@@ -159,6 +162,7 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 						}
 					}
 				});
+
 				addReply("fee", null, new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, String text,
@@ -173,6 +177,7 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 						}
 					}
 				});
+
 				addReply("yes", null, new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, String text,
@@ -196,31 +201,45 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 						}
 					}
 				});
+
 				addReply("no", "Very well.");
-				addReply("leave", null, new SpeakerNPC.ChatAction() {
-					@Override
-					public void fire(Player player, String text,
-							SpeakerNPC engine) {
-						if (!player.isQuestCompleted(QUEST_SLOT)) {
-							teleportAway(player);
-							// remove the players Timer
-							TurnNotifier.get().dontNotify(new Timer(player));
-							engine.say("Thank you for using the Wizard's Bank");
-						} else {
-							engine.say("Leave where?");
+
+				add(ConversationStates.ATTENDING, "leave",
+						new QuestNotCompletedCondition(QUEST_SLOT),
+						ConversationStates.ATTENDING, "Thank you for using the Wizard's Bank",
+						new SpeakerNPC.ChatAction() {
+							@Override
+							public void fire(Player player, String text,
+									SpeakerNPC engine) {
+								teleportAway(player);
+								// remove the players Timer
+								TurnNotifier.get().dontNotify(new Timer(player));
+							}
 						}
-					}
-				});
+				);
+
+				add(ConversationStates.ATTENDING, "leave",
+						new QuestCompletedCondition(QUEST_SLOT),
+						ConversationStates.ATTENDING, "Leave where?",
+						null
+				);
+
 				addJob("I control access to the bank. My spells ensure people cannot simply come and go as they please. We charge a #fee.");
+
 				addReply(
 						"magic",
 						"Have you not heard of magic? It is what makes the grass grow here. Perhaps in time your kind will learn how to use this fine art.");
+
 				addOffer("I would have thought that the offer of these #fiscal services is enough for you.");
+
 				addReply(
 						"fiscal",
 						"You do not understand the meaning of the word? You should spend more time in libraries, I hear the one in Ados is excellent.");
+
 				addHelp("This bank is suffused with #magic, and as such you may access any vault you own. There will be a #fee to pay for this privilege, as we are not a charity.");
+
 				addQuest("You may only use this bank if you have gained the right to use the chests at Nalwor, and if you have earned the trust of a young woman.");
+
 				addGoodbye("Goodbye.");
 			}
 		};
