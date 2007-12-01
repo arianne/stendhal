@@ -5,15 +5,18 @@ Changelog
 - semos city decorated for Christmas!
 - meet santa as he teleports around, get a hat and stocking
 - some client pathfinding bugs fixed
-- more new gfx/replacements notably daisies and bushes
+- more new gfx/replacements 
 - most fado interiors redecorated
-- doors should use correct spriate now, closed doors have a reject message
+- doors should use correct sprite now, closed doors have a reject message
 - direct route from kalavan -> kirdneh now possible sue to links with -1_fado_great_caves
 - ice elementals add to ice cap in semos outdoor mountain temple, water
 elementals moved up to 1 kikareukin cave and air elementals added at 6
 kikareukin islands. 
 - elementals stats reflect level better - same atk but more def and hp.
 - nymphs in a glen in fado forest 
+- rooms beyond lich at orril palace opened
+- learn how to 'use' orbs to teleport you
+- to only receive messages from buddies, turn on /grumpy
 
 0.64
 - new city of kirdneh, east of fado forest
