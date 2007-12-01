@@ -33,8 +33,8 @@
  <tileset name="../../tileset/item/pot/barrel.png" firstgid="78" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/barrel.png"/>
  </tileset>
- <tileset name="../../tileset/building/decoration/pale_red.png" firstgid="80" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/decoration/pale_red.png" trans="ff00ff"/>
+ <tileset name="../../tileset/building/decoration/wood_fire.png" firstgid="80" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/decoration/wood_fire.png" trans="ff00ff"/>
  </tileset>
  <tileset name="../../tileset/item/furniture/table/grey_dark.png" firstgid="84" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/table/grey_dark.png" trans="ff00ff"/>

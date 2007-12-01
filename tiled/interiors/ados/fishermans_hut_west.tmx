@@ -33,8 +33,8 @@
  <tileset name="../../tileset/item/furniture/table/wooden_rectangular.png" firstgid="83" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/table/wooden_rectangular.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/building/decoration/pale_red.png" firstgid="89" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/decoration/pale_red.png" trans="ff00ff"/>
+ <tileset name="../../tileset/building/decoration/wood_fire.png" firstgid="89" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/decoration/wood_fire.png" trans="ff00ff"/>
  </tileset>
  <tileset name="../../tileset/item/furniture/other/warmer.png" firstgid="93" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/other/warmer.png"/>
@@ -66,7 +66,7 @@
  </layer>
  <layer name="2_object" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgwASRQBwFxLFQDOMTC6KBOAaI46AYxh/MoHOgHTAKRsEAAAApGo0/AAQAAA==
+   H4sIAAAAAAAAAGNgwA1ioZhUEAnEUUAcB8UwPrEgGohj8PBpATppbP4oGAWDEQAARZ0t0AAEAAA=
   </data>
  </layer>
  <layer name="3_roof" width="16" height="16">

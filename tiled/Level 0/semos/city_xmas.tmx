@@ -186,8 +186,8 @@
  <tileset name="../../tileset/logic/protection.png" firstgid="622" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/protection.png"/>
  </tileset>
- <tileset name="/tileset/building/decoration/dark_red.png" firstgid="623" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/decoration/dark_red.png"/>
+ <tileset name="/tileset/building/decoration/coal_fire.png" firstgid="623" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/decoration/coal_fire.png"/>
  </tileset>
  <tileset name="xmas tree" firstgid="627" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/tree/christmas_tree.png"/>
@@ -252,9 +252,9 @@
    H4sIAAAAAAAAAO3aQQrCMBAF0NKD6kIFF95/7UJKQYpWndGp8x5kV0ISfhKSdBiArdqPt0LfcZgy0LX/WbqOpywB5DiOcwGACPYUIizl6FG25A7yXFbMrzXfbMn9HdS/9e+Z7ndw7/S/W0YAiLGzf1DQK+frymfxQ+G2kSdiXa22NleeZwB8ptqew2+d5AEoZnorqfpmVLVd37D0P/05aDyi6qmie04AmDmD57kC0/x7lgBAAAA=
   </data>
  </layer>
- <layer name="collision" width="64" height="64" visible="0" opacity="0.61">
+ <layer name="collision" width="64" height="64" opacity="0.61">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2WSQrDMAxFQ+/b+29LF4EQLPnLGizb+lBo4klPU3xdJQ99P/rfyip+f/7M/prBn8kHUfl/Or+37RZ7FP9a/G8GzVpr/kz+4VT86+e/RsWPce3Kn1XSGKwQH62N2fl7NhT/HP4o3xQ/zYs8c6xe/MjZ0XVEKSr+lE8ihcZfMhfJu3sceecpy9xr7cHt+fYTN98rF2fWniT+Frah/FG+0PaK0fM4G6h5s+VZn2j+z64VqkdI7afWrsJPjbf+S/ZAzkd7qbW86l+6FuEf3avX/zy+fxK7rYTmcWssml/qGzT+o2PW/Na5sTr/c9wj17LzW549ypiZn/o/yt/Kuez8qE0Iv3QM9T03l7O/dzZnkzc/ot56DT/1foSf8+WINOui+TNKmjfP90idra5W77faF9nPep5UXvG0srf1HeWeS6WSv6zurL17CzVXc4aG+VTt2GdRnp3vPsj9cHf+yB6ilccddRX2vzx6uiV7lK8yxeRWtlzJqtP9dDp/aY5OzrnTa674z+b/AckvGvMAQAAA
+   H4sIAAAAAAAAAO2W3Q7DIAiFm73v3v922UWTphE9yI8onGTJWhX5AKnXVbLQ9yP/7azit+ePHK8V/JFi4FX/2fmtfdewUfx78b8ZJGu1+SPFp6fi37/+JSp+jOtU/qji5mCH/Eh9jM4/8qH41/B7xab4aV7kucdqxY/s7X2OKHnln4qJp9D8c+YidXePI+8spVl7LRs9m+849eZb1eLKs8fJv4ZvKL9XLKS9Yna/ng/UvNWyPJ9o/a8+K1SP4PpPrd2Fnxpv/efYQPZHe6m2rM4/dy3CP2tr1P8svn8cv7WE1nFrzJufGxs0/7Nj2vzatbE7/3Pcotai82vuPcsYmZ/jE8LYqrlM/Nyxp20O7wn8iEbrJfzU+xn+XixnJFnnzR9R3Lp5vkfO2e5682naRexpz+PKKp9a/ra+o73nUqlkL6076+jeQs2V7CFhzqoT+yzKc/LdB7kfns7v2UOksrij7sL+l0VP12T3ilWknNyKVitRlT1O2flLa5S55rKfueLPzf8D4lQzhQBAAAA=
   </data>
  </layer>
  <layer name="protection" width="64" height="64" visible="0" opacity="0.24">

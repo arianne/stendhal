@@ -33,8 +33,8 @@
  <tileset name="../../tileset/item/pot/barrel.png" firstgid="78" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/barrel.png"/>
  </tileset>
- <tileset name="../../tileset/building/decoration/pale_red.png" firstgid="80" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/decoration/pale_red.png" trans="ff00ff"/>
+ <tileset name="../../tileset/building/decoration/wood_fire.png" firstgid="80" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/decoration/wood_fire.png" trans="ff00ff"/>
  </tileset>
  <tileset name="../../tileset/item/furniture/table/grey_dark.png" firstgid="84" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/table/grey_dark.png" trans="ff00ff"/>
@@ -100,7 +100,7 @@
  </layer>
  <layer name="1_terrain" width="32" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAMXUWQrCMBQF0G5AXYPoCrTOsz/OMzh8KYgIzroy9U/dnLdYIcTXJA0tXjgQkmdemxIN45MgZws7Yp7VhwH3e5VQdVHOEU7EPGsII2JeFqomBiYkmLFpj7+pQR0a0ISew/5jmBBjdh+nJEUPjrSgDR1BzRRmxJjNHg6SXn5lBWe4/Kn/GsIQEtSkIE3IePQMsv5ZyBHyXF1Xo7d1/rLv72d/6/xl31+1v274849z6wUoEkpcnej957AgLBX6q0bn/K14df91+m8M9ftfhoqtavz+5+q+v9P9u8IN7i72inBE67I84AkvF/2tBGyiNWr9DQMVPy0ACAAA
+   H4sIAAAAAAAAAMXTWQrCMBQF0GxAXYPoCrTOsz/OMzh8KYgIzroy9U/dnDdYIYTXJC0VLxwIyWtemxLGPglKtrAj5ilMGlOhnhETlRzhRMyL+jAg5nWhamJgQUIYW/b4mxrUoQFNGMKI2GsME2Is7uOUpObdW9CGjqJmCjNiLGYPB02vX2UFZ7j8qf8awhBS1KQgTcj49A66/lnIEfJSXddDb37+uv//y/78/HX/37S/18jnH5fWC1AklKQ61ffPYUFYGvQ3jZfz5/Hr/nvpv2Hm978MFVsVej7053G6f1e4wd3FXhGJal2XBzzh5aI/T8CmWqPW3x0ksSEACAAA
   </data>
  </layer>
  <layer name="2_object" width="32" height="16">

@@ -36,8 +36,8 @@
  <tileset name="../../tileset/item/furniture/shelve/narrow_bookshelf.png" firstgid="130" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/shelve/narrow_bookshelf.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/building/decoration/pale_red.png" firstgid="132" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/decoration/pale_red.png" trans="ff00ff"/>
+ <tileset name="../../tileset/building/decoration/wood_fire.png" firstgid="132" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/decoration/wood_fire.png" trans="ff00ff"/>
  </tileset>
  <tileset name="../../tileset/item/furniture/table/table_with_beer_dark.png" firstgid="136" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/table/table_with_beer_dark.png" trans="ff00ff"/>

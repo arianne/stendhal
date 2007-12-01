@@ -27,8 +27,8 @@
  <tileset name="../../tileset/item/armor/weapons_rack.png" firstgid="72" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/armor/weapons_rack.png"/>
  </tileset>
- <tileset name="../../tileset/building/decoration/pale_red.png" firstgid="90" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/decoration/pale_red.png" trans="ff00ff"/>
+ <tileset name="../../tileset/building/decoration/wood_fire.png" firstgid="90" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/decoration/wood_fire.png" trans="ff00ff"/>
  </tileset>
  <tileset name="../../tileset/item/furniture/chair/wooden_pale.png" firstgid="94" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/chair/wooden_pale.png"/>
@@ -78,7 +78,7 @@
  </layer>
  <layer name="2_object" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNggAATBgSIAuJoIM5GElsDxGsZcANTJHYMEMcCcQ4e9ehgEglqR8EoGAXUAQBT9LyOAAQAAA==
+   H4sIAAAAAAAAAGNggAATBkyQjcReA8RrsaiBAVMkdhQQRwNxDh716GASEjsGiGNJ0DsKRsEoIA8AAOAyI6oABAAA
   </data>
  </layer>
  <layer name="3_roof" width="16" height="16">
