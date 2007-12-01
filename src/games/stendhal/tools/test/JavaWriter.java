@@ -24,21 +24,39 @@ class JavaWriter {
 		out.println("import games.stendhal.server.entity.npc.fsm.Engine;");
 		out.println("import games.stendhal.server.entity.player.Player;");
 		out.println();
+		out.println("import org.junit.Before;");
 		out.println("import org.junit.BeforeClass;");
+		out.println("import org.junit.Test;");
 		out.println();
 		out.println("import utilities.QuestHelper;");
 		out.println();
 		out.println("public class TODO_Test {");
+		out.println();
+		out.println("\tprivate Player player = null;");
+		out.println("\tprivate SpeakerNPC npc = null;");
+		out.println("\tprivate Engine en = null;");
 		out.println();
 		out.println("\t@BeforeClass");
 		out.println("\tpublic static void setUpBeforeClass() throws Exception {");
 		out.println("\t\tQuestHelper.setUpBeforeClass();");
 		out.println("\t}");
 		out.println();
+		out.println("\t@Before");
+		out.println("\tpublic void setUp() {");
+		out.println("\t\tnpc = new SpeakerNPC(TODO);");
+		out.println("\t\tNPCList.get().add(npc);");
+		out.println("\t\tSpeakerNPCFactory npcConf = new TODONPC();");
+		out.println("\t\tnpcConf.createDialog(npc);");
+		out.println();
+		out.println("\t\tAbstractQuest quest = new TODO();");
+		out.println("\t\tquest.addToWorld();");
+		out.println("\t\ten = npc.getEngine();");
+		out.println();
+		out.println("\t\tplayer = PlayerTestHelper.createPlayer();");
+		out.println("\t}");		
+		out.println();
+		out.println("\t@Test");
 		out.println("\tpublic void testQuest() {");
-		out.println("\t\tPlayer player = null; // TODO");
-		out.println("\t\tSpeakerNPC npc = null; // TODO");
-		out.println("\t\tEngine en = null; // TODO");
 	}
 
 	public void emptyLine() {
