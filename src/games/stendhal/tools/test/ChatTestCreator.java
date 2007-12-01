@@ -35,6 +35,8 @@ public class ChatTestCreator {
 		LineAnalyser analyser = new LineAnalyser(line);
 		if (analyser.isEmpty()) {
 			writer.emptyLine();
+		} else if (analyser.isComment()) {
+			writer.comment(analyser.getText());
 		} else if (analyser.isPlayerSpeaking()) {
 			writer.player(analyser.getProtagonist(), analyser.getText());
 		} else if (analyser.isNPCSpeaking()) {
