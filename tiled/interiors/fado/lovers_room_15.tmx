@@ -96,7 +96,7 @@
  </layer>
  <layer name="2_object" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgwA+igTgGB44loJdYEI9HLpFKdhzGI3eQDPN2k+sQCgE+f4wC6oMlNDZ/MY3NHwW0B6U0NHsSlD4BpbtpbM9kEvUNxvxxgrASnGAHEO+lkh27oOahg50kuYgw2ENl88gF2OrE42g0IfWjgHQAAGY3lUbECQAA
+   H4sIAAAAAAAAAGNgwA+igTgGB44loJdYEI9HLpFKdhzGI3eQDPN2k+sQCgE+f4yCUTAK6A9KaWj2JCh9Akp309ieyTQyn57gBGElOMEOIN5LJTt2Qc1DBztJchFhsIfK5pELsNWJx9FoQupHAekAAMuCb7DECQAA
   </data>
  </layer>
  <layer name="3_roof" width="25" height="25">
