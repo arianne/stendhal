@@ -12,6 +12,7 @@ public class LineAnalyserTest {
 		Assert.assertEquals("", analyser.getStripped());
 		Assert.assertNull(analyser.getProtagonist());
 		Assert.assertEquals("", analyser.getText());
+		Assert.assertFalse(analyser.isComment());
 		Assert.assertTrue(analyser.isEmpty());
 		Assert.assertFalse(analyser.isNPCSpeaking());
 		Assert.assertFalse(analyser.isPlayerSpeaking());
@@ -21,10 +22,11 @@ public class LineAnalyserTest {
 	@Test
 	public void testSpace() {
 		LineAnalyser analyser = new LineAnalyser(" ");
-		Assert.assertEquals(" ", analyser.getLine());
+		Assert.assertEquals("", analyser.getLine());
 		Assert.assertEquals("", analyser.getStripped());
 		Assert.assertNull(analyser.getProtagonist());
 		Assert.assertEquals("", analyser.getText());
+		Assert.assertFalse(analyser.isComment());
 		Assert.assertTrue(analyser.isEmpty());
 		Assert.assertFalse(analyser.isNPCSpeaking());
 		Assert.assertFalse(analyser.isPlayerSpeaking());
@@ -38,6 +40,7 @@ public class LineAnalyserTest {
 		Assert.assertEquals("<player> hi", analyser.getStripped());
 		Assert.assertEquals("player", analyser.getProtagonist());
 		Assert.assertEquals("hi", analyser.getText());
+		Assert.assertFalse(analyser.isComment());
 		Assert.assertFalse(analyser.isEmpty());
 		Assert.assertFalse(analyser.isNPCSpeaking());
 		Assert.assertTrue(analyser.isPlayerSpeaking());
@@ -51,10 +54,25 @@ public class LineAnalyserTest {
 		Assert.assertEquals("<Plink> *cries* There were wolves in the park! *sniff* I ran away, but I dropped my teddy! Please will you get it for me? *sniff* Please?", analyser.getStripped());
 		Assert.assertEquals("Plink", analyser.getProtagonist());
 		Assert.assertEquals("*cries* There were wolves in the park! *sniff* I ran away, but I dropped my teddy! Please will you get it for me? *sniff* Please?", analyser.getText());
+		Assert.assertFalse(analyser.isComment());
 		Assert.assertFalse(analyser.isEmpty());
 		Assert.assertTrue(analyser.isNPCSpeaking());
 		Assert.assertFalse(analyser.isPlayerSpeaking());
 		Assert.assertFalse(analyser.isStatus());
+	}
+
+	@Test
+	public void testComment() {
+		LineAnalyser analyser = new LineAnalyser("// he doesn't do anything.");
+		Assert.assertEquals("// he doesn't do anything.", analyser.getLine());
+		Assert.assertEquals("he doesn't do anything.", analyser.getStripped());
+		Assert.assertNull(analyser.getProtagonist());
+		Assert.assertEquals("he doesn't do anything.", analyser.getText());
+		Assert.assertTrue(analyser.isComment());
+		Assert.assertFalse(analyser.isEmpty());
+		Assert.assertFalse(analyser.isNPCSpeaking());
+		Assert.assertFalse(analyser.isPlayerSpeaking());
+		Assert.assertTrue(analyser.isStatus());
 	}
 
 	@Test
@@ -64,6 +82,7 @@ public class LineAnalyserTest {
 		Assert.assertEquals("player earns 10 experience points.", analyser.getStripped());
 		Assert.assertNull(analyser.getProtagonist());
 		Assert.assertEquals("player earns 10 experience points.", analyser.getText());
+		Assert.assertFalse(analyser.isComment());
 		Assert.assertFalse(analyser.isEmpty());
 		Assert.assertFalse(analyser.isNPCSpeaking());
 		Assert.assertFalse(analyser.isPlayerSpeaking());
