@@ -9,28 +9,40 @@ import java.util.List;
  * @author hendrik
  */
 class LineAnalyser {
-	private List<String> playerNames = Arrays.asList("hendrikus", "player"); // todo: do not hard code this
+	private List<String> playerNames = Arrays.asList("hendrikus", "player", "rosie"); // todo: do not hard code this
 
 	private String line;
 	private String stripped;
 	private String protagonist;
+	private boolean comment = false;  
 	
 	protected LineAnalyser(String line) {
-		this.line = line;
+		this.line = line.trim();
 		stripTimeStamp();
+		stripComment();
 		extractProtagonist();
 	}
 
 	private void stripTimeStamp() {
-		stripped = line.trim();
+		stripped = line;
 		int pos = stripped.indexOf(']');
 		if (pos < 0) {
 			return;
 		}
 		stripped = stripped.substring(pos + 2);
 	}
+	
+	private void stripComment() {
+		if (line.startsWith("//")) {
+			comment = true;
+			stripped = line.substring(3);
+		}
+	}
 
 	private void extractProtagonist() {
+		if (comment) {
+			return;
+		}
 		int posStart = stripped.indexOf('<');
 		int posEnd = stripped.indexOf('>');
 		if (posEnd < posStart || posStart < 0) {
@@ -58,18 +70,22 @@ class LineAnalyser {
 		return line.substring(line.indexOf("> ") + 1).trim();
 	}
 
-	public boolean isPlayerSpeaking() {
-		return (protagonist != null) && playerNames.contains(protagonist);
+	public boolean isEmpty() {
+		return line.trim().equals("");
+	}
+	
+	public boolean isComment() {
+		return comment;
 	}
 
 	public boolean isNPCSpeaking() {
 		return (protagonist != null) && !playerNames.contains(protagonist);
 	}
 
-	public boolean isEmpty() {
-		return line.trim().equals("");
+	public boolean isPlayerSpeaking() {
+		return (protagonist != null) && playerNames.contains(protagonist);
 	}
-	
+
 	public boolean isStatus() {
 		return !isEmpty() && (protagonist == null);
 	}
