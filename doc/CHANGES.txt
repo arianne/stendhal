@@ -17,6 +17,8 @@ kikareukin islands.
 - rooms beyond lich at orril palace opened
 - learn how to 'use' orbs to teleport you
 - to only receive messages from buddies, turn on /grumpy
+- development
+  - 17.3% of code is now covered by automated Junit tests
 
 0.64
 - new city of kirdneh, east of fado forest
