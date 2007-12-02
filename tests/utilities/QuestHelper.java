@@ -1,6 +1,7 @@
 package utilities;
 
 import static org.junit.Assert.assertTrue;
+import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.common.Log4J;
@@ -22,6 +23,7 @@ public class QuestHelper {
 		PlayerHelper.generateNPCRPClasses();
 		assertTrue(MockStendhalRPRuleProcessor.get() instanceof MockStendhalRPRuleProcessor);
 		MockStendlRPWorld.get();
+		NPCList.get().clear();
 	}
 
 }
