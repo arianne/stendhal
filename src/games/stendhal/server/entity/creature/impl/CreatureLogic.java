@@ -489,7 +489,7 @@ public class CreatureLogic {
 	private void logicDoNoice() {
 		// with a probability of 1 %, a random noise is made.
 		if (Rand.roll1D100() == 1) {
-			creature.makeNoice();
+			creature.makeNoise();
 		}
 	}
 

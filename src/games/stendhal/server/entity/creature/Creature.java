@@ -627,7 +627,7 @@ public class Creature extends NPC {
 	/**
 	 * Random sound noises.
 	 */
-	public void makeNoice() {
+	public void makeNoise() {
 		if (noises == null){
 			return;
 
