@@ -86,7 +86,7 @@ public class ElfPrincess extends AbstractQuest {
 
 		npc.add(ConversationStates.ATTENDING,
 			ConversationPhrases.QUEST_MESSAGES,
-			new OrCondition(new QuestInStateCondition(QUEST_SLOT, "start"), new QuestInStateCondition(QUEST_SLOT, "got_flowers")),
+			new OrCondition(new QuestInStateCondition(QUEST_SLOT, "start"), new QuestInStateCondition(QUEST_SLOT, "got_flower")),
 			ConversationStates.ATTENDING,
 			"I do so love those pretty flowers from Rose Leigh ...",
 			null);
