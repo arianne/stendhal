@@ -167,7 +167,7 @@ public class AmazonPrincess extends AbstractQuest {
 			ConversationStates.ATTENDING, triggers,
 			new QuestNotInStateCondition(QUEST_SLOT, "start"),
 			ConversationStates.ATTENDING,
-			"Sometime you could do me a #favour ... ", null);
+			"Sometime you could do me a #favour ...", null);
 
 	}
 
