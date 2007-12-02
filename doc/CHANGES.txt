@@ -3,11 +3,9 @@ Changelog
 ---------
 0.65
 - semos city decorated for Christmas!
-- meet santa as he teleports around, get a hat and stocking
-- some client pathfinding bugs fixed
-- more new gfx/replacements 
+- meet santa as he wanders around, get a hat and stocking
+- more new and replacement graphics 
 - most fado interiors redecorated
-- doors should use correct sprite now, closed doors have a reject message
 - direct route from kalavan -> kirdneh now possible sue to links with -1_fado_great_caves
 - ice elementals add to ice cap in semos outdoor mountain temple, water
 elementals moved up to 1 kikareukin cave and air elementals added at 6
@@ -19,6 +17,9 @@ kikareukin islands.
 - to only receive messages from buddies, turn on /grumpy
 - development
   - 17.3% of code is now covered by automated Junit tests
+  - simplified the way quests are coded
+  - some client pathfinding bugs fixed
+  - doors should use correct sprite now, closed doors have a reject message
 
 0.64
 - new city of kirdneh, east of fado forest
