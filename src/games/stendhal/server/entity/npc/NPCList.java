@@ -97,4 +97,11 @@ public class NPCList {
 		// do not expose the internal structure but return a copy instead
 		return new TreeSet<String>(contents.keySet());
 	}
+
+	/**
+	 * removes all NPCs from this list
+	 */
+	public void clear() {
+		contents.clear();
+	}
 }
