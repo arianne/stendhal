@@ -15,6 +15,7 @@ import games.stendhal.server.events.TurnNotifier;
 import games.stendhal.server.util.TimeUtil;
 
 import java.lang.ref.WeakReference;
+import java.util.Arrays;
 
 import marauroa.common.game.IRPZone;
 
@@ -142,10 +143,9 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 			protected void createDialog() {
 				addGreeting(null, new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, String text,
-							SpeakerNPC engine) {
-						if (player.isQuestCompleted(GRAFINDLE_QUEST_SLOT)
-								&& player.isQuestCompleted(ZARA_QUEST_SLOT)) {
+					public void fire(Player player, String text, SpeakerNPC engine) {
+						if (player.isQuestCompleted(GRAFINDLE_QUEST_SLOT) &&
+							player.isQuestCompleted(ZARA_QUEST_SLOT)) {
 							String reply;
 							if (player.isQuestCompleted(QUEST_SLOT)) {
 								reply = " Do you wish to pay to access your chest again?";
@@ -163,65 +163,67 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 					}
 				});
 
-				addReply("fee", null, new SpeakerNPC.ChatAction() {
-					@Override
-					public void fire(Player player, String text,
-							SpeakerNPC engine) {
-						if (player.isQuestCompleted(QUEST_SLOT)
-								|| !player.hasQuest(QUEST_SLOT)) {
-							engine.say("The fee is " + COST
-									+ " money. Do you want to pay?");
-						} else {
-							engine.say("As you already know, the fee is "
-									+ COST + " money.");
-						}
-					}
+				add(ConversationStates.ATTENDING, "fee", null,
+					ConversationStates.QUEST_OFFERED, "Very well.",
+					new SpeakerNPC.ChatAction() {
+    					@Override
+    					public void fire(Player player, String text, SpeakerNPC engine) {
+    						if (player.isQuestCompleted(QUEST_SLOT)
+    								|| !player.hasQuest(QUEST_SLOT)) {
+    							engine.say("The fee is " + COST
+    									+ " money. Do you want to pay?");
+    						} else {
+    							engine.say("As you already know, the fee is "
+    									+ COST + " money.");
+    						}
+    					}
 				});
 
-				addReply("yes", null, new SpeakerNPC.ChatAction() {
-					@Override
-					public void fire(Player player, String text,
-							SpeakerNPC engine) {
-						if (player.isQuestCompleted(QUEST_SLOT)
-								|| !player.hasQuest(QUEST_SLOT)) {
+				add(ConversationStates.QUEST_OFFERED, "yes", null,
+					ConversationStates.ATTENDING, null,
+					new SpeakerNPC.ChatAction() {
+    					@Override
+    					public void fire(Player player, String text, SpeakerNPC engine) {
 							if (player.drop("money", COST)) {
 								engine.say("Semos, Nalwor and Fado bank chests are to my right. The chests owned by Ados Bank Merchants and your friend Zara are to my left. If you are finished before your time here is done, please say #leave.");
-								player.teleport(zone, 10, 10, Direction.DOWN,
-										player);
+								player.teleport(zone, 10, 10, Direction.DOWN, player);
 
-								TurnNotifier.get().notifyInTurns(0,
-										new Timer(player));
+								TurnNotifier.get().notifyInTurns(0, new Timer(player));
 
 								player.setQuest(QUEST_SLOT, "start");
 							} else {
 								engine.say("You do not have enough money!");
 							}
-						} else {
-							engine.say("Hm, I do not understand you. If you wish to #leave, just say");
-						}
+    					}
 					}
-				});
-
-				addReply("no", "Very well.");
-
-				add(ConversationStates.ATTENDING, "leave",
-						new QuestNotCompletedCondition(QUEST_SLOT),
-						ConversationStates.ATTENDING, "Thank you for using the Wizard's Bank",
-						new SpeakerNPC.ChatAction() {
-							@Override
-							public void fire(Player player, String text,
-									SpeakerNPC engine) {
-								teleportAway(player);
-								// remove the players Timer
-								TurnNotifier.get().dontNotify(new Timer(player));
-							}
-						}
 				);
 
+				add(ConversationStates.QUEST_OFFERED, "no", null,
+					ConversationStates.ATTENDING, "Very well.",
+					null
+				);
+
+				add(ConversationStates.ATTENDING, Arrays.asList("yes","no"), null,
+					ConversationStates.ATTENDING, "Hm, I do not understand you. If you wish to #leave, just say",
+					null
+				);
+
+				add(ConversationStates.ANY, "leave",
+					new QuestNotCompletedCondition(QUEST_SLOT),
+					ConversationStates.ATTENDING, "Thank you for using the Wizard's Bank",
+					new SpeakerNPC.ChatAction() {
+						@Override
+						public void fire(Player player, String text, SpeakerNPC engine) {
+							teleportAway(player);
+							// remove the players Timer
+							TurnNotifier.get().dontNotify(new Timer(player));
+						}
+				});
+
 				add(ConversationStates.ATTENDING, "leave",
-						new QuestCompletedCondition(QUEST_SLOT),
-						ConversationStates.ATTENDING, "Leave where?",
-						null
+					new QuestCompletedCondition(QUEST_SLOT),
+					ConversationStates.ATTENDING, "Leave where?",
+					null
 				);
 
 				addJob("I control access to the bank. My spells ensure people cannot simply come and go as they please. We charge a #fee.");
@@ -267,7 +269,10 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 			IRPZone playerZone = player.getZone();
 			if (playerZone.equals(zone)) {
 				player.teleport(zone, 15, 16, Direction.DOWN, player);
-				player.setQuest(QUEST_SLOT, "done");
+
+				 // complete the quest if it already started
+				if (player.hasQuest(QUEST_SLOT))
+					player.setQuest(QUEST_SLOT, "done");
 			}
 		}
 	}
