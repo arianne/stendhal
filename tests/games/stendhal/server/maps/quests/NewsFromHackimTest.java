@@ -3,7 +3,6 @@ package games.stendhal.server.maps.quests;
 import static org.junit.Assert.assertEquals;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
-import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPCFactory;
@@ -12,7 +11,6 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.semos.blacksmith.BlacksmithAssistantNPC;
 import games.stendhal.server.maps.semos.tavern.TraderNPC;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -50,16 +48,6 @@ public class NewsFromHackimTest {
 		quest.addToWorld();
 
 		player = PlayerTestHelper.createPlayer();
-	}
-
-	@After
-	public void tearDown() throws Exception {
-		if (npcHackim != null) {
-			npcHackim.setCurrentState(ConversationStates.IDLE);
-		}
-
-		NPCList.get().remove("Xin Blanca");
-		NPCList.get().remove("Hackim Easso");
 	}
 
 	@Test
