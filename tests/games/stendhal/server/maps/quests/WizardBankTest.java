@@ -12,9 +12,6 @@ import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
-import games.stendhal.server.maps.MockStendlRPWorld;
-import marauroa.common.Log4J;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -23,6 +20,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import utilities.PlayerTestHelper;
+import utilities.QuestHelper;
 
 public class WizardBankTest {
 
@@ -33,9 +31,7 @@ public class WizardBankTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		Log4J.init();
-		assertTrue(MockStendhalRPRuleProcessor.get() instanceof MockStendhalRPRuleProcessor);
-		MockStendlRPWorld.get();
+		QuestHelper.setUpBeforeClass();
 
 		StendhalRPZone zone = new StendhalRPZone(ZONE_NAME);
 		StendhalRPWorld world = StendhalRPWorld.get();
@@ -164,6 +160,11 @@ public class WizardBankTest {
 		assertTrue(npc.isTalking());
 		assertFalse(player.hasQuest(QUEST_SLOT));
 
+		assertTrue(en.step(player, "fee"));
+		assertEquals("The fee is 1000 money. Do you want to pay?", npc.get("text"));
+		assertTrue(npc.isTalking());
+		assertFalse(player.hasQuest(QUEST_SLOT));
+
 		assertTrue(en.step(player, "no"));
 		assertEquals("Very well.", npc.get("text"));
 		assertTrue(npc.isTalking());
@@ -172,13 +173,16 @@ public class WizardBankTest {
 		assertTrue(en.step(player, "leave"));
 		assertEquals("Thank you for using the Wizard's Bank", npc.get("text"));
 		assertTrue(npc.isTalking());
-/* doesn't pass - currently the quest is set to "done" when leaving the bank, even without paying the fee.
 		assertFalse(player.hasQuest(QUEST_SLOT));
-*/
+
 		 // equip the player with enough money to pay the fee
 		StackableItem money = (StackableItem) world.getRuleManager().getEntityManager().getItem("money");
 		money.setQuantity(1000);
 		player.equip(money);
+
+		assertTrue(en.step(player, "fee"));
+		assertEquals("The fee is 1000 money. Do you want to pay?", npc.get("text"));
+		assertTrue(npc.isTalking());
 
 		assertTrue(en.step(player, "yes"));
 		assertEquals("Semos, Nalwor and Fado bank chests are to my right. The chests owned by Ados Bank Merchants and your friend Zara are to my left. If you are finished before your time here is done, please say #leave.", npc.get("text"));
@@ -189,11 +193,10 @@ public class WizardBankTest {
 		assertEquals("Hm, I do not understand you. If you wish to #leave, just say", npc.get("text"));
 		assertTrue(npc.isTalking());
 
-/* doesn't pass - currently the answer is "Very well."
 		assertTrue(en.step(player, "no"));
 		assertEquals("Hm, I do not understand you. If you wish to #leave, just say", npc.get("text"));
 		assertTrue(npc.isTalking());
-*/
+
 		assertTrue(en.step(player, "fee"));
 		assertEquals("As you already know, the fee is 1000 money.", npc.get("text"));
 		assertTrue(npc.isTalking());

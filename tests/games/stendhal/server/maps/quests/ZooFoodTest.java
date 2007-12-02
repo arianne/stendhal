@@ -11,11 +11,8 @@ import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
-import games.stendhal.server.maps.MockStendlRPWorld;
 import games.stendhal.server.maps.ados.outside.AnimalKeeperNPC;
 import games.stendhal.server.maps.ados.outside.VeterinarianNPC;
-import marauroa.common.Log4J;
 import marauroa.common.game.RPObject.ID;
 
 import org.junit.After;
@@ -25,15 +22,14 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import utilities.PlayerTestHelper;
+import utilities.QuestHelper;
 
 public class ZooFoodTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		Log4J.init();
+		QuestHelper.setUpBeforeClass();
 
-		assertTrue(MockStendhalRPRuleProcessor.get() instanceof MockStendhalRPRuleProcessor);
-		MockStendlRPWorld.get();
 		AnimalKeeperNPC katinkaconf = new AnimalKeeperNPC();
 		katinkaconf.configureZone(new StendhalRPZone("testzone"), null);
 		VeterinarianNPC fellgoodconf = new VeterinarianNPC();
