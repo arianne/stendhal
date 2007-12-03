@@ -65,22 +65,22 @@
  </tileset>
  <layer name="0_floor" width="24" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAANWUsQ2EMAxFk11uCBgCpwbRsPIVN8IVN0KKE0bEUmQwxFFcUHwJop+H9fPDxzn38jZ6I/uH6vxR/cmaJMn7RfYfBX7X0khDUkx8en8qf8bn0JC/seaH5wOM3zIfSLxo1E84ycey/8Eg/zwf6/OdDPgTy+eqPyBI8lPeeX+k+TlzKPgGzydceCGbR8Mvvb/ED9k+Wivlk1+T/d38mn5qz5fzxxt/TT9Hxfw1fMv/M+UXXVmetfxNKwqfP2sACQAA
+   H4sIAAAAAAAAAM2UwQ2DMAxFk106RDsEzhnEpVOwJ4eOwKEj5FDVqLEUGQxxFIsevgSR8/j6+eHlnLt5G83IfqPufqvHzpokaXZB9gcF/qdnI3VJMfHp/Wr+lKTlj/gcGvpfWeMf5qPhA+O3zAcSLxr1E3bysex/MMg/z8f6fAcD/sDyOeoPCJLmKe+8P5J/zuwKvsHzCQezkPnR8EvvL/FDto/WSvk0r8n+zL+mn9rz5fz+ZL6mn73Cfw3f8v9M+UVXlmctf9UXutf12AAJAAA=
   </data>
  </layer>
  <layer name="1_terrain" width="24" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGD4gjgpmFA1i88sZIZhW5hMDBqP5GYzY8aj59DGfFDASzW8CYjc03Egl80Fmr8EivhyHHaSajy/MWoeA+XlA7IFF3BmIc6lgPsyOlWgYm9nkmk8KGG7mnyaAHwDxQSzm7Afi+0ToBwAb5wr7AAkAAA==
+   H4sIAAAAAAAAAGNgGD4gjgpmFA1i87czQjCtzCcGDEbzMxix41Hz6WM+KWAkmt8ExG5ouJFK5oPMXoNFfDkOO0g1H1+YtQ4B8/OA2AOLuDMQ51LBfJgdK9EwNrPJNZ8UMNzMP00APwDig1jM2Q/E94nQDwBe/o5bAAkAAA==
   </data>
  </layer>
  <layer name="2_object" width="24" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAN1U2QrCMBBM/t2reRJBEfVN8D5QhOLxF+r/OKUtpEvOJhVxYEi6x+x204ax38GRM3biYRpD5I/AsaQzL/ZnrBdetelyZCSSfYL9FJx59KnK6ZN8+kx7zJDynKaYb6BLag4a6EHWpPVKLBzqqmI6ClvPorWEfwWuwY1D3cRzRlv4d+AePFhiaf+x52PSjAGXbz8UtvOMjZjzqvM/le8rsLZr5Jv6F4XvivXGq/V8tXTIer6DD57XExaNluR3nVfIGanujBA0cWf+I97gy0IdbHlP8AMHiuH6AAkAAA==
+   H4sIAAAAAAAAAN1UywrCMBBM/l2tzUkEi6g3wfcDxUvVv1D/xxFbSJekmzQpiAND0n3MbjdthPgdHKUQJxmmMUJ+Bo41nXmxP2O9yKrNlqMj1ewT7KfgzKNPU86A5NNn2qMNLjGxkZCawxZ60DVpvRILh7qmmJ7B1me0lvCvwDW4caibes5oC/8O3IMHJpb2H3s+dZox4PLth4I7z9iIOa8m/1P5vgprt0F+Xf+q8OVYr7Jaz1fLhk/PN/Auv/UUo9HR/K7zCjkj050RgjbuzH/EC3wytIHLe4BvNc3jBgAJAAA=
   </data>
  </layer>
  <layer name="3_roof" width="24" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgYGDYy8hAVYBuHiHz92GRxyaGbB613UwOQHfjViD/ACN+NSMJLCXC78SoGa5gNHxGwSgYBaNg4AAAA++m8wAJAAA=
+   H4sIAAAAAAAAAGNgYGDYy8hAVYBuHiHz92GRxyaGbB613UwOQHfjVkYIxqdmJIGlRPidGDXDFYyGzygYBaNgFAwcAABFtrWjAAkAAA==
   </data>
  </layer>
  <layer name="objects" width="24" height="24">
