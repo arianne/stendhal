@@ -29,7 +29,7 @@ public class ConversationParser {
 	}
 
 	/**
-	 * read in an amount from the input text
+	 * read in a positive amount from the input text
 	 * @return amount
 	 */
 	public int readAmount()
@@ -37,9 +37,12 @@ public class ConversationParser {
         int amount = 1;
 
          // handle numeric expressions
-        if (_word_idx<_words.length && _words[_word_idx].matches("^[0-9]+")) {
+        if (_word_idx<_words.length && _words[_word_idx].matches("^[+-]?[0-9]+")) {
 	        try {
 	        	amount = Integer.parseInt(_words[_word_idx]);
+
+	        	if (amount < 0)
+	        		_error = true;
 
 		        ++_word_idx;
 	        } catch(NumberFormatException e) {
