@@ -6,6 +6,7 @@ import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
+import games.stendhal.server.entity.npc.ConversationParser;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
@@ -128,12 +129,14 @@ public class Marriage extends AbstractQuest {
 				@Override
 				public void fire(Player player, String text, SpeakerNPC npc) {
 					// find out whom the player wants to marry.
-					String[] words = text.split(" +");
-					if (words.length >= 2) {
-						String brideName = words[1];
+		        	ConversationParser parser = new ConversationParser(text);
+
+			        String brideName = parser.readObjectName();
+
+			        if (parser.getError()) {
+			        	npc.say("You have to tell me who you want to marry.");
+			        } else {
 						startEngagement(npc, player, brideName);
-					} else {
-						npc.say("You have to tell me who you want to marry.");
 					}
 				}
 			});
@@ -408,13 +411,14 @@ public class Marriage extends AbstractQuest {
 					@Override
 					public void fire(Player player, String text, SpeakerNPC npc) {
 						// find out whom the player wants to marry.
-						String[] words = text.split(" +");
+			        	ConversationParser parser = new ConversationParser(text);
 
-						if (words.length >= 2) {
-							String brideName = words[1];
+				        String brideName = parser.readObjectName();
+
+				        if (parser.getError()) {
+				        	npc.say("You have to tell me who you want to marry.");
+				        } else {
 							startMarriage(npc, player, brideName);
-						} else {
-							npc.say("You have to tell me who you want to marry.");
 						}
 					}
 				});

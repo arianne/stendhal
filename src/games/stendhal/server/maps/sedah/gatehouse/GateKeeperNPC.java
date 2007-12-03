@@ -1,10 +1,11 @@
 package games.stendhal.server.maps.sedah.gatehouse;
 
 import games.stendhal.common.Rand;
-import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.StendhalRPWorld;
+import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.npc.ConversationParser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 
@@ -68,21 +69,26 @@ public class GateKeeperNPC implements ZoneConfigurator {
 				addHelp("You can't get into the imperial city of Sedah without a key.");
 				addQuest("The only favour I need is cold hard cash.");
 				addOffer("Only a #bribe could persuade me to hand over the key to that gate.");
+
 				addReply("bribe", null, new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, String text,
 							SpeakerNPC engine) {
-						String[] words = text.split(" +");
-						// This bit is just incase the player says 'bribe X
-						// potatoes', not money
-						if (words.length > 2
-								&& !words[2].toLowerCase().equals(
-										"money")) {
+			        	ConversationParser parser = new ConversationParser(text);
+
+				        int amount = parser.readAmount();
+				        String item = parser.readObjectName();
+
+				        if (parser.getError()) {
+				        	engine.say("Are you trying to trick me? Bribe me some number of coins!");
+				        } else if (item == null) {
+							// player only said 'bribe'
+							engine.say("A bribe of no money is no bribe! Bribe me with some amount!");
+				        } else if (!item.toLowerCase().equals("money")) {
+							// This bit is just in case the player says 'bribe X potatoes', not money
 							engine.say("You can't bribe me with anything but money!");
-						} else if (words.length > 1) {
-							int amount = 1;
+						} else {
 							try {
-								amount = Integer.parseInt(words[1]);
 								if (amount < 300) {
 									// Less than 300 is not money for him
 									engine.say("You think that amount will persuade me?! That's more than my job is worth!");
@@ -104,9 +110,6 @@ public class GateKeeperNPC implements ZoneConfigurator {
 								// player said bribe followed by a non integer
 								engine.say("Are you trying to trick me? Bribe me some number of coins!");
 							}
-						} else {
-							// player only said 'bribe'
-							engine.say("A bribe of no money is no bribe! Bribe me with some amount!");
 						}
 					}
 				});

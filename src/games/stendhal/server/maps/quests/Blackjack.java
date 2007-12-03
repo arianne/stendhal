@@ -5,6 +5,7 @@ import games.stendhal.common.Grammar;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.item.StackableItem;
+import games.stendhal.server.entity.npc.ConversationParser;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -325,16 +326,13 @@ public class Blackjack extends AbstractQuest {
 				ConversationStates.ATTENDING, null, new ChatAction() {
 					@Override
 					public void fire(Player player, String text, SpeakerNPC npc) {
-						String[] words = text.split(" +");
+			        	ConversationParser parser = new ConversationParser(text);
 
-						if (words.length >= 2) {
-							try {
-								stake = Integer.parseInt(words[1]);
-							} catch (NumberFormatException e) {
-								npc
-										.say("Just tell me how much you want to risk, for example #stake #50.");
-								return;
-							}
+			        	stake = parser.readAmount();
+
+				        if (parser.getError()) {
+				        	npc.say("Just tell me how much you want to risk, for example #stake #50.");
+				        } else {
 							if (stake < MIN_STAKE) {
 								npc.say("You must stake at least " + MIN_STAKE
 										+ " pieces of gold.");
@@ -349,9 +347,6 @@ public class Blackjack extends AbstractQuest {
 											.say("Hey! You don't have enough money!");
 								}
 							}
-						} else {
-							npc
-									.say("Just tell me how much you want to risk, for example #stake #50.");
 						}
 					}
 				});
