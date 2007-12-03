@@ -1,6 +1,7 @@
 package games.stendhal.server.entity.npc.behaviour.adder;
 
 import games.stendhal.common.Grammar;
+import games.stendhal.server.entity.npc.ConversationParser;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -27,21 +28,15 @@ public class BuyerAdder {
 			        @Override
 			        public void fire(Player player, String text, SpeakerNPC engine) {
 
-				        String[] words = text.split(" +");
+			        	ConversationParser parser = new ConversationParser(text);
 
-				        int amount = 1;
-				        String item = null;
-				        if (words.length > 2) {
-					        try {
-						        amount = Integer.parseInt(words[1]);
-					        } catch (NumberFormatException e) {
-						        engine.say("Sorry, I did not understand you.");
-						        engine.setCurrentState(ConversationStates.ATTENDING);
-						        return;
-					        }
-					        item = words[2].toLowerCase();
-				        } else if (words.length > 1) {
-					        item = words[1].toLowerCase();
+				        int amount = parser.readAmount();
+				        String item = parser.readObjectName();
+
+				        if (parser.getError()) {
+					        engine.say("Sorry, I did not understand you.");
+					        engine.setCurrentState(ConversationStates.ATTENDING);
+					        return;
 				        }
 
 				        if (behaviour.hasItem(item)) {

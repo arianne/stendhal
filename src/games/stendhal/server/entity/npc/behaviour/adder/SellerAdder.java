@@ -1,14 +1,15 @@
 package games.stendhal.server.entity.npc.behaviour.adder;
 
-import org.apache.log4j.Logger;
-
 import games.stendhal.common.Grammar;
+import games.stendhal.server.entity.npc.ConversationParser;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
+
+import org.apache.log4j.Logger;
 
 public class SellerAdder {
 	static Logger logger = Logger.getLogger(SellerAdder.class);
@@ -30,28 +31,19 @@ public class SellerAdder {
 
 			        @Override
 			        public void fire(Player player, String text, SpeakerNPC engine) {
-				        // find out what the player wants to buy, and how
-				        // much of it
-				        String[] words = text.split(" +");
+				        // find out what the player wants to buy, and how much of it
+			        	ConversationParser parser = new ConversationParser(text);
 
-				        int amount = 1;
-				        String item = null;
-				        if (words.length > 2) {
-					        try {
-						        amount = Integer.parseInt(words[1]);
-					        } catch (NumberFormatException e) {
-						        engine.say("Sorry, I did not understand you.");
-						        engine.setCurrentState(ConversationStates.ATTENDING);
-						        return;
-					        }
-					        item = words[2].toLowerCase();
-				        } else if (words.length > 1) {
-					        item = words[1].toLowerCase();
+				        int amount = parser.readAmount();
+				        String item = parser.readObjectName();
+
+				        if (parser.getError()) {
+					        engine.say("Sorry, I did not understand you.");
+					        engine.setCurrentState(ConversationStates.ATTENDING);
 				        }
-
 				        // find out if the NPC sells this item, and if so,
 				        // how much it costs.
-				        if (behaviour.hasItem(item)) {
+				        else if (behaviour.hasItem(item)) {
 					        behaviour.chosenItem = item;
 							if (amount > 1000) {
 								logger.warn("Decreasing very large amount of " + amount + " to 1 for player " + player.getName() + " talking to " + engine.getName() + " saying " + text);

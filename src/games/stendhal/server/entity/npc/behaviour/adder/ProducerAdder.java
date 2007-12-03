@@ -2,6 +2,7 @@ package games.stendhal.server.entity.npc.behaviour.adder;
 
 import org.apache.log4j.Logger;
 
+import games.stendhal.server.entity.npc.ConversationParser;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -45,19 +46,22 @@ public class ProducerAdder {
 			new SpeakerNPC.ChatAction() {
 				@Override
 				public void fire(Player player, String text, SpeakerNPC npc) {
+		        	ConversationParser parser = new ConversationParser(text);
 
-					String[] words = text.split(" +");
-					int amount = 1;
-					if (words.length > 1) {
-						amount = Integer.parseInt(words[1]);
-					}
-					if (amount > 1000) {
-						logger.warn("Decreasing very large amount of " + amount + " to 1 for player " + player.getName() + " talking to " + npc.getName() + " saying " + text);
-						amount = 1;
-					}
-					if (behaviour.askForResources(npc, player, amount)) {
-						npc.setCurrentState(ConversationStates.PRODUCTION_OFFERED);
-					}
+			        int amount = parser.readAmount();
+			        String item = parser.readObjectName();
+
+			        if (parser.getError()) {
+			        	npc.say("Sorry, I did not understand you.");
+			        } else {
+			        	if (amount > 1000) {
+    						logger.warn("Decreasing very large amount of " + amount + (item!=null? item+" ": "") + " to 1 for player " + player.getName() + " talking to " + npc.getName() + " saying " + text);
+    						amount = 1;
+    					}
+    					if (behaviour.askForResources(npc, player, amount)) {
+    						npc.setCurrentState(ConversationStates.PRODUCTION_OFFERED);
+    					}
+			        }
 				}
 			}
 		);

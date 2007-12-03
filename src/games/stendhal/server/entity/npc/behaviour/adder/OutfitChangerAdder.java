@@ -1,6 +1,7 @@
 package games.stendhal.server.entity.npc.behaviour.adder;
 
 import games.stendhal.common.Grammar;
+import games.stendhal.server.entity.npc.ConversationParser;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -49,15 +50,15 @@ public class OutfitChangerAdder {
 
 			        @Override
 			        public void fire(Player player, String text, SpeakerNPC engine) {
-				        // find out what the player wants to buy, and how
-				        // much of it
-				        String[] words = text.split(" +");
+				         // find out what the player wants to wear
+			        	ConversationParser parser = new ConversationParser(text);
 
-				        String item = null;
-				        // we ignore any amounts
-				        if (words.length > 1) {
-					        item = words[words.length - 1].toLowerCase();
-				        } else if (behaviour.dealtItems().size() == 1) {
+			        	parser.readAmount();	// We ignore any amounts and skip the numeric expressions.
+			        	String item = parser.readObjectName();
+
+				        if (parser.getError()) {
+				        	engine.say("Sorry, I did not understand you.");
+				        } else if (item==null && behaviour.dealtItems().size()==1) {
 				        	// The NPC only offers one type of outfit, so
 				        	// it's clear what the player wants.
 				        	item = behaviour.dealtItems().iterator().next();
