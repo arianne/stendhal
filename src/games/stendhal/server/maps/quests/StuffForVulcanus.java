@@ -6,7 +6,7 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
+import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
 
@@ -109,7 +109,7 @@ public class StuffForVulcanus extends AbstractQuest {
 		SpeakerNPC npc = npcs.get("Vulcanus");
 
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-			new QuestInStateCondition(QUEST_SLOT, "start"),
+			new QuestStateStartsWithCondition(QUEST_SLOT, "start"),
 			ConversationStates.ATTENDING, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
