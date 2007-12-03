@@ -107,12 +107,12 @@
  </layer>
  <layer name="3_roof" width="30" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAXkgDUD7YBRMApGAUXgGBAfxyFXTU+HDCK7hyJQA2J1KNYg0wwAuzg5GAgHAAA=
+   H4sIAAAAAAAAAGNgGAWEwCIkdgsQdyPhTijdMwDuGgWjYBSQD44B8XEcctX0dMggsnsoAjUgVodiDTLNAAD4wa0aCAcAAA==
   </data>
  </layer>
  <layer name="4_roof_add" width="30" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjYBSMglGADKYNoN3TB9DukQoA+MKTFQgHAAA=
+   H4sIAAAAAAAAAGNgGAXkgDUD7YBRMApGAc3AtAG0e/oA2j1SAQAnJyvFCAcAAA==
   </data>
  </layer>
  <layer name="objects" width="30" height="15">
