@@ -101,7 +101,7 @@
 		 <exec executable="scp" failonerror="true">
 		    <arg value="${build}/stendhal-${version}.zip"/>
 		    <arg value="${build}/stendhal-FULL-${version}.zip"/>
-		    <arg value="${build}/stendhal-server-${version}.zip.zip"/>
+		    <arg value="${build}/stendhal-server-${version}.zip"/>
 		    <arg value="${build}/stendhal-${version}-src.tar.gz"/>
 		    <arg value="${sf.username}@shell1.sf.net:${sf.homedir}/stendhal/file-release/stendhal"/>
 		  </exec>
