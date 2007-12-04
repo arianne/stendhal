@@ -323,8 +323,8 @@ public class PizzaDelivery extends AbstractQuest {
 			String customerName = questData[0];
 			CustomerData customerData = customerDB.get(customerName);
 			long bakeTime = Long.parseLong(questData[1]);
-			long expectedTimeOfDelivery = bakeTime + 60 * 1000
-					* customerData.expectedMinutes;
+			long expectedTimeOfDelivery = bakeTime 
+				+ (long) 60 * 1000 * customerData.expectedMinutes;
 			if (System.currentTimeMillis() > expectedTimeOfDelivery) {
 				return true;
 			}
