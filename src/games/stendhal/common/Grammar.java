@@ -477,7 +477,7 @@ public class Grammar {
 	 * @return one, two, three, ...
 	 */
 	public static Integer number(String text) {
-		if (text.equals("no")) {
+		if (text.equals("no") || text.equals("zero")) {
 			return 0;
 		} if (text.equals("one")) {
 			return 1;
