@@ -12,9 +12,9 @@
  ***************************************************************************/
 package games.stendhal.server.entity.player;
 
+import games.stendhal.client.NotificationType;
 import games.stendhal.common.Direction;
 import games.stendhal.common.FeatureList;
-import games.stendhal.common.NotificationType;
 import games.stendhal.common.Rand;
 import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.StendhalRPRuleProcessor;
@@ -40,13 +40,13 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
-
-import org.apache.log4j.Logger;
 import marauroa.common.Pair;
 import marauroa.common.game.RPEvent;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 import marauroa.common.game.SyntaxException;
+
+import org.apache.log4j.Logger;
 
 public class Player extends RPEntity {
 	/**
@@ -267,7 +267,7 @@ public class Player extends RPEntity {
 		/*
 		 * Normally a zoneid attribute shouldn't logically exist after an entity
 		 * is removed from a zone, but we need to keep it for players so that it
-		 * can be serialized.
+		 * can be serialised.
 		 *
 		 * TODO: Find a better way to decouple "active" zone info from "resume"
 		 * zone info, or save just before removing from zone instead.
@@ -434,7 +434,7 @@ public class Player extends RPEntity {
 	}
 
 	/**
-	 * Clear out all recorded away respones.
+	 * Clear out all recorded away responses.
 	 */
 	public void resetAwayReplies() {
 		awayReplies.clear();
@@ -601,8 +601,8 @@ public class Player extends RPEntity {
 
 	/**
 	 * Process changes that to the object attributes. This may be called several
-	 * times (unfortunetly) due to the requirements of the class's contructor,
-	 * sometimes before prereqs are initialized.
+	 * times (unfortunately) due to the requirements of the class's constructor,
+	 * sometimes before prereqs are initialised.
 	 */
 	@Override
 	public void update() {
@@ -1553,7 +1553,6 @@ public class Player extends RPEntity {
 	}
 
 	public void consume(int turn) {
-
 		Collections.sort(itemsToConsume);
 		if (itemsToConsume.size() > 0) {
 			ConsumableItem food = itemsToConsume.get(0);
@@ -1567,22 +1566,17 @@ public class Player extends RPEntity {
 					if (heal(amount, true) == 0) {
 						itemsToConsume.clear();
 					}
-
 				}
 			}
-
 		} else {
-
 			if (has("eating")) {
 				remove("eating");
-
 			}
 		}
+
 		if ((poisonToConsume.size() == 0)) {
 			if (has("poisoned")) {
-
 				remove("poisoned");
-
 			}
 		} else {
 			List<ConsumableItem> poisonstoRemove = new LinkedList<ConsumableItem>();
@@ -1592,12 +1586,11 @@ public class Player extends RPEntity {
 				if (turn % poison.getFrecuency() == 0) {
 					if (poison.consumed()) {
 						poisonstoRemove.add(poison);
-
 					} else {
 						amount = poison.consume();
 						damage(-amount, poison);
 						sum += amount;
-							put("poisoned", sum);
+						put("poisoned", sum);
 					}
 				}
 
@@ -1605,8 +1598,8 @@ public class Player extends RPEntity {
 			for (ConsumableItem poison : poisonstoRemove){
 				poisonToConsume.remove(poison);
 			}
+		}
 
-			}
 		notifyWorldAboutChanges();
 	}
 

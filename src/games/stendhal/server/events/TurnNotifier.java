@@ -61,7 +61,7 @@ public class TurnNotifier {
 	 */
 
 	public void logic(int currentTurn) {
-		// Note: It is OK to only synchronize the remove part
+		// Note: It is OK to only synchronise the remove part
 		// because notifyAtTurn will not allow registrations
 		// for the current turn. So it is important to
 		// adjust currentTurn before the loop.

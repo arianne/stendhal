@@ -143,7 +143,7 @@ public class ReverseArrow extends AbstractQuest implements
 					player.equip(money);
 					player.addXP(100);
 				} else {
-					npc.say("Congratulations, you solved the quiz again. But unfortunatelly I don't have any further rewards for you.");
+					npc.say("Congratulations, you solved the quiz again. But unfortunately I don't have any further rewards for you.");
 				}
 				player.setQuest(QUEST_SLOT, "done");
 			} else {
