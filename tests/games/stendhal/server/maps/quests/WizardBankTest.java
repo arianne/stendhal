@@ -6,7 +6,6 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -176,9 +175,7 @@ public class WizardBankTest {
 		assertFalse(player.hasQuest(QUEST_SLOT));
 
 		 // equip the player with enough money to pay the fee
-		StackableItem money = (StackableItem) world.getRuleManager().getEntityManager().getItem("money");
-		money.setQuantity(1000);
-		player.equip(money);
+		assertTrue(PlayerTestHelper.equipWithMoney(player, 1000));
 
 		assertTrue(en.step(player, "fee"));
 		assertEquals("The fee is 1000 money. Do you want to pay?", npc.get("text"));
