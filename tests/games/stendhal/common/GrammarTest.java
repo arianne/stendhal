@@ -531,7 +531,7 @@ public class GrammarTest {
 	}
 
 	@Test
-	public void testenumerateCollectionCollection() throws Exception {
+	public void testEnumerateCollectionCollection() throws Exception {
 		assertEquals("", Grammar.enumerateCollection(null));
 		Collection<String> source = new LinkedList<String>();
 		assertEquals("", Grammar.enumerateCollection(source));
@@ -542,7 +542,29 @@ public class GrammarTest {
 		source.add("third");
 		assertEquals("first, second, and third",
 				Grammar.enumerateCollection(source));
+	}
 
+	private static void checkNumberString(int n, String string) {
+		assertEquals(string, Grammar.numberString(n));
+		assertEquals(n, Grammar.number(string));
+	}
+
+	@Test
+	public void testNumberStrings() throws Exception {
+		assertEquals(0, Grammar.number("zero"));
+		checkNumberString(0, "no");
+		checkNumberString(1, "one");
+		checkNumberString(2, "two");
+		checkNumberString(3, "three");
+		checkNumberString(4, "four");
+		checkNumberString(5, "five");
+		checkNumberString(6, "six");
+		checkNumberString(7, "seven");
+		checkNumberString(8, "eight");
+		checkNumberString(9, "nine");
+		checkNumberString(10, "ten");
+		checkNumberString(11, "eleven");
+		checkNumberString(12, "twelve");
 	}
 
 }
