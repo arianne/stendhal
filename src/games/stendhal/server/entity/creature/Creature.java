@@ -389,14 +389,16 @@ public class Creature extends NPC {
 	 * @return chosen enemy or null if no enemy was found.
 	 */
 	public RPEntity getNearestEnemy(double range) {
+		// create list of enemies
+		List<RPEntity> enemyList = getEnemyList();
+		if (enemyList.isEmpty()) {
+			return null;
+		}
 
 		// where are we?
 		Rectangle2D entityArea = getArea(getX(), getY());
 		int x = (int) entityArea.getCenterX();
 		int y = (int) entityArea.getCenterY();
-
-		// create list of enemies
-		List<RPEntity> enemyList = getEnemyList();
 
 		// calculate the distance of all possible enemies
 		Map<RPEntity, Double> distances = new HashMap<RPEntity, Double>();
