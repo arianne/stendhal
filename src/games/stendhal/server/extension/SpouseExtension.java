@@ -12,7 +12,7 @@ import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.StendhalServerExtension;
 import games.stendhal.server.actions.ActionListener;
-import games.stendhal.server.actions.CommandCentre;
+import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.actions.admin.AdministrationAction;
 import games.stendhal.server.entity.player.Player;
 
@@ -47,8 +47,8 @@ public class SpouseExtension extends StendhalServerExtension implements ActionLi
 	public SpouseExtension() {
 		super();
 		logger.info("SpouseExtension starting...");
-		CommandCentre.register("marry", this, 400);
-		CommandCentre.register("spouse", this);
+		CommandCenter.register("marry", this, 400);
+		CommandCenter.register("spouse", this);
 	}
 
 	/* 

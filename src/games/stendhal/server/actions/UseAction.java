@@ -27,7 +27,7 @@ import marauroa.common.game.RPSlot;
 public class UseAction implements ActionListener {
 
 	public static void register() {
-		CommandCentre.register("use", new UseAction());
+		CommandCenter.register("use", new UseAction());
 	}
 
 	public void onAction(Player player, RPAction action) {

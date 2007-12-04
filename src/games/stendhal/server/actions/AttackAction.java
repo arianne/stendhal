@@ -24,7 +24,7 @@ public class AttackAction implements ActionListener {
 
 
 	public static void register() {
-		CommandCentre.register("attack", new AttackAction());
+		CommandCenter.register("attack", new AttackAction());
 	}
 
 	public void onAction(Player player, RPAction action) {

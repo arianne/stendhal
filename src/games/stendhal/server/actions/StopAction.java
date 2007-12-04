@@ -18,7 +18,7 @@ import marauroa.common.game.RPAction;
 public class StopAction implements ActionListener {
 
 	public static void register() {
-		CommandCentre.register("stop", new StopAction());
+		CommandCenter.register("stop", new StopAction());
 	}
 
 	public void onAction(Player player, RPAction action) {

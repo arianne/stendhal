@@ -12,16 +12,16 @@
  ***************************************************************************/
 package games.stendhal.server.actions.buddy;
 
-import games.stendhal.server.actions.CommandCentre;
+import games.stendhal.server.actions.CommandCenter;
 
 public class BuddyAction  {
 
 	public static void register() {
-		CommandCentre.register("addbuddy", new AddBuddyAction());
-		CommandCentre.register("ignore", new IgnoreAction());
-		CommandCentre.register("removebuddy", new RemoveBuddyAction());
-		CommandCentre.register("unignore", new UnignoreAction());
-		CommandCentre.register("grumpy", new GrumpyAction());
+		CommandCenter.register("addbuddy", new AddBuddyAction());
+		CommandCenter.register("ignore", new IgnoreAction());
+		CommandCenter.register("removebuddy", new RemoveBuddyAction());
+		CommandCenter.register("unignore", new UnignoreAction());
+		CommandCenter.register("grumpy", new GrumpyAction());
 	}
 
 

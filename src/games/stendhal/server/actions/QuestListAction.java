@@ -6,7 +6,7 @@ import marauroa.common.game.RPAction;
 
 public class QuestListAction implements ActionListener {
 	public static void register() {
-		CommandCentre.register("listquests", new QuestListAction());
+		CommandCenter.register("listquests", new QuestListAction());
 	}
 
 	public void onAction(Player player, RPAction action) {

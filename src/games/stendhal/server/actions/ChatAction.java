@@ -41,10 +41,10 @@ public class ChatAction implements ActionListener {
 	 */
 	public static void register() {
 		ChatAction chat = new ChatAction();
-		CommandCentre.register("answer", chat);
-		CommandCentre.register("chat", chat);
-		CommandCentre.register("tell", chat);
-		CommandCentre.register("support", chat);
+		CommandCenter.register("answer", chat);
+		CommandCenter.register("chat", chat);
+		CommandCenter.register("tell", chat);
+		CommandCenter.register("support", chat);
 	}
 
 	public void onAction(Player player, RPAction action) {

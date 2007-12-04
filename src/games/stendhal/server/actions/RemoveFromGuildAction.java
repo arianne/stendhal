@@ -18,7 +18,7 @@ public class RemoveFromGuildAction implements ActionListener {
 	 * Registers action.
 	 */
 	public static void register() {
-		CommandCentre.register("guildremove",
+		CommandCenter.register("guildremove",
 				new RemoveFromGuildAction());
 	}
 

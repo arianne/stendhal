@@ -21,7 +21,7 @@ public class OutfitAction implements ActionListener {
 
 
 	public static void register() {
-		CommandCentre.register("outfit", new OutfitAction());
+		CommandCenter.register("outfit", new OutfitAction());
 	}
 
 	public void onAction(Player player, RPAction action) {

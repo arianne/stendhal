@@ -19,7 +19,7 @@ import marauroa.common.game.RPAction;
 public class FaceAction implements ActionListener {
 
 	public static void register() {
-		CommandCentre.register("face", new FaceAction());
+		CommandCenter.register("face", new FaceAction());
 	}
 
 	public void onAction(Player player, RPAction action) {

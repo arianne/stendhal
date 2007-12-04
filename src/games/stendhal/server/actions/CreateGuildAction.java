@@ -19,7 +19,7 @@ public class CreateGuildAction implements ActionListener {
 	 * Registers action.
 	 */
 	public static void register() {
-		CommandCentre.register("joinguild", new CreateGuildAction());
+		CommandCenter.register("joinguild", new CreateGuildAction());
 	}
 
 	/**

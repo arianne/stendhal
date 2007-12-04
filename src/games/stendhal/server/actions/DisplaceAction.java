@@ -32,7 +32,7 @@ public class DisplaceAction implements ActionListener {
 	 * register this action
 	 */
 	public static void register() {
-		CommandCentre.register("displace", new DisplaceAction());
+		CommandCenter.register("displace", new DisplaceAction());
 	}
 
 	/**

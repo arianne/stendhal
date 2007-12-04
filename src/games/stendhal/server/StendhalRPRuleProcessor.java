@@ -15,7 +15,7 @@ package games.stendhal.server;
 import games.stendhal.common.Debug;
 import games.stendhal.server.account.AccountCreator;
 import games.stendhal.server.account.CharacterCreator;
-import games.stendhal.server.actions.CommandCentre;
+import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.mapstuff.spawner.CreatureRespawnPoint;
@@ -336,7 +336,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	}
 
 	public void execute(RPObject caster, RPAction action) {
-		CommandCentre.execute(caster, action);
+		CommandCenter.execute(caster, action);
 	}
 
 	

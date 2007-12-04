@@ -12,9 +12,9 @@ import marauroa.common.game.RPObject;
 
 import org.apache.log4j.Logger;
 
-public class CommandCentre {
+public class CommandCenter {
 	private static ConcurrentHashMap<String, ActionListener> actionsMap;
-	private static Logger logger = Logger.getLogger(CommandCentre.class);
+	private static Logger logger = Logger.getLogger(CommandCenter.class);
 
 	private static ConcurrentHashMap<String, ActionListener> getActionsMap() {
 		if (actionsMap == null) {
@@ -31,7 +31,7 @@ public class CommandCentre {
 		if (command != null) {
 			logger.error("not registering " + command.getClass()
 					+ ". it has the same handler: " + action + " as  "
-					+ CommandCentre.getAction(action).getClass());
+					+ CommandCenter.getAction(action).getClass());
 		}
 
 	}

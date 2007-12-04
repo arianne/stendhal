@@ -32,9 +32,9 @@ public class MoveAction implements ActionListener {
 
 	public static void register() {
 		MoveAction move = new MoveAction();
-		CommandCentre.register("move", move);
-		CommandCentre.register("moveto", move);
-		CommandCentre.register("push", move);
+		CommandCenter.register("move", move);
+		CommandCenter.register("moveto", move);
+		CommandCenter.register("push", move);
 	}
 
 	public void onAction(Player player, RPAction action) {

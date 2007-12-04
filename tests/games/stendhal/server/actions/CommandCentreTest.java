@@ -32,21 +32,21 @@ public class CommandCentreTest {
 		RPAction action = new RPAction();
 		action.put("type", "action");
 		Player caster = PlayerTestHelper.createPlayer();
-		CommandCentre.register("action", listener);
+		CommandCenter.register("action", listener);
 		assertFalse(caster.has("success"));
-		CommandCentre.execute(caster, action);
+		CommandCenter.execute(caster, action);
 		assertTrue(caster.has("success"));
 	}
 
 	@Test
 	public void testRegisterTwice() {
-		CommandCentre.register("this", new ActionListener() {
+		CommandCenter.register("this", new ActionListener() {
 
 			public void onAction(Player player, RPAction action) {
 
 			}
 		});
-		CommandCentre.register("this", new ActionListener() {
+		CommandCenter.register("this", new ActionListener() {
 
 			public void onAction(Player player, RPAction action) {
 
@@ -57,7 +57,7 @@ public class CommandCentreTest {
 
 	@Test
 	public void testExecuteNullNull() {
-		CommandCentre.execute(null, null);
+		CommandCenter.execute(null, null);
 
 	}
 
@@ -67,7 +67,7 @@ public class CommandCentreTest {
 
 		action.put("type", "");
 		Player caster = PlayerTestHelper.createPlayer("bob");
-		CommandCentre.execute(caster, action);
+		CommandCenter.execute(caster, action);
 		assertEquals("Unknown Command ", caster.get("private_text"));
 	}
 

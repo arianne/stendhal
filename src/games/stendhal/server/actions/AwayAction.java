@@ -20,7 +20,7 @@ public class AwayAction implements ActionListener {
 	 * Registers action.
 	 */
 	public static void register() {
-		CommandCentre.register("away", new AwayAction());
+		CommandCenter.register("away", new AwayAction());
 	}
 
 	/**

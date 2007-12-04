@@ -20,7 +20,7 @@ import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.actions.ActionListener;
-import games.stendhal.server.actions.CommandCentre;
+import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.Creature;
@@ -75,22 +75,22 @@ public class AdministrationAction implements ActionListener {
 		 * Make action definition and level a single event so there can't be one without the other.
 		 */
 		AdministrationAction administration = new AdministrationAction();
-		CommandCentre.register("inspect", administration);
-		CommandCentre.register("destroy", administration);
-		CommandCentre.register("supportanswer", administration);
-		CommandCentre.register("tellall", administration);
-		CommandCentre.register("teleport", administration);
-		CommandCentre.register("teleportto", administration);
-		CommandCentre.register("adminlevel", administration);
-		CommandCentre.register("alter", administration);
-		CommandCentre.register("altercreature", administration);
-		CommandCentre.register("summon", administration);
-		CommandCentre.register("summonat", administration);
-		CommandCentre.register("invisible", administration);
-		CommandCentre.register("ghostmode", administration);
-		CommandCentre.register("teleclickmode", administration);
-		CommandCentre.register("jail", administration);
-		CommandCentre.register("gag", administration);
+		CommandCenter.register("inspect", administration);
+		CommandCenter.register("destroy", administration);
+		CommandCenter.register("supportanswer", administration);
+		CommandCenter.register("tellall", administration);
+		CommandCenter.register("teleport", administration);
+		CommandCenter.register("teleportto", administration);
+		CommandCenter.register("adminlevel", administration);
+		CommandCenter.register("alter", administration);
+		CommandCenter.register("altercreature", administration);
+		CommandCenter.register("summon", administration);
+		CommandCenter.register("summonat", administration);
+		CommandCenter.register("invisible", administration);
+		CommandCenter.register("ghostmode", administration);
+		CommandCenter.register("teleclickmode", administration);
+		CommandCenter.register("jail", administration);
+		CommandCenter.register("gag", administration);
 
 		REQUIRED_ADMIN_LEVELS.put("adminlevel", 0);
 		REQUIRED_ADMIN_LEVELS.put("support", 100);

@@ -20,7 +20,7 @@ public class InviteGuildAction implements ActionListener {
 	 * Registers action.
 	 */
 	public static void register() {
-		CommandCentre.register("guild", new InviteGuildAction());
+		CommandCenter.register("guild", new InviteGuildAction());
 	}
 
 	/**

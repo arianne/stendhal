@@ -30,8 +30,8 @@ public class PlayersQuery implements ActionListener {
 
 	public static void register() {
 		PlayersQuery query = new PlayersQuery();
-		CommandCentre.register("who", query);
-		CommandCentre.register("where", query);
+		CommandCenter.register("who", query);
+		CommandCenter.register("where", query);
 	}
 
 	public void onAction(Player player, RPAction action) {

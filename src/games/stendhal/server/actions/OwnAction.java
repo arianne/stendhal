@@ -28,7 +28,7 @@ import marauroa.common.game.RPObject;
 public class OwnAction implements ActionListener {
 
 	public static void register() {
-		CommandCentre.register("own", new OwnAction());
+		CommandCenter.register("own", new OwnAction());
 	}
 
 	public void onAction(Player player, RPAction action) {

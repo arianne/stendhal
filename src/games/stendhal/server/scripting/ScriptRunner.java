@@ -5,7 +5,7 @@ package games.stendhal.server.scripting;
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalServerExtension;
 import games.stendhal.server.actions.ActionListener;
-import games.stendhal.server.actions.CommandCentre;
+import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.actions.admin.AdministrationAction;
 import games.stendhal.server.entity.player.Player;
 
@@ -42,7 +42,7 @@ public class ScriptRunner extends StendhalServerExtension implements
 	public ScriptRunner() {
 		super();
 		scripts = new HashMap<String, ScriptingSandbox>();
-		CommandCentre.register("script", this, REQUIRED_ADMINLEVEL);
+		CommandCenter.register("script", this, REQUIRED_ADMINLEVEL);
 
 	}
 
