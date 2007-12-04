@@ -6,6 +6,8 @@
 
 package games.stendhal.client;
 
+import games.stendhal.common.NotificationType;
+
 /**
  * A base class for the stendhal client UI (not GUI).
  * 

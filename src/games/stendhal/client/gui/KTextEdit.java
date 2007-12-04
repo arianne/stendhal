@@ -1,7 +1,7 @@
 package games.stendhal.client.gui;
 
-import games.stendhal.client.NotificationType;
 import games.stendhal.client.StendhalUI;
+import games.stendhal.common.NotificationType;
 
 import java.awt.BorderLayout;
 import java.awt.Color;

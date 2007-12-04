@@ -9,12 +9,12 @@ package games.stendhal.client.gui.j2d.entity;
 //
 //
 
-import games.stendhal.client.NotificationType;
 import games.stendhal.client.StendhalUI;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.Sign;
 import games.stendhal.client.sprite.SpriteStore;
+import games.stendhal.common.NotificationType;
 
 import java.awt.Rectangle;
 import java.util.List;

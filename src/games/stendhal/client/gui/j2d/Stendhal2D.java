@@ -11,12 +11,12 @@ package games.stendhal.client.gui.j2d;
 //
 
 import games.stendhal.client.IGameScreen;
-import games.stendhal.client.NotificationType;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.gui.KTextEdit;
 import games.stendhal.client.gui.StendhalGUI;
 import games.stendhal.client.gui.styled.WoodStyle;
 import games.stendhal.client.gui.styled.swing.StyledJPanel;
+import games.stendhal.common.NotificationType;
 
 import java.awt.BorderLayout;
 import java.awt.Container;

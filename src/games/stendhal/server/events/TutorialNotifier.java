@@ -1,5 +1,6 @@
 package games.stendhal.server.events;
 
+import games.stendhal.common.NotificationType;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.player.Player;
 
@@ -50,7 +51,7 @@ public class TutorialNotifier {
 		}
 
 		public void onTurnReached(int currentTurn) {
-			player.sendPrivateText(message);
+			player.sendPrivateText(NotificationType.TUTORIAL, message);
 		}
 		
 	}

@@ -9,9 +9,9 @@ package games.stendhal.client.gui;
 //
 //
 
-import games.stendhal.client.NotificationType;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.StendhalUI;
+import games.stendhal.common.NotificationType;
 
 import java.awt.Color;
 import java.io.IOException;

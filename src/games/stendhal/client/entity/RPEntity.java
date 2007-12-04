@@ -14,19 +14,22 @@ package games.stendhal.client.entity;
 
 import games.stendhal.client.GameObjects;
 import games.stendhal.client.GameScreen;
-import games.stendhal.client.NotificationType;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.StendhalUI;
 import games.stendhal.client.stendhal;
 import games.stendhal.client.soundreview.SoundMaster;
 import games.stendhal.common.Grammar;
+import games.stendhal.common.NotificationType;
 import games.stendhal.common.Rand;
 
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
+import marauroa.common.game.RPEvent;
 import marauroa.common.game.RPObject;
+
+import org.apache.log4j.Logger;
 
 /**
  * This class is a link between client graphical objects and server attributes
@@ -34,6 +37,8 @@ import marauroa.common.game.RPObject;
  * You need to extend this object in order to add new elements to the game.
  */
 public abstract class RPEntity extends ActiveEntity {
+	private static final Logger logger = Logger.getLogger(RPEntity.class);
+
 	/**
 	 * Admin Level property.
 	 */
@@ -515,14 +520,12 @@ public abstract class RPEntity extends ActiveEntity {
 	}
 
 	// Called when entity listen to text from talker
-	public void onPrivateListen(final String text) {
+	public void onPrivateListen(String texttype, String text) {
 		NotificationType type;
-
-		// TODO: replace this with its own RPEvent type after port to Marauroa
-		// 2.0
-		if (text.startsWith("Tutorial: ")) {
-			type = NotificationType.TUTORIAL;
-		} else {
+		try {
+			type = NotificationType.valueOf(texttype);
+		} catch (RuntimeException e) {
+			logger.error("Unkown texttype: ", e);
 			type = NotificationType.PRIVMSG;
 		}
 
@@ -539,7 +542,7 @@ public abstract class RPEntity extends ActiveEntity {
 		attacking = null;
 	}
 
-	// When attacket stop attacking us
+	// When attacker stop attacking us
 	public void onStopAttacked(final Entity attacker) {
 		attackers.remove(attacker);
 	}
@@ -653,8 +656,10 @@ public abstract class RPEntity extends ActiveEntity {
 		/*
 		 * Private message
 		 */
-		if (object.has("private_text")) {
-			onPrivateListen(object.get("private_text"));
+		for (RPEvent event : object.events()) {
+			if (event.getName().equals("private_text")) {
+				onPrivateListen(event.get("texttype"), event.get("text"));
+			}
 		}
 
 		/*
@@ -837,10 +842,11 @@ public abstract class RPEntity extends ActiveEntity {
 			/*
 			 * Private message
 			 */
-			if (changes.has("private_text")) {
-				onPrivateListen(changes.get("private_text"));
+			for (RPEvent event : changes.events()) {
+				if (event.getName().equals("private_text")) {
+					onPrivateListen(event.get("texttype"), event.get("text"));
+				}
 			}
-
 			/*
 			 * Outfit
 			 */

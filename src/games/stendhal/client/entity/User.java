@@ -1,11 +1,11 @@
 package games.stendhal.client.entity;
 
 import games.stendhal.client.StendhalUI;
-import games.stendhal.client.NotificationType;
 import games.stendhal.client.WorldObjects;
 import games.stendhal.client.soundreview.HearingArea;
 import games.stendhal.common.FeatureList;
 import games.stendhal.common.Grammar;
+import games.stendhal.common.NotificationType;
 
 import java.awt.geom.Rectangle2D;
 import marauroa.common.game.RPObject;

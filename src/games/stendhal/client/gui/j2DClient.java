@@ -15,7 +15,6 @@ package games.stendhal.client.gui;
 import games.stendhal.client.GameObjects;
 import games.stendhal.client.GameScreen;
 import games.stendhal.client.IGameScreen;
-import games.stendhal.client.NotificationType;
 import games.stendhal.client.StaticGameLayers;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.StendhalUI;
@@ -44,6 +43,7 @@ import games.stendhal.client.sprite.SpriteStore;
 import games.stendhal.client.update.ClientGameConfiguration;
 import games.stendhal.common.CollisionDetection;
 import games.stendhal.common.Direction;
+import games.stendhal.common.NotificationType;
 
 import java.awt.Canvas;
 import java.awt.Color;

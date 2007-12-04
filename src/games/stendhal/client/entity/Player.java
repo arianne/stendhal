@@ -12,7 +12,7 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
-import games.stendhal.client.NotificationType;
+import games.stendhal.common.NotificationType;
 import marauroa.common.game.RPObject;
 
 /** A Player entity */

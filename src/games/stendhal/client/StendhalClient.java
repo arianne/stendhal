@@ -20,6 +20,7 @@ import games.stendhal.client.update.HttpClient;
 import games.stendhal.client.update.Version;
 import games.stendhal.common.Debug;
 import games.stendhal.common.Direction;
+import games.stendhal.common.NotificationType;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;

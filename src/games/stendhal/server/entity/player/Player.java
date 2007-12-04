@@ -14,6 +14,7 @@ package games.stendhal.server.entity.player;
 
 import games.stendhal.common.Direction;
 import games.stendhal.common.FeatureList;
+import games.stendhal.common.NotificationType;
 import games.stendhal.common.Rand;
 import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.StendhalRPRuleProcessor;
@@ -42,6 +43,7 @@ import java.util.Random;
 
 import org.apache.log4j.Logger;
 import marauroa.common.Pair;
+import marauroa.common.game.RPEvent;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 import marauroa.common.game.SyntaxException;
@@ -890,18 +892,24 @@ public class Player extends RPEntity {
 	/**
 	 * Sends a message that only this player can read.
 	 *
-	 * @param text
-	 *			  The message.
+	 * @param text the message.
 	 */
 	@Override
 	public void sendPrivateText(String text) {
-		if (has("private_text")) {
-			text = get("private_text") + "\r\n" + text;
-		}
-		put("private_text", text);
-		StendhalRPRuleProcessor.get().removePlayerPrivateText(this);
+		sendPrivateText(NotificationType.PRIVMSG, text);
 	}
-
+	/**
+	 * Sends a message that only this player can read.
+	 *
+	 * @param type NotificationType
+	 * @param text the message.
+	 */
+	public void sendPrivateText(NotificationType type, String text) {
+		RPEvent event = new RPEvent("private_text");
+		event.put("text", text);
+		event.put("texttype", type.name());
+		addEvent(event);
+	}
 	/**
 	 * Sets the name of the last player who privately talked to this player
 	 * using the /tell command. It needs to be stored non-persistently so that

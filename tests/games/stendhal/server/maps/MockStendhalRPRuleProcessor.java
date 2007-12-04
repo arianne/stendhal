@@ -1,7 +1,6 @@
 package games.stendhal.server.maps;
 
 import games.stendhal.server.StendhalRPRuleProcessor;
-import games.stendhal.server.entity.player.Player;
 
 public class MockStendhalRPRuleProcessor extends StendhalRPRuleProcessor {
 
@@ -14,13 +13,8 @@ public class MockStendhalRPRuleProcessor extends StendhalRPRuleProcessor {
 	}
 
 	@Override
-	public void removePlayerPrivateText(Player player) {
-		// playersRmText.add(player);
-	}
-
-	@Override
 	public void addGameEvent(String source, String event, String... params) {
-
+		// do not log to database during test
 	}
 
 	@Override

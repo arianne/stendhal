@@ -4,7 +4,7 @@
  * $Id$
  */
 
-package games.stendhal.client;
+package games.stendhal.common;
 
 //
 //

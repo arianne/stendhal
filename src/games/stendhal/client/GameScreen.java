@@ -23,6 +23,7 @@ import games.stendhal.client.gui.wt.core.WtPanel;
 import games.stendhal.client.sprite.ImageSprite;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
+import games.stendhal.common.NotificationType;
 
 import java.awt.AlphaComposite;
 import java.awt.BasicStroke;

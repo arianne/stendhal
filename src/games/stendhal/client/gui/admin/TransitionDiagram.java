@@ -1,7 +1,7 @@
 package games.stendhal.client.gui.admin;
 
-import games.stendhal.client.NotificationType;
 import games.stendhal.client.StendhalUI;
+import games.stendhal.common.NotificationType;
 
 import java.awt.Dimension;
 import java.awt.Frame;

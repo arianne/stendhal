@@ -5,6 +5,7 @@ import games.stendhal.client.gui.j2d.Text;
 import games.stendhal.client.gui.j2d.entity.Entity2DView;
 import games.stendhal.client.gui.wt.core.WtPanel;
 import games.stendhal.client.sprite.Sprite;
+import games.stendhal.common.NotificationType;
 
 import java.awt.Color;
 import java.awt.Font;

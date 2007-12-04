@@ -7,6 +7,8 @@
 
 package games.stendhal.client;
 
+import games.stendhal.common.NotificationType;
+
 import org.apache.log4j.AppenderSkeleton;
 import org.apache.log4j.spi.LoggingEvent;
 import org.apache.log4j.spi.ThrowableInformation;

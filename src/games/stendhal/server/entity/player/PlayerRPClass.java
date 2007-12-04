@@ -43,6 +43,7 @@ import marauroa.common.game.Definition;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
+import marauroa.common.game.Definition.DefinitionClass;
 import marauroa.common.game.Definition.Type;
 import marauroa.common.io.UnicodeSupportingInputStreamReader;
 
@@ -100,8 +101,10 @@ class PlayerRPClass {
 		RPClass player = new RPClass("player");
 		player.isA("rpentity");
 		player.addAttribute("text", Type.LONG_STRING, Definition.VOLATILE);
-		player.addAttribute("private_text", Type.LONG_STRING,
-				(byte) (Definition.PRIVATE | Definition.VOLATILE));
+		/*player.addAttribute("private_text", Type.LONG_STRING,
+				(byte) (Definition.PRIVATE | Definition.VOLATILE));*/
+		
+		player.addRPEvent("private_text", Definition.PRIVATE);
 
 		player.addAttribute("poisoned", Type.SHORT, Definition.VOLATILE);
 		player.addAttribute("eating", Type.SHORT, Definition.VOLATILE);
@@ -182,6 +185,11 @@ class PlayerRPClass {
 				Definition.HIDDEN);
 
 		player.addRPEvent("transition_graph", Definition.STANDARD);
+		
+		
+		RPClass rpclass = new RPClass("private_text");
+		rpclass.add(DefinitionClass.RPEVENT, "text", Definition.PRIVATE);
+		rpclass.add(DefinitionClass.RPEVENT, "texttype", Definition.PRIVATE);
 	}
 
 	/**

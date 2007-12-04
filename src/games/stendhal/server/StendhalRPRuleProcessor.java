@@ -56,23 +56,15 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 	private StendhalPlayerDatabase database;
 
-	
+
 	private RPServerManager rpman;
 
-	
-	
-	
 	/**
 	 * A list of all players who are currently logged in.
 	 */
 	private List<Player> players;
 
-	/**
-	 * ???
-	 */
 	private List<Player> playersRmText;
-
-	private List<Player> playersRmPrivateText;
 
 	private List<NPC> npcs;
 
@@ -90,12 +82,9 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 	private List<PassiveEntityRespawnPoint> plantGrowers;
 
-	
-
 	protected StendhalRPRuleProcessor() {
 		players = new LinkedList<Player>();
 		playersRmText = new LinkedList<Player>();
-		playersRmPrivateText = new LinkedList<Player>();
 		npcs = new LinkedList<NPC>();
 		respawnPoints = new LinkedList<CreatureRespawnPoint>();
 		plantGrowers = new LinkedList<PassiveEntityRespawnPoint>();
@@ -288,10 +277,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		playersRmText.add(player);
 	}
 
-	public void removePlayerPrivateText(Player player) {
-		playersRmPrivateText.add(player);
-	}
-
 	/**
 	 * Gets all players who are currently online.
 	 *
@@ -338,8 +323,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	public void execute(RPObject caster, RPAction action) {
 		CommandCenter.execute(caster, action);
 	}
-
-	
 
 	public int getTurn() {
 		return rpman.getTurn();
@@ -420,15 +403,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			}
 			playersRmText.clear();
 
-			for (Player player : playersRmPrivateText) {
-				if (player.has("private_text")) {
-					player.remove("private_text");
-
-					player.notifyWorldAboutChanges();
-				}
-			}
-			playersRmPrivateText.clear();
-
 		} catch (Exception e) {
 			logger.error("error in beginTurn", e);
 		} finally {
@@ -462,8 +436,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			os.append("plantGrowers: " + plantGrowers.size() + "\n");
 			os.append("players: " + players.size() + "\n");
 			os.append("playersRmText: " + playersRmText.size() + "\n");
-			os.append("playersRmPrivateText: " + playersRmPrivateText.size()
-					+ "\n");
 			os.append("respawnPoints: " + respawnPoints.size() + "\n");
 			os.append("creatures: " + creatures + "\n");
 			os.append("objects: " + objects + "\n");
@@ -508,7 +480,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			 * TODO: Removable once RPEvent chat is added.
 			 */
 			playersRmText.add(player);
-			playersRmPrivateText.add(player);
 
 			players.add(player);
 
@@ -588,6 +559,4 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	public RPServerManager getRPManager() {
 		return rpman;
 	}
-
-	
 }

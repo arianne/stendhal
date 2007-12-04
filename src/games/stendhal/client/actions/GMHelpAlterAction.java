@@ -1,7 +1,7 @@
 package games.stendhal.client.actions;
 
-import games.stendhal.client.NotificationType;
 import games.stendhal.client.StendhalUI;
+import games.stendhal.common.NotificationType;
 
 /**
  * Display command usage.
