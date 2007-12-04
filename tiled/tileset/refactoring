@@ -14,22 +14,22 @@
 # letter then * means it's done and committed
 ## Please help keep up to date and refer to this if you want to know what you can do
 
-./building/decoration/arrows.png
+J*/building/decoration/arrows.png
 k*/building/decoration/banner.png
 k*/building/decoration/banner_long.png
-./building/decoration/blobcreature.png   not found
+./building/decoration/blobcreature.png   
 k*/building/decoration/block.png
 J*./building/decoration/blue_circle.png
 ./building/decoration/blue_green.png
 ./building/decoration/blue_green_2.png
 k*/building/decoration/chimney.png
 k*/building/decoration/chimney_big.png
-./building/decoration/dark_red.png
-./building/decoration/eaglehead.png     not found
+m*/building/decoration/dark_red.png
+m*/building/decoration/eaglehead.png     
 k*/building/decoration/fairypool.png
 k*/building/decoration/fancy_gate.png
-./building/decoration/fireplace.png
-./building/decoration/fireplace_2.png
+m/K*/building/decoration/fireplace.png
+m/K*/building/decoration/fireplace_2.png
 ./building/decoration/floor_sparkle.png
 b*/building/decoration/green.png
 ./building/decoration/green_block.png
@@ -38,14 +38,14 @@ k*/building/decoration/library_banner.png
 k*/building/decoration/longhorn_skull.png
 k*/building/decoration/magician_banner.png
 k*/building/decoration/orbpedestal.png
-./building/decoration/pale_red.png
+m*/building/decoration/pale_red.png
 m/K*./building/decoration/pool.png
-./building/decoration/rocks.png
-./building/decoration/rocks_2.png
+m*/building/decoration/rocks.png
+m*/building/decoration/rocks_2.png
 ./building/decoration/skull_carving.png     not found
 ./building/decoration/skullpedestal.png     not found
 ./building/decoration/squares.png           not found
-./building/decoration/squares_2.png
+m*/building/decoration/squares_2.png
 m/K*./building/decoration/stone_details.png
 m/K*./building/decoration/toolset.png
 ./building/decoration/webs.png
@@ -131,7 +131,7 @@ K*./building/wall/int_wall_thin_bricks.png
 K*./building/wall/int_wall_fancy_purple.png
 K*./building/wall/int_wall_brick_wood.png
 ./building/wall/bricked_edges.png
-./building/window/broken_window.png
+m*/building/window/broken_window.png
 K*./building/window/int_windows_dark_red.png
 J*./building/window/painted.png
 k*/building/window/window_left.png
@@ -167,20 +167,20 @@ k*/ground/ice/edges.png
 ./ground/ice/glacier.png
 k*/ground/ice/ice.png
 K*/ground/indoor/black_hole.png
-s/ground/indoor/blue_green.png
+m*/ground/indoor/blue_green.png
 K*/ground/indoor/blue_hole.png
-K/ground/indoor/brown_hole.png
-s/ground/indoor/church_tiles.png
+K*/ground/indoor/brown_hole.png
+k*/ground/indoor/church_tiles.png
 K*/ground/indoor/grey_hole.png
-s/ground/indoor/grey_skull.png
+./ground/indoor/grey_skull.png
 K*/ground/indoor/taupe_hole.png
-s/ground/indoor/tiles.png
-F/ground/ladder/horizontal_dark.png
-F/ground/ladder/horizontal_pale.png
+m*/ground/indoor/tiles.png
+./ground/ladder/horizontal_dark.png
+./ground/ladder/horizontal_pale.png
 F*/ground/ladder/small.png
 F*/ground/ladder/steps.png
-F/ground/ladder/vertical_dark.png
-F/ground/ladder/vertical_pale.png
+./ground/ladder/vertical_dark.png
+./ground/ladder/vertical_pale.png
 k*/ground/ridge/earth_dark.png
 k*/ground/ridge/earth_pale.png
 K*/ground/ridge/ice.png
@@ -212,7 +212,7 @@ k*/ground/water/water_corners.png
 k*/ground/water/waterfall.png
 k*/ground/water/waterfall_2.png
 k*/ground/water/whirlpool.png
-./item/book.png // big one is by kiheru
+m*./item/book.png 
 b*/item/brush.png
 J*/item/button.png
 J*/item/button_gold.png
@@ -254,15 +254,14 @@ b*/item/furniture/bed/large_front_on.png
 b*/item/furniture/bed/large_front_on_darker.png
 b*/item/furniture/bed/side_on.png
 b*/item/furniture/bed/side_on_bluer.png
-D/item/furniture/carpet/border.png
-m/item/furniture/carpet/brown_rug.png
+J*/item/furniture/carpet/border.png
+m*/item/furniture/carpet/brown_rug.png
 D/item/furniture/carpet/carpets.png
-D/item/furniture/carpet/carpets_2.png
-D/item/furniture/carpet/plain_colours.png
+D*/item/furniture/carpet/carpets_2.png
+?*/item/furniture/carpet/plain_colours.png
 D/item/furniture/carpet/purple_rug.png
-D/item/furniture/carpet/rug_border.png
-D/item/furniture/carpet/black_grey.png
-D/item/furniture/carpet/stripey.png
+m*/item/furniture/carpet/rug_border.png
+?*/item/furniture/carpet/black_grey.png
 b*/item/furniture/chair/stool.png
 m*/item/furniture/chair/throne.png
 m*./item/furniture/chair/throne_small.png
@@ -278,14 +277,14 @@ b*/item/furniture/crockery/knife_spoon.png
 ./item/furniture/light/dark_torch.png
 ./item/furniture/light/flames.png
 m*/item/furniture/light/iron_lamp.png
-./item/furniture/light/torch.png
-./item/furniture/light/torch_top.png
+m/K*/item/furniture/light/torch.png
+m/K*/item/furniture/light/torch_top.png
 b/item/furniture/other/drawer.png
 b*/item/furniture/other/drawer_with_mirror.png
-b/item/furniture/other/piano.png
+b*/item/furniture/other/piano.png
 z*./item/furniture/other/stick.png
 b*/item/furniture/other/warmer.png
-./item/furniture/other/green.png
+m/K*/item/furniture/other/green.png
 J*/item/furniture/other/tools_rack.png
 ./item/furniture/picture/large_island.png
 ./item/furniture/picture/projectleader.png
@@ -294,49 +293,49 @@ b*/item/furniture/shelve/bright_bookshelf.png
 b*/item/furniture/shelve/bright_bookshelf_and_cupboard.png
 b*/item/furniture/shelve/dark_bookshelf.png
 b*/item/furniture/shelve/dark_bottle_shelf.png
-b/item/furniture/shelve/narrow_bookshelf.png
+b*/item/furniture/shelve/narrow_bookshelf.png
 b*/item/furniture/shelve/pale_book_bottle_shelf.png
 m/K*/item/furniture/sink/dark_front_on.png
 m/K*/item/furniture/sink/dark_grassy.png
 m/K*/item/furniture/sink/dark_side_on.png
 m/K*/item/furniture/sink/pale_grassy.png
 k*/item/furniture/statue/bird.png
-./item/furniture/statue/cross.png
+m*/item/furniture/statue/cross.png
 k*/item/furniture/statue/green_stone.png
 k*/item/furniture/statue/green_stone_2.png
 k*/item/furniture/statue/green_stone_3.png
-./item/furniture/statue/grey_stone.png           not found
-./item/furniture/statue/metal_and_stone.png        not found
-K*./item/furniture/table/fancy_blue_red.png
-K*./item/furniture/table/grey_dark.png
-K*./item/furniture/table/grey_fancy.png
-K*./item/furniture/table/grey_long.png
-K*./item/furniture/table/grey_pale.png
-K*./item/furniture/table/grey_plain.png
+m*/item/furniture/statue/grey_stone.png        
+M*/item/furniture/statue/metal_and_stone.png   
+K*/item/furniture/table/fancy_blue_red.png
+K*/item/furniture/table/grey_dark.png
+K*/item/furniture/table/grey_fancy.png
+K*/item/furniture/table/grey_long.png
+K*/item/furniture/table/grey_pale.png
+K*/item/furniture/table/grey_plain.png
 b*/item/furniture/table/long_front_on.png
 b*/item/furniture/table/long_front_on_pale.png
 b*/item/furniture/table/long_side_on_pale.png
 m*/item/furniture/table/orb_table.png
-K*./item/furniture/table/rectangular_with_meals.png
+K*/item/furniture/table/rectangular_with_meals.png
 K*/item/furniture/table/square_pale.png
 K*/item/furniture/table/table_with_beer.png
 b*/item/furniture/table/table_with_beer_dark.png
-K*./item/furniture/table/table_with_hob.png
-K*./item/furniture/table/table_with_hob_pale.png
-J./item/furniture/table/tree_stump_table.png
+K*/item/furniture/table/table_with_hob.png
+K*/item/furniture/table/table_with_hob_pale.png
+K*/item/furniture/table/tree_stump_table.png
 b*/item/furniture/table/wooden.png
 b*/item/furniture/table/wooden_pale.png
 b*/item/furniture/table/wooden_rectangular.png
 b*/item/furniture/table/brick_base.png
 ./item/gothic/coffin.png  a version of this is in mirage sets so must we replace?
-./item/gothic/large_gravestone.png
-./item/gothic/slab.png
+m*/item/gothic/large_gravestone.png
+m*/item/gothic/slab.png
 b+k*/item/pot/barrel.png
 J/item/pot/barrel_flat.png
 b+k*/item/pot/barrel_tall.png
 b*/item/pot/box.png
 b+k*/item/pot/dark_barrel.png
-./item/pot/huge_pot.png
+m*/item/pot/huge_pot.png
 b*/item/pot/pot_burgundy.png
 K*/item/pot/pot_golden.png
 k*/item/pot/pot_golden_centred.png
@@ -346,7 +345,7 @@ F*/item/pot/pot_on_stone.png
 b*/item/pot/pot_purple.png
 K*/item/pot/pot_tall.png
 b*/item/pot/small_barrel.png
-./item/raised_square.png
+m*/item/raised_square.png
 ./object/arrows.png
 k*/object/castle.png
 k*/object/church.png
