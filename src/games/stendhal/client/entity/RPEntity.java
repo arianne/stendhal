@@ -661,6 +661,10 @@ public abstract class RPEntity extends ActiveEntity {
 				onPrivateListen(event.get("texttype"), event.get("text"));
 			}
 		}
+		// TODO: remove compatibility code after release of 0.66
+		if (object.has("private_text")) {
+			onPrivateListen("PRIVMSG", object.get("private_text"));
+		}
 
 		/*
 		 * Outfit
@@ -847,6 +851,11 @@ public abstract class RPEntity extends ActiveEntity {
 					onPrivateListen(event.get("texttype"), event.get("text"));
 				}
 			}
+			// TODO: remove compatibility code after release of 0.66
+			if (changes.has("private_text")) {
+				onPrivateListen("PRIVMSG", changes.get("private_text"));
+			}
+
 			/*
 			 * Outfit
 			 */
