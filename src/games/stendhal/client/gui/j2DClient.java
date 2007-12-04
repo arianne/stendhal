@@ -647,7 +647,7 @@ public class j2DClient extends StendhalUI {
 				}
 			}
 
-			// Shows a offline icon if no messages are recieved in 120 seconds.
+			// Shows a offline icon if no messages are received in 120 seconds.
 			if ((refreshTime - lastMessageHandle > 120000L)
 					|| !client.getConnectionState()) {
 				setOffline(true);
