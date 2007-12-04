@@ -87,8 +87,8 @@
  <tileset name="../../tileset/item/furniture/crockery/knife_spoon.png" firstgid="172" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/crockery/knife_spoon.png"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/sink/pale_grassy.png" firstgid="173" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/sink/pale_grassy.png"/>
+ <tileset name="../../tileset/item/furniture/sink/pale_brown_stone.png" firstgid="173" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/furniture/sink/pale_brown_stone.png"/>
  </tileset>
  <tileset name="../../tileset/item/pot/small_barrel.png" firstgid="177" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/small_barrel.png"/>

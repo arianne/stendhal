@@ -141,8 +141,8 @@
  <tileset name="../../tileset/plant/stump/stump_brown.png" firstgid="987" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/stump/stump_brown.png" trans="ffffff"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/sink/pale_grassy.png" firstgid="991" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/sink/pale_grassy.png" trans="ffffff"/>
+ <tileset name="../../tileset/item/furniture/sink/pale_brown_stone.png" firstgid="991" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/furniture/sink/pale_brown_stone.png" trans="ffffff"/>
  </tileset>
  <tileset name="../../tileset/item/sign_large.png" firstgid="995" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/sign_large.png" trans="ffffff"/>

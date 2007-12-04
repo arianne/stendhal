@@ -94,7 +94,7 @@
   <image source="../../tileset/plant/flower/bulbs.png"/>
  </tileset>
  <tileset name="dark grassy sink" firstgid="320" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/sink/dark_grassy.png"/>
+  <image source="../../tileset/item/furniture/sink/dark_brown_stone.png"/>
  </tileset>
  <tileset name="flower benches" firstgid="324" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/table/flowers_on_bench2.png"/>

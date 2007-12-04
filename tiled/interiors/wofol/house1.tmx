@@ -19,7 +19,7 @@
   <image source="../../tileset/item/furniture/chair/stool.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="45" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/sink/dark_grassy.png"/>
+  <image source="../../tileset/item/furniture/sink/dark_brown_stone.png"/>
  </tileset>
  <tileset name="Unbenannt" firstgid="49" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/table/square_pale.png"/>

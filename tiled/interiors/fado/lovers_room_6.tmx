@@ -12,8 +12,8 @@
  <tileset name="../../tileset/plant/tree/tree_fluffy.png" firstgid="66" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/tree/tree_fluffy.png" trans="ffffff"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/sink/pale_grassy.png" firstgid="78" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/sink/pale_grassy.png" trans="ff00ff"/>
+ <tileset name="../../tileset/item/furniture/sink/pale_brown_stone.png" firstgid="78" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/furniture/sink/pale_brown_stone.png" trans="ff00ff"/>
  </tileset>
  <tileset name="../../tileset/building/wall/int_green_blue.png" firstgid="82" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_green_blue.png" trans="ff00ff"/>

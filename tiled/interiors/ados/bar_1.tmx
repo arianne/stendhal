@@ -45,8 +45,8 @@
  <tileset name="../../tileset/item/chest/large.png" firstgid="115" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/chest/large.png"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/sink/pale_grassy.png" firstgid="123" tilewidth="32" tileheight="32">
-  <image source="../../tileset/item/furniture/sink/pale_grassy.png"/>
+ <tileset name="../../tileset/item/furniture/sink/pale_brown_stone.png" firstgid="123" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/furniture/sink/pale_brown_stone.png"/>
  </tileset>
  <tileset name="../../tileset/item/furniture/table/square_pale.png" firstgid="127" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/table/square_pale.png"/>
