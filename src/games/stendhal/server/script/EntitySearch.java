@@ -3,7 +3,7 @@ package games.stendhal.server.script;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.creature.Creature;
-import games.stendhal.server.entity.creature.Sheep;
+import games.stendhal.server.entity.creature.DomesticAnimal;
 import games.stendhal.server.entity.mapstuff.spawner.CreatureRespawnPoint;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.rule.EntityManager;
@@ -91,13 +91,13 @@ public class EntitySearch extends ScriptImpl {
 	public void findNonRespawn(Player player) {
 		StringBuilder res = new StringBuilder();
 
-		res.append("\r\nNon-Respawn creatures (minus sheep):");
+		res.append("\r\nNon-Respawn creatures (minus domestic animals):");
 
 		for (IRPZone irpzone : StendhalRPWorld.get()) {
 			StendhalRPZone zone = (StendhalRPZone) irpzone;
 
 			for (RPObject n : zone) {
-				if ((n instanceof Creature) && !(n instanceof Sheep)) {
+				if ((n instanceof Creature) && !(n instanceof DomesticAnimal)) {    // exclude sheep and pets
 					Creature c = (Creature) n;
 					if (c.getRespawnPoint() == null) {
 						String zoneName = zone.getName();
@@ -110,7 +110,6 @@ public class EntitySearch extends ScriptImpl {
 		}
 
 		sandbox.privateText(player, res.toString());
-
 	}
 
 	public void findByZoneName(Player player, String targetName) {
