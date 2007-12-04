@@ -21,7 +21,7 @@ public class ConversationParser {
 	public ConversationParser(final String text)
 	{
 		 // Split the text line into single words separated by white space.
-        _words = text!=null? text.split("\\s+"): new String[0];
+        _words = text!=null? text.trim().split("\\s+"): new String[0];
 
 		 // The first word is already recognized by the FSM, so we can skip it.
         _word_idx = _words.length>0? 1: 0;

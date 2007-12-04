@@ -12,8 +12,8 @@ public class ConversationParserTest {
 	@Test
 	public final void testAmount() {
 		ConversationParser parser = new ConversationParser("buy 3 cookies");
-
 		assertFalse(parser.getError());
+
 		assertEquals(3, parser.readAmount());
 		assertEquals("cookies", parser.readObjectName());
 	}
@@ -21,8 +21,8 @@ public class ConversationParserTest {
 	@Test
 	public final void testVerboseAmount() {
 		ConversationParser parser = new ConversationParser("eat four cookies");
-
 		assertFalse(parser.getError());
+
 		assertEquals(4, parser.readAmount());
 		assertEquals("cookies", parser.readObjectName());
 	}
@@ -30,16 +30,28 @@ public class ConversationParserTest {
 	@Test
 	public final void testCase() {
 		ConversationParser parser = new ConversationParser("buy Bread");
-
 		assertFalse(parser.getError());
+
 		assertEquals(1, parser.readAmount());
 		assertEquals("bread", parser.readObjectName());
 	}
 
 	@Test
+	public final void testSpaceHandling() {
+		ConversationParser parser = new ConversationParser("drop  three \tchicken");
+		assertFalse(parser.getError());
+		assertEquals(3, parser.readAmount());
+		assertEquals("chicken", parser.readObjectName());
+
+		parser = new ConversationParser(" sell house   ");
+		assertFalse(parser.getError());
+		assertEquals(1, parser.readAmount());
+		assertEquals("house", parser.readObjectName());
+	}
+
+	@Test
 	public final void testItemName() {
 		ConversationParser parser = new ConversationParser("buy fresh_fish");
-
 		assertFalse(parser.getError());
 		assertEquals("fresh_fish", parser.readObjectName());
 	}
