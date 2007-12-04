@@ -442,4 +442,71 @@ public class Grammar {
 			return sb.toString();
 		}
 	}
+
+	/**
+	 * convert numbers into their textual representation
+	 *
+	 * @param n a number
+	 * @return one, two, three, ...
+	 */
+	public static String numberString(int n) {
+		switch (n) {
+		  case 0:	return "no";
+		  case 1:	return "one";
+		  case 2:	return "two";
+		  case 3:	return "three";
+		  case 4:	return "four";
+		  case 5:	return "five";
+		  case 6:	return "six";
+		  case 7:	return "seven";
+		  case 8:	return "eight";
+		  case 9:	return "nine";
+		  case 10:	return "ten";
+		  case 11:	return "eleven";
+		  case 12:	return "twelve";
+		  default:
+			logger.error("Grammar.ordered not implemented for: " + n);
+			return Integer.toString(n);
+		}
+	}
+
+	/**
+	 * interpret number texts
+	 *
+	 * @param n a number
+	 * @return one, two, three, ...
+	 */
+	public static Integer number(String text) {
+		if (text.equals("no")) {
+			return 0;
+		} if (text.equals("one")) {
+			return 1;
+		} if (text.equals("two")) {
+			return 2;
+		} if (text.equals("three")) {
+			return 3;
+		} if (text.equals("four")) {
+			return 4;
+		} if (text.equals("five")) {
+			return 5;
+		} if (text.equals("six")) {
+			return 6;
+		} if (text.equals("seven")) {
+			return 7;
+		} if (text.equals("eight")) {
+			return 8;
+		} if (text.equals("nine")) {
+			return 9;
+		} if (text.equals("ten")) {
+			return 10;
+		} if (text.equals("eleven")) {
+			return 11;
+		} if (text.equals("twelve")) {
+			return 12;
+		} else {
+        	// also handle "a dozen", ...
+			return null;
+		}
+	}
+
 }

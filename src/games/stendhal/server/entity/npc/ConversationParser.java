@@ -1,5 +1,7 @@
 package games.stendhal.server.entity.npc;
 
+import games.stendhal.common.Grammar;
+
 
 /**
  * Parser for conversations with a SpeakerNPC
@@ -37,20 +39,28 @@ public class ConversationParser {
         int amount = 1;
 
          // handle numeric expressions
-        if (_word_idx<_words.length && _words[_word_idx].matches("^[+-]?[0-9]+")) {
-	        try {
-	        	amount = Integer.parseInt(_words[_word_idx]);
+        if (_word_idx < _words.length) {
+        	if (_words[_word_idx].matches("^[+-]?[0-9]+")) {
+    	        try {
+    	        	amount = Integer.parseInt(_words[_word_idx]);
+    
+    	        	if (amount < 0)
+    	        		_error = true;
+    
+    		        ++_word_idx;
+    	        } catch(NumberFormatException e) {
+    	        	_error = true;
+    	        }
+            } else {
+            	 // handle expressions like "one", "two", ...
+            	Integer number = Grammar.number(_words[_word_idx]);
 
-	        	if (amount < 0)
-	        		_error = true;
-
-		        ++_word_idx;
-	        } catch(NumberFormatException e) {
-	        	_error = true;
-	        }
+            	if (number != null) {
+            		amount = number.intValue();
+            		++_word_idx;
+            	}
+            }
         }
-
-        //TODO also handle expressions like "one", "two", "a dozen", ...
 
         return amount;
     }
@@ -71,7 +81,7 @@ public class ConversationParser {
 	}
 
 	/**
-	 * return if some error occured while parsing the input text
+	 * return if some error occurred while parsing the input text
 	 * @return error flag
 	 */
 	public boolean getError()

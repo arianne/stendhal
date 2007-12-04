@@ -19,6 +19,15 @@ public class ConversationParserTest {
 	}
 
 	@Test
+	public final void testVerboseAmount() {
+		ConversationParser parser = new ConversationParser("eat four cookies");
+
+		assertFalse(parser.getError());
+		assertEquals(4, parser.readAmount());
+		assertEquals("cookies", parser.readObjectName());
+	}
+
+	@Test
 	public final void testCase() {
 		ConversationParser parser = new ConversationParser("buy Bread");
 
