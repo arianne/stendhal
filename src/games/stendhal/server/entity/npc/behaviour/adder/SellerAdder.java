@@ -4,6 +4,7 @@ import games.stendhal.common.Grammar;
 import games.stendhal.server.entity.npc.ConversationParser;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
 import games.stendhal.server.entity.npc.fsm.Engine;
@@ -32,12 +33,12 @@ public class SellerAdder {
 			        @Override
 			        public void fire(Player player, String text, SpeakerNPC engine) {
 				        // find out what the player wants to buy, and how much of it
-			        	ConversationParser parser = new ConversationParser(text);
+			        	Sentence sentence = ConversationParser.parse(text);
 
-				        int amount = parser.readAmount();
-				        String item = parser.readObjectName();
+				        int amount = sentence.getAmount();
+				        String item = sentence.getObjectName();
 
-				        if (parser.getError()) {
+				        if (sentence.getError()) {
 					        engine.say("Sorry, I did not understand you.");
 					        engine.setCurrentState(ConversationStates.ATTENDING);
 				        }

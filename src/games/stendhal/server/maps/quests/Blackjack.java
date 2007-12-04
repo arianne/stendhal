@@ -8,6 +8,7 @@ import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ConversationParser;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPC.ChatAction;
 import games.stendhal.server.entity.player.Player;
@@ -326,11 +327,11 @@ public class Blackjack extends AbstractQuest {
 				ConversationStates.ATTENDING, null, new ChatAction() {
 					@Override
 					public void fire(Player player, String text, SpeakerNPC npc) {
-			        	ConversationParser parser = new ConversationParser(text);
+						Sentence sentence = ConversationParser.parse(text);
 
-			        	stake = parser.readAmount();
+			        	stake = sentence.getAmount();
 
-				        if (parser.getError()) {
+				        if (sentence.getError()) {
 				        	npc.say("Just tell me how much you want to risk, for example #stake #50.");
 				        } else {
 							if (stake < MIN_STAKE) {

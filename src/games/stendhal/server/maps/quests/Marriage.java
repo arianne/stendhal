@@ -10,6 +10,7 @@ import games.stendhal.server.entity.npc.ConversationParser;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
+import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
@@ -129,11 +130,11 @@ public class Marriage extends AbstractQuest {
 				@Override
 				public void fire(Player player, String text, SpeakerNPC npc) {
 					// find out whom the player wants to marry.
-		        	ConversationParser parser = new ConversationParser(text);
+					Sentence sentence = ConversationParser.parse(text);
 
-			        String brideName = parser.readObjectName();
+			        String brideName = sentence.getObjectName();
 
-			        if (parser.getError()) {
+			        if (sentence.getError()) {
 			        	npc.say("You have to tell me who you want to marry.");
 			        } else {
 						startEngagement(npc, player, brideName);
@@ -411,11 +412,11 @@ public class Marriage extends AbstractQuest {
 					@Override
 					public void fire(Player player, String text, SpeakerNPC npc) {
 						// find out whom the player wants to marry.
-			        	ConversationParser parser = new ConversationParser(text);
+						Sentence sentence = ConversationParser.parse(text);
 
-				        String brideName = parser.readObjectName();
+				        String brideName = sentence.getObjectName();
 
-				        if (parser.getError()) {
+				        if (sentence.getError()) {
 				        	npc.say("You have to tell me who you want to marry.");
 				        } else {
 							startMarriage(npc, player, brideName);

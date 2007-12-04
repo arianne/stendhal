@@ -6,67 +6,76 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-
+/**
+ * test ConversationParser class
+ *
+ * @author martinf
+ */
 public class ConversationParserTest {
 
 	@Test
 	public final void testAmount() {
-		ConversationParser parser = new ConversationParser("buy 3 cookies");
-		assertFalse(parser.getError());
+		Sentence sentence = ConversationParser.parse("buy 3 cookies");
+		assertFalse(sentence.getError());
 
-		assertEquals(3, parser.readAmount());
-		assertEquals("cookies", parser.readObjectName());
+		assertEquals(3, sentence.getAmount());
+		assertEquals("cookies", sentence.getObjectName());
 	}
 
 	@Test
 	public final void testVerboseAmount() {
-		ConversationParser parser = new ConversationParser("eat four cookies");
-		assertFalse(parser.getError());
+		Sentence sentence = ConversationParser.parse("eat four cookies");
+		assertFalse(sentence.getError());
 
-		assertEquals(4, parser.readAmount());
-		assertEquals("cookies", parser.readObjectName());
+		assertEquals(4, sentence.getAmount());
+		assertEquals("cookies", sentence.getObjectName());
 	}
 
 	@Test
 	public final void testCase() {
-		ConversationParser parser = new ConversationParser("buy Bread");
-		assertFalse(parser.getError());
+		Sentence sentence = ConversationParser.parse("buy Bread");
+		assertFalse(sentence.getError());
 
-		assertEquals(1, parser.readAmount());
-		assertEquals("bread", parser.readObjectName());
+		assertEquals(1, sentence.getAmount());
+		assertEquals("bread", sentence.getObjectName());
 	}
 
 	@Test
 	public final void testSpaceHandling() {
-		ConversationParser parser = new ConversationParser("drop  three \tchicken");
-		assertFalse(parser.getError());
-		assertEquals(3, parser.readAmount());
-		assertEquals("chicken", parser.readObjectName());
+		Sentence sentence = ConversationParser.parse("drop  three \tchicken");
+		assertFalse(sentence.getError());
+		assertEquals(3, sentence.getAmount());
+		assertEquals("chicken", sentence.getObjectName());
 
-		parser = new ConversationParser(" sell house   ");
-		assertFalse(parser.getError());
-		assertEquals(1, parser.readAmount());
-		assertEquals("house", parser.readObjectName());
+		sentence = ConversationParser.parse(" sell house   ");
+		assertFalse(sentence.getError());
+		assertEquals(1, sentence.getAmount());
+		assertEquals("house", sentence.getObjectName());
 	}
 
 	@Test
 	public final void testItemName() {
-		ConversationParser parser = new ConversationParser("buy fresh_fish");
-		assertFalse(parser.getError());
-		assertEquals("fresh_fish", parser.readObjectName());
+		Sentence sentence = ConversationParser.parse("buy fresh_fish");
+		assertFalse(sentence.getError());
+		assertEquals("fresh_fish", sentence.getObjectName());
+
+		/*TODO
+		sentence = ConversationParser.parse("buy fresh fish");
+		assertEquals("fresh_fish", sentence.getObjectName());
+		*/
 	}
 
 	@Test
 	public final void testError() {
-		ConversationParser parser = new ConversationParser("hello world");
-		assertFalse(parser.getError());
+		Sentence sentence = ConversationParser.parse("hello world");
+		assertFalse(sentence.getError());
 
-		parser = new ConversationParser("");
-		assertFalse(parser.getError());
+		sentence = ConversationParser.parse("");
+		assertFalse(sentence.getError());
 
-		parser = new ConversationParser("buy -10 cars");
-		assertEquals(-10, parser.readAmount());
-		assertTrue(parser.getError());
+		sentence = ConversationParser.parse("buy -10 cars");
+		assertEquals(-10, sentence.getAmount());
+		assertTrue(sentence.getError());
 	}
 
 }

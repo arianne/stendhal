@@ -6,6 +6,7 @@ import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationParser;
+import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 
@@ -74,12 +75,12 @@ public class GateKeeperNPC implements ZoneConfigurator {
 					@Override
 					public void fire(Player player, String text,
 							SpeakerNPC engine) {
-			        	ConversationParser parser = new ConversationParser(text);
+						Sentence sentence = ConversationParser.parse(text);
 
-				        int amount = parser.readAmount();
-				        String item = parser.readObjectName();
+				        int amount = sentence.getAmount();
+				        String item = sentence.getObjectName();
 
-				        if (parser.getError()) {
+				        if (sentence.getError()) {
 				        	engine.say("Are you trying to trick me? Bribe me some number of coins!");
 				        } else if (item == null) {
 							// player only said 'bribe'

@@ -1,14 +1,15 @@
 package games.stendhal.server.entity.npc.behaviour.adder;
 
-import org.apache.log4j.Logger;
-
 import games.stendhal.server.entity.npc.ConversationParser;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.impl.ProducerBehaviour;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
+
+import org.apache.log4j.Logger;
 
 public class ProducerAdder {
 	static Logger logger = Logger.getLogger(ProducerAdder.class);
@@ -46,12 +47,12 @@ public class ProducerAdder {
 			new SpeakerNPC.ChatAction() {
 				@Override
 				public void fire(Player player, String text, SpeakerNPC npc) {
-		        	ConversationParser parser = new ConversationParser(text);
+					Sentence sentence = ConversationParser.parse(text);
 
-			        int amount = parser.readAmount();
-			        String item = parser.readObjectName();
+			        int amount = sentence.getAmount();
+			        String item = sentence.getObjectName();
 
-			        if (parser.getError()) {
+			        if (sentence.getError()) {
 			        	npc.say("Sorry, I did not understand you.");
 			        } else {
 			        	if (amount > 1000) {
