@@ -12,7 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.player;
 
-import games.stendhal.client.NotificationType;
+import games.stendhal.common.NotificationType;
 import games.stendhal.common.Direction;
 import games.stendhal.common.FeatureList;
 import games.stendhal.common.Rand;
