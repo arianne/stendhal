@@ -18,6 +18,7 @@ public class ConversationParserTest {
 		Sentence sentence = ConversationParser.parse("buy 3 cookies");
 		assertFalse(sentence.getError());
 
+		assertEquals("buy", sentence.getVerb());
 		assertEquals(3, sentence.getAmount());
 		assertEquals("cookies", sentence.getObjectName());
 	}
@@ -27,6 +28,7 @@ public class ConversationParserTest {
 		Sentence sentence = ConversationParser.parse("eat four cookies");
 		assertFalse(sentence.getError());
 
+		assertEquals("eat", sentence.getVerb());
 		assertEquals(4, sentence.getAmount());
 		assertEquals("cookies", sentence.getObjectName());
 	}
@@ -36,6 +38,7 @@ public class ConversationParserTest {
 		Sentence sentence = ConversationParser.parse("buy Bread");
 		assertFalse(sentence.getError());
 
+		assertEquals("buy", sentence.getVerb());
 		assertEquals(1, sentence.getAmount());
 		assertEquals("bread", sentence.getObjectName());
 	}
@@ -44,11 +47,13 @@ public class ConversationParserTest {
 	public final void testSpaceHandling() {
 		Sentence sentence = ConversationParser.parse("drop  three \tchicken");
 		assertFalse(sentence.getError());
+		assertEquals("drop", sentence.getVerb());
 		assertEquals(3, sentence.getAmount());
 		assertEquals("chicken", sentence.getObjectName());
 
 		sentence = ConversationParser.parse(" sell house   ");
 		assertFalse(sentence.getError());
+		assertEquals("sell", sentence.getVerb());
 		assertEquals(1, sentence.getAmount());
 		assertEquals("house", sentence.getObjectName());
 	}
@@ -57,10 +62,12 @@ public class ConversationParserTest {
 	public final void testItemName() {
 		Sentence sentence = ConversationParser.parse("buy fresh_fish");
 		assertFalse(sentence.getError());
+		assertEquals("buy", sentence.getVerb());
 		assertEquals("fresh_fish", sentence.getObjectName());
 
 		/*TODO
 		sentence = ConversationParser.parse("buy fresh fish");
+		assertEquals("buy", sentence.getVerb());
 		assertEquals("fresh_fish", sentence.getObjectName());
 		*/
 	}
