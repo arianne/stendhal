@@ -59,7 +59,7 @@ public abstract class Pet extends DomesticAnimal {
 	 */
 	public final int MAX_WEIGHT = 100;
 
-        protected List<String> foodName = Arrays.asList("chicken");
+	protected List<String> foodName = Arrays.asList("chicken");
 
 	protected int HP = 100;
 
@@ -108,7 +108,6 @@ public abstract class Pet extends DomesticAnimal {
 		setHP(HP);
 
 		hunger = 0;
-
 	}
 
 	/**
@@ -155,6 +154,7 @@ public abstract class Pet extends DomesticAnimal {
 						+ owner);
 			}
 		}
+
 		StendhalRPRuleProcessor.get().removeNPC(this);
 	}
 
@@ -212,8 +212,9 @@ public abstract class Pet extends DomesticAnimal {
 	 */
 	@Override
 	public void logic() {
-                // call super class to perform common tasks like attacking targets
-                super.logic();
+		// call super class to perform common tasks like attacking targets
+		super.logic();
+
 		if (!isEnemyNear(20) && (owner == null)) {
 			// if noone near and noone owns us ....
 			stop();
@@ -313,7 +314,6 @@ public abstract class Pet extends DomesticAnimal {
 		this.applyMovement();
 
 		notifyWorldAboutChanges();
-
 	}
 
 	// Should never be called

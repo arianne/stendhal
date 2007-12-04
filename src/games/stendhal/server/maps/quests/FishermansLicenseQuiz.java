@@ -189,7 +189,7 @@ public class FishermansLicenseQuiz extends AbstractQuest {
 								npc.setCurrentState(ConversationStates.QUESTION_1);
 							}
 						} else {
-							npc.say("No, that's wrong. Unfortunatelly you have failed, but you can try again tomorrow.");
+							npc.say("No, that's wrong. Unfortunately you have failed, but you can try again tomorrow.");
 							cleanUpTable();
 							// remember the current time, as you can't do the
 							// quiz twice a day.

@@ -40,7 +40,7 @@ public class BabyDragon extends Pet {
 
 	private void setUp() {
 
-                foodName = Arrays.asList( "ham", "pizza", "meat" );
+		foodName = Arrays.asList( "ham", "pizza", "meat" );
 
 		HP = 500;
 
