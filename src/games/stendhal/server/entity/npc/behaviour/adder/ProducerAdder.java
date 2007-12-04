@@ -50,7 +50,7 @@ public class ProducerAdder {
 					Sentence sentence = ConversationParser.parse(text);
 
 			        int amount = sentence.getAmount();
-			        String item = sentence.getObjectName();
+			        String item = sentence.getItemName();
 
 			        if (sentence.getError()) {
 			        	npc.say("Sorry, I did not understand you.");

@@ -44,7 +44,11 @@ public class ConversationParser {
         sentence._amount = parser.readAmount();
         sentence._object = parser.readObjectName();
         sentence._error = parser.getError();
-
+/*TODO
+		 // derive the singular from the item name if the amount is greater than one
+        if (sentence._amount > 1)
+        	sentence._object = Grammar.singular(sentence._object);
+*/
         return sentence;
 	}
 
@@ -100,9 +104,22 @@ public class ConversationParser {
 	 */
 	private String readObjectName()
 	{
-        String name = readWord();
+        String name = null;
 
-        //TODO handle object names consisting of more than one word
+         // handle object names consisting of more than one word
+        for(;;) {
+        	String word = readWord();
+
+        	if (word == null)
+        		break;
+
+            // concatenate user specified item names like "baby dragon"
+            // with spaces to build the internal item names
+            if (name == null)
+            	name = word;
+            else
+            	name += " " + word;
+        }
 
         return name;
 	}

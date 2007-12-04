@@ -55,7 +55,7 @@ public class OutfitChangerAdder {
 			        	Sentence sentence = ConversationParser.parse(text);
 
 			        	sentence.getAmount();	// We ignore any amounts and skip the numeric expressions.
-			        	String item = sentence.getObjectName();
+			        	String item = sentence.getItemName();
 
 				        if (sentence.getError()) {
 				        	engine.say("Sorry, I did not understand you.");

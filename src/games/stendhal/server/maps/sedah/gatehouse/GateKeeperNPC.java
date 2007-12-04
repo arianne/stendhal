@@ -78,7 +78,7 @@ public class GateKeeperNPC implements ZoneConfigurator {
 						Sentence sentence = ConversationParser.parse(text);
 
 				        int amount = sentence.getAmount();
-				        String item = sentence.getObjectName();
+				        String item = sentence.getItemName();
 
 				        if (sentence.getError()) {
 				        	engine.say("Are you trying to trick me? Bribe me some number of coins!");

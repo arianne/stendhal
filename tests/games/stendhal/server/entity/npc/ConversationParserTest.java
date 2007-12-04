@@ -41,6 +41,7 @@ public class ConversationParserTest {
 		assertEquals("buy", sentence.getVerb());
 		assertEquals(1, sentence.getAmount());
 		assertEquals("bread", sentence.getObjectName());
+		assertEquals("bread", sentence.getItemName());
 	}
 
 	@Test
@@ -56,6 +57,7 @@ public class ConversationParserTest {
 		assertEquals("sell", sentence.getVerb());
 		assertEquals(1, sentence.getAmount());
 		assertEquals("house", sentence.getObjectName());
+		assertEquals("house", sentence.getItemName());
 	}
 
 	@Test
@@ -63,13 +65,12 @@ public class ConversationParserTest {
 		Sentence sentence = ConversationParser.parse("buy fresh_fish");
 		assertFalse(sentence.getError());
 		assertEquals("buy", sentence.getVerb());
-		assertEquals("fresh_fish", sentence.getObjectName());
+		assertEquals("fresh_fish", sentence.getItemName());
 
-		/*TODO
 		sentence = ConversationParser.parse("buy fresh fish");
 		assertEquals("buy", sentence.getVerb());
-		assertEquals("fresh_fish", sentence.getObjectName());
-		*/
+		assertEquals("fresh fish", sentence.getObjectName());
+		assertEquals("fresh_fish", sentence.getItemName());
 	}
 
 	@Test

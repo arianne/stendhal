@@ -36,7 +36,7 @@ public class SellerAdder {
 			        	Sentence sentence = ConversationParser.parse(text);
 
 				        int amount = sentence.getAmount();
-				        String item = sentence.getObjectName();
+				        String item = sentence.getItemName();
 
 				        if (sentence.getError()) {
 					        engine.say("Sorry, I did not understand you.");

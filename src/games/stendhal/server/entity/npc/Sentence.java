@@ -37,6 +37,21 @@ public class Sentence {
     }
 
 	/**
+	 * return item name derived (by replacing spaces by underscores) from
+	 * the object of the parsed sentence
+	 * @return item name
+	 */
+    public String getItemName()
+    {
+        // concatenate user specified item names like "baby dragon"
+        // with underscores to build the internal item names
+       if (_object != null)
+    	   return _object.replace(' ', '_');
+       else
+    	   return null;
+    }
+
+	/**
 	 * return if some error occurred while parsing the input text
 	 * @return error flag
 	 */
