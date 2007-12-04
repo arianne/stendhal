@@ -15,24 +15,7 @@ package games.stendhal.server;
 import games.stendhal.common.Debug;
 import games.stendhal.server.account.AccountCreator;
 import games.stendhal.server.account.CharacterCreator;
-import games.stendhal.server.actions.ActionListener;
-import games.stendhal.server.actions.AdministrationAction;
-import games.stendhal.server.actions.AttackAction;
-import games.stendhal.server.actions.AwayAction;
-import games.stendhal.server.actions.BuddyAction;
-import games.stendhal.server.actions.ChatAction;
-import games.stendhal.server.actions.CreateGuildAction;
-import games.stendhal.server.actions.DisplaceAction;
-import games.stendhal.server.actions.FaceAction;
-import games.stendhal.server.actions.LookAction;
-import games.stendhal.server.actions.MoveAction;
-import games.stendhal.server.actions.OutfitAction;
-import games.stendhal.server.actions.OwnAction;
-import games.stendhal.server.actions.PlayersQuery;
-import games.stendhal.server.actions.QuestListAction;
-import games.stendhal.server.actions.StopAction;
-import games.stendhal.server.actions.UseAction;
-import games.stendhal.server.actions.equip.EquipmentAction;
+import games.stendhal.server.actions.CommandCentre;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.mapstuff.spawner.CreatureRespawnPoint;
@@ -44,14 +27,10 @@ import games.stendhal.server.events.TurnNotifier;
 import games.stendhal.server.events.TutorialNotifier;
 import games.stendhal.server.scripting.ScriptRunner;
 
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
 import marauroa.common.Configuration;
-
-import org.apache.log4j.Logger;
 import marauroa.common.Pair;
 import marauroa.common.game.AccountResult;
 import marauroa.common.game.CharacterResult;
@@ -65,6 +44,8 @@ import marauroa.server.game.db.Transaction;
 import marauroa.server.game.rp.IRPRuleProcessor;
 import marauroa.server.game.rp.RPServerManager;
 
+import org.apache.log4j.Logger;
+
 public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 	/** the logger instance. */
@@ -75,13 +56,12 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 	private StendhalPlayerDatabase database;
 
-	private static Map<String, ActionListener> actionsMap;
-	static {
-		actionsMap = new HashMap<String, ActionListener>();
-	}
-
+	
 	private RPServerManager rpman;
 
+	
+	
+	
 	/**
 	 * A list of all players who are currently logged in.
 	 */
@@ -110,39 +90,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 	private List<PassiveEntityRespawnPoint> plantGrowers;
 
-	public static void register(String action, ActionListener actionClass) {
-		if (actionsMap.get(action) != null) {
-			logger.error("Registering twice (previous was "
-					+ actionsMap.get(action).getClass()
-					+ ") the same action handler: " + action + " with "
-					+ actionClass.getClass());
-		}
-		actionsMap.put(action, actionClass);
-	}
-
-	private void registerActions() {
-		/*
-		 * TODO: Refactor Autoregister?
-		 */
-		AdministrationAction.register();
-		AttackAction.register();
-		AwayAction.register();
-		BuddyAction.register();
-		ChatAction.register();
-		DisplaceAction.register();
-		EquipmentAction.register();
-		FaceAction.register();
-		LookAction.register();
-		MoveAction.register();
-		OutfitAction.register();
-		OwnAction.register();
-		PlayersQuery.register();
-		QuestListAction.register();
-		StopAction.register();
-		UseAction.register();
-		CreateGuildAction.register();
-
-	}
+	
 
 	protected StendhalRPRuleProcessor() {
 		players = new LinkedList<Player>();
@@ -159,7 +107,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 	private void init() {
 		database = StendhalPlayerDatabase.getDatabase();
-		registerActions();
+		
 		instance = this;
 		addGameEvent("server system", "startup");
 	}
@@ -388,20 +336,10 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	}
 
 	public void execute(RPObject caster, RPAction action) {
-		try {
-			Player player = (Player) caster;
-			String type = action.get("type");
-			ActionListener actionListener = actionsMap.get(type);
-			if (actionListener == null) {
-				logger.warn(caster + " tried to execute unknown action " + type);
-				player.sendPrivateText("Unknown Command " + type);
-			} else {
-				actionListener.onAction(player, action);
-			}
-		} catch (Exception e) {
-			logger.error("cannot execute action " + action, e);
-		}
+		CommandCentre.execute(caster, action);
 	}
+
+	
 
 	public int getTurn() {
 		return rpman.getTurn();
@@ -650,4 +588,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	public RPServerManager getRPManager() {
 		return rpman;
 	}
+
+	
 }

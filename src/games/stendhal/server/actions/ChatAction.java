@@ -16,6 +16,7 @@ import games.stendhal.common.Grammar;
 import games.stendhal.server.GagManager;
 import games.stendhal.server.Jail;
 import games.stendhal.server.StendhalRPRuleProcessor;
+import games.stendhal.server.actions.admin.AdministrationAction;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
 
@@ -40,10 +41,10 @@ public class ChatAction implements ActionListener {
 	 */
 	public static void register() {
 		ChatAction chat = new ChatAction();
-		StendhalRPRuleProcessor.register("answer", chat);
-		StendhalRPRuleProcessor.register("chat", chat);
-		StendhalRPRuleProcessor.register("tell", chat);
-		StendhalRPRuleProcessor.register("support", chat);
+		CommandCentre.register("answer", chat);
+		CommandCentre.register("chat", chat);
+		CommandCentre.register("tell", chat);
+		CommandCentre.register("support", chat);
 	}
 
 	public void onAction(Player player, RPAction action) {

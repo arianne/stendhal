@@ -6,7 +6,6 @@
 
 package games.stendhal.server.actions;
 
-import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
 
@@ -19,7 +18,7 @@ public class RemoveFromGuildAction implements ActionListener {
 	 * Registers action.
 	 */
 	public static void register() {
-		StendhalRPRuleProcessor.register("guildremove",
+		CommandCentre.register("guildremove",
 				new RemoveFromGuildAction());
 	}
 

@@ -10,27 +10,20 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.actions;
+package games.stendhal.server.actions.buddy;
 
-import games.stendhal.common.Direction;
-import games.stendhal.server.entity.player.Player;
-import marauroa.common.game.RPAction;
+import games.stendhal.server.actions.CommandCentre;
 
-public class FaceAction implements ActionListener {
+public class BuddyAction  {
 
 	public static void register() {
-		CommandCentre.register("face", new FaceAction());
+		CommandCentre.register("addbuddy", new AddBuddyAction());
+		CommandCentre.register("ignore", new IgnoreAction());
+		CommandCentre.register("removebuddy", new RemoveBuddyAction());
+		CommandCentre.register("unignore", new UnignoreAction());
+		CommandCentre.register("grumpy", new GrumpyAction());
 	}
 
-	public void onAction(Player player, RPAction action) {
 
 
-		if (action.has("dir")) {
-			player.stop();
-			player.setDirection(Direction.build(action.getInt("dir")));
-			player.notifyWorldAboutChanges();
-		}
-
-
-	}
 }

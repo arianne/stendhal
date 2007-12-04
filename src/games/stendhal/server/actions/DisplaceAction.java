@@ -32,7 +32,7 @@ public class DisplaceAction implements ActionListener {
 	 * register this action
 	 */
 	public static void register() {
-		StendhalRPRuleProcessor.register("displace", new DisplaceAction());
+		CommandCentre.register("displace", new DisplaceAction());
 	}
 
 	/**

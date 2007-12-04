@@ -20,7 +20,7 @@ public class InviteGuildAction implements ActionListener {
 	 * Registers action.
 	 */
 	public static void register() {
-		StendhalRPRuleProcessor.register("guild", new InviteGuildAction());
+		CommandCentre.register("guild", new InviteGuildAction());
 	}
 
 	/**

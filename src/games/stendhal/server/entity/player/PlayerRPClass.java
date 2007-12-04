@@ -16,7 +16,7 @@ import games.stendhal.common.Debug;
 import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.actions.AdministrationAction;
+import games.stendhal.server.actions.admin.AdministrationAction;
 import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.creature.DomesticAnimal;
 import games.stendhal.server.entity.creature.Pet;

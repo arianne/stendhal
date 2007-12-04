@@ -4,7 +4,8 @@ import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.StendhalServerExtension;
 import games.stendhal.server.actions.ActionListener;
-import games.stendhal.server.actions.AdministrationAction;
+import games.stendhal.server.actions.CommandCentre;
+import games.stendhal.server.actions.admin.AdministrationAction;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.player.Player;
@@ -38,8 +39,8 @@ public class TeleportSendExtension extends StendhalServerExtension implements Ac
 	public TeleportSendExtension() {
 		super();
 		logger.info("TeleportSendExtension starting...");
-		StendhalRPRuleProcessor.register(CMD_NAME, this);
-		AdministrationAction.registerCommandLevel(CMD_NAME, 400);
+		CommandCentre.register(CMD_NAME, this,400);
+		
 	}
 
 	@Override

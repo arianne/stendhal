@@ -5,7 +5,8 @@ package games.stendhal.server.scripting;
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalServerExtension;
 import games.stendhal.server.actions.ActionListener;
-import games.stendhal.server.actions.AdministrationAction;
+import games.stendhal.server.actions.CommandCentre;
+import games.stendhal.server.actions.admin.AdministrationAction;
 import games.stendhal.server.entity.player.Player;
 
 import java.io.File;
@@ -15,16 +16,18 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-
 import org.apache.log4j.Logger;
 import marauroa.common.game.RPAction;
 
 /**
  * ServerExtension to load groovy scripts
- *
+ * 
  * @author intensifly
  */
-public class ScriptRunner extends StendhalServerExtension implements ActionListener {
+public class ScriptRunner extends StendhalServerExtension implements
+		ActionListener {
+
+	private static final int REQUIRED_ADMINLEVEL = 1000;
 
 	private Map<String, ScriptingSandbox> scripts;
 
@@ -34,13 +37,13 @@ public class ScriptRunner extends StendhalServerExtension implements ActionListe
 
 	/**
 	 * Constructor for StendhalGroovyRunner
-	 *
+	 * 
 	 */
 	public ScriptRunner() {
 		super();
 		scripts = new HashMap<String, ScriptingSandbox>();
-		StendhalRPRuleProcessor.register("script", this);
-		AdministrationAction.registerCommandLevel("script", 1000);
+		CommandCentre.register("script", this, REQUIRED_ADMINLEVEL);
+
 	}
 
 	@Override
@@ -71,7 +74,8 @@ public class ScriptRunner extends StendhalServerExtension implements ActionListe
 	}
 
 	// TODO: document and clean this method
-	private synchronized boolean perform(String name, String mode, Player player, String[] args) {
+	private synchronized boolean perform(String name, String mode,
+			Player player, String[] args) {
 		boolean ret = false;
 		name = name.trim();
 
@@ -84,7 +88,8 @@ public class ScriptRunner extends StendhalServerExtension implements ActionListe
 		ScriptingSandbox script = scripts.get(name);
 
 		// unloading
-		if ("load".equals(mode) || "remove".equals(mode) || "unload".equals(mode)) {
+		if ("load".equals(mode) || "remove".equals(mode)
+				|| "unload".equals(mode)) {
 
 			script = scripts.remove(name);
 			if (script != null) {
@@ -132,8 +137,8 @@ public class ScriptRunner extends StendhalServerExtension implements ActionListe
 
 	public void onAction(Player player, RPAction action) {
 
-
-		if (!AdministrationAction.isPlayerAllowedToExecuteAdminCommand(player, "script", true)) {
+		if (!AdministrationAction.isPlayerAllowedToExecuteAdminCommand(player,
+				"script", true)) {
 			return;
 		}
 		String text = "usage: #/script #[-execute|-load>|-unload] #<filename> #[<args>]\n  mode is either load (default) or remove";
@@ -145,7 +150,8 @@ public class ScriptRunner extends StendhalServerExtension implements ActionListe
 				cmd = cmd + " " + action.get("args");
 			}
 
-			// in the simplest case there is only one argument which is the scriptname
+			// in the simplest case there is only one argument which is the
+			// scriptname
 			String mode = "execute";
 			String script = cmd;
 
@@ -176,23 +182,26 @@ public class ScriptRunner extends StendhalServerExtension implements ActionListe
 				args = new String[0];
 			}
 
-			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "script", script, mode,
-			        Arrays.asList(args).toString());
+			StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
+					"script", script, mode, Arrays.asList(args).toString());
 
 			// execute script
 			script = script.trim();
 			if (script.endsWith(".groovy") || script.endsWith(".class")) {
 				boolean res = perform(script, mode, player, args);
 				if (res) {
-					text = "Script \"" + script + "\" was successfully " + mode + (mode == "execute" ? "d" : "ed")
-					        + ".";
+					text = "Script \"" + script + "\" was successfully " + mode
+							+ (mode == "execute" ? "d" : "ed") + ".";
 				} else {
 					String msg = getMessage(script);
 					if (msg != null) {
 						text = msg;
 					} else {
-						text = "Script \"" + script + "\" was either not found, or encountered an error during "
-						        + (mode == "execute" ? "execution" : mode + "ing") + ".";
+						text = "Script \""
+								+ script
+								+ "\" was either not found, or encountered an error during "
+								+ (mode == "execute" ? "execution" : mode
+										+ "ing") + ".";
 					}
 				}
 			} else {

@@ -10,7 +10,7 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.actions;
+package games.stendhal.server.actions.admin;
 
 import games.stendhal.common.Grammar;
 import games.stendhal.server.GagManager;
@@ -19,6 +19,8 @@ import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.actions.ActionListener;
+import games.stendhal.server.actions.CommandCentre;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.Creature;
@@ -29,6 +31,7 @@ import games.stendhal.server.entity.mapstuff.portal.Portal;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
+
 import games.stendhal.server.rule.EntityManager;
 
 import java.util.HashMap;
@@ -72,22 +75,22 @@ public class AdministrationAction implements ActionListener {
 		 * Make action definition and level a single event so there can't be one without the other.
 		 */
 		AdministrationAction administration = new AdministrationAction();
-		StendhalRPRuleProcessor.register("inspect", administration);
-		StendhalRPRuleProcessor.register("destroy", administration);
-		StendhalRPRuleProcessor.register("supportanswer", administration);
-		StendhalRPRuleProcessor.register("tellall", administration);
-		StendhalRPRuleProcessor.register("teleport", administration);
-		StendhalRPRuleProcessor.register("teleportto", administration);
-		StendhalRPRuleProcessor.register("adminlevel", administration);
-		StendhalRPRuleProcessor.register("alter", administration);
-		StendhalRPRuleProcessor.register("altercreature", administration);
-		StendhalRPRuleProcessor.register("summon", administration);
-		StendhalRPRuleProcessor.register("summonat", administration);
-		StendhalRPRuleProcessor.register("invisible", administration);
-		StendhalRPRuleProcessor.register("ghostmode", administration);
-		StendhalRPRuleProcessor.register("teleclickmode", administration);
-		StendhalRPRuleProcessor.register("jail", administration);
-		StendhalRPRuleProcessor.register("gag", administration);
+		CommandCentre.register("inspect", administration);
+		CommandCentre.register("destroy", administration);
+		CommandCentre.register("supportanswer", administration);
+		CommandCentre.register("tellall", administration);
+		CommandCentre.register("teleport", administration);
+		CommandCentre.register("teleportto", administration);
+		CommandCentre.register("adminlevel", administration);
+		CommandCentre.register("alter", administration);
+		CommandCentre.register("altercreature", administration);
+		CommandCentre.register("summon", administration);
+		CommandCentre.register("summonat", administration);
+		CommandCentre.register("invisible", administration);
+		CommandCentre.register("ghostmode", administration);
+		CommandCentre.register("teleclickmode", administration);
+		CommandCentre.register("jail", administration);
+		CommandCentre.register("gag", administration);
 
 		REQUIRED_ADMIN_LEVELS.put("adminlevel", 0);
 		REQUIRED_ADMIN_LEVELS.put("support", 100);

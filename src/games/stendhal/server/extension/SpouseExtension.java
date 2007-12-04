@@ -12,7 +12,8 @@ import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.StendhalServerExtension;
 import games.stendhal.server.actions.ActionListener;
-import games.stendhal.server.actions.AdministrationAction;
+import games.stendhal.server.actions.CommandCentre;
+import games.stendhal.server.actions.admin.AdministrationAction;
 import games.stendhal.server.entity.player.Player;
 
 import org.apache.log4j.Logger;
@@ -46,9 +47,8 @@ public class SpouseExtension extends StendhalServerExtension implements ActionLi
 	public SpouseExtension() {
 		super();
 		logger.info("SpouseExtension starting...");
-		StendhalRPRuleProcessor.register("marry", this);
-		AdministrationAction.registerCommandLevel("marry", 400);
-		StendhalRPRuleProcessor.register("spouse", this);
+		CommandCentre.register("marry", this, 400);
+		CommandCentre.register("spouse", this);
 	}
 
 	/* 

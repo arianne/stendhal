@@ -14,6 +14,7 @@ package games.stendhal.server.actions;
 
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.actions.admin.AdministrationAction;
 import games.stendhal.server.entity.creature.Pet;
 import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.player.Player;
@@ -29,8 +30,8 @@ public class PlayersQuery implements ActionListener {
 
 	public static void register() {
 		PlayersQuery query = new PlayersQuery();
-		StendhalRPRuleProcessor.register("who", query);
-		StendhalRPRuleProcessor.register("where", query);
+		CommandCentre.register("who", query);
+		CommandCentre.register("where", query);
 	}
 
 	public void onAction(Player player, RPAction action) {

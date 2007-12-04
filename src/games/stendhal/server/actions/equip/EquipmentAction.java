@@ -14,6 +14,9 @@ package games.stendhal.server.actions.equip;
 
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.actions.ActionListener;
+
+import games.stendhal.server.actions.CommandCentre;
+
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
@@ -63,8 +66,8 @@ public class EquipmentAction implements ActionListener {
 	 */
 	public static void register() {
 		EquipmentAction equip = new EquipmentAction();
-		StendhalRPRuleProcessor.register("equip", equip);
-		StendhalRPRuleProcessor.register("drop", equip);
+		CommandCentre.register("equip", equip);
+		CommandCentre.register("drop", equip);
 	}
 
 	/** constuctor */

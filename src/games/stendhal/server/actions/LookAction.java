@@ -25,7 +25,7 @@ public class LookAction implements ActionListener {
 
 
 	public static void register() {
-		StendhalRPRuleProcessor.register("look", new LookAction());
+		CommandCentre.register("look", new LookAction());
 	}
 
 	public void onAction(Player player, RPAction action) {

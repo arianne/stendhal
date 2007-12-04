@@ -20,4 +20,5 @@ public interface ActionListener {
 	/** callback for the registered action */
 	void onAction(Player player, RPAction action);
 
+
 }

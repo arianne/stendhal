@@ -13,7 +13,6 @@
 package games.stendhal.server.actions;
 
 import games.stendhal.server.StendhalRPAction;
-import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;
@@ -25,7 +24,7 @@ public class AttackAction implements ActionListener {
 
 
 	public static void register() {
-		StendhalRPRuleProcessor.register("attack", new AttackAction());
+		CommandCentre.register("attack", new AttackAction());
 	}
 
 	public void onAction(Player player, RPAction action) {

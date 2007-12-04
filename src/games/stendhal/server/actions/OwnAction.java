@@ -12,7 +12,6 @@
  ***************************************************************************/
 package games.stendhal.server.actions;
 
-import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.creature.DomesticAnimal;
 import games.stendhal.server.entity.creature.Pet;
@@ -29,7 +28,7 @@ import marauroa.common.game.RPObject;
 public class OwnAction implements ActionListener {
 
 	public static void register() {
-		StendhalRPRuleProcessor.register("own", new OwnAction());
+		CommandCentre.register("own", new OwnAction());
 	}
 
 	public void onAction(Player player, RPAction action) {

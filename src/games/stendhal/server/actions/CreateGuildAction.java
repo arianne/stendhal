@@ -6,7 +6,6 @@
 
 package games.stendhal.server.actions;
 
-import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
 
@@ -20,7 +19,7 @@ public class CreateGuildAction implements ActionListener {
 	 * Registers action.
 	 */
 	public static void register() {
-		StendhalRPRuleProcessor.register("joinguild", new CreateGuildAction());
+		CommandCentre.register("joinguild", new CreateGuildAction());
 	}
 
 	/**

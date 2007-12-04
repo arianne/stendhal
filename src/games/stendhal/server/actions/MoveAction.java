@@ -13,7 +13,6 @@
 package games.stendhal.server.actions;
 
 import games.stendhal.common.Direction;
-import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -33,9 +32,9 @@ public class MoveAction implements ActionListener {
 
 	public static void register() {
 		MoveAction move = new MoveAction();
-		StendhalRPRuleProcessor.register("move", move);
-		StendhalRPRuleProcessor.register("moveto", move);
-		StendhalRPRuleProcessor.register("push", move);
+		CommandCentre.register("move", move);
+		CommandCentre.register("moveto", move);
+		CommandCentre.register("push", move);
 	}
 
 	public void onAction(Player player, RPAction action) {

@@ -6,9 +6,9 @@
 
 package games.stendhal.server.extension;
 
-import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalServerExtension;
 import games.stendhal.server.actions.ActionListener;
+import games.stendhal.server.actions.CommandCentre;
 import games.stendhal.server.entity.player.Player;
 
 import org.apache.log4j.Logger;
@@ -33,7 +33,7 @@ public class MagicExtn extends StendhalServerExtension implements ActionListener
 	public MagicExtn() {
 		super();
 		logger.info("MagicExtn starting...");
-		StendhalRPRuleProcessor.register("spell", this);
+		CommandCentre.register("spell", this);
 
 		//StendhalRPRuleProcessor.register("listspells", this); //not ready yet
 

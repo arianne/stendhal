@@ -1,7 +1,7 @@
 package games.stendhal.server.maps.semos.city;
 
 import games.stendhal.common.Rand;
-import games.stendhal.server.actions.AdministrationAction;
+import games.stendhal.server.actions.admin.AdministrationAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
