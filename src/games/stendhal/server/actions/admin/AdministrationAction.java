@@ -70,45 +70,27 @@ public class AdministrationAction implements ActionListener {
 	private static final Map<String, Integer> REQUIRED_ADMIN_LEVELS = new HashMap<String, Integer>();
 
 	public static void register() {
-		/*
-		 * TODO: Refactor.
-		 * Make action definition and level a single event so there can't be one without the other.
-		 */
+		
 		AdministrationAction administration = new AdministrationAction();
-		CommandCenter.register("inspect", administration);
-		CommandCenter.register("destroy", administration);
-		CommandCenter.register("supportanswer", administration);
-		CommandCenter.register("tellall", administration);
-		CommandCenter.register("teleport", administration);
-		CommandCenter.register("teleportto", administration);
-		CommandCenter.register("adminlevel", administration);
-		CommandCenter.register("alter", administration);
-		CommandCenter.register("altercreature", administration);
-		CommandCenter.register("summon", administration);
-		CommandCenter.register("summonat", administration);
-		CommandCenter.register("invisible", administration);
-		CommandCenter.register("ghostmode", administration);
-		CommandCenter.register("teleclickmode", administration);
-		CommandCenter.register("jail", administration);
-		CommandCenter.register("gag", administration);
+		CommandCenter.register("inspect", administration,600);
+		CommandCenter.register("destroy", administration,700);
+		CommandCenter.register("supportanswer", administration,50 );
+		CommandCenter.register("tellall", administration,200);
+		CommandCenter.register("teleport", administration,400);
+		CommandCenter.register("teleportto", administration,300);
+		CommandCenter.register("adminlevel", administration,0);
+		CommandCenter.register("alter", administration,900);
+		CommandCenter.register("altercreature", administration,900);
+		CommandCenter.register("summon", administration,800);
+		CommandCenter.register("summonat", administration, 800);
+		CommandCenter.register("invisible", administration,500);
+		CommandCenter.register("ghostmode", administration,500);
+		CommandCenter.register("teleclickmode", administration, 500);
+		CommandCenter.register("jail", administration,400);
+		CommandCenter.register("gag", administration,400);
 
-		REQUIRED_ADMIN_LEVELS.put("adminlevel", 0);
+	
 		REQUIRED_ADMIN_LEVELS.put("support", 100);
-		REQUIRED_ADMIN_LEVELS.put("supportanswer", 50);
-		REQUIRED_ADMIN_LEVELS.put("tellall", 200);
-		REQUIRED_ADMIN_LEVELS.put("teleportto", 300);
-		REQUIRED_ADMIN_LEVELS.put("teleport", 400);
-		REQUIRED_ADMIN_LEVELS.put("jail", 400);
-		REQUIRED_ADMIN_LEVELS.put("gag", 400);
-		REQUIRED_ADMIN_LEVELS.put("invisible", 500);
-		REQUIRED_ADMIN_LEVELS.put("ghostmode", 500);
-		REQUIRED_ADMIN_LEVELS.put("teleclickmode", 500);
-		REQUIRED_ADMIN_LEVELS.put("inspect", 600);
-		REQUIRED_ADMIN_LEVELS.put("destroy", 700);
-		REQUIRED_ADMIN_LEVELS.put("summon", 800);
-		REQUIRED_ADMIN_LEVELS.put("summonat", 800);
-		REQUIRED_ADMIN_LEVELS.put("alter", 900);
-		REQUIRED_ADMIN_LEVELS.put("altercreature", 900);
 		REQUIRED_ADMIN_LEVELS.put("super", 5000);
 	}
 
