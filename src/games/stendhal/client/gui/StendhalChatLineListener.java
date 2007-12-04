@@ -125,7 +125,7 @@ public class StendhalChatLineListener implements ActionListener, KeyListener {
 		}
 
 		if (keypressed == KeyEvent.VK_TAB) {
-			String[] strwords = playerChatText.getText().split(" +");
+			String[] strwords = playerChatText.getText().split("\\s+");
 
 			for (int i = 0; i < playersonline.size(); i++) {
 				if (playersonline.elementAt(i).startsWith(strwords[strwords.length - 1])) {

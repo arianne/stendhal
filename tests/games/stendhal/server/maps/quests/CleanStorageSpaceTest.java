@@ -39,7 +39,6 @@ public class CleanStorageSpaceTest {
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
-
 	}
 
 	@After

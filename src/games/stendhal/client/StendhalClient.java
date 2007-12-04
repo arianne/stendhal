@@ -103,7 +103,7 @@ public class StendhalClient extends ClientFramework {
 				text);
 
 		if (matcher.find()) {
-			String[] names = matcher.group(1).split(" +");
+			String[] names = matcher.group(1).split("\\s+");
 
 			whoplayers.removeAllElements();
 			for (int i = 0; i < names.length; i++) {

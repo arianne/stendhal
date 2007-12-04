@@ -972,7 +972,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	}
 
 	private int positionStringOfSize(String text, int width) {
-		String[] words = text.split(" +");
+		String[] words = text.split("\\s+");
 
 		int i = 1;
 		// Bugfix: Prevent NPE for empty text intensifly@gmx.com
@@ -1012,7 +1012,7 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 		Font specialFont = fontNormal.deriveFont(Font.ITALIC);
 
 		// tokenize the string
-		List<String> list = Arrays.asList(line.split(" "));
+		List<String> list = Arrays.asList(line.split("\\s+"));
 
 		// recreate the string without the # characters
 		StringBuilder temp = new StringBuilder();
