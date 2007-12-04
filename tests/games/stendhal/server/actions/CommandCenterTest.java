@@ -13,7 +13,7 @@ import org.junit.Test;
 
 import utilities.PlayerTestHelper;
 
-public class CommandCentreTest {
+public class CommandCenterTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
