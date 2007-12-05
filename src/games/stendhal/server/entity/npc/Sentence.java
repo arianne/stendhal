@@ -15,28 +15,32 @@ public class Sentence {
     String	_object2 = null;
 	boolean _error = false;
 
+	/**
+	 * return verb of the sentence
+	 * @return
+	 */
     public String getVerb()
     {
     	return _verb;
     }
 
     /**
-     * return amount of objects
-     * @return amount
-     */
-    public int getAmount()
-    {
+	 * return amount of objects
+	 * @return amount
+	 */
+	public int getAmount()
+	{
     	return _amount;
-    }
+	}
 
 	/**
 	 * return the object of the parsed sentence (e.g. item to be bought)
 	 * @return object name in lower case
 	 */
-    public String getObjectName()
-    {
-    	return _object;
-    }
+	public String getObjectName()
+	{
+		return _object;
+	}
 
 	/**
 	 * return the second object name after a preposition 
@@ -93,6 +97,10 @@ public class Sentence {
     	return _error;
     }
 
+	/**
+	 * return the full sentence as string
+	 * @return string
+	 */
     public String toString()
     {
     	StringBuilder builder = new StringBuilder(_verb);

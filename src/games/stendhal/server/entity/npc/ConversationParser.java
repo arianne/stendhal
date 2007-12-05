@@ -7,6 +7,8 @@ import java.util.StringTokenizer;
 
 /**
  * Parser for conversations with a SpeakerNPC
+ * This class parses strings in english language and returns them
+ * as Sentence objects. All sentence constituents are in lower case.
  *
  * @author martinf
  */
@@ -22,7 +24,7 @@ public class ConversationParser {
 	public ConversationParser(final String text)
 	{
 		 // initialise a new tokenizer with the given text
-		_tokenizer = new StringTokenizer(text!=null? text: "");
+		_tokenizer = new StringTokenizer(text!=null? text.toLowerCase(): "");
 
 		 // get first word
 		_next_word = _tokenizer.hasMoreTokens()? _tokenizer.nextToken(): null;
@@ -41,12 +43,15 @@ public class ConversationParser {
 		ConversationParser parser = new ConversationParser(text);
 		Sentence sentence = new Sentence();
 
-		 // parse the text as simple "verb - amount - object" construct
+		 // Parse the text as simple "verb - amount - object" construct.
 		sentence._verb = parser.nextWord();
         sentence._amount = parser.readAmount();
         sentence._object = parser.readObjectName();
+
+         // Optionally there may be a preposition followed by a second object.
         sentence._preposition = parser.nextWord();
         sentence._object2 = parser.readObjectName();
+
         sentence._error = parser.getError();
 /*TODO
 		 // derive the singular from the item name if the amount is greater than one
@@ -68,7 +73,7 @@ public class ConversationParser {
 				_next_word = null;
 			}
 
-	        return word.toLowerCase();
+	        return word;
 		} else {
 			return null;
 		}
