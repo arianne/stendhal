@@ -21,7 +21,7 @@ public class ConversationParser {
      */
 	public ConversationParser(final String text)
 	{
-		 // initialze a new tokenizer with the given text
+		 // initialise a new tokenizer with the given text
 		_tokenizer = new StringTokenizer(text!=null? text: "");
 
 		 // get first word
@@ -45,6 +45,8 @@ public class ConversationParser {
 		sentence._verb = parser.nextWord();
         sentence._amount = parser.readAmount();
         sentence._object = parser.readObjectName();
+        sentence._preposition = parser.nextWord();
+        sentence._object2 = parser.readObjectName();
         sentence._error = parser.getError();
 /*TODO
 		 // derive the singular from the item name if the amount is greater than one
@@ -117,10 +119,16 @@ public class ConversationParser {
 
          // handle object names consisting of more than one word
         for(;;) {
-        	String word = nextWord();
-
-        	if (word == null)
+        	if (_next_word == null)
         		break;
+
+        	 // stop if the next word is a preposition
+        	if (_next_word.equals("on") || _next_word.equals("of") ||
+        		_next_word.equals("under") || _next_word.equals("with")) { 
+        		break;
+        	}
+
+        	String word = nextWord();
 
              // concatenate user specified item names like "baby dragon"
              // with spaces to build the internal item names

@@ -86,4 +86,16 @@ public class ConversationParserTest {
 		assertTrue(sentence.getError());
 	}
 
+	@Test
+	public final void testPrepositions() {
+		Sentence sentence = ConversationParser.parse("put dish on table");
+		assertFalse(sentence.getError());
+
+		assertEquals("put", sentence.getVerb());
+		assertEquals(1, sentence.getAmount());
+		assertEquals("dish", sentence.getObjectName());
+		assertEquals("on", sentence.getPreposition());
+		assertEquals("table", sentence.getObjectName2());
+	}
+
 }
