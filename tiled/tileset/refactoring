@@ -20,8 +20,8 @@ k*/building/decoration/banner_long.png
 ./building/decoration/blobcreature.png   
 k*/building/decoration/block.png
 J*./building/decoration/blue_circle.png
-./building/decoration/blue_green.png
-./building/decoration/blue_green_2.png
+m/K*/building/decoration/blue_green.png
+m/K*/building/decoration/blue_green_2.png
 k*/building/decoration/chimney.png
 k*/building/decoration/chimney_big.png
 m*/building/decoration/dark_red.png
@@ -42,8 +42,8 @@ m*/building/decoration/pale_red.png
 m/K*./building/decoration/pool.png
 m*/building/decoration/rocks.png
 m*/building/decoration/rocks_2.png
-./building/decoration/skull_carving.png     not found
-./building/decoration/skullpedestal.png     not found
+./building/decoration/skull_carving.png     
+./building/decoration/skullpedestal.png    
 ./building/decoration/squares.png           not found
 m*/building/decoration/squares_2.png
 m/K*./building/decoration/stone_details.png
@@ -91,7 +91,7 @@ K*./building/entrance/bricks_ew.png
 K*./building/entrance/detail_ew.png
 K*./building/entrance/detail_ns.png
 k*/building/fence/fence_chunky.png
-./building/fence/fence_wooden.png
+m*/building/fence/fence_wooden.png
 k*/building/roof/blue.png
 k*/building/roof/green.png
 k*/building/roof/red.png
@@ -130,7 +130,7 @@ K*./building/wall/int_wall_bricks.png
 K*./building/wall/int_wall_thin_bricks.png
 K*./building/wall/int_wall_fancy_purple.png
 K*./building/wall/int_wall_brick_wood.png
-./building/wall/bricked_edges.png
+m*/building/wall/bricked_edges.png
 m*/building/window/broken_window.png
 K*./building/window/int_windows_dark_red.png
 J*./building/window/painted.png
@@ -172,7 +172,7 @@ K*/ground/indoor/blue_hole.png
 K*/ground/indoor/brown_hole.png
 k*/ground/indoor/church_tiles.png
 K*/ground/indoor/grey_hole.png
-./ground/indoor/grey_skull.png
+m*/ground/indoor/grey_skull.png
 K*/ground/indoor/taupe_hole.png
 m*/ground/indoor/tiles.png
 ./ground/ladder/horizontal_dark.png
@@ -274,7 +274,7 @@ b*/item/furniture/crockery/knife_spoon.png
 ./item/furniture/curtain/red_gold_drawn.png
 ./item/furniture/curtain/red_gold_gathered.png
 ./item/furniture/curtain/curtain_rails.png
-./item/furniture/light/dark_torch.png
+m*/item/furniture/light/dark_torch.png
 ./item/furniture/light/flames.png
 m*/item/furniture/light/iron_lamp.png
 m/K*/item/furniture/light/torch.png
