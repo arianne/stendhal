@@ -2,6 +2,8 @@ package games.stendhal.server.entity.npc;
 
 import games.stendhal.common.Grammar;
 
+import java.util.StringTokenizer;
+
 
 /**
  * Parser for conversations with a SpeakerNPC
@@ -10,8 +12,8 @@ import games.stendhal.common.Grammar;
  */
 public class ConversationParser {
 
-    private final String[] _words;
-    private int		_word_idx;
+	private StringTokenizer _tokenizer;
+	private String	_next_word;
     private boolean	_error;
 
     /**
@@ -19,11 +21,11 @@ public class ConversationParser {
      */
 	public ConversationParser(final String text)
 	{
-		 // Split the text line into single words separated by white space.
-        _words = text!=null? text.trim().split("\\s+"): new String[0];
+		 // initialze a new tokenizer with the given text
+		_tokenizer = new StringTokenizer(text!=null? text: "");
 
-		 // start with the first word
-        _word_idx = 0;
+		 // get first word
+		_next_word = _tokenizer.hasMoreTokens()? _tokenizer.nextToken(): null;
 
          // start with no errors.
         _error = false;
@@ -40,27 +42,34 @@ public class ConversationParser {
 		Sentence sentence = new Sentence();
 
 		 // parse the text as simple "verb - amount - object" construct
-		sentence._verb = parser.readWord();
+		sentence._verb = parser.nextWord();
         sentence._amount = parser.readAmount();
         sentence._object = parser.readObjectName();
         sentence._error = parser.getError();
 /*TODO
 		 // derive the singular from the item name if the amount is greater than one
-        if (sentence._amount > 1)
-        	sentence._object = Grammar.singular(sentence._object);
+		if (sentence._amount > 1) {
+			sentence._object = Grammar.singular(sentence._object);
+		}
 */
         return sentence;
 	}
 
-	private String readWord()
+	private String nextWord()
     {
-        String word = null;
+		String word = _next_word;
 
-        if (_word_idx < _words.length) {
-        	word = _words[_word_idx++].toLowerCase();
-        }
+		if (word != null) {
+			if (_tokenizer.hasMoreTokens()) {
+				_next_word = _tokenizer.nextToken();
+			} else {
+				_next_word = null;
+			}
 
-        return word;
+	        return word.toLowerCase();
+		} else {
+			return null;
+		}
     }
 
 	/**
@@ -72,25 +81,25 @@ public class ConversationParser {
         int amount = 1;
 
          // handle numeric expressions
-        if (_word_idx < _words.length) {
-        	if (_words[_word_idx].matches("^[+-]?[0-9]+")) {
+        if (_tokenizer.hasMoreTokens()) {
+        	if (_next_word.matches("^[+-]?[0-9]+")) {
     	        try {
-    	        	amount = Integer.parseInt(_words[_word_idx]);
+    	        	amount = Integer.parseInt(_next_word);
     
     	        	if (amount < 0)
     	        		_error = true;
-    
-    		        ++_word_idx;
+
+    		        nextWord();
     	        } catch(NumberFormatException e) {
     	        	_error = true;
     	        }
             } else {
             	 // handle expressions like "one", "two", ...
-            	Integer number = Grammar.number(_words[_word_idx]);
+            	Integer number = Grammar.number(_next_word);
 
             	if (number != null) {
             		amount = number.intValue();
-            		++_word_idx;
+            		nextWord();
             	}
             }
         }
@@ -108,17 +117,18 @@ public class ConversationParser {
 
          // handle object names consisting of more than one word
         for(;;) {
-        	String word = readWord();
+        	String word = nextWord();
 
         	if (word == null)
         		break;
 
-            // concatenate user specified item names like "baby dragon"
-            // with spaces to build the internal item names
-            if (name == null)
+             // concatenate user specified item names like "baby dragon"
+             // with spaces to build the internal item names
+            if (name == null) {
             	name = word;
-            else
+            } else {
             	name += " " + word;
+            }
         }
 
         return name;
