@@ -559,6 +559,7 @@ public class AdministrationActionTest {
 		assertEquals("xp", 8, rat.getXP());
 
 	}
+
 	@Test
 	public final void testInvisible() {
 		AdministrationAction aa = new AdministrationAction();
@@ -574,6 +575,7 @@ public class AdministrationActionTest {
 		assertFalse(pl.isInvisible());
 
 	}
+
 	@Test
 	public final void testGhostmode() {
 		AdministrationAction aa = new AdministrationAction();
@@ -584,29 +586,44 @@ public class AdministrationActionTest {
 		MockStendhalRPRuleProcessor.get().getPlayers().add(pl);
 		MockStendhalRPRuleProcessor.get().getPlayers().add(bob);
 		bob.setKeyedSlot("!buddy", "_" + pl.getName(), "1");
-		
+
 		RPAction action = new RPAction();
-		
+
 		action.put("type", "ghostmode");
 		assertFalse(pl.isInvisible());
 		assertFalse(pl.isGhost());
-		
+
 		aa.onAction(pl, action);
 		assertTrue(pl.isInvisible());
 		assertTrue(pl.isGhost());
-		
-		assertEquals(null,bob.get("online"));
-		 
-		assertEquals("hugo",bob.get("offline"));
+
+		assertEquals(null, bob.get("online"));
+
+		assertEquals("hugo", bob.get("offline"));
 		bob.remove("offline");
 		bob.clearEvents();
 		aa.onAction(pl, action);
 		assertFalse(pl.isInvisible());
 		assertFalse(pl.isGhost());
-		assertEquals(null,bob.get("offline"));
-		assertEquals("hugo",bob.get("online"));
+		assertEquals(null, bob.get("offline"));
+		assertEquals("hugo", bob.get("online"));
 
 	}
-	
-	
+
+	@Test
+	public final void testTeleclickmode() {
+		AdministrationAction aa = new AdministrationAction();
+
+		Player pl = PlayerTestHelper.createPlayer("hugo");
+		pl.put("adminlevel", 5000);
+		RPAction action = new RPAction();
+		action.put("type", "teleclickmode");
+		assertFalse(pl.isTeleclickEnabled());
+		aa.onAction(pl, action);
+		assertTrue(pl.isTeleclickEnabled());
+		aa.onAction(pl, action);
+		assertFalse(pl.isTeleclickEnabled());
+
+	}
+
 }
