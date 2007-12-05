@@ -1998,4 +1998,29 @@ public class Player extends RPEntity {
 		// TODO: Sentence here.
 		return "";
 	}
+
+	@Override
+	public String get(String param) {
+		
+		// TODO: remove this hack, it is just a preliminary way to get the test working again
+		if ("private_text".equals(param)) {
+			StringBuilder sb = null;
+			for (RPEvent event : events()) {
+				if (event.getName().equals("private_text")) {
+					if (sb == null) {
+						sb = new StringBuilder();
+					} else {
+						sb.append("\r\n");
+					}
+					sb.append(event.get("text"));
+				}
+			}
+			if (sb == null) {
+				return null;
+			}
+			return sb.toString();
+		}
+		
+		return super.get(param);
+	}
 }
