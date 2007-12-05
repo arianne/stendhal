@@ -14,7 +14,6 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
-import games.stendhal.server.rule.EntityManager;
 import marauroa.common.Log4J;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
@@ -870,7 +869,7 @@ public class AdministrationActionTest {
 
 	}
 	@Test
-	public final void testOnInspectPlayer() {
+	public final void testOnSummonAt() {
 		AdministrationAction aa = new AdministrationAction();
 		Player pl = PlayerTestHelper.createPlayer("hugo");
 		pl.put("adminlevel", 5000);
@@ -881,11 +880,33 @@ public class AdministrationActionTest {
 		
 		testzone.add(pl);
 		RPAction action = new RPAction();
-		action.put("type", "inspect");
+		action.put("type", "summonat");
 		action.put("target","hugo" );
+		action.put("slot","hugo" );
+		action.put("item","hugo" );
 
 		aa.onAction(pl, action);
-		assertTrue( pl.get("private_text").startsWith("Inspected player is called \"hugo\" and has the following attributes:"));
+		assertEquals("Player \"hugo\" does not have an RPSlot named \"hugo\".", pl.get("private_text"));
+		pl.clearEvents();
+		
+		action = new RPAction();
+		action.put("type", "summonat");
+		action.put("target","hugo" );
+		action.put("slot","bag" );
+		action.put("item","hugo" );
+
+		aa.onAction(pl, action);
+		assertEquals("Not an item.", pl.get("private_text"));
+	pl.clearEvents();
+		
+		action = new RPAction();
+		action.put("type", "summonat");
+		action.put("target","hugo" );
+		action.put("slot","bag" );
+		action.put("item","dagger" );
+		assertFalse(pl.isEquipped("dagger"));
+		aa.onAction(pl, action);
+		assertTrue(pl.isEquipped("dagger"));
 
 	}
 }
