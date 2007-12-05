@@ -31,7 +31,6 @@ import games.stendhal.server.entity.mapstuff.portal.Portal;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
-
 import games.stendhal.server.rule.EntityManager;
 
 import java.util.HashMap;
@@ -39,8 +38,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
-
-import org.apache.log4j.Logger;
 import marauroa.common.game.Definition;
 import marauroa.common.game.IRPZone;
 import marauroa.common.game.RPAction;
@@ -50,14 +47,15 @@ import marauroa.common.game.RPSlot;
 import marauroa.common.game.Definition.DefinitionClass;
 import marauroa.common.game.Definition.Type;
 
+import org.apache.log4j.Logger;
+
 /**
  * Most /commands for admins are handled here.
  */
 public class AdministrationAction implements ActionListener {
 	/*
-	 * TODO: Refactor.
-	 * This class is monstrously big.
-	 * Split it in smaller more coherent classes.
+	 * TODO: Refactor. This class is monstrously big. Split it in smaller more
+	 * coherent classes.
 	 */
 
 	private static final Logger logger = Logger
@@ -70,26 +68,25 @@ public class AdministrationAction implements ActionListener {
 	private static final Map<String, Integer> REQUIRED_ADMIN_LEVELS = new HashMap<String, Integer>();
 
 	public static void register() {
-		
-		AdministrationAction administration = new AdministrationAction();
-		CommandCenter.register("inspect", administration,600);
-		CommandCenter.register("destroy", administration,700);
-		CommandCenter.register("supportanswer", administration,50 );
-		CommandCenter.register("tellall", administration,200);
-		CommandCenter.register("teleport", administration,400);
-		CommandCenter.register("teleportto", administration,300);
-		CommandCenter.register("adminlevel", administration,0);
-		CommandCenter.register("alter", administration,900);
-		CommandCenter.register("altercreature", administration,900);
-		CommandCenter.register("summon", administration,800);
-		CommandCenter.register("summonat", administration, 800);
-		CommandCenter.register("invisible", administration,500);
-		CommandCenter.register("ghostmode", administration,500);
-		CommandCenter.register("teleclickmode", administration, 500);
-		CommandCenter.register("jail", administration,400);
-		CommandCenter.register("gag", administration,400);
 
-	
+		AdministrationAction administration = new AdministrationAction();
+		CommandCenter.register("inspect", administration, 600);
+		CommandCenter.register("destroy", administration, 700);
+		CommandCenter.register("supportanswer", administration, 50);
+		CommandCenter.register("tellall", administration, 200);
+		CommandCenter.register("teleport", administration, 400);
+		CommandCenter.register("teleportto", administration, 300);
+		CommandCenter.register("adminlevel", administration, 0);
+		CommandCenter.register("alter", administration, 900);
+		CommandCenter.register("altercreature", administration, 900);
+		CommandCenter.register("summon", administration, 800);
+		CommandCenter.register("summonat", administration, 800);
+		CommandCenter.register("invisible", administration, 500);
+		CommandCenter.register("ghostmode", administration, 500);
+		CommandCenter.register("teleclickmode", administration, 500);
+		CommandCenter.register("jail", administration, 400);
+		CommandCenter.register("gag", administration, 400);
+
 		REQUIRED_ADMIN_LEVELS.put("support", 100);
 		REQUIRED_ADMIN_LEVELS.put("super", 5000);
 	}
@@ -158,9 +155,8 @@ public class AdministrationAction implements ActionListener {
 		}
 
 		/*
-		 * Refactor.
-		 * Bad smell but on the other hand the correct way of doing it may
-		 * be even worse?
+		 * Refactor. Bad smell but on the other hand the correct way of doing it
+		 * may be even worse?
 		 */
 		if (type.equals("tellall")) {
 			onTellEverybody(player, action);
@@ -257,7 +253,7 @@ public class AdministrationAction implements ActionListener {
 				logger.debug(text);
 
 				Set<String> zoneNames = new TreeSet<String>();
-				for(IRPZone irpZone : StendhalRPWorld.get()) {
+				for (IRPZone irpZone : StendhalRPWorld.get()) {
 					StendhalRPZone zone = (StendhalRPZone) irpZone;
 					zoneNames.add(zone.getName());
 				}
@@ -411,7 +407,8 @@ public class AdministrationAction implements ActionListener {
 			}
 
 			if (stat.equals("title") && (changed instanceof Player)) {
-				player.sendPrivateText("The title attribute may not be changed directly.");
+				player
+						.sendPrivateText("The title attribute may not be changed directly.");
 				return;
 			}
 
@@ -479,11 +476,11 @@ public class AdministrationAction implements ActionListener {
 						}
 						break;
 					case INT:
-						/* as numberValue is currently of type integer, this is pointless:
-						if ((numberValue > Integer.MAX_VALUE)
-								|| (numberValue < Integer.MIN_VALUE)) {
-							return;
-						}*/
+						/*
+						 * as numberValue is currently of type integer, this is
+						 * pointless: if ((numberValue > Integer.MAX_VALUE) ||
+						 * (numberValue < Integer.MIN_VALUE)) { return; }
+						 */
 						break;
 					}
 
@@ -525,6 +522,7 @@ public class AdministrationAction implements ActionListener {
 			String stat = action.get("text");
 
 			String[] parts = stat.split("/");
+
 			if (changed instanceof Creature && parts.length == 5) {
 				Creature creature = (Creature) changed;
 				StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
@@ -699,13 +697,13 @@ public class AdministrationAction implements ActionListener {
 		if (target instanceof RPEntity) {
 			RPEntity inspected = (RPEntity) target;
 
-			 // display type and name of the entity if they are available
+			// display type and name of the entity if they are available
 
 			String type = inspected.get("type");
-			st.append("Inspected " + (type!=null? type: "entity") + " is ");
+			st.append("Inspected " + (type != null ? type : "entity") + " is ");
 
 			String name = inspected.getName();
-			st.append(name!=null? "called \""+name+"\"": "unnamed");
+			st.append(name != null ? "called \"" + name + "\"" : "unnamed");
 
 			st.append(" and has the following attributes:");
 
@@ -802,12 +800,8 @@ public class AdministrationAction implements ActionListener {
 			name = inspected.get("name");
 		}
 
-		StendhalRPRuleProcessor.get().addGameEvent(
-				player.getName(),
-				"removed",
-				name,
-				zone.getName(),
-				Integer.toString(inspected.getX()),
+		StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "removed",
+				name, zone.getName(), Integer.toString(inspected.getX()),
 				Integer.toString(inspected.getY()));
 
 		player.sendPrivateText("Removed entity " + action.get("targetid"));
@@ -858,7 +852,7 @@ public class AdministrationAction implements ActionListener {
 
 	/**
 	 * get the Entity-object of the specified target
-	 *
+	 * 
 	 * @param player
 	 * @param action
 	 * @return the Entity or null if it does not exist
@@ -890,7 +884,8 @@ public class AdministrationAction implements ActionListener {
 		if (id != null) {
 			StendhalRPZone zone = player.getZone();
 
-			RPObject.ID oid = new RPObject.ID(Integer.parseInt(id), zone.getName());
+			RPObject.ID oid = new RPObject.ID(Integer.parseInt(id), zone
+					.getName());
 			if (zone.has(oid)) {
 				RPObject object = zone.get(oid);
 				if (object instanceof Entity) {
