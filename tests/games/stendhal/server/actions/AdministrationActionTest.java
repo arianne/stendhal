@@ -73,7 +73,7 @@ public class AdministrationActionTest {
 	//	assertEquals("Sorry, command \"\" is unknown.", pl.get("private_text"));
 		assertTrue(AdministrationAction.isPlayerAllowedToExecuteAdminCommand(
 				pl, "adminlevel", true));
-		pl.remove("private_text");
+		pl.clearEvents();
 
 		assertEquals(false, AdministrationAction
 				.isPlayerAllowedToExecuteAdminCommand(pl, "support", true));
@@ -81,7 +81,7 @@ public class AdministrationActionTest {
 				.get("private_text"));
 
 		pl.put("adminlevel", 50);
-		pl.remove("private_text");
+		pl.clearEvents();
 		assertEquals(true, AdministrationAction
 				.isPlayerAllowedToExecuteAdminCommand(pl, "adminlevel", true));
 		assertEquals(false, AdministrationAction
@@ -106,7 +106,7 @@ public class AdministrationActionTest {
 //		assertEquals("Sorry, command \"null\" is unknown.", pl
 //				.get("private_text"));
 
-		pl.remove("private_text");
+		pl.clearEvents();
 		pl.put("adminlevel", 5000);
 		RPAction action = new RPAction();
 		action.put("type", "tellall");
@@ -359,7 +359,7 @@ public class AdministrationActionTest {
 		aa.onAction(pl, action);
 		assertEquals("Sorry, name cannot be changed.", pl.get("private_text"));
 		action.put("stat", "adminlevel");
-		pl.remove("private_text");
+		pl.clearEvents();
 		aa.onAction(pl, action);
 		assertEquals("Use #/adminlevel #<playername> #[<newlevel>] to display or change adminlevel.", pl.get("private_text"));
 	}
