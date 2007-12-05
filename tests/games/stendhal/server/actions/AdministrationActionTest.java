@@ -318,7 +318,28 @@ public class AdministrationActionTest {
 		assertEquals("player changed your adminlevel from 0 to 0.", bob
 				.get("private_text"));
 	}
+	@Test
+	public final void testAdminLevelActionOverSuper() {
 
+		AdministrationAction aa = new AdministrationAction();
+		Player pl = PlayerTestHelper.createPlayer();
+		Player bob = PlayerTestHelper.createPlayer("bob");
+		// bad bad
+		MockStendhalRPRuleProcessor.get().getPlayers().add(pl);
+		MockStendhalRPRuleProcessor.get().getPlayers().add(bob);
+
+		pl.put("adminlevel", 5000);
+
+		RPAction action = new RPAction();
+		action.put("type", "adminlevel");
+		action.put("target", "bob");
+		action.put("newlevel", "5001");
+		aa.onAction(pl, action);
+		assertEquals("Changed adminlevel of bob from 0 to 5000.", pl
+				.get("private_text"));
+		assertEquals("player changed your adminlevel from 0 to 5000.", bob
+				.get("private_text"));
+	}
 	@Test
 	public final void testAdminLevelActioncasterNotSuper() {
 
@@ -625,5 +646,99 @@ public class AdministrationActionTest {
 		assertFalse(pl.isTeleclickEnabled());
 
 	}
+	@Test
+	public final void testJail() {
+		AdministrationAction aa = new AdministrationAction();
 
+		Player pl = PlayerTestHelper.createPlayer("hugo");
+		pl.put("adminlevel", 5000);
+		RPAction action = new RPAction();
+		action.put("type", "jail");
+		
+		aa.onAction(pl, action);
+	
+		assertEquals("Usage: /jail name minutes reason", pl.get("private_text"));
+		pl.clearEvents();
+		action = new RPAction();
+		action.put("type", "jail");
+		action.put("target", "name");
+		action.put("reason", "whynot");
+		action.put("minutes", 1);
+		
+		aa.onAction(pl, action);
+		assertEquals("Player name not found", pl.get("private_text"));
+
+		pl.clearEvents();
+		
+		
+		MockStendhalRPRuleProcessor.get().getPlayers().add(pl);
+		action = new RPAction();
+		action.put("type", "jail");
+		action.put("target", "hugo");
+		action.put("reason", "whynot");
+		action.put("minutes", "noNumber");
+		
+		aa.onAction(pl, action);
+		assertEquals("Usage: /jail name minutes reason", pl.get("private_text"));
+		pl.clearEvents();
+		
+		action = new RPAction();
+		action.put("type", "jail");
+		action.put("target", "hugo");
+		action.put("reason", "whynot");
+		action.put("minutes", 1);
+		
+		aa.onAction(pl, action);
+		assertEquals("this is ok as jailing is tested elsewhere", "Zone -1_semos_jail not found", pl.get("private_text"));
+
+		
+	}
+	@Test
+	public final void testGag() {
+		AdministrationAction aa = new AdministrationAction();
+
+		Player pl = PlayerTestHelper.createPlayer("hugo");
+		pl.put("adminlevel", 5000);
+		RPAction action = new RPAction();
+		action.put("type", "gag");
+		
+		aa.onAction(pl, action);
+	
+		assertEquals("Usage: /gag name minutes reason", pl.get("private_text"));
+		pl.clearEvents();
+		action = new RPAction();
+		action.put("type", "gag");
+		action.put("target", "name");
+		action.put("reason", "whynot");
+		action.put("minutes", 1);
+		
+		aa.onAction(pl, action);
+		assertEquals("Player name not found", pl.get("private_text"));
+
+		pl.clearEvents();
+		
+		
+		MockStendhalRPRuleProcessor.get().getPlayers().add(pl);
+		action = new RPAction();
+		action.put("type", "gag");
+		action.put("target", "hugo");
+		action.put("reason", "whynot");
+		action.put("minutes", "noNumber");
+		
+		aa.onAction(pl, action);
+		assertEquals("Usage: /gag name minutes reason", pl.get("private_text"));
+		pl.clearEvents();
+		
+		action = new RPAction();
+		action.put("type", "gag");
+		action.put("target", "hugo");
+		action.put("reason", "whynot");
+		action.put("minutes", 1);
+		
+		aa.onAction(pl, action);
+		assertTrue(pl.get("private_text").startsWith("You have gagged hugo for 1 minutes. Reason: "));
+				
+
+		
+	}
 }
