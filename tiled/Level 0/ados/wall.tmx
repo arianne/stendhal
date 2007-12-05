@@ -93,6 +93,9 @@
  <tileset name="../../tileset/logic/collision.png" firstgid="565" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
+ <tileset name="Unbenannt" firstgid="566" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/stairs/dark_stairs.png"/>
+ </tileset>
  <layer name="0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3bwaraUBSGUe+d9VE77bTDguBbl0ILbegxgRzdZ+dfg28SJOpeiR5M/Lzdbp/a7f67rx//9mf7t4/nfd+09/h3VT3XLvHPjn92/LPjnx3/7Phnxz87/tnxz+6d/j8muB49xqrn2iX+2a3kv93Xmarnulr3nd7l/yz+r/ffOo+qWP/x58+f/4x9Vc97tfhnt8L6jz9//mvFPzv+2fHPbmX/xyD+Gf7Of/78e/nPjD9//vz58+ffw/+MGX/+/Pnz58+/t//e9ea/G+3L77/Z/s5//vz58+fPnz9//vz58+fPnz//a/ufqXquXeKfHf/s+Ge3sr/1H3/+/PnPcx716vt/+K/hv3UeNdv/SPz58+fPnz//1/hXrf/485+9ry9PXl/1vLu0sv8v3734X9ff5z9//r38Z8afP3/+/Pnz7+F/xmxm1XPtEv/sXuVf+Z6qn79T/LPjnx3/7Phnxz87/tnxz45/dvyz6+7/+M9z8edfPdcu8c+u+/W/x2B79Vy7tPL9H2eqnmuX+GfHPzv+2XVf/42qnmuX+GfHPzv+2fHP6L4T/2s3ch7F/1rxz45/dvyzs/7Ljr+eHReu/2TGPzv+2fHPzvovO/7Z8c+Of3b8s+OfHf/s+GfHPzv+2fHPbs//yHGwmj3/9/qvWPVcu7R3XyD/a8c/O/7ZHfXvthaonmuXjt4HzP+a7fl3/S6onmu3+GfHPzv+2c38T9gKVc+zW/y1PRb4Z8Y/uyv4/wSLbEjFAAABAA==
@@ -105,7 +108,7 @@
  </layer>
  <layer name="2_object" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3dy0rDQBgG0Enwgm29F1eKt1ahiPoM4vs/gy+hK0X/YFxYXJQmNKZzDnx007SBL2Qgk0xSAgAAAABW4bVI6S0yLFMaRXbLbn4DgJR24lw6KLreCwAAAADWxbDl6/V3rv/3xs/czUth7gaAZqoxxTgCAAAAAADrxfV/AAAAAACA36z/xSrdRx4ij13vCJ14qj+fO90LunIdY80kMjXmZEn/eWu7/8MypaPIsXuAeqHN/ufXgt+PHDgO/jXn/7zpP2/6z5v+AQAAAAAAgL/Mr/1kLag8uQcwT3v1O8TG5fc7xU70DwAAAAAAsNL1397jfz4in9X/NZirOY1tzyLnkQtzPr2h/7wV0VUZ2YhsNujtMra9ikwiU/33xlZ0tV1n0KC3m9j2ts5M/72yyD1abX0HAAAAAAAAAAAAAACA5VXPb3hXN4twrMD6s4533sZ176PSs50AACznCwI685IAAAEA
+   H4sIAAAAAAAAAO3dy0rDQBQG4Enwgm29F1eKt1ZBRN25F9//GXwJXSl6inFhcVGakJjO98FPN51O6AkZmEkmKQEAAAAAbXgtUnqLDMuURpHtspvfACClrbiWDoqujwIAAACAVTFseL7+1vx/b/ys3bwU1m4AqGc2phhHAAAAAABgtZj/BwAAAAAA+M3+X7TpLnIfeej6QOjEU/X53OlR0JXLGGsmkakxJ0vqn7em679fpnQQOXQPUC80Wf/5veB3I3vOg3/N9T9v6p839c+b+gMAAAAAAAB/md/7yV5QeXIPYJ52qneIjcvvd4odqT8AAAAAAECr+7+9Rz8fkc9ZfzXWao6j7UnkNHJmzac31D9vRdSqjKxF1mvU7TzaXkQmkan6L+2x5f9uI/rbrDKo0fdVtL2ucqP+vbLIPVpNfQcAAAAAAAAAAAAAAIDlzZ7f8K5uFuFcgdVnH++8jau6j0rPdgIAsJwvgB7y3AAAAQA=
   </data>
  </layer>
  <layer name="3_roof" width="128" height="128">
