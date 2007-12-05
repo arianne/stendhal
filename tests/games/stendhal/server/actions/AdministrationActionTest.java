@@ -4,13 +4,17 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import games.stendhal.common.Direction;
+import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.actions.admin.AdministrationAction;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.creature.Creature;
+import games.stendhal.server.entity.creature.RaidCreature;
+import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
+import games.stendhal.server.rule.EntityManager;
 import marauroa.common.Log4J;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
@@ -21,6 +25,7 @@ import org.junit.Test;
 
 import utilities.PlayerHelper;
 import utilities.PlayerTestHelper;
+import utilities.SpeakerNPCTestHelper;
 
 public class AdministrationActionTest {
 
@@ -318,6 +323,7 @@ public class AdministrationActionTest {
 		assertEquals("player changed your adminlevel from 0 to 0.", bob
 				.get("private_text"));
 	}
+
 	@Test
 	public final void testAdminLevelActionOverSuper() {
 
@@ -340,6 +346,7 @@ public class AdministrationActionTest {
 		assertEquals("player changed your adminlevel from 0 to 5000.", bob
 				.get("private_text"));
 	}
+
 	@Test
 	public final void testAdminLevelActioncasterNotSuper() {
 
@@ -646,6 +653,7 @@ public class AdministrationActionTest {
 		assertFalse(pl.isTeleclickEnabled());
 
 	}
+
 	@Test
 	public final void testJail() {
 		AdministrationAction aa = new AdministrationAction();
@@ -654,9 +662,9 @@ public class AdministrationActionTest {
 		pl.put("adminlevel", 5000);
 		RPAction action = new RPAction();
 		action.put("type", "jail");
-		
+
 		aa.onAction(pl, action);
-	
+
 		assertEquals("Usage: /jail name minutes reason", pl.get("private_text"));
 		pl.clearEvents();
 		action = new RPAction();
@@ -664,35 +672,35 @@ public class AdministrationActionTest {
 		action.put("target", "name");
 		action.put("reason", "whynot");
 		action.put("minutes", 1);
-		
+
 		aa.onAction(pl, action);
 		assertEquals("Player name not found", pl.get("private_text"));
 
 		pl.clearEvents();
-		
-		
+
 		MockStendhalRPRuleProcessor.get().getPlayers().add(pl);
 		action = new RPAction();
 		action.put("type", "jail");
 		action.put("target", "hugo");
 		action.put("reason", "whynot");
 		action.put("minutes", "noNumber");
-		
+
 		aa.onAction(pl, action);
 		assertEquals("Usage: /jail name minutes reason", pl.get("private_text"));
 		pl.clearEvents();
-		
+
 		action = new RPAction();
 		action.put("type", "jail");
 		action.put("target", "hugo");
 		action.put("reason", "whynot");
 		action.put("minutes", 1);
-		
-		aa.onAction(pl, action);
-		assertEquals("this is ok as jailing is tested elsewhere", "Zone -1_semos_jail not found", pl.get("private_text"));
 
-		
+		aa.onAction(pl, action);
+		assertEquals("this is ok as jailing is tested elsewhere",
+				"Zone -1_semos_jail not found", pl.get("private_text"));
+
 	}
+
 	@Test
 	public final void testGag() {
 		AdministrationAction aa = new AdministrationAction();
@@ -701,9 +709,9 @@ public class AdministrationActionTest {
 		pl.put("adminlevel", 5000);
 		RPAction action = new RPAction();
 		action.put("type", "gag");
-		
+
 		aa.onAction(pl, action);
-	
+
 		assertEquals("Usage: /gag name minutes reason", pl.get("private_text"));
 		pl.clearEvents();
 		action = new RPAction();
@@ -711,34 +719,173 @@ public class AdministrationActionTest {
 		action.put("target", "name");
 		action.put("reason", "whynot");
 		action.put("minutes", 1);
-		
+
 		aa.onAction(pl, action);
 		assertEquals("Player name not found", pl.get("private_text"));
 
 		pl.clearEvents();
-		
-		
+
 		MockStendhalRPRuleProcessor.get().getPlayers().add(pl);
 		action = new RPAction();
 		action.put("type", "gag");
 		action.put("target", "hugo");
 		action.put("reason", "whynot");
 		action.put("minutes", "noNumber");
-		
+
 		aa.onAction(pl, action);
 		assertEquals("Usage: /gag name minutes reason", pl.get("private_text"));
 		pl.clearEvents();
-		
+
 		action = new RPAction();
 		action.put("type", "gag");
 		action.put("target", "hugo");
 		action.put("reason", "whynot");
 		action.put("minutes", 1);
-		
-		aa.onAction(pl, action);
-		assertTrue(pl.get("private_text").startsWith("You have gagged hugo for 1 minutes. Reason: "));
-				
 
+		aa.onAction(pl, action);
+		assertTrue(pl.get("private_text").startsWith(
+				"You have gagged hugo for 1 minutes. Reason: "));
+
+	}
+	@Test
+	public final void testOnDestroyEntityNotFOund() {
+		AdministrationAction aa = new AdministrationAction();
+
+		Player pl = PlayerTestHelper.createPlayer("hugo");
+		pl.put("adminlevel", 5000);
+		RPAction action = new RPAction();
+		action.put("type", "destroy");
+
+		aa.onAction(pl, action);
+		assertEquals("Entity not found", pl.get("private_text"));
 		
+	}
+	@Test
+	public final void testOnDestroyPlayer() {
+		AdministrationAction aa = new AdministrationAction();
+		Player pl = PlayerTestHelper.createPlayer("hugo");
+		pl.put("adminlevel", 5000);
+		pl.clearEvents();
+
+		MockStendhalRPRuleProcessor.get().getPlayers().add(pl);
+		RPAction action = new RPAction();
+		action.put("type", "destroy");
+		action.put("target","hugo" );
+
+		aa.onAction(pl, action);
+		assertEquals("You can't remove players", pl.get("private_text"));
+
+	}
+	
+	@Test
+	public final void testOnDestroyNPC() {
+		AdministrationAction aa = new AdministrationAction();
+		Player pl = PlayerTestHelper.createPlayer("hugo");
+		SpeakerNPC npc = SpeakerNPCTestHelper.createSpeakerNPC("npcTest");
+		StendhalRPZone testzone = new StendhalRPZone("Testzone");
+		testzone.add(npc);
+		testzone.add(pl);
+		
+		assertEquals(1,npc.getID().getObjectID());
+		pl.put("adminlevel", 5000);
+		pl.clearEvents();
+
+		MockStendhalRPRuleProcessor.get().getPlayers().add(pl);
+		RPAction action = new RPAction();
+		action.put("type", "destroy");
+		action.put("target","#1" );
+
+		aa.onAction(pl, action);
+		assertEquals("You can't remove SpeakerNPCs", pl.get("private_text"));
+
+	}
+	@Test
+	public final void testOnDestroyRat() {
+		AdministrationAction aa = new AdministrationAction();
+		Player pl = PlayerTestHelper.createPlayer("hugo");
+	Creature rat =  new RaidCreature(StendhalRPWorld.get().getRuleManager()
+			.getEntityManager().getCreature("rat"));
+		StendhalRPZone testzone = new StendhalRPZone("Testzone");
+		testzone.add(rat);
+		testzone.add(pl);
+		
+		assertEquals(1,rat.getID().getObjectID());
+		pl.put("adminlevel", 5000);
+		pl.clearEvents();
+
+		MockStendhalRPRuleProcessor.get().getPlayers().add(pl);
+		RPAction action = new RPAction();
+		action.put("type", "destroy");
+		action.put("target","#1" );
+
+		aa.onAction(pl, action);
+		assertEquals("Removed entity null", pl.get("private_text"));
+
+	}
+	@Test
+	public final void testOnDestroyRatWithTargetID() {
+		AdministrationAction aa = new AdministrationAction();
+		Player pl = PlayerTestHelper.createPlayer("hugo");
+	Creature rat =  new RaidCreature(StendhalRPWorld.get().getRuleManager()
+			.getEntityManager().getCreature("rat"));
+		StendhalRPZone testzone = new StendhalRPZone("Testzone");
+		testzone.add(rat);
+		testzone.add(pl);
+		
+		assertEquals(1,rat.getID().getObjectID());
+		pl.put("adminlevel", 5000);
+		pl.clearEvents();
+
+		MockStendhalRPRuleProcessor.get().getPlayers().add(pl);
+		RPAction action = new RPAction();
+		action.put("type", "destroy");
+		action.put("targetid",1 );
+
+		aa.onAction(pl, action);
+		assertEquals("Removed entity 1", pl.get("private_text"));
+
+	}
+	
+	@Test
+	public final void testOnInspectRatWithTargetID() {
+		AdministrationAction aa = new AdministrationAction();
+		Player pl = PlayerTestHelper.createPlayer("hugo");
+	Creature rat =  new RaidCreature(StendhalRPWorld.get().getRuleManager()
+			.getEntityManager().getCreature("rat"));
+		StendhalRPZone testzone = new StendhalRPZone("Testzone");
+		testzone.add(rat);
+		testzone.add(pl);
+		
+		assertEquals(1,rat.getID().getObjectID());
+		pl.put("adminlevel", 5000);
+		pl.clearEvents();
+
+		MockStendhalRPRuleProcessor.get().getPlayers().add(pl);
+		RPAction action = new RPAction();
+		action.put("type", "inspect");
+		action.put("targetid",1 );
+
+		aa.onAction(pl, action);
+		assertTrue( pl.get("private_text").startsWith("Inspected creature is called \"rat\" and has the following attributes:"));
+
+	}
+	@Test
+	public final void testOnInspectPlayer() {
+		AdministrationAction aa = new AdministrationAction();
+		Player pl = PlayerTestHelper.createPlayer("hugo");
+		pl.put("adminlevel", 5000);
+		pl.clearEvents();
+
+		MockStendhalRPRuleProcessor.get().getPlayers().add(pl);
+		StendhalRPZone testzone = new StendhalRPZone("Testzone");
+		
+		testzone.add(pl);
+		RPAction action = new RPAction();
+		action.put("type", "inspect");
+		action.put("target","hugo" );
+
+		aa.onAction(pl, action);
+		assertTrue( pl.get("private_text").startsWith("Inspected player is called \"hugo\" and has the following attributes:"));
+
 	}
 }
