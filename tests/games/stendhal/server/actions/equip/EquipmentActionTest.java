@@ -70,6 +70,7 @@ public class EquipmentActionTest {
 	public void testDropInvalidSourceSlot() {
 
 		MockPlayer player = new MockPlayer();
+		player.setName("george");
 
 		RPAction drop = new RPAction();
 		drop.put("type", "drop");
