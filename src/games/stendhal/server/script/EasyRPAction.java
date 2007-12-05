@@ -33,7 +33,6 @@ public class EasyRPAction extends ScriptImpl {
 		}
 
 		StendhalRPRuleProcessor.get().execute(admin, action);
-
 	}
 
 }

@@ -23,13 +23,11 @@ import marauroa.common.game.RPSlot;
 
 public class LookAction implements ActionListener {
 
-
 	public static void register() {
 		CommandCenter.register("look", new LookAction());
 	}
 
 	public void onAction(Player player, RPAction action) {
-
 
 		StendhalRPWorld world = StendhalRPWorld.get();
 
@@ -106,7 +104,5 @@ public class LookAction implements ActionListener {
 				world.modify(player);
 			}
 		}
-
-
 	}
 }

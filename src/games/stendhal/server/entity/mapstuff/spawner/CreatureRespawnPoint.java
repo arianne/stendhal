@@ -117,7 +117,6 @@ public class CreatureRespawnPoint implements TurnListener {
 	 * @param dead The creature that has died
 	 */
 	public void notifyDead(Creature dead) {
-		
 
 		if (!respawning) {
 			// start respawning a new creature
@@ -126,7 +125,6 @@ public class CreatureRespawnPoint implements TurnListener {
 		}
 
 		creatures.remove(dead);
-		
 	}
 
 	/**
