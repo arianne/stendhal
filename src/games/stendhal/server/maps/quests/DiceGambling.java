@@ -8,6 +8,7 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.CroupierNPC;
 import games.stendhal.server.entity.npc.NPCList;
+import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPC.ChatAction;
 import games.stendhal.server.entity.npc.condition.NotCondition;
@@ -106,7 +107,7 @@ public class DiceGambling extends AbstractQuest {
 			"OK, here are the dice. Just throw them when you're ready. Good luck!",
 			new ChatAction() {
 				@Override
-				public void fire(Player player, String text, SpeakerNPC npc) {
+				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 					player.drop("money", STAKE);
 					Dice dice = (Dice) StendhalRPWorld.get()
 							.getRuleManager().getEntityManager()

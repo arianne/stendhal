@@ -6,6 +6,7 @@ import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.mapstuff.sign.Sign;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
@@ -80,7 +81,7 @@ public class SemosMineTownRevivalWeeks extends AbstractQuest {
 					Arrays.asList("celebrate", "celebration", "party"),
 					new SpeakerNPC.ChatCondition() {
 						@Override
-						public boolean fire(Player player, String text, SpeakerNPC engine) {
+						public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
 							return !player.has("outfit_org");
 						}
 					},
@@ -92,8 +93,7 @@ public class SemosMineTownRevivalWeeks extends AbstractQuest {
 					Arrays.asList("celebrate", "celebration", "party"),
 					new SpeakerNPC.ChatCondition() {
 						@Override
-						public boolean fire(Player player, String text,
-								SpeakerNPC engine) {
+						public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
 							return player.has("outfit_org");
 						}
 					},

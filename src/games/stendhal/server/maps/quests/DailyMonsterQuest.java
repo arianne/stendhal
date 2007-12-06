@@ -5,6 +5,7 @@ import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.creature.LevelBasedComparator;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
@@ -16,7 +17,6 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
-
 
 import org.apache.log4j.Logger;
 
@@ -59,7 +59,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 		}
 
 		@Override
-		public void fire(Player player, String text, SpeakerNPC engine) {
+		public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 
 			// Debug Only, to debug mode just toggle the true/false for the IF
 			// statement
@@ -238,7 +238,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 	class DailyQuestCompleteAction extends SpeakerNPC.ChatAction {
 
 		@Override
-		public void fire(Player player, String text, SpeakerNPC engine) {
+		public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 			String questInfo = player.getQuest("daily");
 			String questKill = null;
 			String questCount = null;
@@ -283,7 +283,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 	class DailyQuestAbortAction extends SpeakerNPC.ChatAction {
 
 		@Override
-		public void fire(Player player, String text, SpeakerNPC engine) {
+		public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 			String questInfo = player.getQuest("daily");
 			String questKill = null;
 			String questCount = null;

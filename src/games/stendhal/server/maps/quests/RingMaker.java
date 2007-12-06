@@ -4,6 +4,7 @@ import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
@@ -69,7 +70,7 @@ public class RingMaker extends AbstractQuest {
 			ConversationStates.QUEST_ITEM_BROUGHT, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, String text, SpeakerNPC npc) {
+				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 					Item emeraldRing = player.getFirstEquipped("emerald_ring");
 					if (emeraldRing != null
 							&& emeraldRing.getInt("amount") > 0) {
@@ -91,7 +92,7 @@ public class RingMaker extends AbstractQuest {
 			ConversationPhrases.GREETING_MESSAGES,
 			new SpeakerNPC.ChatCondition() {
 				@Override
-				public boolean fire(Player player, String text, SpeakerNPC npc) {
+				public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
 					// We need to ensure that the NPC is not forging the
 					// wedding ring from Marriage.java
 					return !player.isEquipped("emerald_ring")
@@ -107,7 +108,7 @@ public class RingMaker extends AbstractQuest {
 			new QuestStateStartsWithCondition(QUEST_SLOT, "forging;"),
 			ConversationStates.IDLE, null, new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, String text, SpeakerNPC npc) {
+				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 					String[] tokens = player.getQuest(QUEST_SLOT).split(";");
 					// minutes -> milliseconds
 					long delay = REQUIRED_MINUTES * 60 * 1000; 
@@ -145,7 +146,7 @@ public class RingMaker extends AbstractQuest {
 			ConversationStates.QUEST_ITEM_BROUGHT, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, String text, SpeakerNPC npc) {
+				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 					if ((player.isEquipped("gold_bar", REQUIRED_GOLD))
 							&& (player.isEquipped("money", REQUIRED_MONEY))
 							&& (player.isEquipped("emerald", REQUIRED_GEM))) {

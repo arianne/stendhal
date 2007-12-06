@@ -2,7 +2,9 @@
 package games.stendhal.server.entity.npc.fsm;
 
 import games.stendhal.common.Rand;
+import games.stendhal.server.entity.npc.ConversationParser;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPC.ChatAction;
 import games.stendhal.server.entity.npc.SpeakerNPC.ChatCondition;
@@ -105,7 +107,7 @@ public class Engine {
 	 * @param triggers a list of inputs for this transition, must not be null
 	 * @param condition null or condition that has to return true for this transition to be considered
 	 * @param nextState the new state of the FSM
-	 * @param reply a simple text reply (may be null for no reply)
+	 * @param reply a simple sentence reply (may be null for no reply)
 	 * @param action a special action to be taken (may be null)
 	 */
 	public void add(int state, List<String> triggers, ChatCondition condition, int nextState, String reply,
@@ -141,21 +143,37 @@ public class Engine {
 	 * Do one transition of the finite state machine.
 	 *
 	 * @param player Player
-	 * @param text   input
+	 * @param sentence   input
 	 * @return true if a transition was made, false otherwise
 	 */
 	public boolean step(Player player, String text) {
-		if (matchTransition(MatchType.EXACT_MATCH, player, text)) {
+		return step(player, ConversationParser.parse(text));
+	}
+
+	/**
+	 * Do one transition of the finite state machine.
+	 *
+	 * @param player Player
+	 * @param sentence input
+	 * @return true if a transition was made, false otherwise
+	 */
+	public boolean step(Player player, Sentence sentence) {
+		if (sentence.isEmpty()) {
+			logger.debug("empty input sentence: " + getCurrentState());
+			return false;
+		}
+
+		if (matchTransition(MatchType.EXACT_MATCH, player, sentence)) {
 			return true;
-		} else if (matchTransition(MatchType.SIMILAR_MATCH, player, text)) {
+		} else if (matchTransition(MatchType.SIMILAR_MATCH, player, sentence)) {
 			return true;
-		} else if (matchTransition(MatchType.ABSOLUTE_JUMP, player, text)) {
+		} else if (matchTransition(MatchType.ABSOLUTE_JUMP, player, sentence)) {
 			return true;
-		} else if (matchTransition(MatchType.SIMILAR_JUMP, player, text)) {
+		} else if (matchTransition(MatchType.SIMILAR_JUMP, player, sentence)) {
 			return true;
 		} else {
-			// Couldn't match the text with the current FSM state
-			logger.debug("Couldn't match any state: " + getCurrentState() + ":" + text);
+			// Couldn't match the command with the current FSM state
+			logger.debug("Couldn't match any state: " + getCurrentState() + ":" + sentence);
 			return false;
 		}
 	}
@@ -166,26 +184,26 @@ public class Engine {
 	 * and reset of the previous response
 	 *
 	 * @param player Player
-	 * @param text   input
+	 * @param sentence   input
 	 * @return true if a transition was made, false otherwise
 	 */
 	public boolean stepTest(Player player, String text) {
 		logger.debug(">>> " + text);
-		speakerNPC.remove("text");
-		boolean res = step(player, text);
-		logger.debug("<<< " + speakerNPC.get("text"));
+		speakerNPC.remove("sentence");
+		boolean res = step(player, ConversationParser.parse(text));
+		logger.debug("<<< " + speakerNPC.get("sentence"));
 		return res;
 	}
 
-	private boolean matchTransition(MatchType type, Player player, String text) {
+	private boolean matchTransition(MatchType type, Player player, Sentence sentence) {
 		List<Transition> listCondition = new LinkedList<Transition>();
 		List<Transition> listConditionLess = new LinkedList<Transition>();
 		int i;
 
 		// First we try to match with stateless transitions.
 		for (Transition transition : stateTransitionTable) {
-			if (matchesTransition(type, text, transition)) {
-				if (transition.isConditionFulfilled(player, text, speakerNPC)) {
+			if (matchesTransition(type, sentence, transition)) {
+				if (transition.isConditionFulfilled(player, sentence, speakerNPC)) {
 					if (transition.getCondition() == null) {
 						listConditionLess.add(transition);
 					} else {
@@ -203,7 +221,7 @@ public class Engine {
 				i = 0;
 			}
 
-			executeTransition(player, text, listCondition.get(i));
+			executeTransition(player, sentence, listCondition.get(i));
 			return true;
 		}
 
@@ -216,28 +234,28 @@ public class Engine {
     			i = 0;
     		}
 
-			executeTransition(player, text, listConditionLess.get(i));
+			executeTransition(player, sentence, listConditionLess.get(i));
 			return true;
 		}
 
 		return false;
 	}
 
-	private boolean matchesTransition(MatchType type, String text, Transition transition) {
+	private boolean matchesTransition(MatchType type, Sentence sentence, Transition transition) {
 		if (type ==  MatchType.EXACT_MATCH) {
-			return transition.matches(currentState, text);
+			return transition.matches(currentState, sentence);
 		} else if (type ==  MatchType.SIMILAR_MATCH) {
-			return transition.matchesBeginning(currentState, text);
+			return transition.matchesBeginning(currentState, sentence);
 		} else if (type == MatchType.ABSOLUTE_JUMP) {
-			return (currentState != ConversationStates.IDLE) && transition.matchesWild(text);
+			return (currentState != ConversationStates.IDLE) && transition.matchesWild(sentence);
 		} else if (type == MatchType.SIMILAR_JUMP) {
-			return (currentState != ConversationStates.IDLE) && transition.matchesWildBeginning(text);
+			return (currentState != ConversationStates.IDLE) && transition.matchesWildBeginning(sentence);
 		} else {
 			return false;
 		}
 	}
 
-	private void executeTransition(Player player, String text, Transition state) {
+	private void executeTransition(Player player, Sentence sentence, Transition state) {
 		int nextState = state.getNextState();
 		if (state.getReply() != null) {
 			speakerNPC.say(state.getReply());
@@ -246,7 +264,7 @@ public class Engine {
 		currentState = nextState;
 
 		if (state.getAction() != null) {
-			state.getAction().fire(player, text, speakerNPC);
+			state.getAction().fire(player, sentence, speakerNPC);
 		}
 	}
 

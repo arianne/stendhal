@@ -1,7 +1,6 @@
 package games.stendhal.server.entity.npc.behaviour.adder;
 
 import games.stendhal.common.Grammar;
-import games.stendhal.server.entity.npc.ConversationParser;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.Sentence;
@@ -50,10 +49,8 @@ public class OutfitChangerAdder {
 		        new SpeakerNPC.ChatAction() {
 
 			        @Override
-			        public void fire(Player player, String text, SpeakerNPC engine) {
+			        public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 				         // find out what the player wants to wear
-			        	Sentence sentence = ConversationParser.parse(text);
-
 			        	sentence.getAmount();	// We ignore any amounts and skip the numeric expressions.
 			        	String item = sentence.getItemName();
 
@@ -89,7 +86,7 @@ public class OutfitChangerAdder {
 		        ConversationStates.ATTENDING, null,
 		        new SpeakerNPC.ChatAction() {
 			        @Override
-			        public void fire(Player player, String text, SpeakerNPC npc) {
+			        public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 				        String itemName = behaviour.chosenItem;
 				        logger.debug("Selling a " + itemName + " to player " + player.getName());
 
@@ -111,7 +108,7 @@ public class OutfitChangerAdder {
 			engine.add(ConversationStates.ATTENDING, "return", null, ConversationStates.ATTENDING, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, String text, SpeakerNPC npc) {
+					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 						if (behaviour.returnToOriginalOutfit(player)) {
 							// TODO: it would be cool if you could get a refund
 							// for returning the outfit, i. e. the money is

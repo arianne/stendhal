@@ -4,6 +4,7 @@ import games.stendhal.common.Rand;
 import games.stendhal.server.actions.admin.AdministrationAction;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPCFactory;
 import games.stendhal.server.entity.player.Player;
@@ -26,7 +27,7 @@ public class RetireeNPC  extends SpeakerNPCFactory {
 		        null,
 		        new SpeakerNPC.ChatAction() {
 			        @Override
-			        public void fire(Player player, String text, SpeakerNPC npc) {
+			        public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 				        if (Rand.throwCoin() == 1) {
 					        npc.say("Ah, quests... just like the old days when I was young! I remember one quest that was about... Oh look, a bird! Hmm, what? Ah, quests... just like the old days when I was young!");
 				        } else {
@@ -39,7 +40,7 @@ public class RetireeNPC  extends SpeakerNPCFactory {
 		npc.add(ConversationStates.ATTENDING, "cleanme!", null, ConversationStates.ATTENDING, "What?",
 		        new SpeakerNPC.ChatAction() {
 			        @Override
-			        public void fire(Player player, String text, SpeakerNPC npc) {
+			        public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 				        if (AdministrationAction.isPlayerAllowedToExecuteAdminCommand(player, "alter", false)) {
 					        for (String quest : player.getQuests()) {
 						        player.removeQuest(quest);

@@ -2,6 +2,7 @@ package games.stendhal.server.maps.semos.blacksmith;
 
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPCFactory;
 import games.stendhal.server.entity.player.Player;
@@ -23,7 +24,7 @@ public class BlacksmithAssistantNPC extends SpeakerNPCFactory {
 		        null,
 		        new SpeakerNPC.ChatAction() {
 			        @Override
-			        public void fire(Player player, String text, SpeakerNPC npc) {
+			        public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 				        if (!player.hasQuest("meet_hackim")) {
 					        npc.say("Hi stranger, I'm Hackim Easso, the blacksmith's assistant. Have you come here to buy weapons?");
 					        player.setQuest("meet_hackim", "start");

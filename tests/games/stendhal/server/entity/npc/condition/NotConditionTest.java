@@ -3,6 +3,8 @@ package games.stendhal.server.entity.npc.condition;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import games.stendhal.server.entity.npc.ConversationParser;
+import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPC.ChatCondition;
 import games.stendhal.server.entity.player.Player;
@@ -18,7 +20,7 @@ public class NotConditionTest {
 
 	private final class AlwaysFalseCondition extends ChatCondition {
 		@Override
-		public boolean fire(Player player, String text, SpeakerNPC engine) {
+		public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
 			return false;
 		}
 
@@ -46,10 +48,11 @@ public class NotConditionTest {
 	public void selftest() throws Exception {
 		assertTrue("true",
 				trueCondition.fire(PlayerTestHelper.createPlayer(),
-						"testNotConditionText",
+						ConversationParser.parse("testNotConditionText"),
 						SpeakerNPCTestHelper.createSpeakerNPC()));
 		assertFalse("false", falsecondition.fire(
-				PlayerTestHelper.createPlayer(), "testNotConditionText",
+				PlayerTestHelper.createPlayer(),
+				ConversationParser.parse("testNotConditionText"),
 				SpeakerNPCTestHelper.createSpeakerNPC()));
 
 	}
@@ -68,10 +71,10 @@ public class NotConditionTest {
 	@Test
 	public final void testFire() {
 		assertFalse(new NotCondition(trueCondition).fire(
-				PlayerTestHelper.createPlayer(), "notconditiontest",
+				PlayerTestHelper.createPlayer(), ConversationParser.parse("notconditiontest"),
 				SpeakerNPCTestHelper.createSpeakerNPC()));
 		assertTrue(new NotCondition(falsecondition).fire(
-				PlayerTestHelper.createPlayer(), "notconditiontest",
+				PlayerTestHelper.createPlayer(), ConversationParser.parse("notconditiontest"),
 				SpeakerNPCTestHelper.createSpeakerNPC()));
 	}
 

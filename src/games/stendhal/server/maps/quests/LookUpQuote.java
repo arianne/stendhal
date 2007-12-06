@@ -5,6 +5,7 @@ import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 
@@ -80,7 +81,7 @@ public class LookUpQuote extends AbstractQuest {
 			ConversationStates.ATTENDING, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, String text, SpeakerNPC npc) {
+				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 					if (!player.hasQuest(QUEST_SLOT)) {
 						npc.say("Hello newcomer! I can #help you on your way to become a real fisherman!");
 					} else if (!player.isQuestCompleted(QUEST_SLOT)) {
@@ -98,7 +99,7 @@ public class LookUpQuote extends AbstractQuest {
 			ConversationStates.QUEST_OFFERED, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, String text, SpeakerNPC npc) {
+				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 					if (player.isQuestCompleted(QUEST_SLOT)) {
 						npc.say("No, thanks. I have all I need.");
 						npc.setCurrentState(ConversationStates.ATTENDING);
@@ -122,7 +123,7 @@ public class LookUpQuote extends AbstractQuest {
 			ConversationStates.ATTENDING, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, String text, SpeakerNPC npc) {
+				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 					String name = Rand.rand(quotes.keySet());
 					npc.say("Please look up the famous quote by " + name + ".");
 					player.setQuest(QUEST_SLOT, name);
@@ -142,10 +143,10 @@ public class LookUpQuote extends AbstractQuest {
 			ConversationStates.ATTENDING, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, String text, SpeakerNPC npc) {
+				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 					String name = player.getQuest(QUEST_SLOT);
 					String quote = quotes.get(name);
-					if (text.equalsIgnoreCase(quote)) {
+					if (sentence.toString().equalsIgnoreCase(quote)) {
 						npc.say("Oh right, that's it! How could I forget this? Here, take this handy fishing rod as an acknowledgement of my gratitude!");
 						Item fishingRod = StendhalRPWorld.get()
 								.getRuleManager().getEntityManager()

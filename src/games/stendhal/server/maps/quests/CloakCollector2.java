@@ -4,6 +4,7 @@ import games.stendhal.common.Grammar;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 
@@ -73,28 +74,25 @@ public class CloakCollector2 extends AbstractQuest {
 		SpeakerNPC npc = npcs.get("Josephine");
 
 		// player says hi before starting the quest
-		npc
-				.add(
-						ConversationStates.IDLE,
-						ConversationPhrases.GREETING_MESSAGES,
-						new SpeakerNPC.ChatCondition() {
-							@Override
-							public boolean fire(Player player, String text,
-									SpeakerNPC engine) {
-								return !player.hasQuest(QUEST_SLOT)&&player.isQuestCompleted(OLD_QUEST);
-							}
-						},
-						ConversationStates.QUEST_2_OFFERED,
-						"Hi again! I hear there's some new cloaks out, and I'm regretting not asking you about the ones I didn't like before. It feels like my #collection isn't complete...",
-						null);
+		npc.add(
+				ConversationStates.IDLE,
+				ConversationPhrases.GREETING_MESSAGES,
+				new SpeakerNPC.ChatCondition() {
+					@Override
+					public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
+						return !player.hasQuest(QUEST_SLOT)&&player.isQuestCompleted(OLD_QUEST);
+					}
+				},
+				ConversationStates.QUEST_2_OFFERED,
+				"Hi again! I hear there's some new cloaks out, and I'm regretting not asking you about the ones I didn't like before. It feels like my #collection isn't complete...",
+				null);
 
 		// player asks what cloaks are needed
 		npc.add(ConversationStates.QUEST_2_OFFERED, "collection", null,
 				ConversationStates.QUEST_2_OFFERED, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, String text,
-							SpeakerNPC engine) {
+					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						List<String> needed2 = missingcloaks2(player, true);
 						engine.say("It's missing "
 								+ Grammar
@@ -109,8 +107,7 @@ public class CloakCollector2 extends AbstractQuest {
 				ConversationPhrases.YES_MESSAGES, null,
 				ConversationStates.IDLE, null, new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, String text,
-							SpeakerNPC engine) {
+					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						engine.say("Brilliant! I'm all excited again! Bye!");
 						player.setQuest(QUEST_SLOT, "");
 						player.addKarma(5.0);
@@ -121,8 +118,7 @@ public class CloakCollector2 extends AbstractQuest {
 		npc.add(ConversationStates.QUEST_2_OFFERED, "no", null,
 				ConversationStates.QUEST_2_OFFERED, null, new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, String text,
-							SpeakerNPC engine) {
+					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						engine
 								.say("Oh ... you're not very friendly. Please say yes?");
 						player.addKarma(-5.0);
@@ -136,24 +132,17 @@ public class CloakCollector2 extends AbstractQuest {
 		// rather than say for elf cloak she'd said 'It's a white_cloak, so will you find them all?'
 		// it will still work for red (red_spotted is the subclass), black dragon (black), 
 		// golden, mainio (primary coloured), chaos (multicoloured).
-		for (String cloak : NEEDEDCLOAKS2) {
-			npc.add(ConversationStates.QUEST_2_OFFERED, cloak, null,
-					ConversationStates.QUEST_2_OFFERED, null,
-					new SpeakerNPC.ChatAction() {
-						@Override
-						public void fire(Player player, String text,
-								SpeakerNPC engine) {
-							engine
-									.say("You haven't seen one before? Well, it's a "
-											+ StendhalRPWorld.get()
-													.getRuleManager()
-													.getEntityManager()
-													.getItem(text)
-													.getItemSubclass()
-											+ ". Sorry if that's not much help, it's all I know! So, will you find them all?");
-						}
-					});
-		}
+		npc.add(ConversationStates.QUEST_2_OFFERED, NEEDEDCLOAKS2, null,
+				ConversationStates.QUEST_2_OFFERED, null,
+				new SpeakerNPC.ChatAction() {
+					@Override
+					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+						engine.say("You haven't seen one before? Well, it's a "
+									+ StendhalRPWorld.get().getRuleManager().getEntityManager()
+											.getItem(sentence.toString()).getItemSubclass()
+									+ ". Sorry if that's not much help, it's all I know! So, will you find them all?");
+					}
+				});
 	}
 
 	private void step_2() {
@@ -169,8 +158,7 @@ public class CloakCollector2 extends AbstractQuest {
 				ConversationPhrases.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, String text,
-							SpeakerNPC engine) {
+					public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						return player.hasQuest(QUEST_SLOT)
 								&& !player.isQuestCompleted(QUEST_SLOT);
 					}
@@ -181,8 +169,7 @@ public class CloakCollector2 extends AbstractQuest {
 				ConversationStates.QUESTION_2, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, String text,
-							SpeakerNPC engine) {
+					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						List<String> needed2 = missingcloaks2(player, true);
 						engine.say("I want "
 								+ Grammar
@@ -198,60 +185,55 @@ public class CloakCollector2 extends AbstractQuest {
 				ConversationStates.QUESTION_2,
 				"Woo! What #cloaks did you bring?", null);
 
-		for (String cloak : NEEDEDCLOAKS2) {
-			npc.add(ConversationStates.QUESTION_2, cloak, null,
-					ConversationStates.QUESTION_2, null,
-					new SpeakerNPC.ChatAction() {
-						@Override
-						public void fire(Player player, String text,
-								SpeakerNPC engine) {
-							List<String> missing2 = missingcloaks2(player, false);
+		npc.add(ConversationStates.QUESTION_2, NEEDEDCLOAKS2, null,
+				ConversationStates.QUESTION_2, null,
+				new SpeakerNPC.ChatAction() {
+					@Override
+					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+						List<String> missing2 = missingcloaks2(player, false);
+						String item = sentence.toString();
 
-							if (missing2.contains(text)) {
-								if (player.drop(text)) {
-									// register cloak as done
-									String doneText = player
-											.getQuest(QUEST_SLOT);
-									player.setQuest(QUEST_SLOT,
-											doneText + ";" + text);
-									// check if the player has brought all
-									// cloaks
-									missing2 = missingcloaks2(player, true);
-									if (!missing2.isEmpty()) {
-										engine
-												.say("Wow, thank you! What else did you bring?");
-									} else {
-										rewardPlayer(player);
-										// TODO: Make speech mention scent reward if applicable.
-										engine
-												.say("Oh, yay! You're so kind, I bet you'll have great Karma now! Listen, I want to reward you with something special but it's not ready yet. So you make sure to come back and check with me some time soon. I won't forget!");
-										player.setQuest(QUEST_SLOT,
-												"done");
-										player.notifyWorldAboutChanges();
-										engine
-												.setCurrentState(ConversationStates.ATTENDING);
-									}
-								} else {
+						if (missing2.contains(item)) {
+							if (player.drop(item)) {
+								// register cloak as done
+								String doneText = player
+										.getQuest(QUEST_SLOT);
+								player.setQuest(QUEST_SLOT,
+										doneText + ";" + item);
+								// check if the player has brought all
+								// cloaks
+								missing2 = missingcloaks2(player, true);
+								if (!missing2.isEmpty()) {
 									engine
-											.say("Oh, I'm disappointed. You don't really have "
-													+ Grammar.a_noun(text)
-													+ " with you.");
+											.say("Wow, thank you! What else did you bring?");
+								} else {
+									rewardPlayer(player);
+									// TODO: Make speech mention scent reward if applicable.
+									engine
+											.say("Oh, yay! You're so kind, I bet you'll have great Karma now! Listen, I want to reward you with something special but it's not ready yet. So you make sure to come back and check with me some time soon. I won't forget!");
+									player.setQuest(QUEST_SLOT,
+											"done");
+									player.notifyWorldAboutChanges();
+									engine
+											.setCurrentState(ConversationStates.ATTENDING);
 								}
 							} else {
 								engine
-										.say("You're terribly forgetful, you already brought that one to me.");
+										.say("Oh, I'm disappointed. You don't really have "
+												+ Grammar.a_noun(item)
+												+ " with you.");
 							}
+						} else {
+							engine
+									.say("You're terribly forgetful, you already brought that one to me.");
 						}
-
-
-					});
-		}
+					}
+		});
 
 		npc.add(ConversationStates.ATTENDING, "no",
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, String text,
-							SpeakerNPC engine) {
+					public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						return !player.isQuestCompleted(QUEST_SLOT);
 					}
 				}, ConversationStates.ATTENDING,
@@ -261,8 +243,7 @@ public class CloakCollector2 extends AbstractQuest {
 		npc.add(ConversationStates.QUESTION_2, Arrays.asList("no", "nothing"),
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, String text,
-							SpeakerNPC engine) {
+					public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						return !player.isQuestCompleted(QUEST_SLOT);
 					}
 				}, ConversationStates.ATTENDING, "Okay then. Come back later.",
@@ -272,8 +253,7 @@ public class CloakCollector2 extends AbstractQuest {
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, String text,
-							SpeakerNPC engine) {
+					public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						return player.isQuestCompleted(QUEST_SLOT);
 					}
 				}, ConversationStates.ATTENDING,

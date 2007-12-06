@@ -4,6 +4,7 @@ import games.stendhal.common.Direction;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
@@ -143,7 +144,7 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 			protected void createDialog() {
 				addGreeting(null, new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, String text, SpeakerNPC engine) {
+					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						if (player.isQuestCompleted(GRAFINDLE_QUEST_SLOT) &&
 							player.isQuestCompleted(ZARA_QUEST_SLOT)) {
 							String reply;
@@ -167,7 +168,7 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 					ConversationStates.QUEST_OFFERED, "Very well.",
 					new SpeakerNPC.ChatAction() {
     					@Override
-    					public void fire(Player player, String text, SpeakerNPC engine) {
+    					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
     						if (player.isQuestCompleted(QUEST_SLOT)
     								|| !player.hasQuest(QUEST_SLOT)) {
     							engine.say("The fee is " + COST
@@ -183,7 +184,7 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 					ConversationStates.ATTENDING, null,
 					new SpeakerNPC.ChatAction() {
     					@Override
-    					public void fire(Player player, String text, SpeakerNPC engine) {
+    					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 							if (player.drop("money", COST)) {
 								engine.say("Semos, Nalwor and Fado bank chests are to my right. The chests owned by Ados Bank Merchants and your friend Zara are to my left. If you are finished before your time here is done, please say #leave.");
 								player.teleport(zone, 10, 10, Direction.DOWN, player);
@@ -213,7 +214,7 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 					ConversationStates.ATTENDING, "Thank you for using the Wizard's Bank",
 					new SpeakerNPC.ChatAction() {
 						@Override
-						public void fire(Player player, String text, SpeakerNPC engine) {
+						public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 							teleportAway(player);
 							// remove the players Timer
 							TurnNotifier.get().dontNotify(new Timer(player));

@@ -5,6 +5,7 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
@@ -80,8 +81,7 @@ public class TakeGoldforGrafindle extends AbstractQuest {
 			ConversationStates.ATTENDING, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, String text,
-						SpeakerNPC engine) {
+				public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 					if (player.isQuestCompleted(QUEST_SLOT)) {
 						engine.say("I ask only that you are honest.");
 					} else {
@@ -113,7 +113,7 @@ public class TakeGoldforGrafindle extends AbstractQuest {
 			"Thank you. I hope to see you soon with the gold bars ... unless you are tempted to keep them.",
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, String text, SpeakerNPC engine) {
+				public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 					player.setQuest(QUEST_SLOT, "start");
 					player.addKarma(3.0);
 				}
@@ -161,7 +161,7 @@ public class TakeGoldforGrafindle extends AbstractQuest {
 			"I'm so glad you're here! I'll be much happier when this gold is safely in the bank.",
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, String text, SpeakerNPC engine) {
+				public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 					player.setQuest(QUEST_SLOT, "lorithien");
 
 					StackableItem goldbars = (StackableItem) StendhalRPWorld
@@ -206,7 +206,7 @@ public class TakeGoldforGrafindle extends AbstractQuest {
 			ConversationStates.ATTENDING, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, String text, SpeakerNPC engine) {
+				public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 					if (player.drop("gold_bar", GOLD_AMOUNT)) {
 						engine.say("Oh, you brought the gold! Wonderful, I knew I could rely on you. Please, have this key to our customer room.");
 						Item nalworkey = StendhalRPWorld.get()

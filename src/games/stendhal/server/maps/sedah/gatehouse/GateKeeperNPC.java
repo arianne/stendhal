@@ -5,7 +5,6 @@ import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
 import games.stendhal.server.entity.item.Item;
-import games.stendhal.server.entity.npc.ConversationParser;
 import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
@@ -47,8 +46,7 @@ public class GateKeeperNPC implements ZoneConfigurator {
 			protected void createDialog() {
 				addGreeting(null, new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, String text,
-							SpeakerNPC engine) {
+					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						if (!player.isEquipped("sedah_gate_key")) {
 							engine.say("What do you want?");
 
@@ -73,10 +71,7 @@ public class GateKeeperNPC implements ZoneConfigurator {
 
 				addReply("bribe", null, new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, String text,
-							SpeakerNPC engine) {
-						Sentence sentence = ConversationParser.parse(text);
-
+					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 				        int amount = sentence.getAmount();
 				        String item = sentence.getItemName();
 

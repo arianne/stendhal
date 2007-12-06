@@ -3,6 +3,7 @@ package games.stendhal.server.maps.ados.library;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.TurnListener;
@@ -53,14 +54,14 @@ public class LibrarianNPC implements ZoneConfigurator {
 				        new SpeakerNPC.ChatAction() {
 
 					        @Override
-					        public void fire(Player player, String text, SpeakerNPC npc) {
+					        public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 						        // extract the title
-						        int pos = text.indexOf(" ");
-						        if (pos < 0) {
+					        	String title = sentence.getObjectName();
+
+						        if (title == null) {
 							        npc.say("What do you want to be explained?");
 							        return;
 						        }
-						        String title = text.substring(pos + 1).trim();
 
 						        WikipediaAccess access = new WikipediaAccess(title);
 						        Thread thread = new Thread(access);

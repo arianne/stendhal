@@ -6,6 +6,7 @@ import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.scripting.ScriptImpl;
@@ -15,7 +16,6 @@ import games.stendhal.server.scripting.ScriptingSandbox;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
-
 
 import org.apache.log4j.Logger;
 
@@ -91,7 +91,7 @@ public class AdminMaker extends ScriptImpl {
 		}
 
 		@Override
-		public void fire(Player player, String text, SpeakerNPC engine) {
+		public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 			engine.say("I will give you some items, and adjust your level.");
 			xpGain(player);
 			equip(player);
@@ -155,7 +155,7 @@ public class AdminMaker extends ScriptImpl {
 		}
 
 		@Override
-		public void fire(Player player, String text, SpeakerNPC engine) {
+		public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 
 			//before we send the player off into the unknown give a marked scroll
 			Item markedScroll = sandbox.getItem("marked_scroll");

@@ -3,6 +3,7 @@ package games.stendhal.server.entity.npc.condition;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import games.stendhal.server.entity.npc.ConversationParser;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.Log4J;
 
@@ -31,23 +32,24 @@ public class QuestCompletedConditionTest {
 	@Test
 	public final void testFire() {
 		assertFalse(new QuestCompletedCondition("questname").fire(
-				PlayerTestHelper.createPlayer(), "testQuestCompletedCondition",
+				PlayerTestHelper.createPlayer(),
+				ConversationParser.parse("testQuestCompletedCondition"),
 				SpeakerNPCTestHelper.createSpeakerNPC()));
 		Player bob = PlayerTestHelper.createPlayer();
 
 		bob.setQuest("questname", "");
 		assertFalse(new QuestCompletedCondition("questname").fire(bob,
-				"testQuestCompletedCondition",
+				ConversationParser.parse("testQuestCompletedCondition"),
 				SpeakerNPCTestHelper.createSpeakerNPC()));
 
 		bob.setQuest("questname", null);
 		assertFalse(new QuestCompletedCondition("questname").fire(bob,
-				"testQuestCompletedCondition",
+				ConversationParser.parse("testQuestCompletedCondition"),
 				SpeakerNPCTestHelper.createSpeakerNPC()));
 
 		bob.setQuest("questname", "done");
 		assertTrue(new QuestCompletedCondition("questname").fire(bob,
-				"testQuestCompletedCondition",
+				ConversationParser.parse("testQuestCompletedCondition"),
 				SpeakerNPCTestHelper.createSpeakerNPC()));
 
 	}

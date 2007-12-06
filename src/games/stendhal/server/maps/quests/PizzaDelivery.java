@@ -8,6 +8,7 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 
@@ -408,7 +409,7 @@ public class PizzaDelivery extends AbstractQuest {
 			ConversationStates.QUEST_OFFERED, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, String text, SpeakerNPC npc) {
+				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 					if (player.hasQuest(QUEST_SLOT)) {
 						String[] questData = player.getQuest(QUEST_SLOT)
 								.split(";");
@@ -438,7 +439,7 @@ public class PizzaDelivery extends AbstractQuest {
 			ConversationStates.ATTENDING, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, String text, SpeakerNPC npc) {
+				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 					startDelivery(player, npc);
 				}
 			});
@@ -451,7 +452,7 @@ public class PizzaDelivery extends AbstractQuest {
 			"Too bad. I hope my daughter #Sally will soon come back from her camp to help me with the deliveries.",
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, String text, SpeakerNPC npc) {
+				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 					putOffUniform(player);
 				}
 			});
@@ -472,7 +473,7 @@ public class PizzaDelivery extends AbstractQuest {
 				ConversationStates.ATTENDING, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, String text, SpeakerNPC npc) {
+					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 						handOverPizza(player, npc);
 					}
 				});

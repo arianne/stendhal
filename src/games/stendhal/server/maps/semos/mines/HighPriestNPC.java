@@ -3,6 +3,7 @@ package games.stendhal.server.maps.semos.mines;
 import games.stendhal.common.Direction;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
+import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 
@@ -35,8 +36,7 @@ public class HighPriestNPC implements ZoneConfigurator {
 			protected void createDialog() {
 				addGreeting(null, new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, String text,
-							SpeakerNPC engine) {
+					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						String reply = "I am summoning a barrier to keep the #balrog away.";
 
 						if (player.getLevel() < 150) {
@@ -56,7 +56,7 @@ public class HighPriestNPC implements ZoneConfigurator {
 
 		npc.addInitChatMessage(null, new SpeakerNPC.ChatAction() {
 			@Override
-			public void fire(Player player, String text, SpeakerNPC engine) {
+			public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 				if (!player.hasQuest("AenihataReward")
 						&& player.getLevel() >= 150) {
 					player.setQuest("AenihataReward", "done");

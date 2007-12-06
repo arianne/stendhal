@@ -2,6 +2,7 @@ package games.stendhal.server.maps.athor.ship;
 
 import games.stendhal.common.Direction;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPCFactory;
 import games.stendhal.server.entity.npc.SpeakerNPC.ChatAction;
@@ -44,8 +45,7 @@ Status ferrystate;
 				null,
 				new ChatAction() {
 					@Override
-					public void fire(Player player, String text,
-							SpeakerNPC npc) {
+					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 						npc.say(ferrystate.toString());
 								//.getCurrentDescription());
 					}

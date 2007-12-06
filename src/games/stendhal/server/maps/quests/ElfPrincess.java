@@ -5,6 +5,7 @@ import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.EquipItemAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
@@ -131,7 +132,7 @@ public class ElfPrincess extends AbstractQuest {
 				ConversationStates.ATTENDING, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, String text, SpeakerNPC npc) {
+					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 						player.drop("rhosyd");
 						player.addXP(5000);
 						StackableItem goldbars = (StackableItem) StendhalRPWorld

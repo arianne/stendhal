@@ -5,7 +5,6 @@ import games.stendhal.common.Grammar;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.item.StackableItem;
-import games.stendhal.server.entity.npc.ConversationParser;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.Sentence;
@@ -326,9 +325,7 @@ public class Blackjack extends AbstractQuest {
 		ramon.add(ConversationStates.ATTENDING, "stake", null,
 				ConversationStates.ATTENDING, null, new ChatAction() {
 					@Override
-					public void fire(Player player, String text, SpeakerNPC npc) {
-						Sentence sentence = ConversationParser.parse(text);
-
+					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 			        	stake = sentence.getAmount();
 
 				        if (sentence.getError()) {
@@ -355,7 +352,7 @@ public class Blackjack extends AbstractQuest {
 				ConversationPhrases.YES_MESSAGES, null,
 				ConversationStates.ATTENDING, null, new ChatAction() {
 					@Override
-					public void fire(Player player, String text, SpeakerNPC npc) {
+					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 						dealCards(player, 1);
 					}
 				});
@@ -366,7 +363,7 @@ public class Blackjack extends AbstractQuest {
 				ConversationPhrases.NO_MESSAGES, null,
 				ConversationStates.ATTENDING, null, new ChatAction() {
 					@Override
-					public void fire(Player player, String text, SpeakerNPC npc) {
+					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 						playerStands = true;
 						if (bankStands) {
 							// Both stand. Let the dealer tell the final resul

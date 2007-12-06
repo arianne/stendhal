@@ -3,6 +3,7 @@ package games.stendhal.server.entity.npc.action;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
+import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.rule.EntityManager;
@@ -49,7 +50,7 @@ public class EquipItemAction extends SpeakerNPC.ChatAction {
 	}
 
 	@Override
-	public void fire(Player player, String text, SpeakerNPC npc) {
+	public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 		EntityManager entityManager = StendhalRPWorld.get().getRuleManager().getEntityManager();
 		Item item = entityManager.getItem(itemName);
 		if (item instanceof StackableItem) {

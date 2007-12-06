@@ -1,15 +1,16 @@
 package games.stendhal.server.maps.quests;
 
+import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.entity.item.Item;
-import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.ConversationPhrases;
+import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.pathfinder.Node;
 import games.stendhal.server.pathfinder.FixedPath;
+import games.stendhal.server.pathfinder.Node;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -92,7 +93,7 @@ public class HouseBuying extends AbstractQuest {
 			protected void createDialog() {
 				addGreeting(null, new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, String text, SpeakerNPC engine) {
+					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						String reply;
 						if (player.hasQuest(QUEST_SLOT)) {
 							reply = " At the cost of "
@@ -107,7 +108,7 @@ public class HouseBuying extends AbstractQuest {
 				});
 				addReply("cost", null, new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, String text, SpeakerNPC engine) {
+					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						if (player.getAge() < REQUIRED_AGE) {
 							engine.say("The cost of a new house is "
 									+ COST
@@ -135,7 +136,7 @@ public class HouseBuying extends AbstractQuest {
 							ConversationStates.ATTENDING, null,
 							new SpeakerNPC.ChatAction() {
 								@Override
-								public void fire(Player player, String text, SpeakerNPC engine) {
+								public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 									Player postman = StendhalRPRuleProcessor.get().getPlayer(
 											"postman");
 									// is postman online?
@@ -148,23 +149,23 @@ public class HouseBuying extends AbstractQuest {
 										String postmanslot = postman.getQuest(QUEST_SLOT);
 										String[] boughthouses = postmanslot.split(";");
 										List<String> doneList = Arrays.asList(boughthouses);
-										// now check if the house they said is
-										// free
-										if (!doneList.contains(text)) {
+										String item = sentence.toString();
+										// now check if the house they said is free
+										if (!doneList.contains(item)) {
 											// it's available, so take money
 											if (player.isEquipped("money", COST)) {
 												Item key = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
-														"private_key_" + text);
+														"private_key_" + item);
 												engine.say("Congratulations, here is your key to house "
-														+ text
+														+ item
 														+ "! Do you want to buy a spare key, at a price of "
 														+ COST_OF_SPARE_KEY + " money?");
 												key.setUndroppableOnDeath(true);
 												if (player.equip(key)) {
 													player.drop("money", COST);
     												// remember what house they own
-    												player.setQuest(QUEST_SLOT, text);
-    												postman.setQuest(QUEST_SLOT, postmanslot + ";" + text);
+    												player.setQuest(QUEST_SLOT, item);
+    												postman.setQuest(QUEST_SLOT, postmanslot + ";" + item);
     												engine.setCurrentState(ConversationStates.QUESTION_1);
 												} else {
 													engine.say("Sorry, you can't carry more keys!");
@@ -174,7 +175,7 @@ public class HouseBuying extends AbstractQuest {
 											}
 										} else {
 											engine.say("Sorry, house "
-													+ text
+													+ item
 													+ " is sold, please give me the number of another.");
 											engine.setCurrentState(ConversationStates.QUEST_OFFERED);
 										}
@@ -202,7 +203,7 @@ public class HouseBuying extends AbstractQuest {
 						ConversationStates.ATTENDING, null,
 						new SpeakerNPC.ChatAction() {
 							@Override
-							public void fire(Player player, String text, SpeakerNPC engine) {
+							public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 								if (player.isEquipped("money", COST_OF_SPARE_KEY)) {
 									String house = player.getQuest(QUEST_SLOT);
 									Item key = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
@@ -288,7 +289,7 @@ public class HouseBuying extends AbstractQuest {
 			protected void createDialog() {
 				addGreeting(null, new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, String text, SpeakerNPC engine2) {
+					public void fire(Player player, Sentence sentence, SpeakerNPC engine2) {
 						String reply;
 						if (player.hasQuest(QUEST_SLOT)) {
 							reply = " At the cost of "
@@ -304,7 +305,7 @@ public class HouseBuying extends AbstractQuest {
 				});
 				addReply("cost", null, new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, String text, SpeakerNPC engine2) {
+					public void fire(Player player, Sentence sentence, SpeakerNPC engine2) {
 						if (player.getAge() < REQUIRED_AGE) {
 							engine2.say("The cost of a new house in Ados is "
 									+ COST_ADOS
@@ -332,7 +333,7 @@ public class HouseBuying extends AbstractQuest {
 							ConversationStates.ATTENDING, null,
 							new SpeakerNPC.ChatAction() {
 								@Override
-								public void fire(Player player, String text, SpeakerNPC engine2) {
+								public void fire(Player player, Sentence sentence, SpeakerNPC engine2) {
 									Player postman = StendhalRPRuleProcessor.get().getPlayer(
 											"postman");
 									// is postman online?
@@ -345,23 +346,23 @@ public class HouseBuying extends AbstractQuest {
 										String postmanslot = postman.getQuest(POSTMAN_STORAGE_SLOT_2);
 										String[] boughthouses = postmanslot.split(";");
 										List<String> doneList = Arrays.asList(boughthouses);
-										// now check if the house they said is
-										// free
-										if (!doneList.contains(text)) {
+										String item = sentence.toString();
+										// now check if the house they said is free
+										if (!doneList.contains(item)) {
 											// it's available, so take money
 											if (player.isEquipped("money", COST_ADOS)) {
 												Item key = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
-														"private_key_" + text);
+														"private_key_" + item);
 												engine2.say("Congratulations, here is your key to house "
-														+ text
+														+ item
 														+ "! Do you want to buy a spare key, at a price of "
 														+ COST_OF_SPARE_KEY + " money?");
 												key.setUndroppableOnDeath(true);
 												if (player.equip(key)) {
 													player.drop("money", COST_ADOS);
     												// remember what house they own
-    												player.setQuest(QUEST_SLOT, text);
-    												postman.setQuest(POSTMAN_STORAGE_SLOT_2, postmanslot + ";" + text);
+    												player.setQuest(QUEST_SLOT, item);
+    												postman.setQuest(POSTMAN_STORAGE_SLOT_2, postmanslot + ";" + item);
     												engine2.setCurrentState(ConversationStates.QUESTION_1);
 												} else
 													engine2.say("Sorry, you can't carry more keys!");
@@ -370,7 +371,7 @@ public class HouseBuying extends AbstractQuest {
 											}
 										} else {
 											engine2.say("Sorry, house "
-													+ text
+													+ item
 													+ " is sold, please give me the number of another.");
 											engine2.setCurrentState(ConversationStates.QUEST_OFFERED);
 										}
@@ -398,7 +399,7 @@ public class HouseBuying extends AbstractQuest {
 						ConversationStates.ATTENDING, null,
 						new SpeakerNPC.ChatAction() {
 							@Override
-							public void fire(Player player, String text, SpeakerNPC engine2) {
+							public void fire(Player player, Sentence sentence, SpeakerNPC engine2) {
 								if (player.isEquipped("money", COST_OF_SPARE_KEY)) {
 									String house = player.getQuest(QUEST_SLOT);
 									Item key = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(

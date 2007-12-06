@@ -3,6 +3,7 @@ package games.stendhal.server.entity.npc.condition;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import games.stendhal.server.entity.npc.ConversationParser;
 
 import org.junit.Test;
 
@@ -41,10 +42,10 @@ public class AdminConditionTest {
 	@Test
 	public void testFire() throws Throwable {
 		assertTrue(new AdminCondition(0).fire(PlayerTestHelper.createPlayer(),
-				"testAdminConditionText",
+				ConversationParser.parse("testAdminConditionText"),
 				SpeakerNPCTestHelper.createSpeakerNPC()));
 		assertFalse(new AdminCondition().fire(PlayerTestHelper.createPlayer(),
-				"testAdminConditionText",
+				ConversationParser.parse("testAdminConditionText"),
 				SpeakerNPCTestHelper.createSpeakerNPC()));
 
 	}
@@ -63,7 +64,7 @@ public class AdminConditionTest {
 
 	@Test(expected = NullPointerException.class)
 	public void testFireThrowsNullPointerException() throws Throwable {
-		new AdminCondition(100).fire(null, "testAdminConditionText",
+		new AdminCondition(100).fire(null, ConversationParser.parse("testAdminConditionText"),
 				SpeakerNPCTestHelper.createSpeakerNPC());
 	}
 }

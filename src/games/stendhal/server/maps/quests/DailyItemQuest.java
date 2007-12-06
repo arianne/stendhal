@@ -4,6 +4,7 @@ import games.stendhal.common.Grammar;
 import games.stendhal.common.Level;
 import games.stendhal.common.Rand;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
@@ -73,7 +74,7 @@ public class DailyItemQuest extends AbstractQuest {
 				"cauliflower", "broccoli", "gold_nugget", "gold_bar");
 
 		@Override
-		public void fire(Player player, String text, SpeakerNPC engine) {
+		public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 			String questInfo = player.getQuest("daily_item");
 			String questKill = null;
 			String questCount = null;
@@ -128,7 +129,7 @@ public class DailyItemQuest extends AbstractQuest {
 
 	class DailyQuestCompleteAction extends SpeakerNPC.ChatAction {
 		@Override
-		public void fire(Player player, String text, SpeakerNPC engine) {
+		public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 			String questInfo = player.getQuest("daily_item");
 			String questKill = null;
 			String questCount = null;
@@ -173,7 +174,7 @@ public class DailyItemQuest extends AbstractQuest {
 	class DailyQuestAbortAction extends SpeakerNPC.ChatAction {
 
 		@Override
-		public void fire(Player player, String text, SpeakerNPC engine) {
+		public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 			String questInfo = player.getQuest("daily_item");
 			String questKill = null;
 			String questCount = null;

@@ -3,6 +3,7 @@ package games.stendhal.server.maps.deathmatch;
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 
@@ -45,7 +46,7 @@ public class DoneAction extends SpeakerNPC.ChatAction {
 	}
 
 	@Override
-	public void fire(Player player, String text, SpeakerNPC engine) {
+	public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 		DeathmatchState deathmatchState = DeathmatchState.createFromQuestString(player.getQuest("deathmatch"));
 		if (deathmatchState.getLifecycleState() != DeathmatchLifecycle.VICTORY) {
 			engine.say("C'm on, don't lie to me! All you can do now is #bail or win.");

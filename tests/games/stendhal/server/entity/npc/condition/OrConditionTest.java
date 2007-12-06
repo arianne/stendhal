@@ -3,6 +3,7 @@ package games.stendhal.server.entity.npc.condition;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import games.stendhal.server.entity.npc.ConversationParser;
 import games.stendhal.server.entity.npc.SpeakerNPC.ChatCondition;
 
 import org.junit.After;
@@ -58,28 +59,33 @@ public class OrConditionTest {
 	public void testFire() throws Throwable {
 
 		assertFalse("empty OR is false", new OrCondition().fire(
-				PlayerTestHelper.createPlayer(), "testOrConditionText",
+				PlayerTestHelper.createPlayer(),
+				ConversationParser.parse("testOrConditionText"),
 				SpeakerNPCTestHelper.createSpeakerNPC()));
 
 		OrCondition orCondition = new OrCondition(trueCondition);
 		assertTrue("OR with one Allwaystrue is true", orCondition.fire(
-				PlayerTestHelper.createPlayer(), "testOrConditionText",
+				PlayerTestHelper.createPlayer(),
+				ConversationParser.parse("testOrConditionText"),
 				SpeakerNPCTestHelper.createSpeakerNPC()));
 
 		orCondition = new OrCondition(trueCondition, falsecondition);
 		assertTrue("OR with one true and on false is true", orCondition.fire(
-				PlayerTestHelper.createPlayer(), "testOrConditionText",
+				PlayerTestHelper.createPlayer(),
+				ConversationParser.parse("testOrConditionText"),
 				SpeakerNPCTestHelper.createSpeakerNPC()));
 
 		orCondition = new OrCondition(falsecondition, trueCondition);
 		assertTrue("OR with one false and on true is true", orCondition.fire(
-				PlayerTestHelper.createPlayer(), "testOrConditionText",
+				PlayerTestHelper.createPlayer(),
+				ConversationParser.parse("testOrConditionText"),
 				SpeakerNPCTestHelper.createSpeakerNPC()));
 
 		orCondition = new OrCondition(new AdminCondition());
 
 		assertFalse("OR with one false is false", orCondition.fire(
-				PlayerTestHelper.createPlayer(), "testOrConditionText",
+				PlayerTestHelper.createPlayer(),
+				ConversationParser.parse("testOrConditionText"),
 				SpeakerNPCTestHelper.createSpeakerNPC()));
 	}
 

@@ -1,7 +1,6 @@
 package games.stendhal.server.entity.npc.behaviour.adder;
 
 import games.stendhal.common.Grammar;
-import games.stendhal.server.entity.npc.ConversationParser;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.Sentence;
@@ -27,9 +26,7 @@ public class BuyerAdder {
 		        new SpeakerNPC.ChatAction() {
 
 			        @Override
-			        public void fire(Player player, String text, SpeakerNPC engine) {
-
-			        	Sentence sentence = ConversationParser.parse(text);
+			        public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 
 				        int amount = sentence.getAmount();
 				        String item = sentence.getItemName();
@@ -43,7 +40,7 @@ public class BuyerAdder {
 				        if (behaviour.hasItem(item)) {
 					        behaviour.chosenItem = item;
 							if (amount > 1000) {
-								logger.warn("Decreasing very large amount of " + amount + " to 1 for player " + player.getName() + " talking to " + engine.getName() + " saying " + text);
+								logger.warn("Decreasing very large amount of " + amount + " to 1 for player " + player.getName() + " talking to " + engine.getName() + " saying " + sentence);
 								amount = 1;
 							}
 					        behaviour.setAmount(amount);
@@ -66,7 +63,7 @@ public class BuyerAdder {
 		        ConversationStates.ATTENDING, "Thanks.",
 		        new SpeakerNPC.ChatAction() {
 			        @Override
-			        public void fire(Player player, String text, SpeakerNPC engine) {
+			        public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 				        logger.debug("Buying something from player " + player.getName());
 
 				        behaviour.transactAgreedDeal(engine, player);

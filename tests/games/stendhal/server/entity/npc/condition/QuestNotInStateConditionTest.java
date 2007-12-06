@@ -3,6 +3,7 @@ package games.stendhal.server.entity.npc.condition;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import games.stendhal.server.entity.npc.ConversationParser;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.Log4J;
 
@@ -35,28 +36,32 @@ public class QuestNotInStateConditionTest {
 		String validState = "valid";
 		assertTrue(new QuestNotInStateCondition(QUESTNAME, validState).fire(
 				PlayerTestHelper.createPlayer(),
-				"QuestNotInStateConditionTest",
+				ConversationParser.parse("QuestNotInStateConditionTest"),
 				SpeakerNPCTestHelper.createSpeakerNPC()));
 		Player bob = PlayerTestHelper.createPlayer();
 
 		bob.setQuest(QUESTNAME, "valid");
 		assertFalse(new QuestNotInStateCondition(QUESTNAME, validState).fire(
-				bob, "QuestNotInStateConditionTest",
+				bob,
+				ConversationParser.parse("QuestNotInStateConditionTest"),
 				SpeakerNPCTestHelper.createSpeakerNPC()));
 
 		bob.setQuest(QUESTNAME, "");
 		assertTrue(new QuestNotInStateCondition(QUESTNAME, validState).fire(
-				bob, "QuestNotInStateConditionTest",
+				bob,
+				ConversationParser.parse("QuestNotInStateConditionTest"),
 				SpeakerNPCTestHelper.createSpeakerNPC()));
 
 		bob.setQuest(QUESTNAME, null);
 		assertTrue(new QuestNotInStateCondition(QUESTNAME, validState).fire(
-				bob, "QuestNotInStateConditionTest",
+				bob,
+				ConversationParser.parse("QuestNotInStateConditionTest"),
 				SpeakerNPCTestHelper.createSpeakerNPC()));
 
 		bob.setQuest(QUESTNAME, "done");
 		assertTrue(new QuestNotInStateCondition(QUESTNAME, validState).fire(
-				bob, "QuestNotInStateConditionTest",
+				bob,
+				ConversationParser.parse("QuestNotInStateConditionTest"),
 				SpeakerNPCTestHelper.createSpeakerNPC()));
 
 	}

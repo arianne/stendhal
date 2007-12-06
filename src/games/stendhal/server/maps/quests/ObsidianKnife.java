@@ -5,6 +5,7 @@ import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPC.ChatAction;
 import games.stendhal.server.entity.npc.action.EquipItemAction;
@@ -85,7 +86,7 @@ public class ObsidianKnife extends AbstractQuest {
 			ConversationStates.ATTENDING, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, String text, SpeakerNPC npc) {
+				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 					if (!player.hasQuest(QUEST_SLOT)
 							|| player.getQuest(QUEST_SLOT).equals("rejected")) {
 						npc.say("You know, it's hard to get food round here. I don't have any #supplies for next year.");
@@ -112,7 +113,7 @@ public class ObsidianKnife extends AbstractQuest {
 			ConversationStates.ATTENDING, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, String text, SpeakerNPC npc) {
+				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 					String food = player.getQuest(QUEST_SLOT);
 					npc.say("Thank you! I hope it doesn't take too long to collect. Don't forget to say '"
 						+ food + "' when you have it.");
@@ -138,7 +139,7 @@ public class ObsidianKnife extends AbstractQuest {
 			ConversationStates.QUEST_OFFERED, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, String text, SpeakerNPC npc) {
+				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 					String food = Rand.rand(FOOD_LIST);
 					player.setQuest(QUEST_SLOT, food);
 					npc.say("If you could get me " + REQUIRED_FOOD
@@ -154,9 +155,10 @@ public class ObsidianKnife extends AbstractQuest {
 		List<ChatAction> reward = new LinkedList<ChatAction>();
 		reward.add(new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, String text, SpeakerNPC npc) {
-					if (player.drop(text, REQUIRED_FOOD)) {
-						npc.say("Great! You brought the " + text + "!");
+				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					String item = sentence.toString();
+					if (player.drop(item, REQUIRED_FOOD)) {
+						npc.say("Great! You brought the " + item + "!");
 					}
 				}});
 		reward.add(new IncreaseXPAction(1000));
@@ -167,10 +169,11 @@ public class ObsidianKnife extends AbstractQuest {
 		npc.add(ConversationStates.ATTENDING, FOOD_LIST,
 			new SpeakerNPC.ChatCondition() {
 				@Override
-				public boolean fire(Player player, String text, SpeakerNPC npc) {
+				public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					String item = sentence.toString();
 					return player.hasQuest(QUEST_SLOT)
-							&& player.getQuest(QUEST_SLOT).equals(text)
-							&& player.isEquipped(text, REQUIRED_FOOD);
+							&& player.getQuest(QUEST_SLOT).equals(item)
+							&& player.isEquipped(item, REQUIRED_FOOD);
 				}
 			}, ConversationStates.ATTENDING, null,
 			new MultipleActions(reward));
@@ -231,7 +234,7 @@ public class ObsidianKnife extends AbstractQuest {
 			"Great! I think I'll read this for a while. Bye!",
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, String text, SpeakerNPC npc) {
+				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 					player.drop("book_blue");
 					player.addXP(500);
 					player.setQuest(QUEST_SLOT, "reading;" + System.currentTimeMillis());
@@ -243,7 +246,7 @@ public class ObsidianKnife extends AbstractQuest {
 			ConversationPhrases.GREETING_MESSAGES,
 			new SpeakerNPC.ChatCondition() {
 				@Override
-				public boolean fire(Player player, String text, SpeakerNPC npc) {
+				public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
 					return player.hasQuest(QUEST_SLOT)
 							&& (player.getQuest(QUEST_SLOT).equals("seeking_book") 
 							|| player.getQuest(QUEST_SLOT).equals("got_book"))
@@ -261,13 +264,13 @@ public class ObsidianKnife extends AbstractQuest {
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 			new SpeakerNPC.ChatCondition() {
 				@Override
-				public boolean fire(Player player, String text, SpeakerNPC npc) {
+				public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
 					return player.hasQuest(QUEST_SLOT)
 							&& player.getQuest(QUEST_SLOT).startsWith("reading;");
 				}
 			}, ConversationStates.IDLE, null, new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, String text, SpeakerNPC npc) {
+				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 					String[] tokens = player.getQuest(QUEST_SLOT)
 							.split(";");
 					long delay = REQUIRED_DAYS * 60 * 60 * 24 * 1000; // milliseconds in REQUIRED_DAYS days
@@ -309,7 +312,7 @@ public class ObsidianKnife extends AbstractQuest {
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 			new SpeakerNPC.ChatCondition() {
 				@Override
-				public boolean fire(Player player, String text, SpeakerNPC npc) {
+				public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
 					return player.hasQuest(QUEST_SLOT)
 						&& player.getQuest(QUEST_SLOT).equals("knife_offered")
 						&& player.hasKilled("black_dragon")
@@ -318,7 +321,7 @@ public class ObsidianKnife extends AbstractQuest {
 				}
 			}, ConversationStates.IDLE, null, new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, String text, SpeakerNPC npc) {
+				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 					player.drop("obsidian");
 					player.drop(FISH);
 					npc.say("You found the gem for the blade and the fish bone to make the handle! I'll start work right away. Come back in "
@@ -334,7 +337,7 @@ public class ObsidianKnife extends AbstractQuest {
 			ConversationPhrases.GREETING_MESSAGES,
 			new SpeakerNPC.ChatCondition() {
 				@Override
-				public boolean fire(Player player, String text, SpeakerNPC npc) {
+				public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
 					return player.hasQuest(QUEST_SLOT)
 						&& player.getQuest(QUEST_SLOT).equals("knife_offered")
 						&& !player.hasKilled("black_dragon")
@@ -352,7 +355,7 @@ public class ObsidianKnife extends AbstractQuest {
 			ConversationPhrases.GREETING_MESSAGES,
 			new SpeakerNPC.ChatCondition() {
 				@Override
-				public boolean fire(Player player, String text, SpeakerNPC npc) {
+				public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
 					return player.hasQuest(QUEST_SLOT)
 							&& player.getQuest(QUEST_SLOT).equals("knife_offered")
 							&& !(player.isEquipped("obsidian") && player.isEquipped(FISH));
@@ -367,13 +370,13 @@ public class ObsidianKnife extends AbstractQuest {
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 			new SpeakerNPC.ChatCondition() {
 				@Override
-				public boolean fire(Player player, String text, SpeakerNPC npc) {
+				public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
 					return player.hasQuest(QUEST_SLOT)
 							&& player.getQuest(QUEST_SLOT).startsWith("forging;");
 				}
 			}, ConversationStates.IDLE, null, new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, String text, SpeakerNPC npc) {
+				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 					String[] tokens = player.getQuest(QUEST_SLOT)
 							.split(";");
 					long delay = REQUIRED_MINUTES * 60 * 1000; // minutes -> milliseconds
@@ -402,7 +405,7 @@ public class ObsidianKnife extends AbstractQuest {
 				ConversationPhrases.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, String text, SpeakerNPC npc) {
+					public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
 						final List<String> NOT_COVERED_LIST = Arrays.asList(
 								"food_brought", "start", "meat", "ham",
 								"cheese", "rejected");

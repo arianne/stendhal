@@ -5,6 +5,7 @@ import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 
@@ -80,8 +81,7 @@ public class WeaponsCollector2 extends AbstractQuest {
 				ConversationPhrases.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, String text,
-							SpeakerNPC engine) {
+					public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						return player.isQuestCompleted("weapons_collector")
 								&& !player.hasQuest("weapons_collector2");
 					}
@@ -94,16 +94,14 @@ public class WeaponsCollector2 extends AbstractQuest {
 				ConversationPhrases.QUEST_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, String text,
-							SpeakerNPC engine) {
+					public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						return player.isQuestCompleted("weapons_collector")
 								&& !player.hasQuest("weapons_collector2");
 					}
 				}, ConversationStates.QUEST_2_OFFERED, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, String text,
-							SpeakerNPC engine) {
+					public void fire(Player player,Sentence sentence, SpeakerNPC engine) {
 						if (!player.isQuestCompleted("weapons_collector2")) {
 							engine.say("Recent adventurers to these parts describe strange new creatures with weapons I have never seen. Would you fight these creatures and bring their weapons to me?");
 						} else {
@@ -119,8 +117,7 @@ public class WeaponsCollector2 extends AbstractQuest {
 				ConversationStates.ATTENDING, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, String text,
-							SpeakerNPC engine) {
+					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						engine.say("Wonderful. Now, the #list is small but the risk may be great. If you return safely, I have another reward for you.");
 						player.setQuest("weapons_collector2", "");
 					}
@@ -137,16 +134,14 @@ public class WeaponsCollector2 extends AbstractQuest {
 				"list",
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, String text,
-							SpeakerNPC engine) {
+					public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						return player.hasQuest("weapons_collector2")
 								&& !player.isQuestCompleted("weapons_collector2");
 					}
 				}, ConversationStates.QUESTION_2, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, String text,
-							SpeakerNPC engine) {
+					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						List<String> needed = missingWeapons(player, true);
 						engine.say("There "
 								+ Grammar.isare(needed.size())
@@ -163,8 +158,7 @@ public class WeaponsCollector2 extends AbstractQuest {
 		npc.add(ConversationStates.QUESTION_2, "no", null,
 				ConversationStates.IDLE, null, new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, String text,
-							SpeakerNPC engine) {
+					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						List<String> missing = missingWeapons(player, false);
 						engine.say("Let me know as soon as you find "
 								+ Grammar.itthem(missing.size())
@@ -182,15 +176,15 @@ public class WeaponsCollector2 extends AbstractQuest {
 					ConversationStates.QUESTION_2, null,
 					new SpeakerNPC.ChatAction() {
 						@Override
-						public void fire(Player player, String text,
-								SpeakerNPC engine) {
+						public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 							List<String> missing = missingWeapons(player, false);
-							if (missing.contains(text)) {
-								if (player.drop(text)) {
+							String item = sentence.toString();
+							if (missing.contains(item)) {
+								if (player.drop(item)) {
 									// register weapon as done
 									String doneText = player.getQuest("weapons_collector2");
 									player.setQuest("weapons_collector2",
-											doneText + ";" + text);
+											doneText + ";" + item);
 									// check if the player has brought all
 									// weapons
 									missing = missingWeapons(player, true);
@@ -214,7 +208,7 @@ public class WeaponsCollector2 extends AbstractQuest {
 									}
 								} else {
 									engine.say("I may be old, but I'm not senile, and you clearly don't have "
-											+ Grammar.a_noun(text)
+											+ Grammar.a_noun(item)
 											+ ". What do you really have for me?");
 								}
 							} else {
@@ -245,8 +239,7 @@ public class WeaponsCollector2 extends AbstractQuest {
 				ConversationPhrases.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, String text,
-							SpeakerNPC engine) {
+					public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						return player.hasQuest("weapons_collector2")
 								&& !player.isQuestCompleted("weapons_collector2");
 					}
@@ -260,8 +253,7 @@ public class WeaponsCollector2 extends AbstractQuest {
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, String text,
-							SpeakerNPC engine) {
+					public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						return player.isQuestCompleted("weapons_collector2");
 					}
 				}, ConversationStates.ATTENDING,

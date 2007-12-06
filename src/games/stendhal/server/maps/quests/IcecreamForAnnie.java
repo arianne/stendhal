@@ -3,8 +3,9 @@ package games.stendhal.server.maps.quests;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
-import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.ConversationPhrases;
+import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.DecreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
@@ -12,8 +13,8 @@ import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.pathfinder.Node;
 import games.stendhal.server.pathfinder.FixedPath;
+import games.stendhal.server.pathfinder.Node;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -60,7 +61,7 @@ public class IcecreamForAnnie extends AbstractQuest {
 			protected void createDialog() {
 				addGreeting(null, new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, String text, SpeakerNPC npc){
+					public void fire(Player player, Sentence sentence, SpeakerNPC npc){
 						if (!player.hasQuest(QUEST_SLOT)) {
 							npc.say("Hello, my name is Annie. I am five years old.");
 						} else if (player.getQuest(QUEST_SLOT).equals("start")) {
@@ -87,7 +88,7 @@ public class IcecreamForAnnie extends AbstractQuest {
 				ConversationStates.ATTENDING, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, String text, SpeakerNPC npc) {
+					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 						if (!player.hasQuest(QUEST_SLOT)
 								|| player.getQuest(QUEST_SLOT).equals("rejected")) {
 							npc.say("I'm hungry! I'd like an icecream, please. Vanilla, with a chocolate flake. Will you get me one?");
@@ -144,7 +145,7 @@ public class IcecreamForAnnie extends AbstractQuest {
 			ConversationStates.ATTENDING, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, String text, SpeakerNPC npc) {
+				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 				    if (player.drop("icecream")){
 					        npc.say("Thank you EVER so much! You are very kind. Here, take this present.");
 				        	player.setQuest(QUEST_SLOT, "eating;"

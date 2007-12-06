@@ -2,6 +2,7 @@
 package games.stendhal.server.script;
 
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
@@ -10,7 +11,6 @@ import games.stendhal.server.scripting.ScriptingNPC;
 import games.stendhal.server.scripting.ScriptingSandbox;
 
 import java.util.List;
-
 
 import org.apache.log4j.Logger;
 
@@ -33,7 +33,7 @@ public class Maria extends ScriptImpl {
 		}
 
 		@Override
-		public void fire(Player player, String text, SpeakerNPC engine) {
+		public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 			if (player.drop("coupon")) {
 				Item beer = sandbox.getItem("beer");
 				player.equip(beer, true);

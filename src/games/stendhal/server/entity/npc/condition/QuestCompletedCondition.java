@@ -1,5 +1,6 @@
 package games.stendhal.server.entity.npc.condition;
 
+import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 
@@ -23,7 +24,7 @@ public class QuestCompletedCondition extends SpeakerNPC.ChatCondition {
 	}
 
 	@Override
-	public boolean fire(Player player, String text, SpeakerNPC engine) {
+	public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
 		return (player.isQuestCompleted(questname));
 	}
 

@@ -1,6 +1,7 @@
 package games.stendhal.server.entity.npc.fsm;
 
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 
@@ -19,6 +20,7 @@ public class Transition {
 	/**
 	 * The string a player's text must either start with or equal to
 	 * in order to trigger this transition
+	 * The string is stored in lower case.
 	 */
 	private String trigger;
 
@@ -58,61 +60,70 @@ public class Transition {
 	 * Checks whether this is a "wildcard" transition (see class comment
 	 * of SpeakerNPC) which can be fired by the given text.
 	 *
-	 * @param text The text that the player has said
+	 * @param sentence The sentence that the player has said
 	 * @return true iff this is a wildcard transition and the triggering
 	 *         text has been said
 	 */
-	public boolean matchesWild(String text) {
-		return (state == ConversationStates.ANY) && trigger.equalsIgnoreCase(text);
+	public boolean matchesWild(Sentence sentence) {
+		return (state == ConversationStates.ANY) && trigger.equals(sentence.getVerb());
 	}
 
 	/**
 	 * Checks whether this is a "wildcard" transition (see class comment
 	 * of SpeakerNPC) and the text beginning matches the trigger.
 	 *
-	 * @param text trigger (possibly with additional text)
+	 * @param sentence trigger (parsed user input)
 	 * @return if the transition matches, false otherwise
 	 */
-	public boolean matchesWildBeginning(String text) {
-		String temp = text.toLowerCase();
-		return (state == ConversationStates.ANY) && temp.startsWith(trigger);
+	public boolean matchesWildBeginning(Sentence sentence) {
+		return (state == ConversationStates.ANY) && sentence.getVerb().startsWith(trigger);
 	}
 
 	/**
 	 * checks whether this transition is possible now.
 	 *
 	 * @param state old state
+	 * @param sentence trigger
+	 * @return true if the transition matches, false otherwise
+	 */
+	public boolean matches(int state, Sentence sentence) {
+		return matches(state, sentence.getVerb());
+	}
+
+	/**
+	 * checks whether this transition is possible now.
+	 * 
+	 * @param state old state
 	 * @param text trigger
 	 * @return true if the transition matches, false otherwise
 	 */
 	public boolean matches(int state, String text) {
-		return (state == this.state) && trigger.equalsIgnoreCase(text);
+		return (state == this.state) && trigger.equals(text);
 	}
 
 	/**
 	 * checks whether this transition is possible now
 	 *
 	 * @param state old state
-	 * @param text trigger (possibly with additional text)
+	 * @param sentence trigger, parsed user input
 	 * @return true if the transition matches, false otherwise
 	 */
-	public boolean matchesBeginning(int state, String text) {
-		String temp = text.toLowerCase();
-		return (state == this.state) && temp.startsWith(trigger);
+	public boolean matchesBeginning(int state, Sentence sentence) {
+		return (state == this.state) && sentence.getVerb().startsWith(trigger);
 	}
 
 	/**
 	 * Checks whether this transition's condition is fulfilled.
 	 *
 	 * @param player
-	 * @param text the text the player said
+	 * @param sentence the sentence the player said
 	 * @param npc
 	 * @return true iff there is no condition or if there is one
 	 *         which is fulfilled
 	 */
-	public boolean isConditionFulfilled(Player player, String text, SpeakerNPC npc) {
+	public boolean isConditionFulfilled(Player player, Sentence sentence, SpeakerNPC npc) {
 		if (condition != null) {
-			return condition.fire(player, text, npc);
+			return condition.fire(player, sentence, npc);
 		} else {
 			return true;
 		}

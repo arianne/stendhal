@@ -2,6 +2,7 @@ package games.stendhal.server.entity.npc.behaviour.adder;
 
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.impl.HealerBehaviour;
 import games.stendhal.server.entity.npc.fsm.Engine;
@@ -18,7 +19,7 @@ public class HealerAdder {
 		engine.add(ConversationStates.ATTENDING, "heal", null, ConversationStates.HEAL_OFFERED, null,
 		        new SpeakerNPC.ChatAction() {
 			        @Override
-			        public void fire(Player player, String text, SpeakerNPC engine) {
+			        public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 				        healerBehaviour.chosenItem = "heal";
 				        healerBehaviour.setAmount(1);
 				        int cost = healerBehaviour.getCharge(player);
@@ -44,7 +45,7 @@ public class HealerAdder {
 		        ConversationStates.ATTENDING, null,
 		        new SpeakerNPC.ChatAction() {
 			        @Override
-			        public void fire(Player player, String text, SpeakerNPC engine) {
+			        public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 				        if (player.drop("money", healerBehaviour.getCharge(player))) {
 					        healerBehaviour.heal(player);
 					        engine.say("There, you are healed. How else may I help you?");

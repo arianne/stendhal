@@ -1,5 +1,6 @@
 package games.stendhal.server.entity.npc.action;
 
+import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPC.ChatAction;
 import games.stendhal.server.entity.player.Player;
@@ -37,7 +38,7 @@ public class StartRecordingKillsAction extends ChatAction {
 	}
 
 	@Override
-	public void fire(Player player, String text, SpeakerNPC npc) {
+	public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 		for (String creature : toKill) {
 			player.removeKill(creature);
 		}

@@ -4,6 +4,7 @@ import games.stendhal.common.Grammar;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPC.ChatAction;
 import games.stendhal.server.entity.npc.action.DecreaseKarmaAction;
@@ -98,8 +99,7 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 				ConversationPhrases.YES_MESSAGES, null,
 				ConversationStates.QUESTION_1, null, new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, String text,
-							SpeakerNPC engine) {
+					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						player.setQuest(QUEST_SLOT, NEEDED_ITEMS);
 						player.addKarma(5.0);
 						engine.say("I want my crown to be beautiful and shiny. I need "
@@ -126,7 +126,7 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 				ConversationPhrases.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, String text,	SpeakerNPC engine) {
+					public boolean fire(Player player, Sentence sentence,	SpeakerNPC engine) {
 						return player.hasQuest(QUEST_SLOT)
 								&& !player.isQuestCompleted(QUEST_SLOT)
 								&& !"reward".equals(player.getQuest(QUEST_SLOT));
@@ -141,7 +141,7 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 				ConversationStates.QUESTION_1, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, String text, SpeakerNPC engine) {
+					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						List<String> needed = getMissingItems(player, true);
 						engine.say("I need "
 								+ Grammar.enumerateCollection(needed)
@@ -158,11 +158,12 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 		/* create the ChatAction used for item triggers */
 		ChatAction itemsChatAction = new SpeakerNPC.ChatAction() {
 			@Override
-			public void fire(Player player, String text, SpeakerNPC engine) {
+			public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 				List<String> missingItems = getMissingItems(player, false);
-				int missingCount = getMissingCount(text, missingItems);
+				String item = sentence.toString();
+				int missingCount = getMissingCount(item, missingItems);
 				if (missingCount > 0) {
-					if (dropItems(player, text, missingCount)) {
+					if (dropItems(player, item, missingCount)) {
 						missingItems = getMissingItems(player, false);
 						if (missingItems.size() > 0) {
 							engine.say("Good, do you have anything else?");
@@ -177,7 +178,7 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 							engine.setCurrentState(ConversationStates.ATTENDING);
 						}
 					} else {
-						engine.say("You don't have " + text + " with you!");
+						engine.say("You don't have " + item + " with you!");
 					}
 				} else {
 					engine.say("You have already brought that!");
@@ -196,8 +197,7 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 		npc.add(ConversationStates.ATTENDING, Arrays.asList("no", "nothing"),
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, String text,
-							SpeakerNPC engine) {
+					public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						return player.hasQuest(QUEST_SLOT)
 								&& !player.isQuestCompleted(QUEST_SLOT)
 								&& !"reward".equals(player
@@ -210,7 +210,7 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 		npc.add(ConversationStates.QUESTION_1, ConversationPhrases.NO_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, String text, SpeakerNPC engine) {
+					public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						return !player.isQuestCompleted(QUEST_SLOT)
 								&& !"reward".equals(player.getQuest(QUEST_SLOT));
 					}
@@ -233,7 +233,7 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 				ConversationPhrases.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, String text,	SpeakerNPC engine) {
+					public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						return player.isQuestCompleted(QUEST_SLOT)
 								|| "reward".equals(player.getQuest(QUEST_SLOT));
 					}
@@ -254,8 +254,7 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 				ConversationStates.ATTENDING, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, String text,
-							SpeakerNPC engine) {
+					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						engine.say("Oh yes, "
 									+ NPC_NAME
 									+ " told me to reward you well! I hope you enjoy your increased combat abilities!");

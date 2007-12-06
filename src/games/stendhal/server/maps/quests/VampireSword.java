@@ -4,6 +4,7 @@ import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.ProducerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.ProducerBehaviour;
@@ -75,7 +76,7 @@ public class VampireSword extends AbstractQuest {
 			ConversationStates.QUEST_OFFERED, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, String text, SpeakerNPC npc) {
+				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 					if (!player.hasQuest(QUEST_SLOT)) {
 						npc.say("I can forge a powerful life stealing sword for you. You will need to go to the Catacombs below Semos Graveyard and fight the Vampire Lord. Are you interested?");
 					} else if (player.isQuestCompleted(QUEST_SLOT)) {
@@ -91,7 +92,7 @@ public class VampireSword extends AbstractQuest {
 			ConversationStates.ATTENDING, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, String text, SpeakerNPC npc) {
+				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 					npc.say("Then you need this #goblet. Take it to the Semos #Catacombs.");
 					Item emptygoblet = StendhalRPWorld.get()
 							.getRuleManager().getEntityManager().getItem("empty_goblet");
@@ -149,7 +150,7 @@ public class VampireSword extends AbstractQuest {
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 			new SpeakerNPC.ChatCondition() {
 				@Override
-				public boolean fire(Player player, String text, SpeakerNPC npc) {
+				public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
 					return player.hasQuest(QUEST_SLOT)
 							&& player.getQuest(QUEST_SLOT).equals("start")
 							&& player.isEquipped("goblet");
@@ -157,7 +158,7 @@ public class VampireSword extends AbstractQuest {
 			}, ConversationStates.QUEST_ITEM_BROUGHT, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, String text, SpeakerNPC npc) {
+				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 					if (!player.isEquipped("iron", REQUIRED_IRON)) {
 						npc.say("You have battled hard to bring that goblet. I will use it to #forge the vampire sword");
 					} else {
@@ -176,7 +177,7 @@ public class VampireSword extends AbstractQuest {
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 			new SpeakerNPC.ChatCondition() {
 				@Override
-				public boolean fire(Player player, String text, SpeakerNPC npc) {
+				public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
 					return player.hasQuest(QUEST_SLOT)
 							&& player.getQuest(QUEST_SLOT).equals("start")
 							&& !player.isEquipped("goblet")
@@ -184,7 +185,7 @@ public class VampireSword extends AbstractQuest {
 				}
 			}, ConversationStates.IDLE, null, new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, String text, SpeakerNPC npc) {
+				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 					npc.say("Did you lose your way? The Catacombs are in North Semos. Don't come back without a full goblet! Bye!");
 				}
 			});
@@ -192,7 +193,7 @@ public class VampireSword extends AbstractQuest {
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 			new SpeakerNPC.ChatCondition() {
 				@Override
-				public boolean fire(Player player, String text, SpeakerNPC npc) {
+				public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
 					return player.hasQuest(QUEST_SLOT)
 							&& player.getQuest(QUEST_SLOT).equals("start")
 							&& !player.isEquipped("goblet")
@@ -205,7 +206,7 @@ public class VampireSword extends AbstractQuest {
 			ConversationPhrases.YES_MESSAGES, null,
 			ConversationStates.IDLE, null, new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, String text, SpeakerNPC npc) {
+				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 					npc.say("You stupid ..... Be more careful next time. Bye!");
 					Item emptygoblet = StendhalRPWorld.get()
 							.getRuleManager().getEntityManager().getItem("empty_goblet");
@@ -225,7 +226,7 @@ public class VampireSword extends AbstractQuest {
 			new QuestStateStartsWithCondition(QUEST_SLOT, "forging;"),
 			ConversationStates.IDLE, null, new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, String text, SpeakerNPC npc) {
+				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 					String[] tokens = player.getQuest(QUEST_SLOT).split(";");
 					// minutes -> milliseconds
 					long delay = REQUIRED_MINUTES * 60 * 1000;

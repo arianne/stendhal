@@ -1,5 +1,6 @@
 package games.stendhal.server.entity.npc.action;
 
+import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 
@@ -33,9 +34,9 @@ public class MultipleActions extends SpeakerNPC.ChatAction {
 	}
 
 	@Override
-	public void fire(Player player, String text, SpeakerNPC npc) {
+	public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 		for (SpeakerNPC.ChatAction action : actions) {
-			action.fire(player, text, npc);
+			action.fire(player, sentence, npc);
 		}
 	}
 

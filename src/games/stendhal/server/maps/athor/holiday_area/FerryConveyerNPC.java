@@ -5,6 +5,7 @@ import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPCFactory;
 import games.stendhal.server.entity.npc.SpeakerNPC.ChatAction;
@@ -47,7 +48,7 @@ public class FerryConveyerNPC extends SpeakerNPCFactory {
 		npc.add(ConversationStates.ATTENDING, "status", null,
 				ConversationStates.ATTENDING, null, new ChatAction() {
 					@Override
-					public void fire(Player player, String text, SpeakerNPC npc) {
+					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 						npc.say(ferrystate.toString());
 					}
 				});
@@ -55,7 +56,7 @@ public class FerryConveyerNPC extends SpeakerNPCFactory {
 		npc.add(ConversationStates.ATTENDING, "board", null,
 				ConversationStates.ATTENDING, null, new ChatAction() {
 					@Override
-					public void fire(Player player, String text, SpeakerNPC npc) {
+					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 
 						if (ferrystate == Status.ANCHORED_AT_ISLAND) {
 							npc.say("In order to board the ferry, you have to pay "
@@ -73,7 +74,7 @@ public class FerryConveyerNPC extends SpeakerNPCFactory {
 				ConversationPhrases.YES_MESSAGES, null,
 				ConversationStates.ATTENDING, null, new ChatAction() {
 					@Override
-					public void fire(Player player, String text, SpeakerNPC npc) {
+					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 						if (player.drop("money", AthorFerry.PRICE)) {
 							player.teleport(getShipZone(), 27, 33, Direction.LEFT, null);
 

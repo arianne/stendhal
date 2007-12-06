@@ -4,6 +4,7 @@ import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
@@ -51,7 +52,7 @@ public class McPeglegIOU extends AbstractQuest {
 			ConversationStates.ATTENDING, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, String text, SpeakerNPC engine) {
+				public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 					// from all notes that the player is carrying, try to
 					// find the IOU note
 					List<Item> notes = player.getAllEquipped("note");

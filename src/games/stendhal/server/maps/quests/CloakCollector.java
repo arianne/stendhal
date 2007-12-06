@@ -4,6 +4,7 @@ import games.stendhal.common.Grammar;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.quests.logic.BringListOfItemsQuest;
@@ -38,7 +39,7 @@ public class CloakCollector extends AbstractQuest implements BringListOfItemsQue
 			"elf_cloak", "dwarf_cloak", "blue_elf_cloak", "stone_cloak",
 			"green_dragon_cloak", "bone_dragon_cloak", "lich_cloak",
 			"vampire_cloak", "blue_dragon_cloak");
-	
+
 	private static final String QUEST_SLOT = "cloaks_collector";
 
 	@Override
@@ -63,24 +64,17 @@ public class CloakCollector extends AbstractQuest implements BringListOfItemsQue
 		SpeakerNPC npc = npcs.get("Josephine");
 
 		// player asks about an individual cloak before accepting the quest
-		for (String cloak : NEEDED_CLOAKS) {
-			npc.add(ConversationStates.QUEST_OFFERED, cloak, null,
-					ConversationStates.QUEST_OFFERED, null,
-					new SpeakerNPC.ChatAction() {
-						@Override
-						public void fire(Player player, String text,
-								SpeakerNPC engine) {
-							engine
-									.say("You haven't seen one before? Well, it's a "
-											+ StendhalRPWorld.get()
-													.getRuleManager()
-													.getEntityManager()
-													.getItem(text)
-													.getItemSubclass()
-											+ ". So, will you find them all?");
-						}
-					});
-		}
+		npc.add(ConversationStates.QUEST_OFFERED, NEEDED_CLOAKS, null,
+				ConversationStates.QUEST_OFFERED, null,
+				new SpeakerNPC.ChatAction() {
+					@Override
+					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+						engine.say("You haven't seen one before? Well, it's a "
+									+ StendhalRPWorld.get().getRuleManager().getEntityManager()
+											.getItem(sentence.toString()).getItemSubclass()
+									+ ". So, will you find them all?");
+					}
+		});
 	}
 
 	public List<String> getAdditionalTriggerPhraseForQuest() {

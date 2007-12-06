@@ -2,6 +2,7 @@
 
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPCFactory;
 import games.stendhal.server.entity.player.Player;
@@ -24,7 +25,7 @@ public class GossipNPC extends SpeakerNPCFactory {
 		        null,
 		        new SpeakerNPC.ChatAction() {
 			        @Override
-			        public void fire(Player player, String text, SpeakerNPC npc) {
+			        public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 				        // A little trick to make NPC remember if it has met
 				        // player before anc react accordingly
 				        // NPC_name quest doesn't exist anywhere else neither is

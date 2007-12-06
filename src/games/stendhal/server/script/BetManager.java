@@ -6,6 +6,7 @@ import games.stendhal.server.entity.item.ConsumableItem;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.TurnListener;
@@ -18,8 +19,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.StringTokenizer;
-
 
 import org.apache.log4j.Logger;
 
@@ -132,7 +131,7 @@ public class BetManager extends ScriptImpl implements TurnListener {
 	protected class BetCondition extends SpeakerNPC.ChatCondition {
 
 		@Override
-		public boolean fire(Player player, String text, SpeakerNPC engine) {
+		public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
 			return state == State.ACCEPTING_BETS;
 		}
 	}
@@ -143,7 +142,7 @@ public class BetManager extends ScriptImpl implements TurnListener {
 	protected class NoBetCondition extends SpeakerNPC.ChatCondition {
 
 		@Override
-		public boolean fire(Player player, String text, SpeakerNPC engine) {
+		public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
 			return state != State.ACCEPTING_BETS;
 		}
 	}
@@ -154,45 +153,45 @@ public class BetManager extends ScriptImpl implements TurnListener {
 	protected class BetAction extends SpeakerNPC.ChatAction {
 
 		@Override
-		public void fire(Player player, String text, SpeakerNPC engine) {
+		public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 			BetInfo betInfo = new BetInfo();
 			betInfo.playerName = player.getName();
 
-			// parse the string
-			StringTokenizer st = new StringTokenizer(text);
+			// parse the command
 			boolean error = false;
-			if (st.countTokens() == 5) {
-				st.nextToken(); // bet
-				String amountStr = st.nextToken(); // 5
-				betInfo.itemName = st.nextToken(); // cheese
-				st.nextToken(); // on
-				betInfo.target = st.nextToken();
 
-				try {
-					betInfo.amount = Integer.parseInt(amountStr);
-				} catch (NumberFormatException e) {
+			if (sentence.getError() ||
+				sentence.getObjectName()==null ||
+				sentence.getPreposition()==null ||
+				sentence.getObjectName2()==null) {
+				error = true;
+			} else {
+				betInfo.amount = sentence.getAmount();
+				betInfo.itemName = sentence.getItemName(); // cheese
+
+				if (!sentence.getPreposition().equals("on")) {
 					error = true;
 				}
-			} else {
-				error = true;
+
+				betInfo.target = sentence.getItemName2();
 			}
 
 			// wrong syntax
 			if (error) {
-				engine.say("Sorry " + player.getTitle() + ", i did not understand you.");
+				engine.say("Sorry " + player.getTitle() + ", I did not understand you.");
 				return;
 			}
 
-			// check that item is a Consumeable Item
+			// check that item is a ConsumableItem
 			Item item = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(betInfo.itemName);
 			if (!(item instanceof ConsumableItem)) {
-				engine.say("Sorry " + player.getTitle() + ", i only accept food and drinks.");
+				engine.say("Sorry " + player.getTitle() + ", I only accept food and drinks.");
 				return;
 			}
 
 			// check target
 			if (!targets.contains(betInfo.target)) {
-				engine.say("Sorry " + player.getTitle() + ", i only accept bets on " + targets);
+				engine.say("Sorry " + player.getTitle() + ", I only accept bets on " + targets);
 				return;
 			}
 
@@ -227,9 +226,8 @@ public class BetManager extends ScriptImpl implements TurnListener {
 				if (winner.equals(betInfo.target)) {
 					npc.say(betInfo.playerName + " would have won but he or she went away.");
 				} else {
-					npc
-					        .say(betInfo.playerName
-					                + " went away. But as he or she has lost anyway it makes no differents.");
+					npc.say(betInfo.playerName
+							+ " went away. But as he or she has lost anyway it makes no differents.");
 				}
 
 			} else {
@@ -311,10 +309,9 @@ public class BetManager extends ScriptImpl implements TurnListener {
 		// Create Dialog
 		npc.behave("greet", "Hi, do you want to bet?");
 		npc.behave("job", "I am the Bet Dialer");
-		npc
-		        .behave(
-		                "help",
-		                "Say \"bet 5 cheese on fire\" to get an additional 5 pieces of cheese if fire wins. If he loses, you will lose your 5 cheese.");
+		npc.behave(
+                "help",
+                "Say \"bet 5 cheese on fire\" to get an additional 5 pieces of cheese if fire wins. If he loses, you will lose your 5 cheese.");
 		npc.addGoodbye();
 		npc.add(ConversationStates.IDLE, "bet", new BetCondition(), ConversationStates.IDLE, null, new BetAction());
 		npc.add(ConversationStates.IDLE, "bet", new NoBetCondition(), ConversationStates.IDLE,
@@ -374,7 +371,7 @@ public class BetManager extends ScriptImpl implements TurnListener {
 					return;
 				}
 				if (args.size() < 2) {
-					admin.sendPrivateText("Usage: /script BadManager.class winner #fire\n");
+					admin.sendPrivateText("Usage: /script BetManager.class winner #fire\n");
 				}
 				winner = args.get(1);
 				state = State.PAYING_BETS;

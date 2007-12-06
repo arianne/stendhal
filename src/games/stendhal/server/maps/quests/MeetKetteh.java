@@ -2,6 +2,7 @@ package games.stendhal.server.maps.quests;
 
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
@@ -41,7 +42,7 @@ public class MeetKetteh extends AbstractQuest {
 				ConversationStates.ATTENDING, null,
 					new SpeakerNPC.ChatAction() {
 						@Override
-						public void fire(Player player, String text, SpeakerNPC engine) {
+						public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 							// OK, player is NOT naked this time, but was last
 							// time.
 							engine.say("Hi again, " + player.getTitle()	+ ". How can I #shout at you this time?");
@@ -54,7 +55,7 @@ public class MeetKetteh extends AbstractQuest {
 				ConversationStates.ATTENDING, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, String text, SpeakerNPC engine) {
+					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						if (player.hasQuest("Ketteh")) {
 							// We have met the player before and he was NOT
 							// naked last time nor is he now

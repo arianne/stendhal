@@ -6,6 +6,7 @@ import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
@@ -83,8 +84,7 @@ public class CloaksForBario extends AbstractQuest {
 				ConversationStates.QUEST_OFFERED, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, String text,
-							SpeakerNPC engine) {
+					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						if (!player.isQuestCompleted(QUEST_SLOT)) {
 							if (player.hasQuest(QUEST_SLOT)) {
 								engine.say("You promised me to bring me ten blue elven cloaks. Remember?");
@@ -125,7 +125,7 @@ public class CloaksForBario extends AbstractQuest {
 				ConversationStates.QUESTION_1, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, String text, SpeakerNPC engine) {
+					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						engine.say("Hi again! I still need "
 							+ player.getQuest(QUEST_SLOT)
 							+ " blue elven "
@@ -151,8 +151,7 @@ public class CloaksForBario extends AbstractQuest {
 				ConversationStates.ATTENDING, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, String text,
-							SpeakerNPC engine) {
+					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						if (player.drop("blue_elf_cloak")) {
 							// find out how many cloaks the player still has to
 							// bring

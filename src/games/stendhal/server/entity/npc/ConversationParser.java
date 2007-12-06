@@ -48,7 +48,7 @@ public class ConversationParser {
         sentence._amount = parser.readAmount();
         sentence._object = parser.readObjectName();
 
-         // Optionally there may be a preposition followed by a second object.
+         // Optionally there may be following a preposition and a second object.
         sentence._preposition = parser.nextWord();
         sentence._object2 = parser.readObjectName();
 

@@ -3,6 +3,7 @@ package games.stendhal.server.entity.npc.condition;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import games.stendhal.server.entity.npc.ConversationParser;
 import games.stendhal.server.entity.player.Player;
 
 import org.junit.After;
@@ -46,11 +47,11 @@ public class LevelGreaterThanConditionTest {
 	@Test
 	public final void testFire() {
 		assertTrue(new LevelGreaterThanCondition(99).fire(level100Player,
-				"greaterthan", null));
+				ConversationParser.parse("greaterthan"), null));
 		assertFalse(new LevelGreaterThanCondition(100).fire(level100Player,
-				"greaterthan", null));
+				ConversationParser.parse("greaterthan"), null));
 		assertFalse(new LevelGreaterThanCondition(101).fire(level100Player,
-				"greaterthan", null));
+				ConversationParser.parse("greaterthan"), null));
 	}
 
 	@Test

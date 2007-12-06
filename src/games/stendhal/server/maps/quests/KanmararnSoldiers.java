@@ -6,6 +6,7 @@ import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
@@ -148,7 +149,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 
 	class HenryQuestAction extends SpeakerNPC.ChatAction {
 		@Override
-		public void fire(Player player, String text, SpeakerNPC npc) {
+		public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 			if (!player.isQuestCompleted(QUEST_SLOT)
 					&& !"map".equals(player.getQuest(QUEST_SLOT))) {
 				npc.say("Find my #group, Peter, Tom, and Charles, prove it and I will reward you. Will you do it?");
@@ -161,21 +162,21 @@ public class KanmararnSoldiers extends AbstractQuest {
 
 	class HenryQuestNotCompletedCondition extends SpeakerNPC.ChatCondition {
 		@Override
-		public boolean fire(Player player, String text, SpeakerNPC npc) {
+		public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
 			return (!player.hasQuest(QUEST_SLOT) || player.getQuest(QUEST_SLOT).equals("start"));
 		}
 	}
 
 	class HenryQuestCompletedCondition extends SpeakerNPC.ChatCondition {
 		@Override
-		public boolean fire(Player player, String text, SpeakerNPC npc) {
+		public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
 			return (player.hasQuest(QUEST_SLOT) && !player.getQuest(QUEST_SLOT).equals("start"));
 		}
 	}
 
 	class HenryQuestCompleteAction extends SpeakerNPC.ChatAction {
 		@Override
-		public void fire(Player player, String text, SpeakerNPC npc) {
+		public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 
 			List<Item> allLeatherLegs = player.getAllEquipped("leather_legs");
 			Item questLeatherLegs = null;
@@ -225,7 +226,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 
 	class JamesQuestCompleteAction extends SpeakerNPC.ChatAction {
 		@Override
-		public void fire(Player player, String text, SpeakerNPC npc) {
+		public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 
 			List<Item> allMaps = player.getAllEquipped("map");
 			Item questMap = null;

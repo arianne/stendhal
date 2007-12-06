@@ -5,9 +5,10 @@ import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.Sentence;
+import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.impl.HealerBehaviour;
 import games.stendhal.server.entity.npc.fsm.Engine;
-import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Map;
@@ -69,7 +70,7 @@ public class HealerNPC implements ZoneConfigurator {
 		engine.add(ConversationStates.ATTENDING, "heal", null, ConversationStates.HEAL_OFFERED, null,
 		        new SpeakerNPC.ChatAction() {
 			        @Override
-			        public void fire(Player player, String text, SpeakerNPC engine) {
+			        public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 				        healerBehaviour.chosenItem = "heal";
 				        healerBehaviour.setAmount(1);
 				        int cost = healerBehaviour.getCharge(player);
@@ -81,7 +82,7 @@ public class HealerNPC implements ZoneConfigurator {
 		        ConversationStates.ATTENDING, null,
 		        new SpeakerNPC.ChatAction() {
 			        @Override
-			        public void fire(Player player, String text, SpeakerNPC engine) {
+			        public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 				        if (player.drop("money", healerBehaviour.getCharge(player))) {
 					        healerBehaviour.heal(player);
 					        engine.say("All better now, everyone better. I love you, I do.");

@@ -4,6 +4,7 @@ import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPC.ChatAction;
 import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
@@ -42,8 +43,7 @@ public class KillDarkElves extends AbstractQuest {
 				ConversationStates.QUEST_OFFERED, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, String text,
-							SpeakerNPC engine) {
+					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						if (!player.hasQuest(QUEST_SLOT)
 								|| player.getQuest(QUEST_SLOT).equals("rejected")) {
 							engine.say("I have a problem with some dark elves. I used to be in league with them... now they are too strong. There is access to their lair from a #secret #room in this hall.");
@@ -99,7 +99,7 @@ public class KillDarkElves extends AbstractQuest {
 				ConversationStates.QUEST_STARTED, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, String text, SpeakerNPC engine) {
+					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						if (player.hasKilled("dark_elf_archer")
 								&& player.hasKilled("dark_elf_captain")
 								&& player.hasKilled("thing")) {

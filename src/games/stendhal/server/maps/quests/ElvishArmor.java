@@ -3,6 +3,7 @@ package games.stendhal.server.maps.quests;
 import games.stendhal.common.Grammar;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 
@@ -72,8 +73,7 @@ public class ElvishArmor extends AbstractQuest {
 				ConversationPhrases.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, String text,
-							SpeakerNPC engine) {
+					public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						return !player.hasQuest("elvish_armor");
 					}
 				},
@@ -86,8 +86,7 @@ public class ElvishArmor extends AbstractQuest {
 				"elves",
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, String text,
-							SpeakerNPC engine) {
+					public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						return !player.hasQuest("elvish_armor");
 					}
 				},
@@ -107,8 +106,7 @@ public class ElvishArmor extends AbstractQuest {
 				ConversationPhrases.YES_MESSAGES, null,
 				ConversationStates.IDLE, null, new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, String text,
-							SpeakerNPC engine) {
+					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						engine.say("The secrets of the green elves shall be ours at last! Bring me all elvish equipment you can find, I'll reward you well!");
 						player.setQuest("elvish_armor", "");
 						player.addKarma(5.0);
@@ -120,8 +118,7 @@ public class ElvishArmor extends AbstractQuest {
 				ConversationStates.QUEST_OFFERED, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, String text,
-							SpeakerNPC engine) {
+					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						engine.say("Another unhelpful soul, I see.");
 						player.addKarma(-5.0);
 					}
@@ -143,8 +140,7 @@ public class ElvishArmor extends AbstractQuest {
 				ConversationPhrases.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, String text,
-							SpeakerNPC engine) {
+					public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						return player.hasQuest("elvish_armor")
 								&& !player.isQuestCompleted("elvish_armor");
 					}
@@ -157,8 +153,7 @@ public class ElvishArmor extends AbstractQuest {
 				ConversationStates.QUESTION_1, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, String text,
-							SpeakerNPC engine) {
+					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						List<String> needed = missingitems(player, true);
 						engine.say("I have heard descriptions of "
 								+ Grammar.quantityplnoun(needed.size(), "item")
@@ -173,58 +168,55 @@ public class ElvishArmor extends AbstractQuest {
 				ConversationStates.QUESTION_1,
 				"Felicitations! What #equipment did you pillage?", null);
 
-		for (String item : NEEDEDITEMS) {
-			npc.add(ConversationStates.QUESTION_1, item, null,
-					ConversationStates.QUESTION_1, null,
-					new SpeakerNPC.ChatAction() {
-						@Override
-						public void fire(Player player, String text,
-								SpeakerNPC engine) {
-							List<String> missing = missingitems(player, false);
-							if (missing.contains(text)) {
-								if (player.drop(text)) {
-									// register item as done
-									String doneText = player.getQuest("elvish_armor");
-									player.setQuest("elvish_armor", doneText
-											+ ";" + text);
-									// check if the player has brought all
-									// items
-									missing = missingitems(player, true);
-									if (missing.size() > 0) {
-										engine.say("Excellent work. Is there more that you plundered?");
-									} else {
-										// Item blackitem =
-										// StendhalRPWorld.get()
-										// .getRuleManager()
-										// .getEntityManager().getItem(
-										// "black_item");
-										// blackitem.setBoundTo(player.getName());
-										// player.equip(blackitem, true);
-										player.addKarma(20.0);
-										player.addXP(20000);
-										engine.say("I will study these! The albino elves owe you a debt of thanks.");
-										player.setQuest("elvish_armor", "done");
-										player.notifyWorldAboutChanges();
-										engine.setCurrentState(ConversationStates.ATTENDING);
-									}
+		npc.add(ConversationStates.QUESTION_1, NEEDEDITEMS, null,
+				ConversationStates.QUESTION_1, null,
+				new SpeakerNPC.ChatAction() {
+					@Override
+					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+						String item = sentence.toString();
+						List<String> missing = missingitems(player, false);
+						if (missing.contains(item)) {
+							if (player.drop(item)) {
+								// register item as done
+								String doneText = player.getQuest("elvish_armor");
+								player.setQuest("elvish_armor", doneText
+										+ ";" + item);
+								// check if the player has brought all
+								// items
+								missing = missingitems(player, true);
+								if (missing.size() > 0) {
+									engine.say("Excellent work. Is there more that you plundered?");
 								} else {
-									engine.say("Liar! You don't really have "
-											+ Grammar.a_noun(text)
-											+ " with you.");
+									// Item blackitem =
+									// StendhalRPWorld.get()
+									// .getRuleManager()
+									// .getEntityManager().getItem(
+									// "black_item");
+									// blackitem.setBoundTo(player.getName());
+									// player.equip(blackitem, true);
+									player.addKarma(20.0);
+									player.addXP(20000);
+									engine.say("I will study these! The albino elves owe you a debt of thanks.");
+									player.setQuest("elvish_armor", "done");
+									player.notifyWorldAboutChanges();
+									engine.setCurrentState(ConversationStates.ATTENDING);
 								}
 							} else {
-								engine.say("You've already brought that elvish item to me.");
+								engine.say("Liar! You don't really have "
+										+ Grammar.a_noun(item)
+										+ " with you.");
 							}
+						} else {
+							engine.say("You've already brought that elvish item to me.");
 						}
-					});
-		}
+					}
+		});
 
 		npc.add(ConversationStates.QUESTION_1, "",
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, String text,
-							SpeakerNPC engine) {
-						return !NEEDEDITEMS.contains(text);
+					public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
+						return !NEEDEDITEMS.contains(sentence.toString());
 					}
 				}, ConversationStates.QUESTION_1,
 				"I don't think that's a piece of elvish armor...", null);
@@ -234,8 +226,7 @@ public class ElvishArmor extends AbstractQuest {
 				"no",
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, String text,
-							SpeakerNPC engine) {
+					public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						return !player.isQuestCompleted("elvish_armor");
 					}
 				},
@@ -247,8 +238,7 @@ public class ElvishArmor extends AbstractQuest {
 		npc.add(ConversationStates.QUESTION_1, Arrays.asList("no", "nothing"),
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, String text,
-							SpeakerNPC engine) {
+					public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						return !player.isQuestCompleted("elvish_armor");
 					}
 				}, ConversationStates.ATTENDING,
@@ -259,8 +249,7 @@ public class ElvishArmor extends AbstractQuest {
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, String text,
-							SpeakerNPC engine) {
+					public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						return player.isQuestCompleted("elvish_armor");
 					}
 				}, ConversationStates.ATTENDING,
@@ -272,8 +261,7 @@ public class ElvishArmor extends AbstractQuest {
 				ConversationPhrases.OFFER_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, String text,
-							SpeakerNPC engine) {
+					public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						return player.isQuestCompleted("elvish_armor");
 					}
 				},
@@ -286,8 +274,7 @@ public class ElvishArmor extends AbstractQuest {
 				ConversationPhrases.QUEST_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, String text,
-							SpeakerNPC engine) {
+					public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						return player.isQuestCompleted("elvish_armor");
 					}
 				},
@@ -300,8 +287,7 @@ public class ElvishArmor extends AbstractQuest {
 				ConversationPhrases.QUEST_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, String text,
-							SpeakerNPC engine) {
+					public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						return player.hasQuest("elvish_armor")
 								&& !player.isQuestCompleted("elvish_armor");
 					}
@@ -313,8 +299,7 @@ public class ElvishArmor extends AbstractQuest {
 				ConversationPhrases.OFFER_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, String text,
-							SpeakerNPC engine) {
+					public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						return player.hasQuest("elvish_armor")
 								&& !player.isQuestCompleted("elvish_armor");
 					}

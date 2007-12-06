@@ -3,6 +3,7 @@ package games.stendhal.server.entity.npc.condition;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import games.stendhal.server.entity.npc.ConversationParser;
 import games.stendhal.server.entity.player.Player;
 
 import org.junit.After;
@@ -25,18 +26,19 @@ public class QuestStartedConditionTest {
 	@Test
 	public final void testFire() {
 		assertFalse(new QuestStartedCondition("questname").fire(
-				PlayerTestHelper.createPlayer(), "testAdminConditionText",
+				PlayerTestHelper.createPlayer(),
+				ConversationParser.parse("testAdminConditionText"),
 				SpeakerNPCTestHelper.createSpeakerNPC()));
 		Player bob = PlayerTestHelper.createPlayer();
 
 		bob.setQuest("questname", "done");
 		assertTrue(new QuestStartedCondition("questname").fire(bob,
-				"testAdminConditionText",
+				ConversationParser.parse("testAdminConditionText"),
 				SpeakerNPCTestHelper.createSpeakerNPC()));
 
 		bob.setQuest("questname", null);
 		assertFalse(new QuestStartedCondition("questname").fire(bob,
-				"testAdminConditionText",
+				ConversationParser.parse("testAdminConditionText"),
 				SpeakerNPCTestHelper.createSpeakerNPC()));
 
 	}

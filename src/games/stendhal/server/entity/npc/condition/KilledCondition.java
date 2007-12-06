@@ -1,5 +1,6 @@
 package games.stendhal.server.entity.npc.condition;
 
+import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPC.ChatCondition;
 import games.stendhal.server.entity.player.Player;
@@ -39,7 +40,7 @@ public class KilledCondition extends ChatCondition {
 	}
 
 	@Override
-	public boolean fire(Player player, String text, SpeakerNPC npc) {
+	public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
 		for (String creature : toKill) {
 			if (!player.hasKilled(creature)) {
 				return false;

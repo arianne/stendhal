@@ -3,6 +3,7 @@ package games.stendhal.server.maps.quests;
 import games.stendhal.common.Grammar;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
@@ -106,8 +107,7 @@ public class FishermansLicenseCollector extends AbstractQuest {
 			ConversationStates.QUESTION_2, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, String text,
-						SpeakerNPC engine) {
+				public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 					List<String> needed = missingFish(player, true);
 					engine.say("There " + Grammar.isare(needed.size())
 							+ " "
@@ -122,7 +122,7 @@ public class FishermansLicenseCollector extends AbstractQuest {
 		npc.add(ConversationStates.QUESTION_2, "no", null,
 			ConversationStates.IDLE, null, new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, String text, SpeakerNPC engine) {
+				public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 					List<String> missing = missingFish(player, false);
 					engine.say("Let me know as soon as you find "
 							+ Grammar.itthem(missing.size()) + ". Goodbye.");
@@ -139,14 +139,15 @@ public class FishermansLicenseCollector extends AbstractQuest {
 			ConversationStates.QUESTION_2, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, String text, SpeakerNPC engine) {
+				public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 					List<String> missing = missingFish(player, false);
-					if (missing.contains(text)) {
-						if (player.drop(text)) {
+					String item = sentence.toString();
+					if (missing.contains(item)) {
+						if (player.drop(item)) {
 							// register fish as done
 							String doneText = player.getQuest(QUEST_SLOT);
 							player.setQuest(QUEST_SLOT, doneText + ";"
-									+ text);
+									+ item);
 							// check if the player has brought all fish
 							missing = missingFish(player, true);
 							if (missing.size() > 0) {
@@ -163,7 +164,7 @@ public class FishermansLicenseCollector extends AbstractQuest {
 							}
 						} else {
 							engine.say("Don't try to cheat! I know that you don't have "
-									+ Grammar.a_noun(text)
+									+ Grammar.a_noun(item)
 									+ ". What do you really have for me?");
 						}
 					} else {

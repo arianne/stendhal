@@ -72,8 +72,7 @@ public class CommandCenter {
 			actionListener.onAction(player, action);
 
 		} catch (Exception e) {
-			
-			logger.error("Cannot execute action " + action + " send by " + caster, e);	
+			logger.error("Cannot execute action " + action + " send by " + caster, e);
 		}
 	}
 

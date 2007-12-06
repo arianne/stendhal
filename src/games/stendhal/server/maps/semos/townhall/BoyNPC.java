@@ -3,6 +3,7 @@ package games.stendhal.server.maps.semos.townhall;
 import games.stendhal.common.Direction;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
+import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 
@@ -32,7 +33,7 @@ public class BoyNPC implements ZoneConfigurator {
 				addGreeting(null, new SpeakerNPC.ChatAction() {
 
 					@Override
-					public void fire(Player player, String text, SpeakerNPC engine) {
+					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 
 						if (player.hasQuest("introduce_players")) {
 						    if (!player.isQuestCompleted("introduce_players")) {
@@ -54,7 +55,7 @@ public class BoyNPC implements ZoneConfigurator {
 		npc.addInitChatMessage(null, new SpeakerNPC.ChatAction() {
 
 			@Override
-			public void fire(Player player, String text, SpeakerNPC engine) {
+			public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 				if (!player.hasQuest("TadFirstChat")) {
 					player.setQuest("TadFirstChat", "done");
 					engine.listenTo(player, "hi");

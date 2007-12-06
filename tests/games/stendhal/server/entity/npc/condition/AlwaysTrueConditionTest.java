@@ -12,6 +12,7 @@ package games.stendhal.server.entity.npc.condition;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import games.stendhal.server.entity.npc.ConversationParser;
 
 import org.junit.Test;
 
@@ -42,7 +43,7 @@ public class AlwaysTrueConditionTest {
 	public void testFire() throws Throwable {
 		assertTrue(new AlwaysTrueCondition().fire(
 				PlayerTestHelper.createPlayer(),
-				"testAllwaysTrueConditionText",
+				ConversationParser.parse("testAllwaysTrueConditionText"),
 				SpeakerNPCTestHelper.createSpeakerNPC()));
 	}
 	@Test

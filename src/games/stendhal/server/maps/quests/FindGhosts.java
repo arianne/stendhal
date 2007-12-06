@@ -2,6 +2,7 @@ package games.stendhal.server.maps.quests;
 
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.DecreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
@@ -137,9 +138,9 @@ public class FindGhosts extends AbstractQuest {
 			ConversationStates.QUESTION_1, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, String text,
-						SpeakerNPC npc) {
+				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 					List<String> missing = missingNames(player);
+					String item = sentence.toString();
 
 					String npcQuestText = player.getQuest(QUEST_SLOT);
 					String[] npcDoneText = npcQuestText.split(":");
@@ -147,20 +148,20 @@ public class FindGhosts extends AbstractQuest {
 					List<String> said = Arrays.asList(npcDoneText[1].split(";"));
 					String reply = "";
 
-					if (missing.contains(text)
-							&& looking.contains(text)
-							&& !said.contains(text)) {
+					if (missing.contains(item)
+							&& looking.contains(item)
+							&& !said.contains(item)) {
 						// we haven't said the name yet so we add it to
 						// the list
 						player.setQuest(QUEST_SLOT, npcDoneText[0]
-								+ ":" + npcDoneText[1] + ";" + text);
+								+ ":" + npcDoneText[1] + ";" + item);
 						reply = "Thank you.";
-					} else if (!looking.contains(text)) {
+					} else if (!looking.contains(item)) {
 						// we have said it was a valid name but haven't
 						// met them
 						reply = "I don't believe you've spoken with any spirit of that name.";
-					} else if (!missing.contains(text)
-							&& said.contains(text)) {
+					} else if (!missing.contains(item)
+							&& said.contains(item)) {
 						// we have said the name so we are stupid!
 						reply = "You've told me that name already, thanks.";
 					}

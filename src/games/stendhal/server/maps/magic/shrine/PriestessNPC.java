@@ -2,6 +2,7 @@ package games.stendhal.server.maps.magic.shrine;
 
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
+import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
@@ -50,8 +51,7 @@ public class PriestessNPC implements ZoneConfigurator {
 			protected void createDialog() {
 			        addGreeting(null, new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, String text,
-							SpeakerNPC engine) {
+					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 							engine.say("Hello, " + player.getTitle() + ".");
 
 						}

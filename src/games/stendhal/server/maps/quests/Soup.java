@@ -5,6 +5,7 @@ import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
@@ -115,7 +116,7 @@ public class Soup extends AbstractQuest {
 			ConversationPhrases.GREETING_MESSAGES,
 			new SpeakerNPC.ChatCondition() {
 				@Override
-				public boolean fire(Player player, String text, SpeakerNPC npc) {
+				public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
 					// we don't set quest slot to done so we can't check
 					// this
 					// return player.isQuestCompleted(QUEST_SLOT);
@@ -146,8 +147,7 @@ public class Soup extends AbstractQuest {
 			ConversationPhrases.GREETING_MESSAGES,
 			new SpeakerNPC.ChatCondition() {
 				@Override
-				public boolean fire(Player player, String text,
-						SpeakerNPC npc) {
+				public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
 					// we don't set quest slot to done so we can't check
 					// this
 					// return player.isQuestCompleted(QUEST_SLOT);
@@ -168,7 +168,7 @@ public class Soup extends AbstractQuest {
 			}, ConversationStates.ATTENDING, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, String text, SpeakerNPC npc) {
+				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 					String[] tokens = player.getQuest(QUEST_SLOT).split(";");
 					// minutes -> milliseconds
 					long delay = REQUIRED_MINUTES * 60 * 1000;
@@ -187,7 +187,7 @@ public class Soup extends AbstractQuest {
 			ConversationStates.QUEST_OFFERED, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, String text, SpeakerNPC npc) {
+				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 					if (!(player.hasQuest(QUEST_SLOT) && player.getQuest(
 							QUEST_SLOT).startsWith("done"))) {
 						npc.say("My special soup has a magic touch. "
@@ -206,7 +206,7 @@ public class Soup extends AbstractQuest {
 			ConversationStates.QUEST_OFFERED, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, String text, SpeakerNPC npc) {
+				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 					List<String> needed = missingFood(player, true);
 					npc.say("I need "
 							+ Grammar.quantityplnoun(needed.size(),
@@ -277,7 +277,7 @@ public class Soup extends AbstractQuest {
 			ConversationStates.QUESTION_1, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, String text, SpeakerNPC npc) {
+				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 					List<String> needed = missingFood(player, true);
 					npc.say("I still need "
 							+ Grammar.quantityplnoun(needed.size(),
@@ -296,19 +296,16 @@ public class Soup extends AbstractQuest {
 			ConversationStates.QUESTION_1, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, String text,
-						SpeakerNPC npc) {
-					if (text != null) {
-						text = text.toLowerCase();
-					}
+				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					String food = sentence.toString();
 					List<String> missing = missingFood(player, false);
-					if (missing.contains(text)) {
-						if (player.drop(text)) {
+					if (missing.contains(food)) {
+						if (player.drop(food)) {
 							// register ingredient as done
 							String doneText = player
 									.getQuest(QUEST_SLOT);
 							player.setQuest(QUEST_SLOT, doneText + ";"
-									+ text);
+									+ food);
 							// check if the player has brought all Food
 							missing = missingFood(player, true);
 							if (missing.size() > 0) {
@@ -340,7 +337,7 @@ public class Soup extends AbstractQuest {
 							}
 						} else {
 							npc.say("Don't take me for a fool, traveller. You don't have "
-								+ Grammar.a_noun(text)
+								+ Grammar.a_noun(food)
 								+ " with you.");
 						}
 					} else {

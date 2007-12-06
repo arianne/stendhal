@@ -3,6 +3,7 @@ package games.stendhal.server.maps.semos.plains;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPCFactory;
 import games.stendhal.server.entity.player.Player;
@@ -185,15 +186,15 @@ public class ExperiencedWarriorNPC extends SpeakerNPCFactory {
 				ConversationStates.ATTENDING, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, String text,
-							SpeakerNPC speakerNPC) {
+					public void fire(Player player, Sentence sentence, SpeakerNPC speakerNPC) {
 						EntityManager manager = StendhalRPWorld.get().getRuleManager().getEntityManager();
-						DefaultCreature creature = manager.getDefaultCreature(text);
+						String creatureName = sentence.toString();
+						DefaultCreature creature = manager.getDefaultCreature(creatureName);
 						if (creature == null) {
 							speakerNPC.say("I have never heard of such a creature! Please tell the name again.");
 							speakerNPC.setCurrentState(ConversationStates.QUESTION_1);
 						} else {
-							stateInfo.setCreatureName(text);
+							stateInfo.setCreatureName(creatureName);
 							if (INFORMATION_BASE_COST > 0) {
 								int informationCost = getCost(player, creature);
 								stateInfo.setInformationCost(informationCost);
@@ -221,8 +222,7 @@ public class ExperiencedWarriorNPC extends SpeakerNPCFactory {
 				ConversationStates.ATTENDING, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, String text,
-							SpeakerNPC speakerNPC) {
+					public void fire(Player player, Sentence sentence, SpeakerNPC speakerNPC) {
 						if (stateInfo.getCreatureName() != null) {
 							if (player.drop("money",
 									stateInfo.getInformationCost())) {

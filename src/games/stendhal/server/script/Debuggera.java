@@ -4,6 +4,7 @@ import games.stendhal.common.Direction;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
@@ -25,7 +26,6 @@ import marauroa.common.game.IRPZone;
 import org.apache.log4j.Logger;
 
 
-
 /**
  * code for abstract/int_admin_playground which creates a NPC to help testers.
  *
@@ -37,7 +37,7 @@ public class Debuggera extends ScriptImpl {
 
 	class AdminCondition extends SpeakerNPC.ChatCondition {
 		@Override
-		public boolean fire(Player player, String text, SpeakerNPC engine) {
+		public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
 			return (player.getAdminLevel() >= 5000);
 		}
 	}
@@ -50,7 +50,7 @@ public class Debuggera extends ScriptImpl {
 		}
 
 		@Override
-		public void fire(Player player, String text, SpeakerNPC engine) {
+		public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 			// TODO        debuggeraEnabled = enabled;
 			if (enabled) {
 				engine.say("Thanks.");
@@ -68,7 +68,7 @@ public class Debuggera extends ScriptImpl {
 		}
 
 		@Override
-		public void fire(Player player, String text, SpeakerNPC engine) {
+		public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 
 			// list quest
 			StringBuffer sb = new StringBuffer("Your quest states are:");
@@ -78,17 +78,14 @@ public class Debuggera extends ScriptImpl {
 			}
 
 			// change quest
-			int pos = text.indexOf(" ");
+			String quest = sentence.getObjectName();
+			int pos = quest.indexOf("=");
 			if (pos > -1) {
-				String quest = text.substring(pos + 1);
-				pos = quest.indexOf("=");
-				if (pos > -1) {
-					String value = quest.substring(pos + 1);
-					quest = quest.substring(0, pos);
-					sb.append("\r\n\r\nSet \"" + quest + "\" to \"" + value + "\"");
-					sandbox.addGameEvent(player.getName(), "alter_quest", Arrays.asList(player.getName(), quest, value));
-					player.setQuest(quest.trim(), value.trim());
-				}
+				String value = quest.substring(pos + 1);
+				quest = quest.substring(0, pos);
+				sb.append("\r\n\r\nSet \"" + quest + "\" to \"" + value + "\"");
+				sandbox.addGameEvent(player.getName(), "alter_quest", Arrays.asList(player.getName(), quest, value));
+				player.setQuest(quest.trim(), value.trim());
 			}
 			engine.say(sb.toString());
 		}
@@ -103,8 +100,8 @@ public class Debuggera extends ScriptImpl {
 		}
 
 		@Override
-		public void fire(Player player, String text, SpeakerNPC engine) {
-			TurnNotifier.get().notifyInTurns(0, new TeleportScriptAction(player, engine, text, sandbox));
+		public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+			TurnNotifier.get().notifyInTurns(0, new TeleportScriptAction(player, engine, sentence, sandbox));
 		}
 	}
 
@@ -115,7 +112,7 @@ public class Debuggera extends ScriptImpl {
 
 		private SpeakerNPC engine;
 
-//		private String text;
+//		private Sentence sentence;
 //
 //		private int destIdx = 0;
 
@@ -129,10 +126,10 @@ public class Debuggera extends ScriptImpl {
 
 		// syntax-error:  private final String[] MAGIC_PHRASE = {"Across the land,", "Across the sea.", "Friends forever,", "We will always be."};
 
-		public TeleportScriptAction(Player player, SpeakerNPC engine, String text, ScriptingSandbox sandbox) {
+		public TeleportScriptAction(Player player, SpeakerNPC engine, Sentence sentence, ScriptingSandbox sandbox) {
 			this.player = player;
 			this.engine = engine;
-			//this.text = text;
+			//this.sentence = sentence;
 			this.sandbox = sandbox;
 		}
 
@@ -227,7 +224,7 @@ public class Debuggera extends ScriptImpl {
 		}
 
 		@Override
-		public void fire(Player player, String text, SpeakerNPC engine) {
+		public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 			this.player = player;
 			counter = 0;
 			player.sendPrivateText("Let's start");

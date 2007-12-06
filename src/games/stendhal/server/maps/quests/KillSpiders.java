@@ -1,12 +1,10 @@
 package games.stendhal.server.maps.quests;
 
-import java.util.LinkedList;
-import java.util.List;
-
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPC.ChatAction;
 import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
@@ -16,6 +14,9 @@ import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.action.StartRecordingKillsAction;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.player.Player;
+
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * QUEST: Kill Spiders
@@ -42,8 +43,7 @@ public class KillSpiders extends AbstractQuest {
 				ConversationStates.QUEST_OFFERED, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, String text,
-							SpeakerNPC engine) {
+					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						if (!player.hasQuest(QUEST_SLOT)
 								|| player.getQuest(QUEST_SLOT).equals("rejected")) {
 							engine.say("Have you ever been to the basement of the school? The room is full of spiders and some could be dangerous, since the students do experiments! Would you like to help me with this 'little' problem?");
@@ -99,7 +99,7 @@ public class KillSpiders extends AbstractQuest {
 				ConversationStates.ATTENDING, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, String text, SpeakerNPC engine) {
+					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						if (player.hasKilled("spider")
 								&& player.hasKilled("poisonous_spider")
 								&& player.hasKilled("giant_spider")) {

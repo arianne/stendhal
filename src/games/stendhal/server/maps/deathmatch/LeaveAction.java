@@ -2,6 +2,7 @@ package games.stendhal.server.maps.deathmatch;
 
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 
@@ -14,7 +15,7 @@ import games.stendhal.server.entity.player.Player;
 public class LeaveAction extends SpeakerNPC.ChatAction {
 
 	@Override
-	public void fire(Player player, String text, SpeakerNPC engine) {
+	public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 		DeathmatchState deathmatchState = DeathmatchState.createFromQuestString(player.getQuest("deathmatch"));
 
 		if (deathmatchState.getLifecycleState() == DeathmatchLifecycle.DONE) {

@@ -4,6 +4,7 @@ import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
@@ -70,7 +71,7 @@ public class SuntanCreamForZara extends AbstractQuest {
 			ConversationStates.QUEST_OFFERED, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, String text, SpeakerNPC npc) {
+				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 					if (player.hasQuest(QUEST_SLOT)) {
 						if (player.isQuestCompleted(QUEST_SLOT)) {
 							npc.say("I don't have a new task for you. But thank you for the suntan cream. I feel my skin is getting better already!");
@@ -132,7 +133,7 @@ public class SuntanCreamForZara extends AbstractQuest {
 			ConversationStates.QUEST_ITEM_BROUGHT, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, String text, SpeakerNPC npc) {
+				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 					if (player.isEquipped("suntan_cream")) {
 						npc.say("Great! You got the suntan cream! Is it for me?");
 					} else {
@@ -152,7 +153,7 @@ public class SuntanCreamForZara extends AbstractQuest {
 			"Thank you! I feel much better immediately! Here, take this key to my row house in Ados. Feel at home as long as I'm still here!",
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, String text, SpeakerNPC npc) {
+				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 					player.drop("suntan_cream");
 					Item zaraKey = StendhalRPWorld.get()
 							.getRuleManager().getEntityManager()

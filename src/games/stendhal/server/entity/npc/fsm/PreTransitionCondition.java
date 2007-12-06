@@ -1,5 +1,6 @@
 package games.stendhal.server.entity.npc.fsm;
 
+import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 
@@ -18,5 +19,5 @@ public interface PreTransitionCondition {
 	 * @param engine the NPC doing the transition
 	 * @return true, if the transition is possible, false otherwise
 	 */
-	boolean fire(Player player, String text, SpeakerNPC engine);
+	boolean fire(Player player, Sentence sentence, SpeakerNPC engine);
 }

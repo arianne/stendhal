@@ -3,6 +3,7 @@ package games.stendhal.server.entity.npc.condition;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import games.stendhal.server.entity.npc.ConversationParser;
 import games.stendhal.server.entity.npc.SpeakerNPC.ChatCondition;
 
 import org.junit.After;
@@ -31,10 +32,12 @@ public class AndConditionTest {
 	@Test
 	public void selftest() throws Exception {
 		assertTrue("true  delivers true", trueCondition.fire(
-				PlayerTestHelper.createPlayer(), "testAndConditionText",
+				PlayerTestHelper.createPlayer(),
+				ConversationParser.parse("testAndConditionText"),
 				SpeakerNPCTestHelper.createSpeakerNPC()));
 		assertFalse("falscondition delivers false", falsecondition.fire(
-				PlayerTestHelper.createPlayer(), "testAndConditionText",
+				PlayerTestHelper.createPlayer(),
+				ConversationParser.parse("testAndConditionText"),
 				SpeakerNPCTestHelper.createSpeakerNPC()));
 	}
 
@@ -67,28 +70,28 @@ public class AndConditionTest {
 	public void testFire() throws Throwable {
 
 		assertTrue("empty And is true", new AndCondition().fire(
-				PlayerTestHelper.createPlayer(), "testAndConditionText",
+				PlayerTestHelper.createPlayer(), ConversationParser.parse("testAndConditionText"),
 				SpeakerNPCTestHelper.createSpeakerNPC()));
 
 		AndCondition and = new AndCondition(trueCondition);
 		assertTrue("And with one Allwaystrue is true", and.fire(
-				PlayerTestHelper.createPlayer(), "testAndConditionText",
+				PlayerTestHelper.createPlayer(), ConversationParser.parse("testAndConditionText"),
 				SpeakerNPCTestHelper.createSpeakerNPC()));
 
 		and = new AndCondition(trueCondition, falsecondition);
 		assertFalse("And with one true and on false is false", and.fire(
-				PlayerTestHelper.createPlayer(), "testAndConditionText",
+				PlayerTestHelper.createPlayer(), ConversationParser.parse("testAndConditionText"),
 				SpeakerNPCTestHelper.createSpeakerNPC()));
 
 		and = new AndCondition(falsecondition, trueCondition);
 		assertFalse("And with one false and on true is false", and.fire(
-				PlayerTestHelper.createPlayer(), "testAndConditionText",
+				PlayerTestHelper.createPlayer(), ConversationParser.parse("testAndConditionText"),
 				SpeakerNPCTestHelper.createSpeakerNPC()));
 
 		and = new AndCondition(new AdminCondition());
 
 		assertFalse("And with one false is false", and.fire(
-				PlayerTestHelper.createPlayer(), "testAndConditionText",
+				PlayerTestHelper.createPlayer(), ConversationParser.parse("testAndConditionText"),
 				SpeakerNPCTestHelper.createSpeakerNPC()));
 	}
 

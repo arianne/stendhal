@@ -327,14 +327,11 @@ public class SpeakerNPC extends NPC {
 	}
 
 	public abstract static class ChatAction implements PostTransitionAction {
-
-		public abstract void fire(Player player, String text, SpeakerNPC npc);
+		public abstract void fire(Player player, Sentence sentence, SpeakerNPC npc);
 	}
 
-	public abstract static class ChatCondition implements
-			PreTransitionCondition {
-
-		public abstract boolean fire(Player player, String text, SpeakerNPC npc);
+	public abstract static class ChatCondition implements PreTransitionCondition {
+		public abstract boolean fire(Player player, Sentence sentence, SpeakerNPC npc);
 	}
 
 	@Override
@@ -478,7 +475,7 @@ public class SpeakerNPC extends NPC {
 				}
 
 				if (waitAction != null) {
-					waitAction.fire(player, text, this);
+					waitAction.fire(player, ConversationParser.parse(text), this);
 				}
 			}
 			return true;
@@ -522,7 +519,7 @@ public class SpeakerNPC extends NPC {
 		addWaitMessage(null, new SpeakerNPC.ChatAction() {
 
 			@Override
-			public void fire(Player player, String text, SpeakerNPC npc) {
+			public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 				npc.say("Please wait, " + player.getTitle()
 						+ "! I am still attending to "
 						+ npc.getAttending().getTitle() + ".");
@@ -566,7 +563,7 @@ public class SpeakerNPC extends NPC {
 		addWaitMessage(null, new SpeakerNPC.ChatAction() {
 
 			@Override
-			public void fire(Player player, String text, SpeakerNPC npc) {
+			public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 				npc.say("Please wait, " + player.getTitle()
 						+ "! I am still attending to "
 						+ npc.getAttending().getTitle() + ".");
@@ -604,7 +601,7 @@ public class SpeakerNPC extends NPC {
 				ConversationStates.IDLE, text, new ChatAction() {
 
 					@Override
-					public void fire(Player player, String text, SpeakerNPC npc) {
+					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 						npc.onGoodbye(player);
 					}
 

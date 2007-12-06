@@ -5,6 +5,7 @@ import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.pathfinder.FixedPath;
@@ -55,7 +56,7 @@ public class BattleArenaRecruiterNPC implements ZoneConfigurator {
 				        new SpeakerNPC.ChatAction() {
 
 					        @Override
-					        public void fire(Player player, String text, SpeakerNPC engine) {
+					        public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						        if (player.getLevel() >= 20) {
 							        StendhalRPZone zone = StendhalRPWorld.get().getZone("int_fado_battle_arena");
 							        player.teleport(zone, 33, 26, Direction.DOWN, null);

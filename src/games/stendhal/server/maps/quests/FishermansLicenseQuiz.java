@@ -5,6 +5,7 @@ import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
@@ -123,7 +124,7 @@ public class FishermansLicenseQuiz extends AbstractQuest {
 				ConversationStates.ATTENDING, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, String text, SpeakerNPC npc) {
+					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 						if (player.isQuestCompleted(FishermansLicenseCollector.QUEST_SLOT)) {
 							npc.say("I don't have a task for you, and you already have a fisherman's license.");
 						} else {
@@ -136,7 +137,7 @@ public class FishermansLicenseQuiz extends AbstractQuest {
 				ConversationStates.ATTENDING, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, String text, SpeakerNPC npc) {
+					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 						if (player.isQuestCompleted(FishermansLicenseCollector.QUEST_SLOT)) {
 							npc.say("You have already got your fisherman's license.");
 						} else if (player.isQuestCompleted(QUEST_SLOT)) {
@@ -167,7 +168,7 @@ public class FishermansLicenseQuiz extends AbstractQuest {
 				"Fine. The first question is: What kind of fish is this?",
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, String text, SpeakerNPC npc) {
+					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 						startQuiz();
 					}
 				});
@@ -176,8 +177,8 @@ public class FishermansLicenseQuiz extends AbstractQuest {
 				ConversationStates.ATTENDING, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, String text, SpeakerNPC npc) {
-						if (text.equals(getCurrentSpecies())) {
+					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+						if (sentence.toString().equals(getCurrentSpecies())) {
 							if (currentSpeciesNo == speciesList.size() - 1) {
 								npc.say("Correct! Congratulations, you have passed the first part of the #exam.");
 								cleanUpTable();

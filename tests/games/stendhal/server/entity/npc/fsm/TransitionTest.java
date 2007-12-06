@@ -4,7 +4,9 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
+import games.stendhal.server.entity.npc.ConversationParser;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPC.ChatCondition;
 import games.stendhal.server.entity.npc.condition.AlwaysTrueCondition;
@@ -37,32 +39,32 @@ public class TransitionTest {
 	public final void testIsAbsoluteJump() {
 		Transition t = new Transition(ConversationStates.ANY, "trigger", null,
 				0, null, null);
-		assertTrue(t.matchesWild("trigger"));
+		assertTrue(t.matchesWild(ConversationParser.parse("trigger")));
 
 		t = new Transition(ConversationStates.ANY, "TRiggER", null, 0, null,
 				null);
-		assertTrue(t.matchesWild("trigger"));
+		assertTrue(t.matchesWild(ConversationParser.parse("trigger")));
 
 		t = new Transition(-2, "Trigger", null, 0, null, null);
-		assertFalse(t.matchesWild("trigger"));
+		assertFalse(t.matchesWild(ConversationParser.parse("trigger")));
 	}
 
 	@Test
 	public final void testMatches() {
 		Transition t = new Transition(-2, "trigger", null, 0, null, null);
-		assertTrue(t.matches(-2, "trigger"));
-		assertFalse(t.matches(0, "trigger"));
-		assertFalse(t.matches(0, null));
-		assertFalse(t.matches(-2, null));
+		assertTrue(t.matches(-2, ConversationParser.parse("trigger")));
+		assertFalse(t.matches(0, ConversationParser.parse("trigger")));
+		assertFalse(t.matches(0, ConversationParser.parse(null)));
+		assertFalse(t.matches(-2, ConversationParser.parse(null)));
 
 	}
 
 	@Test
 	public final void testMatchesBeginning() {
 		Transition t = new Transition(-2, "trigger", null, 0, null, null);
-		assertTrue(t.matchesBeginning(-2, "triggerstartisok"));
-		assertFalse(t.matchesBeginning(-2, "Nottriggerstartisok"));
-		assertFalse(t.matchesBeginning(0, "triggerstartisok"));
+		assertTrue(t.matchesBeginning(-2, ConversationParser.parse("triggerstartisok")));
+		assertFalse(t.matchesBeginning(-2, ConversationParser.parse("Nottriggerstartisok")));
+		assertFalse(t.matchesBeginning(0, ConversationParser.parse("triggerstartisok")));
 		// assertFalse(t.matchesBeginning(-2, null)); TODO : throws NPE
 	}
 
@@ -88,7 +90,7 @@ public class TransitionTest {
 		assertNull(t.getAction());
 		PostTransitionAction postTransitionAction = new PostTransitionAction() {
 
-			public void fire(Player player, String text, SpeakerNPC engine) {
+			public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 				// do nothing
 
 			}
@@ -105,7 +107,7 @@ public class TransitionTest {
 		ChatCondition cond = new ChatCondition() {
 
 			@Override
-			public boolean fire(Player player, String text, SpeakerNPC npc) {
+			public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
 				return false;
 			}
 		};

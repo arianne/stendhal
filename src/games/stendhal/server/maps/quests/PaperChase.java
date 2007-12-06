@@ -1,6 +1,7 @@
 package games.stendhal.server.maps.quests;
 
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 
@@ -38,7 +39,7 @@ public class PaperChase extends AbstractQuest {
 		}
 
 		@Override
-		public void fire(Player player, String text, SpeakerNPC engine) {
+		public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 			String state = points[idx];
 			String next = points[idx + 1];
 			String questState = player.getQuest(QUEST_SLOT);
@@ -54,11 +55,9 @@ public class PaperChase extends AbstractQuest {
 			String nextNPC = st.nextToken();
 			String startTime = st.nextToken();
 
-			// is the player suposed to speak to another NPC?
+			// is the player supposed to speak to another NPC?
 			if (!nextNPC.equals(state)) {
-				engine
-						.say("Sorry, you are suposed to talk to " + nextNPC
-								+ ".");
+				engine.say("Sorry, you are suposed to talk to " + nextNPC + ".");
 				return;
 			}
 

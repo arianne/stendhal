@@ -3,6 +3,7 @@ package games.stendhal.server.maps.semos.mines;
 import games.stendhal.common.Direction;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
+import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 
@@ -35,8 +36,7 @@ public class DwarfGuardianNPC implements ZoneConfigurator {
 			protected void createDialog() {
 				addGreeting(null, new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, String text,
-							SpeakerNPC engine) {
+					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						String reply = "There is something huge there! Everyone is very nervous. ";
 						if (player.getLevel() < 60) {
 							reply += "You are too weak to enter there.";
@@ -52,7 +52,7 @@ public class DwarfGuardianNPC implements ZoneConfigurator {
 
 		npc.addInitChatMessage(null, new SpeakerNPC.ChatAction() {
 			@Override
-			public void fire(Player player, String text, SpeakerNPC engine) {
+			public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 				if (!player.hasQuest("PhalkFirstChat")) {
 					player.setQuest("PhalkFirstChat", "done");
 					player.addXP(500);

@@ -2,6 +2,7 @@ package games.stendhal.server.maps.quests.logic;
 
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.DecreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
@@ -117,7 +118,7 @@ public class BringListOfItemsQuestLogic {
 				null, ConversationStates.QUEST_OFFERED, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, String text, SpeakerNPC engine) {
+					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						List<String> missingItems = getListOfStillMissingItems(player, false);
 						engine.say(concreteQuest.askForMissingItems(missingItems));
 					}
@@ -151,7 +152,7 @@ public class BringListOfItemsQuestLogic {
 			ConversationStates.QUESTION_1, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, String text, SpeakerNPC engine) {
+				public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 					List<String> missingItems = getListOfStillMissingItems(player, true);
 					engine.say(concreteQuest.askForMissingItems(missingItems));
 				}
@@ -170,7 +171,7 @@ public class BringListOfItemsQuestLogic {
 		concreteQuest.getNPC().add(ConversationStates.QUESTION_1, ConversationPhrases.NO_MESSAGES, null,
 			ConversationStates.IDLE, null, new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, String text, SpeakerNPC engine) {
+				public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 					List<String> missingItems = getListOfStillMissingItems(player, false);
 					engine.say(concreteQuest.respondToPlayerSayingHeHasNoItems(missingItems));
 				}
@@ -202,26 +203,28 @@ public class BringListOfItemsQuestLogic {
 			ConversationStates.QUESTION_1, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, String text, SpeakerNPC engine) {
-					if (!concreteQuest.getNeededItems().contains(text)) {
+				public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+					String item = sentence.toString();
+
+					if (!concreteQuest.getNeededItems().contains(item)) {
 						engine.say(concreteQuest.respondToOfferOfNotNeededItem());
 						return;
 					}
 
 					List<String> missing = getListOfStillMissingItems(player, false);
-					if (!missing.contains(text)) {
+					if (!missing.contains(item)) {
 						engine.say(concreteQuest.respondToOfferOfNotMissingItem());
 						return;
 					}
 
-					if (!player.drop(text)) {
-						engine.say(concreteQuest.respondToOfferOfNotExistingItem(text));
+					if (!player.drop(item)) {
+						engine.say(concreteQuest.respondToOfferOfNotExistingItem(item));
 						return;
 					}
 
 					// register weapon as done
 					String doneText = player.getQuest(concreteQuest.getSlotName());
-					player.setQuest(concreteQuest.getSlotName(), doneText + ";" + text);
+					player.setQuest(concreteQuest.getSlotName(), doneText + ";" + item);
 					// check if the player has brought all weapons
 					missing = getListOfStillMissingItems(player, true);
 					if (missing.size() > 0) {

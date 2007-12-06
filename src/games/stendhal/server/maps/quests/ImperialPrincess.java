@@ -2,6 +2,7 @@ package games.stendhal.server.maps.quests;
 
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
@@ -55,7 +56,7 @@ public class ImperialPrincess extends AbstractQuest {
 				ConversationStates.ATTENDING, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, String text, SpeakerNPC engine) {
+					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						if (player.isQuestCompleted(QUEST_SLOT)) {
 							engine.say("The trapped creatures looked much better last time I dared venture down to the basement, thank you!");
 
@@ -75,8 +76,7 @@ public class ImperialPrincess extends AbstractQuest {
 				ConversationStates.QUEST_OFFERED, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, String text,
-							SpeakerNPC engine) {
+					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						engine.say("I need "
 								+ Integer.toString(1 + player.getLevel()
 										/ ARANDULA_DIVISOR)
@@ -98,7 +98,7 @@ public class ImperialPrincess extends AbstractQuest {
 				"Thank you! We must be subtle about this, I do not want the scientists suspecting I interfere. When you return with the items, please say codeword #herbs.",
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, String text, SpeakerNPC engine) {
+					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						// store the current level incase it increases before
 						// she see them next.
 						player.setQuest(QUEST_SLOT, Integer.toString(player.getLevel()));
@@ -129,7 +129,7 @@ public class ImperialPrincess extends AbstractQuest {
 				null, ConversationStates.ATTENDING, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, String text, SpeakerNPC engine) {
+					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						int required_arandula = 1
 								+ Integer.valueOf(player.getQuest(QUEST_SLOT))
 								/ ARANDULA_DIVISOR;
