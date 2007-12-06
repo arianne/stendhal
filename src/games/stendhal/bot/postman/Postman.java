@@ -24,12 +24,14 @@ import marauroa.common.game.RPObject;
 public class Postman implements Runnable {
 
 	private static Logger logger = Logger.getLogger(Postman.class);
-
 	private Properties messages = new Properties();
-
 	private ClientFramework clientManager;
-
 	private PostmanIRC postmanIRC;
+	
+	private static final String greeting = "Hi, I am the postman. How can I #help you?";
+	private static final String intro = "I store messages for offline players and deliver them on login.\n";
+	private static final String helpMessage = "Usage:\n/msg postman help \t This help-message\n/msg postman tell #player #message \t I will deliver your #message when #player logs in.";
+
 
 	/**
 	 * Creates a new postman
@@ -65,73 +67,13 @@ public class Postman implements Runnable {
 	 *
 	 * @param object
 	 */
-	public void processTalkEvent(RPObject object) {
+	public void processPublicTalkEvent(RPObject object) {
 		try {
 			if (object == null) {
 				return;
 			}
-			String greeting = "Hi, I am the postman. How can I #help you?";
-			String intro = "I store messages for offline players and deliver them on login.\n";
-			String helpMessage = "Usage:\n/msg postman help \t This help-message\n/msg postman tell #player #message \t I will deliver your #message when #player logs in.";
 			if (object.getRPClass().getName().equals("player") && object.has("name")) {
-
-				if (object.has("private_text")) {
-					if (object.get("name").equals("postman")) {
-						String text = object.get("private_text");
-
-						java.text.Format formatter = new java.text.SimpleDateFormat("[HH:mm] ");
-						String dateString = formatter.format(new Date());
-						System.err.println(dateString + text);
-
-						StringTokenizer st = new StringTokenizer(text, " ");
-						String from = st.nextToken();
-						String arianneCmd = st.nextToken(); // tells
-						st.nextToken(); // you:
-						//System.out.println(text);
-
-						// forward position of players to irc
-						// disabled because it is really annoying
-						/*if (from.endsWith(":")) {
-						 postmanIRC.sendMessage("#arianne-support", text);
-						 }*/
-						if (arianneCmd.equals("tells")) {
-							// Command was send by a player 
-							String cmd = st.nextToken(); // cmd
-							if (cmd.startsWith("/")) {
-								cmd = cmd.substring(1);
-							}
-							if (cmd.equalsIgnoreCase("tell") || cmd.equalsIgnoreCase("msg")
-							        || cmd.equalsIgnoreCase("/tell") || cmd.equalsIgnoreCase("/msg")) {
-								onTell(from, st);
-							} else if (cmd.equalsIgnoreCase("hi")) {
-								tell(from, greeting);
-							} else if (cmd.equalsIgnoreCase("help") || cmd.equalsIgnoreCase("info")
-							        || cmd.equalsIgnoreCase("job") || cmd.equalsIgnoreCase("letter")
-							        || cmd.equalsIgnoreCase("offer") || cmd.equalsIgnoreCase("parcel")) {
-								tell(from, intro + helpMessage);
-							} else if (cmd.equalsIgnoreCase("where")) {
-								onWhere();
-							} else {
-								tell(from, "Sorry, I did not understand you. (Did you forget the \"tell\"?)\n"
-								        + helpMessage);
-							}
-						} else if (arianneCmd.equals("Players")) {
-							onWhoResponse(st);
-						} else if (arianneCmd.equalsIgnoreCase("shouts:")) {
-							postmanIRC.sendMessage("#arianne", text);
-							postmanIRC.sendMessage("#arianne-support", text);
-						} else if (arianneCmd.equalsIgnoreCase("asks") || arianneCmd.equalsIgnoreCase("answers")
-						        || arianneCmd.equalsIgnoreCase("answer")) {
-							// answer is a typo in old server
-							postmanIRC.sendMessage("#arianne-support", text);
-							if (arianneCmd.equalsIgnoreCase("asks")) {
-								dumpPlayerPosition();
-							}
-						}
-					}
-
-					// Public message
-				} else if (object.has("text")) {
+				if (object.has("text")) {
 					if (!object.get("name").equals("postman")) {
 						String text = object.get("text");
 						String playerName = "";
@@ -159,6 +101,74 @@ public class Postman implements Runnable {
 						}
 					}
 				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			logger.error(e, e);
+		}
+	}
+
+	/**
+	 * Processes a talk event.
+	 *
+	 * @param object RPObject
+	 * @param texttype texttype
+	 * @param text text
+	 */
+	public void processPrivateTalkEvent(RPObject object, String texttype, String text) {
+
+		try {
+			if (object == null) {
+				return;
+			}
+			if (object.getRPClass().getName().equals("player") && object.has("name")) {
+				if (object.get("name").equals("postman")) {
+
+					java.text.Format formatter = new java.text.SimpleDateFormat("[HH:mm] ");
+					String dateString = formatter.format(new Date());
+					System.err.println(dateString + text);
+
+					StringTokenizer st = new StringTokenizer(text, " ");
+					String from = st.nextToken();
+					String arianneCmd = st.nextToken(); // tells
+					st.nextToken(); // you:
+
+					if (arianneCmd.equals("tells")) {
+						// Command was send by a player 
+						String cmd = st.nextToken(); // cmd
+						if (cmd.startsWith("/")) {
+							cmd = cmd.substring(1);
+						}
+						if (cmd.equalsIgnoreCase("tell") || cmd.equalsIgnoreCase("msg")
+						        || cmd.equalsIgnoreCase("/tell") || cmd.equalsIgnoreCase("/msg")) {
+							onTell(from, st);
+						} else if (cmd.equalsIgnoreCase("hi")) {
+							tell(from, greeting);
+						} else if (cmd.equalsIgnoreCase("help") || cmd.equalsIgnoreCase("info")
+						        || cmd.equalsIgnoreCase("job") || cmd.equalsIgnoreCase("letter")
+						        || cmd.equalsIgnoreCase("offer") || cmd.equalsIgnoreCase("parcel")) {
+							tell(from, intro + helpMessage);
+						} else if (cmd.equalsIgnoreCase("where")) {
+							onWhere();
+						} else {
+							tell(from, "Sorry, I did not understand you. (Did you forget the \"tell\"?)\n"
+							        + helpMessage);
+						}
+					} else if (arianneCmd.equals("Players")) {
+						onWhoResponse(st);
+					} else if (arianneCmd.equalsIgnoreCase("shouts:")) {
+						postmanIRC.sendMessage("#arianne", text);
+						postmanIRC.sendMessage("#arianne-support", text);
+					} else if (arianneCmd.equalsIgnoreCase("asks") || arianneCmd.equalsIgnoreCase("answers")
+					        || arianneCmd.equalsIgnoreCase("answer")) {
+						// answer is a typo in old server
+						postmanIRC.sendMessage("#arianne-support", text);
+						if (arianneCmd.equalsIgnoreCase("asks")) {
+							dumpPlayerPosition();
+						}
+					}
+				}
+
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

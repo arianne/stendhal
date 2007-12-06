@@ -22,6 +22,7 @@ import java.util.Map;
 import marauroa.client.TimeoutException;
 import marauroa.client.net.IPerceptionListener;
 import marauroa.client.net.PerceptionHandler;
+import marauroa.common.game.RPEvent;
 import marauroa.common.game.RPObject;
 import marauroa.common.net.message.MessageS2CPerception;
 import marauroa.common.net.message.TransferContent;
@@ -135,10 +136,14 @@ public class PostmanMain extends Thread {
 				lastPerceptionTimestamp = System.currentTimeMillis();
 				try {
 					handler.apply(message, world_objects);
-
 					for (RPObject object : world_objects.values()) {
-						if (object.has("private_text") || object.has("text")) {
-							postman.processTalkEvent(object);
+						for (RPEvent event : object.events()) {
+							if (event.getName().equals("private_text")) {
+								postman.processPrivateTalkEvent(object, event.get("texttype"), event.get("text"));
+							}
+						}
+						if (object.has("text")) {
+							postman.processPublicTalkEvent(object);
 						}
 					}
 				} catch (Exception e) {
