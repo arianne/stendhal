@@ -13,6 +13,7 @@ import marauroa.common.game.RPObject;
 import org.apache.log4j.Logger;
 
 public class CommandCenter {
+	private static final UnknownAction UNKNOWN_ACTION = new UnknownAction();
 	private static ConcurrentHashMap<String, ActionListener> actionsMap;
 	private static Logger logger = Logger.getLogger(CommandCenter.class);
 
@@ -66,8 +67,7 @@ public class CommandCenter {
 		try {
 
 			Player player = (Player) caster;
-			String type = action.get("type");
-			ActionListener actionListener = getAction(type);
+			ActionListener actionListener = getAction(action);
 			
 			actionListener.onAction(player, action);
 
@@ -77,10 +77,22 @@ public class CommandCenter {
 		}
 	}
 
+	private static ActionListener getAction(RPAction action) {
+		if (action== null){
+			return UNKNOWN_ACTION;
+		} else {
+			return getAction(action.get("type"));
+		}
+		
+	}
 	private static ActionListener getAction(String type) {
+		if (type == null) {
+			return UNKNOWN_ACTION;
+		}
+		
 		ActionListener action = getActionsMap().get(type);
 		if (action == null) {
-			return new UnknownAction();
+			return UNKNOWN_ACTION;
 		} else {
 			return action;
 		}
