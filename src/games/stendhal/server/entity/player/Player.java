@@ -1582,7 +1582,7 @@ public class Player extends RPEntity {
 			List<ConsumableItem> poisonstoRemove = new LinkedList<ConsumableItem>();
 			int sum = 0;
 			int amount = 0;
-			for (ConsumableItem poison : poisonToConsume) {
+			for (ConsumableItem poison : new LinkedList<ConsumableItem>(poisonToConsume)) {
 				if (turn % poison.getFrecuency() == 0) {
 					if (poison.consumed()) {
 						poisonstoRemove.add(poison);
