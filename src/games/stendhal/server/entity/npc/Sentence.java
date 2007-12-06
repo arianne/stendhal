@@ -101,7 +101,8 @@ public class Sentence {
 	 * return the full sentence as string
 	 * @return string
 	 */
-    public String toString()
+    @Override
+	public String toString()
     {
     	StringBuilder builder = new StringBuilder(_verb);
 
