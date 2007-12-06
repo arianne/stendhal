@@ -69,7 +69,7 @@ class SourceObject extends MoveableObject {
 			// check that this slots exists
 			if (!parent.hasSlot(slot)) {
 				player.sendPrivateText("Source " + slot + " does not exist");
-				logger.error(player.getName() + " tried to use non existing slot " + slot + " of " + parent + " as source");
+				logger.error(player.getName() + " tried to use non existing slot " + slot + " of " + parent + " as source. player zone: " + player.getZone() + " object zone: " + parent.getZone());
 				return;
 			}
 
