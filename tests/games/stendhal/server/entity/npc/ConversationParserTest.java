@@ -87,6 +87,17 @@ public class ConversationParserTest {
 	}
 
 	@Test
+	public final void testIsEmpty() {
+		Sentence sentence = ConversationParser.parse("");
+		assertFalse(sentence.getError());
+		assertTrue(sentence.isEmpty());
+
+		sentence = ConversationParser.parse("hello");
+		assertFalse(sentence.getError());
+		assertFalse(sentence.isEmpty());
+	}
+
+	@Test
 	public final void testPrepositions() {
 		Sentence sentence = ConversationParser.parse("put dish on table");
 		assertFalse(sentence.getError());
