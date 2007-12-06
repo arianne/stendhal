@@ -41,18 +41,9 @@ public class AdminLevelAction extends AdministrationAction {
 					return;
 				}
 	
-				// Check level is on the range
-				int max = 0;
-	
-				for (int level : REQUIRED_ADMIN_LEVELS.values()) {
-					if (level > max) {
-						max = level;
-					}
-				}
-	
 				// If level is beyond max level, just set it to max.
-				if (newlevel > max) {
-					newlevel = max;
+				if (newlevel > REQUIRED_ADMIN_LEVEL_FOR_SUPER) {
+					newlevel = REQUIRED_ADMIN_LEVEL_FOR_SUPER;
 				}
 	
 				int mylevel = player.getAdminLevel();
