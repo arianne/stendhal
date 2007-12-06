@@ -2,7 +2,8 @@ package games.stendhal.server.entity.npc;
 
 
 /**
- * ConversationParser returns the parsed sentence in this structure.
+ * ConversationParser returns the parsed sentence in this structure,
+ * all returned words are in lower case.
  *
  * @author martinf
  */
@@ -17,7 +18,7 @@ public class Sentence {
 
 	/**
 	 * return verb of the sentence
-	 * @return
+	 * @return verb in lower case
 	 */
     public String getVerb()
     {
@@ -95,6 +96,15 @@ public class Sentence {
     public boolean getError()
     {
     	return _error;
+    }
+
+    /**
+     * return true if the sentence is empty
+     * @return empty flag
+     */
+    public boolean isEmpty()
+    {
+    	return _verb == null;
     }
 
 	/**
