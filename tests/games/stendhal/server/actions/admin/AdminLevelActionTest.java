@@ -48,9 +48,9 @@ public class AdminLevelActionTest {
 		action.put("newlevel", "0");
 		CommandCenter.execute(pl, action);
 		assertEquals("Changed adminlevel of bob from 0 to 0.", pl
-				.get("private_text"));
+				.getPrivateText());
 		assertEquals("player changed your adminlevel from 0 to 0.", bob
-				.get("private_text"));
+				.getPrivateText());
 	}
 
 	@Test
@@ -70,7 +70,7 @@ public class AdminLevelActionTest {
 		CommandCenter.execute(pl, action);
 		assertEquals(
 				"Sorry, but you need an adminlevel of 5000 to change adminlevel.",
-				pl.get("private_text"));
+				pl.getPrivateText());
 	}
 
 	@Test
@@ -91,11 +91,11 @@ public class AdminLevelActionTest {
 		action.put("newlevel", "5001");
 		CommandCenter.execute(pl, action);
 		assertEquals("Changed adminlevel of bob from 0 to 5000.", pl
-				.get("private_text"));
+				.getPrivateText());
 		assertEquals(5000, pl.getAdminLevel());
 		assertEquals(5000, bob.getAdminLevel());
 		assertEquals("player changed your adminlevel from 0 to 5000.", bob
-				.get("private_text"));
+				.getPrivateText());
 	}
 
 	@Test
@@ -112,7 +112,7 @@ public class AdminLevelActionTest {
 		action.put("type", "adminlevel");
 		action.put("target", "bob");
 		CommandCenter.execute(pl, action);
-		assertEquals("bob has adminlevel 5000", pl.get("private_text"));
+		assertEquals("bob has adminlevel 5000", pl.getPrivateText());
 	}
 
 	@Test
@@ -131,7 +131,7 @@ public class AdminLevelActionTest {
 		action.put("newlevel", "1.3");
 		CommandCenter.execute(pl, action);
 		assertEquals("The new adminlevel needs to be an Integer", pl
-				.get("private_text"));
+				.getPrivateText());
 	}
 
 	@Test
@@ -145,7 +145,7 @@ public class AdminLevelActionTest {
 		action.put("target", "bob");
 		CommandCenter.execute(pl, action);
 	
-		assertEquals("Player \"bob\" not found", pl.get("private_text"));
+		assertEquals("Player \"bob\" not found", pl.getPrivateText());
 	}
 
 }

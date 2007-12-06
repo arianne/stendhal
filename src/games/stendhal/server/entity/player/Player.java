@@ -1999,11 +1999,11 @@ public class Player extends RPEntity {
 		return "";
 	}
 
-	@Override
-	public String get(String param) {
-		
+	
+
+	public  String getPrivateText() {
 		// TODO: remove this hack, it is just a preliminary way to get the test working again
-		if ("private_text".equals(param)) {
+	
 			StringBuilder sb = null;
 			for (RPEvent event : events()) {
 				if (event.getName().equals("private_text")) {
@@ -2019,8 +2019,6 @@ public class Player extends RPEntity {
 				return null;
 			}
 			return sb.toString();
-		}
 		
-		return super.get(param);
 	}
 }

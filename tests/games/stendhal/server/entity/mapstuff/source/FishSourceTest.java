@@ -32,7 +32,7 @@ public class FishSourceTest {
 
 		fs.onUsed(player);
 		assertEquals("You need a fishing rod for fishing.", player
-				.get("private_text"));
+				.getPrivateText());
 		player.clearEvents();
 		StackableItem fishingRod = new StackableItem("fishing_rod", "", "",
 				null);
@@ -41,7 +41,7 @@ public class FishSourceTest {
 		player.getSlot("bag").add(fishingRod);
 		assertTrue(player.isEquipped("fishing_rod"));
 		fs.onUsed(player);
-		assertEquals("You have started fishing.", player.get("private_text"));
+		assertEquals("You have started fishing.", player.getPrivateText());
 		player.clearEvents();
 		fs.onUsed(player);
 		assertFalse(player.has("private_text"));
@@ -49,7 +49,7 @@ public class FishSourceTest {
 
 		player2.getSlot("bag").add(fishingRod);
 		fs.onUsed(player2);
-		assertEquals("You have started fishing.", player2.get("private_text"));
+		assertEquals("You have started fishing.", player2.getPrivateText());
 
 	}
 

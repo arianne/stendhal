@@ -42,7 +42,7 @@ public class JailTest {
 		Player bob = PlayerTestHelper.createPlayer();
 		bob.setName("bob");
 		Jail.get().imprison("bob", policeman, 1, "test");
-		assertEquals("Player bob not found", policeman.get("private_text"));
+		assertEquals("Player bob not found", policeman.getPrivateText());
 
 	}
 
@@ -53,7 +53,7 @@ public class JailTest {
 		bob.setName("bob");
 		Jail.jailzone = new StendhalRPZone(Jail.DEFAULT_JAIL_ZONE);
 		Jail.get().imprison(bob, policeman, 1, "test");
-		assertTrue((policeman.get("private_text")).contains("Could not find a cell forbob"));
+		assertTrue((policeman.getPrivateText()).contains("Could not find a cell forbob"));
 
 	}
 
@@ -70,7 +70,7 @@ public class JailTest {
 		Jail.get().imprison(bob, policeman, 1, "test");
 		assertTrue(Jail.isInJail(bob));
 		assertEquals("You have jailed bob for 1 minutes. Reason: test.",
-				policeman.get("private_text"));
+				policeman.getPrivateText());
 		Jail.get().release(bob);
 		assertFalse(Jail.isInJail(bob));
 

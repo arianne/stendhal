@@ -94,7 +94,7 @@ public class AccessCheckingPortalTest {
 		assertTrue(listenerset[0] instanceof AccessCheckingPortal.SendMessage);
 		SendMessage sm = (SendMessage) listenerset[0];
 		sm.onTurnReached(0);
-		assertEquals("rejected", player.get("private_text"));
+		assertEquals("rejected", player.getPrivateText());
 
 	}
 
@@ -111,7 +111,7 @@ public class AccessCheckingPortalTest {
 		assertTrue(listenerset[0] instanceof AccessCheckingPortal.SendMessage);
 		SendMessage sm = (SendMessage) listenerset[0];
 		sm.onTurnReached(0);
-		assertEquals("setRejectMessage", player.get("private_text"));
+		assertEquals("setRejectMessage", player.getPrivateText());
 	}
 
 	class MockAccessCheckingPortal extends AccessCheckingPortal {

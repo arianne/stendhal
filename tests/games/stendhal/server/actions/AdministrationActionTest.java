@@ -78,7 +78,7 @@ public class AdministrationActionTest {
 		Player pl = PlayerTestHelper.createPlayer();
 		assertFalse(AdministrationAction.isPlayerAllowedToExecuteAdminCommand(
 				pl, "", true));
-		//assertEquals("Sorry, command \"\" is unknown.", pl.get("private_text"));
+		//assertEquals("Sorry, command \"\" is unknown.", pl.getPrivateText());
 		assertTrue(AdministrationAction.isPlayerAllowedToExecuteAdminCommand(
 				pl, "adminlevel", true));
 		pl.clearEvents();
@@ -86,7 +86,7 @@ public class AdministrationActionTest {
 		assertEquals(false, AdministrationAction
 				.isPlayerAllowedToExecuteAdminCommand(pl, "support", true));
 		assertEquals("Sorry, you need to be an admin to run \"support\".", pl
-				.get("private_text"));
+				.getPrivateText());
 
 		pl.put("adminlevel", 50);
 		pl.clearEvents();
@@ -96,7 +96,7 @@ public class AdministrationActionTest {
 				.isPlayerAllowedToExecuteAdminCommand(pl, "support", true));
 		assertEquals(
 				"Your admin level is only 50, but a level of 100 is required to run \"support\".",
-				pl.get("private_text"));
+				pl.getPrivateText());
 		assertEquals(true,
 				AdministrationAction.isPlayerAllowedToExecuteAdminCommand(pl,
 						"supportanswer", true));
@@ -112,7 +112,7 @@ public class AdministrationActionTest {
 		MockStendhalRPRuleProcessor.get().getPlayers().add(pl);
 		
 		CommandCenter.execute(pl,  new RPAction());
-		assertEquals("Unknown Command null", pl.get("private_text"));
+		assertEquals("Unknown Command null", pl.getPrivateText());
 
 		pl.clearEvents();
 		pl.put("adminlevel", 5000);
@@ -120,7 +120,7 @@ public class AdministrationActionTest {
 		action.put("type", "tellall");
 		action.put("text", "huhu");
 		CommandCenter.execute(pl, action);
-		assertEquals("Administrator SHOUTS: huhu", pl.get("private_text"));
+		assertEquals("Administrator SHOUTS: huhu", pl.getPrivateText());
 	}
 
 	@Test
@@ -139,14 +139,14 @@ public class AdministrationActionTest {
 		action.put("target", "bob");
 		CommandCenter.execute(pl, action);
 		assertEquals("Support (player) tells you: huhu", bob
-				.get("private_text"));
+				.getPrivateText());
 		bob.clearEvents();
 		pl.clearEvents();
 		pl.put("adminlevel", 0);
 		assertEquals("0",pl.get("adminlevel"));
 		CommandCenter.execute(pl, action);
 		assertEquals("Sorry, you need to be an admin to run \"supportanswer\".", pl
-				.get("private_text"));
+				.getPrivateText());
 	}
 
 	@Test
@@ -174,7 +174,7 @@ public class AdministrationActionTest {
 		// The list of existing zones depends on other tests, so we simply
 		// ignore it here.
 		assertTrue(pl
-				.get("private_text")
+				.getPrivateText()
 				.startsWith(
 						"Zone \"IRPZone.ID [id=non-existing-zone]\" not found. Valid zones: ["));
 	}
@@ -229,7 +229,7 @@ public class AdministrationActionTest {
 		action.put("type", "teleportto");
 		action.put("target", "blah");
 		CommandCenter.execute(pl, action);
-		assertEquals("Player \"blah\" not found", pl.get("private_text"));
+		assertEquals("Player \"blah\" not found", pl.getPrivateText());
 
 	}
 
@@ -248,7 +248,7 @@ public class AdministrationActionTest {
 		action.put("type", "teleportto");
 		action.put("target", "blah");
 		CommandCenter.execute(pl, action);
-		assertEquals("Position [0,0] is occupied", pl.get("private_text"));
+		assertEquals("Position [0,0] is occupied", pl.getPrivateText());
 	}
 
 
@@ -271,7 +271,7 @@ public class AdministrationActionTest {
 		CommandCenter.execute(pl, action);
 		assertEquals(
 				"Attribute you are altering is not defined in RPClass(player)",
-				pl.get("private_text"));
+				pl.getPrivateText());
 	}
 
 	@Test
@@ -290,13 +290,13 @@ public class AdministrationActionTest {
 		action.put("value", 0);
 
 		CommandCenter.execute(pl, action);
-		assertEquals("Sorry, name cannot be changed.", pl.get("private_text"));
+		assertEquals("Sorry, name cannot be changed.", pl.getPrivateText());
 		action.put("stat", "adminlevel");
 		pl.clearEvents();
 		CommandCenter.execute(pl, action);
 		assertEquals(
 				"Use #/adminlevel #<playername> #[<newlevel>] to display or change adminlevel.",
-				pl.get("private_text"));
+				pl.getPrivateText());
 	}
 
 	@Test
@@ -316,7 +316,7 @@ public class AdministrationActionTest {
 
 		CommandCenter.execute(pl, action);
 		assertEquals("The title attribute may not be changed directly.", pl
-				.get("private_text"));
+				.getPrivateText());
 	}
 
 	@Test
@@ -416,7 +416,7 @@ public class AdministrationActionTest {
 		action.put("text", "blabla");
 
 		CommandCenter.execute(pl, action);
-		assertEquals("Entity not found", pl.get("private_text"));
+		assertEquals("Entity not found", pl.getPrivateText());
 	}
 
 	@Test
@@ -536,7 +536,7 @@ public class AdministrationActionTest {
 
 		CommandCenter.execute(pl, action);
 
-		assertEquals("Usage: /jail name minutes reason", pl.get("private_text"));
+		assertEquals("Usage: /jail name minutes reason", pl.getPrivateText());
 		pl.clearEvents();
 		action = new RPAction();
 		action.put("type", "jail");
@@ -545,7 +545,7 @@ public class AdministrationActionTest {
 		action.put("minutes", 1);
 
 		CommandCenter.execute(pl, action);
-		assertEquals("Player name not found", pl.get("private_text"));
+		assertEquals("Player name not found", pl.getPrivateText());
 
 		pl.clearEvents();
 
@@ -557,7 +557,7 @@ public class AdministrationActionTest {
 		action.put("minutes", "noNumber");
 
 		CommandCenter.execute(pl, action);
-		assertEquals("Usage: /jail name minutes reason", pl.get("private_text"));
+		assertEquals("Usage: /jail name minutes reason", pl.getPrivateText());
 		pl.clearEvents();
 
 		action = new RPAction();
@@ -568,7 +568,7 @@ public class AdministrationActionTest {
 
 		CommandCenter.execute(pl, action);
 		assertEquals("this is ok as jailing is tested elsewhere",
-				"Zone -1_semos_jail not found", pl.get("private_text"));
+				"Zone -1_semos_jail not found", pl.getPrivateText());
 
 	}
 
@@ -581,7 +581,7 @@ public class AdministrationActionTest {
 
 		CommandCenter.execute(pl, action);
 
-		assertEquals("Usage: /gag name minutes reason", pl.get("private_text"));
+		assertEquals("Usage: /gag name minutes reason", pl.getPrivateText());
 		pl.clearEvents();
 		action = new RPAction();
 		action.put("type", "gag");
@@ -590,7 +590,7 @@ public class AdministrationActionTest {
 		action.put("minutes", 1);
 
 		CommandCenter.execute(pl, action);
-		assertEquals("Player name not found", pl.get("private_text"));
+		assertEquals("Player name not found", pl.getPrivateText());
 
 		pl.clearEvents();
 
@@ -602,7 +602,7 @@ public class AdministrationActionTest {
 		action.put("minutes", "noNumber");
 
 		CommandCenter.execute(pl, action);
-		assertEquals("Usage: /gag name minutes reason", pl.get("private_text"));
+		assertEquals("Usage: /gag name minutes reason", pl.getPrivateText());
 		pl.clearEvents();
 
 		action = new RPAction();
@@ -612,7 +612,7 @@ public class AdministrationActionTest {
 		action.put("minutes", 1);
 
 		CommandCenter.execute(pl, action);
-		assertTrue(pl.get("private_text").startsWith(
+		assertTrue(pl.getPrivateText().startsWith(
 				"You have gagged hugo for 1 minutes. Reason: "));
 
 	}
@@ -624,7 +624,7 @@ public class AdministrationActionTest {
 		action.put("type", "destroy");
 
 		CommandCenter.execute(pl, action);
-		assertEquals("Entity not found", pl.get("private_text"));
+		assertEquals("Entity not found", pl.getPrivateText());
 		
 	}
 	@Test
@@ -640,7 +640,7 @@ public class AdministrationActionTest {
 		action.put("target","hugo" );
 
 		CommandCenter.execute(pl, action);
-		assertEquals("You can't remove players", pl.get("private_text"));
+		assertEquals("You can't remove players", pl.getPrivateText());
 
 	}
 	
@@ -663,7 +663,7 @@ public class AdministrationActionTest {
 		action.put("target","#1" );
 
 		CommandCenter.execute(pl, action);
-		assertEquals("You can't remove SpeakerNPCs", pl.get("private_text"));
+		assertEquals("You can't remove SpeakerNPCs", pl.getPrivateText());
 
 	}
 	@Test
@@ -686,7 +686,7 @@ public class AdministrationActionTest {
 		action.put("target","#1" );
 
 		CommandCenter.execute(pl, action);
-		assertEquals("Removed entity null", pl.get("private_text"));
+		assertEquals("Removed entity null", pl.getPrivateText());
 
 	}
 	@Test
@@ -709,7 +709,7 @@ public class AdministrationActionTest {
 		action.put("targetid",1 );
 
 		CommandCenter.execute(pl, action);
-		assertEquals("Removed entity 1", pl.get("private_text"));
+		assertEquals("Removed entity 1", pl.getPrivateText());
 
 	}
 	
@@ -733,7 +733,7 @@ public class AdministrationActionTest {
 		action.put("targetid",1 );
 
 		CommandCenter.execute(pl, action);
-		assertTrue( pl.get("private_text").startsWith("Inspected creature is called \"rat\" and has the following attributes:"));
+		assertTrue( pl.getPrivateText().startsWith("Inspected creature is called \"rat\" and has the following attributes:"));
 
 	}
 	@Test
@@ -754,7 +754,7 @@ public class AdministrationActionTest {
 		action.put("item","hugo" );
 
 		CommandCenter.execute(pl, action);
-		assertEquals("Player \"hugo\" does not have an RPSlot named \"hugo\".", pl.get("private_text"));
+		assertEquals("Player \"hugo\" does not have an RPSlot named \"hugo\".", pl.getPrivateText());
 		pl.clearEvents();
 		
 		action = new RPAction();
@@ -764,7 +764,7 @@ public class AdministrationActionTest {
 		action.put("item","hugo" );
 
 		CommandCenter.execute(pl, action);
-		assertEquals("Not an item.", pl.get("private_text"));
+		assertEquals("Not an item.", pl.getPrivateText());
 	pl.clearEvents();
 		
 		action = new RPAction();
