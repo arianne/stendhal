@@ -102,12 +102,12 @@
  </layer>
  <layer name="2_object" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNggIANjLjxDjxyMIwOdkL1kUujg91AsV2M5NMDDZ6R6IbFQPVLgHgpDn336OSn9XSy5yTQnlODIJ6GKoClFxg93AG56YVe6Xn+CIgDEAAAQFUmakAGAAA=
+   H4sIAAAAAAAAAGNggIDtjJRhdLATKLaDkXwaHewGiu1iJJ8eaPCMRDcsBqpfAsRLcei7Ryc/raeTPSeB9pwaBPE0VAEsvcDo4Q7ITS/0Ss/zR0AcgAAAzzD3ZkAGAAA=
   </data>
  </layer>
  <layer name="3_roof" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgwA82MKLiUYAdLACGzUIgXjRIw+go0F3HqOi240CzTgxSvw4FAEorsDSzgMhwfAVU95pOYT7Y08tcKofDvBGeljuA/u8kIwwAMLKn9EAGAAA=
+   H4sIAAAAAAAAAGNgwA+2M6LiUYAdLACGzUIgXjRIw+go0F3HqOi240CzTgxSvw4FAEorsDSzgMhwfAVU95pOYT7Y08tcKofDvBGeljuA/u8kIwwA4swh6UAGAAA=
   </data>
  </layer>
  <layer name="4_roof_add" width="20" height="20">
@@ -120,7 +120,7 @@
    H4sIAAAAAAAAAGNgGAWjYBSMglEwCkgHADV9EcVABgAA
   </data>
  </layer>
- <layer name="collision" width="20" height="20" opacity="0.37">
+ <layer name="collision" width="20" height="20" visible="0" opacity="0.37">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAANvDyMCwZwhgSsFQMw+b2cSEDYxPjPuobR6x/iTWbkrNo6b7KAX0TC/Emo+sdrD6l17pZbC4D9lcSsoEemEAZ7RkKEAGAAA=
   </data>

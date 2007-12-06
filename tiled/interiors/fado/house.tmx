@@ -78,7 +78,7 @@
  </layer>
  <layer name="2_object" width="20" height="12">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgIA9sYETF5II1UL07gfQORgRNCVgP1L8biHch0eSCdRS6hVywGGjvEiBeOkD20xssA/pzFQl+nQhUOwmKJ2PR10BiuM1jRKUpBfMZUWlaAQCe5aVcwAMAAA==
+   H4sIAAAAAAAAAGNgIA9sZ0TF5II1UL07gfQORgRNCVgP1L8biHch0eSCdRS6hVywGGjvEiBeOkD20xssA/pzFQl+nQhUOwmKJ2PR10BiuM1jRKUpBfMZUWlaAQD3nKRhwAMAAA==
   </data>
  </layer>
  <layer name="3_roof" width="20" height="12">
@@ -96,7 +96,7 @@
    H4sIAAAAAAAAAGNgGAWjYBQMVQAAewDiOMADAAA=
   </data>
  </layer>
- <layer name="collision" width="20" height="12" opacity="0.37">
+ <layer name="collision" width="20" height="12" visible="0" opacity="0.37">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAANvDyMCwZ4hgYgAuteSYRYw9tDKPUrOHqn8p1U9r89DNHeg8AQDzbgw6wAMAAA==
   </data>
