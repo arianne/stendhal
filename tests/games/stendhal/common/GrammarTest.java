@@ -1,7 +1,9 @@
 package games.stendhal.common;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.Collection;
 import java.util.LinkedList;
@@ -550,7 +552,7 @@ public class GrammarTest {
 	}
 
 	@Test
-	public void testNumberStrings() throws Exception {
+	public void testNumberStrings() {
 		assertEquals(0, Grammar.number("zero"));
 		checkNumberString(0, "no");
 		checkNumberString(1, "one");
@@ -565,6 +567,20 @@ public class GrammarTest {
 		checkNumberString(10, "ten");
 		checkNumberString(11, "eleven");
 		checkNumberString(12, "twelve");
+	}
+
+	@Test
+	public void testIsPreposition() {
+		assertTrue(Grammar.isPreposition("on"));
+		assertTrue(Grammar.isPreposition("of"));
+		assertTrue(Grammar.isPreposition("under"));
+		assertTrue(Grammar.isPreposition("with"));
+
+		assertFalse(Grammar.isPreposition("if"));
+		assertFalse(Grammar.isPreposition("house"));
+		assertFalse(Grammar.isPreposition("dog"));
+		assertFalse(Grammar.isPreposition("player"));
+		assertFalse(Grammar.isPreposition("kymara"));
 	}
 
 }

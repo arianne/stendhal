@@ -509,4 +509,18 @@ public class Grammar {
 		}
 	}
 
+	/**
+	 * decide if the given word is a preposition
+	 * @param word
+	 * @return true if word is a preposition
+	 */
+	public static boolean isPreposition(String word)
+    {
+		//TODO handle more prepositions
+		return word.equals("on") ||
+				word.equals("of") ||
+				word.equals("under") ||
+				word.equals("with"); 
+    }
+
 }

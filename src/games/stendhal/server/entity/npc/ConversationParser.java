@@ -55,7 +55,7 @@ public class ConversationParser {
         sentence._error = parser.getError();
 /*TODO
 		 // derive the singular from the item name if the amount is greater than one
-		if (sentence._amount > 1) {
+		if (sentence._amount != 1) {
 			sentence._object = Grammar.singular(sentence._object);
 		}
 */
@@ -128,10 +128,8 @@ public class ConversationParser {
         		break;
 
         	 // stop if the next word is a preposition
-        	if (_next_word.equals("on") || _next_word.equals("of") ||
-        		_next_word.equals("under") || _next_word.equals("with")) { 
+        	if (Grammar.isPreposition(_next_word)) 
         		break;
-        	}
 
         	String word = nextWord();
 
