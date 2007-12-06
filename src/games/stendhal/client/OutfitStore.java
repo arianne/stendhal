@@ -64,7 +64,7 @@ public class OutfitStore {
 		 * Base (body) layer
 		 */
 		idx = code % 100;
-		code /= 100;
+	
 
 		Sprite layer = getBaseSprite(idx);
 
@@ -72,7 +72,7 @@ public class OutfitStore {
 			throw new IllegalArgumentException(
 					"No base image found for outfit: " + code);
 		}
-
+		code /= 100;
 		ImageSprite sprite = new ImageSprite(layer);
 		Graphics g = sprite.getGraphics();
 
