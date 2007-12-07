@@ -51,8 +51,9 @@ public class OutfitChangerAdder {
 			        @Override
 			        public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 				         // find out what the player wants to wear
-			        	sentence.getAmount();	// We ignore any amounts and skip the numeric expressions.
 			        	String item = sentence.getItemName();
+			        	/* We ignore any amounts and skip the numeric expressions.
+			        	sentence.getAmount(); */
 
 				        if (sentence.getError()) {
 				        	engine.say("Sorry, I did not understand you.");

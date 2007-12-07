@@ -341,8 +341,7 @@ public class Blackjack extends AbstractQuest {
 								if (player.drop("money", stake)) {
 									startNewGame(player);
 								} else {
-									npc
-											.say("Hey! You don't have enough money!");
+									npc.say("Hey! You don't have enough money!");
 								}
 							}
 						}
