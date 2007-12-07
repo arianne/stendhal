@@ -147,7 +147,13 @@ public class Engine {
 	 * @return true if a transition was made, false otherwise
 	 */
 	public boolean step(Player player, String text) {
-		return step(player, ConversationParser.parse(text));
+		Sentence sentence = ConversationParser.parse(text);
+
+		if (sentence.getError()) {
+			logger.warn("problem parsing the following sentence: " + text);
+		}
+
+		return step(player, sentence);
 	}
 
 	/**
@@ -189,9 +195,17 @@ public class Engine {
 	 */
 	public boolean stepTest(Player player, String text) {
 		logger.debug(">>> " + text);
-		speakerNPC.remove("sentence");
-		boolean res = step(player, ConversationParser.parse(text));
-		logger.debug("<<< " + speakerNPC.get("sentence"));
+		speakerNPC.remove("text");
+
+		Sentence sentence = ConversationParser.parse(text);
+
+		if (sentence.getError()) {
+			logger.warn("problem parsing the following sentence: " + text);
+		}
+
+		boolean res = step(player, sentence);
+
+		logger.debug("<<< " + speakerNPC.get("text"));
 		return res;
 	}
 
