@@ -1,15 +1,16 @@
 package games.stendhal.server.maps;
 
 import games.stendhal.server.StendhalRPRuleProcessor;
+import games.stendhal.server.entity.player.Player;
 
 public class MockStendhalRPRuleProcessor extends StendhalRPRuleProcessor {
 
-	public static StendhalRPRuleProcessor get() {
+	public static MockStendhalRPRuleProcessor get() {
 		if (!(instance instanceof MockStendhalRPRuleProcessor)) {
 			instance = new MockStendhalRPRuleProcessor();
 		}
 
-		return instance;
+		return (MockStendhalRPRuleProcessor) instance;
 	}
 
 	@Override
@@ -20,5 +21,16 @@ public class MockStendhalRPRuleProcessor extends StendhalRPRuleProcessor {
 	@Override
 	public int getTurn() {
 		return 0;
+	}
+
+	/**
+	 * Adds a player object to the list of players
+	 *
+	 * @param player Player
+	 */
+	public void addPlayer(Player player) {
+		if (!players.contains(player)) {
+			players.add(player);
+		}
 	}
 }

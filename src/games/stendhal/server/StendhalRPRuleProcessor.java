@@ -62,7 +62,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	/**
 	 * A list of all players who are currently logged in.
 	 */
-	private List<Player> players;
+	protected List<Player> players;
 
 	private List<Player> playersRmText;
 
