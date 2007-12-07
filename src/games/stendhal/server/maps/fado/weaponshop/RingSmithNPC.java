@@ -2,12 +2,16 @@ package games.stendhal.server.maps.fado.weaponshop;
 
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
+import games.stendhal.server.entity.npc.ConversationPhrases;
+import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.BuyerAdder;
 import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
 import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
+import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Node;
 
@@ -58,6 +62,7 @@ public class RingSmithNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
+				addGreeting("Hi, can I help you?");
 				addJob("I work with #gold, to fix and make jewellery.");
 				addOffer("I sell diamond engagement rings which I make myself. I also buy gems and gold, see the red catalogue on the table.");
 				addReply("request",

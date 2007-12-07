@@ -86,24 +86,6 @@ public class RingMaker extends AbstractQuest {
 				}
 			});
 
-		// player not wearing emerald ring
-		npc.add(
-			ConversationStates.IDLE,
-			ConversationPhrases.GREETING_MESSAGES,
-			new SpeakerNPC.ChatCondition() {
-				@Override
-				public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
-					// We need to ensure that the NPC is not forging the
-					// wedding ring from Marriage.java
-					return !player.isEquipped("emerald_ring")
-							&& (!player.hasQuest(QUEST_SLOT) 
-								|| player.isQuestCompleted(QUEST_SLOT))
-							&& (!player.hasQuest(MARRIAGE_QUEST_SLOT) 
-								|| player.hasQuest(MARRIAGE_QUEST_SLOT)
-							&& !player.getQuest(MARRIAGE_QUEST_SLOT).startsWith("forging;"));
-				}
-			}, ConversationStates.ATTENDING, "Hi, can I help you?", null);
-
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 			new QuestStateStartsWithCondition(QUEST_SLOT, "forging;"),
 			ConversationStates.IDLE, null, new SpeakerNPC.ChatAction() {
