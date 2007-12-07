@@ -37,7 +37,7 @@ public class FindGhosts extends AbstractQuest {
 	private static final String QUEST_SLOT = "find_ghosts";
 	
 	private static final List<String> NEEDED_SPIRITS = 
-		Arrays.asList("Mary", "Ben", "Zak", "Goran");
+		Arrays.asList("mary", "ben", "zak", "goran");
 
 	@Override
 	public boolean isCompleted(Player player) {
@@ -56,7 +56,7 @@ public class FindGhosts extends AbstractQuest {
 		 * the format of the list quest slot is
 		 * "looking;name;name;...:said;name;name;..."
 		 */
-		String npcDoneText = player.getQuest(QUEST_SLOT);
+		String npcDoneText = player.getQuest(QUEST_SLOT).toLowerCase();
 		String[] doneAndFound = npcDoneText.split(":");
 		String[] done = doneAndFound[1].split(";");
 
@@ -140,9 +140,9 @@ public class FindGhosts extends AbstractQuest {
 				@Override
 				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 					List<String> missing = missingNames(player);
-					String item = sentence.getOriginalText();
+					String item = sentence.toString();
 
-					String npcQuestText = player.getQuest(QUEST_SLOT);
+					String npcQuestText = player.getQuest(QUEST_SLOT).toLowerCase();
 					String[] npcDoneText = npcQuestText.split(":");
 					List<String> looking = Arrays.asList(npcDoneText[0].split(";"));
 					List<String> said = Arrays.asList(npcDoneText[1].split(";"));

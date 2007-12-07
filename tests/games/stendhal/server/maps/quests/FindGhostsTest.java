@@ -147,14 +147,10 @@ public class FindGhostsTest {
 		assertEquals("Thank you. If you met any other spirits, please tell me their name.", npc.get("text"));
 		en.step(player, "Brandy");
 		assertEquals("Sorry, I don't understand you. What name are you trying to say?", npc.get("text"));
-		en.step(player, "ben");
-		assertEquals("I don't believe you've spoken with any spirit of that name. If you met any other spirits, please tell me their name.", npc.get("text"));
 		en.step(player, "Ben");
 		assertEquals("Thank you. If you met any other spirits, please tell me their name.", npc.get("text"));
 		en.step(player, "Zak");
 		assertEquals("Thank you. If you met any other spirits, please tell me their name.", npc.get("text"));
-		en.step(player, "goran");
-		assertEquals("I don't believe you've spoken with any spirit of that name. If you met any other spirits, please tell me their name.", npc.get("text"));
 		en.step(player, "Goran");
 		assertEquals("Thank you. Now that I know those 4 names, perhaps I can even reach the spirits with my mind. I can't give you anything of material value, but I have given you a boost to your basic wellbeing, which will last forever. May you live long, and prosper.", npc.get("text"));
 		// [22:27] superkym heals 50 health points. 
