@@ -44,12 +44,13 @@ public class CloakCollectorTest {
 
 		en.stepTest(monica, ConversationPhrases.GREETING_MESSAGES.get(0));
 		assertEquals(cc.welcomeBeforeStartingQuest(), npc.get("text"));
+
 		en.stepTest(monica, cc.getAdditionalTriggerPhraseForQuest().get(0));
 		assertEquals(cc.respondToQuest(), npc.get("text"));
-		en.stepTest(monica, cc.getTriggerPhraseToEnumerateMissingItems().get(0));
 
-		assertEquals(cc.askForMissingItems(cc.getNeededItems()),
-				npc.get("text"));
+		en.stepTest(monica, cc.getTriggerPhraseToEnumerateMissingItems().get(0));
+		assertEquals(cc.askForMissingItems(cc.getNeededItems()), npc.get("text"));
+
 		en.stepTest(monica, ConversationPhrases.NO_MESSAGES.get(0));
 		assertEquals(cc.respondToQuestRefusal(), npc.get("text"));
 	}
@@ -66,6 +67,7 @@ public class CloakCollectorTest {
 
 		en.stepTest(monica, ConversationPhrases.GREETING_MESSAGES.get(0));
 		assertEquals(cc.welcomeBeforeStartingQuest(), npc.get("text"));
+
 		en.stepTest(monica, cc.getAdditionalTriggerPhraseForQuest().get(0));
 		assertEquals(cc.respondToQuest(), npc.get("text"));
 
