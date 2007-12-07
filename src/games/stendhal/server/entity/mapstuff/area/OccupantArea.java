@@ -136,6 +136,7 @@ public class OccupantArea extends AreaEntity implements MovementListener, TurnLi
 	 * @param	entity		The RPEntity that was added.
 	 */
 	protected void handleRemoved(RPEntity entity) {
+		// can be implemented by sub classes.
 	}
 
 

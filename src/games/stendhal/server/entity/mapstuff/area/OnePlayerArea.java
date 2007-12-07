@@ -6,9 +6,6 @@
 
 package games.stendhal.server.entity.mapstuff.area;
 
-//
-//
-
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.ActiveEntity;
 import games.stendhal.server.entity.Entity;
@@ -285,5 +282,6 @@ public class OnePlayerArea extends AreaEntity implements MovementListener {
 	 */
 	public void onMoved(ActiveEntity entity, StendhalRPZone zone, int oldX,
 			int oldY, int newX, int newY) {
+		// does nothing, but is specified in the implemented interface
 	}
 }
