@@ -1,7 +1,6 @@
 package games.stendhal.server.maps.quests;
 
 import static org.junit.Assert.assertEquals;
-import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -17,7 +16,6 @@ import games.stendhal.server.maps.fado.weaponshop.RingSmithNPC;
 
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import utilities.PlayerTestHelper;
