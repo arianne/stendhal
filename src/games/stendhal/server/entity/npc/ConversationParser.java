@@ -15,8 +15,8 @@ import java.util.StringTokenizer;
 public class ConversationParser {
 
 	private StringTokenizer _tokenizer;
+	private StringBuilder _original;
 	private String	_next_word;
-	private String _original;
     private boolean	_error;
 
     /**
@@ -29,7 +29,7 @@ public class ConversationParser {
 
 		 // get first word
 		_next_word = _tokenizer.hasMoreTokens()? _tokenizer.nextToken(): null;
-		_original = _next_word;
+		_original = _next_word!=null? new StringBuilder(_next_word): new StringBuilder();
 
          // start with no errors.
         _error = false;
@@ -55,7 +55,7 @@ public class ConversationParser {
 		sentence._object2 = parser.readObjectName();
 
 		sentence._error = parser.getError();
-		sentence._original = parser._original;
+		sentence._original = parser._original.toString();
 /*TODO
 		 // derive the singular from the item name if the amount is greater than one
 		if (sentence._amount != 1) {
@@ -72,7 +72,8 @@ public class ConversationParser {
 		if (word != null) {
 			if (_tokenizer.hasMoreTokens()) {
 				_next_word = _tokenizer.nextToken();
-				_original += ' ' + _next_word;
+				_original.append(' ');
+				_original.append(_next_word);
 			} else {
 				_next_word = null;
 			}
