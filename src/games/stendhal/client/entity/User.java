@@ -2,7 +2,9 @@ package games.stendhal.client.entity;
 
 import games.stendhal.client.StendhalUI;
 import games.stendhal.client.WorldObjects;
+import games.stendhal.client.stendhal;
 import games.stendhal.client.soundreview.HearingArea;
+import games.stendhal.client.update.Version;
 import games.stendhal.common.FeatureList;
 import games.stendhal.common.Grammar;
 import games.stendhal.common.NotificationType;
@@ -191,6 +193,18 @@ public class User extends Player {
 					StendhalUI.get().addEventLine(
 							playername + " has left Stendhal.",
 							NotificationType.INFORMATION);
+				}
+			}
+
+			if (changes.has("release")) {
+				String serverVersion = changes.get("release"); 
+				if (!Version.checkCompatibility(serverVersion, stendhal.VERSION)) {
+					StendhalUI.get().addEventLine("Your client may not function properly.\nThe version of this server is "
+						+ serverVersion
+						+ " but your client is version "
+						+ stendhal.VERSION
+						+ ".\nPlease download the new version from http://arianne.sourceforge.net",
+						NotificationType.ERROR);					
 				}
 			}
 		}

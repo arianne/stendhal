@@ -101,8 +101,6 @@ class PlayerRPClass {
 		RPClass player = new RPClass("player");
 		player.isA("rpentity");
 		player.addAttribute("text", Type.LONG_STRING, Definition.VOLATILE);
-		/*player.addAttribute("private_text", Type.LONG_STRING,
-				(byte) (Definition.PRIVATE | Definition.VOLATILE));*/
 		
 		player.addRPEvent("private_text", Definition.PRIVATE);
 
@@ -125,7 +123,7 @@ class PlayerRPClass {
 		player.addAttribute("ghostmode", Type.FLAG);
 		player.addAttribute("teleclickmode", Type.FLAG);
 
-		player.addAttribute("release", Type.STRING, Definition.HIDDEN);
+		player.addAttribute("release", Type.STRING, Definition.PRIVATE);
 
 		player.addAttribute("age", Type.INT);
 
@@ -181,9 +179,8 @@ class PlayerRPClass {
 		player.addRPSlot("!features", 1, Definition.PRIVATE);
 
 		// Last time this player attacked another player
-		player.addAttribute("last_pvp_action_time", Type.FLOAT,
-				Definition.HIDDEN);
-
+		player.addAttribute("last_pvp_action_time", Type.FLOAT, Definition.HIDDEN);
+		
 		player.addRPEvent("transition_graph", Definition.STANDARD);
 		
 		
