@@ -131,7 +131,7 @@ public class Marriage extends AbstractQuest {
 					// find out whom the player wants to marry.
 			        String brideName = sentence.getObjectName();
 
-			        if (sentence.getError()) {
+			        if (brideName == null) {
 			        	npc.say("You have to tell me who you want to marry.");
 			        } else {
 						startEngagement(npc, player, brideName);
@@ -411,7 +411,7 @@ public class Marriage extends AbstractQuest {
 						// find out whom the player wants to marry.
 				        String brideName = sentence.getObjectName();
 
-				        if (sentence.getError()) {
+				        if (brideName == null) {
 				        	npc.say("You have to tell me who you want to marry.");
 				        } else {
 							startMarriage(npc, player, brideName);
