@@ -477,7 +477,8 @@ public class SpeakerNPC extends NPC {
 				}
 
 				if (waitAction != null) {
-					waitAction.fire(player, ConversationParser.parse(text), this);
+					Sentence sentence = ConversationParser.parse(text);
+					waitAction.fire(player, sentence, this);	// Note: sentence is currently not yet used in the called handler functions.
 				}
 			}
 			return true;

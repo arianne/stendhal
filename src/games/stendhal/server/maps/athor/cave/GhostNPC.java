@@ -86,7 +86,7 @@ public class GhostNPC implements ZoneConfigurator {
 						    if (!list.contains(npc.getName())) {
 							    player.setQuest("find_ghosts", npcDoneText[0]
 									    + ";" + npc.getName() + ":"
-									    +  npcDoneText[1]);
+									    +  npcDoneText[1]);	//FIXME [ 1844481 ] GhostNPC: ArrayIndexOutOfBoundException
 							    npc.say("Remember my name ... " + npc.getName()
 							    		+ " ... " + npc.getName() + " ...");
 							    player.addXP(100);
@@ -96,7 +96,6 @@ public class GhostNPC implements ZoneConfigurator {
 						}
 					});
 			}
-
 		};
 
 		ghost.setDescription("You see a ghostly figure of a woman.");
