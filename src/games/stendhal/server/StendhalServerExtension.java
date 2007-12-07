@@ -21,9 +21,6 @@ public abstract class StendhalServerExtension {
 	/** lists the instances of the loaded extensions */
 	private static Map<String, StendhalServerExtension> loadedInstances = new HashMap<String, StendhalServerExtension>();
 
-	public StendhalServerExtension() {
-	}
-
 	public abstract void init();
 
 	public synchronized boolean perform(String name) {

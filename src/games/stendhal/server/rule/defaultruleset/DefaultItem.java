@@ -26,7 +26,7 @@ import org.apache.log4j.Logger;
  * All default items which can be reduced to stuff that increase the attack
  * point and stuff that increase the defense points
  *
- * @author Matthias Totz
+ * @author Matthias Totz, chad3f
  */
 public class DefaultItem {
 
@@ -140,6 +140,7 @@ public class DefaultItem {
 
 			return new FullCreator(construct);
 		} catch (NoSuchMethodException ex) {
+			// ignore and continue
 		}
 
 		/*
@@ -150,6 +151,7 @@ public class DefaultItem {
 
 			return new AttributesCreator(construct);
 		} catch (NoSuchMethodException ex) {
+			// ignore and continue
 		}
 
 		/*
@@ -160,6 +162,7 @@ public class DefaultItem {
 
 			return new DefaultCreator(construct);
 		} catch (NoSuchMethodException ex) {
+			// ignore and continue
 		}
 
 		return null;
@@ -325,7 +328,6 @@ public class DefaultItem {
 		@Override
 		protected Object create() throws IllegalAccessException,
 				InstantiationException, InvocationTargetException {
-			// TODO: XXX - Is this a fast as <Class>.newInstance()
 			return construct.newInstance(new Object[] {});
 		}
 	}

@@ -42,7 +42,7 @@ public class OutfitChangerBehaviour extends MerchantBehaviour implements  LoginL
 
 	// TODO: make this persistent, e.g. by replacing this list with one
 	// quest slot reserved for each OutfitChangerBehaviour.
-	private List<String> namesOfPlayersWithWornOffOutfits;
+	List<String> namesOfPlayersWithWornOffOutfits;
 
 	// all available outfit types are predefined here.
 	private static Map<String, List<Outfit>> outfitTypes = new HashMap<String, List<Outfit>>();

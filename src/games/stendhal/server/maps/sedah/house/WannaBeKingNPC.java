@@ -47,10 +47,6 @@ public class WannaBeKingNPC implements ZoneConfigurator {
 				nodes.add(new Node(3, 7));
 				setPath(new FixedPath(nodes, true));
 			}
-
-			@Override
-			protected void createDialog() {
-			}
 		};
 
 		npc.setEntityClass("wannabekingnpc");

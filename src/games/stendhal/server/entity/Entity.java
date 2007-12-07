@@ -562,6 +562,7 @@ public abstract class Entity extends RPObject {
 	 *            The new Y coordinate.
 	 */
 	protected void onMoved(int oldX, int oldY, int newX, int newY) {
+		// sub classes can implement this method
 	}
 
 	/**

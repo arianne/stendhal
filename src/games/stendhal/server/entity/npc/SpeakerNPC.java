@@ -138,9 +138,11 @@ public class SpeakerNPC extends NPC {
 	}
 
 	protected void createPath() {
+		// sub classes can implement this method
 	}
 
 	protected void createDialog() {
+		// sub classes can implement this method
 	}
 
 	/**

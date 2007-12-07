@@ -174,12 +174,12 @@ public abstract class NPC extends RPEntity {
 
 	@Override
 	protected void dropItemsOn(Corpse corpse) {
-
+		// sub classes can implement this method
 	}
 
 	@Override
 	public void logic() {
-
+		// sub classes can implement this method
 	}
 
 }

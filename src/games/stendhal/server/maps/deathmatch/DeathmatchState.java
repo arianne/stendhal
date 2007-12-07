@@ -16,6 +16,7 @@ class DeathmatchState {
 	private long date;
 
 	protected DeathmatchState() {
+		// hide constructor
 	};
 
 	/**

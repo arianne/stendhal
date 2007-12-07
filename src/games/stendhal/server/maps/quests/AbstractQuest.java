@@ -50,6 +50,7 @@ public abstract class AbstractQuest implements IQuest {
 	}
 
 	public void addToWorld() {
+		// sub classes can implement this method
 	}
 
 	public List<String> getHint(Player player) {

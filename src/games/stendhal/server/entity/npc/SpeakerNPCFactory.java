@@ -110,7 +110,7 @@ public class SpeakerNPCFactory implements ConfigurableFactory {
 	}
 
 	public void createDialog(SpeakerNPC npc) {
-
+		// sub classes can implement this method
 	}
 
 	protected List<Node> getPath(ConfigurableFactoryContext ctx) {
