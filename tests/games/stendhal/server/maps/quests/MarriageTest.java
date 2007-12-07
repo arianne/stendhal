@@ -1,6 +1,7 @@
 package games.stendhal.server.maps.quests;
 
 import static org.junit.Assert.assertEquals;
+import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -50,10 +51,14 @@ public class MarriageTest {
 
 		player = PlayerTestHelper.createPlayer("player");
 		player2 = PlayerTestHelper.createPlayer("player2");
+		
+		zone.add(player);
+		player.setPosition(52, 53);
+		zone.add(player2);
+		player2.setPosition(53, 53);
 	}
 
 	@Test
-	@Ignore
 	public void testQuest() {
 
 		// -----------------------------------------------
@@ -68,6 +73,9 @@ public class MarriageTest {
 		assertEquals("I don't know what you need, dear child.", npc.get("text"));
 		en.step(player, "engage");
 		assertEquals("You have to tell me who you want to marry.", npc.get("text"));
+		
+	}
+	/*
 		en.step(player, "engage player2");
 		assertEquals("player, do you want to get engaged to player2?", npc.get("text"));
 		en.step(player, "yes");
@@ -171,7 +179,7 @@ public class MarriageTest {
 		assertEquals("I haven't finished making the wedding ring. Please check back in less than a minute. Bye for now.", npc.get("text"));
 		en.step(player2, "hi");
 		assertEquals("I'm pleased to say, the wedding ring for your fiancee is finished! Make sure one is made for you, too! *psst* just a little hint for the wedding day ...", npc.get("text"));
-		// [14:26] player2 earns 500 experience points.
+		// [14:26] player2 earns 500 experience points.StendhalRPRuleProcessor.get()
 		en.step(player2, "bye");
 		assertEquals("Bye, my friend.", npc.get("text"));
 
@@ -286,6 +294,6 @@ public class MarriageTest {
 		// If you're looking for a honeymoon room, just say the room number you desire
 		// For example say:  11  if you want the room called Water of Love."
 		en.step(player, "2");
-
 	}
+	*/
 }
