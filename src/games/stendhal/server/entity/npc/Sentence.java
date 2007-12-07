@@ -15,6 +15,7 @@ public class Sentence {
     String	_preposition = null;
     String	_object2 = null;
 	boolean _error = false;
+	String	_original;
 
 	/**
 	 * return verb of the sentence
@@ -108,7 +109,17 @@ public class Sentence {
     }
 
 	/**
-	 * return the full sentence as string
+	 * return the complete text of the sentence with
+	 * unchanged case, nut with trimmed white space
+	 * @return string
+	 */
+	public String getOriginalText()
+    {
+    	return _original;
+    }
+
+	/**
+	 * return the full sentence as lower case string
 	 * @return string
 	 */
     @Override

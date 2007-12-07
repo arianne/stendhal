@@ -42,6 +42,7 @@ public class ConversationParserTest {
 		assertEquals(1, sentence.getAmount());
 		assertEquals("bread", sentence.getObjectName());
 		assertEquals("bread", sentence.getItemName());
+		assertEquals("buy Bread", sentence.getOriginalText());
 	}
 
 	@Test
@@ -51,6 +52,7 @@ public class ConversationParserTest {
 		assertEquals("drop", sentence.getVerb());
 		assertEquals(3, sentence.getAmount());
 		assertEquals("chicken", sentence.getObjectName());
+		assertEquals("drop three chicken", sentence.getOriginalText());
 
 		sentence = ConversationParser.parse(" sell house   ");
 		assertFalse(sentence.getError());

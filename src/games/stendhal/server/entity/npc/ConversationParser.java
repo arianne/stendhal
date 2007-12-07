@@ -16,6 +16,7 @@ public class ConversationParser {
 
 	private StringTokenizer _tokenizer;
 	private String	_next_word;
+	private String _original;
     private boolean	_error;
 
     /**
@@ -24,10 +25,11 @@ public class ConversationParser {
 	public ConversationParser(final String text)
 	{
 		 // initialise a new tokenizer with the given text
-		_tokenizer = new StringTokenizer(text!=null? text.toLowerCase(): "");
+		_tokenizer = new StringTokenizer(text!=null? text: "");
 
 		 // get first word
 		_next_word = _tokenizer.hasMoreTokens()? _tokenizer.nextToken(): null;
+		_original = _next_word;
 
          // start with no errors.
         _error = false;
@@ -45,14 +47,15 @@ public class ConversationParser {
 
 		 // Parse the text as simple "verb - amount - object" construct.
 		sentence._verb = parser.nextWord();
-        sentence._amount = parser.readAmount();
-        sentence._object = parser.readObjectName();
+		sentence._amount = parser.readAmount();
+		sentence._object = parser.readObjectName();
 
          // Optionally there may be following a preposition and a second object.
-        sentence._preposition = parser.nextWord();
-        sentence._object2 = parser.readObjectName();
+		sentence._preposition = parser.nextWord();
+		sentence._object2 = parser.readObjectName();
 
-        sentence._error = parser.getError();
+		sentence._error = parser.getError();
+		sentence._original = parser._original;
 /*TODO
 		 // derive the singular from the item name if the amount is greater than one
 		if (sentence._amount != 1) {
@@ -69,11 +72,12 @@ public class ConversationParser {
 		if (word != null) {
 			if (_tokenizer.hasMoreTokens()) {
 				_next_word = _tokenizer.nextToken();
+				_original += ' ' + _next_word;
 			} else {
 				_next_word = null;
 			}
 
-	        return word;
+	        return word.toLowerCase();
 		} else {
 			return null;
 		}
