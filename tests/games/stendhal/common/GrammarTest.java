@@ -554,6 +554,9 @@ public class GrammarTest {
 	@Test
 	public void testNumberStrings() {
 		assertEquals(0, Grammar.number("zero"));
+		assertEquals(1, Grammar.number("a"));
+		assertEquals(1, Grammar.number("an"));
+
 		checkNumberString(0, "no");
 		checkNumberString(1, "one");
 		checkNumberString(2, "two");

@@ -479,6 +479,8 @@ public class Grammar {
 	public static Integer number(String text) {
 		if (text.equals("no") || text.equals("zero")) {
 			return 0;
+		} if (text.equals("a") || text.equals("an")) {
+			return 1;
 		} if (text.equals("one")) {
 			return 1;
 		} if (text.equals("two")) {
