@@ -48,7 +48,6 @@ public class AdministrationActionTest {
 
 	@Test
 	public final void testGetLevelForCommand() {
-		
 		assertEquals(-1,AdministrationAction.getLevelForCommand("unkown"));
 		assertEquals(0, AdministrationAction.getLevelForCommand("adminlevel"));
 		assertEquals(100, AdministrationAction.getLevelForCommand("support"));
@@ -104,9 +103,6 @@ public class AdministrationActionTest {
 
 	@Test
 	public final void testTellAllAction() {
-
-	
-
 		Player pl = PlayerTestHelper.createPlayer("dummy");
 		// bad bad
 		MockStendhalRPRuleProcessor.get().getPlayers().add(pl);
@@ -125,7 +121,6 @@ public class AdministrationActionTest {
 
 	@Test
 	public final void testSupportAnswerAction() {
-
 		Player pl = PlayerTestHelper.createPlayer();
 		Player bob = PlayerTestHelper.createPlayer("bob");
 		// bad bad
@@ -222,7 +217,6 @@ public class AdministrationActionTest {
 
 	@Test
 	public final void testTeleportToActionPlayerNotThere() {
-
 		Player pl = PlayerTestHelper.createPlayer();
 		pl.put("adminlevel", 5000);
 		RPAction action = new RPAction();
@@ -230,7 +224,6 @@ public class AdministrationActionTest {
 		action.put("target", "blah");
 		CommandCenter.execute(pl, action);
 		assertEquals("Player \"blah\" not found", pl.getPrivateText());
-
 	}
 
 	@Test
@@ -255,7 +248,6 @@ public class AdministrationActionTest {
 	
 	@Test
 	public final void testOnAlterActionWrongAttribute() {
-
 		Player pl = PlayerTestHelper.createPlayer("bob");
 		pl.put("adminlevel", 5000);
 
@@ -301,7 +293,6 @@ public class AdministrationActionTest {
 
 	@Test
 	public final void testOnAlterActionTitle() {
-
 		Player pl = PlayerTestHelper.createPlayer("bob");
 		pl.put("adminlevel", 5000);
 
@@ -356,7 +347,6 @@ public class AdministrationActionTest {
 
 	@Test
 	public final void testOnAlterActionHPsub() {
-
 		Player pl = PlayerTestHelper.createPlayer("bob");
 		pl.put("adminlevel", 5000);
 		pl.put("base_hp", 100);
@@ -402,9 +392,6 @@ public class AdministrationActionTest {
 
 	@Test
 	public final void testAlterCreatureEntityNotFound() {
-
-	
-
 		Player pl = PlayerTestHelper.createPlayer("hugo");
 
 		MockStendhalRPRuleProcessor.get().getPlayers().add(pl);
@@ -459,7 +446,6 @@ public class AdministrationActionTest {
 		assertEquals("def", 6, rat.getDEF());
 		assertEquals("hp", 7, rat.getHP());
 		assertEquals("xp", 8, rat.getXP());
-
 	}
 
 	@Test
@@ -473,12 +459,10 @@ public class AdministrationActionTest {
 		assertTrue(pl.isInvisible());
 		CommandCenter.execute(pl, action);
 		assertFalse(pl.isInvisible());
-
 	}
 
 	@Test
 	public final void testGhostmode() {
-	
 		Player pl = PlayerTestHelper.createPlayer("hugo");
 		Player bob = PlayerTestHelper.createPlayer("bob");
 		pl.put("adminlevel", 5000);
@@ -508,7 +492,6 @@ public class AdministrationActionTest {
 		assertFalse(pl.isGhost());
 		assertEquals(null, bob.get("offline"));
 		assertEquals("hugo", bob.get("online"));
-
 	}
 
 	@Test
@@ -528,7 +511,6 @@ public class AdministrationActionTest {
 
 	@Test
 	public final void testJail() {
-	
 		Player pl = PlayerTestHelper.createPlayer("hugo");
 		pl.put("adminlevel", 5000);
 		RPAction action = new RPAction();
@@ -569,7 +551,6 @@ public class AdministrationActionTest {
 		CommandCenter.execute(pl, action);
 		assertEquals("this is ok as jailing is tested elsewhere",
 				"Zone -1_semos_jail not found", pl.getPrivateText());
-
 	}
 
 	@Test
@@ -614,8 +595,8 @@ public class AdministrationActionTest {
 		CommandCenter.execute(pl, action);
 		assertTrue(pl.getPrivateText().startsWith(
 				"You have gagged hugo for 1 minutes. Reason: "));
-
 	}
+
 	@Test
 	public final void testOnDestroyEntityNotFOund() {
 		Player pl = PlayerTestHelper.createPlayer("hugo");
@@ -625,11 +606,10 @@ public class AdministrationActionTest {
 
 		CommandCenter.execute(pl, action);
 		assertEquals("Entity not found", pl.getPrivateText());
-		
 	}
+
 	@Test
 	public final void testOnDestroyPlayer() {
-	
 		Player pl = PlayerTestHelper.createPlayer("hugo");
 		pl.put("adminlevel", 5000);
 		pl.clearEvents();
@@ -641,7 +621,6 @@ public class AdministrationActionTest {
 
 		CommandCenter.execute(pl, action);
 		assertEquals("You can't remove players", pl.getPrivateText());
-
 	}
 	
 	@Test
@@ -670,7 +649,7 @@ public class AdministrationActionTest {
 	public final void testOnDestroyRat() {
 	
 		Player pl = PlayerTestHelper.createPlayer("hugo");
-	Creature rat =  new RaidCreature(StendhalRPWorld.get().getRuleManager()
+		Creature rat =  new RaidCreature(StendhalRPWorld.get().getRuleManager()
 			.getEntityManager().getCreature("rat"));
 		StendhalRPZone testzone = new StendhalRPZone("Testzone");
 		testzone.add(rat);
@@ -693,7 +672,7 @@ public class AdministrationActionTest {
 	public final void testOnDestroyRatWithTargetID() {
 		
 		Player pl = PlayerTestHelper.createPlayer("hugo");
-	Creature rat =  new RaidCreature(StendhalRPWorld.get().getRuleManager()
+		Creature rat =  new RaidCreature(StendhalRPWorld.get().getRuleManager()
 			.getEntityManager().getCreature("rat"));
 		StendhalRPZone testzone = new StendhalRPZone("Testzone");
 		testzone.add(rat);
@@ -710,14 +689,12 @@ public class AdministrationActionTest {
 
 		CommandCenter.execute(pl, action);
 		assertEquals("Removed entity 1", pl.getPrivateText());
-
 	}
-	
+
 	@Test
 	public final void testOnInspectRatWithTargetID() {
-
 		Player pl = PlayerTestHelper.createPlayer("hugo");
-	Creature rat =  new RaidCreature(StendhalRPWorld.get().getRuleManager()
+		Creature rat =  new RaidCreature(StendhalRPWorld.get().getRuleManager()
 			.getEntityManager().getCreature("rat"));
 		StendhalRPZone testzone = new StendhalRPZone("Testzone");
 		testzone.add(rat);
@@ -734,11 +711,10 @@ public class AdministrationActionTest {
 
 		CommandCenter.execute(pl, action);
 		assertTrue( pl.getPrivateText().startsWith("Inspected creature is called \"rat\" and has the following attributes:"));
-
 	}
+
 	@Test
 	public final void testOnSummonAt() {
-	
 		Player pl = PlayerTestHelper.createPlayer("hugo");
 		pl.put("adminlevel", 5000);
 		pl.clearEvents();
@@ -765,8 +741,8 @@ public class AdministrationActionTest {
 
 		CommandCenter.execute(pl, action);
 		assertEquals("Not an item.", pl.getPrivateText());
-	pl.clearEvents();
-		
+		pl.clearEvents();
+
 		action = new RPAction();
 		action.put("type", "summonat");
 		action.put("target","hugo" );
@@ -775,6 +751,5 @@ public class AdministrationActionTest {
 		assertFalse(pl.isEquipped("dagger"));
 		CommandCenter.execute(pl, action);
 		assertTrue(pl.isEquipped("dagger"));
-
 	}
 }
