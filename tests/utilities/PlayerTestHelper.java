@@ -11,6 +11,7 @@ public class PlayerTestHelper  {
 		PlayerHelper.generatePlayerRPClasses();
 		Player pl = new Player(new RPObject());
 		PlayerHelper.addEmptySlots(pl);
+		pl.put("outfit", "01010101");
 		return pl;
 	}
 	public static Player createPlayer(String name) {
