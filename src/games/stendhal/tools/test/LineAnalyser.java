@@ -10,7 +10,7 @@ import java.util.List;
  */
 class LineAnalyser {
 	private List<String> playerNames = Arrays.asList("hendrikus", "player", 
-		"rosie", "gambit", "superkym", "Heman", "jellybean"); // todo: do not hard code this
+		"rosie", "gambit", "superkym", "Heman", "jellybean", "Heman"); // todo: do not hard code this
 
 	private String line;
 	private String stripped;
