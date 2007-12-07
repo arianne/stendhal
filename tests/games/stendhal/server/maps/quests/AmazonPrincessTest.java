@@ -121,7 +121,7 @@ public class AmazonPrincessTest {
 		en.step(player, "pina_colada");
 		assertEquals("Sometime you could do me a #favour ...", npc.get("text"));
 		en.step(player, "favour");
-		assertEquals("I'm sure I'll be too drunk to have another for at least 59 minutes!", npc.get("text"));
+		assertTrue(npc.get("text").startsWith("I'm sure I'll be too drunk to have another for at least "));
 		en.step(player, "bye");
 		assertEquals("Goodbye, and beware of the barbarians.", npc.get("text"));
 	}
