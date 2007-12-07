@@ -173,7 +173,7 @@ public class ElvishArmor extends AbstractQuest {
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-						String item = sentence.toString();
+						String item = sentence.getOriginalText();
 						List<String> missing = missingitems(player, false);
 						if (missing.contains(item)) {
 							if (player.drop(item)) {

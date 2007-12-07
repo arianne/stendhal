@@ -16,7 +16,7 @@ import java.util.Collection;
 import org.apache.log4j.Logger;
 
 /**
- * Helper functions for producing grammatically-correct sentences.
+ * Helper functions for producing and parsing grammatically-correct sentences.
  */
 public class Grammar {
 

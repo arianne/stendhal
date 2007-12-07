@@ -140,7 +140,7 @@ public class FindGhosts extends AbstractQuest {
 				@Override
 				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 					List<String> missing = missingNames(player);
-					String item = sentence.toString();
+					String item = sentence.getOriginalText();
 
 					String npcQuestText = player.getQuest(QUEST_SLOT);
 					String[] npcDoneText = npcQuestText.split(":");

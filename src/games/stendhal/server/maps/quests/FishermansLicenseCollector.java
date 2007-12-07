@@ -141,7 +141,7 @@ public class FishermansLicenseCollector extends AbstractQuest {
 				@Override
 				public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 					List<String> missing = missingFish(player, false);
-					String item = sentence.toString();
+					String item = sentence.getOriginalText();
 					if (missing.contains(item)) {
 						if (player.drop(item)) {
 							// register fish as done

@@ -204,7 +204,7 @@ public class BringListOfItemsQuestLogic {
 			new SpeakerNPC.ChatAction() {
 				@Override
 				public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-					String item = sentence.toString();
+					String item = sentence.getOriginalText();
 
 					if (!concreteQuest.getNeededItems().contains(item)) {
 						engine.say(concreteQuest.respondToOfferOfNotNeededItem());

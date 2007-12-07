@@ -149,7 +149,7 @@ public class HouseBuying extends AbstractQuest {
 										String postmanslot = postman.getQuest(QUEST_SLOT);
 										String[] boughthouses = postmanslot.split(";");
 										List<String> doneList = Arrays.asList(boughthouses);
-										String item = sentence.toString();
+										String item = sentence.getOriginalText();
 										// now check if the house they said is free
 										if (!doneList.contains(item)) {
 											// it's available, so take money
@@ -346,7 +346,7 @@ public class HouseBuying extends AbstractQuest {
 										String postmanslot = postman.getQuest(POSTMAN_STORAGE_SLOT_2);
 										String[] boughthouses = postmanslot.split(";");
 										List<String> doneList = Arrays.asList(boughthouses);
-										String item = sentence.toString();
+										String item = sentence.getOriginalText();
 										// now check if the house they said is free
 										if (!doneList.contains(item)) {
 											// it's available, so take money

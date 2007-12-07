@@ -191,7 +191,7 @@ public class CloakCollector2 extends AbstractQuest {
 					@Override
 					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						List<String> missing2 = missingcloaks2(player, false);
-						String item = sentence.toString();
+						String item = sentence.getOriginalText();
 
 						if (missing2.contains(item)) {
 							if (player.drop(item)) {
