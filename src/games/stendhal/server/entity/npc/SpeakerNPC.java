@@ -308,8 +308,8 @@ public class SpeakerNPC extends NPC {
 		if (!isTalking() && (initChatAction != null)) {
 			Player nearest = getNearestPlayer(7);
 			if (nearest != null) {
-				if ((initChatCondition == null)
-						|| initChatCondition.fire(nearest, null, this)) {
+				if (initChatCondition == null ||
+					initChatCondition.fire(nearest, null, this)) {	// Note: The sentence parameter is left as null, so be carefull not to use it in the fire() handler.
 					initChatAction.fire(nearest, null, this);
 				}
 			}
