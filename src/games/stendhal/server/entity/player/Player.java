@@ -1721,6 +1721,12 @@ public class Player extends RPEntity {
 		if (temporary && !has("outfit_org")) {
 			put("outfit_org", get("outfit"));
 		}
+
+		// if the new outfit is not temporay, remove the backup
+		if (!temporary && has("outfit_org")) {
+			remove("outfit_org");
+		}
+
 		// combine the old outfit with the new one, as the new one might
 		// contain null parts.
 		Outfit newOutfit = outfit.putOver(getOutfit());
