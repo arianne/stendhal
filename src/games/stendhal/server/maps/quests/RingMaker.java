@@ -55,8 +55,6 @@ public class RingMaker extends AbstractQuest {
 
 	private static final String QUEST_SLOT = "fix_emerald_ring";
 
-	private static final String MARRIAGE_QUEST_SLOT = "marriage";
-
 	@Override
 	public void init(String name) {
 		super.init(name, QUEST_SLOT);
