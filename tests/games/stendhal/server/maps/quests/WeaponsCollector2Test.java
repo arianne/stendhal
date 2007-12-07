@@ -65,7 +65,6 @@ public class WeaponsCollector2Test {
 		NPCList.get().add(new SpeakerNPC("Balduin"));
 		WeaponsCollector2 wc = new WeaponsCollector2();
 		wc.addToWorld();
-		wc.init("CloaksCollector");
 		SpeakerNPC npc = wc.getNPC();
 		Engine en = npc.getEngine();
 		Player pl = PlayerTestHelper.createPlayer();
