@@ -515,7 +515,7 @@ public class Marriage extends AbstractQuest {
 				}
 			},
 			ConversationStates.QUESTION_3,
-			"You haven't even been on your honeymoon yet. Are you sure you want to divorce so soon?",
+			"I see you haven't been on your honeymoon yet. Are you sure you want to divorce so soon?",
 			null);
 
 		clerk.add(ConversationStates.ATTENDING, "divorce",
@@ -533,7 +533,7 @@ public class Marriage extends AbstractQuest {
 				public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
 					return !player.isEquipped("wedding_ring");
 				}
-			}, ConversationStates.ATTENDING, "Where's your wedding ring?",
+			}, ConversationStates.ATTENDING, "I apologise, but I need your wedding ring in order to divorce you.",
 			null);
 
 		// If they say no
