@@ -9,31 +9,23 @@ import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
-import games.stendhal.server.maps.MockStendlRPWorld;
-import marauroa.common.Log4J;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import utilities.PlayerHelper;
 import utilities.PlayerTestHelper;
+import utilities.QuestHelper;
 
 public class CloakCollectorTest {
 	@BeforeClass
 	public static void setupclass() {
-		Log4J.init();
-		MockStendlRPWorld.get();
-		assertTrue(MockStendhalRPRuleProcessor.get() instanceof MockStendhalRPRuleProcessor);
-		PlayerHelper.generateNPCRPClasses();
-		PlayerHelper.generatePlayerRPClasses();
+		QuestHelper.setUpBeforeClass();
 	}
 
 	@Before
 	public void setUp() throws Exception {
-
 	}
 
 	@After
@@ -60,12 +52,10 @@ public class CloakCollectorTest {
 				npc.get("text"));
 		en.stepTest(monica, ConversationPhrases.NO_MESSAGES.get(0));
 		assertEquals(cc.respondToQuestRefusal(), npc.get("text"));
-
 	}
 
 	@Test
 	public final void doQuest() {
-
 		NPCList.get().add(new SpeakerNPC("Josephine"));
 		CloakCollector cc = new CloakCollector();
 		cc.addToWorld();
@@ -122,26 +112,22 @@ public class CloakCollectorTest {
 		assertEquals(cc.respondToLastItemBrought(), npc.get("text"));
 		en.step(monica, ConversationPhrases.GOODBYE_MESSAGES.get(0));
 		assertTrue(cc.isCompleted(monica));
-
 	}
 
 	@Test
 	public final void testGetSlotName() {
-
 		CloakCollector cc = new CloakCollector();
 		assertEquals("cloaks_collector", cc.getSlotName());
 	}
 
 	@Test
 	public final void testShouldWelcomeAfterQuestIsCompleted() {
-
 		CloakCollector cc = new CloakCollector();
 		assertFalse(cc.shouldWelcomeAfterQuestIsCompleted());
 	}
 
 	@Test
 	public final void testRewardPlayer() {
-
 		CloakCollector cc = new CloakCollector();
 		Player player = PlayerTestHelper.createPlayer();
 		double oldKarma = player.getKarma();

@@ -58,7 +58,7 @@ public abstract class AbstractQuest implements IQuest {
 	}
 
 	public List<String> getHistory(Player player) {
-		// TODO this method should be abstact after all quests are converted
+		// TODO this method should be abstract after all quests are converted
 		return EMPTY_LIST;
 	}
 

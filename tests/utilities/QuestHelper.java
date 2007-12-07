@@ -16,7 +16,7 @@ import org.junit.BeforeClass;
 public class QuestHelper {
 	
 	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
+	public static void setUpBeforeClass() {
 		Log4J.init();
 		PlayerHelper.generatePlayerRPClasses();
 		PlayerHelper.generateItemRPClasses();
