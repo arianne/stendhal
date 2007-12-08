@@ -504,6 +504,5 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 		Transaction transaction = getTransaction();
 		addGameEvent(transaction, source, event, params);
 		transaction.commit();
-
-}
+	}
 }

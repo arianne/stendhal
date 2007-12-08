@@ -17,20 +17,20 @@ public static void register(){
 	
 		if (action.has("target") && action.has("text")) {
 			Entity changed = getTarget(player, action);
-	
+
 			if (changed == null) {
 				logger.debug("Entity not found");
 				player.sendPrivateText("Entity not found");
 				return;
 			}
-	
+
 			/*
 			 * It will contain a string like: name/atk/def/hp/xp
 			 */
 			String stat = action.get("text");
-	
+
 			String[] parts = stat.split("/");
-	
+
 			if (changed instanceof Creature && parts.length == 5) {
 				Creature creature = (Creature) changed;
 				StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
@@ -41,7 +41,7 @@ public static void register(){
 				creature.setDEF(Integer.parseInt(parts[2]));
 				creature.initHP(Integer.parseInt(parts[3]));
 				creature.setXP(Integer.parseInt(parts[4]));
-	
+
 				creature.update();
 				creature.notifyWorldAboutChanges();
 			}
