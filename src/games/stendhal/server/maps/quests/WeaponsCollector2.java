@@ -7,6 +7,12 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.SpeakerNPC.ChatAction;
+import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
+import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
+import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
+import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Arrays;
@@ -98,31 +104,21 @@ public class WeaponsCollector2 extends AbstractQuest {
 		npc.add(
 				ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
-				new SpeakerNPC.ChatCondition() {
-					@Override
-					public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
-						return player.isQuestCompleted("weapons_collector")
-								&& !player.hasQuest(QUEST_SLOT);
-					}
-				},
+				new AndCondition(new QuestCompletedCondition("weapons_collector"), new QuestNotStartedCondition(QUEST_SLOT)),
 				ConversationStates.ATTENDING,
 				"Greetings, old friend. If you are willing, I have another #quest for you.",
 				null);
 
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
-				new SpeakerNPC.ChatCondition() {
-					@Override
-					public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
-						return player.isQuestCompleted("weapons_collector")
-								&& !player.hasQuest(QUEST_SLOT);
-					}
-				}, ConversationStates.QUEST_2_OFFERED, null,
-				new SpeakerNPC.ChatAction() {
+				new AndCondition(new QuestCompletedCondition("weapons_collector"), new QuestNotStartedCondition(QUEST_SLOT)),
+				ConversationStates.QUEST_2_OFFERED, null,
+				new ChatAction() {
 					@Override
 					public void fire(Player player,Sentence sentence, SpeakerNPC engine) {
 						if (!player.isQuestCompleted(QUEST_SLOT)) {
-							engine.say("Recent adventurers to these parts describe strange new creatures with weapons I have never seen. Would you fight these creatures and bring their weapons to me?");
+							engine.say("Recent adventurers to these parts describe strange new creatures with weapons I have never seen. "+
+									"Would you fight these creatures and bring their weapons to me?");
 						} else {
 							engine.say("My collection is now complete! Thanks again.");
 							engine.setCurrentState(ConversationStates.ATTENDING);
@@ -134,16 +130,18 @@ public class WeaponsCollector2 extends AbstractQuest {
 		npc.add(ConversationStates.QUEST_2_OFFERED,
 				ConversationPhrases.YES_MESSAGES, null,
 				ConversationStates.ATTENDING, null,
-				new SpeakerNPC.ChatAction() {
+				new ChatAction() {
 					@Override
 					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-						engine.say("Wonderful. Now, the #list is small but the risk may be great. If you return safely, I have another reward for you.");
+						engine.say("Wonderful. Now, the #list is small but the risk may be great. "+
+								"If you return safely, I have another reward for you.");
 						player.setQuest(QUEST_SLOT, "");
 					}
 				});
 
 		// player is not willing to help
-		npc.add(ConversationStates.QUEST_2_OFFERED, "no", null,
+		npc.add(ConversationStates.QUEST_2_OFFERED,
+				ConversationPhrases.NO_MESSAGES, null,
 				ConversationStates.ATTENDING,
 				"Well, maybe someone else will happen by and help me.", null);
 
@@ -151,14 +149,9 @@ public class WeaponsCollector2 extends AbstractQuest {
 		npc.add(
 				ConversationStates.ATTENDING,
 				"list",
-				new SpeakerNPC.ChatCondition() {
-					@Override
-					public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
-						return player.hasQuest(QUEST_SLOT)
-								&& !player.isQuestCompleted(QUEST_SLOT);
-					}
-				}, ConversationStates.QUESTION_2, null,
-				new SpeakerNPC.ChatAction() {
+				new AndCondition(new QuestStartedCondition(QUEST_SLOT), new QuestNotCompletedCondition(QUEST_SLOT)),
+				ConversationStates.QUESTION_2, null,
+				new ChatAction() {
 					@Override
 					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						List<String> needed = missingWeapons(player, true);
@@ -174,8 +167,9 @@ public class WeaponsCollector2 extends AbstractQuest {
 				});
 
 		// player says he doesn't have required weapons with him
-		npc.add(ConversationStates.QUESTION_2, "no", null,
-				ConversationStates.IDLE, null, new SpeakerNPC.ChatAction() {
+		npc.add(ConversationStates.QUESTION_2,
+				ConversationPhrases.NO_MESSAGES, null,
+				ConversationStates.IDLE, null, new ChatAction() {
 					@Override
 					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						List<String> missing = missingWeapons(player, false);
@@ -190,52 +184,49 @@ public class WeaponsCollector2 extends AbstractQuest {
 				ConversationPhrases.YES_MESSAGES, null,
 				ConversationStates.QUESTION_2, "What did you find?", null);
 
-		for (String weapon : neededWeapons) {
-			npc.add(ConversationStates.QUESTION_2, weapon, null,
-					ConversationStates.QUESTION_2, null,
-					new SpeakerNPC.ChatAction() {
-						@Override
-						public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-							List<String> missing = missingWeapons(player, false);
-							String item = sentence.getOriginalText();
-							if (missing.contains(item)) {
-								if (player.drop(item)) {
-									// register weapon as done
-									String doneText = player.getQuest(QUEST_SLOT);
-									player.setQuest(QUEST_SLOT,
-											doneText + ";" + item);
-									// check if the player has brought all
-									// weapons
-									missing = missingWeapons(player, true);
-									if (missing.size() > 0) {
-										engine.say("Thank you very much! Do you have anything more for me?");
-									} else {
-										Item lhandsword = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
-												"l_hand_sword");
-										lhandsword.setBoundTo(player.getName());
-										player.equip(lhandsword, true);
-										Item rhandsword = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
-												"r_hand_sword");
-										rhandsword.setBoundTo(player.getName());
-										player.equip(rhandsword, true);
-										player.addXP(3000);
-										engine.say("At last, my collection is complete! Thank you very much; here, take this pair of swords in exchange!");
-										player.setQuest(QUEST_SLOT,
-												"done");
-										player.notifyWorldAboutChanges();
-										engine.setCurrentState(ConversationStates.ATTENDING);
-									}
+		npc.add(ConversationStates.QUESTION_2, neededWeapons, null,
+				ConversationStates.QUESTION_2, null,
+				new ChatAction() {
+					@Override
+					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+						List<String> missing = missingWeapons(player, false);
+						String item = sentence.getOriginalText();
+						if (missing.contains(item)) {
+							if (player.drop(item)) {
+								// register weapon as done
+								String doneText = player.getQuest(QUEST_SLOT);
+								player.setQuest(QUEST_SLOT,
+										doneText + ";" + item);
+								// check if the player has brought all
+								// weapons
+								missing = missingWeapons(player, true);
+								if (missing.size() > 0) {
+									engine.say("Thank you very much! Do you have anything more for me?");
 								} else {
-									engine.say("I may be old, but I'm not senile, and you clearly don't have "
-											+ Grammar.a_noun(item)
-											+ ". What do you really have for me?");
+									Item lhandsword = StendhalRPWorld.get().getRuleManager().
+														getEntityManager().getItem("l_hand_sword");
+									lhandsword.setBoundTo(player.getName());
+									player.equip(lhandsword, true);
+									Item rhandsword = StendhalRPWorld.get().getRuleManager().
+														getEntityManager().getItem("r_hand_sword");
+									rhandsword.setBoundTo(player.getName());
+									player.equip(rhandsword, true);
+									player.addXP(3000);
+									engine.say("At last, my collection is complete! Thank you very much; here, take this pair of swords in exchange!");
+									player.setQuest(QUEST_SLOT, "done");
+									player.notifyWorldAboutChanges();
+									engine.setCurrentState(ConversationStates.ATTENDING);
 								}
 							} else {
-								engine.say("I already have that one. Do you have any other weapon for me?");
+								engine.say("I may be old, but I'm not senile, and you clearly don't have "
+										+ Grammar.a_noun(item)
+										+ ". What do you really have for me?");
 							}
+						} else {
+							engine.say("I already have that one. Do you have any other weapon for me?");
 						}
-					});
-		}
+					}
+		});
 	}
 
 	private void step_2() {
@@ -256,13 +247,7 @@ public class WeaponsCollector2 extends AbstractQuest {
 		npc.add(
 				ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
-				new SpeakerNPC.ChatCondition() {
-					@Override
-					public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
-						return player.hasQuest(QUEST_SLOT)
-								&& !player.isQuestCompleted(QUEST_SLOT);
-					}
-				},
+				new AndCondition(new QuestStartedCondition(QUEST_SLOT), new QuestNotCompletedCondition(QUEST_SLOT)),
 				ConversationStates.ATTENDING,
 				"Welcome back. I hope you have come to help me with my latest #list of weapons.",
 				null);
@@ -270,12 +255,8 @@ public class WeaponsCollector2 extends AbstractQuest {
 
 	private void playerReturnsAfterFinishingQuest(SpeakerNPC npc) {
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-				new SpeakerNPC.ChatCondition() {
-					@Override
-					public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
-						return player.isQuestCompleted(QUEST_SLOT);
-					}
-				}, ConversationStates.ATTENDING,
+				new QuestCompletedCondition(QUEST_SLOT),
+				ConversationStates.ATTENDING,
 				"Welcome! Thanks again for extending my collection.", null);
 	}
 
