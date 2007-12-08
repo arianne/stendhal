@@ -15,7 +15,7 @@ import org.junit.Test;
 public class CountingMapTest {
 
 	@Test
-	public void testCreateArea() {
+	public void test() {
 		CountingMap<String> a = new CountingMap<String>("prefix");
 
 		String key1 = a.add("ABC 123");
