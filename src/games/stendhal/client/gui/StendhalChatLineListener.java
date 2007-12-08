@@ -101,7 +101,6 @@ public class StendhalChatLineListener implements ActionListener, KeyListener {
 		} catch (Exception ex) {
 			logger.error(ex, ex);
 		}
-
 	}
 
 	public void keyPressed(KeyEvent e) {
@@ -136,9 +135,7 @@ public class StendhalChatLineListener implements ActionListener, KeyListener {
 					output = output + playersonline.elementAt(i) + " ";
 
 					playerChatText.setText(output);
-
 				}
-
 			}
 		}
 	}

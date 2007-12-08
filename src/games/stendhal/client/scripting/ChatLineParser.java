@@ -1,8 +1,10 @@
 package games.stendhal.client.scripting;
 
 import games.stendhal.client.StendhalClient;
+import games.stendhal.client.StendhalUI;
 import games.stendhal.client.actions.RecordAction;
 import games.stendhal.client.actions.SlashActionRepository;
+import games.stendhal.common.NotificationType;
 import marauroa.common.game.RPAction;
 
 /**
@@ -58,6 +60,7 @@ public class ChatLineParser {
 			String[] params = command.getParams();
 
 			if (command.hasError()) {
+				StendhalUI.get().addEventLine(command.getError(), NotificationType.ERROR);
 				return false;
 			}
 

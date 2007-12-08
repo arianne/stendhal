@@ -24,7 +24,7 @@ public class SlashActionParser
 		SlashActionCommand command = new SlashActionCommand();
 
 		if (text.length() == 0) {
-			return command.setError("missing slash command");
+			return command.setError("Missing slash command");
 		}
 
 		/*
@@ -37,7 +37,7 @@ public class SlashActionParser
 		 * Must be non-space after slash
 		 */
 		if (Character.isWhitespace(ch)) {
-			return command.setError("unexpected space after slash character");
+			return command.setError("Unexpected space after slash character");
 		}
 
 		/*
@@ -100,7 +100,7 @@ public class SlashActionParser
 				 * Incomplete parameters?
 				 */
 				if (i < minimum) {
-					return command.setError("missing command parameter");
+					return command.setError("Missing command parameter for '" + command._name + "'");
 				}
 
 				break;
@@ -137,7 +137,7 @@ public class SlashActionParser
 			 * Unterminated quote?
 			 */
 			if (quote != CharacterIterator.DONE) {
-				return command.setError("unterminated quote");
+				return command.setError("Unterminated quote in slash command");
 			}
 
 			command._params[i] = sbuf.toString();

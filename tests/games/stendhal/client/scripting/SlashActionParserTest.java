@@ -93,12 +93,12 @@ public class SlashActionParserTest {
 		assertEquals("player 2", cmd.getParams()[0]);
 		assertEquals("", cmd.getRemainder());
 
-		cmd = SlashActionParser.parse("say \"i don't speak\"");
+		cmd = SlashActionParser.parse("say \"i don't speak german\"");
 		assertFalse(cmd.hasError());
 		assertEquals("say", cmd.getName());
 		assertNotNull(cmd.getParams());
 		assertEquals(1, cmd.getParams().length);
-		assertEquals("i don't speak", cmd.getParams()[0]);
+		assertEquals("i don't speak german", cmd.getParams()[0]);
 		assertEquals("", cmd.getRemainder());
 	}
 
@@ -106,11 +106,11 @@ public class SlashActionParserTest {
 	public final void testError() {
 		SlashActionCommand cmd = SlashActionParser.parse("");
 		assertTrue(cmd.hasError());
-		assertEquals("missing slash command", cmd.getError());
+		assertEquals("Missing slash command", cmd.getError());
 
 		cmd = SlashActionParser.parse("where 'abc");
 		assertTrue(cmd.hasError());
-		assertEquals("unterminated quote", cmd.getError());
+		assertEquals("Unterminated quote in slash command", cmd.getError());
 	}
 
 }

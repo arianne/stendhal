@@ -1,5 +1,6 @@
 package games.stendhal.server.actions;
 
+import games.stendhal.common.NotificationType;
 import games.stendhal.server.actions.admin.AdministrationAction;
 import games.stendhal.server.actions.buddy.BuddyAction;
 import games.stendhal.server.actions.equip.EquipmentAction;
@@ -77,7 +78,7 @@ public class CommandCenter {
 	}
 
 	private static ActionListener getAction(RPAction action) {
-		if (action== null){
+		if (action == null){
 			return UNKNOWN_ACTION;
 		} else {
 			return getAction(action.get("type"));
@@ -88,7 +89,7 @@ public class CommandCenter {
 		if (type == null) {
 			return UNKNOWN_ACTION;
 		}
-		
+
 		ActionListener action = getActionsMap().get(type);
 		if (action == null) {
 			return UNKNOWN_ACTION;
@@ -107,9 +108,8 @@ public class CommandCenter {
 			}
 			logger.warn(player + " tried to execute unknown action " + type);
 			if (player != null) {
-				player.sendPrivateText("Unknown Command " + type);
+				player.sendPrivateText(NotificationType.ERROR, "Unknown command " + type);
 			}
-
 		}
 
 	}

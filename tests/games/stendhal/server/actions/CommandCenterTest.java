@@ -68,7 +68,7 @@ public class CommandCenterTest {
 		action.put("type", "");
 		Player caster = PlayerTestHelper.createPlayer("bob");
 		CommandCenter.execute(caster, action);
-		assertEquals("Unknown Command ", caster.getPrivateText());
+		assertEquals("Unknown command ", caster.getPrivateText());
 	}
 
 }
