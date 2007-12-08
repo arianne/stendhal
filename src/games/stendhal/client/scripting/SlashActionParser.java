@@ -7,6 +7,8 @@ import java.text.StringCharacterIterator;
 
 /**
  * Command line parser for the Stendhal client
+ * The parser recognises the registered slash action commands and
+ * handles string quoting.
  * @author Martin Fuchs
  */
 public class SlashActionParser
@@ -26,17 +28,17 @@ public class SlashActionParser
 		}
 
 		/*
-		 * Must be non-space after slash
-		 */
-		if (Character.isWhitespace(text.charAt(0))) {
-			return command.setError();
-		}
-
-		/*
 		 * Parse command
 		 */
 		CharacterIterator ci = new StringCharacterIterator(text);
 		char ch = ci.current();
+
+		/*
+		 * Must be non-space after slash
+		 */
+		if (Character.isWhitespace(ch)) {
+			return command.setError();
+		}
 
 		/*
 		 * Extract command name
