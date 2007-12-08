@@ -10,7 +10,7 @@ import java.util.StringTokenizer;
  * This class parses strings in english language and returns them
  * as Sentence objects. All sentence constituents are in lower case.
  *
- * @author martinf
+ * @author Martin Fuchs
  */
 public class ConversationParser {
 
@@ -99,11 +99,11 @@ public class ConversationParser {
     	        	amount = Integer.parseInt(_next_word);
     
     	        	if (amount < 0)
-    	        		_error = true;
+    	        		setError();
 
     		        nextWord();
     	        } catch(NumberFormatException e) {
-    	        	_error = true;
+    	        	setError();
     	        }
             } else {
             	 // handle expressions like "one", "two", ...
@@ -151,7 +151,15 @@ public class ConversationParser {
 	}
 
 	/**
-	 * return if some error occurred while parsing the input text
+	 * set error flag on parsing problems
+	 */
+	private void setError()
+    {
+		_error = true;
+    }
+
+	/**
+	 * return whether some error occurred while parsing the input text
 	 * @return error flag
 	 */
 	public boolean getError()

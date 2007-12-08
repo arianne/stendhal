@@ -5,7 +5,7 @@ package games.stendhal.server.entity.npc;
  * ConversationParser returns the parsed sentence in this structure,
  * all returned words are in lower case.
  *
- * @author martinf
+ * @author Martin Fuchs
  */
 public class Sentence {
 
