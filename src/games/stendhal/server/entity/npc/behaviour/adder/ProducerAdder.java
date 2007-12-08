@@ -49,8 +49,8 @@ public class ProducerAdder {
 			        int amount = sentence.getAmount();
 			        String item = sentence.getItemName();
 
-			        if (sentence.getError()) {
-			        	npc.say("Sorry, I did not understand you.");
+			        if (sentence.hasError()) {
+			        	npc.say("Sorry, I did not understand you. " + sentence.getError());
 			        } else {
 			        	if (amount > 1000) {
     						logger.warn("Decreasing very large amount of " + amount + (item!=null? item+" ": "") + " to 1 for player " + player.getName() + " talking to " + npc.getName() + " saying " + sentence);

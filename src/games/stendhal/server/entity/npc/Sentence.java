@@ -14,7 +14,7 @@ public class Sentence {
     String	_object = null;
     String	_preposition = null;
     String	_object2 = null;
-	boolean _error = false;
+	String _error = null;
 	String	_original;
 
 	/**
@@ -94,9 +94,18 @@ public class Sentence {
 	 * return if some error occurred while parsing the input text
 	 * @return error flag
 	 */
-    public boolean getError()
+    public boolean hasError()
     {
-    	return _error;
+    	return _error != null;
+    }
+
+    /**
+     * return error message
+     * @return error string
+     */
+	public String getError()
+    {
+	    return _error;
     }
 
     /**

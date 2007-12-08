@@ -31,8 +31,8 @@ public class BuyerAdder {
 				        int amount = sentence.getAmount();
 				        String item = sentence.getItemName();
 
-				        if (sentence.getError()) {
-					        engine.say("Sorry, I did not understand you.");
+				        if (sentence.hasError()) {
+					        engine.say("Sorry, I did not understand you. " + sentence.getError());
 					        engine.setCurrentState(ConversationStates.ATTENDING);
 					        return;
 				        }

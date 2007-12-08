@@ -149,8 +149,8 @@ public class Engine {
 	public boolean step(Player player, String text) {
 		Sentence sentence = ConversationParser.parse(text);
 
-		if (sentence.getError()) {
-			logger.warn("problem parsing the following sentence: " + text);
+		if (sentence.hasError()) {
+			logger.warn("problem parsing the sentence '" + text + "': " + sentence.getError());
 		}
 
 		return step(player, sentence);
@@ -199,8 +199,8 @@ public class Engine {
 
 		Sentence sentence = ConversationParser.parse(text);
 
-		if (sentence.getError()) {
-			logger.warn("problem parsing the following sentence: " + text);
+		if (sentence.hasError()) {
+			logger.warn("problem parsing the sentence '" + text + "': " + sentence.getError());
 		}
 
 		boolean res = step(player, sentence);

@@ -55,8 +55,8 @@ public class OutfitChangerAdder {
 			        	/* We ignore any amounts and skip the numeric expressions.
 			        	sentence.getAmount(); */
 
-				        if (sentence.getError()) {
-				        	engine.say("Sorry, I did not understand you.");
+				        if (sentence.hasError()) {
+				        	engine.say("Sorry, I did not understand you. " + sentence.getError());
 				        } else if (item==null && behaviour.dealtItems().size()==1) {
 				        	// The NPC only offers one type of outfit, so
 				        	// it's clear what the player wants.

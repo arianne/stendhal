@@ -17,7 +17,7 @@ public class ConversationParser {
 	private StringTokenizer _tokenizer;
 	private StringBuilder _original;
 	private String	_next_word;
-    private boolean	_error;
+    private String _error;
 
     /**
      * create a new conversation parser and initialise with the given text string
@@ -32,7 +32,7 @@ public class ConversationParser {
 		_original = _next_word!=null? new StringBuilder(_next_word): new StringBuilder();
 
          // start with no errors.
-        _error = false;
+        _error = null;
 	}
 
     /**
@@ -99,11 +99,11 @@ public class ConversationParser {
     	        	amount = Integer.parseInt(_next_word);
     
     	        	if (amount < 0)
-    	        		setError();
+    	        		setError("negative amount: " + amount);
 
     		        nextWord();
     	        } catch(NumberFormatException e) {
-    	        	setError();
+    	        	setError("illegal number format: '" + _next_word + "'");
     	        }
             } else {
             	 // handle expressions like "one", "two", ...
@@ -153,16 +153,20 @@ public class ConversationParser {
 	/**
 	 * set error flag on parsing problems
 	 */
-	private void setError()
+	private void setError(String error)
     {
-		_error = true;
+		if (_error == null) {
+			_error = error;
+    	} else {
+    		_error += "\n" + error;
+    	}
     }
 
 	/**
 	 * return whether some error occurred while parsing the input text
 	 * @return error flag
 	 */
-	public boolean getError()
+	public String getError()
     {
 	    return _error;
     }

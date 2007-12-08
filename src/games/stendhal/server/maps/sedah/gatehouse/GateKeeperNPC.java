@@ -75,8 +75,8 @@ public class GateKeeperNPC implements ZoneConfigurator {
 				        int amount = sentence.getAmount();
 				        String item = sentence.getItemName();
 
-				        if (sentence.getError()) {
-				        	engine.say("Are you trying to trick me? Bribe me some number of coins!");
+				        if (sentence.hasError()) {
+				        	engine.say(sentence.getError() + " Are you trying to trick me? Bribe me some number of coins!");
 				        } else if (item == null) {
 							// player only said 'bribe'
 							engine.say("A bribe of no money is no bribe! Bribe me with some amount!");

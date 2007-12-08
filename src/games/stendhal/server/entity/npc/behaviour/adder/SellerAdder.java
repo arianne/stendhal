@@ -35,8 +35,8 @@ public class SellerAdder {
 				        int amount = sentence.getAmount();
 				        String item = sentence.getItemName();
 
-				        if (sentence.getError()) {
-					        engine.say("Sorry, I did not understand you.");
+				        if (sentence.hasError()) {
+					        engine.say("Sorry, I did not understand you. " + sentence.getError());
 					        engine.setCurrentState(ConversationStates.ATTENDING);
 				        }
 				        // find out if the NPC sells this item, and if so,

@@ -57,7 +57,7 @@ public class ChatLineParser {
 			SlashActionCommand command = SlashActionParser.parse(text.substring(1));
 			String[] params = command.getParams();
 
-			if (command.getError()) {
+			if (command.hasError()) {
 				return false;
 			}
 

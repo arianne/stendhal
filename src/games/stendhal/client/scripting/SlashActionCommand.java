@@ -14,7 +14,7 @@ public class SlashActionCommand {
 	String[] _params;
 	String _remainder;
 
-	boolean _error = false;
+	String _error = null;
 
 	/**
 	 * @return action object
@@ -55,19 +55,33 @@ public class SlashActionCommand {
 	 * return whether some error occurred while parsing the input text
 	 * @return error flag
 	 */
-	boolean getError()
+	boolean hasError()
 	{
-		return _error;
+		return _error != null;
 	}
+
+	/**
+	 * return error message
+	 * @return error string
+	 */
+	public String getError()
+    {
+	    return _error;
+    }
 
 	/**
 	 * set error flag
 	 * @return this
 	 */
-	public SlashActionCommand setError()
+	public SlashActionCommand setError(String error)
     {
-	    _error = true;
-	    return this;
+		if (_error == null) {
+			_error = error;
+    	} else {
+    		_error += "\n" + error;
+    	}
+
+		return this;
     }
 
 }

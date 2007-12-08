@@ -158,27 +158,29 @@ public class BetManager extends ScriptImpl implements TurnListener {
 			betInfo.playerName = player.getName();
 
 			// parse the command
-			boolean error = false;
+			String errorMsg = null;
 
-			if (sentence.getError() ||
+			if (sentence.hasError()) {
+				errorMsg = sentence.getError();
+			} else if (
 				sentence.getObjectName()==null ||
 				sentence.getPreposition()==null ||
 				sentence.getObjectName2()==null) {
-				error = true;
+				errorMsg = "missing bet parameters";
 			} else {
 				betInfo.amount = sentence.getAmount();
 				betInfo.itemName = sentence.getItemName(); // cheese
 
 				if (!sentence.getPreposition().equals("on")) {
-					error = true;
+					errorMsg = "missing preposition 'on'";
 				}
 
 				betInfo.target = sentence.getItemName2();
 			}
 
 			// wrong syntax
-			if (error) {
-				engine.say("Sorry " + player.getTitle() + ", I did not understand you.");
+			if (errorMsg != null) {
+				engine.say("Sorry " + player.getTitle() + ", I did not understand you. " + errorMsg);
 				return;
 			}
 

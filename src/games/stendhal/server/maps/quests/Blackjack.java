@@ -328,8 +328,8 @@ public class Blackjack extends AbstractQuest {
 					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 			        	stake = sentence.getAmount();
 
-				        if (sentence.getError()) {
-				        	npc.say("Just tell me how much you want to risk, for example #stake #50.");
+				        if (sentence.hasError()) {
+				        	npc.say(sentence.getError() + " Just tell me how much you want to risk, for example #stake #50.");
 				        } else {
 							if (stake < MIN_STAKE) {
 								npc.say("You must stake at least " + MIN_STAKE
