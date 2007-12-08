@@ -16,7 +16,9 @@ import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.util.EntityHelper;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
@@ -31,7 +33,7 @@ public class LookAction implements ActionListener {
 
 		StendhalRPWorld world = StendhalRPWorld.get();
 
-		// When look is casted over something in a slot
+		// When look is cast over something in a slot
 		if (action.has("baseitem") && action.has("baseobject") && action.has("baseslot")) {
 			StendhalRPZone zone = player.getZone();
 
@@ -86,15 +88,10 @@ public class LookAction implements ActionListener {
 			world.modify(player);
 			return;
 		} else if (action.has("target")) {
-			//	use is cast over something on the floor
-			int usedObject = action.getInt("target");
+			 // evaluate the target parameter
+			RPEntity entity = EntityHelper.entityFromTargetName(action.get("target"), player.getZone());
 
-			StendhalRPZone zone = player.getZone();
-			RPObject.ID targetid = new RPObject.ID(usedObject, zone.getID());
-			if (zone.has(targetid)) {
-				RPObject object = zone.get(targetid);
-				// It is always an entity
-				Entity entity = (Entity) object;
+			if (entity != null) {
 				String name = entity.get("type");
 				if (entity.has("name")) {
 					name = entity.get("name");
