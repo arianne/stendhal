@@ -68,11 +68,13 @@ public class KidGhostNPC implements ZoneConfigurator {
 			    			}
 			    			String npcQuestText = player.getQuest("find_ghosts");
 			    			String[] npcDoneText = npcQuestText.split(":");
-			    			List<String> list = Arrays.asList(npcDoneText[0].split(";"));
+			    			String lookStr = npcDoneText.length>1? npcDoneText[0]: "";
+			    			String saidStr = npcDoneText.length>1? npcDoneText[1]: "";
+			    			List<String> list = Arrays.asList(lookStr.split(";"));
 						    if (!list.contains(npc.getName())) {
-							    player.setQuest("find_ghosts", npcDoneText[0]
+							    player.setQuest("find_ghosts", lookStr
 									    + ";" + npc.getName()
-									    + ":" +  npcDoneText[1]);
+									    + ":" + saidStr);
 							    npc.say("Hello! Hardly anyone speaks to me. The other children pretend I don't exist. I hope you remember me.");
 							    player.addXP(100);
 							    player.addKarma(10);

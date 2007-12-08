@@ -63,13 +63,16 @@ public class GhostNPC implements ZoneConfigurator {
 			    			if (!player.hasQuest("find_ghosts")) {
 			    				player.setQuest("find_ghosts", "looking:said");
 			    			}
+			    			//TODO Refactor this code and merge it with that of all other ghosts, since it's mostly identically.
 			    			String npcQuestText = player.getQuest("find_ghosts");
 			    			String[] npcDoneText = npcQuestText.split(":");
-			    			List<String> list = Arrays.asList(npcDoneText[0].split(";"));
+			    			String lookStr = npcDoneText.length>1? npcDoneText[0]: "";
+			    			String saidStr = npcDoneText.length>1? npcDoneText[1]: "";
+			    			List<String> list = Arrays.asList(lookStr.split(";"));
 						    if (!list.contains(npc.getName())) {
-							    player.setQuest("find_ghosts", npcDoneText[0] + ";"
+							    player.setQuest("find_ghosts", lookStr + ";"
 													+ npc.getName() + ":"
-													+ npcDoneText[1]);
+													+ saidStr);
 							    npc.say("Remember my name ... " + npc.getName()
 							    		+ " ... " + npc.getName() + " ...");
 							    player.addXP(100);

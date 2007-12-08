@@ -144,8 +144,10 @@ public class FindGhosts extends AbstractQuest {
 
 					String npcQuestText = player.getQuest(QUEST_SLOT).toLowerCase();
 					String[] npcDoneText = npcQuestText.split(":");
-					List<String> looking = Arrays.asList(npcDoneText[0].split(";"));
-					List<String> said = Arrays.asList(npcDoneText[1].split(";"));
+	    			String lookingStr = npcDoneText.length>1? npcDoneText[0]: "";
+	    			String saidStr = npcDoneText.length>1? npcDoneText[1]: "";
+					List<String> looking = Arrays.asList(lookingStr.split(";"));
+					List<String> said = Arrays.asList(saidStr.split(";"));
 					String reply = "";
 
 					if (missing.contains(item)
@@ -153,8 +155,8 @@ public class FindGhosts extends AbstractQuest {
 							&& !said.contains(item)) {
 						// we haven't said the name yet so we add it to
 						// the list
-						player.setQuest(QUEST_SLOT, npcDoneText[0]
-								+ ":" + npcDoneText[1] + ";" + item);
+						player.setQuest(QUEST_SLOT, lookingStr
+								+ ":" + saidStr + ";" + item);
 						reply = "Thank you.";
 					} else if (!looking.contains(item)) {
 						// we have said it was a valid name but haven't
