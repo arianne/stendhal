@@ -68,7 +68,7 @@ public class WikipediaAccess extends DefaultHandler implements Runnable {
 	/**
 	 * Gets the last error message
 	 *
-	 * @return error message or <code>null</code> in case no error occured
+	 * @return error message or <code>null</code> in case no error occurred
 	 */
 	public String getError() {
 		return error;

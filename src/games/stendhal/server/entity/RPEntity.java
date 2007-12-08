@@ -78,7 +78,7 @@ public abstract class RPEntity extends GuidedEntity {
 
 	/**
 	 * Maps each enemy which has recently damaged this RPEntity to the turn when
-	 * the last damage has occured.
+	 * the last damage has occurred.
 	 *
 	 * You only get ATK and DEF experience by fighting against a creature that
 	 * is in this list.

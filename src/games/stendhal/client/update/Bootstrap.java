@@ -239,7 +239,7 @@ public class Bootstrap {
 			} catch (IOException e) {
 				JOptionPane.showMessageDialog(
 						null,
-						"Sorry, an error occured while downloading the update. Could not write bootProperties");
+						"Sorry, an error occurred while downloading the update. Could not write bootProperties");
 			}
 		}
 
@@ -338,7 +338,7 @@ public class Bootstrap {
 	 *            exception
 	 */
 	void unexpectedErrorHandling(Throwable t) {
-		// unwrap chained expections
+		// unwrap chained exceptions
 		Throwable e = t;
 		while (e.getCause() != null) {
 			e = e.getCause();
@@ -348,11 +348,11 @@ public class Bootstrap {
 
 		if (e instanceof OutOfMemoryError) {
 			JOptionPane.showMessageDialog(null,
-					"Sorry, an OutOfMemoryError occured. Please restart Stendhal.");
+					"Sorry, an OutOfMemoryError occurred. Please restart Stendhal.");
 		} else if (e instanceof LinkageError) {
 			int res = JOptionPane.showConfirmDialog(
 					null,
-					"Sorry an error occured because of an inconsistant update state. (Note: Krakow Mobile - a game derived of Stendhal - is known to have a bug which causes their updates to be merged into Stendhal). Delete update files so that they are downloaded again after you restart Stendhal?",
+					"Sorry an error occurred because of an inconsistant update state. (Note: Krakow Mobile - a game derived of Stendhal - is known to have a bug which causes their updates to be merged into Stendhal). Delete update files so that they are downloaded again after you restart Stendhal?",
 					"Stendhal", JOptionPane.YES_NO_OPTION,
 					JOptionPane.QUESTION_MESSAGE);
 			if (res == JOptionPane.YES_OPTION) {
@@ -368,7 +368,7 @@ public class Bootstrap {
 		} else {
 			JOptionPane.showMessageDialog(
 					null,
-					"An unexpected error occured.\r\nPlease open a bug report at http://sf.net/projects/arianne with this error message:\r\n"
+					"An unexpected error occurred.\r\nPlease open a bug report at http://sf.net/projects/arianne with this error message:\r\n"
 							+ e);
 		}
 		System.exit(1);

@@ -52,7 +52,7 @@ public class ExceptionDialog extends JDialog
     super(parent,true);
     setBounds(parent.getX(),parent.getY(),500,300);
     
-    setTitle("Exception occured");
+    setTitle("Exception occurred");
 
     Container contentPane = getContentPane();
     contentPane.setBackground(Color.GRAY);

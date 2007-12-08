@@ -88,7 +88,7 @@ public class UpdateManager {
 			break;
 
 		case ERROR:
-			UpdateGUIDialogs.messageBox("An error occured while trying to update");
+			UpdateGUIDialogs.messageBox("An error occurred while trying to update");
 			break;
 
 		case OUTDATED:
@@ -247,7 +247,7 @@ public class UpdateManager {
 			HttpClient httpClient = new HttpClient(serverFolder + file, true);
 			httpClient.setProgressListener(updateProgressBar);
 			if (!httpClient.fetchFile(jarFolder + file)) {
-				UpdateGUIDialogs.messageBox("Sorry, an error occured while downloading the update at file "
+				UpdateGUIDialogs.messageBox("Sorry, an error occurred while downloading the update at file "
 						+ file);
 				return false;
 			}
@@ -256,7 +256,7 @@ public class UpdateManager {
 				int shouldSize = Integer.parseInt(updateProp.getProperty(
 						"file-size." + file, ""));
 				if (fileObj.length() != shouldSize) {
-					UpdateGUIDialogs.messageBox("Sorry, an error occured while downloading the update. File size of "
+					UpdateGUIDialogs.messageBox("Sorry, an error occurred while downloading the update. File size of "
 							+ file
 							+ " does not match. We got "
 							+ fileObj.length()

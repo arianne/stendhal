@@ -62,8 +62,8 @@ public class ZoneGroupsXMLLoader extends DefaultHandler {
 	/**
 	 * Load zones into a world.
 	 *
-	 * @throws	SAXException	If a SAX error occured.
-	 * @throws	IOException	If an I/O error occured.
+	 * @throws	SAXException	If a SAX error occurred.
+	 * @throws	IOException	If an I/O error occurred.
 	 * @throws	FileNotFoundException
 	 *				If the resource was not found.
 	 */
@@ -87,8 +87,8 @@ public class ZoneGroupsXMLLoader extends DefaultHandler {
 	 * @param	world		The world to load into.
 	 * @param	in		The config file stream.
 	 *
-	 * @throws	SAXException	If a SAX error occured.
-	 * @throws	IOException	If an I/O error occured.
+	 * @throws	SAXException	If a SAX error occurred.
+	 * @throws	IOException	If an I/O error occurred.
 	 */
 	protected void load(InputStream in) throws SAXException, IOException {
 		SAXParser saxParser;

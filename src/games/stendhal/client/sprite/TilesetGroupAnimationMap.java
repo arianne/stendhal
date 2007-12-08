@@ -260,13 +260,13 @@ public class TilesetGroupAnimationMap {
 	 * each frame as a mapped index. The mapped index or frame index(s) maybe be
 	 * appended by <code>@</code><em>delay</em>, where <em>delay</em> is
 	 * a value in milliseconds of for the duration of the frame (or the default
-	 * for all frames, if specificed for mapped index).
+	 * for all frames, if specified for mapped index).
 	 *
 	 * @param in
 	 *            The input stream.
 	 *
 	 * @throws IOException
-	 *             If an I/O error occured.
+	 *             If an I/O error occurred.
 	 *
 	 * @see-also #clear()
 	 */

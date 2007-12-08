@@ -80,9 +80,9 @@ public class ZonesXMLLoader {
 	 * Load a group of zones into a world.
 	 *
 	 * @throws SAXException
-	 *             If a SAX error occured.
+	 *             If a SAX error occurred.
 	 * @throws IOException
-	 *             If an I/O error occured.
+	 *             If an I/O error occurred.
 	 * @throws FileNotFoundException
 	 *             If the resource was not found.
 	 */
@@ -107,9 +107,9 @@ public class ZonesXMLLoader {
 	 *            The config file stream.
 	 *
 	 * @throws SAXException
-	 *             If a SAX error occured.
+	 *             If a SAX error occurred.
 	 * @throws IOException
-	 *             If an I/O error occured.
+	 *             If an I/O error occurred.
 	 */
 	protected void load(InputStream in) throws SAXException, IOException {
 		Document doc = XMLUtil.parse(in);

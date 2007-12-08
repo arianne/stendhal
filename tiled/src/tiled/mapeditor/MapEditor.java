@@ -813,10 +813,10 @@ public class MapEditor implements ActionListener, MapChangeListener, ComponentLi
   /**
    * Loads a map.
    * 
-   * @param file
+   * @param file ocure
    *          filename of map to load
    * @return <code>true</code> if the file was loaded, <code>false</code> if
-   *         an error occured
+   *         an error occurred
    */
   public boolean loadMap(String file)
   {
