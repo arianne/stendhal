@@ -45,6 +45,7 @@ public class WeaponsCollectorTest {
 	public final void rejectQuest() {
 		NPCList.get().add(new SpeakerNPC("Balduin"));
 		WeaponsCollector wc = new WeaponsCollector();
+		wc.init("weaponscollector_quest");
 		wc.addToWorld();
 		SpeakerNPC npc = wc.getNPC();
 		Engine en = npc.getEngine();
