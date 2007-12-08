@@ -142,7 +142,7 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 
 			@Override
 			protected void createDialog() {
-				addGreeting(null, new SpeakerNPC.ChatAction() {
+				addGreeting(null, new ChatAction() {
 					@Override
 					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						if (player.isQuestCompleted(GRAFINDLE_QUEST_SLOT) &&
@@ -166,7 +166,7 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 
 				add(ConversationStates.ATTENDING, "fee", null,
 					ConversationStates.QUEST_OFFERED, "Very well.",
-					new SpeakerNPC.ChatAction() {
+					new ChatAction() {
     					@Override
     					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
     						if (player.isQuestCompleted(QUEST_SLOT)
@@ -182,7 +182,7 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 
 				add(ConversationStates.QUEST_OFFERED, "yes", null,
 					ConversationStates.ATTENDING, null,
-					new SpeakerNPC.ChatAction() {
+					new ChatAction() {
     					@Override
     					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 							if (player.drop("money", COST)) {
@@ -212,7 +212,7 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 				add(ConversationStates.ANY, "leave",
 					new QuestNotCompletedCondition(QUEST_SLOT),
 					ConversationStates.ATTENDING, "Thank you for using the Wizard's Bank",
-					new SpeakerNPC.ChatAction() {
+					new ChatAction() {
 						@Override
 						public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 							teleportAway(player);

@@ -46,7 +46,6 @@ public class PriestNPC implements ZoneConfigurator {
 				addQuest("I will #marry people who were engaged in the proper manner. Speak to Sister Benedicta if you are not engaged yet. And remember each to bring a wedding #ring!");
 				addGoodbye("May the force be with you.");
 				addReply("ring", "Once you are engaged, you can go to Ognir who works here in Fado to get your wedding rings made. I believe he also sells engagement rings, but they are purely for decoration. How wanton!");
-
 			}
 		};
 

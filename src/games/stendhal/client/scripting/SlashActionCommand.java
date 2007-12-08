@@ -9,10 +9,10 @@ import games.stendhal.client.actions.SlashAction;
 public class SlashActionCommand {
 
 	String _name;
-	String _remainder;
-
 	SlashAction _action;
+
 	String[] _params;
+	String _remainder;
 
 	boolean _error = false;
 
@@ -34,6 +34,15 @@ public class SlashActionCommand {
     }
 
 	/**
+	 * return command parameters
+	 * @return parameter array
+	 */
+	public String[] getParams()
+    {
+	    return _params;
+    }
+
+	/**
 	 * return trailing parameter text
 	 * @return remainder
 	 */
@@ -50,15 +59,6 @@ public class SlashActionCommand {
 	{
 		return _error;
 	}
-
-	/**
-	 * return command parameters
-	 * @return parameter array
-	 */
-	public String[] getParams()
-    {
-	    return _params;
-    }
 
 	/**
 	 * set error flag
