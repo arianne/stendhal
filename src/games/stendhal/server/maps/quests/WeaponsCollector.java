@@ -52,16 +52,17 @@ public class WeaponsCollector extends AbstractQuest implements BringListOfItemsQ
 	public void init(String name) {
 		super.init(name, QUEST_SLOT);
 	}
-	private void setupAbstractQuest() {
-		BringListOfItemsQuest concreteQuest = this;
-		BringListOfItemsQuestLogic bringItems = new BringListOfItemsQuestLogic(concreteQuest);
-		bringItems.addToWorld();
-	}
 
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
 		setupAbstractQuest();
+	}
+
+	private void setupAbstractQuest() {
+		BringListOfItemsQuest concreteQuest = this;
+		BringListOfItemsQuestLogic bringItems = new BringListOfItemsQuestLogic(concreteQuest);
+		bringItems.addToWorld();
 	}
 
 	public SpeakerNPC getNPC() {
