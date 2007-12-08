@@ -46,6 +46,9 @@ public class EntityHelper
 	    	entity = NPCList.get().get(name);
 	    }
 
-	    return entity;
+	    if (entity!=null && entity.getZone()==zone)
+	    	return entity;
+	    else
+	    	return null;
     }
 }
