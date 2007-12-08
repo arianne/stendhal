@@ -18,7 +18,6 @@ package games.stendhal.server.events;
 public interface TurnListener {
 	/**
 	 * This method is called when the turn number is reached.
-	 * NOTE: The <em>message</em> parameter is deprecated.
 	 *
 	 * @param currentTurn current turn number
 	 */

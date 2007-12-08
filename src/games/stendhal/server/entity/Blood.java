@@ -78,8 +78,7 @@ public class Blood extends PassiveEntity implements TurnListener {
 	//
 
 	/**
-	 * This method is called when the turn number is reached. NOTE: The
-	 * <em>message</em> parameter is deprecated.
+	 * This method is called when the turn number is reached.
 	 * 
 	 * @param currentTurn
 	 *            The current turn number.
