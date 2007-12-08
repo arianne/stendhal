@@ -3,6 +3,7 @@ package games.stendhal.client.scripting;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import games.stendhal.client.actions.SlashActionRepository;
 
@@ -31,6 +32,14 @@ public class SlashActionParserTest {
 		assertEquals("who", cmd.getName());
 		assertNotNull(cmd.getParams());
 		assertEquals(0, cmd.getParams().length);
+		assertEquals("", cmd.getRemainder());
+
+		cmd = SlashActionParser.parse("unknown-command");
+		assertFalse(cmd.getError());
+		assertEquals("unknown-command", cmd.getName());
+		assertNotNull(cmd.getParams());
+		assertEquals(1, cmd.getParams().length);
+		assertNull("", cmd.getParams()[0]);
 		assertEquals("", cmd.getRemainder());
 
 		cmd = SlashActionParser.parse("where ghost");
