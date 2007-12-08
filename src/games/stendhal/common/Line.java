@@ -10,15 +10,7 @@ public class Line {
 		public abstract void fire(int x, int y);
 	}
 
-	public static void main(String[] args) {
-		renderLine(10, 10, 100, 50, new Action() {
 
-			@Override
-			public void fire(int x, int y) {
-				System.out.println(x + "," + y);
-			}
-		});
-	}
 
 	public static Vector<Point> renderLine(int x1, int y1, int x2, int y2) {
 		int deltax = Math.abs(x2 - x1); // The difference between the x's
