@@ -57,8 +57,7 @@ public class Jail implements LoginListener {
 
 		public void onTurnReached(int currentTurn) {
 			/*
-			 * TODO: If player is not present, we should be able to manipulate
-			 * the db object.
+			 * TODO: If player is not present, we should reset the sentence timer on login
 			 */
 
 			if (!release(_name)) {
