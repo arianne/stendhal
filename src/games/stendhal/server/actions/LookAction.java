@@ -16,7 +16,6 @@ import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
-import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.EntityHelper;
 import marauroa.common.game.RPAction;
@@ -89,7 +88,7 @@ public class LookAction implements ActionListener {
 			return;
 		} else if (action.has("target")) {
 			 // evaluate the target parameter
-			RPEntity entity = EntityHelper.entityFromTargetName(action.get("target"), player.getZone());
+			Entity entity = EntityHelper.entityFromTargetName(action.get("target"), player.getZone());
 
 			if (entity != null) {
 				String name = entity.get("type");

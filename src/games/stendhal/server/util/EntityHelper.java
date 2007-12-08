@@ -2,7 +2,7 @@ package games.stendhal.server.util;
 
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.NPCList;
 import marauroa.common.game.RPObject;
 
@@ -20,9 +20,9 @@ public class EntityHelper
 	 * @param zone to search for objects
 	 * @return
 	 */
-	public static RPEntity entityFromTargetName(String name, StendhalRPZone zone)
+	public static Entity entityFromTargetName(String name, StendhalRPZone zone)
     {
-		RPEntity entity = null;
+		Entity entity = null;
 
 	    if (name!=null && name.length()>0 && Character.isDigit(name.charAt(0))) {
 	    	int objectId = Integer.parseInt(name);
@@ -32,8 +32,8 @@ public class EntityHelper
 	    	if (zone.has(targetid)) {
 	    		RPObject object = zone.get(targetid);
 
-	    		if (object instanceof RPEntity) {
-	    			entity = (RPEntity) object;
+	    		if (object instanceof Entity) {
+	    			entity = (Entity) object;
 	    		}
 	    	}
 	    }

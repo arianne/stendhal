@@ -15,7 +15,6 @@ package games.stendhal.server.actions;
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
-import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.mapstuff.chest.Chest;
@@ -86,7 +85,7 @@ public class UseAction implements ActionListener {
 		} else if (action.has("target")) {
 			//	use is cast over something on the floor
 			 // evaluate the target parameter
-			RPEntity entity = EntityHelper.entityFromTargetName(action.get("target"), player.getZone());
+			Entity entity = EntityHelper.entityFromTargetName(action.get("target"), player.getZone());
 
 			if (entity != null) {
 				invokeUseListener(player, entity);

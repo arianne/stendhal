@@ -13,6 +13,7 @@
 package games.stendhal.server.actions;
 
 import games.stendhal.server.StendhalRPAction;
+import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.EntityHelper;
@@ -28,10 +29,10 @@ public class AttackAction implements ActionListener {
 
 		if (action.has("target")) {
 			 // evaluate the target parameter
-			RPEntity entity = EntityHelper.entityFromTargetName(action.get("target"), player.getZone());
+			Entity entity = EntityHelper.entityFromTargetName(action.get("target"), player.getZone());
 
-			if (entity != null)
-				StendhalRPAction.startAttack(player, entity);
+			if (entity instanceof RPEntity)
+				StendhalRPAction.startAttack(player, (RPEntity)entity);
 		}
 	}
 }

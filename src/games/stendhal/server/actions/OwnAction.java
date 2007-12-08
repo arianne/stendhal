@@ -13,7 +13,7 @@
 package games.stendhal.server.actions;
 
 import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.creature.DomesticAnimal;
 import games.stendhal.server.entity.creature.Pet;
 import games.stendhal.server.entity.creature.Sheep;
@@ -39,7 +39,7 @@ public class OwnAction implements ActionListener {
 
 		 // evaluate the target parameter
 		StendhalRPZone zone = player.getZone();
-		RPEntity entity = EntityHelper.entityFromTargetName(action.get("target"), zone);
+		Entity entity = EntityHelper.entityFromTargetName(action.get("target"), zone);
 
 		if (entity != null) {
 			// Make sure the entity is valid (hacked client?)

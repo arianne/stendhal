@@ -14,6 +14,7 @@ package games.stendhal.server.actions;
 
 import games.stendhal.common.Direction;
 import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
@@ -67,26 +68,28 @@ public class MoveAction implements ActionListener {
 		if (action.has("target")) {
 			 // evaluate the target parameter
 			StendhalRPZone zone = player.getZone();
-			RPEntity entity = EntityHelper.entityFromTargetName(action.get("target"), zone);
+			Entity entity = EntityHelper.entityFromTargetName(action.get("target"), zone);
 
-			if (entity != null) {
+			if (entity instanceof RPEntity) {
+				RPEntity rpEntity = (RPEntity)entity;
+
 				/*
 				 * If object is a NPC we ignore the push action.
 				 */
-				if (entity instanceof SpeakerNPC) {
+				if (rpEntity instanceof SpeakerNPC) {
 					return;
 				}
 
-				if (player.canPush(entity) && player.nextTo(entity)) {
-					Direction dir = player.getDirectionToward(entity);
+				if (player.canPush(rpEntity) && player.nextTo(rpEntity)) {
+					Direction dir = player.getDirectionToward(rpEntity);
 
-					int x = entity.getX() + dir.getdx();
-					int y = entity.getY() + dir.getdy();
+					int x = rpEntity.getX() + dir.getdx();
+					int y = rpEntity.getY() + dir.getdy();
 
-					if (!zone.collides(entity, x, y)) {
-						entity.setPosition(x, y);
-						entity.notifyWorldAboutChanges();
-						player.onPush(entity);
+					if (!zone.collides(rpEntity, x, y)) {
+						rpEntity.setPosition(x, y);
+						rpEntity.notifyWorldAboutChanges();
+						player.onPush(rpEntity);
 					}
 				}
 			}
