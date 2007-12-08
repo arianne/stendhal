@@ -9,7 +9,7 @@ import org.junit.Test;
 /**
  * test ConversationParser class
  *
- * @author martinf
+ * @author Martin Fuchs
  */
 public class ConversationParserTest {
 
