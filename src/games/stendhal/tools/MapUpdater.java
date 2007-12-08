@@ -41,10 +41,6 @@ public class MapUpdater extends Task {
 	/** list of *.tmx files to convert */
 	private List<FileSet> filesets = new ArrayList<FileSet>();
 
-	/** Creates a new instance of MapConverter */
-	public MapUpdater() {
-	}
-
 	/** converts the map files */
 	public void convert(String tmxFile) throws Exception {
 		File file = new File(tmxFile);
