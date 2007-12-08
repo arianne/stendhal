@@ -1,10 +1,9 @@
 package games.stendhal.client.scripting;
 
+import games.stendhal.client.actions.SlashActionRepository;
+
 import java.text.CharacterIterator;
 import java.text.StringCharacterIterator;
-
-import games.stendhal.client.actions.SlashAction;
-import games.stendhal.client.actions.SlashActionRepository;
 
 /**
  * Command line parser for the Stendhal client
@@ -12,26 +11,32 @@ import games.stendhal.client.actions.SlashActionRepository;
  */
 public class SlashActionParser
 {
+	/**
+	 * Parse the given slash command. The text is supposed not to include the slash
+	 * character but to start directly after the slash on the client command line.
+	 * @param text
+	 * @return SlashActionCommand object 
+	 */
 	public static SlashActionCommand parse(String text)
     {
 		SlashActionCommand command = new SlashActionCommand();
 
-		if (text.length() < 1) {
+		if (text.length() == 0) {
+			return command.setError();
+		}
+
+		/*
+		 * Must be non-space after slash
+		 */
+		if (Character.isWhitespace(text.charAt(0))) {
 			return command.setError();
 		}
 
 		/*
 		 * Parse command
 		 */
-		CharacterIterator ci = new StringCharacterIterator(text, 1);
+		CharacterIterator ci = new StringCharacterIterator(text);
 		char ch = ci.current();
-
-		/*
-		 * Must be non-space after slash
-		 */
-		if (Character.isWhitespace(ch)) {
-			return command.setError();
-		}
 
 		/*
 		 * Extract command name
@@ -44,7 +49,7 @@ public class SlashActionParser
 				ch = ci.next();
 			}
 
-			command._name = text.substring(1, ci.getIndex());
+			command._name = text.substring(0, ci.getIndex());
 		} else {
 			/*
 			 * Special character command
@@ -56,13 +61,13 @@ public class SlashActionParser
 		/*
 		 * Find command handler
 		 */
-		SlashAction action = SlashActionRepository.get(command._name);
+		command._action = SlashActionRepository.get(command._name);
 
 		int minimum, maximum;
 
-		if (action != null) {
-			minimum = action.getMinimumParameters();
-			maximum = action.getMaximumParameters();
+		if (command._action != null) {
+			minimum = command._action.getMinimumParameters();
+			maximum = command._action.getMaximumParameters();
 		} else {
 			/*
 			 * Server extension criteria

@@ -53,7 +53,37 @@ public class ChatLineParser {
 			recordAction.getRecorder().recordChatLine(text);
 		}
 
-		if (text.charAt(0) != '/') {
+		if (text.charAt(0) == '/') {
+			SlashActionCommand command = SlashActionParser.parse(text.substring(1));
+			String[] params = command.getParams();
+
+			if (command.getError()) {
+				return false;
+			}
+
+			/*
+			 * Execute
+			 */
+			if (command.getAction() != null) {
+				return command.getAction().execute(params, command.getRemainder());
+			} else {
+				/*
+				 * Server extension
+				 */
+				RPAction extension = new RPAction();
+
+				extension.put("type", command.getName());
+
+				if (params.length>0 && params[0]!=null) {
+					extension.put("target", params[0]);
+					extension.put("args", command.getRemainder());
+				}
+
+				StendhalClient.get().send(extension);
+
+				return true;
+			}
+		} else {
 			// Chat command. The most frequent one.
 			RPAction chat = new RPAction();
 
@@ -61,32 +91,6 @@ public class ChatLineParser {
 			chat.put("text", text);
 
 			StendhalClient.get().send(chat);
-
-			return true;
-		}
-
-		SlashActionCommand command = SlashActionParser.parse(text);
-		String[] params = command.getParams();
-
-		/*
-		 * Execute
-		 */
-		if (command.getAction() != null) {
-			return command.getAction().execute(params, command.getRemainder());
-		} else {
-			/*
-			 * Server extension
-			 */
-			RPAction extension = new RPAction();
-
-			extension.put("type", command.getName());
-
-			if (params.length>0 && params[0]!=null) {
-				extension.put("target", params[0]);
-				extension.put("args", command.getRemainder());
-			}
-
-			StendhalClient.get().send(extension);
 
 			return true;
 		}
