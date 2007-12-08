@@ -28,10 +28,9 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination;
 import games.stendhal.server.entity.mapstuff.portal.Portal;
 import games.stendhal.server.entity.mapstuff.spawner.CreatureRespawnPoint;
-import games.stendhal.server.entity.mapstuff.spawner.GrainField;
 import games.stendhal.server.entity.mapstuff.spawner.PassiveEntityRespawnPoint;
+import games.stendhal.server.entity.mapstuff.spawner.PassiveEntityRespawnPointFactory;
 import games.stendhal.server.entity.mapstuff.spawner.SheepFood;
-import games.stendhal.server.entity.mapstuff.spawner.VegetableGrower;
 import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -467,134 +466,14 @@ public class StendhalRPZone extends MarauroaRPZone {
 							+ " found");
 				}
 			} else if (clazz.contains("logic/item")) {
-				PassiveEntityRespawnPoint plantGrower = null;
+				PassiveEntityRespawnPoint passiveEntityrespawnPoint = PassiveEntityRespawnPointFactory.create(clazz, type, getID(), x, y);
+				if (passiveEntityrespawnPoint != null) {
+					passiveEntityrespawnPoint.setPosition(x, y);
+					add(passiveEntityrespawnPoint);
 
-				if (clazz.contains("herb")) {
-					switch (type) {
-					case 0:
-						plantGrower = new PassiveEntityRespawnPoint("arandula",
-								400);
-						break;
-					case 1:
-						plantGrower = new PassiveEntityRespawnPoint("kekik",
-								800);
-						break;
-					case 2:
-						plantGrower = new PassiveEntityRespawnPoint("sclaria",
-								800);
-						break;
-					}
-				} else if (clazz.contains("corn")) {
-					plantGrower = new GrainField();
-				} else if (clazz.contains("mushroom")) {
-					switch (type) {
-					case 0:
-						plantGrower = new PassiveEntityRespawnPoint(
-								"button_mushroom", 500);
-						break;
-					case 1:
-						plantGrower = new PassiveEntityRespawnPoint("porcini",
-								1000);
-						break;
-					case 2:
-						plantGrower = new PassiveEntityRespawnPoint(
-								"toadstool", 1000);
-						break;
-					}
-				} else if (clazz.contains("resources")) {
-					switch (type) {
-					case 0:
-						plantGrower = new PassiveEntityRespawnPoint("wood",
-								1500);
-						break;
-					case 1:
-						plantGrower = new PassiveEntityRespawnPoint("iron_ore",
-								3000);
-						// TODO: This is only a workaround. We should find a
-						// better name
-						// than "plant grower", as we're also using them for
-						// resources,
-						// teddies and whatever. We should also consider making
-						// them
-						// non-clickable.
-						plantGrower.setDescription("You see a small vein of iron ore.");
-						break;
-					}
-				} else if (clazz.contains("sheepfood")) {
-					plantGrower = new SheepFood();
-				} else if (clazz.contains("vegetable")) {
-					switch (type) {
-					case 0:
-						plantGrower = new PassiveEntityRespawnPoint("apple",
-								500);
-						break;
-					case 1:
-						plantGrower = new VegetableGrower("carrot");
-						break;
-					case 2:
-						plantGrower = new PassiveEntityRespawnPoint("salad",
-								1500);
-						break;
-					case 3:
-						plantGrower = new VegetableGrower("broccoli");
-						break;
-					case 4:
-						plantGrower = new VegetableGrower("cauliflower");
-						break;
-					case 5:
-						plantGrower = new VegetableGrower("chinese_cabbage");
-						break;
-					case 6:
-						plantGrower = new VegetableGrower("leek");
-						break;
-					case 7:
-						plantGrower = new VegetableGrower("onion");
-						break;
-					case 8:
-						plantGrower = new VegetableGrower("courgette");
-						break;
-					case 9:
-						plantGrower = new PassiveEntityRespawnPoint("spinach",
-								1500);
-						break;
-					case 10:
-						plantGrower = new VegetableGrower("collard");
-						break;
-					}
-
-				} else if (clazz.contains("sign")) {
-					/*
-					 * Ignore signs. The way to go is XML.
-					 */
-					return;
-				} else if (clazz.contains("fruits")) {
-					switch (type) {
-					case 0:
-						plantGrower = new PassiveEntityRespawnPoint("coconut", 800);
-						break;
-					case 1:
-						plantGrower = new PassiveEntityRespawnPoint("tomato", 800);
-						break;
-					case 2:
-						plantGrower = new PassiveEntityRespawnPoint("pineapple", 1200);
-						break;
-
-					}
+					// full fruits on server restart
+					passiveEntityrespawnPoint.setToFullGrowth();
 				}
-
-				if (plantGrower == null) {
-					logger.error("Unknown Entity (class/type: " + clazz + ":"
-							+ type + ") at (" + x + "," + y + ") of " + getID()
-							+ " found");
-					return;
-				}
-
-				plantGrower.setPosition(x, y);
-				add(plantGrower);
-
-				// full fruits on server restart
-				plantGrower.setToFullGrowth();
-
 			}
 		} catch (Exception e) {
 			logger.error("error creating entity " + type + " at (" + x + ","
