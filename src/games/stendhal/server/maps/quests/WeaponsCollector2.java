@@ -9,10 +9,9 @@ import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPC.ChatAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
-import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
-import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Arrays;
@@ -149,7 +148,7 @@ public class WeaponsCollector2 extends AbstractQuest {
 		npc.add(
 				ConversationStates.ATTENDING,
 				"list",
-				new AndCondition(new QuestStartedCondition(QUEST_SLOT), new QuestNotCompletedCondition(QUEST_SLOT)),
+				new QuestActiveCondition(QUEST_SLOT),
 				ConversationStates.QUESTION_2, null,
 				new ChatAction() {
 					@Override
@@ -247,7 +246,7 @@ public class WeaponsCollector2 extends AbstractQuest {
 		npc.add(
 				ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(new QuestStartedCondition(QUEST_SLOT), new QuestNotCompletedCondition(QUEST_SLOT)),
+				new QuestActiveCondition(QUEST_SLOT),
 				ConversationStates.ATTENDING,
 				"Welcome back. I hope you have come to help me with my latest #list of weapons.",
 				null);
