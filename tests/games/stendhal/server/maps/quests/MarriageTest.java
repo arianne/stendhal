@@ -1,6 +1,7 @@
 package games.stendhal.server.maps.quests;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
@@ -19,7 +20,6 @@ import games.stendhal.server.maps.fado.dressingrooms.GroomAssistantNPC;
 import games.stendhal.server.maps.fado.hotel.GreeterNPC;
 import games.stendhal.server.maps.fado.weaponshop.RingSmithNPC;
 
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -29,18 +29,16 @@ import utilities.QuestHelper;
 
 public class MarriageTest {
 
-	private Player player = null;
-	private Player player2 = null;
+	private static final String QUEST_SLOT = "marriage";
+	private static Player player = null;
+	private static Player player2 = null;
 	private SpeakerNPC npc = null;
 	private Engine en = null;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		QuestHelper.setUpBeforeClass();
-	}
 
-	@Before
-	public void setUp() {
 		StendhalRPZone zone = new StendhalRPZone("admin_test");
 		MockStendlRPWorld.get().addRPZone(new StendhalRPZone("int_fado_lovers_room_2")); 
 		new PriestNPC().configureZone(zone, null);
@@ -67,8 +65,8 @@ public class MarriageTest {
 
 	@Test
 	public void testQuest() {
-
-		// -----------------------------------------------
+		player.removeQuest(QUEST_SLOT);
+		player2.removeQuest(QUEST_SLOT);
 
 		// **in front of church**
 		npc = NPCList.get().get("Sister Benedicta");
@@ -89,7 +87,12 @@ public class MarriageTest {
 		en.step(player, "bye");
 		assertEquals("Goodbye, may peace be with you.", npc.get("text"));
 
+		assertEquals("engaged", player.getQuest(QUEST_SLOT));
+		assertEquals("engaged", player2.getQuest(QUEST_SLOT));
+
 		// -----------------------------------------------
+		player.setQuest(QUEST_SLOT, "engaged");
+		player2.setQuest(QUEST_SLOT, "engaged");
 
 		// **at ringsmith**
 		npc = NPCList.get().get("Ognir");
@@ -123,7 +126,11 @@ public class MarriageTest {
 		assertEquals("Good, come back in 10 minutes and it will be ready. Goodbye until then.", npc.get("text"));
 		en.step(player, "bye");
 
+		assertTrue(player.getQuest(QUEST_SLOT).startsWith("forging"));
+		assertEquals("engaged", player2.getQuest(QUEST_SLOT));
+
 		// -----------------------------------------------
+
 		item = ItemTestHelper.createItem("money", 5000);
 		player2.getSlot("bag").add(item);
 		item = ItemTestHelper.createItem("gold_bar", 10);
@@ -139,6 +146,8 @@ public class MarriageTest {
 		assertEquals("Good, come back in 10 minutes and it will be ready. Goodbye until then.", npc.get("text"));
 		en.step(player2, "bye");
 
+		assertTrue(player.getQuest(QUEST_SLOT).startsWith("forging"));
+		assertTrue(player2.getQuest(QUEST_SLOT).startsWith("forging"));
 		// -----------------------------------------------
 
 		// **at hotel's dressing room**
@@ -173,6 +182,9 @@ public class MarriageTest {
 		npc = NPCList.get().get("Ognir");
 		en = npc.getEngine();
 
+		player.setQuest("marriage", "forging;" + Long.MAX_VALUE);
+		player2.setQuest("marriage", "forging;" + Long.MAX_VALUE);
+		
 		en.step(player2, "hi");
 		assertTrue(npc.get("text").startsWith("I haven't finished making the wedding ring. Please check back"));
 		en.step(player2, "bye");
@@ -199,6 +211,8 @@ public class MarriageTest {
 		en.step(player2, "bye");
 		assertEquals("Bye, my friend.", npc.get("text"));
 
+		assertEquals("engaged_with_ring", player.getQuest(QUEST_SLOT));
+		assertEquals("engaged_with_ring", player2.getQuest(QUEST_SLOT));
 		// -----------------------------------------------
 
 		// **player drops ring of life**
@@ -215,9 +229,15 @@ public class MarriageTest {
 		en.step(player, "bye");
 		assertEquals("Bye, my friend.", npc.get("text"));
 
+		assertEquals("engaged_with_ring", player.getQuest(QUEST_SLOT));
+		assertEquals("engaged_with_ring", player2.getQuest(QUEST_SLOT));
+		
 		// -----------------------------------------------
-
 		// **inside church**
+
+		player.setQuest("marriage", "engaged_with_ring");
+		player2.setQuest("marriage", "engaged_with_ring");
+
 		npc = NPCList.get().get("Lukas");
 		en = npc.getEngine();
 		en.step(player2, "hi");
@@ -227,7 +247,13 @@ public class MarriageTest {
 		en.step(player2, "task");
 		assertEquals("I have eveything I need. But it does bring me pleasure to see people #married.", npc.get("text"));
 
+		assertEquals("engaged_with_ring", player.getQuest(QUEST_SLOT));
+		assertEquals("engaged_with_ring", player2.getQuest(QUEST_SLOT));
+
 		// -----------------------------------------------
+
+		player.setQuest("marriage", "engaged_with_ring");
+		player2.setQuest("marriage", "engaged_with_ring");
 
 		npc = NPCList.get().get("Priest");
 		en = npc.getEngine();
@@ -273,9 +299,15 @@ public class MarriageTest {
 		en.step(player, "marry");
 		en.step(player, "bye");
 
-		// -----------------------------------------------
+		assertEquals("just_married", player.getQuest(QUEST_SLOT));
+		assertEquals("just_married", player2.getQuest(QUEST_SLOT));
 
+		// -----------------------------------------------
 		// **inside hotel**
+
+		player.setQuest("marriage", "just_married");
+		player2.setQuest("marriage", "just_married");
+
 		npc = NPCList.get().get("Linda");
 		en = npc.getEngine();
 		en.step(player, "hi");
@@ -307,5 +339,9 @@ public class MarriageTest {
 		// If you're looking for a honeymoon room, just say the room number you desire
 		// For example say:  11  if you want the room called Water of Love."
 		en.step(player, "2");
+
+		assertEquals("done", player.getQuest(QUEST_SLOT));
+		assertEquals("just_married", player2.getQuest(QUEST_SLOT));
+
 	} 
 }
