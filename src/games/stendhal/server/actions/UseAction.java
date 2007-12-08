@@ -15,11 +15,13 @@ package games.stendhal.server.actions;
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.mapstuff.chest.Chest;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.UseListener;
+import games.stendhal.server.util.EntityHelper;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
@@ -83,18 +85,13 @@ public class UseAction implements ActionListener {
 			}
 		} else if (action.has("target")) {
 			//	use is cast over something on the floor
-			int usedObject = action.getInt("target");
+			 // evaluate the target parameter
+			RPEntity entity = EntityHelper.entityFromTargetName(action.get("target"), player.getZone());
 
-			StendhalRPZone zone = player.getZone();
-			RPObject.ID targetid = new RPObject.ID(usedObject, zone.getID());
-			if (zone.has(targetid)) {
-				RPObject object = zone.get(targetid);
-
-				invokeUseListener(player, object);
+			if (entity != null) {
+				invokeUseListener(player, entity);
 			}
 		}
-
-
 	}
 
 	private void invokeUseListener(Player player, RPObject object) {

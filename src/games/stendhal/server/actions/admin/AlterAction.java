@@ -40,14 +40,12 @@ public class AlterAction extends AdministrationAction {
 			}
 
 			if (stat.equals("adminlevel")) {
-				player
-						.sendPrivateText("Use #/adminlevel #<playername> #[<newlevel>] to display or change adminlevel.");
+				player.sendPrivateText("Use #/adminlevel #<playername> #[<newlevel>] to display or change adminlevel.");
 				return;
 			}
 
 			if (stat.equals("title") && (changed instanceof Player)) {
-				player
-						.sendPrivateText("The title attribute may not be changed directly.");
+				player.sendPrivateText("The title attribute may not be changed directly.");
 				return;
 			}
 
@@ -58,8 +56,7 @@ public class AlterAction extends AdministrationAction {
 			Definition type = clazz.getDefinition(DefinitionClass.ATTRIBUTE,
 					stat);
 			if (type == null) {
-				player
-						.sendPrivateText("Attribute you are altering is not defined in RPClass("
+				player.sendPrivateText("Attribute you are altering is not defined in RPClass("
 								+ changed.getRPClass().getName() + ")");
 				return;
 			}
@@ -128,7 +125,7 @@ public class AlterAction extends AdministrationAction {
 							stat, Integer.toString(numberValue));
 					changed.put(stat, numberValue);
 				} else {
-					// Can be only setif value is not a number
+					// Can be only set if value is not a number
 					if (mode.equals("set")) {
 						StendhalRPRuleProcessor.get()
 								.addGameEvent(player.getName(), "alter",

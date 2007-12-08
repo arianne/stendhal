@@ -13,15 +13,12 @@
 package games.stendhal.server.actions;
 
 import games.stendhal.server.StendhalRPAction;
-import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;
-
+import games.stendhal.server.util.EntityHelper;
 import marauroa.common.game.RPAction;
-import marauroa.common.game.RPObject;
 
 public class AttackAction implements ActionListener {
-
 
 	public static void register() {
 		CommandCenter.register("attack", new AttackAction());
@@ -30,19 +27,11 @@ public class AttackAction implements ActionListener {
 	public void onAction(Player player, RPAction action) {
 
 		if (action.has("target")) {
-			int targetObject = action.getInt("target");
+			 // evaluate the target parameter
+			RPEntity entity = EntityHelper.entityFromTargetName(action.get("target"), player.getZone());
 
-			StendhalRPZone zone = player.getZone();
-			RPObject.ID targetid = new RPObject.ID(targetObject, zone.getID());
-			if (zone.has(targetid)) {
-				RPObject object = zone.get(targetid);
-
-				if (object instanceof RPEntity) {
-					StendhalRPAction.startAttack(player, (RPEntity) object);
-				}
-			}
+			if (entity != null)
+				StendhalRPAction.startAttack(player, entity);
 		}
-
-
 	}
 }

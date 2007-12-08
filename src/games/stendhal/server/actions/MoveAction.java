@@ -22,11 +22,11 @@ import games.stendhal.server.events.TutorialNotifier;
 import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Node;
 import games.stendhal.server.pathfinder.Path;
+import games.stendhal.server.util.EntityHelper;
 
 import java.util.List;
 
 import marauroa.common.game.RPAction;
-import marauroa.common.game.RPObject;
 
 public class MoveAction implements ActionListener {
 
@@ -65,32 +65,28 @@ public class MoveAction implements ActionListener {
 
 	private void push(Player player, RPAction action) {
 		if (action.has("target")) {
-			int targetObject = action.getInt("target");
-
+			 // evaluate the target parameter
 			StendhalRPZone zone = player.getZone();
-			RPObject.ID targetid = new RPObject.ID(targetObject, zone.getID());
-			if (zone.has(targetid)) {
-				RPObject object = zone.get(targetid);
+			RPEntity entity = EntityHelper.entityFromTargetName(action.get("target"), zone);
+
+			if (entity != null) {
 				/*
 				 * If object is a NPC we ignore the push action.
 				 */
-				if (object instanceof SpeakerNPC) {
+				if (entity instanceof SpeakerNPC) {
 					return;
 				}
 
-				if (object instanceof RPEntity) {
-					RPEntity entity = (RPEntity) object;
-					if (player.canPush(entity) && player.nextTo(entity)) {
-						Direction dir = player.getDirectionToward(entity);
+				if (player.canPush(entity) && player.nextTo(entity)) {
+					Direction dir = player.getDirectionToward(entity);
 
-						int x = entity.getX() + dir.getdx();
-						int y = entity.getY() + dir.getdy();
+					int x = entity.getX() + dir.getdx();
+					int y = entity.getY() + dir.getdy();
 
-						if (!zone.collides(entity, x, y)) {
-							entity.setPosition(x, y);
-							entity.notifyWorldAboutChanges();
-							player.onPush(entity);
-						}
+					if (!zone.collides(entity, x, y)) {
+						entity.setPosition(x, y);
+						entity.notifyWorldAboutChanges();
+						player.onPush(entity);
 					}
 				}
 			}
