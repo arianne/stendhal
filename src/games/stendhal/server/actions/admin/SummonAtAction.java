@@ -12,7 +12,6 @@ import marauroa.common.game.RPAction;
 public class SummonAtAction extends AdministrationAction {
 	public static void register() {
 		CommandCenter.register("summonat", new SummonAtAction(), 800);
-
 	}
 
 	@Override

@@ -106,7 +106,7 @@ public class AdministrationActionTest {
 		Player pl = PlayerTestHelper.createPlayer("dummy");
 		// bad bad
 		MockStendhalRPRuleProcessor.get().getPlayers().add(pl);
-		
+
 		CommandCenter.execute(pl,  new RPAction());
 		assertEquals("Unknown Command null", pl.getPrivateText());
 
@@ -177,7 +177,7 @@ public class AdministrationActionTest {
 	@Test
 	public final void testTeleportActionToValidZone() {
 
-	
+
 		StendhalRPZone zoneTo = new StendhalRPZone("zoneTo");
 		Player pl = PlayerTestHelper.createPlayer();
 		MockStendhalRPRuleProcessor.get().getPlayers().add(pl);
@@ -245,7 +245,7 @@ public class AdministrationActionTest {
 	}
 
 
-	
+
 	@Test
 	public final void testOnAlterActionWrongAttribute() {
 		Player pl = PlayerTestHelper.createPlayer("bob");
@@ -496,7 +496,7 @@ public class AdministrationActionTest {
 
 	@Test
 	public final void testTeleclickmode() {
-	
+
 		Player pl = PlayerTestHelper.createPlayer("hugo");
 		pl.put("adminlevel", 5000);
 		RPAction action = new RPAction();
@@ -622,16 +622,16 @@ public class AdministrationActionTest {
 		CommandCenter.execute(pl, action);
 		assertEquals("You can't remove players", pl.getPrivateText());
 	}
-	
+
 	@Test
 	public final void testOnDestroyNPC() {
-		
+
 		Player pl = PlayerTestHelper.createPlayer("hugo");
 		SpeakerNPC npc = SpeakerNPCTestHelper.createSpeakerNPC("npcTest");
 		StendhalRPZone testzone = new StendhalRPZone("Testzone");
 		testzone.add(npc);
 		testzone.add(pl);
-		
+
 		assertEquals(1,npc.getID().getObjectID());
 		pl.put("adminlevel", 5000);
 		pl.clearEvents();
@@ -647,14 +647,14 @@ public class AdministrationActionTest {
 	}
 	@Test
 	public final void testOnDestroyRat() {
-	
+
 		Player pl = PlayerTestHelper.createPlayer("hugo");
 		Creature rat =  new RaidCreature(StendhalRPWorld.get().getRuleManager()
 			.getEntityManager().getCreature("rat"));
 		StendhalRPZone testzone = new StendhalRPZone("Testzone");
 		testzone.add(rat);
 		testzone.add(pl);
-		
+
 		assertEquals(1,rat.getID().getObjectID());
 		pl.put("adminlevel", 5000);
 		pl.clearEvents();
@@ -670,14 +670,14 @@ public class AdministrationActionTest {
 	}
 	@Test
 	public final void testOnDestroyRatWithTargetID() {
-		
+
 		Player pl = PlayerTestHelper.createPlayer("hugo");
 		Creature rat =  new RaidCreature(StendhalRPWorld.get().getRuleManager()
 			.getEntityManager().getCreature("rat"));
 		StendhalRPZone testzone = new StendhalRPZone("Testzone");
 		testzone.add(rat);
 		testzone.add(pl);
-		
+
 		assertEquals(1,rat.getID().getObjectID());
 		pl.put("adminlevel", 5000);
 		pl.clearEvents();
@@ -699,7 +699,7 @@ public class AdministrationActionTest {
 		StendhalRPZone testzone = new StendhalRPZone("Testzone");
 		testzone.add(rat);
 		testzone.add(pl);
-		
+
 		assertEquals(1,rat.getID().getObjectID());
 		pl.put("adminlevel", 5000);
 		pl.clearEvents();
@@ -721,23 +721,23 @@ public class AdministrationActionTest {
 
 		MockStendhalRPRuleProcessor.get().getPlayers().add(pl);
 		StendhalRPZone testzone = new StendhalRPZone("Testzone");
-		
 		testzone.add(pl);
+
 		RPAction action = new RPAction();
 		action.put("type", "summonat");
-		action.put("target","hugo" );
-		action.put("slot","hugo" );
-		action.put("item","hugo" );
+		action.put("target","hugo");
+		action.put("slot","hugo");
+		action.put("item","hugo");
 
 		CommandCenter.execute(pl, action);
 		assertEquals("Player \"hugo\" does not have an RPSlot named \"hugo\".", pl.getPrivateText());
 		pl.clearEvents();
-		
+
 		action = new RPAction();
 		action.put("type", "summonat");
 		action.put("target","hugo" );
-		action.put("slot","bag" );
-		action.put("item","hugo" );
+		action.put("slot","bag");
+		action.put("item","hugo");
 
 		CommandCenter.execute(pl, action);
 		assertEquals("Not an item.", pl.getPrivateText());
@@ -751,5 +751,16 @@ public class AdministrationActionTest {
 		assertFalse(pl.isEquipped("dagger"));
 		CommandCenter.execute(pl, action);
 		assertTrue(pl.isEquipped("dagger"));
+		pl.clearEvents();
+
+		action = new RPAction();
+		action.put("type", "summonat");
+		action.put("target","noone");
+		action.put("slot","bag");
+		action.put("item","dagger");
+
+		CommandCenter.execute(pl, action);
+		assertEquals("Player \"noone\" not found.", pl.getPrivateText());
+		pl.clearEvents();
 	}
 }
