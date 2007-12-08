@@ -43,7 +43,7 @@ public abstract class ActiveEntity extends Entity {
 	private double speed;
 
 	/**
-	 * The amount of uncommited tile movement.
+	 * The amount of uncommitted tile movement.
 	 */
 	private double movementOffset;
 
