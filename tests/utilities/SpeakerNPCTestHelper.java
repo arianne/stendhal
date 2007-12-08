@@ -1,7 +1,5 @@
 package utilities;
 
-
-
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
 public class SpeakerNPCTestHelper  {
@@ -15,7 +13,5 @@ public class SpeakerNPCTestHelper  {
 		return new SpeakerNPC(name);
 
 	}
-
-
 
 }

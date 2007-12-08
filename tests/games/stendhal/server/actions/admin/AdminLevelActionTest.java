@@ -29,11 +29,8 @@ public class AdminLevelActionTest {
 		MockStendhalRPRuleProcessor.get().getPlayers().clear();
 	}
 
-
 	@Test
 	public final void testAdminLevelAction0() {
-	
-	
 		Player pl = PlayerTestHelper.createPlayer();
 		Player bob = PlayerTestHelper.createPlayer("bob");
 		// bad bad
@@ -55,9 +52,6 @@ public class AdminLevelActionTest {
 
 	@Test
 	public final void testAdminLevelActioncasterNotSuper() {
-	
-		
-	
 		Player pl = PlayerTestHelper.createPlayer("bob");
 		pl.put("adminlevel", 4999);
 	
@@ -75,8 +69,6 @@ public class AdminLevelActionTest {
 
 	@Test
 	public final void testAdminLevelActionOverSuper() {
-	
-	
 		Player pl = PlayerTestHelper.createPlayer();
 		Player bob = PlayerTestHelper.createPlayer("bob");
 		// bad bad
@@ -117,9 +109,6 @@ public class AdminLevelActionTest {
 
 	@Test
 	public final void testAdminLevelActionPlayerFoundNoInteger() {
-	
-	
-	
 		Player pl = PlayerTestHelper.createPlayer("bob");
 		pl.put("adminlevel", 5000);
 	

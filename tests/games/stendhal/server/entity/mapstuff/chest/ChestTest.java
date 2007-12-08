@@ -30,13 +30,10 @@ public class ChestTest {
 		Chest ch = new Chest();
 		assertEquals(0, ch.size());
 		for (int i = 0; i < 30; i++) {
-
-			ch.add(new PassiveEntity() {
-			});
+			ch.add(new PassiveEntity() {});
 		}
 		assertEquals(30, ch.size());
-		ch.add(new PassiveEntity() {
-		});
+		ch.add(new PassiveEntity() {});
 	}
 
 	@Test

@@ -6,8 +6,6 @@ import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.common.Log4J;
 
-import org.junit.BeforeClass;
-
 /**
  * Helper methods for testing quests
  *
@@ -15,7 +13,6 @@ import org.junit.BeforeClass;
  */
 public class QuestHelper {
 	
-	@BeforeClass
 	public static void setUpBeforeClass() {
 		Log4J.init();
 		PlayerHelper.generatePlayerRPClasses();
