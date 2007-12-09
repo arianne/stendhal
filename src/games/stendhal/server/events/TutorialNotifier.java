@@ -53,7 +53,6 @@ public class TutorialNotifier {
 		public void onTurnReached(int currentTurn) {
 			player.sendPrivateText(NotificationType.TUTORIAL, message);
 		}
-		
 	}
 
 	/**
@@ -66,7 +65,7 @@ public class TutorialNotifier {
 	}
 
 	/**
-	 * moveing
+	 * moving
 	 *
 	 * @param player Player
 	 */

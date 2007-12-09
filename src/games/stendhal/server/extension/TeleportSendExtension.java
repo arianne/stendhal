@@ -45,7 +45,7 @@ public class TeleportSendExtension extends StendhalServerExtension implements Ac
 
 	@Override
 	public void init() {
-		// this extension has no spespecific init code, everything is
+		// this extension has no specific init code, everything is
 		// implemented as /commands that are handled onAction
 	}
 

@@ -56,7 +56,7 @@ public class SpouseExtension extends StendhalServerExtension implements ActionLi
 	 */
 	@Override
 	public void init() {
-		// this extension has no spespecific init code, everything is
+		// this extension has no specific init code, everything is
 		// implemented as /commands that are handled onAction
 	}
 
@@ -68,12 +68,9 @@ public class SpouseExtension extends StendhalServerExtension implements ActionLi
 		} else if (type.equals("spouse")) {
 			onSpouse(player, action);
 		}
-
 	}
 
 	private void onMarry(Player player, RPAction action) {
-		
-
 		String usage = "Usage: #/marry #<player1> #<player2>";
 		String text = "";
 
@@ -148,8 +145,6 @@ public class SpouseExtension extends StendhalServerExtension implements ActionLi
 	}
 
 	private void onSpouse(Player player, RPAction action) {
-		
-
 		if (player.hasQuest(SPOUSE)) {
 			Player teleported = null;
 
@@ -176,8 +171,6 @@ public class SpouseExtension extends StendhalServerExtension implements ActionLi
 
 			player.notifyWorldAboutChanges();
 		}
-
-		
 	}
 
 }
