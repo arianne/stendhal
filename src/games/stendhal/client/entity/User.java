@@ -5,11 +5,11 @@ import games.stendhal.client.WorldObjects;
 import games.stendhal.client.stendhal;
 import games.stendhal.client.soundreview.HearingArea;
 import games.stendhal.client.update.Version;
-import games.stendhal.common.FeatureList;
 import games.stendhal.common.Grammar;
 import games.stendhal.common.NotificationType;
 
 import java.awt.geom.Rectangle2D;
+
 import marauroa.common.game.RPObject;
 
 public class User extends Player {
@@ -19,7 +19,8 @@ public class User extends Player {
 	/**
 	 * Client features.
 	 */
-	private FeatureList features;
+	/*TODO remove unused code
+	private FeatureList features; */
 
 	private String _serverVersion = null;
 
@@ -37,7 +38,8 @@ public class User extends Player {
 		super();
 		instance = this;
 		modificationCount = 0;
-		features = new FeatureList();
+		/*TODO remove unused code
+		features = new FeatureList(); */
 	}
 
 	/**
@@ -79,7 +81,6 @@ public class User extends Player {
 	}
 
 	public static boolean isAdmin() {
-
 		if (isNull()) {
 			return false;
 		}
@@ -90,7 +91,6 @@ public class User extends Player {
 
 		return me.rpObject.has("adminlevel")
 				&& (me.rpObject.getInt("adminlevel") >= 600);
-
 	}
 
 	public int getObjectID() {
@@ -134,13 +134,14 @@ public class User extends Player {
 				- HEARING_RANGE, width, width);
 	}
 
+	/*TODO remove unused code
 	public String getFeature(String name) {
 		return features.get(name);
 	}
 
 	public boolean hasFeature(String name) {
 		return features.has(name);
-	}
+	} */
 
 	/**
 	 * Initialize this entity for an object.
@@ -154,9 +155,10 @@ public class User extends Player {
 	public void initialize(final RPObject object) {
 		super.initialize(object);
 
+		/*TODO remove unused code
 		if (object.has("features")) {
 			features.decode(object.get("features"));
-		}
+		} */
 	}
 
 	/**
@@ -172,9 +174,10 @@ public class User extends Player {
 		super.onChangedAdded(object, changes);
 		modificationCount++;
 
+		/*TODO remove unused code
 		if (changes.has("features")) {
 			features.decode(changes.get("features"));
-		}
+		} */
 
 		// The first time we ignore it.
 		if (object != null) {
@@ -215,9 +218,10 @@ public class User extends Player {
 		modificationCount++;
 		super.onChangedRemoved(base, diff);
 
+		/*TODO remove unused code
 		if (diff.has("features")) {
 			features.clear();
-		}
+		} */
 	}
 
 	/**

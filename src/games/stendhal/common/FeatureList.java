@@ -14,8 +14,10 @@ import java.util.Iterator;
 
 /**
  * A list of [enabled] features.
+ * TODO currently effectively not used
  */
-public class FeatureList implements Iterable<String> {
+public class FeatureList implements Iterable<String>
+{
 	protected HashMap<String, String> list;
 
 	/**
@@ -85,6 +87,7 @@ public class FeatureList implements Iterable<String> {
 	 * Encoded features are in the form of:<br>
 	 * <em>name</em>[<code>=</code><em>value</em>][<code>:</code><em>name</em>[<code>=</code><em>value</em>]...]
 	 */
+	/*TODO remove unused code
 	public String encode() {
 		StringBuffer sbuf;
 
@@ -106,7 +109,7 @@ public class FeatureList implements Iterable<String> {
 		}
 
 		return sbuf.toString();
-	}
+	} */
 
 	/**
 	 * Get a feature value.
@@ -122,9 +125,10 @@ public class FeatureList implements Iterable<String> {
 	 *
 	 * @return <code>true</code> is a feature is enabled.
 	 */
+	/*TODO remove unused code
 	public boolean has(String name) {
 		return list.containsKey(name);
-	}
+	} */
 
 
 	/**
@@ -138,9 +142,10 @@ public class FeatureList implements Iterable<String> {
 	 * @return <code>true</code> if the list changed,
 	 *         <code>false<code> otherwise.
 	 */
+	/*TODO remove unused code
 	public boolean set(String name, boolean enabled) {
 		return set(name, enabled ? "" : null);
-	}
+	} */
 
 	/**
 	 * Set/remove a feature. <strong>NOTE: The names and values MUST NOT contain
@@ -154,6 +159,7 @@ public class FeatureList implements Iterable<String> {
 	 * @return <code>true</code> if the list changed,
 	 *         <code>false<code> otherwise.
 	 */
+	/*TODO remove unused code
 	public boolean set(String name, String value) {
 		if (value != null) {
 			list.put(name, value);
@@ -164,7 +170,7 @@ public class FeatureList implements Iterable<String> {
 		}
 
 		return true;
-	}
+	} */
 
 
 	//
