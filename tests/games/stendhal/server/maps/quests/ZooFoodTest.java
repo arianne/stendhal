@@ -6,7 +6,6 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.item.StackableItem;
-import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
@@ -48,21 +47,13 @@ public class ZooFoodTest {
 
 	@After
 	public void tearDown() throws Exception {
-		SpeakerNPC npc = NPCList.get().get("Katinka");
-		if (npc != null) {
-			npc.setCurrentState(ConversationStates.IDLE);
-		}
-
-		npc = NPCList.get().get("Dr. Feelgood");
-		if (npc != null) {
-			npc.setCurrentState(ConversationStates.IDLE);
-		}
+		PlayerTestHelper.resetNPC("Katinka");
+		PlayerTestHelper.resetNPC("Dr. Feelgood");
 	}
 
 	@Test
 	public void testHiAndBye() {
-		Player player;
-		player = PlayerTestHelper.createPlayer();
+		Player player = PlayerTestHelper.createPlayer();
 
 		SpeakerNPC npc = NPCList.get().get("Katinka");
 		assertNotNull(npc);
@@ -192,6 +183,5 @@ public class ZooFoodTest {
 				feelgoodNpc.get("text"));
 		assertTrue(enFeelgood.step(player, "bye"));
 		assertEquals("Bye!", feelgoodNpc.get("text"));
-
 	}
 }

@@ -6,7 +6,6 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
@@ -50,10 +49,7 @@ public class WizardBankTest {
 
 	@After
 	public void tearDown() throws Exception {
-		SpeakerNPC npc = NPCList.get().get("Javier X");
-		if (npc != null) {
-			npc.setCurrentState(ConversationStates.IDLE);
-		}
+		PlayerTestHelper.resetNPC("Javier X");
 	}
 
 	@Test
@@ -132,10 +128,7 @@ public class WizardBankTest {
 	public void testDoQuest() {
 		 // A named player name needed to create the name based hash code.
 		Player player = PlayerTestHelper.createPlayer("player2");
-
-		StendhalRPWorld world = StendhalRPWorld.get();
-		StendhalRPZone zone = world.getZone(ZONE_NAME);
-		zone.add(player);
+		PlayerTestHelper.registerPlayer(player, ZONE_NAME);
 
 		SpeakerNPC npc = NPCList.get().get("Javier X");
 		assertNotNull(npc);

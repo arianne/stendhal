@@ -33,4 +33,13 @@ public class MockStendhalRPRuleProcessor extends StendhalRPRuleProcessor {
 			players.add(player);
 		}
 	}
+
+	/**
+	 * Removes a player from the list of players
+	 * 
+	 * @param player Player
+	 */
+	public void removePlayer(Player player) {
+		players.remove(player);
+	}
 }

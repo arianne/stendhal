@@ -29,7 +29,7 @@ public class WeaponsCollectorTest {
 
 	@After
 	public void tearDown() throws Exception {
-		NPCList.get().remove("Balduin");
+		PlayerTestHelper.removeNPC("Balduin");
 	}
 
 	@Test
