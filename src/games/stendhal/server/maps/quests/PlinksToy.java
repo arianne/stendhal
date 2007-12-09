@@ -1,6 +1,5 @@
 package games.stendhal.server.maps.quests;
 
-import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.mapstuff.spawner.PassiveEntityRespawnPoint;

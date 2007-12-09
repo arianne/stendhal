@@ -18,8 +18,6 @@ import games.stendhal.server.account.CharacterCreator;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
-import games.stendhal.server.entity.mapstuff.spawner.CreatureRespawnPoint;
-import games.stendhal.server.entity.mapstuff.spawner.PassiveEntityRespawnPoint;
 import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.LoginNotifier;
