@@ -5,9 +5,6 @@
  */
 package games.stendhal.server.config;
 
-//
-//
-
 import games.stendhal.server.StendhalRPZone;
 
 import java.util.Map;
