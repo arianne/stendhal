@@ -48,6 +48,6 @@ public class RPEventImageViewer {
     }
 
     public void view() {
-        ImageViewWindow ivw = new ImageViewWindow(genURL(), title, alt);
+        new ImageViewWindow(genURL(), title, alt);
     }
 }
