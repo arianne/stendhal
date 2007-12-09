@@ -22,6 +22,10 @@ import org.junit.Test;
 import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
 
+/**
+ * Test selling cheese to the bar maid
+ * @author Martin Fuchs
+ */
 public class SellingTest {
 
 	private static final String ZONE_NAME = "int_ados_bar";
