@@ -6,7 +6,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import utilities.PlayerHelper;
+import utilities.PlayerTestHelper;
 
 public class NPCListTest {
 
@@ -27,7 +27,7 @@ public class NPCListTest {
 
 	@Test
 	public final void testAddHas() {
-		PlayerHelper.generateNPCRPClasses();
+		PlayerTestHelper.generateNPCRPClasses();
 		NPCList npclist = new NPCList() {
 		};
 		npclist.add(new SpeakerNPC("Bob"));
@@ -37,7 +37,7 @@ public class NPCListTest {
 
 	@Test
 	public final void testRemove() {
-		PlayerHelper.generateNPCRPClasses();
+		PlayerTestHelper.generateNPCRPClasses();
 		NPCList npclist = new NPCList() {
 		};
 		npclist.add(new SpeakerNPC("Bob"));
@@ -52,7 +52,7 @@ public class NPCListTest {
 
 	@Test
 	public final void testGetNPCs() {
-		PlayerHelper.generateNPCRPClasses();
+		PlayerTestHelper.generateNPCRPClasses();
 		NPCList npclist = new NPCList() {
 		};
 		SpeakerNPC speakerNPC = new SpeakerNPC("Bob");

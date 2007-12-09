@@ -16,7 +16,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import utilities.PlayerHelper;
+import utilities.PlayerTestHelper;
 
 public class ToysCollectorTest {
 	ToysCollector quest;
@@ -25,7 +25,7 @@ public class ToysCollectorTest {
 	public static void setupFixture() {
 		Log4J.init();
 		assertTrue(MockStendhalRPRuleProcessor.get() instanceof MockStendhalRPRuleProcessor);
-		PlayerHelper.generateNPCRPClasses();
+		PlayerTestHelper.generateNPCRPClasses();
 	}
 
 	@Before

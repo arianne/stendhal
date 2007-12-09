@@ -9,7 +9,7 @@ public class SpeakerNPCTestHelper  {
 	}
 
 	public static SpeakerNPC createSpeakerNPC(String name) {
-		PlayerHelper.generateNPCRPClasses();
+		PlayerTestHelper.generateNPCRPClasses();
 		return new SpeakerNPC(name);
 
 	}

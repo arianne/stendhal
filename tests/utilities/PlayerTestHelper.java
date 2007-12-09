@@ -2,14 +2,21 @@ package utilities;
 
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.entity.ActiveEntity;
+import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.entity.slot.EntitySlot;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.common.game.RPObject;
+import marauroa.common.game.RPSlot;
 
 public class PlayerTestHelper  {
 
@@ -18,9 +25,9 @@ public class PlayerTestHelper  {
 	 * @return player
 	 */
 	public static Player createPlayer() {
-		PlayerHelper.generatePlayerRPClasses();
+		PlayerTestHelper.generatePlayerRPClasses();
 		Player pl = new Player(new RPObject());
-		PlayerHelper.addEmptySlots(pl);
+		PlayerTestHelper.addEmptySlots(pl);
 		pl.put("outfit", "01010101");
 		return pl;
 	}
@@ -170,4 +177,51 @@ public class PlayerTestHelper  {
     {
 		//TODO
     }
+
+	public static void addEmptySlots(Player player) {
+		player.addSlot(new EntitySlot("bag"));
+		player.addSlot(new EntitySlot("lhand"));
+		player.addSlot(new EntitySlot("rhand"));
+		player.addSlot(new EntitySlot("armor"));
+		player.addSlot(new EntitySlot("head"));
+		player.addSlot(new EntitySlot("legs"));
+		player.addSlot(new EntitySlot("feet"));
+		player.addSlot(new EntitySlot("finger"));
+		player.addSlot(new EntitySlot("cloak"));
+		player.addSlot(new EntitySlot("keyring"));
+		player.addSlot(new RPSlot("!buddy"));
+		player.getSlot("!buddy").add(new RPObject());
+		player.addSlot(new RPSlot("!quests"));
+		player.getSlot("!quests").add(new RPObject());
+		player.addSlot(new RPSlot("!kills"));
+		player.getSlot("!kills").add(new RPObject());
+		player.addSlot(new RPSlot("!tutorial"));
+		player.getSlot("!tutorial").add(new RPObject());
+		player.addSlot(new RPSlot("!visited"));
+		player.getSlot("!visited").add(new RPObject());
+	
+	}
+
+	public static void generateItemRPClasses() {
+		Entity.generateRPClass();
+		Item.generateRPClass();
+	
+	
+	}
+
+	public static void generateNPCRPClasses() {
+		Entity.generateRPClass();
+		ActiveEntity.generateRPClass();
+		RPEntity.generateRPClass();
+		NPC.generateRPClass();
+	
+	}
+
+	public static void generatePlayerRPClasses() {
+		Entity.generateRPClass();
+		ActiveEntity.generateRPClass();
+		RPEntity.generateRPClass();
+		Player.generateRPClass();
+	
+	}
 }

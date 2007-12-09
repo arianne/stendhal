@@ -23,7 +23,6 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import utilities.PlayerHelper;
 import utilities.PlayerTestHelper;
 
 public class BringListOfItemsQuestLogicTest {
@@ -32,8 +31,8 @@ public class BringListOfItemsQuestLogicTest {
 	public static void setupClass() {
 		Log4J.init();
 		assertTrue(MockStendhalRPRuleProcessor.get() instanceof MockStendhalRPRuleProcessor);
-		PlayerHelper.generatePlayerRPClasses();
-		PlayerHelper.generateItemRPClasses();
+		PlayerTestHelper.generatePlayerRPClasses();
+		PlayerTestHelper.generateItemRPClasses();
 	}
 
 	@Before
@@ -292,7 +291,7 @@ public class BringListOfItemsQuestLogicTest {
 		public SpeakerNPC getNPC() {
 			if (npc == null) {
 
-				PlayerHelper.generateNPCRPClasses();
+				PlayerTestHelper.generateNPCRPClasses();
 				npc = new SpeakerNPC("MockBringListOfItemsQuest");
 			}
 			return npc;
@@ -407,7 +406,7 @@ public class BringListOfItemsQuestLogicTest {
 		public SpeakerNPC getNPC() {
 			if (npc == null) {
 
-				PlayerHelper.generateNPCRPClasses();
+				PlayerTestHelper.generateNPCRPClasses();
 				npc = new SpeakerNPC("MockBringListOfItemsQuest");
 			}
 			return npc;

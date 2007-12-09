@@ -23,7 +23,6 @@ import org.junit.After;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import utilities.PlayerHelper;
 import utilities.PlayerTestHelper;
 import utilities.SpeakerNPCTestHelper;
 
@@ -181,7 +180,7 @@ public class AdministrationActionTest {
 		StendhalRPZone zoneTo = new StendhalRPZone("zoneTo");
 		Player pl = PlayerTestHelper.createPlayer();
 		MockStendhalRPRuleProcessor.get().getPlayers().add(pl);
-		PlayerHelper.generatePlayerRPClasses();
+		PlayerTestHelper.generatePlayerRPClasses();
 		Player bob = new Player(new RPObject()) {
 			@Override
 			public boolean teleport(StendhalRPZone zone, int x, int y,
@@ -194,7 +193,7 @@ public class AdministrationActionTest {
 			}
 		};
 		bob.setName("bob");
-		PlayerHelper.addEmptySlots(bob);
+		PlayerTestHelper.addEmptySlots(bob);
 
 		MockStendhalRPRuleProcessor.get().getPlayers().add(bob);
 

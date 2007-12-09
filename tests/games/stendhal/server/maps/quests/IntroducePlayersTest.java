@@ -22,7 +22,6 @@ import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import utilities.PlayerHelper;
 import utilities.PlayerTestHelper;
 
 public class IntroducePlayersTest {
@@ -34,8 +33,8 @@ public class IntroducePlayersTest {
 	public static void setUpBeforeClass() throws Exception {
 		Log4J.init();
 
-		PlayerHelper.generatePlayerRPClasses();
-		PlayerHelper.generateItemRPClasses();
+		PlayerTestHelper.generatePlayerRPClasses();
+		PlayerTestHelper.generateItemRPClasses();
 
 		assertTrue(MockStendhalRPRuleProcessor.get() instanceof MockStendhalRPRuleProcessor);
 		MockStendlRPWorld.get();

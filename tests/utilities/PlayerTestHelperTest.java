@@ -8,7 +8,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-public class PlayerHelperTest {
+public class PlayerTestHelperTest {
 
 	@Before
 	public void setUp() throws Exception {
@@ -20,9 +20,9 @@ public class PlayerHelperTest {
 
 	@Test
 	public final void testAddEmptySlots() {
-		PlayerHelper.generatePlayerRPClasses();
+		PlayerTestHelper.generatePlayerRPClasses();
 		Player bob = new Player(new RPObject());
-		PlayerHelper.addEmptySlots(bob);
+		PlayerTestHelper.addEmptySlots(bob);
 		assertTrue(bob.hasSlot("!quests"));
 		assertTrue(bob.hasSlot("bag"));
 		assertTrue(bob.hasSlot("lhand"));

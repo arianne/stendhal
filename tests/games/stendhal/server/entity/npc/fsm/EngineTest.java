@@ -10,15 +10,14 @@ import games.stendhal.server.entity.player.Player;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import utilities.PlayerHelper;
 import utilities.PlayerTestHelper;
 
 public class EngineTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		PlayerHelper.generatePlayerRPClasses();
-		PlayerHelper.generateNPCRPClasses();
+		PlayerTestHelper.generatePlayerRPClasses();
+		PlayerTestHelper.generateNPCRPClasses();
 	}
 
 

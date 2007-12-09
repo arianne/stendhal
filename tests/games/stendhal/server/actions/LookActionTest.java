@@ -15,7 +15,6 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import utilities.PlayerHelper;
 import utilities.PlayerTestHelper;
 
 /**
@@ -27,7 +26,7 @@ public class LookActionTest {
 	@BeforeClass
 	public static void setUpBeforeClass() {
 		Log4J.init();
-		PlayerHelper.generatePlayerRPClasses();
+		PlayerTestHelper.generatePlayerRPClasses();
 	}
 
 	@Before

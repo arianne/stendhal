@@ -7,13 +7,12 @@ import games.stendhal.server.entity.player.Player;
 
 import org.junit.Test;
 
-import utilities.PlayerHelper;
 import utilities.PlayerTestHelper;
 
 public class EntityTest {
 	@Test
 	public void testnextTo() throws Exception {
-		PlayerHelper.generatePlayerRPClasses();
+		PlayerTestHelper.generatePlayerRPClasses();
 		Entity en = new MockEntity();
 		Player pl = PlayerTestHelper.createPlayer();
 

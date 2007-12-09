@@ -27,7 +27,6 @@ import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import utilities.PlayerHelper;
 import utilities.PlayerTestHelper;
 
 public class LookBookforCerylTest {
@@ -47,7 +46,7 @@ public class LookBookforCerylTest {
 
 	@Before
 	public void setUp() throws Exception {
-		PlayerHelper.generateNPCRPClasses();
+		PlayerTestHelper.generateNPCRPClasses();
 		new WitchNPC().configureZone(new StendhalRPZone("testzone"), null);
 		new LibrarianNPC().configureZone(new StendhalRPZone("testzone"), null);
 		jynath = NPCList.get().get("jynath");

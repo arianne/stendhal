@@ -15,9 +15,9 @@ public class QuestHelper {
 	
 	public static void setUpBeforeClass() {
 		Log4J.init();
-		PlayerHelper.generatePlayerRPClasses();
-		PlayerHelper.generateItemRPClasses();
-		PlayerHelper.generateNPCRPClasses();
+		PlayerTestHelper.generatePlayerRPClasses();
+		PlayerTestHelper.generateItemRPClasses();
+		PlayerTestHelper.generateNPCRPClasses();
 		assertTrue(MockStendhalRPRuleProcessor.get() instanceof MockStendhalRPRuleProcessor);
 		MockStendlRPWorld.get();
 		NPCList.get().clear();
