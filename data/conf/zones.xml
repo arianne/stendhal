@@ -11,9 +11,4 @@
 	<zone-group uri="zones/orril.xml"/>
 	<zone-group uri="zones/semos.xml"/>
 	<zone-group uri="zones/misc.xml"/>
- <!--
- XXX: Disabled
-
- -->
-
 </zone-groups>
