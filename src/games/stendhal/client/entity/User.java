@@ -21,6 +21,8 @@ public class User extends Player {
 	 */
 	private FeatureList features;
 
+	private String _serverVersion = null;
+
 	public static boolean isNull() {
 
 		return instance == null;
@@ -111,14 +113,12 @@ public class User extends Player {
 
 	@Override
 	public void onHealed(final int amount) {
-
 		super.onHealed(amount);
 
 		StendhalUI.get().addEventLine(
 				getTitle() + " heals "
 						+ Grammar.quantityplnoun(amount, "health point") + ".",
 				NotificationType.POSITIVE);
-
 	}
 
 	/**
@@ -197,10 +197,10 @@ public class User extends Player {
 			}
 
 			if (changes.has("release")) {
-				String serverVersion = changes.get("release"); 
-				if (!Version.checkCompatibility(serverVersion, stendhal.VERSION)) {
+				_serverVersion = changes.get("release");
+				if (!Version.checkCompatibility(_serverVersion, stendhal.VERSION)) {
 					StendhalUI.get().addEventLine("Your client may not function properly.\nThe version of this server is "
-						+ serverVersion
+						+ _serverVersion
 						+ " but your client is version "
 						+ stendhal.VERSION
 						+ ".\nPlease download the new version from http://arianne.sourceforge.net",
@@ -235,6 +235,14 @@ public class User extends Player {
 
 	public static void setNull() {
 		instance = null;
+	}
 
+	/**
+	 * query the version of the server we are currently connected to
+	 * @return server version string
+	 */
+	public String getServerVersion()
+	{
+		return _serverVersion;
 	}
 }

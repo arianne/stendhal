@@ -14,9 +14,11 @@ package games.stendhal.client.entity;
 
 import games.stendhal.client.events.RPObjectChangeListener;
 import games.stendhal.client.sound.SoundSystem;
+import games.stendhal.client.update.Version;
 
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
+
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
@@ -197,7 +199,19 @@ public class Entity implements RPObjectChangeListener {
 			action.put("baseslot", rpObject.getContainerSlot().getName());
 			action.put("baseitem", id);
 		} else {
-			action.put("target", "#" + Integer.toString(id));
+			StringBuilder target;
+			User user = User.get();
+			String release = user!=null? User.get().getServerVersion(): null;
+
+			 // query the server version to see if it understands the new command syntax with leading "#" 
+			if (release!=null && Version.compare(release,"0.65.5")>=0)
+				target = new StringBuilder("#");
+			else
+				target = new StringBuilder();
+
+			target.append(Integer.toString(id));
+
+			action.put("target", target.toString());
 		}
 	}
 
