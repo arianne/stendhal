@@ -49,6 +49,7 @@ public class EquipmentActionTest {
 		 *
 		 * @return last private message
 		 */
+		@Override
 		public String getPrivateText() {
 			return privateText;
 		}

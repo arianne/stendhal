@@ -965,6 +965,7 @@ public class j2DClient extends StendhalUI {
 	 * @throws IllegalArgumentException
 	 *             If an unsupported ManagedWindow is given.
 	 */
+	@Override
 	public void addWindow(ManagedWindow mw) {
 		if (mw instanceof InternalManagedDialog) {
 			addDialog(((InternalManagedDialog) mw).getDialog());
