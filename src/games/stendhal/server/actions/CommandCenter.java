@@ -63,17 +63,18 @@ public class CommandCenter {
 
 	}
 
-	public static void execute(RPObject caster, RPAction action) {
-
+	public static boolean execute(RPObject caster, RPAction action) {
 		try {
 
 			Player player = (Player) caster;
 			ActionListener actionListener = getAction(action);
-			
+
 			actionListener.onAction(player, action);
 
+			return true;
 		} catch (Exception e) {
 			logger.error("Cannot execute action " + action + " send by " + caster, e);
+			return false;
 		}
 	}
 
@@ -83,8 +84,8 @@ public class CommandCenter {
 		} else {
 			return getAction(action.get("type"));
 		}
-		
 	}
+
 	private static ActionListener getAction(String type) {
 		if (type == null) {
 			return UNKNOWN_ACTION;
