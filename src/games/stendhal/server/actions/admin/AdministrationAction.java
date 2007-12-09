@@ -141,6 +141,7 @@ public abstract class AdministrationAction implements ActionListener {
 	 * @param player
 	 * @param action
 	 * @return the Entity or null if it does not exist
+	 * TODO merge with EntityHelper.entityFromTargetName()
 	 */
 	protected final Entity getTarget(Player player, RPAction action) {
 
@@ -169,8 +170,7 @@ public abstract class AdministrationAction implements ActionListener {
 		if (id != null) {
 			StendhalRPZone zone = player.getZone();
 
-			RPObject.ID oid = new RPObject.ID(Integer.parseInt(id), zone
-					.getName());
+			RPObject.ID oid = new RPObject.ID(Integer.parseInt(id), zone.getName());
 			if (zone.has(oid)) {
 				RPObject object = zone.get(oid);
 				if (object instanceof Entity) {
