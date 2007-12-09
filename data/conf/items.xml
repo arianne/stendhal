@@ -1,4 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <groups>
+	<group uri="items/arrows.xml"/>
+	<group uri="items/armors.xml"/>
+	<group uri="items/axes.xml"/>
+	<group uri="items/books.xml"/>
+	<group uri="items/boots.xml"/>
+	<group uri="items/boxes.xml"/>
+	<group uri="items/cloaks.xml"/>
+	<group uri="items/clubs.xml"/>
+	<group uri="items/containers.xml"/>
+
 	<group uri="items/items.xml"/>
 </groups>

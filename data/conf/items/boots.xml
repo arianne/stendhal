@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<items>
+  <item name="leather_boots">
+    <type class="boots" subclass="leather_boots" tileid="-1"/>
+    <description>You see a simple pair of leather boots to give your feet some protection.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <def value="1"/>
+    </attributes>
+    <weight value="2.0"/>
+    <value value="7"/>
+    <equipable>
+      <slot name="feet"/>
+      <slot name="bag"/>
+    </equipable>
+  </item>
+
+  <item name="studded_boots">
+    <type class="boots" subclass="studded_boots" tileid="-1"/>
+    <description>You see a pair of worn studded boots with moderate protection for your feet.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <def value="2"/>
+    </attributes>
+    <weight value="5.0"/>
+    <value value="56"/>
+    <equipable>
+      <slot name="feet"/>
+      <slot name="bag"/>
+    </equipable>
+  </item>
+
+  <item name="chain_boots">
+    <type class="boots" subclass="chain_boots" tileid="-1"/>
+    <description>You see a pair of chain boots, quite rusty but still strong.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <def value="4"/>
+    </attributes>
+    <weight value="10.0"/>
+    <value value="448"/>
+    <equipable>
+      <slot name="feet"/>
+      <slot name="bag"/>
+    </equipable>
+  </item>
+
+  <item name="red_boots">
+    <type class="boots" subclass="red_boots" tileid="-1"/>
+    <description>You see a pair of red boots, the colour reminds you of fresh blood.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <def value="5"/>
+    </attributes>
+    <weight value="10.0"/>
+    <value value="848"/>
+    <equipable>
+      <slot name="feet"/>
+      <slot name="bag"/>
+    </equipable>
+  </item>
+
+  <item name="steel_boots">
+    <type class="boots" subclass="steel_boots" tileid="-1"/>
+    <description>You see a pair of steel boots, fit for any soldier.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <def value="6"/>
+    </attributes>
+    <weight value="10.0"/>
+    <value value="1512"/>
+    <equipable>
+      <slot name="feet"/>
+      <slot name="bag"/>
+    </equipable>
+  </item>
+
+  <item name="elvish_boots">
+    <type class="boots" subclass="elvish_boots" tileid="-1"/>
+    <description>You see a pair of elvish boots.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <def value="7"/>
+    </attributes>
+    <weight value="9.0"/>
+    <value value="2401"/>
+    <equipable>
+      <slot name="feet"/>
+      <slot name="bag"/>
+    </equipable>
+  </item>
+
+  <item name="golden_boots">
+    <type class="boots" subclass="golden_boots" tileid="-1"/>
+    <description>You see a pair of golden boots. They will be heavy to wear but well worth their weight.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <def value="8"/>
+    </attributes>
+    <weight value="17.0"/>
+    <value value="3584"/>
+    <equipable>
+      <slot name="feet"/>
+      <slot name="bag"/>
+    </equipable>
+  </item>
+
+  <item name="shadow_boots">
+    <type class="boots" subclass="shadow_boots" tileid="-1"/>
+    <description>You see a pair of shadow boots. You can't fathom what they are made of.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <def value="9"/>
+    </attributes>
+    <weight value="17.0"/>
+    <value value="5103"/>
+    <equipable>
+      <slot name="feet"/>
+      <slot name="bag"/>
+    </equipable>
+  </item>
+
+  <item name="stone_boots">
+    <type class="boots" subclass="stone_boots" tileid="-1"/>
+    <description>You see a pair of stone boots.  They may be heavy, but they protect your feet well.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <def value="10"/>
+    </attributes>
+    <weight value="17.0"/>
+    <value value="7000"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="feet"/>
+    </equipable>
+  </item>
+
+  <item name="chaos_boots">
+    <type class="boots" subclass="chaos_boots" tileid="-1"/>
+    <description>You see a pair of chaos boots. Your steps are unsteady in them, but the extra defence they give is worth it.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <def value="11"/>
+    </attributes>
+    <weight value="17.0"/>
+    <value value="9317"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="feet"/>
+    </equipable>
+  </item>
+
+  <item name="mainio_boots">
+    <type class="boots" subclass="mainio_boots" tileid="-1"/>
+    <description>You see a pair of mainio boots. It's hard to believe that boots looking like this would protect your feet so well as they do.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <def value="11"/>
+    </attributes>
+    <weight value="17.0"/>
+    <value value="9317"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="feet"/>
+    </equipable>
+  </item>
+
+  <item name="green_thing_boots">
+    <type class="boots" subclass="green_dragon_boots" tileid="-1"/>
+    <description>You see a pair of green thing boots. They're slimy inside, ewwww.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <def value="12"/>
+    </attributes>
+    <weight value="19.0"/>
+    <value value="12096"/>
+    <equipable>
+      <slot name="feet"/>
+      <slot name="bag"/>
+    </equipable>
+  </item>
+
+  <item name="xeno_boots">
+    <type class="boots" subclass="xeno_boots" tileid="-1"/>
+    <description>You see a fine specimen of craftmanship, a pair of xeno boots.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <def value="13"/>
+    </attributes>
+    <weight value="17.0"/>
+    <value value="23625"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="feet"/>
+    </equipable>
+  </item>
+
+  <item name="black_boots">
+    <type class="boots" subclass="black_boots" tileid="-1"/>
+    <description>You stub your toe on this pair of black boots. Perhaps they bring you bad luck?</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <def value="15"/>
+    </attributes>
+    <weight value="17.0"/>
+    <value value="23625"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="feet"/>
+    </equipable>
+  </item>
+</items>
