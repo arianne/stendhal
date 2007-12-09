@@ -228,14 +228,6 @@ public class StendhalRPZone extends MarauroaRPZone {
 	}
 
 	/**
-	 * @deprecated Use add(CreatureRespawnPoint).
-	 */
-	@Deprecated
-	public void addRespawnPoint(CreatureRespawnPoint point) {
-		add(point);
-	}
-
-	/**
 	 * Add a creature respawn point to the zone.
 	 *
 	 * TODO: Make CreatureRespawnPoint a sub-class of Entity and use normal
@@ -1049,10 +1041,6 @@ public class StendhalRPZone extends MarauroaRPZone {
 		return players;
 	}
 
-	// public void addPlayerAndFriends(RPEntity player) {
-	// playersAndFriends.add(player);
-	// }
-
 	/**
 	 * Gets all players in this zone, as well as friendly entities such as
 	 * sheep. These are the targets (enemies) for wild creatures such as orcs.
@@ -1102,10 +1090,6 @@ public class StendhalRPZone extends MarauroaRPZone {
 	public void setMoveToAllowed(boolean moveToAllowed) {
 		this.moveToAllowed = moveToAllowed;
 
-	}
-
-	public void addMap(String name, byte[] mapData) {
-		addToContent(name, mapData);
 	}
 
 	private int debugturn;
