@@ -122,10 +122,11 @@ public class GagManager implements LoginListener {
 		return false;
 	}
 
-	/*
+	/**
 	 * If the players' gag has expired remove it
 	 *
-	 * @param inmate player to check @return true, if the gag expired and was
+	 * @param inmate player to check
+	 * @return true, if the gag expired and was
 	 * removed or was already removed. false, if the player still has time to
 	 * serve.
 	 */
@@ -177,7 +178,7 @@ public class GagManager implements LoginListener {
 				});
 	}
 
-	/*
+	/**
 	 * gets time remaining in milliseconds
 	 *
 	 * @param inmate player to check @return time remaining in milliseconds
