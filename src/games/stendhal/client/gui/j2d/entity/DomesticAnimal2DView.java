@@ -274,7 +274,7 @@ public abstract class DomesticAnimal2DView extends RPEntity2DView {
 			RPAction rpaction = new RPAction();
 
 			rpaction.put("type", at.toString());
-			rpaction.put("target", animal.getID().getObjectID());
+			animal.fillTargetInfo(rpaction);
 
 			at.send(rpaction);
 			break;

@@ -73,7 +73,7 @@ public class FishSource2DView extends AnimatedLoopEntity2DView {
 				RPAction rpaction = new RPAction();
 
 				rpaction.put("type", at.toString());
-				rpaction.put("target", getEntity().getID().getObjectID());
+				getEntity().fillTargetInfo(rpaction);
 
 				at.send(rpaction);
 				break;

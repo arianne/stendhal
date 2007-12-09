@@ -86,7 +86,7 @@ public class Portal2DView extends InvisibleEntity2DView {
 			RPAction rpaction = new RPAction();
 
 			rpaction.put("type", at.toString());
-			rpaction.put("target", portal.getID().getObjectID());
+			portal.fillTargetInfo(rpaction);
 
 			at.send(rpaction);
 			break;

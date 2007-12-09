@@ -171,7 +171,6 @@ public class Chest2DView extends StateEntity2DView {
 							.getContent(), wtEntityContainer);
 				}
 			} else {
-
 				if (wtEntityContainer != null) {
 					wtEntityContainer.destroy();
 					wtEntityContainer = null;
@@ -235,7 +234,7 @@ public class Chest2DView extends StateEntity2DView {
 			RPAction rpaction = new RPAction();
 
 			rpaction.put("type", at.toString());
-			rpaction.put("target", chest.getID().getObjectID());
+			chest.fillTargetInfo(rpaction);
 
 			at.send(rpaction);
 			break;

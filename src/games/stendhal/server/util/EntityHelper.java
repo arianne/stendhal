@@ -16,16 +16,17 @@ public class EntityHelper
 	 * Translate the "target" parameter of actions like "look" into an entity reference.
 	 * Numeric parameters are treated as object IDs, alphanumeric names are searched in
 	 * the list of players and NPCs.
-	 * @param entity name
+	 * @param textual representation of the target
 	 * @param zone to search for objects
 	 * @return
 	 */
-	public static Entity entityFromTargetName(String name, StendhalRPZone zone)
+	public static Entity entityFromTargetName(String target, StendhalRPZone zone)
     {
 		Entity entity = null;
 
-	    if (name!=null && name.length()>0 && Character.isDigit(name.charAt(0))) {
-	    	int objectId = Integer.parseInt(name);
+	    if (target!=null && target.length()>1 &&
+	    	target.charAt(0)=='#' && Character.isDigit(target.charAt(1))) {
+	    	int objectId = Integer.parseInt(target.substring(1));
 
 	    	RPObject.ID targetid = new RPObject.ID(objectId, zone.getID());
 
@@ -39,11 +40,11 @@ public class EntityHelper
 	    }
 
 	    if (entity == null) {
-	    	entity = StendhalRPRuleProcessor.get().getPlayer(name);
+	    	entity = StendhalRPRuleProcessor.get().getPlayer(target);
 	    }
 
 	    if (entity == null) {
-	    	entity = NPCList.get().get(name);
+	    	entity = NPCList.get().get(target);
 	    }
 
 	    if (entity!=null && entity.getZone()==zone)

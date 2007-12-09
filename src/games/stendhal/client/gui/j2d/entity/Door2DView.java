@@ -223,7 +223,7 @@ public class Door2DView extends StateEntity2DView {
 			RPAction rpaction = new RPAction();
 
 			rpaction.put("type", at.toString());
-			rpaction.put("target", door.getID().getObjectID());
+			door.fillTargetInfo(rpaction);
 
 			at.send(rpaction);
 			break;

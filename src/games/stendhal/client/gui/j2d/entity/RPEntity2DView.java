@@ -697,7 +697,7 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 			rpaction = new RPAction();
 
 			rpaction.put("type", at.toString());
-			rpaction.put("target", rpentity.getID().getObjectID());
+			rpentity.fillTargetInfo(rpaction);
 
 			at.send(rpaction);
 			break;
@@ -715,7 +715,7 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 			rpaction = new RPAction();
 
 			rpaction.put("type", at.toString());
-			rpaction.put("target", rpentity.getID().getObjectID());
+			rpentity.fillTargetInfo(rpaction);
 
 			at.send(rpaction);
 			break;

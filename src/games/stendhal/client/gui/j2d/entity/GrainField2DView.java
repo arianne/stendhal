@@ -219,7 +219,7 @@ public class GrainField2DView extends StateEntity2DView {
 			RPAction rpaction = new RPAction();
 
 			rpaction.put("type", at.toString());
-			rpaction.put("target", grainField.getID().getObjectID());
+			grainField.fillTargetInfo(rpaction);
 
 			at.send(rpaction);
 			break;

@@ -182,7 +182,8 @@ public class Entity implements RPObjectChangeListener {
 
 	/**
 	 * Fill the action with the entity's target info. This will set the
-	 * <code>baseobject</code>, and <code>baseslot</code> attributes.
+	 * <code>baseobject</code>, <code>baseslot</code> and <code>baseitem</code>
+	 * respective the <code>target</code> attributes for uncontained objects.
 	 *
 	 * @param action
 	 *            The RP action.
@@ -196,7 +197,7 @@ public class Entity implements RPObjectChangeListener {
 			action.put("baseslot", rpObject.getContainerSlot().getName());
 			action.put("baseitem", id);
 		} else {
-			action.put("target", id);
+			action.put("target", "#" + Integer.toString(id));
 		}
 	}
 
