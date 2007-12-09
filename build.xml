@@ -160,6 +160,7 @@
 			<fileset dir="data/conf">
 				<include name="creatures.xml"/>
 				<include name="items.xml"/>
+				<include name="items/*.xml"/>
 				<include name="quests.xml"/>
 				<include name="zones.xml"/>
 				<include name="zones/*.xml"/>
@@ -634,6 +635,9 @@
 			<fileset file="data/conf/quests.xml"/>
 			<fileset file="data/conf/zones.xml"/>
 
+			<fileset dir="data/conf/items">
+				<include name="*.xml"/>
+			</fileset>
 			<fileset dir="data/conf/zones">
 				<include name="*.xml"/>
 			</fileset>
