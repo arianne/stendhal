@@ -204,6 +204,7 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 					null
 				);
 
+				//TODO I think, we can now remove this error message case, it was only a else condition in the previous handling code.
 				add(ConversationStates.ATTENDING, Arrays.asList("yes","no"), null,
 					ConversationStates.ATTENDING, "Hm, I do not understand you. If you wish to #leave, just say",
 					null
