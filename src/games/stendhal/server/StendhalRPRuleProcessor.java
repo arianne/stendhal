@@ -399,7 +399,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 				actionListener.onAction(player, action);
 			}
 		} catch (Exception e) {
-			logger.error("cannot execute action " + action, e);
+			logger.error("Cannot execute action " + action + " send by " + caster, e);
 		}
 	}
 
