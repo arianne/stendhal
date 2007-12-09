@@ -275,7 +275,9 @@
 		<mkdir dir="${build_client_data}"/>
 
 		<copy todir="${build_client_data}/data/sprites">
-			<fileset dir="${sprites}"/>
+			<fileset dir="${sprites}">
+				<exclude name="**/*.xcf" />
+			</fileset>
 		</copy>
 
 		<copy todir="${build_client_data}/data/docu">
