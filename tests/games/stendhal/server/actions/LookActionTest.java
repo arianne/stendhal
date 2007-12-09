@@ -22,7 +22,7 @@ import utilities.PlayerTestHelper;
  * Test server actions
  * @author Martin Fuchs
  */
-public class ActionTest {
+public class LookActionTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() {
