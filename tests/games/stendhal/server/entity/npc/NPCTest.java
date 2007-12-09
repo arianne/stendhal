@@ -23,7 +23,7 @@ import utilities.QuestHelper;
  * Test NPC logic
  * @author Martin Fuchs
  */
-public class NPCLogicTest {
+public class NPCTest {
 
 	private static final String ZONE_NAME = "int_ados_felinas_house";
 
@@ -88,5 +88,28 @@ public class NPCLogicTest {
 		npc.logic();
 		assertEquals("Bye.", npc.get("text"));
 		assertNull(npc.getAttending());
+	}
+
+	@Test
+	public void testIdea() {
+		SpeakerNPC npc = NPCList.get().get("Felina");
+		assertNotNull(npc);
+
+		assertNull(npc.getIdea());
+		npc.setIdea("walk");
+		assertEquals("walk", npc.getIdea());
+
+		npc.setIdea(null);
+		assertNull(npc.getIdea());
+	}
+
+	@Test
+	public void testOutfit() {
+		SpeakerNPC npc = NPCList.get().get("Felina");
+		assertNotNull(npc);
+
+		assertNull(npc.getIdea());
+		npc.setOutfit("suite");
+		assertEquals("suite", npc.get("outfit"));
 	}
 }
