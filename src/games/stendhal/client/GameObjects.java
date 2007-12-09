@@ -94,10 +94,8 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 
 	/** Removes all the object entities */
 	public void clear() {
-		// SHOULD NEVER HAPPEN!!!
-		// TODO: Remove after 0.70 release, if this warning never shows
 		if (!objects.isEmpty()) {
-			logger.error("Game objects not empty!");
+			logger.debug("Game objects not empty!");
 
 			// invalidate all entity objects
 			Iterator<Entity> it = iterator();

@@ -209,8 +209,6 @@ public class StendhalClient extends ClientFramework {
 			rpobjDispatcher.dispatchRemoved(player, true);
 		}
 
-		// Needed after disassembly?
-		// TODO: Remove after 0.70 if unneeded
 		gameObjects.clear();
 
 		// If player exists, notify zone leaving.
