@@ -15,7 +15,7 @@ public class ImageViewWindow extends InternalManagedDialog {
     /**
      * The padding of the window, in pixels, when generating the maximum size.
      */
-    public static final int PADDING = 24;
+    public static final int PADDING = 100;
     
     private URL url;
     private String title;
@@ -41,16 +41,22 @@ public class ImageViewWindow extends InternalManagedDialog {
     }
     
     public ImageViewWindow(URL url, String title, String alt) {
-        this(url, title);
+        super("examine", title);
         
+        this.url = url;
+        this.title = title;
         this.alt = alt;
+        
+        init();
     }
     
     public void init() {
         ImageViewPanel ivp = new ImageViewPanel(this, url, alt);
         setContent(ivp);
         j2DClient.get().addWindow(this);
-        moveTo(10, 10);
+        Point center = genCenterPoint();
+        this.moveTo(center.x, center.y);
+        view();
     }
     
     public void view() {

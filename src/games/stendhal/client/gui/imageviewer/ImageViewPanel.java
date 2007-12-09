@@ -1,19 +1,20 @@
 package games.stendhal.client.gui.imageviewer;
 
+import games.stendhal.client.gui.styled.WoodStyle;
+import games.stendhal.client.gui.styled.swing.StyledJPanel;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.net.URL;
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.JLayeredPane;
 
 /**
  * A JPanel to be viewed from an ImageViewWindow.
  * @author timothyb89
  */
-public class ImageViewPanel extends JPanel {
+public class ImageViewPanel extends StyledJPanel {
     
     /**
      * The image to be displayed.
@@ -24,7 +25,13 @@ public class ImageViewPanel extends JPanel {
     private String alt;
     private ImageViewWindow imw;
 
+    private JLayeredPane layers;
+    
+    public static final String FONT_COLOR = "#FFFFFF";
+    public static final String FONT_SIZE = "5";
+
     public ImageViewPanel(ImageViewWindow imw, URL url, String alt) {
+        super(WoodStyle.getInstance());
         this.url = url;
         this.alt = alt;
         this.imw = imw;
@@ -38,6 +45,8 @@ public class ImageViewPanel extends JPanel {
      */
     private void initImage() {
         try {
+            // we load the image twice for scaling purposes (height and width).
+            // maybe there's a better way?
             image = ImageIO.read(url);
             scaleImage();
         } catch (Exception e) {
@@ -49,17 +58,28 @@ public class ImageViewPanel extends JPanel {
      * Creates and adds components to draw the image.
      */
     private void initComponents() {
-        ImageIcon img = new ImageIcon(image);
-        JLabel imageLabel = new JLabel(img);
+        Dimension max = imw.genMaxSize();
+        int width = image.getWidth(null);        
+        int height = image.getHeight(null);
+        
+        if (image.getWidth(null) > max.width) {
+            width = max.width - 2;
+        }
+        if (image.getHeight(null) > max.height) {
+            height = max.height - 2;
+        }
+        
+        String caption = "";
+        if (alt != null) {
+            caption = "<b><i><font color=\"" + FONT_COLOR + "\" size=\"" + FONT_SIZE + "\">" + alt + "</big></i></b><br>";
+        }
+        String img = "<img width=" + width + " height=" + height + " src=" + url.toString() + ">";
+        String text = "<html>" + caption + img;
+        JLabel imageLabel = new JLabel(text);
+        
         add(imageLabel);
         
-        if (alt != null) {
-            //display the alternate text- 
-            //TODO. This works, but doesn't put the caption on top of the image (Graphics.drawString might be better)
-            //JLabel altText = new JLabel(alt);
-            //altText.setLocation(10, 10);
-            //add(altText);
-        }
+        setVisible(true);
     }
     
     /**

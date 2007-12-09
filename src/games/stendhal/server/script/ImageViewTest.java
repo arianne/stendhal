@@ -10,7 +10,7 @@ import marauroa.common.game.RPEvent;
 
 /**
  * A simple test for the client ImageViewer.
- * @author tim
+ * @author timothyb89
  */
 public class ImageViewTest extends ScriptImpl {
 
