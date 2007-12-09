@@ -17,6 +17,7 @@ import games.stendhal.client.events.FeatureChangeListener;
 import games.stendhal.client.events.RPObjectChangeListener;
 import games.stendhal.client.gui.admin.TransitionDiagram;
 
+import games.stendhal.client.gui.imageviewer.RPEventImageViewer;
 import java.util.HashMap;
 
 import marauroa.common.game.RPEvent;
@@ -531,12 +532,17 @@ public class UserContext implements RPObjectChangeListener {
 		for (RPEvent rpevent : object.events()) {
 			if (rpevent.getName().equals("transition_graph")) {
 				new TransitionDiagram().showTransitionDiagram(rpevent.get("data"));
-			}
+			} else if (rpevent.getName().equals("examine")) {
+                                RPEventImageViewer.viewImage(rpevent);
+                        }
 		}
+                
 		for (RPEvent rpevent : changes.events()) {
 			if (rpevent.getName().equals("transition_graph")) {
 				new TransitionDiagram().showTransitionDiagram(rpevent.get("data"));
-			}
+			} else if (rpevent.getName().equals("examine")) {
+                                RPEventImageViewer.viewImage(rpevent);
+                        }
 		}
 	}
 

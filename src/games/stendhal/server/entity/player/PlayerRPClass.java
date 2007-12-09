@@ -182,7 +182,7 @@ class PlayerRPClass {
 		player.addAttribute("last_pvp_action_time", Type.FLOAT, Definition.HIDDEN);
 		
 		player.addRPEvent("transition_graph", Definition.STANDARD);
-		
+		player.addRPEvent("examine", Definition.STANDARD);
 		
 		RPClass rpclass = new RPClass("private_text");
 		rpclass.add(DefinitionClass.RPEVENT, "text", Definition.PRIVATE);

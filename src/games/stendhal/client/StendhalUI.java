@@ -6,6 +6,7 @@
 
 package games.stendhal.client;
 
+import games.stendhal.client.gui.ManagedWindow;
 import games.stendhal.common.NotificationType;
 
 /**
@@ -64,6 +65,11 @@ public abstract class StendhalUI {
 	public abstract void addEventLine(String header, String text,
 			NotificationType type);
 
+        /**
+         * Adds a Swing component to the view
+         */
+        public abstract void addWindow(ManagedWindow imd);
+        
 	/**
 	 * Initiate outfit selection by the user.
 	 */

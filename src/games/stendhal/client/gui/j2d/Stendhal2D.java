@@ -13,9 +13,11 @@ package games.stendhal.client.gui.j2d;
 import games.stendhal.client.IGameScreen;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.gui.KTextEdit;
+import games.stendhal.client.gui.ManagedWindow;
 import games.stendhal.client.gui.StendhalGUI;
 import games.stendhal.client.gui.styled.WoodStyle;
 import games.stendhal.client.gui.styled.swing.StyledJPanel;
+import games.stendhal.client.gui.wt.ManagedDialog;
 import games.stendhal.common.NotificationType;
 
 import java.awt.BorderLayout;
@@ -363,8 +365,8 @@ public class Stendhal2D extends StendhalGUI {
 	//
 	// StendhalUI
 	//
-
-	/**
+	
+        /**
 	 * Add an event line.
 	 *
 	 */
@@ -400,6 +402,14 @@ public class Stendhal2D extends StendhalGUI {
 			final NotificationType type) {
 		gameLog.addLine(header, text, type);
 	}
+        
+        /**
+         * Adds a ManagedWindow.
+         * @param c The component to add as an internal window.
+         */
+        public void addWindow(ManagedWindow c) {
+            //do nothing in this implementation.
+        }
 
 	/**
 	 * Initiate outfit selection by the user.
