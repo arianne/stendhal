@@ -36,7 +36,6 @@ public class MagicExtn extends StendhalServerExtension implements ActionListener
 		CommandCenter.register("spell", this);
 
 		//StendhalRPRuleProcessor.register("listspells", this); //not ready yet
-
 	}
 
 	/* 
@@ -44,7 +43,7 @@ public class MagicExtn extends StendhalServerExtension implements ActionListener
 	 */
 	@Override
 	public void init() {
-		// this extension has no spespecific init code, everything is
+		// this extension has no specific init code, everything is
 		// implemented as /commands that are handled onAction
 	}
 
@@ -54,12 +53,9 @@ public class MagicExtn extends StendhalServerExtension implements ActionListener
 		if (type.equals("spell")) {
 			onSpell(player, action);
 		}
-
 	}
 
 	private void onSpell(Player player, RPAction action) {
-		
-
 		String usage = "Usage: #/spell <spellname>";
 		String text = "";
 
@@ -76,12 +72,12 @@ public class MagicExtn extends StendhalServerExtension implements ActionListener
 			//if(player1 == null) { 
 			//text += "Player \"" + name1 + "\" not found. ";
 			//}
-			player.sendPrivateText("Trying to cast a a spell...");
+			player.sendPrivateText("Trying to cast a spell...");
 		} else {
 			text = usage;
 		}
 
-		String availableSpells = player.getQuest("spells"); //the list of spells
+		String availableSpells = player.getQuest("spells"); //the list of spells	//FIXME Is this getQuest("spells") correct, shouldn't it be s.th. like player.getSlot("spells")... ?
 
 		// Checks to see if the list of spells available to the player contains the spell they tried to cast
 		if (availableSpells.contains(castSpell)) {
@@ -89,6 +85,7 @@ public class MagicExtn extends StendhalServerExtension implements ActionListener
 		} else {
 			player.sendPrivateText("You can not cast this spell.");
 		}
+
 		if (canCastSpell) {
 			// put spells and actions here
 			if (castSpell.contains("heal")) {
@@ -157,8 +154,6 @@ public class MagicExtn extends StendhalServerExtension implements ActionListener
 		}
 
 		player.sendPrivateText(text);
-
-		
 	}
 
 }
