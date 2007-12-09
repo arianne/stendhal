@@ -461,17 +461,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			}
 
 			/*
-			 * TODO: Refactor Definitively must be done by the zone itself.
-			 */
-			for (NPC npc : npcs) {
-				try {
-					npc.logic();
-				} catch (Exception e) {
-					logger.error("Error in npc logic", e);
-				}
-			}
-
-			/*
 			 * TODO: Refactor Removable once RPEvent for chat is added.
 			 */
 			for (Player player : playersRmText) {
@@ -538,11 +527,14 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		int currentTurn = getTurn();
 		try {
 			/*
-			 * TODO: Refactor Should be done by the zone itself.
+			 * TODO: Refactor Definitively must be done by the zone itself.
 			 */
-			// Creatures
-			for (CreatureRespawnPoint point : respawnPoints) {
-				point.logic();
+			for (NPC npc : npcs) {
+				try {
+					npc.logic();
+				} catch (Exception e) {
+					logger.error("Error in npc logic", e);
+				}
 			}
 
 			// Registeres classes for this turn
