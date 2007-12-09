@@ -7,9 +7,9 @@ import games.stendhal.client.StendhalClient;
 import marauroa.common.game.RPAction;
 
 /**
- * translates the visualrepresentation to the server side commands.
- * @author astridemma
+ * translates the visual representation into server side commands.
  *
+ * @author astridemma
  */
 public enum ActionType {
 	LOOK("look", "Look"),
@@ -59,7 +59,6 @@ public enum ActionType {
 	private ActionType(final String actCode, final String actionRep) {
 		actionCode = actCode;
 		actionRepresentation = actionRep;
-
 	}
 
 	/**

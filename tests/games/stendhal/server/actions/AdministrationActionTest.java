@@ -506,7 +506,6 @@ public class AdministrationActionTest {
 		assertTrue(pl.isTeleclickEnabled());
 		CommandCenter.execute(pl, action);
 		assertFalse(pl.isTeleclickEnabled());
-
 	}
 
 	@Test
@@ -643,7 +642,6 @@ public class AdministrationActionTest {
 
 		CommandCenter.execute(pl, action);
 		assertEquals("You can't remove SpeakerNPCs", pl.getPrivateText());
-
 	}
 	@Test
 	public final void testOnDestroyRat() {
@@ -666,8 +664,8 @@ public class AdministrationActionTest {
 
 		CommandCenter.execute(pl, action);
 		assertEquals("Removed entity null", pl.getPrivateText());
-
 	}
+
 	@Test
 	public final void testOnDestroyRatWithTargetID() {
 

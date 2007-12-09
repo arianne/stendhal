@@ -13,8 +13,8 @@ import marauroa.common.game.RPSlot;
 public class InspectAction extends AdministrationAction {
 	public static void register() {
 		CommandCenter.register("inspect", new InspectAction(), 600);
-		
 	}
+
 	@Override
 	public void perform(Player player, RPAction action) {
 	
