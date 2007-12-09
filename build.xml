@@ -392,6 +392,8 @@
 	<target name="dist_client_binary" depends="client_build">
 		<mkdir dir="${buildroot}/stendhal-${version}"/>
 		<mkdir dir="${buildroot}/stendhal-${version}/lib"/>
+		<mkdir dir="${buildroot}/stendhal-${version}/log"/>
+
 		<copy todir="${buildroot}/stendhal-${version}" file="${lib}/${client_jarname}"/>
 		<copy todir="${buildroot}/stendhal-${version}/lib" file="${log4j_jar}"/>
 		<copy todir="${buildroot}/stendhal-${version}/lib" file="${marauroa_jar}"/>
@@ -400,6 +402,7 @@
 		<copy todir="${buildroot}/stendhal-${version}/doc">
 			<fileset dir="doc"/>
 		</copy>
+		<touch file="${buildroot}/stendhal-${version}/log/stendhal.txt" />
 		<copy todir="${buildroot}/stendhal-${version}" file="README.txt"/>
 		<copy todir="${buildroot}/stendhal-${version}" file=".hotspotrc"/>
 		<zip destfile="${buildroot}/stendhal-FULL-${version}.zip"
@@ -410,6 +413,7 @@
 	<target name="dist_client_no_sound_binary">
 		<mkdir dir="${buildroot}/stendhal-${version}"/>
 		<mkdir dir="${buildroot}/stendhal-${version}/lib"/>
+		<mkdir dir="${buildroot}/stendhal-${version}/log"/>
 
 		<copy todir="${buildroot}/stendhal-${version}" file="${lib}/${client_jarname}"/>
 		<copy todir="${buildroot}/stendhal-${version}/lib" file="${log4j_jar}"/>
@@ -418,6 +422,7 @@
 		<copy todir="${buildroot}/stendhal-${version}/doc">
 			<fileset dir="doc"/>
 		</copy>
+		<touch file="${buildroot}/stendhal-${version}/log/stendhal.txt" />
 		<copy todir="${buildroot}/stendhal-${version}" file="README.txt"/>
 		<copy todir="${buildroot}/stendhal-${version}" file=".hotspotrc"/>
 		<zip destfile="${buildroot}/stendhal-${version}.zip"
