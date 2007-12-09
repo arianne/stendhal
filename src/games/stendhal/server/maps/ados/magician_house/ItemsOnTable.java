@@ -30,8 +30,6 @@ public class ItemsOnTable implements ZoneConfigurator {
 		zone.add(plantGrower);
 
 		plantGrower.setToFullGrowth();
-
-		StendhalRPRuleProcessor.get().getPlantGrowers().add(plantGrower);
 	}
 
 	private Item addPersistentItem(String name, StendhalRPZone zone, int x, int y) {

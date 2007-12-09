@@ -178,12 +178,4 @@ public class CreatureRespawnPoint implements TurnListener {
 		}
 	}
 
-	public void logic() {
-// TODO: Remove this now that all NPC's are managed via normal means.
-// This is called by endTurn(), which may be needed, so not removing this
-// yet, incase it needs to be fixed on the other side.
-//		for (Creature creature : creatures) {
-//			creature.logic();
-//		}
-	}
 }

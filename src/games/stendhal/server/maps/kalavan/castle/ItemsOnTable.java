@@ -27,8 +27,6 @@ public class ItemsOnTable implements ZoneConfigurator {
 
 		plantGrower.setToFullGrowth();
 
-		StendhalRPRuleProcessor.get().getPlantGrowers().add(plantGrower);
-
 		// Plant grower for antidote
 		PassiveEntityRespawnPoint plantGrower2 = new PassiveEntityRespawnPoint("greater_antidote", 4500);
 		plantGrower2.setPosition(83, 111);
@@ -36,8 +34,6 @@ public class ItemsOnTable implements ZoneConfigurator {
 		zone.add(plantGrower2);
 
 		plantGrower2.setToFullGrowth();
-
-		StendhalRPRuleProcessor.get().getPlantGrowers().add(plantGrower2);
 
 		// Plant grower for mega poison
 		PassiveEntityRespawnPoint plantGrower3 = new PassiveEntityRespawnPoint("mega_poison", 4000);
@@ -47,8 +43,6 @@ public class ItemsOnTable implements ZoneConfigurator {
 
 		plantGrower3.setToFullGrowth();
 
-		StendhalRPRuleProcessor.get().getPlantGrowers().add(plantGrower3);
-
 		// Plant grower for a shield (3 hours)
 		PassiveEntityRespawnPoint plantGrower4 = new PassiveEntityRespawnPoint("crown_shield", 36000);
 		plantGrower4.setPosition(40, 22);
@@ -57,8 +51,6 @@ public class ItemsOnTable implements ZoneConfigurator {
 
 		plantGrower4.setToFullGrowth();
 
-		StendhalRPRuleProcessor.get().getPlantGrowers().add(plantGrower4);
-
 		// Plant grower for a claymore (24 hours)
 		PassiveEntityRespawnPoint plantGrower5 = new PassiveEntityRespawnPoint("claymore", 288000);
 		plantGrower5.setPosition(27, 21);
@@ -66,11 +58,6 @@ public class ItemsOnTable implements ZoneConfigurator {
 		zone.add(plantGrower5);
 
 		plantGrower5.setToFullGrowth();
-
-		StendhalRPRuleProcessor.get().getPlantGrowers().add(plantGrower5);
-
-
-
 	}
 
 }

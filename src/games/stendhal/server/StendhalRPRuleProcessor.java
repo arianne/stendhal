@@ -78,16 +78,10 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	 */
 	private List<Pair<RPEntity, Entity>> entityToKill;
 
-	private List<CreatureRespawnPoint> respawnPoints;
-
-	private List<PassiveEntityRespawnPoint> plantGrowers;
-
 	protected StendhalRPRuleProcessor() {
 		players = new LinkedList<Player>();
 		playersRmText = new LinkedList<Player>();
 		npcs = new LinkedList<NPC>();
-		respawnPoints = new LinkedList<CreatureRespawnPoint>();
-		plantGrowers = new LinkedList<PassiveEntityRespawnPoint>();
 		npcsToAdd = new LinkedList<NPC>();
 		npcsToRemove = new LinkedList<NPC>();
 		entityToKill = new LinkedList<Pair<RPEntity, Entity>>();
@@ -183,15 +177,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			/* Initialize quests */
 			StendhalQuestSystem.get().init();
 
-			/*
-			 * TODO: Have these directly added here when added to zone, or let
-			 * zone handle all of them directly
-			 */
-			for (IRPZone zone : StendhalRPWorld.get()) {
-				StendhalRPZone szone = (StendhalRPZone) zone;
-				respawnPoints.addAll(szone.getRespawnPointList());
-				plantGrowers.addAll(szone.getPlantGrowers());
-			}
 			new ScriptRunner();
 
 			Configuration config = Configuration.getConfiguration();
@@ -303,14 +288,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		return null;
 	}
 
-	public List<PassiveEntityRespawnPoint> getPlantGrowers() {
-		return plantGrowers;
-	}
-
-	public List<NPC> getNPCs() {
-		return npcs;
-	}
-
 	public boolean removeNPC(NPC npc) {
 		return npcsToRemove.add(npc);
 	}
@@ -382,17 +359,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			}
 
 			/*
-			 * TODO: Refactor Definitively must be done by the zone itself.
-			 */
-			for (NPC npc : npcs) {
-				try {
-					npc.logic();
-				} catch (Exception e) {
-					logger.error("Error in npc logic", e);
-				}
-			}
-
-			/*
 			 * TODO: Refactor Removable once RPEvent for chat is added.
 			 */
 			for (Player player : playersRmText) {
@@ -417,10 +383,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		 * leaks came from list keep adding and adding elements.
 		 */
 		if (Debug.SHOW_LIST_SIZES && (rpman.getTurn() % 1000 == 0)) {
-			int creatures = 0;
-			for (CreatureRespawnPoint point : respawnPoints) {
-				creatures += point.size();
-			}
 
 			int objects = 0;
 
@@ -433,11 +395,9 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			os.append("npcs: " + npcs.size() + "\n");
 			os.append("npcsToAdd: " + npcsToAdd.size() + "\n");
 			os.append("npcsToRemove: " + npcsToRemove.size() + "\n");
-			os.append("plantGrowers: " + plantGrowers.size() + "\n");
 			os.append("players: " + players.size() + "\n");
 			os.append("playersRmText: " + playersRmText.size() + "\n");
-			os.append("respawnPoints: " + respawnPoints.size() + "\n");
-			os.append("creatures: " + creatures + "\n");
+
 			os.append("objects: " + objects + "\n");
 			logger.info(os);
 		}
@@ -447,12 +407,16 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		long start = System.nanoTime();
 		int currentTurn = getTurn();
 		try {
+
 			/*
-			 * TODO: Refactor Should be done by the zone itself.
+			 * TODO: Refactor Definitively must be done by the zone itself.
 			 */
-			// Creatures
-			for (CreatureRespawnPoint point : respawnPoints) {
-				point.logic();
+			for (NPC npc : npcs) {
+				try {
+					npc.logic();
+				} catch (Exception e) {
+					logger.error("Error in npc logic", e);
+				}
 			}
 
 			// Registeres classes for this turn

@@ -119,8 +119,6 @@ public class PlinksToy extends AbstractQuest {
 		zone.add(teddyRespawner);
 
 		teddyRespawner.setToFullGrowth();
-
-		StendhalRPRuleProcessor.get().getPlantGrowers().add(teddyRespawner);
 	}
 
 	private void step_3() {
