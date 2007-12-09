@@ -6,9 +6,6 @@
 
 package games.stendhal.server.config;
 
-//
-//
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -135,17 +132,17 @@ public class ZoneGroupsXMLLoader extends DefaultHandler {
 
 	@Override
 	public void startElement(String namespaceURI, String lName, String qName, Attributes attrs) {
-		if (qName.equals("zone-groups")) {
+		if (qName.equals("groups")) {
 			// Ignore
-		} else if (qName.equals("zone-group")) {
+		} else if (qName.equals("group")) {
 			String s = attrs.getValue("uri");
 			if (s == null) {
-				logger.warn("Zone group without 'uri'");
+				logger.warn("group without 'uri'");
 			} else {
 				try {
 					zoneGroups.add(uri.resolve(s));
 				} catch (IllegalArgumentException ex) {
-					logger.error("Invalid zone group reference: " + s + " [" + ex.getMessage() + "]");
+					logger.error("Invalid group reference: " + s + " [" + ex.getMessage() + "]");
 				}
 
 			}
@@ -154,26 +151,4 @@ public class ZoneGroupsXMLLoader extends DefaultHandler {
 		}
 	}
 
-	//
-	//
-
-	/*
-	 * TODO: XXX - THIS REQUIRES StendhalRPWorld SETUP (i.e. marauroa.ini)
-	 */
-	public static void main(String[] args) throws Exception {
-		if (args.length != 1) {
-			System.err.println("Usage: java " + ZoneGroupsXMLLoader.class.getName() + " <filename>");
-			System.exit(1);
-		}
-
-		ZoneGroupsXMLLoader loader = new ZoneGroupsXMLLoader(URI.create(args[0]));
-
-		try {
-			loader.load();
-		} catch (org.xml.sax.SAXParseException ex) {
-			System.err.print("Source " + args[0] + ":" + ex.getLineNumber() + "<" + ex.getColumnNumber() + ">");
-
-			throw ex;
-		}
-	}
 }

@@ -1,14 +1,14 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<zone-groups>
-	<zone-group uri="zones/ados.xml"/>
-	<zone-group uri="zones/amazon.xml"/>
-	<zone-group uri="zones/athor.xml"/>
-	<zone-group uri="zones/fado.xml"/>
-	<zone-group uri="zones/kalavan.xml"/>
-	<zone-group uri="zones/kikareukin.xml"/>
-	<zone-group uri="zones/kirdneh.xml"/>
-	<zone-group uri="zones/nalwor.xml"/>
-	<zone-group uri="zones/orril.xml"/>
-	<zone-group uri="zones/semos.xml"/>
-	<zone-group uri="zones/misc.xml"/>
-</zone-groups>
+<?xml version="1.0" encoding="UTF-8"?>
+<groups>
+	<group uri="zones/ados.xml"/>
+	<group uri="zones/amazon.xml"/>
+	<group uri="zones/athor.xml"/>
+	<group uri="zones/fado.xml"/>
+	<group uri="zones/kalavan.xml"/>
+	<group uri="zones/kikareukin.xml"/>
+	<group uri="zones/kirdneh.xml"/>
+	<group uri="zones/nalwor.xml"/>
+	<group uri="zones/orril.xml"/>
+	<group uri="zones/semos.xml"/>
+	<group uri="zones/misc.xml"/>
+</groups>
