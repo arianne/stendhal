@@ -56,8 +56,8 @@ public class GagManagerTest {
 		Player bob = PlayerTestHelper.createPlayer("bob");
 		assertEquals(null, policeman.getPrivateText());
 		GagManager.get().gag(bob, policeman, -1, "test", bob.getName());
-		assertEquals("Infinity (negative numbers) is not supported.",
-				policeman.getPrivateText());
+		assertEquals("Infinity (negative numbers) is not supported.", policeman
+				.getPrivateText());
 		assertFalse(GagManager.isGagged(bob));
 	}
 
@@ -78,9 +78,22 @@ public class GagManagerTest {
 	}
 
 	@Test
+	public final void testOnLoggedInAfterExpiry() {
+
+		Player bob = PlayerTestHelper.createPlayer("bob");
+
+		bob.setQuest("gag", "" + (System.currentTimeMillis() - 5));
+		assertTrue(GagManager.isGagged(bob));
+		GagManager.get().onLoggedIn(bob);
+		assertFalse(GagManager.isGagged(bob));
+	}
+
+	@Test
 	public final void testgetTimeremaining() {
 		Player bob = PlayerTestHelper.createPlayer();
 		assertEquals(0L, GagManager.get().getTimeRemaining(bob));
+		bob.setQuest("gag", "" + (System.currentTimeMillis() - 1000));
+		assertTrue(GagManager.get().getTimeRemaining(bob) <= -1000);
 
 	}
 }
