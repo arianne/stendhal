@@ -67,14 +67,14 @@ public class ItemTest {
 		Item mo = new Item("name1", "class", "subclass",
 				new HashMap<String, String>());
 		Rectangle2D rect = new Rectangle2D.Double();
-		assertEquals(rect.getCenterX(), 0.0);
-		assertEquals(rect.getCenterY(), 0.0);
+		assertEquals(rect.getCenterX(), 0.0,0.001);
+		assertEquals(rect.getCenterY(), 0.0,0.001);
 
 		mo.getArea(rect, 0.0, 0.0);
-		assertEquals(rect.getMinX(), 0.0);
-		assertEquals(rect.getMinY(), 0.0);
-		assertEquals(rect.getMaxX(), 1.0);
-		assertEquals(rect.getMaxY(), 1.0);
+		assertEquals(rect.getMinX(), 0.0,0.001);
+		assertEquals(rect.getMinY(), 0.0,0.001);
+		assertEquals(rect.getMaxX(), 1.0,0.001);
+		assertEquals(rect.getMaxY(), 1.0,0.001);
 
 	}
 

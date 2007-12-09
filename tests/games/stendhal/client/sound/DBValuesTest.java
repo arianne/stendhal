@@ -34,8 +34,8 @@ public class DBValuesTest {
 
 	@Test
 	public final void testGetDBValue() {
-		assertEquals(Float.NEGATIVE_INFINITY, DBValues.getDBValue(-1));
-		assertEquals(Float.NEGATIVE_INFINITY, DBValues.getDBValue(0));
+		assertEquals(Float.NEGATIVE_INFINITY, DBValues.getDBValue(-1),0.001);
+		assertEquals(Float.NEGATIVE_INFINITY, DBValues.getDBValue(0),0.001);
 		assertEquals(-20, DBValues.getDBValue(10), 0.002f);
 		assertEquals(0, DBValues.getDBValue(100), 0.002f);
 		assertEquals(0, DBValues.getDBValue(101), 0.002f);

@@ -1,5 +1,6 @@
 package games.stendhal.server.actions;
 
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -47,28 +48,28 @@ public class AdministrationActionTest {
 
 	@Test
 	public final void testGetLevelForCommand() {
-		assertEquals(-1,AdministrationAction.getLevelForCommand("unkown"));
-		assertEquals(0, AdministrationAction.getLevelForCommand("adminlevel"));
-		assertEquals(100, AdministrationAction.getLevelForCommand("support"));
+		assertEquals(-1,AdministrationAction.getLevelForCommand("unkown").intValue());
+		assertEquals(0, AdministrationAction.getLevelForCommand("adminlevel").intValue());
+		assertEquals(100, AdministrationAction.getLevelForCommand("support").intValue());
 		assertEquals(50, AdministrationAction
-				.getLevelForCommand("supportanswer"));
-		assertEquals(200, AdministrationAction.getLevelForCommand("tellall"));
-		assertEquals(300, AdministrationAction.getLevelForCommand("teleportto"));
-		assertEquals(400, AdministrationAction.getLevelForCommand("teleport"));
-		assertEquals(400, AdministrationAction.getLevelForCommand("jail"));
-		assertEquals(400, AdministrationAction.getLevelForCommand("gag"));
-		assertEquals(500, AdministrationAction.getLevelForCommand("invisible"));
-		assertEquals(500, AdministrationAction.getLevelForCommand("ghostmode"));
+				.getLevelForCommand("supportanswer").intValue());
+		assertEquals(200, AdministrationAction.getLevelForCommand("tellall").intValue());
+		assertEquals(300, AdministrationAction.getLevelForCommand("teleportto").intValue());
+		assertEquals(400, AdministrationAction.getLevelForCommand("teleport").intValue());
+		assertEquals(400, AdministrationAction.getLevelForCommand("jail").intValue());
+		assertEquals(400, AdministrationAction.getLevelForCommand("gag").intValue());
+		assertEquals(500, AdministrationAction.getLevelForCommand("invisible").intValue());
+		assertEquals(500, AdministrationAction.getLevelForCommand("ghostmode").intValue());
 		assertEquals(500, AdministrationAction
-				.getLevelForCommand("teleclickmode"));
-		assertEquals(600, AdministrationAction.getLevelForCommand("inspect"));
-		assertEquals(700, AdministrationAction.getLevelForCommand("destroy"));
-		assertEquals(800, AdministrationAction.getLevelForCommand("summon"));
-		assertEquals(800, AdministrationAction.getLevelForCommand("summonat"));
-		assertEquals(900, AdministrationAction.getLevelForCommand("alter"));
+				.getLevelForCommand("teleclickmode").intValue());
+		assertEquals(600, AdministrationAction.getLevelForCommand("inspect").intValue());
+		assertEquals(700, AdministrationAction.getLevelForCommand("destroy").intValue());
+		assertEquals(800, AdministrationAction.getLevelForCommand("summon").intValue());
+		assertEquals(800, AdministrationAction.getLevelForCommand("summonat").intValue());
+		assertEquals(900, AdministrationAction.getLevelForCommand("alter").intValue());
 		assertEquals(900, AdministrationAction
-				.getLevelForCommand("altercreature"));
-		assertEquals(5000, AdministrationAction.getLevelForCommand("super"));
+				.getLevelForCommand("altercreature").intValue());
+		assertEquals(5000, AdministrationAction.getLevelForCommand("super").intValue());
 	}
 
 	@Test

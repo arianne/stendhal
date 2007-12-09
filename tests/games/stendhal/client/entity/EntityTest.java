@@ -17,8 +17,8 @@ public class EntityTest {
 	public final void testEntity() {
 		Entity en = new MockEntity();
 
-		assertEquals(0.0, en.getX());
-		assertEquals(0.0, en.getY());
+		assertEquals(0.0, en.getX(),0.001);
+		assertEquals(0.0, en.getY(),0.001);
 
 	}
 
@@ -92,8 +92,8 @@ public class EntityTest {
 		Entity en;
 		en = new MockEntity();
 
-		assertEquals(0.0, en.getX());
-		assertEquals(0.0, en.getY());
+		assertEquals(0.0, en.getX(),0.001);
+		assertEquals(0.0, en.getY(),0.001);
 	}
 
 	@Test
@@ -101,15 +101,15 @@ public class EntityTest {
 		Entity en = new MockEntity();
 		User.setNull();
 		User to = null;
-		assertEquals(Double.POSITIVE_INFINITY, en.distanceToUser());
+		assertEquals(Double.POSITIVE_INFINITY, en.distanceToUser(),0.001);
 		to = new User();
 
 		en.x = 3;
 		en.y = 4;
-		assertEquals(3.0, en.getX());
-		assertEquals(4.0, en.getY());
-		assertEquals(25.0, en.distanceToUser());
-		assertEquals(0.0, to.distanceToUser());
+		assertEquals(3.0, en.getX(),0.001);
+		assertEquals(4.0, en.getY(),0.001);
+		assertEquals(25.0, en.distanceToUser(),0.001);
+		assertEquals(0.0, to.distanceToUser(),0.001);
 
 	}
 

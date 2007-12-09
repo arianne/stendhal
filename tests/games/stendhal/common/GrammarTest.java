@@ -548,14 +548,14 @@ public class GrammarTest {
 
 	private static void checkNumberString(int n, String string) {
 		assertEquals(string, Grammar.numberString(n));
-		assertEquals(n, Grammar.number(string));
+		assertEquals(Integer.valueOf(n), Grammar.number(string));
 	}
 
 	@Test
 	public void testNumberStrings() {
-		assertEquals(0, Grammar.number("zero"));
-		assertEquals(1, Grammar.number("a"));
-		assertEquals(1, Grammar.number("an"));
+		assertEquals(Integer.valueOf(0), Grammar.number("zero"));
+		assertEquals(Integer.valueOf(1), Grammar.number("a"));
+		assertEquals(Integer.valueOf(1), Grammar.number("an"));
 
 		checkNumberString(0, "no");
 		checkNumberString(1, "one");
