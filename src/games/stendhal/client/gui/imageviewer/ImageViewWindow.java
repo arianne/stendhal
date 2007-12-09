@@ -18,7 +18,6 @@ public class ImageViewWindow extends InternalManagedDialog {
     public static final int PADDING = 100;
     
     private URL url;
-    private String title;
     private String alt;
     
     public ImageViewWindow(URL url) {
@@ -34,7 +33,6 @@ public class ImageViewWindow extends InternalManagedDialog {
         super("examine", title);
         
         this.url = url;
-        this.title = title;
         alt = title;
         
         init();
@@ -44,7 +42,6 @@ public class ImageViewWindow extends InternalManagedDialog {
         super("examine", title);
         
         this.url = url;
-        this.title = title;
         this.alt = alt;
         
         init();
