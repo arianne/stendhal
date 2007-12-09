@@ -1,9 +1,3 @@
-/*
- * @(#) src/games/stendhal/server/config/ZoneGroupsXMLLoader.java
- *
- * $Id$
- */
-
 package games.stendhal.server.config;
 
 import java.io.FileNotFoundException;
@@ -23,27 +17,22 @@ import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
 /**
- * Load and configure zones via an XML configuration file.
+ * Loads a list of files from an xml file
  */
-public class GroupsXMLLoader extends DefaultHandler {
+class GroupsXMLLoader extends DefaultHandler {
 
-	/**
-	 * Logger
-	 */
+	/** Logger */
 	private static final Logger logger = Logger.getLogger(GroupsXMLLoader.class);
 
-	/**
-	 * The main zone configuration file.
-	 */
+	/** The main configuration file. */
 	protected URI uri;
 
-	/**
-	 * A list of zone group files.
+	/** A list of files.
 	 */
 	protected LinkedList<URI> groups;
 
 	/**
-	 * Create an xml based loader of zone groups.
+	 * Create an xml based loader of groups.
 	 *
 	 * @param	uri		The location of the configuration file.
 	 */
@@ -53,7 +42,7 @@ public class GroupsXMLLoader extends DefaultHandler {
 
 
 	/**
-	 * Load zones into a world.
+	 * Loads and returns the list
 	 *
 	 * @return  list of group entries
 	 * @throws	SAXException	If a SAX error occurred.
@@ -76,7 +65,7 @@ public class GroupsXMLLoader extends DefaultHandler {
 	}
 
 	/**
-	 * Load zones into a world using a config file.
+	 * Load and returns the list of files
 	 *
 	 * @param	world		The world to load into.
 	 * @param	in		The config file stream.
