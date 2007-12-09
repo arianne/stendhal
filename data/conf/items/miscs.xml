@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<items>
+  <item name="giant_heart">
+    <type class="misc" subclass="giant_heart" tileid="-1"/>
+    <description>You see a giant heart. This proves that a giant was defeated, and has magical properties that you are not sure of.</description>
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
+      <quantity value="1"/>
+    </attributes>
+    <weight value="0.01"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+    </equipable>
+  </item>
+
+  <item name="pizza">
+    <type class="misc" subclass="pizza" tileid="-1"/>
+    <description>You see a tasty pizza, and hope they put extra cheese on it.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="bag"/>
+    </equipable>
+  </item>
+
+  <item name="token">
+    <type class="misc" subclass="token" tileid="-1"/>
+    <description>You see a token, that when placed in the right spot could point you in the right direction.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Token"/>    <attributes>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+    </equipable>
+  </item>
+
+  <item name="note">
+    <type class="misc" subclass="paper" tileid="-1"/>
+    <description>You see a note.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    </attributes>
+    <weight value="0.01"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="bag"/>
+    </equipable>
+  </item>
+
+  <item name="coupon">
+    <type class="misc" subclass="coupon" tileid="-1"/>
+    <description>You see a coupon.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    </attributes>
+    <weight value="0.01"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="bag"/>
+    </equipable>
+  </item>
+
+  <item name="dice">
+    <type class="misc" subclass="dice" tileid="-1"/>
+    <description>You see a set of dice. May lady luck be with you.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Dice"/>    <attributes>
+    </attributes>
+    <weight value="0.05"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="bag"/>
+    </equipable>
+  </item>
+
+  <item name="cards">
+    <type class="misc" subclass="cards" tileid="-1"/>
+    <description>You see a deck of cards.  Shuffle them well, to get a winning hand.</description>
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
+    </attributes>
+    <weight value="0.01"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
+    </equipable>
+  </item>
+
+  <item name="teddy">
+    <type class="misc" subclass="teddy" tileid="-1"/>
+    <description>You see a teddy bear. Its soft and cuddly, and children love them.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="bag"/>
+    </equipable>
+  </item>
+
+  <item name="skull_ring">
+    <type class="misc" subclass="skull_ring" tileid="-1"/>
+    <description>You see a skull ring.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Ring"/>    <attributes>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="finger"/>
+    </equipable>
+  </item>
+
+  <item name="vampirette_entrails">
+    <type class="misc" subclass="vampirette_entrails" tileid="-1"/>
+    <description>You see some vampirette entrails. These guts proves that a vampirette was slain.</description> 
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
+      <quantity value="1"/>
+    </attributes>
+    <weight value="0.01"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
+    </equipable>
+  </item>
+
+  <item name="bat_entrails">
+    <type class="misc" subclass="bat_entrails" tileid="-1"/>
+    <description>You see some bat entrails, full of the blood of a living creature.</description>
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
+      <quantity value="1"/>
+    </attributes>
+    <weight value="0.01"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
+    </equipable>
+  </item>
+
+  <item name="suntan_cream">
+    <type class="misc" subclass="suntan_cream" tileid="-1"/>
+    <description/>
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
+      <quantity value="1"/>
+    </attributes>
+    <weight value="0.01"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
+    </equipable>
+  </item>
+
+  <item name="amulet">
+    <type class="misc" subclass="amulet" tileid="-1"/>
+    <description/>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="bag"/>
+    </equipable>
+  </item>
+
+  <item name="closed_envelope">
+    <type class="misc" subclass="closed_envelope" tileid="-1"/>
+    <description/>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    </attributes>
+    <weight value="0.01"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
+    </equipable>
+  </item>
+
+  <item name="opened_envelope">
+    <type class="misc" subclass="opened_envelope" tileid="-1"/>
+    <description/>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    </attributes>
+    <weight value="0.01"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
+    </equipable>
+  </item>
+
+  <item name="sealed_envelope">
+    <type class="misc" subclass="sealed_envelope" tileid="-1"/>
+    <description/>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    </attributes>
+    <weight value="0.01"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
+    </equipable>
+  </item>
+
+  <item name="unsealed_envelope">
+    <type class="misc" subclass="unsealed_envelope" tileid="-1"/>
+    <description/>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    </attributes>
+    <weight value="0.01"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
+    </equipable>
+  </item>
+</items>
