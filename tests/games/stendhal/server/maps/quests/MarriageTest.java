@@ -306,7 +306,7 @@ public class MarriageTest {
 		assertEquals("Welcome to the church!", npc.get("text"));
 		en.step(player2, "marry");
 		en.step(player2, "bye");
-		assertEquals("May the force be with you.", npc.get("text"));
+		assertEquals("Go well, and safely.", npc.get("text"));
 
 		en.step(player, "hi");
 		assertEquals("Welcome to the church!", npc.get("text"));
