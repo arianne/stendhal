@@ -13,17 +13,17 @@
 package games.stendhal.server.rule.defaultruleset;
 
 import games.stendhal.server.config.CreaturesXMLLoader;
-import games.stendhal.server.config.ItemsXMLLoader;
+import games.stendhal.server.config.ItemGroupsXMLLoader;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.rule.EntityManager;
 
+import java.net.URI;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 
 import org.apache.log4j.Logger;
 
@@ -65,8 +65,8 @@ public class DefaultEntityManager implements EntityManager {
 		createdItem = new HashMap<String, Item>();
 
 		try {
-			ItemsXMLLoader loader = ItemsXMLLoader.get();
-			List<DefaultItem> items = loader.load("data/conf/items.xml");
+			ItemGroupsXMLLoader loader = new ItemGroupsXMLLoader(new URI("/data/conf/items.xml"));
+			List<DefaultItem> items = loader.load();
 
 			for (DefaultItem item : items) {
 				String clazz = item.getItemName();
@@ -77,7 +77,7 @@ public class DefaultEntityManager implements EntityManager {
 
 				classToItem.put(clazz, item);
 			}
-		} catch (org.xml.sax.SAXException e) {
+		} catch (Exception e) {
 			logger.error("items.xml could not be loaded", e);
 		}
 

@@ -2,10 +2,10 @@ package games.stendhal.server.config;
 
 import games.stendhal.server.rule.defaultruleset.DefaultItem;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URI;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -15,14 +15,12 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
-
 import org.apache.log4j.Logger;
-
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
-public class ItemsXMLLoader extends DefaultHandler {
+class ItemsXMLLoader extends DefaultHandler {
 
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(ItemsXMLLoader.class);
@@ -53,40 +51,7 @@ public class ItemsXMLLoader extends DefaultHandler {
 
 	protected Class<?> implementation;
 
-	public static void main(String[] argv) {
-		if (argv.length != 1) {
-			System.err.println("Usage: cmd filename");
-			System.exit(1);
-		}
-		try {
-			List<DefaultItem> items = new ItemsXMLLoader().load(argv[0]);
-			for (DefaultItem item : items) {
-				System.out.println(item.getItemName());
-				//				System.out.println(" -- " + item.getItem());
-			}
-
-		} catch (Throwable e) {
-			e.printStackTrace();
-		}
-
-		System.exit(0);
-	}
-
-	private ItemsXMLLoader() {
-		// hide constructor, this is a Singleton
-	}
-
-	private static ItemsXMLLoader instance;
-
-	public static ItemsXMLLoader get() {
-		if (instance == null) {
-			instance = new ItemsXMLLoader();
-		}
-
-		return instance;
-	}
-
-	public List<DefaultItem> load(String ref) throws SAXException {
+	public List<DefaultItem> load(URI uri) throws SAXException {
 		list = new LinkedList<DefaultItem>();
 		// Use the default (non-validating) parser
 		SAXParserFactory factory = SAXParserFactory.newInstance();
@@ -94,13 +59,10 @@ public class ItemsXMLLoader extends DefaultHandler {
 			// Parse the input
 			SAXParser saxParser = factory.newSAXParser();
 
-			InputStream is = getClass().getClassLoader().getResourceAsStream(ref);
-			if (is == null) {
-				is = new File(ref).toURI().toURL().openStream();
-			}
+			InputStream is = getClass().getResourceAsStream(uri.getPath());
 
 			if (is == null) {
-				throw new FileNotFoundException("cannot find resource '" + ref + "' in classpath");
+				throw new FileNotFoundException("cannot find resource '" + uri + "' in classpath");
 			}
 			saxParser.parse(is, this);
 		} catch (ParserConfigurationException t) {
@@ -180,7 +142,6 @@ public class ItemsXMLLoader extends DefaultHandler {
 		} else if (qName.equals("description")) {
 			if (text != null) {
 				description = text.trim();
-
 				//TODO: There are empty spaces on the middle of the description.
 			}
 		}
