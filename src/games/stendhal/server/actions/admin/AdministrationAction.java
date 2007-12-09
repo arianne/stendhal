@@ -30,10 +30,6 @@ import org.apache.log4j.Logger;
  * Most /commands for admins are handled here.
  */
 public abstract class AdministrationAction implements ActionListener {
-	/*
-	 * TODO: Refactor. This class is monstrously big. Split it in smaller more
-	 * coherent classes.
-	 */
 
 	protected static final Logger logger = Logger
 			.getLogger(AdministrationAction.class);
