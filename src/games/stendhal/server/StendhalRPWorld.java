@@ -389,7 +389,7 @@ public class StendhalRPWorld extends RPWorld {
 				continue;
 			}
 
-			if (zone.contains(entity.getArea(wx, wy))) {
+			if (zone.intersects(entity.getArea(wx, wy))) {
 				logger.debug("Contained at :" + zone.getID());
 				return zone;
 			}

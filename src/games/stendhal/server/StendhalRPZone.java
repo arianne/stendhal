@@ -380,7 +380,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 	 *
 	 * @return <code>true</code> if the area overlaps.
 	 */
-	public boolean contains(Rectangle2D area) {
+	public boolean intersects(Rectangle2D area) {
 		Rectangle2D zone = new Rectangle(x, y, getWidth(), getHeight());
 
 		return zone.intersects(area);
