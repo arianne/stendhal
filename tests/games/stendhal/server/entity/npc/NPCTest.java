@@ -103,6 +103,7 @@ public class NPCTest {
 		assertNull(npc.getIdea());
 	}
 
+	//TODO NPC.setOutfit() function seems not to be used anywhere, so it could be removed.
 	@Test
 	public void testOutfit() {
 		SpeakerNPC npc = NPCList.get().get("Felina");
