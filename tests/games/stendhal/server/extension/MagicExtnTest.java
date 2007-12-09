@@ -8,12 +8,17 @@ import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.common.Log4J;
 import marauroa.common.game.RPAction;
 
+import org.junit.After;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 
 import utilities.PlayerTestHelper;
 
+/**
+ * JUnit Tests for MagicExtn
+ * @author Martin Fuchs
+ */
 public class MagicExtnTest {
 
 	@BeforeClass
@@ -22,6 +27,11 @@ public class MagicExtnTest {
 		MockStendhalRPRuleProcessor.get();
 		MockStendlRPWorld.get();
 		new MagicExtn();
+	}
+
+	@After
+	public void tearDown() {
+		PlayerTestHelper.removePlayer("player");
 	}
 
 	@Ignore
