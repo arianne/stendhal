@@ -360,7 +360,7 @@ public abstract class RPEntity {
 	protected abstract int getAttackRate();
 
 	/**
-	 * Roll a dice to see if hit was successfull. We roll 2D6 and substract our
+	 * Roll a dice to see if hit was successful. We roll 2D6 and substract our
 	 * hit and our level/10. If the result if 0 or above, we failed to do the
 	 * hit.
 	 *
@@ -379,7 +379,7 @@ public abstract class RPEntity {
 	protected abstract int getDodgeRate();
 
 	/**
-	 * Roll a dice to see if dodge was successfull. We roll 4D6 and substract
+	 * Roll a dice to see if dodge was successful. We roll 4D6 and substract
 	 * our dodge and our level/20. If the result if 0 or above, we failed to do
 	 * the dodge.
 	 *

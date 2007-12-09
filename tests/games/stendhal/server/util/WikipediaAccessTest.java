@@ -19,7 +19,7 @@ public class WikipediaAccessTest {
         access.run();
 
 		if (access.getError() != null) {
-			fail("Wikipedia access was not successfull: "+access.getError());
+			fail("Wikipedia access was not successful: "+access.getError());
 		} else if (access.isFinished()) {
     		if (access.getText()!=null && access.getText().length()>0) {
     			String result = access.getProcessedText();

@@ -223,7 +223,7 @@ public class StendhalClient extends ClientFramework {
 	}
 
 	/**
-	 * connect to the Stendhal game server and if successfull, check, if the
+	 * connect to the Stendhal game server and if successful, check, if the
 	 * server runs StendhalHttpServer extension. In that case it checks, if
 	 * server version equals the client's.
 	 *
@@ -232,7 +232,7 @@ public class StendhalClient extends ClientFramework {
 	@Override
 	public void connect(String host, int port) throws IOException {
 		super.connect(host, port);
-		// if connect was successfull try if server has http service, too
+		// if connect was successful try if server has http service, too
 		String testServer = "http://" + host + "/";
 		HttpClient httpClient = new HttpClient(testServer + "stendhal.version");
 		String version = httpClient.fetchFirstLine();

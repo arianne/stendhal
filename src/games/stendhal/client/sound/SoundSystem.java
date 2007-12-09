@@ -631,7 +631,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	}
 
 	/**
-	 * @return <b>true</b> if javaSound init is successfull,
+	 * @return <b>true</b> if javaSound init is successful,
 	 *         <p>
 	 *         <b>false</b> otherwise
 	 */
