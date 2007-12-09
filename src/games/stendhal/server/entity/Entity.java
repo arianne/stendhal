@@ -55,6 +55,9 @@ public abstract class Entity extends RPObject {
 	 */
 	private int resistance;
 
+	private StendhalRPZone zone;
+	private StendhalRPZone lastZone;
+
 	public static void generateRPClass() {
 		RPClass entity = new RPClass("entity");
 
@@ -242,18 +245,18 @@ public abstract class Entity extends RPObject {
 		return y;
 	}
 
-	private StendhalRPZone zone;
-
 	/**
 	 * Get the zone this entity is in.
 	 *
 	 * @return A zone, or <code>null</code> if not in one.
 	 */
 	public StendhalRPZone getZone() {
-		// Use onAdded()/onRemoved() to grab a copy
-		// of the zone and save as a local variable.
-		return zone;
-
+		// Use onAdded()/onRemoved() to grab a reference to the zone and save 
+		// as a attribute.
+		// During zone transfer zone is set to null for a short period of time
+		// which causes lots of problems, so we use the old zone until the new
+		// one is set.
+		return lastZone;
 	}
 
 	/**
@@ -547,6 +550,7 @@ public abstract class Entity extends RPObject {
 		}
 
 		this.zone = zone;
+		this.lastZone = zone;
 	}
 
 	/**
