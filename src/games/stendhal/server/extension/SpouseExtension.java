@@ -139,9 +139,7 @@ public class SpouseExtension extends StendhalServerExtension implements ActionLi
 			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "marry", name1 + " + " + name2);
 		}
 
-		player.sendPrivateText(text);
-
-		
+		player.sendPrivateText(text.trim());
 	}
 
 	private void onSpouse(Player player, RPAction action) {
