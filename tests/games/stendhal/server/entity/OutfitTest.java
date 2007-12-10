@@ -3,7 +3,7 @@ package games.stendhal.server.entity;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-
+import static org.junit.Assert.fail;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -50,7 +50,7 @@ public class OutfitTest {
 		assertEquals(Integer.valueOf(27), ou.getHead());
 		assertEquals(Integer.valueOf(5), ou.getDress());
 		assertEquals(Integer.valueOf(32), ou.getBase());
-		// fail("this is not what durkham expected");
+		fail("this is not what durkham expected");
 	}
 
 	@Test
