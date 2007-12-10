@@ -254,87 +254,81 @@ public class Grammar {
 				enoun = enoun.substring(0, position);
 			}
 		}
-		try {
-			// in "of"-phrases pluralize only the first part
-			if (enoun.indexOf(" of ") > -1) {
-				return plural(enoun.substring(0, enoun.indexOf(" of ")))
-						+ enoun.substring(enoun.indexOf(" of ")) + postfix;
 
-				// first of all handle words which do not change
-			} else if (enoun.endsWith("sheep") || enoun.endsWith("money")
-					|| enoun.endsWith("dice") || enoun.equals("deer")) {
-				return enoun + postfix;
+		// in "of"-phrases pluralize only the first part
+		if (enoun.indexOf(" of ") > -1) {
+			return plural(enoun.substring(0, enoun.indexOf(" of ")))
+					+ enoun.substring(enoun.indexOf(" of ")) + postfix;
 
-				// ok and now all the special cases
-			} else if (enoun.endsWith("staff") || enoun.endsWith("chief")) {
-				return enoun + "s" + postfix;
-			} else if (enoun.endsWith("f")
-					&& enoun.length() > 1
-					&& ("aeiourl".indexOf(enoun.charAt(enoun.length() - 2)) > -1)) {
-				return enoun.substring(0, enoun.length() - 1) + "ves" + postfix;
-			} else if (enoun.endsWith("fe")) {
-				return enoun.substring(0, enoun.length() - 2) + "ves" + postfix;
-			} else if (enoun.endsWith("ouse")
-					&& ("mMlL".indexOf(enoun.charAt(enoun.length() - 5)) > -1)) {
-				return enoun.substring(0, enoun.length() - 4) + "ice" + postfix;
-			} else if (enoun.endsWith("oose") && !(enoun.endsWith("caboose"))) {
-				return enoun.substring(0, enoun.length() - 4) + "eese"
-						+ postfix;
-			} else if (enoun.endsWith("ooth")) {
-				return enoun.substring(0, enoun.length() - 4) + "eeth"
-						+ postfix;
-			} else if (enoun.endsWith("foot")) {
-				return enoun.substring(0, enoun.length() - 4) + "feet"
-						+ postfix;
-			} else if (enoun.endsWith("child")) {
-				return enoun + "ren" + postfix;
-			} else if (enoun.endsWith("eau")) {
-				return enoun + "x" + postfix;
-			} else if (enoun.endsWith("ato")) {
-				return enoun + "es" + postfix;
-			} else if (enoun.endsWith("ium")) {
-				return enoun.substring(0, enoun.length() - 3) + "a" + postfix;
-			} else if (enoun.endsWith("alga") || enoun.endsWith("hypha")
-					|| enoun.endsWith("larva")) {
-				return enoun + "e" + postfix;
-			} else if ((enoun.length() > 3) && enoun.endsWith("us")
-					&& !(enoun.endsWith("lotus") || enoun.endsWith("wumpus"))) {
-				return enoun.substring(0, enoun.length() - 2) + "i" + postfix;
-			} else if (enoun.endsWith("man")
-					&& !(enoun.endsWith("shaman") || enoun.endsWith("human"))) {
-				return enoun.substring(0, enoun.length() - 3) + "men" + postfix;
-			} else if (enoun.endsWith("rtex")) {
-				return enoun.substring(0, enoun.length() - 2) + "ices"
-						+ postfix;
-			} else if (enoun.endsWith("trix")) {
-				return enoun.substring(0, enoun.length() - 1) + "ces" + postfix;
-			} else if (enoun.endsWith("sis")) {
-				return enoun.substring(0, enoun.length() - 2) + "es" + postfix;
-				/*
-				 * } else if (enoun.endsWith("erinys") ||
-				 * enoun.endsWith("cyclops")) { return enoun.substring(0,
-				 * enoun.length() - 2) + "es" + postfix;
-				 */
-			} else if (enoun.endsWith("mumak")) {
-				return enoun + "il" + postfix;
-			} else if (enoun.endsWith("djinni") || enoun.endsWith("efreeti")) {
-				return enoun.substring(0, enoun.length() - 1) + postfix;
-			} else if (enoun.endsWith("ch") || enoun.endsWith("sh")
-					|| ("zxs".indexOf(enoun.charAt(enoun.length() - 1)) > -1)) {
-				return enoun + "es" + postfix;
-			} else if (enoun.endsWith("y") && enoun.length() > 1
-					&& consonant_p(enoun.charAt(enoun.length() - 2))) {
-				return enoun.substring(0, enoun.length() - 1) + "ies" + postfix;
-			} else if (enoun.endsWith("porcini") || (enoun.endsWith("porcino"))) {
-				return enoun.substring(0, enoun.length() - 1) + "i" + postfix;
-			} else {
-				// no special case matched, so use the boring default plural
-				// rule
-				return enoun + "s" + postfix;
-			}
-		} catch (StringIndexOutOfBoundsException e) {
-			logger.warn("Cannot pluralize noun " + enoun, e);
+			// first of all handle words which do not change
+		} else if (enoun.endsWith("sheep") || enoun.endsWith("money")
+				|| enoun.endsWith("dice") || enoun.equals("deer")) {
 			return enoun + postfix;
+
+			// ok and now all the special cases
+		} else if (enoun.endsWith("staff") || enoun.endsWith("chief")) {
+			return enoun + "s" + postfix;
+		} else if (enoun.length() > 2 && enoun.endsWith("f")
+				&& ("aeiourl".indexOf(enoun.charAt(enoun.length() - 2)) > -1)) {
+			return enoun.substring(0, enoun.length() - 1) + "ves" + postfix;
+		} else if (enoun.endsWith("fe")) {
+			return enoun.substring(0, enoun.length() - 2) + "ves" + postfix;
+		} else if (enoun.length() >= 4 && enoun.endsWith("ouse")
+				&& ("mMlL".indexOf(enoun.charAt(enoun.length() - 5)) > -1)) {
+			return enoun.substring(0, enoun.length() - 4) + "ice" + postfix;
+		} else if (enoun.endsWith("oose") && !(enoun.endsWith("caboose"))) {
+			return enoun.substring(0, enoun.length() - 4) + "eese"
+					+ postfix;
+		} else if (enoun.endsWith("ooth")) {
+			return enoun.substring(0, enoun.length() - 4) + "eeth"
+					+ postfix;
+		} else if (enoun.endsWith("foot")) {
+			return enoun.substring(0, enoun.length() - 4) + "feet"
+					+ postfix;
+		} else if (enoun.endsWith("child")) {
+			return enoun + "ren" + postfix;
+		} else if (enoun.endsWith("eau")) {
+			return enoun + "x" + postfix;
+		} else if (enoun.endsWith("ato")) {
+			return enoun + "es" + postfix;
+		} else if (enoun.endsWith("ium")) {
+			return enoun.substring(0, enoun.length() - 3) + "a" + postfix;
+		} else if (enoun.endsWith("alga") || enoun.endsWith("hypha")
+				|| enoun.endsWith("larva")) {
+			return enoun + "e" + postfix;
+		} else if ((enoun.length() > 3) && enoun.endsWith("us")
+				&& !(enoun.endsWith("lotus") || enoun.endsWith("wumpus"))) {
+			return enoun.substring(0, enoun.length() - 2) + "i" + postfix;
+		} else if (enoun.endsWith("man")
+				&& !(enoun.endsWith("shaman") || enoun.endsWith("human"))) {
+			return enoun.substring(0, enoun.length() - 3) + "men" + postfix;
+		} else if (enoun.endsWith("rtex")) {
+			return enoun.substring(0, enoun.length() - 2) + "ices"
+					+ postfix;
+		} else if (enoun.endsWith("trix")) {
+			return enoun.substring(0, enoun.length() - 1) + "ces" + postfix;
+		} else if (enoun.endsWith("sis")) {
+			return enoun.substring(0, enoun.length() - 2) + "es" + postfix;
+		/*
+		} else if (enoun.endsWith("erinys") || enoun.endsWith("cyclops")) {
+			return enoun.substring(0, enoun.length() - 2) + "es" + postfix;
+		*/
+		} else if (enoun.endsWith("mumak")) {
+			return enoun + "il" + postfix;
+		} else if (enoun.endsWith("djinni") || enoun.endsWith("efreeti")) {
+			return enoun.substring(0, enoun.length() - 1) + postfix;
+		} else if (enoun.endsWith("ch") || enoun.endsWith("sh")
+				|| (enoun.length() > 1 && "zxs".indexOf(enoun.charAt(enoun.length() - 1)) > -1)) {
+			return enoun + "es" + postfix;
+		} else if (enoun.endsWith("y") && enoun.length() > 1
+				&& consonant_p(enoun.charAt(enoun.length() - 2))) {
+			return enoun.substring(0, enoun.length() - 1) + "ies" + postfix;
+		} else if (enoun.endsWith("porcini") || (enoun.endsWith("porcino"))) {
+			return enoun.substring(0, enoun.length() - 1) + "i" + postfix;
+		} else {
+			// no special case matched, so use the boring default plural
+			// rule
+			return enoun + "s" + postfix;
 		}
 	}
 
