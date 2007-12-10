@@ -9,24 +9,54 @@
  <tileset name="Untitled" firstgid="66" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/grey.png"/>
  </tileset>
+ <tileset name="Sin nombre" firstgid="82" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/collision.png"/>
+ </tileset>
+ <tileset name="Sin nombre" firstgid="83" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/stone_floors.png"/>
+ </tileset>
+ <tileset name="Sin nombre" firstgid="89" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/indoor/grey_skull.png"/>
+ </tileset>
+ <tileset name="Sin nombre" firstgid="97" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/green_paving_3.png"/>
+ </tileset>
+ <tileset name="Sin nombre" firstgid="98" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/rock/hell.png"/>
+ </tileset>
+ <tileset name="Sin nombre" firstgid="370" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/creature/human_armored.png"/>
+ </tileset>
+ <tileset name="portal" firstgid="373" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/portal.png"/>
+ </tileset>
+ <tileset name="stairs" firstgid="380" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/stairs/stairs.png"/>
+ </tileset>
+ <tileset name="stairs down" firstgid="384" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/stairs/grey_stone_stairs_down.png"/>
+ </tileset>
+ <tileset name="grey detail" firstgid="390" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/entrance/grey_detail.png"/>
+ </tileset>
  <layer name="0_floor" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2UTQqDMBCFUyiWVkurdOcBXHgA72D/9P6X6cuiEIZEJw5BWybwbWb48lbzKmNMtTI7cItkL3Bd33IEGaiZHECx0KX+94/G8F9L8mNc6mu+5m8h/wQ6wgM8PfOc5Me41LecwcXDAMbA7ipwXd9SLkTilk5+qEN7cA/s5vp3yuX27wu8PXNO/4Zc7V/N1/zt5Wv//1b/z5Gy/zmk7H/pk97fP+b7bjgV3PtPiXv/a/IB/1DmmAAQAAA=
+   H4sIAAAAAAAAAO2USQrCQBBFExTFCTW48wAushAFdekFHBZm4xDN/U9h9aKgKaqSHsgEaXibFK8/CakfBUEQ1UwIrCzpe7i6rxgBA2BtyBCYOrrUxzs2QGJITPKV+7Ag7vK7/Iblj4ET4QJcmecTkm/jUl8xA+YMeLjZwsPVfcVSAI8093HRz+tQPC79m+ea9u8NuDPPTfpXcvP696mREfQZ9/+nFkj7lzK5lE+F+S/g7ZiPrk/+F/g55qPb5u/fxPyspPyu/9vV/0UUuT79b4JL/2cVIe2fmvXCcinKr+v9uR2W2DJ37ix80/2XODL5e8s79P235cDknx3v+gOOVr1aABAAAA==
   </data>
  </layer>
  <layer name="1_terrain" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ8HFAAAAPBuEQAcxwAQAAA=
+   H4sIAAAAAAAAAGNgGAWDBSQSiWlpP7lqfgHxbyD+Q6Y8pfZzMTIwcAMxDyN58pTaLwU0VxqIZXCYT0ieUvupAQY6/Y2CUTCQQAFP3iSkhhi9pKgbBaOA3mA0/Y+CUTAKRsHIAQBfJnvvABAAAA==
   </data>
  </layer>
  <layer name="2_object" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ8HFAAAAPBuEQAcxwAQAAA=
+   H4sIAAAAAAAAAO3VOw4AEABEQe6t8L03hRsoJMwkW79yQwAAXpfi330AOJHXj5W9euHT2mr2vXHQn6nsxp4AEAAA
   </data>
  </layer>
  <layer name="3_roof" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ8HFAAAAPBuEQAcxwAQAAA=
+   H4sIAAAAAAAAAO3VMQ4AEAxG4TqFO7FwLpfWQQdGEhV5X/LGf21FAACrolWHrYmj21uTtOywBQBvP9z/kx/A/Qfe1MLcrg7W2P1ZABAAAA==
   </data>
  </layer>
  <layer name="4_roof_add" width="32" height="32">
@@ -36,12 +66,12 @@
  </layer>
  <layer name="objects" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ8HFAAAAPBuEQAcxwAQAAA=
+   H4sIAAAAAAAAAGNgGAWjAAFKGMmTGwygmID7CMmPglEwCkbBcAFFWMq78gEuA0mxH5v7RwHxYDT8RsEoGAWjgDagghGChzIAAOcYmSgAEAAA
   </data>
  </layer>
- <layer name="collision" width="32" height="32">
+ <layer name="collision" width="32" height="32" opacity="0.51">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ8HFAAAAPBuEQAcxwAQAAA=
+   H4sIAAAAAAAAAO2TwQ0AIAwCO2P3H8YJGjVUremR8IT7gJuZ4xJelZKN8vDhv+ZHncqXMv4Ivw9/JiWbkY86dgQffsX9V/g//L78W4Kv+0TnT/wsD7tJdgcAEAAA
   </data>
  </layer>
  <layer name="protection" width="32" height="32">

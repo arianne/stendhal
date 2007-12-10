@@ -57,6 +57,9 @@
  <tileset name="stone stairs" firstgid="185" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/grey_stone_stairs.png"/>
  </tileset>
+ <tileset name="stairs" firstgid="191" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/stairs/green_stairs.png"/>
+ </tileset>
  <layer name="0_floor" width="32" height="32">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3VSQrCQBCF4RZEwXkhCMaNCLqIKK70Hs4j3sBTOc839IkKRZFq4xiUXnxEQnV+TeiYUkqlPOaDJDO9HmfsvF+zhs+4lYcAWMT8elyQc0GIaNbcZopP9AtQhwYxIZ+bYLP+ec2YsV/ot6At6Jj+3/e70BP0v9AfwFAwghxk1GWPpyHr0KczOvQdIf0WJ+frW0Kbz0joe+TR/jvQ52j6pm/6pv8r/QpUoexiRhLW9JewYtbkujWIQ0n4DreZ2B0Job+BLbNzuG+f+P81fe/7ezgwxy/2dT7ZDyn9nuX7VloTfqIfVff3K9+3ujWJB/teOgGoFrKXABAAAA==
@@ -69,7 +72,7 @@
  </layer>
  <layer name="2_object" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3GsQ0AAAgDoJ7t+a5dPMAEJhI+m+MAAADQFm1cOYkAEAAA
+   H4sIAAAAAAAAAO3NsREAMAjEsB+b+TIZLQ0D5JAqd074WS0NANM7/gcAkgZsaLrgABAAAA==
   </data>
  </layer>
  <layer name="3_roof" width="32" height="32">
@@ -84,7 +87,7 @@
  </layer>
  <layer name="objects" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3OMQoAIAxD0ZzbOngoD9jFVRBUSul/EAiZIt2bK3hrRB9AOXa4AZD6pgNAVi36AIDvHBxq45wAEAAA
+   H4sIAAAAAAAAAO3OMQoAIAxD0ZxbHTyU3q+LqyioVOh/EAhdGulcG8Fd1XsAwsmbNwBSmfRf9eD/Aawl7wEAnjNgfjrUABAAAA==
   </data>
  </layer>
  <layer name="collision" width="32" height="32" opacity="0.34">
