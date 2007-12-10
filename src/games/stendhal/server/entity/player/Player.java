@@ -271,7 +271,10 @@ public class Player extends RPEntity {
 		 * zone info, or save just before removing from zone instead.
 		 */
 		// TODO: Create <Entity>.remove(void) ?
-		player.getZone().remove(player);
+		StendhalRPZone zone = player.getZone();
+		if (zone != null) {
+			zone.remove(player);
+		}
 	}
 
 	public Player(RPObject object) {
