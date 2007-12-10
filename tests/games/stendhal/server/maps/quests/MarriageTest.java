@@ -52,8 +52,8 @@ public class MarriageTest {
 		AbstractQuest quest = new Marriage();
 		quest.addToWorld();
 
-		player = PlayerTestHelper.createPlayer("player");
-		player2 = PlayerTestHelper.createPlayer("player2");
+		player = PlayerTestHelper.createPlayerWithOutFit("player");
+		player2 = PlayerTestHelper.createPlayerWithOutFit("player2");
 		
 		zone.add(player);
 		player.setPosition(52, 53);
