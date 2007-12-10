@@ -110,7 +110,7 @@ public class PersonalChest extends Chest {
 			content.clear();
 
 			// Verify the user is next to the chest
-			if ((getZone() == attending.getZone()) && nextTo(attending)) {
+			if (getZone().has(attending.getID()) && nextTo(attending)) {
 				// A hack to allow client update correctly the
 				// chest...
 				// by clearing the chest and copying the items
