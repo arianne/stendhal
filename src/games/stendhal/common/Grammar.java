@@ -261,8 +261,8 @@ public class Grammar {
 					+ enoun.substring(enoun.indexOf(" of ")) + postfix;
 
 			// first of all handle words which do not change
-		} else if (enoun.endsWith("sheep") || enoun.endsWith("money")
-				|| enoun.endsWith("dice") || enoun.equals("deer")) {
+		} else if (enoun.endsWith("money") || enoun.endsWith("dice")
+				|| enoun.endsWith("sheep")|| enoun.equals("deer") || enoun.equals("moose")) {
 			return enoun + postfix;
 
 			// ok and now all the special cases
@@ -276,7 +276,7 @@ public class Grammar {
 		} else if (enoun.length() >= 4 && enoun.endsWith("ouse")
 				&& ("mMlL".indexOf(enoun.charAt(enoun.length() - 5)) > -1)) {
 			return enoun.substring(0, enoun.length() - 4) + "ice" + postfix;
-		} else if (enoun.endsWith("oose") && !(enoun.endsWith("caboose"))) {
+		} else if (enoun.endsWith("oose") && !enoun.endsWith("caboose") && !enoun.endsWith("noose")) {
 			return enoun.substring(0, enoun.length() - 4) + "eese"
 					+ postfix;
 		} else if (enoun.endsWith("ooth")) {
@@ -292,7 +292,7 @@ public class Grammar {
 		} else if (enoun.endsWith("ato")) {
 			return enoun + "es" + postfix;
 		} else if (enoun.endsWith("ium")) {
-			return enoun.substring(0, enoun.length() - 3) + "a" + postfix;
+			return enoun.substring(0, enoun.length() - 2) + "a" + postfix;
 		} else if (enoun.endsWith("alga") || enoun.endsWith("hypha")
 				|| enoun.endsWith("larva")) {
 			return enoun + "e" + postfix;
@@ -302,7 +302,7 @@ public class Grammar {
 		} else if (enoun.endsWith("man")
 				&& !(enoun.endsWith("shaman") || enoun.endsWith("human"))) {
 			return enoun.substring(0, enoun.length() - 3) + "men" + postfix;
-		} else if (enoun.endsWith("rtex")) {
+		} else if (enoun.endsWith("rtex") || enoun.endsWith("index")) {
 			return enoun.substring(0, enoun.length() - 2) + "ices"
 					+ postfix;
 		} else if (enoun.endsWith("trix")) {

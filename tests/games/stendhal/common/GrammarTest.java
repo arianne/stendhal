@@ -10,7 +10,6 @@ import java.util.LinkedList;
 
 import marauroa.common.Log4J;
 
-import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -18,7 +17,6 @@ public class GrammarTest {
 	@BeforeClass
 	public static void setupClass() {
 		Log4J.init();
-
 	}
 
 	@Test
@@ -136,25 +134,18 @@ public class GrammarTest {
 
 	private static void testPluralisationOfAGivenSingularWord(String message,
 			String plural, String singular) {
-		Assert.assertEquals(message, plural, Grammar.plural(singular));
+		assertEquals(message, plural, Grammar.plural(singular));
 
-		/*
-		 * Calling plural() with words already in their plural form does not yet
-		 * work. Assert.assertEquals("no change expected", plural,
-		 * Grammar.plural(plural));
-		 */
+		/* Calling plural() with words already in their plural form does not yet work.
+		assertEquals("no change expected", plural, Grammar.plural(plural)); */
 	}
 
-	private static void testPluralisationOfAGivenSingularWord(String plural,
-			String singular) {
-		testPluralisationOfAGivenSingularWord("building plural form", plural,
-				singular);
+	private static void testPluralisationOfAGivenSingularWord(String plural, String singular) {
+		testPluralisationOfAGivenSingularWord("building plural form", plural, singular);
 	}
 
 	@Test
 	public void testPluralItem() {
-
-		testPluralisationOfAGivenSingularWord("hammers+3", "hammer+3");
 		// TODO: decide on name and plural of money
 		testPluralisationOfAGivenSingularWord("money", "money");
 		testPluralisationOfAGivenSingularWord("sandwiches", "sandwich");
@@ -357,29 +348,45 @@ public class GrammarTest {
 		testPluralisationOfAGivenSingularWord("feet", "foot");
 		testPluralisationOfAGivenSingularWord("children", "child");
 
-		testPluralisationOfAGivenSingularWord("tomatoes", "tomato");
+        testPluralisationOfAGivenSingularWord("moose", "moose");
+        testPluralisationOfAGivenSingularWord("nooses", "noose");
+        testPluralisationOfAGivenSingularWord("helia", "helium");
+        testPluralisationOfAGivenSingularWord("sodia", "sodium");
+		testPluralisationOfAGivenSingularWord("ia", "ium");
+        testPluralisationOfAGivenSingularWord("men", "man");
+        testPluralisationOfAGivenSingularWord("humans", "human");
+
+        testPluralisationOfAGivenSingularWord("tomatoes", "tomato");
 		testPluralisationOfAGivenSingularWord("algae", "alga");
 		testPluralisationOfAGivenSingularWord("larvae", "larva");
 		testPluralisationOfAGivenSingularWord("hyphae", "hypha");
 		testPluralisationOfAGivenSingularWord("bureaux", "bureau");
-		testPluralisationOfAGivenSingularWord("a", "ium");
 		testPluralisationOfAGivenSingularWord("dei", "deus");
+        testPluralisationOfAGivenSingularWord("indices", "index");
+        testPluralisationOfAGivenSingularWord("vertices", "vertex");
 		testPluralisationOfAGivenSingularWord("vortices", "vortex");
 
-		testPluralisationOfAGivenSingularWord("xxxxses", "xxxxsis");
-
 		testPluralisationOfAGivenSingularWord("matrices", "matrix");
+        testPluralisationOfAGivenSingularWord("analyses", "analysis");
+		testPluralisationOfAGivenSingularWord("xxxxses", "xxxxsis");
 
 		testPluralisationOfAGivenSingularWord("wumpuses", "wumpus");
 		testPluralisationOfAGivenSingularWord("lotuses", "lotus");
 		testPluralisationOfAGivenSingularWord("mumakil", "mumak");
 
-		testPluralisationOfAGivenSingularWord("efreet", "efreeti");
 		testPluralisationOfAGivenSingularWord("djinn", "djinni");
+		testPluralisationOfAGivenSingularWord("efreet", "efreeti");
 		testPluralisationOfAGivenSingularWord("ys", "y");
 		testPluralisationOfAGivenSingularWord("bies", "by");
 		testPluralisationOfAGivenSingularWord("fs", "f");
 
+        testPluralisationOfAGivenSingularWord("matches", "match");
+        testPluralisationOfAGivenSingularWord("boxes", "box");
+        testPluralisationOfAGivenSingularWord("bushes", "bush");
+        testPluralisationOfAGivenSingularWord("boys", "boy");
+        testPluralisationOfAGivenSingularWord("bosses", "boss");
+        testPluralisationOfAGivenSingularWord("bodies", "body");
+        testPluralisationOfAGivenSingularWord("princesses", "princess");
 	}
 
 	/**
@@ -496,38 +503,38 @@ public class GrammarTest {
 	}
 
 	/**
-	 * Tests pluralisation of creatures
+	 * Tests creating the full form
 	 */
 	@Test
 	public void testFullForm() {
-		Assert.assertEquals("1 sandwich", Grammar.quantityplnoun(1, "sandwich"));
-		Assert.assertEquals("2 sandwiches", Grammar.quantityplnoun(2,
+		assertEquals("1 sandwich", Grammar.quantityplnoun(1, "sandwich"));
+		assertEquals("2 sandwiches", Grammar.quantityplnoun(2,
 				"sandwich"));
-		Assert.assertEquals("1 piece of ham", Grammar.quantityplnoun(1, "ham"));
-		Assert.assertEquals("2 pieces of ham", Grammar.quantityplnoun(2, "ham"));
-		Assert.assertEquals("1 piece of cheese", Grammar.quantityplnoun(1,
+		assertEquals("1 piece of ham", Grammar.quantityplnoun(1, "ham"));
+		assertEquals("2 pieces of ham", Grammar.quantityplnoun(2, "ham"));
+		assertEquals("1 piece of cheese", Grammar.quantityplnoun(1,
 				"cheese"));
-		Assert.assertEquals("2 pieces of cheese", Grammar.quantityplnoun(2,
+		assertEquals("2 pieces of cheese", Grammar.quantityplnoun(2,
 				"cheese"));
-		Assert.assertEquals("1 loaf of bread", Grammar.quantityplnoun(1,
+		assertEquals("1 loaf of bread", Grammar.quantityplnoun(1,
 				"bread"));
-		Assert.assertEquals("2 loaves of bread", Grammar.quantityplnoun(2,
+		assertEquals("2 loaves of bread", Grammar.quantityplnoun(2,
 				"bread"));
-		Assert.assertEquals("1 #sandwich", Grammar.quantityplnoun(1,
+		assertEquals("1 #sandwich", Grammar.quantityplnoun(1,
 				"#sandwich"));
-		Assert.assertEquals("2 #sandwiches", Grammar.quantityplnoun(2,
+		assertEquals("2 #sandwiches", Grammar.quantityplnoun(2,
 				"#sandwich"));
-		Assert.assertEquals("1 piece of #ham",
+		assertEquals("1 piece of #ham",
 				Grammar.quantityplnoun(1, "#ham"));
-		Assert.assertEquals("2 pieces of #ham", Grammar.quantityplnoun(2,
+		assertEquals("2 pieces of #ham", Grammar.quantityplnoun(2,
 				"#ham"));
-		Assert.assertEquals("1 piece of #cheese", Grammar.quantityplnoun(1,
+		assertEquals("1 piece of #cheese", Grammar.quantityplnoun(1,
 				"#cheese"));
-		Assert.assertEquals("2 pieces of #cheese", Grammar.quantityplnoun(2,
+		assertEquals("2 pieces of #cheese", Grammar.quantityplnoun(2,
 				"#cheese"));
-		Assert.assertEquals("1 loaf of #bread", Grammar.quantityplnoun(1,
+		assertEquals("1 loaf of #bread", Grammar.quantityplnoun(1,
 				"#bread"));
-		Assert.assertEquals("2 loaves of #bread", Grammar.quantityplnoun(2,
+		assertEquals("2 loaves of #bread", Grammar.quantityplnoun(2,
 				"#bread"));
 
 	}
