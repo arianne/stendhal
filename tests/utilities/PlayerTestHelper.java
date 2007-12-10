@@ -28,7 +28,6 @@ public class PlayerTestHelper  {
 		PlayerTestHelper.generatePlayerRPClasses();
 		Player pl = new Player(new RPObject());
 		PlayerTestHelper.addEmptySlots(pl);
-		pl.put("outfit", "01010101");
 		return pl;
 	}
 
@@ -61,6 +60,12 @@ public class PlayerTestHelper  {
 		MockStendhalRPRuleProcessor.get().addPlayer(player);
 		MockStendlRPWorld.get().add(player);
 		zone.add(player);
+	}
+
+	public static Player createPlayerWithOutFit(String name) {
+		Player player = createPlayer(name);
+		player.put("outfit", "01010101");
+		return player;
 	}
 
 	/**
