@@ -4,6 +4,8 @@ import games.stendhal.server.StendhalPlayerDatabase;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
 import games.stendhal.server.entity.Entity;
+import games.stendhal.server.events.TurnListener;
+import games.stendhal.server.events.TurnNotifier;
 
 import java.sql.SQLException;
 import java.util.Map;
@@ -35,6 +37,7 @@ public class CityHouseCouncil extends Entity implements ZoneConfigurator {
 
 		try {
 			StendhalPlayerDatabase.getDatabase().storeRPZone(trans, zone);
+			trans.commit();
 		} catch (Exception e) {
 			try {
 				trans.rollback();
@@ -48,7 +51,14 @@ public class CityHouseCouncil extends Entity implements ZoneConfigurator {
 	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
 		this.zone = zone;
 		super.put("test", "1");
-		save();
+		zone.add(this);
+		TurnNotifier.get().notifyInTurns(1, new TurnListener() {
+
+			public void onTurnReached(int currentTurn) {
+				save();
+			}
+			
+		});
 	}
 
 }
