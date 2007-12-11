@@ -45,8 +45,12 @@ public class ConversationParser {
 		ConversationParser parser = new ConversationParser(text);
 		Sentence sentence = new Sentence();
 
-		 // Parse the text as simple "verb - amount - object" construct.
-		sentence._verb = parser._nextWord();
+		 // Parse the text as "verb - amount - object" construct,
+		 // ignoring prefixed occurencies of "please".
+		do {
+			sentence._verb = parser._nextWord();
+		} while(sentence._verb!=null && sentence._verb.equals("please"));
+
 		sentence._amount = parser.readAmount();
 		String object = parser.readObjectName();
 

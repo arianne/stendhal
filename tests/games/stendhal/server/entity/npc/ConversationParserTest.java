@@ -133,4 +133,19 @@ public class ConversationParserTest {
 		assertEquals("trouser", sentence.getItemName());
 	}
 
+	@Test
+	public final void testPlease() {
+		Sentence sentence = ConversationParser.parse("please open chest");
+		assertFalse(sentence.hasError());
+		assertEquals("open", sentence.getVerb());
+		assertEquals(1, sentence.getAmount());
+		assertEquals("chest", sentence.getObjectName());
+
+		//TODO should be parsed into even more sentence constituents
+		sentence = ConversationParser.parse("please please do me a favour");
+		assertFalse(sentence.hasError());
+		assertEquals("do", sentence.getVerb());
+		assertEquals(1, sentence.getAmount());
+		assertEquals("me a favour", sentence.getObjectName());
+	}
 }
