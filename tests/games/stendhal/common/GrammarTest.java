@@ -134,9 +134,7 @@ public class GrammarTest {
 
 	private static void testPluralisationOfAGivenSingularWord(String message, String plural, String singular) {
 		assertEquals(message, plural, Grammar.plural(singular));
-
-		/* Calling plural() with words already in their plural form does not yet work.
-		assertEquals("no change expected", plural, Grammar.plural(plural)); */
+		assertEquals("no change expected", plural, Grammar.plural(plural));
 	}
 
 	private static void testSingularisationOfAGivenSingularWord(String message, String plural, String singular) {

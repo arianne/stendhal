@@ -238,6 +238,7 @@ public class Grammar {
 
 	/**
 	 * Returns the plural form of the given noun
+	 * if not already given in plural form
 	 *
 	 * @param noun
 	 *            The noun to examine
@@ -257,17 +258,17 @@ public class Grammar {
 			}
 		}
 
-		// in "of"-phrases pluralize only the first part
+		 // in "of"-phrases pluralize only the first part
 		if (enoun.indexOf(" of ") > -1) {
 			return plural(enoun.substring(0, enoun.indexOf(" of ")))
 					+ enoun.substring(enoun.indexOf(" of ")) + postfix;
 
-			// first of all handle words which do not change
+		 // first of all handle words which do not change
 		} else if (enoun.endsWith("money") || enoun.endsWith("dice")
 				|| enoun.endsWith("sheep")|| enoun.equals("deer") || enoun.equals("moose")) {
 			return enoun + postfix;
 
-			// ok and now all the special cases
+		 // ok and now all the special cases
 		} else if (enoun.endsWith("staff") || enoun.endsWith("chief")) {
 			return enoun + "s" + postfix;
 		} else if (enoun.length() > 2 && enoun.endsWith("f")
@@ -317,18 +318,23 @@ public class Grammar {
 			return enoun + "il" + postfix;
 		} else if (enoun.endsWith("djinni") || enoun.endsWith("efreeti")) {
 			return enoun.substring(0, enoun.length() - 1) + postfix;
-		} else if (enoun.endsWith("ch") || enoun.endsWith("sh")
-				|| (enoun.length() > 1 && "zxs".indexOf(enoun.charAt(enoun.length() - 1)) > -1)) {
-			return enoun + "es" + postfix;
+		} else if (enoun.endsWith("porcini") || (enoun.endsWith("porcino"))) {
+			return enoun.substring(0, enoun.length() - 1) + "i" + postfix;
 		} else if (enoun.length() > 2 && enoun.endsWith("y")
 				&& consonant_p(enoun.charAt(enoun.length() - 2))) {
 			return enoun.substring(0, enoun.length() - 1) + "ies" + postfix;
-		} else if (enoun.endsWith("porcini") || (enoun.endsWith("porcino"))) {
-			return enoun.substring(0, enoun.length() - 1) + "i" + postfix;
-		} else {
-			// no special case matched, so use the boring default plural
-			// rule
-			return enoun + "s" + postfix;
+
+		 // If the word is already in plural form, return it unchanged.
+		} else if (!singular(enoun).equals(enoun)) {
+        	return enoun + postfix;
+
+         // last special case: Does the word end with "ch", "sh", "s", "x" oder "z"? 
+        } else if (enoun.endsWith("ch") || enoun.endsWith("sh")
+				|| (enoun.length() > 1 && "sxz".indexOf(enoun.charAt(enoun.length() - 1)) > -1)) {
+			return enoun + "es" + postfix;
+        } else {
+            // no special case matched, so use the boring default plural rule
+        	return enoun + "s" + postfix;
 		}
 	}
 
