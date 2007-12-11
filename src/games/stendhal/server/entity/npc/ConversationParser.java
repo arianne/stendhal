@@ -16,7 +16,7 @@ public class ConversationParser {
 
 	private StringTokenizer _tokenizer;
 	private StringBuilder _original;
-	private String	_next_word;
+	private String	_nextWord;
     private String _error;
 
     /**
@@ -28,8 +28,8 @@ public class ConversationParser {
 		_tokenizer = new StringTokenizer(text!=null? text: "");
 
 		 // get first word
-		_next_word = _tokenizer.hasMoreTokens()? _tokenizer.nextToken(): null;
-		_original = _next_word!=null? new StringBuilder(_next_word): new StringBuilder();
+		_nextWord = _tokenizer.hasMoreTokens()? _tokenizer.nextToken(): null;
+		_original = _nextWord!=null? new StringBuilder(_nextWord): new StringBuilder();
 
          // start with no errors.
         _error = null;
@@ -46,12 +46,12 @@ public class ConversationParser {
 		Sentence sentence = new Sentence();
 
 		 // Parse the text as simple "verb - amount - object" construct.
-		sentence._verb = parser.nextWord();
+		sentence._verb = parser._nextWord();
 		sentence._amount = parser.readAmount();
-		sentence._object = parser.readObjectName();
+		String object = parser.readObjectName();
 
          // Optionally there may be following a preposition and a second object.
-		sentence._preposition = parser.nextWord();
+		sentence._preposition = parser._nextWord();
 		sentence._object2 = parser.readObjectName();
 
 		sentence._error = parser.getError();
@@ -59,23 +59,25 @@ public class ConversationParser {
 
 		 // derive the singular from the item name if the amount is greater than one
 		if (sentence._amount != 1) {
-			sentence._object = Grammar.singular(sentence._object);
+			object = Grammar.singular(object);
 		}
+
+		sentence._object = object;
 
         return sentence;
 	}
 
-	private String nextWord()
+	private String _nextWord()
     {
-		String word = _next_word;
+		String word = _nextWord;
 
 		if (word != null) {
 			if (_tokenizer.hasMoreTokens()) {
-				_next_word = _tokenizer.nextToken();
+				_nextWord = _tokenizer.nextToken();
 				_original.append(' ');
-				_original.append(_next_word);
+				_original.append(_nextWord);
 			} else {
-				_next_word = null;
+				_nextWord = null;
 			}
 
 	        return word.toLowerCase();
@@ -94,24 +96,24 @@ public class ConversationParser {
 
          // handle numeric expressions
         if (_tokenizer.hasMoreTokens()) {
-        	if (_next_word.matches("^[+-]?[0-9]+")) {
+        	if (_nextWord.matches("^[+-]?[0-9]+")) {
     	        try {
-    	        	amount = Integer.parseInt(_next_word);
+    	        	amount = Integer.parseInt(_nextWord);
     
     	        	if (amount < 0)
     	        		setError("negative amount: " + amount);
 
-    		        nextWord();
+    		        _nextWord();
     	        } catch(NumberFormatException e) {
-    	        	setError("illegal number format: '" + _next_word + "'");
+    	        	setError("illegal number format: '" + _nextWord + "'");
     	        }
             } else {
             	 // handle expressions like "one", "two", ...
-            	Integer number = Grammar.number(_next_word);
+            	Integer number = Grammar.number(_nextWord);
 
             	if (number != null) {
             		amount = number.intValue();
-            		nextWord();
+            		_nextWord();
             	}
             }
         }
@@ -129,14 +131,15 @@ public class ConversationParser {
 
          // handle object names consisting of more than one word
         for(;;) {
-        	if (_next_word == null)
+        	if (_nextWord == null)
         		break;
 
         	 // stop if the next word is a preposition
-        	if (Grammar.isPreposition(_next_word)) 
+        	if (Grammar.isPreposition(_nextWord) &&
+        		!_nextWord.equals("of")) //TODO directly integrate Grammar.extractNoun() here
         		break;
 
-        	String word = nextWord();
+        	String word = _nextWord();
 
              // concatenate user specified item names like "baby dragon"
              // with spaces to build the internal item names
@@ -147,7 +150,7 @@ public class ConversationParser {
             }
         }
 
-        return name;
+        return Grammar.extractNoun(name);
 	}
 
 	/**

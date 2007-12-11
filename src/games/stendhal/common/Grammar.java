@@ -218,6 +218,89 @@ public class Grammar {
 	}
 
 	/**
+	 * remove a prefix if present
+	 * 
+	 * @param prefix
+	 * @param noun
+	 * @return object name without prefix
+	 */
+	private static String removePrefix(String noun, String prefix) {
+		if (noun.startsWith(prefix))
+			return noun.substring(prefix.length());
+		else
+			return noun;
+	}
+
+	/**
+	 * extract noun from a string, that may be prefixed
+	 * with a singular expression like "piece of", ...
+	 * @param noun
+	 * @return
+	 */
+	private static String extractNounSingular(String expr) {
+		String result;
+
+		result = removePrefix(expr, "piece of ");
+		result = removePrefix(result, "nugget of ");
+		result = removePrefix(result, "sack of ");
+		result = removePrefix(result, "sheaf of ");
+		result = removePrefix(result, "loaf of ");
+		result = removePrefix(result, "bottle of ");
+		result = removePrefix(result, "sprig of ");
+		result = removePrefix(result, "suit of ");
+		result = removePrefix(result, "pair of ");
+
+		return result;
+	}
+
+	/**
+	 * extract noun from a string, that may be prefixed
+	 * with a plural expression like "piece of", ...
+	 * @param expr
+	 * @return
+	 */
+	private static String extractNounPlural(String expr) {
+		String result;
+
+		result = removePrefix(expr, "pieces of ");
+		result = removePrefix(result, "nuggets of ");
+		result = removePrefix(result, "sacks of ");
+		result = removePrefix(result, "sheaves of ");
+		result = removePrefix(result, "loaves of ");
+		result = removePrefix(result, "bottles of ");
+		result = removePrefix(result, "sprigs of ");
+		result = removePrefix(result, "suits of ");
+		result = removePrefix(result, "pairs of ");
+
+		return result;
+	}
+
+	/**
+	 * extract noun from a string, that may be prefixed
+	 * with a plural expression like "piece of", ...
+	 * So this function is just the recursive counter part
+	 * to fullForm().
+	 * @param expr
+	 * @return
+	 */
+	public static String extractNoun(String expr) {
+		if (expr == null) {
+			return expr;
+		}
+
+		String lastExpr, result=expr;
+
+		 // loop until all prefix strings are removed
+		do {
+			lastExpr = result;
+			result = extractNounSingular(result);
+			result = extractNounPlural(result);
+		} while(result != lastExpr);
+
+		return result;
+	}
+
+	/**
 	 * "A [noun]" or "An [noun]", depending on the first syllable
 	 *
 	 * @param noun

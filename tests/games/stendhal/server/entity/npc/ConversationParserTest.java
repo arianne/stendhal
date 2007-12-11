@@ -113,12 +113,24 @@ public class ConversationParserTest {
 	}
 
 	@Test
-	public final void testPlural() {
+	public final void testPluralAndPrefix() {
 		Sentence sentence = ConversationParser.parse("buy seven bananas");
 		assertFalse(sentence.hasError());
 		assertEquals("buy", sentence.getVerb());
 		assertEquals(7, sentence.getAmount());
 		assertEquals("banana", sentence.getItemName());
+
+		sentence = ConversationParser.parse("buy a bottle of wine");
+		assertFalse(sentence.hasError());
+		assertEquals("buy", sentence.getVerb());
+		assertEquals(1, sentence.getAmount());
+		assertEquals("wine", sentence.getItemName());
+
+		sentence = ConversationParser.parse("buy two pairs of trousers");
+		assertFalse(sentence.hasError());
+		assertEquals("buy", sentence.getVerb());
+		assertEquals(2, sentence.getAmount());
+		assertEquals("trouser", sentence.getItemName());
 	}
 
 }

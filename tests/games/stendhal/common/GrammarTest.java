@@ -601,4 +601,14 @@ public class GrammarTest {
 		assertFalse(Grammar.isPreposition("kymara"));
 	}
 
+	@Test
+	public void testExtractNoun() {
+		assertEquals("bread", Grammar.extractNoun("loaf of bread"));
+		assertEquals("trousers", Grammar.extractNoun("pair of trousers"));
+		assertEquals("grain", Grammar.extractNoun("sacks of grain"));
+		assertEquals("grain", Grammar.extractNoun("sheaves of grain"));
+		assertEquals("water", Grammar.extractNoun("bottle of water"));
+		assertEquals("arundula", Grammar.extractNoun("sprigs of arundula"));
+		assertEquals("armor", Grammar.extractNoun("suit of armor"));
+	}
 }
