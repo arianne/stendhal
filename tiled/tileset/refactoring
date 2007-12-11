@@ -48,10 +48,9 @@ m*/building/decoration/rocks_2.png
 m*/building/decoration/squares_2.png
 m/K*./building/decoration/stone_details.png
 m/K*./building/decoration/toolset.png
-./building/decoration/webs.png
+K*/building/decoration/webs.png  were originally by Katie
 k/building/decoration/wooden_banisters.png     
-./building/decoration/fireplace_purple.png    not found
-K*./building/decoration/wall_feature.png but all i did was make it a plain wall!
+K*./building/decoration/wall_feature.png but 
 k*/building/door/closed.png
 k*/building/door/closed_with_key.png
 k*/building/door/closed_with_notice.png
@@ -72,15 +71,12 @@ d*/building/entrance/earthen.png
 d*/building/entrance/earthen_2.png
 d*/building/entrance/earthen_3.png
 d*/building/entrance/earthen_4.png
-./building/entrance/earthen_5.png         not found
 ./building/entrance/earthen_6.png
-d/building/entrance/earthen_face.png
-d/building/entrance/earthen_face_2.png
-./building/entrance/earthen_face_3.png        not found
+./building/entrance/earthen_face.png
+./building/entrance/earthen_face_2.png
 ./building/entrance/earthen_face_4.png
 ./building/entrance/grey.png
 m*/building/entrance/int_iron_bars.png
-./building/entrance/int_iron_bars_fancy.png     not found
 K*/building/entrance/light_red_ns_ew.png
 K*./building/entrance/pale_red_ew.png
 K*./building/entrance/pale_red_ns.png
@@ -183,11 +179,10 @@ F*/ground/ladder/steps.png
 ./ground/ladder/vertical_pale.png
 k*/ground/ridge/earth_dark.png
 k*/ground/ridge/earth_pale.png
-K*/ground/ridge/ice.png
-K*/ground/ridge/ice_2.png
+./ground/ridge/ice.png
+./ground/ridge/ice_2.png
 ./ground/rock/green_crystal.png
 ./ground/rock/large_pebble.png
-./ground/rock/misc_black.png         not found
 k*/ground/rock/pebbles.png
 ./ground/rock/rock_cluster.png
 m*/ground/rock/rocks.png
@@ -204,11 +199,9 @@ k*/ground/water/pool_grassy.png
 k*/ground/water/pool_icy.png
 k*/ground/water/pool_small.png
 k*/ground/water/pool_straight_edges.png
-./ground/water/turbulent_water.png             not found
 k*/ground/water/water.png
 k*/ground/water/water_bubbles.png
 k*/ground/water/water_corners.png
-./ground/water/water_shimmery.png          not found
 k*/ground/water/waterfall.png
 k*/ground/water/waterfall_2.png
 k*/ground/water/whirlpool.png
@@ -269,10 +262,10 @@ b*/item/furniture/chair/wooden.png
 b*/item/furniture/chair/wooden_pale.png
 m/item/furniture/clock/wooden_clock.png
 b*/item/furniture/crockery/knife_spoon.png
-./item/furniture/curtain/dark_red.png
-./item/furniture/curtain/dark_red_central.png
-./item/furniture/curtain/red_gold_drawn.png
-./item/furniture/curtain/red_gold_gathered.png
+m*/item/furniture/curtain/dark_red.png
+m*/item/furniture/curtain/dark_red_central.png
+m*/item/furniture/curtain/red_gold_drawn.png
+m*/item/furniture/curtain/red_gold_gathered.png
 ./item/furniture/curtain/curtain_rails.png
 m*/item/furniture/light/dark_torch.png
 ./item/furniture/light/flames.png
@@ -286,9 +279,9 @@ z*./item/furniture/other/stick.png
 b*/item/furniture/other/warmer.png
 m/K*/item/furniture/other/green.png
 J*/item/furniture/other/tools_rack.png
-./item/furniture/picture/large_island.png
-./item/furniture/picture/projectleader.png
-./item/furniture/picture/small.png
+m*/item/furniture/picture/large_island.png
+m*/item/furniture/picture/projectleader.png
+m*/item/furniture/picture/small.png
 b*/item/furniture/shelve/bright_bookshelf.png
 b*/item/furniture/shelve/bright_bookshelf_and_cupboard.png
 b*/item/furniture/shelve/dark_bookshelf.png
@@ -356,7 +349,6 @@ m*/object/suspension_bridge.png
 k*/object/well.png
 k*/object/witch_hut.png
 K*/m*/plant/cactus.png
-./plant/grass.png       not found
 k*/plant/grass_2.png
 k*/plant/grass_corners.png
 k*/plant/grass_edges.png
