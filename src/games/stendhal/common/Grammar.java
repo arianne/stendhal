@@ -109,7 +109,7 @@ public class Grammar {
 	 * Prefixes a noun with an article.
 	 *
 	 * @param noun
-	 *            nount
+	 *            noun
 	 * @param definite
 	 *            true for "the", false for a/an
 	 * @return noun with article
@@ -159,11 +159,13 @@ public class Grammar {
 	 *            prefix to add
 	 * @return noun starting with prefix
 	 */
-	private static String addPrefixIfNotAlreadyThere(String prefix, String noun) {
-		if (noun.startsWith(prefix)) {
+	private static String addPrefixIfNotAlreadyThere(String prefix_singular, String prefix_plural, String noun) {
+		if (noun.startsWith(prefix_singular)) {
+			return noun;
+		} else if (noun.startsWith(prefix_plural)) {
 			return noun;
 		} else {
-			return prefix + noun;
+			return prefix_singular + noun;
 		}
 	}
 
@@ -175,18 +177,18 @@ public class Grammar {
 				|| result.equals("cheese") || result.equals("wood")
 				|| result.equals("paper") || result.equals("iron")
 				|| result.equals("chicken")) {
-			result = addPrefixIfNotAlreadyThere("piece of ", lowString);
+			result = addPrefixIfNotAlreadyThere("piece of ", "pieces of ", lowString);
 		} else if (result.endsWith(" ore") || result.endsWith("_ore")) {
-			result = addPrefixIfNotAlreadyThere("nugget of ", lowString);
+			result = addPrefixIfNotAlreadyThere("nugget of ", "nuggets of ", lowString);
 		} else if (result.equals("flour")) {
-			result = addPrefixIfNotAlreadyThere("sack of ", lowString);
+			result = addPrefixIfNotAlreadyThere("sack of ", "sacks of ", lowString);
 		} else if (result.equals("grain")) {
-			result = addPrefixIfNotAlreadyThere("sheaf of ", lowString);
+			result = addPrefixIfNotAlreadyThere("sheaf of ", "sheaves of ", lowString);
 		} else if (result.equals("bread")) {
-			result = addPrefixIfNotAlreadyThere("loaf of ", lowString);
+			result = addPrefixIfNotAlreadyThere("loaf of ", "loaves of ", lowString);
 		} else if (result.equals("beer") || result.equals("wine")
 				|| result.endsWith("poison") || result.equals("antidote")) {
-			result = addPrefixIfNotAlreadyThere("bottle of ", lowString);
+			result = addPrefixIfNotAlreadyThere("bottle of ", "bottles of ", lowString);
 		} else if (result.equals("money")) {
 			// TODO: fix this (going back to money as workaround because /drop 1
 			// coin does not work
@@ -194,13 +196,13 @@ public class Grammar {
 		} else if (result.startsWith("book_") || result.startsWith("book ")) {
 			result = result.substring(5) + " book";
 		} else if (result.equals("arandula")) {
-			result = addPrefixIfNotAlreadyThere("sprig of ", lowString);
+			result = addPrefixIfNotAlreadyThere("sprig of ", "sprigs of ", lowString);
 		} else if ((result.indexOf("_armor") > -1)
 				|| (result.indexOf(" armor") > -1)) {
-			result = addPrefixIfNotAlreadyThere("suit of ", lowString);
+			result = addPrefixIfNotAlreadyThere("suit of ", "suits of ", lowString);
 		} else if (result.endsWith("_legs") || result.endsWith(" legs")
 				|| result.endsWith("_boots") || result.endsWith(" boots")) {
-			result = addPrefixIfNotAlreadyThere("pair of ", lowString);
+			result = addPrefixIfNotAlreadyThere("pair of ", "pairs of ", lowString);
 		} else {
 			result = lowString;
 		}
@@ -309,10 +311,8 @@ public class Grammar {
 			return enoun.substring(0, enoun.length() - 1) + "ces" + postfix;
 		} else if (enoun.endsWith("sis")) {
 			return enoun.substring(0, enoun.length() - 2) + "es" + postfix;
-		/*
-		} else if (enoun.endsWith("erinys") || enoun.endsWith("cyclops")) {
-			return enoun.substring(0, enoun.length() - 2) + "es" + postfix;
-		*/
+		} else if (enoun.endsWith("erinys")) {   // || enoun.endsWith("cyclops")
+			return enoun.substring(0, enoun.length() - 1) + "es" + postfix;
 		} else if (enoun.endsWith("mumak")) {
 			return enoun + "il" + postfix;
 		} else if (enoun.endsWith("djinni") || enoun.endsWith("efreeti")) {
@@ -320,7 +320,7 @@ public class Grammar {
 		} else if (enoun.endsWith("ch") || enoun.endsWith("sh")
 				|| (enoun.length() > 1 && "zxs".indexOf(enoun.charAt(enoun.length() - 1)) > -1)) {
 			return enoun + "es" + postfix;
-		} else if (enoun.endsWith("y") && enoun.length() > 1
+		} else if (enoun.length() > 2 && enoun.endsWith("y")
 				&& consonant_p(enoun.charAt(enoun.length() - 2))) {
 			return enoun.substring(0, enoun.length() - 1) + "ies" + postfix;
 		} else if (enoun.endsWith("porcini") || (enoun.endsWith("porcino"))) {
@@ -330,6 +330,106 @@ public class Grammar {
 			// rule
 			return enoun + "s" + postfix;
 		}
+	}
+
+	/**
+	 * Returns the singular form of the given noun
+	 * if not already given in singular form
+	 *
+	 * @param noun
+	 *			  The noun to examine
+	 * @return An appropriate singular form
+	 */
+	public static String singular(String noun) {
+		String enoun = fullform(noun);
+		String postfix = "";
+
+		int position = enoun.indexOf('+');
+		if (position != -1) {
+			postfix = enoun.substring(position - 1);
+			enoun = enoun.substring(0, position - 1);
+		}
+
+		// in "of"-phrases build only the singular of the first part
+		if (enoun.indexOf(" of ") > -1) {
+			return singular(enoun.substring(0, enoun.indexOf(" of ")))
+					+ enoun.substring(enoun.indexOf(" of ")) + postfix;
+
+			// first of all handle words which do not change
+		} else if (enoun.endsWith("money") || enoun.endsWith("dice") || enoun.endsWith("porcini")
+				|| enoun.endsWith("sheep")|| enoun.equals("deer") || enoun.equals("moose")) {
+			return enoun + postfix;
+
+			// now all the special cases
+		} else if (enoun.endsWith("staffs") || enoun.endsWith("chiefs")) {
+			return enoun.substring(0, enoun.length() - 1) + postfix;
+		} else if (enoun.length() > 4 && enoun.endsWith("ves")
+				&& ("aeiourl".indexOf(enoun.charAt(enoun.length() - 4)) > -1)
+				&& !enoun.endsWith("knives")) {
+			return enoun.substring(0, enoun.length() - 3) + "f" + postfix;
+		} else if (enoun.endsWith("ves")) {
+			return enoun.substring(0, enoun.length() - 3) + "fe" + postfix;
+		} else if (enoun.endsWith("houses")) {
+			return enoun.substring(0, enoun.length() - 1) + postfix;
+		} else if (enoun.length() > 3 && enoun.endsWith("ice")
+				&& ("mMlL".indexOf(enoun.charAt(enoun.length() - 4)) > -1)) {
+			return enoun.substring(0, enoun.length() - 3) + "ouse" + postfix;
+		} else if (enoun.endsWith("eese") && !enoun.endsWith("cabeese")) {
+			return enoun.substring(0, enoun.length() - 4) + "oose" + postfix;
+		} else if (enoun.endsWith("eeth")) {
+			return enoun.substring(0, enoun.length() - 4) + "ooth" + postfix;
+		} else if (enoun.endsWith("feet")) {
+			return enoun.substring(0, enoun.length() - 4) + "foot" + postfix;
+		} else if (enoun.endsWith("children")) {
+			return enoun.substring(0, enoun.length() - 3) + postfix;
+		} else if (enoun.endsWith("eaux")) {
+			return enoun.substring(0, enoun.length() - 1) + postfix;
+		} else if (enoun.endsWith("atoes")) {
+			return enoun.substring(0, enoun.length() - 2) + postfix;
+		} else if (enoun.endsWith("ia") || enoun.endsWith("ia")) {//enoun.endsWith("helia") || enoun.endsWith("sodia")
+			return enoun.substring(0, enoun.length() - 1) + "um" + postfix;
+		} else if (enoun.endsWith("algae") || enoun.endsWith("hyphae")
+				|| enoun.endsWith("larvae")) {
+			return enoun.substring(0, enoun.length() - 1) + postfix;
+		} else if ((enoun.length() > 2) && enoun.endsWith("ei")) {
+			return enoun.substring(0, enoun.length() - 1) + "us" + postfix;
+		} else if (enoun.endsWith("men")) {
+			return enoun.substring(0, enoun.length() - 3) + "man" + postfix;
+		} else if (enoun.endsWith("matrices")) {
+			return enoun.substring(0, enoun.length() - 4) + "ix" + postfix;
+		} else if (enoun.endsWith("ices")) {	// indices, vertices, ...
+			return enoun.substring(0, enoun.length() - 4) + "ex" + postfix;
+		} else if (enoun.endsWith("erinyes")) { // || enoun.endsWith("cyclopes")
+			return enoun.substring(0, enoun.length() - 2) + "s" + postfix;
+		} else if (enoun.endsWith("erinys") || enoun.endsWith("cyclops")) {
+			return enoun + postfix; // singular detected
+		} else if (enoun.endsWith("mumakil")) {
+			return enoun.substring(0, enoun.length() - 2) + postfix;
+		} else if (enoun.endsWith("djin")) {
+			return enoun + "ni" + postfix;
+		} else if (enoun.endsWith("djinn") || enoun.endsWith("efreet")) {
+			return enoun + "i" + postfix;
+		} else if (enoun.endsWith("lotus") || enoun.endsWith("wumpus") || enoun.endsWith("deus")) {
+			return enoun + postfix;
+		} else if (enoun.endsWith("cabooses")) {
+			return enoun.substring(0, enoun.length() - 1) + postfix;
+		} else if (enoun.endsWith("yses") || enoun.endsWith("ysis")) {
+			return enoun.substring(0, enoun.length() - 2) + "is" + postfix;
+		} else if (enoun.length() > 3 && enoun.endsWith("es")
+					&& (("zxs".indexOf(enoun.charAt(enoun.length() - 3)) > -1) ||
+						(enoun.endsWith("ches") || enoun.endsWith("shes")))
+					&& !enoun.endsWith("axes") && !enoun.endsWith("bardiches")
+					&& !enoun.endsWith("nooses")) {
+			return enoun.substring(0, enoun.length() - 2) + postfix;
+		} else if (enoun.length() > 4 && enoun.endsWith("ies")
+				&& consonant_p(enoun.charAt(enoun.length() - 4))
+				&& !enoun.endsWith("zombies")) {
+			return enoun.substring(0, enoun.length() - 3) + "y" + postfix;
+		// no special case matched, so look for the standard "s" plural
+		} else if (enoun.endsWith("s") && !enoun.endsWith("ss")) {
+			return enoun.substring(0, enoun.length() - 1) + postfix;
+		} else
+			return enoun + postfix;
 	}
 
 	/**
@@ -344,7 +444,7 @@ public class Grammar {
 	 */
 	public static String plnoun(int quantity, String noun) {
 		String enoun = fullform(noun);
-		return (quantity == 1 ? enoun : plural(noun));
+		return (quantity == 1 ? singular(enoun) : plural(noun));
 	}
 
 	/**

@@ -132,261 +132,271 @@ public class GrammarTest {
 		assertEquals("a's", Grammar.suffix_s("a"));
 	}
 
-	private static void testPluralisationOfAGivenSingularWord(String message,
-			String plural, String singular) {
+	private static void testPluralisationOfAGivenSingularWord(String message, String plural, String singular) {
 		assertEquals(message, plural, Grammar.plural(singular));
 
 		/* Calling plural() with words already in their plural form does not yet work.
 		assertEquals("no change expected", plural, Grammar.plural(plural)); */
 	}
 
-	private static void testPluralisationOfAGivenSingularWord(String plural, String singular) {
+	private static void testSingularisationOfAGivenSingularWord(String message, String plural, String singular) {
+		assertEquals(message, Grammar.fullform(singular), Grammar.singular(plural));
+		assertEquals("no change expected", Grammar.fullform(singular), Grammar.singular(singular));
+	}
+
+	private static void testPluralisationAndSingularisation(String plural, String singular) {
 		testPluralisationOfAGivenSingularWord("building plural form", plural, singular);
+		testSingularisationOfAGivenSingularWord("building singular form", plural, singular);
+	}
+
+	private static void testPluralisationAndSingularisation(String message, String plural, String singular) {
+		testPluralisationOfAGivenSingularWord(message, plural, singular);
+		testSingularisationOfAGivenSingularWord(message, plural, singular);
 	}
 
 	@Test
 	public void testPluralItem() {
 		// TODO: decide on name and plural of money
-		testPluralisationOfAGivenSingularWord("money", "money");
-		testPluralisationOfAGivenSingularWord("sandwiches", "sandwich");
-		testPluralisationOfAGivenSingularWord("knives", "knife");
-		testPluralisationOfAGivenSingularWord("daggers", "dagger");
-		testPluralisationOfAGivenSingularWord("short swords", "short sword");
-		testPluralisationOfAGivenSingularWord("swords", "sword");
-		testPluralisationOfAGivenSingularWord("scimitars", "scimitar");
-		testPluralisationOfAGivenSingularWord(
+		testPluralisationAndSingularisation("money", "money");
+		testPluralisationAndSingularisation("sandwiches", "sandwich");
+		testPluralisationAndSingularisation("knives", "knife");
+		testPluralisationAndSingularisation("daggers", "dagger");
+		testPluralisationAndSingularisation("short swords", "short sword");
+		testPluralisationAndSingularisation("swords", "sword");
+		testPluralisationAndSingularisation("scimitars", "scimitar");
+		testPluralisationAndSingularisation(
 				"wikipedia says katana/katanas ok", "katanas", "katana");
-		testPluralisationOfAGivenSingularWord("claymores", "claymore");
-		testPluralisationOfAGivenSingularWord("broadswords", "broadsword");
-		testPluralisationOfAGivenSingularWord("biting swords", "biting sword");
-		testPluralisationOfAGivenSingularWord("fire swords", "fire sword");
-		testPluralisationOfAGivenSingularWord("ice swords", "ice sword");
-		testPluralisationOfAGivenSingularWord("great swords", "great sword");
-		testPluralisationOfAGivenSingularWord("r hand swords", "r hand sword");
-		testPluralisationOfAGivenSingularWord("l hand swords", "l hand sword");
-		testPluralisationOfAGivenSingularWord("small axes", "small axe");
-		testPluralisationOfAGivenSingularWord("hand axes", "hand axe");
-		testPluralisationOfAGivenSingularWord("axes", "axe");
-		testPluralisationOfAGivenSingularWord("battle axes", "battle axe");
-		testPluralisationOfAGivenSingularWord("bardiches", "bardiche");
-		testPluralisationOfAGivenSingularWord("scythes", "scythe");
-		testPluralisationOfAGivenSingularWord("twoside axes", "twoside axe");
-		testPluralisationOfAGivenSingularWord("halberds", "halberd");
-		testPluralisationOfAGivenSingularWord("twoside axes +3",
+		testPluralisationAndSingularisation("claymores", "claymore");
+		testPluralisationAndSingularisation("broadswords", "broadsword");
+		testPluralisationAndSingularisation("biting swords", "biting sword");
+		testPluralisationAndSingularisation("fire swords", "fire sword");
+		testPluralisationAndSingularisation("ice swords", "ice sword");
+		testPluralisationAndSingularisation("great swords", "great sword");
+		testPluralisationAndSingularisation("r hand swords", "r hand sword");
+		testPluralisationAndSingularisation("l hand swords", "l hand sword");
+		testPluralisationAndSingularisation("small axes", "small axe");
+		testPluralisationAndSingularisation("hand axes", "hand axe");
+		testPluralisationAndSingularisation("axes", "axe");
+		testPluralisationAndSingularisation("battle axes", "battle axe");
+		testPluralisationAndSingularisation("bardiches", "bardiche");
+		testPluralisationAndSingularisation("scythes", "scythe");
+		testPluralisationAndSingularisation("twoside axes", "twoside axe");
+		testPluralisationAndSingularisation("halberds", "halberd");
+		testPluralisationAndSingularisation("twoside axes +3",
 				"twoside axe +3");
-		testPluralisationOfAGivenSingularWord("clubs", "club");
-		testPluralisationOfAGivenSingularWord("staffs", "staff");
-		testPluralisationOfAGivenSingularWord("maces", "mace");
-		testPluralisationOfAGivenSingularWord("flails", "flail");
-		testPluralisationOfAGivenSingularWord("maces +1", "mace +1");
-		testPluralisationOfAGivenSingularWord("maces +2", "mace +2");
-		testPluralisationOfAGivenSingularWord("skull staffs", "skull staff");
-		testPluralisationOfAGivenSingularWord("flails +2", "flail +2");
-		testPluralisationOfAGivenSingularWord("hammers", "hammer");
-		testPluralisationOfAGivenSingularWord("hammers +3", "hammer +3");
-		testPluralisationOfAGivenSingularWord("war hammers", "war hammer");
-		testPluralisationOfAGivenSingularWord("wooden bows", "wooden bow");
-		testPluralisationOfAGivenSingularWord("longbows", "longbow");
-		testPluralisationOfAGivenSingularWord("longbows +1", "longbow +1");
-		testPluralisationOfAGivenSingularWord("crossbows", "crossbow");
-		testPluralisationOfAGivenSingularWord("wooden arrows", "wooden arrow");
-		testPluralisationOfAGivenSingularWord("steel arrows", "steel arrow");
-		testPluralisationOfAGivenSingularWord("golden arrows", "golden arrow");
-		testPluralisationOfAGivenSingularWord("bucklers", "buckler");
-		testPluralisationOfAGivenSingularWord("wooden shields", "wooden shield");
-		testPluralisationOfAGivenSingularWord("studded shields",
+		testPluralisationAndSingularisation("clubs", "club");
+		testPluralisationAndSingularisation("staffs", "staff");
+		testPluralisationAndSingularisation("maces", "mace");
+		testPluralisationAndSingularisation("flails", "flail");
+		testPluralisationAndSingularisation("maces +1", "mace +1");
+		testPluralisationAndSingularisation("maces +2", "mace +2");
+		testPluralisationAndSingularisation("skull staffs", "skull staff");
+		testPluralisationAndSingularisation("flails +2", "flail +2");
+		testPluralisationAndSingularisation("hammers", "hammer");
+		testPluralisationAndSingularisation("hammers +3", "hammer +3");
+		testPluralisationAndSingularisation("war hammers", "war hammer");
+		testPluralisationAndSingularisation("wooden bows", "wooden bow");
+		testPluralisationAndSingularisation("longbows", "longbow");
+		testPluralisationAndSingularisation("longbows +1", "longbow +1");
+		testPluralisationAndSingularisation("crossbows", "crossbow");
+		testPluralisationAndSingularisation("wooden arrows", "wooden arrow");
+		testPluralisationAndSingularisation("steel arrows", "steel arrow");
+		testPluralisationAndSingularisation("golden arrows", "golden arrow");
+		testPluralisationAndSingularisation("bucklers", "buckler");
+		testPluralisationAndSingularisation("wooden shields", "wooden shield");
+		testPluralisationAndSingularisation("studded shields",
 				"studded shield");
-		testPluralisationOfAGivenSingularWord("plate shields", "plate shield");
-		testPluralisationOfAGivenSingularWord("lion shields", "lion shield");
-		testPluralisationOfAGivenSingularWord("unicorn shields",
+		testPluralisationAndSingularisation("plate shields", "plate shield");
+		testPluralisationAndSingularisation("lion shields", "lion shield");
+		testPluralisationAndSingularisation("unicorn shields",
 				"unicorn shield");
-		testPluralisationOfAGivenSingularWord("lion shields +1",
+		testPluralisationAndSingularisation("lion shields +1",
 				"lion shield +1");
-		testPluralisationOfAGivenSingularWord("skull shields", "skull shield");
-		testPluralisationOfAGivenSingularWord("crown shields", "crown shield");
-		testPluralisationOfAGivenSingularWord("golden shields", "golden shield");
-		testPluralisationOfAGivenSingularWord("dresses", "dress");
-		testPluralisationOfAGivenSingularWord("suits of leather armor",
+		testPluralisationAndSingularisation("skull shields", "skull shield");
+		testPluralisationAndSingularisation("crown shields", "crown shield");
+		testPluralisationAndSingularisation("golden shields", "golden shield");
+		testPluralisationAndSingularisation("dresses", "dress");
+		testPluralisationAndSingularisation("suits of leather armor",
 				"suit of leather armor");
-		testPluralisationOfAGivenSingularWord("leather cuirasses",
+		testPluralisationAndSingularisation("leather cuirasses",
 				"leather cuirass");
-		testPluralisationOfAGivenSingularWord("suits of leather armor +1",
+		testPluralisationAndSingularisation("suits of leather armor +1",
 				"suit of leather armor +1");
-		testPluralisationOfAGivenSingularWord("leather cuirasses +1",
+		testPluralisationAndSingularisation("leather cuirasses +1",
 				"leather cuirass +1");
-		testPluralisationOfAGivenSingularWord("suits of studded armor",
+		testPluralisationAndSingularisation("suits of studded armor",
 				"suit of studded armor");
-		testPluralisationOfAGivenSingularWord("suits of chain armor",
+		testPluralisationAndSingularisation("suits of chain armor",
 				"suit of chain armor");
-		testPluralisationOfAGivenSingularWord("suits of chain armor +1",
+		testPluralisationAndSingularisation("suits of chain armor +1",
 				"suit of chain armor +1");
-		testPluralisationOfAGivenSingularWord("suits of scale armor",
+		testPluralisationAndSingularisation("suits of scale armor",
 				"suit of scale armor");
-		testPluralisationOfAGivenSingularWord("suits of scale armor +1",
+		testPluralisationAndSingularisation("suits of scale armor +1",
 				"suit of scale armor +1");
-		testPluralisationOfAGivenSingularWord("suits of scale armor +112",
+		testPluralisationAndSingularisation("suits of scale armor +112",
 				"suit of scale armor +112");
-		testPluralisationOfAGivenSingularWord("suits of chain armor +3",
+		testPluralisationAndSingularisation("suits of chain armor +3",
 				"suit of chain armor +3");
-		testPluralisationOfAGivenSingularWord("suits of scale armor +2",
+		testPluralisationAndSingularisation("suits of scale armor +2",
 				"suit of scale armor +2");
-		testPluralisationOfAGivenSingularWord("suits of plate armor",
+		testPluralisationAndSingularisation("suits of plate armor",
 				"suit of plate armor");
-		testPluralisationOfAGivenSingularWord("suits of golden armor",
+		testPluralisationAndSingularisation("suits of golden armor",
 				"suit of golden armor");
-		testPluralisationOfAGivenSingularWord("leather helmets",
+		testPluralisationAndSingularisation("leather helmets",
 				"leather helmet");
-		testPluralisationOfAGivenSingularWord("robins hats", "robins hat");
-		testPluralisationOfAGivenSingularWord("studded helmets",
+		testPluralisationAndSingularisation("robins hats", "robins hat");
+		testPluralisationAndSingularisation("studded helmets",
 				"studded helmet");
-		testPluralisationOfAGivenSingularWord("chain helmets", "chain helmet");
-		testPluralisationOfAGivenSingularWord("viking helmets", "viking helmet");
-		testPluralisationOfAGivenSingularWord("chain helmets +2",
+		testPluralisationAndSingularisation("chain helmets", "chain helmet");
+		testPluralisationAndSingularisation("viking helmets", "viking helmet");
+		testPluralisationAndSingularisation("chain helmets +2",
 				"chain helmet +2");
-		testPluralisationOfAGivenSingularWord("golden helmets", "golden helmet");
-		testPluralisationOfAGivenSingularWord("golden helmets +3",
+		testPluralisationAndSingularisation("golden helmets", "golden helmet");
+		testPluralisationAndSingularisation("golden helmets +3",
 				"golden helmet +3");
-		testPluralisationOfAGivenSingularWord("trophy helmets", "trophy helmet");
-		testPluralisationOfAGivenSingularWord("pairs of leather legs",
+		testPluralisationAndSingularisation("trophy helmets", "trophy helmet");
+		testPluralisationAndSingularisation("pairs of leather legs",
 				"pair of leather legs");
-		testPluralisationOfAGivenSingularWord("pairs of studded legs",
+		testPluralisationAndSingularisation("pairs of studded legs",
 				"pair of studded legs");
-		testPluralisationOfAGivenSingularWord("pairs of chain legs",
+		testPluralisationAndSingularisation("pairs of chain legs",
 				"pair of chain legs");
-		testPluralisationOfAGivenSingularWord("pairs of golden legs",
+		testPluralisationAndSingularisation("pairs of golden legs",
 				"pair of golden legs");
-		testPluralisationOfAGivenSingularWord("pairs of leather boots",
+		testPluralisationAndSingularisation("pairs of leather boots",
 				"pair of leather boots");
-		testPluralisationOfAGivenSingularWord("pairs of studded boots",
+		testPluralisationAndSingularisation("pairs of studded boots",
 				"pair of studded boots");
-		testPluralisationOfAGivenSingularWord("pairs of chain boots",
+		testPluralisationAndSingularisation("pairs of chain boots",
 				"pair of chain boots");
-		testPluralisationOfAGivenSingularWord("pairs of steel boots",
+		testPluralisationAndSingularisation("pairs of steel boots",
 				"pair of steel boots");
-		testPluralisationOfAGivenSingularWord("pairs of golden boots",
+		testPluralisationAndSingularisation("pairs of golden boots",
 				"pair of golden boots");
-		testPluralisationOfAGivenSingularWord("cloaks", "cloak");
-		testPluralisationOfAGivenSingularWord("elf cloaks", "elf cloak");
-		testPluralisationOfAGivenSingularWord("dwarf cloaks", "dwarf cloak");
-		testPluralisationOfAGivenSingularWord("elf cloaks +2", "elf cloak +2");
-		testPluralisationOfAGivenSingularWord("green dragon cloaks",
+		testPluralisationAndSingularisation("cloaks", "cloak");
+		testPluralisationAndSingularisation("elf cloaks", "elf cloak");
+		testPluralisationAndSingularisation("dwarf cloaks", "dwarf cloak");
+		testPluralisationAndSingularisation("elf cloaks +2", "elf cloak +2");
+		testPluralisationAndSingularisation("green dragon cloaks",
 				"green dragon cloak");
-		testPluralisationOfAGivenSingularWord("lich cloaks", "lich cloak");
-		testPluralisationOfAGivenSingularWord("blue dragon cloaks",
+		testPluralisationAndSingularisation("lich cloaks", "lich cloak");
+		testPluralisationAndSingularisation("blue dragon cloaks",
 				"blue dragon cloak");
-		testPluralisationOfAGivenSingularWord("black dragon cloaks",
+		testPluralisationAndSingularisation("black dragon cloaks",
 				"black dragon cloak");
-		testPluralisationOfAGivenSingularWord("golden cloaks", "golden cloak");
-		testPluralisationOfAGivenSingularWord("cherries", "cherry");
-		testPluralisationOfAGivenSingularWord("pieces of cheese",
+		testPluralisationAndSingularisation("golden cloaks", "golden cloak");
+		testPluralisationAndSingularisation("cherries", "cherry");
+		testPluralisationAndSingularisation("pieces of cheese",
 				"piece of cheese");
-		testPluralisationOfAGivenSingularWord("carrots", "carrot");
-		testPluralisationOfAGivenSingularWord("salads", "salad");
-		testPluralisationOfAGivenSingularWord("apples", "apple");
-		testPluralisationOfAGivenSingularWord("loaves of bread",
+		testPluralisationAndSingularisation("carrots", "carrot");
+		testPluralisationAndSingularisation("salads", "salad");
+		testPluralisationAndSingularisation("apples", "apple");
+		testPluralisationAndSingularisation("loaves of bread",
 				"loaf of bread");
-		testPluralisationOfAGivenSingularWord("chunks of meat", "chunk of meat");
-		testPluralisationOfAGivenSingularWord("pieces of ham", "ham");
-		testPluralisationOfAGivenSingularWord("sandwiches", "sandwich");
-		testPluralisationOfAGivenSingularWord("pies", "pie");
-		testPluralisationOfAGivenSingularWord("button mushrooms",
+		testPluralisationAndSingularisation("chunks of meat", "chunk of meat");
+		testPluralisationAndSingularisation("pieces of ham", "ham");
+		testPluralisationAndSingularisation("sandwiches", "sandwich");
+		testPluralisationAndSingularisation("pies", "pie");
+		testPluralisationAndSingularisation("button mushrooms",
 				"button mushroom");
-		testPluralisationOfAGivenSingularWord("porcini", "porcini");
-		testPluralisationOfAGivenSingularWord("toadstools", "toadstool");
-		testPluralisationOfAGivenSingularWord("bottles of beer", "beer");
-		testPluralisationOfAGivenSingularWord("flasks of wine", "flask of wine");
-		testPluralisationOfAGivenSingularWord("minor potions", "minor potion");
-		testPluralisationOfAGivenSingularWord("bottles of antidote", "antidote");
-		testPluralisationOfAGivenSingularWord("potions", "potion");
-		testPluralisationOfAGivenSingularWord("greater potions",
+		testPluralisationAndSingularisation("porcini", "porcini");
+		testPluralisationAndSingularisation("toadstools", "toadstool");
+		testPluralisationAndSingularisation("bottles of beer", "beer");
+		testPluralisationAndSingularisation("flasks of wine", "flask of wine");
+		testPluralisationAndSingularisation("minor potions", "minor potion");
+		testPluralisationAndSingularisation("bottles of antidote", "antidote");
+		testPluralisationAndSingularisation("potions", "potion");
+		testPluralisationAndSingularisation("greater potions",
 				"greater potion");
-		testPluralisationOfAGivenSingularWord("bottles of poison", "poison");
-		testPluralisationOfAGivenSingularWord("bottles of greater poison",
+		testPluralisationAndSingularisation("bottles of poison", "poison");
+		testPluralisationAndSingularisation("bottles of greater poison",
 				"greater poison");
-		testPluralisationOfAGivenSingularWord("bottles of deadly poison",
+		testPluralisationAndSingularisation("bottles of deadly poison",
 				"deadly poison");
-		testPluralisationOfAGivenSingularWord("flasks", "flask");
-		testPluralisationOfAGivenSingularWord("bottles", "bottle");
-		testPluralisationOfAGivenSingularWord("big bottles", "big bottle");
+		testPluralisationAndSingularisation("flasks", "flask");
+		testPluralisationAndSingularisation("bottles", "bottle");
+		testPluralisationAndSingularisation("big bottles", "big bottle");
 
-		testPluralisationOfAGivenSingularWord("black books", "black book");
-		testPluralisationOfAGivenSingularWord("logs of wood", "log of wood");
-		testPluralisationOfAGivenSingularWord("sheaves of grain",
+		testPluralisationAndSingularisation("black books", "black book");
+		testPluralisationAndSingularisation("logs of wood", "log of wood");
+		testPluralisationAndSingularisation("sheaves of grain",
 				"sheaf of grain");
-		testPluralisationOfAGivenSingularWord("bags of flour", "bag of flour");
-		testPluralisationOfAGivenSingularWord("nuggets of iron ore",
+		testPluralisationAndSingularisation("bags of flour", "bag of flour");
+		testPluralisationAndSingularisation("nuggets of iron ore",
 				"nugget of iron ore");
-		testPluralisationOfAGivenSingularWord("bars of iron", "bar of iron");
-		testPluralisationOfAGivenSingularWord("golden gm tokens",
+		testPluralisationAndSingularisation("bars of iron", "bar of iron");
+		testPluralisationAndSingularisation("golden gm tokens",
 				"golden gm token");
-		testPluralisationOfAGivenSingularWord("silvery gm tokens",
+		testPluralisationAndSingularisation("silvery gm tokens",
 				"silvery gm token");
-		testPluralisationOfAGivenSingularWord("bronze gm tokens",
+		testPluralisationAndSingularisation("bronze gm tokens",
 				"bronze gm token");
-		testPluralisationOfAGivenSingularWord("tokens", "token");
-		testPluralisationOfAGivenSingularWord("notes", "note");
-		testPluralisationOfAGivenSingularWord("coupons", "coupon");
-		testPluralisationOfAGivenSingularWord("dice", "dice");
-		testPluralisationOfAGivenSingularWord("teddies", "teddy");
-		testPluralisationOfAGivenSingularWord("maps", "map");
-		testPluralisationOfAGivenSingularWord("summon scrolls", "summon scroll");
-		testPluralisationOfAGivenSingularWord("empty scrolls", "empty scroll");
-		testPluralisationOfAGivenSingularWord("home scrolls", "home scroll");
-		testPluralisationOfAGivenSingularWord("marked scrolls", "marked scroll");
-		testPluralisationOfAGivenSingularWord("presents", "present");
-		testPluralisationOfAGivenSingularWord("rods of the gm", "rod of the gm");
-		testPluralisationOfAGivenSingularWord("rat keys", "rat key");
-		testPluralisationOfAGivenSingularWord("sprigs of arandula", "arandula");
+		testPluralisationAndSingularisation("tokens", "token");
+		testPluralisationAndSingularisation("notes", "note");
+		testPluralisationAndSingularisation("coupons", "coupon");
+		testPluralisationAndSingularisation("dice", "dice");
+		testPluralisationAndSingularisation("teddies", "teddy");
+		testPluralisationAndSingularisation("maps", "map");
+		testPluralisationAndSingularisation("summon scrolls", "summon scroll");
+		testPluralisationAndSingularisation("empty scrolls", "empty scroll");
+		testPluralisationAndSingularisation("home scrolls", "home scroll");
+		testPluralisationAndSingularisation("marked scrolls", "marked scroll");
+		testPluralisationAndSingularisation("presents", "present");
+		testPluralisationAndSingularisation("rods of the gm", "rod of the gm");
+		testPluralisationAndSingularisation("rat keys", "rat key");
+		testPluralisationAndSingularisation("sprigs of arandula", "arandula");
 
-		testPluralisationOfAGivenSingularWord("mice", "mouse");
+		testPluralisationAndSingularisation("mice", "mouse");
 
-		testPluralisationOfAGivenSingularWord("houses", "house");
-		testPluralisationOfAGivenSingularWord("houses of sun", "house of sun");
-		testPluralisationOfAGivenSingularWord("geese", "goose");
-		testPluralisationOfAGivenSingularWord("cabooses", "caboose");
-		testPluralisationOfAGivenSingularWord("teeth", "tooth");
-		testPluralisationOfAGivenSingularWord("feet", "foot");
-		testPluralisationOfAGivenSingularWord("children", "child");
+		testPluralisationAndSingularisation("houses", "house");
+		testPluralisationAndSingularisation("houses of sun", "house of sun");
+		testPluralisationAndSingularisation("geese", "goose");
+		testPluralisationAndSingularisation("cabooses", "caboose");
+		testPluralisationAndSingularisation("teeth", "tooth");
+		testPluralisationAndSingularisation("feet", "foot");
+		testPluralisationAndSingularisation("children", "child");
 
-        testPluralisationOfAGivenSingularWord("moose", "moose");
-        testPluralisationOfAGivenSingularWord("nooses", "noose");
-        testPluralisationOfAGivenSingularWord("helia", "helium");
-        testPluralisationOfAGivenSingularWord("sodia", "sodium");
-		testPluralisationOfAGivenSingularWord("ia", "ium");
-        testPluralisationOfAGivenSingularWord("men", "man");
-        testPluralisationOfAGivenSingularWord("humans", "human");
+        testPluralisationAndSingularisation("moose", "moose");
+        testPluralisationAndSingularisation("nooses", "noose");
+        testPluralisationAndSingularisation("helia", "helium");
+        testPluralisationAndSingularisation("sodia", "sodium");
+		testPluralisationAndSingularisation("xxxia", "xxxium");
+        testPluralisationAndSingularisation("men", "man");
+        testPluralisationAndSingularisation("humans", "human");
 
-        testPluralisationOfAGivenSingularWord("tomatoes", "tomato");
-		testPluralisationOfAGivenSingularWord("algae", "alga");
-		testPluralisationOfAGivenSingularWord("larvae", "larva");
-		testPluralisationOfAGivenSingularWord("hyphae", "hypha");
-		testPluralisationOfAGivenSingularWord("bureaux", "bureau");
-		testPluralisationOfAGivenSingularWord("dei", "deus");
-        testPluralisationOfAGivenSingularWord("indices", "index");
-        testPluralisationOfAGivenSingularWord("vertices", "vertex");
-		testPluralisationOfAGivenSingularWord("vortices", "vortex");
+        testPluralisationAndSingularisation("tomatoes", "tomato");
+		testPluralisationAndSingularisation("algae", "alga");
+		testPluralisationAndSingularisation("larvae", "larva");
+		testPluralisationAndSingularisation("hyphae", "hypha");
+		testPluralisationAndSingularisation("bureaux", "bureau");
+		testPluralisationAndSingularisation("dei", "deus");
+        testPluralisationAndSingularisation("indices", "index");
+        testPluralisationAndSingularisation("vertices", "vertex");
+		testPluralisationAndSingularisation("vortices", "vortex");
 
-		testPluralisationOfAGivenSingularWord("matrices", "matrix");
-        testPluralisationOfAGivenSingularWord("analyses", "analysis");
-		testPluralisationOfAGivenSingularWord("xxxxses", "xxxxsis");
+		testPluralisationAndSingularisation("matrices", "matrix");
+        testPluralisationAndSingularisation("analyses", "analysis");
+		testPluralisationAndSingularisation("xxxyses", "xxxysis");
 
-		testPluralisationOfAGivenSingularWord("wumpuses", "wumpus");
-		testPluralisationOfAGivenSingularWord("lotuses", "lotus");
-		testPluralisationOfAGivenSingularWord("mumakil", "mumak");
+		testPluralisationAndSingularisation("wumpuses", "wumpus");
+		testPluralisationAndSingularisation("lotuses", "lotus");
+		testPluralisationAndSingularisation("mumakil", "mumak");
 
-		testPluralisationOfAGivenSingularWord("djinn", "djinni");
-		testPluralisationOfAGivenSingularWord("efreet", "efreeti");
-		testPluralisationOfAGivenSingularWord("ys", "y");
-		testPluralisationOfAGivenSingularWord("bies", "by");
-		testPluralisationOfAGivenSingularWord("fs", "f");
+		testPluralisationAndSingularisation("djinn", "djinni");
+		testPluralisationAndSingularisation("efreet", "efreeti");
+		testPluralisationAndSingularisation("ys", "y");
+		testPluralisationAndSingularisation("abies", "aby");	// baby: ... + consonant + "y"
+		testPluralisationAndSingularisation("fs", "f");
 
-        testPluralisationOfAGivenSingularWord("matches", "match");
-        testPluralisationOfAGivenSingularWord("boxes", "box");
-        testPluralisationOfAGivenSingularWord("bushes", "bush");
-        testPluralisationOfAGivenSingularWord("boys", "boy");
-        testPluralisationOfAGivenSingularWord("bosses", "boss");
-        testPluralisationOfAGivenSingularWord("bodies", "body");
-        testPluralisationOfAGivenSingularWord("princesses", "princess");
+        testPluralisationAndSingularisation("matches", "match");
+        testPluralisationAndSingularisation("boxes", "box");
+        testPluralisationAndSingularisation("bushes", "bush");
+        testPluralisationAndSingularisation("boys", "boy");
+        testPluralisationAndSingularisation("bosses", "boss");
+        testPluralisationAndSingularisation("bodies", "body");
+        testPluralisationAndSingularisation("princesses", "princess");
 	}
 
 	/**
@@ -394,112 +404,112 @@ public class GrammarTest {
 	 */
 	@Test
 	public void testPluralCreatures() {
-		testPluralisationOfAGivenSingularWord("deer", "deer");
-		testPluralisationOfAGivenSingularWord("crabs", "crab");
-		testPluralisationOfAGivenSingularWord("rats", "rat");
-		testPluralisationOfAGivenSingularWord("bats", "bat");
-		testPluralisationOfAGivenSingularWord("caverats", "caverat");
-		testPluralisationOfAGivenSingularWord("penguins", "penguin");
-		testPluralisationOfAGivenSingularWord("monkeys", "monkey");
-		testPluralisationOfAGivenSingularWord("boars", "boar");
-		testPluralisationOfAGivenSingularWord("wolves", "wolf");
-		testPluralisationOfAGivenSingularWord("gnomes", "gnome");
-		testPluralisationOfAGivenSingularWord("mage gnomes", "mage gnome");
-		testPluralisationOfAGivenSingularWord("cobras", "cobra");
-		testPluralisationOfAGivenSingularWord("bears", "bear");
-		testPluralisationOfAGivenSingularWord("lions", "lion");
-		testPluralisationOfAGivenSingularWord("goblins", "goblin");
-		testPluralisationOfAGivenSingularWord("kobolds", "kobold");
-		testPluralisationOfAGivenSingularWord("elephants", "elephant");
-		testPluralisationOfAGivenSingularWord("venomrats", "venomrat");
-		testPluralisationOfAGivenSingularWord("tigers", "tiger");
-		testPluralisationOfAGivenSingularWord("skeletons", "skeleton");
-		testPluralisationOfAGivenSingularWord("gargoyles", "gargoyle");
-		testPluralisationOfAGivenSingularWord("young beholders",
+		testPluralisationAndSingularisation("deer", "deer");
+		testPluralisationAndSingularisation("crabs", "crab");
+		testPluralisationAndSingularisation("rats", "rat");
+		testPluralisationAndSingularisation("bats", "bat");
+		testPluralisationAndSingularisation("caverats", "caverat");
+		testPluralisationAndSingularisation("penguins", "penguin");
+		testPluralisationAndSingularisation("monkeys", "monkey");
+		testPluralisationAndSingularisation("boars", "boar");
+		testPluralisationAndSingularisation("wolves", "wolf");
+		testPluralisationAndSingularisation("gnomes", "gnome");
+		testPluralisationAndSingularisation("mage gnomes", "mage gnome");
+		testPluralisationAndSingularisation("cobras", "cobra");
+		testPluralisationAndSingularisation("bears", "bear");
+		testPluralisationAndSingularisation("lions", "lion");
+		testPluralisationAndSingularisation("goblins", "goblin");
+		testPluralisationAndSingularisation("kobolds", "kobold");
+		testPluralisationAndSingularisation("elephants", "elephant");
+		testPluralisationAndSingularisation("venomrats", "venomrat");
+		testPluralisationAndSingularisation("tigers", "tiger");
+		testPluralisationAndSingularisation("skeletons", "skeleton");
+		testPluralisationAndSingularisation("gargoyles", "gargoyle");
+		testPluralisationAndSingularisation("young beholders",
 				"young beholder");
-		testPluralisationOfAGivenSingularWord("zombie rats", "zombie rat");
-		testPluralisationOfAGivenSingularWord("veteran goblins",
+		testPluralisationAndSingularisation("zombie rats", "zombie rat");
+		testPluralisationAndSingularisation("veteran goblins",
 				"veteran goblin");
-		testPluralisationOfAGivenSingularWord("soldier kobolds",
+		testPluralisationAndSingularisation("soldier kobolds",
 				"soldier kobold");
-		testPluralisationOfAGivenSingularWord(
+		testPluralisationAndSingularisation(
 				"plural of slime is slime but this is a creature....",
 				"green slimes", "green slime");
-		testPluralisationOfAGivenSingularWord("archer kobolds", "archer kobold");
-		testPluralisationOfAGivenSingularWord("black bears", "black bear");
-		testPluralisationOfAGivenSingularWord("elder gargoyles",
+		testPluralisationAndSingularisation("archer kobolds", "archer kobold");
+		testPluralisationAndSingularisation("black bears", "black bear");
+		testPluralisationAndSingularisation("elder gargoyles",
 				"elder gargoyle");
-		testPluralisationOfAGivenSingularWord("razorrats", "razorrat");
-		testPluralisationOfAGivenSingularWord("cyclopses", "cyclops");
-		testPluralisationOfAGivenSingularWord("beholders", "beholder");
-		testPluralisationOfAGivenSingularWord("soldier goblins",
+		testPluralisationAndSingularisation("razorrats", "razorrat");
+		testPluralisationAndSingularisation("cyclopses", "cyclops");
+		testPluralisationAndSingularisation("erinyes", "erinys");
+		testPluralisationAndSingularisation("beholders", "beholder");
+		testPluralisationAndSingularisation("soldier goblins",
 				"soldier goblin");
-		testPluralisationOfAGivenSingularWord("veteran kobolds",
+		testPluralisationAndSingularisation("veteran kobolds",
 				"veteran kobold");
-		testPluralisationOfAGivenSingularWord("trolls", "troll");
-		testPluralisationOfAGivenSingularWord("orcs", "orc");
-		testPluralisationOfAGivenSingularWord("dark gargoyles", "dark gargoyle");
-		testPluralisationOfAGivenSingularWord("ogres", "ogre");
-		testPluralisationOfAGivenSingularWord("mummies", "mummy");
-		testPluralisationOfAGivenSingularWord("leader kobolds", "leader kobold");
-		testPluralisationOfAGivenSingularWord("orc warriors", "orc warrior");
-		testPluralisationOfAGivenSingularWord("orc hunters", "orc hunter");
-		testPluralisationOfAGivenSingularWord("ghosts", "ghost");
-		testPluralisationOfAGivenSingularWord("giantrats", "giantrat");
-		testPluralisationOfAGivenSingularWord("elves", "elf");
-		testPluralisationOfAGivenSingularWord("dwarves", "dwarf");
-		testPluralisationOfAGivenSingularWord("ratmen", "ratman");
-		testPluralisationOfAGivenSingularWord("ratwomen", "ratwoman");
-		testPluralisationOfAGivenSingularWord("elder beholders",
+		testPluralisationAndSingularisation("trolls", "troll");
+		testPluralisationAndSingularisation("orcs", "orc");
+		testPluralisationAndSingularisation("dark gargoyles", "dark gargoyle");
+		testPluralisationAndSingularisation("ogres", "ogre");
+		testPluralisationAndSingularisation("mummies", "mummy");
+		testPluralisationAndSingularisation("leader kobolds", "leader kobold");
+		testPluralisationAndSingularisation("orc warriors", "orc warrior");
+		testPluralisationAndSingularisation("orc hunters", "orc hunter");
+		testPluralisationAndSingularisation("ghosts", "ghost");
+		testPluralisationAndSingularisation("giantrats", "giantrat");
+		testPluralisationAndSingularisation("elves", "elf");
+		testPluralisationAndSingularisation("dwarves", "dwarf");
+		testPluralisationAndSingularisation("ratmen", "ratman");
+		testPluralisationAndSingularisation("ratwomen", "ratwoman");
+		testPluralisationAndSingularisation("elder beholders",
 				"elder beholder");
-		testPluralisationOfAGivenSingularWord(
+		testPluralisationAndSingularisation(
 				"plural of slime is slime but this is a creature....",
 				"brown slimes", "brown slime");
-		testPluralisationOfAGivenSingularWord("venom gargoyles",
+		testPluralisationAndSingularisation("venom gargoyles",
 				"venom gargoyle");
-		testPluralisationOfAGivenSingularWord("elder ogres", "elder ogre");
-		testPluralisationOfAGivenSingularWord("dwarf guardians",
+		testPluralisationAndSingularisation("elder ogres", "elder ogre");
+		testPluralisationAndSingularisation("dwarf guardians",
 				"dwarf guardian");
-		testPluralisationOfAGivenSingularWord(
+		testPluralisationAndSingularisation(
 				"chief is an exception to the v rule", "orc chiefs",
 				"orc chief");
-		testPluralisationOfAGivenSingularWord("militia elves", "militia elf");
-		testPluralisationOfAGivenSingularWord("archer elves", "archer elf");
-		testPluralisationOfAGivenSingularWord("zombies", "zombie");
-		testPluralisationOfAGivenSingularWord("elder dwarves", "elder dwarf");
-		testPluralisationOfAGivenSingularWord("soldier elves", "soldier elf");
-		testPluralisationOfAGivenSingularWord("warrior skeletons",
+		testPluralisationAndSingularisation("militia elves", "militia elf");
+		testPluralisationAndSingularisation("archer elves", "archer elf");
+		testPluralisationAndSingularisation("zombies", "zombie");
+		testPluralisationAndSingularisation("elder dwarves", "elder dwarf");
+		testPluralisationAndSingularisation("soldier elves", "soldier elf");
+		testPluralisationAndSingularisation("warrior skeletons",
 				"warrior skeleton");
-		testPluralisationOfAGivenSingularWord(
+		testPluralisationAndSingularisation(
 				"plural of slime is slime but this is a creature....",
 				"black slimes", "black slime");
-		testPluralisationOfAGivenSingularWord("wooden golems", "wooden golem");
-		testPluralisationOfAGivenSingularWord("royal mummies", "royal mummy");
-		testPluralisationOfAGivenSingularWord("archrats", "archrat");
-		testPluralisationOfAGivenSingularWord("hero dwarves", "hero dwarf");
-		testPluralisationOfAGivenSingularWord("mage elves", "mage elf");
-		testPluralisationOfAGivenSingularWord("deaths", "death");
-		testPluralisationOfAGivenSingularWord("commander elves",
+		testPluralisationAndSingularisation("wooden golems", "wooden golem");
+		testPluralisationAndSingularisation("royal mummies", "royal mummy");
+		testPluralisationAndSingularisation("archrats", "archrat");
+		testPluralisationAndSingularisation("hero dwarves", "hero dwarf");
+		testPluralisationAndSingularisation("mage elves", "mage elf");
+		testPluralisationAndSingularisation("deaths", "death");
+		testPluralisationAndSingularisation("commander elves",
 				"commander elf");
-		testPluralisationOfAGivenSingularWord("stone golems", "stone golem");
-		testPluralisationOfAGivenSingularWord("archmage elves", "archmage elf");
-		testPluralisationOfAGivenSingularWord("leader dwarves", "leader dwarf");
-		testPluralisationOfAGivenSingularWord("demon skeletons",
+		testPluralisationAndSingularisation("stone golems", "stone golem");
+		testPluralisationAndSingularisation("archmage elves", "archmage elf");
+		testPluralisationAndSingularisation("leader dwarves", "leader dwarf");
+		testPluralisationAndSingularisation("demon skeletons",
 				"demon skeleton");
-		testPluralisationOfAGivenSingularWord("elf sacerdotists",
+		testPluralisationAndSingularisation("elf sacerdotists",
 				"elf sacerdotist");
-		testPluralisationOfAGivenSingularWord("earth elementals",
+		testPluralisationAndSingularisation("earth elementals",
 				"earth elemental");
-		testPluralisationOfAGivenSingularWord("fire elementals",
+		testPluralisationAndSingularisation("fire elementals",
 				"fire elemental");
-		testPluralisationOfAGivenSingularWord("water elementals",
+		testPluralisationAndSingularisation("water elementals",
 				"water elemental");
-		testPluralisationOfAGivenSingularWord("green dragons", "green dragon");
-		testPluralisationOfAGivenSingularWord("death knights", "death knight");
-		testPluralisationOfAGivenSingularWord("liches", "lich");
-		testPluralisationOfAGivenSingularWord("blue dragons", "blue dragon");
-		testPluralisationOfAGivenSingularWord("black dragons", "black dragon");
-
+		testPluralisationAndSingularisation("green dragons", "green dragon");
+		testPluralisationAndSingularisation("death knights", "death knight");
+		testPluralisationAndSingularisation("liches", "lich");
+		testPluralisationAndSingularisation("blue dragons", "blue dragon");
+		testPluralisationAndSingularisation("black dragons", "black dragon");
 	}
 
 	/**
