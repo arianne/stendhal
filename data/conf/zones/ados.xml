@@ -1436,6 +1436,9 @@ Southeast: Docks
 
  <!--  Level -1 -->
 
+ <zone name="-1_mansion" level="-1" x="500384" y="499744" file="interiors/abstract/area1.tmx">
+ </zone>
+
  <zone name="-1_ados_tunnel_w2" level="-1" x="500768" y="499744" file="Level -1/ados/tunnel_w2.tmx">
  </zone>
  <zone name="-1_ados_tunnel_w" level="-1" x="500640" y="499744" file="Level -1/ados/tunnel_w.tmx">
@@ -1466,11 +1469,16 @@ Southeast: Docks
 
  <!--  Level -2 -->
 
+ <zone name="-2_mansion" level="-2" x="500384" y="499744" file="interiors/abstract/area2.tmx">
+ </zone>
+
  <zone name="-2_ados_outside_nw" level="-2" x="500640" y="499872" file="Level -2/ados/outside_nw.tmx">
  </zone>
 
 
  <!--  Level -3 -->
+ <zone name="-3_mansion" level="-3" x="500384" y="499744" file="interiors/abstract/area3.tmx">
+ </zone>
 
  <zone name="-3_ados_outside_nw" level="-3" x="500640" y="499872" file="Level -3/ados/outside_nw.tmx">
   <configurator class-name="games.stendhal.server.maps.ados.outside.CloaksCollectorNPC" />
@@ -1485,12 +1493,18 @@ Southeast: Docks
 
  <!--  Level -4 -->
 
+ <zone name="-4_mansion" level="-4" x="500384" y="499744" file="interiors/abstract/area4.tmx">
+ </zone>
 
  <!--  Level -5 -->
 
+ <zone name="-5_mansion" level="-5" x="500384" y="499744" file="interiors/abstract/area5.tmx">
+ </zone>
 
  <!--  Level -6 -->
 
+ <zone name="-6_mansion" level="-6" x="500384" y="499744" file="interiors/abstract/area6.tmx">
+ </zone>
 
  <!--  Level -7 -->
 
