@@ -133,7 +133,7 @@ public class Grammar {
 		if (noun == null) {
 			return null;
 		}
-		String enoun = fullform(noun);
+		String enoun = fullForm(noun);
 		char initial = noun.length() > 0 ? Character.toLowerCase(enoun.charAt(0))
 				: ' ';
 		char second = noun.length() > 1 ? Character.toLowerCase(enoun.charAt(1))
@@ -155,21 +155,28 @@ public class Grammar {
 	 *
 	 * @param noun
 	 *            the noun (which may already start with the specified prefix
-	 * @param prefix
+	 * @param prefixSingular
 	 *            prefix to add
+	 * @param prefixPlural
+	 *            prefix, that may be present in plural form
 	 * @return noun starting with prefix
 	 */
-	private static String addPrefixIfNotAlreadyThere(String prefix_singular, String prefix_plural, String noun) {
-		if (noun.startsWith(prefix_singular)) {
+	private static String addPrefixIfNotAlreadyThere(String noun, String prefixSingular, String prefixPlural) {
+		if (noun.startsWith(prefixSingular)) {
 			return noun;
-		} else if (noun.startsWith(prefix_plural)) {
+		} else if (noun.startsWith(prefixPlural)) {
 			return noun;
 		} else {
-			return prefix_singular + noun;
+			return prefixSingular + noun;
 		}
 	}
 
-	public static String fullform(String noun) {
+	/**
+	 * prefix a noun with an expression like "piece of"
+	 * @param noun
+	 * @return
+	 */
+	public static String fullForm(String noun) {
 		String result;
 		String lowString = noun.toLowerCase();
 		result = lowString.replace("#", "");
@@ -177,18 +184,18 @@ public class Grammar {
 				|| result.equals("cheese") || result.equals("wood")
 				|| result.equals("paper") || result.equals("iron")
 				|| result.equals("chicken")) {
-			result = addPrefixIfNotAlreadyThere("piece of ", "pieces of ", lowString);
+			result = addPrefixIfNotAlreadyThere(lowString, "piece of ", "pieces of ");
 		} else if (result.endsWith(" ore") || result.endsWith("_ore")) {
-			result = addPrefixIfNotAlreadyThere("nugget of ", "nuggets of ", lowString);
+			result = addPrefixIfNotAlreadyThere(lowString, "nugget of ", "nuggets of ");
 		} else if (result.equals("flour")) {
-			result = addPrefixIfNotAlreadyThere("sack of ", "sacks of ", lowString);
+			result = addPrefixIfNotAlreadyThere(lowString, "sack of ", "sacks of ");
 		} else if (result.equals("grain")) {
-			result = addPrefixIfNotAlreadyThere("sheaf of ", "sheaves of ", lowString);
+			result = addPrefixIfNotAlreadyThere(lowString, "sheaf of ", "sheaves of ");
 		} else if (result.equals("bread")) {
-			result = addPrefixIfNotAlreadyThere("loaf of ", "loaves of ", lowString);
+			result = addPrefixIfNotAlreadyThere(lowString, "loaf of ", "loaves of ");
 		} else if (result.equals("beer") || result.equals("wine")
 				|| result.endsWith("poison") || result.equals("antidote")) {
-			result = addPrefixIfNotAlreadyThere("bottle of ", "bottles of ", lowString);
+			result = addPrefixIfNotAlreadyThere(lowString, "bottle of ", "bottles of ");
 		} else if (result.equals("money")) {
 			// TODO: fix this (going back to money as workaround because /drop 1
 			// coin does not work
@@ -196,13 +203,13 @@ public class Grammar {
 		} else if (result.startsWith("book_") || result.startsWith("book ")) {
 			result = result.substring(5) + " book";
 		} else if (result.equals("arandula")) {
-			result = addPrefixIfNotAlreadyThere("sprig of ", "sprigs of ", lowString);
+			result = addPrefixIfNotAlreadyThere(lowString, "sprig of ", "sprigs of ");
 		} else if ((result.indexOf("_armor") > -1)
 				|| (result.indexOf(" armor") > -1)) {
-			result = addPrefixIfNotAlreadyThere("suit of ", "suits of ", lowString);
+			result = addPrefixIfNotAlreadyThere(lowString, "suit of ", "suits of ");
 		} else if (result.endsWith("_legs") || result.endsWith(" legs")
 				|| result.endsWith("_boots") || result.endsWith(" boots")) {
-			result = addPrefixIfNotAlreadyThere("pair of ", "pairs of ", lowString);
+			result = addPrefixIfNotAlreadyThere(lowString, "pair of ", "pairs of ");
 		} else {
 			result = lowString;
 		}
@@ -245,7 +252,7 @@ public class Grammar {
 	 * @return An appropriate plural form
 	 */
 	public static String plural(String noun) {
-		String enoun = fullform(noun);
+		String enoun = fullForm(noun);
 		String postfix = "";
 		int position = enoun.indexOf('+');
 		if (position != -1) {
@@ -342,12 +349,11 @@ public class Grammar {
 	 * Returns the singular form of the given noun
 	 * if not already given in singular form
 	 *
-	 * @param noun
+	 * @param enoun
 	 *			  The noun to examine
 	 * @return An appropriate singular form
 	 */
-	public static String singular(String noun) {
-		String enoun = fullform(noun);
+	public static String singular(String enoun) {
 		String postfix = "";
 
 		int position = enoun.indexOf('+');
@@ -449,8 +455,8 @@ public class Grammar {
 	 * @return Either "[noun]" or plural("[noun]") as appropriate
 	 */
 	public static String plnoun(int quantity, String noun) {
-		String enoun = fullform(noun);
-		return (quantity == 1 ? singular(enoun) : plural(noun));
+		String enoun = fullForm(noun);
+		return (quantity == 1 ? enoun : plural(noun));
 	}
 
 	/**
