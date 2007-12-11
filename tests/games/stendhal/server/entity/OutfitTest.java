@@ -3,7 +3,7 @@ package games.stendhal.server.entity;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -45,12 +45,19 @@ public class OutfitTest {
 		assertEquals(Integer.valueOf(3), ou.getDress());
 		assertEquals(Integer.valueOf(4), ou.getBase());
 
-		ou = new Outfit(01020304);
+		String outfitnumber= "01020304";
+		ou = new Outfit(Integer.parseInt(outfitnumber));
+		assertEquals(Integer.valueOf(1), ou.getHair());
+		assertEquals(Integer.valueOf(2), ou.getHead());
+		assertEquals(Integer.valueOf(3), ou.getDress());
+		assertEquals(Integer.valueOf(4), ou.getBase());
+	
+		ou = new Outfit(01020304); // coded octal
 		assertEquals(Integer.valueOf(0), ou.getHair());
 		assertEquals(Integer.valueOf(27), ou.getHead());
 		assertEquals(Integer.valueOf(5), ou.getDress());
 		assertEquals(Integer.valueOf(32), ou.getBase());
-		fail("this is not what durkham expected");
+		
 	}
 
 	@Test
