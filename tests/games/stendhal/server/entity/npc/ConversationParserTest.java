@@ -20,7 +20,7 @@ public class ConversationParserTest {
 
 		assertEquals("buy", sentence.getVerb());
 		assertEquals(3, sentence.getAmount());
-		assertEquals("cookies", sentence.getObjectName());
+		assertEquals("cooky", sentence.getObjectName());
 	}
 
 	@Test
@@ -30,7 +30,7 @@ public class ConversationParserTest {
 
 		assertEquals("eat", sentence.getVerb());
 		assertEquals(4, sentence.getAmount());
-		assertEquals("cookies", sentence.getObjectName());
+		assertEquals("cooky", sentence.getObjectName());
 	}
 
 	@Test
@@ -110,6 +110,15 @@ public class ConversationParserTest {
 		assertEquals("dish", sentence.getObjectName());
 		assertEquals("on", sentence.getPreposition());
 		assertEquals("table", sentence.getObjectName2());
+	}
+
+	@Test
+	public final void testPlural() {
+		Sentence sentence = ConversationParser.parse("buy seven bananas");
+		assertFalse(sentence.hasError());
+		assertEquals("buy", sentence.getVerb());
+		assertEquals(7, sentence.getAmount());
+		assertEquals("banana", sentence.getItemName());
 	}
 
 }

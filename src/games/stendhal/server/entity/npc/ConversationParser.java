@@ -56,12 +56,12 @@ public class ConversationParser {
 
 		sentence._error = parser.getError();
 		sentence._original = parser._original.toString();
-/*TODO
+
 		 // derive the singular from the item name if the amount is greater than one
 		if (sentence._amount != 1) {
 			sentence._object = Grammar.singular(sentence._object);
 		}
-*/
+
         return sentence;
 	}
 
