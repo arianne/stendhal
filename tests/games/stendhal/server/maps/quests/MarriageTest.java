@@ -19,6 +19,7 @@ import games.stendhal.server.maps.fado.dressingrooms.GroomAssistantNPC;
 import games.stendhal.server.maps.fado.hotel.GreeterNPC;
 import games.stendhal.server.maps.fado.weaponshop.RingSmithNPC;
 
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -60,6 +61,12 @@ public class MarriageTest {
 		zone.add(player2);
 		player2.setPosition(53, 53);
 		MockStendhalRPRuleProcessor.get().addPlayer(player2);
+	}
+
+	@AfterClass
+	public static void afterClass() {
+		PlayerTestHelper.removePlayer(player);
+		PlayerTestHelper.removePlayer(player2);
 	}
 
 	@Test
