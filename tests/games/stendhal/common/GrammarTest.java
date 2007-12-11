@@ -91,29 +91,29 @@ public class GrammarTest {
 
 	@Test
 	public void testFullform() {
-		assertEquals("piece of meat", Grammar.fullform("Meat"));
-		assertEquals("piece of ham", Grammar.fullform("Ham"));
-		assertEquals("piece of cheese", Grammar.fullform("Cheese"));
-		assertEquals("piece of wood", Grammar.fullform("wood"));
-		assertEquals("piece of paper", Grammar.fullform("paper"));
-		assertEquals("piece of iron", Grammar.fullform("iron"));
-		assertEquals("nugget of iron ore", Grammar.fullform("iron ore"));
-		assertEquals("sack of flour", Grammar.fullform("flour"));
-		assertEquals("sheaf of grain", Grammar.fullform("grain"));
-		assertEquals("loaf of bread", Grammar.fullform("bread"));
-		assertEquals("bottle of beer", Grammar.fullform("beer"));
-		assertEquals("bottle of wine", Grammar.fullform("wine"));
-		assertEquals("bottle of poison", Grammar.fullform("poison"));
-		assertEquals("bottle of antidote", Grammar.fullform("antidote"));
-		assertEquals("money", Grammar.fullform("money"));
-		assertEquals("whatever book", Grammar.fullform("book_whatever"));
-		assertEquals("whatever book", Grammar.fullform("book whatever"));
-		assertEquals("sprig of arandula", Grammar.fullform("arandula"));
-		assertEquals("suit of iron_armor", Grammar.fullform("iron_armor"));
-		assertEquals("suit of iron armor", Grammar.fullform("iron armor"));
-		assertEquals("pair of iron_legs", Grammar.fullform("iron_legs"));
-		assertEquals("pair of iron legs", Grammar.fullform("iron legs"));
-		assertEquals("pair of iron boots", Grammar.fullform("iron boots"));
+		assertEquals("piece of meat", Grammar.fullForm("Meat"));
+		assertEquals("piece of ham", Grammar.fullForm("Ham"));
+		assertEquals("piece of cheese", Grammar.fullForm("Cheese"));
+		assertEquals("piece of wood", Grammar.fullForm("wood"));
+		assertEquals("piece of paper", Grammar.fullForm("paper"));
+		assertEquals("piece of iron", Grammar.fullForm("iron"));
+		assertEquals("nugget of iron ore", Grammar.fullForm("iron ore"));
+		assertEquals("sack of flour", Grammar.fullForm("flour"));
+		assertEquals("sheaf of grain", Grammar.fullForm("grain"));
+		assertEquals("loaf of bread", Grammar.fullForm("bread"));
+		assertEquals("bottle of beer", Grammar.fullForm("beer"));
+		assertEquals("bottle of wine", Grammar.fullForm("wine"));
+		assertEquals("bottle of poison", Grammar.fullForm("poison"));
+		assertEquals("bottle of antidote", Grammar.fullForm("antidote"));
+		assertEquals("money", Grammar.fullForm("money"));
+		assertEquals("whatever book", Grammar.fullForm("book_whatever"));
+		assertEquals("whatever book", Grammar.fullForm("book whatever"));
+		assertEquals("sprig of arandula", Grammar.fullForm("arandula"));
+		assertEquals("suit of iron_armor", Grammar.fullForm("iron_armor"));
+		assertEquals("suit of iron armor", Grammar.fullForm("iron armor"));
+		assertEquals("pair of iron_legs", Grammar.fullForm("iron_legs"));
+		assertEquals("pair of iron legs", Grammar.fullForm("iron legs"));
+		assertEquals("pair of iron boots", Grammar.fullForm("iron boots"));
 	}
 
 	@Test
@@ -138,8 +138,8 @@ public class GrammarTest {
 	}
 
 	private static void testSingularisationOfAGivenSingularWord(String message, String plural, String singular) {
-		assertEquals(message, Grammar.fullform(singular), Grammar.singular(plural));
-		assertEquals("no change expected", Grammar.fullform(singular), Grammar.singular(singular));
+		assertEquals(message, Grammar.fullForm(singular), Grammar.singular(plural));
+		assertEquals("no change expected", singular, Grammar.singular(singular));
 	}
 
 	private static void testPluralisationAndSingularisation(String plural, String singular) {
