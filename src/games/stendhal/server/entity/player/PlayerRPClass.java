@@ -189,14 +189,14 @@ class PlayerRPClass {
 
     private static void generateRPEvent() {
 		RPClass rpclass = new RPClass("private_text");
-		rpclass.add(DefinitionClass.RPEVENT, "text", Type.LONG_STRING, Definition.PRIVATE);
-		rpclass.add(DefinitionClass.RPEVENT, "texttype", Type.STRING, Definition.PRIVATE);
+		rpclass.add(DefinitionClass.ATTRIBUTE, "text", Type.LONG_STRING, Definition.PRIVATE);
+		rpclass.add(DefinitionClass.ATTRIBUTE, "texttype", Type.STRING, Definition.PRIVATE);
 
 		rpclass = new RPClass("examine");
-        rpclass.add(DefinitionClass.RPEVENT, "path", Type.STRING, Definition.PRIVATE);
-        rpclass.add(DefinitionClass.RPEVENT, "alt", Type.STRING, Definition.PRIVATE);
-        rpclass.add(DefinitionClass.RPEVENT, "title", Type.STRING, Definition.PRIVATE);
-        rpclass.add(DefinitionClass.RPEVENT, "text", Type.LONG_STRING, Definition.PRIVATE);
+        rpclass.add(DefinitionClass.ATTRIBUTE, "path", Type.STRING, Definition.PRIVATE);
+        rpclass.add(DefinitionClass.ATTRIBUTE, "alt", Type.STRING, Definition.PRIVATE);
+        rpclass.add(DefinitionClass.ATTRIBUTE, "title", Type.STRING, Definition.PRIVATE);
+        rpclass.add(DefinitionClass.ATTRIBUTE, "text", Type.LONG_STRING, Definition.PRIVATE);
     }
 
 	/**
