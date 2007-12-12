@@ -19,6 +19,8 @@ import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.NPC;
+import games.stendhal.server.entity.npc.NPCList;
+import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.LoginNotifier;
 import games.stendhal.server.events.TurnNotifier;
@@ -354,6 +356,12 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 				} catch (Exception e) {
 					logger.error("Error in player logic", e);
 				}
+			}
+			
+			// SpeakerNPC logic
+			NPCList npcList = NPCList.get();
+			for (SpeakerNPC npc : npcList) {
+				npc.preLogic();
 			}
 
 			/*

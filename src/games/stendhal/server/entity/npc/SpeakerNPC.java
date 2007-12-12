@@ -274,6 +274,12 @@ public class SpeakerNPC extends NPC {
 
 	@Override
 	public void logic() {
+		// do nothing, the logic is in preLogic because it needs to be 
+		// done at the beginning of the next turn. Otherwise the NPCs
+		// respond to player in the chat log before the player says something.
+	}
+
+	public void preLogic() {
 		if (has("text")) {
 			remove("text");
 		}
