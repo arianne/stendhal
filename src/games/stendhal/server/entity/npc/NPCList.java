@@ -1,6 +1,7 @@
 package games.stendhal.server.entity.npc;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
@@ -11,7 +12,7 @@ import org.apache.log4j.Logger;
  * This Singleton should contain all NPCs in the Stendhal world that are
  * unique.
  */
-public class NPCList {
+public class NPCList implements Iterable<SpeakerNPC> {
 	private static Logger logger = Logger.getLogger(NPCList.class);
 
 	/**
@@ -104,4 +105,12 @@ public class NPCList {
 	public void clear() {
 		contents.clear();
 	}
+
+	/**
+	 * returns an interator over the SpeakerNPC objects
+	 */
+	public Iterator<SpeakerNPC> iterator() {
+		return contents.values().iterator();
+	}
+
 }
