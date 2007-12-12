@@ -274,6 +274,8 @@ public class Player extends RPEntity {
 		 */
 		// TODO: Create <Entity>.remove(void) ?
 		player.getZone().remove(player);
+		
+		player.disconnected = true;
 	}
 
 	public Player(RPObject object) {
@@ -2026,5 +2028,11 @@ public class Player extends RPEntity {
 			}
 			return sb.toString();
 		
+	}
+	
+	private boolean disconnected = false;
+
+	public boolean isDisconnected() {
+		return disconnected;
 	}
 }

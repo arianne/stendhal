@@ -568,9 +568,17 @@ public class StendhalRPAction {
 	 */
 	public static boolean placeat(StendhalRPZone zone, Entity entity, int x,
 			int y, Shape allowedArea) {
-		/*
-		 * Look for new position
-		 */
+
+		// check in case of players that that they are still in game
+		// because the entity is added to the world again otherwise.
+		if (entity instanceof Player) {
+			Player player = (Player) entity;
+			if (player.isDisconnected()) {
+				return true;
+			}
+		}
+		
+		// Look for new position
 		int nx = x;
 		int ny = y;
 
