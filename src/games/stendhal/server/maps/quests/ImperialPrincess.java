@@ -10,6 +10,7 @@ import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
+import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Arrays;
@@ -126,7 +127,8 @@ public class ImperialPrincess extends AbstractQuest {
 
 		/** If player has quest and has brought the herbs, get them */
 		npc.add(ConversationStates.ATTENDING, Arrays.asList("herb", "herbs"),
-				null, ConversationStates.ATTENDING, null,
+				new QuestStartedCondition(QUEST_SLOT),
+				ConversationStates.ATTENDING, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
