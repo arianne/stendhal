@@ -11,16 +11,14 @@ import utilities.PlayerTestHelper;
 public class AwayActionTest {
 
 	@Test
-	public void testOnAway() {
-		Player bob = PlayerTestHelper.createPlayer("bob");
+	public void testPlayerIsNull() {
+		
 		RPAction action = new RPAction();
 		action.put("type", "away");
 		AwayAction aa  = new AwayAction();
-		aa.onAway(bob, action);
-		assertEquals(null,bob.getAwayMessage());
-		action.put("message", "bla");
-		aa.onAway(bob, action);
-		assertEquals("bla",bob.getAwayMessage());
+		aa.onAction(null, action);
+		
+
 		
 	}
 
@@ -35,6 +33,20 @@ public class AwayActionTest {
 		action.put("message", "bla");
 		aa.onAction(bob, action);
 		assertEquals("bla",bob.getAwayMessage());
+	}
+	
+	@Test
+	public void testOnInvalidAction() {
+		Player bob = PlayerTestHelper.createPlayer("bob");
+		bob.clearEvents();
+		RPAction action = new RPAction();
+		action.put("type", "bla");
+		action.put("message", "bla");
+		AwayAction aa  = new AwayAction();
+		aa.onAction(bob, action);
+		assertEquals(null,bob.getAwayMessage());
+		
+		
 	}
 
 }
