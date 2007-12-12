@@ -150,21 +150,6 @@
     </equipable>
   </item>
 
-  <item name="green_dragon_shield">
-    <type class="shield" subclass="green_dragon_shield" tileid="-1"/>
-    <description>You see an green dragon shield, scaly and strong.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
-      <def value="30"/>
-    </attributes>
-    <weight value="14.0"/>
-    <value value="189000"/>
-    <equipable>
-      <slot name="lhand"/>
-      <slot name="rhand"/>
-      <slot name="bag"/>
-    </equipable>
-  </item>
-
   <item name="elvish_shield">
     <type class="shield" subclass="elvish_shield" tileid="-1"/>
     <description>You see an elvish shield. It looks like one big tree leaf!</description>
@@ -188,6 +173,21 @@
     </attributes>
     <weight value="34.0"/>
     <value value="275128"/>
+    <equipable>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
+    </equipable>
+  </item>
+
+  <item name="green_dragon_shield">
+    <type class="shield" subclass="green_dragon_shield" tileid="-1"/>
+    <description>You see an green dragon shield, scaly and strong.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <def value="35"/>
+    </attributes>
+    <weight value="14.0"/>
+    <value value="300000"/>
     <equipable>
       <slot name="lhand"/>
       <slot name="rhand"/>
