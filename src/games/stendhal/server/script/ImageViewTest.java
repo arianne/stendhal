@@ -14,14 +14,8 @@ import marauroa.common.game.RPEvent;
  */
 public class ImageViewTest extends ScriptImpl {
 
-    public static void generateRPEvent() {
-        RPClass rpclass = new RPClass("examine");
-        rpclass.add(DefinitionClass.RPEVENT, "examine", Definition.STANDARD);
-    }
-
     @Override
     public void execute(Player admin, List<String> args) {
-        generateRPEvent();
 
         RPEvent event = new RPEvent("examine");
         event.put("path", "/data/sprites/examine/map-semos-city.png");

@@ -184,10 +184,20 @@ class PlayerRPClass {
 		player.addRPEvent("transition_graph", Definition.STANDARD);
 		player.addRPEvent("examine", Definition.STANDARD);
 		
-		RPClass rpclass = new RPClass("private_text");
-		rpclass.add(DefinitionClass.RPEVENT, "text", Definition.PRIVATE);
-		rpclass.add(DefinitionClass.RPEVENT, "texttype", Definition.PRIVATE);
+	    generateRPEvent();		
 	}
+
+    private static void generateRPEvent() {
+		RPClass rpclass = new RPClass("private_text");
+		rpclass.add(DefinitionClass.RPEVENT, "text", Type.LONG_STRING, Definition.PRIVATE);
+		rpclass.add(DefinitionClass.RPEVENT, "texttype", Type.STRING, Definition.PRIVATE);
+
+		rpclass = new RPClass("examine");
+        rpclass.add(DefinitionClass.RPEVENT, "path", Type.STRING, Definition.PRIVATE);
+        rpclass.add(DefinitionClass.RPEVENT, "alt", Type.STRING, Definition.PRIVATE);
+        rpclass.add(DefinitionClass.RPEVENT, "title", Type.STRING, Definition.PRIVATE);
+        rpclass.add(DefinitionClass.RPEVENT, "text", Type.LONG_STRING, Definition.PRIVATE);
+    }
 
 	/**
 	 * Updates a player RPObject from an old version of Stendhal.
