@@ -275,6 +275,8 @@ public class Player extends RPEntity {
 		if (zone != null) {
 			zone.remove(player);
 		}
+
+		player.disconnected = true;
 	}
 
 	public Player(RPObject object) {
@@ -2000,4 +2002,12 @@ public class Player extends RPEntity {
 		// TODO: Sentence here.
 		return "";
 	}
+
+	
+	private boolean disconnected = false;
+
+	public boolean isDisconnected() {
+		return disconnected;
+	}
 }
+
