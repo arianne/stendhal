@@ -215,7 +215,7 @@ public class ObsidianKnife extends AbstractQuest {
 			null);
 
 		npc.add(ConversationStates.QUESTION_1, NAME, null,
-			ConversationStates.QUESTION_1, 
+			ConversationStates.ATTENDING, 
 			"Ah, the mountain dwarf! Hope he enjoys the gem_book.",
 			new MultipleActions(new EquipItemAction("book_blue", 1, true), new SetQuestAction(QUEST_SLOT, "got_book")));
 
