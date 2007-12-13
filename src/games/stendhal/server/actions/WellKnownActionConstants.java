@@ -12,5 +12,6 @@ public class WellKnownActionConstants {
 	public static final String Y = "y";
 	public static final String MINUTES = "minutes";
 	public static final String MESSAGE = "message";
+	public static final String TEXT = "text";
 
 }
