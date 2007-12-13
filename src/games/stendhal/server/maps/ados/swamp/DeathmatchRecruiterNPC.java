@@ -7,6 +7,7 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.TeleportAction;
 import games.stendhal.server.entity.npc.condition.LevelGreaterThanCondition;
+import games.stendhal.server.entity.npc.condition.LevelLessThanCondition;
 import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Node;
 
@@ -67,7 +68,7 @@ public class DeathmatchRecruiterNPC implements ZoneConfigurator {
 					new TeleportAction("0_ados_wall_n", 100, 86, Direction.DOWN));
 
 				add(ConversationStates.ATTENDING, "challenge",
-					new LevelGreaterThanCondition(20), 
+					new LevelLessThanCondition(20), 
 					ConversationStates.ATTENDING, "Sorry, you are too weak!",
 					null);
 			}
