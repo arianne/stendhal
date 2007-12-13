@@ -13,12 +13,15 @@ import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.common.Log4J;
 import marauroa.common.game.RPAction;
 
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import utilities.PlayerTestHelper;
 
 public class SummonActionTest {
+
+	private StendhalRPZone zone;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -28,20 +31,25 @@ public class SummonActionTest {
 		Log4J.init();
 	}
 
+	@Before
+	public void setUP() {
+		zone = new StendhalRPZone("testzone") {
+			@Override
+			public synchronized boolean collides(final Entity entity,
+					final double x, final double y) {
+		
+				return false;
+			}
+		};
+	}
+
 	@Test
 	public final void testSummonRat() {
 
 		Player pl = PlayerTestHelper.createPlayer("hugo");
 
 		MockStendhalRPRuleProcessor.get().getPlayers().add(pl);
-		StendhalRPZone zone = new StendhalRPZone("testzone") {
-			@Override
-			public synchronized boolean collides(Entity entity, double x,
-					double y) {
 
-				return false;
-			}
-		};
 		zone.add(pl);
 		pl.setPosition(1, 1);
 		pl.put("adminlevel", 5000);
@@ -63,14 +71,7 @@ public class SummonActionTest {
 		Player pl = PlayerTestHelper.createPlayer("hugo");
 
 		MockStendhalRPRuleProcessor.get().getPlayers().add(pl);
-		StendhalRPZone zone = new StendhalRPZone("testzone") {
-			@Override
-			public synchronized boolean collides(Entity entity, double x,
-					double y) {
 
-				return false;
-			}
-		};
 		zone.add(pl);
 		pl.setPosition(1, 1);
 		pl.put("adminlevel", 5000);
@@ -92,14 +93,7 @@ public class SummonActionTest {
 		Player pl = PlayerTestHelper.createPlayer("hugo");
 
 		MockStendhalRPRuleProcessor.get().getPlayers().add(pl);
-		StendhalRPZone zone = new StendhalRPZone("testzone") {
-			@Override
-			public synchronized boolean collides(Entity entity, double x,
-					double y) {
 
-				return false;
-			}
-		};
 		zone.add(pl);
 		pl.setPosition(1, 1);
 		pl.put("adminlevel", 5000);
