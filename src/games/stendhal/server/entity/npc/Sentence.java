@@ -9,13 +9,13 @@ package games.stendhal.server.entity.npc;
  */
 public class Sentence {
 
-	String	_verb = null;
-    int		_amount = 1;
-    String	_object = null;
-    String	_preposition = null;
-    String	_object2 = null;
-	String _error = null;
-	String	_original;
+	private String verb = null;
+	private int    amount = 1;
+	private String object = null;
+	private String preposition = null;
+	private String object2 = null;
+	private String error = null;
+	private String original;
 
 	/**
 	 * return verb of the sentence
@@ -23,7 +23,7 @@ public class Sentence {
 	 */
     public String getVerb()
     {
-    	return _verb;
+    	return verb;
     }
 
     /**
@@ -32,7 +32,7 @@ public class Sentence {
 	 */
 	public int getAmount()
 	{
-    	return _amount;
+    	return amount;
 	}
 
 	/**
@@ -41,7 +41,7 @@ public class Sentence {
 	 */
 	public String getObjectName()
 	{
-		return _object;
+		return object;
 	}
 
 	/**
@@ -50,7 +50,7 @@ public class Sentence {
 	 */
     public String getObjectName2()
     {
-    	return _object2;
+    	return object2;
     }
 
 	/**
@@ -62,8 +62,8 @@ public class Sentence {
     {
         // concatenate user specified item names like "baby dragon"
         // with underscores to build the internal item names
-       if (_object != null)
-    	   return _object.replace(' ', '_');
+       if (object != null)
+    	   return object.replace(' ', '_');
        else
     	   return null;
     }
@@ -74,8 +74,8 @@ public class Sentence {
 	 */
 	public String getItemName2()
     {
-       if (_object2 != null)
-    	   return _object2.replace(' ', '_');
+       if (object2 != null)
+    	   return object2.replace(' ', '_');
        else
     	   return null;
     }
@@ -87,7 +87,7 @@ public class Sentence {
 	 */
 	public String getPreposition()
     {
-	    return _preposition;
+	    return preposition;
     }
 
 	/**
@@ -96,7 +96,7 @@ public class Sentence {
 	 */
     public boolean hasError()
     {
-    	return _error != null;
+    	return error != null;
     }
 
     /**
@@ -105,7 +105,7 @@ public class Sentence {
      */
 	public String getError()
     {
-	    return _error;
+	    return error;
     }
 
     /**
@@ -114,7 +114,7 @@ public class Sentence {
      */
     public boolean isEmpty()
     {
-    	return _verb == null;
+    	return verb == null;
     }
 
 	/**
@@ -124,7 +124,7 @@ public class Sentence {
 	 */
 	public String getOriginalText()
     {
-    	return _original;
+    	return original;
     }
 
 	/**
@@ -134,26 +134,26 @@ public class Sentence {
     @Override
 	public String toString()
     {
-    	StringBuilder builder = new StringBuilder(_verb);
+    	StringBuilder builder = new StringBuilder(verb);
 
-    	if (_amount != 1) {
+    	if (amount != 1) {
     		builder.append(' ');
-    		builder.append(Integer.toString(_amount));
+    		builder.append(Integer.toString(amount));
     	}
 
-    	if (_object != null) {
+    	if (object != null) {
     		builder.append(' ');
-    		builder.append(_object);
+    		builder.append(object);
     	}
 
-    	if (_preposition != null) {
+    	if (preposition != null) {
     		builder.append(' ');
-    		builder.append(_preposition);
+    		builder.append(preposition);
     	}
 
-    	if (_object2 != null) {
+    	if (object2 != null) {
     		builder.append(' ');
-    		builder.append(_object2);
+    		builder.append(object2);
     	}
 
     	return builder.toString();
