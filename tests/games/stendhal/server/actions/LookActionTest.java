@@ -18,7 +18,8 @@ import org.junit.Test;
 import utilities.PlayerTestHelper;
 
 /**
- * Test server actions
+ * Test server actions.
+ * 
  * @author Martin Fuchs
  */
 public class LookActionTest {
@@ -31,7 +32,8 @@ public class LookActionTest {
 
 	@Before
 	public void setup() {
-		MockStendhalRPRuleProcessor processor = MockStendhalRPRuleProcessor.get();
+		MockStendhalRPRuleProcessor processor = MockStendhalRPRuleProcessor
+				.get();
 
 		StendhalRPZone zone = new StendhalRPZone("testzone");
 		StendhalRPWorld.get().addRPZone(zone);
@@ -57,22 +59,25 @@ public class LookActionTest {
 		Player player2 = MockStendhalRPRuleProcessor.get().getPlayer("player2");
 		assertNotNull(player2);
 
-		 // test "/look <name>" syntax
+		// test "/look <name>" syntax
 		RPAction action = new RPAction();
 		action.put("type", "look");
 		action.put("target", "player1");
 		CommandCenter.execute(player1, action);
-		assertEquals("You see player1.\n"+
-					"player1 is level 0 and has been playing 0 hours and 0 minutes.", player1.getPrivateText());
+		assertEquals(
+				"You see player1.\nplayer1 is level 0 and has been playing 0 hours and 0 minutes.",
+				player1.getPrivateText());
 		player1.clearEvents();
 
-		 // test "/look #id" syntax
+		// test "/look #id" syntax
 		action = new RPAction();
 		action.put("type", "look");
-		action.put("target", "#" + Integer.toString(player2.getID().getObjectID()));
+		action.put("target", "#"
+				+ Integer.toString(player2.getID().getObjectID()));
 		CommandCenter.execute(player1, action);
-		assertEquals("You see player2.\n"+
-					"player2 is level 0 and has been playing 0 hours and 0 minutes.", player1.getPrivateText());
+		assertEquals(
+				"You see player2.\nplayer2 is level 0 and has been playing 0 hours and 0 minutes.",
+				player1.getPrivateText());
 		player1.clearEvents();
 
 		action = new RPAction();

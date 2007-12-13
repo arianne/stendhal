@@ -17,44 +17,46 @@ public class OutfitActionTest {
 	public static void setUpBeforeClass() throws Exception {
 	}
 
-	@Test (expected = NullPointerException.class )
+	@Test(expected = NullPointerException.class)
 	public void testOnActionNullNull() {
 		OutfitAction oa = new OutfitAction();
-		oa.onAction(null,null);
+		oa.onAction(null, null);
 	}
-	
-	@Test 
+
+	@Test
 	public void testOnWrongAction() {
 		OutfitAction oa = new OutfitAction();
 		Player player = PlayerTestHelper.createPlayer();
 		RPAction action = new RPAction();
-		oa.onAction(player,action);
-		assertTrue("no exception thrown",true);
+		oa.onAction(player, action);
+		assertTrue("no exception thrown", true);
 	}
-	@Test (expected= NumberFormatException.class)
+
+	@Test(expected = NumberFormatException.class)
 	public void testOnActionWrongValue() {
 		OutfitAction oa = new OutfitAction();
 		Player player = PlayerTestHelper.createPlayer();
 		RPAction action = new RPAction();
 		action.put("value", "schnick");
-		oa.onAction(player,action);
-		
+		oa.onAction(player, action);
+
 	}
-	@Test 
+
+	@Test
 	public void testOnAction() {
 		OutfitAction oa = new OutfitAction();
 		Player player = PlayerTestHelper.createPlayer();
 		RPAction action = new RPAction();
 		assertNull(player.get("outfit"));
 		action.put("value", 1);
-		oa.onAction(player,action);
+		oa.onAction(player, action);
 		assertTrue(player.has("outfit"));
-		assertEquals("1",player.get("outfit"));
-		
+		assertEquals("1", player.get("outfit"));
+
 		action.put("value", 51515151);
-		oa.onAction(player,action);
+		oa.onAction(player, action);
 		assertTrue(player.has("outfit"));
-		assertEquals("invalid player outfit","1",player.get("outfit"));
+		assertEquals("invalid player outfit", "1", player.get("outfit"));
 	}
 
 }

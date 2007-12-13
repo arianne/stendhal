@@ -25,7 +25,7 @@ public class CommandCenterTest {
 	@Test
 	public void testRegister() {
 		ActionListener listener = new ActionListener() {
-			public void onAction(Player player, RPAction action) {
+			public void onAction(final Player player, final RPAction action) {
 				player.put("success", "true");
 			};
 		};

@@ -12,14 +12,12 @@ public class AwayActionTest {
 
 	@Test
 	public void testPlayerIsNull() {
-		
+
 		RPAction action = new RPAction();
 		action.put("type", "away");
-		AwayAction aa  = new AwayAction();
+		AwayAction aa = new AwayAction();
 		aa.onAction(null, action);
-		
 
-		
 	}
 
 	@Test
@@ -27,14 +25,14 @@ public class AwayActionTest {
 		Player bob = PlayerTestHelper.createPlayer("bob");
 		RPAction action = new RPAction();
 		action.put("type", "away");
-		AwayAction aa  = new AwayAction();
+		AwayAction aa = new AwayAction();
 		aa.onAction(bob, action);
-		assertEquals(null,bob.getAwayMessage());
+		assertEquals(null, bob.getAwayMessage());
 		action.put("message", "bla");
 		aa.onAction(bob, action);
-		assertEquals("bla",bob.getAwayMessage());
+		assertEquals("bla", bob.getAwayMessage());
 	}
-	
+
 	@Test
 	public void testOnInvalidAction() {
 		Player bob = PlayerTestHelper.createPlayer("bob");
@@ -42,11 +40,10 @@ public class AwayActionTest {
 		RPAction action = new RPAction();
 		action.put("type", "bla");
 		action.put("message", "bla");
-		AwayAction aa  = new AwayAction();
+		AwayAction aa = new AwayAction();
 		aa.onAction(bob, action);
-		assertEquals(null,bob.getAwayMessage());
-		
-		
+		assertEquals(null, bob.getAwayMessage());
+
 	}
 
 }

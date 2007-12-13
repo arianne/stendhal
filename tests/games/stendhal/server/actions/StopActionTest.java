@@ -44,7 +44,7 @@ public class StopActionTest {
 		action.put("attack", "value");
 		notify = false;
 		stopattack = false;
-		
+
 		sa.onAction(player, action);
 
 		assertTrue(notify);
@@ -52,7 +52,7 @@ public class StopActionTest {
 
 	}
 
-	boolean stopattack;
-	boolean notify;
+	private boolean stopattack;
+	private boolean notify;
 
 }

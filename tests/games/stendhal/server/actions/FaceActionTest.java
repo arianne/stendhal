@@ -20,9 +20,9 @@ public class FaceActionTest {
 	public static void setUpBeforeClass() throws Exception {
 	}
 
-	boolean stopCalled;
-	Direction directionSet;
-	boolean notifyCalled;
+	private boolean stopCalled;
+	private Direction directionSet;
+	private boolean notifyCalled;
 
 	@Test
 	public void testOnAction() {
@@ -36,7 +36,7 @@ public class FaceActionTest {
 			}
 
 			@Override
-			public void setDirection(Direction dir) {
+			public void setDirection(final Direction dir) {
 				directionSet = dir;
 			}
 
