@@ -1,4 +1,4 @@
-package games.stendhal.server.tools;
+package games.stendhal.tools.tiled;
 
 import static org.junit.Assert.assertEquals;
 import games.stendhal.tools.tiled.StendhalMapStructure;
