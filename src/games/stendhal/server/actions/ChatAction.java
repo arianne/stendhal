@@ -12,6 +12,9 @@
  ***************************************************************************/
 package games.stendhal.server.actions;
 
+import static games.stendhal.server.actions.WellKnownActionConstants.TARGET;
+import static games.stendhal.server.actions.WellKnownActionConstants.TEXT;
+import static games.stendhal.server.actions.WellKnownActionConstants.TYPE;
 import games.stendhal.common.Grammar;
 import games.stendhal.server.GagManager;
 import games.stendhal.server.Jail;
@@ -27,17 +30,11 @@ import java.util.StringTokenizer;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 
-
-
-import static games.stendhal.server.actions.WellKnownActionConstants.*;
 /**
  * Processes /chat, /tell (/msg) and /support
  */
 public class ChatAction implements ActionListener {
 
-
-	
-	private static final String _TEXT = "text";
 	private static final String _SUPPORT = "support";
 	private static final String _TELL = "tell";
 	private static final String _CHAT = "chat";
@@ -46,7 +43,7 @@ public class ChatAction implements ActionListener {
 	private Map<String, Long> lastMsg = new HashMap<String, Long>();
 
 	/**
-	 * Registers actions
+	 * Registers AnswerAction ChatAction TellAction and SupportAction.
 	 */
 	public static void register() {
 		ChatAction chat = new ChatAction();
@@ -56,7 +53,7 @@ public class ChatAction implements ActionListener {
 		CommandCenter.register(_SUPPORT, chat);
 	}
 
-	public void onAction(Player player, RPAction action) {
+	public void onAction(final Player player, final RPAction action) {
 
 		if (GagManager.isGagged(player)) {
 			long timeRemaining = GagManager.get().getTimeRemaining(player);
@@ -78,11 +75,11 @@ public class ChatAction implements ActionListener {
 
 	private void onChat(Player player, RPAction action) {
 
-		if (action.has(_TEXT)) {
-			String text = action.get(_TEXT);
+		if (action.has(TEXT)) {
+			String text = action.get(TEXT);
 			player.put("text", text);
-			StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
-					_CHAT, null, Integer.toString(text.length()),
+			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), _CHAT,
+					null, Integer.toString(text.length()),
 					text.substring(0, Math.min(text.length(), 1000)));
 
 			player.notifyWorldAboutChanges();
@@ -92,7 +89,7 @@ public class ChatAction implements ActionListener {
 	}
 
 	private void onAnswer(Player player, RPAction action) {
-		if (action.has(_TEXT)) {
+		if (action.has(TEXT)) {
 			if (player.getLastPrivateChatter() != null) {
 				// convert the action to a /tell action
 				action.put(TYPE, _TELL);
@@ -112,13 +109,12 @@ public class ChatAction implements ActionListener {
 
 		// TODO: find a cleaner way to implement it
 		if (Jail.isInJail(player)) {
-			player
-					.sendPrivateText("The strong anti telepathy aura prevents you from getting through. Use /support <text> to contact an admin!");
+			player.sendPrivateText("The strong anti telepathy aura prevents you from getting through. Use /support <text> to contact an admin!");
 			return;
 		}
 
-		if (action.has(TARGET) && action.has(_TEXT)) {
-			String text = action.get(_TEXT).trim();
+		if (action.has(TARGET) && action.has(TEXT)) {
+			String text = action.get(TEXT).trim();
 			String message;
 
 			// find the target player
@@ -132,9 +128,7 @@ public class ChatAction implements ActionListener {
 			 * have the level to see ghosts...
 			 */
 			if ((receiver == null)
-					|| (receiver.isGhost()
-					&& (player.getAdminLevel() < AdministrationAction
-							.getLevelForCommand("ghostmode")))) {
+					|| (receiver.isGhost() && (player.getAdminLevel() < AdministrationAction.getLevelForCommand("ghostmode")))) {
 				player.sendPrivateText("No player named \""
 						+ action.get(TARGET) + "\" is currently active.");
 				player.notifyWorldAboutChanges();
@@ -167,9 +161,8 @@ public class ChatAction implements ActionListener {
 				// HACK: do not notify postman
 				if (!senderName.equals("postman")) {
 					if (reply.length() == 0) {
-						player
-								.sendPrivateText(Grammar.suffix_s(receiverName)
-										+ " mind is not attuned to yours, so you cannot reach them.");
+						player.sendPrivateText(Grammar.suffix_s(receiverName)
+								+ " mind is not attuned to yours, so you cannot reach them.");
 					} else {
 						player.sendPrivateText(receiverName
 								+ " is ignoring you: " + reply);
@@ -182,30 +175,31 @@ public class ChatAction implements ActionListener {
 
 			// check grumpiness
 			grumpy = receiver.getGrumpyMessage();
-			if (grumpy != null && receiver.getSlot("!buddy").size() > 0){
+			if (grumpy != null && receiver.getSlot("!buddy").size() > 0) {
 				RPObject buddies = receiver.getSlot("!buddy").iterator().next();
 				boolean senderFound = false;
 				for (String buddyName : buddies) {
-					// TODO: as in Player.java, remove '_' prefix if ID is made completely virtual
+					// TODO: as in Player.java, remove '_' prefix if ID is made
+					// completely virtual
 					if (buddyName.charAt(0) == '_') {
-					 buddyName = buddyName.substring(1);
+						buddyName = buddyName.substring(1);
 					}
-					if (buddyName.equals(senderName)){
+					if (buddyName.equals(senderName)) {
 						senderFound = true;
 						break;
 					}
 				}
-				if(!senderFound){
+				if (!senderFound) {
 					// sender is not a buddy
 					// HACK: do not notify postman
 					if (!senderName.equals("postman")) {
 						if (grumpy.length() == 0) {
-							player
-								.sendPrivateText(receiverName
-											 + " has a closed mind, and is seeking solitude from all but close friends");
+							player.sendPrivateText(receiverName
+									+ " has a closed mind, and is seeking solitude from all but close friends");
 						} else {
 							player.sendPrivateText(receiverName
-												   + " is seeking solitude from all but close friends: " + grumpy);
+									+ " is seeking solitude from all but close friends: "
+									+ grumpy);
 						}
 						player.notifyWorldAboutChanges();
 					}
@@ -235,8 +229,8 @@ public class ChatAction implements ActionListener {
 			}
 
 			receiver.setLastPrivateChatter(senderName);
-			StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
-					_CHAT, receiverName, Integer.toString(text.length()),
+			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), _CHAT,
+					receiverName, Integer.toString(text.length()),
 					text.substring(0, Math.min(text.length(), 1000)));
 			receiver.notifyWorldAboutChanges();
 			player.notifyWorldAboutChanges();
@@ -244,11 +238,11 @@ public class ChatAction implements ActionListener {
 		}
 	}
 
-	private void onSupport(Player player, RPAction action) {
+	private void onSupport(final Player player, final RPAction action) {
 
-		if (action.has(_TEXT)) {
+		if (action.has(TEXT)) {
 
-			if (action.get(_TEXT).trim().equals("")) {
+			if (action.get(TEXT).trim().equals("")) {
 				player.sendPrivateText("Usage /support <your message here>");
 				return;
 			}
@@ -262,8 +256,7 @@ public class ChatAction implements ActionListener {
 					// the player have to wait one minute since the last support
 					// message was sent
 					if (timeLastMsg < 60000) {
-						player
-								.sendPrivateText("We only allow inmates one support message per minute.");
+						player.sendPrivateText("We only allow inmates one support message per minute.");
 						return;
 					}
 				}
@@ -271,27 +264,26 @@ public class ChatAction implements ActionListener {
 				lastMsg.put(player.getName(), System.currentTimeMillis());
 			}
 
-			String message = action.get(_TEXT)
+			String message = action.get(TEXT)
 					+ "\r\nPlease use #/supportanswer #" + player.getTitle()
 					+ " to answer.";
 
 			StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
-					_SUPPORT, action.get(_TEXT));
+					_SUPPORT, action.get(TEXT));
 
 			sendMessageToSupporters(player.getTitle(), message);
 
-			player
-					.sendPrivateText("You ask for support: "
-							+ action.get(_TEXT)
-							+ "\nIt may take a little time until your question is answered.");
+			player.sendPrivateText("You ask for support: "
+					+ action.get(TEXT)
+					+ "\nIt may take a little time until your question is answered.");
 			player.notifyWorldAboutChanges();
 		}
 
 	}
 
 	/**
-	 * sends a message to all supporters
-	 *
+	 * sends a message to all supporters.
+	 * 
 	 * @param source
 	 *            a player or script name
 	 * @param message
@@ -300,7 +292,8 @@ public class ChatAction implements ActionListener {
 	// TODO: try to clean up the dependencies, having other places in
 	// the code call directly into an action does not seem to be a
 	// good idea
-	public static void sendMessageToSupporters(String source, String message) {
+	public static void sendMessageToSupporters(final String source,
+			final String message) {
 		String text = source + " asks for support to ADMIN: " + message;
 		for (Player p : StendhalRPRuleProcessor.get().getPlayers()) {
 			if (p.getAdminLevel() >= AdministrationAction.REQUIRED_ADMIN_LEVEL_FOR_SUPPORT) {
