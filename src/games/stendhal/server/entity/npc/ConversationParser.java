@@ -13,11 +13,10 @@ import java.util.StringTokenizer;
  * @author Martin Fuchs
  */
 public class ConversationParser {
-
-	private StringTokenizer _tokenizer;
-	private StringBuilder _original;
-	private String	_nextWord;
-    private String _error;
+	private StringTokenizer tokenizer;
+	private StringBuilder original;
+	private String nextWord;
+    private String error;
 
     /**
      * create a new conversation parser and initialise with the given text string
@@ -25,14 +24,14 @@ public class ConversationParser {
 	public ConversationParser(final String text)
 	{
 		 // initialise a new tokenizer with the given text
-		_tokenizer = new StringTokenizer(text!=null? text: "");
+		tokenizer = new StringTokenizer(text!=null? text: "");
 
 		 // get first word
-		_nextWord = _tokenizer.hasMoreTokens()? _tokenizer.nextToken(): null;
-		_original = _nextWord!=null? new StringBuilder(_nextWord): new StringBuilder();
+		nextWord = tokenizer.hasMoreTokens()? tokenizer.nextToken(): null;
+		original = nextWord!=null? new StringBuilder(nextWord): new StringBuilder();
 
          // start with no errors.
-        _error = null;
+        error = null;
 	}
 
     /**
@@ -48,40 +47,40 @@ public class ConversationParser {
 		 // Parse the text as "verb - amount - object" construct,
 		 // ignoring prefixed occurencies of "please".
 		do {
-			sentence._verb = parser._nextWord();
-		} while(sentence._verb!=null && sentence._verb.equals("please"));
+			sentence.setVerb(parser.nextWord());
+		} while (sentence.getVerb() != null && sentence.getVerb().equals("please"));
 
-		sentence._amount = parser.readAmount();
+		sentence.setAmount(parser.readAmount());
 		String object = parser.readObjectName();
 
          // Optionally there may be following a preposition and a second object.
-		sentence._preposition = parser._nextWord();
-		sentence._object2 = parser.readObjectName();
+		sentence.setPreposition(parser.nextWord());
+		sentence.setObject2(parser.readObjectName());
 
-		sentence._error = parser.getError();
-		sentence._original = parser._original.toString();
+		sentence.setError(parser.getError());
+		sentence.setOriginal(parser.original.toString());
 
 		 // derive the singular from the item name if the amount is greater than one
-		if (sentence._amount != 1) {
+		if (sentence.getAmount() != 1) {
 			object = Grammar.singular(object);
 		}
 
-		sentence._object = object;
+		sentence.setObject(object);
 
         return sentence;
 	}
 
-	private String _nextWord()
+	private String nextWord()
     {
-		String word = _nextWord;
+		String word = nextWord;
 
 		if (word != null) {
-			if (_tokenizer.hasMoreTokens()) {
-				_nextWord = _tokenizer.nextToken();
-				_original.append(' ');
-				_original.append(_nextWord);
+			if (tokenizer.hasMoreTokens()) {
+				nextWord = tokenizer.nextToken();
+				original.append(' ');
+				original.append(nextWord);
 			} else {
-				_nextWord = null;
+				nextWord = null;
 			}
 
 	        return word.toLowerCase();
@@ -99,25 +98,25 @@ public class ConversationParser {
         int amount = 1;
 
          // handle numeric expressions
-        if (_tokenizer.hasMoreTokens()) {
-        	if (_nextWord.matches("^[+-]?[0-9]+")) {
+        if (tokenizer.hasMoreTokens()) {
+        	if (nextWord.matches("^[+-]?[0-9]+")) {
     	        try {
-    	        	amount = Integer.parseInt(_nextWord);
+    	        	amount = Integer.parseInt(nextWord);
     
     	        	if (amount < 0)
     	        		setError("negative amount: " + amount);
 
-    		        _nextWord();
+    		        nextWord();
     	        } catch(NumberFormatException e) {
-    	        	setError("illegal number format: '" + _nextWord + "'");
+    	        	setError("illegal number format: '" + nextWord + "'");
     	        }
             } else {
             	 // handle expressions like "one", "two", ...
-            	Integer number = Grammar.number(_nextWord);
+            	Integer number = Grammar.number(nextWord);
 
             	if (number != null) {
             		amount = number.intValue();
-            		_nextWord();
+            		nextWord();
             	}
             }
         }
@@ -135,15 +134,15 @@ public class ConversationParser {
 
          // handle object names consisting of more than one word
         for(;;) {
-        	if (_nextWord == null)
+        	if (nextWord == null)
         		break;
 
         	 // stop if the next word is a preposition
-        	if (Grammar.isPreposition(_nextWord) &&
-        		!_nextWord.equals("of")) //TODO directly integrate Grammar.extractNoun() here
+        	if (Grammar.isPreposition(nextWord) &&
+        		!nextWord.equals("of")) //TODO directly integrate Grammar.extractNoun() here
         		break;
 
-        	String word = _nextWord();
+        	String word = nextWord();
 
              // concatenate user specified item names like "baby dragon"
              // with spaces to build the internal item names
@@ -162,10 +161,10 @@ public class ConversationParser {
 	 */
 	private void setError(String error)
     {
-		if (_error == null) {
-			_error = error;
+		if (this.error == null) {
+			this.error = error;
     	} else {
-    		_error += "\n" + error;
+    		this.error += "\n" + error;
     	}
     }
 
@@ -175,6 +174,6 @@ public class ConversationParser {
 	 */
 	public String getError()
     {
-	    return _error;
+	    return error;
     }
 }
