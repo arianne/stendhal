@@ -85,7 +85,7 @@ public class NPCTest {
 		assertEquals("I sell cats. Well, really they are just little kittens when I sell them to you but if you #care for them well they grow into cats.", npc.get("text"));
 
 		assertNotNull(npc.getAttending());
-		npc.logic();
+		npc.preLogic();
 		assertEquals("Bye.", npc.get("text"));
 		assertNull(npc.getAttending());
 	}
