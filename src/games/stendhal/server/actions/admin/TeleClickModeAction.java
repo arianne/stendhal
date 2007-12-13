@@ -7,8 +7,10 @@ import games.stendhal.server.entity.player.Player;
 
 public class TeleClickModeAction extends AdministrationAction {
 
+	private static final String _TELECLICKMODE = "teleclickmode";
+
 	public static void register() {
-		CommandCenter.register("teleclickmode", new TeleClickModeAction(), 500);
+		CommandCenter.register(_TELECLICKMODE, new TeleClickModeAction(), 500);
 
 	}
 
@@ -18,11 +20,11 @@ public class TeleClickModeAction extends AdministrationAction {
 		if (player.isTeleclickEnabled()) {
 			player.setTeleclickEnabled(false);
 			StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
-					"teleclickmode", "off");
+					_TELECLICKMODE, "off");
 		} else {
 			player.setTeleclickEnabled(true);
 			StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
-					"teleclickmode", "on");
+					_TELECLICKMODE, "on");
 		}
 	}
 

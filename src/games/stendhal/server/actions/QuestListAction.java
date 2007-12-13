@@ -3,17 +3,20 @@ package games.stendhal.server.actions;
 import games.stendhal.server.StendhalQuestSystem;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
+import static games.stendhal.server.actions.WellKnownActionConstants.TARGET;
 
 public class QuestListAction implements ActionListener {
+	private static final String _LISTQUESTS = "listquests";
+
 	public static void register() {
-		CommandCenter.register("listquests", new QuestListAction());
+		CommandCenter.register(_LISTQUESTS, new QuestListAction());
 	}
 
 	public void onAction(Player player, RPAction action) {
 
 		StringBuilder st = new StringBuilder();
-		if (action.has("target")) {
-			String which = action.get("target");
+		if (action.has(TARGET)) {
+			String which = action.get(TARGET);
 			st.append(StendhalQuestSystem.get().listQuest(player, which));
 
 		} else {

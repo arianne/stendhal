@@ -16,11 +16,13 @@ import marauroa.common.game.RPAction;
  * Process /away commands.
  */
 public class AwayAction implements ActionListener {
+	private static final String _AWAY = "away";
+
 	/**
 	 * Registers action.
 	 */
 	public static void register() {
-		CommandCenter.register("away", new AwayAction());
+		CommandCenter.register(_AWAY, new AwayAction());
 	}
 
 	/**
@@ -30,8 +32,8 @@ public class AwayAction implements ActionListener {
 	 * @param	action		The action.
 	 */
 	protected void onAway(Player player, RPAction action) {
-		if (action.has("message")) {
-			player.setAwayMessage(action.get("message"));
+		if (action.has(WellKnownActionConstants.MESSAGE)) {
+			player.setAwayMessage(action.get(WellKnownActionConstants.MESSAGE));
 		} else {
 			player.setAwayMessage(null);
 		}
@@ -46,7 +48,7 @@ public class AwayAction implements ActionListener {
 	 * @param	action		The action.
 	 */
 	public void onAction(Player player, RPAction action) {
-		if (action.get("type").equals("away")) {
+		if (action.get(WellKnownActionConstants.TYPE).equals(_AWAY)) {
 			onAway(player, action);
 		}
 	}

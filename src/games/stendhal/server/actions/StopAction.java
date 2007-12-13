@@ -17,6 +17,8 @@ import marauroa.common.game.RPAction;
 
 public class StopAction implements ActionListener {
 
+	private static final String _ATTACK = "attack";
+
 	public static void register() {
 		CommandCenter.register("stop", new StopAction());
 	}
@@ -25,7 +27,7 @@ public class StopAction implements ActionListener {
 
 		player.stop();
 
-		if (action.has("attack")) {
+		if (action.has(_ATTACK)) {
 			player.stopAttack();
 		}
 

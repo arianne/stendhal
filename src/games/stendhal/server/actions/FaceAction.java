@@ -18,16 +18,19 @@ import marauroa.common.game.RPAction;
 
 public class FaceAction implements ActionListener {
 
+	private static final String _DIR = "dir";
+	private static final String _FACE = "face";
+
 	public static void register() {
-		CommandCenter.register("face", new FaceAction());
+		CommandCenter.register(_FACE, new FaceAction());
 	}
 
 	public void onAction(Player player, RPAction action) {
 
 
-		if (action.has("dir")) {
+		if (action.has(_DIR)) {
 			player.stop();
-			player.setDirection(Direction.build(action.getInt("dir")));
+			player.setDirection(Direction.build(action.getInt(_DIR)));
 			player.notifyWorldAboutChanges();
 		}
 

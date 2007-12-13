@@ -27,12 +27,21 @@ import java.util.StringTokenizer;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 
+
+
+import static games.stendhal.server.actions.WellKnownActionConstants.*;
 /**
  * Processes /chat, /tell (/msg) and /support
  */
 public class ChatAction implements ActionListener {
 
 
+	
+	private static final String _TEXT = "text";
+	private static final String _SUPPORT = "support";
+	private static final String _TELL = "tell";
+	private static final String _CHAT = "chat";
+	private static final String _ANSWER = "answer";
 	// HashMap <players_name, last_message_time>
 	private Map<String, Long> lastMsg = new HashMap<String, Long>();
 
@@ -41,10 +50,10 @@ public class ChatAction implements ActionListener {
 	 */
 	public static void register() {
 		ChatAction chat = new ChatAction();
-		CommandCenter.register("answer", chat);
-		CommandCenter.register("chat", chat);
-		CommandCenter.register("tell", chat);
-		CommandCenter.register("support", chat);
+		CommandCenter.register(_ANSWER, chat);
+		CommandCenter.register(_CHAT, chat);
+		CommandCenter.register(_TELL, chat);
+		CommandCenter.register(_SUPPORT, chat);
 	}
 
 	public void onAction(Player player, RPAction action) {
@@ -56,11 +65,11 @@ public class ChatAction implements ActionListener {
 			return;
 		}
 
-		if (action.get("type").equals("chat")) {
+		if (action.get(TYPE).equals(_CHAT)) {
 			onChat(player, action);
-		} else if (action.get("type").equals("tell")) {
+		} else if (action.get(TYPE).equals(_TELL)) {
 			onTell(player, action);
-		} else if (action.get("type").equals("answer")) {
+		} else if (action.get(TYPE).equals(_ANSWER)) {
 			onAnswer(player, action);
 		} else {
 			onSupport(player, action);
@@ -69,11 +78,11 @@ public class ChatAction implements ActionListener {
 
 	private void onChat(Player player, RPAction action) {
 
-		if (action.has("text")) {
-			String text = action.get("text");
+		if (action.has(_TEXT)) {
+			String text = action.get(_TEXT);
 			player.put("text", text);
 			StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
-					"chat", null, Integer.toString(text.length()),
+					_CHAT, null, Integer.toString(text.length()),
 					text.substring(0, Math.min(text.length(), 1000)));
 
 			player.notifyWorldAboutChanges();
@@ -83,11 +92,11 @@ public class ChatAction implements ActionListener {
 	}
 
 	private void onAnswer(Player player, RPAction action) {
-		if (action.has("text")) {
+		if (action.has(_TEXT)) {
 			if (player.getLastPrivateChatter() != null) {
 				// convert the action to a /tell action
-				action.put("type", "tell");
-				action.put("target", player.getLastPrivateChatter());
+				action.put(TYPE, _TELL);
+				action.put(TARGET, player.getLastPrivateChatter());
 				onTell(player, action);
 			} else {
 				player.sendPrivateText("Nobody has talked privately to you.");
@@ -108,13 +117,13 @@ public class ChatAction implements ActionListener {
 			return;
 		}
 
-		if (action.has("target") && action.has("text")) {
-			String text = action.get("text").trim();
+		if (action.has(TARGET) && action.has(_TEXT)) {
+			String text = action.get(_TEXT).trim();
 			String message;
 
 			// find the target player
 			String senderName = player.getTitle();
-			String receiverName = action.get("target");
+			String receiverName = action.get(TARGET);
 
 			Player receiver = StendhalRPRuleProcessor.get().getPlayer(
 					receiverName);
@@ -127,7 +136,7 @@ public class ChatAction implements ActionListener {
 					&& (player.getAdminLevel() < AdministrationAction
 							.getLevelForCommand("ghostmode")))) {
 				player.sendPrivateText("No player named \""
-						+ action.get("target") + "\" is currently active.");
+						+ action.get(TARGET) + "\" is currently active.");
 				player.notifyWorldAboutChanges();
 				return;
 			}
@@ -227,7 +236,7 @@ public class ChatAction implements ActionListener {
 
 			receiver.setLastPrivateChatter(senderName);
 			StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
-					"chat", receiverName, Integer.toString(text.length()),
+					_CHAT, receiverName, Integer.toString(text.length()),
 					text.substring(0, Math.min(text.length(), 1000)));
 			receiver.notifyWorldAboutChanges();
 			player.notifyWorldAboutChanges();
@@ -237,9 +246,9 @@ public class ChatAction implements ActionListener {
 
 	private void onSupport(Player player, RPAction action) {
 
-		if (action.has("text")) {
+		if (action.has(_TEXT)) {
 
-			if (action.get("text").trim().equals("")) {
+			if (action.get(_TEXT).trim().equals("")) {
 				player.sendPrivateText("Usage /support <your message here>");
 				return;
 			}
@@ -262,18 +271,18 @@ public class ChatAction implements ActionListener {
 				lastMsg.put(player.getName(), System.currentTimeMillis());
 			}
 
-			String message = action.get("text")
+			String message = action.get(_TEXT)
 					+ "\r\nPlease use #/supportanswer #" + player.getTitle()
 					+ " to answer.";
 
 			StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
-					"support", action.get("text"));
+					_SUPPORT, action.get(_TEXT));
 
 			sendMessageToSupporters(player.getTitle(), message);
 
 			player
 					.sendPrivateText("You ask for support: "
-							+ action.get("text")
+							+ action.get(_TEXT)
 							+ "\nIt may take a little time until your question is answered.");
 			player.notifyWorldAboutChanges();
 		}

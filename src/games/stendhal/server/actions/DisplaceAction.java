@@ -28,6 +28,12 @@ import marauroa.common.game.RPObject;
  */
 public class DisplaceAction implements ActionListener {
 
+	private static final String _BASEITEM = "baseitem";
+	private static final String _Y = "y";
+	private static final String _X = "x";
+
+
+
 	/**
 	 * register this action
 	 */
@@ -40,17 +46,17 @@ public class DisplaceAction implements ActionListener {
 	 */
 	public void onAction(Player player, RPAction action) {
 
-		if (action.has("baseitem")) {
-			int targetObject = action.getInt("baseitem");
+		if (action.has(_BASEITEM)) {
+			int targetObject = action.getInt(_BASEITEM);
 
 			StendhalRPZone zone = player.getZone();
 			RPObject.ID targetid = new RPObject.ID(targetObject, zone.getID());
 			if (zone.has(targetid)) {
 				RPObject object = zone.get(targetid);
 				if (object instanceof PassiveEntity) {
-					if (action.has("x") && action.has("y")) {
-						int x = action.getInt("x");
-						int y = action.getInt("y");
+					if (action.has(_X) && action.has(_Y)) {
+						int x = action.getInt(_X);
+						int y = action.getInt(_Y);
 
 						PassiveEntity entity = (PassiveEntity) object;
 

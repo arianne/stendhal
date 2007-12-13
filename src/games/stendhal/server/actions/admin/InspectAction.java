@@ -11,8 +11,10 @@ import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
 public class InspectAction extends AdministrationAction {
+	private static final String _INSPECT = "inspect";
+
 	public static void register() {
-		CommandCenter.register("inspect", new InspectAction(), 600);
+		CommandCenter.register(_INSPECT, new InspectAction(), 600);
 	}
 
 	@Override

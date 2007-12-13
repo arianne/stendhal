@@ -24,8 +24,16 @@ import marauroa.common.game.RPSlot;
 
 public class LookAction implements ActionListener {
 
+	private static final String ATTR_NAME = "name";
+	private static final String ATTR_TYPE = "type";
+	private static final String _TARGET = "target";
+	private static final String _BASESLOT = "baseslot";
+	private static final String _BASEOBJECT = "baseobject";
+	private static final String _BASEITEM = "baseitem";
+	private static final String _LOOK = "look";
+
 	public static void register() {
-		CommandCenter.register("look", new LookAction());
+		CommandCenter.register(_LOOK, new LookAction());
 	}
 
 	public void onAction(Player player, RPAction action) {
@@ -33,10 +41,10 @@ public class LookAction implements ActionListener {
 		StendhalRPWorld world = StendhalRPWorld.get();
 
 		// When look is cast over something in a slot
-		if (action.has("baseitem") && action.has("baseobject") && action.has("baseslot")) {
+		if (action.has(_BASEITEM) && action.has(_BASEOBJECT) && action.has(_BASESLOT)) {
 			StendhalRPZone zone = player.getZone();
 
-			int baseObject = action.getInt("baseobject");
+			int baseObject = action.getInt(_BASEOBJECT);
 
 			RPObject.ID baseobjectid = new RPObject.ID(baseObject, zone.getID());
 			if (!zone.has(baseobjectid)) {
@@ -52,15 +60,15 @@ public class LookAction implements ActionListener {
 			Entity baseEntity = (Entity) base;
 			Entity entity = baseEntity;
 
-			if (baseEntity.hasSlot(action.get("baseslot"))) {
-				RPSlot slot = baseEntity.getSlot(action.get("baseslot"));
+			if (baseEntity.hasSlot(action.get(_BASESLOT))) {
+				RPSlot slot = baseEntity.getSlot(action.get(_BASESLOT));
 
 				if (slot.size() == 0) {
 					return;
 				}
 
 				RPObject object = null;
-				int item = action.getInt("baseitem");
+				int item = action.getInt(_BASEITEM);
 				// scan through the slot to find the requested item
 				for (RPObject rpobject : slot) {
 					if (rpobject.getID().getObjectID() == item) {
@@ -78,24 +86,24 @@ public class LookAction implements ActionListener {
 				entity = (Entity) object;
 			}
 
-			String name = entity.get("type");
-			if (entity.has("name")) {
-				name = entity.get("name");
+			String name = entity.get(ATTR_TYPE);
+			if (entity.has(ATTR_NAME)) {
+				name = entity.get(ATTR_NAME);
 			}
-			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "look", name);
+			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), _LOOK, name);
 			player.sendPrivateText(entity.describe());
 			world.modify(player);
 			return;
-		} else if (action.has("target")) {
+		} else if (action.has(_TARGET)) {
 			 // evaluate the target parameter
-			Entity entity = EntityHelper.entityFromTargetName(action.get("target"), player.getZone());
+			Entity entity = EntityHelper.entityFromTargetName(action.get(_TARGET), player.getZone());
 
 			if (entity != null) {
-				String name = entity.get("type");
-				if (entity.has("name")) {
-					name = entity.get("name");
+				String name = entity.get(ATTR_TYPE);
+				if (entity.has(ATTR_NAME)) {
+					name = entity.get(ATTR_NAME);
 				}
-				StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "look", name);
+				StendhalRPRuleProcessor.get().addGameEvent(player.getName(), _LOOK, name);
 				player.sendPrivateText(entity.describe());
 				world.modify(player);
 			}

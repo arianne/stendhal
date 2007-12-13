@@ -8,17 +8,20 @@ import marauroa.common.game.RPAction;
 
 public class TellAllAction extends AdministrationAction {
 	
+	private static final String _TEXT = "text";
+	private static final String _TELLALL = "tellall";
+
 	public static void register() {
-		CommandCenter.register("tellall", new TellAllAction(), 200);
+		CommandCenter.register(_TELLALL, new TellAllAction(), 200);
 
 	}
 
 	@Override
 	public void perform(Player player, RPAction action) {
-		if (action.has("text")) {
-			String message = "Administrator SHOUTS: " + action.get("text");
+		if (action.has(_TEXT)) {
+			String message = "Administrator SHOUTS: " + action.get(_TEXT);
 			StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
-					"tellall", action.get("text"));
+					_TELLALL, action.get(_TEXT));
 
 			StendhalRPAction.shout(message);
 		}

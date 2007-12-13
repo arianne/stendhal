@@ -4,20 +4,25 @@ import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
+import static games.stendhal.server.actions.WellKnownActionConstants.*;
 
 public class AdminLevelAction extends AdministrationAction {
 
+	private static final String _ADMINLEVEL = "adminlevel";
+	private static final String _NEWLEVEL = "newlevel";
+	private static final String _TARGET = TARGET;
+
 	public static void register(){
-		CommandCenter.register("adminlevel", new AdminLevelAction(), 0);
+		CommandCenter.register(_ADMINLEVEL, new AdminLevelAction(), 0);
 		
 	}
 	
 	@Override
 	public void perform(Player player, RPAction action) {
 	
-		if (action.has("target")) {
+		if (action.has(_TARGET)) {
 	
-			String name = action.get("target");
+			String name = action.get(_TARGET);
 			Player target = StendhalRPRuleProcessor.get().getPlayer(name);
 	
 			if (target == null) {
@@ -29,11 +34,11 @@ public class AdminLevelAction extends AdministrationAction {
 			int oldlevel = target.getAdminLevel();
 			String response = target.getTitle() + " has adminlevel " + oldlevel;
 	
-			if (action.has("newlevel")) {
+			if (action.has(_NEWLEVEL)) {
 				// verify newlevel is a number
 				int newlevel;
 				try {
-					newlevel = Integer.parseInt(action.get("newlevel"));
+					newlevel = Integer.parseInt(action.get(_NEWLEVEL));
 				} catch (NumberFormatException e) {
 					player
 							.sendPrivateText("The new adminlevel needs to be an Integer");
@@ -64,8 +69,8 @@ public class AdminLevelAction extends AdministrationAction {
 	
 					// OK, do the change
 					StendhalRPRuleProcessor.get().addGameEvent(
-							player.getName(), "adminlevel", target.getName(),
-							"adminlevel", action.get("newlevel"));
+							player.getName(), _ADMINLEVEL, target.getName(),
+							_ADMINLEVEL, action.get(_NEWLEVEL));
 					target.setAdminLevel(newlevel);
 					target.update();
 					target.notifyWorldAboutChanges();

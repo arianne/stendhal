@@ -16,12 +16,18 @@ import games.stendhal.server.actions.CommandCenter;
 
 public class BuddyAction  {
 
+	private static final String _GRUMPY = "grumpy";
+	private static final String _UNIGNORE = "unignore";
+	private static final String _REMOVEBUDDY = "removebuddy";
+	private static final String _IGNORE = "ignore";
+	private static final String _ADDBUDDY = "addbuddy";
+
 	public static void register() {
-		CommandCenter.register("addbuddy", new AddBuddyAction());
-		CommandCenter.register("ignore", new IgnoreAction());
-		CommandCenter.register("removebuddy", new RemoveBuddyAction());
-		CommandCenter.register("unignore", new UnignoreAction());
-		CommandCenter.register("grumpy", new GrumpyAction());
+		CommandCenter.register(_ADDBUDDY, new AddBuddyAction());
+		CommandCenter.register(_IGNORE, new IgnoreAction());
+		CommandCenter.register(_REMOVEBUDDY, new RemoveBuddyAction());
+		CommandCenter.register(_UNIGNORE, new UnignoreAction());
+		CommandCenter.register(_GRUMPY, new GrumpyAction());
 	}
 
 

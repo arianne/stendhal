@@ -6,8 +6,9 @@ import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
 
 public class InvisibleAction extends AdministrationAction {
+private static final String _INVISIBLE = "invisible";
 public static void register(){
-	CommandCenter.register("invisible", new InvisibleAction(), 500);
+	CommandCenter.register(_INVISIBLE, new InvisibleAction(), 500);
 	
 }
 	@Override
@@ -16,11 +17,11 @@ public static void register(){
 		if (player.isInvisible()) {
 			player.setInvisible(false);
 			StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
-					"invisible", "off");
+					_INVISIBLE, "off");
 		} else {
 			player.setInvisible(true);
 			StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
-					"invisible", "on");
+					_INVISIBLE, "on");
 		}
 	}
 

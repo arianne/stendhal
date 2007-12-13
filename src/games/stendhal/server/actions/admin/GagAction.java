@@ -7,30 +7,36 @@ import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
 
 public class GagAction extends AdministrationAction {
+	private static final String USAGE_GAG_NAME_MINUTES_REASON = "Usage: /gag name minutes reason";
+	private static final String _REASON = "reason";
+	private static final String _MINUTES = "minutes";
+	private static final String _TARGET = "target";
+	private static final String _GAG = "gag";
+
 	public static void register(){
-		CommandCenter.register("gag", new GagAction(), 400);
+		CommandCenter.register(_GAG, new GagAction(), 400);
 
 	}
 
 	@Override
 	public void perform(Player player, RPAction action) {
 	
-		if (action.has("target") && action.has("minutes")) {
-			String target = action.get("target");
+		if (action.has(_TARGET) && action.has(_MINUTES)) {
+			String target = action.get(_TARGET);
 			String reason = "";
-			if (action.has("reason")) {
-				reason = action.get("reason");
+			if (action.has(_REASON)) {
+				reason = action.get(_REASON);
 			}
 			try {
-				int minutes = action.getInt("minutes");
+				int minutes = action.getInt(_MINUTES);
 				StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
-						"gag", target, Integer.toString(minutes), reason);
+						_GAG, target, Integer.toString(minutes), reason);
 				GagManager.get().gag(target, player, minutes, reason);
 			} catch (NumberFormatException e) {
-				player.sendPrivateText("Usage: /gag name minutes reason");
+				player.sendPrivateText(USAGE_GAG_NAME_MINUTES_REASON);
 			}
 		} else {
-			player.sendPrivateText("Usage: /gag name minutes reason");
+			player.sendPrivateText(USAGE_GAG_NAME_MINUTES_REASON);
 		}
 	}
 

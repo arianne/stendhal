@@ -20,16 +20,19 @@ import marauroa.common.game.RPAction;
 public class OutfitAction implements ActionListener {
 
 
+	private static final String _VALUE = "value";
+	private static final String _OUTFIT = "outfit";
+
 	public static void register() {
-		CommandCenter.register("outfit", new OutfitAction());
+		CommandCenter.register(_OUTFIT, new OutfitAction());
 	}
 
 	public void onAction(Player player, RPAction action) {
 
 
-		if (action.has("value")) {
-			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "outfit", action.get("value"));
-			Outfit outfit = new Outfit(action.getInt("value"));
+		if (action.has(_VALUE)) {
+			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), _OUTFIT, action.get(_VALUE));
+			Outfit outfit = new Outfit(action.getInt(_VALUE));
 			if (outfit.isChoosableByPlayers()) {
 				player.setOutfit(outfit, false);
 			}

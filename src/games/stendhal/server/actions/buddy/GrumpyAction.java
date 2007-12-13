@@ -5,6 +5,8 @@ import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.entity.player.Player;
 
 public class GrumpyAction implements ActionListener {
+	private static final String _REASON = "reason";
+
 	/**
 	 * Handle a Grumpy action.
 	 *
@@ -12,8 +14,8 @@ public class GrumpyAction implements ActionListener {
 	 * @param	action		The action.
 	 */
 	public void onAction(Player player, RPAction action) {
-		if (action.has("reason")) {
-			player.setGrumpyMessage(action.get("reason"));
+		if (action.has(_REASON)) {
+			player.setGrumpyMessage(action.get(_REASON));
 		} else {
 			player.setGrumpyMessage(null);	
 		}

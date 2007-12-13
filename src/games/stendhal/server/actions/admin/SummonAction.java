@@ -12,22 +12,29 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.rule.EntityManager;
 import marauroa.common.game.RPAction;
 
+import static games.stendhal.server.actions.WellKnownActionConstants.X;
+import static games.stendhal.server.actions.WellKnownActionConstants.Y;
+
 public class SummonAction extends AdministrationAction {
+
+private static final String _CREATURE = "creature";
+private static final String _SUMMON = "summon";
+
 public static void register (){
-	CommandCenter.register("summon", new SummonAction(), 800);
+	CommandCenter.register(_SUMMON, new SummonAction(), 800);
 	
 }
 	@Override
 	public void perform(Player player, RPAction action) {
 	
-		if (action.has("creature") && action.has("x") && action.has("y")) {
+		if (action.has(_CREATURE) && action.has(X) && action.has(Y)) {
 			StendhalRPZone zone = player.getZone();
-			int x = action.getInt("x");
-			int y = action.getInt("y");
+			int x = action.getInt(X);
+			int y = action.getInt(Y);
 	
 			if (!zone.collides(player, x, y)) {
 				EntityManager manager = StendhalRPWorld.get().getRuleManager().getEntityManager();
-				String type = action.get("creature");
+				String type = action.get(_CREATURE);
 				
 				Entity	entity = manager.getEntity(type);
 				
@@ -42,7 +49,7 @@ public static void register (){
 				} 
 	
 				StendhalRPRuleProcessor.get().addGameEvent(
-						player.getName(), "summon", type);
+						player.getName(), _SUMMON, type);
 	
 				StendhalRPAction.placeat(zone, entity, x, y);
 			}

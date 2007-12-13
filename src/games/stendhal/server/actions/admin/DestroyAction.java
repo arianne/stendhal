@@ -13,6 +13,9 @@ import marauroa.common.game.RPAction;
 
 public class DestroyAction extends AdministrationAction {
 
+	private static final String _TARGETID = "targetid";
+	private static final String _ATTR_NAME = "name";
+
 	public static void register() {
 		CommandCenter.register("destroy", new DestroyAction(), 700);
 
@@ -55,15 +58,15 @@ public class DestroyAction extends AdministrationAction {
 		}
 	
 		String name = inspected.getRPClass().getName();
-		if (inspected.has("name")) {
-			name = inspected.get("name");
+		if (inspected.has(_ATTR_NAME)) {
+			name = inspected.get(_ATTR_NAME);
 		}
 	
 		StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "removed",
 				name, zone.getName(), Integer.toString(inspected.getX()),
 				Integer.toString(inspected.getY()));
 	
-		player.sendPrivateText("Removed entity " + action.get("targetid"));
+		player.sendPrivateText("Removed entity " + action.get(_TARGETID));
 	}
 
 }

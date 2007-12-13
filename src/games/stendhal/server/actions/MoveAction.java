@@ -28,25 +28,34 @@ import games.stendhal.server.util.EntityHelper;
 import java.util.List;
 
 import marauroa.common.game.RPAction;
-
+import static games.stendhal.server.actions.WellKnownActionConstants.TARGET;
+import static games.stendhal.server.actions.WellKnownActionConstants.TYPE;
 public class MoveAction implements ActionListener {
+
+	private static final String _TELECLICKMODE = "teleclickmode";
+	private static final String _DIR = "dir";
+	
+	
+	private static final String _PUSH = "push";
+	private static final String _MOVETO = "moveto";
+	private static final String _MOVE = "move";
 
 	public static void register() {
 		MoveAction move = new MoveAction();
-		CommandCenter.register("move", move);
-		CommandCenter.register("moveto", move);
-		CommandCenter.register("push", move);
+		CommandCenter.register(_MOVE, move);
+		CommandCenter.register(_MOVETO, move);
+		CommandCenter.register(_PUSH, move);
 	}
 
 	public void onAction(Player player, RPAction action) {
 
-		String type = action.get("type");
+		String type = action.get(TYPE);
 
-		if (type.equals("move")) {
+		if (type.equals(_MOVE)) {
 			move(player, action);
-		} else if (type.equals("moveto")) {
+		} else if (type.equals(_MOVETO)) {
 			moveTo(player, action);
-		} else if (type.equals("push")) {
+		} else if (type.equals(_PUSH)) {
 			push(player, action);
 		}
 	}
@@ -65,10 +74,10 @@ public class MoveAction implements ActionListener {
 	}
 
 	private void push(Player player, RPAction action) {
-		if (action.has("target")) {
+		if (action.has(TARGET)) {
 			 // evaluate the target parameter
 			StendhalRPZone zone = player.getZone();
-			Entity entity = EntityHelper.entityFromTargetName(action.get("target"), zone);
+			Entity entity = EntityHelper.entityFromTargetName(action.get(TARGET), zone);
 
 			if (entity instanceof RPEntity) {
 				RPEntity rpEntity = (RPEntity)entity;
@@ -98,8 +107,8 @@ public class MoveAction implements ActionListener {
 
 	private void move(Player player, RPAction action) {
 
-		if (action.has("dir")) {
-			int dirval = action.getInt("dir");
+		if (action.has(_DIR)) {
+			int dirval = action.getInt(_DIR);
 
 			if (dirval < 0) {
 				player.removeClientDirection(Direction.build(-dirval));
@@ -127,10 +136,10 @@ public class MoveAction implements ActionListener {
 			player.clearPath();
 		}
 
-		if (action.has("x") && action.has("y")) {
-			int x = action.getInt("x");
-			int y = action.getInt("y");
-			if (!player.has("teleclickmode")) {
+		if (action.has(WellKnownActionConstants.X) && action.has(WellKnownActionConstants.Y)) {
+			int x = action.getInt(WellKnownActionConstants.X);
+			int y = action.getInt(WellKnownActionConstants.Y);
+			if (!player.has(_TELECLICKMODE)) {
 				// Walk
 				List<Node> path = Path.searchPath(player, x, y);
 				player.setPath(new FixedPath(path, false));

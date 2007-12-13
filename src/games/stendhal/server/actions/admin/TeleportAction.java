@@ -11,19 +11,24 @@ import java.util.TreeSet;
 
 import marauroa.common.game.IRPZone;
 import marauroa.common.game.RPAction;
-
+import static games.stendhal.server.actions.WellKnownActionConstants.*;
 public class TeleportAction extends AdministrationAction {
 	
+	
+	private static final String _ZONE = "zone";
+	
+	private static final String _TELEPORT = "teleport";
+
 	public static void register(){
-		CommandCenter.register("teleport", new TeleportAction(), 400);
+		CommandCenter.register(_TELEPORT, new TeleportAction(), 400);
 		
 	}
 	
 	@Override
 	public void perform(Player player, RPAction action) {
-		if (action.has("target") && action.has("zone") && action.has("x")
-				&& action.has("y")) {
-			String name = action.get("target");
+		if (action.has(TARGET) && action.has(_ZONE) && action.has(X)
+				&& action.has(Y)) {
+			String name = action.get(TARGET);
 			Player teleported = StendhalRPRuleProcessor.get().getPlayer(name);
 
 			if (teleported == null) {
@@ -34,7 +39,7 @@ public class TeleportAction extends AdministrationAction {
 			}
 
 			// validate the zone-name.
-			IRPZone.ID zoneid = new IRPZone.ID(action.get("zone"));
+			IRPZone.ID zoneid = new IRPZone.ID(action.get(_ZONE));
 			if (!StendhalRPWorld.get().hasRPZone(zoneid)) {
 				String text = "Zone \"" + zoneid + "\" not found.";
 				logger.debug(text);
@@ -50,11 +55,11 @@ public class TeleportAction extends AdministrationAction {
 
 			StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get()
 					.getRPZone(zoneid);
-			int x = action.getInt("x");
-			int y = action.getInt("y");
+			int x = action.getInt(X);
+			int y = action.getInt(Y);
 
 			StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
-					"teleport", action.get("target"), zone.getName(),
+					_TELEPORT, action.get(TARGET), zone.getName(),
 					Integer.toString(x), Integer.toString(y));
 			teleported.teleport(zone, x, y, null, player);
 		}

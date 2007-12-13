@@ -12,15 +12,25 @@ import marauroa.common.game.Definition.DefinitionClass;
 import marauroa.common.game.Definition.Type;
 
 public class AlterAction extends AdministrationAction {
+	private static final String _ATTR_HP = "hp";
+	private static final String _SUB = "sub";
+	private static final String _ADD = "add";
+	private static final String ATTR_TITLE = "title";
+	private static final String ATTR_ADMINLEVEL = "adminlevel";
+	private static final String _VALUE = "value";
+	private static final String _MODE = "mode";
+	private static final String _STAT = "stat";
+	private static final String _TARGET = "target";
+	private static final String _ALTER = "alter";
 	public static void register(){
-		CommandCenter.register("alter", new AlterAction(), 900);
+		CommandCenter.register(_ALTER, new AlterAction(), 900);
 		
 	}
 	@Override
 	public void perform(Player player, RPAction action) {
 
-		if (action.has("target") && action.has("stat") && action.has("mode")
-				&& action.has("value")) {
+		if (action.has(_TARGET) && action.has(_STAT) && action.has(_MODE)
+				&& action.has(_VALUE)) {
 			Entity changed = getTarget(player, action);
 
 			if (changed == null) {
@@ -29,22 +39,22 @@ public class AlterAction extends AdministrationAction {
 				return;
 			}
 
-			String stat = action.get("stat");
+			String stat = action.get(_STAT);
 
 			if (stat.equals("name") && (changed instanceof Player)) {
 				logger.error("DENIED: Admin " + player.getName()
-						+ " trying to change player " + action.get("target")
+						+ " trying to change player " + action.get(_TARGET)
 						+ "'s name");
 				player.sendPrivateText("Sorry, name cannot be changed.");
 				return;
 			}
 
-			if (stat.equals("adminlevel")) {
+			if (stat.equals(ATTR_ADMINLEVEL)) {
 				player.sendPrivateText("Use #/adminlevel #<playername> #[<newlevel>] to display or change adminlevel.");
 				return;
 			}
 
-			if (stat.equals("title") && (changed instanceof Player)) {
+			if (stat.equals(ATTR_TITLE) && (changed instanceof Player)) {
 				player.sendPrivateText("The title attribute may not be changed directly.");
 				return;
 			}
@@ -68,32 +78,32 @@ public class AlterAction extends AdministrationAction {
 
 			if (changed.getRPClass().hasDefinition(DefinitionClass.ATTRIBUTE,
 					stat)) {
-				String value = action.get("value");
-				String mode = action.get("mode");
+				String value = action.get(_VALUE);
+				String mode = action.get(_MODE);
 
 				if (isNumerical) {
 					int numberValue = Integer.parseInt(value);
-					if (mode.equals("add")) {
+					if (mode.equals(_ADD)) {
 						numberValue = changed.getInt(stat) + numberValue;
 					}
 
-					if (mode.equals("sub")) {
+					if (mode.equals(_SUB)) {
 						numberValue = changed.getInt(stat) - numberValue;
 					}
 
-					if (stat.equals("hp")
+					if (stat.equals(_ATTR_HP)
 							&& (changed.getInt("base_hp") < numberValue)) {
 						logger.error("DENIED: Admin " + player.getName()
 								+ " trying to set player "
-								+ Grammar.suffix_s(action.get("target"))
+								+ Grammar.suffix_s(action.get(_TARGET))
 								+ " HP over its Base HP");
 						return;
 					}
 
-					if (stat.equals("hp") && numberValue == 0) {
+					if (stat.equals(_ATTR_HP) && numberValue == 0) {
 						logger.error("DENIED: Admin " + player.getName()
 								+ " trying to set player "
-								+ Grammar.suffix_s(action.get("target"))
+								+ Grammar.suffix_s(action.get(_TARGET))
 								+ " HP to 0, making it so unkillable.");
 						return;
 					}
@@ -121,17 +131,17 @@ public class AlterAction extends AdministrationAction {
 					}
 
 					StendhalRPRuleProcessor.get().addGameEvent(
-							player.getName(), "alter", action.get("target"),
+							player.getName(), _ALTER, action.get(_TARGET),
 							stat, Integer.toString(numberValue));
 					changed.put(stat, numberValue);
 				} else {
 					// Can be only set if value is not a number
 					if (mode.equals("set")) {
 						StendhalRPRuleProcessor.get()
-								.addGameEvent(player.getName(), "alter",
-										action.get("target"), stat,
-										action.get("value"));
-						changed.put(stat, action.get("value"));
+								.addGameEvent(player.getName(), _ALTER,
+										action.get(_TARGET), stat,
+										action.get(_VALUE));
+						changed.put(stat, action.get(_VALUE));
 					}
 				}
 

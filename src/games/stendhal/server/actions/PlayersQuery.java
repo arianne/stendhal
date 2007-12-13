@@ -25,17 +25,23 @@ import java.util.Comparator;
 import java.util.List;
 
 import marauroa.common.game.RPAction;
+import static games.stendhal.server.actions.WellKnownActionConstants.*;
 
 public class PlayersQuery implements ActionListener {
 
+	private static final String _SHEEP = "sheep";
+	private static final String _ATTR_TITLE = "title";
+	private static final String _WHERE = "where";
+	private static final String _WHO = "who";
+
 	public static void register() {
 		PlayersQuery query = new PlayersQuery();
-		CommandCenter.register("who", query);
-		CommandCenter.register("where", query);
+		CommandCenter.register(_WHO, query);
+		CommandCenter.register(_WHERE, query);
 	}
 
 	public void onAction(Player player, RPAction action) {
-		if (action.get("type").equals("who")) {
+		if (action.get(TYPE).equals(_WHO)) {
 			onWho(player, action);
 		} else {
 			onWhere(player, action);
@@ -47,10 +53,10 @@ public class PlayersQuery implements ActionListener {
 		final int REQUIRED_LEVEL_TO_SEE_GHOST = AdministrationAction.getLevelForCommand("ghostmode");
 
 		StendhalRPRuleProcessor rules = StendhalRPRuleProcessor.get();
-		if (player.has("title")) {
-			rules.addGameEvent(player.get("title"), "who");
+		if (player.has(_ATTR_TITLE)) {
+			rules.addGameEvent(player.get(_ATTR_TITLE), _WHO);
 		}
-		rules.addGameEvent(player.getName(), "who");
+		rules.addGameEvent(player.getName(), _WHO);
 
 		StringBuilder online = new StringBuilder();
 		int amount = 0;
@@ -101,12 +107,12 @@ public class PlayersQuery implements ActionListener {
 	}
 
 	public void onWhere(Player player, RPAction action) {
-		if (action.has("target")) {
-			String whoName = action.get("target");
+		if (action.has(TARGET)) {
+			String whoName = action.get(TARGET);
 
 			StendhalRPRuleProcessor rules = StendhalRPRuleProcessor.get();
 
-			rules.addGameEvent(player.getName(), "where", whoName);
+			rules.addGameEvent(player.getName(), _WHERE, whoName);
 
 			Player who = rules.getPlayer(whoName);
 			if (who != null && !who.isGhost()) {
@@ -117,7 +123,7 @@ public class PlayersQuery implements ActionListener {
 							+ zone.getName() + " at (" + who.getX() + ","
 							+ who.getY() + ")");
 				}
-			} else if (whoName.equals("sheep")) {
+			} else if (whoName.equals(_SHEEP)) {
 				Sheep sheep = player.getSheep();
 
 				if (sheep != null) {

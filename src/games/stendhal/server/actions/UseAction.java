@@ -12,6 +12,11 @@
  ***************************************************************************/
 package games.stendhal.server.actions;
 
+import static games.stendhal.server.actions.WellKnownActionConstants._BASEITEM;
+import static games.stendhal.server.actions.WellKnownActionConstants._BASEOBJECT;
+import static games.stendhal.server.actions.WellKnownActionConstants._BASESLOT;
+import static games.stendhal.server.actions.WellKnownActionConstants.TARGET;
+import static games.stendhal.server.actions.WellKnownActionConstants._USE;
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
@@ -28,17 +33,17 @@ import marauroa.common.game.RPSlot;
 public class UseAction implements ActionListener {
 
 	public static void register() {
-		CommandCenter.register("use", new UseAction());
+		CommandCenter.register(_USE, new UseAction());
 	}
 
 	public void onAction(Player player, RPAction action) {
 
 
 		// When use is casted over something in a slot
-		if (action.has("baseitem") && action.has("baseobject") && action.has("baseslot")) {
+		if (action.has(_BASEITEM) && action.has(_BASEOBJECT) && action.has(_BASESLOT)) {
 			StendhalRPZone zone = player.getZone();
 
-			int baseObject = action.getInt("baseobject");
+			int baseObject = action.getInt(_BASEOBJECT);
 
 			RPObject.ID baseobjectid = new RPObject.ID(baseObject, zone.getID());
 			if (!zone.has(baseobjectid)) {
@@ -58,15 +63,15 @@ public class UseAction implements ActionListener {
 
 			Entity baseEntity = (Entity) base;
 
-			if (baseEntity.hasSlot(action.get("baseslot"))) {
-				RPSlot slot = baseEntity.getSlot(action.get("baseslot"));
+			if (baseEntity.hasSlot(action.get(_BASESLOT))) {
+				RPSlot slot = baseEntity.getSlot(action.get(_BASESLOT));
 
 				if (slot.size() == 0) {
 					return;
 				}
 
 				RPObject object = null;
-				int item = action.getInt("baseitem");
+				int item = action.getInt(_BASEITEM);
 				// scan through the slot to find the requested item
 				for (RPObject rpobject : slot) {
 					if (rpobject.getID().getObjectID() == item) {
@@ -82,10 +87,10 @@ public class UseAction implements ActionListener {
 
 				invokeUseListener(player, object);
 			}
-		} else if (action.has("target")) {
+		} else if (action.has(TARGET)) {
 			//	use is cast over something on the floor
 			 // evaluate the target parameter
-			Entity entity = EntityHelper.entityFromTargetName(action.get("target"), player.getZone());
+			Entity entity = EntityHelper.entityFromTargetName(action.get(TARGET), player.getZone());
 
 			if (entity != null) {
 				invokeUseListener(player, entity);
@@ -113,7 +118,7 @@ public class UseAction implements ActionListener {
 			infostring = object.get("infostring");
 		}
 
-		StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "use", name, infostring);
+		StendhalRPRuleProcessor.get().addGameEvent(player.getName(), _USE, name, infostring);
 
 		if (object instanceof UseListener) {
 			UseListener listener = (UseListener) object;

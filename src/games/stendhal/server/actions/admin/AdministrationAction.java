@@ -31,6 +31,12 @@ import org.apache.log4j.Logger;
  */
 public abstract class AdministrationAction implements ActionListener {
 
+	private static final String _TARGETID = "targetid";
+
+	private static final String _TARGET = "target";
+
+	private static final String _TYPE = "type";
+
 	protected static final Logger logger = Logger
 			.getLogger(AdministrationAction.class);
 
@@ -120,7 +126,7 @@ public abstract class AdministrationAction implements ActionListener {
 
 	public final void onAction(Player player, RPAction action) {
 
-		String type = action.get("type");
+		String type = action.get(_TYPE);
 		if (!isPlayerAllowedToExecuteAdminCommand(player, type, true)) {
 			return;
 		}
@@ -145,8 +151,8 @@ public abstract class AdministrationAction implements ActionListener {
 		Entity target = null;
 
 		// target contains a name unless it starts with #
-		if (action.has("target")) {
-			id = action.get("target");
+		if (action.has(_TARGET)) {
+			id = action.get(_TARGET);
 		}
 		if (id != null) {
 			if (!id.startsWith("#")) {
@@ -158,8 +164,8 @@ public abstract class AdministrationAction implements ActionListener {
 		}
 
 		// either target started with a # or it was not specified
-		if (action.has("targetid")) {
-			id = action.get("targetid");
+		if (action.has(_TARGETID)) {
+			id = action.get(_TARGETID);
 		}
 
 		// go for the id

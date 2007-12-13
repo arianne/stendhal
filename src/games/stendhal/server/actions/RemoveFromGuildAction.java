@@ -14,11 +14,15 @@ import marauroa.common.game.RPAction;
  */
 public class RemoveFromGuildAction implements ActionListener {
 
+	private static final String _REMOVE_FROM_GUILD = "removeFromGuild";
+	private static final String _TYPE = "type";
+	private static final String _GUILDREMOVE = "guildremove";
+
 	/**
 	 * Registers action.
 	 */
 	public static void register() {
-		CommandCenter.register("guildremove",
+		CommandCenter.register(_GUILDREMOVE,
 				new RemoveFromGuildAction());
 	}
 
@@ -55,7 +59,7 @@ public class RemoveFromGuildAction implements ActionListener {
 	 *            The action.
 	 */
 	public void onAction(Player player, RPAction action) {
-		if (action.get("type").equals("removeFromGuild")) {
+		if (action.get(_TYPE).equals(_REMOVE_FROM_GUILD)) {
 			removeFromGuild(player, action);
 		}
 	}

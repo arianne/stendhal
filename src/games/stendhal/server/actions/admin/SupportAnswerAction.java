@@ -6,27 +6,31 @@ import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
 
+import static games.stendhal.server.actions.WellKnownActionConstants.TARGET;
 public class SupportAnswerAction extends AdministrationAction {
 
+	private static final String _TEXT = "text";
+	
+	private static final String _SUPPORTANSWER = "supportanswer";
 	public static void register(){
-		CommandCenter.register("supportanswer", new SupportAnswerAction(), 50);
+		CommandCenter.register(_SUPPORTANSWER, new SupportAnswerAction(), 50);
 
 	}
 	@Override
 	public void perform(Player player, RPAction action) {
-		if (action.has("target") && action.has("text")) {
+		if (action.has(TARGET) && action.has(_TEXT)) {
 			String message = player.getTitle() + " answers "
-					+ Grammar.suffix_s(action.get("target"))
-					+ " support question: " + action.get("text");
+					+ Grammar.suffix_s(action.get(TARGET))
+					+ " support question: " + action.get(_TEXT);
 	
 			StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
-					"supportanswer", action.get("target"), action.get("text"));
+					_SUPPORTANSWER, action.get(TARGET), action.get(_TEXT));
 	
 			boolean found = false;
 			for (Player p : StendhalRPRuleProcessor.get().getPlayers()) {
-				if (p.getTitle().equals(action.get("target"))) {
+				if (p.getTitle().equals(action.get(TARGET))) {
 					p.sendPrivateText("Support (" + player.getTitle()
-							+ ") tells you: " + action.get("text"));
+							+ ") tells you: " + action.get(_TEXT));
 					p.notifyWorldAboutChanges();
 					found = true;
 				}
@@ -37,7 +41,7 @@ public class SupportAnswerAction extends AdministrationAction {
 			}
 	
 			if (!found) {
-				player.sendPrivateText(action.get("target")
+				player.sendPrivateText(action.get(TARGET)
 						+ " is not currently logged in.");
 			}
 		}

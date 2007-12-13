@@ -9,16 +9,25 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.rule.EntityManager;
 import marauroa.common.game.RPAction;
 
+
+import static games.stendhal.server.actions.WellKnownActionConstants.TARGET;
+
 public class SummonAtAction extends AdministrationAction {
+	private static final String _AMOUNT = "amount";
+	private static final String _ITEM = "item";
+	private static final String _SLOT = "slot";
+	
+	private static final String _SUMMONAT = "summonat";
+
 	public static void register() {
-		CommandCenter.register("summonat", new SummonAtAction(), 800);
+		CommandCenter.register(_SUMMONAT, new SummonAtAction(), 800);
 	}
 
 	@Override
 	public void perform(Player player, RPAction action) {
 
-		if (action.has("target") && action.has("slot") && action.has("item")) {
-			String name = action.get("target");
+		if (action.has(TARGET) && action.has(_SLOT) && action.has(_ITEM)) {
+			String name = action.get(TARGET);
 			Player changed = StendhalRPRuleProcessor.get().getPlayer(name);
 
 			if (changed == null) {
@@ -27,7 +36,7 @@ public class SummonAtAction extends AdministrationAction {
 				return;
 			}
 
-			String slotName = action.get("slot");
+			String slotName = action.get(_SLOT);
 			if (!changed.hasSlot(slotName)) {
 				logger.debug("Player \"" + name
 						+ "\" does not have an RPSlot named \"" + slotName
@@ -40,16 +49,16 @@ public class SummonAtAction extends AdministrationAction {
 
 			EntityManager manager = StendhalRPWorld.get().getRuleManager()
 					.getEntityManager();
-			String type = action.get("item");
+			String type = action.get(_ITEM);
 
 			// Is the entity an item
 			if (manager.isItem(type)) {
 				StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
-						"summonat", changed.getName(), slotName, type);
+						_SUMMONAT, changed.getName(), slotName, type);
 				Item item = manager.getItem(type);
 
-				if (action.has("amount") && (item instanceof StackableItem)) {
-					((StackableItem) item).setQuantity(action.getInt("amount"));
+				if (action.has(_AMOUNT) && (item instanceof StackableItem)) {
+					((StackableItem) item).setQuantity(action.getInt(_AMOUNT));
 				}
 
 				if (!changed.equip(slotName, item)) {

@@ -25,21 +25,25 @@ import games.stendhal.server.util.EntityHelper;
 import java.util.List;
 
 import marauroa.common.game.RPAction;
+import static games.stendhal.server.actions.WellKnownActionConstants.*;
 
 public class OwnAction implements ActionListener {
 
+	private static final String _SPECIES = "species";
+	private static final String _OWN = "own";
+
 	public static void register() {
-		CommandCenter.register("own", new OwnAction());
+		CommandCenter.register(_OWN, new OwnAction());
 	}
 
 	public void onAction(Player player, RPAction action) {
-		if (!action.has("target")) {
+		if (!action.has(TARGET)) {
 			return;
 		}
 
 		 // evaluate the target parameter
 		StendhalRPZone zone = player.getZone();
-		Entity entity = EntityHelper.entityFromTargetName(action.get("target"), zone);
+		Entity entity = EntityHelper.entityFromTargetName(action.get(TARGET), zone);
 
 		if (entity != null) {
 			// Make sure the entity is valid (hacked client?)
@@ -79,14 +83,14 @@ public class OwnAction implements ActionListener {
 				}
 			}
 		} else {
-			int target = action.getInt("target");
+			int target = action.getInt(TARGET);
 
     		// TODO: BUG: This features is potentially abusable right now. Consider
     		// removing it...
     		if (target == -1) {
     			// Disown
-    			if (action.has("species")) {
-    				String species = action.get("species");
+    			if (action.has(_SPECIES)) {
+    				String species = action.get(_SPECIES);
     
     				if (species.equals("sheep")) {
     					Sheep sheep = player.getSheep();
