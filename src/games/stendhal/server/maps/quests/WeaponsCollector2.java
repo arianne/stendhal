@@ -102,37 +102,37 @@ public class WeaponsCollector2 extends AbstractQuest {
 		// player says hi before starting the quest
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(new QuestCompletedCondition("weapons_collector"), 
-							     new QuestNotStartedCondition(QUEST_SLOT)),
-							     ConversationStates.ATTENDING,
-							     "Greetings, old friend. If you are willing, I have another #quest for you.",
-							     null);
+				new AndCondition(new QuestCompletedCondition("weapons_collector"), new QuestNotStartedCondition(QUEST_SLOT)),
+			    ConversationStates.ATTENDING,
+			    "Greetings, old friend. If you are willing, I have another #quest for you.",
+			    null);
 
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES, 
-				new AndCondition(new QuestCompletedCondition("weapons_collector"),
-								 new QuestNotStartedCondition(QUEST_SLOT)),
-								 ConversationStates.QUEST_2_OFFERED, 
-								 null, 
-								 new ChatAction() {
-									@Override
-									public void fire(Player player, Sentence sentence,
-											SpeakerNPC engine) {
-											if (!player.isQuestCompleted(QUEST_SLOT)) {
-												engine.say("Recent adventurers to these parts describe strange new creatures with weapons I have never seen. "
-														+ "Would you fight these creatures and bring their weapons to me?");
-											} else {
-												engine.say("My collection is now complete! Thanks again.");
-												engine.setCurrentState(ConversationStates.ATTENDING);
-											}
-										}
-								}
-		);
+				new AndCondition(new QuestCompletedCondition("weapons_collector"), new QuestNotStartedCondition(QUEST_SLOT)),
+				ConversationStates.QUEST_2_OFFERED, 
+				null, 
+				new ChatAction() {
+					@Override
+					public void fire(Player player, Sentence sentence,
+							SpeakerNPC engine) {
+							if (!player.isQuestCompleted(QUEST_SLOT)) {
+								engine.say("Recent adventurers to these parts describe strange new creatures with weapons I have never seen. "
+										+ "Would you fight these creatures and bring their weapons to me?");
+							} else {
+								engine.say("My collection is now complete! Thanks again.");
+								engine.setCurrentState(ConversationStates.ATTENDING);
+							}
+						}
+				});
 
 		// player is willing to help
 		npc.add(ConversationStates.QUEST_2_OFFERED,
-				ConversationPhrases.YES_MESSAGES, null,
-				ConversationStates.ATTENDING, null, new ChatAction() {
+				ConversationPhrases.YES_MESSAGES, 
+				null,
+				ConversationStates.ATTENDING, 
+				null, 
+				new ChatAction() {
 					@Override
 					public void fire(Player player, Sentence sentence,
 							SpeakerNPC engine) {
@@ -144,14 +144,18 @@ public class WeaponsCollector2 extends AbstractQuest {
 
 		// player is not willing to help
 		npc.add(ConversationStates.QUEST_2_OFFERED,
-				ConversationPhrases.NO_MESSAGES, null,
+				ConversationPhrases.NO_MESSAGES, 
+				null,
 				ConversationStates.ATTENDING,
-				"Well, maybe someone else will happen by and help me.", null);
+				"Well, maybe someone else will happen by and help me.", 
+				null);
 
 		// player asks what exactly is missing
-		npc.add(ConversationStates.ATTENDING, "list", 
+		npc.add(ConversationStates.ATTENDING, 
+				"list", 
 				new QuestActiveCondition(QUEST_SLOT), 
-				ConversationStates.QUESTION_2, null,
+				ConversationStates.QUESTION_2, 
+				null,
 				new ChatAction() {
 					@Override
 					public void fire(Player player, Sentence sentence,
