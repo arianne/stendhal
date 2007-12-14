@@ -114,8 +114,7 @@ public class WeaponsCollector2 extends AbstractQuest {
 				null, 
 				new ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence,
-							SpeakerNPC engine) {
+					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 							if (!player.isQuestCompleted(QUEST_SLOT)) {
 								engine.say("Recent adventurers to these parts describe strange new creatures with weapons I have never seen. "
 										+ "Would you fight these creatures and bring their weapons to me?");
@@ -134,8 +133,7 @@ public class WeaponsCollector2 extends AbstractQuest {
 				null, 
 				new ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence,
-							SpeakerNPC engine) {
+					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						engine.say("Wonderful. Now, the #list is small but the risk may be great. "
 								+ "If you return safely, I have another reward for you.");
 						player.setQuest(QUEST_SLOT, "");
@@ -158,14 +156,12 @@ public class WeaponsCollector2 extends AbstractQuest {
 				null,
 				new ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence,
-							SpeakerNPC engine) {
+					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						List<String> needed = missingWeapons(player, true);
 						engine.say("There "
 								+ Grammar.isare(needed.size())
 								+ " "
-								+ Grammar.quantityplnoun(needed.size(),
-										"weapon")
+								+ Grammar.quantityplnoun(needed.size(), "weapon")
 								+ " still missing from my newest collection: "
 								+ Grammar.enumerateCollection(needed)
 								+ ". Do you have anything like that with you?");
@@ -180,8 +176,7 @@ public class WeaponsCollector2 extends AbstractQuest {
 				null, 
 				new ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence,
-							SpeakerNPC engine) {
+					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						List<String> missing = missingWeapons(player, false);
 						engine.say("Let me know as soon as you find "
 								+ Grammar.itthem(missing.size())
@@ -204,8 +199,7 @@ public class WeaponsCollector2 extends AbstractQuest {
 				null, 
 				new ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence,
-							SpeakerNPC engine) {
+					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						List<String> missing = missingWeapons(player, false);
 						String item = sentence.getOriginalText();
 						if (missing.contains(item)) {
