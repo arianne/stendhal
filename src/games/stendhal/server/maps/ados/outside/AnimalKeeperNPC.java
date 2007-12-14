@@ -62,7 +62,7 @@ public class AnimalKeeperNPC implements ZoneConfigurator {
 		public void onTurnReached(int currentTurn) {
 			// HACK: we need to wait a turn because the message is lost otherwise
 			// sends the message to all players
-			StendhalRPRuleProcessor.get().tellallPlayers(cryForHelp);
+			StendhalRPRuleProcessor.get().tellAllPlayers(cryForHelp);
 		}
 	}
 

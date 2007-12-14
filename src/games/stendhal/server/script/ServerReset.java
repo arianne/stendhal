@@ -23,7 +23,7 @@ public class ServerReset extends ScriptImpl {
 
 		try {
 			String text = admin.getTitle() + " started emergency shutdown of the server.";
-			StendhalRPRuleProcessor.get().tellallPlayers(text);
+			StendhalRPRuleProcessor.get().tellAllPlayers(text);
 
 		} catch (Throwable e) {
 			// Yes, i know that you are not supposed to catch Throwable 

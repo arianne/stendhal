@@ -536,7 +536,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	 * @param message
 	 *            Message to tell all players
 	 */
-	public void tellallPlayers(final String message) {
+	public void tellAllPlayers(final String message) {
 		for (Player player : getPlayers()) {
 			player.sendPrivateText(message);
 			player.notifyWorldAboutChanges();

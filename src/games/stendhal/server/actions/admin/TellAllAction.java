@@ -22,7 +22,7 @@ public class TellAllAction extends AdministrationAction {
 			StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
 					_TELLALL, action.get(_TEXT));
 
-			StendhalRPRuleProcessor.get().tellallPlayers(message);
+			StendhalRPRuleProcessor.get().tellAllPlayers(message);
 		}
 	}
 

@@ -34,7 +34,7 @@ public class NPCShout extends ScriptImpl {
 			}
 			String text = sb.toString();
 
-			StendhalRPRuleProcessor.get().tellallPlayers(text);
+			StendhalRPRuleProcessor.get().tellAllPlayers(text);
 		}
 	}
 
