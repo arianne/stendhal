@@ -1,5 +1,6 @@
 package games.stendhal.server;
 
+import games.stendhal.server.entity.mapstuff.office.ArrestWarrant;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.server.game.rp.RPObjectFactory;
@@ -7,26 +8,42 @@ import marauroa.server.game.rp.RPObjectFactory;
 import org.apache.log4j.Logger;
 
 /**
- * creates concrete objects of Stendhal classes
- * 
+ * creates concrete objects of Stendhal classes 
+ *
  * @author hendrik
  */
 public class StendhalRPObjectFactory extends RPObjectFactory {
 	private static Logger logger = Logger.getLogger(StendhalRPObjectFactory.class);
+	private static RPObjectFactory singleton;
+	
 
 	@Override
 	public RPObject transform(RPObject object) {
 		RPClass clazz = object.getRPClass();
 		if (clazz == null) {
-			logger.error("Cannot create concrete object for " + object
-					+ " because it does not have an RPClass.");
+			logger.error("Cannot create concrete object for " + object + " because it does not have an RPClass.");
 			return super.transform(object);
 		}
 		String name = clazz.getName();
 
-		// TODO: add factory here
-
+		if (name.equals("arrest_warrant")) {
+			return new ArrestWarrant(object);
+		}
+		
+		// fallback
 		return super.transform(object);
 	}
 
+	/**
+	 * returns the factory instance (this method is called
+	 * by Marauroa using reflection).
+	 * 
+	 * @return RPObjectFactory
+	 */
+	public static RPObjectFactory getFactory() {
+		if (singleton == null) {
+			singleton = new StendhalRPObjectFactory();
+		}
+		return singleton;
+	}
 }
