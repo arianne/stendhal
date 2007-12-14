@@ -10,11 +10,11 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.rule.defaultruleset;
+package games.stendhal.server.core.rule.defaultruleset;
 
-import games.stendhal.server.rule.ActionManager;
-import games.stendhal.server.rule.EntityManager;
-import games.stendhal.server.rule.RuleManager;
+import games.stendhal.server.core.rule.ActionManager;
+import games.stendhal.server.core.rule.EntityManager;
+import games.stendhal.server.core.rule.RuleManager;
 
 /**
  * RuleSet-Manager for the default ruleset

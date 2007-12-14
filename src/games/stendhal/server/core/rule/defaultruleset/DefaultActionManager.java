@@ -10,12 +10,12 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.rule.defaultruleset;
+package games.stendhal.server.core.rule.defaultruleset;
 
+import games.stendhal.server.core.rule.ActionManager;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.Stackable;
-import games.stendhal.server.rule.ActionManager;
 
 import java.util.List;
 

@@ -10,7 +10,7 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.rule.defaultruleset;
+package games.stendhal.server.core.rule.defaultruleset;
 
 import games.stendhal.server.entity.item.Item;
 

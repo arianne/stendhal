@@ -5,12 +5,12 @@
  *
  */
 
-package games.stendhal.server.rule;
+package games.stendhal.server.core.rule;
 
+import games.stendhal.server.core.rule.defaultruleset.DefaultCreature;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.item.Item;
-import games.stendhal.server.rule.defaultruleset.DefaultCreature;
 
 import java.util.Collection;
 

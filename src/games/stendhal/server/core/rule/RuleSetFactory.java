@@ -5,9 +5,9 @@
  *
  */
 
-package games.stendhal.server.rule;
+package games.stendhal.server.core.rule;
 
-import games.stendhal.server.rule.defaultruleset.DefaultRuleManager;
+import games.stendhal.server.core.rule.defaultruleset.DefaultRuleManager;
 
 /**
  * Factory class for retrieving a ruleset.

@@ -5,7 +5,7 @@
  *
  */
 
-package games.stendhal.server.rule;
+package games.stendhal.server.core.rule;
 
 /**
  * Combines the different managers...

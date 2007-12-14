@@ -10,14 +10,14 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.rule.defaultruleset;
+package games.stendhal.server.core.rule.defaultruleset;
 
-import games.stendhal.server.config.CreaturesXMLLoader;
-import games.stendhal.server.config.ItemGroupsXMLLoader;
+import games.stendhal.server.core.config.CreaturesXMLLoader;
+import games.stendhal.server.core.config.ItemGroupsXMLLoader;
+import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.item.Item;
-import games.stendhal.server.rule.EntityManager;
 
 import java.net.URI;
 import java.util.Collection;

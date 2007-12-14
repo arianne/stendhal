@@ -10,12 +10,12 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.rule.defaultruleset;
+package games.stendhal.server.core.rule.defaultruleset;
 
+import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.creature.impl.DropItem;
 import games.stendhal.server.entity.creature.impl.EquipItem;
-import games.stendhal.server.rule.EntityManager;
 
 import java.util.Collections;
 import java.util.Comparator;
