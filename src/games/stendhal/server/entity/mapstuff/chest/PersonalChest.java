@@ -8,7 +8,6 @@ import games.stendhal.server.events.TurnNotifier;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
-
 import org.apache.log4j.Logger;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
@@ -44,7 +43,7 @@ public class PersonalChest extends Chest {
 
 	/**
 	 * Create a personal chest using a specific bank slot.
-	 *
+	 * 
 	 * @param bankName
 	 *            The name of the bank slot.
 	 */
@@ -55,10 +54,10 @@ public class PersonalChest extends Chest {
 
 	/**
 	 * Copies an item
-	 *
+	 * 
 	 * TODO: Move this to Item.copy() to hide impl (and eventually remove
 	 * reflection).
-	 *
+	 * 
 	 * @param item
 	 *            item to copy
 	 * @return copy
@@ -72,7 +71,7 @@ public class PersonalChest extends Chest {
 	private RPObject cloneItem(RPObject item) throws NoSuchMethodException,
 			InstantiationException, IllegalAccessException,
 			InvocationTargetException {
-		Class< ? > clazz = item.getClass();
+		Class<?> clazz = item.getClass();
 		Constructor<?> ctor = clazz.getConstructor(clazz);
 		Item clone = (Item) ctor.newInstance(item);
 		return clone;
@@ -80,7 +79,7 @@ public class PersonalChest extends Chest {
 
 	/**
 	 * Get the slot that holds items for this chest.
-	 *
+	 * 
 	 * @return A per-player/per-bank slot.
 	 */
 	protected RPSlot getBankSlot() {
@@ -92,7 +91,7 @@ public class PersonalChest extends Chest {
 
 	/**
 	 * Sync the slot contents.
-	 *
+	 * 
 	 * @return <code>true</code> if it should be called again.
 	 */
 	protected boolean syncContent() {
@@ -136,7 +135,7 @@ public class PersonalChest extends Chest {
 
 	/**
 	 * Open the chest for an attending user.
-	 *
+	 * 
 	 * @param user
 	 *            The attending user.
 	 */
@@ -202,7 +201,7 @@ public class PersonalChest extends Chest {
 	protected class SyncContent implements TurnListener {
 		/**
 		 * This method is called when the turn number is reached.
-		 *
+		 * 
 		 * @param currentTurn
 		 *            The current turn number.
 		 */

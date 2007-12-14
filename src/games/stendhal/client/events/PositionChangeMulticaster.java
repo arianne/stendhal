@@ -18,14 +18,12 @@ public class PositionChangeMulticaster implements PositionChangeListener {
 	 */
 	protected PositionChangeListener[] listeners;
 
-
 	/**
 	 * Create a position change multicaster.
 	 */
 	public PositionChangeMulticaster() {
 		listeners = new PositionChangeListener[0];
 	}
-
 
 	//
 	// PositionChangeMulticaster
@@ -47,7 +45,6 @@ public class PositionChangeMulticaster implements PositionChangeListener {
 		listeners = newListeners;
 	}
 
-
 	/**
 	 * Remove a position change listener.
 	 * 
@@ -66,7 +63,8 @@ public class PositionChangeMulticaster implements PositionChangeListener {
 				}
 
 				if (++idx != listeners.length) {
-					System.arraycopy(listeners, idx, newListeners, idx - 1, listeners.length - idx);
+					System.arraycopy(listeners, idx, newListeners, idx - 1,
+							listeners.length - idx);
 				}
 
 				listeners = newListeners;
@@ -75,7 +73,6 @@ public class PositionChangeMulticaster implements PositionChangeListener {
 		}
 	}
 
-
 	//
 	// PositionChangeListener
 	//
@@ -83,8 +80,10 @@ public class PositionChangeMulticaster implements PositionChangeListener {
 	/**
 	 * Call position change event on all registered listeners.
 	 * 
-	 * @param	x		The new X coordinate (in world units).
-	 * @param	y		The new Y coordinate (in world units).
+	 * @param x
+	 *            The new X coordinate (in world units).
+	 * @param y
+	 *            The new Y coordinate (in world units).
 	 */
 	public void positionChanged(final double x, final double y) {
 		PositionChangeListener[] list = listeners;

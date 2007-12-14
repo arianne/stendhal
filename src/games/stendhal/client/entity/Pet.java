@@ -23,8 +23,7 @@ public class Pet extends DomesticAnimal {
 
 	@Override
 	protected void probableChat(final int chance) {
-		String[][] soundnames = {
-				{ "pet-1.wav", "pet-3.wav" },
+		String[][] soundnames = { { "pet-1.wav", "pet-3.wav" },
 				{ "pet-2.wav", "pet-4.wav" } };
 		int which = Rand.rand(2);
 		if (Rand.rand(100) < chance) {

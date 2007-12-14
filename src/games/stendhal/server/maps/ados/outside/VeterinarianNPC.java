@@ -16,17 +16,21 @@ import java.util.Map;
 public class VeterinarianNPC implements ZoneConfigurator {
 	private ShopList shops = ShopList.get();
 
-		/**
+	/**
 	 * Configure a zone.
-	 *
-	 * @param	zone		The zone to be configured.
-	 * @param	attributes	Configuration attributes.
+	 * 
+	 * @param zone
+	 *            The zone to be configured.
+	 * @param attributes
+	 *            Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone,
+			Map<String, String> attributes) {
 		buildZooArea(zone, attributes);
 	}
 
-	private void buildZooArea(StendhalRPZone zone, Map<String, String> attributes) {
+	private void buildZooArea(StendhalRPZone zone,
+			Map<String, String> attributes) {
 		SpeakerNPC npc = new SpeakerNPC("Dr. Feelgood") {
 
 			@Override
@@ -45,14 +49,16 @@ public class VeterinarianNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-				//Behaviours.addHelp(this,
-				//				   "...");
+				// Behaviours.addHelp(this,
+				// "...");
 
-				addReply("heal",
-				        "Sorry, I'm only licensed to heal animals, not humans. (But... ssshh! I can make you an #offer.)");
+				addReply(
+						"heal",
+						"Sorry, I'm only licensed to heal animals, not humans. (But... ssshh! I can make you an #offer.)");
 
 				addJob("I'm the veterinarian.");
-				new SellerAdder().addSeller(this, new SellerBehaviour(shops.get("healing")) {
+				new SellerAdder().addSeller(this, new SellerBehaviour(
+						shops.get("healing")) {
 
 					@Override
 					public int getUnitPrice(String item) {
@@ -68,7 +74,7 @@ public class VeterinarianNPC implements ZoneConfigurator {
 
 		npc.setEntityClass("doctornpc");
 		npc.setPosition(53, 28);
-		//npc.setDirection(Direction.DOWN);
+		// npc.setDirection(Direction.DOWN);
 		npc.initHP(100);
 		zone.add(npc);
 	}

@@ -39,16 +39,15 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JTextField;
 
-
 import org.apache.log4j.Logger;
 
 /**
  * A Stendhal user interface using 2D graphics.
- *
+ * 
  * This is a place that developers can do GUI refactoring (hopefully) without
  * breaking the existing client until it is complete enough to replace the old
  * one.
- *
+ * 
  * Currently some things are for demonstration and may be removed/changed.
  */
 public class Stendhal2D extends StendhalGUI {
@@ -62,14 +61,13 @@ public class Stendhal2D extends StendhalGUI {
 	 */
 	protected static final int DEFAULT_HEIGHT = 480;
 
-	public static final int		GAMELOG_HEIGHT		= 120;
-	public static final int		SIDEBAR_WIDTH		= 160;
+	public static final int GAMELOG_HEIGHT = 120;
+	public static final int SIDEBAR_WIDTH = 160;
 
-	public static final int		SIDEBAR_NONE		= 0;
-	public static final int		SIDEBAR_LEFT		= 1;
-	public static final int		SIDEBAR_RIGHT		= 2;
-	public static final int		SIDEBAR_BOTH		= 3;
-
+	public static final int SIDEBAR_NONE = 0;
+	public static final int SIDEBAR_LEFT = 1;
+	public static final int SIDEBAR_RIGHT = 2;
+	public static final int SIDEBAR_BOTH = 3;
 
 	/**
 	 * The logger.
@@ -86,42 +84,36 @@ public class Stendhal2D extends StendhalGUI {
 	 */
 	protected int width;
 
-
 	/**
 	 * The window frame.
 	 */
-	protected JFrame	frame;
+	protected JFrame frame;
 
 	/**
 	 * The left sidebar.
 	 */
-	protected JPanel	leftSB;
+	protected JPanel leftSB;
 
 	/**
 	 * The right sidebar.
 	 */
-	protected JPanel	rightSB;
+	protected JPanel rightSB;
 
+	protected JTextField chatText;
 
-	protected JTextField	chatText;
+	protected KTextEdit gameLog;
 
-
-	protected KTextEdit	gameLog;
-
-
-	protected JLayeredPane	pane;
-
+	protected JLayeredPane pane;
 
 	public Stendhal2D(final StendhalClient client) {
 		this(client, DEFAULT_WIDTH, DEFAULT_HEIGHT);
 	}
 
-
 	/**
-	 *
-	 *
-	 *
-	 *
+	 * 
+	 * 
+	 * 
+	 * 
 	 */
 	public Stendhal2D(StendhalClient client, final int width, final int height) {
 		super(client);
@@ -129,9 +121,7 @@ public class Stendhal2D extends StendhalGUI {
 		this.width = width;
 		this.height = height;
 
-
 		frame = new JFrame();
-
 
 		JMenuBar mb = new JMenuBar();
 		frame.setJMenuBar(mb);
@@ -160,7 +150,6 @@ public class Stendhal2D extends StendhalGUI {
 		mi = new JMenuItem("Exit", KeyEvent.VK_X);
 		mi.addActionListener(new ExitCB());
 		m.add(mi);
-
 
 		/*
 		 * Edit menu
@@ -207,7 +196,6 @@ public class Stendhal2D extends StendhalGUI {
 		cmi.setState(true);
 		m.add(cmi);
 
-
 		/*
 		 * View menu
 		 */
@@ -231,7 +219,6 @@ public class Stendhal2D extends StendhalGUI {
 		mi = new JCheckBoxMenuItem("Buddies");
 		m.add(mi);
 
-
 		/*
 		 * Player menu
 		 */
@@ -240,7 +227,6 @@ public class Stendhal2D extends StendhalGUI {
 
 		mi = new JCheckBoxMenuItem("Ghost Mode");
 		m.add(mi);
-
 
 		/*
 		 * Help menu
@@ -256,20 +242,16 @@ public class Stendhal2D extends StendhalGUI {
 		mi = new JMenuItem("Credits...");
 		m.add(mi);
 
-
-
 		Container root = frame.getContentPane();
 		root.setLayout(new BoxLayout(root, BoxLayout.Y_AXIS));
 
-
-//		pane = new JLayeredPane();
-//		root.add(pane);
+		// pane = new JLayeredPane();
+		// root.add(pane);
 
 		JPanel gameArea = new JPanel(new BorderLayout());
 		root.add(gameArea);
 
 		WoodStyle style = new WoodStyle();
-
 
 		/*
 		 * Left side area
@@ -295,7 +277,6 @@ public class Stendhal2D extends StendhalGUI {
 		panel.setPreferredSize(size);
 		gameArea.add(panel, BorderLayout.CENTER);
 
-
 		/*
 		 * Chat input field
 		 */
@@ -309,12 +290,11 @@ public class Stendhal2D extends StendhalGUI {
 		gameLog.setPreferredSize(new Dimension(width, GAMELOG_HEIGHT));
 		root.add(gameLog);
 
+		// StendhalChatLineListener chatListener = new
+		// StendhalChatLineListener(client, chatText);
 
-		//StendhalChatLineListener chatListener = new StendhalChatLineListener(client, chatText);
-
-		//chatText.addActionListener(chatListener);
-		//chatText.addKeyListener(chatListener);
-
+		// chatText.addActionListener(chatListener);
+		// chatText.addKeyListener(chatListener);
 
 		frame.pack();
 
@@ -328,46 +308,44 @@ public class Stendhal2D extends StendhalGUI {
 		frame.setVisible(true);
 	}
 
-
 	/**
 	 * Set the sidebar layout.
-	 *
-	 *
+	 * 
+	 * 
 	 */
 	public void setSideBar(int mode) {
-		switch(mode) {
-			case SIDEBAR_NONE:
-				leftSB.setVisible(false);
-				rightSB.setVisible(false);
-				break;
+		switch (mode) {
+		case SIDEBAR_NONE:
+			leftSB.setVisible(false);
+			rightSB.setVisible(false);
+			break;
 
-			case SIDEBAR_LEFT:
-				leftSB.setVisible(true);
-				rightSB.setVisible(false);
-				break;
+		case SIDEBAR_LEFT:
+			leftSB.setVisible(true);
+			rightSB.setVisible(false);
+			break;
 
-			case SIDEBAR_RIGHT:
-				leftSB.setVisible(false);
-				rightSB.setVisible(true);
-				break;
+		case SIDEBAR_RIGHT:
+			leftSB.setVisible(false);
+			rightSB.setVisible(true);
+			break;
 
-			case SIDEBAR_BOTH:
-				leftSB.setVisible(true);
-				rightSB.setVisible(true);
-				break;
+		case SIDEBAR_BOTH:
+			leftSB.setVisible(true);
+			rightSB.setVisible(true);
+			break;
 		}
 
 		frame.pack();
 	}
 
-
 	//
 	// StendhalUI
 	//
-	
-        /**
+
+	/**
 	 * Add an event line.
-	 *
+	 * 
 	 */
 	@Override
 	public void addEventLine(final String text) {
@@ -376,7 +354,7 @@ public class Stendhal2D extends StendhalGUI {
 
 	/**
 	 * Add an event line.
-	 *
+	 * 
 	 */
 	@Override
 	public void addEventLine(final String header, final String text) {
@@ -385,7 +363,7 @@ public class Stendhal2D extends StendhalGUI {
 
 	/**
 	 * Add an event line.
-	 *
+	 * 
 	 */
 	@Override
 	public void addEventLine(final String text, final NotificationType type) {
@@ -394,22 +372,24 @@ public class Stendhal2D extends StendhalGUI {
 
 	/**
 	 * Add an event line.
-	 *
+	 * 
 	 */
 	@Override
 	public void addEventLine(final String header, final String text,
 			final NotificationType type) {
 		gameLog.addLine(header, text, type);
 	}
-        
-        /**
-         * Adds a ManagedWindow.
-         * @param c The component to add as an internal window.
-         */
-        @Override
-		public void addWindow(ManagedWindow c) {
-            //do nothing in this implementation.
-        }
+
+	/**
+	 * Adds a ManagedWindow.
+	 * 
+	 * @param c
+	 *            The component to add as an internal window.
+	 */
+	@Override
+	public void addWindow(ManagedWindow c) {
+		// do nothing in this implementation.
+	}
 
 	/**
 	 * Initiate outfit selection by the user.
@@ -429,7 +409,7 @@ public class Stendhal2D extends StendhalGUI {
 
 	/**
 	 * Get the current game screen height.
-	 *
+	 * 
 	 * @return The height.
 	 */
 	@Override
@@ -439,7 +419,7 @@ public class Stendhal2D extends StendhalGUI {
 
 	/**
 	 * Get the game screen.
-	 *
+	 * 
 	 * @return The game screen.
 	 */
 	@Override
@@ -449,7 +429,7 @@ public class Stendhal2D extends StendhalGUI {
 
 	/**
 	 * Get the current game screen width.
-	 *
+	 * 
 	 * @return The width.
 	 */
 	@Override
@@ -467,7 +447,7 @@ public class Stendhal2D extends StendhalGUI {
 
 	/**
 	 * Set the input chat line text.
-	 *
+	 * 
 	 * @param text
 	 *            The text.
 	 */
@@ -478,7 +458,7 @@ public class Stendhal2D extends StendhalGUI {
 
 	/**
 	 * Set the offline indication state.
-	 *
+	 * 
 	 * @param offline
 	 *            <code>true</code> if offline.
 	 */
@@ -489,7 +469,7 @@ public class Stendhal2D extends StendhalGUI {
 
 	/**
 	 * Set the user's positiion.
-	 *
+	 * 
 	 * @param x
 	 *            The user's X coordinate.
 	 * @param y
@@ -597,7 +577,6 @@ public class Stendhal2D extends StendhalGUI {
 		}
 	}
 
-
 	/**
 	 * Callback to exit the game.
 	 */
@@ -611,18 +590,15 @@ public class Stendhal2D extends StendhalGUI {
 		}
 	}
 
-
 	/**
 	 * Callback to set a specific layout.
 	 */
 	protected class SideBarLayoutCB implements ActionListener {
-		protected int	mode;
-
+		protected int mode;
 
 		public SideBarLayoutCB(int mode) {
 			this.mode = mode;
 		}
-
 
 		//
 		// ActionListener

@@ -31,6 +31,7 @@ public class NakedCondition extends SpeakerNPC.ChatCondition {
 
 	@Override
 	public boolean equals(Object obj) {
-		return EqualsBuilder.reflectionEquals(this, obj, false, NakedCondition.class);
+		return EqualsBuilder.reflectionEquals(this, obj, false,
+				NakedCondition.class);
 	}
 }

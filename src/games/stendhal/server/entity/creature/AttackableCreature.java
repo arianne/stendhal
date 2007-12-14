@@ -7,7 +7,7 @@ import java.util.List;
 
 /**
  * An creature that will be attacked by normal Creatures
- *
+ * 
  * @author hendrik
  */
 public class AttackableCreature extends Creature {
@@ -16,13 +16,12 @@ public class AttackableCreature extends Creature {
 
 	/**
 	 * AttackableCreature
-	 *
+	 * 
 	 * @param copy
 	 */
 	public AttackableCreature(Creature copy) {
 		super(copy);
 	}
-
 
 	@Override
 	protected List<RPEntity> getEnemyList() {
@@ -42,8 +41,9 @@ public class AttackableCreature extends Creature {
 
 	/**
 	 * sets the master of this creature
-	 *
-	 * @param master master
+	 * 
+	 * @param master
+	 *            master
 	 */
 	public void setMaster(RPEntity master) {
 		this.master = master;

@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * runs the garbage collector manually (for memory profiling)
- *
+ * 
  * @author hendrik
  */
 public class GC extends ScriptImpl {

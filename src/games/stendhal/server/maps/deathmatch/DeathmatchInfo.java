@@ -7,7 +7,7 @@ import games.stendhal.server.util.Area;
 
 /**
  * Stores information about the place of the deathmatch.
- *
+ * 
  * @author hendrik
  */
 public class DeathmatchInfo {
@@ -20,7 +20,7 @@ public class DeathmatchInfo {
 
 	/**
 	 * Creates a new DeathmatchInfo
-	 *
+	 * 
 	 * @param arena
 	 *            combat area
 	 * @param zone
@@ -36,7 +36,7 @@ public class DeathmatchInfo {
 
 	/**
 	 * gets the arena
-	 *
+	 * 
 	 * @return combat area
 	 */
 	public Area getArena() {
@@ -45,7 +45,7 @@ public class DeathmatchInfo {
 
 	/**
 	 * gets the zone
-	 *
+	 * 
 	 * @return zone
 	 */
 	public StendhalRPZone getZone() {

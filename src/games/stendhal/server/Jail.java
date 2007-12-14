@@ -23,7 +23,7 @@ import org.apache.log4j.Logger;
  * This class is responsible of keeping players who have misbehaved in a special
  * jail area where they can't do any harm. The misbehaving player will be
  * automatically released after a specified number of minutes.
- *
+ * 
  * @author daniel
  */
 public class Jail implements LoginListener {
@@ -57,7 +57,8 @@ public class Jail implements LoginListener {
 
 		public void onTurnReached(int currentTurn) {
 			/*
-			 * TODO: If player is not present, we should reset the sentence timer on login
+			 * TODO: If player is not present, we should reset the sentence
+			 * timer on login
 			 */
 
 			if (!release(_name)) {
@@ -92,7 +93,7 @@ public class Jail implements LoginListener {
 
 	/**
 	 * returns the Jail object (Singleton Pattern)
-	 *
+	 * 
 	 * @return Jail
 	 */
 	public static Jail get() {
@@ -193,7 +194,7 @@ public class Jail implements LoginListener {
 	/**
 	 * Releases an inmate and teleports him to Semos city, but only if he is
 	 * still in jail.
-	 *
+	 * 
 	 * @param inmateName
 	 *            the name of the inmate who should be released
 	 * @return true if the player has not logged out before he was released
@@ -206,11 +207,11 @@ public class Jail implements LoginListener {
 			return false;
 		}
 
-		release( inmate);
+		release(inmate);
 		return true;
 	}
 
-	void release( Player inmate) {
+	void release(Player inmate) {
 		// Only teleport the player if he is still in jail.
 		// It could be that an admin has teleported him out earlier.
 		StendhalRPWorld world = StendhalRPWorld.get();
@@ -229,7 +230,7 @@ public class Jail implements LoginListener {
 
 	/**
 	 * Is player in a jail cell? Ignores visitors outside of cells.
-	 *
+	 * 
 	 * @param inmate
 	 *            player to check
 	 * @return true, if it is in jail, false otherwise.
@@ -249,7 +250,7 @@ public class Jail implements LoginListener {
 	public void onLoggedIn(Player player) {
 		/*
 		 * TODO: Refactor We should be able to manipulate the offline object.
-		 *
+		 * 
 		 */
 		String name = player.getName();
 		if (namesOfPlayersToRelease.contains(name)) {

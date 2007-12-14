@@ -7,8 +7,9 @@ public interface ClientScript {
 
 	/**
 	 * entry point on script execution
-	 *
-	 * @param args arguments
+	 * 
+	 * @param args
+	 *            arguments
 	 */
 	void run(String args);
 }

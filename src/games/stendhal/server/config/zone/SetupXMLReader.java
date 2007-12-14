@@ -31,17 +31,17 @@ public abstract class SetupXMLReader {
 
 	/**
 	 * Create a setup descriptor from XML data.
-	 *
+	 * 
 	 * @param element
 	 *            The descriptor XML element.
-	 *
+	 * 
 	 * @return A setup descriptor, or <code>null</code> if invalid.
 	 */
 	public abstract SetupDescriptor read(final Element element);
 
 	/**
 	 * Read paramaters from an XML element.
-	 *
+	 * 
 	 * @param desc
 	 *            The descriptor to load.
 	 * @param element

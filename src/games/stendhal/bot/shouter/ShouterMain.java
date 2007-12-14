@@ -32,7 +32,7 @@ import marauroa.common.net.message.TransferContent;
 
 /**
  * Connects to the server and shouts a message.
- *
+ * 
  * @author hendrik
  */
 public class ShouterMain {
@@ -56,16 +56,23 @@ public class ShouterMain {
 	protected PerceptionHandler handler;
 
 	/**
-	 * Creates a PostmanMain
-	 *
-	 * @param h host
-	 * @param u username
-	 * @param p password
-	 * @param c character name
-	 * @param P port
-	 * @throws SocketException on an network error
+	 * Creates a ShouterMain.
+	 * 
+	 * @param h
+	 *            host
+	 * @param u
+	 *            username
+	 * @param p
+	 *            password
+	 * @param c
+	 *            character name
+	 * @param P
+	 *            port
+	 * @throws SocketException
+	 *             on an network error
 	 */
-	public ShouterMain(String h, String u, String p, String c, String P) throws SocketException {
+	public ShouterMain(String h, String u, String p, String c, String P)
+			throws SocketException {
 		host = h;
 		username = u;
 		password = p;
@@ -76,49 +83,51 @@ public class ShouterMain {
 
 		handler = new PerceptionHandler(new IPerceptionListener() {
 			public boolean onAdded(RPObject object) {
-	            return false;
-            }
+				return false;
+			}
 
 			public boolean onClear() {
-	            return false;
-            }
+				return false;
+			}
 
 			public boolean onDeleted(RPObject object) {
-	            return false;
-            }
+				return false;
+			}
 
-			public void onException(Exception exception, MessageS2CPerception perception) {
+			public void onException(Exception exception,
+					MessageS2CPerception perception) {
 				System.out.println(perception);
 				System.err.println(perception);
 				exception.printStackTrace();
-            }
+			}
 
 			public boolean onModifiedAdded(RPObject object, RPObject changes) {
-	            return false;
-            }
+				return false;
+			}
 
 			public boolean onModifiedDeleted(RPObject object, RPObject changes) {
-	            return false;
-            }
+				return false;
+			}
 
 			public boolean onMyRPObject(RPObject added, RPObject deleted) {
-	            return false;
-            }
+				return false;
+			}
 
 			public void onPerceptionBegin(byte type, int timestamp) {
-            }
+			}
 
 			public void onPerceptionEnd(byte type, int timestamp) {
-            }
+			}
 
 			public void onSynced() {
-            }
+			}
 
 			public void onUnsynced() {
-            }
+			}
 		});
 
-		clientManager = new marauroa.client.ClientFramework("games/stendhal/log4j.properties") {
+		clientManager = new marauroa.client.ClientFramework(
+				"games/stendhal/log4j.properties") {
 
 			@Override
 			protected String getGameName() {
@@ -141,7 +150,8 @@ public class ShouterMain {
 			}
 
 			@Override
-			protected List<TransferContent> onTransferREQ(List<TransferContent> items) {
+			protected List<TransferContent> onTransferREQ(
+					List<TransferContent> items) {
 				for (TransferContent item : items) {
 					item.ack = true;
 				}
@@ -169,9 +179,9 @@ public class ShouterMain {
 			}
 
 			@Override
-            protected void onPreviousLogins(List<String> previousLogins) {
+			protected void onPreviousLogins(List<String> previousLogins) {
 				// do nothing
-            }
+			}
 		};
 	}
 
@@ -198,7 +208,8 @@ public class ShouterMain {
 
 	}
 
-	private void readMessagesAndShoutThem() throws IOException, InterruptedException {
+	private void readMessagesAndShoutThem() throws IOException,
+			InterruptedException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		String line = br.readLine();
 		while (line != null) {
@@ -219,9 +230,10 @@ public class ShouterMain {
 	}
 
 	/**
-	 * Main entry point
-	 *
-	 * @param args see help
+	 * Main entry point.
+	 * 
+	 * @param args
+	 *            see help
 	 */
 	public static void main(String[] args) {
 		try {
@@ -248,8 +260,11 @@ public class ShouterMain {
 					i++;
 				}
 
-				if ((username != null) && (password != null) && (character != null) && (host != null) && (port != null)) {
-					ShouterMain shouter = new ShouterMain(host, username, password, character, port);
+				if ((username != null) && (password != null)
+						&& (character != null) && (host != null)
+						&& (port != null)) {
+					ShouterMain shouter = new ShouterMain(host, username,
+							password, character, port);
 					shouter.script();
 					return;
 				}

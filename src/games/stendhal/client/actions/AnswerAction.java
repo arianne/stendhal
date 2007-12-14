@@ -6,15 +6,17 @@ import marauroa.common.game.RPAction;
 /**
  * Send a message to the player who has last contacted us privately.
  */
-class AnswerAction implements SlashAction  {
+class AnswerAction implements SlashAction {
 
 	/**
 	 * Execute a chat command.
-	 *
-	 * @param	params		The formal parameters.
-	 * @param	remainder	Line content after parameters.
-	 *
-	 * @return	<code>true</code> if command was handled.
+	 * 
+	 * @param params
+	 *            The formal parameters.
+	 * @param remainder
+	 *            Line content after parameters.
+	 * 
+	 * @return <code>true</code> if command was handled.
 	 */
 	public boolean execute(String[] params, String remainder) {
 
@@ -30,8 +32,8 @@ class AnswerAction implements SlashAction  {
 
 	/**
 	 * Get the maximum number of formal parameters.
-	 *
-	 * @return	The parameter count.
+	 * 
+	 * @return The parameter count.
 	 */
 	public int getMaximumParameters() {
 		return 0;
@@ -39,8 +41,8 @@ class AnswerAction implements SlashAction  {
 
 	/**
 	 * Get the minimum number of formal parameters.
-	 *
-	 * @return	The parameter count.
+	 * 
+	 * @return The parameter count.
 	 */
 	public int getMinimumParameters() {
 		return 0;

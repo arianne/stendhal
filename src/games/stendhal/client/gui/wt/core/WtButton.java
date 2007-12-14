@@ -39,7 +39,8 @@ public class WtButton extends WtPanel {
 		super(name, 0, 0, width, height);
 		initialize();
 		int clientHeight = (getClientHeight() - WtTextPanel.DEFAULT_FONT_SIZE) / 2;
-		WtTextPanel textPanel = new WtTextPanel(name + "text", 2, clientHeight, width, height, text);
+		WtTextPanel textPanel = new WtTextPanel(name + "text", 2, clientHeight,
+				width, height, text);
 		addChild(textPanel);
 		setTitletext(text);
 	}
@@ -59,12 +60,12 @@ public class WtButton extends WtPanel {
 
 	}
 
-
 	/**
 	 * Draw the button contents. This is only called while open and not
 	 * minimized.
-	 *
-	 * @param	g		The graphics context to draw with.
+	 * 
+	 * @param g
+	 *            The graphics context to draw with.
 	 */
 	@Override
 	protected void drawContent(Graphics2D g) {
@@ -75,7 +76,6 @@ public class WtButton extends WtPanel {
 			image.draw(g, 0, 0);
 		}
 	}
-
 
 	/** button is clicked */
 	@Override

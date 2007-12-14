@@ -25,11 +25,11 @@ import org.xml.sax.SAXException;
  * collision layer c) The protection layer. d) All the layers that are sent to
  * client e) The tileset data that is also transfered to client f) A preview of
  * the zone for the minimap.
- *
+ * 
  * Client would get the layers plus the tileset info.
- *
+ * 
  * @author miguel
- *
+ * 
  */
 public class ServerTMXLoader {
 
@@ -97,7 +97,7 @@ public class ServerTMXLoader {
 	 * element is encountered, it recursively calls itself with the children of
 	 * this node. This function ensures backward compatibility with tmx version
 	 * 0.99a.
-	 *
+	 * 
 	 * @param children
 	 *            the children amongst which to find properties
 	 * @param props
@@ -267,7 +267,7 @@ public class ServerTMXLoader {
 		 * 0/nalwor/city.tmx"); map=new
 		 * ServerTMXLoader().readMap("D:/Desarrollo/stendhal/tiled/Level
 		 * 0/orril/castle.tmx"); }
-		 *
+		 * 
 		 * System.out.println("Time ellapsed (ms):
 		 * "+(System.currentTimeMillis()-start)); /
 		 */

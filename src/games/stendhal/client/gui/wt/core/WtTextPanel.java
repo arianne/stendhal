@@ -59,7 +59,8 @@ public class WtTextPanel extends WtPanel {
 	}
 
 	/** Creates a new TextPanel with the given StringFormatter. */
-	public WtTextPanel(String name, int x, int y, int width, int height, String formatString) {
+	public WtTextPanel(String name, int x, int y, int width, int height,
+			String formatString) {
 		super(name, x, y, width, height);
 		this.formatter = new StringFormatter(formatString);
 		this.fontSize = DEFAULT_FONT_SIZE;
@@ -105,12 +106,11 @@ public class WtTextPanel extends WtPanel {
 		formatter.set(param, value);
 	}
 
-
 	/**
-	 * Draw the text contents. This is only called while open and not
-	 * minimized.
-	 *
-	 * @param	g		The graphics context to draw with.
+	 * Draw the text contents. This is only called while open and not minimized.
+	 * 
+	 * @param g
+	 *            The graphics context to draw with.
 	 */
 	@Override
 	protected void drawContent(Graphics2D clientArea) {

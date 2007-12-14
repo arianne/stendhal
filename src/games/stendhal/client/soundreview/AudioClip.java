@@ -24,7 +24,6 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.Mixer;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
-
 import org.apache.log4j.Logger;
 
 /**
@@ -77,8 +76,8 @@ public class AudioClip {
 		this.mixer = mixer;
 
 		AudioInputStream audioInputStream;
-		audioInputStream = AudioSystem
-				.getAudioInputStream(new ByteArrayInputStream(audioData));
+		audioInputStream = AudioSystem.getAudioInputStream(new ByteArrayInputStream(
+				audioData));
 
 		this.audioData = audioData;
 		format = audioInputStream.getFormat();
@@ -129,11 +128,11 @@ public class AudioClip {
 	public Clip openLine() throws UnsupportedAudioFileException, IOException,
 			LineUnavailableException {
 		if (supported) {
-			AudioInputStream audioInputStream = AudioSystem
-					.getAudioInputStream(new ByteArrayInputStream(audioData));
+			AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new ByteArrayInputStream(
+					audioData));
 
-			DataLine.Info info = new DataLine.Info(Clip.class, audioInputStream
-					.getFormat());
+			DataLine.Info info = new DataLine.Info(Clip.class,
+					audioInputStream.getFormat());
 			if (!mixer.isLineSupported(info)) {
 				return null;
 			}
@@ -142,8 +141,7 @@ public class AudioClip {
 				line.open(audioInputStream);
 				return line;
 			} catch (LineUnavailableException e) {
-				logger
-						.debug("audioclip cannot be played, no free lines available");
+				logger.debug("audioclip cannot be played, no free lines available");
 			}
 		}
 		return null;

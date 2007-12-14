@@ -32,7 +32,6 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 
-
 import org.apache.log4j.Logger;
 
 /**
@@ -58,7 +57,7 @@ public class CreditsDialog extends JDialog {
 
 	/**
 	 * creates a new credits dialog
-	 *
+	 * 
 	 * @param owner
 	 *            owner window
 	 */
@@ -102,7 +101,7 @@ public class CreditsDialog extends JDialog {
 
 	/**
 	 * Reads the credits from credits.text
-	 *
+	 * 
 	 * @return list of lines
 	 */
 	private List<String> readCredits() {

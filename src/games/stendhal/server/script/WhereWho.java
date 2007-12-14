@@ -11,7 +11,7 @@ import java.util.TreeMap;
 
 /**
  * List all players an the zones they are in
- *
+ * 
  * @author hendrik
  */
 public class WhereWho extends ScriptImpl {

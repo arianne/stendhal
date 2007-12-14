@@ -44,15 +44,15 @@ public class AdosDeathmatch extends AbstractQuest {
 
 	/**
 	 * show the player the potential trophy
-	 *
+	 * 
 	 * @param x
 	 *            x-position of helmet
 	 * @param y
 	 *            y-position of helmet
 	 */
 	public void createHelmet(int x, int y) {
-		Item helmet = StendhalRPWorld.get().getRuleManager().getEntityManager()
-				.getItem("trophy_helmet");
+		Item helmet = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
+				"trophy_helmet");
 		helmet.put("def", "20");
 		helmet.setDescription("This is the grand prize for Deathmatch winners.");
 		helmet.setPosition(x, y);
@@ -124,8 +124,8 @@ public class AdosDeathmatch extends AbstractQuest {
 						null, new DoneAction());
 
 				// 'leave' command will send the victorious player home
-				add(ConversationStates.ATTENDING, Arrays
-						.asList("leave", "home"), null,
+				add(ConversationStates.ATTENDING,
+						Arrays.asList("leave", "home"), null,
 						ConversationStates.ATTENDING, null, new LeaveAction());
 
 				// 'bail' command will teleport the player out of it

@@ -24,7 +24,7 @@ public class ChatLineParser {
 
 	/**
 	 * returns the ChatLineParser
-	 *
+	 * 
 	 * @return ChatLineParser
 	 */
 	public static synchronized ChatLineParser get() {
@@ -36,11 +36,12 @@ public class ChatLineParser {
 
 	/**
 	 * parses a chat/command line and processes the result
-	 *
-	 * @param input string to handle
-	 *
-	 * @return	<code>true</code> if command was valid enough to
-	 *		process, <code>false</code> otherwise.
+	 * 
+	 * @param input
+	 *            string to handle
+	 * 
+	 * @return <code>true</code> if command was valid enough to process,
+	 *         <code>false</code> otherwise.
 	 */
 	public boolean parseAndHandle(String input) {
 		// get line
@@ -60,7 +61,8 @@ public class ChatLineParser {
 			String[] params = command.getParams();
 
 			if (command.hasError()) {
-				StendhalUI.get().addEventLine(command.getError(), NotificationType.ERROR);
+				StendhalUI.get().addEventLine(command.getError(),
+						NotificationType.ERROR);
 				return false;
 			}
 
@@ -68,7 +70,8 @@ public class ChatLineParser {
 			 * Execute
 			 */
 			if (command.getAction() != null) {
-				return command.getAction().execute(params, command.getRemainder());
+				return command.getAction().execute(params,
+						command.getRemainder());
 			} else {
 				/*
 				 * Server extension
@@ -77,7 +80,7 @@ public class ChatLineParser {
 
 				extension.put("type", command.getName());
 
-				if (params.length>0 && params[0]!=null) {
+				if (params.length > 0 && params[0] != null) {
 					extension.put("target", params[0]);
 					extension.put("args", command.getRemainder());
 				}

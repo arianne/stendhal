@@ -21,9 +21,9 @@ import java.util.List;
  * QUEST: Find the seven cherubs that are all around the world. PARTICIPANTS: -
  * Cherubiel - Gabriel - Ophaniel - Raphael - Uriel - Zophiel - Azazel STEPS: -
  * Find them and they will reward you.
- *
+ * 
  * REWARD: -
- *
+ * 
  * REPETITIONS: - Just once.
  */
 public class SevenCherubs extends AbstractQuest {
@@ -92,82 +92,82 @@ public class SevenCherubs extends AbstractQuest {
 		@Override
 		protected void createDialog() {
 			add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-				null, ConversationStates.IDLE, null,
-				new SpeakerNPC.ChatAction() {
-					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-						if (!player.hasQuest(QUEST_SLOT)) {
-							player.setQuest(QUEST_SLOT, "");
-						}
-
-						// Visited cherubs are store in the quest-name
-						// QUEST_SLOT.
-						// Please note that there is an additional empty
-						// entry in the beginning.
-						String npcDoneText = player.getQuest(QUEST_SLOT);
-						String[] done = npcDoneText.split(";");
-						List<String> list = Arrays.asList(done);
-						int left = 7 - list.size();
-
-						if (!list.contains(engine.getName())) {
-							player.setQuest(QUEST_SLOT, npcDoneText + ";"
-									+ engine.getName());
-
-							player.heal();
-							player.healPoison();
-
-							if (left > 0) {
-								engine.say("Well done! You only need to find "
-												+ (7 - list.size())
-												+ " more. Fare thee well!");
-								player.addXP((7 - left + 1) * 200);
-							} else {
-								engine.say("Thou hast proven thyself brave enough to bear this mighty relic!");
-
-								/*
-								 * Proposal by Daniel Herding (mort): once
-								 * we have enough quests, we shouldn't have
-								 * this randomization anymore. There should
-								 * be one hard quest for each of the golden
-								 * items.
-								 *
-								 * I commented out the golden shield here
-								 * because you already get that from the
-								 * CloaksForBario quest.
-								 *
-								 * Golden legs was disabled because it can
-								 * be won in DiceGambling.
-								 *
-								 * Fire sword was disabled because it can be
-								 * earned by fighting, and because the
-								 * stronger ice sword is available through
-								 * other quest and through fighting.
-								 *
-								 * Once enough quests exist, this quest
-								 * should always give you golden boots
-								 * (because you have to walk much to fulfil
-								 * it).
-								 *
-								 */
-								String[] items = { "golden_boots", "golden_armor", "golden_helmet" };
-								Item item = StendhalRPWorld
-									.get().getRuleManager()
-									.getEntityManager()
-									.getItem(items[Rand.rand(items.length)]);
-								item.setBoundTo(player.getName());
-								player.equip(item, true);
-								player.addXP(2000);
+					null, ConversationStates.IDLE, null,
+					new SpeakerNPC.ChatAction() {
+						@Override
+						public void fire(Player player, Sentence sentence,
+								SpeakerNPC engine) {
+							if (!player.hasQuest(QUEST_SLOT)) {
+								player.setQuest(QUEST_SLOT, "");
 							}
-						} else {
-							if (left > -1) {
-								engine.say("Seek out the other cherubim to get thy reward!");
+
+							// Visited cherubs are store in the quest-name
+							// QUEST_SLOT.
+							// Please note that there is an additional empty
+							// entry in the beginning.
+							String npcDoneText = player.getQuest(QUEST_SLOT);
+							String[] done = npcDoneText.split(";");
+							List<String> list = Arrays.asList(done);
+							int left = 7 - list.size();
+
+							if (!list.contains(engine.getName())) {
+								player.setQuest(QUEST_SLOT, npcDoneText + ";"
+										+ engine.getName());
+
+								player.heal();
+								player.healPoison();
+
+								if (left > 0) {
+									engine.say("Well done! You only need to find "
+											+ (7 - list.size())
+											+ " more. Fare thee well!");
+									player.addXP((7 - left + 1) * 200);
+								} else {
+									engine.say("Thou hast proven thyself brave enough to bear this mighty relic!");
+
+									/*
+									 * Proposal by Daniel Herding (mort): once
+									 * we have enough quests, we shouldn't have
+									 * this randomization anymore. There should
+									 * be one hard quest for each of the golden
+									 * items.
+									 * 
+									 * I commented out the golden shield here
+									 * because you already get that from the
+									 * CloaksForBario quest.
+									 * 
+									 * Golden legs was disabled because it can
+									 * be won in DiceGambling.
+									 * 
+									 * Fire sword was disabled because it can be
+									 * earned by fighting, and because the
+									 * stronger ice sword is available through
+									 * other quest and through fighting.
+									 * 
+									 * Once enough quests exist, this quest
+									 * should always give you golden boots
+									 * (because you have to walk much to fulfil
+									 * it).
+									 * 
+									 */
+									String[] items = { "golden_boots",
+											"golden_armor", "golden_helmet" };
+									Item item = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
+											items[Rand.rand(items.length)]);
+									item.setBoundTo(player.getName());
+									player.equip(item, true);
+									player.addXP(2000);
+								}
 							} else {
-								engine.say("Thou hast sought and found each of the seven cherubim! Now, mighty art thou with the rewards so earn'd.");
+								if (left > -1) {
+									engine.say("Seek out the other cherubim to get thy reward!");
+								} else {
+									engine.say("Thou hast sought and found each of the seven cherubim! Now, mighty art thou with the rewards so earn'd.");
+								}
 							}
+							player.notifyWorldAboutChanges();
 						}
-						player.notifyWorldAboutChanges();
-					}
-				});
+					});
 			addGoodbye();
 		}
 	}

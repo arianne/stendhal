@@ -6,8 +6,6 @@ import static org.junit.Assert.assertTrue;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
-import games.stendhal.server.entity.mapstuff.portal.AccessCheckingPortal;
-import games.stendhal.server.entity.mapstuff.portal.Portal;
 import games.stendhal.server.entity.mapstuff.portal.AccessCheckingPortal.SendMessage;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.TurnListener;

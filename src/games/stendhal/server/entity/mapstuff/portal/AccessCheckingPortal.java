@@ -6,7 +6,6 @@
 
 package games.stendhal.server.entity.mapstuff.portal;
 
-
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
@@ -19,32 +18,34 @@ public abstract class AccessCheckingPortal extends Portal {
 	/**
 	 * The message to given when rejected.
 	 */
-	protected String	rejectMessage;
+	protected String rejectMessage;
 
 	/**
 	 * Creates an access checking portal.
-	 *
-	 * @param	rejectMessage	The message to given when rejected.
+	 * 
+	 * @param rejectMessage
+	 *            The message to given when rejected.
 	 */
 	public AccessCheckingPortal(String rejectMessage) {
 		this.rejectMessage = rejectMessage;
 	}
 
-
 	/**
 	 * Determine if this portal can be used.
-	 *
-	 * @param	user		The user to be checked.
-	 *
-	 * @return	<code>true<code> if the user can use the portal.
+	 * 
+	 * @param user
+	 *            The user to be checked.
+	 * 
+	 * @return <code>true</code> if the user can use the portal.
 	 */
 	protected abstract boolean isAllowed(RPEntity user);
 
 	/**
-	 * Called when the user is rejected.
-	 * This sends a rejection message to the user if set.
-	 *
-	 * @param	user		The rejected user.
+	 * Called when the user is rejected. This sends a rejection message to the
+	 * user if set.
+	 * 
+	 * @param user
+	 *            The rejected user.
 	 */
 	protected void rejected(RPEntity user) {
 		if (rejectMessage != null) {
@@ -54,9 +55,11 @@ public abstract class AccessCheckingPortal extends Portal {
 
 	/**
 	 * Wrapper to send a message to a user, without getting lost.
-	 *
-	 * @param	user		The user to send to.
-	 * @param	text		The message to send.
+	 * 
+	 * @param user
+	 *            The user to send to.
+	 * @param text
+	 *            The message to send.
 	 */
 	protected void sendMessage(RPEntity user, String text) {
 		TurnNotifier.get().notifyInTurns(0, new SendMessage(user, text));
@@ -64,8 +67,9 @@ public abstract class AccessCheckingPortal extends Portal {
 
 	/**
 	 * Set the rejection message.
-	 *
-	 * @param	rejectMessage	The message to given when rejected.
+	 * 
+	 * @param rejectMessage
+	 *            The message to given when rejected.
 	 */
 	public void setRejectedMessage(String rejectMessage) {
 		this.rejectMessage = rejectMessage;
@@ -73,6 +77,10 @@ public abstract class AccessCheckingPortal extends Portal {
 
 	/**
 	 * Use the portal, if allowed.
+	 * 
+	 * @param user
+	 *            that wants to pass.
+	 * @return true if passed , false otherwise.
 	 */
 	@Override
 	public boolean onUsed(RPEntity user) {
@@ -86,34 +94,36 @@ public abstract class AccessCheckingPortal extends Portal {
 	}
 
 	/**
-	 * A turn listener that sends a user message. Once sendPrivateText()
-	 * is fixed (via a queue or something) to always work, this can go
-	 * away.
+	 * A turn listener that sends a user message. Once sendPrivateText() is
+	 * fixed (via a queue or something) to always work, this can go away.
 	 */
 	protected static class SendMessage implements TurnListener {
 		/**
 		 * The user to send to.
 		 */
-		protected final RPEntity user;
+		private final RPEntity user;
 		private final String text;
 
 		/**
 		 * Create a message sending turn listener.
-		 *
-		 * @param	user		The user to send to.
-		 * @param   text        Message to send
+		 * 
+		 * @param user
+		 *            The user to send to.
+		 * @param text
+		 *            Message to send
 		 */
-		public SendMessage(RPEntity user, String text) {
+		public SendMessage(final RPEntity user, final String text) {
 			this.user = user;
 			this.text = text;
 		}
 
 		/**
 		 * This method is called when the turn number is reached.
-		 *
-		 * @param	currentTurn	Current turn number.
+		 * 
+		 * @param currentTurn
+		 *            Current turn number.
 		 */
-		public void onTurnReached(int currentTurn) {
+		public void onTurnReached(final int currentTurn) {
 			user.sendPrivateText(this.text);
 			user.notifyWorldAboutChanges();
 		}

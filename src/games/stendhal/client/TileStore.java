@@ -27,7 +27,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-
 import org.apache.log4j.Logger;
 import marauroa.common.net.InputSerializer;
 
@@ -167,8 +166,8 @@ public class TileStore implements Tileset {
 		int amount = in.readInt();
 
 		for (int i = 0; i < amount; i++) {
-			TileSetDefinition tileset = (TileSetDefinition) in
-					.readObject(new TileSetDefinition(null, -1));
+			TileSetDefinition tileset = (TileSetDefinition) in.readObject(new TileSetDefinition(
+					null, -1));
 			add(tileset);
 		}
 	}
@@ -211,8 +210,7 @@ public class TileStore implements Tileset {
 		String path = "data/";
 
 		if (SpriteStore.get().getResourceURL("tiled/tileset/README") != null) {
-			logger
-					.warn("Developing mode, loading tileset from tiled/tileset instead of data/tileset");
+			logger.warn("Developing mode, loading tileset from tiled/tileset instead of data/tileset");
 			path = "tiled/";
 		}
 

@@ -16,7 +16,7 @@ import java.util.Map;
 /**
  * Experienced warrior knowing a lot about creatures (location semos_plains_s)
  * Original name: Starkad
- *
+ * 
  * @author johnnnny
  */
 public class ExperiencedWarriorNPC extends SpeakerNPCFactory {
@@ -186,7 +186,8 @@ public class ExperiencedWarriorNPC extends SpeakerNPCFactory {
 				ConversationStates.ATTENDING, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC speakerNPC) {
+					public void fire(Player player, Sentence sentence,
+							SpeakerNPC speakerNPC) {
 						EntityManager manager = StendhalRPWorld.get().getRuleManager().getEntityManager();
 						String creatureName = sentence.toString();
 						DefaultCreature creature = manager.getDefaultCreature(creatureName);
@@ -222,7 +223,8 @@ public class ExperiencedWarriorNPC extends SpeakerNPCFactory {
 				ConversationStates.ATTENDING, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC speakerNPC) {
+					public void fire(Player player, Sentence sentence,
+							SpeakerNPC speakerNPC) {
 						if (stateInfo.getCreatureName() != null) {
 							if (player.drop("money",
 									stateInfo.getInformationCost())) {

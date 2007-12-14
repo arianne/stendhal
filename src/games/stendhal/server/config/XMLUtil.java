@@ -33,10 +33,10 @@ public class XMLUtil {
 
 	/**
 	 * Get all the direct children elements of an element.
-	 *
+	 * 
 	 * @param parent
 	 *            The parent element.
-	 *
+	 * 
 	 * @return A list of Element's.
 	 */
 	public static List<Element> getElements(final Element parent) {
@@ -58,12 +58,12 @@ public class XMLUtil {
 	/**
 	 * Get all the direct children elements of an element that have a specific
 	 * tag name.
-	 *
+	 * 
 	 * @param parent
 	 *            The parent element.
 	 * @param name
 	 *            The tag name to match.
-	 *
+	 * 
 	 * @return A list of Element's.
 	 */
 	public static List<Element> getElements(final Element parent,
@@ -89,10 +89,10 @@ public class XMLUtil {
 
 	/**
 	 * Get the direct text content of an element.
-	 *
+	 * 
 	 * @param element
 	 *            The element.
-	 *
+	 * 
 	 * @return The contained text.
 	 */
 	public static String getText(final Element element) {
@@ -105,7 +105,7 @@ public class XMLUtil {
 
 	/**
 	 * Get the text content of an element.
-	 *
+	 * 
 	 * @param element
 	 *            The element.
 	 * @param sbuf
@@ -137,12 +137,12 @@ public class XMLUtil {
 
 	/**
 	 * Parse an XML document.
-	 *
+	 * 
 	 * @param in
 	 *            The input stream.
-	 *
+	 * 
 	 * @return A Document.
-	 *
+	 * 
 	 * @throws SAXException
 	 *             If there is a parsing error.
 	 * @throws IOException
@@ -157,12 +157,12 @@ public class XMLUtil {
 
 	/**
 	 * Parse an XML document.
-	 *
+	 * 
 	 * @param is
 	 *            The input source.
-	 *
+	 * 
 	 * @return A Document.
-	 *
+	 * 
 	 * @throws SAXException
 	 *             If there is a parsing error.
 	 * @throws IOException
@@ -173,8 +173,7 @@ public class XMLUtil {
 	public static Document parse(InputSource is) throws SAXException,
 			IOException {
 		try {
-			DocumentBuilder builder = DocumentBuilderFactory.newInstance()
-					.newDocumentBuilder();
+			DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
 
 			return builder.parse(is);
 		} catch (ParserConfigurationException ex) {

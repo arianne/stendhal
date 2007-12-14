@@ -109,8 +109,9 @@ public class SoundObject extends InvisibleEntity {
 		if (Rand.rand(100) < chance) {
 			if (soundArray.containsKey(token)) {
 
-				SoundMaster.play(soundArray.get(token)[Rand.rand(soundArray
-						.get(token).length)], x, y);
+				SoundMaster.play(
+						soundArray.get(token)[Rand.rand(soundArray.get(token).length)],
+						x, y);
 
 			}
 		}

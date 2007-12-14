@@ -24,10 +24,9 @@ import games.stendhal.server.events.UseListener;
 
 import java.util.Map;
 
-
 /**
- * @author timothyb89
- * A healing spell. It restores the user to full HP (for now).
+ * @author timothyb89 A healing spell. It restores the user to full HP (for
+ *         now).
  */
 public class HealingSpell extends Spell implements UseListener {
 	public int healAmount;
@@ -36,12 +35,10 @@ public class HealingSpell extends Spell implements UseListener {
 		super(name, attributes);
 	}
 
-
 	@Override
 	public String describe() {
 		return "You see a healing spell.";
 	}
-
 
 	//
 	// HealingSpell
@@ -49,13 +46,12 @@ public class HealingSpell extends Spell implements UseListener {
 
 	/**
 	 * Gets the amount the healing spell will heal you.
-	 *
-	 *
+	 * 
+	 * 
 	 */
 	public int getHealingAmount(Player player) {
 		return player.getBaseHP() - healAmount;
 	}
-
 
 	//
 	// UseListener
@@ -67,17 +63,19 @@ public class HealingSpell extends Spell implements UseListener {
 		if (player.getMana() >= 25) {
 			player.heal(getHealingAmount(player), true);
 
-			//takes away the mana
+			// takes away the mana
 			int mana = player.getMana();
 			int newmana = mana - 25;
 
 			// sets the new mana amount
 			player.setMana(newmana);
 
-			//now that everything has been set, notify the player.
-			player.sendPrivateText("You have been healed. You now have #" + player.getMana() + " mana left.");
+			// now that everything has been set, notify the player.
+			player.sendPrivateText("You have been healed. You now have #"
+					+ player.getMana() + " mana left.");
 
-			// saves changes (last because the stats are refreshed by default on zone change)
+			// saves changes (last because the stats are refreshed by default on
+			// zone change)
 			player.update();
 			player.notifyWorldAboutChanges();
 			return true;

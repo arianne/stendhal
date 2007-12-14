@@ -10,32 +10,38 @@ import java.util.Map;
 
 /**
  * This is just a Deathmatch for Fado (the battle_arena)
- *
+ * 
  * @author timothyb89
- *
+ * 
  */
 public class Deathmatch implements ZoneConfigurator {
 
 	/**
 	 * Configure a zone.
-	 *
-	 * @param	zone		The zone to be configured.
-	 * @param	attributes	Configuration attributes.
+	 * 
+	 * @param zone
+	 *            The zone to be configured.
+	 * @param attributes
+	 *            Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
-		buildDeathmatch(zone); System.out.println("DEBUG: Loading Fado Deathmatch.");
+	public void configureZone(StendhalRPZone zone,
+			Map<String, String> attributes) {
+		buildDeathmatch(zone);
+		System.out.println("DEBUG: Loading Fado Deathmatch.");
 	}
 
 	/**
 	 * Makes the Deathmatch/battle arena
-	 *
-	 * @param zone StendhalRPZone
+	 * 
+	 * @param zone
+	 *            StendhalRPZone
 	 */
 
 	/**
 	 * Creatures the Deathmatch referee.
-	 *
-	 * @param zone StendhalRPZone
+	 * 
+	 * @param zone
+	 *            StendhalRPZone
 	 */
 	private void buildDeathmatch(StendhalRPZone zone) {
 		Rectangle2D shape = new Rectangle2D.Double();
@@ -44,7 +50,6 @@ public class Deathmatch implements ZoneConfigurator {
 		FadoDeathmatch deathmatch = new FadoDeathmatch(zone, arena);
 		deathmatch.createLegs(27, 40);
 		deathmatch.createNPC("Thonatun", 29, 17);
-
 
 	}
 

@@ -13,8 +13,9 @@ public class IncreaseXPAction extends SpeakerNPC.ChatAction {
 
 	/**
 	 * Creates a new IncreaseKarmaAction
-	 *
-	 * @param xpDiff amount of karma to add
+	 * 
+	 * @param xpDiff
+	 *            amount of karma to add
 	 */
 	public IncreaseXPAction(int xpDiff) {
 		this.xpDiff = xpDiff;
@@ -28,7 +29,7 @@ public class IncreaseXPAction extends SpeakerNPC.ChatAction {
 
 	@Override
 	public String toString() {
-		return "IncreaseXP <" + xpDiff +">";
+		return "IncreaseXP <" + xpDiff + ">";
 	}
 
 	@Override
@@ -41,11 +42,19 @@ public class IncreaseXPAction extends SpeakerNPC.ChatAction {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj) return true;
-		if (!super.equals(obj)) return false;
-		if (getClass() != obj.getClass()) return false;
+		if (this == obj) {
+			return true;
+		}
+		if (!super.equals(obj)) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
 		final IncreaseXPAction other = (IncreaseXPAction) obj;
-		if (xpDiff != other.xpDiff) return false;
+		if (xpDiff != other.xpDiff) {
+			return false;
+		}
 		return true;
 	}
 

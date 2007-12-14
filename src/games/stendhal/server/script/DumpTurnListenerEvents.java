@@ -13,7 +13,7 @@ import java.util.Set;
 
 /**
  * dumps debug information about turn listener events
- *
+ * 
  * @author hendrik
  */
 public class DumpTurnListenerEvents extends ScriptImpl {
@@ -26,7 +26,7 @@ public class DumpTurnListenerEvents extends ScriptImpl {
 		TurnNotifier turnNotifier = TurnNotifier.get();
 		int currentTurn = turnNotifier.getCurrentTurnForDebugging();
 		Map<Integer, Set<TurnListener>> events = turnNotifier.getEventListForDebugging();
-		
+
 		for (Integer turn : events.keySet()) {
 
 			// count outdated
@@ -41,9 +41,8 @@ public class DumpTurnListenerEvents extends ScriptImpl {
 		}
 
 		// send result
-		admin.sendPrivateText("Statistics: "
-			+ "\n" + counter.getMap()
-			+ "\nCounted turn events:" + events.size()
-			+ "\nOutdated turn events: " + outdated);
+		admin.sendPrivateText("Statistics: " + "\n" + counter.getMap()
+				+ "\nCounted turn events:" + events.size()
+				+ "\nOutdated turn events: " + outdated);
 	}
 }

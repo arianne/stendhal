@@ -65,7 +65,7 @@ public class CreatureInfo {
 
 	/**
 	 * Create an instance of creatureInfo.
-	 *
+	 * 
 	 * @param probabilityLiterals
 	 *            templates for probabilities. %s is replaced with item
 	 *            description (name and amount)
@@ -109,7 +109,7 @@ public class CreatureInfo {
 
 	/**
 	 * get information on a creature.
-	 *
+	 * 
 	 * @param player
 	 * @param creature
 	 * @param maxLocations
@@ -159,7 +159,7 @@ public class CreatureInfo {
 
 	/**
 	 * get the approximate respawn time of a creature.
-	 *
+	 * 
 	 * @param creature
 	 * @return
 	 */
@@ -169,7 +169,7 @@ public class CreatureInfo {
 
 	/**
 	 * get creature respawn locations.
-	 *
+	 * 
 	 * @param creatureName
 	 * @param maxNumberOfLocations
 	 *            how many (most frequent) respawn locations are listed
@@ -198,7 +198,7 @@ public class CreatureInfo {
 
 	/**
 	 * get the count of specified creature for all zones.
-	 *
+	 * 
 	 * @param creatureName
 	 * @return map of zonenames with creature counts
 	 */
@@ -225,7 +225,7 @@ public class CreatureInfo {
 	/**
 	 * Get basic information of the creature: initial string + how dangerous the
 	 * creature is.
-	 *
+	 * 
 	 * @param player
 	 * @param creature
 	 * @return basic information about the creature.
@@ -248,7 +248,7 @@ public class CreatureInfo {
 
 	/**
 	 * Translate zone name into a more readable form.
-	 *
+	 * 
 	 * @param zoneName
 	 * @return translated zone name
 	 */
@@ -328,7 +328,7 @@ public class CreatureInfo {
 
 	/**
 	 * Get verbal presentation of how dangerous the creature is to the player.
-	 *
+	 * 
 	 * @param player
 	 * @param creature
 	 * @param dangerLiterals
@@ -350,7 +350,7 @@ public class CreatureInfo {
 
 	/**
 	 * Get verbal presentation of the items dropped by given creature.
-	 *
+	 * 
 	 * @param creature
 	 * @param maxNumberOfItems
 	 *            maximum number of items with most frequent drops first
@@ -405,7 +405,7 @@ public class CreatureInfo {
 
 	/**
 	 * Utility method for returning a random string from array of strings.
-	 *
+	 * 
 	 * @param texts
 	 * @param params
 	 * @return
@@ -423,7 +423,7 @@ public class CreatureInfo {
 	/**
 	 * utility method for turning numeric value into a literal string from a
 	 * list.
-	 *
+	 * 
 	 * @param literals
 	 *            map of the literal strings
 	 * @param val

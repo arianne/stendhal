@@ -6,15 +6,17 @@ import marauroa.common.game.RPAction;
 /**
  * Add a player to the ignore list.
  */
-class GrumpyAction implements SlashAction  {
+class GrumpyAction implements SlashAction {
 
 	/**
 	 * Execute an ignore command.
-	 *
-	 * @param	params		The formal parameters.
-	 * @param	remainder	Line content after parameters.
-	 *
-	 * @return	<code>true</code> if command was handled.
+	 * 
+	 * @param params
+	 *            The formal parameters.
+	 * @param remainder
+	 *            Line content after parameters.
+	 * 
+	 * @return <code>true</code> if command was handled.
 	 */
 	public boolean execute(String[] params, String remainder) {
 		RPAction action = new RPAction();
@@ -32,8 +34,8 @@ class GrumpyAction implements SlashAction  {
 
 	/**
 	 * Get the maximum number of formal parameters.
-	 *
-	 * @return	The parameter count.
+	 * 
+	 * @return The parameter count.
 	 */
 	public int getMaximumParameters() {
 		return 0;
@@ -41,8 +43,8 @@ class GrumpyAction implements SlashAction  {
 
 	/**
 	 * Get the minimum number of formal parameters.
-	 *
-	 * @return	The parameter count.
+	 * 
+	 * @return The parameter count.
 	 */
 	public int getMinimumParameters() {
 		return 0;

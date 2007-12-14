@@ -7,10 +7,9 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.condition.AlwaysTrueCondition;
 
-
 /**
  * Tell the player that Cataclysm is ahead.
- *
+ * 
  * @author kymara
  */
 public class Cataclysm extends AbstractQuest {
@@ -22,13 +21,13 @@ public class Cataclysm extends AbstractQuest {
 		SpeakerNPC npc = npcs.get("Carmen");
 
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-				new AlwaysTrueCondition(),
-				ConversationStates.ATTENDING,
+				new AlwaysTrueCondition(), ConversationStates.ATTENDING,
 				"Hello. I can #heal you in these #troubled #times.", null);
 
 		npc.addReply(Arrays.asList("troubled", "times"),
 				"I sense many changes approaching. I believe that a #Cataclysm is coming.");
-		npc.addReply("Cataclysm",
+		npc.addReply(
+				"Cataclysm",
 				"Yes, some upheaval, maybe a rebirth of old spirits. The lands could change and new ways begin.");
 
 	}
@@ -40,18 +39,18 @@ public class Cataclysm extends AbstractQuest {
 		SpeakerNPC npc = npcs.get("Diogenes");
 
 		npc.add(
-			ConversationStates.IDLE,
-			ConversationPhrases.GREETING_MESSAGES,
-			new AlwaysTrueCondition(),
-			ConversationStates.ATTENDING,
-			"Greetings. I expect you are wondering what strange things are happening here?",
-			null);
+				ConversationStates.IDLE,
+				ConversationPhrases.GREETING_MESSAGES,
+				new AlwaysTrueCondition(),
+				ConversationStates.ATTENDING,
+				"Greetings. I expect you are wondering what strange things are happening here?",
+				null);
 
 		npc.addReply("yes",
-						"So am I, my friend. I expect young Carmen will tell you something.");
+				"So am I, my friend. I expect young Carmen will tell you something.");
 		npc.addReply(
-						"no",
-						"Ah, the folly of youth! You do not look around you with open eyes until it is too late.");
+				"no",
+				"Ah, the folly of youth! You do not look around you with open eyes until it is too late.");
 
 	}
 
@@ -61,16 +60,16 @@ public class Cataclysm extends AbstractQuest {
 	private void hayunn() {
 		SpeakerNPC npc = npcs.get("Hayunn Naratha");
 		npc.add(
-			ConversationStates.IDLE,
-			ConversationPhrases.GREETING_MESSAGES,
-			new AlwaysTrueCondition(),
-			ConversationStates.ATTENDING,
-			"Greetings. I'm ashamed to address you while I look #unwell. It's not fitting for my post.",
-			null);
+				ConversationStates.IDLE,
+				ConversationPhrases.GREETING_MESSAGES,
+				new AlwaysTrueCondition(),
+				ConversationStates.ATTENDING,
+				"Greetings. I'm ashamed to address you while I look #unwell. It's not fitting for my post.",
+				null);
 
 		npc.addReply(
-			"unwell",
-			"I imagine it is from the smoke. I hope it's nothing more ominous. In any case, let me know if I can help you at all.");
+				"unwell",
+				"I imagine it is from the smoke. I hope it's nothing more ominous. In any case, let me know if I can help you at all.");
 	}
 
 	/**
@@ -80,20 +79,20 @@ public class Cataclysm extends AbstractQuest {
 		SpeakerNPC npc = npcs.get("Monogenes");
 
 		npc.add(
-			ConversationStates.IDLE,
-			ConversationPhrases.GREETING_MESSAGES,
-			new AlwaysTrueCondition(),
-			ConversationStates.ATTENDING,
-			"Hi. *cough* *splutter* The smoke is getting into my lungs. The #fire is spreading.",
-			null);
+				ConversationStates.IDLE,
+				ConversationPhrases.GREETING_MESSAGES,
+				new AlwaysTrueCondition(),
+				ConversationStates.ATTENDING,
+				"Hi. *cough* *splutter* The smoke is getting into my lungs. The #fire is spreading.",
+				null);
 
 		npc.addReply(
-			"fire",
-			"It started overnight and now Semos is lit up like a torch. They say a #Cataclysm is coming.");
+				"fire",
+				"It started overnight and now Semos is lit up like a torch. They say a #Cataclysm is coming.");
 
 		npc.addReply(
-			"Cataclysm",
-			"I've never seen the like, but my great grandfather spoke of such a thing. Some see it as a disaster. Others say that the rebuilding after such an event allows for new life and new ways.");
+				"Cataclysm",
+				"I've never seen the like, but my great grandfather spoke of such a thing. Some see it as a disaster. Others say that the rebuilding after such an event allows for new life and new ways.");
 
 	}
 
@@ -104,20 +103,20 @@ public class Cataclysm extends AbstractQuest {
 		SpeakerNPC npc = npcs.get("Nomyr Ahba");
 
 		npc.add(
-			ConversationStates.IDLE,
-			ConversationPhrases.GREETING_MESSAGES,
-			new AlwaysTrueCondition(),
-			ConversationStates.ATTENDING,
-			"Hi. I'm guessing you knew to come to an old gossip, for #information.",
-			null);
+				ConversationStates.IDLE,
+				ConversationPhrases.GREETING_MESSAGES,
+				new AlwaysTrueCondition(),
+				ConversationStates.ATTENDING,
+				"Hi. I'm guessing you knew to come to an old gossip, for #information.",
+				null);
 
 		npc.addReply(
-			"information",
-			"Well my friend, fire is spreading through Semos and we're all getting sick. People say that it's the start of a #Cataclysm...");
+				"information",
+				"Well my friend, fire is spreading through Semos and we're all getting sick. People say that it's the start of a #Cataclysm...");
 
 		npc.addReply(
-			"Cataclysm",
-			"Don't ask me why, but I think the world will look very different in the near future. Lucky I haven't got a home to lose, really.");
+				"Cataclysm",
+				"Don't ask me why, but I think the world will look very different in the near future. Lucky I haven't got a home to lose, really.");
 	}
 
 	/**
@@ -127,18 +126,17 @@ public class Cataclysm extends AbstractQuest {
 		SpeakerNPC npc = npcs.get("Sato");
 
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-			new AlwaysTrueCondition(),
-			ConversationStates.ATTENDING,
-			"Hi. We've fallen on hard #times.", null);
-
-		npc.addReply("times",
-			"All I know is, my sheep are getting sick. Maybe #Carmen can sense what is happening here.");
+				new AlwaysTrueCondition(), ConversationStates.ATTENDING,
+				"Hi. We've fallen on hard #times.", null);
 
 		npc.addReply(
-			"Carmen",
-			"She's a summon healer, she can sense anything strange with her powers. Me, I'm just a simple sheep dealer.");
-	}
+				"times",
+				"All I know is, my sheep are getting sick. Maybe #Carmen can sense what is happening here.");
 
+		npc.addReply(
+				"Carmen",
+				"She's a summon healer, she can sense anything strange with her powers. Me, I'm just a simple sheep dealer.");
+	}
 
 	@Override
 	public void addToWorld() {

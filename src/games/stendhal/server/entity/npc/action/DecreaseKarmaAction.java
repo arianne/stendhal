@@ -12,9 +12,10 @@ public class DecreaseKarmaAction extends SpeakerNPC.ChatAction {
 	private double karmaDiff;
 
 	/**
-	 * Creates a new DecreaseKarmaAction
-	 *
-	 * @param karmaDiff amount of karma to subtract
+	 * Creates a new DecreaseKarmaAction.
+	 * 
+	 * @param karmaDiff
+	 *            amount of karma to subtract
 	 */
 	public DecreaseKarmaAction(double karmaDiff) {
 		this.karmaDiff = karmaDiff;
@@ -27,7 +28,7 @@ public class DecreaseKarmaAction extends SpeakerNPC.ChatAction {
 
 	@Override
 	public String toString() {
-		return "DecreaseKarma<" + karmaDiff +">";
+		return "DecreaseKarma<" + karmaDiff + ">";
 	}
 
 	@Override
@@ -42,11 +43,19 @@ public class DecreaseKarmaAction extends SpeakerNPC.ChatAction {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj) return true;
-		if (obj == null) return false;
-		if (getClass() != obj.getClass()) return false;
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
 		final DecreaseKarmaAction other = (DecreaseKarmaAction) obj;
-		if (Double.doubleToLongBits(karmaDiff) != Double.doubleToLongBits(other.karmaDiff)) return false;
+		if (Double.doubleToLongBits(karmaDiff) != Double.doubleToLongBits(other.karmaDiff)) {
+			return false;
+		}
 		return true;
 	}
 }

@@ -14,9 +14,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Builds the post office elf NPC.
- * She may be used later for something else like a newspaper. 
- * Now she sells nalwor scrolls
+ * Builds the post office elf NPC. She may be used later for something else like
+ * a newspaper. Now she sells nalwor scrolls
+ * 
  * @author kymara
  */
 public class PostNPC implements ZoneConfigurator {
@@ -24,11 +24,14 @@ public class PostNPC implements ZoneConfigurator {
 
 	/**
 	 * Configure a zone.
-	 *
-	 * @param	zone		The zone to be configured.
-	 * @param	attributes	Configuration attributes.
+	 * 
+	 * @param zone
+	 *            The zone to be configured.
+	 * @param attributes
+	 *            Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone,
+			Map<String, String> attributes) {
 		buildNPC(zone);
 	}
 
@@ -59,7 +62,8 @@ public class PostNPC implements ZoneConfigurator {
 				addGreeting("Hi, can I #help you?");
 				addJob("I work in this post office. But I'm new and I haven't been trusted with much yet.");
 				addHelp("I've not had this #job long ... come back soon and I might have been given something interesting to do.");
-				new SellerAdder().addSeller(this, new SellerBehaviour(shops.get("nalworscrolls")));
+				new SellerAdder().addSeller(this, new SellerBehaviour(
+						shops.get("nalworscrolls")));
 				addGoodbye("Bye - nice to meet you!");
 			}
 		};

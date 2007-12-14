@@ -44,7 +44,7 @@ public abstract class ActiveEntity2DView extends StateEntity2DView {
 
 	/**
 	 * Create a 2D view of an entity.
-	 *
+	 * 
 	 * @param activeEntity
 	 *            The entity to render.
 	 */
@@ -60,10 +60,10 @@ public abstract class ActiveEntity2DView extends StateEntity2DView {
 
 	/**
 	 * Get the appropriate named state for a direction.
-	 *
+	 * 
 	 * @param direction
 	 *            The direction.
-	 *
+	 * 
 	 * @return A named state.
 	 */
 	protected String getDirectionState(final Direction direction) {
@@ -91,7 +91,7 @@ public abstract class ActiveEntity2DView extends StateEntity2DView {
 
 	/**
 	 * Get the current model state.
-	 *
+	 * 
 	 * @return The model state.
 	 */
 	@Override
@@ -105,7 +105,7 @@ public abstract class ActiveEntity2DView extends StateEntity2DView {
 
 	/**
 	 * Determine if this view is currently animatable.
-	 *
+	 * 
 	 * @return <code>true</code> if animating enabled.
 	 */
 	@Override
@@ -119,7 +119,7 @@ public abstract class ActiveEntity2DView extends StateEntity2DView {
 
 	/**
 	 * An entity was changed.
-	 *
+	 * 
 	 * @param entity
 	 *            The entity that was changed.
 	 * @param property

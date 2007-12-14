@@ -12,15 +12,19 @@ import java.util.Map;
 public class BoyNPC implements ZoneConfigurator {
 	/**
 	 * Configure a zone.
-	 *
-	 * @param	zone		The zone to be configured.
-	 * @param	attributes	Configuration attributes.
+	 * 
+	 * @param zone
+	 *            The zone to be configured.
+	 * @param attributes
+	 *            Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone,
+			Map<String, String> attributes) {
 		buildSemosTownhallArea(zone, attributes);
 	}
 
-	private void buildSemosTownhallArea(StendhalRPZone zone, Map<String, String> attributes) {
+	private void buildSemosTownhallArea(StendhalRPZone zone,
+			Map<String, String> attributes) {
 		SpeakerNPC npc = new SpeakerNPC("Tad") {
 
 			@Override
@@ -33,16 +37,20 @@ public class BoyNPC implements ZoneConfigurator {
 				addGreeting(null, new SpeakerNPC.ChatAction() {
 
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+					public void fire(Player player, Sentence sentence,
+							SpeakerNPC engine) {
 
 						if (player.hasQuest("introduce_players")) {
-						    if (!player.isQuestCompleted("introduce_players")) {
-							engine.say("*sniff* *sniff* I still feel ill, please hurry");
-						    } else {
-							engine.say("Hi again " + player.getTitle() + "! Thanks again, I'm feeling much better now.");
-						    }
+							if (!player.isQuestCompleted("introduce_players")) {
+								engine.say("*sniff* *sniff* I still feel ill, please hurry");
+							} else {
+								engine.say("Hi again "
+										+ player.getTitle()
+										+ "! Thanks again, I'm feeling much better now.");
+							}
 						} else {
-							engine.say("Ssshh! Come here, " + player.getTitle() + "! I have a #task for you.");
+							engine.say("Ssshh! Come here, " + player.getTitle()
+									+ "! I have a #task for you.");
 
 						}
 

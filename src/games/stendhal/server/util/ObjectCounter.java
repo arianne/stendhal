@@ -3,12 +3,12 @@ package games.stendhal.server.util;
 import java.util.HashMap;
 import java.util.Map;
 
-
 /**
  * Counts objects
- *
+ * 
  * @author hendrik
- * @param <K> Type of objects to count
+ * @param <K>
+ *            Type of objects to count
  */
 public class ObjectCounter<K> {
 	private Map<K, Integer> counter = new HashMap<K, Integer>();
@@ -22,7 +22,7 @@ public class ObjectCounter<K> {
 
 	/**
 	 * gets the counter map
-	 *
+	 * 
 	 * @return Map
 	 */
 	public Map<K, Integer> getMap() {
@@ -31,8 +31,9 @@ public class ObjectCounter<K> {
 
 	/**
 	 * adds one to the appropriate entry
-	 *
-	 * @param o object
+	 * 
+	 * @param o
+	 *            object
 	 */
 	public void add(K o) {
 		Integer in = counter.get(o);

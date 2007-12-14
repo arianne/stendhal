@@ -11,7 +11,7 @@ import java.util.List;
 
 /**
  * List the players and their positions over a period of time.
- *
+ * 
  * @author hendrik
  */
 public class PlayerPositionMonitoring extends ScriptImpl {
@@ -30,7 +30,7 @@ public class PlayerPositionMonitoring extends ScriptImpl {
 
 		/**
 		 * creates a new PlayerPositionListener
-		 *
+		 * 
 		 * @param admin
 		 *            the admin to notify
 		 */

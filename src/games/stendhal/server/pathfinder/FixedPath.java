@@ -13,7 +13,6 @@ import games.stendhal.server.entity.ActiveEntity;
 
 import java.util.List;
 
-
 import org.apache.log4j.Logger;
 
 /**

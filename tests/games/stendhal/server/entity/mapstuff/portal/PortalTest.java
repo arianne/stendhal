@@ -6,7 +6,6 @@ import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
-import games.stendhal.server.entity.mapstuff.portal.Portal;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.common.Log4J;

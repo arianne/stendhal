@@ -10,10 +10,12 @@ public class FishSourceFactory implements ConfigurableFactory {
 
 	/**
 	 * Extract the species name from a context.
-	 *
-	 * @param ctx The configuration context.
+	 * 
+	 * @param ctx
+	 *            The configuration context.
 	 * @return The species name.
-	 * @throws IllegalArgumentException If the attribute is invalid.
+	 * @throws IllegalArgumentException
+	 *             If the attribute is invalid.
 	 */
 	protected String getSpecies(ConfigurableFactoryContext ctx) {
 		return ctx.getRequiredString("species");
@@ -25,12 +27,12 @@ public class FishSourceFactory implements ConfigurableFactory {
 
 	/**
 	 * Create a personal fish source.
-	 *
+	 * 
 	 * @param ctx
 	 *            Configuration context.
-	 *
+	 * 
 	 * @return A FishSource.
-	 *
+	 * 
 	 * @see FishSource
 	 */
 	public Object create(ConfigurableFactoryContext ctx) {

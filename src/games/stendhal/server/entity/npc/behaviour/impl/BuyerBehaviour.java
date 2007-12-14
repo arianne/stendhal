@@ -21,8 +21,7 @@ import games.stendhal.server.entity.player.Player;
 import java.util.Map;
 
 /**
- * Represents the behaviour of a NPC who is able to buy items
- * from a player.
+ * Represents the behaviour of a NPC who is able to buy items from a player.
  */
 public class BuyerBehaviour extends MerchantBehaviour {
 
@@ -31,24 +30,29 @@ public class BuyerBehaviour extends MerchantBehaviour {
 	}
 
 	/**
-	 * Gives the money for the deal to the player. If the player can't
-	 * carry the money, puts it on the ground.
-	 * @param player The player who sells
+	 * Gives the money for the deal to the player. If the player can't carry the
+	 * money, puts it on the ground.
+	 * 
+	 * @param player
+	 *            The player who sells
 	 */
 	protected void payPlayer(Player player) {
-		StackableItem money = (StackableItem) StendhalRPWorld.get().getRuleManager().getEntityManager()
-		        .getItem("money");
+		StackableItem money = (StackableItem) StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
+				"money");
 		money.setQuantity(getCharge(player));
 		player.equip(money, true);
 	}
 
 	/**
-	 * Transacts the deal that has been agreed on earlier via
-	 * setChosenItem() and setAmount().
-	 * @param seller The NPC who buys
-	 * @param player The player who sells
-	 * @return true iff the transaction was successful, that is when the
-	 *              player has the item(s).
+	 * Transacts the deal that has been agreed on earlier via setChosenItem()
+	 * and setAmount().
+	 * 
+	 * @param seller
+	 *            The NPC who buys
+	 * @param player
+	 *            The player who sells
+	 * @return true iff the transaction was successful, that is when the player
+	 *         has the item(s).
 	 */
 	@Override
 	public boolean transactAgreedDeal(SpeakerNPC seller, Player player) {
@@ -57,8 +61,9 @@ public class BuyerBehaviour extends MerchantBehaviour {
 			seller.say("Thanks! Here is your money.");
 			return true;
 		} else {
-			seller.say("Sorry! You don't have " + (getAmount() == 1 ? "any" : "that many") + " "
-			        + Grammar.plnoun(getAmount(), chosenItem) + ".");
+			seller.say("Sorry! You don't have "
+					+ (getAmount() == 1 ? "any" : "that many") + " "
+					+ Grammar.plnoun(getAmount(), chosenItem) + ".");
 			return false;
 		}
 	}

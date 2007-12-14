@@ -15,7 +15,7 @@ import java.util.Map;
 
 /**
  * Builds the storage NPC in Sedah City
- *
+ * 
  * @author Teiv
  */
 public class StorageNPC implements ZoneConfigurator {
@@ -27,7 +27,7 @@ public class StorageNPC implements ZoneConfigurator {
 
 	/**
 	 * Configure a zone.
-	 *
+	 * 
 	 * @param zone
 	 *            The zone to be configured.
 	 * @param attributes
@@ -72,7 +72,8 @@ public class StorageNPC implements ZoneConfigurator {
 						"The Scarlet Army is a special division of Kalavan's Army. They all wear a red armor.");
 				addHelp("Have you seen this, no armor left here. At the moment I'm not able to serve the #Scarlet Army!");
 				addOffer("Bring me some armor and i pay you out!");
-				new BuyerAdder().add(this, new BuyerBehaviour(shops.get("buyred")), false);
+				new BuyerAdder().add(this, new BuyerBehaviour(
+						shops.get("buyred")), false);
 				addGoodbye("Have a nice day!");
 			}
 		};

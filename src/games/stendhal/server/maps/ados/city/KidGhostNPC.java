@@ -17,7 +17,7 @@ import java.util.Map;
 
 /**
  * Builds a Ghost NPC
- *
+ * 
  * @author kymara
  */
 public class KidGhostNPC implements ZoneConfigurator {
@@ -27,13 +27,17 @@ public class KidGhostNPC implements ZoneConfigurator {
 
 	/**
 	 * Configure a zone.
-	 *
-	 * @param	zone		The zone to be configured.
-	 * @param	attributes	Configuration attributes.
+	 * 
+	 * @param zone
+	 *            The zone to be configured.
+	 * @param attributes
+	 *            Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone,
+			Map<String, String> attributes) {
 		buildNPC(zone, attributes);
 	}
+
 	private void buildNPC(StendhalRPZone zone, Map<String, String> attributes) {
 		SpeakerNPC ghost = new SpeakerNPC("Ben") {
 			@Override
@@ -53,36 +57,39 @@ public class KidGhostNPC implements ZoneConfigurator {
 				nodes.add(new Node(34, 112));
 				setPath(new FixedPath(nodes, true));
 			}
+
 			@Override
-		    protected void createDialog() {
-			    add(ConversationStates.IDLE,
-			    	ConversationPhrases.GREETING_MESSAGES,
-			    	null,
-			    	ConversationStates.IDLE,
-			    	null,
-			    	new SpeakerNPC.ChatAction() {
-			    		@Override
-			    		public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-			    			if (!player.hasQuest("find_ghosts")) {
-			    				player.setQuest("find_ghosts", "looking:said");
-			    			}
-			    			String npcQuestText = player.getQuest("find_ghosts");
-			    			String[] npcDoneText = npcQuestText.split(":");
-			    			String lookStr = npcDoneText.length>1? npcDoneText[0]: "";
-			    			String saidStr = npcDoneText.length>1? npcDoneText[1]: "";
-			    			List<String> list = Arrays.asList(lookStr.split(";"));
-						    if (!list.contains(npc.getName())) {
-							    player.setQuest("find_ghosts", lookStr
-									    + ";" + npc.getName()
-									    + ":" + saidStr);
-							    npc.say("Hello! Hardly anyone speaks to me. The other children pretend I don't exist. I hope you remember me.");
-							    player.addXP(100);
-							    player.addKarma(10);
-							} else {
-							    npc.say("Hello again. I'm glad you remember me. I'll just keep walking here till I have someone to play with.");
+			protected void createDialog() {
+				add(ConversationStates.IDLE,
+						ConversationPhrases.GREETING_MESSAGES, null,
+						ConversationStates.IDLE, null,
+						new SpeakerNPC.ChatAction() {
+							@Override
+							public void fire(Player player, Sentence sentence,
+									SpeakerNPC npc) {
+								if (!player.hasQuest("find_ghosts")) {
+									player.setQuest("find_ghosts",
+											"looking:said");
+								}
+								String npcQuestText = player.getQuest("find_ghosts");
+								String[] npcDoneText = npcQuestText.split(":");
+								String lookStr = npcDoneText.length > 1 ? npcDoneText[0]
+										: "";
+								String saidStr = npcDoneText.length > 1 ? npcDoneText[1]
+										: "";
+								List<String> list = Arrays.asList(lookStr.split(";"));
+								if (!list.contains(npc.getName())) {
+									player.setQuest("find_ghosts", lookStr
+											+ ";" + npc.getName() + ":"
+											+ saidStr);
+									npc.say("Hello! Hardly anyone speaks to me. The other children pretend I don't exist. I hope you remember me.");
+									player.addXP(100);
+									player.addKarma(10);
+								} else {
+									npc.say("Hello again. I'm glad you remember me. I'll just keep walking here till I have someone to play with.");
+								}
 							}
-						}
-					});
+						});
 			}
 
 		};

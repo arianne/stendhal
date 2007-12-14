@@ -9,8 +9,7 @@ import java.util.TreeSet;
 import org.apache.log4j.Logger;
 
 /**
- * This Singleton should contain all NPCs in the Stendhal world that are
- * unique.
+ * This Singleton should contain all NPCs in the Stendhal world that are unique.
  */
 public class NPCList implements Iterable<SpeakerNPC> {
 	private static Logger logger = Logger.getLogger(NPCList.class);
@@ -24,7 +23,7 @@ public class NPCList implements Iterable<SpeakerNPC> {
 
 	/**
 	 * Returns the Singleton instance.
-	 *
+	 * 
 	 * @return The instance
 	 */
 	public static NPCList get() {
@@ -42,7 +41,9 @@ public class NPCList implements Iterable<SpeakerNPC> {
 
 	/**
 	 * Returns the NPC with the given name.
-	 * @param name The NPC's name
+	 * 
+	 * @param name
+	 *            The NPC's name
 	 * @return The NPC, or null if there is no NPC with this name
 	 */
 	public SpeakerNPC get(String name) {
@@ -51,8 +52,9 @@ public class NPCList implements Iterable<SpeakerNPC> {
 
 	/**
 	 * Checks whether an NPC with the given name exists.
-	 *
-	 * @param name The NPC's name
+	 * 
+	 * @param name
+	 *            The NPC's name
 	 * @return true iff an NPC with the given name exists
 	 */
 	public boolean has(String name) {
@@ -63,26 +65,30 @@ public class NPCList implements Iterable<SpeakerNPC> {
 	 * Adds an NPC to the NPCList. Does nothing if an NPC with the same name
 	 * already exists. This makes sure that each NPC can be uniquely identified
 	 * by his/her name.
-	 *
-	 * @param npc The NPC that should be added
+	 * 
+	 * @param npc
+	 *            The NPC that should be added
 	 */
 	public void add(SpeakerNPC npc) {
-	    // insert lower case names to allow case insensitive
-	    // searches for teleport commands, etc.
-	    String name = npc.getName().toLowerCase();
+		// insert lower case names to allow case insensitive
+		// searches for teleport commands, etc.
+		String name = npc.getName().toLowerCase();
 
 		if (!contents.containsKey(name)) {
 			contents.put(name, npc);
 		} else {
-			logger.error("Not adding " + npc + " to NPCList because there is already an NPC called " + npc.getName());
+			logger.error("Not adding " + npc
+					+ " to NPCList because there is already an NPC called "
+					+ npc.getName());
 		}
 	}
 
 	/**
 	 * Removes an NPC from the NPCList. Does nothing if no NPC with the given
 	 * name exists.
-	 *
-	 * @param name The name of the NPC that should be removed
+	 * 
+	 * @param name
+	 *            The name of the NPC that should be removed
 	 * @return SpeakerNPC or null in case it was not in the list
 	 */
 	public SpeakerNPC remove(String name) {
@@ -91,7 +97,7 @@ public class NPCList implements Iterable<SpeakerNPC> {
 
 	/**
 	 * returns a list of all NPCs
-	 *
+	 * 
 	 * @return list of npcs
 	 */
 	public Set<String> getNPCs() {

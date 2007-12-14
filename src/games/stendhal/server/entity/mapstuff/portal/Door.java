@@ -21,16 +21,16 @@ import marauroa.common.game.Definition.Type;
 
 /**
  * A door is a special kind of portal which can be open or closed.
- *
- * Note that you can link a door with a portal; that way, people only
- * require the key when walking in one direction and can walk in the
- * other direction without any key.
+ * 
+ * Note that you can link a door with a portal; that way, people only require
+ * the key when walking in one direction and can walk in the other direction
+ * without any key.
  */
 public abstract class Door extends AccessCheckingPortal implements TurnListener {
 
 	/**
-	 * How many turns it takes until door automatically closes itself
-	 * after somebody walked through it.
+	 * How many turns it takes until door automatically closes itself after
+	 * somebody walked through it.
 	 */
 	private static final int TURNS_TO_STAY_OPEN = 9; /* 3 seconds */
 
@@ -49,29 +49,31 @@ public abstract class Door extends AccessCheckingPortal implements TurnListener 
 
 	/**
 	 * Creates a new door.
-	 *
-	 * @param clazz The class. Responsible for how this door looks like.
+	 * 
+	 * @param clazz
+	 *            The class. Responsible for how this door looks like.
 	 */
 	public Door(String clazz) {
-		this(clazz,"This door is closed");
+		this(clazz, "This door is closed");
 	}
 
 	/**
 	 * Creates a new door.
-	 *
-	 * @param clazz The class. Responsible for how this door looks like.
-	 *
-	 * @param	rejectMessage	The message to given when rejected.
+	 * 
+	 * @param clazz
+	 *            The class. Responsible for how this door looks like.
+	 * 
+	 * @param rejectMessage
+	 *            The message to given when rejected.
 	 */
-        public Door(String clazz, String rejectMessage) {
-	        super(rejectMessage);
+	public Door(String clazz, String rejectMessage) {
+		super(rejectMessage);
 		setRPClass("door");
 		put("type", "door");
 		setEntityClass(clazz);
 
 		open = false;
 	}
-
 
 	@Override
 	public void update() {
@@ -101,7 +103,7 @@ public abstract class Door extends AccessCheckingPortal implements TurnListener 
 
 	/**
 	 * Is the door open?
-	 *
+	 * 
 	 * @return true, if opened; false otherwise
 	 */
 	protected boolean isOpen() {
@@ -113,11 +115,11 @@ public abstract class Door extends AccessCheckingPortal implements TurnListener 
 	 */
 	@Override
 	public boolean onUsed(RPEntity user) {
-	    // check first could player use the door
-	        boolean couldUse = super.onUsed(user);
+		// check first could player use the door
+		boolean couldUse = super.onUsed(user);
 
 		if (couldUse) {
-		    // open door, or stop door from closing
+			// open door, or stop door from closing
 			TurnNotifier turnNotifier = TurnNotifier.get();
 			if (isOpen()) {
 				// The door is still open because another player just used it.

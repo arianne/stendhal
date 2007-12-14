@@ -16,7 +16,7 @@ import java.util.TreeSet;
  * The behaviour of an NPC who is able to produce something for a player if the
  * player brings the required resources. Production takes time, depending on the
  * amount of ordered products.
- *
+ * 
  * @author daniel
  */
 public class ProducerBehaviour extends Behaviour {
@@ -24,7 +24,7 @@ public class ProducerBehaviour extends Behaviour {
 	/**
 	 * To store the current status of a production order, each ProducerBehaviour
 	 * needs to have an exclusive quest slot.
-	 *
+	 * 
 	 * This slot can have three states:
 	 * <ul>
 	 * <li>unset: if the player has never asked the NPC to produce anything.</li>
@@ -34,7 +34,7 @@ public class ProducerBehaviour extends Behaviour {
 	 * player will get, product is the name of the ordered product, and time is
 	 * the time when the order was given, in milliseconds since the epoch.</li>
 	 * </ul>
-	 *
+	 * 
 	 * Note: The product name is stored although each ProductBehaviour only
 	 * allows one type of product at the moment. We store it to make the system
 	 * extensible.
@@ -77,7 +77,7 @@ public class ProducerBehaviour extends Behaviour {
 
 	/**
 	 * Creates a new ProducerBehaviour.
-	 *
+	 * 
 	 * @param questSlot
 	 *            the slot that is used to store the status
 	 * @param productionActivity
@@ -102,7 +102,7 @@ public class ProducerBehaviour extends Behaviour {
 
 	/**
 	 * Creates a new ProducerBehaviour.
-	 *
+	 * 
 	 * @param questSlot
 	 *            the slot that is used to store the status
 	 * @param productionActivity
@@ -159,7 +159,7 @@ public class ProducerBehaviour extends Behaviour {
 
 	/*
 	 * Determine whether the produced item should be player bound.
-	 *
+	 * 
 	 * @return <code>true</code> if the product should be bound.
 	 */
 	public boolean isProductBound() {
@@ -171,15 +171,19 @@ public class ProducerBehaviour extends Behaviour {
 	 * the resources that are required to produce <i>amount</i> units of the
 	 * product, with hashes before the resource names in order to highlight
 	 * them, e.g. "4 #wood, 2 #iron, and 6 #leather".
-	 *
+	 * 
 	 * @param amount
 	 *            The amount of products that were requested
 	 * @return A string describing the required resources.
 	 */
 	private String getRequiredResourceNamesWithHashes(int amount) {
-		Set<String> requiredResourcesWithHashes = new TreeSet<String>();	// use sorted TreeSet instead of HashSet
-		for (Map.Entry<String, Integer> entry : getRequiredResourcesPerItem()
-				.entrySet()) {
+		Set<String> requiredResourcesWithHashes = new TreeSet<String>(); // use
+																			// sorted
+																			// TreeSet
+																			// instead
+																			// of
+																			// HashSet
+		for (Map.Entry<String, Integer> entry : getRequiredResourcesPerItem().entrySet()) {
 			requiredResourcesWithHashes.add(Grammar.quantityplnoun(amount
 					* entry.getValue(), "#" + entry.getKey()));
 		}
@@ -203,10 +207,8 @@ public class ProducerBehaviour extends Behaviour {
 
 	private int getMaximalAmount(Player player) {
 		int maxAmount = Integer.MAX_VALUE;
-		for (Map.Entry<String, Integer> entry : getRequiredResourcesPerItem()
-				.entrySet()) {
-			int limitationByThisResource = player.getNumberOfEquipped(entry
-					.getKey())
+		for (Map.Entry<String, Integer> entry : getRequiredResourcesPerItem().entrySet()) {
+			int limitationByThisResource = player.getNumberOfEquipped(entry.getKey())
 					/ entry.getValue();
 			maxAmount = Math.min(maxAmount, limitationByThisResource);
 		}
@@ -217,7 +219,7 @@ public class ProducerBehaviour extends Behaviour {
 	 * Tries to take all the resources required to produce <i>amount</i> units
 	 * of the product from the player. If this is possible, asks the user if the
 	 * order should be initiated.
-	 *
+	 * 
 	 * @param npc
 	 * @param player
 	 * @param amount
@@ -241,7 +243,7 @@ public class ProducerBehaviour extends Behaviour {
 	/**
 	 * Tries to take all the resources required to produce the agreed amount of
 	 * the product from the player. If this is possible, initiates an order.
-	 *
+	 * 
 	 * @param npc
 	 *            the involved NPC
 	 * @param player
@@ -252,27 +254,24 @@ public class ProducerBehaviour extends Behaviour {
 		if (getMaximalAmount(player) < amount) {
 			// The player tried to cheat us by placing the resource
 			// onto the ground after saying "yes"
-			npc
-					.say("Hey! I'm over here! You'd better not be trying to trick me...");
+			npc.say("Hey! I'm over here! You'd better not be trying to trick me...");
 			return false;
 		} else {
-			for (Map.Entry<String, Integer> entry : getRequiredResourcesPerItem()
-					.entrySet()) {
+			for (Map.Entry<String, Integer> entry : getRequiredResourcesPerItem().entrySet()) {
 				int amountToDrop = amount * entry.getValue();
 				player.drop(entry.getKey(), amountToDrop);
 			}
 			long timeNow = new Date().getTime();
 			player.setQuest(questSlot, amount + ";" + getProductName() + ";"
 					+ timeNow);
-			npc
-					.say("OK, I will "
-							+ getProductionActivity()
-							+ " "
-							+ amount
-							+ " "
-							+ getProductName()
-							+ " for you, but that will take some time. Please come back in "
-							+ getApproximateRemainingTime(player) + ".");
+			npc.say("OK, I will "
+					+ getProductionActivity()
+					+ " "
+					+ amount
+					+ " "
+					+ getProductName()
+					+ " for you, but that will take some time. Please come back in "
+					+ getApproximateRemainingTime(player) + ".");
 			return true;
 		}
 	}
@@ -282,7 +281,7 @@ public class ProducerBehaviour extends Behaviour {
 	 * product. It checks if the NPC is already done with the order. If that is
 	 * the case, the player is given the product. Otherwise, the NPC asks the
 	 * player to come back later.
-	 *
+	 * 
 	 * @param npc
 	 *            The producing NPC
 	 * @param player
@@ -301,9 +300,8 @@ public class ProducerBehaviour extends Behaviour {
 					+ " for you. Come back in "
 					+ getApproximateRemainingTime(player) + " to get it.");
 		} else {
-			StackableItem products = (StackableItem) StendhalRPWorld.get()
-					.getRuleManager().getEntityManager().getItem(
-							getProductName());
+			StackableItem products = (StackableItem) StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
+					getProductName());
 			products.setQuantity(numberOfProductItems);
 
 			if (isProductBound()) {
@@ -323,7 +321,7 @@ public class ProducerBehaviour extends Behaviour {
 
 	/**
 	 * Sets the amount that the player wants to buy from the NPC.
-	 *
+	 * 
 	 * @param amount
 	 *            amount
 	 */

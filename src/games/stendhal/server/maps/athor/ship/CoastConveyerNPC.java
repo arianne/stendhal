@@ -28,35 +28,30 @@ public class CoastConveyerNPC extends SpeakerNPCFactory {
 		return islandDocksZone;
 	}
 
-
 	protected Status ferryState;
 
 	@Override
 	public void createDialog(final SpeakerNPC npc) {
-		npc.addGoodbye("Goodbye!"); //TODO: sailor-style language
+		npc.addGoodbye("Goodbye!"); // TODO: sailor-style language
 		npc.addGreeting("Ahoy, Matey! How can I #help you?");
 		npc.addHelp("Ye can #disembark, but only when we're anchored a harbor. Just ask me for the #status if ye have no idea where we are.");
 		npc.addJob("I'm taking passengers who want to #disembark to the coast with me rowing boat.");
 
-		npc.add(ConversationStates.ATTENDING, "status",
-				null,
-				ConversationStates.ATTENDING,
-				null,
-				new ChatAction() {
+		npc.add(ConversationStates.ATTENDING, "status", null,
+				ConversationStates.ATTENDING, null, new ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					public void fire(Player player, Sentence sentence,
+							SpeakerNPC npc) {
 						npc.say(ferryState.toString());
 					}
 				});
 
-		npc.add(ConversationStates.ATTENDING,
-				Arrays.asList("disembark", "leave"),
-				null,
-				ConversationStates.ATTENDING,
-				null,
+		npc.add(ConversationStates.ATTENDING, Arrays.asList("disembark",
+				"leave"), null, ConversationStates.ATTENDING, null,
 				new ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					public void fire(Player player, Sentence sentence,
+							SpeakerNPC npc) {
 						switch (ferryState) {
 						case ANCHORED_AT_MAINLAND:
 							npc.say("Do ye really want me to take ye to the mainland with me skiff?");
@@ -69,27 +64,27 @@ public class CoastConveyerNPC extends SpeakerNPCFactory {
 
 						default:
 							npc.say(ferryState.toString()
-								+ " Ye can only get off the boat when it's anchored near a harbor.");
+									+ " Ye can only get off the boat when it's anchored near a harbor.");
 
 						}
-				}
-			});
-
+					}
+				});
 
 		npc.add(ConversationStates.SERVICE_OFFERED,
-				ConversationPhrases.YES_MESSAGES,
-				null,
-				ConversationStates.ATTENDING, null,
-				new ChatAction() {
+				ConversationPhrases.YES_MESSAGES, null,
+				ConversationStates.ATTENDING, null, new ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					public void fire(Player player, Sentence sentence,
+							SpeakerNPC npc) {
 						switch (ferryState) {
 						case ANCHORED_AT_MAINLAND:
-							player.teleport(getMainlandDocksZone(), 100, 100, Direction.LEFT, null);
+							player.teleport(getMainlandDocksZone(), 100, 100,
+									Direction.LEFT, null);
 							npc.setCurrentState(ConversationStates.IDLE);
 							break;
 						case ANCHORED_AT_ISLAND:
-							player.teleport(getIslandDockZone(), 16, 89, Direction.LEFT, null);
+							player.teleport(getIslandDockZone(), 16, 89,
+									Direction.LEFT, null);
 							npc.setCurrentState(ConversationStates.IDLE);
 							break;
 
@@ -102,10 +97,8 @@ public class CoastConveyerNPC extends SpeakerNPCFactory {
 				});
 
 		npc.add(ConversationStates.SERVICE_OFFERED,
-				ConversationPhrases.NO_MESSAGES,
-				null,
-				ConversationStates.ATTENDING,
-				"Aye, matey!", null);
+				ConversationPhrases.NO_MESSAGES, null,
+				ConversationStates.ATTENDING, "Aye, matey!", null);
 		new AthorFerry.FerryListener() {
 
 			@Override
@@ -124,12 +117,13 @@ public class CoastConveyerNPC extends SpeakerNPCFactory {
 				}
 
 			}
-			};
+		};
 	}
 
 	private static StendhalRPZone getMainlandDocksZone() {
 		if (mainlandDocksZone == null) {
-			mainlandDocksZone = StendhalRPWorld.get().getZone("0_ados_coast_s_w2");
+			mainlandDocksZone = StendhalRPWorld.get().getZone(
+					"0_ados_coast_s_w2");
 		}
 		return mainlandDocksZone;
 	}

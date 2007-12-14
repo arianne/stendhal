@@ -14,7 +14,7 @@ package games.stendhal.server.actions.buddy;
 
 import games.stendhal.server.actions.CommandCenter;
 
-public class BuddyAction  {
+public class BuddyAction {
 
 	private static final String _GRUMPY = "grumpy";
 	private static final String _UNIGNORE = "unignore";
@@ -29,7 +29,5 @@ public class BuddyAction  {
 		CommandCenter.register(_UNIGNORE, new UnignoreAction());
 		CommandCenter.register(_GRUMPY, new GrumpyAction());
 	}
-
-
 
 }

@@ -24,7 +24,7 @@ import tiled.io.MapReader;
 import tiled.io.PluginLogger;
 
 /**
- * experimental reader for *.stend files 
+ * experimental reader for *.stend files
  */
 public class StendhalMapReader implements MapReader {
 
@@ -100,11 +100,11 @@ public class StendhalMapReader implements MapReader {
 
 	public String getDescription() {
 		return "+---------------------------------------------+\n"
-		        + "|      An experimental reader for Stendhal    |\n"
-		        + "|                                             |\n"
-		        + "|      (c) Miguel Angel Blanch Lardin 2005    |\n"
-		        + "|                                             |\n"
-		        + "+---------------------------------------------+";
+				+ "|      An experimental reader for Stendhal    |\n"
+				+ "|                                             |\n"
+				+ "|      (c) Miguel Angel Blanch Lardin 2005    |\n"
+				+ "|                                             |\n"
+				+ "+---------------------------------------------+";
 	}
 
 	public String getPluginPackage() {

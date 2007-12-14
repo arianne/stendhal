@@ -12,18 +12,21 @@ import java.util.Map;
 
 /**
  * Builds the bridge guard (to fado) NPC.
- *
+ * 
  * @author kymara
  */
 public class GuardNPC implements ZoneConfigurator {
 	/**
 	 * Configure a zone.
-	 *
-	 * @param	zone		The zone to be configured.
-	 * @param	attributes	Configuration attributes.
+	 * 
+	 * @param zone
+	 *            The zone to be configured.
+	 * @param attributes
+	 *            Configuration attributes.
 	 * 
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone,
+			Map<String, String> attributes) {
 		buildNPC(zone);
 	}
 

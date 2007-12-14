@@ -64,7 +64,7 @@ public class Chest2DView extends StateEntity2DView {
 
 	/**
 	 * Create a 2D view of a chest.
-	 *
+	 * 
 	 * @param chest
 	 *            The entity to render.
 	 */
@@ -82,7 +82,7 @@ public class Chest2DView extends StateEntity2DView {
 
 	/**
 	 * Populate named state sprites.
-	 *
+	 * 
 	 * @param map
 	 *            The map to populate.
 	 */
@@ -100,7 +100,7 @@ public class Chest2DView extends StateEntity2DView {
 
 	/**
 	 * Get the current entity state.
-	 *
+	 * 
 	 * @return The current state.
 	 */
 	@Override
@@ -115,7 +115,7 @@ public class Chest2DView extends StateEntity2DView {
 	/**
 	 * Build a list of entity specific actions. <strong>NOTE: The first entry
 	 * should be the default.</strong>
-	 *
+	 * 
 	 * @param list
 	 *            The list to populate.
 	 */
@@ -135,9 +135,9 @@ public class Chest2DView extends StateEntity2DView {
 	 * Determines on top of which other entities this entity should be drawn.
 	 * Entities with a high Z index will be drawn on top of ones with a lower Z
 	 * index.
-	 *
+	 * 
 	 * Also, players can only interact with the topmost entity.
-	 *
+	 * 
 	 * @return The drawing index.
 	 */
 	@Override
@@ -147,7 +147,7 @@ public class Chest2DView extends StateEntity2DView {
 
 	/**
 	 * Set the content inspector for this entity.
-	 *
+	 * 
 	 * @param inspector
 	 *            The inspector.
 	 */
@@ -167,8 +167,8 @@ public class Chest2DView extends StateEntity2DView {
 			if (chest.isOpen()) {
 				// we're wanted to open this?
 				if (requestOpen) {
-					wtEntityContainer = inspector.inspectMe(chest, chest
-							.getContent(), wtEntityContainer);
+					wtEntityContainer = inspector.inspectMe(chest,
+							chest.getContent(), wtEntityContainer);
 				}
 			} else {
 				if (wtEntityContainer != null) {
@@ -188,7 +188,7 @@ public class Chest2DView extends StateEntity2DView {
 
 	/**
 	 * An entity was changed.
-	 *
+	 * 
 	 * @param entity
 	 *            The entity that was changed.
 	 * @param property
@@ -210,7 +210,7 @@ public class Chest2DView extends StateEntity2DView {
 
 	/**
 	 * Perform an action.
-	 *
+	 * 
 	 * @param at
 	 *            The action.
 	 */

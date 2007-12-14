@@ -21,10 +21,11 @@ import java.util.List;
 public class SpeakerNPCFactory implements ConfigurableFactory {
 
 	/**
-	 * Creates a new SpeakerNPC. Override this if you want to use a
-	 * subclass of SpeakerNPC.
-	 *
-	 * @param name The NPC name.
+	 * Creates a new SpeakerNPC. Override this if you want to use a subclass of
+	 * SpeakerNPC.
+	 * 
+	 * @param name
+	 *            The NPC name.
 	 * @return An object of class SpeakerNPC or a subclass.
 	 */
 	protected SpeakerNPC instantiate(String name) {
@@ -33,10 +34,12 @@ public class SpeakerNPCFactory implements ConfigurableFactory {
 
 	/**
 	 * Extract the NPC name from a context.
-	 *
-	 * @param	ctx		The configuration context.
-	 * @return	The name
-	 * @throws	IllegalArgumentException If the attribute is missing.
+	 * 
+	 * @param ctx
+	 *            The configuration context.
+	 * @return The name
+	 * @throws IllegalArgumentException
+	 *             If the attribute is missing.
 	 */
 	protected String getName(ConfigurableFactoryContext ctx) {
 		return ctx.getRequiredString("name");
@@ -44,10 +47,12 @@ public class SpeakerNPCFactory implements ConfigurableFactory {
 
 	/**
 	 * Extract the NPC class (i.e. its visual appearance) from a context.
-	 *
-	 * @param	ctx		The configuration context.
-	 * @return	The class.
-	 * @throws	IllegalArgumentException If the attribute is missing.
+	 * 
+	 * @param ctx
+	 *            The configuration context.
+	 * @return The class.
+	 * @throws IllegalArgumentException
+	 *             If the attribute is missing.
 	 */
 	protected String getClass(ConfigurableFactoryContext ctx) {
 		return ctx.getString("class", null);
@@ -55,10 +60,11 @@ public class SpeakerNPCFactory implements ConfigurableFactory {
 
 	/**
 	 * Extract the NPC hitpoints from a context.
-	 *
-	 * @param	ctx		The configuration context.
-	 *
-	 * @return	The hitpoints.
+	 * 
+	 * @param ctx
+	 *            The configuration context.
+	 * 
+	 * @return The hitpoints.
 	 */
 	protected int getHP(ConfigurableFactoryContext ctx) {
 		return ctx.getInt("hp", 100);
@@ -66,10 +72,11 @@ public class SpeakerNPCFactory implements ConfigurableFactory {
 
 	/**
 	 * Extract the NPC level from a context.
-	 *
-	 * @param	ctx		The configuration context.
-	 *
-	 * @return	The level of experience.
+	 * 
+	 * @param ctx
+	 *            The configuration context.
+	 * 
+	 * @return The level of experience.
 	 */
 	protected int getLevel(ConfigurableFactoryContext ctx) {
 		return ctx.getInt("level", 0);
@@ -77,12 +84,12 @@ public class SpeakerNPCFactory implements ConfigurableFactory {
 
 	/**
 	 * Extract the NPC description from a context.
-	 *
-	 * @param	ctx		The configuration context.
-	 *
-	 * @return	The text that will be shown when a player looks at
-	 *          the NPC, or null if the default description should
-	 *          be used.
+	 * 
+	 * @param ctx
+	 *            The configuration context.
+	 * 
+	 * @return The text that will be shown when a player looks at the NPC, or
+	 *         null if the default description should be used.
 	 */
 	protected String getDescription(ConfigurableFactoryContext ctx) {
 		return ctx.getString("description", null);
@@ -90,10 +97,11 @@ public class SpeakerNPCFactory implements ConfigurableFactory {
 
 	/**
 	 * Extract the direction in which the NPC faces from a context.
-	 *
-	 * @param	ctx		The configuration context.
-	 *
-	 * @return	The hitpoints.
+	 * 
+	 * @param ctx
+	 *            The configuration context.
+	 * 
+	 * @return The hitpoints.
 	 */
 	protected Direction getDirection(ConfigurableFactoryContext ctx) {
 		// TODO: improve error handling make use of valueOf
@@ -130,8 +138,7 @@ public class SpeakerNPCFactory implements ConfigurableFactory {
 			} else {
 				lastNode = true;
 			}
-		}
-		while (!lastNode);
+		} while (!lastNode);
 
 		return result;
 	}
@@ -142,18 +149,18 @@ public class SpeakerNPCFactory implements ConfigurableFactory {
 
 	/**
 	 * Create a damaging area.
-	 *
-	 * @param	ctx		Configuration context.
-	 *
-	 * @return	A SpeakerNPC.
-	 *
-	 * @throws	IllegalArgumentException
-	 *				If there is a problem with the
-	 *				attributes. The exception message
-	 *				should be a value suitable for
-	 *				meaningful user interpretation.
-	 *
-	 * @see		SpeakerNPC
+	 * 
+	 * @param ctx
+	 *            Configuration context.
+	 * 
+	 * @return A SpeakerNPC.
+	 * 
+	 * @throws IllegalArgumentException
+	 *             If there is a problem with the attributes. The exception
+	 *             message should be a value suitable for meaningful user
+	 *             interpretation.
+	 * 
+	 * @see SpeakerNPC
 	 */
 	public Object create(ConfigurableFactoryContext ctx) {
 		SpeakerNPC npc = instantiate(getName(ctx));

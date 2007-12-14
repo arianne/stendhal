@@ -100,7 +100,7 @@ public class ScriptInJava extends ScriptingSandbox {
 
 	@Override
 	public void unload(Player admin, String[] args) {
-		Class<?>[] signature = new Class<?>[] { Player.class, List.class };
+		Class< ? >[] signature = new Class< ? >[] { Player.class, List.class };
 		Object[] params = new Object[] { admin, Arrays.asList(args) };
 		try {
 			Method theMethod = script.getClass().getMethod("unload", signature);

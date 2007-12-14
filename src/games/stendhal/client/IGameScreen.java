@@ -20,16 +20,16 @@ import java.text.AttributedString;
 public interface IGameScreen {
 
 	/** The width / height of one tile. */
-	public static final int SIZE_UNIT_PIXELS = 32;
+	int SIZE_UNIT_PIXELS = 32;
 
 	/** Returns screen width in world units */
-	public abstract double getViewWidth();
+	double getViewWidth();
 
 	/** Returns screen height in world units */
-	public abstract double getViewHeight();
+	double getViewHeight();
 
 	/** Prepare screen for the next frame to be rendered and move it if needed */
-	public abstract void nextFrame();
+	void nextFrame();
 
 	/**
 	 * Add a legacy dialog to the screen.
@@ -37,7 +37,7 @@ public interface IGameScreen {
 	 * @param panel
 	 *            The dialog to add.
 	 */
-	public abstract void addDialog(final WtPanel panel);
+	void addDialog(final WtPanel panel);
 
 	/**
 	 * Add an entity.
@@ -45,7 +45,7 @@ public interface IGameScreen {
 	 * @param entity
 	 *            An entity.
 	 */
-	public abstract void addEntity(Entity entity);
+	void addEntity(Entity entity);
 
 	/**
 	 * Remove an entity.
@@ -53,39 +53,39 @@ public interface IGameScreen {
 	 * @param entity
 	 *            An entity.
 	 */
-	public abstract void removeEntity(final Entity entity);
+	void removeEntity(final Entity entity);
 
 	/**
 	 * Returns the Graphics2D object in case you want to operate it directly.
 	 * Ex. GUI
 	 */
-	public abstract Graphics2D expose();
+	Graphics2D expose();
 
 	/**
 	 * Center the view.
 	 */
-	public abstract void center();
+	 void center();
 
-	public abstract Entity2DView createView(final Entity entity);
+	Entity2DView createView(final Entity entity);
 
 	/*
 	 * Draw the screen.
 	 */
-	public abstract void draw();
+	void draw();
 
 	/**
 	 * Get the view X world coordinate.
 	 *
 	 * @return The X coordinate of the left side.
 	 */
-	public abstract double getViewX();
+	double getViewX();
 
 	/**
 	 * Get the view Y world coordinate.
 	 *
 	 * @return The Y coordinate of the left side.
 	 */
-	public abstract double getViewY();
+	double getViewY();
 
 	/**
 	 * Sets the world size.
@@ -95,7 +95,7 @@ public interface IGameScreen {
 	 * @param height
 	 *            The height width.
 	 */
-	public abstract void setMaxWorldSize(double width, double height);
+	void setMaxWorldSize(double width, double height);
 
 	/**
 	 * Set the offline indication state.
@@ -103,7 +103,7 @@ public interface IGameScreen {
 	 * @param offline
 	 *            <code>true</code> if offline.
 	 */
-	public abstract void setOffline(boolean offline);
+	void setOffline(boolean offline);
 
 	/**
 	 * Add a text bubble.
@@ -111,7 +111,7 @@ public interface IGameScreen {
 	 *
 	 *
 	 */
-	public abstract void addText(double x, double y, String text,
+	void addText(double x, double y, String text,
 			NotificationType type, boolean isTalking);
 
 	/**
@@ -120,7 +120,7 @@ public interface IGameScreen {
 	 *
 	 *
 	 */
-	public abstract void addText(final double x, final double y,
+	void addText(final double x, final double y,
 			final String text, final Color color, final boolean talking);
 
 	/**
@@ -137,7 +137,7 @@ public interface IGameScreen {
 	 * @param talking
 	 *            Is it is a talking text bubble.
 	 */
-	public abstract void addText(final int sx, final int sy, final String text,
+	void addText(final int sx, final int sy, final String text,
 			final NotificationType type, final boolean talking);
 
 	/**
@@ -154,28 +154,28 @@ public interface IGameScreen {
 	 * @param talking
 	 *            Is it is a talking text bubble.
 	 */
-	public abstract void addText(int sx, int sy, final String text,
+	void addText(int sx, int sy, final String text,
 			final Color color, final boolean isTalking);
 
 	/**
 	 * Remove a text bubble.
 	 */
-	public abstract void removeText(Text entity);
+	void removeText(Text entity);
 
 	/**
 	 * Remove all objects from the screen.
 	 */
-	public abstract void removeAll();
+	void removeAll();
 
 	/**
 	 * Clear the screen.
 	 */
-	public abstract void clear();
+	void clear();
 
 	/**
 	 * Removes all the text entities.
 	 */
-	public abstract void clearTexts();
+	void clearTexts();
 
 	/**
 	 * Get an entity view at given coordinates.
@@ -187,7 +187,7 @@ public interface IGameScreen {
 	 *
 	 * @return The entity view, or <code>null</code> if none found.
 	 */
-	public abstract Entity2DView getEntityViewAt(double x, double y);
+	Entity2DView getEntityViewAt(double x, double y);
 
 	/**
 	 * Get an entity view that is movable at given coordinates.
@@ -199,7 +199,7 @@ public interface IGameScreen {
 	 *
 	 * @return The entity view, or <code>null</code> if none found.
 	 */
-	public abstract Entity2DView getMovableEntityViewAt(final double x,
+	Entity2DView getMovableEntityViewAt(final double x,
 			final double y);
 
 	/**
@@ -208,7 +208,7 @@ public interface IGameScreen {
 	 *
 	 *
 	 */
-	public abstract Text getTextAt(double x, double y);
+	Text getTextAt(double x, double y);
 
 	/**
 	 * Convert world X coordinate to screen view coordinate.
@@ -218,7 +218,7 @@ public interface IGameScreen {
 	 *
 	 * @return Screen X coordinate (in integer value).
 	 */
-	public abstract int convertWorldXToScreenView(double wx);
+	int convertWorldXToScreenView(double wx);
 
 	/**
 	 * Convert world Y coordinate to screen view coordinate.
@@ -228,7 +228,7 @@ public interface IGameScreen {
 	 *
 	 * @return Screen Y coordinate (in integer value).
 	 */
-	public abstract int convertWorldYToScreenView(double wy);
+	int convertWorldYToScreenView(double wy);
 
 	/**
 	 * Convert world coordinates to screen view coordinates.
@@ -245,7 +245,7 @@ public interface IGameScreen {
 	 *
 	 * @return Screen view coordinates (in integer values).
 	 */
-	public abstract Point convertWorldToScreenView(double wx, double wy);
+	Point convertWorldToScreenView(double wx, double wy);
 
 	/**
 	 * Convert world coordinates to screen coordinates.
@@ -255,7 +255,7 @@ public interface IGameScreen {
 	 *
 	 * @return Screen rectangle (in integer values).
 	 */
-	public abstract Rectangle convertWorldToScreenView(Rectangle2D wrect);
+	Rectangle convertWorldToScreenView(Rectangle2D wrect);
 
 	/**
 	 * Convert world coordinates to screen coordinates.
@@ -271,7 +271,7 @@ public interface IGameScreen {
 	 *
 	 * @return Screen rectangle (in integer values).
 	 */
-	public abstract Rectangle convertWorldToScreenView(double wx, double wy,
+	Rectangle convertWorldToScreenView(double wx, double wy,
 			double wwidth, double wheight);
 
 	/**
@@ -283,7 +283,7 @@ public interface IGameScreen {
 	 * @return <code>true</code> if some part of area in in the visible
 	 *         screen, otherwise <code>false</code>.
 	 */
-	public abstract boolean isInScreen(Rectangle srect);
+	 boolean isInScreen(Rectangle srect);
 
 	/**
 	 * Determine if an area is in the screen view.
@@ -300,12 +300,12 @@ public interface IGameScreen {
 	 * @return <code>true</code> if some part of area in in the visible
 	 *         screen, otherwise <code>false</code>.
 	 */
-	public abstract boolean isInScreen(int sx, int sy, int swidth, int sheight);
+	boolean isInScreen(int sx, int sy, int swidth, int sheight);
 
 	/** Draw a sprite in screen given its world coordinates */
-	public abstract void draw(Sprite sprite, double wx, double wy);
+	void draw(Sprite sprite, double wx, double wy);
 
-	public abstract void drawInScreen(Sprite sprite, int sx, int sy);
+	void drawInScreen(Sprite sprite, int sx, int sy);
 
 	/**
 	 * Create a sprite representation of some text.
@@ -317,7 +317,7 @@ public interface IGameScreen {
 	 *
 	 * @return A sprite.
 	 */
-	public abstract Sprite createString(final String text,
+	Sprite createString(final String text,
 			final NotificationType type);
 
 	/**
@@ -330,7 +330,7 @@ public interface IGameScreen {
 	 *
 	 * @return A sprite.
 	 */
-	public abstract Sprite createString(String text, Color textColor);
+	Sprite createString(String text, Color textColor);
 
 	/**
 	 * Draw a text string (like <em>Graphics</em><code>.drawString()</code>)
@@ -350,7 +350,7 @@ public interface IGameScreen {
 	 * @param y
 	 *            The Y position.
 	 */
-	public abstract void drawOutlineString(final Graphics g,
+	void drawOutlineString(final Graphics g,
 			final Color textColor, final String text, final int x, final int y);
 
 	/**
@@ -371,7 +371,7 @@ public interface IGameScreen {
 	 * @param y
 	 *            The Y position.
 	 */
-	public abstract void drawOutlineString(final Graphics g,
+	void drawOutlineString(final Graphics g,
 			final Color textColor, final Color outlineColor, final String text,
 			final int x, final int y);
 
@@ -386,10 +386,10 @@ public interface IGameScreen {
 	 * @param colorNormal
 	 *            normal color (for non-special text)
 	 */
-	public abstract AttributedString formatLine(String line, Font fontNormal,
+	AttributedString formatLine(String line, Font fontNormal,
 			Color colorNormal);
 
-	public abstract Sprite createTextBox(String text, int width,
+	Sprite createTextBox(String text, int width,
 			Color textColor, Color fillColor, boolean isTalking);
 
 	/**
@@ -400,7 +400,7 @@ public interface IGameScreen {
 	 *
 	 * @return A screen value (in pixels).
 	 */
-	public abstract int convertWorldToScreen(double w);
+	int convertWorldToScreen(double w);
 
 	/**
 	 * Convert screen coordinates to world coordinates.
@@ -412,7 +412,7 @@ public interface IGameScreen {
 	 *
 	 * @return World coordinates.
 	 */
-	public abstract Point2D convertScreenToWorld(final int x, final int y);
+	Point2D convertScreenToWorld(final int x, final int y);
 
 	/**
 	 * Convert screen view coordinates to world coordinates.
@@ -422,7 +422,7 @@ public interface IGameScreen {
 	 *
 	 * @return World coordinates.
 	 */
-	public abstract Point2D convertScreenViewToWorld(final Point p);
+	Point2D convertScreenViewToWorld(final Point p);
 
 	/**
 	 * Convert screen view coordinates to world coordinates.
@@ -434,49 +434,49 @@ public interface IGameScreen {
 	 *
 	 * @return World coordinates.
 	 */
-	public abstract Point2D convertScreenViewToWorld(final int x, final int y);
+	Point2D convertScreenViewToWorld(final int x, final int y);
 
 	/**
 	 * Get the full screen height in pixels.
 	 *
 	 * @return The height.
 	 */
-	public abstract int getScreenHeight();
+	int getScreenHeight();
 
 	/**
 	 * Get the full screen width in pixels.
 	 *
 	 * @return The width.
 	 */
-	public abstract int getScreenWidth();
+	int getScreenWidth();
 
 	/**
 	 * Get the view height in pixels.
 	 *
 	 * @return The view height.
 	 */
-	public abstract int getScreenViewHeight();
+	int getScreenViewHeight();
 
 	/**
 	 * Get the view width in pixels.
 	 *
 	 * @return The view width.
 	 */
-	public abstract int getScreenViewWidth();
+	int getScreenViewWidth();
 
 	/**
 	 * Get the view X screen coordinate.
 	 *
 	 * @return The X coordinate of the left side.
 	 */
-	public abstract int getScreenViewX();
+	int getScreenViewX();
 
 	/**
 	 * Get the view Y screen coordinate.
 	 *
 	 * @return The Y coordinate of the left side.
 	 */
-	public abstract int getScreenViewY();
+	int getScreenViewY();
 
 	/**
 	 * The user position changed. This sets the target coordinates that the
@@ -487,6 +487,6 @@ public interface IGameScreen {
 	 * @param y
 	 *            The Y coordinate (in world units).
 	 */
-	public abstract void positionChanged(final double x, final double y);
+	void positionChanged(final double x, final double y);
 
 }

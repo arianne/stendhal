@@ -24,20 +24,18 @@ public class Portal extends InvisibleEntity {
 	 */
 	private boolean hidden;
 
-
 	//
 	// Portal
 	//
 
 	/**
 	 * Determine if the portal is hidden.
-	 *
-	 * @return	<code>true</code> if hidden.
+	 * 
+	 * @return <code>true</code> if hidden.
 	 */
 	public boolean isHidden() {
 		return hidden;
 	}
-
 
 	//
 	// Entity
@@ -45,10 +43,11 @@ public class Portal extends InvisibleEntity {
 
 	/**
 	 * Initialize this entity for an object.
-	 *
-	 * @param	object		The object.
-	 *
-	 * @see-also	#release()
+	 * 
+	 * @param object
+	 *            The object.
+	 * 
+	 * @see-also #release()
 	 */
 	@Override
 	public void initialize(final RPObject object) {
@@ -57,16 +56,17 @@ public class Portal extends InvisibleEntity {
 		hidden = object.has("hidden");
 	}
 
-
 	//
 	// RPObjectChangeListener
 	//
 
 	/**
 	 * The object added/changed attribute(s).
-	 *
-	 * @param	object		The base object.
-	 * @param	changes		The changes.
+	 * 
+	 * @param object
+	 *            The base object.
+	 * @param changes
+	 *            The changes.
 	 */
 	@Override
 	public void onChangedAdded(final RPObject object, final RPObject changes) {
@@ -77,12 +77,13 @@ public class Portal extends InvisibleEntity {
 		}
 	}
 
-
 	/**
 	 * The object removed attribute(s).
-	 *
-	 * @param	object		The base object.
-	 * @param	changes		The changes.
+	 * 
+	 * @param object
+	 *            The base object.
+	 * @param changes
+	 *            The changes.
 	 */
 	@Override
 	public void onChangedRemoved(final RPObject object, final RPObject changes) {

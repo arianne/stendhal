@@ -6,8 +6,8 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 
 /**
- * A transition brings a conversation from one state to another one (or to
- * the same one); while doing so, other actions can take place.
+ * A transition brings a conversation from one state to another one (or to the
+ * same one); while doing so, other actions can take place.
  */
 public class Transition {
 
@@ -18,15 +18,14 @@ public class Transition {
 	private int nextState;
 
 	/**
-	 * The string a player's text must either start with or equal to
-	 * in order to trigger this transition
-	 * The string is stored in lower case.
+	 * The string a player's text must either start with or equal to in order to
+	 * trigger this transition The string is stored in lower case.
 	 */
 	private String trigger;
 
 	/**
-	 * The condition that has to be fulfilled so that the transition can
-	 * be triggered
+	 * The condition that has to be fulfilled so that the transition can be
+	 * triggered
 	 */
 	private PreTransitionCondition condition;
 
@@ -38,16 +37,23 @@ public class Transition {
 
 	/**
 	 * Creates a new transition
-	 *
-	 * @param currentState old state
-	 * @param trigger      input trigger
-	 * @param condition    additional precondition
-	 * @param nextState    state after the transition
-	 * @param reply        output
-	 * @param action       additional action after the condition
+	 * 
+	 * @param currentState
+	 *            old state
+	 * @param trigger
+	 *            input trigger
+	 * @param condition
+	 *            additional precondition
+	 * @param nextState
+	 *            state after the transition
+	 * @param reply
+	 *            output
+	 * @param action
+	 *            additional action after the condition
 	 */
-	public Transition(int currentState, String trigger, PreTransitionCondition condition, int nextState, String reply,
-	        PostTransitionAction action) {
+	public Transition(int currentState, String trigger,
+			PreTransitionCondition condition, int nextState, String reply,
+			PostTransitionAction action) {
 		this.state = currentState;
 		this.condition = condition;
 		this.nextState = nextState;
@@ -57,33 +63,39 @@ public class Transition {
 	}
 
 	/**
-	 * Checks whether this is a "wildcard" transition (see class comment
-	 * of SpeakerNPC) which can be fired by the given text.
-	 *
-	 * @param sentence The sentence that the player has said
-	 * @return true iff this is a wildcard transition and the triggering
-	 *         text has been said
+	 * Checks whether this is a "wildcard" transition (see class comment of
+	 * SpeakerNPC) which can be fired by the given text.
+	 * 
+	 * @param sentence
+	 *            The sentence that the player has said
+	 * @return true iff this is a wildcard transition and the triggering text
+	 *         has been said
 	 */
 	public boolean matchesWild(Sentence sentence) {
-		return (state == ConversationStates.ANY) && trigger.equals(sentence.getVerb());
+		return (state == ConversationStates.ANY)
+				&& trigger.equals(sentence.getVerb());
 	}
 
 	/**
-	 * Checks whether this is a "wildcard" transition (see class comment
-	 * of SpeakerNPC) and the text beginning matches the trigger.
-	 *
-	 * @param sentence trigger (parsed user input)
+	 * Checks whether this is a "wildcard" transition (see class comment of
+	 * SpeakerNPC) and the text beginning matches the trigger.
+	 * 
+	 * @param sentence
+	 *            trigger (parsed user input)
 	 * @return if the transition matches, false otherwise
 	 */
 	public boolean matchesWildBeginning(Sentence sentence) {
-		return (state == ConversationStates.ANY) && sentence.getVerb().startsWith(trigger);
+		return (state == ConversationStates.ANY)
+				&& sentence.getVerb().startsWith(trigger);
 	}
 
 	/**
 	 * checks whether this transition is possible now.
-	 *
-	 * @param state old state
-	 * @param sentence trigger
+	 * 
+	 * @param state
+	 *            old state
+	 * @param sentence
+	 *            trigger
 	 * @return true if the transition matches, false otherwise
 	 */
 	public boolean matches(int state, Sentence sentence) {
@@ -93,8 +105,10 @@ public class Transition {
 	/**
 	 * checks whether this transition is possible now.
 	 * 
-	 * @param state old state
-	 * @param text trigger
+	 * @param state
+	 *            old state
+	 * @param text
+	 *            trigger
 	 * @return true if the transition matches, false otherwise
 	 */
 	public boolean matches(int state, String text) {
@@ -103,9 +117,11 @@ public class Transition {
 
 	/**
 	 * checks whether this transition is possible now
-	 *
-	 * @param state old state
-	 * @param sentence trigger, parsed user input
+	 * 
+	 * @param state
+	 *            old state
+	 * @param sentence
+	 *            trigger, parsed user input
 	 * @return true if the transition matches, false otherwise
 	 */
 	public boolean matchesBeginning(int state, Sentence sentence) {
@@ -114,14 +130,16 @@ public class Transition {
 
 	/**
 	 * Checks whether this transition's condition is fulfilled.
-	 *
+	 * 
 	 * @param player
-	 * @param sentence the sentence the player said
+	 * @param sentence
+	 *            the sentence the player said
 	 * @param npc
-	 * @return true iff there is no condition or if there is one
-	 *         which is fulfilled
+	 * @return true iff there is no condition or if there is one which is
+	 *         fulfilled
 	 */
-	public boolean isConditionFulfilled(Player player, Sentence sentence, SpeakerNPC npc) {
+	public boolean isConditionFulfilled(Player player, Sentence sentence,
+			SpeakerNPC npc) {
 		if (condition != null) {
 			return condition.fire(player, sentence, npc);
 		} else {
@@ -137,7 +155,8 @@ public class Transition {
 	}
 
 	/**
-	 * @return condition to check before doing the transition or null if there is non
+	 * @return condition to check before doing the transition or null if there
+	 *         is non
 	 */
 	public PreTransitionCondition getCondition() {
 		return condition;
@@ -159,8 +178,9 @@ public class Transition {
 
 	/**
 	 * Sets the output for this transition
-	 *
-	 * @param reply output
+	 * 
+	 * @param reply
+	 *            output
 	 */
 	public void setReply(String reply) {
 		this.reply = reply;
@@ -182,7 +202,8 @@ public class Transition {
 
 	@Override
 	public String toString() {
-		return "[" + state + "," + trigger + "," + nextState + "," + condition + "]";
+		return "[" + state + "," + trigger + "," + nextState + "," + condition
+				+ "]";
 	}
 
 }

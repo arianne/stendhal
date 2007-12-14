@@ -32,9 +32,9 @@ import tiled.core.Map;
 import tiled.io.xml.XMLMapTransformer;
 
 /**
- * Converts the stendhal maps from *.tmx to *.stend
- * This class can be started from the command line or through an ant task
- *
+ * Converts the stendhal maps from *.tmx to *.stend This class can be started
+ * from the command line or through an ant task
+ * 
  * @author mtotz
  */
 public class MapUpdater extends Task {
@@ -53,13 +53,14 @@ public class MapUpdater extends Task {
 	/**
 	 * Adds a set of files to copy.
 	 * 
-	 * @param set a set of files to copy
+	 * @param set
+	 *            a set of files to copy
 	 */
 	public void addFileset(FileSet set) {
 		filesets.add(set);
 	}
 
-	/** 
+	/**
 	 * ants execute method.
 	 */
 	@Override
@@ -69,8 +70,10 @@ public class MapUpdater extends Task {
 				DirectoryScanner ds = fileset.getDirectoryScanner(getProject());
 				String[] includedFiles = ds.getIncludedFiles();
 				for (String filename : includedFiles) {
-					System.out.println(ds.getBasedir().getAbsolutePath() + File.separator + filename);
-					convert(ds.getBasedir().getAbsolutePath() + File.separator + filename);
+					System.out.println(ds.getBasedir().getAbsolutePath()
+							+ File.separator + filename);
+					convert(ds.getBasedir().getAbsolutePath() + File.separator
+							+ filename);
 				}
 			}
 		} catch (Exception e) {

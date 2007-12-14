@@ -6,7 +6,7 @@ import java.util.List;
 
 /**
  * a bank slot
- *
+ * 
  * @author hendrik
  */
 public class BankSlot extends PlayerSlot {
@@ -14,8 +14,9 @@ public class BankSlot extends PlayerSlot {
 
 	/**
 	 * creates a new keyed slot
-	 *
-	 * @param bank Bank
+	 * 
+	 * @param bank
+	 *            Bank
 	 */
 	public BankSlot(Banks bank) {
 		super(bank.getSlotName());
@@ -43,6 +44,5 @@ public class BankSlot extends PlayerSlot {
 		// now check that it is the slot of the right player
 		return super.isReachableForTakingThingsOutOfBy(entity);
 	}
-
 
 }

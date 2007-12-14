@@ -19,8 +19,9 @@ public class EquipItemAction extends SpeakerNPC.ChatAction {
 
 	/**
 	 * Creates a new EquipItemAction
-	 *
-	 * @param itemName name of item
+	 * 
+	 * @param itemName
+	 *            name of item
 	 */
 	public EquipItemAction(String itemName) {
 		this(itemName, 1, false);
@@ -28,9 +29,11 @@ public class EquipItemAction extends SpeakerNPC.ChatAction {
 
 	/**
 	 * Creates a new EquipItemAction
-	 *
-	 * @param itemName name of item
-	 * @param amount for StackableItems
+	 * 
+	 * @param itemName
+	 *            name of item
+	 * @param amount
+	 *            for StackableItems
 	 */
 	public EquipItemAction(String itemName, int amount) {
 		this(itemName, amount, false);
@@ -38,10 +41,13 @@ public class EquipItemAction extends SpeakerNPC.ChatAction {
 
 	/**
 	 * Creates a new EquipItemAction
-	 *
-	 * @param itemName name of item
-	 * @param amount for StackableItems
-	 * @param bind bind to player
+	 * 
+	 * @param itemName
+	 *            name of item
+	 * @param amount
+	 *            for StackableItems
+	 * @param bind
+	 *            bind to player
 	 */
 	public EquipItemAction(String itemName, int amount, boolean bind) {
 		this.itemName = itemName;
@@ -83,21 +89,34 @@ public class EquipItemAction extends SpeakerNPC.ChatAction {
 		final int PRIME = 31;
 		int result = 1;
 		result = PRIME * result + amount;
-		result = PRIME * result + ((itemName == null) ? 0 : itemName.hashCode());
+		result = PRIME * result
+				+ ((itemName == null) ? 0 : itemName.hashCode());
 		return result;
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj) return true;
-		if (obj == null) return false;
-		if (getClass() != obj.getClass()) return false;
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
 		final EquipItemAction other = (EquipItemAction) obj;
-		if (amount != other.amount) return false;
+		if (amount != other.amount) {
+			return false;
+		}
 		if (itemName == null) {
-			if (other.itemName != null) return false;
-		} else if (!itemName.equals(other.itemName)) return false;
+			if (other.itemName != null) {
+				return false;
+			}
+		} else if (!itemName.equals(other.itemName)) {
+			return false;
+		}
 		return true;
 	}
-	
+
 }

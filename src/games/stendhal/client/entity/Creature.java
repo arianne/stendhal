@@ -55,7 +55,7 @@ public class Creature extends RPEntity {
 
 	/**
 	 * Get the metamorphosis in effect.
-	 *
+	 * 
 	 * @return The metamorphosis, or <code>null</code>.
 	 */
 	public String getMetamorphosis() {
@@ -68,7 +68,7 @@ public class Creature extends RPEntity {
 
 	/**
 	 * Get the area the entity occupies.
-	 *
+	 * 
 	 * @return A rectange (in world coordinate units).
 	 */
 	@Override
@@ -84,10 +84,10 @@ public class Creature extends RPEntity {
 
 	/**
 	 * Initialize this entity for an object.
-	 *
+	 * 
 	 * @param object
 	 *            The object.
-	 *
+	 * 
 	 * @see-also #release()
 	 */
 	@Override
@@ -203,7 +203,7 @@ public class Creature extends RPEntity {
 
 	/**
 	 * When the entity's position changed.
-	 *
+	 * 
 	 * @param x
 	 *            The new X coordinate.
 	 * @param y
@@ -215,8 +215,7 @@ public class Creature extends RPEntity {
 
 		if ((soundWait < System.currentTimeMillis()) && (Rand.rand(100) < 5)) {
 			try {
-				SoundMaster
-						.play(moveSounds[Rand.rand(moveSounds.length)], x, y);
+				SoundMaster.play(moveSounds[Rand.rand(moveSounds.length)], x, y);
 			} catch (NullPointerException e) {
 			}
 
@@ -230,7 +229,7 @@ public class Creature extends RPEntity {
 
 	/**
 	 * The object added/changed attribute(s).
-	 *
+	 * 
 	 * @param object
 	 *            The base object.
 	 * @param changes
@@ -256,7 +255,7 @@ public class Creature extends RPEntity {
 
 	/**
 	 * The object removed attribute(s).
-	 *
+	 * 
 	 * @param object
 	 *            The base object.
 	 * @param changes

@@ -23,11 +23,14 @@ public class RareWeaponsSellerNPC implements ZoneConfigurator {
 
 	/**
 	 * Configure a zone.
-	 *
-	 * @param	zone		The zone to be configured.
-	 * @param	attributes	Configuration attributes.
+	 * 
+	 * @param zone
+	 *            The zone to be configured.
+	 * @param attributes
+	 *            Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone,
+			Map<String, String> attributes) {
 		buildMcPegleg(zone);
 	}
 
@@ -52,15 +55,21 @@ public class RareWeaponsSellerNPC implements ZoneConfigurator {
 				addHelp("Not sure if I can trust you .... a #pirate with a bandy #leg has got to keep his #eye on new people.");
 				addQuest("Perhaps if you find some #rare #armor or #weapon ...");
 				addGoodbye("I see you!");
-				add(ConversationStates.ATTENDING, Arrays.asList("weapon", "armor", "rare"),
-				        ConversationStates.ATTENDING,
-				        "Ssshh! I'm occasionally buying rare weapons and armor. Got any? Ask for my #offer", null);
+				add(
+						ConversationStates.ATTENDING,
+						Arrays.asList("weapon", "armor", "rare"),
+						ConversationStates.ATTENDING,
+						"Ssshh! I'm occasionally buying rare weapons and armor. Got any? Ask for my #offer",
+						null);
 				addOffer("Have a look at the blackboard on the wall to see my offers.");
-				add(ConversationStates.ATTENDING, Arrays.asList("eye", "leg", "wood", "patch"),
-				        ConversationStates.ATTENDING, "Not every day is a lucky day ...", null);
-				add(ConversationStates.ATTENDING, "pirate", null, ConversationStates.ATTENDING,
-				        "That's none of your business!", null);
-				new BuyerAdder().add(this, new BuyerBehaviour(shops.get("buyrare")), false);
+				add(ConversationStates.ATTENDING, Arrays.asList("eye", "leg",
+						"wood", "patch"), ConversationStates.ATTENDING,
+						"Not every day is a lucky day ...", null);
+				add(ConversationStates.ATTENDING, "pirate", null,
+						ConversationStates.ATTENDING,
+						"That's none of your business!", null);
+				new BuyerAdder().add(this, new BuyerBehaviour(
+						shops.get("buyrare")), false);
 			}
 		};
 

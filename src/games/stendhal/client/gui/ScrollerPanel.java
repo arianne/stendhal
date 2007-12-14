@@ -32,7 +32,6 @@ import java.awt.image.BufferedImage;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-
 import org.apache.log4j.Logger;
 
 /**
@@ -68,7 +67,7 @@ public class ScrollerPanel extends JPanel {
 	/**
 	 * creates an ScrollerPane wich scrolls the given text and using defaults
 	 * for the other attributes.
-	 *
+	 * 
 	 * @param text
 	 *            the text araay whis should be scrolled - one string per line
 	 *            is scrolled
@@ -81,7 +80,7 @@ public class ScrollerPanel extends JPanel {
 	/**
 	 * creates an ScrollerPane wich scrolls the given text and uses the given
 	 * attributes
-	 *
+	 * 
 	 * @param text
 	 *            the text araay whis should be scrolled - one string per line
 	 *            is scrolled

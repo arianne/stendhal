@@ -12,7 +12,7 @@ import java.util.Map;
 public class DwarfGuardianNPC implements ZoneConfigurator {
 	/**
 	 * Configure a zone.
-	 *
+	 * 
 	 * @param zone
 	 *            The zone to be configured.
 	 * @param attributes
@@ -36,7 +36,8 @@ public class DwarfGuardianNPC implements ZoneConfigurator {
 			protected void createDialog() {
 				addGreeting(null, new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+					public void fire(Player player, Sentence sentence,
+							SpeakerNPC engine) {
 						String reply = "There is something huge there! Everyone is very nervous. ";
 						if (player.getLevel() < 60) {
 							reply += "You are too weak to enter there.";

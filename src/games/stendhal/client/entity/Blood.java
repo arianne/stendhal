@@ -43,7 +43,7 @@ public class Blood extends PassiveEntity {
 
 	/**
 	 * Get the current amount.
-	 *
+	 * 
 	 * @return The current amount.
 	 */
 	public int getAmount() {
@@ -56,10 +56,10 @@ public class Blood extends PassiveEntity {
 
 	/**
 	 * Initialize this entity for an object.
-	 *
+	 * 
 	 * @param object
 	 *            The object.
-	 *
+	 * 
 	 * @see-also #release()
 	 */
 	@Override
@@ -82,7 +82,7 @@ public class Blood extends PassiveEntity {
 
 	/**
 	 * The object added/changed attribute(s).
-	 *
+	 * 
 	 * @param object
 	 *            The base object.
 	 * @param changes
@@ -103,7 +103,7 @@ public class Blood extends PassiveEntity {
 
 	/**
 	 * The object removed attribute(s).
-	 *
+	 * 
 	 * @param object
 	 *            The base object.
 	 * @param changes

@@ -82,16 +82,16 @@ public class AnimatedSprite implements Sprite {
 
 	/**
 	 * Create an animated sprite from a set of frame sprites.
-	 *
+	 * 
 	 * <strong>NOTE: The array of frames passed is not copied, and must not be
 	 * modified while this instance exists (unless you are sure you know what
 	 * you are doing).</strong>
-	 *
+	 * 
 	 * @param frames
 	 *            The frames to animate.
 	 * @param delay
 	 *            The minimum delay between frames (in ms).
-	 *
+	 * 
 	 * @throws IllegalArgumentException
 	 *             If less than one frame is given, or the delay is < 0.
 	 */
@@ -101,18 +101,18 @@ public class AnimatedSprite implements Sprite {
 
 	/**
 	 * Create an animated sprite from a set of frame sprites.
-	 *
+	 * 
 	 * <strong>NOTE: The array of frames passed is not copied, and must not be
 	 * modified while this instance exists (unless you are sure you know what
 	 * you are doing).</strong>
-	 *
+	 * 
 	 * @param frames
 	 *            The frames to animate.
 	 * @param delay
 	 *            The minimum delay between frames (in ms).
 	 * @param animating
 	 *            If animation is enabled.
-	 *
+	 * 
 	 * @throws IllegalArgumentException
 	 *             If less than one frame is given, or the delay is < 0.
 	 */
@@ -123,11 +123,11 @@ public class AnimatedSprite implements Sprite {
 
 	/**
 	 * Create an animated sprite from a set of frame sprites.
-	 *
+	 * 
 	 * <strong>NOTE: The array of frames passed is not copied, and must not be
 	 * modified while this instance exists (unless you are sure you know what
 	 * you are doing).</strong>
-	 *
+	 * 
 	 * @param frames
 	 *            The frames to animate.
 	 * @param delay
@@ -136,7 +136,7 @@ public class AnimatedSprite implements Sprite {
 	 *            If animation is enabled.
 	 * @param reference
 	 *            The sprite identifier reference.
-	 *
+	 * 
 	 * @throws IllegalArgumentException
 	 *             If less than one frame is given, or the delay is < 0.
 	 */
@@ -147,11 +147,11 @@ public class AnimatedSprite implements Sprite {
 
 	/**
 	 * Create an animated sprite from a set of frame sprites.
-	 *
+	 * 
 	 * <strong>NOTE: The array of frames/delays passed is not copied, and must
 	 * not be modified while this instance exists (unless you are sure you know
 	 * what you are doing).</strong>
-	 *
+	 * 
 	 * @param frames
 	 *            The frames to animate.
 	 * @param delays
@@ -160,11 +160,12 @@ public class AnimatedSprite implements Sprite {
 	 *            If animation is enabled.
 	 * @param reference
 	 *            The sprite identifier reference.
-	 *
+	 * 
 	 * @throws IllegalArgumentException
 	 *             If less than one frame is given, or the delay is < 0.
 	 */
-	public AnimatedSprite(final Sprite[] frames, final int[] delays, final boolean animating, final Object reference)
+	public AnimatedSprite(final Sprite[] frames, final int[] delays,
+			final boolean animating, final Object reference)
 			throws IllegalArgumentException {
 		if (frames.length == 0) {
 			logger.warn("AnimatedSprite needs at least one frame");
@@ -204,7 +205,7 @@ public class AnimatedSprite implements Sprite {
 		}
 
 		index = 0;
-		sprite = frames.length>0? frames[0]: null;
+		sprite = frames.length > 0 ? frames[0] : null;
 
 		cycleTime = 0;
 		lastUpdate = System.currentTimeMillis();
@@ -217,12 +218,12 @@ public class AnimatedSprite implements Sprite {
 	/**
 	 * Utility method to convert a single delay to an array of delays having
 	 * that value.
-	 *
+	 * 
 	 * @param delay
 	 *            The delay value.
 	 * @param count
 	 *            The size of the array to create.
-	 *
+	 * 
 	 * @return An array of delays.
 	 */
 	protected static int[] createDelays(final int delay, final int count) {
@@ -234,10 +235,10 @@ public class AnimatedSprite implements Sprite {
 
 	/**
 	 * Get the minimum delays for each frame.
-	 *
+	 * 
 	 * <strong>NOTE: The array of delays returned is not copied, and must not be
 	 * modified.</strong>
-	 *
+	 * 
 	 * @return The minimum delays for each frame (in ms).
 	 */
 	public int[] getDelays() {
@@ -246,7 +247,7 @@ public class AnimatedSprite implements Sprite {
 
 	/**
 	 * Get the total duration of an animation cycle.
-	 *
+	 * 
 	 * @return The total duration (in ms).
 	 */
 	public int getDuration() {
@@ -255,10 +256,10 @@ public class AnimatedSprite implements Sprite {
 
 	/**
 	 * Get the frames that make up this animation.
-	 *
+	 * 
 	 * <strong>NOTE: The array of frames returned is not copied, and must not be
 	 * modified.</strong>
-	 *
+	 * 
 	 * @return The frames.
 	 */
 	public Sprite[] getFrames() {
@@ -267,7 +268,7 @@ public class AnimatedSprite implements Sprite {
 
 	/**
 	 * Get the current frame index.
-	 *
+	 * 
 	 * @return The current frame index.
 	 */
 	public int getIndex() {
@@ -276,9 +277,9 @@ public class AnimatedSprite implements Sprite {
 
 	/**
 	 * Determine if the sprite is currently animated, or paused.
-	 *
+	 * 
 	 * @return <code>true</code> if animating.
-	 *
+	 * 
 	 * @see-also #start()
 	 * @see-also #stop()
 	 * @see-also #setAnimating(boolean)
@@ -289,9 +290,9 @@ public class AnimatedSprite implements Sprite {
 
 	/**
 	 * Determine if the animation loops.
-	 *
+	 * 
 	 * @return <code>true</code> if animation loops.
-	 *
+	 * 
 	 * @see-also #setLoop(boolean)
 	 */
 	public boolean isLoop() {
@@ -308,7 +309,7 @@ public class AnimatedSprite implements Sprite {
 
 	/**
 	 * Set the sprite animating state.
-	 *
+	 * 
 	 * @param animating
 	 *            <code>true</code> if animating.
 	 */
@@ -318,10 +319,10 @@ public class AnimatedSprite implements Sprite {
 
 	/**
 	 * Set the frame index to a specific value.
-	 *
+	 * 
 	 * @param index
 	 *            The index to use.
-	 *
+	 * 
 	 * @throws ArrayIndexOutOfBoundsException
 	 *             If the index is less than 0 or greater than or equal to the
 	 *             number of frames.
@@ -348,7 +349,7 @@ public class AnimatedSprite implements Sprite {
 
 	/**
 	 * Set the animation loop state.
-	 *
+	 * 
 	 * @param loop
 	 *            <code>true</code> if animation loops.
 	 */
@@ -358,7 +359,7 @@ public class AnimatedSprite implements Sprite {
 
 	/**
 	 * Start the sprite animating.
-	 *
+	 * 
 	 * @see-also #stop()
 	 */
 	public void start() {
@@ -367,7 +368,7 @@ public class AnimatedSprite implements Sprite {
 
 	/**
 	 * Stop the sprite animating. This does not change the current frame.
-	 *
+	 * 
 	 * @see-also #start()
 	 */
 	public void stop() {
@@ -390,12 +391,12 @@ public class AnimatedSprite implements Sprite {
 	/**
 	 * Copy the sprite. This does not do a deep copy, so the frames it is made
 	 * of are shared.
-	 *
+	 * 
 	 * @return A new copy of the sprite.
 	 */
 	public Sprite copy() {
-		AnimatedSprite spriteCopy = new AnimatedSprite(getFrames(), getDelays(),
-				isAnimating(), getReference());
+		AnimatedSprite spriteCopy = new AnimatedSprite(getFrames(),
+				getDelays(), isAnimating(), getReference());
 
 		spriteCopy.setLoop(isLoop());
 		spriteCopy.setIndex(getIndex());
@@ -406,7 +407,7 @@ public class AnimatedSprite implements Sprite {
 	/**
 	 * Create a sub-region of this sprite. <strong>NOTE: This does not use
 	 * caching.</strong>
-	 *
+	 * 
 	 * @param x
 	 *            The starting X coordinate.
 	 * @param y
@@ -417,7 +418,7 @@ public class AnimatedSprite implements Sprite {
 	 *            The region height.
 	 * @param ref
 	 *            The sprite reference.
-	 *
+	 * 
 	 * @return A new sprite.
 	 */
 	public Sprite createRegion(final int x, final int y, final int width,
@@ -427,7 +428,7 @@ public class AnimatedSprite implements Sprite {
 
 	/**
 	 * Draw the sprite onto the graphics context provided.
-	 *
+	 * 
 	 * @param g
 	 *            The graphics context on which to draw the sprite
 	 * @param x
@@ -445,7 +446,7 @@ public class AnimatedSprite implements Sprite {
 
 	/**
 	 * Draws the image
-	 *
+	 * 
 	 * @param g
 	 *            the graphics context where to draw to
 	 * @param destx
@@ -472,7 +473,7 @@ public class AnimatedSprite implements Sprite {
 
 	/**
 	 * Get the height of the drawn sprite.
-	 *
+	 * 
 	 * @return The height in pixels of this sprite.
 	 */
 	public int getHeight() {
@@ -483,7 +484,7 @@ public class AnimatedSprite implements Sprite {
 	 * Get the sprite reference. This identifier is an externally opaque object
 	 * that implements equals() and hashCode() to uniquely/repeatably reference
 	 * a keyed sprite.
-	 *
+	 * 
 	 * @return The reference identifier, or <code>null</code> if not
 	 *         referencable.
 	 */
@@ -493,7 +494,7 @@ public class AnimatedSprite implements Sprite {
 
 	/**
 	 * Get the width of the drawn sprite.
-	 *
+	 * 
 	 * @return The width in pixels of this sprite.
 	 */
 	public int getWidth() {
@@ -504,7 +505,7 @@ public class AnimatedSprite implements Sprite {
 	 * Update the current frame sprite.
 	 * <em>Idealy this would be called from a central time manager,
 	 * instead of draw() like now.</em>
-	 *
+	 * 
 	 * @param delta
 	 *            The time since last update (in ms).
 	 */

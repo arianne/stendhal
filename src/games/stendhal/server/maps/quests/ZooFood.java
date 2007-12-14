@@ -74,45 +74,53 @@ public class ZooFood extends AbstractQuest {
 	private void step_1() {
 		SpeakerNPC npc = npcs.get("Katinka");
 
-		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
+		npc.add(
+				ConversationStates.IDLE,
+				ConversationPhrases.GREETING_MESSAGES,
 				new QuestNotStartedCondition(QUEST_SLOT),
-				ConversationStates.ATTENDING, "Welcome to the Ados Wildlife Refuge! We rescue animals from being slaughtered by evil adventurers. But we need help... maybe you could do a #task for us?",
-				null
-		);
+				ConversationStates.ATTENDING,
+				"Welcome to the Ados Wildlife Refuge! We rescue animals from being slaughtered by evil adventurers. But we need help... maybe you could do a #task for us?",
+				null);
 
-		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
+		npc.add(
+				ConversationStates.IDLE,
+				ConversationPhrases.GREETING_MESSAGES,
 				new QuestCompletedCondition(QUEST_SLOT),
-				ConversationStates.ATTENDING, "Welcome back to the Ados Wildlife Refuge! Thanks again for rescuing our animals!",
-				null
-		);
+				ConversationStates.ATTENDING,
+				"Welcome back to the Ados Wildlife Refuge! Thanks again for rescuing our animals!",
+				null);
 
-		npc.add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES,
+		npc.add(ConversationStates.ATTENDING,
+				ConversationPhrases.QUEST_MESSAGES,
 				new QuestNotCompletedCondition(QUEST_SLOT),
-				ConversationStates.QUEST_OFFERED, "Our tigers, lions and bears are hungry. We need "
-						+ Grammar.quantityplnoun(REQUIRED_HAM, "ham") + " to feed them. Can you help us?",
-				null
-		);
+				ConversationStates.QUEST_OFFERED,
+				"Our tigers, lions and bears are hungry. We need "
+						+ Grammar.quantityplnoun(REQUIRED_HAM, "ham")
+						+ " to feed them. Can you help us?", null);
 
-		npc.add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES,
+		npc.add(ConversationStates.ATTENDING,
+				ConversationPhrases.QUEST_MESSAGES,
 				new QuestCompletedCondition(QUEST_SLOT),
-				ConversationStates.ATTENDING, "Thank you, but I think we are out of trouble now.",
-				null
-		);
+				ConversationStates.ATTENDING,
+				"Thank you, but I think we are out of trouble now.", null);
 
 		// player is willing to help
-		npc.add(ConversationStates.QUEST_OFFERED, ConversationPhrases.YES_MESSAGES, null,
+		npc.add(ConversationStates.QUEST_OFFERED,
+				ConversationPhrases.YES_MESSAGES, null,
 				ConversationStates.ATTENDING,
 				"Okay, but please don't let the poor animals suffer too long! Bring me the "
 						+ Grammar.plnoun(REQUIRED_HAM, "ham")
 						+ " as soon as you get " + Grammar.itthem(REQUIRED_HAM)
-						+ ".", new SetQuestAction(QUEST_SLOT, "start")
-		);
+						+ ".", new SetQuestAction(QUEST_SLOT, "start"));
 
 		// player is not willing to help
-		npc.add(ConversationStates.QUEST_OFFERED, "no", null,
-				ConversationStates.ATTENDING, "Oh dear... I guess we're going to have to feed them with the deer...",
-				new SetQuestAction(QUEST_SLOT, "rejected")
-		);
+		npc.add(
+				ConversationStates.QUEST_OFFERED,
+				"no",
+				null,
+				ConversationStates.ATTENDING,
+				"Oh dear... I guess we're going to have to feed them with the deer...",
+				new SetQuestAction(QUEST_SLOT, "rejected"));
 	}
 
 	private void step_2() {
@@ -132,10 +140,10 @@ public class ZooFood extends AbstractQuest {
 
 		npc.add(ConversationStates.QUEST_ITEM_BROUGHT,
 				ConversationPhrases.YES_MESSAGES, null,
-				ConversationStates.ATTENDING, null,
-				new ChatAction() {
+				ConversationStates.ATTENDING, null, new ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+					public void fire(Player player, Sentence sentence,
+							SpeakerNPC engine) {
 						if (player.drop("ham", REQUIRED_HAM)) {
 							player.notifyWorldAboutChanges();
 							player.setQuest(QUEST_SLOT, "done");
@@ -143,31 +151,36 @@ public class ZooFood extends AbstractQuest {
 							engine.say("Thank you! You have rescued our rare animals.");
 						} else {
 							engine.say("*sigh* I SPECIFICALLY said that we need "
-										+ Grammar.quantityplnoun(REQUIRED_HAM, "ham") + "!");
+									+ Grammar.quantityplnoun(REQUIRED_HAM,
+											"ham") + "!");
 						}
 					}
 				});
 
 		npc.add(ConversationStates.QUEST_ITEM_BROUGHT, "no", null,
-				ConversationStates.ATTENDING, "Well, hurry up! These rare animals are starving!",
-				null);
+				ConversationStates.ATTENDING,
+				"Well, hurry up! These rare animals are starving!", null);
 	}
 
 	private void step_4() {
 		SpeakerNPC npc = npcs.get("Dr. Feelgood");
 
 		// player returns while quest is still active
-		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
+		npc.add(
+				ConversationStates.IDLE,
+				ConversationPhrases.GREETING_MESSAGES,
 				new QuestCompletedCondition(QUEST_SLOT),
-				ConversationStates.ATTENDING, "Hello! Now that the animals have enough food, they don't get sick that easily, and I have time for other things. How can I help you?",
-				null
-		);
+				ConversationStates.ATTENDING,
+				"Hello! Now that the animals have enough food, they don't get sick that easily, and I have time for other things. How can I help you?",
+				null);
 
-		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
+		npc.add(
+				ConversationStates.IDLE,
+				ConversationPhrases.GREETING_MESSAGES,
 				new QuestNotCompletedCondition(QUEST_SLOT),
-				ConversationStates.IDLE, "Sorry, can't stop to chat. The animals are all sick because they don't have enough food. See yourself out, won't you?",
-				null
-		);
+				ConversationStates.IDLE,
+				"Sorry, can't stop to chat. The animals are all sick because they don't have enough food. See yourself out, won't you?",
+				null);
 	}
 
 	@Override

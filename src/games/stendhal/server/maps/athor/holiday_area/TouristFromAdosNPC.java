@@ -16,7 +16,7 @@ public class TouristFromAdosNPC extends SpeakerNPCFactory {
 		};
 		return npc;
 	}
-	
+
 	@Override
 	public void createDialog(SpeakerNPC npc) {
 		npc.addGreeting("Nice to meet you!");

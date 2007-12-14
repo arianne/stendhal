@@ -55,7 +55,7 @@ import marauroa.common.net.InvalidVersionException;
 
 /**
  * Server login dialog.
- *
+ * 
  */
 public class LoginDialog extends JDialog {
 
@@ -107,7 +107,8 @@ public class LoginDialog extends JDialog {
 		contentPane = (JPanel) this.getContentPane();
 		contentPane.setLayout(new GridBagLayout());
 		contentPane.setBorder(BorderFactory.createCompoundBorder(
-		        BorderFactory.createEtchedBorder(), BorderFactory.createEmptyBorder(5, 5, 5, 5)));
+				BorderFactory.createEtchedBorder(),
+				BorderFactory.createEmptyBorder(5, 5, 5, 5)));
 
 		GridBagConstraints c = new GridBagConstraints();
 		c.anchor = GridBagConstraints.LINE_START;
@@ -130,7 +131,7 @@ public class LoginDialog extends JDialog {
 		contentPane.add(profilesComboBox, c);
 
 		/*
-		 *  Server Host
+		 * Server Host
 		 */
 		l = new JLabel("Server name");
 		c.insets = new Insets(4, 4, 4, 4);
@@ -138,7 +139,8 @@ public class LoginDialog extends JDialog {
 		c.gridy = 1; // row
 		contentPane.add(l, c);
 
-		serverField = new JTextField(ClientGameConfiguration.get("DEFAULT_SERVER"));
+		serverField = new JTextField(
+				ClientGameConfiguration.get("DEFAULT_SERVER"));
 		c.gridx = 1;
 		c.gridy = 1;
 		c.fill = GridBagConstraints.BOTH;
@@ -153,7 +155,8 @@ public class LoginDialog extends JDialog {
 		c.gridy = 2;
 		contentPane.add(l, c);
 
-		serverPortField = new JTextField(ClientGameConfiguration.get("DEFAULT_PORT"));
+		serverPortField = new JTextField(
+				ClientGameConfiguration.get("DEFAULT_PORT"));
 		c.gridx = 1;
 		c.gridy = 2;
 		c.insets = new Insets(4, 4, 4, 4);
@@ -276,8 +279,8 @@ public class LoginDialog extends JDialog {
 
 		} catch (NumberFormatException ex) {
 			JOptionPane.showMessageDialog(this,
-			        "That is not a valid port number. Please try again.", "Invalid port",
-			        JOptionPane.WARNING_MESSAGE);
+					"That is not a valid port number. Please try again.",
+					"Invalid port", JOptionPane.WARNING_MESSAGE);
 			return;
 		}
 
@@ -303,8 +306,7 @@ public class LoginDialog extends JDialog {
 		}
 
 		/*
-		 * Run the connection procces in separate thread.
-		 * added by TheGeneral
+		 * Run the connection procces in separate thread. added by TheGeneral
 		 */
 		Thread t = new Thread(new ConnectRunnable(profile));
 		t.start();
@@ -332,9 +334,10 @@ public class LoginDialog extends JDialog {
 			progressBar.cancel();
 			setEnabled(true);
 
-			Logger.getLogger(LoginDialog.class).error("unable to connect to server", ex);
+			Logger.getLogger(LoginDialog.class).error(
+					"unable to connect to server", ex);
 			JOptionPane.showMessageDialog(this,
-			        "Unable to connect to server. Did you misspell the server name?");
+					"Unable to connect to server. Did you misspell the server name?");
 			return;
 		}
 
@@ -352,33 +355,32 @@ public class LoginDialog extends JDialog {
 			progressBar.cancel();
 			setEnabled(true);
 
-			JOptionPane.showMessageDialog(this,
-			        "You are running an incompatible version of Stendhal. Please update",
-			        "Invalid version", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(
+					this,
+					"You are running an incompatible version of Stendhal. Please update",
+					"Invalid version", JOptionPane.ERROR_MESSAGE);
 		} catch (TimeoutException e) {
 			progressBar.cancel();
 			setEnabled(true);
 
-			JOptionPane
-			        .showMessageDialog(
-			                this,
-			                "Server is not available right now. The server may be down or, if you are using a custom server, you may have entered its name and port number incorrectly.",
-			                "Error Logging In", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(
+					this,
+					"Server is not available right now. The server may be down or, if you are using a custom server, you may have entered its name and port number incorrectly.",
+					"Error Logging In", JOptionPane.ERROR_MESSAGE);
 		} catch (LoginFailedException e) {
 			progressBar.cancel();
 			setEnabled(true);
 
 			JOptionPane.showMessageDialog(this, e.getMessage(), "Login failed",
-			        JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.INFORMATION_MESSAGE);
 		} catch (BannedAddressException e) {
 			progressBar.cancel();
 			setEnabled(true);
 
-			JOptionPane
-			        .showMessageDialog(
-			                this,
-			                "You IP is banned. If you think this is not right. Please send a Support request to http://sourceforge.net/tracker/?func=add&group_id=1111&atid=201111",
-			                "IP Banned", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(
+					this,
+					"You IP is banned. If you think this is not right. Please send a Support request to http://sourceforge.net/tracker/?func=add&group_id=1111&atid=201111",
+					"IP Banned", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
@@ -389,7 +391,8 @@ public class LoginDialog extends JDialog {
 		ProfileList tmpProfiles = new ProfileList();
 
 		try {
-			InputStream is = Persistence.get().getInputStream(true, "stendhal", "user.dat");
+			InputStream is = Persistence.get().getInputStream(true, "stendhal",
+					"user.dat");
 
 			try {
 				tmpProfiles.load(is);
@@ -400,8 +403,9 @@ public class LoginDialog extends JDialog {
 			// Ignore
 		} catch (IOException ioex) {
 			JOptionPane.showMessageDialog(this,
-			        "An error occurred while loading your login information",
-			        "Error Loading Login Information", JOptionPane.WARNING_MESSAGE);
+					"An error occurred while loading your login information",
+					"Error Loading Login Information",
+					JOptionPane.WARNING_MESSAGE);
 		}
 
 		return tmpProfiles;
@@ -461,12 +465,12 @@ public class LoginDialog extends JDialog {
 	 * Author: Da_MusH Description: Methods for saving and loading login
 	 * information to disk. These should probably make a separate class in the
 	 * future, but it will work for now. comment: Thegeneral has added encoding
-	 * for password and username.
-	 * Changed for multiple profiles.
+	 * for password and username. Changed for multiple profiles.
 	 */
 	private void saveProfiles(ProfileList profiles) {
 		try {
-			OutputStream os = Persistence.get().getOutputStream(true, "stendhal", "user.dat");
+			OutputStream os = Persistence.get().getOutputStream(true,
+					"stendhal", "user.dat");
 
 			try {
 				profiles.save(os);
@@ -475,8 +479,9 @@ public class LoginDialog extends JDialog {
 			}
 		} catch (IOException ioex) {
 			JOptionPane.showMessageDialog(this,
-			        "An error occurred while saving your login information",
-			        "Error Saving Login Information", JOptionPane.WARNING_MESSAGE);
+					"An error occurred while saving your login information",
+					"Error Saving Login Information",
+					JOptionPane.WARNING_MESSAGE);
 		}
 	}
 

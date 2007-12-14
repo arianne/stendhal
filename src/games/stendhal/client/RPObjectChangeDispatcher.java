@@ -13,15 +13,13 @@ import org.apache.log4j.Logger;
 
 import games.stendhal.client.events.RPObjectChangeListener;
 
-
-
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
 /**
  * A dispatcher for RPObjectChangeListeners. This normalizes the tree deltas
  * into individual object deltas.
- *
+ * 
  * NOTE: The order of dispatch between contained objects and when their
  * container is very specific. Children objects are given a chance to perform
  * creation/updates before their parent is notified it happened to that specific
@@ -37,7 +35,7 @@ public class RPObjectChangeDispatcher {
 	/**
 	 * The dump logger.
 	 */
-	private static final Logger dlogger =  Logger.getLogger(Dump.class);
+	private static final Logger dlogger = Logger.getLogger(Dump.class);
 
 	/**
 	 * The normal listener.
@@ -51,7 +49,7 @@ public class RPObjectChangeDispatcher {
 
 	/**
 	 * Create an RPObjectChange event dispatcher.
-	 *
+	 * 
 	 * @param listener
 	 *            The normal listener.
 	 * @param userListener
@@ -69,7 +67,7 @@ public class RPObjectChangeDispatcher {
 
 	/**
 	 * Dispatch object added event.
-	 *
+	 * 
 	 * @param object
 	 *            The object.
 	 * @param user
@@ -87,7 +85,7 @@ public class RPObjectChangeDispatcher {
 
 	/**
 	 * Dispatch object removed event.
-	 *
+	 * 
 	 * @param object
 	 *            The object.
 	 * @param user
@@ -106,7 +104,7 @@ public class RPObjectChangeDispatcher {
 
 	/**
 	 * Dispatch object added/changed attribute(s) event.
-	 *
+	 * 
 	 * @param object
 	 *            The base object.
 	 * @param changes
@@ -114,8 +112,8 @@ public class RPObjectChangeDispatcher {
 	 * @param user
 	 *            If this is the private user object.
 	 */
-	public void dispatchModifyAdded(RPObject object, RPObject changes,
-			boolean user) {
+	public void dispatchModifyAdded(final RPObject object,
+			final RPObject changes, final boolean user) {
 		try {
 			logger.debug("Object(" + object.getID() + ") modified in client");
 			fixContainers(object);
@@ -131,7 +129,7 @@ public class RPObjectChangeDispatcher {
 
 	/**
 	 * Dispatch object removed attribute(s) event.
-	 *
+	 * 
 	 * @param object
 	 *            The base object.
 	 * @param changes
@@ -161,8 +159,11 @@ public class RPObjectChangeDispatcher {
 	/**
 	 * Dump an object out in an easily readable format. TEMP!! TEST METHOD -
 	 * USED FOR DEBUGING.
-	 *
+	 * 
 	 * Probably should be in a common util class if useful long term.
+	 * 
+	 * @param object
+	 *            to be dumped
 	 */
 	public static void dumpObject(RPObject object) {
 		StringBuffer sbuf = new StringBuffer();
@@ -214,7 +215,7 @@ public class RPObjectChangeDispatcher {
 
 	/**
 	 * Notify listeners that an object was added.
-	 *
+	 * 
 	 * @param object
 	 *            The object.
 	 * @param user
@@ -250,7 +251,7 @@ public class RPObjectChangeDispatcher {
 
 	/**
 	 * Notify listeners that a slot object was added.
-	 *
+	 * 
 	 * @param object
 	 *            The parent object.
 	 * @param slotName
@@ -280,7 +281,7 @@ public class RPObjectChangeDispatcher {
 	/**
 	 * Notify listeners that an object added/changed attribute(s). This will
 	 * cascade down slot trees.
-	 *
+	 * 
 	 * @param object
 	 *            The base object.
 	 * @param changes
@@ -318,7 +319,7 @@ public class RPObjectChangeDispatcher {
 	/**
 	 * Notify listeners that an object slot added/changed attribute(s). This
 	 * will cascade down object trees.
-	 *
+	 * 
 	 * @param object
 	 *            The base object.
 	 * @param cslot
@@ -369,7 +370,7 @@ public class RPObjectChangeDispatcher {
 	/**
 	 * Notify listeners that an object removed attribute(s). This will cascade
 	 * down slot trees.
-	 *
+	 * 
 	 * @param object
 	 *            The base object.
 	 * @param changes
@@ -407,7 +408,7 @@ public class RPObjectChangeDispatcher {
 	/**
 	 * Notify listeners that an object slot removed attribute(s). This will
 	 * cascade down object trees.
-	 *
+	 * 
 	 * @param object
 	 *            The base object.
 	 * @param cslot
@@ -457,7 +458,7 @@ public class RPObjectChangeDispatcher {
 
 	/**
 	 * Notify listeners that an object was removed.
-	 *
+	 * 
 	 * @param object
 	 *            The object.
 	 * @param user
@@ -493,7 +494,7 @@ public class RPObjectChangeDispatcher {
 
 	/**
 	 * Notify listeners that a slot object was removed.
-	 *
+	 * 
 	 * @param object
 	 *            The container object.
 	 * @param slotName

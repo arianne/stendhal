@@ -4,9 +4,9 @@ import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Item;
 
 /**
- * A pseudo slot representing the ground as source for an item 
- * (so that the ground has not to be treated special in equipment code).
- *
+ * A pseudo slot representing the ground as source for an item (so that the
+ * ground has not to be treated special in equipment code).
+ * 
  * @author hendrik
  */
 public class GroundSourceSlot implements Slot {
@@ -14,8 +14,9 @@ public class GroundSourceSlot implements Slot {
 
 	/**
 	 * generates a new GroundSlot
-	 *
-	 * @param item item
+	 * 
+	 * @param item
+	 *            item
 	 */
 	public GroundSourceSlot(Item item) {
 		this.item = item;

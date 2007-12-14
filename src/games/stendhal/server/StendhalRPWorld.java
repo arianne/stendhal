@@ -64,7 +64,8 @@ public class StendhalRPWorld extends RPWorld {
 	static {
 		MAPS_FOLDER = "data/maps/";
 
-		if (StendhalRPWorld.class.getClassLoader().getResource("tiled/tileset/README") != null) {
+		if (StendhalRPWorld.class.getClassLoader().getResource(
+				"tiled/tileset/README") != null) {
 			logger.warn("Developing mode, loading maps from tiled/ instead of data/maps");
 			MAPS_FOLDER = "tiled/";
 		}
@@ -107,10 +108,10 @@ public class StendhalRPWorld extends RPWorld {
 	/**
 	 * This method is a workaround for a groovy bug:
 	 * http://jira.codehaus.org/browse/GROOVY-1484
-	 *
+	 * 
 	 * Don't use it in Java code, only in Groovy. Remove this method once the
 	 * Groovy bug has been resolved.
-	 *
+	 * 
 	 * @return StendhalRPWorld
 	 * @deprecated use StendhalRPWorld.get()
 	 */
@@ -122,10 +123,10 @@ public class StendhalRPWorld extends RPWorld {
 	/**
 	 * Gives the number of turns that will take place during a given number of
 	 * seconds.
-	 *
+	 * 
 	 * @param seconds
 	 *            The number of seconds.
-	 *
+	 * 
 	 * @return The number of turns.
 	 */
 	public int getTurnsInSeconds(int seconds) {
@@ -205,7 +206,7 @@ public class StendhalRPWorld extends RPWorld {
 
 		// zone storage
 		ArrestWarrant.generateRPClass();
-		
+
 		/*
 		 * TODO: Refactor Create RPClasses for actions
 		 */
@@ -308,10 +309,10 @@ public class StendhalRPWorld extends RPWorld {
 
 	/**
 	 * Add zone area.
-	 *
+	 * 
 	 * Pathfinding code still uses this, but should use it's own XML file for
 	 * testing.
-	 *
+	 * 
 	 * @throws Exception
 	 */
 	public StendhalRPZone addArea(String name, String content) throws Exception {
@@ -334,10 +335,10 @@ public class StendhalRPWorld extends RPWorld {
 			area.addLayer(name + ".4_roof_add", layer);
 		}
 
-		area.addCollisionLayer(name + ".collision", zonedata
-				.getLayer("collision"));
-		area.addProtectionLayer(name + ".protection", zonedata
-				.getLayer("protection"));
+		area.addCollisionLayer(name + ".collision",
+				zonedata.getLayer("collision"));
+		area.addProtectionLayer(name + ".protection",
+				zonedata.getLayer("protection"));
 
 		/*
 		 * NOTE: This is only used for int_house_000 now, so assume int
@@ -350,14 +351,12 @@ public class StendhalRPWorld extends RPWorld {
 		return area;
 	}
 
-
-
 	/**
 	 * Find a named zone.
-	 *
+	 * 
 	 * @param name
 	 *            The zone name.
-	 *
+	 * 
 	 * @return The matching zone, or <code>null</code> if not found.
 	 */
 	public StendhalRPZone getZone(final String id) {
@@ -366,10 +365,10 @@ public class StendhalRPWorld extends RPWorld {
 
 	/**
 	 * Find the zone that would contain an entity at global coordinates.
-	 *
+	 * 
 	 * TODO: This is likely broken for entity larger than 2x2, because parts of
 	 * them will exist in multiple zones (and not in collision)
-	 *
+	 * 
 	 * @param level
 	 *            The level.
 	 * @param wx
@@ -378,7 +377,7 @@ public class StendhalRPWorld extends RPWorld {
 	 *            The global Y coordinate.
 	 * @param entity
 	 *            The entity.
-	 *
+	 * 
 	 * @return The matching zone, or <code>null</code> if not found.
 	 */
 	public StendhalRPZone getZoneAt(int level, int wx, int wy, Entity entity) {

@@ -16,7 +16,7 @@ public class Node {
 
 	/**
 	 * Get the X coordinate.
-	 *
+	 * 
 	 * @return The X coordinate.
 	 */
 	public int getX() {
@@ -25,7 +25,7 @@ public class Node {
 
 	/**
 	 * Get the Y coordinate.
-	 *
+	 * 
 	 * @return The Y coordinate.
 	 */
 	public int getY() {

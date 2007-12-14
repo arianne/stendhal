@@ -62,60 +62,67 @@ public class HatForMonogenes extends AbstractQuest {
 	private void createRequestingStep() {
 		SpeakerNPC monogenes = npcs.get("Monogenes");
 
-		monogenes.add(ConversationStates.ATTENDING,
-			ConversationPhrases.QUEST_MESSAGES,
-			new QuestNotCompletedCondition(QUEST_SLOT),
-			ConversationStates.QUEST_OFFERED, 
-			"Could you bring me a #hat to cover my bald head? Brrrrr! The days here in Semos are really getting colder...",
-			null);
-
-		monogenes.add(ConversationStates.ATTENDING,
-			ConversationPhrases.QUEST_MESSAGES,
-			new QuestCompletedCondition(QUEST_SLOT),
-			ConversationStates.ATTENDING,
-			"Thanks for the offer, good friend, but this hat will last me five winters at least, and it's not like I need more than one.",
-			null);
+		monogenes.add(
+				ConversationStates.ATTENDING,
+				ConversationPhrases.QUEST_MESSAGES,
+				new QuestNotCompletedCondition(QUEST_SLOT),
+				ConversationStates.QUEST_OFFERED,
+				"Could you bring me a #hat to cover my bald head? Brrrrr! The days here in Semos are really getting colder...",
+				null);
 
 		monogenes.add(
-			ConversationStates.QUEST_OFFERED,
-			ConversationPhrases.YES_MESSAGES,
-			null,
-			ConversationStates.ATTENDING,
-			"Thanks, my good friend. I'll be waiting here for your return!",
-			new SetQuestAction(QUEST_SLOT, "start"));
+				ConversationStates.ATTENDING,
+				ConversationPhrases.QUEST_MESSAGES,
+				new QuestCompletedCondition(QUEST_SLOT),
+				ConversationStates.ATTENDING,
+				"Thanks for the offer, good friend, but this hat will last me five winters at least, and it's not like I need more than one.",
+				null);
 
 		monogenes.add(
-			ConversationStates.QUEST_OFFERED,
-			ConversationPhrases.NO_MESSAGES,
-			null,
-			ConversationStates.ATTENDING,
-			"You surely have more importants things to do, and little time to do them in. I'll just stay here and freeze to death, I guess... *sniff*",
-			new SetQuestAction(QUEST_SLOT, "rejected"));
+				ConversationStates.QUEST_OFFERED,
+				ConversationPhrases.YES_MESSAGES,
+				null,
+				ConversationStates.ATTENDING,
+				"Thanks, my good friend. I'll be waiting here for your return!",
+				new SetQuestAction(QUEST_SLOT, "start"));
 
 		monogenes.add(
-			ConversationStates.QUEST_OFFERED,
-			"hat",
-			null,
-			ConversationStates.QUEST_OFFERED,
-			"You don't know what a hat is?! Anything light that can cover my head; like leather, for instance. Now, will you do it?",
-			null);
+				ConversationStates.QUEST_OFFERED,
+				ConversationPhrases.NO_MESSAGES,
+				null,
+				ConversationStates.ATTENDING,
+				"You surely have more importants things to do, and little time to do them in. I'll just stay here and freeze to death, I guess... *sniff*",
+				new SetQuestAction(QUEST_SLOT, "rejected"));
+
+		monogenes.add(
+				ConversationStates.QUEST_OFFERED,
+				"hat",
+				null,
+				ConversationStates.QUEST_OFFERED,
+				"You don't know what a hat is?! Anything light that can cover my head; like leather, for instance. Now, will you do it?",
+				null);
 	}
 
 	private void createBringingStep() {
 		SpeakerNPC monogenes = npcs.get("Monogenes");
 
 		monogenes.add(ConversationStates.IDLE,
-			ConversationPhrases.GREETING_MESSAGES,
-			new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"), new PlayerHasItemWithHimCondition("leather_helmet")),
-			ConversationStates.QUEST_ITEM_BROUGHT,
-			"Hey! Is that leather hat for me?", null);
+				ConversationPhrases.GREETING_MESSAGES, new AndCondition(
+						new QuestInStateCondition(QUEST_SLOT, "start"),
+						new PlayerHasItemWithHimCondition("leather_helmet")),
+				ConversationStates.QUEST_ITEM_BROUGHT,
+				"Hey! Is that leather hat for me?", null);
 
-		monogenes.add(ConversationStates.IDLE,
-			ConversationPhrases.GREETING_MESSAGES,
-			new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"), new NotCondition(new PlayerHasItemWithHimCondition("leather_helmet"))),
-			ConversationStates.ATTENDING,
-			"Hey, my good friend, remember that leather hat I asked you about before? It's still pretty chilly here...",
-			null);
+		monogenes.add(
+				ConversationStates.IDLE,
+				ConversationPhrases.GREETING_MESSAGES,
+				new AndCondition(
+						new QuestInStateCondition(QUEST_SLOT, "start"),
+						new NotCondition(new PlayerHasItemWithHimCondition(
+								"leather_helmet"))),
+				ConversationStates.ATTENDING,
+				"Hey, my good friend, remember that leather hat I asked you about before? It's still pretty chilly here...",
+				null);
 
 		List<ChatAction> reward = new LinkedList<ChatAction>();
 		reward.add(new DropItemAction("leather_helmet"));
@@ -125,20 +132,20 @@ public class HatForMonogenes extends AbstractQuest {
 		// make sure the player isn't cheating by putting the
 		// helmet away and then saying "yes"
 		monogenes.add(
-			ConversationStates.QUEST_ITEM_BROUGHT,
-			ConversationPhrases.YES_MESSAGES,
-			new PlayerHasItemWithHimCondition("leather_helmet"),
-			ConversationStates.ATTENDING,
-			"Bless you, my good friend! Now my head will stay nice and warm.",
-			new MultipleActions(reward));
+				ConversationStates.QUEST_ITEM_BROUGHT,
+				ConversationPhrases.YES_MESSAGES,
+				new PlayerHasItemWithHimCondition("leather_helmet"),
+				ConversationStates.ATTENDING,
+				"Bless you, my good friend! Now my head will stay nice and warm.",
+				new MultipleActions(reward));
 
 		monogenes.add(
-			ConversationStates.QUEST_ITEM_BROUGHT,
-			ConversationPhrases.NO_MESSAGES,
-			null,
-			ConversationStates.ATTENDING,
-			"I guess someone more fortunate will get his hat today... *sneeze*",
-			null);
+				ConversationStates.QUEST_ITEM_BROUGHT,
+				ConversationPhrases.NO_MESSAGES,
+				null,
+				ConversationStates.ATTENDING,
+				"I guess someone more fortunate will get his hat today... *sneeze*",
+				null);
 	}
 
 	@Override

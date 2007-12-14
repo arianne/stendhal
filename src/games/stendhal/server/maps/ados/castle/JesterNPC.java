@@ -14,17 +14,20 @@ import java.util.Map;
 
 /**
  * Builds a Jester NPC to inform entrants to the castle
- *
+ * 
  * @author kymara
  */
 public class JesterNPC implements ZoneConfigurator {
 	/**
 	 * Configure a zone.
-	 *
-	 * @param	zone		The zone to be configured.
-	 * @param	attributes	Configuration attributes.
+	 * 
+	 * @param zone
+	 *            The zone to be configured.
+	 * @param attributes
+	 *            Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone,
+			Map<String, String> attributes) {
 		buildNPC(zone);
 	}
 
@@ -51,12 +54,14 @@ public class JesterNPC implements ZoneConfigurator {
 				addGreeting("Hail!");
 				addJob("I'm the court jester, I can't stop for long! It's just not in my job description to stand and chat.");
 				addHelp("Shhh...I could tell you about these shady outlaws...they've taken over the castle while the King is away. I just keep quiet, me. Shhh...");
-				add(ConversationStates.ATTENDING, "offer", null, ConversationStates.IDLE,
-				        "Nothing for me! Must keep juggling! Goodbye!", null);
-				add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES, null,
-				        ConversationStates.IDLE,
-				        "Nothing for me! Must keep juggling! Goodbye!", null);
- 				addGoodbye("Bye!");
+				add(ConversationStates.ATTENDING, "offer", null,
+						ConversationStates.IDLE,
+						"Nothing for me! Must keep juggling! Goodbye!", null);
+				add(ConversationStates.ATTENDING,
+						ConversationPhrases.QUEST_MESSAGES, null,
+						ConversationStates.IDLE,
+						"Nothing for me! Must keep juggling! Goodbye!", null);
+				addGoodbye("Bye!");
 			}
 		};
 		npc.setDescription("You see Huckle Rohn, the court jester.");

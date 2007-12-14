@@ -29,8 +29,9 @@ public class Sound {
 	public AudioClip play() {
 		if (soundArray.containsKey(name)) {
 
-			return SoundMaster.play(soundArray.get(name)[Rand.rand(soundArray
-					.get(name).length)], x, y);
+			return SoundMaster.play(
+					soundArray.get(name)[Rand.rand(soundArray.get(name).length)],
+					x, y);
 
 		} else {
 			return SoundMaster.play(name, x, y);

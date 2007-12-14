@@ -22,7 +22,7 @@ public class SpriteTileset implements Tileset {
 
 	/**
 	 * Create a tileset.
-	 *
+	 * 
 	 * @param store
 	 *            A sprite store.
 	 * @param filename
@@ -34,7 +34,7 @@ public class SpriteTileset implements Tileset {
 
 	/**
 	 * Create a tileset.
-	 *
+	 * 
 	 * @param store
 	 *            A sprite store.
 	 * @param sprite
@@ -58,14 +58,14 @@ public class SpriteTileset implements Tileset {
 	/**
 	 * Extract all the tiles from a source sprite in left-right, top-bottom scan
 	 * order.
-	 *
+	 * 
 	 * @param store
 	 *            A sprite store.
 	 * @param sprite
 	 *            The master sprite.
 	 * @param size
 	 *            The tile size.
-	 *
+	 * 
 	 * @return An array of sprites.
 	 */
 	protected Sprite[] extractTiles(final SpriteStore store,
@@ -99,7 +99,7 @@ public class SpriteTileset implements Tileset {
 
 	/**
 	 * Get the number of tiles.
-	 *
+	 * 
 	 * @return The number of tiles.
 	 */
 	public int getSize() {
@@ -108,10 +108,10 @@ public class SpriteTileset implements Tileset {
 
 	/**
 	 * Get the sprite for an index tile of a tileset.
-	 *
+	 * 
 	 * @param index
 	 *            The index with-in the tileset.
-	 *
+	 * 
 	 * @return A sprite, or <code>null</code> if no mapped sprite.
 	 */
 	public Sprite getSprite(final int index) {

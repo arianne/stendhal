@@ -26,7 +26,7 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 import marauroa.common.net.InputSerializer;
 
-/** This class stores the layers that make the floor and the buildings */
+/** This class stores the layers that make the floor and the buildings. */
 
 public class StaticGameLayers {
 
@@ -63,14 +63,14 @@ public class StaticGameLayers {
 	 */
 	private double width;
 
-	/** Name of the layers set that we are rendering right now */
+	/** Name of the layers set that we are rendering right now. */
 	private String area;
 
-	/** true when the area has been changed */
+	/** true when the area has been changed. */
 	private boolean areaChanged;
 
 	/**
-	 * Whether the internal state is valid
+	 * Whether the internal state is valid.
 	 */
 	private boolean isValid;
 
@@ -86,14 +86,14 @@ public class StaticGameLayers {
 		isValid = true;
 	}
 
-	/** Returns width in world units */
+	/** @return width in world units. */
 	public double getWidth() {
 		validate();
 
 		return width;
 	}
 
-	/** Returns the height in world units */
+	/** @return the height in world units */
 	public double getHeight() {
 		validate();
 
@@ -101,8 +101,8 @@ public class StaticGameLayers {
 	}
 
 	/**
-	 * Add a new Layer to the set
-	 *
+	 * Add a new Layer to the set.
+	 * 
 	 * @throws ClassNotFoundException
 	 */
 	public void addLayer(String area, String layer, InputStream in)
@@ -175,7 +175,7 @@ public class StaticGameLayers {
 		return false;
 	}
 
-	/** Removes all layers */
+	/** Removes all layers. */
 	public void clear() {
 		layers.clear();
 		tilesets.clear();
@@ -263,9 +263,9 @@ public class StaticGameLayers {
 	}
 
 	/**
-	 *
+	 * 
 	 * @return the CollisionDetection Layer for the current map
-	 *
+	 * 
 	 */
 	public CollisionDetection getCollisionDetection() {
 		validate();
@@ -274,9 +274,9 @@ public class StaticGameLayers {
 	}
 
 	/**
-	 *
+	 * 
 	 * @return the current area/map
-	 *
+	 * 
 	 */
 	public String getArea() {
 		return area;
@@ -284,7 +284,7 @@ public class StaticGameLayers {
 
 	/**
 	 * Get a layer renderer.
-	 *
+	 * 
 	 * @return A layer renderer, or <code>null</code>,
 	 */
 	public LayerRenderer getLayer(String area, String layer) {
@@ -293,8 +293,8 @@ public class StaticGameLayers {
 
 	/**
 	 * Make a map "key" from an area/layer name.
-	 *
-	 *
+	 * 
+	 * 
 	 * TODO: Make the key an object with area/layer fields and replace ugly code
 	 * that uses startsWith('area.').
 	 */
@@ -310,7 +310,7 @@ public class StaticGameLayers {
 	}
 
 	/**
-	 * resets the areaChanged flag
+	 * resets the areaChanged flag.
 	 */
 	public void resetChangedArea() {
 		areaChanged = false;

@@ -24,30 +24,58 @@ import org.apache.log4j.Logger;
 
 /**
  * Creates an NPC which manages bets.
- *
- * <p>A game master has to tell him on what the players can bet:
- * <pre>/script BetManager.class accept fire water earth</pre></p>
- *
- * <p>Then players can bet by saying something like
- * <pre>bet 50 ham on fire
- * bet 5 cheese on water</pre>
- * The NPC retrieves the items from the player and registers the bet.</p>
- *
- * <p>The game master starts the action closing the betting time:
- * <pre>/script BetManager.class action</pre></p>
- *
- * <p>After the game the game master has to tell the NPC who won:</p>
- * <pre>/script BetManager.class winner fire</pre>.
- *
- * <p>The NPC will than tell all players the results and give it to winners:
- * <pre>mort bet 50 ham on fire and won an additional 50 ham
- * hendrik lost 5 cheese betting on water</pre></p>
- *
- * Note: Betting is possible in "idle conversation state" to enable
- * interaction of a large number of players in a short time. (The last
- * time i did a show-fight i was losing count because there where more
- * than 15 players)
- *
+ * 
+ * <p>
+ * A game master has to tell him on what the players can bet:
+ * 
+ * <pre>
+ * /script BetManager.class accept fire water earth
+ * </pre>
+ * 
+ * </p>
+ * 
+ * <p>
+ * Then players can bet by saying something like
+ * 
+ * <pre>
+ * bet 50 ham on fire
+ * bet 5 cheese on water
+ * </pre>
+ * 
+ * The NPC retrieves the items from the player and registers the bet.
+ * </p>
+ * 
+ * <p>
+ * The game master starts the action closing the betting time:
+ * 
+ * <pre>
+ * /script BetManager.class action
+ * </pre>
+ * 
+ * </p>
+ * 
+ * <p>
+ * After the game the game master has to tell the NPC who won:
+ * </p>
+ * 
+ * <pre>
+ * /script BetManager.class winner fire
+ * </pre>.
+ * 
+ * <p>
+ * The NPC will than tell all players the results and give it to winners:
+ * 
+ * <pre>
+ * mort bet 50 ham on fire and won an additional 50 ham
+ * hendrik lost 5 cheese betting on water
+ * </pre>
+ * 
+ * </p>
+ * 
+ * Note: Betting is possible in "idle conversation state" to enable interaction
+ * of a large number of players in a short time. (The last time i did a
+ * show-fight i was losing count because there where more than 15 players)
+ * 
  * @author hendrik
  */
 public class BetManager extends ScriptImpl implements TurnListener {
@@ -92,7 +120,7 @@ public class BetManager extends ScriptImpl implements TurnListener {
 
 		/**
 		 * converts the bet into a string
-		 *
+		 * 
 		 * @return String
 		 */
 		public String betToString() {
@@ -162,10 +190,9 @@ public class BetManager extends ScriptImpl implements TurnListener {
 
 			if (sentence.hasError()) {
 				errorMsg = sentence.getError();
-			} else if (
-				sentence.getObjectName()==null ||
-				sentence.getPreposition()==null ||
-				sentence.getObjectName2()==null) {
+			} else if (sentence.getObjectName() == null
+					|| sentence.getPreposition() == null
+					|| sentence.getObjectName2() == null) {
 				errorMsg = "missing bet parameters";
 			} else {
 				betInfo.amount = sentence.getAmount();
@@ -180,53 +207,63 @@ public class BetManager extends ScriptImpl implements TurnListener {
 
 			// wrong syntax
 			if (errorMsg != null) {
-				engine.say("Sorry " + player.getTitle() + ", I did not understand you. " + errorMsg);
+				engine.say("Sorry " + player.getTitle()
+						+ ", I did not understand you. " + errorMsg);
 				return;
 			}
 
 			// check that item is a ConsumableItem
-			Item item = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(betInfo.itemName);
+			Item item = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
+					betInfo.itemName);
 			if (!(item instanceof ConsumableItem)) {
-				engine.say("Sorry " + player.getTitle() + ", I only accept food and drinks.");
+				engine.say("Sorry " + player.getTitle()
+						+ ", I only accept food and drinks.");
 				return;
 			}
 
 			// check target
 			if (!targets.contains(betInfo.target)) {
-				engine.say("Sorry " + player.getTitle() + ", I only accept bets on " + targets);
+				engine.say("Sorry " + player.getTitle()
+						+ ", I only accept bets on " + targets);
 				return;
 			}
 
 			// drop item
 			if (!player.drop(betInfo.itemName, betInfo.amount)) {
-				engine.say("Sorry " + player.getTitle() + ", you don't have " + betInfo.amount + " " + betInfo.itemName);
+				engine.say("Sorry " + player.getTitle() + ", you don't have "
+						+ betInfo.amount + " " + betInfo.itemName);
 				return;
 			}
 
 			// store bet in list and confirm it
 			betInfos.add(betInfo);
-			engine.say(player.getTitle() + ", your bet " + betInfo.betToString() + " was accepted");
+			engine.say(player.getTitle() + ", your bet "
+					+ betInfo.betToString() + " was accepted");
 
 			// TODO: put items on ground
-			// TODO: mark items on ground with: playername "betted" amount itemname "on" target.
+			// TODO: mark items on ground with: playername "betted" amount
+			// itemname "on" target.
 
 		}
 	}
 
 	public void onTurnReached(int currentTurn) {
 		if (state != State.PAYING_BETS) {
-			logger.error("onTurnReached invoked but state is not PAYING_BETS: " + state);
+			logger.error("onTurnReached invoked but state is not PAYING_BETS: "
+					+ state);
 			return;
 		}
 
 		if (!betInfos.isEmpty()) {
 			BetInfo betInfo = betInfos.remove(0);
 
-			Player player = StendhalRPRuleProcessor.get().getPlayer(betInfo.playerName);
+			Player player = StendhalRPRuleProcessor.get().getPlayer(
+					betInfo.playerName);
 			if (player == null) {
 				// player logged out
 				if (winner.equals(betInfo.target)) {
-					npc.say(betInfo.playerName + " would have won but he or she went away.");
+					npc.say(betInfo.playerName
+							+ " would have won but he or she went away.");
 				} else {
 					npc.say(betInfo.playerName
 							+ " went away. But as he or she has lost anyway it makes no differents.");
@@ -262,10 +299,12 @@ public class BetManager extends ScriptImpl implements TurnListener {
 
 					// it should allways be a stackable items as we checked for
 					// ConsumableItem when accepting the bet. But just in case
-					// something is changed in the future, we will check it again:
+					// something is changed in the future, we will check it
+					// again:
 					if (item instanceof StackableItem) {
 						StackableItem stackableItem = (StackableItem) item;
-						stackableItem.setQuantity(2 * betInfo.amount); // bet + win
+						stackableItem.setQuantity(2 * betInfo.amount); // bet +
+						// win
 					}
 					player.equip(item, true);
 				}
@@ -279,13 +318,14 @@ public class BetManager extends ScriptImpl implements TurnListener {
 				targets.clear();
 				state = State.IDLE;
 			} else {
-				TurnNotifier.get().notifyInTurns(WAIT_TIME_BETWEEN_WINNER_ANNOUNCEMENTS, this);
+				TurnNotifier.get().notifyInTurns(
+						WAIT_TIME_BETWEEN_WINNER_ANNOUNCEMENTS, this);
 			}
 		}
 	}
 
 	// ------------------------------------------------------------------------
-	//                 scripting stuff and game master control
+	// scripting stuff and game master control
 	// ------------------------------------------------------------------------
 
 	@Override
@@ -312,12 +352,14 @@ public class BetManager extends ScriptImpl implements TurnListener {
 		npc.behave("greet", "Hi, do you want to bet?");
 		npc.behave("job", "I am the Bet Dialer");
 		npc.behave(
-                "help",
-                "Say \"bet 5 cheese on fire\" to get an additional 5 pieces of cheese if fire wins. If he loses, you will lose your 5 cheese.");
+				"help",
+				"Say \"bet 5 cheese on fire\" to get an additional 5 pieces of cheese if fire wins. If he loses, you will lose your 5 cheese.");
 		npc.addGoodbye();
-		npc.add(ConversationStates.IDLE, "bet", new BetCondition(), ConversationStates.IDLE, null, new BetAction());
-		npc.add(ConversationStates.IDLE, "bet", new NoBetCondition(), ConversationStates.IDLE,
-		        "I am not accepting any bets at the moment.", null);
+		npc.add(ConversationStates.IDLE, "bet", new BetCondition(),
+				ConversationStates.IDLE, null, new BetAction());
+		npc.add(ConversationStates.IDLE, "bet", new NoBetCondition(),
+				ConversationStates.IDLE,
+				"I am not accepting any bets at the moment.", null);
 
 		// TODO: remove warning
 		admin.sendPrivateText("BetManager is not fully coded yet");
@@ -330,56 +372,59 @@ public class BetManager extends ScriptImpl implements TurnListener {
 		List<String> commands = Arrays.asList("accept", "action", "winner");
 		if ((args.size() == 0) || (!commands.contains(args.get(0)))) {
 			admin.sendPrivateText("Syntax: /script BetManager.class accept #fire #water\n"
-			        + "/script BetManager.class action\n" + "/script BetManager.class winner #fire\n");
+					+ "/script BetManager.class action\n"
+					+ "/script BetManager.class winner #fire\n");
 			return;
 		}
 
 		int idx = commands.indexOf(args.get(0));
 		switch (idx) {
-			case 0: // accept #fire #water
+		case 0: // accept #fire #water
 
-				if (state != State.IDLE) {
-					admin.sendPrivateText("accept command is only valid in state IDLE. But i am in " + state
-					        + " now.\n");
-					return;
-				}
-				for (int i = 1; i < args.size(); i++) {
-					targets.add(args.get(i));
-				}
-				npc.say("Hi, I am accepting bets on " + targets + ". If you want to bet simply say: \"bet 5 cheese on "
-				        + targets.get(0) + "\" to get an additional 5 pieces of cheese if " + targets.get(0)
-				        + " wins. If he loses, you will lose your 5 cheese.");
-				state = State.ACCEPTING_BETS;
-				break;
+			if (state != State.IDLE) {
+				admin.sendPrivateText("accept command is only valid in state IDLE. But i am in "
+						+ state + " now.\n");
+				return;
+			}
+			for (int i = 1; i < args.size(); i++) {
+				targets.add(args.get(i));
+			}
+			npc.say("Hi, I am accepting bets on " + targets
+					+ ". If you want to bet simply say: \"bet 5 cheese on "
+					+ targets.get(0)
+					+ "\" to get an additional 5 pieces of cheese if "
+					+ targets.get(0)
+					+ " wins. If he loses, you will lose your 5 cheese.");
+			state = State.ACCEPTING_BETS;
+			break;
 
+		case 1: // action
 
-			case 1: // action
+			if (state != State.ACCEPTING_BETS) {
+				admin.sendPrivateText("action command is only valid in state ACCEPTING_BETS. But i am in "
+						+ state + " now.\n");
+				return;
+			}
+			npc.say("Ok, Let the fun begin! I will not accept bets anymore.");
+			state = State.ACTION;
+			break;
 
-				if (state != State.ACCEPTING_BETS) {
-					admin.sendPrivateText("action command is only valid in state ACCEPTING_BETS. But i am in " + state
-					        + " now.\n");
-					return;
-				}
-				npc.say("Ok, Let the fun begin! I will not accept bets anymore.");
-				state = State.ACTION;
-				break;
+		case 2: // winner #fire
 
-
-			case 2: // winner #fire
-
-				if (state != State.ACTION) {
-					admin.sendPrivateText("winner command is only valid in state ACTION. But i am in " + state
-					        + " now.\n");
-					return;
-				}
-				if (args.size() < 2) {
-					admin.sendPrivateText("Usage: /script BetManager.class winner #fire\n");
-				}
-				winner = args.get(1);
-				state = State.PAYING_BETS;
-				npc.say("And the winner is ... " + winner + ".");
-				TurnNotifier.get().notifyInTurns(WAIT_TIME_BETWEEN_WINNER_ANNOUNCEMENTS, this);
-				break;
+			if (state != State.ACTION) {
+				admin.sendPrivateText("winner command is only valid in state ACTION. But i am in "
+						+ state + " now.\n");
+				return;
+			}
+			if (args.size() < 2) {
+				admin.sendPrivateText("Usage: /script BetManager.class winner #fire\n");
+			}
+			winner = args.get(1);
+			state = State.PAYING_BETS;
+			npc.say("And the winner is ... " + winner + ".");
+			TurnNotifier.get().notifyInTurns(
+					WAIT_TIME_BETWEEN_WINNER_ANNOUNCEMENTS, this);
+			break;
 
 		}
 	}

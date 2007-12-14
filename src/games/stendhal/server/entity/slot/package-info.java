@@ -8,3 +8,4 @@
  * @author hendrik
  */
 package games.stendhal.server.entity.slot;
+

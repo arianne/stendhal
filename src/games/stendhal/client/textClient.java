@@ -131,15 +131,13 @@ public class textClient extends Thread {
 						clientManager.send(action);
 					}
 					if (ShowWorld) {
-						System.out
-								.println("<World contents ------------------------------------->");
+						System.out.println("<World contents ------------------------------------->");
 						int j = 0;
 						for (RPObject object : world_objects.values()) {
 							j++;
 							System.out.println(j + ". " + object);
 						}
-						System.out
-								.println("</World contents ------------------------------------->");
+						System.out.println("</World contents ------------------------------------->");
 					}
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -262,17 +260,14 @@ public class textClient extends Thread {
 
 			System.out.println("Stendhal textClient");
 			System.out.println();
-			System.out
-					.println("  games.stendhal.textClient -u username -p pass -h host -P port -c character");
+			System.out.println("  games.stendhal.textClient -u username -p pass -h host -P port -c character");
 			System.out.println();
 			System.out.println("Required parameters");
 			System.out.println("* -h\tHost that is running Marauroa server");
-			System.out
-					.println("* -P\tPort on which Marauroa server is running");
+			System.out.println("* -P\tPort on which Marauroa server is running");
 			System.out.println("* -u\tUsername to log into Marauroa server");
 			System.out.println("* -p\tPassword to log into Marauroa server");
-			System.out
-					.println("* -c\tCharacter used to log into Marauroa server");
+			System.out.println("* -c\tCharacter used to log into Marauroa server");
 			System.out.println("Optional parameters");
 			System.out.println("* -W\tShow world content? 0 or 1");
 		} catch (Exception e) {

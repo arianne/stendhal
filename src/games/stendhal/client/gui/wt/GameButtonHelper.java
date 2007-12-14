@@ -26,8 +26,7 @@ public class GameButtonHelper extends InternalManagedDialog {
 
 		content = new GameButtonHelperContent(sp, this, ui);
 		setContent(content);
-		
+
 	}
 
-	
 }

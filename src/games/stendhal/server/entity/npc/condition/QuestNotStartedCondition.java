@@ -16,8 +16,9 @@ public class QuestNotStartedCondition extends SpeakerNPC.ChatCondition {
 
 	/**
 	 * Creates a new QuestNotStartedCondtion
-	 *
-	 * @param questname name of quest slot
+	 * 
+	 * @param questname
+	 *            name of quest slot
 	 */
 	public QuestNotStartedCondition(String questname) {
 		this.questname = questname;
@@ -40,6 +41,7 @@ public class QuestNotStartedCondition extends SpeakerNPC.ChatCondition {
 
 	@Override
 	public boolean equals(Object obj) {
-		return EqualsBuilder.reflectionEquals(this, obj, false, QuestStartedCondition.class);
+		return EqualsBuilder.reflectionEquals(this, obj, false,
+				QuestStartedCondition.class);
 	}
 }

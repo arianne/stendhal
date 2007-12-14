@@ -12,7 +12,6 @@
  ***************************************************************************/
 package games.stendhal.server.entity.mapstuff.sign;
 
-
 import games.stendhal.server.entity.Entity;
 
 import org.apache.log4j.Logger;
@@ -21,18 +20,17 @@ import marauroa.common.game.SyntaxException;
 import marauroa.common.game.Definition.Type;
 
 /**
- * A sign which is placed on the ground and can be right clicked by
- * players to be read.
+ * A sign which is placed on the ground and can be right clicked by players to
+ * be read.
  */
 public class Sign extends Entity {
 	/**
 	 * The sign text attribute name.
 	 */
-	protected static final String	ATTR_TEXT	= "text";
+	protected static final String ATTR_TEXT = "text";
 
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(Sign.class);
-
 
 	public static void generateRPClass() {
 		try {
@@ -55,11 +53,10 @@ public class Sign extends Entity {
 		setResistance(100);
 	}
 
-
 	/**
 	 * Get the sign's text.
-	 *
-	 * @return	The sign text.
+	 * 
+	 * @return The sign text.
 	 */
 	public String getText() {
 		if (has(ATTR_TEXT)) {
@@ -69,10 +66,9 @@ public class Sign extends Entity {
 		}
 	}
 
-
 	/**
 	 * Set the sign text.
-	 *
+	 * 
 	 * @param text
 	 *            The sign text.
 	 */

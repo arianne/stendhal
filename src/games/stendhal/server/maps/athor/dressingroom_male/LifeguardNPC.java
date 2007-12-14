@@ -14,7 +14,7 @@ import java.util.TreeMap;
 
 /**
  * Dressing rooms at the Athor island beach (Inside / Level 0)
- *
+ * 
  * @author daniel
  */
 public class LifeguardNPC extends SpeakerNPCFactory {
@@ -31,27 +31,35 @@ public class LifeguardNPC extends SpeakerNPCFactory {
 		new OutfitChangerAdder().addOutfitChanger(npc, behaviour, "borrow");
 
 		// stuff needed for the SuntanCreamForZara quest
-		Map<String, Integer> requiredResources = new TreeMap<String, Integer>();	// use sorted TreeMap instead of HashMap
+		Map<String, Integer> requiredResources = new TreeMap<String, Integer>(); // use
+																					// sorted
+																					// TreeMap
+																					// instead
+																					// of
+																					// HashMap
 		requiredResources.put("arandula", 1);
 		requiredResources.put("kokuda", 1);
 		requiredResources.put("minor_potion", 1);
 
-		ProducerBehaviour mixerBehaviour = new ProducerBehaviour("david_mix_cream",
-				"mix", "suntan_cream", requiredResources, 10 * 60);
+		ProducerBehaviour mixerBehaviour = new ProducerBehaviour(
+				"david_mix_cream", "mix", "suntan_cream", requiredResources,
+				10 * 60);
 
 		new ProducerAdder().addProducer(npc, mixerBehaviour, "Hallo!");
 
 		npc.addReply(
-		        Arrays.asList("suntan", "cream", "suntan_cream"),
-		        "Pam's and mine suntan cream is famous all over the island. But the way to the labyrinth entrance is blocked, so we can't get all the ingredients we need. If you bring me the things we need, I can #mix our special suntan cream for you.");
+				Arrays.asList("suntan", "cream", "suntan_cream"),
+				"Pam's and mine suntan cream is famous all over the island. But the way to the labyrinth entrance is blocked, so we can't get all the ingredients we need. If you bring me the things we need, I can #mix our special suntan cream for you.");
 
-		npc.addReply("arandula", "Arandula is a herb which is growing around Semos.");
+		npc.addReply("arandula",
+				"Arandula is a herb which is growing around Semos.");
 
 		npc.addReply(
-		        "kokuda",
-		        "We can't find the Kokuda herb which is growing on this island, because the entrance of the labyrinth, where you can find this herb, is blocked.");
+				"kokuda",
+				"We can't find the Kokuda herb which is growing on this island, because the entrance of the labyrinth, where you can find this herb, is blocked.");
 
-		npc.addReply("minor_potion", "It's a small bottle full of potion. You can buy it at several places.");
+		npc.addReply("minor_potion",
+				"It's a small bottle full of potion. You can buy it at several places.");
 
 	};
 }

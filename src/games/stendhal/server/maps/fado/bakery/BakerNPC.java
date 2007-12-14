@@ -17,7 +17,7 @@ import java.util.TreeMap;
 
 /**
  * Builds the bakery baker NPC.
- *
+ * 
  * @author timothyb89/kymara
  */
 public class BakerNPC implements ZoneConfigurator {
@@ -27,11 +27,14 @@ public class BakerNPC implements ZoneConfigurator {
 
 	/**
 	 * Configure a zone.
-	 *
-	 * @param	zone		The zone to be configured.
-	 * @param	attributes	Configuration attributes.
+	 * 
+	 * @param zone
+	 *            The zone to be configured.
+	 * @param attributes
+	 *            Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone,
+			Map<String, String> attributes) {
 		buildNPC(zone, attributes);
 	}
 
@@ -77,25 +80,34 @@ public class BakerNPC implements ZoneConfigurator {
 			@Override
 			protected void createDialog() {
 				addJob("I'm the local baker. My speciality is fish and leek pies. I pride myself in making them promptly.");
-				addReply(Arrays.asList("cod", "mackerel"),
-				        "You can catch cod in Ados. Mackerel may be caught at sea. Perhaps creatures which eat fish might drop them too.");
+				addReply(
+						Arrays.asList("cod", "mackerel"),
+						"You can catch cod in Ados. Mackerel may be caught at sea. Perhaps creatures which eat fish might drop them too.");
 				addReply("flour", "We get our supplies of flour from Semos");
-				addReply("leek", "We're lucky enough to have leeks growing right here in the Fado allotments.");
+				addReply("leek",
+						"We're lucky enough to have leeks growing right here in the Fado allotments.");
 				addHelp("Ask me to make you a fish and leek pie. They're not stodgy like meat pies so you can eat them a little quicker.");
 				addGoodbye();
 
-				// Linzo makes fish pies if you bring him flour, leek, cod and mackerel
-				Map<String, Integer> requiredResources = new TreeMap<String, Integer>();	// use sorted TreeMap instead of HashMap
+				// Linzo makes fish pies if you bring him flour, leek, cod and
+				// mackerel
+				Map<String, Integer> requiredResources = new TreeMap<String, Integer>(); // use
+																							// sorted
+																							// TreeMap
+																							// instead
+																							// of
+																							// HashMap
 				requiredResources.put("flour", 1);
 				requiredResources.put("cod", 2);
 				requiredResources.put("mackerel", 1);
 				requiredResources.put("leek", 1);
 
-				ProducerBehaviour behaviour = new ProducerBehaviour("linzo_make_fish_pie", "make", "fish_pie",
-				        requiredResources, 5 * 60);
+				ProducerBehaviour behaviour = new ProducerBehaviour(
+						"linzo_make_fish_pie", "make", "fish_pie",
+						requiredResources, 5 * 60);
 
 				new ProducerAdder().addProducer(this, behaviour,
-				        "Hi there. Have you come to try my fish pies? I can #make one for you.");
+						"Hi there. Have you come to try my fish pies? I can #make one for you.");
 			}
 		};
 

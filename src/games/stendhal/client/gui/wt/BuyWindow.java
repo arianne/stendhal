@@ -28,5 +28,4 @@ public class BuyWindow extends InternalManagedDialog {
 		setContent(content);
 	}
 
-	
 }

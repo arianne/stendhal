@@ -15,7 +15,7 @@ import java.util.Map;
 
 /**
  * Builds an NPC to buy previously un bought armor.
- *
+ * 
  * @author kymara
  */
 public class BuyerNPC implements ZoneConfigurator {
@@ -23,11 +23,14 @@ public class BuyerNPC implements ZoneConfigurator {
 
 	/**
 	 * Configure a zone.
-	 *
-	 * @param	zone		The zone to be configured.
-	 * @param	attributes	Configuration attributes.
+	 * 
+	 * @param zone
+	 *            The zone to be configured.
+	 * @param attributes
+	 *            Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone,
+			Map<String, String> attributes) {
 		buildNPC(zone);
 	}
 
@@ -49,13 +52,16 @@ public class BuyerNPC implements ZoneConfigurator {
 			@Override
 			protected void createDialog() {
 				addGreeting("Greetings. Have you come to enlist as a soldier?");
-				addReply("yes", "Huh! Well I don't let your type enlist! Perhaps you want to #offer some of that armor instead...");
+				addReply(
+						"yes",
+						"Huh! Well I don't let your type enlist! Perhaps you want to #offer some of that armor instead...");
 				addReply("no", "Good! You wouldn't have fit in here anyway.");
 				addJob("I'm looking after the weaponry here. We're running low. I see you have some armor you might #offer though.");
 				addHelp("I buy armor for the barracks here, make me an #offer.");
 				addOffer("Please look at the blackboard by the shields rack to see what we are short of, and what we pay.");
 				addQuest("Oh, thanks but no thanks. I don't need anything.");
-				new BuyerAdder().add(this, new BuyerBehaviour(shops.get("buyrare3")), false);
+				new BuyerAdder().add(this, new BuyerBehaviour(
+						shops.get("buyrare3")), false);
 				addGoodbye("Goodbye, comrade.");
 			}
 		};

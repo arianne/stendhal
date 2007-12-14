@@ -26,7 +26,7 @@ import java.util.Map;
 
 /**
  * Each parameter name in the control string is replaced by its value.
- *
+ * 
  * @author matthias
  */
 public class StringFormatter {
@@ -67,7 +67,8 @@ public class StringFormatter {
 				// we found something
 				if (hasStart) {
 					// found the end of the parameter definition
-					String param = current.substring(PARAMETER_START.length(), index);
+					String param = current.substring(PARAMETER_START.length(),
+							index);
 					current = current.substring(index + PARAMETER_END.length());
 					parameter.put(param, "");
 					parameterPositions.add(param);

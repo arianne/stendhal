@@ -21,11 +21,14 @@ public class AccountCreator {
 	private String email;
 
 	/**
-	 * creates a new AccountCreator
-	 *
-	 * @param username name of the user
-	 * @param password password for this account
-	 * @param email email contact
+	 * creates a new AccountCreator.
+	 * 
+	 * @param username
+	 *            name of the user
+	 * @param password
+	 *            password for this account
+	 * @param email
+	 *            email contact
 	 */
 	public AccountCreator(String username, String password, String email) {
 		this.username = username.trim();
@@ -34,8 +37,8 @@ public class AccountCreator {
 	}
 
 	/**
-	 * tries to create this account
-	 *
+	 * tries to create this account.
+	 * 
 	 * @return AccountResult
 	 */
 	public AccountResult create() {
@@ -48,20 +51,22 @@ public class AccountCreator {
 	}
 
 	/**
-	 * Checks the user provide parameters
+	 * Checks the user provide parameters.
 	 * 
-	 * @return null in case everything is ok, a Resul in case some validator failed
+	 * @return null in case everything is ok, a Resul in case some validator
+	 *         failed
 	 */
 	private Result validate() {
-		AccountCreationRules rules = new AccountCreationRules(username, password, email);
+		AccountCreationRules rules = new AccountCreationRules(username,
+				password, email);
 		ValidatorList validators = rules.getAllRules();
 		Result result = validators.runValidators();
 		return result;
 	}
 
 	/**
-	 * tries to create the player in the database
-	 *
+	 * tries to create the player in the database.
+	 * 
 	 * @return Result.OK_CREATED on success
 	 */
 	private AccountResult insertIntoDatabase() {

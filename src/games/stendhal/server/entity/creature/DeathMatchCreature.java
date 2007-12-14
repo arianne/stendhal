@@ -5,10 +5,9 @@ import org.apache.log4j.Logger;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.player.Player;
 
-
 /**
  * An creature that will only reward the specified player
- *
+ * 
  * @author hendrik
  */
 public class DeathMatchCreature extends Creature {
@@ -18,8 +17,9 @@ public class DeathMatchCreature extends Creature {
 
 	/**
 	 * DeathCreature
-	 *
-	 * @param copy creature to wrap
+	 * 
+	 * @param copy
+	 *            creature to wrap
 	 */
 	public DeathMatchCreature(Creature copy) {
 		super(copy);
@@ -37,8 +37,9 @@ public class DeathMatchCreature extends Creature {
 
 	/**
 	 * Only this player gets an XP reward.
-	 *
-	 * @param player Player to reward
+	 * 
+	 * @param player
+	 *            Player to reward
 	 */
 	public void setPlayerToReward(Player player) {
 		this.player = player;
@@ -49,7 +50,8 @@ public class DeathMatchCreature extends Creature {
 		Integer damageReceivedByPlayer = damageReceived.get(player);
 		if (damageReceivedByPlayer != null) {
 			int basePoints = player.getLevel();
-			points = basePoints * (damageReceivedByPlayer / totalDamageReceived);
+			points = basePoints
+					* (damageReceivedByPlayer / totalDamageReceived);
 
 			// For some quests etc., it is required that the player kills a
 			// certain creature without the help of others.
@@ -69,7 +71,7 @@ public class DeathMatchCreature extends Creature {
 
 	/**
 	 * Calculates the deathmatch points for this kill
-	 *
+	 * 
 	 * @return number of points to reward
 	 */
 	public int getDMPoints() {

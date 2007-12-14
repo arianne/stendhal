@@ -31,15 +31,14 @@ public class ProfileList {
 	//
 
 	/**
-	 * Add a profile.
-	 * This will remove duplicates.
-	 *
-	 * @param	profile		A user login profile.
+	 * Add a profile. This will remove duplicates.
+	 * 
+	 * @param profile
+	 *            A user login profile.
 	 */
 	public void add(Profile profile) {
 		/*
-		 * Keep one equivalent entry
-		 * (can't use HasSet and preserve order)
+		 * Keep one equivalent entry (can't use HasSet and preserve order)
 		 */
 		profiles.remove(profile);
 		profiles.add(profile);
@@ -54,16 +53,16 @@ public class ProfileList {
 
 	/**
 	 * Get an iterator of profiles.
-	 *
-	 * @return	An iterator of profiles.
+	 * 
+	 * @return An iterator of profiles.
 	 */
 	public Iterator<Profile> iterator() {
 		return profiles.iterator();
 	}
 
 	/**
-	 * Load a list of profiles from an input stream.
-	 * This will replace any existing list.
+	 * Load a list of profiles from an input stream. This will replace any
+	 * existing list.
 	 */
 	public void load(InputStream in) throws IOException {
 		Encoder codec = new Encoder();
@@ -80,8 +79,9 @@ public class ProfileList {
 
 	/**
 	 * Remove a profile.
-	 *
-	 * @param	profile		A user login profile.
+	 * 
+	 * @param profile
+	 *            A user login profile.
 	 */
 	public void remove(Profile profile) {
 		profiles.remove(profile);
@@ -89,8 +89,9 @@ public class ProfileList {
 
 	/**
 	 * Save a list of profiles to an output stream.
-	 *
-	 * @param	out	The stream to write.
+	 * 
+	 * @param out
+	 *            The stream to write.
 	 */
 	public void save(OutputStream out) throws IOException {
 		Encoder codec = new Encoder();
@@ -116,7 +117,8 @@ public class ProfileList {
 		InputStream in;
 
 		if (args.length != 1) {
-			System.err.println("Usage: java " + ProfileList.class.getName() + " <user.dat>");
+			System.err.println("Usage: java " + ProfileList.class.getName()
+					+ " <user.dat>");
 
 			System.exit(1);
 		}
@@ -132,7 +134,7 @@ public class ProfileList {
 			in.close();
 		}
 
-		Iterator< Profile > iter = list.iterator();
+		Iterator<Profile> iter = list.iterator();
 
 		while (iter.hasNext()) {
 			System.out.println(iter.next());

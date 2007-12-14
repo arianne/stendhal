@@ -18,28 +18,29 @@ import games.stendhal.server.events.UseListener;
 import java.util.Map;
 
 /**
- * This is a common ring.
- * Other rings can extend this one and implement onUsed.
- *
+ * This is a common ring. Other rings can extend this one and implement onUsed.
+ * 
  * @author miguel
  */
 public class Ring extends Item implements UseListener {
 	/**
 	 * Creates a new ring.
-	 *
+	 * 
 	 * @param name
 	 * @param clazz
 	 * @param subclass
 	 * @param attributes
 	 */
-	public Ring(String name, String clazz, String subclass, Map<String, String> attributes) {
+	public Ring(String name, String clazz, String subclass,
+			Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);
 	}
 
 	/**
 	 * copy constructor
-	 *
-	 * @param item item to copy
+	 * 
+	 * @param item
+	 *            item to copy
 	 */
 	public Ring(Ring item) {
 		super(item);
@@ -49,11 +50,10 @@ public class Ring extends Item implements UseListener {
 		return false;
 	}
 
-
 	/**
 	 * Get the entity description.
-	 *
-	 * @return	The description text.
+	 * 
+	 * @return The description text.
 	 */
 	@Override
 	public String describe() {

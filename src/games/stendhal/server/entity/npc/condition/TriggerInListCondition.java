@@ -19,8 +19,9 @@ public class TriggerInListCondition extends SpeakerNPC.ChatCondition {
 
 	/**
 	 * Creates a new TriggerInListCondition
-	 *
-	 * @param trigger list of trigger
+	 * 
+	 * @param trigger
+	 *            list of trigger
 	 */
 	public TriggerInListCondition(String... trigger) {
 		this(Arrays.asList(trigger));
@@ -28,8 +29,9 @@ public class TriggerInListCondition extends SpeakerNPC.ChatCondition {
 
 	/**
 	 * Creates a new TriggerInListCondition
-	 *
-	 * @param trigger list of trigger
+	 * 
+	 * @param trigger
+	 *            list of trigger
 	 */
 	public TriggerInListCondition(List<String> trigger) {
 		for (String trig : trigger) {
@@ -54,6 +56,7 @@ public class TriggerInListCondition extends SpeakerNPC.ChatCondition {
 
 	@Override
 	public boolean equals(Object obj) {
-		return EqualsBuilder.reflectionEquals(this, obj, false, QuestStartedCondition.class);
+		return EqualsBuilder.reflectionEquals(this, obj, false,
+				QuestStartedCondition.class);
 	}
 }

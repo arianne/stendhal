@@ -59,8 +59,8 @@ public class stendhal extends Thread {
 	public static final int FPS_LIMIT = 25;
 
 	/**
-	 * Parses command line arguments
-	 *
+	 * Parses command line arguments.
+	 * 
 	 * @param args
 	 *            command line arguments
 	 */
@@ -81,49 +81,58 @@ public class stendhal extends Thread {
 	}
 
 	/**
-	 * Starts the LogSystem
+	 * Starts the LogSystem.
 	 */
 	private static void startLogSystem() {
 		Log4J.init("data/conf/log4j.properties");
 
 		logger.info("Setting base at :" + STENDHAL_FOLDER);
 		logger.info("Stendhal " + VERSION);
-		
-        String patchLevel = System.getProperty("sun.os.patch.level");
-        if ((patchLevel == null) || (patchLevel.equals("unknown"))) {
-            patchLevel = "";
-        }
-		
-		logger.info("OS: " + System.getProperty("os.name") + " " + patchLevel + " " + System.getProperty("os.version") + " " + System.getProperty("os.arch"));
-		logger.info("Java-Runtime: " + System.getProperty("java.runtime.name") + " " + System.getProperty("java.runtime.version") + " from " + System.getProperty("java.home"));
-        logger.info("Java-VM: " + System.getProperty("java.vm.vendor") + " " + System.getProperty("java.vm.name") + " " + System.getProperty("java.vm.version"));
 
-        // TODO: Add some kind of user visible warning for non suppored java vms.
+		String patchLevel = System.getProperty("sun.os.patch.level");
+		if ((patchLevel == null) || (patchLevel.equals("unknown"))) {
+			patchLevel = "";
+		}
+
+		logger.info("OS: " + System.getProperty("os.name") + " " + patchLevel
+				+ " " + System.getProperty("os.version") + " "
+				+ System.getProperty("os.arch"));
+		logger.info("Java-Runtime: " + System.getProperty("java.runtime.name")
+				+ " " + System.getProperty("java.runtime.version") + " from "
+				+ System.getProperty("java.home"));
+		logger.info("Java-VM: " + System.getProperty("java.vm.vendor") + " "
+				+ System.getProperty("java.vm.name") + " "
+				+ System.getProperty("java.vm.version"));
+
+		// TODO: Add some kind of user visible warning for non suppored java
+		// vms.
 	}
 
-//	/**
-//	 * Try to use the system look and feel.
-//	 */
-//	private static void startSwingLookAndFeel() {
-//		try {
-//			// only enable SystemLookAndFeelClassName for MS Windows because of
-//			// bug
-//			// http://sourceforge.net/tracker/index.php?func=detail&aid=1601437&group_id=1111&atid=101111
-//			/*
-//			 * if (System.getProperty("os.name",
-//			 * "").toLowerCase().indexOf("windows") > -1) {
-//			 * UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName()); }
-//			 */
-//		} catch (Exception e) {
-//			logger.error(
-//							"Can't change Look&Feel to match your OS. Using the Cross-Platform look & feel",
-//							e);
-//		}
-//	}
+	// /**
+	// * Try to use the system look and feel.
+	// */
+	// private static void startSwingLookAndFeel() {
+	// try {
+	// // only enable SystemLookAndFeelClassName for MS Windows because of
+	// // bug
+	// //
+	// http://sourceforge.net/tracker/index.php?func=detail&aid=1601437&group_id=1111&atid=101111
+	// /*
+	// * if (System.getProperty("os.name",
+	// * "").toLowerCase().indexOf("windows") > -1) {
+	// * UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName()); }
+	// */
+	// } catch (Exception e) {
+	// logger.error(
+	// "Can't change Look&Feel to match your OS. Using the Cross-Platform look &
+	// feel",
+	// e);
+	// }
+	// }
 
 	/**
-	 * Starts the client and show the first screen
-	 *
+	 * Starts the client and show the first screen.
+	 * 
 	 * @return StendhalClient
 	 */
 	private static StendhalClient startClient() {
@@ -146,8 +155,8 @@ public class stendhal extends Thread {
 	}
 
 	/**
-	 * Starts the real game gui
-	 *
+	 * Starts the real game gui.
+	 * 
 	 * @param client
 	 *            StendhalClient
 	 */
@@ -158,7 +167,7 @@ public class stendhal extends Thread {
 
 	/**
 	 * Main Entry point.
-	 *
+	 * 
 	 * @param args
 	 *            command line arguments
 	 */

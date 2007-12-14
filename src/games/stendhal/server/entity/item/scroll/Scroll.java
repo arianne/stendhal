@@ -21,7 +21,6 @@ import games.stendhal.server.events.UseListener;
 
 import java.util.Map;
 
-
 import org.apache.log4j.Logger;
 import marauroa.common.game.RPObject;
 
@@ -34,20 +33,22 @@ public class Scroll extends StackableItem implements UseListener {
 
 	/**
 	 * Creates a new scroll
-	 *
+	 * 
 	 * @param name
 	 * @param clazz
 	 * @param subclass
 	 * @param attributes
 	 */
-	public Scroll(String name, String clazz, String subclass, Map<String, String> attributes) {
+	public Scroll(String name, String clazz, String subclass,
+			Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);
 	}
 
 	/**
 	 * copy constructor
-	 *
-	 * @param item item to copy
+	 * 
+	 * @param item
+	 *            item to copy
 	 */
 	public Scroll(Scroll item) {
 		super(item);
@@ -55,14 +56,16 @@ public class Scroll extends StackableItem implements UseListener {
 
 	/**
 	 * Make sure that both are scrolls of the same kind.
-	 *
-	 * @return	<code>true</code> if the items have the same class and subclass.
+	 * 
+	 * @return <code>true</code> if the items have the same class and
+	 *         subclass.
 	 */
 	@Override
 	public boolean isStackable(Stackable other) {
 		StackableItem otheri = (StackableItem) other;
 
-		return (getItemClass().equals(otheri.getItemClass()) && getItemSubclass().equals(otheri.getItemSubclass()));
+		return (getItemClass().equals(otheri.getItemClass()) && getItemSubclass().equals(
+				otheri.getItemSubclass()));
 	}
 
 	// TODO: Move up to Item, use useItem() for real impl's
@@ -88,16 +91,17 @@ public class Scroll extends StackableItem implements UseListener {
 
 	/**
 	 * Use a scroll.
-	 *
-	 * @param	player	The player using scroll.
-	 *
-	 * @return	<code>true</code> if successful,
-	 *		<code>false</code> otherwise.
+	 * 
+	 * @param player
+	 *            The player using scroll.
+	 * 
+	 * @return <code>true</code> if successful, <code>false</code>
+	 *         otherwise.
 	 */
 	protected boolean useScroll(Player player) {
 		/*
-		 * Default behaviour
-		 * TODO: XXX - obsolete?? Can never really happen, make abstract?
+		 * Default behaviour TODO: XXX - obsolete?? Can never really happen,
+		 * make abstract?
 		 */
 		player.sendPrivateText("What a strange scroll! You can't make heads or tails of it.");
 		return false;

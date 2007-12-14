@@ -21,11 +21,14 @@ public class BowAndArrowSellerNPC implements ZoneConfigurator {
 
 	/**
 	 * Configure a zone.
-	 *
-	 * @param	zone		The zone to be configured.
-	 * @param	attributes	Configuration attributes.
+	 * 
+	 * @param zone
+	 *            The zone to be configured.
+	 * @param attributes
+	 *            Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone,
+			Map<String, String> attributes) {
 		buildOuchit(zone);
 	}
 
@@ -49,7 +52,8 @@ public class BowAndArrowSellerNPC implements ZoneConfigurator {
 				addGreeting();
 				addJob("I sell bows and arrows.");
 				addHelp("I sell several items, ask me for my #offer.");
-				new SellerAdder().addSeller(this, new SellerBehaviour(shops.get("sellrangedstuff")));
+				new SellerAdder().addSeller(this, new SellerBehaviour(
+						shops.get("sellrangedstuff")));
 				addGoodbye();
 			}
 		};

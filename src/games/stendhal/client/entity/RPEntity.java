@@ -76,7 +76,9 @@ public abstract class RPEntity extends ActiveEntity {
 			"slap-1.wav", "arrow-1.wav" };
 
 	public enum Resolution {
-		HIT(0), BLOCKED(1), MISSED(2);
+		HIT(0),
+		BLOCKED(1),
+		MISSED(2);
 
 		private final int val;
 
@@ -142,7 +144,7 @@ public abstract class RPEntity extends ActiveEntity {
 
 	/**
 	 * The type of effect to show.
-	 *
+	 * 
 	 * These are NOT mutually exclusive - Maybe use bitmask and apply in
 	 * priority order.
 	 */
@@ -169,7 +171,7 @@ public abstract class RPEntity extends ActiveEntity {
 
 	/**
 	 * Create/add a text indicator message.
-	 *
+	 * 
 	 * @param text
 	 *            The text message.
 	 * @param type
@@ -183,7 +185,7 @@ public abstract class RPEntity extends ActiveEntity {
 
 	/**
 	 * Get the admin level.
-	 *
+	 * 
 	 * @return The admin level.
 	 */
 	public int getAdminLevel() {
@@ -256,7 +258,7 @@ public abstract class RPEntity extends ActiveEntity {
 
 	/**
 	 * Get the ratio of HP to base HP.
-	 *
+	 * 
 	 * @return The HP ratio (0.0 - 1.0).
 	 */
 	public float getHPRatio() {
@@ -265,7 +267,7 @@ public abstract class RPEntity extends ActiveEntity {
 
 	/**
 	 * Get the list of text indicator elements.
-	 *
+	 * 
 	 * @return An iterator of text indicators.
 	 */
 	public Iterator<TextIndicator> getTextIndicators() {
@@ -285,7 +287,7 @@ public abstract class RPEntity extends ActiveEntity {
 
 	/**
 	 * Get the outfit code.
-	 *
+	 * 
 	 * @return The outfit code.
 	 */
 	public int getOutfit() {
@@ -298,10 +300,10 @@ public abstract class RPEntity extends ActiveEntity {
 
 	/**
 	 * Get the nicely formatted entity title.
-	 *
+	 * 
 	 * This searches the follow attribute order: title, name (w/o underscore),
 	 * class (w/o underscore), type (w/o underscore).
-	 *
+	 * 
 	 * @return The title, or <code>null</code> if unknown.
 	 */
 	@Override
@@ -321,7 +323,7 @@ public abstract class RPEntity extends ActiveEntity {
 
 	/**
 	 * Get title type.
-	 *
+	 * 
 	 * @return The title type.
 	 */
 	public String getTitleType() {
@@ -376,7 +378,7 @@ public abstract class RPEntity extends ActiveEntity {
 
 	/**
 	 * Determine if in full ghostmode.
-	 *
+	 * 
 	 * @return <code>true</code> is in full ghostmode.
 	 */
 	public boolean isGhostMode() {
@@ -597,7 +599,7 @@ public abstract class RPEntity extends ActiveEntity {
 
 	/**
 	 * Get the resistance this has on other entities (0-100).
-	 *
+	 * 
 	 * @return The resistance, or 0 if in ghostmode.
 	 */
 	@Override
@@ -607,10 +609,10 @@ public abstract class RPEntity extends ActiveEntity {
 
 	/**
 	 * Initialize this entity for an object.
-	 *
+	 * 
 	 * @param object
 	 *            The object.
-	 *
+	 * 
 	 * @see-also #release()
 	 */
 	@Override
@@ -779,7 +781,7 @@ public abstract class RPEntity extends ActiveEntity {
 	/**
 	 * Release this entity. This should clean anything that isn't automatically
 	 * released (such as unregister callbacks, cancel external operations, etc).
-	 *
+	 * 
 	 * @see-also #initialize(RPObject)
 	 */
 	@Override
@@ -796,7 +798,7 @@ public abstract class RPEntity extends ActiveEntity {
 
 	/**
 	 * Update cycle.
-	 *
+	 * 
 	 * @param delta
 	 *            The time (in ms) since last call.
 	 */
@@ -825,7 +827,7 @@ public abstract class RPEntity extends ActiveEntity {
 
 	/**
 	 * The object added/changed attribute(s).
-	 *
+	 * 
 	 * @param object
 	 *            The base object.
 	 * @param changes
@@ -1114,7 +1116,7 @@ public abstract class RPEntity extends ActiveEntity {
 
 	/**
 	 * The object removed attribute(s).
-	 *
+	 * 
 	 * @param object
 	 *            The base object.
 	 * @param changes
@@ -1185,7 +1187,7 @@ public abstract class RPEntity extends ActiveEntity {
 
 		/**
 		 * Create a floating message.
-		 *
+		 * 
 		 * @param text
 		 *            The text to drawn.
 		 * @param type
@@ -1204,10 +1206,10 @@ public abstract class RPEntity extends ActiveEntity {
 
 		/**
 		 * Add to the age of this message.
-		 *
+		 * 
 		 * @param time
 		 *            The amout to add.
-		 *
+		 * 
 		 * @return The new age (in milliseconds).
 		 */
 		public int addAge(final int time) {
@@ -1218,7 +1220,7 @@ public abstract class RPEntity extends ActiveEntity {
 
 		/**
 		 * Get the age of this message.
-		 *
+		 * 
 		 * @return The age (in milliseconds).
 		 */
 		public int getAge() {
@@ -1227,7 +1229,7 @@ public abstract class RPEntity extends ActiveEntity {
 
 		/**
 		 * Get the text message.
-		 *
+		 * 
 		 * @return The text message.
 		 */
 		public String getText() {
@@ -1236,7 +1238,7 @@ public abstract class RPEntity extends ActiveEntity {
 
 		/**
 		 * Get the indicator type.
-		 *
+		 * 
 		 * @return The indicator type.
 		 */
 		public NotificationType getType() {

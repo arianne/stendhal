@@ -19,7 +19,6 @@ import games.stendhal.common.Rand;
 
 import javax.sound.sampled.DataLine;
 
-
 import org.apache.log4j.Logger;
 import marauroa.common.game.RPObject.ID;
 
@@ -66,7 +65,7 @@ class SoundCycle extends Thread implements Cloneable {
 	 * Creates a sound cycle for a game entity. Depending on whether <code>
 	 * entity</code>
 	 * is void, this cycle is global or object-bound.
-	 *
+	 * 
 	 * @param entity
 	 *            the game entity to which this cycle is bound; if <b>null</b>
 	 *            then a global cycle is created
@@ -82,7 +81,8 @@ class SoundCycle extends Thread implements Cloneable {
 	 * @param chance
 	 *            percent chance of performance for singular performances
 	 */
-	public SoundCycle(Entity entity, String token, int period, int volBot, int volTop, int chance) {
+	public SoundCycle(Entity entity, String token, int period, int volBot,
+			int volTop, int chance) {
 		super("Stendhal.CycleSound." + token);
 
 		ClipRunner clip;
@@ -90,12 +90,13 @@ class SoundCycle extends Thread implements Cloneable {
 		if (period < 1000) {
 			throw new IllegalArgumentException("illegal sound period");
 		}
-		if ((volBot < 0) || (volBot > 100) || (volTop < 0) || (volTop > 100) || (volTop < volBot)) {
+		if ((volBot < 0) || (volBot > 100) || (volTop < 0) || (volTop > 100)
+				|| (volTop < volBot)) {
 			throw new IllegalArgumentException("bad volume setting");
 		}
 		clip = SoundEffectMap.getInstance().getSoundClip(token);
 		if (clip == null) {
-			//		TODO: handle soundeffectMap failure
+			// TODO: handle soundeffectMap failure
 		}
 
 		if (entity != null) {
@@ -115,7 +116,7 @@ class SoundCycle extends Thread implements Cloneable {
 	} // constructor
 
 	/**
-	 *  terminates the soundcycle
+	 * terminates the soundcycle
 	 */
 	public void terminate() {
 		Entity o;
@@ -136,7 +137,6 @@ class SoundCycle extends Thread implements Cloneable {
 
 		hstr = "  ** terminating cycle sound: " + token + " / entity=" + hstr;
 		logger.debug(hstr);
-
 
 		if (dataline != null) {
 			dataline.stop();
@@ -168,15 +168,19 @@ class SoundCycle extends Thread implements Cloneable {
 			try {
 				start();
 			} catch (OutOfMemoryError e) {
-				// If the number of threads is limmited a OutOfMemoryError is thrown.
-				// The soundsystem can create a huge amount of threads, so we catch
+				// If the number of threads is limmited a OutOfMemoryError is
+				// thrown.
+				// The soundsystem can create a huge amount of threads, so we
+				// catch
 				// it and simply ignore it.
 				logger.debug(e);
 			}
 		}
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Thread#run()
 	 */
 	@Override
@@ -201,11 +205,13 @@ class SoundCycle extends Thread implements Cloneable {
 			// if object bound sound cycle
 			if (entityRef != null) {
 				o = entityRef;
-				if (o  != null) {
-					logger.debug("- start cyclic sound for entity: " + o.getType());
-					dataline = ((SoundObject) o).playSound(token, volBot, volTop, chance);
+				if (o != null) {
+					logger.debug("- start cyclic sound for entity: "
+							+ o.getType());
+					dataline = ((SoundObject) o).playSound(token, volBot,
+							volTop, chance);
 				} else {
-					//FIXME: could be origin for sound dont stop bug
+					// FIXME: could be origin for sound dont stop bug
 					SoundSystem.stopSoundCycle(ID_Token);
 					terminate();
 				}

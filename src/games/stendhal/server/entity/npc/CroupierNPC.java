@@ -15,8 +15,8 @@ import marauroa.common.Pair;
 public abstract class CroupierNPC extends SpeakerNPC {
 
 	/**
-	 * The time (in seconds) it takes before the NPC removes
-	 * thrown dice from the table.
+	 * The time (in seconds) it takes before the NPC removes thrown dice from
+	 * the table.
 	 */
 	private static final int CLEAR_PLAYING_AREA_TIME = 10;
 
@@ -26,10 +26,10 @@ public abstract class CroupierNPC extends SpeakerNPC {
 	private Area playingArea;
 
 	/**
-	 * A list where each possible dice sum is the index of the element
-	 * which is either the name of the prize for this dice sum and
-	 * the congratulation text that should be said by the NPC, or null
-	 * if the player doesn't win anything for this sum.
+	 * A list where each possible dice sum is the index of the element which is
+	 * either the name of the prize for this dice sum and the congratulation
+	 * text that should be said by the NPC, or null if the player doesn't win
+	 * anything for this sum.
 	 */
 	private List<Pair<String, String>> prizes;
 
@@ -48,16 +48,21 @@ public abstract class CroupierNPC extends SpeakerNPC {
 			if (prizeAndText != null) {
 				String prizeName = prizeAndText.first();
 				String text = prizeAndText.second();
-				Item prize = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(prizeName);
+				Item prize = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
+						prizeName);
 				if (prizeName.equals("golden_legs")) {
 					prize.setBoundTo(player.getName());
 				}
 
-				say("Congratulations, " + player.getTitle() + ", you have " + sum + " points. " + text);
+				say("Congratulations, " + player.getTitle() + ", you have "
+						+ sum + " points. " + text);
 				player.equip(prize, true);
 			} else {
-				say("Sorry, " + player.getTitle() + ", you only have " + sum
-				        + " points. You haven't won anything. Better luck next time!");
+				say("Sorry, "
+						+ player.getTitle()
+						+ ", you only have "
+						+ sum
+						+ " points. You haven't won anything. Better luck next time!");
 			}
 			// The croupier takes the dice away from the table after some time.
 			// This is simulated by shortening the degradation time of the dice.
@@ -68,8 +73,9 @@ public abstract class CroupierNPC extends SpeakerNPC {
 
 	/**
 	 * Sets the playing area (a table or something like that)
-	 *
-	 * @param playingArea shape of the playing area (in the same zone as the NPC)
+	 * 
+	 * @param playingArea
+	 *            shape of the playing area (in the same zone as the NPC)
 	 */
 	public void setTableArea(Rectangle playingArea) {
 		this.playingArea = new Area(getZone(), playingArea);

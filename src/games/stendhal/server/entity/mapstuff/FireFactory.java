@@ -9,6 +9,7 @@ import games.stendhal.server.config.factory.ConfigurableFactoryContext;
 public class FireFactory implements ConfigurableFactory {
 
 	public Object create(ConfigurableFactoryContext ctx) {
-		return new Fire(ctx.getRequiredInt("width"), ctx.getRequiredInt("height"));
+		return new Fire(ctx.getRequiredInt("width"),
+				ctx.getRequiredInt("height"));
 	}
 }

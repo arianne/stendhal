@@ -25,7 +25,6 @@ public class AttackAction implements ActionListener {
 
 	private static final String _ATTACK = "attack";
 
-	
 	/**
 	 * registers the AttackAction with its trigger word "attack".
 	 */

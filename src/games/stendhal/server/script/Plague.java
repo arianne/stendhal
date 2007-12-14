@@ -56,8 +56,8 @@ public class Plague extends ScriptImpl {
 						}
 					}
 				} else {
-					admin.sendPrivateText("That's too many! Please keep <ringcount> less or equal to " + MAX_RING_COUNT
-					        + ".");
+					admin.sendPrivateText("That's too many! Please keep <ringcount> less or equal to "
+							+ MAX_RING_COUNT + ".");
 				}
 			}
 		}

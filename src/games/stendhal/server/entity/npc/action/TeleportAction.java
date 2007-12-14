@@ -22,14 +22,18 @@ public class TeleportAction extends SpeakerNPC.ChatAction {
 
 	/**
 	 * Creates a new TeleportAction
-	 *
-	 * @param zonename name of destination zone
-	 * @param x x-position
-	 * @param y y-position
-	 * @param direction facing into this direction
+	 * 
+	 * @param zonename
+	 *            name of destination zone
+	 * @param x
+	 *            x-position
+	 * @param y
+	 *            y-position
+	 * @param direction
+	 *            facing into this direction
 	 */
 	public TeleportAction(String zonename, int x, int y, Direction direction) {
-		this.zonename = zonename; 
+		this.zonename = zonename;
 		this.x = x;
 		this.y = y;
 		this.direction = direction;
@@ -38,13 +42,14 @@ public class TeleportAction extends SpeakerNPC.ChatAction {
 	@Override
 	public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 		StendhalRPZone zone = StendhalRPWorld.get().getZone(zonename);
-        player.teleport(zone, x, y, direction, player);
+		player.teleport(zone, x, y, direction, player);
 		player.notifyWorldAboutChanges();
 	}
 
 	@Override
 	public String toString() {
-		return "Teleport<" + zonename + ", " + x + ", " + y + ", " + direction +">";
+		return "Teleport<" + zonename + ", " + x + ", " + y + ", " + direction
+				+ ">";
 	}
 
 	@Override
@@ -54,7 +59,8 @@ public class TeleportAction extends SpeakerNPC.ChatAction {
 
 	@Override
 	public boolean equals(Object obj) {
-		return EqualsBuilder.reflectionEquals(this, obj, false, TeleportAction.class);
+		return EqualsBuilder.reflectionEquals(this, obj, false,
+				TeleportAction.class);
 	}
 
 }

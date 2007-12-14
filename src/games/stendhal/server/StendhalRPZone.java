@@ -51,11 +51,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.Vector;
 
-import javax.management.AttributeNotFoundException;
-
 import marauroa.common.game.IRPZone;
 import marauroa.common.game.RPObject;
-import marauroa.common.game.RPObjectInvalidException;
 import marauroa.common.game.RPSlot;
 import marauroa.common.net.OutputSerializer;
 import marauroa.common.net.message.TransferContent;
@@ -158,12 +155,12 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 	/**
 	 * Get blood (if any) at a specified zone position.
-	 *
+	 * 
 	 * @param x
 	 *            The X coordinate.
 	 * @param y
 	 *            The Y coordinate.
-	 *
+	 * 
 	 * @return The blood, or <code>null</code>.
 	 */
 	public Blood getBlood(final int x, final int y) {
@@ -196,12 +193,12 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 	/**
 	 * Get the portal (if any) at a specified zone position.
-	 *
+	 * 
 	 * @param x
 	 *            The X coordinate.
 	 * @param y
 	 *            The Y coordinate.
-	 *
+	 * 
 	 * @return The portal, or <code>null</code>.
 	 */
 	public Portal getPortal(int x, int y) {
@@ -216,7 +213,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 	/**
 	 * Get the list of sheep foods in the zone.
-	 *
+	 * 
 	 * @return The list of sheep foods.
 	 */
 	public List<SheepFood> getSheepFoodList() {
@@ -229,10 +226,10 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 	/**
 	 * Add a creature respawn point to the zone.
-	 *
+	 * 
 	 * TODO: Make CreatureRespawnPoint a sub-class of Entity and use normal
 	 * add().
-	 *
+	 * 
 	 * @param point
 	 *            The respawn point.
 	 */
@@ -242,10 +239,10 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 	/**
 	 * Remove a creature respawn point from the zone.
-	 *
+	 * 
 	 * TODO: Make CreatureRespawnPoint a sub-class of Entity and use normal
 	 * remove().
-	 *
+	 * 
 	 * @param point
 	 *            The respawn point.
 	 */
@@ -366,10 +363,10 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 	/**
 	 * Determine if this zone overlaps an area in global coordinates.
-	 *
+	 * 
 	 * @param area
 	 *            The area (in global coordinate space).
-	 *
+	 * 
 	 * @return <code>true</code> if the area overlaps.
 	 */
 	public boolean intersects(Rectangle2D area) {
@@ -380,7 +377,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 	/**
 	 * Populate a zone based on it's map content.
-	 *
+	 * 
 	 * TODO: XXX - This should be moved to the zone loader or something.
 	 */
 	public void populate(LayerDefinition objectsLayer) throws IOException {
@@ -405,12 +402,12 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 	/**
 	 * Create a map entity as a given coordinate.
-	 *
+	 * 
 	 * @param clazz
 	 *            the clazz of entity we are loading.<br>
 	 *            It is related to the way entities are stored in tilesets now.
-	 *
-	 *
+	 * 
+	 * 
 	 */
 	protected void createEntityAt(String clazz, int type, int x, int y) {
 		logger.debug("creating " + clazz + ":" + type + " at " + x + "," + y);
@@ -458,7 +455,8 @@ public class StendhalRPZone extends MarauroaRPZone {
 							+ " found");
 				}
 			} else if (clazz.contains("logic/item")) {
-				PassiveEntityRespawnPoint passiveEntityrespawnPoint = PassiveEntityRespawnPointFactory.create(clazz, type, getID(), x, y);
+				PassiveEntityRespawnPoint passiveEntityrespawnPoint = PassiveEntityRespawnPointFactory.create(
+						clazz, type, getID(), x, y);
 				if (passiveEntityrespawnPoint != null) {
 					passiveEntityrespawnPoint.setPosition(x, y);
 					add(passiveEntityrespawnPoint);
@@ -475,8 +473,8 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 	/*
 	 * Create a portal between levels.
-	 *
-	 *
+	 * 
+	 * 
 	 */
 	protected void createLevelPortalAt(int type, int x, int y) {
 		if (logger.isDebugEnabled()) {
@@ -598,10 +596,10 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 	/**
 	 * Adds an object to the ground.
-	 *
+	 * 
 	 * The player parameter can be used to create special items that react when
 	 * they are dropped on the ground by a player.
-	 *
+	 * 
 	 * @param object
 	 *            The object that should be added to the zone
 	 * @param player
@@ -724,11 +722,12 @@ public class StendhalRPZone extends MarauroaRPZone {
 		return object;
 	}
 
-/**
- * removes object from zone.
- * @param object
- * @return the removed object
- */
+	/**
+	 * removes object from zone.
+	 * 
+	 * @param object
+	 * @return the removed object
+	 */
 	public synchronized RPObject remove(RPObject object) {
 		if (object.isContained()) {
 			// We modify the base container if the object change.
@@ -768,7 +767,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 	/**
 	 * Checks if there is a collision on the airline between 2 positions. Only
 	 * the collision map will be used.
-	 *
+	 * 
 	 * @param x1
 	 *            x value of position 1
 	 * @param y1
@@ -798,7 +797,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 	 * Checks whether the given entity would be able to stand at the given
 	 * position, or if it would collide with the collision map or with another
 	 * entity.
-	 *
+	 * 
 	 * @param entity
 	 *            The entity that would stand on the given position
 	 * @param x
@@ -816,7 +815,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 	 * Checks whether the given entity would be able to stand at the given
 	 * position, or if it would collide with the collision map or (if
 	 * <i>checkObjects</i> is enabled) with another entity.
-	 *
+	 * 
 	 * @param entity
 	 *            The entity that would stand on the given position
 	 * @param x
@@ -875,7 +874,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 	}
 
 	/**
-	 *
+	 * 
 	 * @return the entity at x,y or null if there is none
 	 */
 	public synchronized Entity getEntityAt(double x, double y) {
@@ -894,7 +893,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 	/**
 	 * Get the zone name. This is the same as <code>getID().getID()</code>,
 	 * only cleaner to use.
-	 *
+	 * 
 	 * @return The zone name.
 	 */
 	public String getName() {
@@ -903,7 +902,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 	/**
 	 * Notify anything interested in when an entity entered.
-	 *
+	 * 
 	 * @param entity
 	 *            The entity that entered.
 	 * @param newX
@@ -925,7 +924,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 	/**
 	 * Notify anything interested in when an entity exited.
-	 *
+	 * 
 	 * @param entity
 	 *            The entity that moved.
 	 * @param oldX
@@ -947,7 +946,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 	/**
 	 * Notify anything interested that an entity moved.
-	 *
+	 * 
 	 * @param entity
 	 *            The entity that moved.
 	 * @param oldX
@@ -1000,7 +999,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 	/**
 	 * Register a movement listener for notification. Eventually create a
 	 * macro-block hash to cut down on listeners to check.
-	 *
+	 * 
 	 * @param listener
 	 *            A movement listener to register.
 	 */
@@ -1010,7 +1009,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 	/**
 	 * Unregister a movement listener from notification.
-	 *
+	 * 
 	 * @param listener
 	 *            A movement listener to unregister.
 	 */
@@ -1034,7 +1033,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 	/**
 	 * Gets all players in this zone.
-	 *
+	 * 
 	 * @return A list of all players.
 	 */
 	public List<Player> getPlayers() {
@@ -1044,7 +1043,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 	/**
 	 * Gets all players in this zone, as well as friendly entities such as
 	 * sheep. These are the targets (enemies) for wild creatures such as orcs.
-	 *
+	 * 
 	 * @return a list of all players and friendly entities
 	 */
 	public List<RPEntity> getPlayerAndFriends() {
@@ -1053,7 +1052,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 	/**
 	 * Can magic scrolls for teleportation be used in this zone?
-	 *
+	 * 
 	 * @return true, if teleportion is possible, false otherwise
 	 */
 	public boolean isTeleportAllowed() {
@@ -1063,7 +1062,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 	/**
 	 * Sets the flag whether magic scrolls for teleportation may be uses in this
 	 * zone.
-	 *
+	 * 
 	 * @param teleportAllowed
 	 *            true, if teleportion is possible, false otherwise
 	 */
@@ -1073,7 +1072,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 	/**
 	 * Can moveto (mouse movement using pathfinding) be done on this map?
-	 *
+	 * 
 	 * @return true, if moveto is possible, false otherwise
 	 */
 	public boolean isMoveToAllowed() {
@@ -1083,7 +1082,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 	/**
 	 * Sets the flag whether moveto (mouse movement using pathfinding) is
 	 * possible in this zone.
-	 *
+	 * 
 	 * @param moveToAllowed
 	 *            true, if it is possible, false otherwise
 	 */

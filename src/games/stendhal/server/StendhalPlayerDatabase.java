@@ -100,8 +100,7 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 		 * Here goes the stendhal specific code.
 		 */
 		try {
-			Connection connection = ((JDBCTransaction) transaction)
-					.getConnection();
+			Connection connection = ((JDBCTransaction) transaction).getConnection();
 			Statement stmt = connection.createStatement();
 
 			Player instance = (Player) player;
@@ -184,8 +183,7 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 		 * Here goes the stendhal specific code.
 		 */
 		try {
-			Connection connection = ((JDBCTransaction) transaction)
-					.getConnection();
+			Connection connection = ((JDBCTransaction) transaction).getConnection();
 			Statement stmt = connection.createStatement();
 
 			Player instance = (Player) player;
@@ -245,14 +243,14 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 					+ instance.getNumberOfEquipped("money") + ", " + "atk="
 					+ instance.getATK() + ", " + "def=" + instance.getDEF()
 					+ ", " + "hp=" + instance.getBaseHP() + ", " + "karma="
-					+ (int) instance.getKarma() + ", "
-					+ "head='" + StringChecker.escapeSQLString(head) + "', "
-					+ "armor='" + StringChecker.escapeSQLString(armor) + "', "
-					+ "lhand='" + StringChecker.escapeSQLString(lhand) + "', "
-					+ "rhand='" + StringChecker.escapeSQLString(rhand) + "', "
-					+ "legs='" + StringChecker.escapeSQLString(legs) + "', "
-					+ "feet='" + StringChecker.escapeSQLString(feet) + "', "
-					+ "cloak='" + StringChecker.escapeSQLString(cloak) + "'"
+					+ (int) instance.getKarma() + ", " + "head='"
+					+ StringChecker.escapeSQLString(head) + "', " + "armor='"
+					+ StringChecker.escapeSQLString(armor) + "', " + "lhand='"
+					+ StringChecker.escapeSQLString(lhand) + "', " + "rhand='"
+					+ StringChecker.escapeSQLString(rhand) + "', " + "legs='"
+					+ StringChecker.escapeSQLString(legs) + "', " + "feet='"
+					+ StringChecker.escapeSQLString(feet) + "', " + "cloak='"
+					+ StringChecker.escapeSQLString(cloak) + "'"
 					+ " WHERE name='"
 					+ StringChecker.escapeSQLString(player.get("name")) + "'";
 			logger.debug("storeCharacter is running: " + query);
@@ -327,7 +325,7 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 
 	/**
 	 * This method returns an instance of PlayerDatabase
-	 *
+	 * 
 	 * @return A shared instance of PlayerDatabase
 	 */
 	public static StendhalPlayerDatabase getDatabase() {
@@ -345,9 +343,8 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 	}
 
 	/**
-	 * close the database connection
-	 * TODO This function is not yet used, it should be called
-	 * for clean shutdown of the game server. 
+	 * close the database connection TODO This function is not yet used, it
+	 * should be called for clean shutdown of the game server.
 	 */
 	public static void closeDatabase() {
 		try {
@@ -357,7 +354,7 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 			}
 
 			playerDatabase = null;
-		} catch(Exception e) {
+		} catch (Exception e) {
 			logger.error("cannot close database connection", e);
 		}
 	}
@@ -412,12 +409,13 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 	}
 
 	/*
-	 * TODO: Refactor We could make room for hall of fame points in the character_stats table itself.
+	 * TODO: Refactor We could make room for hall of fame points in the
+	 * character_stats table itself.
 	 */
 
 	/**
 	 * Returns the points in the specified hall of fame
-	 *
+	 * 
 	 * @param trans
 	 *            Transaction
 	 * @param playername
@@ -454,7 +452,7 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 
 	/**
 	 * Stores an entry in the hall of fame
-	 *
+	 * 
 	 * @param trans
 	 *            Transaction
 	 * @param playername
@@ -489,8 +487,8 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 						+ "','"
 						+ StringChecker.escapeSQLString(fametype)
 						+ "','"
-						+ StringChecker.escapeSQLString(Integer
-								.toString(points)) + "');";
+						+ StringChecker.escapeSQLString(Integer.toString(points))
+						+ "');";
 				stmt.executeUpdate(query);
 			}
 			stmt.close();
@@ -500,7 +498,8 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 		}
 	}
 
-	public void addGameEvent(String source, String event, String[] params) throws SQLException {
+	public void addGameEvent(String source, String event, String[] params)
+			throws SQLException {
 		Transaction transaction = getTransaction();
 		addGameEvent(transaction, source, event, params);
 		transaction.commit();

@@ -16,7 +16,6 @@ import games.stendhal.server.entity.EntityFactoryHelper;
 import java.util.HashMap;
 import java.util.Map;
 
-
 import org.apache.log4j.Logger;
 
 /**
@@ -48,12 +47,13 @@ public class EntitySetupDescriptor extends SetupDescriptor {
 	 */
 	protected HashMap<String, String> attributes;
 
-
 	/**
 	 * Create an entity setup descriptor.
-	 *
-	 * @param	x		The X coordinate.
-	 * @param	y		The Y coordinate.
+	 * 
+	 * @param x
+	 *            The X coordinate.
+	 * @param y
+	 *            The Y coordinate.
 	 */
 	public EntitySetupDescriptor(final int x, final int y) {
 		this.x = x;
@@ -63,15 +63,14 @@ public class EntitySetupDescriptor extends SetupDescriptor {
 		className = null;
 	}
 
-
 	//
 	// EntitySetupDescriptor
 	//
 
 	/**
 	 * Get the generic entity attributes.
-	 *
-	 * @return	A map of entity attributes.
+	 * 
+	 * @return A map of entity attributes.
 	 */
 	public Map<String, String> getAttributes() {
 		return attributes;
@@ -79,8 +78,8 @@ public class EntitySetupDescriptor extends SetupDescriptor {
 
 	/**
 	 * Get the implementation class name.
-	 *
-	 * @return	The [logical] class name for the implementation.
+	 * 
+	 * @return The [logical] class name for the implementation.
 	 */
 	public String getImplementation() {
 		return className;
@@ -88,8 +87,8 @@ public class EntitySetupDescriptor extends SetupDescriptor {
 
 	/**
 	 * Get the X coordinate.
-	 *
-	 * @return	The entity's X coordinate.
+	 * 
+	 * @return The entity's X coordinate.
 	 */
 	public int getX() {
 		return x;
@@ -97,8 +96,8 @@ public class EntitySetupDescriptor extends SetupDescriptor {
 
 	/**
 	 * Get the Y coordinate.
-	 *
-	 * @return	The entity's Y coordinate.
+	 * 
+	 * @return The entity's Y coordinate.
 	 */
 	public int getY() {
 		return y;
@@ -106,9 +105,11 @@ public class EntitySetupDescriptor extends SetupDescriptor {
 
 	/**
 	 * Set a generic entity attribute.
-	 *
-	 * @param	name		An attribute name.
-	 * @param	value		An attribute value.
+	 * 
+	 * @param name
+	 *            An attribute name.
+	 * @param value
+	 *            An attribute value.
 	 */
 	public void setAttribute(final String name, final String value) {
 		attributes.put(name, value);
@@ -116,14 +117,13 @@ public class EntitySetupDescriptor extends SetupDescriptor {
 
 	/**
 	 * Set the implementation class name.
-	 *
-	 * @param	className	The [logical] class name for the
-	 *				implementation.
+	 * 
+	 * @param className
+	 *            The [logical] class name for the implementation.
 	 */
 	public void setImplementation(final String className) {
 		this.className = className;
 	}
-
 
 	//
 	// SetupDescriptor
@@ -131,22 +131,23 @@ public class EntitySetupDescriptor extends SetupDescriptor {
 
 	/**
 	 * Do appropriate zone setup.
-	 *
-	 * @param	zone		The zone.
+	 * 
+	 * @param zone
+	 *            The zone.
 	 */
 	@Override
 	public void setup(final StendhalRPZone zone) {
 		String classNameTemp = getImplementation();
 
 		if (classNameTemp == null) {
-			logger.error("Entity without factory at "
-				+ zone.getName()
-				+ "[" + getX() + "," + getY() + "]");
+			logger.error("Entity without factory at " + zone.getName() + "["
+					+ getX() + "," + getY() + "]");
 			return;
 		}
 
 		try {
-			Entity entity = EntityFactoryHelper.create(classNameTemp, getParameters(), getAttributes());
+			Entity entity = EntityFactoryHelper.create(classNameTemp,
+					getParameters(), getAttributes());
 
 			if (entity == null) {
 				logger.warn("Unable to create entity: " + classNameTemp);

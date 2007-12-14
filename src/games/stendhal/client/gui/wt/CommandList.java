@@ -22,16 +22,20 @@ public class CommandList extends WtPopupMenu {
 	private static final long serialVersionUID = -1607102841664745919L;
 
 	/** the entity associated with the command list */
-	private EntityView	view;
+	private EntityView view;
 
 	/**
 	 * Create an entity view command list.
-	 *
-	 * @param	name		The menu name (needed?).
-	 * @param	items		The action names.
-	 * @param	view		The entity view.
+	 * 
+	 * @param name
+	 *            The menu name (needed?).
+	 * @param items
+	 *            The action names.
+	 * @param view
+	 *            The entity view.
 	 */
-	public CommandList(final String name, final String [] items, final EntityView view) {
+	public CommandList(final String name, final String[] items,
+			final EntityView view) {
 		super(name);
 
 		this.view = view;
@@ -63,7 +67,6 @@ public class CommandList extends WtPopupMenu {
 			add(mi);
 		}
 	}
-
 
 	/** an action has been chosen */
 	protected void doAction(String command) {

@@ -17,12 +17,13 @@ import marauroa.common.Logger;
 import marauroa.common.game.RPObject;
 
 /**
- * Abstract base class for a stackable timed item. Extend this class and implement
- * methods useItem(Player) and itemFinished(Player).
+ * Abstract base class for a stackable timed item. Extend this class and
+ * implement methods useItem(Player) and itemFinished(Player).
  * 
  * @author johnnnny
  */
-public abstract class TimedStackableItem extends StackableItem implements UseListener {
+public abstract class TimedStackableItem extends StackableItem implements
+		UseListener {
 
 	private static Logger logger = Log4J.getLogger(TimedStackableItem.class);
 
@@ -44,7 +45,8 @@ public abstract class TimedStackableItem extends StackableItem implements UseLis
 	/**
 	 * copy constructor
 	 * 
-	 * @param item item to copy
+	 * @param item
+	 *            item to copy
 	 */
 	public TimedStackableItem(TimedStackableItem item) {
 		super(item);
@@ -106,6 +108,7 @@ public abstract class TimedStackableItem extends StackableItem implements UseLis
 
 	/**
 	 * Get the length of the timed event in turns.
+	 * 
 	 * @return length in turns
 	 */
 	public int getAmount() {
@@ -114,6 +117,7 @@ public abstract class TimedStackableItem extends StackableItem implements UseLis
 
 	/**
 	 * Called when the player uses the item. Implement this in a subclass.
+	 * 
 	 * @param player
 	 * @return true if the usage is successful
 	 */
@@ -121,6 +125,7 @@ public abstract class TimedStackableItem extends StackableItem implements UseLis
 
 	/**
 	 * Called when the used item is finished. Implement this in a subclass.
+	 * 
 	 * @param player
 	 */
 	public abstract void itemFinished(Player player);

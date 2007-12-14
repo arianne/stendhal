@@ -22,10 +22,12 @@ public class AlterAction extends AdministrationAction {
 	private static final String _STAT = "stat";
 	private static final String _TARGET = "target";
 	private static final String _ALTER = "alter";
-	public static void register(){
+
+	public static void register() {
 		CommandCenter.register(_ALTER, new AlterAction(), 900);
-		
+
 	}
+
 	@Override
 	public void perform(Player player, RPAction action) {
 
@@ -67,7 +69,7 @@ public class AlterAction extends AdministrationAction {
 					stat);
 			if (type == null) {
 				player.sendPrivateText("Attribute you are altering is not defined in RPClass("
-								+ changed.getRPClass().getName() + ")");
+						+ changed.getRPClass().getName() + ")");
 				return;
 			}
 
@@ -137,10 +139,9 @@ public class AlterAction extends AdministrationAction {
 				} else {
 					// Can be only set if value is not a number
 					if (mode.equals("set")) {
-						StendhalRPRuleProcessor.get()
-								.addGameEvent(player.getName(), _ALTER,
-										action.get(_TARGET), stat,
-										action.get(_VALUE));
+						StendhalRPRuleProcessor.get().addGameEvent(
+								player.getName(), _ALTER, action.get(_TARGET),
+								stat, action.get(_VALUE));
 						changed.put(stat, action.get(_VALUE));
 					}
 				}

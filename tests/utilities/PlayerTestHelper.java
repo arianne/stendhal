@@ -18,10 +18,11 @@ import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
-public class PlayerTestHelper  {
+public class PlayerTestHelper {
 
 	/**
 	 * create an unnamed player object
+	 * 
 	 * @return player
 	 */
 	public static Player createPlayer() {
@@ -33,6 +34,7 @@ public class PlayerTestHelper  {
 
 	/**
 	 * create a named player
+	 * 
 	 * @param name
 	 * @return player
 	 */
@@ -44,6 +46,7 @@ public class PlayerTestHelper  {
 
 	/**
 	 * register a player in rule processor, world and zone
+	 * 
 	 * @param player
 	 * @param zoneName
 	 */
@@ -53,6 +56,7 @@ public class PlayerTestHelper  {
 
 	/**
 	 * register a player in rule processor, world and zone
+	 * 
 	 * @param player
 	 * @param zone
 	 */
@@ -70,6 +74,7 @@ public class PlayerTestHelper  {
 
 	/**
 	 * remove a player from rule processor, world and zone
+	 * 
 	 * @param player
 	 * @param zone
 	 */
@@ -80,6 +85,7 @@ public class PlayerTestHelper  {
 
 	/**
 	 * remove a player from rule processor, world and zone
+	 * 
 	 * @param player
 	 * @param zone
 	 */
@@ -89,45 +95,46 @@ public class PlayerTestHelper  {
 		if (player != null) {
 			unregisterPlayer(player, zone);
 		}
-    }
+	}
 
 	/**
 	 * remove a player from rule processor, world and zone
+	 * 
 	 * @param playerName
 	 * @param zoneName
 	 */
-	public static void removePlayer(String playerName, String zoneName)
-    {
+	public static void removePlayer(String playerName, String zoneName) {
 		removePlayer(playerName, MockStendlRPWorld.get().getZone(zoneName));
-    }
+	}
 
 	/**
 	 * remove a player from world and rule processor
+	 * 
 	 * @param playerName
 	 */
-	public static void removePlayer(String playerName)
-    {
+	public static void removePlayer(String playerName) {
 		Player player = MockStendhalRPRuleProcessor.get().getPlayer(playerName);
 
 		if (player != null) {
 			removePlayer(player);
 		}
-    }
+	}
 
 	/**
 	 * remove a player from world and rule processor
+	 * 
 	 * @param player
 	 */
-	public static void removePlayer(Player player)
-    {
+	public static void removePlayer(Player player) {
 		if (player != null) {
 			MockStendlRPWorld.get().remove(player.getID());
 			MockStendhalRPRuleProcessor.get().removePlayer(player);
 		}
-    }
+	}
 
 	/**
 	 * equip the player with the given amount of money
+	 * 
 	 * @param player
 	 * @param amount
 	 * @return success flag
@@ -138,15 +145,18 @@ public class PlayerTestHelper  {
 
 	/**
 	 * equip the player with the given amount of items
+	 * 
 	 * @param player
 	 * @param clazz
 	 * @param amount
 	 * @return success flag
 	 */
-	public static boolean equipWithStackableItem(Player player, String clazz, int amount) {
+	public static boolean equipWithStackableItem(Player player, String clazz,
+			int amount) {
 		StendhalRPWorld world = StendhalRPWorld.get();
 
-		StackableItem item = (StackableItem) world.getRuleManager().getEntityManager().getItem(clazz);
+		StackableItem item = (StackableItem) world.getRuleManager().getEntityManager().getItem(
+				clazz);
 		item.setQuantity(amount);
 
 		return player.equip(item);
@@ -154,34 +164,34 @@ public class PlayerTestHelper  {
 
 	/**
 	 * reset the conversation state of the named NPC
+	 * 
 	 * @param string
 	 */
-	public static void resetNPC(String npcName)
-    {
+	public static void resetNPC(String npcName) {
 		SpeakerNPC npc = NPCList.get().get(npcName);
 
 		if (npc != null) {
 			npc.setCurrentState(ConversationStates.IDLE);
 		}
-    }
+	}
 
 	/**
 	 * remove the named NPC
+	 * 
 	 * @param npcName
 	 */
-	public static void removeNPC(String npcName)
-    {
+	public static void removeNPC(String npcName) {
 		NPCList.get().remove(npcName);
-    }
+	}
 
 	/**
 	 * remove a zone from the world
+	 * 
 	 * @param name
 	 */
-	public static void removeZone(String zoneName)
-    {
-		//TODO
-    }
+	public static void removeZone(String zoneName) {
+		// TODO
+	}
 
 	public static void addEmptySlots(Player player) {
 		player.addSlot(new EntitySlot("bag"));
@@ -204,14 +214,13 @@ public class PlayerTestHelper  {
 		player.getSlot("!tutorial").add(new RPObject());
 		player.addSlot(new RPSlot("!visited"));
 		player.getSlot("!visited").add(new RPObject());
-	
+
 	}
 
 	public static void generateItemRPClasses() {
 		Entity.generateRPClass();
 		Item.generateRPClass();
-	
-	
+
 	}
 
 	public static void generateNPCRPClasses() {
@@ -219,7 +228,7 @@ public class PlayerTestHelper  {
 		ActiveEntity.generateRPClass();
 		RPEntity.generateRPClass();
 		NPC.generateRPClass();
-	
+
 	}
 
 	public static void generatePlayerRPClasses() {
@@ -227,6 +236,6 @@ public class PlayerTestHelper  {
 		ActiveEntity.generateRPClass();
 		RPEntity.generateRPClass();
 		Player.generateRPClass();
-	
+
 	}
 }

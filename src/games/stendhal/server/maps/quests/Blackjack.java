@@ -56,12 +56,12 @@ public class Blackjack extends AbstractQuest {
 		playerCards.clear();
 		bankCards.clear();
 
-		playerCardsItem = (StackableItem) StendhalRPWorld.get()
-				.getRuleManager().getEntityManager().getItem("cards");
+		playerCardsItem = (StackableItem) StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
+				"cards");
 		zone.add(playerCardsItem);
 		playerCardsItem.setPosition(25, 38);
-		bankCardsItem = (StackableItem) StendhalRPWorld.get().getRuleManager()
-				.getEntityManager().getItem("cards");
+		bankCardsItem = (StackableItem) StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
+				"cards");
 		bankCardsItem.setPosition(27, 38);
 		zone.add(bankCardsItem);
 
@@ -121,7 +121,7 @@ public class Blackjack extends AbstractQuest {
 	/**
 	 * Deals <i>number</i> cards to the player, if the player is not standing,
 	 * and to the bank, if the bank is not standing.
-	 *
+	 * 
 	 * @param number
 	 *            The number of cards that each player should draw.
 	 */
@@ -237,7 +237,7 @@ public class Blackjack extends AbstractQuest {
 
 	/**
 	 * Gives the player <i>factor</i> times his stake.
-	 *
+	 * 
 	 * @param player
 	 *            The player.
 	 * @param factor
@@ -246,8 +246,8 @@ public class Blackjack extends AbstractQuest {
 	 * @return A message that the NPC should say to inform the player.
 	 */
 	private String payOff(Player player, int factor) {
-		StackableItem money = (StackableItem) StendhalRPWorld.get()
-				.getRuleManager().getEntityManager().getItem("money");
+		StackableItem money = (StackableItem) StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
+				"money");
 		money.setQuantity(factor * stake);
 		player.equip(money, true);
 		if (factor == 1) {
@@ -325,12 +325,14 @@ public class Blackjack extends AbstractQuest {
 		ramon.add(ConversationStates.ATTENDING, "stake", null,
 				ConversationStates.ATTENDING, null, new ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-			        	stake = sentence.getAmount();
+					public void fire(Player player, Sentence sentence,
+							SpeakerNPC npc) {
+						stake = sentence.getAmount();
 
-				        if (sentence.hasError()) {
-				        	npc.say(sentence.getError() + " Just tell me how much you want to risk, for example #stake #50.");
-				        } else {
+						if (sentence.hasError()) {
+							npc.say(sentence.getError()
+									+ " Just tell me how much you want to risk, for example #stake #50.");
+						} else {
 							if (stake < MIN_STAKE) {
 								npc.say("You must stake at least " + MIN_STAKE
 										+ " pieces of gold.");
@@ -351,7 +353,8 @@ public class Blackjack extends AbstractQuest {
 				ConversationPhrases.YES_MESSAGES, null,
 				ConversationStates.ATTENDING, null, new ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					public void fire(Player player, Sentence sentence,
+							SpeakerNPC npc) {
 						dealCards(player, 1);
 					}
 				});
@@ -362,7 +365,8 @@ public class Blackjack extends AbstractQuest {
 				ConversationPhrases.NO_MESSAGES, null,
 				ConversationStates.ATTENDING, null, new ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					public void fire(Player player, Sentence sentence,
+							SpeakerNPC npc) {
 						playerStands = true;
 						if (bankStands) {
 							// Both stand. Let the dealer tell the final resul

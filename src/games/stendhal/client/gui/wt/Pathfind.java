@@ -50,18 +50,23 @@ public class Pathfind {
 		 * 
 		 */
 
-		if (x1 < search_area.getMinX())
+		if (x1 < search_area.getMinX()) {
 			return 1;
-		if (y1 < search_area.getMinY())
+		}
+		if (y1 < search_area.getMinY()) {
 			return 1;
+		}
 
-		if (x1 >= search_area.getMaxX())
+		if (x1 >= search_area.getMaxX()) {
 			return 1;
-		if (y1 >= search_area.getMaxY())
+		}
+		if (y1 >= search_area.getMaxY()) {
 			return 1;
+		}
 
-		if (!collisiondetection.walkable(x1, y1))
+		if (!collisiondetection.walkable(x1, y1)) {
 			return 1;
+		}
 
 		return 0;
 	}
@@ -106,8 +111,9 @@ public class Pathfind {
 	}
 
 	public void Reinice() {
-		if (final_path != null)
+		if (final_path != null) {
 			final_path_index = final_path.size();
+		}
 	}
 
 	public void ClearPath() {
@@ -135,8 +141,7 @@ public class Pathfind {
 		/*
 		 * if (colision( collisiondetection,final_x,final_y)!=0){
 		 * System.out.println("NON-WALKABLE DESTINATION: " + initial_x + " " +
-		 * initial_y + " " +final_x + " "+ final_y + " " ); return false;
-		 *  }
+		 * initial_y + " " +final_x + " "+ final_y + " " ); return false; }
 		 */
 		// long computation_time = System.currentTimeMillis();
 		Node ini_node = new Node(initial_x, initial_y, initial_x, initial_y);
@@ -174,8 +179,9 @@ public class Pathfind {
 			// System.out.println("Elements:"+open_list.size()+":"+closed_list.size());
 
 			// The end has been reached
-			if ((node_Fm.x == final_x) && (node_Fm.y == final_y))
+			if ((node_Fm.x == final_x) && (node_Fm.y == final_y)) {
 				break;
+			}
 
 			// c) For each of the 8 squares adjacent to this current square ...
 			int x_tmp;
@@ -184,19 +190,23 @@ public class Pathfind {
 			for (y_tmp = node_Fm.y - 1; y_tmp <= node_Fm.y + 1; y_tmp++) {
 				for (x_tmp = node_Fm.x - 1; x_tmp <= node_Fm.x + 1; x_tmp++) {
 
-					if (y_tmp == node_Fm.y)
-						if (x_tmp == node_Fm.x)
+					if (y_tmp == node_Fm.y) {
+						if (x_tmp == node_Fm.x) {
 							continue;
-					if ((y_tmp != node_Fm.y) && (x_tmp != node_Fm.x))
+						}
+					}
+					if ((y_tmp != node_Fm.y) && (x_tmp != node_Fm.x)) {
 						continue;
+					}
 
 					// //If it is not walkable or if it is on the closed list,
 					// ignore it.
 					// Otherwise do the following.
 
 					if (nodeRegistryclose.get(x_tmp + y_tmp
-							* collisiondetection.getWidth()) != null)
+							* collisiondetection.getWidth()) != null) {
 						continue;
+					}
 
 					if (colision(collisiondetection, x_tmp, y_tmp) == 0) {
 						int manhattan = 10 * (Math.abs(x_tmp - final_x) + Math.abs(y_tmp
@@ -204,10 +214,10 @@ public class Pathfind {
 
 						Node node_UP;
 						if (Math.abs(x_tmp - node_Fm.x) == 1
-								&& Math.abs(y_tmp - node_Fm.y) == 1)
+								&& Math.abs(y_tmp - node_Fm.y) == 1) {
 							node_UP = new Node(x_tmp, y_tmp, node_Fm.G + 14,
 									manhattan);
-						else {
+						} else {
 							int potato = 0;
 
 							// --- Bonus if it doesn't change the direction
@@ -312,8 +322,7 @@ public class Pathfind {
 		/*
 		 * Pathfind Path = new Pathfind(); Path.NewPath(1,2,5,2); while
 		 * (!Path.ReachedGoal()){ Path.PathNextNode();
-		 * System.out.println("PEPITO:"+Path.NodeGetX()+":"+Path.NodeGetY());
-		 *  }
+		 * System.out.println("PEPITO:"+Path.NodeGetX()+":"+Path.NodeGetY()); }
 		 */
 	}
 

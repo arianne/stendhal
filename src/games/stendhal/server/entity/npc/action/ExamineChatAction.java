@@ -22,21 +22,22 @@ public class ExamineChatAction extends ChatAction {
 
 	@Override
 	public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-        RPEvent event = new RPEvent("examine");
-        event.put("path", "/data/sprites/examine/" + image);
-        event.put("title", title);
-        event.put("alt", alt);
-        player.addEvent(event);
+		RPEvent event = new RPEvent("examine");
+		event.put("path", "/data/sprites/examine/" + image);
+		event.put("title", title);
+		event.put("alt", alt);
+		player.addEvent(event);
 	}
-	
+
 	@Override
 	public String toString() {
-		return "ExamineChatAction <" + image + ">"; 
+		return "ExamineChatAction <" + image + ">";
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		return EqualsBuilder.reflectionEquals(this, obj, false, StartRecordingKillsAction.class);
+		return EqualsBuilder.reflectionEquals(this, obj, false,
+				StartRecordingKillsAction.class);
 	}
 
 	@Override

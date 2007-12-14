@@ -15,8 +15,7 @@ public class ReadAndPrintXMLFile {
 	public static void main(String[] argv) {
 		try {
 
-			DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory
-					.newInstance();
+			DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder docBuilder = docBuilderFactory.newDocumentBuilder();
 			Document doc = docBuilder.parse(new File("data/sounds/sounds.xml"));
 
@@ -31,8 +30,7 @@ public class ReadAndPrintXMLFile {
 			System.out.println("Total no of people : " + totalPersons);
 
 			for (int s = 0; s < listOfPersons.getLength(); s++) {
-				System.out.println(listOfPersons.item(s).getAttributes()
-						.item(0).getNodeValue());
+				System.out.println(listOfPersons.item(s).getAttributes().item(0).getNodeValue());
 				System.out.println(listOfPersons.item(s).getTextContent());
 			} // end of for loop with s var
 

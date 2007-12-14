@@ -21,11 +21,14 @@ public class SeamstressNPC implements ZoneConfigurator {
 
 	/**
 	 * Configure a zone.
-	 *
-	 * @param	zone		The zone to be configured.
-	 * @param	attributes	Configuration attributes.
+	 * 
+	 * @param zone
+	 *            The zone to be configured.
+	 * @param attributes
+	 *            Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone,
+			Map<String, String> attributes) {
 		buildSeamstress(zone);
 	}
 
@@ -48,7 +51,8 @@ public class SeamstressNPC implements ZoneConfigurator {
 				addJob("I'm a seamstress. I make sails for ships, like the Athor ferry.");
 				addHelp("If you want to go to the island Athor on the ferry, just go south once you've departed from Ados, and look for the pier.");
 				addQuest("If you could #offer me material I'd be grateful.");
-				new BuyerAdder().add(this, new BuyerBehaviour(shops.get("buycloaks")), false);
+				new BuyerAdder().add(this, new BuyerBehaviour(
+						shops.get("buycloaks")), false);
 				addOffer("I buy cloaks, because we are short of material to make sails with. The better the material, the more I pay. My notebook on the table has the price list.");
 				addGoodbye("Bye, thanks for stepping in.");
 			}

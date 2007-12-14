@@ -41,7 +41,8 @@ public class LookAction implements ActionListener {
 		StendhalRPWorld world = StendhalRPWorld.get();
 
 		// When look is cast over something in a slot
-		if (action.has(_BASEITEM) && action.has(_BASEOBJECT) && action.has(_BASESLOT)) {
+		if (action.has(_BASEITEM) && action.has(_BASEOBJECT)
+				&& action.has(_BASESLOT)) {
 			StendhalRPZone zone = player.getZone();
 
 			int baseObject = action.getInt(_BASEOBJECT);
@@ -90,20 +91,23 @@ public class LookAction implements ActionListener {
 			if (entity.has(ATTR_NAME)) {
 				name = entity.get(ATTR_NAME);
 			}
-			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), _LOOK, name);
+			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), _LOOK,
+					name);
 			player.sendPrivateText(entity.describe());
 			world.modify(player);
 			return;
 		} else if (action.has(_TARGET)) {
-			 // evaluate the target parameter
-			Entity entity = EntityHelper.entityFromTargetName(action.get(_TARGET), player.getZone());
+			// evaluate the target parameter
+			Entity entity = EntityHelper.entityFromTargetName(
+					action.get(_TARGET), player.getZone());
 
 			if (entity != null) {
 				String name = entity.get(ATTR_TYPE);
 				if (entity.has(ATTR_NAME)) {
 					name = entity.get(ATTR_NAME);
 				}
-				StendhalRPRuleProcessor.get().addGameEvent(player.getName(), _LOOK, name);
+				StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
+						_LOOK, name);
 				player.sendPrivateText(entity.describe());
 				world.modify(player);
 			}

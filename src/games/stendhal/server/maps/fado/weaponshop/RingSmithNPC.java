@@ -22,7 +22,7 @@ import java.util.Map;
  * (../../quests/Ringmaker.java)
  * <p>
  * He is also the NPC who casts the wedding ring (../../quests/Marriage.java)
- *
+ * 
  * @author kymara
  */
 public class RingSmithNPC implements ZoneConfigurator {
@@ -30,7 +30,7 @@ public class RingSmithNPC implements ZoneConfigurator {
 
 	/**
 	 * Configure a zone.
-	 *
+	 * 
 	 * @param zone
 	 *            The zone to be configured.
 	 * @param attributes
@@ -67,8 +67,10 @@ public class RingSmithNPC implements ZoneConfigurator {
 						"gold",
 						"It's cast from gold nuggets which you can pan for on Or'ril river. I don't cast it myself, but a smith in Ados does.");
 				addHelp("You can sell weapons to Yorphin Baos over there. I #trade in precious items and I can also make a wedding ring as a special #request.");
-				new SellerAdder().addSeller(this, new SellerBehaviour(shops.get("sellrings")), false);
-				new BuyerAdder().add(this, new BuyerBehaviour(shops.get("buyprecious")), false);
+				new SellerAdder().addSeller(this, new SellerBehaviour(
+						shops.get("sellrings")), false);
+				new BuyerAdder().add(this, new BuyerBehaviour(
+						shops.get("buyprecious")), false);
 				addGoodbye("Bye, my friend.");
 			}
 		};

@@ -12,7 +12,7 @@ import java.util.Map;
 
 /**
  * Builds the princess in Princess Hut on amazon island
- *
+ * 
  * @author Teiv
  */
 public class PrincessNPC implements ZoneConfigurator {
@@ -22,11 +22,14 @@ public class PrincessNPC implements ZoneConfigurator {
 
 	/**
 	 * Configure a zone.
-	 *
-	 * @param	zone		The zone to be configured.
-	 * @param	attributes	Configuration attributes.
+	 * 
+	 * @param zone
+	 *            The zone to be configured.
+	 * @param attributes
+	 *            Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone,
+			Map<String, String> attributes) {
 		buildNPC(zone, attributes);
 	}
 
@@ -49,10 +52,13 @@ public class PrincessNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-			        addGreeting("Huh, what are you doing here?");
-				addReply("sorry", "Well, so you should be, sneaking up on me like that!");
-				addReply("look", "You had better not poke around, this is all mine!");
-				addReply("nothing", "Go away and do this somewhere else but not in my hut!");
+				addGreeting("Huh, what are you doing here?");
+				addReply("sorry",
+						"Well, so you should be, sneaking up on me like that!");
+				addReply("look",
+						"You had better not poke around, this is all mine!");
+				addReply("nothing",
+						"Go away and do this somewhere else but not in my hut!");
 				addJob("Job? You expect that a princess like me would need to work? Ha!");
 				addHelp("Beware of my sisters on the island, they do not like strangers.");
 				addOffer("There is nothing to offer you.");

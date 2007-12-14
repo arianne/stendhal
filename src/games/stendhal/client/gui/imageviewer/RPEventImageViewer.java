@@ -5,49 +5,51 @@ import marauroa.common.game.RPEvent;
 import org.apache.log4j.Logger;
 
 /**
- * Opens an image in a styled internal frame with (possibly) some alternate text.
+ * Opens an image in a styled internal frame with (possibly) some alternate
+ * text.
+ * 
  * @author timothyb89
  */
 public class RPEventImageViewer {
 
-    private String path;
-    private String alt;
-    private String title;
-    private static final Logger logger = Logger.getLogger(RPEventImageViewer.class);
+	private String path;
+	private String alt;
+	private String title;
+	private static final Logger logger = Logger.getLogger(RPEventImageViewer.class);
 
-    private RPEventImageViewer(RPEvent e) {
-        if (e.has("path")) {
-            path = e.get("path");
-        }
-        if (e.has("alt")) {
-            alt = e.get("alt");
-        }
-        if (e.has("title")) {
-            title = e.get("title");
-        }
-        view();
-    }
+	private RPEventImageViewer(RPEvent e) {
+		if (e.has("path")) {
+			path = e.get("path");
+		}
+		if (e.has("alt")) {
+			alt = e.get("alt");
+		}
+		if (e.has("title")) {
+			title = e.get("title");
+		}
+		view();
+	}
 
-    public static void viewImage(RPEvent e) {
-        new RPEventImageViewer(e);
-    }
+	public static void viewImage(RPEvent e) {
+		new RPEventImageViewer(e);
+	}
 
-    public URL genURL() {
-        try {
-            URL url = null;
-            if (path.startsWith("http://")) {
-                url = new URL(path);
-            } else {
-                url = getClass().getResource(path);
-            }
-            return url;
-        } catch (Exception e) {
-            logger.error(null, e);
-        }
-        return null;
-    }
+	public URL genURL() {
+		try {
+			URL url = null;
+			if (path.startsWith("http://")) {
+				url = new URL(path);
+			} else {
+				url = getClass().getResource(path);
+			}
+			return url;
+		} catch (Exception e) {
+			logger.error(null, e);
+		}
+		return null;
+	}
 
-    public void view() {
-        new ImageViewWindow(genURL(), title, alt);
-    }
+	public void view() {
+		new ImageViewWindow(genURL(), title, alt);
+	}
 }

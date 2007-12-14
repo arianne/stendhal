@@ -28,8 +28,8 @@ public class Text {
 
 	private long removeTime;
 
-
-	public Text(final Sprite sprite, final int x, final int y, final long persistTime) {
+	public Text(final Sprite sprite, final int x, final int y,
+			final long persistTime) {
 		this.sprite = sprite;
 		this.x = x;
 		this.y = y;
@@ -41,15 +41,14 @@ public class Text {
 		}
 	}
 
-
 	public void draw(final IGameScreen screen) {
-		screen.drawInScreen(sprite, x - screen.getScreenViewX(), y - screen.getScreenViewY());
+		screen.drawInScreen(sprite, x - screen.getScreenViewX(), y
+				- screen.getScreenViewY());
 
 		if (System.currentTimeMillis() >= removeTime) {
 			screen.removeText(this);
 		}
 	}
-
 
 	public Rectangle getArea() {
 		return new Rectangle(x, y, sprite.getWidth(), sprite.getHeight());
@@ -58,7 +57,6 @@ public class Text {
 	public int getX() {
 		return x;
 	}
-
 
 	public int getY() {
 		return y;

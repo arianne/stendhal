@@ -12,7 +12,7 @@ import java.util.Map;
 
 /**
  * Builds the princess in Kalavan castle
- *
+ * 
  * @author kymara
  */
 public class PrincessNPC implements ZoneConfigurator {
@@ -22,7 +22,7 @@ public class PrincessNPC implements ZoneConfigurator {
 
 	/**
 	 * Configure a zone.
-	 *
+	 * 
 	 * @param zone
 	 *            The zone to be configured.
 	 * @param attributes

@@ -21,10 +21,12 @@ public class KeyedPortalFactory extends AccessCheckingPortalFactory {
 
 	/**
 	 * Extract the portal key from a context.
-	 *
-	 * @param	ctx		The configuration context.
-	 * @return	The key name.
-	 * @throws	IllegalArgumentException If the class attribute is missing.
+	 * 
+	 * @param ctx
+	 *            The configuration context.
+	 * @return The key name.
+	 * @throws IllegalArgumentException
+	 *             If the class attribute is missing.
 	 */
 	protected String getKey(ConfigurableFactoryContext ctx) {
 		return ctx.getRequiredString("key");
@@ -32,10 +34,12 @@ public class KeyedPortalFactory extends AccessCheckingPortalFactory {
 
 	/**
 	 * Extract the portal key quantity from a context.
-	 *
-	 * @param	ctx		The configuration context.
-	 * @return	The required key quantity.
-	 * @throws	IllegalArgumentException If the class attribute is missing.
+	 * 
+	 * @param ctx
+	 *            The configuration context.
+	 * @return The required key quantity.
+	 * @throws IllegalArgumentException
+	 *             If the class attribute is missing.
 	 */
 	protected int getQuantity(ConfigurableFactoryContext ctx) {
 		return ctx.getInt("quantity", 1);
@@ -47,13 +51,14 @@ public class KeyedPortalFactory extends AccessCheckingPortalFactory {
 
 	/**
 	 * Create a keyed portal.
-	 *
-	 * @param	ctx		The configuration context.
-	 *
-	 * @return	The portal.
-	 *
-	 * @throws	IllegalArgumentException
-	 *				If the class attribute is missing.
+	 * 
+	 * @param ctx
+	 *            The configuration context.
+	 * 
+	 * @return The portal.
+	 * 
+	 * @throws IllegalArgumentException
+	 *             If the class attribute is missing.
 	 */
 	@Override
 	protected AccessCheckingPortal createPortal(ConfigurableFactoryContext ctx) {

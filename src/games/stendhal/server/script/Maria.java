@@ -16,7 +16,7 @@ import org.apache.log4j.Logger;
 
 /**
  * Creates a portable NPC which sell foods&drinks at meetings.
- *
+ * 
  * As admin use /script Maria.class to sommon her right next to you. Please put
  * her back in int_admin_playground after use.
  */
@@ -72,11 +72,16 @@ public class Maria extends ScriptImpl {
 
 		// Create Dialog
 		npc.behave("greet", "Hi, how can i help you?");
-		npc.behave("job",
-		        "I am one of the bar maids at Semos' #tavern and doing outside services. We sell fine beers and food.");
-		npc.behave("tavern", /* "I have a #coupon for a free beer in Semos' tavern. "+ */
-		        "It is on the left side of the temple.");
-		npc.behave("help", "You can get an #offer of drinks and take a break to meet new people!");
+		npc.behave(
+				"job",
+				"I am one of the bar maids at Semos' #tavern and doing outside services. We sell fine beers and food.");
+		npc.behave("tavern", /*
+								 * "I have a #coupon for a free beer in Semos'
+								 * tavern. "+
+								 */
+		"It is on the left side of the temple.");
+		npc.behave("help",
+				"You can get an #offer of drinks and take a break to meet new people!");
 		try {
 			npc.behave("sell", ShopList.get().get("food&drinks"));
 		} catch (NoSuchMethodException e) {

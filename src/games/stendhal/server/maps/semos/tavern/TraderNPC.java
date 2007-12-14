@@ -23,11 +23,14 @@ public class TraderNPC implements ZoneConfigurator {
 
 	/**
 	 * Configure a zone.
-	 *
-	 * @param	zone		The zone to be configured.
-	 * @param	attributes	Configuration attributes.
+	 * 
+	 * @param zone
+	 *            The zone to be configured.
+	 * @param attributes
+	 *            Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone,
+			Map<String, String> attributes) {
 		buildXinBlanca(zone);
 	}
 
@@ -51,8 +54,10 @@ public class TraderNPC implements ZoneConfigurator {
 				addGreeting();
 				addJob("Shhh! I sell stuff to adventurers.");
 				addHelp("I buy and sell several items, ask me for my #offer.");
-				new SellerAdder().addSeller(this, new SellerBehaviour(shops.get("sellstuff")), false);
-				new BuyerAdder().add(this, new BuyerBehaviour(shops.get("buystuff")), false);
+				new SellerAdder().addSeller(this, new SellerBehaviour(
+						shops.get("sellstuff")), false);
+				new BuyerAdder().add(this, new BuyerBehaviour(
+						shops.get("buystuff")), false);
 				addOffer("Have a look at the blackboards on the wall to see my offers.");
 				addQuest("Talk to Hackim Easso in the smithy, he might want you.");
 				addGoodbye();

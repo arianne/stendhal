@@ -21,13 +21,12 @@ public class Door extends Entity {
 	/**
 	 * Open state property.
 	 */
-	public static final Object	PROP_OPEN		= new Object();
+	public static final Object PROP_OPEN = new Object();
 
 	/**
 	 * Whether the door is open.
 	 */
 	private boolean open;
-
 
 	/**
 	 * Create a door entity.
@@ -35,20 +34,18 @@ public class Door extends Entity {
 	public Door() {
 	}
 
-
 	//
 	// Door
 	//
 
 	/**
 	 * Check if the door is open.
-	 *
-	 * @return	<code>true</code> if the door is open.
+	 * 
+	 * @return <code>true</code> if the door is open.
 	 */
 	public boolean isOpen() {
 		return open;
 	}
-
 
 	//
 	// Entity
@@ -56,10 +53,11 @@ public class Door extends Entity {
 
 	/**
 	 * Initialize this entity for an object.
-	 *
-	 * @param	object		The object.
-	 *
-	 * @see-also	#release()
+	 * 
+	 * @param object
+	 *            The object.
+	 * 
+	 * @see-also #release()
 	 */
 	@Override
 	public void initialize(final RPObject object) {
@@ -71,16 +69,17 @@ public class Door extends Entity {
 		open = object.has("open");
 	}
 
-
 	//
 	// RPObjectChangeListener
 	//
 
 	/**
 	 * The object added/changed attribute(s).
-	 *
-	 * @param	object		The base object.
-	 * @param	changes		The changes.
+	 * 
+	 * @param object
+	 *            The base object.
+	 * @param changes
+	 *            The changes.
 	 */
 	@Override
 	public void onChangedAdded(final RPObject object, final RPObject changes) {
@@ -95,12 +94,13 @@ public class Door extends Entity {
 		}
 	}
 
-
 	/**
 	 * The object removed attribute(s).
-	 *
-	 * @param	object		The base object.
-	 * @param	changes		The changes.
+	 * 
+	 * @param object
+	 *            The base object.
+	 * @param changes
+	 *            The changes.
 	 */
 	@Override
 	public void onChangedRemoved(final RPObject object, final RPObject changes) {

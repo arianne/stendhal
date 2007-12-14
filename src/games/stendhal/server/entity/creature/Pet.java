@@ -30,14 +30,14 @@ import marauroa.common.game.Definition.Type;
 /**
  * A pet is a domestic animal that can be owned by a player. It eats chicken
  * from the ground. They move faster than sheep.
- *
+ * 
  * Pets starve if they are not fed. They can die.
- *
+ * 
  * TODO: pets attack weak animals for you
  */
 /**
  * @author kymara
- *
+ * 
  */
 public abstract class Pet extends DomesticAnimal {
 
@@ -86,7 +86,7 @@ public abstract class Pet extends DomesticAnimal {
 
 	/**
 	 * Creates a new wild Pet.
-	 *
+	 * 
 	 * @throws AttributeNotFoundException
 	 */
 	public Pet() {
@@ -95,7 +95,7 @@ public abstract class Pet extends DomesticAnimal {
 
 	/**
 	 * Creates a new Pet that is owned by a player.
-	 *
+	 * 
 	 * @throws AttributeNotFoundException
 	 */
 	public Pet(Player owner) {
@@ -113,7 +113,7 @@ public abstract class Pet extends DomesticAnimal {
 	/**
 	 * Creates a Pet based on an existing pet RPObject, and assigns it to a
 	 * player.
-	 *
+	 * 
 	 * @param object
 	 * @param owner
 	 *            The player who should own the pet
@@ -127,7 +127,7 @@ public abstract class Pet extends DomesticAnimal {
 
 	/**
 	 * Is called when the pet dies. Removes the dead pet from the owner.
-	 *
+	 * 
 	 * @param killer
 	 *            The entity who caused the death
 	 */
@@ -161,7 +161,7 @@ public abstract class Pet extends DomesticAnimal {
 	/**
 	 * Returns the PetFood that is nearest to the pet's current position. If
 	 * there is no PetFood within the given range, returns none.
-	 *
+	 * 
 	 * @param range
 	 *            The maximum distance to a PetFood
 	 * @return The nearest PetFood, or null if there is none within the given
@@ -188,10 +188,10 @@ public abstract class Pet extends DomesticAnimal {
 
 	boolean canEat(Item i) {
 
-		return foodName.contains(i.getName());	
+		return foodName.contains(i.getName());
 
 	}
- 
+
 	private void eat(Item food) {
 		if (weight < MAX_WEIGHT) {
 			setWeight(weight + 1);
@@ -199,7 +199,7 @@ public abstract class Pet extends DomesticAnimal {
 		food.removeOne();
 		hunger = 0;
 		if (getHP() < getBaseHP()) {
-			heal(incHP);	// directly increase the pet's health points
+			heal(incHP); // directly increase the pet's health points
 		}
 	}
 

@@ -19,18 +19,24 @@ public class DemonSkeletonCreature implements ZoneConfigurator {
 
 	/**
 	 * Configure a zone.
-	 *
-	 * @param	zone		The zone to be configured.
-	 * @param	attributes	Configuration attributes.
+	 * 
+	 * @param zone
+	 *            The zone to be configured.
+	 * @param attributes
+	 *            Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone,
+			Map<String, String> attributes) {
 		buildLichPalace(zone, attributes);
 	}
 
-	private void buildLichPalace(StendhalRPZone zone, Map<String, String> attributes) {
-		Creature creature = new ItemGuardCreature(manager.getCreature("demon_skeleton"), "lich_gold_key");
+	private void buildLichPalace(StendhalRPZone zone,
+			Map<String, String> attributes) {
+		Creature creature = new ItemGuardCreature(
+				manager.getCreature("demon_skeleton"), "lich_gold_key");
 
-		CreatureRespawnPoint point = new CreatureRespawnPoint(zone, 54, 48, creature, 1);
+		CreatureRespawnPoint point = new CreatureRespawnPoint(zone, 54, 48,
+				creature, 1);
 
 		zone.add(point);
 	}

@@ -1,6 +1,5 @@
 package games.stendhal.client.actions;
 
-
 import java.util.HashMap;
 
 /**
@@ -57,8 +56,9 @@ public class SlashActionRepository {
 
 	/**
 	 * gets the Action object for the specified Action name
-	 *
-	 * @param name name of Action
+	 * 
+	 * @param name
+	 *            name of Action
 	 * @return Action object
 	 */
 	public static SlashAction get(String name) {

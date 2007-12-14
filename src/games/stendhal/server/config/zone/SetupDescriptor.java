@@ -23,7 +23,6 @@ public abstract class SetupDescriptor {
 	 */
 	protected HashMap<String, String> parameters;
 
-
 	/**
 	 * Create a base zone setup descriptor.
 	 */
@@ -37,8 +36,8 @@ public abstract class SetupDescriptor {
 
 	/**
 	 * Get the configuration parameters.
-	 *
-	 * @rerturn	A map of parameters.
+	 * 
+	 * @rerturn A map of parameters.
 	 */
 	public Map<String, String> getParameters() {
 		return parameters;
@@ -46,9 +45,11 @@ public abstract class SetupDescriptor {
 
 	/**
 	 * Set a configuration parameter.
-	 *
-	 * @param	name		A parameter name.
-	 * @param	value		A parameter value.
+	 * 
+	 * @param name
+	 *            A parameter name.
+	 * @param value
+	 *            A parameter value.
 	 */
 	public void setParameter(final String name, final String value) {
 		parameters.put(name, value);
@@ -56,8 +57,9 @@ public abstract class SetupDescriptor {
 
 	/**
 	 * Do appropriate zone setup.
-	 *
-	 * @param	zone		The zone to setup.
+	 * 
+	 * @param zone
+	 *            The zone to setup.
 	 */
 	public abstract void setup(final StendhalRPZone zone);
 }

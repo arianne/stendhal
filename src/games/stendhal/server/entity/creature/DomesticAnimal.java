@@ -17,15 +17,16 @@ import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Food;
 import games.stendhal.server.entity.player.Player;
 
-
 import org.apache.log4j.Logger;
 import marauroa.common.game.RPObject;
 
 /**
- * A domestic animal can be owned by a player; 
- * <p>each player can't own more than one domestic animal. 
- * <p> It has a weight; when it dies, it leaves an
- * amount of meat, depending on its weight.
+ * A domestic animal can be owned by a player;
+ * <p>
+ * each player can't own more than one domestic animal.
+ * <p>
+ * It has a weight; when it dies, it leaves an amount of meat, depending on its
+ * weight.
  */
 public abstract class DomesticAnimal extends Creature {
 
@@ -41,6 +42,7 @@ public abstract class DomesticAnimal extends Creature {
 
 	/**
 	 * Creates a new wild DomesticAnimal.
+	 * 
 	 * @throws AttributeNotFoundException
 	 */
 	public DomesticAnimal() {
@@ -50,6 +52,7 @@ public abstract class DomesticAnimal extends Creature {
 
 	/**
 	 * Creates a new DomesticAnimal that is owned by a player.
+	 * 
 	 * @throws AttributeNotFoundException
 	 */
 	public DomesticAnimal(Player owner) {
@@ -62,6 +65,7 @@ public abstract class DomesticAnimal extends Creature {
 
 	/**
 	 * Creates a wild DomesticAnimal based on an existing RPObject.
+	 * 
 	 * @param object
 	 * @throws AttributeNotFoundException
 	 */
@@ -77,15 +81,16 @@ public abstract class DomesticAnimal extends Creature {
 	/**
 	 * Creates a wild DomesticAnimal based on an existing RPObjec, and assigns
 	 * it to a player.
+	 * 
 	 * @param object
-	 * @param owner The player who should own the sheep
+	 * @param owner
+	 *            The player who should own the sheep
 	 * @throws AttributeNotFoundException
 	 */
 	public DomesticAnimal(RPObject object, Player owner) {
 		this(object);
 		this.owner = owner;
 	}
-
 
 	public void setOwner(Player owner) {
 		this.owner = owner;
@@ -116,7 +121,7 @@ public abstract class DomesticAnimal extends Creature {
 		logger.debug("Domestic animal (owner) moves to owner");
 		setIdea("follow");
 		setMovement(owner, 0, 0, 20);
-		//setAsynchonousMovement(owner,0,0);
+		// setAsynchonousMovement(owner,0,0);
 	}
 
 	protected void moveRandomly() {
@@ -125,13 +130,16 @@ public abstract class DomesticAnimal extends Creature {
 	}
 
 	/**
-	 * Can be called when the sheep dies. Puts meat onto its corpse; the
-	 * amount of meat depends on the domestic animal's weight.
-	 * @param corpse The corpse on which to put the meat
+	 * Can be called when the sheep dies. Puts meat onto its corpse; the amount
+	 * of meat depends on the domestic animal's weight.
+	 * 
+	 * @param corpse
+	 *            The corpse on which to put the meat
 	 */
 	@Override
 	protected void dropItemsOn(Corpse corpse) {
-		Food food = (Food) StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("meat");
+		Food food = (Food) StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
+				"meat");
 		food.setQuantity(getWeight() / 10 + 1);
 		corpse.add(food);
 	}

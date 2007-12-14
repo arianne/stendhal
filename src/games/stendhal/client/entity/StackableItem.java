@@ -21,21 +21,19 @@ public class StackableItem extends Item {
 	/**
 	 * Quantity property.
 	 */
-	public static final Object	PROP_QUANTITY	= new Object();
+	public static final Object PROP_QUANTITY = new Object();
 
 	/**
 	 * The item quantity.
 	 */
 	private int quantity;
 
-
 	/**
 	 * Create a stackable item.
 	 */
-	public StackableItem()  {
+	public StackableItem() {
 		quantity = 0;
 	}
-
 
 	//
 	// StackableItem
@@ -43,13 +41,12 @@ public class StackableItem extends Item {
 
 	/**
 	 * Get the item quantity.
-	 *
-	 * @return	The number of items.
+	 * 
+	 * @return The number of items.
 	 */
 	public int getQuantity() {
 		return quantity;
 	}
-
 
 	//
 	// RPObjectChangeListener
@@ -57,9 +54,11 @@ public class StackableItem extends Item {
 
 	/**
 	 * The object added/changed attribute(s).
-	 *
-	 * @param	object		The base object.
-	 * @param	changes		The changes.
+	 * 
+	 * @param object
+	 *            The base object.
+	 * @param changes
+	 *            The changes.
 	 */
 	@Override
 	public void onChangedAdded(final RPObject object, final RPObject changes) {

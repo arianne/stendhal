@@ -2,7 +2,7 @@ package games.stendhal.client.update;
 
 /**
  * Represents and classpath entry.
- *
+ * 
  * @author hendrik
  */
 public class ClasspathEntry implements Comparable<ClasspathEntry> {
@@ -15,7 +15,7 @@ public class ClasspathEntry implements Comparable<ClasspathEntry> {
 
 	/**
 	 * create a classpath entry
-	 *
+	 * 
 	 * @param filename
 	 */
 	public ClasspathEntry(String filename) {
@@ -39,7 +39,7 @@ public class ClasspathEntry implements Comparable<ClasspathEntry> {
 
 	/**
 	 * Returns the filename
-	 *
+	 * 
 	 * @return filename
 	 */
 	public String getFilename() {
@@ -48,7 +48,7 @@ public class ClasspathEntry implements Comparable<ClasspathEntry> {
 
 	/**
 	 * returns the type of this jar
-	 *
+	 * 
 	 * @return type
 	 */
 	public String getType() {
@@ -57,7 +57,7 @@ public class ClasspathEntry implements Comparable<ClasspathEntry> {
 
 	/**
 	 * returns the version number of this entry
-	 *
+	 * 
 	 * @return version
 	 */
 	public String getVersion() {

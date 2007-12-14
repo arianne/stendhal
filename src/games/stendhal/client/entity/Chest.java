@@ -22,12 +22,12 @@ public class Chest extends Entity {
 	/**
 	 * Content property.
 	 */
-	public static final Object	PROP_CONTENT		= new Object();
+	public static final Object PROP_CONTENT = new Object();
 
 	/**
 	 * Open state property.
 	 */
-	public static final Object	PROP_OPEN		= new Object();
+	public static final Object PROP_OPEN = new Object();
 
 	/**
 	 * Whether the chest is currently open.
@@ -39,13 +39,11 @@ public class Chest extends Entity {
 	 */
 	private RPSlot content;
 
-
 	/**
 	 * Create a chest entity.
 	 */
 	public Chest() {
 	}
-
 
 	//
 	// Chest
@@ -53,23 +51,21 @@ public class Chest extends Entity {
 
 	/**
 	 * Get the chest contents.
-	 *
-	 * @return	The contents slot.
+	 * 
+	 * @return The contents slot.
 	 */
 	public RPSlot getContent() {
 		return content;
 	}
 
-
 	/**
 	 * Determine if the chest is open.
-	 *
-	 * @return	<code>true</code> if the chest is open.
+	 * 
+	 * @return <code>true</code> if the chest is open.
 	 */
 	public boolean isOpen() {
 		return open;
 	}
-
 
 	//
 	// Entity
@@ -77,10 +73,11 @@ public class Chest extends Entity {
 
 	/**
 	 * Initialize this entity for an object.
-	 *
-	 * @param	object		The object.
-	 *
-	 * @see-also	#release()
+	 * 
+	 * @param object
+	 *            The object.
+	 * 
+	 * @see-also #release()
 	 */
 	@Override
 	public void initialize(final RPObject object) {
@@ -95,16 +92,17 @@ public class Chest extends Entity {
 		open = object.has("open");
 	}
 
-
 	//
 	// RPObjectChangeListener
 	//
 
 	/**
 	 * The object added/changed attribute(s).
-	 *
-	 * @param	object		The base object.
-	 * @param	changes		The changes.
+	 * 
+	 * @param object
+	 *            The base object.
+	 * @param changes
+	 *            The changes.
 	 */
 	@Override
 	public void onChangedAdded(final RPObject object, final RPObject changes) {
@@ -121,12 +119,13 @@ public class Chest extends Entity {
 		}
 	}
 
-
 	/**
 	 * The object removed attribute(s).
-	 *
-	 * @param	object		The base object.
-	 * @param	changes		The changes.
+	 * 
+	 * @param object
+	 *            The base object.
+	 * @param changes
+	 *            The changes.
 	 */
 	@Override
 	public void onChangedRemoved(final RPObject object, final RPObject changes) {

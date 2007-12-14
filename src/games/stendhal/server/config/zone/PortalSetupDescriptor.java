@@ -13,7 +13,6 @@ import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.EntityFactoryHelper;
 import games.stendhal.server.entity.mapstuff.portal.Portal;
 
-
 import org.apache.log4j.Logger;
 
 /**
@@ -45,15 +44,18 @@ public class PortalSetupDescriptor extends EntitySetupDescriptor {
 	 */
 	protected boolean replacing;
 
-
 	/**
 	 * Create a portal setup descriptor.
-	 *
-	 * @param	x		The X coordinate.
-	 * @param	y		The Y coordinate.
-	 * @param	identifier	The identifier,
+	 * 
+	 * @param x
+	 *            The X coordinate.
+	 * @param y
+	 *            The Y coordinate.
+	 * @param identifier
+	 *            The identifier,
 	 */
-	public PortalSetupDescriptor(final int x, final int y, final Object identifier) {
+	public PortalSetupDescriptor(final int x, final int y,
+			final Object identifier) {
 		super(x, y);
 
 		this.identifier = identifier;
@@ -63,15 +65,14 @@ public class PortalSetupDescriptor extends EntitySetupDescriptor {
 		replacing = false;
 	}
 
-
 	//
 	// PortalSetupDescriptor
 	//
 
 	/**
 	 * Get the destination identifier.
-	 *
-	 * @return	An identifier.
+	 * 
+	 * @return An identifier.
 	 */
 	public Object getDestinationIdentifier() {
 		return destinationIdentifier;
@@ -79,8 +80,8 @@ public class PortalSetupDescriptor extends EntitySetupDescriptor {
 
 	/**
 	 * Get the destination zone.
-	 *
-	 * @return	A zone name.
+	 * 
+	 * @return A zone name.
 	 */
 	public String getDestinationZone() {
 		return destinationZone;
@@ -88,8 +89,8 @@ public class PortalSetupDescriptor extends EntitySetupDescriptor {
 
 	/**
 	 * Get the identifier.
-	 *
-	 * @return	An identifier.
+	 * 
+	 * @return An identifier.
 	 */
 	public Object getIdentifier() {
 		return identifier;
@@ -97,9 +98,9 @@ public class PortalSetupDescriptor extends EntitySetupDescriptor {
 
 	/**
 	 * Determine if existing portals are replaced.
-	 *
-	 * @return	<code>true</code> if replacing an existing portal
-	 *		at that location.
+	 * 
+	 * @return <code>true</code> if replacing an existing portal at that
+	 *         location.
 	 */
 	public boolean isReplacing() {
 		return replacing;
@@ -107,9 +108,11 @@ public class PortalSetupDescriptor extends EntitySetupDescriptor {
 
 	/**
 	 * Set the destination zone/identifier.
-	 *
-	 * @param	zone		The destination zone name.
-	 * @param	identifier	The named destination portal.
+	 * 
+	 * @param zone
+	 *            The destination zone name.
+	 * @param identifier
+	 *            The named destination portal.
 	 */
 	public void setDestination(final String zone, final Object identifier) {
 		this.destinationZone = zone;
@@ -118,14 +121,13 @@ public class PortalSetupDescriptor extends EntitySetupDescriptor {
 
 	/**
 	 * Set whether to replace any existing portal.
-	 *
-	 * @param	replacing	Whether replacing an existing portal
-	 *				at that location.
+	 * 
+	 * @param replacing
+	 *            Whether replacing an existing portal at that location.
 	 */
 	public void setReplacing(final boolean replacing) {
 		this.replacing = replacing;
 	}
-
 
 	//
 	// SetupDescriptor
@@ -133,8 +135,9 @@ public class PortalSetupDescriptor extends EntitySetupDescriptor {
 
 	/**
 	 * Do appropriate zone setup.
-	 *
-	 * @param	zone		The zone.
+	 * 
+	 * @param zone
+	 *            The zone.
 	 */
 	@Override
 	public void setup(final StendhalRPZone zone) {
@@ -148,7 +151,8 @@ public class PortalSetupDescriptor extends EntitySetupDescriptor {
 		}
 
 		try {
-			Portal portal = (Portal) EntityFactoryHelper.create(className, getParameters(), getAttributes());
+			Portal portal = (Portal) EntityFactoryHelper.create(className,
+					getParameters(), getAttributes());
 			if (portal == null) {
 				logger.warn("Unable to create portal: " + className);
 

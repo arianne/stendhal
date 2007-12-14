@@ -18,13 +18,12 @@ import games.stendhal.server.entity.item.Item;
 
 import java.util.LinkedList;
 
-
 import org.apache.log4j.Logger;
 
 /**
- * An ItemGuardCreature is a creature that is responsible for guarding a
- * special item (e.g. a key). Once it is killed, a copy of this special item
- * is given to the player who killed it.
+ * An ItemGuardCreature is a creature that is responsible for guarding a special
+ * item (e.g. a key). Once it is killed, a copy of this special item is given to
+ * the player who killed it.
  */
 public class ItemGuardCreature extends Creature {
 
@@ -35,17 +34,22 @@ public class ItemGuardCreature extends Creature {
 
 	/**
 	 * Creates a ItemGuardCreature
-	 * @param copy      base creature
-	 * @param itemType  the quest item to drop on death
+	 * 
+	 * @param copy
+	 *            base creature
+	 * @param itemType
+	 *            the quest item to drop on death
 	 */
 	public ItemGuardCreature(Creature copy, String itemType) {
 		super(copy);
 		this.itemType = itemType;
 
 		noises = new LinkedList<String>(noises);
-		noises.add("Thou shall not obtain the " + itemType.replace("_", " ") + "!");
+		noises.add("Thou shall not obtain the " + itemType.replace("_", " ")
+				+ "!");
 
-		if (!StendhalRPWorld.get().getRuleManager().getEntityManager().isItem(itemType)) {
+		if (!StendhalRPWorld.get().getRuleManager().getEntityManager().isItem(
+				itemType)) {
 			logger.error(copy.getName() + " drops unexisting item " + itemType);
 		}
 	}
@@ -60,7 +64,8 @@ public class ItemGuardCreature extends Creature {
 		if (killer instanceof RPEntity) {
 			RPEntity killerRPEntity = (RPEntity) killer;
 			if (!killerRPEntity.isEquipped(itemType)) {
-				Item item = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(itemType);
+				Item item = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
+						itemType);
 				item.setBoundTo(killerRPEntity.getName());
 				killerRPEntity.equip(item, true);
 			}

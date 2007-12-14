@@ -16,13 +16,14 @@ public abstract class DoorFactory implements ConfigurableFactory {
 
 	/**
 	 * Extract the door class from a context.
-	 *
-	 * @param	ctx		The configuration context.
-	 *
-	 * @return	The class name.
-	 *
-	 * @throws	IllegalArgumentException
-	 *				If the class attribute is missing.
+	 * 
+	 * @param ctx
+	 *            The configuration context.
+	 * 
+	 * @return The class name.
+	 * 
+	 * @throws IllegalArgumentException
+	 *             If the class attribute is missing.
 	 */
 	protected String getClass(ConfigurableFactoryContext ctx) {
 		return ctx.getRequiredString("class");

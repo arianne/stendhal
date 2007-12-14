@@ -66,63 +66,66 @@ public class LearnAboutKarma extends AbstractQuest {
 
 	private void step1() {
 		SpeakerNPC npc = npcs.get("Sarzina");
-		
-		npc.add(ConversationStates.ATTENDING,
-			ConversationPhrases.QUEST_MESSAGES, 
-			new QuestNotCompletedCondition(QUEST_SLOT),
-			ConversationStates.QUEST_OFFERED, 
-			"Are you someone who likes to help others?", null);
 
 		npc.add(ConversationStates.ATTENDING,
-			ConversationPhrases.QUEST_MESSAGES,
-			new QuestCompletedCondition(QUEST_SLOT),
-			ConversationStates.ATTENDING, 
-			"I don't need anything but I can tell you your #karma.", null);
+				ConversationPhrases.QUEST_MESSAGES,
+				new QuestNotCompletedCondition(QUEST_SLOT),
+				ConversationStates.QUEST_OFFERED,
+				"Are you someone who likes to help others?", null);
+
+		npc.add(ConversationStates.ATTENDING,
+				ConversationPhrases.QUEST_MESSAGES,
+				new QuestCompletedCondition(QUEST_SLOT),
+				ConversationStates.ATTENDING,
+				"I don't need anything but I can tell you your #karma.", null);
 
 		// player is willing to help other people
 		// player gets a little karma bonus
 		npc.add(ConversationStates.QUEST_OFFERED,
-			ConversationPhrases.YES_MESSAGES, null,
-			ConversationStates.ATTENDING,
-			"Wonderful! You must have good #karma.",
-			new MultipleActions(new IncreaseKarmaAction(5.0), new SetQuestAction(QUEST_SLOT, "done")));
+				ConversationPhrases.YES_MESSAGES, null,
+				ConversationStates.ATTENDING,
+				"Wonderful! You must have good #karma.", new MultipleActions(
+						new IncreaseKarmaAction(5.0), new SetQuestAction(
+								QUEST_SLOT, "done")));
 
 		// player is not willing to help other people
 		// player gets a little karma removed
 		npc.add(ConversationStates.QUEST_OFFERED,
-			ConversationPhrases.NO_MESSAGES, null,
-			ConversationStates.ATTENDING,
-			"I knew it ... you probably have bad #karma.",
-			new MultipleActions(new DecreaseKarmaAction(10.0), new SetQuestAction(QUEST_SLOT, "done")));
+				ConversationPhrases.NO_MESSAGES, null,
+				ConversationStates.ATTENDING,
+				"I knew it ... you probably have bad #karma.",
+				new MultipleActions(new DecreaseKarmaAction(10.0),
+						new SetQuestAction(QUEST_SLOT, "done")));
 
 		// player wants to know what karma is
 		npc.add(
-			ConversationStates.ATTENDING,
-			"karma",
-			null,
-			ConversationStates.QUESTION_1,
-			"When you do a good thing you get good karma. Good karma means you're likely to do well in battle and when fishing or searching for something like gold. Do you want to know what your karma is now?",
-			null);
+				ConversationStates.ATTENDING,
+				"karma",
+				null,
+				ConversationStates.QUESTION_1,
+				"When you do a good thing you get good karma. Good karma means you're likely to do well in battle and when fishing or searching for something like gold. Do you want to know what your karma is now?",
+				null);
 
 		// player wants to know what his own karma is
 		npc.add(ConversationStates.QUESTION_1,
-			ConversationPhrases.YES_MESSAGES, null,
-			ConversationStates.ATTENDING, null,
-			new SpeakerNPC.ChatAction() {
-				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-					long roundedkarma = Math.round(player.getKarma());
-					npc.say("Your karma is roughly " + roundedkarma + ".");
-					// TODO: make her say different things if it's big and
-					// potisive, small and negative etc. need idea of ranges
-					// for this.
-				}
-			});
+				ConversationPhrases.YES_MESSAGES, null,
+				ConversationStates.ATTENDING, null,
+				new SpeakerNPC.ChatAction() {
+					@Override
+					public void fire(Player player, Sentence sentence,
+							SpeakerNPC npc) {
+						long roundedkarma = Math.round(player.getKarma());
+						npc.say("Your karma is roughly " + roundedkarma + ".");
+						// TODO: make her say different things if it's big and
+						// potisive, small and negative etc. need idea of ranges
+						// for this.
+					}
+				});
 
 		// player doesn't want to know what his own karma is
 		npc.add(ConversationStates.QUESTION_1, ConversationPhrases.NO_MESSAGES,
-			null, ConversationStates.ATTENDING,
-			"Fair enough! I could help you another way?", null);
+				null, ConversationStates.ATTENDING,
+				"Fair enough! I could help you another way?", null);
 	}
 
 	@Override

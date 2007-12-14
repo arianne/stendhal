@@ -41,9 +41,10 @@ public class OwnAction implements ActionListener {
 			return;
 		}
 
-		 // evaluate the target parameter
+		// evaluate the target parameter
 		StendhalRPZone zone = player.getZone();
-		Entity entity = EntityHelper.entityFromTargetName(action.get(TARGET), zone);
+		Entity entity = EntityHelper.entityFromTargetName(action.get(TARGET),
+				zone);
 
 		if (entity != null) {
 			// Make sure the entity is valid (hacked client?)
@@ -85,32 +86,33 @@ public class OwnAction implements ActionListener {
 		} else {
 			int target = action.getInt(TARGET);
 
-    		// TODO: BUG: This features is potentially abusable right now. Consider
-    		// removing it...
-    		if (target == -1) {
-    			// Disown
-    			if (action.has(_SPECIES)) {
-    				String species = action.get(_SPECIES);
-    
-    				if (species.equals("sheep")) {
-    					Sheep sheep = player.getSheep();
-    					player.removeSheep(sheep);
-    
-    					// HACK: Avoid a problem on database
-    					if (sheep.has("#db_id")) {
-    						sheep.remove("#db_id");
-    					}
-    				} else if (species.equals("pet")) {
-    					Pet pet = player.getPet();
-    					player.removePet(pet);
-    
-    					// HACK: Avoid a problem on database
-    					if (pet.has("#db_id")) {
-    						pet.remove("#db_id");
-    					}
-    				}
-    			}
-    		}
+			// TODO: BUG: This features is potentially abusable right now.
+			// Consider
+			// removing it...
+			if (target == -1) {
+				// Disown
+				if (action.has(_SPECIES)) {
+					String species = action.get(_SPECIES);
+
+					if (species.equals("sheep")) {
+						Sheep sheep = player.getSheep();
+						player.removeSheep(sheep);
+
+						// HACK: Avoid a problem on database
+						if (sheep.has("#db_id")) {
+							sheep.remove("#db_id");
+						}
+					} else if (species.equals("pet")) {
+						Pet pet = player.getPet();
+						player.removePet(pet);
+
+						// HACK: Avoid a problem on database
+						if (pet.has("#db_id")) {
+							pet.remove("#db_id");
+						}
+					}
+				}
+			}
 		}
 
 		player.notifyWorldAboutChanges();

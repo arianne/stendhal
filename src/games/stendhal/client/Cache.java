@@ -22,13 +22,13 @@ import marauroa.common.net.message.TransferContent;
  * <p>
  * Manages a two level cache which one or both levels are optional:
  * </p>
- *
+ * 
  * <p>
  * The first level is prefilled readonly cache in a .jar file on class path. At
  * the time of writing we use this for Webstart because we are unsure how large
  * the webstart PersistenceService may grow.
  * </p>
- *
+ * 
  * <p>
  * The second level is a normal cache on filesystem.
  * </p>
@@ -40,7 +40,7 @@ public class Cache {
 	private static final String VERSION_KEY = "_VERSION";
 
 	/**
-	 * inits the cache
+	 * inits the cache.
 	 */
 	public void init() {
 		try {
@@ -85,13 +85,16 @@ public class Cache {
 	}
 
 	/**
-	 * empty cache on update because stendhal is know to crash if incompatible
-	 * stuff is in cache.
-	 *
-	 * @throws IOException in case the cache folder is not writeable
+	 * empty cache on update.
+	 * 
+	 * stendhal is known to crash, if incompatible stuff is in cache.
+	 * 
+	 * @throws IOException
+	 *             in case the cache folder is not writeable
 	 */
 	private void cleanCacheOnUpdate() throws IOException {
-		if (!cacheManager.has(VERSION_KEY) || !cacheManager.get(VERSION_KEY).equals(stendhal.VERSION)) {
+		if (!cacheManager.has(VERSION_KEY)
+				|| !cacheManager.get(VERSION_KEY).equals(stendhal.VERSION)) {
 			cleanCache();
 			cacheManager.clear();
 			initCacheManager();
@@ -99,19 +102,22 @@ public class Cache {
 	}
 
 	/**
-	 * initializes the low level cache manager
-	 *
-	 * @throws IOException in case the cache folder is not readable
+	 * initializes the low level cache manager.
+	 * 
+	 * @throws IOException
+	 *             in case the cache folder is not readable
 	 */
 	private void initCacheManager() throws IOException {
-		String cacheFile = System.getProperty("user.home") + stendhal.STENDHAL_FOLDER + "cache/stendhal.cache";
+		String cacheFile = System.getProperty("user.home")
+				+ stendhal.STENDHAL_FOLDER + "cache/stendhal.cache";
 		new File(cacheFile).createNewFile();
-		Configuration.setConfigurationFile(true, stendhal.STENDHAL_FOLDER, "cache/stendhal.cache");
+		Configuration.setConfigurationFile(true, stendhal.STENDHAL_FOLDER,
+				"cache/stendhal.cache");
 		cacheManager = Configuration.getConfiguration();
 	}
 
 	/**
-	 * Deletes the cache
+	 * Deletes the cache.
 	 */
 	private void cleanCache() {
 		String homeDir = System.getProperty("user.home");
@@ -126,7 +132,6 @@ public class Cache {
 			}
 		}
 	}
-
 
 	private InputStream getItemFromPrefilledCache(TransferContent item) {
 		String name = "cache/" + item.name;
@@ -173,8 +178,8 @@ public class Cache {
 	}
 
 	/**
-	 * Gets an item from cache
-	 *
+	 * Gets an item from cache.
+	 * 
 	 * @param item
 	 *            key
 	 * @return InputStream or null if not in cache
@@ -191,8 +196,8 @@ public class Cache {
 	}
 
 	/**
-	 * Stores an item in cache
-	 *
+	 * Stores an item in cache.
+	 * 
 	 * @param item
 	 *            key
 	 * @param data

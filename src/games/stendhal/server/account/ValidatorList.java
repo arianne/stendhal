@@ -6,7 +6,7 @@ import marauroa.common.game.Result;
 
 /**
  * Manages a list of validators
- *
+ * 
  * @author hendrik
  */
 public class ValidatorList extends LinkedList<AccountParameterValidator> {
@@ -14,7 +14,7 @@ public class ValidatorList extends LinkedList<AccountParameterValidator> {
 
 	/**
 	 * Executes all validators until one fails or all are completed.
-	 *
+	 * 
 	 * @return Result in case of an error, null in case of success
 	 */
 	public Result runValidators() {

@@ -13,11 +13,14 @@ import java.util.Map;
 public class VergerNPC implements ZoneConfigurator {
 	/**
 	 * Configure a zone.
-	 *
-	 * @param	zone		The zone to be configured.
-	 * @param	attributes	Configuration attributes.
+	 * 
+	 * @param zone
+	 *            The zone to be configured.
+	 * @param attributes
+	 *            Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone,
+			Map<String, String> attributes) {
 		buildNPC(zone);
 	}
 
@@ -42,7 +45,9 @@ public class VergerNPC implements ZoneConfigurator {
 				addJob("I am the church verger. I help with small menial tasks, but I do not mind, as my reward will come in the life beyond.");
 				addHelp("My only advice is to love and be kind to one another");
 				addQuest("I have eveything I need. But it does bring me pleasure to see people #married.");
-				addReply("married", "If you want to be engaged, speak to Sister Benedicta. She'll make sure the priest knows about your plans.");
+				addReply(
+						"married",
+						"If you want to be engaged, speak to Sister Benedicta. She'll make sure the priest knows about your plans.");
 				addReply("yes", "Congratulations!");
 				addReply("no", "A pity. I do hope you find a partner one day.");
 				addGoodbye("Goodbye, go safely.");

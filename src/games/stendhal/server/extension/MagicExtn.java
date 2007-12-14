@@ -1,4 +1,3 @@
-
 /** Stendhal Mana/Magic Extenstion
  *  @author timothyb89
  *  Adds a magic skills system to a Stendhal server.
@@ -15,15 +14,15 @@ import org.apache.log4j.Logger;
 import marauroa.common.game.RPAction;
 
 /**
-
- # load StendhalServerExtension(s)
- groovy=games.stendhal.server.scripting.StendhalGroovyRunner
- http=games.stendhal.server.StendhalHttpServer
- magic=games.stendhal.server.extension.MagicExtn
- server_extension=groovy,http,magic
-
+ *  # load StendhalServerExtension(s)
+ * groovy=games.stendhal.server.scripting.StendhalGroovyRunner
+ * http=games.stendhal.server.StendhalHttpServer
+ * magic=games.stendhal.server.extension.MagicExtn
+ * server_extension=groovy,http,magic
+ * 
  */
-public class MagicExtn extends StendhalServerExtension implements ActionListener {
+public class MagicExtn extends StendhalServerExtension implements
+		ActionListener {
 
 	private static final Logger logger = Logger.getLogger(MagicExtn.class);
 
@@ -35,10 +34,10 @@ public class MagicExtn extends StendhalServerExtension implements ActionListener
 		logger.info("MagicExtn starting...");
 		CommandCenter.register("spell", this);
 
-		//StendhalRPRuleProcessor.register("listspells", this); //not ready yet
+		// StendhalRPRuleProcessor.register("listspells", this); //not ready yet
 	}
 
-	/* 
+	/*
 	 * @see games.stendhal.server.StendhalServerExtension#init()
 	 */
 	@Override
@@ -69,19 +68,28 @@ public class MagicExtn extends StendhalServerExtension implements ActionListener
 				player.sendPrivateText("You did not enter a spell to cast.");
 				logger.error("User did not enter a spell.");
 			}
-			//if(player1 == null) { 
-			//text += "Player \"" + name1 + "\" not found. ";
-			//}
+			// if(player1 == null) {
+			// text += "Player \"" + name1 + "\" not found. ";
+			// }
 			player.sendPrivateText("Trying to cast a spell...");
 		} else {
 			text = usage;
 		}
 
-		String availableSpells = player.getQuest("spells"); //the list of spells	//FIXME Is this getQuest("spells") correct, shouldn't it be s.th. like player.getSlot("spells")... ?
+		String availableSpells = player.getQuest("spells"); // the list of
+															// spells //FIXME Is
+															// this
+															// getQuest("spells")
+															// correct,
+															// shouldn't it be
+															// s.th. like
+															// player.getSlot("spells")...
+															// ?
 
-		// Checks to see if the list of spells available to the player contains the spell they tried to cast
+		// Checks to see if the list of spells available to the player contains
+		// the spell they tried to cast
 		if (availableSpells.contains(castSpell)) {
-			canCastSpell = true; //lets player cast spell 
+			canCastSpell = true; // lets player cast spell
 		} else {
 			player.sendPrivateText("You can not cast this spell.");
 		}
@@ -117,7 +125,7 @@ public class MagicExtn extends StendhalServerExtension implements ActionListener
 					int oldAtk = player.getATK();
 					int oldAtkXP = player.getATKXP();
 
-					//gets new stats
+					// gets new stats
 					int newLevel = oldLevel++;
 					int newXP = oldXP + 44900;
 					int newDefXP = oldDefXP + 24700;
@@ -133,12 +141,12 @@ public class MagicExtn extends StendhalServerExtension implements ActionListener
 					player.setATK(newAtk);
 					player.setATKXP(newAtkXP);
 
-					//saves changes
+					// saves changes
 					player.update();
 					player.notifyWorldAboutChanges();
 
 					// takes away mana
-					//player.put("mana", player.getMana() - 110);
+					// player.put("mana", player.getMana() - 110);
 					String mana = player.get("mana");
 					int mana_a = Integer.parseInt(mana);
 					int newmana = mana_a - 110;

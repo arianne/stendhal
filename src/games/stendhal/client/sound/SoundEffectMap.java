@@ -19,25 +19,28 @@ import java.util.Map;
 public class SoundEffectMap {
 
 	/**
-	 *  the singleton instance initated by default
+	 * the singleton instance initated by default
 	 */
 	private static final SoundEffectMap INSTANCE = new SoundEffectMap();
 
 	/**
-	 * @return the singleton instance 
+	 * @return the singleton instance
 	 */
 	static SoundEffectMap getInstance() {
 		return INSTANCE;
 	}
 
 	/**
-	 * stores the named sound effects 
+	 * stores the named sound effects
 	 */
-	private Map<String, Object> sfxmap = Collections.synchronizedMap(new HashMap<String, Object>(256));
+	private Map<String, Object> sfxmap = Collections.synchronizedMap(new HashMap<String, Object>(
+			256));
 
-	private Map<String, String> pathMap = Collections.synchronizedMap(new HashMap<String, String>(256));
+	private Map<String, String> pathMap = Collections.synchronizedMap(new HashMap<String, String>(
+			256));
 
-	private Map<String, ClipRunner> clipRunnerMap = Collections.synchronizedMap(new HashMap<String, ClipRunner>(256));
+	private Map<String, ClipRunner> clipRunnerMap = Collections.synchronizedMap(new HashMap<String, ClipRunner>(
+			256));
 
 	Object getByName(String name) {
 		return sfxmap.get(name);
@@ -75,17 +78,17 @@ public class SoundEffectMap {
 	 */
 	ClipRunner getSoundClip(String name) {
 
-		//		Object o = getByName(name);
-		//		if (o == null)
-		//			return null;
+		// Object o = getByName(name);
+		// if (o == null)
+		// return null;
 		//	
-		//		if (o instanceof ClipRunner) {
-		//			return (ClipRunner) o;
-		//		}
+		// if (o instanceof ClipRunner) {
+		// return (ClipRunner) o;
+		// }
 		//	
-		//		// load sounddata from soundfile
-		//		String path = (String) o;
-		//		return system.loadSoundDataFromFile(name, path);
+		// // load sounddata from soundfile
+		// String path = (String) o;
+		// return system.loadSoundDataFromFile(name, path);
 		return (ClipRunner) getByName(name);
 	}
 

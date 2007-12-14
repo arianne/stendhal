@@ -32,10 +32,13 @@ import java.util.List;
  * <li> You give the wood to Sally.
  * <li> Katinka gives you 10 meat or ham in return.
  * <p>
- * REWARD: <li> 10 meat or ham <li> 50 XP
+ * REWARD:
+ * <li> 10 meat or ham
+ * <li> 50 XP
  * <p>
- * REPETITIONS: <li> Unlimited, but 1000 turns (ca. 5 minutes) of waiting are
- * required between repetitions
+ * REPETITIONS:
+ * <li> Unlimited, but 1000 turns (ca. 5 minutes) of waiting are required
+ * between repetitions
  */
 public class Campfire extends AbstractQuest {
 
@@ -96,7 +99,7 @@ public class Campfire extends AbstractQuest {
 				return true;
 			}
 			int turnsSinceLastBroughtWood = StendhalRPRuleProcessor.get().getTurn()
-				- turnWhenLastBroughtWood;
+					- turnWhenLastBroughtWood;
 			if (turnsSinceLastBroughtWood < 0) {
 				// TODO: use time instead of turn number, that will make such
 				// things easier.
@@ -112,87 +115,101 @@ public class Campfire extends AbstractQuest {
 	private void prepareRequestingStep() {
 		SpeakerNPC npc = npcs.get("Sally");
 
-		npc.add(ConversationStates.IDLE, 
-			ConversationPhrases.GREETING_MESSAGES,
-			new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"), new PlayerHasItemWithHimCondition("wood", REQUIRED_WOOD)),
-			ConversationStates.QUEST_ITEM_BROUGHT, 
-			"Hi again! You've got wood, I see; do you have those 10 pieces of wood I asked about earlier?",
-			null);
+		npc.add(
+				ConversationStates.IDLE,
+				ConversationPhrases.GREETING_MESSAGES,
+				new AndCondition(
+						new QuestInStateCondition(QUEST_SLOT, "start"),
+						new PlayerHasItemWithHimCondition("wood", REQUIRED_WOOD)),
+				ConversationStates.QUEST_ITEM_BROUGHT,
+				"Hi again! You've got wood, I see; do you have those 10 pieces of wood I asked about earlier?",
+				null);
 
-		npc.add(ConversationStates.IDLE, 
-			ConversationPhrases.GREETING_MESSAGES,
-			new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"), new NotCondition(new PlayerHasItemWithHimCondition("wood", REQUIRED_WOOD))),
-			ConversationStates.ATTENDING, 
-			"You're back already? Don't forget that you promised to collect ten pieces of wood for me!",
-			null);
+		npc.add(
+				ConversationStates.IDLE,
+				ConversationPhrases.GREETING_MESSAGES,
+				new AndCondition(
+						new QuestInStateCondition(QUEST_SLOT, "start"),
+						new NotCondition(new PlayerHasItemWithHimCondition(
+								"wood", REQUIRED_WOOD))),
+				ConversationStates.ATTENDING,
+				"You're back already? Don't forget that you promised to collect ten pieces of wood for me!",
+				null);
 
-		npc.add(ConversationStates.IDLE, 
-			ConversationPhrases.GREETING_MESSAGES,
-			new QuestNotInStateCondition(QUEST_SLOT, "start"),
-			ConversationStates.ATTENDING, null,
-			new SpeakerNPC.ChatAction() {
-				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-					if (canStartQuestNow(npc, player)) {
-						npc.say("Hi! Could you do me a #favor?");
-					} else {
-						// TODO: say how many minutes are left.
-						npc.say("Oh, I still have plenty of wood from the last time you helped me. Thank you for helping!");
+		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
+				new QuestNotInStateCondition(QUEST_SLOT, "start"),
+				ConversationStates.ATTENDING, null,
+				new SpeakerNPC.ChatAction() {
+					@Override
+					public void fire(Player player, Sentence sentence,
+							SpeakerNPC npc) {
+						if (canStartQuestNow(npc, player)) {
+							npc.say("Hi! Could you do me a #favor?");
+						} else {
+							// TODO: say how many minutes are left.
+							npc.say("Oh, I still have plenty of wood from the last time you helped me. Thank you for helping!");
+						}
 					}
-				}
-			});
+				});
+
+		npc.add(
+				ConversationStates.ATTENDING,
+				ConversationPhrases.QUEST_MESSAGES,
+				new QuestInStateCondition(QUEST_SLOT, "start"),
+				ConversationStates.QUEST_OFFERED,
+				"You already promised me to bring me some wood! Ten pieces, remember?",
+				null);
 
 		npc.add(ConversationStates.ATTENDING,
-			ConversationPhrases.QUEST_MESSAGES, 
-			new QuestInStateCondition(QUEST_SLOT, "start"),
-			ConversationStates.QUEST_OFFERED,
-			"You already promised me to bring me some wood! Ten pieces, remember?",
-			null);
-
-		npc.add(ConversationStates.ATTENDING,
-			ConversationPhrases.QUEST_MESSAGES,
-			new QuestNotInStateCondition(QUEST_SLOT, "start"),
-			ConversationStates.QUEST_OFFERED, null,
-			new SpeakerNPC.ChatAction() {
-				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-					if (canStartQuestNow(npc, player)) {
-						npc.say("I need more wood to keep my campfire running, But I can't leave it unattended to go get some! Could you please get some from the forest for me? I need ten pieces.");
-					} else {
-						npc.say("I don't need any more wood at the moment, but thanks for asking.");
-						npc.setCurrentState(ConversationStates.ATTENDING);
+				ConversationPhrases.QUEST_MESSAGES,
+				new QuestNotInStateCondition(QUEST_SLOT, "start"),
+				ConversationStates.QUEST_OFFERED, null,
+				new SpeakerNPC.ChatAction() {
+					@Override
+					public void fire(Player player, Sentence sentence,
+							SpeakerNPC npc) {
+						if (canStartQuestNow(npc, player)) {
+							npc.say("I need more wood to keep my campfire running, But I can't leave it unattended to go get some! Could you please get some from the forest for me? I need ten pieces.");
+						} else {
+							npc.say("I don't need any more wood at the moment, but thanks for asking.");
+							npc.setCurrentState(ConversationStates.ATTENDING);
+						}
 					}
-				}
-			});
+				});
 
 		// player is willing to help
-		npc.add(ConversationStates.QUEST_OFFERED,
-			ConversationPhrases.YES_MESSAGES,
-			null,
-			ConversationStates.ATTENDING,
-			"Okay. You can find wood in the forest north of here. Come back when you get ten pieces of wood!",
-			new SetQuestAction(QUEST_SLOT, "start"));
+		npc.add(
+				ConversationStates.QUEST_OFFERED,
+				ConversationPhrases.YES_MESSAGES,
+				null,
+				ConversationStates.ATTENDING,
+				"Okay. You can find wood in the forest north of here. Come back when you get ten pieces of wood!",
+				new SetQuestAction(QUEST_SLOT, "start"));
 
 		// player is not willing to help
-		npc.add(ConversationStates.QUEST_OFFERED,
-			ConversationPhrases.NO_MESSAGES,
-			null,
-			ConversationStates.ATTENDING,
-			"Oh dear, how am I going to cook all this meat? Perhaps I'll just have to feed it to the animals...",
-			null);
+		npc.add(
+				ConversationStates.QUEST_OFFERED,
+				ConversationPhrases.NO_MESSAGES,
+				null,
+				ConversationStates.ATTENDING,
+				"Oh dear, how am I going to cook all this meat? Perhaps I'll just have to feed it to the animals...",
+				null);
 	}
 
 	private void prepareBringingStep() {
 		SpeakerNPC npc = npcs.get("Sally");
 		npc.add(ConversationStates.QUEST_ITEM_BROUGHT,
-			ConversationPhrases.YES_MESSAGES, 
-			new PlayerHasItemWithHimCondition("wood", REQUIRED_WOOD),
-			ConversationStates.ATTENDING, null,
+				ConversationPhrases.YES_MESSAGES,
+				new PlayerHasItemWithHimCondition("wood", REQUIRED_WOOD),
+				ConversationStates.ATTENDING, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					public void fire(Player player, Sentence sentence,
+							SpeakerNPC npc) {
 						player.drop("wood", REQUIRED_WOOD);
-						player.setQuest(QUEST_SLOT, Integer.toString(StendhalRPRuleProcessor.get().getTurn()));
+						player.setQuest(
+								QUEST_SLOT,
+								Integer.toString(StendhalRPRuleProcessor.get().getTurn()));
 						player.addXP(50);
 
 						String rewardClass;
@@ -201,9 +218,9 @@ public class Campfire extends AbstractQuest {
 						} else {
 							rewardClass = "ham";
 						}
-						npc.say("Thank you! Here, take some " + rewardClass + "!");
-						EntityManager manager = StendhalRPWorld.get()
-								.getRuleManager().getEntityManager();
+						npc.say("Thank you! Here, take some " + rewardClass
+								+ "!");
+						EntityManager manager = StendhalRPWorld.get().getRuleManager().getEntityManager();
 						StackableItem reward = (StackableItem) manager.getItem(rewardClass);
 						reward.setQuantity(REQUIRED_WOOD);
 						player.equip(reward, true);
@@ -212,19 +229,18 @@ public class Campfire extends AbstractQuest {
 				});
 
 		npc.add(ConversationStates.QUEST_ITEM_BROUGHT,
-			ConversationPhrases.YES_MESSAGES, 
-			new NotCondition(new PlayerHasItemWithHimCondition("wood", REQUIRED_WOOD)),
-			ConversationStates.ATTENDING, 
-			"Hey! Where did you put the wood?",
-			null);
+				ConversationPhrases.YES_MESSAGES,
+				new NotCondition(new PlayerHasItemWithHimCondition("wood",
+						REQUIRED_WOOD)), ConversationStates.ATTENDING,
+				"Hey! Where did you put the wood?", null);
 
 		npc.add(
-			ConversationStates.QUEST_ITEM_BROUGHT,
-			ConversationPhrases.NO_MESSAGES,
-			null,
-			ConversationStates.ATTENDING,
-			"Oh... well, I hope you find some quickly; this fire's going to burn out soon!",
-			null);
+				ConversationStates.QUEST_ITEM_BROUGHT,
+				ConversationPhrases.NO_MESSAGES,
+				null,
+				ConversationStates.ATTENDING,
+				"Oh... well, I hope you find some quickly; this fire's going to burn out soon!",
+				null);
 	}
 
 	@Override

@@ -62,7 +62,8 @@ class ItemsXMLLoader extends DefaultHandler {
 			InputStream is = getClass().getResourceAsStream(uri.getPath());
 
 			if (is == null) {
-				throw new FileNotFoundException("cannot find resource '" + uri + "' in classpath");
+				throw new FileNotFoundException("cannot find resource '" + uri
+						+ "' in classpath");
 			}
 			saxParser.parse(is, this);
 		} catch (ParserConfigurationException t) {
@@ -86,7 +87,8 @@ class ItemsXMLLoader extends DefaultHandler {
 	}
 
 	@Override
-	public void startElement(String namespaceURI, String lName, String qName, Attributes attrs) {
+	public void startElement(String namespaceURI, String lName, String qName,
+			Attributes attrs) {
 		text = "";
 		if (qName.equals("item")) {
 			name = attrs.getValue("name");
@@ -142,7 +144,8 @@ class ItemsXMLLoader extends DefaultHandler {
 		} else if (qName.equals("description")) {
 			if (text != null) {
 				description = text.trim();
-				//TODO: There are empty spaces on the middle of the description.
+				// TODO: There are empty spaces on the middle of the
+				// description.
 			}
 		}
 	}

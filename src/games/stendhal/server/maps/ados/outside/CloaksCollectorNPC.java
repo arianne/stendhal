@@ -13,15 +13,19 @@ import java.util.Map;
 public class CloaksCollectorNPC implements ZoneConfigurator {
 	/**
 	 * Configure a zone.
-	 *
-	 * @param	zone		The zone to be configured.
-	 * @param	attributes	Configuration attributes.
+	 * 
+	 * @param zone
+	 *            The zone to be configured.
+	 * @param attributes
+	 *            Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone,
+			Map<String, String> attributes) {
 		buildZooSub3Area(zone, attributes);
 	}
 
-	private void buildZooSub3Area(StendhalRPZone zone, Map<String, String> attributes) {
+	private void buildZooSub3Area(StendhalRPZone zone,
+			Map<String, String> attributes) {
 		SpeakerNPC npc = new SpeakerNPC("Bario") {
 
 			@Override

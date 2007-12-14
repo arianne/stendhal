@@ -17,9 +17,11 @@ public class QuestInStateCondition extends SpeakerNPC.ChatCondition {
 
 	/**
 	 * Creates a new QuestInStateCondition
-	 *
-	 * @param questname name of quest-slot
-	 * @param state state
+	 * 
+	 * @param questname
+	 *            name of quest-slot
+	 * @param state
+	 *            state
 	 */
 	public QuestInStateCondition(String questname, String state) {
 		this.questname = questname;
@@ -28,14 +30,14 @@ public class QuestInStateCondition extends SpeakerNPC.ChatCondition {
 
 	@Override
 	public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
-		return (player.hasQuest(questname) && player.getQuest(questname).equals(state));
+		return (player.hasQuest(questname) && player.getQuest(questname).equals(
+				state));
 	}
 
 	@Override
 	public String toString() {
 		return "QuestInState <" + questname + "," + state + ">";
 	}
-
 
 	@Override
 	public int hashCode() {
@@ -44,6 +46,7 @@ public class QuestInStateCondition extends SpeakerNPC.ChatCondition {
 
 	@Override
 	public boolean equals(Object obj) {
-		return EqualsBuilder.reflectionEquals(this, obj, false, QuestStartedCondition.class);
+		return EqualsBuilder.reflectionEquals(this, obj, false,
+				QuestStartedCondition.class);
 	}
 }

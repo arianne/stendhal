@@ -4,13 +4,12 @@ import games.stendhal.client.scripting.ScriptRecorder;
 
 import java.io.FileNotFoundException;
 
-
 import org.apache.log4j.Logger;
 
 /**
  * Enable/disable input recording.
  */
-public class RecordAction implements SlashAction  {
+public class RecordAction implements SlashAction {
 
 	private static final Logger logger = Logger.getLogger(RecordAction.class);
 
@@ -18,11 +17,13 @@ public class RecordAction implements SlashAction  {
 
 	/**
 	 * Execute a chat command.
-	 *
-	 * @param	params		The formal parameters.
-	 * @param	remainder	Line content after parameters.
-	 *
-	 * @return	<code>true</code> if  was handled.
+	 * 
+	 * @param params
+	 *            The formal parameters.
+	 * @param remainder
+	 *            Line content after parameters.
+	 * 
+	 * @return <code>true</code> if was handled.
 	 */
 	public boolean execute(final String[] params, final String remainder) {
 		if (recorder != null) {
@@ -46,8 +47,8 @@ public class RecordAction implements SlashAction  {
 
 	/**
 	 * Get the maximum number of formal parameters.
-	 *
-	 * @return	The parameter count.
+	 * 
+	 * @return The parameter count.
 	 */
 	public int getMaximumParameters() {
 		return 1;
@@ -55,8 +56,8 @@ public class RecordAction implements SlashAction  {
 
 	/**
 	 * Get the minimum number of formal parameters.
-	 *
-	 * @return	The parameter count.
+	 * 
+	 * @return The parameter count.
 	 */
 	public int getMinimumParameters() {
 		return 1;
@@ -64,7 +65,7 @@ public class RecordAction implements SlashAction  {
 
 	/**
 	 * get the script recorder
-	 *
+	 * 
 	 * @return ScriptRecorder
 	 */
 	public ScriptRecorder getRecorder() {

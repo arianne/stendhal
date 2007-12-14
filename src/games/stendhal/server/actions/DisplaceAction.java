@@ -32,8 +32,6 @@ public class DisplaceAction implements ActionListener {
 	private static final String _Y = "y";
 	private static final String _X = "x";
 
-
-
 	/**
 	 * register this action
 	 */
@@ -63,9 +61,10 @@ public class DisplaceAction implements ActionListener {
 						if (player.nextTo(entity)
 								&& (!isItemBelowOtherPlayer(player, entity))
 								&& (player.squaredDistance(x, y) < 8 * 8)
-						        && !zone.simpleCollides(entity, x, y)) {
-							StendhalRPRuleProcessor.get()
-							        .addGameEvent(player.getName(), "displace", entity.get("type"));
+								&& !zone.simpleCollides(entity, x, y)) {
+							StendhalRPRuleProcessor.get().addGameEvent(
+									player.getName(), "displace",
+									entity.get("type"));
 
 							entity.setPosition(x, y);
 							entity.notifyWorldAboutChanges();
@@ -80,16 +79,15 @@ public class DisplaceAction implements ActionListener {
 			}
 		}
 
-
 	}
-
-
 
 	/**
 	 * Checks whether the item is below <b>another</b> player.
-	 *
-	 * @param player the player doing the displacement
-	 * @param entity the entity beeing displaced
+	 * 
+	 * @param player
+	 *            the player doing the displacement
+	 * @param entity
+	 *            the entity beeing displaced
 	 * @return true, if it cannot be take; false otherwise
 	 */
 	private boolean isItemBelowOtherPlayer(Player player, PassiveEntity entity) {

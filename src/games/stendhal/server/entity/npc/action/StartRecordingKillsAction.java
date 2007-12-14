@@ -13,7 +13,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 
 /**
  * Starts the recording of kills
- *
+ * 
  * @author hendrik
  */
 public class StartRecordingKillsAction extends ChatAction {
@@ -21,8 +21,9 @@ public class StartRecordingKillsAction extends ChatAction {
 
 	/**
 	 * creates a new StartRecodingKillsAction
-	 *
-	 * @param toKill list of creatures which should be killed by the player
+	 * 
+	 * @param toKill
+	 *            list of creatures which should be killed by the player
 	 */
 	public StartRecordingKillsAction(List<String> toKill) {
 		this.toKill = toKill;
@@ -30,8 +31,9 @@ public class StartRecordingKillsAction extends ChatAction {
 
 	/**
 	 * creates a new StartRecodingKillsAction
-	 *
-	 * @param toKill creatures which should be killed by the player
+	 * 
+	 * @param toKill
+	 *            creatures which should be killed by the player
 	 */
 	public StartRecordingKillsAction(String... toKill) {
 		this.toKill = Arrays.asList(toKill);
@@ -46,12 +48,13 @@ public class StartRecordingKillsAction extends ChatAction {
 
 	@Override
 	public String toString() {
-		return "StartRecordingKillsActions <" + toKill + ">"; 
+		return "StartRecordingKillsActions <" + toKill + ">";
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		return EqualsBuilder.reflectionEquals(this, obj, false, StartRecordingKillsAction.class);
+		return EqualsBuilder.reflectionEquals(this, obj, false,
+				StartRecordingKillsAction.class);
 	}
 
 	@Override
@@ -59,5 +62,4 @@ public class StartRecordingKillsAction extends ChatAction {
 		return new HashCodeBuilder().append(toKill).toHashCode();
 	}
 
-	
 }

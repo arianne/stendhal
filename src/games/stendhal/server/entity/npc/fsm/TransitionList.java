@@ -7,7 +7,7 @@ import java.util.Set;
 
 /**
  * easy access to a list of transitions for debugging
- *
+ * 
  * @author hendrik
  */
 public class TransitionList {
@@ -15,8 +15,9 @@ public class TransitionList {
 
 	/**
 	 * Creates a new TransitionList
-	 *
-	 * @param transitions list of transitions
+	 * 
+	 * @param transitions
+	 *            list of transitions
 	 */
 	public TransitionList(List<Transition> transitions) {
 		this.transitions = transitions;
@@ -24,7 +25,7 @@ public class TransitionList {
 
 	/**
 	 * gets all source states
-	 *
+	 * 
 	 * @return Set of source states
 	 */
 	public Set<Integer> getSourceStates() {
@@ -37,8 +38,9 @@ public class TransitionList {
 
 	/**
 	 * returns a set of triggers for a given source state
-	 *
-	 * @param state source state
+	 * 
+	 * @param state
+	 *            source state
 	 * @return set of triggers
 	 */
 	public Set<String> getTriggersForState(int state) {
@@ -53,15 +55,19 @@ public class TransitionList {
 
 	/**
 	 * returns a list of transitions for this state-trigger pair.
-	 *
-	 * @param state source state
-	 * @param trigger trigger
+	 * 
+	 * @param state
+	 *            source state
+	 * @param trigger
+	 *            trigger
 	 * @return list of transitions
 	 */
-	public List<Transition> getTransitionsForStateAndTrigger(int state, String trigger) {
+	public List<Transition> getTransitionsForStateAndTrigger(int state,
+			String trigger) {
 		List<Transition> res = new LinkedList<Transition>();
 		for (Transition transition : transitions) {
-			if ((transition.getState() == state) && (transition.getTrigger().equals(trigger))) {
+			if ((transition.getState() == state)
+					&& (transition.getTrigger().equals(trigger))) {
 				res.add(transition);
 			}
 		}

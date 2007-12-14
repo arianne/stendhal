@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * Keeps track of "personal chests" which are an interface to the bank slots
- *
+ * 
  * @author hendrik
  */
 public class BankAccessorManager {
@@ -22,7 +22,7 @@ public class BankAccessorManager {
 
 	/**
 	 * get the BankAccessorManager
-	 *
+	 * 
 	 * @return BankAccessorManager
 	 */
 	public static BankAccessorManager get() {
@@ -34,9 +34,11 @@ public class BankAccessorManager {
 
 	/**
 	 * adds an accessor for this bank
-	 *
-	 * @param bank   Banks
-	 * @param entity Accessor
+	 * 
+	 * @param bank
+	 *            Banks
+	 * @param entity
+	 *            Accessor
 	 */
 	public void add(Banks bank, Entity entity) {
 		List<Entity> bankAccess = getListAddingUnkownBanks(bank);
@@ -46,10 +48,11 @@ public class BankAccessorManager {
 	}
 
 	/**
-	 * gets the list of accessors for the specified bank. In case
-	 * the bank is unkown, an empty list is automatically created
-	 *
-	 * @param bank Banks
+	 * gets the list of accessors for the specified bank. In case the bank is
+	 * unkown, an empty list is automatically created
+	 * 
+	 * @param bank
+	 *            Banks
 	 * @return list of accessors
 	 */
 	private List<Entity> getListAddingUnkownBanks(Banks bank) {
@@ -63,8 +66,9 @@ public class BankAccessorManager {
 
 	/**
 	 * gets the list of accessors for think bank
-	 *
-	 * @param bank Banks
+	 * 
+	 * @param bank
+	 *            Banks
 	 * @return list of accessors or an empty list if this bank is unkown
 	 */
 	protected List<Entity> get(Banks bank) {

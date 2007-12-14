@@ -42,7 +42,7 @@ public class StackableItem2DView extends Item2DView {
 
 	/**
 	 * Create a 2D view of a stackable item.
-	 *
+	 * 
 	 * @param item
 	 *            The entity to render.
 	 */
@@ -61,7 +61,7 @@ public class StackableItem2DView extends Item2DView {
 
 	/**
 	 * Get the appropriate quantity sprite.
-	 *
+	 * 
 	 * @return A sprite representing the quantity, or <code>null</code> for
 	 *         none.
 	 */
@@ -86,7 +86,7 @@ public class StackableItem2DView extends Item2DView {
 
 	/**
 	 * Set whether to show the quantity value.
-	 *
+	 * 
 	 * @param showQuantity
 	 *            Whether to show the quantity.
 	 */
@@ -100,7 +100,7 @@ public class StackableItem2DView extends Item2DView {
 
 	/**
 	 * Draw the entity.
-	 *
+	 * 
 	 * @param g2d
 	 *            The graphics to drawn on.
 	 */
@@ -131,7 +131,7 @@ public class StackableItem2DView extends Item2DView {
 	/**
 	 * Set whether this view is contained, and should render in a compressed
 	 * (it's defined) area without clipping anything important.
-	 *
+	 * 
 	 * @param contained
 	 *            <code>true</code> if contained.
 	 */
@@ -162,7 +162,7 @@ public class StackableItem2DView extends Item2DView {
 
 	/**
 	 * An entity was changed.
-	 *
+	 * 
 	 * @param entity
 	 *            The entity that was changed.
 	 * @param property

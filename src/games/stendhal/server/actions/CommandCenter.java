@@ -37,11 +37,14 @@ public class CommandCenter {
 		}
 
 	}
-	public static void register(String action, ActionListener actionClass, int requiredAdminLevel) {
+
+	public static void register(String action, ActionListener actionClass,
+			int requiredAdminLevel) {
 		register(action, actionClass);
 		AdministrationAction.registerCommandLevel(action, requiredAdminLevel);
 
 	}
+
 	private static void registerActions() {
 		AdministrationAction.register();
 		AttackAction.register();
@@ -73,13 +76,14 @@ public class CommandCenter {
 
 			return true;
 		} catch (Exception e) {
-			logger.error("Cannot execute action " + action + " send by " + caster, e);
+			logger.error("Cannot execute action " + action + " send by "
+					+ caster, e);
 			return false;
 		}
 	}
 
 	private static ActionListener getAction(RPAction action) {
-		if (action == null){
+		if (action == null) {
 			return UNKNOWN_ACTION;
 		} else {
 			return getAction(action.get("type"));
@@ -109,7 +113,8 @@ public class CommandCenter {
 			}
 			logger.warn(player + " tried to execute unknown action " + type);
 			if (player != null) {
-				player.sendPrivateText(NotificationType.ERROR, "Unknown command " + type);
+				player.sendPrivateText(NotificationType.ERROR,
+						"Unknown command " + type);
 			}
 		}
 

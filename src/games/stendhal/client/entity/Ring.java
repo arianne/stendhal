@@ -21,13 +21,12 @@ public class Ring extends Item {
 	/**
 	 * Working property.
 	 */
-	public static final Object	PROP_WORKING	= new Object();
+	public static final Object PROP_WORKING = new Object();
 
 	/**
 	 * Whether the ring is currently working.
 	 */
 	private boolean working;
-
 
 	/**
 	 * Create a Ring entity.
@@ -35,20 +34,18 @@ public class Ring extends Item {
 	public Ring() {
 	}
 
-
 	//
 	// Ring
 	//
 
 	/**
 	 * Determine if a ring is working.
-	 *
-	 * @return	<code>true</code> if a ring is working.
+	 * 
+	 * @return <code>true</code> if a ring is working.
 	 */
 	public boolean isWorking() {
 		return working;
 	}
-
 
 	//
 	// Entity
@@ -56,10 +53,11 @@ public class Ring extends Item {
 
 	/**
 	 * Initialize this entity for an object.
-	 *
-	 * @param	object		The object.
-	 *
-	 * @see-also	#release()
+	 * 
+	 * @param object
+	 *            The object.
+	 * 
+	 * @see-also #release()
 	 */
 	@Override
 	public void initialize(final RPObject object) {
@@ -75,16 +73,17 @@ public class Ring extends Item {
 		}
 	}
 
-
 	//
 	// RPObjectChangeListener
 	//
 
 	/**
 	 * The object added/changed attribute(s).
-	 *
-	 * @param	object		The base object.
-	 * @param	changes		The changes.
+	 * 
+	 * @param object
+	 *            The base object.
+	 * @param changes
+	 *            The changes.
 	 */
 	@Override
 	public void onChangedAdded(final RPObject object, final RPObject changes) {
@@ -92,20 +91,20 @@ public class Ring extends Item {
 
 		if (changes.has("amount")) {
 			/*
-			 * A ring works either by not having amount of
-			 * having amount > 0
+			 * A ring works either by not having amount of having amount > 0
 			 */
 			working = changes.getInt("amount") > 0;
 			fireChange(PROP_WORKING);
 		}
 	}
 
-
 	/**
 	 * The object removed attribute(s).
-	 *
-	 * @param	object		The base object.
-	 * @param	changes		The changes.
+	 * 
+	 * @param object
+	 *            The base object.
+	 * @param changes
+	 *            The changes.
 	 */
 	@Override
 	public void onChangedRemoved(final RPObject object, final RPObject changes) {

@@ -11,7 +11,7 @@ import marauroa.common.game.RPSlot;
 
 /**
  * Deep inspects a player and all his/her items
- *
+ * 
  * @author hendrik
  */
 public class DeepInspect extends ScriptImpl {
@@ -30,7 +30,8 @@ public class DeepInspect extends ScriptImpl {
 		// inspect slots
 		for (RPSlot slot : player.slots()) {
 			// don't return buddy-list for privacy reasons
-			if (slot.getName().equals("!buddy") || slot.getName().equals("!ignore")) {
+			if (slot.getName().equals("!buddy")
+					|| slot.getName().equals("!ignore")) {
 				continue;
 			}
 			sb.append("\nSlot " + slot.getName() + ": \n");

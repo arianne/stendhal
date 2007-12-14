@@ -44,7 +44,7 @@ public class Ring2DView extends Item2DView {
 
 	/**
 	 * Create a 2D view of a chest.
-	 *
+	 * 
 	 * @param ring
 	 *            The entity to render.
 	 */
@@ -62,7 +62,7 @@ public class Ring2DView extends Item2DView {
 
 	/**
 	 * Populate named state sprites.
-	 *
+	 * 
 	 * @param map
 	 *            The map to populate.
 	 */
@@ -82,7 +82,7 @@ public class Ring2DView extends Item2DView {
 
 	/**
 	 * Get the appropriate sprite for the current state.
-	 *
+	 * 
 	 * @return A sprite.
 	 */
 	protected Sprite getStateSprite() {
@@ -101,9 +101,9 @@ public class Ring2DView extends Item2DView {
 	 * Determines on top of which other entities this entity should be drawn.
 	 * Entities with a high Z index will be drawn on top of ones with a lower Z
 	 * index.
-	 *
+	 * 
 	 * Also, players can only interact with the topmost entity.
-	 *
+	 * 
 	 * @return The drawing index.
 	 */
 	@Override
@@ -113,7 +113,7 @@ public class Ring2DView extends Item2DView {
 
 	/**
 	 * Reorder the actions list (if needed). Please use as last resort.
-	 *
+	 * 
 	 * @param list
 	 *            The list to reorder.
 	 */
@@ -142,7 +142,7 @@ public class Ring2DView extends Item2DView {
 
 	/**
 	 * An entity was changed.
-	 *
+	 * 
 	 * @param entity
 	 *            The entity that was changed.
 	 * @param property

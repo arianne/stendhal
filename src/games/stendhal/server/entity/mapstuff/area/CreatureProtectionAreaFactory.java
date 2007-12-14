@@ -25,12 +25,12 @@ public class CreatureProtectionAreaFactory implements ConfigurableFactory {
 
 	/**
 	 * Configure an area's criteria rules.
-	 *
+	 * 
 	 * @param area
 	 *            The area to configure.
 	 * @param ctx
 	 *            The configuration context.
-	 *
+	 * 
 	 * @throws IllegalArgumentException
 	 *             If the attribute is invalid.
 	 */
@@ -97,12 +97,12 @@ public class CreatureProtectionAreaFactory implements ConfigurableFactory {
 
 	/**
 	 * Extract the default action from a context.
-	 *
+	 * 
 	 * @param ctx
 	 *            The configuration context.
-	 *
+	 * 
 	 * @return The default action.
-	 *
+	 * 
 	 * @throws IllegalArgumentException
 	 *             If the attribute is other than "block" or "allow".
 	 */
@@ -127,7 +127,7 @@ public class CreatureProtectionAreaFactory implements ConfigurableFactory {
 
 	/**
 	 * Extract the area height from a context.
-	 *
+	 * 
 	 * @param ctx
 	 *            The configuration context.
 	 * @return The height.
@@ -140,7 +140,7 @@ public class CreatureProtectionAreaFactory implements ConfigurableFactory {
 
 	/**
 	 * Extract the area width from a context.
-	 *
+	 * 
 	 * @param ctx
 	 *            The configuration context.
 	 * @return The width.
@@ -153,17 +153,17 @@ public class CreatureProtectionAreaFactory implements ConfigurableFactory {
 
 	/**
 	 * Create a damaging area.
-	 *
+	 * 
 	 * @param ctx
 	 *            Configuration context.
-	 *
+	 * 
 	 * @return A CreatureProtectionArea.
-	 *
+	 * 
 	 * @throws IllegalArgumentException
 	 *             If there is a problem with the attributes. The exception
 	 *             message should be a value suitable for meaningful user
 	 *             interpretation.
-	 *
+	 * 
 	 * @see CreatureProtectionArea
 	 */
 	public Object create(ConfigurableFactoryContext ctx) {

@@ -13,26 +13,24 @@ import games.stendhal.server.config.factory.ConfigurableFactoryContext;
  */
 public class KeyDestroyingDoorFactory extends LockedDoorFactory {
 
-
 	/**
 	 * Create a locked door.
-	 *
-	 * @param	ctx		Configuration context.
-	 *
-	 * @return	A KeyDestroyingDoor.
-	 *
-	 * @throws	IllegalArgumentException
-	 *				If there is a problem with the
-	 *				attributes. The exception message
-	 *				should be a value suitable for
-	 *				meaningful user interpretation.
-	 *
-	 * @see		KeyDestroyingDoor
+	 * 
+	 * @param ctx
+	 *            Configuration context.
+	 * 
+	 * @return A KeyDestroyingDoor.
+	 * 
+	 * @throws IllegalArgumentException
+	 *             If there is a problem with the attributes. The exception
+	 *             message should be a value suitable for meaningful user
+	 *             interpretation.
+	 * 
+	 * @see KeyDestroyingDoor
 	 */
 	@Override
 	public Object create(ConfigurableFactoryContext ctx) {
 		return new KeyDestroyingDoor(getKey(ctx), getClass(ctx));
 	}
-
 
 }

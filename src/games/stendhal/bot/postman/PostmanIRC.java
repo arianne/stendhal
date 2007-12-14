@@ -4,7 +4,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
-
 import org.apache.log4j.Logger;
 
 import org.jibble.pircbot.IrcException;
@@ -12,7 +11,7 @@ import org.jibble.pircbot.PircBot;
 
 /**
  * IRC Bot for postman
- *
+ * 
  * @author hendrik
  */
 public class PostmanIRC extends PircBot {
@@ -25,13 +24,15 @@ public class PostmanIRC extends PircBot {
 
 	/**
 	 * Creates a new PostmanIRC
-	 *
+	 * 
 	 * @param gameServer
 	 */
 	public PostmanIRC(String gameServer) {
 		this.gameServer = gameServer;
 		try {
-			this.prop.loadFromXML(new FileInputStream(System.getProperty("user.home") + "/.stendhal-postman-conf.xml"));
+			this.prop.loadFromXML(new FileInputStream(
+					System.getProperty("user.home")
+							+ "/.stendhal-postman-conf.xml"));
 		} catch (Exception e) {
 			logger.error(e, e);
 		}
@@ -39,13 +40,13 @@ public class PostmanIRC extends PircBot {
 
 	/**
 	 * Postman IRC bot.
-	 *
-	 * @throws IrcException
+	 * 
 	 * @throws IOException
-	 * @throws NickAlreadyInUseException
+	 * @throws IrcException
 	 * @throws InterruptedException
 	 */
-	public void connect() throws IOException, IrcException, InterruptedException {
+	public void connect() throws IOException, IrcException,
+			InterruptedException {
 		if (Boolean.parseBoolean(prop.getProperty("irc"))) {
 			String nick = prop.getProperty("name");
 			String pass = prop.getProperty("pass");
@@ -91,15 +92,18 @@ public class PostmanIRC extends PircBot {
 
 	/**
 	 * For testing only
-	 *
-	 * @param args ignored
-	 * @throws NickAlreadyInUseException NickAlreadyInUseException
-	 * @throws IOException IOException
-	 * @throws IrcException IrcException
-	 * @throws InterruptedException InterruptedException
+	 * 
+	 * @param args
+	 *            ignored
+	 * @throws IOException
+	 *             IOException
+	 * @throws IrcException
+	 *             IrcException
+	 * @throws InterruptedException
+	 *             InterruptedException
 	 */
 	public static void main(String[] args) throws IOException, IrcException,
-	        InterruptedException {
+			InterruptedException {
 		// Now start our bot up.
 		PostmanIRC bot = new PostmanIRC(null);
 		bot.connect();

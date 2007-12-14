@@ -26,17 +26,19 @@ public class CharacterCreator {
 	private static Logger logger = Logger.getLogger(CharacterCreator.class);
 	private ValidatorList validators = new ValidatorList();
 
-
 	private String username;
 	private String character;
 	private RPObject template;
 
 	/**
-	 * create a CharacterCreator
-	 *
-	 * @param username  name of the user
-	 * @param character name of the new character
-	 * @param template  tempalte to base this character on
+	 * create a CharacterCreator.
+	 * 
+	 * @param username
+	 *            name of the user
+	 * @param character
+	 *            name of the new character
+	 * @param template
+	 *            tempalte to base this character on
 	 */
 	public CharacterCreator(String username, String character, RPObject template) {
 		this.username = username;
@@ -55,10 +57,9 @@ public class CharacterCreator {
 		validators.add(new ReservedSubStringValidator(character));
 	}
 
-
 	/**
-	 * tries to create this character
-	 *
+	 * tries to create this character.
+	 * 
 	 * @return CharacterResult
 	 */
 	public CharacterResult create() {
@@ -77,9 +78,7 @@ public class CharacterCreator {
 						character, template);
 			}
 
-
 			Player object = createEmptyZeroLevelPlayer();
-
 
 			object.update();
 
@@ -108,16 +107,18 @@ public class CharacterCreator {
 			}
 			logger.error("Can't create character", e);
 			TestHelper.fail();
-			return new CharacterResult(Result.FAILED_EXCEPTION, character, template);
+			return new CharacterResult(Result.FAILED_EXCEPTION, character,
+					template);
 		}
 	}
 
 	private Player createEmptyZeroLevelPlayer() {
 		/*
-		 * TODO: move it to player class as it is its duty to provide a empty level 0 player.
-		 *
+		 * TODO: move it to player class as it is its duty to provide a empty
+		 * level 0 player.
+		 * 
 		 * TODO: Update to use Player and RPEntity methods.
-	     */
+		 */
 		Player object = new Player(new RPObject());
 		object.setID(RPObject.INVALID_ID);
 

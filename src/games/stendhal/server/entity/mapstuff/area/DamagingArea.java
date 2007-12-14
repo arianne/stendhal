@@ -14,12 +14,11 @@ import games.stendhal.server.entity.RPEntity;
 
 import java.util.Random;
 
-
 import org.apache.log4j.Logger;
 
 /**
  * An area that damages an RPEntity while over it.
- *
+ * 
  */
 public class DamagingArea extends OccupantArea {
 
@@ -45,16 +44,20 @@ public class DamagingArea extends OccupantArea {
 
 	/**
 	 * Create a damaging area.
-	 *
-	 * @param   width       Width of  this area
-	 * @param   height      Height of this area
-	 * @param	interval	How often damage is given while
-	 *				stationary (in turns).
-	 * @param	damage		The amount of damage to inflict.
-	 * @param	probability	The chance of damage while walking
-	 *				(0.0 - 1.0).
+	 * 
+	 * @param width
+	 *            Width of this area
+	 * @param height
+	 *            Height of this area
+	 * @param interval
+	 *            How often damage is given while stationary (in turns).
+	 * @param damage
+	 *            The amount of damage to inflict.
+	 * @param probability
+	 *            The chance of damage while walking (0.0 - 1.0).
 	 */
-	public DamagingArea(final int width, final int height, final int interval, final int damage, final double probability) {
+	public DamagingArea(final int width, final int height, final int interval,
+			final int damage, final double probability) {
 		super(width, height, interval);
 
 		this.damage = damage;
@@ -70,8 +73,8 @@ public class DamagingArea extends OccupantArea {
 	//
 
 	/**
-	 * Calculate the entity's final defense value.
-	 * Taken from new (potential replacement) combat code.
+	 * Calculate the entity's final defense value. Taken from new (potential
+	 * replacement) combat code.
 	 */
 	protected float calculateDefense(RPEntity entity) {
 		float potential;
@@ -82,7 +85,8 @@ public class DamagingArea extends OccupantArea {
 		int def = entity.getDEF();
 
 		if (logger.isDebugEnabled()) {
-			logger.debug("defender has " + def + " and uses a armor of " + armor);
+			logger.debug("defender has " + def + " and uses a armor of "
+					+ armor);
 		}
 
 		/*
@@ -111,11 +115,12 @@ public class DamagingArea extends OccupantArea {
 
 	/**
 	 * Inflict damage on an entity.
-	 *
-	 * @param	entity		The entity to damage.
-	 *
-	 * @return	<code>false</code> if this entity should be removed
-	 *		from further processing, <code>true</code> otherwise.
+	 * 
+	 * @param entity
+	 *            The entity to damage.
+	 * 
+	 * @return <code>false</code> if this entity should be removed from
+	 *         further processing, <code>true</code> otherwise.
 	 */
 	protected boolean doDamage(RPEntity entity) {
 		float attack;
@@ -142,9 +147,9 @@ public class DamagingArea extends OccupantArea {
 		defense = calculateDefense(entity);
 		int actualDamage = Math.round(Math.max(1, attack - defense));
 
-		//logger.info("attack: " + attack);
-		//logger.info("defense: " + defense);
-		//logger.info("damage: " + damage);
+		// logger.info("attack: " + attack);
+		// logger.info("defense: " + defense);
+		// logger.info("damage: " + damage);
 
 		actualDamage = Math.min(actualDamage, entity.getHP());
 
@@ -155,19 +160,19 @@ public class DamagingArea extends OccupantArea {
 		return true;
 	}
 
-
 	//
 	// OccupantArea
 	//
 
 	/**
-	 * An entity has entered the area. This should not apply any actions
-	 * that <code>handleMovement()</code> does.
-	 *
-	 * @param	entity		The RPEntity that was added.
-	 *
-	 * @return	<code>false</code> if this entity should not be
-	 *		processed, <code>true</code> otherwise.
+	 * An entity has entered the area. This should not apply any actions that
+	 * <code>handleMovement()</code> does.
+	 * 
+	 * @param entity
+	 *            The RPEntity that was added.
+	 * 
+	 * @return <code>false</code> if this entity should not be processed,
+	 *         <code>true</code> otherwise.
 	 */
 	@Override
 	protected boolean handleAdded(RPEntity entity) {
@@ -181,11 +186,12 @@ public class DamagingArea extends OccupantArea {
 
 	/**
 	 * Apply actions done at regular intervals.
-	 *
-	 * @param	entity		The RPEntity occupant.
-	 *
-	 * @return	<code>false</code> if this entity should be removed
-	 *		from further processing, <code>true</code> otherwise.
+	 * 
+	 * @param entity
+	 *            The RPEntity occupant.
+	 * 
+	 * @return <code>false</code> if this entity should be removed from
+	 *         further processing, <code>true</code> otherwise.
 	 */
 	@Override
 	protected boolean handleInterval(RPEntity entity) {
@@ -194,11 +200,12 @@ public class DamagingArea extends OccupantArea {
 
 	/**
 	 * Apply actions done while moving.
-	 *
-	 * @param	entity		The RPEntity that moved.
-	 *
-	 * @return	<code>false</code> if this entity should be removed
-	 *		from further processing, <code>true</code> otherwise.
+	 * 
+	 * @param entity
+	 *            The RPEntity that moved.
+	 * 
+	 * @return <code>false</code> if this entity should be removed from
+	 *         further processing, <code>true</code> otherwise.
 	 */
 	@Override
 	protected boolean handleMovement(RPEntity entity) {
@@ -210,10 +217,11 @@ public class DamagingArea extends OccupantArea {
 	}
 
 	/**
-	 * An entity has left the area. This should not apply any actions
-	 * that <code>handleMovement()</code> does.
-	 *
-	 * @param	entity		The RPEntity that was added.
+	 * An entity has left the area. This should not apply any actions that
+	 * <code>handleMovement()</code> does.
+	 * 
+	 * @param entity
+	 *            The RPEntity that was added.
 	 */
 	@Override
 	protected void handleRemoved(RPEntity entity) {

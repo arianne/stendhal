@@ -10,9 +10,9 @@ import marauroa.common.net.Serializable;
 /**
  * Stores a definition of a tileset. Mainly its name, the source image used and
  * the starting global id.
- *
+ * 
  * @author miguel
- *
+ * 
  */
 public class TileSetDefinition implements Serializable {
 	/** The name of the tileset. Useless */
@@ -26,7 +26,7 @@ public class TileSetDefinition implements Serializable {
 
 	/**
 	 * Constructor
-	 *
+	 * 
 	 * @param name
 	 *            the *useless* name of the tileset.
 	 * @param firstGid
@@ -39,7 +39,7 @@ public class TileSetDefinition implements Serializable {
 
 	/**
 	 * Returns the id where this tileset begins to number tiles
-	 *
+	 * 
 	 * @return the id where this tileset begins to number tiles
 	 */
 	public int getFirstGid() {
@@ -48,7 +48,7 @@ public class TileSetDefinition implements Serializable {
 
 	/**
 	 * Set the filename of the source image of the tileset.
-	 *
+	 * 
 	 * @param attributeValue
 	 *            the filename
 	 */
@@ -58,7 +58,7 @@ public class TileSetDefinition implements Serializable {
 
 	/**
 	 * Returns the filename of the source image of the tileset.
-	 *
+	 * 
 	 * @return the filename of the source image of the tileset.
 	 */
 	public String getSource() {

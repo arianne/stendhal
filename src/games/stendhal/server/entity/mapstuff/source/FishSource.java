@@ -17,15 +17,15 @@ import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPClass;
 
 /**
- * A fish source is a spot where a player can fish. He needs a fishing rod,
- * time and luck. Before he catches fish he needs to make a license.
- *
- * Fishing takes 5-9 seconds; during this time, the player keep standing next
- * to the fish source. In fact, the player only has to be there when the
- * prospecting action has finished. Therefore, make sure that two fish
- * sources are always at least 8 sec of walking away from each other, so
- * that the player can't fish at several sites simultaneously.
- *
+ * A fish source is a spot where a player can fish. He needs a fishing rod, time
+ * and luck. Before he catches fish he needs to make a license.
+ * 
+ * Fishing takes 5-9 seconds; during this time, the player keep standing next to
+ * the fish source. In fact, the player only has to be there when the
+ * prospecting action has finished. Therefore, make sure that two fish sources
+ * are always at least 8 sec of walking away from each other, so that the player
+ * can't fish at several sites simultaneously.
+ * 
  * @author dine
  */
 public class FishSource extends PlayerActivityEntity {
@@ -39,11 +39,11 @@ public class FishSource extends PlayerActivityEntity {
 	 */
 	private String itemName;
 
-
 	/**
 	 * Create a fish source.
-	 *
-	 * @param	itemName	The name of the item to be caught.
+	 * 
+	 * @param itemName
+	 *            The name of the item to be caught.
 	 */
 	public FishSource(String itemName) {
 		this.itemName = itemName;
@@ -54,7 +54,6 @@ public class FishSource extends PlayerActivityEntity {
 		setDescription("There is something in the water.");
 	}
 
-
 	//
 	// FishSource
 	//
@@ -64,15 +63,15 @@ public class FishSource extends PlayerActivityEntity {
 		rpclass.isA("entity");
 	}
 
-
 	/**
-	 * Calculates the probability that the given player catches a fish.
-	 * This is based on the player's fishing skills, however even players
-	 * with no skills at all have a 5% probability of success.
-	 *
-	 * @param	player		The player,
-	 *
-	 * @return	The probability of success.
+	 * Calculates the probability that the given player catches a fish. This is
+	 * based on the player's fishing skills, however even players with no skills
+	 * at all have a 5% probability of success.
+	 * 
+	 * @param player
+	 *            The player,
+	 * 
+	 * @return The probability of success.
 	 */
 	private double getSuccessProbability(Player player) {
 		double probability = 0.05;
@@ -86,26 +85,24 @@ public class FishSource extends PlayerActivityEntity {
 		return probability + player.useKarma(0.05);
 	}
 
-
 	//
 	// PlayerActivityEntity
 	//
 
 	/**
 	 * Get the time it takes to perform this activity.
-	 *
-	 * @return	The time to perform the activity (in seconds).
+	 * 
+	 * @return The time to perform the activity (in seconds).
 	 */
 	@Override
 	protected int getDuration() {
 		return 5 + Rand.rand(4);
 	}
 
-
 	/**
 	 * Decides if the activity can be done.
-	 *
-	 * @return	<code>true</code> if successful.
+	 * 
+	 * @return <code>true</code> if successful.
 	 */
 	@Override
 	protected boolean isPrepared(final Player player) {
@@ -117,11 +114,10 @@ public class FishSource extends PlayerActivityEntity {
 		return false;
 	}
 
-
 	/**
 	 * Decides if the activity was successful.
-	 *
-	 * @return	<code>true</code> if successful.
+	 * 
+	 * @return <code>true</code> if successful.
 	 */
 	@Override
 	protected boolean isSuccessful(final Player player) {
@@ -129,17 +125,19 @@ public class FishSource extends PlayerActivityEntity {
 		return (random <= (getSuccessProbability(player) * 100));
 	}
 
-
 	/**
 	 * Called when the activity has finished.
-	 *
-	 * @param	player		The player that did the activity.
-	 * @param	successful	If the activity was successful.
+	 * 
+	 * @param player
+	 *            The player that did the activity.
+	 * @param successful
+	 *            If the activity was successful.
 	 */
 	@Override
 	protected void onFinished(final Player player, final boolean successful) {
 		if (successful) {
-			Item item = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(itemName);
+			Item item = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
+					itemName);
 
 			player.equip(item, true);
 			player.sendPrivateText("You caught a fish.");
@@ -148,11 +146,11 @@ public class FishSource extends PlayerActivityEntity {
 		}
 	}
 
-
 	/**
 	 * Called when the activity has started.
-	 *
-	 * @param	player		The player starting the activity.
+	 * 
+	 * @param player
+	 *            The player starting the activity.
 	 */
 	@Override
 	protected void onStarted(final Player player) {

@@ -25,11 +25,11 @@ public class TimeUtil {
 
 	/**
 	 * Create a text representing a saying of approximate time until.
-	 *
-	 * @param	seconds		The number of seconds till/past
-	 *				(in positive values).
-	 *
-	 * @return	A text representation.
+	 * 
+	 * @param seconds
+	 *            The number of seconds till/past (in positive values).
+	 * 
+	 * @return A text representation.
 	 */
 	public static String approxTimeUntil(int seconds) {
 		StringBuffer sbuf;
@@ -42,10 +42,11 @@ public class TimeUtil {
 
 	/**
 	 * Append a text representing a saying of approximate time until.
-	 *
-	 * @param	sbuf		The buffer to append to.
-	 * @param	seconds		The number of seconds till/past
-	 *				(in positive values).
+	 * 
+	 * @param sbuf
+	 *            The buffer to append to.
+	 * @param seconds
+	 *            The number of seconds till/past (in positive values).
 	 */
 	public static void approxTimeUntil(StringBuffer sbuf, int seconds) {
 		if (approxUnit(sbuf, seconds, SECONDS_IN_WEEK, "week")) {
@@ -69,20 +70,25 @@ public class TimeUtil {
 
 	/**
 	 * For a given amount and unit size, generate the approximate value.
-	 *
-	 * @param	sbuf		The buffer to append to.
-	 * @param	amount		The total amount.
-	 * @param	size		The unit size.
-	 * @param	name		The unit name.
-	 *
-	 * @return	<code>true</code> if unit used, <code>false</code> if
-	 *		the amount was too small to apply.
+	 * 
+	 * @param sbuf
+	 *            The buffer to append to.
+	 * @param amount
+	 *            The total amount.
+	 * @param size
+	 *            The unit size.
+	 * @param name
+	 *            The unit name.
+	 * 
+	 * @return <code>true</code> if unit used, <code>false</code> if the
+	 *         amount was too small to apply.
 	 */
-	protected static boolean approxUnit(StringBuffer sbuf, int amount, int size, String name) {
+	protected static boolean approxUnit(StringBuffer sbuf, int amount,
+			int size, String name) {
 		int count = amount / size;
 		int remainder;
 
-		if (count  == 0) {
+		if (count == 0) {
 			return false;
 		}
 
@@ -118,11 +124,11 @@ public class TimeUtil {
 
 	/**
 	 * Create a text representing a saying of time until.
-	 *
-	 * @param	seconds		The number of seconds till/past
-	 *				(in positive values).
-	 *
-	 * @return	A text representation.
+	 * 
+	 * @param seconds
+	 *            The number of seconds till/past (in positive values).
+	 * 
+	 * @return A text representation.
 	 */
 	public static String timeUntil(int seconds) {
 		return timeUntil(seconds, false);
@@ -130,12 +136,13 @@ public class TimeUtil {
 
 	/**
 	 * Create a text representing a saying of time until.
-	 *
-	 * @param	seconds		The number of seconds till/past
-	 *				(in positive values).
-	 * @param	forceSeconds	Show seconds even if over a minute.
-	 *
-	 * @return	A text representation.
+	 * 
+	 * @param seconds
+	 *            The number of seconds till/past (in positive values).
+	 * @param forceSeconds
+	 *            Show seconds even if over a minute.
+	 * 
+	 * @return A text representation.
 	 */
 	public static String timeUntil(int seconds, boolean forceSeconds) {
 		StringBuffer sbuf;
@@ -148,10 +155,11 @@ public class TimeUtil {
 
 	/**
 	 * Append a text representing a saying of time until.
-	 *
-	 * @param	sbuf		The buffer to append to.
-	 * @param	seconds		The number of seconds till/past
-	 *				(in positive values).
+	 * 
+	 * @param sbuf
+	 *            The buffer to append to.
+	 * @param seconds
+	 *            The number of seconds till/past (in positive values).
 	 */
 	public static void timeUntil(StringBuffer sbuf, int seconds) {
 		timeUntil(sbuf, seconds, false);
@@ -159,13 +167,16 @@ public class TimeUtil {
 
 	/**
 	 * Append a text representing a saying of time until.
-	 *
-	 * @param	sbuf		The buffer to append to.
-	 * @param	seconds		The number of seconds till/past
-	 *				(in positive values).
-	 * @param	forceSeconds	Show seconds even if over a minute.
+	 * 
+	 * @param sbuf
+	 *            The buffer to append to.
+	 * @param seconds
+	 *            The number of seconds till/past (in positive values).
+	 * @param forceSeconds
+	 *            Show seconds even if over a minute.
 	 */
-	public static void timeUntil(StringBuffer sbuf, int seconds, boolean forceSeconds) {
+	public static void timeUntil(StringBuffer sbuf, int seconds,
+			boolean forceSeconds) {
 		boolean appended = false;
 		int count = seconds / SECONDS_IN_WEEK;
 

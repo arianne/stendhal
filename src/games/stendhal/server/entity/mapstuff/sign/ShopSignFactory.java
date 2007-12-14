@@ -22,27 +22,27 @@ public class ShopSignFactory implements ConfigurableFactory {
 
 	/**
 	 * Extract the shop name from a context.
-	 *
-	 * @param	ctx	The configuration context. Must provide 'shop'.
-	 *
-	 * @return	The shop name.
+	 * 
+	 * @param ctx
+	 *            The configuration context. Must provide 'shop'.
+	 * 
+	 * @return The shop name.
 	 */
 	protected String getShop(ConfigurableFactoryContext ctx) {
 		return ctx.getRequiredString("shop");
 	}
 
-
 	/**
 	 * Extract the sign title from a context.
-	 *
-	 * @param	ctx	The configuration context. Must provide 'title'.
-	 *
-	 * @return	The sign title.
+	 * 
+	 * @param ctx
+	 *            The configuration context. Must provide 'title'.
+	 * 
+	 * @return The sign title.
 	 */
 	protected String getTitle(ConfigurableFactoryContext ctx) {
 		return ctx.getRequiredString("title");
 	}
-
 
 	//
 	// ConfigurableFactory
@@ -50,12 +50,12 @@ public class ShopSignFactory implements ConfigurableFactory {
 
 	/**
 	 * Create a shop sign.
-	 *
+	 * 
 	 * @param ctx
 	 *            Configuration context.
-	 *
+	 * 
 	 * @return A ShopSign.
-	 *
+	 * 
 	 * @see ShopSign
 	 */
 	public Object create(ConfigurableFactoryContext ctx) {

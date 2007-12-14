@@ -15,7 +15,7 @@ import java.util.Map;
 
 /**
  * Builds an NPC to buy previously un bought weapons.
- *
+ * 
  * @author kymara
  */
 public class BuyerNPC implements ZoneConfigurator {
@@ -23,11 +23,14 @@ public class BuyerNPC implements ZoneConfigurator {
 
 	/**
 	 * Configure a zone.
-	 *
-	 * @param	zone		The zone to be configured.
-	 * @param	attributes	Configuration attributes.
+	 * 
+	 * @param zone
+	 *            The zone to be configured.
+	 * @param attributes
+	 *            Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone,
+			Map<String, String> attributes) {
 		buildNPC(zone);
 	}
 
@@ -53,7 +56,8 @@ public class BuyerNPC implements ZoneConfigurator {
 				addHelp("I #deal in rare weapons. Ognir there is the ring maker, he buys the odd gem too.");
 				addOffer("Please look at the blackboard on the wall to see what I buy.");
 				addQuest("Thanks, but no thanks. I don't need anything.");
-				new BuyerAdder().add(this, new BuyerBehaviour(shops.get("buyrare2")), false); 
+				new BuyerAdder().add(this, new BuyerBehaviour(
+						shops.get("buyrare2")), false);
 				addGoodbye("Bye - and see you soon.");
 			}
 		};

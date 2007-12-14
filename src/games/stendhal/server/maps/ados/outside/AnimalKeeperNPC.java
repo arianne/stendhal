@@ -22,17 +22,19 @@ import java.util.List;
 import java.util.Map;
 
 public class AnimalKeeperNPC implements ZoneConfigurator {
-	private static class AdosAttackableCreature extends AttackableCreature implements TurnListener {
+	private static class AdosAttackableCreature extends AttackableCreature
+			implements TurnListener {
 
 		private static long lastShoutTime;
 
 		private String cryForHelp;
 
 		/**
-		 * An attackable creature that will cause Katinka to shout if it
-		 * is killed by a monster.
-		 *
-		 * @param copy template creature
+		 * An attackable creature that will cause Katinka to shout if it is
+		 * killed by a monster.
+		 * 
+		 * @param copy
+		 *            template creature
 		 */
 		public AdosAttackableCreature(Creature copy) {
 			super(copy);
@@ -46,9 +48,12 @@ public class AnimalKeeperNPC implements ZoneConfigurator {
 				long currentTime = System.currentTimeMillis();
 				if (lastShoutTime + 5 * 60 * 1000 < currentTime) {
 					lastShoutTime = currentTime;
-					cryForHelp = "Katinka shouts: Help! " + Grammar.A_noun(killer.getTitle()) + " is eating our "
-					        + Grammar.plural(getTitle()) + ".";
-					// HACK: we need to wait a turn because the message is lost otherwise
+					cryForHelp = "Katinka shouts: Help! "
+							+ Grammar.A_noun(killer.getTitle())
+							+ " is eating our " + Grammar.plural(getTitle())
+							+ ".";
+					// HACK: we need to wait a turn because the message is lost
+					// otherwise
 					TurnNotifier.get().notifyInTurns(0, this);
 				}
 			}
@@ -60,7 +65,8 @@ public class AnimalKeeperNPC implements ZoneConfigurator {
 		}
 
 		public void onTurnReached(int currentTurn) {
-			// HACK: we need to wait a turn because the message is lost otherwise
+			// HACK: we need to wait a turn because the message is lost
+			// otherwise
 			// sends the message to all players
 			StendhalRPRuleProcessor.get().tellAllPlayers(cryForHelp);
 		}
@@ -68,15 +74,19 @@ public class AnimalKeeperNPC implements ZoneConfigurator {
 
 	/**
 	 * Configure a zone.
-	 *
-	 * @param	zone		The zone to be configured.
-	 * @param	attributes	Configuration attributes.
+	 * 
+	 * @param zone
+	 *            The zone to be configured.
+	 * @param attributes
+	 *            Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone,
+			Map<String, String> attributes) {
 		buildZooArea(zone, attributes);
 	}
 
-	private void buildZooArea(StendhalRPZone zone, Map<String, String> attributes) {
+	private void buildZooArea(StendhalRPZone zone,
+			Map<String, String> attributes) {
 		SpeakerNPC npc = new SpeakerNPC("Katinka") {
 
 			@Override
@@ -103,15 +113,17 @@ public class AnimalKeeperNPC implements ZoneConfigurator {
 
 		npc.setEntityClass("woman_007_npc");
 		npc.setPosition(41, 40);
-		//npc.setDirection(Direction.DOWN);
+		// npc.setDirection(Direction.DOWN);
 		npc.initHP(100);
 		zone.add(npc);
 
 		// put special RespawnPoints
 		// 65, 34 bear
 		DefaultEntityManager manager = (DefaultEntityManager) StendhalRPWorld.get().getRuleManager().getEntityManager();
-		Creature creature = new AdosAttackableCreature(manager.getCreature("bear"));
-		CreatureRespawnPoint point = new CreatureRespawnPoint(zone, 65, 34, creature, 1);
+		Creature creature = new AdosAttackableCreature(
+				manager.getCreature("bear"));
+		CreatureRespawnPoint point = new CreatureRespawnPoint(zone, 65, 34,
+				creature, 1);
 		zone.add(point);
 
 		// 67, 29 bear

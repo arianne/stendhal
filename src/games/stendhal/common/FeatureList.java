@@ -13,11 +13,9 @@ import java.util.HashMap;
 import java.util.Iterator;
 
 /**
- * A list of [enabled] features.
- * TODO currently effectively not used
+ * A list of [enabled] features. TODO currently effectively not used
  */
-public class FeatureList implements Iterable<String>
-{
+public class FeatureList implements Iterable<String> {
 	protected HashMap<String, String> list;
 
 	/**
@@ -40,7 +38,7 @@ public class FeatureList implements Iterable<String>
 
 	/**
 	 * Read an encoded features list.
-	 *
+	 * 
 	 * Encoded features are in the form of:<br>
 	 * <em>name</em>[<code>=</code><em>value</em>][<code>:</code><em>name</em>[<code>=</code><em>value</em>]...]
 	 */
@@ -83,37 +81,29 @@ public class FeatureList implements Iterable<String>
 
 	/**
 	 * Build an encoded features list.
-	 *
+	 * 
 	 * Encoded features are in the form of:<br>
 	 * <em>name</em>[<code>=</code><em>value</em>][<code>:</code><em>name</em>[<code>=</code><em>value</em>]...]
 	 */
-	/*TODO remove unused code
-	public String encode() {
-		StringBuffer sbuf;
-
-		sbuf = new StringBuffer();
-
-		for (String name : list.keySet()) {
-			String value = list.get(name);
-
-			if (sbuf.length() != 0) {
-				sbuf.append(':');
-			}
-
-			sbuf.append(name);
-
-			if (value.length() != 0) {
-				sbuf.append('=');
-				sbuf.append(value);
-			}
-		}
-
-		return sbuf.toString();
-	} */
+	/*
+	 * TODO remove unused code public String encode() { StringBuffer sbuf;
+	 * 
+	 * sbuf = new StringBuffer();
+	 * 
+	 * for (String name : list.keySet()) { String value = list.get(name);
+	 * 
+	 * if (sbuf.length() != 0) { sbuf.append(':'); }
+	 * 
+	 * sbuf.append(name);
+	 * 
+	 * if (value.length() != 0) { sbuf.append('='); sbuf.append(value); } }
+	 * 
+	 * return sbuf.toString(); }
+	 */
 
 	/**
 	 * Get a feature value.
-	 *
+	 * 
 	 * @return A feature value, or <code>null</code> if not-enabled.
 	 */
 	public String get(String name) {
@@ -122,61 +112,53 @@ public class FeatureList implements Iterable<String>
 
 	/**
 	 * Determine if a feature is enabled.
-	 *
+	 * 
 	 * @return <code>true</code> is a feature is enabled.
 	 */
-	/*TODO remove unused code
-	public boolean has(String name) {
-		return list.containsKey(name);
-	} */
-
+	/*
+	 * TODO remove unused code public boolean has(String name) { return
+	 * list.containsKey(name); }
+	 */
 
 	/**
 	 * Enable/disable a feature.
-	 *
+	 * 
 	 * @param name
 	 *            The feature mnemonic.
 	 * @param enabled
 	 *            Flag indicating if enabled.
-	 *
+	 * 
 	 * @return <code>true</code> if the list changed,
 	 *         <code>false<code> otherwise.
 	 */
-	/*TODO remove unused code
-	public boolean set(String name, boolean enabled) {
-		return set(name, enabled ? "" : null);
-	} */
+	/*
+	 * TODO remove unused code public boolean set(String name, boolean enabled) {
+	 * return set(name, enabled ? "" : null); }
+	 */
 
 	/**
 	 * Set/remove a feature. <strong>NOTE: The names and values MUST NOT contain
 	 * <code>=</code> (equals), or <code>:</code> (colon).
-	 *
+	 * 
 	 * @param name
 	 *            The feature mnemonic.
 	 * @param value
 	 *            The feature value, or <code>null</code> to disable.
-	 *
+	 * 
 	 * @return <code>true</code> if the list changed,
 	 *         <code>false<code> otherwise.
 	 */
-	/*TODO remove unused code
-	public boolean set(String name, String value) {
-		if (value != null) {
-			list.put(name, value);
-		} else {
-			if (list.remove(name) == null) {
-				return false;
-			}
-		}
-
-		return true;
-	} */
-
+	/*
+	 * TODO remove unused code public boolean set(String name, String value) {
+	 * if (value != null) { list.put(name, value); } else { if
+	 * (list.remove(name) == null) { return false; } }
+	 * 
+	 * return true; }
+	 */
 
 	//
 	// Iterable
 	//
-
 	/**
 	 * Get the feature names.
 	 */

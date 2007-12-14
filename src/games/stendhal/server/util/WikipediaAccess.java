@@ -10,15 +10,15 @@ import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
 /**
- * Gets the first text paragraph from the specified Wikipedia article using
- * the MediaWiki bot api.
- *
- * You can invoke the parser either inline using the method parse() or start
- * it in a new thread.
- *
+ * Gets the first text paragraph from the specified Wikipedia article using the
+ * MediaWiki bot api.
+ * 
+ * You can invoke the parser either inline using the method parse() or start it
+ * in a new thread.
+ * 
  * TODO: handle redirects (but take care, there might be two redirects that
  * point to each other).
- *
+ * 
  * @author hendrik
  */
 public class WikipediaAccess extends DefaultHandler implements Runnable {
@@ -37,20 +37,23 @@ public class WikipediaAccess extends DefaultHandler implements Runnable {
 
 	/**
 	 * creates a new WikipeidaAccess
-	 *
-	 * @param title title of the page to access
+	 * 
+	 * @param title
+	 *            title of the page to access
 	 */
 	public WikipediaAccess(String title) {
 		this.title = title;
 	}
 
 	@Override
-	public void startElement(String namespaceURI, String lName, String qName, Attributes attrs) {
+	public void startElement(String namespaceURI, String lName, String qName,
+			Attributes attrs) {
 		isContent = qName.equals("content");
 	}
 
 	@Override
-	public void characters(char[] ch, int start, int length) throws SAXException {
+	public void characters(char[] ch, int start, int length)
+			throws SAXException {
 		if (isContent) {
 			text.append(ch, start, length);
 		}
@@ -58,7 +61,7 @@ public class WikipediaAccess extends DefaultHandler implements Runnable {
 
 	/**
 	 * returns the unparsed text
-	 *
+	 * 
 	 * @return content
 	 */
 	public String getText() {
@@ -67,7 +70,7 @@ public class WikipediaAccess extends DefaultHandler implements Runnable {
 
 	/**
 	 * Gets the last error message
-	 *
+	 * 
 	 * @return error message or <code>null</code> in case no error occurred
 	 */
 	public String getError() {
@@ -76,7 +79,7 @@ public class WikipediaAccess extends DefaultHandler implements Runnable {
 
 	/**
 	 * Returns the first paragraph of the specified article without wiki code
-	 *
+	 * 
 	 * @return content
 	 */
 	public String getProcessedText() {
@@ -106,7 +109,8 @@ public class WikipediaAccess extends DefaultHandler implements Runnable {
 			// ignore leading empty lines and spaces
 			content = content.trim();
 
-			// extract the first paragraph (ignoring very short ones but oposing a max len)
+			// extract the first paragraph (ignoring very short ones but oposing
+			// a max len)
 			int size = content.length();
 			int endOfFirstParagraph = content.indexOf("\n", 50);
 			if (endOfFirstParagraph < 0) {
@@ -119,14 +123,17 @@ public class WikipediaAccess extends DefaultHandler implements Runnable {
 
 	/**
 	 * starts the parsing of the specified article
-	 *
-	 * @throws Exception in case of an unexpected error
+	 * 
+	 * @throws Exception
+	 *             in case of an unexpected error
 	 */
 	public void parse() throws Exception {
 		try {
 			// look it up using the Wikipedia API
-			HttpClient httpClient = new HttpClient("http://en.wikipedia.org/w/query.php?format=xml&titles="
-			        + title.replace(" ", "_").replace("%", "%25") + "&what=content");
+			HttpClient httpClient = new HttpClient(
+					"http://en.wikipedia.org/w/query.php?format=xml&titles="
+							+ title.replace(" ", "_").replace("%", "%25")
+							+ "&what=content");
 			SAXParserFactory factory = SAXParserFactory.newInstance();
 
 			// Parse the input
@@ -152,7 +159,7 @@ public class WikipediaAccess extends DefaultHandler implements Runnable {
 
 	/**
 	 * Returns true when the xml response was completly parsed
-	 *
+	 * 
 	 * @return true if the parsing was completed, false otherwise
 	 */
 	public boolean isFinished() {

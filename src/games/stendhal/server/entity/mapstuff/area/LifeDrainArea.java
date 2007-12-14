@@ -10,7 +10,7 @@ import games.stendhal.server.entity.RPEntity;
 
 /**
  * An area that drains an RPEntity of HP while over it.
- *
+ * 
  */
 public class LifeDrainArea extends OccupantArea {
 
@@ -24,18 +24,22 @@ public class LifeDrainArea extends OccupantArea {
 	 */
 	protected double damageRatio;
 
-
 	/**
 	 * Create a damaging area.
-	 *
-	 * @param	width		Width of  this area.
-	 * @param	height		Height of this area.
-	 * @param	interval	How often damage is given while
-	 *				stationary (in turns).
-	 * @param	damageRatio	The ratio of damage to inflict.
-	 * @param	minimumDamage	The minimum damage to inflict.
+	 * 
+	 * @param width
+	 *            Width of this area.
+	 * @param height
+	 *            Height of this area.
+	 * @param interval
+	 *            How often damage is given while stationary (in turns).
+	 * @param damageRatio
+	 *            The ratio of damage to inflict.
+	 * @param minimumDamage
+	 *            The minimum damage to inflict.
 	 */
-	public LifeDrainArea(final int width, final int height, final int interval, final double damageRatio, final int minimumDamage) {
+	public LifeDrainArea(final int width, final int height, final int interval,
+			final double damageRatio, final int minimumDamage) {
 		super(width, height, interval);
 
 		this.damageRatio = damageRatio;
@@ -44,18 +48,18 @@ public class LifeDrainArea extends OccupantArea {
 		setResistance(50);
 	}
 
-
 	//
 	// LifeDrainArea
 	//
 
 	/**
 	 * Inflict damage on an entity.
-	 *
-	 * @param	entity		The entity to damage.
-	 *
-	 * @return	<code>false</code> if this entity should be removed
-	 *		from further processing, <code>true</code> otherwise.
+	 * 
+	 * @param entity
+	 *            The entity to damage.
+	 * 
+	 * @return <code>false</code> if this entity should be removed from
+	 *         further processing, <code>true</code> otherwise.
 	 */
 	protected boolean doDamage(RPEntity entity) {
 		int hp = entity.getHP();
@@ -86,19 +90,19 @@ public class LifeDrainArea extends OccupantArea {
 		return true;
 	}
 
-
 	//
 	// OccupantArea
 	//
 
 	/**
-	 * An entity has entered the area. This should not apply any actions
-	 * that <code>handleMovement()</code> does.
-	 *
-	 * @param	entity		The RPEntity that was added.
-	 *
-	 * @return	<code>false</code> if this entity should not be
-	 *		processed, <code>true</code> otherwise.
+	 * An entity has entered the area. This should not apply any actions that
+	 * <code>handleMovement()</code> does.
+	 * 
+	 * @param entity
+	 *            The RPEntity that was added.
+	 * 
+	 * @return <code>false</code> if this entity should not be processed,
+	 *         <code>true</code> otherwise.
 	 */
 	@Override
 	protected boolean handleAdded(RPEntity entity) {
@@ -112,23 +116,24 @@ public class LifeDrainArea extends OccupantArea {
 
 	/**
 	 * Apply actions done at regular intervals.
-	 *
-	 * @param	entity		The RPEntity occupant.
-	 *
-	 * @return	<code>false</code> if this entity should be removed
-	 *		from further processing, <code>true</code> otherwise.
+	 * 
+	 * @param entity
+	 *            The RPEntity occupant.
+	 * 
+	 * @return <code>false</code> if this entity should be removed from
+	 *         further processing, <code>true</code> otherwise.
 	 */
 	@Override
 	protected boolean handleInterval(RPEntity entity) {
 		return doDamage(entity);
 	}
 
-
 	/**
-	 * An entity has left the area. This should not apply any actions
-	 * that <code>handleMovement()</code> does.
-	 *
-	 * @param	entity		The RPEntity that was added.
+	 * An entity has left the area. This should not apply any actions that
+	 * <code>handleMovement()</code> does.
+	 * 
+	 * @param entity
+	 *            The RPEntity that was added.
 	 */
 	@Override
 	protected void handleRemoved(RPEntity entity) {

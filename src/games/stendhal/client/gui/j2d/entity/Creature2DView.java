@@ -9,7 +9,6 @@ package games.stendhal.client.gui.j2d.entity;
 //
 //
 
-
 import org.apache.log4j.Logger;
 
 import games.stendhal.client.IGameScreen;
@@ -42,15 +41,14 @@ public class Creature2DView extends RPEntity2DView {
 	/**
 	 * The entity this view is for.
 	 */
-	private Creature	creature;
+	private Creature creature;
 
 	/**
 	 * Should the path be hidden for this creature?
 	 */
 	public boolean hidePath;
 	/**
-	 * Whether to display all debug messages for this creature in the
-	 * game log.
+	 * Whether to display all debug messages for this creature in the game log.
 	 */
 	public boolean watch;
 
@@ -63,11 +61,11 @@ public class Creature2DView extends RPEntity2DView {
 	/** the path we got */
 	private List<Node> moveToTargetPath;
 
-
 	/**
 	 * Create a 2D view of a creature.
-	 *
-	 * @param	creature	The entity to render.
+	 * 
+	 * @param creature
+	 *            The entity to render.
 	 */
 	public Creature2DView(final Creature creature) {
 		super(creature);
@@ -75,14 +73,13 @@ public class Creature2DView extends RPEntity2DView {
 		this.creature = creature;
 	}
 
-
 	//
 	// Creature2DView
 	//
 
 	public List<Node> decodePath(final String token) {
-		String[] values = token.replace(',', ' ').replace('(', ' ').replace(')', ' ').replace('[', ' ').replace(']',
-		        ' ').split("\\s+");
+		String[] values = token.replace(',', ' ').replace('(', ' ').replace(
+				')', ' ').replace('[', ' ').replace(']', ' ').split("\\s+");
 		List<Node> list = new ArrayList<Node>();
 
 		int x = 0;
@@ -103,8 +100,8 @@ public class Creature2DView extends RPEntity2DView {
 		return list;
 	}
 
-
-	protected void drawPath(final Graphics2D g2d, final List<Node> path, final int delta) {
+	protected void drawPath(final Graphics2D g2d, final List<Node> path,
+			final int delta) {
 		Point p1 = screen.convertWorldToScreenView(getX(), getY());
 
 		for (Node node : path) {
@@ -115,21 +112,17 @@ public class Creature2DView extends RPEntity2DView {
 		}
 	}
 
-
 	public List<Node> getPatrolPath() {
 		return patrolPath;
 	}
-
 
 	public List<Node> getTargetMovedPath() {
 		return targetMovedPath;
 	}
 
-
 	public List<Node> getMoveToTargetPath() {
 		return moveToTargetPath;
 	}
-
 
 	protected void handleDebug(String debug) {
 		if (!Debug.CREATURES_DEBUG_CLIENT) {
@@ -182,13 +175,13 @@ public class Creature2DView extends RPEntity2DView {
 						}
 					}
 				} catch (Exception e) {
-					logger.warn("error parsing debug string '" + debug + "' actions [" + Arrays.asList(actions)
-					        + "] action '" + action + "'", e);
+					logger.warn("error parsing debug string '" + debug
+							+ "' actions [" + Arrays.asList(actions)
+							+ "] action '" + action + "'", e);
 				}
 			}
 		}
 	}
-
 
 	//
 	// RPEntity2DView
@@ -196,25 +189,29 @@ public class Creature2DView extends RPEntity2DView {
 
 	/**
 	 * Populate named state sprites.
-	 *
-	 * @param	map		The map to populate.
-	 * @param	tiles		The master sprite.
-	 * @param	width		The image width (in pixels).
-	 * @param	height		The image height (in pixels).
+	 * 
+	 * @param map
+	 *            The map to populate.
+	 * @param tiles
+	 *            The master sprite.
+	 * @param width
+	 *            The image width (in pixels).
+	 * @param height
+	 *            The image height (in pixels).
 	 */
 	@Override
-	protected void buildSprites(final Map<Object, Sprite> map, final Sprite tiles, final int width, final int height) {
+	protected void buildSprites(final Map<Object, Sprite> map,
+			final Sprite tiles, final int width, final int height) {
 		this.width = width;
 		this.height = height;
 
 		super.buildSprites(map, tiles, width, height);
 	}
 
-
 	/**
 	 * Get the full directional animation tile set for this entity.
-	 *
-	 * @return	A tile sprite containing all animation images.
+	 * 
+	 * @return A tile sprite containing all animation images.
 	 */
 	@Override
 	protected Sprite getAnimationSprite() {
@@ -227,16 +224,16 @@ public class Creature2DView extends RPEntity2DView {
 		return SpriteStore.get().getSprite(translate(resource));
 	}
 
-
 	//
 	// Entity2DView
 	//
 
 	/**
-	 * Build a list of entity specific actions.
-	 * <strong>NOTE: The first entry should be the default.</strong>
-	 *
-	 * @param	list		The list to populate.
+	 * Build a list of entity specific actions. <strong>NOTE: The first entry
+	 * should be the default.</strong>
+	 * 
+	 * @param list
+	 *            The list to populate.
 	 */
 	@Override
 	protected void buildActions(final List<String> list) {
@@ -257,20 +254,19 @@ public class Creature2DView extends RPEntity2DView {
 		}
 	}
 
-
 	/**
 	 * Draw the entity.
-	 *
-	 * @param	g2d		The graphics to drawn on.
+	 * 
+	 * @param g2d
+	 *            The graphics to drawn on.
 	 */
 	@Override
 	protected void draw(Graphics2D g2d, int x, int y, int width, int height) {
 
-
 		super.draw(g2d, x, y, width, height);
 
 		if (Debug.CREATURES_DEBUG_CLIENT && !hidePath) {
-			List<Node>	path;
+			List<Node> path;
 			path = getTargetMovedPath();
 			if (path != null) {
 				int delta = IGameScreen.SIZE_UNIT_PIXELS / 2;
@@ -290,11 +286,11 @@ public class Creature2DView extends RPEntity2DView {
 		}
 	}
 
-
 	/**
 	 * Reorder the actions list (if needed). Please use as last resort.
-	 *
-	 * @param	list		The list to reorder.
+	 * 
+	 * @param list
+	 *            The list to reorder.
 	 */
 	@Override
 	protected void reorderActions(final List<String> list) {
@@ -303,19 +299,18 @@ public class Creature2DView extends RPEntity2DView {
 		}
 	}
 
-
 	/**
 	 * Translate a resource name into it's sprite image path.
-	 *
-	 * @param	name		The resource name.
-	 *
-	 * @return	The full resource name.
+	 * 
+	 * @param name
+	 *            The resource name.
+	 * 
+	 * @return The full resource name.
 	 */
 	@Override
 	protected String translate(final String name) {
 		return "data/sprites/monsters/" + name + ".png";
 	}
-
 
 	//
 	// EntityChangeListener
@@ -323,9 +318,11 @@ public class Creature2DView extends RPEntity2DView {
 
 	/**
 	 * An entity was changed.
-	 *
-	 * @param	entity		The entity that was changed.
-	 * @param	property	The property identifier.
+	 * 
+	 * @param entity
+	 *            The entity that was changed.
+	 * @param property
+	 *            The property identifier.
 	 */
 	@Override
 	public void entityChanged(final Entity entity, final Object property) {
@@ -340,7 +337,6 @@ public class Creature2DView extends RPEntity2DView {
 		}
 	}
 
-
 	//
 	// EntityView
 	//
@@ -353,34 +349,34 @@ public class Creature2DView extends RPEntity2DView {
 		onAction(ActionType.ATTACK);
 	}
 
-
 	/**
 	 * Perform an action.
-	 *
-	 * @param	at		The action.
+	 * 
+	 * @param at
+	 *            The action.
 	 */
 	@Override
 	public void onAction(final ActionType at) {
 		switch (at) {
-			case DEBUG_SHOW_PATH:
-				hidePath = false;
-				break;
+		case DEBUG_SHOW_PATH:
+			hidePath = false;
+			break;
 
-			case DEBUG_HIDE_PATH:
-				hidePath = true;
-				break;
+		case DEBUG_HIDE_PATH:
+			hidePath = true;
+			break;
 
-			case DEBUG_ENABLE_WATCH:
-				watch = true;
-				break;
+		case DEBUG_ENABLE_WATCH:
+			watch = true;
+			break;
 
-			case DEBUG_DISABLE_WATCH:
-				watch = false;
-				break;
+		case DEBUG_DISABLE_WATCH:
+			watch = false;
+			break;
 
-			default:
-				super.onAction(at);
-				break;
+		default:
+			super.onAction(at);
+			break;
 		}
 	}
 
@@ -388,9 +384,8 @@ public class Creature2DView extends RPEntity2DView {
 	//
 
 	protected static class Node {
-		public int	x;
-		public int	y;
-
+		public int x;
+		public int y;
 
 		public Node(final int x, final int y) {
 			this.x = x;

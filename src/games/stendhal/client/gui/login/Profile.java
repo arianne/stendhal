@@ -41,7 +41,7 @@ public class Profile {
 
 	/**
 	 * Encode the login profile as a string.
-	 *
+	 * 
 	 * @return A string excoded form (with newlines).
 	 */
 	public String encode() {
@@ -79,10 +79,10 @@ public class Profile {
 
 	/**
 	 * Decode a login profile from a string.
-	 *
+	 * 
 	 * @param info
 	 *            The string encoded profile.
-	 *
+	 * 
 	 * @return A login profile.
 	 */
 	public static Profile decode(String info) {
@@ -209,7 +209,7 @@ public class Profile {
 
 	/**
 	 * Get the label string. This label is used for the profile selection list.
-	 *
+	 * 
 	 * @return The label in the form of <em>user</em><strong>@</strong><em>server-host</em>[<strong>:</strong><em>port</em>].
 	 */
 	@Override

@@ -14,19 +14,19 @@ public class LevelGreaterThanCondition extends SpeakerNPC.ChatCondition {
 
 	private int level;
 
-
 	/**
 	 * Creates a new LevelGreaterThanCondition
-	 *
-	 * @param level level
-'	 */
+	 * 
+	 * @param level
+	 *            level '
+	 */
 	public LevelGreaterThanCondition(int level) {
 		this.level = level;
 	}
 
 	/**
-	 *	@return true if players level greater then conditions Level 
-	 **/
+	 * @return true if players level greater then conditions Level
+	 */
 	@Override
 	public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
 		return (player.getLevel() > level);
@@ -44,7 +44,8 @@ public class LevelGreaterThanCondition extends SpeakerNPC.ChatCondition {
 
 	@Override
 	public boolean equals(Object obj) {
-		return EqualsBuilder.reflectionEquals(this, obj, false, LevelGreaterThanCondition.class);
+		return EqualsBuilder.reflectionEquals(this, obj, false,
+				LevelGreaterThanCondition.class);
 	}
 
 }

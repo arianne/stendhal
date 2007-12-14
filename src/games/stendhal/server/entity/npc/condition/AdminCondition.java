@@ -15,17 +15,18 @@ public class AdminCondition extends SpeakerNPC.ChatCondition {
 	private int requiredAdminlevel;
 
 	/**
-	 * Creates a new AdminCondition for high level admins.
-'	 */
+	 * Creates a new AdminCondition for high level admins. '
+	 */
 	public AdminCondition() {
 		requiredAdminlevel = 5000;
 	}
 
 	/**
-	 * Creates a new AdminCondition
-	 *
-	 * @param requiredAdminlevel minimum admin level
-'	 */
+	 * Creates a new AdminCondition.
+	 * 
+	 * @param requiredAdminlevel
+	 *            minimum admin level '
+	 */
 	public AdminCondition(int requiredAdminlevel) {
 		this.requiredAdminlevel = requiredAdminlevel;
 	}
@@ -37,7 +38,7 @@ public class AdminCondition extends SpeakerNPC.ChatCondition {
 
 	@Override
 	public String toString() {
-		return "admin <" + requiredAdminlevel + ">"; 
+		return "admin <" + requiredAdminlevel + ">";
 	}
 
 	@Override
@@ -47,7 +48,8 @@ public class AdminCondition extends SpeakerNPC.ChatCondition {
 
 	@Override
 	public boolean equals(Object obj) {
-		return EqualsBuilder.reflectionEquals(this, obj, false, QuestStartedCondition.class);
+		return EqualsBuilder.reflectionEquals(this, obj, false,
+				QuestStartedCondition.class);
 	}
 
 }

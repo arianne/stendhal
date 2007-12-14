@@ -20,7 +20,6 @@ import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.util.List;
 
-
 import org.apache.log4j.Logger;
 
 public abstract class Path {
@@ -32,12 +31,9 @@ public abstract class Path {
 	// Path
 	//
 
-
-
-
 	/**
 	 * Finds a path for the Entity <code>entity</code>.
-	 *
+	 * 
 	 * @param entity
 	 *            the Entity
 	 * @param x
@@ -58,7 +54,7 @@ public abstract class Path {
 
 	/**
 	 * Finds a path for the Entity <code>entity</code>.
-	 *
+	 * 
 	 * @param entity
 	 *            the Entity
 	 * @param x
@@ -68,7 +64,8 @@ public abstract class Path {
 	 * @param destination
 	 *            the destination area
 	 * @param maxDistance
-	 *            the maximum distance (as the crow flies) a possible path may be
+	 *            the maximum distance (as the crow flies) a possible path may
+	 *            be
 	 * @return a list with the path nodes or an empty list if no path is found
 	 */
 	public static List<Node> searchPath(Entity entity, int x, int y,
@@ -78,7 +75,7 @@ public abstract class Path {
 
 	/**
 	 * Finds a path for the Entity <code>entity</code>.
-	 *
+	 * 
 	 * @param entity
 	 *            the Entity
 	 * @param zone
@@ -123,7 +120,7 @@ public abstract class Path {
 	/**
 	 * Finds a path for the Entity <code>entity</code> to (or next to) the
 	 * other Entity <code>dest</code>.
-	 *
+	 * 
 	 * @param entity
 	 *            the Entity (also start point)
 	 * @param dest
@@ -137,7 +134,7 @@ public abstract class Path {
 	/**
 	 * Finds a path for the Entity <code>entity</code> to the other Entity
 	 * <code>dest</code>.
-	 *
+	 * 
 	 * @param entity
 	 *            the Entity (also start point)
 	 * @param dest
@@ -154,15 +151,15 @@ public abstract class Path {
 		 * Expand area by surounding tiles.
 		 */
 		return searchPath(entity, entity.getX(), entity.getY(), new Rectangle(
-				((int) area.getX()) - 1, ((int) area.getY()) - 1, ((int) area
-						.getWidth()) + 2, ((int) area.getHeight()) + 2),
+				((int) area.getX()) - 1, ((int) area.getY()) - 1,
+				((int) area.getWidth()) + 2, ((int) area.getHeight()) + 2),
 				maxDistance);
 	}
 
 	/**
 	 * Follow the current path (if any) by pointing the direction toward the
 	 * next destination point.
-	 *
+	 * 
 	 * @param entity
 	 *            The entity to point.
 	 */

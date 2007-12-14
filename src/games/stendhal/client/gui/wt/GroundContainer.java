@@ -34,13 +34,14 @@ import marauroa.common.game.RPAction;
 import marauroa.common.game.RPSlot;
 
 /**
- *
+ * 
  * This container is the ground
- *
+ * 
  * @author mtotz
- *
+ * 
  */
-public class GroundContainer extends WtBaseframe implements WtDropTarget, Inspector {
+public class GroundContainer extends WtBaseframe implements WtDropTarget,
+		Inspector {
 	/** the game client */
 	private StendhalClient client;
 
@@ -53,7 +54,8 @@ public class GroundContainer extends WtBaseframe implements WtDropTarget, Inspec
 	private IGameScreen screen;
 
 	/** creates a new groundcontainer */
-	public GroundContainer(final StendhalClient client, final IGameScreen screen, final int width, final int height) {
+	public GroundContainer(final StendhalClient client,
+			final IGameScreen screen, final int width, final int height) {
 		super(width, height);
 
 		this.client = client;
@@ -72,7 +74,8 @@ public class GroundContainer extends WtBaseframe implements WtDropTarget, Inspec
 		}
 
 		Point2D point = screen.convertScreenViewToWorld(x, y);
-		EntityView view = screen.getMovableEntityViewAt(point.getX(), point.getY());
+		EntityView view = screen.getMovableEntityViewAt(point.getX(),
+				point.getY());
 
 		// only Items can be dragged
 		if (view != null) {
@@ -83,9 +86,9 @@ public class GroundContainer extends WtBaseframe implements WtDropTarget, Inspec
 	}
 
 	/**
-	 *
-	 *
-	 *
+	 * 
+	 * 
+	 * 
 	 */
 	@Override
 	public synchronized boolean onMouseClick(Point p) {

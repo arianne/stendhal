@@ -17,18 +17,24 @@ public class MinotaurCreature implements ZoneConfigurator {
 	/**
 	 * Configure a zone.
 	 * 
-	 * @param 	zone		The zone to be configured.
-	 * @param 	attributes	Configuration attributes.
+	 * @param zone
+	 *            The zone to be configured.
+	 * @param attributes
+	 *            Configuration attributes.
 	 */
 
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone,
+			Map<String, String> attributes) {
 		buildQuicksandArea(zone, attributes);
 	}
 
-	private void buildQuicksandArea(StendhalRPZone zone, Map<String, String> attributes) {
-		Creature creature = new ItemGuardCreature(manager.getCreature("minotaur"), "minotaur_key");
+	private void buildQuicksandArea(StendhalRPZone zone,
+			Map<String, String> attributes) {
+		Creature creature = new ItemGuardCreature(
+				manager.getCreature("minotaur"), "minotaur_key");
 
-		CreatureRespawnPoint point = new CreatureRespawnPoint(zone, 121, 121, creature, 1);
+		CreatureRespawnPoint point = new CreatureRespawnPoint(zone, 121, 121,
+				creature, 1);
 
 		zone.add(point);
 

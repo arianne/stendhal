@@ -16,7 +16,6 @@ import games.stendhal.server.entity.mapstuff.portal.Portal;
 
 import java.awt.geom.Rectangle2D;
 
-
 import org.apache.log4j.Logger;
 import marauroa.common.game.Definition;
 import marauroa.common.game.RPClass;
@@ -58,7 +57,7 @@ public abstract class ActiveEntity extends Entity {
 
 	/**
 	 * Create an active entity.
-	 *
+	 * 
 	 * @param object
 	 *            The source object.
 	 */
@@ -79,7 +78,7 @@ public abstract class ActiveEntity extends Entity {
 	 * Apply movement and process it's reactions.
 	 */
 	public void applyMovement() {
-		//even if we could we would not move;
+		// even if we could we would not move;
 		if (speed == 0) {
 			return;
 		}
@@ -94,7 +93,6 @@ public abstract class ActiveEntity extends Entity {
 		int nx = x + direction.getdx();
 		int ny = y + direction.getdy();
 
-
 		StendhalRPZone zone = getZone();
 		if (zone.simpleCollides(this, nx, ny)) {
 			handleSimpleCollision(nx, ny);
@@ -102,16 +100,15 @@ public abstract class ActiveEntity extends Entity {
 		}
 		Portal p = zone.getPortal(nx, ny);
 		if (p != null) {
-		 if (handlePortal(p)) {
-			 return;
-		 }
+			if (handlePortal(p)) {
+				return;
+			}
 		}
-
 
 		if (isGhost()) {
 			if (isMoveCompleted()) {
-			move(x, y, nx, ny);
-			return;
+				move(x, y, nx, ny);
+				return;
 			}
 		}
 		boolean collision = zone.collidesObjects(this, this.getArea(nx, ny));
@@ -143,7 +140,6 @@ public abstract class ActiveEntity extends Entity {
 
 	protected void handleObjectCollision() {
 
-
 		setCollides(true);
 	}
 
@@ -151,21 +147,20 @@ public abstract class ActiveEntity extends Entity {
 		setPosition(nx, ny);
 	}
 
-
 	private boolean handlePortal(Portal portal) {
 		if (isZoneChangeAllowed()) {
 			logger.debug("Using portal " + portal);
-		 return portal.onUsed((RPEntity) this);
+			return portal.onUsed((RPEntity) this);
 		}
 		return false;
 	}
 
 	/**
-	 * a simple collision is from tiled collision layer
-	 * or the edge of the map.
+	 * a simple collision is from tiled collision layer or the edge of the map.
+	 * 
 	 * @param ny
 	 * @param nx
-	 *
+	 * 
 	 */
 	protected void handleSimpleCollision(int nx, int ny) {
 		if (isZoneChangeAllowed()) {
@@ -175,9 +170,9 @@ public abstract class ActiveEntity extends Entity {
 			}
 		}
 		if (isGhost()) {
-		    move(getX(), getY(), nx, ny);
+			move(getX(), getY(), nx, ny);
 		} else {
-		    setCollides(true);
+			setCollides(true);
 		}
 	}
 
@@ -191,7 +186,7 @@ public abstract class ActiveEntity extends Entity {
 
 	/**
 	 * Define the RPClass.
-	 *
+	 * 
 	 * @return The configured RPClass.
 	 */
 	private static RPClass createRPClass() {
@@ -206,7 +201,7 @@ public abstract class ActiveEntity extends Entity {
 
 	/**
 	 * Face toward an entity.
-	 *
+	 * 
 	 * @param entity
 	 *            The entity to face toward.
 	 */
@@ -216,7 +211,7 @@ public abstract class ActiveEntity extends Entity {
 
 	/**
 	 * Generate the RPClass (compatible with manual init/order).
-	 *
+	 * 
 	 * NOTE: This MUST be called during environment initialization.
 	 */
 	public static void generateRPClass() {
@@ -225,7 +220,7 @@ public abstract class ActiveEntity extends Entity {
 
 	/**
 	 * Get the current facing direction.
-	 *
+	 * 
 	 * @return The facing direction.
 	 */
 	public Direction getDirection() {
@@ -234,10 +229,10 @@ public abstract class ActiveEntity extends Entity {
 
 	/**
 	 * Get the direction toward an entity.
-	 *
+	 * 
 	 * @param entity
 	 *            The target entity.
-	 *
+	 * 
 	 * @return A facing direction.
 	 */
 	public final Direction getDirectionToward(final Entity entity) {
@@ -265,10 +260,9 @@ public abstract class ActiveEntity extends Entity {
 		}
 	}
 
-
 	/**
 	 * Get the current speed.
-	 *
+	 * 
 	 * @return The current speed, or <code>0.0</code> if stopped.
 	 */
 	public double getSpeed() {
@@ -277,10 +271,10 @@ public abstract class ActiveEntity extends Entity {
 
 	/**
 	 * Determine if this entity is facing toward another entity.
-	 *
+	 * 
 	 * @param entity
 	 *            The target entity.
-	 *
+	 * 
 	 * @return <code>true</code> if facing the other entity.
 	 */
 	public boolean isFacingToward(final Entity entity) {
@@ -289,7 +283,7 @@ public abstract class ActiveEntity extends Entity {
 
 	/**
 	 * Determine if this entity has move at least a whole tile.
-	 *
+	 * 
 	 * @return <code>true</code> if moved a whole tile.
 	 */
 	protected boolean isMoveCompleted() {
@@ -306,7 +300,7 @@ public abstract class ActiveEntity extends Entity {
 	/**
 	 * Determine if zone changes are currently allowed via normal means
 	 * (non-portal teleportation doesn't count).
-	 *
+	 * 
 	 * @return <code>true</code> if the entity can change zones.
 	 */
 	protected boolean isZoneChangeAllowed() {
@@ -315,7 +309,7 @@ public abstract class ActiveEntity extends Entity {
 
 	/**
 	 * Notification of intra-zone position change.
-	 *
+	 * 
 	 * @param oldX
 	 *            The old X coordinate.
 	 * @param oldY
@@ -332,7 +326,7 @@ public abstract class ActiveEntity extends Entity {
 
 	/**
 	 * Set the facing direction.
-	 *
+	 * 
 	 * @param dir
 	 *            The facing direction.
 	 */
@@ -347,7 +341,7 @@ public abstract class ActiveEntity extends Entity {
 
 	/**
 	 * Set the movement speed.
-	 *
+	 * 
 	 * @param speed
 	 *            The new speed.
 	 */
@@ -374,9 +368,9 @@ public abstract class ActiveEntity extends Entity {
 
 	/**
 	 * Called when this object is added to a zone.
-	 *
+	 * 
 	 * @param zone
-	 *		The zone this was added to.
+	 *            The zone this was added to.
 	 */
 	@Override
 	public void onAdded(StendhalRPZone zone) {
@@ -387,9 +381,9 @@ public abstract class ActiveEntity extends Entity {
 
 	/**
 	 * Called when this object is removed from a zone.
-	 *
+	 * 
 	 * @param zone
-	 *		The zone this was removed from.
+	 *            The zone this was removed from.
 	 */
 	@Override
 	public void onRemoved(StendhalRPZone zone) {
@@ -397,7 +391,6 @@ public abstract class ActiveEntity extends Entity {
 
 		super.onRemoved(zone);
 	}
-
 
 	@Override
 	public void update() {
@@ -417,8 +410,8 @@ public abstract class ActiveEntity extends Entity {
 	//
 
 	/**
-	 * is this entity not moving
-	 *
+	 * is this entity not moving.
+	 * 
 	 * @return true, if it stopped, false if it is moving
 	 */
 	@Override

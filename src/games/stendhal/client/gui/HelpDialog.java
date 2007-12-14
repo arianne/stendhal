@@ -23,7 +23,6 @@ import javax.swing.text.html.StyleSheet;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreeSelectionModel;
 
-
 import org.apache.log4j.Logger;
 
 /**
@@ -45,7 +44,8 @@ public class HelpDialog extends JFrame {
 	public HelpDialog() {
 		// Create and set up the window.
 		super(ClientGameConfiguration.get("GAME_NAME") + " - Help");
-		URL url = SpriteStore.get().getResourceURL(ClientGameConfiguration.get("GAME_ICON"));
+		URL url = SpriteStore.get().getResourceURL(
+				ClientGameConfiguration.get("GAME_ICON"));
 		this.setIconImage(new ImageIcon(url).getImage());
 
 		super.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -66,8 +66,9 @@ public class HelpDialog extends JFrame {
 
 	/**
 	 * displays the help system
-	 *
-	 * @param bookInfo page to display
+	 * 
+	 * @param bookInfo
+	 *            page to display
 	 */
 	public void display(HelpDocument bookInfo) {
 		panel.displayNode(bookInfo);
@@ -78,7 +79,8 @@ public class HelpDialog extends JFrame {
 	/**
 	 * Creates a new help dialog
 	 */
-	private static class HelpDialogPanel extends JPanel implements TreeSelectionListener {
+	private static class HelpDialogPanel extends JPanel implements
+			TreeSelectionListener {
 		private static final long serialVersionUID = -290672385299793246L;
 		private JTree tree;
 		private JEditorPane htmlPane;
@@ -90,16 +92,18 @@ public class HelpDialog extends JFrame {
 			super(new GridLayout(1, 0));
 
 			// Create the nodes.
-			DefaultMutableTreeNode top = new DefaultMutableTreeNode("Stendhal Manual");
+			DefaultMutableTreeNode top = new DefaultMutableTreeNode(
+					"Stendhal Manual");
 			createNodes(top);
 
 			// Create a tree that allows one selection at a time.
 			tree = new JTree(top);
-			tree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
+			tree.getSelectionModel().setSelectionMode(
+					TreeSelectionModel.SINGLE_TREE_SELECTION);
 
 			// Expand tree
 			for (int i = 0; i < tree.getRowCount(); i++) {
-			    tree.expandRow(i); 
+				tree.expandRow(i);
 			}
 
 			// Listen for when the selection changes.
@@ -166,7 +170,8 @@ public class HelpDialog extends JFrame {
 
 		private void createNodes(DefaultMutableTreeNode top) {
 			top.add(new DefaultMutableTreeNode(HelpDocument.Introduction));
-			DefaultMutableTreeNode node = new DefaultMutableTreeNode(HelpDocument.Setting);
+			DefaultMutableTreeNode node = new DefaultMutableTreeNode(
+					HelpDocument.Setting);
 			node.add(new DefaultMutableTreeNode(HelpDocument.Download));
 			node.add(new DefaultMutableTreeNode(HelpDocument.AccountCreation));
 			node.add(new DefaultMutableTreeNode(HelpDocument.Startup));
@@ -186,7 +191,7 @@ public class HelpDialog extends JFrame {
 	 * a help document
 	 */
 	public static enum HelpDocument {
-		Introduction("Introduction",	"introduction.html"),
+		Introduction("Introduction", "introduction.html"),
 
 		Setting("Setting up the game", "setting.html"),
 		Download("Downloading Stendhal", "setting-download.html"),
@@ -199,9 +204,10 @@ public class HelpDialog extends JFrame {
 		Communication("Communication", "controls-communication.html"),
 
 		Gameplay("Gameplay", "gameplay.html");
-		
+
 		private String bookName;
 		private URL bookURL;
+
 		private HelpDocument(String title, String filename) {
 			bookName = title;
 			bookURL = SpriteStore.get().getResourceURL("data/docu/" + filename);

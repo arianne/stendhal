@@ -74,14 +74,14 @@ public class HearingAreaTest {
 		assertEquals(HearingArea.HEARINGDIST + centerY, (int) rect.getMaxY());
 		new User();
 		rect = HearingArea.getAsRect();
-		assertEquals(-HearingArea.HEARINGDIST + User.get().getX(), rect
-				.getMinX(),0.001);
-		assertEquals(-HearingArea.HEARINGDIST + User.get().getY(), rect
-				.getMinY(),0.001);
-		assertEquals(HearingArea.HEARINGDIST + User.get().getX(), rect
-				.getMaxX(),0.001);
-		assertEquals(HearingArea.HEARINGDIST + User.get().getY(), rect
-				.getMaxY(),0.001);
+		assertEquals(-HearingArea.HEARINGDIST + User.get().getX(),
+				rect.getMinX(), 0.001);
+		assertEquals(-HearingArea.HEARINGDIST + User.get().getY(),
+				rect.getMinY(), 0.001);
+		assertEquals(HearingArea.HEARINGDIST + User.get().getX(),
+				rect.getMaxX(), 0.001);
+		assertEquals(HearingArea.HEARINGDIST + User.get().getY(),
+				rect.getMaxY(), 0.001);
 
 	}
 
@@ -92,9 +92,9 @@ public class HearingAreaTest {
 		HearingArea.set(centerX, centerY);
 
 		Rectangle2D rect = HearingArea.getAsRect();
-		assertEquals(-HearingArea.HEARINGDIST + centerX, rect.getMinX(),0.001);
-		assertEquals(-HearingArea.HEARINGDIST + centerY, rect.getMinY(),0.001);
-		assertEquals(HearingArea.HEARINGDIST + centerX, rect.getMaxX(),0.001);
-		assertEquals(HearingArea.HEARINGDIST + centerY, rect.getMaxY(),0.001);
+		assertEquals(-HearingArea.HEARINGDIST + centerX, rect.getMinX(), 0.001);
+		assertEquals(-HearingArea.HEARINGDIST + centerY, rect.getMinY(), 0.001);
+		assertEquals(HearingArea.HEARINGDIST + centerX, rect.getMaxX(), 0.001);
+		assertEquals(HearingArea.HEARINGDIST + centerY, rect.getMaxY(), 0.001);
 	}
 }

@@ -9,14 +9,13 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.rule.EntityManager;
 import marauroa.common.game.RPAction;
 
-
 import static games.stendhal.server.actions.WellKnownActionConstants.TARGET;
 
 public class SummonAtAction extends AdministrationAction {
 	private static final String _AMOUNT = "amount";
 	private static final String _ITEM = "item";
 	private static final String _SLOT = "slot";
-	
+
 	private static final String _SUMMONAT = "summonat";
 
 	public static void register() {
@@ -47,8 +46,7 @@ public class SummonAtAction extends AdministrationAction {
 				return;
 			}
 
-			EntityManager manager = StendhalRPWorld.get().getRuleManager()
-					.getEntityManager();
+			EntityManager manager = StendhalRPWorld.get().getRuleManager().getEntityManager();
 			String type = action.get(_ITEM);
 
 			// Is the entity an item

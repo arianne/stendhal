@@ -19,12 +19,13 @@ import games.stendhal.server.events.UseListener;
 import java.lang.ref.WeakReference;
 
 /**
- * An entity that performs some activity for a player. The activity takes
- * some time to perform and can succeed or fail. The player must be standing
- * next to the entity when it finished to succeed. The activity must finish
- * before being initiated again.
+ * An entity that performs some activity for a player. The activity takes some
+ * time to perform and can succeed or fail. The player must be standing next to
+ * the entity when it finished to succeed. The activity must finish before being
+ * initiated again.
  */
-public abstract class PlayerActivityEntity extends Entity implements UseListener {
+public abstract class PlayerActivityEntity extends Entity implements
+		UseListener {
 	/**
 	 * Create a player activity entity.
 	 */
@@ -32,20 +33,20 @@ public abstract class PlayerActivityEntity extends Entity implements UseListener
 		setResistance(0);
 	}
 
-
 	//
 	// PlayerActivityEntity
 	//
 
 	/**
 	 * Process the results of the activity.
-	 *
-	 * @param	player		The player that performed the activity.
+	 * 
+	 * @param player
+	 *            The player that performed the activity.
 	 */
 	protected void activityDone(final Player player) {
 		/*
-		 * Verify that the player is still standing next to this,
-		 * else their activity fails.
+		 * Verify that the player is still standing next to this, else their
+		 * activity fails.
 		 */
 		if (nextTo(player)) {
 			onFinished(player, isSuccessful(player));
@@ -54,47 +55,45 @@ public abstract class PlayerActivityEntity extends Entity implements UseListener
 		}
 	}
 
-
 	/**
 	 * Get the time it takes to perform this activity.
-	 *
-	 * @return	The time to perform the activity (in seconds).
+	 * 
+	 * @return The time to perform the activity (in seconds).
 	 */
 	protected abstract int getDuration();
 
-
 	/**
 	 * Decides if the activity can be done.
-	 *
-	 * @return	<code>true</code> if successful.
+	 * 
+	 * @return <code>true</code> if successful.
 	 */
 	protected abstract boolean isPrepared(final Player player);
 
-
 	/**
 	 * Decides if the activity was successful.
-	 *
-	 * @return	<code>true</code> if successful.
+	 * 
+	 * @return <code>true</code> if successful.
 	 */
 	protected abstract boolean isSuccessful(final Player player);
 
-
 	/**
 	 * Called when the activity has finished.
-	 *
-	 * @param	player		The player that did the activity.
-	 * @param	successful	If the activity was successful.
+	 * 
+	 * @param player
+	 *            The player that did the activity.
+	 * @param successful
+	 *            If the activity was successful.
 	 */
-	protected abstract void onFinished(final Player player, final boolean successful);
-
+	protected abstract void onFinished(final Player player,
+			final boolean successful);
 
 	/**
 	 * Called when the activity has started.
-	 *
-	 * @param	player		The player starting the activity.
+	 * 
+	 * @param player
+	 *            The player starting the activity.
 	 */
 	protected abstract void onStarted(final Player player);
-
 
 	//
 	// UseListener
@@ -102,10 +101,11 @@ public abstract class PlayerActivityEntity extends Entity implements UseListener
 
 	/**
 	 * Is called when a player initiates the activity.
-	 *
-	 * @param	entity		The initiating entity.
-	 *
-	 * @return	<code>true</code> if the entity was used.
+	 * 
+	 * @param entity
+	 *            The initiating entity.
+	 * 
+	 * @return <code>true</code> if the entity was used.
 	 */
 	public boolean onUsed(final RPEntity entity) {
 		if (!entity.nextTo(this)) {
@@ -122,8 +122,7 @@ public abstract class PlayerActivityEntity extends Entity implements UseListener
 			Activity activity = new Activity(player);
 
 			/*
-			 * You can't start a new activity before the last one
-			 * has finished.
+			 * You can't start a new activity before the last one has finished.
 			 */
 			if (TurnNotifier.get().getRemainingTurns(activity) == -1) {
 				player.faceToward(this);
@@ -149,16 +148,15 @@ public abstract class PlayerActivityEntity extends Entity implements UseListener
 		 */
 		protected WeakReference<Player> ref;
 
-
 		/**
 		 * Create an activity.
-		 *
-		 * @param	player		The player.
+		 * 
+		 * @param player
+		 *            The player.
 		 */
 		public Activity(Player player) {
 			ref = new WeakReference<Player>(player);
 		}
-
 
 		//
 		// Activity
@@ -166,23 +164,21 @@ public abstract class PlayerActivityEntity extends Entity implements UseListener
 
 		/**
 		 * Get the holder entity.
-		 *
-		 * @return	The holder entity.
+		 * 
+		 * @return The holder entity.
 		 */
 		public PlayerActivityEntity getEntity() {
 			return PlayerActivityEntity.this;
 		}
 
-
 		/**
 		 * Get the player.
-		 *
-		 * @return	The player (or <code>null</code> if GC'd).
+		 * 
+		 * @return The player (or <code>null</code> if GC'd).
 		 */
 		public Player getPlayer() {
 			return ref.get();
 		}
-
 
 		//
 		// TurnListener
@@ -190,7 +186,7 @@ public abstract class PlayerActivityEntity extends Entity implements UseListener
 
 		/**
 		 * This method is called when the turn number is reached.
-		 *
+		 * 
 		 * @param currentTurn
 		 *            The current turn number.
 		 */
@@ -201,7 +197,6 @@ public abstract class PlayerActivityEntity extends Entity implements UseListener
 				activityDone(player);
 			}
 		}
-
 
 		//
 		// Object
@@ -224,7 +219,6 @@ public abstract class PlayerActivityEntity extends Entity implements UseListener
 				return false;
 			}
 		}
-
 
 		@Override
 		public int hashCode() {

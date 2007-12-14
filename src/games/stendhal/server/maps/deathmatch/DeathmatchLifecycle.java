@@ -1,6 +1,5 @@
 package games.stendhal.server.maps.deathmatch;
 
-
 import org.apache.log4j.Logger;
 
 /**
@@ -20,7 +19,10 @@ public enum DeathmatchLifecycle {
 	/** deathmatch has been started and is active now */
 	START("start"),
 
-	/** deathmatch was completed sucessfully but the player did not claim "victory" yet */
+	/**
+	 * deathmatch was completed sucessfully but the player did not claim
+	 * "victory" yet
+	 */
 	VICTORY("victory");
 
 	private static Logger logger = Logger.getLogger(DeathmatchLifecycle.class);
@@ -33,7 +35,7 @@ public enum DeathmatchLifecycle {
 
 	/**
 	 * convertes to a quest state string
-	 *
+	 * 
 	 * @return questState
 	 */
 	String toQuestString() {
@@ -42,8 +44,9 @@ public enum DeathmatchLifecycle {
 
 	/**
 	 * parses quest state string
-	 *
-	 * @param questState quest state string
+	 * 
+	 * @param questState
+	 *            quest state string
 	 * @return DeathmatchLifecycle
 	 */
 	static DeathmatchLifecycle getFromQuestStateString(String questState) {

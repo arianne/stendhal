@@ -14,9 +14,9 @@ import utilities.PlayerTestHelper;
 import utilities.SpeakerNPCTestHelper;
 
 public class AndConditionTest {
-	AlwaysTrueCondition trueCondition;
+	private AlwaysTrueCondition trueCondition;
 
-	ChatCondition falsecondition;
+	private ChatCondition falsecondition;
 
 	@Before
 	public void setUp() throws Exception {

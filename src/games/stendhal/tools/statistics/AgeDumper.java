@@ -14,7 +14,7 @@ import marauroa.server.game.db.Transaction;
 
 /**
  * Dumps the Age and Release of players
- *
+ * 
  * @author hendrik
  */
 public class AgeDumper {
@@ -28,7 +28,7 @@ public class AgeDumper {
 
 	/**
 	 * Creates a new AgeDumper
-	 *
+	 * 
 	 * @param db
 	 *            JDBCPlayerDatabase
 	 * @throws GenericDatabaseException
@@ -41,7 +41,7 @@ public class AgeDumper {
 
 	/**
 	 * dumps the items
-	 *
+	 * 
 	 * @throws Exception
 	 *             in case of an unexpected Exception
 	 */
@@ -63,7 +63,7 @@ public class AgeDumper {
 
 	/**
 	 * logs a player
-	 *
+	 * 
 	 * @param name
 	 *            character name
 	 * @param object
@@ -90,7 +90,7 @@ public class AgeDumper {
 
 	/**
 	 * starts the ItemDumper
-	 *
+	 * 
 	 * @param args
 	 *            ignored
 	 * @throws Exception

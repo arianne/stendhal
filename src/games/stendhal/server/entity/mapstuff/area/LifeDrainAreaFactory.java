@@ -14,25 +14,25 @@ import games.stendhal.server.config.factory.ConfigurableFactoryContext;
 public class LifeDrainAreaFactory extends OccupantAreaFactory {
 	/**
 	 * Extract the damage ratio from a context.
-	 *
-	 * @param	ctx		The configuration context.
-	 * @return	The damage ratio (or 10% is unset).
+	 * 
+	 * @param ctx
+	 *            The configuration context.
+	 * @return The damage ratio (or 10% is unset).
 	 */
 	protected double getDamageRatio(ConfigurableFactoryContext ctx) {
 		return ctx.getInt("damage-ratio", 10) / 100.0;
 	}
 
-
 	/**
 	 * Extract the minimum damage amount from a context.
-	 *
-	 * @param	ctx		The configuration context.
-	 * @return	The minimum damage amount (or 10 is unset).
+	 * 
+	 * @param ctx
+	 *            The configuration context.
+	 * @return The minimum damage amount (or 10 is unset).
 	 */
 	protected int getMimimumDamage(ConfigurableFactoryContext ctx) {
 		return ctx.getInt("minimum-damage", 10);
 	}
-
 
 	//
 	// OccupantAreaFactory
@@ -40,13 +40,16 @@ public class LifeDrainAreaFactory extends OccupantAreaFactory {
 
 	/**
 	 * Creates the OccupantArea.
-	 *
-	 * @param ctx	The configuration context.
+	 * 
+	 * @param ctx
+	 *            The configuration context.
 	 * @return An OccupantArea.
-	 * @throws IllegalArgumentException in case of an invalid configuration
+	 * @throws IllegalArgumentException
+	 *             in case of an invalid configuration
 	 */
 	@Override
 	protected OccupantArea createArea(ConfigurableFactoryContext ctx) {
-		return new LifeDrainArea(getWidth(ctx), getHeight(ctx), getInterval(ctx), getDamageRatio(ctx), getMimimumDamage(ctx));
+		return new LifeDrainArea(getWidth(ctx), getHeight(ctx),
+				getInterval(ctx), getDamageRatio(ctx), getMimimumDamage(ctx));
 	}
 }

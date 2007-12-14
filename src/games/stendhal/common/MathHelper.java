@@ -6,8 +6,9 @@ package games.stendhal.common;
 public class MathHelper {
 
 	/**
-	 * parses an integer safely.
-	 * returning a default if nothing can be sanely parsed from it
+	 * parses an integer safely. returning a default if nothing can be sanely
+	 * parsed from it
+	 * 
 	 * @return An integer
 	 */
 	public static int parseIntDefault(String s, int def) {
@@ -21,8 +22,9 @@ public class MathHelper {
 	}
 
 	/**
-	 * parses an integer safely,
-	 * returning 0 if nothing can be sanely parsed from it
+	 * parses an integer safely, returning 0 if nothing can be sanely parsed
+	 * from it
+	 * 
 	 * @return An integer
 	 */
 	public static int parseInt(String s) {

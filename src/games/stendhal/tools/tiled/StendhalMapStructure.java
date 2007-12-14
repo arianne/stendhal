@@ -5,9 +5,9 @@ import java.util.List;
 
 /**
  * This is the map format that our client uses.
- *
+ * 
  * @author miguel
- *
+ * 
  */
 public class StendhalMapStructure {
 	/** TMX Filename that contains this map. */
@@ -27,7 +27,7 @@ public class StendhalMapStructure {
 
 	/**
 	 * Constructor.
-	 *
+	 * 
 	 * @param w
 	 *            the width of the map
 	 * @param h
@@ -42,7 +42,7 @@ public class StendhalMapStructure {
 
 	/**
 	 * Add a new tileset to the map
-	 *
+	 * 
 	 * @param set
 	 *            new tileset
 	 */
@@ -52,7 +52,7 @@ public class StendhalMapStructure {
 
 	/**
 	 * Add a new layer to the map
-	 *
+	 * 
 	 * @param layer
 	 *            new layer
 	 */
@@ -63,7 +63,7 @@ public class StendhalMapStructure {
 
 	/**
 	 * Sets the map TMX filename
-	 *
+	 * 
 	 * @param filename
 	 *            the map TMX filename
 	 */
@@ -73,7 +73,7 @@ public class StendhalMapStructure {
 
 	/**
 	 * Returns a list of the tilesets this map contains.
-	 *
+	 * 
 	 * @return a list of the tilesets this map contains.
 	 */
 	public List<TileSetDefinition> getTilesets() {
@@ -82,7 +82,7 @@ public class StendhalMapStructure {
 
 	/**
 	 * Returns a list of the layers this map contains.
-	 *
+	 * 
 	 * @return a list of the layers this map contains.
 	 */
 	public List<LayerDefinition> getLayers() {
@@ -91,7 +91,7 @@ public class StendhalMapStructure {
 
 	/**
 	 * Return true if the layer with given name exists.
-	 *
+	 * 
 	 * @param layername
 	 *            the layer name
 	 * @return true if it exists.
@@ -102,7 +102,7 @@ public class StendhalMapStructure {
 
 	/**
 	 * Returns the layer whose name is layer name or null
-	 *
+	 * 
 	 * @param layername
 	 *            the layer name
 	 * @return the layer object or null if it doesnt' exists

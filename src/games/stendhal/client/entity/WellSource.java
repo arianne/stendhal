@@ -14,7 +14,7 @@ package games.stendhal.client.entity;
 
 /**
  * @author daniel
- *
+ * 
  */
 public class WellSource extends Entity {
 }

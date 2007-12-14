@@ -13,8 +13,9 @@ public class IncreaseKarmaAction extends SpeakerNPC.ChatAction {
 
 	/**
 	 * Creates a new IncreaseKarmaAction
-	 *
-	 * @param karmaDiff amount of karma to add
+	 * 
+	 * @param karmaDiff
+	 *            amount of karma to add
 	 */
 	public IncreaseKarmaAction(double karmaDiff) {
 		this.karmaDiff = karmaDiff;
@@ -27,7 +28,7 @@ public class IncreaseKarmaAction extends SpeakerNPC.ChatAction {
 
 	@Override
 	public String toString() {
-		return "IncreaseKarma<" + karmaDiff +">";
+		return "IncreaseKarma<" + karmaDiff + ">";
 	}
 
 	@Override
@@ -42,11 +43,19 @@ public class IncreaseKarmaAction extends SpeakerNPC.ChatAction {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj) return true;
-		if (obj == null) return false;
-		if (getClass() != obj.getClass()) return false;
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
 		final IncreaseKarmaAction other = (IncreaseKarmaAction) obj;
-		if (Double.doubleToLongBits(karmaDiff) != Double.doubleToLongBits(other.karmaDiff)) return false;
+		if (Double.doubleToLongBits(karmaDiff) != Double.doubleToLongBits(other.karmaDiff)) {
+			return false;
+		}
 		return true;
 	}
 

@@ -15,9 +15,11 @@ import java.util.Map;
 public interface ZoneConfigurator {
 	/**
 	 * Configure a zone.
-	 *
-	 * @param	zone		The zone to be configured.
-	 * @param	attributes	Configuration attributes.
+	 * 
+	 * @param zone
+	 *            The zone to be configured.
+	 * @param attributes
+	 *            Configuration attributes.
 	 */
 	void configureZone(StendhalRPZone zone, Map<String, String> attributes);
 }

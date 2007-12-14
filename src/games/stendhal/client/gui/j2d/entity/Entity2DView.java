@@ -34,7 +34,6 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
-
 import marauroa.common.game.RPAction;
 
 /**
@@ -113,12 +112,12 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 
 	/**
 	 * Create a 2D view of an entity.
-	 *
+	 * 
 	 * @param entity
 	 *            The entity to render.
 	 */
 	public Entity2DView(final Entity entity) {
-		if (entity == null){
+		if (entity == null) {
 			throw new IllegalArgumentException("entity must not be null");
 		}
 		this.entity = entity;
@@ -159,7 +158,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	/**
 	 * Build a list of entity specific actions. <strong>NOTE: The first entry
 	 * should be the default.</strong>
-	 *
+	 * 
 	 * @param list
 	 *            The list to populate.
 	 */
@@ -176,7 +175,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 
 	/**
 	 * Calculate sprite image offset for the entity.
-	 *
+	 * 
 	 * @param swidth
 	 *            The sprite width (in pixels).
 	 * @param sheight
@@ -185,14 +184,15 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	protected void calculateOffset(final int swidth, final int sheight) {
 		Rectangle2D area = entity.getArea();
 
-		calculateOffset(swidth, sheight, screen.convertWorldToScreen(area
-				.getWidth()), screen.convertWorldToScreen(area.getHeight()));
+		calculateOffset(swidth, sheight,
+				screen.convertWorldToScreen(area.getWidth()),
+				screen.convertWorldToScreen(area.getHeight()));
 	}
 
 	/**
 	 * Calculate sprite image offset (default centered). Sub-classes may
 	 * override this to change alignment.
-	 *
+	 * 
 	 * @param swidth
 	 *            The sprite width (in pixels).
 	 * @param sheight
@@ -219,10 +219,9 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 		changed = true;
 	}
 
-
 	/**
 	 * Draw the entity.
-	 *
+	 * 
 	 * @param g2d
 	 *            The graphics to drawn on.
 	 */
@@ -256,7 +255,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 
 	/**
 	 * Draw the entity.
-	 *
+	 * 
 	 * @param g2d
 	 *            The graphics context.
 	 * @param x
@@ -284,7 +283,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	/**
 	 * Draw the effect part. This is drawn independent of the visibility
 	 * setting.
-	 *
+	 * 
 	 * @param g2d
 	 *            The graphics context.
 	 * @param x
@@ -302,7 +301,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 
 	/**
 	 * Draw the base entity part.
-	 *
+	 * 
 	 * @param g2d
 	 *            The graphics context.
 	 * @param x
@@ -322,7 +321,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	/**
 	 * Draw the top layer parts of an entity. This will be on down after all
 	 * other game layers are rendered.
-	 *
+	 * 
 	 * @param g2d
 	 *            The graphics to drawn on.
 	 */
@@ -352,7 +351,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 
 	/**
 	 * Draw the entity.
-	 *
+	 * 
 	 * @param g2d
 	 *            The graphics context.
 	 * @param x
@@ -371,7 +370,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	/**
 	 * Get the screen area this is drawn in. NOTE: This only covers the area for
 	 * the main sprite.
-	 *
+	 * 
 	 * @return The area this draws in.
 	 */
 	public Rectangle getArea() {
@@ -382,7 +381,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	/**
 	 * Get the class resource sub-path. The is the base sprite image name,
 	 * relative to <code>translate()</code>.
-	 *
+	 * 
 	 * @return The resource path.
 	 */
 	protected String getClassResourcePath() {
@@ -401,7 +400,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 
 	/**
 	 * Get the drawing composite.
-	 *
+	 * 
 	 * @return The drawing composite.
 	 */
 	protected AlphaComposite getComposite() {
@@ -419,7 +418,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 
 	/**
 	 * Get the height.
-	 *
+	 * 
 	 * @return The height (in pixels).
 	 */
 	public int getHeight() {
@@ -428,7 +427,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 
 	/**
 	 * Get the sprite image for this entity.
-	 *
+	 * 
 	 * @return The image representation.
 	 */
 	public Sprite getSprite() {
@@ -437,7 +436,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 
 	/**
 	 * Get the entity's visibility.
-	 *
+	 * 
 	 * @return The visibility value (0-100).
 	 */
 	protected int getVisibility() {
@@ -446,7 +445,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 
 	/**
 	 * Get the width.
-	 *
+	 * 
 	 * @return The width (in pixels).
 	 */
 	public int getWidth() {
@@ -455,7 +454,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 
 	/**
 	 * Get the entity's X coordinate.
-	 *
+	 * 
 	 * @return The X coordinate (in pixels).
 	 */
 	protected int getX() {
@@ -464,7 +463,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 
 	/**
 	 * Get the X offset alignment adjustment.
-	 *
+	 * 
 	 * @return The X offset (in pixels).
 	 */
 	protected int getXOffset() {
@@ -473,7 +472,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 
 	/**
 	 * Get the entity's Y coordinate.
-	 *
+	 * 
 	 * @return The Y coordinate (in pixels).
 	 */
 	protected int getY() {
@@ -482,7 +481,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 
 	/**
 	 * Get the Y offset alignment adjustment.
-	 *
+	 * 
 	 * @return The Y offset (in pixels).
 	 */
 	protected int getYOffset() {
@@ -493,9 +492,9 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 * Determines on top of which other entities this entity should be drawn.
 	 * Entities with a high Z index will be drawn on top of ones with a lower Z
 	 * index.
-	 *
+	 * 
 	 * Also, players can only interact with the topmost entity.
-	 *
+	 * 
 	 * @return The drawing index.
 	 */
 	public int getZIndex() {
@@ -504,7 +503,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 
 	/**
 	 * Determine if this view is currently animatable.
-	 *
+	 * 
 	 * @return <code>true</code> if animating enabled.
 	 */
 	protected boolean isAnimating() {
@@ -515,7 +514,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	/**
 	 * Determine if this view is contained, and should render in a compressed
 	 * (it's defined) area without clipping anything important.
-	 *
+	 * 
 	 * @return <code>true</code> if contained.
 	 */
 	public boolean isContained() {
@@ -524,7 +523,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 
 	/**
 	 * Reorder the actions list (if needed). Please use as last resort.
-	 *
+	 * 
 	 * @param list
 	 *            The list to reorder.
 	 */
@@ -533,7 +532,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 
 	/**
 	 * Set the sprite's animation state (if applicable).
-	 *
+	 * 
 	 * @param sprite
 	 *            The sprite.
 	 */
@@ -553,7 +552,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	/**
 	 * Set whether this view is contained, and should render in a compressed
 	 * (it's defined) area without clipping anything important.
-	 *
+	 * 
 	 * @param contained
 	 *            <code>true</code> if contained.
 	 */
@@ -563,7 +562,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 
 	/**
 	 * Set the content inspector for this entity (if needed).
-	 *
+	 * 
 	 * @param inspector
 	 *            The inspector.
 	 */
@@ -572,7 +571,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 
 	/**
 	 * Set the sprite.
-	 *
+	 * 
 	 * @param sprite
 	 *            The sprite.
 	 */
@@ -585,10 +584,10 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 
 	/**
 	 * Translate a resource name into it's sprite image path.
-	 *
+	 * 
 	 * @param name
 	 *            The resource name.
-	 *
+	 * 
 	 * @return The full resource name.
 	 */
 	protected String translate(final String name) {
@@ -627,7 +626,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 
 	/**
 	 * An entity was changed.
-	 *
+	 * 
 	 * @param entity
 	 *            The entity that was changed.
 	 * @param property
@@ -653,7 +652,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 
 	/**
 	 * Get the list of actions.
-	 *
+	 * 
 	 * @return The list of actions.
 	 */
 	public final String[] getActions() {
@@ -677,7 +676,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 
 	/**
 	 * Get the view's entity.
-	 *
+	 * 
 	 * @return The view's entity.
 	 */
 	public Entity getEntity() {
@@ -686,7 +685,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 
 	/**
 	 * Determine if this entity can be moved (e.g. via dragging).
-	 *
+	 * 
 	 * @return <code>true</code> if the entity is movable.
 	 */
 	public boolean isMovable() {
@@ -702,7 +701,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 
 	/**
 	 * Perform an action.
-	 *
+	 * 
 	 * @param at
 	 *            The action.
 	 */

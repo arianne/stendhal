@@ -23,31 +23,28 @@ public class GrainField extends Entity {
 	/**
 	 * Maximum ripeness property.
 	 */
-	public static final Object	PROP_MAX_RIPENESS	= new Object();
+	public static final Object PROP_MAX_RIPENESS = new Object();
 
 	/**
 	 * Ripeness property.
 	 */
-	public static final Object	PROP_RIPENESS		= new Object();
-
+	public static final Object PROP_RIPENESS = new Object();
 
 	/**
 	 * Current ripeness.
 	 */
-	private int	ripeness;
+	private int ripeness;
 
 	/**
 	 * The maximum ripeness.
 	 */
-	protected int	maxRipeness;
-
+	protected int maxRipeness;
 
 	/**
 	 * Create a grain field.
 	 */
-	public GrainField()  {
+	public GrainField() {
 	}
-
 
 	//
 	// GrainField
@@ -55,23 +52,21 @@ public class GrainField extends Entity {
 
 	/**
 	 * Get the maximum ripeness.
-	 *
-	 * @return	The maximum ripeness.
+	 * 
+	 * @return The maximum ripeness.
 	 */
 	public int getMaximumRipeness() {
 		return maxRipeness;
 	}
 
-
 	/**
 	 * Get the ripeness.
-	 *
-	 * @return	The ripeness.
+	 * 
+	 * @return The ripeness.
 	 */
 	public int getRipeness() {
 		return ripeness;
 	}
-
 
 	//
 	// Entity
@@ -79,21 +74,22 @@ public class GrainField extends Entity {
 
 	/**
 	 * Get the area the entity occupies.
-	 *
-	 * @return	A rectange (in world coordinate units).
+	 * 
+	 * @return A rectange (in world coordinate units).
 	 */
 	@Override
 	public Rectangle2D getArea() {
-		return new Rectangle.Double(getX(), getY() + getHeight() - 1, getWidth(), 1);
+		return new Rectangle.Double(getX(), getY() + getHeight() - 1,
+				getWidth(), 1);
 	}
-
 
 	/**
 	 * Initialize this entity for an object.
-	 *
-	 * @param	object		The object.
-	 *
-	 * @see-also	#release()
+	 * 
+	 * @param object
+	 *            The object.
+	 * 
+	 * @see-also #release()
 	 */
 	@Override
 	public void initialize(final RPObject object) {
@@ -113,16 +109,17 @@ public class GrainField extends Entity {
 		}
 	}
 
-
 	//
 	// RPObjectChangeListener
 	//
 
 	/**
 	 * The object added/changed attribute(s).
-	 *
-	 * @param	object		The base object.
-	 * @param	changes		The changes.
+	 * 
+	 * @param object
+	 *            The base object.
+	 * @param changes
+	 *            The changes.
 	 */
 	@Override
 	public void onChangedAdded(final RPObject object, final RPObject changes) {

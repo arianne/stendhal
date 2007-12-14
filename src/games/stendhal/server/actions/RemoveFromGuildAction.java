@@ -22,13 +22,12 @@ public class RemoveFromGuildAction implements ActionListener {
 	 * Registers action.
 	 */
 	public static void register() {
-		CommandCenter.register(_GUILDREMOVE,
-				new RemoveFromGuildAction());
+		CommandCenter.register(_GUILDREMOVE, new RemoveFromGuildAction());
 	}
 
 	/**
 	 * Handle the action.
-	 *
+	 * 
 	 * @param player
 	 *            The player.
 	 * @param action
@@ -39,8 +38,7 @@ public class RemoveFromGuildAction implements ActionListener {
 		if (player.get("guild") != null) {
 			player.remove("guild"); // resets guild
 			player.remove("description"); // resets description
-			player
-					.sendPrivateText("You have been removed from your old guild.");
+			player.sendPrivateText("You have been removed from your old guild.");
 		} else {
 			player.sendPrivateText("You are not in a guild!");
 		}
@@ -52,7 +50,7 @@ public class RemoveFromGuildAction implements ActionListener {
 
 	/**
 	 * Handle client action.
-	 *
+	 * 
 	 * @param player
 	 *            The player.
 	 * @param action

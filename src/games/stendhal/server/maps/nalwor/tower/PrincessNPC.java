@@ -12,17 +12,20 @@ import java.util.Map;
 
 /**
  * Builds a Princess NPC who lives in a tower
- *
+ * 
  * @author kymara
  */
 public class PrincessNPC implements ZoneConfigurator {
 	/**
 	 * Configure a zone.
-	 *
-	 * @param	zone		The zone to be configured.
-	 * @param	attributes	Configuration attributes.
+	 * 
+	 * @param zone
+	 *            The zone to be configured.
+	 * @param attributes
+	 *            Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone,
+			Map<String, String> attributes) {
 		buildNPC(zone);
 	}
 
@@ -50,7 +53,7 @@ public class PrincessNPC implements ZoneConfigurator {
 				addJob("I'm a princess. What can I do?");
 				addHelp("A persistent person could do a #task for me.");
 				addOffer("I don't trade. My parents would have considered it beneath me.");
- 				addGoodbye("Goodbye, strange one.");
+				addGoodbye("Goodbye, strange one.");
 			}
 		};
 

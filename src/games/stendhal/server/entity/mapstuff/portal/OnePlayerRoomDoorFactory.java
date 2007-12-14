@@ -22,18 +22,18 @@ public class OnePlayerRoomDoorFactory extends DoorFactory {
 
 	/**
 	 * Create a door that lets one player at a time to enter.
-	 *
-	 * @param	ctx		Configuration context.
-	 *
-	 * @return	A OnePlayerRoomDoor.
-	 *
-	 * @throws	IllegalArgumentException
-	 *				If there is a problem with the
-	 *				attributes. The exception message
-	 *				should be a value suitable for
-	 *				meaningful user interpretation.
-	 *
-	 * @see		OnePlayerRoomDoor
+	 * 
+	 * @param ctx
+	 *            Configuration context.
+	 * 
+	 * @return A OnePlayerRoomDoor.
+	 * 
+	 * @throws IllegalArgumentException
+	 *             If there is a problem with the attributes. The exception
+	 *             message should be a value suitable for meaningful user
+	 *             interpretation.
+	 * 
+	 * @see OnePlayerRoomDoor
 	 */
 	public Object create(ConfigurableFactoryContext ctx) {
 		return new OnePlayerRoomDoor(getClass(ctx));

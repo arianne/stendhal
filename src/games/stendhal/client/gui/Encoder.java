@@ -11,17 +11,19 @@ public class Encoder {
 	private BitSet key;
 
 	public Encoder() {
-		//BitSet key = createBitSet(stringToBinary(String.valueOf(System.identityHashCode(test.this))));
+		// BitSet key =
+		// createBitSet(stringToBinary(String.valueOf(System.identityHashCode(test.this))));
 		key = createBitSet("KLGFJoiU)(#%lKJT#)(I@(_)*)({%T:KLGJEJ*%)(Y*EKLJHROY*");
 	}
 
 	public String decode(String str) {
 		try {
-			BitSet nameSet = createBitSet(str); //create a BitSet based on the binary representation
+			BitSet nameSet = createBitSet(str); // create a BitSet based on the
+												// binary representation
 
-			nameSet.xor(key); //xor the BitSet with the key
+			nameSet.xor(key); // xor the BitSet with the key
 
-			//turn the xor'd BitSet back into a String
+			// turn the xor'd BitSet back into a String
 			StringBuilder strBuff = new StringBuilder(str.length() * 7);
 			for (int i = 0; i < nameSet.size(); i++) {
 				if (nameSet.get(i)) {
@@ -32,7 +34,8 @@ public class Encoder {
 			}
 			strBuff.reverse();
 
-			//read in the first two numbers of the stream and cut the string down to the size specified by these numbers
+			// read in the first two numbers of the stream and cut the string
+			// down to the size specified by these numbers
 			String decodedString = binaryToString(strBuff.toString());
 			String stringLen = decodedString.substring(0, 2);
 			int len = Integer.parseInt(stringLen);
@@ -43,25 +46,36 @@ public class Encoder {
 	}
 
 	public String encode(String str) {
-		String binaryString = stringToBinary(str); //create binary representationn of input string
+		String binaryString = stringToBinary(str); // create binary
+													// representationn of input
+													// string
 
-		//add the length (in binary number format) of entire encoded string to the begging of the encoded string.
-		String sizeOfEncodedString = String.valueOf(binaryString.length() / 7); //the size of total binaryString
+		// add the length (in binary number format) of entire encoded string to
+		// the begging of the encoded string.
+		String sizeOfEncodedString = String.valueOf(binaryString.length() / 7); // the
+																				// size
+																				// of
+																				// total
+																				// binaryString
 		String stringSizeBinary = "";
-		//if the size of the encoded string isnt two digits in length then add a zero as padding
+		// if the size of the encoded string isnt two digits in length then add
+		// a zero as padding
 		if (sizeOfEncodedString.length() < 2) {
 			sizeOfEncodedString = "0".concat(sizeOfEncodedString);
 		}
 
 		for (int i = 2; i > 0; i--) {
-			stringSizeBinary = stringToBinary(sizeOfEncodedString.substring(i - 1, i));
+			stringSizeBinary = stringToBinary(sizeOfEncodedString.substring(
+					i - 1, i));
 			binaryString = stringSizeBinary.concat(binaryString);
 		}
 
-		BitSet nameSet = createBitSet(binaryString); //create a BitSet based on the binary representation
-		nameSet.xor(key); //xor the BitSet with the key
+		BitSet nameSet = createBitSet(binaryString); // create a BitSet based
+														// on the binary
+														// representation
+		nameSet.xor(key); // xor the BitSet with the key
 
-		//turn the xor'd BitSet back into a String so it can be written to file
+		// turn the xor'd BitSet back into a String so it can be written to file
 		StringBuilder strBuff = new StringBuilder(str.length() * 7);
 		for (int i = 0; i < nameSet.size(); i++) {
 			if (nameSet.get(i)) {
@@ -82,14 +96,15 @@ public class Encoder {
 			// break down into groups of seven
 			if (k == 7) {
 				k = 0;
-				letter = (char) Integer.parseInt(binaryString.substring(i - 7, i), 2);
+				letter = (char) Integer.parseInt(binaryString.substring(i - 7,
+						i), 2);
 				strBuff.append(letter);
 			}
 		}
 		return strBuff.toString();
 	}
 
-	/**create a BitSet based on a string representation of binary digits*/
+	/** create a BitSet based on a string representation of binary digits */
 	private BitSet createBitSet(String binaryString) {
 		BitSet bset = new BitSet(binaryString.length());
 		boolean bitTrue = false;
@@ -111,11 +126,14 @@ public class Encoder {
 		int paddingNeededSize = 0;
 		int len = 0;
 		for (int i = 0; i < theString.length(); i++) {
-			//convert string into a char then convert in to binnaryString then add to buffer
+			// convert string into a char then convert in to binnaryString then
+			// add to buffer
 			binary = Integer.toBinaryString(theString.charAt(i));
 			len = binary.length();
-			if (len < 7) { //somtimes integers do not take up the total 7 bits. So padding is necessary
-				paddingNeededSize = 7 - len; //how many binary digits are missing to be complete
+			if (len < 7) { // somtimes integers do not take up the total 7
+							// bits. So padding is necessary
+				paddingNeededSize = 7 - len; // how many binary digits are
+												// missing to be complete
 				for (int k = 0; k < paddingNeededSize; k++) {
 					padding = padding.concat("0");
 				}

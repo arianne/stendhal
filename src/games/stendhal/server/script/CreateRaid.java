@@ -8,7 +8,6 @@ import games.stendhal.server.scripting.ScriptImpl;
 import java.util.List;
 import java.util.Map;
 
-
 public abstract class CreateRaid extends ScriptImpl {
 
 	protected abstract Map<String, Integer> createArmy();
@@ -25,7 +24,9 @@ public abstract class CreateRaid extends ScriptImpl {
 			Creature creature = sandbox.getCreature(entry.getKey());
 
 			for (int i = 0; i < entry.getValue(); i++) {
-				sandbox.add(creature, x + games.stendhal.common.Rand.rand(0, 30), y + games.stendhal.common.Rand.rand(0, 30));
+				sandbox.add(creature, x
+						+ games.stendhal.common.Rand.rand(0, 30), y
+						+ games.stendhal.common.Rand.rand(0, 30));
 			}
 		}
 	}

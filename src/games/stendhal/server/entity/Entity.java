@@ -212,7 +212,7 @@ public abstract class Entity extends RPObject {
 
 	/**
 	 * Get the nicely formatted entity title/name.
-	 *
+	 * 
 	 * @return The title, or <code>null</code> if unknown.
 	 */
 	public String getTitle() {
@@ -229,7 +229,7 @@ public abstract class Entity extends RPObject {
 
 	/**
 	 * Get the entity X coordinate.
-	 *
+	 * 
 	 * @return The X coordinate.
 	 */
 	public int getX() {
@@ -238,7 +238,7 @@ public abstract class Entity extends RPObject {
 
 	/**
 	 * Get the entity Y coordinate.
-	 *
+	 * 
 	 * @return The Y coordinate.
 	 */
 	public int getY() {
@@ -247,11 +247,11 @@ public abstract class Entity extends RPObject {
 
 	/**
 	 * Get the zone this entity is in.
-	 *
+	 * 
 	 * @return A zone, or <code>null</code> if not in one.
 	 */
 	public StendhalRPZone getZone() {
-		// Use onAdded()/onRemoved() to grab a reference to the zone and save 
+		// Use onAdded()/onRemoved() to grab a reference to the zone and save
 		// as a attribute.
 		// During zone transfer zone is set to null for a short period of time
 		// which causes lots of problems, so we use the old zone until the new
@@ -261,9 +261,9 @@ public abstract class Entity extends RPObject {
 
 	/**
 	 * is this entity not moving
-	 *
+	 * 
 	 * TODO: Remove after the StendhalNavigableEntities dependency is gone
-	 *
+	 * 
 	 * @return true, if it stopped, false if it is moving
 	 */
 	public boolean stopped() {
@@ -276,7 +276,7 @@ public abstract class Entity extends RPObject {
 
 	/**
 	 * TODO: docu
-	 *
+	 * 
 	 * @return ???
 	 */
 	public boolean collides() {
@@ -285,7 +285,7 @@ public abstract class Entity extends RPObject {
 
 	/**
 	 * Get the resistance this has on other entities (0-100).
-	 *
+	 * 
 	 * @return The amount of resistance, or 0 if in ghostmode.
 	 */
 	public int getResistance() {
@@ -294,7 +294,7 @@ public abstract class Entity extends RPObject {
 
 	/**
 	 * Get the resistance between this and another entity (0-100).
-	 *
+	 * 
 	 * @return The amount of combined resistance.
 	 */
 	public int getResistance(final Entity entity) {
@@ -303,7 +303,7 @@ public abstract class Entity extends RPObject {
 
 	/**
 	 * Checks whether an entity is a ghost (non physically interactive).
-	 *
+	 * 
 	 * @return <code>true</code> if in ghost mode.
 	 */
 	public boolean isGhost() {
@@ -313,10 +313,10 @@ public abstract class Entity extends RPObject {
 
 	/**
 	 * Determine if this is an obstacle for another entity.
-	 *
+	 * 
 	 * @param entity
 	 *            The entity to check against.
-	 *
+	 * 
 	 * @return <code>true</code> if very high resistance.
 	 */
 	public boolean isObstacle(Entity entity) {
@@ -328,14 +328,14 @@ public abstract class Entity extends RPObject {
 	 * Calculates the squared distance between the two given rectangles, i.e.
 	 * the square of the minimal distance between a point in rect1 and a point
 	 * in rect2.
-	 *
+	 * 
 	 * We're calculating the square because the square root operation would be
 	 * expensive. As long as we only need to compare distances, it doesn't
 	 * matter if we compare the distances or the squares of the distances (the
 	 * square operation is strictly monotonous for positive numbers).
-	 *
+	 * 
 	 * TODO: consider moving this to a class in games.stendhal.common
-	 *
+	 * 
 	 * @param rect1
 	 *            The first rectangle.
 	 * @param rect2
@@ -398,7 +398,7 @@ public abstract class Entity extends RPObject {
 	 * be expensive. As long as we only need to compare distances, it doesn't
 	 * matter if we compare the distances or the squares of the distances (the
 	 * square operation is strictly monotonous for positive numbers).
-	 *
+	 * 
 	 * @param other
 	 *            the entity to which the distance should be calculated
 	 */
@@ -417,7 +417,7 @@ public abstract class Entity extends RPObject {
 	 * expensive. As long as we only need to compare distances, it doesn't
 	 * matter if we compare the distances or the squares of the distances (the
 	 * square operation is strictly monotonous for positive numbers).
-	 *
+	 * 
 	 * @param x
 	 *            The horizontal coordinate of the point
 	 * @param y
@@ -440,7 +440,7 @@ public abstract class Entity extends RPObject {
 
 	/**
 	 * Checks whether a certain point is near this entity.
-	 *
+	 * 
 	 * @param x
 	 *            The point's x coordinate
 	 * @param y
@@ -459,10 +459,10 @@ public abstract class Entity extends RPObject {
 	/**
 	 * Checks whether the given entity is directly next to this entity. This
 	 * method may be optimized over using nextTo(entity, 0.25).
-	 *
+	 * 
 	 * @param entity
 	 *            The entity
-	 *
+	 * 
 	 * @return <code>true</code> if the entity is next to this.
 	 */
 	public boolean nextTo(Entity entity) {
@@ -472,7 +472,7 @@ public abstract class Entity extends RPObject {
 
 	/**
 	 * Checks whether the given entity is near this entity.
-	 *
+	 * 
 	 * @param entity
 	 *            the entity
 	 * @param step
@@ -490,8 +490,8 @@ public abstract class Entity extends RPObject {
 		// 'step' distance on both sides of the two rectangles.
 		// As the absolute position is not important, 'step' need not be
 		// subtracted from the values of getX() and getY().
-		thisArea.setRect(thisArea.getX(), thisArea.getY(),
-				thisArea.getWidth() + step, thisArea.getHeight() + step);
+		thisArea.setRect(thisArea.getX(), thisArea.getY(), thisArea.getWidth()
+				+ step, thisArea.getHeight() + step);
 		otherArea.setRect(otherArea.getX(), otherArea.getY(),
 				otherArea.getWidth() + step, otherArea.getHeight() + step);
 
@@ -500,7 +500,7 @@ public abstract class Entity extends RPObject {
 
 	/**
 	 * Get the area this object currently occupies.
-	 *
+	 * 
 	 * @return A rectangular area.
 	 */
 	public Rectangle2D getArea() {
@@ -509,7 +509,7 @@ public abstract class Entity extends RPObject {
 
 	/**
 	 * returns the area used by this entity
-	 *
+	 * 
 	 * @param ex
 	 *            x
 	 * @param ey
@@ -526,7 +526,7 @@ public abstract class Entity extends RPObject {
 	 * returns the area used by this entity. Note for performance reasons the
 	 * Rectangle is not returned as new object but the one supplied as first
 	 * parameter is modified.
-	 *
+	 * 
 	 * @param rect
 	 *            the area is stored into this paramter
 	 * @param x
@@ -540,7 +540,7 @@ public abstract class Entity extends RPObject {
 
 	/**
 	 * Called when this object is added to a zone.
-	 *
+	 * 
 	 * @param zone
 	 *            The zone this was added to.
 	 */
@@ -555,7 +555,7 @@ public abstract class Entity extends RPObject {
 
 	/**
 	 * Notification of intra-zone position change.
-	 *
+	 * 
 	 * @param oldX
 	 *            The old X coordinate.
 	 * @param oldY
@@ -571,7 +571,7 @@ public abstract class Entity extends RPObject {
 
 	/**
 	 * Called when this object is being removed from a zone.
-	 *
+	 * 
 	 * @param zone
 	 *            The zone this will be removed from.
 	 */
@@ -585,7 +585,7 @@ public abstract class Entity extends RPObject {
 
 	/**
 	 * Notifies the StendhalRPWorld that this entity's attributes have changed.
-	 *
+	 * 
 	 * TODO: Find a way to move this up to RPObject.
 	 */
 	public void notifyWorldAboutChanges() {
@@ -597,7 +597,7 @@ public abstract class Entity extends RPObject {
 
 	/**
 	 * describes the entity (if a players looks at it)
-	 *
+	 * 
 	 * @return description from the players point of view
 	 */
 	public String describe() {
@@ -611,7 +611,7 @@ public abstract class Entity extends RPObject {
 	/**
 	 * returns the name or something that can be used to identify the entity for
 	 * the player
-	 *
+	 * 
 	 * @param definite
 	 *            true for "the" and false for "a/an" in case the entity has no
 	 *            name
@@ -639,7 +639,7 @@ public abstract class Entity extends RPObject {
 
 	/**
 	 * Get the entity height.
-	 *
+	 * 
 	 * @return The height (in world units).
 	 */
 	public double getHeight() {
@@ -648,7 +648,7 @@ public abstract class Entity extends RPObject {
 
 	/**
 	 * Get the entity width.
-	 *
+	 * 
 	 * @return The width (in world units).
 	 */
 	public double getWidth() {
@@ -657,7 +657,7 @@ public abstract class Entity extends RPObject {
 
 	/**
 	 * Set the entity class.
-	 *
+	 * 
 	 * @param clazz
 	 *            The class name.
 	 */
@@ -667,7 +667,7 @@ public abstract class Entity extends RPObject {
 
 	/**
 	 * Set the entity sub-class.
-	 *
+	 * 
 	 * @param subclazz
 	 *            The sub-class name.
 	 */
@@ -678,13 +678,13 @@ public abstract class Entity extends RPObject {
 	/**
 	 * Set the entity position.
 	 * </p>
-	 *
+	 * 
 	 * <p>
 	 * This calls <code>onMoved()</code>. <strong>Note: When placing during a
 	 * zone change, this call should be done after being removed from the old
 	 * zone, but before adding to the zone to prevent an erronious position jump
 	 * in the zone.</strong>
-	 *
+	 * 
 	 * @param x
 	 *            The x position (in world units).
 	 * @param y
@@ -714,7 +714,7 @@ public abstract class Entity extends RPObject {
 
 	/**
 	 * Set resistance this has with other entities.
-	 *
+	 * 
 	 * @param resistance
 	 *            The amount of resistance (0-100).
 	 */
@@ -725,7 +725,7 @@ public abstract class Entity extends RPObject {
 
 	/**
 	 * Set the entity size.
-	 *
+	 * 
 	 * @param width
 	 *            The width (in world units).
 	 * @param height
@@ -741,7 +741,7 @@ public abstract class Entity extends RPObject {
 
 	/**
 	 * Set the entity's visibility.
-	 *
+	 * 
 	 * @param visibility
 	 *            The visibility (0-100).
 	 */

@@ -34,8 +34,8 @@ public abstract class WtPopupMenu extends StyledJPopupMenu {
 
 	/**
 	 * Create a menu item that will redirect it's key events.
-	 *
-	 *
+	 * 
+	 * 
 	 */
 	protected JMenuItem createItem(String label, Icon icon) {
 		return new RedirectingMenuItem(label, icon);
@@ -43,7 +43,7 @@ public abstract class WtPopupMenu extends StyledJPopupMenu {
 
 	/**
 	 * Redirect key event to the menu's invoker.
-	 *
+	 * 
 	 */
 	protected void redirectEvent(MenuKeyEvent ev) {
 		Component invoker;
@@ -52,8 +52,9 @@ public abstract class WtPopupMenu extends StyledJPopupMenu {
 			KeyEvent nev;
 			KeyListener[] listeners;
 
-			nev = new KeyEvent(invoker, ev.getID(), ev.getWhen(), ev.getModifiersEx(), ev.getKeyCode(),
-			        ev.getKeyChar(), ev.getKeyLocation());
+			nev = new KeyEvent(invoker, ev.getID(), ev.getWhen(),
+					ev.getModifiersEx(), ev.getKeyCode(), ev.getKeyChar(),
+					ev.getKeyLocation());
 
 			/*
 			 * Call listeners directly to avoid modal redirect
@@ -61,23 +62,23 @@ public abstract class WtPopupMenu extends StyledJPopupMenu {
 			listeners = invoker.getKeyListeners();
 
 			switch (nev.getID()) {
-				case KeyEvent.KEY_PRESSED:
-					for (KeyListener l : listeners) {
-						l.keyPressed(nev);
-					}
-					break;
+			case KeyEvent.KEY_PRESSED:
+				for (KeyListener l : listeners) {
+					l.keyPressed(nev);
+				}
+				break;
 
-				case KeyEvent.KEY_RELEASED:
-					for (KeyListener l : listeners) {
-						l.keyReleased(nev);
-					}
-					break;
+			case KeyEvent.KEY_RELEASED:
+				for (KeyListener l : listeners) {
+					l.keyReleased(nev);
+				}
+				break;
 
-				case KeyEvent.KEY_TYPED:
-					for (KeyListener l : listeners) {
-						l.keyTyped(nev);
-					}
-					break;
+			case KeyEvent.KEY_TYPED:
+				for (KeyListener l : listeners) {
+					l.keyTyped(nev);
+				}
+				break;
 			}
 
 			ev.consume();
@@ -101,11 +102,11 @@ public abstract class WtPopupMenu extends StyledJPopupMenu {
 		@Override
 		public void processMenuKeyEvent(MenuKeyEvent ev) {
 			switch (ev.getKeyCode()) {
-				case KeyEvent.VK_ESCAPE:
-					break;
+			case KeyEvent.VK_ESCAPE:
+				break;
 
-				default:
-					redirectEvent(ev);
+			default:
+				redirectEvent(ev);
 			}
 
 			if (!ev.isConsumed()) {

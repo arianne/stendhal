@@ -19,12 +19,12 @@ public abstract class DomesticAnimal extends RPEntity {
 	/**
 	 * DomesticAnimal idea property.
 	 */
-	public static final Object	PROP_IDEA	= new Object();
+	public static final Object PROP_IDEA = new Object();
 
 	/**
 	 * DomesticAnimal weight property.
 	 */
-	public static final Object	PROP_WEIGHT	= new Object();
+	public static final Object PROP_WEIGHT = new Object();
 
 	/**
 	 * The animal's weight (0-100).
@@ -34,8 +34,7 @@ public abstract class DomesticAnimal extends RPEntity {
 	/**
 	 * The animal's idea.
 	 */
-	private String	idea;
-
+	private String idea;
 
 	//
 	// DomesticAnimal
@@ -43,28 +42,27 @@ public abstract class DomesticAnimal extends RPEntity {
 
 	/**
 	 * Get the idea setting.
-	 *
-	 * @return	The animal's idea.
+	 * 
+	 * @return The animal's idea.
 	 */
 	public String getIdea() {
 		return idea;
 	}
 
-
 	/**
 	 * Get the weight.
-	 *
-	 * @return	The animal's weight.
+	 * 
+	 * @return The animal's weight.
 	 */
 	public int getWeight() {
 		return weight;
 	}
 
-
 	/**
 	 * The idea changed.
-	 *
-	 * @param	idea		The idea, or <code>null</code>.
+	 * 
+	 * @param idea
+	 *            The idea, or <code>null</code>.
 	 */
 	protected void onIdea(final String idea) {
 		if (idea == null) {
@@ -82,9 +80,7 @@ public abstract class DomesticAnimal extends RPEntity {
 		}
 	}
 
-
 	protected abstract void probableChat(final int chance);
-
 
 	//
 	// Entity
@@ -92,10 +88,11 @@ public abstract class DomesticAnimal extends RPEntity {
 
 	/**
 	 * Initialize this entity for an object.
-	 *
-	 * @param	object		The object.
-	 *
-	 * @see-also	#release()
+	 * 
+	 * @param object
+	 *            The object.
+	 * 
+	 * @see-also #release()
 	 */
 	@Override
 	public void initialize(final RPObject object) {
@@ -122,16 +119,17 @@ public abstract class DomesticAnimal extends RPEntity {
 		onIdea(idea);
 	}
 
-
 	//
 	// RPObjectChangeListener
 	//
 
 	/**
 	 * The object added/changed attribute(s).
-	 *
-	 * @param	object		The base object.
-	 * @param	changes		The changes.
+	 * 
+	 * @param object
+	 *            The base object.
+	 * @param changes
+	 *            The changes.
 	 */
 	@Override
 	public void onChangedAdded(final RPObject object, final RPObject changes) {
@@ -161,12 +159,13 @@ public abstract class DomesticAnimal extends RPEntity {
 		}
 	}
 
-
 	/**
 	 * The object removed attribute(s).
-	 *
-	 * @param	object		The base object.
-	 * @param	changes		The changes.
+	 * 
+	 * @param object
+	 *            The base object.
+	 * @param changes
+	 *            The changes.
 	 */
 	@Override
 	public void onChangedRemoved(final RPObject object, final RPObject changes) {

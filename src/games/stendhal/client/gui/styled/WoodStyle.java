@@ -51,7 +51,8 @@ public class WoodStyle implements Style {
 		SpriteStore st = SpriteStore.get();
 		background = st.getSprite("data/gui/panelwood003.jpg");
 
-		border = new SoftBevelBorder(BevelBorder.RAISED, new Color(0.6f, 0.5f, 0.2f), new Color(0.3f, 0.25f, 0.1f));
+		border = new SoftBevelBorder(BevelBorder.RAISED, new Color(0.6f, 0.5f,
+				0.2f), new Color(0.3f, 0.25f, 0.1f));
 
 		font = new Font("Dialog", Font.PLAIN, 12);
 	}
@@ -62,8 +63,8 @@ public class WoodStyle implements Style {
 
 	/**
 	 * Get a shared instance.
-	 *
-	 * @return	A shared instance.
+	 * 
+	 * @return A shared instance.
 	 */
 	public static synchronized Style getInstance() {
 		if (sharedInstance == null) {
@@ -79,8 +80,8 @@ public class WoodStyle implements Style {
 
 	/**
 	 * Get the background texture.
-	 *
-	 * @return	A texture sprite.
+	 * 
+	 * @return A texture sprite.
 	 */
 	public Sprite getBackground() {
 		return background;
@@ -88,8 +89,8 @@ public class WoodStyle implements Style {
 
 	/**
 	 * Get component border.
-	 *
-	 * @return	A border, or <code>null</code> to use default.
+	 * 
+	 * @return A border, or <code>null</code> to use default.
 	 */
 	public Border getBorder() {
 		return border;
@@ -97,8 +98,8 @@ public class WoodStyle implements Style {
 
 	/**
 	 * Get the normal font.
-	 *
-	 * @return	A font.
+	 * 
+	 * @return A font.
 	 */
 	public Font getFont() {
 		return font;
@@ -106,8 +107,8 @@ public class WoodStyle implements Style {
 
 	/**
 	 * Get the foreground color appropriate for the background texture.
-	 *
-	 * @return	A color.
+	 * 
+	 * @return A color.
 	 */
 	public Color getForeground() {
 		return Color.white;

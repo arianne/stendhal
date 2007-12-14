@@ -45,8 +45,9 @@ public class Chest extends Entity implements UseListener {
 
 	/**
 	 * Creates a new chest
-	 *
-	 * @param object RPObject
+	 * 
+	 * @param object
+	 *            RPObject
 	 */
 	public Chest(RPObject object) {
 		super(object);
@@ -56,7 +57,7 @@ public class Chest extends Entity implements UseListener {
 		if (!hasSlot("content")) {
 			RPSlot slot = new LootableSlot(this);
 
-			//TODO: BUG: Slot capacity is set at the RPClass.
+			// TODO: BUG: Slot capacity is set at the RPClass.
 			// slot.set.setCapacity(4);
 
 			addSlot(slot);
@@ -75,7 +76,7 @@ public class Chest extends Entity implements UseListener {
 
 		RPSlot slot = new LootableSlot(this);
 
-		//TODO: BUG: Slot capacity is set at the RPClass.
+		// TODO: BUG: Slot capacity is set at the RPClass.
 		// slot.set.setCapacity(4);
 
 		addSlot(slot);
@@ -115,7 +116,7 @@ public class Chest extends Entity implements UseListener {
 
 	/**
 	 * Determine if the chest is open.
-	 *
+	 * 
 	 * @return <code>true</code> if the chest is open.
 	 */
 	public boolean isOpen() {
@@ -124,8 +125,9 @@ public class Chest extends Entity implements UseListener {
 
 	/**
 	 * adds an passive entity (like an item) to the chest
-	 *
-	 * @param entity entity to add
+	 * 
+	 * @param entity
+	 *            entity to add
 	 */
 	public void add(PassiveEntity entity) {
 		RPSlot content = getSlot("content");
@@ -139,7 +141,7 @@ public class Chest extends Entity implements UseListener {
 
 	/**
 	 * Returns the content
-	 *
+	 * 
 	 * @return iterator for the content
 	 */
 	public Iterator<RPObject> getContent() {

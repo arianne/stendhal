@@ -18,7 +18,6 @@ import games.stendhal.client.entity.User;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 
-
 import java.util.List;
 import marauroa.common.game.RPAction;
 import org.apache.log4j.Logger;
@@ -34,7 +33,7 @@ public class NPC2DView extends RPEntity2DView {
 
 	/**
 	 * Create a 2D view of an NPC.
-	 *
+	 * 
 	 * @param npc
 	 *            The entity to render.
 	 */
@@ -48,7 +47,7 @@ public class NPC2DView extends RPEntity2DView {
 
 	/**
 	 * Get the full directional animation tile set for this entity.
-	 *
+	 * 
 	 * @return A tile sprite containing all animation images.
 	 */
 	@Override
@@ -77,7 +76,7 @@ public class NPC2DView extends RPEntity2DView {
 
 	/**
 	 * An entity was changed.
-	 *
+	 * 
 	 * @param entity
 	 *            The entity that was changed.
 	 * @param property
@@ -92,28 +91,28 @@ public class NPC2DView extends RPEntity2DView {
 		}
 	}
 
-        @Override
-        protected void buildActions(List<String> list) {
-            super.buildActions(list);
-        
-            if (User.isAdmin()) {
-                list.add(ActionType.ADMIN_VIEW_NPC_TRANSITIONS.getRepresentation());
-            }
-        }
+	@Override
+	protected void buildActions(List<String> list) {
+		super.buildActions(list);
 
-        @Override
-        public void onAction(ActionType at) {
-                switch (at) {
-                case ADMIN_VIEW_NPC_TRANSITIONS:
-                        RPAction action = new RPAction();
-                        action.put("type", "script");
-                        action.put("target", "DumpTransitionsEx.class");
-                        action.put("args", this.getEntity().getTitle());
-                        at.send(action);
-                        break;
-                default:
-                        super.onAction(at);
-                        break;
-                }    
-        }   
+		if (User.isAdmin()) {
+			list.add(ActionType.ADMIN_VIEW_NPC_TRANSITIONS.getRepresentation());
+		}
+	}
+
+	@Override
+	public void onAction(ActionType at) {
+		switch (at) {
+		case ADMIN_VIEW_NPC_TRANSITIONS:
+			RPAction action = new RPAction();
+			action.put("type", "script");
+			action.put("target", "DumpTransitionsEx.class");
+			action.put("args", this.getEntity().getTitle());
+			at.send(action);
+			break;
+		default:
+			super.onAction(at);
+			break;
+		}
+	}
 }

@@ -21,9 +21,9 @@ public class EquipActionConsts {
 	static final String GROUND_Y = "y";
 
 	static final String QUANTITY = "quantity";
-	
+
 	static final double MAXDISTANCE = 0.25;
-	
+
 	static final int MAX_CONTAINED_DEPTH = 25;
 
 }

@@ -56,7 +56,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 	private StendhalPlayerDatabase database;
 
-
 	private RPServerManager rpman;
 
 	/**
@@ -90,7 +89,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 	private void init() {
 		database = StendhalPlayerDatabase.getDatabase();
-		
+
 		instance = this;
 		addGameEvent("server system", "startup");
 	}
@@ -113,7 +112,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 	/**
 	 * Gets the points of named player in the specified hall of fame
-	 *
+	 * 
 	 * @param playername
 	 *            name of the player
 	 * @param fametype
@@ -135,7 +134,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 	/**
 	 * Add points to the named player in the specified hall of fame
-	 *
+	 * 
 	 * @param playername
 	 *            name of the player
 	 * @param fametype
@@ -159,7 +158,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	}
 
 	/**
-	 *
+	 * 
 	 * Set the context where the actions are executed. Load/Run optional
 	 * StendhalServerExtension(s) as defined in marauroa.ini file example:
 	 * groovy=games.stendhal.server.scripting.StendhalGroovyRunner
@@ -167,7 +166,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	 * server_extension=groovy,myservice if no server_extension property is
 	 * found, only the groovy extension is loaded to surpress loading groovy
 	 * extension use server_extension= in the properties file.
-	 *
+	 * 
 	 * @param rpman
 	 */
 	public void setContext(RPServerManager rpman) {
@@ -227,7 +226,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 	/**
 	 * Checks whether the given RPEntity has been killed this turn.
-	 *
+	 * 
 	 * @param entity
 	 *            The entity to check.
 	 * @return true if the given entity has been killed this turn.
@@ -243,7 +242,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 	/**
 	 * Returns the entity which has killed the given RPEntity this turn.
-	 *
+	 * 
 	 * @param entity
 	 *            The killed RPEntity.
 	 * @return The killer, or null if the given RPEntity hasn't been killed this
@@ -264,7 +263,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 	/**
 	 * Gets all players who are currently online.
-	 *
+	 * 
 	 * @return A list of all online players
 	 */
 	public List<Player> getPlayers() {
@@ -273,7 +272,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 	/**
 	 * Finds an online player with a specific name.
-	 *
+	 * 
 	 * @param name
 	 *            The player's name
 	 * @return The player, or null if no player with the given name is currently
@@ -357,7 +356,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 					logger.error("Error in player logic", e);
 				}
 			}
-			
+
 			// SpeakerNPC logic
 			NPCList npcList = NPCList.get();
 			for (SpeakerNPC npc : npcList) {
@@ -532,7 +531,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 	/**
 	 * Tell this message all players.
-	 *
+	 * 
 	 * @param message
 	 *            Message to tell all players
 	 */

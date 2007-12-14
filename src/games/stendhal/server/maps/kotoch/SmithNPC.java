@@ -12,11 +12,14 @@ import java.util.Map;
 public class SmithNPC implements ZoneConfigurator {
 	/**
 	 * Configure a zone.
-	 *
-	 * @param	zone		The zone to be configured.
-	 * @param	attributes	Configuration attributes.
+	 * 
+	 * @param zone
+	 *            The zone to be configured.
+	 * @param attributes
+	 *            Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone,
+			Map<String, String> attributes) {
 		buildKotochSmitherArea(zone);
 	}
 
@@ -35,14 +38,14 @@ public class SmithNPC implements ZoneConfigurator {
 				addGoodbye("Farewell");
 				addHelp("I may help you to get a very #special item for only a few others...");
 				addJob("I used to forge weapons for the King of Faiumoni, but this was long ago, since now the way is blocked.");
-				
+
 				add(
-				        ConversationStates.ATTENDING,
-				        Arrays.asList("special"),
-				        null,
-				        ConversationStates.ATTENDING,
-				        "Who told you that!?! *cough* Anyway, yes, I can forge a very special item for you. But you will need to complete a #quest",
-				        null);
+						ConversationStates.ATTENDING,
+						Arrays.asList("special"),
+						null,
+						ConversationStates.ATTENDING,
+						"Who told you that!?! *cough* Anyway, yes, I can forge a very special item for you. But you will need to complete a #quest",
+						null);
 			}
 		};
 

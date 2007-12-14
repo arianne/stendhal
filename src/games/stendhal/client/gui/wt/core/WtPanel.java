@@ -39,7 +39,6 @@ import java.util.List;
 
 import javax.swing.JPopupMenu;
 
-
 import org.apache.log4j.Logger;
 
 /**
@@ -57,10 +56,10 @@ import org.apache.log4j.Logger;
  * </li>
  * </ul>
  * <b>Note:</b> This class is not thread safe.
- *
- *
+ * 
+ * 
  * See http://www.grsites.com/ for the textures
- *
+ * 
  * @author mtotz
  */
 public class WtPanel implements ManagedWindow, WtDraggable {
@@ -284,7 +283,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 
 	/**
 	 * Moves the panel by dx pixels to the right and dy pixels down.
-	 *
+	 * 
 	 * @param dx
 	 *            amount of pixels to move rights ( < 0 is allowed, will move
 	 *            left)
@@ -299,7 +298,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 
 	/**
 	 * Moves the panel to the given position.
-	 *
+	 * 
 	 * @param x
 	 *            x-coordinale
 	 * @param y
@@ -313,7 +312,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 
 	/**
 	 * Moves the panel to the given position.
-	 *
+	 * 
 	 * @param x
 	 *            x-coordinale
 	 * @param y
@@ -576,7 +575,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 
 	/**
 	 * Determine if the window is visible.
-	 *
+	 * 
 	 * @return <code>true</code> if the window is visible.
 	 */
 	public boolean isVisible() {
@@ -586,7 +585,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	/**
 	 * Set the window as visible (or hidden). This does not check if closing is
 	 * allowed.
-	 *
+	 * 
 	 * @param visible
 	 *            Whether the window should be visible.
 	 */
@@ -640,7 +639,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 
 	/**
 	 * resizes the panel so that the client area has the given width and height
-	 *
+	 * 
 	 * @param width
 	 *            width of client area
 	 * @param height
@@ -687,8 +686,8 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 
 		for (int xTemp = 0; xTemp < repeatx; xTemp++) {
 			for (int yTemp = 0; yTemp < repeaty; yTemp++) {
-				woodTexture.draw(panelGraphics, xTemp * woodTexture.getWidth(), yTemp
-						* woodTexture.getHeight());
+				woodTexture.draw(panelGraphics, xTemp * woodTexture.getWidth(),
+						yTemp * woodTexture.getHeight());
 			}
 		}
 
@@ -783,7 +782,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 
 	/**
 	 * draws the panel into the graphics object
-	 *
+	 * 
 	 * @param g
 	 *            graphics where to render to
 	 */
@@ -830,7 +829,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	/**
 	 * Draw the panel contents. This is only called while open and not
 	 * minimized.
-	 *
+	 * 
 	 * @param g
 	 *            The graphics context to draw with.
 	 */
@@ -844,7 +843,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 
 	/**
 	 * draws all children
-	 *
+	 * 
 	 * @param clientArea
 	 *            Graphics object clipped to the client region.
 	 */
@@ -867,7 +866,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	/**
 	 * Checks if the Point p is inside the Panel. Note that the coordinates are
 	 * local to the parent, not local to this Panel.
-	 *
+	 * 
 	 * @param p
 	 *            point to check (in parents coordinate space)
 	 * @return true when the point is in this panel, false otherwise
@@ -879,7 +878,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	/**
 	 * Checks if the point is inside the Panel. Note that the coordinates are
 	 * local to the parent, not local to this Panel.
-	 *
+	 * 
 	 * @param x
 	 *            x-coordinate to check (in parents coordinate space)
 	 * @param y
@@ -955,7 +954,8 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 					return draggedObject;
 				}
 
-				// this child don't want to be dragged. Ignore all children below
+				// this child don't want to be dragged. Ignore all children
+				// below
 				// this one
 				return null;
 			}
@@ -967,7 +967,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 
 	/**
 	 * checks if there is a droptarget direct under the position (x,y)
-	 *
+	 * 
 	 * @param x
 	 *            x-coordinate in client space
 	 * @param y

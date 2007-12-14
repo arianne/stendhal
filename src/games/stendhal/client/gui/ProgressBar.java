@@ -36,7 +36,7 @@ public class ProgressBar extends JFrame {
 	private int m_stepSizeMultiplier = 1;
 
 	private int m_stepCounter; // keeps track of how amny times it has lookp
-								// with a multiplier greater then 0
+	// with a multiplier greater then 0
 
 	private boolean m_con = true; // continue while true
 

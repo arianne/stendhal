@@ -47,7 +47,7 @@ public abstract class RPEntity extends GuidedEntity {
 	/**
 	 * The title attribute name.
 	 */
-	protected static final String	ATTR_TITLE	= "title";
+	protected static final String ATTR_TITLE = "title";
 
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(RPEntity.class);
@@ -79,7 +79,7 @@ public abstract class RPEntity extends GuidedEntity {
 	/**
 	 * Maps each enemy which has recently damaged this RPEntity to the turn when
 	 * the last damage has occurred.
-	 *
+	 * 
 	 * You only get ATK and DEF experience by fighting against a creature that
 	 * is in this list.
 	 */
@@ -105,8 +105,8 @@ public abstract class RPEntity extends GuidedEntity {
 	/**
 	 * To prevent players from gaining attack and defense experience by fighting
 	 * against very weak creatures, they only gain atk and def xp for so many
-	 * turns after they have actually been damaged by the enemy.
-//	 */
+	 * turns after they have actually been damaged by the enemy. //
+	 */
 	private static final int TURNS_WHILE_FIGHT_XP_INCREASES = 12;
 
 	/**
@@ -117,7 +117,6 @@ public abstract class RPEntity extends GuidedEntity {
 			"lhand", "armor", "finger", "cloak", "legs", "feet", "keyring" };
 
 	public static void generateRPClass() {
-
 
 		try {
 			stats = Statistics.getStatistics();
@@ -183,7 +182,7 @@ public abstract class RPEntity extends GuidedEntity {
 
 	/**
 	 * Give the player some karma (good or bad).
-	 *
+	 * 
 	 * @param karma
 	 *            An amount of karma to add/subtract.
 	 */
@@ -193,9 +192,9 @@ public abstract class RPEntity extends GuidedEntity {
 
 	/**
 	 * Get the current amount of karma.
-	 *
+	 * 
 	 * @return The current amount of karma.
-	 *
+	 * 
 	 * @see-also #addKarma()
 	 */
 	public double getKarma() {
@@ -207,10 +206,10 @@ public abstract class RPEntity extends GuidedEntity {
 	 * Get some of the player's karma. A positive value indicates good
 	 * luck/energy. A negative value indicates bad luck/energy. A value of zero
 	 * should cause no change on an action or outcome.
-	 *
+	 * 
 	 * @param scale
 	 *            A positive number.
-	 *
+	 * 
 	 * @return A number between -scale and scale.
 	 */
 	public double useKarma(double scale) {
@@ -222,12 +221,12 @@ public abstract class RPEntity extends GuidedEntity {
 	 * Get some of the player's karma. A positive value indicates good
 	 * luck/energy. A negative value indicates bad luck/energy. A value of zero
 	 * should cause no change on an action or outcome.
-	 *
+	 * 
 	 * @param negLimit
 	 *            The lowest negative value returned.
 	 * @param posLimit
 	 *            The highest positive value returned.
-	 *
+	 * 
 	 * @return A number within negLimit &lt;= 0 &lt;= posLimit.
 	 */
 	public double useKarma(double negLimit, double posLimit) {
@@ -239,14 +238,14 @@ public abstract class RPEntity extends GuidedEntity {
 	 * Use some of the player's karma. A positive value indicates good
 	 * luck/energy. A negative value indicates bad luck/energy. A value of zero
 	 * should cause no change on an action or outcome.
-	 *
+	 * 
 	 * @param negLimit
 	 *            The lowest negative value returned.
 	 * @param posLimit
 	 *            The highest positive value returned.
 	 * @param granularity
 	 *            The amount that any extracted karma is a multiple of.
-	 *
+	 * 
 	 * @return A number within negLimit &lt;= 0 &lt;= posLimit.
 	 */
 	public double useKarma(double negLimit, double posLimit, double granularity) {
@@ -254,10 +253,9 @@ public abstract class RPEntity extends GuidedEntity {
 		return 0.0;
 	}
 
-
 	/**
 	 * Heal this entity completely.
-	 *
+	 * 
 	 * @return The amount actually healed.
 	 */
 	public int heal() {
@@ -274,10 +272,10 @@ public abstract class RPEntity extends GuidedEntity {
 
 	/**
 	 * Heal this entity.
-	 *
+	 * 
 	 * @param amount
 	 *            The [maximum] amount to heal by.
-	 *
+	 * 
 	 * @return The amount actually healed.
 	 */
 	public int heal(int amount) {
@@ -286,12 +284,12 @@ public abstract class RPEntity extends GuidedEntity {
 
 	/**
 	 * Heal this entity.
-	 *
+	 * 
 	 * @param amount
 	 *            The [maximum] amount to heal by.
 	 * @param tell
 	 *            Whether to tell the entity they've been healed.
-	 *
+	 * 
 	 * @return The amount actually healed.
 	 */
 	public int heal(int amount, boolean tell) {
@@ -358,7 +356,7 @@ public abstract class RPEntity extends GuidedEntity {
 
 	/**
 	 * Set the entity's name.
-	 *
+	 * 
 	 * @param name
 	 *            The new name.
 	 */
@@ -369,7 +367,7 @@ public abstract class RPEntity extends GuidedEntity {
 
 	/**
 	 * Get the entity's name.
-	 *
+	 * 
 	 * @return The entity's name.
 	 */
 	public String getName() {
@@ -459,7 +457,7 @@ public abstract class RPEntity extends GuidedEntity {
 
 	/**
 	 * Set the base and current HP.
-	 *
+	 * 
 	 * @param hp
 	 *            The HP to set.
 	 */
@@ -470,7 +468,7 @@ public abstract class RPEntity extends GuidedEntity {
 
 	/**
 	 * Set the base HP.
-	 *
+	 * 
 	 * @param newhp
 	 *            The base HP to set.
 	 */
@@ -481,7 +479,7 @@ public abstract class RPEntity extends GuidedEntity {
 
 	/**
 	 * Get the base HP.
-	 *
+	 * 
 	 * @return The current HP.
 	 */
 	public int getBaseHP() {
@@ -490,7 +488,7 @@ public abstract class RPEntity extends GuidedEntity {
 
 	/**
 	 * Set the HP.
-	 *
+	 * 
 	 * @param hp
 	 *            The HP to set.
 	 */
@@ -501,7 +499,7 @@ public abstract class RPEntity extends GuidedEntity {
 
 	/**
 	 * Get the current HP.
-	 *
+	 * 
 	 * @return The current HP.
 	 */
 	public int getHP() {
@@ -510,7 +508,7 @@ public abstract class RPEntity extends GuidedEntity {
 
 	/**
 	 * Gets the mana (magic)
-	 *
+	 * 
 	 * @return mana
 	 */
 	public int getMana() {
@@ -519,7 +517,7 @@ public abstract class RPEntity extends GuidedEntity {
 
 	/**
 	 * Gets the base mana (like base_hp)
-	 *
+	 * 
 	 * @return base mana
 	 */
 	public int getBaseMana() {
@@ -528,7 +526,7 @@ public abstract class RPEntity extends GuidedEntity {
 
 	/**
 	 * sets the available mana
-	 *
+	 * 
 	 * @param newMana
 	 *            new amount of mana
 	 */
@@ -539,7 +537,7 @@ public abstract class RPEntity extends GuidedEntity {
 
 	/**
 	 * Sets the base mana (like base_hp)
-	 *
+	 * 
 	 * @param newBaseMana
 	 *            new amount of base mana
 	 */
@@ -550,7 +548,7 @@ public abstract class RPEntity extends GuidedEntity {
 
 	/**
 	 * adds to base mana (like addXP)
-	 *
+	 * 
 	 * @param newBaseMana
 	 *            amount of base mana to be added
 	 */
@@ -586,7 +584,8 @@ public abstract class RPEntity extends GuidedEntity {
 			setBaseHP(getBaseHP() + (int) Math.signum(levels) * 10);
 			setHP(getHP() + (int) Math.signum(levels) * 10);
 
-			StendhalRPRuleProcessor.get().addGameEvent(getName(), "level", Integer.toString(newLevel));
+			StendhalRPRuleProcessor.get().addGameEvent(getName(), "level",
+					Integer.toString(newLevel));
 			setLevel(newLevel);
 		}
 	}
@@ -655,7 +654,7 @@ public abstract class RPEntity extends GuidedEntity {
 	/**
 	 * This method is called on each round when this entity has been attacked by
 	 * the given attacker.
-	 *
+	 * 
 	 * @param attacker
 	 *            The attacker.
 	 * @param keepAttacking
@@ -732,7 +731,7 @@ public abstract class RPEntity extends GuidedEntity {
 
 	/**
 	 * Manages a list of players to reward XP in case this creature is killed.
-	 *
+	 * 
 	 * @param player
 	 *            Player
 	 */
@@ -745,10 +744,10 @@ public abstract class RPEntity extends GuidedEntity {
 	/**
 	 * Apply damage to this entity. This is normally called from one of the
 	 * other damage() methods to account for death.
-	 *
+	 * 
 	 * @param amount
 	 *            The HP to take.
-	 *
+	 * 
 	 * @return The damage actually taken (in case HP was < amount).
 	 */
 	protected int damage(final int amount) {
@@ -763,12 +762,12 @@ public abstract class RPEntity extends GuidedEntity {
 
 	/**
 	 * Apply damage to this entity, and call onDead() if HP reaches 0.
-	 *
+	 * 
 	 * @param amount
 	 *            The HP to take.
 	 * @param attacker
 	 *            The attacking entity.
-	 *
+	 * 
 	 * @return The damage actually taken (in case HP was < amount).
 	 */
 	public int damage(final int amount, final Entity attacker) {
@@ -783,13 +782,13 @@ public abstract class RPEntity extends GuidedEntity {
 
 	/**
 	 * Apply damage to this entity, and call onDead() if HP reaches 0.
-	 *
+	 * 
 	 * @param amount
 	 *            The HP to take.
 	 * @param attackerName
 	 *            The name of the attacker (suitable for use with
 	 *            <em>onDead()</em>.)
-	 *
+	 * 
 	 * @return The damage actually taken (in case HP was < amount).
 	 */
 	public int damage(final int amount, final String attackerName) {
@@ -804,7 +803,7 @@ public abstract class RPEntity extends GuidedEntity {
 
 	/**
 	 * Kills this RPEntity.
-	 *
+	 * 
 	 * @param killer
 	 *            The killer
 	 */
@@ -815,7 +814,7 @@ public abstract class RPEntity extends GuidedEntity {
 
 	/**
 	 * Gives XP to every player who has helped killing this RPEntity.
-	 *
+	 * 
 	 * @param oldXP
 	 *            The XP that this RPEntity had before being killed.
 	 * @param oldLevel
@@ -834,8 +833,8 @@ public abstract class RPEntity extends GuidedEntity {
 			}
 
 			if (logger.isDebugEnabled()) {
-				String killName = killer.has("name") ? killer.get("name") : killer
-						.get("type");
+				String killName = killer.has("name") ? killer.get("name")
+						: killer.get("type");
 
 				logger.debug(killName + " did " + damageDone + " of "
 						+ totalDamageReceived + ". Reward was " + xpReward);
@@ -870,26 +869,25 @@ public abstract class RPEntity extends GuidedEntity {
 			// certain creature without the help of others.
 			// Find out if the player killed this RPEntity on his own, but
 			// don't overwrite solo with shared.
-			String killedName=getName();
-			
-			if(killedName==null) {
-				logger.warn("This entity returns null as name: "+this);
+			String killedName = getName();
+
+			if (killedName == null) {
+				logger.warn("This entity returns null as name: " + this);
 			} else {
-			if (damageDone == totalDamageReceived) {
+				if (damageDone == totalDamageReceived) {
 					killer.setSoloKill(killedName);
 				} else if (!killer.hasKilledSolo(killedName)) {
 					killer.setSharedKill(killedName);
+				}
 			}
-			}
-			
+
 			killer.notifyWorldAboutChanges();
 		}
 	}
 
-
 	/**
 	 * This method is called when the entity has been killed ( hp==0 ).
-	 *
+	 * 
 	 * @param killer
 	 *            The entity who caused the death
 	 */
@@ -899,7 +897,7 @@ public abstract class RPEntity extends GuidedEntity {
 
 	/**
 	 * This method is called when the entity has been killed ( hp==0 ).
-	 *
+	 * 
 	 * @param killerName
 	 *            The killer's name (a phrase suitable in the expression "<code>by</code>
 	 *				<em>killerName</em>".
@@ -910,7 +908,7 @@ public abstract class RPEntity extends GuidedEntity {
 
 	/**
 	 * This method is called when this entity has been killed (hp == 0).
-	 *
+	 * 
 	 * @param killer
 	 *            The entity who caused the death, i.e. who did the last hit.
 	 * @param remove
@@ -931,7 +929,7 @@ public abstract class RPEntity extends GuidedEntity {
 
 	/**
 	 * This method is called when this entity has been killed (hp == 0).
-	 *
+	 * 
 	 * @param killerName
 	 *            The killer's name (a phrase suitable in the expression "<code>by</code>
 	 *				<em>killerName</em>".
@@ -980,8 +978,8 @@ public abstract class RPEntity extends GuidedEntity {
 
 	/**
 	 * Determine if the entity is invisible to creatures.
-	 *
-	 * @return	<code>true</code> if invisible.
+	 * 
+	 * @return <code>true</code> if invisible.
 	 */
 	public boolean isInvisible() {
 		// By default entities aren't invisible
@@ -990,7 +988,6 @@ public abstract class RPEntity extends GuidedEntity {
 		// most npc's) and replace playersAndFriends code?
 		return false;
 	}
-
 
 	/** Return true if this entity is attacked */
 	public boolean isAttacked() {
@@ -1030,7 +1027,7 @@ public abstract class RPEntity extends GuidedEntity {
 
 	/**
 	 * Tries to equip an item in the appropriate slot.
-	 *
+	 * 
 	 * @param item
 	 *            the item
 	 * @return true if the item can be equipped, else false
@@ -1041,7 +1038,7 @@ public abstract class RPEntity extends GuidedEntity {
 
 	/**
 	 * Tries to equip an item in the appropriate slot.
-	 *
+	 * 
 	 * @param item
 	 *            the item
 	 * @param putOnGroundIfItCannotEquiped
@@ -1049,8 +1046,7 @@ public abstract class RPEntity extends GuidedEntity {
 	 * @return true if the item can be equipped, else false
 	 */
 	public boolean equip(Item item, boolean putOnGroundIfItCannotEquiped) {
-		ActionManager manager = StendhalRPWorld.get().getRuleManager()
-				.getActionManager();
+		ActionManager manager = StendhalRPWorld.get().getRuleManager().getActionManager();
 
 		String slot = manager.getSlotNameToEquip(this, item);
 		if (slot != null) {
@@ -1072,7 +1068,7 @@ public abstract class RPEntity extends GuidedEntity {
 	 * Tries to equip one unit of an item in the given slot. Note: This doesn't
 	 * check if it is allowed to put the given item into the given slot, e.g. it
 	 * is possible to wear your helmet at your feet using this method.
-	 *
+	 * 
 	 * @param slotName
 	 *            the name of the slot
 	 * @param item
@@ -1081,8 +1077,7 @@ public abstract class RPEntity extends GuidedEntity {
 	 */
 	public boolean equip(String slotName, Item item) {
 		if (hasSlot(slotName)) {
-			ActionManager manager = StendhalRPWorld.get().getRuleManager()
-					.getActionManager();
+			ActionManager manager = StendhalRPWorld.get().getRuleManager().getActionManager();
 			if (manager.onEquip(this, slotName, item)) {
 				updateItemAtkDef();
 				return true;
@@ -1096,7 +1091,7 @@ public abstract class RPEntity extends GuidedEntity {
 	 * either be stackable or non-stackable. The units can be distributed over
 	 * different slots. If the RPEntity doesn't have enough units of the item,
 	 * doesn't remove anything.
-	 *
+	 * 
 	 * @param name
 	 *            The name of the item
 	 * @param amount
@@ -1166,7 +1161,7 @@ public abstract class RPEntity extends GuidedEntity {
 	 * Removes one unit of an item from the RPEntity. The item can either be
 	 * stackable or non-stackable. If the RPEntity doesn't have enough the item,
 	 * doesn't remove anything.
-	 *
+	 * 
 	 * @param name
 	 *            The name of the item
 	 * @return true iff dropping the item was successful.
@@ -1179,7 +1174,7 @@ public abstract class RPEntity extends GuidedEntity {
 	 * Removes the given item from the RPEntity. The item can either be
 	 * stackable or non-stackable. If the RPEntity doesn't have the item,
 	 * doesn't remove anything.
-	 *
+	 * 
 	 * @param item
 	 *            the item that should be removed
 	 * @return true iff dropping the item was successful.
@@ -1204,12 +1199,12 @@ public abstract class RPEntity extends GuidedEntity {
 
 	/**
 	 * Determine if this entity is equipped with a minimum quantity of an item.
-	 *
+	 * 
 	 * @param name
 	 *            The item name.
 	 * @param amount
 	 *            The minimum amount.
-	 *
+	 * 
 	 * @return <code>true</code> if the item is equipped with the minimum
 	 *         number.
 	 */
@@ -1243,10 +1238,10 @@ public abstract class RPEntity extends GuidedEntity {
 
 	/**
 	 * Determine if this entity is equipped with an item.
-	 *
+	 * 
 	 * @param name
 	 *            The item name.
-	 *
+	 * 
 	 * @return <code>true</code> if the item is equipped.
 	 */
 	public boolean isEquipped(String name) {
@@ -1256,7 +1251,7 @@ public abstract class RPEntity extends GuidedEntity {
 	/**
 	 * Gets the number of items of the given name that are carried by the
 	 * RPEntity. The item can either be stackable or non-stackable.
-	 *
+	 * 
 	 * @param name
 	 *            The item's name
 	 * @return The number of carried items
@@ -1282,7 +1277,7 @@ public abstract class RPEntity extends GuidedEntity {
 	/**
 	 * Gets an item that is carried by the RPEntity. If the item is stackable,
 	 * gets all that are on the first stack that is found.
-	 *
+	 * 
 	 * @param name
 	 *            The item's name
 	 * @return The item, or a stack of stackable items, or null if nothing was
@@ -1308,7 +1303,7 @@ public abstract class RPEntity extends GuidedEntity {
 	/**
 	 * Gets an item that is carried by the RPEntity. If the item is stackable,
 	 * gets all that are on the first stack that is found.
-	 *
+	 * 
 	 * @param name
 	 *            The item's name
 	 * @return The item, or a stack of stackable items, or null if nothing was
@@ -1403,7 +1398,7 @@ public abstract class RPEntity extends GuidedEntity {
 
 	/**
 	 * Gets the weapon that this entity is holding in its hands.
-	 *
+	 * 
 	 * @return The weapon, or null if this entity is not holding a weapon. If
 	 *         the entity has a weapon in each hand, returns the weapon in its
 	 *         left hand.
@@ -1457,7 +1452,7 @@ public abstract class RPEntity extends GuidedEntity {
 	/**
 	 * Gets the range weapon (bow etc.) that this entity is holding in its
 	 * hands.
-	 *
+	 * 
 	 * @return The range weapon, or null if this entity is not holding a range
 	 *         weapon. If the entity has a range weapon in each hand, returns
 	 *         one in its left hand.
@@ -1474,7 +1469,7 @@ public abstract class RPEntity extends GuidedEntity {
 	/**
 	 * Gets the stack of ammunition (arrows or similar) that this entity is
 	 * holding in its hands.
-	 *
+	 * 
 	 * @return The ammunition, or null if this entity is not holding ammunition.
 	 *         If the entity has ammunition in each hand, returns the ammunition
 	 *         in its left hand.
@@ -1496,12 +1491,12 @@ public abstract class RPEntity extends GuidedEntity {
 	 * Gets the stack of missiles (spears or similar) that this entity is
 	 * holding in its hands, but only if it is not holding another, non-missile
 	 * weapon in the other hand.
-	 *
+	 * 
 	 * You can only throw missiles while you're not holding another weapon. This
 	 * restriction is a workaround because of the way attack strength is
 	 * determined; otherwise, one could increase one's spear attack strength by
 	 * holding an ice sword in the other hand.
-	 *
+	 * 
 	 * @return The missiles, or null if this entity is not holding missiles. If
 	 *         the entity has missiles in each hand, returns the missiles in its
 	 *         left hand.
@@ -1592,7 +1587,7 @@ public abstract class RPEntity extends GuidedEntity {
 	 * Sends a message that only this RPEntity can read. In this default
 	 * implementation, this method does nothing; it can be overridden in
 	 * subclasses.
-	 *
+	 * 
 	 * @param text
 	 *            The message.
 	 */
@@ -1677,7 +1672,7 @@ public abstract class RPEntity extends GuidedEntity {
 
 	/**
 	 * Can this entity do a distance attack on the given target?
-	 *
+	 * 
 	 * @return true if this entity is armed with a distance weapon and if the
 	 *         target is in range.
 	 */
@@ -1701,10 +1696,10 @@ public abstract class RPEntity extends GuidedEntity {
 
 	/**
 	 * Gets this RPEntity's outfit.
-	 *
+	 * 
 	 * Note: some RPEntities (e.g. sheep, many NPC's, all monsters) don't use
 	 * the outfit system.
-	 *
+	 * 
 	 * @return The outfit, or null if this RPEntity is represented as a single
 	 *         sprite rather than an outfit combination.
 	 */
@@ -1717,10 +1712,10 @@ public abstract class RPEntity extends GuidedEntity {
 
 	/**
 	 * Sets this RPEntity's outfit.
-	 *
+	 * 
 	 * Note: some RPEntities (e.g. sheep, many NPC's, all monsters) don't use
 	 * the outfit system.
-	 *
+	 * 
 	 * @param outfit
 	 *            The new outfit.
 	 */
@@ -1728,14 +1723,13 @@ public abstract class RPEntity extends GuidedEntity {
 		put("outfit", outfit.getCode());
 	}
 
-
 	/**
 	 * Set the entity's formatted title/name.
-	 *
+	 * 
 	 * TODO: Move up to Entity, with attribute
-	 *
-	 * @param	title
-	 *	The title, or <code>null</code>.
+	 * 
+	 * @param title
+	 *            The title, or <code>null</code>.
 	 */
 	public void setTitle(final String title) {
 		if (title != null) {
@@ -1745,20 +1739,19 @@ public abstract class RPEntity extends GuidedEntity {
 		}
 	}
 
-
 	//
 	// Entity
 	//
 
 	/**
-	 * Returns the name or something that can be used to identify the
-	 * entity for the player
-	 *
+	 * Returns the name or something that can be used to identify the entity for
+	 * the player
+	 * 
 	 * @param definite
-	 *	<code>true</code> for "the", and <code>false</code> for "a/an"
-	 *	in case the entity has no name.
-	 *
-	 * @return	The description name.
+	 *            <code>true</code> for "the", and <code>false</code> for
+	 *            "a/an" in case the entity has no name.
+	 * 
+	 * @return The description name.
 	 */
 	@Override
 	public String getDescriptionName(final boolean definite) {
@@ -1769,10 +1762,9 @@ public abstract class RPEntity extends GuidedEntity {
 		}
 	}
 
-
 	/**
 	 * Get the nicely formatted entity title/name.
-	 *
+	 * 
 	 * @return The title, or <code>null</code> if unknown.
 	 */
 	@Override

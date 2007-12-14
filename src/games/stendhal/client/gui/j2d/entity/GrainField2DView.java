@@ -19,7 +19,6 @@ import games.stendhal.client.sprite.SpriteStore;
 import java.util.List;
 import java.util.Map;
 
-
 import org.apache.log4j.Logger;
 import marauroa.common.game.RPAction;
 
@@ -44,7 +43,7 @@ public class GrainField2DView extends StateEntity2DView {
 
 	/**
 	 * Create a 2D view of a grain field.
-	 *
+	 * 
 	 * @param grainField
 	 *            The entity to render.
 	 */
@@ -62,7 +61,7 @@ public class GrainField2DView extends StateEntity2DView {
 
 	/**
 	 * Populate named state sprites.
-	 *
+	 * 
 	 * @param map
 	 *            The map to populate.
 	 */
@@ -103,15 +102,13 @@ public class GrainField2DView extends StateEntity2DView {
 
 		// TODO: Allow animated frames
 		for (int y = 0; y < theight; y += height) {
-			map
-					.put(new Integer(i++), store.getTile(tiles, 0, y, width,
-							height));
+			map.put(new Integer(i++), store.getTile(tiles, 0, y, width, height));
 		}
 	}
 
 	/**
 	 * Get the current entity state.
-	 *
+	 * 
 	 * @return The current state.
 	 */
 	@Override
@@ -126,7 +123,7 @@ public class GrainField2DView extends StateEntity2DView {
 	/**
 	 * Build a list of entity specific actions. <strong>NOTE: The first entry
 	 * should be the default.</strong>
-	 *
+	 * 
 	 * @param list
 	 *            The list to populate.
 	 */
@@ -139,7 +136,7 @@ public class GrainField2DView extends StateEntity2DView {
 
 	/**
 	 * Get the height.
-	 *
+	 * 
 	 * @return The height (in pixels).
 	 */
 	@Override
@@ -149,7 +146,7 @@ public class GrainField2DView extends StateEntity2DView {
 
 	/**
 	 * Get the width.
-	 *
+	 * 
 	 * @return The width (in pixels).
 	 */
 	@Override
@@ -161,9 +158,9 @@ public class GrainField2DView extends StateEntity2DView {
 	 * Determines on top of which other entities this entity should be drawn.
 	 * Entities with a high Z index will be drawn on top of ones with a lower Z
 	 * index.
-	 *
+	 * 
 	 * Also, players can only interact with the topmost entity.
-	 *
+	 * 
 	 * @return The drawing index.
 	 */
 	@Override
@@ -177,7 +174,7 @@ public class GrainField2DView extends StateEntity2DView {
 
 	/**
 	 * An entity was changed.
-	 *
+	 * 
 	 * @param entity
 	 *            The entity that was changed.
 	 * @param property
@@ -208,7 +205,7 @@ public class GrainField2DView extends StateEntity2DView {
 
 	/**
 	 * Perform an action.
-	 *
+	 * 
 	 * @param at
 	 *            The action.
 	 */

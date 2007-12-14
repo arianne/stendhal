@@ -36,7 +36,7 @@ public class PerceptionListenerMulticaster implements IPerceptionListener {
 
 	/**
 	 * Add a listener. This does not check for duplicates.
-	 *
+	 * 
 	 * @param listener
 	 *            The listener to add.
 	 */
@@ -54,7 +54,7 @@ public class PerceptionListenerMulticaster implements IPerceptionListener {
 
 	/**
 	 * Remove a listener. This does not check for duplicates.
-	 *
+	 * 
 	 * @param listener
 	 *            The listener to remove.
 	 */
@@ -90,10 +90,10 @@ public class PerceptionListenerMulticaster implements IPerceptionListener {
 	/**
 	 * onAdded is called when an object is added to the world for first time or
 	 * after a sync perception.
-	 *
+	 * 
 	 * @param object
 	 *            the added object.
-	 *
+	 * 
 	 * @return true to stop further processing.
 	 */
 	public boolean onAdded(RPObject object) {
@@ -118,7 +118,7 @@ public class PerceptionListenerMulticaster implements IPerceptionListener {
 	/**
 	 * onClear is called when the whole world is going to be cleared. It happens
 	 * on sync perceptions Return true to stop further processing.
-	 *
+	 * 
 	 * @return true to stop further processing.
 	 */
 	public boolean onClear() {
@@ -143,10 +143,10 @@ public class PerceptionListenerMulticaster implements IPerceptionListener {
 	/**
 	 * onDeleted is called when an object is removed of the world. Return true
 	 * to stop further processing.
-	 *
+	 * 
 	 * @param object
 	 *            the original object.
-	 *
+	 * 
 	 * @return true to stop further processing.
 	 */
 	public boolean onDeleted(RPObject object) {
@@ -170,7 +170,7 @@ public class PerceptionListenerMulticaster implements IPerceptionListener {
 
 	/**
 	 * onException is called when an exception happens.
-	 *
+	 * 
 	 * @param e
 	 *            the exception that happened.
 	 * @param perception
@@ -192,14 +192,14 @@ public class PerceptionListenerMulticaster implements IPerceptionListener {
 	/**
 	 * onModifiedAdded is called when an object is modified by adding or
 	 * changing one of its attributes. Return true to stop further processing.
-	 *
+	 * 
 	 * Note that the method is called *before* modifing the object.
-	 *
+	 * 
 	 * @param object
 	 *            the original object.
 	 * @param changes
 	 *            the added and modified changes.
-	 *
+	 * 
 	 * @return true to stop further processing.
 	 */
 	public boolean onModifiedAdded(RPObject object, RPObject changes) {
@@ -225,12 +225,12 @@ public class PerceptionListenerMulticaster implements IPerceptionListener {
 	 * onModifiedDeleted is called each time the object has one of its
 	 * attributes removed. Return true to stop further processing. Note that the
 	 * method is called *before* modifing the object.
-	 *
+	 * 
 	 * @param object
 	 *            the original object.
 	 * @param changes
 	 *            the deleted attributes.
-	 *
+	 * 
 	 * @return true to stop further processing.
 	 */
 	public boolean onModifiedDeleted(RPObject object, RPObject changes) {
@@ -255,12 +255,12 @@ public class PerceptionListenerMulticaster implements IPerceptionListener {
 	/**
 	 * onMyRPObject is called when our rpobject avatar is processed. Return true
 	 * to stop further processing.
-	 *
+	 * 
 	 * @param added
 	 *            the added and modified attributes and slots.
 	 * @param deleted
 	 *            the deleted attributes.
-	 *
+	 * 
 	 * @return true to stop further processing.
 	 */
 	public boolean onMyRPObject(RPObject added, RPObject deleted) {
@@ -284,7 +284,7 @@ public class PerceptionListenerMulticaster implements IPerceptionListener {
 
 	/**
 	 * onPerceptionBegin is called when the perception is going to be applied.
-	 *
+	 * 
 	 * @param type
 	 *            type of the perception: SYNC or DELTA.
 	 * @param timestamp
@@ -305,7 +305,7 @@ public class PerceptionListenerMulticaster implements IPerceptionListener {
 
 	/**
 	 * onPerceptionBegin is called when the perception has been applied.
-	 *
+	 * 
 	 * @param type
 	 *            type of the perception: SYNC or DELTA.
 	 * @param timestamp

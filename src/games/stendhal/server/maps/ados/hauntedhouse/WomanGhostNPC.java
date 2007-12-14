@@ -12,7 +12,7 @@ import java.util.Map;
 
 /**
  * Builds a female Ghost NPC
- *
+ * 
  * @author kymara
  */
 public class WomanGhostNPC implements ZoneConfigurator {
@@ -22,13 +22,17 @@ public class WomanGhostNPC implements ZoneConfigurator {
 
 	/**
 	 * Configure a zone.
-	 *
-	 * @param	zone		The zone to be configured.
-	 * @param	attributes	Configuration attributes.
+	 * 
+	 * @param zone
+	 *            The zone to be configured.
+	 * @param attributes
+	 *            Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone,
+			Map<String, String> attributes) {
 		buildNPC(zone, attributes);
 	}
+
 	private void buildNPC(StendhalRPZone zone, Map<String, String> attributes) {
 		SpeakerNPC woman = new SpeakerNPC("Carena") {
 			@Override
@@ -53,11 +57,12 @@ public class WomanGhostNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-				//addGreeting("Wooouhhhhhh!");
+				// addGreeting("Wooouhhhhhh!");
 				addJob("I can do nothing useful on this earthly world. I haunt this house now.");
 				addHelp("Here is a warning: if you die, you will become a ghost like me, partially visible and intangible. But if you can find your way out of the afterlife, you will be reborn.");
 				addGoodbye("Bye");
-				// remaining behaviour defined in games.stendhal.server.maps.quests.FindGhosts
+				// remaining behaviour defined in
+				// games.stendhal.server.maps.quests.FindGhosts
 			}
 		};
 		woman.setDescription("You see a ghostly figure of a woman. She appears somehow sad.");

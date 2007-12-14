@@ -75,7 +75,8 @@ public class DailyMonsterQuest extends AbstractQuest {
 			String questCount = null;
 			String questLast = null;
 			long delay = 60 * 60 * 24 * 1000; // Milliseconds in a day
-			long expireDelay = 60 * 60 * 24 * 7 * 1000; // Milliseconds in a week
+			long expireDelay = 60 * 60 * 24 * 7 * 1000; // Milliseconds in a
+														// week
 
 			if (questInfo != null) {
 				String[] tokens = (questInfo + ";0;0;0").split(";");
@@ -288,7 +289,8 @@ public class DailyMonsterQuest extends AbstractQuest {
 			String questKill = null;
 			String questCount = null;
 			String questLast = null;
-			long expireDelay = 60 * 60 * 24 * 7 * 1000; // Milliseconds in a week
+			long expireDelay = 60 * 60 * 24 * 7 * 1000; // Milliseconds in a
+														// week
 
 			if (questInfo != null) {
 				String[] tokens = (questInfo + ";0;0;0").split(";");

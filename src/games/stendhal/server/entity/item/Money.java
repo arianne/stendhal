@@ -22,7 +22,8 @@ public class Money extends StackableItem {
 	// be set, and the server will crash with a NullPointerException
 	// when RPEntity.equip() is called with your Money object.
 	// Instead, you can use this:
-	// StackableItem money = (StackableItem) world.getRuleManager().getEntityManager().getItem("money");
+	// StackableItem money = (StackableItem)
+	// world.getRuleManager().getEntityManager().getItem("money");
 	// where world is a StendhalRPWorld.
 	// TODO: I think it's a bug; possibleSlots should be set even when this
 	// constructor is used.
@@ -34,15 +35,16 @@ public class Money extends StackableItem {
 		super("money", "money", "gold", null);
 		setQuantity(quantity);
 	}
+
 	/**
 	 * copy constructor
-	 *
-	 * @param item item to copy
+	 * 
+	 * @param item
+	 *            item to copy
 	 */
 	public Money(Money item) {
 		super(item);
 	}
-
 
 	@Override
 	public boolean isStackable(Stackable other) {
@@ -50,7 +52,7 @@ public class Money extends StackableItem {
 	}
 
 	@Override
-    public String describe() {
-	    return "You see " + getQuantity() + " money.";
-    }
+	public String describe() {
+		return "You see " + getQuantity() + " money.";
+	}
 }

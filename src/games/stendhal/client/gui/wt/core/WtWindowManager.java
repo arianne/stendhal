@@ -25,14 +25,13 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
-
 import org.apache.log4j.Logger;
 import marauroa.common.io.Persistence;
 
 /**
  * This manager keeps track of all the windows and their positions/ minimized
  * state.
- *
+ * 
  * @author mtotz
  */
 // TODO: Split this class into parts (the property file handling)
@@ -71,7 +70,8 @@ public class WtWindowManager {
 	 * Sets default window properties. These are used only when there are no
 	 * properties known for this panel.
 	 */
-	public void setDefaultProperties(String name, boolean minimized, int x, int y) {
+	public void setDefaultProperties(String name, boolean minimized, int x,
+			int y) {
 		if (!configs.containsKey(name)) {
 			WindowConfiguration config = new WindowConfiguration(name);
 			config.readFromProperties(properties, minimized, x, y, true);
@@ -92,13 +92,15 @@ public class WtWindowManager {
 		}
 
 		try {
-			OutputStream os = Persistence.get().getOutputStream(true, "stendhal", FILE_NAME);
+			OutputStream os = Persistence.get().getOutputStream(true,
+					"stendhal", FILE_NAME);
 			OutputStreamWriter writer = new OutputStreamWriter(os);
 			writer.append(buf.toString());
 			writer.close();
 		} catch (IOException e) {
 			// ignore exception
-			logger.error("Can't write " + stendhal.STENDHAL_FOLDER + FILE_NAME, e);
+			logger.error("Can't write " + stendhal.STENDHAL_FOLDER + FILE_NAME,
+					e);
 		}
 	}
 
@@ -106,7 +108,8 @@ public class WtWindowManager {
 	public void read() {
 		properties = new Properties();
 		try {
-			InputStream is = Persistence.get().getInputStream(true, "stendhal", FILE_NAME);
+			InputStream is = Persistence.get().getInputStream(true, "stendhal",
+					FILE_NAME);
 			properties.load(is);
 			is.close();
 		} catch (IOException e) {
@@ -128,24 +131,32 @@ public class WtWindowManager {
 
 	/**
 	 * Returns a property.
-	 *
-	 * @param key Key to look up
-	 * @param defaultValue default value which is returned if the key is not in the configuration file
+	 * 
+	 * @param key
+	 *            Key to look up
+	 * @param defaultValue
+	 *            default value which is returned if the key is not in the
+	 *            configuration file
 	 * @return value
 	 */
-	// Hack: enables other parts of the program to read from this configuration file
+	// Hack: enables other parts of the program to read from this configuration
+	// file
 	public String getProperty(String key, String defaultValue) {
 		return properties.getProperty("config." + key, defaultValue);
 	}
 
 	/**
 	 * Returns a property.
-	 *
-	 * @param key Key to look up
-	 * @param defaultValue default value which is returned if the key is not in the configuration file
+	 * 
+	 * @param key
+	 *            Key to look up
+	 * @param defaultValue
+	 *            default value which is returned if the key is not in the
+	 *            configuration file
 	 * @return value
 	 */
-	// Hack: enables other parts of the program to read from this configuration file
+	// Hack: enables other parts of the program to read from this configuration
+	// file
 	public String setProperty(String key, String defaultValue) {
 		return properties.getProperty("config." + key, defaultValue);
 	}
@@ -183,7 +194,8 @@ public class WtWindowManager {
 					SoundMaster.play("click-8.wav");
 				} else if ((panel instanceof Character)) {
 					SoundMaster.play("click-6.wav");
-				} else if (config.name.equals("settings") || config.name.equals("minimap")) {
+				} else if (config.name.equals("settings")
+						|| config.name.equals("minimap")) {
 					SoundMaster.play("click-4.wav");
 				} else if (config.name.equals("chest")) {
 					SoundMaster.play("click-5.wav");
@@ -226,8 +238,10 @@ public class WtWindowManager {
 
 		/** returns to config as a property string */
 		public String writeToPropertyString() {
-			return "window." + name + ".minimized=" + minimized + "\n" + "window." + name + ".visible=" + visible
-			        + "\n" + "window." + name + ".x=" + x + "\n" + "window." + name + ".y=" + y + "\n";
+			return "window." + name + ".minimized=" + minimized + "\n"
+					+ "window." + name + ".visible=" + visible + "\n"
+					+ "window." + name + ".x=" + x + "\n" + "window." + name
+					+ ".y=" + y + "\n";
 		}
 
 		/** returns to config as a property string */
@@ -245,19 +259,23 @@ public class WtWindowManager {
 		}
 
 		/** reads the config from the properties */
-		public void readFromProperties(Properties props, boolean defaultMinimized, int defaultX, int defaultY,
-		        boolean defaultVisible) {
-			minimized = Boolean.parseBoolean(props.getProperty("window." + name + ".minimized", Boolean
-			        .toString(minimized)));
-			visible = Boolean.parseBoolean(props.getProperty("window." + name + ".visible", Boolean
-			        .toString(defaultVisible)));
-			x = Integer.parseInt(props.getProperty("window." + name + ".x", Integer.toString(defaultX)));
-			y = Integer.parseInt(props.getProperty("window." + name + ".y", Integer.toString(defaultY)));
+		public void readFromProperties(Properties props,
+				boolean defaultMinimized, int defaultX, int defaultY,
+				boolean defaultVisible) {
+			minimized = Boolean.parseBoolean(props.getProperty("window." + name
+					+ ".minimized", Boolean.toString(minimized)));
+			visible = Boolean.parseBoolean(props.getProperty("window." + name
+					+ ".visible", Boolean.toString(defaultVisible)));
+			x = Integer.parseInt(props.getProperty("window." + name + ".x",
+					Integer.toString(defaultX)));
+			y = Integer.parseInt(props.getProperty("window." + name + ".y",
+					Integer.toString(defaultY)));
 		}
 
 		/** reads the config from the properties */
 		public void readFromProperties(Properties props, ManagedWindow defaults) {
-			readFromProperties(props, defaults.isMinimized(), defaults.getX(), defaults.getY(), defaults.isVisible());
+			readFromProperties(props, defaults.isMinimized(), defaults.getX(),
+					defaults.getY(), defaults.isVisible());
 		}
 
 	}

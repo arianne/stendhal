@@ -10,11 +10,14 @@ import java.util.Map;
 public class RichardStallmanNPC implements ZoneConfigurator {
 	/**
 	 * Configure a zone.
-	 *
-	 * @param	zone		The zone to be configured.
-	 * @param	attributes	Configuration attributes.
+	 * 
+	 * @param zone
+	 *            The zone to be configured.
+	 * @param attributes
+	 *            Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone,
+			Map<String, String> attributes) {
 		buildStallman(zone);
 	}
 
@@ -22,11 +25,11 @@ public class RichardStallmanNPC implements ZoneConfigurator {
 		SpeakerNPC stallman = new SpeakerNPC("Richard Stallman") {
 
 			@Override
-            public void say(String text) {
+			public void say(String text) {
 				setDirection(Direction.DOWN);
 				super.say(text, false);
 			}
-			
+
 			@Override
 			protected void createPath() {
 				setPath(null);
@@ -37,14 +40,15 @@ public class RichardStallmanNPC implements ZoneConfigurator {
 				addGreeting("Welcome to Stendhal! True #free software!");
 				addJob("I am the #free software evangelizer! I am the founder of #GNU.");
 				addHelp("Help #Stendhal to be even better. Donate your time, tell your friends to play, create maps.");
-				addReply("free",
-					"''Free software'' is a matter of liberty, not price. To understand the concept, you should think of ''free'' as in ''free speech,'' not as in ''free beer''.");
-				addReply("stendhal",
-					"Stendhal is #free software under #GNU #GPL. You can run, copy, distribute, study, change and improve this software.");
+				addReply(
+						"free",
+						"''Free software'' is a matter of liberty, not price. To understand the concept, you should think of ''free'' as in ''free speech,'' not as in ''free beer''.");
+				addReply(
+						"stendhal",
+						"Stendhal is #free software under #GNU #GPL. You can run, copy, distribute, study, change and improve this software.");
 				addReply("gnu", "http://www.gnu.org/");
 				addReply("gpl", "http://www.gnu.org/licenses/gpl.html");
-				
-				
+
 				addGoodbye();
 			}
 		};

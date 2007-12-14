@@ -18,9 +18,10 @@ public class CargoWorkerNPC extends SpeakerNPCFactory {
 		npc.addGreeting("Ahoy! Nice to see you in the cargo hold!");
 		npc.addJob("I'm taking care of the cargo. My job would be much easier without all these #rats.");
 		npc.addHelp("You could earn some money if you'd #offer me something to poison these damn #rats.");
-		npc.addReply(Arrays.asList("rat", "rats"),
-		        "These rats are everywhere. I wonder where they come from. I can't even kill them as fast as they come up.");
-		//prices are equal to the absolute value of their HP amount.
+		npc.addReply(
+				Arrays.asList("rat", "rats"),
+				"These rats are everywhere. I wonder where they come from. I can't even kill them as fast as they come up.");
+		// prices are equal to the absolute value of their HP amount.
 		Map<String, Integer> offerings = new HashMap<String, Integer>();
 		offerings.put("poison", 40);
 		offerings.put("toadstool", 60);
@@ -47,6 +48,6 @@ public class CargoWorkerNPC extends SpeakerNPCFactory {
 				}
 
 			}
-			};
+		};
 	}
 }

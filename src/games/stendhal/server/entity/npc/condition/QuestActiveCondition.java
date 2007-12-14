@@ -16,8 +16,9 @@ public class QuestActiveCondition extends SpeakerNPC.ChatCondition {
 
 	/**
 	 * Creates a new QuestActiveCondition
-	 *
-	 * @param questname name of quest slot
+	 * 
+	 * @param questname
+	 *            name of quest slot
 	 */
 	public QuestActiveCondition(String questname) {
 		this.questname = questname;
@@ -25,15 +26,13 @@ public class QuestActiveCondition extends SpeakerNPC.ChatCondition {
 
 	@Override
 	public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
-		return (player.hasQuest(questname) 
-						&& !player.isQuestCompleted(questname));
+		return (player.hasQuest(questname) && !player.isQuestCompleted(questname));
 	}
 
 	@Override
 	public String toString() {
 		return "QuestActive <" + questname + ">";
 	}
-
 
 	@Override
 	public int hashCode() {
@@ -42,6 +41,7 @@ public class QuestActiveCondition extends SpeakerNPC.ChatCondition {
 
 	@Override
 	public boolean equals(Object obj) {
-		return EqualsBuilder.reflectionEquals(this, obj, false, QuestStartedCondition.class);
+		return EqualsBuilder.reflectionEquals(this, obj, false,
+				QuestStartedCondition.class);
 	}
 }

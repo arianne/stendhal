@@ -16,17 +16,21 @@ import java.util.Map;
 public class DwarfGuardNPC implements ZoneConfigurator {
 	private ShopList shops = ShopList.get();
 
-		/**
+	/**
 	 * Configure a zone.
-	 *
-	 * @param	zone		The zone to be configured.
-	 * @param	attributes	Configuration attributes.
+	 * 
+	 * @param zone
+	 *            The zone to be configured.
+	 * @param attributes
+	 *            Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone,
+			Map<String, String> attributes) {
 		buildPrisonArea(zone, attributes);
 	}
 
-	private void buildPrisonArea(StendhalRPZone zone, Map<String, String> attributes) {
+	private void buildPrisonArea(StendhalRPZone zone,
+			Map<String, String> attributes) {
 		SpeakerNPC npc = new SpeakerNPC("Hunel") {
 
 			@Override
@@ -39,9 +43,10 @@ public class DwarfGuardNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-			    addQuest("I'm too scared to leave here yet... can you offer me some really good equipment?");
+				addQuest("I'm too scared to leave here yet... can you offer me some really good equipment?");
 				addJob("I'm was the guard of this Prison. Until .. well you know the rest.");
-				new BuyerAdder().add(this, new BuyerBehaviour(shops.get("buychaos")), true);
+				new BuyerAdder().add(this, new BuyerBehaviour(
+						shops.get("buychaos")), true);
 
 				addGoodbye("Bye .. be careful ..");
 			}

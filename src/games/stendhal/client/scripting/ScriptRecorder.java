@@ -8,7 +8,7 @@ import java.io.PrintStream;
 
 /**
  * Record chat/commands
- *
+ * 
  * @author hendrik
  */
 public class ScriptRecorder {
@@ -23,13 +23,16 @@ public class ScriptRecorder {
 
 	/**
 	 * Creates a new ScriptRecorder
-	 *
-	 * @param classname Name of Class to record
-	 * @throws FileNotFoundException if the file cannot be created
+	 * 
+	 * @param classname
+	 *            Name of Class to record
+	 * @throws FileNotFoundException
+	 *             if the file cannot be created
 	 */
 	public ScriptRecorder(String classname) throws FileNotFoundException {
 		this.classname = classname;
-		filename = System.getProperty("java.io.tmpdir") + "/" + classname + ".java";
+		filename = System.getProperty("java.io.tmpdir") + "/" + classname
+				+ ".java";
 		StendhalUI.get().addEventLine("Starting recoding to " + filename);
 		lastTimestamp = 0;
 		ps = new PrintStream(filename);
@@ -55,8 +58,9 @@ public class ScriptRecorder {
 
 	/**
 	 * Records a chat/command
-	 *
-	 * @param text command to record
+	 * 
+	 * @param text
+	 *            command to record
 	 */
 	public void recordChatLine(String text) {
 

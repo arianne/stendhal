@@ -21,11 +21,14 @@ import java.util.Map;
 public class BattleArenaRecruiterNPC implements ZoneConfigurator {
 	/**
 	 * Configure a zone.
-	 *
-	 * @param	zone		The zone to be configured.
-	 * @param	attributes	Configuration attributes.
+	 * 
+	 * @param zone
+	 *            The zone to be configured.
+	 * @param attributes
+	 *            Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone,
+			Map<String, String> attributes) {
 		buildBattleArenaRecruiter(zone);
 	}
 
@@ -46,25 +49,39 @@ public class BattleArenaRecruiterNPC implements ZoneConfigurator {
 				addGreeting("Hey there. You look like a reasonable fighter. Maybe you might like to try the #Battle #Arena #challenge...");
 				addJob("I'm recruiter for the Fado #battle #arena, as #Thonatun may have told you.");
 				addHelp("Have you ever heard of the Semos #deathmatch.");
-				add(ConversationStates.ATTENDING, "battle", null, ConversationStates.ATTENDING,
-				        "The battle arena is the ultimate challenge for true #heroes.", null);
-				add(ConversationStates.ATTENDING, "heroes", null, ConversationStates.ATTENDING,
-				        "Are you such a hero? I can take you to the #challenge.", null);
+				add(
+						ConversationStates.ATTENDING,
+						"battle",
+						null,
+						ConversationStates.ATTENDING,
+						"The battle arena is the ultimate challenge for true #heroes.",
+						null);
+				add(
+						ConversationStates.ATTENDING,
+						"heroes",
+						null,
+						ConversationStates.ATTENDING,
+						"Are you such a hero? I can take you to the #challenge.",
+						null);
 				addGoodbye("I hope you will enjoy the Battle Arena");
 
-				add(ConversationStates.ATTENDING, "challenge", null, ConversationStates.ATTENDING, null,
-				        new SpeakerNPC.ChatAction() {
+				add(ConversationStates.ATTENDING, "challenge", null,
+						ConversationStates.ATTENDING, null,
+						new SpeakerNPC.ChatAction() {
 
-					        @Override
-					        public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-						        if (player.getLevel() >= 20) {
-							        StendhalRPZone zone = StendhalRPWorld.get().getZone("int_fado_battle_arena");
-							        player.teleport(zone, 33, 26, Direction.DOWN, null);
-						        } else {
-							        engine.say("Sorry, you are too weak! Maybe you should train a bit more before coming back.");
-						        }
-					        }
-				        });
+							@Override
+							public void fire(Player player, Sentence sentence,
+									SpeakerNPC engine) {
+								if (player.getLevel() >= 20) {
+									StendhalRPZone zone = StendhalRPWorld.get().getZone(
+											"int_fado_battle_arena");
+									player.teleport(zone, 33, 26,
+											Direction.DOWN, null);
+								} else {
+									engine.say("Sorry, you are too weak! Maybe you should train a bit more before coming back.");
+								}
+							}
+						});
 			}
 		};
 

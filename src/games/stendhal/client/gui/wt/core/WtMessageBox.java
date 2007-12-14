@@ -29,7 +29,8 @@ import java.util.List;
  * 
  * @author matthias
  */
-public class WtMessageBox extends WtPanel implements WtClickListener, WtCloseListener {
+public class WtMessageBox extends WtPanel implements WtClickListener,
+		WtCloseListener {
 
 	/** the max height of the panel */
 	private static final int MAX_HEIGHT = 100;
@@ -50,10 +51,12 @@ public class WtMessageBox extends WtPanel implements WtClickListener, WtCloseLis
 	private boolean layedout;
 
 	/** Creates a new instance of MessageBox */
-	public WtMessageBox(String name, int x, int y, int width, String message, ButtonCombination buttonCombination) {
+	public WtMessageBox(String name, int x, int y, int width, String message,
+			ButtonCombination buttonCombination) {
 		super(name, x, y, width, MAX_HEIGHT);
 
-		textPanel = new WtTextPanel("messageboxtext", 5, 0, width - 20, MAX_HEIGHT, message);
+		textPanel = new WtTextPanel("messageboxtext", 5, 0, width - 20,
+				MAX_HEIGHT, message);
 		addChild(textPanel);
 
 		buttons = new ArrayList<WtButton>();
@@ -84,12 +87,12 @@ public class WtMessageBox extends WtPanel implements WtClickListener, WtCloseLis
 		registerCloseListener(this);
 	}
 
-
 	/**
 	 * Draw the messagebox contents. This is only called while open and not
 	 * minimized.
-	 *
-	 * @param	g		The graphics context to draw with.
+	 * 
+	 * @param g
+	 *            The graphics context to draw with.
 	 */
 	@Override
 	protected void drawContent(Graphics2D clientArea) {
@@ -104,7 +107,6 @@ public class WtMessageBox extends WtPanel implements WtClickListener, WtCloseLis
 
 		super.drawContent(clientArea);
 	}
-
 
 	/** clicked a button */
 	public void onClick(String name, Point point) {
@@ -122,7 +124,11 @@ public class WtMessageBox extends WtPanel implements WtClickListener, WtCloseLis
 
 	/** some default buttons */
 	public enum ButtonEnum {
-		YES("Yes", 50, 30), NO("No", 50, 30), CANCEL("Cancel", 50, 30), OK("Ok", 50, 30), QUIT("Quit", 50, 30);
+		YES("Yes", 50, 30),
+		NO("No", 50, 30),
+		CANCEL("Cancel", 50, 30),
+		OK("Ok", 50, 30),
+		QUIT("Quit", 50, 30);
 
 		private String name;
 
@@ -150,9 +156,15 @@ public class WtMessageBox extends WtPanel implements WtClickListener, WtCloseLis
 
 	/** some button combinations */
 	public enum ButtonCombination {
-		OK(ButtonEnum.OK, ButtonEnum.OK), YES_NO(ButtonEnum.NO, ButtonEnum.YES, ButtonEnum.NO), YES_NO_CANCEL(
-		        ButtonEnum.CANCEL, ButtonEnum.YES, ButtonEnum.NO, ButtonEnum.CANCEL), OK_CANCEL(ButtonEnum.CANCEL,
-		        ButtonEnum.OK, ButtonEnum.CANCEL), QUIT_CANCEL(ButtonEnum.CANCEL, ButtonEnum.QUIT, ButtonEnum.CANCEL);
+		OK(ButtonEnum.OK, ButtonEnum.OK),
+		YES_NO(ButtonEnum.NO, ButtonEnum.YES, ButtonEnum.NO),
+		YES_NO_CANCEL(
+				ButtonEnum.CANCEL,
+				ButtonEnum.YES,
+				ButtonEnum.NO,
+				ButtonEnum.CANCEL),
+		OK_CANCEL(ButtonEnum.CANCEL, ButtonEnum.OK, ButtonEnum.CANCEL),
+		QUIT_CANCEL(ButtonEnum.CANCEL, ButtonEnum.QUIT, ButtonEnum.CANCEL);
 
 		/** list of buttons for this combination */
 		private List<ButtonEnum> buttons;

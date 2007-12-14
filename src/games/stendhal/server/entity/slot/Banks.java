@@ -2,7 +2,7 @@ package games.stendhal.server.entity.slot;
 
 /**
  * List of banks
- *
+ * 
  * @author hendrik
  */
 public enum Banks {
@@ -21,7 +21,9 @@ public enum Banks {
 
 	/**
 	 * create a new TutorialEventType
-	 * @param message human readable message
+	 * 
+	 * @param message
+	 *            human readable message
 	 */
 	private Banks(String slotName) {
 		this.slotName = slotName;
@@ -29,6 +31,7 @@ public enum Banks {
 
 	/**
 	 * get the slot name
+	 * 
 	 * @return slotName
 	 */
 	public String getSlotName() {

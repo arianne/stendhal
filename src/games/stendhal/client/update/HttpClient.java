@@ -14,7 +14,7 @@ import java.util.Properties;
 
 /**
  * a very simple http client
- *
+ * 
  * @author hendrik
  */
 public class HttpClient {
@@ -32,30 +32,33 @@ public class HttpClient {
 	private boolean tryVeryHard;
 
 	/**
-	 * An interface to notify some other parts of the program about
-	 * download process.
+	 * An interface to notify some other parts of the program about download
+	 * process.
 	 */
 	public interface ProgressListener {
 
 		/**
 		 * update download status
-		 *
-		 * @param downloadedBytes bytes downloaded now
+		 * 
+		 * @param downloadedBytes
+		 *            bytes downloaded now
 		 */
 		void onDownloading(int downloadedBytes);
 
 		/**
 		 * completed download of this file
-		 *
-		 * @param downloadedBytes completed download
+		 * 
+		 * @param downloadedBytes
+		 *            completed download
 		 */
 		void onDownloadCompleted(int downloadedBytes);
 	}
 
 	/**
 	 * Creates a HTTP-Client which will connect to the specified URL
-	 *
-	 * @param url URL to connect to
+	 * 
+	 * @param url
+	 *            URL to connect to
 	 */
 	public HttpClient(String url) {
 		this.urlString = url;
@@ -63,9 +66,11 @@ public class HttpClient {
 
 	/**
 	 * Creates a HTTP-Client which will connect to the specified URL
-	 *
-	 * @param url URL to connect to
-	 * @param tryVeryHard true, to do several attempts.
+	 * 
+	 * @param url
+	 *            URL to connect to
+	 * @param tryVeryHard
+	 *            true, to do several attempts.
 	 */
 	public HttpClient(String url, boolean tryVeryHard) {
 		this.urlString = url;
@@ -74,8 +79,9 @@ public class HttpClient {
 
 	/**
 	 * Sets a ProgressListener to be informed of download progress
-	 *
-	 * @param progressListener ProgressListener
+	 * 
+	 * @param progressListener
+	 *            ProgressListener
 	 */
 	public void setProgressListener(ProgressListener progressListener) {
 		this.progressListener = progressListener;
@@ -99,8 +105,10 @@ public class HttpClient {
 					connection = (HttpURLConnection) url.openConnection();
 					connection.setConnectTimeout(timeout);
 					if (connection.getResponseCode() != HttpURLConnection.HTTP_OK) {
-						System.err.println("HttpServer returned an error code (" + urlString + "): "
-						        + connection.getResponseCode());
+						System.err.println("HttpServer returned an error code ("
+								+ urlString
+								+ "): "
+								+ connection.getResponseCode());
 						connection = null;
 					}
 					if (connection != null) {
@@ -110,7 +118,8 @@ public class HttpClient {
 						}
 					}
 				} catch (SocketTimeoutException e) {
-					System.err.println("Timeout (" + urlString + "): " + " " + e.toString());
+					System.err.println("Timeout (" + urlString + "): " + " "
+							+ e.toString());
 				}
 				myTimeout = myTimeout * 2;
 				if (!tryVeryHard || (retryCount > 3)) {
@@ -118,16 +127,19 @@ public class HttpClient {
 				}
 			}
 		} catch (Exception e) {
-			System.err.println("Error connecting to http-Server (" + urlString + "): ");
+			System.err.println("Error connecting to http-Server (" + urlString
+					+ "): ");
 			e.printStackTrace(System.err);
 		}
 		return;
 	}
 
 	/**
-	 * Return an InputStream to read the requested file from.
-	 * You have to close it using @see close().
-	 *
+	 * Return an InputStream to read the requested file from. You have to close
+	 * it using
+	 * 
+	 * @see close().
+	 * 
 	 * @return InputStream or null on error.
 	 */
 	public InputStream getInputStream() {
@@ -149,9 +161,9 @@ public class HttpClient {
 	}
 
 	/**
-	 * fetches the first line of a file using http and closes the
-	 * connection automatically.
-	 *
+	 * fetches the first line of a file using http and closes the connection
+	 * automatically.
+	 * 
 	 * @return the first line
 	 */
 	public String fetchFirstLine() {
@@ -173,9 +185,9 @@ public class HttpClient {
 	}
 
 	/**
-	 * fetches a file using http as Properties object and closes the
-	 * connection automatically.
-	 *
+	 * fetches a file using http as Properties object and closes the connection
+	 * automatically.
+	 * 
 	 * @return the first line
 	 */
 	public Properties fetchProperties() {
@@ -197,8 +209,9 @@ public class HttpClient {
 
 	/**
 	 * Fetches a file from the HTTP-Server and stores it on disk
-	 *
-	 * @param filename name of the file to write
+	 * 
+	 * @param filename
+	 *            name of the file to write
 	 * @return true on success, false otherwise
 	 */
 	public boolean fetchFile(String filename) {
@@ -210,7 +223,8 @@ public class HttpClient {
 		}
 
 		try {
-			BufferedOutputStream os = new BufferedOutputStream(new FileOutputStream(filename));
+			BufferedOutputStream os = new BufferedOutputStream(
+					new FileOutputStream(filename));
 			copyStream(is, os);
 			connection.disconnect();
 			res = true;
@@ -225,12 +239,16 @@ public class HttpClient {
 	/**
 	 * Copies data from an inputStream to and outputStream and closes both
 	 * steams after work
-	 *
-	 * @param inputStream  stream to read from
-	 * @param outputStream stream to write to
-	 * @throws IOException on an input/output error
+	 * 
+	 * @param inputStream
+	 *            stream to read from
+	 * @param outputStream
+	 *            stream to write to
+	 * @throws IOException
+	 *             on an input/output error
 	 */
-	private void copyStream(InputStream inputStream, OutputStream outputStream) throws IOException {
+	private void copyStream(InputStream inputStream, OutputStream outputStream)
+			throws IOException {
 		byte[] buffer = new byte[10240];
 		int length = inputStream.read(buffer);
 		int byteCounter = length;

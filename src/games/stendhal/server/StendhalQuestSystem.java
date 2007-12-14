@@ -9,7 +9,6 @@ import java.lang.reflect.Constructor;
 import java.util.LinkedList;
 import java.util.List;
 
-
 import org.apache.log4j.Logger;
 
 /**
@@ -119,8 +118,8 @@ public class StendhalQuestSystem {
 
 	private boolean loadQuest(String name) {
 		try {
-			Class<?> questClass = Class
-					.forName("games.stendhal.server.maps.quests." + name);
+			Class<?> questClass = Class.forName("games.stendhal.server.maps.quests."
+					+ name);
 
 			if (!IQuest.class.isAssignableFrom(questClass)) {
 				logger.error("Class " + name

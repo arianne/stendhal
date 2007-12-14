@@ -31,7 +31,8 @@ public class FeaturesTestArea implements ZoneConfigurator {
 			if (killer instanceof RPEntity) {
 				RPEntity killerRPEntity = (RPEntity) killer;
 				if (!killerRPEntity.isEquipped("key_golden")) {
-					Item item = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("key_golden");
+					Item item = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
+							"key_golden");
 					killerRPEntity.equip(item, true);
 				}
 			}
@@ -50,16 +51,20 @@ public class FeaturesTestArea implements ZoneConfigurator {
 
 	/**
 	 * Configure a zone.
-	 *
-	 * @param	zone		The zone to be configured.
-	 * @param	attributes	Configuration attributes.
+	 * 
+	 * @param zone
+	 *            The zone to be configured.
+	 * @param attributes
+	 *            Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone,
+			Map<String, String> attributes) {
 		createDoorAndKey(zone, attributes);
 		attackableAnimal(zone, attributes);
 	}
 
-	private void createDoorAndKey(StendhalRPZone zone, Map<String, String> attributes) {
+	private void createDoorAndKey(StendhalRPZone zone,
+			Map<String, String> attributes) {
 		List<String> slots = new LinkedList<String>();
 		slots.add("bag");
 
@@ -76,13 +81,16 @@ public class FeaturesTestArea implements ZoneConfigurator {
 		manager.addItem(item);
 
 		Creature creature = new QuestRat(manager.getCreature("rat"));
-		CreatureRespawnPoint point = new CreatureRespawnPoint(zone, 40, 5, creature, 1);
+		CreatureRespawnPoint point = new CreatureRespawnPoint(zone, 40, 5,
+				creature, 1);
 		zone.add(point);
 	}
 
-	private void attackableAnimal(StendhalRPZone zone, Map<String, String> attributes) {
+	private void attackableAnimal(StendhalRPZone zone,
+			Map<String, String> attributes) {
 		Creature creature = new AttackableCreature(manager.getCreature("orc"));
-		CreatureRespawnPoint point = new CreatureRespawnPoint(zone, 4, 56, creature, 1);
+		CreatureRespawnPoint point = new CreatureRespawnPoint(zone, 4, 56,
+				creature, 1);
 		point.setRespawnTime(60 * 60 * 3);
 		zone.add(point);
 

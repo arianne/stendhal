@@ -19,8 +19,9 @@ public class OrCondition extends SpeakerNPC.ChatCondition {
 
 	/**
 	 * Creates a new "or"-condition
-	 *
-	 * @param condition condition which should be or-ed.
+	 * 
+	 * @param condition
+	 *            condition which should be or-ed.
 	 */
 	public OrCondition(SpeakerNPC.ChatCondition... condition) {
 		this.conditions = Arrays.asList(condition);
@@ -49,6 +50,7 @@ public class OrCondition extends SpeakerNPC.ChatCondition {
 
 	@Override
 	public boolean equals(Object obj) {
-		return EqualsBuilder.reflectionEquals(this, obj, false, QuestStartedCondition.class);
+		return EqualsBuilder.reflectionEquals(this, obj, false,
+				QuestStartedCondition.class);
 	}
 }

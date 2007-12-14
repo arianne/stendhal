@@ -23,7 +23,7 @@ import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
 /**
- *
+ * 
  * @author Matthias Totz
  */
 public class DefaultActionManager implements ActionManager {
@@ -48,7 +48,7 @@ public class DefaultActionManager implements ActionManager {
 
 	/**
 	 * returns the name of the slot in which the entity can equip the item.
-	 *
+	 * 
 	 * @return the slot name for the item or null if there is no matching slot
 	 *         in the entity
 	 */

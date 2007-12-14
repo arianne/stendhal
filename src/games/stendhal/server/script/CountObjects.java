@@ -14,7 +14,7 @@ import marauroa.common.game.RPObject;
 
 /**
  * Counts the number of creatures on the world
- *
+ * 
  * @author hendrik
  */
 public class CountObjects extends ScriptImpl {
@@ -23,7 +23,7 @@ public class CountObjects extends ScriptImpl {
 	public void execute(Player admin, List<String> args) {
 		int count = 0;
 		StendhalRPWorld world = StendhalRPWorld.get();
-		for(IRPZone irpZone : world) {
+		for (IRPZone irpZone : world) {
 			StendhalRPZone zone = (StendhalRPZone) irpZone;
 			Iterator<RPObject> itr2 = zone.iterator();
 			while (itr2.hasNext()) {

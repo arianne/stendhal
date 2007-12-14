@@ -39,10 +39,10 @@ public class TilesetAnimationMap {
 
 	/**
 	 * Add a mapping of a tile index to animation frame indexes.
-	 *
+	 * 
 	 * <strong>NOTE: The array of frame indexes/delays passed is not copied, and
 	 * should not be altered after this is called.</strong>
-	 *
+	 * 
 	 * @param index
 	 *            The tile index to map.
 	 * @param frameIndexes
@@ -60,14 +60,14 @@ public class TilesetAnimationMap {
 	 * Add mappings of a tile indexes to animation frame indexes. For each
 	 * frame, a mapping will be created with the remaining indexes as it's
 	 * frames (in order, starting with it's index).
-	 *
+	 * 
 	 * @param index
 	 *            The tile index to map.
 	 * @param frameIndexes
 	 *            The indexes of frame tiles.
 	 * @param frameDelays
 	 *            The frame delays (in ms).
-	 *
+	 * 
 	 * @throws IllegalArgumentException
 	 *             If the number of indexes and delays don't match.
 	 */
@@ -97,12 +97,12 @@ public class TilesetAnimationMap {
 
 	/**
 	 * Get the animated sprite for an indexed tile of a tileset.
-	 *
+	 * 
 	 * @param tileset
 	 *            The tileset to load from.
 	 * @param index
 	 *            The index with-in the tileset.
-	 *
+	 * 
 	 * @return A sprite, or <code>null</code> if no mapped sprite.
 	 */
 	public Sprite getSprite(final Tileset tileset, final int index) {

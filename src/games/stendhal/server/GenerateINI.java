@@ -22,7 +22,7 @@ public class GenerateINI {
 	/**
 	 * reads a String from the input. When no String is choosen the defaultValue
 	 * is used.
-	 *
+	 * 
 	 * @param input
 	 *            the buffered input, usually System.in
 	 * @param defaultValue
@@ -50,7 +50,7 @@ public class GenerateINI {
 	/**
 	 * reads a String from the input. When no String is choosen the errorMessage
 	 * is is displayed and the application is terminated.
-	 *
+	 * 
 	 * @param input
 	 *            the input stream, usually System.in
 	 */
@@ -74,16 +74,17 @@ public class GenerateINI {
 
 	/**
 	 * makes the first letter of the source uppercase
-	 *
+	 * 
 	 * @param source
 	 *            the string
 	 * @return *T*he string, with first letter is upper case.
 	 */
 	public static String uppcaseFirstLetter(String source) {
 		if (source.length() > 0) {
-			return  Character.toUpperCase(source.charAt(0))	+ source.substring(1);
+			return Character.toUpperCase(source.charAt(0))
+					+ source.substring(1);
 		}
-		return  source;
+		return source;
 	}
 
 	private static String gameName;
@@ -127,8 +128,7 @@ public class GenerateINI {
 		System.out.println("Using \"" + databasePassword
 				+ "\" as database user password\n");
 
-		System.out
-				.println("In order to make efective these options please run:");
+		System.out.println("In order to make efective these options please run:");
 		System.out.println("# mysql");
 		System.out.println("  create database " + databaseName + ";");
 		System.out.println("  grant all on " + databaseName + ".* to "
@@ -158,8 +158,7 @@ public class GenerateINI {
 	}
 
 	private static String getRSAKeyBits() {
-		System.out
-				.print("Write size for the RSA key of the server. Be aware that a key bigger than 1024 could be very long to create [512]: ");
+		System.out.print("Write size for the RSA key of the server. Be aware that a key bigger than 1024 could be very long to create [512]: ");
 		String keySize = getStringWithDefault(in, "512");
 		return keySize;
 	}
@@ -217,8 +216,7 @@ public class GenerateINI {
 		out.println();
 		out.println("# Extensions configured on the server. Enable at will.");
 		out.println("#server_extension=groovy,http");
-		out
-				.println("#groovy=games.stendhal.server.scripting.StendhalGroovyRunner");
+		out.println("#groovy=games.stendhal.server.scripting.StendhalGroovyRunner");
 		out.println("#http=games.stendhal.server.StendhalHttpServer");
 		out.println("#http.port=8080");
 		out.println();

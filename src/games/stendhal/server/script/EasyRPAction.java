@@ -10,9 +10,9 @@ import marauroa.common.game.RPAction;
 
 /**
  * For testing purposes
- *
+ * 
  * /script EasyRPAction.class type moveto x 1 y 1
- *
+ * 
  */
 
 public class EasyRPAction extends ScriptImpl {

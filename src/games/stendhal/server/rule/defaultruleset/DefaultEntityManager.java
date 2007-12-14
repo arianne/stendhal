@@ -29,14 +29,13 @@ import org.apache.log4j.Logger;
 
 /**
  * entity manager for the default ruleset
- *
+ * 
  * @author Matthias Totz
  */
 public class DefaultEntityManager implements EntityManager {
 
 	/** the logger instance. */
-	private static final Logger logger = Logger
-			.getLogger(DefaultEntityManager.class);
+	private static final Logger logger = Logger.getLogger(DefaultEntityManager.class);
 
 	/** the singleton instance, lazy initialisation */
 	private static DefaultEntityManager manager;
@@ -65,7 +64,8 @@ public class DefaultEntityManager implements EntityManager {
 		createdItem = new HashMap<String, Item>();
 
 		try {
-			ItemGroupsXMLLoader loader = new ItemGroupsXMLLoader(new URI("/data/conf/items.xml"));
+			ItemGroupsXMLLoader loader = new ItemGroupsXMLLoader(new URI(
+					"/data/conf/items.xml"));
 			List<DefaultItem> items = loader.load();
 
 			for (DefaultItem item : items) {
@@ -87,8 +87,7 @@ public class DefaultEntityManager implements EntityManager {
 
 		try {
 			CreaturesXMLLoader loader = CreaturesXMLLoader.get();
-			List<DefaultCreature> creatures = loader
-					.load("data/conf/creatures.xml");
+			List<DefaultCreature> creatures = loader.load("data/conf/creatures.xml");
 
 			for (DefaultCreature creature : creatures) {
 				String id = creature.getTileId();
@@ -169,7 +168,7 @@ public class DefaultEntityManager implements EntityManager {
 
 	/**
 	 * returns the entity or <code>null</code> if the id is unknown
-	 *
+	 * 
 	 * @throws NullPointerException
 	 *             if clazz is <code>null</code>
 	 */
@@ -208,7 +207,7 @@ public class DefaultEntityManager implements EntityManager {
 
 	/**
 	 * returns the creature or <code>null</code> if the clazz is unknown
-	 *
+	 * 
 	 * @throws NullPointerException
 	 *             if clazz is <code>null</code>
 	 */
@@ -230,8 +229,9 @@ public class DefaultEntityManager implements EntityManager {
 	}
 
 	/**
-	 * returns the DefaultCreature or <code>null</code> if the clazz is unknown
-	 *
+	 * returns the DefaultCreature or <code>null</code> if the clazz is
+	 * unknown
+	 * 
 	 * @throws NullPointerException
 	 *             if clazz is <code>null</code>
 	 */
@@ -272,7 +272,7 @@ public class DefaultEntityManager implements EntityManager {
 
 	/**
 	 * returns the item or <code>null</code> if the clazz is unknown
-	 *
+	 * 
 	 * @throws NullPointerException
 	 *             if clazz is <code>null</code>
 	 */

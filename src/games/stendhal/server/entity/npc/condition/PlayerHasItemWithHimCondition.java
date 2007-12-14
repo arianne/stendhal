@@ -17,8 +17,9 @@ public class PlayerHasItemWithHimCondition extends SpeakerNPC.ChatCondition {
 
 	/**
 	 * Creates a new PlayerHasItemWithHim
-	 *
-	 * @param itemName name of item
+	 * 
+	 * @param itemName
+	 *            name of item
 	 */
 	public PlayerHasItemWithHimCondition(String itemName) {
 		this.itemName = itemName;
@@ -27,15 +28,16 @@ public class PlayerHasItemWithHimCondition extends SpeakerNPC.ChatCondition {
 
 	/**
 	 * Creates a new PlayerHasItemWithHim
-	 *
-	 * @param itemName name of item
-	 * @param amount for StackableItems
+	 * 
+	 * @param itemName
+	 *            name of item
+	 * @param amount
+	 *            for StackableItems
 	 */
 	public PlayerHasItemWithHimCondition(String itemName, int amount) {
 		this.itemName = itemName;
 		this.amount = amount;
 	}
-
 
 	@Override
 	public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
@@ -54,6 +56,7 @@ public class PlayerHasItemWithHimCondition extends SpeakerNPC.ChatCondition {
 
 	@Override
 	public boolean equals(Object obj) {
-		return EqualsBuilder.reflectionEquals(this, obj, false, QuestStartedCondition.class);
+		return EqualsBuilder.reflectionEquals(this, obj, false,
+				QuestStartedCondition.class);
 	}
 }

@@ -10,7 +10,6 @@ import games.stendhal.server.entity.slot.EntitySlot;
 import java.util.Iterator;
 import java.util.List;
 
-
 import org.apache.log4j.Logger;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
@@ -42,8 +41,8 @@ class DestinationObject extends MoveableObject {
 		if (action.has(EquipActionConsts.TARGET_OBJECT)
 				&& action.has(EquipActionConsts.TARGET_SLOT)) {
 			// get base item and slot
-			parent = EquipUtil.getEntityFromId(player, action
-					.getInt(EquipActionConsts.TARGET_OBJECT));
+			parent = EquipUtil.getEntityFromId(player,
+					action.getInt(EquipActionConsts.TARGET_OBJECT));
 
 			// check slot
 			if (parent == null) {
@@ -91,8 +90,7 @@ class DestinationObject extends MoveableObject {
 		if (parent != null) {
 			RPSlot rpslot = parent.getSlot(slot);
 			if (!(rpslot instanceof EntitySlot)
-					|| (!((EntitySlot) rpslot)
-							.isReachableForTakingThingsOutOfBy(player))) {
+					|| (!((EntitySlot) rpslot).isReachableForTakingThingsOutOfBy(player))) {
 				logger.warn("Unreachable slot");
 				return false;
 			}
@@ -134,8 +132,8 @@ class DestinationObject extends MoveableObject {
 			}
 
 			/*
-			 * TODO: Broken. Marauroa 2.0 improved all the slot handling. TODO: XXX:
-			 * Recode.
+			 * TODO: Broken. Marauroa 2.0 improved all the slot handling. TODO:
+			 * XXX: Recode.
 			 */
 			// // not very accurate...the containment level of this slot
 			// int depth = 0;
@@ -157,13 +155,16 @@ class DestinationObject extends MoveableObject {
 			logger.debug("entity: " + entity + " zone: " + zone);
 			// check if the destination is free
 			if ((zone != null) && zone.simpleCollides(entity, x, y)) {
-				logger.warn("object " + entity + " collides with " + x + "x" + y);
+				logger.warn("object " + entity + " collides with " + x + "x"
+						+ y);
 				return false;
 			}
 
 			// and in reach
-			if (!entity.isContained() && (entity.squaredDistance(x, y) > (8 * 8))) {
-				logger.warn("object " + entity + " is too far away from " + x + "," + y);
+			if (!entity.isContained()
+					&& (entity.squaredDistance(x, y) > (8 * 8))) {
+				logger.warn("object " + entity + " is too far away from " + x
+						+ "," + y);
 				return false;
 			}
 
@@ -195,7 +196,7 @@ class DestinationObject extends MoveableObject {
 	 * add the entity to the world (specified by the action during constuction).
 	 * Note that you should call isValid(), preCheck(..) and checkDistance(..)
 	 * before adding an item to the world
-	 *
+	 * 
 	 * @return true when the item is added, false otherwise
 	 */
 	public boolean addToWorld(Entity entity, Player player) {

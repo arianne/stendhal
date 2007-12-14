@@ -23,7 +23,6 @@ import java.util.List;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
 
-
 import org.apache.log4j.Logger;
 
 /**
@@ -31,7 +30,7 @@ import org.apache.log4j.Logger;
  * and cycle sounds. Loop sounds play continuously without interruption, cycle
  * sounds work as described in class SoundCycle. The ambient sound can be played
  * global or fixed to a map location.
- *
+ * 
  * @author Jane Hunt
  */
 class AmbientSound {
@@ -52,7 +51,7 @@ class AmbientSound {
 	private float loudnessDB;
 
 	/**
-	 * true if AmbientSound is playing
+	 * true if AmbientSound is playing.
 	 */
 	private boolean isPlaying;
 
@@ -81,8 +80,8 @@ class AmbientSound {
 		private Clip clip;
 
 		/**
-		 * constructor
-		 *
+		 * constructor.
+		 * 
 		 * @param sound
 		 *            the sounds name
 		 * @param volume
@@ -99,7 +98,7 @@ class AmbientSound {
 		/**
 		 * copies LoopSoundInfo with <code>clip</code> set to <b>null</b>
 		 * (clip not playing).
-		 *
+		 * 
 		 * @return LoopsoundInfo copy
 		 */
 		@Override
@@ -118,7 +117,7 @@ class AmbientSound {
 		}
 
 		/**
-		 * stops the current clip and sets it to null
+		 * stops the current clip and sets it to null.
 		 */
 		public synchronized void stopClip() {
 			if (clip != null) {
@@ -130,9 +129,9 @@ class AmbientSound {
 
 	/**
 	 * Soundstarter is the inner class of Ambientsound that actually starts
-	 * playing the current clip
-	 *
-	 *
+	 * playing the current clip.
+	 * 
+	 * 
 	 */
 	private class SoundStarter extends Thread {
 
@@ -142,7 +141,7 @@ class AmbientSound {
 
 		/**
 		 * Starts a looping sound.
-		 *
+		 * 
 		 * @param loopInfo
 		 * @param correctionDB
 		 */
@@ -153,7 +152,7 @@ class AmbientSound {
 
 		/*
 		 * (non-Javadoc)
-		 *
+		 * 
 		 * @see java.lang.Thread#run()
 		 */
 		@Override
@@ -180,9 +179,10 @@ class AmbientSound {
 				soundInfo.stopClip();
 
 				// start playing
-				soundInfo.clip = libClip.getAudioClip(SoundSystem.get()
-						.getVolume(), loudnessDB + soundInfo.loudnessDB
-						+ correctionDB, getVolumeDelta());
+				soundInfo.clip = libClip.getAudioClip(
+						SoundSystem.get().getVolume(), loudnessDB
+								+ soundInfo.loudnessDB + correctionDB,
+						getVolumeDelta());
 				if (soundInfo.clip != null) {
 					soundInfo.clip.loop(Clip.LOOP_CONTINUOUSLY);
 				}
@@ -195,13 +195,13 @@ class AmbientSound {
 	/**
 	 * Creates an unlocalized ambient sound (plays everywhere) with the given
 	 * overall volume setting.
-	 *
+	 * 
 	 * @param name
 	 *            String representing the name of the Sound
-	 *
+	 * 
 	 * @param volume
 	 *            int 0..100 loudness of ambient sound in total
-	 *
+	 * 
 	 */
 	public AmbientSound(String name, int volume) {
 		this(name, null, 0, volume);
@@ -210,7 +210,7 @@ class AmbientSound {
 	/**
 	 * Creates a map-localized ambient sound with the given overall volume
 	 * setting.
-	 *
+	 * 
 	 * @param name
 	 *            ambient sound name
 	 * @param point
@@ -258,7 +258,7 @@ class AmbientSound {
 	 * sound composition taken from the parameter ambient sound. (The paradigm
 	 * presets content equivalent to <code>addCycle()</code> and
 	 * <code>addLoop()</code> calls.)
-	 *
+	 * 
 	 * @param sound
 	 *            <code>AmbientSound</code> as paradigm for sound composition
 	 * @param name
@@ -296,7 +296,7 @@ class AmbientSound {
 
 	/**
 	 * This adds a loop sound to the ambient sound definition.
-	 *
+	 * 
 	 * @param sound
 	 *            library sound name
 	 * @param volume
@@ -340,9 +340,8 @@ class AmbientSound {
 
 	private boolean canPlay() {
 		return (soundPos == null)
-				|| (HearingArea.contains(soundPos.getX(), soundPos.getY()) && soundObject
-						.getAudibleArea().contains(User.get().getX(),
-								User.get().getY()));
+				|| (HearingArea.contains(soundPos.getX(), soundPos.getY()) && soundObject.getAudibleArea().contains(
+						User.get().getX(), User.get().getY()));
 	}
 
 	/**
@@ -444,7 +443,7 @@ class AmbientSound {
 	 * Returns the sound volume for this ambient sound relative to the current
 	 * player position (fog correction value). Returns 0.0 if this sound is not
 	 * map-localized.
-	 *
+	 * 
 	 * @return float dB correction of loudness
 	 */
 	private float getPlayerVolume() {
@@ -465,8 +464,7 @@ class AmbientSound {
 		// determine sound volume cutoff due to distance (fog value)
 		distance = soundPos.distance(User.get().getX(), User.get().getY());
 		maxDist = HearingArea.HEARINGDIST;
-		fogVolume = (int) Math
-				.max(0, (95 * (maxDist - distance) / maxDist + 5));
+		fogVolume = (int) Math.max(0, (95 * (maxDist - distance) / maxDist + 5));
 		return DBValues.getDBValue(fogVolume);
 
 	} // getPlayerVolume
@@ -514,8 +512,7 @@ class AmbientSound {
 		synchronized (loopSounds) {
 			for (LoopSoundInfo info : loopSounds) {
 				if (info.clip != null) {
-					volCtrl = (FloatControl) info.clip
-							.getControl(FloatControl.Type.MASTER_GAIN);
+					volCtrl = (FloatControl) info.clip.getControl(FloatControl.Type.MASTER_GAIN);
 					volCtrl.setValue(SoundSystem.get().getVolumeDelta()
 							+ loudnessDB + info.loudnessDB + fogDB);
 				}

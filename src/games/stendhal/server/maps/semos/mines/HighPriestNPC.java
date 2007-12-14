@@ -12,7 +12,7 @@ import java.util.Map;
 public class HighPriestNPC implements ZoneConfigurator {
 	/**
 	 * Configure a zone.
-	 *
+	 * 
 	 * @param zone
 	 *            The zone to be configured.
 	 * @param attributes
@@ -36,7 +36,8 @@ public class HighPriestNPC implements ZoneConfigurator {
 			protected void createDialog() {
 				addGreeting(null, new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+					public void fire(Player player, Sentence sentence,
+							SpeakerNPC engine) {
 						String reply = "I am summoning a barrier to keep the #balrog away.";
 
 						if (player.getLevel() < 150) {

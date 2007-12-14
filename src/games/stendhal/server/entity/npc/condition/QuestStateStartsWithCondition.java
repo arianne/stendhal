@@ -17,9 +17,11 @@ public class QuestStateStartsWithCondition extends SpeakerNPC.ChatCondition {
 
 	/**
 	 * Creates a new QuestStateStartsWithCondition
-	 *
-	 * @param questname name of quest-slot
-	 * @param state start of state-string
+	 * 
+	 * @param questname
+	 *            name of quest-slot
+	 * @param state
+	 *            start of state-string
 	 */
 	public QuestStateStartsWithCondition(String questname, String state) {
 		this.questname = questname;
@@ -28,14 +30,14 @@ public class QuestStateStartsWithCondition extends SpeakerNPC.ChatCondition {
 
 	@Override
 	public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
-		return (player.hasQuest(questname) && player.getQuest(questname).startsWith(state));
+		return (player.hasQuest(questname) && player.getQuest(questname).startsWith(
+				state));
 	}
 
 	@Override
 	public String toString() {
 		return "QuestStateStartsWith <" + questname + "," + state + ">";
 	}
-
 
 	@Override
 	public int hashCode() {
@@ -44,6 +46,7 @@ public class QuestStateStartsWithCondition extends SpeakerNPC.ChatCondition {
 
 	@Override
 	public boolean equals(Object obj) {
-		return EqualsBuilder.reflectionEquals(this, obj, false, QuestStartedCondition.class);
+		return EqualsBuilder.reflectionEquals(this, obj, false,
+				QuestStartedCondition.class);
 	}
 }

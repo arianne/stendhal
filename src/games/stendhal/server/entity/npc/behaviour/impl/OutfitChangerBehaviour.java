@@ -29,10 +29,10 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Represents the behaviour of a NPC who is able to sell outfits
- * to a player.
+ * Represents the behaviour of a NPC who is able to sell outfits to a player.
  */
-public class OutfitChangerBehaviour extends MerchantBehaviour implements  LoginListener {
+public class OutfitChangerBehaviour extends MerchantBehaviour implements
+		LoginListener {
 
 	public static final int NEVER_WEARS_OFF = -1;
 
@@ -53,30 +53,24 @@ public class OutfitChangerBehaviour extends MerchantBehaviour implements  LoginL
 
 		// swimsuits for men
 		outfitTypes.put("trunks", Arrays.asList(
-				new Outfit(null, null, 95, null),
-				new Outfit(null, null, 96, null),
-				new Outfit(null, null, 97, null),
-		        new Outfit(null, null, 98, null)));
+				new Outfit(null, null, 95, null), new Outfit(null, null, 96,
+						null), new Outfit(null, null, 97, null), new Outfit(
+						null, null, 98, null)));
 
 		// swimsuits for women
-		outfitTypes.put("swimsuit", Arrays.asList(
-				new Outfit(null, null, 91, null),
-				new Outfit(null, null, 92, null),
-				new Outfit(null, null, 93, null),
-		        new Outfit(null, null, 94, null)));
+		outfitTypes.put("swimsuit", Arrays.asList(new Outfit(null, null, 91,
+				null), new Outfit(null, null, 92, null), new Outfit(null, null,
+				93, null), new Outfit(null, null, 94, null)));
 
-		outfitTypes.put("mask", Arrays.asList(
-				new Outfit(0, 80, null, null),
-				new Outfit(0, 81, null, null),
-				new Outfit(0, 82, null, null),
-				new Outfit(0, 83, null, null),
-				new Outfit(0, 84, null, null)));
+		outfitTypes.put("mask", Arrays.asList(new Outfit(0, 80, null, null),
+				new Outfit(0, 81, null, null), new Outfit(0, 82, null, null),
+				new Outfit(0, 83, null, null), new Outfit(0, 84, null, null)));
 
 		// wedding dress for brides
 		// it seems this must be an array as list even though it's only one item
 		outfitTypes.put("gown", Arrays.asList(new Outfit(null, null, 88, null)));
 
-//		// wedding suit for grooms
+		// // wedding suit for grooms
 		// it seems this must be an array as list even though it's only one item
 		outfitTypes.put("suit", Arrays.asList(new Outfit(null, null, 87, null)));
 	}
@@ -84,8 +78,9 @@ public class OutfitChangerBehaviour extends MerchantBehaviour implements  LoginL
 	/**
 	 * Creates a new OutfitChangerBehaviour for outfits that never wear off
 	 * automatically.
-	 *
-	 * @param priceList list of outfit types and their prices
+	 * 
+	 * @param priceList
+	 *            list of outfit types and their prices
 	 */
 	public OutfitChangerBehaviour(Map<String, Integer> priceList) {
 		this(priceList, NEVER_WEARS_OFF, null);
@@ -94,16 +89,18 @@ public class OutfitChangerBehaviour extends MerchantBehaviour implements  LoginL
 	/**
 	 * Creates a new OutfitChangerBehaviour for outfits that wear off
 	 * automatically after some time.
-	 *
-	 * @param priceList list of outfit types and their prices
-	 * @param endurance the time (in turns) the outfit will stay, or
-	 * 					NEVER_WEARS_OFF if the outfit should never disappear
-	 * 				    automatically.
-	 * @param wearOffMessage the message that the player should receive after
-	 * 					the outfit has worn off, or null if no message should
-	 * 					be sent.
+	 * 
+	 * @param priceList
+	 *            list of outfit types and their prices
+	 * @param endurance
+	 *            the time (in turns) the outfit will stay, or NEVER_WEARS_OFF
+	 *            if the outfit should never disappear automatically.
+	 * @param wearOffMessage
+	 *            the message that the player should receive after the outfit
+	 *            has worn off, or null if no message should be sent.
 	 */
-	public OutfitChangerBehaviour(Map<String, Integer> priceList, int endurance, String wearOffMessage) {
+	public OutfitChangerBehaviour(Map<String, Integer> priceList,
+			int endurance, String wearOffMessage) {
 		super(priceList);
 		this.endurance = endurance;
 		this.wearOffMessage = wearOffMessage;
@@ -114,13 +111,15 @@ public class OutfitChangerBehaviour extends MerchantBehaviour implements  LoginL
 	}
 
 	/**
-	 * Transacts the sale that has been agreed on earlier via
-	 * setChosenItem() and setAmount().
-	 *
-	 * @param seller The NPC who sells
-	 * @param player The player who buys
-	 * @return true iff the transaction was successful, that is when the
-	 *              player was able to equip the item(s).
+	 * Transacts the sale that has been agreed on earlier via setChosenItem()
+	 * and setAmount().
+	 * 
+	 * @param seller
+	 *            The NPC who sells
+	 * @param player
+	 *            The player who buys
+	 * @return true iff the transaction was successful, that is when the player
+	 *         was able to equip the item(s).
 	 */
 	@Override
 	public boolean transactAgreedDeal(SpeakerNPC seller, Player player) {
@@ -134,13 +133,16 @@ public class OutfitChangerBehaviour extends MerchantBehaviour implements  LoginL
 			return false;
 		}
 	}
+
 	class OutwearClothes implements TurnListener {
 		WeakReference<Player> ref;
 		String name;
+
 		public OutwearClothes(Player player) {
 			ref = new WeakReference<Player>(player);
 			name = player.getName();
 		}
+
 		@Override
 		public boolean equals(Object obj) {
 			if (obj instanceof OutwearClothes) {
@@ -151,6 +153,7 @@ public class OutfitChangerBehaviour extends MerchantBehaviour implements  LoginL
 			}
 
 		}
+
 		@Override
 		public int hashCode() {
 			Player player = ref.get();
@@ -174,14 +177,15 @@ public class OutfitChangerBehaviour extends MerchantBehaviour implements  LoginL
 			}
 		}
 
-
 	}
+
 	/**
-	 * Tries to get back the bought/lent outfit and give the player
-	 * his original outfit back.
-	 * This will only be successful if the player is wearing an outfit
-	 * he got here, and if the original outfit has been stored.
-	 * @param player The player.
+	 * Tries to get back the bought/lent outfit and give the player his original
+	 * outfit back. This will only be successful if the player is wearing an
+	 * outfit he got here, and if the original outfit has been stored.
+	 * 
+	 * @param player
+	 *            The player.
 	 */
 	public void putOnOutfit(Player player, String outfitType) {
 		List<Outfit> possibleNewOutfits = outfitTypes.get(outfitType);
@@ -193,15 +197,17 @@ public class OutfitChangerBehaviour extends MerchantBehaviour implements  LoginL
 			// another temporary outfit.
 			TurnNotifier.get().dontNotify(new OutwearClothes(player));
 			// make the costume disappear after some time
-			TurnNotifier.get().notifyInTurns(endurance, new OutwearClothes(player));
+			TurnNotifier.get().notifyInTurns(endurance,
+					new OutwearClothes(player));
 		}
 	}
 
 	/**
-	 * Checks whether or not the given player is currently
-	 * wearing an outfit that may have been bought/lent from an
-	 * NPC with this behaviour.
-	 * @param player The player.
+	 * Checks whether or not the given player is currently wearing an outfit
+	 * that may have been bought/lent from an NPC with this behaviour.
+	 * 
+	 * @param player
+	 *            The player.
 	 * @return true iff the player wears an outfit from here.
 	 */
 	public boolean wearsOutfitFromHere(Player player) {
@@ -219,11 +225,12 @@ public class OutfitChangerBehaviour extends MerchantBehaviour implements  LoginL
 	}
 
 	/**
-	 * Tries to get back the bought/lent outfit and give the player
-	 * his original outfit back.
-	 * This will only be successful if the player is wearing an outfit
-	 * he got here, and if the original outfit has been stored.
-	 * @param player The player.
+	 * Tries to get back the bought/lent outfit and give the player his original
+	 * outfit back. This will only be successful if the player is wearing an
+	 * outfit he got here, and if the original outfit has been stored.
+	 * 
+	 * @param player
+	 *            The player.
 	 * @return true iff returning was successful.
 	 */
 	public boolean returnToOriginalOutfit(Player player) {
@@ -233,8 +240,9 @@ public class OutfitChangerBehaviour extends MerchantBehaviour implements  LoginL
 		return false;
 	}
 
-	/** Puts the outfit off, but only if the player hasn't taken
-	 * it off himself already.
+	/**
+	 * Puts the outfit off, but only if the player hasn't taken it off himself
+	 * already.
 	 */
 	protected void onWornOff(Player player) {
 		if (wearsOutfitFromHere(player)) {
@@ -242,7 +250,6 @@ public class OutfitChangerBehaviour extends MerchantBehaviour implements  LoginL
 			returnToOriginalOutfit(player);
 		}
 	}
-
 
 	public void onLoggedIn(Player player) {
 		if (namesOfPlayersWithWornOffOutfits.contains(player.getName())) {

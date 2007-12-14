@@ -8,12 +8,15 @@ import java.util.TreeMap;
 
 /**
  * A map which assigns a unique id to every entry
- *
+ * 
  * @author hendrik
- * @param <K> key type
- * @param <V> value type
+ * @param <K>
+ *            key type
+ * @param <V>
+ *            value type
  */
-public class CountingMap<V> implements Serializable, Iterable<Map.Entry<String, V>> {
+public class CountingMap<V> implements Serializable,
+		Iterable<Map.Entry<String, V>> {
 
 	private static final long serialVersionUID = -4142274943695729582L;
 	private Map<V, String> map = new HashMap<V, String>();
@@ -23,8 +26,9 @@ public class CountingMap<V> implements Serializable, Iterable<Map.Entry<String, 
 
 	/**
 	 * creates a new counting map
-	 *
-	 * @param prefix prefix
+	 * 
+	 * @param prefix
+	 *            prefix
 	 */
 	public CountingMap(String prefix) {
 		this.prefix = prefix;
@@ -32,8 +36,9 @@ public class CountingMap<V> implements Serializable, Iterable<Map.Entry<String, 
 
 	/**
 	 * adds a new entry to the map unless it is already part of it
-	 *
-	 * @param value entry
+	 * 
+	 * @param value
+	 *            entry
 	 * @return key
 	 */
 	public String add(V value) {

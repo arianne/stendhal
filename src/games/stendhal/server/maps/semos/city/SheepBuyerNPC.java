@@ -1,4 +1,4 @@
-	package games.stendhal.server.maps.semos.city;
+package games.stendhal.server.maps.semos.city;
 
 import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -24,9 +24,10 @@ public class SheepBuyerNPC extends SpeakerNPCFactory {
 			}
 
 			private int getValue(Sheep sheep) {
-				return Math.round(getUnitPrice(chosenItem) * ((float) sheep.getWeight() / (float) sheep.MAX_WEIGHT));
+				return Math.round(getUnitPrice(chosenItem)
+						* ((float) sheep.getWeight() / (float) sheep.MAX_WEIGHT));
 			}
-			
+
 			@Override
 			public int getCharge(Player player) {
 				if (player.hasSheep()) {
@@ -36,7 +37,7 @@ public class SheepBuyerNPC extends SpeakerNPCFactory {
 					return 0;
 				}
 			}
-			
+
 			@Override
 			public boolean transactAgreedDeal(SpeakerNPC seller, Player player) {
 				// amount is currently ignored.
@@ -60,7 +61,8 @@ public class SheepBuyerNPC extends SpeakerNPCFactory {
 						return true;
 					}
 				} else {
-					seller.say("You don't have any sheep, " + player.getTitle() + "! What are you trying to pull?");
+					seller.say("You don't have any sheep, " + player.getTitle()
+							+ "! What are you trying to pull?");
 				}
 
 				return false;

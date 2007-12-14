@@ -12,17 +12,20 @@ import java.util.Map;
 
 /**
  * Configure Wofol Blacksmith (-1_semos_mine_nw).
- *
+ * 
  * @author kymara
  */
 public class BlacksmithNPC implements ZoneConfigurator {
 	/**
 	 * Configure a zone.
-	 *
-	 * @param	zone		The zone to be configured.
-	 * @param	attributes	Configuration attributes.
+	 * 
+	 * @param zone
+	 *            The zone to be configured.
+	 * @param attributes
+	 *            Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone,
+			Map<String, String> attributes) {
 		buildBlacksmith(zone);
 	}
 
@@ -43,14 +46,19 @@ public class BlacksmithNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-				//addGreeting("How did you get down here? I usually only see #kobolds.");
+				// addGreeting("How did you get down here? I usually only see
+				// #kobolds.");
 				addJob("I am a blacksmith. I was a mountain dwarf but I left that lot behind me. Good riddance, I say!");
 				addHelp("I've heard rumours of a fearsome creature living below these mines, and his small minions, evil imps. I wouldn't go down there even to look, if I were you. It's very dangerous.");
 				addOffer("#Wrvil is the one who runs a shop, not me.");
-				addReply("kobolds", "You know, those odd furry creatures. Don't get much conversation out of any except #Wrvil.");
-				addReply("Wrvil", "He runs a trading business not far from here. I used to make the odd item for him, but don't have any energy left.");
+				addReply(
+						"kobolds",
+						"You know, those odd furry creatures. Don't get much conversation out of any except #Wrvil.");
+				addReply(
+						"Wrvil",
+						"He runs a trading business not far from here. I used to make the odd item for him, but don't have any energy left.");
 				addGoodbye();
-			} //remaining behaviour defined in maps.quests.ObsidianKnife
+			} // remaining behaviour defined in maps.quests.ObsidianKnife
 		};
 
 		dwarf.setDescription("You see Alrak, a reclusive dwarf smith.");

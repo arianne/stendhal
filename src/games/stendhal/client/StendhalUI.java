@@ -65,11 +65,11 @@ public abstract class StendhalUI {
 	public abstract void addEventLine(String header, String text,
 			NotificationType type);
 
-        /**
-         * Adds a Swing component to the view
-         */
-        public abstract void addWindow(ManagedWindow imd);
-        
+	/**
+	 * Adds a Swing component to the view
+	 */
+	public abstract void addWindow(ManagedWindow imd);
+
 	/**
 	 * Initiate outfit selection by the user.
 	 */
@@ -152,12 +152,13 @@ public abstract class StendhalUI {
 
 	/**
 	 * Set the user's positiion.
-	 *
-	 * @param	x		The user's X coordinate.
-	 * @param	y		The user's Y coordinate.
+	 * 
+	 * @param x
+	 *            The user's X coordinate.
+	 * @param y
+	 *            The user's Y coordinate.
 	 */
 	public abstract void setPosition(double x, double y);
-
 
 	//
 	// <StendhalGUI>

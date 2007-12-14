@@ -15,10 +15,12 @@ public class DamagingAreaFactory extends OccupantAreaFactory {
 
 	/**
 	 * Extract the damage amount from a context.
-	 *
-	 * @param	ctx		The configuration context.
-	 * @return	The damage amount.
-	 * @throws	IllegalArgumentException If the attribute is missing.
+	 * 
+	 * @param ctx
+	 *            The configuration context.
+	 * @return The damage amount.
+	 * @throws IllegalArgumentException
+	 *             If the attribute is missing.
 	 */
 	protected int getDamage(ConfigurableFactoryContext ctx) {
 		return ctx.getRequiredInt("damage");
@@ -26,18 +28,18 @@ public class DamagingAreaFactory extends OccupantAreaFactory {
 
 	/**
 	 * Extract the moving damage probability (as percent) from a context.
-	 *
-	 * @param	ctx		The configuration context.
-	 *
-	 * @return	The damage probability (0.0 - 1.0).
-	 *
-	 * @throws	IllegalArgumentException
-	 *				If the attribute is invalid.
+	 * 
+	 * @param ctx
+	 *            The configuration context.
+	 * 
+	 * @return The damage probability (0.0 - 1.0).
+	 * 
+	 * @throws IllegalArgumentException
+	 *             If the attribute is invalid.
 	 */
 	protected double getProbability(ConfigurableFactoryContext ctx) {
 		return ctx.getInt("probability", 0) / 100.0;
 	}
-
 
 	//
 	// OccupantAreaFactory
@@ -45,13 +47,16 @@ public class DamagingAreaFactory extends OccupantAreaFactory {
 
 	/**
 	 * Creates the OccupantArea.
-	 *
-	 * @param ctx	The configuration context.
+	 * 
+	 * @param ctx
+	 *            The configuration context.
 	 * @return An OccupantArea.
-	 * @throws IllegalArgumentException in case of an invalid configuration
+	 * @throws IllegalArgumentException
+	 *             in case of an invalid configuration
 	 */
 	@Override
 	protected OccupantArea createArea(ConfigurableFactoryContext ctx) {
-		return new DamagingArea(getWidth(ctx), getHeight(ctx), getInterval(ctx), getDamage(ctx), getProbability(ctx));
+		return new DamagingArea(getWidth(ctx), getHeight(ctx),
+				getInterval(ctx), getDamage(ctx), getProbability(ctx));
 	}
 }

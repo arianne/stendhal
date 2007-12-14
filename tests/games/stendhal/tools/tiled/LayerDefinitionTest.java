@@ -3,9 +3,6 @@ package games.stendhal.tools.tiled;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
-import games.stendhal.tools.tiled.LayerDefinition;
-import games.stendhal.tools.tiled.StendhalMapStructure;
-import games.stendhal.tools.tiled.TileSetDefinition;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -18,7 +15,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class LayerDefinitionTest {
-	StendhalMapStructure map;
+	private StendhalMapStructure map;
 
 	@Before
 	public void setUp() {
@@ -61,14 +58,14 @@ public class LayerDefinitionTest {
 		int tileid = layer.getTileAt(10, 20);
 		assertEquals(1, tileid);
 
-		assertEquals("source1", layer.getTilesetFor(layer.getTileAt(10, 20))
-				.getSource());
-		assertEquals("source2", layer.getTilesetFor(layer.getTileAt(19, 7))
-				.getSource());
-		assertEquals("source4", layer.getTilesetFor(layer.getTileAt(11, 2))
-				.getSource());
-		assertEquals("source3", layer.getTilesetFor(layer.getTileAt(15, 21))
-				.getSource());
+		assertEquals("source1",
+				layer.getTilesetFor(layer.getTileAt(10, 20)).getSource());
+		assertEquals("source2",
+				layer.getTilesetFor(layer.getTileAt(19, 7)).getSource());
+		assertEquals("source4",
+				layer.getTilesetFor(layer.getTileAt(11, 2)).getSource());
+		assertEquals("source3",
+				layer.getTilesetFor(layer.getTileAt(15, 21)).getSource());
 
 		assertEquals(0, layer.getTileAt(57, 34));
 		assertNull(layer.getTilesetFor(layer.getTileAt(57, 34)));
@@ -87,8 +84,8 @@ public class LayerDefinitionTest {
 		ByteArrayInputStream sarray = new ByteArrayInputStream(serialized);
 		InputSerializer in = new InputSerializer(sarray);
 
-		LayerDefinition serializedLayer = (LayerDefinition) in
-				.readObject(new LayerDefinition(0, 0));
+		LayerDefinition serializedLayer = (LayerDefinition) in.readObject(new LayerDefinition(
+				0, 0));
 
 		assertEquals(layer.getName(), serializedLayer.getName());
 		assertEquals(layer.getWidth(), serializedLayer.getWidth());

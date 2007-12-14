@@ -21,22 +21,22 @@ import marauroa.common.game.RPClass;
 /**
  * A well source is a spot where a player can make a wish to gain an item. He
  * needs time and luck.
- *
- * Wishing takes 10 seconds; during this time, the player keep standing next
- * to the well source. At every well are two sources next to each other, so
- * the player can actually make 2 wishes at once.
- *
+ * 
+ * Wishing takes 10 seconds; during this time, the player keep standing next to
+ * the well source. At every well are two sources next to each other, so the
+ * player can actually make 2 wishes at once.
+ * 
  * @author kymara (based on FishSource by daniel)
- *
+ * 
  */
 public class WellSource extends PlayerActivityEntity {
 	/**
 	 * The list of possible rewards.
 	 */
-	private static final String[] items = {
-		"money", "wood", "iron_ore", "gold_nugget", "potion",
-		"home_scroll", "greater_potion", "sapphire", "carbuncle",
-		"horned_golden_helmet", "dark_dagger", "present" };
+	private static final String[] items = { "money", "wood", "iron_ore",
+			"gold_nugget", "potion", "home_scroll", "greater_potion",
+			"sapphire", "carbuncle", "horned_golden_helmet", "dark_dagger",
+			"present" };
 
 	/**
 	 * The chance that wishing is successful.
@@ -44,11 +44,10 @@ public class WellSource extends PlayerActivityEntity {
 	private static final double FINDING_PROBABILITY = 0.05;
 
 	/**
-	 * How long it takes to wish at a well (in seconds).
-	 * TODO: randomize this number a bit.
+	 * How long it takes to wish at a well (in seconds). TODO: randomize this
+	 * number a bit.
 	 */
 	private static final int DURATION = 10;
-
 
 	/**
 	 * Create a wishing well source.
@@ -61,7 +60,6 @@ public class WellSource extends PlayerActivityEntity {
 		setResistance(0);
 	}
 
-
 	//
 	// WellSource
 	//
@@ -71,26 +69,24 @@ public class WellSource extends PlayerActivityEntity {
 		rpclass.isA("entity");
 	}
 
-
 	//
 	// PlayerActivityEntity
 	//
 
 	/**
 	 * Get the time it takes to perform this activity.
-	 *
-	 * @return	The time to perform the activity (in seconds).
+	 * 
+	 * @return The time to perform the activity (in seconds).
 	 */
 	@Override
 	protected int getDuration() {
 		return DURATION;
 	}
 
-
 	/**
 	 * Decides if the activity can be done.
-	 *
-	 * @return	<code>true</code> if successful.
+	 * 
+	 * @return <code>true</code> if successful.
 	 */
 	@Override
 	protected boolean isPrepared(final Player player) {
@@ -102,11 +98,10 @@ public class WellSource extends PlayerActivityEntity {
 		}
 	}
 
-
 	/**
 	 * Decides if the activity was successful.
-	 *
-	 * @return	<code>true</code> if successful.
+	 * 
+	 * @return <code>true</code> if successful.
 	 */
 	@Override
 	protected boolean isSuccessful(final Player player) {
@@ -114,22 +109,25 @@ public class WellSource extends PlayerActivityEntity {
 		return random <= (FINDING_PROBABILITY + player.useKarma(FINDING_PROBABILITY)) * 100;
 	}
 
-
 	/**
 	 * Called when the activity has finished.
-	 *
-	 * @param	player		The player that did the activity.
-	 * @param	successful	If the activity was successful.
+	 * 
+	 * @param player
+	 *            The player that did the activity.
+	 * @param successful
+	 *            If the activity was successful.
 	 */
 	@Override
 	protected void onFinished(final Player player, final boolean successful) {
 		if (successful) {
 			String itemName = items[Rand.rand(items.length)];
-			Item item = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(itemName);
+			Item item = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
+					itemName);
 
 			// TODO: player bind the better prizes below:
 			// horned_golden_helmet & dark_dagger
-			if (itemName.equals("dark_dagger") || itemName.equals("horned_golden_helmet")) {
+			if (itemName.equals("dark_dagger")
+					|| itemName.equals("horned_golden_helmet")) {
 				/*
 				 * Bound powerful items.
 				 */
@@ -142,17 +140,18 @@ public class WellSource extends PlayerActivityEntity {
 			}
 
 			player.equip(item, true);
-			player.sendPrivateText("You were lucky and found " + Grammar.a_noun(itemName));
+			player.sendPrivateText("You were lucky and found "
+					+ Grammar.a_noun(itemName));
 		} else {
 			player.sendPrivateText("Your wish didn't come true.");
 		}
 	}
 
-
 	/**
 	 * Called when the activity has started.
-	 *
-	 * @param	player		The player starting the activity.
+	 * 
+	 * @param player
+	 *            The player starting the activity.
 	 */
 	@Override
 	protected void onStarted(final Player player) {

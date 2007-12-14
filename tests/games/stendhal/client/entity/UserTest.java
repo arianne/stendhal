@@ -12,14 +12,15 @@ public class UserTest {
 	public final void testUser() {
 		User user = new User();
 
-		 // test default values
-		assertEquals(0, (int)user.getModificationCount());
-		assertFalse(User.isAdmin()); //user.isAdmin()
+		// test default values
+		assertEquals(0, (int) user.getModificationCount());
+		assertFalse(User.isAdmin()); // user.isAdmin()
 		assertFalse(user.hasSheep());
 		assertFalse(user.hasPet());
-		/*TODO remove unused code
-		assertFalse(user.hasFeature("A"));
-		assertEquals("XXX", user.getFeature("B")); */
+		/*
+		 * TODO remove unused code assertFalse(user.hasFeature("A"));
+		 * assertEquals("XXX", user.getFeature("B"));
+		 */
 		assertNull(user.getServerVersion());
 	}
 

@@ -18,7 +18,6 @@ import java.awt.geom.Rectangle2D;
 import java.util.LinkedList;
 import java.util.List;
 
-
 import org.apache.log4j.Logger;
 
 public class CreatureLogic {
@@ -65,7 +64,7 @@ public class CreatureLogic {
 	/**
 	 * Checks whether we have to do some again or sleeps in case no player is
 	 * near.
-	 *
+	 * 
 	 * @return true, if additional action is required; false if we may sleep
 	 */
 	private boolean logicSleep() {
@@ -73,7 +72,7 @@ public class CreatureLogic {
 		 * TODO: Ideally use proximity events to notify others that something
 		 * may be worth looking at nearby. Perhaps with zone macro-blocks to
 		 * minimize overhead.
-		 *
+		 * 
 		 * TODO: Maybe add an awareness attribute for per-creature reaction
 		 * times.
 		 */
@@ -284,7 +283,7 @@ public class CreatureLogic {
 
 	/**
 	 * Checks if the position (x, y) is a good position for range combat.
-	 *
+	 * 
 	 * @param x
 	 *            x value of the position
 	 * @param y

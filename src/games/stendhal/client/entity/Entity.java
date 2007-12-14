@@ -73,7 +73,7 @@ public class Entity implements RPObjectChangeListener {
 	/**
 	 * session wide instance identifier for this class. TODO: get rid of this
 	 * only used by Soundsystem
-	 *
+	 * 
 	 */
 	public final byte[] ID_Token = new byte[0];
 
@@ -166,7 +166,7 @@ public class Entity implements RPObjectChangeListener {
 
 	/**
 	 * Add a change listener.
-	 *
+	 * 
 	 * @param listener
 	 *            The listener.
 	 */
@@ -184,9 +184,10 @@ public class Entity implements RPObjectChangeListener {
 
 	/**
 	 * Fill the action with the entity's target info. This will set the
-	 * <code>baseobject</code>, <code>baseslot</code> and <code>baseitem</code>
-	 * respective the <code>target</code> attributes for uncontained objects.
-	 *
+	 * <code>baseobject</code>, <code>baseslot</code> and
+	 * <code>baseitem</code> respective the <code>target</code> attributes
+	 * for uncontained objects.
+	 * 
 	 * @param action
 	 *            The RP action.
 	 */
@@ -194,20 +195,24 @@ public class Entity implements RPObjectChangeListener {
 		int id = rpObject.getID().getObjectID();
 
 		if (rpObject.isContained()) {
-			action.put("baseobject", rpObject.getContainer().getID()
-					.getObjectID());
+			action.put("baseobject",
+					rpObject.getContainer().getID().getObjectID());
 			action.put("baseslot", rpObject.getContainerSlot().getName());
 			action.put("baseitem", id);
 		} else {
 			StringBuilder target;
 			User user = User.get();
-			String release = user!=null? User.get().getServerVersion(): null;
 
-			 // query the server version to see if it understands the new command syntax with leading "#" 
-			if (release!=null && Version.compare(release,"0.65.5")>=0)
+			String release = user != null ? User.get().getServerVersion()
+					: null;
+
+			// query the server version to see if it understands the new command
+			// syntax with leading "#"
+			if (release != null && Version.compare(release, "0.65.5") >= 0) {
 				target = new StringBuilder("#");
-			else
+			} else {
 				target = new StringBuilder();
+			}
 
 			target.append(Integer.toString(id));
 
@@ -217,7 +222,7 @@ public class Entity implements RPObjectChangeListener {
 
 	/**
 	 * Fire change to all registered listeners.
-	 *
+	 * 
 	 * @param property
 	 *            The changed property.
 	 */
@@ -231,7 +236,7 @@ public class Entity implements RPObjectChangeListener {
 
 	/**
 	 * Get the area the entity occupies.
-	 *
+	 * 
 	 * @return A rectange (in world coordinate units).
 	 */
 	public Rectangle2D getArea() {
@@ -240,7 +245,7 @@ public class Entity implements RPObjectChangeListener {
 
 	/**
 	 * Get the entity visibility.
-	 *
+	 * 
 	 * @return The entity visibility (0 - 100).
 	 */
 	public int getVisibility() {
@@ -249,7 +254,7 @@ public class Entity implements RPObjectChangeListener {
 
 	/**
 	 * Get the entity height.
-	 *
+	 * 
 	 * @return The height.
 	 */
 	public double getHeight() {
@@ -267,7 +272,7 @@ public class Entity implements RPObjectChangeListener {
 
 	/**
 	 * Get the entity class.
-	 *
+	 * 
 	 * @return The entity class.
 	 */
 	public String getEntityClass() {
@@ -276,7 +281,7 @@ public class Entity implements RPObjectChangeListener {
 
 	/**
 	 * Get the name.
-	 *
+	 * 
 	 * @return The name.
 	 */
 	public String getName() {
@@ -285,7 +290,7 @@ public class Entity implements RPObjectChangeListener {
 
 	/**
 	 * Get the entity sub-class.
-	 *
+	 * 
 	 * @return The entity sub-class.
 	 */
 	public String getEntitySubClass() {
@@ -294,10 +299,10 @@ public class Entity implements RPObjectChangeListener {
 
 	/**
 	 * Get the nicely formatted entity title.
-	 *
+	 * 
 	 * This searches the follow attribute order: title, name (w/o underscore),
 	 * type (w/o underscore).
-	 *
+	 * 
 	 * @return The title, or <code>null</code> if unknown.
 	 */
 	public String getTitle() {
@@ -314,7 +319,7 @@ public class Entity implements RPObjectChangeListener {
 
 	/**
 	 * Get the entity type.
-	 *
+	 * 
 	 * @return The type.
 	 */
 	public String getType() {
@@ -323,7 +328,7 @@ public class Entity implements RPObjectChangeListener {
 
 	/**
 	 * Get the X coordinate.
-	 *
+	 * 
 	 * @return The X coordinate.
 	 */
 	public double getX() {
@@ -332,7 +337,7 @@ public class Entity implements RPObjectChangeListener {
 
 	/**
 	 * Get the Y coordinate.
-	 *
+	 * 
 	 * @return The Y coordinate.
 	 */
 	public double getY() {
@@ -341,7 +346,7 @@ public class Entity implements RPObjectChangeListener {
 
 	/**
 	 * Get the RPObject this represents.
-	 *
+	 * 
 	 * @return The RPObject.
 	 */
 	public RPObject getRPObject() {
@@ -350,7 +355,7 @@ public class Entity implements RPObjectChangeListener {
 
 	/**
 	 * Get the entity width.
-	 *
+	 * 
 	 * @return The width.
 	 */
 	public double getWidth() {
@@ -359,10 +364,10 @@ public class Entity implements RPObjectChangeListener {
 
 	/**
 	 * Determine if this entity represents an instance of an RPClass.
-	 *
+	 * 
 	 * @param clazz
 	 *            The class name.
-	 *
+	 * 
 	 * @return <code>true</code> if the entity represents that class, or a
 	 *         subclass.
 	 */
@@ -372,8 +377,8 @@ public class Entity implements RPObjectChangeListener {
 
 	/**
 	 * Determine if this entity is on the ground.
-	 *
-	 * @return	<code>true</code> if the entity is on the ground.
+	 * 
+	 * @return <code>true</code> if the entity is on the ground.
 	 */
 	public boolean isOnGround() {
 		return !rpObject.isContained();
@@ -413,7 +418,7 @@ public class Entity implements RPObjectChangeListener {
 	 * expressed in coordinate units. This reflects an abstract capacity of this
 	 * unit to emit sounds and influences the result of
 	 * <code>getAudibleArea()</code>.
-	 *
+	 * 
 	 * @param range
 	 *            double audibility area radius in coordinate units
 	 */
@@ -425,7 +430,7 @@ public class Entity implements RPObjectChangeListener {
 	 * Process attribute changes that may affect positioning. This is needed
 	 * because different entities may want to process coordinate changes more
 	 * gracefully.
-	 *
+	 * 
 	 * @param base
 	 *            The previous values.
 	 * @param diff
@@ -459,7 +464,7 @@ public class Entity implements RPObjectChangeListener {
 
 	/**
 	 * When the entity's position changed.
-	 *
+	 * 
 	 * @param x
 	 *            The new X coordinate.
 	 * @param y
@@ -471,7 +476,7 @@ public class Entity implements RPObjectChangeListener {
 
 	/**
 	 * Get the resistance this has on other entities (0-100).
-	 *
+	 * 
 	 * @return The resistance.
 	 */
 	public int getResistance() {
@@ -480,10 +485,10 @@ public class Entity implements RPObjectChangeListener {
 
 	/**
 	 * Get the amount of resistance between this and another entity (0-100).
-	 *
+	 * 
 	 * @param entity
 	 *            The entity to check against.
-	 *
+	 * 
 	 * @return The effective resistance.
 	 */
 	public int getResistance(final Entity entity) {
@@ -504,10 +509,10 @@ public class Entity implements RPObjectChangeListener {
 
 	/**
 	 * Initialize this entity for an object.
-	 *
+	 * 
 	 * @param object
 	 *            The object.
-	 *
+	 * 
 	 * @see-also #release()
 	 */
 	public void initialize(final RPObject object) {
@@ -611,7 +616,7 @@ public class Entity implements RPObjectChangeListener {
 		 */
 		onPosition(x, y);
 
-		//TODO: BUG: Work around for Bugs at 0.45
+		// TODO: BUG: Work around for Bugs at 0.45
 		inAdd = true;
 		onChangedAdded(new RPObject(), object);
 		inAdd = false;
@@ -619,10 +624,10 @@ public class Entity implements RPObjectChangeListener {
 
 	/**
 	 * Determine if this is an obstacle for another entity.
-	 *
+	 * 
 	 * @param entity
 	 *            The entity to check against.
-	 *
+	 * 
 	 * @return <code>true</code> the entity can not enter this entity's area.
 	 */
 	public boolean isObstacle(final Entity entity) {
@@ -634,7 +639,7 @@ public class Entity implements RPObjectChangeListener {
 	/**
 	 * Release this entity. This should clean anything that isn't automatically
 	 * released (such as unregister callbacks, cancel external operations, etc).
-	 *
+	 * 
 	 * @see-also #initialize(RPObject)
 	 */
 	public void release() {
@@ -643,7 +648,7 @@ public class Entity implements RPObjectChangeListener {
 
 	/**
 	 * Remove a change listener.
-	 *
+	 * 
 	 * @param listener
 	 *            The listener.
 	 */
@@ -674,7 +679,7 @@ public class Entity implements RPObjectChangeListener {
 
 	/**
 	 * Update cycle.
-	 *
+	 * 
 	 * @param delta
 	 *            The time (in ms) since last call.
 	 */
@@ -687,7 +692,7 @@ public class Entity implements RPObjectChangeListener {
 
 	/**
 	 * An object was added.
-	 *
+	 * 
 	 * @param object
 	 *            The object.
 	 */
@@ -697,7 +702,7 @@ public class Entity implements RPObjectChangeListener {
 
 	/**
 	 * The object added/changed attribute(s).
-	 *
+	 * 
 	 * @param object
 	 *            The base object.
 	 * @param changes
@@ -792,7 +797,7 @@ public class Entity implements RPObjectChangeListener {
 
 	/**
 	 * The object removed attribute(s).
-	 *
+	 * 
 	 * @param object
 	 *            The base object.
 	 * @param changes
@@ -878,7 +883,7 @@ public class Entity implements RPObjectChangeListener {
 
 	/**
 	 * An object was removed.
-	 *
+	 * 
 	 * @param object
 	 *            The object.
 	 * @deprecated Moving to different listener. Use release().
@@ -889,44 +894,64 @@ public class Entity implements RPObjectChangeListener {
 
 	/**
 	 * A slot object was added.
-	 *
-	 * @param	object		The container object.
-	 * @param	slotName	The slot name.
-	 * @param	sobject		The slot object.
+	 * 
+	 * @param object
+	 *            The container object.
+	 * @param slotName
+	 *            The slot name.
+	 * @param sobject
+	 *            The slot object.
 	 */
-	public void onSlotAdded(final RPObject object, final String slotName, final RPObject sobject) {
+	public void onSlotAdded(final RPObject object, final String slotName,
+			final RPObject sobject) {
 	}
 
 	/**
 	 * A slot object added/changed attribute(s).
-	 *
-	 * @param	object		The base container object.
-	 * @param	slotName	The container's slot name.
-	 * @param	sobject		The slot object.
-	 * @param	schanges	The slot object changes.
+	 * 
+	 * @param object
+	 *            The base container object.
+	 * @param slotName
+	 *            The container's slot name.
+	 * @param sobject
+	 *            The slot object.
+	 * @param schanges
+	 *            The slot object changes.
 	 */
-	public void onSlotChangedAdded(final RPObject object, final String slotName, final RPObject sobject, final RPObject schanges) {
+	public void onSlotChangedAdded(final RPObject object,
+			final String slotName, final RPObject sobject,
+			final RPObject schanges) {
 	}
 
 	/**
 	 * A slot object removed attribute(s).
-	 *
-	 * @param	object		The base container object.
-	 * @param	slotName	The container's slot name.
-	 * @param	sobject		The slot object.
-	 * @param	schanges	The slot object changes.
+	 * 
+	 * @param object
+	 *            The base container object.
+	 * @param slotName
+	 *            The container's slot name.
+	 * @param sobject
+	 *            The slot object.
+	 * @param schanges
+	 *            The slot object changes.
 	 */
-	public void onSlotChangedRemoved(final RPObject object, final String slotName, final RPObject sobject, final RPObject schanges) {
+	public void onSlotChangedRemoved(final RPObject object,
+			final String slotName, final RPObject sobject,
+			final RPObject schanges) {
 	}
 
 	/**
 	 * A slot object was removed.
-	 *
-	 * @param	object		The container object.
-	 * @param	slotName	The slot name.
-	 * @param	sobject		The slot object.
+	 * 
+	 * @param object
+	 *            The container object.
+	 * @param slotName
+	 *            The slot name.
+	 * @param sobject
+	 *            The slot object.
 	 */
-	public void onSlotRemoved(final RPObject object, final String slotName, final RPObject sobject) {
+	public void onSlotRemoved(final RPObject object, final String slotName,
+			final RPObject sobject) {
 	}
 
 	//
@@ -940,8 +965,8 @@ public class Entity implements RPObjectChangeListener {
 		sbuf.append(getClass().getName());
 
 		/*
-		 * Technically not all entities have 'name', but enough to
-		 * debug most when used
+		 * Technically not all entities have 'name', but enough to debug most
+		 * when used
 		 */
 		if ((rpObject != null) && rpObject.has("name")) {
 			sbuf.append('[');

@@ -12,18 +12,18 @@ import java.util.TreeSet;
 import marauroa.common.game.IRPZone;
 import marauroa.common.game.RPAction;
 import static games.stendhal.server.actions.WellKnownActionConstants.*;
+
 public class TeleportAction extends AdministrationAction {
-	
-	
+
 	private static final String _ZONE = "zone";
-	
+
 	private static final String _TELEPORT = "teleport";
 
-	public static void register(){
+	public static void register() {
 		CommandCenter.register(_TELEPORT, new TeleportAction(), 400);
-		
+
 	}
-	
+
 	@Override
 	public void perform(Player player, RPAction action) {
 		if (action.has(TARGET) && action.has(_ZONE) && action.has(X)
@@ -53,8 +53,8 @@ public class TeleportAction extends AdministrationAction {
 				return;
 			}
 
-			StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get()
-					.getRPZone(zoneid);
+			StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(
+					zoneid);
 			int x = action.getInt(X);
 			int y = action.getInt(Y);
 

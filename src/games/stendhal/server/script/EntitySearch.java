@@ -18,28 +18,19 @@ import marauroa.common.game.RPObject;
 
 /**
  * Search...
- *
- * /script EntitySearch.class cname <creatureName>
- * Respawn points for archrat
- * [1]	int_admin_playground
- * [7]	-3_orril_dungeon
- *
- * /script EntitySearch.class nonrespawn
- * Non-Respawn creatures (minus sheep)
- * balrog (350)	0_semos_plains_n 11 11
- * death (30)	0_semos_plains_n 27 24
- * black_death (300)	0_semos_plains_n 44 44
- *
- * /script EntitySearch.class zname <partialZoneName>
- * Respawn points for zone names containing: 0_semos_plain
- * Respawn points for 0_semos_plains_ne
- * [1]	gnome(2)
- * [17]	rat(0)
- * Respawn points for 0_semos_plains_n_e2
- * [2]	snake(3)
- * [1]	gnome(2)
- * ...
- *
+ * 
+ * /script EntitySearch.class cname <creatureName> Respawn points for archrat
+ * [1] int_admin_playground [7] -3_orril_dungeon
+ * 
+ * /script EntitySearch.class nonrespawn Non-Respawn creatures (minus sheep)
+ * balrog (350) 0_semos_plains_n 11 11 death (30) 0_semos_plains_n 27 24
+ * black_death (300) 0_semos_plains_n 44 44
+ * 
+ * /script EntitySearch.class zname <partialZoneName> Respawn points for zone
+ * names containing: 0_semos_plain Respawn points for 0_semos_plains_ne [1]
+ * gnome(2) [17] rat(0) Respawn points for 0_semos_plains_n_e2 [2] snake(3) [1]
+ * gnome(2) ...
+ * 
  */
 
 public class EntitySearch extends ScriptImpl {
@@ -97,12 +88,17 @@ public class EntitySearch extends ScriptImpl {
 			StendhalRPZone zone = (StendhalRPZone) irpzone;
 
 			for (RPObject n : zone) {
-				if ((n instanceof Creature) && !(n instanceof DomesticAnimal)) {    // exclude sheep and pets
+				if ((n instanceof Creature) && !(n instanceof DomesticAnimal)) { // exclude
+																					// sheep
+																					// and
+																					// pets
 					Creature c = (Creature) n;
 					if (c.getRespawnPoint() == null) {
 						String zoneName = zone.getName();
-						res.append("\r\n" + c.getName() + " (" + c.getLevel() + ")");
-						res.append("\t" + zoneName + " " + c.getX() + " " + c.getY());
+						res.append("\r\n" + c.getName() + " (" + c.getLevel()
+								+ ")");
+						res.append("\t" + zoneName + " " + c.getX() + " "
+								+ c.getY());
 					}
 				}
 			}
@@ -115,7 +111,8 @@ public class EntitySearch extends ScriptImpl {
 	public void findByZoneName(Player player, String targetName) {
 		StringBuilder res = new StringBuilder();
 
-		res.append("\r\nRespawn points for zone names containing: " + targetName);
+		res.append("\r\nRespawn points for zone names containing: "
+				+ targetName);
 		for (IRPZone irpzone : StendhalRPWorld.get()) {
 			StendhalRPZone zone = (StendhalRPZone) irpzone;
 

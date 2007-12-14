@@ -18,9 +18,9 @@ import java.util.Set;
 import org.apache.log4j.Logger;
 
 /**
- * Dumps the transition table of an NPC for "dot" http://www.graphviz.org/
- * to generate a nice graph.
- *
+ * Dumps the transition table of an NPC for "dot" http://www.graphviz.org/ to
+ * generate a nice graph.
+ * 
  * @author hendrik
  */
 public class DumpConditions extends ScriptImpl {
@@ -38,20 +38,21 @@ public class DumpConditions extends ScriptImpl {
 		}
 		System.out.println(dumpedTable.toString());
 	}
-	
+
 	private void dump(SpeakerNPC npc) {
 		dumpNPC(npc);
 	}
 
 	private void dumpNPC(SpeakerNPC npc) {
-		TransitionList transitions = new TransitionList(npc.getTransitions()); 
+		TransitionList transitions = new TransitionList(npc.getTransitions());
 		Set<Integer> states = transitions.getSourceStates();
-		
+
 		for (Integer stateInt : states) {
 			int state = stateInt.intValue();
 			Set<String> triggers = transitions.getTriggersForState(state);
 			for (String trigger : triggers) {
-				List<Transition> trans = transitions.getTransitionsForStateAndTrigger(state, trigger);
+				List<Transition> trans = transitions.getTransitionsForStateAndTrigger(
+						state, trigger);
 				Set<PreTransitionCondition> conditions = new HashSet<PreTransitionCondition>();
 				for (Transition tran : trans) {
 					PreTransitionCondition condition = tran.getCondition();
@@ -60,7 +61,9 @@ public class DumpConditions extends ScriptImpl {
 					}
 				}
 				if (conditions.size() > 1) {
-					dumpedTable.append(npc.getName() + "\t" + getStateName(state) + "\t" + trigger + "\t" + conditions + "\n");
+					dumpedTable.append(npc.getName() + "\t"
+							+ getStateName(state) + "\t" + trigger + "\t"
+							+ conditions + "\n");
 				}
 			}
 		}

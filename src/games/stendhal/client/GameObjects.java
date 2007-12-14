@@ -28,7 +28,10 @@ import org.apache.log4j.Logger;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
-/** This class stores the objects that exists on the World right now */
+/**
+ * stores the objects that exists on the World right now.
+ * 
+ */
 public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 
 	/** the logger instance. */
@@ -39,14 +42,14 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 	private StaticGameLayers collisionMap;
 
 	/**
-	 * holds the reference to the singeton instance
+	 * holds the reference to the singleton instance.
 	 */
 	private static GameObjects instance;
 
 	/**
 	 * @param collisionMap
 	 *            =layers that make floor and building
-	 * @return singleton instance of Gameobjects
+	 * @return singleton instance of GameOjects
 	 */
 	public static GameObjects createInstance(StaticGameLayers collisionMap) {
 		if (instance == null) {
@@ -56,21 +59,20 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 	}
 
 	/**
-	 * @return existing instance of Gameobjects
-	 * @throws IllegalStateException
-	 *             if instance has not been instanciated
+	 * @return existing instance of GameObjects
 	 */
 	public static GameObjects getInstance() {
 		if (instance == null) {
-			throw new IllegalStateException();
+			throw new IllegalStateException(
+					"GameObject has not been initialized");
 		}
 
 		return instance;
 	}
 
 	/**
-	 * constructor
-	 *
+	 * constructor.
+	 * 
 	 * @param collisionMap
 	 *            =layers that make floor and building
 	 */
@@ -92,7 +94,9 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 		return objects.get(new FQID(id));
 	}
 
-	/** Removes all the object entities */
+	/**
+	 * Removes all the object entities.
+	 */
 	public void clear() {
 		if (!objects.isEmpty()) {
 			logger.debug("Game objects not empty!");
@@ -129,7 +133,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 
 	/**
 	 * Update objects based on the lapsus of time ellapsed since the last call.
-	 *
+	 * 
 	 * @param delta
 	 *            The time since last update (in ms).
 	 */
@@ -141,10 +145,10 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 
 	/**
 	 * Create an add an Entity. This does not add to the screen list.
-	 *
+	 * 
 	 * @param object
 	 *            The object.
-	 *
+	 * 
 	 * @return An entity.
 	 */
 	protected Entity add(final RPObject object) {
@@ -163,7 +167,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 
 	/**
 	 * An object was added.
-	 *
+	 * 
 	 * @param object
 	 *            The object.
 	 */
@@ -198,7 +202,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 
 	/**
 	 * The object added/changed attribute(s).
-	 *
+	 * 
 	 * @param object
 	 *            The base object.
 	 * @param changes
@@ -214,7 +218,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 
 	/**
 	 * An object removed attribute(s).
-	 *
+	 * 
 	 * @param object
 	 *            The base object.
 	 * @param changes
@@ -230,7 +234,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 
 	/**
 	 * An object was removed.
-	 *
+	 * 
 	 * @param object
 	 *            The object.
 	 */
@@ -249,7 +253,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 
 	/**
 	 * A slot object was added.
-	 *
+	 * 
 	 * @param object
 	 *            The container object.
 	 * @param slotName
@@ -263,7 +267,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 
 	/**
 	 * A slot object added/changed attribute(s).
-	 *
+	 * 
 	 * @param object
 	 *            The base container object.
 	 * @param slotName
@@ -285,7 +289,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 
 	/**
 	 * A slot object removed attribute(s).
-	 *
+	 * 
 	 * @param object
 	 *            The base container object.
 	 * @param slotName
@@ -307,7 +311,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 
 	/**
 	 * A slot object was removed.
-	 *
+	 * 
 	 * @param object
 	 *            The container object.
 	 * @param slotName
@@ -334,7 +338,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 
 		/**
 		 * Create a fully qualified ID.
-		 *
+		 * 
 		 * @param id
 		 *            And object ID.
 		 */
@@ -344,7 +348,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 
 		/**
 		 * Create a fully qualified ID.
-		 *
+		 * 
 		 * @param path
 		 *            An identification path.
 		 */
@@ -358,10 +362,10 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 
 		/**
 		 * Create a FQID from an object tree.
-		 *
+		 * 
 		 * @param object
 		 *            An object.
-		 *
+		 * 
 		 * @return A FQID.
 		 */
 		public static FQID create(final RPObject object) {
@@ -386,7 +390,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 
 		/**
 		 * Get the tree path of object identifiers.
-		 *
+		 * 
 		 * @return The identifier path.
 		 */
 		public Object[] getPath() {
@@ -399,7 +403,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 
 		/**
 		 * Check if this equals another object.
-		 *
+		 * 
 		 * @param obj
 		 *            The object to compare to.
 		 */
@@ -414,7 +418,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 
 		/**
 		 * Get the hash code.
-		 *
+		 * 
 		 * @return The hash code.
 		 */
 		@Override
@@ -430,7 +434,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 
 		/**
 		 * Get the string representation.
-		 *
+		 * 
 		 * @return The string representation.
 		 */
 		@Override

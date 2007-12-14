@@ -30,12 +30,12 @@ import java.util.List;
 import marauroa.common.game.RPAction;
 import static games.stendhal.server.actions.WellKnownActionConstants.TARGET;
 import static games.stendhal.server.actions.WellKnownActionConstants.TYPE;
+
 public class MoveAction implements ActionListener {
 
 	private static final String _TELECLICKMODE = "teleclickmode";
 	private static final String _DIR = "dir";
-	
-	
+
 	private static final String _PUSH = "push";
 	private static final String _MOVETO = "moveto";
 	private static final String _MOVE = "move";
@@ -75,12 +75,13 @@ public class MoveAction implements ActionListener {
 
 	private void push(Player player, RPAction action) {
 		if (action.has(TARGET)) {
-			 // evaluate the target parameter
+			// evaluate the target parameter
 			StendhalRPZone zone = player.getZone();
-			Entity entity = EntityHelper.entityFromTargetName(action.get(TARGET), zone);
+			Entity entity = EntityHelper.entityFromTargetName(
+					action.get(TARGET), zone);
 
 			if (entity instanceof RPEntity) {
-				RPEntity rpEntity = (RPEntity)entity;
+				RPEntity rpEntity = (RPEntity) entity;
 
 				/*
 				 * If object is a NPC we ignore the push action.
@@ -127,8 +128,7 @@ public class MoveAction implements ActionListener {
 	private void moveTo(Player player, RPAction action) {
 
 		if (!player.getZone().isMoveToAllowed()) {
-			player
-					.sendPrivateText("Mouse movement is not possible here. Use you keyboard");
+			player.sendPrivateText("Mouse movement is not possible here. Use you keyboard");
 			return;
 		}
 
@@ -136,7 +136,8 @@ public class MoveAction implements ActionListener {
 			player.clearPath();
 		}
 
-		if (action.has(WellKnownActionConstants.X) && action.has(WellKnownActionConstants.Y)) {
+		if (action.has(WellKnownActionConstants.X)
+				&& action.has(WellKnownActionConstants.Y)) {
 			int x = action.getInt(WellKnownActionConstants.X);
 			int y = action.getInt(WellKnownActionConstants.Y);
 			if (!player.has(_TELECLICKMODE)) {

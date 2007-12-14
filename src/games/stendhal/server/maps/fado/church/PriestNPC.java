@@ -7,26 +7,27 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 
 import java.util.Map;
 
-
 /**
- * Creates a priest NPC who can celebrate marriages between two
- * players.
- *
+ * Creates a priest NPC who can celebrate marriages between two players.
+ * 
  * The marriage itself is done in a separate quest file
- *
+ * 
  * @author daniel/kymara
- *
+ * 
  */
 public class PriestNPC implements ZoneConfigurator {
 	private SpeakerNPC priest;
 
 	/**
 	 * Configure a zone.
-	 *
-	 * @param	zone		The zone to be configured.
-	 * @param	attributes	Configuration attributes.
+	 * 
+	 * @param zone
+	 *            The zone to be configured.
+	 * @param attributes
+	 *            Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone,
+			Map<String, String> attributes) {
 		buildNPC(zone);
 	}
 
@@ -45,7 +46,9 @@ public class PriestNPC implements ZoneConfigurator {
 				addHelp("I can help you #marry your loved one. But you must be engaged under the supervision of Sister Benedicta, and have a #ring to give your partner.");
 				addQuest("I will #marry people who were engaged in the proper manner. Speak to Sister Benedicta if you are not engaged yet. And remember each to bring a wedding #ring!");
 				addGoodbye("Go well, and safely.");
-				addReply("ring", "Once you are engaged, you can go to Ognir who works here in Fado to get your wedding rings made. I believe he also sells engagement rings, but they are purely for decoration. How wanton!");
+				addReply(
+						"ring",
+						"Once you are engaged, you can go to Ognir who works here in Fado to get your wedding rings made. I believe he also sells engagement rings, but they are purely for decoration. How wanton!");
 			}
 		};
 

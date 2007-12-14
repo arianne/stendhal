@@ -4,9 +4,9 @@ import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
 
 /**
- * A pseudo slot representing the ground as target for an item
- * (so that the ground has not to be treated special in equipment code).
- *
+ * A pseudo slot representing the ground as target for an item (so that the
+ * ground has not to be treated special in equipment code).
+ * 
  * @author hendrik
  */
 public class GroundTargetSlot implements Slot {
@@ -17,20 +17,23 @@ public class GroundTargetSlot implements Slot {
 	/**
 	 * generates a new GroundSlot
 	 * 
-	 * @param zone StendhalRPZone
-	 * @param x x
-	 * @param y y
+	 * @param zone
+	 *            StendhalRPZone
+	 * @param x
+	 *            x
+	 * @param y
+	 *            y
 	 */
 	public GroundTargetSlot(StendhalRPZone zone, int x, int y) {
-	    super();
-	    this.zone = zone;
-	    this.x = x;
-	    this.y = y;
-    }
+		super();
+		this.zone = zone;
+		this.x = x;
+		this.y = y;
+	}
 
 	public boolean isItemSlot() {
-	    return true;
-    }
+		return true;
+	}
 
 	public boolean isReachableForTakingThingsOutOfBy(Entity entity) {
 

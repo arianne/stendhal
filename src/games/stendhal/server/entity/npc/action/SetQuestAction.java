@@ -15,9 +15,11 @@ public class SetQuestAction extends SpeakerNPC.ChatAction {
 
 	/**
 	 * Creates a new SetQuestAction
-	 *
-	 * @param questname name of quest-slot to change
-	 * @param state new value
+	 * 
+	 * @param questname
+	 *            name of quest-slot to change
+	 * @param state
+	 *            new value
 	 */
 	public SetQuestAction(String questname, String state) {
 		this.questname = questname;
@@ -31,30 +33,45 @@ public class SetQuestAction extends SpeakerNPC.ChatAction {
 
 	@Override
 	public String toString() {
-		return "SetQuest<" + questname + "," + state +">";
+		return "SetQuest<" + questname + "," + state + ">";
 	}
 
 	@Override
 	public int hashCode() {
 		final int PRIME = 31;
 		int result = 1;
-		result = PRIME * result + ((questname == null) ? 0 : questname.hashCode());
+		result = PRIME * result
+				+ ((questname == null) ? 0 : questname.hashCode());
 		result = PRIME * result + ((state == null) ? 0 : state.hashCode());
 		return result;
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj) return true;
-		if (obj == null) return false;
-		if (getClass() != obj.getClass()) return false;
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
 		final SetQuestAction other = (SetQuestAction) obj;
 		if (questname == null) {
-			if (other.questname != null) return false;
-		} else if (!questname.equals(other.questname)) return false;
+			if (other.questname != null) {
+				return false;
+			}
+		} else if (!questname.equals(other.questname)) {
+			return false;
+		}
 		if (state == null) {
-			if (other.state != null) return false;
-		} else if (!state.equals(other.state)) return false;
+			if (other.state != null) {
+				return false;
+			}
+		} else if (!state.equals(other.state)) {
+			return false;
+		}
 		return true;
 	}
 

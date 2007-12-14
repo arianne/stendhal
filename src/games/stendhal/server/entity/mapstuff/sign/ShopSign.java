@@ -20,12 +20,13 @@ public class ShopSign extends Sign {
 	 */
 	protected ShopList shops = ShopList.get();
 
-
 	/**
 	 * Create a shop list sign.
-	 *
-	 * @param	name		The list name/mnemonic.
-	 * @param	title		The sign title.
+	 * 
+	 * @param name
+	 *            The list name/mnemonic.
+	 * @param title
+	 *            The sign title.
 	 */
 	public ShopSign(final String name, final String title) {
 		setText(shops.toString(name, title));

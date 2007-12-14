@@ -17,17 +17,20 @@ import java.util.TreeMap;
 
 /**
  * Ados Bakery (Inside / Level 0)
- *
+ * 
  * @author hendrik
  */
 public class BakerNPC implements ZoneConfigurator {
 	/**
 	 * Configure a zone.
-	 *
-	 * @param	zone		The zone to be configured.
-	 * @param	attributes	Configuration attributes.
+	 * 
+	 * @param zone
+	 *            The zone to be configured.
+	 * @param attributes
+	 *            Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone,
+			Map<String, String> attributes) {
 		buildBakery(zone, attributes);
 	}
 
@@ -68,25 +71,37 @@ public class BakerNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-				// addGreeting("Hi, most of the people are out of town at the moment.");
+				// addGreeting("Hi, most of the people are out of town at the
+				// moment.");
 				addJob("I'm the local baker. Although we get most of our supplies from Semos City, there is still a lot of work to do.");
-				addReply(Arrays.asList("flour", "meat", "carrot", "mushroom", "button_mushroom"),
-				        "Ados is short on supplies. We get most of our food from Semos City which is west of here.");
+				addReply(
+						Arrays.asList("flour", "meat", "carrot", "mushroom",
+								"button_mushroom"),
+						"Ados is short on supplies. We get most of our food from Semos City which is west of here.");
 				addHelp("My wife is searching for that lost girl, too. So we cannot sell you anthing at the moment.");
 				addGoodbye();
 
-				// Arlindo makes pies if you bring him flour, meat, carrot and a mushroom
-				Map<String, Integer> requiredResources = new TreeMap<String, Integer>();	// use sorted TreeMap instead of HashMap
+				// Arlindo makes pies if you bring him flour, meat, carrot and a
+				// mushroom
+				Map<String, Integer> requiredResources = new TreeMap<String, Integer>(); // use
+																							// sorted
+																							// TreeMap
+																							// instead
+																							// of
+																							// HashMap
 				requiredResources.put("flour", Integer.valueOf(2));
 				requiredResources.put("meat", Integer.valueOf(2));
 				requiredResources.put("carrot", Integer.valueOf(1));
 				requiredResources.put("button_mushroom", Integer.valueOf(1));
 
-				ProducerBehaviour behaviour = new ProducerBehaviour("arlindo_make_pie", "make", "pie",
-				        requiredResources, 7 * 60);
+				ProducerBehaviour behaviour = new ProducerBehaviour(
+						"arlindo_make_pie", "make", "pie", requiredResources,
+						7 * 60);
 
-				new ProducerAdder().addProducer(this, behaviour,
-				        "Hi! I bet you've heard about my famous pie and want me to #make one for you, am I right?");
+				new ProducerAdder().addProducer(
+						this,
+						behaviour,
+						"Hi! I bet you've heard about my famous pie and want me to #make one for you, am I right?");
 			}
 		};
 

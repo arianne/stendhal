@@ -43,7 +43,7 @@ public class BuddyListPanel extends JPanel {
 	/**
 	 * The UI.
 	 */
-	protected StendhalUI	ui;
+	protected StendhalUI ui;
 
 	/**
 	 * The online icon image.
@@ -79,8 +79,8 @@ public class BuddyListPanel extends JPanel {
 	}
 
 	/**
-	 * Rebuild the buddy list.
-	 * Note: This needs to be called when updates are [possibly] needed.
+	 * Rebuild the buddy list. Note: This needs to be called when updates are
+	 * [possibly] needed.
 	 */
 	public void updateList() {
 		RPObject object = StendhalClient.get().getPlayer();
@@ -93,8 +93,9 @@ public class BuddyListPanel extends JPanel {
 
 	/**
 	 * Rebuild the buddy list from a list object.
-	 *
-	 * @param	buddy		The buddy list object.
+	 * 
+	 * @param buddy
+	 *            The buddy list object.
 	 */
 	protected void updateList(RPObject buddy) {
 		buddies.clear();
@@ -114,9 +115,9 @@ public class BuddyListPanel extends JPanel {
 
 			/*
 			 * Tell the parent to re-pack() itself
-			 *
-			 * TODO: XXX - Maybe there's a better way (without
-			 * introducing dependancies/code-coupling)
+			 * 
+			 * TODO: XXX - Maybe there's a better way (without introducing
+			 * dependancies/code-coupling)
 			 */
 			putClientProperty("size-change", new Integer(height));
 		}
@@ -124,10 +125,13 @@ public class BuddyListPanel extends JPanel {
 
 	/**
 	 * Handle a popup click.
-	 *
-	 * @param	comp		The component clicked on.
-	 * @param	x		The X coordinate of the mouse click.
-	 * @param	y		The X coordinate of the mouse click.
+	 * 
+	 * @param comp
+	 *            The component clicked on.
+	 * @param x
+	 *            The X coordinate of the mouse click.
+	 * @param y
+	 *            The X coordinate of the mouse click.
 	 */
 	protected void doPopup(Component comp, int x, int y) {
 		JMenuItem mi;
@@ -140,7 +144,8 @@ public class BuddyListPanel extends JPanel {
 
 		Entry entry = buddies.get(i);
 
-		StyledJPopupMenu menu = new StyledJPopupMenu(WoodStyle.getInstance(), entry.getName());
+		StyledJPopupMenu menu = new StyledJPopupMenu(WoodStyle.getInstance(),
+				entry.getName());
 
 		ActionListener listener = new ActionSelectedCB(entry.getName());
 
@@ -171,17 +176,19 @@ public class BuddyListPanel extends JPanel {
 
 	/**
 	 * Handle a choosen popup item.
-	 *
-	 * @param	command		The command mnemonic selected.
-	 * @param	buddieName	The buddy name to act on.
+	 * 
+	 * @param command
+	 *            The command mnemonic selected.
+	 * @param buddieName
+	 *            The buddy name to act on.
 	 */
 	protected void doAction(String command, String buddieName) {
 		StendhalClient client = ui.getClient();
 
 		if (command.equals("talk")) {
 			/*
-			 * Compatibility to grandfathered accounts with spaces.
-			 * New accounts cannot contain spaces.
+			 * Compatibility to grandfathered accounts with spaces. New accounts
+			 * cannot contain spaces.
 			 */
 			if (buddieName.indexOf(' ') > -1) {
 				buddieName = "'" + buddieName + "'";
@@ -190,8 +197,8 @@ public class BuddyListPanel extends JPanel {
 			ui.setChatLine("/tell " + buddieName + " ");
 		} else if (command.equals("leave-message")) {
 			/*
-			 * Compatibility to grandfathered accounts with spaces.
-			 * New accounts cannot contain spaces.
+			 * Compatibility to grandfathered accounts with spaces. New accounts
+			 * cannot contain spaces.
 			 */
 			if (buddieName.indexOf(' ') > -1) {
 				buddieName = "'" + buddieName + "'";
@@ -216,10 +223,11 @@ public class BuddyListPanel extends JPanel {
 	//
 
 	/**
-	 * Render the buddy list. Eventually this will be replaced by a
-	 * JList that can be scrolled (for popular players with many friends).
-	 *
-	 * @param	g		The graphics context.
+	 * Render the buddy list. Eventually this will be replaced by a JList that
+	 * can be scrolled (for popular players with many friends).
+	 * 
+	 * @param g
+	 *            The graphics context.
 	 */
 	@Override
 	protected void paintComponent(Graphics g) {
@@ -262,9 +270,11 @@ public class BuddyListPanel extends JPanel {
 
 		/**
 		 * Create a buddy entry.
-		 *
-		 * @param	name		The buddy name.
-		 * @param	online		Whether the buddy is online.
+		 * 
+		 * @param name
+		 *            The buddy name.
+		 * @param online
+		 *            Whether the buddy is online.
 		 */
 		public Entry(String name, boolean online) {
 			this.name = name;
@@ -277,8 +287,8 @@ public class BuddyListPanel extends JPanel {
 
 		/**
 		 * Get the buddy name.
-		 *
-		 * @return	The buddy name.
+		 * 
+		 * @return The buddy name.
 		 */
 		public String getName() {
 			return name;
@@ -286,8 +296,8 @@ public class BuddyListPanel extends JPanel {
 
 		/**
 		 * Determine is the buddy is online.
-		 *
-		 * @return	<code>true</code> if online.
+		 * 
+		 * @return <code>true</code> if online.
 		 */
 		public boolean isOnline() {
 			return online;
@@ -306,8 +316,9 @@ public class BuddyListPanel extends JPanel {
 
 		/**
 		 * Create a listener for action items.
-		 *
-		 * @param	buddy		The buddy to act on.
+		 * 
+		 * @param buddy
+		 *            The buddy to act on.
 		 */
 		public ActionSelectedCB(String buddy) {
 			this.buddy = buddy;

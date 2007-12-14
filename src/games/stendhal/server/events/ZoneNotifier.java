@@ -4,28 +4,32 @@ import games.stendhal.server.entity.player.Player;
 
 /**
  * manages messages based on entering a new zone.
- *
+ * 
  * @author kymara (based on Tutorial Notifer by hendrik)
  */
 public class ZoneNotifier {
 
 	/**
-	 * If the specified event is unknown, add it to the list and
-	 * send the text to the player.
-	 *
-	 * @param player Player
-	 * @param type    EventType
+	 * If the specified event is unknown, add it to the list and send the text
+	 * to the player.
+	 * 
+	 * @param player
+	 *            Player
+	 * @param type
+	 *            EventType
 	 */
 	private static void process(Player player, ZoneEventType type) {
 		String key = type.name().toLowerCase();
-		// Use tutorial slot 
+		// Use tutorial slot
 		if (player.getKeyedSlot("!tutorial", key) == null) {
 			player.setKeyedSlot("!tutorial", key, "1");
 
-			// we must delay this for 1 turn for technical reasons (like zone change)
+			// we must delay this for 1 turn for technical reasons (like zone
+			// change)
 			// but we delay it for 2 seconds so that the player has some time to
-			// recognize the event 
-			DelayedPlayerTextSender dpts = new DelayedPlayerTextSender(player, type.getMessage());
+			// recognize the event
+			DelayedPlayerTextSender dpts = new DelayedPlayerTextSender(player,
+					type.getMessage());
 			TurnNotifier.get().notifyInSeconds(2, dpts);
 		}
 	}
@@ -40,9 +44,11 @@ public class ZoneNotifier {
 
 		/**
 		 * Creates a new DelayedPlayerTextSender
-		 *
-		 * @param player  Player to send this message to
-		 * @param message message
+		 * 
+		 * @param player
+		 *            Player to send this message to
+		 * @param message
+		 *            message
 		 */
 		DelayedPlayerTextSender(Player player, String message) {
 			this.player = player;
@@ -52,17 +58,21 @@ public class ZoneNotifier {
 		public void onTurnReached(int currentTurn) {
 			player.sendPrivateText(message);
 		}
-		
+
 	}
 
 	/**
 	 * Zone changes
-	 *
-	 * @param player Player
-	 * @param sourceZone source zone
-	 * @param destinationZone destination zone
+	 * 
+	 * @param player
+	 *            Player
+	 * @param sourceZone
+	 *            source zone
+	 * @param destinationZone
+	 *            destination zone
 	 */
-	public static void zoneChange(Player player, String sourceZone, String destinationZone) {
+	public static void zoneChange(Player player, String sourceZone,
+			String destinationZone) {
 		if (destinationZone.equals("-1_semos_catacombs_se")) {
 			process(player, ZoneEventType.VISIT_SUB1_SEMOS_CATACOMBS);
 		} else if (destinationZone.equals("-2_semos_catacombs")) {

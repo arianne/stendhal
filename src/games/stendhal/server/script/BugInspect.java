@@ -12,14 +12,13 @@ import games.stendhal.server.scripting.ScriptImpl;
 import java.util.HashSet;
 import java.util.List;
 
-
 import org.apache.log4j.Logger;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
 /**
  * Deep inspects a player and all his/her items
- *
+ * 
  * @author hendrik
  */
 public class BugInspect extends ScriptImpl implements TurnListener {
@@ -36,7 +35,7 @@ public class BugInspect extends ScriptImpl implements TurnListener {
 	}
 
 	public void onTurnReached(int currentTurn) {
-		
+
 		for (Player player : StendhalRPRuleProcessor.get().getPlayers()) {
 			if (seen.contains(player.getName())) {
 				continue;
@@ -47,64 +46,74 @@ public class BugInspect extends ScriptImpl implements TurnListener {
 			sb.append("Inspecting " + player.getName() + "\n");
 			boolean caught = false;
 			boolean warn = false;
-	
+
 			// inspect slots
 			for (RPSlot slot : player.slots()) {
-				if (slot.getName().equals("!buddy") 
-					|| slot.getName().equals("!ignore")
-					|| slot.getName().equals("!kills")
-					|| slot.getName().equals("!quests")) {
+				if (slot.getName().equals("!buddy")
+						|| slot.getName().equals("!ignore")
+						|| slot.getName().equals("!kills")
+						|| slot.getName().equals("!quests")) {
 					continue;
 				}
 				sb.append("\nSlot " + slot.getName() + ": \n");
-	
+
 				// list objects
 				for (RPObject object : slot) {
 					if (object instanceof StackableItem) {
 						StackableItem item = (StackableItem) object;
-						if (!item.getName().equals("money") && item.getQuantity() > 10000) {
+						if (!item.getName().equals("money")
+								&& item.getQuantity() > 10000) {
 							caught = true;
 						}
-						if (item.getName().equals("money") && item.getQuantity() > 10000000) {
+						if (item.getName().equals("money")
+								&& item.getQuantity() > 10000000) {
 							caught = true;
 						}
-						if (!item.getName().equals("money") && item.getQuantity() > 1000) {
+						if (!item.getName().equals("money")
+								&& item.getQuantity() > 1000) {
 							warn = true;
 						}
-						if (item.getName().equals("money") && item.getQuantity() > 100000) {
+						if (item.getName().equals("money")
+								&& item.getQuantity() > 100000) {
 							warn = true;
 						}
 					}
 					sb.append("   " + object + "\n");
 				}
 			}
-			
+
 			String message = player.getName() + " has a large amount of items";
 			if (caught) {
-				
-				StendhalRPRuleProcessor.get().addGameEvent("bug inspect", "jail", player.getName(),
-						        Integer.toString(-1), "possible bug abuse");
-				Jail.get().imprison(player.getName(), player, -1, "possible bug abuse");
+
+				StendhalRPRuleProcessor.get().addGameEvent("bug inspect",
+						"jail", player.getName(), Integer.toString(-1),
+						"possible bug abuse");
+				Jail.get().imprison(player.getName(), player, -1,
+						"possible bug abuse");
 				player.sendPrivateText("Please use /support to talk to an admin about your large amount of items which may have been the result of a bug.");
 				player.notifyWorldAboutChanges();
-				
-				message = "auto jailed " + player.getName() + " because of a large number of items";
+
+				message = "auto jailed " + player.getName()
+						+ " because of a large number of items";
 			}
-	
+
 			if (warn || caught) {
-				
-				StendhalRPRuleProcessor.get().addGameEvent("bug inspect", "support", message);
-				String completeMessage = "bug_inspect asks for support to ADMIN: " + message;
+
+				StendhalRPRuleProcessor.get().addGameEvent("bug inspect",
+						"support", message);
+				String completeMessage = "bug_inspect asks for support to ADMIN: "
+						+ message;
 				for (Player p : StendhalRPRuleProcessor.get().getPlayers()) {
 					if (p.getAdminLevel() >= AdministrationAction.REQUIRED_ADMIN_LEVEL_FOR_SUPPORT) {
 						p.sendPrivateText(completeMessage);
 						p.notifyWorldAboutChanges();
 					}
 				}
-				logger.warn("User with large amout of items: " + message + "\r\n" + sb.toString());
+				logger.warn("User with large amout of items: " + message
+						+ "\r\n" + sb.toString());
 			}
 		}
-		
+
 		if (keepRunning) {
 			TurnNotifier.get().notifyInTurns(6, this);
 		}
@@ -115,5 +124,5 @@ public class BugInspect extends ScriptImpl implements TurnListener {
 		super.unload(admin, args);
 		keepRunning = false;
 	}
-	
+
 }

@@ -28,7 +28,7 @@ public class GagManager implements LoginListener {
 
 	/**
 	 * returns the GagManager object (Singleton Pattern)
-	 *
+	 * 
 	 * @return GagManager
 	 */
 	public static GagManager get() {
@@ -94,7 +94,7 @@ public class GagManager implements LoginListener {
 
 	/**
 	 * Removes a gag
-	 *
+	 * 
 	 * @param inmate
 	 *            player who should be released
 	 */
@@ -110,7 +110,7 @@ public class GagManager implements LoginListener {
 
 	/**
 	 * Is player gagged?
-	 *
+	 * 
 	 * @param inmate
 	 *            player to check
 	 * @return true, if it is gagged, false otherwise.
@@ -124,11 +124,11 @@ public class GagManager implements LoginListener {
 
 	/**
 	 * If the players' gag has expired remove it
-	 *
-	 * @param inmate player to check
-	 * @return true, if the gag expired and was
-	 * removed or was already removed. false, if the player still has time to
-	 * serve.
+	 * 
+	 * @param inmate
+	 *            player to check
+	 * @return true, if the gag expired and was removed or was already removed.
+	 *         false, if the player still has time to serve.
 	 */
 	private boolean tryExpire(Player player) {
 		if (!isGagged(player)) {
@@ -180,8 +180,10 @@ public class GagManager implements LoginListener {
 
 	/**
 	 * gets time remaining in milliseconds
-	 *
-	 * @param inmate player to check @return time remaining in milliseconds
+	 * 
+	 * @param inmate
+	 *            player to check
+	 * @return time remaining in milliseconds
 	 */
 	public long getTimeRemaining(Player criminal) {
 		if (!isGagged(criminal)) {

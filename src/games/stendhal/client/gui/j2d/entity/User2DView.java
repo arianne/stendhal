@@ -27,7 +27,7 @@ public class User2DView extends Player2DView {
 
 	/**
 	 * Create a 2D view of a user.
-	 *
+	 * 
 	 * @param user
 	 *            The entity to render.
 	 */
@@ -35,7 +35,6 @@ public class User2DView extends Player2DView {
 		super(user);
 
 		this.user = user;
-
 
 	}
 
@@ -45,7 +44,7 @@ public class User2DView extends Player2DView {
 
 	/**
 	 * Determine is the user can see this entity while in ghostmode.
-	 *
+	 * 
 	 * @return <code>true</code> if the client user can see this entity while
 	 *         in ghostmode.
 	 */
@@ -61,7 +60,7 @@ public class User2DView extends Player2DView {
 	/**
 	 * Build a list of entity specific actions. <strong>NOTE: The first entry
 	 * should be the default.</strong>
-	 *
+	 * 
 	 * @param list
 	 *            The list to populate.
 	 */
@@ -91,7 +90,7 @@ public class User2DView extends Player2DView {
 
 	/**
 	 * An entity was changed.
-	 *
+	 * 
 	 * @param entity
 	 *            The entity that was changed.
 	 * @param property
@@ -112,7 +111,7 @@ public class User2DView extends Player2DView {
 
 	/**
 	 * Perform an action.
-	 *
+	 * 
 	 * @param at
 	 *            The action.
 	 */
@@ -134,7 +133,7 @@ public class User2DView extends Player2DView {
 
 			rpaction.put("type", at.toString());
 			rpaction.put("species", "sheep");
-			rpaction.put("target", -1);	//HACK see server handler code
+			rpaction.put("target", -1); // HACK see server handler code
 
 			at.send(rpaction);
 			break;
@@ -144,7 +143,7 @@ public class User2DView extends Player2DView {
 
 			rpaction.put("type", at.toString());
 			rpaction.put("species", "pet");
-			rpaction.put("target", -1);	//HACK see server handler code
+			rpaction.put("target", -1); // HACK see server handler code
 
 			at.send(rpaction);
 			break;

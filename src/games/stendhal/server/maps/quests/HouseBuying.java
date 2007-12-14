@@ -18,7 +18,7 @@ import java.util.List;
 
 /**
  * Controls house buying
- *
+ * 
  * @author kymara
  */
 
@@ -48,10 +48,10 @@ public class HouseBuying extends AbstractQuest {
 
 	/*
 	 * This is the initial postman quest slot It would be around 75 long when
-	 * all 25 houses in Kalavan full. As more houses get added (in other zones?) then we
-	 * must always make sure this postman quest slot stays under 255 characters
-	 * There are 18 Ados houses, taking us to 129 in house slot 
-	 * so we worry about the limit and put it to a new one, ados_house
+	 * all 25 houses in Kalavan full. As more houses get added (in other zones?)
+	 * then we must always make sure this postman quest slot stays under 255
+	 * characters There are 18 Ados houses, taking us to 129 in house slot so we
+	 * worry about the limit and put it to a new one, ados_house
 	 */
 	private static final String POSTMAN_SLOT_INIT = ";";
 	private static final String POSTMAN_STORAGE_SLOT_1 = "house";
@@ -63,12 +63,14 @@ public class HouseBuying extends AbstractQuest {
 	protected SpeakerNPC npc2;
 	protected StendhalRPZone zone;
 	protected StendhalRPZone zone2;
+
 	@Override
 	public void init(String name) {
 		super.init(name, QUEST_SLOT);
 	}
 
-	// TODO: Create Barrett Holmes in a map file and only add the quest specific stuff here
+	// TODO: Create Barrett Holmes in a map file and only add the quest specific
+	// stuff here
 
 	private void createNPC() {
 		npc = new SpeakerNPC("Barrett Holmes") {
@@ -93,7 +95,8 @@ public class HouseBuying extends AbstractQuest {
 			protected void createDialog() {
 				addGreeting(null, new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+					public void fire(Player player, Sentence sentence,
+							SpeakerNPC engine) {
 						String reply;
 						if (player.hasQuest(QUEST_SLOT)) {
 							reply = " At the cost of "
@@ -108,7 +111,8 @@ public class HouseBuying extends AbstractQuest {
 				});
 				addReply("cost", null, new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+					public void fire(Player player, Sentence sentence,
+							SpeakerNPC engine) {
 						if (player.getAge() < REQUIRED_AGE) {
 							engine.say("The cost of a new house is "
 									+ COST
@@ -136,7 +140,8 @@ public class HouseBuying extends AbstractQuest {
 							ConversationStates.ATTENDING, null,
 							new SpeakerNPC.ChatAction() {
 								@Override
-								public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+								public void fire(Player player,
+										Sentence sentence, SpeakerNPC engine) {
 									Player postman = StendhalRPRuleProcessor.get().getPlayer(
 											"postman");
 									// is postman online?
@@ -144,13 +149,16 @@ public class HouseBuying extends AbstractQuest {
 										// First, check if anyone has bought a
 										// house from this npc yet
 										if (!postman.hasQuest(POSTMAN_STORAGE_SLOT_1)) {
-											postman.setQuest(POSTMAN_STORAGE_SLOT_1, POSTMAN_SLOT_INIT);
+											postman.setQuest(
+													POSTMAN_STORAGE_SLOT_1,
+													POSTMAN_SLOT_INIT);
 										}
 										String postmanslot = postman.getQuest(QUEST_SLOT);
 										String[] boughthouses = postmanslot.split(";");
 										List<String> doneList = Arrays.asList(boughthouses);
 										String item = sentence.getOriginalText();
-										// now check if the house they said is free
+										// now check if the house they said is
+										// free
 										if (!doneList.contains(item)) {
 											// it's available, so take money
 											if (player.isEquipped("money", COST)) {
@@ -159,14 +167,20 @@ public class HouseBuying extends AbstractQuest {
 												engine.say("Congratulations, here is your key to house "
 														+ item
 														+ "! Do you want to buy a spare key, at a price of "
-														+ COST_OF_SPARE_KEY + " money?");
+														+ COST_OF_SPARE_KEY
+														+ " money?");
 												key.setUndroppableOnDeath(true);
 												if (player.equip(key)) {
 													player.drop("money", COST);
-    												// remember what house they own
-    												player.setQuest(QUEST_SLOT, item);
-    												postman.setQuest(QUEST_SLOT, postmanslot + ";" + item);
-    												engine.setCurrentState(ConversationStates.QUESTION_1);
+													// remember what house they
+													// own
+													player.setQuest(QUEST_SLOT,
+															item);
+													postman.setQuest(
+															QUEST_SLOT,
+															postmanslot + ";"
+																	+ item);
+													engine.setCurrentState(ConversationStates.QUESTION_1);
 												} else {
 													engine.say("Sorry, you can't carry more keys!");
 												}
@@ -203,8 +217,10 @@ public class HouseBuying extends AbstractQuest {
 						ConversationStates.ATTENDING, null,
 						new SpeakerNPC.ChatAction() {
 							@Override
-							public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-								if (player.isEquipped("money", COST_OF_SPARE_KEY)) {
+							public void fire(Player player, Sentence sentence,
+									SpeakerNPC engine) {
+								if (player.isEquipped("money",
+										COST_OF_SPARE_KEY)) {
 									String house = player.getQuest(QUEST_SLOT);
 									Item key = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
 											"private_key_" + house);
@@ -256,8 +272,9 @@ public class HouseBuying extends AbstractQuest {
 		zone.add(npc);
 	}
 
-	// TODO: Create Reg Denson in a map file and only add the quest specific stuff here
-	
+	// TODO: Create Reg Denson in a map file and only add the quest specific
+	// stuff here
+
 	private void createNPC2() {
 		npc2 = new SpeakerNPC("Reg Denson") {
 			@Override
@@ -289,7 +306,8 @@ public class HouseBuying extends AbstractQuest {
 			protected void createDialog() {
 				addGreeting(null, new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC engine2) {
+					public void fire(Player player, Sentence sentence,
+							SpeakerNPC engine2) {
 						String reply;
 						if (player.hasQuest(QUEST_SLOT)) {
 							reply = " At the cost of "
@@ -305,12 +323,19 @@ public class HouseBuying extends AbstractQuest {
 				});
 				addReply("cost", null, new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC engine2) {
+					public void fire(Player player, Sentence sentence,
+							SpeakerNPC engine2) {
 						if (player.getAge() < REQUIRED_AGE) {
 							engine2.say("The cost of a new house in Ados is "
 									+ COST_ADOS
 									+ " money. But I am afraid I cannot trust you with house ownership just yet, as you have not been a part of this world long enough.");
-						} else if (!(player.hasQuest(DAILY_ITEM_QUEST_SLOT)&&player.getQuest(DAILY_ITEM_QUEST_SLOT).startsWith("done")&&player.isQuestCompleted(ANNA_QUEST_SLOT)&&player.isQuestCompleted(KEYRING_QUEST_SLOT)&&player.isQuestCompleted(FISHROD_QUEST_SLOT)&&player.isQuestCompleted(GHOSTS_QUEST_SLOT)&&player.isQuestCompleted(ZARA_QUEST_SLOT))) {
+						} else if (!(player.hasQuest(DAILY_ITEM_QUEST_SLOT)
+								&& player.getQuest(DAILY_ITEM_QUEST_SLOT).startsWith(
+										"done")
+								&& player.isQuestCompleted(ANNA_QUEST_SLOT)
+								&& player.isQuestCompleted(KEYRING_QUEST_SLOT)
+								&& player.isQuestCompleted(FISHROD_QUEST_SLOT)
+								&& player.isQuestCompleted(GHOSTS_QUEST_SLOT) && player.isQuestCompleted(ZARA_QUEST_SLOT))) {
 							engine2.say("The cost of a new house in Ados is "
 									+ COST_ADOS
 									+ " money. But I am afraid I cannot sell you a house yet as you must first prove yourself a worthy #citizen.");
@@ -333,7 +358,8 @@ public class HouseBuying extends AbstractQuest {
 							ConversationStates.ATTENDING, null,
 							new SpeakerNPC.ChatAction() {
 								@Override
-								public void fire(Player player, Sentence sentence, SpeakerNPC engine2) {
+								public void fire(Player player,
+										Sentence sentence, SpeakerNPC engine2) {
 									Player postman = StendhalRPRuleProcessor.get().getPlayer(
 											"postman");
 									// is postman online?
@@ -341,31 +367,43 @@ public class HouseBuying extends AbstractQuest {
 										// First, check if anyone has bought a
 										// house yet
 										if (!postman.hasQuest(POSTMAN_STORAGE_SLOT_2)) {
-											postman.setQuest(POSTMAN_STORAGE_SLOT_2, POSTMAN_SLOT_INIT);
+											postman.setQuest(
+													POSTMAN_STORAGE_SLOT_2,
+													POSTMAN_SLOT_INIT);
 										}
 										String postmanslot = postman.getQuest(POSTMAN_STORAGE_SLOT_2);
 										String[] boughthouses = postmanslot.split(";");
 										List<String> doneList = Arrays.asList(boughthouses);
 										String item = sentence.getOriginalText();
-										// now check if the house they said is free
+										// now check if the house they said is
+										// free
 										if (!doneList.contains(item)) {
 											// it's available, so take money
-											if (player.isEquipped("money", COST_ADOS)) {
+											if (player.isEquipped("money",
+													COST_ADOS)) {
 												Item key = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
 														"private_key_" + item);
 												engine2.say("Congratulations, here is your key to house "
 														+ item
 														+ "! Do you want to buy a spare key, at a price of "
-														+ COST_OF_SPARE_KEY + " money?");
+														+ COST_OF_SPARE_KEY
+														+ " money?");
 												key.setUndroppableOnDeath(true);
 												if (player.equip(key)) {
-													player.drop("money", COST_ADOS);
-    												// remember what house they own
-    												player.setQuest(QUEST_SLOT, item);
-    												postman.setQuest(POSTMAN_STORAGE_SLOT_2, postmanslot + ";" + item);
-    												engine2.setCurrentState(ConversationStates.QUESTION_1);
-												} else
+													player.drop("money",
+															COST_ADOS);
+													// remember what house they
+													// own
+													player.setQuest(QUEST_SLOT,
+															item);
+													postman.setQuest(
+															POSTMAN_STORAGE_SLOT_2,
+															postmanslot + ";"
+																	+ item);
+													engine2.setCurrentState(ConversationStates.QUESTION_1);
+												} else {
 													engine2.say("Sorry, you can't carry more keys!");
+												}
 											} else {
 												engine2.say("You do not have enough money to buy a house!");
 											}
@@ -399,8 +437,10 @@ public class HouseBuying extends AbstractQuest {
 						ConversationStates.ATTENDING, null,
 						new SpeakerNPC.ChatAction() {
 							@Override
-							public void fire(Player player, Sentence sentence, SpeakerNPC engine2) {
-								if (player.isEquipped("money", COST_OF_SPARE_KEY)) {
+							public void fire(Player player, Sentence sentence,
+									SpeakerNPC engine2) {
+								if (player.isEquipped("money",
+										COST_OF_SPARE_KEY)) {
 									String house = player.getQuest(QUEST_SLOT);
 									Item key = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
 											"private_key_" + house);
@@ -408,8 +448,9 @@ public class HouseBuying extends AbstractQuest {
 									if (player.equip(key)) {
 										player.drop("money", COST_OF_SPARE_KEY);
 										engine2.say("Here you go, a spare key to your house. Please remember, only give spare keys to people you #really, #really, trust!");
-									} else
+									} else {
 										engine2.say("Sorry, you can't carry more keys!");
+									}
 								} else {
 									engine2.say("You do not have enough money for another key!");
 								}
@@ -430,9 +471,11 @@ public class HouseBuying extends AbstractQuest {
 						"No problem! If I can help you with anything else, just ask.",
 						null);
 				addJob("I'm an estate agent. In simple terms, I sell houses for the city of Ados. Please ask about the #cost if you are interested. Our brochure is at #http://arianne.sourceforge.net/wiki/index.php?title=StendhalHouses.");
-                                addReply("citizen",
-					 "I conduct an informal survey amongst the Ados residents. If you have helped everyone in Ados, I see no reason why they shouldn't recommend you. I speak with my friend Joshua, the Mayor, the little girl Anna, Pequod the fisherman, Zara, and I even commune with Carena, of the spirit world. Together they give a reliable opnion.");
-				addReply("buy",
+				addReply(
+						"citizen",
+						"I conduct an informal survey amongst the Ados residents. If you have helped everyone in Ados, I see no reason why they shouldn't recommend you. I speak with my friend Joshua, the Mayor, the little girl Anna, Pequod the fisherman, Zara, and I even commune with Carena, of the spirit world. Together they give a reliable opnion.");
+				addReply(
+						"buy",
 						"You may wish to know the #cost before you buy. Perhaps our brochure, #http://arianne.sourceforge.net/wiki/index.php?title=StendhalHouses would also be of interest.");
 				addReply("really",
 						"That's right, really, really, really. Really.");
@@ -449,6 +492,7 @@ public class HouseBuying extends AbstractQuest {
 		npc2.initHP(100);
 		zone2.add(npc2);
 	}
+
 	@Override
 	public void addToWorld() {
 		super.addToWorld();

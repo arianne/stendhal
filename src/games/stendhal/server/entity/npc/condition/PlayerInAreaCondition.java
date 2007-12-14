@@ -17,8 +17,9 @@ public class PlayerInAreaCondition extends SpeakerNPC.ChatCondition {
 
 	/**
 	 * Creates a new PlayerInAreaCondition
-	 *
-	 * @param area Area
+	 * 
+	 * @param area
+	 *            Area
 	 */
 	public PlayerInAreaCondition(Area area) {
 		this.area = area;
@@ -41,6 +42,7 @@ public class PlayerInAreaCondition extends SpeakerNPC.ChatCondition {
 
 	@Override
 	public boolean equals(Object obj) {
-		return EqualsBuilder.reflectionEquals(this, obj, false, QuestStartedCondition.class);
+		return EqualsBuilder.reflectionEquals(this, obj, false,
+				QuestStartedCondition.class);
 	}
 }

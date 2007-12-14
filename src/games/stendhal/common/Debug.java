@@ -12,9 +12,9 @@ package games.stendhal.common;
 
 /**
  * Gathers all Debug constants in one place
- *
+ * 
  * @author mtotz
- *
+ * 
  * TODO: Reemplaze with a XML configuration file?
  */
 public class Debug {
@@ -53,8 +53,7 @@ public class Debug {
 	public static boolean WEB_START_SANDBOX;
 
 	/**
-	 * Log list sizes to find the memory leak.
-	 * It must be somewhere...
+	 * Log list sizes to find the memory leak. It must be somewhere...
 	 */
 	public static boolean SHOW_LIST_SIZES;
 

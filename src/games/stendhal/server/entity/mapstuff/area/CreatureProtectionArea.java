@@ -13,8 +13,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * An area prevents creatures from entering. This allows a layered chain
- * of criteria. Think of this as a creature firewall.
+ * An area prevents creatures from entering. This allows a layered chain of
+ * criteria. Think of this as a creature firewall.
  */
 public class CreatureProtectionArea extends AreaEntity {
 
@@ -28,7 +28,6 @@ public class CreatureProtectionArea extends AreaEntity {
 	 */
 	protected List<Entry> entries;
 
-
 	/**
 	 * Create a 1x1 creature protection area.
 	 */
@@ -38,9 +37,11 @@ public class CreatureProtectionArea extends AreaEntity {
 
 	/**
 	 * Create a creature protection area.
-	 *
-	 * @param	width		The area width.
-	 * @param	height		The area height.
+	 * 
+	 * @param width
+	 *            The area width.
+	 * @param height
+	 *            The area height.
 	 */
 	public CreatureProtectionArea(int width, int height) {
 		this(width, height, true);
@@ -48,10 +49,13 @@ public class CreatureProtectionArea extends AreaEntity {
 
 	/**
 	 * Create a creature protection area.
-	 *
-	 * @param	width		The area width.
-	 * @param	height		The area height.
-	 * @param	defaultBlocked	Whether blocked on no match.
+	 * 
+	 * @param width
+	 *            The area width.
+	 * @param height
+	 *            The area height.
+	 * @param defaultBlocked
+	 *            Whether blocked on no match.
 	 */
 	public CreatureProtectionArea(int width, int height, boolean defaultBlocked) {
 		super(width, height);
@@ -70,9 +74,9 @@ public class CreatureProtectionArea extends AreaEntity {
 
 	/**
 	 * Add a blocked criteria entry.
-	 *
-	 * @param	clazz		A creature class to match
-	 *				(or <code>null</code> for any).
+	 * 
+	 * @param clazz
+	 *            A creature class to match (or <code>null</code> for any).
 	 */
 	public void add(String clazz) {
 		add(clazz, null);
@@ -80,11 +84,11 @@ public class CreatureProtectionArea extends AreaEntity {
 
 	/**
 	 * Add a blocked criteria entry.
-	 *
-	 * @param	clazz		A creature class to match
-	 *				(or <code>null</code> for any).
-	 * @param	subclazz	A creature subclass to match
-	 *				(or <code>null</code> for any).
+	 * 
+	 * @param clazz
+	 *            A creature class to match (or <code>null</code> for any).
+	 * @param subclazz
+	 *            A creature subclass to match (or <code>null</code> for any).
 	 */
 	public void add(String clazz, String subclazz) {
 		add(clazz, subclazz, true);
@@ -92,12 +96,13 @@ public class CreatureProtectionArea extends AreaEntity {
 
 	/**
 	 * Add a criteria entry.
-	 *
-	 * @param	clazz		A creature class to match
-	 *				(or <code>null</code> for any).
-	 * @param	subclazz	A creature subclass to match
-	 *				(or <code>null</code> for any).
-	 * @param	blocked		Whether to block.
+	 * 
+	 * @param clazz
+	 *            A creature class to match (or <code>null</code> for any).
+	 * @param subclazz
+	 *            A creature subclass to match (or <code>null</code> for any).
+	 * @param blocked
+	 *            Whether to block.
 	 */
 	public void add(String clazz, String subclazz, boolean blocked) {
 		entries.add(new Entry(clazz, subclazz, blocked));
@@ -105,19 +110,21 @@ public class CreatureProtectionArea extends AreaEntity {
 
 	/**
 	 * Does a creature match a criteria entry.
-	 *
-	 * @param	creature	The creature to compare.
-	 * @param	defaultAnswer	The answer if no match is found.
-	 *
-	 * @return	The matching criteria, or default response.
+	 * 
+	 * @param creature
+	 *            The creature to compare.
+	 * @param defaultAnswer
+	 *            The answer if no match is found.
+	 * 
+	 * @return The matching criteria, or default response.
 	 */
 	protected boolean matchesCriteria(Creature creature, boolean defaultAnswer) {
 		String clazz;
 		String subclazz;
 
 		/*
-		 * Allow for optional class data. Technically all creatures
-		 * should at least have an entity class type.
+		 * Allow for optional class data. Technically all creatures should at
+		 * least have an entity class type.
 		 */
 		if (creature.has("class")) {
 			clazz = creature.get("class");
@@ -146,8 +153,8 @@ public class CreatureProtectionArea extends AreaEntity {
 
 	/**
 	 * Checks whether a creature can enter.
-	 *
-	 * @return	<code>true</code> if a matching creature is given.
+	 * 
+	 * @return <code>true</code> if a matching creature is given.
 	 */
 	@Override
 	public boolean isObstacle(Entity entity) {
@@ -186,12 +193,15 @@ public class CreatureProtectionArea extends AreaEntity {
 
 		/**
 		 * Create a criteria entry.
-		 *
-		 * @param	clazz		A creature class to match
-		 *				(or <code>null</code> for any).
-		 * @param	subclazz	A creature subclass to match
-		 *				(or <code>null</code> for any).
-		 * @param	blocked		Whether it should be blocked.
+		 * 
+		 * @param clazz
+		 *            A creature class to match (or <code>null</code> for
+		 *            any).
+		 * @param subclazz
+		 *            A creature subclass to match (or <code>null</code> for
+		 *            any).
+		 * @param blocked
+		 *            Whether it should be blocked.
 		 */
 		public Entry(String clazz, String subclazz, boolean blocked) {
 			this.clazz = clazz;
@@ -205,8 +215,8 @@ public class CreatureProtectionArea extends AreaEntity {
 
 		/**
 		 * Determine if a creature matching this criteria is blocked.
-		 *
-		 * @return	<code>true</code> if it should be blocked.
+		 * 
+		 * @return <code>true</code> if it should be blocked.
 		 */
 		public boolean isBlocked() {
 			return blocked;
@@ -214,9 +224,9 @@ public class CreatureProtectionArea extends AreaEntity {
 
 		/**
 		 * Check if a class/subclass matches.
-		 *
-		 *
-		 *
+		 * 
+		 * 
+		 * 
 		 */
 		public boolean matches(String clazz, String subclazz) {
 			if ((this.clazz != null) && !clazz.equals(this.clazz)) {

@@ -68,7 +68,7 @@ public class Portal extends Entity implements UseListener {
 	 * Set the portal reference to identify this specific portal with-in a zone.
 	 * This value is opaque and requires a working equals(), but typically uses
 	 * a String or Integer.
-	 *
+	 * 
 	 * @param reference
 	 *            A reference tag.
 	 */
@@ -78,7 +78,7 @@ public class Portal extends Entity implements UseListener {
 
 	/**
 	 * gets the identifier of this portal
-	 *
+	 * 
 	 * @return identifier
 	 */
 	public Object getIdentifier() {
@@ -89,7 +89,7 @@ public class Portal extends Entity implements UseListener {
 	 * Set the destination portal zone and reference. The reference should match
 	 * the same type/value as that passed to setReference() in the corresponding
 	 * portal.
-	 *
+	 * 
 	 * @param zone
 	 *            The target zone.
 	 * @param reference
@@ -111,7 +111,7 @@ public class Portal extends Entity implements UseListener {
 
 	/**
 	 * Determine if this portal is hidden from players.
-	 *
+	 * 
 	 * @return <code>true</code> if hidden.
 	 */
 	@Override
@@ -150,7 +150,7 @@ public class Portal extends Entity implements UseListener {
 
 	/**
 	 * Use the portal.
-	 *
+	 * 
 	 * @param player
 	 *            the Player who wants to use this portal
 	 * @return <code>true</code> if the portal worked, <code>false</code>
@@ -199,7 +199,7 @@ public class Portal extends Entity implements UseListener {
 
 	/**
 	 * if this portal is the destination of another portal used
-	 *
+	 * 
 	 * @param user
 	 *            the player who used the other portal teleporting to us
 	 */

@@ -12,7 +12,7 @@ import java.util.Map;
 
 /**
  * Builds the gardener in Kalavan city gardens
- *
+ * 
  * @author kymara
  */
 public class GardenerNPC implements ZoneConfigurator {
@@ -22,7 +22,7 @@ public class GardenerNPC implements ZoneConfigurator {
 
 	/**
 	 * Configure a zone.
-	 *
+	 * 
 	 * @param zone
 	 *            The zone to be configured.
 	 * @param attributes
@@ -60,7 +60,9 @@ public class GardenerNPC implements ZoneConfigurator {
 				addHelp("I don't know what you want help with.");
 				addOffer("I haven't anything to trade yet. Wait till the autumn when I'll have some cuttings and seeds.");
 				addQuest("I'd love a cup of #tea, it's thirsty work, gardening.");
-				addReply("tea", "It might be difficult to find, though. The tea shop is closed this week. I'll have to brew my own.");
+				addReply(
+						"tea",
+						"It might be difficult to find, though. The tea shop is closed this week. I'll have to brew my own.");
 				addGoodbye("Bye. Enjoy the rest of the gardens.");
 			}
 		};

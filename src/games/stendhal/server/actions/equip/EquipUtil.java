@@ -6,7 +6,6 @@ import games.stendhal.server.entity.player.Player;
 
 import java.util.List;
 
-
 import org.apache.log4j.Logger;
 import marauroa.common.game.RPObject;
 
@@ -32,13 +31,13 @@ public class EquipUtil {
 		RPObject.ID id = new RPObject.ID(objectId, zone.getID());
 
 		if (!zone.has(id)) {
-			logger.debug("Rejected because zone doesn't have object " + objectId);
+			logger.debug("Rejected because zone doesn't have object "
+					+ objectId);
 			return null;
 		}
 
 		return (Entity) zone.get(id);
 	}
-
 
 	/**
 	 * Checks if the object is of one of the given class or one of its children.
@@ -55,7 +54,9 @@ public class EquipUtil {
 				return true;
 			}
 		}
-		logger.debug("object " + object.getID() + " is not of the correct class. it is " + object.getClass().getName());
+		logger.debug("object " + object.getID()
+				+ " is not of the correct class. it is "
+				+ object.getClass().getName());
 		return false;
 	}
 }

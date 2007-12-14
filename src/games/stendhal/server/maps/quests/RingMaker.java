@@ -64,106 +64,110 @@ public class RingMaker extends AbstractQuest {
 		SpeakerNPC npc = npcs.get("Ognir");
 
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-			new PlayerHasItemWithHimCondition("emerald_ring"),
-			ConversationStates.QUEST_ITEM_BROUGHT, null,
-			new SpeakerNPC.ChatAction() {
-				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-					Item emeraldRing = player.getFirstEquipped("emerald_ring");
-					if (emeraldRing != null
-							&& emeraldRing.getInt("amount") > 0) {
-						// ring is not broken so he just lets player know
-						// where it can be fixed
-						npc.say("Hello. That's a rare emerald on your ring. If it gets broken, come to me to fix it.");
-						npc.setCurrentState(ConversationStates.ATTENDING);
-					} else {
-						// notices ring is broken
-						npc.say("What a pity, your emerald ring is broken. I can fix it, for a #price.");
-						player.setQuest(QUEST_SLOT, "start");
+				new PlayerHasItemWithHimCondition("emerald_ring"),
+				ConversationStates.QUEST_ITEM_BROUGHT, null,
+				new SpeakerNPC.ChatAction() {
+					@Override
+					public void fire(Player player, Sentence sentence,
+							SpeakerNPC npc) {
+						Item emeraldRing = player.getFirstEquipped("emerald_ring");
+						if (emeraldRing != null
+								&& emeraldRing.getInt("amount") > 0) {
+							// ring is not broken so he just lets player know
+							// where it can be fixed
+							npc.say("Hello. That's a rare emerald on your ring. If it gets broken, come to me to fix it.");
+							npc.setCurrentState(ConversationStates.ATTENDING);
+						} else {
+							// notices ring is broken
+							npc.say("What a pity, your emerald ring is broken. I can fix it, for a #price.");
+							player.setQuest(QUEST_SLOT, "start");
+						}
 					}
-				}
-			});
+				});
 
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-			new QuestStateStartsWithCondition(QUEST_SLOT, "forging;"),
-			ConversationStates.IDLE, null, new SpeakerNPC.ChatAction() {
-				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-					String[] tokens = player.getQuest(QUEST_SLOT).split(";");
-					// minutes -> milliseconds
-					long delay = REQUIRED_MINUTES * 60 * 1000; 
-					long timeRemaining = (Long.parseLong(tokens[1]) + delay)
-							- System.currentTimeMillis();
-					if (timeRemaining > 0L) {
-						npc.say("I haven't finished fixing your ring. Please check back in "
-							+ TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L))
-							+ ". Good bye for now.");
-						return;
-					}
-					npc.say("I'm pleased to say, your ring is fixed! It's good as new now.");
-					player.addXP(500);
-					Item emeraldRing = StendhalRPWorld.get()
-							.getRuleManager().getEntityManager().getItem(
-									"emerald_ring");
-					emeraldRing.setBoundTo(player.getName());
-					player.equip(emeraldRing, true);
-					player.setQuest(QUEST_SLOT, "done");
-					player.notifyWorldAboutChanges();
-					npc.setCurrentState(ConversationStates.ATTENDING);
-				}
-			});
-
-		npc.add(ConversationStates.QUEST_ITEM_BROUGHT, "price", null,
-			ConversationStates.QUEST_ITEM_BROUGHT,
-			"The charge for my service is " + REQUIRED_MONEY
-					+ " money, and I need " + REQUIRED_GOLD
-					+ " gold bars and " + REQUIRED_GEM
-					+ " emerald to fix the ring. Do you want to pay now?",
-			null);
-
-		npc.add(ConversationStates.QUEST_ITEM_BROUGHT,
-			ConversationPhrases.YES_MESSAGES, null,
-			ConversationStates.QUEST_ITEM_BROUGHT, null,
-			new SpeakerNPC.ChatAction() {
-				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-					if ((player.isEquipped("gold_bar", REQUIRED_GOLD))
-							&& (player.isEquipped("money", REQUIRED_MONEY))
-							&& (player.isEquipped("emerald", REQUIRED_GEM))) {
-						player.drop("gold_bar", REQUIRED_GOLD);
-						player.drop("emerald", REQUIRED_GEM);
-						player.drop("money", REQUIRED_MONEY);
-						player.drop("emerald_ring");
-						npc.say("Okay, that's all I need to fix the ring. Come back in "
-							+ REQUIRED_MINUTES
-							+ " minutes and it will be ready. Bye for now.");
-						player.setQuest(QUEST_SLOT, "forging;"
-								+ System.currentTimeMillis());
-						npc.setCurrentState(ConversationStates.IDLE);
-					} else {
-						npc.say("Come back when you have the money, the gem and the gold.");
-						/*
-						 * set quest slot to done until he decides he wants
-						 * to pay this is incase player comes back without
-						 * the ring and wants to talk to him about something
-						 * else
-						 */
+				new QuestStateStartsWithCondition(QUEST_SLOT, "forging;"),
+				ConversationStates.IDLE, null, new SpeakerNPC.ChatAction() {
+					@Override
+					public void fire(Player player, Sentence sentence,
+							SpeakerNPC npc) {
+						String[] tokens = player.getQuest(QUEST_SLOT).split(";");
+						// minutes -> milliseconds
+						long delay = REQUIRED_MINUTES * 60 * 1000;
+						long timeRemaining = (Long.parseLong(tokens[1]) + delay)
+								- System.currentTimeMillis();
+						if (timeRemaining > 0L) {
+							npc.say("I haven't finished fixing your ring. Please check back in "
+									+ TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L))
+									+ ". Good bye for now.");
+							return;
+						}
+						npc.say("I'm pleased to say, your ring is fixed! It's good as new now.");
+						player.addXP(500);
+						Item emeraldRing = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
+								"emerald_ring");
+						emeraldRing.setBoundTo(player.getName());
+						player.equip(emeraldRing, true);
 						player.setQuest(QUEST_SLOT, "done");
+						player.notifyWorldAboutChanges();
 						npc.setCurrentState(ConversationStates.ATTENDING);
 					}
-				}
-			});
+				});
+
+		npc.add(ConversationStates.QUEST_ITEM_BROUGHT, "price", null,
+				ConversationStates.QUEST_ITEM_BROUGHT,
+				"The charge for my service is " + REQUIRED_MONEY
+						+ " money, and I need " + REQUIRED_GOLD
+						+ " gold bars and " + REQUIRED_GEM
+						+ " emerald to fix the ring. Do you want to pay now?",
+				null);
+
+		npc.add(ConversationStates.QUEST_ITEM_BROUGHT,
+				ConversationPhrases.YES_MESSAGES, null,
+				ConversationStates.QUEST_ITEM_BROUGHT, null,
+				new SpeakerNPC.ChatAction() {
+					@Override
+					public void fire(Player player, Sentence sentence,
+							SpeakerNPC npc) {
+						if ((player.isEquipped("gold_bar", REQUIRED_GOLD))
+								&& (player.isEquipped("money", REQUIRED_MONEY))
+								&& (player.isEquipped("emerald", REQUIRED_GEM))) {
+							player.drop("gold_bar", REQUIRED_GOLD);
+							player.drop("emerald", REQUIRED_GEM);
+							player.drop("money", REQUIRED_MONEY);
+							player.drop("emerald_ring");
+							npc.say("Okay, that's all I need to fix the ring. Come back in "
+									+ REQUIRED_MINUTES
+									+ " minutes and it will be ready. Bye for now.");
+							player.setQuest(QUEST_SLOT, "forging;"
+									+ System.currentTimeMillis());
+							npc.setCurrentState(ConversationStates.IDLE);
+						} else {
+							npc.say("Come back when you have the money, the gem and the gold.");
+							/*
+							 * set quest slot to done until he decides he wants
+							 * to pay this is incase player comes back without
+							 * the ring and wants to talk to him about something
+							 * else
+							 */
+							player.setQuest(QUEST_SLOT, "done");
+							npc.setCurrentState(ConversationStates.ATTENDING);
+						}
+					}
+				});
 
 		/*
-		 * set quest slot to done until he decides he wants to
-		 * pay this is incase player comes back without the ring
-		 * and wants to talk to him about something else
+		 * set quest slot to done until he decides he wants to pay this is
+		 * incase player comes back without the ring and wants to talk to him
+		 * about something else
 		 */
-		npc.add(ConversationStates.QUEST_ITEM_BROUGHT,
-			ConversationPhrases.NO_MESSAGES, null,
-			ConversationStates.ATTENDING, 
-			"No problem, just come back when you have the money, the emerald, and the gold.",
-			new SetQuestAction(QUEST_SLOT, "done"));
+		npc.add(
+				ConversationStates.QUEST_ITEM_BROUGHT,
+				ConversationPhrases.NO_MESSAGES,
+				null,
+				ConversationStates.ATTENDING,
+				"No problem, just come back when you have the money, the emerald, and the gold.",
+				new SetQuestAction(QUEST_SLOT, "done"));
 	}
 
 	@Override

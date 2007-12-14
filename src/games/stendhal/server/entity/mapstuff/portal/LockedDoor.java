@@ -15,25 +15,29 @@ package games.stendhal.server.entity.mapstuff.portal;
 import games.stendhal.server.entity.RPEntity;
 
 /**
- * A locked door is a special kind of portal which requires a key to pass it.
- * If the player carries the key with him, he can use the door just
- * like a normal portal; it will automatically open and close.
+ * A locked door is a special kind of portal which requires a key to pass it. If
+ * the player carries the key with him, he can use the door just like a normal
+ * portal; it will automatically open and close.
  * 
- * By using the requiredAmount parameter, it can need more than one item for a key
+ * By using the requiredAmount parameter, it can need more than one item for a
+ * key
  * 
- * Note that you can link a door with a portal; that way, people only
- * require the key when walking in one direction and can walk in the
- * other direction without any key.
+ * Note that you can link a door with a portal; that way, people only require
+ * the key when walking in one direction and can walk in the other direction
+ * without any key.
  */
 public class LockedDoor extends Door {
 
-        /* the number of items user must be carrying to act as a key */
+	/* the number of items user must be carrying to act as a key */
 	protected int requiredAmount;
 
 	/**
-	 * Creates a new Locked door which need 1 key item 
-	 * @param key The name of the item that is required to use the door
-	 * @param clazz The class. Responsible for how this door looks like.
+	 * Creates a new Locked door which need 1 key item
+	 * 
+	 * @param key
+	 *            The name of the item that is required to use the door
+	 * @param clazz
+	 *            The class. Responsible for how this door looks like.
 	 */
 	public LockedDoor(String key, String clazz) {
 		this(key, clazz, 1);
@@ -41,9 +45,13 @@ public class LockedDoor extends Door {
 
 	/**
 	 * Creates a new Locked door.
-	 * @param key The name of the item that is required to use the door
-	 * @param clazz The class. Responsible for how this door looks like.
-	 * @param requiredAmount The number of key items that are needed
+	 * 
+	 * @param key
+	 *            The name of the item that is required to use the door
+	 * @param clazz
+	 *            The class. Responsible for how this door looks like.
+	 * @param requiredAmount
+	 *            The number of key items that are needed
 	 */
 	public LockedDoor(String key, String clazz, int requiredAmount) {
 		super(clazz);
@@ -53,7 +61,7 @@ public class LockedDoor extends Door {
 
 	@Override
 	protected boolean isAllowed(RPEntity user) {
-	    return (has("locked") && user.isEquipped(get("locked"), requiredAmount));
+		return (has("locked") && user.isEquipped(get("locked"), requiredAmount));
 	}
 
 }

@@ -17,7 +17,8 @@ public class SlashActionParser {
 	 * slash character but to start directly after the slash on the client
 	 * command line.
 	 * 
-	 * @param text the client command line
+	 * @param text
+	 *            the client command line
 	 * @return SlashActionCommand object
 	 */
 	public static SlashActionCommand parse(final String text) {

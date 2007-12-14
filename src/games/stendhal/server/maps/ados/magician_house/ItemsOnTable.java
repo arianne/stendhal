@@ -10,11 +10,12 @@ import java.util.Map;
 
 /**
  * Creates the items on the table in the magician house.
- *
+ * 
  * @author hendrik
  */
 public class ItemsOnTable implements ZoneConfigurator {
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone,
+			Map<String, String> attributes) {
 		buildMagicianHouseArea(zone);
 	}
 
@@ -23,7 +24,8 @@ public class ItemsOnTable implements ZoneConfigurator {
 		item.setInfoString("giant_red_dragon");
 
 		// Plant grower for poison
-		PassiveEntityRespawnPoint plantGrower = new PassiveEntityRespawnPoint("poison", 1500);
+		PassiveEntityRespawnPoint plantGrower = new PassiveEntityRespawnPoint(
+				"poison", 1500);
 		plantGrower.setPosition(3, 6);
 		plantGrower.setDescription("Haizen tends to put his magic drinks here.");
 		zone.add(plantGrower);
@@ -31,8 +33,10 @@ public class ItemsOnTable implements ZoneConfigurator {
 		plantGrower.setToFullGrowth();
 	}
 
-	private Item addPersistentItem(String name, StendhalRPZone zone, int x, int y) {
-		Item item = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(name);
+	private Item addPersistentItem(String name, StendhalRPZone zone, int x,
+			int y) {
+		Item item = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
+				name);
 		item.setPosition(x, y);
 		item.setPersistent(true);
 		zone.add(item);

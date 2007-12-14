@@ -21,11 +21,14 @@ public class CatSellerNPC implements ZoneConfigurator {
 
 	/**
 	 * Configure a zone.
-	 *
-	 * @param	zone		The zone to be configured.
-	 * @param	attributes	Configuration attributes.
+	 * 
+	 * @param zone
+	 *            The zone to be configured.
+	 * @param attributes
+	 *            Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone,
+			Map<String, String> attributes) {
 		buildHouseArea(zone);
 	}
 
@@ -56,7 +59,8 @@ public class CatSellerNPC implements ZoneConfigurator {
 					}
 
 					@Override
-					public boolean transactAgreedDeal(SpeakerNPC seller, Player player) {
+					public boolean transactAgreedDeal(SpeakerNPC seller,
+							Player player) {
 						if (getAmount() > 1) {
 							seller.say("Hmm... I just don't think you're cut out for taking care of more than one cat at once.");
 							return false;
@@ -93,13 +97,17 @@ public class CatSellerNPC implements ZoneConfigurator {
 				addHelp("I sell cats. To buy one, just tell me you want to #buy #cat. If you're new to this business, I can tell you how to #travel with her and take #care of her. If you find any wild cat, incidentally, you can make them your #own.");
 				addGoodbye();
 				new SellerAdder().addSeller(this, new CatSellerBehaviour(items));
-				addReply("care",
+				addReply(
+						"care",
 						"Cats love chicken and fish. Just place a piece on the ground and your cat will run over to eat it. You can right-click on her and choose 'Look' at any time, to check up on her weight; she will gain one unit of weight for every piece of chicken she eats.");
-				addReply("travel",
+				addReply(
+						"travel",
 						"You'll need your cat to be close by in order for her to follow you when you change zones; you can say #cat to call her if she's not paying attention. If you decide to abandon her instead, you can right-click on yourself and select 'Leave Pet'; but frankly I think that sort of behaviour is disgraceful.");
-				addReply("sell",
+				addReply(
+						"sell",
 						"Sell??? What kind of a monster are you? Why would you ever sell your beautiful cat?");
-				addReply("own",
+				addReply(
+						"own",
 						"If you find any wild or abandoned cat, you can right-click on them and select 'Own' to tame them. It will start following you immediately. Cats go a bit crazy without an owner!");
 			}
 		};
@@ -108,11 +116,12 @@ public class CatSellerNPC implements ZoneConfigurator {
 		npc.setPosition(6, 8);
 		npc.initHP(100);
 		zone.add(npc);
-		
-		// Also put a cat in her bedroom (people can't Own it as it is behind a fence)
+
+		// Also put a cat in her bedroom (people can't Own it as it is behind a
+		// fence)
 		Cat hercat = new Cat();
-                hercat.setPosition(19, 3);
-                zone.add(hercat);
+		hercat.setPosition(19, 3);
+		zone.add(hercat);
 
 	}
 }

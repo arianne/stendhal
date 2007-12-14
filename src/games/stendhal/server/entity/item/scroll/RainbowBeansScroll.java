@@ -13,7 +13,7 @@ public class RainbowBeansScroll extends TimedTeleportScroll {
 
 	/**
 	 * Creates a new timed marked teleport scroll
-	 *
+	 * 
 	 * @param name
 	 * @param clazz
 	 * @param subclass
@@ -26,7 +26,7 @@ public class RainbowBeansScroll extends TimedTeleportScroll {
 
 	/**
 	 * copy constructor
-	 *
+	 * 
 	 * @param item
 	 *            item to copy
 	 */

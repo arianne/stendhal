@@ -22,18 +22,17 @@ public class Pet2DView extends DomesticAnimal2DView {
 	/**
 	 * The weight that a pet becomes fat (big).
 	 */
-	protected static final int	BIG_WEIGHT	= 20;
-
+	protected static final int BIG_WEIGHT = 20;
 
 	/**
 	 * Create a 2D view of a pet.
-	 *
-	 * @param	pet		The entity to render.
+	 * 
+	 * @param pet
+	 *            The entity to render.
 	 */
 	public Pet2DView(final Pet pet) {
 		super(pet);
 	}
-
 
 	//
 	// DomesticAnimal2DView
@@ -41,24 +40,24 @@ public class Pet2DView extends DomesticAnimal2DView {
 
 	/**
 	 * Get the weight at which the animal becomes big.
-	 *
-	 * @return	A weight.
+	 * 
+	 * @return A weight.
 	 */
 	@Override
 	protected int getBigWeight() {
 		return BIG_WEIGHT;
 	}
 
-
 	//
 	// Entity2DView
 	//
 
 	/**
-	 * Build a list of entity specific actions.
-	 * <strong>NOTE: The first entry should be the default.</strong>
-	 *
-	 * @param	list		The list to populate.
+	 * Build a list of entity specific actions. <strong>NOTE: The first entry
+	 * should be the default.</strong>
+	 * 
+	 * @param list
+	 *            The list to populate.
 	 */
 	@Override
 	protected void buildActions(final List<String> list) {

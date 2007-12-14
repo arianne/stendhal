@@ -1,4 +1,3 @@
-
 /***************************************************************************
  *                      (C) Copyright 2003 - Marauroa                      *
  ***************************************************************************
@@ -25,13 +24,14 @@ import marauroa.common.game.Definition.Type;
 
 /**
  * The Spell class. Based off the item code.
+ * 
  * @author timothyb89
  */
 public class Spell extends PassiveEntity implements EquipListener {
 	/**
 	 * The spell name attribute name.
 	 */
-	protected static final String	ATTR_NAME	= "name";
+	protected static final String ATTR_NAME = "name";
 
 	/** list of possible slots for this item */
 	private List<String> possibleSlots = Arrays.asList("spells");
@@ -44,17 +44,22 @@ public class Spell extends PassiveEntity implements EquipListener {
 	public static void generateRPClass() {
 		RPClass entity = new RPClass("spell");
 		entity.isA("entity");
-		entity.addAttribute("class", Type.STRING); // the spell class (other purposes, just to code old code for now)
-		entity.addAttribute(ATTR_NAME, Type.STRING); // name of spell (such as "heal")
+		entity.addAttribute("class", Type.STRING); // the spell class (other
+													// purposes, just to code
+													// old code for now)
+		entity.addAttribute(ATTR_NAME, Type.STRING); // name of spell (such
+														// as "heal")
 
 	}
 
 	/**
-	 *
+	 * 
 	 * Creates a new Item.
-	 *
-	 * @param name name of item
-	 * @param attributes attributes (like attack). may be empty or <code>null</code>
+	 * 
+	 * @param name
+	 *            name of item
+	 * @param attributes
+	 *            attributes (like attack). may be empty or <code>null</code>
 	 */
 	public Spell(String name, Map<String, String> attributes) {
 		this();
@@ -92,15 +97,13 @@ public class Spell extends PassiveEntity implements EquipListener {
 		}
 	}
 
-
 	public boolean canBeEquippedIn(String slot) {
 		return possibleSlots.contains(slot);
 	}
 
-
 	/**
 	 * Get the entity name.
-	 *
+	 * 
 	 * @return The entity's name, or <code>null</code> if undefined.
 	 */
 	public String getName() {
@@ -111,20 +114,19 @@ public class Spell extends PassiveEntity implements EquipListener {
 		}
 	}
 
-
 	//
 	// Entity
 	//
 
 	/**
-	 * Returns the name or something that can be used to identify the
-	 * entity for the player
-	 *
+	 * Returns the name or something that can be used to identify the entity for
+	 * the player
+	 * 
 	 * @param definite
-	 *	<code>true</code> for "the", and <code>false</code> for "a/an"
-	 *	in case the entity has no name.
-	 *
-	 * @return	The description name.
+	 *            <code>true</code> for "the", and <code>false</code> for
+	 *            "a/an" in case the entity has no name.
+	 * 
+	 * @return The description name.
 	 */
 	@Override
 	public String getDescriptionName(final boolean definite) {
@@ -137,10 +139,9 @@ public class Spell extends PassiveEntity implements EquipListener {
 		}
 	}
 
-
 	/**
 	 * Get the nicely formatted entity title/name.
-	 *
+	 * 
 	 * @return The title, or <code>null</code> if unknown.
 	 */
 	@Override

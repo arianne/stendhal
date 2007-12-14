@@ -16,8 +16,9 @@ public class NotCondition extends SpeakerNPC.ChatCondition {
 
 	/**
 	 * Creates a new "not"-condition
-	 *
-	 * @param condition condition which result is to be inversed
+	 * 
+	 * @param condition
+	 *            condition which result is to be inversed
 	 */
 	public NotCondition(SpeakerNPC.ChatCondition condition) {
 		this.condition = condition;
@@ -40,6 +41,7 @@ public class NotCondition extends SpeakerNPC.ChatCondition {
 
 	@Override
 	public boolean equals(Object obj) {
-		return EqualsBuilder.reflectionEquals(this, obj, false, QuestStartedCondition.class);
+		return EqualsBuilder.reflectionEquals(this, obj, false,
+				QuestStartedCondition.class);
 	}
 }

@@ -4,7 +4,7 @@ import games.stendhal.server.entity.Entity;
 
 /**
  * a lootable slot of some creature
- *
+ * 
  * @author hendrik
  */
 public class LootableSlot extends EntitySlot {
@@ -12,8 +12,9 @@ public class LootableSlot extends EntitySlot {
 
 	/**
 	 * creates a new lootable slot
-	 *
-	 * @param owner owner of this Slot
+	 * 
+	 * @param owner
+	 *            owner of this Slot
 	 */
 	public LootableSlot(Entity owner) {
 		super("content");

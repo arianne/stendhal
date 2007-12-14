@@ -20,7 +20,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 /**
  * Checks if all sound files can be played on the current system. For example
  * some sounds can only be played on MS Windows but not on Linux based systems.
- *
+ * 
  * @author mtotz
  */
 public class CheckSounds {
@@ -46,7 +46,7 @@ public class CheckSounds {
 	}
 
 	@SuppressWarnings("unchecked")
-    public static void main(String[] args) throws Exception {
+	public static void main(String[] args) throws Exception {
 		Properties prop = new Properties();
 		loadSoundProperties(prop);
 
@@ -69,24 +69,31 @@ public class CheckSounds {
 				}
 
 				try {
-					InputStream is = CheckSounds.class.getClassLoader().getResourceAsStream(soundBase + "/" + filename);
+					InputStream is = CheckSounds.class.getClassLoader().getResourceAsStream(
+							soundBase + "/" + filename);
 					AudioInputStream ais = AudioSystem.getAudioInputStream(is);
 					AudioFormat format = ais.getFormat();
 					String formatString = format.toString();
 
 					if (TESTPLAY_SAMPLES) {
 						// testplay the sound
-						DataLine.Info info = new DataLine.Info(Clip.class, format);
+						DataLine.Info info = new DataLine.Info(Clip.class,
+								format);
 						if (defaultMixer.isLineSupported(info)) {
 							AudioInputStream playStream = ais;
-							AudioFormat defaultFormat = new AudioFormat(format.getSampleRate(), 16, 1, false, true);
-							if (AudioSystem.isConversionSupported(defaultFormat, format)) {
-								playStream = AudioSystem.getAudioInputStream(defaultFormat, ais);
+							AudioFormat defaultFormat = new AudioFormat(
+									format.getSampleRate(), 16, 1, false, true);
+							if (AudioSystem.isConversionSupported(
+									defaultFormat, format)) {
+								playStream = AudioSystem.getAudioInputStream(
+										defaultFormat, ais);
 							} else {
-								System.out.println("conversion not supported (to " + defaultFormat + ")");
+								System.out.println("conversion not supported (to "
+										+ defaultFormat + ")");
 							}
 
-							System.out.println("testplaying " + name + " " + playStream.getFormat());
+							System.out.println("testplaying " + name + " "
+									+ playStream.getFormat());
 
 							Clip line = (Clip) defaultMixer.getLine(info);
 							line.open(playStream);
@@ -105,7 +112,8 @@ public class CheckSounds {
 						formatMap.put(formatString, format);
 					}
 				} catch (UnsupportedAudioFileException e) {
-					System.out.println(name + " cannot be read, the file format is not supported");
+					System.out.println(name
+							+ " cannot be read, the file format is not supported");
 				}
 			}
 		}
@@ -117,16 +125,19 @@ public class CheckSounds {
 		System.out.println("installed mixer: ");
 		for (int i = 0; i < mixerList.length; i++) {
 			Mixer.Info mixer = mixerList[i];
-			width[i] = Math.max(mixer.getName().length(), "unsupported".length());
+			width[i] = Math.max(mixer.getName().length(),
+					"unsupported".length());
 			System.out.println(mixer.getName() + " - " + mixer.getDescription());
 		}
-		System.out.println("Default: " + AudioSystem.getMixer(null).getMixerInfo().getName());
+		System.out.println("Default: "
+				+ AudioSystem.getMixer(null).getMixerInfo().getName());
 		System.out.println("\n");
 
 		System.out.println(formatMap.size()
-		        + " audio formats\nThe maximum available lines for the format is in brackets.");
+				+ " audio formats\nThe maximum available lines for the format is in brackets.");
 		for (int i = 0; i < mixerList.length; i++) {
-			System.out.print(getString(mixerList[i].getName(), width[i], ' ') + " | ");
+			System.out.print(getString(mixerList[i].getName(), width[i], ' ')
+					+ " | ");
 		}
 		System.out.println("Format");
 		for (int i = 0; i < mixerList.length; i++) {
@@ -135,13 +146,15 @@ public class CheckSounds {
 		System.out.println("---------------------");
 
 		for (String key : formatMap.keySet()) {
-			DataLine.Info info = new DataLine.Info(Clip.class, formatMap.get(key));
+			DataLine.Info info = new DataLine.Info(Clip.class,
+					formatMap.get(key));
 			for (int i = 0; i < mixerList.length; i++) {
 				Mixer mixer = AudioSystem.getMixer(mixerList[i]);
 				boolean supported = mixer.isLineSupported(info);
-				System.out.print(getString((supported ? "  " : "un") + "supported (" + mixer.getMaxLines(info) + ")",
-				        width[i], ' ')
-				        + " | ");
+				System.out.print(getString((supported ? "  " : "un")
+						+ "supported (" + mixer.getMaxLines(info) + ")",
+						width[i], ' ')
+						+ " | ");
 			}
 
 			System.out.print(key);
@@ -160,7 +173,7 @@ public class CheckSounds {
 	}
 
 	// ------------------------------------------------------------------------
-	//              TODO: clean up this copied code from SoundSystem
+	// TODO: clean up this copied code from SoundSystem
 	// ------------------------------------------------------------------------
 
 	/** expected location of the sound definition file (classloader). */
@@ -174,7 +187,8 @@ public class CheckSounds {
 	private static void loadSoundProperties(Properties prop) throws IOException {
 		InputStream in1;
 
-		in1 = CheckSounds.class.getClassLoader().getResourceAsStream(STORE_PROPERTYFILE);
+		in1 = CheckSounds.class.getClassLoader().getResourceAsStream(
+				STORE_PROPERTYFILE);
 		prop.load(in1);
 		in1.close();
 	}
@@ -182,10 +196,11 @@ public class CheckSounds {
 	/**
 	 * A key/value pair is assumed valid if
 	 * <ul>
-	 *    <li>key starts with "sfx." <b>and </b></li>
-	 *    <li>key does not end with ",x"</li>
-	 *    <li>or value contains a "."</li>
+	 * <li>key starts with "sfx." <b>and </b></li>
+	 * <li>key does not end with ",x"</li>
+	 * <li>or value contains a "."</li>
 	 * </ul>
+	 * 
 	 * @param key
 	 * @param value
 	 * @return true, if it is valid, false otherwise
@@ -207,6 +222,6 @@ public class CheckSounds {
 		}
 	}
 	// ------------------------------------------------------------------------
-	//              copied code end
+	// copied code end
 	// ------------------------------------------------------------------------
 }

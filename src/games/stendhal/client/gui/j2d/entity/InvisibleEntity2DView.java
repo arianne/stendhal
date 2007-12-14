@@ -19,13 +19,13 @@ import games.stendhal.client.entity.InvisibleEntity;
 public class InvisibleEntity2DView extends Entity2DView {
 	/**
 	 * Create a 2D view of an entity.
-	 *
-	 * @param	entity		The entity to render.
+	 * 
+	 * @param entity
+	 *            The entity to render.
 	 */
 	public InvisibleEntity2DView(final InvisibleEntity entity) {
 		super(entity);
 	}
-
 
 	//
 	// Entity2DView
@@ -38,26 +38,25 @@ public class InvisibleEntity2DView extends Entity2DView {
 	protected void buildRepresentation() {
 	}
 
-
 	/**
 	 * Draw the entity (NOT!).
-	 *
-	 * @param	g2d		The graphics to drawn on.
+	 * 
+	 * @param g2d
+	 *            The graphics to drawn on.
 	 */
 	@Override
 	public void draw(final Graphics2D g2d) {
 		applyChanges();
 	}
 
-
 	/**
-	 * Determines on top of which other entities this entity should be
-	 * drawn. Entities with a high Z index will be drawn on top of ones
-	 * with a lower Z index.
+	 * Determines on top of which other entities this entity should be drawn.
+	 * Entities with a high Z index will be drawn on top of ones with a lower Z
+	 * index.
 	 * 
 	 * Also, players can only interact with the topmost entity.
 	 * 
-	 * @return	The drawing index.
+	 * @return The drawing index.
 	 */
 	@Override
 	public int getZIndex() {

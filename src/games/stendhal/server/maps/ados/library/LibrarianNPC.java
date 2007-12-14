@@ -18,21 +18,25 @@ import java.util.Map;
 
 /**
  * Ados Library (Inside / Level 0)
- *
+ * 
  * @author hendrik
  */
 public class LibrarianNPC implements ZoneConfigurator {
 	/**
 	 * Configure a zone.
-	 *
-	 * @param	zone		The zone to be configured.
-	 * @param	attributes	Configuration attributes.
+	 * 
+	 * @param zone
+	 *            The zone to be configured.
+	 * @param attributes
+	 *            Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone,
+			Map<String, String> attributes) {
 		buildLibrary(zone, attributes);
 	}
 
-	private void buildLibrary(StendhalRPZone zone, Map<String, String> attributes) {
+	private void buildLibrary(StendhalRPZone zone,
+			Map<String, String> attributes) {
 		SpeakerNPC npc = new SpeakerNPC("Wikipedian") {
 
 			@Override
@@ -50,33 +54,38 @@ public class LibrarianNPC implements ZoneConfigurator {
 				addGreeting();
 				addJob("I am the librarian");
 				addHelp("Just ask me to #explain #something");
-				add(ConversationStates.ATTENDING, "explain", null, ConversationStates.ATTENDING, null,
-				        new SpeakerNPC.ChatAction() {
+				add(ConversationStates.ATTENDING, "explain", null,
+						ConversationStates.ATTENDING, null,
+						new SpeakerNPC.ChatAction() {
 
-					        @Override
-					        public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-						        // extract the title
-					        	String title = sentence.getObjectName();
+							@Override
+							public void fire(Player player, Sentence sentence,
+									SpeakerNPC npc) {
+								// extract the title
+								String title = sentence.getObjectName();
 
-						        if (title == null) {
-							        npc.say("What do you want to be explained?");
-							        return;
-						        }
+								if (title == null) {
+									npc.say("What do you want to be explained?");
+									return;
+								}
 
-						        WikipediaAccess access = new WikipediaAccess(title);
-						        Thread thread = new Thread(access);
-						        thread.setPriority(Thread.MIN_PRIORITY);
-						        thread.setDaemon(true);
-						        thread.start();
-						        TurnNotifier.get().notifyInTurns(10, new WikipediaWaiter(npc, access));
-						        npc.say("Please wait, while i am looking it up in the book called #Wikipedia!");
-					        }
-					        // TODO: implement pointer to authors, GFDL, etc...
-				        });
+								WikipediaAccess access = new WikipediaAccess(
+										title);
+								Thread thread = new Thread(access);
+								thread.setPriority(Thread.MIN_PRIORITY);
+								thread.setDaemon(true);
+								thread.start();
+								TurnNotifier.get().notifyInTurns(10,
+										new WikipediaWaiter(npc, access));
+								npc.say("Please wait, while i am looking it up in the book called #Wikipedia!");
+							}
+							// TODO: implement pointer to authors, GFDL, etc...
+						});
 				addReply("wikipedia",
 						"Wikipedia is an Internet based project to create a #free encyclopedia");
-				addReply("free",
-				        "The Wikipedia content may be used according to the rules specified in the GNU General Documentation License which can be found at http://en.wikipedia.org/wiki/Wikipedia:Text_of_the_GNU_Free_Documentation_License");
+				addReply(
+						"free",
+						"The Wikipedia content may be used according to the rules specified in the GNU General Documentation License which can be found at http://en.wikipedia.org/wiki/Wikipedia:Text_of_the_GNU_Free_Documentation_License");
 				addGoodbye();
 			}
 		};
@@ -100,7 +109,8 @@ public class LibrarianNPC implements ZoneConfigurator {
 
 		public void onTurnReached(int currentTurn) {
 			if (!access.isFinished()) {
-				TurnNotifier.get().notifyInTurns(3, new WikipediaWaiter(npc, access));
+				TurnNotifier.get().notifyInTurns(3,
+						new WikipediaWaiter(npc, access));
 				return;
 			}
 			if (access.getError() != null) {

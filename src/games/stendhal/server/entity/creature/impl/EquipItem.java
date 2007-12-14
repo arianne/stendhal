@@ -14,4 +14,3 @@ public class EquipItem {
 		this.quantity = amount;
 	}
 }
-

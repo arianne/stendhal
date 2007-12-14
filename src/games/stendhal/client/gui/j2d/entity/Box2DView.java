@@ -21,23 +21,24 @@ import marauroa.common.game.RPAction;
 public class Box2DView extends Item2DView {
 	/**
 	 * Create a 2D view of a box.
-	 *
-	 * @param	box		The entity to render.
+	 * 
+	 * @param box
+	 *            The entity to render.
 	 */
 	public Box2DView(final Box box) {
 		super(box);
 	}
-
 
 	//
 	// Entity2DView
 	//
 
 	/**
-	 * Build a list of entity specific actions.
-	 * <strong>NOTE: The first entry should be the default.</strong>
-	 *
-	 * @param	list		The list to populate.
+	 * Build a list of entity specific actions. <strong>NOTE: The first entry
+	 * should be the default.</strong>
+	 * 
+	 * @param list
+	 *            The list to populate.
 	 */
 	@Override
 	protected void buildActions(final List<String> list) {
@@ -46,7 +47,6 @@ public class Box2DView extends Item2DView {
 		super.buildActions(list);
 		list.remove(ActionType.USE.getRepresentation());
 	}
-
 
 	//
 	// EntityView
@@ -60,27 +60,27 @@ public class Box2DView extends Item2DView {
 		onAction(ActionType.OPEN);
 	}
 
-
 	/**
 	 * Perform an action.
-	 *
-	 * @param	at		The action.
+	 * 
+	 * @param at
+	 *            The action.
 	 */
 	@Override
 	public void onAction(final ActionType at) {
 		switch (at) {
-			case OPEN:
-				RPAction rpaction = new RPAction();
+		case OPEN:
+			RPAction rpaction = new RPAction();
 
-				rpaction.put("type", at.toString());
-				getEntity().fillTargetInfo(rpaction);
+			rpaction.put("type", at.toString());
+			getEntity().fillTargetInfo(rpaction);
 
-				at.send(rpaction);
-				break;
+			at.send(rpaction);
+			break;
 
-			default:
-				super.onAction(at);
-				break;
+		default:
+			super.onAction(at);
+			break;
 		}
 	}
 }

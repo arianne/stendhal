@@ -35,8 +35,8 @@ public class StyledJPopupMenu extends JPopupMenu {
 
 	/**
 	 * Create a styled JPopupMenu.
-	 *
-	 *
+	 * 
+	 * 
 	 */
 	public StyledJPopupMenu(Style style, String label) {
 		super(label);
@@ -54,7 +54,7 @@ public class StyledJPopupMenu extends JPopupMenu {
 
 	/**
 	 * Apply style information to a menu item.
-	 *
+	 * 
 	 */
 	protected void applyStyle(Style style, JMenuItem item) {
 		Color color = style.getForeground();
@@ -74,18 +74,18 @@ public class StyledJPopupMenu extends JPopupMenu {
 			item.setMargin(new Insets(0, 0, 0, 0));
 		}
 
-		if (color  != null) {
+		if (color != null) {
 			item.setForeground(color);
 		}
 
-		if (font  != null) {
+		if (font != null) {
 			item.setFont(font);
 		}
 	}
 
 	/**
 	 * Apply style information to a menu.
-	 *
+	 * 
 	 */
 	protected void applyStyle(Style style, JPopupMenu menu) {
 		Border border = style.getBorder();
@@ -105,7 +105,7 @@ public class StyledJPopupMenu extends JPopupMenu {
 
 	/**
 	 * Add a menu item, applying style.
-	 *
+	 * 
 	 */
 	@Override
 	public JMenuItem add(JMenuItem item) {
@@ -120,8 +120,8 @@ public class StyledJPopupMenu extends JPopupMenu {
 
 	/**
 	 * Paint the component background.
-	 *
-	 *
+	 * 
+	 * 
 	 */
 	@Override
 	protected void paintComponent(Graphics g) {

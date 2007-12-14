@@ -26,7 +26,6 @@ import games.stendhal.server.events.TurnNotifier;
 import java.awt.geom.Rectangle2D;
 import java.util.Iterator;
 
-
 import org.apache.log4j.Logger;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
@@ -86,9 +85,9 @@ public class Corpse extends PassiveEntity implements TurnListener,
 		}
 	}
 
-
 	/**
 	 * non rotting corpse
+	 * 
 	 * @param clazz
 	 * @param x
 	 * @param y
@@ -111,13 +110,13 @@ public class Corpse extends PassiveEntity implements TurnListener,
 
 	/**
 	 * Create a corpse.
-	 *
+	 * 
 	 * @param victim
 	 *            The killed entity.
 	 * @param killer
 	 *            The killer entity.
-	 *
-	 *
+	 * 
+	 * 
 	 */
 	public Corpse(RPEntity victim, Entity killer) {
 		this(victim, killer.getTitle());
@@ -125,13 +124,13 @@ public class Corpse extends PassiveEntity implements TurnListener,
 
 	/**
 	 * Create a corpse.
-	 *
+	 * 
 	 * @param victim
 	 *            The killed entity.
 	 * @param killerName
 	 *            The killer name.
-	 *
-	 *
+	 * 
+	 * 
 	 */
 	public Corpse(RPEntity victim, String killerName) {
 		setRPClass("corpse");
@@ -174,7 +173,7 @@ public class Corpse extends PassiveEntity implements TurnListener,
 
 	/**
 	 * Get the entity name.
-	 *
+	 * 
 	 * @return The entity's name, or <code>null</code> if undefined.
 	 */
 	public String getName() {
@@ -187,7 +186,7 @@ public class Corpse extends PassiveEntity implements TurnListener,
 
 	/**
 	 * Set the killer name of the corpse.
-	 *
+	 * 
 	 * @param name
 	 *            The corpse's killer name.
 	 */
@@ -197,7 +196,7 @@ public class Corpse extends PassiveEntity implements TurnListener,
 
 	/**
 	 * Set the name of the corpse.
-	 *
+	 * 
 	 * @param name
 	 *            The corpse name.
 	 */
@@ -257,7 +256,7 @@ public class Corpse extends PassiveEntity implements TurnListener,
 	/**
 	 * Sets the current degrading state. Set it to MAX_STAGE will remove the
 	 * corpse.
-	 *
+	 * 
 	 * @param newStage
 	 */
 	public void setStage(int newStage) {
@@ -324,11 +323,11 @@ public class Corpse extends PassiveEntity implements TurnListener,
 	/**
 	 * Returns the name or something that can be used to identify the entity for
 	 * the player
-	 *
+	 * 
 	 * @param definite
 	 *            <code>true</code> for "the", and <code>false</code> for
 	 *            "a/an" in case the entity has no name.
-	 *
+	 * 
 	 * @return The description name.
 	 */
 	@Override
@@ -344,7 +343,7 @@ public class Corpse extends PassiveEntity implements TurnListener,
 
 	/**
 	 * Get the nicely formatted entity title/name.
-	 *
+	 * 
 	 * @return The title, or <code>null</code> if unknown.
 	 */
 	@Override

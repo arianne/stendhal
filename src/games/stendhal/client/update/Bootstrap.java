@@ -20,7 +20,7 @@ import javax.swing.JOptionPane;
 
 /**
  * Starts a program after doing some classpath magic.
- *
+ * 
  * @author hendrik
  */
 public class Bootstrap {
@@ -42,7 +42,7 @@ public class Bootstrap {
 
 		/**
 		 * Creates a buttom up order class loader
-		 *
+		 * 
 		 * @param urls
 		 *            classpath
 		 * @param parent
@@ -53,7 +53,7 @@ public class Bootstrap {
 		}
 
 		@Override
-		protected synchronized Class< ? > loadClass(String name, boolean resolve)
+		protected synchronized Class<?> loadClass(String name, boolean resolve)
 				throws ClassNotFoundException {
 			ClassLoader parent = super.getParent();
 			Class<?> clazz = findLoadedClass(name);
@@ -85,7 +85,7 @@ public class Bootstrap {
 
 	/**
 	 * saves modifed boot properties to disk
-	 *
+	 * 
 	 * @throws IOException
 	 *             if an IO-error occurs
 	 */
@@ -122,7 +122,7 @@ public class Bootstrap {
 
 	/**
 	 * Sets a dynamic classpath up and returns a Class reference loaded from it
-	 *
+	 * 
 	 * @return ClassLoader object
 	 * @throws Exception
 	 *             if an unexpected error occurs
@@ -179,7 +179,7 @@ public class Bootstrap {
 
 		/**
 		 * Creates a PrivilagedBoot object
-		 *
+		 * 
 		 * @param className
 		 *            className to boot
 		 * @param args
@@ -214,7 +214,7 @@ public class Bootstrap {
 				}
 
 				// start update handling
-				Class< ? > clazz = classLoader.loadClass("games.stendhal.client.update.UpdateManager");
+				Class<?> clazz = classLoader.loadClass("games.stendhal.client.update.UpdateManager");
 				Method method = clazz.getMethod("process", String.class,
 						Properties.class, Boolean.class);
 				method.invoke(clazz.newInstance(), jarFolder, bootProp,
@@ -252,7 +252,7 @@ public class Bootstrap {
 
 			try {
 				ClassLoader classLoader = createClassloader();
-				Class< ? > clazz = classLoader.loadClass(className);
+				Class<?> clazz = classLoader.loadClass(className);
 				Method method = clazz.getMethod("main", args.getClass());
 				method.invoke(null, (Object) args);
 			} catch (Throwable e) {
@@ -273,7 +273,7 @@ public class Bootstrap {
 	/**
 	 * Is this package signed? Note it does not validate the signature, just
 	 * looks for the presents of one.
-	 *
+	 * 
 	 * @return true, if there is some kind of signature; false otherwise
 	 */
 	private boolean isSigned() {
@@ -285,7 +285,7 @@ public class Bootstrap {
 	/**
 	 * Starts the main-method of specified class after dynamically building the
 	 * classpath
-	 *
+	 * 
 	 * @param className
 	 *            name of class with "main"-method
 	 * @param args
@@ -319,7 +319,7 @@ public class Bootstrap {
 			// self build client, do not try to update it
 			System.err.println("Self build client, starting without update .jar-files");
 			try {
-				Class< ? > clazz = Class.forName(className);
+				Class<?> clazz = Class.forName(className);
 				Method method = clazz.getMethod("main", args.getClass());
 				method.invoke(null, (Object) args);
 			} catch (Exception err) {
@@ -333,7 +333,7 @@ public class Bootstrap {
 
 	/**
 	 * Handles exceptions during program invocation
-	 *
+	 * 
 	 * @param t
 	 *            exception
 	 */

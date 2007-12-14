@@ -22,21 +22,19 @@ import games.stendhal.server.events.TurnNotifier;
 import java.util.LinkedList;
 import java.util.List;
 
-
 import org.apache.log4j.Logger;
 
 /**
- * RespawnPoints are points at which creatures can appear. Several creatures
- * can be spawned, until a maximum has been reached (note that this maximum
- * is usually 1); then the RespawnPoint will stop spawning creatures until 
- * at least one of the creatures has died. It will then continue to spawn
- * creatures. A certain time must pass between respawning creatures; this
- * respawn time is usually dependent of the type of the creatures that are
- * spawned.
+ * RespawnPoints are points at which creatures can appear. Several creatures can
+ * be spawned, until a maximum has been reached (note that this maximum is
+ * usually 1); then the RespawnPoint will stop spawning creatures until at least
+ * one of the creatures has died. It will then continue to spawn creatures. A
+ * certain time must pass between respawning creatures; this respawn time is
+ * usually dependent of the type of the creatures that are spawned.
  * 
- * Each respawn point can only spawn one type of creature. The Prototype
- * design pattern is used; the <i>prototypeCreature</i> will be copied
- * to create new creatures.  
+ * Each respawn point can only spawn one type of creature. The Prototype design
+ * pattern is used; the <i>prototypeCreature</i> will be copied to create new
+ * creatures.
  */
 public class CreatureRespawnPoint implements TurnListener {
 
@@ -50,42 +48,45 @@ public class CreatureRespawnPoint implements TurnListener {
 	private int y;
 
 	/**
-	 * The number of creatures spawned here that can exist at
-	 *  the same time
+	 * The number of creatures spawned here that can exist at the same time
 	 */
 	private int maximum;
 
-	/** 
-	 * This is the prototype; it will be copied to create new creatures
-	 * that will be spawned here.
+	/**
+	 * This is the prototype; it will be copied to create new creatures that
+	 * will be spawned here.
 	 */
 	private Creature prototypeCreature;
 
-	/** All creatures that were spawned here and that are still alive*/
+	/** All creatures that were spawned here and that are still alive */
 	private List<Creature> creatures;
 
 	/**
-	 * Stores if this respawn point is currently waiting for a creature
-	 * to respawn
+	 * Stores if this respawn point is currently waiting for a creature to
+	 * respawn
 	 */
 	private boolean respawning;
 
 	/**
-	 * How long it takes to respawn a creature. This defaults to the
-	 * creature's default respawn time.
+	 * How long it takes to respawn a creature. This defaults to the creature's
+	 * default respawn time.
 	 */
 	private int respawnTime;
 
 	/**
 	 * Creates a new RespawnPoint.
+	 * 
 	 * @param zone
 	 * @param x
 	 * @param y
-	 * @param creature The prototype creature 
-	 * @param maximum The number of creatures spawned here that can exist at
-	 *                the same time
+	 * @param creature
+	 *            The prototype creature
+	 * @param maximum
+	 *            The number of creatures spawned here that can exist at the
+	 *            same time
 	 */
-	public CreatureRespawnPoint(StendhalRPZone zone, int x, int y, Creature creature, int maximum) {
+	public CreatureRespawnPoint(StendhalRPZone zone, int x, int y,
+			Creature creature, int maximum) {
 		this.zone = zone;
 		this.x = x;
 		this.y = y;
@@ -96,39 +97,47 @@ public class CreatureRespawnPoint implements TurnListener {
 		this.creatures = new LinkedList<Creature>();
 
 		respawning = true;
-		TurnNotifier.get().notifyInTurns(Rand.rand(respawnTime), this); // don't respawn in next turn!
+		TurnNotifier.get().notifyInTurns(Rand.rand(respawnTime), this); // don't
+																		// respawn
+																		// in
+																		// next
+																		// turn!
 	}
-	
+
 	public Creature getPrototypeCreature() {
 		return prototypeCreature;
 	}
 
- 	/**
-	 * Sets the time it takes to respawn a creature. Note that this value 
-	 * defaults to the creature's default respawn time. 
+	/**
+	 * Sets the time it takes to respawn a creature. Note that this value
+	 * defaults to the creature's default respawn time.
 	 */
 	public void setRespawnTime(int respawnTime) {
 		this.respawnTime = respawnTime;
 	}
 
 	/**
-	 * Notifies this respawn point about the death of a creature that
-	 * was spawned here.
-	 * @param dead The creature that has died
+	 * Notifies this respawn point about the death of a creature that was
+	 * spawned here.
+	 * 
+	 * @param dead
+	 *            The creature that has died
 	 */
 	public void notifyDead(Creature dead) {
 
 		if (!respawning) {
 			// start respawning a new creature
 			respawning = true;
-			TurnNotifier.get().notifyInTurns(Rand.rand(respawnTime) + respawnTime / 2, this);
+			TurnNotifier.get().notifyInTurns(
+					Rand.rand(respawnTime) + respawnTime / 2, this);
 		}
 
 		creatures.remove(dead);
 	}
 
 	/**
-	 * Is called when a new creature is ready to pop up. 
+	 * Is called when a new creature is ready to pop up.
+	 * 
 	 * @see games.stendhal.server.events.TurnListener#onTurnReached(int)
 	 */
 	public void onTurnReached(int currentTurn) {
@@ -138,15 +147,16 @@ public class CreatureRespawnPoint implements TurnListener {
 		if (creatures.size() == maximum) {
 			respawning = false;
 		} else {
-			// Spawns a new creature with time equally distributed 
-		        // in [respawnTime/2,respawnTime + respawnTime/2]
-			TurnNotifier.get().notifyInTurns(Rand.rand(respawnTime) + respawnTime / 2, this);
+			// Spawns a new creature with time equally distributed
+			// in [respawnTime/2,respawnTime + respawnTime/2]
+			TurnNotifier.get().notifyInTurns(
+					Rand.rand(respawnTime) + respawnTime / 2, this);
 		}
 	}
 
 	/**
 	 * Checks how many creatures which were spawned here are currently alive.
-	 *
+	 * 
 	 * @return amount of living creatures
 	 */
 	public int size() {
@@ -157,15 +167,17 @@ public class CreatureRespawnPoint implements TurnListener {
 	 * Pops up a new creature.
 	 */
 	private void respawn() {
-		
+
 		try {
 			// clone the prototype creature
 			Creature newentity = prototypeCreature.getInstance();
 
 			// A bit of randomization to make Joan and Snaketails a bit happier.
 			// :)
-			newentity.setATK(Rand.rand(newentity.getATK(), newentity.getATK() / 10));
-			newentity.setDEF(Rand.rand(newentity.getDEF(), newentity.getDEF() / 10));
+			newentity.setATK(Rand.rand(newentity.getATK(),
+					newentity.getATK() / 10));
+			newentity.setDEF(Rand.rand(newentity.getDEF(),
+					newentity.getDEF() / 10));
 
 			StendhalRPAction.placeat(zone, newentity, x, y);
 

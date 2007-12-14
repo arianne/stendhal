@@ -13,6 +13,7 @@ package games.stendhal.server.entity.npc;
 
 /**
  * Represents the conversation status of a NPC that can talk with players.
+ * 
  * @author Daniel Herding
  */
 public class ConversationStates {
@@ -52,15 +53,15 @@ public class ConversationStates {
 
 	/**
 	 * The player wants the NPC to produce something; the SpeakerNPC has told
-	 * about the required resources and waits for the player to accept or
-	 * reject the offer.
+	 * about the required resources and waits for the player to accept or reject
+	 * the offer.
 	 */
 	public static final int PRODUCTION_OFFERED = 45;
 
 	/**
-	 * The player wants the NPC to do something; the SpeakerNPC has told
-	 * about the required cash/resources and waits for the player to accept or
-	 * reject the offer.
+	 * The player wants the NPC to do something; the SpeakerNPC has told about
+	 * the required cash/resources and waits for the player to accept or reject
+	 * the offer.
 	 */
 	public static final int SERVICE_OFFERED = 46;
 
@@ -88,14 +89,14 @@ public class ConversationStates {
 	public static final int INFORMATION_10 = 59;
 
 	/**
-	 * The SpeakerNPC has offered a quest;
-	 * the player has to accept or reject it.
+	 * The SpeakerNPC has offered a quest; the player has to accept or reject
+	 * it.
 	 */
 	public static final int QUEST_OFFERED = 60;
 
 	/**
-	 * The SpeakerNPC has offered a second quest;
-	 * the player has to accept or reject it.
+	 * The SpeakerNPC has offered a second quest; the player has to accept or
+	 * reject it.
 	 */
 	public static final int QUEST_2_OFFERED = 65;
 
@@ -115,7 +116,7 @@ public class ConversationStates {
 	 */
 	public static final int QUEST_ITEM_QUESTION = 63;
 
-	/** Multi-purpose states for multiple questions*/
+	/** Multi-purpose states for multiple questions */
 	public static final int QUESTION_1 = 70;
 
 	public static final int QUESTION_2 = 71;

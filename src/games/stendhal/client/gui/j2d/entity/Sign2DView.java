@@ -30,7 +30,7 @@ public class Sign2DView extends Entity2DView {
 
 	/**
 	 * Create a 2D view of a sign.
-	 *
+	 * 
 	 * @param entity
 	 *            The entity to render.
 	 */
@@ -47,7 +47,7 @@ public class Sign2DView extends Entity2DView {
 	/**
 	 * Build a list of entity specific actions. <strong>NOTE: The first entry
 	 * should be the default.</strong>
-	 *
+	 * 
 	 * @param list
 	 *            The list to populate.
 	 */
@@ -79,9 +79,9 @@ public class Sign2DView extends Entity2DView {
 	 * Determines on top of which other entities this entity should be drawn.
 	 * Entities with a high Z index will be drawn on top of ones with a lower Z
 	 * index.
-	 *
+	 * 
 	 * Also, players can only interact with the topmost entity.
-	 *
+	 * 
 	 * @return The drawing index.
 	 */
 	@Override
@@ -91,10 +91,10 @@ public class Sign2DView extends Entity2DView {
 
 	/**
 	 * Translate a resource name into it's sprite image path.
-	 *
+	 * 
 	 * @param name
 	 *            The resource name.
-	 *
+	 * 
 	 * @return The full resource name.
 	 */
 	@Override
@@ -108,7 +108,7 @@ public class Sign2DView extends Entity2DView {
 
 	/**
 	 * An entity was changed.
-	 *
+	 * 
 	 * @param entity
 	 *            The entity that was changed.
 	 * @param property
@@ -137,7 +137,7 @@ public class Sign2DView extends Entity2DView {
 
 	/**
 	 * Perform an action.
-	 *
+	 * 
 	 * @param at
 	 *            The action.
 	 */

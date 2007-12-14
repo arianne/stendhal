@@ -69,7 +69,7 @@ class PlayerRPClass {
 			"lucky_charm", "soup");
 
 	/*
-	 *
+	 * 
 	 * leather_armor_+1 leather_scale_armor leather_cuirass_+1
 	 * pauldroned_leather_cuirass chain_armor_+1 enhanced_chainmail
 	 * scale_armor_+1 iron_scale_armor chain_armor_+3 golden_chainmail
@@ -101,7 +101,7 @@ class PlayerRPClass {
 		RPClass player = new RPClass("player");
 		player.isA("rpentity");
 		player.addAttribute("text", Type.LONG_STRING, Definition.VOLATILE);
-		
+
 		player.addRPEvent("private_text", Definition.PRIVATE);
 
 		player.addAttribute("poisoned", Type.SHORT, Definition.VOLATILE);
@@ -179,29 +179,36 @@ class PlayerRPClass {
 		player.addRPSlot("!features", 1, Definition.PRIVATE);
 
 		// Last time this player attacked another player
-		player.addAttribute("last_pvp_action_time", Type.FLOAT, Definition.HIDDEN);
-		
+		player.addAttribute("last_pvp_action_time", Type.FLOAT,
+				Definition.HIDDEN);
+
 		player.addRPEvent("transition_graph", Definition.STANDARD);
 		player.addRPEvent("examine", Definition.STANDARD);
-		
-	    generateRPEvent();		
+
+		generateRPEvent();
 	}
 
-    private static void generateRPEvent() {
+	private static void generateRPEvent() {
 		RPClass rpclass = new RPClass("private_text");
-		rpclass.add(DefinitionClass.ATTRIBUTE, "text", Type.LONG_STRING, Definition.PRIVATE);
-		rpclass.add(DefinitionClass.ATTRIBUTE, "texttype", Type.STRING, Definition.PRIVATE);
+		rpclass.add(DefinitionClass.ATTRIBUTE, "text", Type.LONG_STRING,
+				Definition.PRIVATE);
+		rpclass.add(DefinitionClass.ATTRIBUTE, "texttype", Type.STRING,
+				Definition.PRIVATE);
 
 		rpclass = new RPClass("examine");
-        rpclass.add(DefinitionClass.ATTRIBUTE, "path", Type.STRING, Definition.PRIVATE);
-        rpclass.add(DefinitionClass.ATTRIBUTE, "alt", Type.STRING, Definition.PRIVATE);
-        rpclass.add(DefinitionClass.ATTRIBUTE, "title", Type.STRING, Definition.PRIVATE);
-        rpclass.add(DefinitionClass.ATTRIBUTE, "text", Type.LONG_STRING, Definition.PRIVATE);
-    }
+		rpclass.add(DefinitionClass.ATTRIBUTE, "path", Type.STRING,
+				Definition.PRIVATE);
+		rpclass.add(DefinitionClass.ATTRIBUTE, "alt", Type.STRING,
+				Definition.PRIVATE);
+		rpclass.add(DefinitionClass.ATTRIBUTE, "title", Type.STRING,
+				Definition.PRIVATE);
+		rpclass.add(DefinitionClass.ATTRIBUTE, "text", Type.LONG_STRING,
+				Definition.PRIVATE);
+	}
 
 	/**
 	 * Updates a player RPObject from an old version of Stendhal.
-	 *
+	 * 
 	 * @param object
 	 *            RPObject representing a player
 	 */
@@ -299,7 +306,7 @@ class PlayerRPClass {
 
 	/**
 	 * reads the admins from admins.list
-	 *
+	 * 
 	 * @param player
 	 *            Player to check for super admin status.
 	 */
@@ -353,7 +360,7 @@ class PlayerRPClass {
 	/**
 	 * Places the player (and his/her sheep if there is one) into the world on
 	 * login
-	 *
+	 * 
 	 * @param object
 	 *            RPObject representing the player
 	 * @param player
@@ -458,12 +465,12 @@ class PlayerRPClass {
 	/**
 	 * Places a domestic animal in the world. If it matches it's owner's zone,
 	 * then try to keep it's position.
-	 *
+	 * 
 	 * @param animal
 	 *            The domestic animal.
 	 * @param player
 	 *            The owner.
-	 *
+	 * 
 	 * @return <code>true</code> if placed.
 	 */
 	protected static boolean placeAnimalIntoWorld(final DomesticAnimal animal,
@@ -494,7 +501,7 @@ class PlayerRPClass {
 
 	/**
 	 * Loads the items into the slots of the player on login.
-	 *
+	 * 
 	 * @param player
 	 *            Player
 	 */
@@ -523,7 +530,7 @@ class PlayerRPClass {
 
 	/**
 	 * Loads the items into the slots of the player on login.
-	 *
+	 * 
 	 * @param player
 	 *            Player
 	 * @param slot
@@ -531,7 +538,8 @@ class PlayerRPClass {
 	 * @param newSlot
 	 *            new Stendhal specific slot
 	 */
-	private static void loadSlotContent(Player player, RPSlot slot, RPSlot newSlot) {
+	private static void loadSlotContent(Player player, RPSlot slot,
+			RPSlot newSlot) {
 		StendhalRPWorld world = StendhalRPWorld.get();
 		List<RPObject> objects = new LinkedList<RPObject>();
 		for (RPObject objectInSlot : slot) {
@@ -629,7 +637,7 @@ class PlayerRPClass {
 
 	/**
 	 * binds special items to the player.
-	 *
+	 * 
 	 * @param player
 	 *            Player
 	 * @param item
@@ -651,7 +659,7 @@ class PlayerRPClass {
 	 * send a welcome message to the player which can be configured in
 	 * marauroa.ini file as "server_welcome". If the value is an http:// adress,
 	 * the first line of that adress is read and used as the message
-	 *
+	 * 
 	 * @param player
 	 *            Player
 	 */

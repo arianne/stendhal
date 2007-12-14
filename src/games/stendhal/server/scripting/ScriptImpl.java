@@ -6,7 +6,7 @@ import java.util.List;
 
 /**
  * Default implementaion of the Script interface.
- *
+ * 
  * @author hendrik
  */
 public class ScriptImpl implements Script {

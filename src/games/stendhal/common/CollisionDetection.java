@@ -60,11 +60,11 @@ public class CollisionDetection {
 		double w = shape.getWidth();
 		double h = shape.getHeight();
 
-		if ((x < 0) || (x/* +w */ >= width)) {
+		if ((x < 0) || (x/* +w */>= width)) {
 			return;
 		}
 
-		if ((y < 0) || (y/* +h */ >= height)) {
+		if ((y < 0) || (y/* +h */>= height)) {
 			return;
 		}
 
@@ -90,14 +90,14 @@ public class CollisionDetection {
 		blocked = new boolean[width * height];
 		for (int y = 0; y < height; y++) {
 			for (int x = 0; x < width; x++) {
-				/* NOTE:
-				 * Right now our collision detection system is binary, so
+				/*
+				 * NOTE: Right now our collision detection system is binary, so
 				 * something or is blocked or is not.
 				 */
 				blocked[x + y * width] = (collisionLayer.getTileAt(x, y) != 0);
 			}
 		}
-    }
+	}
 
 	/** Print the area around the (x,y) useful for debugging */
 	public void printaround(int x, int y, int size) {
@@ -127,11 +127,11 @@ public class CollisionDetection {
 		// double w=shape.getWidth();
 		// double h=shape.getHeight();
 
-		if ((x < 0) || (x/* +w */ >= width)) {
+		if ((x < 0) || (x/* +w */>= width)) {
 			return true;
 		}
 
-		if ((y < 0) || (y/* +h */ >= height)) {
+		if ((y < 0) || (y/* +h */>= height)) {
 			return true;
 		}
 
@@ -156,11 +156,11 @@ public class CollisionDetection {
 			h += 1.0;
 		}
 
-		if ((x < 0) || (x/* +w */ >= width)) {
+		if ((x < 0) || (x/* +w */>= width)) {
 			return true;
 		}
 
-		if ((y < 0) || (y/* +h */ >= height)) {
+		if ((y < 0) || (y/* +h */>= height)) {
 			return true;
 		}
 

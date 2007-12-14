@@ -13,11 +13,14 @@ import java.util.Map;
 public class CampingGirlNPC implements ZoneConfigurator {
 	/**
 	 * Configure a zone.
-	 *
-	 * @param	zone		The zone to be configured.
-	 * @param	attributes	Configuration attributes.
+	 * 
+	 * @param zone
+	 *            The zone to be configured.
+	 * @param attributes
+	 *            Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone,
+			Map<String, String> attributes) {
 		buildCampfireArea(zone);
 	}
 
@@ -32,11 +35,11 @@ public class CampingGirlNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-				//addGreeting();
+				// addGreeting();
 				addJob("Work? I'm just a little girl! I'm a scout, you know.");
 				addHelp("You can find lots of useful stuff in the forest; wood and mushrooms, for example. But beware, some mushrooms are poisonous!");
 				addGoodbye();
-				// remaining behaviour is defined in maps.quests.Campfire.				
+				// remaining behaviour is defined in maps.quests.Campfire.
 			}
 		};
 

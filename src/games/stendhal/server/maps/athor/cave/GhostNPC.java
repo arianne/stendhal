@@ -13,24 +13,27 @@ import java.util.Map;
 
 /**
  * Builds a Ghost NPC
- *
+ * 
  * @author kymara
  */
 public class GhostNPC implements ZoneConfigurator {
 	//
 	// ZoneConfigurator
 	//
-	
+
 	/**
 	 * Configure a zone.
-	 *
-	 * @param	zone		The zone to be configured.
-	 * @param	attributes	Configuration attributes.
+	 * 
+	 * @param zone
+	 *            The zone to be configured.
+	 * @param attributes
+	 *            Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone,
+			Map<String, String> attributes) {
 		buildNPC(zone, attributes);
 	}
-	
+
 	private void buildNPC(StendhalRPZone zone, Map<String, String> attributes) {
 		SpeakerNPC ghost = new GhostNPCBase("Mary") {
 			@Override
@@ -65,7 +68,7 @@ public class GhostNPC implements ZoneConfigurator {
 				setPath(new FixedPath(nodes, true));
 			}
 		};
-	
+
 		ghost.setDescription("You see a ghostly figure of a woman.");
 		ghost.setResistance(0);
 		ghost.setEntityClass("woman_005_npc");

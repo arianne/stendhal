@@ -7,8 +7,8 @@ import marauroa.server.game.rp.RPObjectFactory;
 import org.apache.log4j.Logger;
 
 /**
- * creates concrete objects of Stendhal classes 
- *
+ * creates concrete objects of Stendhal classes
+ * 
  * @author hendrik
  */
 public class StendhalRPObjectFactory extends RPObjectFactory {
@@ -18,13 +18,14 @@ public class StendhalRPObjectFactory extends RPObjectFactory {
 	public RPObject transform(RPObject object) {
 		RPClass clazz = object.getRPClass();
 		if (clazz == null) {
-			logger.error("Cannot create concrete object for " + object + " because it does not have an RPClass.");
+			logger.error("Cannot create concrete object for " + object
+					+ " because it does not have an RPClass.");
 			return super.transform(object);
 		}
 		String name = clazz.getName();
-		
+
 		// TODO: add factory here
-		
+
 		return super.transform(object);
 	}
 

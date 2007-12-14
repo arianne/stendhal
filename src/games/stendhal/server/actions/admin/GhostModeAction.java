@@ -6,24 +6,26 @@ import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
 
 public class GhostModeAction extends AdministrationAction {
-private static final String _INVISIBLE = "invisible";
-private static final String _GHOSTMODE = "ghostmode";
-public static void register(){
-	CommandCenter.register(_GHOSTMODE, new GhostModeAction(), 500);
-	
-}
+	private static final String _INVISIBLE = "invisible";
+	private static final String _GHOSTMODE = "ghostmode";
+
+	public static void register() {
+		CommandCenter.register(_GHOSTMODE, new GhostModeAction(), 500);
+
+	}
+
 	@Override
 	public void perform(Player player, RPAction action) {
-	
+
 		if (player.isGhost()) {
 			player.setGhost(false);
 			StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
 					_GHOSTMODE, "off");
-	
+
 			player.setInvisible(false);
 			StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
 					_INVISIBLE, "off");
-	
+
 			for (Player p : StendhalRPRuleProcessor.get().getPlayers()) {
 				p.notifyOnline(player.getName());
 			}
@@ -34,16 +36,16 @@ public static void register(){
 			player.setInvisible(true);
 			StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
 					_INVISIBLE, "on");
-	
+
 			player.setGhost(true);
 			StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
 					_GHOSTMODE, "on");
-	
+
 			for (Player p : StendhalRPRuleProcessor.get().getPlayers()) {
 				p.notifyOffline(player.getName());
 			}
 		}
-	
+
 		player.notifyWorldAboutChanges();
 	}
 

@@ -13,7 +13,7 @@ import java.util.Map;
 
 /**
  * Builds a Ghost NPC
- *
+ * 
  * @author kymara
  */
 public class GhostNPC implements ZoneConfigurator {
@@ -23,11 +23,14 @@ public class GhostNPC implements ZoneConfigurator {
 
 	/**
 	 * Configure a zone.
-	 *
-	 * @param	zone		The zone to be configured.
-	 * @param	attributes	Configuration attributes.
+	 * 
+	 * @param zone
+	 *            The zone to be configured.
+	 * @param attributes
+	 *            Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone,
+			Map<String, String> attributes) {
 		buildNPC(zone, attributes);
 	}
 

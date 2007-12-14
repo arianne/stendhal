@@ -8,15 +8,17 @@ import games.stendhal.client.soundreview.SoundMaster;
 /**
  * Set sound characteristics.
  */
-class SoundAction implements SlashAction  {
+class SoundAction implements SlashAction {
 
 	/**
 	 * Execute a chat command.
-	 *
-	 * @param	params		The formal parameters.
-	 * @param	remainder	Line content after parameters.
-	 *
-	 * @return	<code>true</code> if  was handled.
+	 * 
+	 * @param params
+	 *            The formal parameters.
+	 * @param remainder
+	 *            Line content after parameters.
+	 * 
+	 * @return <code>true</code> if was handled.
 	 */
 	public boolean execute(String[] params, String remainder) {
 		String command = params[0];
@@ -37,9 +39,11 @@ class SoundAction implements SlashAction  {
 			}
 
 			if ((vol < 0) || (vol > 100)) {
-				StendhalUI.get().addEventLine("Volume must be an integer between 0 and 100");
+				StendhalUI.get().addEventLine(
+						"Volume must be an integer between 0 and 100");
 			} else {
-				WtWindowManager.getInstance().setProperty("sound.volume", Integer.toString(vol));
+				WtWindowManager.getInstance().setProperty("sound.volume",
+						Integer.toString(vol));
 				SoundSystem.get().setVolume(vol);
 			}
 		}
@@ -49,8 +53,8 @@ class SoundAction implements SlashAction  {
 
 	/**
 	 * Get the maximum number of formal parameters.
-	 *
-	 * @return	The parameter count.
+	 * 
+	 * @return The parameter count.
 	 */
 	public int getMaximumParameters() {
 		return 2;
@@ -58,8 +62,8 @@ class SoundAction implements SlashAction  {
 
 	/**
 	 * Get the minimum number of formal parameters.
-	 *
-	 * @return	The parameter count.
+	 * 
+	 * @return The parameter count.
 	 */
 	public int getMinimumParameters() {
 		return 2;

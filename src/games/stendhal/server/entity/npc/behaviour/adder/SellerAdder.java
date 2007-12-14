@@ -18,66 +18,89 @@ public class SellerAdder {
 		addSeller(npc, behaviour, true);
 	}
 
-	public void addSeller(SpeakerNPC npc, final SellerBehaviour behaviour, boolean offer) {
+	public void addSeller(SpeakerNPC npc, final SellerBehaviour behaviour,
+			boolean offer) {
 		Engine engine = npc.getEngine();
 
 		if (offer) {
-			engine.add(ConversationStates.ATTENDING, ConversationPhrases.OFFER_MESSAGES, null, ConversationStates.ATTENDING, "I sell "
-			        + Grammar.enumerateCollection(behaviour.dealtItems()) + ".", null);
+			engine.add(
+					ConversationStates.ATTENDING,
+					ConversationPhrases.OFFER_MESSAGES,
+					null,
+					ConversationStates.ATTENDING,
+					"I sell "
+							+ Grammar.enumerateCollection(behaviour.dealtItems())
+							+ ".", null);
 		}
 
-		engine.add(ConversationStates.ATTENDING, "buy", null, ConversationStates.BUY_PRICE_OFFERED, null,
-		        new SpeakerNPC.ChatAction() {
+		engine.add(ConversationStates.ATTENDING, "buy", null,
+				ConversationStates.BUY_PRICE_OFFERED, null,
+				new SpeakerNPC.ChatAction() {
 
-			        @Override
-			        public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-				        // find out what the player wants to buy, and how much of it
-				        int amount = sentence.getAmount();
-				        String item = sentence.getItemName();
+					@Override
+					public void fire(Player player, Sentence sentence,
+							SpeakerNPC engine) {
+						// find out what the player wants to buy, and how much
+						// of it
+						int amount = sentence.getAmount();
+						String item = sentence.getItemName();
 
-				        if (sentence.hasError()) {
-					        engine.say("Sorry, I did not understand you. " + sentence.getError());
-					        engine.setCurrentState(ConversationStates.ATTENDING);
-				        }
-				        // find out if the NPC sells this item, and if so,
-				        // how much it costs.
-				        else if (behaviour.hasItem(item)) {
-					        behaviour.chosenItem = item;
+						if (sentence.hasError()) {
+							engine.say("Sorry, I did not understand you. "
+									+ sentence.getError());
+							engine.setCurrentState(ConversationStates.ATTENDING);
+						} else if (behaviour.hasItem(item)) {
+							// find out if the NPC sells this item, and if so,
+							// how much it costs.
+							behaviour.chosenItem = item;
 							if (amount > 1000) {
-								logger.warn("Decreasing very large amount of " + amount + " to 1 for player " + player.getName() + " talking to " + engine.getName() + " saying " + sentence);
+								logger.warn("Decreasing very large amount of "
+										+ amount + " to 1 for player "
+										+ player.getName() + " talking to "
+										+ engine.getName() + " saying "
+										+ sentence);
 								amount = 1;
 							}
-					        behaviour.setAmount(amount);
+							behaviour.setAmount(amount);
 
-					        int price = behaviour.getUnitPrice(item) * behaviour.getAmount();
+							int price = behaviour.getUnitPrice(item)
+									* behaviour.getAmount();
 
-					        engine.say(Grammar.quantityplnoun(amount, item) + " will cost " + price
-					                + ". Do you want to buy " + Grammar.itthem(amount) + "?");
-				        } else {
-					        if (item == null) {
-						        engine.say("Please tell me what you want to buy.");
-					        } else {
-						        engine.say("Sorry, I don't sell " + Grammar.plural(item));
-					        }
-					        engine.setCurrentState(ConversationStates.ATTENDING);
-				        }
-			        }
-		        });
+							engine.say(Grammar.quantityplnoun(amount, item)
+									+ " will cost " + price
+									+ ". Do you want to buy "
+									+ Grammar.itthem(amount) + "?");
+						} else {
+							if (item == null) {
+								engine.say("Please tell me what you want to buy.");
+							} else {
+								engine.say("Sorry, I don't sell "
+										+ Grammar.plural(item));
+							}
+							engine.setCurrentState(ConversationStates.ATTENDING);
+						}
+					}
+				});
 
-		engine.add(ConversationStates.BUY_PRICE_OFFERED, ConversationPhrases.YES_MESSAGES, null,
-		        ConversationStates.ATTENDING, "Thanks.",
-		        new SpeakerNPC.ChatAction() {
-			        @Override
-			        public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-				        String itemName = behaviour.chosenItem;
-				        logger.debug("Selling a " + itemName + " to player " + player.getName());
+		engine.add(ConversationStates.BUY_PRICE_OFFERED,
+				ConversationPhrases.YES_MESSAGES, null,
+				ConversationStates.ATTENDING, "Thanks.",
+				new SpeakerNPC.ChatAction() {
+					@Override
+					public void fire(Player player, Sentence sentence,
+							SpeakerNPC engine) {
+						String itemName = behaviour.chosenItem;
+						logger.debug("Selling a " + itemName + " to player "
+								+ player.getName());
 
-				        behaviour.transactAgreedDeal(engine, player);
-			        }
-		        });
+						behaviour.transactAgreedDeal(engine, player);
+					}
+				});
 
-		engine.add(ConversationStates.BUY_PRICE_OFFERED, ConversationPhrases.NO_MESSAGES, null,
-		        ConversationStates.ATTENDING, "Ok, how else may I help you?", null);
+		engine.add(ConversationStates.BUY_PRICE_OFFERED,
+				ConversationPhrases.NO_MESSAGES, null,
+				ConversationStates.ATTENDING, "Ok, how else may I help you?",
+				null);
 	}
 
 }

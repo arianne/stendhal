@@ -28,11 +28,10 @@ package games.stendhal.common; //Added 10May04 by Adam Turk for distribution as 
 
 //of the Tiled codebase
 
-
 /**
  * Provides encoding of raw bytes to base64-encoded characters, and decoding of
  * base64 characters to raw bytes.
- *
+ * 
  * @author Kevin Kelley (kelley@ruralnet.net)
  * @version 1.3
  */
@@ -41,7 +40,7 @@ public class Base64 {
 	/**
 	 * returns an array of base64-encoded characters to represent the passed
 	 * data array.
-	 *
+	 * 
 	 * @param data
 	 *            the array of bytes to encode
 	 * @return base64-coded character array.
@@ -83,7 +82,7 @@ public class Base64 {
 	 * Decodes a BASE-64 encoded stream to recover the original data. White
 	 * space before and after will be trimmed away, but no other manipulation of
 	 * the input will be performed.
-	 *
+	 * 
 	 * As of version 1.2 this method will properly handle input containing junk
 	 * characters (newlines and the like) rather than throwing an error. It does
 	 * this by pre-parsing the input and generating from that a count of VALID
@@ -160,8 +159,7 @@ public class Base64 {
 	//
 	// code characters for values 0..63
 	//
-	private static final char[] alphabet
-	= "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=".toCharArray();
+	private static final char[] alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=".toCharArray();
 
 	//
 	// lookup table for converting base64 characters to value in range 0..63

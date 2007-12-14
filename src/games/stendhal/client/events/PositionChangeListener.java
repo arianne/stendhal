@@ -12,9 +12,11 @@ package games.stendhal.client.events;
 public interface PositionChangeListener {
 	/**
 	 * The user position changed.
-	 *
-	 * @param	x		The X coordinate (in world units).
-	 * @param	y		The Y coordinate (in world units).
+	 * 
+	 * @param x
+	 *            The X coordinate (in world units).
+	 * @param y
+	 *            The Y coordinate (in world units).
 	 */
 	void positionChanged(double x, double y);
 }

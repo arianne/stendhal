@@ -10,28 +10,31 @@ import java.util.Map;
 
 /**
  * Builds a Flower Seller NPC for the Elf Princess quest
- *
+ * 
  * @author kymara
  */
 public class FlowerSellerNPC implements ZoneConfigurator {
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone,
+			Map<String, String> attributes) {
 
-        	new TeleporterBehaviour(buildSemosHouseArea(), "Flowers! Get your fresh flowers here!");
+		new TeleporterBehaviour(buildSemosHouseArea(),
+				"Flowers! Get your fresh flowers here!");
 	}
 
 	private SpeakerNPC buildSemosHouseArea() {
 
-	    SpeakerNPC rose = new SpeakerNPC("Rose Leigh") {
-	                @Override
+		SpeakerNPC rose = new SpeakerNPC("Rose Leigh") {
+			@Override
 			protected void createPath() {
 				// npc does not move
 				setPath(null);
 			}
-	                @Override
+
+			@Override
 			protected void createDialog() {
-			    addJob("I'm a wandering flower woman.");
-			    addGoodbye("Everything's coming up roses ... bye ...");
-			    // the rest is in the ElfPrincess quest
+				addJob("I'm a wandering flower woman.");
+				addGoodbye("Everything's coming up roses ... bye ...");
+				// the rest is in the ElfPrincess quest
 			}
 
 		};
@@ -40,7 +43,7 @@ public class FlowerSellerNPC implements ZoneConfigurator {
 		rose.initHP(100);
 
 		// start in int_semos_house
-		StendhalRPZone	zone = StendhalRPWorld.get().getZone("int_semos_house");
+		StendhalRPZone zone = StendhalRPWorld.get().getZone("int_semos_house");
 		rose.setPosition(5, 6);
 		zone.add(rose);
 

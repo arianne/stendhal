@@ -17,8 +17,9 @@ import games.stendhal.server.entity.player.Player;
 import java.util.Map;
 
 /**
- * Tokens are items which trigger an event on movement. They may not be equipped.
- *
+ * Tokens are items which trigger an event on movement. They may not be
+ * equipped.
+ * 
  * @author hendrik
  */
 public class Token extends Item {
@@ -32,33 +33,39 @@ public class Token extends Item {
 
 		/**
 		 * a token was moved
-		 *
-		 * @param player the player moving it
+		 * 
+		 * @param player
+		 *            the player moving it
 		 */
 		void onTokenMoved(Player player);
 	}
 
 	/**
 	 * Create a new token
-	 *
-	 * @param name name of item
-	 * @param clazz class (or type) of item
-	 * @param subclass subclass of this item
-	 * @param attributes attributes (like attack). may be empty or <code>null</code>
+	 * 
+	 * @param name
+	 *            name of item
+	 * @param clazz
+	 *            class (or type) of item
+	 * @param subclass
+	 *            subclass of this item
+	 * @param attributes
+	 *            attributes (like attack). may be empty or <code>null</code>
 	 */
-	public Token(String name, String clazz, String subclass, Map<String, String> attributes) {
+	public Token(String name, String clazz, String subclass,
+			Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);
 	}
 
 	/**
 	 * copy constructor
-	 *
-	 * @param item item to copy
+	 * 
+	 * @param item
+	 *            item to copy
 	 */
 	public Token(Token item) {
 		super(item);
 	}
-
 
 	@Override
 	public void onPutOnGround(Player player) {
@@ -70,8 +77,9 @@ public class Token extends Item {
 
 	/**
 	 * Sets a TokenMoveListener
-	 *
-	 * @param tokenMoveListener TokenMoveListener
+	 * 
+	 * @param tokenMoveListener
+	 *            TokenMoveListener
 	 */
 	public void setTokenMoveListener(TokenMoveListener tokenMoveListener) {
 		this.tokenMoveListener = tokenMoveListener;

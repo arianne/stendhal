@@ -9,8 +9,9 @@ public interface UseListener {
 
 	/**
 	 * Invoken when the object is used
-	 *
-	 * @param user the RPEntity who uses the object
+	 * 
+	 * @param user
+	 *            the RPEntity who uses the object
 	 */
 	boolean onUsed(RPEntity user);
 }

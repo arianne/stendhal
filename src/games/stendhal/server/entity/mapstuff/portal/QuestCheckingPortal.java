@@ -22,13 +22,11 @@ public class QuestCheckingPortal extends AccessCheckingPortal {
 		this(questslot, "Why should i go down there?. It looks very dangerous.");
 	}
 
-
 	public QuestCheckingPortal(String questslot, String rejectMessage) {
 		super(rejectMessage);
 
 		this.questslot = questslot;
 	}
-
 
 	//
 	// AccessCheckingPortal
@@ -36,10 +34,11 @@ public class QuestCheckingPortal extends AccessCheckingPortal {
 
 	/**
 	 * Determine if this portal can be used.
-	 *
-	 * @param	user		The user to be checked.
-	 *
-	 * @return	<code>true<code> if the user can use the portal.
+	 * 
+	 * @param user
+	 *            The user to be checked.
+	 * 
+	 * @return <code>true<code> if the user can use the portal.
 	 */
 	@Override
 	protected boolean isAllowed(RPEntity user) {

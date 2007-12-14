@@ -52,7 +52,7 @@ public class Door2DView extends StateEntity2DView {
 
 	/**
 	 * Create a 2D view of a door.
-	 *
+	 * 
 	 * @param entity
 	 *            The entity to render.
 	 */
@@ -71,7 +71,7 @@ public class Door2DView extends StateEntity2DView {
 
 	/**
 	 * Populate named state sprites.
-	 *
+	 * 
 	 * @param map
 	 *            The map to populate.
 	 */
@@ -96,7 +96,8 @@ public class Door2DView extends StateEntity2DView {
 			height = tiles.getHeight() / 2;
 
 			map.put(STATE_OPEN, store.getTile(tiles, 0, 0, width, height));
-			map.put(STATE_CLOSED, store.getTile(tiles, 0, height, width, height));
+			map.put(STATE_CLOSED,
+					store.getTile(tiles, 0, height, width, height));
 		}
 
 		calculateOffset(width, height);
@@ -104,7 +105,7 @@ public class Door2DView extends StateEntity2DView {
 
 	/**
 	 * Get the current entity state.
-	 *
+	 * 
 	 * @return The current state.
 	 */
 	@Override
@@ -119,7 +120,7 @@ public class Door2DView extends StateEntity2DView {
 	/**
 	 * Build a list of entity specific actions. <strong>NOTE: The first entry
 	 * should be the default.</strong>
-	 *
+	 * 
 	 * @param list
 	 *            The list to populate.
 	 */
@@ -137,7 +138,7 @@ public class Door2DView extends StateEntity2DView {
 
 	/**
 	 * Get the height.
-	 *
+	 * 
 	 * @return The height (in pixels).
 	 */
 	@Override
@@ -147,7 +148,7 @@ public class Door2DView extends StateEntity2DView {
 
 	/**
 	 * Get the width.
-	 *
+	 * 
 	 * @return The width (in pixels).
 	 */
 	@Override
@@ -159,9 +160,9 @@ public class Door2DView extends StateEntity2DView {
 	 * Determines on top of which other entities this entity should be drawn.
 	 * Entities with a high Z index will be drawn on top of ones with a lower Z
 	 * index.
-	 *
+	 * 
 	 * Also, players can only interact with the topmost entity.
-	 *
+	 * 
 	 * @return The drawing index.
 	 */
 	@Override
@@ -171,10 +172,10 @@ public class Door2DView extends StateEntity2DView {
 
 	/**
 	 * Translate a resource name into it's sprite image path.
-	 *
+	 * 
 	 * @param name
 	 *            The resource name.
-	 *
+	 * 
 	 * @return The full resource name.
 	 */
 	@Override
@@ -188,7 +189,7 @@ public class Door2DView extends StateEntity2DView {
 
 	/**
 	 * An entity was changed.
-	 *
+	 * 
 	 * @param entity
 	 *            The entity that was changed.
 	 * @param property
@@ -211,7 +212,7 @@ public class Door2DView extends StateEntity2DView {
 
 	/**
 	 * Perform an action.
-	 *
+	 * 
 	 * @param at
 	 *            The action.
 	 */

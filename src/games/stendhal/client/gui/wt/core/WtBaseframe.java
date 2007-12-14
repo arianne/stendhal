@@ -31,15 +31,16 @@ import javax.swing.JPopupMenu;
 /**
  * Frame is the main gui container. It spans the whole screen and does not have
  * a parent.
- *
+ * 
  * This is the main glue to AWT/Swing event handling. All AWT-Events are
  * preprocessed here and forwarded to the clients.
- *
+ * 
  * Note: This object is thread safe.
- *
+ * 
  * @author mtotz
  */
-public class WtBaseframe extends WtPanel implements MouseListener, MouseMotionListener {
+public class WtBaseframe extends WtPanel implements MouseListener,
+		MouseMotionListener {
 
 	/** the currently dragged object or null if there is no such drag operation */
 	private WtDraggable draggedObject;
@@ -56,7 +57,10 @@ public class WtBaseframe extends WtPanel implements MouseListener, MouseMotionLi
 	/** a flag for tracking ContextMenu changes */
 	private boolean recreatedContextMenu;
 
-	/** true if the last single click was handled; it can't be a part of a double click */
+	/**
+	 * true if the last single click was handled; it can't be a part of a double
+	 * click
+	 */
 	private boolean lastClickWasHandled;
 
 	/** the time at which a mouse button was last pressed */
@@ -64,9 +68,11 @@ public class WtBaseframe extends WtPanel implements MouseListener, MouseMotionLi
 
 	/**
 	 * Create the root Wt frame.
-	 *
-	 * @param	width		The frame width (in pixels).
-	 * @param	height		The frame height (in pixels).
+	 * 
+	 * @param width
+	 *            The frame width (in pixels).
+	 * @param height
+	 *            The frame height (in pixels).
 	 */
 	public WtBaseframe(int width, int height) {
 		super("baseframe", 0, 0, width, height);
@@ -114,7 +120,7 @@ public class WtBaseframe extends WtPanel implements MouseListener, MouseMotionLi
 
 	/**
 	 * draws the frame into the graphics object
-	 *
+	 * 
 	 * @param g
 	 *            graphics where to render to
 	 */
@@ -196,7 +202,7 @@ public class WtBaseframe extends WtPanel implements MouseListener, MouseMotionLi
 	/**
 	 * Invoked when the mouse button has been clicked (pressed and released) on
 	 * a component. This event is propagated to all children.
-	 *
+	 * 
 	 * @param e
 	 *            the mouse event
 	 */
@@ -207,7 +213,8 @@ public class WtBaseframe extends WtPanel implements MouseListener, MouseMotionLi
 		// Added support for ctrl + click for Mac OS X intensifly@gmx.com
 
 		int onmask = InputEvent.CTRL_DOWN_MASK;
-		if (System.getProperty("os.name").toLowerCase().contains("os x") && ((e.getModifiersEx() & onmask) == onmask)) {
+		if (System.getProperty("os.name").toLowerCase().contains("os x")
+				&& ((e.getModifiersEx() & onmask) == onmask)) {
 			onMouseRightClick(p);
 		} else if (e.getButton() == MouseEvent.BUTTON1) {
 			if (e.getClickCount() == 1) {
@@ -231,14 +238,15 @@ public class WtBaseframe extends WtPanel implements MouseListener, MouseMotionLi
 			if (jcontextMenu != null) {
 				jcontextMenu.setLightWeightPopupEnabled(false);
 
-				jcontextMenu.show(e.getComponent(), e.getX() - 10, e.getY() - 10);
+				jcontextMenu.show(e.getComponent(), e.getX() - 10,
+						e.getY() - 10);
 			}
 
 			recreatedContextMenu = false;
 		} else {
 			/*
-			 * whatever the click was...delete the context menu
-			 * (if it wasn't recreated during the callbacks)
+			 * whatever the click was...delete the context menu (if it wasn't
+			 * recreated during the callbacks)
 			 */
 			if (jcontextMenu != null) {
 				jcontextMenu.setVisible(false);
@@ -286,7 +294,7 @@ public class WtBaseframe extends WtPanel implements MouseListener, MouseMotionLi
 	/**
 	 * Invoked when the mouse cursor has been moved onto a component but no
 	 * buttons have been pushed.
-	 *
+	 * 
 	 * This event stopps all dragging operations.
 	 */
 	public synchronized void mouseMoved(java.awt.event.MouseEvent e) {

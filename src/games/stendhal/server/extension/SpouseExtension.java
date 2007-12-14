@@ -20,22 +20,21 @@ import org.apache.log4j.Logger;
 import marauroa.common.game.RPAction;
 
 /**
- * @author intensifly
- * This extension adds marriage to the game world.
- * there are 2 commands:
- *  /marry <Player1> <Player2> which will create a bond between those players
- * This command is an admin command of the same access level as /jail ;) 
- *  /spouse which will teleport a married player to his spouse
- * To enable this extension, add it to the marauroa.int file:
-
- # load StendhalServerExtension(s)
- groovy=games.stendhal.server.scripting.StendhalGroovyRunner
- http=games.stendhal.server.StendhalHttpServer
- spouse=games.stendhal.server.extension.SpouseExtension
- server_extension=groovy,http,spouse
-
+ * @author intensifly This extension adds marriage to the game world. there are
+ *         2 commands: /marry <Player1> <Player2> which will create a bond
+ *         between those players This command is an admin command of the same
+ *         access level as /jail ;) /spouse which will teleport a married player
+ *         to his spouse To enable this extension, add it to the marauroa.int
+ *         file:
+ *  # load StendhalServerExtension(s)
+ * groovy=games.stendhal.server.scripting.StendhalGroovyRunner
+ * http=games.stendhal.server.StendhalHttpServer
+ * spouse=games.stendhal.server.extension.SpouseExtension
+ * server_extension=groovy,http,spouse
+ * 
  */
-public class SpouseExtension extends StendhalServerExtension implements ActionListener {
+public class SpouseExtension extends StendhalServerExtension implements
+		ActionListener {
 
 	private final String SPOUSE = "spouse";
 
@@ -51,7 +50,7 @@ public class SpouseExtension extends StendhalServerExtension implements ActionLi
 		CommandCenter.register("spouse", this);
 	}
 
-	/* 
+	/*
 	 * @see games.stendhal.server.StendhalServerExtension#init()
 	 */
 	@Override
@@ -80,7 +79,8 @@ public class SpouseExtension extends StendhalServerExtension implements ActionLi
 		String name2 = null;
 		boolean canMarry = true;
 
-		if (!AdministrationAction.isPlayerAllowedToExecuteAdminCommand(player, "marry", true)) {
+		if (!AdministrationAction.isPlayerAllowedToExecuteAdminCommand(player,
+				"marry", true)) {
 			return;
 		}
 
@@ -119,24 +119,30 @@ public class SpouseExtension extends StendhalServerExtension implements ActionLi
 
 		if (canMarry) {
 			if (player1.hasQuest(SPOUSE)) {
-				text += name1 + " is already married to " + player1.getQuest(SPOUSE) + ". ";
+				text += name1 + " is already married to "
+						+ player1.getQuest(SPOUSE) + ". ";
 				canMarry = false;
 			}
 			if (player2.hasQuest(SPOUSE)) {
-				text += name2 + " is already married to " + player2.getQuest(SPOUSE) + ". ";
+				text += name2 + " is already married to "
+						+ player2.getQuest(SPOUSE) + ". ";
 				canMarry = false;
 			}
 		}
 
 		if (canMarry) {
 			player1.setQuest(SPOUSE, name2);
-			player1.sendPrivateText("Congratulations! You are now married to \"" + name2
-			        + "\". You can use #/spouse if you want to be together.");
+			player1.sendPrivateText("Congratulations! You are now married to \""
+					+ name2
+					+ "\". You can use #/spouse if you want to be together.");
 			player2.setQuest(SPOUSE, name1);
-			player2.sendPrivateText("Congratulations! You are now married to \"" + name1
-			        + "\". You can use #/spouse if you want to be together.");
-			text = "You have successfully married \"" + name1 + "\" and \"" + name2 + "\".";
-			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "marry", name1 + " + " + name2);
+			player2.sendPrivateText("Congratulations! You are now married to \""
+					+ name1
+					+ "\". You can use #/spouse if you want to be together.");
+			text = "You have successfully married \"" + name1 + "\" and \""
+					+ name2 + "\".";
+			StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
+					"marry", name1 + " + " + name2);
 		}
 
 		player.sendPrivateText(text.trim());
@@ -163,8 +169,8 @@ public class SpouseExtension extends StendhalServerExtension implements ActionLi
 			// TODO: use Player.teleport()
 
 			if (StendhalRPAction.placeat(zone, player, x, y)) {
-				StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "teleportto",
-				        teleported.getName() + "(spouse)");
+				StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
+						"teleportto", teleported.getName() + "(spouse)");
 			}
 
 			player.notifyWorldAboutChanges();

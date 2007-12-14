@@ -14,14 +14,14 @@ import org.apache.log4j.spi.LoggingEvent;
 import org.apache.log4j.spi.ThrowableInformation;
 
 /**
- * Log4J appender which logs to the game console
+ * Log4J appender which logs to the game console.
  * 
  * @author Matthias Totz
  */
 public class GameConsoleAppender extends AppenderSkeleton {
 
 	@Override
-	protected void append(LoggingEvent loggingEvent) {
+	protected void append(final LoggingEvent loggingEvent) {
 		StringBuilder buf = new StringBuilder();
 		buf.append(getLayout().format(loggingEvent));
 		ThrowableInformation ti = loggingEvent.getThrowableInformation();

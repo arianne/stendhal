@@ -20,13 +20,14 @@ import games.stendhal.server.events.UseListener;
 import marauroa.common.game.RPObject;
 
 /**
- * A grain field can be harvested by players who have a scythe.
- * After that, it will slowly regrow; there are several regrowing
- * steps in which the graphics will change to show the progress.
- *
+ * A grain field can be harvested by players who have a scythe. After that, it
+ * will slowly regrow; there are several regrowing steps in which the graphics
+ * will change to show the progress.
+ * 
  * @author daniel
  */
-public class GrainField extends GrowingPassiveEntityRespawnPoint implements UseListener {
+public class GrainField extends GrowingPassiveEntityRespawnPoint implements
+		UseListener {
 
 	/** How many regrowing steps are needed before one can harvest again */
 	public static final int RIPE = 5;
@@ -46,15 +47,15 @@ public class GrainField extends GrowingPassiveEntityRespawnPoint implements UseL
 	public String describe() {
 		String text;
 		switch (getRipeness()) {
-			case 0:
-				text = "You see a grain field that has just been harvested.";
-				break;
-			case RIPE:
-				text = "You see a ripe grain field.";
-				break;
-			default:
-				text = "You see an unripe grain field.";
-				break;
+		case 0:
+			text = "You see a grain field that has just been harvested.";
+			break;
+		case RIPE:
+			text = "You see a ripe grain field.";
+			break;
+		default:
+			text = "You see an unripe grain field.";
+			break;
 		}
 		return text;
 	}
@@ -65,9 +66,11 @@ public class GrainField extends GrowingPassiveEntityRespawnPoint implements UseL
 	public boolean onUsed(RPEntity entity) {
 		if (entity.nextTo(this)) {
 			if (getRipeness() == RIPE) {
-				if (entity.isEquipped("old_scythe") || entity.isEquipped("scythe")) {
+				if (entity.isEquipped("old_scythe")
+						|| entity.isEquipped("scythe")) {
 					onFruitPicked(null);
-					Item grain = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("grain");
+					Item grain = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
+							"grain");
 					entity.equip(grain, true);
 					return true;
 				} else if (entity instanceof Player) {

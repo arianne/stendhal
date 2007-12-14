@@ -19,13 +19,12 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.Map;
 
-
 import org.apache.log4j.Logger;
 
 /**
  * All default items which can be reduced to stuff that increase the attack
  * point and stuff that increase the defense points
- *
+ * 
  * @author Matthias Totz, chad3f
  */
 public class DefaultItem {
@@ -115,21 +114,21 @@ public class DefaultItem {
 	/**
 	 * Build a creator for the class. It uses the following constructor search
 	 * order:<br>
-	 *
+	 * 
 	 * <ul>
 	 * <li><em>Class</em>(<em>name</em>, <em>clazz</em>,
 	 * <em>subclazz</em>, <em>attributes</em>)
 	 * <li><em>Class</em>(<em>attributes</em>)
 	 * <li><em>Class</em>()
 	 * </ul>
-	 *
+	 * 
 	 * @param implementation
 	 *            The implementation class.
-	 *
+	 * 
 	 * @return A creator, or <code>null</code> if none found.
 	 */
-	protected Creator buildCreator(Class< ? > implementation) {
-		Constructor< ? > construct;
+	protected Creator buildCreator(Class<?> implementation) {
+		Constructor<?> construct;
 
 		/*
 		 * <Class>(name, clazz, subclazz, attributes)
@@ -170,7 +169,7 @@ public class DefaultItem {
 
 	/**
 	 * Returns an item-instance.
-	 *
+	 * 
 	 * @return An item, or <code>null</code> on error.
 	 */
 	public Item getItem() {

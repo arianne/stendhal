@@ -27,7 +27,7 @@ public class Portal2DView extends InvisibleEntity2DView {
 
 	/**
 	 * Create a 2D view of a portal.
-	 *
+	 * 
 	 * @param portal
 	 *            The entity to render.
 	 */
@@ -44,7 +44,7 @@ public class Portal2DView extends InvisibleEntity2DView {
 	/**
 	 * Build a list of entity specific actions. <strong>NOTE: The first entry
 	 * should be the default.</strong>
-	 *
+	 * 
 	 * @param list
 	 *            The list to populate.
 	 */
@@ -75,7 +75,7 @@ public class Portal2DView extends InvisibleEntity2DView {
 
 	/**
 	 * Perform an action.
-	 *
+	 * 
 	 * @param at
 	 *            The action.
 	 */

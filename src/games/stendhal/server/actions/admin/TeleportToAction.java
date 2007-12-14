@@ -8,8 +8,9 @@ import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
 import static games.stendhal.server.actions.WellKnownActionConstants.TARGET;
+
 public class TeleportToAction extends AdministrationAction {
-	
+
 	private static final String _TELEPORTTO = "teleportto";
 
 	public static void register() {

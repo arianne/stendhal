@@ -1,4 +1,3 @@
-
 package games.stendhal.server.entity.item.timed;
 
 import java.util.Map;
@@ -11,7 +10,8 @@ public class TimedInvisibility extends TimedStackableItem {
 		super(item);
 	}
 
-	public TimedInvisibility(String name, String clazz, String subclass, Map<String, String> attributes) {
+	public TimedInvisibility(String name, String clazz, String subclass,
+			Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);
 	}
 

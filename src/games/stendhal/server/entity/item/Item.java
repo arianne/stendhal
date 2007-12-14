@@ -114,9 +114,9 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	}
 
 	/**
-	 *
+	 * 
 	 * Creates a new Item.
-	 *
+	 * 
 	 * @param name
 	 *            name of item
 	 * @param clazz
@@ -155,7 +155,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 
 	/**
 	 * copy constuctor
-	 *
+	 * 
 	 * @param item
 	 *            item to copy
 	 */
@@ -167,7 +167,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 
 	/**
 	 * on which slots may this item be equipped
-	 *
+	 * 
 	 * @param slots
 	 *            list of allowed slots
 	 */
@@ -179,7 +179,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	/**
 	 * If this item is created by a PlantGrower, the item will notify it when
 	 * picked from the ground
-	 *
+	 * 
 	 * @param plantGrower
 	 *            a plant grower
 	 */
@@ -190,7 +190,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	/**
 	 * returns the PlantGrower which created this item or null if no plantgrower
 	 * was involved.
-	 *
+	 * 
 	 * @return PlantGrower or null
 	 */
 	public PassiveEntityRespawnPoint getPlantGrower() {
@@ -200,7 +200,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	/**
 	 * Returns the attack points of this item. Positive and negative values are
 	 * allowed. If this item doesn't modify the attack it should return '0'.
-	 *
+	 * 
 	 * @return attack points
 	 */
 	public int getAttack() {
@@ -214,7 +214,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	/**
 	 * Returns the defense points of this item. Positive and negative values are
 	 * allowed. If this item doesn't modify the defense it should return '0'.
-	 *
+	 * 
 	 * @return defense points
 	 */
 	public int getDefense() {
@@ -227,7 +227,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 
 	/**
 	 * Returns each how many turns this item can attack.
-	 *
+	 * 
 	 * @return each how many turns this item can attack.
 	 */
 	public int getAttackRate() {
@@ -242,7 +242,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	/**
 	 * Returns if the item is persistent. Persistent items do not update their
 	 * stats from the item database and thus can have individual stats
-	 *
+	 * 
 	 * @return true if item is persistent
 	 */
 	public boolean isPersistent() {
@@ -255,7 +255,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 
 	/**
 	 * Set the item's persistence.
-	 *
+	 * 
 	 * @param persistent
 	 *            If the item's stats are persistent.
 	 */
@@ -269,7 +269,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 
 	/**
 	 * Checks if the item is of type <i>type</i>
-	 *
+	 * 
 	 * @param clazz
 	 *            the class to check
 	 * @return true if the type matches, else false
@@ -300,17 +300,16 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 
 	/**
 	 * Get the name of the item.
-	 *
-	 * @return	The programatic item name.
+	 * 
+	 * @return The programatic item name.
 	 */
 	public String getName() {
 		return get("name");
 	}
 
-
 	/**
 	 * Get item count.
-	 *
+	 * 
 	 * @return 1.
 	 */
 	public int getQuantity() {
@@ -325,7 +324,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	/**
 	 * Get the player this is bound to. A bound item can only be used by that
 	 * player.
-	 *
+	 * 
 	 * @return The player name, or <code>null</code>.
 	 */
 	public String getBoundTo() {
@@ -339,7 +338,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	/**
 	 * Get the item's infostring. The infostring contains context specific
 	 * information that is used by the implementation.
-	 *
+	 * 
 	 * @return The infostring.
 	 */
 	public String getInfoString() {
@@ -352,7 +351,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 
 	/**
 	 * Bind this item to a player. A bound item can only be used by that player.
-	 *
+	 * 
 	 * @param name
 	 *            The player name, or <code>null</code>.
 	 */
@@ -365,8 +364,9 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	}
 
 	/**
-	 * Is the item undroppable. Undroppable items will never be dropped if the player dies.
-	 *
+	 * Is the item undroppable. Undroppable items will never be dropped if the
+	 * player dies.
+	 * 
 	 * @return true if item is undroppable.
 	 */
 	public boolean isUndroppableOnDeath() {
@@ -379,8 +379,9 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 
 	/**
 	 * Set is the item undroppable when player dies.
-	 *
-	 * @param unDroppableOnDeath If true, the item won't be dropped if the player dies.
+	 * 
+	 * @param unDroppableOnDeath
+	 *            If true, the item won't be dropped if the player dies.
 	 */
 	public void setUndroppableOnDeath(boolean unDroppableOnDeath) {
 		if (unDroppableOnDeath) {
@@ -393,7 +394,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	/**
 	 * Set the item's infostring. The infostring contains context specific
 	 * information that is used by the implementation.
-	 *
+	 * 
 	 * @param infostring
 	 *            The item's infostring.
 	 */
@@ -413,7 +414,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	/**
 	 * Is called when the item is created, moved to the ground, or moved on the
 	 * ground.
-	 *
+	 * 
 	 * @param player
 	 *            The player who moved the item, or null if it wasn't moved by a
 	 *            player.
@@ -515,20 +516,19 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 		}
 	}
 
-
 	//
 	// Entity
 	//
 
 	/**
-	 * Returns the name or something that can be used to identify the
-	 * entity for the player
-	 *
+	 * Returns the name or something that can be used to identify the entity for
+	 * the player
+	 * 
 	 * @param definite
-	 *	<code>true</code> for "the", and <code>false</code> for "a/an"
-	 *	in case the entity has no name.
-	 *
-	 * @return	The description name.
+	 *            <code>true</code> for "the", and <code>false</code> for
+	 *            "a/an" in case the entity has no name.
+	 * 
+	 * @return The description name.
 	 */
 	@Override
 	public String getDescriptionName(final boolean definite) {
@@ -543,7 +543,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 
 	/**
 	 * Get the nicely formatted entity title/name.
-	 *
+	 * 
 	 * @return The title, or <code>null</code> if unknown.
 	 */
 	@Override

@@ -13,7 +13,11 @@
 package games.stendhal.common;
 
 public enum Direction {
-	STOP(0, 0, 0), UP(1, 0, -1), RIGHT(2, 1, 0), DOWN(3, 0, 1), LEFT(4, -1, 0);
+	STOP(0, 0, 0),
+	UP(1, 0, -1),
+	RIGHT(2, 1, 0),
+	DOWN(3, 0, 1),
+	LEFT(4, -1, 0);
 
 	private final int val;
 	private final int dx;
@@ -21,20 +25,20 @@ public enum Direction {
 
 	public static Direction build(int val) {
 		switch (val) {
-			case 1:
-				return UP;
+		case 1:
+			return UP;
 
-			case 2:
-				return RIGHT;
+		case 2:
+			return RIGHT;
 
-			case 3:
-				return DOWN;
+		case 3:
+			return DOWN;
 
-			case 4:
-				return LEFT;
+		case 4:
+			return LEFT;
 
-			default:
-				return STOP;
+		default:
+			return STOP;
 
 		}
 	}
@@ -63,16 +67,16 @@ public enum Direction {
 
 	public Direction oppositeDirection() {
 		switch (this) {
-			case UP:
-				return DOWN;
-			case RIGHT:
-				return LEFT;
-			case DOWN:
-				return UP;
-			case LEFT:
-				return RIGHT;
-			default:
-				return STOP;
+		case UP:
+			return DOWN;
+		case RIGHT:
+			return LEFT;
+		case DOWN:
+			return UP;
+		case LEFT:
+			return RIGHT;
+		default:
+			return STOP;
 		}
 	}
 }

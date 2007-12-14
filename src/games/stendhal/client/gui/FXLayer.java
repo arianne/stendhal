@@ -35,15 +35,14 @@ public class FXLayer {
 		this.height = height;
 
 		// create an image the size of the screen.
-		GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice()
-		        .getDefaultConfiguration();
+		GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
 		image = gc.createCompatibleImage(width, height, Transparency.BITMASK);
 		g = (Graphics2D) image.getGraphics();
 
 		// 50% transparent (or 50% opaque, depending on how you look at it).
 		myAlpha = AlphaComposite.getInstance(AlphaComposite.SRC_ATOP, 0.5f);
 		speedHint = new RenderingHints(RenderingHints.KEY_ALPHA_INTERPOLATION,
-		        RenderingHints.VALUE_ALPHA_INTERPOLATION_SPEED);
+				RenderingHints.VALUE_ALPHA_INTERPOLATION_SPEED);
 	}
 
 	public void setMode(int mode) {
@@ -52,15 +51,15 @@ public class FXLayer {
 
 	public void draw(Graphics2D screen) {
 		switch (mode) {
-			case NIGHT:
-				g.setColor(new Color(0, 0, 150));
-				break;
-			case OVERCAST:
-				g.setColor(Color.black);
-				break;
-			case DISABLED:
-				return;
-			default:
+		case NIGHT:
+			g.setColor(new Color(0, 0, 150));
+			break;
+		case OVERCAST:
+			g.setColor(Color.black);
+			break;
+		case DISABLED:
+			return;
+		default:
 
 		}
 
@@ -76,11 +75,9 @@ public class FXLayer {
 		screen.setComposite(orig);
 	}
 
-	/*if(e.getKeyChar() == 'n') {
-	 fx.setMode(FXLayer.NIGHT);
-	 } else if(e.getKeyChar() == 'd') {
-	 fx.setMode(FXLayer.DISABLED);
-	 } else if(e.getKeyChar() == 'o') {
-	 fx.setMode(FXLayer.OVERCAST);
-	 }*/
+	/*
+	 * if(e.getKeyChar() == 'n') { fx.setMode(FXLayer.NIGHT); } else
+	 * if(e.getKeyChar() == 'd') { fx.setMode(FXLayer.DISABLED); } else
+	 * if(e.getKeyChar() == 'o') { fx.setMode(FXLayer.OVERCAST); }
+	 */
 }

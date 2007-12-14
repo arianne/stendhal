@@ -14,7 +14,7 @@ package games.stendhal.client.entity;
 
 /**
  * @author dine
- *
+ * 
  */
 public class FishSource extends Entity {
 }

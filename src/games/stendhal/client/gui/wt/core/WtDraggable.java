@@ -22,21 +22,21 @@ import java.awt.Point;
 
 /**
  * Every Object that is draggable must implement this interface.
- *
+ * 
  * @author mtotz
  */
 public interface WtDraggable {
 
 	/**
 	 * this object has been started to drag around
-	 *
+	 * 
 	 * @return true when this item can be dragged, false otherwise
 	 */
 	boolean dragStarted();
 
 	/**
 	 * this object has been started to drag around
-	 *
+	 * 
 	 * @param p
 	 *            the point where the mouse cursor is at the moment (relative to
 	 *            the drag startpoint)
@@ -48,7 +48,7 @@ public interface WtDraggable {
 	 * This object is draged around the screen. When this method returns false
 	 * the ui should move it back to it's start point to show the user that it
 	 * is not allowed to drop the object here.
-	 *
+	 * 
 	 * @param p
 	 *            the point where the mouse cursor is at the moment (relative to
 	 *            the drag startpoint)

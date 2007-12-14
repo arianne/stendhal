@@ -6,7 +6,7 @@ import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
 
 public class TellAllAction extends AdministrationAction {
-	
+
 	private static final String _TEXT = "text";
 	private static final String _TELLALL = "tellall";
 

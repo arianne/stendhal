@@ -51,13 +51,18 @@ public class WeaponsCollector2Test {
 		pl.setQuest("weapons_collector", "done");
 
 		assertTrue(en.stepTest(pl, ConversationPhrases.GREETING_MESSAGES.get(0)));
-		assertEquals("Greetings, old friend. If you are willing, I have another #quest for you.", npc.get("text"));
+		assertEquals(
+				"Greetings, old friend. If you are willing, I have another #quest for you.",
+				npc.get("text"));
 
 		assertTrue(en.stepTest(pl, ConversationPhrases.QUEST_MESSAGES.get(0)));
-		assertEquals("Recent adventurers to these parts describe strange new creatures with weapons"+
-					" I have never seen. Would you fight these creatures and bring their weapons to me?", npc.get("text"));
+		assertEquals(
+				"Recent adventurers to these parts describe strange new creatures with weapons"
+						+ " I have never seen. Would you fight these creatures and bring their weapons to me?",
+				npc.get("text"));
 		en.stepTest(pl, ConversationPhrases.NO_MESSAGES.get(0));
-		assertEquals("Well, maybe someone else will happen by and help me.", npc.get("text"));
+		assertEquals("Well, maybe someone else will happen by and help me.",
+				npc.get("text"));
 	}
 
 	@Test
@@ -74,29 +79,42 @@ public class WeaponsCollector2Test {
 		pl.setQuest("weapons_collector", "done");
 
 		assertTrue(en.stepTest(pl, "hello"));
-		assertEquals("Greetings, old friend. If you are willing, I have another #quest for you.", npc.get("text"));
+		assertEquals(
+				"Greetings, old friend. If you are willing, I have another #quest for you.",
+				npc.get("text"));
 
 		assertTrue(en.stepTest(pl, "quest"));
-		assertEquals("Recent adventurers to these parts describe strange new creatures with weapons"+
-					" I have never seen. Would you fight these creatures and bring their weapons to me?", npc.get("text"));
+		assertEquals(
+				"Recent adventurers to these parts describe strange new creatures with weapons"
+						+ " I have never seen. Would you fight these creatures and bring their weapons to me?",
+				npc.get("text"));
 
 		assertTrue(en.stepTest(pl, ConversationPhrases.YES_MESSAGES.get(0)));
-		assertEquals("Wonderful. Now, the #list is small but the risk may be great. If you return safely, I have another reward for you.", npc.get("text"));
+		assertEquals(
+				"Wonderful. Now, the #list is small but the risk may be great. If you return safely, I have another reward for you.",
+				npc.get("text"));
 
 		assertTrue(en.stepTest(pl, "list"));
-		assertEquals("There are 3 weapons still missing from my newest collection: #morning_star, #staff, and #great_sword."+
-					" Do you have anything like that with you?", npc.get("text"));
+		assertEquals(
+				"There are 3 weapons still missing from my newest collection: #morning_star, #staff, and #great_sword."
+						+ " Do you have anything like that with you?",
+				npc.get("text"));
 
 		assertTrue(en.stepTest(pl, "no"));
-		assertEquals("Let me know as soon as you find them. Farewell.", npc.get("text"));
+		assertEquals("Let me know as soon as you find them. Farewell.",
+				npc.get("text"));
 
 		// start another conversation
 		assertTrue(en.stepTest(pl, "hi"));
-		assertEquals("Welcome back. I hope you have come to help me with my latest #list of weapons.", npc.get("text"));
+		assertEquals(
+				"Welcome back. I hope you have come to help me with my latest #list of weapons.",
+				npc.get("text"));
 
 		assertTrue(en.stepTest(pl, "list"));
-		assertEquals("There are 3 weapons still missing from my newest collection: #morning_star, #staff, and #great_sword."+
-					" Do you have anything like that with you?", npc.get("text"));
+		assertEquals(
+				"There are 3 weapons still missing from my newest collection: #morning_star, #staff, and #great_sword."
+						+ " Do you have anything like that with you?",
+				npc.get("text"));
 
 		assertTrue(en.stepTest(pl, "yes"));
 		assertEquals("What did you find?", npc.get("text"));
@@ -105,18 +123,23 @@ public class WeaponsCollector2Test {
 		pl.getSlot("bag").add(weapon);
 
 		assertTrue(en.stepTest(pl, "morning_star"));
-		assertEquals("Thank you very much! Do you have anything more for me?", npc.get("text"));
+		assertEquals("Thank you very much! Do you have anything more for me?",
+				npc.get("text"));
 
 		assertTrue(en.stepTest(pl, "morning_star"));
-		assertEquals("I already have that one. Do you have any other weapon for me?", npc.get("text"));
+		assertEquals(
+				"I already have that one. Do you have any other weapon for me?",
+				npc.get("text"));
 
-		for(String cloakName : wc.getNeededItems()) {
+		for (String cloakName : wc.getNeededItems()) {
 			weapon = new Item(cloakName, "", "", null);
 			pl.getSlot("bag").add(weapon);
 			en.step(pl, cloakName);
 		}
 
-		assertEquals("At last, my collection is complete! Thank you very much; here, take this pair of swords in exchange!", npc.get("text"));
+		assertEquals(
+				"At last, my collection is complete! Thank you very much; here, take this pair of swords in exchange!",
+				npc.get("text"));
 		en.step(pl, ConversationPhrases.GOODBYE_MESSAGES.get(0));
 
 		assertTrue(wc.isCompleted(pl));

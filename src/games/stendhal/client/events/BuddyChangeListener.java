@@ -12,29 +12,33 @@ package games.stendhal.client.events;
 public interface BuddyChangeListener {
 	/**
 	 * A buddy was added.
-	 *
-	 * @param	buddyName	The name of the buddy.
+	 * 
+	 * @param buddyName
+	 *            The name of the buddy.
 	 */
 	void buddyAdded(String buddyName);
 
 	/**
 	 * A buddy went offline.
-	 *
-	 * @param	buddyName	The name of the buddy.
+	 * 
+	 * @param buddyName
+	 *            The name of the buddy.
 	 */
 	void buddyOffline(String buddyName);
 
 	/**
 	 * A buddy went online.
-	 *
-	 * @param	buddyName	The name of the buddy.
+	 * 
+	 * @param buddyName
+	 *            The name of the buddy.
 	 */
 	void buddyOnline(String buddyName);
 
 	/**
 	 * A buddy was removed.
-	 *
-	 * @param	buddyName	The name of the buddy.
+	 * 
+	 * @param buddyName
+	 *            The name of the buddy.
 	 */
 	void buddyRemoved(String buddyName);
 }

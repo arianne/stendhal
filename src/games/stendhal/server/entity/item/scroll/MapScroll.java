@@ -23,20 +23,22 @@ public class MapScroll extends Scroll {
 
 	/**
 	 * Creates a new map.
-	 *
+	 * 
 	 * @param name
 	 * @param clazz
 	 * @param subclass
 	 * @param attributes
 	 */
-	public MapScroll(String name, String clazz, String subclass, Map<String, String> attributes) {
+	public MapScroll(String name, String clazz, String subclass,
+			Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);
 	}
 
 	/**
 	 * copy constructor
-	 *
-	 * @param item item to copy
+	 * 
+	 * @param item
+	 *            item to copy
 	 */
 	public MapScroll(MapScroll item) {
 		super(item);

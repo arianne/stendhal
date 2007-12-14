@@ -3,19 +3,20 @@ package games.stendhal.server.account;
 import marauroa.common.game.Result;
 
 /**
- * validates the character used for the character name
- *
+ * validates the character used for the character name.
+ * 
  * @author hendrik
  */
 public class NameCharacterValidator implements AccountParameterValidator {
 	private String parameterValue;
 
 	/**
-	 * creates a NameCharacterValidator
-	 *
-	 * @param parameterValue value to validate
+	 * creates a NameCharacterValidator.
+	 * 
+	 * @param parameterValue
+	 *            value to validate
 	 */
-	public NameCharacterValidator(String parameterValue) {
+	public NameCharacterValidator(final String parameterValue) {
 		this.parameterValue = parameterValue;
 	}
 
@@ -34,7 +35,6 @@ public class NameCharacterValidator implements AccountParameterValidator {
 			return Result.FAILED_INVALID_CHARACTER_USED;
 		}
 
-		
 		return null;
 	}
 }

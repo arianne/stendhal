@@ -15,19 +15,23 @@ import games.stendhal.server.config.factory.ConfigurableFactoryContext;
 public abstract class OccupantAreaFactory implements ConfigurableFactory {
 	/**
 	 * Creates the OccupantArea.
-	 *
-	 * @param ctx	The configuration context.
+	 * 
+	 * @param ctx
+	 *            The configuration context.
 	 * @return An OccupantArea.
-	 * @throws IllegalArgumentException in case of an invalid configuration
+	 * @throws IllegalArgumentException
+	 *             in case of an invalid configuration
 	 */
 	protected abstract OccupantArea createArea(ConfigurableFactoryContext ctx);
 
 	/**
 	 * Extract the width from context.
-	 *
-	 * @param	ctx		The configuration context.
-	 * @return	The width, 1 if unspecified.
-	 * @throws	IllegalArgumentException If the attribute is invalid.
+	 * 
+	 * @param ctx
+	 *            The configuration context.
+	 * @return The width, 1 if unspecified.
+	 * @throws IllegalArgumentException
+	 *             If the attribute is invalid.
 	 */
 	protected int getWidth(ConfigurableFactoryContext ctx) {
 		return ctx.getInt("width", 1);
@@ -35,22 +39,25 @@ public abstract class OccupantAreaFactory implements ConfigurableFactory {
 
 	/**
 	 * Extract the height from context.
-	 *
-	 * @param	ctx		The configuration context.
-	 * @return	The height, 1 if unspecified.
-	 * @throws	IllegalArgumentException If the attribute is invalid.
+	 * 
+	 * @param ctx
+	 *            The configuration context.
+	 * @return The height, 1 if unspecified.
+	 * @throws IllegalArgumentException
+	 *             If the attribute is invalid.
 	 */
 	protected int getHeight(ConfigurableFactoryContext ctx) {
 		return ctx.getInt("height", 1);
 	}
 
 	/**
-	 * Extract the interval (in seconds) to perform actions while
-	 * stationary.
-	 *
-	 * @param	ctx		The configuration context.
-	 * @return	The stationary interval (in turns).
-	 * @throws	IllegalArgumentException if the attribute is missing.
+	 * Extract the interval (in seconds) to perform actions while stationary.
+	 * 
+	 * @param ctx
+	 *            The configuration context.
+	 * @return The stationary interval (in turns).
+	 * @throws IllegalArgumentException
+	 *             if the attribute is missing.
 	 */
 	protected int getInterval(ConfigurableFactoryContext ctx) {
 		return ctx.getRequiredInt("interval");
@@ -58,15 +65,16 @@ public abstract class OccupantAreaFactory implements ConfigurableFactory {
 
 	/**
 	 * Extract the flag to only affect players.
-	 *
-	 * @param	ctx		The configuration context.
-	 * @return	The flag to only affect players.
-	 * @throws	IllegalArgumentException If the attribute is invalid.
+	 * 
+	 * @param ctx
+	 *            The configuration context.
+	 * @return The flag to only affect players.
+	 * @throws IllegalArgumentException
+	 *             If the attribute is invalid.
 	 */
 	protected boolean getPlayersOnly(ConfigurableFactoryContext ctx) {
 		return ctx.getRequiredBoolean("players-only");
 	}
-
 
 	public Object create(ConfigurableFactoryContext ctx) {
 		OccupantArea area;

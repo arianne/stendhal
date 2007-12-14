@@ -9,7 +9,7 @@ package games.stendhal.client.gui;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * 
  * @author timothyb89
  */
 public class PasswordDialog extends javax.swing.JFrame {
@@ -115,9 +115,9 @@ public class PasswordDialog extends javax.swing.JFrame {
 		if (checkPass(newPass.getPassword(), newPassRepeat.getPassword())) {
 			// check for server password and see if that is accepted
 			JOptionPane.showMessageDialog(null, "Passwords Match"); // remove
-																	// this-
-																	// just for
-																	// testing.
+			// this-
+			// just for
+			// testing.
 		} else {
 			JOptionPane.showMessageDialog(null,
 					"It seems the passwords you entered do not match. Please try again.");
@@ -126,12 +126,12 @@ public class PasswordDialog extends javax.swing.JFrame {
 
 	private void newPassRepeatKeyTyped(java.awt.event.KeyEvent evt) { // GEN-FIRST:event_newPassRepeatKeyTyped
 		checkPass(newPass.getPassword(), newPassRepeat.getPassword()); // not
-																		// used
+		// used
 	} // GEN-LAST:event_newPassRepeatKeyTyped
 
 	private void newPassKeyTyped(java.awt.event.KeyEvent evt) { // GEN-FIRST:event_newPassKeyTyped
 		checkPass(newPass.getPassword(), newPassRepeat.getPassword()); // not
-																		// used
+		// used
 	} // GEN-LAST:event_newPassKeyTyped
 
 	private boolean clear;

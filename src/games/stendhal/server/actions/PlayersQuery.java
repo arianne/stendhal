@@ -91,7 +91,7 @@ public class PlayersQuery implements ActionListener {
 
 	/**
 	 * sorts the list of players
-	 *
+	 * 
 	 * @return sorted list of players
 	 */
 	private List<Player> getSortedPlayers() {

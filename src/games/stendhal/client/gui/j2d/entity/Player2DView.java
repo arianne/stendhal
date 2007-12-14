@@ -52,14 +52,16 @@ public class Player2DView extends RPEntity2DView {
 		Sprite tiles = store.getSprite("data/sprites/ideas/away.png");
 		Sprite tiles2 = store.getSprite("data/sprites/ideas/grumpy.png");
 		awaySprite = store.getAnimatedSprite(tiles, 0, 0, 4,
-				IGameScreen.SIZE_UNIT_PIXELS, IGameScreen.SIZE_UNIT_PIXELS, 2000);
+				IGameScreen.SIZE_UNIT_PIXELS, IGameScreen.SIZE_UNIT_PIXELS,
+				2000);
 		grumpySprite = store.getAnimatedSprite(tiles2, 0, 0, 4,
-				IGameScreen.SIZE_UNIT_PIXELS, IGameScreen.SIZE_UNIT_PIXELS, 2000);
+				IGameScreen.SIZE_UNIT_PIXELS, IGameScreen.SIZE_UNIT_PIXELS,
+				2000);
 	}
 
 	/**
 	 * Create a 2D view of a player.
-	 *
+	 * 
 	 * @param player
 	 *            The entity to render.
 	 */
@@ -75,7 +77,7 @@ public class Player2DView extends RPEntity2DView {
 
 	/**
 	 * Draw the entity status bar.
-	 *
+	 * 
 	 * @param g2d
 	 *            The graphics context.
 	 * @param x
@@ -96,7 +98,7 @@ public class Player2DView extends RPEntity2DView {
 
 	/**
 	 * Get the full directional animation tile set for this entity.
-	 *
+	 * 
 	 * @return A tile sprite containing all animation images.
 	 */
 	@Override
@@ -113,7 +115,7 @@ public class Player2DView extends RPEntity2DView {
 
 	/**
 	 * Determine is the user can see this entity while in ghostmode.
-	 *
+	 * 
 	 * @return <code>true</code> if the client user can see this entity while
 	 *         in ghostmode.
 	 */
@@ -136,7 +138,7 @@ public class Player2DView extends RPEntity2DView {
 	/**
 	 * Build a list of entity specific actions. <strong>NOTE: The first entry
 	 * should be the default.</strong>
-	 *
+	 * 
 	 * @param list
 	 *            The list to populate.
 	 */
@@ -150,7 +152,7 @@ public class Player2DView extends RPEntity2DView {
 
 	/**
 	 * Draw the entity.
-	 *
+	 * 
 	 * @param g2d
 	 *            The graphics to drawn on.
 	 */
@@ -172,7 +174,7 @@ public class Player2DView extends RPEntity2DView {
 
 	/**
 	 * Perform an action.
-	 *
+	 * 
 	 * @param at
 	 *            The action.
 	 */

@@ -14,7 +14,6 @@ import games.stendhal.server.config.XMLUtil;
 import java.util.List;
 import org.w3c.dom.Element;
 
-
 import org.apache.log4j.Logger;
 
 /**
@@ -32,14 +31,14 @@ public class EntitySetupXMLReader extends SetupXMLReader {
 
 	/**
 	 * Create an entity setup descriptor.
-	 *
+	 * 
 	 * @param element
 	 *            The entity setup XML element.
 	 * @param x
 	 *            The X coordinate.
 	 * @param y
 	 *            The Y coordinate.
-	 *
+	 * 
 	 * @return An entity setup descriptor.
 	 */
 	protected EntitySetupDescriptor read(final Element element, final int x,
@@ -49,7 +48,7 @@ public class EntitySetupXMLReader extends SetupXMLReader {
 
 	/**
 	 * Read attributes from an XML element.
-	 *
+	 * 
 	 * @param desc
 	 *            The descriptor to load.
 	 * @param element
@@ -71,7 +70,7 @@ public class EntitySetupXMLReader extends SetupXMLReader {
 
 	/**
 	 * Read implementation information from an XML element.
-	 *
+	 * 
 	 * @param desc
 	 *            The descriptor to load.
 	 * @param element
@@ -94,10 +93,10 @@ public class EntitySetupXMLReader extends SetupXMLReader {
 
 	/**
 	 * Create a setup descriptor from XML data.
-	 *
+	 * 
 	 * @param element
 	 *            The descriptor XML element.
-	 *
+	 * 
 	 * @return A setup descriptor, or <code>null</code> if invalid.
 	 */
 	@Override

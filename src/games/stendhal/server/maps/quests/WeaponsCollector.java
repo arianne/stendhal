@@ -40,7 +40,8 @@ import java.util.List;
  * REPETITIONS:
  * <li> None.
  */
-public class WeaponsCollector extends AbstractQuest implements BringListOfItemsQuest {
+public class WeaponsCollector extends AbstractQuest implements
+		BringListOfItemsQuest {
 
 	private static final List<String> neededWeapons = Arrays.asList("bardiche",
 			"battle_axe", "broadsword", "flail", "halberd", "katana",
@@ -61,7 +62,8 @@ public class WeaponsCollector extends AbstractQuest implements BringListOfItemsQ
 
 	private void setupAbstractQuest() {
 		BringListOfItemsQuest concreteQuest = this;
-		BringListOfItemsQuestLogic bringItems = new BringListOfItemsQuestLogic(concreteQuest);
+		BringListOfItemsQuestLogic bringItems = new BringListOfItemsQuestLogic(
+				concreteQuest);
 		bringItems.addToWorld();
 	}
 
@@ -90,9 +92,9 @@ public class WeaponsCollector extends AbstractQuest implements BringListOfItemsQ
 	}
 
 	public String welcomeBeforeStartingQuest() {
-		return "Greetings. I am Balduin. Are you interested in weapons? " +
-				"I certainly am, I have been collecting them since I was " +
-				"young. Maybe you can do a little #task for me.";
+		return "Greetings. I am Balduin. Are you interested in weapons? "
+				+ "I certainly am, I have been collecting them since I was "
+				+ "young. Maybe you can do a little #task for me.";
 	}
 
 	public String welcomeDuringActiveQuest() {
@@ -108,9 +110,9 @@ public class WeaponsCollector extends AbstractQuest implements BringListOfItemsQ
 	}
 
 	public String respondToQuest() {
-		return "Although I have collected weapons for such a long time, I " +
-				"still don't have everything I want. Do you think you can " +
-				"help me to complete my #collection?";
+		return "Although I have collected weapons for such a long time, I "
+				+ "still don't have everything I want. Do you think you can "
+				+ "help me to complete my #collection?";
 	}
 
 	public String respondToQuestAfterItHasAlreadyBeenCompleted() {
@@ -118,8 +120,8 @@ public class WeaponsCollector extends AbstractQuest implements BringListOfItemsQ
 	}
 
 	public String respondToQuestAcception() {
-		return "If you help me to complete my collection, I will give you " +
-				"something very interesting and useful in exchange. Bye";
+		return "If you help me to complete my collection, I will give you "
+				+ "something very interesting and useful in exchange. Bye";
 	}
 
 	public String respondToQuestRefusal() {
@@ -127,17 +129,16 @@ public class WeaponsCollector extends AbstractQuest implements BringListOfItemsQ
 	}
 
 	public String askForMissingItems(List<String> missingItems) {
-		return "There " + Grammar.isare(missingItems.size())
-			+ " " + Grammar.quantityplnoun(missingItems.size(), "weapon")
-			+ " still missing from my collection: "
-			+ Grammar.enumerateCollection(missingItems)
-			+ ". Do you have anything of that nature with you?";
+		return "There " + Grammar.isare(missingItems.size()) + " "
+				+ Grammar.quantityplnoun(missingItems.size(), "weapon")
+				+ " still missing from my collection: "
+				+ Grammar.enumerateCollection(missingItems)
+				+ ". Do you have anything of that nature with you?";
 	}
 
 	public String respondToPlayerSayingHeHasNoItems(List<String> missingItems) {
 		return "Let me know as soon as you find "
-			+ Grammar.itthem(missingItems.size())
-			+ ". Farewell.";
+				+ Grammar.itthem(missingItems.size()) + ". Farewell.";
 	}
 
 	public String askForItemsAfterPlayerSaidHeHasItems() {
@@ -147,9 +148,10 @@ public class WeaponsCollector extends AbstractQuest implements BringListOfItemsQ
 	public String respondToItemBrought() {
 		return "Thank you very much! Do you have anything else for me?";
 	}
+
 	public String respondToLastItemBrought() {
-		return "At last, my collection is complete! Thank you very much; " +
-				"here, take this #ice #sword in exchange!";
+		return "At last, my collection is complete! Thank you very much; "
+				+ "here, take this #ice #sword in exchange!";
 	}
 
 	public void rewardPlayer(Player player) {
@@ -162,10 +164,10 @@ public class WeaponsCollector extends AbstractQuest implements BringListOfItemsQ
 
 	public String respondToOfferOfNotExistingItem(String itemName) {
 		return "I may be old, but I'm not senile, and you clearly don't have "
-			+ Grammar.a_noun(itemName)
-			+ ". What do you really have for me?";
+				+ Grammar.a_noun(itemName)
+				+ ". What do you really have for me?";
 	}
-	
+
 	public String respondToOfferOfNotMissingItem() {
 		return "I already have that one. Do you have any other weapon for me?";
 	}

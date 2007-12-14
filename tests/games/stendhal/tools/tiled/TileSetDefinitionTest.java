@@ -1,8 +1,6 @@
 package games.stendhal.tools.tiled;
 
 import static org.junit.Assert.assertEquals;
-import games.stendhal.tools.tiled.StendhalMapStructure;
-import games.stendhal.tools.tiled.TileSetDefinition;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -17,7 +15,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class TileSetDefinitionTest {
-	StendhalMapStructure map;
+	private StendhalMapStructure map;
 
 	@Before
 	public void setUp() {
@@ -63,8 +61,8 @@ public class TileSetDefinitionTest {
 		List<TileSetDefinition> serializedTilesets = new LinkedList<TileSetDefinition>();
 
 		for (int i = 0; i < amount; i++) {
-			serializedTilesets.add((TileSetDefinition) in
-					.readObject(new TileSetDefinition(null, 0)));
+			serializedTilesets.add((TileSetDefinition) in.readObject(new TileSetDefinition(
+					null, 0)));
 		}
 
 		assertEquals(tilesets, serializedTilesets);

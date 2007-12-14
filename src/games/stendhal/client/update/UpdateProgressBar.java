@@ -15,7 +15,8 @@ import javax.swing.JProgressBar;
 /**
  * a progress bar for the download progress
  */
-public class UpdateProgressBar extends JFrame implements HttpClient.ProgressListener {
+public class UpdateProgressBar extends JFrame implements
+		HttpClient.ProgressListener {
 	private static final long serialVersionUID = -1607102841664745919L;
 
 	private int max = 100;
@@ -28,14 +29,16 @@ public class UpdateProgressBar extends JFrame implements HttpClient.ProgressList
 
 	/**
 	 * Creates update progress bar
-	 *
-	 * @param max max file size
+	 * 
+	 * @param max
+	 *            max file size
 	 */
 	public UpdateProgressBar(int max) {
 		super("Downloading...");
 		this.max = max;
 		try {
-			URL url = this.getClass().getClassLoader().getResource(ClientGameConfiguration.get("GAME_ICON"));
+			URL url = this.getClass().getClassLoader().getResource(
+					ClientGameConfiguration.get("GAME_ICON"));
 			setIconImage(new ImageIcon(url).getImage());
 		} catch (Exception e) {
 			// in case that resource is not avainable

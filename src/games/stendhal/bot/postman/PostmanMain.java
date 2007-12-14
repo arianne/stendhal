@@ -29,7 +29,7 @@ import marauroa.common.net.message.TransferContent;
 
 /**
  * Starts Postman and connect to server.
- *
+ * 
  * @author hendrik
  */
 public class PostmanMain extends Thread {
@@ -55,17 +55,23 @@ public class PostmanMain extends Thread {
 	protected PerceptionHandler handler;
 
 	/**
-	 * Creates a PostmanMain
-	 *
-	 * @param h host
-	 * @param u username
-	 * @param p password
-	 * @param c character name
-	 * @param P port
-	 * @param t TCP?
-	 * @throws SocketException on an network error
+	 * Creates a PostmanMain.
+	 * 
+	 * @param h
+	 *            host
+	 * @param u
+	 *            user name
+	 * @param p
+	 *            password
+	 * @param c
+	 *            character name
+	 * @param P
+	 *            port
+	 * @throws SocketException
+	 *             on an network error
 	 */
-	public PostmanMain(String h, String u, String p, String c, String P) throws SocketException {
+	public PostmanMain(String h, String u, String p, String c, String P)
+			throws SocketException {
 		host = h;
 		username = u;
 		password = p;
@@ -77,49 +83,51 @@ public class PostmanMain extends Thread {
 		handler = new PerceptionHandler(new IPerceptionListener() {
 			public boolean onAdded(RPObject object) {
 				return false;
-            }
+			}
 
 			public boolean onClear() {
 				return false;
-            }
+			}
 
 			public boolean onDeleted(RPObject object) {
 				return false;
-            }
+			}
 
-			public void onException(Exception exception, MessageS2CPerception perception) {
+			public void onException(Exception exception,
+					MessageS2CPerception perception) {
 				System.out.println(perception);
 				System.err.println(perception);
 				exception.printStackTrace();
-            }
+			}
 
 			public boolean onModifiedAdded(RPObject object, RPObject changes) {
-	            return false;
-            }
+				return false;
+			}
 
 			public boolean onModifiedDeleted(RPObject object, RPObject changes) {
-	            return false;
-            }
+				return false;
+			}
 
 			public boolean onMyRPObject(RPObject added, RPObject deleted) {
-	            return false;
-            }
+				return false;
+			}
 
 			public void onPerceptionBegin(byte type, int timestamp) {
-            }
+			}
 
 			public void onPerceptionEnd(byte type, int timestamp) {
-            }
+			}
 
 			public void onSynced() {
-            }
+			}
 
 			public void onUnsynced() {
-            }
+			}
 
 		});
 
-		clientManager = new marauroa.client.ClientFramework("games/stendhal/log4j.properties") {
+		clientManager = new marauroa.client.ClientFramework(
+				"games/stendhal/log4j.properties") {
 
 			@Override
 			protected String getGameName() {
@@ -139,7 +147,9 @@ public class PostmanMain extends Thread {
 					for (RPObject object : world_objects.values()) {
 						for (RPEvent event : object.events()) {
 							if (event.getName().equals("private_text")) {
-								postman.processPrivateTalkEvent(object, event.get("texttype"), event.get("text"));
+								postman.processPrivateTalkEvent(object,
+										event.get("texttype"),
+										event.get("text"));
 							}
 						}
 						if (object.has("text")) {
@@ -152,7 +162,8 @@ public class PostmanMain extends Thread {
 			}
 
 			@Override
-			protected List<TransferContent> onTransferREQ(List<TransferContent> items) {
+			protected List<TransferContent> onTransferREQ(
+					List<TransferContent> items) {
 				for (TransferContent item : items) {
 					item.ack = true;
 				}
@@ -180,9 +191,9 @@ public class PostmanMain extends Thread {
 			}
 
 			@Override
-            protected void onPreviousLogins(List<String> previousLogins) {
-	            // do nothing
-            }
+			protected void onPreviousLogins(List<String> previousLogins) {
+				// do nothing
+			}
 		};
 	}
 
@@ -202,7 +213,7 @@ public class PostmanMain extends Thread {
 		} catch (TimeoutException e) {
 			System.err.println("Cannot connect to Stendhal server. Server is down?");
 			// TODO: shutdown cleanly
-			//return;
+			// return;
 			Runtime.getRuntime().halt(1);
 		} catch (Exception e) {
 			System.out.println(e);
@@ -214,7 +225,8 @@ public class PostmanMain extends Thread {
 		while (cond) {
 			clientManager.loop(0);
 
-			if ((lastPerceptionTimestamp > 0) && (lastPerceptionTimestamp + 30 * 1000 < System.currentTimeMillis())) {
+			if ((lastPerceptionTimestamp > 0)
+					&& (lastPerceptionTimestamp + 30 * 1000 < System.currentTimeMillis())) {
 				System.err.println("Timeout");
 				Runtime.getRuntime().halt(1);
 			}
@@ -228,9 +240,10 @@ public class PostmanMain extends Thread {
 	}
 
 	/**
-	 * Main entry point
-	 *
-	 * @param args see help
+	 * Main entry point.
+	 * 
+	 * @param args
+	 *            see help
 	 */
 	public static void main(String[] args) {
 		try {
@@ -257,8 +270,11 @@ public class PostmanMain extends Thread {
 					i++;
 				}
 
-				if ((username != null) && (password != null) && (character != null) && (host != null) && (port != null)) {
-					PostmanMain postmanMain = new PostmanMain(host, username, password, character, port);
+				if ((username != null) && (password != null)
+						&& (character != null) && (host != null)
+						&& (port != null)) {
+					PostmanMain postmanMain = new PostmanMain(host, username,
+							password, character, port);
 					postmanMain.start();
 					return;
 				}

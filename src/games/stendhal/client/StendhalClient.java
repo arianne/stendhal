@@ -49,7 +49,7 @@ import marauroa.common.net.message.TransferContent;
 /**
  * This class is the glue to Marauroa, it extends ClientFramework and allow us
  * to easily connect to an marauroa server and operate it easily.
- *
+ * 
  * This class should be limited to functionality independant of the UI (that
  * goes in StendhalUI or a subclass).
  */
@@ -182,7 +182,7 @@ public class StendhalClient extends ClientFramework {
 	 * Check if the client is in the middle of a batch update. A batch update
 	 * starts when a content transfer starts and end on the first perception
 	 * event.
-	 *
+	 * 
 	 * @return <code>true</code> if in a batch update.
 	 */
 	public boolean isInBatchUpdate() {
@@ -191,7 +191,7 @@ public class StendhalClient extends ClientFramework {
 
 	/**
 	 * Handle sync events before they are dispatched.
-	 *
+	 * 
 	 * @param zoneid
 	 *            The zone entered.
 	 */
@@ -224,7 +224,7 @@ public class StendhalClient extends ClientFramework {
 	 * connect to the Stendhal game server and if successful, check, if the
 	 * server runs StendhalHttpServer extension. In that case it checks, if
 	 * server version equals the client's.
-	 *
+	 * 
 	 * @throws IOException
 	 */
 	@Override
@@ -349,7 +349,7 @@ public class StendhalClient extends ClientFramework {
 
 	/**
 	 * Determine if we are in the middle of transfering new content.
-	 *
+	 * 
 	 * @return <code>true</code> if more content is to be transfered.
 	 */
 	public boolean isInTransfer() {
@@ -434,7 +434,7 @@ public class StendhalClient extends ClientFramework {
 
 	/**
 	 * Add an active player movement direction.
-	 *
+	 * 
 	 * @param dir
 	 *            The direction.
 	 * @param face
@@ -492,7 +492,7 @@ public class StendhalClient extends ClientFramework {
 
 	/**
 	 * Remove a player movement direction.
-	 *
+	 * 
 	 * @param dir
 	 *            The direction.
 	 * @param face
@@ -544,7 +544,7 @@ public class StendhalClient extends ClientFramework {
 	}
 
 	/**
-	 * Handle player changes
+	 * Handle player changes.
 	 */
 	protected void setPlayer(RPObject object) {
 		/*
@@ -559,8 +559,8 @@ public class StendhalClient extends ClientFramework {
 
 	/*
 	 * public void addPlayerChangeListener(PlayerChangeListener l) { }
-	 *
-	 *
+	 * 
+	 * 
 	 * public void removePlayerChangeListener(PlayerChangeListener l) { }
 	 */
 
@@ -695,10 +695,10 @@ public class StendhalClient extends ClientFramework {
 	 * Check to see if the object is the connected user. This is an ungly hack
 	 * needed because the perception protocol distinquishes between normal and
 	 * private (my) object changes, but not full add/removes.
-	 *
+	 * 
 	 * @param object
 	 *            An object.
-	 *
+	 * 
 	 * @return <code>true</code> if it is the user object.
 	 */
 	public boolean isUser(final RPObject object) {

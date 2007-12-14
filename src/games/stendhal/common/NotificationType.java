@@ -14,10 +14,17 @@ package games.stendhal.common;
  * This would be similar to logical styles vs. physical styles in HTML.
  */
 public enum NotificationType {
-	CLIENT("client"), ERROR("error"), INFORMATION("information"), NEGATIVE("negative"), NORMAL(
-			"normal"), POSITIVE("positive"), PRIVMSG("privmsg"), RESPONSE(
-			"response"), SIGNIFICANT_NEGATIVE("significant_negative"), SIGNIFICANT_POSITIVE(
-			"significant_positive"), TUTORIAL("tutorial");
+	CLIENT("client"),
+	ERROR("error"),
+	INFORMATION("information"),
+	NEGATIVE("negative"),
+	NORMAL("normal"),
+	POSITIVE("positive"),
+	PRIVMSG("privmsg"),
+	RESPONSE("response"),
+	SIGNIFICANT_NEGATIVE("significant_negative"),
+	SIGNIFICANT_POSITIVE("significant_positive"),
+	TUTORIAL("tutorial");
 
 	/**
 	 * The mapping mnemonic.

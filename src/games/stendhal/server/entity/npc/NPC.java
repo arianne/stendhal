@@ -23,7 +23,6 @@ import games.stendhal.server.pathfinder.Path;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import org.apache.log4j.Logger;
 import marauroa.common.game.Definition;
 import marauroa.common.game.RPClass;
@@ -68,7 +67,7 @@ public abstract class NPC extends RPEntity {
 
 	/**
 	 * Set the NPC's idea/thought.
-	 *
+	 * 
 	 * @param idea
 	 *            The idea mnemonic, or <code>null</code>.
 	 */
@@ -86,14 +85,15 @@ public abstract class NPC extends RPEntity {
 
 	/**
 	 * Get the NPC's idea/thought.
-	 *
+	 * 
 	 * @return The idea mnemonic, or <code>null</code>.
 	 */
 	public String getIdea() {
 		return idea;
 	}
 
-	//TODO NPC.setOutfit() function seems not to be used anywhere, so it could be removed.
+	// TODO NPC.setOutfit() function seems not to be used anywhere, so it could
+	// be removed.
 	public void setOutfit(String outfit) {
 		put("outfit", outfit);
 	}
@@ -110,7 +110,7 @@ public abstract class NPC extends RPEntity {
 	 * <b>Note:</b> When the distance to the destination is less than
 	 * <code>min</code> the path is removed. <b>Warning:</b> The pathfinder
 	 * is not asynchronous, so this thread is blocked until a path is found.
-	 *
+	 * 
 	 * @param destEntity
 	 *            the destination entity
 	 * @param min
@@ -142,7 +142,7 @@ public abstract class NPC extends RPEntity {
 
 	/**
 	 * Set a random destination as a path.
-	 *
+	 * 
 	 * @param distance
 	 *            The maximum axis distance to move.
 	 * @param x

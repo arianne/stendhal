@@ -46,17 +46,17 @@ import marauroa.common.game.IRPZone;
  * <li> When they go to the Hotel they choose a lovers room
  * <li> Champagne and fruit baskets is put in their bag (room if possible)
  * <li> They leave the lovers room when desired with another marked scroll
- *
+ * 
  * <p>
  * REWARD:
  * <li> Wedding Ring that teleports you to your spouse if worn - 1500 XP in
  * total
  * <li> nice food in the lovers room
  * <p>
- *
+ * 
  * REPETITIONS:
  * <li> None.
- *
+ * 
  * @author kymara
  */
 public class Marriage extends AbstractQuest {
@@ -92,83 +92,89 @@ public class Marriage extends AbstractQuest {
 	private void engagementStep() {
 		nun = npcs.get("Sister Benedicta");
 		nun.add(ConversationStates.ATTENDING,
-			ConversationPhrases.QUEST_MESSAGES, null,
-			ConversationStates.ATTENDING, null,
-			new SpeakerNPC.ChatAction() {
-				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-					if (!player.hasQuest(QUEST_SLOT)) {
-						engine.say("The great quest of all life is to be #married.");
-					} else if (player.isQuestCompleted(QUEST_SLOT)) {
-						engine.say("I hope you are enjoying married life.");
-					} else {
-						engine.say("Haven't you organised your wedding yet?");
+				ConversationPhrases.QUEST_MESSAGES, null,
+				ConversationStates.ATTENDING, null,
+				new SpeakerNPC.ChatAction() {
+					@Override
+					public void fire(Player player, Sentence sentence,
+							SpeakerNPC engine) {
+						if (!player.hasQuest(QUEST_SLOT)) {
+							engine.say("The great quest of all life is to be #married.");
+						} else if (player.isQuestCompleted(QUEST_SLOT)) {
+							engine.say("I hope you are enjoying married life.");
+						} else {
+							engine.say("Haven't you organised your wedding yet?");
+						}
 					}
-				}
-			});
+				});
 
 		nun.add(
-			ConversationStates.ATTENDING,
-			"married",
-			null,
-			ConversationStates.ATTENDING,
-			"If you have a partner, you can marry them at a #wedding. Once you have a wedding ring, you can be together whenever you want.",
-			null);
+				ConversationStates.ATTENDING,
+				"married",
+				null,
+				ConversationStates.ATTENDING,
+				"If you have a partner, you can marry them at a #wedding. Once you have a wedding ring, you can be together whenever you want.",
+				null);
 
 		nun.add(
-			ConversationStates.ATTENDING,
-			"wedding",
-			null,
-			ConversationStates.ATTENDING,
-			"You may marry here at this church. If you want to #engage someone, just tell me who.",
-			null);
+				ConversationStates.ATTENDING,
+				"wedding",
+				null,
+				ConversationStates.ATTENDING,
+				"You may marry here at this church. If you want to #engage someone, just tell me who.",
+				null);
 
 		nun.add(ConversationStates.ATTENDING, "engage", null,
-			ConversationStates.ATTENDING, null,
-			new SpeakerNPC.ChatAction() {
-				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-					// find out whom the player wants to marry.
-			        String brideName = sentence.getObjectName();
+				ConversationStates.ATTENDING, null,
+				new SpeakerNPC.ChatAction() {
+					@Override
+					public void fire(Player player, Sentence sentence,
+							SpeakerNPC npc) {
+						// find out whom the player wants to marry.
+						String brideName = sentence.getObjectName();
 
-			        if (brideName == null) {
-			        	npc.say("You have to tell me who you want to marry.");
-			        } else {
-						startEngagement(npc, player, brideName);
+						if (brideName == null) {
+							npc.say("You have to tell me who you want to marry.");
+						} else {
+							startEngagement(npc, player, brideName);
+						}
 					}
-				}
-			});
+				});
 
 		nun.add(ConversationStates.QUESTION_1,
-			ConversationPhrases.YES_MESSAGES, null,
-			ConversationStates.QUESTION_2, null,
-			new SpeakerNPC.ChatAction() {
-				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-					askBrideE();
-				}
-			});
+				ConversationPhrases.YES_MESSAGES, null,
+				ConversationStates.QUESTION_2, null,
+				new SpeakerNPC.ChatAction() {
+					@Override
+					public void fire(Player player, Sentence sentence,
+							SpeakerNPC npc) {
+						askBrideE();
+					}
+				});
 
 		nun.add(ConversationStates.QUESTION_1, ConversationPhrases.NO_MESSAGES,
-			null, ConversationStates.IDLE, "What a shame! Goodbye!", null);
+				null, ConversationStates.IDLE, "What a shame! Goodbye!", null);
 
 		nun.add(ConversationStates.QUESTION_2,
-			ConversationPhrases.YES_MESSAGES, null,
-			ConversationStates.ATTENDING, null,
-			new SpeakerNPC.ChatAction() {
-				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-					finishEngagement();
-				}
-			});
+				ConversationPhrases.YES_MESSAGES, null,
+				ConversationStates.ATTENDING, null,
+				new SpeakerNPC.ChatAction() {
+					@Override
+					public void fire(Player player, Sentence sentence,
+							SpeakerNPC npc) {
+						finishEngagement();
+					}
+				});
 
 		nun.add(ConversationStates.QUESTION_2, ConversationPhrases.NO_MESSAGES,
-			null, ConversationStates.IDLE, "What a shame! Goodbye!", null);
+				null, ConversationStates.IDLE, "What a shame! Goodbye!", null);
 	}
 
-	private void startEngagement(SpeakerNPC nun, Player player, String partnerName) {
+	private void startEngagement(SpeakerNPC nun, Player player,
+			String partnerName) {
 		IRPZone outsideChurchZone = nun.getZone();
-		Area inFrontOfNun = new Area(outsideChurchZone, new Rectangle(51, 52, 6, 5));
+		Area inFrontOfNun = new Area(outsideChurchZone, new Rectangle(51, 52,
+				6, 5));
 		groom = player;
 		bride = StendhalRPRuleProcessor.get().getPlayer(partnerName);
 
@@ -241,132 +247,138 @@ public class Marriage extends AbstractQuest {
 		SpeakerNPC npc = npcs.get("Ognir");
 
 		npc.add(ConversationStates.ATTENDING,
-			ConversationPhrases.QUEST_MESSAGES,
-			new QuestStateStartsWithCondition(QUEST_SLOT, "engaged"),
-			ConversationStates.INFORMATION_1, null,
-			new SpeakerNPC.ChatAction() {
-				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-					if (player.isQuestInState(QUEST_SLOT, "engaged_with_ring")) {
-						// player has wedding ring already. just remind to
-						// get spouse to get one and hint to get dressed.
-						npc.say("Looking forward to your wedding? Make sure your fiancee gets a wedding ring made for you, too! Oh and remember to get #dressed up for the big day.");
-						npc.setCurrentState(ConversationStates.INFORMATION_2);
-					} else {
-						// says you'll need a ring
-						npc.say("I see you're on a life-long quest to get married! I find marriage more of a task, ha ha! Anyway, you'll need a #wedding_ring.");
+				ConversationPhrases.QUEST_MESSAGES,
+				new QuestStateStartsWithCondition(QUEST_SLOT, "engaged"),
+				ConversationStates.INFORMATION_1, null,
+				new SpeakerNPC.ChatAction() {
+					@Override
+					public void fire(Player player, Sentence sentence,
+							SpeakerNPC npc) {
+						if (player.isQuestInState(QUEST_SLOT,
+								"engaged_with_ring")) {
+							// player has wedding ring already. just remind to
+							// get spouse to get one and hint to get dressed.
+							npc.say("Looking forward to your wedding? Make sure your fiancee gets a wedding ring made for you, too! Oh and remember to get #dressed up for the big day.");
+							npc.setCurrentState(ConversationStates.INFORMATION_2);
+						} else {
+							// says you'll need a ring
+							npc.say("I see you're on a life-long quest to get married! I find marriage more of a task, ha ha! Anyway, you'll need a #wedding_ring.");
+						}
 					}
-				}
-			});
+				});
 
 		// response to QUEST_MESSAGES if you are not engaged
-		npc.add(ConversationStates.ATTENDING,
-			ConversationPhrases.QUEST_MESSAGES,
-			new QuestNotStartedCondition(QUEST_SLOT),
-			ConversationStates.ATTENDING, 
-			"I'd forge a wedding ring for you to give your partner, if you were engaged to someone. If you want to get engaged, speak to the nun outside the church.",
-			null);
+		npc.add(
+				ConversationStates.ATTENDING,
+				ConversationPhrases.QUEST_MESSAGES,
+				new QuestNotStartedCondition(QUEST_SLOT),
+				ConversationStates.ATTENDING,
+				"I'd forge a wedding ring for you to give your partner, if you were engaged to someone. If you want to get engaged, speak to the nun outside the church.",
+				null);
 
 		// response to QUEST_MESSAGES when you're already married
-		npc.add(ConversationStates.ATTENDING,
-			ConversationPhrases.QUEST_MESSAGES,
-			new QuestCompletedCondition(QUEST_SLOT),
-			ConversationStates.ATTENDING, 
-			"You must already have enough to do, now that you're married. Don't worry about me!",
-			null);
+		npc.add(
+				ConversationStates.ATTENDING,
+				ConversationPhrases.QUEST_MESSAGES,
+				new QuestCompletedCondition(QUEST_SLOT),
+				ConversationStates.ATTENDING,
+				"You must already have enough to do, now that you're married. Don't worry about me!",
+				null);
 
 		// Here the beahviour is defined for if you say hi to Ognir and your
 		// ring is being made
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-			new QuestStateStartsWithCondition(QUEST_SLOT, "forging;"),
-			ConversationStates.IDLE, null, new SpeakerNPC.ChatAction() {
-				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-					String[] tokens = player.getQuest(QUEST_SLOT).split(";");
-					long delay = REQUIRED_MINUTES * 60 * 1000; // minutes
-					// ->
-					// milliseconds
-					long timeRemaining = (Long.parseLong(tokens[1]) + delay)
-							- System.currentTimeMillis();
-					// ring is not ready yet
-					if (timeRemaining > 0L) {
-						npc.say("I haven't finished making the wedding ring. Please check back in "
-								+ TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L))
-								+ ". Bye for now.");
-						return;
+				new QuestStateStartsWithCondition(QUEST_SLOT, "forging;"),
+				ConversationStates.IDLE, null, new SpeakerNPC.ChatAction() {
+					@Override
+					public void fire(Player player, Sentence sentence,
+							SpeakerNPC npc) {
+						String[] tokens = player.getQuest(QUEST_SLOT).split(";");
+						long delay = REQUIRED_MINUTES * 60 * 1000; // minutes
+						// ->
+						// milliseconds
+						long timeRemaining = (Long.parseLong(tokens[1]) + delay)
+								- System.currentTimeMillis();
+						// ring is not ready yet
+						if (timeRemaining > 0L) {
+							npc.say("I haven't finished making the wedding ring. Please check back in "
+									+ TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L))
+									+ ". Bye for now.");
+							return;
+						}
+						/*
+						 * ring is ready now. Bind it to person who made
+						 * it.until the wedding day comes when the rings are
+						 * exchanged Give a prompt to a little hint about
+						 * getting dressed for the wedding, if players like to.
+						 */
+						npc.say("I'm pleased to say, the wedding ring for your fiancee is finished! Make sure one is made for you, too! *psst* just a little #hint for the wedding day ...");
+						player.addXP(500);
+						Item weddingRing = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
+								"wedding_ring");
+						weddingRing.setBoundTo(player.getName());
+						player.equip(weddingRing, true);
+						player.setQuest(QUEST_SLOT, "engaged_with_ring");
+						player.notifyWorldAboutChanges();
+						npc.setCurrentState(ConversationStates.INFORMATION_2);
 					}
-					/*
-					 * ring is ready now. Bind it to person who made
-					 * it.until the wedding day comes when the rings are
-					 * exchanged Give a prompt to a little hint about
-					 * getting dressed for the wedding, if players like to.
-					 */
-					npc.say("I'm pleased to say, the wedding ring for your fiancee is finished! Make sure one is made for you, too! *psst* just a little #hint for the wedding day ...");
-					player.addXP(500);
-					Item weddingRing = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
-							"wedding_ring");
-					weddingRing.setBoundTo(player.getName());
-					player.equip(weddingRing, true);
-					player.setQuest(QUEST_SLOT, "engaged_with_ring");
-					player.notifyWorldAboutChanges();
-					npc.setCurrentState(ConversationStates.INFORMATION_2);
-				}
-			});
+				});
 
 		npc.add(
-			ConversationStates.INFORMATION_1,
-			Arrays.asList("wedding_ring", "wedding", "ring"),
-			null,
-			ConversationStates.QUEST_ITEM_QUESTION,
-			"I need "
-					+ REQUIRED_GOLD
-					+ " gold bars and a fee of "
-					+ REQUIRED_MONEY
-					+ " money, to make a wedding ring for your fiancee. Do you have it?",
-			null);
+				ConversationStates.INFORMATION_1,
+				Arrays.asList("wedding_ring", "wedding", "ring"),
+				null,
+				ConversationStates.QUEST_ITEM_QUESTION,
+				"I need "
+						+ REQUIRED_GOLD
+						+ " gold bars and a fee of "
+						+ REQUIRED_MONEY
+						+ " money, to make a wedding ring for your fiancee. Do you have it?",
+				null);
 
 		// player says yes, they want a wedding ring made
 		npc.add(ConversationStates.QUEST_ITEM_QUESTION,
-			ConversationPhrases.YES_MESSAGES, null,
-			ConversationStates.ATTENDING, null,
-			new SpeakerNPC.ChatAction() {
-				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-					if ((player.isEquipped("gold_bar", REQUIRED_GOLD))
-							&& (player.isEquipped("money", REQUIRED_MONEY))) {
-						player.drop("gold_bar", REQUIRED_GOLD);
-						player.drop("money", REQUIRED_MONEY);
-						npc.say("Good, come back in "
-								+ REQUIRED_MINUTES
-								+ " minutes and it will be ready. Goodbye until then.");
-						player.setQuest(QUEST_SLOT, "forging;"
-								+ System.currentTimeMillis());
-						npc.setCurrentState(ConversationStates.IDLE);
-					} else {
-						// player said they had the money and/or gold but
-						// they lied
-						npc.say("Come back when you have both the money and the gold.");
+				ConversationPhrases.YES_MESSAGES, null,
+				ConversationStates.ATTENDING, null,
+				new SpeakerNPC.ChatAction() {
+					@Override
+					public void fire(Player player, Sentence sentence,
+							SpeakerNPC npc) {
+						if ((player.isEquipped("gold_bar", REQUIRED_GOLD))
+								&& (player.isEquipped("money", REQUIRED_MONEY))) {
+							player.drop("gold_bar", REQUIRED_GOLD);
+							player.drop("money", REQUIRED_MONEY);
+							npc.say("Good, come back in "
+									+ REQUIRED_MINUTES
+									+ " minutes and it will be ready. Goodbye until then.");
+							player.setQuest(QUEST_SLOT, "forging;"
+									+ System.currentTimeMillis());
+							npc.setCurrentState(ConversationStates.IDLE);
+						} else {
+							// player said they had the money and/or gold but
+							// they lied
+							npc.say("Come back when you have both the money and the gold.");
+						}
 					}
-				}
-			});
+				});
 
 		// player says (s)he doesn't have the money and/or gold
 		npc.add(
-			ConversationStates.QUEST_ITEM_QUESTION,
-			ConversationPhrases.NO_MESSAGES,
-			null,
-			ConversationStates.ATTENDING,
-			"No problem, just come back when you have both the money and the gold.",
-			null);
+				ConversationStates.QUEST_ITEM_QUESTION,
+				ConversationPhrases.NO_MESSAGES,
+				null,
+				ConversationStates.ATTENDING,
+				"No problem, just come back when you have both the money and the gold.",
+				null);
 
 		// Just a little hint about getting dressed for the wedding.
 		npc.add(
-			ConversationStates.INFORMATION_2,
-			Arrays.asList("dressed", "hint", "dress"),
-			null,
-			ConversationStates.ATTENDING,
-			"When my wife and I got married we went to Fado hotel and hired special clothes. The dressing rooms are on your right when you go in, look for the wooden door. Good luck!",
-			null);
+				ConversationStates.INFORMATION_2,
+				Arrays.asList("dressed", "hint", "dress"),
+				null,
+				ConversationStates.ATTENDING,
+				"When my wife and I got married we went to Fado hotel and hired special clothes. The dressing rooms are on your right when you go in, look for the wooden door. Good luck!",
+				null);
 
 	}
 
@@ -381,23 +393,26 @@ public class Marriage extends AbstractQuest {
 
 		/**
 		 * Creates a priest NPC who can celebrate marriages between two players.
-		 *
+		 * 
 		 * Note: in this class, the Player variables are called groom and bride.
 		 * However, the game doesn't know the concept of genders. The player who
 		 * initiates the wedding is just called groom, the other bride.
-		 *
+		 * 
 		 * @author daniel
-		 *
+		 * 
 		 */
 
 		priest = npcs.get("Priest");
-		priest.add(ConversationStates.ATTENDING,
+		priest.add(
+				ConversationStates.ATTENDING,
 				"marry",
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					public boolean fire(Player player, Sentence sentence,
+							SpeakerNPC npc) {
 						return player.hasQuest(QUEST_SLOT)
-								&& player.getQuest(QUEST_SLOT).equals("engaged_with_ring")
+								&& player.getQuest(QUEST_SLOT).equals(
+										"engaged_with_ring")
 								&& player.isEquipped("wedding_ring");
 					}
 				}
@@ -407,75 +422,80 @@ public class Marriage extends AbstractQuest {
 				new SpeakerNPC.ChatAction() {
 
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					public void fire(Player player, Sentence sentence,
+							SpeakerNPC npc) {
 						// find out whom the player wants to marry.
-				        String brideName = sentence.getObjectName();
+						String brideName = sentence.getObjectName();
 
-				        if (brideName == null) {
-				        	npc.say("You have to tell me who you want to marry.");
-				        } else {
+						if (brideName == null) {
+							npc.say("You have to tell me who you want to marry.");
+						} else {
 							startMarriage(npc, player, brideName);
 						}
 					}
 				});
 
 		priest.add(ConversationStates.QUESTION_1,
-			ConversationPhrases.YES_MESSAGES, null,
-			ConversationStates.QUESTION_2, null,
-			new SpeakerNPC.ChatAction() {
-				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-					askBride();
-				}
-			});
+				ConversationPhrases.YES_MESSAGES, null,
+				ConversationStates.QUESTION_2, null,
+				new SpeakerNPC.ChatAction() {
+					@Override
+					public void fire(Player player, Sentence sentence,
+							SpeakerNPC npc) {
+						askBride();
+					}
+				});
 
 		priest.add(ConversationStates.QUESTION_1,
-			ConversationPhrases.NO_MESSAGES, null, ConversationStates.IDLE,
-			"What a pity! Goodbye!", null);
+				ConversationPhrases.NO_MESSAGES, null, ConversationStates.IDLE,
+				"What a pity! Goodbye!", null);
 
 		priest.add(ConversationStates.QUESTION_2,
-			ConversationPhrases.YES_MESSAGES, null,
-			ConversationStates.ATTENDING, null,
-			new SpeakerNPC.ChatAction() {
+				ConversationPhrases.YES_MESSAGES, null,
+				ConversationStates.ATTENDING, null,
+				new SpeakerNPC.ChatAction() {
 
-				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-					finishMarriage();
-				}
-			});
+					@Override
+					public void fire(Player player, Sentence sentence,
+							SpeakerNPC npc) {
+						finishMarriage();
+					}
+				});
 
 		priest.add(ConversationStates.QUESTION_2,
-			ConversationPhrases.NO_MESSAGES, null, ConversationStates.IDLE,
-			"What a pity! Goodbye!", null);
+				ConversationPhrases.NO_MESSAGES, null, ConversationStates.IDLE,
+				"What a pity! Goodbye!", null);
 
 		// What he responds to marry if you haven't fulfilled all objectives
 		// before hand
 		priest.add(
-			ConversationStates.ATTENDING,
-			"marry",
-			new SpeakerNPC.ChatCondition() {
-				@Override
-				public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
-					return (!player.hasQuest(QUEST_SLOT)
-						|| (player.hasQuest(QUEST_SLOT) && player.getQuest(
-								QUEST_SLOT).equals("engaged")) || (player.hasQuest(QUEST_SLOT)
-						&& player.getQuest(QUEST_SLOT).equals("engaged_with_ring") 
-						&& !player.isEquipped("wedding_ring")));
-				}
-			},
-			ConversationStates.ATTENDING,
-			"You're not ready to be married yet. Come back when you are properly engaged, and bring your wedding ring. And try to remember not to leave your partner behind ....",
-			null);
+				ConversationStates.ATTENDING,
+				"marry",
+				new SpeakerNPC.ChatCondition() {
+					@Override
+					public boolean fire(Player player, Sentence sentence,
+							SpeakerNPC npc) {
+						return (!player.hasQuest(QUEST_SLOT)
+								|| (player.hasQuest(QUEST_SLOT) && player.getQuest(
+										QUEST_SLOT).equals("engaged")) || (player.hasQuest(QUEST_SLOT)
+								&& player.getQuest(QUEST_SLOT).equals(
+										"engaged_with_ring") && !player.isEquipped("wedding_ring")));
+					}
+				},
+				ConversationStates.ATTENDING,
+				"You're not ready to be married yet. Come back when you are properly engaged, and bring your wedding ring. And try to remember not to leave your partner behind ....",
+				null);
 
 		// What he responds to marry if you are already married
 		priest.add(ConversationStates.ATTENDING, "marry",
-			new SpeakerNPC.ChatCondition() {
-				@Override
-				public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
-					return (player.isQuestCompleted(QUEST_SLOT));
-				}
-			}, ConversationStates.ATTENDING,
-			"You're married already, so you cannot marry again.", null);
+				new SpeakerNPC.ChatCondition() {
+					@Override
+					public boolean fire(Player player, Sentence sentence,
+							SpeakerNPC npc) {
+						return (player.isQuestCompleted(QUEST_SLOT));
+					}
+				}, ConversationStates.ATTENDING,
+				"You're married already, so you cannot marry again.", null);
 
 	}
 
@@ -483,116 +503,132 @@ public class Marriage extends AbstractQuest {
 
 		/**
 		 * Creates a clerk NPC who can divorce couples.
-		 *
+		 * 
 		 * Note: in this class, the Player variables are called husband and
 		 * wife. However, the game doesn't know the concept of genders. The
 		 * player who initiates the divorce is just called husband, the other
 		 * wife.
-		 *
+		 * 
 		 * @author immibis
-		 *
+		 * 
 		 */
 
 		clerk = npcs.get("Wilfred");
 
 		clerk.add(ConversationStates.ATTENDING, "divorce",
-			new SpeakerNPC.ChatCondition() {
-				@Override
-				public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
-					return (player.isQuestCompleted(QUEST_SLOT)) && player.isEquipped("wedding_ring");
-				}
-			}, ConversationStates.QUESTION_3,
-			"Are you sure you want to divorce?", null);
+				new SpeakerNPC.ChatCondition() {
+					@Override
+					public boolean fire(Player player, Sentence sentence,
+							SpeakerNPC npc) {
+						return (player.isQuestCompleted(QUEST_SLOT))
+								&& player.isEquipped("wedding_ring");
+					}
+				}, ConversationStates.QUESTION_3,
+				"Are you sure you want to divorce?", null);
 
 		clerk.add(
-			ConversationStates.ATTENDING, "divorce",
-			new SpeakerNPC.ChatCondition() {
-				@Override
-				public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
-					return (player.hasQuest(QUEST_SLOT) && player.getQuest(
-							QUEST_SLOT).equals("just_married"))
-							&& player.isEquipped("wedding_ring");
-				}
-			},
-			ConversationStates.QUESTION_3,
-			"I see you haven't been on your honeymoon yet. Are you sure you want to divorce so soon?",
-			null);
+				ConversationStates.ATTENDING,
+				"divorce",
+				new SpeakerNPC.ChatCondition() {
+					@Override
+					public boolean fire(Player player, Sentence sentence,
+							SpeakerNPC npc) {
+						return (player.hasQuest(QUEST_SLOT) && player.getQuest(
+								QUEST_SLOT).equals("just_married"))
+								&& player.isEquipped("wedding_ring");
+					}
+				},
+				ConversationStates.QUESTION_3,
+				"I see you haven't been on your honeymoon yet. Are you sure you want to divorce so soon?",
+				null);
 
-		clerk.add(ConversationStates.ATTENDING, "divorce",
-			new SpeakerNPC.ChatCondition() {
-				@Override
-				public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
-					return !(player.isQuestCompleted(QUEST_SLOT)||(player.hasQuest(QUEST_SLOT) && player.getQuest(QUEST_SLOT).equals("just_married")));
-				}
-			}, ConversationStates.ATTENDING,
-			"You're not even married. Stop wasting my time!", null);
+		clerk.add(
+				ConversationStates.ATTENDING,
+				"divorce",
+				new SpeakerNPC.ChatCondition() {
+					@Override
+					public boolean fire(Player player, Sentence sentence,
+							SpeakerNPC npc) {
+						return !(player.isQuestCompleted(QUEST_SLOT) || (player.hasQuest(QUEST_SLOT) && player.getQuest(
+								QUEST_SLOT).equals("just_married")));
+					}
+				}, ConversationStates.ATTENDING,
+				"You're not even married. Stop wasting my time!", null);
 
-		clerk.add(ConversationStates.ATTENDING, "divorce",
-			new SpeakerNPC.ChatCondition() {
-				@Override
-				public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
-					return !player.isEquipped("wedding_ring");
-				}
-			}, ConversationStates.ATTENDING, "I apologise, but I need your wedding ring in order to divorce you.",
-			null);
+		clerk.add(
+				ConversationStates.ATTENDING,
+				"divorce",
+				new SpeakerNPC.ChatCondition() {
+					@Override
+					public boolean fire(Player player, Sentence sentence,
+							SpeakerNPC npc) {
+						return !player.isEquipped("wedding_ring");
+					}
+				},
+				ConversationStates.ATTENDING,
+				"I apologise, but I need your wedding ring in order to divorce you.",
+				null);
 
 		// If they say no
 		clerk.add(ConversationStates.QUESTION_3,
-			ConversationPhrases.NO_MESSAGES, null,
-			ConversationStates.ATTENDING,
-			"I hope you have a happy marriage, then.", null);
+				ConversationPhrases.NO_MESSAGES, null,
+				ConversationStates.ATTENDING,
+				"I hope you have a happy marriage, then.", null);
 
 		// If they say yes
 		clerk.add(ConversationStates.QUESTION_3,
-			ConversationPhrases.YES_MESSAGES, null,
-			ConversationStates.ATTENDING, null,
-			new SpeakerNPC.ChatAction() {
-				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-					Player husband, wife;
-					String partnerName;
-					husband = player;
-					partnerName = husband.getQuest(SPOUSE_QUEST_SLOT);
-					wife = StendhalRPRuleProcessor.get().getPlayer(
-							partnerName);
-					// check wife is online and check that they're still
-					// married to the current husband
-					if (wife != null
-							&& wife.hasQuest(QUEST_SLOT)
-							&& wife.getQuest(SPOUSE_QUEST_SLOT).equals(
-									husband.getName())) {
-						if (wife.isEquipped("wedding_ring")) {
-							wife.drop("wedding_ring");
+				ConversationPhrases.YES_MESSAGES, null,
+				ConversationStates.ATTENDING, null,
+				new SpeakerNPC.ChatAction() {
+					@Override
+					public void fire(Player player, Sentence sentence,
+							SpeakerNPC npc) {
+						Player husband, wife;
+						String partnerName;
+						husband = player;
+						partnerName = husband.getQuest(SPOUSE_QUEST_SLOT);
+						wife = StendhalRPRuleProcessor.get().getPlayer(
+								partnerName);
+						// check wife is online and check that they're still
+						// married to the current husband
+						if (wife != null
+								&& wife.hasQuest(QUEST_SLOT)
+								&& wife.getQuest(SPOUSE_QUEST_SLOT).equals(
+										husband.getName())) {
+							if (wife.isEquipped("wedding_ring")) {
+								wife.drop("wedding_ring");
+							}
+							int xp = (int) (wife.getXP() * 0.03);
+							wife.subXP(xp);
+							wife.removeQuest(QUEST_SLOT);
+							wife.removeQuest(SPOUSE_QUEST_SLOT);
+							wife.sendPrivateText(husband.getName()
+									+ " has divorced from you.");
+							npc.say("What a pity...what a pity...and you two were married so happily, too...");
+						} else {
+							Player postman = StendhalRPRuleProcessor.get().getPlayer(
+									"postman");
+							if (postman != null) {
+								postman.sendPrivateText("Wilfred tells you: msg "
+										+ partnerName
+										+ " "
+										+ husband.getName()
+										+ " has divorced from you!");
+							}
 						}
-						int xp = (int) (wife.getXP() * 0.03);
-						wife.subXP(xp);
-						wife.removeQuest(QUEST_SLOT);
-						wife.removeQuest(SPOUSE_QUEST_SLOT);
-						wife.sendPrivateText(husband.getName()
-								+ " has divorced from you.");
+						int xp = (int) (husband.getXP() * 0.03);
+						husband.subXP(xp);
+						husband.drop("wedding_ring");
+						husband.removeQuest(QUEST_SLOT);
+						husband.removeQuest(SPOUSE_QUEST_SLOT);
 						npc.say("What a pity...what a pity...and you two were married so happily, too...");
-					} else {
-						Player postman = StendhalRPRuleProcessor.get().getPlayer("postman");
-						if (postman != null) {
-							postman.sendPrivateText("Wilfred tells you: msg "
-									+ partnerName
-									+ " "
-									+ husband.getName()
-									+ " has divorced from you!");
-						}
 					}
-					int xp = (int) (husband.getXP() * 0.03);
-					husband.subXP(xp);
-					husband.drop("wedding_ring");
-					husband.removeQuest(QUEST_SLOT);
-					husband.removeQuest(SPOUSE_QUEST_SLOT);
-					npc.say("What a pity...what a pity...and you two were married so happily, too...");
-				}
-			});
+				});
 
 	}
 
-	private void startMarriage(SpeakerNPC priest, Player player, String partnerName) {
+	private void startMarriage(SpeakerNPC priest, Player player,
+			String partnerName) {
 		IRPZone churchZone = priest.getZone();
 		Area inFrontOfAltar = new Area(churchZone, new Rectangle(10, 9, 4, 1));
 
@@ -663,7 +699,8 @@ public class Marriage extends AbstractQuest {
 	private void giveRing(Player player, Player partner) {
 		// players bring their own golden rings
 		player.drop("wedding_ring");
-		Item ring = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("wedding_ring");
+		Item ring = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
+				"wedding_ring");
 		ring.setInfoString(partner.getName());
 		ring.setBoundTo(player.getName());
 		player.equip(ring, true);
@@ -679,55 +716,59 @@ public class Marriage extends AbstractQuest {
 		SpeakerNPC linda = npcs.get("Linda");
 		// tell her you want a honeymoon
 		linda.add(
-			ConversationStates.ATTENDING,"honeymoon",
-			new SpeakerNPC.ChatCondition() {
-				@Override
-				public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
-					return (player.hasQuest(QUEST_SLOT) 
-							&& player.getQuest(QUEST_SLOT).equals("just_married"));
-				}
-			},
-			ConversationStates.QUESTION_1,
-			"How lovely! Please read our catalogue here and tell me the room number that you would like.",
-			null);
+				ConversationStates.ATTENDING,
+				"honeymoon",
+				new SpeakerNPC.ChatCondition() {
+					@Override
+					public boolean fire(Player player, Sentence sentence,
+							SpeakerNPC npc) {
+						return (player.hasQuest(QUEST_SLOT) && player.getQuest(
+								QUEST_SLOT).equals("just_married"));
+					}
+				},
+				ConversationStates.QUESTION_1,
+				"How lovely! Please read our catalogue here and tell me the room number that you would like.",
+				null);
 
 		// player says room number
 		for (int room = 0; room < 16; room++) {
 			linda.add(ConversationStates.QUESTION_1, Integer.toString(room),
-				null, ConversationStates.QUESTION_1, null,
-				new SpeakerNPC.ChatAction() {
-					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-						npc.say("Great choice! Use this scroll to return to the hotel,"
-								+ "our special honeymoon suites are so private that they don't use normal entrances and exits!");
-						player.setQuest(QUEST_SLOT, "done");
-						// yes i know it is stupid to do this here when i
-						// could use the giveInvite thing above but i don't
-						// know how to make it so that GiveInvite() has a
-						// parameter for quantity and a parameter for
-						// location so i gave up.
-						StackableItem invite = (StackableItem) StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
-								"invitation_scroll");
-						invite.setQuantity(1);
-						// interior of hotel
-						invite.setInfoString("int_fado_hotel_0 4 40");
-						player.equip(invite, true);
-						StendhalRPZone zone = StendhalRPWorld.get().getZone(
-								"int_fado_lovers_room_" + sentence.toString());
-						player.teleport(zone, 5, 5, Direction.DOWN, player);
-						player.notifyWorldAboutChanges();
-						npc.setCurrentState(ConversationStates.IDLE);
-					}
-				});
+					null, ConversationStates.QUESTION_1, null,
+					new SpeakerNPC.ChatAction() {
+						@Override
+						public void fire(Player player, Sentence sentence,
+								SpeakerNPC npc) {
+							npc.say("Great choice! Use this scroll to return to the hotel,"
+									+ "our special honeymoon suites are so private that they don't use normal entrances and exits!");
+							player.setQuest(QUEST_SLOT, "done");
+							// yes i know it is stupid to do this here when i
+							// could use the giveInvite thing above but i don't
+							// know how to make it so that GiveInvite() has a
+							// parameter for quantity and a parameter for
+							// location so i gave up.
+							StackableItem invite = (StackableItem) StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
+									"invitation_scroll");
+							invite.setQuantity(1);
+							// interior of hotel
+							invite.setInfoString("int_fado_hotel_0 4 40");
+							player.equip(invite, true);
+							StendhalRPZone zone = StendhalRPWorld.get().getZone(
+									"int_fado_lovers_room_"
+											+ sentence.toString());
+							player.teleport(zone, 5, 5, Direction.DOWN, player);
+							player.notifyWorldAboutChanges();
+							npc.setCurrentState(ConversationStates.IDLE);
+						}
+					});
 		}
 
 		// player says something which isn't a room number
 		/*
 		 * npc.add(ConversationStates.QUESTION_1, "", new
 		 * SpeakerNPC.ChatCondition() { @Override public boolean fire(Player
-		 * player, Sentence sentence, SpeakerNPC npc) { return !ROOMS.contains(text); } },
-		 * ConversationStates.QUESTION_1, "Sorry, that's not a room number we
-		 * have available.", null);
+		 * player, Sentence sentence, SpeakerNPC npc) { return
+		 * !ROOMS.contains(text); } }, ConversationStates.QUESTION_1, "Sorry,
+		 * that's not a room number we have available.", null);
 		 */
 
 		// say honeymoon but you aren't 'just married'
@@ -736,9 +777,10 @@ public class Marriage extends AbstractQuest {
 				"honeymoon",
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
-						return (!(player.hasQuest(QUEST_SLOT) 
-							&& player.getQuest(QUEST_SLOT).equals("just_married")));
+					public boolean fire(Player player, Sentence sentence,
+							SpeakerNPC npc) {
+						return (!(player.hasQuest(QUEST_SLOT) && player.getQuest(
+								QUEST_SLOT).equals("just_married")));
 					}
 				},
 				ConversationStates.ATTENDING,

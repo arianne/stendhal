@@ -39,7 +39,8 @@ public class WtList extends WtPanel implements WtClickListener {
 	 * @param maxHeight
 	 *            max height (height is dynamically calculated from the items)
 	 */
-	public WtList(String name, String[] items, int x, int y, int width, int maxHeight) {
+	public WtList(String name, String[] items, int x, int y, int width,
+			int maxHeight) {
 		super(name, x, y, width, 10);
 
 		setTitleBar(true);
@@ -48,14 +49,17 @@ public class WtList extends WtPanel implements WtClickListener {
 		setMinimizeable(false);
 		setMovable(false);
 
-		this.resizeToFitClientArea(width, (items.length * BUTTON_HEIGHT < maxHeight) ? (items.length * BUTTON_HEIGHT)
-		        : maxHeight);
+		this.resizeToFitClientArea(
+				width,
+				(items.length * BUTTON_HEIGHT < maxHeight) ? (items.length * BUTTON_HEIGHT)
+						: maxHeight);
 
 		int clientWidth = getClientWidth();
 
 		for (int i = 0; i < items.length; i++) {
 			String item = items[i];
-			WtButton button = new WtButton(item, clientWidth, BUTTON_HEIGHT, item);
+			WtButton button = new WtButton(item, clientWidth, BUTTON_HEIGHT,
+					item);
 			button.moveTo(0, i * BUTTON_HEIGHT);
 			button.registerClickListener(this);
 			addChild(button);

@@ -38,9 +38,9 @@ public class UseAction implements ActionListener {
 
 	public void onAction(Player player, RPAction action) {
 
-
 		// When use is casted over something in a slot
-		if (action.has(_BASEITEM) && action.has(_BASEOBJECT) && action.has(_BASESLOT)) {
+		if (action.has(_BASEITEM) && action.has(_BASEOBJECT)
+				&& action.has(_BASESLOT)) {
 			StendhalRPZone zone = player.getZone();
 
 			int baseObject = action.getInt(_BASEOBJECT);
@@ -56,7 +56,8 @@ public class UseAction implements ActionListener {
 				return;
 			}
 
-			if ((base instanceof Player) && !player.getID().equals(base.getID())) {
+			if ((base instanceof Player)
+					&& !player.getID().equals(base.getID())) {
 				// Only allowed to use item of our own player.
 				return;
 			}
@@ -88,9 +89,10 @@ public class UseAction implements ActionListener {
 				invokeUseListener(player, object);
 			}
 		} else if (action.has(TARGET)) {
-			//	use is cast over something on the floor
-			 // evaluate the target parameter
-			Entity entity = EntityHelper.entityFromTargetName(action.get(TARGET), player.getZone());
+			// use is cast over something on the floor
+			// evaluate the target parameter
+			Entity entity = EntityHelper.entityFromTargetName(
+					action.get(TARGET), player.getZone());
 
 			if (entity != null) {
 				invokeUseListener(player, entity);
@@ -101,7 +103,7 @@ public class UseAction implements ActionListener {
 	private void invokeUseListener(Player player, RPObject object) {
 
 		// HACK: No item transfer in jail (we don't want a jailed player to
-		//       use items like home scroll.
+		// use items like home scroll.
 		String zonename = player.getZone().getName();
 
 		if ((object instanceof Item) && (zonename.endsWith("_jail"))) {
@@ -118,15 +120,19 @@ public class UseAction implements ActionListener {
 			infostring = object.get("infostring");
 		}
 
-		StendhalRPRuleProcessor.get().addGameEvent(player.getName(), _USE, name, infostring);
+		StendhalRPRuleProcessor.get().addGameEvent(player.getName(), _USE,
+				name, infostring);
 
 		if (object instanceof UseListener) {
 			UseListener listener = (UseListener) object;
 			// Make sure nobody uses items bound to someone else.
 			if (listener instanceof Item) {
 				Item item = (Item) listener;
-				if (item.has("bound") && !item.get("bound").equals(player.getName())) {
-					player.sendPrivateText("This " + ((Item) listener).getName() + " is a special reward for " + item.get("bound")
+				if (item.has("bound")
+						&& !item.get("bound").equals(player.getName())) {
+					player.sendPrivateText("This "
+							+ ((Item) listener).getName()
+							+ " is a special reward for " + item.get("bound")
 							+ ". You do not deserve to use it.");
 					return;
 				}

@@ -11,8 +11,6 @@ import java.util.Properties;
 
 import org.apache.log4j.Logger;
 
-
-
 public class SoundFileReader {
 
 	/** expected location of the sound definition file (classloader). */
@@ -42,7 +40,7 @@ public class SoundFileReader {
 	/**
 	 * Obtains a resource input stream. Fetches currently from the main
 	 * program's classloader.
-	 *
+	 * 
 	 * @param name
 	 * @return InputStream
 	 * @throws IOException
@@ -113,7 +111,7 @@ public class SoundFileReader {
 	/**
 	 * Transfers the contents of the input stream to the output stream until the
 	 * end of input stream is reached.
-	 *
+	 * 
 	 * @param input
 	 * @param output
 	 * @param bufferSize

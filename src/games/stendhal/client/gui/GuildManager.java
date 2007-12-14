@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
 import marauroa.common.game.RPAction;
 
 /**
- *
+ * 
  * @author timothyb89
  */
 public class GuildManager extends javax.swing.JFrame {
@@ -192,7 +192,7 @@ public class GuildManager extends javax.swing.JFrame {
 	 * Remove player from guild
 	 */
 	private void removeFromGuild(String user) { // we shouldn't seed that
-												// string, but....
+		// string, but....
 		if (client == null) {
 			// If running standalone, give an error
 			JOptionPane.showMessageDialog(

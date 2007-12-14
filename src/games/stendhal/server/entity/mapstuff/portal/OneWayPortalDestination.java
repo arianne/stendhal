@@ -3,9 +3,9 @@ package games.stendhal.server.entity.mapstuff.portal;
 import games.stendhal.server.entity.RPEntity;
 
 /**
- * A OneWayPortalDestination is an invisible point where players are
- * placed when they use a portal that leads there. One cannot interact
- * with OneWayPortalDestinations in any other way.
+ * A OneWayPortalDestination is an invisible point where players are placed when
+ * they use a portal that leads there. One cannot interact with
+ * OneWayPortalDestinations in any other way.
  */
 public class OneWayPortalDestination extends Portal {
 
@@ -23,14 +23,14 @@ public class OneWayPortalDestination extends Portal {
 	 */
 	@Override
 	public void setDestination(String zone, Object number) {
-		throw new IllegalArgumentException("One way portal destinations are only destinations of other portals");
+		throw new IllegalArgumentException(
+				"One way portal destinations are only destinations of other portals");
 	}
 
 	@Override
 	public boolean loaded() {
 		return true; // Always loaded
 	}
-
 
 	@Override
 	public boolean onUsed(RPEntity user) {

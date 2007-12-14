@@ -13,21 +13,25 @@ import java.util.Map;
 
 /**
  * Ados Fisherman (Inside / Level 0)
- *
+ * 
  * @author dine
  */
 public class FishermanNPC implements ZoneConfigurator {
 	/**
 	 * Configure a zone.
-	 *
-	 * @param	zone		The zone to be configured.
-	 * @param	attributes	Configuration attributes.
+	 * 
+	 * @param zone
+	 *            The zone to be configured.
+	 * @param attributes
+	 *            Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone,
+			Map<String, String> attributes) {
 		buildGoldsmith(zone, attributes);
 	}
 
-	private void buildGoldsmith(StendhalRPZone zone, Map<String, String> attributes) {
+	private void buildGoldsmith(StendhalRPZone zone,
+			Map<String, String> attributes) {
 		SpeakerNPC fisherman = new SpeakerNPC("Pequod") {
 
 			@Override

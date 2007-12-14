@@ -8,14 +8,14 @@ import games.stendhal.server.events.TurnNotifier;
 
 /**
  * A door to a zone which only one player may enter.
- *
+ * 
  * @author hendrik
  */
 public class OnePlayerRoomDoor extends Door {
 
 	/**
-	 * Tries periodically to open the door. (Just in case the player left
-	 * zone event did not get fired).
+	 * Tries periodically to open the door. (Just in case the player left zone
+	 * event did not get fired).
 	 */
 	class PeriodicOpener implements TurnListener {
 
@@ -32,8 +32,9 @@ public class OnePlayerRoomDoor extends Door {
 
 	/**
 	 * Creates a new OnePlayerRoomDoor
-	 *
-	 * @param clazz clazz
+	 * 
+	 * @param clazz
+	 *            clazz
 	 */
 	public OnePlayerRoomDoor(String clazz) {
 		super(clazz);

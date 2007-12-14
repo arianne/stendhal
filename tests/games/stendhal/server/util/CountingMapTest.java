@@ -9,7 +9,7 @@ import org.junit.Test;
 
 /**
  * Tests the CountingMap class
- *
+ * 
  * @author Martin Fuchs
  */
 public class CountingMapTest {
@@ -26,13 +26,13 @@ public class CountingMapTest {
 
 		assertTrue(!key1.equals(key2));
 
-		 // count map entries
+		// count map entries
 		int size = 0;
-		for(Map.Entry<String,String> it : a) {
-			it.toString();	//System.out.println(it.toString());
+		for (Map.Entry<String, String> it : a) {
+			it.toString(); // System.out.println(it.toString());
 			++size;
 		}
 		assertEquals(2, size);
 	}
 
-} 
+}

@@ -17,15 +17,19 @@ import java.util.Map;
 public class TelepathNPC implements ZoneConfigurator {
 	/**
 	 * Configure a zone.
-	 *
-	 * @param	zone		The zone to be configured.
-	 * @param	attributes	Configuration attributes.
+	 * 
+	 * @param zone
+	 *            The zone to be configured.
+	 * @param attributes
+	 *            Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone,
+			Map<String, String> attributes) {
 		buildSemosTempleArea(zone, attributes);
 	}
 
-	private void buildSemosTempleArea(StendhalRPZone zone, Map<String, String> attributes) {
+	private void buildSemosTempleArea(StendhalRPZone zone,
+			Map<String, String> attributes) {
 		SpeakerNPC npc = new SpeakerNPC("Io Flotto") {
 
 			@Override
@@ -49,27 +53,30 @@ public class TelepathNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-				add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES, null, ConversationStates.ATTENDING,
-				        null, new SpeakerNPC.ChatAction() {
+				add(ConversationStates.IDLE,
+						ConversationPhrases.GREETING_MESSAGES, null,
+						ConversationStates.ATTENDING, null,
+						new SpeakerNPC.ChatAction() {
 
-					        @Override
-					        public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-						        if (!player.hasQuest("meet_io")) {
-							        engine
-							                .say("I awaited you, "
-							                        + player.getTitle()
-							                        + ". How do I know your name? Easy, I'm Io Flotto, the telepath. Do you want me to show you the six basic elements of telepathy?");
-							        player.setQuest("meet_io", "start");
-						        } else {
-							        engine.say("Hi again, " + player.getTitle()
-							                + ". How can I #help you this time? Not that I don't already know...");
-						        }
-					        }
-				        });
+							@Override
+							public void fire(Player player, Sentence sentence,
+									SpeakerNPC engine) {
+								if (!player.hasQuest("meet_io")) {
+									engine.say("I awaited you, "
+											+ player.getTitle()
+											+ ". How do I know your name? Easy, I'm Io Flotto, the telepath. Do you want me to show you the six basic elements of telepathy?");
+									player.setQuest("meet_io", "start");
+								} else {
+									engine.say("Hi again, "
+											+ player.getTitle()
+											+ ". How can I #help you this time? Not that I don't already know...");
+								}
+							}
+						});
 				addJob("I am committed to harnessing the total power of the human mind. I have already made great advances in telepathy and telekinesis; however, I can't yet foresee the future, so I don't know if we will truly be able to destroy Blordrough's dark legion...");
 				addReply(
-				        ConversationPhrases.QUEST_MESSAGES,
-				        "Well, there's not really much that I need anyone to do for me right now. And I... Hey! Were you just trying to read my private thoughts? You should always ask permission before doing that!");
+						ConversationPhrases.QUEST_MESSAGES,
+						"Well, there's not really much that I need anyone to do for me right now. And I... Hey! Were you just trying to read my private thoughts? You should always ask permission before doing that!");
 				addGoodbye();
 				// further behaviour is defined in the MeetIo quest.
 			}

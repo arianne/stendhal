@@ -38,7 +38,7 @@ public class NoLoginArea extends AreaEntity implements LoginListener {
 
 	/**
 	 * Create a nologin area.
-	 *
+	 * 
 	 * @param width
 	 *            Width of this area
 	 * @param height
@@ -54,7 +54,7 @@ public class NoLoginArea extends AreaEntity implements LoginListener {
 
 	/**
 	 * Create a nologin area.
-	 *
+	 * 
 	 * @param width
 	 *            Width of this area
 	 * @param height
@@ -81,7 +81,7 @@ public class NoLoginArea extends AreaEntity implements LoginListener {
 
 	/**
 	 * Set the message to send to the user when repositioned.
-	 *
+	 * 
 	 * @param message
 	 *            The message to send.
 	 */

@@ -15,14 +15,14 @@ import java.util.Map;
  * Builds a gatekeeper NPC Bribe him with at least 300 money to get the key for
  * the Sedah city walls. He stands in the doorway of the gatehouse till the
  * interior is made.
- *
+ * 
  * @author kymara
  */
 public class GateKeeperNPC implements ZoneConfigurator {
 
 	/**
 	 * Configure a zone.
-	 *
+	 * 
 	 * @param zone
 	 *            The zone to be configured.
 	 * @param attributes
@@ -46,7 +46,8 @@ public class GateKeeperNPC implements ZoneConfigurator {
 			protected void createDialog() {
 				addGreeting(null, new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+					public void fire(Player player, Sentence sentence,
+							SpeakerNPC engine) {
 						if (!player.isEquipped("sedah_gate_key")) {
 							engine.say("What do you want?");
 
@@ -71,17 +72,20 @@ public class GateKeeperNPC implements ZoneConfigurator {
 
 				addReply("bribe", null, new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-				        int amount = sentence.getAmount();
-				        String item = sentence.getItemName();
+					public void fire(Player player, Sentence sentence,
+							SpeakerNPC engine) {
+						int amount = sentence.getAmount();
+						String item = sentence.getItemName();
 
-				        if (sentence.hasError()) {
-				        	engine.say(sentence.getError() + " Are you trying to trick me? Bribe me some number of coins!");
-				        } else if (item == null) {
+						if (sentence.hasError()) {
+							engine.say(sentence.getError()
+									+ " Are you trying to trick me? Bribe me some number of coins!");
+						} else if (item == null) {
 							// player only said 'bribe'
 							engine.say("A bribe of no money is no bribe! Bribe me with some amount!");
-				        } else if (!item.toLowerCase().equals("money")) {
-							// This bit is just in case the player says 'bribe X potatoes', not money
+						} else if (!item.toLowerCase().equals("money")) {
+							// This bit is just in case the player says 'bribe X
+							// potatoes', not money
 							engine.say("You can't bribe me with anything but money!");
 						} else {
 							try {

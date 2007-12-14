@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * An creature that will only target enemies which are within a specified area.
- *
+ * 
  * @author hendrik
  */
 public class ArenaCreature extends Creature {
@@ -17,9 +17,11 @@ public class ArenaCreature extends Creature {
 
 	/**
 	 * ArenaCreature
-	 *
-	 * @param copy creature to wrap
-	 * @param arena arena
+	 * 
+	 * @param copy
+	 *            creature to wrap
+	 * @param arena
+	 *            arena
 	 */
 	public ArenaCreature(Creature copy, Shape arena) {
 		super(copy);

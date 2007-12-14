@@ -25,7 +25,6 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
-
 import org.apache.log4j.Logger;
 
 /**
@@ -39,20 +38,22 @@ public class SummonScroll extends InfoStringScroll {
 
 	/**
 	 * Creates a new summon scroll
-	 *
+	 * 
 	 * @param name
 	 * @param clazz
 	 * @param subclass
 	 * @param attributes
 	 */
-	public SummonScroll(String name, String clazz, String subclass, Map<String, String> attributes) {
+	public SummonScroll(String name, String clazz, String subclass,
+			Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);
 	}
 
 	/**
 	 * copy constructor
-	 *
-	 * @param item item to copy
+	 * 
+	 * @param item
+	 *            item to copy
 	 */
 	public SummonScroll(SummonScroll item) {
 		super(item);
@@ -60,7 +61,9 @@ public class SummonScroll extends InfoStringScroll {
 
 	/**
 	 * Is invoked when a summon scroll is used.
-	 * @param player The player who used the scroll
+	 * 
+	 * @param player
+	 *            The player who used the scroll
 	 * @return true iff summoning was successful
 	 */
 	@Override
@@ -105,8 +108,7 @@ public class SummonScroll extends InfoStringScroll {
 		}
 
 		if (pickedCreature == null) {
-			player
-			        .sendPrivateText("This scroll does not seem to work. You should talk to the magician who created it.");
+			player.sendPrivateText("This scroll does not seem to work. You should talk to the magician who created it.");
 			return false;
 		}
 

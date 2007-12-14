@@ -67,14 +67,14 @@ public class ItemTest {
 		Item mo = new Item("name1", "class", "subclass",
 				new HashMap<String, String>());
 		Rectangle2D rect = new Rectangle2D.Double();
-		assertEquals(rect.getCenterX(), 0.0,0.001);
-		assertEquals(rect.getCenterY(), 0.0,0.001);
+		assertEquals(rect.getCenterX(), 0.0, 0.001);
+		assertEquals(rect.getCenterY(), 0.0, 0.001);
 
 		mo.getArea(rect, 0.0, 0.0);
-		assertEquals(rect.getMinX(), 0.0,0.001);
-		assertEquals(rect.getMinY(), 0.0,0.001);
-		assertEquals(rect.getMaxX(), 1.0,0.001);
-		assertEquals(rect.getMaxY(), 1.0,0.001);
+		assertEquals(rect.getMinX(), 0.0, 0.001);
+		assertEquals(rect.getMinY(), 0.0, 0.001);
+		assertEquals(rect.getMaxX(), 1.0, 0.001);
+		assertEquals(rect.getMaxY(), 1.0, 0.001);
 
 	}
 
@@ -218,7 +218,8 @@ public class ItemTest {
 	public void testToString() {
 		Item mo = new Item("name1", "myClass", "mySubclass",
 				new HashMap<String, String>());
-		assertTrue(mo.toString().matches(	// ignore attribute listing because their sort order is not reliable
+		// ignore attribute listing because their sort order is not reliable
+		assertTrue(mo.toString().matches(
 				"Item, RPObject with Attributes of Class\\(item\\): \\[.*\\] and RPSlots  and RPLink  and RPEvents "));
 	}
 

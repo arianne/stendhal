@@ -17,7 +17,6 @@ import games.stendhal.server.events.TurnNotifier;
 
 import java.awt.geom.Rectangle2D;
 
-
 import org.apache.log4j.Logger;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
@@ -27,14 +26,13 @@ import marauroa.common.game.Definition.Type;
  * This respwan point has to be "used" to get the item. After that, it will
  * slowly regrow; there are several regrowing steps in which the graphics will
  * change to show the progress.
- *
+ * 
  * @author daniel, hendrik
  */
 public abstract class GrowingPassiveEntityRespawnPoint extends
 		PassiveEntityRespawnPoint {
 
-	private static Logger logger = Logger
-			.getLogger(GrowingPassiveEntityRespawnPoint.class);
+	private static Logger logger = Logger.getLogger(GrowingPassiveEntityRespawnPoint.class);
 
 	/** How long it takes for one regrowing step */
 	private static final int GROWING_RATE = 3000;

@@ -79,7 +79,6 @@ import javax.swing.WindowConstants;
 
 import org.apache.log4j.Logger;
 
-
 import marauroa.common.game.RPObject;
 
 /** The main class that create the screen and starts the arianne client. */
@@ -233,8 +232,8 @@ public class j2DClient extends StendhalUI {
 		if (System.getProperty("stendhal.refactoringgui") != null) {
 			canvas = new Canvas();
 			canvas.setBounds(200, 0, 600, SCREEN_HEIGHT); // A bit
-															// repetitive... oh
-															// well
+			// repetitive... oh
+			// well
 		} else {
 			canvas = new Canvas();
 			canvas.setBounds(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -458,7 +457,7 @@ public class j2DClient extends StendhalUI {
 
 	/**
 	 * Add a native in-window dialog to the screen.
-	 *
+	 * 
 	 * @param comp
 	 *            The component to add.
 	 */
@@ -468,8 +467,8 @@ public class j2DClient extends StendhalUI {
 
 	/**
 	 * Build the in-window quit dialog [panel].
-	 *
-	 *
+	 * 
+	 * 
 	 */
 	protected Component buildQuitDialog() {
 		InternalManagedDialog imd;
@@ -561,15 +560,16 @@ public class j2DClient extends StendhalUI {
 			gameObjects.update(delta);
 
 			/*
-			 * TODO: Consolidate the next 3 parts into one
-			 * isInBatchUpdate() check, if User update code
-			 * can be skipped [without side effects] while in it.
+			 * TODO: Consolidate the next 3 parts into one isInBatchUpdate()
+			 * check, if User update code can be skipped [without side effects]
+			 * while in it.
 			 */
 			if (!client.isInBatchUpdate() && gameLayers.changedArea()) {
 				/*
 				 * Update the screen
 				 */
-				screen.setMaxWorldSize(gameLayers.getWidth(), gameLayers.getHeight());
+				screen.setMaxWorldSize(gameLayers.getWidth(),
+						gameLayers.getHeight());
 				screen.clear();
 				screen.center();
 
@@ -710,10 +710,10 @@ public class j2DClient extends StendhalUI {
 
 	/**
 	 * Get the color that is tied to a notification type.
-	 *
+	 * 
 	 * @param type
 	 *            The notification type.
-	 *
+	 * 
 	 * @return The appropriate color.
 	 */
 	public Color getNotificationColor(NotificationType type) {
@@ -759,10 +759,10 @@ public class j2DClient extends StendhalUI {
 
 	/**
 	 * Convert a keycode to the corresponding direction.
-	 *
+	 * 
 	 * @param keyCode
 	 *            The keycode.
-	 *
+	 * 
 	 * @return The direction, or <code>null</code>.
 	 */
 	protected Direction keyCodeToDirection(int keyCode) {
@@ -866,7 +866,7 @@ public class j2DClient extends StendhalUI {
 
 	/**
 	 * Handle direction press actions.
-	 *
+	 * 
 	 * @param direction
 	 *            The direction.
 	 * @param facing
@@ -897,7 +897,7 @@ public class j2DClient extends StendhalUI {
 
 	/**
 	 * Handle direction release actions.
-	 *
+	 * 
 	 * @param direction
 	 *            The direction.
 	 * @param facing
@@ -932,7 +932,7 @@ public class j2DClient extends StendhalUI {
 
 	/**
 	 * Save the current keyboard modifier (i.e. Alt/Ctrl/Shift) state.
-	 *
+	 * 
 	 * @param ev
 	 *            The keyboard event.
 	 */
@@ -958,10 +958,10 @@ public class j2DClient extends StendhalUI {
 
 	/**
 	 * Add a new window.
-	 *
+	 * 
 	 * @param mw
 	 *            A managed window.
-	 *
+	 * 
 	 * @throws IllegalArgumentException
 	 *             If an unsupported ManagedWindow is given.
 	 */
@@ -979,7 +979,7 @@ public class j2DClient extends StendhalUI {
 
 	/**
 	 * Determine if the Alt key is held down.
-	 *
+	 * 
 	 * @return Returns <code>true</code> if down.
 	 */
 	@Override
@@ -989,7 +989,7 @@ public class j2DClient extends StendhalUI {
 
 	/**
 	 * Determine if the <Ctrl> key is held down.
-	 *
+	 * 
 	 * @return Returns <code>true</code> if down.
 	 */
 	@Override
@@ -999,7 +999,7 @@ public class j2DClient extends StendhalUI {
 
 	/**
 	 * Determine if the <Shift> key is held down.
-	 *
+	 * 
 	 * @return Returns <code>true</code> if down.
 	 */
 	@Override
@@ -1013,7 +1013,7 @@ public class j2DClient extends StendhalUI {
 
 	/**
 	 * Add an event line.
-	 *
+	 * 
 	 */
 	@Override
 	public void addEventLine(String text) {
@@ -1022,7 +1022,7 @@ public class j2DClient extends StendhalUI {
 
 	/**
 	 * Add an event line.
-	 *
+	 * 
 	 */
 	@Override
 	public void addEventLine(String header, String text) {
@@ -1031,7 +1031,7 @@ public class j2DClient extends StendhalUI {
 
 	/**
 	 * Add an event line.
-	 *
+	 * 
 	 */
 	@Override
 	public void addEventLine(final String text, final NotificationType type) {
@@ -1040,7 +1040,7 @@ public class j2DClient extends StendhalUI {
 
 	/**
 	 * Add an event line.
-	 *
+	 * 
 	 */
 	@Override
 	public void addEventLine(final String header, final String text,
@@ -1076,7 +1076,7 @@ public class j2DClient extends StendhalUI {
 
 	/**
 	 * Get the current game screen height.
-	 *
+	 * 
 	 * @return The height.
 	 */
 	@Override
@@ -1086,7 +1086,7 @@ public class j2DClient extends StendhalUI {
 
 	/**
 	 * Get the game screen.
-	 *
+	 * 
 	 * @return The game screen.
 	 */
 	@Override
@@ -1096,7 +1096,7 @@ public class j2DClient extends StendhalUI {
 
 	/**
 	 * Get the current game screen width.
-	 *
+	 * 
 	 * @return The width.
 	 */
 	@Override
@@ -1130,7 +1130,7 @@ public class j2DClient extends StendhalUI {
 
 	/**
 	 * Set the input chat line text.
-	 *
+	 * 
 	 * @param text
 	 *            The text.
 	 */
@@ -1141,7 +1141,7 @@ public class j2DClient extends StendhalUI {
 
 	/**
 	 * Set the user's positiion.
-	 *
+	 * 
 	 * @param x
 	 *            The user's X coordinate.
 	 * @param y
@@ -1154,7 +1154,7 @@ public class j2DClient extends StendhalUI {
 
 	/**
 	 * Set the offline indication state.
-	 *
+	 * 
 	 * @param offline
 	 *            <code>true</code> if offline.
 	 */
@@ -1278,7 +1278,7 @@ public class j2DClient extends StendhalUI {
 
 		/**
 		 * Get the direction.
-		 *
+		 * 
 		 * @return The direction.
 		 */
 		public Direction getDirection() {
@@ -1287,7 +1287,7 @@ public class j2DClient extends StendhalUI {
 
 		/**
 		 * Determine if the delay point has been reached.
-		 *
+		 * 
 		 * @return <code>true</code> if the delay time has been reached.
 		 */
 		public boolean hasExpired() {
@@ -1296,7 +1296,7 @@ public class j2DClient extends StendhalUI {
 
 		/**
 		 * Determine if the facing only option was used.
-		 *
+		 * 
 		 * @return <code>true</code> if facing only.
 		 */
 		public boolean isFacing() {
@@ -1306,12 +1306,12 @@ public class j2DClient extends StendhalUI {
 		/**
 		 * Check if a new direction matches the existing one, and if so, reset
 		 * the expiration point.
-		 *
+		 * 
 		 * @param dir
 		 *            The direction.
 		 * @param facing
 		 *            The facing flag.
-		 *
+		 * 
 		 * @return <code>true</code> if this is a repeat.
 		 */
 		public boolean check(Direction dir, boolean facing) {

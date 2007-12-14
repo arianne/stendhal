@@ -25,13 +25,12 @@ import javax.sound.sampled.Line;
 import javax.sound.sampled.LineEvent;
 import javax.sound.sampled.LineListener;
 
-
 import org.apache.log4j.Logger;
 
 /**
  * Cliprunner encapsulates a sound clip. This clip consists of one or more
  * alternative samples.
- *
+ * 
  * @author Jane Hunt
  */
 class ClipRunner implements LineListener {
@@ -49,10 +48,10 @@ class ClipRunner implements LineListener {
 	private List<AudioClip> samples;
 
 	/**
-	 * Creates an empty named ClipRunner instance
-	 *  Volume setting is set to 100%.
+	 * Creates an empty named ClipRunner instance Volume setting is set to 100%.
+	 * 
 	 * @param name
-	 *
+	 * 
 	 */
 	ClipRunner(String name) {
 		this.name = name;
@@ -62,9 +61,10 @@ class ClipRunner implements LineListener {
 	/**
 	 * Adds another clip as an alternate sound to be run under this clip.
 	 * Alternative sounds are played by random and equal chance.
-	 *
-	 * @param clip alternate sound clip
-	 *
+	 * 
+	 * @param clip
+	 *            alternate sound clip
+	 * 
 	 */
 	void addSample(AudioClip clip) {
 		samples.add(clip);
@@ -73,7 +73,7 @@ class ClipRunner implements LineListener {
 
 	/**
 	 * The maximum play length of this clip in milliseconds.
-	 *
+	 * 
 	 * @return long milliseconds, 0 if undefined
 	 */
 	long maxPlayLength() {
@@ -82,7 +82,7 @@ class ClipRunner implements LineListener {
 
 	/**
 	 * Starts this clip to play with the given volume settings.
-	 *
+	 * 
 	 * @param volume
 	 *            loudness in 0 .. 100
 	 * @param correctionDB
@@ -102,24 +102,24 @@ class ClipRunner implements LineListener {
 
 	/**
 	 * Starts this clip to loop endlessly with the given start volume setting.
-	 *
+	 * 
 	 * @param volume
 	 *            loudness in 0 .. 100
 	 * @param volumeDelta
 	 * @return the AudioSystem <code>Clip</code> object that is being played,
 	 *         or <b>null</b> on error
 	 */
-	//	private Clip loop(int volume, float correctionDB, float volumeDelta) {
-	//		Clip line = getAudioClip(volume, correctionDB, volumeDelta);
+	// private Clip loop(int volume, float correctionDB, float volumeDelta) {
+	// Clip line = getAudioClip(volume, correctionDB, volumeDelta);
 	//
-	//		if (line != null) {
-	//			line.loop(Clip.LOOP_CONTINUOUSLY);
-	//		}
-	//		return line;
-	//	}
+	// if (line != null) {
+	// line.loop(Clip.LOOP_CONTINUOUSLY);
+	// }
+	// return line;
+	// }
 	/**
 	 * Returns a runnable AudioSystem sound clip with the given volume settings.
-	 *
+	 * 
 	 * @param volume
 	 *            loudness in 0 .. 100
 	 * @param correctionDB
@@ -144,7 +144,9 @@ class ClipRunner implements LineListener {
 				// set the volume
 				FloatControl volCtrl = (FloatControl) line.getControl(FloatControl.Type.MASTER_GAIN);
 				if (volCtrl != null) {
-					float dB = DBValues.getDBValue(volume) + DBValues.getDBValue(audioClip.getVolume()) + correctionDB;
+					float dB = DBValues.getDBValue(volume)
+							+ DBValues.getDBValue(audioClip.getVolume())
+							+ correctionDB;
 					volCtrl.setValue(dB + volumeDelta);
 				} else {
 					logger.info("no master gain for line " + line.getLineInfo());
@@ -154,7 +156,8 @@ class ClipRunner implements LineListener {
 				line.addLineListener(this);
 				return line;
 			} catch (Exception ex) {
-				logger.error("** AudioSystem: clip line unavailable for: " + this.name, ex);
+				logger.error("** AudioSystem: clip line unavailable for: "
+						+ this.name, ex);
 				return null;
 			}
 		}
@@ -163,7 +166,9 @@ class ClipRunner implements LineListener {
 		return null;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see javax.sound.sampled.LineListener#update(javax.sound.sampled.LineEvent)
 	 */
 	public void update(LineEvent event) {

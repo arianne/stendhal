@@ -5,14 +5,14 @@ import marauroa.common.game.RPSlot;
 
 /**
  * Stendhal specific information about this slot
- *
- * @author hendrik 
+ * 
+ * @author hendrik
  */
 public class EntitySlot extends RPSlot implements Slot {
 
 	/**
 	 * creates an uninitialized EntitySlot
-	 *
+	 * 
 	 */
 	public EntitySlot() {
 		super();
@@ -20,14 +20,17 @@ public class EntitySlot extends RPSlot implements Slot {
 
 	/**
 	 * Creates a new EntitySlot
-	 *
-	 * @param name name of slot
+	 * 
+	 * @param name
+	 *            name of slot
 	 */
 	public EntitySlot(String name) {
 		super(name);
 	}
 
-	public boolean isReachableForTakingThingsOutOfBy(@SuppressWarnings("unused") Entity entity) {
+	public boolean isReachableForTakingThingsOutOfBy(
+			@SuppressWarnings("unused")
+			Entity entity) {
 		return false;
 	}
 

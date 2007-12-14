@@ -10,18 +10,20 @@ import marauroa.common.game.RPObject;
 /**
  * Drop a player item.
  */
-class DropAction implements SlashAction  {
+class DropAction implements SlashAction {
 	// TODO: find a way to not have this redundand at server and client
-	private static final String[] CARRYING_SLOTS = { "bag", "head", "rhand", "lhand", "armor", "cloak", "legs", "feet", "finger", "keyring" };
-
+	private static final String[] CARRYING_SLOTS = { "bag", "head", "rhand",
+			"lhand", "armor", "cloak", "legs", "feet", "finger", "keyring" };
 
 	/**
 	 * Execute a chat command.
-	 *
-	 * @param	params		The formal parameters.
-	 * @param	remainder	Line content after parameters.
-	 *
-	 * @return	<code>true</code> if command was handled.
+	 * 
+	 * @param params
+	 *            The formal parameters.
+	 * @param remainder
+	 *            Line content after parameters.
+	 * 
+	 * @return <code>true</code> if command was handled.
 	 */
 	public boolean execute(String[] params, String remainder) {
 		int quantity;
@@ -56,9 +58,11 @@ class DropAction implements SlashAction  {
 
 	/**
 	 * returns the objectid for the named item
-	 *
-	 * @param slotName name of slot to search
-	 * @param itemName name of item
+	 * 
+	 * @param slotName
+	 *            name of slot to search
+	 * @param itemName
+	 *            name of item
 	 * @return objectid or <code>-1</code> in case there is no such item
 	 */
 	private int findItem(String slotName, String itemName) {
@@ -72,11 +76,10 @@ class DropAction implements SlashAction  {
 		return -1;
 	}
 
-
 	/**
 	 * Get the maximum number of formal parameters.
-	 *
-	 * @return	The parameter count.
+	 * 
+	 * @return The parameter count.
 	 */
 	public int getMaximumParameters() {
 		return 2;
@@ -84,8 +87,8 @@ class DropAction implements SlashAction  {
 
 	/**
 	 * Get the minimum number of formal parameters.
-	 *
-	 * @return	The parameter count.
+	 * 
+	 * @return The parameter count.
 	 */
 	public int getMinimumParameters() {
 		return 2;

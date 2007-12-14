@@ -30,7 +30,7 @@ import java.util.Map;
 
 /**
  * The panel where you can adjust your settings
- *
+ * 
  * @author mtotz
  */
 public class SettingsPanel extends WtPanel implements WtClickListener,
@@ -71,12 +71,13 @@ public class SettingsPanel extends WtPanel implements WtClickListener,
 		entries = new HashMap<String, Entry>();
 	}
 
-
 	/**
 	 * Add a window entry.
-	 *
-	 * @param	window		The window.
-	 * @param	label		The menu label.
+	 * 
+	 * @param window
+	 *            The window.
+	 * @param label
+	 *            The menu label.
 	 */
 	public void add(final ManagedWindow window, final String label) {
 		window.registerCloseListener(this);
@@ -85,13 +86,15 @@ public class SettingsPanel extends WtPanel implements WtClickListener,
 
 		int y = SPACING + (entries.size() * (BUTTON_HEIGHT + SPACING));
 
-		WtButton button = new WtButton(mnemonic, BUTTON_WIDTH, BUTTON_HEIGHT, label);
+		WtButton button = new WtButton(mnemonic, BUTTON_WIDTH, BUTTON_HEIGHT,
+				label);
 
 		button.moveTo(SPACING, y);
 		button.setPressed(window.isVisible());
 		button.registerClickListener(this);
 
-		resizeToFitClientArea(SPACING + BUTTON_WIDTH + SPACING, y + BUTTON_HEIGHT + SPACING);
+		resizeToFitClientArea(SPACING + BUTTON_WIDTH + SPACING, y
+				+ BUTTON_HEIGHT + SPACING);
 
 		addChild(button);
 		entries.put(mnemonic, new Entry(button, window));
@@ -137,22 +140,18 @@ public class SettingsPanel extends WtPanel implements WtClickListener,
 		protected WtButton button;
 		protected ManagedWindow window;
 
-
 		public Entry(final WtButton button, final ManagedWindow window) {
 			this.button = button;
 			this.window = window;
 		}
 
-
 		public boolean isPressed() {
 			return button.isPressed();
 		}
 
-
 		public void setPressed(final boolean pressed) {
 			button.setPressed(pressed);
 		}
-
 
 		public void setVisible(final boolean visible) {
 			window.setVisible(visible);

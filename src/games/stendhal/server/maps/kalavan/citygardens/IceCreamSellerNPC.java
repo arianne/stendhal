@@ -11,7 +11,7 @@ import java.util.Map;
 
 /**
  * Builds an ice cream seller npc
- *
+ * 
  * @author kymara
  */
 public class IceCreamSellerNPC implements ZoneConfigurator {
@@ -21,11 +21,14 @@ public class IceCreamSellerNPC implements ZoneConfigurator {
 
 	/**
 	 * Configure a zone.
-	 *
-	 * @param	zone		The zone to be configured.
-	 * @param	attributes	Configuration attributes.
+	 * 
+	 * @param zone
+	 *            The zone to be configured.
+	 * @param attributes
+	 *            Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone,
+			Map<String, String> attributes) {
 		buildNPC(zone, attributes);
 	}
 

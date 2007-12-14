@@ -27,7 +27,7 @@ public class UpdateGUI extends JFrame {
 
 	/**
 	 * This method initializes jPanel
-	 *
+	 * 
 	 * @return javax.swing.JPanel
 	 */
 	private JPanel getJPanel() {
@@ -43,7 +43,7 @@ public class UpdateGUI extends JFrame {
 
 	/**
 	 * This method initializes jProgressBar
-	 *
+	 * 
 	 * @return javax.swing.JProgressBar
 	 */
 	private JProgressBar getJProgressBar() {
@@ -56,7 +56,7 @@ public class UpdateGUI extends JFrame {
 
 	/**
 	 * This method initializes jButton
-	 *
+	 * 
 	 * @return javax.swing.JButton
 	 */
 	private JButton getJButton() {
@@ -70,7 +70,7 @@ public class UpdateGUI extends JFrame {
 
 	/**
 	 * This method initializes jButton1
-	 *
+	 * 
 	 * @return javax.swing.JButton
 	 */
 	private JButton getJButton1() {
@@ -83,15 +83,14 @@ public class UpdateGUI extends JFrame {
 
 	/**
 	 * This method initializes jEditorPane
-	 *
+	 * 
 	 * @return javax.swing.JEditorPane
 	 */
 	private JEditorPane getJEditorPane() {
 		if (jEditorPane == null) {
 			jEditorPane = new JEditorPane();
 			jEditorPane.setEditable(false);
-			jEditorPane
-			        .setText("<html>\n  <head>\n\n  </head>\n  <body>\n   <h1>Version 0.55.1</h1>\n  </body>\n</html>\n");
+			jEditorPane.setText("<html>\n  <head>\n\n  </head>\n  <body>\n   <h1>Version 0.55.1</h1>\n  </body>\n</html>\n");
 			jEditorPane.setContentType("text/html");
 		}
 		return jEditorPane;
@@ -130,7 +129,7 @@ public class UpdateGUI extends JFrame {
 
 	/**
 	 * This method initializes jContentPane
-	 *
+	 * 
 	 * @return javax.swing.JPanel
 	 */
 	private JPanel getJContentPane() {

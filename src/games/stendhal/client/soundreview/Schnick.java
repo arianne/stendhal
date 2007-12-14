@@ -14,7 +14,6 @@ import java.util.InvalidPropertiesFormatException;
 import java.util.Map;
 import java.util.Properties;
 
-
 import org.apache.log4j.Logger;
 
 //TODO: delete me when new soundsystem works

@@ -5,9 +5,7 @@ import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.entity.player.Player;
 import static games.stendhal.server.actions.WellKnownActionConstants.TARGET;
 
-class UnignoreAction implements ActionListener{
-
-	
+class UnignoreAction implements ActionListener {
 
 	public void onAction(Player player, RPAction action) {
 		if (action.has(TARGET)) {
@@ -18,7 +16,7 @@ class UnignoreAction implements ActionListener{
 						+ " was removed from your ignore list.");
 			}
 		}
-		
+
 	}
 
 }

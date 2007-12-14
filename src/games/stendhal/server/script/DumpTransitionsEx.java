@@ -24,9 +24,9 @@ import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.log4j.Logger;
 
 /**
- * Dumps the transition table of an NPC for "dot" http://www.graphviz.org/
- * to generate a nice graph.
- *
+ * Dumps the transition table of an NPC for "dot" http://www.graphviz.org/ to
+ * generate a nice graph.
+ * 
  * @author hendrik
  */
 public class DumpTransitionsEx extends ScriptImpl {
@@ -35,16 +35,17 @@ public class DumpTransitionsEx extends ScriptImpl {
 	private StringBuilder dumpedTable;
 	private CountingMap<PreTransitionCondition> conditions;
 	private CountingMap<PostTransitionAction> actions;
-	
+
 	public static void generateRPEvent() {
 		RPClass rpclass = new RPClass("transition_graph");
-		rpclass.add(DefinitionClass.RPEVENT, "transition_graph", Definition.STANDARD);
+		rpclass.add(DefinitionClass.RPEVENT, "transition_graph",
+				Definition.STANDARD);
 	}
 
 	@Override
 	public void execute(Player admin, List<String> args) {
 		generateRPEvent();
-		
+
 		if (args.size() < 1) {
 			admin.sendPrivateText("/script DumpTransitions.class <npcname>");
 			return;
@@ -68,15 +69,16 @@ public class DumpTransitionsEx extends ScriptImpl {
 
 	/**
 	 * returns the transition diagram as string
-	 *
-	 * @param npc SpeakerNPC
+	 * 
+	 * @param npc
+	 *            SpeakerNPC
 	 * @return transition diagram
 	 */
 	public String getDump(SpeakerNPC npc) {
 		dump(npc);
 		return dumpedTable.toString();
 	}
-	
+
 	private void dump(SpeakerNPC npc) {
 		dumpedTable = new StringBuilder();
 		conditions = new CountingMap<PreTransitionCondition>("C");
@@ -96,12 +98,13 @@ public class DumpTransitionsEx extends ScriptImpl {
 	private void dumpNPC(SpeakerNPC npc) {
 		List<Transition> transitions = npc.getTransitions();
 		for (Transition transition : transitions) {
-			dumpedTable.append(getStateName(transition.getState()) + " -> " + getStateName(transition.getNextState()));
+			dumpedTable.append(getStateName(transition.getState()) + " -> "
+					+ getStateName(transition.getNextState()));
 			String transitionName = getExtendedTransitionName(transition);
 			dumpedTable.append(" [ label = \"" + transitionName + "\" ];\r\n");
 		}
 	}
-	
+
 	private String getExtendedTransitionName(Transition transition) {
 		String transitionName = transition.getTrigger();
 		if (transition.getCondition() != null) {
@@ -136,17 +139,18 @@ public class DumpTransitionsEx extends ScriptImpl {
 		dumpedTable.append("}");
 	}
 
-
 	private void dumpCaption() {
 		dumpedTable.append("\r\n");
 		dumpedTable.append("\"caption\" [\r\n");
 		dumpedTable.append("label = \"");
 		dumpedTable.append("Caption");
 		for (Map.Entry<String, PreTransitionCondition> entry : conditions) {
-			dumpedTable.append(" | " + entry.getKey() + "\t" + captionEntryToString(entry.getValue().toString()));
+			dumpedTable.append(" | " + entry.getKey() + "\t"
+					+ captionEntryToString(entry.getValue().toString()));
 		}
 		for (Map.Entry<String, PostTransitionAction> entry : actions) {
-			dumpedTable.append(" | " + entry.getKey() + "\t" + captionEntryToString(entry.getValue()));
+			dumpedTable.append(" | " + entry.getKey() + "\t"
+					+ captionEntryToString(entry.getValue()));
 		}
 		dumpedTable.append("\"\r\n");
 		dumpedTable.append("shape = \"record\"\r\n");

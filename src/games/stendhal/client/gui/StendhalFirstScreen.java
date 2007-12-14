@@ -52,14 +52,16 @@ public class StendhalFirstScreen extends JFrame {
 
 	/**
 	 * Creates the first screen
-	 *
-	 * @param client StendhalClient
+	 * 
+	 * @param client
+	 *            StendhalClient
 	 */
 	public StendhalFirstScreen(StendhalClient client) {
 		super();
 		this.client = client;
 
-		URL url = SpriteStore.get().getResourceURL(ClientGameConfiguration.get("GAME_SPLASH_BACKGROUND"));
+		URL url = SpriteStore.get().getResourceURL(
+				ClientGameConfiguration.get("GAME_SPLASH_BACKGROUND"));
 		ImageIcon imageIcon = new ImageIcon(url);
 		background = imageIcon.getImage();
 
@@ -97,9 +99,11 @@ public class StendhalFirstScreen extends JFrame {
 		// loginButton
 		//
 		JButton loginButton = new JButton();
-		loginButton.setText("Login to " + ClientGameConfiguration.get("GAME_NAME"));
+		loginButton.setText("Login to "
+				+ ClientGameConfiguration.get("GAME_NAME"));
 		loginButton.setMnemonic(KeyEvent.VK_L);
-		loginButton.setToolTipText("Press this button to login to a " + ClientGameConfiguration.get("GAME_NAME") + " server");
+		loginButton.setToolTipText("Press this button to login to a "
+				+ ClientGameConfiguration.get("GAME_NAME") + " server");
 		loginButton.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
@@ -112,7 +116,8 @@ public class StendhalFirstScreen extends JFrame {
 		JButton createAccountButton = new JButton();
 		createAccountButton.setText("Create an account");
 		createAccountButton.setMnemonic(KeyEvent.VK_A);
-		createAccountButton.setToolTipText("Press this button to create an account on a " + ClientGameConfiguration.get("GAME_NAME") + " server.");
+		createAccountButton.setToolTipText("Press this button to create an account on a "
+				+ ClientGameConfiguration.get("GAME_NAME") + " server.");
 		createAccountButton.setEnabled(true);
 		createAccountButton.addActionListener(new ActionListener() {
 
@@ -169,12 +174,14 @@ public class StendhalFirstScreen extends JFrame {
 		//
 		// LoginGUI
 		//
-		setTitle(ClientGameConfiguration.get("GAME_NAME") + " " + stendhal.VERSION
-		        + " - a multiplayer online game using Arianne");
+		setTitle(ClientGameConfiguration.get("GAME_NAME") + " "
+				+ stendhal.VERSION
+				+ " - a multiplayer online game using Arianne");
 		this.setLocation(new Point(100, 100));
 		this.setResizable(false);
 
-		URL url = SpriteStore.get().getResourceURL(ClientGameConfiguration.get("GAME_ICON"));
+		URL url = SpriteStore.get().getResourceURL(
+				ClientGameConfiguration.get("GAME_ICON"));
 		this.setIconImage(new ImageIcon(url).getImage());
 		pack();
 	}
@@ -193,15 +200,20 @@ public class StendhalFirstScreen extends JFrame {
 	}
 
 	private void checkVersion() {
-		HttpClient httpClient = new HttpClient(ClientGameConfiguration.get("UPDATE_VERSION_CHECK"));
+		HttpClient httpClient = new HttpClient(
+				ClientGameConfiguration.get("UPDATE_VERSION_CHECK"));
 		String version = httpClient.fetchFirstLine();
 		if (version != null) {
 			if (Version.compare(version, stendhal.VERSION) > 0) {
 				// custom title, warning icon
-				JOptionPane.showMessageDialog(null,
-				        "Your client is out of date. Latest version is " + version + ". But you are using "
-				                + stendhal.VERSION + ".\nDownload from http://arianne.sourceforge.net",
-				        "Client out of date", JOptionPane.WARNING_MESSAGE);
+				JOptionPane.showMessageDialog(
+						null,
+						"Your client is out of date. Latest version is "
+								+ version
+								+ ". But you are using "
+								+ stendhal.VERSION
+								+ ".\nDownload from http://arianne.sourceforge.net",
+						"Client out of date", JOptionPane.WARNING_MESSAGE);
 			}
 		}
 
@@ -216,7 +228,8 @@ public class StendhalFirstScreen extends JFrame {
 	}
 
 	/** Add Component Without a Layout Manager (Absolute Positioning) */
-	private void addComponent(Container container, Component c, int x, int y, int width, int height) {
+	private void addComponent(Container container, Component c, int x, int y,
+			int width, int height) {
 		c.setBounds(x, y, width, height);
 		container.add(c);
 	}

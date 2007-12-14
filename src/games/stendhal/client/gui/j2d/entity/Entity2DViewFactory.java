@@ -44,11 +44,10 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
 
-
 import org.apache.log4j.Logger;
 
 /**
- *
+ * 
  */
 public class Entity2DViewFactory { // implements EntityViewFactory {
 	/**
@@ -81,10 +80,10 @@ public class Entity2DViewFactory { // implements EntityViewFactory {
 
 	/**
 	 * Create an entity view from an entity.
-	 *
+	 * 
 	 * @param entity
 	 *            An entity.
-	 *
+	 * 
 	 * @return The corresponding view, or <code>null</code>.
 	 */
 	public EntityView create(Entity entity) {
@@ -97,27 +96,27 @@ public class Entity2DViewFactory { // implements EntityViewFactory {
 
 		try {
 			Constructor<? extends EntityView> cns = viewClass.getConstructor(entity.getClass());
-			EntityView view =  cns.newInstance(entity);
+			EntityView view = cns.newInstance(entity);
 
 			return view;
 		} catch (SecurityException e) {
 
-			logger.error(  e);
+			logger.error(e);
 		} catch (NoSuchMethodException e) {
 
-			logger.error(  e);
+			logger.error(e);
 		} catch (IllegalArgumentException e) {
 
-			logger.error(  e);
+			logger.error(e);
 		} catch (InstantiationException e) {
 
-			logger.error(  e);
+			logger.error(e);
 		} catch (IllegalAccessException e) {
 
-			logger.error(  e);
+			logger.error(e);
 		} catch (InvocationTargetException e) {
 
-			logger.error(  e);
+			logger.error(e);
 		}
 		return null;
 
@@ -165,13 +164,14 @@ public class Entity2DViewFactory { // implements EntityViewFactory {
 
 	/**
 	 * Register an entity model-to-view mapping.
-	 *
+	 * 
 	 * @param entityClass
 	 *            The entity model class.
 	 * @param viewClass
 	 *            The entity view class.
 	 */
-	private void register(Class<? extends Entity> entityClass, Class<? extends EntityView> viewClass) {
+	private void register(Class<? extends Entity> entityClass,
+			Class<? extends EntityView> viewClass) {
 		map.put(entityClass, viewClass);
 	}
 }

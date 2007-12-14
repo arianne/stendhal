@@ -18,7 +18,6 @@ import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyleContext;
 
-
 import org.apache.log4j.Logger;
 
 /**
@@ -64,7 +63,8 @@ public class KTextEdit extends JPanel {
 	 */
 	protected void initStylesForTextPane(JTextPane textPane) {
 		// Initialize the basics styles.
-		Style def = StyleContext.getDefaultStyleContext().getStyle(StyleContext.DEFAULT_STYLE);
+		Style def = StyleContext.getDefaultStyleContext().getStyle(
+				StyleContext.DEFAULT_STYLE);
 
 		Style regular = textPane.addStyle("regular", def);
 		StyleConstants.setFontFamily(def, "Dialog");
@@ -109,7 +109,8 @@ public class KTextEdit extends JPanel {
 		Document doc = textPane.getDocument();
 		try {
 			if (header.length() > 0) {
-				doc.insertString(doc.getLength(), "<" + header + "> ", textPane.getStyle("header"));
+				doc.insertString(doc.getLength(), "<" + header + "> ",
+						textPane.getStyle("header"));
 			}
 		} catch (BadLocationException ble) {
 			System.err.println("Couldn't insert initial text.");
@@ -120,7 +121,8 @@ public class KTextEdit extends JPanel {
 		Document doc = textPane.getDocument();
 		try {
 			if (header.length() > 0) {
-				doc.insertString(doc.getLength(), header, textPane.getStyle("timestamp"));
+				doc.insertString(doc.getLength(), header,
+						textPane.getStyle("timestamp"));
 			}
 		} catch (BadLocationException ble) {
 			System.err.println("Couldn't insert initial text.");
@@ -142,7 +144,9 @@ public class KTextEdit extends JPanel {
 						index = pieces.length();
 					}
 
-					doc.insertString(doc.getLength(), pieces.substring(0, index), textPane.getStyle("bold"));
+					doc.insertString(doc.getLength(),
+							pieces.substring(0, index),
+							textPane.getStyle("bold"));
 					pieces = pieces.substring(index);
 				}
 
@@ -163,16 +167,13 @@ public class KTextEdit extends JPanel {
 		}
 	}
 
-
 	public void addLine(String line) {
 		addLine("", line);
 	}
 
-
 	public void addLine(String header, String line) {
 		addLine(header, line, NotificationType.NORMAL);
 	}
-
 
 	private void scrollToBottom() {
 		// This didn't scroll all the way down. :(
@@ -193,10 +194,9 @@ public class KTextEdit extends JPanel {
 		}
 	}
 
-
 	/**
 	 * The implemented method
-	 *
+	 * 
 	 * @param header
 	 *            a string with the header name
 	 * @param line
@@ -204,11 +204,13 @@ public class KTextEdit extends JPanel {
 	 * @param type
 	 *            The logical format type.
 	 */
-	public synchronized void addLine(String header, String line, NotificationType type) {
+	public synchronized void addLine(String header, String line,
+			NotificationType type) {
 		// Goal of the new code is making it easier to read older messages:
 		// The client should only scroll down automatically if the scrollbar
 		// was at the bottom before.
-		// TODO: There were some bugs, so it is disabled until there is time to fix it.
+		// TODO: There were some bugs, so it is disabled until there is time to
+		// fix it.
 		boolean useNewCode = false;
 
 		// Determine whether the scrollbar is currently at the very bottom
@@ -230,7 +232,8 @@ public class KTextEdit extends JPanel {
 		if (useNewCode) {
 			if (autoScroll) {
 				if (SwingUtilities.isEventDispatchThread()) {
-					// you can't call invokeAndWait from the event dispatch thread.
+					// you can't call invokeAndWait from the event dispatch
+					// thread.
 					new Thread() {
 						@Override
 						public void run() {

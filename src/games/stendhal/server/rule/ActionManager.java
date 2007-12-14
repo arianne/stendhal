@@ -17,7 +17,7 @@ import games.stendhal.server.entity.item.Item;
 
 /**
  * Ruleset Interface for processing actions in Stendhal.
- *
+ * 
  * @author Matthias Totz
  */
 public interface ActionManager {

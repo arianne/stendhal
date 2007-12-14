@@ -20,30 +20,34 @@ import java.awt.Graphics;
 public interface Sprite {
 	/**
 	 * Copy the sprite.
-	 *
-	 * @return	A new copy of the sprite.
+	 * 
+	 * @return A new copy of the sprite.
 	 */
 	Sprite copy();
 
-
 	/**
-	 * Create a sub-region of this sprite.
-	 * <strong>NOTE: This does not use caching.</strong>
-	 *
-	 * @param	x		The starting X coordinate.
-	 * @param	y		The starting Y coordinate.
-	 * @param	width		The region width.
-	 * @param	height		The region height.
-	 * @param	ref		The sprite reference.
-	 *
-	 * @return	A new sprite.
+	 * Create a sub-region of this sprite. <strong>NOTE: This does not use
+	 * caching.</strong>
+	 * 
+	 * @param x
+	 *            The starting X coordinate.
+	 * @param y
+	 *            The starting Y coordinate.
+	 * @param width
+	 *            The region width.
+	 * @param height
+	 *            The region height.
+	 * @param ref
+	 *            The sprite reference.
+	 * 
+	 * @return A new sprite.
 	 */
-	Sprite createRegion(final int x, final int y, final int width, final int height, final Object ref);
-
+	Sprite createRegion(final int x, final int y, final int width,
+			final int height, final Object ref);
 
 	/**
 	 * Draw the sprite onto the graphics context provided
-	 *
+	 * 
 	 * @param g
 	 *            The graphics context on which to draw the sprite
 	 * @param x
@@ -55,7 +59,7 @@ public interface Sprite {
 
 	/**
 	 * Draws the image
-	 *
+	 * 
 	 * @param g
 	 *            the graphics context where to draw to
 	 * @param destx
@@ -75,26 +79,24 @@ public interface Sprite {
 
 	/**
 	 * Get the height of the drawn sprite
-	 *
+	 * 
 	 * @return The height in pixels of this sprite
 	 */
 	int getHeight();
 
-
 	/**
-	 * Get the sprite reference. This identifier is an externally
-	 * opaque object that implements equals() and hashCode() to
-	 * uniquely/repeatably reference a keyed sprite.
-	 *
-	 * @return	The reference identifier, or <code>null</code> if
-	 *		not referencable.
+	 * Get the sprite reference. This identifier is an externally opaque object
+	 * that implements equals() and hashCode() to uniquely/repeatably reference
+	 * a keyed sprite.
+	 * 
+	 * @return The reference identifier, or <code>null</code> if not
+	 *         referencable.
 	 */
 	Object getReference();
 
-
 	/**
 	 * Get the width of the drawn sprite
-	 *
+	 * 
 	 * @return The width in pixels of this sprite
 	 */
 	int getWidth();

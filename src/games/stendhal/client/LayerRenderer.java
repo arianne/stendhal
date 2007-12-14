@@ -31,12 +31,12 @@ public abstract class LayerRenderer {
 		height = 0;
 	}
 
-	/** Returns the widht in world units */
+	/** @return the width in world units */
 	public int getWidth() {
 		return width;
 	}
 
-	/** Returns the height in world units */
+	/** @return the height in world units */
 	public int getHeight() {
 		return height;
 	}

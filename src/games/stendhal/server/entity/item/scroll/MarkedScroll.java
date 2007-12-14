@@ -21,7 +21,6 @@ import games.stendhal.server.entity.player.Player;
 import java.util.Map;
 import java.util.StringTokenizer;
 
-
 import org.apache.log4j.Logger;
 
 /**
@@ -33,29 +32,33 @@ public class MarkedScroll extends TeleportScroll {
 
 	/**
 	 * Creates a new marked teleport scroll
-	 *
+	 * 
 	 * @param name
 	 * @param clazz
 	 * @param subclass
 	 * @param attributes
 	 */
-	public MarkedScroll(String name, String clazz, String subclass, Map<String, String> attributes) {
+	public MarkedScroll(String name, String clazz, String subclass,
+			Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);
 	}
 
 	/**
 	 * copy constructor
-	 *
-	 * @param item item to copy
+	 * 
+	 * @param item
+	 *            item to copy
 	 */
 	public MarkedScroll(MarkedScroll item) {
 		super(item);
 	}
 
 	/**
-	 * Is invoked when a teleporting scroll is used. Tries to put the
-	 * player on the scroll's destination, or near it. 
-	 * @param player The player who used the scroll and who will be teleported
+	 * Is invoked when a teleporting scroll is used. Tries to put the player on
+	 * the scroll's destination, or near it.
+	 * 
+	 * @param player
+	 *            The player who used the scroll and who will be teleported
 	 * @return true iff teleport was successful
 	 */
 	@Override
@@ -66,8 +69,8 @@ public class MarkedScroll extends TeleportScroll {
 		int y = 40;
 
 		/*
-		 * Marked scrolls have a destination which is stored in the
-		 * infostring, existing of a zone name and x and y coordinates
+		 * Marked scrolls have a destination which is stored in the infostring,
+		 * existing of a zone name and x and y coordinates
 		 */
 		String infostring = getInfoString();
 
@@ -81,12 +84,13 @@ public class MarkedScroll extends TeleportScroll {
 					// invalid zone (the scroll may have been marked in an
 					// old version and the zone was removed)
 					player.sendPrivateText("Oh oh. For some strange reason the scroll did not teleport me to the right place.");
-					logger.warn("marked_scroll to unknown zone " + infostring + " teleported " + player.getName()
-					        + " to Semos instead");
+					logger.warn("marked_scroll to unknown zone " + infostring
+							+ " teleported " + player.getName()
+							+ " to Semos instead");
 				} else {
 					if (player.getKeyedSlot("!visited", zoneName) == null) {
 						player.sendPrivateText("Although you have heard a lot of rumors about the destination, "
-						        + "you cannot concentrate on it because you have never been there.");
+								+ "you cannot concentrate on it because you have never been there.");
 						return false;
 					} else {
 						if (!zone.isTeleportAllowed()) {

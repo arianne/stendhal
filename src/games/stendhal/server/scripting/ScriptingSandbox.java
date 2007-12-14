@@ -17,7 +17,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.WeakHashMap;
 
-
 import org.apache.log4j.Logger;
 import marauroa.common.game.RPObject;
 
@@ -42,7 +41,8 @@ public abstract class ScriptingSandbox {
 	}
 
 	public StendhalRPZone getZone(RPObject rpobject) {
-		return (StendhalRPZone) StendhalRPWorld.get().getRPZone(rpobject.getID());
+		return (StendhalRPZone) StendhalRPWorld.get().getRPZone(
+				rpobject.getID());
 	}
 
 	public boolean setZone(String name) {
@@ -105,7 +105,8 @@ public abstract class ScriptingSandbox {
 	}
 
 	public Creature getCreature(String clazz) {
-		return StendhalRPWorld.get().getRuleManager().getEntityManager().getCreature(clazz);
+		return StendhalRPWorld.get().getRuleManager().getEntityManager().getCreature(
+				clazz);
 	}
 
 	public Item[] getItems() {
@@ -113,7 +114,8 @@ public abstract class ScriptingSandbox {
 	}
 
 	public Item getItem(String name) {
-		return StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(name);
+		return StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
+				name);
 	}
 
 	public Creature add(Creature template, int x, int y) {
@@ -131,7 +133,8 @@ public abstract class ScriptingSandbox {
 	}
 
 	public void addGameEvent(String source, String event, List<String> params) {
-		StendhalRPRuleProcessor.get().addGameEvent(source, event, params.toArray(new String[params.size()]));
+		StendhalRPRuleProcessor.get().addGameEvent(source, event,
+				params.toArray(new String[params.size()]));
 	}
 
 	public void modify(RPEntity entity) {
@@ -163,7 +166,8 @@ public abstract class ScriptingSandbox {
 			zone.remove(npc);
 			loadedNPCs.remove(npc);
 		} catch (Exception e) {
-			logger.warn("Exception while removing " + filename + " added NPC: " + e);
+			logger.warn("Exception while removing " + filename + " added NPC: "
+					+ e);
 		}
 	}
 
@@ -175,7 +179,8 @@ public abstract class ScriptingSandbox {
 			zone.remove(object);
 			loadedRPObjects.remove(object);
 		} catch (Exception e) {
-			logger.warn("Exception while removing " + filename + " added object: " + e);
+			logger.warn("Exception while removing " + filename
+					+ " added object: " + e);
 		}
 	}
 
@@ -187,7 +192,8 @@ public abstract class ScriptingSandbox {
 			remove(npc);
 		}
 
-		Set<RPObject> setRPObject = new HashSet<RPObject>(loadedRPObjects.keySet());
+		Set<RPObject> setRPObject = new HashSet<RPObject>(
+				loadedRPObjects.keySet());
 		for (RPObject object : setRPObject) {
 			remove(object);
 		}

@@ -16,8 +16,9 @@ public class QuestCompletedCondition extends SpeakerNPC.ChatCondition {
 
 	/**
 	 * Creates a new QuestCompletedCondition
-	 *
-	 * @param questname name of quest-slot
+	 * 
+	 * @param questname
+	 *            name of quest-slot
 	 */
 	public QuestCompletedCondition(String questname) {
 		this.questname = questname;
@@ -40,6 +41,7 @@ public class QuestCompletedCondition extends SpeakerNPC.ChatCondition {
 
 	@Override
 	public boolean equals(Object obj) {
-		return EqualsBuilder.reflectionEquals(this, obj, false, QuestStartedCondition.class);
+		return EqualsBuilder.reflectionEquals(this, obj, false,
+				QuestStartedCondition.class);
 	}
 }

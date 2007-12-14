@@ -7,15 +7,17 @@ import marauroa.common.game.RPAction;
 /**
  * Summon an entity.
  */
-class SummonAction implements SlashAction  {
+class SummonAction implements SlashAction {
 
 	/**
 	 * Execute a chat command.
-	 *
-	 * @param	params		The formal parameters.
-	 * @param	remainder	Line content after parameters.
-	 *
-	 * @return	<code>true</code> if  was handled.
+	 * 
+	 * @param params
+	 *            The formal parameters.
+	 * @param remainder
+	 *            Line content after parameters.
+	 * 
+	 * @return <code>true</code> if was handled.
 	 */
 	public boolean execute(String[] params, String remainder) {
 		RPAction summon = new RPAction();
@@ -39,8 +41,8 @@ class SummonAction implements SlashAction  {
 
 	/**
 	 * Get the maximum number of formal parameters.
-	 *
-	 * @return	The parameter count.
+	 * 
+	 * @return The parameter count.
 	 */
 	public int getMaximumParameters() {
 		return 3;
@@ -48,8 +50,8 @@ class SummonAction implements SlashAction  {
 
 	/**
 	 * Get the minimum number of formal parameters.
-	 *
-	 * @return	The parameter count.
+	 * 
+	 * @return The parameter count.
 	 */
 	public int getMinimumParameters() {
 		return 1;

@@ -24,24 +24,26 @@ import java.util.Map;
  */
 public class EmptyScroll extends Scroll {
 
-	//	private static final Logger logger = Logger.getLogger(EmptyScroll.class);
+	// private static final Logger logger = Logger.getLogger(EmptyScroll.class);
 
 	/**
 	 * Creates a new empty scroll
-	 *
+	 * 
 	 * @param name
 	 * @param clazz
 	 * @param subclass
 	 * @param attributes
 	 */
-	public EmptyScroll(String name, String clazz, String subclass, Map<String, String> attributes) {
+	public EmptyScroll(String name, String clazz, String subclass,
+			Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);
 	}
 
 	/**
 	 * copy constructor
-	 *
-	 * @param item item to copy
+	 * 
+	 * @param item
+	 *            item to copy
 	 */
 	public EmptyScroll(EmptyScroll item) {
 		super(item);
@@ -49,7 +51,7 @@ public class EmptyScroll extends Scroll {
 
 	/**
 	 * Use a [empty] scroll.
-	 *
+	 * 
 	 * @param player
 	 * @return always true
 	 */
@@ -58,8 +60,10 @@ public class EmptyScroll extends Scroll {
 		StendhalRPZone zone = player.getZone();
 
 		if (zone.isTeleportAllowed()) {
-			Item markedScroll = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("marked_scroll");
-			markedScroll.setInfoString(player.getID().getZoneID() + " " + player.getX() + " " + player.getY());
+			Item markedScroll = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
+					"marked_scroll");
+			markedScroll.setInfoString(player.getID().getZoneID() + " "
+					+ player.getX() + " " + player.getY());
 			markedScroll.setBoundTo(player.getName());
 			player.equip(markedScroll, true);
 			return true;

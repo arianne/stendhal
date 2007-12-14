@@ -20,14 +20,12 @@ public class EntityHolderMulticaster implements EntityHolderListener {
 	 */
 	protected EntityHolderListener[] listeners;
 
-
 	/**
 	 * Create a entity holder multicaster.
 	 */
 	public EntityHolderMulticaster() {
 		listeners = new EntityHolderListener[0];
 	}
-
 
 	//
 	// EntityHolderMulticaster
@@ -49,7 +47,6 @@ public class EntityHolderMulticaster implements EntityHolderListener {
 		listeners = newListeners;
 	}
 
-
 	/**
 	 * Remove a entity holder listener.
 	 * 
@@ -68,7 +65,8 @@ public class EntityHolderMulticaster implements EntityHolderListener {
 				}
 
 				if (++idx != listeners.length) {
-					System.arraycopy(listeners, idx, newListeners, idx - 1, listeners.length - idx);
+					System.arraycopy(listeners, idx, newListeners, idx - 1,
+							listeners.length - idx);
 				}
 
 				listeners = newListeners;
@@ -77,19 +75,22 @@ public class EntityHolderMulticaster implements EntityHolderListener {
 		}
 	}
 
-
 	//
 	// EntityHolderListener
 	//
 
 	/**
 	 * An entity was added.
-	 *
-	 * @param	parent		The parent entity (if known).
-	 * @param	name		The name of the holder.
-	 * @param	entity		The entity.
+	 * 
+	 * @param parent
+	 *            The parent entity (if known).
+	 * @param name
+	 *            The name of the holder.
+	 * @param entity
+	 *            The entity.
 	 */
-	public void entityAdded(final Entity parent, final String name, final Entity entity) {
+	public void entityAdded(final Entity parent, final String name,
+			final Entity entity) {
 		EntityHolderListener[] list = listeners;
 
 		for (EntityHolderListener l : list) {
@@ -99,12 +100,16 @@ public class EntityHolderMulticaster implements EntityHolderListener {
 
 	/**
 	 * An entity was removed.
-	 *
-	 * @param	parent		The parent entity (if known).
-	 * @param	name		The name of the holder.
-	 * @param	entity		The entity.
+	 * 
+	 * @param parent
+	 *            The parent entity (if known).
+	 * @param name
+	 *            The name of the holder.
+	 * @param entity
+	 *            The entity.
 	 */
-	public void entityRemoved(final Entity parent, final String name, final Entity entity) {
+	public void entityRemoved(final Entity parent, final String name,
+			final Entity entity) {
 		EntityHolderListener[] list = listeners;
 
 		for (EntityHolderListener l : list) {

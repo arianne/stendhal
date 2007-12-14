@@ -6,12 +6,12 @@ import org.apache.commons.lang.StringEscapeUtils;
 
 /**
  * writes parts of the java file for a chat test case
- *
+ * 
  * @author hendrik
  */
 class JavaWriter {
 	private PrintStream out;
-	
+
 	JavaWriter(PrintStream out) {
 		this.out = out;
 	}
@@ -53,7 +53,7 @@ class JavaWriter {
 		out.println("\t\ten = npc.getEngine();");
 		out.println();
 		out.println("\t\tplayer = PlayerTestHelper.createPlayer();");
-		out.println("\t}");		
+		out.println("\t}");
 		out.println();
 		out.println("\t@Test");
 		out.println("\tpublic void testQuest() {");
@@ -70,15 +70,15 @@ class JavaWriter {
 	}
 
 	public void player(String protagonist, String text) {
-		out.println("\t\ten.step(player, \"" + StringEscapeUtils.escapeJava(text) + "\");");
+		out.println("\t\ten.step(player, \""
+				+ StringEscapeUtils.escapeJava(text) + "\");");
 	}
 
 	public void npc(String protagonist, String text) {
-		out.println("\t\tassertEquals(\""
-			+ StringEscapeUtils.escapeJava(text)
-			+ "\", npc.get(\"text\"));");
+		out.println("\t\tassertEquals(\"" + StringEscapeUtils.escapeJava(text)
+				+ "\", npc.get(\"text\"));");
 	}
-	
+
 	public void footer() {
 		out.println("\t}");
 		out.println("}");

@@ -18,13 +18,12 @@ public class Sign extends Entity {
 	/**
 	 * Text property.
 	 */
-	public static final Object	PROP_TEXT		= new Object();
+	public static final Object PROP_TEXT = new Object();
 
 	/**
 	 * The sign text.
 	 */
 	private String text;
-
 
 	//
 	// Sign
@@ -32,13 +31,12 @@ public class Sign extends Entity {
 
 	/**
 	 * Get the sign text.
-	 *
-	 * @return	The sign text.
+	 * 
+	 * @return The sign text.
 	 */
 	public String getText() {
 		return text;
 	}
-
 
 	//
 	// RPObjectChangeListener
@@ -46,9 +44,11 @@ public class Sign extends Entity {
 
 	/**
 	 * The object added/changed attribute(s).
-	 *
-	 * @param	object		The base object.
-	 * @param	changes		The changes.
+	 * 
+	 * @param object
+	 *            The base object.
+	 * @param changes
+	 *            The changes.
 	 */
 	@Override
 	public void onChangedAdded(final RPObject object, final RPObject changes) {
@@ -60,12 +60,13 @@ public class Sign extends Entity {
 		}
 	}
 
-
 	/**
 	 * The object removed attribute(s).
-	 *
-	 * @param	object		The base object.
-	 * @param	changes		The changes.
+	 * 
+	 * @param object
+	 *            The base object.
+	 * @param changes
+	 *            The changes.
 	 */
 	@Override
 	public void onChangedRemoved(final RPObject object, final RPObject changes) {

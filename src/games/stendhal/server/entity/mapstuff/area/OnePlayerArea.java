@@ -14,12 +14,11 @@ import games.stendhal.server.events.MovementListener;
 
 import java.lang.ref.WeakReference;
 
-
 import org.apache.log4j.Logger;
 
 /**
  * An area that only allows one play at a time to enter.
- *
+ * 
  * TODO: KNOWN BUG: If a player enters, then goes into ghost mode, the area will
  * reject other players (exposing that there is a ghost present in area).
  */
@@ -36,7 +35,7 @@ public class OnePlayerArea extends AreaEntity implements MovementListener {
 
 	/**
 	 * Create a one player area.
-	 *
+	 * 
 	 * @param width
 	 *            The area width.
 	 * @param height
@@ -62,12 +61,12 @@ public class OnePlayerArea extends AreaEntity implements MovementListener {
 
 	/**
 	 * Check if an entity is in this area.
-	 *
+	 * 
 	 * @param entity
 	 *            The entity to check.
-	 *
+	 * 
 	 * @return <code>true</code> if the entity is in this area.
-	 *
+	 * 
 	 * TODO: Move up to AreaEntity
 	 */
 	protected boolean contains(final Entity entity) {
@@ -77,7 +76,7 @@ public class OnePlayerArea extends AreaEntity implements MovementListener {
 
 	/**
 	 * Get the occupant.
-	 *
+	 * 
 	 * @return The area occupant, or <code>null</code> in none.
 	 */
 	protected Player getOccupant() {
@@ -90,7 +89,7 @@ public class OnePlayerArea extends AreaEntity implements MovementListener {
 
 	/**
 	 * Set the occupant.
-	 *
+	 * 
 	 * @param player
 	 *            The occupant to set.
 	 */
@@ -104,10 +103,10 @@ public class OnePlayerArea extends AreaEntity implements MovementListener {
 
 	/**
 	 * Checks whether players, NPC's, etc. can walk over this entity.
-	 *
+	 * 
 	 * @param entity
 	 *            The entity trying to enter.
-	 *
+	 * 
 	 * @return <code>true</code> if a Player is given and it is occupied by
 	 *         someone else.
 	 */
@@ -136,7 +135,7 @@ public class OnePlayerArea extends AreaEntity implements MovementListener {
 			if (contains(occupant)) {
 				/*
 				 * Allow if it's the occupant (quick check).
-				 *
+				 * 
 				 * But don't block entities that got in the area (somehow) from
 				 * leaving.
 				 */
@@ -156,7 +155,7 @@ public class OnePlayerArea extends AreaEntity implements MovementListener {
 
 	/**
 	 * Called when this object is added to a zone.
-	 *
+	 * 
 	 * @param zone
 	 *            The zone this was added to.
 	 */
@@ -168,7 +167,7 @@ public class OnePlayerArea extends AreaEntity implements MovementListener {
 
 	/**
 	 * Called when this object is being removed from a zone.
-	 *
+	 * 
 	 * @param zone
 	 *            The zone this will be removed from.
 	 */
@@ -205,7 +204,7 @@ public class OnePlayerArea extends AreaEntity implements MovementListener {
 
 	/**
 	 * Invoked when an entity enters the object area.
-	 *
+	 * 
 	 * @param entity
 	 *            The entity that moved.
 	 * @param zone
@@ -243,7 +242,7 @@ public class OnePlayerArea extends AreaEntity implements MovementListener {
 
 	/**
 	 * Invoked when an entity leaves the object area.
-	 *
+	 * 
 	 * @param entity
 	 *            The entity that entered.
 	 * @param zone
@@ -252,7 +251,7 @@ public class OnePlayerArea extends AreaEntity implements MovementListener {
 	 *            The old X coordinate.
 	 * @param oldY
 	 *            The old Y coordinate.
-	 *
+	 * 
 	 */
 	public void onExited(ActiveEntity entity, StendhalRPZone zone, int oldX,
 			int oldY) {
@@ -266,7 +265,7 @@ public class OnePlayerArea extends AreaEntity implements MovementListener {
 
 	/**
 	 * Invoked when an entity moves while over the object area.
-	 *
+	 * 
 	 * @param entity
 	 *            The entity that left.
 	 * @param zone

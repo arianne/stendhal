@@ -125,7 +125,7 @@ public class BuyWindowContent extends javax.swing.JPanel {
 		jLabel5.setBounds(0, 10, 224, 15);
 
 		npc_chooser.setModel(new javax.swing.AbstractListModel() {
-			String[] strings = { "Xin Blanca", "Food and Drink Selling",
+			private String[] strings = { "Xin Blanca", "Food and Drink Selling",
 					"Potions" };
 
 			public int getSize() {

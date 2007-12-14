@@ -18,12 +18,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-
 import org.apache.log4j.Logger;
 
 /**
- * Represents the behaviour of a NPC who is able to either sell items
- * to a player, or buy items from a player.
+ * Represents the behaviour of a NPC who is able to either sell items to a
+ * player, or buy items from a player.
  */
 public abstract class MerchantBehaviour extends Behaviour {
 	private static Logger logger = Logger.getLogger(MerchantBehaviour.class);
@@ -44,6 +43,7 @@ public abstract class MerchantBehaviour extends Behaviour {
 
 	/**
 	 * Returns a set of the names of all items that the NPC deals with.
+	 * 
 	 * @return the dealt items
 	 */
 	public Set<String> dealtItems() {
@@ -52,7 +52,9 @@ public abstract class MerchantBehaviour extends Behaviour {
 
 	/**
 	 * Checks whether the NPC deals with the specified item.
-	 * @param item the name of the item
+	 * 
+	 * @param item
+	 *            the name of the item
 	 * @return true iff the NPC deals with the item
 	 */
 	public boolean hasItem(String item) {
@@ -61,7 +63,9 @@ public abstract class MerchantBehaviour extends Behaviour {
 
 	/**
 	 * Returns the price of one unit of a given item.
-	 * @param item the name of the item
+	 * 
+	 * @param item
+	 *            the name of the item
 	 * @return the unit price
 	 */
 	public int getUnitPrice(String item) {
@@ -70,8 +74,10 @@ public abstract class MerchantBehaviour extends Behaviour {
 
 	/**
 	 * Sets the amount that the player wants to buy from the NPC.
-	 * @param text a String containing an integer number. If it isn't an
-	 *             integer, the amount will be set to 1.
+	 * 
+	 * @param text
+	 *            a String containing an integer number. If it isn't an integer,
+	 *            the amount will be set to 1.
 	 */
 	public void setAmount(String text) {
 		setAmount(MathHelper.parseIntDefault(text, 1));
@@ -79,11 +85,13 @@ public abstract class MerchantBehaviour extends Behaviour {
 
 	/**
 	 * Sets the amount that the player wants to buy from the NPC.
-	 *
-	 * @param amount amount
+	 * 
+	 * @param amount
+	 *            amount
 	 */
 	public void setAmount(int amount) {
-		// TODO: This does not solve the problem, it is just a quick fix to get the server back online.
+		// TODO: This does not solve the problem, it is just a quick fix to get
+		// the server back online.
 		if (amount < 1) {
 			amount = 1;
 			logger.warn("Increasing very low amount of " + amount + " to 1.");
@@ -97,7 +105,9 @@ public abstract class MerchantBehaviour extends Behaviour {
 
 	/**
 	 * Returns the price of the desired amount of the chosen item.
-	 * @param player The player who considers buying/selling
+	 * 
+	 * @param player
+	 *            The player who considers buying/selling
 	 * @return The price; 0 if no item was chosen or if the amount is 0.
 	 */
 	public int getCharge(Player player) {

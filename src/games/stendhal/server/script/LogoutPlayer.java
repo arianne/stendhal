@@ -1,4 +1,3 @@
-
 package games.stendhal.server.script;
 
 import games.stendhal.server.StendhalRPRuleProcessor;
@@ -7,14 +6,13 @@ import games.stendhal.server.scripting.ScriptImpl;
 
 import java.util.List;
 
-
 import org.apache.log4j.Logger;
 import marauroa.server.game.container.PlayerEntry;
 import marauroa.server.game.container.PlayerEntryContainer;
 
 /**
  * Logout a player
- *
+ * 
  * @author hendrik
  */
 public class LogoutPlayer extends ScriptImpl {
@@ -31,7 +29,8 @@ public class LogoutPlayer extends ScriptImpl {
 		}
 
 		try {
-			//see processLogoutEvent in marauroa-1.34/src/marauroa/server/game/GameServerManager.java
+			// see processLogoutEvent in
+			// marauroa-1.34/src/marauroa/server/game/GameServerManager.java
 
 			PlayerEntryContainer playerContainer = PlayerEntryContainer.getContainer();
 			PlayerEntry entry = playerContainer.get(args.get(0));
@@ -41,7 +40,8 @@ public class LogoutPlayer extends ScriptImpl {
 			}
 
 			Player player = (Player) entry.object;
-			StendhalRPRuleProcessor.get().getRPManager().disconnectPlayer(player);
+			StendhalRPRuleProcessor.get().getRPManager().disconnectPlayer(
+					player);
 			admin.sendPrivateText(args.get(0) + " has been logged out");
 		} catch (Exception e) {
 			logger.error(e, e);

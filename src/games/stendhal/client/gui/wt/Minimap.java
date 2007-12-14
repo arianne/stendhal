@@ -43,7 +43,7 @@ import marauroa.common.game.RPAction;
 
 /**
  * The minimap.
- *
+ * 
  * @author mtotz
  */
 
@@ -142,7 +142,7 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 
 	/**
 	 * Update the map with new data.
-	 *
+	 * 
 	 * @param cd
 	 *            The collision map.
 	 * @param gc
@@ -245,8 +245,8 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 		}
 	}
 
-	public void update_pathfind(){
-		
+	public void update_pathfind() {
+
 		if (nodo_actual != 0) {
 			pathfind.PathJumpToNode(nodo_actual);
 			int manhatan = (int) ((Math.abs(playerX - pathfind.NodeGetX()) + Math.abs(playerY
@@ -275,12 +275,12 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 			}
 
 		}
-		
+
 	}
-			
+
 	/**
 	 * Draws the minimap.
-	 *
+	 * 
 	 * @param g
 	 *            graphics object for the game main window
 	 */
@@ -297,29 +297,19 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 
 		// draw minimap
 		vg.drawImage(image, 0, 0, null);
-/*
-		// PATHFIND--------------------------------------
-
-		pathfind.Reinice();
-		while (!pathfind.ReachedGoal()) {
-			pathfind.PathNextNode();
-			vg.fillRect(pathfind.NodeGetX() * scale, pathfind.NodeGetY()
-					* scale, scale, scale);
-		}
-		pathfind.Reinice();
-
-		while (!pathfind.ReachedGoal()) {
-			pathfind.PathJumpNode();
-			vg.setColor(Color.CYAN);
-			vg.fillRect(pathfind.NodeGetX() * scale, pathfind.NodeGetY()
-					* scale, scale, scale);
-		}
-		pathfind.Reinice();
-*/
-		
+		/*
+		 * // PATHFIND--------------------------------------
+		 * 
+		 * pathfind.Reinice(); while (!pathfind.ReachedGoal()) {
+		 * pathfind.PathNextNode(); vg.fillRect(pathfind.NodeGetX() * scale,
+		 * pathfind.NodeGetY() scale, scale, scale); } pathfind.Reinice();
+		 * 
+		 * while (!pathfind.ReachedGoal()) { pathfind.PathJumpNode();
+		 * vg.setColor(Color.CYAN); vg.fillRect(pathfind.NodeGetX() * scale,
+		 * pathfind.NodeGetY() scale, scale, scale); } pathfind.Reinice();
+		 */
 
 		// --------------------------------------
-
 		// Draw on ground entities
 		for (Entity entity : client.getGameObjects()) {
 			if (!entity.isOnGround()) {
@@ -358,7 +348,7 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 
 	/**
 	 * Draws the User
-	 *
+	 * 
 	 * @param vg
 	 *            graphics context
 	 */
@@ -372,7 +362,7 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 
 	/**
 	 * Draws an RPEntity on the map.
-	 *
+	 * 
 	 * @param g
 	 *            Graphics
 	 * @param entity
@@ -390,7 +380,7 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 
 	/**
 	 * Draw an entity on the map as a colored rectangle.
-	 *
+	 * 
 	 * @param g
 	 *            graphics
 	 * @param entity
@@ -406,7 +396,7 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 	/**
 	 * Draw an entity on the map as a colored rectangle, with an optional border
 	 * (for non 1x1 entities).
-	 *
+	 * 
 	 * @param g
 	 *            The graphics context.
 	 * @param entity
@@ -436,7 +426,7 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 
 	/**
 	 * Draw a player entity.
-	 *
+	 * 
 	 * @param g
 	 *            The graphics context.
 	 * @param player
@@ -523,7 +513,7 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 						+ (System.currentTimeMillis() - computation_time)
 						+ "ms");
 			}
-		} else  { // If teleclickmode is enabled.
+		} else { // If teleclickmode is enabled.
 			RPAction action = new RPAction();
 			action.put("type", "moveto");
 			action.put("x", (p.x + panx - getClientX()) / scale);
@@ -540,7 +530,7 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 
 	/**
 	 * The user position changed.
-	 *
+	 * 
 	 * @param x
 	 *            The X coordinate (in world units).
 	 * @param y

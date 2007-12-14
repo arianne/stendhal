@@ -15,14 +15,13 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-
 import org.apache.log4j.Logger;
 import marauroa.common.game.IRPZone;
 
 /**
- * teleports the SpeakerNPC to a random location on the outside world
- * and causes it to walk a random bit.
- *
+ * teleports the SpeakerNPC to a random location on the outside world and causes
+ * it to walk a random bit.
+ * 
  * @author hendrik
  */
 public class TeleporterBehaviour implements TurnListener {
@@ -37,11 +36,14 @@ public class TeleporterBehaviour implements TurnListener {
 
 	/**
 	 * Creates a new TeleporterBehaviour
-	 *
-	 * @param speakerNPC SpeakerNPC
-	 * @param repeatedText text to repeat
+	 * 
+	 * @param speakerNPC
+	 *            SpeakerNPC
+	 * @param repeatedText
+	 *            text to repeat
 	 */
-	public TeleporterBehaviour(final SpeakerNPC speakerNPC, final String repeatedText) {
+	public TeleporterBehaviour(final SpeakerNPC speakerNPC,
+			final String repeatedText) {
 		this.speakerNPC = speakerNPC;
 		listZones();
 		TurnNotifier.get().notifyInTurns(60, this);
@@ -101,9 +103,11 @@ public class TeleporterBehaviour implements TurnListener {
 
 				zone.add(speakerNPC);
 				found = true;
-				logger.debug("Placing teleporting NPC at " + zone.getName() + " " + x + " " + y);
+				logger.debug("Placing teleporting NPC at " + zone.getName()
+						+ " " + x + " " + y);
 			} else {
-				logger.info("Cannot place teleporting NPC at " + zone.getName() + " " + x + " " + y);
+				logger.info("Cannot place teleporting NPC at " + zone.getName()
+						+ " " + x + " " + y);
 			}
 		}
 

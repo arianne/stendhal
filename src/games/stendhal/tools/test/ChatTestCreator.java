@@ -7,9 +7,9 @@ import java.io.IOException;
 import java.io.PrintStream;
 
 /**
- * This program creates a simple NPC chat test based on a chat log
- * copy&pasted from the the client chat log window. 
- *
+ * This program creates a simple NPC chat test based on a chat log copy&pasted
+ * from the the client chat log window.
+ * 
  * @author hendrik
  */
 public class ChatTestCreator {
@@ -30,7 +30,7 @@ public class ChatTestCreator {
 		}
 		writer.footer();
 	}
-	
+
 	private void handleLine(String line) {
 		LineAnalyser analyser = new LineAnalyser(line);
 		if (analyser.isEmpty()) {
@@ -48,15 +48,18 @@ public class ChatTestCreator {
 
 	/**
 	 * Converts a chat log into a test case
-	 *
-	 * @param args chatlog.txt [test.java]
-	 * @throws IOException in case of an input/output error 
+	 * 
+	 * @param args
+	 *            chatlog.txt [test.java]
+	 * @throws IOException
+	 *             in case of an input/output error
 	 */
 	public static void main(String[] args) throws IOException {
 		if (args.length < 1 || args.length > 2) {
-			System.err.println("java " + ChatTestCreator.class.getName() + " chatlog.txt [chatlogtest.java]");
+			System.err.println("java " + ChatTestCreator.class.getName()
+					+ " chatlog.txt [chatlogtest.java]");
 		}
-		
+
 		BufferedReader br = new BufferedReader(new FileReader(args[0]));
 		PrintStream out = System.out;
 		if (args.length > 1) {

@@ -31,8 +31,8 @@ public class StyledJPanel extends JPanel {
 
 	/**
 	 * Create a styled JPanel.
-	 *
-	 *
+	 * 
+	 * 
 	 */
 	public StyledJPanel(Style style) {
 		this.style = style;
@@ -46,7 +46,7 @@ public class StyledJPanel extends JPanel {
 
 	/**
 	 * Apply style information to a component.
-	 *
+	 * 
 	 */
 	protected void applyStyle(Style style, JPanel panel) {
 		Border border = style.getBorder();
@@ -67,8 +67,8 @@ public class StyledJPanel extends JPanel {
 
 	/**
 	 * Paint the component background.
-	 *
-	 *
+	 * 
+	 * 
 	 */
 	@Override
 	protected void paintComponent(Graphics g) {

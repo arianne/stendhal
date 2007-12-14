@@ -27,26 +27,25 @@ import games.stendhal.server.entity.player.Player;
 import java.util.Arrays;
 import java.util.List;
 
-
 import org.apache.log4j.Logger;
 import marauroa.common.game.RPAction;
 
 /**
  * This listener handles all entity movements from a slot to either another slot
  * or the ground.
- *
+ * 
  * The source can be: baseitem - object id of the item which should be moved
- *
+ * 
  * (optional, only when the source is inside a slot) baseobject - (only when the
  * item is in a slot) object id of the object containing the slot where the item
  * is in baseslot - (only when the item is in a slot) slot name where the item
  * is in (/optional)
- *
- *
+ * 
+ * 
  * The target can be either an 'equip': type - "equip" targetobject - object id
  * of the container object targetslot - slot name where the item should be moved
  * to
- *
+ * 
  * or a 'drop': type - "drop" x - the x-coordinate on the ground y - the
  * y-coordinate on the ground
  */
@@ -126,7 +125,7 @@ public class EquipmentAction implements ActionListener {
 		if (entity.has("min_level")
 				&& player.getLevel() < entity.getInt("min_level")) {
 			player.sendPrivateText("You are not experienced enough to use this "
-							+ itemName);
+					+ itemName);
 			return;
 		}
 
@@ -149,7 +148,7 @@ public class EquipmentAction implements ActionListener {
 			logger.debug("Destination is not valid");
 			return;
 		}
-		
+
 		logger.debug("Equip action agreed");
 
 		// looks good
@@ -194,10 +193,9 @@ public class EquipmentAction implements ActionListener {
 
 		source.moveTo(dest, player);
 		if (entity.has("bound")) {
-			player
-					.sendPrivateText("You put a valuable item on the ground. Please note that it will expire in "
-							+ (Item.DEGRADATION_TIMEOUT / 60)
-							+ " minutes, as all items do. But in this case there is no way to restore it.");
+			player.sendPrivateText("You put a valuable item on the ground. Please note that it will expire in "
+					+ (Item.DEGRADATION_TIMEOUT / 60)
+					+ " minutes, as all items do. But in this case there is no way to restore it.");
 		}
 		int amount = source.getQuantity();
 		StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "drop",

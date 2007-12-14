@@ -18,8 +18,6 @@ import utilities.PlayerTestHelper;
 public class JailTest {
 	private static final String ZONE_CONTENT = "Level -1/semos/jail.tmx";
 
-	static String ZONE_NAME = "test";
-
 	@BeforeClass
 	public static void setUpClass() throws Exception {
 		Log4J.init();

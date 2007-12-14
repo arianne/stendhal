@@ -39,9 +39,9 @@ import tiled.io.xml.XMLMapTransformer;
 import tiled.view.MapView;
 
 /**
- * Converts the stendhal maps from *.tmx to *.stend
- * This class can be started from the command line or through an ant task
- *
+ * Converts the stendhal maps from *.tmx to *.stend This class can be started
+ * from the command line or through an ant task
+ * 
  * @author mtotz
  */
 public class MapConverter extends Task {
@@ -60,12 +60,14 @@ public class MapConverter extends Task {
 	}
 
 	@SuppressWarnings("unchecked")
-    private void saveImageMap(Map map, String tmxFile) {
+	private void saveImageMap(Map map, String tmxFile) {
 		File file = new File(tmxFile);
 		String filename = file.getAbsolutePath();
 		for (MapLayer layer : (List<MapLayer>) map.getLayerVector()) {
-			if (layer.getName().equals("navigation") || layer.getName().equals("collision")
-			        || layer.getName().equals("objects") || layer.getName().equals("protection")) {
+			if (layer.getName().equals("navigation")
+					|| layer.getName().equals("collision")
+					|| layer.getName().equals("objects")
+					|| layer.getName().equals("protection")) {
 				layer.setVisible(false);
 			} else {
 				layer.setVisible(true);
@@ -74,10 +76,11 @@ public class MapConverter extends Task {
 
 		MapView myView = MapView.createViewforMap(map);
 		myView.setDoubleBuffered(false);
-		//myView.enableMode(MapView.PF_NOSPECIAL);
+		// myView.enableMode(MapView.PF_NOSPECIAL);
 		myView.setZoom(0.0625);
 		Dimension d = myView.getPreferredSize();
-		BufferedImage i = new BufferedImage(d.width, d.height, BufferedImage.TYPE_INT_ARGB);
+		BufferedImage i = new BufferedImage(d.width, d.height,
+				BufferedImage.TYPE_INT_ARGB);
 		Graphics2D g = i.createGraphics();
 		g.setClip(0, 0, d.width, d.height);
 		myView.paint(g);
@@ -92,11 +95,12 @@ public class MapConverter extends Task {
 		}
 
 		if (level.equals("int") && area.equals("abstract")) {
-			filename = imagePath + File.separator + level.replace("-", "sub_") + "_"
-			        + file.getName().replaceAll("\\.tmx", ".png");
+			filename = imagePath + File.separator + level.replace("-", "sub_")
+					+ "_" + file.getName().replaceAll("\\.tmx", ".png");
 		} else {
-			filename = imagePath + File.separator + level.replace("-", "sub_") + "_" + area + "_"
-			        + file.getName().replaceAll("\\.tmx", ".png");
+			filename = imagePath + File.separator + level.replace("-", "sub_")
+					+ "_" + area + "_"
+					+ file.getName().replaceAll("\\.tmx", ".png");
 		}
 
 		try {
@@ -110,7 +114,8 @@ public class MapConverter extends Task {
 	/**
 	 * Adds a set of files to copy.
 	 * 
-	 * @param set a set of files to copy
+	 * @param set
+	 *            a set of files to copy
 	 */
 	public void addFileset(FileSet set) {
 		filesets.add(set);
@@ -123,7 +128,7 @@ public class MapConverter extends Task {
 		this.imagePath = imagePath;
 	}
 
-	/** 
+	/**
 	 * ants execute method.
 	 */
 	@Override
@@ -133,8 +138,10 @@ public class MapConverter extends Task {
 				DirectoryScanner ds = fileset.getDirectoryScanner(getProject());
 				String[] includedFiles = ds.getIncludedFiles();
 				for (String filename : includedFiles) {
-					System.out.println(ds.getBasedir().getAbsolutePath() + File.separator + filename);
-					convert(ds.getBasedir().getAbsolutePath() + File.separator + filename);
+					System.out.println(ds.getBasedir().getAbsolutePath()
+							+ File.separator + filename);
+					convert(ds.getBasedir().getAbsolutePath() + File.separator
+							+ filename);
 				}
 			}
 		} catch (Exception e) {

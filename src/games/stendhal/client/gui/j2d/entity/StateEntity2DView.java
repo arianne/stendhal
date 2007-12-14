@@ -16,7 +16,6 @@ import games.stendhal.client.sprite.SpriteStore;
 import java.util.HashMap;
 import java.util.Map;
 
-
 import org.apache.log4j.Logger;
 
 /**
@@ -26,8 +25,7 @@ public abstract class StateEntity2DView extends Entity2DView {
 	/**
 	 * Log4J.
 	 */
-	private static final Logger logger = Logger
-			.getLogger(StateEntity2DView.class);
+	private static final Logger logger = Logger.getLogger(StateEntity2DView.class);
 
 	/**
 	 * Map of named sprites.
@@ -41,7 +39,7 @@ public abstract class StateEntity2DView extends Entity2DView {
 
 	/**
 	 * Create a 2D view of an entity.
-	 *
+	 * 
 	 * @param entity
 	 *            The entity to render.
 	 */
@@ -65,7 +63,7 @@ public abstract class StateEntity2DView extends Entity2DView {
 
 	/**
 	 * Populate named state sprites.
-	 *
+	 * 
 	 * @param map
 	 *            The map to populate.
 	 */
@@ -73,10 +71,10 @@ public abstract class StateEntity2DView extends Entity2DView {
 
 	/**
 	 * Get a keyed state sprite.
-	 *
+	 * 
 	 * @param state
 	 *            The state.
-	 *
+	 * 
 	 * @return The appropriate sprite for the given state.
 	 */
 	protected Sprite getSprite(final Object state) {
@@ -85,14 +83,14 @@ public abstract class StateEntity2DView extends Entity2DView {
 
 	/**
 	 * Get the current model state.
-	 *
+	 * 
 	 * @return The model state.
 	 */
 	protected abstract Object getState();
 
 	/**
 	 * Get the current animated sprite.
-	 *
+	 * 
 	 * @return The appropriate sprite for the current state.
 	 */
 	protected Sprite getStateSprite() {

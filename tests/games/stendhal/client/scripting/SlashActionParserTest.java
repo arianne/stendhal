@@ -14,7 +14,7 @@ import utilities.QuestHelper;
 
 /**
  * test SlashActionParser class
- *
+ * 
  * @author Martin Fuchs
  */
 public class SlashActionParserTest {

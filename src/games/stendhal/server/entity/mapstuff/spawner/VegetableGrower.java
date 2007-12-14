@@ -21,7 +21,7 @@ import marauroa.common.game.RPObject;
 
 /**
  * A growing carrot which can be picked
- *
+ * 
  * @author hendrik
  */
 public class VegetableGrower extends GrowingPassiveEntityRespawnPoint implements
@@ -63,8 +63,8 @@ public class VegetableGrower extends GrowingPassiveEntityRespawnPoint implements
 		if (entity.nextTo(this)) {
 			if (getRipeness() == 1) {
 				onFruitPicked(null);
-				Item grain = StendhalRPWorld.get().getRuleManager()
-						.getEntityManager().getItem(vegetableName);
+				Item grain = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
+						vegetableName);
 				entity.equip(grain, true);
 				return true;
 			} else if (entity instanceof Player) {

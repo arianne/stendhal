@@ -29,6 +29,7 @@ public class Rand {
 
 	/**
 	 * Simulates flipping a coin.
+	 * 
 	 * @return Either 1 or 2, equally distributed.
 	 */
 	public static int throwCoin() {
@@ -37,6 +38,7 @@ public class Rand {
 
 	/**
 	 * Simulates rolling a dice with 6 sides.
+	 * 
 	 * @return A random number between 1 and 6, equally distributed.
 	 */
 	public static int roll1D6() {
@@ -45,6 +47,7 @@ public class Rand {
 
 	/**
 	 * Simulates rolling a dice with 20 sides.
+	 * 
 	 * @return A random number between 1 and 20, equally distributed.
 	 */
 	public static int roll1D20() {
@@ -53,6 +56,7 @@ public class Rand {
 
 	/**
 	 * Simulates rolling a dice with 100 sides.
+	 * 
 	 * @return A random number between 1 and 100, equally distributed.
 	 */
 	public static int roll1D100() {
@@ -61,21 +65,24 @@ public class Rand {
 
 	/**
 	 * Generates an equally distributed random number.
-	 * @param n the upper boundary
-	 * @return A random number between 0 and <i>n</i> - 1, equally
-	 *         distributed.
+	 * 
+	 * @param n
+	 *            the upper boundary
+	 * @return A random number between 0 and <i>n</i> - 1, equally distributed.
 	 */
 	public static int rand(int n) {
 		return rand.nextInt(n);
 	}
 
 	/**
-	 * Given a list of any type, returns an arbitrary element, using
-	 * an equal distribution.
-	 * Generics are used so that the returned element will have the
-	 * same type as the list's elements have. 
-	 * @param <T> Any type.
-	 * @param list The list from which an element should be chosen.
+	 * Given a list of any type, returns an arbitrary element, using an equal
+	 * distribution. Generics are used so that the returned element will have
+	 * the same type as the list's elements have.
+	 * 
+	 * @param <T>
+	 *            Any type.
+	 * @param list
+	 *            The list from which an element should be chosen.
 	 * @return A random list element.
 	 */
 	public static <T> T rand(List<T> list) {
@@ -83,16 +90,18 @@ public class Rand {
 	}
 
 	/**
-	 * Given a set of any type, returns an arbitrary element, using
-	 * an equal distribution.
-	 * Generics are used so that the returned element will have the
-	 * same type as the set's elements have.
+	 * Given a set of any type, returns an arbitrary element, using an equal
+	 * distribution. Generics are used so that the returned element will have
+	 * the same type as the set's elements have.
 	 * 
-	 * NOTE: This is not very efficient. If you need to do this on large 
-	 * sets several times per second, consider copying the set contents
-	 * to an array, then call rand() on this array.
-	 * @param <T> Any type.
-	 * @param set The set from which an element should be chosen.
+	 * NOTE: This is not very efficient. If you need to do this on large sets
+	 * several times per second, consider copying the set contents to an array,
+	 * then call rand() on this array.
+	 * 
+	 * @param <T>
+	 *            Any type.
+	 * @param set
+	 *            The set from which an element should be chosen.
 	 * @return A random set element.
 	 */
 	public static <T> T rand(Set<T> set) {
@@ -109,12 +118,14 @@ public class Rand {
 	}
 
 	/**
-	 * Given a array of any type, returns an arbitrary element, using
-	 * an equal distribution.
-	 * Generics are used so that the returned element will have the
-	 * same type as the array's elements have. 
-	 * @param <T> Any type.
-	 * @param array The array from which an element should be chosen.
+	 * Given a array of any type, returns an arbitrary element, using an equal
+	 * distribution. Generics are used so that the returned element will have
+	 * the same type as the array's elements have.
+	 * 
+	 * @param <T>
+	 *            Any type.
+	 * @param array
+	 *            The array from which an element should be chosen.
 	 * @return A random array element.
 	 */
 	public static <T> T rand(T[] array) {
@@ -122,9 +133,12 @@ public class Rand {
 	}
 
 	/**
-	 * Generates a normally distributed random number and rounds it. 
-	 * @param mean The mean value
-	 * @param sd The standard deviation
+	 * Generates a normally distributed random number and rounds it.
+	 * 
+	 * @param mean
+	 *            The mean value
+	 * @param sd
+	 *            The standard deviation
 	 * @return An integer near <i>mean</i>
 	 */
 	public static int rand(int mean, int sd) {

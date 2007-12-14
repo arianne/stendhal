@@ -16,8 +16,9 @@ public class DropItemAction extends SpeakerNPC.ChatAction {
 
 	/**
 	 * Creates a new EquipItemAction
-	 *
-	 * @param itemName name of item
+	 * 
+	 * @param itemName
+	 *            name of item
 	 */
 	public DropItemAction(String itemName) {
 		this.itemName = itemName;
@@ -26,9 +27,11 @@ public class DropItemAction extends SpeakerNPC.ChatAction {
 
 	/**
 	 * Creates a new EquipItemAction
-	 *
-	 * @param itemName name of item
-	 * @param amount for StackableItems
+	 * 
+	 * @param itemName
+	 *            name of item
+	 * @param amount
+	 *            for StackableItems
 	 */
 	public DropItemAction(String itemName, int amount) {
 		this.itemName = itemName;
@@ -39,7 +42,8 @@ public class DropItemAction extends SpeakerNPC.ChatAction {
 	public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 		boolean res = player.drop(itemName, amount);
 		if (!res) {
-			logger.error("Cannot drop " + amount + " " + itemName, new Throwable());
+			logger.error("Cannot drop " + amount + " " + itemName,
+					new Throwable());
 		}
 		player.notifyWorldAboutChanges();
 	}
@@ -54,20 +58,33 @@ public class DropItemAction extends SpeakerNPC.ChatAction {
 		final int PRIME = 31;
 		int result = 1;
 		result = PRIME * result + amount;
-		result = PRIME * result + ((itemName == null) ? 0 : itemName.hashCode());
+		result = PRIME * result
+				+ ((itemName == null) ? 0 : itemName.hashCode());
 		return result;
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj) return true;
-		if (obj == null) return false;
-		if (getClass() != obj.getClass()) return false;
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
 		final DropItemAction other = (DropItemAction) obj;
-		if (amount != other.amount) return false;
+		if (amount != other.amount) {
+			return false;
+		}
 		if (itemName == null) {
-			if (other.itemName != null) return false;
-		} else if (!itemName.equals(other.itemName)) return false;
+			if (other.itemName != null) {
+				return false;
+			}
+		} else if (!itemName.equals(other.itemName)) {
+			return false;
+		}
 		return true;
 	}
 

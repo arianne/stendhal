@@ -27,10 +27,10 @@ public class NPC extends RPEntity {
 
 	/**
 	 * Initialize this entity for an object.
-	 *
+	 * 
 	 * @param object
 	 *            The object.
-	 *
+	 * 
 	 * @see-also #release()
 	 */
 	@Override
@@ -82,7 +82,7 @@ public class NPC extends RPEntity {
 
 	/**
 	 * When the entity's position changed.
-	 *
+	 * 
 	 * @param x
 	 *            The new X coordinate.
 	 * @param y
@@ -95,8 +95,7 @@ public class NPC extends RPEntity {
 		if (soundWait < System.currentTimeMillis() && Rand.rand(1000) < 5) {
 
 			try {
-				SoundMaster
-						.play(moveSounds[Rand.rand(moveSounds.length)], x, y);
+				SoundMaster.play(moveSounds[Rand.rand(moveSounds.length)], x, y);
 			} catch (NullPointerException e) {
 			}
 

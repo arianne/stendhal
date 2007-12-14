@@ -19,9 +19,9 @@ import marauroa.common.net.Serializable;
  * <li>name <b>VERY IMPORTANT</b>
  * <li>data
  * </ul>
- *
+ * 
  * @author miguel
- *
+ * 
  */
 public class LayerDefinition implements Serializable {
 	/** To which map this layer belong */
@@ -59,7 +59,7 @@ public class LayerDefinition implements Serializable {
 
 	/**
 	 * Constructor
-	 *
+	 * 
 	 * @param layerWidth
 	 *            the width of the layer.
 	 * @param layerHeight
@@ -73,7 +73,7 @@ public class LayerDefinition implements Serializable {
 
 	/**
 	 * Sets the map to which this layer belong to.
-	 *
+	 * 
 	 * @param map
 	 *            the map
 	 */
@@ -105,7 +105,7 @@ public class LayerDefinition implements Serializable {
 
 	/**
 	 * Returns the allocated raw array so it can be modified.
-	 *
+	 * 
 	 * @return
 	 */
 	public byte[] exposeRaw() {
@@ -114,7 +114,7 @@ public class LayerDefinition implements Serializable {
 
 	/**
 	 * Set a tile at the given x,y position.
-	 *
+	 * 
 	 * @param x
 	 *            the x position
 	 * @param y
@@ -135,7 +135,7 @@ public class LayerDefinition implements Serializable {
 
 	/**
 	 * Returns the tile at the x,y position
-	 *
+	 * 
 	 * @param x
 	 *            the x position
 	 * @param y
@@ -147,7 +147,7 @@ public class LayerDefinition implements Serializable {
 	}
 
 	/**
-	 *
+	 * 
 	 * @return
 	 * @throws IOException
 	 * @throws UnsupportedEncodingException
@@ -165,7 +165,7 @@ public class LayerDefinition implements Serializable {
 
 	/**
 	 * Deserialize a layer definition
-	 *
+	 * 
 	 * @param in
 	 *            input serializer
 	 * @return an instance of a layer definition
@@ -186,7 +186,7 @@ public class LayerDefinition implements Serializable {
 
 	/**
 	 * Returns the width of the layer
-	 *
+	 * 
 	 * @return
 	 */
 	public int getWidth() {
@@ -195,7 +195,7 @@ public class LayerDefinition implements Serializable {
 
 	/**
 	 * Returns the height of the layer
-	 *
+	 * 
 	 * @return
 	 */
 	public int getHeight() {
@@ -204,7 +204,7 @@ public class LayerDefinition implements Serializable {
 
 	/**
 	 * Returns the name of the tileset a tile belongs to.
-	 *
+	 * 
 	 * @param value
 	 *            the tile id
 	 * @return the name of the tileset
@@ -228,7 +228,7 @@ public class LayerDefinition implements Serializable {
 
 	/**
 	 * Sets the name of the layer
-	 *
+	 * 
 	 * @param layerName
 	 *            the name of the layer
 	 */
@@ -238,7 +238,7 @@ public class LayerDefinition implements Serializable {
 
 	/**
 	 * Returns the name of the layer
-	 *
+	 * 
 	 * @return
 	 */
 	public String getName() {

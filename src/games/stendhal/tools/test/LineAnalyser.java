@@ -5,18 +5,20 @@ import java.util.List;
 
 /**
  * Analyses a chat log line
- *
+ * 
  * @author hendrik
  */
 class LineAnalyser {
-	private List<String> playerNames = Arrays.asList("hendrikus", "player", 
-		"rosie", "gambit", "superkym", "Heman", "jellybean"); // todo: do not hard code this
+	private List<String> playerNames = Arrays.asList("hendrikus", "player",
+			"rosie", "gambit", "superkym", "Heman", "jellybean"); // todo: do
+																	// not hard
+																	// code this
 
 	private String line;
 	private String stripped;
 	private String protagonist;
-	private boolean comment = false;  
-	
+	private boolean comment = false;
+
 	protected LineAnalyser(String line) {
 		this.line = line.trim();
 		stripTimeStamp();
@@ -32,7 +34,7 @@ class LineAnalyser {
 		}
 		stripped = stripped.substring(pos + 2);
 	}
-	
+
 	private void stripComment() {
 		if (line.startsWith("//")) {
 			comment = true;
@@ -74,7 +76,7 @@ class LineAnalyser {
 	public boolean isEmpty() {
 		return line.trim().equals("");
 	}
-	
+
 	public boolean isComment() {
 		return comment;
 	}

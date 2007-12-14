@@ -9,7 +9,7 @@ import java.util.List;
 
 /**
  * drop the specified amount of items from the player.
- *
+ * 
  * @author hendrik
  */
 public class DropPlayerItems extends ScriptImpl {
@@ -30,16 +30,17 @@ public class DropPlayerItems extends ScriptImpl {
 		} else {
 			itemName = args.get(1);
 		}
-		
+
 		boolean res = player.drop(itemName, amount);
-		String msg = "Admin " + admin.getTitle() + " removed "
-			+ amount + " " + Grammar.plnoun(amount, itemName)
-			+ " from player " + player.getTitle() + ": " + res;
+		String msg = "Admin " + admin.getTitle() + " removed " + amount + " "
+				+ Grammar.plnoun(amount, itemName) + " from player "
+				+ player.getTitle() + ": " + res;
 		admin.sendPrivateText(msg);
 		if (res) {
 			player.sendPrivateText(msg);
-			StendhalRPRuleProcessor.get().addGameEvent(admin.getName(), "admindrop", 
-					player.getName(), Integer.toString(amount), itemName);
+			StendhalRPRuleProcessor.get().addGameEvent(admin.getName(),
+					"admindrop", player.getName(), Integer.toString(amount),
+					itemName);
 		}
 	}
 }

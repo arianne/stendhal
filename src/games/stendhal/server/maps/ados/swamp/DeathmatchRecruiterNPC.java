@@ -21,11 +21,14 @@ import java.util.Map;
 public class DeathmatchRecruiterNPC implements ZoneConfigurator {
 	/**
 	 * Configure a zone.
-	 *
-	 * @param	zone		The zone to be configured.
-	 * @param	attributes	Configuration attributes.
+	 * 
+	 * @param zone
+	 *            The zone to be configured.
+	 * @param attributes
+	 *            Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone,
+			Map<String, String> attributes) {
 		buildDeathmatchRecruiter(zone);
 	}
 
@@ -56,21 +59,31 @@ public class DeathmatchRecruiterNPC implements ZoneConfigurator {
 				addGreeting("Hey there. You look like a reasonable fighter.");
 				addJob("I'm recruiter for the Ados #deathmatch.");
 				addHelp("Have you ever heard of the Ados #deathmatch.");
-				add(ConversationStates.ATTENDING, "deathmatch", null, ConversationStates.ATTENDING,
-				        "The deathmatch is the ultimate challenge for true #heroes.", null);
-				add(ConversationStates.ATTENDING, "heroes", null, ConversationStates.ATTENDING,
-				        "Are you such a hero? I can take you to the #challenge.", null);
+				add(
+						ConversationStates.ATTENDING,
+						"deathmatch",
+						null,
+						ConversationStates.ATTENDING,
+						"The deathmatch is the ultimate challenge for true #heroes.",
+						null);
+				add(
+						ConversationStates.ATTENDING,
+						"heroes",
+						null,
+						ConversationStates.ATTENDING,
+						"Are you such a hero? I can take you to the #challenge.",
+						null);
 				addGoodbye("I hope you will enjoy the Ados #Deathmatch!");
 
-				add(ConversationStates.ATTENDING, "challenge", 
-					new LevelGreaterThanCondition(19), 
-					ConversationStates.ATTENDING, null,
-					new TeleportAction("0_ados_wall_n", 100, 86, Direction.DOWN));
+				add(ConversationStates.ATTENDING, "challenge",
+						new LevelGreaterThanCondition(19),
+						ConversationStates.ATTENDING, null, new TeleportAction(
+								"0_ados_wall_n", 100, 86, Direction.DOWN));
 
 				add(ConversationStates.ATTENDING, "challenge",
-					new LevelLessThanCondition(20), 
-					ConversationStates.ATTENDING, "Sorry, you are too weak!",
-					null);
+						new LevelLessThanCondition(20),
+						ConversationStates.ATTENDING,
+						"Sorry, you are too weak!", null);
 			}
 		};
 

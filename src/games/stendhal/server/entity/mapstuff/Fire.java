@@ -17,9 +17,11 @@ public class Fire extends Entity implements UseListener {
 
 	/**
 	 * creates a new fiew
-	 *
-	 * @param width width in grid units
-	 * @param height height in grid units
+	 * 
+	 * @param width
+	 *            width in grid units
+	 * @param height
+	 *            height in grid units
 	 */
 	public Fire(int width, int height) {
 		setDescription("You see a flickering light. You are tempted to touch it.");

@@ -22,18 +22,17 @@ public class Sheep2DView extends DomesticAnimal2DView {
 	/**
 	 * The weight that a sheep becomes fat (big).
 	 */
-	protected static final int	BIG_WEIGHT	= 60;
-
+	protected static final int BIG_WEIGHT = 60;
 
 	/**
 	 * Create a 2D view of a sheep.
-	 *
-	 * @param	sheep		The entity to render.
+	 * 
+	 * @param sheep
+	 *            The entity to render.
 	 */
 	public Sheep2DView(final Sheep sheep) {
 		super(sheep);
 	}
-
 
 	//
 	// DomesticAnimal2DView
@@ -41,24 +40,24 @@ public class Sheep2DView extends DomesticAnimal2DView {
 
 	/**
 	 * Get the weight at which the animal becomes big.
-	 *
-	 * @return	A weight.
+	 * 
+	 * @return A weight.
 	 */
 	@Override
 	protected int getBigWeight() {
 		return BIG_WEIGHT;
 	}
 
-
 	//
 	// Entity2DView
 	//
 
 	/**
-	 * Build a list of entity specific actions.
-	 * <strong>NOTE: The first entry should be the default.</strong>
-	 *
-	 * @param	list		The list to populate.
+	 * Build a list of entity specific actions. <strong>NOTE: The first entry
+	 * should be the default.</strong>
+	 * 
+	 * @param list
+	 *            The list to populate.
 	 */
 	@Override
 	protected void buildActions(final List<String> list) {

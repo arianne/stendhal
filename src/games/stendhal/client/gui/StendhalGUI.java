@@ -17,12 +17,11 @@ import games.stendhal.common.NotificationType;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 
-
 import org.apache.log4j.Logger;
 
 /**
- * A base graphical user interface for Stendhal. This implements code
- * that uses AWT, but not any specific display format (e.g. 2D, 3D).
+ * A base graphical user interface for Stendhal. This implements code that uses
+ * AWT, but not any specific display format (e.g. 2D, 3D).
  */
 public abstract class StendhalGUI extends StendhalUI {
 	/**
@@ -68,7 +67,8 @@ public abstract class StendhalGUI extends StendhalUI {
 	/**
 	 * Color for significant positive impact messages.
 	 */
-	protected static final Color COLOR_SIGNIFICANT_POSITIVE = new Color(65, 105, 225);
+	protected static final Color COLOR_SIGNIFICANT_POSITIVE = new Color(65,
+			105, 225);
 
 	/**
 	 * Color for tutorial messages.
@@ -100,17 +100,15 @@ public abstract class StendhalGUI extends StendhalUI {
 	 */
 	protected DelayedDirectionRelease directionRelease;
 
-
 	/**
 	 * Create a stendhal graphical user interface.
-	 *
-	 * @param	client
-	 *	The stendhal client.
+	 * 
+	 * @param client
+	 *            The stendhal client.
 	 */
 	public StendhalGUI(final StendhalClient client) {
 		super(client);
 	}
-
 
 	//
 	// StendhalGUI
@@ -118,88 +116,89 @@ public abstract class StendhalGUI extends StendhalUI {
 
 	/**
 	 * Get the color that is tied to a notification type.
-	 *
+	 * 
 	 * TODO: Make dynamic/user configurable.
-	 *
+	 * 
 	 * @param type
-	 *	The notification type.
-	 *
+	 *            The notification type.
+	 * 
 	 * @return The appropriate color.
 	 */
 	public Color getNotificationColor(final NotificationType type) {
 		switch (type) {
-			case CLIENT:
-				return COLOR_CLIENT;
+		case CLIENT:
+			return COLOR_CLIENT;
 
-			case INFORMATION:
-				return COLOR_INFORMATION;
+		case INFORMATION:
+			return COLOR_INFORMATION;
 
-			case NEGATIVE:
-				return COLOR_NEGATIVE;
+		case NEGATIVE:
+			return COLOR_NEGATIVE;
 
-			case NORMAL:
-				return COLOR_NORMAL;
+		case NORMAL:
+			return COLOR_NORMAL;
 
-			case POSITIVE:
-				return COLOR_POSITIVE;
+		case POSITIVE:
+			return COLOR_POSITIVE;
 
-			case PRIVMSG:
-				return COLOR_PRIVMSG;
+		case PRIVMSG:
+			return COLOR_PRIVMSG;
 
-			case RESPONSE:
-				return COLOR_RESPONSE;
+		case RESPONSE:
+			return COLOR_RESPONSE;
 
-			case SIGNIFICANT_NEGATIVE:
-				return COLOR_SIGNIFICANT_NEGATIVE;
+		case SIGNIFICANT_NEGATIVE:
+			return COLOR_SIGNIFICANT_NEGATIVE;
 
-			case SIGNIFICANT_POSITIVE:
-				return COLOR_SIGNIFICANT_POSITIVE;
+		case SIGNIFICANT_POSITIVE:
+			return COLOR_SIGNIFICANT_POSITIVE;
 
-			case TUTORIAL:
-				return COLOR_TUTORIAL;
+		case TUTORIAL:
+			return COLOR_TUTORIAL;
 
-			default:
-				logger.warn("Unknown notification type: " + type);
-				return COLOR_NORMAL;
+		default:
+			logger.warn("Unknown notification type: " + type);
+			return COLOR_NORMAL;
 		}
 	}
 
 	/**
 	 * Convert a keycode to the corresponding direction.
-	 *
+	 * 
 	 * @param keyCode
-	 *	The keycode.
-	 *
+	 *            The keycode.
+	 * 
 	 * @return The direction, or <code>null</code>.
 	 */
 	protected Direction keyCodeToDirection(final int keyCode) {
 		switch (keyCode) {
-			case KeyEvent.VK_LEFT:
-				return Direction.LEFT;
+		case KeyEvent.VK_LEFT:
+			return Direction.LEFT;
 
-			case KeyEvent.VK_RIGHT:
-				return Direction.RIGHT;
+		case KeyEvent.VK_RIGHT:
+			return Direction.RIGHT;
 
-			case KeyEvent.VK_UP:
-				return Direction.UP;
+		case KeyEvent.VK_UP:
+			return Direction.UP;
 
-			case KeyEvent.VK_DOWN:
-				return Direction.DOWN;
+		case KeyEvent.VK_DOWN:
+			return Direction.DOWN;
 
-			default:
-				return null;
+		default:
+			return null;
 		}
 	}
 
 	/**
 	 * Handle direction press actions.
-	 *
+	 * 
 	 * @param direction
-	 *	The direction.
+	 *            The direction.
 	 * @param facing
-	 *	If facing only.
+	 *            If facing only.
 	 */
-	protected void processDirectionPress(final Direction direction, final boolean facing) {
+	protected void processDirectionPress(final Direction direction,
+			final boolean facing) {
 		if (directionRelease != null) {
 			if (directionRelease.check(direction, facing)) {
 				/*
@@ -212,7 +211,8 @@ public abstract class StendhalGUI extends StendhalUI {
 				/*
 				 * Flush pending release
 				 */
-				client.removeDirection(directionRelease.getDirection(), directionRelease.isFacing());
+				client.removeDirection(directionRelease.getDirection(),
+						directionRelease.isFacing());
 
 				directionRelease = null;
 			}
@@ -223,13 +223,14 @@ public abstract class StendhalGUI extends StendhalUI {
 
 	/**
 	 * Handle direction release actions.
-	 *
+	 * 
 	 * @param direction
-	 *	The direction.
+	 *            The direction.
 	 * @param facing
-	 *	If facing only.
+	 *            If facing only.
 	 */
-	protected void processDirectionRelease(final Direction direction, final boolean facing) {
+	protected void processDirectionRelease(final Direction direction,
+			final boolean facing) {
 		if (directionRelease != null) {
 			if (directionRelease.check(direction, facing)) {
 				/*
@@ -240,7 +241,8 @@ public abstract class StendhalGUI extends StendhalUI {
 				/*
 				 * Flush previous release
 				 */
-				client.removeDirection(directionRelease.getDirection(), directionRelease.isFacing());
+				client.removeDirection(directionRelease.getDirection(),
+						directionRelease.isFacing());
 			}
 		}
 
@@ -249,7 +251,7 @@ public abstract class StendhalGUI extends StendhalUI {
 
 	/**
 	 * Determine if the Alt key is held down.
-	 *
+	 * 
 	 * @return <code>true</code> if down.
 	 */
 	@Override
@@ -259,7 +261,7 @@ public abstract class StendhalGUI extends StendhalUI {
 
 	/**
 	 * Determine if the <Ctrl> key is held down.
-	 *
+	 * 
 	 * @return <code>true</code> if down.
 	 */
 	@Override
@@ -269,7 +271,7 @@ public abstract class StendhalGUI extends StendhalUI {
 
 	/**
 	 * Determine if the <Shift> key is held down.
-	 *
+	 * 
 	 * @return <code>true</code> if down.
 	 */
 	@Override
@@ -279,16 +281,15 @@ public abstract class StendhalGUI extends StendhalUI {
 
 	/**
 	 * Save the current keyboard modifier (i.e. Alt/Ctrl/Shift) state.
-	 *
+	 * 
 	 * @param ev
-	 *	The keyboard event.
+	 *            The keyboard event.
 	 */
 	protected void updateModifiers(final KeyEvent ev) {
 		altDown = ev.isAltDown();
 		ctrlDown = ev.isControlDown();
 		shiftDown = ev.isShiftDown();
 	}
-
 
 	//
 	//
@@ -314,10 +315,9 @@ public abstract class StendhalGUI extends StendhalUI {
 		 */
 		protected boolean facing;
 
-
 		/**
-		 *
-		 *
+		 * 
+		 * 
 		 */
 		public DelayedDirectionRelease(final Direction dir, final boolean facing) {
 			this.dir = dir;
@@ -326,14 +326,13 @@ public abstract class StendhalGUI extends StendhalUI {
 			expiration = System.currentTimeMillis() + DELAY;
 		}
 
-
 		//
 		// DelayedDirectionRelease
 		//
 
 		/**
 		 * Get the direction.
-		 *
+		 * 
 		 * @return The direction.
 		 */
 		public Direction getDirection() {
@@ -342,7 +341,7 @@ public abstract class StendhalGUI extends StendhalUI {
 
 		/**
 		 * Determine if the delay point has been reached.
-		 *
+		 * 
 		 * @return <code>true</code> if the delay time has been reached.
 		 */
 		public boolean hasExpired() {
@@ -351,7 +350,7 @@ public abstract class StendhalGUI extends StendhalUI {
 
 		/**
 		 * Determine if the facing only option was used.
-		 *
+		 * 
 		 * @return <code>true</code> if facing only.
 		 */
 		public boolean isFacing() {
@@ -359,14 +358,14 @@ public abstract class StendhalGUI extends StendhalUI {
 		}
 
 		/**
-		 * Check if a new direction matches the existing one,
-		 * and if so, reset the expiration point.
-		 *
+		 * Check if a new direction matches the existing one, and if so, reset
+		 * the expiration point.
+		 * 
 		 * @param dir
-		 *	The direction.
+		 *            The direction.
 		 * @param facing
-		 *	The facing flag.
-		 *
+		 *            The facing flag.
+		 * 
 		 * @return <code>true</code> if this is a repeat.
 		 */
 		public boolean check(final Direction dir, final boolean facing) {

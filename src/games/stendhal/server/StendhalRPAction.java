@@ -58,7 +58,7 @@ public class StendhalRPAction {
 	 * Chooses randomly if the attacker has hit the defender, or if he missed
 	 * him. Note that, even if this method returns true, the damage done might
 	 * be 0 (if the defender blocks the attack).
-	 *
+	 * 
 	 * @param attacker
 	 *            The attacking RPEntity.
 	 * @param defender
@@ -108,7 +108,7 @@ public class StendhalRPAction {
 	/**
 	 * Calculates the damage that will be done in a distance attack (bow and
 	 * arrows, spear, etc.).
-	 *
+	 * 
 	 * @param attacker
 	 *            The RPEntity that did the distance attack.
 	 * @param defender
@@ -136,7 +136,7 @@ public class StendhalRPAction {
 	 * how much hitpoints the defender will lose, based on the attacker's ATK
 	 * experience and weapon(s), the defender's DEF experience and defensive
 	 * items, and a random generator.
-	 *
+	 * 
 	 * @param attacker
 	 *            The attacker.
 	 * @param defender
@@ -202,7 +202,7 @@ public class StendhalRPAction {
 
 	/**
 	 * Do logic for starting an attack on an entity.
-	 *
+	 * 
 	 * @param player
 	 *            The player wanting to attack.
 	 * @param entity
@@ -239,9 +239,9 @@ public class StendhalRPAction {
 					Player owner = ((DomesticAnimal) entity).getOwner();
 
 					if (owner != null) {
-	                    name = Grammar.suffix_s(owner.getTitle()) + " " + name;
+						name = Grammar.suffix_s(owner.getTitle()) + " " + name;
 					} else {
-                        if (entity instanceof Sheep) {
+						if (entity instanceof Sheep) {
 							name = "that " + name;
 						} else {
 							name = "that poor little " + name;
@@ -268,7 +268,7 @@ public class StendhalRPAction {
 
 	/**
 	 * Returns the attack rate, the lower the better.
-	 *
+	 * 
 	 * @param attacker
 	 * @return
 	 */
@@ -291,13 +291,13 @@ public class StendhalRPAction {
 
 	/**
 	 * Lets the attacker try to attack the defender.
-	 *
+	 * 
 	 * @param attacker
 	 *            The attacking RPEntity.
 	 * @param defender
 	 *            The defending RPEntity.
 	 * @return true iff the attacker has done damage to the defender.
-	 *
+	 * 
 	 */
 	public static boolean attack(RPEntity attacker, RPEntity defender) {
 		boolean result = false;
@@ -404,7 +404,7 @@ public class StendhalRPAction {
 
 	/**
 	 * Calculate lifesteal and update hp of source
-	 *
+	 * 
 	 * @param attacker
 	 *            the RPEntity doing the hit
 	 * @param attackerWeapons
@@ -469,18 +469,19 @@ public class StendhalRPAction {
 
 	/**
 	 * send the content of the zone the player is in to the client
-	 *
+	 * 
 	 * @param player
 	 * @throws AttributeNotFoundException
 	 */
 	public static void transferContent(Player player) {
 
-		//added null check for the sake of testing
-		// TODO: remove the null check and refactor tests or whatever , astridEmma
+		// added null check for the sake of testing
+		// TODO: remove the null check and refactor tests or whatever ,
+		// astridEmma
 
-		if (rpman!=null) {
+		if (rpman != null) {
 			StendhalRPZone zone = player.getZone();
-				rpman.transferContent(player, zone.getContents());
+			rpman.transferContent(player, zone.getContents());
 
 		} else {
 			logger.warn("rpmanager not found");
@@ -489,7 +490,7 @@ public class StendhalRPAction {
 
 	/**
 	 * Change an entity's zone based on it's global world coordinates.
-	 *
+	 * 
 	 * @param entity
 	 *            The entity changing zones.
 	 * @param x
@@ -531,7 +532,7 @@ public class StendhalRPAction {
 	 * Places an entity at a specified position in a specified zone. If this
 	 * point is occupied the entity is moved slightly. This will remove the
 	 * entity from any existing zone and add it to the target zone if needed.
-	 *
+	 * 
 	 * @param zone
 	 *            zone to place the entity in
 	 * @param entity
@@ -551,7 +552,7 @@ public class StendhalRPAction {
 	 * Places an entity at a specified position in a specified zone. This will
 	 * remove the entity from any existing zone and add it to the target zone if
 	 * needed.
-	 *
+	 * 
 	 * @param zone
 	 *            zone to place the entity in
 	 * @param entity
@@ -575,7 +576,7 @@ public class StendhalRPAction {
 				return true;
 			}
 		}
-		
+
 		// Look for new position
 		int nx = x;
 		int ny = y;
@@ -757,8 +758,8 @@ public class StendhalRPAction {
 					String source = oldZone.getName();
 					String destination = zone.getName();
 
-					StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
-						"change zone", destination);
+					StendhalRPRuleProcessor.get().addGameEvent(
+							player.getName(), "change zone", destination);
 
 					TutorialNotifier.zoneChange(player, source, destination);
 					ZoneNotifier.zoneChange(player, source, destination);

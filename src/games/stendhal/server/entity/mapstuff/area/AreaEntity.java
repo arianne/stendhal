@@ -20,20 +20,21 @@ public abstract class AreaEntity extends Entity {
 	/**
 	 * The name attribute name.
 	 */
-	protected static final String	ATTR_NAME	= "name";
+	protected static final String ATTR_NAME = "name";
 
-// MAYBEDO (if Entity.RPCLASS added):
-//	/**
-//	 * The RPClass.
-//	 */
-//	public final static RPClass	RPCLASS		= createRPClass();
-
+	// MAYBEDO (if Entity.RPCLASS added):
+	// /**
+	// * The RPClass.
+	// */
+	// public final static RPClass RPCLASS = createRPClass();
 
 	/**
 	 * Create an area entity.
-	 *
-	 * @param	width		Width of this area
-	 * @param	height		Height of this area
+	 * 
+	 * @param width
+	 *            Width of this area
+	 * @param height
+	 *            Height of this area
 	 */
 	public AreaEntity(int width, int height) {
 		setRPClass("area");
@@ -43,15 +44,14 @@ public abstract class AreaEntity extends Entity {
 		setResistance(0);
 	}
 
-
 	//
 	// AreaEntity
 	//
 
 	/**
 	 * Define the RPClass.
-	 *
-	 * @return	The configured RPClass.
+	 * 
+	 * @return The configured RPClass.
 	 */
 	private static RPClass createRPClass() {
 		RPClass rpclass = new RPClass("area");
@@ -63,10 +63,9 @@ public abstract class AreaEntity extends Entity {
 		return rpclass;
 	}
 
-
 	/**
 	 * Generate the RPClass (compatible with manual init/order).
-	 *
+	 * 
 	 * NOTE: This MUST be called during environment initialization.
 	 */
 	public static void generateRPClass() {
@@ -75,7 +74,7 @@ public abstract class AreaEntity extends Entity {
 
 	/**
 	 * Get the entity name.
-	 *
+	 * 
 	 * @return The entity's name, or <code>null</code> if undefined.
 	 */
 	public String getName() {
@@ -88,27 +87,27 @@ public abstract class AreaEntity extends Entity {
 
 	/**
 	 * Set the name.
-	 *
-	 * @param	name		The area name.
+	 * 
+	 * @param name
+	 *            The area name.
 	 */
 	public void setName(final String name) {
 		put(ATTR_NAME, name);
 	}
-
 
 	//
 	// Entity
 	//
 
 	/**
-	 * Returns the name or something that can be used to identify the
-	 * entity for the player
-	 *
+	 * Returns the name or something that can be used to identify the entity for
+	 * the player
+	 * 
 	 * @param definite
-	 *	<code>true</code> for "the", and <code>false</code> for "a/an"
-	 *	in case the entity has no name.
-	 *
-	 * @return	The description name.
+	 *            <code>true</code> for "the", and <code>false</code> for
+	 *            "a/an" in case the entity has no name.
+	 * 
+	 * @return The description name.
 	 */
 	@Override
 	public String getDescriptionName(final boolean definite) {
@@ -123,7 +122,7 @@ public abstract class AreaEntity extends Entity {
 
 	/**
 	 * Get the nicely formatted entity title/name.
-	 *
+	 * 
 	 * @return The title, or <code>null</code> if unknown.
 	 */
 	@Override

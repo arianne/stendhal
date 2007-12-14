@@ -44,7 +44,7 @@ public class MoveableEntityContainer implements WtDraggable {
 
 	/**
 	 * Create an entity drag container.
-	 *
+	 * 
 	 * @param entity
 	 *            The entity being moved.
 	 */
@@ -62,8 +62,8 @@ public class MoveableEntityContainer implements WtDraggable {
 
 		if (rpObject.isContained()) {
 			// the item is inside a container
-			action.put("baseobject", rpObject.getContainer().getID()
-					.getObjectID());
+			action.put("baseobject",
+					rpObject.getContainer().getID().getObjectID());
 			action.put("baseslot", rpObject.getContainerSlot().getName());
 		}
 
@@ -72,7 +72,7 @@ public class MoveableEntityContainer implements WtDraggable {
 
 	/**
 	 * Get the entity being moved.
-	 *
+	 * 
 	 * @return The entity.
 	 */
 	public Entity getEntity() {
@@ -81,7 +81,7 @@ public class MoveableEntityContainer implements WtDraggable {
 
 	/**
 	 * Determine if this is in a container slot.
-	 *
+	 * 
 	 * @return <code>true</code> if the item is in a container.
 	 */
 	public boolean isContained() {
@@ -102,7 +102,7 @@ public class MoveableEntityContainer implements WtDraggable {
 			/*
 			 * Hide quantity until it can be made context sensitive to drag
 			 * modifiers.
-			 *
+			 * 
 			 * TODO: Find a better way
 			 */
 			if (view instanceof StackableItem2DView) {

@@ -25,13 +25,12 @@ public class Corpse extends PassiveEntity {
 	/**
 	 * Content property.
 	 */
-	public static final Object	PROP_CONTENT		= new Object();
+	public static final Object PROP_CONTENT = new Object();
 
 	/**
 	 * The current content slot.
 	 */
-	private RPSlot		content;
-
+	private RPSlot content;
 
 	//
 	// Corpse
@@ -39,13 +38,12 @@ public class Corpse extends PassiveEntity {
 
 	/**
 	 * Get the corpse contents.
-	 *
-	 * @return	The contents slot.
+	 * 
+	 * @return The contents slot.
 	 */
 	public RPSlot getContent() {
 		return content;
 	}
-
 
 	//
 	// Entity
@@ -53,10 +51,11 @@ public class Corpse extends PassiveEntity {
 
 	/**
 	 * Initialize this entity for an object.
-	 *
-	 * @param	object		The object.
-	 *
-	 * @see-also	#release()
+	 * 
+	 * @param object
+	 *            The object.
+	 * 
+	 * @see-also #release()
 	 */
 	@Override
 	public void initialize(final RPObject object) {
@@ -69,16 +68,17 @@ public class Corpse extends PassiveEntity {
 		}
 	}
 
-
 	//
 	// RPObjectChangeListener
 	//
 
 	/**
 	 * The object added/changed attribute(s).
-	 *
-	 * @param	object		The base object.
-	 * @param	changes		The changes.
+	 * 
+	 * @param object
+	 *            The base object.
+	 * @param changes
+	 *            The changes.
 	 */
 	@Override
 	public void onChangedAdded(final RPObject object, final RPObject changes) {

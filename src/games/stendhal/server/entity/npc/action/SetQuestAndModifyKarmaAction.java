@@ -15,12 +15,16 @@ public class SetQuestAndModifyKarmaAction extends SpeakerNPC.ChatAction {
 
 	/**
 	 * Creates a new SetQuestAction
-	 *
-	 * @param questname name of quest-slot to change
-	 * @param state new value
-	 * @param karmaDiff amount of karma to add (negative numbers allowed)
+	 * 
+	 * @param questname
+	 *            name of quest-slot to change
+	 * @param state
+	 *            new value
+	 * @param karmaDiff
+	 *            amount of karma to add (negative numbers allowed)
 	 */
-	public SetQuestAndModifyKarmaAction(String questname, String state, double karmaDiff) {
+	public SetQuestAndModifyKarmaAction(String questname, String state,
+			double karmaDiff) {
 		this.questname = questname;
 		this.state = state;
 		this.karmaDiff = karmaDiff;
@@ -34,7 +38,8 @@ public class SetQuestAndModifyKarmaAction extends SpeakerNPC.ChatAction {
 
 	@Override
 	public String toString() {
-		return "SetQuestAndModifyKarma<" + questname + ",\"" + state + "\"," + karmaDiff +">";
+		return "SetQuestAndModifyKarma<" + questname + ",\"" + state + "\","
+				+ karmaDiff + ">";
 	}
 
 	@Override
@@ -44,24 +49,41 @@ public class SetQuestAndModifyKarmaAction extends SpeakerNPC.ChatAction {
 		long temp;
 		temp = Double.doubleToLongBits(karmaDiff);
 		result = PRIME * result + (int) (temp ^ (temp >>> 32));
-		result = PRIME * result + ((questname == null) ? 0 : questname.hashCode());
+		result = PRIME * result
+				+ ((questname == null) ? 0 : questname.hashCode());
 		result = PRIME * result + ((state == null) ? 0 : state.hashCode());
 		return result;
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj) return true;
-		if (obj == null) return false;
-		if (getClass() != obj.getClass()) return false;
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
 		final SetQuestAndModifyKarmaAction other = (SetQuestAndModifyKarmaAction) obj;
-		if (Double.doubleToLongBits(karmaDiff) != Double.doubleToLongBits(other.karmaDiff)) return false;
+		if (Double.doubleToLongBits(karmaDiff) != Double.doubleToLongBits(other.karmaDiff)) {
+			return false;
+		}
 		if (questname == null) {
-			if (other.questname != null) return false;
-		} else if (!questname.equals(other.questname)) return false;
+			if (other.questname != null) {
+				return false;
+			}
+		} else if (!questname.equals(other.questname)) {
+			return false;
+		}
 		if (state == null) {
-			if (other.state != null) return false;
-		} else if (!state.equals(other.state)) return false;
+			if (other.state != null) {
+				return false;
+			}
+		} else if (!state.equals(other.state)) {
+			return false;
+		}
 		return true;
 	}
 

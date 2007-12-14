@@ -33,7 +33,7 @@ public class OutfitStore {
 
 	/**
 	 * Create an outfit store.
-	 *
+	 * 
 	 * @param store
 	 *            The sprite store to use.
 	 */
@@ -47,14 +47,14 @@ public class OutfitStore {
 
 	/**
 	 * Build an outfit sprite.
-	 *
+	 * 
 	 * The outfit is described by an "outfit code". It is an 8-digit integer of
 	 * the form RRHHDDBB where RR is the number of the hair graphics, HH for the
 	 * head, DD for the dress, and BB for the base.
-	 *
+	 * 
 	 * @param code
 	 *            The outfit code.
-	 *
+	 * 
 	 * @return An walking state tileset.
 	 */
 	protected Sprite buildOutfit(int code) {
@@ -64,7 +64,6 @@ public class OutfitStore {
 		 * Base (body) layer
 		 */
 		idx = code % 100;
-	
 
 		Sprite layer = getBaseSprite(idx);
 
@@ -107,7 +106,7 @@ public class OutfitStore {
 
 	/**
 	 * Get the shared instance.
-	 *
+	 * 
 	 * @return The shared [singleton] instance.
 	 */
 	public static OutfitStore get() {
@@ -116,10 +115,10 @@ public class OutfitStore {
 
 	/**
 	 * Get the base sprite tileset.
-	 *
+	 * 
 	 * @param index
 	 *            The resource index.
-	 *
+	 * 
 	 * @return The sprite, or <code>null</code>.
 	 */
 	public Sprite getBaseSprite(int index) {
@@ -134,10 +133,10 @@ public class OutfitStore {
 
 	/**
 	 * Get the dress sprite tileset.
-	 *
+	 * 
 	 * @param index
 	 *            The resource index.
-	 *
+	 * 
 	 * @return The sprite, or <code>null</code>.
 	 */
 	public Sprite getDressSprite(int index) {
@@ -151,7 +150,7 @@ public class OutfitStore {
 
 	/**
 	 * Get the empty sprite tileset.
-	 *
+	 * 
 	 * @return The sprite.
 	 */
 	private Sprite getEmptySprite() {
@@ -160,7 +159,7 @@ public class OutfitStore {
 
 	/**
 	 * Get the failsafe outfit.
-	 *
+	 * 
 	 * @return The failsafe outfit tileset.
 	 */
 	public Sprite getFailsafeOutfit() {
@@ -170,10 +169,10 @@ public class OutfitStore {
 
 	/**
 	 * Get the hair sprite tileset.
-	 *
+	 * 
 	 * @param index
 	 *            The resource index.
-	 *
+	 * 
 	 * @return The sprite, or <code>null</code>.
 	 */
 	public Sprite getHairSprite(int index) {
@@ -191,10 +190,10 @@ public class OutfitStore {
 
 	/**
 	 * Get the head sprite tileset.
-	 *
+	 * 
 	 * @param index
 	 *            The resource index.
-	 *
+	 * 
 	 * @return The sprite, or <code>null</code>.
 	 */
 	public Sprite getHeadSprite(int index) {
@@ -208,14 +207,14 @@ public class OutfitStore {
 
 	/**
 	 * Get an outfit sprite.
-	 *
+	 * 
 	 * The outfit is described by an "outfit code". It is an 8-digit integer of
 	 * the form RRHHDDBB where RR is the number of the hair graphics, HH for the
 	 * head, DD for the dress, and BB for the base.
-	 *
+	 * 
 	 * @param code
 	 *            The outfit code.
-	 *
+	 * 
 	 * @return An walking state tileset.
 	 */
 	public Sprite getOutfit(int code) {
@@ -247,7 +246,7 @@ public class OutfitStore {
 
 		/**
 		 * Create an outfit reference.
-		 *
+		 * 
 		 * @param code
 		 *            The outfit code.
 		 */
@@ -261,7 +260,7 @@ public class OutfitStore {
 
 		/**
 		 * Get the outfit code.
-		 *
+		 * 
 		 * @return The outfit code.
 		 */
 		public int getCode() {
@@ -274,10 +273,10 @@ public class OutfitStore {
 
 		/**
 		 * Determine if this equals another object.
-		 *
+		 * 
 		 * @param obj
 		 *            Another object.
-		 *
+		 * 
 		 * @return <code>true</code> if the object is an OutfitRef with the
 		 *         same code.
 		 */
@@ -292,7 +291,7 @@ public class OutfitStore {
 
 		/**
 		 * Get the hash code.
-		 *
+		 * 
 		 * @return The hash code.
 		 */
 		@Override
@@ -302,7 +301,7 @@ public class OutfitStore {
 
 		/**
 		 * Get the string representation.
-		 *
+		 * 
 		 * @return The string in the form of <code>outfit:</code><em>code</em>.
 		 */
 		@Override

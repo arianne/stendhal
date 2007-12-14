@@ -16,9 +16,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Builds a priestess NPC
- * She is a
- *
+ * Builds a priestess NPC She is a
+ * 
  * @author kymara
  */
 public class PriestessNPC implements ZoneConfigurator {
@@ -26,11 +25,14 @@ public class PriestessNPC implements ZoneConfigurator {
 
 	/**
 	 * Configure a zone.
-	 *
-	 * @param	zone		The zone to be configured.
-	 * @param	attributes	Configuration attributes.
+	 * 
+	 * @param zone
+	 *            The zone to be configured.
+	 * @param attributes
+	 *            Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone,
+			Map<String, String> attributes) {
 		buildNPC(zone);
 	}
 
@@ -49,18 +51,19 @@ public class PriestessNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-			        addGreeting(null, new SpeakerNPC.ChatAction() {
+				addGreeting(null, new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-							engine.say("Hello, " + player.getTitle() + ".");
+					public void fire(Player player, Sentence sentence,
+							SpeakerNPC engine) {
+						engine.say("Hello, " + player.getTitle() + ".");
 
-						}
 					}
-				);
-			        addJob("As a priestess I can #offer you a number of potions and antidotes.");
+				});
+				addJob("As a priestess I can #offer you a number of potions and antidotes.");
 				addHelp("My sister Salva has the gift of healing. She is out for a walk by the aqueduct, you should find her there if you need her.");
-				new SellerAdder().addSeller(this, new SellerBehaviour(shops.get("superhealing")), true);
- 				addGoodbye("Bye, for now.");
+				new SellerAdder().addSeller(this, new SellerBehaviour(
+						shops.get("superhealing")), true);
+				addGoodbye("Bye, for now.");
 			}
 		};
 

@@ -12,17 +12,19 @@ package games.stendhal.client.events;
 public interface FeatureChangeListener {
 	/**
 	 * A feature was disabled.
-	 *
-	 * @param	name		The name of the feature.
+	 * 
+	 * @param name
+	 *            The name of the feature.
 	 */
 	void featureDisabled(String name);
 
-
 	/**
 	 * A feature was enabled.
-	 *
-	 * @param	name		The name of the feature.
-	 * @param	value		Optional feature specific data.
+	 * 
+	 * @param name
+	 *            The name of the feature.
+	 * @param value
+	 *            Optional feature specific data.
 	 */
 	void featureEnabled(String name, String value);
 }

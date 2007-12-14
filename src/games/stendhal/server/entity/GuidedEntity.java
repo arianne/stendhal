@@ -33,7 +33,7 @@ public abstract class GuidedEntity extends ActiveEntity {
 
 	/**
 	 * Create a guided entity.
-	 *
+	 * 
 	 * @param object
 	 *            The source object.
 	 */
@@ -50,7 +50,7 @@ public abstract class GuidedEntity extends ActiveEntity {
 
 	/**
 	 * Get the normal movement speed.
-	 *
+	 * 
 	 * @return The normal speed when moving.
 	 */
 	public final double getBaseSpeed() {
@@ -67,10 +67,10 @@ public abstract class GuidedEntity extends ActiveEntity {
 	 * the entity starts at the first node (so the first node should be its
 	 * position, of course). The speed will be set to the default for the
 	 * entity.
-	 *
+	 * 
 	 * TODO: Change to accept just 'Path' after everything is converted to use
 	 * opaque Path's rather than Node lists.
-	 *
+	 * 
 	 * @param path
 	 *            The path.
 	 */
@@ -107,7 +107,7 @@ public abstract class GuidedEntity extends ActiveEntity {
 
 	/**
 	 * Determine if the entty has a path.
-	 *
+	 * 
 	 * @return <code>true</code> if there is a path.
 	 */
 	public boolean hasPath() {

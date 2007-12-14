@@ -27,13 +27,11 @@ public class FaceAction implements ActionListener {
 
 	public void onAction(Player player, RPAction action) {
 
-
 		if (action.has(_DIR)) {
 			player.stop();
 			player.setDirection(Direction.build(action.getInt(_DIR)));
 			player.notifyWorldAboutChanges();
 		}
-
 
 	}
 }

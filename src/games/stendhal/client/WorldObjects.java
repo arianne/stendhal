@@ -31,7 +31,7 @@ import java.util.List;
  * zones. Events shall be reported dependent on succession of game flow and in
  * particular free from events caused by perceptions and sync operations of the
  * lower client layers.
- *
+ * 
  * Currently works for zone events.
  */
 public class WorldObjects {

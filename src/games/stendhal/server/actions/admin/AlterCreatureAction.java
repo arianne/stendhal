@@ -8,16 +8,18 @@ import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
 
 public class AlterCreatureAction extends AdministrationAction {
-private static final String _TEXT = "text";
-private static final String _TARGET = "target";
-private static final String _ALTERCREATURE = "altercreature";
-public static void register(){
-	CommandCenter.register(_ALTERCREATURE, new AlterCreatureAction(), 900);
+	private static final String _TEXT = "text";
+	private static final String _TARGET = "target";
+	private static final String _ALTERCREATURE = "altercreature";
 
-}
+	public static void register() {
+		CommandCenter.register(_ALTERCREATURE, new AlterCreatureAction(), 900);
+
+	}
+
 	@Override
 	public void perform(Player player, RPAction action) {
-	
+
 		if (action.has(_TARGET) && action.has(_TEXT)) {
 			Entity changed = getTarget(player, action);
 
@@ -38,7 +40,7 @@ public static void register(){
 				Creature creature = (Creature) changed;
 				StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
 						"alter", action.get(_TARGET), stat);
-	
+
 				creature.setName(parts[0]);
 				creature.setATK(Integer.parseInt(parts[1]));
 				creature.setDEF(Integer.parseInt(parts[2]));
@@ -50,5 +52,5 @@ public static void register(){
 			}
 		}
 	}
-	
+
 }

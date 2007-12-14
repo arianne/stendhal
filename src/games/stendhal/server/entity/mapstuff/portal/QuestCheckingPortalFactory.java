@@ -22,15 +22,16 @@ public class QuestCheckingPortalFactory extends AccessCheckingPortalFactory {
 
 	/**
 	 * Extract the quest name from a context.
-	 *
-	 * @param	ctx		The configuration context.
-	 * @return	The quest name.
-	 * @throws	IllegalArgumentException If the quest attribute is missing.
+	 * 
+	 * @param ctx
+	 *            The configuration context.
+	 * @return The quest name.
+	 * @throws IllegalArgumentException
+	 *             If the quest attribute is missing.
 	 */
 	protected String getQuest(ConfigurableFactoryContext ctx) {
 		return ctx.getRequiredString("quest");
 	}
-
 
 	//
 	// AccessCheckingPortalFactory
@@ -38,18 +39,18 @@ public class QuestCheckingPortalFactory extends AccessCheckingPortalFactory {
 
 	/**
 	 * Create a quest checking portal.
-	 *
-	 * @param	ctx	Configuration context.
-	 *
-	 * @return	A Portal.
-	 *
-	 * @throws	IllegalArgumentException
-	 *				If there is a problem with the
-	 *				attributes. The exception message
-	 *				should be a value suitable for
-	 *				meaningful user interpretation.
-	 *
-	 * @see		LevelCheckingPortal
+	 * 
+	 * @param ctx
+	 *            Configuration context.
+	 * 
+	 * @return A Portal.
+	 * 
+	 * @throws IllegalArgumentException
+	 *             If there is a problem with the attributes. The exception
+	 *             message should be a value suitable for meaningful user
+	 *             interpretation.
+	 * 
+	 * @see LevelCheckingPortal
 	 */
 	@Override
 	protected AccessCheckingPortal createPortal(ConfigurableFactoryContext ctx) {

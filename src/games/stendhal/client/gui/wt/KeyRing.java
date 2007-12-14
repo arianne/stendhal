@@ -18,7 +18,7 @@ import games.stendhal.client.events.FeatureChangeListener;
 public class KeyRing extends EntityContainer implements FeatureChangeListener {
 	/**
 	 * Create a key ring.
-	 *
+	 * 
 	 * @param client
 	 *            The stendhal client.
 	 */
@@ -36,7 +36,6 @@ public class KeyRing extends EntityContainer implements FeatureChangeListener {
 		client.addFeatureChangeListener(this);
 	}
 
-
 	//
 	// KeyRing
 	//
@@ -51,14 +50,13 @@ public class KeyRing extends EntityContainer implements FeatureChangeListener {
 		}
 	}
 
-
 	//
 	// FeatureChangeListener
 	//
 
 	/**
 	 * A feature was disabled.
-	 *
+	 * 
 	 * @param name
 	 *            The name of the feature.
 	 */
@@ -70,7 +68,7 @@ public class KeyRing extends EntityContainer implements FeatureChangeListener {
 
 	/**
 	 * A feature was enabled.
-	 *
+	 * 
 	 * @param name
 	 *            The name of the feature.
 	 * @param value
@@ -84,7 +82,6 @@ public class KeyRing extends EntityContainer implements FeatureChangeListener {
 			}
 		}
 	}
-
 
 	//
 	// WtPanel

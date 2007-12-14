@@ -14,32 +14,30 @@ import games.stendhal.server.events.TurnNotifier;
 import java.util.Map;
 import java.util.StringTokenizer;
 
-
 import org.apache.log4j.Logger;
 
 /**
  * Represents a teleport scroll that takes the player to a specified location
  * for a specified time, after which it will teleport the player to given
  * location.
- *
+ * 
  * infostring attribute in items.xml: 1_dreamscape 77 35 5400 0_semos_plains_s
  * -1 -1 where 1_dreamscape is the target zone name; 77 and 35 are the target x
  * and y position; 5400 is the number of turns before return; 0_semos_plains_s
  * is the return zone; -1 and -1 are the return x and y positions (negative
  * value means a random position)
- *
+ * 
  * TODO: This class isn't fully self-containing as the LoginHandler (that
  * handles the players logging in the target zone) must be implemented
  * elsewhere.
  */
 public class TimedTeleportScroll extends TeleportScroll {
 
-	private static final Logger logger = Logger
-			.getLogger(TimedTeleportScroll.class);
+	private static final Logger logger = Logger.getLogger(TimedTeleportScroll.class);
 
 	/**
 	 * Teleport the player back from the target zone.
-	 *
+	 * 
 	 * @param player
 	 * @param returnZone
 	 * @param x
@@ -100,7 +98,7 @@ public class TimedTeleportScroll extends TeleportScroll {
 
 	/**
 	 * Creates a new timed marked teleport scroll
-	 *
+	 * 
 	 * @param name
 	 * @param clazz
 	 * @param subclass
@@ -113,7 +111,7 @@ public class TimedTeleportScroll extends TeleportScroll {
 
 	/**
 	 * copy constructor
-	 *
+	 * 
 	 * @param item
 	 *            item to copy
 	 */
@@ -124,7 +122,7 @@ public class TimedTeleportScroll extends TeleportScroll {
 	/**
 	 * Is invoked when a teleporting scroll is used. Tries to put the player on
 	 * the scroll's destination, or near it.
-	 *
+	 * 
 	 * @param player
 	 *            The player who used the scroll and who will be teleported
 	 * @return true iff teleport was successful
@@ -192,7 +190,7 @@ public class TimedTeleportScroll extends TeleportScroll {
 
 	/**
 	 * override this to show a message before teleporting the player back.
-	 *
+	 * 
 	 * @return the message to shown or null for no message
 	 */
 	protected String getBeforeReturnMessage() {
@@ -201,7 +199,7 @@ public class TimedTeleportScroll extends TeleportScroll {
 
 	/**
 	 * override this to show a message after teleporting the player back.
-	 *
+	 * 
 	 * @return the message to shown or null for no message
 	 */
 	protected String getAfterReturnMessage() {

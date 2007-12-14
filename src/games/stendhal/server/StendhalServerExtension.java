@@ -10,7 +10,6 @@ package games.stendhal.server;
 import java.util.HashMap;
 import java.util.Map;
 
-
 import org.apache.log4j.Logger;
 
 public abstract class StendhalServerExtension {
@@ -50,7 +49,8 @@ public abstract class StendhalServerExtension {
 			loadedInstances.put(name, instance);
 			return instance;
 		} catch (Exception e) {
-			logger.warn("StendhalServerExtension " + name + " loading failed.", e);
+			logger.warn("StendhalServerExtension " + name + " loading failed.",
+					e);
 			return null;
 		}
 	}

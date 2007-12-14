@@ -28,11 +28,13 @@ public class AwayAction implements ActionListener {
 	/**
 	 * changes away status depending on existence of MESSAGE in action.
 	 * 
-	 * If action contains MESSAGE, the away status is set 
-	 * else the away status is unset.
-	 *
-	 * @param	player		The player.
-	 * @param	action		The action.
+	 * If action contains MESSAGE, the away status is set else the away status
+	 * is unset.
+	 * 
+	 * @param player
+	 *            The player.
+	 * @param action
+	 *            The action.
 	 */
 	public void onAction(final Player player, final RPAction action) {
 		if (action.get(WellKnownActionConstants.TYPE).equals(_AWAY)) {

@@ -12,7 +12,7 @@ import java.util.Map;
 
 /**
  * Enables admins to create (list and remove) signs.
- *
+ * 
  * @author hendrik
  */
 public class AdminSign extends ScriptImpl {
@@ -23,9 +23,11 @@ public class AdminSign extends ScriptImpl {
 
 	/**
 	 * adds a sign
-	 *
-	 * @param player admin
-	 * @param args zone x y text
+	 * 
+	 * @param player
+	 *            admin
+	 * @param args
+	 *            zone x y text
 	 */
 	public void add(Player player, List<String> args) {
 		if (args.size() >= 3) {
@@ -71,18 +73,19 @@ public class AdminSign extends ScriptImpl {
 			storage.put(Integer.valueOf(signcounter), sign);
 		} else {
 			// syntax error, print help text
-			sandbox
-			        .privateText(
-			                player,
-			                "This script creates, lists or removes signs. Syntax: \r\nAdminSign.class <zone> <x> <y> <text> The first 3 parameters can be \"-\".\r\nAdminSign.class list\r\nAdminSign.class del <n>");
+			sandbox.privateText(
+					player,
+					"This script creates, lists or removes signs. Syntax: \r\nAdminSign.class <zone> <x> <y> <text> The first 3 parameters can be \"-\".\r\nAdminSign.class list\r\nAdminSign.class del <n>");
 		}
 	}
 
 	/**
 	 * Removes the specified sign
-	 *
-	 * @param player admin
-	 * @param args sign number at index 1
+	 * 
+	 * @param player
+	 *            admin
+	 * @param args
+	 *            sign number at index 1
 	 */
 	public void delete(Player player, List<String> args) {
 		int i;
@@ -117,8 +120,9 @@ public class AdminSign extends ScriptImpl {
 
 	/**
 	 * Lists all signs
-	 *
-	 * @param player admin invoking this script
+	 * 
+	 * @param player
+	 *            admin invoking this script
 	 */
 	public void list(Player player) {
 		StringBuilder sb = new StringBuilder();
@@ -141,15 +145,15 @@ public class AdminSign extends ScriptImpl {
 	@Override
 	public void execute(Player admin, List<String> args) {
 		if (args.size() == 0) {
-			admin
-			        .sendPrivateText("/script AdminSign.class zone x y text (the first three parameters may be \"-\"\n/script AdminSign.class list\n/script AdminSign.class del <n>");
+			admin.sendPrivateText("/script AdminSign.class zone x y text (the first three parameters may be \"-\"\n/script AdminSign.class list\n/script AdminSign.class del <n>");
 			return;
 		}
 
 		String temp = args.get(0);
 		if (temp.equals("list")) {
 			list(admin);
-		} else if (temp.equals("del") || temp.equals("delete") || temp.equals("remove")) {
+		} else if (temp.equals("del") || temp.equals("delete")
+				|| temp.equals("remove")) {
 			delete(admin, args);
 		} else {
 			add(admin, args);

@@ -1,9 +1,8 @@
 package games.stendhal.server.account;
 
-
 /**
- * rules for account creation
- *
+ * rules for account creation.
+ * 
  * @author hendrik
  */
 public class AccountCreationRules {
@@ -14,11 +13,14 @@ public class AccountCreationRules {
 	private String email;
 
 	/**
-	 * creates a new AccountCreationRules instance
-	 *
-	 * @param username name of the user
-	 * @param password password for this account
-	 * @param email email contact
+	 * creates a new AccountCreationRules instance.
+	 * 
+	 * @param username
+	 *            name of the user
+	 * @param password
+	 *            password for this account
+	 * @param email
+	 *            email contact
 	 */
 	public AccountCreationRules(String username, String password, String email) {
 		this.username = username.trim();
@@ -41,7 +43,8 @@ public class AccountCreationRules {
 		validators.add(new MinLengthValidator(password, 4));
 		validators.add(new MaxLengthValidator(password, 100));
 		// This is only a warning in the client:
-		// validators.add(new PasswordDiffersFromUsernameValidator(username, password));
+		// validators.add(new PasswordDiffersFromUsernameValidator(username,
+		// password));
 	}
 
 	private void setupValidatorsForEMail() {
@@ -51,9 +54,9 @@ public class AccountCreationRules {
 	}
 
 	/**
-	 * returns a complete list of all rules which must be enforced during 
+	 * returns a complete list of all rules which must be enforced during.
 	 * account creation
-	 *
+	 * 
 	 * @return ValidatorList
 	 */
 	public ValidatorList getAllRules() {

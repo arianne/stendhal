@@ -48,13 +48,12 @@ public class SpriteStore {
 	private static boolean doOldBootstrapClassloaderWorkaroundFirst = true;
 
 	protected SpriteStore() {
-		gc = GraphicsEnvironment.getLocalGraphicsEnvironment()
-				.getDefaultScreenDevice().getDefaultConfiguration();
+		gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
 	}
 
 	/**
 	 * Get the single instance of this class
-	 *
+	 * 
 	 * @return The single instance of this class
 	 */
 	public static SpriteStore get() {
@@ -63,7 +62,7 @@ public class SpriteStore {
 
 	/**
 	 * Create an animated sprite from a tile sprite using pixel units.
-	 *
+	 * 
 	 * @param sprite
 	 *            The image which contains the different frames.
 	 * @param x
@@ -78,7 +77,7 @@ public class SpriteStore {
 	 *            The tile height (in pixels).
 	 * @param delay
 	 *            The minimum delay between frames.
-	 *
+	 * 
 	 * @return An animated sprite.
 	 */
 	public AnimatedSprite getAnimatedSprite(final Sprite sprite, final int x,
@@ -90,7 +89,7 @@ public class SpriteStore {
 
 	/**
 	 * Get sprite tiles from a sprite using pixel units.
-	 *
+	 * 
 	 * @param sprite
 	 *            The base image.
 	 * @param x
@@ -103,15 +102,14 @@ public class SpriteStore {
 	 *            The tile width (in pixels).
 	 * @param height
 	 *            The tile height (in pixels).
-	 * @param delay
-	 *            The minimum delay between frames.
-	 *
+	 * 
 	 * @return An array of sprites.
 	 */
 	public Sprite[] getTiles(final Sprite sprite, final int x, final int y,
 			final int count, final int width, final int height) {
-		if (sprite == null)
+		if (sprite == null) {
 			return new Sprite[0];
+		}
 
 		Sprite[] sprites = new Sprite[count];
 
@@ -125,11 +123,11 @@ public class SpriteStore {
 		return sprites;
 	}
 
-	private final static String FAILSAFE_ICON_REF = "data/sprites/failsafe.png";
+	private static final String FAILSAFE_ICON_REF = "data/sprites/failsafe.png";
 
 	/**
 	 * Get the failsafe sprite.
-	 *
+	 * 
 	 * @return The failsafe sprite.
 	 */
 	public Sprite getFailsafe() {
@@ -142,7 +140,7 @@ public class SpriteStore {
 
 	/**
 	 * Retrieve a sprite from the store
-	 *
+	 * 
 	 * @param ref
 	 *            The reference to the image to use for the sprite
 	 * @return A sprite instance containing an accelerate image of the request
@@ -166,7 +164,7 @@ public class SpriteStore {
 
 	/**
 	 * Checks if a file exists.
-	 *
+	 * 
 	 * @param ref
 	 *            the file name
 	 * @return
@@ -178,10 +176,10 @@ public class SpriteStore {
 
 	/**
 	 * Load a sprite from a resource reference.
-	 *
+	 * 
 	 * @param ref
 	 *            The image resource name.
-	 *
+	 * 
 	 * @return A sprite, or <code>null</code> if missing/on error.
 	 */
 	protected Sprite loadSprite(String ref) {
@@ -198,7 +196,8 @@ public class SpriteStore {
 			if (url == null) {
 				logger.error("Can't find ref: " + ref);
 
-				// avoid infinite loop and stack overflow in case of missing failsafe icon
+				// avoid infinite loop and stack overflow in case of missing
+				// failsafe icon
 				if (!ref.equals(FAILSAFE_ICON_REF)) {
 					return getFailsafe();
 				} else {
@@ -233,7 +232,7 @@ public class SpriteStore {
 
 	/**
 	 * Get an empty sprite with the size of a single tile.
-	 *
+	 * 
 	 * @return An empty sprite.
 	 */
 	public Sprite getEmptySprite() {
@@ -243,12 +242,12 @@ public class SpriteStore {
 
 	/**
 	 * Get an empty sprite.
-	 *
+	 * 
 	 * @param width
 	 *            The width.
 	 * @param height
 	 *            The height.
-	 *
+	 * 
 	 * @return An empty sprite.
 	 */
 	public Sprite getEmptySprite(final int width, final int height) {
@@ -268,9 +267,9 @@ public class SpriteStore {
 
 	/**
 	 * Create a sprite tile (sub-region).
-	 *
-	 *
-	 *
+	 * 
+	 * 
+	 * 
 	 * @param width
 	 *            The width.
 	 * @param height
@@ -302,7 +301,7 @@ public class SpriteStore {
 	 * prefering old resources. This method ensures we get the sprite from the
 	 * appropriate place, this helps with deploying the game with things like
 	 * webstart and updates.
-	 *
+	 * 
 	 * @param ref
 	 *            name of resource
 	 * @return URL to this resouce
@@ -315,7 +314,7 @@ public class SpriteStore {
 	 * Warning, ugly workaround for a bug in Bootstrap.java prior (including)
 	 * version 0.57. There are still old version of Bootstrap araound as this
 	 * file cannot be updated with the automatic updater.
-	 *
+	 * 
 	 * @param ref
 	 *            resource name
 	 * @return URL to that resource or null in case it was not found

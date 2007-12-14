@@ -34,10 +34,10 @@ import marauroa.common.game.RPAction;
 
 /**
  * A HTML implementation of a KTextEdit component.
- *
+ * 
  * TODO: Many of the general HTML functions can be moved to a common utility
  * class.
- *
+ * 
  * TODO: Move the message formatting (and setup) code to a common class so that
  * the in-game text bubbles can use the same code for rendering.
  */
@@ -49,7 +49,7 @@ public class KHtmlEdit extends KTextEdit {
 
 	/**
 	 * Handle hypertext link activation.
-	 *
+	 * 
 	 * @param ev
 	 *            The link event data.
 	 */
@@ -99,7 +99,7 @@ public class KHtmlEdit extends KTextEdit {
 	/**
 	 * Append HTML text to the end of the content. Note: Currently elements must
 	 * be complete to be added correctly.
-	 *
+	 * 
 	 * @param text
 	 *            The HTML text to add.
 	 */
@@ -119,10 +119,10 @@ public class KHtmlEdit extends KTextEdit {
 	/**
 	 * Append a character to a buffer, escaping HTML meta-characters when
 	 * needed.
-	 *
+	 * 
 	 * @param text
 	 *            Raw text.
-	 *
+	 * 
 	 * @return Escaped HTML.
 	 */
 	protected void appendHTML(final StringBuilder sbuf, final char ch) {
@@ -147,10 +147,10 @@ public class KHtmlEdit extends KTextEdit {
 
 	/**
 	 * Escape text as HTML, escaping meta-characters.
-	 *
+	 * 
 	 * @param text
 	 *            Raw text.
-	 *
+	 * 
 	 * @return Escaped HTML.
 	 */
 	protected void appendHTML(final StringBuilder sbuf, final String text) {
@@ -165,10 +165,10 @@ public class KHtmlEdit extends KTextEdit {
 
 	/**
 	 * Translate a standard stendhal encoded to HTML encoded.
-	 *
+	 * 
 	 * @param text
 	 *            The text to encode.
-	 *
+	 * 
 	 * @return HTML encoded text.
 	 */
 	protected String translateToHTML(final String text) {
@@ -212,10 +212,10 @@ public class KHtmlEdit extends KTextEdit {
 	 * Extract link content from a character iterator. It is assumed that the
 	 * '#' has already been eaten. It leaves the character iterator at the first
 	 * character after the link text.
-	 *
+	 * 
 	 * @param ci
 	 *            The character iterator.
-	 *
+	 * 
 	 * @return Link text (or an empty string).
 	 */
 	protected String extractLink(final CharacterIterator ci) {
@@ -270,10 +270,10 @@ public class KHtmlEdit extends KTextEdit {
 	 * Determine is a character is a word delimiter when followed by a space or
 	 * end-of-line. Care should be taken to avoid matching characters that are
 	 * typically at the end of valid URL's.
-	 *
+	 * 
 	 * @param ch
 	 *            A character;
-	 *
+	 * 
 	 * @return <code>true</code> if a word delimiter.
 	 */
 	protected boolean isWordDelim(char ch) {
@@ -293,7 +293,7 @@ public class KHtmlEdit extends KTextEdit {
 	/**
 	 * Convert a text "link" to an HTML link. For well-known URL's, the link is
 	 * taken literally, otherwise a <code>say:</code> URL will be generated.
-	 *
+	 * 
 	 * @param sbuf
 	 *            The string buffer to append to.
 	 * @param text
@@ -323,10 +323,10 @@ public class KHtmlEdit extends KTextEdit {
 
 	/**
 	 * Convert a color to a CSS color attribute value.
-	 *
+	 * 
 	 * @param color
 	 *            An AWT color.
-	 *
+	 * 
 	 * @return A <code>color:</code> CSS attribute value.
 	 */
 	protected String colorToRGB(final Color color) {
@@ -350,7 +350,7 @@ public class KHtmlEdit extends KTextEdit {
 
 	/**
 	 * Initialize style information for a text pane.
-	 *
+	 * 
 	 * @param textPane
 	 *            The text pane.
 	 */
@@ -411,7 +411,7 @@ public class KHtmlEdit extends KTextEdit {
 	/**
 	 * Insert the text portion of the line using a specified notification type
 	 * for style.
-	 *
+	 * 
 	 * @param text
 	 *            The text to insert.
 	 * @param type

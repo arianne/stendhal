@@ -7,3 +7,4 @@
  * no Log4j, no Marauroa, no Stendhal.</b></font>
  */
 package games.stendhal.client.update;
+

@@ -24,20 +24,22 @@ public abstract class TeleportScroll extends InfoStringScroll {
 
 	/**
 	 * Creates a new teleport scroll
-	 *
+	 * 
 	 * @param name
 	 * @param clazz
 	 * @param subclass
 	 * @param attributes
 	 */
-	public TeleportScroll(String name, String clazz, String subclass, Map<String, String> attributes) {
+	public TeleportScroll(String name, String clazz, String subclass,
+			Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);
 	}
 
 	/**
 	 * copy constructor
-	 *
-	 * @param item item to copy
+	 * 
+	 * @param item
+	 *            item to copy
 	 */
 	public TeleportScroll(TeleportScroll item) {
 		super(item);
@@ -45,18 +47,20 @@ public abstract class TeleportScroll extends InfoStringScroll {
 
 	/**
 	 * Is invoked when a teleporting scroll is actually used.
-	 *
-	 * @param player The player who used the scroll and who will be
-	 * teleported
-	 *
+	 * 
+	 * @param player
+	 *            The player who used the scroll and who will be teleported
+	 * 
 	 * @return true iff teleport was successful
 	 */
 	protected abstract boolean useTeleportScroll(Player player);
 
 	/**
-	 * Is invoked when a teleporting scroll is used. Tries to put the
-	 * player on the scroll's destination, or near it. 
-	 * @param player The player who used the scroll and who will be teleported
+	 * Is invoked when a teleporting scroll is used. Tries to put the player on
+	 * the scroll's destination, or near it.
+	 * 
+	 * @param player
+	 *            The player who used the scroll and who will be teleported
 	 * @return true iff teleport was successful
 	 */
 	@Override

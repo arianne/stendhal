@@ -9,15 +9,17 @@ public class GrumpyAction implements ActionListener {
 
 	/**
 	 * Handle a Grumpy action.
-	 *
-	 * @param	player		The player.
-	 * @param	action		The action.
+	 * 
+	 * @param player
+	 *            The player.
+	 * @param action
+	 *            The action.
 	 */
 	public void onAction(Player player, RPAction action) {
 		if (action.has(_REASON)) {
 			player.setGrumpyMessage(action.get(_REASON));
 		} else {
-			player.setGrumpyMessage(null);	
+			player.setGrumpyMessage(null);
 		}
 		player.notifyWorldAboutChanges();
 

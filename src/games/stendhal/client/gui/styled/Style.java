@@ -23,29 +23,29 @@ public interface Style {
 
 	/**
 	 * Get the background texture.
-	 *
-	 * @return	A texture sprite.
+	 * 
+	 * @return A texture sprite.
 	 */
 	Sprite getBackground();
 
 	/**
 	 * Get component border.
-	 *
-	 * @return	A border, or <code>null</code> to use default.
+	 * 
+	 * @return A border, or <code>null</code> to use default.
 	 */
 	Border getBorder();
 
 	/**
 	 * Get the normal font.
-	 *
-	 * @return	A font.
+	 * 
+	 * @return A font.
 	 */
 	Font getFont();
 
 	/**
 	 * Get the foreground color appropriate for the background texture.
-	 *
-	 * @return	A color.
+	 * 
+	 * @return A color.
 	 */
 	Color getForeground();
 }

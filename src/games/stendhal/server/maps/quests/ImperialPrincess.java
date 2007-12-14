@@ -57,13 +57,15 @@ public class ImperialPrincess extends AbstractQuest {
 				ConversationStates.ATTENDING, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+					public void fire(Player player, Sentence sentence,
+							SpeakerNPC engine) {
 						if (player.isQuestCompleted(QUEST_SLOT)) {
 							engine.say("The trapped creatures looked much better last time I dared venture down to the basement, thank you!");
 
 						} else if (!player.hasQuest(QUEST_SLOT)) {
 							engine.say("I cannot free the captives in the basement but I could do one thing: ease their pain. I need #herbs for this.");
-						} else if (player.getQuest(QUEST_SLOT).equals("recommended")) {
+						} else if (player.getQuest(QUEST_SLOT).equals(
+								"recommended")) {
 							engine.say("Speak to my father, the King. I have asked him to grant you citizenship of Kalavan, to express my gratitude to you.");
 						} else {
 							engine.say("I'm sure I asked you to do something for me, already.");
@@ -77,7 +79,8 @@ public class ImperialPrincess extends AbstractQuest {
 				ConversationStates.QUEST_OFFERED, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+					public void fire(Player player, Sentence sentence,
+							SpeakerNPC engine) {
 						engine.say("I need "
 								+ Integer.toString(1 + player.getLevel()
 										/ ARANDULA_DIVISOR)
@@ -99,10 +102,12 @@ public class ImperialPrincess extends AbstractQuest {
 				"Thank you! We must be subtle about this, I do not want the scientists suspecting I interfere. When you return with the items, please say codeword #herbs.",
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+					public void fire(Player player, Sentence sentence,
+							SpeakerNPC engine) {
 						// store the current level incase it increases before
 						// she see them next.
-						player.setQuest(QUEST_SLOT, Integer.toString(player.getLevel()));
+						player.setQuest(QUEST_SLOT,
+								Integer.toString(player.getLevel()));
 					}
 				});
 
@@ -131,7 +136,8 @@ public class ImperialPrincess extends AbstractQuest {
 				ConversationStates.ATTENDING, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+					public void fire(Player player, Sentence sentence,
+							SpeakerNPC engine) {
 						int required_arandula = 1
 								+ Integer.valueOf(player.getQuest(QUEST_SLOT))
 								/ ARANDULA_DIVISOR;
@@ -163,7 +169,8 @@ public class ImperialPrincess extends AbstractQuest {
 							player.setQuest(QUEST_SLOT, "recommended");
 							player.notifyWorldAboutChanges();
 						} else if (player.hasQuest(QUEST_SLOT)
-								&& player.getQuest(QUEST_SLOT).equals("recommended")) {
+								&& player.getQuest(QUEST_SLOT).equals(
+										"recommended")) {
 							engine.say("The herbs you brought did a wonderful job. I told my father you can be trusted, you should go speak with him now.");
 						} else { /* reminder */
 							engine.say("Shh! Don't say it till you have the "
@@ -183,17 +190,19 @@ public class ImperialPrincess extends AbstractQuest {
 		SpeakerNPC npc = npcs.get("King Cozart");
 
 		/** Complete the quest by speaking to King */
-		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-			new QuestInStateCondition(QUEST_SLOT, "recommended"), 
-			ConversationStates.IDLE,
-			"Greetings! My wonderful daughter requests that I grant you citizenship of Kalavan City. Consider it done. Now, forgive me while I go back to my meal. Goodbye.",
-			new MultipleActions(new IncreaseXPAction(500), new SetQuestAction(QUEST_SLOT, "done")));
+		npc.add(
+				ConversationStates.IDLE,
+				ConversationPhrases.GREETING_MESSAGES,
+				new QuestInStateCondition(QUEST_SLOT, "recommended"),
+				ConversationStates.IDLE,
+				"Greetings! My wonderful daughter requests that I grant you citizenship of Kalavan City. Consider it done. Now, forgive me while I go back to my meal. Goodbye.",
+				new MultipleActions(new IncreaseXPAction(500),
+						new SetQuestAction(QUEST_SLOT, "done")));
 
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-			new QuestNotInStateCondition(QUEST_SLOT, "recommended"), 
-			ConversationStates.IDLE, 
-			"Leave me! Can't you see I am trying to eat?",
-			null);
+				new QuestNotInStateCondition(QUEST_SLOT, "recommended"),
+				ConversationStates.IDLE,
+				"Leave me! Can't you see I am trying to eat?", null);
 	}
 
 	@Override

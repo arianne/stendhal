@@ -48,7 +48,7 @@ import javax.swing.SwingUtilities;
 
 /**
  * A base internal dialog in swing that implements ManagedWindow.
- *
+ * 
  */
 public class InternalManagedDialog implements ManagedWindow {
 	/** size of the titlebar */
@@ -118,7 +118,7 @@ public class InternalManagedDialog implements ManagedWindow {
 
 	/**
 	 * Create a managed dialog window.
-	 *
+	 * 
 	 * @param name
 	 *            The logical name.
 	 * @param title
@@ -283,7 +283,7 @@ public class InternalManagedDialog implements ManagedWindow {
 
 	/**
 	 * Handle titlebar clicks.
-	 *
+	 * 
 	 * @param count
 	 *            The click count.
 	 */
@@ -309,7 +309,7 @@ public class InternalManagedDialog implements ManagedWindow {
 
 	/**
 	 * Handle begining of titlebar drag.
-	 *
+	 * 
 	 * @param x
 	 *            The X coordinate.
 	 * @param y
@@ -323,7 +323,7 @@ public class InternalManagedDialog implements ManagedWindow {
 
 	/**
 	 * Handle end of titlebar drag.
-	 *
+	 * 
 	 * @param x
 	 *            The X coordinate.
 	 * @param y
@@ -337,7 +337,7 @@ public class InternalManagedDialog implements ManagedWindow {
 
 	/**
 	 * Handle titlebar drag movement.
-	 *
+	 * 
 	 * @param x
 	 *            The X coordinate.
 	 * @param y
@@ -375,7 +375,7 @@ public class InternalManagedDialog implements ManagedWindow {
 
 	/**
 	 * Get the actual dialog.
-	 *
+	 * 
 	 * @return The dialog.
 	 */
 	public Container getDialog() {
@@ -388,8 +388,7 @@ public class InternalManagedDialog implements ManagedWindow {
 	protected void fireCloseListeners() {
 		WtCloseListener[] listeners;
 
-		listeners = closeListeners.toArray(new WtCloseListener[closeListeners
-				.size()]);
+		listeners = closeListeners.toArray(new WtCloseListener[closeListeners.size()]);
 
 		for (WtCloseListener l : listeners) {
 			l.onClose(getName());
@@ -400,7 +399,7 @@ public class InternalManagedDialog implements ManagedWindow {
 	 * Set the content component. For now, if the content wishes to resize the
 	 * dialog, it should set a client property named <code>size-change</code>
 	 * on itself.
-	 *
+	 * 
 	 * @param content
 	 *            A component to implement the content.
 	 */
@@ -436,7 +435,7 @@ public class InternalManagedDialog implements ManagedWindow {
 
 	/**
 	 * Get the managed window name.
-	 *
+	 * 
 	 * @return The logical window name (not title).
 	 */
 	public String getName() {
@@ -445,7 +444,7 @@ public class InternalManagedDialog implements ManagedWindow {
 
 	/**
 	 * Get X coordinate of the window.
-	 *
+	 * 
 	 * @return A value suitable for passing to <code>moveTo()</code>.
 	 */
 	public int getX() {
@@ -454,7 +453,7 @@ public class InternalManagedDialog implements ManagedWindow {
 
 	/**
 	 * Get Y coordinate of the window.
-	 *
+	 * 
 	 * @return A value suitable for passing to <code>moveTo()</code>.
 	 */
 	public int getY() {
@@ -463,7 +462,7 @@ public class InternalManagedDialog implements ManagedWindow {
 
 	/**
 	 * Determine if the window is minimizable.
-	 *
+	 * 
 	 * @return <code>true</code> if minimizable.
 	 */
 	public boolean isMinimizable() {
@@ -472,7 +471,7 @@ public class InternalManagedDialog implements ManagedWindow {
 
 	/**
 	 * Determine if the window is minimized.
-	 *
+	 * 
 	 * @return <code>true</code> if the window is minimized.
 	 */
 	public boolean isMinimized() {
@@ -481,7 +480,7 @@ public class InternalManagedDialog implements ManagedWindow {
 
 	/**
 	 * Determine if the window is movable.
-	 *
+	 * 
 	 * @return <code>true</code> if the window is movable.
 	 */
 	public boolean isMovable() {
@@ -490,7 +489,7 @@ public class InternalManagedDialog implements ManagedWindow {
 
 	/**
 	 * Determine if the window is visible.
-	 *
+	 * 
 	 * @return <code>true</code> if the window is visible.
 	 */
 	public boolean isVisible() {
@@ -501,12 +500,12 @@ public class InternalManagedDialog implements ManagedWindow {
 	 * Move to a location. This may be subject to internal representation, and
 	 * should only use what was passed from <code>getX()</code> and
 	 * <code>getY()</code>.
-	 *
+	 * 
 	 * @param x
 	 *            The X coordinate
 	 * @param y
 	 *            The Y coordinate
-	 *
+	 * 
 	 * @return <code>true</code> if the move was allowed.
 	 */
 	public boolean moveTo(int x, int y) {
@@ -516,7 +515,7 @@ public class InternalManagedDialog implements ManagedWindow {
 
 	/**
 	 * Register a close listener.
-	 *
+	 * 
 	 * @param listener
 	 *            A close listener.
 	 */
@@ -526,7 +525,7 @@ public class InternalManagedDialog implements ManagedWindow {
 
 	/**
 	 * Unregister a close listener.
-	 *
+	 * 
 	 * @param listener
 	 *            A close listener.
 	 */
@@ -536,7 +535,7 @@ public class InternalManagedDialog implements ManagedWindow {
 
 	/**
 	 * Set whether the window is minimizable.
-	 *
+	 * 
 	 * @param minimizable
 	 *            <code>true</code> if minimizable.
 	 */
@@ -546,7 +545,7 @@ public class InternalManagedDialog implements ManagedWindow {
 
 	/**
 	 * Set the window as minimized.
-	 *
+	 * 
 	 * @param minimized
 	 *            Whether the window should be minimized.
 	 */
@@ -580,7 +579,7 @@ public class InternalManagedDialog implements ManagedWindow {
 
 	/**
 	 * Set whether the window is movable.
-	 *
+	 * 
 	 * @param movable
 	 *            <code>true</code> if movable.
 	 */
@@ -590,7 +589,7 @@ public class InternalManagedDialog implements ManagedWindow {
 
 	/**
 	 * Set the window as visible (or hidden).
-	 *
+	 * 
 	 * @param visible
 	 *            Whether the window should be visible.
 	 */
@@ -761,7 +760,7 @@ public class InternalManagedDialog implements ManagedWindow {
 	protected class TBDragMoveCB extends MouseMotionAdapter {
 		/**
 		 * Handle mouse drag event.
-		 *
+		 * 
 		 * @param ev
 		 *            The mouse event.
 		 */
@@ -777,7 +776,7 @@ public class InternalManagedDialog implements ManagedWindow {
 	protected class TBDragClickCB extends MouseAdapter {
 		/**
 		 * Handle mouse pressed event.
-		 *
+		 * 
 		 * @param ev
 		 *            The mouse event.
 		 */
@@ -790,7 +789,7 @@ public class InternalManagedDialog implements ManagedWindow {
 
 		/**
 		 * Handle mouse released event.
-		 *
+		 * 
 		 * @param ev
 		 *            The mouse event.
 		 */
@@ -803,7 +802,7 @@ public class InternalManagedDialog implements ManagedWindow {
 
 		/**
 		 * Handle mouse click event.
-		 *
+		 * 
 		 * @param ev
 		 *            The mouse event.
 		 */

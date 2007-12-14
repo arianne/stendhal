@@ -18,9 +18,10 @@ public class AndCondition extends SpeakerNPC.ChatCondition {
 	private List<SpeakerNPC.ChatCondition> conditions;
 
 	/**
-	 * Creates a new "and"-condition
-	 *
-	 * @param condition condition which should be and-ed.
+	 * Creates a new "and"-condition.
+	 * 
+	 * @param condition
+	 *            condition which should be and-ed.
 	 */
 	public AndCondition(SpeakerNPC.ChatCondition... condition) {
 		this.conditions = Arrays.asList(condition);
@@ -49,6 +50,7 @@ public class AndCondition extends SpeakerNPC.ChatCondition {
 
 	@Override
 	public boolean equals(Object obj) {
-		return EqualsBuilder.reflectionEquals(this, obj, false, QuestStartedCondition.class);
+		return EqualsBuilder.reflectionEquals(this, obj, false,
+				QuestStartedCondition.class);
 	}
 }

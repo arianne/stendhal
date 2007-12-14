@@ -7,7 +7,7 @@ import games.stendhal.server.entity.player.Player;
 
 /**
  * handles "bail" trigger to free the player from deathmatch with a penalty
- *
+ * 
  * @author hendrik
  */
 public class BailAction extends SpeakerNPC.ChatAction {

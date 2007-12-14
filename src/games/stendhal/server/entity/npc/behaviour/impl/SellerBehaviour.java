@@ -23,7 +23,6 @@ import games.stendhal.server.rule.EntityManager;
 import java.util.HashMap;
 import java.util.Map;
 
-
 import org.apache.log4j.Logger;
 
 /**
@@ -43,7 +42,7 @@ public class SellerBehaviour extends MerchantBehaviour {
 
 	/**
 	 * Creates a new SellerBehaviour with a pricelist.
-	 *
+	 * 
 	 * @param priceList
 	 *            list of item names and their prices
 	 */
@@ -54,7 +53,7 @@ public class SellerBehaviour extends MerchantBehaviour {
 	/**
 	 * Transacts the sale that has been agreed on earlier via setChosenItem()
 	 * and setAmount().
-	 *
+	 * 
 	 * @param seller
 	 *            The NPC who sells
 	 * @param player
@@ -79,8 +78,7 @@ public class SellerBehaviour extends MerchantBehaviour {
 			((StackableItem) item).setQuantity(getAmount());
 		} else {
 			if (getAmount() != 1) {
-				player
-						.sendPrivateText("You can only buy StackableItems in amounts bigger than 1. Setting amount to 1.");
+				player.sendPrivateText("You can only buy StackableItems in amounts bigger than 1. Setting amount to 1.");
 			}
 
 			setAmount(1);
@@ -89,10 +87,13 @@ public class SellerBehaviour extends MerchantBehaviour {
 		if (player.isEquipped("money", getCharge(player))) {
 			if (player.equip(item)) {
 				player.drop("money", getCharge(player));
-				seller.say("Congratulations! Here " + Grammar.isare(getAmount()) + " your " + Grammar.plnoun(getAmount(), chosenItem) + "!");
+				seller.say("Congratulations! Here "
+						+ Grammar.isare(getAmount()) + " your "
+						+ Grammar.plnoun(getAmount(), chosenItem) + "!");
 				return true;
 			} else {
-				seller.say("Sorry, but you cannot equip the " + Grammar.plnoun(getAmount(), chosenItem) + ".");
+				seller.say("Sorry, but you cannot equip the "
+						+ Grammar.plnoun(getAmount(), chosenItem) + ".");
 				return false;
 			}
 		} else {

@@ -15,7 +15,6 @@ import games.stendhal.client.entity.Fire;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 
-
 import org.apache.log4j.Logger;
 
 /**
@@ -29,22 +28,24 @@ public class AnimatedLoopEntity2DView extends Entity2DView {
 
 	/**
 	 * Create a 2D view of an animated loop visual.
-	 *
+	 * 
 	 * @param entity
 	 *            The entity to render.
 	 */
 	public AnimatedLoopEntity2DView(final Entity entity) {
 		super(entity);
 	}
+
 	/**
 	 * Create a 2D view of an animated loop visual.
-	 *
+	 * 
 	 * @param entity
 	 *            The entity to render.
 	 */
 	public AnimatedLoopEntity2DView(final Fire entity) {
 		super(entity);
 	}
+
 	//
 	// Entity2DView
 	//
@@ -65,8 +66,9 @@ public class AnimatedLoopEntity2DView extends Entity2DView {
 
 		if (width > IGameScreen.SIZE_UNIT_PIXELS) {
 			sprite = store.getAnimatedSprite(sprite, 0, 0, width
-					/ IGameScreen.SIZE_UNIT_PIXELS, IGameScreen.SIZE_UNIT_PIXELS,
-					IGameScreen.SIZE_UNIT_PIXELS, 100);
+					/ IGameScreen.SIZE_UNIT_PIXELS,
+					IGameScreen.SIZE_UNIT_PIXELS, IGameScreen.SIZE_UNIT_PIXELS,
+					100);
 		} else if (sprite.getHeight() > IGameScreen.SIZE_UNIT_PIXELS) {
 			sprite = store.getTile(sprite, 0, 0, IGameScreen.SIZE_UNIT_PIXELS,
 					IGameScreen.SIZE_UNIT_PIXELS);
@@ -80,9 +82,9 @@ public class AnimatedLoopEntity2DView extends Entity2DView {
 	 * Determines on top of which other entities this entity should be drawn.
 	 * Entities with a high Z index will be drawn on top of ones with a lower Z
 	 * index.
-	 *
+	 * 
 	 * Also, players can only interact with the topmost entity.
-	 *
+	 * 
 	 * @return The drawing index.
 	 */
 	@Override

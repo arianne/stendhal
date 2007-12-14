@@ -20,34 +20,32 @@ public abstract class ActiveEntity extends Entity {
 	/**
 	 * Direction property.
 	 */
-	public static final Object	PROP_DIRECTION	= new Object();
+	public static final Object PROP_DIRECTION = new Object();
 
 	/**
 	 * Speed property.
 	 */
-	public static final Object	PROP_SPEED	= new Object();
+	public static final Object PROP_SPEED = new Object();
 
 	/**
 	 * The current [facing] direction.
 	 */
-	private Direction	direction;
+	private Direction direction;
 
-	/** The current speed of this entity horizontally (tiles?/sec) */
-	private double	dx;
+	/** The current speed of this entity horizontally (tiles?/sec). */
+	private double dx;
 
-	/** The current speed of this entity vertically (tiles?/sec) */
-	private double	dy;
-
+	/** The current speed of this entity vertically (tiles?/sec) . */
+	private double dy;
 
 	/**
 	 * Create an active (moving) entity.
 	 */
-	ActiveEntity()  {
+	ActiveEntity() {
 		direction = Direction.DOWN;
 		dx = 0.0;
 		dy = 0.0;
 	}
-
 
 	//
 	// ActiveEntity
@@ -55,23 +53,23 @@ public abstract class ActiveEntity extends Entity {
 
 	/**
 	 * Get the direction.
-	 *
-	 * @return	The direction.
+	 * 
+	 * @return The direction.
 	 */
 	public Direction getDirection() {
 		return direction;
 	}
 
-
 	/**
 	 * The entity has started motion.
-	 *
-	 * @param	dx		The X axis speed/delta.
-	 * @param	dy		The Y axis speed/delta.
+	 * 
+	 * @param dx
+	 *            The X axis speed/delta.
+	 * @param dy
+	 *            The Y axis speed/delta.
 	 */
 	protected void onMotion(final double dx, final double dy) {
 	}
-
 
 	/**
 	 * The entity has stopped motion.
@@ -79,30 +77,28 @@ public abstract class ActiveEntity extends Entity {
 	protected void onStop() {
 	}
 
-
 	/**
 	 * Set the direction.
-	 *
-	 * @param	direction	The direction.
+	 * 
+	 * @param direction
+	 *            The direction.
 	 */
 	protected void setDirection(final Direction direction) {
 		this.direction = direction;
 	}
 
-
 	/**
 	 * Determine if this entity is not moving.
-	 *
-	 * @return	<code>true</code> if not moving.
+	 * 
+	 * @return <code>true</code> if not moving.
 	 */
 	public boolean stopped() {
 		return (dx == 0.0) && (dy == 0.0);
 	}
 
-
 	/**
 	 * compares to floating point values
-	 *
+	 * 
 	 * @param d1
 	 *            first value
 	 * @param d2
@@ -111,7 +107,8 @@ public abstract class ActiveEntity extends Entity {
 	 *            acceptable diff
 	 * @return true if they are within diff
 	 */
-	private static boolean compareDouble(final double d1, final double d2, final double diff) {
+	private static boolean compareDouble(final double d1, final double d2,
+			final double diff) {
 		return Math.abs(d1 - d2) < diff;
 	}
 
@@ -119,7 +116,7 @@ public abstract class ActiveEntity extends Entity {
 	 * calculates the movement if the server an client are out of sync. for some
 	 * milliseconds. (server turns are not exactly 300 ms) Most times this will
 	 * slow down the client movement
-	 *
+	 * 
 	 * @param clientPos
 	 *            the position the client has calculated
 	 * @param serverPos
@@ -128,34 +125,41 @@ public abstract class ActiveEntity extends Entity {
 	 *            the movement based on direction
 	 * @return the new delta to correct the movement error
 	 */
-	public static double calcDeltaMovement(final double clientPos, final double serverPos, final double delta) {
+	public static double calcDeltaMovement(final double clientPos,
+			final double serverPos, final double delta) {
 		double moveErr = clientPos - serverPos;
 		double moveCorrection = (delta - moveErr) / delta;
 		return (delta + delta * moveCorrection) / 2;
 	}
 
 	// When rpentity moves, it will be called with the data.
-	protected void onMove(final int x, final int y, final Direction direction, final double speed) {
+	protected void onMove(final int x, final int y, final Direction direction,
+			final double speed) {
 
 		this.dx = direction.getdx() * speed;
 		this.dy = direction.getdy() * speed;
 
-
-		if ((Direction.LEFT.equals(direction)) || (Direction.RIGHT.equals(direction))) {
+		if ((Direction.LEFT.equals(direction))
+				|| (Direction.RIGHT.equals(direction))) {
 			this.y = y;
 			if (compareDouble(this.x, x, 1.0)) {
 				// make the movement look more nicely: + this.dx * 0.1
-				this.dx = calcDeltaMovement(this.x + this.dx * 0.1, x, direction.getdx()) * speed;
+				this.dx = calcDeltaMovement(this.x + this.dx * 0.1, x,
+						direction.getdx())
+						* speed;
 			} else {
 				this.x = x;
 			}
 			this.dy = 0;
-		} else if ((Direction.UP.equals(direction)) || (Direction.DOWN.equals(direction))) {
+		} else if ((Direction.UP.equals(direction))
+				|| (Direction.DOWN.equals(direction))) {
 			this.x = x;
 			this.dx = 0;
 			if (compareDouble(this.y, y, 1.0)) {
 				// make the movement look more nicely: + this.dy * 0.1
-				this.dy = calcDeltaMovement(this.y + this.dy * 0.1, y, direction.getdy()) * speed;
+				this.dy = calcDeltaMovement(this.y + this.dy * 0.1, y,
+						direction.getdy())
+						* speed;
 			} else {
 				this.y = y;
 			}
@@ -169,22 +173,21 @@ public abstract class ActiveEntity extends Entity {
 		onMotion(dx, dy);
 	}
 
-
 	//
 	// Entity
 	//
 
 	/**
 	 * Initialize this entity for an object.
-	 *
-	 * @param	object		The object.
-	 *
-	 * @see-also	#release()
+	 * 
+	 * @param object
+	 *            The object.
+	 * 
+	 * @see-also #release()
 	 */
 	@Override
 	public void initialize(final RPObject base) {
 		double speed;
-
 
 		super.initialize(base);
 
@@ -202,11 +205,11 @@ public abstract class ActiveEntity extends Entity {
 		dy = direction.getdy() * speed;
 	}
 
-
 	/**
 	 * Update cycle.
-	 *
-	 * @param	delta		The time (in ms) since last call.
+	 * 
+	 * @param delta
+	 *            The time (in ms) since last call.
 	 */
 	@Override
 	public void update(final int delta) {
@@ -222,7 +225,8 @@ public abstract class ActiveEntity extends Entity {
 			x += (dx * step);
 			y += (dy * step);
 
-			if (!User.get().isGhostMode() && GameObjects.getInstance().collides(this)) {
+			if (!User.get().isGhostMode()
+					&& GameObjects.getInstance().collides(this)) {
 				x = oldX;
 				y = oldY;
 			} else {
@@ -231,15 +235,15 @@ public abstract class ActiveEntity extends Entity {
 		}
 	}
 
-
-
 	/**
-	 * Process attribute changes that may affect positioning. This is
-	 * needed because different entities may want to process coordinate
-	 * changes more gracefully.
-	 *
-	 * @param	base		The previous values.
-	 * @param	diff		The changes.
+	 * Process attribute changes that may affect positioning. This is needed
+	 * because different entities may want to process coordinate changes more
+	 * gracefully.
+	 * 
+	 * @param base
+	 *            The previous values.
+	 * @param diff
+	 *            The changes.
 	 */
 	@Override
 	protected void processPositioning(final RPObject base, final RPObject diff) {

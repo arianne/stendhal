@@ -11,7 +11,6 @@ package games.stendhal.server.config.zone;
 
 import org.w3c.dom.Element;
 
-
 import org.apache.log4j.Logger;
 
 /**
@@ -29,12 +28,12 @@ public class ConfiguratorXMLReader extends SetupXMLReader {
 
 	/**
 	 * Create a configurator descriptor.
-	 *
+	 * 
 	 * @param element
 	 *            The configurator XML element.
 	 * @param className
 	 *            The handler class name.
-	 *
+	 * 
 	 * @return A configurator.
 	 */
 	protected ConfiguratorDescriptor read(final Element element,
@@ -48,10 +47,10 @@ public class ConfiguratorXMLReader extends SetupXMLReader {
 
 	/**
 	 * Create a setup descriptor from XML data.
-	 *
+	 * 
 	 * @param element
 	 *            The descriptor XML element.
-	 *
+	 * 
 	 * @return A setup descriptor, or <code>null</code> if invalid.
 	 */
 	@Override

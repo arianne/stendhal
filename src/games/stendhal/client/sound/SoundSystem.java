@@ -51,7 +51,6 @@ import javax.sound.sampled.FloatControl;
 import javax.sound.sampled.Mixer;
 import javax.sound.sampled.Mixer.Info;
 
-
 import org.apache.log4j.Logger;
 
 /**
@@ -86,7 +85,7 @@ import org.apache.log4j.Logger;
  * Library sound names, as used in the interface, are related to sample names in
  * the definition file. The location of the database may be also defined in the
  * definition file under property "soundbase".
- *
+ * 
  * @author Jane Hunt
  */
 public class SoundSystem implements WorldObjects.WorldListener {
@@ -108,8 +107,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	private static SoundSystem singleton;
 
 	/** */
-	private Map<byte[], SoundCycle> cycleMap = Collections
-			.synchronizedMap(new HashMap<byte[], SoundCycle>());
+	private Map<byte[], SoundCycle> cycleMap = Collections.synchronizedMap(new HashMap<byte[], SoundCycle>());
 
 	/** */
 	private ArrayList<AmbientSound> ambientList = new ArrayList<AmbientSound>();
@@ -133,7 +131,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 
 	/**
 	 * Plays a sound of the given name from the library of this sound system.
-	 *
+	 * 
 	 * @param name
 	 *            token of sound
 	 * @param volBot
@@ -169,7 +167,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	// } // playSound
 	/**
 	 * Plays a sound of the given name from the library of this sound system.
-	 *
+	 * 
 	 * @param name
 	 *            token of sound
 	 * @param volume
@@ -183,7 +181,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	/**
 	 * Plays a sound of the given name from the library of this sound system by
 	 * setting volume to a random value between volBot and volTop.
-	 *
+	 * 
 	 * @param name
 	 *            token of sound
 	 * @param volBot
@@ -198,7 +196,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	// }
 	/**
 	 * Plays a sound subject to a random performance chance.
-	 *
+	 * 
 	 * @param chance
 	 *            0..100 % chance value
 	 * @param name
@@ -221,7 +219,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	 * Plays a sound bound to a given map position, possibly restricted by an
 	 * audibility area confinement. The sound volume is automatically adjusted
 	 * to reflect the player's map position and hearing range.
-	 *
+	 * 
 	 * @param where
 	 *            map position expressed in zone's coordinate system
 	 * @param audibility
@@ -282,7 +280,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	// } // playMapSound
 	/**
 	 * plays (?) and registers an ambient sound
-	 *
+	 * 
 	 * @param ambient
 	 *            the sound to be registered
 	 */
@@ -298,7 +296,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	/**
 	 * removes the ambient sound from the internal list. It should already be
 	 * stopped.
-	 *
+	 * 
 	 * @param ambient
 	 *            the ambient sound to be removed
 	 */
@@ -327,7 +325,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	 * entity at a given time. If an sound cycle is started while a previous
 	 * cycle is defined for the entity, the previous cycle is discarded and any
 	 * ongoing sound performance stopped.
-	 *
+	 * 
 	 * @param entity
 	 *            the game object that makes the sound
 	 * @param token
@@ -375,7 +373,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	/**
 	 * Stops execution of the sound cycle for a specific map entity. This will
 	 * interrupt any ongoing sound performance immediately.
-	 *
+	 * 
 	 * @param entity_ID
 	 *            byte[] identity token of the map entity
 	 */
@@ -396,7 +394,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	/**
 	 * Loads a junk of data from the jar soundfile and returns it as a byte
 	 * array.
-	 *
+	 * 
 	 * @param name
 	 * @return the data in the Zipentry
 	 * @throws IOException
@@ -417,7 +415,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 
 	/**
 	 * Whether the parameter sound is available in this sound system.
-	 *
+	 * 
 	 * @param name
 	 *            token of sound
 	 * @return true, iif it is available
@@ -429,7 +427,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	/**
 	 * Obtains a resource input stream. Fetches currently from the main
 	 * program's classloader.
-	 *
+	 * 
 	 * @param name
 	 * @return InputStream
 	 * @throws IOException
@@ -480,8 +478,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 			loaded = 0;
 			count = 0;
 
-			for (String key = (String) maps.nextElement(); maps
-					.hasMoreElements(); key = (String) maps.nextElement()) {
+			for (String key = (String) maps.nextElement(); maps.hasMoreElements(); key = (String) maps.nextElement()) {
 				byte[] soundData;
 				String value;
 				String name;
@@ -511,8 +508,8 @@ public class SoundSystem implements WorldObjects.WorldListener {
 						loudness = 100;
 						pos = value.lastIndexOf(',');
 						if (pos != -1) {
-							loudness = MathHelper.parseIntDefault(value
-									.substring(pos + 1), 100);
+							loudness = MathHelper.parseIntDefault(
+									value.substring(pos + 1), 100);
 						}
 
 						// investigate sample status
@@ -539,8 +536,8 @@ public class SoundSystem implements WorldObjects.WorldListener {
 					logger.debug("- storing mem-library soundclip: " + name);
 
 					// stores the clip sound in memory
-					ClipRunner clip = SoundEffectMap.getInstance()
-							.getSoundClip(name);
+					ClipRunner clip = SoundEffectMap.getInstance().getSoundClip(
+							name);
 					if (clip == null) {
 						clip = new ClipRunner(name);
 						SoundEffectMap.getInstance().put(name, clip);
@@ -569,7 +566,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 			// register listeners
 			WorldObjects.addWorldListener(this);
 			operative = true;
-		}	catch (IOException e) {
+		} catch (IOException e) {
 			hstr = "*** SOUNDSYSTEM LOAD ERROR";
 			logger.error(hstr, e);
 			return;
@@ -589,7 +586,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	 * <li>key does not end with ",x"</li>
 	 * <li>or value contains a "."</li>
 	 * </ul>
-	 *
+	 * 
 	 * @param key
 	 * @param value
 	 * @return true, if it is valid, false otherwise
@@ -653,8 +650,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 
 		// try a master volume control
 		try {
-			volumeCtrl = (FloatControl) mixer
-					.getControl(FloatControl.Type.MASTER_GAIN);
+			volumeCtrl = (FloatControl) mixer.getControl(FloatControl.Type.MASTER_GAIN);
 			volumeCtrl.setValue(0f);
 		} catch (Exception e) {
 			logger.debug("SoundSystem: no master volume controls");
@@ -688,7 +684,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 
 	/**
 	 * Returns the actual state of the global Mute switch of this sound system.
-	 *
+	 * 
 	 * @return <b>true</b> if and only if Mute is ON (silent)
 	 */
 	public boolean isMute() {
@@ -698,7 +694,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	/**
 	 * Sets a global volume level for all sounds played with this sound system.
 	 * The volume value ranges between 0 (silent) and 100 (loudest).
-	 *
+	 * 
 	 * @param volume
 	 *            0 .. 100
 	 */
@@ -729,7 +725,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 
 	/**
 	 * Returns the current value of this sound system's voume setting.
-	 *
+	 * 
 	 * @return volume ranging 0 (silent) .. 100 (loudest)
 	 */
 	public int getVolume() {
@@ -738,7 +734,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 
 	/**
 	 * Whether the sound system has been initialized and is ready to operate.
-	 *
+	 * 
 	 * @return true, iff the sound system was initialized
 	 */
 	public boolean isOperative() {
@@ -771,7 +767,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	/**
 	 * Transfers the contents of the input stream to the output stream until the
 	 * end of input stream is reached.
-	 *
+	 * 
 	 * @param input
 	 * @param output
 	 * @param bufferSize
@@ -899,7 +895,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 			ambient.addLoop("forgefire-3", 50, 0);
 			playAmbientSound(ambient);
 
-		}	else if (zone.equals(SoundSystem.ZERO_SEMOS_ROAD_E)) {
+		} else if (zone.equals(SoundSystem.ZERO_SEMOS_ROAD_E)) {
 			// creaking tree and wind
 			baseAmb = AmbientStore.getAmbient("wind-tree-1");
 
@@ -982,7 +978,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 
 	/*
 	 * Overridden:
-	 *
+	 * 
 	 * @see games.stendhal.client.WorldObjects.WorldListener#zoneLeft(java.lang.String)
 	 */
 	public void zoneLeft(String zone) {
@@ -995,7 +991,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 
 	/*
 	 * Overridden:
-	 *
+	 * 
 	 * @see games.stendhal.client.WorldObjects.WorldListener#playerMoved(games.stendhal.client.entity.Player)
 	 */
 	public void playerMoved() {

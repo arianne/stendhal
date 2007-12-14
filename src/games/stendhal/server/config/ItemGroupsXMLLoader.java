@@ -2,7 +2,6 @@ package games.stendhal.server.config;
 
 import games.stendhal.server.rule.defaultruleset.DefaultItem;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URI;
 import java.util.LinkedList;
@@ -25,8 +24,9 @@ public class ItemGroupsXMLLoader extends DefaultHandler {
 
 	/**
 	 * Create an xml based loader of item groups.
-	 *
-	 * @param	uri		The location of the configuration file.
+	 * 
+	 * @param uri
+	 *            The location of the configuration file.
 	 */
 	public ItemGroupsXMLLoader(URI uri) {
 		this.uri = uri;
@@ -34,22 +34,22 @@ public class ItemGroupsXMLLoader extends DefaultHandler {
 
 	/**
 	 * Load items
-	 *
+	 * 
 	 * @return list of items
-	 * @throws	SAXException	If a SAX error occurred.
-	 * @throws	IOException	If an I/O error occurred.
-	 * @throws	FileNotFoundException
-	 *				If the resource was not found.
+	 * @throws SAXException
+	 *             If a SAX error occurred.
+	 * @throws IOException
+	 *             If an I/O error occurred.
 	 */
 	public List<DefaultItem> load() throws SAXException, IOException {
-		GroupsXMLLoader groupsLoader = new GroupsXMLLoader(uri); 
+		GroupsXMLLoader groupsLoader = new GroupsXMLLoader(uri);
 		List<URI> groups = groupsLoader.load();
 
-		ItemsXMLLoader loader = new ItemsXMLLoader(); 
+		ItemsXMLLoader loader = new ItemsXMLLoader();
 		List<DefaultItem> list = new LinkedList<DefaultItem>();
-		for (URI uri : groups) {
-			logger.debug("Loading item group [" + uri + "]");
-			list.addAll(loader.load(uri));
+		for (URI groupUri : groups) {
+			logger.debug("Loading item group [" + groupUri + "]");
+			list.addAll(loader.load(groupUri));
 
 		}
 		return list;

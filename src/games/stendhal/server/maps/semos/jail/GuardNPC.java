@@ -18,35 +18,32 @@ public class GuardNPC extends SpeakerNPCFactory {
 	@Override
 	public void createDialog(SpeakerNPC npc) {
 		npc.addGreeting("Greetings! How may I #help you?");
-		
-		npc.add(ConversationStates.ATTENDING,
-				ConversationPhrases.JOB_MESSAGES,
-				new NotInJailCondition(),
-		        ConversationStates.ATTENDING,
-		        "I am the jail keeper.",
-		        null);
-		
-		npc.add(ConversationStates.ATTENDING,
+
+		npc.add(ConversationStates.ATTENDING, ConversationPhrases.JOB_MESSAGES,
+				new NotInJailCondition(), ConversationStates.ATTENDING,
+				"I am the jail keeper.", null);
+
+		npc.add(
+				ConversationStates.ATTENDING,
 				ConversationPhrases.JOB_MESSAGES,
 				new InJailCondition(),
-		        ConversationStates.ATTENDING,
-		        "I am the jail keeper. You have been confined here because of your bad behaviour.",
-		        null);
-		
-		npc.add(ConversationStates.ATTENDING,
-		        ConversationPhrases.HELP_MESSAGES,
-		        new InJailCondition(),
-		        ConversationStates.ATTENDING,
-		        "Please wait for an administrator to come here and decide what to do with you. In the meantime, there is no escape for you.",
-		        null);
-		
-		npc.add(ConversationStates.ATTENDING,
+				ConversationStates.ATTENDING,
+				"I am the jail keeper. You have been confined here because of your bad behaviour.",
+				null);
+
+		npc.add(
+				ConversationStates.ATTENDING,
 				ConversationPhrases.HELP_MESSAGES,
-				new NotInJailCondition(),
-		        ConversationStates.ATTENDING,
-		        "Be careful with the criminals in the cells.",
-		        null);
-		
+				new InJailCondition(),
+				ConversationStates.ATTENDING,
+				"Please wait for an administrator to come here and decide what to do with you. In the meantime, there is no escape for you.",
+				null);
+
+		npc.add(ConversationStates.ATTENDING,
+				ConversationPhrases.HELP_MESSAGES, new NotInJailCondition(),
+				ConversationStates.ATTENDING,
+				"Be careful with the criminals in the cells.", null);
+
 		npc.addGoodbye();
 	}
 

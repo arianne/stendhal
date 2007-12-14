@@ -8,18 +8,20 @@ import java.util.Map;
 
 /**
  * Creates the items on the table in the castle basement.
- *
+ * 
  * @author kymara
  */
 public class ItemsOnTable implements ZoneConfigurator {
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone,
+			Map<String, String> attributes) {
 		buildBasementArea(zone);
 	}
 
 	private void buildBasementArea(StendhalRPZone zone) {
 
 		// Plant grower for poison
-		PassiveEntityRespawnPoint plantGrower = new PassiveEntityRespawnPoint("disease_poison", 2000);
+		PassiveEntityRespawnPoint plantGrower = new PassiveEntityRespawnPoint(
+				"disease_poison", 2000);
 		plantGrower.setPosition(109, 103);
 		plantGrower.setDescription("Scientists often put bottles down here.");
 		zone.add(plantGrower);
@@ -27,7 +29,8 @@ public class ItemsOnTable implements ZoneConfigurator {
 		plantGrower.setToFullGrowth();
 
 		// Plant grower for antidote
-		PassiveEntityRespawnPoint plantGrower2 = new PassiveEntityRespawnPoint("greater_antidote", 4500);
+		PassiveEntityRespawnPoint plantGrower2 = new PassiveEntityRespawnPoint(
+				"greater_antidote", 4500);
 		plantGrower2.setPosition(83, 111);
 		plantGrower2.setDescription("Scientists often put bottles down here.");
 		zone.add(plantGrower2);
@@ -35,7 +38,8 @@ public class ItemsOnTable implements ZoneConfigurator {
 		plantGrower2.setToFullGrowth();
 
 		// Plant grower for mega poison
-		PassiveEntityRespawnPoint plantGrower3 = new PassiveEntityRespawnPoint("mega_poison", 4000);
+		PassiveEntityRespawnPoint plantGrower3 = new PassiveEntityRespawnPoint(
+				"mega_poison", 4000);
 		plantGrower3.setPosition(100, 116);
 		plantGrower3.setDescription("Scientists often put bottles down here.");
 		zone.add(plantGrower3);
@@ -43,7 +47,8 @@ public class ItemsOnTable implements ZoneConfigurator {
 		plantGrower3.setToFullGrowth();
 
 		// Plant grower for a shield (3 hours)
-		PassiveEntityRespawnPoint plantGrower4 = new PassiveEntityRespawnPoint("crown_shield", 36000);
+		PassiveEntityRespawnPoint plantGrower4 = new PassiveEntityRespawnPoint(
+				"crown_shield", 36000);
 		plantGrower4.setPosition(40, 22);
 		plantGrower4.setDescription("Imperial soliders leave their things here.");
 		zone.add(plantGrower4);
@@ -51,7 +56,8 @@ public class ItemsOnTable implements ZoneConfigurator {
 		plantGrower4.setToFullGrowth();
 
 		// Plant grower for a claymore (24 hours)
-		PassiveEntityRespawnPoint plantGrower5 = new PassiveEntityRespawnPoint("claymore", 288000);
+		PassiveEntityRespawnPoint plantGrower5 = new PassiveEntityRespawnPoint(
+				"claymore", 288000);
 		plantGrower5.setPosition(27, 21);
 		plantGrower5.setDescription("Imperial soliders leave their things here.");
 		zone.add(plantGrower5);

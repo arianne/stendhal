@@ -39,7 +39,7 @@ import marauroa.common.game.RPSlot;
 
 /**
  * This is the panel where the character can be outfittet.
- *
+ * 
  * @author mtotz
  */
 public class Character extends WtPanel {
@@ -91,40 +91,40 @@ public class Character extends WtPanel {
 		// Offset to center the slot holders
 		int xoff = (getClientWidth() - ((SLOT_SIZE * 3) + (SLOT_SPACING * 2))) / 2;
 
-		slotPanels.put("head", new EntitySlot(client, "head", st
-				.getSprite("data/gui/helmet-slot.png"),
+		slotPanels.put("head", new EntitySlot(client, "head",
+				st.getSprite("data/gui/helmet-slot.png"),
 				((SLOT_SIZE + SLOT_SPACING) * 1) + xoff, 0));
 
-		slotPanels.put("armor", new EntitySlot(client, "armor", st
-				.getSprite("data/gui/armor-slot.png"),
+		slotPanels.put("armor", new EntitySlot(client, "armor",
+				st.getSprite("data/gui/armor-slot.png"),
 				((SLOT_SIZE + SLOT_SPACING) * 1) + xoff,
 				((SLOT_SIZE + SLOT_SPACING) * 1)));
 
-		slotPanels.put("rhand", new EntitySlot(client, "rhand", st
-				.getSprite("data/gui/weapon-slot.png"), xoff,
+		slotPanels.put("rhand", new EntitySlot(client, "rhand",
+				st.getSprite("data/gui/weapon-slot.png"), xoff,
 				((SLOT_SIZE + SLOT_SPACING) * 1) + 10));
 
-		slotPanels.put("lhand", new EntitySlot(client, "lhand", st
-				.getSprite("data/gui/shield-slot.png"),
+		slotPanels.put("lhand", new EntitySlot(client, "lhand",
+				st.getSprite("data/gui/shield-slot.png"),
 				((SLOT_SIZE + SLOT_SPACING) * 2) + xoff,
 				((SLOT_SIZE + SLOT_SPACING) * 1) + 10));
 
-		slotPanels.put("finger", new EntitySlot(client, "finger", st
-				.getSprite("data/gui/ring-slot.png"), xoff,
+		slotPanels.put("finger", new EntitySlot(client, "finger",
+				st.getSprite("data/gui/ring-slot.png"), xoff,
 				((SLOT_SIZE + SLOT_SPACING) * 2) + 10));
 
-		slotPanels.put("cloak", new EntitySlot(client, "cloak", st
-				.getSprite("data/gui/cloak-slot.png"),
+		slotPanels.put("cloak", new EntitySlot(client, "cloak",
+				st.getSprite("data/gui/cloak-slot.png"),
 				((SLOT_SIZE + SLOT_SPACING) * 2) + xoff,
 				((SLOT_SIZE + SLOT_SPACING) * 2) + 10));
 
-		slotPanels.put("legs", new EntitySlot(client, "legs", st
-				.getSprite("data/gui/legs-slot.png"),
+		slotPanels.put("legs", new EntitySlot(client, "legs",
+				st.getSprite("data/gui/legs-slot.png"),
 				((SLOT_SIZE + SLOT_SPACING) * 1) + xoff,
 				((SLOT_SIZE + SLOT_SPACING) * 2)));
 
-		slotPanels.put("feet", new EntitySlot(client, "feet", st
-				.getSprite("data/gui/boots-slot.png"),
+		slotPanels.put("feet", new EntitySlot(client, "feet",
+				st.getSprite("data/gui/boots-slot.png"),
 				((SLOT_SIZE + SLOT_SPACING) * 1) + xoff,
 				((SLOT_SIZE + SLOT_SPACING) * 3)));
 
@@ -193,8 +193,8 @@ public class Character extends WtPanel {
 					Entity entity = gameObjects.get(object);
 
 					/*
-					 * TODO: Remove once object mapping
-					 * verified to work in all cases.
+					 * TODO: Remove once object mapping verified to work in all
+					 * cases.
 					 */
 					if (entity == null) {
 						entity = EntityFactory.createEntity(object);
@@ -239,7 +239,7 @@ public class Character extends WtPanel {
 	/**
 	 * Draw the panel contents. This is only called while open and not
 	 * minimized.
-	 *
+	 * 
 	 * @param g
 	 *            The graphics context to draw with.
 	 */

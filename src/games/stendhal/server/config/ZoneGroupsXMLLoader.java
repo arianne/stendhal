@@ -28,8 +28,9 @@ public class ZoneGroupsXMLLoader extends DefaultHandler {
 
 	/**
 	 * Create an xml based loader of zone groups.
-	 *
-	 * @param	uri		The location of the configuration file.
+	 * 
+	 * @param uri
+	 *            The location of the configuration file.
 	 */
 	public ZoneGroupsXMLLoader(URI uri) {
 		this.uri = uri;
@@ -37,14 +38,16 @@ public class ZoneGroupsXMLLoader extends DefaultHandler {
 
 	/**
 	 * Load zones into a world.
-	 *
-	 * @throws	SAXException	If a SAX error occurred.
-	 * @throws	IOException	If an I/O error occurred.
-	 * @throws	FileNotFoundException
-	 *				If the resource was not found.
+	 * 
+	 * @throws SAXException
+	 *             If a SAX error occurred.
+	 * @throws IOException
+	 *             If an I/O error occurred.
+	 * @throws FileNotFoundException
+	 *             If the resource was not found.
 	 */
 	public void load() throws SAXException, IOException {
-		GroupsXMLLoader groupsLoader = new GroupsXMLLoader(uri); 
+		GroupsXMLLoader groupsLoader = new GroupsXMLLoader(uri);
 		List<URI> zoneGroups = groupsLoader.load();
 
 		/*

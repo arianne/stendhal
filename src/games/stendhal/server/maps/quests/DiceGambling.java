@@ -100,36 +100,37 @@ public class DiceGambling extends AbstractQuest {
 				"In order to play, you have to stake " + STAKE
 						+ " gold. Do you want to pay?", null);
 
+		ricardo.add(
+				ConversationStates.QUESTION_1,
+				ConversationPhrases.YES_MESSAGES,
+				new PlayerHasItemWithHimCondition("money", STAKE),
+				ConversationStates.ATTENDING,
+				"OK, here are the dice. Just throw them when you're ready. Good luck!",
+				new ChatAction() {
+					@Override
+					public void fire(Player player, Sentence sentence,
+							SpeakerNPC npc) {
+						player.drop("money", STAKE);
+						Dice dice = (Dice) StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
+								"dice");
+						dice.setCroupierNPC((CroupierNPC) npc);
+						player.equip(dice, true);
+					}
+				});
+
 		ricardo.add(ConversationStates.QUESTION_1,
-			ConversationPhrases.YES_MESSAGES,
-			new PlayerHasItemWithHimCondition("money", STAKE),
-			ConversationStates.ATTENDING,
-			"OK, here are the dice. Just throw them when you're ready. Good luck!",
-			new ChatAction() {
-				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-					player.drop("money", STAKE);
-					Dice dice = (Dice) StendhalRPWorld.get()
-							.getRuleManager().getEntityManager()
-							.getItem("dice");
-					dice.setCroupierNPC((CroupierNPC) npc);
-					player.equip(dice, true);
-				}
-			});
-		
-		ricardo.add(ConversationStates.QUESTION_1,
-			ConversationPhrases.YES_MESSAGES, 
-			new NotCondition(new PlayerHasItemWithHimCondition("money", STAKE)),
-			ConversationStates.ATTENDING,
-			"Hey! You don't have enough money!", null);
+				ConversationPhrases.YES_MESSAGES, new NotCondition(
+						new PlayerHasItemWithHimCondition("money", STAKE)),
+				ConversationStates.ATTENDING,
+				"Hey! You don't have enough money!", null);
 
 		ricardo.add(
-			ConversationStates.QUESTION_1,
-			"no",
-			null,
-			ConversationStates.ATTENDING,
-			"Coward! How will you ever become a hero when you risk nothing?",
-			null);
+				ConversationStates.QUESTION_1,
+				"no",
+				null,
+				ConversationStates.ATTENDING,
+				"Coward! How will you ever become a hero when you risk nothing?",
+				null);
 
 	}
 

@@ -16,23 +16,23 @@ import java.util.Collection;
 
 /**
  * Ruleset Interface for resolving Entities in Stendhal.
- *
+ * 
  * @author Matthias Totz
  */
 public interface EntityManager {
 	/**
 	 * returns the entity or <code>null</code> if the class is unknown
-	 *
+	 * 
 	 * @param clazz
 	 *            the creature class, must not be <code>null</code>
 	 * @return the entity or <code>null</code>
-	 *
+	 * 
 	 */
 	Entity getEntity(String clazz);
 
 	/**
 	 * return true if the Entity is a creature
-	 *
+	 * 
 	 * @param id
 	 *            the tile id
 	 * @return true if it is a creature, false otherwise
@@ -41,21 +41,21 @@ public interface EntityManager {
 
 	/**
 	 * return true if the Entity is a creature
-	 *
+	 * 
 	 * @param clazz
 	 *            the creature class, must not be <code>null</code>
 	 * @return true if it is a creature, false otherwise
-	 *
+	 * 
 	 */
 	boolean isCreature(String clazz);
 
 	/**
 	 * return true if the Entity is a Item
-	 *
+	 * 
 	 * @param clazz
 	 *            the Item class, must not be <code>null</code>
 	 * @return true if it is a Item, false otherwise
-	 *
+	 * 
 	 */
 	boolean isItem(String clazz);
 
@@ -66,7 +66,7 @@ public interface EntityManager {
 
 	/**
 	 * returns the creature or <code>null</code> if the id is unknown.
-	 *
+	 * 
 	 * @param id
 	 *            the tile id
 	 * @return the creature or <code>null</code>
@@ -75,17 +75,18 @@ public interface EntityManager {
 
 	/**
 	 * returns the creature or <code>null</code> if the clazz is unknown
-	 *
+	 * 
 	 * @param clazz
 	 *            the creature class, must not be <code>null</code>
 	 * @return the creature or <code>null</code>
-	 *
+	 * 
 	 */
 	Creature getCreature(String clazz);
 
 	/**
-	 * returns the DefaultCreature or <code>null</code> if the clazz is unknown
-	 *
+	 * returns the DefaultCreature or <code>null</code> if the clazz is
+	 * unknown
+	 * 
 	 * @param clazz
 	 *            the creature class
 	 * @return the creature or <code>null</code>
@@ -101,11 +102,11 @@ public interface EntityManager {
 
 	/**
 	 * returns the item or <code>null</code> if the clazz is unknown
-	 *
+	 * 
 	 * @param clazz
 	 *            the item class, must not be <code>null</code>
 	 * @return the item or <code>null</code>
-	 *
+	 * 
 	 */
 	Item getItem(String clazz);
 }

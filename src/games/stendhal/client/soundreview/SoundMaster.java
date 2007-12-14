@@ -106,20 +106,20 @@ public class SoundMaster implements Runnable, WorldListener {
 		// dont remove this please astriddemma 12.04.2007
 		public void update(LineEvent event) {
 
-//			if (event.getType().equals(LineEvent.Type.START)) {
-//
-//			}
-//			if (event.getType().equals(LineEvent.Type.CLOSE)) {
-//			}
+			// if (event.getType().equals(LineEvent.Type.START)) {
+			//
+			// }
+			// if (event.getType().equals(LineEvent.Type.CLOSE)) {
+			// }
 			if (event.getType().equals(LineEvent.Type.STOP)) {
 				event.getLine().close();
 
 				playingClips.remove(event.getLine());
 			}
 
-//			if (event.getType().equals(LineEvent.Type.OPEN)) {
-//
-//			}
+			// if (event.getType().equals(LineEvent.Type.OPEN)) {
+			//
+			// }
 		}
 
 	}

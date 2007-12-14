@@ -17,7 +17,6 @@ public class ScriptingNPC extends SpeakerNPC {
 		initHP(100);
 	}
 
-
 	// TODO: use message constants from Behaviours.java
 	public void behave(String method, String reply) {
 		if ("greet".equalsIgnoreCase(method)) {
@@ -35,11 +34,13 @@ public class ScriptingNPC extends SpeakerNPC {
 		}
 	}
 
-	public void behave(String method, List<String> triggers, String reply) throws NoSuchMethodException {
+	public void behave(String method, List<String> triggers, String reply)
+			throws NoSuchMethodException {
 		if ("reply".equalsIgnoreCase(method)) {
 			addReply(triggers, reply);
 		} else {
-			throw new NoSuchMethodException("Behaviour.add(" + method + ") not supported.");
+			throw new NoSuchMethodException("Behaviour.add(" + method
+					+ ") not supported.");
 		}
 	}
 
@@ -47,13 +48,15 @@ public class ScriptingNPC extends SpeakerNPC {
 		addReply(triggers, reply);
 	}
 
-	public void behave(String method, Map<String, Integer> items) throws NoSuchMethodException {
+	public void behave(String method, Map<String, Integer> items)
+			throws NoSuchMethodException {
 		if ("buy".equalsIgnoreCase(method)) {
 			new BuyerAdder().add(this, new BuyerBehaviour(items), true);
 		} else if ("sell".equalsIgnoreCase(method)) {
 			new SellerAdder().addSeller(this, new SellerBehaviour(items));
 		} else {
-			throw new NoSuchMethodException("Behaviour.add(" + method + ") not supported.");
+			throw new NoSuchMethodException("Behaviour.add(" + method
+					+ ") not supported.");
 		}
 	}
 
@@ -61,7 +64,8 @@ public class ScriptingNPC extends SpeakerNPC {
 		if ("heal".equalsIgnoreCase(method)) {
 			new HealerAdder().addHealer(this, cost);
 		} else {
-			throw new NoSuchMethodException("Behaviour.add(" + method + ") not supported.");
+			throw new NoSuchMethodException("Behaviour.add(" + method
+					+ ") not supported.");
 		}
 	}
 

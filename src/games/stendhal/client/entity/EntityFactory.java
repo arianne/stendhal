@@ -19,19 +19,20 @@ import marauroa.common.game.RPObject;
 
 /**
  * creates a Stendhal Entity object based on a Marauroa RPObject.
- *
+ * 
  * @author astridemma
  */
 public class EntityFactory {
 	private static final Logger logger = Logger.getLogger(EntityFactory.class);
 
+	protected EntityFactory() {
+	}
 
-   protected EntityFactory() {
-   }
 	/**
-	 *  Create a Entity of the correct type depending of the arianne object
-	 *
-	 * @param object the underlying server RPObject
+	 * Create a Entity of the correct type depending of the arianne object
+	 * 
+	 * @param object
+	 *            the underlying server RPObject
 	 * @return the created Entity
 	 */
 	public static Entity createEntity(final RPObject object) {
@@ -39,7 +40,8 @@ public class EntityFactory {
 			String type = object.get("type");
 
 			if (type.equals("player") && object.has("name")) {
-				if (StendhalClient.get().getAccountUsername().equalsIgnoreCase(object.get("name"))) {
+				if (StendhalClient.get().getAccountUsername().equalsIgnoreCase(
+						object.get("name"))) {
 					User me = new User();
 					me.initialize(object);
 					return me;
@@ -51,7 +53,8 @@ public class EntityFactory {
 				eclass = object.get("class");
 			}
 
-			Class< ? extends Entity > entityClass = EntityMap.getClass(type, eclass);
+			Class<? extends Entity> entityClass = EntityMap.getClass(type,
+					eclass);
 			if (entityClass == null) {
 				// If there is no entity, let's try without using class.
 				entityClass = EntityMap.getClass(type, null);

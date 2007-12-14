@@ -7,11 +7,11 @@ import java.util.Comparator;
 
 /**
  * Compares to RPEntities based on their level
- *
+ * 
  * @author hendrik
  */
 public class LevelBasedComparator implements Comparator<RPEntity>, Serializable {
-    private static final long serialVersionUID = -8923421203006949207L;
+	private static final long serialVersionUID = -8923421203006949207L;
 
 	public int compare(RPEntity o1, RPEntity o2) {
 		return o1.getLevel() - o2.getLevel();

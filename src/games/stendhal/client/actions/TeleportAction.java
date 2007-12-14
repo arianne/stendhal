@@ -10,11 +10,13 @@ class TeleportAction implements SlashAction {
 
 	/**
 	 * Execute a chat command.
-	 *
-	 * @param	params		The formal parameters.
-	 * @param	remainder	Line content after parameters.
-	 *
-	 * @return	<code>true</code> if  was handled.
+	 * 
+	 * @param params
+	 *            The formal parameters.
+	 * @param remainder
+	 *            Line content after parameters.
+	 * 
+	 * @return <code>true</code> if was handled.
 	 */
 	public boolean execute(String[] params, String remainder) {
 		RPAction teleport = new RPAction();
@@ -32,8 +34,8 @@ class TeleportAction implements SlashAction {
 
 	/**
 	 * Get the maximum number of formal parameters.
-	 *
-	 * @return	The parameter count.
+	 * 
+	 * @return The parameter count.
 	 */
 	public int getMaximumParameters() {
 		return 4;
@@ -41,8 +43,8 @@ class TeleportAction implements SlashAction {
 
 	/**
 	 * Get the minimum number of formal parameters.
-	 *
-	 * @return	The parameter count.
+	 * 
+	 * @return The parameter count.
 	 */
 	public int getMinimumParameters() {
 		return 4;

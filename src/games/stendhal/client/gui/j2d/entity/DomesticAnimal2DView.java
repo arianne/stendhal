@@ -62,7 +62,7 @@ public abstract class DomesticAnimal2DView extends RPEntity2DView {
 
 	/**
 	 * Create a 2D view of a animal.
-	 *
+	 * 
 	 * @param animal
 	 *            The entity to render.
 	 */
@@ -80,14 +80,14 @@ public abstract class DomesticAnimal2DView extends RPEntity2DView {
 
 	/**
 	 * Get the weight at which the animal becomes big.
-	 *
+	 * 
 	 * @return A weight.
 	 */
 	protected abstract int getBigWeight();
 
 	/**
 	 * Get the approriete idea sprite.
-	 *
+	 * 
 	 * @return The sprite representing the current idea, or null.
 	 */
 	protected Sprite getIdeaSprite() {
@@ -107,7 +107,7 @@ public abstract class DomesticAnimal2DView extends RPEntity2DView {
 
 	/**
 	 * Populate named state sprites.
-	 *
+	 * 
 	 * @param map
 	 *            The map to populate.
 	 * @param tiles
@@ -147,7 +147,7 @@ public abstract class DomesticAnimal2DView extends RPEntity2DView {
 
 	/**
 	 * Get the full directional animation tile set for this entity.
-	 *
+	 * 
 	 * @return A tile sprite containing all animation images.
 	 */
 	@Override
@@ -157,7 +157,7 @@ public abstract class DomesticAnimal2DView extends RPEntity2DView {
 
 	/**
 	 * Get the number of tiles in the Y axis of the base sprite.
-	 *
+	 * 
 	 * @return The number of tiles.
 	 */
 	@Override
@@ -171,10 +171,10 @@ public abstract class DomesticAnimal2DView extends RPEntity2DView {
 
 	/**
 	 * Get the appropriate named state for a direction.
-	 *
+	 * 
 	 * @param direction
 	 *            The direction.
-	 *
+	 * 
 	 * @return A named state.
 	 */
 	@Override
@@ -207,7 +207,7 @@ public abstract class DomesticAnimal2DView extends RPEntity2DView {
 
 	/**
 	 * Draw the entity.
-	 *
+	 * 
 	 * @param g2d
 	 *            The graphics to drawn on.
 	 */
@@ -240,7 +240,7 @@ public abstract class DomesticAnimal2DView extends RPEntity2DView {
 
 	/**
 	 * An entity was changed.
-	 *
+	 * 
 	 * @param entity
 	 *            The entity that was changed.
 	 * @param property
@@ -263,7 +263,7 @@ public abstract class DomesticAnimal2DView extends RPEntity2DView {
 
 	/**
 	 * Perform an action.
-	 *
+	 * 
 	 * @param at
 	 *            The action.
 	 */

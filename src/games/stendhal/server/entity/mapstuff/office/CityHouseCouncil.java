@@ -18,15 +18,16 @@ import org.apache.log4j.Logger;
 
 /**
  * Manages selling/renting of houses to players
- *
+ * 
  * @author hendrik
  */
 public class CityHouseCouncil extends Entity implements ZoneConfigurator {
 	private static Logger logger = Logger.getLogger(CityHouseCouncil.class);
 	private StendhalRPZone zone;
 
-	// TODO: This is just a small attempt to understand zone storage. It does not work yet and will require refactoring after completed.
-	
+	// TODO: This is just a small attempt to understand zone storage. It does
+	// not work yet and will require refactoring after completed.
+
 	public CityHouseCouncil() {
 		super.store();
 	}
@@ -45,10 +46,11 @@ public class CityHouseCouncil extends Entity implements ZoneConfigurator {
 				logger.error(e1, e1);
 			}
 			logger.error("Can't store zone", e);
-		}		
+		}
 	}
 
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone,
+			Map<String, String> attributes) {
 		this.zone = zone;
 		super.put("test", "1");
 		zone.add(this);
@@ -57,7 +59,7 @@ public class CityHouseCouncil extends Entity implements ZoneConfigurator {
 			public void onTurnReached(int currentTurn) {
 				save();
 			}
-			
+
 		});
 	}
 

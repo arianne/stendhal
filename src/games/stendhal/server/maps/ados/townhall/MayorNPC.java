@@ -14,9 +14,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Builds ados mayor NPC.
- * He may give an items quest later
- * Now he sells ados scrolls
+ * Builds ados mayor NPC. He may give an items quest later Now he sells ados
+ * scrolls
+ * 
  * @author kymara
  */
 public class MayorNPC implements ZoneConfigurator {
@@ -24,11 +24,14 @@ public class MayorNPC implements ZoneConfigurator {
 
 	/**
 	 * Configure a zone.
-	 *
-	 * @param	zone		The zone to be configured.
-	 * @param	attributes	Configuration attributes.
+	 * 
+	 * @param zone
+	 *            The zone to be configured.
+	 * @param attributes
+	 *            Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone,
+			Map<String, String> attributes) {
 		buildMayor(zone);
 	}
 
@@ -39,15 +42,15 @@ public class MayorNPC implements ZoneConfigurator {
 			protected void createPath() {
 				List<Node> nodes = new LinkedList<Node>();
 				nodes.add(new Node(3, 10));
-				nodes.add(new Node(8, 10));	
-				nodes.add(new Node(8, 16));	
+				nodes.add(new Node(8, 10));
+				nodes.add(new Node(8, 16));
 				nodes.add(new Node(25, 16));
 				nodes.add(new Node(25, 13));
 				nodes.add(new Node(37, 13));
 				nodes.add(new Node(25, 13));
 				nodes.add(new Node(25, 16));
 				nodes.add(new Node(8, 16));
-				nodes.add(new Node(8, 10));	
+				nodes.add(new Node(8, 10));
 				setPath(new FixedPath(nodes, true));
 			}
 
@@ -56,8 +59,10 @@ public class MayorNPC implements ZoneConfigurator {
 				addGreeting("On behalf of the citizens of Ados, welcome.");
 				addJob("I'm the mayor of Ados. I can #offer you the chance to return here easily.");
 				addHelp("Ask me about my #offer to return here.");
-				//addQuest("I don't know you well yet. Perhaps later in the year I can trust you with something.");
-				new SellerAdder().addSeller(this, new SellerBehaviour(shops.get("adosscrolls")));
+				// addQuest("I don't know you well yet. Perhaps later in the
+				// year I can trust you with something.");
+				new SellerAdder().addSeller(this, new SellerBehaviour(
+						shops.get("adosscrolls")));
 				addGoodbye("Good day to you.");
 			}
 		};

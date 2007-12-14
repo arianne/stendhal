@@ -12,7 +12,6 @@ package games.stendhal.server.config.zone;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
 
-
 import org.apache.log4j.Logger;
 
 /**
@@ -29,16 +28,15 @@ public class ConfiguratorDescriptor extends SetupDescriptor {
 	 */
 	protected String className;
 
-
 	/**
 	 * Create a zone configurator descriptor.
-	 *
-	 * @param	className	The class name of the configurator.
+	 * 
+	 * @param className
+	 *            The class name of the configurator.
 	 */
 	public ConfiguratorDescriptor(final String className) {
 		this.className = className;
 	}
-
 
 	//
 	// ConfiguratorDescriptor
@@ -46,13 +44,12 @@ public class ConfiguratorDescriptor extends SetupDescriptor {
 
 	/**
 	 * Get the class name of the configurator.
-	 *
-	 * @return	The class name.
+	 * 
+	 * @return The class name.
 	 */
 	public String getClassName() {
 		return className;
 	}
-
 
 	//
 	// SetupDescriptor
@@ -60,8 +57,9 @@ public class ConfiguratorDescriptor extends SetupDescriptor {
 
 	/**
 	 * Do appropriate zone setup.
-	 *
-	 * @param	zone		The zone.
+	 * 
+	 * @param zone
+	 *            The zone.
 	 */
 	@Override
 	public void setup(final StendhalRPZone zone) {
@@ -87,11 +85,13 @@ public class ConfiguratorDescriptor extends SetupDescriptor {
 		try {
 			obj = clazz.newInstance();
 		} catch (InstantiationException ex) {
-			logger.error("Error creating zone configurator: " + classNameTemp, ex);
+			logger.error("Error creating zone configurator: " + classNameTemp,
+					ex);
 
 			return;
 		} catch (IllegalAccessException ex) {
-			logger.error("Error accessing zone configurator: " + classNameTemp, ex);
+			logger.error("Error accessing zone configurator: " + classNameTemp,
+					ex);
 
 			return;
 		}
@@ -100,8 +100,8 @@ public class ConfiguratorDescriptor extends SetupDescriptor {
 		 * Apply class
 		 */
 		if (obj instanceof ZoneConfigurator) {
-			logger.info("Configuring zone [" + zone.getName()
-					+ "] with: " + classNameTemp);
+			logger.info("Configuring zone [" + zone.getName() + "] with: "
+					+ classNameTemp);
 
 			((ZoneConfigurator) obj).configureZone(zone, getParameters());
 		} else {

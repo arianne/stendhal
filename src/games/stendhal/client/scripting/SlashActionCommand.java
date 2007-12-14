@@ -17,8 +17,6 @@ public class SlashActionCommand {
 
 	private String error = null;
 
-	
-
 	/**
 	 * @return action object
 	 */
@@ -26,11 +24,11 @@ public class SlashActionCommand {
 		return action;
 	}
 
-	
 	/**
 	 * sets the action to be parsed.
 	 * 
-	 * @param action the action to be parsed
+	 * @param action
+	 *            the action to be parsed
 	 */
 	void setAction(final SlashAction action) {
 		this.action = action;
@@ -57,12 +55,12 @@ public class SlashActionCommand {
 	/**
 	 * set command parameters.
 	 * 
-	 * @param params parameter array
+	 * @param params
+	 *            parameter array
 	 */
 	void setParams(final String[] params) {
 		this.params = params;
 	}
-
 
 	/**
 	 * return trailing parameter text.
@@ -73,16 +71,15 @@ public class SlashActionCommand {
 		return remainder;
 	}
 
-	
 	/**
 	 * sets the trailing text.
 	 * 
-	 * @param remainder the trailing text
+	 * @param remainder
+	 *            the trailing text
 	 */
 	void setRemainder(final String remainder) {
 		this.remainder = remainder;
 	}
-
 
 	/**
 	 * return whether some error occurred while parsing the input text.
@@ -105,7 +102,8 @@ public class SlashActionCommand {
 	/**
 	 * set error flag.
 	 * 
-	 * @param error the error message
+	 * @param error
+	 *            the error message
 	 * 
 	 * @return this
 	 */
@@ -122,7 +120,8 @@ public class SlashActionCommand {
 	/**
 	 * set command name.
 	 * 
-	 * @param name the command name
+	 * @param name
+	 *            the command name
 	 */
 	void setName(final String name) {
 		this.name = name;

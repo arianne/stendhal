@@ -45,7 +45,7 @@ import marauroa.common.game.RPSlot;
 public class Buddies extends WtPanel {
 	private StendhalUI ui;
 
-//	private StendhalClient client;
+	// private StendhalClient client;
 
 	private Sprite online;
 
@@ -82,8 +82,8 @@ public class Buddies extends WtPanel {
 		if ((i < buddies.size()) && (i >= 0)) {
 
 			/**
-			 * don't know if this is the right way to find out
-			 * if a player is online, but it works :)
+			 * don't know if this is the right way to find out if a player is
+			 * online, but it works :)
 			 */
 			boolean isOnline = false;
 			RPObject object = ui.getClient().getPlayer();
@@ -91,12 +91,14 @@ public class Buddies extends WtPanel {
 				RPSlot slot = object.getSlot("!buddy");
 				RPObject buddy = slot.getFirst();
 				String buddyName = buddies.get(i);
-				if (buddy.has("_" + buddyName) && (buddy.getInt("_" + buddyName) != 0)) {
+				if (buddy.has("_" + buddyName)
+						&& (buddy.getInt("_" + buddyName) != 0)) {
 					isOnline = true;
 				}
 			}
 
-			StyledJPopupMenu menu = new StyledJPopupMenu(WoodStyle.getInstance(), buddies.get(i));
+			StyledJPopupMenu menu = new StyledJPopupMenu(
+					WoodStyle.getInstance(), buddies.get(i));
 
 			ActionListener listener = new ActionSelectedCB(buddies.get(i));
 
@@ -162,12 +164,12 @@ public class Buddies extends WtPanel {
 		}
 	}
 
-
 	/**
 	 * Draw the panel contents. This is only called while open and not
 	 * minimized.
-	 *
-	 * @param	g		The graphics context to draw with.
+	 * 
+	 * @param g
+	 *            The graphics context to draw with.
 	 */
 	@Override
 	protected void drawContent(Graphics2D g) {
@@ -218,8 +220,8 @@ public class Buddies extends WtPanel {
 
 		/**
 		 * Create a listener for action items.
-		 *
-		 *
+		 * 
+		 * 
 		 */
 		public ActionSelectedCB(String buddy) {
 			this.buddy = buddy;

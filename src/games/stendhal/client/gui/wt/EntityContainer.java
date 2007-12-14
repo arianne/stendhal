@@ -26,14 +26,13 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-
 import org.apache.log4j.Logger;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
 /**
  * This panel is a container showing all items in a slot
- *
+ * 
  * @author mtotz
  */
 public class EntityContainer extends WtPanel implements PositionChangeListener {
@@ -83,8 +82,8 @@ public class EntityContainer extends WtPanel implements PositionChangeListener {
 		}
 
 		// resize panel
-		resizeToFitClientArea(width * spriteWidth + (width - 1),
-			height * spriteHeight + (height - 1));
+		resizeToFitClientArea(width * spriteWidth + (width - 1), height
+				* spriteHeight + (height - 1));
 	}
 
 	/** we're using the window manager */
@@ -131,7 +130,8 @@ public class EntityContainer extends WtPanel implements PositionChangeListener {
 				Entity entity = gameObjects.get(object);
 
 				if (entity == null) {
-					logger.warn("Unable to find entity for: " + object, new Throwable("here"));
+					logger.warn("Unable to find entity for: " + object,
+							new Throwable("here"));
 					entity = EntityFactory.createEntity(object);
 				}
 
@@ -151,17 +151,20 @@ public class EntityContainer extends WtPanel implements PositionChangeListener {
 	}
 
 	/**
-	 * Check the distance of the player to the base item.
-	 * When the player is too far away, this panel closes itself.
-	 *
+	 * Check the distance of the player to the base item. When the player is too
+	 * far away, this panel closes itself.
+	 * 
 	 * TODO: Change to event model, rather than polling
 	 */
 	private void checkDistance() {
 		User user = User.get();
 
-		if (user != null &&
-			parent != null) {	// fix for Bug 1825678: NullPointerException happened after double clicking one monster and a fast double click on another monster
-			if (user.getID().equals(parent.getID())) { 
+		if (user != null && parent != null) { // fix for Bug 1825678:
+												// NullPointerException happened
+												// after double clicking one
+												// monster and a fast double
+												// click on another monster
+			if (user.getID().equals(parent.getID())) {
 				// We don't want to close our own stuff
 				return;
 			}
@@ -169,7 +172,6 @@ public class EntityContainer extends WtPanel implements PositionChangeListener {
 			positionChanged(user.getX(), user.getY());
 		}
 	}
-
 
 	/*
 	 * Clear all holders.
@@ -181,7 +183,6 @@ public class EntityContainer extends WtPanel implements PositionChangeListener {
 
 		shownSlot = null;
 	}
-
 
 	/** sets the player entity */
 	public void setSlot(Entity parent, String slot) {
@@ -203,7 +204,7 @@ public class EntityContainer extends WtPanel implements PositionChangeListener {
 	/**
 	 * Draw the panel contents. This is only called while open and not
 	 * minimized.
-	 *
+	 * 
 	 * @param g
 	 *            The graphics context to draw with.
 	 */
@@ -212,10 +213,9 @@ public class EntityContainer extends WtPanel implements PositionChangeListener {
 		rescanSlotContent();
 		super.drawContent(g);
 
-	 	// TODO: Change to event model, rather than polling
+		// TODO: Change to event model, rather than polling
 		checkDistance();
 	}
-
 
 	/**
 	 * Close the panel.
@@ -225,7 +225,6 @@ public class EntityContainer extends WtPanel implements PositionChangeListener {
 		clear();
 		super.close();
 	}
-
 
 	/**
 	 * Destroy the panel.
@@ -238,16 +237,17 @@ public class EntityContainer extends WtPanel implements PositionChangeListener {
 		super.destroy();
 	}
 
-
 	//
 	// PositionChangeListener
 	//
 
 	/**
 	 * The user position changed.
-	 *
-	 * @param	x		The X coordinate (in world units).
-	 * @param	y		The Y coordinate (in world units).
+	 * 
+	 * @param x
+	 *            The X coordinate (in world units).
+	 * @param y
+	 *            The Y coordinate (in world units).
 	 */
 	public void positionChanged(final double x, final double y) {
 		/*

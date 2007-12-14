@@ -12,7 +12,7 @@ public interface IQuest {
 
 	/**
 	 * Initialize the quest on server startup.
-	 *
+	 * 
 	 * @param name
 	 *            Name of this quest
 	 */
@@ -25,7 +25,7 @@ public interface IQuest {
 
 	/**
 	 * Was the quest started?
-	 *
+	 * 
 	 * @param player
 	 *            Player
 	 * @return true, if it was started, false otherwise
@@ -35,7 +35,7 @@ public interface IQuest {
 	/**
 	 * Was the quest completed?<!--sic--> Note: A quest can be completed
 	 * without its status beeing "Done" (e. g. rejected, failed).
-	 *
+	 * 
 	 * @param player
 	 *            Player
 	 * @return true, if it was completed, false otherwise
@@ -44,7 +44,7 @@ public interface IQuest {
 
 	/**
 	 * May the quest be repeated?
-	 *
+	 * 
 	 * @param player
 	 *            Player
 	 * @return true, if it can be repeated, false otherwise
@@ -54,7 +54,7 @@ public interface IQuest {
 	/**
 	 * Gets a list of history item-names. The texts will be looked up in
 	 * quest.xml
-	 *
+	 * 
 	 * @param player
 	 *            Player
 	 * @return list of history item-names
@@ -66,7 +66,7 @@ public interface IQuest {
 	 * same hint is not displayed twice. This class creates a list of useful
 	 * hints (without hints about already completed parts). The texts will be
 	 * looked up in quest.xml
-	 *
+	 * 
 	 * @param player
 	 *            Player
 	 * @return list of history item-names
@@ -75,7 +75,7 @@ public interface IQuest {
 
 	/**
 	 * Returns the name of the quest
-	 *
+	 * 
 	 * @return name
 	 */
 	String getName();

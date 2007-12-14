@@ -17,7 +17,6 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
-
 import org.apache.log4j.Logger;
 
 import org.xml.sax.Attributes;
@@ -30,8 +29,7 @@ public class CreaturesXMLLoader extends DefaultHandler {
 	private static CreaturesXMLLoader instance;
 
 	/** the logger instance. */
-	private static final Logger logger = Logger
-			.getLogger(CreaturesXMLLoader.class);
+	private static final Logger logger = Logger.getLogger(CreaturesXMLLoader.class);
 
 	private String name;
 
@@ -215,11 +213,12 @@ public class CreaturesXMLLoader extends DefaultHandler {
 					range = range.replace("]", "");
 					String[] amount = range.split(",");
 
-					dropsItems.add(new DropItem(tempName, probability, Integer
-							.parseInt(amount[0]), Integer.parseInt(amount[1])));
+					dropsItems.add(new DropItem(tempName, probability,
+							Integer.parseInt(amount[0]),
+							Integer.parseInt(amount[1])));
 				} else {
-					dropsItems.add(new DropItem(tempName, probability, Integer
-							.parseInt(range)));
+					dropsItems.add(new DropItem(tempName, probability,
+							Integer.parseInt(range)));
 				}
 			}
 		} else if (qName.equals("attributes")) {

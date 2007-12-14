@@ -15,32 +15,32 @@ import marauroa.common.game.RPAction;
 
 /**
  * Stendhal TeleportSend Extenstion
- *
- * This extension adds teleportsend to the game world.
- * there is 1 command:
- *  /teleportsend [Player] [Player|NPC_Destination] which will teleport the first player to the second player/npc
- * This command is an admin command of the same access level as /teleport
- * To enable this extension, add it to the marauroa.int file:
- *
- * # load StendhalServerExtension(s)
+ * 
+ * This extension adds teleportsend to the game world. there is 1 command:
+ * /teleportsend [Player] [Player|NPC_Destination] which will teleport the first
+ * player to the second player/npc This command is an admin command of the same
+ * access level as /teleport To enable this extension, add it to the
+ * marauroa.int file: # load StendhalServerExtension(s)
  * teleportsend=games.stendhal.server.extension.TeleportSendExtension
  * server_extension=...,teleportsend
- *
+ * 
  * @author Seather
  */
-public class TeleportSendExtension extends StendhalServerExtension implements ActionListener {
+public class TeleportSendExtension extends StendhalServerExtension implements
+		ActionListener {
 
 	private final String CMD_NAME = "teleportsend";
 
-	private final String CMD_USAGE = "Usage: #/" + CMD_NAME + " #<Player> #<Player|NPC_Destination>";
+	private final String CMD_USAGE = "Usage: #/" + CMD_NAME
+			+ " #<Player> #<Player|NPC_Destination>";
 
 	private static final Logger logger = Logger.getLogger(TeleportSendExtension.class);
 
 	public TeleportSendExtension() {
 		super();
 		logger.info("TeleportSendExtension starting...");
-		CommandCenter.register(CMD_NAME, this,400);
-		
+		CommandCenter.register(CMD_NAME, this, 400);
+
 	}
 
 	@Override
@@ -58,13 +58,14 @@ public class TeleportSendExtension extends StendhalServerExtension implements Ac
 	}
 
 	private void onTeleportSend(Player admin, RPAction action) {
-		
-		if (!AdministrationAction.isPlayerAllowedToExecuteAdminCommand(admin, CMD_NAME, true)) {
+
+		if (!AdministrationAction.isPlayerAllowedToExecuteAdminCommand(admin,
+				CMD_NAME, true)) {
 			return;
 		}
 
 		if (action.has("target") && action.has("args")) {
-			//Parse Player1
+			// Parse Player1
 			String name1 = action.get("target");
 			Player player1 = StendhalRPRuleProcessor.get().getPlayer(name1);
 			if (player1 == null) {
@@ -74,7 +75,7 @@ public class TeleportSendExtension extends StendhalServerExtension implements Ac
 				return;
 			}
 
-			//Parse Player2 (player/npc)
+			// Parse Player2 (player/npc)
 			String name2 = action.get("args");
 			RPEntity player2 = StendhalRPRuleProcessor.get().getPlayer(name2);
 			if (player2 == null) {
@@ -93,10 +94,13 @@ public class TeleportSendExtension extends StendhalServerExtension implements Ac
 			int y = player2.getY();
 
 			player1.teleport(zone, x, y, null, admin);
-			
-			/*StendhalRPRuleProcessor.get().addGameEvent(admin.getName(), "teleportsend", 
-					action.get("target") + " -> " + action.get("args"),
-			        zone.getName(), Integer.toString(x), Integer.toString(y));*/
+
+			/*
+			 * StendhalRPRuleProcessor.get().addGameEvent(admin.getName(),
+			 * "teleportsend", action.get("target") + " -> " +
+			 * action.get("args"), zone.getName(), Integer.toString(x),
+			 * Integer.toString(y));
+			 */
 		} else {
 			admin.sendPrivateText(CMD_USAGE);
 		}

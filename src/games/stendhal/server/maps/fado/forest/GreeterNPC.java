@@ -15,7 +15,7 @@ import java.util.Map;
 
 /**
  * Builds an albino elf NPC
- *
+ * 
  * @author kymara
  */
 public class GreeterNPC implements ZoneConfigurator {
@@ -23,11 +23,14 @@ public class GreeterNPC implements ZoneConfigurator {
 
 	/**
 	 * Configure a zone.
-	 *
-	 * @param	zone		The zone to be configured.
-	 * @param	attributes	Configuration attributes.
+	 * 
+	 * @param zone
+	 *            The zone to be configured.
+	 * @param attributes
+	 *            Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone,
+			Map<String, String> attributes) {
 		buildNPC(zone);
 	}
 
@@ -52,12 +55,17 @@ public class GreeterNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-			        addGreeting("Welcome to the humble dwellings of the albino elves.");
+				addGreeting("Welcome to the humble dwellings of the albino elves.");
 				addJob("I just wander around. In fact, albino elves wander around a lot. We're #nomadic, you know.");
-				addReply("nomadic", "We don't have a permanent home, we travel instead between forests and glens. When we find a clearing we like, we settle. We liked this one because of the ancient #stones near by.");
-				addReply("stones", "They have some mystical quality. We like to be by them for the changing of the seasons.");
+				addReply(
+						"nomadic",
+						"We don't have a permanent home, we travel instead between forests and glens. When we find a clearing we like, we settle. We liked this one because of the ancient #stones near by.");
+				addReply(
+						"stones",
+						"They have some mystical quality. We like to be by them for the changing of the seasons.");
 				addHelp("I would sell you enchanted scrolls to return to Fado City. I have a source of cheap ones.");
-				new SellerAdder().addSeller(this, new SellerBehaviour(shops.get("fadoscrolls")) {
+				new SellerAdder().addSeller(this, new SellerBehaviour(
+						shops.get("fadoscrolls")) {
 
 					@Override
 					public int getUnitPrice(String item) {
@@ -66,7 +74,7 @@ public class GreeterNPC implements ZoneConfigurator {
 					}
 				});
 				addQuest("A generous offer, but I require nothing, thank you.");
- 				addGoodbye("Bye then.");
+				addGoodbye("Bye then.");
 			}
 		};
 

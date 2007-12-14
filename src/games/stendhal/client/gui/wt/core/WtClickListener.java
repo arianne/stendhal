@@ -22,14 +22,14 @@ import java.awt.Point;
 
 /**
  * Callback for clicking on a panel
- *
+ * 
  * @author mtotz
  */
 public interface WtClickListener {
 
 	/**
 	 * the panel has been clicked
-	 *
+	 * 
 	 * @param name
 	 *            name of the panel. Note that the panels name does not need to
 	 *            be unique

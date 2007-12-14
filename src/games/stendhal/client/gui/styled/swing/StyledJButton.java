@@ -31,8 +31,8 @@ public class StyledJButton extends JButton {
 
 	/**
 	 * Create a styled JButton.
-	 *
-	 *
+	 * 
+	 * 
 	 */
 	public StyledJButton(Style style) {
 		this.style = style;
@@ -40,20 +40,18 @@ public class StyledJButton extends JButton {
 		applyStyle(style, this);
 	}
 
-
 	//
 	// StyledJButton
 	//
 
 	/**
 	 * Apply style information to a component.
-	 *
+	 * 
 	 */
 	protected void applyStyle(Style style, JButton panel) {
 		Border border = style.getBorder();
 		Font font = style.getFont();
 		Color color = style.getForeground();
-
 
 		if (border != null) {
 			panel.setBorder(border);
@@ -70,15 +68,14 @@ public class StyledJButton extends JButton {
 		setContentAreaFilled(false);
 	}
 
-
 	//
 	// JComponent
 	//
 
 	/**
 	 * Paint the component background.
-	 *
-	 *
+	 * 
+	 * 
 	 */
 	@Override
 	protected void paintComponent(Graphics g) {

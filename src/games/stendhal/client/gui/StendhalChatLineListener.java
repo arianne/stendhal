@@ -22,12 +22,12 @@ import java.util.Vector;
 
 import javax.swing.JTextField;
 
-
 import org.apache.log4j.Logger;
 
 public class StendhalChatLineListener implements ActionListener, KeyListener {
 
-	private static final String CHAT_LOG_FILE = System.getProperty("user.home") + "/" + stendhal.STENDHAL_FOLDER + "chat.log";
+	private static final String CHAT_LOG_FILE = System.getProperty("user.home")
+			+ "/" + stendhal.STENDHAL_FOLDER + "chat.log";
 
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(StendhalChatLineListener.class);
@@ -39,30 +39,35 @@ public class StendhalChatLineListener implements ActionListener, KeyListener {
 
 	private int actual;
 
-
 	@SuppressWarnings("unchecked")
-	public StendhalChatLineListener(StendhalClient client, JTextField playerChatText) {
+	public StendhalChatLineListener(StendhalClient client,
+			JTextField playerChatText) {
 		super();
 		this.playerChatText = playerChatText;
 		lines = new LinkedList<String>();
 
-		/* Enable Keyboard TAB events*/
+		/* Enable Keyboard TAB events */
 		KeyboardFocusManager kfm = KeyboardFocusManager.getCurrentKeyboardFocusManager();
 
-		kfm.setDefaultFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS, Collections.EMPTY_SET);
-		kfm.setDefaultFocusTraversalKeys(KeyboardFocusManager.BACKWARD_TRAVERSAL_KEYS, Collections.EMPTY_SET);
+		kfm.setDefaultFocusTraversalKeys(
+				KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS,
+				Collections.EMPTY_SET);
+		kfm.setDefaultFocusTraversalKeys(
+				KeyboardFocusManager.BACKWARD_TRAVERSAL_KEYS,
+				Collections.EMPTY_SET);
 
 		client.whoplayers = new Vector<String>();
 		playersonline = client.whoplayers;
 
-		//Open chat log file
+		// Open chat log file
 		try {
-			//TODO: Create the file on the stendhal home folder.
+			// TODO: Create the file on the stendhal home folder.
 			File chatfile = new File(CHAT_LOG_FILE);
 
 			if (chatfile.exists()) {
 				FileInputStream fis = new FileInputStream(chatfile);
-				BufferedReader br = new BufferedReader(new InputStreamReader(fis));
+				BufferedReader br = new BufferedReader(new InputStreamReader(
+						fis));
 
 				String line = null;
 				while (null != (line = br.readLine())) {
@@ -92,7 +97,7 @@ public class StendhalChatLineListener implements ActionListener, KeyListener {
 				lines.removeFirst();
 			}
 
-			ListIterator< String > iterator = lines.listIterator();
+			ListIterator<String> iterator = lines.listIterator();
 			while (iterator.hasNext()) {
 				ps.println(iterator.next());
 			}
@@ -107,19 +112,19 @@ public class StendhalChatLineListener implements ActionListener, KeyListener {
 		int keypressed = e.getKeyCode();
 
 		if (e.isShiftDown()) {
-			switch(keypressed) {
-				case KeyEvent.VK_UP:
-					if (actual > 0) {
-						playerChatText.setText(lines.get(actual - 1));
-						actual--;
-					}
-					break;
-				case KeyEvent.VK_DOWN:
-					if (actual < lines.size()) {
-						playerChatText.setText(lines.get(actual));
-						actual++;
-					}
-					break;
+			switch (keypressed) {
+			case KeyEvent.VK_UP:
+				if (actual > 0) {
+					playerChatText.setText(lines.get(actual - 1));
+					actual--;
+				}
+				break;
+			case KeyEvent.VK_DOWN:
+				if (actual < lines.size()) {
+					playerChatText.setText(lines.get(actual));
+					actual++;
+				}
+				break;
 			}
 		}
 
@@ -127,7 +132,8 @@ public class StendhalChatLineListener implements ActionListener, KeyListener {
 			String[] strwords = playerChatText.getText().split("\\s+");
 
 			for (int i = 0; i < playersonline.size(); i++) {
-				if (playersonline.elementAt(i).startsWith(strwords[strwords.length - 1])) {
+				if (playersonline.elementAt(i).startsWith(
+						strwords[strwords.length - 1])) {
 					String output = "";
 					for (int j = 0; j < strwords.length - 1; j++) {
 						output = output + strwords[j] + " ";

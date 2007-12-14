@@ -24,25 +24,26 @@ public class InfoStringScroll extends Scroll {
 
 	/**
 	 * Creates a new infostring stackable scroll.
-	 *
+	 * 
 	 * @param name
 	 * @param clazz
 	 * @param subclass
 	 * @param attributes
 	 */
-	public InfoStringScroll(String name, String clazz, String subclass, Map<String, String> attributes) {
+	public InfoStringScroll(String name, String clazz, String subclass,
+			Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);
 	}
 
 	/**
 	 * copy constructor
-	 *
-	 * @param item item to copy
+	 * 
+	 * @param item
+	 *            item to copy
 	 */
 	public InfoStringScroll(InfoStringScroll item) {
 		super(item);
 	}
-
 
 	// TODO: Move up to stackable item?
 	@Override

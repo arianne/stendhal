@@ -15,7 +15,7 @@ import marauroa.server.game.db.Transaction;
 
 /**
  * Dumps the items of all players into a table called items
- *
+ * 
  * @author hendrik
  */
 public class ItemDumper {
@@ -29,7 +29,7 @@ public class ItemDumper {
 
 	/**
 	 * Creates a new ItemDumper
-	 *
+	 * 
 	 * @param db
 	 *            JDBCPlayerDatabase
 	 * @throws GenericDatabaseException
@@ -42,7 +42,7 @@ public class ItemDumper {
 
 	/**
 	 * dumps the items
-	 *
+	 * 
 	 * @throws Exception
 	 *             in case of an unexpected Exception
 	 */
@@ -72,7 +72,7 @@ public class ItemDumper {
 
 	/**
 	 * logs an item
-	 *
+	 * 
 	 * @param name
 	 *            character name
 	 * @param slotName
@@ -99,7 +99,7 @@ public class ItemDumper {
 
 	/**
 	 * starts the ItemDumper
-	 *
+	 * 
 	 * @param args
 	 *            ignored
 	 * @throws Exception

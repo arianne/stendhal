@@ -7,7 +7,7 @@ import java.util.Map.Entry;
 
 /**
  * Singleton class that contains inventory and prices of NPC stores.
- *
+ * 
  */
 public class ShopList {
 
@@ -39,7 +39,8 @@ public class ShopList {
 		shops.add("superhealing", "greater_antidote", 100);
 		shops.add("superhealing", "potion", 250);
 		shops.add("superhealing", "greater_potion", 500);
-		//	shops.add("superhealing", "mega_potion", 1500); don't want giantheart market starting again
+		// shops.add("superhealing", "mega_potion", 1500); don't want giantheart
+		// market starting again
 
 		shops.add("scrolls", "home_scroll", 250);
 		shops.add("scrolls", "summon_scroll", 200);
@@ -120,7 +121,7 @@ public class ShopList {
 		shops.add("buyrare", "plate_shield", 40);
 		shops.add("buyrare", "lion_shield", 50);
 
-		//rare elf weapons buyer
+		// rare elf weapons buyer
 		shops.add("elfbuyrare", "battle_axe", 70);
 		shops.add("elfbuyrare", "twoside_axe", 80);
 		shops.add("elfbuyrare", "claymore", 90);
@@ -145,7 +146,8 @@ public class ShopList {
 		shops.add("buyrare3", "golden_shield", 10000);
 		shops.add("buyrare3", "shadow_shield", 15000);
 
-		// less rare armor shop (kobold city -  kobolds drop some of these things)
+		// less rare armor shop (kobold city - kobolds drop some of these
+		// things)
 		shops.add("buystuff2", "leather_scale_armor", 65);
 		shops.add("buystuff2", "studded_legs", 70);
 		shops.add("buystuff2", "studded_boots", 75);
@@ -171,7 +173,8 @@ public class ShopList {
 		shops.add("buycloaks", "black_cloak", 20000);
 
 		// boots shop (mithrilbourgh)
-		// Note the shop sign is done by hand in games.stendhal.server.maps.mithrilbourgh.stores
+		// Note the shop sign is done by hand in
+		// games.stendhal.server.maps.mithrilbourgh.stores
 		// Because I wanted to split boots and helmets
 		// Please if you change anything, change also the sign (by hand)
 		shops.add("boots&helm", "steel_boots", 1000);
@@ -181,7 +184,8 @@ public class ShopList {
 		shops.add("boots&helm", "chaos_boots", 4000);
 
 		// helmet shop (mithrilbourgh)
-		// Note the shop sign is done by hand in games.stendhal.server.maps.mithrilbourgh.stores
+		// Note the shop sign is done by hand in
+		// games.stendhal.server.maps.mithrilbourgh.stores
 		shops.add("boots&helm", "golden_helmet", 3000);
 		shops.add("boots&helm", "shadow_helmet", 4000);
 		shops.add("boots&helm", "horned_golden_helmet", 5000);
@@ -195,21 +199,21 @@ public class ShopList {
 		shops.add("buyaxe", "magic_twoside_axe", 6000);
 		shops.add("buyaxe", "durin_axe", 8000);
 		shops.add("buyaxe", "black_scythe", 9000);
-                shops.add("buyaxe", "chaos_axe", 10000);
-                shops.add("buyaxe", "black_halberd", 12000);
+		shops.add("buyaxe", "chaos_axe", 10000);
+		shops.add("buyaxe", "black_halberd", 12000);
 
-                // buy chaos items (scared dwarf, after quest)
-                shops.add("buychaos", "chaos_legs", 8000);
-                shops.add("buychaos", "chaos_sword", 12000);
+		// buy chaos items (scared dwarf, after quest)
+		shops.add("buychaos", "chaos_legs", 8000);
+		shops.add("buychaos", "chaos_sword", 12000);
 		shops.add("buychaos", "chaos_shield", 15000);
 		shops.add("buychaos", "chaos_armor", 20000);
 
-               // buy elvish items (albino elf, after quest)
-                shops.add("buyelvish", "elvish_boots", 300);
-                shops.add("buyelvish", "elvish_legs", 300);
-                shops.add("buyelvish", "elvish_sword", 800);
-                shops.add("buyelvish", "elvish_shield", 1000);
-                shops.add("buyelvish", "drow_sword", 1200);
+		// buy elvish items (albino elf, after quest)
+		shops.add("buyelvish", "elvish_boots", 300);
+		shops.add("buyelvish", "elvish_legs", 300);
+		shops.add("buyelvish", "elvish_sword", 800);
+		shops.add("buyelvish", "elvish_shield", 1000);
+		shops.add("buyelvish", "drow_sword", 1200);
 		shops.add("buyelvish", "elvish_cloak", 400);
 		shops.add("buyelvish", "elvish_armor", 400);
 
@@ -229,7 +233,6 @@ public class ShopList {
 		shops.add("buyred", "red_helmet", 200);
 		shops.add("buyred", "red_legs", 200);
 		shops.add("buyred", "red_shield", 750);
-		
 
 	}
 
@@ -237,6 +240,7 @@ public class ShopList {
 
 	/**
 	 * Returns the Singleton instance.
+	 * 
 	 * @return The instance
 	 */
 	public static ShopList get() {

@@ -5,9 +5,8 @@ import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.entity.player.Player;
 import static games.stendhal.server.actions.WellKnownActionConstants.TARGET;
-class RemoveBuddyAction implements ActionListener {
 
-	
+class RemoveBuddyAction implements ActionListener {
 
 	public void onAction(Player player, RPAction action) {
 		if (action.has(TARGET)) {

@@ -26,15 +26,17 @@ public class StackableItem extends Item implements Stackable {
 
 	private static Logger logger = Logger.getLogger(StackableItem.class);
 
-	public StackableItem(String name, String clazz, String subclass, Map<String, String> attributes) {
+	public StackableItem(String name, String clazz, String subclass,
+			Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);
 		update();
 	}
 
 	/**
 	 * copy constructor
-	 *
-	 * @param item item to copy
+	 * 
+	 * @param item
+	 *            item to copy
 	 */
 	public StackableItem(StackableItem item) {
 		super(item);
@@ -57,7 +59,8 @@ public class StackableItem extends Item implements Stackable {
 
 	public void setQuantity(int amount) {
 		if (amount < 0) {
-			logger.error("Trying to set invalid quantity: " + amount, new Throwable());
+			logger.error("Trying to set invalid quantity: " + amount,
+					new Throwable());
 			amount = 1;
 		}
 		quantity = amount;
@@ -80,11 +83,14 @@ public class StackableItem extends Item implements Stackable {
 		}
 
 		if (quantity >= amountToSplitOff) {
-			StackableItem newItem = (StackableItem) StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(getName());
+			StackableItem newItem = (StackableItem) StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
+					getName());
 
 			newItem.setQuantity(amountToSplitOff);
 
-			String[] attributesToCopyOnSplit = new String[]{"infostring", "description", "bound", "persistent", "undroppableondeath", "amount", "frequency", "regen", "atk", "range"};
+			String[] attributesToCopyOnSplit = new String[] { "infostring",
+					"description", "bound", "persistent", "undroppableondeath",
+					"amount", "frequency", "regen", "atk", "range" };
 			for (String attribute : attributesToCopyOnSplit) {
 				if (has(attribute)) {
 					newItem.put(attribute, get(attribute));
@@ -105,7 +111,8 @@ public class StackableItem extends Item implements Stackable {
 					try {
 						notifyWorldAboutChanges();
 					} catch (Exception e) {
-						logger.warn("isContained() returned false on contained object (bank chest bug): " + e);
+						logger.warn("isContained() returned false on contained object (bank chest bug): "
+								+ e);
 					}
 				}
 			} else {
@@ -126,18 +133,22 @@ public class StackableItem extends Item implements Stackable {
 	public boolean isStackable(Stackable other) {
 		StackableItem otheri = (StackableItem) other;
 
-		if (!getItemClass().equals(otheri.getItemClass()) || !getItemSubclass().equals(otheri.getItemSubclass())) {
+		if (!getItemClass().equals(otheri.getItemClass())
+				|| !getItemSubclass().equals(otheri.getItemSubclass())) {
 			return false;
 		}
 
 		// TODO: look at InfoStringScroll.java
 
-		String[] importantAttributes = new String[]{"infostring", "bound", "persistent", "undroppableondeath", "amount", "frequency", "regen", "atk", "range"};
-		for (String iAtt : importantAttributes)	{
+		String[] importantAttributes = new String[] { "infostring", "bound",
+				"persistent", "undroppableondeath", "amount", "frequency",
+				"regen", "atk", "range" };
+		for (String iAtt : importantAttributes) {
 			if (!has(iAtt) && !otheri.has(iAtt)) {
 				continue;
 			}
-			if (has(iAtt) && otheri.has(iAtt) && get(iAtt).equals(otheri.get(iAtt))) {
+			if (has(iAtt) && otheri.has(iAtt)
+					&& get(iAtt).equals(otheri.get(iAtt))) {
 				continue;
 			}
 			return false;

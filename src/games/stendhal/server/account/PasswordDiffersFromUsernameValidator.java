@@ -6,20 +6,23 @@ import org.apache.log4j.Logger;
 
 /**
  * checks that the password is not closly related to the username.
- *
+ * 
  * @author timothyb89
  */
-public class PasswordDiffersFromUsernameValidator implements AccountParameterValidator {
+public class PasswordDiffersFromUsernameValidator implements
+		AccountParameterValidator {
 	private static Logger logger = Logger.getLogger(PasswordDiffersFromUsernameValidator.class);
 
 	private String username;
 	private String password;
 
 	/**
-	 * Creates a new PasswordDiffersFromUsernameValidator validator
-	 *
-	 * @param username name of user
-	 * @param password password
+	 * Creates a new PasswordDiffersFromUsernameValidator validator.
+	 * 
+	 * @param username
+	 *            name of user
+	 * @param password
+	 *            password
 	 */
 	public PasswordDiffersFromUsernameValidator(String username, String password) {
 		this.username = username;
@@ -53,7 +56,7 @@ public class PasswordDiffersFromUsernameValidator implements AccountParameterVal
 			}
 
 			if (!hasUsername) {
-				//now from the end of the password..
+				// now from the end of the password..
 				logger.debug("Checking is password contains a derivitive of the username, trimming from the front...");
 				for (int i = 0; i < username.length(); i++) {
 					String subuser = username.substring(i);

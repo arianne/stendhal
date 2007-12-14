@@ -33,7 +33,6 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.xml.sax.SAXException;
 
-
 import org.apache.log4j.Logger;
 
 /**
@@ -78,7 +77,7 @@ public class ZonesXMLLoader {
 
 	/**
 	 * Load a group of zones into a world.
-	 *
+	 * 
 	 * @throws SAXException
 	 *             If a SAX error occurred.
 	 * @throws IOException
@@ -102,10 +101,10 @@ public class ZonesXMLLoader {
 
 	/**
 	 * Load a group of zones into a world using a config file.
-	 *
+	 * 
 	 * @param in
 	 *            The config file stream.
-	 *
+	 * 
 	 * @throws SAXException
 	 *             If a SAX error occurred.
 	 * @throws IOException
@@ -130,8 +129,8 @@ public class ZonesXMLLoader {
 			logger.info("Loading zone: " + name);
 
 			try {
-				StendhalMapStructure zonedata = ServerTMXLoader
-						.load(StendhalRPWorld.MAPS_FOLDER + zdesc.getFile());
+				StendhalMapStructure zonedata = ServerTMXLoader.load(StendhalRPWorld.MAPS_FOLDER
+						+ zdesc.getFile());
 
 				if (verifyMap(zdesc, zonedata)) {
 					StendhalRPZone zone = load(zdesc, zonedata);
@@ -168,8 +167,8 @@ public class ZonesXMLLoader {
 	/**
 	 * Load zone data and create a zone from it. Most of this should be moved
 	 * directly into ZoneXMLLoader.
-	 *
-	 *
+	 * 
+	 * 
 	 */
 	protected StendhalRPZone load(ZoneDesc desc, StendhalMapStructure zonedata)
 			throws SAXException, IOException {
@@ -188,10 +187,10 @@ public class ZonesXMLLoader {
 			zone.addLayer(name + ".4_roof_add", layer);
 		}
 
-		zone.addCollisionLayer(name + ".collision", zonedata
-				.getLayer("collision"));
-		zone.addProtectionLayer(name + ".protection", zonedata
-				.getLayer("protection"));
+		zone.addCollisionLayer(name + ".collision",
+				zonedata.getLayer("collision"));
+		zone.addProtectionLayer(name + ".protection",
+				zonedata.getLayer("protection"));
 
 		if (desc.isInterior()) {
 			zone.setPosition();
@@ -382,7 +381,7 @@ public class ZonesXMLLoader {
 
 		/**
 		 * Add a setup descriptor.
-		 *
+		 * 
 		 */
 		public void addDescriptor(SetupDescriptor desc) {
 			descriptors.add(desc);
@@ -390,7 +389,7 @@ public class ZonesXMLLoader {
 
 		/**
 		 * Get the zone file.
-		 *
+		 * 
 		 */
 		public String getFile() {
 			return file;
@@ -398,7 +397,7 @@ public class ZonesXMLLoader {
 
 		/**
 		 * Get the level.
-		 *
+		 * 
 		 */
 		public int getLevel() {
 			return level;
@@ -406,7 +405,7 @@ public class ZonesXMLLoader {
 
 		/**
 		 * Get the zone name.
-		 *
+		 * 
 		 */
 		public String getName() {
 			return name;
@@ -414,7 +413,7 @@ public class ZonesXMLLoader {
 
 		/**
 		 * Get an iterator of setup descriptors.
-		 *
+		 * 
 		 */
 		public Iterator<SetupDescriptor> getDescriptors() {
 			return descriptors.iterator();
@@ -422,7 +421,7 @@ public class ZonesXMLLoader {
 
 		/**
 		 * Get the zone title.
-		 *
+		 * 
 		 */
 		public String getTitle() {
 			return title;
@@ -430,7 +429,7 @@ public class ZonesXMLLoader {
 
 		/**
 		 * Get the X coordinate.
-		 *
+		 * 
 		 */
 		public int getX() {
 			return x;
@@ -438,7 +437,7 @@ public class ZonesXMLLoader {
 
 		/**
 		 * Get the Y coordinate.
-		 *
+		 * 
 		 */
 		public int getY() {
 			return y;
@@ -450,7 +449,7 @@ public class ZonesXMLLoader {
 
 		/**
 		 * Set the zone title.
-		 *
+		 * 
 		 */
 		public void setTitle(String title) {
 			this.title = title;

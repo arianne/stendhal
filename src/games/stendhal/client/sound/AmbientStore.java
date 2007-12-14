@@ -14,7 +14,7 @@ package games.stendhal.client.sound;
 
 /**
  * Hardcoded ambient sounds
- *
+ * 
  * @author Jane Hunt
  */
 class AmbientStore {
@@ -25,9 +25,12 @@ class AmbientStore {
 
 	/**
 	 * create an Ambient sound by its name
-	 * @param name the String representing the sound's name
-	 * @return a new instance of Ambient sound or <p>
-	 *  <b> null </b> if name is not found
+	 * 
+	 * @param name
+	 *            the String representing the sound's name
+	 * @return a new instance of Ambient sound or
+	 *         <p>
+	 *         <b> null </b> if name is not found
 	 */
 	public static AmbientSound getAmbient(String name) {
 		AmbientSound ambient = null;
@@ -43,25 +46,25 @@ class AmbientStore {
 			ambient.addCycle("water-splash-1", 20000, 10, 35, 75);
 			ambient.addCycle("water-splash-2", 60000, 10, 50, 80);
 			ambient.addCycle("water-wave-1", 60000, 10, 30, 80);
-		} 	else if (name.equals("water-flow-1")) {
+		} else if (name.equals("water-flow-1")) {
 			ambient = new AmbientSound(name, 100);
 			ambient.addLoop("water-flow-1", 50, 0);
-		}	else if (name.equals("meadow-larks-1")) {
+		} else if (name.equals("meadow-larks-1")) {
 			ambient = new AmbientSound(name, 100);
 			ambient.addCycle("lark-1", 120000, 10, 40, 80);
 			ambient.addCycle("lark-2", 120000, 10, 40, 80);
-		}	else if (name.equals("blackbirds-1")) {
+		} else if (name.equals("blackbirds-1")) {
 			ambient = new AmbientSound(name, 100);
 			ambient.addCycle(AmbientStore.BLACKBIRD_1, 120000, 30, 80, 80);
 			ambient.addCycle(AmbientStore.BLACKBIRD_MIX, 120000, 40, 80, 80);
-		}	else if (name.equals("bushbirds-1")) {
+		} else if (name.equals("bushbirds-1")) {
 			ambient = new AmbientSound(name, 100);
 			ambient.addCycle(AmbientStore.BUSHBIRD_MIX_1, 45000, 50, 90, 75);
 			ambient.addCycle(AmbientStore.BUSHBIRD_MIX_1, 45000, 40, 80, 75);
-		}	else if (name.equals("chicken-1")) {
+		} else if (name.equals("chicken-1")) {
 			ambient = new AmbientSound(name, 100);
 			ambient.addCycle("chicken-mix", 45000, 10, 30, 90);
-		}	else if (name.equals("single-frog-1")) {
+		} else if (name.equals("single-frog-1")) {
 			ambient = new AmbientSound(name, 100);
 			ambient.addCycle("frog-1", 30000, 10, 40, 80);
 		} else if (name.equals("build-works-1")) {

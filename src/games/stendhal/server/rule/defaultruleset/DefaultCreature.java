@@ -24,7 +24,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-
 import org.apache.log4j.Logger;
 
 public class DefaultCreature {
@@ -80,7 +79,8 @@ public class DefaultCreature {
 	/** speed relative to player [0.0 ... 1.0] */
 	private double speed;
 
-	public DefaultCreature(String clazz, String subclass, String name, String tileid) {
+	public DefaultCreature(String clazz, String subclass, String name,
+			String tileid) {
 		this.clazz = clazz;
 		this.subclass = subclass;
 		this.name = name;
@@ -161,7 +161,7 @@ public class DefaultCreature {
 		this.creatureSays = creatureSays;
 	}
 
-	public List<String>  getNoiseLines() {
+	public List<String> getNoiseLines() {
 		return creatureSays;
 	}
 
@@ -187,22 +187,23 @@ public class DefaultCreature {
 
 	/** returns a creature-instance */
 	public Creature getCreature() {
-        Collections.sort(dropsItems, new Comparator<DropItem>() {
+		Collections.sort(dropsItems, new Comparator<DropItem>() {
 
-            public int compare(DropItem o1, DropItem o2) {
-                if (o1.probability < o2.probability) {
-                	return -1;
-                } else if (o1.probability > o2.probability) {
-                	return 1;
-                } else {
-                	return 0;
-                }
-            }
+			public int compare(DropItem o1, DropItem o2) {
+				if (o1.probability < o2.probability) {
+					return -1;
+				} else if (o1.probability > o2.probability) {
+					return 1;
+				} else {
+					return 0;
+				}
+			}
 
-        });
+		});
 
-		Creature creature = new Creature(clazz, subclass, name, hp, atk, def, level, xp, width, height, speed,
-		        dropsItems, aiProfiles, creatureSays, respawn, description);
+		Creature creature = new Creature(clazz, subclass, name, hp, atk, def,
+				level, xp, width, height, speed, dropsItems, aiProfiles,
+				creatureSays, respawn, description);
 		creature.equip(equipsItems);
 		return creature;
 	}
@@ -262,7 +263,10 @@ public class DefaultCreature {
 	public String toXML() {
 		StringBuffer os = new StringBuffer();
 		os.append("  <creature name=\"" + name + "\">\n");
-		os.append("    <type class=\"" + clazz + "\" subclass=\"" + subclass + "\" tileid=\"" + tileid.replace("../../tileset/logic/creature/", "") + "\"/>\n");
+		os.append("    <type class=\"" + clazz + "\" subclass=\"" + subclass
+				+ "\" tileid=\""
+				+ tileid.replace("../../tileset/logic/creature/", "")
+				+ "\"/>\n");
 		if (description != null) {
 			os.append("    <description>" + description + "</description>\n");
 		}
@@ -278,12 +282,15 @@ public class DefaultCreature {
 		os.append("    <respawn value=\"" + respawn + "\"/>\n");
 		os.append("    <drops>\n");
 		for (DropItem item : dropsItems) {
-			os.append("      <item value=\"" + item.name + "\" quantity=\"[" + item.min + "," + item.max + "]\" probability=\"" + item.probability + "\"/>\n");
+			os.append("      <item value=\"" + item.name + "\" quantity=\"["
+					+ item.min + "," + item.max + "]\" probability=\""
+					+ item.probability + "\"/>\n");
 		}
 		os.append("    </drops>\n");
 		os.append("    <equips>\n");
 		for (EquipItem item : equipsItems) {
-			os.append("      <slot name=\"" + item.slot + "\" item=\"" + item.name + "\" quantity=\"" + item.quantity + "\"/>\n");
+			os.append("      <slot name=\"" + item.slot + "\" item=\""
+					+ item.name + "\" quantity=\"" + item.quantity + "\"/>\n");
 		}
 		os.append("    </equips>\n");
 		os.append("    <ai>\n");
@@ -295,11 +302,11 @@ public class DefaultCreature {
 			os.append("      </says>\n");
 		}
 		for (Map.Entry<String, String> entry : aiProfiles.entrySet()) {
-    		os.append("      <profile name=\"" + entry.getKey() + "\"");
-    		if (entry.getValue() != null) {
-    			os.append(" params=\"" + entry.getValue() + "\"");
-    		}
-    		os.append("/>\n");
+			os.append("      <profile name=\"" + entry.getKey() + "\"");
+			if (entry.getValue() != null) {
+				os.append(" params=\"" + entry.getValue() + "\"");
+			}
+			os.append("/>\n");
 		}
 		os.append("    </ai>\n");
 		os.append("  </creature>\n");
@@ -307,6 +314,6 @@ public class DefaultCreature {
 	}
 
 	public Map<String, String> getAIProfiles() {
-	    return aiProfiles;
-    }
+		return aiProfiles;
+	}
 }

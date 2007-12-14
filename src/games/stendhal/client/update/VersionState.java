@@ -2,7 +2,7 @@ package games.stendhal.client.update;
 
 /**
  * Possible State of the Client Version
- *
+ * 
  * @author hendrik
  */
 public enum VersionState {
@@ -13,11 +13,10 @@ public enum VersionState {
 	/** we are unable to get version state */
 	ERROR,
 
-	/** 
-	 * sorry, this version is not supported with the 
-	 * update-system anymore. This flag should not be used.
-	 * It seems, however, to be a good idea to have the client understand
-	 * it in case we mess something up in the future.
+	/**
+	 * sorry, this version is not supported with the update-system anymore. This
+	 * flag should not be used. It seems, however, to be a good idea to have the
+	 * client understand it in case we mess something up in the future.
 	 */
 	OUTDATED,
 
@@ -32,13 +31,15 @@ public enum VersionState {
 
 	/**
 	 * converts a string in to VersionState
-	 *
-	 * @param versionStateString a string represantation
+	 * 
+	 * @param versionStateString
+	 *            a string represantation
 	 * @return VersionState. In case of an error VersionState.ERROR is returned
 	 */
 	public static VersionState getFromString(String versionStateString) {
 		try {
-			if ((versionStateString == null) || (versionStateString.trim().equals(""))) {
+			if ((versionStateString == null)
+					|| (versionStateString.trim().equals(""))) {
 				return UNKOWN;
 			}
 			return VersionState.valueOf(versionStateString.toUpperCase());

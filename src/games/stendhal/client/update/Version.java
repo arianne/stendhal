@@ -4,7 +4,7 @@ package games.stendhal.client.update;
 
 /**
  * maintains the current version
- *
+ * 
  * @author hendrik
  */
 public class Version {
@@ -14,9 +14,11 @@ public class Version {
 
 	/**
 	 * Extract the specified number of parts from a version-string.
-	 *
-	 * @param version version-string
-	 * @param parts number of parts to extract
+	 * 
+	 * @param version
+	 *            version-string
+	 * @param parts
+	 *            number of parts to extract
 	 * @return parts of the version-string
 	 */
 	public static String cut(String version, int parts) {
@@ -34,9 +36,11 @@ public class Version {
 
 	/**
 	 * compares to versions
-	 *
-	 * @param v1 1st version string
-	 * @param v2 2nd version string
+	 * 
+	 * @param v1
+	 *            1st version string
+	 * @param v2
+	 *            2nd version string
 	 * @return see compare
 	 */
 	public static int compare(String v1, String v2) {
@@ -94,9 +98,11 @@ public class Version {
 
 	/**
 	 * Checks wether theses version of stendhal are compatible
-	 *
-	 * @param v1 one version string
-	 * @param v2 another version string
+	 * 
+	 * @param v1
+	 *            one version string
+	 * @param v2
+	 *            another version string
 	 * @return true, iff the first two components are equal
 	 */
 	public static boolean checkCompatibility(String v1, String v2) {

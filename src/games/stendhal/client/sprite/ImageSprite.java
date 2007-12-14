@@ -23,7 +23,7 @@ import java.awt.image.BufferedImage;
  * information, i.e. its just the image and not the location. This allows us to
  * use a single sprite in lots of different places without having to store
  * multiple copies of the image.
- *
+ * 
  * @author Kevin Glass
  */
 public class ImageSprite implements Sprite {
@@ -43,7 +43,7 @@ public class ImageSprite implements Sprite {
 
 	/**
 	 * Create a new sprite based on an image
-	 *
+	 * 
 	 * @param image
 	 *            The image that is this sprite
 	 */
@@ -53,7 +53,7 @@ public class ImageSprite implements Sprite {
 
 	/**
 	 * Create a new sprite based on an image
-	 *
+	 * 
 	 * @param image
 	 *            The image that is this sprite.
 	 * @param reference
@@ -66,7 +66,7 @@ public class ImageSprite implements Sprite {
 
 	/**
 	 * Create an image sprite from another sprite.
-	 *
+	 * 
 	 * @param sprite
 	 *            The source sprite.
 	 */
@@ -76,7 +76,7 @@ public class ImageSprite implements Sprite {
 
 	/**
 	 * Create a copy of another sprite.
-	 *
+	 * 
 	 * @param sprite
 	 *            The source sprite.
 	 * @param reference
@@ -97,7 +97,7 @@ public class ImageSprite implements Sprite {
 
 	/**
 	 * Create a sprite with the image flipped horizontally.
-	 *
+	 * 
 	 * @return A horizontally flipped sprite.
 	 */
 	public static ImageSprite flipped(Sprite sprite) {
@@ -106,20 +106,19 @@ public class ImageSprite implements Sprite {
 
 		int width = sprite.getWidth();
 
-		sprite.draw(image.getGraphics(), width, 0, width, 0, -width, sprite
-				.getHeight());
+		sprite.draw(image.getGraphics(), width, 0, width, 0, -width,
+				sprite.getHeight());
 
 		return new ImageSprite(image);
 	}
 
 	protected static GraphicsConfiguration getGC() {
-		return GraphicsEnvironment.getLocalGraphicsEnvironment()
-				.getDefaultScreenDevice().getDefaultConfiguration();
+		return GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
 	}
 
 	/**
 	 * Get the graphics context of the underlying image.
-	 *
+	 * 
 	 * @return The graphics context.
 	 */
 	public Graphics getGraphics() {
@@ -164,7 +163,7 @@ public class ImageSprite implements Sprite {
 
 	/**
 	 * Copy the sprite.
-	 *
+	 * 
 	 * @return A new copy of the sprite.
 	 */
 	public Sprite copy() {
@@ -174,7 +173,7 @@ public class ImageSprite implements Sprite {
 	/**
 	 * Create a sub-region of this sprite. <strong>NOTE: This does not use
 	 * caching.</strong>
-	 *
+	 * 
 	 * @param x
 	 *            The starting X coordinate.
 	 * @param y
@@ -185,7 +184,7 @@ public class ImageSprite implements Sprite {
 	 *            The region height.
 	 * @param ref
 	 *            The sprite reference.
-	 *
+	 * 
 	 * @return A new sprite.
 	 */
 	public Sprite createRegion(final int x, final int y, final int width,
@@ -218,9 +217,7 @@ public class ImageSprite implements Sprite {
 		/*
 		 * Full copy method (the memory hog)
 		 */
-		GraphicsConfiguration gc = GraphicsEnvironment
-				.getLocalGraphicsEnvironment().getDefaultScreenDevice()
-				.getDefaultConfiguration();
+		GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
 
 		Image imageTemp = gc.createCompatibleImage(width, height,
 				Transparency.BITMASK);
@@ -232,7 +229,7 @@ public class ImageSprite implements Sprite {
 
 	/**
 	 * Draw the sprite onto the graphics context provided
-	 *
+	 * 
 	 * @param g
 	 *            The graphics context on which to draw the sprite
 	 * @param x
@@ -246,7 +243,7 @@ public class ImageSprite implements Sprite {
 
 	/**
 	 * Draws the image
-	 *
+	 * 
 	 * @param g
 	 *            the graphics context where to draw to
 	 * @param destx
@@ -270,7 +267,7 @@ public class ImageSprite implements Sprite {
 
 	/**
 	 * Get the height of the drawn sprite
-	 *
+	 * 
 	 * @return The height in pixels of this sprite
 	 */
 	public int getHeight() {
@@ -281,7 +278,7 @@ public class ImageSprite implements Sprite {
 	 * Get the sprite reference. This identifier is an externally opaque object
 	 * that implements equals() and hashCode() to uniquely/repeatably reference
 	 * a keyed sprite.
-	 *
+	 * 
 	 * @return The reference identifier, or <code>null</code> if not
 	 *         referencable.
 	 */
@@ -291,7 +288,7 @@ public class ImageSprite implements Sprite {
 
 	/**
 	 * Get the width of the drawn sprite
-	 *
+	 * 
 	 * @return The width in pixels of this sprite
 	 */
 	public int getWidth() {

@@ -14,12 +14,12 @@ public class LevelLessThanCondition extends SpeakerNPC.ChatCondition {
 
 	private int level;
 
-
 	/**
 	 * Creates a new LevelGreaterThanCondition
-	 *
-	 * @param level level
-'	 */
+	 * 
+	 * @param level
+	 *            level '
+	 */
 	public LevelLessThanCondition(int level) {
 		this.level = level;
 	}
@@ -41,7 +41,8 @@ public class LevelLessThanCondition extends SpeakerNPC.ChatCondition {
 
 	@Override
 	public boolean equals(Object obj) {
-		return EqualsBuilder.reflectionEquals(this, obj, false, LevelLessThanCondition.class);
+		return EqualsBuilder.reflectionEquals(this, obj, false,
+				LevelLessThanCondition.class);
 	}
 
 }

@@ -12,7 +12,7 @@ import games.stendhal.client.gui.styled.WoodStyle;
 import games.stendhal.client.gui.styled.swing.StyledJButton;
 
 /**
- *
+ * 
  * @author timothyb89
  */
 public class GameButtonHelperContent extends javax.swing.JPanel {
@@ -68,12 +68,12 @@ public class GameButtonHelperContent extends javax.swing.JPanel {
 	} // </editor-fold>//GEN-END:initComponents
 
 	private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jButton1ActionPerformed
-// TODO: Do right
-//		if (sp.buywindow.isVisible()) {
-//			sp.buywindow.setVisible(false); // so very useful...
-//		} else {
-//			sp.buywindow.setVisible(true);
-//		}
+	// TODO: Do right
+	// if (sp.buywindow.isVisible()) {
+	// sp.buywindow.setVisible(false); // so very useful...
+	// } else {
+	// sp.buywindow.setVisible(true);
+	// }
 	} // GEN-LAST:event_jButton1ActionPerformed
 
 	private void ghActionPerformed(java.awt.event.ActionEvent evt) { // GEN-FIRST:event_ghActionPerformed

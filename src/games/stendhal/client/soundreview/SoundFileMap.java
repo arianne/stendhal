@@ -64,8 +64,7 @@ public class SoundFileMap implements Map<String, byte[]>, Nullable {
 		try {
 			return fileMap.put(key, value);
 		} catch (IllegalStateException e) {
-			fileMap = Collections
-					.synchronizedMap(new HashMap<String, byte[]>());
+			fileMap = Collections.synchronizedMap(new HashMap<String, byte[]>());
 			return fileMap.put(key, value);
 		}
 	}
@@ -74,8 +73,7 @@ public class SoundFileMap implements Map<String, byte[]>, Nullable {
 		try {
 			fileMap.putAll(t);
 		} catch (IllegalStateException e) {
-			fileMap = Collections
-					.synchronizedMap(new HashMap<String, byte[]>());
+			fileMap = Collections.synchronizedMap(new HashMap<String, byte[]>());
 			fileMap.putAll(t);
 		}
 

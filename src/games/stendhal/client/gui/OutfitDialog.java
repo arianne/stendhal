@@ -49,7 +49,6 @@ import javax.swing.border.LineBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-
 import org.apache.log4j.Logger;
 import marauroa.common.game.RPAction;
 
@@ -113,7 +112,7 @@ public class OutfitDialog extends JDialog {
 
 	/**
 	 * Creates new form SetOutfitGameDialog
-	 *
+	 * 
 	 * @param title
 	 *            a String with the title for the dialog
 	 * @param outfit
@@ -138,13 +137,13 @@ public class OutfitDialog extends JDialog {
 
 		// initializes the arrays
 		hairs = new Sprite[total_hairs]; // Plus 1 to add the
-											// sprite_empty.png that is always
-											// at 0
+		// sprite_empty.png that is always
+		// at 0
 		heads = new Sprite[total_heads];
 		bodies = new Sprite[total_bodies];
 		clothes = new Sprite[total_clothes]; // Plus 1 to add the
-												// sprite_empty.png that is
-												// always at 0
+		// sprite_empty.png that is
+		// always at 0
 
 		// updates the draws every 2500 milliseconds
 		timer = new Timer();
@@ -176,7 +175,7 @@ public class OutfitDialog extends JDialog {
 
 	/**
 	 * Cleans the previous draw
-	 *
+	 * 
 	 * @param g
 	 *            the Graphics where to clean
 	 */
@@ -187,7 +186,7 @@ public class OutfitDialog extends JDialog {
 
 	/**
 	 * Redraw the hair image from an outfit code.
-	 *
+	 * 
 	 * @param code
 	 *            The index code.
 	 * @param g
@@ -210,7 +209,7 @@ public class OutfitDialog extends JDialog {
 
 	/**
 	 * Redraw the head image from an outfit code.
-	 *
+	 * 
 	 * @param code
 	 *            The index code.
 	 * @param g
@@ -233,7 +232,7 @@ public class OutfitDialog extends JDialog {
 
 	/**
 	 * Redraw the hair image from an outfit code.
-	 *
+	 * 
 	 * @param code
 	 *            The index code.
 	 * @param g
@@ -257,7 +256,7 @@ public class OutfitDialog extends JDialog {
 
 	/**
 	 * Redraw the hair image from an outfit code.
-	 *
+	 * 
 	 * @param code
 	 *            The index code.
 	 * @param g
@@ -280,7 +279,7 @@ public class OutfitDialog extends JDialog {
 
 	/**
 	 * Redraw the final player.
-	 *
+	 * 
 	 * @param g
 	 *            The graphics context.
 	 */
@@ -688,7 +687,7 @@ public class OutfitDialog extends JDialog {
 
 	/**
 	 * TODO: maybe this could be improved, to reduce the flicker
-	 *
+	 * 
 	 * Private class that handles the update (repaint) of jLabels
 	 */
 	private class AnimationTask extends TimerTask {
@@ -758,7 +757,8 @@ public class OutfitDialog extends JDialog {
 						String name = Integer.toString(bodies_index
 								+ clothes_index * 100 + heads_index * 100 * 100
 								+ hairs_index * 100 * 100 * 100);
-						File file = new File(baseDir + "outfits/" + name + ".png");
+						File file = new File(baseDir + "outfits/" + name
+								+ ".png");
 
 						// for performance reasons only write new files.
 						if (!file.exists()) {
@@ -767,7 +767,8 @@ public class OutfitDialog extends JDialog {
 									PLAYER_HEIGHT, BufferedImage.TYPE_INT_ARGB);
 							drawFinalPlayer(getGraphics());
 							try {
-								ImageIO.write((RenderedImage) image, "png", file);
+								ImageIO.write((RenderedImage) image, "png",
+										file);
 							} catch (Exception e) {
 								logger.error(e, e);
 							}
@@ -786,7 +787,7 @@ public class OutfitDialog extends JDialog {
 			baseDir = args[0] + "/";
 		}
 
-		OutfitDialog f= new OutfitDialog(null, "Stendhal - Choose outfit", 0);
+		OutfitDialog f = new OutfitDialog(null, "Stendhal - Choose outfit", 0);
 		// show is required now, because getGraphics() returns null otherwise
 		f.setVisible(true);
 		f.generateAllOutfits(baseDir);

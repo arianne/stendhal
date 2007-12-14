@@ -12,7 +12,6 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
-
 import org.apache.log4j.Logger;
 
 import org.xml.sax.Attributes;
@@ -89,9 +88,11 @@ public class QuestsXMLLoader extends DefaultHandler {
 			// Parse the input
 			SAXParser saxParser = factory.newSAXParser();
 
-			InputStream is = getClass().getClassLoader().getResourceAsStream(ref);
+			InputStream is = getClass().getClassLoader().getResourceAsStream(
+					ref);
 			if (is == null) {
-				throw new FileNotFoundException("cannot find resource '" + ref + "' in classpath");
+				throw new FileNotFoundException("cannot find resource '" + ref
+						+ "' in classpath");
 			}
 			saxParser.parse(is, this);
 		} catch (ParserConfigurationException t) {
@@ -114,7 +115,8 @@ public class QuestsXMLLoader extends DefaultHandler {
 	}
 
 	@Override
-	public void startElement(String namespaceURI, String lName, String qName, Attributes attrs) {
+	public void startElement(String namespaceURI, String lName, String qName,
+			Attributes attrs) {
 		text = new StringBuilder();
 
 		if (qName.equals("quest")) {

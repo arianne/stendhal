@@ -22,13 +22,12 @@ public abstract class Food extends Entity {
 	/**
 	 * Amount property.
 	 */
-	public static final Object	PROP_AMOUNT	= new Object();
+	public static final Object PROP_AMOUNT = new Object();
 
 	/**
 	 * The current amount of food.
 	 */
 	private int amount;
-
 
 	/**
 	 * Create a food entity.
@@ -36,20 +35,18 @@ public abstract class Food extends Entity {
 	public Food() {
 	}
 
-
 	//
 	// Food
 	//
 
 	/**
 	 * Get the amount.
-	 *
-	 * @return	The amount.
+	 * 
+	 * @return The amount.
 	 */
 	public int getAmount() {
 		return amount;
 	}
-
 
 	//
 	// Entity
@@ -57,10 +54,11 @@ public abstract class Food extends Entity {
 
 	/**
 	 * Initialize this entity for an object.
-	 *
-	 * @param	object		The object.
-	 *
-	 * @see-also	#release()
+	 * 
+	 * @param object
+	 *            The object.
+	 * 
+	 * @see-also #release()
 	 */
 	@Override
 	public void initialize(final RPObject object) {
@@ -73,18 +71,21 @@ public abstract class Food extends Entity {
 		}
 	}
 
-
 	//
 	// RPObjectChangeListener
 	//
 
 	/**
 	 * A slot object added/changed attribute(s).
-	 *
-	 * @param	container	The base container object.
-	 * @param	slotName	The container's slot name.
-	 * @param	object		The base slot object.
-	 * @param	changes		The slot changes.
+	 * 
+	 * @param container
+	 *            The base container object.
+	 * @param slotName
+	 *            The container's slot name.
+	 * @param object
+	 *            The base slot object.
+	 * @param changes
+	 *            The slot changes.
 	 */
 	@Override
 	public void onChangedAdded(final RPObject object, final RPObject changes) {

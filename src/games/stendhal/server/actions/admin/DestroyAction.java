@@ -19,35 +19,34 @@ public class DestroyAction extends AdministrationAction {
 	public static void register() {
 		CommandCenter.register("destroy", new DestroyAction(), 700);
 
-
 	}
-	
+
 	@Override
 	public void perform(Player player, RPAction action) {
-	
+
 		Entity inspected = getTarget(player, action);
-	
+
 		if (inspected == null) {
 			String text = "Entity not found";
-	
+
 			player.sendPrivateText(text);
 			return;
 		}
-	
+
 		if (inspected instanceof Player) {
 			String text = "You can't remove players";
 			player.sendPrivateText(text);
 			return;
 		}
-	
+
 		if (inspected instanceof SpeakerNPC) {
 			String text = "You can't remove SpeakerNPCs";
 			player.sendPrivateText(text);
 			return;
 		}
-	
+
 		StendhalRPZone zone = inspected.getZone();
-	
+
 		if (inspected instanceof RPEntity) {
 			((RPEntity) inspected).onDead(player);
 		} else if ((inspected instanceof Item) || (inspected instanceof Portal)) {
@@ -56,16 +55,16 @@ public class DestroyAction extends AdministrationAction {
 			player.sendPrivateText("You can't remove this type of entity");
 			return;
 		}
-	
+
 		String name = inspected.getRPClass().getName();
 		if (inspected.has(_ATTR_NAME)) {
 			name = inspected.get(_ATTR_NAME);
 		}
-	
+
 		StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "removed",
 				name, zone.getName(), Integer.toString(inspected.getX()),
 				Integer.toString(inspected.getY()));
-	
+
 		player.sendPrivateText("Removed entity " + action.get(_TARGETID));
 	}
 

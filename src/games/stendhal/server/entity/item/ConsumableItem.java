@@ -26,9 +26,9 @@ import marauroa.common.game.RPObject;
 /*
  * represents everything that can be consumed by RPentity. Including food,
  * poison, antidote ..
- *
+ * 
  * Note: this class has a natural ordering that is inconsistent with equals.
- *
+ * 
  */
 public class ConsumableItem extends StackableItem implements UseListener,
 		Comparable<ConsumableItem> {
@@ -36,6 +36,7 @@ public class ConsumableItem extends StackableItem implements UseListener,
 	/** How much of this item has not yet been consumed. */
 	private int left;
 	Feeder feeder;
+
 	public ConsumableItem(String name, String clazz, String subclass,
 			Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);
@@ -45,7 +46,7 @@ public class ConsumableItem extends StackableItem implements UseListener,
 
 	/**
 	 * copy constructor
-	 *
+	 * 
 	 * @param item
 	 *            item to copy
 	 */
@@ -69,7 +70,7 @@ public class ConsumableItem extends StackableItem implements UseListener,
 
 	/**
 	 * Consumes a part of this item.
-	 *
+	 * 
 	 * @return The amount that has been consumed
 	 */
 	public int consume() {
@@ -87,7 +88,7 @@ public class ConsumableItem extends StackableItem implements UseListener,
 
 	/**
 	 * Checks whether this item has already been fully consumed.
-	 *
+	 * 
 	 * @return true iff this item has been consumed
 	 */
 	public boolean consumed() {
@@ -97,7 +98,7 @@ public class ConsumableItem extends StackableItem implements UseListener,
 	/**
 	 * verifies item is near to player. if so splits one single item of and
 	 * calls consumeItem of the player
-	 *
+	 * 
 	 */
 	public boolean onUsed(RPEntity user) {
 		Player player = (Player) user;
@@ -126,7 +127,7 @@ public class ConsumableItem extends StackableItem implements UseListener,
 
 	/*
 	 * (non-Javadoc)
-	 *
+	 * 
 	 * @see java.lang.Comparable#compareTo(java.lang.Object)
 	 */
 	public int compareTo(ConsumableItem other) {

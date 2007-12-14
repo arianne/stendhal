@@ -16,14 +16,16 @@ import java.util.Map;
 
 public class Food extends ConsumableItem {
 
-	public Food(String name, String clazz, String subclass, Map<String, String> attributes) {
+	public Food(String name, String clazz, String subclass,
+			Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);
 	}
 
 	/**
 	 * copy constructor
-	 *
-	 * @param item item to copy
+	 * 
+	 * @param item
+	 *            item to copy
 	 */
 	public Food(Food item) {
 		super(item);

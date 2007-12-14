@@ -24,7 +24,7 @@ public class Grammar {
 
 	/**
 	 * "it" or "them", depending on the quantity
-	 *
+	 * 
 	 * @param quantity
 	 *            The quantity to examine
 	 * @return Either "it" or "them" as appropriate
@@ -37,7 +37,7 @@ public class Grammar {
 	 * Modify a word to upper case notation
 	 * 
 	 * @param word
-	 * @return word with first letter in upper case 
+	 * @return word with first letter in upper case
 	 */
 	public static String makeUpperCaseWord(String word) {
 		StringBuilder res = new StringBuilder();
@@ -52,7 +52,7 @@ public class Grammar {
 
 	/**
 	 * "It" or "Them", depending on the quantity
-	 *
+	 * 
 	 * @param quantity
 	 *            The quantity to examine
 	 * @return Either "It" or "Them" as appropriate
@@ -63,7 +63,7 @@ public class Grammar {
 
 	/**
 	 * "it" or "they", depending on the quantity
-	 *
+	 * 
 	 * @param quantity
 	 *            The quantity to examine
 	 * @return Either "it" or "they" as appropriate
@@ -74,18 +74,18 @@ public class Grammar {
 
 	/**
 	 * "It" or "They", depending on the quantity
-	 *
+	 * 
 	 * @param quantity
 	 *            The quantity to examine
 	 * @return Either "It" or "They" as appropriate
 	 */
 	public static String ItThey(int quantity) {
-	    return makeUpperCaseWord(itthey(quantity));
+		return makeUpperCaseWord(itthey(quantity));
 	}
 
 	/**
 	 * "is" or "are", depending on the quantity
-	 *
+	 * 
 	 * @param quantity
 	 *            The quantity to examine
 	 * @return Either "is" or "are" as appropriate
@@ -96,18 +96,18 @@ public class Grammar {
 
 	/**
 	 * "Is" or "Are", depending on the quantity
-	 *
+	 * 
 	 * @param quantity
 	 *            The quantity to examine
 	 * @return Either "Is" or "Are" as appropriate
 	 */
 	public static String IsAre(int quantity) {
-	    return makeUpperCaseWord(isare(quantity));
+		return makeUpperCaseWord(isare(quantity));
 	}
 
 	/**
 	 * Prefixes a noun with an article.
-	 *
+	 * 
 	 * @param noun
 	 *            noun
 	 * @param definite
@@ -124,7 +124,7 @@ public class Grammar {
 
 	/**
 	 * "a [noun]" or "an [noun]", depending on the first syllable
-	 *
+	 * 
 	 * @param noun
 	 *            The noun to examine
 	 * @return Either "a [noun]" or "an [noun]" as appropriate
@@ -152,7 +152,7 @@ public class Grammar {
 
 	/**
 	 * adds a prefix unless it was already added
-	 *
+	 * 
 	 * @param noun
 	 *            the noun (which may already start with the specified prefix
 	 * @param prefixSingular
@@ -161,7 +161,8 @@ public class Grammar {
 	 *            prefix, that may be present in plural form
 	 * @return noun starting with prefix
 	 */
-	private static String addPrefixIfNotAlreadyThere(String noun, String prefixSingular, String prefixPlural) {
+	private static String addPrefixIfNotAlreadyThere(String noun,
+			String prefixSingular, String prefixPlural) {
 		if (noun.startsWith(prefixSingular)) {
 			return noun;
 		} else if (noun.startsWith(prefixPlural)) {
@@ -173,6 +174,7 @@ public class Grammar {
 
 	/**
 	 * prefix a noun with an expression like "piece of"
+	 * 
 	 * @param noun
 	 * @return
 	 */
@@ -184,18 +186,24 @@ public class Grammar {
 				|| result.equals("cheese") || result.equals("wood")
 				|| result.equals("paper") || result.equals("iron")
 				|| result.equals("chicken")) {
-			result = addPrefixIfNotAlreadyThere(lowString, "piece of ", "pieces of ");
+			result = addPrefixIfNotAlreadyThere(lowString, "piece of ",
+					"pieces of ");
 		} else if (result.endsWith(" ore") || result.endsWith("_ore")) {
-			result = addPrefixIfNotAlreadyThere(lowString, "nugget of ", "nuggets of ");
+			result = addPrefixIfNotAlreadyThere(lowString, "nugget of ",
+					"nuggets of ");
 		} else if (result.equals("flour")) {
-			result = addPrefixIfNotAlreadyThere(lowString, "sack of ", "sacks of ");
+			result = addPrefixIfNotAlreadyThere(lowString, "sack of ",
+					"sacks of ");
 		} else if (result.equals("grain")) {
-			result = addPrefixIfNotAlreadyThere(lowString, "sheaf of ", "sheaves of ");
+			result = addPrefixIfNotAlreadyThere(lowString, "sheaf of ",
+					"sheaves of ");
 		} else if (result.equals("bread")) {
-			result = addPrefixIfNotAlreadyThere(lowString, "loaf of ", "loaves of ");
+			result = addPrefixIfNotAlreadyThere(lowString, "loaf of ",
+					"loaves of ");
 		} else if (result.equals("beer") || result.equals("wine")
 				|| result.endsWith("poison") || result.equals("antidote")) {
-			result = addPrefixIfNotAlreadyThere(lowString, "bottle of ", "bottles of ");
+			result = addPrefixIfNotAlreadyThere(lowString, "bottle of ",
+					"bottles of ");
 		} else if (result.equals("money")) {
 			// TODO: fix this (going back to money as workaround because /drop 1
 			// coin does not work
@@ -203,13 +211,16 @@ public class Grammar {
 		} else if (result.startsWith("book_") || result.startsWith("book ")) {
 			result = result.substring(5) + " book";
 		} else if (result.equals("arandula")) {
-			result = addPrefixIfNotAlreadyThere(lowString, "sprig of ", "sprigs of ");
+			result = addPrefixIfNotAlreadyThere(lowString, "sprig of ",
+					"sprigs of ");
 		} else if ((result.indexOf("_armor") > -1)
 				|| (result.indexOf(" armor") > -1)) {
-			result = addPrefixIfNotAlreadyThere(lowString, "suit of ", "suits of ");
+			result = addPrefixIfNotAlreadyThere(lowString, "suit of ",
+					"suits of ");
 		} else if (result.endsWith("_legs") || result.endsWith(" legs")
 				|| result.endsWith("_boots") || result.endsWith(" boots")) {
-			result = addPrefixIfNotAlreadyThere(lowString, "pair of ", "pairs of ");
+			result = addPrefixIfNotAlreadyThere(lowString, "pair of ",
+					"pairs of ");
 		} else {
 			result = lowString;
 		}
@@ -225,15 +236,17 @@ public class Grammar {
 	 * @return object name without prefix
 	 */
 	private static String removePrefix(String noun, String prefix) {
-		if (noun.startsWith(prefix))
+		if (noun.startsWith(prefix)) {
 			return noun.substring(prefix.length());
-		else
+		} else {
 			return noun;
+		}
 	}
 
 	/**
-	 * extract noun from a string, that may be prefixed
-	 * with a singular expression like "piece of", ...
+	 * extract noun from a string, that may be prefixed with a singular
+	 * expression like "piece of", ...
+	 * 
 	 * @param noun
 	 * @return
 	 */
@@ -254,8 +267,9 @@ public class Grammar {
 	}
 
 	/**
-	 * extract noun from a string, that may be prefixed
-	 * with a plural expression like "piece of", ...
+	 * extract noun from a string, that may be prefixed with a plural expression
+	 * like "piece of", ...
+	 * 
 	 * @param expr
 	 * @return
 	 */
@@ -276,10 +290,10 @@ public class Grammar {
 	}
 
 	/**
-	 * extract noun from a string, that may be prefixed
-	 * with a plural expression like "piece of", ...
-	 * So this function is just the recursive counter part
+	 * extract noun from a string, that may be prefixed with a plural expression
+	 * like "piece of", ... So this function is just the recursive counter part
 	 * to fullForm().
+	 * 
 	 * @param expr
 	 * @return
 	 */
@@ -288,21 +302,21 @@ public class Grammar {
 			return expr;
 		}
 
-		String lastExpr, result=expr;
+		String lastExpr, result = expr;
 
-		 // loop until all prefix strings are removed
+		// loop until all prefix strings are removed
 		do {
 			lastExpr = result;
 			result = extractNounSingular(result);
 			result = extractNounPlural(result);
-		} while(result != lastExpr);
+		} while (result != lastExpr);
 
 		return result;
 	}
 
 	/**
 	 * "A [noun]" or "An [noun]", depending on the first syllable
-	 *
+	 * 
 	 * @param noun
 	 *            The noun to examine
 	 * @return Either "A [noun]" or "An [noun]" as appropriate
@@ -313,7 +327,7 @@ public class Grammar {
 
 	/**
 	 * "[noun]'s" or "[noun]'", depending on the last character
-	 *
+	 * 
 	 * @param noun
 	 *            The noun to examine
 	 * @return Either "[noun]'s" or "[noun]'" as appropriate
@@ -327,9 +341,9 @@ public class Grammar {
 	}
 
 	/**
-	 * Returns the plural form of the given noun
-	 * if not already given in plural form
-	 *
+	 * Returns the plural form of the given noun if not already given in plural
+	 * form
+	 * 
 	 * @param noun
 	 *            The noun to examine
 	 * @return An appropriate plural form
@@ -339,7 +353,7 @@ public class Grammar {
 		String postfix = "";
 		int position = enoun.indexOf('+');
 		if (position != -1) {
-			if (enoun.charAt(position-1) == ' ') {
+			if (enoun.charAt(position - 1) == ' ') {
 				postfix = enoun.substring(position - 1);
 				enoun = enoun.substring(0, position - 1);
 			} else {
@@ -348,17 +362,18 @@ public class Grammar {
 			}
 		}
 
-		 // in "of"-phrases pluralize only the first part
+		// in "of"-phrases pluralize only the first part
 		if (enoun.indexOf(" of ") > -1) {
 			return plural(enoun.substring(0, enoun.indexOf(" of ")))
 					+ enoun.substring(enoun.indexOf(" of ")) + postfix;
 
-		 // first of all handle words which do not change
+			// first of all handle words which do not change
 		} else if (enoun.endsWith("money") || enoun.endsWith("dice")
-				|| enoun.endsWith("sheep")|| enoun.equals("deer") || enoun.equals("moose")) {
+				|| enoun.endsWith("sheep") || enoun.equals("deer")
+				|| enoun.equals("moose")) {
 			return enoun + postfix;
 
-		 // ok and now all the special cases
+			// ok and now all the special cases
 		} else if (enoun.endsWith("staff") || enoun.endsWith("chief")) {
 			return enoun + "s" + postfix;
 		} else if (enoun.length() > 2 && enoun.endsWith("f")
@@ -369,15 +384,13 @@ public class Grammar {
 		} else if (enoun.length() >= 4 && enoun.endsWith("ouse")
 				&& ("mMlL".indexOf(enoun.charAt(enoun.length() - 5)) > -1)) {
 			return enoun.substring(0, enoun.length() - 4) + "ice" + postfix;
-		} else if (enoun.endsWith("oose") && !enoun.endsWith("caboose") && !enoun.endsWith("noose")) {
-			return enoun.substring(0, enoun.length() - 4) + "eese"
-					+ postfix;
+		} else if (enoun.endsWith("oose") && !enoun.endsWith("caboose")
+				&& !enoun.endsWith("noose")) {
+			return enoun.substring(0, enoun.length() - 4) + "eese" + postfix;
 		} else if (enoun.endsWith("ooth")) {
-			return enoun.substring(0, enoun.length() - 4) + "eeth"
-					+ postfix;
+			return enoun.substring(0, enoun.length() - 4) + "eeth" + postfix;
 		} else if (enoun.endsWith("foot")) {
-			return enoun.substring(0, enoun.length() - 4) + "feet"
-					+ postfix;
+			return enoun.substring(0, enoun.length() - 4) + "feet" + postfix;
 		} else if (enoun.endsWith("child")) {
 			return enoun + "ren" + postfix;
 		} else if (enoun.endsWith("eau")) {
@@ -396,13 +409,12 @@ public class Grammar {
 				&& !(enoun.endsWith("shaman") || enoun.endsWith("human"))) {
 			return enoun.substring(0, enoun.length() - 3) + "men" + postfix;
 		} else if (enoun.endsWith("rtex") || enoun.endsWith("index")) {
-			return enoun.substring(0, enoun.length() - 2) + "ices"
-					+ postfix;
+			return enoun.substring(0, enoun.length() - 2) + "ices" + postfix;
 		} else if (enoun.endsWith("trix")) {
 			return enoun.substring(0, enoun.length() - 1) + "ces" + postfix;
 		} else if (enoun.endsWith("sis")) {
 			return enoun.substring(0, enoun.length() - 2) + "es" + postfix;
-		} else if (enoun.endsWith("erinys")) {   // || enoun.endsWith("cyclops")
+		} else if (enoun.endsWith("erinys")) { // || enoun.endsWith("cyclops")
 			return enoun.substring(0, enoun.length() - 1) + "es" + postfix;
 		} else if (enoun.endsWith("mumak")) {
 			return enoun + "il" + postfix;
@@ -414,26 +426,28 @@ public class Grammar {
 				&& consonant_p(enoun.charAt(enoun.length() - 2))) {
 			return enoun.substring(0, enoun.length() - 1) + "ies" + postfix;
 
-		 // If the word is already in plural form, return it unchanged.
+			// If the word is already in plural form, return it unchanged.
 		} else if (!singular(enoun).equals(enoun)) {
-        	return enoun + postfix;
+			return enoun + postfix;
 
-         // last special case: Does the word end with "ch", "sh", "s", "x" oder "z"? 
-        } else if (enoun.endsWith("ch") || enoun.endsWith("sh")
+			// last special case: Does the word end with "ch", "sh", "s", "x"
+			// oder "z"?
+		} else if (enoun.endsWith("ch")
+				|| enoun.endsWith("sh")
 				|| (enoun.length() > 1 && "sxz".indexOf(enoun.charAt(enoun.length() - 1)) > -1)) {
 			return enoun + "es" + postfix;
-        } else {
-            // no special case matched, so use the boring default plural rule
-        	return enoun + "s" + postfix;
+		} else {
+			// no special case matched, so use the boring default plural rule
+			return enoun + "s" + postfix;
 		}
 	}
 
 	/**
-	 * Returns the singular form of the given noun
-	 * if not already given in singular form
-	 *
+	 * Returns the singular form of the given noun if not already given in
+	 * singular form
+	 * 
 	 * @param enoun
-	 *			  The noun to examine
+	 *            The noun to examine
 	 * @return An appropriate singular form
 	 */
 	public static String singular(String enoun) {
@@ -451,8 +465,9 @@ public class Grammar {
 					+ enoun.substring(enoun.indexOf(" of ")) + postfix;
 
 			// first of all handle words which do not change
-		} else if (enoun.endsWith("money") || enoun.endsWith("dice") || enoun.endsWith("porcini")
-				|| enoun.endsWith("sheep")|| enoun.equals("deer") || enoun.equals("moose")) {
+		} else if (enoun.endsWith("money") || enoun.endsWith("dice")
+				|| enoun.endsWith("porcini") || enoun.endsWith("sheep")
+				|| enoun.equals("deer") || enoun.equals("moose")) {
 			return enoun + postfix;
 
 			// now all the special cases
@@ -481,7 +496,9 @@ public class Grammar {
 			return enoun.substring(0, enoun.length() - 1) + postfix;
 		} else if (enoun.endsWith("atoes")) {
 			return enoun.substring(0, enoun.length() - 2) + postfix;
-		} else if (enoun.endsWith("ia") || enoun.endsWith("ia")) {//enoun.endsWith("helia") || enoun.endsWith("sodia")
+		} else if (enoun.endsWith("ia") || enoun.endsWith("ia")) { // enoun.endsWith("helia")
+			// ||
+			// enoun.endsWith("sodia")
 			return enoun.substring(0, enoun.length() - 1) + "um" + postfix;
 		} else if (enoun.endsWith("algae") || enoun.endsWith("hyphae")
 				|| enoun.endsWith("larvae")) {
@@ -492,7 +509,7 @@ public class Grammar {
 			return enoun.substring(0, enoun.length() - 3) + "man" + postfix;
 		} else if (enoun.endsWith("matrices")) {
 			return enoun.substring(0, enoun.length() - 4) + "ix" + postfix;
-		} else if (enoun.endsWith("ices")) {	// indices, vertices, ...
+		} else if (enoun.endsWith("ices")) { // indices, vertices, ...
 			return enoun.substring(0, enoun.length() - 4) + "ex" + postfix;
 		} else if (enoun.endsWith("erinyes")) { // || enoun.endsWith("cyclopes")
 			return enoun.substring(0, enoun.length() - 2) + "s" + postfix;
@@ -504,33 +521,35 @@ public class Grammar {
 			return enoun + "ni" + postfix;
 		} else if (enoun.endsWith("djinn") || enoun.endsWith("efreet")) {
 			return enoun + "i" + postfix;
-		} else if (enoun.endsWith("lotus") || enoun.endsWith("wumpus") || enoun.endsWith("deus")) {
+		} else if (enoun.endsWith("lotus") || enoun.endsWith("wumpus")
+				|| enoun.endsWith("deus")) {
 			return enoun + postfix;
 		} else if (enoun.endsWith("cabooses")) {
 			return enoun.substring(0, enoun.length() - 1) + postfix;
 		} else if (enoun.endsWith("yses") || enoun.endsWith("ysis")) {
 			return enoun.substring(0, enoun.length() - 2) + "is" + postfix;
-		} else if (enoun.length() > 3 && enoun.endsWith("es")
-					&& (("zxs".indexOf(enoun.charAt(enoun.length() - 3)) > -1) ||
-						(enoun.endsWith("ches") || enoun.endsWith("shes")))
-					&& !enoun.endsWith("axes") && !enoun.endsWith("bardiches")
-					&& !enoun.endsWith("nooses")) {
+		} else if (enoun.length() > 3
+				&& enoun.endsWith("es")
+				&& (("zxs".indexOf(enoun.charAt(enoun.length() - 3)) > -1) || (enoun.endsWith("ches") || enoun.endsWith("shes")))
+				&& !enoun.endsWith("axes") && !enoun.endsWith("bardiches")
+				&& !enoun.endsWith("nooses")) {
 			return enoun.substring(0, enoun.length() - 2) + postfix;
 		} else if (enoun.length() > 4 && enoun.endsWith("ies")
 				&& consonant_p(enoun.charAt(enoun.length() - 4))
 				&& !enoun.endsWith("zombies")) {
 			return enoun.substring(0, enoun.length() - 3) + "y" + postfix;
-		// no special case matched, so look for the standard "s" plural
+			// no special case matched, so look for the standard "s" plural
 		} else if (enoun.endsWith("s") && !enoun.endsWith("ss")) {
 			return enoun.substring(0, enoun.length() - 1) + postfix;
-		} else
+		} else {
 			return enoun + postfix;
+		}
 	}
 
 	/**
 	 * Returns either the plural or singular form of the given noun, depending
 	 * on the quantity
-	 *
+	 * 
 	 * @param quantity
 	 *            The quantity to examine
 	 * @param noun
@@ -545,7 +564,7 @@ public class Grammar {
 	/**
 	 * Returns either the plural or singular form of the given noun, depending
 	 * on the quantity; also prefixes the quantity
-	 *
+	 * 
 	 * @param quantity
 	 *            The quantity to examine
 	 * @param noun
@@ -559,7 +578,7 @@ public class Grammar {
 
 	/**
 	 * Is the character a vowel?
-	 *
+	 * 
 	 * @param c
 	 *            The character to examine
 	 * @return true if c is a vowel, false otherwise
@@ -571,7 +590,7 @@ public class Grammar {
 
 	/**
 	 * Is the character a consonant?
-	 *
+	 * 
 	 * @param c
 	 *            The character to examine
 	 * @return true if c is a consonant, false otherwise
@@ -582,7 +601,7 @@ public class Grammar {
 
 	/**
 	 * first, second, third, ...
-	 *
+	 * 
 	 * @param n
 	 *            a number
 	 * @return first, second, third, ...
@@ -606,7 +625,7 @@ public class Grammar {
 	 * Helper function to nicely formulate an enumeration of a collection. For
 	 * example, for a collection containing the 3 elements x, y, z, returns the
 	 * string "x, y, and z".
-	 *
+	 * 
 	 * @param collection
 	 *            The collection whose elements should be enumerated
 	 * @return A nice String representation of the collection
@@ -634,26 +653,40 @@ public class Grammar {
 
 	/**
 	 * convert numbers into their textual representation
-	 *
-	 * @param n a number
+	 * 
+	 * @param n
+	 *            a number
 	 * @return one, two, three, ...
 	 */
 	public static String numberString(int n) {
 		switch (n) {
-		  case 0:	return "no";
-		  case 1:	return "one";
-		  case 2:	return "two";
-		  case 3:	return "three";
-		  case 4:	return "four";
-		  case 5:	return "five";
-		  case 6:	return "six";
-		  case 7:	return "seven";
-		  case 8:	return "eight";
-		  case 9:	return "nine";
-		  case 10:	return "ten";
-		  case 11:	return "eleven";
-		  case 12:	return "twelve";
-		  default:
+		case 0:
+			return "no";
+		case 1:
+			return "one";
+		case 2:
+			return "two";
+		case 3:
+			return "three";
+		case 4:
+			return "four";
+		case 5:
+			return "five";
+		case 6:
+			return "six";
+		case 7:
+			return "seven";
+		case 8:
+			return "eight";
+		case 9:
+			return "nine";
+		case 10:
+			return "ten";
+		case 11:
+			return "eleven";
+		case 12:
+			return "twelve";
+		default:
 			logger.error("Grammar.ordered not implemented for: " + n);
 			return Integer.toString(n);
 		}
@@ -661,57 +694,69 @@ public class Grammar {
 
 	/**
 	 * interpret number texts
-	 *
-	 * @param n a number
+	 * 
+	 * @param n
+	 *            a number
 	 * @return one, two, three, ...
 	 */
 	public static Integer number(String text) {
 		if (text.equals("no") || text.equals("zero")) {
 			return 0;
-		} if (text.equals("a") || text.equals("an")) {
+		}
+		if (text.equals("a") || text.equals("an")) {
 			return 1;
-		} if (text.equals("one")) {
+		}
+		if (text.equals("one")) {
 			return 1;
-		} if (text.equals("two")) {
+		}
+		if (text.equals("two")) {
 			return 2;
-		} if (text.equals("three")) {
+		}
+		if (text.equals("three")) {
 			return 3;
-		} if (text.equals("four")) {
+		}
+		if (text.equals("four")) {
 			return 4;
-		} if (text.equals("five")) {
+		}
+		if (text.equals("five")) {
 			return 5;
-		} if (text.equals("six")) {
+		}
+		if (text.equals("six")) {
 			return 6;
-		} if (text.equals("seven")) {
+		}
+		if (text.equals("seven")) {
 			return 7;
-		} if (text.equals("eight")) {
+		}
+		if (text.equals("eight")) {
 			return 8;
-		} if (text.equals("nine")) {
+		}
+		if (text.equals("nine")) {
 			return 9;
-		} if (text.equals("ten")) {
+		}
+		if (text.equals("ten")) {
 			return 10;
-		} if (text.equals("eleven")) {
+		}
+		if (text.equals("eleven")) {
 			return 11;
-		} if (text.equals("twelve")) {
+		}
+		if (text.equals("twelve")) {
 			return 12;
 		} else {
-        	// also handle "a dozen", ...
+			// also handle "a dozen", ...
 			return null;
 		}
 	}
 
 	/**
 	 * decide if the given word is a preposition
+	 * 
 	 * @param word
 	 * @return true if word is a preposition
 	 */
-	public static boolean isPreposition(String word)
-    {
-		//TODO handle more prepositions
-		return word.equals("on") ||
-				word.equals("of") ||
-				word.equals("under") ||
-				word.equals("with"); 
-    }
+	public static boolean isPreposition(String word) {
+		// TODO handle more prepositions
+		return word.equals("on") || word.equals("of") || word.equals("under")
+				|| word.equals("with");
+	}
 
 }

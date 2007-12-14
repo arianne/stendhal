@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  * lists all npcs and there position
- *
+ * 
  * @author hendrik
  */
 public class ListNPCs extends ScriptImpl {

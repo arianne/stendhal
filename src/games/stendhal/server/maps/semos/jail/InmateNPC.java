@@ -4,7 +4,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPCFactory;
 
 /**
- * An elven inmate (original name: Conual). He's just decoration. 
+ * An elven inmate (original name: Conual). He's just decoration.
  * 
  * @author hendrik
  */

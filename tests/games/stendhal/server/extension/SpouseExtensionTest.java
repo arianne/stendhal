@@ -20,11 +20,12 @@ import utilities.PlayerTestHelper;
 
 /**
  * JUnit Tests for SpouseExtension
+ * 
  * @author Martin Fuchs
  */
 public class SpouseExtensionTest {
 
-	private final static String ZONE_NAME = "testzone"; 
+	private static final String ZONE_NAME = "testzone";
 
 	@BeforeClass
 	public static final void setUpClass() throws Exception {
@@ -65,7 +66,8 @@ public class SpouseExtensionTest {
 		RPAction action = new RPAction();
 		action.put("type", "marry");
 		assertTrue(CommandCenter.execute(admin, action));
-		assertEquals("Usage: #/marry #<player1> #<player2>", admin.getPrivateText());
+		assertEquals("Usage: #/marry #<player1> #<player2>",
+				admin.getPrivateText());
 		admin.clearEvents();
 
 		action = new RPAction();
@@ -73,11 +75,15 @@ public class SpouseExtensionTest {
 		action.put("target", "player1");
 		action.put("args", "player2");
 		assertTrue(CommandCenter.execute(admin, action));
-		assertEquals("You have successfully married \"player1\" and \"player2\".", admin.getPrivateText());
+		assertEquals(
+				"You have successfully married \"player1\" and \"player2\".",
+				admin.getPrivateText());
 		admin.clearEvents();
 
 		assertTrue(CommandCenter.execute(admin, action));
-		assertEquals("player1 is already married to player2. player2 is already married to player1.", admin.getPrivateText());
+		assertEquals(
+				"player1 is already married to player2. player2 is already married to player1.",
+				admin.getPrivateText());
 		admin.clearEvents();
 	}
 }

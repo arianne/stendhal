@@ -21,10 +21,10 @@ import marauroa.common.Pair;
  * EntityMap registers the relationship between Type,eclass and java class of
  * entity Objects eclass represents a subtype of type EntityMap encapsulates the
  * implementation
- *
+ * 
  */
 public final class EntityMap {
-	private static Map<Pair<String, String>, Class< ? extends Entity >> entityMap = new HashMap<Pair<String, String>, Class< ? extends Entity >>();
+	private static Map<Pair<String, String>, Class<? extends Entity>> entityMap = new HashMap<Pair<String, String>, Class<? extends Entity>>();
 
 	static {
 		register();
@@ -103,7 +103,7 @@ public final class EntityMap {
 	 *            the java class of the Entity
 	 */
 	private static void register(final String type, final String eclass,
-			final Class< ? extends Entity> entityClazz) {
+			final Class<? extends Entity> entityClazz) {
 		entityMap.put(new Pair<String, String>(type, eclass), entityClazz);
 	}
 
@@ -113,10 +113,11 @@ public final class EntityMap {
 	 * @param eclass
 	 *            the subtype of type such as book, drink, food , ,
 	 *            small_animal, huge_animal
-	 *
+	 * 
 	 * @return the java class of the Entity belonging to type and eclass
 	 */
-	public static Class< ? extends Entity> getClass(final String type, final String eclass) {
+	public static Class<? extends Entity> getClass(final String type,
+			final String eclass) {
 		return entityMap.get(new Pair<String, String>(type, eclass));
 	}
 }

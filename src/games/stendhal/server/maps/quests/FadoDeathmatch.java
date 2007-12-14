@@ -43,15 +43,15 @@ public class FadoDeathmatch extends AbstractQuest {
 
 	/**
 	 * show the player the potential prize
-	 *
+	 * 
 	 * @param x
 	 *            x-position of legs
 	 * @param y
 	 *            y-position of legs
 	 */
 	public void createLegs(int x, int y) {
-		Item legs = StendhalRPWorld.get().getRuleManager().getEntityManager()
-				.getItem("golden_legs");
+		Item legs = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
+				"golden_legs");
 		// we are using these until better
 		// ones are found/commitited. TODO: trophy_legs
 		legs.put("def", "10");
@@ -126,8 +126,8 @@ public class FadoDeathmatch extends AbstractQuest {
 						null, new DoneAction());
 
 				// 'leave' command will send the victorious player home
-				add(ConversationStates.ATTENDING, Arrays
-						.asList("leave", "home"), null,
+				add(ConversationStates.ATTENDING,
+						Arrays.asList("leave", "home"), null,
 						ConversationStates.ATTENDING, null, new LeaveAction());
 
 				// 'bail' command will teleport the player out of it

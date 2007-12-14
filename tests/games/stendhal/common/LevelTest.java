@@ -66,13 +66,13 @@ public class LevelTest {
 
 	@Test
 	public final void testGetWisdom() {
-		assertEquals(0.0, Level.getWisdom(0),0.001);
+		assertEquals(0.0, Level.getWisdom(0), 0.001);
 		assertEquals(0.991, Level.getWisdom(Level.maxLevel()), 0.001);
 	}
 
 	@Test(expected = ArrayIndexOutOfBoundsException.class)
 	public final void testGetWisdomOverMaxlevel() {
-		assertEquals(1.0, Level.getWisdom(Level.maxLevel() + 1),0.001);
+		assertEquals(1.0, Level.getWisdom(Level.maxLevel() + 1), 0.001);
 	}
 
 }

@@ -9,7 +9,6 @@ import groovy.lang.GroovyShell;
 import java.io.File;
 import java.util.HashMap;
 
-
 import org.apache.log4j.Logger;
 
 public class ScriptInGroovy extends ScriptingSandbox {
@@ -26,7 +25,7 @@ public class ScriptInGroovy extends ScriptingSandbox {
 		groovyBinding = new Binding();
 		groovyBinding.setVariable("game", this);
 		groovyBinding.setVariable("logger", logger);
-		groovyBinding.setVariable("storage", new HashMap<Object,Object>());
+		groovyBinding.setVariable("storage", new HashMap<Object, Object>());
 
 		// TODO: get rid of these variables, use the Singleton getters
 		// in the scripts
@@ -42,7 +41,7 @@ public class ScriptInGroovy extends ScriptingSandbox {
 		groovyBinding.setVariable("args", args);
 		GroovyShell interp = new GroovyShell(groovyBinding);
 		boolean ret = true;
-		
+
 		try {
 			File f = new File(groovyScript);
 			interp.evaluate(f);
@@ -55,7 +54,7 @@ public class ScriptInGroovy extends ScriptingSandbox {
 			setMessage(e.getMessage());
 			ret = false;
 		}
-		
+
 		return (ret);
 	}
 

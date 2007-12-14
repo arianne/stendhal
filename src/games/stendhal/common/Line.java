@@ -10,8 +10,6 @@ public class Line {
 		public abstract void fire(int x, int y);
 	}
 
-
-
 	public static Vector<Point> renderLine(int x1, int y1, int x2, int y2) {
 		int deltax = Math.abs(x2 - x1); // The difference between the x's
 		int deltay = Math.abs(y2 - y1); // The difference between the y's
@@ -43,7 +41,7 @@ public class Line {
 		}
 
 		if (deltax >= deltay) { // There is at least one x-value for every
-								// y-value
+			// y-value
 
 			xinc1 = 0; // Don't change the x when numerator >= denominator
 			yinc2 = 0; // Don't change the y for every iteration
@@ -118,8 +116,8 @@ public class Line {
 			numerator = deltax / 2;
 			numadd = deltay;
 			numpixels = deltax; // There are more x-values than y-values
-		} else	{
-			 // There is at least one y-value for every x-value
+		} else {
+			// There is at least one y-value for every x-value
 			xinc2 = 0; // Don't change the x for every iteration
 			yinc1 = 0; // Don't change the y when numerator >= denominator
 			denominator = deltay;
@@ -130,7 +128,8 @@ public class Line {
 
 		for (int curpixel = 0; curpixel <= numpixels; curpixel++) {
 			action.fire(x, y);
-			numerator += numadd; // Increase the numerator by the top of the fraction
+			numerator += numadd; // Increase the numerator by the top of the
+									// fraction
 			if (numerator >= denominator) {
 				numerator -= denominator; // Calculate the new numerator value
 				x += xinc1; // Change the x as appropriate

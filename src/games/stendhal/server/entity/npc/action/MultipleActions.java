@@ -9,8 +9,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * executes a list of actions.
- * calls fire() of each action added, when its own fire() is called.
+ * executes a list of actions. calls fire() of each action added, when its own
+ * fire() is called.
  */
 public class MultipleActions extends SpeakerNPC.ChatAction {
 
@@ -18,16 +18,19 @@ public class MultipleActions extends SpeakerNPC.ChatAction {
 
 	/**
 	 * Creates a new MultipleActions
-	 *
-	 * @param action action to execute
+	 * 
+	 * @param action
+	 *            action to execute
 	 */
 	public MultipleActions(SpeakerNPC.ChatAction... action) {
 		this.actions = Arrays.asList(action);
 	}
+
 	/**
 	 * Creates a new MultipleActions
-	 *
-	 * @param actions list of actions to execute
+	 * 
+	 * @param actions
+	 *            list of actions to execute
 	 */
 	public MultipleActions(List<SpeakerNPC.ChatAction> actions) {
 		this.actions = new LinkedList<SpeakerNPC.ChatAction>(actions);

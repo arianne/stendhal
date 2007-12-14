@@ -4,6 +4,6 @@ public class CarrotGrower extends GrainField {
 	/**
 	 * Create a carrot/vegatable grower.
 	 */
-	public CarrotGrower()  {
+	public CarrotGrower() {
 	}
 }

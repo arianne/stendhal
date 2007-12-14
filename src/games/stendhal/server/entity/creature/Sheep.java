@@ -18,7 +18,6 @@ import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.mapstuff.spawner.SheepFood;
 import games.stendhal.server.entity.player.Player;
 
-
 import org.apache.log4j.Logger;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
@@ -31,7 +30,7 @@ import marauroa.common.game.Definition.Type;
  */
 /**
  * @author Daniel Herding
- *
+ * 
  */
 public class Sheep extends DomesticAnimal {
 
@@ -85,7 +84,7 @@ public class Sheep extends DomesticAnimal {
 
 	/**
 	 * Creates a new wild Sheep.
-	 *
+	 * 
 	 * @throws AttributeNotFoundException
 	 */
 	public Sheep() {
@@ -94,7 +93,7 @@ public class Sheep extends DomesticAnimal {
 
 	/**
 	 * Creates a new Sheep that is owned by a player.
-	 *
+	 * 
 	 * @throws AttributeNotFoundException
 	 */
 	public Sheep(Player owner) {
@@ -116,7 +115,7 @@ public class Sheep extends DomesticAnimal {
 	/**
 	 * Creates a Sheep based on an existing sheep RPObject, and assigns it to a
 	 * player.
-	 *
+	 * 
 	 * @param object
 	 * @param owner
 	 *            The player who should own the sheep
@@ -137,7 +136,7 @@ public class Sheep extends DomesticAnimal {
 
 	/**
 	 * Is called when the sheep dies. Removes the dead sheep from the owner.
-	 *
+	 * 
 	 * @param killer
 	 *            The entity who caused the death
 	 */
@@ -147,6 +146,7 @@ public class Sheep extends DomesticAnimal {
 
 		super.onDead(killername);
 	}
+
 	@Override
 	public void onDead(Entity killer) {
 		cleanUpSheep();
@@ -170,7 +170,7 @@ public class Sheep extends DomesticAnimal {
 	/**
 	 * Returns the SheepFood that is nearest to the sheep's current position. If
 	 * there is no SheepFood within the given range, returns none.
-	 *
+	 * 
 	 * @param range
 	 *            The maximum distance to a SheepFood
 	 * @return The nearest SheepFood, or null if there is none within the given
@@ -198,7 +198,7 @@ public class Sheep extends DomesticAnimal {
 
 	/**
 	 * Called when the sheep is hungry.
-	 *
+	 * 
 	 * @return <code>true</code> if the sheep is hunting for food.
 	 */
 	protected boolean onHungry() {
@@ -309,7 +309,7 @@ public class Sheep extends DomesticAnimal {
 
 	/**
 	 * Let the sheep eat some food.
-	 *
+	 * 
 	 * @param food
 	 *            The food to eat.
 	 */

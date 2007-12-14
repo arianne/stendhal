@@ -53,19 +53,18 @@ public class MeetBunny extends AbstractQuest {
 				add(ConversationStates.IDLE,
 						ConversationPhrases.GREETING_MESSAGES,
 						new QuestCompletedCondition(QUEST_SLOT),
-						ConversationStates.ATTENDING,
-						"Hi again!", null);
+						ConversationStates.ATTENDING, "Hi again!", null);
 
 				List<SpeakerNPC.ChatAction> reward = new LinkedList<SpeakerNPC.ChatAction>();
 				reward.add(new EquipItemAction("basket"));
 				reward.add(new SetQuestAction(QUEST_SLOT, "done"));
-				
+
 				add(ConversationStates.IDLE,
-					ConversationPhrases.GREETING_MESSAGES,
-					new QuestNotCompletedCondition(QUEST_SLOT), 
-					ConversationStates.ATTENDING,
-					"Happy Easter! I have an easter basket for you.",
-					new MultipleActions(reward));
+						ConversationPhrases.GREETING_MESSAGES,
+						new QuestNotCompletedCondition(QUEST_SLOT),
+						ConversationStates.ATTENDING,
+						"Happy Easter! I have an easter basket for you.",
+						new MultipleActions(reward));
 
 				addJob("I am the Easter Bunny!");
 				addGoodbye("Don't eat too much this Easter! Bye!");

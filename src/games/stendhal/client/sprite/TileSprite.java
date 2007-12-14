@@ -47,14 +47,14 @@ public class TileSprite implements Sprite {
 
 	/**
 	 * Create a tile region of another sprite.
-	 *
+	 * 
 	 * <strong>NOTE: The sprite passed is not copied, and must not be modified
 	 * while this instance exists (unless you are sure you know what you are
 	 * doing).</strong>
-	 *
+	 * 
 	 * @param sprite
 	 *            The source sprite.
-	 *
+	 * 
 	 * @throws IllegalArgumentException
 	 *             If the region if beyond the source sprite's bounds.
 	 */
@@ -65,17 +65,17 @@ public class TileSprite implements Sprite {
 
 	/**
 	 * Create a tile region of another sprite.
-	 *
+	 * 
 	 * <strong>NOTE: The sprite passed is not copied, and must not be modified
 	 * while this instance exists (unless you are sure you know what you are
 	 * doing).</strong>
-	 *
+	 * 
 	 * @param sprite
 	 *            The source sprite.
-	 *
+	 * 
 	 * @param reference
 	 *            The sprite identifier reference.
-	 *
+	 * 
 	 * @throws IllegalArgumentException
 	 *             If the region if beyond the source sprite's bounds.
 	 */
@@ -95,8 +95,8 @@ public class TileSprite implements Sprite {
 
 	/**
 	 * Create a tile sprite reference.
-	 *
-	 *
+	 * 
+	 * 
 	 */
 	public static Object createReference(final Sprite sprite, int x, int y,
 			int width, int height) {
@@ -111,7 +111,7 @@ public class TileSprite implements Sprite {
 
 	/**
 	 * Get the underlying sprite.
-	 *
+	 * 
 	 * @return The underlying sprite.
 	 */
 	public Sprite getSprite() {
@@ -125,7 +125,7 @@ public class TileSprite implements Sprite {
 	/**
 	 * Copy the sprite. This does not do a deep copy, so the underlying sprite
 	 * it is made of are shared.
-	 *
+	 * 
 	 * @return A new copy of the sprite.
 	 */
 	public Sprite copy() {
@@ -135,7 +135,7 @@ public class TileSprite implements Sprite {
 	/**
 	 * Create a sub-region of this sprite. <strong>NOTE: This does not use
 	 * caching.</strong>
-	 *
+	 * 
 	 * @param x
 	 *            The starting X coordinate.
 	 * @param y
@@ -146,7 +146,7 @@ public class TileSprite implements Sprite {
 	 *            The region height.
 	 * @param ref
 	 *            The sprite reference.
-	 *
+	 * 
 	 * @return A new sprite.
 	 */
 	public Sprite createRegion(final int x, final int y, final int width,
@@ -157,7 +157,7 @@ public class TileSprite implements Sprite {
 
 	/**
 	 * Draw the sprite onto the graphics context provided.
-	 *
+	 * 
 	 * @param g
 	 *            The graphics context on which to draw the sprite
 	 * @param x
@@ -171,7 +171,7 @@ public class TileSprite implements Sprite {
 
 	/**
 	 * Draws the image
-	 *
+	 * 
 	 * @param g
 	 *            the graphics context where to draw to
 	 * @param destx
@@ -195,7 +195,7 @@ public class TileSprite implements Sprite {
 
 	/**
 	 * Get the height of the drawn sprite.
-	 *
+	 * 
 	 * @return The height in pixels of this sprite.
 	 */
 	public int getHeight() {
@@ -206,7 +206,7 @@ public class TileSprite implements Sprite {
 	 * Get the sprite reference. This identifier is an externally opaque object
 	 * that implements equals() and hashCode() to uniquely/repeatably reference
 	 * a keyed sprite.
-	 *
+	 * 
 	 * @return The reference identifier, or <code>null</code> if not
 	 *         referencable.
 	 */
@@ -216,7 +216,7 @@ public class TileSprite implements Sprite {
 
 	/**
 	 * Get the width of the drawn sprite.
-	 *
+	 * 
 	 * @return The width in pixels of this sprite.
 	 */
 	public int getWidth() {

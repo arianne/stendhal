@@ -1,16 +1,15 @@
 package games.stendhal.server.actions.admin;
 
+import static games.stendhal.server.actions.WellKnownActionConstants.MINUTES;
+import static games.stendhal.server.actions.WellKnownActionConstants.TARGET;
 import games.stendhal.server.Jail;
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.actions.CommandCenter;
-import games.stendhal.server.actions.WellKnownActionConstants;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
-import static games.stendhal.server.actions.WellKnownActionConstants.TARGET;
-import static games.stendhal.server.actions.WellKnownActionConstants.MINUTES;
 
 public class JailAction extends AdministrationAction {
-	
+
 	private static final String USAGE_JAIL_NAME_MINUTES_REASON = "Usage: /jail name minutes reason";
 	private static final String _JAIL = "jail";
 
