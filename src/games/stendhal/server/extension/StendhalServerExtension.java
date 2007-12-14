@@ -5,7 +5,7 @@
  * The StendhalServerExtension is a base class for plugins that add
  * functions to the server.
  */
-package games.stendhal.server;
+package games.stendhal.server.extension;
 
 import java.util.HashMap;
 import java.util.Map;

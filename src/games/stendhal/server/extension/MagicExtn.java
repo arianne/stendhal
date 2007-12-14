@@ -5,7 +5,6 @@
 
 package games.stendhal.server.extension;
 
-import games.stendhal.server.StendhalServerExtension;
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.entity.player.Player;

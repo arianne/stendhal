@@ -16,7 +16,7 @@
  server_extension=groovy,http
  **/
 
-package games.stendhal.server;
+package games.stendhal.server.extension;
 
 import groovy.lang.Binding;
 import groovy.util.GroovyScriptEngine;
