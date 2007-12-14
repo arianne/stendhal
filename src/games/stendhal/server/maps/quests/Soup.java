@@ -30,7 +30,7 @@ import marauroa.common.game.IRPZone;
  * 
  * STEPS: - Old Mother Helena tells you the ingredients of a special soup - You
  * collect the ingredients - You bring the ingredients to the tavern - The soup
- * is served at table - Eating the soup heals you fully and adds karma
+ * is served at table - Eating the soup heals you fully over time - Making it adds karma
  * 
  * 
  * REWARD: - heal - Karma bonus of 5 - 100 XP
@@ -86,14 +86,13 @@ public class Soup extends AbstractQuest {
 		Item soup = StendhalRPWorld.get().getRuleManager().getEntityManager()
 				.getItem("soup");
 		IRPZone zone = StendhalRPWorld.get().getZone("int_fado_tavern");
-		// place on table. note: it's not equippable so must be eaten in tavern
+		// place on table (for effect only :) )
 		soup.setPosition(17, 23);
 		// only allow player who made soup to eat the soup
 		soup.setBoundTo(player.getName());
 		// here the soup is altered to have the same heal value as the player's
-		// base HP.
+		// base HP. soup is already persistent so it will last.
 		soup.put("amount", player.getBaseHP());
-		soup.put("regen", player.getBaseHP());
 		zone.add(soup);
 	}
 
