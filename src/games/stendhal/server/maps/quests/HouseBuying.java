@@ -132,108 +132,109 @@ public class HouseBuying extends AbstractQuest {
 				// for house number, from 1 to 25:
 				for (int house = 1; house < 26; house++) {
 					add(ConversationStates.QUEST_OFFERED,
-							Integer.toString(house), null,
-							ConversationStates.ATTENDING, null,
-							new SpeakerNPC.ChatAction() {
-								@Override
-								public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-									Player postman = StendhalRPRuleProcessor.get().getPlayer(
-											"postman");
-									// is postman online?
-									if (postman != null) {
-										// First, check if anyone has bought a
-										// house from this npc yet
-										if (!postman.hasQuest(POSTMAN_STORAGE_SLOT_1)) {
-											postman.setQuest(POSTMAN_STORAGE_SLOT_1, POSTMAN_SLOT_INIT);
-										}
-										String postmanslot = postman.getQuest(QUEST_SLOT);
-										String[] boughthouses = postmanslot.split(";");
-										List<String> doneList = Arrays.asList(boughthouses);
-										String item = sentence.getOriginalText();
-										// now check if the house they said is free
-										if (!doneList.contains(item)) {
-											// it's available, so take money
-											if (player.isEquipped("money", COST)) {
-												Item key = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
-														"private_key_" + item);
-												engine.say("Congratulations, here is your key to house "
-														+ item
-														+ "! Do you want to buy a spare key, at a price of "
-														+ COST_OF_SPARE_KEY + " money?");
-												key.setUndroppableOnDeath(true);
-												if (player.equip(key)) {
-													player.drop("money", COST);
-    												// remember what house they own
-    												player.setQuest(QUEST_SLOT, item);
-    												postman.setQuest(QUEST_SLOT, postmanslot + ";" + item);
-    												engine.setCurrentState(ConversationStates.QUESTION_1);
-												} else {
-													engine.say("Sorry, you can't carry more keys!");
-												}
-											} else {
-												engine.say("You do not have enough money to buy a house!");
-											}
-										} else {
-											engine.say("Sorry, house "
-													+ item
-													+ " is sold, please give me the number of another.");
-											engine.setCurrentState(ConversationStates.QUEST_OFFERED);
-										}
-									} else {
-										// postman is offline!
-										engine.say("Oh dear, I've lost my records temporarily. I'm afraid I can't check anything for you. Please try again another time.");
-									}
-								}
-
-							});
-				}
-				// we need to warn people who buy spare keys about the house
-				// being accessible to other players with a key
-				add(
-						ConversationStates.QUESTION_1,
-						ConversationPhrases.YES_MESSAGES,
+						Integer.toString(house), 
 						null,
-						ConversationStates.QUESTION_2,
-						"Before we go on, I must warn you that anyone with a key to your house can enter it, and have access to any creature you left inside, whenever they like. Do you still wish to buy a spare key?",
-						null);
-				// player wants spare keys and is ok with house being accessible
-				// to other person.
-				add(ConversationStates.QUESTION_2,
-						ConversationPhrases.YES_MESSAGES, null,
-						ConversationStates.ATTENDING, null,
+						ConversationStates.ATTENDING,
+						null,
 						new SpeakerNPC.ChatAction() {
 							@Override
 							public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-								if (player.isEquipped("money", COST_OF_SPARE_KEY)) {
-									String house = player.getQuest(QUEST_SLOT);
-									Item key = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
-											"private_key_" + house);
-									key.setUndroppableOnDeath(true);
-									if (player.equip(key)) {
-										player.drop("money", COST_OF_SPARE_KEY);
-										engine.say("Here you go, a spare key to your house. Please remember, only give spare keys to people you #really, #really, trust!");
+								Player postman = StendhalRPRuleProcessor.get().getPlayer(
+										"postman");
+								// is postman online?
+								if (postman != null) {
+									// First, check if anyone has bought a
+									// house from this npc yet
+									if (!postman.hasQuest(POSTMAN_STORAGE_SLOT_1)) {
+										postman.setQuest(POSTMAN_STORAGE_SLOT_1, POSTMAN_SLOT_INIT);
+									}
+									String postmanslot = postman.getQuest(QUEST_SLOT);
+									String[] boughthouses = postmanslot.split(";");
+									List<String> doneList = Arrays.asList(boughthouses);
+									String item = sentence.getOriginalText();
+									// now check if the house they said is free
+									if (!doneList.contains(item)) {
+										// it's available, so take money
+										if (player.isEquipped("money", COST)) {
+											Item key = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
+													"private_key_" + item);
+											engine.say("Congratulations, here is your key to house "
+													+ item
+													+ "! Do you want to buy a spare key, at a price of "
+													+ COST_OF_SPARE_KEY + " money?");
+											key.setUndroppableOnDeath(true);
+											if (player.equip(key)) {
+												player.drop("money", COST);
+												// remember what house they own
+												player.setQuest(QUEST_SLOT, item);
+												postman.setQuest(QUEST_SLOT, postmanslot + ";" + item);
+												engine.setCurrentState(ConversationStates.QUESTION_1);
+											} else {
+												engine.say("Sorry, you can't carry more keys!");
+											}
+										} else {
+											engine.say("You do not have enough money to buy a house!");
+										}
 									} else {
-										engine.say("Sorry, you can't carry more keys!");
+										engine.say("Sorry, house "
+												+ item
+												+ " is sold, please give me the number of another.");
+										engine.setCurrentState(ConversationStates.QUEST_OFFERED);
 									}
 								} else {
-									engine.say("You do not have enough money for another key!");
+									// postman is offline!
+									engine.say("Oh dear, I've lost my records temporarily. I'm afraid I can't check anything for you. Please try again another time.");
 								}
 							}
+
 						});
-				add(
-						ConversationStates.QUESTION_2,
-						ConversationPhrases.NO_MESSAGES,
-						null,
-						ConversationStates.ATTENDING,
-						"That is wise of you. It is certainly better to restrict use of your house to those you can really trust.",
-						null);
-				add(
-						ConversationStates.QUESTION_1,
-						ConversationPhrases.NO_MESSAGES,
-						null,
-						ConversationStates.ATTENDING,
-						"No problem! If I can help you with anything else, just ask.",
-						null);
+				}
+				// we need to warn people who buy spare keys about the house
+				// being accessible to other players with a key
+				add(ConversationStates.QUESTION_1,
+					ConversationPhrases.YES_MESSAGES,
+					null,
+					ConversationStates.QUESTION_2,
+					"Before we go on, I must warn you that anyone with a key to your house can enter it, and have access to any creature you left inside, whenever they like. Do you still wish to buy a spare key?",
+					null);
+				// player wants spare keys and is ok with house being accessible
+				// to other person.
+				add(ConversationStates.QUESTION_2,
+					ConversationPhrases.YES_MESSAGES, 
+					null,
+					ConversationStates.ATTENDING, 
+					null,
+					new SpeakerNPC.ChatAction() {
+						@Override
+						public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+							if (player.isEquipped("money", COST_OF_SPARE_KEY)) {
+								String house = player.getQuest(QUEST_SLOT);
+								Item key = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
+										"private_key_" + house);
+								key.setUndroppableOnDeath(true);
+								if (player.equip(key)) {
+									player.drop("money", COST_OF_SPARE_KEY);
+									engine.say("Here you go, a spare key to your house. Please remember, only give spare keys to people you #really, #really, trust!");
+								} else {
+									engine.say("Sorry, you can't carry more keys!");
+								}
+							} else {
+								engine.say("You do not have enough money for another key!");
+							}
+						}
+					});
+				add(ConversationStates.QUESTION_2,
+					ConversationPhrases.NO_MESSAGES,
+					null,
+					ConversationStates.ATTENDING,
+					"That is wise of you. It is certainly better to restrict use of your house to those you can really trust.",
+					null);
+				add(ConversationStates.QUESTION_1,
+					ConversationPhrases.NO_MESSAGES,
+					null,
+					ConversationStates.ATTENDING,
+					"No problem! If I can help you with anything else, just ask.",
+					null);
 				addJob("I'm an estate agent. In simple terms, I sell houses to those who have been granted #citizenship. They #cost a lot, of course. Our brochure is at #http://arianne.sourceforge.net/wiki/index.php?title=StendhalHouses.");
 				addReply("citizenship",
 						"The royalty in Kalavan Castle decide that.");
@@ -310,7 +311,13 @@ public class HouseBuying extends AbstractQuest {
 							engine2.say("The cost of a new house in Ados is "
 									+ COST_ADOS
 									+ " money. But I am afraid I cannot trust you with house ownership just yet, as you have not been a part of this world long enough.");
-						} else if (!(player.hasQuest(DAILY_ITEM_QUEST_SLOT)&&player.getQuest(DAILY_ITEM_QUEST_SLOT).startsWith("done")&&player.isQuestCompleted(ANNA_QUEST_SLOT)&&player.isQuestCompleted(KEYRING_QUEST_SLOT)&&player.isQuestCompleted(FISHROD_QUEST_SLOT)&&player.isQuestCompleted(GHOSTS_QUEST_SLOT)&&player.isQuestCompleted(ZARA_QUEST_SLOT))) {
+						} else if (!(player.hasQuest(DAILY_ITEM_QUEST_SLOT)
+								     && player.getQuest(DAILY_ITEM_QUEST_SLOT).startsWith("done")
+								     && player.isQuestCompleted(ANNA_QUEST_SLOT)
+								     && player.isQuestCompleted(KEYRING_QUEST_SLOT)
+								     && player.isQuestCompleted(FISHROD_QUEST_SLOT)
+								     && player.isQuestCompleted(GHOSTS_QUEST_SLOT)
+								     && player.isQuestCompleted(ZARA_QUEST_SLOT))) {
 							engine2.say("The cost of a new house in Ados is "
 									+ COST_ADOS
 									+ " money. But I am afraid I cannot sell you a house yet as you must first prove yourself a worthy #citizen.");
@@ -329,8 +336,10 @@ public class HouseBuying extends AbstractQuest {
 				// for house number, from 50 to 68:
 				for (int house = 50; house < 69; house++) {
 					add(ConversationStates.QUEST_OFFERED,
-							Integer.toString(house), null,
-							ConversationStates.ATTENDING, null,
+							Integer.toString(house), 
+							null,
+							ConversationStates.ATTENDING, 
+							null,
 							new SpeakerNPC.ChatAction() {
 								@Override
 								public void fire(Player player, Sentence sentence, SpeakerNPC engine2) {
@@ -364,8 +373,9 @@ public class HouseBuying extends AbstractQuest {
     												player.setQuest(QUEST_SLOT, item);
     												postman.setQuest(POSTMAN_STORAGE_SLOT_2, postmanslot + ";" + item);
     												engine2.setCurrentState(ConversationStates.QUESTION_1);
-												} else
+												} else {
 													engine2.say("Sorry, you can't carry more keys!");
+												}
 											} else {
 												engine2.say("You do not have enough money to buy a house!");
 											}
@@ -383,6 +393,7 @@ public class HouseBuying extends AbstractQuest {
 
 							});
 				}
+				
 				// we need to warn people who buy spare keys about the house
 				// being accessible to other players with a key
 				add(
@@ -392,11 +403,14 @@ public class HouseBuying extends AbstractQuest {
 						ConversationStates.QUESTION_2,
 						"Before we go on, I must warn you that anyone with a key to your house can enter it, and have access to any creature you left inside, whenever they like. Do you still wish to buy a spare key?",
 						null);
+				
 				// player wants spare keys and is ok with house being accessible
 				// to other person.
 				add(ConversationStates.QUESTION_2,
-						ConversationPhrases.YES_MESSAGES, null,
-						ConversationStates.ATTENDING, null,
+						ConversationPhrases.YES_MESSAGES, 
+						null,
+						ConversationStates.ATTENDING, 
+						null,
 						new SpeakerNPC.ChatAction() {
 							@Override
 							public void fire(Player player, Sentence sentence, SpeakerNPC engine2) {
@@ -408,34 +422,33 @@ public class HouseBuying extends AbstractQuest {
 									if (player.equip(key)) {
 										player.drop("money", COST_OF_SPARE_KEY);
 										engine2.say("Here you go, a spare key to your house. Please remember, only give spare keys to people you #really, #really, trust!");
-									} else
+									} else {
 										engine2.say("Sorry, you can't carry more keys!");
+									}
 								} else {
 									engine2.say("You do not have enough money for another key!");
 								}
 							}
 						});
-				add(
-						ConversationStates.QUESTION_2,
-						ConversationPhrases.NO_MESSAGES,
-						null,
-						ConversationStates.ATTENDING,
-						"That is wise of you. It is certainly better to restrict use of your house to those you can really trust.",
-						null);
-				add(
-						ConversationStates.QUESTION_1,
-						ConversationPhrases.NO_MESSAGES,
-						null,
-						ConversationStates.ATTENDING,
-						"No problem! If I can help you with anything else, just ask.",
-						null);
+				
+				add(ConversationStates.QUESTION_2,
+					ConversationPhrases.NO_MESSAGES,
+					null,
+					ConversationStates.ATTENDING,
+					"That is wise of you. It is certainly better to restrict use of your house to those you can really trust.",
+					null);
+				
+				add(ConversationStates.QUESTION_1,
+					ConversationPhrases.NO_MESSAGES,
+					null,
+					ConversationStates.ATTENDING,
+					"No problem! If I can help you with anything else, just ask.",
+					null);
+			
 				addJob("I'm an estate agent. In simple terms, I sell houses for the city of Ados. Please ask about the #cost if you are interested. Our brochure is at #http://arianne.sourceforge.net/wiki/index.php?title=StendhalHouses.");
-                                addReply("citizen",
-					 "I conduct an informal survey amongst the Ados residents. If you have helped everyone in Ados, I see no reason why they shouldn't recommend you. I speak with my friend Joshua, the Mayor, the little girl Anna, Pequod the fisherman, Zara, and I even commune with Carena, of the spirit world. Together they give a reliable opnion.");
-				addReply("buy",
-						"You may wish to know the #cost before you buy. Perhaps our brochure, #http://arianne.sourceforge.net/wiki/index.php?title=StendhalHouses would also be of interest.");
-				addReply("really",
-						"That's right, really, really, really. Really.");
+                addReply("citizen", "I conduct an informal survey amongst the Ados residents. If you have helped everyone in Ados, I see no reason why they shouldn't recommend you. I speak with my friend Joshua, the Mayor, the little girl Anna, Pequod the fisherman, Zara, and I even commune with Carena, of the spirit world. Together they give a reliable opnion.");
+				addReply("buy",	"You may wish to know the #cost before you buy. Perhaps our brochure, #http://arianne.sourceforge.net/wiki/index.php?title=StendhalHouses would also be of interest.");
+				addReply("really", "That's right, really, really, really. Really.");
 				addOffer("I sell Ados houses, please look at #http://arianne.sourceforge.net/wiki/index.php?title=StendhalHouses for examples of how they look inside. Then ask about the #cost when you are ready.");
 				addHelp("You may be eligible to become a #citizen. Of course there must also be houses available in Ados. If you can pay the #cost, I'll give you a key. As a house owner you can buy spare keys to give your friends. See #http://arianne.sourceforge.net/wiki/index.php?title=StendhalHouses for pictures inside the houses and more details.");
 				addQuest("You may buy houses from me, please ask the #cost if you are interested. Perhaps you would first like to view our brochure, #http://arianne.sourceforge.net/wiki/index.php?title=StendhalHouses.");

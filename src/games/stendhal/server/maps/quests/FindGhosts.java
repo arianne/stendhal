@@ -96,7 +96,8 @@ public class FindGhosts extends AbstractQuest {
 			null);
 
 		npc.add(ConversationStates.QUEST_OFFERED,
-			ConversationPhrases.YES_MESSAGES, null,
+			ConversationPhrases.YES_MESSAGES, 
+			null,
 			ConversationStates.ATTENDING,
 			"That's lovely of you. Good luck searching for them.",
 			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "looking:said", 5.0));
@@ -144,8 +145,8 @@ public class FindGhosts extends AbstractQuest {
 
 					String npcQuestText = player.getQuest(QUEST_SLOT).toLowerCase();
 					String[] npcDoneText = npcQuestText.split(":");
-	    			String lookingStr = npcDoneText.length>1? npcDoneText[0]: "";
-	    			String saidStr = npcDoneText.length>1? npcDoneText[1]: "";
+	    			String lookingStr = npcDoneText.length > 1 ? npcDoneText[0] : "";
+	    			String saidStr = npcDoneText.length > 1 ? npcDoneText[1] : "";
 					List<String> looking = Arrays.asList(lookingStr.split(";"));
 					List<String> said = Arrays.asList(saidStr.split(";"));
 					String reply = "";
@@ -209,9 +210,11 @@ public class FindGhosts extends AbstractQuest {
 
 		// the player goes to Carena and says hi, and has no quest or is
 		// completed.
-		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-			new NotCondition(new QuestActiveCondition(QUEST_SLOT)),
-			ConversationStates.ATTENDING, "Wooouhhhhhh!", null);
+		npc.add(ConversationStates.IDLE, 
+				ConversationPhrases.GREETING_MESSAGES,
+				new NotCondition(new QuestActiveCondition(QUEST_SLOT)),
+				ConversationStates.ATTENDING, "Wooouhhhhhh!", 
+				null);
 	}
 
 	@Override

@@ -39,18 +39,19 @@ public class KillSpiders extends AbstractQuest {
 		SpeakerNPC npc = npcs.get("Morgrin");
 
 		npc.add(ConversationStates.ATTENDING,
-				ConversationPhrases.QUEST_MESSAGES, null,
-				ConversationStates.QUEST_OFFERED, null,
+				ConversationPhrases.QUEST_MESSAGES, 
+				null,
+				ConversationStates.QUEST_OFFERED, 
+				null,
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-						if (!player.hasQuest(QUEST_SLOT)
-								|| player.getQuest(QUEST_SLOT).equals("rejected")) {
+						if (!player.hasQuest(QUEST_SLOT) || player.getQuest(QUEST_SLOT).equals("rejected")) {
 							engine.say("Have you ever been to the basement of the school? The room is full of spiders and some could be dangerous, since the students do experiments! Would you like to help me with this 'little' problem?");
 						}  else if (player.isQuestCompleted(QUEST_SLOT)) {
 							engine.say("I already asked you to kill all creatures in the basement!");
 							engine.setCurrentState(ConversationStates.ATTENDING);
-						}  else if (player.getQuest(QUEST_SLOT).startsWith(	"killed;")) {
+						}  else if (player.getQuest(QUEST_SLOT).startsWith("killed;")) {
 							String[] tokens = player.getQuest(QUEST_SLOT).split(";");
 							long delay = 7 * 24 * 60 *  10 * 60 * 1000;
 							long timeRemaining = (Long.parseLong(tokens[1]) + delay) - System.currentTimeMillis();
@@ -72,18 +73,19 @@ public class KillSpiders extends AbstractQuest {
 		actions.add(new IncreaseKarmaAction(5.0));
 		actions.add(new SetQuestAction(QUEST_SLOT, "start"));
 		
-		npc.add(
-			ConversationStates.QUEST_OFFERED,
-			ConversationPhrases.YES_MESSAGES,
-			null,
-			ConversationStates.ATTENDING,
-			"Fine. Go down to the basement and kill all the creatures there!",
-			new MultipleActions(actions));
+		npc.add(ConversationStates.QUEST_OFFERED,
+				ConversationPhrases.YES_MESSAGES,
+				null,
+				ConversationStates.ATTENDING,
+				"Fine. Go down to the basement and kill all the creatures there!",
+				new MultipleActions(actions));
 
-		npc.add(ConversationStates.QUEST_OFFERED, "no", null,
-			ConversationStates.ATTENDING,
-			"Ok, i have to find someone else to do this 'little' job!",
-			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -5.0));
+		npc.add(ConversationStates.QUEST_OFFERED, 
+				"no", 
+				null,
+				ConversationStates.ATTENDING,
+				"Ok, i have to find someone else to do this 'little' job!",
+				new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -5.0));
 	}
 
 	private void step_2() {
@@ -96,7 +98,8 @@ public class KillSpiders extends AbstractQuest {
 
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 				new QuestInStateCondition(QUEST_SLOT, "start"),
-				ConversationStates.ATTENDING, null,
+				ConversationStates.ATTENDING, 
+				null,
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {

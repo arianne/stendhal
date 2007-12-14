@@ -125,28 +125,30 @@ public class ObsidianKnife extends AbstractQuest {
 
 		// Player says no. they might get asked to bring a different food next
 		// time but they've lost karma.
-		npc.add(
-			ConversationStates.QUEST_OFFERED,
-			ConversationPhrases.NO_MESSAGES,
-			null,
-			ConversationStates.IDLE,
-			"I'm not sure how I'll survive next year now. Good bye, cruel soul.",
-			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -5.0));
+		npc.add(ConversationStates.QUEST_OFFERED,
+				ConversationPhrases.NO_MESSAGES,
+				null,
+				ConversationStates.IDLE,
+				"I'm not sure how I'll survive next year now. Good bye, cruel soul.",
+				new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -5.0));
 
 		// Player asks what supplies he needs, and a random choice of what he
 		// wants is made.
-		npc.add(ConversationStates.QUEST_ITEM_QUESTION, "supplies", null,
-			ConversationStates.QUEST_OFFERED, null,
-			new SpeakerNPC.ChatAction() {
-				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-					String food = Rand.rand(FOOD_LIST);
-					player.setQuest(QUEST_SLOT, food);
-					npc.say("If you could get me " + REQUIRED_FOOD
-							+ " pieces of " + food
-							+ ", I'd be in your debt. Will you help me?");
-				}
-			});
+		npc.add(ConversationStates.QUEST_ITEM_QUESTION, 
+				"supplies", 
+				null,
+				ConversationStates.QUEST_OFFERED, 
+				null,
+				new SpeakerNPC.ChatAction() {
+					@Override
+					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+						String food = Rand.rand(FOOD_LIST);
+						player.setQuest(QUEST_SLOT, food);
+						npc.say("If you could get me " + REQUIRED_FOOD
+								+ " pieces of " + food
+								+ ", I'd be in your debt. Will you help me?");
+					}
+				});
 	}
 
 	private void bringFoodStep() {
@@ -160,243 +162,257 @@ public class ObsidianKnife extends AbstractQuest {
 					if (player.drop(item, REQUIRED_FOOD)) {
 						npc.say("Great! You brought the " + item + "!");
 					}
-				}});
+				} });
 		reward.add(new IncreaseXPAction(1000));
 		reward.add(new IncreaseKarmaAction(35.0));
 		reward.add(new SetQuestAction(QUEST_SLOT, "food_brought"));
 
 		/** If player has quest and has brought the food, and says so, take it */
-		npc.add(ConversationStates.ATTENDING, FOOD_LIST,
-			new SpeakerNPC.ChatCondition() {
-				@Override
-				public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
-					String item = sentence.toString();
-					return player.hasQuest(QUEST_SLOT)
-							&& player.getQuest(QUEST_SLOT).equals(item)
-							&& player.isEquipped(item, REQUIRED_FOOD);
-				}
-			}, ConversationStates.ATTENDING, null,
-			new MultipleActions(reward));
+		npc.add(ConversationStates.ATTENDING, 
+				FOOD_LIST,
+				new SpeakerNPC.ChatCondition() {
+					@Override
+					public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
+						String item = sentence.toString();
+						return player.hasQuest(QUEST_SLOT)
+								&& player.getQuest(QUEST_SLOT).equals(item)
+								&& player.isEquipped(item, REQUIRED_FOOD);
+					}
+				}, 
+				ConversationStates.ATTENDING, 
+				null,
+				new MultipleActions(reward));
 	}
 
 	private void requestBookStep() {
 		SpeakerNPC npc = npcs.get("Alrak");
 
-		npc.add(
-			ConversationStates.QUEST_ITEM_BROUGHT,
-			"book",
-			null,
-			ConversationStates.QUEST_ITEM_BROUGHT,
-			"It's about gems and minerals. I doubt you'd be interested ... but do you think you could get it somehow?",
-			null);
-
-		npc.add(
-			ConversationStates.QUEST_ITEM_BROUGHT,
-			ConversationPhrases.NO_MESSAGES,
-			null,
-			ConversationStates.IDLE,
-			"Shame, I would really like to learn more about precious stones. Ah well, good bye.",
-			null);
+		npc.add(ConversationStates.QUEST_ITEM_BROUGHT,
+				"book",
+				null,
+				ConversationStates.QUEST_ITEM_BROUGHT,
+				"It's about gems and minerals. I doubt you'd be interested ... but do you think you could get it somehow?",
+				null);
 
 		npc.add(ConversationStates.QUEST_ITEM_BROUGHT,
-			ConversationPhrases.YES_MESSAGES, null,
-			ConversationStates.ATTENDING, "Thanks. Try asking at a library for a 'gem_book'.",
-			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "seeking_book", 10.0));
+				ConversationPhrases.NO_MESSAGES,
+				null,
+				ConversationStates.IDLE,
+				"Shame, I would really like to learn more about precious stones. Ah well, good bye.",
+				null);
+
+		npc.add(ConversationStates.QUEST_ITEM_BROUGHT,
+				ConversationPhrases.YES_MESSAGES, 
+				null,
+				ConversationStates.ATTENDING, 
+				"Thanks. Try asking at a library for a 'gem_book'.",
+				new SetQuestAndModifyKarmaAction(QUEST_SLOT, "seeking_book", 10.0));
 	}
 
 	private void getBookStep() {
 		SpeakerNPC npc = npcs.get("Ceryl");
 
-		npc.add(
-			ConversationStates.ATTENDING,
-			"gem_book", new QuestInStateCondition(QUEST_SLOT, "seeking_book"),
-			ConversationStates.QUESTION_1,
-			"You're in luck! Ognir brought it back just last week. Now, who is it for?",
-			null);
+		npc.add(ConversationStates.ATTENDING,
+				"gem_book", 
+				new QuestInStateCondition(QUEST_SLOT, "seeking_book"),
+				ConversationStates.QUESTION_1,
+				"You're in luck! Ognir brought it back just last week. Now, who is it for?",
+				null);
 
-		npc.add(ConversationStates.QUESTION_1, NAME, null,
-			ConversationStates.ATTENDING, 
-			"Ah, the mountain dwarf! Hope he enjoys the gem_book.",
-			new MultipleActions(new EquipItemAction("book_blue", 1, true), new SetQuestAction(QUEST_SLOT, "got_book")));
+		npc.add(ConversationStates.QUESTION_1, 
+				NAME, 
+				null,
+				ConversationStates.ATTENDING, 
+				"Ah, the mountain dwarf! Hope he enjoys the gem_book.",
+				new MultipleActions(new EquipItemAction("book_blue", 1, true), 
+				new SetQuestAction(QUEST_SLOT, "got_book")));
 
 		// player says something which isn't the dwarf's name.
-		npc.add(ConversationStates.QUESTION_1, "",
-			new NotCondition(new TriggerInListCondition(NAME.toLowerCase())),
-			ConversationStates.QUESTION_1,
-			"Hm, you better check who it's really for.", null);
+		npc.add(ConversationStates.QUESTION_1, 
+				"",
+				new NotCondition(new TriggerInListCondition(NAME.toLowerCase())),
+				ConversationStates.QUESTION_1,
+				"Hm, you better check who it's really for.", 
+				null);
 	}
 
 	private void bringBookStep() {
 		SpeakerNPC npc = npcs.get("Alrak");
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-			new AndCondition(new QuestInStateCondition(QUEST_SLOT, "got_book"), new PlayerHasItemWithHimCondition("book_blue")),
-			ConversationStates.IDLE, 
-			"Great! I think I'll read this for a while. Bye!",
-			new SpeakerNPC.ChatAction() {
-				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-					player.drop("book_blue");
-					player.addXP(500);
-					player.setQuest(QUEST_SLOT, "reading;" + System.currentTimeMillis());
-				}
-			});
+				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "got_book"), new PlayerHasItemWithHimCondition("book_blue")),
+				ConversationStates.IDLE, 
+				"Great! I think I'll read this for a while. Bye!",
+				new SpeakerNPC.ChatAction() {
+					@Override
+					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+						player.drop("book_blue");
+						player.addXP(500);
+						player.setQuest(QUEST_SLOT, "reading;" + System.currentTimeMillis());
+					}
+				});
 
-		npc.add(
-			ConversationStates.IDLE,
-			ConversationPhrases.GREETING_MESSAGES,
-			new SpeakerNPC.ChatCondition() {
-				@Override
-				public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
-					return player.hasQuest(QUEST_SLOT)
-							&& (player.getQuest(QUEST_SLOT).equals("seeking_book") 
-							|| player.getQuest(QUEST_SLOT).equals("got_book"))
-							&& !player.isEquipped("book_blue");
-				}
-			},
-			ConversationStates.ATTENDING,
-			"Hello again. I hope you haven't forgotten about the gem_book I wanted.",
-			null);
+		npc.add(ConversationStates.IDLE,
+				ConversationPhrases.GREETING_MESSAGES,
+				new SpeakerNPC.ChatCondition() {
+					@Override
+					public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
+						return player.hasQuest(QUEST_SLOT) 
+						&& (player.getQuest(QUEST_SLOT).equals("seeking_book") || player.getQuest(QUEST_SLOT).equals("got_book")) 
+						&& !player.isEquipped("book_blue");
+					}
+				},
+				ConversationStates.ATTENDING,
+				"Hello again. I hope you haven't forgotten about the gem_book I wanted.",
+				null);
 	}
 
 	private void offerKnifeStep() {
 
 		SpeakerNPC npc = npcs.get("Alrak");
-		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-			new SpeakerNPC.ChatCondition() {
-				@Override
-				public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
-					return player.hasQuest(QUEST_SLOT)
-							&& player.getQuest(QUEST_SLOT).startsWith("reading;");
-				}
-			}, ConversationStates.IDLE, null, new SpeakerNPC.ChatAction() {
-				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-					String[] tokens = player.getQuest(QUEST_SLOT)
-							.split(";");
-					long delay = REQUIRED_DAYS * 60 * 60 * 24 * 1000; // milliseconds in REQUIRED_DAYS days
-					long timeRemaining = (Long.parseLong(tokens[1]) + delay)
-							- System.currentTimeMillis();
-					if (timeRemaining > 0L) {
-						npc.say("I haven't finished reading that book. Maybe I'll be done in "
-								+ TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L))
-								+ ".");
-						return;
+		npc.add(ConversationStates.IDLE, 
+				ConversationPhrases.GREETING_MESSAGES,
+				new SpeakerNPC.ChatCondition() {
+					@Override
+					public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
+						return player.hasQuest(QUEST_SLOT)
+								&& player.getQuest(QUEST_SLOT).startsWith("reading;");
 					}
-					npc.say("I've finished reading! That was really interesting. I learned how to make a special #knife from #obsidian.");
-					player.setQuest(QUEST_SLOT, "knife_offered");
-					player.notifyWorldAboutChanges();
-					npc.setCurrentState(ConversationStates.QUEST_2_OFFERED);
-				}
+				}, 
+				ConversationStates.IDLE, 
+				null, 
+				new SpeakerNPC.ChatAction() {
+					@Override
+					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+						String[] tokens = player.getQuest(QUEST_SLOT)
+								.split(";");
+						long delay = REQUIRED_DAYS * 60 * 60 * 24 * 1000; // milliseconds in REQUIRED_DAYS days
+						long timeRemaining = (Long.parseLong(tokens[1]) + delay)
+								- System.currentTimeMillis();
+						if (timeRemaining > 0L) {
+							npc.say("I haven't finished reading that book. Maybe I'll be done in "
+									+ TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L))
+									+ ".");
+							return;
+						}
+						npc.say("I've finished reading! That was really interesting. I learned how to make a special #knife from #obsidian.");
+						player.setQuest(QUEST_SLOT, "knife_offered");
+						player.notifyWorldAboutChanges();
+						npc.setCurrentState(ConversationStates.QUEST_2_OFFERED);
+					}
 			});
 
-		npc.add(
-			ConversationStates.QUEST_2_OFFERED,
-			"obsidian",
-			null,
-			ConversationStates.QUEST_2_OFFERED,
-			"That book says that the black gem, obsidian, can be used to make a very sharp cutting edge. Fascinating! If you slay a black dragon to bring it, I'll make a #knife for you.",
-			null);
+		npc.add(ConversationStates.QUEST_2_OFFERED,
+				"obsidian",
+				null,
+				ConversationStates.QUEST_2_OFFERED,
+				"That book says that the black gem, obsidian, can be used to make a very sharp cutting edge. Fascinating! If you slay a black dragon to bring it, I'll make a #knife for you.",
+				null);
 
-		npc.add(
-			ConversationStates.QUEST_2_OFFERED,
-			"knife",
-			null,
-			ConversationStates.QUEST_2_OFFERED,
-			"I'll make an obsidian knife if you can get the gem which makes the blade. Bring a "
-					+ FISH
-					+ " so that I can make the bone handle, too.",
-			null);
+		npc.add(ConversationStates.QUEST_2_OFFERED,
+				"knife",
+				null,
+				ConversationStates.QUEST_2_OFFERED,
+				"I'll make an obsidian knife if you can get the gem which makes the blade. Bring a "
+						+ FISH
+						+ " so that I can make the bone handle, too.",
+				null);
 
 		// player says hi to NPC when equipped with the fish and the gem and
 		// he's killed a black dragon
-		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-			new SpeakerNPC.ChatCondition() {
-				@Override
-				public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
-					return player.hasQuest(QUEST_SLOT)
-						&& player.getQuest(QUEST_SLOT).equals("knife_offered")
-						&& player.hasKilled("black_dragon")
-						&& player.isEquipped("obsidian")
-						&& player.isEquipped(FISH);
-				}
-			}, ConversationStates.IDLE, null, new SpeakerNPC.ChatAction() {
-				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-					player.drop("obsidian");
-					player.drop(FISH);
-					npc.say("You found the gem for the blade and the fish bone to make the handle! I'll start work right away. Come back in "
-							+ REQUIRED_MINUTES + " minutes.");
-					player.setQuest(QUEST_SLOT, "forging;" + System.currentTimeMillis());
-				}
-			});
+		npc.add(ConversationStates.IDLE, 
+				ConversationPhrases.GREETING_MESSAGES,
+				new SpeakerNPC.ChatCondition() {
+					@Override
+					public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
+						return player.hasQuest(QUEST_SLOT)
+							&& player.getQuest(QUEST_SLOT).equals("knife_offered")
+							&& player.hasKilled("black_dragon")
+							&& player.isEquipped("obsidian")
+							&& player.isEquipped(FISH);
+					}
+				}, 
+				ConversationStates.IDLE, 
+				null, 
+				new SpeakerNPC.ChatAction() {
+					@Override
+					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+						player.drop("obsidian");
+						player.drop(FISH);
+						npc.say("You found the gem for the blade and the fish bone to make the handle! I'll start work right away. Come back in "
+								+ REQUIRED_MINUTES + " minutes.");
+						player.setQuest(QUEST_SLOT, "forging;" + System.currentTimeMillis());
+					}
+				});
 
 		// player says hi to NPC when equipped with the fish and the gem and
 		// he's not killed a black dragon
-		npc.add(
-			ConversationStates.IDLE,
-			ConversationPhrases.GREETING_MESSAGES,
-			new SpeakerNPC.ChatCondition() {
-				@Override
-				public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
-					return player.hasQuest(QUEST_SLOT)
-						&& player.getQuest(QUEST_SLOT).equals("knife_offered")
-						&& !player.hasKilled("black_dragon")
-						&& player.isEquipped("obsidian")
-						&& player.isEquipped(FISH);
-				}
-			},
-			ConversationStates.ATTENDING,
-			"Didn't you hear me properly? I told you to go slay a black dragon for the obsidian, not buy it! How do I know this isn't a fake gem? *grumble* I'm not making a special knife for someone who is scared to face a dragon.",
-			null);
+		npc.add(ConversationStates.IDLE,
+				ConversationPhrases.GREETING_MESSAGES,
+				new SpeakerNPC.ChatCondition() {
+					@Override
+					public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
+						return player.hasQuest(QUEST_SLOT)
+							&& player.getQuest(QUEST_SLOT).equals("knife_offered")
+							&& !player.hasKilled("black_dragon")
+							&& player.isEquipped("obsidian")
+							&& player.isEquipped(FISH);
+					}
+				},
+				ConversationStates.ATTENDING,
+				"Didn't you hear me properly? I told you to go slay a black dragon for the obsidian, not buy it! How do I know this isn't a fake gem? *grumble* I'm not making a special knife for someone who is scared to face a dragon.",
+				null);
 
 		// player says hi to NPC when not equipped with the fish and the gem
-		npc.add(
-			ConversationStates.IDLE,
-			ConversationPhrases.GREETING_MESSAGES,
-			new SpeakerNPC.ChatCondition() {
-				@Override
-				public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
-					return player.hasQuest(QUEST_SLOT)
-							&& player.getQuest(QUEST_SLOT).equals("knife_offered")
-							&& !(player.isEquipped("obsidian") && player.isEquipped(FISH));
-				}
-			},
-			ConversationStates.ATTENDING,
-			"Hello again. Don't forget I offered to make that obsidian knife, if you bring me a "
-				+ FISH
-				+ " and a piece of obsidian from a black dragon you killed. In the meantime if I can #help you, just say the word.",
-			null);
-
-		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-			new SpeakerNPC.ChatCondition() {
-				@Override
-				public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
-					return player.hasQuest(QUEST_SLOT)
-							&& player.getQuest(QUEST_SLOT).startsWith("forging;");
-				}
-			}, ConversationStates.IDLE, null, new SpeakerNPC.ChatAction() {
-				@Override
-				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-					String[] tokens = player.getQuest(QUEST_SLOT)
-							.split(";");
-					long delay = REQUIRED_MINUTES * 60 * 1000; // minutes -> milliseconds
-					long timeRemaining = (Long.parseLong(tokens[1]) + delay)
-							- System.currentTimeMillis();
-					if (timeRemaining > 0L) {
-						npc.say("I haven't finished making the knife. Please check back in "
-							+ TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L)) + ".");
-						return;
+		npc.add(ConversationStates.IDLE,
+				ConversationPhrases.GREETING_MESSAGES,
+				new SpeakerNPC.ChatCondition() {
+					@Override
+					public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
+						return player.hasQuest(QUEST_SLOT)
+								&& player.getQuest(QUEST_SLOT).equals("knife_offered")
+								&& !(player.isEquipped("obsidian") && player.isEquipped(FISH));
 					}
-					npc.say("The knife is ready! You know, that was enjoyable. I think I'll start making things again. Thanks!");
-					player.addXP(10000);
-					Item knife = StendhalRPWorld.get().getRuleManager()
-							.getEntityManager().getItem("obsidian_knife");
-					knife.setBoundTo(player.getName());
-					player.equip(knife, true);
-					player.setQuest(QUEST_SLOT, "done");
-					player.notifyWorldAboutChanges();
-				}
-			});
+				},
+				ConversationStates.ATTENDING,
+				"Hello again. Don't forget I offered to make that obsidian knife, if you bring me a "
+					+ FISH
+					+ " and a piece of obsidian from a black dragon you killed. In the meantime if I can #help you, just say the word.",
+				null);
+
+		npc.add(ConversationStates.IDLE, 
+				ConversationPhrases.GREETING_MESSAGES,
+				new SpeakerNPC.ChatCondition() {
+					@Override
+					public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
+						return player.hasQuest(QUEST_SLOT)
+								&& player.getQuest(QUEST_SLOT).startsWith("forging;");
+					}
+				}, 
+				ConversationStates.IDLE, 
+				null, 
+				new SpeakerNPC.ChatAction() {
+					@Override
+					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+						String[] tokens = player.getQuest(QUEST_SLOT)
+								.split(";");
+						long delay = REQUIRED_MINUTES * 60 * 1000; // minutes -> milliseconds
+						long timeRemaining = (Long.parseLong(tokens[1]) + delay)
+								- System.currentTimeMillis();
+						if (timeRemaining > 0L) {
+							npc.say("I haven't finished making the knife. Please check back in "
+								+ TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L)) + ".");
+							return;
+						}
+						npc.say("The knife is ready! You know, that was enjoyable. I think I'll start making things again. Thanks!");
+						player.addXP(10000);
+						Item knife = StendhalRPWorld.get().getRuleManager()
+								.getEntityManager().getItem("obsidian_knife");
+						knife.setBoundTo(player.getName());
+						player.equip(knife, true);
+						player.setQuest(QUEST_SLOT, "done");
+						player.notifyWorldAboutChanges();
+					}
+				});
 
 		// Here because of the random response from different actions bug, we
 		// define the greeting message for all cases not covered so far:
