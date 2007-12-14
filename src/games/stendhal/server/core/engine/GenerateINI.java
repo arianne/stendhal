@@ -1,4 +1,4 @@
-package games.stendhal.server;
+package games.stendhal.server.core.engine;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -172,11 +172,11 @@ public class GenerateINI {
 	}
 
 	private static String getRuleProcessorImplementation() {
-		return "games.stendhal.server.StendhalRPRuleProcessor";
+		return "games.stendhal.server.core.engine.StendhalRPRuleProcessor";
 	}
 
 	private static String getWorldImplementation() {
-		return "games.stendhal.server.StendhalRPWorld";
+		return "games.stendhal.server.core.engine.StendhalRPWorld";
 	}
 
 	private static String getTCPPort() {
@@ -184,14 +184,14 @@ public class GenerateINI {
 	}
 
 	private static String getDatabaseImplementation() {
-		return "games.stendhal.server.StendhalPlayerDatabase";
+		return "games.stendhal.server.core.engine.StendhalPlayerDatabase";
 	}
 
 	private static void write(PrintWriter out) {
 		out.println("# Generated .ini file for Test Game at " + new Date());
 		out.println("# Database and factory classes. Don't edit.");
 		out.println("database_implementation=" + databaseImplementation);
-		out.println("factory_implementation=marauroa.server.game.rp.RPObjectFactory");
+		out.println("factory_implementation=games.stendhal.server.core.engine.StendhalRPObjectFactory");
 		out.println();
 		out.println("# Database information. Edit to match your configuration.");
 		out.println("jdbc_url=jdbc:mysql://" + databaseHost + "/"
@@ -217,7 +217,7 @@ public class GenerateINI {
 		out.println("# Extensions configured on the server. Enable at will.");
 		out.println("#server_extension=groovy,http");
 		out.println("#groovy=games.stendhal.server.scripting.StendhalGroovyRunner");
-		out.println("#http=games.stendhal.server.StendhalHttpServer");
+		out.println("#http=games.stendhal.server.extension.StendhalHttpServer");
 		out.println("#http.port=8080");
 		out.println();
 		out.println("statistics_filename=" + statisticsFilename);

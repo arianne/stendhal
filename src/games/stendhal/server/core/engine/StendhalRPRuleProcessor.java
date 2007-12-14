@@ -10,12 +10,15 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server;
+package games.stendhal.server.core.engine;
 
 import games.stendhal.common.Debug;
-import games.stendhal.server.account.AccountCreator;
-import games.stendhal.server.account.CharacterCreator;
 import games.stendhal.server.actions.CommandCenter;
+import games.stendhal.server.core.account.AccountCreator;
+import games.stendhal.server.core.account.CharacterCreator;
+import games.stendhal.server.core.rp.StendhalQuestSystem;
+import games.stendhal.server.core.rp.StendhalRPAction;
+import games.stendhal.server.core.scripting.ScriptRunner;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.NPC;
@@ -25,7 +28,7 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.LoginNotifier;
 import games.stendhal.server.events.TurnNotifier;
 import games.stendhal.server.events.TutorialNotifier;
-import games.stendhal.server.scripting.ScriptRunner;
+import games.stendhal.server.extension.StendhalServerExtension;
 
 import java.util.LinkedList;
 import java.util.List;

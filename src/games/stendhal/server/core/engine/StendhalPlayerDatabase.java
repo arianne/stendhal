@@ -1,4 +1,4 @@
-package games.stendhal.server;
+package games.stendhal.server.core.engine;
 
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;

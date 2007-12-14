@@ -10,9 +10,11 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server;
+package games.stendhal.server.core.engine;
 
-import games.stendhal.server.config.ZoneGroupsXMLLoader;
+import games.stendhal.server.core.config.ZoneGroupsXMLLoader;
+import games.stendhal.server.core.rule.RuleManager;
+import games.stendhal.server.core.rule.RuleSetFactory;
 import games.stendhal.server.entity.ActiveEntity;
 import games.stendhal.server.entity.Blood;
 import games.stendhal.server.entity.Entity;
@@ -39,10 +41,9 @@ import games.stendhal.server.entity.mapstuff.spawner.GrowingPassiveEntityRespawn
 import games.stendhal.server.entity.mapstuff.spawner.PassiveEntityRespawnPoint;
 import games.stendhal.server.entity.mapstuff.spawner.SheepFood;
 import games.stendhal.server.entity.npc.NPC;
+import games.stendhal.server.entity.player.GagManager;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.spell.Spell;
-import games.stendhal.server.rule.RuleManager;
-import games.stendhal.server.rule.RuleSetFactory;
 import games.stendhal.tools.tiled.LayerDefinition;
 import games.stendhal.tools.tiled.ServerTMXLoader;
 import games.stendhal.tools.tiled.StendhalMapStructure;
