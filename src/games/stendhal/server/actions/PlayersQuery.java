@@ -12,9 +12,9 @@
  ***************************************************************************/
 package games.stendhal.server.actions;
 
-import games.stendhal.server.StendhalRPRuleProcessor;
-import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.actions.admin.AdministrationAction;
+import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
+import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.creature.Pet;
 import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.player.Player;

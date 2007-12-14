@@ -1,14 +1,14 @@
 package games.stendhal.server.maps.semos.plains;
 
-import games.stendhal.server.StendhalRPWorld;
+import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.rule.EntityManager;
+import games.stendhal.server.core.rule.defaultruleset.DefaultCreature;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPCFactory;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.rule.EntityManager;
-import games.stendhal.server.rule.defaultruleset.DefaultCreature;
 
 import java.util.LinkedHashMap;
 import java.util.Map;

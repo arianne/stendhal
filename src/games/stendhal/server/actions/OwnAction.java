@@ -12,14 +12,14 @@
  ***************************************************************************/
 package games.stendhal.server.actions;
 
-import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.pathfinder.Node;
+import games.stendhal.server.core.pathfinder.Path;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.creature.DomesticAnimal;
 import games.stendhal.server.entity.creature.Pet;
 import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.pathfinder.Node;
-import games.stendhal.server.pathfinder.Path;
 import games.stendhal.server.util.EntityHelper;
 
 import java.util.List;

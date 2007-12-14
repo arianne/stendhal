@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
-import games.stendhal.server.StendhalRPWorld;
+import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.entity.Entity;
 
 import java.awt.geom.Rectangle2D;

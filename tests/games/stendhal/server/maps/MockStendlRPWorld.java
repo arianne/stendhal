@@ -3,7 +3,7 @@
  */
 package games.stendhal.server.maps;
 
-import games.stendhal.server.StendhalRPWorld;
+import games.stendhal.server.core.engine.StendhalRPWorld;
 import marauroa.common.game.RPObject;
 
 public class MockStendlRPWorld extends StendhalRPWorld {

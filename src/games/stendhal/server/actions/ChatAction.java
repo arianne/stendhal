@@ -16,10 +16,10 @@ import static games.stendhal.server.actions.WellKnownActionConstants.TARGET;
 import static games.stendhal.server.actions.WellKnownActionConstants.TEXT;
 import static games.stendhal.server.actions.WellKnownActionConstants.TYPE;
 import games.stendhal.common.Grammar;
-import games.stendhal.server.GagManager;
-import games.stendhal.server.Jail;
-import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.actions.admin.AdministrationAction;
+import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
+import games.stendhal.server.entity.player.GagManager;
+import games.stendhal.server.entity.player.Jail;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
 

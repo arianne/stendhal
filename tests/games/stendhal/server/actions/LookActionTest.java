@@ -2,8 +2,8 @@ package games.stendhal.server.actions;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import games.stendhal.server.StendhalRPWorld;
-import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;

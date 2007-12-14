@@ -3,7 +3,7 @@
  */
 package games.stendhal.tools.port1_2;
 
-import games.stendhal.server.StendhalRPWorld;
+import games.stendhal.server.core.engine.StendhalRPWorld;
 
 import java.io.IOException;
 import java.sql.Connection;

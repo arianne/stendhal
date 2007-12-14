@@ -7,10 +7,10 @@
 package games.stendhal.server.entity.npc;
 
 import games.stendhal.common.Direction;
-import games.stendhal.server.config.factory.ConfigurableFactory;
-import games.stendhal.server.config.factory.ConfigurableFactoryContext;
-import games.stendhal.server.pathfinder.FixedPath;
-import games.stendhal.server.pathfinder.Node;
+import games.stendhal.server.core.config.factory.ConfigurableFactory;
+import games.stendhal.server.core.config.factory.ConfigurableFactoryContext;
+import games.stendhal.server.core.pathfinder.FixedPath;
+import games.stendhal.server.core.pathfinder.Node;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,6 +1,6 @@
 package games.stendhal.server.actions;
 
-import games.stendhal.server.StendhalQuestSystem;
+import games.stendhal.server.core.rp.StendhalQuestSystem;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
 import static games.stendhal.server.actions.WellKnownActionConstants.TARGET;

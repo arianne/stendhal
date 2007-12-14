@@ -1,6 +1,6 @@
 package games.stendhal.server.entity.mapstuff.office;
 
-import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.core.engine.StendhalRPZone;
 
 import java.util.LinkedList;
 import java.util.List;

@@ -3,7 +3,7 @@ package games.stendhal.server.entity;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
-import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.core.engine.StendhalRPZone;
 
 import org.junit.After;
 import org.junit.BeforeClass;

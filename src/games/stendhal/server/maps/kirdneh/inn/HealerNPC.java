@@ -1,8 +1,8 @@
 package games.stendhal.server.maps.kirdneh.inn;
 
 import games.stendhal.common.Direction;
-import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.config.ZoneConfigurator;
+import games.stendhal.server.core.config.ZoneConfigurator;
+import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.Sentence;

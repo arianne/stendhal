@@ -12,7 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.creature;
 
-import games.stendhal.server.StendhalRPRuleProcessor;
+import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;

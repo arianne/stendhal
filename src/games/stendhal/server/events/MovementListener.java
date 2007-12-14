@@ -9,7 +9,7 @@ package games.stendhal.server.events;
 //
 //
 
-import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.ActiveEntity;
 
 import java.awt.geom.Rectangle2D;

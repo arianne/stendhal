@@ -1,7 +1,8 @@
-package games.stendhal.server.account;
+package games.stendhal.server.core.account;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+import games.stendhal.server.core.account.NotEmptyValidator;
 
 import org.junit.Test;
 

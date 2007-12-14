@@ -13,10 +13,10 @@
 package games.stendhal.server.entity.player;
 
 import games.stendhal.common.Debug;
-import games.stendhal.server.StendhalRPAction;
-import games.stendhal.server.StendhalRPWorld;
-import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.actions.admin.AdministrationAction;
+import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.rp.StendhalRPAction;
 import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.creature.DomesticAnimal;
 import games.stendhal.server.entity.creature.Pet;

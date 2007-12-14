@@ -1,8 +1,8 @@
 package games.stendhal.server.maps.athor.holiday_area;
 
 import games.stendhal.common.Direction;
-import games.stendhal.server.StendhalRPWorld;
-import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.Sentence;

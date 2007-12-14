@@ -1,15 +1,15 @@
 package games.stendhal.server.actions.admin;
 
-import games.stendhal.server.StendhalRPAction;
-import games.stendhal.server.StendhalRPRuleProcessor;
-import games.stendhal.server.StendhalRPWorld;
-import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.actions.CommandCenter;
+import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
+import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.rp.StendhalRPAction;
+import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.creature.RaidCreature;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.rule.EntityManager;
 import marauroa.common.game.RPAction;
 
 import static games.stendhal.server.actions.WellKnownActionConstants.X;

@@ -1,13 +1,13 @@
 package games.stendhal.server.maps.semos.caves;
 
-import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.config.ZoneConfigurator;
+import games.stendhal.server.core.config.ZoneConfigurator;
+import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.pathfinder.FixedPath;
+import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.creature.BabyDragon;
 import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.pathfinder.FixedPath;
-import games.stendhal.server.pathfinder.Node;
 import games.stendhal.server.util.TimeUtil;
 
 import java.util.LinkedList;

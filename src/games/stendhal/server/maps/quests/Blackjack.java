@@ -2,8 +2,8 @@ package games.stendhal.server.maps.quests;
 
 import games.stendhal.common.Direction;
 import games.stendhal.common.Grammar;
-import games.stendhal.server.StendhalRPWorld;
-import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;

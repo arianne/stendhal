@@ -1,7 +1,10 @@
 package games.stendhal.server.script;
 
-import games.stendhal.server.StendhalRPRuleProcessor;
-import games.stendhal.server.StendhalRPWorld;
+import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
+import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.scripting.ScriptImpl;
+import games.stendhal.server.core.scripting.ScriptingNPC;
+import games.stendhal.server.core.scripting.ScriptingSandbox;
 import games.stendhal.server.entity.item.ConsumableItem;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
@@ -11,9 +14,6 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
-import games.stendhal.server.scripting.ScriptImpl;
-import games.stendhal.server.scripting.ScriptingNPC;
-import games.stendhal.server.scripting.ScriptingSandbox;
 
 import java.util.ArrayList;
 import java.util.Arrays;

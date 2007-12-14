@@ -1,6 +1,6 @@
 package games.stendhal.server.entity.npc;
 
-import games.stendhal.server.StendhalRPRuleProcessor;
+import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.npc.fsm.Engine;

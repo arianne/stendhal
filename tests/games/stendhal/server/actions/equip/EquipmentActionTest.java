@@ -1,7 +1,7 @@
 // $Id$
 package games.stendhal.server.actions.equip;
 
-import games.stendhal.server.StendhalRPWorld;
+import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;

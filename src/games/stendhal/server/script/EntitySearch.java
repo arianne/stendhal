@@ -1,13 +1,13 @@
 package games.stendhal.server.script;
 
-import games.stendhal.server.StendhalRPWorld;
-import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.rule.EntityManager;
+import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.creature.DomesticAnimal;
 import games.stendhal.server.entity.mapstuff.spawner.CreatureRespawnPoint;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.rule.EntityManager;
-import games.stendhal.server.scripting.ScriptImpl;
 
 import java.util.HashMap;
 import java.util.List;

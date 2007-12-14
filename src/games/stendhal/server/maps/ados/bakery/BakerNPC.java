@@ -1,13 +1,13 @@
 package games.stendhal.server.maps.ados.bakery;
 
 import games.stendhal.common.Direction;
-import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.config.ZoneConfigurator;
+import games.stendhal.server.core.config.ZoneConfigurator;
+import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.pathfinder.FixedPath;
+import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.ProducerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.ProducerBehaviour;
-import games.stendhal.server.pathfinder.FixedPath;
-import games.stendhal.server.pathfinder.Node;
 
 import java.util.Arrays;
 import java.util.LinkedList;

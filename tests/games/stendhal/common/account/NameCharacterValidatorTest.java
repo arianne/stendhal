@@ -1,6 +1,6 @@
 package games.stendhal.common.account;
 
-import games.stendhal.server.account.NameCharacterValidator;
+import games.stendhal.server.core.account.NameCharacterValidator;
 
 import org.junit.Assert;
 import org.junit.Test;

@@ -2,9 +2,9 @@ package games.stendhal.server.actions.admin;
 
 import static games.stendhal.server.actions.WellKnownActionConstants.MINUTES;
 import static games.stendhal.server.actions.WellKnownActionConstants.TARGET;
-import games.stendhal.server.Jail;
-import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.actions.CommandCenter;
+import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
+import games.stendhal.server.entity.player.Jail;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
 

@@ -1,15 +1,15 @@
 package games.stendhal.server.maps.ados.swamp;
 
 import games.stendhal.common.Direction;
-import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.config.ZoneConfigurator;
+import games.stendhal.server.core.config.ZoneConfigurator;
+import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.pathfinder.FixedPath;
+import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.TeleportAction;
 import games.stendhal.server.entity.npc.condition.LevelGreaterThanCondition;
 import games.stendhal.server.entity.npc.condition.LevelLessThanCondition;
-import games.stendhal.server.pathfinder.FixedPath;
-import games.stendhal.server.pathfinder.Node;
 
 import java.util.LinkedList;
 import java.util.List;

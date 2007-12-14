@@ -12,7 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.item.scroll;
 
-import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Map;

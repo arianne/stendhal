@@ -1,12 +1,12 @@
 /* $Id$ */
 package games.stendhal.server.script;
 
+import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Transition;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.scripting.ScriptImpl;
 
 import java.lang.reflect.Field;
 import java.util.List;

@@ -1,7 +1,7 @@
 package games.stendhal.server.maps.quests;
 
 import games.stendhal.common.Level;
-import games.stendhal.server.StendhalRPWorld;
+import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.creature.LevelBasedComparator;
 import games.stendhal.server.entity.npc.ConversationStates;

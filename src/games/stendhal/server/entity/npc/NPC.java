@@ -13,12 +13,12 @@
 package games.stendhal.server.entity.npc;
 
 import games.stendhal.common.Rand;
+import games.stendhal.server.core.pathfinder.FixedPath;
+import games.stendhal.server.core.pathfinder.Node;
+import games.stendhal.server.core.pathfinder.Path;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Corpse;
-import games.stendhal.server.pathfinder.FixedPath;
-import games.stendhal.server.pathfinder.Node;
-import games.stendhal.server.pathfinder.Path;
 
 import java.util.ArrayList;
 import java.util.List;

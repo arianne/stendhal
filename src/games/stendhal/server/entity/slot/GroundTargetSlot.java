@@ -1,6 +1,6 @@
 package games.stendhal.server.entity.slot;
 
-import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
 
 /**

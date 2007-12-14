@@ -1,7 +1,7 @@
 package games.stendhal.server.maps.kalavan.castle;
 
-import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.config.ZoneConfigurator;
+import games.stendhal.server.core.config.ZoneConfigurator;
+import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.mapstuff.spawner.PassiveEntityRespawnPoint;
 
 import java.util.Map;

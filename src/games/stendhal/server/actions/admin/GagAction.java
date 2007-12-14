@@ -1,8 +1,8 @@
 package games.stendhal.server.actions.admin;
 
-import games.stendhal.server.GagManager;
-import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.actions.CommandCenter;
+import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
+import games.stendhal.server.entity.player.GagManager;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
 

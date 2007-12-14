@@ -1,14 +1,14 @@
 package games.stendhal.server.maps.quests;
 
 import games.stendhal.common.Grammar;
-import games.stendhal.server.StendhalRPWorld;
+import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.rule.RuleManager;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.quests.logic.BringListOfItemsQuest;
 import games.stendhal.server.maps.quests.logic.BringListOfItemsQuestLogic;
-import games.stendhal.server.rule.RuleManager;
 
 import java.util.Arrays;
 import java.util.List;

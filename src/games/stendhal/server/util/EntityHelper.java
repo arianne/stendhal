@@ -1,7 +1,7 @@
 package games.stendhal.server.util;
 
-import games.stendhal.server.StendhalRPRuleProcessor;
-import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
+import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.NPCList;
 import marauroa.common.game.RPObject;

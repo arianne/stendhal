@@ -1,8 +1,8 @@
 package games.stendhal.server.actions.buddy;
 
 import marauroa.common.game.RPAction;
-import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.actions.ActionListener;
+import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
 import games.stendhal.server.entity.player.Player;
 import static games.stendhal.server.actions.WellKnownActionConstants.TARGET;
 

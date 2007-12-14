@@ -1,7 +1,7 @@
 package games.stendhal.tools.statistics;
 
-import games.stendhal.server.StendhalPlayerDatabase;
-import games.stendhal.server.StendhalRPWorld;
+import games.stendhal.server.core.engine.StendhalPlayerDatabase;
+import games.stendhal.server.core.engine.StendhalRPWorld;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

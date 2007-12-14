@@ -2,13 +2,13 @@ package games.stendhal.server.maps.semos.plains;
 
 import games.stendhal.common.Grammar;
 import games.stendhal.common.Rand;
-import games.stendhal.server.StendhalRPWorld;
-import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.rule.defaultruleset.DefaultCreature;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.creature.impl.DropItem;
 import games.stendhal.server.entity.mapstuff.spawner.CreatureRespawnPoint;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.rule.defaultruleset.DefaultCreature;
 import games.stendhal.server.util.TimeUtil;
 
 import java.util.ArrayList;

@@ -14,9 +14,13 @@ package games.stendhal.server.entity.creature;
 
 import games.stendhal.common.Level;
 import games.stendhal.common.Rand;
-import games.stendhal.server.StendhalRPRuleProcessor;
-import games.stendhal.server.StendhalRPWorld;
-import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
+import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.pathfinder.FixedPath;
+import games.stendhal.server.core.pathfinder.Node;
+import games.stendhal.server.core.pathfinder.Path;
+import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.impl.CreatureLogic;
@@ -30,10 +34,6 @@ import games.stendhal.server.entity.mapstuff.spawner.CreatureRespawnPoint;
 import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.slot.EntitySlot;
-import games.stendhal.server.pathfinder.FixedPath;
-import games.stendhal.server.pathfinder.Node;
-import games.stendhal.server.pathfinder.Path;
-import games.stendhal.server.rule.EntityManager;
 
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;

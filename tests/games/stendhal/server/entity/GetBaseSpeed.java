@@ -1,7 +1,7 @@
 package games.stendhal.server.entity;
 
 import static org.junit.Assert.assertEquals;
-import games.stendhal.server.StendhalRPWorld;
+import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.entity.creature.Cat;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.creature.Sheep;

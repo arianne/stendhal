@@ -1,6 +1,6 @@
 package games.stendhal.server.actions.equip;
 
-import games.stendhal.server.StendhalRPWorld;
+import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.Stackable;

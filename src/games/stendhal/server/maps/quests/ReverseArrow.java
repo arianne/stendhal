@@ -2,8 +2,9 @@ package games.stendhal.server.maps.quests;
 
 import games.stendhal.common.Direction;
 import games.stendhal.common.Grammar;
-import games.stendhal.server.StendhalRPWorld;
-import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.item.Token;
@@ -17,7 +18,6 @@ import games.stendhal.server.events.LoginListener;
 import games.stendhal.server.events.LoginNotifier;
 import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
-import games.stendhal.server.rule.EntityManager;
 
 import java.util.Collections;
 import java.util.Comparator;

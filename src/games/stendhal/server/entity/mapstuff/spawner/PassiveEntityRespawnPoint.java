@@ -14,8 +14,8 @@ package games.stendhal.server.entity.mapstuff.spawner;
 
 import games.stendhal.common.Grammar;
 import games.stendhal.common.Rand;
-import games.stendhal.server.StendhalRPWorld;
-import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.events.TurnListener;

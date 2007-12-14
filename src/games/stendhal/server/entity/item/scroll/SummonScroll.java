@@ -12,13 +12,13 @@
  ***************************************************************************/
 package games.stendhal.server.entity.item.scroll;
 
-import games.stendhal.server.StendhalRPAction;
-import games.stendhal.server.StendhalRPWorld;
-import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.rp.StendhalRPAction;
+import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.entity.creature.AttackableCreature;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.rule.EntityManager;
 
 import java.util.ArrayList;
 import java.util.Collection;

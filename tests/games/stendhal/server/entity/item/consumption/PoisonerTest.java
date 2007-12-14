@@ -1,15 +1,15 @@
 package games.stendhal.server.entity.item.consumption;
 
 import static org.junit.Assert.assertTrue;
-import games.stendhal.server.StendhalRPWorld;
-import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.rule.defaultruleset.DefaultEntityManager;
 import games.stendhal.server.entity.ActiveEntity;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.ConsumableItem;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.rule.defaultruleset.DefaultEntityManager;
 
 import java.util.HashMap;
 import java.util.Map;

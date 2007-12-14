@@ -1,8 +1,8 @@
 package games.stendhal.server.maps.ados.rock;
 
 import games.stendhal.common.Direction;
-import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.config.ZoneConfigurator;
+import games.stendhal.server.core.config.ZoneConfigurator;
+import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
 import java.util.Map;

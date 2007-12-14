@@ -1,10 +1,10 @@
 /* $Id$ */
 package games.stendhal.server.script;
 
+import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
-import games.stendhal.server.scripting.ScriptImpl;
 import games.stendhal.server.util.ObjectCounter;
 
 import java.util.List;

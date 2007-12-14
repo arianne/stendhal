@@ -3,13 +3,13 @@ package games.stendhal.server.entity.npc;
 
 import games.stendhal.common.Direction;
 import games.stendhal.common.Rand;
-import games.stendhal.server.StendhalRPWorld;
-import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.pathfinder.FixedPath;
+import games.stendhal.server.core.pathfinder.Node;
+import games.stendhal.server.core.pathfinder.Path;
 import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
-import games.stendhal.server.pathfinder.FixedPath;
-import games.stendhal.server.pathfinder.Node;
-import games.stendhal.server.pathfinder.Path;
 
 import java.util.ArrayList;
 import java.util.Iterator;

@@ -1,7 +1,7 @@
 package games.stendhal.server.maps.kalavan.citygardens;
 
-import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.config.ZoneConfigurator;
+import games.stendhal.server.core.config.ZoneConfigurator;
+import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;

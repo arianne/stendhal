@@ -2,7 +2,7 @@ package games.stendhal.server.maps.quests;
 
 import games.stendhal.common.Grammar;
 import games.stendhal.common.Rand;
-import games.stendhal.server.StendhalRPWorld;
+import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;

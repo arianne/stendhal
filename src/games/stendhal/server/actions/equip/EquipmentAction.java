@@ -12,10 +12,10 @@
  ***************************************************************************/
 package games.stendhal.server.actions.equip;
 
-import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.actions.ActionListener;
 
 import games.stendhal.server.actions.CommandCenter;
+import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
 
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Corpse;

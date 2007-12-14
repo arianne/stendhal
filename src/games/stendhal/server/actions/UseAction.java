@@ -17,8 +17,8 @@ import static games.stendhal.server.actions.WellKnownActionConstants._BASEOBJECT
 import static games.stendhal.server.actions.WellKnownActionConstants._BASESLOT;
 import static games.stendhal.server.actions.WellKnownActionConstants.TARGET;
 import static games.stendhal.server.actions.WellKnownActionConstants._USE;
-import games.stendhal.server.StendhalRPRuleProcessor;
-import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
+import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;

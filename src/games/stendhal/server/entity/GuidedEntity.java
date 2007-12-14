@@ -9,9 +9,9 @@ package games.stendhal.server.entity;
 //
 //
 
-import games.stendhal.server.pathfinder.FixedPath;
+import games.stendhal.server.core.pathfinder.EntityGuide;
+import games.stendhal.server.core.pathfinder.FixedPath;
 
-import games.stendhal.server.pathfinder.EntityGuide;
 
 import marauroa.common.game.RPObject;
 

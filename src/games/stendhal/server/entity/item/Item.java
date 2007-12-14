@@ -13,7 +13,7 @@
 package games.stendhal.server.entity.item;
 
 import games.stendhal.common.Grammar;
-import games.stendhal.server.StendhalRPWorld;
+import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.entity.PassiveEntity;
 import games.stendhal.server.entity.mapstuff.spawner.PassiveEntityRespawnPoint;
 import games.stendhal.server.entity.player.Player;

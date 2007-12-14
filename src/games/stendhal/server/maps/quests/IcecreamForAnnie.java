@@ -1,7 +1,9 @@
 package games.stendhal.server.maps.quests;
 
-import games.stendhal.server.StendhalRPWorld;
-import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.pathfinder.FixedPath;
+import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -13,8 +15,6 @@ import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.pathfinder.FixedPath;
-import games.stendhal.server.pathfinder.Node;
 
 import java.util.LinkedList;
 import java.util.List;

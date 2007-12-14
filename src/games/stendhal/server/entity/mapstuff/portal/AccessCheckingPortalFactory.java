@@ -9,8 +9,8 @@ package games.stendhal.server.entity.mapstuff.portal;
 //
 //
 
-import games.stendhal.server.config.factory.ConfigurableFactory;
-import games.stendhal.server.config.factory.ConfigurableFactoryContext;
+import games.stendhal.server.core.config.factory.ConfigurableFactory;
+import games.stendhal.server.core.config.factory.ConfigurableFactoryContext;
 
 /**
  * A factory for <code>AccessCheckingPortal</code> objects.

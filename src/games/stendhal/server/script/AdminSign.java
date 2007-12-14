@@ -2,9 +2,9 @@
 package games.stendhal.server.script;
 
 import games.stendhal.common.MathHelper;
+import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.entity.mapstuff.sign.Sign;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.scripting.ScriptImpl;
 
 import java.util.HashMap;
 import java.util.List;

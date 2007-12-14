@@ -1,9 +1,9 @@
 package games.stendhal.server.maps.sedah.gatehouse;
 
 import games.stendhal.common.Rand;
-import games.stendhal.server.StendhalRPWorld;
-import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.config.ZoneConfigurator;
+import games.stendhal.server.core.config.ZoneConfigurator;
+import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;

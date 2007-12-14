@@ -2,17 +2,17 @@ package games.stendhal.tools;
 
 import marauroa.common.Pair;
 import games.stendhal.common.Rand;
-import games.stendhal.server.StendhalRPAction;
-import games.stendhal.server.StendhalRPWorld;
-import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.config.CreaturesXMLLoader;
+import games.stendhal.server.core.config.CreaturesXMLLoader;
+import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.rp.StendhalRPAction;
+import games.stendhal.server.core.rule.EntityManager;
+import games.stendhal.server.core.rule.defaultruleset.DefaultCreature;
+import games.stendhal.server.core.rule.defaultruleset.DefaultEntityManager;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.slot.EntitySlot;
-import games.stendhal.server.rule.EntityManager;
-import games.stendhal.server.rule.defaultruleset.DefaultCreature;
-import games.stendhal.server.rule.defaultruleset.DefaultEntityManager;
 
 import java.util.Collections;
 import java.util.Comparator;

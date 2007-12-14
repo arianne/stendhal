@@ -2,8 +2,8 @@ package games.stendhal.server.actions.admin;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
-import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.actions.CommandCenter;
+import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.item.Item;

@@ -1,6 +1,6 @@
 package games.stendhal.server.maps.deathmatch;
 
-import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.core.engine.StendhalRPZone;
 
 public class Spot {
 	StendhalRPZone zone;

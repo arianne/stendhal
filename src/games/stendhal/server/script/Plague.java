@@ -1,11 +1,11 @@
 package games.stendhal.server.script;
 
 import games.stendhal.common.MathHelper;
-import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.creature.RaidCreature;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.scripting.ScriptImpl;
 
 import java.util.List;
 

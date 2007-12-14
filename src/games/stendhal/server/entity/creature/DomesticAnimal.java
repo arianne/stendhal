@@ -12,7 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.creature;
 
-import games.stendhal.server.StendhalRPWorld;
+import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Food;
 import games.stendhal.server.entity.player.Player;

@@ -13,8 +13,8 @@
 package games.stendhal.server.entity;
 
 import games.stendhal.common.Grammar;
-import games.stendhal.server.StendhalRPWorld;
-import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.StendhalRPZone;
 
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;

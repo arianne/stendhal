@@ -1,7 +1,7 @@
 package games.stendhal.server.maps.deathmatch;
 
-import games.stendhal.server.StendhalRPRuleProcessor;
-import games.stendhal.server.StendhalRPWorld;
+import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
+import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;

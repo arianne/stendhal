@@ -1,7 +1,7 @@
 package games.stendhal.server.maps.fado.deathmatch;
 
-import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.config.ZoneConfigurator;
+import games.stendhal.server.core.config.ZoneConfigurator;
+import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.maps.quests.FadoDeathmatch;
 import games.stendhal.server.util.Area;
 

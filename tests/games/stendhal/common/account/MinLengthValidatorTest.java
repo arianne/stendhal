@@ -1,6 +1,6 @@
 package games.stendhal.common.account;
 
-import games.stendhal.server.account.MinLengthValidator;
+import games.stendhal.server.core.account.MinLengthValidator;
 
 import org.junit.Assert;
 import org.junit.Test;

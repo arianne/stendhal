@@ -1,12 +1,12 @@
 package games.stendhal.tools;
 
-import games.stendhal.server.StendhalRPWorld;
-import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.config.CreaturesXMLLoader;
-import games.stendhal.server.config.ZoneGroupsXMLLoader;
+import games.stendhal.server.core.config.CreaturesXMLLoader;
+import games.stendhal.server.core.config.ZoneGroupsXMLLoader;
+import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.rule.defaultruleset.DefaultCreature;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.mapstuff.spawner.CreatureRespawnPoint;
-import games.stendhal.server.rule.defaultruleset.DefaultCreature;
 
 import java.io.IOException;
 import java.net.URI;

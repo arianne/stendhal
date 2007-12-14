@@ -1,10 +1,10 @@
 /* $Id$ */
 package games.stendhal.server.script;
 
-import games.stendhal.server.StendhalRPWorld;
-import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.scripting.ScriptImpl;
 
 import java.util.Iterator;
 import java.util.List;

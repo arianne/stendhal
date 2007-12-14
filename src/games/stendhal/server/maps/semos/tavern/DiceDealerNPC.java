@@ -1,8 +1,8 @@
 package games.stendhal.server.maps.semos.tavern;
 
 import games.stendhal.common.Direction;
-import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.config.ZoneConfigurator;
+import games.stendhal.server.core.config.ZoneConfigurator;
+import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.CroupierNPC;
 
 import java.awt.Rectangle;

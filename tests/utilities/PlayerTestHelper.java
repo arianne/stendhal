@@ -1,7 +1,7 @@
 package utilities;
 
-import games.stendhal.server.StendhalRPWorld;
-import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.ActiveEntity;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;

@@ -1,7 +1,8 @@
-package games.stendhal.server.account;
+package games.stendhal.server.core.account;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
+import games.stendhal.server.core.account.LowerCaseValidator;
 import marauroa.common.game.Result;
 
 import org.junit.After;

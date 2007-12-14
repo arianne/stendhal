@@ -13,8 +13,8 @@
 package games.stendhal.server.entity.item;
 
 import games.stendhal.common.Direction;
-import games.stendhal.server.StendhalRPRuleProcessor;
-import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
+import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;

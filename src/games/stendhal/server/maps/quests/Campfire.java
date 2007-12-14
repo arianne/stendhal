@@ -1,8 +1,9 @@
 package games.stendhal.server.maps.quests;
 
 import games.stendhal.common.Rand;
-import games.stendhal.server.StendhalRPRuleProcessor;
-import games.stendhal.server.StendhalRPWorld;
+import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
+import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -15,7 +16,6 @@ import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotInStateCondition;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.rule.EntityManager;
 
 import java.util.ArrayList;
 import java.util.List;

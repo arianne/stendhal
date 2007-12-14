@@ -11,7 +11,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.creature;
 
-import games.stendhal.server.StendhalRPWorld;
+import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Item;

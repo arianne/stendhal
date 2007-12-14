@@ -1,6 +1,6 @@
 package games.stendhal.server.events;
 
-import games.stendhal.server.StendhalRPWorld;
+import games.stendhal.server.core.engine.StendhalRPWorld;
 
 import java.util.ArrayList;
 import java.util.Collections;

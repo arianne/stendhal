@@ -1,8 +1,8 @@
 package games.stendhal.server.actions.admin;
 
 import marauroa.common.game.RPAction;
-import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.actions.CommandCenter;
+import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
 import games.stendhal.server.entity.player.Player;
 
 public class TeleClickModeAction extends AdministrationAction {
