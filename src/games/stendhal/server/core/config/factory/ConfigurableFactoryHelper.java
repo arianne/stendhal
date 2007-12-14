@@ -4,7 +4,7 @@
  * $Id$
  */
 
-package games.stendhal.server.config.factory;
+package games.stendhal.server.core.config.factory;
 
 //
 //

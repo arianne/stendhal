@@ -1,6 +1,6 @@
-package games.stendhal.server.config;
+package games.stendhal.server.core.config;
 
-import games.stendhal.server.rule.defaultruleset.DefaultItem;
+import games.stendhal.server.core.rule.defaultruleset.DefaultItem;
 
 import java.io.IOException;
 import java.net.URI;

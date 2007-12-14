@@ -1,4 +1,4 @@
-package games.stendhal.server.config.factory;
+package games.stendhal.server.core.config.factory;
 
 import java.util.Map;
 

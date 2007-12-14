@@ -4,13 +4,13 @@
  * $Id$
  */
 
-package games.stendhal.server.config.zone;
+package games.stendhal.server.core.config.zone;
 
 //
 //
 
-import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.config.ZoneConfigurator;
+import games.stendhal.server.core.config.ZoneConfigurator;
+import games.stendhal.server.core.engine.StendhalRPZone;
 
 import org.apache.log4j.Logger;
 

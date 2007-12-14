@@ -4,7 +4,7 @@
  * $Id$
  */
 
-package games.stendhal.server.config;
+package games.stendhal.server.core.config;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;

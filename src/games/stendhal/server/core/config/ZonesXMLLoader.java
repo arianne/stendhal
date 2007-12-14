@@ -4,18 +4,18 @@
  * $Id$
  */
 
-package games.stendhal.server.config;
+package games.stendhal.server.core.config;
 
 //
 //
 
-import games.stendhal.server.StendhalRPWorld;
-import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.config.zone.ConfiguratorXMLReader;
-import games.stendhal.server.config.zone.EntitySetupXMLReader;
-import games.stendhal.server.config.zone.PortalSetupXMLReader;
-import games.stendhal.server.config.zone.SetupDescriptor;
-import games.stendhal.server.config.zone.SetupXMLReader;
+import games.stendhal.server.core.config.zone.ConfiguratorXMLReader;
+import games.stendhal.server.core.config.zone.EntitySetupXMLReader;
+import games.stendhal.server.core.config.zone.PortalSetupXMLReader;
+import games.stendhal.server.core.config.zone.SetupDescriptor;
+import games.stendhal.server.core.config.zone.SetupXMLReader;
+import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.StendhalRPZone;
 
 import games.stendhal.tools.tiled.LayerDefinition;
 import games.stendhal.tools.tiled.ServerTMXLoader;

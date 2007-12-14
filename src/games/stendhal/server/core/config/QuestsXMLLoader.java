@@ -1,4 +1,4 @@
-package games.stendhal.server.config;
+package games.stendhal.server.core.config;
 
 import games.stendhal.server.maps.quests.QuestInfo;
 

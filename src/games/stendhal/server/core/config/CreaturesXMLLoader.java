@@ -1,8 +1,8 @@
-package games.stendhal.server.config;
+package games.stendhal.server.core.config;
 
+import games.stendhal.server.core.rule.defaultruleset.DefaultCreature;
 import games.stendhal.server.entity.creature.impl.DropItem;
 import games.stendhal.server.entity.creature.impl.EquipItem;
-import games.stendhal.server.rule.defaultruleset.DefaultCreature;
 
 import java.io.File;
 import java.io.FileNotFoundException;

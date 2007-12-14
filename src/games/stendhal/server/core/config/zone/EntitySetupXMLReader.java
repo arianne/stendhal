@@ -4,12 +4,12 @@
  * $Id$
  */
 
-package games.stendhal.server.config.zone;
+package games.stendhal.server.core.config.zone;
 
 //
 //
 
-import games.stendhal.server.config.XMLUtil;
+import games.stendhal.server.core.config.XMLUtil;
 
 import java.util.List;
 import org.w3c.dom.Element;

@@ -4,7 +4,7 @@
  * $Id$
  */
 
-package games.stendhal.server.config.zone;
+package games.stendhal.server.core.config.zone;
 
 //
 //

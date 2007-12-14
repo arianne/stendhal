@@ -3,9 +3,9 @@
  *
  * $Id$
  */
-package games.stendhal.server.config;
+package games.stendhal.server.core.config;
 
-import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.core.engine.StendhalRPZone;
 
 import java.util.Map;
 
