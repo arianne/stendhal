@@ -19,10 +19,10 @@
  *
  */
 
-package games.stendhal.server.pathfinder;
+package games.stendhal.server.core.pathfinder;
 
 import games.stendhal.common.CollisionDetection;
-import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
 
 import java.awt.geom.Rectangle2D;

@@ -4,7 +4,7 @@
  * $Id$
  */
 
-package games.stendhal.server.pathfinder;
+package games.stendhal.server.core.pathfinder;
 
 //
 //

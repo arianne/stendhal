@@ -1,4 +1,4 @@
-package games.stendhal.server.pathfinder;
+package games.stendhal.server.core.pathfinder;
 
 import games.stendhal.server.entity.GuidedEntity;
 
