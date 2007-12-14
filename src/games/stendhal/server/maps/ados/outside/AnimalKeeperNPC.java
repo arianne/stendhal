@@ -1,7 +1,7 @@
 package games.stendhal.server.maps.ados.outside;
 
 import games.stendhal.common.Grammar;
-import games.stendhal.server.StendhalRPAction;
+import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneConfigurator;
@@ -62,7 +62,7 @@ public class AnimalKeeperNPC implements ZoneConfigurator {
 		public void onTurnReached(int currentTurn) {
 			// HACK: we need to wait a turn because the message is lost otherwise
 			// sends the message to all players
-			StendhalRPAction.shout(cryForHelp);
+			StendhalRPRuleProcessor.get().tellallPlayers(cryForHelp);
 		}
 	}
 

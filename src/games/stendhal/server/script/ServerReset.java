@@ -19,13 +19,12 @@ import java.util.List;
 public class ServerReset extends ScriptImpl {
 
 	@Override
-	public void execute(Player admin, List<String> args) {
+	public void execute(final Player admin, final List<String> args) {
 
 		try {
-			List<Player> players = StendhalRPRuleProcessor.get().getPlayers();
-			for (Player player : players) {
-				player.sendPrivateText(admin.getTitle() + " started emergency shutdown of the server.");
-			}
+			String text = admin.getTitle() + " started emergency shutdown of the server.";
+			StendhalRPRuleProcessor.get().tellallPlayers(text);
+
 		} catch (Throwable e) {
 			// Yes, i know that you are not supposed to catch Throwable 
 			// because of ThreadDeath. But we are here because of an 

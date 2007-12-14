@@ -1,6 +1,5 @@
 package games.stendhal.server.actions.admin;
 
-import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.entity.player.Player;
@@ -23,7 +22,7 @@ public class TellAllAction extends AdministrationAction {
 			StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
 					_TELLALL, action.get(_TEXT));
 
-			StendhalRPAction.shout(message);
+			StendhalRPRuleProcessor.get().tellallPlayers(message);
 		}
 	}
 

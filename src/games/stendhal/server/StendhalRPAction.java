@@ -33,8 +33,6 @@ import java.awt.Rectangle;
 import java.awt.Shape;
 import java.util.List;
 
-import javax.management.AttributeNotFoundException;
-
 import marauroa.server.game.rp.RPServerManager;
 
 import org.apache.log4j.Logger;
@@ -774,18 +772,5 @@ public class StendhalRPAction {
 		}
 
 		return true;
-	}
-
-	/**
-	 * Tell this message all players
-	 *
-	 * @param message
-	 *            Message to tell all players
-	 */
-	public static void shout(String message) {
-		for (Player player : StendhalRPRuleProcessor.get().getPlayers()) {
-			player.sendPrivateText(message);
-			player.notifyWorldAboutChanges();
-		}
 	}
 }

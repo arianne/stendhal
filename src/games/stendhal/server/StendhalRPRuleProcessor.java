@@ -529,4 +529,17 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	public RPServerManager getRPManager() {
 		return rpman;
 	}
+
+	/**
+	 * Tell this message all players.
+	 *
+	 * @param message
+	 *            Message to tell all players
+	 */
+	public void tellallPlayers(final String message) {
+		for (Player player : getPlayers()) {
+			player.sendPrivateText(message);
+			player.notifyWorldAboutChanges();
+		}
+	}
 }
