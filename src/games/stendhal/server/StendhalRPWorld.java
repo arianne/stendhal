@@ -27,6 +27,7 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.mapstuff.Fire;
 import games.stendhal.server.entity.mapstuff.area.AreaEntity;
 import games.stendhal.server.entity.mapstuff.chest.Chest;
+import games.stendhal.server.entity.mapstuff.office.ArrestWarrant;
 import games.stendhal.server.entity.mapstuff.portal.Door;
 import games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination;
 import games.stendhal.server.entity.mapstuff.portal.Portal;
@@ -202,6 +203,9 @@ public class StendhalRPWorld extends RPWorld {
 		GrowingPassiveEntityRespawnPoint.generateRPClass();
 		SheepFood.generateRPClass();
 
+		// zone storage
+		ArrestWarrant.generateRPClass();
+		
 		/*
 		 * TODO: Refactor Create RPClasses for actions
 		 */
