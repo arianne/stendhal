@@ -108,7 +108,7 @@ public class SlashActionCommand {
 	 * @return this
 	 */
 	public SlashActionCommand setError(final String error) {
-		if (error == null) {
+		if (this.error == null) {
 			this.error = error;
 		} else {
 			this.error += "\n" + error;
