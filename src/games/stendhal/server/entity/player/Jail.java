@@ -1,8 +1,10 @@
-package games.stendhal.server;
+package games.stendhal.server.entity.player;
 
 import games.stendhal.common.Direction;
 import games.stendhal.server.actions.ChatAction;
-import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
+import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.events.LoginListener;
 import games.stendhal.server.events.LoginNotifier;
 import games.stendhal.server.events.TurnListener;
