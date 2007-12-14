@@ -19,8 +19,9 @@ public class User extends Player {
 	/**
 	 * Client features.
 	 */
-	/*TODO remove unused code
-	private FeatureList features; */
+	/*
+	 * TODO remove unused code private FeatureList features;
+	 */
 
 	private String _serverVersion = null;
 
@@ -38,13 +39,14 @@ public class User extends Player {
 		super();
 		instance = this;
 		modificationCount = 0;
-		/*TODO remove unused code
-		features = new FeatureList(); */
+		/*
+		 * TODO remove unused code features = new FeatureList();
+		 */
 	}
 
 	/**
 	 * When the entity's position changed.
-	 *
+	 * 
 	 * @param x
 	 *            The new X coordinate.
 	 * @param y
@@ -124,7 +126,7 @@ public class User extends Player {
 	/**
 	 * the absolute world area (coordinates) where the player can possibly hear
 	 * sounds
-	 *
+	 * 
 	 * @return Rectangle2D area
 	 */
 	public Rectangle2D getHearingArea() {
@@ -134,36 +136,34 @@ public class User extends Player {
 				- HEARING_RANGE, width, width);
 	}
 
-	/*TODO remove unused code
-	public String getFeature(String name) {
-		return features.get(name);
-	}
-
-	public boolean hasFeature(String name) {
-		return features.has(name);
-	} */
+	/*
+	 * TODO remove unused code public String getFeature(String name) { return
+	 * features.get(name); }
+	 * 
+	 * public boolean hasFeature(String name) { return features.has(name); }
+	 */
 
 	/**
 	 * Initialize this entity for an object.
-	 *
+	 * 
 	 * @param object
 	 *            The object.
-	 *
+	 * 
 	 * @see-also #release()
 	 */
 	@Override
 	public void initialize(final RPObject object) {
 		super.initialize(object);
 
-		/*TODO remove unused code
-		if (object.has("features")) {
-			features.decode(object.get("features"));
-		} */
+		/*
+		 * TODO remove unused code if (object.has("features")) {
+		 * features.decode(object.get("features")); }
+		 */
 	}
 
 	/**
 	 * The object added/changed attribute(s).
-	 *
+	 * 
 	 * @param object
 	 *            The base object.
 	 * @param changes
@@ -174,10 +174,10 @@ public class User extends Player {
 		super.onChangedAdded(object, changes);
 		modificationCount++;
 
-		/*TODO remove unused code
-		if (changes.has("features")) {
-			features.decode(changes.get("features"));
-		} */
+		/*
+		 * TODO remove unused code if (changes.has("features")) {
+		 * features.decode(changes.get("features")); }
+		 */
 
 		// The first time we ignore it.
 		if (object != null) {
@@ -201,13 +201,15 @@ public class User extends Player {
 
 			if (changes.has("release")) {
 				_serverVersion = changes.get("release");
-				if (!Version.checkCompatibility(_serverVersion, stendhal.VERSION)) {
-					StendhalUI.get().addEventLine("Your client may not function properly.\nThe version of this server is "
-						+ _serverVersion
-						+ " but your client is version "
-						+ stendhal.VERSION
-						+ ".\nPlease download the new version from http://arianne.sourceforge.net",
-						NotificationType.ERROR);					
+				if (!Version.checkCompatibility(_serverVersion,
+						stendhal.VERSION)) {
+					StendhalUI.get().addEventLine(
+							"Your client may not function properly.\nThe version of this server is "
+									+ _serverVersion
+									+ " but your client is version "
+									+ stendhal.VERSION
+									+ ".\nPlease download the new version from http://arianne.sourceforge.net",
+							NotificationType.ERROR);
 				}
 			}
 		}
@@ -218,16 +220,15 @@ public class User extends Player {
 		modificationCount++;
 		super.onChangedRemoved(base, diff);
 
-		/*TODO remove unused code
-		if (diff.has("features")) {
-			features.clear();
-		} */
+		/*
+		 * TODO remove unused code if (diff.has("features")) { features.clear(); }
+		 */
 	}
 
 	/**
 	 * Returns true when the entity was modified since the
 	 * <i>oldModificationCount</i>.
-	 *
+	 * 
 	 * @param oldModificationCount
 	 *            the old modificationCount
 	 * @return true when the entity was modified, false otherwise
@@ -237,16 +238,19 @@ public class User extends Player {
 		return oldModificationCount != modificationCount;
 	}
 
+	/**
+	 * resets the class to uninitialized.
+	 */
 	public static void setNull() {
 		instance = null;
 	}
 
 	/**
-	 * query the version of the server we are currently connected to
+	 * query the version of the server we are currently connected to.
+	 * 
 	 * @return server version string
 	 */
-	public String getServerVersion()
-	{
+	public String getServerVersion() {
 		return _serverVersion;
 	}
 }
