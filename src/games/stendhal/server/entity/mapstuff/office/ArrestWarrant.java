@@ -77,11 +77,45 @@ public class ArrestWarrant extends Entity {
 		return has(STARTED);
 	}
 
-
 	/**
 	 * the criminal has started his jail time
 	 */
 	public void setStarted() {
 		put(STARTED, "");
+	}
+
+	/**
+	 * return the time of the sentence
+	 *
+	 * @return time in minutes
+	 */
+	public int getMinutes() {
+		return getInt(MINUTES);
+	}
+
+	/**
+	 * returns the name of the police officer
+	 *
+	 * @return name of player who issued /jail
+	 */
+	public String getPoliceOfficer() {
+		return get(POLICE_OFFICER);
+	}
+
+	/**
+	 * returns the reason text
+	 * @return reason
+	 */
+	public String getReason() {
+		return get(REASON);
+	}
+
+	/**
+	 * returns the timestamp of the sentence
+	 *
+	 * @return timestamps
+	 */
+	public long getTimestamp() {
+		return (long) Float.parseFloat(get(TIMESTAMP));
 	}
 }
