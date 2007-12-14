@@ -135,7 +135,7 @@ public class EntityTest {
 	}
 
 	private class MockEntity extends Entity {
-		int count;
+		private int count;
 
 		public MockEntity() {
 			rpObject = new RPObject();

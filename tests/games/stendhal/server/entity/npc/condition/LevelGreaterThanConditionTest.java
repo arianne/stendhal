@@ -15,7 +15,7 @@ import org.junit.Test;
 import utilities.PlayerTestHelper;
 
 public class LevelGreaterThanConditionTest {
-	Player level100Player;
+	private Player level100Player;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {

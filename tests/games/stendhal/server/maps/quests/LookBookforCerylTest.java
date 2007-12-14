@@ -40,7 +40,7 @@ public class LookBookforCerylTest {
 		Log4J.init();
 	}
 
-	SpeakerNPC jynath;
+	private SpeakerNPC jynath;
 
 	private SpeakerNPC ceryl;
 

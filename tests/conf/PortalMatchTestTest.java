@@ -14,7 +14,7 @@ import org.w3c.dom.Document;
 
 public class PortalMatchTestTest {
 
-	PortalMatchTest pmt = new PortalMatchTest();
+	private PortalMatchTest pmt = new PortalMatchTest();
 
 	@Test
 	public void testvalidate() throws Exception {

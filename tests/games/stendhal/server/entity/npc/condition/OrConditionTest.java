@@ -15,9 +15,9 @@ import utilities.SpeakerNPCTestHelper;
 
 public class OrConditionTest {
 
-	AlwaysTrueCondition trueCondition;
+	private AlwaysTrueCondition trueCondition;
 
-	ChatCondition falsecondition;
+	private ChatCondition falsecondition;
 
 	@Before
 	public void setUp() throws Exception {

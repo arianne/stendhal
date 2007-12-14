@@ -7,13 +7,13 @@ import java.awt.image.BufferedImage;
 import javax.swing.Timer;
 
 public class AnimationRunner implements ActionListener {
-	Timer timer;
+	private Timer timer;
 
-	BufferedImage[] frames;
+	private BufferedImage[] frames;
 
-	ImageViewerSwing ivs;
+	private ImageViewerSwing ivs;
 
-	int currentframe;
+	private int currentframe;
 
 	private int number_of_frames;
 
