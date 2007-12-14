@@ -20,21 +20,34 @@ import games.stendhal.server.util.EntityHelper;
 import marauroa.common.game.RPAction;
 
 import static games.stendhal.server.actions.WellKnownActionConstants.TARGET;
+
 public class AttackAction implements ActionListener {
 
-	
 	private static final String _ATTACK = "attack";
 
+	
+	/**
+	 * registers the AttackAction with its trigger word "attack".
+	 */
 	public static void register() {
 		CommandCenter.register(_ATTACK, new AttackAction());
 	}
 
-	public void onAction(Player player, RPAction action) {
+	/**
+	 * performs an attack action, if the TARGET is an RPEntity.
+	 * 
+	 * 
+	 * @param player
+	 *            the attacker
+	 * @param action
+	 *            the attack Action containing the TARGET's name
+	 */
+	public void onAction(final Player player, final RPAction action) {
 
 		if (action.has(TARGET)) {
 			// evaluate the target parameter
-			Entity entity = EntityHelper.entityFromTargetName(action
-					.get(TARGET), player.getZone());
+			Entity entity = EntityHelper.entityFromTargetName(
+					action.get(TARGET), player.getZone());
 
 			if (entity instanceof RPEntity) {
 				StendhalRPAction.startAttack(player, (RPEntity) entity);

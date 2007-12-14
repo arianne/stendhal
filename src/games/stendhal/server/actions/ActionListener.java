@@ -17,8 +17,12 @@ import marauroa.common.game.RPAction;
 
 public interface ActionListener {
 
-	/** callback for the registered action */
-	void onAction(Player player, RPAction action);
+	/** callback for the registered action. 
+	 * 
+	 * @param player the caller of the action
+	 * @param action the action to be performed
+	 */
+	void onAction(final Player player, final RPAction action);
 
 
 }
