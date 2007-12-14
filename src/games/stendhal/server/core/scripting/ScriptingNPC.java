@@ -1,4 +1,4 @@
-package games.stendhal.server.scripting;
+package games.stendhal.server.core.scripting;
 
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.BuyerAdder;

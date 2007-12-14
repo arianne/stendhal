@@ -13,5 +13,5 @@
  * <p><b>ScriptingJava</b> is an unfinished experiment to write scripts in
  * java code which can be reload at runtime like there groovy sisters.</p>
  */
-package games.stendhal.server.scripting;
+package games.stendhal.server.core.scripting;
 

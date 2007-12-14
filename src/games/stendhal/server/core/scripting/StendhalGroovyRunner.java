@@ -1,4 +1,4 @@
-package games.stendhal.server.scripting;
+package games.stendhal.server.core.scripting;
 
 /**
  * Old invoker for groovy scripts
