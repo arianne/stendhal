@@ -13,21 +13,18 @@ import java.util.Map;
 
 /**
  * Builds a Healer NPC for the magic city
- * 
+ *
  * @author kymara
  */
 public class HealerNPC implements ZoneConfigurator {
 
 	/**
 	 * Configure a zone.
-	 * 
-	 * @param zone
-	 *            The zone to be configured.
-	 * @param attributes
-	 *            Configuration attributes.
+	 *
+	 * @param	zone		The zone to be configured.
+	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone,
-			Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
 		buildNPC(zone);
 	}
 
@@ -54,15 +51,13 @@ public class HealerNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-				addGreeting("Greetings. Can I #help you?");
+			        addGreeting("Greetings. Can I #help you?");
 				addJob("I practise alchemy and have the ability to #heal others.");
 				new HealerAdder().addHealer(this, 500);
-				addReply(
-						"magical",
-						"We're all capable of magic here. There are different kinds, of course. My favourite is the Sunlight Spell to keep grass and flowers growing underground.");
+				addReply("magical", "We're all capable of magic here. There are different kinds, of course. My favourite is the Sunlight Spell to keep grass and flowers growing underground.");
 				addHelp("I have #magical powers to #heal your ailments.");
 				addQuest("I need nothing, thank you.");
-				addGoodbye("Fare thee well.");
+ 				addGoodbye("Fare thee well.");
 			}
 		};
 

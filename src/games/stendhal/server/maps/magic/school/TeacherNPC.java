@@ -13,22 +13,19 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Builds a Teacher NPC who flies on a broomstick
- * 
+ * Builds a Teacher NPC who flies on a broomstick 
+ *
  * @author kymara
  */
 public class TeacherNPC implements ZoneConfigurator {
 
 	/**
 	 * Configure a zone.
-	 * 
-	 * @param zone
-	 *            The zone to be configured.
-	 * @param attributes
-	 *            Configuration attributes.
+	 *
+	 * @param	zone		The zone to be configured.
+	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone,
-			Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
 		buildNPC(zone);
 	}
 
@@ -46,13 +43,10 @@ public class TeacherNPC implements ZoneConfigurator {
 			}
 
 			@Override
-			protected void createDialog() {
-				add(ConversationStates.IDLE,
-						ConversationPhrases.GREETING_MESSAGES, null,
-						ConversationStates.IDLE,
-						"Sit down, shut up, and watch me!", null);
-			}
-
+			    protected void createDialog() {
+				add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES, null, ConversationStates.IDLE, "Sit down, shut up, and watch me!", null);
+	 	     }
+		    
 		};
 
 		npc.setDescription("You see a witch flying on a broomstick. She appears to be instructing some pupils.");

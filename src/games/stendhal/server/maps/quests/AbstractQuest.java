@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * Abstract class for quests. This is a default implementation of IQuest.
- * 
+ *
  * @author hendrik
  */
 public abstract class AbstractQuest implements IQuest {
@@ -16,11 +16,10 @@ public abstract class AbstractQuest implements IQuest {
 	/** The internal name of this quest. (e.g used to read quest.xml) */
 	protected String name;
 
-	/** The slot-name in !quests. */
-	protected String slotName = "XXX";
-	// TODO init it in the quest-classes
+	/** The slot-name in !quests */
+	protected String slotName = "XXX"; // TODO init it in the quest-classes
 
-	/** NPCList. * */
+	/** NPCList * */
 	protected NPCList npcs = NPCList.get();
 
 	private static final List<String> EMPTY_LIST = new ArrayList<String>();
@@ -29,23 +28,23 @@ public abstract class AbstractQuest implements IQuest {
 	 * inits the quest by specifying the name.
 	 * <p>
 	 * Make sure to set slotname in the subclasses.
-	 * 
+	 *
 	 * @param name
 	 *            name of quest
 	 */
-	public void init(final String name) {
+	public void init(String name) {
 		this.name = name;
 	}
 
 	/**
-	 * inits this quest by specifing the name and quest slot.
-	 * 
+	 * inits this quest by specifing the name and quest slot
+	 *
 	 * @param name
 	 *            name of quest
 	 * @param slotName
 	 *            name of quest-slot
 	 */
-	protected void init(final String name, final String slotName) {
+	protected void init(String name, String slotName) {
 		this.name = name;
 		this.slotName = slotName;
 	}
@@ -54,7 +53,7 @@ public abstract class AbstractQuest implements IQuest {
 		// sub classes can implement this method
 	}
 
-	public List<String> getHint(final Player player) {
+	public List<String> getHint(Player player) {
 		return EMPTY_LIST;
 	}
 
@@ -63,7 +62,7 @@ public abstract class AbstractQuest implements IQuest {
 		return EMPTY_LIST;
 	}
 
-	public boolean isCompleted(final Player player) {
+	public boolean isCompleted(Player player) {
 		return player.hasQuest(slotName)
 				&& (player.isQuestCompleted(slotName)
 						|| player.getQuest(slotName).equals("rejected") || player.getQuest(

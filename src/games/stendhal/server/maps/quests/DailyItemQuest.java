@@ -69,8 +69,9 @@ public class DailyItemQuest extends AbstractQuest {
 				"golden_mace", "golden_hammer", "aventail", "composite_bow",
 				"enhanced_lion_shield", "spinach", "courgette", "collard",
 				"fish_pie", "chicken", "elvish_armor", "elvish_boots",
-				"sclaria", "kekik", "elvish_cloak", "elvish_legs", "shuriken",
-				"coconut", "cauliflower", "broccoli", "gold_nugget", "gold_bar");
+				"sclaria", "kekik", "elvish_cloak", "elvish_legs",
+				"shuriken", "coconut",				       
+				"cauliflower", "broccoli", "gold_nugget", "gold_bar");
 
 		@Override
 		public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
@@ -79,8 +80,7 @@ public class DailyItemQuest extends AbstractQuest {
 			String questCount = null;
 			String questLast = null;
 			long delay = 60 * 60 * 24 * 1000; // Milliseconds in a day
-			long expireDelay = 60 * 60 * 24 * 7 * 1000; // Milliseconds in a
-														// week
+			long expireDelay = 60 * 60 * 24 * 7 * 1000; // Milliseconds in a week
 
 			if (questInfo != null) {
 				String[] tokens = (questInfo + ";0;0;0").split(";");
@@ -179,8 +179,7 @@ public class DailyItemQuest extends AbstractQuest {
 			String questKill = null;
 			String questCount = null;
 			String questLast = null;
-			long expireDelay = 60 * 60 * 24 * 7 * 1000; // Milliseconds in a
-														// week
+			long expireDelay = 60 * 60 * 24 * 7 * 1000; // Milliseconds in a week
 
 			if (questInfo != null) {
 				String[] tokens = (questInfo + ";0;0;0").split(";");

@@ -14,22 +14,20 @@ import games.stendhal.server.entity.player.Player;
 import java.util.Map;
 
 /**
- * Builds a Healer NPC for kirdneh. She likes a drink
- * 
+ * Builds a Healer NPC for kirdneh. 
+ * She likes a drink
+ *
  * @author kymara
  */
 public class HealerNPC implements ZoneConfigurator {
 
 	/**
 	 * Configure a zone.
-	 * 
-	 * @param zone
-	 *            The zone to be configured.
-	 * @param attributes
-	 *            Configuration attributes.
+	 *
+	 * @param	zone		The zone to be configured.
+	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone,
-			Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
 		buildNPC(zone);
 	}
 
@@ -38,20 +36,20 @@ public class HealerNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createPath() {
-				// sits still on stool
+			    // sits still on stool
 				setPath(null);
 			}
 
 			@Override
 			protected void createDialog() {
-				addGreeting("Gis' a kiss!");
-				addReply("kiss", "ew sloppy");
-				addReply(":*", "*:");
+			        addGreeting("Gis' a kiss!");
+				addReply("kiss","ew sloppy");
+				addReply(":*","*:");
 				addJob("Wuh? Uhh. Heal. Yeah. tha's it.");
 				addHealer(this, 200);
 				addHelp("Gimme money for beer. I heal, gis' cash.");
 				addQuest("Bah.");
-				addGoodbye("pffff bye");
+ 				addGoodbye("pffff bye");
 			}
 		};
 
@@ -62,51 +60,40 @@ public class HealerNPC implements ZoneConfigurator {
 		npc.initHP(100);
 		zone.add(npc);
 	}
-
-	// Don't want to use standard responses for Heal, in fact what to modify
-	// them all, so just configure it all here.
-	private void addHealer(SpeakerNPC npc, int cost) {
-		final HealerBehaviour healerBehaviour = new HealerBehaviour(cost);
+    // Don't want to use standard responses for Heal, in fact what to modify them all, so just configure it all here.
+    private void addHealer(SpeakerNPC npc, int cost) {
+    final HealerBehaviour healerBehaviour = new HealerBehaviour(cost);
 		Engine engine = npc.getEngine();
 
-		engine.add(ConversationStates.ATTENDING,
-				ConversationPhrases.OFFER_MESSAGES, null,
-				ConversationStates.ATTENDING,
-				"Gimme money for beer. I heal, gis' cash.", null);
+		engine.add(ConversationStates.ATTENDING, ConversationPhrases.OFFER_MESSAGES, null, ConversationStates.ATTENDING, "Gimme money for beer. I heal, gis' cash.", null);
 
-		engine.add(ConversationStates.ATTENDING, "heal", null,
-				ConversationStates.HEAL_OFFERED, null,
-				new SpeakerNPC.ChatAction() {
-					@Override
-					public void fire(Player player, Sentence sentence,
-							SpeakerNPC engine) {
-						healerBehaviour.chosenItem = "heal";
-						healerBehaviour.setAmount(1);
-						int cost = healerBehaviour.getCharge(player);
-						engine.say("For " + cost + " cash, ok?");
-					}
-				});
+		engine.add(ConversationStates.ATTENDING, "heal", null, ConversationStates.HEAL_OFFERED, null,
+		        new SpeakerNPC.ChatAction() {
+			        @Override
+			        public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+				        healerBehaviour.chosenItem = "heal";
+				        healerBehaviour.setAmount(1);
+				        int cost = healerBehaviour.getCharge(player);
+					engine.say("For " + cost + " cash, ok?");
+				}
+		        });
 
-		engine.add(ConversationStates.HEAL_OFFERED,
-				ConversationPhrases.YES_MESSAGES, null,
-				ConversationStates.ATTENDING, null,
-				new SpeakerNPC.ChatAction() {
-					@Override
-					public void fire(Player player, Sentence sentence,
-							SpeakerNPC engine) {
-						if (player.drop("money",
-								healerBehaviour.getCharge(player))) {
-							healerBehaviour.heal(player);
-							engine.say("All better now, everyone better. I love you, I do.");
-						} else {
-							engine.say("Pff, no money, no heal.");
-						}
-					}
-				});
+		engine.add(ConversationStates.HEAL_OFFERED, ConversationPhrases.YES_MESSAGES, null,
+		        ConversationStates.ATTENDING, null,
+		        new SpeakerNPC.ChatAction() {
+			        @Override
+			        public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+				        if (player.drop("money", healerBehaviour.getCharge(player))) {
+					        healerBehaviour.heal(player);
+					        engine.say("All better now, everyone better. I love you, I do.");
+				        } else {
+					        engine.say("Pff, no money, no heal.");
+				        }
+			        }
+		        });
 
-		engine.add(ConversationStates.HEAL_OFFERED,
-				ConversationPhrases.NO_MESSAGES, null,
-				ConversationStates.ATTENDING, "Wha you want then?", null);
+		engine.add(ConversationStates.HEAL_OFFERED, ConversationPhrases.NO_MESSAGES, null,
+		        ConversationStates.ATTENDING, "Wha you want then?", null);
 	}
 
 }

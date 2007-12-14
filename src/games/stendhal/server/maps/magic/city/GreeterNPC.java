@@ -15,7 +15,7 @@ import java.util.Map;
 
 /**
  * Builds a Wizard NPC who explains about the city
- * 
+ *
  * @author kymara
  */
 public class GreeterNPC implements ZoneConfigurator {
@@ -23,14 +23,11 @@ public class GreeterNPC implements ZoneConfigurator {
 
 	/**
 	 * Configure a zone.
-	 * 
-	 * @param zone
-	 *            The zone to be configured.
-	 * @param attributes
-	 *            Configuration attributes.
+	 *
+	 * @param	zone		The zone to be configured.
+	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone,
-			Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
 		buildNPC(zone);
 	}
 
@@ -67,17 +64,12 @@ public class GreeterNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-				addGreeting("Salutations, traveller.");
+			        addGreeting("Salutations, traveller.");
 				addJob("I am a wizard, like all who dwell in this magic underground city. We practise #magic here.");
-				addReply(
-						"magic",
-						"Indeed, enchantments such as our Sunlight Spell to keep the grass and flowers healthy down here. I suppose you are wondering why you have seen traditional enemies such as dark elves and green elves in company together here, let me #explain.");
-				addReply(
-						"explain",
-						"As a city for wizards only, we have much to learn from one another. Thus, old quarrels are forgotten and we live here in peace.");
+				addReply("magic", "Indeed, enchantments such as our Sunlight Spell to keep the grass and flowers healthy down here. I suppose you are wondering why you have seen traditional enemies such as dark elves and green elves in company together here, let me #explain.");
+				addReply("explain", "As a city for wizards only, we have much to learn from one another. Thus, old quarrels are forgotten and we live here in peace.");
 				addHelp("It is part of my #job to #offer you enchanted scrolls to travel to any major city in Faiumoni. I also have a supply of scrolls you may mark, and some scrolls to summon creatures. Be aware, they do not come cheap.");
-				new SellerAdder().addSeller(this, new SellerBehaviour(
-						shops.get("allscrolls")) {
+				new SellerAdder().addSeller(this, new SellerBehaviour(shops.get("allscrolls")) {
 
 					@Override
 					public int getUnitPrice(String item) {
@@ -86,7 +78,7 @@ public class GreeterNPC implements ZoneConfigurator {
 					}
 				});
 				addQuest("Neither can live while the other survives! The Dark Lord must be killed...no ... wait... that was some other time. Forgive me for confusing you, I need nothing.");
-				addGoodbye("Adieu.");
+ 				addGoodbye("Adieu.");
 			}
 		};
 

@@ -15,19 +15,15 @@ import java.util.Map;
 public class DecencyAndMannersWardenNPC implements ZoneConfigurator {
 	/**
 	 * Configure a zone.
-	 * 
-	 * @param zone
-	 *            The zone to be configured.
-	 * @param attributes
-	 *            Configuration attributes.
+	 *
+	 * @param	zone		The zone to be configured.
+	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone,
-			Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
 		buildSemosStorageArea(zone, attributes);
 	}
 
-	private void buildSemosStorageArea(StendhalRPZone zone,
-			Map<String, String> attributes) {
+	private void buildSemosStorageArea(StendhalRPZone zone, Map<String, String> attributes) {
 		SpeakerNPC npc = new SpeakerNPC("Ketteh Wehoh") {
 
 			@Override
@@ -44,13 +40,9 @@ public class DecencyAndMannersWardenNPC implements ZoneConfigurator {
 			protected void createDialog() {
 				addHelp("I am the town Decency and Manners Warden. I can advise you on how to conduct yourself in many ways; like not wandering around naked, for instance.");
 				addJob("My job is to maintain a civilized level of behaviour in Semos. I know the protocol for every situation, AND all the ways of handling it wrong. Well, sometimes I get confused on whether to use a spoon or a fork; but then, nobody really uses cutlery in Semos anyway.");
-				add(
-						ConversationStates.ATTENDING,
-						ConversationPhrases.QUEST_MESSAGES,
-						null,
-						ConversationStates.ATTENDING,
-						"The only task I have for you is to behave nicely towards others.",
-						null);
+				add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES, null,
+				        ConversationStates.ATTENDING,
+				        "The only task I have for you is to behave nicely towards others.", null);
 				addGoodbye();
 			}
 		};

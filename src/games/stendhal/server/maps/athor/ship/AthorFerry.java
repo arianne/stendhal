@@ -11,16 +11,16 @@ import java.util.List;
  * This class simulates a ferry going back and forth between the mainland and
  * the island. Note that, even though this class lies in a maps package, this is
  * not a zone configurator.
- * 
+ *
  * NPCs that have to do with the ferry: Eliza - brings players from the mainland
  * docks to the ferry. Jessica - brings players from the island docks to the
  * ferry. Jackie - brings players from the ferry to the docks. Captain - the
  * ship captain. Laura - the ship galley maid. Ramon - offers blackjack on the
  * ship.
- * 
+ *
  * @see games.stendhal.server.maps.athor.ship.CaptainNPC
  * @author daniel
- * 
+ *
  */
 public class AthorFerry implements TurnListener {
 
@@ -63,12 +63,13 @@ public class AthorFerry implements TurnListener {
 
 	/**
 	 * Gets a textual description of the ferry's status.
-	 * 
+	 *
 	 * @return A String representation of time remaining till next state.
 	 */
 
 	private String getRemainingSeconds() {
-		int secondsUntilNextState = TurnNotifier.get().getRemainingSeconds(this);
+		int secondsUntilNextState = TurnNotifier.get()
+				.getRemainingSeconds(this);
 		return TimeUtil.approxTimeUntil(secondsUntilNextState);
 	}
 
@@ -88,13 +89,12 @@ public class AthorFerry implements TurnListener {
 	public void addListener(IFerryListener npc) {
 		listeners.add(npc);
 	}
-
+	
 	/**
-	 * autoregisters the listener to Athorferry deregistration must be
-	 * implemented if it is used for short living objects
-	 * 
+	 * autoregisters the listener to Athorferry
+	 * deregistration must be implemented if it is used for short living objects
 	 * @author astrid
-	 * 
+	 *
 	 */
 	public abstract static class FerryListener implements IFerryListener {
 		public FerryListener() {
@@ -183,14 +183,12 @@ public class AthorFerry implements TurnListener {
 
 		/**
 		 * gives the following status.
-		 * 
 		 * @return the next Status
 		 */
 		abstract Status next();
 
 		/**
 		 * how long will this state last.
-		 * 
 		 * @return time in seconds;
 		 */
 		abstract int duration();

@@ -21,19 +21,15 @@ public class WizardNPC implements ZoneConfigurator {
 
 	/**
 	 * Configure a zone.
-	 * 
-	 * @param zone
-	 *            The zone to be configured.
-	 * @param attributes
-	 *            Configuration attributes.
+	 *
+	 * @param	zone		The zone to be configured.
+	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone,
-			Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
 		buildMagicianHouseArea(zone, attributes);
 	}
 
-	private void buildMagicianHouseArea(StendhalRPZone zone,
-			Map<String, String> attributes) {
+	private void buildMagicianHouseArea(StendhalRPZone zone, Map<String, String> attributes) {
 		SpeakerNPC npc = new SpeakerNPC("Haizen") {
 
 			@Override
@@ -58,45 +54,35 @@ public class WizardNPC implements ZoneConfigurator {
 				addJob("I am a wizard who sells #magic #scrolls. Just ask me for an #offer!");
 				addHelp("You can take powerful magic with you on your adventures with the aid of my #magic #scrolls!");
 
-				new SellerAdder().addSeller(this, new SellerBehaviour(
-						shops.get("scrolls")));
+				new SellerAdder().addSeller(this, new SellerBehaviour(shops.get("scrolls")));
 
+				add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES, null,
+				        ConversationStates.ATTENDING,
+				        "I don't have any tasks for you right now. If you need anything from me, just ask.", null);
 				add(
-						ConversationStates.ATTENDING,
-						ConversationPhrases.QUEST_MESSAGES,
-						null,
-						ConversationStates.ATTENDING,
-						"I don't have any tasks for you right now. If you need anything from me, just ask.",
-						null);
+				        ConversationStates.ATTENDING,
+				        Arrays.asList("magic", "scroll", "scrolls"),
+				        null,
+				        ConversationStates.ATTENDING,
+				        "I #offer scrolls that help you to travel faster: #home scrolls and the #markable #empty scrolls. For the more advanced customer, I also have #summon scrolls!",
+				        null);
+				add(ConversationStates.ATTENDING, Arrays.asList("home", "home_scroll"), null,
+				        ConversationStates.ATTENDING,
+				        "Home scrolls take you home immediately, a good way to escape danger!", null);
 				add(
-						ConversationStates.ATTENDING,
-						Arrays.asList("magic", "scroll", "scrolls"),
-						null,
-						ConversationStates.ATTENDING,
-						"I #offer scrolls that help you to travel faster: #home scrolls and the #markable #empty scrolls. For the more advanced customer, I also have #summon scrolls!",
-						null);
+				        ConversationStates.ATTENDING,
+				        Arrays.asList("empty", "marked", "empty_scroll", "markable", "marked_scroll"),
+				        null,
+				        ConversationStates.ATTENDING,
+				        "Empty scrolls are used to mark a position. Those marked scrolls can take you back to that position. They are a little expensive, though.",
+				        null);
 				add(
-						ConversationStates.ATTENDING,
-						Arrays.asList("home", "home_scroll"),
-						null,
-						ConversationStates.ATTENDING,
-						"Home scrolls take you home immediately, a good way to escape danger!",
-						null);
-				add(
-						ConversationStates.ATTENDING,
-						Arrays.asList("empty", "marked", "empty_scroll",
-								"markable", "marked_scroll"),
-						null,
-						ConversationStates.ATTENDING,
-						"Empty scrolls are used to mark a position. Those marked scrolls can take you back to that position. They are a little expensive, though.",
-						null);
-				add(
-						ConversationStates.ATTENDING,
-						"summon",
-						null,
-						ConversationStates.ATTENDING,
-						"A summon scroll empowers you to summon animals to you; advanced magicians will be able to summon stronger monsters than others. Of course, these scrolls can be dangerous if misused.",
-						null);
+				        ConversationStates.ATTENDING,
+				        "summon",
+				        null,
+				        ConversationStates.ATTENDING,
+				        "A summon scroll empowers you to summon animals to you; advanced magicians will be able to summon stronger monsters than others. Of course, these scrolls can be dangerous if misused.",
+				        null);
 
 				addGoodbye();
 			}

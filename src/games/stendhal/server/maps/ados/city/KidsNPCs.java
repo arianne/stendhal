@@ -15,28 +15,24 @@ import java.util.Map;
 
 /**
  * Creates the NPCs and portals in Ados City.
- * 
+ *
  * @author hendrik
  */
 public class KidsNPCs implements ZoneConfigurator {
 	/**
 	 * Configure a zone.
-	 * 
-	 * @param zone
-	 *            The zone to be configured.
-	 * @param attributes
-	 *            Configuration attributes.
+	 *
+	 * @param	zone		The zone to be configured.
+	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone,
-			Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
 		buildKids(zone);
 	}
 
 	private void buildKids(StendhalRPZone zone) {
 		String[] names = { "Jens", "George", "Anna" };
 		String[] classes = { "kid3npc", "kid4npc", "kid5npc" };
-		Node[] start = new Node[] { new Node(40, 29), new Node(40, 41),
-				new Node(45, 29) };
+		Node[] start = new Node[] { new Node(40, 29), new Node(40, 41), new Node(45, 29) };
 		for (int i = 0; i < 3; i++) {
 			SpeakerNPC npc = new SpeakerNPC(names[i]) {
 
@@ -67,11 +63,11 @@ public class KidsNPCs implements ZoneConfigurator {
 					// Anna is special because she has a quest
 					if (!this.getName().equals("Anna")) {
 						add(
-								ConversationStates.IDLE,
-								ConversationPhrases.GREETING_MESSAGES,
-								ConversationStates.IDLE,
-								"Mummy said, we are not allowed to talk to strangers. She is worried about that lost girl. Bye.",
-								null);
+						        ConversationStates.IDLE,
+						        ConversationPhrases.GREETING_MESSAGES,
+						        ConversationStates.IDLE,
+						        "Mummy said, we are not allowed to talk to strangers. She is worried about that lost girl. Bye.",
+						        null);
 					}
 					addGoodbye("Bye bye!");
 				}

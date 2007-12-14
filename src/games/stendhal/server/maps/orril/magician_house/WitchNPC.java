@@ -17,7 +17,7 @@ import java.util.Map;
 public class WitchNPC implements ZoneConfigurator {
 	/**
 	 * Configure a zone.
-	 * 
+	 *
 	 * @param zone
 	 *            The zone to be configured.
 	 * @param attributes
@@ -57,8 +57,7 @@ public class WitchNPC implements ZoneConfigurator {
 			protected void createDialog() {
 				addGreeting();
 				addJob("I'm a witch, since you ask. I grow #collard as a hobby.");
-				addReply("collard",
-						"That cabbage in the pot. Be careful of it!");
+				addReply("collard",	"That cabbage in the pot. Be careful of it!");
 				/*
 				 * addHelp("You may want to buy some potions or do some #task
 				 * for me.");

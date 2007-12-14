@@ -11,8 +11,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Builds ados townhall clerk NPC. He can divorce people, see
- * maps/quests/Marriage.java
+ * Builds ados townhall clerk NPC.
+ * He can divorce people, see maps/quests/Marriage.java
  * 
  * @author kymara
  */
@@ -20,14 +20,11 @@ public class ClerkNPC implements ZoneConfigurator {
 
 	/**
 	 * Configure a zone.
-	 * 
-	 * @param zone
-	 *            The zone to be configured.
-	 * @param attributes
-	 *            Configuration attributes.
+	 *
+	 * @param	zone		The zone to be configured.
+	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone,
-			Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
 		buildClerk(zone);
 	}
 
@@ -38,17 +35,17 @@ public class ClerkNPC implements ZoneConfigurator {
 			protected void createPath() {
 				List<Node> nodes = new LinkedList<Node>();
 				nodes.add(new Node(23, 10));
-				nodes.add(new Node(27, 10));
-				nodes.add(new Node(27, 8));
+				nodes.add(new Node(27, 10));	
+				nodes.add(new Node(27, 8));	
 				nodes.add(new Node(28, 8));
 				nodes.add(new Node(28, 4));
 				nodes.add(new Node(25, 4));
 				nodes.add(new Node(25, 2));
 				nodes.add(new Node(24, 2));
 				nodes.add(new Node(24, 5));
-				nodes.add(new Node(21, 5));
-				nodes.add(new Node(21, 8));
-				nodes.add(new Node(23, 8));
+			       	nodes.add(new Node(21, 5));
+			       	nodes.add(new Node(21, 8));
+			       	nodes.add(new Node(23, 8));
 				setPath(new FixedPath(nodes, true));
 			}
 

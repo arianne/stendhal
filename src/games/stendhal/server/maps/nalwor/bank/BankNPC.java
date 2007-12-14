@@ -13,7 +13,7 @@ import java.util.Map;
 
 /**
  * Builds the nalwor bank npcs.
- * 
+ *
  * @author kymara
  */
 public class BankNPC implements ZoneConfigurator {
@@ -23,22 +23,18 @@ public class BankNPC implements ZoneConfigurator {
 
 	/**
 	 * Configure a zone.
-	 * 
-	 * @param zone
-	 *            The zone to be configured.
-	 * @param attributes
-	 *            Configuration attributes.
+	 *
+	 * @param	zone		The zone to be configured.
+	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone,
-			Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
 		buildoldNPC(zone, attributes);
 		buildladyNPC(zone, attributes);
 	}
 
 	//
 	// name inspired by a name in lotr
-	// TODO: He complains if someone steals something from his chest: they
-	// should be sent to elf jail.
+	// TODO: He complains if someone steals something from his chest: they should be sent to elf jail.
 
 	private void buildoldNPC(StendhalRPZone zone, Map<String, String> attributes) {
 		SpeakerNPC oldnpc = new SpeakerNPC("Grafindle") {
@@ -54,7 +50,7 @@ public class BankNPC implements ZoneConfigurator {
 				addJob("I work here in the bank.");
 				addHelp("That room has two chests owned by this bank and two owned by Semos bank.");
 				addGoodbye("Goodbye, young human.");
-				// remaining behaviour defined in Take Gold for Grafindle quest
+				//remaining behaviour defined in Take Gold for Grafindle quest
 			}
 		};
 
@@ -68,8 +64,7 @@ public class BankNPC implements ZoneConfigurator {
 	//
 	// Ariannyddion is welsh for bank, so ...
 	//
-	private void buildladyNPC(StendhalRPZone zone,
-			Map<String, String> attributes) {
+	private void buildladyNPC(StendhalRPZone zone, Map<String, String> attributes) {
 		SpeakerNPC ladynpc = new SpeakerNPC("Nnyddion") {
 
 			@Override

@@ -39,9 +39,9 @@ public class ToysCollector extends AbstractQuest implements
 		BringListOfItemsQuest {
 
 	private static final String QUEST_SLOT = "toys_collector";
-
-	private static final List<String> neededToys = Arrays.asList("teddy",
-			"dice", "dress");
+	
+	private static final List<String> neededToys = 
+		Arrays.asList("teddy", "dice", "dress");
 
 	@Override
 	public void init(String name) {

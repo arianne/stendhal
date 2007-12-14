@@ -67,60 +67,55 @@ public class LearnAboutOrbs extends AbstractQuest {
 
 	private void step1() {
 		SpeakerNPC npc = npcs.get("Ilisa");
-
-		npc.add(
-				ConversationStates.ATTENDING,
-				ConversationPhrases.QUEST_MESSAGES,
-				new QuestNotCompletedCondition(QUEST_SLOT),
-				ConversationStates.QUEST_OFFERED,
-				"Some orbs have special properties. I can teach you how to #use an orb, like the one on this table.",
-				null);
+		
+		npc.add(ConversationStates.ATTENDING,
+			ConversationPhrases.QUEST_MESSAGES, 
+			new QuestNotCompletedCondition(QUEST_SLOT),
+			ConversationStates.QUEST_OFFERED, 
+			"Some orbs have special properties. I can teach you how to #use an orb, like the one on this table.", null);
 
 		npc.add(ConversationStates.ATTENDING,
-				ConversationPhrases.QUEST_MESSAGES,
-				new QuestCompletedCondition(QUEST_SLOT),
-				ConversationStates.ATTENDING,
-				"I can remind you how to #use orbs.", null);
+			ConversationPhrases.QUEST_MESSAGES,
+			new QuestCompletedCondition(QUEST_SLOT),
+			ConversationStates.ATTENDING, 
+			"I can remind you how to #use orbs.", null);
 
 		// player interested in orb
-		npc.add(ConversationStates.QUEST_OFFERED, "use",
-				new LevelGreaterThanCondition(10),
-				ConversationStates.QUESTION_1,
-				"Just right click and select Use. Did you get any message?",
-				null);
+		npc.add(ConversationStates.QUEST_OFFERED,
+			"use", 
+			new LevelGreaterThanCondition(10),
+			ConversationStates.QUESTION_1,
+			"Just right click and select Use. Did you get any message?",
+			null);
 
 		// player interested in orb but level < 10
-		npc.add(
-				ConversationStates.QUEST_OFFERED,
-				"use",
-				new NotCondition(new LevelGreaterThanCondition(10)),
-				ConversationStates.ATTENDING,
-				"Oh oh, I just noticed you are still new here. Perhaps you better come back when you have more experience. Until then if you need any #help just ask!",
-				null);
+		npc.add(ConversationStates.QUEST_OFFERED,
+			"use", 
+			new NotCondition(new LevelGreaterThanCondition(10)),
+			ConversationStates.ATTENDING,
+			"Oh oh, I just noticed you are still new here. Perhaps you better come back when you have more experience. Until then if you need any #help just ask!",
+			null);
 
 		// player wants reminder on Use
-		npc.add(ConversationStates.ATTENDING, "use", null,
-				ConversationStates.ATTENDING,
-				"Just right click on part of the orb, and select Use.", null);
+		npc.add(
+			ConversationStates.ATTENDING,
+			"use",
+			null,
+			ConversationStates.ATTENDING,
+			"Just right click on part of the orb, and select Use.",
+			null);
 
 		// player got message from orb
-		npc.add(
-				ConversationStates.QUESTION_1,
-				ConversationPhrases.YES_MESSAGES,
-				null,
-				ConversationStates.ATTENDING,
-				"You're a natural! Now that you have learnt to use that orb, it will teleport you to a place of magical significance. So don't use it unless you will be able to find your way back!",
-				new MultipleActions(new IncreaseXPAction(50),
-						new SetQuestAction(QUEST_SLOT, "done")));
+		npc.add(ConversationStates.QUESTION_1,
+			ConversationPhrases.YES_MESSAGES, null,
+			ConversationStates.ATTENDING,
+			"You're a natural! Now that you have learnt to use that orb, it will teleport you to a place of magical significance. So don't use it unless you will be able to find your way back!",
+			new MultipleActions(new IncreaseXPAction(50), new SetQuestAction(QUEST_SLOT, "done")));
 
 		// player didn't get message, try again
-		npc.add(
-				ConversationStates.QUESTION_1,
-				ConversationPhrases.NO_MESSAGES,
-				null,
-				ConversationStates.QUESTION_1,
-				"Well, you would need to stand next to it. Move closer, do you get a message now?",
-				null);
+		npc.add(ConversationStates.QUESTION_1, ConversationPhrases.NO_MESSAGES,
+			null, ConversationStates.QUESTION_1,
+			"Well, you would need to stand next to it. Move closer, do you get a message now?", null);
 	}
 
 	@Override

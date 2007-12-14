@@ -8,6 +8,7 @@ import games.stendhal.server.events.TurnNotifier;
 
 import java.util.Date;
 
+
 import org.apache.log4j.Logger;
 
 /**
@@ -15,25 +16,23 @@ import org.apache.log4j.Logger;
  */
 class DeathmatchEngine implements TurnListener {
 
-	private static final long BAIL_DELAY = 2000; // wait 2 seconds before
-													// bail takes effect
+	private static final long BAIL_DELAY = 2000; // wait 2 seconds before bail takes effect
 
 	static Logger logger = Logger.getLogger(DeathmatchEngine.class);
 
-	private final Player player;
+
+private final Player player;
 	DeathmatchInfo dmInfo;
 
-	CreatureSpawner spawner;
+    CreatureSpawner spawner;
 
 	private boolean keepRunning = true;
 
 	/**
 	 * Creates a new ScriptAction to handle the deathmatch logic.
-	 * 
-	 * @param player
-	 *            Player for whom this match is created
-	 * @param deathmatchInfo
-	 *            Information about the place of the deathmatch
+	 *
+	 * @param player Player for whom this match is created
+	 * @param deathmatchInfo Information about the place of the deathmatch
 	 */
 	public DeathmatchEngine(Player player, DeathmatchInfo deathmatchInfo) {
 		this.dmInfo = deathmatchInfo;
@@ -75,33 +74,35 @@ class DeathmatchEngine implements TurnListener {
 
 		DeathmatchState deathmatchState = DeathmatchState.createFromQuestString(player.getQuest("deathmatch"));
 
-		switch (deathmatchState.getLifecycleState()) {
 
-		case BAIL:
-			if (((new Date()).getTime() - deathmatchState.getStateTime() > BAIL_DELAY)) {
-				handleBail();
+		switch(deathmatchState.getLifecycleState()) {
 
-				keepRunning = false;
-				return;
-			}
-			break;
 
-		case CANCEL:
-			spawner.removePlayersMonsters();
+case BAIL:
+	if (((new Date()).getTime() - deathmatchState.getStateTime() > BAIL_DELAY)) {
+		handleBail();
 
-			// and finally remove this ScriptAction
-			keepRunning = false;
-			return;
+		keepRunning = false;
+		return;
+	}
+	break;
 
-		}
+case CANCEL:
+	spawner.removePlayersMonsters();
+
+	// and finally remove this ScriptAction
+	keepRunning = false;
+	return;
+
+
+}
+
 
 		// check wheter the deathmatch was completed
-		if (deathmatchState.getQuestLevel() >= player.getLevel()
-				+ CreatureSpawner.NUMBER_OF_CREATURES - 2) {
-			// logger.info("May be done");
+		if (deathmatchState.getQuestLevel() >= player.getLevel() + CreatureSpawner.NUMBER_OF_CREATURES - 2) {
+			//logger.info("May be done");
 			if (spawner.areAllCreaturesDead()) {
-				logger.info("Player " + player.getName()
-						+ " completed deathmatch");
+				logger.info("Player " + player.getName() + " completed deathmatch");
 				spawner.spawnDailyMonster(player, dmInfo);
 				deathmatchState.setLifecycleState(DeathmatchLifecycle.VICTORY);
 				deathmatchState.setQuestLevel(spawner.calculatePoints());
@@ -115,13 +116,12 @@ class DeathmatchEngine implements TurnListener {
 
 		// spawn new monster
 		if (((new Date()).getTime() - deathmatchState.getStateTime() > CreatureSpawner.SPAWN_DELAY)) {
-			DeathMatchCreature mycreature = spawner.spawnNewCreature(
-					deathmatchState.getQuestLevel(), player, dmInfo);
+			DeathMatchCreature mycreature = spawner.spawnNewCreature(deathmatchState.getQuestLevel(), player, dmInfo);
 
-			// in case there is not enough space to place the creature,
-			// mycreature is null
+			// in case there is not enough space to place the creature, mycreature is null
 			if (mycreature != null) {
 
+				
 				deathmatchState.increaseQuestlevel();
 			}
 
@@ -155,13 +155,12 @@ class DeathmatchEngine implements TurnListener {
 		}
 
 		// send the player back to the entrance area
-		// StendhalRPZone entranceZone =
-		// StendhalRPWorld.get().getZone(zoneName);
-		player.teleport(dmInfo.getEntranceSpot().getZone(),
-				dmInfo.getEntranceSpot().getX(),
-				dmInfo.getEntranceSpot().getY(), null, null);
+		//StendhalRPZone entranceZone = StendhalRPWorld.get().getZone(zoneName);
+		player.teleport(dmInfo.getEntranceSpot().getZone(), dmInfo.getEntranceSpot().getX(), dmInfo.getEntranceSpot().getY(), null, null);
 
 		spawner.removePlayersMonsters();
 	}
+
+
 
 }

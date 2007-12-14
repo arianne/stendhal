@@ -15,17 +15,17 @@ import java.util.List;
 
 /**
  * QUEST: McPegleg's IOU
- * 
+ *
  * PARTICIPANTS: - a corpse in kanmararn - McPegleg
- * 
+ *
  * NOTE: The corpse with cointaisn the IOU is created in KanmararnSoldiers.java
  * Without it this quest cannot be started (so the player won't notice the
  * problem at all).
- * 
+ *
  * STEPS: - find IOU in a corpse in kanmararn - bring it to McPegleg
- * 
+ *
  * REWARD: - 250 money
- * 
+ *
  * REPETITIONS: - None.
  */
 public class McPeglegIOU extends AbstractQuest {
@@ -46,42 +46,43 @@ public class McPeglegIOU extends AbstractQuest {
 
 		SpeakerNPC npc = npcs.get("McPegleg");
 
-		npc.add(ConversationStates.ATTENDING, Arrays.asList("iou", "henry",
-				"charles", "note"), new QuestNotCompletedCondition(QUEST_SLOT),
-				ConversationStates.ATTENDING, null,
-				new SpeakerNPC.ChatAction() {
-					@Override
-					public void fire(Player player, Sentence sentence,
-							SpeakerNPC engine) {
-						// from all notes that the player is carrying, try to
-						// find the IOU note
-						List<Item> notes = player.getAllEquipped("note");
-						Item iouNote = null;
-						for (Item note : notes) {
-							if ("charles".equalsIgnoreCase(note.getInfoString())) {
-								iouNote = note;
-								break;
-							}
-						}
-						if (iouNote != null) {
-							engine.say("Where did you get that from? Anyways, here is the money *sighs*");
-							player.drop(iouNote);
-							StackableItem money = (StackableItem) StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
-									"money");
-							money.setQuantity(250);
-							player.equip(money);
-							player.setQuest(QUEST_SLOT, "done");
-							engine.setCurrentState(1);
-						} else {
-							engine.say("I can't see that you got a valid IOU with my signature!");
+		npc.add(ConversationStates.ATTENDING,
+			Arrays.asList("iou", "henry", "charles", "note"),
+			new QuestNotCompletedCondition(QUEST_SLOT),
+			ConversationStates.ATTENDING, null,
+			new SpeakerNPC.ChatAction() {
+				@Override
+				public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+					// from all notes that the player is carrying, try to
+					// find the IOU note
+					List<Item> notes = player.getAllEquipped("note");
+					Item iouNote = null;
+					for (Item note : notes) {
+						if ("charles".equalsIgnoreCase(note.getInfoString())) {
+							iouNote = note;
+							break;
 						}
 					}
-				});
+					if (iouNote != null) {
+						engine.say("Where did you get that from? Anyways, here is the money *sighs*");
+						player.drop(iouNote);
+						StackableItem money = (StackableItem) StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
+								"money");
+						money.setQuantity(250);
+						player.equip(money);
+						player.setQuest(QUEST_SLOT, "done");
+						engine.setCurrentState(1);
+					} else {
+						engine.say("I can't see that you got a valid IOU with my signature!");
+					}
+				}
+			});
 
-		npc.add(ConversationStates.ATTENDING, Arrays.asList("iou", "henry",
-				"charles", "note"), new QuestCompletedCondition(QUEST_SLOT),
-				ConversationStates.ATTENDING,
-				"You already got cash for that damned IOU!", null);
+		npc.add(ConversationStates.ATTENDING,
+			Arrays.asList("iou", "henry", "charles", "note"),
+			new QuestCompletedCondition(QUEST_SLOT),
+			ConversationStates.ATTENDING,
+			"You already got cash for that damned IOU!", null);
 	}
 
 	@Override

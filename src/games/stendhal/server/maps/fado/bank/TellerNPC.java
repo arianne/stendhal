@@ -12,7 +12,7 @@ import java.util.Map;
 
 /**
  * Builds the bank teller NPC.
- * 
+ *
  * @author timothyb89
  */
 public class TellerNPC implements ZoneConfigurator {
@@ -22,14 +22,11 @@ public class TellerNPC implements ZoneConfigurator {
 
 	/**
 	 * Configure a zone.
-	 * 
-	 * @param zone
-	 *            The zone to be configured.
-	 * @param attributes
-	 *            Configuration attributes.
+	 *
+	 * @param	zone		The zone to be configured.
+	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone,
-			Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
 		buildNPC(zone, attributes);
 	}
 

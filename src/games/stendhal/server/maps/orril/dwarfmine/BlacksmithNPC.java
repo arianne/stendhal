@@ -20,14 +20,11 @@ import java.util.Map;
 public class BlacksmithNPC implements ZoneConfigurator {
 	/**
 	 * Configure a zone.
-	 * 
-	 * @param zone
-	 *            The zone to be configured.
-	 * @param attributes
-	 *            Configuration attributes.
+	 *
+	 * @param	zone		The zone to be configured.
+	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone,
-			Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
 		buildBlacksmith(zone);
 	}
 
@@ -53,19 +50,19 @@ public class BlacksmithNPC implements ZoneConfigurator {
 				addJob("I am a master blacksmith. I used to forge weapons in secret for the dwarves in the mine, but they have forgotten me and my #stories.");
 				addHelp("I could tell you a #story...");
 				add(
-						ConversationStates.ATTENDING,
-						Arrays.asList("story", "stories"),
-						ConversationStates.ATTENDING,
-						"I expect a scruff like you has never heard of Lady Tembells, huh? She was so beautiful. She died young and her distraught husband asked a powerful Lord to bring her back to life. The fool didn't get what he bargained for, she became a #vampire.",
-						null);
+				        ConversationStates.ATTENDING,
+				        Arrays.asList("story", "stories"),
+				        ConversationStates.ATTENDING,
+				        "I expect a scruff like you has never heard of Lady Tembells, huh? She was so beautiful. She died young and her distraught husband asked a powerful Lord to bring her back to life. The fool didn't get what he bargained for, she became a #vampire.",
+				        null);
 				add(
-						ConversationStates.ATTENDING,
-						Arrays.asList("vampire"),
-						ConversationStates.ATTENDING,
-						"The husband had hired the help of a Vampire Lord! The Lady became his Vampire Bride and her maids became vampiresses. The Catacombs of North Semos are a deadly place now.",
-						null);
+				        ConversationStates.ATTENDING,
+				        Arrays.asList("vampire"),
+				        ConversationStates.ATTENDING,
+				        "The husband had hired the help of a Vampire Lord! The Lady became his Vampire Bride and her maids became vampiresses. The Catacombs of North Semos are a deadly place now.",
+				        null);
 				addGoodbye("So long. I bet you won't sleep so well tonight.");
-			} // remaining behaviour defined in maps.quests.VampireSword
+			} //remaining behaviour defined in maps.quests.VampireSword
 		};
 
 		hogart.setDescription("You see Hogart, a retired master dwarf smith.");

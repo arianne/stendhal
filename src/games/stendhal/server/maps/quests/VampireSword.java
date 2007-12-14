@@ -72,50 +72,46 @@ public class VampireSword extends AbstractQuest {
 		SpeakerNPC npc = npcs.get("Hogart");
 
 		npc.add(ConversationStates.ATTENDING,
-				ConversationPhrases.QUEST_MESSAGES, null,
-				ConversationStates.QUEST_OFFERED, null,
-				new SpeakerNPC.ChatAction() {
-					@Override
-					public void fire(Player player, Sentence sentence,
-							SpeakerNPC npc) {
-						if (!player.hasQuest(QUEST_SLOT)) {
-							npc.say("I can forge a powerful life stealing sword for you. You will need to go to the Catacombs below Semos Graveyard and fight the Vampire Lord. Are you interested?");
-						} else if (player.isQuestCompleted(QUEST_SLOT)) {
-							npc.say("What are you bothering me for now? You've got your sword, go and use it!");
-						} else {
-							npc.say("Why are you bothering me when you haven't completed your quest yet?");
-						}
+			ConversationPhrases.QUEST_MESSAGES, null,
+			ConversationStates.QUEST_OFFERED, null,
+			new SpeakerNPC.ChatAction() {
+				@Override
+				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					if (!player.hasQuest(QUEST_SLOT)) {
+						npc.say("I can forge a powerful life stealing sword for you. You will need to go to the Catacombs below Semos Graveyard and fight the Vampire Lord. Are you interested?");
+					} else if (player.isQuestCompleted(QUEST_SLOT)) {
+						npc.say("What are you bothering me for now? You've got your sword, go and use it!");
+					} else {
+						npc.say("Why are you bothering me when you haven't completed your quest yet?");
 					}
-				});
+				}
+			});
 
 		npc.add(ConversationStates.QUEST_OFFERED,
-				ConversationPhrases.YES_MESSAGES, null,
-				ConversationStates.ATTENDING, null,
-				new SpeakerNPC.ChatAction() {
-					@Override
-					public void fire(Player player, Sentence sentence,
-							SpeakerNPC npc) {
-						npc.say("Then you need this #goblet. Take it to the Semos #Catacombs.");
-						Item emptygoblet = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
-								"empty_goblet");
-						player.equip(emptygoblet, true);
-						player.setQuest(QUEST_SLOT, "start");
-					}
-				});
+			ConversationPhrases.YES_MESSAGES, null,
+			ConversationStates.ATTENDING, null,
+			new SpeakerNPC.ChatAction() {
+				@Override
+				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					npc.say("Then you need this #goblet. Take it to the Semos #Catacombs.");
+					Item emptygoblet = StendhalRPWorld.get()
+							.getRuleManager().getEntityManager().getItem("empty_goblet");
+					player.equip(emptygoblet, true);
+					player.setQuest(QUEST_SLOT, "start");
+				}
+			});
 
 		npc.add(
-				ConversationStates.QUEST_OFFERED,
-				ConversationPhrases.NO_MESSAGES,
-				null,
-				ConversationStates.IDLE,
-				"Oh, well forget it then. You must have a better sword than I can forge, huh? Bye.",
-				null);
+			ConversationStates.QUEST_OFFERED,
+			ConversationPhrases.NO_MESSAGES,
+			null,
+			ConversationStates.IDLE,
+			"Oh, well forget it then. You must have a better sword than I can forge, huh? Bye.",
+			null);
 
-		npc.addReply("catacombs",
-				"The Catacombs of north Semos of the ancient #stories.");
+		npc.addReply("catacombs", "The Catacombs of north Semos of the ancient #stories.");
 
-		npc.addReply("goblet",
-				"Go fill it with the blood of the enemies you meet in the #Catacombs.");
+		npc.addReply("goblet", "Go fill it with the blood of the enemies you meet in the #Catacombs.");
 	}
 
 	private void prepareGobletFillingStep() {
@@ -124,23 +120,17 @@ public class VampireSword extends AbstractQuest {
 
 		npc.addGoodbye("*cough* ... farewell ... *cough*");
 		npc.addReply(
-				Arrays.asList("blood", "vampirette_entrails", "bat_entrails"),
-				"I need blood. I can take it from the entrails of the alive and undead. I will mix the bloods together for you and #fill your #goblet, if you let me drink some too. But I'm afraid of the powerful #lord.");
+			Arrays.asList("blood", "vampirette_entrails", "bat_entrails"),
+			"I need blood. I can take it from the entrails of the alive and undead. I will mix the bloods together for you and #fill your #goblet, if you let me drink some too. But I'm afraid of the powerful #lord.");
+
+		npc.addReply(Arrays.asList("lord", "vampire", "skull_ring"),
+			"The Vampire Lord rules these Catacombs! And I'm afraid of him. I can only help you if you kill him and bring me his skull ring with the #goblet.");
 
 		npc.addReply(
-				Arrays.asList("lord", "vampire", "skull_ring"),
-				"The Vampire Lord rules these Catacombs! And I'm afraid of him. I can only help you if you kill him and bring me his skull ring with the #goblet.");
+			Arrays.asList("empty_goblet", "goblet"),
+			"Only a powerful talisman like this cauldron or a special goblet should contain blood.");
 
-		npc.addReply(
-				Arrays.asList("empty_goblet", "goblet"),
-				"Only a powerful talisman like this cauldron or a special goblet should contain blood.");
-
-		Map<String, Integer> requiredResources = new TreeMap<String, Integer>(); // use
-																					// sorted
-																					// TreeMap
-																					// instead
-																					// of
-																					// HashMap
+		Map<String, Integer> requiredResources = new TreeMap<String, Integer>();	// use sorted TreeMap instead of HashMap
 		requiredResources.put("vampirette_entrails", 7);
 		requiredResources.put("bat_entrails", 7);
 		requiredResources.put("skull_ring", 1);
@@ -148,10 +138,8 @@ public class VampireSword extends AbstractQuest {
 		ProducerBehaviour behaviour = new ProducerBehaviour(
 				"sicky_fill_goblet", "fill", "goblet", requiredResources,
 				5 * 60, true);
-		new ProducerAdder().addProducer(
-				npc,
-				behaviour,
-				"Please don't try to kill me...I'm just a sick old #vampire. Do you have any #blood I could drink? If you have an #empty_goblet I will #fill it with blood for you in my cauldron.");
+		new ProducerAdder().addProducer(npc, behaviour,
+			"Please don't try to kill me...I'm just a sick old #vampire. Do you have any #blood I could drink? If you have an #empty_goblet I will #fill it with blood for you in my cauldron.");
 
 	}
 
@@ -160,128 +148,124 @@ public class VampireSword extends AbstractQuest {
 		SpeakerNPC npc = npcs.get("Hogart");
 
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-				new SpeakerNPC.ChatCondition() {
-					@Override
-					public boolean fire(Player player, Sentence sentence,
-							SpeakerNPC npc) {
-						return player.hasQuest(QUEST_SLOT)
-								&& player.getQuest(QUEST_SLOT).equals("start")
-								&& player.isEquipped("goblet");
+			new SpeakerNPC.ChatCondition() {
+				@Override
+				public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					return player.hasQuest(QUEST_SLOT)
+							&& player.getQuest(QUEST_SLOT).equals("start")
+							&& player.isEquipped("goblet");
+				}
+			}, ConversationStates.QUEST_ITEM_BROUGHT, null,
+			new SpeakerNPC.ChatAction() {
+				@Override
+				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					if (!player.isEquipped("iron", REQUIRED_IRON)) {
+						npc.say("You have battled hard to bring that goblet. I will use it to #forge the vampire sword");
+					} else {
+						player.drop("goblet");
+						player.drop("iron", REQUIRED_IRON);
+						npc.say("You've brought everything I need to make the vampire sword. Come back in "
+							+ REQUIRED_MINUTES
+							+ " minutes and it will be ready");
+						player.setQuest(QUEST_SLOT, "forging;"
+								+ System.currentTimeMillis());
+						npc.setCurrentState(ConversationStates.IDLE);
 					}
-				}, ConversationStates.QUEST_ITEM_BROUGHT, null,
-				new SpeakerNPC.ChatAction() {
-					@Override
-					public void fire(Player player, Sentence sentence,
-							SpeakerNPC npc) {
-						if (!player.isEquipped("iron", REQUIRED_IRON)) {
-							npc.say("You have battled hard to bring that goblet. I will use it to #forge the vampire sword");
-						} else {
-							player.drop("goblet");
-							player.drop("iron", REQUIRED_IRON);
-							npc.say("You've brought everything I need to make the vampire sword. Come back in "
-									+ REQUIRED_MINUTES
-									+ " minutes and it will be ready");
-							player.setQuest(QUEST_SLOT, "forging;"
-									+ System.currentTimeMillis());
-							npc.setCurrentState(ConversationStates.IDLE);
-						}
-					}
-				});
+				}
+			});
 
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-				new SpeakerNPC.ChatCondition() {
-					@Override
-					public boolean fire(Player player, Sentence sentence,
-							SpeakerNPC npc) {
-						return player.hasQuest(QUEST_SLOT)
-								&& player.getQuest(QUEST_SLOT).equals("start")
-								&& !player.isEquipped("goblet")
-								&& player.isEquipped("empty_goblet");
-					}
-				}, ConversationStates.IDLE, null, new SpeakerNPC.ChatAction() {
-					@Override
-					public void fire(Player player, Sentence sentence,
-							SpeakerNPC npc) {
-						npc.say("Did you lose your way? The Catacombs are in North Semos. Don't come back without a full goblet! Bye!");
-					}
-				});
+			new SpeakerNPC.ChatCondition() {
+				@Override
+				public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					return player.hasQuest(QUEST_SLOT)
+							&& player.getQuest(QUEST_SLOT).equals("start")
+							&& !player.isEquipped("goblet")
+							&& player.isEquipped("empty_goblet");
+				}
+			}, ConversationStates.IDLE, null, new SpeakerNPC.ChatAction() {
+				@Override
+				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					npc.say("Did you lose your way? The Catacombs are in North Semos. Don't come back without a full goblet! Bye!");
+				}
+			});
 
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-				new SpeakerNPC.ChatCondition() {
-					@Override
-					public boolean fire(Player player, Sentence sentence,
-							SpeakerNPC npc) {
-						return player.hasQuest(QUEST_SLOT)
-								&& player.getQuest(QUEST_SLOT).equals("start")
-								&& !player.isEquipped("goblet")
-								&& !player.isEquipped("empty_goblet");
-					}
-				}, ConversationStates.QUESTION_1,
-				"I hope you didn't lose your goblet! Do you need another?",
-				null);
+			new SpeakerNPC.ChatCondition() {
+				@Override
+				public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					return player.hasQuest(QUEST_SLOT)
+							&& player.getQuest(QUEST_SLOT).equals("start")
+							&& !player.isEquipped("goblet")
+							&& !player.isEquipped("empty_goblet");
+				}
+			}, ConversationStates.QUESTION_1, 
+			"I hope you didn't lose your goblet! Do you need another?", null);
 
 		npc.add(ConversationStates.QUESTION_1,
-				ConversationPhrases.YES_MESSAGES, null,
-				ConversationStates.IDLE, null, new SpeakerNPC.ChatAction() {
-					@Override
-					public void fire(Player player, Sentence sentence,
-							SpeakerNPC npc) {
-						npc.say("You stupid ..... Be more careful next time. Bye!");
-						Item emptygoblet = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
-								"empty_goblet");
-						player.equip(emptygoblet, true);
-					}
-				});
+			ConversationPhrases.YES_MESSAGES, null,
+			ConversationStates.IDLE, null, new SpeakerNPC.ChatAction() {
+				@Override
+				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					npc.say("You stupid ..... Be more careful next time. Bye!");
+					Item emptygoblet = StendhalRPWorld.get()
+							.getRuleManager().getEntityManager().getItem("empty_goblet");
+					player.equip(emptygoblet, true);
+				}
+			});
 
-		npc.add(ConversationStates.QUESTION_1, ConversationPhrases.NO_MESSAGES,
-				null, ConversationStates.IDLE,
-				"Then why are you back here? Go slay some vampires! Bye!", null);
+		npc.add(
+			ConversationStates.QUESTION_1,
+			ConversationPhrases.NO_MESSAGES,
+			null,
+			ConversationStates.IDLE,
+			"Then why are you back here? Go slay some vampires! Bye!",
+			null);
 
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-				new QuestStateStartsWithCondition(QUEST_SLOT, "forging;"),
-				ConversationStates.IDLE, null, new SpeakerNPC.ChatAction() {
-					@Override
-					public void fire(Player player, Sentence sentence,
-							SpeakerNPC npc) {
-						String[] tokens = player.getQuest(QUEST_SLOT).split(";");
-						// minutes -> milliseconds
-						long delay = REQUIRED_MINUTES * 60 * 1000;
-						long timeRemaining = (Long.parseLong(tokens[1]) + delay)
-								- System.currentTimeMillis();
-						if (timeRemaining > 0L) {
-							npc.say("I haven't finished forging the sword. Please check back in "
-									+ TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L))
-									+ ".");
-							return;
-						}
-						npc.say("I have finished forging the mighty Vampire Sword. You deserve this. Now i'm going back to work, goodbye!");
-						player.addXP(5000);
-						Item vampireSword = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
-								"vampire_sword");
-						vampireSword.setBoundTo(player.getName());
-						player.equip(vampireSword, true);
-						player.setQuest(QUEST_SLOT, "done");
-						player.notifyWorldAboutChanges();
+			new QuestStateStartsWithCondition(QUEST_SLOT, "forging;"),
+			ConversationStates.IDLE, null, new SpeakerNPC.ChatAction() {
+				@Override
+				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					String[] tokens = player.getQuest(QUEST_SLOT).split(";");
+					// minutes -> milliseconds
+					long delay = REQUIRED_MINUTES * 60 * 1000;
+					long timeRemaining = (Long.parseLong(tokens[1]) + delay)
+							- System.currentTimeMillis();
+					if (timeRemaining > 0L) {
+						npc.say("I haven't finished forging the sword. Please check back in "
+							+ TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L)) + ".");
+						return;
 					}
-				});
+					npc.say("I have finished forging the mighty Vampire Sword. You deserve this. Now i'm going back to work, goodbye!");
+					player.addXP(5000);
+					Item vampireSword = StendhalRPWorld.get()
+							.getRuleManager().getEntityManager().getItem(
+									"vampire_sword");
+					vampireSword.setBoundTo(player.getName());
+					player.equip(vampireSword, true);
+					player.setQuest(QUEST_SLOT, "done");
+					player.notifyWorldAboutChanges();
+				}
+			});
 
 		npc.add(
-				ConversationStates.QUEST_ITEM_BROUGHT,
-				"forge",
-				null,
-				ConversationStates.QUEST_ITEM_BROUGHT,
+			ConversationStates.QUEST_ITEM_BROUGHT,
+			"forge",
+			null,
+			ConversationStates.QUEST_ITEM_BROUGHT,
 				"Bring me "
-						+ REQUIRED_IRON
-						+ " #iron bars to forge the sword with. Don't forget to bring the goblet too.",
-				null);
+				+ REQUIRED_IRON
+				+ " #iron bars to forge the sword with. Don't forget to bring the goblet too.",
+			null);
 
 		npc.add(
-				ConversationStates.QUEST_ITEM_BROUGHT,
-				"iron",
-				null,
-				ConversationStates.IDLE,
-				"You know, collect the iron ore lying around and get it cast! Bye!",
-				null);
+			ConversationStates.QUEST_ITEM_BROUGHT,
+			"iron",
+			null,
+			ConversationStates.IDLE,
+			"You know, collect the iron ore lying around and get it cast! Bye!",
+			null);
 
 	}
 

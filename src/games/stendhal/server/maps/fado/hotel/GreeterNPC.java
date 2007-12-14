@@ -12,7 +12,7 @@ import java.util.Map;
 
 /**
  * Builds the hotel greeter NPC.
- * 
+ *
  * @author timothyb89
  */
 public class GreeterNPC implements ZoneConfigurator {
@@ -22,14 +22,11 @@ public class GreeterNPC implements ZoneConfigurator {
 
 	/**
 	 * Configure a zone.
-	 * 
-	 * @param zone
-	 *            The zone to be configured.
-	 * @param attributes
-	 *            Configuration attributes.
+	 *
+	 * @param	zone		The zone to be configured.
+	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone,
-			Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
 		buildNPC(zone, attributes);
 	}
 
@@ -54,15 +51,11 @@ public class GreeterNPC implements ZoneConfigurator {
 
 				addJob("I am the hotel receptionist.");
 				addHelp("When the building work on the hotel rooms is complete you will be able to #reserve one.");
-				// addHelp("You can #reserve a room if you'd like, or #explore
-				// the hotel.");
-				addReply(
-						"reserve",
-						"Sorry, but the hotel is still under construction and you can not reserve a room yet. You can #explore the rest.");
-				addReply(
-						"explore",
-						"I'm afraid there is not very much to see, yet. The hotel is still being finished.");
-				// addSeller(new SellerBehaviour(shops.get("food&drinks")));
+				//addHelp("You can #reserve a room if you'd like, or #explore the hotel.");
+				addReply("reserve",
+				        "Sorry, but the hotel is still under construction and you can not reserve a room yet. You can #explore the rest.");
+				addReply("explore", "I'm afraid there is not very much to see, yet. The hotel is still being finished.");
+				//addSeller(new SellerBehaviour(shops.get("food&drinks")));
 				addGoodbye("Bye.");
 			}
 		};

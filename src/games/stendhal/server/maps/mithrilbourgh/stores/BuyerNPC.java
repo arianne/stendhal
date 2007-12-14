@@ -15,9 +15,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Builds an NPC to buy previously un bought weapons. He is the QM of the
- * Mithrilbourgh Army, who are short of boots and helmets
- * 
+ * Builds an NPC to buy previously un bought weapons.
+ * He is the QM of the Mithrilbourgh Army, who are short of boots and helmets
+ *
  * @author kymara
  */
 public class BuyerNPC implements ZoneConfigurator {
@@ -25,14 +25,11 @@ public class BuyerNPC implements ZoneConfigurator {
 
 	/**
 	 * Configure a zone.
-	 * 
-	 * @param zone
-	 *            The zone to be configured.
-	 * @param attributes
-	 *            Configuration attributes.
+	 *
+	 * @param	zone		The zone to be configured.
+	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone,
-			Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
 		buildNPC(zone);
 	}
 
@@ -56,18 +53,13 @@ public class BuyerNPC implements ZoneConfigurator {
 			protected void createDialog() {
 				addGreeting("Welcome to the supply stores for the Mithrilbourgh Army.");
 				addJob("I proud to be the Quartermaster of the Mithrilbourgh Army. However, we are lacking in #boots and #helmets.");
-				addReply(
-						"boots",
-						"I seem to hand out stone boots very regularly, but our careless soldiers  always lose them. Thus, I buy any good boots that you can #offer, see the blue book for a price list.");
-				addReply(
-						"helmets",
-						"I do not have a good source of helmets. Any you can #trade with me would be appreciated, at the moment we only have enough for the lieutenants, and none for the soldiers. The red book has details.");
+				addReply("boots", "I seem to hand out stone boots very regularly, but our careless soldiers  always lose them. Thus, I buy any good boots that you can #offer, see the blue book for a price list.");
+				addReply("helmets", "I do not have a good source of helmets. Any you can #trade with me would be appreciated, at the moment we only have enough for the lieutenants, and none for the soldiers. The red book has details.");
 				addHelp("As Quartermaster, I take #offers for supplies which we are short of.");
 				addOffer("I buy #boots and #helmets on behalf of the Mithrilbourgh Army.");
 				addQuest("The Mithrilbourgh Army is not in need your services at present.");
-				new BuyerAdder().add(this, new BuyerBehaviour(
-						shops.get("boots&helm")), false);
-				addGoodbye("Bye.");
+				new BuyerAdder().add(this, new BuyerBehaviour(shops.get("boots&helm")), false);
+ 				addGoodbye("Bye.");
 			}
 		};
 		npc.setDescription("You see Diehelm Brui, the Quartermaster.");

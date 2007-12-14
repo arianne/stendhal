@@ -29,7 +29,7 @@ import marauroa.common.game.IRPZone;
 /**
  * A quest where the player has to invert an arrow build out of stones by moving
  * only up to 3 tokens.
- * 
+ *
  * @author hendrik
  */
 // TODO: split this class, it does too many different things
@@ -78,7 +78,7 @@ public class ReverseArrow extends AbstractQuest implements
 
 		/**
 		 * Is the task solved?
-		 * 
+		 *
 		 * @return true on success, false on failure
 		 */
 		private boolean checkBoard() {
@@ -137,8 +137,9 @@ public class ReverseArrow extends AbstractQuest implements
 			if (checkBoard() && (moveCount <= MAX_MOVES)) {
 				if (!player.isQuestCompleted(QUEST_SLOT)) {
 					npc.say("Congratulations, you solved the quiz.");
-					StackableItem money = (StackableItem) StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
-							"money");
+					StackableItem money = (StackableItem) StendhalRPWorld.get()
+							.getRuleManager().getEntityManager().getItem(
+									"money");
 					money.setQuantity(50);
 					player.equip(money);
 					player.addXP(100);
@@ -189,7 +190,7 @@ public class ReverseArrow extends AbstractQuest implements
 
 		/**
 		 * Starts a teleport-out-timer
-		 * 
+		 *
 		 * @param player
 		 *            the player who started the timer
 		 */
@@ -256,14 +257,15 @@ public class ReverseArrow extends AbstractQuest implements
 
 	/**
 	 * creates a token and adds it to the world
-	 * 
+	 *
 	 * @param x
 	 *            x-position
 	 * @param y
 	 *            y-position
 	 */
 	private void addTokenToWorld(int x, int y) {
-		EntityManager entityManager = StendhalRPWorld.get().getRuleManager().getEntityManager();
+		EntityManager entityManager = StendhalRPWorld.get().getRuleManager()
+				.getEntityManager();
 		Token token = (Token) entityManager.getItem("token");
 		token.setPosition(x, y);
 		token.setPersistent(true);
@@ -321,14 +323,13 @@ public class ReverseArrow extends AbstractQuest implements
 			protected void createDialog() {
 				addGreeting(null, new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence,
-							SpeakerNPC engine) {
+					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						if (!player.isQuestCompleted(QUEST_SLOT)) {
 							engine.say("Hi, welcome to our small game. Your task is to let this arrow point upwards, by moving up to three tokens.");
 						} else {
 							engine.say("Hi again "
-									+ player.getTitle()
-									+ ". I rembemer that you solved this problem already. You can do it again, of course.");
+								+ player.getTitle()
+								+ ". I rembemer that you solved this problem already. You can do it again, of course.");
 						}
 					}
 				});
@@ -378,7 +379,7 @@ public class ReverseArrow extends AbstractQuest implements
 
 	/**
 	 * The player moved a token
-	 * 
+	 *
 	 * @param player
 	 *            Player
 	 */
@@ -390,7 +391,7 @@ public class ReverseArrow extends AbstractQuest implements
 			npc.say("This was your " + Grammar.ordered(moveCount)
 					+ " and final move. Let me check your work.");
 			TurnNotifier.get().notifyInTurns(6, new ReverseArrowCheck()); // 2
-			// seconds
+																			// seconds
 			if (timer != null) {
 				TurnNotifier.get().dontNotify(timer);
 			}
@@ -401,7 +402,7 @@ public class ReverseArrow extends AbstractQuest implements
 
 	/**
 	 * A player entered the zone
-	 * 
+	 *
 	 * @param player
 	 *            Player
 	 */
@@ -420,7 +421,7 @@ public class ReverseArrow extends AbstractQuest implements
 
 	/**
 	 * Finishes the quest and teleports the player out.
-	 * 
+	 *
 	 * @param reset
 	 *            reset it for the next player (set to false on login)
 	 * @param player

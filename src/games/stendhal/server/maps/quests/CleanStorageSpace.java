@@ -43,24 +43,24 @@ public class CleanStorageSpace extends AbstractQuest {
 	private void step_1() {
 		SpeakerNPC npc = npcs.get("Eonna");
 
-		npc.add(
-				ConversationStates.ATTENDING,
-				ConversationPhrases.QUEST_MESSAGES,
+		npc.add(ConversationStates.ATTENDING,
+				ConversationPhrases.QUEST_MESSAGES, 
 				new QuestNotStartedCondition(QUEST_SLOT),
 				ConversationStates.QUEST_OFFERED,
 				"My #basement is absolutely crawling with rats. Will you help me?",
 				null);
 
 		npc.add(ConversationStates.ATTENDING,
-				ConversationPhrases.QUEST_MESSAGES, new QuestActiveCondition(
-						QUEST_SLOT), ConversationStates.ATTENDING,
+				ConversationPhrases.QUEST_MESSAGES, 
+				new QuestActiveCondition(QUEST_SLOT),
+				ConversationStates.ATTENDING, 
 				"Thanks again! I think it's still clear down there.", null);
 
 		List<SpeakerNPC.ChatAction> start = new LinkedList<SpeakerNPC.ChatAction>();
 		start.add(new StartRecordingKillsAction("rat", "caverat", "snake"));
 		start.add(new IncreaseKarmaAction(2.0));
 		start.add(new SetQuestAction(QUEST_SLOT, "start"));
-
+		
 		npc.add(
 				ConversationStates.QUEST_OFFERED,
 				ConversationPhrases.YES_MESSAGES,
@@ -90,7 +90,7 @@ public class CleanStorageSpace extends AbstractQuest {
 	private void step_3() {
 
 		SpeakerNPC npc = npcs.get("Eonna");
-
+		
 		List<SpeakerNPC.ChatAction> reward = new LinkedList<SpeakerNPC.ChatAction>();
 		reward.add(new IncreaseKarmaAction(3.0));
 		reward.add(new IncreaseXPAction(25));
@@ -99,19 +99,12 @@ public class CleanStorageSpace extends AbstractQuest {
 		// the player returns to Eonna after having started the quest.
 		// Eonna checks if the player has killed one of each animal race.
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(
-						new QuestInStateCondition(QUEST_SLOT, "start"),
-						new KilledCondition("rat", "caverat", "snake")),
+				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"), new KilledCondition("rat", "caverat", "snake")),
 				ConversationStates.ATTENDING, "A hero at last! Thank you!",
 				new MultipleActions(reward));
 
-		npc.add(
-				ConversationStates.IDLE,
-				ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(
-						new QuestInStateCondition(QUEST_SLOT, "start"),
-						new NotCondition(new KilledCondition("rat", "caverat",
-								"snake"))),
+		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
+				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"), new NotCondition(new KilledCondition("rat", "caverat", "snake"))),
 				ConversationStates.QUEST_STARTED,
 				"Don't you remember promising to clean out the rats from my #basement?",
 				null);

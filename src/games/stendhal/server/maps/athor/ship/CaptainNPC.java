@@ -12,13 +12,13 @@ import games.stendhal.server.maps.athor.ship.AthorFerry.Status;
 /** Factory for the captain of Athor Ferry */
 public class CaptainNPC extends SpeakerNPCFactory {
 
-	Status ferrystate;
-
+Status ferrystate;
 	@Override
 	protected SpeakerNPC instantiate(String name) {
 		// The NPC is defined as a ferry announcer because he notifies
 		// passengers when the ferry arrives or departs.
 		SpeakerNPC npc = new SpeakerNPC(name) {
+
 
 			@Override
 			protected void onGoodbye(Player player) {
@@ -38,13 +38,16 @@ public class CaptainNPC extends SpeakerNPCFactory {
 		npc.addHelp("Never look up when a sea gull is flying over ye head!");
 		npc.addJob("I'm th' captain of me boat.");
 
-		npc.add(ConversationStates.ATTENDING, "status", null,
-				ConversationStates.ATTENDING, null, new ChatAction() {
+		npc.add(ConversationStates.ATTENDING,
+				"status",
+				null,
+				ConversationStates.ATTENDING,
+				null,
+				new ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence,
-							SpeakerNPC npc) {
+					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 						npc.say(ferrystate.toString());
-						// .getCurrentDescription());
+								//.getCurrentDescription());
 					}
 				});
 
@@ -53,21 +56,21 @@ public class CaptainNPC extends SpeakerNPCFactory {
 			@Override
 			public void onNewFerryState(Status status) {
 				ferrystate = status;
-				switch (status) {
-				case ANCHORED_AT_MAINLAND:
-				case ANCHORED_AT_ISLAND:
-					// capital letters symbolize shouting
-					npc.say("LET GO ANCHOR!");
-					break;
+					switch (status) {
+					case ANCHORED_AT_MAINLAND:
+					case ANCHORED_AT_ISLAND:
+						// capital letters symbolize shouting
+						npc.say("LET GO ANCHOR!");
+						break;
 
-				default:
-					npc.say("ANCHORS AWEIGH! SET SAIL!");
-					break;
-				}
-				// Turn back to the wheel
-				npc.setDirection(Direction.DOWN);
+					default:
+						npc.say("ANCHORS AWEIGH! SET SAIL!");
+						break;
+					}
+					// Turn back to the wheel
+					npc.setDirection(Direction.DOWN);
 
 			}
-		};
+			};
 	}
 }

@@ -21,14 +21,11 @@ public class BarMaidNPC implements ZoneConfigurator {
 
 	/**
 	 * Configure a zone.
-	 * 
-	 * @param zone
-	 *            The zone to be configured.
-	 * @param attributes
-	 *            Configuration attributes.
+	 *
+	 * @param	zone		The zone to be configured.
+	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone,
-			Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
 		buildMargaret(zone);
 	}
 
@@ -57,8 +54,7 @@ public class BarMaidNPC implements ZoneConfigurator {
 				addGreeting();
 				addJob("I am the bar maid for this fair tavern. We sell both imported and local beers, and fine food.");
 				addHelp("This tavern is a great place to take a break and meet new people! Just ask if you want me to #offer you a drink.");
-				new SellerAdder().addSeller(this, new SellerBehaviour(
-						shops.get("food&drinks")));
+				new SellerAdder().addSeller(this, new SellerBehaviour(shops.get("food&drinks")));
 				addGoodbye();
 			}
 		};

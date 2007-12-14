@@ -12,20 +12,17 @@ import java.util.Map;
 
 /**
  * Creates the NPCs and portals in Ados City.
- * 
+ *
  * @author hendrik
  */
 public class MakeupArtistNPC implements ZoneConfigurator {
 	/**
 	 * Configure a zone.
-	 * 
-	 * @param zone
-	 *            The zone to be configured.
-	 * @param attributes
-	 *            Configuration attributes.
+	 *
+	 * @param	zone		The zone to be configured.
+	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone,
-			Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
 		buildFidorea(zone);
 	}
 
@@ -42,35 +39,18 @@ public class MakeupArtistNPC implements ZoneConfigurator {
 			protected void createDialog() {
 				addGreeting("Hi, there. Do you need #help with anything?");
 				addHelp("If you don't like your mask, you can #return and I will remove it, or you can just wait until it wears off.");
-				addQuest("Are you looking for toys for Anna? She loves my costumes, perhaps she'd like a #dress to try on. If you already got her one, I guess she'll have to wait till I make more costumes!"); // this
-																																																					// is a
-																																																					// hint
-																																																					// that
-																																																					// one
-																																																					// of
-																																																					// the
-																																																					// items
-																																																					// Anna
-																																																					// wants
-																																																					// is a
-																																																					// dress
-																																																					// (goblin
-																																																					// dress)
+				addQuest("Are you looking for toys for Anna? She loves my costumes, perhaps she'd like a #dress to try on. If you already got her one, I guess she'll have to wait till I make more costumes!"); // this is a hint that one of the items Anna wants is a dress (goblin dress)
 				addJob("I am a makeup artist.");
 				addReply(
-						"dress",
-						"I read stories that goblins wear a dress as a kind of armor! If you're scared of goblins, like me, maybe you can buy a dress somewhere. ");
-				// addReply("offer", "Normally I sell masks. But I ran out of
-				// clothes and cannot by new ones until the cloth seller gets
-				// back from his search.");
+				        "dress",
+				        "I read stories that goblins wear a dress as a kind of armor! If you're scared of goblins, like me, maybe you can buy a dress somewhere. ");
+				//addReply("offer", "Normally I sell masks. But I ran out of clothes and cannot by new ones until the cloth seller gets back from his search.");
 				addGoodbye("Bye, come back soon.");
 
 				Map<String, Integer> priceList = new HashMap<String, Integer>();
 				priceList.put("mask", 2);
-				OutfitChangerBehaviour behaviour = new OutfitChangerBehaviour(
-						priceList, 100, "Your mask has worn off.");
-				new OutfitChangerAdder().addOutfitChanger(this, behaviour,
-						"buy");
+				OutfitChangerBehaviour behaviour = new OutfitChangerBehaviour(priceList, 100, "Your mask has worn off.");
+				new OutfitChangerAdder().addOutfitChanger(this, behaviour, "buy");
 			}
 		};
 

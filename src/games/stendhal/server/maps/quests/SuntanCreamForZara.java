@@ -67,61 +67,60 @@ public class SuntanCreamForZara extends AbstractQuest {
 		SpeakerNPC zara = npcs.get("Zara");
 
 		zara.add(ConversationStates.ATTENDING,
-				ConversationPhrases.QUEST_MESSAGES, null,
-				ConversationStates.QUEST_OFFERED, null,
-				new SpeakerNPC.ChatAction() {
-					@Override
-					public void fire(Player player, Sentence sentence,
-							SpeakerNPC npc) {
-						if (player.hasQuest(QUEST_SLOT)) {
-							if (player.isQuestCompleted(QUEST_SLOT)) {
-								npc.say("I don't have a new task for you. But thank you for the suntan cream. I feel my skin is getting better already!");
-								npc.setCurrentState(ConversationStates.ATTENDING);
-							} else {
-								npc.say("Did you forget that you promised me to ask the #lifeguards for #suntan_cream?");
-								npc.setCurrentState(ConversationStates.ATTENDING);
-							}
+			ConversationPhrases.QUEST_MESSAGES, null,
+			ConversationStates.QUEST_OFFERED, null,
+			new SpeakerNPC.ChatAction() {
+				@Override
+				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					if (player.hasQuest(QUEST_SLOT)) {
+						if (player.isQuestCompleted(QUEST_SLOT)) {
+							npc.say("I don't have a new task for you. But thank you for the suntan cream. I feel my skin is getting better already!");
+							npc.setCurrentState(ConversationStates.ATTENDING);
 						} else {
-							npc.say("I fell asleep in the sun and now my skin is burnt. Can you bring me the magic #suntan_cream that the #lifeguards produce?");
+							npc.say("Did you forget that you promised me to ask the #lifeguards for #suntan_cream?");
+							npc.setCurrentState(ConversationStates.ATTENDING);
 						}
+					} else {
+						npc.say("I fell asleep in the sun and now my skin is burnt. Can you bring me the magic #suntan_cream that the #lifeguards produce?");
 					}
-				});
+				}
+			});
 
 		zara.add(ConversationStates.QUEST_OFFERED,
-				ConversationPhrases.YES_MESSAGES, null,
-				ConversationStates.ATTENDING,
-				"Thank you very much. I'll be waiting here for your return!",
-				new SetQuestAction(QUEST_SLOT, "start"));
+			ConversationPhrases.YES_MESSAGES, null,
+			ConversationStates.ATTENDING,
+			"Thank you very much. I'll be waiting here for your return!",
+			new SetQuestAction(QUEST_SLOT, "start"));
 
 		zara.add(ConversationStates.QUEST_OFFERED,
-				ConversationPhrases.NO_MESSAGES, null,
-				ConversationStates.ATTENDING,
-				"Ok, but I would have had a nice reward for you...",
-				new SetQuestAction("QUEST_SLOT", "start"));
+			ConversationPhrases.NO_MESSAGES, null,
+			ConversationStates.ATTENDING,
+			"Ok, but I would have had a nice reward for you...",
+			new SetQuestAction("QUEST_SLOT", "start"));
 
 		zara.add(
-				ConversationStates.QUEST_OFFERED,
-				Arrays.asList("suntan_cream", "suntan", "cream"),
-				null,
-				ConversationStates.QUEST_OFFERED,
-				"The #lifeguards make a great cream to protect from the sun and to heal sunburns at the same time. Now, will you get it for me?",
-				null);
+			ConversationStates.QUEST_OFFERED,
+			Arrays.asList("suntan_cream", "suntan", "cream"),
+			null,
+			ConversationStates.QUEST_OFFERED,
+			"The #lifeguards make a great cream to protect from the sun and to heal sunburns at the same time. Now, will you get it for me?",
+			null);
 
 		zara.add(
-				ConversationStates.QUEST_OFFERED,
-				"lifeguard",
-				null,
-				ConversationStates.QUEST_OFFERED,
-				"The lifeguards are called Pam and David. I think they are in the dressing rooms. So, will you ask them for me?",
-				null);
+			ConversationStates.QUEST_OFFERED,
+			"lifeguard",
+			null,
+			ConversationStates.QUEST_OFFERED,
+			"The lifeguards are called Pam and David. I think they are in the dressing rooms. So, will you ask them for me?",
+			null);
 
 		zara.addReply(
-				Arrays.asList("suntan_cream", "suntan", "cream"),
-				"The #lifeguards make a great cream to protect from the sun and to heal sunburns at the same time.");
+			Arrays.asList("suntan_cream", "suntan", "cream"),
+			"The #lifeguards make a great cream to protect from the sun and to heal sunburns at the same time.");
 
 		zara.addReply(
-				"lifeguard",
-				"The lifeguards are called Pam and David. I think they are in the dressing rooms.");
+			"lifeguard",
+			"The lifeguards are called Pam and David. I think they are in the dressing rooms.");
 
 	}
 
@@ -129,50 +128,49 @@ public class SuntanCreamForZara extends AbstractQuest {
 		SpeakerNPC zara = npcs.get("Zara");
 
 		zara.add(ConversationStates.IDLE,
-				ConversationPhrases.GREETING_MESSAGES,
-				new QuestInStateCondition(QUEST_SLOT, "start"),
-				ConversationStates.QUEST_ITEM_BROUGHT, null,
-				new SpeakerNPC.ChatAction() {
-					@Override
-					public void fire(Player player, Sentence sentence,
-							SpeakerNPC npc) {
-						if (player.isEquipped("suntan_cream")) {
-							npc.say("Great! You got the suntan cream! Is it for me?");
-						} else {
-							npc.say("I know that the #suntan #cream is hard to get, but I hope that you didn't forget my painful problem...");
-							npc.setCurrentState(ConversationStates.ATTENDING);
-						}
+			ConversationPhrases.GREETING_MESSAGES,
+			new QuestInStateCondition(QUEST_SLOT, "start"),
+			ConversationStates.QUEST_ITEM_BROUGHT, null,
+			new SpeakerNPC.ChatAction() {
+				@Override
+				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					if (player.isEquipped("suntan_cream")) {
+						npc.say("Great! You got the suntan cream! Is it for me?");
+					} else {
+						npc.say("I know that the #suntan #cream is hard to get, but I hope that you didn't forget my painful problem...");
+						npc.setCurrentState(ConversationStates.ATTENDING);
 					}
-				});
+				}
+			});
 
 		zara.add(
-				ConversationStates.QUEST_ITEM_BROUGHT,
-				ConversationPhrases.YES_MESSAGES,
-				// make sure the player isn't cheating by putting the
-				// helmet away and then saying "yes"
-				new PlayerHasItemWithHimCondition("suntan_cream"),
-				ConversationStates.ATTENDING,
-				"Thank you! I feel much better immediately! Here, take this key to my row house in Ados. Feel at home as long as I'm still here!",
-				new SpeakerNPC.ChatAction() {
-					@Override
-					public void fire(Player player, Sentence sentence,
-							SpeakerNPC npc) {
-						player.drop("suntan_cream");
-						Item zaraKey = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
-								"small_key");
-						zaraKey.setBoundTo(player.getName());
-						player.equip(zaraKey, true);
-						player.addXP(1000);
-						player.setQuest(QUEST_SLOT, "done");
-						player.notifyWorldAboutChanges();
-					}
-				});
+			ConversationStates.QUEST_ITEM_BROUGHT,
+			ConversationPhrases.YES_MESSAGES,
+			// make sure the player isn't cheating by putting the
+			// helmet away and then saying "yes"
+			new PlayerHasItemWithHimCondition("suntan_cream"),
+			ConversationStates.ATTENDING,
+			"Thank you! I feel much better immediately! Here, take this key to my row house in Ados. Feel at home as long as I'm still here!",
+			new SpeakerNPC.ChatAction() {
+				@Override
+				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					player.drop("suntan_cream");
+					Item zaraKey = StendhalRPWorld.get()
+							.getRuleManager().getEntityManager()
+							.getItem("small_key");
+					zaraKey.setBoundTo(player.getName());
+					player.equip(zaraKey, true);
+					player.addXP(1000);
+					player.setQuest(QUEST_SLOT, "done");
+					player.notifyWorldAboutChanges();
+				}
+			});
 
 		zara.add(ConversationStates.QUEST_ITEM_BROUGHT,
-				ConversationPhrases.NO_MESSAGES, null,
-				ConversationStates.ATTENDING,
-				"No? Look at me! I cannot believe that you're so selfish!",
-				null);
+			ConversationPhrases.NO_MESSAGES, null,
+			ConversationStates.ATTENDING,
+			"No? Look at me! I cannot believe that you're so selfish!",
+			null);
 	}
 
 	@Override

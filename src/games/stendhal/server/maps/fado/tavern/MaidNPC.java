@@ -15,7 +15,7 @@ import java.util.Map;
 
 /**
  * Builds the tavern maid NPC.
- * 
+ *
  * @author timothyb89/kymara
  */
 public class MaidNPC implements ZoneConfigurator {
@@ -25,14 +25,11 @@ public class MaidNPC implements ZoneConfigurator {
 
 	/**
 	 * Configure a zone.
-	 * 
-	 * @param zone
-	 *            The zone to be configured.
-	 * @param attributes
-	 *            Configuration attributes.
+	 *
+	 * @param	zone		The zone to be configured.
+	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone,
-			Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
 		buildNPC(zone, attributes);
 	}
 
@@ -60,7 +57,7 @@ public class MaidNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-				// addGreeting();
+				//addGreeting();
 				addJob("I am the bar maid for this fair tavern. We sell imported beers and fine food.");
 				addHelp("Why not gather some friends and take a break together, you can put your food down and eat from that long table.");
 				addQuest("Oh, I don't have time for anything like that.");
@@ -72,7 +69,7 @@ public class MaidNPC implements ZoneConfigurator {
 				offers.put("chicken", 50);
 				offers.put("bread", 50);
 				offers.put("sandwich", 150);
-
+	 
 				new SellerAdder().addSeller(this, new SellerBehaviour(offers));
 				addGoodbye("Goodbye, all you customers do work me hard ...");
 			}

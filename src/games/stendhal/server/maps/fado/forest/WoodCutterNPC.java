@@ -14,8 +14,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Builds an NPC to buy previously un bought axes He is a wood cutter.
- * 
+ * Builds an NPC to buy previously un bought axes
+ * He is a wood cutter.
+ *
  * @author kymara
  */
 public class WoodCutterNPC implements ZoneConfigurator {
@@ -23,14 +24,11 @@ public class WoodCutterNPC implements ZoneConfigurator {
 
 	/**
 	 * Configure a zone.
-	 * 
-	 * @param zone
-	 *            The zone to be configured.
-	 * @param attributes
-	 *            Configuration attributes.
+	 *
+	 * @param	zone		The zone to be configured.
+	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone,
-			Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
 		buildNPC(zone);
 	}
 
@@ -60,9 +58,8 @@ public class WoodCutterNPC implements ZoneConfigurator {
 				addHelp("You can sometimes collect wood that's lying around the forest. Oh, and I take #offers of any good axe you might sell.");
 				addOffer("My axes become blunt fast. Please check the sign I made outside my lodge to see the axes I buy.");
 				addQuest("What's that you say? I don't need anything, though my young friend Sally over the river might need a hand.");
-				new BuyerAdder().add(this, new BuyerBehaviour(
-						shops.get("buyaxe")), false);
-				addGoodbye("Bye.");
+				new BuyerAdder().add(this, new BuyerBehaviour(shops.get("buyaxe")), false);
+ 				addGoodbye("Bye.");
 			}
 		};
 

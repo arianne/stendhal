@@ -11,8 +11,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * An orcish NPC who buys sheep from players. You get the weight of the sheep *
- * 15 in gold coins.
+ * An orcish NPC who buys sheep from players.
+ * You get the weight of the sheep * 15 in gold coins.
  */
 public class SheepBuyerNPC extends SpeakerNPCFactory {
 
@@ -30,8 +30,7 @@ public class SheepBuyerNPC extends SpeakerNPCFactory {
 			public int getCharge(Player player) {
 				if (player.hasSheep()) {
 					Sheep sheep = player.getSheep();
-					return Math.round(getUnitPrice(chosenItem)
-							* ((float) sheep.getWeight() / (float) sheep.MAX_WEIGHT));
+					return Math.round(getUnitPrice(chosenItem) * ((float) sheep.getWeight() / (float) sheep.MAX_WEIGHT));
 				} else {
 					return 0;
 				}
@@ -69,7 +68,7 @@ public class SheepBuyerNPC extends SpeakerNPCFactory {
 		npc.addGreeting();
 		npc.addJob(npc.getName() + " is buy real cheep from hoomans.");
 		npc.addHelp(npc.getName() + " buy sheep! Sell me sheep! "
-				+ npc.getName() + " is hungry!");
+				+ npc.getName()	+ " is hungry!");
 		new BuyerAdder().add(npc, new SheepBuyerBehaviour(buyitems), true);
 		npc.addGoodbye();
 	}

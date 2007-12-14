@@ -4,7 +4,7 @@ import java.util.Date;
 
 /**
  * manages the deathmatch state (which is store in a quest slot)
- * 
+ *
  * @author hendrik
  */
 class DeathmatchState {
@@ -21,7 +21,7 @@ class DeathmatchState {
 
 	/**
 	 * creates a start state
-	 * 
+	 *
 	 * @param level
 	 * @return start state
 	 */
@@ -38,14 +38,14 @@ class DeathmatchState {
 
 	/**
 	 * parses the questString
-	 * 
+	 *
 	 * @param questString
 	 *            quest string
 	 * @return start state
 	 */
 	public static DeathmatchState createFromQuestString(String questString) {
 		DeathmatchState deathmatchState = new DeathmatchState();
-		// place an elephant in Cairo
+		//place an elephant in Cairo
 		String[] tokens = (questString + ";0;0").split(";");
 		deathmatchState.lifecycleState = DeathmatchLifecycle.getFromQuestStateString(tokens[0]);
 		deathmatchState.level = Integer.parseInt(tokens[1]);
@@ -55,7 +55,7 @@ class DeathmatchState {
 
 	/**
 	 * Gets the quest level
-	 * 
+	 *
 	 * @return quest level
 	 */
 	int getQuestLevel() {
@@ -64,7 +64,7 @@ class DeathmatchState {
 
 	/**
 	 * Sets the quest level
-	 * 
+	 *
 	 * @param level
 	 *            quest level
 	 */
@@ -72,13 +72,14 @@ class DeathmatchState {
 		this.level = level;
 	}
 
+
 	void increaseQuestlevel() {
 		this.level++;
 	}
 
 	/**
 	 * gets the current lifecycle state
-	 * 
+	 *
 	 * @return lifecycleState
 	 */
 	DeathmatchLifecycle getLifecycleState() {
@@ -87,7 +88,7 @@ class DeathmatchState {
 
 	/**
 	 * sets the current lifecycle state
-	 * 
+	 *
 	 * @param lifecycleState
 	 *            DeathmatchLifecycle
 	 */
@@ -98,7 +99,7 @@ class DeathmatchState {
 
 	/**
 	 * returns the state as string which can be stored in the quest slot
-	 * 
+	 *
 	 * @return quest string
 	 */
 	String toQuestString() {

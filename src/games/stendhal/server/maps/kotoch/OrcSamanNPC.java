@@ -11,20 +11,17 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 
+ *
  * @author kymara
  */
 public class OrcSamanNPC implements ZoneConfigurator {
 	/**
 	 * Configure a zone.
-	 * 
-	 * @param zone
-	 *            The zone to be configured.
-	 * @param attributes
-	 *            Configuration attributes.
+	 *
+	 * @param	zone		The zone to be configured.
+	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone,
-			Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
 		buildNPC(zone);
 	}
 
@@ -38,7 +35,7 @@ public class OrcSamanNPC implements ZoneConfigurator {
 				nodes.add(new Node(16, 113));
 				nodes.add(new Node(16, 115));
 				nodes.add(new Node(22, 115));
-				nodes.add(new Node(22, 119));
+				nodes.add(new Node(22, 119));				
 				nodes.add(new Node(8, 119));
 				setPath(new FixedPath(nodes, true));
 			}
@@ -49,7 +46,7 @@ public class OrcSamanNPC implements ZoneConfigurator {
 				addJob("Me, Orc Saman.");
 				addHelp("Orc Saman need help! Make #task.");
 				addOffer("No trade.");
-				addGoodbye("see yoo.");
+ 				addGoodbye("see yoo.");
 			}
 		};
 

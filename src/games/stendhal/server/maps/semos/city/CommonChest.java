@@ -11,14 +11,11 @@ public class CommonChest implements ZoneConfigurator {
 
 	/**
 	 * Configure a zone.
-	 * 
-	 * @param zone
-	 *            The zone to be configured.
-	 * @param attributes
-	 *            Configuration attributes.
+	 *
+	 * @param	zone		The zone to be configured.
+	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone,
-			Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
 		buildSemosCityAreaChest(zone);
 	}
 
@@ -26,14 +23,10 @@ public class CommonChest implements ZoneConfigurator {
 
 		Chest chest = new Chest();
 		chest.setPosition(44, 60);
-		chest.add(StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
-				"knife"));
-		chest.add(StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
-				"wooden_shield"));
-		chest.add(StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
-				"leather_armor"));
-		chest.add(StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
-				"money"));
+		chest.add(StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("knife"));
+		chest.add(StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("wooden_shield"));
+		chest.add(StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("leather_armor"));
+		chest.add(StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("money"));
 		zone.add(chest);
 	}
 }

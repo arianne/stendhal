@@ -18,12 +18,12 @@ import java.util.Arrays;
 
 /**
  * QUEST: Rainbow Beans
- * 
+ *
  * PARTICIPANTS:
  * <ul>
  * <li>Pdiddi, a dealer in rainbow beans
  * </ul>
- * 
+ *
  * STEPS:
  * <ul>
  * <li>The NPC sells rainbow beans to players above level 30</li>
@@ -31,18 +31,18 @@ import java.util.Arrays;
  * sights, hallucinations and the creatures of your nightmares</li>
  * <li>You can remain there for up to 30 minutes</li>
  * </ul>
- * 
+ *
  * REWARD:
  * <ul>
  * <li>The dream world is really cool!</li>
  * <li>XP from creatures you kill there</li>
  * </ul>
- * 
+ *
  * REPETITIONS:
  * <ul>
  * <li>No more than once every 6 hours</li>
  * </ul>
- * 
+ *
  * NOTES:
  * <ul>
  * <li>The area of the dreamworld will be a no teleport zone</li>
@@ -67,14 +67,11 @@ public class RainbowBeans extends AbstractQuest {
 	public void init(String name) {
 		super.init(name, QUEST_SLOT);
 		if (scroll == null) {
-			scroll = (RainbowBeansScroll) StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
-					"rainbow_beans");
+			scroll = (RainbowBeansScroll) StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("rainbow_beans");
 		}
 
-		/*
-		 * login notifier to teleport away players logging into the dream world.
-		 * TODO: this should be done in the TimedTeleportScroll class or it's
-		 * subclass.
+		/* login notifier to teleport away players logging into the dream world.
+		 * TODO: this should be done in the TimedTeleportScroll class or it's subclass.
 		 */
 		LoginNotifier.get().addListener(new LoginListener() {
 			public void onLoggedIn(Player player) {
@@ -89,154 +86,149 @@ public class RainbowBeans extends AbstractQuest {
 
 		// player says hi before starting the quest
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-				new QuestNotStartedCondition(QUEST_SLOT),
-				ConversationStates.INFORMATION_1,
-				"SHHH! Don't want all n' sundry knowin' wot I #deal in.", null);
+			new QuestNotStartedCondition(QUEST_SLOT),
+			ConversationStates.INFORMATION_1,
+			"SHHH! Don't want all n' sundry knowin' wot I #deal in.", null);
 
 		// player returns after finishing the quest (it is repeatable) after the
 		// time as finished
 		npc.add(
-				ConversationStates.IDLE,
-				ConversationPhrases.GREETING_MESSAGES,
-				new SpeakerNPC.ChatCondition() {
-					@Override
-					public boolean fire(Player player, Sentence sentence,
-							SpeakerNPC npc) {
-						// we don't set quest slot to done so we can't check
-						// this
-						// return player.isQuestCompleted(QUEST_SLOT);
-						boolean questdone = player.hasQuest(QUEST_SLOT)
-								&& player.getQuest(QUEST_SLOT).startsWith(
-										"done");
-						if (!questdone) {
-							return false; // we haven't done the quest yet
-						}
-
-						String[] tokens = player.getQuest(QUEST_SLOT).split(";");
-						long delay = REQUIRED_MINUTES * 60 * 1000; // minutes
-						// ->
-						// milliseconds
-						long timeRemaining = (Long.parseLong(tokens[1]) + delay)
-								- System.currentTimeMillis();
-						return (timeRemaining <= 0L);
+			ConversationStates.IDLE,
+			ConversationPhrases.GREETING_MESSAGES,
+			new SpeakerNPC.ChatCondition() {
+				@Override
+				public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					// we don't set quest slot to done so we can't check
+					// this
+					// return player.isQuestCompleted(QUEST_SLOT);
+					boolean questdone = player.hasQuest(QUEST_SLOT)
+							&& player.getQuest(QUEST_SLOT).startsWith(
+									"done");
+					if (!questdone) {
+						return false; // we haven't done the quest yet
 					}
-				}, ConversationStates.QUEST_OFFERED,
-				"Oi, you. Back for more rainbow beans?", null);
+
+					String[] tokens = player.getQuest(QUEST_SLOT).split(";");
+					long delay = REQUIRED_MINUTES * 60 * 1000; // minutes
+					// ->
+					// milliseconds
+					long timeRemaining = (Long.parseLong(tokens[1]) + delay)
+							- System.currentTimeMillis();
+					return (timeRemaining <= 0L);
+				}
+			}, ConversationStates.QUEST_OFFERED,
+			"Oi, you. Back for more rainbow beans?", null);
 
 		// player returns after finishing the quest (it is repeatable) before
 		// the time as finished
 		npc.add(
-				ConversationStates.IDLE,
-				ConversationPhrases.GREETING_MESSAGES,
-				new SpeakerNPC.ChatCondition() {
-					@Override
-					public boolean fire(Player player, Sentence sentence,
-							SpeakerNPC npc) {
-						// we don't set quest slot to done so we can't check
-						// this
-						// return player.isQuestCompleted(QUEST_SLOT);
-						boolean questdone = player.hasQuest(QUEST_SLOT)
-								&& player.getQuest(QUEST_SLOT).startsWith(
-										"done");
-						if (!questdone) {
-							return false; // we haven't done the quest yet
-						}
+			ConversationStates.IDLE,
+			ConversationPhrases.GREETING_MESSAGES,
+			new SpeakerNPC.ChatCondition() {
+				@Override
+				public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					// we don't set quest slot to done so we can't check
+					// this
+					// return player.isQuestCompleted(QUEST_SLOT);
+					boolean questdone = player.hasQuest(QUEST_SLOT)
+							&& player.getQuest(QUEST_SLOT).startsWith(
+									"done");
+					if (!questdone) {
+						return false; // we haven't done the quest yet
+					}
 
-						String[] tokens = player.getQuest(QUEST_SLOT).split(";");
-						long delay = REQUIRED_MINUTES * 60 * 1000; // minutes
-						// ->
-						// milliseconds
-						long timeRemaining = (Long.parseLong(tokens[1]) + delay)
-								- System.currentTimeMillis();
-						return (timeRemaining > 0L);
-					}
-				}, ConversationStates.ATTENDING, null,
-				new SpeakerNPC.ChatAction() {
-					@Override
-					public void fire(Player player, Sentence sentence,
-							SpeakerNPC npc) {
-						String[] tokens = player.getQuest(QUEST_SLOT).split(";");
-						long delay = REQUIRED_MINUTES * 60 * 1000; // minutes
-						// ->
-						// milliseconds
-						long timeRemaining = (Long.parseLong(tokens[1]) + delay)
-								- System.currentTimeMillis();
-						npc.say("Alright? I hope you don't want more beans. You can't take more of that stuff for at least another "
-								+ TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L))
-								+ ".");
-						return;
-					}
-				});
+					String[] tokens = player.getQuest(QUEST_SLOT).split(";");
+					long delay = REQUIRED_MINUTES * 60 * 1000; // minutes
+					// ->
+					// milliseconds
+					long timeRemaining = (Long.parseLong(tokens[1]) + delay)
+							- System.currentTimeMillis();
+					return (timeRemaining > 0L);
+				}
+			}, ConversationStates.ATTENDING, null,
+			new SpeakerNPC.ChatAction() {
+				@Override
+				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					String[] tokens = player.getQuest(QUEST_SLOT).split(";");
+					long delay = REQUIRED_MINUTES * 60 * 1000; // minutes
+					// ->
+					// milliseconds
+					long timeRemaining = (Long.parseLong(tokens[1]) + delay)
+							- System.currentTimeMillis();
+					npc.say("Alright? I hope you don't want more beans. You can't take more of that stuff for at least another "
+							+ TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L))
+							+ ".");
+					return;
+				}
+			});
 
 		// player responds to word 'deal'
 		npc.add(ConversationStates.INFORMATION_1, "deal",
-				new QuestNotStartedCondition(QUEST_SLOT),
-				ConversationStates.QUEST_OFFERED, null,
-				new SpeakerNPC.ChatAction() {
-					@Override
-					public void fire(Player player, Sentence sentence,
-							SpeakerNPC npc) {
-						if (player.getLevel() >= REQUIRED_LEVEL) {
-							npc.say("Nosy, aint yer? I deal in rainbow beans. You take some, and who knows where the trip will take yer. It'll cost you "
-									+ REQUIRED_MONEY
-									+ " money. You want to buy some?");
-						} else {
-							npc.say("It's not stuff you're ready for, pal. Now get out of 'ere! An don't you come back till you've got more hairs on that chest!");
-							npc.setCurrentState(ConversationStates.ATTENDING);
-						}
+			new QuestNotStartedCondition(QUEST_SLOT),
+			ConversationStates.QUEST_OFFERED, null,
+			new SpeakerNPC.ChatAction() {
+				@Override
+				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					if (player.getLevel() >= REQUIRED_LEVEL) {
+						npc.say("Nosy, aint yer? I deal in rainbow beans. You take some, and who knows where the trip will take yer. It'll cost you "
+								+ REQUIRED_MONEY
+								+ " money. You want to buy some?");
+					} else {
+						npc.say("It's not stuff you're ready for, pal. Now get out of 'ere! An don't you come back till you've got more hairs on that chest!");
+						npc.setCurrentState(ConversationStates.ATTENDING);
 					}
-				});
+				}
+			});
 
 		// player wants to take the beans
 		npc.add(ConversationStates.QUEST_OFFERED,
-				ConversationPhrases.YES_MESSAGES, null,
-				ConversationStates.ATTENDING, null,
-				new SpeakerNPC.ChatAction() {
-					@Override
-					public void fire(Player player, Sentence sentence,
-							SpeakerNPC npc) {
-						if (player.isEquipped("money", REQUIRED_MONEY)) {
-							player.drop("money", REQUIRED_MONEY);
-							npc.say("Alright, here's the beans. Once you take them, you come down in about 30 minutes. And if you get nervous up there, hit one of the green panic squares to take you back here.");
-							player.setQuest(QUEST_SLOT, "done;"
-									+ System.currentTimeMillis());
-							Item rainbowBeans = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
-									"rainbow_beans");
-							player.equip(rainbowBeans, true);
-						} else {
-							npc.say("Scammer! You don't have the cash.");
-							npc.setCurrentState(ConversationStates.ATTENDING);
-						}
+			ConversationPhrases.YES_MESSAGES, null,
+			ConversationStates.ATTENDING, null,
+			new SpeakerNPC.ChatAction() {
+				@Override
+				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					if (player.isEquipped("money", REQUIRED_MONEY)) {
+						player.drop("money", REQUIRED_MONEY);
+						npc.say("Alright, here's the beans. Once you take them, you come down in about 30 minutes. And if you get nervous up there, hit one of the green panic squares to take you back here.");
+						player.setQuest(QUEST_SLOT, "done;"
+								+ System.currentTimeMillis());
+						Item rainbowBeans = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
+								"rainbow_beans");
+						player.equip(rainbowBeans, true);
+					} else {
+						npc.say("Scammer! You don't have the cash.");
+						npc.setCurrentState(ConversationStates.ATTENDING);
 					}
-				});
+				}
+			});
 
 		// player is not willing to experiment
 		npc.add(
-				ConversationStates.QUEST_OFFERED,
-				ConversationPhrases.NO_MESSAGES,
-				null,
-				ConversationStates.ATTENDING,
-				"Aight, ain't for everyone. Anythin else you want, you say so.",
-				null);
+			ConversationStates.QUEST_OFFERED,
+			ConversationPhrases.NO_MESSAGES,
+			null,
+			ConversationStates.ATTENDING,
+			"Aight, ain't for everyone. Anythin else you want, you say so.",
+			null);
 
 		// player says 'deal' or asks about beans when NPC is ATTENDING, not
 		// just in information state (like if they said no then changed mind and
 		// are trying to get him to deal again)
 		// Use AlwaysTrueCondition to override deal as defined in addOffer().
-		npc.add(ConversationStates.ATTENDING, Arrays.asList("deal", "beans",
-				"rainbow_beans", "yes"), new AlwaysTrueCondition(),
-				ConversationStates.ATTENDING, null,
-				new SpeakerNPC.ChatAction() {
-					@Override
-					public void fire(Player player, Sentence sentence,
-							SpeakerNPC npc) {
-						if (player.getLevel() >= 30) {
-							npc.say("We already talked about this, conversation's moved on now mate, keep up! Try another time.");
-						} else {
-							npc.say("That stuff's too strong for you. No chance mate!");
-						}
+		npc.add(ConversationStates.ATTENDING,
+			Arrays.asList("deal", "beans", "rainbow_beans", "yes"),
+			new AlwaysTrueCondition(),
+			ConversationStates.ATTENDING, null,
+			new SpeakerNPC.ChatAction() {
+				@Override
+				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					if (player.getLevel() >= 30) {
+						npc.say("We already talked about this, conversation's moved on now mate, keep up! Try another time.");
+					} else {
+						npc.say("That stuff's too strong for you. No chance mate!");
 					}
-				});
+				}
+			});
 	}
 
 	@Override

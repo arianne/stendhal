@@ -16,22 +16,22 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
+
 import org.apache.log4j.Logger;
 
+
+
 public class CreatureSpawner implements TurnListener {
-	static final Logger logger = Logger.getLogger(CreatureSpawner.class);
-	static final long SPAWN_DELAY = 15000; // spawn a new monster each 15
-											// seconds
+static final Logger logger = Logger.getLogger(CreatureSpawner.class);
+	static final long SPAWN_DELAY = 15000; // spawn a new monster each 15 seconds
 	static final long NUMBER_OF_CREATURES = 10;
 	private List<Creature> sortedCreatures = new LinkedList<Creature>();
 	private List<DeathMatchCreature> spawnedCreatures = new ArrayList<DeathMatchCreature>();
-
 	CreatureSpawner() {
 		Collection<Creature> creatures = StendhalRPWorld.get().getRuleManager().getEntityManager().getCreatures();
 		sortedCreatures.addAll(creatures);
 		Collections.sort(sortedCreatures, new LevelBasedComparator());
 	}
-
 	/**
 	 * remove the critters that the player was supposed to kill
 	 */
@@ -44,10 +44,9 @@ public class CreatureSpawner implements TurnListener {
 			}
 		}
 	}
-
 	/**
 	 * check if all our enemies are dead
-	 * 
+	 *
 	 * @return true if all are dead, false otherwise
 	 */
 	boolean areAllCreaturesDead() {
@@ -61,13 +60,10 @@ public class CreatureSpawner implements TurnListener {
 	}
 
 	/**
-	 * be nice to the player and give him his daily quest creature if he hasn't
-	 * found it yet
-	 * 
-	 * @param player
-	 *            the player taking the Deathmatch
-	 * @param dmInfo
-	 *            the Deathmatch's Info
+	 * be nice to the player and give him his daily quest creature
+	 * if he hasn't found it yet
+	 * @param player the player taking the Deathmatch
+	 * @param dmInfo the Deathmatch's Info
 	 */
 	void spawnDailyMonster(Player player, DeathmatchInfo dmInfo) {
 		String dailyInfo = player.getQuest("daily");
@@ -85,12 +81,10 @@ public class CreatureSpawner implements TurnListener {
 			}
 		}
 	}
-
 	/**
 	 * Calculate which type of creature should be spawned next
-	 * 
-	 * @param questLevel
-	 *            level of creature / deathmatch status
+	 *
+	 * @param questLevel level of creature / deathmatch status
 	 * @return creature template
 	 */
 	private Creature calculateNextCreature(int questLevel) {
@@ -124,23 +118,17 @@ public class CreatureSpawner implements TurnListener {
 
 	/**
 	 * creates a new creature of the named type and adds it to the world
-	 * 
-	 * @param template
-	 *            Creature to create
-	 * @param player
-	 *            the player who takes the deatchmatch
-	 * @param deathmatchInfo
-	 *            the deatchmatch's info
+	 *
+	 * @param template Creature to create
+	 * @param player the player who takes the deatchmatch
+	 * @param deathmatchInfo the deatchmatch's info
 	 * @return Creature or <code>null</code> in case it cannot be created
 	 */
-	DeathMatchCreature spawnNewCreature(Creature template, Player player,
-			DeathmatchInfo deathmatchInfo) {
-		DeathMatchCreature creature = new DeathMatchCreature(new ArenaCreature(
-				template.getInstance(), deathmatchInfo.getArena().getShape()));
+	DeathMatchCreature spawnNewCreature(Creature template, Player player, DeathmatchInfo deathmatchInfo) {
+		DeathMatchCreature creature = new DeathMatchCreature(
+		        new ArenaCreature(template.getInstance(), deathmatchInfo.getArena().getShape()));
 
-		if (StendhalRPAction.placeat(deathmatchInfo.getZone(), creature,
-				player.getX(), player.getY(),
-				deathmatchInfo.getArena().getShape())) {
+		if (StendhalRPAction.placeat(deathmatchInfo.getZone(), creature, player.getX(), player.getY(), deathmatchInfo.getArena().getShape())) {
 			creature.clearDropItemList();
 			creature.attack(player);
 			creature.setPlayerToReward(player);
@@ -154,10 +142,8 @@ public class CreatureSpawner implements TurnListener {
 		return creature;
 	}
 
-	DeathMatchCreature spawnNewCreature(int questLevel, Player player,
-			DeathmatchInfo deathmatchInfo) {
-		return spawnNewCreature(calculateNextCreature(questLevel), player,
-				deathmatchInfo);
+	DeathMatchCreature spawnNewCreature(int questLevel , Player player, DeathmatchInfo deathmatchInfo) {
+		return spawnNewCreature(calculateNextCreature(questLevel), player,  deathmatchInfo);
 	}
 
 	int calculatePoints() {
@@ -169,7 +155,6 @@ public class CreatureSpawner implements TurnListener {
 
 		return sum;
 	}
-
 	public void onTurnReached(int currentTurn) {
 		// TODO Auto-generated method stub
 

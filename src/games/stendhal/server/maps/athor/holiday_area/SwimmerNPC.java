@@ -3,6 +3,7 @@ package games.stendhal.server.maps.athor.holiday_area;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPCFactory;
 
+
 public class SwimmerNPC extends SpeakerNPCFactory {
 
 	@Override

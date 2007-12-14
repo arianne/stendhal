@@ -23,14 +23,11 @@ public class TraderNPC implements ZoneConfigurator {
 
 	/**
 	 * Configure a zone.
-	 * 
-	 * @param zone
-	 *            The zone to be configured.
-	 * @param attributes
-	 *            Configuration attributes.
+	 *
+	 * @param	zone		The zone to be configured.
+	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone,
-			Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
 		buildTrader(zone);
 	}
 
@@ -53,10 +50,8 @@ public class TraderNPC implements ZoneConfigurator {
 				addJob("I run a buying and selling #trade with kobolds - or whoever else passes by. I am one of the few Kobolds who can speak with non-Kobolds.");
 				addHelp("I #deal in all sorts of items.");
 				addQuest("Try Alrak the mountain dwarf who lives here with the kobolds. He'd probably have more than one task to give you.");
-				new SellerAdder().addSeller(this, new SellerBehaviour(
-						shops.get("sellstuff2")), false);
-				new BuyerAdder().add(this, new BuyerBehaviour(
-						shops.get("buystuff2")), false);
+				new SellerAdder().addSeller(this, new SellerBehaviour(shops.get("sellstuff2")), false);
+				new BuyerAdder().add(this, new BuyerBehaviour(shops.get("buystuff2")), false);
 				addOffer("Please look at the each blackboard on the wall to see what I buy and sell at the moment.");
 				addGoodbye("Bye, and please don't attack too many of my friends.");
 

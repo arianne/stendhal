@@ -21,14 +21,11 @@ public class SheepSellerNPC implements ZoneConfigurator {
 
 	/**
 	 * Configure a zone.
-	 * 
-	 * @param zone
-	 *            The zone to be configured.
-	 * @param attributes
-	 *            Configuration attributes.
+	 *
+	 * @param	zone		The zone to be configured.
+	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone,
-			Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
 		buildSemosVillageArea(zone);
 	}
 
@@ -52,8 +49,7 @@ public class SheepSellerNPC implements ZoneConfigurator {
 					}
 
 					@Override
-					public boolean transactAgreedDeal(SpeakerNPC seller,
-							Player player) {
+					public boolean transactAgreedDeal(SpeakerNPC seller, Player player) {
 						if (getAmount() > 1) {
 							seller.say("Hmm... I just don't think you're cut out for taking care of a whole flock of sheep at once.");
 							return false;
@@ -88,19 +84,14 @@ public class SheepSellerNPC implements ZoneConfigurator {
 				addJob("I work as a sheep seller.");
 				addHelp("I sell sheep. To buy one, just tell me you want to #buy #sheep. If you're new to this business, I can tell you how to #travel with her, take #care of her, and finally give you tips on when to #sell her. If you find any wild sheep, incidentally, you can make them your #own.");
 				addGoodbye();
-				new SellerAdder().addSeller(this, new SheepSellerBehaviour(
-						items));
-				addReply(
-						"care",
+				new SellerAdder().addSeller(this, new SheepSellerBehaviour(items));
+				addReply("care",
 						"My sheep especially love to eat the red berries that grow on these little bushes. Just stand near one and your sheep will walk over to start eating. You can right-click and choose LOOK at any time, to check up on her weight; she will gain one unit of weight for every cherry she eats.");
-				addReply(
-						"travel",
+				addReply("travel",
 						"You'll need your sheep to be close by in order for her to follow you when you change zones; you can say #sheep to call her if she's not paying attention. If you decide to abandon her instead, you can right-click on yourself and select LEAVE SHEEP; but frankly I think that sort of behaviour is disgraceful.");
-				addReply(
-						"sell",
+				addReply("sell",
 						"Once you've gotten your sheep up to a weight of 100, you can take her to Sato in Semos; he will buy her from you.");
-				addReply(
-						"own",
+				addReply("own",
 						"If you find any wild or abandoned sheep, you can right-click on them and select OWN to tame them. Sheep need to be looked after!");
 			}
 		};

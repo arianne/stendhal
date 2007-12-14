@@ -20,11 +20,12 @@ import java.util.List;
  * <p>
  * STEPS:
  * <ul>
- * <li> Josephine asks you to bring her a cloak in every colour available on the
- * mainland
- * <li> You bring cloaks to Josephine
- * <li> Repeat until Josephine received all cloaks. (Of course you can bring
- * several cloaks at the same time.)
+ * <li> Josephine asks you to bring her a cloak in every colour available on
+ * the mainland 
+ * <li> You bring cloaks to Josephine 
+ * <li> Repeat until Josephine
+ * received all cloaks. (Of course you can bring several cloaks at the same
+ * time.) 
  * <li> Josephine gives you a reward
  * </ul>
  * <p>
@@ -32,8 +33,7 @@ import java.util.List;
  * <p>
  * REPETITIONS: - None.
  */
-public class CloakCollector extends AbstractQuest implements
-		BringListOfItemsQuest {
+public class CloakCollector extends AbstractQuest implements BringListOfItemsQuest {
 
 	private static final List<String> NEEDED_CLOAKS = Arrays.asList("cloak",
 			"elf_cloak", "dwarf_cloak", "blue_elf_cloak", "stone_cloak",
@@ -49,8 +49,7 @@ public class CloakCollector extends AbstractQuest implements
 
 	private void setupAbstractQuest() {
 		BringListOfItemsQuest concreteQuest = this;
-		BringListOfItemsQuestLogic bringItems = new BringListOfItemsQuestLogic(
-				concreteQuest);
+		BringListOfItemsQuestLogic bringItems = new BringListOfItemsQuestLogic(concreteQuest);
 		bringItems.addToWorld();
 	}
 
@@ -69,14 +68,13 @@ public class CloakCollector extends AbstractQuest implements
 				ConversationStates.QUEST_OFFERED, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence,
-							SpeakerNPC engine) {
+					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						engine.say("You haven't seen one before? Well, it's a "
-								+ StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
-										sentence.toString()).getItemSubclass()
-								+ ". So, will you find them all?");
+									+ StendhalRPWorld.get().getRuleManager().getEntityManager()
+											.getItem(sentence.toString()).getItemSubclass()
+									+ ". So, will you find them all?");
 					}
-				});
+		});
 	}
 
 	public List<String> getAdditionalTriggerPhraseForQuest() {
@@ -114,7 +112,7 @@ public class CloakCollector extends AbstractQuest implements
 	public String welcomeDuringActiveQuest() {
 		return "Hello! Did you bring any #cloaks with you?";
 	}
-
+	
 	public String welcomeAfterQuestIsCompleted() {
 		return "Hi again, lovely. The cloaks still look great. Thanks!";
 	}
@@ -156,8 +154,7 @@ public class CloakCollector extends AbstractQuest implements
 	}
 
 	public String respondToOfferOfNotExistingItem(String itemName) {
-		return "Oh, I'm disappointed. You don't really have "
-				+ Grammar.a_noun(itemName) + " with you.";
+		return "Oh, I'm disappointed. You don't really have " + Grammar.a_noun(itemName) + " with you.";
 	}
 
 	public String respondToOfferOfNotMissingItem() {
@@ -173,12 +170,14 @@ public class CloakCollector extends AbstractQuest implements
 	}
 
 	public void rewardPlayer(Player player) {
-		Item blackcloak = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
-				"black_cloak");
+		Item blackcloak = StendhalRPWorld.get()
+				.getRuleManager()
+				.getEntityManager().getItem("black_cloak");
 		blackcloak.setBoundTo(player.getName());
 		player.equip(blackcloak, true);
 		player.addKarma(5.0);
 		player.addXP(2500);
 	}
+
 
 }

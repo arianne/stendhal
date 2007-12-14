@@ -14,14 +14,11 @@ import java.util.Map;
 public class DiceDealerNPC implements ZoneConfigurator {
 	/**
 	 * Configure a zone.
-	 * 
-	 * @param zone
-	 *            The zone to be configured.
-	 * @param attributes
-	 *            Configuration attributes.
+	 *
+	 * @param	zone		The zone to be configured.
+	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone,
-			Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
 		buildRicardo(zone);
 	}
 
@@ -40,8 +37,8 @@ public class DiceDealerNPC implements ZoneConfigurator {
 				addGreeting("Welcome to the #gambling table, where dreams can come true.");
 				addJob("I'm the only person in Semos who is licensed to offer gambling activities.");
 				addReply(
-						"gambling",
-						"The rules are simple: just tell me if you want to #play, pay the stake, and throw the dice on the table. The higher the sum of the upper faces is, the nicer will be your prize. Take a look at the blackboards on the wall!");
+				        "gambling",
+				        "The rules are simple: just tell me if you want to #play, pay the stake, and throw the dice on the table. The higher the sum of the upper faces is, the nicer will be your prize. Take a look at the blackboards on the wall!");
 				addHelp("If you are looking for Ouchit: he's upstairs.");
 				addGoodbye();
 			}
@@ -52,7 +49,7 @@ public class DiceDealerNPC implements ZoneConfigurator {
 		ricardo.setDirection(Direction.LEFT);
 		ricardo.initHP(100);
 		Rectangle tableArea = new Rectangle(25, 4, 2, 3);
-
+		
 		zone.add(ricardo);
 		ricardo.setTableArea(tableArea);
 	}

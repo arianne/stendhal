@@ -12,7 +12,7 @@ import java.util.Map;
 
 /**
  * Builds Josephine NPC (Cloak Collector)
- * 
+ *
  * @author kymara
  */
 public class WomanNPC implements ZoneConfigurator {
@@ -22,14 +22,11 @@ public class WomanNPC implements ZoneConfigurator {
 
 	/**
 	 * Configure a zone.
-	 * 
-	 * @param zone
-	 *            The zone to be configured.
-	 * @param attributes
-	 *            Configuration attributes.
+	 *
+	 * @param	zone		The zone to be configured.
+	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone,
-			Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
 		buildNPC(zone, attributes);
 	}
 
@@ -55,7 +52,7 @@ public class WomanNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-				// addGreeting();
+				//addGreeting();
 				addJob("If I could, I'd design dresses!");
 				addHelp("You can get help from Xhiphin Zohos, he's usually just outside. *giggle* I wonder why!");
 				addGoodbye("Bye bye now!");

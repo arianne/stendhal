@@ -11,9 +11,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Builds the NPC who deals in rainbow beans Other behaviour defined in
- * maps/quests/RainbowBeans.java
- * 
+ * Builds the NPC who deals in rainbow beans
+ * Other behaviour defined in maps/quests/RainbowBeans.java
+ *
  * @author kymara
  */
 public class DealerNPC implements ZoneConfigurator {
@@ -23,14 +23,11 @@ public class DealerNPC implements ZoneConfigurator {
 
 	/**
 	 * Configure a zone.
-	 * 
-	 * @param zone
-	 *            The zone to be configured.
-	 * @param attributes
-	 *            Configuration attributes.
+	 *
+	 * @param	zone		The zone to be configured.
+	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone,
-			Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
 		buildNPC(zone, attributes);
 	}
 
@@ -62,7 +59,7 @@ public class DealerNPC implements ZoneConfigurator {
 				addJob("I think you already know what I do.");
 				addHelp("To be honest mate I can't help you with much, you're better off in the city for that.");
 				addQuest("Haven't got anything for you, pal.");
-				addOffer("Ha! The sign on the door's a cover! This is no inn. If you want a drink, you better go back into town.");
+				addOffer("Ha! The sign on the door's a cover! This is no inn. If you want a drink, you better go back into town.");				
 				addGoodbye("Bye.");
 			}
 		};

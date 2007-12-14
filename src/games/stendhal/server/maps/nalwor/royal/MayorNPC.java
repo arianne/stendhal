@@ -13,20 +13,17 @@ import java.util.Map;
 
 /**
  * Builds the elf mayor NPC.
- * 
+ *
  * @author kymara
  */
 public class MayorNPC implements ZoneConfigurator {
 	/**
 	 * Configure a zone.
-	 * 
-	 * @param zone
-	 *            The zone to be configured.
-	 * @param attributes
-	 *            Configuration attributes.
+	 *
+	 * @param	zone		The zone to be configured.
+	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone,
-			Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
 		buildNPC(zone);
 	}
 
@@ -55,13 +52,8 @@ public class MayorNPC implements ZoneConfigurator {
 				addGreeting("Hello. You are brave, to stand before me.");
 				addJob("You dare ask, little human?!");
 				addHelp("Well, perhaps you can help me with a #problem I see brewing.");
-				add(
-						ConversationStates.ATTENDING,
-						"problem",
-						null,
-						ConversationStates.ATTENDING,
-						"Here are no dark elves, believe me! Me?! no, no, no, I'm just well tanned...",
-						null);
+				add(ConversationStates.ATTENDING, "problem", null, ConversationStates.ATTENDING,
+				        "Here are no dark elves, believe me! Me?! no, no, no, I'm just well tanned...", null);
 				addGoodbye("Farewell, human.");
 			}
 		};

@@ -7,9 +7,9 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 
 /**
- * handle the players request to leave the deathmatch (if it is allowed in the
- * current state).
- * 
+ * handle the players request to leave the deathmatch
+ * (if it is allowed in the current state).
+ *
  * @author hendrik
  */
 public class LeaveAction extends SpeakerNPC.ChatAction {
@@ -19,8 +19,7 @@ public class LeaveAction extends SpeakerNPC.ChatAction {
 		DeathmatchState deathmatchState = DeathmatchState.createFromQuestString(player.getQuest("deathmatch"));
 
 		if (deathmatchState.getLifecycleState() == DeathmatchLifecycle.DONE) {
-			StendhalRPZone zone = StendhalRPWorld.get().getZone(
-					"0_semos_plains_n");
+			StendhalRPZone zone = StendhalRPWorld.get().getZone("0_semos_plains_n");
 			player.teleport(zone, 100, 115, null, player);
 		} else if (deathmatchState.getLifecycleState() == DeathmatchLifecycle.VICTORY) {
 			engine.say("I don't think you claimed your #victory yet.");

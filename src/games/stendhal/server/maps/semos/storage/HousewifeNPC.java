@@ -13,19 +13,15 @@ import java.util.Map;
 public class HousewifeNPC implements ZoneConfigurator {
 	/**
 	 * Configure a zone.
-	 * 
-	 * @param zone
-	 *            The zone to be configured.
-	 * @param attributes
-	 *            Configuration attributes.
+	 *
+	 * @param	zone		The zone to be configured.
+	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone,
-			Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
 		buildSemosStorageArea(zone, attributes);
 	}
 
-	private void buildSemosStorageArea(StendhalRPZone zone,
-			Map<String, String> attributes) {
+	private void buildSemosStorageArea(StendhalRPZone zone, Map<String, String> attributes) {
 		SpeakerNPC npc = new SpeakerNPC("Eonna") {
 
 			@Override

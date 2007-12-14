@@ -15,21 +15,18 @@ import java.util.TreeMap;
 
 /**
  * Cocktail Bar at the Athor island beach (Inside / Level 0)
- * 
+ *
  * @author kymara
  */
 public class BarmanNPC implements ZoneConfigurator {
 
 	/**
 	 * Configure a zone.
-	 * 
-	 * @param zone
-	 *            The zone to be configured.
-	 * @param attributes
-	 *            Configuration attributes.
+	 *
+	 * @param	zone		The zone to be configured.
+	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone,
-			Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
 		buildBar(zone, attributes);
 	}
 
@@ -38,7 +35,7 @@ public class BarmanNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createPath() {
-				List<Node> nodes = new LinkedList<Node>();
+			        List<Node> nodes = new LinkedList<Node>();
 				nodes.add(new Node(8, 5));
 				nodes.add(new Node(11, 5));
 				setPath(new FixedPath(nodes, true));
@@ -52,17 +49,11 @@ public class BarmanNPC implements ZoneConfigurator {
 				addGoodbye("Cheers!");
 
 				// make cocktail!
-				Map<String, Integer> requiredResources = new TreeMap<String, Integer>(); // use
-																							// sorted
-																							// TreeMap
-																							// instead
-																							// of
-																							// HashMap
+				Map<String, Integer> requiredResources = new TreeMap<String, Integer>();	// use sorted TreeMap instead of HashMap
 				requiredResources.put("coconut", 1);
 				requiredResources.put("pineapple", 1);
-				ProducerBehaviour mixerBehaviour = new ProducerBehaviour(
-						"barman_mix_pina", "mix", "pina_colada",
-						requiredResources, 2 * 60);
+				ProducerBehaviour mixerBehaviour = new ProducerBehaviour("barman_mix_pina",
+						"mix", "pina_colada", requiredResources, 2 * 60);
 				new ProducerAdder().addProducer(this, mixerBehaviour, "Aloha!");
 
 			}

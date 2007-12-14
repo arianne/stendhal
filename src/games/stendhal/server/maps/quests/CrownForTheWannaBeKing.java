@@ -18,16 +18,17 @@ import java.util.List;
 
 /**
  * QUEST: CrownForTheWannaBeKing
- * 
- * PARTICIPANTS: - Ivan Abe, the wannabe king who lives in Kalavan - Kendra
- * Mattori, priestess living in Wizard City
- * 
+ *
+ * PARTICIPANTS: - Ivan Abe, the wannabe king who lives in Kalavan
+ *               - Kendra Mattori, priestess living in Wizard City
+ *
  * STEPS: - Ivan Abe wants you to bring him gems and gold for his crown which he
- * believes will help him to become the new king. - Kendra Mattori gives the
- * reward after player brought all required items.
- * 
- * REWARD: - 10,000 XP - Player's ATK XP is increased by 0.1% of his/her XP.
- * 
+ *          believes will help him to become the new king.
+ *        - Kendra Mattori gives the reward after player brought all required items.
+ *
+ * REWARD: - 10,000 XP
+ *         - Player's ATK XP is increased by 0.1% of his/her XP.
+ *
  * REPETITIONS: - None.
  */
 public class CrownForTheWannaBeKing extends AbstractQuest {
@@ -73,23 +74,20 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 		npc.addJob("My current job is unimportant, I will be the king of Kalavan!");
 
 		/* player says hi before starting the quest */
-		npc.add(
-				ConversationStates.IDLE,
+		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
 				new QuestNotStartedCondition(QUEST_SLOT),
 				ConversationStates.ATTENDING,
 				"Greetings. Be quick with your matters, I have a lot of work to do."
-						+ " And next time clean your boots, you are lucky that I'm not the king...yet!",
+					+ " And next time clean your boots, you are lucky that I'm not the king...yet!",
 				null);
 
 		npc.addQuest("Hmm you could be useful for my #plan...");
-		npc.addReply(
-				"plan",
-				"Soon I will dethrone the king of Kalavan and become the new king! Right now I need myself a new #crown.");
+		npc.addReply("plan",
+					"Soon I will dethrone the king of Kalavan and become the new king! Right now I need myself a new #crown.");
 
 		/* player says crown */
-		npc.add(
-				ConversationStates.ATTENDING,
+		npc.add(ConversationStates.ATTENDING,
 				"crown",
 				new QuestNotStartedCondition(QUEST_SLOT),
 				ConversationStates.QUEST_OFFERED,
@@ -99,26 +97,20 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 		/* player says yes */
 		npc.add(ConversationStates.QUEST_OFFERED,
 				ConversationPhrases.YES_MESSAGES, null,
-				ConversationStates.QUESTION_1, null,
-				new SpeakerNPC.ChatAction() {
+				ConversationStates.QUESTION_1, null, new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence,
-							SpeakerNPC engine) {
+					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						player.setQuest(QUEST_SLOT, NEEDED_ITEMS);
 						player.addKarma(5.0);
 						engine.say("I want my crown to be beautiful and shiny. I need "
-								+ Grammar.enumerateCollection(getMissingItems(
-										player, true))
-								+ ". Do you have some of those now with you?");
+									+ Grammar.enumerateCollection(getMissingItems(player, true))
+									+ ". Do you have some of those now with you?");
 					}
 				});
 
 		/* player is not willing to help */
-		npc.add(
-				ConversationStates.QUEST_OFFERED,
-				"no",
-				null,
-				ConversationStates.IDLE,
+		npc.add(ConversationStates.QUEST_OFFERED, "no", null,
+				ConversationStates.IDLE, 
 				"Oh you don't want to help me?! Get lost, you are wasting my precious time!",
 				new DecreaseKarmaAction(5.0));
 	}
@@ -130,13 +122,11 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 		SpeakerNPC npc = npcs.get(NPC_NAME);
 
 		/* player returns while quest is still active */
-		npc.add(
-				ConversationStates.IDLE,
+		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, Sentence sentence,
-							SpeakerNPC engine) {
+					public boolean fire(Player player, Sentence sentence,	SpeakerNPC engine) {
 						return player.hasQuest(QUEST_SLOT)
 								&& !player.isQuestCompleted(QUEST_SLOT)
 								&& !"reward".equals(player.getQuest(QUEST_SLOT));
@@ -151,8 +141,7 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 				ConversationStates.QUESTION_1, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence,
-							SpeakerNPC engine) {
+					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						List<String> needed = getMissingItems(player, true);
 						engine.say("I need "
 								+ Grammar.enumerateCollection(needed)
@@ -180,9 +169,9 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 							engine.say("Good, do you have anything else?");
 						} else {
 							engine.say("You have served me well, my crown will be the mightiest of them all!"
-									+ " Go to see "
-									+ REWARD_NPC_NAME
-									+ " in the Wizard City to get your #reward.");
+											+ " Go to see "
+											+ REWARD_NPC_NAME
+											+ " in the Wizard City to get your #reward.");
 							player.setQuest(QUEST_SLOT, "reward");
 							player.addXP(XP_REWARD);
 							player.notifyWorldAboutChanges();
@@ -205,56 +194,46 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 		}
 
 		/* player says he didn't bring any items (says no) */
-		npc.add(
-				ConversationStates.ATTENDING,
-				Arrays.asList("no", "nothing"),
+		npc.add(ConversationStates.ATTENDING, Arrays.asList("no", "nothing"),
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, Sentence sentence,
-							SpeakerNPC engine) {
+					public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						return player.hasQuest(QUEST_SLOT)
 								&& !player.isQuestCompleted(QUEST_SLOT)
-								&& !"reward".equals(player.getQuest(QUEST_SLOT));
+								&& !"reward".equals(player
+										.getQuest(QUEST_SLOT));
 					}
 				}, ConversationStates.IDLE,
 				"Well don't come back before you find something for me!", null);
 
 		/* player says he didn't bring any items to different question */
-		npc.add(
-				ConversationStates.QUESTION_1,
-				ConversationPhrases.NO_MESSAGES,
+		npc.add(ConversationStates.QUESTION_1, ConversationPhrases.NO_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, Sentence sentence,
-							SpeakerNPC engine) {
+					public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						return !player.isQuestCompleted(QUEST_SLOT)
 								&& !"reward".equals(player.getQuest(QUEST_SLOT));
 					}
 				}, ConversationStates.IDLE,
 				"Farewell, come back after you have what I need!", null);
 
+
 		/* player says reward */
-		npc.add(
-				ConversationStates.ATTENDING,
-				"reward",
-				null,
-				ConversationStates.IDLE,
-				"As I said, find priestess "
-						+ REWARD_NPC_NAME
-						+ " in a temple at the city of wizards. She will give you your reward. Now go, I'm busy!",
+		npc.add(ConversationStates.ATTENDING,
+				"reward", null,
+				ConversationStates.IDLE, "As I said, find priestess " + REWARD_NPC_NAME
+					+ " in a temple at the city of wizards. She will give you your reward. Now go, I'm busy!",
 				null);
 
 		/*
 		 * player returns after finishing the quest or before collecting the
 		 * reward
 		 */
-		npc.add(
-				ConversationStates.IDLE,
+		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, Sentence sentence,
-							SpeakerNPC engine) {
+					public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						return player.isQuestCompleted(QUEST_SLOT)
 								|| "reward".equals(player.getQuest(QUEST_SLOT));
 					}
@@ -275,11 +254,10 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 				ConversationStates.ATTENDING, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence,
-							SpeakerNPC engine) {
+					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						engine.say("Oh yes, "
-								+ NPC_NAME
-								+ " told me to reward you well! I hope you enjoy your increased combat abilities!");
+									+ NPC_NAME
+									+ " told me to reward you well! I hope you enjoy your increased combat abilities!");
 						rewardPlayer(player);
 						player.setQuest(QUEST_SLOT, "done");
 					}
@@ -289,11 +267,9 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 	/**
 	 * Returns a list of the names of all items that the given player still has
 	 * to bring to complete the quest.
-	 * 
-	 * @param player
-	 *            The player doing the quest
-	 * @param hash
-	 *            If true, sets a # character in front of every name
+	 *
+	 * @param player The player doing the quest
+	 * @param hash If true, sets a # character in front of every name
 	 * @return A list of item names
 	 */
 	private List<String> getMissingItems(Player player, boolean hash) {
@@ -308,7 +284,7 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 					String[] pair = item.split("=");
 					result.add(pair[1] + " #" + pair[0]);
 				} else {
-					result.add(item);
+				   result.add(item);
 				}
 			}
 		}
@@ -318,7 +294,7 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 	/**
 	 * Drop specified amount of given item. If player doesn't have enough items,
 	 * all carried ones will be dropped and number of missing items is updated.
-	 * 
+	 *
 	 * @param player
 	 * @param itemName
 	 * @param itemCount
@@ -375,13 +351,12 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 
 	/**
 	 * Give the player the reward for completing the quest.
-	 * 
+	 *
 	 * @param player
 	 */
 	protected void rewardPlayer(Player player) {
 		player.addKarma(10.0);
-		player.setATKXP(player.getATKXP()
-				+ (int) (player.getXP() * ATK_REWARD_RATE));
+		player.setATKXP(player.getATKXP() + (int) (player.getXP() * ATK_REWARD_RATE));
 		player.incATKXP();
 	}
 

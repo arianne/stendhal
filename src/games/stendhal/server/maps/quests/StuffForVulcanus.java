@@ -53,55 +53,53 @@ public class StuffForVulcanus extends AbstractQuest {
 		SpeakerNPC npc = npcs.get("Vulcanus");
 
 		npc.add(ConversationStates.ATTENDING,
-				ConversationPhrases.QUEST_MESSAGES, null,
-				ConversationStates.QUEST_OFFERED, null,
-				new SpeakerNPC.ChatAction() {
-					@Override
-					public void fire(Player player, Sentence sentence,
-							SpeakerNPC engine) {
-						if (!player.hasQuest(QUEST_SLOT)) {
-							engine.say("I once forged the most powerful of swords. I can do it again for you. Are you interested?");
-						} else if (player.isQuestCompleted(QUEST_SLOT)) {
-							engine.say("Oh! I am so tired. Look for me later. I need a few years of relaxing.");
-							engine.setCurrentState(ConversationStates.ATTENDING);
-						} else {
-							engine.say("Why are you bothering me when you haven't completed your quest yet?");
-							engine.setCurrentState(ConversationStates.ATTENDING);
-						}
+			ConversationPhrases.QUEST_MESSAGES, null,
+			ConversationStates.QUEST_OFFERED, null,
+			new SpeakerNPC.ChatAction() {
+				@Override
+				public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+					if (!player.hasQuest(QUEST_SLOT)) {
+						engine.say("I once forged the most powerful of swords. I can do it again for you. Are you interested?");
+					} else if (player.isQuestCompleted(QUEST_SLOT)) {
+						engine.say("Oh! I am so tired. Look for me later. I need a few years of relaxing.");
+						engine.setCurrentState(ConversationStates.ATTENDING);
+					} else {
+						engine.say("Why are you bothering me when you haven't completed your quest yet?");
+						engine.setCurrentState(ConversationStates.ATTENDING);
 					}
-				});
+				}
+			});
 
 		npc.add(ConversationStates.QUEST_OFFERED,
-				ConversationPhrases.YES_MESSAGES, null,
-				ConversationStates.ATTENDING, null,
-				new SpeakerNPC.ChatAction() {
-					@Override
-					public void fire(Player player, Sentence sentence,
-							SpeakerNPC engine) {
-						engine.say("I will need several things: "
-								+ REQUIRED_IRON
-								+ " iron, "
-								+ REQUIRED_WOOD
-								+ " wood logs, "
-								+ REQUIRED_GOLD_BAR
-								+ " gold bars and "
-								+ REQUIRED_GIANT_HEART
-								+ " giant hearts. Come back when you have them in the same #exact order!");
-						player.setQuest(QUEST_SLOT, "start;0;0;0;0");
+			ConversationPhrases.YES_MESSAGES, null,
+			ConversationStates.ATTENDING, null,
+			new SpeakerNPC.ChatAction() {
+				@Override
+				public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+					engine.say("I will need several things: "
+						+ REQUIRED_IRON
+						+ " iron, "
+						+ REQUIRED_WOOD
+						+ " wood logs, "
+						+ REQUIRED_GOLD_BAR
+						+ " gold bars and "
+						+ REQUIRED_GIANT_HEART
+						+ " giant hearts. Come back when you have them in the same #exact order!");
+					player.setQuest(QUEST_SLOT, "start;0;0;0;0");
 
-					}
-				});
+				}
+			});
 
 		npc.add(
-				ConversationStates.QUEST_OFFERED,
-				"no",
-				null,
-				ConversationStates.IDLE,
-				"Oh, well forget it then, if you don't want an immortal sword...",
-				null);
+			ConversationStates.QUEST_OFFERED,
+			"no",
+			null,
+			ConversationStates.IDLE,
+			"Oh, well forget it then, if you don't want an immortal sword...",
+			null);
 
 		npc.addReply("exact",
-				"This archaic magic requires that the ingredients are added on a exact order.");
+			"This archaic magic requires that the ingredients are added on a exact order.");
 	}
 
 	private void step_2() {
@@ -113,193 +111,184 @@ public class StuffForVulcanus extends AbstractQuest {
 		SpeakerNPC npc = npcs.get("Vulcanus");
 
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-				new QuestStateStartsWithCondition(QUEST_SLOT, "start"),
-				ConversationStates.ATTENDING, null,
-				new SpeakerNPC.ChatAction() {
-					@Override
-					public void fire(Player player, Sentence sentence,
-							SpeakerNPC engine) {
-						String[] tokens = player.getQuest(QUEST_SLOT).split(";");
+			new QuestStateStartsWithCondition(QUEST_SLOT, "start"),
+			ConversationStates.ATTENDING, null,
+			new SpeakerNPC.ChatAction() {
+				@Override
+				public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+					String[] tokens = player.getQuest(QUEST_SLOT).split(";");
 
-						int neededIron = REQUIRED_IRON
-								- Integer.parseInt(tokens[1]);
-						int neededWoodLogs = REQUIRED_WOOD
-								- Integer.parseInt(tokens[2]);
-						int neededGoldBars = REQUIRED_GOLD_BAR
-								- Integer.parseInt(tokens[3]);
-						int neededGiantHearts = REQUIRED_GIANT_HEART
-								- Integer.parseInt(tokens[4]);
-						boolean missingSomething = false;
+					int neededIron = REQUIRED_IRON
+							- Integer.parseInt(tokens[1]);
+					int neededWoodLogs = REQUIRED_WOOD
+							- Integer.parseInt(tokens[2]);
+					int neededGoldBars = REQUIRED_GOLD_BAR
+							- Integer.parseInt(tokens[3]);
+					int neededGiantHearts = REQUIRED_GIANT_HEART
+							- Integer.parseInt(tokens[4]);
+					boolean missingSomething = false;
 
-						if (!missingSomething && neededIron > 0) {
-							if (!player.isEquipped("iron", neededIron)) {
-								int amount = player.getNumberOfEquipped("iron");
-								if (amount > 0) {
-									player.drop("iron", amount);
-									neededIron -= amount;
-								}
-
-								engine.say("I cannot #forge it without the missing "
-										+ Grammar.quantityplnoun(neededIron,
-												"iron") + ".");
-								missingSomething = true;
-							} else {
-								player.drop("iron", neededIron);
-								neededIron = 0;
+					if (!missingSomething && neededIron > 0) {
+						if (!player.isEquipped("iron", neededIron)) {
+							int amount = player.getNumberOfEquipped("iron");
+							if (amount > 0) {
+								player.drop("iron", amount);
+								neededIron -= amount;
 							}
-						}
 
-						if (!missingSomething && neededWoodLogs > 0) {
-							if (!player.isEquipped("wood", neededWoodLogs)) {
-								int amount = player.getNumberOfEquipped("wood");
-								if (amount > 0) {
-									player.drop("wood", amount);
-									neededWoodLogs -= amount;
-								}
-
-								engine.say("How do you expect me to #forge it without missing "
-										+ Grammar.quantityplnoun(
-												neededWoodLogs, "wood log")
-										+ " for the fire?");
-								missingSomething = true;
-							} else {
-								player.drop("wood", neededWoodLogs);
-								neededWoodLogs = 0;
-							}
-						}
-
-						if (!missingSomething && neededGoldBars > 0) {
-							if (!player.isEquipped("gold_bar", neededGoldBars)) {
-								int amount = player.getNumberOfEquipped("gold_bar");
-								if (amount > 0) {
-									player.drop("gold_bar", amount);
-									neededGoldBars -= amount;
-								}
-								engine.say("I must pay a bill to spirits in order to cast the enchantment over the sword. I need "
-										+ Grammar.quantityplnoun(
-												neededGoldBars, "gold bar")
-										+ " more.");
-								missingSomething = true;
-							} else {
-								player.drop("gold_bar", neededGoldBars);
-								neededGoldBars = 0;
-							}
-						}
-
-						if (!missingSomething && neededGiantHearts > 0) {
-							if (!player.isEquipped("giant_heart",
-									neededGiantHearts)) {
-								int amount = player.getNumberOfEquipped("giant_heart");
-								if (amount > 0) {
-									player.drop("giant_heart", amount);
-									neededGiantHearts -= amount;
-								}
-								engine.say("It is the base element of the enchantment. I need "
-										+ Grammar.quantityplnoun(
-												neededGiantHearts,
-												"giant heart") + " still.");
-								missingSomething = true;
-							} else {
-								player.drop("giant_heart", neededGiantHearts);
-								neededGiantHearts = 0;
-							}
-						}
-
-						if (player.hasKilled("giant") && !missingSomething) {
-							engine.say("You've brought everything I need to make the immortal sword, and what is more, you are strong enough to handle it. Come back in "
-									+ REQUIRED_TIME
-									+ " minutes and it will be ready.");
-							player.setQuest(QUEST_SLOT, "forging;"
-									+ System.currentTimeMillis());
+							engine.say("I cannot #forge it without the missing "
+								+ Grammar.quantityplnoun(
+										neededIron, "iron")
+								+ ".");
+							missingSomething = true;
 						} else {
-							if (!player.hasKilled("giant") && !missingSomething) {
-								engine.say("Did you really get those giant hearts yourself? I don't think so! This powerful sword can only be given to those that are strong enough to kill a #giant.");
-							}
-
-							player.setQuest(
-									QUEST_SLOT,
-									"start;"
-											+ (REQUIRED_IRON - neededIron)
-											+ ";"
-											+ (REQUIRED_WOOD - neededWoodLogs)
-											+ ";"
-											+ (REQUIRED_GOLD_BAR - neededGoldBars)
-											+ ";"
-											+ (REQUIRED_GIANT_HEART - neededGiantHearts));
+							player.drop("iron", neededIron);
+							neededIron = 0;
 						}
 					}
-				});
+
+					if (!missingSomething && neededWoodLogs > 0) {
+						if (!player.isEquipped("wood", neededWoodLogs)) {
+							int amount = player.getNumberOfEquipped("wood");
+							if (amount > 0) {
+								player.drop("wood", amount);
+								neededWoodLogs -= amount;
+							}
+
+							engine.say("How do you expect me to #forge it without missing "
+								+ Grammar.quantityplnoun(neededWoodLogs, "wood log")
+								+ " for the fire?");
+							missingSomething = true;
+						} else {
+							player.drop("wood", neededWoodLogs);
+							neededWoodLogs = 0;
+						}
+					}
+
+					if (!missingSomething && neededGoldBars > 0) {
+						if (!player.isEquipped("gold_bar", neededGoldBars)) {
+							int amount = player.getNumberOfEquipped("gold_bar");
+							if (amount > 0) {
+								player.drop("gold_bar", amount);
+								neededGoldBars -= amount;
+							}
+							engine.say("I must pay a bill to spirits in order to cast the enchantment over the sword. I need "
+									+ Grammar.quantityplnoun(neededGoldBars, "gold bar") + " more.");
+							missingSomething = true;
+						} else {
+							player.drop("gold_bar", neededGoldBars);
+							neededGoldBars = 0;
+						}
+					}
+
+					if (!missingSomething && neededGiantHearts > 0) {
+						if (!player.isEquipped("giant_heart", neededGiantHearts)) {
+							int amount = player.getNumberOfEquipped("giant_heart");
+							if (amount > 0) {
+								player.drop("giant_heart", amount);
+								neededGiantHearts -= amount;
+							}
+							engine.say("It is the base element of the enchantment. I need "
+								+ Grammar.quantityplnoun(neededGiantHearts, "giant heart") + " still.");
+							missingSomething = true;
+						} else {
+							player.drop("giant_heart", neededGiantHearts);
+							neededGiantHearts = 0;
+						}
+					}
+
+					if (player.hasKilled("giant") && !missingSomething) {
+						engine.say("You've brought everything I need to make the immortal sword, and what is more, you are strong enough to handle it. Come back in "
+							+ REQUIRED_TIME
+							+ " minutes and it will be ready.");
+						player.setQuest(QUEST_SLOT, "forging;" + System.currentTimeMillis());
+					} else {
+						if (!player.hasKilled("giant") && !missingSomething) {
+							engine.say("Did you really get those giant hearts yourself? I don't think so! This powerful sword can only be given to those that are strong enough to kill a #giant.");
+						}
+
+						player.setQuest(QUEST_SLOT,
+							"start;"
+							+ (REQUIRED_IRON - neededIron)
+							+ ";"
+							+ (REQUIRED_WOOD - neededWoodLogs)
+							+ ";"
+							+ (REQUIRED_GOLD_BAR - neededGoldBars)
+							+ ";"
+							+ (REQUIRED_GIANT_HEART - neededGiantHearts));
+					}
+				}
+			});
 
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-				new SpeakerNPC.ChatCondition() {
-					@Override
-					public boolean fire(Player player, Sentence sentence,
-							SpeakerNPC engine) {
-						return player.hasQuest(QUEST_SLOT)
-								&& player.getQuest(QUEST_SLOT).startsWith(
-										"forging;");
+			new SpeakerNPC.ChatCondition() {
+				@Override
+				public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
+					return player.hasQuest(QUEST_SLOT)
+							&& player.getQuest(QUEST_SLOT).startsWith(
+									"forging;");
+				}
+			}, ConversationStates.IDLE, null, new SpeakerNPC.ChatAction() {
+				@Override
+				public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+
+					String[] tokens = player.getQuest(QUEST_SLOT).split(";");
+					// minutes -> milliseconds
+					long delay = REQUIRED_TIME * 60 * 1000; 
+					long timeRemaining = (Long.parseLong(tokens[1]) + delay)
+							- System.currentTimeMillis();
+
+					if (timeRemaining > 0L) {
+						engine.say("I haven't finished forging the sword. Please check back in "
+							+ TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L))
+							+ ".");
+						return;
 					}
-				}, ConversationStates.IDLE, null, new SpeakerNPC.ChatAction() {
-					@Override
-					public void fire(Player player, Sentence sentence,
-							SpeakerNPC engine) {
 
-						String[] tokens = player.getQuest(QUEST_SLOT).split(";");
-						// minutes -> milliseconds
-						long delay = REQUIRED_TIME * 60 * 1000;
-						long timeRemaining = (Long.parseLong(tokens[1]) + delay)
-								- System.currentTimeMillis();
-
-						if (timeRemaining > 0L) {
-							engine.say("I haven't finished forging the sword. Please check back in "
-									+ TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L))
-									+ ".");
-							return;
-						}
-
-						engine.say("I have finished forging the mighty immortal sword. You deserve this. Now I'm going to have a long rest, so, goodbye!");
-						player.addXP(15000);
-						Item magicSword = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
-								"immortal_sword");
-						magicSword.setBoundTo(player.getName());
-						player.equip(magicSword, true);
-						player.notifyWorldAboutChanges();
-						player.setQuest(QUEST_SLOT, "done");
-					}
-				});
+					engine.say("I have finished forging the mighty immortal sword. You deserve this. Now I'm going to have a long rest, so, goodbye!");
+					player.addXP(15000);
+					Item magicSword = StendhalRPWorld.get()
+						.getRuleManager().getEntityManager().getItem("immortal_sword");
+					magicSword.setBoundTo(player.getName());
+					player.equip(magicSword, true);
+					player.notifyWorldAboutChanges();
+					player.setQuest(QUEST_SLOT, "done");
+				}
+			});
 
 		npc.add(ConversationStates.ATTENDING,
-				Arrays.asList("forge", "missing"), new QuestStartedCondition(
-						QUEST_SLOT), ConversationStates.ATTENDING, null,
-				new SpeakerNPC.ChatAction() {
-					@Override
-					public void fire(Player player, Sentence sentence,
-							SpeakerNPC engine) {
-						String[] tokens = player.getQuest(QUEST_SLOT).split(";");
+			Arrays.asList("forge", "missing"), 
+			new QuestStartedCondition(QUEST_SLOT),
+			ConversationStates.ATTENDING,
+			null,
+			new SpeakerNPC.ChatAction() {
+				@Override
+				public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+					String[] tokens = player.getQuest(QUEST_SLOT).split(";");
 
-						int neededIron = REQUIRED_IRON
-								- Integer.parseInt(tokens[1]);
-						int neededWoodLogs = REQUIRED_WOOD
-								- Integer.parseInt(tokens[2]);
-						int neededGoldBars = REQUIRED_GOLD_BAR
-								- Integer.parseInt(tokens[3]);
-						int neededGiantHearts = REQUIRED_GIANT_HEART
-								- Integer.parseInt(tokens[4]);
+					int neededIron = REQUIRED_IRON
+							- Integer.parseInt(tokens[1]);
+					int neededWoodLogs = REQUIRED_WOOD
+							- Integer.parseInt(tokens[2]);
+					int neededGoldBars = REQUIRED_GOLD_BAR
+							- Integer.parseInt(tokens[3]);
+					int neededGiantHearts = REQUIRED_GIANT_HEART
+							- Integer.parseInt(tokens[4]);
 
-						engine.say("I will need " + neededIron + " #iron, "
-								+ neededWoodLogs + " #wood logs, "
-								+ neededGoldBars + " #gold bars and "
-								+ neededGiantHearts + " #giant hearts.");
-					}
-				});
+					engine.say("I will need " + neededIron + " #iron, "
+							+ neededWoodLogs + " #wood logs, "
+							+ neededGoldBars + " #gold bars and "
+							+ neededGiantHearts + " #giant hearts.");
+				}
+			});
 
 		npc.add(
-				ConversationStates.ANY,
-				"iron",
-				null,
-				ConversationStates.ATTENDING,
-				"Collect some iron ore from the mines which are rich in minerals.",
-				null);
+			ConversationStates.ANY,
+			"iron",
+			null,
+			ConversationStates.ATTENDING,
+			"Collect some iron ore from the mines which are rich in minerals.",
+			null);
 
 		npc.add(ConversationStates.ANY, "wood", null,
 				ConversationStates.ATTENDING,
@@ -309,12 +298,12 @@ public class StuffForVulcanus extends AbstractQuest {
 				"A smith in Ados can forge the gold into gold bars for you.",
 				null);
 		npc.add(
-				ConversationStates.ANY,
-				"giant",
-				null,
-				ConversationStates.ATTENDING,
-				"There are ancient stories of giants living in the mountains at the north of Semos and Ados.",
-				null);
+			ConversationStates.ANY,
+			"giant",
+			null,
+			ConversationStates.ATTENDING,
+			"There are ancient stories of giants living in the mountains at the north of Semos and Ados.",
+			null);
 	}
 
 	@Override

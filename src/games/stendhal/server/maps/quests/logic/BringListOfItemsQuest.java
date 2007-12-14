@@ -17,29 +17,29 @@ public interface BringListOfItemsQuest {
 	 *
 	 * @return SpeakerNPC
 	 */
-	SpeakerNPC getNPC();
+	public SpeakerNPC getNPC();
 
-	List<String> getNeededItems();
+	public List<String> getNeededItems();
 
-	String getSlotName();
+	public String getSlotName();
 
-	List<String> getTriggerPhraseToEnumerateMissingItems();
+	public List<String> getTriggerPhraseToEnumerateMissingItems();
 
-	List<String> getAdditionalTriggerPhraseForQuest();
+	public List<String> getAdditionalTriggerPhraseForQuest();
 	
-	double getKarmaDiffForQuestResponse();
+	public double getKarmaDiffForQuestResponse();
 
-	String welcomeBeforeStartingQuest();
+	public String welcomeBeforeStartingQuest();
 
-	String welcomeDuringActiveQuest();
+	public String welcomeDuringActiveQuest();
 
-	String welcomeAfterQuestIsCompleted();
+	public String welcomeAfterQuestIsCompleted();
 
-	boolean shouldWelcomeAfterQuestIsCompleted();
+	public boolean shouldWelcomeAfterQuestIsCompleted();
 
-	String respondToQuest();
+	public String respondToQuest();
 
-	String respondToQuestAfterItHasAlreadyBeenCompleted();
+	public String respondToQuestAfterItHasAlreadyBeenCompleted();
 
 	/**
 	 * Note: This needs to include the trigger phrase which displays the list
@@ -47,26 +47,26 @@ public interface BringListOfItemsQuest {
 	 *
 	 * @return response
 	 */
-	String respondToQuestAcception();
+	public String respondToQuestAcception();
 
-	String respondToQuestRefusal();
+	public String respondToQuestRefusal();
 
-	String askForMissingItems(List<String> missingItems);
+	public String askForMissingItems(List<String> missingItems);
 
-	String respondToPlayerSayingHeHasNoItems(List<String> missingItems);
+	public String respondToPlayerSayingHeHasNoItems(List<String> missingItems);
 
-	String askForItemsAfterPlayerSaidHeHasItems();
+	public String askForItemsAfterPlayerSaidHeHasItems();
 
-	String respondToItemBrought();
+	public String respondToItemBrought();
 
-	String respondToLastItemBrought();
+	public String respondToLastItemBrought();
 
-	void rewardPlayer(Player player);
+	public void rewardPlayer(Player player);
 
-	String respondToOfferOfNotExistingItem(String itemName);
+	public String respondToOfferOfNotExistingItem(String itemName);
 	
-	String respondToOfferOfNotMissingItem();
+	public String respondToOfferOfNotMissingItem();
 
-	String respondToOfferOfNotNeededItem();
+	public String respondToOfferOfNotNeededItem();
 
 }

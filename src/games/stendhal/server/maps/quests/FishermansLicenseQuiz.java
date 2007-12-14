@@ -94,8 +94,8 @@ public class FishermansLicenseQuiz extends AbstractQuest {
 	private void putNextFishOnTable() {
 		currentSpeciesNo++;
 		cleanUpTable();
-		fishOnTable = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
-				getCurrentSpecies());
+		fishOnTable = StendhalRPWorld.get().getRuleManager().getEntityManager()
+				.getItem(getCurrentSpecies());
 		fishOnTable.setDescription("You see a fish.");
 
 		fishOnTable.setPosition(7, 4);
@@ -124,8 +124,7 @@ public class FishermansLicenseQuiz extends AbstractQuest {
 				ConversationStates.ATTENDING, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence,
-							SpeakerNPC npc) {
+					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 						if (player.isQuestCompleted(FishermansLicenseCollector.QUEST_SLOT)) {
 							npc.say("I don't have a task for you, and you already have a fisherman's license.");
 						} else {
@@ -138,8 +137,7 @@ public class FishermansLicenseQuiz extends AbstractQuest {
 				ConversationStates.ATTENDING, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence,
-							SpeakerNPC npc) {
+					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 						if (player.isQuestCompleted(FishermansLicenseCollector.QUEST_SLOT)) {
 							npc.say("You have already got your fisherman's license.");
 						} else if (player.isQuestCompleted(QUEST_SLOT)) {
@@ -149,8 +147,8 @@ public class FishermansLicenseQuiz extends AbstractQuest {
 							long timeRemaining = remainingTimeToWait(player);
 							if (timeRemaining > 0L) {
 								npc.say("You can only do the quiz once a day. Come back in "
-										+ TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L))
-										+ ".");
+									+ TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L))
+									+ ".");
 							} else {
 								npc.say("Are you ready for the first part of your exam?");
 								npc.setCurrentState(ConversationStates.QUEST_OFFERED);
@@ -170,8 +168,7 @@ public class FishermansLicenseQuiz extends AbstractQuest {
 				"Fine. The first question is: What kind of fish is this?",
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence,
-							SpeakerNPC npc) {
+					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 						startQuiz();
 					}
 				});
@@ -180,8 +177,7 @@ public class FishermansLicenseQuiz extends AbstractQuest {
 				ConversationStates.ATTENDING, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence,
-							SpeakerNPC npc) {
+					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 						if (sentence.toString().equals(getCurrentSpecies())) {
 							if (currentSpeciesNo == speciesList.size() - 1) {
 								npc.say("Correct! Congratulations, you have passed the first part of the #exam.");
@@ -198,8 +194,7 @@ public class FishermansLicenseQuiz extends AbstractQuest {
 							cleanUpTable();
 							// remember the current time, as you can't do the
 							// quiz twice a day.
-							player.setQuest(QUEST_SLOT, ""
-									+ System.currentTimeMillis());
+							player.setQuest(QUEST_SLOT, "" + System.currentTimeMillis());
 						}
 					}
 				});

@@ -16,7 +16,7 @@ import java.util.Map;
 
 /**
  * Builds the city greeter NPC.
- * 
+ *
  * @author timothyb89
  */
 public class GreeterNPC implements ZoneConfigurator {
@@ -28,14 +28,11 @@ public class GreeterNPC implements ZoneConfigurator {
 
 	/**
 	 * Configure a zone.
-	 * 
-	 * @param zone
-	 *            The zone to be configured.
-	 * @param attributes
-	 *            Configuration attributes.
+	 *
+	 * @param	zone		The zone to be configured.
+	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone,
-			Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
 		buildNPC(zone, attributes);
 	}
 
@@ -59,16 +56,13 @@ public class GreeterNPC implements ZoneConfigurator {
 			@Override
 			protected void createDialog() {
 				addGreeting("Hello! Welcome to Fado City! You can #learn about Fado from me.");
-				addReply(
-						"learn",
-						"Fado guards the bridge over Or'ril river which is vital for the commercial route between #Deniran and Ados. There's an active social life here, being the preferred city for celebrating marriages and tasting elaborate meals.");
-				addReply(
-						"Deniran",
-						"Deniran is the jewel of the crown. Deniran is the center of Faiumoni and supports the army that tries to defeat enemies that wants to conquer Faiumoni.");
+				addReply("learn",
+				        "Fado guards the bridge over Or'ril river which is vital for the commercial route between #Deniran and Ados. There's an active social life here, being the preferred city for celebrating marriages and tasting elaborate meals.");
+				addReply("Deniran",
+				        "Deniran is the jewel of the crown. Deniran is the center of Faiumoni and supports the army that tries to defeat enemies that wants to conquer Faiumoni.");
 				addJob("I greet all of the new-comers to Fado. I can #offer you a scroll if you'd like to come back here again.");
 				addHelp("You can head into the tavern to buy food and drinks. You can also visit the people in the houses, or visit the blacksmith or the city hotel.");
-				new SellerAdder().addSeller(this, new SellerBehaviour(
-						shops.get("fadoscrolls")));
+				new SellerAdder().addSeller(this, new SellerBehaviour(shops.get("fadoscrolls")));
 				addGoodbye("Bye.");
 			}
 		};

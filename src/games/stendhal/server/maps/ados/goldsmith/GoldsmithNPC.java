@@ -17,25 +17,21 @@ import java.util.TreeMap;
 
 /**
  * Ados Goldsmith (Inside / Level 0)
- * 
+ *
  * @author dine
  */
 public class GoldsmithNPC implements ZoneConfigurator {
 	/**
 	 * Configure a zone.
-	 * 
-	 * @param zone
-	 *            The zone to be configured.
-	 * @param attributes
-	 *            Configuration attributes.
+	 *
+	 * @param	zone		The zone to be configured.
+	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone,
-			Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
 		buildGoldsmith(zone, attributes);
 	}
 
-	private void buildGoldsmith(StendhalRPZone zone,
-			Map<String, String> attributes) {
+	private void buildGoldsmith(StendhalRPZone zone, Map<String, String> attributes) {
 		SpeakerNPC goldsmith = new SpeakerNPC("Joshua") {
 
 			@Override
@@ -71,35 +67,23 @@ public class GoldsmithNPC implements ZoneConfigurator {
 				addGoodbye("Bye");
 
 				// Joshua makes gold if you bring him gold_nugget and wood
-				Map<String, Integer> requiredResources = new TreeMap<String, Integer>(); // use
-																							// sorted
-																							// TreeMap
-																							// instead
-																							// of
-																							// HashMap
+				Map<String, Integer> requiredResources = new TreeMap<String, Integer>();	// use sorted TreeMap instead of HashMap
 				requiredResources.put("wood", 2);
 				requiredResources.put("gold_nugget", 1);
 
-				ProducerBehaviour behaviour = new ProducerBehaviour(
-						"joshua_cast_gold", "cast", "gold_bar",
-						requiredResources, 15 * 60);
+				ProducerBehaviour behaviour = new ProducerBehaviour("joshua_cast_gold",
+						"cast", "gold_bar", requiredResources, 15 * 60);
 
-				new ProducerAdder().addProducer(
-						this,
-						behaviour,
-						"Hi! I'm the local goldsmith. If you require me to #cast you a #gold #bar just tell me!");
-				addReply(
-						"wood",
-						"I need some wood to keep my furnace lit. You can find any amount of it just lying around in the forest.");
-				addReply(
-						Arrays.asList("ore", "gold_ore", "gold_nugget"),
-						"I think there are places in the water where you can find gold ore. But you need a special tool to prospect for gold.");
-				addReply(
-						Arrays.asList("gold_bar", "gold", "bar"),
-						"After I've casted the gold for you keep it save. I've heard rumours that Fado city will be safe to travel to again soon. There you can sell or trade gold.");
-				addReply(
-						"gold_pan",
-						"If you had a gold pan, you would be able to prospect for gold at certain places.");
+				new ProducerAdder().addProducer(this, behaviour,
+				        "Hi! I'm the local goldsmith. If you require me to #cast you a #gold #bar just tell me!");
+				addReply("wood",
+		        		"I need some wood to keep my furnace lit. You can find any amount of it just lying around in the forest.");
+				addReply(Arrays.asList("ore", "gold_ore", "gold_nugget"),
+				        "I think there are places in the water where you can find gold ore. But you need a special tool to prospect for gold.");
+				addReply(Arrays.asList("gold_bar", "gold", "bar"),
+				        "After I've casted the gold for you keep it save. I've heard rumours that Fado city will be safe to travel to again soon. There you can sell or trade gold.");
+				addReply("gold_pan",
+				        "If you had a gold pan, you would be able to prospect for gold at certain places.");
 
 			}
 		};

@@ -19,19 +19,15 @@ public class HealerNPC implements ZoneConfigurator {
 
 	/**
 	 * Configure a zone.
-	 * 
-	 * @param zone
-	 *            The zone to be configured.
-	 * @param attributes
-	 *            Configuration attributes.
+	 *
+	 * @param	zone		The zone to be configured.
+	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone,
-			Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
 		buildSemosTempleArea(zone, attributes);
 	}
 
-	private void buildSemosTempleArea(StendhalRPZone zone,
-			Map<String, String> attributes) {
+	private void buildSemosTempleArea(StendhalRPZone zone, Map<String, String> attributes) {
 		SpeakerNPC npc = new SpeakerNPC("Ilisa") {
 
 			@Override
@@ -47,8 +43,7 @@ public class HealerNPC implements ZoneConfigurator {
 				addGreeting();
 				addJob("My special powers help me to heal wounded people. I also sell potions and antidotes.");
 				addHelp("I can #heal you here for free, or you can take one of my prepared medicines with you on your travels; just ask for an #offer.");
-				new SellerAdder().addSeller(this, new SellerBehaviour(
-						shops.get("healing")));
+				new SellerAdder().addSeller(this, new SellerBehaviour(shops.get("healing")));
 				new HealerAdder().addHealer(this, 0);
 				addGoodbye();
 			}

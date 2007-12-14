@@ -16,8 +16,7 @@ public class SellerNPC extends SpeakerNPCFactory {
 		npc.addGreeting();
 		npc.addJob("I make potions and antidotes, to #offer to warriors.");
 		npc.addHelp("You can take one of my prepared medicines with you on your travels; just ask for an #offer.");
-		new SellerAdder().addSeller(npc, new SellerBehaviour(
-				ShopList.get().get("superhealing")));
+		new SellerAdder().addSeller(npc, new SellerBehaviour(ShopList.get().get("superhealing")));
 		npc.addGoodbye();
 	}
 }
