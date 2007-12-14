@@ -16,7 +16,7 @@ public class SoundFileReader {
 	/** expected location of the sound definition file (classloader). */
 	public static final String STORE_PROPERTYFILE = "data/sounds/";
 
-	static Properties soundprops;
+	private static Properties soundprops;
 
 	public SoundFileReader() {
 

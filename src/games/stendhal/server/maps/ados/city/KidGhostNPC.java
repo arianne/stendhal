@@ -68,8 +68,8 @@ public class KidGhostNPC implements ZoneConfigurator {
 			    			}
 			    			String npcQuestText = player.getQuest("find_ghosts");
 			    			String[] npcDoneText = npcQuestText.split(":");
-			    			String lookStr = npcDoneText.length>1? npcDoneText[0]: "";
-			    			String saidStr = npcDoneText.length>1? npcDoneText[1]: "";
+			    			String lookStr = npcDoneText.length > 1 ? npcDoneText[0] : "";
+			    			String saidStr = npcDoneText.length > 1 ? npcDoneText[1] : "";
 			    			List<String> list = Arrays.asList(lookStr.split(";"));
 						    if (!list.contains(npc.getName())) {
 							    player.setQuest("find_ghosts", lookStr

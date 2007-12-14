@@ -53,7 +53,7 @@ public class BabyDragonSellerNPC implements ZoneConfigurator {
 				addGreeting(null, new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-					    if (player.hasQuest(QUEST_SLOT)){
+					    if (player.hasQuest(QUEST_SLOT)) {
 						long delay = REQUIRED_DAYS * 60 * 60 * 24 * 1000;
 						long timeRemaining = (Long.parseLong(player.getQuest(QUEST_SLOT))
 								      + delay) - System.currentTimeMillis();
@@ -63,7 +63,7 @@ public class BabyDragonSellerNPC implements ZoneConfigurator {
 										+ ".");
 								return;
 					        }
-						if (player.hasPet()){
+						if (player.hasPet()) {
 						    // we don't want him to give a dragon if player already has a pet
 						    engine.say("I cannot give your newly hatched dragon to you if I don't think you'll give it your full attention! Come back when you don't have another pet with you.");
 						    return;
@@ -72,7 +72,7 @@ public class BabyDragonSellerNPC implements ZoneConfigurator {
 
 					       	BabyDragon babydragon = new BabyDragon(player);
 
-					       	babydragon.setPosition(engine.getX(),engine.getY() + 1);
+					       	babydragon.setPosition(engine.getX(), engine.getY() + 1);
 
 					       	StendhalRPZone zone = engine.getZone();
 					       	zone.add(babydragon);
@@ -83,8 +83,7 @@ public class BabyDragonSellerNPC implements ZoneConfigurator {
 						player.removeQuest(QUEST_SLOT);
 					       	player.notifyWorldAboutChanges();
 
-					    }
-					    else if (player.isEquipped("mythical_egg")){
+					    } else if (player.isEquipped("mythical_egg")) {
 						        engine.say("Where did you get that egg from?! Never mind. Tell me if you need me to #hatch it for you. It is my hobby, after all.");
 					    } else {
 							engine.say("Hi. I don't get so many visitors, down here.");
@@ -98,7 +97,7 @@ public class BabyDragonSellerNPC implements ZoneConfigurator {
 						if (player.isEquipped("mythical_egg")) {
 						    player.drop("mythical_egg");
 						    engine.say("Ok, I'll take your egg and hatch it in one of these nesting boxes. Come back in " + 7 + " days and you should be the proud owner of a new born baby dragon.");
-						    player.setQuest(QUEST_SLOT,Long.toString(System.currentTimeMillis()));
+						    player.setQuest(QUEST_SLOT, Long.toString(System.currentTimeMillis()));
 						    player.notifyWorldAboutChanges();
 						} else {
 						    engine.say("You don't have any dragon eggs with you. I can't hatch a dragon without an egg.");
@@ -114,7 +113,7 @@ public class BabyDragonSellerNPC implements ZoneConfigurator {
 				addQuest("If you can get a dragon egg, I will #hatch it for you.");
 				addHelp("I rear baby dragons. If you have an egg, I'll #hatch it. I can also tell you how to #travel with a pet and take #care of it. If you find any wild baby dragon, incidentally, you can make it your #own.");
 				addGoodbye("Watch out for the giants on your way out!");
-				addReply("food","Baby dragons feed on meat and ham. Their particular favourite is pizza, if you can get it.");
+				addReply("food", "Baby dragons feed on meat and ham. Their particular favourite is pizza, if you can get it.");
 				addReply("care",
 						"Baby dragons eat meat, ham and even pizza. Just place a piece on the ground and the dragon will run over to eat it. You can right-click on it and choose 'Look' at any time, to see its weight. They gain one unit of weight for every piece of food they eat.");
 				addReply("travel",

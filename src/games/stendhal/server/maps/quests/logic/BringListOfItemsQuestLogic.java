@@ -78,7 +78,7 @@ public class BringListOfItemsQuestLogic {
 	protected void tellAboutQuest() {
  		List<String> questTrigger = new LinkedList<String>(ConversationPhrases.QUEST_MESSAGES);
 		List<String> additionalTrigger = concreteQuest.getAdditionalTriggerPhraseForQuest();
-		if (additionalTrigger!=null){
+		if (additionalTrigger != null) {
 			questTrigger.addAll(additionalTrigger);
 		}
 		concreteQuest.getNPC().add(ConversationStates.ATTENDING,

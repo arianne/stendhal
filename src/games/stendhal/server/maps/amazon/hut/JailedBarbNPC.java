@@ -53,9 +53,9 @@ public class JailedBarbNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-			        addGreeting("Flowers, flowers. All over here these ugly flowers!");
+			    addGreeting("Flowers, flowers. All over here these ugly flowers!");
 				addJob("I belong to the #Guard of the hidden King! Oops to much information for you!");
-				addReply("guard","Uhm as i said, i didn't said anything to you!");
+				addReply("guard", "Uhm as i said, i didn't said anything to you!");
 				addHelp("Kill as much of these ugly Amazoness as you can, they tried to make me going insane with these ugly flowers all over here.");
 				addOffer("Nothing to offer you!");				
 				addGoodbye("Bye bye, and cut down some of these ugly flowers!");

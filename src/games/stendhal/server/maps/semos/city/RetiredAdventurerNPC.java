@@ -6,8 +6,7 @@ import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPCFactory;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.maps.quests.BeerForHayunn;
-import games.stendhal.server.maps.quests.MeetHayunn;
+
 
 /**
  * An old hero (original name: Hayunn Naratha) who guards the dungeon entrance.

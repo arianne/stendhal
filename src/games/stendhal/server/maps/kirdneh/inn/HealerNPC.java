@@ -43,8 +43,8 @@ public class HealerNPC implements ZoneConfigurator {
 			@Override
 			protected void createDialog() {
 			        addGreeting("Gis' a kiss!");
-				addReply("kiss","ew sloppy");
-				addReply(":*","*:");
+				addReply("kiss", "ew sloppy");
+				addReply(":*", "*:");
 				addJob("Wuh? Uhh. Heal. Yeah. tha's it.");
 				addHealer(this, 200);
 				addHelp("Gimme money for beer. I heal, gis' cash.");
@@ -65,9 +65,18 @@ public class HealerNPC implements ZoneConfigurator {
     final HealerBehaviour healerBehaviour = new HealerBehaviour(cost);
 		Engine engine = npc.getEngine();
 
-		engine.add(ConversationStates.ATTENDING, ConversationPhrases.OFFER_MESSAGES, null, ConversationStates.ATTENDING, "Gimme money for beer. I heal, gis' cash.", null);
+		engine.add(ConversationStates.ATTENDING, 
+				ConversationPhrases.OFFER_MESSAGES, 
+				null, 
+				ConversationStates.ATTENDING, 
+				"Gimme money for beer. I heal, gis' cash.", 
+				null);
 
-		engine.add(ConversationStates.ATTENDING, "heal", null, ConversationStates.HEAL_OFFERED, null,
+		engine.add(ConversationStates.ATTENDING, 
+				"heal", 
+				null, 
+				ConversationStates.HEAL_OFFERED, 
+				null,
 		        new SpeakerNPC.ChatAction() {
 			        @Override
 			        public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
@@ -78,8 +87,11 @@ public class HealerNPC implements ZoneConfigurator {
 				}
 		        });
 
-		engine.add(ConversationStates.HEAL_OFFERED, ConversationPhrases.YES_MESSAGES, null,
-		        ConversationStates.ATTENDING, null,
+		engine.add(ConversationStates.HEAL_OFFERED, 
+				ConversationPhrases.YES_MESSAGES, 
+				null,
+		        ConversationStates.ATTENDING, 
+		        null,
 		        new SpeakerNPC.ChatAction() {
 			        @Override
 			        public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
@@ -92,8 +104,12 @@ public class HealerNPC implements ZoneConfigurator {
 			        }
 		        });
 
-		engine.add(ConversationStates.HEAL_OFFERED, ConversationPhrases.NO_MESSAGES, null,
-		        ConversationStates.ATTENDING, "Wha you want then?", null);
+		engine.add(ConversationStates.HEAL_OFFERED, 
+				ConversationPhrases.NO_MESSAGES, 
+				null,
+		        ConversationStates.ATTENDING, 
+		        "Wha you want then?", 
+		        null);
 	}
 
 }

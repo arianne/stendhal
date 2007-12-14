@@ -36,20 +36,20 @@ public class ExperiencedWarriorNPC extends SpeakerNPCFactory {
 	 * literals for probabilities. %s is replaced with item description (name
 	 * and amount)
 	 */
-	static Map<Double, String> probabilityLiterals;
+	private static Map<Double, String> probabilityLiterals;
 
 	/**
 	 * literal for item amounts %s is replaced with singular item name, %a with
 	 * "a/an item name" depending on the item name
 	 */
-	static Map<Integer, String> amountLiterals;
+	private static Map<Integer, String> amountLiterals;
 
 	/**
 	 * literal for how dangerous a creature is based on the percentual
 	 * difference to player level %s is replaced with singular creature name, %S
 	 * with plural
 	 */
-	static Map<Double, String> dangerLiterals;
+	private static Map<Double, String> dangerLiterals;
 
 	/**
 	 * literals for line starts. %s is replaced with singular creature name, %S
@@ -136,7 +136,7 @@ public class ExperiencedWarriorNPC extends SpeakerNPCFactory {
 	 */
 	static final String[] LOCATION_UNKNOWN_TEXTS = new String[] { "I don't know of any place where you could find %1." };
 
-	static CreatureInfo creatureInfo = new CreatureInfo(probabilityLiterals,
+	private static CreatureInfo creatureInfo = new CreatureInfo(probabilityLiterals,
 			amountLiterals, dangerLiterals, LINE_STARTS, RESPAWN_TEXTS,
 			CARRY_TEXTS, CARRY_NOTHING_TEXTS, LOCATION_TEXTS,
 			LOCATION_UNKNOWN_TEXTS);
@@ -145,9 +145,9 @@ public class ExperiencedWarriorNPC extends SpeakerNPCFactory {
 	public void createDialog(SpeakerNPC npc) {
 
 		class StateInfo {
-			String creatureName;
+			private String creatureName;
 
-			int informationCost;
+			private int informationCost;
 
 			void setCreatureName(String creatureName) {
 				this.creatureName = creatureName;
