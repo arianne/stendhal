@@ -1,4 +1,4 @@
-package games.stendhal.server.account;
+package games.stendhal.server.core.account;
 
 import marauroa.common.game.Result;
 

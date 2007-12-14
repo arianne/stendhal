@@ -1,10 +1,10 @@
-package games.stendhal.server.account;
+package games.stendhal.server.core.account;
 
+import games.stendhal.server.core.rule.RuleManager;
+import games.stendhal.server.core.rule.RuleSetFactory;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.rule.RuleManager;
-import games.stendhal.server.rule.RuleSetFactory;
 
 import java.sql.SQLException;
 
