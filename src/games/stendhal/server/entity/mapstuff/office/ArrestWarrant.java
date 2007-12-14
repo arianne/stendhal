@@ -9,7 +9,7 @@ import marauroa.common.game.Definition.Type;
 
 /**
  * are persitent arrest warrant
- * 
+ *
  * @author hendrik
  */
 public class ArrestWarrant extends Entity {
@@ -33,18 +33,13 @@ public class ArrestWarrant extends Entity {
 
 	/**
 	 * Creates an ArrestWarrant
-	 * 
-	 * @param criminalName
-	 *            name of criminal to be jailed
-	 * @param policeOfficer
-	 *            name of police officer who issued the /jail command
-	 * @param minutes
-	 *            time of sentence
-	 * @param reason
-	 *            reason
+	 *
+	 * @param criminalName  name of criminal to be jailed
+	 * @param policeOfficer name of police officer who issued the /jail command
+	 * @param minutes time of sentence
+	 * @param reason reason
 	 */
-	public ArrestWarrant(String criminalName, Player policeOfficer,
-			int minutes, String reason) {
+	public ArrestWarrant(String criminalName, Player policeOfficer, int minutes, String reason) {
 		store();
 		put(CRIMINAL, criminalName);
 		put(POLICE_OFFICER, policeOfficer.getName());
@@ -54,11 +49,10 @@ public class ArrestWarrant extends Entity {
 	}
 
 	/**
-	 * creates an ArrestWarrant based on a deserialized RPObject; use the other
-	 * constructor.
-	 * 
-	 * @param rpobject
-	 *            RPObject
+	 * creates an ArrestWarrant based on a deserialized RPObject; 
+	 * use the other constructor.
+	 *
+	 * @param rpobject RPObject
 	 */
 	public ArrestWarrant(RPObject rpobject) {
 		super(rpobject);
@@ -67,10 +61,27 @@ public class ArrestWarrant extends Entity {
 
 	/**
 	 * gets the name of the criminal
-	 * 
+	 *
 	 * @return name of criminal
 	 */
 	public String getCriminal() {
 		return get(CRIMINAL);
+	}
+
+	/**
+	 * has the criminal started his jail time?
+	 *
+	 * @return true iff started
+	 */
+	public boolean isStarted() {
+		return has(STARTED);
+	}
+
+
+	/**
+	 * the criminal has started his jail time
+	 */
+	public void setStarted() {
+		put(STARTED, "");
 	}
 }
