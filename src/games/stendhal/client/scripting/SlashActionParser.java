@@ -6,21 +6,21 @@ import java.text.CharacterIterator;
 import java.text.StringCharacterIterator;
 
 /**
- * Command line parser for the Stendhal client
- * The parser recognises the registered slash action commands and
- * handles string quoting.
+ * Command line parser for the Stendhal client The parser recognises the
+ * registered slash action commands and handles string quoting.
+ * 
  * @author Martin Fuchs
  */
-public class SlashActionParser
-{
+public class SlashActionParser {
 	/**
-	 * Parse the given slash command. The text is supposed not to include the slash
-	 * character but to start directly after the slash on the client command line.
-	 * @param text
-	 * @return SlashActionCommand object 
+	 * Parse the given slash command. The text is supposed not to include the
+	 * slash character but to start directly after the slash on the client
+	 * command line.
+	 * 
+	 * @param text the client command line
+	 * @return SlashActionCommand object
 	 */
-	public static SlashActionCommand parse(String text)
-    {
+	public static SlashActionCommand parse(final String text) {
 		SlashActionCommand command = new SlashActionCommand();
 
 		if (text.length() == 0) {
@@ -47,29 +47,30 @@ public class SlashActionParser
 			/*
 			 * Word command
 			 */
-			while ((ch != CharacterIterator.DONE) && !Character.isWhitespace(ch)) {
+			while ((ch != CharacterIterator.DONE)
+					&& !Character.isWhitespace(ch)) {
 				ch = ci.next();
 			}
 
-			command._name = text.substring(0, ci.getIndex());
+			command.setName(text.substring(0, ci.getIndex()));
 		} else {
 			/*
 			 * Special character command
 			 */
-			command._name = String.valueOf(ch);
+			command.setName(String.valueOf(ch));
 			ch = ci.next();
 		}
 
 		/*
 		 * Find command handler
 		 */
-		command._action = SlashActionRepository.get(command._name);
+		command.setAction(SlashActionRepository.get(command.getName()));
 
 		int minimum, maximum;
 
-		if (command._action != null) {
-			minimum = command._action.getMinimumParameters();
-			maximum = command._action.getMaximumParameters();
+		if (command.getAction() != null) {
+			minimum = command.getAction().getMinimumParameters();
+			maximum = command.getAction().getMaximumParameters();
 		} else {
 			/*
 			 * Server extension criteria
@@ -79,12 +80,11 @@ public class SlashActionParser
 		}
 
 		/*
-		 * Extract parameters
-		 * (ch already set to first character)
+		 * Extract parameters (ch already set to first character)
 		 */
-		command._params = new String[maximum];
+		command.setParams(new String[maximum]);
 
-		for(int i = 0; i < maximum; i++) {
+		for (int i = 0; i < maximum; i++) {
 			/*
 			 * Skip leading spaces
 			 */
@@ -100,7 +100,8 @@ public class SlashActionParser
 				 * Incomplete parameters?
 				 */
 				if (i < minimum) {
-					return command.setError("Missing command parameter for '" + command._name + "'");
+					return command.setError("Missing command parameter for '"
+							+ command.getName() + "'");
 				}
 
 				break;
@@ -140,7 +141,7 @@ public class SlashActionParser
 				return command.setError("Unterminated quote in slash command");
 			}
 
-			command._params[i] = sbuf.toString();
+			command.getParams()[i] = sbuf.toString();
 		}
 
 		/*
@@ -150,15 +151,16 @@ public class SlashActionParser
 			ch = ci.next();
 		}
 
-		StringBuffer sbuf = new StringBuffer(ci.getEndIndex() - ci.getIndex() + 1);
+		StringBuffer sbuf = new StringBuffer(ci.getEndIndex() - ci.getIndex()
+				+ 1);
 
 		while (ch != CharacterIterator.DONE) {
 			sbuf.append(ch);
 			ch = ci.next();
 		}
 
-		command._remainder = sbuf.toString();
+		command.setRemainder(sbuf.toString());
 
 		return command;
-    }
+	}
 }

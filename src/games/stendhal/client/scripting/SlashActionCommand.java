@@ -3,85 +3,129 @@ package games.stendhal.client.scripting;
 import games.stendhal.client.actions.SlashAction;
 
 /**
- * Command line parser for the Stendhal client
+ * Command line parser for the Stendhal client.
+ * 
  * @author Martin Fuchs
  */
 public class SlashActionCommand {
 
-	String _name;
-	SlashAction _action;
+	private String name;
+	private SlashAction action;
 
-	String[] _params;
-	String _remainder;
+	private String[] params;
+	private String remainder;
 
-	String _error = null;
+	private String error = null;
+
+	
 
 	/**
 	 * @return action object
 	 */
-	SlashAction getAction()
-	{
-		return _action;
+	SlashAction getAction() {
+		return action;
+	}
+
+	
+	/**
+	 * sets the action to be parsed.
+	 * 
+	 * @param action the action to be parsed
+	 */
+	void setAction(final SlashAction action) {
+		this.action = action;
 	}
 
 	/**
-	 * return command name
+	 * return command name.
+	 * 
 	 * @return command name
 	 */
-	public String getName()
-    {
-	    return _name;
-    }
-
-	/**
-	 * return command parameters
-	 * @return parameter array
-	 */
-	public String[] getParams()
-    {
-	    return _params;
-    }
-
-	/**
-	 * return trailing parameter text
-	 * @return remainder
-	 */
-	public String getRemainder()
-    {
-	    return _remainder;
-    }
-
-	/**
-	 * return whether some error occurred while parsing the input text
-	 * @return error flag
-	 */
-	boolean hasError()
-	{
-		return _error != null;
+	public String getName() {
+		return name;
 	}
 
 	/**
-	 * return error message
-	 * @return error string
+	 * return command parameters.
+	 * 
+	 * @return parameter array
 	 */
-	public String getError()
-    {
-	    return _error;
-    }
+	public String[] getParams() {
+		return params;
+	}
 
 	/**
-	 * set error flag
+	 * set command parameters.
+	 * 
+	 * @param params parameter array
+	 */
+	void setParams(final String[] params) {
+		this.params = params;
+	}
+
+
+	/**
+	 * return trailing parameter text.
+	 * 
+	 * @return remainder
+	 */
+	public String getRemainder() {
+		return remainder;
+	}
+
+	
+	/**
+	 * sets the trailing text.
+	 * 
+	 * @param remainder the trailing text
+	 */
+	void setRemainder(final String remainder) {
+		this.remainder = remainder;
+	}
+
+
+	/**
+	 * return whether some error occurred while parsing the input text.
+	 * 
+	 * @return error flag
+	 */
+	boolean hasError() {
+		return error != null;
+	}
+
+	/**
+	 * return error message.
+	 * 
+	 * @return error string
+	 */
+	public String getError() {
+		return error;
+	}
+
+	/**
+	 * set error flag.
+	 * 
+	 * @param error the error message
+	 * 
 	 * @return this
 	 */
-	public SlashActionCommand setError(String error)
-    {
-		if (_error == null) {
-			_error = error;
-    	} else {
-    		_error += "\n" + error;
-    	}
+	public SlashActionCommand setError(final String error) {
+		if (error == null) {
+			this.error = error;
+		} else {
+			this.error += "\n" + error;
+		}
 
 		return this;
-    }
+	}
+
+	/**
+	 * set command name.
+	 * 
+	 * @param name the command name
+	 */
+	void setName(final String name) {
+		this.name = name;
+	}
 
 }
