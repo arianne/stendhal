@@ -10,10 +10,15 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server;
+package games.stendhal.server.core.rp;
 
 import games.stendhal.common.Grammar;
 import games.stendhal.common.Rand;
+import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
+import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.pathfinder.Node;
+import games.stendhal.server.core.pathfinder.Path;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.Creature;
@@ -26,8 +31,6 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.TutorialNotifier;
 import games.stendhal.server.events.ZoneNotifier;
-import games.stendhal.server.pathfinder.Node;
-import games.stendhal.server.pathfinder.Path;
 
 import java.awt.Rectangle;
 import java.awt.Shape;

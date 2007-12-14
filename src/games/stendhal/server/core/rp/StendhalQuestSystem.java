@@ -1,6 +1,6 @@
-package games.stendhal.server;
+package games.stendhal.server.core.rp;
 
-import games.stendhal.server.config.QuestsXMLLoader;
+import games.stendhal.server.core.config.QuestsXMLLoader;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.quests.IQuest;
 import games.stendhal.server.maps.quests.QuestInfo;
