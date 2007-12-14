@@ -21,8 +21,8 @@ import org.apache.log4j.Logger;
 /**
  * An ItemChangeGuardCreature is a creature that is responsible for guarding a
  * special item (e.g. a key). Once it is killed, a copy of this special item
- * is given to the player who killed it in case he/she has had an other specified
- * item in the first place.
+ * is given to the player who killed it in place of another specified
+ * item which the killer must have equipped.
  */
 public class ItemChangeGuardCreature extends Creature {
 
@@ -45,7 +45,7 @@ public class ItemChangeGuardCreature extends Creature {
 		this.oldItemType = oldItemType;
 
 		if (!StendhalRPWorld.get().getRuleManager().getEntityManager().isItem(itemType)) {
-			logger.error(copy.getName() + " drops unexisting item " + itemType);
+			logger.error(copy.getName() + " drops nonexistent item " + itemType);
 		}
 	}
 
@@ -58,7 +58,7 @@ public class ItemChangeGuardCreature extends Creature {
 	public void onDead(Entity killer) {
 		if (killer instanceof RPEntity) {
 			RPEntity killerRPEntity = (RPEntity) killer;
-			if (!killerRPEntity.drop(oldItemType)) {
+			if (killerRPEntity.drop(oldItemType)) {
 				Item item = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(itemType);
 				killerRPEntity.equip(item, true);
 			}
