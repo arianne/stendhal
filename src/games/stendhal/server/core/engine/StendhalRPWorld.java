@@ -316,6 +316,7 @@ public class StendhalRPWorld extends RPWorld {
 	 * 
 	 * @throws Exception
 	 */
+	@Deprecated
 	public StendhalRPZone addArea(String name, String content) throws Exception {
 		logger.info("Loading area: " + name);
 		StendhalRPZone area = new StendhalRPZone(name);
