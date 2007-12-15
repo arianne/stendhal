@@ -163,7 +163,7 @@
 
   <item name="war_hammer">
     <type class="club" subclass="grand_warhammer" tileid="-1"/>
-    <description>You see a huge war hammer. It seems string but is so heavy that you can only lift it to attack every so often..</description>
+    <description>You see a huge war hammer. It seems strong but is so heavy that you can only lift it to attack every so often..</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="38"/>
       <rate value="9"/>
