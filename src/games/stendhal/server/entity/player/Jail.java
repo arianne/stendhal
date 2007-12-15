@@ -5,6 +5,8 @@ import games.stendhal.server.actions.ChatAction;
 import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
 import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.mapstuff.office.ArrestWarrant;
+import games.stendhal.server.entity.mapstuff.office.ArrestWarrantList;
 import games.stendhal.server.events.LoginListener;
 import games.stendhal.server.events.LoginNotifier;
 import games.stendhal.server.events.TurnListener;
@@ -12,7 +14,6 @@ import games.stendhal.server.events.TurnNotifier;
 
 import java.awt.Point;
 import java.awt.Rectangle;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -25,53 +26,17 @@ import org.apache.log4j.Logger;
  * This class is responsible of keeping players who have misbehaved in a special
  * jail area where they can't do any harm. The misbehaving player will be
  * automatically released after a specified number of minutes.
- * 
+ *
  * @author daniel
  */
 public class Jail implements LoginListener {
-	protected static final String DEFAULT_JAIL_ZONE = "-1_semos_jail";
-
-	static StendhalRPZone jailzone;
-
-	private final class Jailer implements TurnListener {
-		@Override
-		public boolean equals(Object obj) {
-			if (obj instanceof Jailer) {
-				Jailer other = (Jailer) obj;
-				return _name.equals(other._name);
-			}
-
-			return false;
-		}
-
-		@Override
-		public int hashCode() {
-
-			return _name.hashCode();
-		}
-
-		String _name;
-
-		private Jailer(String name) {
-
-			_name = name;
-		}
-
-		public void onTurnReached(int currentTurn) {
-			/*
-			 * TODO: If player is not present, we should reset the sentence
-			 * timer on login
-			 */
-
-			if (!release(_name)) {
-				// The player has logged out. Release him when he logs in again.
-				namesOfPlayersToRelease.add(_name);
-			}
-
-		}
-	}
 
 	private static final Logger logger = Logger.getLogger(Jail.class);
+
+	// package visibile because of tests
+	static final String DEFAULT_JAIL_ZONE = "-1_semos_jail";
+	static StendhalRPZone jailzone;
+	ArrestWarrantList arrestWarrants;
 
 	/** The Singleton instance */
 	private static Jail instance;
@@ -80,22 +45,55 @@ public class Jail implements LoginListener {
 	 * TODO: Bad smell, hard coded list of points in the jail zone for where to
 	 * land.
 	 */
-	private static List<Point> cellEntryPoints = Arrays.asList(new Point(3, 2),
-			new Point(8, 2),
-			// elf cell new Point(13, 2),
-			new Point(18, 2), new Point(23, 2), new Point(28, 2), new Point(8,
-					11), new Point(13, 11), new Point(18, 11),
-			new Point(23, 11), new Point(28, 11));
+	private static List<Point> cellEntryPoints = Arrays.asList(
+		new Point(3, 2),
+		new Point(8, 2),
+		// elf cell new Point(13, 2),
+		new Point(18, 2), 
+		new Point(23, 2), 
+		new Point(28, 2), 
+		new Point(8, 11),
+		new Point(13, 11),
+		new Point(18, 11),
+		new Point(23, 11),
+		new Point(28, 11)
+	);
 
-	private static Rectangle[] cellBlocks = { new Rectangle(1, 1, 30, 3),
-			new Rectangle(7, 10, 30, 12) };
+	private static Rectangle[] cellBlocks = { 
+		new Rectangle(1, 1, 30, 3),
+		new Rectangle(7, 10, 30, 12)
+	};
 
-	// TODO: make this persistent, Don't use quest for this.
-	private List<String> namesOfPlayersToRelease;
+	private final class Jailer implements TurnListener {
+
+		private String criminalName;
+
+		Jailer(String name) {
+			criminalName = name;
+		}
+
+		@Override
+		public boolean equals(Object obj) {
+			if (obj instanceof Jailer) {
+				Jailer other = (Jailer) obj;
+				return criminalName.equals(other.criminalName);
+			}
+			return false;
+		}
+
+		@Override
+		public int hashCode() {
+			return criminalName.hashCode();
+		}
+
+		public void onTurnReached(int currentTurn) {
+			release(criminalName);
+		}
+	}
 
 	/**
 	 * returns the Jail object (Singleton Pattern)
-	 * 
+	 *
 	 * @return Jail
 	 */
 	public static Jail get() {
@@ -107,7 +105,8 @@ public class Jail implements LoginListener {
 
 	// singleton
 	private Jail() {
-		namesOfPlayersToRelease = new ArrayList<String>();
+		getJailzone();
+		arrestWarrants = new ArrestWarrantList(jailzone);
 		LoginNotifier.get().addListener(this);
 	}
 
@@ -123,20 +122,33 @@ public class Jail implements LoginListener {
 			int minutes, String reason) {
 
 		final Player criminal = StendhalRPRuleProcessor.get().getPlayer(
-				criminalName);
+						criminalName);
 
+		ArrestWarrant arrestWarrant = new ArrestWarrant(criminalName, policeman, minutes, reason);
+
+		policeman.sendPrivateText("You have jailed " + criminalName
+			+ " for " + minutes + " minutes. Reason: " + reason + ".");
+		ChatAction.sendMessageToSupporters("JailKeeper",
+			policeman.getName() + " jailed " + criminalName
+			+ " for " + minutes + " minutes. Reason: " + reason
+			+ ".");
+		
 		if (criminal == null) {
-			String text = "Player " + criminalName + " not found";
+			String text = "Player " + criminalName + " is not online, but the arrest warrant has been recorded anyway.";
 			policeman.sendPrivateText(text);
 			logger.debug(text);
-			return;
+		} else {
+			arrestWarrant.setStarted();
+			criminal.sendPrivateText("You have been jailed by "
+				+ policeman.getName() + " for " + minutes
+				+ " minutes. Reason: " + reason + ".");
+			imprison(criminal, policeman, minutes);
 		}
 
-		imprison(criminal, policeman, minutes, reason);
+		arrestWarrants.add(arrestWarrant);
 	}
 
-	protected void imprison(final Player criminal, Player policeman,
-			int minutes, String reason) {
+	protected void imprison(final Player criminal, Player policeman, int minutes) {
 
 		getJailzone();
 
@@ -148,24 +160,11 @@ public class Jail implements LoginListener {
 		}
 		boolean successful = teleportToAvailableCell(criminal, policeman);
 		if (successful) {
-			policeman.sendPrivateText("You have jailed " + criminal.getName()
-					+ " for " + minutes + " minutes. Reason: " + reason + ".");
-			criminal.sendPrivateText("You have been jailed by "
-					+ policeman.getTitle() + " for " + minutes
-					+ " minutes. Reason: " + reason + ".");
-			ChatAction.sendMessageToSupporters("JailKeeper",
-					policeman.getTitle() + " jailed " + criminal.getName()
-							+ " for " + minutes + " minutes. Reason: " + reason
-							+ ".");
-
 			Jailer jailer = new Jailer(criminal.getName());
 			TurnNotifier.get().dontNotify(jailer);
 
 			// Set a timer so that the inmate is automatically released after
-			// serving his sentence. We're using the TurnNotifier; we use
-			//
-			// NOTE: The player won't be automatically released if the
-			// server is restarted before the player could be released.
+			// serving his sentence.
 			TurnNotifier.get().notifyInSeconds(minutes * 60, jailer);
 		} else {
 			policeman.sendPrivateText("Could not find a cell for"
@@ -196,7 +195,7 @@ public class Jail implements LoginListener {
 	/**
 	 * Releases an inmate and teleports him to Semos city, but only if he is
 	 * still in jail.
-	 * 
+	 *
 	 * @param inmateName
 	 *            the name of the inmate who should be released
 	 * @return true if the player has not logged out before he was released
@@ -213,7 +212,7 @@ public class Jail implements LoginListener {
 		return true;
 	}
 
-	void release(Player inmate) {
+	void release( Player inmate) {
 		// Only teleport the player if he is still in jail.
 		// It could be that an admin has teleported him out earlier.
 		StendhalRPWorld world = StendhalRPWorld.get();
@@ -222,17 +221,21 @@ public class Jail implements LoginListener {
 			if (!world.hasRPZone(zoneid)) {
 				logger.debug("Zone " + zoneid + " not found");
 			}
-			StendhalRPZone semosCity = (StendhalRPZone) world.getRPZone(zoneid);
+			StendhalRPZone exitZone = (StendhalRPZone) world.getRPZone(zoneid);
 
-			inmate.teleport(semosCity, 6, 3, Direction.RIGHT, null);
+			inmate.teleport(exitZone, 6, 3, Direction.RIGHT, null);
 			inmate.sendPrivateText("Your sentence is over. You can walk out now.");
 			logger.debug("Player " + inmate.getName() + "released from jail.");
 		}
+
+		// The player completed his sentence and did not logout
+		// so destroy the ArrestWarrant
+		arrestWarrants.removeByName(inmate.getName());
 	}
 
 	/**
 	 * Is player in a jail cell? Ignores visitors outside of cells.
-	 * 
+	 *
 	 * @param inmate
 	 *            player to check
 	 * @return true, if it is in jail, false otherwise.
@@ -249,15 +252,38 @@ public class Jail implements LoginListener {
 		return false;
 	}
 
-	public void onLoggedIn(Player player) {
-		/*
-		 * TODO: Refactor We should be able to manipulate the offline object.
-		 * 
-		 */
-		String name = player.getName();
-		if (namesOfPlayersToRelease.contains(name)) {
-			release(name);
-			namesOfPlayersToRelease.remove(name);
-		}
+	public void onLoggedIn(final Player player) {
+		// we need to do this on the next turn because the
+		// client does not get any private messages otherwise
+		TurnNotifier.get().notifyInTurns(1, new TurnListener() {
+			public void onTurnReached(int currentTurn) {
+				String name = player.getName();
+				ArrestWarrant arrestWarrant = arrestWarrants.getByName(name);
+				if (arrestWarrant != null) {
+					long timestamp = arrestWarrant.getTimestamp();
+					if (timestamp + 30*24*60*60*100 < System.currentTimeMillis()) {
+						arrestWarrants.removeByName(name);
+					} else {
+						player.sendPrivateText("You have been jailed by "
+							+ arrestWarrant.getPoliceOfficer()
+							+ " for " + arrestWarrant.getMinutes()
+							+ " minutes on " + String.format("%tF", timestamp)
+							+ ". Reason: " + arrestWarrant.getReason() + ".");
+		
+						if (arrestWarrant.isStarted()) {
+							// Notify player that his sentences is starting again because he tried to escape by logging out
+							player.sendPrivateText("Although you already spent some " +
+								"time in jail, your sentence has been restarted " +
+								"because of your failed escape attempt.");
+						} else {
+			
+							// Jail player who was offline at the time /jail was issued.
+							arrestWarrant.setStarted();
+						}
+						imprison(player, player, arrestWarrant.getMinutes());
+					}
+				}
+			}
+		});
 	}
 }
