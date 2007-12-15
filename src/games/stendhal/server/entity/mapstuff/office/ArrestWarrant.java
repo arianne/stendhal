@@ -1,6 +1,7 @@
 package games.stendhal.server.entity.mapstuff.office;
 
 import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.player.Jail;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.Definition;
 import marauroa.common.game.RPClass;
@@ -59,6 +60,10 @@ public class ArrestWarrant extends Entity {
 	public ArrestWarrant(RPObject rpobject) {
 		super(rpobject);
 		store();
+		// initialize jail so that players with pending ArrestWarrants
+		// are arrested on login.
+		// TODO: find a better way to initalize the Jail
+		Jail.get();
 	}
 
 	/**
