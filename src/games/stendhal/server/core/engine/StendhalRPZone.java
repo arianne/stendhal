@@ -144,16 +144,6 @@ public class StendhalRPZone extends MarauroaRPZone {
 		protectionMap = new CollisionDetection();
 	}
 
-	@Override
-	public void onInit() throws Exception {
-		// do nothing
-	}
-
-	@Override
-	public void onFinish() throws Exception {
-		// do nothing
-	}
-
 	/**
 	 * Get blood (if any) at a specified zone position.
 	 * 
