@@ -29,9 +29,14 @@ public class MockStendhalRPRuleProcessor extends StendhalRPRuleProcessor {
 	 * @param player Player
 	 */
 	public void addPlayer(Player player) {
-		if (!players.contains(player)) {
-			players.add(player);
+		while (players.contains(player)){
+			players.remove(player);
+			
 		}
+			
+		
+			this.players.add(player);
+		
 	}
 
 	/**
