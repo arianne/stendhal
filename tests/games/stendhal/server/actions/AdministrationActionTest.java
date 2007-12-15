@@ -522,6 +522,8 @@ public class AdministrationActionTest {
 
 	@Test
 	public final void testJail() {
+		MockStendlRPWorld.get().addRPZone(new StendhalRPZone("-1_semos_jail"));
+		
 		Player pl = PlayerTestHelper.createPlayer("hugo");
 		pl.put("adminlevel", 5000);
 		RPAction action = new RPAction();
@@ -538,7 +540,8 @@ public class AdministrationActionTest {
 		action.put("minutes", 1);
 
 		CommandCenter.execute(pl, action);
-		assertEquals("Player name not found", pl.getPrivateText());
+		assertEquals("You have jailed name for 1 minutes. Reason: whynot.\r\n"+
+					"Player name is not online, but the arrest warrant has been recorded anyway.", pl.getPrivateText());
 
 		pl.clearEvents();
 
