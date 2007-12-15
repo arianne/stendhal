@@ -61,7 +61,7 @@ public class MoveAction implements ActionListener {
 	}
 
 	static class StopPushAction implements TurnListener {
-		RPEntity tostop;
+		private RPEntity tostop;
 
 		StopPushAction(RPEntity entity) {
 			tostop = entity;
