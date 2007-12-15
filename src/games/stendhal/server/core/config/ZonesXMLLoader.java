@@ -200,6 +200,12 @@ public class ZonesXMLLoader {
 
 		StendhalRPWorld.get().addRPZone(zone);
 
+		try {
+			zone.onInit();
+		} catch (Exception e) {
+			logger.error(e, e);
+		}
+		
 		zone.populate(zonedata.getLayer("objects"));
 
 		return zone;
