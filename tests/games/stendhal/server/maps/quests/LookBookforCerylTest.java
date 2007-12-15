@@ -104,7 +104,6 @@ public class LookBookforCerylTest {
 	@Test
 	public void doQuest() throws Exception {
 		LookBookforCeryl quest = new LookBookforCeryl();
-		SpeakerNPC ceryl = NPCList.get().get("ceryl");
 		quest.init("Ceryl needs a book");
 		quest.addToWorld();
 		Player pl = PlayerTestHelper.createPlayer();
