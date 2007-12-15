@@ -31,7 +31,7 @@ import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 
 /**
- * Processes /chat, /tell (/msg) and /support
+ * Processes /chat, /tell (/msg) and /support.
  */
 public class ChatAction implements ActionListener {
 

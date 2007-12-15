@@ -24,7 +24,7 @@ import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 
 /**
- * Moving of items around on the ground
+ * Moving of items around on the ground.
  */
 public class DisplaceAction implements ActionListener {
 
@@ -33,14 +33,14 @@ public class DisplaceAction implements ActionListener {
 	private static final String _X = "x";
 
 	/**
-	 * register this action
+	 * register this action.
 	 */
 	public static void register() {
 		CommandCenter.register("displace", new DisplaceAction());
 	}
 
 	/**
-	 * handle movement of items
+	 * handle movement of items.
 	 */
 	public void onAction(Player player, RPAction action) {
 

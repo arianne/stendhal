@@ -53,15 +53,15 @@ public class EquipmentAction implements ActionListener {
 
 	static final Logger logger = Logger.getLogger(EquipmentAction.class);
 
-	/** the list of valid container classes */
-	private static final Class<?>[] validContainerClasses = new Class<?>[] {
+	/** the list of valid container classes. */
+	private static final Class< ? >[] validContainerClasses = new Class< ? >[] {
 			Player.class, Chest.class, Corpse.class };
 
-	/** List of the valid container classes for easy access */
-	private List<Class<?>> validContainerClassesList;
+	/** List of the valid container classes for easy access. */
+	private List<Class< ? >> validContainerClassesList;
 
 	/**
-	 * registers "equip" and "drop" action processors
+	 * registers "equip" and "drop" action processors.
 	 */
 	public static void register() {
 		EquipmentAction equip = new EquipmentAction();
@@ -69,7 +69,7 @@ public class EquipmentAction implements ActionListener {
 		CommandCenter.register("drop", equip);
 	}
 
-	/** constuctor */
+	/** constuctor. */
 	public EquipmentAction() {
 		validContainerClassesList = Arrays.asList(validContainerClasses);
 	}
@@ -90,7 +90,7 @@ public class EquipmentAction implements ActionListener {
 		}
 	}
 
-	/** callback for the equip action */
+	/** callback for the equip action. */
 	private void onEquip(Player player, RPAction action) {
 		// get source and check it
 		logger.debug("Checking source object conditions: " + action);

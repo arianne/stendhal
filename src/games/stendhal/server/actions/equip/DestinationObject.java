@@ -16,28 +16,28 @@ import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
 /**
- * this encapsulates the equip/drop destination
+ * this encapsulates the equip/drop destination.
  */
 class DestinationObject extends MoveableObject {
 	private static Logger logger = Logger.getLogger(DestinationObject.class);
 
-	/** true when this object is valid */
+	/** true when this object is valid. */
 	private boolean valid;
 
-	/** optional, parent item */
+	/** optional, parent item. */
 	private Entity parent;
 
-	/** x coordinate when dropped on ground */
+	/** x coordinate when dropped on ground. */
 	private int x;
 
-	/** y coordinate when dropped on ground */
+	/** y coordinate when dropped on ground.*/
 	private int y;
 
-	/** interprets the given action */
+	/** interprets the given action. */
 	public DestinationObject(RPAction action, Player player) {
 		super(player);
 		valid = false;
-		// droppped into another item
+		// dropped into another item
 		if (action.has(EquipActionConsts.TARGET_OBJECT)
 				&& action.has(EquipActionConsts.TARGET_SLOT)) {
 			// get base item and slot
@@ -67,7 +67,7 @@ class DestinationObject extends MoveableObject {
 				return;
 			}
 
-			// ok, action is valid
+			// ok, action is valid.
 			valid = true;
 			return;
 		}
@@ -83,7 +83,7 @@ class DestinationObject extends MoveableObject {
 		// not valid
 	}
 
-	/** checks if it is possible to add the entity to the world */
+	/** checks if it is possible to add the entity to the world. */
 	public boolean preCheck(Entity entity, Player player) {
 		StendhalRPZone zone = player.getZone();
 
@@ -173,14 +173,14 @@ class DestinationObject extends MoveableObject {
 		return true;
 	}
 
-	/** returns true when this DestinationObject is valid */
+	/** returns true when this DestinationObject is valid. */
 	@Override
 	public boolean isValid() {
 		return valid;
 	}
 
 	/**
-	 * returns true when this entity and the other is within the given distance
+	 * returns true when this entity and the other is within the given distance.
 	 */
 	@Override
 	public boolean checkDistance(Entity other, double distance) {
@@ -263,7 +263,7 @@ class DestinationObject extends MoveableObject {
 	}
 
 	/**
-	 * returns true when the rpobject is one of the classes in <i>validClasses</i>
+	 * returns true when the rpobject is one of the classes in <i>validClasses</i>.
 	 */
 	public boolean checkClass(List<Class<?>> validClasses) {
 		if (parent != null) {

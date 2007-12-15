@@ -136,7 +136,7 @@ public abstract class AdministrationAction implements ActionListener {
 	protected abstract void perform(Player player, RPAction action);
 
 	/**
-	 * get the Entity-object of the specified target
+	 * get the Entity-object of the specified target.
 	 * 
 	 * @param player
 	 * @param action
