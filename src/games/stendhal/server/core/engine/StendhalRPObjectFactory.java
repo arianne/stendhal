@@ -26,7 +26,7 @@ public class StendhalRPObjectFactory extends RPObjectFactory {
 		}
 		String name = clazz.getName();
 
-		if (name.equals("arrest_warrant")) {
+		if (name.equals(ArrestWarrant.RPCLASS_NAME)) {
 			return new ArrestWarrant(object);
 		}
 		
