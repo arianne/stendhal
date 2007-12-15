@@ -13,6 +13,7 @@ import marauroa.common.game.Definition.Type;
  * @author hendrik
  */
 public class ArrestWarrant extends Entity {
+	public static final String RPCLASS_NAME = "arrest_warrant";
 	private static final String CRIMINAL = "criminal";
 	private static final String POLICE_OFFICER = "police_officer";
 	private static final String MINUTES = "minutes";
@@ -21,7 +22,7 @@ public class ArrestWarrant extends Entity {
 	private static final String STARTED = "started";
 
 	public static void generateRPClass() {
-		RPClass clazz = new RPClass("arrest_warrant");
+		RPClass clazz = new RPClass(RPCLASS_NAME);
 		clazz.isA("entity");
 		clazz.addAttribute(CRIMINAL, Type.STRING, Definition.HIDDEN);
 		clazz.addAttribute(POLICE_OFFICER, Type.STRING, Definition.HIDDEN);
@@ -40,6 +41,7 @@ public class ArrestWarrant extends Entity {
 	 * @param reason reason
 	 */
 	public ArrestWarrant(String criminalName, Player policeOfficer, int minutes, String reason) {
+		setRPClass(RPCLASS_NAME);
 		store();
 		put(CRIMINAL, criminalName);
 		put(POLICE_OFFICER, policeOfficer.getName());
