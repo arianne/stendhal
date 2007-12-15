@@ -24,8 +24,9 @@ public class JailTest {
 	@BeforeClass
 	public static void setUpClass() throws Exception {
 		Log4J.init();
-		MockStendhalRPRuleProcessor.get();
+		MockStendhalRPRuleProcessor.get().getPlayers().clear();
 		MockStendlRPWorld.get();
+		
 	}
 
 	@Before
@@ -42,6 +43,7 @@ public class JailTest {
 		Player policeman = PlayerTestHelper.createPlayer();
 		Player bob = PlayerTestHelper.createPlayer();
 		bob.setName("bob");
+		Jail.jailzone = new StendhalRPZone(Jail.DEFAULT_JAIL_ZONE);
 		Jail.get().imprison("bob", policeman, 1, "test");
 		assertEquals("Player bob not found", policeman.getPrivateText());
 
