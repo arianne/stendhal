@@ -4,12 +4,14 @@ import static org.junit.Assert.assertEquals;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import utilities.PlayerTestHelper;
 
 public class AwayActionTest {
 
+	@Ignore
 	@Test
 	public void testPlayerIsNull() {
 
