@@ -2,6 +2,7 @@ package games.stendhal.server.entity.npc;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
@@ -141,11 +142,49 @@ public class ConversationParserTest {
 		assertEquals(1, sentence.getAmount());
 		assertEquals("chest", sentence.getObjectName());
 
-		//TODO should be parsed into even more sentence constituents
 		sentence = ConversationParser.parse("please please do me a favour");
 		assertFalse(sentence.hasError());
+		//TODO assertEquals("you", sentence.getSubject());
 		assertEquals("do", sentence.getVerb());
+		assertEquals("i", sentence.getSubject2());
 		assertEquals(1, sentence.getAmount());
-		assertEquals("me a favour", sentence.getObjectName());
+		assertEquals("favour", sentence.getObjectName());
+	}
+
+	@Test
+	public final void testMe() {
+		Sentence sentence = ConversationParser.parse("me");
+		assertFalse(sentence.hasError());
+		assertEquals("i", sentence.getSubject());
+		assertNull(sentence.getVerb());
+		assertNull(sentence.getSubject2());
+	}
+
+	@Test
+	public final void testSubject2() {
+		Sentence sentence = ConversationParser.parse("i love you");
+		assertFalse(sentence.hasError());
+		assertEquals("i", sentence.getSubject());
+		assertEquals("love", sentence.getVerb());
+		assertEquals("you", sentence.getSubject2());
+
+		//TODO make possible to say "give me 4 fishes, please"
+		sentence = ConversationParser.parse("give me 4 fishes");
+		assertFalse(sentence.hasError());
+		assertEquals("i", sentence.getSubject());
+		assertEquals("buy", sentence.getVerb());
+		assertNull(sentence.getSubject2());
+		assertEquals(4, sentence.getAmount());
+		assertEquals("fish", sentence.getObjectName());
+
+/*TODO
+		sentence = ConversationParser.parse("i would like to have an ice");
+		assertFalse(sentence.hasError());
+		assertEquals("i", sentence.getSubject());
+		assertEquals("buy", sentence.getVerb());
+		assertNull(sentence.getSubject2());
+		assertEquals(1, sentence.getAmount());
+		assertEquals("ice cream", sentence.getObjectName());
+*/
 	}
 }

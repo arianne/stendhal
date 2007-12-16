@@ -150,7 +150,7 @@ public class CloakCollector2 extends AbstractQuest {
 					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						engine.say("You haven't seen one before? Well, it's a "
 									+ StendhalRPWorld.get().getRuleManager().getEntityManager()
-											.getItem(sentence.toString()).getItemSubclass()
+											.getItem(sentence.getOriginalText()).getItemSubclass()
 									+ ". Sorry if that's not much help, it's all I know! So, will you find them all?");
 					}
 				});

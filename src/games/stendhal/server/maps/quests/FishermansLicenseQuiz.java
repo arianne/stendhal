@@ -178,7 +178,7 @@ public class FishermansLicenseQuiz extends AbstractQuest {
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-						if (sentence.toString().equals(getCurrentSpecies())) {
+						if (sentence.getOriginalText().equals(getCurrentSpecies())) {
 							if (currentSpeciesNo == speciesList.size() - 1) {
 								npc.say("Correct! Congratulations, you have passed the first part of the #exam.");
 								cleanUpTable();

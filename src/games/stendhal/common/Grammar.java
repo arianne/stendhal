@@ -759,4 +759,17 @@ public class Grammar {
 				|| word.equals("with");
 	}
 
+	/**
+	 * decide if the given word is a subject
+	 * 
+	 * TODO May be we should also handle the remaining subjective pronouns
+	 * "what", "who" and "they".
+	 * 
+	 * @param word
+	 * @return true if word is a subject
+	 */
+	public static boolean isSubject(String word) {
+		return word.equals("i") || word.equals("we") || word.equals("you")
+				|| word.equals("he") || word.equals("she") || word.equals("it");
+	}
 }

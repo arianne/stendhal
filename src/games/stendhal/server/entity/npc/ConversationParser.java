@@ -35,8 +35,14 @@ public class ConversationParser {
 	}
 
 	/**
-	 * parse the given command sentence
+	 * Parse the given text sentence as the following construct:
+	 * [subject1] verb [subject2] [amount] [object1] [preposition] [object2]
 	 * 
+	 * Prefixed occurencies of "please" are ignored.
+	 * All sentence constituents but the verb are optional, defaults are:
+	 * subject1 = "I"
+	 * amount	= 1
+	 *
 	 * @param text
 	 * @return sentence
 	 */
@@ -44,18 +50,82 @@ public class ConversationParser {
 		ConversationParser parser = new ConversationParser(text);
 		Sentence sentence = new Sentence();
 
-		// Parse the text as "verb - amount - object" construct,
-		// ignoring prefixed occurencies of "please".
-		do {
-			sentence.setVerb(parser.nextWord());
-		} while (sentence.getVerb() != null
-				&& sentence.getVerb().equals("please"));
+		String verb = null;
+		String subject = null;
+		String subject2 = null;
+
+		for(;;) {
+			String word = parser.peekNextWord();
+			if (word == null) {
+				break;
+			}
+
+			if (word.equals("please")) {
+				// skip to the next word
+				parser.readNextWord();
+				continue;
+			}
+
+			//TODO This rule set seems a bit complex - it should be refactored into the Sentence class, if possible.
+			if (Grammar.isSubject(word)) {
+				if (subject == null) {
+					subject = word;
+				} else if (subject2 == null) {
+					subject2 = word;
+				} else {
+					break;	// too many subjects
+				}
+			}
+			else if (word.equals("me")) {
+				if (verb != null) {
+					if (subject == null) {
+    					// If there is a "me" without any preceding subject, we
+    					// set the first subject to "you" and the second to "i".
+        				subject = "you";
+        				subject2 = "i";
+    				} else if (subject2 == null) {
+    					// Otherwise the "me" is stored as "i" into subject2.
+        				subject2 = "i";
+    				} else {
+    					break;	// too many subjects
+    				}
+				} else {
+					// no verb yet
+					if (subject == null) {
+    					// If there is a "me" without any preceding verb and other
+						// subject, we store it as "i" into the first subject.
+        				subject = "i";
+    				} else if (subject2 == null) {
+    					// Otherwise the "me" is stored as "i" into subject2.
+        				subject2 = "i";
+    				} else {
+    					break;	// too many subjects
+    				}
+				}
+			} else if (verb == null) {
+				verb = word;
+			} else {
+				break;
+			}
+
+			// continue looking for verbs and subjects
+			parser.readNextWord();
+		};
+
+		if (subject != null)
+			sentence.setSubject(subject);
+
+		if (verb != null)
+			sentence.setVerb(verb);
+
+		if (subject2 != null)
+			sentence.setSubject2(subject2);
 
 		sentence.setAmount(parser.readAmount());
 		String object = parser.readObjectName();
 
 		// Optionally there may be following a preposition and a second object.
-		sentence.setPreposition(parser.nextWord());
+		sentence.setPreposition(parser.readNextWord());
 		sentence.setObject2(parser.readObjectName());
 
 		sentence.setError(parser.getError());
@@ -69,10 +139,23 @@ public class ConversationParser {
 
 		sentence.setObject(object);
 
+		sentence.performaAliasing();
+
 		return sentence;
 	}
 
-	private String nextWord() {
+	/**
+	 * return next word without advancing tokenizer
+	 * @return next word
+	 */
+	private String peekNextWord() {
+		if (nextWord != null)
+			return nextWord.toLowerCase();
+		else
+			return null;
+	}
+
+	private String readNextWord() {
 		String word = nextWord;
 
 		if (word != null) {
@@ -99,7 +182,7 @@ public class ConversationParser {
 		int amount = 1;
 
 		// handle numeric expressions
-		if (tokenizer.hasMoreTokens()) {
+		if (nextWord != null) {
 			if (nextWord.matches("^[+-]?[0-9]+")) {
 				try {
 					amount = Integer.parseInt(nextWord);
@@ -108,7 +191,7 @@ public class ConversationParser {
 						setError("negative amount: " + amount);
 					}
 
-					nextWord();
+					readNextWord();
 				} catch (NumberFormatException e) {
 					setError("illegal number format: '" + nextWord + "'");
 				}
@@ -118,7 +201,7 @@ public class ConversationParser {
 
 				if (number != null) {
 					amount = number.intValue();
-					nextWord();
+					readNextWord();
 				}
 			}
 		}
@@ -146,7 +229,7 @@ public class ConversationParser {
 				break;
 			}
 
-			String word = nextWord();
+			String word = readNextWord();
 
 			// concatenate user specified item names like "baby dragon"
 			// with spaces to build the internal item names

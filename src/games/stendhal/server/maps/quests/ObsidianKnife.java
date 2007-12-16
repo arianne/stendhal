@@ -158,7 +158,7 @@ public class ObsidianKnife extends AbstractQuest {
 		reward.add(new SpeakerNPC.ChatAction() {
 				@Override
 				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-					String item = sentence.toString();
+					String item = sentence.getOriginalText();
 					if (player.drop(item, REQUIRED_FOOD)) {
 						npc.say("Great! You brought the " + item + "!");
 					}
@@ -173,7 +173,7 @@ public class ObsidianKnife extends AbstractQuest {
 				new SpeakerNPC.ChatCondition() {
 					@Override
 					public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
-						String item = sentence.toString();
+						String item = sentence.getOriginalText();
 						return player.hasQuest(QUEST_SLOT)
 								&& player.getQuest(QUEST_SLOT).equals(item)
 								&& player.isEquipped(item, REQUIRED_FOOD);

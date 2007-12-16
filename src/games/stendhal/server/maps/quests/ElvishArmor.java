@@ -216,7 +216,7 @@ public class ElvishArmor extends AbstractQuest {
 				new SpeakerNPC.ChatCondition() {
 					@Override
 					public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
-						return !NEEDEDITEMS.contains(sentence.toString());
+						return !NEEDEDITEMS.contains(sentence.getOriginalText());
 					}
 				}, ConversationStates.QUESTION_1,
 				"I don't think that's a piece of elvish armor...", null);

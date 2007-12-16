@@ -146,7 +146,7 @@ public class LookUpQuote extends AbstractQuest {
 				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 					String name = player.getQuest(QUEST_SLOT);
 					String quote = quotes.get(name);
-					if (sentence.toString().equalsIgnoreCase(quote)) {
+					if (sentence.getOriginalText().equalsIgnoreCase(quote)) {
 						npc.say("Oh right, that's it! How could I forget this? Here, take this handy fishing rod as an acknowledgement of my gratitude!");
 						Item fishingRod = StendhalRPWorld.get()
 								.getRuleManager().getEntityManager()

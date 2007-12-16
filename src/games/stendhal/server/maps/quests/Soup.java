@@ -296,7 +296,7 @@ public class Soup extends AbstractQuest {
 			new SpeakerNPC.ChatAction() {
 				@Override
 				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-					String food = sentence.toString();
+					String food = sentence.getOriginalText();
 					List<String> missing = missingFood(player, false);
 					if (missing.contains(food)) {
 						if (player.drop(food)) {

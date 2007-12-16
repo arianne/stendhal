@@ -188,7 +188,7 @@ public class ExperiencedWarriorNPC extends SpeakerNPCFactory {
 					@Override
 					public void fire(Player player, Sentence sentence, SpeakerNPC speakerNPC) {
 						EntityManager manager = StendhalRPWorld.get().getRuleManager().getEntityManager();
-						String creatureName = sentence.toString();
+						String creatureName = sentence.getOriginalText();
 						DefaultCreature creature = manager.getDefaultCreature(creatureName);
 						if (creature == null) {
 							speakerNPC.say("I have never heard of such a creature! Please tell the name again.");

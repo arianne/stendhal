@@ -71,7 +71,7 @@ public class CloakCollector extends AbstractQuest implements BringListOfItemsQue
 					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						engine.say("You haven't seen one before? Well, it's a "
 									+ StendhalRPWorld.get().getRuleManager().getEntityManager()
-											.getItem(sentence.toString()).getItemSubclass()
+											.getItem(sentence.getOriginalText()).getItemSubclass()
 									+ ". So, will you find them all?");
 					}
 		});

@@ -1,20 +1,35 @@
 package games.stendhal.server.entity.npc;
 
 /**
- * ConversationParser returns the parsed sentence in this structure, all
+ * ConversationParser returns the parsed sentence in this class, all
  * returned words are in lower case.
  * 
  * @author Martin Fuchs
  */
 public class Sentence {
 
+	private String subject1 = "i";
 	private String verb = null;
-	private int amount = 1;
-	private String object = null;
+	private String subject2 = null;
+
+	private int objectAmount = 1;
+	private String object1 = null;
+
 	private String preposition = null;
+
 	private String object2 = null;
+
 	private String error = null;
 	private String original;
+
+	/**
+	 * return the main subject of the sentence.
+	 * 
+	 * @return subject in lower case
+	 */
+	public String getSubject() {
+		return subject1;
+	}
 
 	/**
 	 * return verb of the sentence.
@@ -26,12 +41,21 @@ public class Sentence {
 	}
 
 	/**
+	 * return the second subject of the sentence.
+	 * 
+	 * @return second subject in lower case
+	 */
+	public String getSubject2() {
+		return subject2;
+	}
+
+	/**
 	 * return amount of objects.
 	 * 
 	 * @return amount
 	 */
 	public int getAmount() {
-		return amount;
+		return objectAmount;
 	}
 
 	/**
@@ -40,7 +64,7 @@ public class Sentence {
 	 * @return object name in lower case
 	 */
 	public String getObjectName() {
-		return object;
+		return object1;
 	}
 
 	/**
@@ -61,8 +85,8 @@ public class Sentence {
 	public String getItemName() {
 		// concatenate user specified item names like "baby dragon"
 		// with underscores to build the internal item names
-		if (object != null) {
-			return object.replace(' ', '_');
+		if (object1 != null) {
+			return object1.replace(' ', '_');
 		} else {
 			return null;
 		}
@@ -118,8 +142,10 @@ public class Sentence {
 	}
 
 	/**
-	 * return the complete text of the sentence with unchanged case, nut with
+	 * return the complete text of the sentence with unchanged case, but with
 	 * trimmed white space.
+	 * 
+	 * TODO There should be only as less code places as possible to rely on this method.
 	 * 
 	 * @return string
 	 */
@@ -134,16 +160,24 @@ public class Sentence {
 	 */
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder(verb);
+		StringBuilder builder = new StringBuilder(subject1);
 
-		if (amount != 1) {
+		builder.append(' ');
+		builder.append(verb);
+
+		if (subject2 != null) {
 			builder.append(' ');
-			builder.append(Integer.toString(amount));
+			builder.append(subject2);
 		}
 
-		if (object != null) {
+		if (objectAmount != 1) {
 			builder.append(' ');
-			builder.append(object);
+			builder.append(Integer.toString(objectAmount));
+		}
+
+		if (object1 != null) {
+			builder.append(' ');
+			builder.append(object1);
 		}
 
 		if (preposition != null) {
@@ -163,16 +197,24 @@ public class Sentence {
 		this.error = error;
 	}
 
+	protected void setSubject(String subject) {
+		this.subject1 = subject;
+	}
+
 	protected void setVerb(String verb) {
 		this.verb = verb;
 	}
 
+	protected void setSubject2(String subject2) {
+		this.subject2 = subject2;
+	}
+
 	protected void setAmount(int amount) {
-		this.amount = amount;
+		this.objectAmount = amount;
 	}
 
 	protected void setObject(String object) {
-		this.object = object;
+		this.object1 = object;
 	}
 
 	protected void setPreposition(String preposition) {
@@ -187,4 +229,25 @@ public class Sentence {
 		this.original = original;
 	}
 
+	/**
+	 * replace grammatical constructs with simpler ones with the same meaning,
+	 * so that they can be understood by the FSM rules
+	 * 
+	 * TODO This grammatical aliasing is only a first step to more flexible
+	 * NPC conversation. It should be integrated with the FSM engine so that
+	 * quest writers can specify the conversation syntax on their own.
+	 */
+	public void performaAliasing() {
+		if (verb!=null && subject2!=null) {
+    		// [you] give me(i) -> [I] bye
+    		// Note: The second subject "me" is replaced by "i" in ConversationParser.
+    		if (subject1.equals("you") && subject2.equals("i")) {
+    			if (verb.equals("give")) {
+    				subject1	= "i";
+    				verb		= "buy";
+    				subject2	= null;
+    			}
+    		}
+		}
+	}
 }

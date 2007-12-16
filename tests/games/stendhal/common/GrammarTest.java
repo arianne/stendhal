@@ -611,4 +611,20 @@ public class GrammarTest {
 		assertEquals("arundula", Grammar.extractNoun("sprigs of arundula"));
 		assertEquals("armor", Grammar.extractNoun("suit of armor"));
 	}
+
+	@Test
+	public void testIsSubject() {
+		assertTrue(Grammar.isSubject("i"));
+		assertTrue(Grammar.isSubject("we"));
+		assertTrue(Grammar.isSubject("you"));
+		assertTrue(Grammar.isSubject("he"));
+		assertTrue(Grammar.isSubject("she"));
+		assertTrue(Grammar.isSubject("it"));
+
+		assertFalse(Grammar.isSubject("if"));
+		assertFalse(Grammar.isSubject("house"));
+		assertFalse(Grammar.isSubject("dog"));
+		assertFalse(Grammar.isSubject("player"));
+		assertFalse(Grammar.isSubject("kymara"));
+	}
 }

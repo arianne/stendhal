@@ -160,7 +160,7 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 			@Override
 			public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 				List<String> missingItems = getMissingItems(player, false);
-				String item = sentence.toString();
+				String item = sentence.getOriginalText();
 				int missingCount = getMissingCount(item, missingItems);
 				if (missingCount > 0) {
 					if (dropItems(player, item, missingCount)) {

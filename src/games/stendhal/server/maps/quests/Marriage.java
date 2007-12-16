@@ -778,7 +778,7 @@ public class Marriage extends AbstractQuest {
 							player.equip(invite, true);
 							StendhalRPZone zone = StendhalRPWorld.get().getZone(
 									"int_fado_lovers_room_"
-											+ sentence.toString());
+											+ sentence.getOriginalText());
 							player.teleport(zone, 5, 5, Direction.DOWN, player);
 							player.notifyWorldAboutChanges();
 							npc.setCurrentState(ConversationStates.IDLE);
