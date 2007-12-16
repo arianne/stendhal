@@ -563,8 +563,7 @@ public class AdministrationActionTest {
 		action.put("minutes", 1);
 
 		assertTrue(CommandCenter.execute(pl, action));
-		assertEquals("this is ok as jailing is tested elsewhere",
-				"Zone -1_semos_jail not found", pl.getPrivateText());
+		assertTrue(pl.getPrivateText().startsWith("You have jailed hugo for 1 minutes. Reason: whynot."));
 	}
 
 	@Test
