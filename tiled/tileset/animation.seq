@@ -283,6 +283,13 @@ tileset/building/roof/roof_borders_xmas.png     *       6:15
 tileset/building/roof/roof_borders_xmas.png     *       7:16
 tileset/building/roof/roof_borders_xmas.png     *       8:17
 
+# animating the flames in hell.png
+
+tileset/ground/rock/hell.png                    *        10:26  
+tileset/ground/rock/hell.png                    *        26:42    
+tileset/ground/rock/hell.png                    *        42:58   
+tileset/ground/rock/hell.png                    *        58:10   
+
 # water from ground.png
 # the waves travel north, if the map uses the first tile,
 # south, if the second.
