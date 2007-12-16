@@ -5,6 +5,7 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.ActiveEntity;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -237,5 +238,13 @@ public class PlayerTestHelper {
 		RPEntity.generateRPClass();
 		Player.generateRPClass();
 
+	}
+
+	public static void generateCreatureRPClasses() {
+		Entity.generateRPClass();
+		ActiveEntity.generateRPClass();
+		RPEntity.generateRPClass();
+		Creature.generateRPClass();
+		
 	}
 }
