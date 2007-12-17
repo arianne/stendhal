@@ -449,11 +449,9 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			 * TODO: Hide implementation
 			 */
 			if (!player.isGhost()) {
-				// Notify other players about this event
-				for (Player p : getPlayers()) {
-					p.notifyOnline(player.getName());
-				}
+				notifyOnlineStatus(true, player.getName());
 			}
+			
 			addGameEvent(player.getName(), "login");
 			LoginNotifier.get().onPlayerLoggedIn(player);
 			TutorialNotifier.login(player);
@@ -474,13 +472,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 				logger.info("Logged out shortly before death: Killing it now :)");
 				player.onDead(killerOf(player));
 			}
-
-			/*
-			 * TODO: Hide implementation.
-			 */
-			// Notify other players about this event
-			for (Player p : getPlayers()) {
-				p.notifyOffline(player.getName());
+			if (!player.isGhost()) {
+				notifyOnlineStatus(false, player.getName());
 			}
 
 			Player.destroy(player);
