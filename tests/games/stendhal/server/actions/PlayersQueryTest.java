@@ -1,6 +1,7 @@
 package games.stendhal.server.actions;
 
 import static org.junit.Assert.*;
+import games.stendhal.server.actions.admin.AdministrationAction;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.creature.Cat;
 import games.stendhal.server.entity.creature.Pet;
@@ -32,8 +33,8 @@ public class PlayersQueryTest {
 
 	@After
 	public void tearDown() throws Exception {
-	
-		MockStendhalRPRuleProcessor.get().getPlayers().clear();
+
+		MockStendhalRPRuleProcessor.get().clearPlayers();
 	}
 
 	@Test
@@ -76,6 +77,24 @@ public class PlayersQueryTest {
 		MockStendhalRPRuleProcessor.get().addPlayer(player);
 		pq.onWho(player, action);
 		assertThat(player.getPrivateText(), equalTo("1 Players online: player(0) "));
+		player.clearEvents();
+
+		player.setAdminLevel(AdministrationAction.getLevelForCommand("ghostmode") - 1);
+		player.setGhost(true);
+		pq.onWho(player, action);
+		assertThat(player.getPrivateText(), equalTo("0 Players online: "));
+		player.clearEvents();
+
+		player.setAdminLevel(AdministrationAction.getLevelForCommand("ghostmode"));
+		player.setGhost(true);
+		pq.onWho(player, action);
+		assertThat(player.getPrivateText(), equalTo("1 Players online: player(!0) "));
+		player.clearEvents();
+		
+		player.setAdminLevel(AdministrationAction.getLevelForCommand("ghostmode") + 1);
+		player.setGhost(true);
+		pq.onWho(player, action);
+		assertThat(player.getPrivateText(), equalTo("1 Players online: player(!0) "));
 
 	}
 
@@ -106,6 +125,7 @@ public class PlayersQueryTest {
 		assertThat(player.getPrivateText(), equalTo("No player named \"NotThere\" is currently logged in."));
 
 	}
+
 	@Test
 	public void testOnWhere() {
 		PlayersQuery pq = new PlayersQuery();
@@ -122,7 +142,6 @@ public class PlayersQueryTest {
 		assertThat(player.getPrivateText(), equalTo("bob is in zone at (0,0)"));
 
 	}
-	
 
 	@Test
 	public void testOnWhereSheep() {
@@ -183,6 +202,7 @@ public class PlayersQueryTest {
 			public Sheep getSheep() {
 				return testSheep;
 			}
+
 			@Override
 			public Pet getPet() {
 
@@ -197,7 +217,7 @@ public class PlayersQueryTest {
 		pq.onWhere(player, action);
 		assertThat(player.getPrivateText(), equalTo("Your pet is at (0,0)"));
 		player.clearEvents();
-		
+
 		player.setSheep(testSheep);
 
 		action.put(WellKnownActionConstants.TARGET, "sheep");
