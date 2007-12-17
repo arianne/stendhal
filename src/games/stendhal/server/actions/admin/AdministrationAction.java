@@ -13,6 +13,7 @@
 package games.stendhal.server.actions.admin;
 
 import games.stendhal.server.actions.ActionListener;
+import games.stendhal.server.actions.WellKnownActionConstants;
 import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
@@ -32,10 +33,6 @@ import org.apache.log4j.Logger;
 public abstract class AdministrationAction implements ActionListener {
 
 	private static final String _TARGETID = "targetid";
-
-	private static final String _TARGET = "target";
-
-	private static final String _TYPE = "type";
 
 	protected static final Logger logger = Logger.getLogger(AdministrationAction.class);
 
@@ -124,7 +121,7 @@ public abstract class AdministrationAction implements ActionListener {
 
 	public final void onAction(Player player, RPAction action) {
 
-		String type = action.get(_TYPE);
+		String type = action.get(WellKnownActionConstants.TYPE);
 		if (!isPlayerAllowedToExecuteAdminCommand(player, type, true)) {
 			return;
 		}
@@ -149,8 +146,8 @@ public abstract class AdministrationAction implements ActionListener {
 		Entity target = null;
 
 		// target contains a name unless it starts with #
-		if (action.has(_TARGET)) {
-			id = action.get(_TARGET);
+		if (action.has(WellKnownActionConstants.TARGET)) {
+			id = action.get(WellKnownActionConstants.TARGET);
 		}
 		if (id != null) {
 			if (!id.startsWith("#")) {
