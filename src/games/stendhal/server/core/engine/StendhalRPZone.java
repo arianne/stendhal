@@ -144,6 +144,12 @@ public class StendhalRPZone extends MarauroaRPZone {
 		protectionMap = new CollisionDetection();
 	}
 
+	public StendhalRPZone(String name, int width, int height) {
+		this(name);
+		collisionMap.setWidth(width);
+		collisionMap.setHeight(height);
+	}
+
 	/**
 	 * Get blood (if any) at a specified zone position.
 	 * 

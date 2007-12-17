@@ -33,6 +33,9 @@ public class CollisionDetection {
 	}
 
 	public void clear() {
+		if ((blocked == null) || (blocked.length < width * height)) {
+			blocked = new boolean[width * height];
+		}
 		for (int i = 0; i < width * height; i++) {
 			blocked[i] = false;
 		}
@@ -198,5 +201,15 @@ public class CollisionDetection {
 
 	public int getHeight() {
 		return height;
+	}
+
+	public void setWidth(int width) {
+		this.width = width;
+		clear();
+	}
+
+	public void setHeight(int height) {
+		this.height = height;
+		clear();
 	}
 }
