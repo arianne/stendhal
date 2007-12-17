@@ -18,7 +18,7 @@ public class JailTest {
 	@BeforeClass
 	public static void setUpClass() throws Exception {
 		Log4J.init();
-		MockStendhalRPRuleProcessor.get().getPlayers().clear();
+		MockStendhalRPRuleProcessor.get().clearPlayers();
 		MockStendlRPWorld.get().addRPZone(new StendhalRPZone(Jail.DEFAULT_JAIL_ZONE));
 		MockStendlRPWorld.get().addRPZone(new StendhalRPZone("-3_semos_jail"));
 	}

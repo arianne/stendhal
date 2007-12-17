@@ -1,6 +1,5 @@
 package games.stendhal.server.entity.player;
 
-import games.stendhal.server.actions.ChatAction;
 import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
 import games.stendhal.server.events.LoginListener;
 import games.stendhal.server.events.LoginNotifier;
@@ -85,7 +84,7 @@ public class GagManager implements LoginListener {
 		criminal.sendPrivateText("You have been gagged by "
 				+ policeman.getTitle() + " for " + minutes
 				+ " minutes. Reason: " + reason + ".");
-		ChatAction.sendMessageToSupporters("GagManager", policeman.getName()
+		StendhalRPRuleProcessor.sendMessageToSupporters("GagManager", policeman.getName()
 				+ " gagged " + criminalName + " for " + minutes
 				+ " minutes. Reason: " + reason + ".");
 

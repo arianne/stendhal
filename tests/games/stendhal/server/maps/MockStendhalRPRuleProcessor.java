@@ -30,12 +30,12 @@ public class MockStendhalRPRuleProcessor extends StendhalRPRuleProcessor {
 	 */
 	public void addPlayer(Player player) {
 		while (getPlayers().contains(player)){
-			getPlayers().remove(player);
+			this.onlinePlayers.getPlayers().remove(player);
 			
 		}
 			
 		
-			this.getPlayers().add(player);
+			this.onlinePlayers.getPlayers().add(player);
 		
 	}
 
@@ -46,5 +46,10 @@ public class MockStendhalRPRuleProcessor extends StendhalRPRuleProcessor {
 	 */
 	public void removePlayer(Player player) {
 		getPlayers().remove(player);
+	}
+
+	public void clearPlayers() {
+		onlinePlayers.getPlayers().clear();
+		
 	}
 }

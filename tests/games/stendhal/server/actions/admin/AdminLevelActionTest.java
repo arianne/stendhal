@@ -20,13 +20,13 @@ public class AdminLevelActionTest {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		MockStendlRPWorld.get();
-		MockStendhalRPRuleProcessor.get().getPlayers().clear();
+		MockStendhalRPRuleProcessor.get().clearPlayers();
 		Log4J.init();
 		AdminLevelAction.register();
 	}
 	@After
 	public void tearDown() throws Exception {
-		MockStendhalRPRuleProcessor.get().getPlayers().clear();
+		MockStendhalRPRuleProcessor.get().clearPlayers();
 	}
 
 	@Test
@@ -54,7 +54,7 @@ public class AdminLevelActionTest {
 		Player pl = PlayerTestHelper.createPlayer("bob");
 		pl.put("adminlevel", 4999);
 	
-		MockStendhalRPRuleProcessor.get().getPlayers().add(pl);
+		MockStendhalRPRuleProcessor.get().addPlayer(pl);
 	
 		RPAction action = new RPAction();
 		action.put("type", "adminlevel");

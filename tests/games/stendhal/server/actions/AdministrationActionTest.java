@@ -32,13 +32,13 @@ public class AdministrationActionTest {
 	public static void setUpBeforeClass() throws Exception {
 		AdministrationAction.register();
 		MockStendlRPWorld.get();
-		MockStendhalRPRuleProcessor.get().getPlayers().clear();
+		MockStendhalRPRuleProcessor.get().clearPlayers();
 		Log4J.init();
 	}
 
 	@After
 	public void tearDown() throws Exception {
-		MockStendhalRPRuleProcessor.get().getPlayers().clear();
+		MockStendhalRPRuleProcessor.get().clearPlayers();
 	}
 
 	@Test
@@ -120,7 +120,7 @@ public class AdministrationActionTest {
 	public final void testTellAllAction() {
 		Player pl = PlayerTestHelper.createPlayer("dummy");
 		// bad bad
-		MockStendhalRPRuleProcessor.get().getPlayers().add(pl);
+		MockStendhalRPRuleProcessor.get().addPlayer(pl);
 
 		CommandCenter.execute(pl, new RPAction());
 		assertEquals("Unknown command null", pl.getPrivateText());
@@ -139,8 +139,8 @@ public class AdministrationActionTest {
 		Player pl = PlayerTestHelper.createPlayer();
 		Player bob = PlayerTestHelper.createPlayer("bob");
 		// bad bad
-		MockStendhalRPRuleProcessor.get().getPlayers().add(pl);
-		MockStendhalRPRuleProcessor.get().getPlayers().add(bob);
+		MockStendhalRPRuleProcessor.get().addPlayer(pl);
+		MockStendhalRPRuleProcessor.get().addPlayer(bob);
 
 		pl.put("adminlevel", 5000);
 		RPAction action = new RPAction();
@@ -165,8 +165,8 @@ public class AdministrationActionTest {
 		Player pl = PlayerTestHelper.createPlayer();
 		Player bob = PlayerTestHelper.createPlayer("bob");
 		// bad bad
-		MockStendhalRPRuleProcessor.get().getPlayers().add(pl);
-		MockStendhalRPRuleProcessor.get().getPlayers().add(bob);
+		MockStendhalRPRuleProcessor.get().addPlayer(pl);
+		MockStendhalRPRuleProcessor.get().addPlayer(bob);
 
 		pl.put("adminlevel", 5000);
 		RPAction action = new RPAction();
@@ -194,7 +194,7 @@ public class AdministrationActionTest {
 
 		StendhalRPZone zoneTo = new StendhalRPZone("zoneTo");
 		Player pl = PlayerTestHelper.createPlayer();
-		MockStendhalRPRuleProcessor.get().getPlayers().add(pl);
+		MockStendhalRPRuleProcessor.get().addPlayer(pl);
 		PlayerTestHelper.generatePlayerRPClasses();
 		Player bob = new Player(new RPObject()) {
 			@Override
@@ -210,7 +210,7 @@ public class AdministrationActionTest {
 		bob.setName("bob");
 		PlayerTestHelper.addEmptySlots(bob);
 
-		MockStendhalRPRuleProcessor.get().getPlayers().add(bob);
+		MockStendhalRPRuleProcessor.get().addPlayer(bob);
 
 		MockStendlRPWorld.get().addRPZone(zoneTo);
 		pl.put("adminlevel", 5000);
@@ -248,7 +248,7 @@ public class AdministrationActionTest {
 
 		pl.put("adminlevel", 5000);
 
-		MockStendhalRPRuleProcessor.get().getPlayers().add(pl);
+		MockStendhalRPRuleProcessor.get().addPlayer(pl);
 		StendhalRPZone zone = new StendhalRPZone("zone");
 		zone.add(pl);
 		RPAction action = new RPAction();
@@ -263,7 +263,7 @@ public class AdministrationActionTest {
 		Player pl = PlayerTestHelper.createPlayer("bob");
 		pl.put("adminlevel", 5000);
 
-		MockStendhalRPRuleProcessor.get().getPlayers().add(pl);
+		MockStendhalRPRuleProcessor.get().addPlayer(pl);
 
 		RPAction action = new RPAction();
 		action.put("type", "alter");
@@ -284,7 +284,7 @@ public class AdministrationActionTest {
 		Player pl = PlayerTestHelper.createPlayer("bob");
 		pl.put("adminlevel", 5000);
 
-		MockStendhalRPRuleProcessor.get().getPlayers().add(pl);
+		MockStendhalRPRuleProcessor.get().addPlayer(pl);
 
 		RPAction action = new RPAction();
 		action.put("type", "alter");
@@ -308,7 +308,7 @@ public class AdministrationActionTest {
 		Player pl = PlayerTestHelper.createPlayer("bob");
 		pl.put("adminlevel", 5000);
 
-		MockStendhalRPRuleProcessor.get().getPlayers().add(pl);
+		MockStendhalRPRuleProcessor.get().addPlayer(pl);
 
 		RPAction action = new RPAction();
 		action.put("type", "alter");
@@ -331,7 +331,7 @@ public class AdministrationActionTest {
 		pl.put("adminlevel", 5000);
 		pl.put("base_hp", 100);
 		pl.setHP(100);
-		MockStendhalRPRuleProcessor.get().getPlayers().add(pl);
+		MockStendhalRPRuleProcessor.get().addPlayer(pl);
 
 		RPAction action = new RPAction();
 		action.put("type", "alter");
@@ -363,7 +363,7 @@ public class AdministrationActionTest {
 		pl.put("adminlevel", 5000);
 		pl.put("base_hp", 100);
 		pl.setHP(100);
-		MockStendhalRPRuleProcessor.get().getPlayers().add(pl);
+		MockStendhalRPRuleProcessor.get().addPlayer(pl);
 
 		RPAction action = new RPAction();
 		action.put("type", "alter");
@@ -386,7 +386,7 @@ public class AdministrationActionTest {
 		pl.put("adminlevel", 5000);
 		pl.put("base_hp", 100);
 		pl.setHP(10);
-		MockStendhalRPRuleProcessor.get().getPlayers().add(pl);
+		MockStendhalRPRuleProcessor.get().addPlayer(pl);
 
 		RPAction action = new RPAction();
 		action.put("type", "alter");
@@ -406,7 +406,7 @@ public class AdministrationActionTest {
 	public final void testAlterCreatureEntityNotFound() {
 		Player pl = PlayerTestHelper.createPlayer("hugo");
 
-		MockStendhalRPRuleProcessor.get().getPlayers().add(pl);
+		MockStendhalRPRuleProcessor.get().addPlayer(pl);
 
 		pl.put("adminlevel", 5000);
 		RPAction action = new RPAction();
@@ -423,7 +423,7 @@ public class AdministrationActionTest {
 
 		Player pl = PlayerTestHelper.createPlayer("hugo");
 
-		MockStendhalRPRuleProcessor.get().getPlayers().add(pl);
+		MockStendhalRPRuleProcessor.get().addPlayer(pl);
 		StendhalRPZone zone = new StendhalRPZone("testzone") {
 			@Override
 			public synchronized boolean collides(Entity entity, double x,
@@ -478,8 +478,8 @@ public class AdministrationActionTest {
 		Player pl = PlayerTestHelper.createPlayer("hugo");
 		Player bob = PlayerTestHelper.createPlayer("bob");
 		pl.put("adminlevel", 5000);
-		MockStendhalRPRuleProcessor.get().getPlayers().add(pl);
-		MockStendhalRPRuleProcessor.get().getPlayers().add(bob);
+		MockStendhalRPRuleProcessor.get().addPlayer(pl);
+		MockStendhalRPRuleProcessor.get().addPlayer(bob);
 		bob.setKeyedSlot("!buddy", "_" + pl.getName(), "1");
 
 		RPAction action = new RPAction();
@@ -540,12 +540,12 @@ public class AdministrationActionTest {
 		action.put("minutes", 1);
 
 		CommandCenter.execute(pl, action);
-		assertEquals("You have jailed name for 1 minutes. Reason: whynot.\r\n"+
-					"Player name is not online, but the arrest warrant has been recorded anyway.", pl.getPrivateText());
+		assertEquals("You have jailed name for 1 minutes. Reason: whynot.\r\n"
+				+ "Player name is not online, but the arrest warrant has been recorded anyway.", pl.getPrivateText());
 
 		pl.clearEvents();
 
-		MockStendhalRPRuleProcessor.get().getPlayers().add(pl);
+		MockStendhalRPRuleProcessor.get().addPlayer(pl);
 		action = new RPAction();
 		action.put("type", "jail");
 		action.put("target", "hugo");
@@ -588,7 +588,7 @@ public class AdministrationActionTest {
 
 		pl.clearEvents();
 
-		MockStendhalRPRuleProcessor.get().getPlayers().add(pl);
+		MockStendhalRPRuleProcessor.get().addPlayer(pl);
 		action = new RPAction();
 		action.put("type", "gag");
 		action.put("target", "hugo");
@@ -627,7 +627,7 @@ public class AdministrationActionTest {
 		pl.put("adminlevel", 5000);
 		pl.clearEvents();
 
-		MockStendhalRPRuleProcessor.get().getPlayers().add(pl);
+		MockStendhalRPRuleProcessor.get().addPlayer(pl);
 		RPAction action = new RPAction();
 		action.put("type", "destroy");
 		action.put("target", "hugo");
@@ -649,7 +649,7 @@ public class AdministrationActionTest {
 		pl.put("adminlevel", 5000);
 		pl.clearEvents();
 
-		MockStendhalRPRuleProcessor.get().getPlayers().add(pl);
+		MockStendhalRPRuleProcessor.get().addPlayer(pl);
 		RPAction action = new RPAction();
 		action.put("type", "destroy");
 		action.put("target", "#1");
@@ -672,7 +672,7 @@ public class AdministrationActionTest {
 		pl.put("adminlevel", 5000);
 		pl.clearEvents();
 
-		MockStendhalRPRuleProcessor.get().getPlayers().add(pl);
+		MockStendhalRPRuleProcessor.get().addPlayer(pl);
 		RPAction action = new RPAction();
 		action.put("type", "destroy");
 		action.put("target", "#1");
@@ -695,7 +695,7 @@ public class AdministrationActionTest {
 		pl.put("adminlevel", 5000);
 		pl.clearEvents();
 
-		MockStendhalRPRuleProcessor.get().getPlayers().add(pl);
+		MockStendhalRPRuleProcessor.get().addPlayer(pl);
 		RPAction action = new RPAction();
 		action.put("type", "destroy");
 		action.put("targetid", 1);
@@ -717,7 +717,7 @@ public class AdministrationActionTest {
 		pl.put("adminlevel", 5000);
 		pl.clearEvents();
 
-		MockStendhalRPRuleProcessor.get().getPlayers().add(pl);
+		MockStendhalRPRuleProcessor.get().addPlayer(pl);
 		RPAction action = new RPAction();
 		action.put("type", "inspect");
 		action.put("targetid", 1);
@@ -735,7 +735,7 @@ public class AdministrationActionTest {
 		pl.put("adminlevel", 5000);
 		pl.clearEvents();
 
-		MockStendhalRPRuleProcessor.get().getPlayers().add(pl);
+		MockStendhalRPRuleProcessor.get().addPlayer(pl);
 		StendhalRPZone testzone = new StendhalRPZone("Testzone");
 		testzone.add(pl);
 

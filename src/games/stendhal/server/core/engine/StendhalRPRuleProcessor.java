@@ -13,7 +13,10 @@
 package games.stendhal.server.core.engine;
 
 import games.stendhal.common.Debug;
+import games.stendhal.common.filter.CollectionFilter;
+import games.stendhal.common.filter.FilterCriteria;
 import games.stendhal.server.actions.CommandCenter;
+import games.stendhal.server.actions.admin.AdministrationAction;
 import games.stendhal.server.core.account.AccountCreator;
 import games.stendhal.server.core.account.CharacterCreator;
 import games.stendhal.server.core.rp.StendhalQuestSystem;
@@ -30,6 +33,8 @@ import games.stendhal.server.events.TurnNotifier;
 import games.stendhal.server.events.TutorialNotifier;
 import games.stendhal.server.extension.StendhalServerExtension;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -54,18 +59,14 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(StendhalRPRuleProcessor.class);
 
-	/** The Singleton instance */
+	/** The Singleton instance. */
 	protected static StendhalRPRuleProcessor instance;
 
 	private StendhalPlayerDatabase database;
 
 	private RPServerManager rpman;
 
-	/**
-	 * A list of all players who are currently logged in.
-	 */
-	protected List<Player> players;
-
+	protected PlayerList onlinePlayers;
 	private List<Player> playersRmText;
 
 	private List<NPC> npcs;
@@ -80,8 +81,12 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	 */
 	private List<Pair<RPEntity, Entity>> entityToKill;
 
+	protected PlayerList getOnlinePlayers() {
+		return onlinePlayers;
+	}
+
 	protected StendhalRPRuleProcessor() {
-		players = new LinkedList<Player>();
+		onlinePlayers = new PlayerList();
 		playersRmText = new LinkedList<Player>();
 		npcs = new LinkedList<NPC>();
 		npcsToAdd = new LinkedList<NPC>();
@@ -114,7 +119,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	}
 
 	/**
-	 * Gets the points of named player in the specified hall of fame
+	 * Gets the points of named player in the specified hall of fame.
 	 * 
 	 * @param playername
 	 *            name of the player
@@ -126,8 +131,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		int res = 0;
 		try {
 			Transaction transaction = database.getTransaction();
-			res = database.getHallOfFamePoints(transaction, playername,
-					fametype);
+			res = database.getHallOfFamePoints(transaction, playername, fametype);
 			transaction.commit();
 		} catch (Exception e) {
 			logger.warn("Can't store game event", e);
@@ -136,7 +140,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	}
 
 	/**
-	 * Add points to the named player in the specified hall of fame
+	 * Add points to the named player in the specified hall of fame.
 	 * 
 	 * @param playername
 	 *            name of the player
@@ -145,15 +149,12 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	 * @param points
 	 *            points to add
 	 */
-	public void addHallOfFamePoints(String playername, String fametype,
-			int points) {
+	public void addHallOfFamePoints(String playername, String fametype, int points) {
 		try {
 			Transaction transaction = database.getTransaction();
-			int oldPoints = database.getHallOfFamePoints(transaction,
-					playername, fametype);
+			int oldPoints = database.getHallOfFamePoints(transaction, playername, fametype);
 			int totalPoints = oldPoints + points;
-			database.setHallOfFamePoints(transaction, playername, fametype,
-					totalPoints);
+			database.setHallOfFamePoints(transaction, playername, fametype, totalPoints);
 			transaction.commit();
 		} catch (Exception e) {
 			logger.warn("Can't store game event", e);
@@ -183,19 +184,16 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 			Configuration config = Configuration.getConfiguration();
 			try {
-				String[] extensionsToLoad = config.get("server_extension").split(
-						",");
+				String[] extensionsToLoad = config.get("server_extension").split(",");
 				for (String element : extensionsToLoad) {
 					String extension = null;
 					try {
 						extension = element;
 						if (extension.length() > 0) {
-							StendhalServerExtension.getInstance(
-									config.get(extension)).init();
+							StendhalServerExtension.getInstance(config.get(extension)).init();
 						}
 					} catch (Exception ex) {
-						logger.error("Error while loading extension: "
-								+ extension, ex);
+						logger.error("Error while loading extension: " + extension, ex);
 					}
 				}
 			} catch (Exception ep) {
@@ -269,8 +267,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	 * 
 	 * @return A list of all online players
 	 */
-	public List<Player> getPlayers() {
-		return players;
+	public Collection<Player> getPlayers() {
+		return getOnlinePlayers().getPlayers();
 	}
 
 	/**
@@ -282,20 +280,14 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	 *         online.
 	 */
 	public Player getPlayer(String name) {
-		for (Player player : getPlayers()) {
-			if (player.getTitle().equals(name)) {
-				return player;
-			}
-		}
-		return null;
+		return onlinePlayers.getOnlinePlayer(name);
 	}
 
 	public boolean removeNPC(NPC npc) {
 		return npcsToRemove.add(npc);
 	}
 
-	public boolean onActionAdd(RPObject caster, RPAction action,
-			List<RPAction> actionList) {
+	public boolean onActionAdd(RPObject caster, RPAction action, List<RPAction> actionList) {
 		return true;
 	}
 
@@ -307,7 +299,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		return rpman.getTurn();
 	}
 
-	/** Notify it when a new turn happens */
+	/** Notify it when a new turn happens . */
 	public synchronized void beginTurn() {
 		long start = System.nanoTime();
 
@@ -315,7 +307,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 		try {
 			// We keep the number of players logged.
-			Statistics.getStatistics().set("Players logged", players.size());
+			Statistics.getStatistics().set("Players logged", getPlayers().size());
 
 			/*
 			 * TODO: Refactor. Entities should care about really dying
@@ -352,7 +344,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			/*
 			 * TODO: Refactor May be done by the zone itself.
 			 */
-			for (Player player : players) {
+			for (Player player : getPlayers()) {
 				try {
 					player.logic();
 				} catch (Exception e) {
@@ -380,8 +372,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		} catch (Exception e) {
 			logger.error("error in beginTurn", e);
 		} finally {
-			logger.debug("Begin turn: " + (System.nanoTime() - start)
-					/ 1000000.0);
+			logger.debug("Begin turn: " + (System.nanoTime() - start) / 1000000.0);
 		}
 	}
 
@@ -403,7 +394,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			os.append("npcs: " + npcs.size() + "\n");
 			os.append("npcsToAdd: " + npcsToAdd.size() + "\n");
 			os.append("npcsToRemove: " + npcsToRemove.size() + "\n");
-			os.append("players: " + players.size() + "\n");
+			os.append("players: " + getPlayers().size() + "\n");
 			os.append("playersRmText: " + playersRmText.size() + "\n");
 
 			os.append("objects: " + objects + "\n");
@@ -433,8 +424,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		} catch (Exception e) {
 			logger.error("error in endTurn", e);
 		} finally {
-			logger.debug("End turn: " + (System.nanoTime() - start) / 1000000.0
-					+ " (" + (currentTurn % 5) + ")");
+			logger.debug("End turn: " + (System.nanoTime() - start) / 1000000.0 + " (" + (currentTurn % 5) + ")");
 		}
 	}
 
@@ -453,7 +443,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			 */
 			playersRmText.add(player);
 
-			players.add(player);
+			getPlayers().add(player);
 
 			/*
 			 * TODO: Hide implementation
@@ -472,8 +462,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 			return true;
 		} catch (Exception e) {
-			logger.error("There has been a severe problem loading player "
-					+ object.get("#db_id"), e);
+			logger.error("There has been a severe problem loading player " + object.get("#db_id"), e);
 			return false;
 		}
 	}
@@ -495,7 +484,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			}
 
 			Player.destroy(player);
-			players.remove(player);
+			getPlayers().remove(player);
 
 			addGameEvent(player.getName(), "logout");
 			logger.debug("removed player " + player);
@@ -515,16 +504,13 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		onExit(object);
 	}
 
-	public AccountResult createAccount(String username, String password,
-			String email) {
+	public AccountResult createAccount(String username, String password, String email) {
 		AccountCreator creator = new AccountCreator(username, password, email);
 		return creator.create();
 	}
 
-	public CharacterResult createCharacter(String username, String character,
-			RPObject template) {
-		CharacterCreator creator = new CharacterCreator(username, character,
-				template);
+	public CharacterResult createCharacter(String username, String character, RPObject template) {
+		CharacterCreator creator = new CharacterCreator(username, character, template);
 		return creator.create();
 	}
 
@@ -539,9 +525,47 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	 *            Message to tell all players
 	 */
 	public void tellAllPlayers(final String message) {
-		for (Player player : getPlayers()) {
-			player.sendPrivateText(message);
-			player.notifyWorldAboutChanges();
+		onlinePlayers.tellAllOnlinePlayers(message);
+	}
+
+	/**
+	 * sends a message to all supporters.
+	 * 
+	 * @param source
+	 *            a player or script name
+	 * @param message
+	 *            Support message
+	 */
+	public static void sendMessageToSupporters(final String source, final String message) {
+		String text = source + " asks for support to ADMIN: " + message;
+		for (Player p : get().getPlayers()) {
+			if (p.getAdminLevel() >= AdministrationAction.REQUIRED_ADMIN_LEVEL_FOR_SUPPORT) {
+				p.sendPrivateText(text);
+				p.notifyWorldAboutChanges();
+			}
+		}
+	}
+
+	public static int getAmountOfOnlinePlayers() {
+		return get().onlinePlayers.size();
+
+	}
+
+	public static Collection< ? extends Player> getPlayers(final int adminLevel) {
+		
+		if (adminLevel < AdministrationAction.getLevelForCommand("ghostmode")){
+		
+		CollectionFilter<Player> col = new CollectionFilter<Player>();
+		FilterCriteria fc = new FilterCriteria() {
+
+			public boolean passes(Object o) {
+				return !((Player) o).isGhost();
+			}
+		};
+		col.addFilterCriteria(fc);
+		return col.filterCopy(get().getPlayers());
+		} else { 
+			return Collections.unmodifiableCollection(get().getPlayers());
 		}
 	}
 }

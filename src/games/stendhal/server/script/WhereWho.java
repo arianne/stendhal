@@ -5,6 +5,7 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.entity.player.Player;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -20,7 +21,7 @@ public class WhereWho extends ScriptImpl {
 		super.execute(admin, args);
 
 		// create player list
-		List<Player> players = StendhalRPRuleProcessor.get().getPlayers();
+		Collection<Player> players = StendhalRPRuleProcessor.get().getPlayers();
 		Map<String, StringBuilder> maps = new TreeMap<String, StringBuilder>();
 		for (Player player : players) {
 			StendhalRPZone zone = player.getZone();

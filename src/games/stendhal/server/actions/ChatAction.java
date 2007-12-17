@@ -271,7 +271,7 @@ public class ChatAction implements ActionListener {
 			StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
 					_SUPPORT, action.get(TEXT));
 
-			sendMessageToSupporters(player.getTitle(), message);
+			StendhalRPRuleProcessor.sendMessageToSupporters(player.getTitle(), message);
 
 			player.sendPrivateText("You ask for support: "
 					+ action.get(TEXT)
@@ -279,28 +279,6 @@ public class ChatAction implements ActionListener {
 			player.notifyWorldAboutChanges();
 		}
 
-	}
-
-	/**
-	 * sends a message to all supporters.
-	 * 
-	 * @param source
-	 *            a player or script name
-	 * @param message
-	 *            Support message
-	 */
-	// TODO: try to clean up the dependencies, having other places in
-	// the code call directly into an action does not seem to be a
-	// good idea
-	public static void sendMessageToSupporters(final String source,
-			final String message) {
-		String text = source + " asks for support to ADMIN: " + message;
-		for (Player p : StendhalRPRuleProcessor.get().getPlayers()) {
-			if (p.getAdminLevel() >= AdministrationAction.REQUIRED_ADMIN_LEVEL_FOR_SUPPORT) {
-				p.sendPrivateText(text);
-				p.notifyWorldAboutChanges();
-			}
-		}
 	}
 
 	/**

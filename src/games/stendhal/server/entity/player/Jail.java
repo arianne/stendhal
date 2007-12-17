@@ -1,7 +1,6 @@
 package games.stendhal.server.entity.player;
 
 import games.stendhal.common.Direction;
-import games.stendhal.server.actions.ChatAction;
 import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
 import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -38,7 +37,7 @@ public class Jail implements LoginListener {
 	static StendhalRPZone jailzone;
 	ArrestWarrantList arrestWarrants;
 
-	/** The Singleton instance */
+	/** The Singleton instance. */
 	private static Jail instance;
 
 	/*
@@ -92,7 +91,7 @@ public class Jail implements LoginListener {
 	}
 
 	/**
-	 * returns the Jail object (Singleton Pattern)
+	 * returns the Jail object (Singleton Pattern).
 	 *
 	 * @return Jail
 	 */
@@ -128,7 +127,7 @@ public class Jail implements LoginListener {
 
 		policeman.sendPrivateText("You have jailed " + criminalName
 			+ " for " + minutes + " minutes. Reason: " + reason + ".");
-		ChatAction.sendMessageToSupporters("JailKeeper",
+		StendhalRPRuleProcessor.sendMessageToSupporters("JailKeeper",
 			policeman.getName() + " jailed " + criminalName
 			+ " for " + minutes + " minutes. Reason: " + reason
 			+ ".");
@@ -212,7 +211,7 @@ public class Jail implements LoginListener {
 		return true;
 	}
 
-	void release( Player inmate) {
+	void release(Player inmate) {
 		// Only teleport the player if he is still in jail.
 		// It could be that an admin has teleported him out earlier.
 		StendhalRPWorld world = StendhalRPWorld.get();
@@ -261,7 +260,7 @@ public class Jail implements LoginListener {
 				ArrestWarrant arrestWarrant = arrestWarrants.getByName(name);
 				if (arrestWarrant != null) {
 					long timestamp = arrestWarrant.getTimestamp();
-					if (timestamp + 30*24*60*60*100 < System.currentTimeMillis()) {
+					if (timestamp + 30 * 24 * 60 * 60 * 100 < System.currentTimeMillis()) {
 						arrestWarrants.removeByName(name);
 					} else {
 						player.sendPrivateText("You have been jailed by "
@@ -272,9 +271,9 @@ public class Jail implements LoginListener {
 		
 						if (arrestWarrant.isStarted()) {
 							// Notify player that his sentences is starting again because he tried to escape by logging out
-							player.sendPrivateText("Although you already spent some " +
-								"time in jail, your sentence has been restarted " +
-								"because of your failed escape attempt.");
+							player.sendPrivateText("Although you already spent some "
+									+ "time in jail, your sentence has been restarted " 
+									+ "because of your failed escape attempt.");
 						} else {
 			
 							// Jail player who was offline at the time /jail was issued.

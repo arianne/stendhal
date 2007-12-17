@@ -12,7 +12,6 @@
  ***************************************************************************/
 package games.stendhal.server.actions;
 
-import games.stendhal.server.actions.admin.AdministrationAction;
 import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.creature.Pet;
@@ -20,6 +19,7 @@ import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -30,7 +30,6 @@ import static games.stendhal.server.actions.WellKnownActionConstants.*;
 public class PlayersQuery implements ActionListener {
 
 	private static final String _SHEEP = "sheep";
-	private static final String _ATTR_TITLE = "title";
 	private static final String _WHERE = "where";
 	private static final String _WHO = "who";
 
@@ -49,28 +48,19 @@ public class PlayersQuery implements ActionListener {
 	}
 
 	public void onWho(Player player, RPAction action) {
-
-		final int REQUIRED_LEVEL_TO_SEE_GHOST = AdministrationAction.getLevelForCommand("ghostmode");
-
+		final Collection< ? extends Player> playerlist = StendhalRPRuleProcessor.getPlayers(player.getAdminLevel());
+		
 		StendhalRPRuleProcessor rules = StendhalRPRuleProcessor.get();
-		if (player.has(_ATTR_TITLE)) {
-			rules.addGameEvent(player.get(_ATTR_TITLE), _WHO);
-		}
+
 		rules.addGameEvent(player.getName(), _WHO);
 
 		StringBuilder online = new StringBuilder();
-		int amount = 0;
-		for (Player p : rules.getPlayers()) {
-			if (!p.isGhost()
-					|| player.getAdminLevel() > REQUIRED_LEVEL_TO_SEE_GHOST) {
-				amount++;
-			}
-		}
+		int amount = playerlist.size();
 
 		online.append(amount + " Players online: ");
-		for (Player p : getSortedPlayers()) {
-			if (!p.isGhost()
-					|| player.getAdminLevel() > REQUIRED_LEVEL_TO_SEE_GHOST) {
+		
+		
+		for (Player p : getSortedPlayers(playerlist)) {
 				String playername = p.getTitle();
 
 				online.append(playername);
@@ -82,21 +72,20 @@ public class PlayersQuery implements ActionListener {
 				}
 				online.append(p.getLevel());
 				online.append(") ");
-			}
+			
 		}
 		player.sendPrivateText(online.toString());
 		player.notifyWorldAboutChanges();
-
 	}
 
 	/**
 	 * sorts the list of players.
+	 * @param playerlist TODO
 	 * 
-	 * @return sorted list of players
+	 * @return sorted list of players<
 	 */
-	private List<Player> getSortedPlayers() {
-		StendhalRPRuleProcessor rules = StendhalRPRuleProcessor.get();
-		List<Player> players = new ArrayList<Player>(rules.getPlayers());
+	private List<Player> getSortedPlayers(Collection< ? extends Player> playerlist) {
+		List<Player> players = new ArrayList<Player>(playerlist);
 		Collections.sort(players, new Comparator<Player>() {
 
 			public int compare(Player o1, Player o2) {
@@ -119,16 +108,14 @@ public class PlayersQuery implements ActionListener {
 				StendhalRPZone zone = who.getZone();
 
 				if (zone != null) {
-					player.sendPrivateText(who.getTitle() + " is in "
-							+ zone.getName() + " at (" + who.getX() + ","
+					player.sendPrivateText(who.getTitle() + " is in " + zone.getName() + " at (" + who.getX() + ","
 							+ who.getY() + ")");
 				}
 			} else if (whoName.equals(_SHEEP)) {
 				Sheep sheep = player.getSheep();
 
 				if (sheep != null) {
-					player.sendPrivateText("Your sheep is at (" + sheep.getX()
-							+ "," + sheep.getY() + ")");
+					player.sendPrivateText("Your sheep is at (" + sheep.getX() + "," + sheep.getY() + ")");
 
 				} else {
 					player.sendPrivateText("You currently have no sheep.");
@@ -137,15 +124,13 @@ public class PlayersQuery implements ActionListener {
 				Pet pet = player.getPet();
 
 				if (pet != null) {
-					player.sendPrivateText("Your pet is at (" + pet.getX()
-							+ "," + pet.getY() + ")");
+					player.sendPrivateText("Your pet is at (" + pet.getX() + "," + pet.getY() + ")");
 
 				} else {
 					player.sendPrivateText("You currently have no pet.");
 				}
 			} else {
-				player.sendPrivateText("No player named \"" + whoName
-						+ "\" is currently logged in.");
+				player.sendPrivateText("No player named \"" + whoName + "\" is currently logged in.");
 			}
 
 			player.notifyWorldAboutChanges();

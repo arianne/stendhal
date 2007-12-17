@@ -27,7 +27,7 @@ public class SummonActionTest {
 	public static void setUpBeforeClass() throws Exception {
 		SummonAction.register();
 		MockStendlRPWorld.get();
-		MockStendhalRPRuleProcessor.get().getPlayers().clear();
+		MockStendhalRPRuleProcessor.get().clearPlayers();
 		Log4J.init();
 	}
 
@@ -48,7 +48,7 @@ public class SummonActionTest {
 
 		Player pl = PlayerTestHelper.createPlayer("hugo");
 
-		MockStendhalRPRuleProcessor.get().getPlayers().add(pl);
+		MockStendhalRPRuleProcessor.get().addPlayer(pl);
 
 		zone.add(pl);
 		pl.setPosition(1, 1);
@@ -70,7 +70,7 @@ public class SummonActionTest {
 
 		Player pl = PlayerTestHelper.createPlayer("hugo");
 
-		MockStendhalRPRuleProcessor.get().getPlayers().add(pl);
+		MockStendhalRPRuleProcessor.get().addPlayer(pl);
 
 		zone.add(pl);
 		pl.setPosition(1, 1);
@@ -92,7 +92,7 @@ public class SummonActionTest {
 
 		Player pl = PlayerTestHelper.createPlayer("hugo");
 
-		MockStendhalRPRuleProcessor.get().getPlayers().add(pl);
+		MockStendhalRPRuleProcessor.get().addPlayer(pl);
 
 		zone.add(pl);
 		pl.setPosition(1, 1);
