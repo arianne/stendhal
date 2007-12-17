@@ -75,8 +75,7 @@ public class ConversationParser {
 				} else {
 					break;	// too many subjects
 				}
-			}
-			else if (word.equals("me")) {
+			} else if (word.equals("me")) {
 				if (verb != null) {
 					if (subject == null) {
     					// If there is a "me" without any preceding subject, we
@@ -112,14 +111,17 @@ public class ConversationParser {
 			parser.readNextWord();
 		};
 
-		if (subject != null)
+		if (subject != null) {
 			sentence.setSubject(subject);
+		}
 
-		if (verb != null)
+		if (verb != null) {
 			sentence.setVerb(verb);
+		}
 
-		if (subject2 != null)
+		if (subject2 != null) {
 			sentence.setSubject2(subject2);
+		}
 
 		sentence.setAmount(parser.readAmount());
 		String object = parser.readObjectName();
@@ -145,14 +147,15 @@ public class ConversationParser {
 	}
 
 	/**
-	 * return next word without advancing tokenizer
+	 * return next word without advancing tokenizer.
 	 * @return next word
 	 */
 	private String peekNextWord() {
-		if (nextWord != null)
+		if (nextWord != null) {
 			return nextWord.toLowerCase();
-		else
+		} else {
 			return null;
+		}
 	}
 
 	private String readNextWord() {
@@ -174,7 +177,7 @@ public class ConversationParser {
 	}
 
 	/**
-	 * read in a positive amount from the input text
+	 * read in a positive amount from the input text.
 	 * 
 	 * @return amount
 	 */
