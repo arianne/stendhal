@@ -19,32 +19,24 @@ public class GhostModeAction extends AdministrationAction {
 
 		if (player.isGhost()) {
 			player.setGhost(false);
-			StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
-					_GHOSTMODE, "off");
+			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), _GHOSTMODE, "off");
 
 			player.setInvisible(false);
-			StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
-					_INVISIBLE, "off");
-
-			for (Player p : StendhalRPRuleProcessor.get().getPlayers()) {
-				p.notifyOnline(player.getName());
-			}
+			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), _INVISIBLE, "off");
+	
 		} else {
 			/*
 			 * When we enter ghostmode we want our player to be also invisible.
 			 */
 			player.setInvisible(true);
-			StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
-					_INVISIBLE, "on");
+			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), _INVISIBLE, "on");
 
 			player.setGhost(true);
-			StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
-					_GHOSTMODE, "on");
-
-			for (Player p : StendhalRPRuleProcessor.get().getPlayers()) {
-				p.notifyOffline(player.getName());
-			}
+			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), _GHOSTMODE, "on");
+	
+			
 		}
+		StendhalRPRuleProcessor.notifyOnlineStatus(!player.isGhost(), player.getName());
 
 		player.notifyWorldAboutChanges();
 	}

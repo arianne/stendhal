@@ -551,21 +551,37 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 	}
 
-	public static Collection< ? extends Player> getPlayers(final int adminLevel) {
-		
-		if (adminLevel < AdministrationAction.getLevelForCommand("ghostmode")){
-		
-		CollectionFilter<Player> col = new CollectionFilter<Player>();
-		FilterCriteria fc = new FilterCriteria() {
+	public static Collection<? extends Player> getPlayers(final int adminLevel) {
 
-			public boolean passes(Object o) {
-				return !((Player) o).isGhost();
-			}
-		};
-		col.addFilterCriteria(fc);
-		return col.filterCopy(get().getPlayers());
-		} else { 
+		if (adminLevel < AdministrationAction.getLevelForCommand("ghostmode")) {
+
+			CollectionFilter<Player> col = new CollectionFilter<Player>();
+			FilterCriteria fc = new FilterCriteria() {
+
+				public boolean passes(Object o) {
+					return !((Player) o).isGhost();
+				}
+			};
+			col.addFilterCriteria(fc);
+			return col.filterCopy(get().getPlayers());
+		} else {
 			return Collections.unmodifiableCollection(get().getPlayers());
 		}
+	}
+
+	public static void notifyOnlineStatus(boolean isOnline, String name) {
+		if (instance != null) {
+
+			if (isOnline) {
+				for (Player p : instance.getPlayers()) {
+					p.notifyOnline(name);
+				}
+			} else {
+				for (Player p : instance.getPlayers()) {
+					p.notifyOffline(name);
+				}
+			}
+		}
+
 	}
 }

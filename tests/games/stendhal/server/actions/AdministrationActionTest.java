@@ -473,38 +473,6 @@ public class AdministrationActionTest {
 		assertFalse(pl.isInvisible());
 	}
 
-	@Test
-	public final void testGhostmode() {
-		Player pl = PlayerTestHelper.createPlayer("hugo");
-		Player bob = PlayerTestHelper.createPlayer("bob");
-		pl.put("adminlevel", 5000);
-		MockStendhalRPRuleProcessor.get().addPlayer(pl);
-		MockStendhalRPRuleProcessor.get().addPlayer(bob);
-		bob.setKeyedSlot("!buddy", "_" + pl.getName(), "1");
-
-		RPAction action = new RPAction();
-
-		action.put("type", "ghostmode");
-		assertFalse(pl.isInvisible());
-		assertFalse(pl.isGhost());
-
-		CommandCenter.execute(pl, action);
-
-		assertTrue(pl.isInvisible());
-		assertTrue(pl.isGhost());
-
-		assertEquals(null, bob.get("online"));
-
-		assertEquals("hugo", bob.get("offline"));
-		bob.remove("offline");
-		bob.clearEvents();
-		CommandCenter.execute(pl, action);
-
-		assertFalse(pl.isInvisible());
-		assertFalse(pl.isGhost());
-		assertEquals(null, bob.get("offline"));
-		assertEquals("hugo", bob.get("online"));
-	}
 
 	@Test
 	public final void testTeleclickmode() {
