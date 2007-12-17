@@ -490,9 +490,10 @@ public class AdministrationActionTest {
 
 	@Test
 	public final void testJail() {
-		MockStendlRPWorld.get().addRPZone(new StendhalRPZone("-1_semos_jail"));
+		MockStendlRPWorld.get().addRPZone(new StendhalRPZone("-1_semos_jail", 100, 100));
 		
 		Player pl = PlayerTestHelper.createPlayer("hugo");
+		PlayerTestHelper.registerPlayer(pl, "-1_semos_jail");
 		pl.put("adminlevel", 5000);
 		RPAction action = new RPAction();
 		action.put("type", "jail");
@@ -508,8 +509,9 @@ public class AdministrationActionTest {
 		action.put("minutes", 1);
 
 		CommandCenter.execute(pl, action);
-		assertEquals("You have jailed name for 1 minutes. Reason: whynot.\r\n"
-				+ "Player name is not online, but the arrest warrant has been recorded anyway.", pl.getPrivateText());
+		assertEquals("You have jailed name for 1 minutes. Reason: whynot.\r\n"+
+					"JailKeeper asks for support to ADMIN: hugo jailed name for 1 minutes. Reason: whynot.\r\n"+
+					"Player name is not online, but the arrest warrant has been recorded anyway.", pl.getPrivateText());
 
 		pl.clearEvents();
 

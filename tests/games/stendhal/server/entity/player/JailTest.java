@@ -19,8 +19,8 @@ public class JailTest {
 	public static void setUpClass() throws Exception {
 		Log4J.init();
 		MockStendhalRPRuleProcessor.get().clearPlayers();
-		MockStendlRPWorld.get().addRPZone(new StendhalRPZone(Jail.DEFAULT_JAIL_ZONE));
-		MockStendlRPWorld.get().addRPZone(new StendhalRPZone("-3_semos_jail"));
+		MockStendlRPWorld.get().addRPZone(new StendhalRPZone(Jail.DEFAULT_JAIL_ZONE, 100, 100));
+		MockStendlRPWorld.get().addRPZone(new StendhalRPZone("-3_semos_jail", 100, 100));
 	}
 
 	@Test
@@ -30,16 +30,6 @@ public class JailTest {
 		Jail.get().imprison("bob", policeman, 1, "test");
 		assertEquals("You have jailed bob for 1 minutes. Reason: test.\r\n"
 			+ "Player bob is not online, but the arrest warrant has been recorded anyway.", policeman.getPrivateText());
-	}
-
-	@Test
-	public final void testCriminalNofreeCell() {
-		Player policeman = PlayerTestHelper.createPlayer();
-		Player bob = PlayerTestHelper.createPlayer();
-		bob.setName("bob");
-		Jail.jailzone = new StendhalRPZone(Jail.DEFAULT_JAIL_ZONE);
-		Jail.get().imprison(bob, policeman, 1);
-		assertTrue((policeman.getPrivateText()).contains("Could not find a cell forbob"));
 	}
 
 	@Test
