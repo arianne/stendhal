@@ -664,7 +664,7 @@ class PlayerRPClass {
 	 *            Player
 	 */
 	static void welcome(Player player) {
-		String msg = "This release is EXPERIMENTAL. Please report problems, suggestions and bugs. You can find us at IRC irc.freenode.net #arianne. Note: remember to keep your password completely secret, never tell it to another friend, player, or even admin.";
+		String msg = "This release is EXPERIMENTAL. Need help? #http://arianne.sourceforge.net/wiki/index.php?title=AskForHelp - please report problems, suggestions and bugs. Remember to keep your password completely secret, never tell to another friend, player, or admin.";
 		try {
 			Configuration config = Configuration.getConfiguration();
 			if (config.has("server_welcome)")) {
