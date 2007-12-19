@@ -1,4 +1,4 @@
-package games.stendhal.server.events;
+package games.stendhal.server.core.events;
 
 /**
  * Implementing classes can be notified that a certain turn number has been

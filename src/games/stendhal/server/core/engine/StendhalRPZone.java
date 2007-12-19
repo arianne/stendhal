@@ -16,6 +16,7 @@ import games.stendhal.common.CRC;
 import games.stendhal.common.CollisionDetection;
 import games.stendhal.common.Debug;
 import games.stendhal.common.Line;
+import games.stendhal.server.core.events.MovementListener;
 import games.stendhal.server.core.rp.StendhalRPAction;
 import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.entity.ActiveEntity;
@@ -37,7 +38,6 @@ import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.events.MovementListener;
 import games.stendhal.tools.tiled.LayerDefinition;
 import games.stendhal.tools.tiled.TileSetDefinition;
 

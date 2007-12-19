@@ -1,9 +1,9 @@
 package games.stendhal.server.entity.item.consumption;
 
+import games.stendhal.server.core.events.TurnListener;
+import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.item.ConsumableItem;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.events.TurnListener;
-import games.stendhal.server.events.TurnNotifier;
 
 class Immunizer implements Feeder {
 

@@ -4,12 +4,12 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.events.TurnListener;
+import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.mapstuff.portal.AccessCheckingPortal.SendMessage;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.events.TurnListener;
-import games.stendhal.server.events.TurnNotifier;
 import games.stendhal.server.maps.MockStendlRPWorld;
 
 import java.util.Set;

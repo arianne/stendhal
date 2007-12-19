@@ -13,13 +13,13 @@
 package games.stendhal.server.entity.npc.behaviour.impl;
 
 import games.stendhal.common.Rand;
+import games.stendhal.server.core.events.LoginListener;
+import games.stendhal.server.core.events.LoginNotifier;
+import games.stendhal.server.core.events.TurnListener;
+import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.events.LoginListener;
-import games.stendhal.server.events.LoginNotifier;
-import games.stendhal.server.events.TurnListener;
-import games.stendhal.server.events.TurnNotifier;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;

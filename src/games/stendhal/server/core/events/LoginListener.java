@@ -1,4 +1,4 @@
-package games.stendhal.server.events;
+package games.stendhal.server.core.events;
 
 import games.stendhal.server.entity.player.Player;
 

@@ -2,6 +2,8 @@ package games.stendhal.server.maps.quests;
 
 import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.events.LoginListener;
+import games.stendhal.server.core.events.LoginNotifier;
 import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -14,8 +16,6 @@ import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.events.LoginListener;
-import games.stendhal.server.events.LoginNotifier;
 
 import java.util.Calendar;
 import java.util.Date;

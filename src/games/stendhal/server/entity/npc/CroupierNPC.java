@@ -1,10 +1,10 @@
 package games.stendhal.server.entity.npc;
 
 import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.item.Dice;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.events.TurnNotifier;
 import games.stendhal.server.util.Area;
 
 import java.awt.Rectangle;

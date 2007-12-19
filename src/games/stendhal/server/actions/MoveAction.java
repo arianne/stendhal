@@ -14,6 +14,8 @@ package games.stendhal.server.actions;
 
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.events.TurnListener;
+import games.stendhal.server.core.events.TutorialNotifier;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.core.pathfinder.Path;
@@ -21,8 +23,6 @@ import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.events.TurnListener;
-import games.stendhal.server.events.TutorialNotifier;
 import games.stendhal.server.util.EntityHelper;
 
 import java.util.List;

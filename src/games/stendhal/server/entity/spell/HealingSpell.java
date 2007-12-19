@@ -18,9 +18,9 @@
 
 package games.stendhal.server.entity.spell;
 
+import games.stendhal.server.core.events.UseListener;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.events.UseListener;
 
 import java.util.Map;
 

@@ -12,8 +12,8 @@
 package games.stendhal.server.entity.spell;
 
 import games.stendhal.common.Grammar;
+import games.stendhal.server.core.events.EquipListener;
 import games.stendhal.server.entity.PassiveEntity;
-import games.stendhal.server.events.EquipListener;
 
 import java.util.Arrays;
 import java.util.List;

@@ -14,10 +14,10 @@ package games.stendhal.server.entity.mapstuff.spawner;
 
 import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.events.TurnListener;
+import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.core.rp.StendhalRPAction;
 import games.stendhal.server.entity.creature.Creature;
-import games.stendhal.server.events.TurnListener;
-import games.stendhal.server.events.TurnNotifier;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -138,7 +138,7 @@ public class CreatureRespawnPoint implements TurnListener {
 	/**
 	 * Is called when a new creature is ready to pop up.
 	 * 
-	 * @see games.stendhal.server.events.TurnListener#onTurnReached(int)
+	 * @see games.stendhal.server.core.events.TurnListener#onTurnReached(int)
 	 */
 	public void onTurnReached(int currentTurn) {
 		respawn();

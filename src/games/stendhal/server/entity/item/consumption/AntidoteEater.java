@@ -3,8 +3,8 @@
  */
 package games.stendhal.server.entity.item.consumption;
 
+import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.events.TurnListener;
 
 import java.lang.ref.WeakReference;
 

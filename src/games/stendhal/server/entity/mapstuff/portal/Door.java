@@ -12,9 +12,9 @@
  ***************************************************************************/
 package games.stendhal.server.entity.mapstuff.portal;
 
+import games.stendhal.server.core.events.TurnListener;
+import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.RPEntity;
-import games.stendhal.server.events.TurnListener;
-import games.stendhal.server.events.TurnNotifier;
 import marauroa.common.game.Definition;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.Definition.Type;

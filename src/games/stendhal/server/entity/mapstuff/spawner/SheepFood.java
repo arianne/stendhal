@@ -13,8 +13,8 @@
 package games.stendhal.server.entity.mapstuff.spawner;
 
 import games.stendhal.common.Grammar;
+import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.item.Item;
-import games.stendhal.server.events.TurnNotifier;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.Definition.Type;

@@ -13,8 +13,8 @@
 package games.stendhal.server.entity;
 
 import games.stendhal.common.Rand;
-import games.stendhal.server.events.TurnListener;
-import games.stendhal.server.events.TurnNotifier;
+import games.stendhal.server.core.events.TurnListener;
+import games.stendhal.server.core.events.TurnNotifier;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.Definition.Type;
 

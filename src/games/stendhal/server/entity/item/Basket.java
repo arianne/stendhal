@@ -3,8 +3,8 @@ package games.stendhal.server.entity.item;
 import games.stendhal.common.Grammar;
 import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.events.UseListener;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.events.UseListener;
 
 import java.util.Map;
 

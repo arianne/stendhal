@@ -17,6 +17,8 @@ import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
 import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.events.TutorialNotifier;
+import games.stendhal.server.core.events.ZoneNotifier;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.core.pathfinder.Path;
 import games.stendhal.server.entity.Entity;
@@ -29,8 +31,6 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.events.TutorialNotifier;
-import games.stendhal.server.events.ZoneNotifier;
 
 import java.awt.Rectangle;
 import java.awt.Shape;

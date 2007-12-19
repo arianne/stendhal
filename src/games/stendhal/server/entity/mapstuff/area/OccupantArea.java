@@ -7,12 +7,12 @@
 package games.stendhal.server.entity.mapstuff.area;
 
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.events.MovementListener;
+import games.stendhal.server.core.events.TurnListener;
+import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.ActiveEntity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.events.MovementListener;
-import games.stendhal.server.events.TurnListener;
-import games.stendhal.server.events.TurnNotifier;
 
 import java.awt.geom.Rectangle2D;
 import java.util.Iterator;

@@ -7,10 +7,10 @@
 package games.stendhal.server.entity.mapstuff.area;
 
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.events.MovementListener;
 import games.stendhal.server.entity.ActiveEntity;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.events.MovementListener;
 
 import java.lang.ref.WeakReference;
 

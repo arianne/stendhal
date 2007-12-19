@@ -6,9 +6,9 @@
 
 package games.stendhal.server.entity.mapstuff.portal;
 
+import games.stendhal.server.core.events.TurnListener;
+import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.RPEntity;
-import games.stendhal.server.events.TurnListener;
-import games.stendhal.server.events.TurnNotifier;
 
 /**
  * An access checking portal is a special kind of portal which requires some

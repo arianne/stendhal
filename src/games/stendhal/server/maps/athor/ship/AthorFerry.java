@@ -1,7 +1,7 @@
 package games.stendhal.server.maps.athor.ship;
 
-import games.stendhal.server.events.TurnListener;
-import games.stendhal.server.events.TurnNotifier;
+import games.stendhal.server.core.events.TurnListener;
+import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.util.TimeUtil;
 
 import java.util.LinkedList;

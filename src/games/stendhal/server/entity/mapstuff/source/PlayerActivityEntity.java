@@ -9,12 +9,12 @@ package games.stendhal.server.entity.mapstuff.source;
 //
 //
 
+import games.stendhal.server.core.events.TurnListener;
+import games.stendhal.server.core.events.TurnNotifier;
+import games.stendhal.server.core.events.UseListener;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.events.TurnListener;
-import games.stendhal.server.events.TurnNotifier;
-import games.stendhal.server.events.UseListener;
 
 import java.lang.ref.WeakReference;
 

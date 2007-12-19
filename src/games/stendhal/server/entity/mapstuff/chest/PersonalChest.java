@@ -1,9 +1,9 @@
 package games.stendhal.server.entity.mapstuff.chest;
 
+import games.stendhal.server.core.events.TurnListener;
+import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Item;
-import games.stendhal.server.events.TurnListener;
-import games.stendhal.server.events.TurnNotifier;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;

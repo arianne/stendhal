@@ -14,10 +14,10 @@ package games.stendhal.server.entity.mapstuff.portal;
 
 import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.events.UseListener;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.events.UseListener;
 
 import org.apache.log4j.Logger;
 import marauroa.common.game.RPClass;

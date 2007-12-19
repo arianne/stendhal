@@ -1,4 +1,4 @@
-package games.stendhal.server.events;
+package games.stendhal.server.core.events;
 
 /**
  * Event types used in the tutorial

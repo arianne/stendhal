@@ -12,8 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.entity.mapstuff.spawner;
 
+import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.item.Item;
-import games.stendhal.server.events.TurnNotifier;
 
 import java.awt.geom.Rectangle2D;
 

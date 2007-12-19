@@ -1,8 +1,8 @@
 package games.stendhal.server.maps.deathmatch;
 
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.events.TurnNotifier;
 import games.stendhal.server.util.Area;
 
 /**
