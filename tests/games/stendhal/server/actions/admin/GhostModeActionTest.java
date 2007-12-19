@@ -22,15 +22,17 @@ public class GhostModeActionTest {
 	@Test
 	public final void testGhostmode() {
 		Player hugo = PlayerTestHelper.createPlayer("hugo");
+		hugo.put("adminlevel", 5000);
+		
 		Player bob = PlayerTestHelper.createPlayer("bob");
+		bob.setKeyedSlot("!buddy", "_" + hugo.getName(), "1");
+
 		Player jack = PlayerTestHelper.createPlayer("jack");
 		
-		hugo.put("adminlevel", 5000);
 		MockStendhalRPRuleProcessor.get().addPlayer(hugo);
 		MockStendhalRPRuleProcessor.get().addPlayer(bob);
 		MockStendhalRPRuleProcessor.get().addPlayer(jack);
-		bob.setKeyedSlot("!buddy", "_" + hugo.getName(), "1");
-
+		
 		RPAction action = new RPAction();
 
 		action.put("type", "ghostmode");
@@ -43,21 +45,22 @@ public class GhostModeActionTest {
 		assertTrue(hugo.isGhost());
 
 		assertEquals(null, bob.get("online"));
-
 		assertEquals("hugo", bob.get("offline"));
+		
 		assertEquals(null, jack.get("online"));
-
 		assertEquals(null, jack.get("offline"));
+
 		bob.remove("offline");
 		bob.clearEvents();
 		CommandCenter.execute(hugo, action);
 
 		assertFalse(hugo.isInvisible());
 		assertFalse(hugo.isGhost());
-		assertEquals(null, bob.get("offline"));
+		
 		assertEquals("hugo", bob.get("online"));
+		assertEquals(null, bob.get("offline"));
+				
 		assertEquals(null, jack.get("online"));
-
 		assertEquals(null, jack.get("offline"));
 	}
 
