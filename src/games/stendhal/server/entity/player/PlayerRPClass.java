@@ -194,16 +194,6 @@ class PlayerRPClass {
 				Definition.PRIVATE);
 		rpclass.add(DefinitionClass.ATTRIBUTE, "texttype", Type.STRING,
 				Definition.PRIVATE);
-
-		rpclass = new RPClass("examine");
-		rpclass.add(DefinitionClass.ATTRIBUTE, "path", Type.STRING,
-				Definition.PRIVATE);
-		rpclass.add(DefinitionClass.ATTRIBUTE, "alt", Type.STRING,
-				Definition.PRIVATE);
-		rpclass.add(DefinitionClass.ATTRIBUTE, "title", Type.STRING,
-				Definition.PRIVATE);
-		rpclass.add(DefinitionClass.ATTRIBUTE, "text", Type.LONG_STRING,
-				Definition.PRIVATE);
 	}
 
 	/**
