@@ -12,9 +12,9 @@
  ***************************************************************************/
 package games.stendhal.server.entity.player;
 
-import games.stendhal.common.NotificationType;
 import games.stendhal.common.Direction;
 import games.stendhal.common.FeatureList;
+import games.stendhal.common.NotificationType;
 import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
 import games.stendhal.server.core.engine.StendhalRPWorld;
@@ -32,6 +32,7 @@ import games.stendhal.server.entity.item.ConsumableItem;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
+import games.stendhal.server.events.TextEvent;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -911,10 +912,7 @@ public class Player extends RPEntity {
 	 *            the message.
 	 */
 	public void sendPrivateText(NotificationType type, String text) {
-		RPEvent event = new RPEvent("private_text");
-		event.put("text", text);
-		event.put("texttype", type.name());
-		addEvent(event);
+		addEvent(new TextEvent(type, text));
 	}
 
 	/**
