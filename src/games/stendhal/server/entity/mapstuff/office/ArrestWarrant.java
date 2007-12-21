@@ -44,6 +44,7 @@ public class ArrestWarrant extends Entity {
 	public ArrestWarrant(String criminalName, Player policeOfficer, int minutes, String reason) {
 		setRPClass(RPCLASS_NAME);
 		store();
+		hide();
 		put(CRIMINAL, criminalName);
 		put(POLICE_OFFICER, policeOfficer.getName());
 		put(MINUTES, minutes);
@@ -60,6 +61,7 @@ public class ArrestWarrant extends Entity {
 	public ArrestWarrant(RPObject rpobject) {
 		super(rpobject);
 		store();
+		hide();
 		// initialize jail so that players with pending ArrestWarrants
 		// are arrested on login.
 		// TODO: find a better way to initalize the Jail
