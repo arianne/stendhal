@@ -649,12 +649,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 		}
 
 		if (object instanceof NPC) {
-			/*
-			 * TODO: Move NPC (and all entity) handling to zone
-			 * scoped/managed/dispatched.
-			 */
-			// npcs.add((NPC) object);
-			StendhalRPRuleProcessor.get().addNPC((NPC) object);
+			npcs.add((NPC) object);
 		}
 
 		if (object instanceof Entity) {
@@ -1110,6 +1105,16 @@ public class StendhalRPZone extends MarauroaRPZone {
 			os.append("sheepFoods: " + sheepFoods.size() + "\n");
 			os.append("objects: " + objects.size() + "\n");
 			logger.info(os);
+		}
+	}
+
+	public void logic() {
+		for (NPC npc : npcs) {
+			try {
+				npc.logic();
+			} catch (Exception e) {
+				logger.error("Error in npc logic for zone " + getID().getID(), e);
+			}
 		}
 	}
 }
