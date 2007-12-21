@@ -403,28 +403,28 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	}
 
 	public synchronized void endTurn() {
-		long start = System.nanoTime();
 		int currentTurn = getTurn();
+		long globalStart = System.currentTimeMillis();
 		try {
-
-			/*
-			 * TODO: Refactor Definitively must be done by the zone itself.
-			 */
-			for (NPC npc : npcs) {
-				try {
-					npc.logic();
-				} catch (Exception e) {
-					logger.error("Error in npc logic", e);
+			StringBuilder sb = new StringBuilder();
+			for (IRPZone zoneI : StendhalRPWorld.get()) {
+				long start = System.currentTimeMillis();
+				StendhalRPZone zone = (StendhalRPZone) zoneI;
+				zone.logic();
+				long end = System.currentTimeMillis();
+				if (end - start > 30) {
+					sb.append(" " + zone.getID().getID() + "=" + (end - start));
 				}
 			}
+			if (System.currentTimeMillis() - globalStart > 100) {
+				logger.warn("Spent time in npc.logic: " + sb.toString());
+			}
 
-			// Registeres classes for this turn
+			// run registered object's logic method for this turn
 			TurnNotifier.get().logic(currentTurn);
 
 		} catch (Exception e) {
 			logger.error("error in endTurn", e);
-		} finally {
-			logger.debug("End turn: " + (System.nanoTime() - start) / 1000000.0 + " (" + (currentTurn % 5) + ")");
 		}
 	}
 
