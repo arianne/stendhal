@@ -47,7 +47,6 @@ public class LookActionTest {
 		zone.add(player2);
 
 		NPC npc = new SpeakerNPC("npc");
-		processor.addNPC(npc);
 		zone.add(npc);
 	}
 
