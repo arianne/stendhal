@@ -306,74 +306,97 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		debugOutput();
 
 		try {
-			// We keep the number of players logged.
-			Statistics.getStatistics().set("Players logged", getPlayers().size());
+			logNumberOfPlayersOnline();
 
-			/*
-			 * TODO: Refactor. Entities should care about really dying
-			 * themselves. This is here because there is a split between last
-			 * hit and the moment a entity die so that the last hit is visible
-			 * on client.
-			 */
-			// In order for the last hit to be visible dead happens at two
-			// steps.
-			for (Pair<RPEntity, Entity> entry : entityToKill) {
-				try {
-					entry.first().onDead(entry.second());
-				} catch (Exception e) {
-					logger.error("Player has logout before dead", e);
-				}
-			}
-			entityToKill.clear();
+			handleKilledEntities();
 
-			/*
-			 * TODO: Refactor NPC should be stored on zones instead of
-			 * duplicating that info.
-			 */
-			// Done this way because a problem with comodification... :(
-			npcs.removeAll(npcsToRemove);
-			npcs.addAll(npcsToAdd);
-			npcsToAdd.clear();
-			npcsToRemove.clear();
+			handleAddedAndRemovedNpcs();
 
-			/*
-			 * TODO: Refactor Use RPEvent that is the correct way and it is
-			 * handled by marauroa itself.
-			 */
+		
 
-			/*
-			 * TODO: Refactor May be done by the zone itself.
-			 */
-			for (Player player : getPlayers()) {
-				try {
-					player.logic();
-				} catch (Exception e) {
-					logger.error("Error in player logic", e);
-				}
-			}
+			executePlayerLogic();
 
-			// SpeakerNPC logic
-			NPCList npcList = NPCList.get();
-			for (SpeakerNPC npc : npcList) {
-				npc.preLogic();
-			}
+			executeNPCsPreLogic();
 
-			/*
-			 * TODO: Refactor Removable once RPEvent for chat is added.
-			 */
-			for (Player player : playersRmText) {
-				if (player.has("text")) {
-					player.remove("text");
-					player.notifyWorldAboutChanges();
-				}
-			}
-			playersRmText.clear();
+			handlePlayersRmTexts();
 
 		} catch (Exception e) {
 			logger.error("error in beginTurn", e);
 		} finally {
 			logger.debug("Begin turn: " + (System.nanoTime() - start) / 1000000.0);
 		}
+	}
+
+	protected void logNumberOfPlayersOnline() {
+		// We keep the number of players logged.
+		Statistics.getStatistics().set("Players logged", getPlayers().size());
+	}
+
+	protected void handlePlayersRmTexts() {
+		/*
+		 * TODO: Refactor Removable once RPEvent for chat is added.
+		 */
+		for (Player player : playersRmText) {
+			if (player.has("text")) {
+				player.remove("text");
+				player.notifyWorldAboutChanges();
+			}
+		}
+		playersRmText.clear();
+	}
+
+	protected void executeNPCsPreLogic() {
+		// SpeakerNPC logic
+		NPCList npcList = NPCList.get();
+		for (SpeakerNPC npc : npcList) {
+			npc.preLogic();
+		}
+	}
+
+	protected void executePlayerLogic() {
+		/*
+		 * TODO: Refactor May be done by the zone itself.
+		 */
+		
+		
+		for (Player player : getPlayers()) {
+			try {
+				player.logic();
+			} catch (Exception e) {
+				logger.error("Error in player logic", e);
+			}
+		}
+	}
+
+	protected void handleAddedAndRemovedNpcs() {
+		/*
+		 * TODO: Refactor NPC should be stored on zones instead of
+		 * duplicating that info.
+		 */
+		// Done this way because a problem with comodification... :(
+		npcs.removeAll(npcsToRemove);
+		npcs.addAll(npcsToAdd);
+		npcsToAdd.clear();
+		npcsToRemove.clear();
+	}
+
+	protected void handleKilledEntities() {
+		/*
+		 * TODO: Refactor. Entities should care about really dying
+		 * themselves. This is here because there is a split between last
+		 * hit and the moment a entity die so that the last hit is visible
+		 * on client.
+		 */
+		// In order for the last hit to be visible dead happens at two
+		// steps.
+		for (Pair<RPEntity, Entity> entry : entityToKill) {
+			try {
+				entry.first().onDead(entry.second());
+			} catch (Exception e) {
+				logger.error("Player has logout before dead", e);
+			}
+		}
+		entityToKill.clear();
 	}
 
 	private void debugOutput() {
@@ -544,7 +567,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 	}
 
-	public static Collection<? extends Player> getPlayers(final int adminLevel) {
+	public static Collection< ? extends Player> getPlayers(final int adminLevel) {
 
 		if (adminLevel < AdministrationAction.getLevelForCommand("ghostmode")) {
 
