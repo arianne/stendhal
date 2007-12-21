@@ -45,6 +45,7 @@ import games.stendhal.server.entity.player.GagManager;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.spell.Spell;
 import games.stendhal.server.events.ExamineEvent;
+import games.stendhal.server.events.TextEvent;
 import games.stendhal.tools.tiled.LayerDefinition;
 import games.stendhal.tools.tiled.ServerTMXLoader;
 import games.stendhal.tools.tiled.StendhalMapStructure;
@@ -211,6 +212,7 @@ public class StendhalRPWorld extends RPWorld {
 
 		// rpevents
 		ExamineEvent.generateRPClass();
+		TextEvent.generateRPClass();
 
 		/*
 		 * TODO: Refactor Create RPClasses for actions

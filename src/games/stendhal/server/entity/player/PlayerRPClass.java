@@ -184,16 +184,6 @@ class PlayerRPClass {
 
 		player.addRPEvent("transition_graph", Definition.STANDARD);
 		player.addRPEvent("examine", Definition.STANDARD);
-
-		generateRPEvent();
-	}
-
-	private static void generateRPEvent() {
-		RPClass rpclass = new RPClass("private_text");
-		rpclass.add(DefinitionClass.ATTRIBUTE, "text", Type.LONG_STRING,
-				Definition.PRIVATE);
-		rpclass.add(DefinitionClass.ATTRIBUTE, "texttype", Type.STRING,
-				Definition.PRIVATE);
 	}
 
 	/**
