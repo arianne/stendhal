@@ -139,6 +139,6 @@ public class MeetSanta extends AbstractQuest implements LoginListener {
 		super.addToWorld();
 		LoginNotifier.get().addListener(this);
 		createSanta();
-		new TeleporterBehaviour(santa, "Ho, ho, ho! Merry Christmas!");
+		new TeleporterBehaviour(santa, "Ho, ho, ho! Merry Christmas!", false);
 	}
 }
