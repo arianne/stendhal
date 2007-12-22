@@ -56,6 +56,36 @@ public class TeleporterBehaviour implements TurnListener {
 	}
 
 	/**
+	 * Creates a new TeleporterBehaviour
+	 * 
+	 * @param speakerNPC
+	 *            SpeakerNPC
+	 * @param repeatedText
+	 *            text to repeat
+	 * @param useHighProbabiltyZones
+	 *            true to make teleportation to a hand 
+	 *            selected list of zone more likly
+	 */
+	public TeleporterBehaviour(SpeakerNPC speakerNPC, String repeatedText, boolean useHighProbabiltyZones) {
+		this(speakerNPC, repeatedText);
+		if (useHighProbabiltyZones) {
+			addHighProbability();
+		}
+	}
+
+	private void addHighProbability() {
+		StendhalRPWorld world = StendhalRPWorld.get();
+		for (int i = 0; i < 10; i++) {
+			zones.add(world.getZone("0_semos_city"));
+			zones.add(world.getZone("0_semos_village_w"));
+			zones.add(world.getZone("0_semos_plains_n"));
+			zones.add(world.getZone("0_semos_plains_ne"));
+			zones.add(world.getZone("0_semos_road_e"));
+			zones.add(world.getZone("0_semos_plains_s"));
+		}
+	}
+
+	/**
 	 * Creates an ArrayList of "outside" zones for NPC
 	 */
 	private void listZones() {
