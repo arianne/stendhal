@@ -13,6 +13,9 @@
 package games.stendhal.server.core.engine;
 
 import games.stendhal.server.core.config.ZoneGroupsXMLLoader;
+import games.stendhal.server.core.rp.guilds.Guild;
+import games.stendhal.server.core.rp.guilds.GuildMember;
+import games.stendhal.server.core.rp.guilds.GuildPermission;
 import games.stendhal.server.core.rule.RuleManager;
 import games.stendhal.server.core.rule.RuleSetFactory;
 import games.stendhal.server.entity.ActiveEntity;
@@ -212,6 +215,11 @@ public class StendhalRPWorld extends RPWorld {
 
 		// rpevents
 		ExamineEvent.generateRPClass();
+                
+                //guilds
+                Guild.generateRPClass();
+                GuildMember.generateRPClass();
+                GuildPermission.generateRPClass();
 		TextEvent.generateRPClass();
 
 		/*

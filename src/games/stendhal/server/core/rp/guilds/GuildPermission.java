@@ -1,7 +1,12 @@
 package games.stendhal.server.core.rp.guilds;
 
+import games.stendhal.server.entity.Entity;
 import java.util.Collections;
 import java.util.List;
+import marauroa.common.game.Definition;
+import marauroa.common.game.Definition.Type;
+import marauroa.common.game.RPClass;
+import marauroa.common.game.RPObject;
 
 /**
  * Manages permissions for a guild (ex. can assign a rank (like adminlevel) to a
@@ -11,8 +16,8 @@ import java.util.List;
  * (not creator, however)
  * @author timothyb89
  */
-public class GuildPermission {
-    
+public class GuildPermission extends Entity {
+
     /**
      * Only a single user can be given this rank. It should have exactly the 
      * same permissions as Admin, but show importance to the creator.
@@ -54,26 +59,73 @@ public class GuildPermission {
     private int rank;
     
     /**
-     * Constructs a GuildPermission.
-     * @param id An identifier for the permission.
-     * @param rank The rank the permission gets.
+     * The guild this permission is used in
      */
+    private String guild;
+    
+    private static final String RPCLASS = "guild_permission";
+    private static final String ATTR_ID = "identifier";
+    private static final String ATTR_RANK = "rank";
+    private static final String ATTR_GUILD = "guild";
+
     public GuildPermission(String id, int rank) {
         this.id = id;
         this.rank = rank;
+        
+        setRPClass(RPCLASS);
+        store();
+        put(ATTR_ID, id);
+        put(ATTR_RANK, rank);
     }
     
-    public String getID() {
+    /**
+     * Constructs a GuildPermission.
+     * @param id An identifier for the permission.
+     * @param guild the identifier of the guild this permission is for
+     * @param rank The rank the permission gets.
+     */
+    public GuildPermission(String id, String guild, int rank) {
+        this(id, rank);
+        this.guild = guild;
+        put(ATTR_GUILD, guild);
+    }
+
+    public GuildPermission(RPObject obj) {
+        super(obj);
+        store();
+        
+        loadData();
+    }
+
+    public static void generateRPClass() {
+        RPClass clazz = new RPClass(RPCLASS);
+        clazz.isA("entity");
+        clazz.addAttribute(ATTR_ID, Type.STRING, Definition.HIDDEN);
+        clazz.addAttribute(ATTR_RANK, Type.INT, Definition.HIDDEN);
+        clazz.addAttribute(ATTR_GUILD, Type.STRING, Definition.HIDDEN);
+    }
+    
+    private void loadData() {
+        id = get(ATTR_ID);
+        rank = getInt(ATTR_RANK);
+        guild = get(ATTR_GUILD);
+    }
+
+    public String getIdentifier() {
         return id;
     }
-    
+
     public int getRank() {
         return rank;
     }
     
+    public String getGuild() {
+        return guild;
+    }
+
     public static GuildPermission getPermission(int rank, List<GuildPermission> possible) {
-        Collections.sort(possible, new GuildPermissionComparator());
-        
+        Collections.sort(possible, new GuildPermissionComparator());//sort by rank
+
         for (GuildPermission gp : possible) {
             if (rank < gp.getRank()) {
                 continue;
@@ -81,8 +133,7 @@ public class GuildPermission {
                 return gp;
             }
         }
-        
+
         return NORMAL; // default
     }
-    
 }
