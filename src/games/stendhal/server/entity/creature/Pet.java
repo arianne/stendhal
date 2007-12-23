@@ -154,8 +154,6 @@ public abstract class Pet extends DomesticAnimal {
 						+ owner);
 			}
 		}
-
-		StendhalRPRuleProcessor.get().removeNPC(this);
 	}
 
 	/**

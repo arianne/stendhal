@@ -27,7 +27,6 @@ import games.stendhal.server.core.rp.StendhalRPAction;
 import games.stendhal.server.core.scripting.ScriptRunner;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
-import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
@@ -69,12 +68,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	protected PlayerList onlinePlayers;
 	private List<Player> playersRmText;
 
-	private List<NPC> npcs;
-
-	private List<NPC> npcsToAdd;
-
-	private List<NPC> npcsToRemove;
-
 	/**
 	 * A list of RPEntities that were killed in the current turn, together with
 	 * the Entity that killed it.
@@ -88,9 +81,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	protected StendhalRPRuleProcessor() {
 		onlinePlayers = new PlayerList();
 		playersRmText = new LinkedList<Player>();
-		npcs = new LinkedList<NPC>();
-		npcsToAdd = new LinkedList<NPC>();
-		npcsToRemove = new LinkedList<NPC>();
 		entityToKill = new LinkedList<Pair<RPEntity, Entity>>();
 
 	}
@@ -213,14 +203,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		return false;
 	}
 
-	public void addNPC(NPC npc) {
-		npcsToRemove.remove(npc);
-
-		if (!npcs.contains(npc)) {
-			npcsToAdd.add(npc);
-		}
-	}
-
 	public void killRPEntity(RPEntity entity, Entity killer) {
 		entityToKill.add(new Pair<RPEntity, Entity>(entity, killer));
 	}
@@ -283,10 +265,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		return onlinePlayers.getOnlinePlayer(name);
 	}
 
-	public boolean removeNPC(NPC npc) {
-		return npcsToRemove.add(npc);
-	}
-
 	public boolean onActionAdd(RPObject caster, RPAction action, List<RPAction> actionList) {
 		return true;
 	}
@@ -309,10 +287,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			logNumberOfPlayersOnline();
 
 			handleKilledEntities();
-
-			handleAddedAndRemovedNpcs();
-
-		
 
 			executePlayerLogic();
 
@@ -368,18 +342,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		}
 	}
 
-	protected void handleAddedAndRemovedNpcs() {
-		/*
-		 * TODO: Refactor NPC should be stored on zones instead of
-		 * duplicating that info.
-		 */
-		// Done this way because a problem with comodification... :(
-		npcs.removeAll(npcsToRemove);
-		npcs.addAll(npcsToAdd);
-		npcsToAdd.clear();
-		npcsToRemove.clear();
-	}
-
 	protected void handleKilledEntities() {
 		/*
 		 * TODO: Refactor. Entities should care about really dying
@@ -414,9 +376,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 			StringBuffer os = new StringBuffer();
 			os.append("entityToKill: " + entityToKill.size() + "\n");
-			os.append("npcs: " + npcs.size() + "\n");
-			os.append("npcsToAdd: " + npcsToAdd.size() + "\n");
-			os.append("npcsToRemove: " + npcsToRemove.size() + "\n");
 			os.append("players: " + getPlayers().size() + "\n");
 			os.append("playersRmText: " + playersRmText.size() + "\n");
 

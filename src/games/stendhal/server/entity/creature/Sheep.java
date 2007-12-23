@@ -163,8 +163,6 @@ public class Sheep extends DomesticAnimal {
 						+ owner);
 			}
 		}
-		StendhalRPRuleProcessor.get().removeNPC(this);
-
 	}
 
 	/**

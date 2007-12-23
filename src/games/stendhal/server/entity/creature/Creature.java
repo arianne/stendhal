@@ -351,9 +351,6 @@ public class Creature extends NPC {
 	public void onDead(Entity killer) {
 		if (point != null) {
 			point.notifyDead(this);
-		} else {
-			// Perhaps a summoned creature
-			StendhalRPRuleProcessor.get().removeNPC(this);
 		}
 
 		super.onDead(killer);

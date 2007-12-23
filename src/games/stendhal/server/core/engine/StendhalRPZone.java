@@ -669,12 +669,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 		}
 
 		if (object instanceof NPC) {
-			/*
-			 * TODO: Move NPC (and all entity) handling to zone
-			 * scoped/managed/dispatched.
-			 */
-			// npcs.remove((NPC) object);
-			StendhalRPRuleProcessor.get().removeNPC((NPC) object);
+			npcs.remove((NPC) object);
 		}
 
 		/*
