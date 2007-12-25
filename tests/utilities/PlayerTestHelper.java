@@ -22,7 +22,7 @@ import marauroa.common.game.RPSlot;
 public class PlayerTestHelper {
 
 	/**
-	 * create an unnamed player object
+	 * create an unnamed player object.
 	 * 
 	 * @return player
 	 */
@@ -34,7 +34,7 @@ public class PlayerTestHelper {
 	}
 
 	/**
-	 * create a named player
+	 * create a named player.
 	 * 
 	 * @param name
 	 * @return player
@@ -46,7 +46,7 @@ public class PlayerTestHelper {
 	}
 
 	/**
-	 * register a player in rule processor, world and zone
+	 * register a player in rule processor, world and zone.
 	 * 
 	 * @param player
 	 * @param zoneName
@@ -56,7 +56,7 @@ public class PlayerTestHelper {
 	}
 
 	/**
-	 * register a player in rule processor, world and zone
+	 * register a player in rule processor, world and zone.
 	 * 
 	 * @param player
 	 * @param zone
@@ -74,7 +74,7 @@ public class PlayerTestHelper {
 	}
 
 	/**
-	 * remove a player from rule processor, world and zone
+	 * remove a player from rule processor, world and zone.
 	 * 
 	 * @param player
 	 * @param zone
@@ -85,7 +85,7 @@ public class PlayerTestHelper {
 	}
 
 	/**
-	 * remove a player from rule processor, world and zone
+	 * remove a player from rule processor, world and zone.
 	 * 
 	 * @param player
 	 * @param zone
@@ -99,7 +99,7 @@ public class PlayerTestHelper {
 	}
 
 	/**
-	 * remove a player from rule processor, world and zone
+	 * remove a player from rule processor, world and zone.
 	 * 
 	 * @param playerName
 	 * @param zoneName
@@ -109,7 +109,7 @@ public class PlayerTestHelper {
 	}
 
 	/**
-	 * remove a player from world and rule processor
+	 * remove a player from world and rule processor.
 	 * 
 	 * @param playerName
 	 */
@@ -122,7 +122,7 @@ public class PlayerTestHelper {
 	}
 
 	/**
-	 * remove a player from world and rule processor
+	 * remove a player from world and rule processor.
 	 * 
 	 * @param player
 	 */
@@ -134,7 +134,7 @@ public class PlayerTestHelper {
 	}
 
 	/**
-	 * equip the player with the given amount of money
+	 * equip the player with the given amount of money.
 	 * 
 	 * @param player
 	 * @param amount
@@ -145,7 +145,7 @@ public class PlayerTestHelper {
 	}
 
 	/**
-	 * equip the player with the given amount of items
+	 * equip the player with the given amount of items.
 	 * 
 	 * @param player
 	 * @param clazz
@@ -164,7 +164,7 @@ public class PlayerTestHelper {
 	}
 
 	/**
-	 * reset the conversation state of the named NPC
+	 * reset the conversation state of the named NPC.
 	 * 
 	 * @param string
 	 */
@@ -177,7 +177,7 @@ public class PlayerTestHelper {
 	}
 
 	/**
-	 * remove the named NPC
+	 * remove the named NPC.
 	 * 
 	 * @param npcName
 	 */
@@ -186,7 +186,7 @@ public class PlayerTestHelper {
 	}
 
 	/**
-	 * remove a zone from the world
+	 * remove a zone from the world.
 	 * 
 	 * @param name
 	 */
@@ -244,6 +244,7 @@ public class PlayerTestHelper {
 		Entity.generateRPClass();
 		ActiveEntity.generateRPClass();
 		RPEntity.generateRPClass();
+		NPC.generateRPClass();
 		Creature.generateRPClass();
 		
 	}
