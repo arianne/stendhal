@@ -29,8 +29,8 @@ public class SheepTest {
 		Sheep meh = new Sheep();
 		StendhalRPZone zone = new StendhalRPZone("testzone", 10, 10);
 		zone.add(meh);
-		assertFalse(meh.searchForFood(true));
-		assertFalse(meh.searchForFood(false));
+		assertFalse(meh.searchForFood());
+		
 	}
 
 	@Test
@@ -45,7 +45,7 @@ public class SheepTest {
 		assertTrue(food.getAmount() > 0);
 		zone.add(food);
 
-		assertTrue(meh.searchForFood(false));
+		assertTrue(meh.searchForFood());
 		assertEquals("eat", meh.getIdea());
 	}
 
@@ -65,7 +65,7 @@ public class SheepTest {
 
 		zone.add(food);
 		assertFalse(zone.getSheepFoodList().isEmpty());
-		assertTrue(meh.searchForFood(false));
+		assertTrue(meh.searchForFood());
 		assertEquals("found food and thinks of it", "food", meh.getIdea());
 
 	}
@@ -90,7 +90,7 @@ public class SheepTest {
 				zone.collisionMap.setCollide(x, y);
 			}
 		}
-		assertFalse("no path found", meh.searchForFood(false));
+		assertFalse("no path found", meh.searchForFood());
 		assertEquals(null, meh.getIdea());
 
 	}
@@ -139,7 +139,7 @@ public class SheepTest {
 
 		zone.add(food2);
 
-		assertTrue("no path found", meh.searchForFood(false));
+		assertTrue("no path found", meh.searchForFood());
 		assertEquals("food", meh.getIdea());
 
 	}
@@ -187,7 +187,7 @@ public class SheepTest {
 		fail("Not yet implemented");
 	}
 
-	@Ignore
+	
 	@Test
 	public void testOnHungry() {
 		Sheep meh = new Sheep();

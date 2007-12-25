@@ -209,14 +209,12 @@ public class Sheep extends DomesticAnimal {
 	 * @return <code>true</code> if the sheep is hunting for food.
 	 */
 	protected boolean onHungry() {
-		boolean hunting = "food".equals(getIdea());
-
 		/*
 		 * Will try to eat if one of... - Food already on the mind and not
 		 * moving (collision?) - Food not on the mind and hunger pains (every
 		 * 10)
 		 */
-		if (hunting) {
+		if ("food".equals(getIdea())) {
 			if (!stopped()) {
 				return true;
 			}
@@ -229,10 +227,10 @@ public class Sheep extends DomesticAnimal {
 			}
 		}
 
-		return searchForFood(hunting);
+		return searchForFood();
 	}
 
-	protected boolean searchForFood(boolean hunting) {
+	protected boolean searchForFood() {
 
 		List<SheepFood> list = getFoodinRange(6);
 
