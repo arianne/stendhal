@@ -18,11 +18,15 @@ import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.mapstuff.spawner.SheepFood;
 import games.stendhal.server.entity.player.Player;
 
-import org.apache.log4j.Logger;
+import java.util.LinkedList;
+import java.util.List;
+
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.SyntaxException;
 import marauroa.common.game.Definition.Type;
+
+import org.apache.log4j.Logger;
 
 /**
  * A sheep is a domestic animal that can be owned by a player. It eats berries
@@ -184,7 +188,7 @@ public class Sheep extends DomesticAnimal {
 			if (food.getAmount() > 0) {
 				double foodDistance = squaredDistance(food);
 
-				if (foodDistance <= squaredDistance) {
+				if (foodDistance <= squaredDistance)  {
 					chosen = food;
 					squaredDistance = foodDistance;
 				}
@@ -192,6 +196,28 @@ public class Sheep extends DomesticAnimal {
 		}
 
 		return chosen;
+	}
+	/**
+	 * Returns the SheepFood that is nearest to the sheep's current position. If
+	 * there is no SheepFood within the given range, returns none.
+	 * 
+	 * @param range
+	 *            The maximum distance to a SheepFood
+	 * @return The nearest SheepFood, or null if there is none within the given
+	 *         range
+	 */
+	private List<SheepFood> getFoodinRange(double range) {
+		
+	
+		List<SheepFood> resultList = new LinkedList<SheepFood>(); 
+		
+		for (SheepFood food : getZone().getSheepFoodList()) {
+			if ((food.getAmount() > 0) && (squaredDistance(food) < range)) {
+				resultList.add(food);
+			}
+		}
+		//TODO: sort this by distance
+		return resultList;
 	}
 
 	/**
@@ -220,6 +246,12 @@ public class Sheep extends DomesticAnimal {
 			}
 		}
 
+		hunting = searchForFood(hunting);
+
+		return hunting;
+	}
+
+	protected boolean searchForFood(boolean hunting) {
 		/*
 		 * Search for food
 		 */
@@ -244,7 +276,6 @@ public class Sheep extends DomesticAnimal {
 			setIdea(null);
 			hunting = false;
 		}
-
 		return hunting;
 	}
 
