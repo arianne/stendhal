@@ -32,7 +32,7 @@ import org.apache.log4j.Logger;
  */
 public class SummonScroll extends InfoStringScroll {
 
-	private static final int MAX_ZONE_NPCS = 10;
+	private static final int MAX_ZONE_NPCS = 50;
 
 	private static final Logger logger = Logger.getLogger(SummonScroll.class);
 
