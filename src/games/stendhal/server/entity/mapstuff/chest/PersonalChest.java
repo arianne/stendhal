@@ -1,16 +1,6 @@
 package games.stendhal.server.entity.mapstuff.chest;
 
 import games.stendhal.server.entity.RPEntity;
-import games.stendhal.server.entity.item.Item;
-import games.stendhal.server.events.TurnListener;
-import games.stendhal.server.events.TurnNotifier;
-
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
-
-
-import org.apache.log4j.Logger;
-import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
 /**
@@ -24,7 +14,6 @@ import marauroa.common.game.RPSlot;
  * the owner is looking at his items. TODO: fix this.
  */
 public class PersonalChest extends Chest {
-	private static Logger logger = Logger.getLogger(PersonalChest.class);
 
 	/**
 	 * The default bank slot name.
@@ -53,30 +42,6 @@ public class PersonalChest extends Chest {
 		attending = null;
 	}
 
-	/**
-	 * Copies an item
-	 *
-	 * TODO: Move this to Item.copy() to hide impl (and eventually remove
-	 * reflection).
-	 *
-	 * @param item
-	 *            item to copy
-	 * @return copy
-	 * @throws SecurityException
-	 * @throws NoSuchMethodException
-	 * @throws IllegalArgumentException
-	 * @throws InstantiationException
-	 * @throws IllegalAccessException
-	 * @throws InvocationTargetException
-	 */
-	private RPObject cloneItem(RPObject item) throws NoSuchMethodException,
-			InstantiationException, IllegalAccessException,
-			InvocationTargetException {
-		Class< ? > clazz = item.getClass();
-		Constructor<?> ctor = clazz.getConstructor(clazz);
-		Item clone = (Item) ctor.newInstance(item);
-		return clone;
-	}
 
 	/**
 	 * Get the slot that holds items for this chest.
@@ -91,72 +56,13 @@ public class PersonalChest extends Chest {
 	}
 
 	/**
-	 * Sync the slot contents.
-	 *
-	 * @return <code>true</code> if it should be called again.
-	 */
-	protected boolean syncContent() {
-		if (attending != null) {
-			/* Can be replaced when we add Equip event */
-			/* Mirror chest content into player's bank slot */
-			RPSlot bank = getBankSlot();
-			bank.clear();
-
-			for (RPObject item : getSlot("content")) {
-				bank.addPreservingId(item);
-			}
-
-			RPSlot content = getSlot("content");
-			content.clear();
-
-			// Verify the user is next to the chest
-			if (getZone().has(attending.getID()) && nextTo(attending)) {
-				// A hack to allow client update correctly the
-				// chest...
-				// by clearing the chest and copying the items
-				// back to it from the player's bank slot
-				for (RPObject item : getBankSlot()) {
-					try {
-						content.addPreservingId(cloneItem(item));
-					} catch (Exception e) {
-						logger.error("Cannot clone item " + item, e);
-					}
-				}
-
-				return true;
-			} else {
-				// If player is not next to depot, clean it.
-				close();
-				notifyWorldAboutChanges();
-			}
-		}
-
-		return false;
-	}
-
-	/**
 	 * Open the chest for an attending user.
 	 *
 	 * @param user
 	 *            The attending user.
 	 */
 	public void open(RPEntity user) {
-		attending = user;
-
-		TurnNotifier.get().notifyInTurns(0, new SyncContent());
-
-		RPSlot content = getSlot("content");
-		content.clear();
-
-		for (RPObject item : getBankSlot()) {
-			try {
-				content.addPreservingId(cloneItem(item));
-			} catch (Exception e) {
-				logger.error("Cannot clone item " + item, e);
-			}
-		}
-
-		super.open();
+		user.sendPrivateText("Banks is closed because of bug abusing and will not open until after the Christmas.");
 	}
 
 	/**
@@ -191,26 +97,5 @@ public class PersonalChest extends Chest {
 		}
 
 		return false;
-	}
-
-	//
-	//
-
-	/**
-	 * A listener for syncing the slot contents.
-	 */
-	protected class SyncContent implements TurnListener {
-		/**
-		 * This method is called when the turn number is reached. NOTE: The
-		 * <em>message</em> parameter is deprecated.
-		 *
-		 * @param currentTurn
-		 *            The current turn number.
-		 */
-		public void onTurnReached(int currentTurn) {
-			if (syncContent()) {
-				TurnNotifier.get().notifyInTurns(0, this);
-			}
-		}
 	}
 }
