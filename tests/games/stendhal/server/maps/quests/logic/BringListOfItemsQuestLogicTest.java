@@ -31,6 +31,7 @@ public class BringListOfItemsQuestLogicTest {
 	public static void setupClass() {
 		Log4J.init();
 		assertTrue(MockStendhalRPRuleProcessor.get() instanceof MockStendhalRPRuleProcessor);
+		PlayerTestHelper.generateNPCRPClasses();
 		PlayerTestHelper.generatePlayerRPClasses();
 		PlayerTestHelper.generateItemRPClasses();
 	}
@@ -45,24 +46,21 @@ public class BringListOfItemsQuestLogicTest {
 
 	@Test(expected = IllegalArgumentException.class)
 	public final void testBringListOfItemsQuestLogic() {
-		BringListOfItemsQuestLogic logic = new BringListOfItemsQuestLogic(
-				new NullValueMockBringListOfItemsQuest());
+		BringListOfItemsQuestLogic logic = new BringListOfItemsQuestLogic(new NullValueMockBringListOfItemsQuest());
 		logic.addToWorld();
 	}
 
 	@Test
 	public final void testGetListOfStillMissingItems() {
-		BringListOfItemsQuestLogic logic = new BringListOfItemsQuestLogic(
-				new NullValueMockBringListOfItemsQuest() {
-					@Override
-					public List<String> getNeededItems() {
+		BringListOfItemsQuestLogic logic = new BringListOfItemsQuestLogic(new NullValueMockBringListOfItemsQuest() {
+			@Override
+			public List<String> getNeededItems() {
 
-						return new LinkedList<String>();
-					}
-				});
-		assertEquals("emptyList", Arrays.asList(new String[] {}),
-				logic.getListOfStillMissingItems(
-						PlayerTestHelper.createPlayer(), false));
+				return new LinkedList<String>();
+			}
+		});
+		assertEquals("emptyList", Arrays.asList(new String[] {}), logic.getListOfStillMissingItems(
+				PlayerTestHelper.createPlayer(), false));
 		BringListOfItemsQuest quest = new NullValueMockBringListOfItemsQuest() {
 			@Override
 			public List<String> getNeededItems() {
@@ -71,44 +69,34 @@ public class BringListOfItemsQuestLogicTest {
 			}
 		};
 		logic = new BringListOfItemsQuestLogic(quest);
-		assertEquals(Arrays.asList(new String[] { "one", "two", "three" }),
-				logic.getListOfStillMissingItems(
-						PlayerTestHelper.createPlayer(), false));
-		assertEquals(Arrays.asList(new String[] { "#one", "#two", "#three" }),
-				logic.getListOfStillMissingItems(
-						PlayerTestHelper.createPlayer(), true));
+		assertEquals(Arrays.asList(new String[] { "one", "two", "three" }), logic.getListOfStillMissingItems(
+				PlayerTestHelper.createPlayer(), false));
+		assertEquals(Arrays.asList(new String[] { "#one", "#two", "#three" }), logic.getListOfStillMissingItems(
+				PlayerTestHelper.createPlayer(), true));
 
 		Player bob = PlayerTestHelper.createPlayer();
 		bob.setQuest(quest.getSlotName(), "");
 		assertTrue(bob.hasQuest(quest.getSlotName()));
 		assertEquals(Arrays.asList(new String[] { "one", "two", "three" }),
 				logic.getListOfStillMissingItems(bob, false));
-		assertEquals(Arrays.asList(new String[] { "#one", "#two", "#three" }),
-				logic.getListOfStillMissingItems(bob, true));
+		assertEquals(Arrays.asList(new String[] { "#one", "#two", "#three" }), logic.getListOfStillMissingItems(bob,
+				true));
 		bob.setQuest(quest.getSlotName(), "one");
 		assertTrue(bob.hasQuest(quest.getSlotName()));
-		assertEquals(Arrays.asList(new String[] { "two", "three" }),
-				logic.getListOfStillMissingItems(bob, false));
-		assertEquals(Arrays.asList(new String[] { "#two", "#three" }),
-				logic.getListOfStillMissingItems(bob, true));
+		assertEquals(Arrays.asList(new String[] { "two", "three" }), logic.getListOfStillMissingItems(bob, false));
+		assertEquals(Arrays.asList(new String[] { "#two", "#three" }), logic.getListOfStillMissingItems(bob, true));
 		bob.setQuest(quest.getSlotName(), "two");
 		assertTrue(bob.hasQuest(quest.getSlotName()));
-		assertEquals(Arrays.asList(new String[] { "one", "three" }),
-				logic.getListOfStillMissingItems(bob, false));
-		assertEquals(Arrays.asList(new String[] { "#one", "#three" }),
-				logic.getListOfStillMissingItems(bob, true));
+		assertEquals(Arrays.asList(new String[] { "one", "three" }), logic.getListOfStillMissingItems(bob, false));
+		assertEquals(Arrays.asList(new String[] { "#one", "#three" }), logic.getListOfStillMissingItems(bob, true));
 		bob.setQuest(quest.getSlotName(), "three");
 		assertTrue(bob.hasQuest(quest.getSlotName()));
-		assertEquals(Arrays.asList(new String[] { "one", "two" }),
-				logic.getListOfStillMissingItems(bob, false));
-		assertEquals(Arrays.asList(new String[] { "#one", "#two" }),
-				logic.getListOfStillMissingItems(bob, true));
+		assertEquals(Arrays.asList(new String[] { "one", "two" }), logic.getListOfStillMissingItems(bob, false));
+		assertEquals(Arrays.asList(new String[] { "#one", "#two" }), logic.getListOfStillMissingItems(bob, true));
 		bob.setQuest(quest.getSlotName(), "three;two");
 		assertTrue(bob.hasQuest(quest.getSlotName()));
-		assertEquals(Arrays.asList(new String[] { "one" }),
-				logic.getListOfStillMissingItems(bob, false));
-		assertEquals(Arrays.asList(new String[] { "#one" }),
-				logic.getListOfStillMissingItems(bob, true));
+		assertEquals(Arrays.asList(new String[] { "one" }), logic.getListOfStillMissingItems(bob, false));
+		assertEquals(Arrays.asList(new String[] { "#one" }), logic.getListOfStillMissingItems(bob, true));
 
 	}
 
@@ -129,6 +117,44 @@ public class BringListOfItemsQuestLogicTest {
 	}
 
 	@Test
+	public final void testShouldNotWelcomePlayerAfterQuest() {
+		NullValueMockBringListOfItemsQuest quest = new NullValueMockBringListOfItemsQuest();
+		SpeakerNPC npc = new SpeakerNPC("npc");
+		quest.setNpc(npc);
+		BringListOfItemsQuestLogic logic = new BringListOfItemsQuestLogic(quest);
+		logic.welcomePlayerAfterQuest();
+
+		Player player = PlayerTestHelper.createPlayer();
+		player.setQuest(quest.getSlotName(), "done");
+		Engine en = npc.getEngine();
+		en.step(player, "hi");
+		assertFalse(npc.isTalking());
+	}
+
+	@Test
+	public final void testShouldWelcomePlayerAfterQuest() {
+		NullValueMockBringListOfItemsQuest quest = new NullValueMockBringListOfItemsQuest() {
+			@Override
+			public boolean shouldWelcomeAfterQuestIsCompleted() {
+
+				return true;
+			}
+		};
+		SpeakerNPC npc = new SpeakerNPC("npc");
+		quest.setNpc(npc);
+		BringListOfItemsQuestLogic logic = new BringListOfItemsQuestLogic(quest);
+		logic.welcomePlayerAfterQuest();
+
+		Player player = PlayerTestHelper.createPlayer();
+		player.setQuest(quest.getSlotName(), "done");
+		Engine en = npc.getEngine();
+		en.step(player, "hi");
+		assertTrue(npc.isTalking());
+		assertEquals(quest.welcomeAfterQuestIsCompleted(), npc.get("text"));
+
+	}
+
+	@Test
 	public final void doQuest() {
 		MockBringListOfItemsQuest quest = new MockBringListOfItemsQuest() {
 		};
@@ -141,24 +167,21 @@ public class BringListOfItemsQuestLogicTest {
 		Engine en = npc.getEngine();
 		en.step(player, "hi");
 		assertTrue(npc.isTalking());
-		assertEquals("first hi", quest.welcomeBeforeStartingQuest(),
-				npc.get("text"));
+		assertEquals("first hi", quest.welcomeBeforeStartingQuest(), npc.get("text"));
 		npc.put("text", "");
 
 		en.step(player, ConversationPhrases.QUEST_MESSAGES.get(0));
 		assertEquals("answer to quest", quest.respondToQuest(), npc.get("text"));
 
 		en.step(player, ConversationPhrases.YES_MESSAGES.get(0));
-		assertEquals("answer to quests accepted",
-				quest.respondToQuestAcception(), npc.get("text"));
+		assertEquals("answer to quests accepted", quest.respondToQuestAcception(), npc.get("text"));
 		assertTrue(player.hasQuest(quest.getSlotName()));
 		assertFalse(npc.isTalking());
 		en.step(player, ConversationPhrases.GREETING_MESSAGES.get(0));
 		assertTrue(npc.isTalking());
 
 		en.step(player, quest.getTriggerPhraseToEnumerateMissingItems().get(0));
-		assertEquals(
-				"i have not brought anything yet it should be all needed items",
+		assertEquals("i have not brought anything yet it should be all needed items",
 				hashList(quest.getNeededItems()).toString(), npc.get("text"));
 
 		StackableItem item = new StackableItem("one", "", "", null);
@@ -166,25 +189,20 @@ public class BringListOfItemsQuestLogicTest {
 		item.setID(new ID(2, "testzone"));
 		player.getSlot("bag").add(item);
 		en.step(player, "yes");
-		assertEquals("item brought",
-				quest.askForItemsAfterPlayerSaidHeHasItems(), npc.get("text"));
+		assertEquals("item brought", quest.askForItemsAfterPlayerSaidHeHasItems(), npc.get("text"));
 
 		en.step(player, "one");
-		assertEquals("item brought", quest.respondToItemBrought(),
-				npc.get("text"));
+		assertEquals("item brought", quest.respondToItemBrought(), npc.get("text"));
 		en.step(player, "one");
-		assertEquals("item brought", quest.respondToOfferOfNotMissingItem(),
-				npc.get("text"));
+		assertEquals("item brought", quest.respondToOfferOfNotMissingItem(), npc.get("text"));
 		npc.remove("text");
 		assertEquals(ConversationStates.QUESTION_1, en.getCurrentState());
 		en.step(player, quest.getTriggerPhraseToEnumerateMissingItems().get(0));
 		List<String> missing = new LinkedList<String>(quest.getNeededItems());
 		missing.remove("one");
-		assertEquals("two and three are missing", hashList(missing).toString(),
-				npc.get("text"));
+		assertEquals("two and three are missing", hashList(missing).toString(), npc.get("text"));
 		en.step(player, "two");
-		assertEquals("item brought",
-				quest.respondToOfferOfNotExistingItem("two"), npc.get("text"));
+		assertEquals("item brought", quest.respondToOfferOfNotExistingItem("two"), npc.get("text"));
 
 		item = new StackableItem("two", "", "", null);
 		item.setQuantity(10);
@@ -195,11 +213,9 @@ public class BringListOfItemsQuestLogicTest {
 		item.setID(new ID(2, "testzone"));
 		player.getSlot("bag").add(item);
 		en.step(player, "three");
-		assertEquals("item brought", quest.respondToItemBrought(),
-				npc.get("text"));
+		assertEquals("item brought", quest.respondToItemBrought(), npc.get("text"));
 		en.step(player, "two");
-		assertEquals("last item brought", quest.respondToLastItemBrought(),
-				npc.get("text"));
+		assertEquals("last item brought", quest.respondToLastItemBrought(), npc.get("text"));
 
 	}
 
@@ -227,16 +243,14 @@ public class BringListOfItemsQuestLogicTest {
 		Engine en = npc.getEngine();
 		en.step(player, "hi");
 		assertTrue(npc.isTalking());
-		assertEquals("first hi", quest.welcomeBeforeStartingQuest(),
-				npc.get("text"));
+		assertEquals("first hi", quest.welcomeBeforeStartingQuest(), npc.get("text"));
 		npc.put("text", "");
 
 		en.step(player, ConversationPhrases.QUEST_MESSAGES.get(0));
 		assertEquals("answer to quest", quest.respondToQuest(), npc.get("text"));
 
 		en.step(player, ConversationPhrases.YES_MESSAGES.get(0));
-		assertEquals("answer to quests accepted",
-				quest.respondToQuestAcception(), npc.get("text"));
+		assertEquals("answer to quests accepted", quest.respondToQuestAcception(), npc.get("text"));
 	}
 
 	@Test
@@ -252,16 +266,14 @@ public class BringListOfItemsQuestLogicTest {
 		Engine en = npc.getEngine();
 		en.step(player, "hi");
 		assertTrue(npc.isTalking());
-		assertEquals("first hi", quest.welcomeBeforeStartingQuest(),
-				npc.get("text"));
+		assertEquals("first hi", quest.welcomeBeforeStartingQuest(), npc.get("text"));
 		npc.put("text", "");
 
 		en.step(player, ConversationPhrases.QUEST_MESSAGES.get(0));
 		assertEquals("answer to quest", quest.respondToQuest(), npc.get("text"));
 
 		en.step(player, ConversationPhrases.NO_MESSAGES.get(0));
-		assertEquals("answer to quests accepted",
-				quest.respondToQuestRefusal(), npc.get("text"));
+		assertEquals("answer to quests accepted", quest.respondToQuestRefusal(), npc.get("text"));
 
 	}
 
@@ -329,8 +341,7 @@ public class BringListOfItemsQuestLogicTest {
 			return "respondToOfferOfNotNeededItem";
 		}
 
-		public String respondToPlayerSayingHeHasNoItems(
-				List<String> missingItems) {
+		public String respondToPlayerSayingHeHasNoItems(List<String> missingItems) {
 			return "respondToPlayerSayingHeHasNoItems";
 		}
 
@@ -383,9 +394,9 @@ public class BringListOfItemsQuestLogicTest {
 
 	/**
 	 * returns null for everything except name.
-	 *
+	 * 
 	 * @author astridemma
-	 *
+	 * 
 	 */
 	class NullValueMockBringListOfItemsQuest implements BringListOfItemsQuest {
 
@@ -449,25 +460,24 @@ public class BringListOfItemsQuestLogicTest {
 			return null;
 		}
 
-		public String respondToPlayerSayingHeHasNoItems(
-				List<String> missingItems) {
+		public String respondToPlayerSayingHeHasNoItems(List<String> missingItems) {
 			return null;
 		}
 
 		public String respondToQuest() {
-			return null;
+			return "respondToQuest";
 		}
 
 		public String respondToQuestAcception() {
-			return null;
+			return "respondToQuestAcception";
 		}
 
 		public String respondToQuestAfterItHasAlreadyBeenCompleted() {
-			return null;
+			return "respondToQuestAfterItHasAlreadyBeenCompleted";
 		}
 
 		public String respondToQuestRefusal() {
-			return null;
+			return "respondToQuestRefusal";
 		}
 
 		public void rewardPlayer(Player player) {
@@ -479,15 +489,15 @@ public class BringListOfItemsQuestLogicTest {
 		}
 
 		public String welcomeAfterQuestIsCompleted() {
-			return null;
+			return "welcomeAfterQuestIsCompleted";
 		}
 
 		public String welcomeBeforeStartingQuest() {
-			return null;
+			return "welcomeBeforeStartingQuest";
 		}
 
 		public String welcomeDuringActiveQuest() {
-			return null;
+			return "welcomeDuringActiveQuest";
 		}
 
 		public void setNpc(SpeakerNPC npc) {
