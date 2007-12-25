@@ -27,9 +27,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import marauroa.common.game.Definition;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
+import marauroa.common.game.Definition.DefinitionClass;
 import marauroa.common.game.Definition.Type;
 
 /**
@@ -63,13 +65,13 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 		entity.addAttribute("name", Type.STRING);
 
 		// Some items have attack values
-		entity.addAttribute("atk", Type.SHORT);
+		entity.addAttribute("atk", Type.SHORT, Definition.HIDDEN);
 
 		// Some items indicate how often you can attack.
-		entity.addAttribute("rate", Type.SHORT);
+		entity.addAttribute("rate", Type.SHORT, Definition.HIDDEN);
 
 		// Some items have defense values
-		entity.addAttribute("def", Type.SHORT);
+		entity.addAttribute("def", Type.SHORT, Definition.HIDDEN);
 
 		// Some items(food) have amount of something
 		// (a bottle, a piece of meat).
@@ -77,40 +79,40 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 
 		// Some items (range weapons, ammunition, missiles)
 		// have a range.
-		entity.addAttribute("range", Type.SHORT);
+		entity.addAttribute("range", Type.SHORT, Definition.HIDDEN);
 
 		// Some items(food) have regeneration
-		entity.addAttribute("regen", Type.INT);
+		entity.addAttribute("regen", Type.INT, Definition.HIDDEN);
 
 		// Some items(food) have regeneration speed
-		entity.addAttribute("frequency", Type.INT);
+		entity.addAttribute("frequency", Type.INT, Definition.HIDDEN);
 
 		// Some items(Stackable) have quantity
 		entity.addAttribute("quantity", Type.INT);
 
 		// Some items (Stackable) have maximum quantity
-		entity.addAttribute("max_quantity", Type.INT);
+		entity.addAttribute("max_quantity", Type.INT, Definition.HIDDEN);
 
 		// Some items have minimum level to prevent spoiling
 		// the fun for new players
-		entity.addAttribute("min_level", Type.INT);
+		entity.addAttribute("min_level", Type.INT, Definition.HIDDEN);
 
 		// To store addAttributeitional info with an item
-		entity.addAttribute("infostring", Type.STRING);
+		entity.addAttribute("infostring", Type.STRING, Definition.HIDDEN);
 
 		// Some items have individual values
 		// TODO: Change to FLAG (on DB reset)?
-		entity.addAttribute("persistent", Type.SHORT);
+		entity.addAttribute("persistent", Type.SHORT, Definition.HIDDEN);
 
 		// Some items have lifesteal values
-		entity.addAttribute("lifesteal", Type.FLOAT);
+		entity.addAttribute("lifesteal", Type.FLOAT, Definition.HIDDEN);
 
 		// Some items are quest rewards that other players
 		// don't deserve.
-		entity.addAttribute("bound", Type.STRING);
+		entity.addAttribute("bound", Type.STRING, Definition.HIDDEN);
 
 		// Some items should not be dropped on death
-		entity.addAttribute("undroppableondeath", Type.SHORT);
+		entity.addAttribute("undroppableondeath", Type.SHORT, Definition.HIDDEN);
 	}
 
 	/**
