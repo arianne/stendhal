@@ -31,7 +31,6 @@ import marauroa.common.game.Definition;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
-import marauroa.common.game.Definition.DefinitionClass;
 import marauroa.common.game.Definition.Type;
 
 /**
@@ -113,6 +112,9 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 
 		// Some items should not be dropped on death
 		entity.addAttribute("undroppableondeath", Type.SHORT, Definition.HIDDEN);
+
+		// Unique database ID for logging
+		entity.addAttribute("logid", Type.INT, Definition.HIDDEN);
 	}
 
 	/**
