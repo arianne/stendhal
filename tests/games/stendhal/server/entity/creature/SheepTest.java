@@ -1,11 +1,13 @@
 package games.stendhal.server.entity.creature;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.mapstuff.spawner.SheepFood;
 import games.stendhal.server.maps.MockStendlRPWorld;
-
 import marauroa.common.game.RPObject;
 
 import org.junit.BeforeClass;
@@ -30,7 +32,7 @@ public class SheepTest {
 		StendhalRPZone zone = new StendhalRPZone("testzone", 10, 10);
 		zone.add(meh);
 		assertFalse(meh.searchForFood());
-		
+
 	}
 
 	@Test
@@ -127,8 +129,7 @@ public class SheepTest {
 		SheepFood food = new SheepFood(foodobject);
 		assertTrue(food.getAmount() > 0);
 		assertFalse(food.nextTo(meh));
-		
-		
+
 		RPObject foodobject2 = new RPObject();
 		foodobject2.put("amount", 1);
 		foodobject2.put("x", 0);
@@ -187,7 +188,6 @@ public class SheepTest {
 		fail("Not yet implemented");
 	}
 
-	
 	@Test
 	public void testOnHungry() {
 		Sheep meh = new Sheep();
@@ -208,10 +208,24 @@ public class SheepTest {
 		fail("Not yet implemented");
 	}
 
-	@Ignore
 	@Test
 	public void testOnStarve() {
-		fail("Not yet implemented");
+		Sheep meh = new Sheep();
+		StendhalRPZone zone = new StendhalRPZone("testzone", 10, 10);
+		zone.add(meh);
+
+		meh.setWeight(1);
+		meh.setHP(2);
+		meh.onStarve();
+		assertEquals(0, meh.getWeight());
+		assertEquals(2, meh.getHP());
+		meh.onStarve();
+		assertEquals(0, meh.getWeight());
+		assertEquals(1, meh.getHP());
+		meh.onStarve();
+		assertEquals(0, meh.getWeight());
+		assertEquals(0, meh.getHP());
+
 	}
 
 }
