@@ -12,20 +12,22 @@
  ***************************************************************************/
 package games.stendhal.server.entity.creature;
 
-import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
 
-import java.util.Set;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 
-import org.apache.log4j.Logger;
+import javax.management.AttributeNotFoundException;
+
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.SyntaxException;
 import marauroa.common.game.Definition.Type;
+
+import org.apache.log4j.Logger;
 
 /**
  * A pet is a domestic animal that can be owned by a player. It eats chicken
