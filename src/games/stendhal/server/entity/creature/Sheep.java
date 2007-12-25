@@ -14,10 +14,15 @@ package games.stendhal.server.entity.creature;
 
 import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
+import games.stendhal.server.core.pathfinder.FixedPath;
+import games.stendhal.server.core.pathfinder.Node;
+import games.stendhal.server.core.pathfinder.Path;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.mapstuff.spawner.SheepFood;
 import games.stendhal.server.entity.player.Player;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -163,60 +168,38 @@ public class Sheep extends DomesticAnimal {
 			if (owner.hasSheep()) {
 				owner.removeSheep(this);
 			} else {
-				logger.warn("INCOHERENCE: Sheep " + this + " isn't owned by "
-						+ owner);
+				logger.warn("INCOHERENCE: Sheep " + this + " isn't owned by " + owner);
 			}
 		}
 	}
 
 	/**
-	 * Returns the SheepFood that is nearest to the sheep's current position. If
-	 * there is no SheepFood within the given range, returns none.
+	 * Returns a list of SheepFood in the given range ordered by distance.
+	 * 
+	 * The first in list is the nearest.
 	 * 
 	 * @param range
 	 *            The maximum distance to a SheepFood
-	 * @return The nearest SheepFood, or null if there is none within the given
+	 * @return a list of SheepFood or emptyList if none is found in the given
 	 *         range
 	 */
-	private SheepFood getNearestFood(double range) {
-		// This way we save several sqrt operations
-		double squaredDistance = range * range;
+	protected List<SheepFood> getFoodinRange(double range) {
 
-		SheepFood chosen = null;
+		List<SheepFood> resultList = new LinkedList<SheepFood>();
 
 		for (SheepFood food : getZone().getSheepFoodList()) {
-			if (food.getAmount() > 0) {
-				double foodDistance = squaredDistance(food);
 
-				if (foodDistance <= squaredDistance)  {
-					chosen = food;
-					squaredDistance = foodDistance;
-				}
-			}
-		}
-
-		return chosen;
-	}
-	/**
-	 * Returns the SheepFood that is nearest to the sheep's current position. If
-	 * there is no SheepFood within the given range, returns none.
-	 * 
-	 * @param range
-	 *            The maximum distance to a SheepFood
-	 * @return The nearest SheepFood, or null if there is none within the given
-	 *         range
-	 */
-	private List<SheepFood> getFoodinRange(double range) {
-		
-	
-		List<SheepFood> resultList = new LinkedList<SheepFood>(); 
-		
-		for (SheepFood food : getZone().getSheepFoodList()) {
-			if ((food.getAmount() > 0) && (squaredDistance(food) < range)) {
+			if ((food.getAmount() > 0) && (squaredDistance(food) < range * range)) {
 				resultList.add(food);
 			}
 		}
-		//TODO: sort this by distance
+		Collections.sort(resultList, new Comparator<SheepFood>() {
+
+			public int compare(SheepFood o1, SheepFood o2) {
+				return Double.compare(squaredDistance(o1), squaredDistance(o2));
+
+			}
+		});
 		return resultList;
 	}
 
@@ -246,37 +229,38 @@ public class Sheep extends DomesticAnimal {
 			}
 		}
 
-		hunting = searchForFood(hunting);
-
-		return hunting;
+		return searchForFood(hunting);
 	}
 
 	protected boolean searchForFood(boolean hunting) {
-		/*
-		 * Search for food
-		 */
-		SheepFood food = getNearestFood(6);
 
-		if (food != null) {
-			hunting = true;
+		List<SheepFood> list = getFoodinRange(6);
 
-			if (nextTo(food)) {
+		for (SheepFood food : list) {
+			if (food.nextTo(this)) {
 				logger.debug("Sheep eats");
 				setIdea("eat");
 				eat(food);
 				clearPath();
 				stop();
+				return true;
 			} else {
-				logger.debug("Sheep moves to food");
-				setIdea("food");
-				setMovement(food, 0, 0, 20);
-				// setAsynchonousMovement(food,0,0);
+
+				List<Node> path = Path.searchPath(this, food, 6 * 6);
+				if (path.size() != 0) {
+
+					logger.debug("Sheep moves to food");
+					setIdea("food");
+
+					setPath(new FixedPath(path, false));
+					return true;
+				}
+
 			}
-		} else if (hunting) {
-			setIdea(null);
-			hunting = false;
+
 		}
-		return hunting;
+		setIdea(null);
+		return false;
 	}
 
 	/**
@@ -371,8 +355,7 @@ public class Sheep extends DomesticAnimal {
 		/*
 		 * Allow owner to call sheep (will override other reactions)
 		 */
-		if ((owner != null) && owner.has("text")
-				&& owner.get("text").contains("sheep")) {
+		if ((owner != null) && owner.has("text") && owner.get("text").contains("sheep")) {
 			moveToOwner();
 		} else if (stopped()) {
 			/*
@@ -411,8 +394,7 @@ public class Sheep extends DomesticAnimal {
 
 	@Override
 	public String describe() {
-		String text = "You see a sheep; it looks like it weighs about "
-				+ weight + ".";
+		String text = "You see a sheep; it looks like it weighs about " + weight + ".";
 		if (hasDescription()) {
 			text = getDescription();
 		}

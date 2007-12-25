@@ -53,29 +53,23 @@ public class SheepTest {
 	public void testSearchForFoodNotNextTo() {
 		Sheep meh = new Sheep();
 		StendhalRPZone zone = new StendhalRPZone("testzone", 10, 10);
+		assertTrue(zone.getSheepFoodList().isEmpty());
 		zone.add(meh);
 		RPObject foodobject = new RPObject();
 		foodobject.put("amount", 1);
-		foodobject.put("x", 2);
-		foodobject.put("y", 2);
+		foodobject.put("x", 3);
+		foodobject.put("y", 3);
 		SheepFood food = new SheepFood(foodobject);
 		assertTrue(food.getAmount() > 0);
 		assertFalse(food.nextTo(meh));
 
 		zone.add(food);
-
-		assertTrue(meh.searchForFood(false));
-		assertEquals("found food and thinks of it", "food", meh.getIdea());
-
-		for (int x = 0; x <= zone.getWidth(); x++) {
-			for (int y = 0; y <= zone.getHeight(); y++) {
-				zone.collisionMap.setCollide(x, y);
-			}
-		}
+		assertFalse(zone.getSheepFoodList().isEmpty());
 		assertTrue(meh.searchForFood(false));
 		assertEquals("found food and thinks of it", "food", meh.getIdea());
 
 	}
+
 	@Test
 	public void testSearchForBlockedFood() {
 		Sheep meh = new Sheep();
@@ -90,14 +84,63 @@ public class SheepTest {
 		assertFalse(food.nextTo(meh));
 
 		zone.add(food);
-	
+
 		for (int x = 0; x <= zone.getWidth(); x++) {
 			for (int y = 0; y <= zone.getHeight(); y++) {
 				zone.collisionMap.setCollide(x, y);
 			}
 		}
-		assertTrue(meh.searchForFood(false));
-		assertEquals("found food and thinks of it", "food", meh.getIdea());
+		assertFalse("no path found", meh.searchForFood(false));
+		assertEquals(null, meh.getIdea());
+
+	}
+
+	@Test
+	public void testGetFarerNotBlockedFood() {
+
+		boolean[][] collisions = { { false, true, false, true, false, false, false, false, false, false },
+				{ false, true, false, true, false, false, false, false, false, false },
+				{ false, true, false, true, false, false, false, false, false, false },
+				{ false, true, false, true, false, false, false, false, false, false },
+				{ false, true, true, true, false, false, false, false, false, false },
+				{ false, false, false, false, false, false, false, false, false, false },
+				{ false, false, false, false, false, false, false, false, false, false },
+				{ false, false, false, false, false, false, false, false, false, false },
+				{ false, false, false, false, false, false, false, false, false, false },
+				{ false, false, false, false, false, false, false, false, false, false } };
+		StendhalRPZone zone = new StendhalRPZone("testzone", 9, 9);
+		for (int x = 0; x <= zone.getWidth(); x++) {
+			for (int y = 0; y <= zone.getHeight(); y++) {
+				if (collisions[x][y]) {
+					zone.collisionMap.setCollide(x, y);
+				}
+			}
+		}
+
+		Sheep meh = new Sheep();
+
+		zone.add(meh);
+		RPObject foodobject = new RPObject();
+		foodobject.put("amount", 1);
+		foodobject.put("x", 2);
+		foodobject.put("y", 2);
+		SheepFood food = new SheepFood(foodobject);
+		assertTrue(food.getAmount() > 0);
+		assertFalse(food.nextTo(meh));
+		
+		
+		RPObject foodobject2 = new RPObject();
+		foodobject2.put("amount", 1);
+		foodobject2.put("x", 0);
+		foodobject2.put("y", 3);
+		SheepFood food2 = new SheepFood(foodobject2);
+		assertTrue(food2.getAmount() > 0);
+		assertFalse(food2.nextTo(meh));
+
+		zone.add(food2);
+
+		assertTrue("no path found", meh.searchForFood(false));
+		assertEquals("food", meh.getIdea());
 
 	}
 
