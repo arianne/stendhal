@@ -196,8 +196,7 @@ public class WordList {
 	    		matches = w.type==null;
 	    	} else {
 	    		matches = w.type!=null &&
-	    					w.type.startsWith(type) &&
-	    					!w.type.endsWith("-PLU");
+	    					w.type.startsWith(type) && !w.isPlural();
 	    	}
 
 	    	if (matches) {
@@ -220,4 +219,48 @@ public class WordList {
 
 		writer.close();
 	}
+
+	/**
+	 * Lookup the singular form of the given word from the word list
+	 * @param word
+	 * @return
+	 */
+	public String plural(String word)
+    {
+		WordEntry w = words.get(word.toLowerCase());
+
+		if (w != null) {
+			if (!w.isPlural())
+				// return the associated singular from the word list
+				return w.plural;
+			else
+				// The word is already in singular form.
+				return w.word;
+		} else {
+			// Fallback: call Grammar.plural()
+			return Grammar.plural(word);
+		}
+    }
+
+	/**
+	 * Lookup the singular form of the given word from the word list
+	 * @param word
+	 * @return
+	 */
+	public String singular(String word)
+    {
+		WordEntry w = words.get(word.toLowerCase());
+
+		if (w != null) {
+			if (w.isPlural())
+				// return the associated singular from the word list
+				return w.plural;
+			else
+				// The word is already in singular form.
+				return w.word;
+		} else {
+			// Fallback: call Grammar.singular()
+			return Grammar.singular(word);
+		}
+    }
 }

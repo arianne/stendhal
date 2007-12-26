@@ -90,4 +90,20 @@ public class WordListTest {
 		assertEquals("PRE", w.type);
 	}
 
+	@Test
+	public final void testPlural() {
+		WordList wl = WordList.getInstance();
+
+		assertEquals("houses", wl.plural("house"));
+		assertEquals("cookies", wl.plural("cookie"));
+		assertEquals("cookies", wl.plural("cooky"));
+	}
+
+	@Test
+	public final void testSingular() {
+		WordList wl = WordList.getInstance();
+
+		assertEquals("house", wl.singular("houses"));
+		assertEquals("cookie", wl.singular("cookies"));
+	}
 }
