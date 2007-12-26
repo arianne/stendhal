@@ -178,18 +178,23 @@ public class SheepTest {
 
 	}
 
-
 	@Test
 	public void testSheepPlayer() {
 		Player bob = PlayerTestHelper.createPlayer("bob");
 		Sheep meh = new Sheep(bob);
+		assertSame(bob, meh.getOwner());
 		assertSame(meh, bob.getSheep());
 	}
 
-	@Ignore
+	
 	@Test
 	public void testSheepRPObjectPlayer() {
-		fail("Not yet implemented");
+		Player bob = PlayerTestHelper.createPlayer("bob");
+		Sheep meh = new Sheep();
+		Sheep meh2 = new Sheep(meh, bob);
+		assertNotSame(meh, meh2);
+		assertSame(bob, meh2.getOwner());
+		assertSame(meh2, bob.getSheep());
 	}
 
 	@Test
