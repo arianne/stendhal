@@ -239,7 +239,7 @@ public class Sentence {
 	 */
 	public void performaAliasing() {
 		if (verb!=null && subject2!=null) {
-    		// [you] give me(i) -> [I] bye
+    		// [you] give me(i) -> [I] buy
     		// Note: The second subject "me" is replaced by "i" in ConversationParser.
     		if (subject1.equals("you") && subject2.equals("i")) {
     			if (verb.equals("give")) {
