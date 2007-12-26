@@ -7,6 +7,7 @@ import java.sql.SQLException;
 
 import marauroa.server.game.db.JDBCDatabase;
 import marauroa.server.game.db.JDBCTransaction;
+import marauroa.server.game.db.StringChecker;
 
 import org.apache.log4j.Logger;
 
@@ -27,14 +28,14 @@ public class ItemLogger {
 	
 	CREATE TABLE itemlog (
 	  id         SERIAL,
-	  itemid     INTEGER,
 	  timedate   TIMESTAMP,
-	  source     VARCHAR(20),
-	  event,     VARCHAR(20),
-	  param1     VARCHAR(50),
-	  param2     VARCHAR(50),
-	  param3     VARCHAR(50),
-	  param4     VARCHAR(50)
+	  itemid     INTEGER,
+	  source     VARCHAR(64),
+	  event,     VARCHAR(64),
+	  param1     VARCHAR(64),
+	  param2     VARCHAR(64),
+	  param3     VARCHAR(64),
+	  param4     VARCHAR(64)
 	);
 	
 	
@@ -98,8 +99,7 @@ public class ItemLogger {
 		item.put(ATTR_LOGID, id);
 	}
 
-	private static void log(JDBCTransaction transaction, Item item, Player player, String event, String param1, String param2, String param3, String param4) {
-		// TODO Auto-generated method stub
+	private static void log(JDBCTransaction transaction, Item item, Player player, String event, String param1, String param2, String param3, String param4) throws SQLException {
 		
 	}
 }
