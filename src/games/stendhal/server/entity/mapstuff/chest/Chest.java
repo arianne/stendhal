@@ -56,10 +56,6 @@ public class Chest extends Entity implements UseListener {
 
 		if (!hasSlot("content")) {
 			RPSlot slot = new LootableSlot(this);
-
-			// TODO: BUG: Slot capacity is set at the RPClass.
-			// slot.set.setCapacity(4);
-
 			addSlot(slot);
 		}
 
@@ -75,10 +71,6 @@ public class Chest extends Entity implements UseListener {
 		open = false;
 
 		RPSlot slot = new LootableSlot(this);
-
-		// TODO: BUG: Slot capacity is set at the RPClass.
-		// slot.set.setCapacity(4);
-
 		addSlot(slot);
 	}
 
