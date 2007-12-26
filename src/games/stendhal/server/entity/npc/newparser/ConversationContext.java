@@ -5,8 +5,8 @@ package games.stendhal.server.entity.npc.newparser;
  * 
  * @author Martin Fuchs
  */
-public class ConversationContext
-{
+public class ConversationContext {
+	
 	// converation context states
 	static final int CCS_NONE			 = 0;	// no current conversation context
 	static final int CCS_WAIT_FOR_YES_NO = 1;	// wait for a yes/no answer
@@ -21,4 +21,5 @@ public class ConversationContext
 	public int getState() {
 	    return state;
     }
+
 }

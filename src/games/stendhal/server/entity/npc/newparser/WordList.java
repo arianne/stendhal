@@ -80,36 +80,36 @@ public class WordList {
 
 	private void readEntryLine(StringTokenizer tk, WordEntry entry) {
 	    if (tk.hasMoreTokens()) {
-	    	entry.type = tk.nextToken();
+	    	entry.type = new WordType(tk.nextToken());
 
 	        if (tk.hasMoreTokens()) {
 	        	String s = tk.nextToken();
 
-	        	if (entry.type.startsWith("NUM"))
+	        	if (entry.type.isNumeral())
 	        		entry.value = new Integer(s);
 	        	else
-	        		entry.plural = s;
+	        		entry.plurSing = s;
 	        }
 
-	        if (Character.isLowerCase(entry.type.charAt(0))) {
-	        	entry.plural = entry.type;
-	        	entry.type = "NOU";
-	        } else if (entry.plural==null &&
-	        		entry.type.startsWith("NOU") &&
-	        		!entry.type.endsWith("NAM")) {
+	        if (Character.isLowerCase(entry.type.typeString.charAt(0))) {
+	        	entry.plurSing = entry.type.typeString;
+	        	entry.type.typeString = "NOU";
+	        } else if (entry.plurSing==null &&
+	        		entry.type.isNoun() &&
+	        		!entry.type.isName()) {
 	        	String plural = Grammar.plural(entry.word);
 
 	        	// only store single word plurals
 	        	if (plural.indexOf(' ') == -1)
-	        		entry.plural = plural;
-	        } else if (entry.plural != null){
+	        		entry.plurSing = plural;
+	        } else if (entry.plurSing != null){
 	        	String plural = Grammar.plural(entry.word);
 
 	        	if (plural.indexOf(' ')==-1 &&
-	        		!plural.equals(entry.plural) &&
+	        		!plural.equals(entry.plurSing) &&
 	        		!Grammar.isSubject(entry.word) &&
 	        		!entry.word.equals("is")) {
-	        		logger.error(String.format("suspicious plural: %s -> %s (%s?)", entry.word, entry.plural, plural));
+	        		logger.error(String.format("suspicious plural: %s -> %s (%s?)", entry.word, entry.plurSing, plural));
 	        	}
 	        }
 
@@ -123,34 +123,38 @@ public class WordList {
 	    words.put(key.toLowerCase(), entry);
 
 	    // store plural and associate with singular form
-	    if (entry.plural!=null && !entry.plural.equals(entry.word)) {
+	    if (entry.plurSing!=null && !entry.plurSing.equals(entry.word)) {
 	    	WordEntry pluralEntry = new WordEntry();
 
-	    	pluralEntry.word = entry.plural;
-	    	pluralEntry.type = entry.type + "-PLU";
-	    	pluralEntry.plural = entry.word;
+	    	pluralEntry.word = entry.plurSing;
+	    	pluralEntry.type = new WordType(entry.type.typeString + "-PLU");
+	    	pluralEntry.plurSing = entry.word;
 	    	pluralEntry.value = entry.value;
 
-	    	WordEntry prev = words.put(entry.plural.toLowerCase(), pluralEntry);
+	    	WordEntry prev = words.put(entry.plurSing.toLowerCase(), pluralEntry);
 
 	    	if (prev != null) {
-	    		logger.debug(String.format("ambiguos plural: %s/%s -> %s", pluralEntry.plural, prev.plural, entry.plural));
+	    		logger.debug(String.format("ambiguos plural: %s/%s -> %s", pluralEntry.plurSing, prev.plurSing, entry.plurSing));
 
-	    		pluralEntry.plural = null;
-	    		prev.plural = null;
+	    		pluralEntry.plurSing = null;
+	    		prev.plurSing = null;
 	    	}
 	    }
     }
 
-	/**
-	 * find an entry for a given word
-	 * @param s
-	 * @return Word
-	 */
-	public WordEntry find(String s) {
-		WordEntry w = words.get(s.toLowerCase());
 
-		return w;
+	/**
+	 * main() function for WordList to read word list
+	 * and print out in a sorted, formated way
+	 *
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		PrintWriter writer = new PrintWriter(System.out);
+
+		instance.write(writer);
+
+		writer.close();
 	}
 
 	/**
@@ -199,7 +203,7 @@ public class WordList {
 	    		matches = w.type==null;
 	    	} else {
 	    		matches = w.type!=null &&
-	    					w.type.startsWith(type) && !w.isPlural();
+	    					w.type.typeString.startsWith(type) && !w.type.isPlural();
 	    	}
 
 	    	if (matches) {
@@ -209,18 +213,16 @@ public class WordList {
 	    }
     }
 
+
 	/**
-	 * main() function for WordList to read word list
-	 * and print out in a sorted, formated way
-	 *
-	 * @param args
+	 * find an entry for a given word
+	 * @param s
+	 * @return Word
 	 */
-	public static void main(String[] args) {
-		PrintWriter writer = new PrintWriter(System.out);
+	public WordEntry find(String s) {
+		WordEntry w = words.get(s.toLowerCase());
 
-		instance.write(writer);
-
-		writer.close();
+		return w;
 	}
 
 	/**
@@ -232,14 +234,14 @@ public class WordList {
 		WordEntry w = words.get(word.toLowerCase());
 
 		if (w != null) {
-			if (!w.isPlural())
+			if (!w.type.isPlural())
 				// return the associated singular from the word list
-				return w.plural;
+				return w.plurSing;
 			else
 				// The word is already in singular form.
 				return w.word;
 		} else {
-			// Fallback: call Grammar.plural()
+			// fallback: call Grammar.plural()
 			return Grammar.plural(word);
 		}
     }
@@ -253,14 +255,14 @@ public class WordList {
 		WordEntry w = words.get(word.toLowerCase());
 
 		if (w != null) {
-			if (w.isPlural())
+			if (w.type.isPlural())
 				// return the associated singular from the word list
-				return w.plural;
+				return w.plurSing;
 			else
 				// The word is already in singular form.
 				return w.word;
 		} else {
-			// Fallback: call Grammar.singular()
+			// fallback: call Grammar.singular()
 			return Grammar.singular(word);
 		}
     }

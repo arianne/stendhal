@@ -2,6 +2,7 @@ package games.stendhal.server.entity.npc.newparser;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
@@ -18,33 +19,39 @@ public class WordListTest {
 
 		WordEntry w = wl.find("house");
 		assertNotNull(w);
-		assertEquals("NOU", w.type);
-		assertEquals("houses", w.plural);
+		assertTrue(w.type.isNoun());
+		assertEquals("NOU", w.type.typeString);
+		assertEquals("houses", w.plurSing);
 
 		w = wl.find("man");
 		assertNotNull(w);
-		assertEquals("NOU-PER", w.type);
-		assertEquals("men", w.plural);
+		assertTrue(w.type.isNoun());
+		assertEquals("NOU-PER", w.type.typeString);
+		assertEquals("men", w.plurSing);
 
 		w = wl.find("carrot");
 		assertNotNull(w);
-		assertEquals("NOU-FOO", w.type);
-		assertEquals("carrots", w.plural);
+		assertTrue(w.type.isNoun());
+		assertEquals("NOU-FOO", w.type.typeString);
+		assertEquals("carrots", w.plurSing);
 
 		w = wl.find("carrots");
 		assertNotNull(w);
-		assertEquals("NOU-FOO-PLU", w.type);
-		assertEquals("carrot", w.plural);
+		assertTrue(w.type.isNoun());
+		assertEquals("NOU-FOO-PLU", w.type.typeString);
+		assertEquals("carrot", w.plurSing);
 
 		w = wl.find("water");
 		assertNotNull(w);
-		assertEquals("NOU-FLU", w.type);
-		assertEquals("waters", w.plural);
+		assertTrue(w.type.isNoun());
+		assertEquals("NOU-FLU", w.type.typeString);
+		assertEquals("waters", w.plurSing);
 
 		w = wl.find("she");
 		assertNotNull(w);
-		assertEquals("NOU-PER", w.type);
-		assertEquals("they", w.plural);
+		assertTrue(w.type.isNoun());
+		assertEquals("NOU-PER", w.type.typeString);
+		assertEquals("they", w.plurSing);
 	}
 
 	@Test
@@ -53,15 +60,18 @@ public class WordListTest {
 
 		WordEntry w = wl.find("say");
 		assertNotNull(w);
-		assertEquals("VER", w.type);
+		assertTrue(w.type.isVerb());
+		assertEquals("VER", w.type.typeString);
 
 		w = wl.find("open");
 		assertNotNull(w);
-		assertEquals("VER", w.type);
+		assertTrue(w.type.isVerb());
+		assertEquals("VER", w.type.typeString);
 
 		w = wl.find("are");
 		assertNotNull(w);
-		assertEquals("VER-PLU", w.type);
+		assertTrue(w.type.isVerb());
+		assertEquals("VER-PLU", w.type.typeString);
 	}
 
 	@Test
@@ -70,11 +80,13 @@ public class WordListTest {
 
 		WordEntry w = wl.find("white");
 		assertNotNull(w);
-		assertEquals("ADJ-COL", w.type);
+		assertTrue(w.type.isAdjective());
+		assertEquals("ADJ-COL", w.type.typeString);
 
 		w = wl.find("silvery");
 		assertNotNull(w);
-		assertEquals("ADJ-COL", w.type);
+		assertTrue(w.type.isAdjective());
+		assertEquals("ADJ-COL", w.type.typeString);
 	}
 
 	@Test
@@ -83,11 +95,13 @@ public class WordListTest {
 
 		WordEntry w = wl.find("with");
 		assertNotNull(w);
-		assertEquals("PRE", w.type);
+		assertTrue(w.type.isPreposition());
+		assertEquals("PRE", w.type.typeString);
 
 		w = wl.find("on");
 		assertNotNull(w);
-		assertEquals("PRE", w.type);
+		assertTrue(w.type.isPreposition());
+		assertEquals("PRE", w.type.typeString);
 	}
 
 	@Test

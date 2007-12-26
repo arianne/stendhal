@@ -34,7 +34,9 @@ buy	VER
 bye	VER
 close	VER
 cya	VER
+do	VER
 drop	VER
+eat	VER
 farewell	VER
 give	VER
 go	VER
@@ -48,7 +50,9 @@ is	VER	are
 look	VER
 ok	VER
 open	VER
+put	VER
 say	VER
+sell	VER
 speak	VER
 summon	VER
 yes	VER
@@ -68,6 +72,7 @@ axe	NOU	axes
 ayuda	NOU	ayudas
 baby	NOU-PER	babies
 bag	NOU	bags
+banana	NOU	bananas
 bar	NOU	bars
 bardiche	NOU	bardiches
 bat	NOU	bats
@@ -99,6 +104,7 @@ caverat	NOU-ANI	caverats
 chain	NOU	chains
 cheese	NOU-FOO	cheeses
 cherry	NOU-FOO	cherries
+chest	NOU	chests
 chicken	NOU-FOO	chickens
 chief	NOU-PER	chiefs
 child	NOU-PER	children
@@ -122,6 +128,7 @@ death	NOU	deaths
 demon	NOU-PER	demons
 deus	NOU-PER	dei
 dice	NOU	dice
+dish	NOU	dishes
 djinni	NOU-PER	djinn
 dog	NOU-ANI	dogs
 doll	NOU	dolls
@@ -139,6 +146,7 @@ eupepsia	NOU	eupepsia
 favor	NOU	favors
 favour	NOU	favours
 fire	NOU	fires
+fish	NOU-FOO	fishes
 flail	NOU	flails
 flask	NOU	flasks
 flour	NOU	flours
@@ -194,6 +202,7 @@ man	NOU-PER	men
 map	NOU	maps
 match	NOU	matches
 matrix	NOU	matrices
+me	NOU-PER	us
 meat	NOU	meats
 militia	NOU	militia
 money	NOU	money
@@ -255,6 +264,7 @@ stone	NOU	stones
 suit	NOU-AMO	suits
 sun	NOU	suns
 sword	NOU	swords
+table	NOU	tables
 task	NOU	tasks
 teddy	NOU	teddies
 tiger	NOU-ANI	tigers
@@ -295,6 +305,7 @@ blue	ADJ-COL
 deadly	ADJ
 elder	ADJ
 empty	ADJ
+fresh	ADJ
 golden	ADJ-COL
 great	ADJ
 greater	ADJ
