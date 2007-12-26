@@ -61,7 +61,7 @@ public class ItemLogger {
 		try {
 
 			assignIDIfNotPresent(transaction, item);
-			log(transaction, item, player, event, param1, param2, param3, param4);
+			writeLog(transaction, item, player, event, param1, param2, param3, param4);
 
 			transaction.commit();
 		} catch (SQLException e) {
@@ -99,7 +99,17 @@ public class ItemLogger {
 		item.put(ATTR_LOGID, id);
 	}
 
-	private static void log(JDBCTransaction transaction, Item item, Player player, String event, String param1, String param2, String param3, String param4) throws SQLException {
-		
+	private static void writeLog(JDBCTransaction transaction, Item item, Player player, String event, String param1, String param2, String param3, String param4) throws SQLException {
+		String query = "INSERT INTO itemlog (itemid, source, event, " +
+			"param1, param2, param3, param4) VALUES (" + 
+			item.getInt(ATTR_LOGID) + ", '" + 
+			StringChecker.trimAndEscapeSQLString(player.getName(), 64) + "', '" +
+			StringChecker.trimAndEscapeSQLString(event, 64) + "', '" +
+			StringChecker.trimAndEscapeSQLString(param1, 64) + "', '" +
+			StringChecker.trimAndEscapeSQLString(param2, 64) + "', '" +
+			StringChecker.trimAndEscapeSQLString(param3, 64) + "', '" +
+			StringChecker.trimAndEscapeSQLString(param4, 64) + "');";
+
+		transaction.getAccessor().execute(query);
 	}
 }
