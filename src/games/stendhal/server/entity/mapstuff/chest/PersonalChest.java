@@ -4,13 +4,15 @@ import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.slot.PersonalChestSlot;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
-import org.apache.log4j.Logger;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
+
+import org.apache.log4j.Logger;
 
 /**
  * A PersonalChest is a Chest that can be used by everyone, but shows different
@@ -50,13 +52,25 @@ public class PersonalChest extends Chest {
 	public PersonalChest(String bankName) {
 		this.bankName = bankName;
 		attending = null;
+
+		super.removeSlot("content");
+		super.addSlot(new PersonalChestSlot(this));
+	}
+
+	/**
+	 * Gets the entitiy which is currently served by this chest
+	 *
+	 * @return Entity
+	 */
+	public RPEntity getAttending() {
+		return attending;
 	}
 
 	/**
 	 * Copies an item
 	 * 
 	 * TODO: Move this to Item.copy() to hide impl (and eventually remove
-	 * reflection).
+	 * reflection). Or even better: Fix .clone() method in marauroa.
 	 * 
 	 * @param item
 	 *            item to copy
