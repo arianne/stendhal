@@ -1,0 +1,341 @@
+#
+# Word list for the Stendhal conversation parser
+# @author Martin Fuchs
+#
+# The list entries are in the following format:
+#  WORD	 TYPE	[PLURAL/VALUE]
+#
+# WORD is the word in lower case.
+# PLURAL is the pluralised form of the word for nouns and verbs.
+# VALUE is used to specify the numeric equivalent of numeric expressions.
+#
+# TYPE is one of the following constants:
+#
+#  VER			verb
+#
+#  NOU			noun
+#  NOU-AMO		noun specifying amount
+#  NOU-ANI		noun, animal
+#  NOU-FOO		noun, food
+#  NOU-FLU		noun, fluid
+#  NOU-PER		person
+#  NOU-PER-NAM	person name
+#
+#  ADJ			adjective/adverb
+#  ADJ-COL		color expressions
+#
+#  NUM			numeral
+#  PRE			preposition
+#  IGN			word to ignore
+#
+
+buy	VER
+close	VER
+drop	VER
+give	VER
+go	VER
+hold	VER
+is	VER	are
+look	VER
+open	VER
+say	VER
+speak	VER
+summon	VER
+
+alga	NOU	algae
+analysis	NOU	analyses
+antidote	NOU	antidotes
+apple	NOU	apples
+arandula	NOU
+archer	NOU-PER	archers
+archmage	NOU-PER	archmages
+archrat	NOU-ANI	archrats
+armor	NOU	armors
+arrow	NOU	arrows
+arundula	NOU	arundulas
+axe	NOU	axes
+baby	NOU-PER	babies
+bag	NOU	bags
+bar	NOU	bars
+bardiche	NOU	bardiches
+bat	NOU	bats
+battle	NOU	battles
+bear	NOU	bears
+beer	NOU-FLU
+beholder	NOU	beholders
+boar	NOU	boars
+bob	NOU-PER-NAM
+body	NOU	bodies
+book	NOU	books
+boot	NOU	boots
+boss	NOU-PER	bosses
+bottle	NOU	bottles
+bow	NOU	bows
+box	NOU	boxes
+boy	NOU-PER	boys
+bread	NOU
+broadsword	NOU	broadswords
+bronze	NOU	bronzes
+buckler	NOU	bucklers
+bureau	NOU	bureaux
+bush	NOU	bushes
+button	NOU	buttons
+caboose	NOU	cabooses
+carrot	NOU-FOO	carrots
+cat	NOU-ANI	cats
+caverat	NOU-ANI	caverats
+chain	NOU	chains
+cheese	NOU-FOO	cheeses
+cherry	NOU-FOO	cherries
+chicken	NOU-FOO	chickens
+chief	NOU-PER	chiefs
+child	NOU-PER	children
+chunk	NOU	chunks
+claymore	NOU	claymores
+cloak	NOU	cloaks
+club	NOU	clubs
+cobra	NOU-ANI	cobras
+commander	NOU	commanders
+coupon	NOU	coupons
+crab	NOU	crabs
+creature	NOU	creatures
+crossbow	NOU	crossbows
+crown	NOU	crowns
+cuirasses	NOU	cuirasses
+cyclops	NOU	cyclopses
+dagger	NOU	daggers
+death	NOU	deaths
+demon	NOU-PER	demons
+deus	NOU-PER	dei
+dice	NOU	dice
+djinni	NOU-PER	djinn
+dog	NOU-ANI	dogs
+doll	NOU	dolls
+dragon	NOU	dragons
+dress	NOU	dresses
+dwarf	NOU	dwarves
+earth	NOU	earths
+eater	NOU	eaters
+efreeti	NOU-PER	efreet
+elemental	NOU	elementals
+elephant	NOU-ANI	elephants
+elf	NOU-PER	elves
+erinys	NOU	erinyes
+eupepsia	NOU	eupepsia
+fire	NOU	fires
+flail	NOU	flails
+flask	NOU	flasks
+flour	NOU	flours
+foot	NOU	feet
+gargoyle	NOU	gargoyles
+ghost	NOU-PER	ghosts
+giantrat	NOU-ANI	giantrats
+gnome	NOU-PER	gnomes
+goblin	NOU-PER	goblins
+golem	NOU-PER	golems
+goose	NOU-ANI	geese
+grain	NOU-FOO	grains
+guardian	NOU-PER	guardians
+halberd	NOU	halberds
+ham	NOU	hams
+hammer	NOU	hammers
+hand	NOU	hands
+hat	NOU	hats
+he	NOU-PER	they
+helium	NOU	helia
+helmet	NOU	helmets
+hero	NOU	heros
+home	NOU	homes
+house	NOU	houses
+human	NOU	humans
+hunter	NOU	hunters
+hypha	NOU	hyphae
+i	NOU-PER	we
+ice	NOU	ices
+index	NOU	indices
+iron	NOU	irons
+it	NOU-OBJ	they
+katana	NOU	katanas
+key	NOU	keys
+knife	NOU	knives
+knight	NOU	knights
+kobold	NOU	kobolds
+kymara	NOU-PER-NAM
+larva	NOU	larvae
+leader	NOU-PER	leaders
+leg	NOU	legs
+lich	NOU	liches
+lion	NOU-ANI	lions
+loaf	NOU-AMO	loaves
+log	NOU	logs
+longbow	NOU	longbows
+lotus	NOU	lotuses
+mace	NOU	maces
+mage	NOU-PER	mages
+man	NOU-PER	men
+map	NOU	maps
+match	NOU	matches
+matrix	NOU	matrices
+meat	NOU
+militia	NOU	militia
+money	NOU	money
+monkey	NOU	monkeys
+moose	NOU	moose
+mouse	NOU	mice
+mumak	NOU	mumakil
+mummy	NOU	mummies
+mushroom	NOU-FOO	mushrooms
+noose	NOU	nooses
+note	NOU	notes
+nugget	NOU	nuggets
+ogre	NOU	ogres
+orc	NOU	orcs
+ore	NOU	ores
+pair	NOU	pairs
+paper	NOU	papers
+penguin	NOU-ANI	penguins
+pie	NOU-FOO	pies
+piece	NOU	pieces
+plate	NOU	plates
+player	NOU-PER	players
+plural	NOU	plurals
+poison	NOU-FLU	poisons
+porcini	NOU-FOO	porcini
+potion	NOU-FLU	potions
+present	NOU	presents
+princess	NOU	princesses
+rat	NOU-ANI	rats
+ratman	NOU-PER	ratmen
+ratwoman	NOU-PER	ratwomen
+razorrat	NOU-ANI	razorrats
+robin	NOU	robins
+rod	NOU	rods
+sacerdotist	NOU	sacerdotists
+sack	NOU-AMO	sacks
+salad	NOU	salads
+sandwich	NOU	sandwiches
+scale	NOU	scales
+scimitar	NOU	scimitars
+scroll	NOU	scrolls
+scythe	NOU	scythes
+she	NOU-PER	they
+sheaf	NOU-AMO	sheaves
+shield	NOU	shields
+silver	NOU	silvers
+skeleton	NOU	skeletons
+skull	NOU	skulls
+slime	NOU	slimes
+sodium	NOU	sodia
+soldier	NOU-PER	soldiers
+sprig	NOU-AMO	sprigs
+staff	NOU	staffs
+steel	NOU	steels
+stone	NOU	stones
+suit	NOU	suits
+suits	NOU	suits
+sun	NOU	suns
+sword	NOU	swords
+teddy	NOU	teddies
+tiger	NOU-ANI	tigers
+toadstool	NOU	toadstools
+token	NOU	tokens
+tomato	NOU-FOO	tomatoes
+tooth	NOU	teeth
+troll	NOU-PER	trolls
+trophy	NOU	trophies
+trousers	NOU	trousers
+unicorn	NOU-ANI	unicorns
+vegetarian	NOU-PER	vegetarians
+venom	NOU	venoms
+venomrat	NOU-ANI	venomrats
+vertex	NOU	vertices
+veteran	NOU-PER	veterans
+viking	NOU-PER	vikings
+vortex	NOU	vortices
+war	NOU	wars
+warrior	NOU-PER	warriors
+water	NOU-FLU	waters
+wine	NOU-FLU
+wolf	NOU	wolves
+woman	NOU-PER	women
+wood	NOU	woods
+wumpus	NOU-PER	wumpuses
+yclept	NOU	yclepts
+you	NOU-PER	you
+youngster	NOU	youngsters
+zombie	NOU-PER	zombies
+
+big	ADJ
+biting	ADJ
+black	ADJ-COL
+blue	ADJ-COL
+deadly	ADJ
+elder	ADJ
+empty	ADJ
+golden	ADJ-COL
+great	ADJ
+greater	ADJ
+green	ADJ-COL
+leather	ADJ
+marked	ADJ
+minor	ADJ
+old	ADJ
+red	ADJ-COL
+royal	ADJ
+short	ADJ
+silvery	ADJ-COL
+small	ADJ
+studded	ADJ
+twoside	ADJ
+white	ADJ-COL
+wooden	ADJ
+young	ADJ
+
+a	NUM	1
+an	NUM	1
+eight	NUM	8
+eighteen	NUM	18
+eighty	NUM	80
+eleven	NUM	11
+fifteen	NUM	15
+fifty	NUM	50
+first	NUM	1
+five	NUM	5
+four	NUM	4
+fourteen	NUM	14
+fourty	NUM	40
+hundred	NUM	100
+million	NUM	1000000
+nine	NUM	9
+nineteen	NUM	19
+ninety	NUM	90
+no	NUM	0
+one	NUM	1
+second	NUM	2
+seven	NUM	7
+seventeen	NUM	17
+seventy	NUM	70
+six	NUM	6
+sixteen	NUM	16
+sixty	NUM	60
+ten	NUM	10
+third	NUM	3
+thirteen	NUM	13
+thirty	NUM	30
+thousand	NUM	1000
+three	NUM	3
+twelve	NUM	12
+twenty	NUM	20
+two	NUM	2
+zero	NUM	0
+
+of	PRE
+off	PRE
+on	PRE
+under	PRE
+with	PRE
+
+please	IGN
+the	IGN
+whatever	IGN
+
