@@ -14,6 +14,7 @@ package games.stendhal.server.entity.player;
 
 import games.stendhal.common.Debug;
 import games.stendhal.server.actions.admin.AdministrationAction;
+import games.stendhal.server.core.engine.ItemLogger;
 import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.rp.StendhalRPAction;
@@ -553,6 +554,7 @@ class PlayerRPClass {
 								+ " on login of " + player.getName()
 								+ " because this item"
 								+ " was removed from items.xml");
+						ItemLogger.destroyOnLogin(player, newSlot, item);
 						continue;
 					}
 
@@ -602,6 +604,7 @@ class PlayerRPClass {
 
 					boundOldItemsToPlayer(player, entity);
 
+					ItemLogger.loadOnLogin(player, newSlot, entity);
 					newSlot.add(entity);
 				} else {
 					logger.warn("Non-item object found in " + player.getName()

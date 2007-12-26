@@ -5,6 +5,8 @@ import games.stendhal.server.entity.player.Player;
 
 import java.sql.SQLException;
 
+import marauroa.common.game.RPObject;
+import marauroa.common.game.RPSlot;
 import marauroa.server.game.db.JDBCDatabase;
 import marauroa.server.game.db.JDBCTransaction;
 import marauroa.server.game.db.StringChecker;
@@ -21,6 +23,25 @@ public class ItemLogger {
 	private static Logger logger = Logger.getLogger(ItemLogger.class);
 	private static final String ATTR_LOGID = "logid";
 
+	private static String getQuantity(RPObject item) {
+		int quantity = 1;
+		if (item.has("quantity")) {
+			quantity = item.getInt("quantity");
+		}
+		return Integer.toString(quantity);
+	}
+
+	public static void loadOnLogin(Player player, RPSlot slot, Item item) {
+		if (item.has(ATTR_LOGID)) {
+			return;
+		}
+		log(item, player, "create", item.get("name"), getQuantity(item), "olditem", slot.getName());
+	}
+
+	public static void destroyOnLogin(Player player, RPSlot slot, RPObject item) {
+		log(item, player, "destroy", item.get("name"), getQuantity(item), "on login", slot.getName());
+    }
+
 /*	
 	create             name         quantity          quest-name / killed creature / summon zone x y / summonat target target-slot quantity / olditem
 	slot-to-slot       source       source-slot       target    target-slot
@@ -28,8 +49,7 @@ public class ItemLogger {
 	slot-to-ground     source       source-slot       zone         x         y
 	ground-to-ground   zone         x         y       zone         x         y
 	use                old-quantity new-quantity
-	destroy
-	timeout
+	destroy            name         quantity          by admin / by quest / on login / timeout on ground
 	merge into         outliving_id      destroyed-quantity   outliving-quantity       merged-quantity
 	merged in          destroyed_id      outliving-quantity   destroyed-quantity       merged-quantity
 	split out          new_id            old-quantity         outliving-quantity       new-quantity
@@ -38,7 +58,7 @@ public class ItemLogger {
 	the last two are redundant pairs to simplify queries
 	 */
 
-	private static void log(Item item, Player player, String event, String param1, String param2, String param3, String param4) {
+	private static void log(RPObject item, Player player, String event, String param1, String param2, String param3, String param4) {
 		JDBCTransaction transaction = (JDBCTransaction) JDBCDatabase.getDatabase().getTransaction();
 		try {
 
@@ -63,7 +83,7 @@ public class ItemLogger {
 	 * @param item item
 	 * @throws SQLException in case of a database error
 	 */
-	private static void assignIDIfNotPresent(JDBCTransaction transaction, Item item) throws SQLException {
+	private static void assignIDIfNotPresent(JDBCTransaction transaction, RPObject item) throws SQLException {
 		if (item.has(ATTR_LOGID)) {
 			return;
 		}
@@ -81,7 +101,7 @@ public class ItemLogger {
 		item.put(ATTR_LOGID, id);
 	}
 
-	private static void writeLog(JDBCTransaction transaction, Item item, Player player, String event, String param1, String param2, String param3, String param4) throws SQLException {
+	private static void writeLog(JDBCTransaction transaction, RPObject item, Player player, String event, String param1, String param2, String param3, String param4) throws SQLException {
 		String query = "INSERT INTO itemlog (itemid, source, event, " +
 			"param1, param2, param3, param4) VALUES (" + 
 			item.getInt(ATTR_LOGID) + ", '" + 
