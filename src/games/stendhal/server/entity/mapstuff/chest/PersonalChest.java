@@ -1,5 +1,6 @@
 package games.stendhal.server.entity.mapstuff.chest;
 
+import games.stendhal.common.Grammar;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.RPEntity;
@@ -206,8 +207,10 @@ public class PersonalChest extends Chest {
 		return false;
 	}
 
-	//
-	//
+	@Override
+    public String getDescriptionName(boolean definite) {
+	    return Grammar.article_noun(bankName + " chest", definite);
+    }
 
 	/**
 	 * A listener for syncing the slot contents.
