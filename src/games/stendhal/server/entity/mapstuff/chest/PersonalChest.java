@@ -180,6 +180,7 @@ public class PersonalChest extends Chest {
 	public void close() {
 		super.close();
 
+		getSlot("content").clear();
 		attending = null;
 	}
 
