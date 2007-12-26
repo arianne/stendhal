@@ -324,7 +324,7 @@ public class Sheep extends DomesticAnimal {
 	 * @param food
 	 *            The food to eat.
 	 */
-	private void eat(SheepFood food) {
+	protected void eat(SheepFood food) {
 		int amount = food.getAmount();
 
 		if (amount > 0) {

@@ -1,17 +1,17 @@
 package games.stendhal.server.entity.creature;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotSame;
+import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
-import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.mapstuff.spawner.SheepFood;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.common.game.RPObject;
 
-import org.codehaus.groovy.ast.stmt.AssertStatement;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -22,7 +22,7 @@ public class SheepTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		StendhalRPWorld world = MockStendlRPWorld.get();
+		MockStendlRPWorld.get();
 
 		PlayerTestHelper.generateCreatureRPClasses();
 		Sheep.generateRPClass();
@@ -174,7 +174,7 @@ public class SheepTest {
 
 	@Test
 	public void testSheep() {
-		Sheep meh = new Sheep();
+		new Sheep();
 
 	}
 
@@ -234,6 +234,37 @@ public class SheepTest {
 		meh.onStarve();
 		assertEquals(0, meh.getWeight());
 		assertEquals(0, meh.getHP());
+
+	}
+	@Test
+	public void testEat() {
+		RPObject foodobject = new RPObject();
+		foodobject.put("amount", 10);
+		SheepFood food = new SheepFood(foodobject);
+		
+		Sheep meh = new Sheep();
+		
+		meh.setWeight(1);
+		meh.setHP(5);
+		meh.eat(food);
+		
+		assertEquals(2, meh.getWeight());
+		assertEquals(10, meh.getHP());
+		meh.eat(food);
+		assertEquals(3, meh.getWeight());
+		assertEquals(15, meh.getHP());
+		meh.eat(food);
+		assertEquals(4, meh.getWeight());
+		assertEquals(20, meh.getHP());
+		
+		meh.setWeight(99);
+		
+		meh.eat(food);
+		assertEquals(100, meh.getWeight());
+
+		meh.eat(food);
+		assertEquals(100, meh.getWeight());
+	
 
 	}
 
