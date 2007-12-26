@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.mapstuff.chest;
 
+import games.stendhal.common.Grammar;
 import games.stendhal.server.core.events.UseListener;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.PassiveEntity;
@@ -74,9 +75,16 @@ public class Chest extends Entity implements UseListener {
 		addSlot(slot);
 	}
 
+	
+	
 	//
 	// Chest
 	//
+
+	@Override
+    public String getDescriptionName(boolean definite) {
+	    return Grammar.article_noun("chest", definite);
+    }
 
 	@Override
 	public void update() {
