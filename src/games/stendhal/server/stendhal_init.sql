@@ -44,3 +44,21 @@ create table if not exists halloffame
   primary key(id)
   ) 
   TYPE=MYISAM;
+
+  
+CREATE TABLE IF NOT EXISTS itemid (
+  last_id INTEGER
+) TYPE=MYISAM;
+
+CREATE TABLE IF NOT EXISTS itemlog (
+  id         INTEGER AUTO_INCREMENT NOT NULL,
+  timedate   TIMESTAMP,
+  itemid     INTEGER,
+  source     VARCHAR(64),
+  event      VARCHAR(64),
+  param1     VARCHAR(64),
+  param2     VARCHAR(64),
+  param3     VARCHAR(64),
+  param4     VARCHAR(64),
+  PRIMARY KEY (id)
+) TYPE=MYISAM;

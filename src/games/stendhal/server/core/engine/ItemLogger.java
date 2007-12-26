@@ -21,25 +21,7 @@ public class ItemLogger {
 	private static Logger logger = Logger.getLogger(ItemLogger.class);
 	private static final String ATTR_LOGID = "logid";
 
-	/*
-	CREATE TABLE itemid (
-	  last_id INTEGER
-	);
-	
-	CREATE TABLE itemlog (
-	  id         SERIAL,
-	  timedate   TIMESTAMP,
-	  itemid     INTEGER,
-	  source     VARCHAR(64),
-	  event,     VARCHAR(64),
-	  param1     VARCHAR(64),
-	  param2     VARCHAR(64),
-	  param3     VARCHAR(64),
-	  param4     VARCHAR(64)
-	);
-	
-	
-	
+/*	
 	create             name         quantity          quest-name / killed creature / summon zone x y / summonat target target-slot quantity / olditem
 	slot-to-slot       source       source-slot       target    target-slot
 	ground-to-slot     zone         x         y       target    target-slot
