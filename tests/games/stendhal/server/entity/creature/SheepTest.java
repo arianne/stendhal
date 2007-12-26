@@ -151,7 +151,9 @@ public class SheepTest {
 	public void testDescribe() {
 		Sheep meh = new Sheep();
 		assertEquals("You see a sheep; it looks like it weighs about 0.", meh.describe());
-
+		meh.setDescription("mehmeh");
+		assertEquals("mehmeh", meh.describe());
+		
 	}
 
 	@Ignore
