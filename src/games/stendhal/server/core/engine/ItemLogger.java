@@ -6,7 +6,7 @@ import games.stendhal.server.entity.player.Player;
 import java.sql.SQLException;
 
 import marauroa.server.game.db.JDBCDatabase;
-import marauroa.server.game.db.Transaction;
+import marauroa.server.game.db.JDBCTransaction;
 
 import org.apache.log4j.Logger;
 
@@ -18,6 +18,7 @@ import org.apache.log4j.Logger;
 public class ItemLogger {
 
 	private static Logger logger = Logger.getLogger(ItemLogger.class);
+	private static final String ATTR_LOGID = "logid";
 
 	/*
 	CREATE TABLE itemid (
@@ -55,7 +56,7 @@ public class ItemLogger {
 	 */
 
 	private static void log(Item item, Player player, String event, String param1, String param2, String param3, String param4) {
-		Transaction transaction = JDBCDatabase.getDatabase().getTransaction();
+		JDBCTransaction transaction = (JDBCTransaction) JDBCDatabase.getDatabase().getTransaction();
 		try {
 
 			assignIDIfNotPresent(transaction, item);
@@ -72,12 +73,32 @@ public class ItemLogger {
 		}
 	}
 
-	private static void assignIDIfNotPresent(Transaction transaction, Item item) {
-		// TODO Auto-generated method stub
-		
+	/**
+	 * Assigns the next logid to the specified item in case it does not already have one
+	 *
+	 * @param transaction database transaction
+	 * @param item item
+	 * @throws SQLException in case of a database error
+	 */
+	private static void assignIDIfNotPresent(JDBCTransaction transaction, Item item) throws SQLException {
+		if (item.has(ATTR_LOGID)) {
+			return;
+		}
+
+		// increment the last_id value (or initialize it in case that table has 0 rows).
+		int count = transaction.getAccessor().execute("UPDATE itemid SET last_id = last_id+1;");
+		if (count < 0) {
+			logger.error("Unexpected return value of execute method: " + count);
+		} else if (count == 0) {
+			transaction.getAccessor().execute("INSERT INTO itemid (last_id) VALUES (1);");
+		}
+
+		// read last_id from database
+		int id = transaction.getAccessor().querySingleCellInt("SELECT last_id FROM itemid");
+		item.put(ATTR_LOGID, id);
 	}
 
-	private static void log(Transaction transaction, Item item, Player player, String event, String param1, String param2, String param3, String param4) {
+	private static void log(JDBCTransaction transaction, Item item, Player player, String event, String param1, String param2, String param3, String param4) {
 		// TODO Auto-generated method stub
 		
 	}
