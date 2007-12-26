@@ -62,3 +62,15 @@ CREATE TABLE IF NOT EXISTS itemlog (
   param4     VARCHAR(64),
   PRIMARY KEY (id)
 ) TYPE=MYISAM;
+
+/*CREATE INDEX i_itemlog_itemid ON itemlog(itemid);*/
+/*CREATE INDEX i_itemlog_source ON itemlog(source);*/
+/*CREATE INDEX i_itemlog_event ON itemlog(event);*/
+/*CREATE INDEX i_itemlog_param1 ON itemlog(param1);*/
+/*CREATE INDEX i_itemlog_param2 ON itemlog(param2);*/
+/*CREATE INDEX i_itemlog_param3 ON itemlog(param3);*/
+/*CREATE INDEX i_itemlog_param4 ON itemlog(param4);*/
+/*CREATE INDEX i_itemlog_source_event ON itemlog(source, event);*/
+/*CREATE INDEX i_itemlog_itemid_event ON itemlog(itemid, event);*/
+/*CREATE INDEX i_itemlog_event_param12 ON itemlog(event, param1, param2);*/
+/*CREATE INDEX i_itemlog_event_param34 ON itemlog(event, param3, param4);*/
