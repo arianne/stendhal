@@ -48,6 +48,15 @@ public class ItemLogger {
 		log(item, player, "ground-to-ground", zone.getID().getID(), item.getX() + " " + item.getY(), zone.getID().getID(), x + " " + y);
     }
 
+	public static void merge(Player player, Item oldItem, Item outlivingItem) {
+		assignIDIfNotPresent(oldItem, outlivingItem);
+		String oldQuantity = getQuantity(oldItem);
+		String oldOutlivingQuantity = getQuantity(outlivingItem);
+		String newQuantity = Integer.toString(Integer.parseInt(oldQuantity) + Integer.parseInt(oldOutlivingQuantity));
+	    log(oldItem, player, "merge in", outlivingItem.get(ATTR_LOGID), oldQuantity, oldOutlivingQuantity, newQuantity);
+	    log(outlivingItem, player, "merged in", oldItem.get(ATTR_LOGID), oldOutlivingQuantity, oldQuantity, newQuantity);
+    }
+
 	public static void splitOff(Player player, Item item, StackableItem newItem, int quantity) {
 		assignIDIfNotPresent(item, newItem);
 		String outlivingQuantity = getQuantity(item);
@@ -64,7 +73,7 @@ public class ItemLogger {
 	ground-to-ground   zone         x         y       zone         x         y
 	use                old-quantity new-quantity
 	destroy            name         quantity          by admin / by quest / on login / timeout on ground
-	merge into         outliving_id      destroyed-quantity   outliving-quantity       merged-quantity
+	merge in           outliving_id      destroyed-quantity   outliving-quantity       merged-quantity
 	merged in          destroyed_id      outliving-quantity   destroyed-quantity       merged-quantity
 	split out          new_id            old-quantity         outliving-quantity       new-quantity
 	splitted out       outliving_id      old-quantity         new-quantity             outliving-quantity

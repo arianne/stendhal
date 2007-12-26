@@ -1,19 +1,22 @@
 package games.stendhal.server.actions.equip;
 
+import games.stendhal.server.core.engine.ItemLogger;
 import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Stackable;
+import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.slot.EntitySlot;
 
 import java.util.Iterator;
 import java.util.List;
 
-import org.apache.log4j.Logger;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
+
+import org.apache.log4j.Logger;
 
 /**
  * this encapsulates the equip/drop destination.
@@ -211,20 +214,22 @@ class DestinationObject extends MoveableObject {
 			RPSlot rpslot = parent.getSlot(slot);
 
 			// check if the item can be merged with one already in the slot
-			if (entity instanceof Stackable) {
-				Stackable stackEntity = (Stackable) entity;
+			if (entity instanceof StackableItem) {
+				StackableItem stackEntity = (StackableItem) entity;
 				// find a stackable item of the same type
 				Iterator<RPObject> it = rpslot.iterator();
 				while (it.hasNext()) {
 					RPObject object = it.next();
-					if (object instanceof Stackable) {
+					if (object instanceof StackableItem) {
 						// found another stackable
-						Stackable other = (Stackable) object;
+						StackableItem other = (StackableItem) object;
 						if (other.isStackable(stackEntity)) {
+							ItemLogger.merge(player, stackEntity, other);
+
 							// other is the same type...merge them
 							other.add(stackEntity);
-							entity = null; // do not process the entity
-							// further
+							entity = null;
+							// do not process the entity further
 							break;
 						}
 					}
@@ -253,7 +258,7 @@ class DestinationObject extends MoveableObject {
 			}
 
 			entity.setPosition(x, y);
-			logger.debug("entity set to " + x + "x" + y);
+			logger.debug("entity set to " + x + ", " + y);
 
 			zone.add(entity, player);
 			logger.debug("entity has valid id: " + entity.getID());
