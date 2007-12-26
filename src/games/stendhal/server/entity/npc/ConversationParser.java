@@ -109,7 +109,7 @@ public class ConversationParser {
 
 			// continue looking for verbs and subjects
 			parser.readNextWord();
-		};
+		}
 
 		if (subject != null) {
 			sentence.setSubject(subject);
