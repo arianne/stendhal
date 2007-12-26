@@ -2,6 +2,7 @@ package games.stendhal.server.core.engine;
 
 import games.stendhal.server.entity.PassiveEntity;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.player.Player;
 
 import java.sql.SQLException;
@@ -43,11 +44,18 @@ public class ItemLogger {
 		log(item, player, "destroy", item.get("name"), getQuantity(item), "on login", slot.getName());
     }
 
-
 	public static void displace(Player player, PassiveEntity item, StendhalRPZone zone, int x, int y) {
 		log(item, player, "ground-to-ground", zone.getID().getID(), item.getX() + " " + item.getY(), zone.getID().getID(), x + " " + y);
     }
 
+	public static void splitOff(Player player, Item item, StackableItem newItem, int quantity) {
+		assignIDIfNotPresent(item, newItem);
+		String outlivingQuantity = getQuantity(item);
+		String newQuantity = getQuantity(newItem);
+		String oldQuantity = Integer.toString(Integer.parseInt(outlivingQuantity) + Integer.parseInt(newQuantity));
+	    log(item, player, "split out", newItem.get(ATTR_LOGID), oldQuantity, outlivingQuantity, newQuantity);
+	    log(newItem, player, "splitted out", item.get(ATTR_LOGID), oldQuantity, newQuantity, outlivingQuantity);
+    }
 /*	
 	create             name         quantity          quest-name / killed creature / summon zone x y / summonat target target-slot quantity / olditem
 	slot-to-slot       source       source-slot       target    target-slot
@@ -82,6 +90,30 @@ public class ItemLogger {
 		}
 	}
 
+	/**
+	 * Assigns the next logid to the specified item in case it does not already have one
+	 *
+	 * @param item item
+	 * @throws SQLException in case of a database error
+	 */
+	private static void assignIDIfNotPresent(RPObject... items) {
+		JDBCTransaction transaction = (JDBCTransaction) JDBCDatabase.getDatabase().getTransaction();
+		try {
+			for (RPObject item : items) {
+				assignIDIfNotPresent(transaction, item);
+			}
+
+			transaction.commit();
+		} catch (SQLException e) {
+			logger.error(e, e);
+			try {
+				transaction.rollback();
+			} catch (SQLException e1) {
+				logger.error(e1, e1);
+			}
+		}
+	}
+	
 	/**
 	 * Assigns the next logid to the specified item in case it does not already have one
 	 *

@@ -1,5 +1,6 @@
 package games.stendhal.server.actions.equip;
 
+import games.stendhal.server.core.engine.ItemLogger;
 import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.events.EquipListener;
 import games.stendhal.server.entity.Entity;
@@ -11,10 +12,11 @@ import games.stendhal.server.entity.slot.EntitySlot;
 
 import java.util.List;
 
-import org.apache.log4j.Logger;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
+
+import org.apache.log4j.Logger;
 
 /**
  * this encapsulates the equip/drop source
@@ -153,7 +155,7 @@ class SourceObject extends MoveableObject {
 			return false;
 		}
 
-		Entity entity = removeFromWorld();
+		Entity entity = removeFromWorld(player);
 		logger.debug("item removed");
 		dest.addToWorld(entity, player);
 		logger.debug("item readded");
@@ -188,9 +190,10 @@ class SourceObject extends MoveableObject {
 	 * 
 	 * @return Entity to place somewhere else in the world
 	 */
-	public Entity removeFromWorld() {
+	public Entity removeFromWorld(Player player) {
 		if (quantity != 0) {
 			StackableItem newItem = ((StackableItem) item).splitOff(quantity);
+			ItemLogger.splitOff(player, item, newItem, quantity);
 			return newItem;
 		} else {
 			item.removeFromWorld();
