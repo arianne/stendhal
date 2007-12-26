@@ -152,16 +152,17 @@ public class EquipmentAction implements ActionListener {
 		logger.debug("Equip action agreed");
 
 		// looks good
-		source.moveTo(dest, player);
-		int amount = 1;
-		if (entity instanceof StackableItem) {
-			amount = ((StackableItem) entity).getQuantity();
+		if (source.moveTo(dest, player)) {
+			int amount = 1;
+			if (entity instanceof StackableItem) {
+				amount = ((StackableItem) entity).getQuantity();
+			}
+			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "equip",
+					itemName, source.getSlot(), dest.getSlot(),
+					Integer.toString(amount));
+	
+			player.updateItemAtkDef();
 		}
-		StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "equip",
-				itemName, source.getSlot(), dest.getSlot(),
-				Integer.toString(amount));
-
-		player.updateItemAtkDef();
 	}
 
 	private void onDrop(Player player, RPAction action) {
@@ -191,17 +192,18 @@ public class EquipmentAction implements ActionListener {
 			itemName = "item";
 		}
 
-		source.moveTo(dest, player);
-		if (entity.has("bound")) {
-			player.sendPrivateText("You put a valuable item on the ground. Please note that it will expire in "
-					+ (Item.DEGRADATION_TIMEOUT / 60)
-					+ " minutes, as all items do. But in this case there is no way to restore it.");
+		if (source.moveTo(dest, player)) {
+			if (entity.has("bound")) {
+				player.sendPrivateText("You put a valuable item on the ground. Please note that it will expire in "
+						+ (Item.DEGRADATION_TIMEOUT / 60)
+						+ " minutes, as all items do. But in this case there is no way to restore it.");
+			}
+			int amount = source.getQuantity();
+			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "drop",
+					itemName, source.getSlot(), dest.getSlot(),
+					Integer.toString(amount));
+			player.updateItemAtkDef();
 		}
-		int amount = source.getQuantity();
-		StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "drop",
-				itemName, source.getSlot(), dest.getSlot(),
-				Integer.toString(amount));
-		player.updateItemAtkDef();
 	}
 
 }
