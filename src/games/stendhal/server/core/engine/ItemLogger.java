@@ -1,5 +1,6 @@
 package games.stendhal.server.core.engine;
 
+import games.stendhal.server.entity.PassiveEntity;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
 
@@ -40,6 +41,11 @@ public class ItemLogger {
 
 	public static void destroyOnLogin(Player player, RPSlot slot, RPObject item) {
 		log(item, player, "destroy", item.get("name"), getQuantity(item), "on login", slot.getName());
+    }
+
+
+	public static void displace(Player player, PassiveEntity item, StendhalRPZone zone, int x, int y) {
+		log(item, player, "ground-to-ground", zone.getID().getID(), item.getX() + " " + item.getY(), zone.getID().getID(), x + " " + y);
     }
 
 /*	
@@ -114,4 +120,5 @@ public class ItemLogger {
 
 		transaction.getAccessor().execute(query);
 	}
+
 }

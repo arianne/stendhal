@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.actions;
 
+import games.stendhal.server.core.engine.ItemLogger;
 import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.PassiveEntity;
@@ -65,6 +66,8 @@ public class DisplaceAction implements ActionListener {
 							StendhalRPRuleProcessor.get().addGameEvent(
 									player.getName(), "displace",
 									entity.get("type"));
+							
+							ItemLogger.displace(player, entity, zone, x, y);
 
 							entity.setPosition(x, y);
 							entity.notifyWorldAboutChanges();
