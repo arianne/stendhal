@@ -25,12 +25,12 @@ import org.apache.log4j.Logger;
  * @author Martin Fuchs
  */
 public class WordList {
-	private static Logger logger = Logger.getLogger(WordList.class);
+	private static final Logger logger = Logger.getLogger(WordList.class);
 
-	Map<String, WordEntry> words = new TreeMap<String, WordEntry>();
-	List<String> comments = new ArrayList<String>();
+	private final Map<String, WordEntry> words = new TreeMap<String, WordEntry>();
+	private final List<String> comments = new ArrayList<String>();
 
-	private static WordList instance = new WordList();
+	private static final WordList instance = new WordList();
 
 	// initialise word list from the input file "words.txt"
 	static {
@@ -40,9 +40,9 @@ public class WordList {
 
 		BufferedReader reader = new BufferedReader(new InputStreamReader(str));
 
-		instance.read(reader);
-
 		try {
+			instance.read(reader);
+
 	        reader.close();
         } catch(IOException e) {
 	        e.printStackTrace();
@@ -53,91 +53,94 @@ public class WordList {
 		return instance;
 	}
 
-	public void read(BufferedReader reader)	{
-        try {
-    		for(;;) {
-	            String line = reader.readLine();
-	            if (line == null)
-	            	break;
+	public void read(BufferedReader reader) throws IOException	{
+		for(;;) {
+            String line = reader.readLine();
+            if (line == null)
+            	break;
 
-	            StringTokenizer tk = new StringTokenizer(line);
+            StringTokenizer tk = new StringTokenizer(line);
 
-	            if (!tk.hasMoreTokens())
-	            	continue;
+            if (!tk.hasMoreTokens())
+            	continue;
 
-	            String key = tk.nextToken();
+            String key = tk.nextToken();
 
-	            if (key.startsWith("#")) {
-	            	comments.add(line);
-	            } else {
-	            	WordEntry entry = new WordEntry();
-	            	entry.word = key;
+            if (key.startsWith("#")) {
+            	comments.add(line);
+            } else {
+        	    WordEntry entry = new WordEntry();
+        	    entry.word = key;
 
-		            if (tk.hasMoreTokens()) {
-		            	entry.type = tk.nextToken();
-
-			            if (tk.hasMoreTokens()) {
-			            	String s = tk.nextToken();
-
-			            	if (entry.type.startsWith("NUM"))
-			            		entry.value = new Integer(s);
-			            	else
-			            		entry.plural = s;
-			            }
-
-			            if (Character.isLowerCase(entry.type.charAt(0))) {
-			            	entry.plural = entry.type;
-			            	entry.type = "NOU";
-			            } else if (entry.plural==null &&
-			            		entry.type.startsWith("NOU") &&
-			            		!entry.type.endsWith("NAM")) {
-			            	String plural = Grammar.plural(key);
-
-			            	// only store single word plurals
-			            	if (plural.indexOf(' ') == -1)
-			            		entry.plural = plural;
-			            } else if (entry.plural != null){
-			            	String plural = Grammar.plural(key);
-
-			            	if (plural.indexOf(' ')==-1 &&
-			            		!plural.equals(entry.plural) &&
-			            		!Grammar.isSubject(entry.word) &&
-			            		!entry.word.equals("is")) {
-			            		logger.error(String.format("suspicious plural: %s -> %s (%s?)", entry.word, entry.plural, plural));
-			            	}
-			            }
-
-			            while(tk.hasMoreTokens()) {
-			            	logger.error("superflous trailing word: " + tk.nextToken());
-			            }
-		            }
-
-	            	words.put(key.toLowerCase(), entry);
-
-	            	// store plural and associate with singular form
-	            	if (entry.plural!=null && !entry.plural.equals(entry.word)) {
-	            		WordEntry pluralEntry = new WordEntry();
-
-	            		pluralEntry.word = entry.plural;
-	            		pluralEntry.type = entry.type + "-PLU";
-	            		pluralEntry.plural = entry.word;
-	            		pluralEntry.value = entry.value;
-
-		            	WordEntry prev = words.put(entry.plural.toLowerCase(), pluralEntry);
-
-		            	if (prev != null) {
-		            		logger.debug(String.format("ambiguos plural: %s/%s -> %s", pluralEntry.plural, prev.plural, entry.plural));
-
-		            		pluralEntry.plural = null;
-		            		prev.plural = null;
-		            	}
-	            	}
-	            }
-    		}
-        } catch(IOException e) {
-            e.printStackTrace();
-        }
+        	    readEntryLine(tk, entry);
+            	addLineEntry(entry, key);
+            }
+		}
 	}
+
+	private void readEntryLine(StringTokenizer tk, WordEntry entry) {
+	    if (tk.hasMoreTokens()) {
+	    	entry.type = tk.nextToken();
+
+	        if (tk.hasMoreTokens()) {
+	        	String s = tk.nextToken();
+
+	        	if (entry.type.startsWith("NUM"))
+	        		entry.value = new Integer(s);
+	        	else
+	        		entry.plural = s;
+	        }
+
+	        if (Character.isLowerCase(entry.type.charAt(0))) {
+	        	entry.plural = entry.type;
+	        	entry.type = "NOU";
+	        } else if (entry.plural==null &&
+	        		entry.type.startsWith("NOU") &&
+	        		!entry.type.endsWith("NAM")) {
+	        	String plural = Grammar.plural(entry.word);
+
+	        	// only store single word plurals
+	        	if (plural.indexOf(' ') == -1)
+	        		entry.plural = plural;
+	        } else if (entry.plural != null){
+	        	String plural = Grammar.plural(entry.word);
+
+	        	if (plural.indexOf(' ')==-1 &&
+	        		!plural.equals(entry.plural) &&
+	        		!Grammar.isSubject(entry.word) &&
+	        		!entry.word.equals("is")) {
+	        		logger.error(String.format("suspicious plural: %s -> %s (%s?)", entry.word, entry.plural, plural));
+	        	}
+	        }
+
+	        while(tk.hasMoreTokens()) {
+	        	logger.error("superflous trailing word: " + tk.nextToken());
+	        }
+	    }
+    }
+
+	private void addLineEntry(WordEntry entry, String key) {
+	    words.put(key.toLowerCase(), entry);
+
+	    // store plural and associate with singular form
+	    if (entry.plural!=null && !entry.plural.equals(entry.word)) {
+	    	WordEntry pluralEntry = new WordEntry();
+
+	    	pluralEntry.word = entry.plural;
+	    	pluralEntry.type = entry.type + "-PLU";
+	    	pluralEntry.plural = entry.word;
+	    	pluralEntry.value = entry.value;
+
+	    	WordEntry prev = words.put(entry.plural.toLowerCase(), pluralEntry);
+
+	    	if (prev != null) {
+	    		logger.debug(String.format("ambiguos plural: %s/%s -> %s", pluralEntry.plural, prev.plural, entry.plural));
+
+	    		pluralEntry.plural = null;
+	    		prev.plural = null;
+	    	}
+	    }
+    }
 
 	/**
 	 * find an entry for a given word
@@ -225,8 +228,7 @@ public class WordList {
 	 * @param word
 	 * @return
 	 */
-	public String plural(String word)
-    {
+	public String plural(String word) {
 		WordEntry w = words.get(word.toLowerCase());
 
 		if (w != null) {
@@ -247,8 +249,7 @@ public class WordList {
 	 * @param word
 	 * @return
 	 */
-	public String singular(String word)
-    {
+	public String singular(String word) {
 		WordEntry w = words.get(word.toLowerCase());
 
 		if (w != null) {
