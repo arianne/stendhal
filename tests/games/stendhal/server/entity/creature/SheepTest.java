@@ -1,15 +1,17 @@
 package games.stendhal.server.entity.creature;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.mapstuff.spawner.SheepFood;
+import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.common.game.RPObject;
 
+import org.codehaus.groovy.ast.stmt.AssertStatement;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -148,7 +150,7 @@ public class SheepTest {
 	@Test
 	public void testDescribe() {
 		Sheep meh = new Sheep();
-		assertEquals("", meh.getDescription());
+		assertEquals("You see a sheep; it looks like it weighs about 0.", meh.describe());
 
 	}
 
@@ -176,10 +178,12 @@ public class SheepTest {
 
 	}
 
-	@Ignore
+
 	@Test
 	public void testSheepPlayer() {
-		fail("Not yet implemented");
+		Player bob = PlayerTestHelper.createPlayer("bob");
+		Sheep meh = new Sheep(bob);
+		assertSame(meh, bob.getSheep());
 	}
 
 	@Ignore
