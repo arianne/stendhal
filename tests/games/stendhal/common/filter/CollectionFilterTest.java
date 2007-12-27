@@ -1,16 +1,13 @@
 package games.stendhal.common.filter;
 
+import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertThat;
+import games.stendhal.server.entity.player.Player;
+
 import java.util.Collection;
+import java.util.LinkedList;
 import java.util.List;
 
-import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
-import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
-import games.stendhal.server.maps.MockStendlRPWorld;
-
-import static org.junit.Assert.*;
-
-import static org.hamcrest.core.Is.is;
 import marauroa.common.game.RPObject;
 
 import org.junit.BeforeClass;
@@ -26,48 +23,38 @@ public class CollectionFilterTest {
 
 	@Test
 	public final void testFilter() {
+		Collection<Player> list = new LinkedList<Player>();
 
-		Collection<Player> list = StendhalRPRuleProcessor.get().getPlayers();
-		MockStendhalRPRuleProcessor.get().addPlayer(PlayerTestHelper.createPlayer("nonAdmin1"));
-		MockStendhalRPRuleProcessor.get().addPlayer(PlayerTestHelper.createPlayer("nonAdmin2"));
-		MockStendhalRPRuleProcessor.get().addPlayer(PlayerTestHelper.createPlayer("nonAdmin3"));
-		MockStendhalRPRuleProcessor.get().addPlayer(PlayerTestHelper.createPlayer("Admin1"));
-		MockStendhalRPRuleProcessor.get().addPlayer(PlayerTestHelper.createPlayer("bob"));
+		list.add(PlayerTestHelper.createPlayer("nonAdmin1"));
+		list.add(PlayerTestHelper.createPlayer("nonAdmin2"));
+		list.add(PlayerTestHelper.createPlayer("nonAdmin3"));
+		Player player = PlayerTestHelper.createPlayer("Admin1");
+		player.setAdminLevel(1);
+		list.add(player);
+		player = PlayerTestHelper.createPlayer("bob");
+		player.setAdminLevel(10);
+		list.add(player);
 		assertThat(list.size(), is(5));
 
-		StendhalRPRuleProcessor.get().getPlayer("Admin1").setAdminLevel(1);
-		StendhalRPRuleProcessor.get().getPlayer("bob").setAdminLevel(10);
-		
 		Adminfilter af = new Adminfilter();
-		
-		assertTrue(af.passes(StendhalRPRuleProcessor.get().getPlayer("nonAdmin1")));
-		assertTrue(af.passes(StendhalRPRuleProcessor.get().getPlayer("nonAdmin2")));
-		assertTrue(af.passes(StendhalRPRuleProcessor.get().getPlayer("nonAdmin3")));
-		assertFalse(af.passes(StendhalRPRuleProcessor.get().getPlayer("Admin1")));
-		assertFalse(af.passes(StendhalRPRuleProcessor.get().getPlayer("bob")));
-		
-		
-		CollectionFilter<RPObject> cf1 = new CollectionFilter<RPObject>();
-		
-		
+
+		CollectionFilter<Player> cf1 = new CollectionFilter<Player>();
+
 		cf1.addFilterCriteria(new Adminfilter());
 		List<RPObject> result = (List<RPObject>) cf1.filterCopy(list);
 		assertThat(result.size(), is(3));
 		result.remove(1);
 		assertThat(result.size(), is(2));
 		assertThat(list.size(), is(5));
-	
-		
+
 		CollectionFilter<RPObject> cf2 = new CollectionFilter<RPObject>();
-		
-		
+
 		cf2.addFilterCriteria(new NoAdminfilter());
-		 result = (List<RPObject>) cf2.filterCopy(list);
+		result = (List<RPObject>) cf2.filterCopy(list);
 		assertThat(result.size(), is(2));
 		result.remove(1);
 		assertThat(result.size(), is(1));
 		assertThat(list.size(), is(5));
-		
 
 	}
 
@@ -79,7 +66,7 @@ public class CollectionFilterTest {
 		}
 
 	}
-	
+
 	class NoAdminfilter implements FilterCriteria {
 
 		public boolean passes(Object o) {

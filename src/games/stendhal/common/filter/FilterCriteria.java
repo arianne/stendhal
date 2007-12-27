@@ -8,7 +8,7 @@ package games.stendhal.common.filter;
  * @version 1.0
  */
 
-public interface FilterCriteria {
+public interface FilterCriteria<T> {
 
     /**
      * Implement this method to return true, if a given object in the collection
@@ -29,5 +29,5 @@ public interface FilterCriteria {
      * @param o
      * @return
      */
-    public boolean passes(Object o);
+    public boolean passes(T o);
 }

@@ -129,7 +129,7 @@ public class PlayerTestHelper {
 	public static void removePlayer(Player player) {
 		if (player != null) {
 			MockStendlRPWorld.get().remove(player.getID());
-			MockStendhalRPRuleProcessor.get().removePlayer(player);
+			MockStendhalRPRuleProcessor.get().getOnlinePlayers().remove(player);
 		}
 	}
 

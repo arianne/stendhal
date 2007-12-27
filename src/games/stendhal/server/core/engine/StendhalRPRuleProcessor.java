@@ -52,6 +52,7 @@ import marauroa.server.game.rp.IRPRuleProcessor;
 import marauroa.server.game.rp.RPServerManager;
 
 import org.apache.log4j.Logger;
+import org.apache.log4j.helpers.OnlyOnceErrorHandler;
 
 public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
@@ -74,7 +75,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	 */
 	private List<Pair<RPEntity, Entity>> entityToKill;
 
-	protected PlayerList getOnlinePlayers() {
+	public PlayerList getOnlinePlayers() {
 		return onlinePlayers;
 	}
 
@@ -152,9 +153,9 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	}
 
 	/**
-	 * 
-	 * Set the context where the actions are executed. Load/Run optional
-	 * StendhalServerExtension(s) as defined in marauroa.ini file example:
+	 * TODO: adapt comment to current. Set the context where the actions are
+	 * executed. Load/Run optional StendhalServerExtension(s) as defined in
+	 * marauroa.ini file example:
 	 * groovy=games.stendhal.server.scripting.StendhalGroovyRunner
 	 * myservice=games.stendhal.server.MyService
 	 * server_extension=groovy,myservice if no server_extension property is
@@ -249,10 +250,9 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	 * 
 	 * @return A list of all online players
 	 */
-	public Collection<Player> getPlayers() {
-		return getOnlinePlayers().getPlayers();
-	}
-
+	 public Collection<Player> getPlayers() {
+	 return getOnlinePlayers().getPlayers();
+	 }
 	/**
 	 * Finds an online player with a specific name.
 	 * 
@@ -303,7 +303,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 	protected void logNumberOfPlayersOnline() {
 		// We keep the number of players logged.
-		Statistics.getStatistics().set("Players logged", getPlayers().size());
+		Statistics.getStatistics().set("Players logged", getOnlinePlayers().size());
 	}
 
 	protected void handlePlayersRmTexts() {
@@ -331,23 +331,26 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		/*
 		 * TODO: Refactor May be done by the zone itself.
 		 */
-		
-		
-		for (Player player : getPlayers()) {
-			try {
-				player.logic();
-			} catch (Exception e) {
-				logger.error("Error in player logic", e);
+
+		getOnlinePlayers().forAllPlayersExecute(new Task() {
+			public void execute(Player player) {
+
+				try {
+					player.logic();
+				} catch (Exception e) {
+					logger.error("Error in player logic", e);
+				}
 			}
-		}
+
+		});
+
 	}
 
 	protected void handleKilledEntities() {
 		/*
-		 * TODO: Refactor. Entities should care about really dying
-		 * themselves. This is here because there is a split between last
-		 * hit and the moment a entity die so that the last hit is visible
-		 * on client.
+		 * TODO: Refactor. Entities should care about really dying themselves.
+		 * This is here because there is a split between last hit and the moment
+		 * a entity die so that the last hit is visible on client.
 		 */
 		// In order for the last hit to be visible dead happens at two
 		// steps.
@@ -376,7 +379,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 			StringBuffer os = new StringBuffer();
 			os.append("entityToKill: " + entityToKill.size() + "\n");
-			os.append("players: " + getPlayers().size() + "\n");
+			os.append("players: " + getOnlinePlayers().size() + "\n");
 			os.append("playersRmText: " + playersRmText.size() + "\n");
 
 			os.append("objects: " + objects + "\n");
@@ -425,7 +428,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			 */
 			playersRmText.add(player);
 
-			getPlayers().add(player);
+			getOnlinePlayers().add(player);
 
 			/*
 			 * TODO: Hide implementation
@@ -433,7 +436,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			if (!player.isGhost()) {
 				notifyOnlineStatus(true, player.getName());
 			}
-			
+
 			addGameEvent(player.getName(), "login");
 			LoginNotifier.get().onPlayerLoggedIn(player);
 			TutorialNotifier.login(player);
@@ -459,7 +462,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			}
 
 			Player.destroy(player);
-			getPlayers().remove(player);
+			getOnlinePlayers().remove(player);
 
 			addGameEvent(player.getName(), "logout");
 			logger.debug("removed player " + player);
@@ -512,13 +515,29 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	 *            Support message
 	 */
 	public static void sendMessageToSupporters(final String source, final String message) {
-		String text = source + " asks for support to ADMIN: " + message;
-		for (Player p : get().getPlayers()) {
-			if (p.getAdminLevel() >= AdministrationAction.REQUIRED_ADMIN_LEVEL_FOR_SUPPORT) {
-				p.sendPrivateText(text);
-				p.notifyWorldAboutChanges();
+
+		final String text = source + " asks for support to ADMIN: " + message;
+
+		get().getOnlinePlayers().forFilteredPlayersExecute(
+
+		new Task() {
+
+			public void execute(Player player) {
+				player.sendPrivateText(text);
+				player.notifyWorldAboutChanges();
+
 			}
-		}
+
+		},
+
+		new FilterCriteria<Player>() {
+
+			public boolean passes(Player p) {
+				return p.getAdminLevel() >= AdministrationAction.REQUIRED_ADMIN_LEVEL_FOR_SUPPORT;
+
+			}
+
+		});
 	}
 
 	public static int getAmountOfOnlinePlayers() {
@@ -526,35 +545,24 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 	}
 
-	public static Collection< ? extends Player> getPlayers(final int adminLevel) {
-
-		if (adminLevel < AdministrationAction.getLevelForCommand("ghostmode")) {
-
-			CollectionFilter<Player> col = new CollectionFilter<Player>();
-			FilterCriteria fc = new FilterCriteria() {
-
-				public boolean passes(Object o) {
-					return !((Player) o).isGhost();
-				}
-			};
-			col.addFilterCriteria(fc);
-			return col.filterCopy(get().getPlayers());
-		} else {
-			return Collections.unmodifiableCollection(get().getPlayers());
-		}
-	}
-
-	public static void notifyOnlineStatus(boolean isOnline, String name) {
+	public static void notifyOnlineStatus(boolean isOnline, final String name) {
 		if (instance != null) {
 
 			if (isOnline) {
-				for (Player p : instance.getPlayers()) {
-					p.notifyOnline(name);
-				}
+				get().getOnlinePlayers().forAllPlayersExecute(new Task() {
+					public void execute(Player player) {
+						player.notifyOnline(name);
+
+					}
+				});
+
 			} else {
-				for (Player p : instance.getPlayers()) {
-					p.notifyOffline(name);
-				}
+				get().getOnlinePlayers().forAllPlayersExecute(new Task() {
+					public void execute(Player player) {
+						player.notifyOffline(name);
+
+					}
+				});
 			}
 		}
 

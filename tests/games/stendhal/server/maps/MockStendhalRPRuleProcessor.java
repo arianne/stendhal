@@ -24,29 +24,21 @@ public class MockStendhalRPRuleProcessor extends StendhalRPRuleProcessor {
 	}
 
 	/**
-	 * Adds a player object to the list of players
+	 * Adds a player object to the list of players.
 	 *
 	 * @param player Player
 	 */
 	public void addPlayer(Player player) {
-		while (getPlayers().contains(player)){
-			this.onlinePlayers.getPlayers().remove(player);
-			
-		}
-			
+		
+			while (this.getOnlinePlayers().remove(player)) {
+				;
+			}
 		
 			this.onlinePlayers.getPlayers().add(player);
 		
 	}
 
-	/**
-	 * Removes a player from the list of players
-	 * 
-	 * @param player Player
-	 */
-	public void removePlayer(Player player) {
-		getPlayers().remove(player);
-	}
+	
 
 	public void clearPlayers() {
 		onlinePlayers.getPlayers().clear();

@@ -12,8 +12,11 @@
  ***************************************************************************/
 package games.stendhal.server.actions;
 
+import games.stendhal.common.filter.FilterCriteria;
+import games.stendhal.server.actions.admin.AdministrationAction;
 import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.engine.Task;
 import games.stendhal.server.entity.creature.Pet;
 import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.player.Player;
@@ -23,6 +26,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.TreeSet;
 
 import marauroa.common.game.RPAction;
 import static games.stendhal.server.actions.WellKnownActionConstants.*;
@@ -48,31 +52,51 @@ public class PlayersQuery implements ActionListener {
 	}
 
 	public void onWho(Player player, RPAction action) {
-		final Collection< ? extends Player> playerlist = StendhalRPRuleProcessor.getPlayers(player.getAdminLevel());
-		
 		StendhalRPRuleProcessor rules = StendhalRPRuleProcessor.get();
+		final TreeSet<String> treeSet = new TreeSet<String>();
 
-		rules.addGameEvent(player.getName(), _WHO);
+		if (player.getAdminLevel() >= AdministrationAction.getLevelForCommand("ghostmode")) {
+			rules.getOnlinePlayers().forAllPlayersExecute(new Task() {
+				public void execute(Player p) {
+
+					StringBuffer text = new StringBuffer(p.getTitle());
+
+					if (p.isGhost()) {
+						text.append("(!");
+					} else {
+						text.append("(");
+					}
+					text.append(p.getLevel());
+
+					text.append(") ");
+					treeSet.add(text.toString());
+				}
+			});
+
+		} else {
+			rules.getOnlinePlayers().forFilteredPlayersExecute(new Task() {
+				public void execute(Player p) {
+					StringBuffer text = new StringBuffer(p.getTitle());
+					text.append("(");
+
+					text.append(p.getLevel());
+					text.append(") ");
+					treeSet.add(text.toString());
+				}
+			}, new FilterCriteria<Player>() {
+
+				public boolean passes(Player o) {
+					return !o.isGhost();
+				}
+
+			});
+
+		}
 
 		StringBuilder online = new StringBuilder();
-		int amount = playerlist.size();
-
-		online.append(amount + " Players online: ");
-		
-		
-		for (Player p : getSortedPlayers(playerlist)) {
-				String playername = p.getTitle();
-
-				online.append(playername);
-
-				if (p.isGhost()) {
-					online.append("(!");
-				} else {
-					online.append("(");
-				}
-				online.append(p.getLevel());
-				online.append(") ");
-			
+		online.append(treeSet.size() + " Players online: ");
+		for (String text : treeSet) {
+			online.append(text);
 		}
 		player.sendPrivateText(online.toString());
 		player.notifyWorldAboutChanges();
@@ -80,11 +104,13 @@ public class PlayersQuery implements ActionListener {
 
 	/**
 	 * sorts the list of players.
-	 * @param playerlist TODO
+	 * 
+	 * @param playerlist
+	 *            TODO
 	 * 
 	 * @return sorted list of players<
 	 */
-	private List<Player> getSortedPlayers(Collection< ? extends Player> playerlist) {
+	private List<Player> getSortedPlayers(Collection<? extends Player> playerlist) {
 		List<Player> players = new ArrayList<Player>(playerlist);
 		Collections.sort(players, new Comparator<Player>() {
 
