@@ -38,14 +38,11 @@ public class Sentence {
 	 */
 	public void parse(ConversationParser parser) {
 		for(String word; (word=parser.readNextWord())!=null; ) {
-			//TODO merge with getSentenceType() code into a common punctuation trimmer
-			if (word.length() > 0) {
-				char c = word.charAt(word.length()-1);
+			PunctuationParser punct = new PunctuationParser(word);
 
-				if (c == ',') {
-					word = word.substring(0, word.length()-1);
-					//TODO store comma into sentence object
-				}
+			if (punct.getPunctuation() == ',') {
+				//TODO store comma into sentence object
+				word = punct.getText();
 			}
 
 			words.add(new Word(word));

@@ -187,19 +187,21 @@ public class ConversationParser {
 	 * @return
 	 */
 	public static String getSentenceType(String text, Sentence sentence) {
-		if (text.length() > 0) {
-			char c = text.charAt(text.length()-1);
+		PunctuationParser punct = new PunctuationParser(text);
 
-			if (c == '.') {
-				sentence.setType(Sentence.ST_STATEMENT);
-				text = text.substring(0, text.length()-1);
-			} else if (c == '!') {
-				sentence.setType(Sentence.ST_IMPERATIVE);
-				text = text.substring(0, text.length()-1);
-			} else if (c == '?') {
-				sentence.setType(Sentence.ST_QUESTION);
-				text = text.substring(0, text.length()-1);
-			}
+		if (punct.hasPunctuation()) {
+			char c = punct.getPunctuation();
+
+    		if (c == '.') {
+    			sentence.setType(Sentence.ST_STATEMENT);
+    			text = punct.getText();
+    		} else if (c == '!') {
+    			sentence.setType(Sentence.ST_IMPERATIVE);
+    			text = punct.getText();
+    		} else if (c == '?') {
+    			sentence.setType(Sentence.ST_QUESTION);
+    			text = punct.getText();
+    		}
 		}
 
 	    return text;
