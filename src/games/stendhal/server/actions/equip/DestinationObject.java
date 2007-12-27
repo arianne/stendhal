@@ -126,34 +126,13 @@ class DestinationObject extends MoveableObject {
 			}
 
 			// check if someone tried to put an item into itself (maybe
-			// through
-			// various levels of indirection)
+			// through various levels of indirection)
 			if (rpslot.hasAsAncestor(entity)) {
 				logger.warn("tried to put item " + entity.getID()
 						+ " into itself, equip rejected");
 				return false;
 			}
 
-			/*
-			 * TODO: Broken. Marauroa 2.0 improved all the slot handling. TODO:
-			 * XXX: Recode.
-			 */
-			// // not very accurate...the containment level of this slot
-			// int depth = 0;
-			//
-			// // count items in source item (if it is an container)
-			// for (RPSlot sourceSlot : entity.slots()) {
-			// depth += sourceSlot.();
-			// }
-			//
-			// // check the maximum level of contained elements
-			// if ((entity.slots().size() > 0) && (depth >
-			// EquipActionConsts.MAX_CONTAINED_DEPTH)) {
-			// logger.warn("maximum contained depth (is: " + depth + " max: " +
-			// EquipActionConsts.MAX_CONTAINED_DEPTH
-			// + ") reached, equip rejected");
-			// return false;
-			// }
 		} else {
 			logger.debug("entity: " + entity + " zone: " + zone);
 			// check if the destination is free
@@ -199,18 +178,10 @@ class DestinationObject extends MoveableObject {
 	 * add the entity to the world (specified by the action during constuction).
 	 * Note that you should call isValid(), preCheck(..) and checkDistance(..)
 	 * before adding an item to the world
-	 * 
-	 * @return true when the item is added, false otherwise
 	 */
-	public boolean addToWorld(Entity entity, Player player) {
+	public void addToWorld(Entity entity, Player player) {
 		if (parent != null) {
 			// drop the entity into a slot
-			if (parent.getID().equals(entity.getID())) {
-				logger.debug("tried to put an item into itself");
-				// tried to add the item to itself
-				return false;
-			}
-
 			RPSlot rpslot = parent.getSlot(slot);
 
 			// check if the item can be merged with one already in the slot
@@ -263,8 +234,6 @@ class DestinationObject extends MoveableObject {
 			zone.add(entity, player);
 			logger.debug("entity has valid id: " + entity.getID());
 		}
-
-		return true;
 	}
 
 	/**
