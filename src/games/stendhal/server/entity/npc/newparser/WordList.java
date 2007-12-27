@@ -115,15 +115,17 @@ public class WordList {
 	        if (Character.isLowerCase(entry.getType().getTypeString().charAt(0))) {
 		    	entry.setType(new WordType("OBJ"));
 	        	entry.setPlurSing(entry.getType().getTypeString());
-	        } else if (entry.getPlurSing()==null &&
-	        		entry.getType().isObject() &&
-	        		!entry.getType().isName()) {
+	        }
+	        // complete missing plural expressions using the Grammar.plural() function
+	        else if (entry.getPlurSing()==null && entry.getType().isObject()) {
 	        	String plural = Grammar.plural(entry.getNormalized());
 
 	        	// only store single word plurals
 	        	if (plural.indexOf(' ') == -1)
 	        		entry.setPlurSing(plural);
-	        } else if (entry.getPlurSing() != null){
+	        }
+	        // check for sensible plural strings using the Grammar.plural() function
+	        else if (entry.getPlurSing() != null){
 	        	String plural = Grammar.plural(entry.getNormalized());
 
 	        	if (plural.indexOf(' ')==-1 &&
