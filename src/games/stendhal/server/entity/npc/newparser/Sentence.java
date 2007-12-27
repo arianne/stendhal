@@ -1,5 +1,7 @@
 package games.stendhal.server.entity.npc.newparser;
 
+import games.stendhal.common.Grammar;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -522,6 +524,53 @@ public class Sentence {
 			changed = false;
 
 			if (it.hasNext()) {
+    			Word third = it.next();
+
+    			if (it.hasNext()) {
+        			Word first = null;
+        			Word second = third;
+        			third = it.next();
+
+        			// loop over all words of the sentence starting from left
+        			while(it.hasNext()) {
+        				// Now look at three neighbour words.
+        				first = second;
+            			second = third;
+            			third = it.next();
+
+            			// don't merge if the break flag is set
+            			if (first.getBreakFlag() || second.getBreakFlag()) {
+            				continue;
+            			}
+
+            			// merge "... of ..." expressions into one word
+            			if (first.getType().isObject() && second.getNormalized().equals("of") &&
+            					third.getType().isObject()) {
+            				String expr = first.getNormalized() + " of " + third.getNormalized();
+            				String normalizedExpr = Grammar.extractNoun(expr);
+
+            				// see if the expression has been normalised
+            				if (normalizedExpr != expr) {
+                				first.mergeRight(second);
+                				words.remove(second);
+                				third.mergeLeft(first);
+                				words.remove(first);
+                				changed = true;
+                				break;
+            				}
+            			}
+        			}
+    			}
+			}
+		} while(changed);
+
+		// loop until no more simplification can be made
+		do {
+			Iterator<Word> it = words.iterator();
+
+			changed = false;
+
+			if (it.hasNext()) {
     			Word next = it.next();
 
     			// loop over all words of the sentence starting from left
@@ -568,6 +617,6 @@ public class Sentence {
     			}
 			}
 		} while(changed);
-    }
+	}
 
 }
