@@ -706,14 +706,21 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 *            The action.
 	 */
 	public void onAction(final ActionType at) {
-		int id = getEntity().getID().getObjectID();
+		// return prematurely if view has already been released
+		if (entity == null) {
+			Logger.getLogger(Entity2DView.class).error(
+					"View already released - action not processed: " + at);
+			return;
+		}
+
+		int id = entity.getID().getObjectID();
 		RPAction rpaction;
 
 		switch (at) {
 		case LOOK:
 			rpaction = new RPAction();
 			rpaction.put("type", at.toString());
-			getEntity().fillTargetInfo(rpaction);
+			entity.fillTargetInfo(rpaction);
 
 			at.send(rpaction);
 			break;
