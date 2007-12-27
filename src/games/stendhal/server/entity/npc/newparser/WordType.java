@@ -2,10 +2,18 @@ package games.stendhal.server.entity.npc.newparser;
 
 public class WordType {
 
-	String typeString = "";
+	private String typeString = "";
 
 	public WordType(String s) {
 	    typeString = s;
+    }
+
+	public void setTypeString(String typeString) {
+	    this.typeString = typeString;
+    }
+
+	public String getTypeString() {
+	    return typeString;
     }
 
 	/**
@@ -145,4 +153,5 @@ public class WordType {
 	public String toString() {
 		return typeString;
 	}
+
 }

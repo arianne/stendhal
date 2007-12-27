@@ -33,6 +33,7 @@
 #
 
 adios	VER
+ask	VER	=say
 buy	VER
 bye	VER
 close	VER
@@ -61,6 +62,7 @@ look	VER
 love	VER
 made	VER	=make
 make	VER
+may	VER
 ok	VER
 open	VER
 put	VER
@@ -398,6 +400,7 @@ under	PRE
 with	PRE
 
 how	QUE
+if	QUE
 why	QUE
 
 please	IGN

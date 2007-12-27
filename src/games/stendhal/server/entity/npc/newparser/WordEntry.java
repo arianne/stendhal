@@ -9,10 +9,10 @@ import java.io.PrintWriter;
  * @author Martin Fuchs
  */
 public class WordEntry {
-	public String	normalized;	/** normalised word */
-	public WordType	type;		/** word type, e.g. VER, ADJ, NOU, NOU-ANI, ... */
-	public String	plurSing;	/** pluralised word (or singular for entries of type ...-PLU */
-	public Integer	value;		/** numeric value for words of type NUM */
+	private WordType type;		/** word type, e.g. VER, ADJ, OBJ, OBJ-FOO, SUB, SUB-ANI, ... */
+	private String	normalized;	/** normalised word */
+	private String	plurSing;	/** pluralised word (or singular for entries of type ...-PLU */
+	private Integer	value;		/** numeric value for words of type NUM */
 
 	public void print(PrintWriter pw, String key) {
 	    pw.printf("%s\t", key);
@@ -33,4 +33,36 @@ public class WordEntry {
 	    	pw.printf("\t%s", plurSing);
 	    }
 	}
+
+	public void setNormalized(String normalized) {
+	    this.normalized = normalized;
+    }
+
+	public String getNormalized() {
+	    return normalized;
+    }
+
+	public void setType(WordType type) {
+	    this.type = type;
+    }
+
+	public WordType getType() {
+	    return type;
+    }
+
+	public void setPlurSing(String plurSing) {
+	    this.plurSing = plurSing;
+    }
+
+	public String getPlurSing() {
+	    return plurSing;
+    }
+
+	public void setValue(Integer value) {
+	    this.value = value;
+    }
+
+	public Integer getValue() {
+	    return value;
+    }
 }

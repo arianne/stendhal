@@ -76,7 +76,7 @@ public class WordList {
             	comments.add(line);
             } else {
         	    WordEntry entry = new WordEntry();
-        	    entry.normalized = key;
+        	    entry.setNormalized(key);
 
         	    readEntryLine(tk, entry);
             	addLineEntry(entry, key);
@@ -92,44 +92,44 @@ public class WordList {
 	 */
 	private void readEntryLine(StringTokenizer tk, WordEntry entry) {
 	    if (tk.hasMoreTokens()) {
-	    	entry.type = new WordType(tk.nextToken());
+	    	entry.setType(new WordType(tk.nextToken()));
 
 	        if (tk.hasMoreTokens()) {
 	        	String s = tk.nextToken();
 
 	        	if (s.charAt(0) == '=') {
-	        		entry.normalized = s.substring(1);
+	        		entry.setNormalized(s.substring(1));
         			s = tk.hasMoreTokens()? tk.nextToken(): null;
 	        	}
 
 	        	if (s != null) {
-    	        	if (entry.type.isNumeral()) {
-    	        		entry.value = new Integer(s);
+    	        	if (entry.getType().isNumeral()) {
+    	        		entry.setValue(new Integer(s));
     	        	} else {
-    	        		entry.plurSing = s;
+    	        		entry.setPlurSing(s);
     	        	}
 	        	}
 	        }
 
-	        if (Character.isLowerCase(entry.type.typeString.charAt(0))) {
-	        	entry.plurSing = entry.type.typeString;
-	        	entry.type.typeString = "OBJ";
-	        } else if (entry.plurSing==null &&
-	        		entry.type.isObject() &&
-	        		!entry.type.isName()) {
-	        	String plural = Grammar.plural(entry.normalized);
+	        if (Character.isLowerCase(entry.getType().getTypeString().charAt(0))) {
+	        	entry.setPlurSing(entry.getType().getTypeString());
+	        	entry.getType().setTypeString("OBJ");
+	        } else if (entry.getPlurSing()==null &&
+	        		entry.getType().isObject() &&
+	        		!entry.getType().isName()) {
+	        	String plural = Grammar.plural(entry.getNormalized());
 
 	        	// only store single word plurals
 	        	if (plural.indexOf(' ') == -1)
-	        		entry.plurSing = plural;
-	        } else if (entry.plurSing != null){
-	        	String plural = Grammar.plural(entry.normalized);
+	        		entry.setPlurSing(plural);
+	        } else if (entry.getPlurSing() != null){
+	        	String plural = Grammar.plural(entry.getNormalized());
 
 	        	if (plural.indexOf(' ')==-1 &&
-	        		!plural.equals(entry.plurSing) &&
-	        		!Grammar.isSubject(entry.normalized) &&
-	        		!entry.normalized.equals("is") && !entry.normalized.equals("me")) {
-	        		logger.error(String.format("suspicious plural: %s -> %s (%s?)", entry.normalized, entry.plurSing, plural));
+	        		!plural.equals(entry.getPlurSing()) &&
+	        		!Grammar.isSubject(entry.getNormalized()) &&
+	        		!entry.getNormalized().equals("is") && !entry.getNormalized().equals("me")) {
+	        		logger.error(String.format("suspicious plural: %s -> %s (%s?)", entry.getNormalized(), entry.getPlurSing(), plural));
 	        	}
 	        }
 
@@ -149,21 +149,21 @@ public class WordList {
 	    words.put(key.toLowerCase(), entry);
 
 	    // store plural and associate with singular form
-	    if (entry.plurSing!=null && !entry.plurSing.equals(entry.normalized)) {
+	    if (entry.getPlurSing()!=null && !entry.getPlurSing().equals(entry.getNormalized())) {
 	    	WordEntry pluralEntry = new WordEntry();
 
-	    	pluralEntry.normalized = entry.plurSing;
-	    	pluralEntry.type = new WordType(entry.type.typeString + "-PLU");
-	    	pluralEntry.plurSing = entry.normalized;
-	    	pluralEntry.value = entry.value;
+	    	pluralEntry.setNormalized(entry.getPlurSing());
+	    	pluralEntry.setType(new WordType(entry.getType().getTypeString() + "-PLU"));
+	    	pluralEntry.setPlurSing(entry.getNormalized());
+	    	pluralEntry.setValue(entry.getValue());
 
-	    	WordEntry prev = words.put(entry.plurSing.toLowerCase(), pluralEntry);
+	    	WordEntry prev = words.put(entry.getPlurSing().toLowerCase(), pluralEntry);
 
 	    	if (prev != null) {
-	    		logger.debug(String.format("ambiguos plural: %s/%s -> %s", pluralEntry.plurSing, prev.plurSing, entry.plurSing));
+	    		logger.debug(String.format("ambiguos plural: %s/%s -> %s", pluralEntry.getPlurSing(), prev.getPlurSing(), entry.getPlurSing()));
 
-	    		pluralEntry.plurSing = null;
-	    		prev.plurSing = null;
+	    		pluralEntry.setPlurSing(null);
+	    		prev.setPlurSing(null);
 	    	}
 	    }
     }
@@ -232,10 +232,10 @@ public class WordList {
 	    	boolean matches;
 
 	    	if (type == null) {
-	    		matches = w.type==null;
+	    		matches = w.getType()==null;
 	    	} else {
-	    		matches = w.type!=null &&
-	    					w.type.typeString.startsWith(type) && !w.type.isPlural();
+	    		matches = w.getType()!=null &&
+	    					w.getType().getTypeString().startsWith(type) && !w.getType().isPlural();
 	    	}
 
 	    	if (matches) {
@@ -267,12 +267,12 @@ public class WordList {
 		WordEntry w = words.get(word.toLowerCase());
 
 		if (w != null) {
-			if (!w.type.isPlural())
+			if (!w.getType().isPlural())
 				// return the associated singular from the word list
-				return w.plurSing;
+				return w.getPlurSing();
 			else
 				// The word is already in singular form.
-				return w.normalized;
+				return w.getNormalized();
 		} else {
 			// fall back: call Grammar.plural()
 			return Grammar.plural(word);
@@ -288,12 +288,12 @@ public class WordList {
 		WordEntry w = words.get(word.toLowerCase());
 
 		if (w != null) {
-			if (w.type.isPlural())
+			if (w.getType().isPlural())
 				// return the associated singular from the word list
-				return w.plurSing;
+				return w.getPlurSing();
 			else
 				// The word is already in singular form.
-				return w.normalized;
+				return w.getNormalized();
 		} else {
 			// fall back: call Grammar.singular()
 			return Grammar.singular(word);

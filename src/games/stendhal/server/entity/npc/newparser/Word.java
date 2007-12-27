@@ -9,10 +9,12 @@ package games.stendhal.server.entity.npc.newparser;
  * @author Martin Fuchs
  */
 public class Word {
-	public String	original;
-	public WordType	type;
-	public String	normalized;
-	public Integer	amount;
+
+	private String original;
+	private WordType type;
+	private String	normalized;
+	private Integer	amount;
+	private boolean breakFlag = false;
 
 	/**
 	 * create a Word from the given original string
@@ -29,10 +31,8 @@ public class Word {
 	 */
 	public void parseAmount(String s, ConversationParser parser) {
 		try {
-			int n = Integer.parseInt(s);
-
-			type = new WordType("NUM");
-			amount = n;
+			setAmount(new Integer(s));
+			setType(new WordType("NUM"));
 			normalized = amount.toString();
 		} catch(NumberFormatException e) {
 			parser.setError("illegal number format: '" + s + "'");
@@ -44,9 +44,9 @@ public class Word {
 	 * @param other
 	 */
 	public void mergeLeft(final Word other) {
-		original = other.original + ' ' + original;
-		type = type.merge(other.type);
-		amount = mergeAmount(other.amount, amount);
+		original = other.getOriginal() + ' ' + original;
+		setType(getType().merge(other.getType()));
+		setAmount(mergeAmount(other.amount, amount));
 	}
 
 	/**
@@ -54,9 +54,9 @@ public class Word {
 	 * @param other
 	 */
 	public void mergeRight(final Word other) {
-		original = original + ' ' + other.original;
-		type = type.merge(other.type);
-		amount = mergeAmount(amount, other.amount);
+		original = original + ' ' + other.getOriginal();
+		setType(getType().merge(other.getType()));
+		setAmount(mergeAmount(amount, other.amount));
 	}
 
 	/**
@@ -81,16 +81,52 @@ public class Word {
 		}
     }
 
+	public void setAmount(Integer amount) {
+	    this.amount = amount;
+    }
+
 	/**
 	 * return amount as integer value, default to 1
 	 * @return
 	 */
-	int getAmount() {
+	public int getAmount() {
 		return amount!=null? amount: 1;
 	}
 
+	/**
+	 * set flag to separate different sentence parts
+	 */
+	public void setBreakFlag() {
+	    breakFlag = true;	    
+    }
+
+	public String getOriginal() {
+	    return original;
+    }
+
+	public void setType(WordType type) {
+	    this.type = type;
+    }
+
+	public WordType getType() {
+	    return type;
+    }
+
+	public boolean getBreakFlag() {
+	    return breakFlag;	    
+    }
+
 	@Override
 	public String toString() {
-		return normalized!=null? normalized: original;
+		return normalized!=null? normalized: getOriginal();
 	}
+
+	public void setNormalized(String normalized) {
+	    this.normalized = normalized;
+    }
+
+	public String getNormalized() {
+	    return normalized;
+    }
+
 }

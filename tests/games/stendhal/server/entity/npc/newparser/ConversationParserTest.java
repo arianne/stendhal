@@ -108,9 +108,9 @@ public class ConversationParserTest {
 
 		assertEquals("put", sentence.getVerb());
 		assertEquals(1, sentence.getObject(0).getAmount());
-		assertEquals("dish", sentence.getObject(0).normalized);
-		assertEquals("on", sentence.getPreposition(0).normalized);
-		assertEquals("table", sentence.getObject(1).normalized);
+		assertEquals("dish", sentence.getObject(0).getNormalized());
+		assertEquals("on", sentence.getPreposition(0).getNormalized());
+		assertEquals("table", sentence.getObject(1).getNormalized());
 	}
 
 	@Test
@@ -119,19 +119,19 @@ public class ConversationParserTest {
 		assertFalse(sentence.hasError());
 		assertEquals("buy", sentence.getVerb());
 		assertEquals(7, sentence.getObject(0).getAmount());
-		assertEquals("banana", sentence.getObject(0).normalized);
+		assertEquals("banana", sentence.getObject(0).getNormalized());
 
 		sentence = ConversationParser.parse("buy a bottle of wine");
 		assertFalse(sentence.hasError());
 		assertEquals("buy", sentence.getVerb());
 		assertEquals(1, sentence.getObject(0).getAmount());
-		assertEquals("wine", sentence.getObject(0).normalized);
+		assertEquals("wine", sentence.getObject(0).getNormalized());
 
 		sentence = ConversationParser.parse("buy two pairs of trousers");
 		assertFalse(sentence.hasError());
 		assertEquals("buy", sentence.getVerb());
 		assertEquals(2, sentence.getObject(0).getAmount());
-		assertEquals("trouser", sentence.getObject(0).normalized);
+		assertEquals("trouser", sentence.getObject(0).getNormalized());
 	}
 
 	@Test
@@ -140,22 +140,22 @@ public class ConversationParserTest {
 		assertFalse(sentence.hasError());
 		assertEquals("open", sentence.getVerb());
 		assertEquals(1, sentence.getObject(0).getAmount());
-		assertEquals("chest", sentence.getObject(0).normalized);
+		assertEquals("chest", sentence.getObject(0).getNormalized());
 
 		sentence = ConversationParser.parse("please please do me a favour");
 		assertFalse(sentence.hasError());
 		//TODO assertEquals("you", sentence.getSubject());
 		assertEquals("do", sentence.getVerb());
-		assertEquals("i", sentence.getSubject(0).normalized);//TODO getSubject(1)
+		assertEquals("i", sentence.getSubject(0).getNormalized());//TODO getSubject(1)
 		assertEquals(1, sentence.getObject(0).getAmount());
-		assertEquals("favour", sentence.getObject(0).normalized);
+		assertEquals("favour", sentence.getObject(0).getNormalized());
 	}
 
 	@Test
 	public final void testMe() {
 		Sentence sentence = ConversationParser.parse("me");
 		assertFalse(sentence.hasError());
-		assertEquals("i", sentence.getSubject(0).normalized);
+		assertEquals("i", sentence.getSubject(0).getNormalized());
 		assertNull(sentence.getVerb());
 		assertNull(sentence.getSubject(1));
 	}
@@ -164,13 +164,13 @@ public class ConversationParserTest {
 	public final void testTwoSubjects() {
 		Sentence sentence = ConversationParser.parse("i love you");
 		assertFalse(sentence.hasError());
-		assertEquals("i", sentence.getSubject(0).normalized);
+		assertEquals("i", sentence.getSubject(0).getNormalized());
 		assertEquals("love", sentence.getVerb());
-		assertEquals("you", sentence.getSubject(1).normalized);
+		assertEquals("you", sentence.getSubject(1).getNormalized());
 
 		sentence = ConversationParser.parse("give me 4 fishes");
 		assertFalse(sentence.hasError());
-		assertEquals("i", sentence.getSubject(0).normalized);
+		assertEquals("i", sentence.getSubject(0).getNormalized());
 		assertEquals("buy", sentence.getVerb());
 		assertNull(sentence.getSubject(1));
 		assertEquals(4, sentence.getObject(0).getAmount());
@@ -178,7 +178,7 @@ public class ConversationParserTest {
 
 		sentence = ConversationParser.parse("i would like to have an ice");
 		assertFalse(sentence.hasError());
-		assertEquals("i", sentence.getSubject(0).normalized);
+		assertEquals("i", sentence.getSubject(0).getNormalized());
 		assertEquals("buy", sentence.getVerb());
 		assertNull(sentence.getSubject(1));
 		assertEquals(1, sentence.getObject(0).getAmount());
@@ -187,9 +187,9 @@ public class ConversationParserTest {
 
 	@Test
 	public final void testPunctuation() {
-		Sentence sentence = ConversationParser.parse("give me 4 fishes, please");
+		Sentence sentence = ConversationParser.parse("if i may ask, give me 4 fishes, please");
 		assertFalse(sentence.hasError());
-		assertEquals("i", sentence.getSubject(0).normalized);
+		assertEquals("i", sentence.getSubject(0).getNormalized());
 		assertEquals("buy", sentence.getVerb());
 		assertNull(sentence.getSubject(1));
 		assertEquals(4, sentence.getObject(0).getAmount());

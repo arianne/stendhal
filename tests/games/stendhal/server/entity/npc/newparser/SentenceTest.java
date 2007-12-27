@@ -20,7 +20,7 @@ public class SentenceTest {
 		sentence.parse(parser);
 		sentence.classifyWords(parser);
 		assertFalse(sentence.hasError());
-		assertEquals("the/IGN quick/ADJ brown/ADJ-COL fox/SUB-ANI jump/VER over/PRE the/IGN lazy/ADJ dog/SUB-ANI .", sentence.toString());
+		assertEquals("quick/ADJ brown/ADJ-COL fox/SUB-ANI jump/VER over/PRE lazy/ADJ dog/SUB-ANI .", sentence.toString());
 
 		sentence.mergeWords();
 		assertEquals("fox/SUB-ANI-COL jump/VER over/PRE dog/SUB-ANI .", sentence.toString());
@@ -41,14 +41,14 @@ public class SentenceTest {
 		Sentence sentence = ConversationParser.parse("buy banana!");
 		assertFalse(sentence.hasError());
 		assertEquals(Sentence.ST_IMPERATIVE, sentence.getType());
-		assertEquals("buy", sentence.getVerb(0).normalized);
-		assertEquals("banana", sentence.getObject(0).normalized);
+		assertEquals("buy", sentence.getVerb(0).getNormalized());
+		assertEquals("banana", sentence.getObject(0).getNormalized());
 
 		sentence = ConversationParser.parse("do you have a banana for me?");
 		assertFalse(sentence.hasError());
 		assertEquals(Sentence.ST_QUESTION, sentence.getType());
-		assertEquals("have", sentence.getVerb(0).normalized);
-		assertEquals("banana", sentence.getObject(0).normalized);
+		assertEquals("have", sentence.getVerb(0).getNormalized());
+		assertEquals("banana", sentence.getObject(0).getNormalized());
 
 		sentence = ConversationParser.parse("how are you?");
 		assertFalse(sentence.hasError());
@@ -59,9 +59,9 @@ public class SentenceTest {
 		assertFalse(sentence.hasError());
 		assertEquals("this/OBJ is/VER banana/OBJ-FOO .", sentence.toString());
 		assertEquals(Sentence.ST_STATEMENT, sentence.getType());
-		assertEquals("this", sentence.getObject(0).normalized);
-		assertEquals("is", sentence.getVerb(0).normalized);
-		assertEquals("banana", sentence.getObject(1).normalized);
+		assertEquals("this", sentence.getObject(0).getNormalized());
+		assertEquals("is", sentence.getVerb(0).getNormalized());
+		assertEquals("banana", sentence.getObject(1).getNormalized());
 	}
 
 }

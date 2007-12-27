@@ -37,15 +37,27 @@ public class Sentence {
 	 * @param parser
 	 */
 	public void parse(ConversationParser parser) {
-		for(String word; (word=parser.readNextWord())!=null; ) {
-			PunctuationParser punct = new PunctuationParser(word);
+		Word prevWord = null;
 
-			if (punct.getPunctuation() == ',') {
-				//TODO store comma into sentence object
-				word = punct.getText();
+		for(String ws; (ws=parser.readNextWord())!=null; ) {
+			PunctuationParser punct = new PunctuationParser(ws);
+
+			// handle preceding comma characters
+			if (punct.getPrecedingPunctuation().contains(",")) {
+				if (prevWord != null) {
+					prevWord.setBreakFlag();
+				}
 			}
 
-			words.add(new Word(word));
+			Word word = new Word(punct.getText());
+			words.add(word);
+
+			// handle trailing comma characters
+			if (punct.getTrailingPunctuation().contains(",")) {
+				word.setBreakFlag();
+			}
+
+			prevWord = word;
 		}
     }
 
@@ -59,7 +71,7 @@ public class Sentence {
 		int count = 0;
 
 		for(Word w : words) {
-			if (w.type.typeString.startsWith(typePrefix)) {
+			if (w.getType().getTypeString().startsWith(typePrefix)) {
 				++count;
 			}
 		}
@@ -74,7 +86,7 @@ public class Sentence {
 	 */
 	public Word getWord(int i, String typePrefix) {
 		for(Word w : words) {
-			if (w.type.typeString.startsWith(typePrefix)) {
+			if (w.getType().getTypeString().startsWith(typePrefix)) {
 				if (i == 0) {
 					return w;
 				}
@@ -111,7 +123,7 @@ public class Sentence {
 	 */
 	public String getVerb() {
 		if (getVerbCount() == 1) {
-			return getVerb(0).normalized;
+			return getVerb(0).getNormalized();
 		} else {
 			return null;
 		}
@@ -142,7 +154,7 @@ public class Sentence {
 	 */
 	public String getSubjectName() {
 		if (getSubjectCount() == 1) {
-			return getSubject(0).normalized;
+			return getSubject(0).getNormalized();
 		} else {
 			return null;
 		}
@@ -173,7 +185,7 @@ public class Sentence {
 	 */
 	public String getObjectName() {
 		if (getObjectCount() == 1) {
-			return getObject(0).normalized;
+			return getObject(0).getNormalized();
 		} else {
 			return null;
 		}
@@ -194,7 +206,7 @@ public class Sentence {
 		if (object != null) {
 			// Here we use 'original' instead of 'normalized'
 			// to handle item names concatenated by underscores.
-			return object.original.toLowerCase().replace(' ', '_');
+			return object.getOriginal().toLowerCase().replace(' ', '_');
 		} else {
 			return null;
 		}
@@ -274,7 +286,7 @@ public class Sentence {
 		SentenceBuilder builder = new SentenceBuilder();
 
 		for(Word w : words) {
-			builder.append(w.original);
+			builder.append(w.getOriginal());
 		}
 
 		return builder.toString();
@@ -290,7 +302,9 @@ public class Sentence {
 		SentenceBuilder builder = new SentenceBuilder();
 
 		for(Word w : words) {
-			builder.append(w.normalized + "/" + w.type.typeString);
+			if (!w.getType().isIgnore()) {
+				builder.append(w.getNormalized() + "/" + w.getType().getTypeString());
+			}
 		}
 
 		if (sentenceType == ST_STATEMENT)
@@ -311,45 +325,48 @@ public class Sentence {
 		WordList wl = WordList.getInstance();
 
 	    for(Word w : words) {
-	    	WordEntry entry = wl.find(w.original);
+	    	String original = w.getOriginal();
+
+	    	WordEntry entry = wl.find(original);
 
 	    	if (entry != null) {
-	    		w.type = entry.type;
+	    		w.setType(entry.getType());
 
-	    		if (entry.type.isNumeral()) {
+	    		if (entry.getType().isNumeral()) {
 	    			// evaluate numeric expressions
-	    			w.amount = entry.value;
-	    			w.normalized = w.amount.toString();
-	    		} else if (entry.type.isPlural()) {
+	    			w.setAmount(entry.getValue());
+	    			w.setNormalized(Integer.toString(w.getAmount()));
+	    		} else if (entry.getType().isPlural()) {
 	    			// normalise to the singular form
-	    			w.normalized = entry.plurSing;
+	    			w.setNormalized(entry.getPlurSing());
 	    		} else {
-	    			w.normalized = entry.normalized;
+	    			w.setNormalized(entry.getNormalized());
 	    		}
 	    	} else {
 	    		// handle numeric expressions
-    			if (w.original.matches("^[+-]?[0-9]+")) {
-    				w.parseAmount(w.original, parser);
+    			if (original.matches("^[+-]?[0-9]+")) {
+    				w.parseAmount(original, parser);
+    				int amount = w.getAmount();
 
-    				if (w.amount < 0) {
-    					parser.setError("negative amount: " + w.amount);
+    				if (amount < 0) {
+    					parser.setError("negative amount: " + amount);
     				}
     			}
 	    	}
 
 	    	// handle unknown words
-	    	if (w.type == null) {
+	    	if (w.getType() == null) {
 	    		// recognise declined verbs
-	    		WordEntry verb = wl.normalizeVerb(w.original);
+	    		WordEntry verb = wl.normalizeVerb(original);
 
 	    		if (verb != null) {
-	    			w.type = verb.type;
-	    			w.normalized = verb.normalized;
+	    			w.setType(verb.getType());
+	    			w.setNormalized(verb.getNormalized());
 	    		} else {
-    	    		parser.setError("unknown word: " + w.original);
+    	    		parser.setError("unknown word: " + original);
 
-    	    		w.type = new WordType("");
-    	    		w.normalized = w.original.toLowerCase();
+    	    		w.setType(new WordType(""));
+    	    		w.setNormalized(original.toLowerCase());
 	    		}
 	    	}
 	    }
@@ -370,7 +387,7 @@ public class Sentence {
 
     		// [you] give me(i) -> [I] buy
     		// Note: The second subject "me" is replaced by "i" in WordList.
-    		if (subject1.normalized.equals("you") && subject2.normalized.equals("i")) {
+    		if (subject1.getNormalized().equals("you") && subject2.getNormalized().equals("i")) {
     			if (getVerb().equals("give")) {
        			/*TODO manipulate word list
     				subject1	= "i";
@@ -391,7 +408,7 @@ public class Sentence {
 		if (it.hasNext()) {
 			Word word = it.next();
 
-			while(word.type.isQuestion() && it.hasNext()) {
+			while(word.getType().isQuestion() && it.hasNext()) {
 				word = it.next();
 
 				if (type == ST_UNDEFINED)
@@ -400,12 +417,12 @@ public class Sentence {
 
 			if (it.hasNext()) {
     			// handle questions beginning with "is"/"are"
-    			if (word.normalized.equals("is")) {
+    			if (word.getNormalized().equals("is")) {
     				if (type == ST_UNDEFINED)
     					type = ST_QUESTION;
     			}
     			// handle questions beginning with "do"
-    			else if (word.normalized.equals("do")) {
+    			else if (word.getNormalized().equals("do")) {
     				if (type == ST_UNDEFINED)
     					type = ST_QUESTION;
 
@@ -447,31 +464,36 @@ public class Sentence {
         			Word word = next;
         			next = it.next();
 
+        			// don't merge if the break flag is set
+        			if (word.getBreakFlag()) {
+        				continue;
+        			}
+
         			// left-merge nouns with preceding adjectives or amounts and composite nouns
-        			if ((word.type.isAdjective() || word.type.isNumeral() || word.type.isObject()) &&
-        					(next.type.isObject() || next.type.isSubject())) {
+        			if ((word.getType().isAdjective() || word.getType().isNumeral() || word.getType().isObject()) &&
+        					(next.getType().isObject() || next.getType().isSubject())) {
         				next.mergeLeft(word);
         				words.remove(word);
         				changed = true;
         				break;
         			}
         			// right-merge consecutive words of the same main type
-        			else if (word.type.getMainType().equals(next.type.getMainType())) {
+        			else if (word.getType().getMainType().equals(next.getType().getMainType())) {
         				word.mergeRight(next);
         				words.remove(next);
         				changed = true;
         				break;
         			}
         			// left-merge question words with following verbs and adjectives
-        			else if (word.type.isQuestion() &&
-        					(next.type.isVerb() || next.type.isAdjective())) {
+        			else if (word.getType().isQuestion() &&
+        					(next.getType().isVerb() || next.getType().isAdjective())) {
         				next.mergeLeft(word);
         				words.remove(word);
         				changed = true;
         				break;
         			}
         			// left-merge words to ignore
-        			else if (word.type.isIgnore()) {
+        			else if (word.getType().isIgnore()) {
         				next.mergeLeft(word);
         				words.remove(word);
         				changed = true;

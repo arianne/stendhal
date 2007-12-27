@@ -182,6 +182,7 @@ public class ConversationParser {
 
 	/**
 	 * evaluate sentence type by looking at the trailing punctuation character
+	 *
 	 * @param text
 	 * @param sentence
 	 * @return
@@ -189,19 +190,17 @@ public class ConversationParser {
 	public static String getSentenceType(String text, Sentence sentence) {
 		PunctuationParser punct = new PunctuationParser(text);
 
-		if (punct.hasPunctuation()) {
-			char c = punct.getPunctuation();
+		String trailing = punct.getTrailingPunctuation();
 
-    		if (c == '.') {
-    			sentence.setType(Sentence.ST_STATEMENT);
-    			text = punct.getText();
-    		} else if (c == '!') {
-    			sentence.setType(Sentence.ST_IMPERATIVE);
-    			text = punct.getText();
-    		} else if (c == '?') {
-    			sentence.setType(Sentence.ST_QUESTION);
-    			text = punct.getText();
-    		}
+		if (trailing.contains("!")) {
+			sentence.setType(Sentence.ST_IMPERATIVE);
+			text = punct.getText();
+		} else if (trailing.contains("?")) {
+			sentence.setType(Sentence.ST_QUESTION);
+			text = punct.getText();
+		} else if (trailing.contains(".")) {
+			sentence.setType(Sentence.ST_STATEMENT);
+			text = punct.getText();
 		}
 
 	    return text;

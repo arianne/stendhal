@@ -1,40 +1,54 @@
 package games.stendhal.server.entity.npc.newparser;
 
 /**
- * As Java is unable to return more than one value from
- * a function, we need this class to return punctuation and
- * the left sentence string.
- * 
+ * PunctuationParser is used to trim preceding and trailing
+ * punctuation characters from a string.
+ *
  * @author Martin Fuchs
  */
 public class PunctuationParser {
 
 	private String	text;
-	private char	punctuation;
+
+	private String	preceding = "";
+	private String	trailing = "";
 
 	public PunctuationParser(String s) {
 		text = s;
-		punctuation = '\0';
 
-		if (s.length() > 0) {
-			char c = s.charAt(s.length()-1);
+		while(text.length() > 0) {
+			char c = text.charAt(0);
 
-			if (!Character.isLetterOrDigit(s.charAt(s.length()-1))) {
-				punctuation = c;
-				text = s.substring(0, s.length()-1);
+			if (c=='.' || c==',' || c=='!' || c=='?') {
+				preceding += c;
+				text = text.substring(1);
+			} else {
+				break;
+			}
+		}
+
+		while(text.length() > 0) {
+			char c = text.charAt(text.length()-1);
+
+			if (c=='.' || c==',' || c=='!' || c=='?') {
+				trailing += c;
+				text = text.substring(0, text.length()-1);
+			} else {
+				break;
 			}
 		}
 	}
 
-	public boolean hasPunctuation() {
-		return punctuation != '\0';
-	}
+	public String getPrecedingPunctuation() {
+	    return preceding;
+    }
 
-	public char getPunctuation() {
-	    return punctuation;
+	public String getTrailingPunctuation() {
+	    return trailing;
     }
 
 	public String getText() {
 	    return text;
     }
+
 }
