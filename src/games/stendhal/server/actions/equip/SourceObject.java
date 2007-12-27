@@ -155,10 +155,13 @@ class SourceObject extends MoveableObject {
 			return false;
 		}
 
+		String[] srcInfo = getLogInfo();
 		Entity entity = removeFromWorld(player);
 		logger.debug("item removed");
 		dest.addToWorld(entity, player);
 		logger.debug("item readded");
+	
+		ItemLogger.equipAction(player, item, srcInfo, dest.getLogInfo());
 
 		return true;
 	}
@@ -259,7 +262,7 @@ class SourceObject extends MoveableObject {
 
 	@Override
     public String[] getLogInfo() {
-	    String[] res = new String[2];
+	    String[] res = new String[3];
 	    if (parent != null) {
 	    	res[0] = "slot";
 	    	if (parent.has("name")) {
