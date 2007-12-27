@@ -19,7 +19,7 @@ public class ConversationParserTest {
 		Sentence sentence = ConversationParser.parse("buy 3 cookies");
 		assertFalse(sentence.hasError());
 
-		assertEquals("buy", sentence.getVerb());
+		assertEquals("buy", sentence.getVerbString());
 		assertEquals("buy", sentence.getTrigger());
 		assertEquals(3, sentence.getObject(0).getAmount());
 		assertEquals("cookie", sentence.getObjectName());
@@ -30,7 +30,7 @@ public class ConversationParserTest {
 		Sentence sentence = ConversationParser.parse("eat four cookies");
 		assertFalse(sentence.hasError());
 
-		assertEquals("eat", sentence.getVerb());
+		assertEquals("eat", sentence.getVerbString());
 		assertEquals(4, sentence.getObject(0).getAmount());
 		assertEquals("cookie", sentence.getObjectName());
 	}
@@ -40,7 +40,7 @@ public class ConversationParserTest {
 		Sentence sentence = ConversationParser.parse("buy Bread");
 		assertFalse(sentence.hasError());
 
-		assertEquals("buy", sentence.getVerb());
+		assertEquals("buy", sentence.getVerbString());
 		assertEquals(1, sentence.getObject(0).getAmount());
 		assertEquals("bread", sentence.getObjectName());
 		assertEquals("bread", sentence.getItemName());
@@ -51,14 +51,14 @@ public class ConversationParserTest {
 	public final void testSpaceHandling() {
 		Sentence sentence = ConversationParser.parse("drop  three \tchicken");
 		assertFalse(sentence.hasError());
-		assertEquals("drop", sentence.getVerb());
+		assertEquals("drop", sentence.getVerbString());
 		assertEquals(3, sentence.getObject(0).getAmount());
 		assertEquals("chicken", sentence.getObjectName());
 		assertEquals("drop three chicken", sentence.getOriginalText());
 
 		sentence = ConversationParser.parse(" sell house   ");
 		assertFalse(sentence.hasError());
-		assertEquals("sell", sentence.getVerb());
+		assertEquals("sell", sentence.getVerbString());
 		assertEquals(1, sentence.getObject(0).getAmount());
 		assertEquals("house", sentence.getObjectName());
 		assertEquals("house", sentence.getItemName());
@@ -68,11 +68,11 @@ public class ConversationParserTest {
 	public final void testItemName() {
 		Sentence sentence = ConversationParser.parse("buy fresh_fish");
 		assertFalse(sentence.hasError());
-		assertEquals("buy", sentence.getVerb());
+		assertEquals("buy", sentence.getVerbString());
 		assertEquals("fresh_fish", sentence.getItemName());
 
 		sentence = ConversationParser.parse("buy fresh fish");
-		assertEquals("buy", sentence.getVerb());
+		assertEquals("buy", sentence.getVerbString());
 		assertEquals("fish", sentence.getObjectName());
 		assertEquals("fresh_fish", sentence.getItemName());
 	}
@@ -107,7 +107,7 @@ public class ConversationParserTest {
 		Sentence sentence = ConversationParser.parse("put dish on table");
 		assertFalse(sentence.hasError());
 
-		assertEquals("put", sentence.getVerb());
+		assertEquals("put", sentence.getVerbString());
 		assertEquals(1, sentence.getObject(0).getAmount());
 		assertEquals("dish", sentence.getObject(0).getNormalized());
 		assertEquals("on", sentence.getPreposition(0).getNormalized());
@@ -118,19 +118,19 @@ public class ConversationParserTest {
 	public final void testPluralAndPrefix() {
 		Sentence sentence = ConversationParser.parse("buy seven bananas");
 		assertFalse(sentence.hasError());
-		assertEquals("buy", sentence.getVerb());
+		assertEquals("buy", sentence.getVerbString());
 		assertEquals(7, sentence.getObject(0).getAmount());
 		assertEquals("banana", sentence.getObject(0).getNormalized());
 
 		sentence = ConversationParser.parse("buy a bottle of wine");
 		assertFalse(sentence.hasError());
-		assertEquals("buy", sentence.getVerb());
+		assertEquals("buy", sentence.getVerbString());
 		assertEquals(1, sentence.getObject(0).getAmount());
 		assertEquals("wine", sentence.getObject(0).getNormalized());
 
 		sentence = ConversationParser.parse("buy two pairs of trousers");
 		assertFalse(sentence.hasError());
-		assertEquals("buy", sentence.getVerb());
+		assertEquals("buy", sentence.getVerbString());
 		assertEquals(2, sentence.getObject(0).getAmount());
 		assertEquals("trouser", sentence.getObject(0).getNormalized());
 	}
@@ -139,14 +139,14 @@ public class ConversationParserTest {
 	public final void testPlease() {
 		Sentence sentence = ConversationParser.parse("please open chest");
 		assertFalse(sentence.hasError());
-		assertEquals("open", sentence.getVerb());
+		assertEquals("open", sentence.getVerbString());
 		assertEquals(1, sentence.getObject(0).getAmount());
 		assertEquals("chest", sentence.getObject(0).getNormalized());
 
 		sentence = ConversationParser.parse("please please do me a favour");
 		assertFalse(sentence.hasError());
 		//TODO assertEquals("you", sentence.getSubject());
-		assertEquals("do", sentence.getVerb());
+		assertEquals("do", sentence.getVerbString());
 		assertEquals("i", sentence.getSubject(0).getNormalized());//TODO getSubject(1)
 		assertEquals(1, sentence.getObject(0).getAmount());
 		assertEquals("favour", sentence.getObject(0).getNormalized());
@@ -157,7 +157,7 @@ public class ConversationParserTest {
 		Sentence sentence = ConversationParser.parse("me");
 		assertFalse(sentence.hasError());
 		assertEquals("i", sentence.getSubject(0).getNormalized());
-		assertNull(sentence.getVerb());
+		assertNull(sentence.getVerbString());
 		assertNull(sentence.getSubject(1));
 	}
 
@@ -166,13 +166,13 @@ public class ConversationParserTest {
 		Sentence sentence = ConversationParser.parse("i love you");
 		assertFalse(sentence.hasError());
 		assertEquals("i", sentence.getSubject(0).getNormalized());
-		assertEquals("love", sentence.getVerb());
+		assertEquals("love", sentence.getVerbString());
 		assertEquals("you", sentence.getSubject(1).getNormalized());
 
 		sentence = ConversationParser.parse("give me 4 fishes");
 		assertFalse(sentence.hasError());
 		assertEquals("i", sentence.getSubject(0).getNormalized());
-		assertEquals("buy", sentence.getVerb());
+		assertEquals("buy", sentence.getVerbString());
 		assertNull(sentence.getSubject(1));
 		assertEquals(4, sentence.getObject(0).getAmount());
 		assertEquals("fish", sentence.getObjectName());
@@ -180,7 +180,7 @@ public class ConversationParserTest {
 		sentence = ConversationParser.parse("i would like to have an ice");
 		assertFalse(sentence.hasError());
 		assertEquals("i", sentence.getSubject(0).getNormalized());
-		assertEquals("buy", sentence.getVerb());
+		assertEquals("buy", sentence.getVerbString());
 		assertNull(sentence.getSubject(1));
 		assertEquals(1, sentence.getObject(0).getAmount());
 		assertEquals("ice cream", sentence.getObjectName());
@@ -191,7 +191,7 @@ public class ConversationParserTest {
 		Sentence sentence = ConversationParser.parse("if i may ask, give me 4 fishes, please");
 		assertFalse(sentence.hasError());
 		assertEquals("i", sentence.getSubject(0).getNormalized());
-		assertEquals("buy", sentence.getVerb());
+		assertEquals("buy", sentence.getVerbString());
 		assertNull(sentence.getSubject(1));
 		assertEquals(4, sentence.getObject(0).getAmount());
 		assertEquals("fish", sentence.getObjectName());
