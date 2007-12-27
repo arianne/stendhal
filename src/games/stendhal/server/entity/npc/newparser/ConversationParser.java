@@ -12,8 +12,6 @@ import java.util.StringTokenizer;
 public class ConversationParser {
 
 	private StringTokenizer tokenizer;
-	private StringBuilder original;
-	private String nextWord;
 	private String error;
 
 	/**
@@ -23,10 +21,6 @@ public class ConversationParser {
 	public ConversationParser(final String text) {
 		// initialise a new tokenizer with the given text
 		tokenizer = new StringTokenizer(text!=null? text: "");
-
-		// get first word
-		nextWord = tokenizer.hasMoreTokens()? tokenizer.nextToken(): null;
-		original = nextWord!= null? new StringBuilder(nextWord): new StringBuilder();
 
 		// start with no errors.
 		error = null;
@@ -81,12 +75,6 @@ public class ConversationParser {
 //			String word = parser.peekNextWord();
 //			if (word == null) {
 //				break;
-//			}
-//
-//			if (word.equals("please")) {
-//				// skip to the next word
-//				parser.readNextWord();
-//				continue;
 //			}
 //
 //			//TODO This rule set seems a bit complex - it should be refactored into the Sentence class, if possible.
@@ -160,6 +148,52 @@ public class ConversationParser {
 		return sentence;
 	}
 
+//	/**
+//	 * read in the object of the parsed sentence (e.g. item to be bought)
+//	 * 
+//	 * @return object name in lower case
+//	 */
+//	private String readObjectName() {
+//		String name = null;
+//
+//		// handle object names consisting of more than one word
+//		for (;;) {
+//			if (nextWord == null) {
+//				break;
+//			}
+//
+//			// stop if the next word is a preposition
+//			if (Grammar.isPreposition(nextWord) && !nextWord.equals("of")) {
+//				// TODO directly integrate Grammar.extractNoun() here
+//				break;
+//			}
+//
+//			String word = readNextWord();
+//
+//			// concatenate user specified item names like "baby dragon"
+//			// with spaces to build the internal item names
+//			if (name == null) {
+//				name = word;
+//			} else {
+//				name += " " + word;
+//			}
+//		}
+//
+//		return Grammar.extractNoun(name);
+//	}
+
+	/**
+	 * read the next word from the parsed sentence
+	 * @return word string
+	 */
+	public String readNextWord() {
+		if (tokenizer.hasMoreTokens()) {
+			return tokenizer.nextToken();
+		} else {
+			return null;
+		}
+	}
+
 	/**
 	 * set error flag on parsing problems.
 	 */
@@ -205,105 +239,5 @@ public class ConversationParser {
 
 	    return text;
     }
-
-	public String readNextWord() {
-		String word = nextWord;
-
-		if (word != null) {
-			if (tokenizer.hasMoreTokens()) {
-				nextWord = tokenizer.nextToken();
-				original.append(' ');
-				original.append(nextWord);
-			} else {
-				nextWord = null;
-			}
-
-			return word;
-		} else {
-			return null;
-		}
-	}
-
-//	/**
-//	 * return next word without advancing tokenizer.
-//	 * @return next word
-//	 */
-//	public String peekNextWord() {
-//		if (nextWord != null) {
-//			return nextWord;
-//		} else {
-//			return null;
-//		}
-//	}
-
-//	/**
-//	 * read in a positive amount from the input text.
-//	 * 
-//	 * @return amount
-//	 */
-//	private int readAmount() {
-//		int amount = 1;
-//
-//		// handle numeric expressions
-//		if (nextWord != null) {
-//			if (nextWord.matches("^[+-]?[0-9]+")) {
-//				try {
-//					amount = Integer.parseInt(nextWord);
-//
-//					if (amount < 0) {
-//						setError("negative amount: " + amount);
-//					}
-//
-//					readNextWord();
-//				} catch (NumberFormatException e) {
-//					setError("illegal number format: '" + nextWord + "'");
-//				}
-//			} else {
-//				// handle expressions like "one", "two", ...
-//				Integer number = Grammar.number(nextWord);
-//
-//				if (number != null) {
-//					amount = number.intValue();
-//					readNextWord();
-//				}
-//			}
-//		}
-//
-//		return amount;
-//	}
-
-//	/**
-//	 * read in the object of the parsed sentence (e.g. item to be bought)
-//	 * 
-//	 * @return object name in lower case
-//	 */
-//	private String readObjectName() {
-//		String name = null;
-//
-//		// handle object names consisting of more than one word
-//		for (;;) {
-//			if (nextWord == null) {
-//				break;
-//			}
-//
-//			// stop if the next word is a preposition
-//			if (Grammar.isPreposition(nextWord) && !nextWord.equals("of")) {
-//				// TODO directly integrate Grammar.extractNoun() here
-//				break;
-//			}
-//
-//			String word = readNextWord();
-//
-//			// concatenate user specified item names like "baby dragon"
-//			// with spaces to build the internal item names
-//			if (name == null) {
-//				name = word;
-//			} else {
-//				name += " " + word;
-//			}
-//		}
-//
-//		return Grammar.extractNoun(name);
-//	}
 
 }
