@@ -49,7 +49,7 @@ public class EngineTest {
 
 			@Override
 			public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-				assertEquals("boo", sentence.getVerb());
+				assertEquals("boo", sentence.getTrigger());
 			}
 		};
 		en.add(state, triggers, null, nextState, reply, action);
@@ -72,7 +72,7 @@ public class EngineTest {
 
 			@Override
 			public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
-				assertEquals(triggers, sentence.getVerb());
+				assertEquals(triggers, sentence.getTrigger());
 				return true;
 			}
 		};
@@ -83,7 +83,7 @@ public class EngineTest {
 
 			@Override
 			public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-				assertEquals(triggers, sentence.getVerb());
+				assertEquals(triggers, sentence.getTrigger());
 			}
 		};
 		en.add(state, triggers, cc, nextState, reply, action);

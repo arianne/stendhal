@@ -23,14 +23,6 @@ public class Sentence {
 
 	List<Word> words = new ArrayList<Word>();
 
-	protected void setType(int type) {
-	    this.sentenceType = type;
-    }
-
-	public int getType() {
-	    return sentenceType;
-    }
-
 	/**
 	 * Build sentence by using the given parser object.
 	 * 
@@ -69,6 +61,22 @@ public class Sentence {
     }
 
 	/**
+	 * set sentence type as ST_STATEMENT, ST_IMPERATIVE or ST_QUESTION
+	 * @param type
+	 */
+	protected void setType(int type) {
+	    this.sentenceType = type;
+    }
+
+	/**
+	 * return sentence type
+	 * @return
+	 */
+	public int getType() {
+	    return sentenceType;
+    }
+
+	/**
 	 * count the number of words matching the given type string
 	 * 
 	 * @param typePrefix
@@ -104,6 +112,25 @@ public class Sentence {
 
 		return null;
 	}
+
+	/**
+	 * return trigger string for the FSM engine
+	 * 
+	 * @return trigger string
+	 */
+	public String getTrigger() {
+		Iterator<Word> it = words.iterator();
+
+		while(it.hasNext()) {
+			Word word = it.next();
+
+			if (!word.getType().isIgnore()) {
+				return word.getNormalized();
+			}
+		}
+
+		return "";
+    }
 
 	/**
 	 * Return the number of "VER" Word objects in the sentence.
@@ -404,7 +431,7 @@ public class Sentence {
 			Word subject2 = getSubject(1);
 
     		// [you] give me(i) -> [I] buy
-    		// Note: The second subject "me" is replaced by "i" in WordList.
+    		// Note: The second subject "me" is replaced by "i" in the WordList normalisation.
     		if (subject1.getNormalized().equals("you") && subject2.getNormalized().equals("i")) {
     			if (getVerb().equals("give")) {
        			/*TODO manipulate word list
@@ -433,14 +460,18 @@ public class Sentence {
 					type = ST_QUESTION;
 			}
 
+			Word second = null;
+			Word third = null;
+
 			if (it.hasNext()) {
-				Word second = it.next();
-				Word third = null;
+				second = it.next();
 
 				if (it.hasNext()) {
 					third = it.next();
 				}
+			}
 
+			if (second != null) {
     			// questions beginning with "is"/"are"
     			if (first.getNormalized().equals("is")) {
     				if (type == ST_UNDEFINED)
@@ -453,7 +484,7 @@ public class Sentence {
 
     				words.remove(first);
     			}
-    			// statements beginning with "it is VER-GER"
+    			// statements beginning with "it is <VER-GER>"
     			else if (first.getNormalized().equals("it") &&
     					second.getNormalized().equals("is") &&
     					(third!=null && third.getType().isGerund())) {
@@ -466,7 +497,7 @@ public class Sentence {
 			}
 		}
 
-		if (sentenceType == ST_UNDEFINED) {
+		if (type!=ST_UNDEFINED && sentenceType==ST_UNDEFINED) {
 			sentenceType = type;
 		}
 

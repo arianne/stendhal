@@ -20,6 +20,7 @@ public class ConversationParserTest {
 		assertFalse(sentence.hasError());
 
 		assertEquals("buy", sentence.getVerb());
+		assertEquals("buy", sentence.getTrigger());
 		assertEquals(3, sentence.getObject(0).getAmount());
 		assertEquals("cookie", sentence.getObjectName());
 	}
