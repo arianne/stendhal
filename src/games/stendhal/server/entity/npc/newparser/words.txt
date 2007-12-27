@@ -20,12 +20,14 @@
 #  NOU-FLU		noun, fluid
 #  NOU-PER		person
 #  NOU-PER-NAM	person name
+#  NOU-OBS		obsessional word
 #
 #  ADJ			adjective/adverb
-#  ADJ-COL		color expressions
+#  ADJ-COL		colour expressions
 #
 #  NUM			numeral
 #  PRE			preposition
+#  QUE			question word
 #  IGN			word to ignore
 #
 
@@ -35,26 +37,36 @@ bye	VER
 close	VER
 cya	VER
 do	VER
+does	VER	=do
 drop	VER
 eat	VER
 farewell	VER
+fit	VER
 give	VER
 go	VER
+gone	VER	=go
 greetings	VER
-hallo	VER
+had	VER	=have
+hallo	VER	=hello
+has	VER	=have
+have	VER
 hello	VER
-hi	VER
-hola	VER
+hi	VER	=hello
+hola	VER	=hello
 hold	VER
 is	VER	are
+jump	VER
 look	VER
+made	VER	=make
+make	VER
 ok	VER
 open	VER
 put	VER
 say	VER
 sell	VER
-speak	VER
+speak	VER	=say
 summon	VER
+went	VER	=go
 yes	VER
 
 alga	NOU	algae
@@ -151,6 +163,7 @@ flail	NOU	flails
 flask	NOU	flasks
 flour	NOU	flours
 foot	NOU	feet
+fox	NOU-ANI	foxes
 gargoyle	NOU	gargoyles
 ghost	NOU-PER	ghosts
 giantrat	NOU-ANI	giantrats
@@ -212,6 +225,7 @@ mouse	NOU	mice
 mumak	NOU	mumakil
 mummy	NOU	mummies
 mushroom	NOU-FOO	mushrooms
+my	NOU-OBS	mys
 noose	NOU	nooses
 note	NOU	notes
 nothing	NOU	nothings
@@ -296,12 +310,14 @@ wumpus	NOU-PER	wumpuses
 yclept	NOU	yclepts
 you	NOU-PER	you
 youngster	NOU	youngsters
+your	NOU-OBS	yours
 zombie	NOU-PER	zombies
 
 big	ADJ
 biting	ADJ
 black	ADJ-COL
 blue	ADJ-COL
+brown	ADJ-COL
 deadly	ADJ
 elder	ADJ
 empty	ADJ
@@ -310,10 +326,12 @@ golden	ADJ-COL
 great	ADJ
 greater	ADJ
 green	ADJ-COL
+lazy	ADJ
 leather	ADJ
 marked	ADJ
 minor	ADJ
 old	ADJ
+quick	ADJ
 red	ADJ-COL
 royal	ADJ
 short	ADJ
@@ -363,11 +381,16 @@ twenty	NUM	20
 two	NUM	2
 zero	NUM	0
 
+for	PRE
 of	PRE
 off	PRE
 on	PRE
+over	PRE
 under	PRE
 with	PRE
+
+how	QUE
+why	QUE
 
 please	IGN
 the	IGN

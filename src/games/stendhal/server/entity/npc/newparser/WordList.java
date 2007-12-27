@@ -19,7 +19,7 @@ import org.apache.log4j.Logger;
 
 /**
  * Word list manager
- * Words are categorized by type (noun, verb, adjective, preposition)
+ * Words are categorised by type (noun, verb, adjective, preposition)
  * and optionally sub-types (animals, food, fluids, ...).
  * 
  * @author Martin Fuchs
@@ -70,7 +70,7 @@ public class WordList {
             	comments.add(line);
             } else {
         	    WordEntry entry = new WordEntry();
-        	    entry.word = key;
+        	    entry.normalized = key;
 
         	    readEntryLine(tk, entry);
             	addLineEntry(entry, key);
@@ -85,10 +85,13 @@ public class WordList {
 	        if (tk.hasMoreTokens()) {
 	        	String s = tk.nextToken();
 
-	        	if (entry.type.isNumeral())
+	        	if (s.charAt(0) == '=') {
+	        		entry.normalized = s.substring(1);
+	        	} else if (entry.type.isNumeral()) {
 	        		entry.value = new Integer(s);
-	        	else
+	        	} else {
 	        		entry.plurSing = s;
+	        	}
 	        }
 
 	        if (Character.isLowerCase(entry.type.typeString.charAt(0))) {
@@ -97,19 +100,19 @@ public class WordList {
 	        } else if (entry.plurSing==null &&
 	        		entry.type.isNoun() &&
 	        		!entry.type.isName()) {
-	        	String plural = Grammar.plural(entry.word);
+	        	String plural = Grammar.plural(entry.normalized);
 
 	        	// only store single word plurals
 	        	if (plural.indexOf(' ') == -1)
 	        		entry.plurSing = plural;
 	        } else if (entry.plurSing != null){
-	        	String plural = Grammar.plural(entry.word);
+	        	String plural = Grammar.plural(entry.normalized);
 
 	        	if (plural.indexOf(' ')==-1 &&
 	        		!plural.equals(entry.plurSing) &&
-	        		!Grammar.isSubject(entry.word) &&
-	        		!entry.word.equals("is")) {
-	        		logger.error(String.format("suspicious plural: %s -> %s (%s?)", entry.word, entry.plurSing, plural));
+	        		!Grammar.isSubject(entry.normalized) &&
+	        		!entry.normalized.equals("is") && !entry.normalized.equals("me")) {
+	        		logger.error(String.format("suspicious plural: %s -> %s (%s?)", entry.normalized, entry.plurSing, plural));
 	        	}
 	        }
 
@@ -123,12 +126,12 @@ public class WordList {
 	    words.put(key.toLowerCase(), entry);
 
 	    // store plural and associate with singular form
-	    if (entry.plurSing!=null && !entry.plurSing.equals(entry.word)) {
+	    if (entry.plurSing!=null && !entry.plurSing.equals(entry.normalized)) {
 	    	WordEntry pluralEntry = new WordEntry();
 
-	    	pluralEntry.word = entry.plurSing;
+	    	pluralEntry.normalized = entry.plurSing;
 	    	pluralEntry.type = new WordType(entry.type.typeString + "-PLU");
-	    	pluralEntry.plurSing = entry.word;
+	    	pluralEntry.plurSing = entry.normalized;
 	    	pluralEntry.value = entry.value;
 
 	    	WordEntry prev = words.put(entry.plurSing.toLowerCase(), pluralEntry);
@@ -181,6 +184,9 @@ public class WordList {
 		writer.println();
 		printWordType(writer, "PRE");
 
+   		writer.println();
+		printWordType(writer, "QUE");
+
 		writer.println();
 		printWordType(writer, "IGN");
 
@@ -207,7 +213,8 @@ public class WordList {
 	    	}
 
 	    	if (matches) {
-	    		w.print(writer);
+	    		w.print(writer, word);
+
 	    		writer.println();
 	    	}
 	    }
@@ -226,9 +233,9 @@ public class WordList {
 	}
 
 	/**
-	 * Lookup the singular form of the given word from the word list
+	 * Lookup the plural form of the given word from the word list
 	 * @param word
-	 * @return
+	 * @return plural string
 	 */
 	public String plural(String word) {
 		WordEntry w = words.get(word.toLowerCase());
@@ -239,9 +246,9 @@ public class WordList {
 				return w.plurSing;
 			else
 				// The word is already in singular form.
-				return w.word;
+				return w.normalized;
 		} else {
-			// fallback: call Grammar.plural()
+			// fall back: call Grammar.plural()
 			return Grammar.plural(word);
 		}
     }
@@ -249,7 +256,7 @@ public class WordList {
 	/**
 	 * Lookup the singular form of the given word from the word list
 	 * @param word
-	 * @return
+	 * @return singular string
 	 */
 	public String singular(String word) {
 		WordEntry w = words.get(word.toLowerCase());
@@ -260,10 +267,36 @@ public class WordList {
 				return w.plurSing;
 			else
 				// The word is already in singular form.
-				return w.word;
+				return w.normalized;
 		} else {
-			// fallback: call Grammar.singular()
+			// fall back: call Grammar.singular()
 			return Grammar.singular(word);
 		}
     }
+
+	/**
+	 * Normalise the given verb
+	 * @param word string
+	 * @return WordEntry
+	 */
+	public WordEntry normalizeVerb(String word) {
+		word = word.toLowerCase();
+
+		WordEntry w = words.get(word);
+
+		if (w == null) {
+			String normalized = Grammar.normalizeRegularVerb(word);
+
+			if (normalized != null) {
+				w = words.get(normalized);
+
+				// try and re-append "e" if it was removed by normalizeRegularVerb()
+				if (w==null && word.endsWith("e") && !normalized.endsWith("e")) {
+					w = words.get(normalized + "e");
+				}
+			}
+		}
+
+		return w;
+	}
 }

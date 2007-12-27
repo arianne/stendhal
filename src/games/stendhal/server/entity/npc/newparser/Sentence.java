@@ -1,6 +1,7 @@
 package games.stendhal.server.entity.npc.newparser;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -16,27 +17,40 @@ public class Sentence {
 	public final static int ST_IMPERATIVE	= 2;
 	public final static int ST_QUESTION		= 3;
 
-	private int type = ST_UNDEFINED;
+	private int sentenceType = ST_UNDEFINED;
 
 	private String error = null;
 
 	List<Word> words = new ArrayList<Word>();
 
 	protected void setType(int type) {
-	    this.type = type;
+	    this.sentenceType = type;
     }
 
 	public int getType() {
-	    return type;
+	    return sentenceType;
     }
 
-	protected Word addWord(String s) {
-		Word word = new Word(s);
+	/**
+	 * build sentence by using the given parser object
+	 * 
+	 * @param parser
+	 */
+	public void parse(ConversationParser parser) {
+		for(String word; (word=parser.readNextWord())!=null; ) {
+			//TODO merge with getSentenceType() code into a common punctuation trimmer
+			if (word.length() > 0) {
+				char c = word.charAt(word.length()-1);
 
-		words.add(word);
+				if (c == ',') {
+					word = word.substring(0, word.length()-1);
+					//TODO store comma into sentence object
+				}
+			}
 
-		return word;
-	}
+			words.add(new Word(word));
+		}
+    }
 
 	/**
 	 * return verb of the sentence.
@@ -61,10 +75,11 @@ public class Sentence {
 	 * @return subject in lower case
 	 */
 	public String getSubject() {
+		//TODO
 		SentenceBuilder builder = new SentenceBuilder();
 
 		for(Word w : words) {
-			if (w.type.isNoun()) {
+			if (w.type.isPerson()) {
 				builder.append(w.normalized);
 			}
 		}
@@ -83,12 +98,13 @@ public class Sentence {
 
 	/**
 	 * return amount of objects.
-	 * 
+	 *
 	 * @return amount
 	 */
 	public int getAmount() {
+		//TODO
 		for(Word w : words) {
-			if (w.type.isNumeral()) {
+			if (w.amount != null) {
 				return w.amount;
 			}
 		}
@@ -102,10 +118,11 @@ public class Sentence {
 	 * @return object name in lower case
 	 */
 	public String getObjectName() {
+		//TODO
 		SentenceBuilder builder = new SentenceBuilder();
 
 		for(Word w : words) {
-			if (w.type.isNoun()) {
+			if (w.type.isNoun() && !w.type.isPerson()) {
 				builder.append(w.normalized);
 			}
 		}
@@ -193,7 +210,7 @@ public class Sentence {
 	 * @return empty flag
 	 */
 	public boolean isEmpty() {
-		return type==ST_UNDEFINED && words.isEmpty();
+		return sentenceType==ST_UNDEFINED && words.isEmpty();
 	}
 
 	protected void setError(String error) {
@@ -231,6 +248,13 @@ public class Sentence {
 			builder.append(w.normalized + "/" + w.type.typeString);
 		}
 
+		if (sentenceType == ST_STATEMENT)
+			builder.append(".");
+		else if (sentenceType == ST_IMPERATIVE)
+			builder.append("!");
+		else if (sentenceType == ST_QUESTION)
+			builder.append("?");
+
 		return builder.toString();
 	}
 
@@ -255,7 +279,7 @@ public class Sentence {
 	    			// normalise to the singular form
 	    			w.normalized = entry.plurSing;
 	    		} else {
-	    			w.normalized = entry.word;
+	    			w.normalized = entry.normalized;
 	    		}
 	    	} else {
 	    		// handle numeric expressions
@@ -270,8 +294,16 @@ public class Sentence {
 
 	    	// handle unknown words
 	    	if (w.type == null) {
-	    		w.type = new WordType("");
-	    		w.normalized = w.original.toLowerCase();
+	    		// recognise declined verbs
+	    		WordEntry verb = wl.normalizeVerb(w.original);
+
+	    		if (verb != null) {
+	    			w.type = verb.type;
+	    			w.normalized = verb.normalized;
+	    		} else {
+    	    		w.type = new WordType("");
+    	    		w.normalized = w.original.toLowerCase();
+	    		}
 	    	}
 	    }
     }
@@ -285,21 +317,114 @@ public class Sentence {
 	 * quest writers can specify the conversation syntax on their own.
 	 */
 	public void performaAliasing() {
-		if (words.size() > 2) {
-			String subject1 = getSubject();
-			String subject2 = getSubject2();
-
-    		// [you] give me(i) -> [I] buy
-    		// Note: The second subject "me" is replaced by "i" in ConversationParser.
-    		if (subject1.equals("you") && subject2.equals("i")) {
-    			if (getVerb().equals("give")) {
-       			/*TODO manipulate word list
-    				subject1	= "i";
-    				verb		= "buy";
-    				subject2	= null; */
-    			}
-    		}
-		}
+//		if (words.size() > 2) {
+//			String subject1 = getSubject();
+//			String subject2 = getSubject2();
+//
+//    		// [you] give me(i) -> [I] buy
+//    		// Note: The second subject "me" is replaced by "i" in ConversationParser.
+//    		if (subject1.equals("you") && subject2.equals("i")) {
+//    			if (getVerb().equals("give")) {
+//       			/*TODO manipulate word list
+//    				subject1	= "i";
+//    				verb		= "buy";
+//    				subject2	= null; */
+//    			}
+//    		}
+//		}
 	}
+
+	/**
+	 * evaluate sentence type from word order
+	 */
+	public int evaluateSentenceType() {
+		Iterator<Word> it = words.iterator();
+		int type = ST_UNDEFINED;
+
+		if (it.hasNext()) {
+			Word word = it.next();
+
+			while(word.type.isQuestion() && it.hasNext()) {
+				word = it.next();
+
+				if (type == ST_UNDEFINED)
+					type = ST_QUESTION;
+			}
+
+			if (it.hasNext()) {
+    			// handle questions beginning with "is"/"are"
+    			if (word.normalized.equals("is")) {
+    				if (type == ST_UNDEFINED)
+    					type = ST_QUESTION;
+    			}
+    			// handle questions beginning with "do"
+    			else if (word.normalized.equals("do")) {
+    				if (type == ST_UNDEFINED)
+    					type = ST_QUESTION;
+
+    				words.remove(word);
+    			}
+			}
+		}
+
+		if (sentenceType == ST_UNDEFINED) {
+			sentenceType = type;
+		}
+
+		return type;
+    }
+
+	/**
+	 * merge words to form a simpler sentence structure
+	 */
+	public void mergeWords() {
+		boolean changed;
+
+		do {
+			Iterator<Word> it = words.iterator();
+
+			changed = false;
+
+			if (it.hasNext()) {
+    			Word next = it.next();
+
+    			while(it.hasNext()) {
+        			Word word = next;
+        			next = it.next();
+
+        			// merge-left nouns with preceding adjectives or amounts and composite nouns
+        			if (next.type.isNoun() &&
+        					(word.type.isAdjective() || word.type.isNumeral() || word.type.isNoun())) {
+        				next.mergeLeft(word);
+        				words.remove(word);
+        				changed = true;
+        				break;
+        			}
+        			// merge-right consecutive words of the same main type
+        			else if (word.type.getMainType().equals(next.type.getMainType())) {
+        				word.mergeRight(next);
+        				words.remove(next);
+        				changed = true;
+        				break;
+        			}
+        			// merge-left question words with following verbs and adjectives
+        			else if (word.type.isQuestion() &&
+        					(next.type.isVerb() || next.type.isAdjective())) {
+        				next.mergeLeft(word);
+        				words.remove(word);
+        				changed = true;
+        				break;
+        			}
+        			// merge-left words to ignore
+        			else if (word.type.isIgnore()) {
+        				next.mergeLeft(word);
+        				words.remove(word);
+        				changed = true;
+        				break;
+        			}
+    			}
+			}
+		} while(changed);
+    }
 
 }

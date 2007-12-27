@@ -62,22 +62,16 @@ public class ConversationParser {
 	    // 2.) feed the separated words into the sentence object
 		ConversationParser parser = new ConversationParser(text);
 
-		for(String word; (word=parser.readNextWord())!=null; ) {
-			//TODO merge with getSentenceType() code into a common punctuation trimmer
-			if (word.length() > 0) {
-				char c = word.charAt(word.length()-1);
-
-				if (c == ',') {
-					word = word.substring(0, word.length()-1);
-					//TODO store comma into sentence object
-				}
-			}
-
-			sentence.addWord(word);
-		}
+		sentence.parse(parser);
 
 		// 3.) classify word types and normalise words
 		sentence.classifyWords(parser);
+
+		// 4.) evaluate sentence type from word order
+		sentence.evaluateSentenceType();
+
+		// 5.) merge words to form a simpler sentence structure
+		sentence.mergeWords();
 
 //		String verb = null;
 //		String subject = null;
@@ -192,7 +186,7 @@ public class ConversationParser {
 	 * @param sentence
 	 * @return
 	 */
-	private static String getSentenceType(String text, Sentence sentence) {
+	public static String getSentenceType(String text, Sentence sentence) {
 		if (text.length() > 0) {
 			char c = text.charAt(text.length()-1);
 
@@ -211,7 +205,7 @@ public class ConversationParser {
 	    return text;
     }
 
-	private String readNextWord() {
+	public String readNextWord() {
 		String word = nextWord;
 
 		if (word != null) {
@@ -233,7 +227,7 @@ public class ConversationParser {
 //	 * return next word without advancing tokenizer.
 //	 * @return next word
 //	 */
-//	private String peekNextWord() {
+//	public String peekNextWord() {
 //		if (nextWord != null) {
 //			return nextWord;
 //		} else {

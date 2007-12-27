@@ -16,27 +16,6 @@ import org.junit.Test;
 public class ConversationParserTest {
 
 	@Test
-	public final void testSentenceType() {
-		Sentence sentence = ConversationParser.parse("buy banana!");
-		assertFalse(sentence.hasError());
-		assertEquals(Sentence.ST_IMPERATIVE, sentence.getType());
-		assertEquals("buy", sentence.getVerb());
-//		assertEquals("banana", sentence.getObjectName());
-
-		sentence = ConversationParser.parse("do you have a banana for me?");
-		assertFalse(sentence.hasError());
-		assertEquals(Sentence.ST_QUESTION, sentence.getType());
-//		assertEquals("have", sentence.getVerb());
-//		assertEquals("banana", sentence.getObjectName());
-
-		sentence = ConversationParser.parse("this is a banana.");
-		assertFalse(sentence.hasError());
-		assertEquals(Sentence.ST_STATEMENT, sentence.getType());
-//		assertEquals("is", sentence.getVerb());
-//		assertEquals("banana", sentence.getObjectName());
-	}
-
-	@Test
 	public final void testAmount() {
 		Sentence sentence = ConversationParser.parse("buy 3 cookies");
 		assertFalse(sentence.hasError());
