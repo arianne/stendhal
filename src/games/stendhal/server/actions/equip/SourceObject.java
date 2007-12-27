@@ -1,21 +1,22 @@
 package games.stendhal.server.actions.equip;
 
+import games.stendhal.server.ItemLogger;
 import games.stendhal.server.StendhalRPWorld;
+import games.stendhal.server.events.EquipListener;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.Stackable;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.slot.EntitySlot;
-import games.stendhal.server.events.EquipListener;
 
 import java.util.List;
 
-
-import org.apache.log4j.Logger;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
+
+import org.apache.log4j.Logger;
 
 /**
  * this encapsulates the equip/drop source
@@ -31,7 +32,8 @@ class SourceObject extends MoveableObject {
 	private int quantity;
 
 	/** interprets the given action */
-	// TODO: split this method into parts (and move the checks out of the constructor)
+	// TODO: split this method into parts (and move the checks out of the
+	// constructor)
 	public SourceObject(RPAction action, Player player) {
 		super(player);
 
@@ -42,7 +44,9 @@ class SourceObject extends MoveableObject {
 		}
 
 		// get base item
-		RPObject.ID baseItemId = new RPObject.ID(action.getInt(EquipActionConsts.BASE_ITEM), player.getID().getZoneID());
+		RPObject.ID baseItemId = new RPObject.ID(
+				action.getInt(EquipActionConsts.BASE_ITEM),
+				player.getID().getZoneID());
 		// is the item in a container?
 		if (action.has(EquipActionConsts.BASE_OBJECT)) {
 			// yes, contained
@@ -50,16 +54,19 @@ class SourceObject extends MoveableObject {
 			// remove zone from id (contained items does not have a zone)
 			baseItemId = new RPObject.ID(baseItemId.getObjectID(), "");
 
-			parent = EquipUtil.getEntityFromId(player, action.getInt(EquipActionConsts.BASE_OBJECT));
+			parent = EquipUtil.getEntityFromId(player,
+					action.getInt(EquipActionConsts.BASE_OBJECT));
 
 			if (parent == null) {
 				// Object doesn't exist.
 				return;
 			}
 
-			// TODO: Check that this code is not required because this check is done in PlayerSlot
+			// TODO: Check that this code is not required because this check is
+			// done in PlayerSlot
 			// is the container a player and not the current one?
-			if ((parent instanceof Player) && !parent.getID().equals(player.getID())) {
+			if ((parent instanceof Player)
+					&& !parent.getID().equals(player.getID())) {
 				// trying to remove an item from another player
 				return;
 			}
@@ -69,28 +76,37 @@ class SourceObject extends MoveableObject {
 			// check that this slots exists
 			if (!parent.hasSlot(slot)) {
 				player.sendPrivateText("Source " + slot + " does not exist");
-				logger.error(player.getName() + " tried to use non existing slot " + slot + " of " + parent + " as source. player zone: " + player.getZone() + " object zone: " + parent.getZone());
+				logger.error(player.getName()
+						+ " tried to use non existing slot " + slot + " of "
+						+ parent + " as source. player zone: "
+						+ player.getZone() + " object zone: "
+						+ parent.getZone());
 				return;
 			}
 
 			RPSlot baseSlot = parent.getSlot(slot);
 
 			if (!baseSlot.has(baseItemId)) {
-				logger.warn("Base item(" + parent + ") doesn't containt item(" + baseItemId + ") on given slot("
-				        + slot + ")");
-				player.sendPrivateText("There is no such item in the " + slot + " of " + parent.getDescriptionName(true));
+				logger.warn("Base item(" + parent + ") doesn't containt item("
+						+ baseItemId + ") on given slot(" + slot + ")");
+				player.sendPrivateText("There is no such item in the " + slot
+						+ " of " + parent.getDescriptionName(true));
 				return;
 			}
 
-			if (!(baseSlot instanceof EntitySlot) || (!((EntitySlot) baseSlot).isReachableForTakingThingsOutOfBy(player))) {
+			if (!(baseSlot instanceof EntitySlot)
+					|| (!((EntitySlot) baseSlot).isReachableForTakingThingsOutOfBy(player))) {
 				logger.warn("Unreachable slot");
-				player.sendPrivateText("The " + slot + " of " + parent.getDescriptionName(true) + " is too far away.");
+				player.sendPrivateText("The " + slot + " of "
+						+ parent.getDescriptionName(true) + " is too far away.");
 				return;
 			}
 
 			Entity entity = (Entity) baseSlot.get(baseItemId);
 			if (!(entity instanceof Item)) {
-				player.sendPrivateText("Oh, that " + entity.getDescriptionName(true) + " is not an item and can therefor not be equipped");
+				player.sendPrivateText("Oh, that "
+						+ entity.getDescriptionName(true)
+						+ " is not an item and can therefor not be equipped");
 				return;
 			}
 			item = (Item) entity;
@@ -109,11 +125,13 @@ class SourceObject extends MoveableObject {
 			}
 		}
 
-		if ((item instanceof Stackable) && action.has(EquipActionConsts.QUANTITY)) {
+		if ((item instanceof Stackable)
+				&& action.has(EquipActionConsts.QUANTITY)) {
 			int entityQuantity = ((Stackable) item).getQuantity();
 
 			quantity = action.getInt(EquipActionConsts.QUANTITY);
-			if ((entityQuantity < 1) || (quantity < 1) || (quantity >= entityQuantity)) {
+			if ((entityQuantity < 1) || (quantity < 1)
+					|| (quantity >= entityQuantity)) {
 				quantity = 0; // quantity == 0 performs a regular move
 				// of the entire item
 			}
@@ -124,20 +142,26 @@ class SourceObject extends MoveableObject {
 	public boolean moveTo(DestinationObject dest, Player player) {
 		if (!((EquipListener) item).canBeEquippedIn(dest.slot)) {
 			// give some feedback
-			player.sendPrivateText("You can't carry this " + item.getTitle() + " on your " + dest.slot);
-			logger.warn("tried to equip an entity into disallowed slot: " + item.getClass() + "; equip rejected");
+			player.sendPrivateText("You can't carry this " + item.getTitle()
+					+ " on your " + dest.slot);
+			logger.warn("tried to equip an entity into disallowed slot: "
+					+ item.getClass() + "; equip rejected");
 			return false;
 		}
 
 		if (!dest.isValid() || !dest.preCheck(item, player)) {
-			logger.warn("moveto not possible: " + dest.isValid() + "\t" + dest.preCheck(item, player));
+			logger.warn("moveto not possible: " + dest.isValid() + "\t"
+					+ dest.preCheck(item, player));
 			return false;
 		}
 
-		Entity entity = removeFromWorld();
+		String[] srcInfo = getLogInfo();
+		Entity entity = removeFromWorld(player);
 		logger.debug("item removed");
 		dest.addToWorld(entity, player);
 		logger.debug("item readded");
+	
+		ItemLogger.equipAction(player, item, srcInfo, dest.getLogInfo());
 
 		return true;
 	}
@@ -149,8 +173,7 @@ class SourceObject extends MoveableObject {
 	}
 
 	/**
-	 * returns true when this entity and the other is within the given
-	 * distance
+	 * returns true when this entity and the other is within the given distance
 	 */
 	@Override
 	public boolean checkDistance(Entity other, double distance) {
@@ -165,14 +188,15 @@ class SourceObject extends MoveableObject {
 
 	/**
 	 * removes the entity from the world and returns it (so it may nbe added
-	 * again). In case of splitted StackableItem the only item is reduced and
-	 * a new StackableItem with the splitted off amount is returned.
-	 *
+	 * again). In case of splitted StackableItem the only item is reduced and a
+	 * new StackableItem with the splitted off amount is returned.
+	 * 
 	 * @return Entity to place somewhere else in the world
 	 */
-	public Entity removeFromWorld() {
+	public Entity removeFromWorld(Player player) {
 		if (quantity != 0) {
 			StackableItem newItem = ((StackableItem) item).splitOff(quantity);
+			ItemLogger.splitOff(player, item, newItem, quantity);
 			return newItem;
 		} else {
 			item.removeFromWorld();
@@ -181,13 +205,13 @@ class SourceObject extends MoveableObject {
 	}
 
 	/**
-	 * returns true when the rpobject is one of the classes in
-	 * <i>validClasses</i>
+	 * returns true when the rpobject is one of the classes in <i>validClasses</i>
 	 */
 	public boolean checkClass(List<Class<?>> validClasses) {
 		if (parent != null) {
 			if (!EquipUtil.isCorrectClass(validClasses, parent)) {
-				logger.debug("parent is the wrong class " + parent.getClass().getName());
+				logger.debug("parent is the wrong class "
+						+ parent.getClass().getName());
 				return false;
 			}
 		}
@@ -196,7 +220,7 @@ class SourceObject extends MoveableObject {
 
 	/**
 	 * gets the entity that should be equipped
-	 *
+	 * 
 	 * @return entity
 	 */
 	public Entity getEntity() {
@@ -218,7 +242,7 @@ class SourceObject extends MoveableObject {
 
 	/**
 	 * Checks whether the item is below <b>another</b> player.
-	 *
+	 * 
 	 * @return true, if it cannot be take; false otherwise
 	 */
 	private boolean isItemBelowOtherPlayer() {
@@ -235,5 +259,23 @@ class SourceObject extends MoveableObject {
 		}
 		return false;
 	}
-}
 
+	@Override
+    public String[] getLogInfo() {
+	    String[] res = new String[3];
+	    if (parent != null) {
+	    	res[0] = "slot";
+	    	if (parent.has("name")) {
+	    		res[1] = parent.get("name");
+	    	} else {
+	    		res[1] = parent.getDescriptionName(false);
+	    	}
+	    	res[2] = slot;
+	    } else {
+	    	res[0] = "ground";
+	    	res[1] = item.getZone().getName();
+	    	res[2] = item.getX() + " " + item.getY();
+	    }
+	    return res;
+    }
+}

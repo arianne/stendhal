@@ -14,6 +14,7 @@ package games.stendhal.server.entity.item;
 
 import games.stendhal.common.Grammar;
 import games.stendhal.server.StendhalRPWorld;
+import games.stendhal.server.ItemLogger;
 import games.stendhal.server.entity.PassiveEntity;
 import games.stendhal.server.entity.mapstuff.spawner.PassiveEntityRespawnPoint;
 import games.stendhal.server.entity.player.Player;
@@ -440,6 +441,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 		// remove this object from the zone where it's lying on
 		// the ground
 		if (getZone() != null) {
+			ItemLogger.timeout(this);
 			getZone().remove(getID());
 		}
 	}

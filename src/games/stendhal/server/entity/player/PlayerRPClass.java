@@ -13,6 +13,7 @@
 package games.stendhal.server.entity.player;
 
 import games.stendhal.common.Debug;
+import games.stendhal.server.ItemLogger;
 import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
@@ -516,7 +517,18 @@ class PlayerRPClass {
 	 * @param newSlot
 	 *            new Stendhal specific slot
 	 */
-	private static void loadSlotContent(Player player, RPSlot slot, RPSlot newSlot) {
+	/**
+	 * Loads the items into the slots of the player on login.
+	 * 
+	 * @param player
+	 *            Player
+	 * @param slot
+	 *            original slot
+	 * @param newSlot
+	 *            new Stendhal specific slot
+	 */
+	private static void loadSlotContent(Player player, RPSlot slot,
+			RPSlot newSlot) {
 		StendhalRPWorld world = StendhalRPWorld.get();
 		List<RPObject> objects = new LinkedList<RPObject>();
 		for (RPObject objectInSlot : slot) {
@@ -551,6 +563,7 @@ class PlayerRPClass {
 								+ " on login of " + player.getName()
 								+ " because this item"
 								+ " was removed from items.xml");
+						ItemLogger.destroyOnLogin(player, newSlot, item);
 						continue;
 					}
 
@@ -600,6 +613,10 @@ class PlayerRPClass {
 
 					boundOldItemsToPlayer(player, entity);
 
+					if (item.has("logid")) {
+						entity.put("logid", item.get("logid"));
+					}
+					ItemLogger.loadOnLogin(player, newSlot, entity);
 					newSlot.add(entity);
 				} else {
 					logger.warn("Non-item object found in " + player.getName()
@@ -611,6 +628,7 @@ class PlayerRPClass {
 			}
 		}
 	}
+
 
 	/**
 	 * binds special items to the player.

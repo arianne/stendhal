@@ -1,6 +1,10 @@
 
 Changelog
 ---------
+0.65.1 (server only)
+- fixed a problem with access to chests
+- added additional log to simplify querying of item history
+
 0.65
 - semos city decorated for Christmas!
 - meet santa as he wanders around, get a hat and stocking
