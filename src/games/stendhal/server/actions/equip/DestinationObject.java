@@ -245,4 +245,23 @@ class DestinationObject extends MoveableObject {
 		}
 		return true;
 	}
+
+	@Override
+    public String[] getLogInfo() {
+	    String[] res = new String[3];
+	    if (parent != null) {
+	    	res[0] = "slot";
+	    	if (parent.has("name")) {
+	    		res[1] = parent.get("name");
+	    	} else {
+	    		res[1] = parent.getDescriptionName(false);
+	    	}
+	    	res[2] = slot;
+	    } else {
+	    	res[0] = "ground";
+	    	res[1] = player.getZone().getName();
+	    	res[2] = x + " " + y;
+	    }
+	    return res;
+    }
 }

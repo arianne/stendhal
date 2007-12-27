@@ -10,9 +10,9 @@ import games.stendhal.server.entity.player.Player;
  */
 public abstract class MoveableObject {
 
-	/**
-	 * the slot this item is in or should be placed into
-	 */
+	/** optional, parent item */
+	protected Entity parent;
+	/** the slot this item is in or should be placed into */
 	protected String slot;
 	/** Player to notify about problems */
 	protected final Player player;
@@ -54,4 +54,11 @@ public abstract class MoveableObject {
 	String getSlot() {
 		return slot;
 	}
+
+	/**
+	 * returns log information
+	 *
+	 * @return String[2]
+	 */
+	public abstract String[] getLogInfo();
 }

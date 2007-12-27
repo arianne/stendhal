@@ -44,12 +44,20 @@ public class ItemLogger {
 		log(item, player, "destroy", item.get("name"), getQuantity(item), "on login", slot.getName());
     }
 
+	public static void dropQuest(Player player, Item item) {
+		log(item, player, "destroy", item.get("name"), getQuantity(item), "quest", null);
+    }
+
 	public static void timeout(Item item) {
 		log(item, null, "destroy", item.get("name"), getQuantity(item), "timeout", item.getZone().getID().getID() + " " + item.getX() + " " + item.getY());
     }
 
 	public static void displace(Player player, PassiveEntity item, StendhalRPZone zone, int x, int y) {
 		log(item, player, "ground-to-ground", zone.getID().getID(), item.getX() + " " + item.getY(), zone.getID().getID(), x + " " + y);
+    }
+
+	public static void equipAction(Player player, Item item, String[] sourceInfo, String[] destInfo) {
+	    log(item, player, sourceInfo[0] + "-to-" + destInfo[0], sourceInfo[1], sourceInfo[2], destInfo[1], destInfo[2]);
     }
 
 	public static void merge(Player player, Item oldItem, Item outlivingItem) {
@@ -69,7 +77,8 @@ public class ItemLogger {
 	    log(item, player, "split out", newItem.get(ATTR_LOGID), oldQuantity, outlivingQuantity, newQuantity);
 	    log(newItem, player, "splitted out", item.get(ATTR_LOGID), oldQuantity, newQuantity, outlivingQuantity);
     }
-/*	
+
+	/*
 	create             name         quantity          quest-name / killed creature / summon zone x y / summonat target target-slot quantity / olditem
 	slot-to-slot       source       source-slot       target    target-slot
 	ground-to-slot     zone         x         y       target    target-slot
@@ -81,7 +90,7 @@ public class ItemLogger {
 	merged in          destroyed_id      outliving-quantity   destroyed-quantity       merged-quantity
 	split out          new_id            old-quantity         outliving-quantity       new-quantity
 	splitted out       outliving_id      old-quantity         new-quantity             outliving-quantity
-	
+
 	the last two are redundant pairs to simplify queries
 	 */
 
