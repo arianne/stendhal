@@ -12,11 +12,12 @@
  ***************************************************************************/
 package games.stendhal.server.entity.mapstuff.chest;
 
+import games.stendhal.common.Grammar;
+import games.stendhal.server.events.UseListener;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.PassiveEntity;
 import games.stendhal.server.entity.RPEntity;
-import games.stendhal.server.entity.slot.LootableSlot;
-import games.stendhal.server.events.UseListener;
+import games.stendhal.server.entity.slot.ChestSlot;
 
 import java.util.Iterator;
 
@@ -45,8 +46,9 @@ public class Chest extends Entity implements UseListener {
 
 	/**
 	 * Creates a new chest
-	 *
-	 * @param object RPObject
+	 * 
+	 * @param object
+	 *            RPObject
 	 */
 	public Chest(RPObject object) {
 		super(object);
@@ -54,11 +56,7 @@ public class Chest extends Entity implements UseListener {
 		put("type", "chest");
 
 		if (!hasSlot("content")) {
-			RPSlot slot = new LootableSlot(this);
-
-			//TODO: BUG: Slot capacity is set at the RPClass.
-			// slot.set.setCapacity(4);
-
+			RPSlot slot = new ChestSlot(this);
 			addSlot(slot);
 		}
 
@@ -73,17 +71,20 @@ public class Chest extends Entity implements UseListener {
 		put("type", "chest");
 		open = false;
 
-		RPSlot slot = new LootableSlot(this);
-
-		//TODO: BUG: Slot capacity is set at the RPClass.
-		// slot.set.setCapacity(4);
-
+		RPSlot slot = new ChestSlot(this);
 		addSlot(slot);
 	}
 
+	
+	
 	//
 	// Chest
 	//
+
+	@Override
+    public String getDescriptionName(boolean definite) {
+	    return Grammar.article_noun("chest", definite);
+    }
 
 	@Override
 	public void update() {
@@ -115,7 +116,7 @@ public class Chest extends Entity implements UseListener {
 
 	/**
 	 * Determine if the chest is open.
-	 *
+	 * 
 	 * @return <code>true</code> if the chest is open.
 	 */
 	public boolean isOpen() {
@@ -124,8 +125,9 @@ public class Chest extends Entity implements UseListener {
 
 	/**
 	 * adds an passive entity (like an item) to the chest
-	 *
-	 * @param entity entity to add
+	 * 
+	 * @param entity
+	 *            entity to add
 	 */
 	public void add(PassiveEntity entity) {
 		RPSlot content = getSlot("content");
@@ -139,7 +141,7 @@ public class Chest extends Entity implements UseListener {
 
 	/**
 	 * Returns the content
-	 *
+	 * 
 	 * @return iterator for the content
 	 */
 	public Iterator<RPObject> getContent() {
