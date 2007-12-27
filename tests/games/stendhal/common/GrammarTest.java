@@ -627,4 +627,19 @@ public class GrammarTest {
 		assertFalse(Grammar.isSubject("player"));
 		assertFalse(Grammar.isSubject("kymara"));
 	}
+
+	@Test
+	public void testNormalizeVerbs() {
+		assertNull(Grammar.normalizeRegularVerb("open"));
+		assertEquals("open", Grammar.normalizeRegularVerb("opened"));
+		assertEquals("open", Grammar.normalizeRegularVerb("opens"));
+
+		assertNull(Grammar.normalizeRegularVerb("close"));
+		assertEquals("clos", Grammar.normalizeRegularVerb("closed"));
+		assertEquals("clos", Grammar.normalizeRegularVerb("closes"));
+
+		assertNull(Grammar.normalizeRegularVerb("to fish"));
+		assertEquals("fish", Grammar.normalizeRegularVerb("fished"));
+		assertEquals("fish", Grammar.normalizeRegularVerb("fishes"));
+	}
 }

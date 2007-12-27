@@ -774,15 +774,16 @@ public class Grammar {
 	}
 
 	/**
-	 * Normalise the given regular verb, or
-	 * return null if not applicable.
+	 * Normalise the given regular verb, or return null if not applicable.
+	 * Note: Some words like "close" are returned without the trailing "e"
+	 * character. This is handled in WordList.normalizeVerb().
 	 *
 	 * @param word
 	 * @return normalised string
 	 */
 	public static String normalizeRegularVerb(String word) {
-		if (word.length()>4 && word.endsWith("ed")) {
-			if (word.charAt(word.length()-4) == word.charAt(word.length())-3) {
+		if (word.length()>4 && (word.endsWith("ed") || word.endsWith("es"))) {
+			if (word.charAt(word.length()-4) == word.charAt(word.length()-3)) {
 				return word.substring(0, word.length()-3);
 			} else {
 				return word.substring(0, word.length()-2);
