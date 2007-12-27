@@ -1099,6 +1099,10 @@ public abstract class RPEntity extends GuidedEntity {
 	 * @return true iff dropping the desired amount was successful.
 	 */
 	public boolean drop(String name, int amount) {
+		// first of all we check that this RPEntity has enough of the 
+		// specified item. We need to do this to ensure an atomic transaction
+		// semantic later on because the required amount may be distributed
+		// to several stacks.
 		if (!isEquipped(name, amount)) {
 			return false;
 		}
@@ -1325,25 +1329,6 @@ public abstract class RPEntity extends GuidedEntity {
 			}
 		}
 		return result;
-	}
-
-	public Item dropItemClass(String[] slots, String clazz) {
-		for (String slotName : slots) {
-			RPSlot slot = getSlot(slotName);
-
-			for (RPObject object : slot) {
-				if (object instanceof Item) {
-					Item item = (Item) object;
-					if (item.isOfClass(clazz)) {
-						slot.remove(item.getID());
-						updateItemAtkDef();
-						return item;
-					}
-				}
-			}
-		}
-
-		return null;
 	}
 
 	/**
