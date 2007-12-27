@@ -8,10 +8,11 @@ public class WordType {
 	    typeString = s;
     }
 
-	public void setTypeString(String typeString) {
-	    this.typeString = typeString;
-    }
-
+	/**
+	 * return type string
+	 * Note: There is no setTypeString to make WordType objects unmutable.
+	 * @return
+	 */
 	public String getTypeString() {
 	    return typeString;
     }
@@ -34,6 +35,14 @@ public class WordType {
 	 */
 	public boolean isVerb() {
 	    return typeString.startsWith("VER");
+    }
+
+	/**
+	 * determine if the word is a verb in gerund form
+	 * @return
+	 */
+	public boolean isGerund() {
+	    return typeString.startsWith("VER-GER");
     }
 
 	/**

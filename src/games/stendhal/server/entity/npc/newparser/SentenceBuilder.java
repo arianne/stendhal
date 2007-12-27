@@ -19,6 +19,10 @@ public class SentenceBuilder {
 		space = term;
 	}
 
+	/**
+	 * append string separated by space
+	 * @param s
+	 */
 	public void append(final String s) {
 		if (first) {
 			first = false;
@@ -28,6 +32,14 @@ public class SentenceBuilder {
 
 		builder.append(s);
 	}
+
+	/**
+	 * directly append the given character
+	 * @param c
+	 */
+	public void append(char c) {
+	    builder.append(c);	    
+    }
 
 	@Override
 	public String toString() {

@@ -12,6 +12,7 @@
 # TYPE is one of the following constants:
 #
 #  VER			verb
+#  VER-GER		verb in gerund form
 #
 #  OBJ			object
 #  OBJ-AMO		noun specifying amount
@@ -66,6 +67,7 @@ may	VER
 ok	VER
 open	VER
 put	VER
+rain	VER
 say	VER
 sell	VER
 speak	VER	=say

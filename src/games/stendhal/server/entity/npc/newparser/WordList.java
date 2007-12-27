@@ -111,9 +111,10 @@ public class WordList {
 	        	}
 	        }
 
+	        // Type identifiers are always upper case, so a lower case word must be a plural. 
 	        if (Character.isLowerCase(entry.getType().getTypeString().charAt(0))) {
+		    	entry.setType(new WordType("OBJ"));
 	        	entry.setPlurSing(entry.getType().getTypeString());
-	        	entry.getType().setTypeString("OBJ");
 	        } else if (entry.getPlurSing()==null &&
 	        		entry.getType().isObject() &&
 	        		!entry.getType().isName()) {

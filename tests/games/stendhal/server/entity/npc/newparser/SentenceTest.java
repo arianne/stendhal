@@ -64,4 +64,15 @@ public class SentenceTest {
 		assertEquals("banana", sentence.getObject(1).getNormalized());
 	}
 
+	@Test
+	public final void testEnumerations() {
+		Sentence sentence = ConversationParser.parse("it is raining cats and dogs");
+		assertFalse(sentence.hasError());
+		assertEquals("rain/VER-GER cat/SUB-ANI-PLU, dog/SUB-ANI-PLU .", sentence.toString());
+		assertEquals(Sentence.ST_STATEMENT, sentence.getType());
+		assertEquals("rain", sentence.getVerb(0).getNormalized());
+		assertEquals("cat", sentence.getSubject(0).getNormalized());
+		assertEquals("dog", sentence.getSubject(1).getNormalized());
+	}
+
 }

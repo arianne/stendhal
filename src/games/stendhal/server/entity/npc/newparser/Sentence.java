@@ -40,24 +40,31 @@ public class Sentence {
 		Word prevWord = null;
 
 		for(String ws; (ws=parser.readNextWord())!=null; ) {
-			PunctuationParser punct = new PunctuationParser(ws);
-
-			// handle preceding comma characters
-			if (punct.getPrecedingPunctuation().contains(",")) {
+			// replace "and" by enumerations separated by break flags
+			if (ws.equals("and")) {
 				if (prevWord != null) {
 					prevWord.setBreakFlag();
 				}
+			} else {
+				PunctuationParser punct = new PunctuationParser(ws);
+
+    			// handle preceding comma characters
+    			if (punct.getPrecedingPunctuation().contains(",")) {
+    				if (prevWord != null) {
+    					prevWord.setBreakFlag();
+    				}
+    			}
+
+    			Word word = new Word(punct.getText());
+    			words.add(word);
+
+    			// handle trailing comma characters
+    			if (punct.getTrailingPunctuation().contains(",")) {
+    				word.setBreakFlag();
+    			}
+
+    			prevWord = word;
 			}
-
-			Word word = new Word(punct.getText());
-			words.add(word);
-
-			// handle trailing comma characters
-			if (punct.getTrailingPunctuation().contains(",")) {
-				word.setBreakFlag();
-			}
-
-			prevWord = word;
 		}
     }
 
@@ -305,6 +312,10 @@ public class Sentence {
 			if (!w.getType().isIgnore()) {
 				builder.append(w.getNormalized() + "/" + w.getType().getTypeString());
 			}
+
+			if (w.getBreakFlag()) {
+				builder.append(',');
+			}
 		}
 
 		if (sentenceType == ST_STATEMENT)
@@ -360,7 +371,14 @@ public class Sentence {
 	    		WordEntry verb = wl.normalizeVerb(original);
 
 	    		if (verb != null) {
-	    			w.setType(verb.getType());
+	    			WordType type = verb.getType();
+
+	    			if (original.endsWith("ing")) {
+	    				w.setType(new WordType(type.getTypeString()+"-GER"));
+	    			} else {
+	    				w.setType(type);
+	    			}
+
 	    			w.setNormalized(verb.getNormalized());
 	    		} else {
     	    		parser.setError("unknown word: " + original);
@@ -406,27 +424,44 @@ public class Sentence {
 		int type = ST_UNDEFINED;
 
 		if (it.hasNext()) {
-			Word word = it.next();
+			Word first = it.next();
 
-			while(word.getType().isQuestion() && it.hasNext()) {
-				word = it.next();
+			while(first.getType().isQuestion() && it.hasNext()) {
+				first = it.next();
 
 				if (type == ST_UNDEFINED)
 					type = ST_QUESTION;
 			}
 
 			if (it.hasNext()) {
-    			// handle questions beginning with "is"/"are"
-    			if (word.getNormalized().equals("is")) {
+				Word second = it.next();
+				Word third = null;
+
+				if (it.hasNext()) {
+					third = it.next();
+				}
+
+    			// questions beginning with "is"/"are"
+    			if (first.getNormalized().equals("is")) {
     				if (type == ST_UNDEFINED)
     					type = ST_QUESTION;
     			}
-    			// handle questions beginning with "do"
-    			else if (word.getNormalized().equals("do")) {
+    			// questions beginning with "do"
+    			else if (first.getNormalized().equals("do")) {
     				if (type == ST_UNDEFINED)
     					type = ST_QUESTION;
 
-    				words.remove(word);
+    				words.remove(first);
+    			}
+    			// statements beginning with "it is VER-GER"
+    			else if (first.getNormalized().equals("it") &&
+    					second.getNormalized().equals("is") &&
+    					(third!=null && third.getType().isGerund())) {
+    				if (type == ST_UNDEFINED)
+    					type = ST_STATEMENT;
+
+    				words.remove(first);
+    				words.remove(second);
     			}
 			}
 		}

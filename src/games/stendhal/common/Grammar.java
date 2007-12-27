@@ -790,6 +790,8 @@ public class Grammar {
 			}
 		} else if (word.length()>3 && word.endsWith("s")) {
 			return word.substring(0, word.length()-1);
+		} else if (word.length()>5 && word.endsWith("ing")) {
+			return word.substring(0, word.length()-3);
 		} else {
 			return null;
 		}

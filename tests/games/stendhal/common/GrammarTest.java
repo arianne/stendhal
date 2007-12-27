@@ -633,13 +633,16 @@ public class GrammarTest {
 		assertNull(Grammar.normalizeRegularVerb("open"));
 		assertEquals("open", Grammar.normalizeRegularVerb("opened"));
 		assertEquals("open", Grammar.normalizeRegularVerb("opens"));
+		assertEquals("open", Grammar.normalizeRegularVerb("opening"));
 
 		assertNull(Grammar.normalizeRegularVerb("close"));
 		assertEquals("clos", Grammar.normalizeRegularVerb("closed"));
 		assertEquals("clos", Grammar.normalizeRegularVerb("closes"));
+		assertEquals("clos", Grammar.normalizeRegularVerb("closing"));
 
 		assertNull(Grammar.normalizeRegularVerb("to fish"));
 		assertEquals("fish", Grammar.normalizeRegularVerb("fished"));
 		assertEquals("fish", Grammar.normalizeRegularVerb("fishes"));
+		assertEquals("fish", Grammar.normalizeRegularVerb("fishing"));
 	}
 }
