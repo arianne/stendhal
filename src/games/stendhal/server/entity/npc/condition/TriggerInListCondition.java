@@ -41,7 +41,7 @@ public class TriggerInListCondition extends SpeakerNPC.ChatCondition {
 
 	@Override
 	public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
-		return triggers.contains(sentence.getVerb().trim().toLowerCase());
+		return triggers.contains(sentence.getTrigger().trim().toLowerCase());
 	}
 
 	@Override

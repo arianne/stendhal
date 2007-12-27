@@ -73,7 +73,7 @@ public class Transition {
 	 */
 	public boolean matchesWild(Sentence sentence) {
 		return (state == ConversationStates.ANY)
-				&& trigger.equals(sentence.getVerb());
+				&& trigger.equals(sentence.getTrigger());
 	}
 
 	/**
@@ -86,7 +86,7 @@ public class Transition {
 	 */
 	public boolean matchesWildBeginning(Sentence sentence) {
 		return (state == ConversationStates.ANY)
-				&& sentence.getVerb().startsWith(trigger);
+				&& sentence.getTrigger().startsWith(trigger);
 	}
 
 	/**
@@ -99,7 +99,7 @@ public class Transition {
 	 * @return true if the transition matches, false otherwise
 	 */
 	public boolean matches(int state, Sentence sentence) {
-		return matches(state, sentence.getVerb());
+		return matches(state, sentence.getTrigger());
 	}
 
 	/**
@@ -125,7 +125,7 @@ public class Transition {
 	 * @return true if the transition matches, false otherwise
 	 */
 	public boolean matchesBeginning(int state, Sentence sentence) {
-		return (state == this.state) && sentence.getVerb().startsWith(trigger);
+		return (state == this.state) && sentence.getTrigger().startsWith(trigger);
 	}
 
 	/**

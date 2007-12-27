@@ -41,6 +41,15 @@ public class Sentence {
 	}
 
 	/**
+	 * return the verb as trigger string for the FSM engine.
+	 * 
+	 * @return trigger string
+	 */
+	public String getTrigger() {
+		return verb;
+	}
+
+	/**
 	 * return the second subject of the sentence.
 	 * 
 	 * @return second subject in lower case
