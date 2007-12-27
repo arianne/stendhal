@@ -44,6 +44,10 @@ public class ItemLogger {
 		log(item, player, "destroy", item.get("name"), getQuantity(item), "on login", slot.getName());
     }
 
+	public static void timeout(Item item) {
+		log(item, null, "destroy", item.get("name"), getQuantity(item), "timeout", item.getZone().getID().getID() + " " + item.getX() + " " + item.getY());
+    }
+
 	public static void displace(Player player, PassiveEntity item, StendhalRPZone zone, int x, int y) {
 		log(item, player, "ground-to-ground", zone.getID().getID(), item.getX() + " " + item.getY(), zone.getID().getID(), x + " " + y);
     }

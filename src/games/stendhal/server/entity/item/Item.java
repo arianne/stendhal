@@ -13,6 +13,7 @@
 package games.stendhal.server.entity.item;
 
 import games.stendhal.common.Grammar;
+import games.stendhal.server.core.engine.ItemLogger;
 import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.events.EquipListener;
 import games.stendhal.server.core.events.TurnListener;
@@ -446,6 +447,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 		// the ground
 		if (getZone() != null) {
 			getZone().remove(getID());
+			ItemLogger.timeout(this);
 		}
 	}
 
