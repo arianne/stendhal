@@ -157,7 +157,20 @@ public class Sentence {
 	 * 
 	 * @return normalised verb string
 	 */
-	public String getVerb() {
+	public Word getVerb() {
+		if (getVerbCount() == 1) {
+			return getVerb(0);
+		} else {
+			return null;
+		}
+    }
+
+	/**
+	 * special case for sentences with only one verb
+	 * 
+	 * @return normalised verb string
+	 */
+	public String getVerbString() {
 		if (getVerbCount() == 1) {
 			return getVerb(0).getNormalized();
 		} else {
@@ -428,18 +441,20 @@ public class Sentence {
 	 * quest writers can specify the conversation syntax on their own.
 	 */
 	public void performaAliasing() {
-		if (getSubjectCount() >= 2) {
+		if (sentenceType==ST_IMPERATIVE && getSubjectCount()>=2) {
 			Word subject1 = getSubject(0);
 			Word subject2 = getSubject(1);
+			Word verb = getVerb();
 
     		// [you] give me(i) -> [I] buy
     		// Note: The second subject "me" is replaced by "i" in the WordList normalisation.
     		if (subject1.getNormalized().equals("you") && subject2.getNormalized().equals("i")) {
-    			if (getVerb().equals("give")) {
-       			/*TODO manipulate word list
-    				subject1	= "i";
-    				verb		= "buy";
-    				subject2	= null; */
+    			if (verb!=null && verb.getNormalized().equals("give")) {
+    				// remove the previous subjects and replace the verb with "buy" as first word
+    				words.remove(subject1);
+    				words.remove(subject2);
+    				words.remove(verb);
+    				words.add(0, new Word("buy"));
     			}
     		}
 		}
@@ -510,59 +525,22 @@ public class Sentence {
 	 * merge words to form a simpler sentence structure
 	 */
 	public void mergeWords() {
-		boolean changed;
+
+		// first merge three word expressions of the form "... of ..."
+		mergeThreeWordExpressions();
+
+		// now merge two word expressions from left to right
+		mergeTwoWordExpressions();
+	}
+
+	private void mergeTwoWordExpressions() {
 
 		/* There are two possibilities for word merges:
 		 Left-merging means to prepend the left word before the following one, removing the first one.
 		 Right-merging means to append the eight word to the preceding one, removing the second from
 		 the word list. */
 
-		// loop until no more simplification can be made
-		do {
-			Iterator<Word> it = words.iterator();
-
-			changed = false;
-
-			if (it.hasNext()) {
-    			Word third = it.next();
-
-    			if (it.hasNext()) {
-        			Word first = null;
-        			Word second = third;
-        			third = it.next();
-
-        			// loop over all words of the sentence starting from left
-        			while(it.hasNext()) {
-        				// Now look at three neighbour words.
-        				first = second;
-            			second = third;
-            			third = it.next();
-
-            			// don't merge if the break flag is set
-            			if (first.getBreakFlag() || second.getBreakFlag()) {
-            				continue;
-            			}
-
-            			// merge "... of ..." expressions into one word
-            			if (first.getType().isObject() && second.getNormalized().equals("of") &&
-            					third.getType().isObject()) {
-            				String expr = first.getNormalized() + " of " + third.getNormalized();
-            				String normalizedExpr = Grammar.extractNoun(expr);
-
-            				// see if the expression has been normalised
-            				if (normalizedExpr != expr) {
-                				first.mergeRight(second);
-                				words.remove(second);
-                				third.mergeLeft(first);
-                				words.remove(first);
-                				changed = true;
-                				break;
-            				}
-            			}
-        			}
-    			}
-			}
-		} while(changed);
+		boolean changed;
 
 		// loop until no more simplification can be made
 		do {
@@ -613,6 +591,57 @@ public class Sentence {
         				words.remove(word);
         				changed = true;
         				break;
+        			}
+    			}
+			}
+		} while(changed);
+	}
+
+	private void mergeThreeWordExpressions() {
+		boolean changed;
+
+		// loop until no more simplification can be made
+		do {
+			Iterator<Word> it = words.iterator();
+
+			changed = false;
+
+			if (it.hasNext()) {
+    			Word third = it.next();
+
+    			if (it.hasNext()) {
+        			Word first = null;
+        			Word second = third;
+        			third = it.next();
+
+        			// loop over all words of the sentence starting from left
+        			while(it.hasNext()) {
+        				// Now look at three neighbour words.
+        				first = second;
+            			second = third;
+            			third = it.next();
+
+            			// don't merge if the break flag is set
+            			if (first.getBreakFlag() || second.getBreakFlag()) {
+            				continue;
+            			}
+
+            			// merge "... of ..." expressions into one word
+            			if (first.getType().isObject() && second.getNormalized().equals("of") &&
+            					third.getType().isObject()) {
+            				String expr = first.getNormalized() + " of " + third.getNormalized();
+            				String normalizedExpr = Grammar.extractNoun(expr);
+
+            				// see if the expression has been normalised
+            				if (normalizedExpr != expr) {
+                				first.mergeRight(second);
+                				words.remove(second);
+                				third.mergeLeft(first);
+                				words.remove(first);
+                				changed = true;
+                				break;
+            				}
+            			}
         			}
     			}
 			}

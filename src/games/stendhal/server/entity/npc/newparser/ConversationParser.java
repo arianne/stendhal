@@ -71,12 +71,7 @@ public class ConversationParser {
 //		String subject = null;
 //		String subject2 = null;
 //
-//		for(;;) {
-//			String word = parser.peekNextWord();
-//			if (word == null) {
-//				break;
-//			}
-//
+//		for(String word = parser.peekNextWord(); ; parser.readNextWord()) {
 //			//TODO This rule set seems a bit complex - it should be refactored into the Sentence class, if possible.
 //			if (Grammar.isSubject(word)) {
 //				if (subject == null) {
@@ -117,29 +112,7 @@ public class ConversationParser {
 //			} else {
 //				break;
 //			}
-//
-//			// continue looking for verbs and subjects
-//			parser.readNextWord();
 //		}
-//
-//		if (subject != null) {
-//			sentence.setSubject(subject);
-//		}
-//
-//		if (verb != null) {
-//			sentence.setVerb(verb);
-//		}
-//
-//		if (subject2 != null) {
-//			sentence.setSubject2(subject2);
-//		}
-//
-//		sentence.setAmount(parser.readAmount());
-//		String object = parser.readObjectName();
-//
-//		// Optionally there may be following a preposition and a second object.
-//		sentence.setPreposition(parser.readNextWord());
-//		sentence.setObject2(parser.readObjectName());
 
 		sentence.performaAliasing();
 
@@ -147,40 +120,6 @@ public class ConversationParser {
 
 		return sentence;
 	}
-
-//	/**
-//	 * read in the object of the parsed sentence (e.g. item to be bought)
-//	 * 
-//	 * @return object name in lower case
-//	 */
-//	private String readObjectName() {
-//		String name = null;
-//
-//		// handle object names consisting of more than one word
-//		for (;;) {
-//			if (nextWord == null) {
-//				break;
-//			}
-//
-//			// stop if the next word is a preposition
-//			if (Grammar.isPreposition(nextWord) && !nextWord.equals("of")) {
-//				// TODO directly integrate Grammar.extractNoun() here
-//				break;
-//			}
-//
-//			String word = readNextWord();
-//
-//			// concatenate user specified item names like "baby dragon"
-//			// with spaces to build the internal item names
-//			if (name == null) {
-//				name = word;
-//			} else {
-//				name += " " + word;
-//			}
-//		}
-//
-//		return Grammar.extractNoun(name);
-//	}
 
 	/**
 	 * read the next word from the parsed sentence
