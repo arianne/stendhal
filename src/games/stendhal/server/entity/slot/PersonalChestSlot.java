@@ -10,7 +10,7 @@ import org.apache.log4j.Logger;
  *
  * @author hendrik
  */
-public class PersonalChestSlot extends LootableSlot {
+public class PersonalChestSlot extends ChestSlot {
 	private static Logger logger = Logger.getLogger(PersonalChestSlot.class);
 	private PersonalChest chest;
 

@@ -17,7 +17,7 @@ import games.stendhal.server.core.events.UseListener;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.PassiveEntity;
 import games.stendhal.server.entity.RPEntity;
-import games.stendhal.server.entity.slot.LootableSlot;
+import games.stendhal.server.entity.slot.ChestSlot;
 
 import java.util.Iterator;
 
@@ -56,7 +56,7 @@ public class Chest extends Entity implements UseListener {
 		put("type", "chest");
 
 		if (!hasSlot("content")) {
-			RPSlot slot = new LootableSlot(this);
+			RPSlot slot = new ChestSlot(this);
 			addSlot(slot);
 		}
 
@@ -71,7 +71,7 @@ public class Chest extends Entity implements UseListener {
 		put("type", "chest");
 		open = false;
 
-		RPSlot slot = new LootableSlot(this);
+		RPSlot slot = new ChestSlot(this);
 		addSlot(slot);
 	}
 
