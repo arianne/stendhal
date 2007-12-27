@@ -53,6 +53,12 @@ public class WordList {
 		return instance;
 	}
 
+	/**
+	 * read word list from reader object
+	 *
+	 * @param reader
+	 * @throws IOException
+	 */
 	public void read(BufferedReader reader) throws IOException	{
 		for(;;) {
             String line = reader.readLine();
@@ -78,6 +84,12 @@ public class WordList {
 		}
 	}
 
+	/**
+	 * read one line of the word list and add the new entry
+	 *
+	 * @param tk
+	 * @param entry
+	 */
 	private void readEntryLine(StringTokenizer tk, WordEntry entry) {
 	    if (tk.hasMoreTokens()) {
 	    	entry.type = new WordType(tk.nextToken());
@@ -87,18 +99,23 @@ public class WordList {
 
 	        	if (s.charAt(0) == '=') {
 	        		entry.normalized = s.substring(1);
-	        	} else if (entry.type.isNumeral()) {
-	        		entry.value = new Integer(s);
-	        	} else {
-	        		entry.plurSing = s;
+        			s = tk.hasMoreTokens()? tk.nextToken(): null;
+	        	}
+
+	        	if (s != null) {
+    	        	if (entry.type.isNumeral()) {
+    	        		entry.value = new Integer(s);
+    	        	} else {
+    	        		entry.plurSing = s;
+    	        	}
 	        	}
 	        }
 
 	        if (Character.isLowerCase(entry.type.typeString.charAt(0))) {
 	        	entry.plurSing = entry.type.typeString;
-	        	entry.type.typeString = "NOU";
+	        	entry.type.typeString = "OBJ";
 	        } else if (entry.plurSing==null &&
-	        		entry.type.isNoun() &&
+	        		entry.type.isObject() &&
 	        		!entry.type.isName()) {
 	        	String plural = Grammar.plural(entry.normalized);
 
@@ -122,6 +139,12 @@ public class WordList {
 	    }
     }
 
+	/**
+	 * add one entry to the word list
+	 * 
+	 * @param entry
+	 * @param key
+	 */
 	private void addLineEntry(WordEntry entry, String key) {
 	    words.put(key.toLowerCase(), entry);
 
@@ -173,7 +196,10 @@ public class WordList {
 		printWordType(writer, "VER");
 
    		writer.println();
-		printWordType(writer, "NOU");
+		printWordType(writer, "OBJ");
+
+   		writer.println();
+		printWordType(writer, "SUB");
 
 		writer.println();
 		printWordType(writer, "ADJ");

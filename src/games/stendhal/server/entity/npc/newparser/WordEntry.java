@@ -21,16 +21,16 @@ public class WordEntry {
 	    	pw.print(type);
 	    }
 
-	    if (plurSing != null) {
-	    	pw.printf("\t%s", plurSing);
-	    }
+		if (!normalized.equals(key)) {
+			pw.printf("\t=%s", normalized);
+		}
 
 	    if (value != null) {
 	    	pw.printf("\t%d", value);
 	    }
 
-		if (!normalized.equals(key)) {
-			pw.printf("\t=%s", normalized);
-		}
+	    if (plurSing != null) {
+	    	pw.printf("\t%s", plurSing);
+	    }
 	}
 }

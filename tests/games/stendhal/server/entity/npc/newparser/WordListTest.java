@@ -19,38 +19,38 @@ public class WordListTest {
 
 		WordEntry w = wl.find("house");
 		assertNotNull(w);
-		assertTrue(w.type.isNoun());
-		assertEquals("NOU", w.type.typeString);
+		assertTrue(w.type.isObject());
+		assertEquals("OBJ", w.type.typeString);
 		assertEquals("houses", w.plurSing);
 
 		w = wl.find("man");
 		assertNotNull(w);
-		assertTrue(w.type.isNoun());
-		assertEquals("NOU-PER", w.type.typeString);
+		assertTrue(w.type.isSubject());
+		assertEquals("SUB", w.type.typeString);
 		assertEquals("men", w.plurSing);
 
 		w = wl.find("carrot");
 		assertNotNull(w);
-		assertTrue(w.type.isNoun());
-		assertEquals("NOU-FOO", w.type.typeString);
+		assertTrue(w.type.isObject());
+		assertEquals("OBJ-FOO", w.type.typeString);
 		assertEquals("carrots", w.plurSing);
 
 		w = wl.find("carrots");
 		assertNotNull(w);
-		assertTrue(w.type.isNoun());
-		assertEquals("NOU-FOO-PLU", w.type.typeString);
+		assertTrue(w.type.isObject());
+		assertEquals("OBJ-FOO-PLU", w.type.typeString);
 		assertEquals("carrot", w.plurSing);
 
 		w = wl.find("water");
 		assertNotNull(w);
-		assertTrue(w.type.isNoun());
-		assertEquals("NOU-FLU", w.type.typeString);
+		assertTrue(w.type.isObject());
+		assertEquals("OBJ-FLU", w.type.typeString);
 		assertEquals("waters", w.plurSing);
 
 		w = wl.find("she");
 		assertNotNull(w);
-		assertTrue(w.type.isNoun());
-		assertEquals("NOU-PER", w.type.typeString);
+		assertTrue(w.type.isSubject());
+		assertEquals("SUB", w.type.typeString);
 		assertEquals("they", w.plurSing);
 	}
 

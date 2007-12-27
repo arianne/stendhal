@@ -81,6 +81,14 @@ public class Word {
 		}
     }
 
+	/**
+	 * return amount as integer value, default to 1
+	 * @return
+	 */
+	int getAmount() {
+		return amount!=null? amount: 1;
+	}
+
 	@Override
 	public String toString() {
 		return normalized!=null? normalized: original;

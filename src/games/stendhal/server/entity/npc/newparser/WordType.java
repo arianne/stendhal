@@ -26,22 +26,23 @@ public class WordType {
 	 */
 	public boolean isVerb() {
 	    return typeString.startsWith("VER");
-    } 
+    }
 
 	/**
-	 * determine if the word is a noun
+	 * determine if the word is an object
+	 * (a thing, not a person)
 	 * @return
 	 */
-	public boolean isNoun() {
-	    return typeString.startsWith("NOU");
-    } 
+	public boolean isObject() {
+	    return typeString.startsWith("OBJ");
+    }
 
 	/**
 	 * determine if the word is a person
 	 * @return
 	 */
-	public boolean isPerson() {
-	    return typeString.startsWith("NOU-PER");
+	public boolean isSubject() {
+	    return typeString.startsWith("SUB");
     }
 
 	/**

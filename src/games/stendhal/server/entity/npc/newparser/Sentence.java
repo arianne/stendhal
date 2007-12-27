@@ -32,7 +32,7 @@ public class Sentence {
     }
 
 	/**
-	 * build sentence by using the given parser object
+	 * Build sentence by using the given parser object.
 	 * 
 	 * @param parser
 	 */
@@ -50,91 +50,134 @@ public class Sentence {
     }
 
 	/**
-	 * return verb of the sentence.
+	 * count the number of words matching the given type string
 	 * 
-	 * @return verb in lower case
+	 * @param typePrefix
+	 * @return
+	 */
+	private int countWords(String typePrefix) {
+		int count = 0;
+
+		for(Word w : words) {
+			if (w.type.typeString.startsWith(typePrefix)) {
+				++count;
+			}
+		}
+
+		return count;
+    }
+
+	/**
+	 * Return verb [i] of the sentence.
+	 * 
+	 * @return subject
+	 */
+	public Word getWord(int i, String typePrefix) {
+		for(Word w : words) {
+			if (w.type.typeString.startsWith(typePrefix)) {
+				if (i == 0) {
+					return w;
+				}
+
+				--i;
+			}
+		}
+
+		return null;
+	}
+
+	/**
+	 * Return the number of "VER" Word objects in the sentence.
+	 * 
+	 * @return number of subjects
+	 */
+	public int getVerbCount() {
+		return countWords("VER");
+	}
+
+	/**
+	 * Return verb [i] of the sentence.
+	 * 
+	 * @return subject
+	 */
+	public Word getVerb(int i) {
+		return getWord(i, "VER");
+	}
+
+	/**
+	 * special case for sentences with only one verb
+	 * 
+	 * @return normalised verb string
 	 */
 	public String getVerb() {
-		SentenceBuilder builder = new SentenceBuilder();
-
-		for(Word w : words) {
-			if (w.type.isVerb()) {
-				builder.append(w.normalized);
-			}
+		if (getVerbCount() == 1) {
+			return getVerb(0).normalized;
+		} else {
+			return null;
 		}
+    }
 
-		return builder.toString();
+	/**
+	 * return the number of subjects
+	 * 
+	 * @return number of subjects
+	 */
+	public int getSubjectCount() {
+		return countWords("SUB");
 	}
 
 	/**
-	 * return the first subject of the sentence.
+	 * return subject [i] of the sentence
 	 * 
-	 * @return subject in lower case
+	 * @return subject
 	 */
-	public String getSubject() {
-		//TODO
-		SentenceBuilder builder = new SentenceBuilder();
+	public Word getSubject(int i) {
+		return getWord(i, "SUB");
+	}
 
-		for(Word w : words) {
-			if (w.type.isPerson()) {
-				builder.append(w.normalized);
-			}
+	/**
+	 * special case for sentences with only one subject
+	 * 
+	 * @return normalised subject string
+	 */
+	public String getSubjectName() {
+		if (getSubjectCount() == 1) {
+			return getSubject(0).normalized;
+		} else {
+			return null;
 		}
-
-		return builder.toString();
-	}
+    }
 
 	/**
-	 * return the second subject of the sentence.
+	 * return the number of objects
 	 * 
-	 * @return second subject in lower case
+	 * @return number of objects
 	 */
-	public String getSubject2() {
-		return null;//TODO
+	public int getObjectCount() {
+		return countWords("OBJ");
 	}
 
 	/**
-	 * return amount of objects.
-	 *
-	 * @return amount
-	 */
-	public int getAmount() {
-		//TODO
-		for(Word w : words) {
-			if (w.amount != null) {
-				return w.amount;
-			}
-		}
-
-		return 1;
-	}
-
-	/**
-	 * return the object of the parsed sentence (e.g. item to be bought).
+	 * return the object [i] of the parsed sentence (e.g. item to be bought)
 	 * 
-	 * @return object name in lower case
+	 * @return object
+	 */
+	public Word getObject(int i) {
+		return getWord(i, "OBJ");
+	}
+
+	/**
+	 * special case for sentences with only one object
+	 * 
+	 * @return normalised subject string
 	 */
 	public String getObjectName() {
-		//TODO
-		SentenceBuilder builder = new SentenceBuilder();
-
-		for(Word w : words) {
-			if (w.type.isNoun() && !w.type.isPerson()) {
-				builder.append(w.normalized);
-			}
+		if (getObjectCount() == 1) {
+			return getObject(0).normalized;
+		} else {
+			return null;
 		}
-
-		return builder.toString();
-	}
-
-	/**
-	 * return the second object name after a preposition.
-	 * 
-	 * @return second object name in lower case
-	 */
-	public String getObjectName2() {
-		return null;//TODO
-	}
+    }
 
 	/**
 	 * return item name derived (by replacing spaces by underscores) from the
@@ -143,48 +186,53 @@ public class Sentence {
 	 * 
 	 * @return item name
 	 */
-	public String getItemName() {
+	public String getItemName(int i) {
 		// concatenate user specified item names like "baby dragon"
 		// with underscores to build the internal item names
-		SentenceBuilder builder = new SentenceBuilder('_');
+		Word object = getObject(i);
 
-		for(Word w : words) {
-			if (w.type.isNoun()) {
-				builder.append(w.normalized);
-			}
+		if (object != null) {
+			// Here we use 'original' instead of 'normalized'
+			// to handle item names concatenated by underscores.
+			return object.original.toLowerCase().replace(' ', '_');
+		} else {
+			return null;
 		}
-
-		return builder.toString();
 	}
 
 	/**
-	 * return second item name.
+	 * special case for sentences with only one item
 	 * 
-	 * @return item name
+	 * @return normalised subject string
 	 */
-	public String getItemName2() {
-		return null;//TODO
-	}
-
-	/**
-	 * return the preposition of the sentence if present, otherwise null.
-	 * 
-	 * @return preposition
-	 */
-	public String getPreposition() {
-		SentenceBuilder builder = new SentenceBuilder();
-
-		for(Word w : words) {
-			if (w.type.isPreposition()) {
-				builder.append(w.normalized);
-			}
+	public String getItemName() {
+		if (getObjectCount() == 1) {
+			return getItemName(0);
+		} else {
+			return null;
 		}
+    }
 
-		return builder.toString();
+	/**
+	 * return the number of prepositions
+	 * 
+	 * @return number of objects
+	 */
+	public int getPrepositionCount() {
+		return countWords("PRE");
 	}
 
 	/**
-	 * return if some error occurred while parsing the input text.
+	 * return the preposition [i] of the parsed sentence
+	 * 
+	 * @return object
+	 */
+	public Word getPreposition(int i) {
+		return getWord(i, "PRE");
+	}
+
+	/**
+	 * Return if some error occurred while parsing the input text.
 	 * 
 	 * @return error flag
 	 */
@@ -193,7 +241,7 @@ public class Sentence {
 	}
 
 	/**
-	 * return error message.
+	 * Return error message.
 	 * 
 	 * @return error string
 	 */
@@ -202,7 +250,7 @@ public class Sentence {
 	}
 
 	/**
-	 * return true if the sentence is empty.
+	 * Return true if the sentence is empty.
 	 * 
 	 * @return empty flag
 	 */
@@ -215,7 +263,7 @@ public class Sentence {
 	}
 
 	/**
-	 * return the complete text of the sentence with unchanged case, but with
+	 * Return the complete text of the sentence with unchanged case, but with
 	 * trimmed white space.
 	 * 
 	 * TODO There should be only as less code places as possible to rely on this method.
@@ -233,7 +281,7 @@ public class Sentence {
 	}
 
 	/**
-	 * return the full sentence as lower case string.
+	 * Return the full sentence as lower case string.
 	 * 
 	 * @return string
 	 */
@@ -298,6 +346,8 @@ public class Sentence {
 	    			w.type = verb.type;
 	    			w.normalized = verb.normalized;
 	    		} else {
+    	    		parser.setError("unknown word: " + w.original);
+
     	    		w.type = new WordType("");
     	    		w.normalized = w.original.toLowerCase();
 	    		}
@@ -314,21 +364,21 @@ public class Sentence {
 	 * quest writers can specify the conversation syntax on their own.
 	 */
 	public void performaAliasing() {
-//		if (words.size() > 2) {
-//			String subject1 = getSubject();
-//			String subject2 = getSubject2();
-//
-//    		// [you] give me(i) -> [I] buy
-//    		// Note: The second subject "me" is replaced by "i" in ConversationParser.
-//    		if (subject1.equals("you") && subject2.equals("i")) {
-//    			if (getVerb().equals("give")) {
-//       			/*TODO manipulate word list
-//    				subject1	= "i";
-//    				verb		= "buy";
-//    				subject2	= null; */
-//    			}
-//    		}
-//		}
+		if (getSubjectCount() >= 2) {
+			Word subject1 = getSubject(0);
+			Word subject2 = getSubject(1);
+
+    		// [you] give me(i) -> [I] buy
+    		// Note: The second subject "me" is replaced by "i" in WordList.
+    		if (subject1.normalized.equals("you") && subject2.normalized.equals("i")) {
+    			if (getVerb().equals("give")) {
+       			/*TODO manipulate word list
+    				subject1	= "i";
+    				verb		= "buy";
+    				subject2	= null; */
+    			}
+    		}
+		}
 	}
 
 	/**
@@ -377,6 +427,12 @@ public class Sentence {
 	public void mergeWords() {
 		boolean changed;
 
+		/* There are two possibilities for word merges:
+		 Left-merging means to prepend the left word before the following one, removing the first one.
+		 Right-merging means to append the eight word to the preceding one, removing the second from
+		 the word list. */
+
+		// loop until no more simplification can be made
 		do {
 			Iterator<Word> it = words.iterator();
 
@@ -385,26 +441,28 @@ public class Sentence {
 			if (it.hasNext()) {
     			Word next = it.next();
 
+    			// loop over all words of the sentence starting from left
     			while(it.hasNext()) {
+    				// Now look at two neighbour words.
         			Word word = next;
         			next = it.next();
 
-        			// merge-left nouns with preceding adjectives or amounts and composite nouns
-        			if (next.type.isNoun() &&
-        					(word.type.isAdjective() || word.type.isNumeral() || word.type.isNoun())) {
+        			// left-merge nouns with preceding adjectives or amounts and composite nouns
+        			if ((word.type.isAdjective() || word.type.isNumeral() || word.type.isObject()) &&
+        					(next.type.isObject() || next.type.isSubject())) {
         				next.mergeLeft(word);
         				words.remove(word);
         				changed = true;
         				break;
         			}
-        			// merge-right consecutive words of the same main type
+        			// right-merge consecutive words of the same main type
         			else if (word.type.getMainType().equals(next.type.getMainType())) {
         				word.mergeRight(next);
         				words.remove(next);
         				changed = true;
         				break;
         			}
-        			// merge-left question words with following verbs and adjectives
+        			// left-merge question words with following verbs and adjectives
         			else if (word.type.isQuestion() &&
         					(next.type.isVerb() || next.type.isAdjective())) {
         				next.mergeLeft(word);
@@ -412,7 +470,7 @@ public class Sentence {
         				changed = true;
         				break;
         			}
-        			// merge-left words to ignore
+        			// left-merge words to ignore
         			else if (word.type.isIgnore()) {
         				next.mergeLeft(word);
         				words.remove(word);
