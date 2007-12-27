@@ -604,6 +604,9 @@ class PlayerRPClass {
 
 					boundOldItemsToPlayer(player, entity);
 
+					if (item.has("logid")) {
+						entity.put("logid", item.get("logid"));
+					}
 					ItemLogger.loadOnLogin(player, newSlot, entity);
 					newSlot.add(entity);
 				} else {
