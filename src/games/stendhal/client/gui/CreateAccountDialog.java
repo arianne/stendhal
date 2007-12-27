@@ -213,6 +213,7 @@ public class CreateAccountDialog extends JDialog {
 		this.setTitle("Create New Account");
 		this.setResizable(false);
 		this.setSize(new Dimension(350, 275));
+		this.pack(); // required on Compiz
 		this.setLocationRelativeTo(owner);
 
 	}
