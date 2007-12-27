@@ -772,4 +772,25 @@ public class Grammar {
 		return word.equals("i") || word.equals("we") || word.equals("you")
 				|| word.equals("he") || word.equals("she") || word.equals("it");
 	}
+
+	/**
+	 * Normalise the given regular verb, or
+	 * return null if not applicable.
+	 *
+	 * @param word
+	 * @return normalised string
+	 */
+	public static String normalizeRegularVerb(String word) {
+		if (word.length()>4 && word.endsWith("ed")) {
+			if (word.charAt(word.length()-4) == word.charAt(word.length())-3) {
+				return word.substring(0, word.length()-3);
+			} else {
+				return word.substring(0, word.length()-2);
+			}
+		} else if (word.length()>3 && word.endsWith("s")) {
+			return word.substring(0, word.length()-1);
+		} else {
+			return null;
+		}
+    }
 }
