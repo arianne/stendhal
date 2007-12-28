@@ -26,8 +26,6 @@ import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
-import javax.management.AttributeNotFoundException;
-
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.SyntaxException;
@@ -95,8 +93,6 @@ public class Sheep extends DomesticAnimal {
 
 	/**
 	 * Creates a new wild Sheep.
-	 * 
-	 * @throws AttributeNotFoundException
 	 */
 	public Sheep() {
 		this(null);
@@ -104,8 +100,6 @@ public class Sheep extends DomesticAnimal {
 
 	/**
 	 * Creates a new Sheep that is owned by a player.
-	 * 
-	 * @throws AttributeNotFoundException
 	 */
 	public Sheep(Player owner) {
 		super(owner);
@@ -137,7 +131,6 @@ public class Sheep extends DomesticAnimal {
 	 * @param object
 	 * @param owner
 	 *            The player who should own the sheep
-	 * @throws AttributeNotFoundException
 	 */
 	public Sheep(RPObject object, Player owner) {
 		super(object, owner);

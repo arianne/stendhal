@@ -220,7 +220,6 @@ public class Creature extends NPC {
 	 * @param noises
 	 * @param respawnTime
 	 * @param description
-	 * @throws AttributeNotFoundException
 	 */
 	public Creature(String clazz, String subclass, String name, int hp,
 			int attack, int defense, int level, int xp, int width, int height,

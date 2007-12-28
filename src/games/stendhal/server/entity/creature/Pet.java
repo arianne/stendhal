@@ -20,8 +20,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
-import javax.management.AttributeNotFoundException;
-
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.SyntaxException;
@@ -88,8 +86,6 @@ public abstract class Pet extends DomesticAnimal {
 
 	/**
 	 * Creates a new wild Pet.
-	 * 
-	 * @throws AttributeNotFoundException
 	 */
 	public Pet() {
 		this(null);
@@ -97,8 +93,6 @@ public abstract class Pet extends DomesticAnimal {
 
 	/**
 	 * Creates a new Pet that is owned by a player.
-	 * 
-	 * @throws AttributeNotFoundException
 	 */
 	public Pet(Player owner) {
 		super(owner);
@@ -119,7 +113,6 @@ public abstract class Pet extends DomesticAnimal {
 	 * @param object
 	 * @param owner
 	 *            The player who should own the pet
-	 * @throws AttributeNotFoundException
 	 */
 	public Pet(RPObject object, Player owner) {
 		super(object, owner);

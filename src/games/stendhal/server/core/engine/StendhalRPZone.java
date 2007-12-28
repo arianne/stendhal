@@ -792,7 +792,6 @@ public class StendhalRPZone extends MarauroaRPZone {
 	 * @param y
 	 *            The y coordinate of the position where the entity would stand
 	 * @return true iff the entity could stand on the given position
-	 * @throws AttributeNotFoundException
 	 */
 	public synchronized boolean collides(Entity entity, double x, double y) {
 		return collides(entity, x, y, true);
@@ -812,7 +811,6 @@ public class StendhalRPZone extends MarauroaRPZone {
 	 * @param checkObjects
 	 *            If false, only the collision map will be used.
 	 * @return true iff the entity could stand on the given position
-	 * @throws AttributeNotFoundException
 	 */
 	public synchronized boolean collides(Entity entity, double x, double y,
 			boolean checkObjects) {

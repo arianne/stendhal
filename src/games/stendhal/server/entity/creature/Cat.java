@@ -76,8 +76,6 @@ public class Cat extends Pet {
 
 	/**
 	 * Creates a new wild Cat.
-	 * 
-	 * @throws AttributeNotFoundException
 	 */
 	public Cat() {
 		this(null);
@@ -85,8 +83,6 @@ public class Cat extends Pet {
 
 	/**
 	 * Creates a new Cat that is owned by a player.
-	 * 
-	 * @throws AttributeNotFoundException
 	 */
 	public Cat(Player owner) {
 		// call set up before parent constructor is called as it needs those
@@ -105,7 +101,6 @@ public class Cat extends Pet {
 	 * @param object
 	 * @param owner
 	 *            The player who should own the cat
-	 * @throws AttributeNotFoundException
 	 */
 	public Cat(RPObject object, Player owner) {
 		// call set up before parent constructor is called as it needs those

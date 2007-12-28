@@ -75,8 +75,6 @@ public class BabyDragon extends Pet {
 
 	/**
 	 * Creates a new wild baby dragon.
-	 * 
-	 * @throws AttributeNotFoundException
 	 */
 	public BabyDragon() {
 		this(null);
@@ -84,8 +82,6 @@ public class BabyDragon extends Pet {
 
 	/**
 	 * Creates a new baby dragon that is owned by a player.
-	 * 
-	 * @throws AttributeNotFoundException
 	 */
 	public BabyDragon(Player owner) {
 		super(owner);
@@ -103,7 +99,6 @@ public class BabyDragon extends Pet {
 	 * @param object
 	 * @param owner
 	 *            The player who should own the baby dragon
-	 * @throws AttributeNotFoundException
 	 */
 	public BabyDragon(RPObject object, Player owner) {
 		super(object, owner);

@@ -474,7 +474,6 @@ public class StendhalRPAction {
 	 * send the content of the zone the player is in to the client
 	 * 
 	 * @param player
-	 * @throws AttributeNotFoundException
 	 */
 	public static void transferContent(Player player) {
 

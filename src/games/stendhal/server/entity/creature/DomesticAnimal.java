@@ -42,8 +42,6 @@ public abstract class DomesticAnimal extends Creature {
 
 	/**
 	 * Creates a new wild DomesticAnimal.
-	 * 
-	 * @throws AttributeNotFoundException
 	 */
 	public DomesticAnimal() {
 		this(null);
@@ -52,8 +50,6 @@ public abstract class DomesticAnimal extends Creature {
 
 	/**
 	 * Creates a new DomesticAnimal that is owned by a player.
-	 * 
-	 * @throws AttributeNotFoundException
 	 */
 	public DomesticAnimal(Player owner) {
 		this.owner = owner;
@@ -67,7 +63,6 @@ public abstract class DomesticAnimal extends Creature {
 	 * Creates a wild DomesticAnimal based on an existing RPObject.
 	 * 
 	 * @param object
-	 * @throws AttributeNotFoundException
 	 */
 	public DomesticAnimal(RPObject object) {
 		super(object);
@@ -85,7 +80,6 @@ public abstract class DomesticAnimal extends Creature {
 	 * @param object
 	 * @param owner
 	 *            The player who should own the sheep
-	 * @throws AttributeNotFoundException
 	 */
 	public DomesticAnimal(RPObject object, Player owner) {
 		this(object);
