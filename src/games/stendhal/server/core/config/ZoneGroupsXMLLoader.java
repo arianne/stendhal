@@ -6,7 +6,6 @@
 
 package games.stendhal.server.core.config;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URI;
 import java.util.List;
@@ -20,7 +19,7 @@ import org.xml.sax.helpers.DefaultHandler;
  */
 public class ZoneGroupsXMLLoader extends DefaultHandler {
 
-	/** Logger */
+
 	private static final Logger logger = Logger.getLogger(ZoneGroupsXMLLoader.class);
 
 	/** The main zone configuration file. */
