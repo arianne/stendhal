@@ -70,7 +70,7 @@ public class Sentence {
 	}
 
 	/**
-	 * set sentence type as ST_STATEMENT, ST_IMPERATIVE or ST_QUESTION.
+	 * Set sentence type as ST_STATEMENT, ST_IMPERATIVE or ST_QUESTION.
 	 * 
 	 * @param type
 	 */
@@ -79,7 +79,7 @@ public class Sentence {
 	}
 
 	/**
-	 * return sentence type.
+	 * Return sentence type.
 	 * 
 	 * @return
 	 */
@@ -88,7 +88,7 @@ public class Sentence {
 	}
 
 	/**
-	 * count the number of words matching the given type string.
+	 * Count the number of words matching the given type string.
 	 * 
 	 * @param typePrefix
 	 * @return
@@ -96,8 +96,8 @@ public class Sentence {
 	private int countWords(String typePrefix) {
 		int count = 0;
 
-		for (Word w : words) {
-			if (w.getType().getTypeString().startsWith(typePrefix)) {
+		for(Word w : words) {
+			if (w.getType()!=null && w.getType().getTypeString().startsWith(typePrefix)) {
 				++count;
 			}
 		}
@@ -111,8 +111,8 @@ public class Sentence {
 	 * @return subject
 	 */
 	public Word getWord(int i, String typePrefix) {
-		for (Word w : words) {
-			if (w.getType().getTypeString().startsWith(typePrefix)) {
+		for(Word w : words) {
+			if (w.getType()!=null && w.getType().getTypeString().startsWith(typePrefix)) {
 				if (i == 0) {
 					return w;
 				}
@@ -127,8 +127,8 @@ public class Sentence {
 	private String triggerCache = null;
 
 	/**
-	 * return trigger string for the FSM engine TODO replace by sentence.
-	 * matching
+	 * Return trigger string for the FSM engine.
+	 * TODO replace by sentence matching.
 	 * 
 	 * @return trigger string
 	 */
@@ -144,10 +144,9 @@ public class Sentence {
 		while (it.hasNext()) {
 			Word word = it.next();
 
-			if (!word.getType().isIgnore()) {
-				// special case for numeric expressions to disambiguate "no"
-				// from "0"
-				if (word.getType().isNumeral()) {
+			if (word.getType()==null || !word.getType().isIgnore()) {
+				// special case for numeric expressions to disambiguate "no" from "0"
+				if (word.getType()!=null && word.getType().isNumeral()) {
 					triggerCache = word.getOriginal().toLowerCase();
 				} else {
 					triggerCache = word.getNormalized();
@@ -179,7 +178,8 @@ public class Sentence {
 	}
 
 	/**
-	 * special case for sentences with only one verb.
+	 * Return verb as Word object for the special case of
+	 * sentences with only one verb.
 	 * 
 	 * @return normalized verb string
 	 */
@@ -192,7 +192,8 @@ public class Sentence {
 	}
 
 	/**
-	 * special case for sentences with only one verb.
+	 * Return verb as String for the special case of
+	 * sentences with only one verb.
 	 * 
 	 * @return normalized verb string
 	 */
@@ -205,7 +206,7 @@ public class Sentence {
 	}
 
 	/**
-	 * return the number of subjects.
+	 * Return the number of subjects.
 	 * 
 	 * @return number of subjects
 	 */
@@ -214,7 +215,7 @@ public class Sentence {
 	}
 
 	/**
-	 * return subject [i] of the sentence.
+	 * Return subject [i] of the sentence.
 	 * 
 	 * @return subject
 	 */
@@ -223,7 +224,8 @@ public class Sentence {
 	}
 
 	/**
-	 * special case for sentences with only one subject.
+	 * Return the subject as String for the special
+	 * case of sentences with only one subject.
 	 * 
 	 * @return normalized subject string
 	 */
@@ -236,7 +238,7 @@ public class Sentence {
 	}
 
 	/**
-	 * return the number of objects.
+	 * Return the number of objects.
 	 * 
 	 * @return number of objects
 	 */
@@ -245,7 +247,7 @@ public class Sentence {
 	}
 
 	/**
-	 * return the object [i] of the parsed sentence (e.g. item to be bought)
+	 * Return object [i] of the parsed sentence (e.g. item to be bought).
 	 * 
 	 * @return object
 	 */
@@ -254,9 +256,10 @@ public class Sentence {
 	}
 
 	/**
-	 * special case for sentences with only one object.
+	 * Return the object as String for the special
+	 * case of sentences with only one object.
 	 * 
-	 * @return normalized subject string
+	 * @return normalized object name
 	 */
 	public String getObjectName() {
 		if (getObjectCount() == 1) {
@@ -267,9 +270,9 @@ public class Sentence {
 	}
 
 	/**
-	 * return item name derived (by replacing spaces by underscores) from the
-	 * object of the parsed sentence. TODO get rid of underscore handling for
-	 * item names.
+	 * Return item name derived (by replacing spaces by underscores) from the
+	 * object of the parsed sentence.
+	 * TODO get rid of underscore handling for item names.
 	 * 
 	 * @return item name
 	 */
@@ -288,9 +291,9 @@ public class Sentence {
 	}
 
 	/**
-	 * special case for sentences with only one item.
+	 * Special case for sentences with only one item.
 	 * 
-	 * @return normalized subject string
+	 * @return normalized item name
 	 */
 	public String getItemName() {
 		if (getObjectCount() == 1) {
@@ -301,7 +304,7 @@ public class Sentence {
 	}
 
 	/**
-	 * return the number of prepositions.
+	 * Return the number of prepositions.
 	 * 
 	 * @return number of objects
 	 */
@@ -310,7 +313,7 @@ public class Sentence {
 	}
 
 	/**
-	 * return the preposition [i] of the parsed sentence.
+	 * Return the preposition [i] of the parsed sentence.
 	 * 
 	 * @return object
 	 */
@@ -369,6 +372,23 @@ public class Sentence {
 	}
 
 	/**
+	 * Return the sentence with all words normalized.
+	 * 
+	 * @return string
+	 */
+	public String getNormalized() {
+		SentenceBuilder builder = new SentenceBuilder();
+
+		for(Word w : words) {
+			if (w.getType()==null || !w.getType().isIgnore()) {
+				builder.append(w.getNormalized());
+			}
+		}
+
+		return builder.toString();
+	}
+
+	/**
 	 * Return the full sentence as lower case string.
 	 * 
 	 * @return string
@@ -403,7 +423,7 @@ public class Sentence {
 	}
 
 	/**
-	 * classify word types and normalize words.
+	 * Classify word types and normalize words.
 	 * 
 	 * @param parser
 	 */
@@ -415,7 +435,7 @@ public class Sentence {
 
 			WordEntry entry = wl.find(original);
 
-			if (entry != null) {
+			if (entry!=null && entry.getType()!=null) {
 				w.setType(entry.getType());
 
 				if (entry.getType().isNumeral()) {
@@ -449,7 +469,7 @@ public class Sentence {
 					WordType type = verb.getType();
 
 					if (Grammar.isGerund(original)) {
-						w.setType(new WordType(type.getTypeString() + WordType.GERUND));
+						w.setType(new WordType(type.getTypeString()+WordType.GERUND));
 					} else {
 						w.setType(type);
 					}
@@ -459,6 +479,9 @@ public class Sentence {
 					w.setType(new WordType(""));
 					w.setNormalized(original.toLowerCase());
 
+					// add to the word list to print the warning message only once
+					wl.add(original);
+
 					logger.warn("unknown word: " + original);
 				}
 			}
@@ -466,7 +489,7 @@ public class Sentence {
 	}
 
 	/**
-	 * standardize sentence type.
+	 * Standardize sentence type.
 	 */
 	public void standardizeSentenceType() {
 		// Look for a "me" without any preceding other subject.
@@ -477,24 +500,26 @@ public class Sentence {
 				break;
 			}
 
-			if (w.getType().isVerb()) {
-				if (prevVerb == null) {
-					prevVerb = w;
-				} else {
+			if (w.getType() != null) {
+				if (w.getType().isVerb()) {
+					if (prevVerb == null) {
+						prevVerb = w;
+					} else {
+						break;
+					}
+				} else if (w.getType().isSubject()) {
+					if (w.getOriginal().equals("me")) {
+						// If we already found a verb, we prepend "you" as
+						// first subject and mark the sentence as imperative.
+						if (prevVerb != null) {
+							Word you = new Word("you", "you", WordType.SUBJECT);
+							words.add(0, you);
+							sentenceType = ST_IMPERATIVE;
+						}
+					}
+
 					break;
 				}
-			} else if (w.getType().isSubject()) {
-				if (w.getOriginal().equals("me")) {
-					// If we already found a verb, we prepend "you" as
-					// first subject and mark the sentence as imperative.
-					if (prevVerb != null) {
-						Word you = new Word("you", "you", WordType.SUBJECT);
-						words.add(0, you);
-						sentenceType = ST_IMPERATIVE;
-					}
-				}
-
-				break;
 			}
 		}
 	}
@@ -516,11 +541,11 @@ public class Sentence {
 
 			// [you] give me(i) -> [I] buy
 			// Note: The second subject "me" is replaced by "i" in the WordList
-			// normalisation.
-			if (subject1 != null
-					&& subject2 != null
-					&& (subject1.getNormalized().equals("you") && verb.getNormalized().equals("give") && subject2.getNormalized().equals(
-							"i"))) {
+			// normalization.
+			if (subject1 != null && subject2 != null &&
+					subject1.getNormalized().equals("you") &&
+					verb.getNormalized().equals("give") &&
+					subject2.getNormalized().equals("i")) {
 				// remove the subjects and replace the verb with "buy" as first
 				// word
 				words.remove(subject1);
@@ -533,7 +558,8 @@ public class Sentence {
 			// [SUBJECT] (would like to have) -> [SUBJECT] buy
 			if (verb.getNormalized().equals("have")
 					&& verb.getOriginal().contains("like")
-					&& ((subject1 == null && words.get(0) == verb) || (words.get(0) == subject1 && words.get(1) == verb))) {
+					&& ((subject1 == null && words.get(0) == verb) ||
+						(words.get(0) == subject1 && words.get(1) == verb))) {
 				// replace the verb with "buy"
 				verb.setNormalized("buy");
 				sentenceType = ST_IMPERATIVE;
@@ -542,7 +568,7 @@ public class Sentence {
 	}
 
 	/**
-	 * evaluate sentence type from word order.
+	 * Evaluate the sentence type from word order.
 	 */
 	public int evaluateSentenceType() {
 		Iterator<Word> it = words.iterator();
@@ -551,7 +577,8 @@ public class Sentence {
 		if (it.hasNext()) {
 			Word first = it.next();
 
-			while (first.getType().isQuestion() && it.hasNext()) {
+			while(first.getType()!=null && first.getType().isQuestion() &&
+					it.hasNext()) {
 				first = it.next();
 
 				if (type == ST_UNDEFINED) {
@@ -586,8 +613,9 @@ public class Sentence {
 					words.remove(first);
 				}
 				// statements beginning with "it is <VER-GER>"
-				else if (first.getNormalized().equals("it") && second.getNormalized().equals("is")
-						&& (third != null && third.getType().isGerund())) {
+				else if (first.getNormalized().equals("it") &&
+						second.getNormalized().equals("is") &&
+						(third!=null && third.getType()!=null && third.getType().isGerund())) {
 					if (type == ST_UNDEFINED) {
 						type = ST_STATEMENT;
 					}
@@ -606,7 +634,7 @@ public class Sentence {
 	}
 
 	/**
-	 * merge words to form a simpler sentence structure.
+	 * Merge words to form a simpler sentence structure.
 	 */
 	public void mergeWords() {
 
@@ -638,8 +666,8 @@ public class Sentence {
 				Word next = it.next();
 
 				// loop over all words of the sentence starting from left
-				while (it.hasNext()) {
-					// Now look at two neighbor words.
+				while(it.hasNext()) {
+					// Now look at two neighbour words.
 					Word word = next;
 					next = it.next();
 
@@ -648,10 +676,9 @@ public class Sentence {
 						continue;
 					}
 
-					// left-merge nouns with preceding adjectives or amounts and
-					// composite nouns
-					if ((word.getType().isAdjective() || word.getType().isNumeral() || word.getType().isObject())
-							&& (next.getType().isObject() || next.getType().isSubject())) {
+					// left-merge nouns with preceding adjectives or amounts and composite nouns
+					if ((word.getType()!=null && (word.getType().isAdjective() || word.getType().isNumeral() || word.getType().isObject())) &&
+							(next.getType().isObject() || next.getType().isSubject())) {
 						// special case for "ice cream" -> "ice"
 						if (word.getNormalized().equals("ice") && next.getNormalized().equals("cream")) {
 							word.mergeRight(next);
@@ -664,7 +691,8 @@ public class Sentence {
 						break;
 					}
 					// right-merge consecutive words of the same main type
-					else if (word.getType().getMainType().equals(next.getType().getMainType())) {
+					else if (word.getType()!=null && next.getType()!=null &&
+							word.getType().getMainType().equals(next.getType().getMainType())) {
 						// handle "would like"
 						if (word.getType().isConditional()) {
 							next.mergeLeft(word);
@@ -676,16 +704,16 @@ public class Sentence {
 						changed = true;
 						break;
 					}
-					// left-merge question words with following verbs and
-					// adjectives
-					else if (word.getType().isQuestion() && (next.getType().isVerb() || next.getType().isAdjective())) {
+					// left-merge question words with following verbs and adjectives
+					else if (word.getType()!=null && word.getType().isQuestion() &&
+							next.getType()!=null && (next.getType().isVerb() || next.getType().isAdjective())) {
 						next.mergeLeft(word);
 						words.remove(word);
 						changed = true;
 						break;
 					}
 					// left-merge words to ignore
-					else if (word.getType().isIgnore()) {
+					else if (word.getType()!=null && word.getType().isIgnore()) {
 						next.mergeLeft(word);
 						words.remove(word);
 						changed = true;
@@ -714,8 +742,8 @@ public class Sentence {
 					third = it.next();
 
 					// loop over all words of the sentence starting from left
-					while (it.hasNext()) {
-						// Now look at three neighbor words.
+					while(it.hasNext()) {
+						// Now look at three neighbour words.
 						first = second;
 						second = third;
 						third = it.next();
@@ -726,8 +754,9 @@ public class Sentence {
 						}
 
 						// merge "... of ..." expressions into one word
-						if (first.getType().isObject() && second.getNormalized().equals("of")
-								&& third.getType().isObject()) {
+						if (first.getType()!=null && first.getType().isObject() &&
+								second.getNormalized().equals("of") &&
+								third.getType()!=null && third.getType().isObject()) {
 							String expr = first.getNormalized() + " of " + third.getNormalized();
 							String normalizedExpr = Grammar.extractNoun(expr);
 
