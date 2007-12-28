@@ -290,7 +290,7 @@ public class WordList {
 		WordEntry w = words.get(word.toLowerCase());
 
 		if (w != null) {
-			if (!w.getType().isPlural()) {
+			if (w.getType()!=null && !w.getType().isPlural()) {
 				// return the associated singular from the word list
 				return w.getPlurSing();
 			} else {
@@ -313,7 +313,7 @@ public class WordList {
 		WordEntry w = words.get(word.toLowerCase());
 
 		if (w != null) {
-			if (w.getType().isPlural()) {
+			if (w.getType()!=null && w.getType().isPlural()) {
 				// return the associated singular from the word list
 				return w.getPlurSing();
 			} else {
@@ -330,7 +330,7 @@ public class WordList {
 	 * Normalize the given verb.
 	 * 
 	 * @param word
-	 *            string
+	 *			  string
 	 * @return WordEntry
 	 */
 	public WordEntry normalizeVerb(String word) {
@@ -364,7 +364,7 @@ public class WordList {
 		String key = name.toLowerCase();
 		WordEntry w = words.get(key);
 
-		if (w == null) {
+		if (w==null || w.getType()==null) {
 			WordEntry entry = new WordEntry();
 
 			entry.setNormalized(key);
@@ -386,9 +386,31 @@ public class WordList {
 		String key = name.toLowerCase();
 		WordEntry w = words.get(key);
 
-		if (w != null && w.getType().getTypeString().equals(SUBJECT_NAME_DYNAMIC)) {
+		if (w!=null && w.getType()!=null &&
+			w.getType().getTypeString().equals(SUBJECT_NAME_DYNAMIC)) {
 			words.remove(key);
 		}
+	}
+
+	/**
+	 * add a new word
+	 *
+	 * @param s
+	 */
+	public WordEntry add(String s) {
+		String key = s.toLowerCase();
+		WordEntry entry = words.get(key);
+
+		if (entry == null) {
+			entry = new WordEntry();
+
+			entry.setNormalized(key);
+			words.put(key, entry);
+		} else {
+			logger.warn("word already known: " + s + " -> " + entry.getNormalized());
+		}
+
+		return entry;
 	}
 
 }
