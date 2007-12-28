@@ -19,13 +19,10 @@ import games.stendhal.server.entity.item.Item;
 import org.apache.log4j.Logger;
 
 /**
- * An ItemChangeGuardCreature is a creature that is responsible for guarding a <<<<<<<
- * ItemChangeGuardCreature.java special item (e.g. a key). Once it is killed, a
- * copy of this special item is given to the player who killed it in case he/she
- * has had an other specified item in the first place. ======= special item
- * (e.g. a key). Once it is killed, a copy of this special item is given to the
- * player who killed it in place of another specified item which the killer must
- * have equipped. >>>>>>> 1.6
+ * An ItemChangeGuardCreature is a creature that is responsible for guarding a
+ * special item (e.g. a key). Once it is killed, a copy of this special item is
+ * given to the player who killed it in case he/she has had an other specified
+ * item in the first place.
  */
 public class ItemChangeGuardCreature extends Creature {
 
