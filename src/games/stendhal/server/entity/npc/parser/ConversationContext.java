@@ -15,11 +15,11 @@ public class ConversationContext {
 	private int state = CCS_NONE;
 
 	public void setState(int state) {
-	    this.state = state;
-    }
+		this.state = state;
+	}
 
 	public int getState() {
-	    return state;
-    }
+		return state;
+	}
 
 }

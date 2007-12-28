@@ -38,8 +38,8 @@ public class SentenceBuilder {
 	 * @param c
 	 */
 	public void append(char c) {
-	    builder.append(c);	    
-    }
+		builder.append(c);
+	}
 
 	@Override
 	public String toString() {
