@@ -15,8 +15,8 @@ public class ConversationParser {
 	private String error;
 
 	/**
-	 * create a new conversation parser and initialize with the given text.
-	 * string
+	 * Create a new conversation parser and initialize with the given text
+	 * string.
 	 */
 	public ConversationParser(final String text) {
 		// initialize a new tokenizer with the given text
@@ -27,8 +27,8 @@ public class ConversationParser {
 	}
 
 	/**
-	 * backward compatible parse function without conversation context.
-	 * 
+	 * backward compatible parse function without conversation context
+	 *
 	 * @param text
 	 * @return
 	 */
@@ -81,8 +81,7 @@ public class ConversationParser {
 	}
 
 	/**
-	 * read the next word from the parsed sentence.
-	 * 
+	 * Read the next word from the parsed sentence.
 	 * @return word string
 	 */
 	public String readNextWord() {
@@ -94,7 +93,7 @@ public class ConversationParser {
 	}
 
 	/**
-	 * set error flag on parsing problems.
+	 * Set error flag on parsing problems.
 	 */
 	public void setError(String error) {
 		if (this.error == null) {
@@ -105,7 +104,7 @@ public class ConversationParser {
 	}
 
 	/**
-	 * return whether some error occurred while parsing the input text.
+	 * Return whether some error occurred while parsing the input text.
 	 * 
 	 * @return error flag
 	 */
@@ -114,8 +113,8 @@ public class ConversationParser {
 	}
 
 	/**
-	 * evaluate sentence type by looking at the trailing punctuation character.
-	 * 
+	 * Evaluate sentence type by looking at the trailing punctuation character.
+	 *
 	 * @param text
 	 * @param sentence
 	 * @return
@@ -137,6 +136,31 @@ public class ConversationParser {
 		}
 
 		return text;
+	}
+
+	/**
+	 * Return the sentence in normalized form.
+	 * 
+	 * @param trigger
+	 * @return
+	 */
+	public static String normalize(String text) {
+		Sentence sentence = parse(text, null);
+
+		return sentence.getNormalized();
+	}
+
+	/**
+	 * Normalize trigger expressions for the GSM engine to match
+	 * the parsed user input.
+	 * 
+	 * @param trigger
+	 * @return
+	 */
+	public static String normalizeTrigger(String trigger) {
+		Sentence sentence = parse(trigger, null);
+
+		return sentence.getTrigger();
 	}
 
 }
