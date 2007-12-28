@@ -7,7 +7,7 @@
 #
 # WORD is the word in lower case.
 # NORMALIZED is used to specify the the base form.
-# PLURAL is the pluralised form of the word for nouns and verbs.
+# PLURAL is the pluralized form of the word for nouns and verbs.
 # VALUE is used to specify the numeric equivalent of numeric expressions.
 #
 # TYPE is one of the following constants:
@@ -27,7 +27,7 @@
 #  SUB-NAM		person name
 #
 #  ADJ			adjective/adverb
-#  ADJ-COL		colour expressions
+#  ADJ-COL		color expressions
 #
 #  NUM			numeral
 #  PRE			preposition
@@ -35,14 +35,22 @@
 #  IGN			word to ignore
 #
 
+abort	VER
 adios	VER
+appear	VER
 ask	VER	=say
+bail	VER
+bake	VER
 boo	VER
+borrow	VER
 buy	VER
 bye	VER
 care	VER
+cast	VER
 cheers	VER
+cleanme	VER
 close	VER
+concoct	VER
 cya	VER
 did	VERB	=do
 do	VER
@@ -53,9 +61,14 @@ drop	VER
 eat	VER
 engage	VER
 exchange	VER
+exit	VER
+explain	VER
 explore	VER
 farewell	VER
+fight	VER
 fit	VER
+flee	VER
+gamble	VER
 give	VER
 go	VER
 gone	VER	=go
@@ -71,6 +84,8 @@ hola	VER	=hello
 hold	VER
 is	VER	are
 jump	VER
+kill	VER
+learn	VER
 leave	VER
 like	VER
 look	VER
@@ -80,24 +95,32 @@ make	VER
 married	VER	=marry
 marry	VER
 may	VER-CON
+mix	VER
 ok	VER
 open	VER
 own	VER
+play	VER
+protect	VER
 put	VER
 rain	VER
 reserve	VER
 return	VER
+revive	VER
+run	VER
 say	VER
 sell	VER
 sorry	VER
 speak	VER	=say
+start	VER
 summon	VER
 travel	VER
+use	VER
 wear	VER
 went	VER	=go
 will	VER
 work	VER	works
 would	VER-CON	=will
+yay	VER	=done
 yes	VER
 
 alga	OBJ	algae
@@ -117,11 +140,10 @@ bank	OBJ	banks
 bar	OBJ	bars
 bardiche	OBJ	bardiches
 basement	OBJ	basements
-bat	OBJ	bats
 battle	OBJ	battles
 beer	OBJ-FLU
-beholder	OBJ	beholders
-boar	OBJ	boars
+blackjack	OBJ	blackjacks
+board	OBJ	boards
 body	OBJ	bodies
 bone	OBJ	bones
 book	OBJ	books
@@ -131,7 +153,9 @@ bow	OBJ	bows
 box	OBJ	boxes
 brandy	OBJ-FLU	brandies
 bread	OBJ
+bribe	OBJ	bribes
 broadsword	OBJ	broadswords
+broccoli	OBJ-FOO	broccolis
 bronze	OBJ	bronzes
 buckler	OBJ	bucklers
 bureau	OBJ	bureaux
@@ -139,49 +163,59 @@ bush	OBJ	bushes
 button	OBJ	buttons
 caboose	OBJ	cabooses
 car	OBJ	cars
+carbuncle	OBJ	carbuncles
 carrot	OBJ-FOO	carrots
 chain	OBJ	chains
+challenge	OBJ	challenges
+channange	OBJ	channanges
+chaos	OBJ	chaos
 cheese	OBJ-FOO	cheeses
 cherry	OBJ-FOO	cherries
 chest	OBJ	chests
-chicken	OBJ-FOO	chickens
 chunk	OBJ	chunks
 claymore	OBJ	claymores
 cloak	OBJ	cloaks
+clock	OBJ	clocks
 cloth	OBJ	cloths
 club	OBJ	clubs
 cocktail	OBJ-FLU	cocktails
+cod	OBJ-FOO	cods
 colada	OBJ-FLU	coladas
 collard	OBJ	collards
 collection	OBJ	collections
 commander	OBJ	commanders
 cookie	OBJ-FOO	cookies
 coupon	OBJ	coupons
-crab	OBJ	crabs
+courgette	OBJ-FOO	courgettes
 cream	OBJ	creams
 creature	OBJ	creatures
 crossbow	OBJ	crossbows
 crown	OBJ	crowns
 cuirass	OBJ	cuirasses
-cyclops	OBJ	cyclopses
 dagger	OBJ	daggers
 deal	OBJ	deals
-death	OBJ	deaths
+deathmatch	OBJ	deathmatches
+diamond	OBJ	diamonds
 dice	OBJ	dice
 dish	OBJ	dishes
 divorce	OBJ	divorces
 doll	OBJ	dolls
 dress	OBJ	dresses
 drink	OBJ-FLU	drinks
-dwarf	OBJ	dwarves
 earth	OBJ	earths
 eater	OBJ	eaters
 elemental	OBJ	elementals
+emerald	OBJ	emeralds
+equipment	OBJ	equipments
 erinys	OBJ	erinyes
 eupepsia	OBJ	eupepsia
+everything	OBJ	everythings
+exam	OBJ	exams
+eye	OBJ	eyes
 favor	OBJ	favors
 favour	OBJ	favours
 fee	OBJ	fees
+ferry	OBJ	ferries
 fire	OBJ	fires
 fish	OBJ-FOO	fishes
 flail	OBJ	flails
@@ -190,47 +224,53 @@ flour	OBJ	flours
 flower	OBJ	flowers
 foot	OBJ	feet
 forge	OBJ	forges
+gnu	OBJ	gnus
 gold	OBJ	golds
 gown	OBJ	gowns
+gpl	OBJ	gpls
 grain	OBJ-FOO	grains
 halberd	OBJ	halberds
 ham	OBJ	hams
 hammer	OBJ	hammers
 hand	OBJ	hands
 hat	OBJ	hats
+hatch	OBJ	hatches
 helium	OBJ	helia
+helm	OBJ	helms
 helmet	OBJ	helmets
 help	OBJ	helps
 herb	OBJ	herbs
-hero	OBJ	heros
 hint	OBJ	hints
 home	OBJ	homes
 honeymoon	OBJ	honeymoons
 house	OBJ	houses
-human	OBJ	humans
-hunter	OBJ	hunters
 hypha	OBJ	hyphae
 ice	OBJ	ices
 index	OBJ	indices
+ingredients	OBJ	ingredients
 iron	OBJ	irons
+island	OBJ	islands
 it	OBJ	its
+item	OBJ	items
 job	OBJ	jobs
 karma	OBJ	karmas
 katana	OBJ	katanas
 key	OBJ	keys
+kiss	OBJ	kisses
 knife	OBJ	knives
 knight	OBJ	knights
-kobold	OBJ	kobolds
+kokuda	OBJ	kokudas
 larva	OBJ	larvae
+leek	OBJ-FOO	leeks
 leg	OBJ	legs
 library	OBJ	libraries
-lich	OBJ	liches
 list	OBJ	lists
 loaf	OBJ-AMO	loaves
 log	OBJ	logs
 longbow	OBJ	longbows
 lotus	OBJ	lotuses
 mace	OBJ	maces
+machine	OBJ	machines
 magic	OBJ	magics
 map	OBJ	maps
 match	OBJ	matches
@@ -238,85 +278,105 @@ matrix	OBJ	matrices
 meat	OBJ	meats
 medicine	OBJ	medicines
 militia	OBJ	militia
+mill	OBJ	mills
 money	OBJ	money
-monkey	OBJ	monkeys
 moose	OBJ	moose
 morning	OBJ	mornings
 mouse	OBJ	mice
 mumak	OBJ	mumakil
-mummy	OBJ	mummies
 mushroom	OBJ-FOO	mushrooms
 my	OBJ-OBS	mys
+news	OBJ	news
 noose	OBJ	nooses
 note	OBJ	notes
 nothing	OBJ	nothings
 nugget	OBJ	nuggets
+obsidian	OBJ	obsidians
 offer	OBJ	offers
-ogre	OBJ	ogres
-orc	OBJ	orcs
+onion	OBJ-FOO	onions
 ore	OBJ	ores
 pair	OBJ	pairs
+pan	OBJ	pans
 paper	OBJ	papers
 park	OBJ	parks
+patch	OBJ	patches
 pie	OBJ-FOO	pies
 piece	OBJ	pieces
 pina	OBJ	pinas
 pinacolad	OBJ-FLU	=pinacolada	pinacoladas
 pinacolada	OBJ-FLU	pinacoladas
 pizza	OBJ-FOO	pizzas
+plan	OBJ	plans
 plate	OBJ	plates
 plural	OBJ	plurals
 poison	OBJ-FLU	poisons
 porcini	OBJ-FOO	porcini
 portal	OBJ	portals
+pot	OBJ	pots
 potion	OBJ-FLU	potions
 present	OBJ	presents
+price	OBJ	prices
 princess	OBJ	princesses
+problem	OBJ	problems
 quest	OBJ	quests
 request	OBJ	requests
+reward	OBJ	rewards
 rhosyd	OBJ	rhosyds
 ring	OBJ	rings
 robin	OBJ	robins
 rod	OBJ	rods
+rug	OBJ	rugs
 sacerdotist	OBJ	sacerdotists
 sack	OBJ-AMO	sacks
 safety	OBJ	safeties
 salad	OBJ	salads
 sandwich	OBJ	sandwiches
+sapphire	OBJ	sapphires
 scale	OBJ	scales
+scarlet	OBJ	scarlets
 scimitar	OBJ	scimitars
 scroll	OBJ	scrolls
 scythe	OBJ	scythes
+secret	OBJ	secrets
 security	OBJ	securities
+shadow	OBJ	shadows
 sheaf	OBJ-AMO	sheaves
 shield	OBJ	shields
+shop	OBJ	shops
 silver	OBJ	silvers
-skeleton	OBJ	skeletons
 skull	OBJ	skulls
 slime	OBJ	slimes
 sodium	OBJ	sodia
+soup	OBJ-FOO	soups
 space	OBJ	spaces
+species	OBJ	species
+spinach	OBJ-FOO	spinaches
 sprig	OBJ-AMO	sprigs
 staff	OBJ	staffs
+stake	OBJ	stakes
 star	OBJ	stars
+status	OBJ	stati
 steel	OBJ	steels
 stendhal	OBJ	stendhals
 stone	OBJ	stones
 storage	OBJ	storages
+story	OBJ	stories
 suit	OBJ-AMO	suits
 sun	OBJ	suns
+suntan	OBJ	suntans
 sword	OBJ	swords
 table	OBJ	tables
 task	OBJ	tasks
 tavern	OBJ	taverns
+tea	OBJ-FLU	teas
 teddy	OBJ	teddies
 temple	OBJ	temples
 that	OBJ	=this	this
-thing	OBJ	things
 this	OBJ	this
 toadstool	OBJ	toadstools
 token	OBJ	tokens
 tomato	OBJ-FOO	tomatoes
+tool	OBJ	tools
 tooth	OBJ	teeth
 trade	OBJ	trades
 trading	OBJ	tradings
@@ -325,16 +385,18 @@ trophy	OBJ	trophies
 trouser	OBJ	trousers
 venom	OBJ	venoms
 vertex	OBJ	vertices
+victory	OBJ	victories
 village	OBJ	villages
 vodka	OBJ-FLU	vodkas
 vortex	OBJ	vortices
 war	OBJ	wars
 water	OBJ-FLU	waters
+weapon	OBJ	weapons
 wedding	OBJ	weddings
 whiskey	OBJ-FLU	whiskeys
+wikipedia	OBJ	wikipedia
 wine	OBJ-FLU
 wodka	OBJ-FLU	wodkas
-wolf	OBJ	wolves
 wood	OBJ	woods
 word	OBJ	words
 world	OBJ	worlds
@@ -346,23 +408,33 @@ archer	SUB	archers
 archmage	SUB	archmages
 archrat	SUB-ANI	archrats
 baby	SUB	babies
+bat	SUB-ANI	bats
 bear	SUB-ANI	bears
+beholder	SUB	beholders
 ben	SUB-NAM
 blacksmith	SUB
+boar	SUB-ANI	boars
 bob	SUB-NAM
 boss	SUB	bosses
 boy	SUB	boys
 cat	SUB-ANI	cats
 caverat	SUB-ANI	caverats
 ceryl	SUB-NAM
+chicken	SUB-ANI	chickens
 chief	SUB	chiefs
 child	SUB	children
+clownfish	SUB-ANI
 cobra	SUB-ANI	cobras
+crab	SUB-ANI	crabs
+cyclops	SUB	cyclopses
+death	SUB	deaths
 demon	SUB	demons
+deniran	SUB-NAM	=Deniran
 deus	SUB	dei
 djinni	SUB	djinn
 dog	SUB-ANI	dogs
 dragon	SUB-ANI	dragons
+dwarf	SUB	dwarves
 efreeti	SUB	efreet
 elephant	SUB-ANI	elephants
 elf	SUB	elves
@@ -370,21 +442,31 @@ felina	SUB-NAM
 fox	SUB-ANI	foxes
 gargoyle	SUB	gargoyles
 ghost	SUB	ghosts
+giant	SUB
 giantrat	SUB-ANI	giantrats
 gnome	SUB	gnomes
 goblin	SUB	goblins
+god	SUB
 golem	SUB	golems
 goose	SUB-ANI	geese
 goran	SUB-NAM
+guard	SUB
 guardian	SUB	guardians
 hayunn	SUB-NAM
 he	SUB	they
+heart	SUB
+hero	SUB	heros
+human	SUB	humans
+hunter	SUB	hunters
 i	SUB	we
+idea	SUB
 javier	SUB-NAM
 jynath	SUB-NAM
 katinka	SUB-NAM
+kobold	SUB	kobolds
 kymara	SUB-NAM
 leader	SUB	leaders
+lich	SUB	liches
 lion	SUB-ANI	lions
 mage	SUB	mages
 man	SUB	men
@@ -392,19 +474,33 @@ margaret	SUB-NAM
 mark	SUB-NAM
 mary	SUB-NAM
 me	SUB	=i	us
+monkey	SUB	monkeys
+mummy	SUB	mummies
+ogre	SUB	ogres
+orc	SUB	orcs
 penguin	SUB-ANI	penguins
+perch	SUB-ANI
+pirate	SUB
 player	SUB	players
 rat	SUB-ANI	rats
 ratman	SUB	ratmen
 ratwoman	SUB	ratwomen
 razorrat	SUB-ANI	razorrats
+roach	SUB-ANI
 sally	SUB-NAME
 she	SUB	they
 siandra	SUB-NAM
+skeleton	SUB	skeletons
 soldier	SUB	soldiers
+sorcerer	SUB
 spirit	SUB	spirits
+surgeonfish	SUB-ANI
+susi	SUB-NAM
+thing	SUB	things
+thonatus	SUB-NAM
 tiger	SUB-ANI	tigers
 troll	SUB	trolls
+trout	SUB-ANI
 unicorn	SUB-ANI	unicorns
 vampire	SUB
 vegetarian	SUB	vegetarians
@@ -412,6 +508,8 @@ venomrat	SUB-ANI	venomrats
 veteran	SUB	veterans
 viking	SUB	vikings
 warrior	SUB	warriors
+wizard	SUB
+wolf	SUB-ANI	wolves
 woman	SUB	women
 wumpus	SUB	wumpuses
 xin	SUB-NAM
@@ -419,31 +517,39 @@ you	SUB	you
 zak	SUB-NAM
 zombie	SUB	zombies
 
+another	ADJ
+bad	ADJ
 big	ADJ
 biting	ADJ
 black	ADJ-COL
 blue	ADJ-COL
 brown	ADJ-COL
+complete	ADJ
 deadly	ADJ
 elder	ADJ
+elvish	ADJ
 empty	ADJ
 exact	ADJ
 exotic	ADJ
 fiscal	ADJ
+free	ADJ
 fresh	ADJ
-giant	ADJ
 golden	ADJ-COL
+good	ADJ
 great	ADJ
 greater	ADJ
 green	ADJ-COL
 lazy	ADJ
 leather	ADJ
+markable	ADJ
 marked	ADJ
+mega	ADJ
 minor	ADJ
 missing	ADJ
 nice	ADJ
 old	ADJ
 quick	ADJ
+rare	ADJ
 red	ADJ-COL
 royal	ADJ
 short	ADJ
@@ -452,6 +558,7 @@ small	ADJ
 special	ADJ
 studded	ADJ
 twoside	ADJ
+well	ADJ	=good
 white	ADJ-COL
 wooden	ADJ
 young	ADJ
