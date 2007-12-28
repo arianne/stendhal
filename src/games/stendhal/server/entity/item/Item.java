@@ -112,6 +112,9 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 
 		// Some items should not be dropped on death
 		entity.addAttribute("undroppableondeath", Type.SHORT);
+
+		// Unique database ID for logging
+		entity.addAttribute("logid", Type.INT);
 	}
 
 	/**
