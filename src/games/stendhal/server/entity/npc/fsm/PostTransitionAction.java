@@ -12,7 +12,7 @@ import games.stendhal.server.entity.player.Player;
 public interface PostTransitionAction {
 
 	/**
-	 * does some action after a transition
+	 * does some action after a transition.
 	 * 
 	 * @param player
 	 *            player who caused the transition

@@ -11,7 +11,7 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
 /**
- * An inverse condition
+ * An inverse condition. TODO: correct javadoc
  */
 public class AndCondition extends SpeakerNPC.ChatCondition {
 

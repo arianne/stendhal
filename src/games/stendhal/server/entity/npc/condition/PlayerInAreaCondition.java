@@ -16,7 +16,7 @@ public class PlayerInAreaCondition extends SpeakerNPC.ChatCondition {
 	private Area area;
 
 	/**
-	 * Creates a new PlayerInAreaCondition
+	 * Creates a new PlayerInAreaCondition.
 	 * 
 	 * @param area
 	 *            Area

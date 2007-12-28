@@ -11,14 +11,14 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
 /**
- * An or condition
+ * An or condition.
  */
 public class OrCondition extends SpeakerNPC.ChatCondition {
 
 	private List<SpeakerNPC.ChatCondition> conditions;
 
 	/**
-	 * Creates a new "or"-condition
+	 * Creates a new "or"-condition.
 	 * 
 	 * @param condition
 	 *            condition which should be or-ed.

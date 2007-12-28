@@ -8,14 +8,14 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
 /**
- * Is the player's level greater than the specified one?
+ * Is the player's level smaller than the specified one?
  */
 public class LevelLessThanCondition extends SpeakerNPC.ChatCondition {
 
 	private int level;
 
 	/**
-	 * Creates a new LevelGreaterThanCondition
+	 * Creates a new LevelGreaterThanCondition.
 	 * 
 	 * @param level
 	 *            level '

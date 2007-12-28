@@ -11,10 +11,10 @@ import games.stendhal.server.entity.player.Player;
  */
 public class Transition {
 
-	/** The state where this transition starts at */
+	/** The state where this transition starts at .*/
 	private int state;
 
-	/** The state where this transition leads to */
+	/** The state where this transition leads to. */
 	private int nextState;
 
 	/**
@@ -25,18 +25,18 @@ public class Transition {
 
 	/**
 	 * The condition that has to be fulfilled so that the transition can be
-	 * triggered
+	 * triggered.
 	 */
 	private PreTransitionCondition condition;
 
-	/** The text that the NPC will say when the transition is triggered */
+	/** The text that the NPC will say when the transition is triggered.*/
 	private String reply;
 
-	/** The action that will take place when the transition is triggered */
+	/** The action that will take place when the transition is triggered. */
 	private PostTransitionAction action;
 
 	/**
-	 * Creates a new transition
+	 * Creates a new transition.
 	 * 
 	 * @param currentState
 	 *            old state
@@ -116,7 +116,7 @@ public class Transition {
 	}
 
 	/**
-	 * checks whether this transition is possible now
+	 * checks whether this transition is possible now.
 	 * 
 	 * @param state
 	 *            old state
@@ -177,7 +177,7 @@ public class Transition {
 	}
 
 	/**
-	 * Sets the output for this transition
+	 * Sets the output for this transition.
 	 * 
 	 * @param reply
 	 *            output

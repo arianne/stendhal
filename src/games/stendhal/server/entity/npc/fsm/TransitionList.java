@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * easy access to a list of transitions for debugging
+ * easy access to a list of transitions for debugging.
  * 
  * @author hendrik
  */
@@ -14,7 +14,7 @@ public class TransitionList {
 	private List<Transition> transitions;
 
 	/**
-	 * Creates a new TransitionList
+	 * Creates a new TransitionList.
 	 * 
 	 * @param transitions
 	 *            list of transitions
@@ -24,7 +24,7 @@ public class TransitionList {
 	}
 
 	/**
-	 * gets all source states
+	 * gets all source states.
 	 * 
 	 * @return Set of source states
 	 */
@@ -37,7 +37,7 @@ public class TransitionList {
 	}
 
 	/**
-	 * returns a set of triggers for a given source state
+	 * returns a set of triggers for a given source state.
 	 * 
 	 * @param state
 	 *            source state

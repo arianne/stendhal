@@ -8,14 +8,14 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 
 /**
- * An inverse condition
+ * An inverse condition.
  */
 public class NotCondition extends SpeakerNPC.ChatCondition {
 
 	private SpeakerNPC.ChatCondition condition;
 
 	/**
-	 * Creates a new "not"-condition
+	 * Creates a new "not"-condition.
 	 * 
 	 * @param condition
 	 *            condition which result is to be inversed

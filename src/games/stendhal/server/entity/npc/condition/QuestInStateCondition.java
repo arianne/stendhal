@@ -16,7 +16,7 @@ public class QuestInStateCondition extends SpeakerNPC.ChatCondition {
 	private String state;
 
 	/**
-	 * Creates a new QuestInStateCondition
+	 * Creates a new QuestInStateCondition.
 	 * 
 	 * @param questname
 	 *            name of quest-slot

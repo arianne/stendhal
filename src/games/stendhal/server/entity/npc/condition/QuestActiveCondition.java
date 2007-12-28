@@ -15,7 +15,7 @@ public class QuestActiveCondition extends SpeakerNPC.ChatCondition {
 	private String questname;
 
 	/**
-	 * Creates a new QuestActiveCondition
+	 * Creates a new QuestActiveCondition.
 	 * 
 	 * @param questname
 	 *            name of quest slot

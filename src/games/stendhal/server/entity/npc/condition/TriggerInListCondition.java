@@ -18,7 +18,7 @@ public class TriggerInListCondition extends SpeakerNPC.ChatCondition {
 	private List<String> triggers = new LinkedList<String>();
 
 	/**
-	 * Creates a new TriggerInListCondition
+	 * Creates a new TriggerInListCondition.
 	 * 
 	 * @param trigger
 	 *            list of trigger
@@ -28,7 +28,7 @@ public class TriggerInListCondition extends SpeakerNPC.ChatCondition {
 	}
 
 	/**
-	 * Creates a new TriggerInListCondition
+	 * Creates a new TriggerInListCondition.
 	 * 
 	 * @param trigger
 	 *            list of trigger

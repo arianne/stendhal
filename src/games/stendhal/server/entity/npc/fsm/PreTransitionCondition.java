@@ -5,7 +5,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 
 /**
- * a condition to check before an transition is executed
+ * a condition to check before an transition is executed.
  * 
  * @author hendrik
  */

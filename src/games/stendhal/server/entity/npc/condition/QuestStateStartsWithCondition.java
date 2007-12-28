@@ -16,7 +16,7 @@ public class QuestStateStartsWithCondition extends SpeakerNPC.ChatCondition {
 	private String state;
 
 	/**
-	 * Creates a new QuestStateStartsWithCondition
+	 * Creates a new QuestStateStartsWithCondition.
 	 * 
 	 * @param questname
 	 *            name of quest-slot

@@ -67,7 +67,7 @@ public class Engine {
 	}
 
 	/**
-	 * Calculates and returns an unused state
+	 * Calculates and returns an unused state.
 	 * 
 	 * @return unused state
 	 */
@@ -77,7 +77,7 @@ public class Engine {
 	}
 
 	/**
-	 * Adds a new transition to FSM
+	 * Adds a new transition to FSM.
 	 * 
 	 * @param state
 	 *            old state
@@ -113,7 +113,7 @@ public class Engine {
 	}
 
 	/**
-	 * Adds a new set of transitions to the FSM
+	 * Adds a new set of transitions to the FSM.
 	 * 
 	 * @param state
 	 *            the starting state of the FSM
@@ -142,7 +142,7 @@ public class Engine {
 	}
 
 	/**
-	 * Gets the current state
+	 * Gets the current state.
 	 * 
 	 * @return current state
 	 */
@@ -213,7 +213,7 @@ public class Engine {
 
 	/**
 	 * Do one transition of the finite state machine with debugging output and
-	 * reset of the previous response
+	 * reset of the previous response.
 	 * 
 	 * @param player
 	 *            Player
@@ -322,7 +322,7 @@ public class Engine {
 	}
 
 	/**
-	 * Returns a copy of the transition table
+	 * Returns a copy of the transition table.
 	 * 
 	 * @return list of transitions
 	 */

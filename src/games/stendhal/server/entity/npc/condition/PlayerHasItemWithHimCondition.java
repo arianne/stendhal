@@ -16,7 +16,7 @@ public class PlayerHasItemWithHimCondition extends SpeakerNPC.ChatCondition {
 	private int amount;
 
 	/**
-	 * Creates a new PlayerHasItemWithHim
+	 * Creates a new PlayerHasItemWithHim.
 	 * 
 	 * @param itemName
 	 *            name of item
@@ -27,7 +27,7 @@ public class PlayerHasItemWithHimCondition extends SpeakerNPC.ChatCondition {
 	}
 
 	/**
-	 * Creates a new PlayerHasItemWithHim
+	 * Creates a new PlayerHasItemWithHim.
 	 * 
 	 * @param itemName
 	 *            name of item

@@ -14,7 +14,7 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
 /**
- * Checks the records of kills
+ * Checks the records of kills.
  * 
  * @author hendrik
  */
@@ -22,7 +22,7 @@ public class KilledCondition extends ChatCondition {
 	private Set<String> toKill;
 
 	/**
-	 * creates a new KilledCondition
+	 * creates a new KilledCondition.
 	 * 
 	 * @param toKill
 	 *            list of creatures which should be killed by the player
@@ -32,7 +32,7 @@ public class KilledCondition extends ChatCondition {
 	}
 
 	/**
-	 * creates a new KilledCondition
+	 * creates a new KilledCondition.
 	 * 
 	 * @param toKill
 	 *            creatures which should be killed by the player
