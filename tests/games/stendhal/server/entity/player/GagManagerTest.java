@@ -21,6 +21,7 @@ public class GagManagerTest {
 		ActiveEntity.generateRPClass();
 		RPEntity.generateRPClass();
 		Player.generateRPClass();
+		PlayerTestHelper.removePlayer("bob");
 	}
 
 	@After
@@ -31,7 +32,6 @@ public class GagManagerTest {
 	public final void testGagAbsentPlayer() {
 		Player policeman = PlayerTestHelper.createPlayer();
 		Player bob = PlayerTestHelper.createPlayer("bob");
-
 		GagManager.get().gag("bob", policeman, 1, "test");
 		assertEquals("Player bob not found", policeman.getPrivateText());
 		assertFalse(GagManager.isGagged(bob));
