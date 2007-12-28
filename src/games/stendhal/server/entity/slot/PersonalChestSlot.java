@@ -35,8 +35,4 @@ public class PersonalChestSlot extends ChestSlot {
 	    return super.isReachableForTakingThingsOutOfBy(entity);
     }
 
-	@Override
-    public RPSlot getWriteableSlot() {
-		return chest.getBankSlot();
-    }
 }
