@@ -190,7 +190,6 @@ flour	OBJ	flours
 flower	OBJ	flowers
 foot	OBJ	feet
 forge	OBJ	forges
-gargoyle	OBJ	gargoyles
 gold	OBJ	golds
 gown	OBJ	gowns
 grain	OBJ-FOO	grains
@@ -369,6 +368,7 @@ elephant	SUB-ANI	elephants
 elf	SUB	elves
 felina	SUB-NAM
 fox	SUB-ANI	foxes
+gargoyle	SUB	gargoyles
 ghost	SUB	ghosts
 giantrat	SUB-ANI	giantrats
 gnome	SUB	gnomes
