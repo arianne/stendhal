@@ -37,6 +37,7 @@ public class WordType {
 	public final static String SUFFIX_COLOR = SUFFIX+COLOR;
 	public final static String SUFFIX_CONDITIONAL = SUFFIX+CONDITIONAL;
 	public static final String SUFFIX_FOOD = SUFFIX+FOOD;
+	public static final String SUFFIX_FLUID = SUFFIX+FLUID;
 	public final static String SUFFIX_ANIMAL = SUFFIX+ANIMAL;
 	public final static String SUFFIX_NAME = SUFFIX+NAME;
 	public final static String SUBJECT_NAME = SUBJECT+SUFFIX_NAME;
@@ -139,7 +140,7 @@ public class WordType {
 	 * @return
 	 */
 	public boolean isPlural() {
-	    return typeString.endsWith(SUFFIX_PLURAL);
+	    return typeString.contains(SUFFIX_PLURAL);
     }
 
 	/**
@@ -147,7 +148,7 @@ public class WordType {
 	 * @return
 	 */
 	public boolean isName() {
-	    return typeString.endsWith(SUFFIX_NAME);
+	    return typeString.contains(SUFFIX_NAME);
     }
 
 	/**
