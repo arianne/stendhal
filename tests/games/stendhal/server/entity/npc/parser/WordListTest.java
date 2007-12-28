@@ -1,8 +1,10 @@
-package games.stendhal.server.entity.npc.newparser;
+package games.stendhal.server.entity.npc.parser;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+import games.stendhal.server.entity.npc.newparser.WordEntry;
+import games.stendhal.server.entity.npc.newparser.WordList;
 
 import org.junit.Test;
 

@@ -1,7 +1,9 @@
-package games.stendhal.server.entity.npc.newparser;
+package games.stendhal.server.entity.npc.parser;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import games.stendhal.server.entity.npc.newparser.ConversationParser;
+import games.stendhal.server.entity.npc.newparser.Sentence;
 
 import org.junit.Test;
 
@@ -44,6 +46,7 @@ public class SentenceTest {
 		assertEquals("buy", sentence.getVerb(0).getNormalized());
 		assertEquals("banana", sentence.getObject(0).getNormalized());
 
+		//TODO transfer into "buy banana"
 		sentence = ConversationParser.parse("do you have a banana for me?");
 		assertFalse(sentence.hasError());
 		assertEquals(Sentence.ST_QUESTION, sentence.getType());

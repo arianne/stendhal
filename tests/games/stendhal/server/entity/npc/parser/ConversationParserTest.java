@@ -1,9 +1,11 @@
-package games.stendhal.server.entity.npc;
+package games.stendhal.server.entity.npc.parser;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
+import games.stendhal.server.entity.npc.newparser.ConversationParser;
+import games.stendhal.server.entity.npc.newparser.Sentence;
 
 import org.junit.Test;
 
@@ -19,10 +21,10 @@ public class ConversationParserTest {
 		Sentence sentence = ConversationParser.parse("buy 3 cookies");
 		assertFalse(sentence.hasError());
 
-		assertEquals("buy", sentence.getVerb());
+		assertEquals("buy", sentence.getVerbString());
 		assertEquals("buy", sentence.getTrigger());
-		assertEquals(3, sentence.getAmount());
-		assertEquals("cooky", sentence.getObjectName());
+		assertEquals(3, sentence.getObject(0).getAmount());
+		assertEquals("cookie", sentence.getObjectName());
 	}
 
 	@Test
@@ -30,9 +32,9 @@ public class ConversationParserTest {
 		Sentence sentence = ConversationParser.parse("eat four cookies");
 		assertFalse(sentence.hasError());
 
-		assertEquals("eat", sentence.getVerb());
-		assertEquals(4, sentence.getAmount());
-		assertEquals("cooky", sentence.getObjectName());
+		assertEquals("eat", sentence.getVerbString());
+		assertEquals(4, sentence.getObject(0).getAmount());
+		assertEquals("cookie", sentence.getObjectName());
 	}
 
 	@Test
@@ -40,8 +42,8 @@ public class ConversationParserTest {
 		Sentence sentence = ConversationParser.parse("buy Bread");
 		assertFalse(sentence.hasError());
 
-		assertEquals("buy", sentence.getVerb());
-		assertEquals(1, sentence.getAmount());
+		assertEquals("buy", sentence.getVerbString());
+		assertEquals(1, sentence.getObject(0).getAmount());
 		assertEquals("bread", sentence.getObjectName());
 		assertEquals("bread", sentence.getItemName());
 		assertEquals("buy Bread", sentence.getOriginalText());
@@ -51,15 +53,15 @@ public class ConversationParserTest {
 	public final void testSpaceHandling() {
 		Sentence sentence = ConversationParser.parse("drop  three \tchicken");
 		assertFalse(sentence.hasError());
-		assertEquals("drop", sentence.getVerb());
-		assertEquals(3, sentence.getAmount());
+		assertEquals("drop", sentence.getVerbString());
+		assertEquals(3, sentence.getObject(0).getAmount());
 		assertEquals("chicken", sentence.getObjectName());
 		assertEquals("drop three chicken", sentence.getOriginalText());
 
 		sentence = ConversationParser.parse(" sell house   ");
 		assertFalse(sentence.hasError());
-		assertEquals("sell", sentence.getVerb());
-		assertEquals(1, sentence.getAmount());
+		assertEquals("sell", sentence.getVerbString());
+		assertEquals(1, sentence.getObject(0).getAmount());
 		assertEquals("house", sentence.getObjectName());
 		assertEquals("house", sentence.getItemName());
 	}
@@ -68,12 +70,12 @@ public class ConversationParserTest {
 	public final void testItemName() {
 		Sentence sentence = ConversationParser.parse("buy fresh_fish");
 		assertFalse(sentence.hasError());
-		assertEquals("buy", sentence.getVerb());
+		assertEquals("buy", sentence.getVerbString());
 		assertEquals("fresh_fish", sentence.getItemName());
 
 		sentence = ConversationParser.parse("buy fresh fish");
-		assertEquals("buy", sentence.getVerb());
-		assertEquals("fresh fish", sentence.getObjectName());
+		assertEquals("buy", sentence.getVerbString());
+		assertEquals("fish", sentence.getObjectName());
 		assertEquals("fresh_fish", sentence.getItemName());
 	}
 
@@ -86,7 +88,7 @@ public class ConversationParserTest {
 		assertFalse(sentence.hasError());
 
 		sentence = ConversationParser.parse("buy -10 cars");
-		assertEquals(-10, sentence.getAmount());
+		assertEquals(-10, sentence.getObject(0).getAmount());
 		assertTrue(sentence.hasError());
 		assertEquals("negative amount: -10", sentence.getError());
 	}
@@ -107,85 +109,92 @@ public class ConversationParserTest {
 		Sentence sentence = ConversationParser.parse("put dish on table");
 		assertFalse(sentence.hasError());
 
-		assertEquals("put", sentence.getVerb());
-		assertEquals(1, sentence.getAmount());
-		assertEquals("dish", sentence.getObjectName());
-		assertEquals("on", sentence.getPreposition());
-		assertEquals("table", sentence.getObjectName2());
+		assertEquals("put", sentence.getVerbString());
+		assertEquals(1, sentence.getObject(0).getAmount());
+		assertEquals("dish", sentence.getObject(0).getNormalized());
+		assertEquals("on", sentence.getPreposition(0).getNormalized());
+		assertEquals("table", sentence.getObject(1).getNormalized());
 	}
 
 	@Test
 	public final void testPluralAndPrefix() {
 		Sentence sentence = ConversationParser.parse("buy seven bananas");
 		assertFalse(sentence.hasError());
-		assertEquals("buy", sentence.getVerb());
-		assertEquals(7, sentence.getAmount());
-		assertEquals("banana", sentence.getItemName());
+		assertEquals("buy", sentence.getVerbString());
+		assertEquals(7, sentence.getObject(0).getAmount());
+		assertEquals("banana", sentence.getObject(0).getNormalized());
 
 		sentence = ConversationParser.parse("buy a bottle of wine");
 		assertFalse(sentence.hasError());
-		assertEquals("buy", sentence.getVerb());
-		assertEquals(1, sentence.getAmount());
-		assertEquals("wine", sentence.getItemName());
+		assertEquals("buy", sentence.getVerbString());
+		assertEquals(1, sentence.getObject(0).getAmount());
+		assertEquals("wine", sentence.getObject(0).getNormalized());
 
 		sentence = ConversationParser.parse("buy two pairs of trousers");
 		assertFalse(sentence.hasError());
-		assertEquals("buy", sentence.getVerb());
-		assertEquals(2, sentence.getAmount());
-		assertEquals("trouser", sentence.getItemName());
+		assertEquals("buy", sentence.getVerbString());
+		assertEquals(2, sentence.getObject(0).getAmount());
+		assertEquals("trouser", sentence.getObject(0).getNormalized());
 	}
 
 	@Test
 	public final void testPlease() {
 		Sentence sentence = ConversationParser.parse("please open chest");
 		assertFalse(sentence.hasError());
-		assertEquals("open", sentence.getVerb());
-		assertEquals(1, sentence.getAmount());
-		assertEquals("chest", sentence.getObjectName());
+		assertEquals("open", sentence.getVerbString());
+		assertEquals(1, sentence.getObject(0).getAmount());
+		assertEquals("chest", sentence.getObject(0).getNormalized());
 
 		sentence = ConversationParser.parse("please please do me a favour");
 		assertFalse(sentence.hasError());
-		//TODO assertEquals("you", sentence.getSubject());
-		assertEquals("do", sentence.getVerb());
-		assertEquals("i", sentence.getSubject2());
-		assertEquals(1, sentence.getAmount());
-		assertEquals("favour", sentence.getObjectName());
+		assertEquals("you", sentence.getSubject(0).getNormalized());
+		assertEquals("do", sentence.getVerbString());
+		assertEquals("i", sentence.getSubject(1).getNormalized());
+		assertEquals(1, sentence.getObject(0).getAmount());
+		assertEquals("favour", sentence.getObject(0).getNormalized());
 	}
 
 	@Test
 	public final void testMe() {
 		Sentence sentence = ConversationParser.parse("me");
 		assertFalse(sentence.hasError());
-		assertEquals("i", sentence.getSubject());
-		assertNull(sentence.getVerb());
-		assertNull(sentence.getSubject2());
+		assertEquals("i", sentence.getSubject(0).getNormalized());
+		assertNull(sentence.getVerbString());
+		assertNull(sentence.getSubject(1));
 	}
 
 	@Test
-	public final void testSubject2() {
+	public final void testTwoSubjects() {
 		Sentence sentence = ConversationParser.parse("i love you");
 		assertFalse(sentence.hasError());
-		assertEquals("i", sentence.getSubject());
-		assertEquals("love", sentence.getVerb());
-		assertEquals("you", sentence.getSubject2());
+		assertEquals("i", sentence.getSubject(0).getNormalized());
+		assertEquals("love", sentence.getVerbString());
+		assertEquals("you", sentence.getSubject(1).getNormalized());
 
-		//TODO make possible to say "give me 4 fishes, please"
 		sentence = ConversationParser.parse("give me 4 fishes");
 		assertFalse(sentence.hasError());
-		assertEquals("i", sentence.getSubject());
-		assertEquals("buy", sentence.getVerb());
-		assertNull(sentence.getSubject2());
-		assertEquals(4, sentence.getAmount());
+		assertEquals("buy", sentence.getVerbString());
+		assertNull(sentence.getSubject(1));
+		assertEquals(4, sentence.getObject(0).getAmount());
 		assertEquals("fish", sentence.getObjectName());
 
-/*TODO
-		sentence = ConversationParser.parse("i would like to have an ice");
+		sentence = ConversationParser.parse("i would like to have an ice cream");
 		assertFalse(sentence.hasError());
-		assertEquals("i", sentence.getSubject());
-		assertEquals("buy", sentence.getVerb());
-		assertNull(sentence.getSubject2());
-		assertEquals(1, sentence.getAmount());
-		assertEquals("ice cream", sentence.getObjectName());
-*/
+		assertEquals("i", sentence.getSubject(0).getNormalized());
+		assertEquals("buy", sentence.getVerbString());
+		assertNull(sentence.getSubject(1));
+		assertEquals(1, sentence.getObject(0).getAmount());
+		assertEquals("ice", sentence.getObjectName());
+	}
+
+	@Test
+	public final void testPunctuation() {
+		//TODO also handle "if i may ask, give me 4 fishes, please"
+		Sentence sentence = ConversationParser.parse("give me 4 fishes, please");
+		assertFalse(sentence.hasError());
+		assertEquals("buy", sentence.getVerbString());
+		assertNull(sentence.getSubject(1));
+		assertEquals(4, sentence.getObject(0).getAmount());
+		assertEquals("fish", sentence.getObjectName());
 	}
 }
