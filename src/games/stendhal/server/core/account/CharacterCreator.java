@@ -38,7 +38,7 @@ public class CharacterCreator {
 	 * @param character
 	 *            name of the new character
 	 * @param template
-	 *            tempalte to base this character on
+	 *            template to base this character on
 	 */
 	public CharacterCreator(String username, String character, RPObject template) {
 		this.username = username;
@@ -132,6 +132,7 @@ public class CharacterCreator {
 		object.put("def", 10);
 		object.put("def_xp", 0);
 		object.put("xp", 0);
+
 		return object;
 	}
 }
