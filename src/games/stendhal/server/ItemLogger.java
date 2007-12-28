@@ -95,6 +95,10 @@ public class ItemLogger {
 	 */
 
 	private static void log(RPObject item, Player player, String event, String param1, String param2, String param3, String param4) {
+		if (!item.getRPClass().subclassOf("item")) {
+			return;
+		}
+
 		JDBCTransaction transaction = (JDBCTransaction) JDBCDatabase.getDatabase().getTransaction();
 		try {
 
@@ -122,7 +126,9 @@ public class ItemLogger {
 		JDBCTransaction transaction = (JDBCTransaction) JDBCDatabase.getDatabase().getTransaction();
 		try {
 			for (RPObject item : items) {
-				assignIDIfNotPresent(transaction, item);
+				if (item.getRPClass().subclassOf("item")) {
+					assignIDIfNotPresent(transaction, item);
+				}
 			}
 
 			transaction.commit();
