@@ -37,7 +37,7 @@ public class SpriteStore {
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(SpriteStore.class);
 
-	/** The single instance of this class */
+	/** The single instance of this class. */
 	private static SpriteStore single = new SpriteStore();
 
 	/**
@@ -52,7 +52,7 @@ public class SpriteStore {
 	}
 
 	/**
-	 * Get the single instance of this class
+	 * Get the single instance of this class.
 	 * 
 	 * @return The single instance of this class
 	 */
@@ -139,7 +139,7 @@ public class SpriteStore {
 	}
 
 	/**
-	 * Retrieve a sprite from the store
+	 * Retrieve a sprite from the store.
 	 * 
 	 * @param ref
 	 *            The reference to the image to use for the sprite

@@ -27,13 +27,13 @@ import java.awt.image.BufferedImage;
  * @author Kevin Glass
  */
 public class ImageSprite implements Sprite {
-	/** a brighter version of the sprite */
+	/** a brighter version of the sprite. */
 	protected ImageSprite brighterSprite;
 
-	/** a darker version of the sprite */
+	/** a darker version of the sprite. */
 	protected ImageSprite darkerSprite;
 
-	/** The image to be drawn for this sprite */
+	/** The image to be drawn for this sprite. */
 	protected Image image;
 
 	/**
@@ -42,7 +42,7 @@ public class ImageSprite implements Sprite {
 	protected Object reference;
 
 	/**
-	 * Create a new sprite based on an image
+	 * Create a new sprite based on an image.
 	 * 
 	 * @param image
 	 *            The image that is this sprite
@@ -52,7 +52,7 @@ public class ImageSprite implements Sprite {
 	}
 
 	/**
-	 * Create a new sprite based on an image
+	 * Create a new sprite based on an image.
 	 * 
 	 * @param image
 	 *            The image that is this sprite.
@@ -138,7 +138,7 @@ public class ImageSprite implements Sprite {
 		return i;
 	}
 
-	/** returns a brighter version of the sprite */
+	/** returns a brighter version of the sprite. */
 	public synchronized ImageSprite brighter() {
 		if (brighterSprite == null) {
 			brighterSprite = new ImageSprite(
@@ -148,7 +148,7 @@ public class ImageSprite implements Sprite {
 		return brighterSprite;
 	}
 
-	/** returns a darker version of the sprite */
+	/** returns a darker version of the sprite. */
 	public synchronized ImageSprite darker() {
 		if (darkerSprite == null) {
 			darkerSprite = new ImageSprite(getModifiedImage(Color.BLACK, 0.3f));
@@ -228,7 +228,7 @@ public class ImageSprite implements Sprite {
 	}
 
 	/**
-	 * Draw the sprite onto the graphics context provided
+	 * Draw the sprite onto the graphics context provided.
 	 * 
 	 * @param g
 	 *            The graphics context on which to draw the sprite
@@ -242,7 +242,7 @@ public class ImageSprite implements Sprite {
 	}
 
 	/**
-	 * Draws the image
+	 * Draws the image.
 	 * 
 	 * @param g
 	 *            the graphics context where to draw to
@@ -266,7 +266,7 @@ public class ImageSprite implements Sprite {
 	}
 
 	/**
-	 * Get the height of the drawn sprite
+	 * Get the height of the drawn sprite.
 	 * 
 	 * @return The height in pixels of this sprite
 	 */
@@ -287,7 +287,7 @@ public class ImageSprite implements Sprite {
 	}
 
 	/**
-	 * Get the width of the drawn sprite
+	 * Get the width of the drawn sprite.
 	 * 
 	 * @return The width in pixels of this sprite
 	 */

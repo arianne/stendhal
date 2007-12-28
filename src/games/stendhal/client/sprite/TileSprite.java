@@ -170,7 +170,7 @@ public class TileSprite implements Sprite {
 	}
 
 	/**
-	 * Draws the image
+	 * Draws the image.
 	 * 
 	 * @param g
 	 *            the graphics context where to draw to

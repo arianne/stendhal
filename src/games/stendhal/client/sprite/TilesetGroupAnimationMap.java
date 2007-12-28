@@ -243,6 +243,7 @@ public class TilesetGroupAnimationMap {
 	}
 
 	/**
+	 * <p>
 	 * Load tileset mappings from a file. This doesn't not first clear any
 	 * existing entries.
 	 * </p>

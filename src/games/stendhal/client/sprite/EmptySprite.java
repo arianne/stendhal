@@ -93,7 +93,7 @@ public class EmptySprite implements Sprite {
 	}
 
 	/**
-	 * Draw the sprite onto the graphics context provided
+	 * Draw the sprite onto the graphics context provided.
 	 * 
 	 * @param g
 	 *            The graphics context on which to draw the sprite
@@ -106,7 +106,7 @@ public class EmptySprite implements Sprite {
 	}
 
 	/**
-	 * Draws the image
+	 * Draws the image.
 	 * 
 	 * @param g
 	 *            the graphics context where to draw to
@@ -128,7 +128,7 @@ public class EmptySprite implements Sprite {
 	}
 
 	/**
-	 * Get the height of the drawn sprite
+	 * Get the height of the drawn sprite.
 	 * 
 	 * @return The height in pixels of this sprite
 	 */
@@ -149,7 +149,7 @@ public class EmptySprite implements Sprite {
 	}
 
 	/**
-	 * Get the width of the drawn sprite
+	 * Get the width of the drawn sprite.
 	 * 
 	 * @return The width in pixels of this sprite
 	 */

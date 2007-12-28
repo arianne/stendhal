@@ -46,7 +46,7 @@ public interface Sprite {
 			final int height, final Object ref);
 
 	/**
-	 * Draw the sprite onto the graphics context provided
+	 * Draw the sprite onto the graphics context provided.
 	 * 
 	 * @param g
 	 *            The graphics context on which to draw the sprite
@@ -58,7 +58,7 @@ public interface Sprite {
 	void draw(Graphics g, int x, int y);
 
 	/**
-	 * Draws the image
+	 * Draws the image.
 	 * 
 	 * @param g
 	 *            the graphics context where to draw to
@@ -78,7 +78,7 @@ public interface Sprite {
 	void draw(Graphics g, int destx, int desty, int x, int y, int w, int h);
 
 	/**
-	 * Get the height of the drawn sprite
+	 * Get the height of the drawn sprite.
 	 * 
 	 * @return The height in pixels of this sprite
 	 */
@@ -95,7 +95,7 @@ public interface Sprite {
 	Object getReference();
 
 	/**
-	 * Get the width of the drawn sprite
+	 * Get the width of the drawn sprite.
 	 * 
 	 * @return The width in pixels of this sprite
 	 */

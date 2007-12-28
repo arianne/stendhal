@@ -165,8 +165,7 @@ public class AnimatedSprite implements Sprite {
 	 *             If less than one frame is given, or the delay is < 0.
 	 */
 	public AnimatedSprite(final Sprite[] frames, final int[] delays,
-			final boolean animating, final Object reference)
-			throws IllegalArgumentException {
+			final boolean animating, final Object reference) {
 		if (frames.length == 0) {
 			logger.warn("AnimatedSprite needs at least one frame");
 		}
@@ -445,7 +444,7 @@ public class AnimatedSprite implements Sprite {
 	}
 
 	/**
-	 * Draws the image
+	 * Draws the image.
 	 * 
 	 * @param g
 	 *            the graphics context where to draw to
