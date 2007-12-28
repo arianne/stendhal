@@ -9,7 +9,7 @@ import marauroa.common.game.RPObject;
 import marauroa.common.game.Definition.Type;
 
 /**
- * are persitent arrest warrant
+ * are persistent arrest warrant.
  *
  * @author hendrik
  */
@@ -34,7 +34,7 @@ public class ArrestWarrant extends Entity {
 	}
 
 	/**
-	 * Creates an ArrestWarrant
+	 * Creates an ArrestWarrant.
 	 *
 	 * @param criminalName  name of criminal to be jailed
 	 * @param policeOfficer name of police officer who issued the /jail command
@@ -64,12 +64,12 @@ public class ArrestWarrant extends Entity {
 		hide();
 		// initialize jail so that players with pending ArrestWarrants
 		// are arrested on login.
-		// TODO: find a better way to initalize the Jail
+		// TODO: find a better way to initialize the Jail
 		Jail.get();
 	}
 
 	/**
-	 * gets the name of the criminal
+	 * Gets the name of the criminal.
 	 *
 	 * @return name of criminal
 	 */
@@ -87,14 +87,14 @@ public class ArrestWarrant extends Entity {
 	}
 
 	/**
-	 * the criminal has started his jail time
+	 * The criminal has started his jail time.
 	 */
 	public void setStarted() {
 		put(STARTED, "");
 	}
 
 	/**
-	 * return the time of the sentence
+	 * Returns the time of the sentence.
 	 *
 	 * @return time in minutes
 	 */
@@ -103,7 +103,7 @@ public class ArrestWarrant extends Entity {
 	}
 
 	/**
-	 * returns the name of the police officer
+	 * Returns the name of the police officer.
 	 *
 	 * @return name of player who issued /jail
 	 */
@@ -112,7 +112,7 @@ public class ArrestWarrant extends Entity {
 	}
 
 	/**
-	 * returns the reason text
+	 * Returns the reason text.
 	 * @return reason
 	 */
 	public String getReason() {
@@ -120,9 +120,9 @@ public class ArrestWarrant extends Entity {
 	}
 
 	/**
-	 * returns the timestamp of the sentence
+	 * Returns the timestamp of the sentence.
 	 *
-	 * @return timestamps
+	 * @return timestamp
 	 */
 	public long getTimestamp() {
 		return (long) Float.parseFloat(get(TIMESTAMP));
