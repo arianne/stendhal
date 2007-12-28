@@ -40,6 +40,8 @@ ask	VER	=say
 boo	VER
 buy	VER
 bye	VER
+care	VER
+cheers	VER
 close	VER
 cya	VER
 did	VERB	=do
@@ -50,6 +52,8 @@ dressed	VER
 drop	VER
 eat	VER
 engage	VER
+exchange	VER
+explore	VER
 farewell	VER
 fit	VER
 give	VER
@@ -78,15 +82,21 @@ marry	VER
 may	VER-CON
 ok	VER
 open	VER
+own	VER
 put	VER
 rain	VER
+reserve	VER
+return	VER
 say	VER
 sell	VER
+sorry	VER
 speak	VER	=say
 summon	VER
+travel	VER
 wear	VER
 went	VER	=go
 will	VER
+work	VER	works
 would	VER-CON	=will
 yes	VER
 
@@ -101,17 +111,19 @@ arundula	OBJ	arundulas
 axe	OBJ	axes
 ayuda	OBJ	ayudas
 bag	OBJ	bags
+bakery	OBJ	bakeries
 banana	OBJ-FOO	bananas
+bank	OBJ	banks
 bar	OBJ	bars
 bardiche	OBJ	bardiches
 basement	OBJ	basements
 bat	OBJ	bats
 battle	OBJ	battles
-bear	OBJ	bears
 beer	OBJ-FLU
 beholder	OBJ	beholders
 boar	OBJ	boars
 body	OBJ	bodies
+bone	OBJ	bones
 book	OBJ	books
 boot	OBJ	boots
 bottle	OBJ	bottles
@@ -138,7 +150,10 @@ claymore	OBJ	claymores
 cloak	OBJ	cloaks
 cloth	OBJ	cloths
 club	OBJ	clubs
+cocktail	OBJ-FLU	cocktails
 colada	OBJ-FLU	coladas
+collard	OBJ	collards
+collection	OBJ	collections
 commander	OBJ	commanders
 cookie	OBJ-FOO	cookies
 coupon	OBJ	coupons
@@ -147,13 +162,14 @@ cream	OBJ	creams
 creature	OBJ	creatures
 crossbow	OBJ	crossbows
 crown	OBJ	crowns
-cuirasses	OBJ	cuirasses
+cuirass	OBJ	cuirasses
 cyclops	OBJ	cyclopses
 dagger	OBJ	daggers
 deal	OBJ	deals
 death	OBJ	deaths
 dice	OBJ	dice
 dish	OBJ	dishes
+divorce	OBJ	divorces
 doll	OBJ	dolls
 dress	OBJ	dresses
 drink	OBJ-FLU	drinks
@@ -186,6 +202,7 @@ hat	OBJ	hats
 helium	OBJ	helia
 helmet	OBJ	helmets
 help	OBJ	helps
+herb	OBJ	herbs
 hero	OBJ	heros
 hint	OBJ	hints
 home	OBJ	homes
@@ -207,6 +224,7 @@ knight	OBJ	knights
 kobold	OBJ	kobolds
 larva	OBJ	larvae
 leg	OBJ	legs
+library	OBJ	libraries
 lich	OBJ	liches
 list	OBJ	lists
 loaf	OBJ-AMO	loaves
@@ -219,6 +237,7 @@ map	OBJ	maps
 match	OBJ	matches
 matrix	OBJ	matrices
 meat	OBJ	meats
+medicine	OBJ	medicines
 militia	OBJ	militia
 money	OBJ	money
 monkey	OBJ	monkeys
@@ -243,6 +262,9 @@ park	OBJ	parks
 pie	OBJ-FOO	pies
 piece	OBJ	pieces
 pina	OBJ	pinas
+pinacolad	OBJ-FLU	=pinacolada	pinacoladas
+pinacolada	OBJ-FLU	pinacoladas
+pizza	OBJ-FOO	pizzas
 plate	OBJ	plates
 plural	OBJ	plurals
 poison	OBJ-FLU	poisons
@@ -253,17 +275,20 @@ present	OBJ	presents
 princess	OBJ	princesses
 quest	OBJ	quests
 request	OBJ	requests
+rhosyd	OBJ	rhosyds
 ring	OBJ	rings
 robin	OBJ	robins
 rod	OBJ	rods
 sacerdotist	OBJ	sacerdotists
 sack	OBJ-AMO	sacks
+safety	OBJ	safeties
 salad	OBJ	salads
 sandwich	OBJ	sandwiches
 scale	OBJ	scales
 scimitar	OBJ	scimitars
 scroll	OBJ	scrolls
 scythe	OBJ	scythes
+security	OBJ	securities
 sheaf	OBJ-AMO	sheaves
 shield	OBJ	shields
 silver	OBJ	silvers
@@ -271,18 +296,22 @@ skeleton	OBJ	skeletons
 skull	OBJ	skulls
 slime	OBJ	slimes
 sodium	OBJ	sodia
+space	OBJ	spaces
 sprig	OBJ-AMO	sprigs
 staff	OBJ	staffs
 star	OBJ	stars
 steel	OBJ	steels
 stendhal	OBJ	stendhals
 stone	OBJ	stones
+storage	OBJ	storages
 suit	OBJ-AMO	suits
 sun	OBJ	suns
 sword	OBJ	swords
 table	OBJ	tables
 task	OBJ	tasks
+tavern	OBJ	taverns
 teddy	OBJ	teddies
+temple	OBJ	temples
 that	OBJ	=this	this
 thing	OBJ	things
 this	OBJ	this
@@ -291,11 +320,13 @@ token	OBJ	tokens
 tomato	OBJ-FOO	tomatoes
 tooth	OBJ	teeth
 trade	OBJ	trades
+trading	OBJ	tradings
 trigger	OBJ	triggers
 trophy	OBJ	trophies
 trouser	OBJ	trousers
 venom	OBJ	venoms
 vertex	OBJ	vertices
+village	OBJ	villages
 vodka	OBJ-FLU	vodkas
 vortex	OBJ	vortices
 war	OBJ	wars
@@ -307,7 +338,6 @@ wodka	OBJ-FLU	wodkas
 wolf	OBJ	wolves
 wood	OBJ	woods
 word	OBJ	words
-work	OBJ	works
 world	OBJ	worlds
 yclept	OBJ	yclepts
 youngster	OBJ	youngsters
@@ -317,12 +347,15 @@ archer	SUB	archers
 archmage	SUB	archmages
 archrat	SUB-ANI	archrats
 baby	SUB	babies
+bear	SUB-ANI	bears
 ben	SUB-NAM
+blacksmith	SUB
 bob	SUB-NAM
 boss	SUB	bosses
 boy	SUB	boys
 cat	SUB-ANI	cats
 caverat	SUB-ANI	caverats
+ceryl	SUB-NAM
 chief	SUB	chiefs
 child	SUB	children
 cobra	SUB-ANI	cobras
@@ -344,15 +377,18 @@ golem	SUB	golems
 goose	SUB-ANI	geese
 goran	SUB-NAM
 guardian	SUB	guardians
+hayunn	SUB-NAM
 he	SUB	they
 i	SUB	we
 javier	SUB-NAM
+jynath	SUB-NAM
 katinka	SUB-NAM
 kymara	SUB-NAM
 leader	SUB	leaders
 lion	SUB-ANI	lions
 mage	SUB	mages
 man	SUB	men
+margaret	SUB-NAM
 mark	SUB-NAM
 mary	SUB-NAM
 me	SUB	=i	us
@@ -362,6 +398,7 @@ rat	SUB-ANI	rats
 ratman	SUB	ratmen
 ratwoman	SUB	ratwomen
 razorrat	SUB-ANI	razorrats
+sally	SUB-NAME
 she	SUB	they
 siandra	SUB-NAM
 soldier	SUB	soldiers
@@ -369,6 +406,7 @@ spirit	SUB	spirits
 tiger	SUB-ANI	tigers
 troll	SUB	trolls
 unicorn	SUB-ANI	unicorns
+vampire	SUB
 vegetarian	SUB	vegetarians
 venomrat	SUB-ANI	venomrats
 veteran	SUB	veterans
@@ -376,6 +414,7 @@ viking	SUB	vikings
 warrior	SUB	warriors
 woman	SUB	women
 wumpus	SUB	wumpuses
+xin	SUB-NAM
 you	SUB	you
 zak	SUB-NAM
 zombie	SUB	zombies
@@ -401,6 +440,7 @@ lazy	ADJ
 leather	ADJ
 marked	ADJ
 minor	ADJ
+missing	ADJ
 nice	ADJ
 old	ADJ
 quick	ADJ
