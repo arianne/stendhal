@@ -29,7 +29,6 @@ public class WordList {
 	private static final Logger logger = Logger.getLogger(WordList.class);
 
 	private final Map<String, WordEntry> words = new TreeMap<String, WordEntry>();
-	private final List<String> comments = new ArrayList<String>();
 
 	private static final WordList instance = new WordList();
 
@@ -38,12 +37,10 @@ public class WordList {
 		Log4J.init();
 
 		InputStream str = WordList.class.getResourceAsStream("words.txt");
-
 		BufferedReader reader = new BufferedReader(new InputStreamReader(str));
 
 		try {
-			instance.read(reader);
-
+			instance.read(reader, null);
 	        reader.close();
         } catch(IOException e) {
 	        e.printStackTrace();
@@ -60,7 +57,7 @@ public class WordList {
 	 * @param reader
 	 * @throws IOException
 	 */
-	public void read(BufferedReader reader) throws IOException	{
+	public void read(BufferedReader reader, List<String> comments) throws IOException	{
 		for(;;) {
             String line = reader.readLine();
             if (line == null)
@@ -74,7 +71,9 @@ public class WordList {
             String key = tk.nextToken();
 
             if (key.startsWith("#")) {
-            	comments.add(line);
+            	if (comments != null) {
+            		comments.add(line);
+            	}
             } else {
         	    WordEntry entry = new WordEntry();
         	    entry.setNormalized(key);
@@ -181,8 +180,19 @@ public class WordList {
 	 */
 	public static void main(String[] args) {
 		PrintWriter writer = new PrintWriter(System.out);
+		List<String> comments = new ArrayList<String>();
 
-		instance.write(writer);
+		InputStream str = WordList.class.getResourceAsStream("words.txt");
+		BufferedReader reader = new BufferedReader(new InputStreamReader(str));
+
+		try {
+			instance.read(reader, comments);
+	        reader.close();
+        } catch(IOException e) {
+	        e.printStackTrace();
+        }
+
+		instance.write(writer, comments);
 
 		writer.close();
 	}
@@ -191,7 +201,7 @@ public class WordList {
 	 * print all words sorted by known types
 	 * @param writer
 	 */
-	public void write(PrintWriter writer) {
+	public void write(PrintWriter writer, final List<String> comments) {
 		for(String c : comments) {
 			writer.println(c);
 		}
