@@ -31,7 +31,7 @@ public class PlayerList {
 	}
 
 	void tellAllOnlinePlayers(final String message) {
-		forAllPlayersExecute(new Task() {
+		forAllPlayersExecute(new Task<Player>() {
 			public void execute(Player player) {
 				player.sendPrivateText(message);
 				player.notifyWorldAboutChanges();
@@ -40,14 +40,14 @@ public class PlayerList {
 		});
 	}
 
-	public void forAllPlayersExecute(Task task) {
+	public void forAllPlayersExecute(Task<Player> task) {
 		for (Player player : players) {
 			task.execute(player);
 		}
 
 	}
 
-	public void forFilteredPlayersExecute(Task task, FilterCriteria<Player> filter) {
+	public void forFilteredPlayersExecute(Task<Player> task, FilterCriteria<Player> filter) {
 		for (Player player : players) {
 			if (filter.passes(player)) {
 				task.execute(player);

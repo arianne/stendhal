@@ -36,7 +36,9 @@ public class BugInspect extends ScriptImpl implements TurnListener {
 	}
 
 	public void onTurnReached(int currentTurn) {
-		StendhalRPRuleProcessor.get().getOnlinePlayers().forAllPlayersExecute(new Task() {
+		StendhalRPRuleProcessor.get().getOnlinePlayers().forAllPlayersExecute(
+				
+			new Task<Player>() {
 
 			public void execute(Player player) {
 				// TODO Auto-generated method stub

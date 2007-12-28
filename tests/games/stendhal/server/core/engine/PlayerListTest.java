@@ -62,7 +62,7 @@ public class PlayerListTest {
 		assertEquals(message, jack.getPrivateText());
 		assertEquals(message, bob.getPrivateText());
 		assertEquals(message, ghost.getPrivateText());
-		list.forAllPlayersExecute(new Task() {
+		list.forAllPlayersExecute(new Task<Player>() {
 
 			public void execute(Player player) {
 				player.clearEvents();
@@ -75,7 +75,7 @@ public class PlayerListTest {
 		assertEquals(null, bob.getPrivateText());
 		assertEquals(null, ghost.getPrivateText());
 
-		list.forFilteredPlayersExecute(new Task() {
+		list.forFilteredPlayersExecute(new Task<Player>() {
 			public void execute(Player player) {
 				player.sendPrivateText(message);
 

@@ -11,7 +11,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 /**
- * List all players an the zones they are in
+ * List all players an the zones they are in.
  * 
  * @author hendrik
  */
@@ -21,7 +21,9 @@ public class WhereWho extends ScriptImpl {
 		super.execute(admin, args);
 
 		final Map<String, StringBuilder> maps = new TreeMap<String, StringBuilder>();
-		StendhalRPRuleProcessor.get().getOnlinePlayers().forAllPlayersExecute(new Task() {
+		StendhalRPRuleProcessor.get().getOnlinePlayers().forAllPlayersExecute(
+				
+			new Task<Player>() {
 
 			public void execute(Player player) {
 				StendhalRPZone zone = player.getZone();

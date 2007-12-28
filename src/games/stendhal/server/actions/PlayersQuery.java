@@ -56,7 +56,7 @@ public class PlayersQuery implements ActionListener {
 		final TreeSet<String> treeSet = new TreeSet<String>();
 
 		if (player.getAdminLevel() >= AdministrationAction.getLevelForCommand("ghostmode")) {
-			rules.getOnlinePlayers().forAllPlayersExecute(new Task() {
+			rules.getOnlinePlayers().forAllPlayersExecute(new Task<Player>() {
 				public void execute(Player p) {
 
 					StringBuffer text = new StringBuffer(p.getTitle());
@@ -74,7 +74,7 @@ public class PlayersQuery implements ActionListener {
 			});
 
 		} else {
-			rules.getOnlinePlayers().forFilteredPlayersExecute(new Task() {
+			rules.getOnlinePlayers().forFilteredPlayersExecute(new Task<Player>() {
 				public void execute(Player p) {
 					StringBuffer text = new StringBuffer(p.getTitle());
 					text.append("(");
@@ -108,9 +108,9 @@ public class PlayersQuery implements ActionListener {
 	 * @param playerlist
 	 *            TODO
 	 * 
-	 * @return sorted list of players<
+	 * @return sorted list of players
 	 */
-	private List<Player> getSortedPlayers(Collection<? extends Player> playerlist) {
+	private List<Player> getSortedPlayers(Collection< ? extends Player> playerlist) {
 		List<Player> players = new ArrayList<Player>(playerlist);
 		Collections.sort(players, new Comparator<Player>() {
 

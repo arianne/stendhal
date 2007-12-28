@@ -18,7 +18,7 @@ import java.util.List;
 public class PlayerPositionMonitoring extends ScriptImpl {
 
 	/**
-	 * Listener for turn events
+	 * Listener for turn events.
 	 */
 	protected static class PlayerPositionListener implements TurnListener {
 
@@ -30,7 +30,7 @@ public class PlayerPositionMonitoring extends ScriptImpl {
 		private int counter;
 
 		/**
-		 * creates a new PlayerPositionListener
+		 * creates a new PlayerPositionListener.
 		 * 
 		 * @param admin
 		 *            the admin to notify
@@ -44,7 +44,9 @@ public class PlayerPositionMonitoring extends ScriptImpl {
 			final StringBuilder sb = new StringBuilder(String.valueOf(counter));
 			sb.append(": ");
 
-			StendhalRPRuleProcessor.get().getOnlinePlayers().forAllPlayersExecute(new Task(){
+			StendhalRPRuleProcessor.get().getOnlinePlayers().forAllPlayersExecute(
+					
+				new Task<Player>() {
 
 				public void execute(Player player) {
 

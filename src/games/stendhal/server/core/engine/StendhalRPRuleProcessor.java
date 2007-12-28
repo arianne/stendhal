@@ -320,7 +320,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		 * TODO: Refactor May be done by the zone itself.
 		 */
 
-		getOnlinePlayers().forAllPlayersExecute(new Task() {
+		getOnlinePlayers().forAllPlayersExecute(new Task<Player>() {
 			public void execute(Player player) {
 
 				try {
@@ -503,7 +503,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	public static void sendMessageToSupporters(final String message) {
 		get().getOnlinePlayers().forFilteredPlayersExecute(
 
-		new Task() {
+		new Task<Player>() {
 
 			public void execute(Player player) {
 				player.sendPrivateText(message);
@@ -548,7 +548,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		if (instance != null) {
 
 			if (isOnline) {
-				get().getOnlinePlayers().forAllPlayersExecute(new Task() {
+				get().getOnlinePlayers().forAllPlayersExecute(new Task<Player>() {
 					public void execute(Player player) {
 						player.notifyOnline(name);
 
@@ -556,7 +556,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 				});
 
 			} else {
-				get().getOnlinePlayers().forAllPlayersExecute(new Task() {
+				get().getOnlinePlayers().forAllPlayersExecute(new Task<Player>() {
 					public void execute(Player player) {
 						player.notifyOffline(name);
 

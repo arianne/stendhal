@@ -1,8 +1,6 @@
 package games.stendhal.server.core.engine;
 
-import games.stendhal.server.entity.player.Player;
-
-public interface Task {
-	void execute(Player player);
+public interface Task<T> {
+	void execute(T object);
 
 }
