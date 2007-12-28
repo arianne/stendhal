@@ -31,7 +31,7 @@ public class SupportAnswerAction extends AdministrationAction {
 
 				supported.sendPrivateText("Support (" + player.getTitle() + ") tells you: " + action.get(_TEXT));
 				supported.notifyWorldAboutChanges();
-				StendhalRPRuleProcessor.sendMessageToSupporters( message);
+				StendhalRPRuleProcessor.sendMessageToSupporters(message);
 				
 			} else {
 				player.sendPrivateText(action.get(TARGET) + " is not currently logged in.");

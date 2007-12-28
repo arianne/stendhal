@@ -29,5 +29,5 @@ public interface FilterCriteria<T> {
      * @param o
      * @return
      */
-    public boolean passes(T o);
+    boolean passes(T o);
 }

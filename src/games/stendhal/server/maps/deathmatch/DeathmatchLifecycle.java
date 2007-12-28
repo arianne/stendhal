@@ -4,23 +4,23 @@ package games.stendhal.server.maps.deathmatch;
 import org.apache.log4j.Logger;
 
 /**
- * life cycle of the deathmatch
+ * life cycle of the deathmatch.
  */
 public enum DeathmatchLifecycle {
 
-	/** player asked to bail but the deathmatch was not canceled yet */
+	/** player asked to bail but the deathmatch was not canceled yet. */
 	BAIL("bail"),
 
-	/** all creatures were removed becaused the player has asked to bail before */
+	/** all creatures were removed becaused the player has asked to bail before. */
 	CANCEL("cancel"),
 
-	/** deathmatch was completed sucessfully and the player got his/her reward */
+	/** deathmatch was completed sucessfully and the player got his/her reward. */
 	DONE("done"),
 
-	/** deathmatch has been started and is active now */
+	/** deathmatch has been started and is active now. */
 	START("start"),
 
-	/** deathmatch was completed sucessfully but the player did not claim "victory" yet */
+	/** deathmatch was completed sucessfully but the player did not claim "victory" yet. */
 	VICTORY("victory");
 
 	private static Logger logger = Logger.getLogger(DeathmatchLifecycle.class);
@@ -32,7 +32,7 @@ public enum DeathmatchLifecycle {
 	}
 
 	/**
-	 * convertes to a quest state string
+	 * converts to a quest state string.
 	 *
 	 * @return questState
 	 */
@@ -41,7 +41,7 @@ public enum DeathmatchLifecycle {
 	}
 
 	/**
-	 * parses quest state string
+	 * parses quest state string.
 	 *
 	 * @param questState quest state string
 	 * @return DeathmatchLifecycle

@@ -19,19 +19,19 @@ import marauroa.common.game.RPSlot;
 import org.apache.log4j.Logger;
 
 /**
- * this encapsulates the equip/drop source
+ * this encapsulates the equip/drop source.
  */
 class SourceObject extends MoveableObject {
 	private static Logger logger = Logger.getLogger(SourceObject.class);
-	/** the item */
+	/** the item .*/
 	private Item item;
 
-	/** optional, parent item */
+	/** optional, parent item. */
 	private Entity parent;
 
 	private int quantity;
 
-	/** interprets the given action */
+	/** interprets the given action. */
 	// TODO: split this method into parts (and move the checks out of the
 	// constructor)
 	public SourceObject(RPAction action, Player player) {
@@ -138,7 +138,7 @@ class SourceObject extends MoveableObject {
 		}
 	}
 
-	/** moves this entity to the destination */
+	/** moves this entity to the destination. */
 	public boolean moveTo(DestinationObject dest, Player player) {
 		if (!((EquipListener) item).canBeEquippedIn(dest.slot)) {
 			// give some feedback
@@ -166,14 +166,14 @@ class SourceObject extends MoveableObject {
 		return true;
 	}
 
-	/** returns true when this SourceObject is valid */
+	/** returns true when this SourceObject is valid. */
 	@Override
 	public boolean isValid() {
 		return (item != null);
 	}
 
 	/**
-	 * returns true when this entity and the other is within the given distance
+	 * returns true when this entity and the other is within the given distance.
 	 */
 	@Override
 	public boolean checkDistance(Entity other, double distance) {
@@ -205,9 +205,9 @@ class SourceObject extends MoveableObject {
 	}
 
 	/**
-	 * returns true when the rpobject is one of the classes in <i>validClasses</i>
+	 * returns true when the rpobject is one of the classes in <i>validClasses</i>.
 	 */
-	public boolean checkClass(List<Class<?>> validClasses) {
+	public boolean checkClass(List<Class< ? >> validClasses) {
 		if (parent != null) {
 			if (!EquipUtil.isCorrectClass(validClasses, parent)) {
 				logger.debug("parent is the wrong class "
@@ -219,7 +219,7 @@ class SourceObject extends MoveableObject {
 	}
 
 	/**
-	 * gets the entity that should be equipped
+	 * gets the entity that should be equipped.
 	 * 
 	 * @return entity
 	 */

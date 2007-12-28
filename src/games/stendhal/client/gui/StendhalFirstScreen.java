@@ -39,7 +39,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
- * Summary description for LoginGUI
+ * Summary description for LoginGUI.
  * 
  */
 public class StendhalFirstScreen extends JFrame {
@@ -51,7 +51,7 @@ public class StendhalFirstScreen extends JFrame {
 	private Image background;
 
 	/**
-	 * Creates the first screen
+	 * Creates the first screen.
 	 * 
 	 * @param client
 	 *            StendhalClient
