@@ -12,15 +12,20 @@ public class PlayerList {
 		players = new LinkedList<Player>();
 	}
 
-	/**
-	 * A list of all players who are currently logged in.
-	 */
+	
 	private List<Player> players;
 
+	
 	public List<Player> getPlayers() {
 		return players;
 	}
 
+	
+	/**
+	 * Retrieve from this list a player specified by its name.
+	 * @param name the unique name of a player
+	 * @return the Player specified by the name or <code> null </code> if not found
+	 */
 	Player getOnlinePlayer(String name) {
 		for (Player player : players) {
 			if (player.getTitle().equals(name)) {
@@ -30,6 +35,11 @@ public class PlayerList {
 		return null;
 	}
 
+	
+	/**
+	 * Sends a privateText to all players in the list.
+	 * @param message
+	 */
 	void tellAllOnlinePlayers(final String message) {
 		forAllPlayersExecute(new Task<Player>() {
 			public void execute(Player player) {
@@ -40,6 +50,10 @@ public class PlayerList {
 		});
 	}
 
+	/**
+	 * Calls the execute method of task for each player in this List.
+	 * @param task the task to execute
+	 */
 	public void forAllPlayersExecute(Task<Player> task) {
 		for (Player player : players) {
 			task.execute(player);
@@ -47,6 +61,12 @@ public class PlayerList {
 
 	}
 
+	/**
+	 * Calls the execute method of task for all player in this list that return true in filter.
+	 * 
+	 * @param task 	the task to execute. 
+	 * @param filter the FilterCriteria to pass
+	 */
 	public void forFilteredPlayersExecute(Task<Player> task, FilterCriteria<Player> filter) {
 		for (Player player : players) {
 			if (filter.passes(player)) {
@@ -55,6 +75,10 @@ public class PlayerList {
 		}
 	}
 
+	/**
+	 * The amount of currently  logged in players.
+	 * @return
+	 */
 	public int size() {
 		return players.size();
 	}
