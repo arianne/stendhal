@@ -19,20 +19,20 @@ import java.util.Iterator;
 
 public class CollectionFilter<T> {
 
-	private ArrayList<FilterCriteria> allFilterCriteria = new ArrayList<FilterCriteria>();
+	private ArrayList<FilterCriteria<T>> allFilterCriteria = new ArrayList<FilterCriteria<T>>();
 
 	/**
 	 * Adds a FilterCriteria to be used by the filter.
 	 * 
 	 * @param filterCriteria
 	 */
-	public void addFilterCriteria(FilterCriteria filterCriteria) {
+	public void addFilterCriteria(FilterCriteria<T> filterCriteria) {
 		allFilterCriteria.add(filterCriteria);
 	}
 
 	/**
 	 * Starts the filtering process. For each object in the collection, all
-	 * FilterCriteria are called. Only if the object passess all FilterCriteria
+	 * FilterCriteria are called. Only if the object passes all FilterCriteria
 	 * it remains in the collection. Otherwise, it is removed.
 	 * 
 	 * @param collection
@@ -59,7 +59,8 @@ public class CollectionFilter<T> {
 	 * @param inputCollection
 	 * @return a filtered copy of the input collection
 	 */
-	public Collection<? extends T> filterCopy(Collection<? extends T> inputCollection) {
+	@SuppressWarnings("unchecked")
+    public Collection<? extends T> filterCopy(Collection<? extends T> inputCollection) {
 
 		Collection<T> outputCollection = null;
 
@@ -87,7 +88,7 @@ public class CollectionFilter<T> {
 	 */
 	private boolean passesAllCriteria(T o) {
 		for (int i = 0; i < allFilterCriteria.size(); i++) {
-			FilterCriteria filterCriteria = (FilterCriteria) allFilterCriteria.get(i);
+			FilterCriteria<T> filterCriteria = allFilterCriteria.get(i);
 			if (!filterCriteria.passes(o)) {
 				return false;
 			}
