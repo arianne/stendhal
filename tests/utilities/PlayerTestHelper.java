@@ -139,16 +139,22 @@ public class PlayerTestHelper {
 
 	/**
 	 * Remove all players from world and rule processor.
-	 * 
-	 * @param playerName
 	 */
 	public static void removeAllPlayers() {
-		List<Player> players = StendhalRPRuleProcessor.get().getOnlinePlayers().getPlayers();
+		StendhalRPRuleProcessor processor = StendhalRPRuleProcessor.get();
 
-		for(Player player : players) {
-			removePlayer(player);
+		// We need this loop instead of a simple for loop because of concurrency issues.
+		for(;;) {
+			List<Player> players = processor.getOnlinePlayers().getPlayers();
+
+			if (players.isEmpty()) {
+				break;
+			}
+
+			removePlayer(players.get(0));
 		}
 	}
+
 	/**
 	 * Equip the player with the given amount of money.
 	 * 
