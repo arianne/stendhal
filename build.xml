@@ -93,6 +93,11 @@
 
 		<copy todir="${build_server}/data/conf" file="data/conf/stendhalcreateaccount.properties"/>
 		<copy todir="${build_server}/games/stendhal/server" file="${src}/games/stendhal/server/stendhal_init.sql"/>
+		<copy todir="${build_server}/games/stendhal/server">
+			<fileset dir="${src}/games/stendhal/server">
+				<include name="**/*.txt"/>
+			</fileset>
+		</copy>
 
 		<javac srcdir="${src}" destdir="${build_server}" debug="${javac.debug}" debuglevel="${javac.debuglevel}" source="1.5" target="1.5" deprecation="${javac.deprecation}">
 			<include name="games/stendhal/common/*.java"/>
