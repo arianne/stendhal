@@ -12,9 +12,11 @@
  ***************************************************************************/
 package games.stendhal.server.rule.defaultruleset;
 
+import games.stendhal.server.ItemLogger;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.Stackable;
+import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.rule.ActionManager;
 
 import java.util.List;
@@ -103,15 +105,16 @@ public class DefaultActionManager implements ActionManager {
 
 		RPSlot rpslot = entity.getSlot(slotName);
 
-		if (item instanceof Stackable) {
-			Stackable stackEntity = (Stackable) item;
+		if (item instanceof StackableItem) {
+			StackableItem stackEntity = (StackableItem) item;
 			// find a stackable item of the same type
 			for (RPObject object : rpslot) {
-				if (object instanceof Stackable) {
+				if (object instanceof StackableItem) {
 					// found another stackable
-					Stackable other = (Stackable) object;
+					StackableItem other = (StackableItem) object;
 					if (other.isStackable(stackEntity)) {
 						// other is the same type...merge them
+						ItemLogger.merge(entity, stackEntity, other);
 						other.add(stackEntity);
 						entity.updateItemAtkDef();
 						return true;
@@ -119,6 +122,7 @@ public class DefaultActionManager implements ActionManager {
 				}
 			}
 		}
+
 		// We can't stack it on another item. Check if we can simply
 		// add it to an empty cell.
 		if (rpslot.isFull()) {
