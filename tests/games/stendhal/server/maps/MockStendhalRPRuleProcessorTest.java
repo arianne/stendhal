@@ -13,6 +13,7 @@ public class MockStendhalRPRuleProcessorTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		PlayerTestHelper.removePlayer("bob");
 	}
 
 	@Test
