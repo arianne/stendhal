@@ -123,12 +123,21 @@ public class Sentence {
 		return null;
 	}
 
+	private String triggerCache = null;
+
 	/**
 	 * return trigger string for the FSM engine
+	 * TODO replace by sentence matching
 	 * 
 	 * @return trigger string
 	 */
 	public String getTrigger() {
+		if (triggerCache != null) {
+			return triggerCache;
+		}
+
+		triggerCache = "";
+
 		Iterator<Word> it = words.iterator();
 
 		while(it.hasNext()) {
@@ -137,14 +146,16 @@ public class Sentence {
 			if (!word.getType().isIgnore()) {
 				// special case for numeric expressions to disambiguate "no" from "0"
 				if (word.getType().isNumeral()) {
-					return word.getOriginal();
+					triggerCache = word.getOriginal().toLowerCase();
 				} else {
-					return word.getNormalized();
+					triggerCache = word.getNormalized();
 				}
+
+				break;
 			}
 		}
 
-		return "";
+		return triggerCache;
     }
 
 	/**
