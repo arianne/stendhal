@@ -44,7 +44,7 @@ public class Word {
 	public void parseAmount(String s, ConversationParser parser) {
 		try {
 			setAmount(new Integer(s));
-			setType(new WordType("NUM"));
+			setType(new WordType(WordType.NUMERAL));
 			normalized = amount.toString();
 		} catch(NumberFormatException e) {
 			parser.setError("illegal number format: '" + s + "'");

@@ -10,14 +10,14 @@ public class WordType {
 	public final static String CONDITIONAL = "CON";	// conditional form
 
 	public final static String OBJECT = "OBJ";		// object
-	public final static String AMOUNT = "-AMO";		// amount
-	public final static String FLUID = "-FLU";		// fluid
-	public final static String FOOD = "-FOO";		// food
-	public final static String OBSESSIONAL = "-OBS";// obsessional word
+	public final static String AMOUNT = "AMO";		// amount
+	public final static String FLUID = "FLU";		// fluid
+	public final static String FOOD = "FOO";		// food
+	public final static String OBSESSIONAL = "OBS";	// obsessional word
 
 	public final static String SUBJECT = "SUB";		// subject
-	public final static String ANIMAL = "-ANI";		// animal
-	public final static String NAME = "-NAM";		// person name
+	public final static String ANIMAL = "ANI";		// animal
+	public final static String NAME = "NAM";		// person name
 
 	public final static String ADJECTIVE = "ADJ";	// adjective/adverb
 	public final static String COLOR = "COL";		// colour expression
@@ -30,12 +30,16 @@ public class WordType {
 	public final static String IGNORE = "IGN";		// word to ignore
 
 	public final static String SUFFIX = "-";
-	public final static String PLURAL = "-PLU";		// plural form
+
+	public final static String PLURAL = "PLU";		// plural form
 
 	// derived constants
 	public final static String SUFFIX_COLOR = SUFFIX+COLOR;
 	public final static String SUFFIX_CONDITIONAL = SUFFIX+CONDITIONAL;
 	public static final String SUFFIX_FOOD = SUFFIX+FOOD;
+	public final static String SUFFIX_ANIMAL = SUFFIX+ANIMAL;
+	public final static String SUFFIX_NAME = SUFFIX+NAME;
+	public final static String SUBJECT_NAME = SUBJECT+SUFFIX_NAME;
 	public final static String SUFFIX_PLURAL = SUFFIX+PLURAL;
 	public final static String SUFFIX_QUESTION = SUFFIX+QUESTION;
 	public final static String VERB_GERUND = VERB+GERUND;
@@ -135,7 +139,7 @@ public class WordType {
 	 * @return
 	 */
 	public boolean isPlural() {
-	    return typeString.endsWith(PLURAL);
+	    return typeString.endsWith(SUFFIX_PLURAL);
     }
 
 	/**
@@ -143,7 +147,7 @@ public class WordType {
 	 * @return
 	 */
 	public boolean isName() {
-	    return typeString.endsWith(NAME);
+	    return typeString.endsWith(SUFFIX_NAME);
     }
 
 	/**
