@@ -25,6 +25,7 @@ import org.apache.log4j.Logger;
  * @author Martin Fuchs
  */
 public class WordList {
+
 	private static final Logger logger = Logger.getLogger(WordList.class);
 
 	private final Map<String, WordEntry> words = new TreeMap<String, WordEntry>();
@@ -196,28 +197,28 @@ public class WordList {
 		}
 
    		writer.println();
-		printWordType(writer, "VER");
+		printWordType(writer, WordType.VERB);
 
    		writer.println();
-		printWordType(writer, "OBJ");
+		printWordType(writer, WordType.OBJECT);
 
    		writer.println();
-		printWordType(writer, "SUB");
+		printWordType(writer, WordType.SUBJECT);
 
 		writer.println();
-		printWordType(writer, "ADJ");
+		printWordType(writer, WordType.ADJECTIVE);
 
    		writer.println();
-		printWordType(writer, "NUM");
+		printWordType(writer, WordType.NUMERAL);
 
 		writer.println();
-		printWordType(writer, "PRE");
+		printWordType(writer, WordType.PREPOSITION);
 
    		writer.println();
-		printWordType(writer, "QUE");
+		printWordType(writer, WordType.QUESTION);
 
 		writer.println();
-		printWordType(writer, "IGN");
+		printWordType(writer, WordType.IGNORE);
 
 		writer.println();
 		printWordType(writer, null);

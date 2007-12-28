@@ -4,6 +4,42 @@ public class WordType {
 
 	private String typeString = "";
 
+	// word type string constants
+	public final static String VERB = "VER";		// verb
+	public final static String GERUND = "-GER";		// gerund form
+	public final static String CONDITIONAL = "CON";	// conditional form
+
+	public final static String OBJECT = "OBJ";		// object
+	public final static String AMOUNT = "-AMO";		// amount
+	public final static String FLUID = "-FLU";		// fluid
+	public final static String FOOD = "-FOO";		// food
+	public final static String OBSESSIONAL = "-OBS";// obsessional word
+
+	public final static String SUBJECT = "SUB";		// subject
+	public final static String ANIMAL = "-ANI";		// animal
+	public final static String NAME = "-NAM";		// person name
+
+	public final static String ADJECTIVE = "ADJ";	// adjective/adverb
+	public final static String COLOR = "COL";		// colour expression
+
+	public final static String NUMERAL = "NUM";		// numeral
+	public final static String PREPOSITION = "PRE";	// preposition
+
+	public final static String QUESTION = "QUE";	// question word
+
+	public final static String IGNORE = "IGN";		// word to ignore
+
+	public final static String SUFFIX = "-";
+	public final static String PLURAL = "-PLU";		// plural form
+
+	// derived constants
+	public final static String SUFFIX_COLOR = SUFFIX+COLOR;
+	public final static String SUFFIX_CONDITIONAL = SUFFIX+CONDITIONAL;
+	public static final String SUFFIX_FOOD = SUFFIX+FOOD;
+	public final static String SUFFIX_PLURAL = SUFFIX+PLURAL;
+	public final static String SUFFIX_QUESTION = SUFFIX+QUESTION;
+	public final static String VERB_GERUND = VERB+GERUND;
+
 	public WordType(String s) {
 	    typeString = s;
     }
@@ -34,7 +70,7 @@ public class WordType {
 	 * @return
 	 */
 	public boolean isVerb() {
-	    return typeString.startsWith("VER");
+	    return typeString.startsWith(VERB);
     }
 
 	/**
@@ -42,7 +78,7 @@ public class WordType {
 	 * @return
 	 */
 	public boolean isGerund() {
-	    return typeString.startsWith("VER-GER");
+	    return typeString.startsWith(VERB_GERUND);
     }
 
 	/**
@@ -51,7 +87,7 @@ public class WordType {
 	 * @return
 	 */
 	public boolean isObject() {
-	    return typeString.startsWith("OBJ");
+	    return typeString.startsWith(OBJECT);
     }
 
 	/**
@@ -59,7 +95,7 @@ public class WordType {
 	 * @return
 	 */
 	public boolean isSubject() {
-	    return typeString.startsWith("SUB");
+	    return typeString.startsWith(SUBJECT);
     }
 
 	/**
@@ -67,7 +103,7 @@ public class WordType {
 	 * @return
 	 */
 	public boolean isNumeral() {
-	    return typeString.startsWith("NUM");
+	    return typeString.startsWith(NUMERAL);
     } 
 
 	/**
@@ -75,7 +111,7 @@ public class WordType {
 	 * @return
 	 */
 	public boolean isAdjective() {
-	    return typeString.startsWith("ADJ");
+	    return typeString.startsWith(ADJECTIVE);
     }
 
 	/**
@@ -83,7 +119,7 @@ public class WordType {
 	 * @return
 	 */
 	public boolean isPreposition() {
-	    return typeString.startsWith("PRE");
+	    return typeString.startsWith(PREPOSITION);
     } 
 
 	/**
@@ -91,7 +127,7 @@ public class WordType {
 	 * @return
 	 */
 	public boolean isIgnore() {
-	    return typeString.startsWith("IGN");
+	    return typeString.startsWith(IGNORE);
     }
 
 	/**
@@ -99,7 +135,7 @@ public class WordType {
 	 * @return
 	 */
 	public boolean isPlural() {
-	    return typeString.endsWith("-PLU");
+	    return typeString.endsWith(PLURAL);
     }
 
 	/**
@@ -107,7 +143,7 @@ public class WordType {
 	 * @return
 	 */
 	public boolean isName() {
-	    return typeString.endsWith("NAM");
+	    return typeString.endsWith(NAME);
     }
 
 	/**
@@ -115,7 +151,7 @@ public class WordType {
 	 * @return
 	 */
 	public boolean isQuestion() {
-	    return typeString.startsWith("QUE");
+	    return typeString.startsWith(QUESTION);
     }
 
 	/**
@@ -124,7 +160,7 @@ public class WordType {
 	 * @return
 	 */
 	public boolean hasQuestion() {
-	    return typeString.contains("QUE");
+	    return typeString.contains(QUESTION);
     }
 
 	/**
@@ -132,7 +168,7 @@ public class WordType {
 	 * @return
 	 */
 	public boolean hasColor() {
-	    return typeString.contains("COL");
+	    return typeString.contains(COLOR);
     }
 
 	/**
@@ -140,7 +176,7 @@ public class WordType {
 	 * @return
 	 */
 	public boolean isConditional() {
-	    return typeString.contains("-CON");
+	    return typeString.contains(SUFFIX_CONDITIONAL);
     }
 
 	/**
@@ -152,15 +188,15 @@ public class WordType {
 		String newTypeString = typeString;
 
 		if (other.hasColor() && !hasColor()) {
-			newTypeString += "-COL";
+			newTypeString += SUFFIX_COLOR;
 		}
 
 		if (other.hasQuestion() && !hasQuestion()) {
-			newTypeString += "-QUE";
+			newTypeString += SUFFIX_QUESTION;
 		}
 
 		if (other.isConditional() && !isConditional()) {
-			newTypeString += "-CON";
+			newTypeString += SUFFIX_CONDITIONAL;
 		}
 
 		if (newTypeString != typeString) {
