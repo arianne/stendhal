@@ -93,14 +93,6 @@ public class DefaultActionManager implements ActionManager {
 			return false;
 		}
 
-		// TODO: recheck if the item can be equipped
-		// if (!item.getPossibleSlots().contains(slotName))
-		// {
-		// logger.warn("tried to equip the item ["+item.getName()+"] in a
-		// nonsupported slot ["+slotName+"]");
-		// return false;
-		// }
-
 		RPSlot rpslot = entity.getSlot(slotName);
 
 		if (item instanceof Stackable) {
@@ -119,6 +111,7 @@ public class DefaultActionManager implements ActionManager {
 				}
 			}
 		}
+
 		// We can't stack it on another item. Check if we can simply
 		// add it to an empty cell.
 		if (rpslot.isFull()) {
