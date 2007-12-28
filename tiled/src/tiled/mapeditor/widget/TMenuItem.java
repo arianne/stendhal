@@ -21,37 +21,35 @@ import javax.swing.Action;
 import javax.swing.Icon;
 import javax.swing.JMenuItem;
 
-
 /**
- * Tiled menu item extends on JMenuItem in that it allows for not accepting
- * any icon from an attached action.
+ * Tiled menu item extends on JMenuItem in that it allows for not accepting any
+ * icon from an attached action.
  */
-public class TMenuItem extends JMenuItem
-{
-  private static final long serialVersionUID = 6065370625698852436L;
+public class TMenuItem extends JMenuItem {
+	private static final long serialVersionUID = 6065370625698852436L;
 
-    private boolean showIcon = false;
+	private boolean showIcon = false;
 
-    public TMenuItem(boolean showIcon) {
-        this.showIcon = showIcon;
-    }
+	public TMenuItem(boolean showIcon) {
+		this.showIcon = showIcon;
+	}
 
-    public TMenuItem(Action action) {
-        this(action, false);
-    }
+	public TMenuItem(Action action) {
+		this(action, false);
+	}
 
-    public TMenuItem(Action action, boolean showIcon) {
-        this(showIcon);
-        setAction(action);
-    }
+	public TMenuItem(Action action, boolean showIcon) {
+		this(showIcon);
+		setAction(action);
+	}
 
-    public void setShowIcon(boolean showIcon) {
-        this.showIcon = showIcon;
-    }
+	public void setShowIcon(boolean showIcon) {
+		this.showIcon = showIcon;
+	}
 
-    public void setIcon(Icon icon) {
-        if (showIcon) {
-            super.setIcon(icon);
-        }
-    }
+	public void setIcon(Icon icon) {
+		if (showIcon) {
+			super.setIcon(icon);
+		}
+	}
 }

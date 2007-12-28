@@ -27,146 +27,137 @@ import javax.swing.JScrollPane;
 
 import tiled.view.MapView;
 
-
 /**
- * This is the minimap panel.
- * TODO: There are some ugly visual artefacts when scrolling the minimap.
- *        This is due to lazy repaints/dirty rectangle handling 
+ * This is the minimap panel. TODO: There are some ugly visual artefacts when
+ * scrolling the minimap. This is due to lazy repaints/dirty rectangle handling
  * 
  * @author mtotz
  */
-public class MiniMapViewer extends JPanel implements MouseListener, MouseMotionListener
-{
-  private static final long serialVersionUID = -1243207988158851225L;
+public class MiniMapViewer extends JPanel implements MouseListener, MouseMotionListener {
+	private static final long serialVersionUID = -1243207988158851225L;
 
-  public static final int MAX_HEIGHT = 150;
+	public static final int MAX_HEIGHT = 150;
 
-  private MapView mapView;
-  private JScrollPane mapScrollPane;
+	private MapView mapView;
+	private JScrollPane mapScrollPane;
 
-  /** last viewpoint in the map editing panel */
-  private Point lastViewPoint;
-  /** need this to prevent recursive painting */
-  private boolean paintingInProgress;
+	/** last viewpoint in the map editing panel. */
+	private Point lastViewPoint;
+	/** need this to prevent recursive painting. */
+	private boolean paintingInProgress;
 
-  public MiniMapViewer()
-  {
-    setSize(MAX_HEIGHT, MAX_HEIGHT);
-    addMouseListener(this);
-    addMouseMotionListener(this);
-  }
+	public MiniMapViewer() {
+		setSize(MAX_HEIGHT, MAX_HEIGHT);
+		addMouseListener(this);
+		addMouseMotionListener(this);
+	}
 
-  public void setView(MapView view)
-  {
-    mapView = view;
-    revalidate();
-  }
-  
-  public Dimension getPreferredSize()
-  {
-    if (mapView == null)
-    {
-      return new Dimension(100, 100);
-    }
-    Image image = mapView.getMinimap();
-    if (image == null)
-    {
-      return new Dimension(100, 100);
-    }
-    return new Dimension(image.getWidth(null), image.getHeight(null));
-  }
+	public void setView(MapView view) {
+		mapView = view;
+		revalidate();
+	}
 
-  public void setMainPanel(JScrollPane main)
-  {
-    mapScrollPane = main;
-  }
-    
-  /** clears the background */
-  private void clearBackground(Graphics g)
-  {
-    Rectangle clip = g.getClipBounds();
-    g.setColor(Color.BLACK);
-    g.fillRect(clip.x,clip.y,clip.width, clip.height);
-  }
+	public Dimension getPreferredSize() {
+		if (mapView == null) {
+			return new Dimension(100, 100);
+		}
+		Image image = mapView.getMinimap();
+		if (image == null) {
+			return new Dimension(100, 100);
+		}
+		return new Dimension(image.getWidth(null), image.getHeight(null));
+	}
 
-  public void paintComponent(Graphics g)
-  {
-    if (paintingInProgress)
-    {
-      // recursive painting caused by scrollRectToVisible(..) 
-      return;
-    }
-    paintingInProgress = true;
-    clearBackground(g);
-    if (mapView == null || mapView.getMinimap() == null)
-    {
-      paintingInProgress = false;
-      return;
-    }
+	public void setMainPanel(JScrollPane main) {
+		mapScrollPane = main;
+	}
 
-    ((Graphics2D)g).drawImage(mapView.getMinimap(),0,0,null);
+	/** clears the background. */
+	private void clearBackground(Graphics g) {
+		Rectangle clip = g.getClipBounds();
+		g.setColor(Color.BLACK);
+		g.fillRect(clip.x, clip.y, clip.width, clip.height);
+	}
 
-    if (mapScrollPane != null)
-    {
-      g.setColor(Color.yellow);
-      Point viewPoint = mapScrollPane.getViewport().getViewPosition();
-      Dimension viewSize = mapScrollPane.getViewport().getExtentSize();
+	public void paintComponent(Graphics g) {
+		if (paintingInProgress) {
+			// recursive painting caused by scrollRectToVisible(..)
+			return;
+		}
+		paintingInProgress = true;
+		clearBackground(g);
+		if (mapView == null || mapView.getMinimap() == null) {
+			paintingInProgress = false;
+			return;
+		}
 
-      double scale = mapView.getMinimapScale() / mapView.getScale();
+		((Graphics2D) g).drawImage(mapView.getMinimap(), 0, 0, null);
 
-      if (viewPoint != null && viewSize != null)
-      {
-        Rectangle rect = new Rectangle((int)((viewPoint.x-1)    * scale),(int)((viewPoint.y-1)     * scale),
-                                       (int)((viewSize.width-1) * scale),(int)((viewSize.height-1) * scale));
+		if (mapScrollPane != null) {
+			g.setColor(Color.yellow);
+			Point viewPoint = mapScrollPane.getViewport().getViewPosition();
+			Dimension viewSize = mapScrollPane.getViewport().getExtentSize();
 
-        // only update scrolling when the main viewport has changed
-        g.drawRect(rect.x, rect.y, rect.width, rect.height);
-        if (!viewPoint.equals(lastViewPoint))
-        {
-          scrollRectToVisible(rect);
-          repaint();
-        }
-        lastViewPoint = viewPoint;
-      }
-    }
-    paintingInProgress = false;
-  }
-  
-  /** scrolls the viewport of the map edit panel to this point */
-  private void scrollMainViewport(Point p)
-  {
-    if (p == null)
-      return;
-    
-    if (mapView != null && mapScrollPane != null)
-    {
-      double scale = mapView.getScale() / mapView.getMinimapScale();
-      
-      p.x *= scale;
-      p.y *= scale;
-      
-      Dimension size = mapScrollPane.getViewport().getExtentSize();
-      Point p2 = new Point(p.x - (size.width / 2), p.y - (size.height / 2));
-      
-      mapScrollPane.getViewport().setViewPosition(p2);
-      repaint();
-    }
-    
-  }
+			double scale = mapView.getMinimapScale() / mapView.getScale();
 
-  public void mouseClicked(MouseEvent e)
-  {
-    scrollMainViewport(e.getPoint());
+			if (viewPoint != null && viewSize != null) {
+				Rectangle rect = new Rectangle((int) ((viewPoint.x - 1) * scale), (int) ((viewPoint.y - 1) * scale),
+						(int) ((viewSize.width - 1) * scale), (int) ((viewSize.height - 1) * scale));
 
-  }
-  public void mouseDragged(MouseEvent e)
-  {
-    scrollMainViewport(e.getPoint());
-  }
+				// only update scrolling when the main viewport has changed
+				g.drawRect(rect.x, rect.y, rect.width, rect.height);
+				if (!viewPoint.equals(lastViewPoint)) {
+					scrollRectToVisible(rect);
+					repaint();
+				}
+				lastViewPoint = viewPoint;
+			}
+		}
+		paintingInProgress = false;
+	}
 
-  public void mousePressed(MouseEvent e)   { }
-  public void mouseReleased(MouseEvent e)  { }
-  public void mouseEntered(MouseEvent e)   { }
-  public void mouseExited(MouseEvent e)    { }
-  public void mouseMoved(MouseEvent e)     { }
+	/** scrolls the viewport of the map edit panel to this point. */
+	private void scrollMainViewport(Point p) {
+		if (p == null) {
+			return;
+		}
+
+		if (mapView != null && mapScrollPane != null) {
+			double scale = mapView.getScale() / mapView.getMinimapScale();
+
+			p.x *= scale;
+			p.y *= scale;
+
+			Dimension size = mapScrollPane.getViewport().getExtentSize();
+			Point p2 = new Point(p.x - (size.width / 2), p.y - (size.height / 2));
+
+			mapScrollPane.getViewport().setViewPosition(p2);
+			repaint();
+		}
+
+	}
+
+	public void mouseClicked(MouseEvent e) {
+		scrollMainViewport(e.getPoint());
+
+	}
+
+	public void mouseDragged(MouseEvent e) {
+		scrollMainViewport(e.getPoint());
+	}
+
+	public void mousePressed(MouseEvent e) {
+	}
+
+	public void mouseReleased(MouseEvent e) {
+	}
+
+	public void mouseEntered(MouseEvent e) {
+	}
+
+	public void mouseExited(MouseEvent e) {
+	}
+
+	public void mouseMoved(MouseEvent e) {
+	}
 }

@@ -27,31 +27,27 @@ import tiled.mapeditor.dialog.NewTilesetDialog;
 
 /**
  * Creates a new Tileset.
+ * 
  * @author mtotz
  */
-public class NewTilesetAction extends AbstractAction
-{
-  private static final long serialVersionUID = -8888155680402257585L;
+public class NewTilesetAction extends AbstractAction {
+	private static final long serialVersionUID = -8888155680402257585L;
 
-  private MapEditor mapEditor;
-  
-  public NewTilesetAction(MapEditor mapEditor)
-  {
-    super("New Tileset...");
-    putValue(SHORT_DESCRIPTION, "Add a new internal tileset");
-    this.mapEditor = mapEditor;
-  }
+	private MapEditor mapEditor;
 
-  public void actionPerformed(ActionEvent e)
-  {
-    if (mapEditor.currentMap != null)
-    {
-      NewTilesetDialog dialog = new NewTilesetDialog(mapEditor.appFrame, mapEditor.currentMap);
-      TileSet newSet = dialog.create();
-      if (newSet != null)
-      {
-        mapEditor.currentMap.addTileset(newSet);
-      }
-    }
-  }
+	public NewTilesetAction(MapEditor mapEditor) {
+		super("New Tileset...");
+		putValue(SHORT_DESCRIPTION, "Add a new internal tileset");
+		this.mapEditor = mapEditor;
+	}
+
+	public void actionPerformed(ActionEvent e) {
+		if (mapEditor.currentMap != null) {
+			NewTilesetDialog dialog = new NewTilesetDialog(mapEditor.appFrame, mapEditor.currentMap);
+			TileSet newSet = dialog.create();
+			if (newSet != null) {
+				mapEditor.currentMap.addTileset(newSet);
+			}
+		}
+	}
 }

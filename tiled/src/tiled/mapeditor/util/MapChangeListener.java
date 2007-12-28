@@ -19,9 +19,6 @@ package tiled.mapeditor.util;
 
 import java.util.EventListener;
 
-
-
-public interface MapChangeListener extends EventListener
-{
-    public void mapChanged(MapChangedEvent e);
+public interface MapChangeListener extends EventListener {
+	void mapChanged(MapChangedEvent e);
 }

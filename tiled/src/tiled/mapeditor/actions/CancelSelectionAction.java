@@ -27,29 +27,25 @@ import javax.swing.KeyStroke;
 import tiled.mapeditor.MapEditor;
 
 /**
- * Called when current the selection is canceled
+ * Called when current the selection is canceled.
  * 
- * @author mtotz 
+ * @author mtotz
  */
-public class CancelSelectionAction extends AbstractAction
-{
-  private static final long serialVersionUID = -6217788914300686640L;
+public class CancelSelectionAction extends AbstractAction {
+	private static final long serialVersionUID = -6217788914300686640L;
 
-  private MapEditor mapEditor;
-  
-  public CancelSelectionAction(MapEditor mapEditor)
-  {
-    super("None");
-    putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke("control shift A"));
-    putValue(SHORT_DESCRIPTION, "Cancel selection");
-    this.mapEditor = mapEditor;
-  }
+	private MapEditor mapEditor;
 
-  public void actionPerformed(ActionEvent e)
-  {
-    if (mapEditor.currentMap != null)
-    {
-      mapEditor.setSelectedTiles(new ArrayList<Point>());
-    }
-  }
+	public CancelSelectionAction(MapEditor mapEditor) {
+		super("None");
+		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke("control shift A"));
+		putValue(SHORT_DESCRIPTION, "Cancel selection");
+		this.mapEditor = mapEditor;
+	}
+
+	public void actionPerformed(ActionEvent e) {
+		if (mapEditor.currentMap != null) {
+			mapEditor.setSelectedTiles(new ArrayList<Point>());
+		}
+	}
 }

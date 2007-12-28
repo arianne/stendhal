@@ -25,58 +25,58 @@ import java.util.Stack;
  * both. The PluginClassLoader also uses this to check the supported file
  * extensions.
  */
-public interface PluggableMapIO
-{
-    /**
-     * Lists supported file extensions. This function is used by the editor to
-     * find the plugin to use for a specific file extension.
-     * 
-     * @return a comma delimited string of supported file extensions
-     * @throws Exception
-     *   use <B>public FileFilter[] getFilters();</B>
-     */
-    public String getFilter() throws Exception;
+public interface PluggableMapIO {
+	/**
+	 * Lists supported file extensions. This function is used by the editor to
+	 * find the plugin to use for a specific file extension.
+	 * 
+	 * @return a comma delimited string of supported file extensions
+	 * @throws Exception
+	 *             use <B>public FileFilter[] getFilters();</B>
+	 */
+	public String getFilter() throws Exception;
 
-    /**
-     * Returns a short description of the plugin, or the plugin name. This 
-     * string is displayed in the list of loaded plugins under the Help menu in
-     * Tiled.
-     * 
-     * @return a short name or description  
-     */
-    public String getName();
+	/**
+	 * Returns a short description of the plugin, or the plugin name. This
+	 * string is displayed in the list of loaded plugins under the Help menu in
+	 * Tiled.
+	 * 
+	 * @return a short name or description
+	 */
+	public String getName();
 
-    /**
-     * Returns a long description (no limit) that details the plugin's 
-     * capabilities, author, contact info, etc.
-     * 
-     * @return a long description of the plugin
-     */
-    public String getDescription();
-    
-    /**
-     * Returns the base Java package string for the plugin
-     * 
-     * @return String the base package of the plugin
-     */
-    public String getPluginPackage();
-    
-    /**
-     * The Stack object passed by the editor when the plugin is called to load
-     * or save a map can be used by the plugin to notify the user of any
-     * problems or messages.
-     * 
-     * @param es an initialized Stack that will be used by the editor to 
-     *           print messages from the plugin 
-     */
-    public void setErrorStack(Stack<String> es);
-    
-    /**
-     * Lists supported file extensions. This function is used by the editor to
-     * find the plugin to use for a specific file extension.
-     * 
-     * @return an array with the FileFilter instances for this plugin
-     */
-    public FileFilter[] getFilters();
-    
+	/**
+	 * Returns a long description (no limit) that details the plugin's
+	 * capabilities, author, contact info, etc.
+	 * 
+	 * @return a long description of the plugin
+	 */
+	public String getDescription();
+
+	/**
+	 * Returns the base Java package string for the plugin.
+	 * 
+	 * @return String the base package of the plugin
+	 */
+	public String getPluginPackage();
+
+	/**
+	 * The Stack object passed by the editor when the plugin is called to load
+	 * or save a map can be used by the plugin to notify the user of any
+	 * problems or messages.
+	 * 
+	 * @param es
+	 *            an initialized Stack that will be used by the editor to print
+	 *            messages from the plugin
+	 */
+	public void setErrorStack(Stack<String> es);
+
+	/**
+	 * Lists supported file extensions. This function is used by the editor to
+	 * find the plugin to use for a specific file extension.
+	 * 
+	 * @return an array with the FileFilter instances for this plugin
+	 */
+	public FileFilter[] getFilters();
+
 }

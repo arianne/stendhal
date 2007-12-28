@@ -25,39 +25,36 @@ import javax.swing.DefaultListCellRenderer;
 
 import tiled.core.*;
 
+public class TileDialogListRenderer extends DefaultListCellRenderer {
+	private static final long serialVersionUID = -3416846019183710768L;
+	private double zoom = 1;
 
-public class TileDialogListRenderer extends DefaultListCellRenderer
-{
-  private static final long serialVersionUID = -3416846019183710768L;
-    private double zoom = 1;
+	public TileDialogListRenderer() {
+		setOpaque(true);
+	}
 
-    public TileDialogListRenderer() {
-        setOpaque(true);
-    }
+	public TileDialogListRenderer(double zoom) {
+		this();
+		this.zoom = zoom;
+	}
 
-    public TileDialogListRenderer(double zoom) {
-        this();
-        this.zoom = zoom;
-    }
+	public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected,
+			boolean cellHasFocus) {
+		super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
 
-    public Component getListCellRendererComponent(JList list, Object value,
-            int index,  boolean isSelected, boolean cellHasFocus) {
-        super.getListCellRendererComponent(
-                list, value, index, isSelected, cellHasFocus);
+		Tile tile = (Tile) value;
 
-        Tile tile = (Tile)value;
+		if (tile != null) {
+			Image scaledImage = tile.getScaledImage(zoom);
+			if (scaledImage != null) {
+				setIcon(new ImageIcon(scaledImage));
+			}
+			setText("Tile " + tile.getId());
+		} else {
+			setIcon(null);
+			setText("No tile?");
+		}
 
-        if (tile != null) {
-            Image scaledImage = tile.getScaledImage(zoom);
-            if (scaledImage != null) {
-                setIcon(new ImageIcon(scaledImage));
-            }
-            setText("Tile " + tile.getId());
-        } else {
-            setIcon(null);
-            setText("No tile?");
-        }
-
-        return this;
-    }
+		return this;
+	}
 }

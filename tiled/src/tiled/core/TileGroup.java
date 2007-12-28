@@ -31,9 +31,9 @@ import java.util.List;
  * @author mtotz
  */
 public class TileGroup {
-	/** name of the group */
+	/** name of the group .*/
 	private String name;
-	/** assigns layers to the tiles */
+	/** assigns layers to the tiles. */
 	private java.util.Map<TileLayer, List<StatefulTile>> tileLayers;
 	// dimensions of the group
 	private int x;
@@ -41,14 +41,14 @@ public class TileGroup {
 	private int width;
 	private int height;
 
-	/** default constuctor is private */
+	/** default constuctor is private. */
 	private TileGroup() {
 		this.name = "";
 		tileLayers = new HashMap<TileLayer, List<StatefulTile>>();
 	}
 
 	/**
-	 * creates the tile group
+	 * creates the tile group.
 	 * 
 	 * @param map
 	 *            the map
@@ -72,15 +72,19 @@ public class TileGroup {
 			if (layer != null && layer instanceof TileLayer) {
 				getTileLayerSafe((TileLayer) layer).add(tile);
 
-				if (tile.p.x < x)
+				if (tile.p.x < x) {
 					x = tile.p.x;
-				if (tile.p.y < y)
+				}
+				if (tile.p.y < y) {
 					y = tile.p.y;
+				}
 
-				if (tile.p.x > maxx)
+				if (tile.p.x > maxx) {
 					maxx = tile.p.x;
-				if (tile.p.y > maxy)
+				}
+				if (tile.p.y > maxy) {
 					maxy = tile.p.y;
+				}
 			}
 		}
 		width = (maxx - x) + 1;
@@ -88,7 +92,7 @@ public class TileGroup {
 	}
 
 	/**
-	 * returns the tilelist for a specific layer (creates one if is does not
+	 * returns the tilelist for a specific layer (creates one if is does not.
 	 * exists yet)
 	 */
 	private List<StatefulTile> getTileLayerSafe(TileLayer layer) {
@@ -102,7 +106,7 @@ public class TileGroup {
 
 	/**
 	 * returns the tilelist for a specific layer or null if there are no tiles
-	 * for the layer in this group
+	 * for the layer in this group.
 	 */
 	public List<StatefulTile> getTileLayer(TileLayer layer) {
 		return tileLayers.get(layer);
@@ -110,7 +114,7 @@ public class TileGroup {
 
 	/**
 	 * returns the tilelist for a specific layer or null if there are no tiles
-	 * for the layer in this group
+	 * for the layer in this group.
 	 */
 	public List<StatefulTile> getTileLayer(String layerName) {
 		for (TileLayer layer : tileLayers.keySet()) {
@@ -130,7 +134,7 @@ public class TileGroup {
 
 	/**
 	 * Checks if this tile group is still valid with the given map (are all
-	 * layers are present?)
+	 * layers are present?).
 	 */
 	public boolean isValid(Map map) {
 		List<MapLayer> layerList = map.getLayerList();
@@ -142,7 +146,7 @@ public class TileGroup {
 		return true;
 	}
 
-	/** Returns a new normalized TileGroup which starts at (0,0) */
+	/** Returns a new normalized TileGroup which starts at (0,0). */
 	public TileGroup normalize() {
 		TileGroup tileGroup = new TileGroup();
 		tileGroup.name = name;
@@ -155,8 +159,7 @@ public class TileGroup {
 		for (TileLayer layer : tileLayers.keySet()) {
 			List<StatefulTile> tileList = tileGroup.getTileLayerSafe(layer);
 			for (StatefulTile tile : getTileLayer(layer)) {
-				StatefulTile newTile = new StatefulTile(tile.p, tile.layer,
-						tile.tile);
+				StatefulTile newTile = new StatefulTile(tile.p, tile.layer, tile.tile);
 				newTile.p.translate(-x, -y);
 				tileList.add(newTile);
 			}
@@ -165,32 +168,32 @@ public class TileGroup {
 		return tileGroup;
 	}
 
-	/** returns the name of the group */
+	/** returns the name of the group. */
 	public String getName() {
 		return name;
 	}
 
-	/** sets the name if the tilegroup */
+	/** sets the name if the tilegroup .*/
 	public void setName(String name) {
 		this.name = name;
 	}
 
-	/** retuns the width in tiles */
+	/** retuns the width in tiles. */
 	public int getWidth() {
 		return width;
 	}
 
-	/** retuns the height in tiles */
+	/** retuns the height in tiles .*/
 	public int getHeight() {
 		return height;
 	}
 
-	/** returns the minimal x position (tile coordinate space) */
+	/** returns the minimal x position (tile coordinate space) .*/
 	public int getX() {
 		return x;
 	}
 
-	/** returns the minimal y position (tile coordinate space) */
+	/** returns the minimal y position (tile coordinate space). */
 	public int getY() {
 		return y;
 	}

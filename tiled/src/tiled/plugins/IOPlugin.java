@@ -21,15 +21,14 @@ import javax.swing.filechooser.FileFilter;
 
 /**
  * A plugin that reads or saves files.
- *  
+ * 
  * @author mtotz
  */
-public interface IOPlugin extends TiledPlugin
-{
-  /**
-   * Returns a list of FileFilters. This list is used in the FileSelection
-   * Dialogs. 
-   */
-  public FileFilter[] getFilters();
+public interface IOPlugin extends TiledPlugin {
+	/**
+	 * Returns a list of FileFilters. This list is used in the FileSelection
+	 * Dialogs.
+	 */
+	FileFilter[] getFilters();
 
 }

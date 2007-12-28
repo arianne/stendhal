@@ -14,85 +14,84 @@
  *
  *  Matthias Totz <mtotz@users.sourceforge.net>
  */
- 
+
 package tiled.core;
 
-public class KeyFrame
-{
-    public static final int KEY_LOOP    = 0x01;
-    public static final int KEY_STOP    = 0x02;
-    public static final int KEY_AUTO    = 0x04;
-    public static final int KEY_REVERSE = 0x08;
+public class KeyFrame {
+	public static final int KEY_LOOP = 0x01;
+	public static final int KEY_STOP = 0x02;
+	public static final int KEY_AUTO = 0x04;
+	public static final int KEY_REVERSE = 0x08;
 
-    public static final int KEY_NAME_LENGTH_MAX = 32;
+	public static final int KEY_NAME_LENGTH_MAX = 32;
 
-    private String name=null;
-    private int firstFrame=0,lastFrame=0,id=-1;
-    private long flags=KEY_LOOP;
-    private float frameRate=0;
+	private String name = null;
+	private int firstFrame = 0, lastFrame = 0, id = -1;
+	private long flags = KEY_LOOP;
+	private float frameRate = 0;
 
+	public KeyFrame() {
+		flags = KEY_LOOP;
+	}
 
-    public KeyFrame() {
-        flags=KEY_LOOP;
-    }
+	public KeyFrame(String name) {
+		this.name = name;
+		flags = KEY_LOOP;
+	}
 
-    public KeyFrame(String name) {
-        this.name=name;
-        flags=KEY_LOOP;
-    }
+	public void setStartFinish(int s, int f) {
+		firstFrame = s;
+		lastFrame = f;
+	}
 
-    public void setStartFinish(int s,int f) {
-        firstFrame=s;
-        lastFrame=f;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public void setName(String name) {
-        this.name=name;
-    }
+	public void setFrameRate(float r) {
+		frameRate = r;
+	}
 
-    public void setFrameRate(float r) {
-        frameRate=r;
-    }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-    public void setId(int id) {
-        this.id=id;
-    }
+	public int getId() {
+		return id;
+	}
 
-    public int getId() {
-        return id;
-    }
+	public void setFlags(long f) {
+		flags = f;
+	}
 
-    public void setFlags(long f) {
-        flags=f;
-    }
+	public int getStartFrame() {
+		return firstFrame;
+	}
 
-    public int getStartFrame() {
-        return firstFrame;
-    }
+	public int getFinishFrame() {
+		return lastFrame;
+	}
 
-    public int getFinishFrame() {
-        return lastFrame;
-    }
+	public long getFlags() {
+		return flags;
+	}
 
-    public long getFlags() {
-        return flags;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public float getFrameRate() {
+		return frameRate;
+	}
 
-    public float getFrameRate() {
-        return frameRate;
-    }
+	public boolean equalsIgnoreCase(String n) {
+		if (name != null) {
+			return (name.equalsIgnoreCase(n));
+		}
+		return (false);
+	}
 
-    public boolean equalsIgnoreCase(String n) {
-        if (name!=null)
-            return(name.equalsIgnoreCase(n));
-        return(false);
-    }
-
-    public String toString() {
-        return "("+name+")"+id+": "+firstFrame+"->"+lastFrame+" @ "+frameRate;
-    }
+	public String toString() {
+		return "(" + name + ")" + id + ": " + firstFrame + "->" + lastFrame + " @ " + frameRate;
+	}
 }

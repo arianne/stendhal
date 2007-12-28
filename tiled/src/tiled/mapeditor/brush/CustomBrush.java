@@ -25,75 +25,76 @@ import tiled.core.MapLayer;
 import tiled.core.MultilayerPlane;
 import tiled.core.TileLayer;
 
-public class CustomBrush extends AbstractBrush
-{
-    public CustomBrush() {
-        super();
-    }
+public class CustomBrush extends AbstractBrush {
+	public CustomBrush() {
+		super();
+	}
 
-    public CustomBrush(MultilayerPlane m) {
-        this();
-        this.addAllLayers(m.getLayerList());
-    }
+	public CustomBrush(MultilayerPlane m) {
+		this();
+		this.addAllLayers(m.getLayerList());
+	}
 
-    public Rectangle getBounds() {
-        return getBounds();
-    }
+	public Rectangle getBounds() {
+		return getBounds();
+	}
 
-    /**
-     * The custom brush will merge its internal layers onto the layers of the 
-     * specified MultilayerPlane.
-     *
-     * @see TileLayer#mergeOnto(MapLayer)
-     * @see Brush#commitPaint(MultilayerPlane, int, int, int)
-     * @param mp         The MultilayerPlane to be affected
-     * @param x          The x-coordinate where the user initiated the paint
-     * @param y          The y-coordinate where the user initiated the paint
-     * @param initLayer  The first layer to paint to.
-     * @return The rectangular region affected by the painting  
-     */
-    public Rectangle commitPaint(MultilayerPlane mp, int x, int y,
-            int initLayer)
-    {
-        Rectangle bounds = this.getBounds();
-        int centerx = (int)(x - (bounds.width / 2));
-        int centery = (int)(y - (bounds.height / 2));
+	/**
+	 * The custom brush will merge its internal layers onto the layers of the
+	 * specified MultilayerPlane.
+	 * 
+	 * @see TileLayer#mergeOnto(MapLayer)
+	 * @see Brush#commitPaint(MultilayerPlane, int, int, int)
+	 * @param mp
+	 *            The MultilayerPlane to be affected
+	 * @param x
+	 *            The x-coordinate where the user initiated the paint
+	 * @param y
+	 *            The y-coordinate where the user initiated the paint
+	 * @param initLayer
+	 *            The first layer to paint to.
+	 * @return The rectangular region affected by the painting
+	 */
+	public Rectangle commitPaint(MultilayerPlane mp, int x, int y, int initLayer) {
+		Rectangle bounds = this.getBounds();
+		int centerx = (int) (x - (bounds.width / 2));
+		int centery = (int) (y - (bounds.height / 2));
 
-        ListIterator itr = iterator();
-        while (itr.hasNext()) {
-            TileLayer tl = (TileLayer)itr.next();
-            TileLayer tm = (TileLayer)mp.getLayer(initLayer++);
-            if (tm != null && tm.isVisible()) {
-                tl.setOffset(centerx, centery);
-                tl.mergeOnto(tm);
-            }
-        }
+		ListIterator itr = iterator();
+		while (itr.hasNext()) {
+			TileLayer tl = (TileLayer) itr.next();
+			TileLayer tm = (TileLayer) mp.getLayer(initLayer++);
+			if (tm != null && tm.isVisible()) {
+				tl.setOffset(centerx, centery);
+				tl.mergeOnto(tm);
+			}
+		}
 
-        return new Rectangle(centerx, centery, bounds.width, bounds.height);
-    }
+		return new Rectangle(centerx, centery, bounds.width, bounds.height);
+	}
 
-    /* (non-Javadoc)
-     * @see tiled.mapeditor.brush.Brush#paint(java.awt.Graphics, int, int)
-     */
-    public void paint(Graphics g, int x, int y) {
-        // TODO Auto-generated method stub
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see tiled.mapeditor.brush.Brush#paint(java.awt.Graphics, int, int)
+	 */
+	public void paint(Graphics g, int x, int y) {
+		// TODO Auto-generated method stub
+	}
 
-    public boolean equals(Brush b) {
-        if (b instanceof CustomBrush) {
-            //TODO: THIS
-        }
-        return false;
-    }
+	public boolean equals(Brush b) {
+		if (b instanceof CustomBrush) {
+			// TODO: THIS
+		}
+		return false;
+	}
 
-    /** returns the affected layers */
-    public MapLayer[] getAffectedLayers()
-    {
-      return new MapLayer[0];
-    }
-    
-    public String getName()
-    {
-      return "Custom Brush";
-    }
+	/** returns the affected layers. */
+	public MapLayer[] getAffectedLayers() {
+		return new MapLayer[0];
+	}
+
+	public String getName() {
+		return "Custom Brush";
+	}
 }

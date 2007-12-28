@@ -19,15 +19,13 @@ package tiled.mapeditor.dialog;
 
 import javax.swing.JDialog;
 
+public class ObjectDialog extends JDialog {
+	private static final long serialVersionUID = 6221263971001961360L;
 
-public class ObjectDialog extends JDialog
-{
-  private static final long serialVersionUID = 6221263971001961360L;
+	ObjectDialog() {
+		super();
+	}
 
-    ObjectDialog() {
-        super();
-    }
-
-    public void init() {
-    }
+	public void init() {
+	}
 }

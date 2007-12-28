@@ -26,37 +26,31 @@ import tiled.mapeditor.MapEditor;
 import tiled.mapeditor.util.TileSelectionEvent;
 import tiled.mapeditor.util.TileSelectionListener;
 
-
 /**
  * Base Class of a tileset chooser.
- *  
+ * 
  * @author mtotz
  */
-public abstract class TilesetChooser extends JPanel implements TileSelectionListener
-{
-  private static final long serialVersionUID = 1L;
-  protected MapEditor mapEditor;
+public abstract class TilesetChooser extends JPanel implements TileSelectionListener {
+	private static final long serialVersionUID = 1L;
+	protected MapEditor mapEditor;
 
-  
-  /**
-   * 
-   */
-  public TilesetChooser(MapEditor mapEditor)
-  {
-    this.mapEditor = mapEditor;
-  }
+	/**
+	 * 
+	 */
+	public TilesetChooser(MapEditor mapEditor) {
+		this.mapEditor = mapEditor;
+	}
 
-  /** informs the editor of the new tile */
-  public void tileSelected(TileSelectionEvent e)
-  {
-    mapEditor.setCurrentTiles(e.getTiles());
-  }
-  
-  
-  /** sets the tilesets to display */
-  public abstract void setTilesets(List<TileSet> tilesets);
-  
-  /** sets the tiles panes to the the ones from this map */
-  public abstract void setMap(Map currentMap);
-  
+	/** informs the editor of the new tile. */
+	public void tileSelected(TileSelectionEvent e) {
+		mapEditor.setCurrentTiles(e.getTiles());
+	}
+
+	/** sets the tilesets to display. */
+	public abstract void setTilesets(List<TileSet> tilesets);
+
+	/** sets the tiles panes to the the ones from this map. */
+	public abstract void setMap(Map currentMap);
+
 }

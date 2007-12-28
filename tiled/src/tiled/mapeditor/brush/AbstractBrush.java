@@ -23,31 +23,24 @@ import java.util.List;
 import tiled.core.MultilayerPlane;
 import tiled.core.StatefulTile;
 
+public abstract class AbstractBrush extends MultilayerPlane implements Brush {
+	protected List<StatefulTile> selectedTiles;
 
-public abstract class AbstractBrush extends MultilayerPlane implements Brush
-{
-  protected List<StatefulTile> selectedTiles;
-  
-  public AbstractBrush()
-  {
-    selectedTiles = new ArrayList<StatefulTile>();
-  }
+	public AbstractBrush() {
+		selectedTiles = new ArrayList<StatefulTile>();
+	}
 
-  /** Sets the currently selected Tiles */
-  public void setTiles(List<StatefulTile> selectedTiles)
-  {
-    this.selectedTiles.clear();
-    if (selectedTiles != null)
-    {
-      this.selectedTiles.addAll(selectedTiles);
-    }
-  }
+	/** Sets the currently selected Tiles. */
+	public void setTiles(List<StatefulTile> selectedTiles) {
+		this.selectedTiles.clear();
+		if (selectedTiles != null) {
+			this.selectedTiles.addAll(selectedTiles);
+		}
+	}
 
-  /** returns the used tiles */
-  public List<StatefulTile> getTiles()
-  {
-    return selectedTiles;
-  }
-  
-  
+	/** returns the used tiles. */
+	public List<StatefulTile> getTiles() {
+		return selectedTiles;
+	}
+
 }

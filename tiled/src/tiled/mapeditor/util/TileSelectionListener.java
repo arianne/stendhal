@@ -19,8 +19,6 @@ package tiled.mapeditor.util;
 
 import java.util.EventListener;
 
-
-public interface TileSelectionListener extends EventListener
-{
-    public void tileSelected(TileSelectionEvent e);
+public interface TileSelectionListener extends EventListener {
+	void tileSelected(TileSelectionEvent e);
 }

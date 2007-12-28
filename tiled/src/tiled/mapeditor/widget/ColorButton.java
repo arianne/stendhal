@@ -23,44 +23,42 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JButton;
 
-
 /**
  * A button with an associated color. The color is displayed as the background
  * of the button and clicking the button spawns a color chooser dialog to allow
  * changing the associated color.
  */
-public class ColorButton extends JButton implements ActionListener
-{
-  private static final long serialVersionUID = 2993022455065277265L;
+public class ColorButton extends JButton implements ActionListener {
+	private static final long serialVersionUID = 2993022455065277265L;
 
-    public ColorButton(Color initialColor) {
-        setBackground(initialColor);
-        addActionListener(this);
-    }
+	public ColorButton(Color initialColor) {
+		setBackground(initialColor);
+		addActionListener(this);
+	}
 
-    public ColorButton() {
-        this(Color.white);
-    }
+	public ColorButton() {
+		this(Color.white);
+	}
 
-    public Dimension getPreferredSize() {
-        return new Dimension(40, 15);
-    }
+	public Dimension getPreferredSize() {
+		return new Dimension(40, 15);
+	}
 
-    /**
-     * Sets the new color of this button.
-     */
-    public void setColor(Color color) {
-        setBackground(color);
-    }
+	/**
+	 * Sets the new color of this button.
+	 */
+	public void setColor(Color color) {
+		setBackground(color);
+	}
 
-    /**
-     * Gets the color of this button.
-     */
-    public Color getColor() {
-        return getBackground();
-    }
+	/**
+	 * Gets the color of this button.
+	 */
+	public Color getColor() {
+		return getBackground();
+	}
 
-    public void actionPerformed(ActionEvent event) {
-        // Spawn a color chooser dialog
-    }
+	public void actionPerformed(ActionEvent event) {
+		// Spawn a color chooser dialog
+	}
 }

@@ -25,31 +25,25 @@ import tiled.mapeditor.MapEditor;
 
 /**
  * Action for switching between the treelike and tabbed tileset chooser.
- *  
+ * 
  * @author mtotz
  */
-public class TreeTilesetChooserAction extends AbstractAction
-{
-  private static final long serialVersionUID = 1L;
+public class TreeTilesetChooserAction extends AbstractAction {
+	private static final long serialVersionUID = 1L;
 
-  private MapEditor mapEditor;
-  
-  public TreeTilesetChooserAction(MapEditor mapEditor)
-  {
-    super("Show as tree");
-    putValue(SHORT_DESCRIPTION, "Shows the Tilesets as tree");
-    this.mapEditor = mapEditor;
-  }
+	private MapEditor mapEditor;
 
-  public void actionPerformed(ActionEvent e)
-  {
-    JCheckBoxMenuItem item = (JCheckBoxMenuItem) e.getSource();
-    if (item != null)
-    {
-      mapEditor.toggleTreeTilesetChooser(item.isSelected());
-    }
-  }
+	public TreeTilesetChooserAction(MapEditor mapEditor) {
+		super("Show as tree");
+		putValue(SHORT_DESCRIPTION, "Shows the Tilesets as tree");
+		this.mapEditor = mapEditor;
+	}
 
-
+	public void actionPerformed(ActionEvent e) {
+		JCheckBoxMenuItem item = (JCheckBoxMenuItem) e.getSource();
+		if (item != null) {
+			mapEditor.toggleTreeTilesetChooser(item.isSelected());
+		}
+	}
 
 }

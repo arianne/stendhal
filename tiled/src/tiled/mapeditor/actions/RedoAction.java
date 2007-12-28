@@ -26,26 +26,24 @@ import tiled.mapeditor.MapEditor;
 
 /**
  * Redoes the last undo.
+ * 
  * @author mtotz
  */
-public class RedoAction extends AbstractAction
-{
-  private static final long serialVersionUID = 2467790103953607697L;
-  
-  private MapEditor mapEditor;
+public class RedoAction extends AbstractAction {
+	private static final long serialVersionUID = 2467790103953607697L;
 
-  public RedoAction(MapEditor mapEditor)
-  {
-    super("Redo");
-    putValue(SHORT_DESCRIPTION, "Redo one action");
-    putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke("control Y"));
-    this.mapEditor = mapEditor;
-  }
+	private MapEditor mapEditor;
 
-  public void actionPerformed(ActionEvent evt)
-  {
-    mapEditor.undoStack.redo();
-    mapEditor.updateHistory();
-    mapEditor.mapEditPanel.repaint();
-  }
+	public RedoAction(MapEditor mapEditor) {
+		super("Redo");
+		putValue(SHORT_DESCRIPTION, "Redo one action");
+		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke("control Y"));
+		this.mapEditor = mapEditor;
+	}
+
+	public void actionPerformed(ActionEvent evt) {
+		mapEditor.undoStack.redo();
+		mapEditor.updateHistory();
+		mapEditor.mapEditPanel.repaint();
+	}
 }

@@ -22,37 +22,32 @@ import javax.swing.undo.*;
 
 import tiled.core.*;
 
-public class MapLayerStateEdit extends AbstractUndoableEdit
-{
-  private static final long serialVersionUID = 8288536334620982325L;
+public class MapLayerStateEdit extends AbstractUndoableEdit {
+	private static final long serialVersionUID = 8288536334620982325L;
 
-  private Map               map;
-  private List<MapLayer>    layersBefore;
-  private List<MapLayer>    layersAfter;
-  private String            name;
+	private Map map;
+	private List<MapLayer> layersBefore;
+	private List<MapLayer> layersAfter;
+	private String name;
 
-  public MapLayerStateEdit(Map m, List<MapLayer> before, List<MapLayer> after, String name)
-  {
-    this.map = m;
-    this.layersBefore = before;
-    this.layersAfter = after;
-    this.name = name;
-  }
+	public MapLayerStateEdit(Map m, List<MapLayer> before, List<MapLayer> after, String name) {
+		this.map = m;
+		this.layersBefore = before;
+		this.layersAfter = after;
+		this.name = name;
+	}
 
-  public void undo() throws CannotUndoException
-  {
-    super.undo();
-    map.setLayers(layersBefore);
-  }
+	public void undo() throws CannotUndoException {
+		super.undo();
+		map.setLayers(layersBefore);
+	}
 
-  public void redo() throws CannotRedoException
-  {
-    super.redo();
-    map.setLayers(layersAfter);
-  }
+	public void redo() throws CannotRedoException {
+		super.redo();
+		map.setLayers(layersAfter);
+	}
 
-  public String getPresentationName()
-  {
-    return name;
-  }
+	public String getPresentationName() {
+		return name;
+	}
 }

@@ -23,36 +23,37 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+public class TileIterator implements Iterator<Tile> {
+	private List<Tile> tiles;
+	private int pos;
 
-public class TileIterator implements Iterator<Tile>
-{
-    private List<Tile> tiles;
-    private int pos;
+	public TileIterator(List<Tile> tiles) {
+		this.tiles = tiles;
+		pos = 0;
+	}
 
-    public TileIterator(List<Tile> tiles) {
-        this.tiles = tiles;
-        pos = 0;
-    }
+	public boolean hasNext() {
+		while (pos < tiles.size()) {
+			if (tiles.get(pos) != null) {
+				return true;
+			}
+			pos++;
+		}
+		return false;
+	}
 
-    public boolean hasNext() {
-        while (pos < tiles.size()) {
-            if (tiles.get(pos) != null) return true;
-            pos++;
-        }
-        return false;
-    }
+	public Tile next() throws NoSuchElementException {
+		while (pos < tiles.size()) {
+			Tile t = tiles.get(pos);
+			pos++;
+			if (t != null) {
+				return t;
+			}
+		}
+		throw new NoSuchElementException();
+	}
 
-    public Tile next() throws NoSuchElementException {
-        while (pos < tiles.size()) {
-            Tile t = tiles.get(pos);
-            pos++;
-            if (t != null) return t;
-        }
-        throw new NoSuchElementException();
-    }
-
-    public void remove() throws UnsupportedOperationException, IllegalStateException
-    {
-        throw new UnsupportedOperationException();
-    }
+	public void remove() throws UnsupportedOperationException, IllegalStateException {
+		throw new UnsupportedOperationException();
+	}
 }

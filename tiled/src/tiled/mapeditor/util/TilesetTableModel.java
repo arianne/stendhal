@@ -23,92 +23,90 @@ import javax.swing.table.AbstractTableModel;
 
 import tiled.core.*;
 
+public class TilesetTableModel extends AbstractTableModel {
+	private static final long serialVersionUID = 9164983301574753663L;
 
-public class TilesetTableModel extends AbstractTableModel
-{
-  private static final long serialVersionUID = 9164983301574753663L;
+	private Map map;
+	// private String[] columnNames = { "Tileset name", "Usage count" };
+	private String[] columnNames = { "Tileset name" };
 
-    private Map map;
-    //private String[] columnNames = { "Tileset name", "Usage count" };
-    private String[] columnNames = { "Tileset name" };
+	public TilesetTableModel(Map map) {
+		this.map = map;
+	}
 
-    public TilesetTableModel(Map map) {
-        this.map = map;
-    }
+	public void setMap(Map map) {
+		this.map = map;
+		fireTableDataChanged();
+	}
 
-    public void setMap(Map map) {
-        this.map = map;
-        fireTableDataChanged();
-    }
+	public String getColumnName(int col) {
+		return columnNames[col];
+	}
 
-    public String getColumnName(int col) {
-        return columnNames[col];
-    }
+	public int getRowCount() {
+		if (map != null) {
+			return map.getTilesets().size();
+		} else {
+			return 0;
+		}
+	}
 
-    public int getRowCount() {
-        if (map != null) {
-            return map.getTilesets().size();
-        } else {
-            return 0;
-        }
-    }
+	public int getColumnCount() {
+		return columnNames.length;
+	}
 
-    public int getColumnCount() {
-        return columnNames.length;
-    }
+	public Object getValueAt(int row, int col) {
+		List<TileSet> tilesets = map.getTilesets();
+		if (row >= 0 && row < tilesets.size()) {
+			TileSet tileset = tilesets.get(row);
+			if (col == 0) {
+				return tileset.getName();
+			} else {
+				return "" + checkSetUsage(tileset);
+			}
+		} else {
+			return null;
+		}
+	}
 
-    public Object getValueAt(int row, int col) {
-        List<TileSet> tilesets = map.getTilesets();
-        if (row >= 0 && row < tilesets.size()) {
-            TileSet tileset = tilesets.get(row);
-            if (col == 0) {
-                return tileset.getName();
-            } else {
-                return "" + checkSetUsage(tileset);
-            }
-        } else {
-            return null;
-        }
-    }
+	public boolean isCellEditable(int row, int col) {
+		if (col == 0) {
+			return true;
+		}
+		return false;
+	}
 
-    public boolean isCellEditable(int row, int col) {
-        if (col == 0) {
-            return true;
-        }
-        return false;
-    }
+	public void setValueAt(Object value, int row, int col) {
+		List<TileSet> tilesets = map.getTilesets();
+		if (row >= 0 && row < tilesets.size()) {
+			TileSet tileset = tilesets.get(row);
+			if (col == 0) {
+				tileset.setName(value.toString());
+			}
+			fireTableCellUpdated(row, col);
+		}
+	}
 
-    public void setValueAt(Object value, int row, int col) {
-        List<TileSet> tilesets = map.getTilesets();
-        if (row >= 0 && row < tilesets.size()) {
-            TileSet tileset = tilesets.get(row);
-            if (col == 0) {
-                tileset.setName(value.toString());
-            }
-            fireTableCellUpdated(row, col);
-        }
-    }
+	private int checkSetUsage(TileSet s) {
+		int used = 0;
+		Iterator tileIterator = s.iterator();
 
-    private int checkSetUsage(TileSet s) {
-        int used = 0;
-        Iterator tileIterator = s.iterator();
+		while (tileIterator.hasNext()) {
+			Tile tile = (Tile) tileIterator.next();
+			Iterator itr = map.iterator();
 
-        while (tileIterator.hasNext()) {
-            Tile tile = (Tile)tileIterator.next();
-            Iterator itr = map.iterator();
+			while (itr.hasNext()) {
+				MapLayer ml = (MapLayer) itr.next();
 
-            while (itr.hasNext()) {
-                MapLayer ml = (MapLayer)itr.next();
+				if (ml instanceof TileLayer) {
+					if (((TileLayer) ml).isUsed(tile)) {
+						used++;
+						break;
+					}
+				}
+			}
+		}
 
-                if (ml instanceof TileLayer) {
-                    if (((TileLayer)ml).isUsed(tile)) {
-                        used++;
-                        break;
-                    }
-                }
-            }
-        }
-
-        return used;
-    }
+		return used;
+	}
 }

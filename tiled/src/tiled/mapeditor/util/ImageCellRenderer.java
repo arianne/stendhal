@@ -23,28 +23,25 @@ import javax.swing.ImageIcon;
 import javax.swing.JList;
 import javax.swing.DefaultListCellRenderer;
 
+public class ImageCellRenderer extends DefaultListCellRenderer {
+	private static final long serialVersionUID = 8131656400219422438L;
 
-public class ImageCellRenderer extends DefaultListCellRenderer
-{
-  private static final long serialVersionUID = 8131656400219422438L;
+	public ImageCellRenderer() {
+		setOpaque(true);
+	}
 
-    public ImageCellRenderer() {
-        setOpaque(true);
-    }
+	public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected,
+			boolean cellHasFocus) {
+		super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
 
-    public Component getListCellRendererComponent(JList list, Object value,
-            int index,  boolean isSelected, boolean cellHasFocus) {
-        super.getListCellRendererComponent(
-                list, value, index, isSelected, cellHasFocus);
-
-        Image img = (Image)value;
-		if(img != null) {
-        	setIcon(new ImageIcon(img));
+		Image img = (Image) value;
+		if (img != null) {
+			setIcon(new ImageIcon(img));
 		} else {
 			setIcon(null);
 		}
-        setText(null);
+		setText(null);
 
-        return this;
-    }
+		return this;
+	}
 }

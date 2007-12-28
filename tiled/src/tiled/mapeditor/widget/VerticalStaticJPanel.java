@@ -21,29 +21,25 @@ import java.awt.Dimension;
 import java.awt.LayoutManager;
 import javax.swing.JPanel;
 
-
 /**
  * A variation on JPanel that will specify the preferred height as both the
  * minimum and maximum.
  */
-public class VerticalStaticJPanel extends JPanel
-{
-  private static final long serialVersionUID = -2917490165486964087L;
+public class VerticalStaticJPanel extends JPanel {
+	private static final long serialVersionUID = -2917490165486964087L;
 
-    public VerticalStaticJPanel() {
-    }
+	public VerticalStaticJPanel() {
+	}
 
-    public VerticalStaticJPanel(LayoutManager manager) {
-        super(manager);
-    }
+	public VerticalStaticJPanel(LayoutManager manager) {
+		super(manager);
+	}
 
-    public Dimension getMaximumSize() {
-        return new Dimension(super.getMaximumSize().width,
-                getPreferredSize().height);
-    }
+	public Dimension getMaximumSize() {
+		return new Dimension(super.getMaximumSize().width, getPreferredSize().height);
+	}
 
-    public Dimension getMinimumSize() {
-        return new Dimension(super.getMinimumSize().width,
-                getPreferredSize().height);
-    }
+	public Dimension getMinimumSize() {
+		return new Dimension(super.getMinimumSize().width, getPreferredSize().height);
+	}
 }

@@ -25,24 +25,22 @@ import javax.swing.KeyStroke;
 import tiled.mapeditor.MapEditor;
 
 /**
- * Cuts the current selection to the clipboard.  
+ * Cuts the current selection to the clipboard.
+ * 
  * @author mtotz
  */
-public class CutAction extends AbstractAction
-{
-  private static final long serialVersionUID = -244183316986816427L;
+public class CutAction extends AbstractAction {
+	private static final long serialVersionUID = -244183316986816427L;
 
-  private MapEditor mapEditor;
-  
-  public CutAction(MapEditor mapEditor)
-  {
-    super("Cut");
-    putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke("control X"));
-    putValue(SHORT_DESCRIPTION, "Cut");
-    this.mapEditor = mapEditor;
-  }
+	private MapEditor mapEditor;
 
-  public void actionPerformed(ActionEvent evt)
-  {
-  }
+	public CutAction(MapEditor mapEditor) {
+		super("Cut");
+		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke("control X"));
+		putValue(SHORT_DESCRIPTION, "Cut");
+		this.mapEditor = mapEditor;
+	}
+
+	public void actionPerformed(ActionEvent evt) {
+	}
 }

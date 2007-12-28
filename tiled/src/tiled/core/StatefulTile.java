@@ -19,27 +19,24 @@ package tiled.core;
 
 import java.awt.Point;
 
-
 /**
- * Stores coordinates for the tile
- * @author mtotz   
+ * Stores coordinates for the tile.
+ * 
+ * @author mtotz
  */
-public class StatefulTile
-{
-  public int layer;
-  public Point p;
-  public Tile tile;
+public class StatefulTile {
+	public int layer;
+	public Point p;
+	public Tile tile;
 
-  public StatefulTile(Point p, int layer, Tile tile)
-  {
-    this.p = new Point(p);
-    this.layer = layer;
-    this.tile = tile;
-  }
-  
-  public String toString()
-  {
-    return "[TileWrapper: "+p+" "+tile+"]";
-  }
-  
+	public StatefulTile(Point p, int layer, Tile tile) {
+		this.p = new Point(p);
+		this.layer = layer;
+		this.tile = tile;
+	}
+
+	public String toString() {
+		return "[TileWrapper: " + p + " " + tile + "]";
+	}
+
 }

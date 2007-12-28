@@ -17,7 +17,5 @@
 
 package tiled.mapeditor.builder;
 
-
-public class CorridorBuilder
-{
+public class CorridorBuilder {
 }

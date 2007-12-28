@@ -26,23 +26,21 @@ import tiled.mapeditor.MapEditor;
 
 /**
  * Selects the whole layer.
+ * 
  * @author mtotz
  */
-public class SelectAllAction extends AbstractAction
-{
-  private static final long serialVersionUID = -1980981542520629392L;
+public class SelectAllAction extends AbstractAction {
+	private static final long serialVersionUID = -1980981542520629392L;
 
-  private MapEditor mapEditor;
-  
-  public SelectAllAction(MapEditor mapEditor)
-  {
-    super("All");
-    putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke("control A"));
-    putValue(SHORT_DESCRIPTION, "Select entire map");
-    this.mapEditor = mapEditor;
-  }
+	private MapEditor mapEditor;
 
-  public void actionPerformed(ActionEvent e)
-  {
-  }
+	public SelectAllAction(MapEditor mapEditor) {
+		super("All");
+		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke("control A"));
+		putValue(SHORT_DESCRIPTION, "Select entire map");
+		this.mapEditor = mapEditor;
+	}
+
+	public void actionPerformed(ActionEvent e) {
+	}
 }

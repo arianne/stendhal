@@ -50,523 +50,494 @@ import tiled.util.TiledConfiguration;
 
 /**
  * @author mtotz
- *
+ * 
  */
-public class MapWriter implements MapWriterPlugin
-{
-  private String workPath;
-  
-  public MapWriter()
-  {
-    workPath = "";
-  }
+public class MapWriter implements MapWriterPlugin {
+	private String workPath;
 
-  /** writes the map */
-  public void writeMap(Map map, String filename)
-  {
-    try
-    {
-      File file = new File(filename);
-      workPath = filename;
-      writeMap(map,new FileOutputStream(file));
-    } catch (FileNotFoundException e)
-    {
-      throw new RuntimeException(e);
-    }
-  }
+	public MapWriter() {
+		workPath = "";
+	}
 
-  /** writes the map */
-  public void writeMap(Map map, OutputStream outputStream)
-  {
-    Writer writer = new OutputStreamWriter(outputStream);
-    XMLWriter xmlWriter = new XMLWriter(writer);
+	/** writes the map. */
+	public void writeMap(Map map, String filename) {
+		try {
+			File file = new File(filename);
+			workPath = filename;
+			writeMap(map, new FileOutputStream(file));
+		} catch (FileNotFoundException e) {
+			throw new RuntimeException(e);
+		}
+	}
 
-    try
-    {
-      xmlWriter.startDocument();
-      xmlWriter.startElement("map");
-      xmlWriter.writeAttribute("version", "0.99a");
+	/** writes the map. */
+	public void writeMap(Map map, OutputStream outputStream) {
+		Writer writer = new OutputStreamWriter(outputStream);
+		XMLWriter xmlWriter = new XMLWriter(writer);
 
-      switch (map.getOrientation())
-      {
-        case Map.MDO_ORTHO:
-          xmlWriter.writeAttribute("orientation", "orthogonal"); break;
-        case Map.MDO_ISO:
-          xmlWriter.writeAttribute("orientation", "isometric"); break;
-        case Map.MDO_OBLIQUE:
-          xmlWriter.writeAttribute("orientation", "oblique"); break;
-        case Map.MDO_HEX:
-          xmlWriter.writeAttribute("orientation", "hexagonal"); break;
-        case Map.MDO_SHIFTED:
-          xmlWriter.writeAttribute("orientation", "shifted"); break;
-      }
+		try {
+			xmlWriter.startDocument();
+			xmlWriter.startElement("map");
+			xmlWriter.writeAttribute("version", "0.99a");
 
-      xmlWriter.writeAttribute("width", "" + map.getWidth());
-      xmlWriter.writeAttribute("height", "" + map.getHeight());
-      xmlWriter.writeAttribute("tilewidth", "" + map.getTileWidth());
-      xmlWriter.writeAttribute("tileheight", "" + map.getTileHeight());
-      
-      Properties props = map.getProperties();
-      for (Enumeration keys = props.keys(); keys.hasMoreElements();) {
-          String key = (String)keys.nextElement();
-          xmlWriter.startElement("property");
-          xmlWriter.writeAttribute("name", key);
-          xmlWriter.writeAttribute("value", props.getProperty(key));
-          xmlWriter.endElement();
-      }
-      int firstgid = 1;
-      Iterator itr = map.getTilesets().iterator();
-      while (itr.hasNext()) {
-          TileSet tileset = (TileSet)itr.next();
-          tileset.setFirstGid(firstgid);
-          writeTilesetReference(tileset, xmlWriter,workPath);
-          firstgid += tileset.getMaxTileId() + 1;
-      }
+			switch (map.getOrientation()) {
+			case Map.MDO_ORTHO:
+				xmlWriter.writeAttribute("orientation", "orthogonal");
+				break;
+			case Map.MDO_ISO:
+				xmlWriter.writeAttribute("orientation", "isometric");
+				break;
+			case Map.MDO_OBLIQUE:
+				xmlWriter.writeAttribute("orientation", "oblique");
+				break;
+			case Map.MDO_HEX:
+				xmlWriter.writeAttribute("orientation", "hexagonal");
+				break;
+			case Map.MDO_SHIFTED:
+				xmlWriter.writeAttribute("orientation", "shifted");
+				break;
+			}
 
-      Iterator ml = map.iterator();
-      while (ml.hasNext()) {
-          MapLayer layer = (MapLayer)ml.next();
-          writeMapLayer(layer, xmlWriter);
-      }
+			xmlWriter.writeAttribute("width", "" + map.getWidth());
+			xmlWriter.writeAttribute("height", "" + map.getHeight());
+			xmlWriter.writeAttribute("tilewidth", "" + map.getTileWidth());
+			xmlWriter.writeAttribute("tileheight", "" + map.getTileHeight());
 
-      xmlWriter.endElement();
+			Properties props = map.getProperties();
+			for (Enumeration keys = props.keys(); keys.hasMoreElements();) {
+				String key = (String) keys.nextElement();
+				xmlWriter.startElement("property");
+				xmlWriter.writeAttribute("name", key);
+				xmlWriter.writeAttribute("value", props.getProperty(key));
+				xmlWriter.endElement();
+			}
+			int firstgid = 1;
+			Iterator itr = map.getTilesets().iterator();
+			while (itr.hasNext()) {
+				TileSet tileset = (TileSet) itr.next();
+				tileset.setFirstGid(firstgid);
+				writeTilesetReference(tileset, xmlWriter, workPath);
+				firstgid += tileset.getMaxTileId() + 1;
+			}
 
-      xmlWriter.endDocument();
-      writer.flush();
-    } catch (Exception e)
-    {
-      throw new RuntimeException(e);
-    }
-  }
-  
-  /**
-   * Writes a reference to an external tileset into a XML document.  In the
-   * degenerate case where the tileset is not stored in an external file,
-   * writes the contents of the tileset instead.
-   */
-  private void writeTilesetReference(TileSet set, XMLWriter w, String wp)
-      throws IOException {
+			Iterator ml = map.iterator();
+			while (ml.hasNext()) {
+				MapLayer layer = (MapLayer) ml.next();
+				writeMapLayer(layer, xmlWriter);
+			}
 
-      try {
-          String source = set.getSource();
+			xmlWriter.endElement();
 
-          if (source == null) {
-              writeTileset(set, w, wp);
-          } else {
-              w.startElement("tileset");
-              try {
-                  w.writeAttribute("firstgid", "" + set.getFirstGid());
-                  w.writeAttribute("source", source.substring(
-                              source.lastIndexOf(File.separatorChar) + 1));
-                  if (set.getBaseDir() != null) {
-                      w.writeAttribute("basedir", set.getBaseDir());
-                  }
-              } finally {
-                  w.endElement();
-              }
-          }
-      } catch (XMLWriterException e) {
-          e.printStackTrace();
-      } 
-  }
-  
-  private void writeTileset(TileSet set, XMLWriter w, String wp)
-  throws IOException {
+			xmlWriter.endDocument();
+			writer.flush();
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
 
-  try {
-      String tilebmpFile = set.getTilebmpFile();
-      String name = set.getName();
+	/**
+	 * Writes a reference to an external tileset into a XML document. In the
+	 * degenerate case where the tileset is not stored in an external file,
+	 * writes the contents of the tileset instead.
+	 */
+	private void writeTilesetReference(TileSet set, XMLWriter w, String wp) throws IOException {
 
-      w.startElement("tileset");
+		try {
+			String source = set.getSource();
 
-      if (name != null) {
-          w.writeAttribute("name", name);
-      }
+			if (source == null) {
+				writeTileset(set, w, wp);
+			} else {
+				w.startElement("tileset");
+				try {
+					w.writeAttribute("firstgid", "" + set.getFirstGid());
+					w.writeAttribute("source", source.substring(source.lastIndexOf(File.separatorChar) + 1));
+					if (set.getBaseDir() != null) {
+						w.writeAttribute("basedir", set.getBaseDir());
+					}
+				} finally {
+					w.endElement();
+				}
+			}
+		} catch (XMLWriterException e) {
+			e.printStackTrace();
+		}
+	}
 
-      w.writeAttribute("firstgid", "" + set.getFirstGid());
+	private void writeTileset(TileSet set, XMLWriter w, String wp) throws IOException {
 
-      if (tilebmpFile != null) {
-          w.writeAttribute("tilewidth", "" + set.getStandardWidth());
-          w.writeAttribute("tileheight", "" + set.getStandardHeight());
-          //w.writeAttribute("spacing", "0");
-      }
+		try {
+			String tilebmpFile = set.getTilebmpFile();
+			String name = set.getName();
 
-      if (set.getBaseDir() != null) {
-          w.writeAttribute("basedir", set.getBaseDir());
-      }
+			w.startElement("tileset");
 
-      if (tilebmpFile != null) {
-          w.startElement("image");
-          w.writeAttribute("source", getRelativePath(wp, tilebmpFile));
+			if (name != null) {
+				w.writeAttribute("name", name);
+			}
 
-          Color trans = set.getTransparentColor();
-          if (trans != null) {
-              w.writeAttribute("trans", Integer.toHexString(
-                          trans.getRGB()).substring(2));
-          }
-          w.endElement();
-      } else {
-          // Embedded tileset
+			w.writeAttribute("firstgid", "" + set.getFirstGid());
 
-          TiledConfiguration conf = TiledConfiguration.getInstance();
-          if (conf.keyHasValue("tmx.save.tileSetImages", "1")) {
-              Iterator<String> ids = set.getImageIds().iterator();
-              while (ids.hasNext()) {
-                  String id = ids.next();
-                  w.startElement("image");
-                  w.writeAttribute("format", "png");
-                  w.writeAttribute("id", id);
-                  w.startElement("data");
-                  w.writeAttribute("encoding", "base64");
-                  w.writeCDATA(new String(Base64.encode(
-                                  ImageHelper.imageToPNG(
-                                      set.getImageById(id)))));
-                  w.endElement();
-                  w.endElement();
-              }
-          } else if (conf.keyHasValue("tmx.save.embedImages", "0")) {
-              String imgSource = conf.getValue(
-                      "tmx.save.tileImagePrefix") + "set.png";
-              w.writeAttribute("source", imgSource);
-              
-              String tilesetFilename = (wp.substring(0,
-                  wp.lastIndexOf(File.separatorChar) + 1)
-                  + imgSource);
-              FileOutputStream fw = new FileOutputStream(new File(tilesetFilename));
-              //byte[] data = ImageHelper.imageToPNG(setImage);
-              //fw.write(data, 0, data.length);
-              fw.close();
-          }
+			if (tilebmpFile != null) {
+				w.writeAttribute("tilewidth", "" + set.getStandardWidth());
+				w.writeAttribute("tileheight", "" + set.getStandardHeight());
+				// w.writeAttribute("spacing", "0");
+			}
 
-          // Check to see if there is a need to write tile elements
-          if (set.isOneForOne()) {
-              Iterator tileIterator = set.iterator();
-              boolean needWrite = false;
+			if (set.getBaseDir() != null) {
+				w.writeAttribute("basedir", set.getBaseDir());
+			}
 
-              if (conf.keyHasValue("tmx.save.embedImages", "1")) {
-                  needWrite = true;
-              } else {
-                  while (tileIterator.hasNext()) {
-                      Tile tile = (Tile)tileIterator.next();
-                      if (!tile.getProperties().isEmpty()) {
-                          needWrite = true;
-                          break;
-                          // As long as one has properties, they all
-                          // need to be written.
-                          // TODO: This shouldn't be necessary
-                      }
-                  }
-              }
+			if (tilebmpFile != null) {
+				w.startElement("image");
+				w.writeAttribute("source", getRelativePath(wp, tilebmpFile));
 
-              if (needWrite) {
-                  tileIterator = set.iterator();
-                  while (tileIterator.hasNext()) {
-                      Tile tile = (Tile)tileIterator.next();
-                      writeTile(tile,w);
-                  }
-              }
-          }
-      }
-      w.endElement();
-  } catch (XMLWriterException e) {
-      e.printStackTrace();
-  }
-}
-  
-  private void writeTile(Tile tile, XMLWriter w) throws IOException {
-    try {
-        w.startElement("tile");
+				Color trans = set.getTransparentColor();
+				if (trans != null) {
+					w.writeAttribute("trans", Integer.toHexString(trans.getRGB()).substring(2));
+				}
+				w.endElement();
+			} else {
+				// Embedded tileset
 
-        int tileId = tile.getId();
+				TiledConfiguration conf = TiledConfiguration.getInstance();
+				if (conf.keyHasValue("tmx.save.tileSetImages", "1")) {
+					Iterator<String> ids = set.getImageIds().iterator();
+					while (ids.hasNext()) {
+						String id = ids.next();
+						w.startElement("image");
+						w.writeAttribute("format", "png");
+						w.writeAttribute("id", id);
+						w.startElement("data");
+						w.writeAttribute("encoding", "base64");
+						w.writeCDATA(new String(Base64.encode(ImageHelper.imageToPNG(set.getImageById(id)))));
+						w.endElement();
+						w.endElement();
+					}
+				} else if (conf.keyHasValue("tmx.save.embedImages", "0")) {
+					String imgSource = conf.getValue("tmx.save.tileImagePrefix") + "set.png";
+					w.writeAttribute("source", imgSource);
 
-        w.writeAttribute("id", "" + tileId);
+					String tilesetFilename = (wp.substring(0, wp.lastIndexOf(File.separatorChar) + 1) + imgSource);
+					FileOutputStream fw = new FileOutputStream(new File(tilesetFilename));
+					// byte[] data = ImageHelper.imageToPNG(setImage);
+					// fw.write(data, 0, data.length);
+					fw.close();
+				}
 
-        //if (groundHeight != getHeight()) {
-        //    w.writeAttribute("groundheight", "" + groundHeight);
-        //}
+				// Check to see if there is a need to write tile elements
+				if (set.isOneForOne()) {
+					Iterator tileIterator = set.iterator();
+					boolean needWrite = false;
 
-        Properties props = tile.getProperties();
-        for (Enumeration keys = props.keys(); keys.hasMoreElements();) {
-            String key = (String)keys.nextElement();
-            w.startElement("property");
-            w.writeAttribute("name", key);
-            w.writeAttribute("value", props.getProperty(key));
-            w.endElement();
-        }
+					if (conf.keyHasValue("tmx.save.embedImages", "1")) {
+						needWrite = true;
+					} else {
+						while (tileIterator.hasNext()) {
+							Tile tile = (Tile) tileIterator.next();
+							if (!tile.getProperties().isEmpty()) {
+								needWrite = true;
+								break;
+								// As long as one has properties, they all
+								// need to be written.
+								// TODO: This shouldn't be necessary
+							}
+						}
+					}
 
-        Image tileImage = tile.getImage();
+					if (needWrite) {
+						tileIterator = set.iterator();
+						while (tileIterator.hasNext()) {
+							Tile tile = (Tile) tileIterator.next();
+							writeTile(tile, w);
+						}
+					}
+				}
+			}
+			w.endElement();
+		} catch (XMLWriterException e) {
+			e.printStackTrace();
+		}
+	}
 
-        TiledConfiguration conf = TiledConfiguration.getInstance();
+	private void writeTile(Tile tile, XMLWriter w) throws IOException {
+		try {
+			w.startElement("tile");
 
-        // Write encoded data
-        if (tileImage != null && !conf.keyHasValue(
-                    "tmx.save.tileSetImages", "1")) {
-            if (conf.keyHasValue("tmx.save.embedImages", "1")
-                    && conf.keyHasValue("tmx.save.tileSetImages", "0")) {
-                w.startElement("image");
-                w.writeAttribute("format", "png");
-                w.startElement("data");
-                w.writeAttribute("encoding", "base64");
-                w.writeCDATA(new String(Base64.encode(
-                                ImageHelper.imageToPNG(tileImage))));
-                w.endElement();
-                w.endElement();
-            } else if(conf.keyHasValue("tmx.save.tileSetImages", "1")) {
-                w.startElement("image");
-                w.writeAttribute("id", "" + tile.getImageId());
-                int orientation = tile.getImageOrientation();
-                int rotation = 0;
-                boolean flipped =
-                    (orientation & 1) == ((orientation & 2) >> 1);
-                if ((orientation & 4) == 4) {
-                    rotation = ((orientation & 1) == 1) ? 270 : 90;
-                } else {
-                    rotation = ((orientation & 2) == 2) ? 180 : 0;
-                }
-                if (rotation != 0) w.writeAttribute("rotation",
-                        "" + rotation);
-                if (flipped) w.writeAttribute("flipped", "true");
-                w.endElement();
-            } else {
-                String prefix = conf.getValue("tmx.save.tileImagePrefix");
-                String filename = conf.getValue("tmx.save.maplocation") +
-                    prefix + tileId + ".png";
-                w.startElement("image");
-                w.writeAttribute("source", prefix + tileId + ".png");
-                FileOutputStream fw = new FileOutputStream(
-                        new File(filename));
-                byte[] data = ImageHelper.imageToPNG(tileImage);
-                fw.write(data, 0, data.length);
-                fw.close();
-                w.endElement();
-            }
-        }
+			int tileId = tile.getId();
 
-        w.endElement();
-    } catch (XMLWriterException e) {
-        e.printStackTrace();
-    }
-}
-  
-  /**
-   * Writes this layer to an XMLWriter. This should be done <b>after</b> the
-   * first global ids for the tilesets are determined, in order for the right
-   * gids to be written to the layer data.
-   */
-  private void writeMapLayer(MapLayer l, XMLWriter w) throws IOException {
-      try {
-          TiledConfiguration conf = TiledConfiguration.getInstance();
-          boolean encodeLayerData = conf.keyHasValue(
-                  "tmx.save.encodeLayerData", "1");
-          boolean compressLayerData = conf.keyHasValue(
-                  "tmx.save.layerCompression", "1") && encodeLayerData;
+			w.writeAttribute("id", "" + tileId);
 
+			// if (groundHeight != getHeight()) {
+			// w.writeAttribute("groundheight", "" + groundHeight);
+			// }
 
-          Rectangle bounds = l.getBounds();
+			Properties props = tile.getProperties();
+			for (Enumeration keys = props.keys(); keys.hasMoreElements();) {
+				String key = (String) keys.nextElement();
+				w.startElement("property");
+				w.writeAttribute("name", key);
+				w.writeAttribute("value", props.getProperty(key));
+				w.endElement();
+			}
 
-          if (l.getClass() == SelectionLayer.class) {
-              w.startElement("selection");
-//          } else if(l instanceof ObjectGroup){
-//              w.startElement("objectgroup");
-          } else {
-              w.startElement("layer");
-          }
+			Image tileImage = tile.getImage();
 
-          w.writeAttribute("name", l.getName());
-          w.writeAttribute("width", "" + bounds.width);
-          w.writeAttribute("height", "" + bounds.height);
-          if (bounds.x != 0) {
-              w.writeAttribute("xoffset", "" + bounds.x);
-          }
-          if (bounds.y != 0) {
-              w.writeAttribute("yoffset", "" + bounds.y);
-          }
+			TiledConfiguration conf = TiledConfiguration.getInstance();
 
-          if (!l.isVisible()) {
-              w.writeAttribute("visible", "0");
-          }
-          if (l.getOpacity() < 1.0f) {
-              w.writeAttribute("opacity", "" + l.getOpacity());
-          }
+			// Write encoded data
+			if (tileImage != null && !conf.keyHasValue("tmx.save.tileSetImages", "1")) {
+				if (conf.keyHasValue("tmx.save.embedImages", "1") && conf.keyHasValue("tmx.save.tileSetImages", "0")) {
+					w.startElement("image");
+					w.writeAttribute("format", "png");
+					w.startElement("data");
+					w.writeAttribute("encoding", "base64");
+					w.writeCDATA(new String(Base64.encode(ImageHelper.imageToPNG(tileImage))));
+					w.endElement();
+					w.endElement();
+				} else if (conf.keyHasValue("tmx.save.tileSetImages", "1")) {
+					w.startElement("image");
+					w.writeAttribute("id", "" + tile.getImageId());
+					int orientation = tile.getImageOrientation();
+					int rotation = 0;
+					boolean flipped = (orientation & 1) == ((orientation & 2) >> 1);
+					if ((orientation & 4) == 4) {
+						rotation = ((orientation & 1) == 1) ? 270 : 90;
+					} else {
+						rotation = ((orientation & 2) == 2) ? 180 : 0;
+					}
+					if (rotation != 0) {
+						w.writeAttribute("rotation", "" + rotation);
+					}
+					if (flipped) {
+						w.writeAttribute("flipped", "true");
+					}
+					w.endElement();
+				} else {
+					String prefix = conf.getValue("tmx.save.tileImagePrefix");
+					String filename = conf.getValue("tmx.save.maplocation") + prefix + tileId + ".png";
+					w.startElement("image");
+					w.writeAttribute("source", prefix + tileId + ".png");
+					FileOutputStream fw = new FileOutputStream(new File(filename));
+					byte[] data = ImageHelper.imageToPNG(tileImage);
+					fw.write(data, 0, data.length);
+					fw.close();
+					w.endElement();
+				}
+			}
 
-          Properties props = l.getProperties();
-          for (Enumeration keys = props.keys(); keys.hasMoreElements();) {
-              String key = (String)keys.nextElement();
-              w.startElement("property");
-              w.writeAttribute("name", key);
-              w.writeAttribute("value", props.getProperty(key));
-              w.endElement();
-          }
+			w.endElement();
+		} catch (XMLWriterException e) {
+			e.printStackTrace();
+		}
+	}
 
-//          if (l instanceof ObjectGroup){
-//              writeObjectGroup((ObjectGroup)l, w);
-//          } else {
-              w.startElement("data");
-              if (encodeLayerData) {
-                  ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                  OutputStream out;
+	/**
+	 * Writes this layer to an XMLWriter. This should be done <b>after</b> the
+	 * first global ids for the tilesets are determined, in order for the right
+	 * gids to be written to the layer data.
+	 */
+	private void writeMapLayer(MapLayer l, XMLWriter w) throws IOException {
+		try {
+			TiledConfiguration conf = TiledConfiguration.getInstance();
+			boolean encodeLayerData = conf.keyHasValue("tmx.save.encodeLayerData", "1");
+			boolean compressLayerData = conf.keyHasValue("tmx.save.layerCompression", "1") && encodeLayerData;
 
-                  w.writeAttribute("encoding", "base64");
+			Rectangle bounds = l.getBounds();
 
-                  if (compressLayerData) {
-                      w.writeAttribute("compression", "gzip");
-                      out = new GZIPOutputStream(baos);
-                  } else {
-                      out = baos;
-                  }
+			if (l.getClass() == SelectionLayer.class) {
+				w.startElement("selection");
+				// } else if(l instanceof ObjectGroup){
+				// w.startElement("objectgroup");
+			} else {
+				w.startElement("layer");
+			}
 
-                  for (int y = 0; y < l.getHeight(); y++) {
-                      for (int x = 0; x < l.getWidth(); x++) {
-                          Tile tile = ((TileLayer)l).getTileAt(x, y);
-                          int gid = 0;
+			w.writeAttribute("name", l.getName());
+			w.writeAttribute("width", "" + bounds.width);
+			w.writeAttribute("height", "" + bounds.height);
+			if (bounds.x != 0) {
+				w.writeAttribute("xoffset", "" + bounds.x);
+			}
+			if (bounds.y != 0) {
+				w.writeAttribute("yoffset", "" + bounds.y);
+			}
 
-                          if (tile != null) {
-                              gid = tile.getGid();
-                          }
+			if (!l.isVisible()) {
+				w.writeAttribute("visible", "0");
+			}
+			if (l.getOpacity() < 1.0f) {
+				w.writeAttribute("opacity", "" + l.getOpacity());
+			}
 
-                          out.write((gid      ) & 0x000000FF);
-                          out.write((gid >>  8) & 0x000000FF);
-                          out.write((gid >> 16) & 0x000000FF);
-                          out.write((gid >> 24) & 0x000000FF);
-                      }
-                  }
+			Properties props = l.getProperties();
+			for (Enumeration keys = props.keys(); keys.hasMoreElements();) {
+				String key = (String) keys.nextElement();
+				w.startElement("property");
+				w.writeAttribute("name", key);
+				w.writeAttribute("value", props.getProperty(key));
+				w.endElement();
+			}
 
-                  if (compressLayerData) {
-                      ((GZIPOutputStream)out).finish();
-                  }
+			// if (l instanceof ObjectGroup){
+			// writeObjectGroup((ObjectGroup)l, w);
+			// } else {
+			w.startElement("data");
+			if (encodeLayerData) {
+				ByteArrayOutputStream baos = new ByteArrayOutputStream();
+				OutputStream out;
 
-                  w.writeCDATA(new String(Base64.encode(baos.toByteArray())));
-              } else {
-                  for (int y = 0; y < l.getHeight(); y++) {
-                      for (int x = 0; x < l.getWidth(); x++) {
-                          Tile tile = ((TileLayer)l).getTileAt(x, y);
-                          int gid = 0;
+				w.writeAttribute("encoding", "base64");
 
-                          if (tile != null) {
-                              gid = tile.getGid();
-                          }
+				if (compressLayerData) {
+					w.writeAttribute("compression", "gzip");
+					out = new GZIPOutputStream(baos);
+				} else {
+					out = baos;
+				}
 
-                          w.startElement("tile");
-                          w.writeAttribute("gid", ""+gid);
-                          w.endElement();
-                      }
-                  }
-              }
-              w.endElement();
-//          }
-          w.endElement();
-      } catch (XMLWriterException e) {
-          e.printStackTrace();
-      }
-  }
-  
-  /**
-   * Returns the relative path from one file to the other. The function
-   * expects absolute paths, relative paths will be converted to absolute
-   * using the working directory.
-   *
-   * @param from the path of the origin file
-   * @param to   the path of the destination file
-   * @return     the relative path from origin to destination
-   */
-  public static String getRelativePath(String from, String to) {
-      // Make the two paths absolute and unique
-      try {
-          from = new File(from).getCanonicalPath();
-          to = new File(to).getCanonicalPath();
-      } catch (IOException e) {
-      }
+				for (int y = 0; y < l.getHeight(); y++) {
+					for (int x = 0; x < l.getWidth(); x++) {
+						Tile tile = ((TileLayer) l).getTileAt(x, y);
+						int gid = 0;
 
-      File fromFile = new File(from);
-      File toFile = new File(to);
-      List<String> fromParents = new ArrayList<String>();
-      List<String> toParents = new ArrayList<String>();
+						if (tile != null) {
+							gid = tile.getGid();
+						}
 
-      // Iterate to find both parent lists
-      while (fromFile != null) {
-          fromParents.add(0, fromFile.getName());
-          fromFile = fromFile.getParentFile();
-      }
-      while (toFile != null) {
-          toParents.add(0, toFile.getName());
-          toFile = toFile.getParentFile();
-      }
+						out.write((gid) & 0x000000FF);
+						out.write((gid >> 8) & 0x000000FF);
+						out.write((gid >> 16) & 0x000000FF);
+						out.write((gid >> 24) & 0x000000FF);
+					}
+				}
 
-      // Iterate while parents are the same
-      int shared = 0;
-      int maxShared = Math.min(fromParents.size(), toParents.size());
-      for (shared = 0; shared < maxShared; shared++) {
-          String fromParent = (String)fromParents.get(shared);
-          String toParent = (String)toParents.get(shared);
-          if (!fromParent.equals(toParent)) {
-              break;
-          }
-      }
+				if (compressLayerData) {
+					((GZIPOutputStream) out).finish();
+				}
 
-      // Append .. for each remaining parent in fromParents
-      StringBuffer relPathBuf = new StringBuffer();
-      for (int i = shared; i < fromParents.size() - 1; i++) {
-          relPathBuf.append(".." + File.separator);
-      }
+				w.writeCDATA(new String(Base64.encode(baos.toByteArray())));
+			} else {
+				for (int y = 0; y < l.getHeight(); y++) {
+					for (int x = 0; x < l.getWidth(); x++) {
+						Tile tile = ((TileLayer) l).getTileAt(x, y);
+						int gid = 0;
 
-      // Add the remaining part in toParents
-      for (int i = shared; i < toParents.size() - 1; i++) {
-          relPathBuf.append(toParents.get(i) + File.separator);
-      }
-      relPathBuf.append(new File(to).getName());
-      String relPath = relPathBuf.toString();
+						if (tile != null) {
+							gid = tile.getGid();
+						}
 
-      // Turn around the slashes when path is relative
-      try {
-          String absPath = new File(relPath).getCanonicalPath();
+						w.startElement("tile");
+						w.writeAttribute("gid", "" + gid);
+						w.endElement();
+					}
+				}
+			}
+			w.endElement();
+			// }
+			w.endElement();
+		} catch (XMLWriterException e) {
+			e.printStackTrace();
+		}
+	}
 
-          if (!absPath.equals(relPath)) {
-              // Path is not absolute, turn slashes around
-              // Assumes: \ does not occur in filenames
-              relPath = relPath.replace('\\', '/');
-          }
-      } catch (Exception e) {
-      }
+	/**
+	 * Returns the relative path from one file to the other. The function
+	 * expects absolute paths, relative paths will be converted to absolute
+	 * using the working directory.
+	 * 
+	 * @param from
+	 *            the path of the origin file
+	 * @param to
+	 *            the path of the destination file
+	 * @return the relative path from origin to destination
+	 */
+	public static String getRelativePath(String from, String to) {
+		// Make the two paths absolute and unique
+		try {
+			from = new File(from).getCanonicalPath();
+			to = new File(to).getCanonicalPath();
+		} catch (IOException e) {
+		}
 
-      return relPath;
-  }
-  
-  
+		File fromFile = new File(from);
+		File toFile = new File(to);
+		List<String> fromParents = new ArrayList<String>();
+		List<String> toParents = new ArrayList<String>();
 
-  /** all filefilters */
-  public FileFilter[] getFilters()
-  {
-    return new FileFilter[] { new FileFilter()
-        {
+		// Iterate to find both parent lists
+		while (fromFile != null) {
+			fromParents.add(0, fromFile.getName());
+			fromFile = fromFile.getParentFile();
+		}
+		while (toFile != null) {
+			toParents.add(0, toFile.getName());
+			toFile = toFile.getParentFile();
+		}
 
-          public boolean accept(File pathname)
-          {
-            return pathname.isDirectory() || pathname.getName().toLowerCase().endsWith(".tmx");
-          }
+		// Iterate while parents are the same
+		int shared = 0;
+		int maxShared = Math.min(fromParents.size(), toParents.size());
+		for (shared = 0; shared < maxShared; shared++) {
+			String fromParent = (String) fromParents.get(shared);
+			String toParent = (String) toParents.get(shared);
+			if (!fromParent.equals(toParent)) {
+				break;
+			}
+		}
 
-          public String getDescription()
-          {
-            return "Tiled XML map (*.tmx)";
-          }
+		// Append .. for each remaining parent in fromParents
+		StringBuffer relPathBuf = new StringBuffer();
+		for (int i = shared; i < fromParents.size() - 1; i++) {
+			relPathBuf.append(".." + File.separator);
+		}
 
-        } };
-  }
+		// Add the remaining part in toParents
+		for (int i = shared; i < toParents.size() - 1; i++) {
+			relPathBuf.append(toParents.get(i) + File.separator);
+		}
+		relPathBuf.append(new File(to).getName());
+		String relPath = relPathBuf.toString();
 
-  /** returns the description */
-  public String getPluginDescription()
-  {
-    return
-    "The core Tiled TMX format writer\n" +
-    "\n" +
-    "Tiled Map Editor, (c) 2005\n" +
-    "Adam Turk\n" +
-    "Bjorn Lindeijer";
-  }
+		// Turn around the slashes when path is relative
+		try {
+			String absPath = new File(relPath).getCanonicalPath();
 
-  /** not used */
-  public void setMessageList(List<String> errorList)
-  {
-    // not used
-  }
+			if (!absPath.equals(relPath)) {
+				// Path is not absolute, turn slashes around
+				// Assumes: \ does not occur in filenames
+				relPath = relPath.replace('\\', '/');
+			}
+		} catch (Exception e) {
+		}
+
+		return relPath;
+	}
+
+	/** all filefilters. */
+	public FileFilter[] getFilters() {
+		return new FileFilter[] { new FileFilter() {
+
+			public boolean accept(File pathname) {
+				return pathname.isDirectory() || pathname.getName().toLowerCase().endsWith(".tmx");
+			}
+
+			public String getDescription() {
+				return "Tiled XML map (*.tmx)";
+			}
+
+		} };
+	}
+
+	/** returns the description. */
+	public String getPluginDescription() {
+		return "The core Tiled TMX format writer\n" + "\n" + "Tiled Map Editor, (c) 2005\n" + "Adam Turk\n"
+				+ "Bjorn Lindeijer";
+	}
+
+	/** not used. */
+	public void setMessageList(List<String> errorList) {
+		// not used
+	}
 
 }

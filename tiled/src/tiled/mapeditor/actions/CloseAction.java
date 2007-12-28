@@ -28,23 +28,20 @@ import tiled.mapeditor.MapEditor;
  * 
  * @author mtotz
  */
-public class CloseAction extends AbstractAction
-{
-  private static final long serialVersionUID = -1502825220028094997L;
+public class CloseAction extends AbstractAction {
+	private static final long serialVersionUID = -1502825220028094997L;
 
-  private MapEditor mapEditor;
-  
-  public CloseAction(MapEditor mapEditor)
-  {
-    super("Close");
-    putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke("control W"));
-    putValue(SHORT_DESCRIPTION, "Close this map");
-    this.mapEditor = mapEditor;
-  }
+	private MapEditor mapEditor;
 
-  public void actionPerformed(ActionEvent e)
-  {
-    mapEditor.closeMap();
-  }
+	public CloseAction(MapEditor mapEditor) {
+		super("Close");
+		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke("control W"));
+		putValue(SHORT_DESCRIPTION, "Close this map");
+		this.mapEditor = mapEditor;
+	}
+
+	public void actionPerformed(ActionEvent e) {
+		mapEditor.closeMap();
+	}
 
 }

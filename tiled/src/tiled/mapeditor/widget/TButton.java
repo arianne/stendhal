@@ -21,41 +21,39 @@ import java.awt.Insets;
 import javax.swing.Action;
 import javax.swing.JButton;
 
-
 /**
- * Tiled button extends on JButton in that it allows for not accepting
- * any text from an attached action. It also doesn't display any margins.
+ * Tiled button extends on JButton in that it allows for not accepting any text
+ * from an attached action. It also doesn't display any margins.
  */
-public class TButton extends JButton
-{
-  private static final long serialVersionUID = -7937391073500464253L;
-    private boolean showText = false;
+public class TButton extends JButton {
+	private static final long serialVersionUID = -7937391073500464253L;
+	private boolean showText = false;
 
-    public TButton() {
-        setMargin(new Insets(0, 0, 0, 0));
-    }
+	public TButton() {
+		setMargin(new Insets(0, 0, 0, 0));
+	}
 
-    public TButton(boolean showText) {
-        this();
-        this.showText = showText;
-    }
+	public TButton(boolean showText) {
+		this();
+		this.showText = showText;
+	}
 
-    public TButton(Action action) {
-        this(action, false);
-    }
+	public TButton(Action action) {
+		this(action, false);
+	}
 
-    public TButton(Action action, boolean showText) {
-        this(showText);
-        setAction(action);
-    }
+	public TButton(Action action, boolean showText) {
+		this(showText);
+		setAction(action);
+	}
 
-    public void setShowText(boolean showText) {
-        this.showText = showText;
-    }
+	public void setShowText(boolean showText) {
+		this.showText = showText;
+	}
 
-    public void setText(String text) {
-        if (showText) {
-            super.setText(text);
-        }
-    }
+	public void setText(String text) {
+		if (showText) {
+			super.setText(text);
+		}
+	}
 }

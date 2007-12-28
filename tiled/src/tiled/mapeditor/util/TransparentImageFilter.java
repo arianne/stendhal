@@ -23,29 +23,29 @@ import java.awt.image.RGBImageFilter;
  * This filter is used for filtering out a given "transparent" color from an
  * image. Sometimes known as magic pink.
  */
-public class TransparentImageFilter extends RGBImageFilter
-{
-    int trans;
+public class TransparentImageFilter extends RGBImageFilter {
+	int trans;
 
-    /**
-     * @param col the color to make transparent
-     */
-    public TransparentImageFilter(int col) {
-        trans = col;
+	/**
+	 * @param col
+	 *            the color to make transparent
+	 */
+	public TransparentImageFilter(int col) {
+		trans = col;
 
-        // The filter doesn't depend on pixel location
-        canFilterIndexColorModel = true;
-    }
+		// The filter doesn't depend on pixel location
+		canFilterIndexColorModel = true;
+	}
 
-    /**
-     * Filters the given pixel. It returns a transparent pixel for pixels that
-     * match the transparency color, or the existing pixel for anything else.
-     */
-    public int filterRGB(int x, int y, int rgb) {
-        if (rgb == trans) {
-            return 0;
-        } else {
-            return rgb;			
-        }
-    }	
+	/**
+	 * Filters the given pixel. It returns a transparent pixel for pixels that
+	 * match the transparency color, or the existing pixel for anything else.
+	 */
+	public int filterRGB(int x, int y, int rgb) {
+		if (rgb == trans) {
+			return 0;
+		} else {
+			return rgb;
+		}
+	}
 }

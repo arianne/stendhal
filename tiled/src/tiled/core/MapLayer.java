@@ -30,18 +30,17 @@ import tiled.mapeditor.util.MapChangedEvent;
  * @see tiled.core.Map
  * @see tiled.core.MultilayerPlane
  */
-public abstract class MapLayer implements Cloneable
-{
-    /** MIRROR_HORIZONTAL */
+public abstract class MapLayer implements Cloneable {
+    /** MIRROR_HORIZONTAL. */
     public static final int MIRROR_HORIZONTAL = 1;
-    /** MIRROR_VERTICAL */
+    /** MIRROR_VERTICAL. */
     public static final int MIRROR_VERTICAL   = 2;
 
-    /** ROTATE_90 */
+    /** ROTATE_90. */
     public static final int ROTATE_90  = 90;
-    /** ROTATE_180 */
+    /** ROTATE_180. */
     public static final int ROTATE_180 = 180;
-    /** ROTATE_270 */
+    /** ROTATE_270. */
     public static final int ROTATE_270 = 270;
 
     protected String name;
@@ -252,7 +251,7 @@ public abstract class MapLayer implements Cloneable
      */
     public Object clone() throws CloneNotSupportedException {
         MapLayer clone = null;
-        clone = (MapLayer)super.clone();
+        clone = (MapLayer) super.clone();
 
         // Create a new bounds object
         clone.bounds = new Rectangle(bounds);
@@ -300,8 +299,7 @@ public abstract class MapLayer implements Cloneable
      *  
      * @param destination the destination layer
      */
-    protected void copyParameter(MapLayer destination)
-    {
+    protected void copyParameter(MapLayer destination) {
       destination.name      = name;
       destination.isVisible = isVisible;
       destination.locked    = locked;
@@ -310,9 +308,9 @@ public abstract class MapLayer implements Cloneable
       destination.properties.putAll(properties);
     }
     
-    /** rotates the layer */
+    /** rotates the layer. */
     public abstract void rotate(int angle);
-    /** mirrors the layer */
+    /** mirrors the layer. */
     public abstract void mirror(int dir);
     public abstract void mergeOnto(MapLayer other);
     public abstract void copyFrom(MapLayer other);
@@ -330,7 +328,7 @@ public abstract class MapLayer implements Cloneable
     public abstract void resize(int width, int height, int dx, int dy);
     
     /**
-     * Unlike mergeOnto, copyTo includes the null tile when merging
+     * Unlike mergeOnto, copyTo includes the null tile when merging.
      *
      * @param other the layer to copy this layer to
      * @see tiled.core.MapLayer#copyFrom

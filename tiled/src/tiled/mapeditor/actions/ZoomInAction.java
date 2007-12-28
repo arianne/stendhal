@@ -26,30 +26,27 @@ import tiled.mapeditor.MapEditor;
 
 /**
  * Increases the map zoom.
+ * 
  * @author mtotz
  */
-public class ZoomInAction extends AbstractAction
-{
-  private static final long serialVersionUID = -5253002744432344462L;
-  
-  private MapEditor mapEditor;
+public class ZoomInAction extends AbstractAction {
+	private static final long serialVersionUID = -5253002744432344462L;
 
-  public ZoomInAction(MapEditor mapEditor)
-  {
-    super("Zoom In");
-    putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke("control EQUALS"));
-    putValue(SHORT_DESCRIPTION, "Zoom in one level");
-    putValue(SMALL_ICON, MapEditor.loadIcon("resources/gnome-zoom-in.png"));
-    this.mapEditor = mapEditor;
-  }
+	private MapEditor mapEditor;
 
-  public void actionPerformed(ActionEvent evt)
-  {
-    if (mapEditor.currentMap != null)
-    {
-      mapEditor.mapView.zoomIn();
-      mapEditor.statusBar.setZoom(mapEditor.mapView.getScale());
-      mapEditor.mapEditPanel.notifyZoom();
-    }
-  }
+	public ZoomInAction(MapEditor mapEditor) {
+		super("Zoom In");
+		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke("control EQUALS"));
+		putValue(SHORT_DESCRIPTION, "Zoom in one level");
+		putValue(SMALL_ICON, MapEditor.loadIcon("resources/gnome-zoom-in.png"));
+		this.mapEditor = mapEditor;
+	}
+
+	public void actionPerformed(ActionEvent evt) {
+		if (mapEditor.currentMap != null) {
+			mapEditor.mapView.zoomIn();
+			mapEditor.statusBar.setZoom(mapEditor.mapView.getScale());
+			mapEditor.mapEditPanel.notifyZoom();
+		}
+	}
 }

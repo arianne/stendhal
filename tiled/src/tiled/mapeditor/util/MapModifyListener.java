@@ -22,12 +22,11 @@ import java.awt.Rectangle;
 import tiled.core.Map;
 
 /**
- * This listener will be notified when the map content changes.
- * This will not be notified when another map is loaded
- *
+ * This listener will be notified when the map content changes. This will not be
+ * notified when another map is loaded
+ * 
  * @author Matthias Totz <mtotz@users.sourceforge.net>
  */
-public interface MapModifyListener
-{
-  public void mapModified(Map map, Rectangle modifiedRegion);
+public interface MapModifyListener {
+	void mapModified(Map map, Rectangle modifiedRegion);
 }

@@ -22,21 +22,21 @@ import java.awt.*;
 import javax.swing.JPanel;
 
 public class ImageViewPanel extends JPanel {
-	
-  private static final long serialVersionUID = 8789559203794768370L;
-  private Image image;
-	
+
+	private static final long serialVersionUID = 8789559203794768370L;
+	private Image image;
+
 	public ImageViewPanel() {
 		super();
 	}
-	
+
 	public ImageViewPanel(Image i) {
 		this();
 		image = i;
 	}
-	
+
 	public Dimension getPreferredSize() {
-		return new Dimension(150,150);
+		return new Dimension(150, 150);
 	}
 
 	public Dimension getPreferredScrollableViewportSize() {
@@ -50,7 +50,7 @@ public class ImageViewPanel extends JPanel {
 	public boolean getScrollableTracksViewportWidth() {
 		return false;
 	}
-	
+
 	public void paint(Graphics g) {
 		g.drawImage(image, 0, 0, null);
 	}

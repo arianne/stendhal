@@ -33,282 +33,267 @@ import tiled.mapeditor.actions.*;
 import tiled.mapeditor.util.MapEventAdapter;
 
 /**
- * The menu bar
+ * The menu bar.
+ * 
  * @author Matthias Totz <mtotz@users.sourceforge.net>
  */
-public class MainMenu extends JMenuBar implements ActionListener
-{
-  private static final long serialVersionUID = 6139028013794826255L;
-  
-  private MapEditor mapEditor;
-  
-  // File Menu
-  private JMenu recentMenu;
+public class MainMenu extends JMenuBar implements ActionListener {
+	private static final long serialVersionUID = 6139028013794826255L;
 
-  // Edit menu
-  private TMenuItem undoMenuItem;
-  private TMenuItem redoMenuItem;
+	private MapEditor mapEditor;
 
-  // Layer menu
-  private JMenuItem layerClone;
-  private JMenuItem layerDel;
-  private JMenuItem layerUp;
-  private JMenuItem layerDown;
-  private JMenuItem layerMerge;
-  private JMenuItem layerMergeAll;
+	// File Menu
+	private JMenu recentMenu;
 
-  // view menu
-  private JCheckBoxMenuItem coordinatesMenuItem;
-  private JCheckBoxMenuItem gridMenuItem;
+	// Edit menu
+	private TMenuItem undoMenuItem;
+	private TMenuItem redoMenuItem;
 
-  /** creates the main menu */
-  public MainMenu(MapEditor mapEditor, MapEventAdapter mapEventAdapter)
-  {
-    super();
-    this.mapEditor = mapEditor;
+	// Layer menu
+	private JMenuItem layerClone;
+	private JMenuItem layerDel;
+	private JMenuItem layerUp;
+	private JMenuItem layerDown;
+	private JMenuItem layerMerge;
+	private JMenuItem layerMergeAll;
 
-    JMenuItem save        = new TMenuItem(mapEditor.actionManager.getAction(SaveMapAction.class, false));
-    JMenuItem saveAs      = new TMenuItem(mapEditor.actionManager.getAction(SaveMapAction.class, true));
-    JMenuItem saveAsImage = new TMenuItem(mapEditor.actionManager.getAction(SaveAsImageAction.class));
-    JMenuItem close       = new TMenuItem(mapEditor.actionManager.getAction(CloseAction.class));
-    
-    recentMenu = new JMenu("Open Recent");
-    
-    mapEventAdapter.addListener(save);
-    mapEventAdapter.addListener(saveAs);
-    mapEventAdapter.addListener(saveAsImage);
-    mapEventAdapter.addListener(close);
-    
-    JMenu fileMenu = new JMenu("File");
-    fileMenu.add(new TMenuItem(mapEditor.actionManager.getAction(NewMapAction.class)));
-    fileMenu.add(new TMenuItem(mapEditor.actionManager.getAction(OpenAction.class)));    
-    fileMenu.add(recentMenu);
-    fileMenu.add(save);
-    fileMenu.add(saveAs);
-    fileMenu.add(saveAsImage);
-    fileMenu.addSeparator();
-    fileMenu.add(close);
-    fileMenu.add(new TMenuItem(mapEditor.actionManager.getAction(ExitApplicationAction.class)));
-    
-    undoMenuItem = new TMenuItem(mapEditor.actionManager.getAction(UndoAction.class));
-    redoMenuItem = new TMenuItem(mapEditor.actionManager.getAction(RedoAction.class));
-    undoMenuItem.setEnabled(false);
-    redoMenuItem.setEnabled(false);
-    
-    TMenuItem copyMenuItem = new TMenuItem(mapEditor.actionManager.getAction(CopyAction.class));
-    TMenuItem cutMenuItem = new TMenuItem(mapEditor.actionManager.getAction(CutAction.class));
-    TMenuItem pasteMenuItem = new TMenuItem(mapEditor.actionManager.getAction(PasteAction.class));
-    copyMenuItem.setEnabled(false);
-    cutMenuItem.setEnabled(false);
-    pasteMenuItem.setEnabled(false);
-    
-    JMenu transformSub = new JMenu("Transform");
-    transformSub.add(new TMenuItem(mapEditor.actionManager.getAction(LayerTransformAction.class, MapLayer.ROTATE_90), true));
-    transformSub.add(new TMenuItem(mapEditor.actionManager.getAction(LayerTransformAction.class, MapLayer.ROTATE_180), true));
-    transformSub.add(new TMenuItem(mapEditor.actionManager.getAction(LayerTransformAction.class, MapLayer.ROTATE_270), true));
-    transformSub.addSeparator();
-    transformSub.add(new TMenuItem(mapEditor.actionManager.getAction(LayerTransformAction.class, MapLayer.MIRROR_HORIZONTAL), true));
-    transformSub.add(new TMenuItem(mapEditor.actionManager.getAction(LayerTransformAction.class, MapLayer.MIRROR_VERTICAL), true));
-    mapEventAdapter.addListener(transformSub);
-    
-    JMenu editMenu = new JMenu("Edit");
-    editMenu.add(undoMenuItem);
-    editMenu.add(redoMenuItem);
-    editMenu.addSeparator();
-    editMenu.add(copyMenuItem);
-    editMenu.add(cutMenuItem);
-    editMenu.add(pasteMenuItem);
-    editMenu.addSeparator();
-    editMenu.add(transformSub);
-    editMenu.addSeparator();
-    editMenu.add(createMenuItem("Preferences...", null, "Configure options of the editor", null));
-    
-    mapEventAdapter.addListener(undoMenuItem);
-    mapEventAdapter.addListener(redoMenuItem);
-    mapEventAdapter.addListener(copyMenuItem);
-    mapEventAdapter.addListener(cutMenuItem);
-    mapEventAdapter.addListener(pasteMenuItem);
-    
-    
-    JMenu mapMenu = new JMenu("Map");
-    mapMenu.add(createMenuItem("Resize", null, "Modify map dimensions"));
-    mapMenu.add(createMenuItem("Search", null,"Search for/Replace tiles"));
-    mapMenu.addSeparator();
-    mapMenu.add(new TMenuItem(mapEditor.actionManager.getAction(MapPropertiesAction.class)));
-    mapEventAdapter.addListener(mapMenu);
-    
-    
-    JMenuItem layerAdd = new TMenuItem(mapEditor.actionManager.getAction(AddLayerAction.class));
-    layerClone = new TMenuItem(mapEditor.actionManager.getAction(DuplicateLayerAction.class));
-    layerDel =   new TMenuItem(mapEditor.actionManager.getAction(DelLayerAction.class));
-    layerUp =    new TMenuItem(mapEditor.actionManager.getAction(MoveLayerUpAction.class));
-    layerDown =  new TMenuItem(mapEditor.actionManager.getAction(MoveLayerDownAction.class));
-    layerMerge = createMenuItemWithThisAsActionListener("Merge Down", null, "Merge current layer onto next lower", "shift control M");
-    layerMergeAll = createMenuItemWithThisAsActionListener("Merge All", null, "Merge all layers",null);
-    JMenuItem layerProperties = new TMenuItem(mapEditor.actionManager.getAction(LayerPropertiesAction.class));
+	// view menu
+	private JCheckBoxMenuItem coordinatesMenuItem;
+	private JCheckBoxMenuItem gridMenuItem;
 
-    mapEventAdapter.addListener(layerAdd);
-    
-    JMenu layerMenu = new JMenu("Layer");
-    layerMenu.add(layerAdd);
-    layerMenu.add(layerClone);
-    layerMenu.add(layerDel);
-    layerMenu.addSeparator();
-    layerMenu.add(layerUp);
-    layerMenu.add(layerDown);
-    layerMenu.addSeparator();
-    layerMenu.add(layerMerge);
-    layerMenu.add(layerMergeAll);
-    layerMenu.addSeparator();
-    layerMenu.add(layerProperties);
+	/** creates the main menu. */
+	public MainMenu(MapEditor mapEditor, MapEventAdapter mapEventAdapter) {
+		super();
+		this.mapEditor = mapEditor;
 
-    JMenu tilesetMenu = new JMenu("Tilesets");
-    tilesetMenu.add(new TMenuItem(mapEditor.actionManager.getAction(NewTilesetAction.class)));
-    tilesetMenu.add(new TMenuItem(mapEditor.actionManager.getAction(ImportTilesetAction.class)));
-    JCheckBoxMenuItem treeTilesetChooser = new JCheckBoxMenuItem(mapEditor.actionManager.getAction(TreeTilesetChooserAction.class));
-    treeTilesetChooser.setSelected(true);
-    tilesetMenu.add(treeTilesetChooser);
-    tilesetMenu.addSeparator();
-    tilesetMenu.add(new TMenuItem(mapEditor.actionManager.getAction(TilesetManagerAction.class)));
-    
-    
-    JMenu selectMenu = new JMenu("Select");
-    selectMenu.add(new TMenuItem(mapEditor.actionManager.getAction(SelectAllAction.class), true));
-    selectMenu.add(new TMenuItem(mapEditor.actionManager.getAction(CancelSelectionAction.class), true));
-    selectMenu.add(new TMenuItem(mapEditor.actionManager.getAction(InverseSelectionAction.class), true));
-    
-    gridMenuItem = new JCheckBoxMenuItem(mapEditor.actionManager.getAction(ToggleGridAction.class));
+		JMenuItem save = new TMenuItem(mapEditor.actionManager.getAction(SaveMapAction.class, false));
+		JMenuItem saveAs = new TMenuItem(mapEditor.actionManager.getAction(SaveMapAction.class, true));
+		JMenuItem saveAsImage = new TMenuItem(mapEditor.actionManager.getAction(SaveAsImageAction.class));
+		JMenuItem close = new TMenuItem(mapEditor.actionManager.getAction(CloseAction.class));
 
-    coordinatesMenuItem = new JCheckBoxMenuItem("Show Coordinates");
-    coordinatesMenuItem.addActionListener(mapEditor);
-    coordinatesMenuItem.setToolTipText("Toggle tile coordinates");
-    
-    JMenu viewMenu = new JMenu("View");
-    viewMenu.add(new TMenuItem(mapEditor.actionManager.getAction(ZoomInAction.class)));
-    viewMenu.add(new TMenuItem(mapEditor.actionManager.getAction(ZoomOutAction.class)));
-    viewMenu.add(new TMenuItem(mapEditor.actionManager.getAction(ZoomNormalAction.class)));
-    viewMenu.addSeparator();
-    viewMenu.add(gridMenuItem);
-    viewMenu.add(coordinatesMenuItem);
-    
-    mapEventAdapter.addListener(layerMenu);
-    mapEventAdapter.addListener(tilesetMenu);
-    mapEventAdapter.addListener(selectMenu);
-    mapEventAdapter.addListener(viewMenu);
-    
-    JMenu helpMenu = new JMenu("Help");
-    helpMenu.add(createMenuItem("About Plug-ins", null, "Show plugin window"));
-    helpMenu.add(createMenuItem("About", null, "Show about window"));
-    
-    add(fileMenu);
-    add(editMenu);
-    add(selectMenu);
-    add(viewMenu);
-    add(mapMenu);
-    add(layerMenu);
-    add(tilesetMenu);
-    add(helpMenu);
-  }
+		recentMenu = new JMenu("Open Recent");
 
-  private JMenuItem createMenuItem(String name, Icon icon, String tt)
-  {
-    JMenuItem menuItem = new JMenuItem(name);
-    menuItem.addActionListener(mapEditor);
-    if (icon != null) {
-        menuItem.setIcon(icon);
-    }
-    if (tt != null) {
-        menuItem.setToolTipText(tt);
-    }
-    return menuItem;
-  }
-  
-  private JMenuItem createMenuItemWithThisAsActionListener(String name, Icon icon, String tt, String keyStroke)
-  {
-    JMenuItem menuItem = new JMenuItem(name);
-    menuItem.addActionListener(this);
-    if (icon != null)
-    {
-        menuItem.setIcon(icon);
-    }
-    if (tt != null)
-    {
-        menuItem.setToolTipText(tt);
-    }
-    if (keyStroke != null)
-    {
-      menuItem.setAccelerator(KeyStroke.getKeyStroke(keyStroke));
-    }
-    return menuItem;
-  }
-  
-  
-  private JMenuItem createMenuItem(String name, Icon icon, String tt, String keyStroke)
-  {
-    JMenuItem menuItem = createMenuItem(name, icon, tt);
-    menuItem.setAccelerator(KeyStroke.getKeyStroke(keyStroke));
-    return menuItem;
-  }
+		mapEventAdapter.addListener(save);
+		mapEventAdapter.addListener(saveAs);
+		mapEventAdapter.addListener(saveAsImage);
+		mapEventAdapter.addListener(close);
 
-  /**
-   * @param validSelection
-   * @param notBottom
-   * @param notTop
-   */
-  public void updateLayerOperations(boolean validSelection, boolean notBottom, boolean notTop, boolean enableMergeAll)
-  {
-    layerClone.setEnabled(validSelection);
-    layerDel.setEnabled(validSelection);
-    layerUp.setEnabled(notTop);
-    layerDown.setEnabled(notBottom);
-    layerMerge.setEnabled(notBottom);
-    layerMergeAll.setEnabled(enableMergeAll);
-  }
+		JMenu fileMenu = new JMenu("File");
+		fileMenu.add(new TMenuItem(mapEditor.actionManager.getAction(NewMapAction.class)));
+		fileMenu.add(new TMenuItem(mapEditor.actionManager.getAction(OpenAction.class)));
+		fileMenu.add(recentMenu);
+		fileMenu.add(save);
+		fileMenu.add(saveAs);
+		fileMenu.add(saveAsImage);
+		fileMenu.addSeparator();
+		fileMenu.add(close);
+		fileMenu.add(new TMenuItem(mapEditor.actionManager.getAction(ExitApplicationAction.class)));
 
-  public void setUndo(boolean enable, String undoText)
-  {
-    undoMenuItem.setText(undoText);
-    undoMenuItem.setEnabled(enable);
-  }
+		undoMenuItem = new TMenuItem(mapEditor.actionManager.getAction(UndoAction.class));
+		redoMenuItem = new TMenuItem(mapEditor.actionManager.getAction(RedoAction.class));
+		undoMenuItem.setEnabled(false);
+		redoMenuItem.setEnabled(false);
 
-  public void setRedo(boolean enable, String redoText)
-  {
-    redoMenuItem.setText(redoText);
-    redoMenuItem.setEnabled(enable);
-  }
-  
-  public void clearAllRecent()
-  {
-    recentMenu.removeAll();
-  }
+		TMenuItem copyMenuItem = new TMenuItem(mapEditor.actionManager.getAction(CopyAction.class));
+		TMenuItem cutMenuItem = new TMenuItem(mapEditor.actionManager.getAction(CutAction.class));
+		TMenuItem pasteMenuItem = new TMenuItem(mapEditor.actionManager.getAction(PasteAction.class));
+		copyMenuItem.setEnabled(false);
+		cutMenuItem.setEnabled(false);
+		pasteMenuItem.setEnabled(false);
 
-  public void addRecent(String name, String actionCmd)
-  {
-    JMenuItem recentOption = createMenuItem(name, null, null);
-    recentOption.setActionCommand(actionCmd);
-    recentMenu.add(recentOption);
-  }
+		JMenu transformSub = new JMenu("Transform");
+		transformSub.add(new TMenuItem(
+				mapEditor.actionManager.getAction(LayerTransformAction.class, MapLayer.ROTATE_90), true));
+		transformSub.add(new TMenuItem(mapEditor.actionManager.getAction(LayerTransformAction.class,
+				MapLayer.ROTATE_180), true));
+		transformSub.add(new TMenuItem(mapEditor.actionManager.getAction(LayerTransformAction.class,
+				MapLayer.ROTATE_270), true));
+		transformSub.addSeparator();
+		transformSub.add(new TMenuItem(mapEditor.actionManager.getAction(LayerTransformAction.class,
+				MapLayer.MIRROR_HORIZONTAL), true));
+		transformSub.add(new TMenuItem(mapEditor.actionManager.getAction(LayerTransformAction.class,
+				MapLayer.MIRROR_VERTICAL), true));
+		mapEventAdapter.addListener(transformSub);
 
-  public void setShowGrid(boolean mode)
-  {
-    gridMenuItem.setState(mode);
-  }
+		JMenu editMenu = new JMenu("Edit");
+		editMenu.add(undoMenuItem);
+		editMenu.add(redoMenuItem);
+		editMenu.addSeparator();
+		editMenu.add(copyMenuItem);
+		editMenu.add(cutMenuItem);
+		editMenu.add(pasteMenuItem);
+		editMenu.addSeparator();
+		editMenu.add(transformSub);
+		editMenu.addSeparator();
+		editMenu.add(createMenuItem("Preferences...", null, "Configure options of the editor", null));
 
-  public void setShowCoordinates(boolean mode)
-  {
-    coordinatesMenuItem.setState(mode);
-  }
+		mapEventAdapter.addListener(undoMenuItem);
+		mapEventAdapter.addListener(redoMenuItem);
+		mapEventAdapter.addListener(copyMenuItem);
+		mapEventAdapter.addListener(cutMenuItem);
+		mapEventAdapter.addListener(pasteMenuItem);
 
-  public void actionPerformed(ActionEvent event)
-  {
-    String command = event.getActionCommand();
-    
-    if (command.equals("Merge Down") || command.equals("Merge All"))
-    {
-      mapEditor.doLayerStateChange(event);
-    }    
-  }
-  
-  
+		JMenu mapMenu = new JMenu("Map");
+		mapMenu.add(createMenuItem("Resize", null, "Modify map dimensions"));
+		mapMenu.add(createMenuItem("Search", null, "Search for/Replace tiles"));
+		mapMenu.addSeparator();
+		mapMenu.add(new TMenuItem(mapEditor.actionManager.getAction(MapPropertiesAction.class)));
+		mapEventAdapter.addListener(mapMenu);
+
+		JMenuItem layerAdd = new TMenuItem(mapEditor.actionManager.getAction(AddLayerAction.class));
+		layerClone = new TMenuItem(mapEditor.actionManager.getAction(DuplicateLayerAction.class));
+		layerDel = new TMenuItem(mapEditor.actionManager.getAction(DelLayerAction.class));
+		layerUp = new TMenuItem(mapEditor.actionManager.getAction(MoveLayerUpAction.class));
+		layerDown = new TMenuItem(mapEditor.actionManager.getAction(MoveLayerDownAction.class));
+		layerMerge = createMenuItemWithThisAsActionListener("Merge Down", null, "Merge current layer onto next lower",
+				"shift control M");
+		layerMergeAll = createMenuItemWithThisAsActionListener("Merge All", null, "Merge all layers", null);
+		JMenuItem layerProperties = new TMenuItem(mapEditor.actionManager.getAction(LayerPropertiesAction.class));
+
+		mapEventAdapter.addListener(layerAdd);
+
+		JMenu layerMenu = new JMenu("Layer");
+		layerMenu.add(layerAdd);
+		layerMenu.add(layerClone);
+		layerMenu.add(layerDel);
+		layerMenu.addSeparator();
+		layerMenu.add(layerUp);
+		layerMenu.add(layerDown);
+		layerMenu.addSeparator();
+		layerMenu.add(layerMerge);
+		layerMenu.add(layerMergeAll);
+		layerMenu.addSeparator();
+		layerMenu.add(layerProperties);
+
+		JMenu tilesetMenu = new JMenu("Tilesets");
+		tilesetMenu.add(new TMenuItem(mapEditor.actionManager.getAction(NewTilesetAction.class)));
+		tilesetMenu.add(new TMenuItem(mapEditor.actionManager.getAction(ImportTilesetAction.class)));
+		JCheckBoxMenuItem treeTilesetChooser = new JCheckBoxMenuItem(
+				mapEditor.actionManager.getAction(TreeTilesetChooserAction.class));
+		treeTilesetChooser.setSelected(true);
+		tilesetMenu.add(treeTilesetChooser);
+		tilesetMenu.addSeparator();
+		tilesetMenu.add(new TMenuItem(mapEditor.actionManager.getAction(TilesetManagerAction.class)));
+
+		JMenu selectMenu = new JMenu("Select");
+		selectMenu.add(new TMenuItem(mapEditor.actionManager.getAction(SelectAllAction.class), true));
+		selectMenu.add(new TMenuItem(mapEditor.actionManager.getAction(CancelSelectionAction.class), true));
+		selectMenu.add(new TMenuItem(mapEditor.actionManager.getAction(InverseSelectionAction.class), true));
+
+		gridMenuItem = new JCheckBoxMenuItem(mapEditor.actionManager.getAction(ToggleGridAction.class));
+
+		coordinatesMenuItem = new JCheckBoxMenuItem("Show Coordinates");
+		coordinatesMenuItem.addActionListener(mapEditor);
+		coordinatesMenuItem.setToolTipText("Toggle tile coordinates");
+
+		JMenu viewMenu = new JMenu("View");
+		viewMenu.add(new TMenuItem(mapEditor.actionManager.getAction(ZoomInAction.class)));
+		viewMenu.add(new TMenuItem(mapEditor.actionManager.getAction(ZoomOutAction.class)));
+		viewMenu.add(new TMenuItem(mapEditor.actionManager.getAction(ZoomNormalAction.class)));
+		viewMenu.addSeparator();
+		viewMenu.add(gridMenuItem);
+		viewMenu.add(coordinatesMenuItem);
+
+		mapEventAdapter.addListener(layerMenu);
+		mapEventAdapter.addListener(tilesetMenu);
+		mapEventAdapter.addListener(selectMenu);
+		mapEventAdapter.addListener(viewMenu);
+
+		JMenu helpMenu = new JMenu("Help");
+		helpMenu.add(createMenuItem("About Plug-ins", null, "Show plugin window"));
+		helpMenu.add(createMenuItem("About", null, "Show about window"));
+
+		add(fileMenu);
+		add(editMenu);
+		add(selectMenu);
+		add(viewMenu);
+		add(mapMenu);
+		add(layerMenu);
+		add(tilesetMenu);
+		add(helpMenu);
+	}
+
+	private JMenuItem createMenuItem(String name, Icon icon, String tt) {
+		JMenuItem menuItem = new JMenuItem(name);
+		menuItem.addActionListener(mapEditor);
+		if (icon != null) {
+			menuItem.setIcon(icon);
+		}
+		if (tt != null) {
+			menuItem.setToolTipText(tt);
+		}
+		return menuItem;
+	}
+
+	private JMenuItem createMenuItemWithThisAsActionListener(String name, Icon icon, String tt, String keyStroke) {
+		JMenuItem menuItem = new JMenuItem(name);
+		menuItem.addActionListener(this);
+		if (icon != null) {
+			menuItem.setIcon(icon);
+		}
+		if (tt != null) {
+			menuItem.setToolTipText(tt);
+		}
+		if (keyStroke != null) {
+			menuItem.setAccelerator(KeyStroke.getKeyStroke(keyStroke));
+		}
+		return menuItem;
+	}
+
+	private JMenuItem createMenuItem(String name, Icon icon, String tt, String keyStroke) {
+		JMenuItem menuItem = createMenuItem(name, icon, tt);
+		menuItem.setAccelerator(KeyStroke.getKeyStroke(keyStroke));
+		return menuItem;
+	}
+
+	/**
+	 * @param validSelection
+	 * @param notBottom
+	 * @param notTop
+	 */
+	public void updateLayerOperations(boolean validSelection, boolean notBottom, boolean notTop, boolean enableMergeAll) {
+		layerClone.setEnabled(validSelection);
+		layerDel.setEnabled(validSelection);
+		layerUp.setEnabled(notTop);
+		layerDown.setEnabled(notBottom);
+		layerMerge.setEnabled(notBottom);
+		layerMergeAll.setEnabled(enableMergeAll);
+	}
+
+	public void setUndo(boolean enable, String undoText) {
+		undoMenuItem.setText(undoText);
+		undoMenuItem.setEnabled(enable);
+	}
+
+	public void setRedo(boolean enable, String redoText) {
+		redoMenuItem.setText(redoText);
+		redoMenuItem.setEnabled(enable);
+	}
+
+	public void clearAllRecent() {
+		recentMenu.removeAll();
+	}
+
+	public void addRecent(String name, String actionCmd) {
+		JMenuItem recentOption = createMenuItem(name, null, null);
+		recentOption.setActionCommand(actionCmd);
+		recentMenu.add(recentOption);
+	}
+
+	public void setShowGrid(boolean mode) {
+		gridMenuItem.setState(mode);
+	}
+
+	public void setShowCoordinates(boolean mode) {
+		coordinatesMenuItem.setState(mode);
+	}
+
+	public void actionPerformed(ActionEvent event) {
+		String command = event.getActionCommand();
+
+		if (command.equals("Merge Down") || command.equals("Merge All")) {
+			mapEditor.doLayerStateChange(event);
+		}
+	}
 
 }

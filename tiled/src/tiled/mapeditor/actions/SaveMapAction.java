@@ -26,40 +26,35 @@ import tiled.mapeditor.MapEditor;
 
 /**
  * Saves the map.
+ * 
  * @author mtotz
  */
-public class SaveMapAction extends AbstractAction
-{
-  private static final long serialVersionUID = -5617105173971065571L;
+public class SaveMapAction extends AbstractAction {
+	private static final long serialVersionUID = -5617105173971065571L;
 
-  private boolean withDialog;
-  private MapEditor mapEditor;
-  
-  /** 
-   * the action will popup a filechooser dialog when </i>withDialog</i> is true
-   * (Save as...) 
-   */
-  public SaveMapAction(MapEditor mapEditor, boolean withDialog)
-  {
-    super("Save"+(withDialog ? " as..." : ""));
-    putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke("control "+(withDialog ? "shift " : "")+"S"));
-    putValue(SHORT_DESCRIPTION, "Saves this map");
-    this.mapEditor = mapEditor;
-    this.withDialog = withDialog;
-  }
-  
-  /** constructor for the action manager */
-  public SaveMapAction(MapEditor mapEditor, Object[] params)
-  {
-    // note: no checks. the only parameter should be a boolean :)
-    this(mapEditor, ((Boolean) params[0]).booleanValue() );
-  }
-  
+	private boolean withDialog;
+	private MapEditor mapEditor;
 
-  public void actionPerformed(ActionEvent e)
-  {
-    mapEditor.saveMap(withDialog);
-  }
+	/**
+	 * the action will popup a filechooser dialog when <i>withDialog</i> is
+	 * true (Save as...) .
+	 */
+	public SaveMapAction(MapEditor mapEditor, boolean withDialog) {
+		super("Save" + (withDialog ? " as..." : ""));
+		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke("control " + (withDialog ? "shift " : "") + "S"));
+		putValue(SHORT_DESCRIPTION, "Saves this map");
+		this.mapEditor = mapEditor;
+		this.withDialog = withDialog;
+	}
 
-  
+	/** constructor for the action manager. */
+	public SaveMapAction(MapEditor mapEditor, Object[] params) {
+		// note: no checks. the only parameter should be a boolean :)
+		this(mapEditor, ((Boolean) params[0]).booleanValue());
+	}
+
+	public void actionPerformed(ActionEvent e) {
+		mapEditor.saveMap(withDialog);
+	}
+
 }

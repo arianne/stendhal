@@ -27,30 +27,27 @@ import tiled.mapeditor.MapEditor;
 
 /**
  * Toggles the map grid.
+ * 
  * @author mtotz
  */
-public class ToggleGridAction extends AbstractAction
-{
-  private static final long serialVersionUID = 1L;
+public class ToggleGridAction extends AbstractAction {
+	private static final long serialVersionUID = 1L;
 
-  private MapEditor mapEditor;
-  
-  public ToggleGridAction(MapEditor mapEditor)
-  {
-    super("Show Grid");
-    putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke("control G"));
-    putValue(SHORT_DESCRIPTION, "Toggle grid");
-    this.mapEditor = mapEditor;
-  }
+	private MapEditor mapEditor;
 
-  public void actionPerformed(ActionEvent e)
-  {
-    JCheckBoxMenuItem item = (JCheckBoxMenuItem) e.getSource();
-    if (item != null)
-    {
-      mapEditor.mapView.setPadding(item.isSelected() ? 1 : 0);
-      mapEditor.mapEditPanel.revalidate();
-    }
-  }
+	public ToggleGridAction(MapEditor mapEditor) {
+		super("Show Grid");
+		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke("control G"));
+		putValue(SHORT_DESCRIPTION, "Toggle grid");
+		this.mapEditor = mapEditor;
+	}
+
+	public void actionPerformed(ActionEvent e) {
+		JCheckBoxMenuItem item = (JCheckBoxMenuItem) e.getSource();
+		if (item != null) {
+			mapEditor.mapView.setPadding(item.isSelected() ? 1 : 0);
+			mapEditor.mapEditPanel.revalidate();
+		}
+	}
 
 }

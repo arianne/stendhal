@@ -23,80 +23,71 @@ import tiled.core.Map;
 import tiled.core.MapLayer;
 
 /**
- * indicates the type of map change
+ * indicates the type of map change.
  * 
  * @author mtotz
  */
-public class MapChangedEvent
-{
-  /** the changed map */
-  private Map map;
-  private Type type;
-  private Rectangle modifiedRegion;
-  private MapLayer layer;
+public class MapChangedEvent {
+	/** the changed map. */
+	private Map map;
+	private Type type;
+	private Rectangle modifiedRegion;
+	private MapLayer layer;
 
-  public MapChangedEvent(Map map, Type type)
-  {
-    this(map, type, null);
-  }
+	public MapChangedEvent(Map map, Type type) {
+		this(map, type, null);
+	}
 
-  public MapChangedEvent(Map map, Type type, Rectangle modifiedRegion)
-  {
-    this(map, type, modifiedRegion, null);
-  }
+	public MapChangedEvent(Map map, Type type, Rectangle modifiedRegion) {
+		this(map, type, modifiedRegion, null);
+	}
 
-  public MapChangedEvent(Map map, Type type, Rectangle modifiedRegion, MapLayer layer)
-  {
-    this.map = map;
-    this.type = type;
-    this.modifiedRegion = modifiedRegion;
-    this.layer = layer;
-  }
+	public MapChangedEvent(Map map, Type type, Rectangle modifiedRegion, MapLayer layer) {
+		this.map = map;
+		this.type = type;
+		this.modifiedRegion = modifiedRegion;
+		this.layer = layer;
+	}
 
-  /** the map */
-  public Map getMap()
-  {
-    return map;
-  }
-  
-  /** type of change */
-  public Type getType()
-  {
-    return type;
-  }
+	/** the map. */
+	public Map getMap() {
+		return map;
+	}
 
-  /**
-   * @return the modifiedRegion
-   */
-  public Rectangle getModifiedRegion()
-  {
-    return modifiedRegion;
-  }
-  
-  /**
-   * @return the layer
-   */
-  public MapLayer getLayer()
-  {
-    return layer;
-  }
-  
-  /** all change types */
-  public static enum Type
-  {
-    /** name / filename / path changed */
-    NAME,
-    /** layers removed/added/set/moved up/down */
-    LAYERS,
-    /** brushes added/removed*/
-    BRUSHES,
-    /** size of the map changed (and with it, all layers) */
-    SIZE,
-    /** tileset set/added/removed */
-    TILESETS,
-    /** content (tiles) changed */
-    TILES,
-    /** other properties changed (tile size etc.) */
-    PROPERTIES;
-  }
-}  
+	/** type of change. */
+	public Type getType() {
+		return type;
+	}
+
+	/**
+	 * @return the modifiedRegion
+	 */
+	public Rectangle getModifiedRegion() {
+		return modifiedRegion;
+	}
+
+	/**
+	 * @return the layer
+	 */
+	public MapLayer getLayer() {
+		return layer;
+	}
+
+	/** all change types. */
+	public static enum Type {
+		/** name / filename / path changed .*/
+		NAME,
+		/** layers removed/added/set/moved up/down. */
+		LAYERS,
+		/** brushes added/removed .*/
+		BRUSHES,
+		/** size of the map changed (and with it, all layers) .*/
+		SIZE,
+		/** tileset set/added/removed .*/
+		TILESETS,
+		/** content (tiles) changed .*/
+		TILES,
+		/** other properties changed (tile size etc.) .*/
+		PROPERTIES;
+	}
+}

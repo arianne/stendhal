@@ -39,135 +39,117 @@ import tiled.mapeditor.util.MapChangeListener;
 import tiled.mapeditor.util.MapChangedEvent;
 
 /**
- * Brush Menu
+ * Brush Menu.
+ * 
  * @author mtotz
  */
-public class BrushMenu extends JPanel implements MapChangeListener
-{
-  private static final long serialVersionUID = 1L;
-  /** the map */
-  private Map map;
-  /** the mapeditor instance */
-  private MapEditor mapEditor;
-  /** list of default brushes */
-  private List<BrushWrapper> defaultBrushes;
-  /** dropdown list */
-  private JComboBox combobox;
-  /** the brush selected before the delete brush was selected */
-  private BrushWrapper oldBrush;
+public class BrushMenu extends JPanel implements MapChangeListener {
+	private static final long serialVersionUID = 1L;
+	/** the map. */
+	private Map map;
+	/** the mapeditor instance. */
+	private MapEditor mapEditor;
+	/** list of default brushes. */
+	private List<BrushWrapper> defaultBrushes;
+	/** dropdown list. */
+	private JComboBox combobox;
+	/** the brush selected before the delete brush was selected .*/
+	private BrushWrapper oldBrush;
 
+	public BrushMenu(MapEditor mapEditor) {
+		this.mapEditor = mapEditor;
 
-  public BrushMenu(MapEditor mapEditor)
-  {
-    this.mapEditor = mapEditor;
-    
-    setLayout(new BoxLayout(this,BoxLayout.X_AXIS));
-    
-    combobox = new JComboBox();
-    add(combobox);
-    
-    defaultBrushes = new ArrayList<BrushWrapper>();
-    defaultBrushes.add(new BrushWrapper(new MultiTileBrush()));
-    defaultBrushes.add(new BrushWrapper(ShapeBrush.makeRectBrush(1,1)));
-    defaultBrushes.add(new BrushWrapper(ShapeBrush.makeRectBrush(2,2)));
-    defaultBrushes.add(new BrushWrapper(ShapeBrush.makeRectBrush(4,4)));
-    defaultBrushes.add(new BrushWrapper(ShapeBrush.makeRectBrush(8,8)));
-  }
+		setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 
-  public Dimension getPreferredSize()
-  {
-    return combobox.getPreferredSize();
-  }
-  
-  public Dimension getMaximumSize()
-  {
-    return getPreferredSize();
-  }
-  
-  /** sets the map */
-  public void setMap(Map map)
-  {
-    this.map = map;
-    if (map != null)
-    {
-      map.addMapChangeListener(MapChangedEvent.Type.BRUSHES, this);
-      updateBrushes();
-    }
-  }
-  
-  /** refreshes the brush list once the map changes */
-  public void mapChanged(MapChangedEvent e)
-  {
-    if (e.getType() != MapChangedEvent.Type.BRUSHES)
-      return;
+		combobox = new JComboBox();
+		add(combobox);
 
-    updateBrushes();
-  }
+		defaultBrushes = new ArrayList<BrushWrapper>();
+		defaultBrushes.add(new BrushWrapper(new MultiTileBrush()));
+		defaultBrushes.add(new BrushWrapper(ShapeBrush.makeRectBrush(1, 1)));
+		defaultBrushes.add(new BrushWrapper(ShapeBrush.makeRectBrush(2, 2)));
+		defaultBrushes.add(new BrushWrapper(ShapeBrush.makeRectBrush(4, 4)));
+		defaultBrushes.add(new BrushWrapper(ShapeBrush.makeRectBrush(8, 8)));
+	}
 
-  /** updates the brush list */
-  private void updateBrushes()
-  {
-    List<TileGroup> groupList = map.getUserBrushes();
-    
-    List<BrushWrapper> brushes = new ArrayList<BrushWrapper>();
-    brushes.addAll(defaultBrushes);
-    
-    for (TileGroup group : groupList)
-    {
-      brushes.add(new BrushWrapper(new TileGroupBrush(group)));
-    }
-    
-    combobox.setModel(new DefaultComboBoxModel(brushes.toArray(new BrushWrapper[brushes.size()])));
-    combobox.setSelectedIndex(1);
-    combobox.addActionListener(new ActionListener()
-        {
-          public void actionPerformed(ActionEvent e)
-          {
-            Object o = BrushMenu.this.combobox.getSelectedItem();
-            if (o instanceof BrushWrapper)
-            {
-              BrushMenu.this.mapEditor.setBrush(((BrushWrapper)o).brush);
-            }
-          }
-        });
-  }
-  
-  /** selects the first shape brush (when another is currently active) */
-  public void selectDefaultDeleteBrush()
-  {
-    BrushWrapper brushWrapper = (BrushWrapper) combobox.getSelectedItem();
-    if (!(brushWrapper.brush instanceof ShapeBrush))
-    {
-      //select the first ShapeBrush, it is the second default one
-      combobox.setSelectedItem(defaultBrushes.get(1));
-      oldBrush = brushWrapper;
-    }
-  }
-  
-  /** selects the first shape brush (when another is currently active) */
-  public void unselectDefaultDeleteBrush()
-  {
-    if (oldBrush != null)
-    {
-      combobox.setSelectedItem(oldBrush);
-    }
-  }
+	public Dimension getPreferredSize() {
+		return combobox.getPreferredSize();
+	}
 
-  /** wraps a brush to create a nice toString() (for the selection box) */
-  private class BrushWrapper
-  {
-    public Brush brush;
-    
-    public BrushWrapper(Brush brush)
-    {
-      this.brush = brush;
-    }
+	public Dimension getMaximumSize() {
+		return getPreferredSize();
+	}
 
-    /**  */
-    public String toString()
-    {
-      return brush.getName();
-    }
-    
-  }
+	/** sets the map. */
+	public void setMap(Map map) {
+		this.map = map;
+		if (map != null) {
+			map.addMapChangeListener(MapChangedEvent.Type.BRUSHES, this);
+			updateBrushes();
+		}
+	}
+
+	/** refreshes the brush list once the map changes. */
+	public void mapChanged(MapChangedEvent e) {
+		if (e.getType() != MapChangedEvent.Type.BRUSHES) {
+			return;
+		}
+
+		updateBrushes();
+	}
+
+	/** updates the brush list. */
+	private void updateBrushes() {
+		List<TileGroup> groupList = map.getUserBrushes();
+
+		List<BrushWrapper> brushes = new ArrayList<BrushWrapper>();
+		brushes.addAll(defaultBrushes);
+
+		for (TileGroup group : groupList) {
+			brushes.add(new BrushWrapper(new TileGroupBrush(group)));
+		}
+
+		combobox.setModel(new DefaultComboBoxModel(brushes.toArray(new BrushWrapper[brushes.size()])));
+		combobox.setSelectedIndex(1);
+		combobox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Object o = BrushMenu.this.combobox.getSelectedItem();
+				if (o instanceof BrushWrapper) {
+					BrushMenu.this.mapEditor.setBrush(((BrushWrapper) o).brush);
+				}
+			}
+		});
+	}
+
+	/** selects the first shape brush (when another is currently active). */
+	public void selectDefaultDeleteBrush() {
+		BrushWrapper brushWrapper = (BrushWrapper) combobox.getSelectedItem();
+		if (!(brushWrapper.brush instanceof ShapeBrush)) {
+			// select the first ShapeBrush, it is the second default one
+			combobox.setSelectedItem(defaultBrushes.get(1));
+			oldBrush = brushWrapper;
+		}
+	}
+
+	/** selects the first shape brush (when another is currently active). */
+	public void unselectDefaultDeleteBrush() {
+		if (oldBrush != null) {
+			combobox.setSelectedItem(oldBrush);
+		}
+	}
+
+	/** wraps a brush to create a nice toString() (for the selection box). */
+	private class BrushWrapper {
+		public Brush brush;
+
+		public BrushWrapper(Brush brush) {
+			this.brush = brush;
+		}
+
+		/**  */
+		public String toString() {
+			return brush.getName();
+		}
+
+	}
 }

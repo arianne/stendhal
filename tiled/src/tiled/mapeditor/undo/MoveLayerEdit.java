@@ -22,30 +22,28 @@ import javax.swing.undo.*;
 
 import tiled.core.*;
 
+public class MoveLayerEdit extends AbstractUndoableEdit {
+	private static final long serialVersionUID = 651941478234175133L;
 
-public class MoveLayerEdit extends AbstractUndoableEdit
-{
-  private static final long serialVersionUID = 651941478234175133L;
+	private MapLayer layer;
+	private Point moveDist;
 
-    private MapLayer layer;
-    private Point moveDist;
+	public MoveLayerEdit(MapLayer layer, Point moveDist) {
+		this.layer = layer;
+		this.moveDist = moveDist;
+	}
 
-    public MoveLayerEdit(MapLayer layer, Point moveDist) {
-        this.layer = layer;
-        this.moveDist = moveDist;
-    }
+	public void undo() throws CannotUndoException {
+		super.undo();
+		layer.translate(-moveDist.x, -moveDist.y);
+	}
 
-    public void undo() throws CannotUndoException {
-        super.undo();
-        layer.translate(-moveDist.x, -moveDist.y);
-    }
+	public void redo() throws CannotRedoException {
+		super.redo();
+		layer.translate(moveDist.x, moveDist.y);
+	}
 
-    public void redo() throws CannotRedoException {
-        super.redo();
-        layer.translate(moveDist.x, moveDist.y);
-    }
-
-    public String getPresentationName() {
-        return "Move";
-    }
+	public String getPresentationName() {
+		return "Move";
+	}
 }

@@ -44,402 +44,342 @@ import tiled.util.TiledConfiguration;
 /**
  * A handler for saving and loading maps.
  */
-public class MapHelper
-{
-  private static PluginClassLoader pluginLoader;
+public class MapHelper {
+	private static PluginClassLoader pluginLoader;
 
-  /**
-   * Called to tell the MapHelper which
-   * {@link tiled.mapeditor.plugin.PluginClassLoader} to use when finding a
-   * suitable plugin for a filename.
-   * 
-   * @param p
-   *          the PluginClassLoader instance to use
-   */
-  public static void init(PluginClassLoader p)
-  {
-    pluginLoader = p;
-  }
+	/**
+	 * Called to tell the MapHelper which
+	 * {@link tiled.mapeditor.plugin.PluginClassLoader} to use when finding a
+	 * suitable plugin for a filename.
+	 * 
+	 * @param p
+	 *            the PluginClassLoader instance to use
+	 */
+	public static void init(PluginClassLoader p) {
+		pluginLoader = p;
+	}
 
-  /**
-   * Saves the current map. Use the extension (.xxx) of the filename to
-   * determine the plugin to use when writing the file. Throws an exception when
-   * the extension is not supported by either the TMX writer or a plugin.
-   * 
-   * @param filename
-   *          filename to save the current map to
-   * @param currentMap
-   *          {@link tiled.core.Map} instance to save to the file
-   * @see MapWriter#writeMap(Map, String)
-   * @exception Exception
-   */
-  public static void saveMap(Map currentMap, String filename) throws Exception
-  {
-    MapWriter mw = null;
-    if (filename.endsWith("tmx") || filename.endsWith("tmx.gz"))
-    {
-      // Override, so people can't overtake our format
-      mw = new XMLMapWriter();
-    } else
-    {
-      mw = (MapWriter) pluginLoader.getWriterFor(filename);
-    }
+	/**
+	 * Saves the current map. Use the extension (.xxx) of the filename to
+	 * determine the plugin to use when writing the file. Throws an exception
+	 * when the extension is not supported by either the TMX writer or a plugin.
+	 * 
+	 * @param filename
+	 *            filename to save the current map to
+	 * @param currentMap
+	 *            {@link tiled.core.Map} instance to save to the file
+	 * @see MapWriter#writeMap(Map, String)
+	 * @exception Exception
+	 */
+	public static void saveMap(Map currentMap, String filename) throws Exception {
+		MapWriter mw = null;
+		if (filename.endsWith("tmx") || filename.endsWith("tmx.gz")) {
+			// Override, so people can't overtake our format
+			mw = new XMLMapWriter();
+		} else {
+			mw = (MapWriter) pluginLoader.getWriterFor(filename);
+		}
 
-    if (mw != null)
-    {
-      Stack<String> errors = new Stack<String>();
-      mw.setErrorStack(errors);
-      mw.writeMap(currentMap, filename);
-      currentMap.setFilename(filename);
-      reportPluginMessages(errors);
-    } else
-    {
-      throw new Exception("Unsupported map format");
-    }
-  }
+		if (mw != null) {
+			Stack<String> errors = new Stack<String>();
+			mw.setErrorStack(errors);
+			mw.writeMap(currentMap, filename);
+			currentMap.setFilename(filename);
+			reportPluginMessages(errors);
+		} else {
+			throw new Exception("Unsupported map format");
+		}
+	}
 
-  /**
-   * Saves a tileset. Use the extension (.xxx) of the filename to determine the
-   * plugin to use when writing the file. Throws an exception when the extension
-   * is not supported by either the TMX writer or a plugin.
-   * 
-   * @param filename
-   *          Filename to save the tileset to.
-   * @param set
-   *          The TileSet instance to save to the file
-   * @see MapWriter#writeTileset(TileSet, String)
-   * @exception Exception
-   */
-  public static void saveTileset(TileSet set, String filename) throws Exception
-  {
-    MapWriter mw = null;
-    if (filename.endsWith(".tsx"))
-    {
-      // Override, so people can't overtake our format
-      mw = new XMLMapWriter();
-    } else
-    {
-      mw = (MapWriter) pluginLoader.getWriterFor(filename);
-    }
+	/**
+	 * Saves a tileset. Use the extension (.xxx) of the filename to determine
+	 * the plugin to use when writing the file. Throws an exception when the
+	 * extension is not supported by either the TMX writer or a plugin.
+	 * 
+	 * @param filename
+	 *            Filename to save the tileset to.
+	 * @param set
+	 *            The TileSet instance to save to the file
+	 * @see MapWriter#writeTileset(TileSet, String)
+	 * @exception Exception
+	 */
+	public static void saveTileset(TileSet set, String filename) throws Exception {
+		MapWriter mw = null;
+		if (filename.endsWith(".tsx")) {
+			// Override, so people can't overtake our format
+			mw = new XMLMapWriter();
+		} else {
+			mw = (MapWriter) pluginLoader.getWriterFor(filename);
+		}
 
-    if (mw != null)
-    {
-      Stack<String> errors = new Stack<String>();
-      mw.setErrorStack(errors);
-      mw.writeTileset(set, filename);
-      set.setSource(filename);
-      reportPluginMessages(errors);
-    } else
-    {
-      throw new Exception("Unsupported tileset format");
-    }
-  }
+		if (mw != null) {
+			Stack<String> errors = new Stack<String>();
+			mw.setErrorStack(errors);
+			mw.writeTileset(set, filename);
+			set.setSource(filename);
+			reportPluginMessages(errors);
+		} else {
+			throw new Exception("Unsupported tileset format");
+		}
+	}
 
-  /**
-   * Loads a tileset. Use the extension (.xxx) of the filename to determine the
-   * plugin to use when reading the file. Throws an exception when the extension
-   * is not supported by either the TMX writer or a plugin.
-   * 
-   * @param file
-   *          filename of map to load
-   * @return A new TileSet, loaded from the specified file by a plugin
-   * @throws Exception
-   * @see MapReader#readTileset(String)
-   */
-  public static TileSet loadTileset(String file) throws Exception
-  {
-    TileSet ret = null;
-    try
-    {
-      MapReader mr = null;
-      if (file.endsWith(".tsx"))
-      {
-        // Override, so people can't overtake our format
-        mr = new XMLMapTransformer();
-      } else
-      {
-        mr = (MapReader) pluginLoader.getReaderFor(file);
-      }
+	/**
+	 * Loads a tileset. Use the extension (.xxx) of the filename to determine
+	 * the plugin to use when reading the file. Throws an exception when the
+	 * extension is not supported by either the TMX writer or a plugin.
+	 * 
+	 * @param file
+	 *            filename of map to load
+	 * @return A new TileSet, loaded from the specified file by a plugin
+	 * @throws Exception
+	 * @see MapReader#readTileset(String)
+	 */
+	public static TileSet loadTileset(String file) throws Exception {
+		TileSet ret = null;
+		try {
+			MapReader mr = null;
+			if (file.endsWith(".tsx")) {
+				// Override, so people can't overtake our format
+				mr = new XMLMapTransformer();
+			} else {
+				mr = (MapReader) pluginLoader.getReaderFor(file);
+			}
 
-      if (mr != null)
-      {
-        Stack<String> errors = new Stack<String>();
-        mr.setErrorStack(errors);
-        ret = mr.readTileset(file);
-        ret.setSource(file);
-        reportPluginMessages(errors);
-      } else
-      {
-        throw new Exception("Unsupported tileset format");
-      }
-    } catch (IOException e)
-    {
-      JOptionPane.showMessageDialog(null, e.getMessage() + (e.getCause() != null ? "\nCause: " + e.getCause().getMessage() : ""), "Error while loading tileset", JOptionPane.ERROR_MESSAGE);
-      e.printStackTrace();
-    } catch (Exception e)
-    {
-      JOptionPane.showMessageDialog(null, "Error while loading " + file + ": " + e.getMessage() + (e.getCause() != null ? "\nCause: " + e.getCause().getMessage() : ""), "Error while loading tileset", JOptionPane.ERROR_MESSAGE);
-      e.printStackTrace();
-    }
+			if (mr != null) {
+				Stack<String> errors = new Stack<String>();
+				mr.setErrorStack(errors);
+				ret = mr.readTileset(file);
+				ret.setSource(file);
+				reportPluginMessages(errors);
+			} else {
+				throw new Exception("Unsupported tileset format");
+			}
+		} catch (IOException e) {
+			JOptionPane.showMessageDialog(null, e.getMessage()
+					+ (e.getCause() != null ? "\nCause: " + e.getCause().getMessage() : ""),
+					"Error while loading tileset", JOptionPane.ERROR_MESSAGE);
+			e.printStackTrace();
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Error while loading " + file + ": " + e.getMessage()
+					+ (e.getCause() != null ? "\nCause: " + e.getCause().getMessage() : ""),
+					"Error while loading tileset", JOptionPane.ERROR_MESSAGE);
+			e.printStackTrace();
+		}
 
-    return ret;
-  }
+		return ret;
+	}
 
-  /**
-   * Reports messages from the plugin to the user in a dialog.
-   * 
-   * @param s
-   *          A Stack which was used by the plugin to record any messages it had
-   *          for the user
-   */
-  private static void reportPluginMessages(Stack s)
-  {
-    // TODO: maybe have a nice dialog with a scrollbar, in case there are a
-    // lot of messages...
-    TiledConfiguration config = TiledConfiguration.getInstance();
+	/**
+	 * Reports messages from the plugin to the user in a dialog.
+	 * 
+	 * @param s
+	 *            A Stack which was used by the plugin to record any messages it
+	 *            had for the user
+	 */
+	private static void reportPluginMessages(Stack s) {
+		// TODO: maybe have a nice dialog with a scrollbar, in case there are a
+		// lot of messages...
+		TiledConfiguration config = TiledConfiguration.getInstance();
 
-    if (config.keyHasValue("tiled.report.io", 1))
-    {
-      if (s.size() > 0)
-      {
-        Iterator itr = s.iterator();
-        StringBuffer warnings = new StringBuffer();
-        while (itr.hasNext())
-        {
-          warnings.append((String) itr.next() + "\n");
-        }
-        JOptionPane.showMessageDialog(null, warnings.toString(), "Loading Messages", JOptionPane.INFORMATION_MESSAGE);
-      }
-    }
-  }
-  
-  /** returns a list of all currently registered map reader plugins */
-  public static List<MapReaderPlugin> getMapReaderPlugins()
-  {
-    PluginManager pluginManager = PluginManager.getInstance();
-    List<Class> list = pluginManager.getPlugins(MapReaderPlugin.class);
-    List<MapReaderPlugin> plugins = new ArrayList<MapReaderPlugin>();
-    // instanciate the plugins
-    for (Class clazz : list)
-    {
-      try
-      {
-        plugins.add((MapReaderPlugin) clazz.newInstance());
-      }
-      catch (Exception e)
-      {
-        // ignore broken plugins
-        e.printStackTrace();
-      }
-    }
-    return plugins;
-  }
-  
-  /** returns a list of all currently registered map writer plugins */
-  public static List<MapWriterPlugin> getMapWriterPlugins()
-  {
-    PluginManager pluginManager = PluginManager.getInstance();
-    
-    List<Class> list = pluginManager.getPlugins(MapWriterPlugin.class);
-    List<MapWriterPlugin> plugins = new ArrayList<MapWriterPlugin>();
-    // instanciate the plugins
-    for (Class clazz : list)
-    {
-      try
-      {
-        plugins.add((MapWriterPlugin) clazz.newInstance());
-      }
-      catch (Exception e)
-      {
-        // ignore broken plugins
-        e.printStackTrace();
-      }
-    }
-    return plugins;
-  }
+		if (config.keyHasValue("tiled.report.io", 1)) {
+			if (s.size() > 0) {
+				Iterator itr = s.iterator();
+				StringBuffer warnings = new StringBuffer();
+				while (itr.hasNext()) {
+					warnings.append((String) itr.next() + "\n");
+				}
+				JOptionPane.showMessageDialog(null, warnings.toString(), "Loading Messages",
+						JOptionPane.INFORMATION_MESSAGE);
+			}
+		}
+	}
 
-  /** opens a file chooser to open a new map. */
-  public static Map loadMap(JFrame appFrame)
-  {
-    Map ret = null;
-    String mapFile = null;
-    try
-    {
-      TiledConfiguration configuration = TiledConfiguration.getInstance();
-      File startFile = null;
-      if (configuration.hasOption("tiled.recent.1"))
-      {
-        String startLocation = configuration.getValue("tiled.recent.1");
-        startFile = (startLocation != null) ? new File(startLocation) : null;
-      }
-      
-      List<MapReaderPlugin> plugins = getMapReaderPlugins();
-      
-      List<FileFilter> filters = new ArrayList<FileFilter>();
-      // Now get all file filters
-      for (MapReaderPlugin plugin : plugins)
-      {
-        filters.addAll(Arrays.asList(plugin.getFilters()));
-      }
-      
-      // open the file chooser
-      JFileChooser fileChooser = new JFileChooser("");
-      fileChooser.setSelectedFile(startFile);
-      for (FileFilter filter : filters)
-      {
-        fileChooser.addChoosableFileFilter(filter);
-      }
-      
-      int result = fileChooser.showOpenDialog(null);
-      if (result == JFileChooser.APPROVE_OPTION)
-      {
-        File file = fileChooser.getSelectedFile();
-        mapFile = file.getAbsolutePath(); 
-        // get filter
-        for (MapReaderPlugin plugin : plugins)
-        {
-          for (FileFilter filter : plugin.getFilters())
-          {
-            if (filter.accept(file))
-            {
-              System.out.println("map "+file.getAbsolutePath()+" read with plugin "+plugin.getPluginDescription());
-              List<String> messageList = new ArrayList<String>();
-              plugin.setMessageList(messageList);
-              Map newMap = plugin.readMap(mapFile);
-              if (newMap != null)
-              {
-                newMap.setFilename(mapFile);
-              }
-              return newMap; 
-            }
-          }
-        }
-      }
+	/** returns a list of all currently registered map reader plugins. */
+	public static List<MapReaderPlugin> getMapReaderPlugins() {
+		PluginManager pluginManager = PluginManager.getInstance();
+		List<Class> list = pluginManager.getPlugins(MapReaderPlugin.class);
+		List<MapReaderPlugin> plugins = new ArrayList<MapReaderPlugin>();
+		// instanciate the plugins
+		for (Class clazz : list) {
+			try {
+				plugins.add((MapReaderPlugin) clazz.newInstance());
+			} catch (Exception e) {
+				// ignore broken plugins
+				e.printStackTrace();
+			}
+		}
+		return plugins;
+	}
 
-    } catch (Exception e)
-    {
-      ExceptionDialog.showDialog(appFrame, e,"Exception while loading map "+mapFile);
-    }
-    return ret;
-  }
-  
-  /** loads the given map */
-  public static Map loadMap(JFrame appFrame, String fileName, StringBuffer errorBuf)
-  {
-    Map ret = null;
-    try
-    {
-      File mapFile = new File(fileName);
-      if (mapFile == null || !mapFile.isFile())
-      {
-        errorBuf.append("File "+mapFile+" does not exists.");
-        return null;
-      }
+	/** returns a list of all currently registered map writer plugins. */
+	public static List<MapWriterPlugin> getMapWriterPlugins() {
+		PluginManager pluginManager = PluginManager.getInstance();
 
-      List<MapReaderPlugin> plugins = getMapReaderPlugins();
-      
-      MapReaderPlugin readerPlugin = null; 
-      // Now get all file filters
-      for (MapReaderPlugin plugin : plugins)
-      {
-        for (FileFilter filter : plugin.getFilters())
-        {
-          if (filter.accept(mapFile))
-          {
-            readerPlugin = plugin;
-            break;
-          }
-        }
-      }
-      
-      if (readerPlugin == null)
-      {
-        errorBuf.append("no plugin found to read "+fileName);
-        return null;
-      }
+		List<Class> list = pluginManager.getPlugins(MapWriterPlugin.class);
+		List<MapWriterPlugin> plugins = new ArrayList<MapWriterPlugin>();
+		// instanciate the plugins
+		for (Class clazz : list) {
+			try {
+				plugins.add((MapWriterPlugin) clazz.newInstance());
+			} catch (Exception e) {
+				// ignore broken plugins
+				e.printStackTrace();
+			}
+		}
+		return plugins;
+	}
 
-      List<String> messageList = new ArrayList<String>();
-      readerPlugin.setMessageList(messageList);
-      Map newMap = readerPlugin.readMap(mapFile.getAbsolutePath());
-      if (newMap != null)
-      {
-        newMap.setFilename(mapFile.getAbsolutePath());
-      }
-      return newMap; 
-    } catch (Exception e)
-    {
-      ExceptionDialog.showDialog(appFrame, e,"Exception while loading map "+fileName);
-    }
-    return ret;
-  }
+	/** opens a file chooser to open a new map. */
+	public static Map loadMap(JFrame appFrame) {
+		Map ret = null;
+		String mapFile = null;
+		try {
+			TiledConfiguration configuration = TiledConfiguration.getInstance();
+			File startFile = null;
+			if (configuration.hasOption("tiled.recent.1")) {
+				String startLocation = configuration.getValue("tiled.recent.1");
+				startFile = (startLocation != null) ? new File(startLocation) : null;
+			}
 
-  /** saves the map */
-  public static boolean saveMapNew(JFrame appFrame, Map map, boolean saveAs, StringBuffer errorBuf)
-  {
-    if (map == null)
-    {
-      return false;
-    }
-    
-    File file = new File(map.getFilename());
-    try
-    {
-      List<MapWriterPlugin> plugins = MapHelper.getMapWriterPlugins();
-      
-      List<FileFilter> filters = new ArrayList<FileFilter>();
-      // Now get all file filters
-      for (MapWriterPlugin plugin : plugins)
-      {
-        filters.addAll(Arrays.asList(plugin.getFilters()));
-      }
-      
-      if (saveAs)
-      {
-        // open the file chooser
-        JFileChooser fileChooser = new JFileChooser("");
-        fileChooser.setSelectedFile(file);
-        for (FileFilter filter : filters)
-        {
-          fileChooser.addChoosableFileFilter(filter);
-        }
-        
-        int result = fileChooser.showSaveDialog(null);
-        if (result != JFileChooser.APPROVE_OPTION)
-        {
-          return false;
-        }
-        file = fileChooser.getSelectedFile();
-//        FileFilter filter = fileChooser.getFileFilter();
-      }
-      
-      MapWriterPlugin writerPlugin = null;
-      // find the correct plugin
-      for (MapWriterPlugin plugin : plugins)
-      {
-        for (FileFilter filter : plugin.getFilters())
-        {
-          if (filter.accept(file))
-          {
-            writerPlugin = plugin;
-            break;
-          }
-        }
-      }
-      
-      if (writerPlugin == null)
-      {
-        errorBuf.append("no plugin found to write "+file);
-        return false;
-      }
-  
-      List<String> messageList = new ArrayList<String>();
-      writerPlugin.setMessageList(messageList);
-      writerPlugin.writeMap(map, file.getAbsolutePath());
-      return true;
-    } catch (Exception e)
-    {
-      ExceptionDialog.showDialog(appFrame, e,"Exception while loading map "+file);
-    }
-    return false;
-  }
+			List<MapReaderPlugin> plugins = getMapReaderPlugins();
+
+			List<FileFilter> filters = new ArrayList<FileFilter>();
+			// Now get all file filters
+			for (MapReaderPlugin plugin : plugins) {
+				filters.addAll(Arrays.asList(plugin.getFilters()));
+			}
+
+			// open the file chooser
+			JFileChooser fileChooser = new JFileChooser("");
+			fileChooser.setSelectedFile(startFile);
+			for (FileFilter filter : filters) {
+				fileChooser.addChoosableFileFilter(filter);
+			}
+
+			int result = fileChooser.showOpenDialog(null);
+			if (result == JFileChooser.APPROVE_OPTION) {
+				File file = fileChooser.getSelectedFile();
+				mapFile = file.getAbsolutePath();
+				// get filter
+				for (MapReaderPlugin plugin : plugins) {
+					for (FileFilter filter : plugin.getFilters()) {
+						if (filter.accept(file)) {
+							System.out.println("map " + file.getAbsolutePath() + " read with plugin "
+									+ plugin.getPluginDescription());
+							List<String> messageList = new ArrayList<String>();
+							plugin.setMessageList(messageList);
+							Map newMap = plugin.readMap(mapFile);
+							if (newMap != null) {
+								newMap.setFilename(mapFile);
+							}
+							return newMap;
+						}
+					}
+				}
+			}
+
+		} catch (Exception e) {
+			ExceptionDialog.showDialog(appFrame, e, "Exception while loading map " + mapFile);
+		}
+		return ret;
+	}
+
+	/** loads the given map. */
+	public static Map loadMap(JFrame appFrame, String fileName, StringBuffer errorBuf) {
+		Map ret = null;
+		try {
+			File mapFile = new File(fileName);
+			if (mapFile == null || !mapFile.isFile()) {
+				errorBuf.append("File " + mapFile + " does not exists.");
+				return null;
+			}
+
+			List<MapReaderPlugin> plugins = getMapReaderPlugins();
+
+			MapReaderPlugin readerPlugin = null;
+			// Now get all file filters
+			for (MapReaderPlugin plugin : plugins) {
+				for (FileFilter filter : plugin.getFilters()) {
+					if (filter.accept(mapFile)) {
+						readerPlugin = plugin;
+						break;
+					}
+				}
+			}
+
+			if (readerPlugin == null) {
+				errorBuf.append("no plugin found to read " + fileName);
+				return null;
+			}
+
+			List<String> messageList = new ArrayList<String>();
+			readerPlugin.setMessageList(messageList);
+			Map newMap = readerPlugin.readMap(mapFile.getAbsolutePath());
+			if (newMap != null) {
+				newMap.setFilename(mapFile.getAbsolutePath());
+			}
+			return newMap;
+		} catch (Exception e) {
+			ExceptionDialog.showDialog(appFrame, e, "Exception while loading map " + fileName);
+		}
+		return ret;
+	}
+
+	/** saves the map. */
+	public static boolean saveMapNew(JFrame appFrame, Map map, boolean saveAs, StringBuffer errorBuf) {
+		if (map == null) {
+			return false;
+		}
+
+		File file = new File(map.getFilename());
+		try {
+			List<MapWriterPlugin> plugins = MapHelper.getMapWriterPlugins();
+
+			List<FileFilter> filters = new ArrayList<FileFilter>();
+			// Now get all file filters
+			for (MapWriterPlugin plugin : plugins) {
+				filters.addAll(Arrays.asList(plugin.getFilters()));
+			}
+
+			if (saveAs) {
+				// open the file chooser
+				JFileChooser fileChooser = new JFileChooser("");
+				fileChooser.setSelectedFile(file);
+				for (FileFilter filter : filters) {
+					fileChooser.addChoosableFileFilter(filter);
+				}
+
+				int result = fileChooser.showSaveDialog(null);
+				if (result != JFileChooser.APPROVE_OPTION) {
+					return false;
+				}
+				file = fileChooser.getSelectedFile();
+				// FileFilter filter = fileChooser.getFileFilter();
+			}
+
+			MapWriterPlugin writerPlugin = null;
+			// find the correct plugin
+			for (MapWriterPlugin plugin : plugins) {
+				for (FileFilter filter : plugin.getFilters()) {
+					if (filter.accept(file)) {
+						writerPlugin = plugin;
+						break;
+					}
+				}
+			}
+
+			if (writerPlugin == null) {
+				errorBuf.append("no plugin found to write " + file);
+				return false;
+			}
+
+			List<String> messageList = new ArrayList<String>();
+			writerPlugin.setMessageList(messageList);
+			writerPlugin.writeMap(map, file.getAbsolutePath());
+			return true;
+		} catch (Exception e) {
+			ExceptionDialog.showDialog(appFrame, e, "Exception while loading map " + file);
+		}
+		return false;
+	}
 }

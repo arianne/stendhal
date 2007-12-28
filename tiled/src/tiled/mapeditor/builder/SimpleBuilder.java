@@ -28,95 +28,83 @@ import tiled.mapeditor.brush.Brush;
  * 
  * @author mtotz
  */
-public class SimpleBuilder extends AbstractBuilder
-{
-  /**
-   * Creates a new builder. The map/brush/startLayer must be set before using
-   * the builder 
-   */
-  public SimpleBuilder()
-  {
-    super();
-  }
+public class SimpleBuilder extends AbstractBuilder {
+	/**
+	 * Creates a new builder. The map/brush/startLayer must be set before using
+	 * the builder
+	 */
+	public SimpleBuilder() {
+		super();
+	}
 
-  /** creates a new builder */
-  public SimpleBuilder(Map map, Brush brush, int startLayer)
-  {
-    super(map,brush, startLayer);
-  }
-  
-  /** draws the brush */
-  private Rectangle draw(Point tile, boolean ignoreBrushSize)
-  {
-    Rectangle brushSize = brush.getBounds();
-    
-    if (brushSize.width == 0 || brushSize.height == 0)
-      return null;
-    
-    if (lastPoint == null)
-    {
-      lastPoint = new Point(tile);
-    }
-    
-    int dx = tile.x - lastPoint.x;
-    int dy = tile.y - lastPoint.y;
-    
-    // do not override the last brush 
-    if (dx % brushSize.width == 0 && dy % brushSize.height == 0 || ignoreBrushSize)
-    {
-      Rectangle modified = brush.commitPaint(map,tile.x,tile.y,startLayer);
-      return modified;
-    }
-    return null;
-  }
-  
+	/** creates a new builder. */
+	public SimpleBuilder(Map map, Brush brush, int startLayer) {
+		super(map, brush, startLayer);
+	}
 
-  /** starts the builder. simply commits the brush to the given tile */
-  public Rectangle startBuilder(Point tile)
-  {
-    start(map.getLayer(startLayer));
-    Rectangle modified = draw(tile,true);
-    started = true;
-    return modified;
-  }
+	/** draws the brush. */
+	private Rectangle draw(Point tile, boolean ignoreBrushSize) {
+		Rectangle brushSize = brush.getBounds();
 
-  /** commits the brush to the given tile */
-  public Rectangle moveBuilder(Point tile)
-  {
-    if (!tile.equals(lastPoint))
-    {
-      return draw(tile,false);
-    }
-    return null;
-  }
+		if (brushSize.width == 0 || brushSize.height == 0) {
+			return null;
+		}
 
-  /** finished the builder. the last brush commit. */
-  public Rectangle finishBuilder(Point tile)
-  {
-    if (!started)
-      return new Rectangle();
+		if (lastPoint == null) {
+			lastPoint = new Point(tile);
+		}
 
-    Rectangle modified = null;
-    
-    if (tile != null)
-    {
-      if (!tile.equals(lastPoint))
-      {
-        modified = draw(tile,false);
-      }
-    }
-    started = false;
-    updateLastPoint(null);
-    
-    finish();
-    
-    return modified;
-  }
+		int dx = tile.x - lastPoint.x;
+		int dy = tile.y - lastPoint.y;
 
-  /** returns the brush's bounds */
-  public Rectangle getBounds()
-  {
-    return brush.getBounds();
-  }
+		// do not override the last brush
+		if (dx % brushSize.width == 0 && dy % brushSize.height == 0 || ignoreBrushSize) {
+			Rectangle modified = brush.commitPaint(map, tile.x, tile.y, startLayer);
+			return modified;
+		}
+		return null;
+	}
+
+	/** starts the builder. simply commits the brush to the given tile */
+	public Rectangle startBuilder(Point tile) {
+		start(map.getLayer(startLayer));
+		Rectangle modified = draw(tile, true);
+		started = true;
+		return modified;
+	}
+
+	/** commits the brush to the given tile. */
+	public Rectangle moveBuilder(Point tile) {
+		if (!tile.equals(lastPoint)) {
+			return draw(tile, false);
+		}
+		return null;
+	}
+
+	/** finished the builder. the last brush commit. */
+	public Rectangle finishBuilder(Point tile) {
+		if (!started) {
+			return new Rectangle();
+		}
+
+		Rectangle modified = null;
+
+		if (tile != null) {
+			if (!tile.equals(lastPoint)) {
+				modified = draw(tile, false);
+			}
+		}
+		started = false;
+		updateLastPoint(null);
+
+		finish();
+
+		return modified;
+	}
+
+	/** returns the brush's bounds. */
+	public Rectangle getBounds() {
+		return brush.getBounds();
+	}
 
 }

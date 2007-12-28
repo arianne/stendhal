@@ -37,71 +37,61 @@ import tiled.mapeditor.MapEditor;
  * 
  * @author mtotz
  */
-public class CreateSingleLayerBrushAction extends AbstractAction
-{
-  private static final long serialVersionUID = 8534893227991603958L;
+public class CreateSingleLayerBrushAction extends AbstractAction {
+	private static final long serialVersionUID = 8534893227991603958L;
 
-  private MapEditor mapEditor;
-  
-  public CreateSingleLayerBrushAction(MapEditor mapEditor)
-  {
-    super("");
-    putValue(SHORT_DESCRIPTION, "Creates a new singlelayer brush");
-    putValue(SMALL_ICON, MapEditor.loadIcon("resources/plus.png"));
-    this.mapEditor = mapEditor;
-  }
+	private MapEditor mapEditor;
 
-  public void actionPerformed(ActionEvent e)
-  {
-    List<Point> selectedList = new ArrayList<Point>(mapEditor.getSelectedTiles());
-    
-    List<StatefulTile> brushList = new ArrayList<StatefulTile>();
-    int layer = mapEditor.currentLayer;
-    Map map = mapEditor.getCurrentMap();
+	public CreateSingleLayerBrushAction(MapEditor mapEditor) {
+		super("");
+		putValue(SHORT_DESCRIPTION, "Creates a new singlelayer brush");
+		putValue(SMALL_ICON, MapEditor.loadIcon("resources/plus.png"));
+		this.mapEditor = mapEditor;
+	}
 
-    TileLayer tileLayer = (TileLayer) map.getLayer(layer);
-    
-    int minx = map.getWidth();
-    int miny = map.getHeight();
-    
-    // copy tiles
-    for (Point p : selectedList)
-    {
-      Tile tile = tileLayer.getTileAt(p.x, p.y);
-      if (tile != null)
-      {
-        brushList.add(new StatefulTile(p,layer,tile));
-        
-        if (p.x < minx) minx = p.x;
-        if (p.y < miny) miny = p.y;
-      }
-    }
-    
-    if (brushList.size() > 0)
-    {
-      // normalize brush
-      for (StatefulTile tile : brushList)
-      {
-        tile.p.x -= minx;
-        tile.p.y -= miny;
-      }
-      
-      
-      String s = (String) JOptionPane.showInputDialog(
-          mapEditor.appFrame,
-          "Enter a name for the brush:",
-          "Brush Name",
-          JOptionPane.PLAIN_MESSAGE,
-          null,
-          null,
-          "name");
+	public void actionPerformed(ActionEvent e) {
+		List<Point> selectedList = new ArrayList<Point>(mapEditor.getSelectedTiles());
 
-      TileGroup group = new TileGroup(map,brushList,s == null ? "unnamed" : s);
+		List<StatefulTile> brushList = new ArrayList<StatefulTile>();
+		int layer = mapEditor.currentLayer;
+		Map map = mapEditor.getCurrentMap();
 
-      map.addUserBrush(group);
-      mapEditor.toolBar.repaint();
-    }
-    
-  }
+		TileLayer tileLayer = (TileLayer) map.getLayer(layer);
+
+		int minx = map.getWidth();
+		int miny = map.getHeight();
+
+		// copy tiles
+		for (Point p : selectedList) {
+			Tile tile = tileLayer.getTileAt(p.x, p.y);
+			if (tile != null) {
+				brushList.add(new StatefulTile(p, layer, tile));
+
+				if (p.x < minx) {
+					minx = p.x;
+				}
+				if (p.y < miny) {
+					miny = p.y;
+				}
+			}
+		}
+
+		if (brushList.size() > 0) {
+			// normalize brush
+			for (StatefulTile tile : brushList) {
+				tile.p.x -= minx;
+				tile.p.y -= miny;
+			}
+
+			String s = (String) JOptionPane.showInputDialog(mapEditor.appFrame, "Enter a name for the brush:",
+					"Brush Name", JOptionPane.PLAIN_MESSAGE, null, null, "name");
+
+			TileGroup group = new TileGroup(map, brushList, s == null ? "unnamed" : s);
+
+			map.addUserBrush(group);
+			mapEditor.toolBar.repaint();
+		}
+
+	}
 
 }

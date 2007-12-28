@@ -21,120 +21,99 @@ import java.util.Properties;
 
 import javax.swing.table.AbstractTableModel;
 
-/** a tablemodel which handles properties */
-public class PropertiesTableModel extends AbstractTableModel
-{
-  private static final long serialVersionUID = 1L;
+/** a tablemodel which handles properties. */
+public class PropertiesTableModel extends AbstractTableModel {
+	private static final long serialVersionUID = 1L;
 
-  private Properties        properties;
-  
-  private String[]          columnNames      = { "Name", "Value" };
+	private Properties properties;
 
-  /** 
-   * creates the tablemodel. The model makes a defensive copy of the properties
-   * (so it is not modified)
-   * @param p the properties
-   * @param readOnlyProps readonly properties. May be <code>null</code> 
-   */
-  public PropertiesTableModel(Properties p)
-  {
-    properties = new Properties();
-    if (p != null)
-    {
-      properties.putAll(p);
-    }
-  }
+	private String[] columnNames = { "Name", "Value" };
 
-  public int getRowCount()
-  {
-    return properties.size() + 1;
-  }
+	/**
+	 * creates the tablemodel. The model makes a defensive copy of the
+	 * properties (so it is not modified)
+	 * 
+	 * @param p
+	 *            the properties
+	 * @param readOnlyProps
+	 *            readonly properties. May be <code>null</code>
+	 */
+	public PropertiesTableModel(Properties p) {
+		properties = new Properties();
+		if (p != null) {
+			properties.putAll(p);
+		}
+	}
 
-  public String getColumnName(int col)
-  {
-    return columnNames[col];
-  }
+	public int getRowCount() {
+		return properties.size() + 1;
+	}
 
-  public int getColumnCount()
-  {
-    return columnNames.length;
-  }
+	public String getColumnName(int col) {
+		return columnNames[col];
+	}
 
-  /**
-   * Returns wether the given position in the table is editable. Values can only
-   * be edited when they have a name.
-   */
-  public boolean isCellEditable(int row, int col)
-  {
-    return (col == 0) || (col == 1 && getValueAt(row, 0) != null);
-  }
+	public int getColumnCount() {
+		return columnNames.length;
+	}
 
-  public Object getValueAt(int rowIndex, int columnIndex)
-  {
-    Object[] array = properties.keySet().toArray();
-    if (rowIndex >= 0 && rowIndex < properties.size())
-    {
-      if (columnIndex == 0)
-      {
-        return array[rowIndex];
-      } else if (columnIndex == 1)
-      {
-        return properties.get(array[rowIndex]);
-      }
-    }
-    return null;
-  }
+	/**
+	 * Returns wether the given position in the table is editable. Values can
+	 * only be edited when they have a name.
+	 */
+	public boolean isCellEditable(int row, int col) {
+		return (col == 0) || (col == 1 && getValueAt(row, 0) != null);
+	}
 
-  public void setValueAt(Object value, int row, int col)
-  {
-    // TODO: When the name is set to an empty string, consider removing the
-    // property (and ignore when it happens on the last row).
-    if (row >= 0)
-    {
-      if (row >= properties.size() && col == 0)
-      {
-        if (((String) value).length() > 0)
-        {
-          properties.setProperty((String) value, "");
-          fireTableDataChanged();
-        }
-      } else
-      {
-        if (col == 1)
-        {
-          properties.setProperty((String) getValueAt(row, 0), (String) value);
-          fireTableCellUpdated(row, col);
-        } else if (col == 0)
-        {
-          String val = (String) getValueAt(row, 1);
-          if (getValueAt(row, col) != null)
-          {
-            properties.remove(getValueAt(row, col));
-          }
-          if (((String) value).length() > 0)
-          {
-            properties.setProperty((String) value, val);
-          }
-          fireTableDataChanged();
-        }
-      }
-    }
-  }
-  public void remove(Object key)
-  {
-    properties.remove(key);
-    fireTableDataChanged();
-  }
+	public Object getValueAt(int rowIndex, int columnIndex) {
+		Object[] array = properties.keySet().toArray();
+		if (rowIndex >= 0 && rowIndex < properties.size()) {
+			if (columnIndex == 0) {
+				return array[rowIndex];
+			} else if (columnIndex == 1) {
+				return properties.get(array[rowIndex]);
+			}
+		}
+		return null;
+	}
 
-/*
-  public void update(Properties props)
-  {
-    properties = props;
-    fireTableDataChanged();
-  }
-*/
-  public Properties getProperties()
-  {
-    return properties;
-  }
+	public void setValueAt(Object value, int row, int col) {
+		// TODO: When the name is set to an empty string, consider removing the
+		// property (and ignore when it happens on the last row).
+		if (row >= 0) {
+			if (row >= properties.size() && col == 0) {
+				if (((String) value).length() > 0) {
+					properties.setProperty((String) value, "");
+					fireTableDataChanged();
+				}
+			} else {
+				if (col == 1) {
+					properties.setProperty((String) getValueAt(row, 0), (String) value);
+					fireTableCellUpdated(row, col);
+				} else if (col == 0) {
+					String val = (String) getValueAt(row, 1);
+					if (getValueAt(row, col) != null) {
+						properties.remove(getValueAt(row, col));
+					}
+					if (((String) value).length() > 0) {
+						properties.setProperty((String) value, val);
+					}
+					fireTableDataChanged();
+				}
+			}
+		}
+	}
+
+	public void remove(Object key) {
+		properties.remove(key);
+		fireTableDataChanged();
+	}
+
+	/*
+	 * public void update(Properties props) { properties = props;
+	 * fireTableDataChanged(); }
+	 */
+	public Properties getProperties() {
+		return properties;
+	}
 }

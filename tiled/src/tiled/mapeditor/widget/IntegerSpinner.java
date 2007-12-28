@@ -21,35 +21,33 @@ import java.awt.Dimension;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 
-
 /**
  * The integer spinner is a variation on the JSpinner that is only to be used
  * for plain integer inputs. It offers some convenience constructors and
  * methods.
  */
-public class IntegerSpinner extends JSpinner
-{
-  private static final long serialVersionUID = 785211128818393857L;
+public class IntegerSpinner extends JSpinner {
+	private static final long serialVersionUID = 785211128818393857L;
 
-    public IntegerSpinner() {
-        super(new SpinnerNumberModel());
-        setPreferredSize(new Dimension(60, getPreferredSize().height));
-    }
+	public IntegerSpinner() {
+		super(new SpinnerNumberModel());
+		setPreferredSize(new Dimension(60, getPreferredSize().height));
+	}
 
-    public IntegerSpinner(int val, int min, int max) {
-        super(new SpinnerNumberModel(val, min, max, 1));
-        setPreferredSize(new Dimension(60, getPreferredSize().height));
-    }
+	public IntegerSpinner(int val, int min, int max) {
+		super(new SpinnerNumberModel(val, min, max, 1));
+		setPreferredSize(new Dimension(60, getPreferredSize().height));
+	}
 
-    public IntegerSpinner(int val, int min) {
-        this(val, min, Integer.MAX_VALUE);
-    }
+	public IntegerSpinner(int val, int min) {
+		this(val, min, Integer.MAX_VALUE);
+	}
 
-    public void setValue(int value) {
-        setValue(new Integer(value));
-    }
+	public void setValue(int value) {
+		setValue(new Integer(value));
+	}
 
-    public int intValue() {
-        return ((Number)getValue()).intValue();
-    }
+	public int intValue() {
+		return ((Number) getValue()).intValue();
+	}
 }

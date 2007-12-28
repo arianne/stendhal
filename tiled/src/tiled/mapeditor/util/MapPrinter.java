@@ -27,29 +27,27 @@ public final class MapPrinter implements Printable {
 
 	private PrinterJob printJob;
 	private JPanel printed;
-	
+
 	public void print(JPanel p) throws PrinterException {
-		RepaintManager currentManager = 
-					  RepaintManager.currentManager(p);
+		RepaintManager currentManager = RepaintManager.currentManager(p);
 		printed = p;
 		currentManager.setDoubleBufferingEnabled(false);
-		printJob = PrinterJob.getPrinterJob();		
-		if(printJob.printDialog()) {			
-			printJob.setPrintable(this,printJob.defaultPage());
+		printJob = PrinterJob.getPrinterJob();
+		if (printJob.printDialog()) {
+			printJob.setPrintable(this, printJob.defaultPage());
 			printJob.print();
 		}
 		currentManager.setDoubleBufferingEnabled(true);
 	}
 
-	public int print(Graphics graphics, PageFormat pageFormat, int pageIndex)
-		throws PrinterException {
-					
-			Graphics2D graphics2D = (Graphics2D) graphics;
-			graphics2D.translate(pageFormat.getImageableX(),pageFormat.getImageableY());
-			//graphics2D.scale(graphics2D.getClipBounds().getWidth()/printed.getWidth(),graphics2D.getClipBounds().getHeight()/printed.getHeight());			
-			graphics2D.drawLine(72,72,160,160);
-			printed.paint(graphics2D);
-			
+	public int print(Graphics graphics, PageFormat pageFormat, int pageIndex) throws PrinterException {
+
+		Graphics2D graphics2D = (Graphics2D) graphics;
+		graphics2D.translate(pageFormat.getImageableX(), pageFormat.getImageableY());
+		// graphics2D.scale(graphics2D.getClipBounds().getWidth()/printed.getWidth(),graphics2D.getClipBounds().getHeight()/printed.getHeight());
+		graphics2D.drawLine(72, 72, 160, 160);
+		printed.paint(graphics2D);
+
 		return Printable.PAGE_EXISTS;
 	}
 

@@ -17,12 +17,10 @@
 
 package tiled.plugins.tiled;
 
+public class XMLWriterException extends Exception {
+	private static final long serialVersionUID = 1629373837269498797L;
 
-public class XMLWriterException extends Exception
-{
-  private static final long serialVersionUID = 1629373837269498797L;
-
-    public XMLWriterException(String error) {
-        super(error);
-    }
+	public XMLWriterException(String error) {
+		super(error);
+	}
 }

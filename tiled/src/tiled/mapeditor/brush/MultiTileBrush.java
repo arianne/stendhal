@@ -17,7 +17,6 @@
 
 package tiled.mapeditor.brush;
 
-
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
@@ -29,128 +28,112 @@ import tiled.core.StatefulTile;
 import tiled.core.TileLayer;
 
 /**
- * Brush with a custom tile pattern
+ * Brush with a custom tile pattern.
  * 
  * @author Matthias Totz <mtotz@users.sourceforge.net>
  */
-public class MultiTileBrush extends AbstractBrush
-{
-  private Rectangle cachedBounds;
+public class MultiTileBrush extends AbstractBrush {
+	private Rectangle cachedBounds;
 
-  public MultiTileBrush()
-  {
-  }
+	public MultiTileBrush() {
+	}
 
-  public MultiTileBrush(MultiTileBrush otherBrush)
-  {
-    setTiles(otherBrush.selectedTiles);
-  }
-  
-  /** returns the bounds of the brush in tile coordinates */
-  public Rectangle getBounds()
-  {
-    if (cachedBounds == null)
-    {
-      cachedBounds = recalculateBounds();
-    }
-    return cachedBounds;
-  }
+	public MultiTileBrush(MultiTileBrush otherBrush) {
+		setTiles(otherBrush.selectedTiles);
+	}
 
-  /** calculates the bounds */
-  private Rectangle recalculateBounds()
-  {
-    Point p1 = null;
-    Point p2 = null;
-    
-    for (StatefulTile tile : selectedTiles)
-    {
-      if (p1 == null)
-      {
-        p1 = new Point(tile.p);
-        p2 = new Point(p1);
-      }
-      else
-      {
-        if (tile.p.x < p1.x)
-          p1.x = tile.p.x;
+	/** returns the bounds of the brush in tile coordinates. */
+	public Rectangle getBounds() {
+		if (cachedBounds == null) {
+			cachedBounds = recalculateBounds();
+		}
+		return cachedBounds;
+	}
 
-        if (tile.p.y < p1.y)
-          p1.y = tile.p.y;
-        
-        if (tile.p.x > p2.x)
-          p2.x = tile.p.x;
+	/** calculates the bounds. */
+	private Rectangle recalculateBounds() {
+		Point p1 = null;
+		Point p2 = null;
 
-        if (tile.p.y > p2.y)
-          p2.y = tile.p.y;
-      }
-    }
-    
-    for (StatefulTile tile : selectedTiles)
-    {
-      tile.p.x -= p1.x;
-      tile.p.y -= p1.y;
-    }
-    
-    
-    return (p1 == null) ? new Rectangle() : new Rectangle(0,0,p2.x-p1.x+1,p2.y-p1.y+1);
-  }
-  
-  /** Sets the currently selected Tiles */
-  public void setTiles(List<StatefulTile> selectedTiles)
-  {
-    super.setTiles(selectedTiles);
-    cachedBounds = null;
-  }
+		for (StatefulTile tile : selectedTiles) {
+			if (p1 == null) {
+				p1 = new Point(tile.p);
+				p2 = new Point(p1);
+			} else {
+				if (tile.p.x < p1.x) {
+					p1.x = tile.p.x;
+				}
 
-  /** draws the brush */
-  public Rectangle commitPaint(MultilayerPlane mp, int x, int y, int initLayer)
-  {
-    TileLayer tileLayer = (TileLayer) mp.getLayer(initLayer);
-    if (tileLayer != null)
-    {
-      for (StatefulTile tile : selectedTiles)
-      {
-        tileLayer.setTileAt(tile.p.x+x, tile.p.y+y, tile.tile);
-      }
-    }
-    
-    Rectangle rect = new Rectangle(getBounds());
-    rect.x += x;
-    rect.y += y;
+				if (tile.p.y < p1.y) {
+					p1.y = tile.p.y;
+				}
 
-    return rect;  
-  }
+				if (tile.p.x > p2.x) {
+					p2.x = tile.p.x;
+				}
 
-  /** not implemented */
-  public void paint(Graphics g, int x, int y)
-  { }
+				if (tile.p.y > p2.y) {
+					p2.y = tile.p.y;
+				}
+			}
+		}
 
-  /** not implemented */
-  public boolean equals(Brush b)
-  { return false; }
-  
-  public String toString()
-  {
-    StringBuilder buf = new StringBuilder(); 
-    buf.append("[MultiTileBrush: ");
-    
-    
-    for (StatefulTile tile : selectedTiles)
-    {
-      buf.append(tile);
-    }
-    
-    return buf.toString()+"]";
-  }
+		for (StatefulTile tile : selectedTiles) {
+			tile.p.x -= p1.x;
+			tile.p.y -= p1.y;
+		}
 
-  /** returns the affected layers */
-  public MapLayer[] getAffectedLayers()
-  {
-    return new MapLayer[0];
-  }
-  
-  public String getName()
-  {
-    return "Selected Tiles Brush ("+getBounds().width+"x"+getBounds().height+")";
-  }
+		return (p1 == null) ? new Rectangle() : new Rectangle(0, 0, p2.x - p1.x + 1, p2.y - p1.y + 1);
+	}
+
+	/** Sets the currently selected Tiles. */
+	public void setTiles(List<StatefulTile> selectedTiles) {
+		super.setTiles(selectedTiles);
+		cachedBounds = null;
+	}
+
+	/** draws the brush. */
+	public Rectangle commitPaint(MultilayerPlane mp, int x, int y, int initLayer) {
+		TileLayer tileLayer = (TileLayer) mp.getLayer(initLayer);
+		if (tileLayer != null) {
+			for (StatefulTile tile : selectedTiles) {
+				tileLayer.setTileAt(tile.p.x + x, tile.p.y + y, tile.tile);
+			}
+		}
+
+		Rectangle rect = new Rectangle(getBounds());
+		rect.x += x;
+		rect.y += y;
+
+		return rect;
+	}
+
+	/** not implemented. */
+	public void paint(Graphics g, int x, int y) {
+	}
+
+	/** not implemented. */
+	public boolean equals(Brush b) {
+		return false;
+	}
+
+	public String toString() {
+		StringBuilder buf = new StringBuilder();
+		buf.append("[MultiTileBrush: ");
+
+		for (StatefulTile tile : selectedTiles) {
+			buf.append(tile);
+		}
+
+		return buf.toString() + "]";
+	}
+
+	/** returns the affected layers. */
+	public MapLayer[] getAffectedLayers() {
+		return new MapLayer[0];
+	}
+
+	public String getName() {
+		return "Selected Tiles Brush (" + getBounds().width + "x" + getBounds().height + ")";
+	}
 }

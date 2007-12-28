@@ -25,24 +25,22 @@ import javax.swing.KeyStroke;
 import tiled.mapeditor.MapEditor;
 
 /**
- * Inverses the current selection
+ * Inverses the current selection.
+ * 
  * @author mtotz
  */
-public class InverseSelectionAction extends AbstractAction
-{
-  private static final long serialVersionUID = -3030827051213056224L;
+public class InverseSelectionAction extends AbstractAction {
+	private static final long serialVersionUID = -3030827051213056224L;
 
-  private MapEditor mapEditor;
-  
-  public InverseSelectionAction(MapEditor mapEditor)
-  {
-    super("Invert");
-    putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke("control I"));
-    putValue(SHORT_DESCRIPTION, "Inverse of the current selection");
-    this.mapEditor = mapEditor;
-  }
+	private MapEditor mapEditor;
 
-  public void actionPerformed(ActionEvent e)
-  {
-  }
+	public InverseSelectionAction(MapEditor mapEditor) {
+		super("Invert");
+		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke("control I"));
+		putValue(SHORT_DESCRIPTION, "Inverse of the current selection");
+		this.mapEditor = mapEditor;
+	}
+
+	public void actionPerformed(ActionEvent e) {
+	}
 }

@@ -34,64 +34,51 @@ import tiled.core.TileLayer;
 import tiled.mapeditor.MapEditor;
 
 /**
- * Creates a new Brush using all visible layers
+ * Creates a new Brush using all visible layers.
+ * 
  * @author mtotz
  */
-public class CreateMultiLayerBrushAction extends AbstractAction
-{
-  private static final long serialVersionUID = -8004754730959503398L;
+public class CreateMultiLayerBrushAction extends AbstractAction {
+	private static final long serialVersionUID = -8004754730959503398L;
 
-  private MapEditor mapEditor;
-  
-  public CreateMultiLayerBrushAction(MapEditor mapEditor)
-  {
-    super("");
-    putValue(SHORT_DESCRIPTION, "Creates a new multilayer brush using all visible layers");
-    putValue(SMALL_ICON, MapEditor.loadIcon("resources/plus2.png"));
-    this.mapEditor = mapEditor;
-  }
+	private MapEditor mapEditor;
 
-  public void actionPerformed(ActionEvent e)
-  {
-    List<Point> selectedList = new ArrayList<Point>(mapEditor.getSelectedTiles());
-    List<StatefulTile> brushList = new ArrayList<StatefulTile>();
-    
-    Map map = mapEditor.currentMap;
+	public CreateMultiLayerBrushAction(MapEditor mapEditor) {
+		super("");
+		putValue(SHORT_DESCRIPTION, "Creates a new multilayer brush using all visible layers");
+		putValue(SMALL_ICON, MapEditor.loadIcon("resources/plus2.png"));
+		this.mapEditor = mapEditor;
+	}
 
-    // get all layers
-    for (int i = 0; i < map.getTotalLayers(); i++)
-    {
-      MapLayer mapLayer = map.getLayer(i);
-      if (mapLayer.isVisible() && mapLayer instanceof TileLayer)
-      {
-        TileLayer tileLayer = (TileLayer) mapLayer;
-        // copy tiles
-        for (Point p : selectedList)
-        {
-          Tile tile = tileLayer.getTileAt(p.x, p.y);
-          if (tile != null)
-          {
-            brushList.add(new StatefulTile(p,i,tile));
-          }
-        }
-      }
-    }
+	public void actionPerformed(ActionEvent e) {
+		List<Point> selectedList = new ArrayList<Point>(mapEditor.getSelectedTiles());
+		List<StatefulTile> brushList = new ArrayList<StatefulTile>();
 
-    if (brushList.size() > 0)
-    {
-      String s = (String) JOptionPane.showInputDialog(
-          mapEditor.appFrame,
-          "Enter a name for the brush:",
-          "Brush Name",
-          JOptionPane.PLAIN_MESSAGE,
-          null,
-          null,
-          "name");
+		Map map = mapEditor.currentMap;
 
-      TileGroup tileGroup = new TileGroup(map,brushList,s == null ? "unnamed" : s);
-      map.addUserBrush(tileGroup.normalize());
-      mapEditor.layerEditPanel.repaint();
-    }
-  }
+		// get all layers
+		for (int i = 0; i < map.getTotalLayers(); i++) {
+			MapLayer mapLayer = map.getLayer(i);
+			if (mapLayer.isVisible() && mapLayer instanceof TileLayer) {
+				TileLayer tileLayer = (TileLayer) mapLayer;
+				// copy tiles
+				for (Point p : selectedList) {
+					Tile tile = tileLayer.getTileAt(p.x, p.y);
+					if (tile != null) {
+						brushList.add(new StatefulTile(p, i, tile));
+					}
+				}
+			}
+		}
+
+		if (brushList.size() > 0) {
+			String s = (String) JOptionPane.showInputDialog(mapEditor.appFrame, "Enter a name for the brush:",
+					"Brush Name", JOptionPane.PLAIN_MESSAGE, null, null, "name");
+
+			TileGroup tileGroup = new TileGroup(map, brushList, s == null ? "unnamed" : s);
+			map.addUserBrush(tileGroup.normalize());
+			mapEditor.layerEditPanel.repaint();
+		}
+	}
 
 }

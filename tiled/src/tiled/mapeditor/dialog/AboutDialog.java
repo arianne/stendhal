@@ -23,43 +23,41 @@ import javax.swing.*;
 
 import tiled.mapeditor.MapEditor;
 
-
 /**
  * The about dialog.
  */
-public class AboutDialog extends JFrame
-{
-  private static final long serialVersionUID = 7565310866809925372L;
+public class AboutDialog extends JFrame {
+	private static final long serialVersionUID = 7565310866809925372L;
 
-    JFrame parent;
+	JFrame parent;
 
-    public AboutDialog(JFrame parent) {
-        super(MapEditor.TITLE+" v" + MapEditor.VERSION);
+	public AboutDialog(JFrame parent) {
+		super(MapEditor.TITLE + " v" + MapEditor.VERSION);
 
-        this.parent = parent;
-        ImageIcon icon;
-        
-        try {
-            icon = new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/tiled/mapeditor/resources/logo.png")));
+		this.parent = parent;
+		ImageIcon icon;
 
-            JPanel content = new JPanel();
-            JLabel label = new JLabel(icon);
-            content.add(new JLabel("<html>Stendhal Mapeditor is<br>based on Tiled 0.5.2"));
-            content.add(label);
+		try {
+			icon = new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/tiled/mapeditor/resources/logo.png")));
 
-            setContentPane(content);
-            setResizable(false);
-            setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-            pack();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+			JPanel content = new JPanel();
+			JLabel label = new JLabel(icon);
+			content.add(new JLabel("<html>Stendhal Mapeditor is<br>based on Tiled 0.5.2"));
+			content.add(label);
 
-    public void setVisible(boolean visible) {
-        if (visible) {
-            setLocationRelativeTo(parent);
-        }
-        super.setVisible(visible);
-    }
+			setContentPane(content);
+			setResizable(false);
+			setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+			pack();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void setVisible(boolean visible) {
+		if (visible) {
+			setLocationRelativeTo(parent);
+		}
+		super.setVisible(visible);
+	}
 }

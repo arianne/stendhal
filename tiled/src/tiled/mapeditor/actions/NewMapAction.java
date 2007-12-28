@@ -29,23 +29,20 @@ import tiled.mapeditor.MapEditor;
  * 
  * @author mtotz
  */
-public class NewMapAction extends AbstractAction
-{
-  private static final long serialVersionUID = 1879486472908143291L;
+public class NewMapAction extends AbstractAction {
+	private static final long serialVersionUID = 1879486472908143291L;
 
-  private MapEditor mapEditor;
-  
-  public NewMapAction(MapEditor mapEditor)
-  {
-    super("New...");
-    putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke("control N"));
-    putValue(SHORT_DESCRIPTION, "Start a new map");
-    this.mapEditor = mapEditor;
-  }
+	private MapEditor mapEditor;
 
-  public void actionPerformed(ActionEvent e)
-  {
-    mapEditor.newMap();
-  }
+	public NewMapAction(MapEditor mapEditor) {
+		super("New...");
+		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke("control N"));
+		putValue(SHORT_DESCRIPTION, "Start a new map");
+		this.mapEditor = mapEditor;
+	}
+
+	public void actionPerformed(ActionEvent e) {
+		mapEditor.newMap();
+	}
 
 }

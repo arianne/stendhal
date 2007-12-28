@@ -30,83 +30,70 @@ import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
-
 /**
- * @author mtotz
- * This dialog shows exceptions with its whole stacktrace
+ * @author mtotz This dialog shows exceptions with its whole stacktrace
  */
-public class ExceptionDialog extends JDialog
-{
-  private static final long serialVersionUID = 1L;
+public class ExceptionDialog extends JDialog {
+	private static final long serialVersionUID = 1L;
 
-  
-  public static void showDialog(JFrame parent, Exception exception, String text)
-  {
-    new ExceptionDialog(parent,exception,text).setVisible(true);
-  }
-  /**
-   * 
-   */
-  private ExceptionDialog(JFrame parent, Exception exception, String text)
-  {
-    super(parent,true);
-    setBounds(parent.getX(),parent.getY(),500,300);
-    
-    setTitle("Exception occurred");
+	public static void showDialog(JFrame parent, Exception exception, String text) {
+		new ExceptionDialog(parent, exception, text).setVisible(true);
+	}
 
-    Container contentPane = getContentPane();
-    contentPane.setBackground(Color.GRAY);
-    contentPane.setLayout(new BorderLayout());
+	/**
+	 * 
+	 */
+	private ExceptionDialog(JFrame parent, Exception exception, String text) {
+		super(parent, true);
+		setBounds(parent.getX(), parent.getY(), 500, 300);
 
-    JTextArea textArea = new JTextArea(10,50);
-    textArea.setEditable(false);
-    textArea.setBackground(Color.LIGHT_GRAY);
-    textArea.setTabSize(4);
-    Font font = textArea.getFont();
-    textArea.setFont(font.deriveFont(Font.BOLD));
-    String message = (text == null ? "" : text+"\n\n") +getExceptionString(exception);  
-    textArea.setText(message);
-    contentPane.add(new JScrollPane(textArea),BorderLayout.CENTER);
+		setTitle("Exception occurred");
 
-    JButton okButton = new JButton("Ok");
-    okButton.addActionListener(new ActionListener()
-    {
-      public void actionPerformed(ActionEvent e)
-      {
-        ExceptionDialog.this.setVisible(false);
-      }
-    });
-    contentPane.add(okButton,BorderLayout.SOUTH);
-  }
+		Container contentPane = getContentPane();
+		contentPane.setBackground(Color.GRAY);
+		contentPane.setLayout(new BorderLayout());
 
-  /**
-   * @param exception
-   * @return
-   */
-  private String getExceptionString(Exception exception)
-  {
-    StringBuilder buf = new StringBuilder();
-    buf.append(exception).append("\n");
+		JTextArea textArea = new JTextArea(10, 50);
+		textArea.setEditable(false);
+		textArea.setBackground(Color.LIGHT_GRAY);
+		textArea.setTabSize(4);
+		Font font = textArea.getFont();
+		textArea.setFont(font.deriveFont(Font.BOLD));
+		String message = (text == null ? "" : text + "\n\n") + getExceptionString(exception);
+		textArea.setText(message);
+		contentPane.add(new JScrollPane(textArea), BorderLayout.CENTER);
 
-    for (StackTraceElement element : exception.getStackTrace())
-    {
-      buf.append("\tat ").append(element).append("\n");
-    }
-    
-    Throwable cause = exception.getCause();
-    while (cause != null)
-    {
-      buf.append("Caused by: ").append(cause).append("\n");
+		JButton okButton = new JButton("Ok");
+		okButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ExceptionDialog.this.setVisible(false);
+			}
+		});
+		contentPane.add(okButton, BorderLayout.SOUTH);
+	}
 
-      for (StackTraceElement element : cause.getStackTrace())
-      {
-        buf.append("\tat ").append(element).append("\n");
-      }
-    }
-    
-    return buf.toString();
-  }
-  
-  
+	/**
+	 * @param exception
+	 * @return
+	 */
+	private String getExceptionString(Exception exception) {
+		StringBuilder buf = new StringBuilder();
+		buf.append(exception).append("\n");
+
+		for (StackTraceElement element : exception.getStackTrace()) {
+			buf.append("\tat ").append(element).append("\n");
+		}
+
+		Throwable cause = exception.getCause();
+		while (cause != null) {
+			buf.append("Caused by: ").append(cause).append("\n");
+
+			for (StackTraceElement element : cause.getStackTrace()) {
+				buf.append("\tat ").append(element).append("\n");
+			}
+		}
+
+		return buf.toString();
+	}
 
 }
