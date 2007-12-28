@@ -24,10 +24,14 @@ import games.stendhal.server.util.EntityHelper;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import marauroa.common.game.RPAction;
 import static games.stendhal.server.actions.WellKnownActionConstants.*;
 
 public class OwnAction implements ActionListener {
+
+	private static final Logger logger = Logger.getLogger(OwnAction.class);
 
 	private static final String _SPECIES = "species";
 	private static final String _OWN = "own";
@@ -96,19 +100,29 @@ public class OwnAction implements ActionListener {
 
 					if (species.equals("sheep")) {
 						Sheep sheep = player.getSheep();
-						player.removeSheep(sheep);
 
-						// HACK: Avoid a problem on database
-						if (sheep.has("#db_id")) {
-							sheep.remove("#db_id");
-						}
+						if (sheep != null) {
+							player.removeSheep(sheep);
+
+    						// HACK: Avoid a problem on database
+    						if (sheep.has("#db_id")) {
+    							sheep.remove("#db_id");
+    						}
+    					} else {
+    						logger.error("sheep not found in disown action: " + action.toString());
+    					}
 					} else if (species.equals("pet")) {
 						Pet pet = player.getPet();
-						player.removePet(pet);
 
-						// HACK: Avoid a problem on database
-						if (pet.has("#db_id")) {
-							pet.remove("#db_id");
+						if (pet != null) {
+							player.removePet(pet);
+
+    						// HACK: Avoid a problem on database
+    						if (pet.has("#db_id")) {
+    							pet.remove("#db_id");
+    						}
+						} else {
+							logger.error("pet not found in disown action: " + action.toString());
 						}
 					}
 				}
