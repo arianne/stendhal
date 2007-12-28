@@ -3,6 +3,8 @@ package games.stendhal.server.entity.slot;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.mapstuff.chest.PersonalChest;
 
+import marauroa.common.game.RPSlot;
+
 import org.apache.log4j.Logger;
 
 /**
@@ -33,5 +35,8 @@ public class PersonalChestSlot extends ChestSlot {
 	    return super.isReachableForTakingThingsOutOfBy(entity);
     }
 
-	
+	@Override
+    public RPSlot getWriteableSlot() {
+		return chest.getBankSlot();
+    }
 }

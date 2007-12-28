@@ -1,5 +1,6 @@
 package games.stendhal.server.entity.slot;
 
+import marauroa.common.game.RPSlot;
 import games.stendhal.server.entity.Entity;
 
 /**
@@ -34,4 +35,10 @@ public interface Slot {
 	 */
 	boolean isItemSlot();
 
+	/**
+	 * returns the slot which must be used for write access
+	 *
+	 * @return RPSlot which should be used
+	 */
+	public RPSlot getWriteableSlot();
 }

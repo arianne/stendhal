@@ -41,4 +41,8 @@ public class EntitySlot extends RPSlot implements Slot {
 	public boolean isItemSlot() {
 		return true;
 	}
+	
+	public RPSlot getWriteableSlot() {
+		return this;
+	}
 }
