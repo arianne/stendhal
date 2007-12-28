@@ -1,7 +1,5 @@
 package games.stendhal.server.script;
 
-import games.stendhal.common.filter.FilterCriteria;
-import games.stendhal.server.actions.admin.AdministrationAction;
 import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
 import games.stendhal.server.core.engine.Task;
 import games.stendhal.server.core.events.TurnListener;
@@ -14,9 +12,10 @@ import games.stendhal.server.entity.player.Player;
 import java.util.HashSet;
 import java.util.List;
 
-import org.apache.log4j.Logger;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
+
+import org.apache.log4j.Logger;
 
 /**
  * Deep inspects a player and all his/her items.
