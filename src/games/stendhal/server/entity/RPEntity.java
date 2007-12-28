@@ -326,12 +326,13 @@ public abstract class RPEntity extends GuidedEntity {
 			String newName = get("name");
 
 			// register the new name in the conversation parser word list
-			if (name!=null && !name.equals(newName)) {
-				WordList.getInstance().unregisterSubjectName(this.name);
-			}
-			if (name==null || !name.equals(newName)) {
-				WordList.getInstance().registerSubjectName(newName);
-			}
+//TODO name registering in WordList disabled for now
+//			if (name!=null && !name.equals(newName)) {
+//				WordList.getInstance().unregisterSubjectName(this.name);
+//			}
+//			if (name==null || !name.equals(newName)) {
+//				WordList.getInstance().registerSubjectName(newName);
+//			}
 
 			name = newName;
 		}
@@ -381,12 +382,13 @@ public abstract class RPEntity extends GuidedEntity {
 	 */
 	public void setName(String name) {
 		// register the new name in the conversation parser word list
-		if (this.name!=null && !this.name.equals(name)) {
-			WordList.getInstance().unregisterSubjectName(this.name);
-		}
-		if (this.name==null || !this.name.equals(name)) {
-			WordList.getInstance().registerSubjectName(name);
-		}
+//TODO name registering in WordList disabled for now
+//		if (this.name!=null && !this.name.equals(name)) {
+//			WordList.getInstance().unregisterSubjectName(this.name);
+//		}
+//		if (this.name==null || !this.name.equals(name)) {
+//			WordList.getInstance().registerSubjectName(name);
+//		}
 
 		this.name = name;
 		put("name", name);
