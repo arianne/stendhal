@@ -6,6 +6,7 @@
 #  WORD	 TYPE	[=NORMALIZED]	[PLURAL|VALUE]
 #
 # WORD is the word in lower case.
+# NORMALIZED is used to specify the the base form.
 # PLURAL is the pluralised form of the word for nouns and verbs.
 # VALUE is used to specify the numeric equivalent of numeric expressions.
 #
@@ -16,9 +17,9 @@
 #  VER-CON		verb in conditional form
 #
 #  OBJ			object
-#  OBJ-AMO		noun specifying amount
-#  OBJ-FOO		noun, food
-#  OBJ-FLU		noun, fluid
+#  OBJ-AMO		amount
+#  OBJ-FLU		fluid
+#  OBJ-FOO		food
 #  OBJ-OBS		obsessional word
 #
 #  SUB			subject
@@ -36,6 +37,7 @@
 
 adios	VER
 ask	VER	=say
+boo	VER
 buy	VER
 bye	VER
 close	VER
@@ -44,6 +46,7 @@ do	VER
 does	VER	=do
 drop	VER
 eat	VER
+engage	VER
 farewell	VER
 fit	VER
 give	VER
@@ -54,6 +57,7 @@ had	VER	=have
 hallo	VER	=hello
 has	VER	=have
 have	VER
+heal	VER
 hello	VER
 hi	VER	=hello
 hola	VER	=hello
@@ -65,6 +69,7 @@ look	VER
 love	VER
 made	VER	=make
 make	VER
+marry	VER
 may	VER-CON
 ok	VER
 open	VER
@@ -74,6 +79,7 @@ say	VER
 sell	VER
 speak	VER	=say
 summon	VER
+wear	VER
 went	VER	=go
 will	VER
 would	VER-CON	=will
@@ -93,6 +99,7 @@ bag	OBJ	bags
 banana	OBJ-FOO	bananas
 bar	OBJ	bars
 bardiche	OBJ	bardiches
+basement	OBJ	basements
 bat	OBJ	bats
 battle	OBJ	battles
 bear	OBJ	bears
@@ -105,6 +112,7 @@ boot	OBJ	boots
 bottle	OBJ	bottles
 bow	OBJ	bows
 box	OBJ	boxes
+brandy	OBJ-FLU	brandies
 bread	OBJ
 broadsword	OBJ	broadswords
 bronze	OBJ	bronzes
@@ -123,6 +131,7 @@ chicken	OBJ-FOO	chickens
 chunk	OBJ	chunks
 claymore	OBJ	claymores
 cloak	OBJ	cloaks
+cloth	OBJ	cloths
 club	OBJ	clubs
 commander	OBJ	commanders
 cookie	OBJ-FOO	cookies
@@ -140,8 +149,8 @@ death	OBJ	deaths
 dice	OBJ	dice
 dish	OBJ	dishes
 doll	OBJ	dolls
-dragon	OBJ	dragons
 dress	OBJ	dresses
+drink	OBJ-FLU	drinks
 dwarf	OBJ	dwarves
 earth	OBJ	earths
 eater	OBJ	eaters
@@ -155,6 +164,7 @@ fish	OBJ-FOO	fishes
 flail	OBJ	flails
 flask	OBJ	flasks
 flour	OBJ	flours
+flower	OBJ	flowers
 foot	OBJ	feet
 gargoyle	OBJ	gargoyles
 grain	OBJ-FOO	grains
@@ -177,6 +187,7 @@ index	OBJ	indices
 iron	OBJ	irons
 it	OBJ	its
 job	OBJ	jobs
+karma	OBJ	karmas
 katana	OBJ	katanas
 key	OBJ	keys
 knife	OBJ	knives
@@ -185,11 +196,13 @@ kobold	OBJ	kobolds
 larva	OBJ	larvae
 leg	OBJ	legs
 lich	OBJ	liches
+list	OBJ	lists
 loaf	OBJ-AMO	loaves
 log	OBJ	logs
 longbow	OBJ	longbows
 lotus	OBJ	lotuses
 mace	OBJ	maces
+magic	OBJ	magics
 map	OBJ	maps
 match	OBJ	matches
 matrix	OBJ	matrices
@@ -198,6 +211,7 @@ militia	OBJ	militia
 money	OBJ	money
 monkey	OBJ	monkeys
 moose	OBJ	moose
+morning	OBJ	mornings
 mouse	OBJ	mice
 mumak	OBJ	mumakil
 mummy	OBJ	mummies
@@ -213,16 +227,19 @@ orc	OBJ	orcs
 ore	OBJ	ores
 pair	OBJ	pairs
 paper	OBJ	papers
+park	OBJ	parks
 pie	OBJ-FOO	pies
 piece	OBJ	pieces
 plate	OBJ	plates
 plural	OBJ	plurals
 poison	OBJ-FLU	poisons
 porcini	OBJ-FOO	porcini
+portal	OBJ	portals
 potion	OBJ-FLU	potions
 present	OBJ	presents
 princess	OBJ	princesses
 quest	OBJ	quests
+ring	OBJ	rings
 robin	OBJ	robins
 rod	OBJ	rods
 sacerdotist	OBJ	sacerdotists
@@ -252,22 +269,29 @@ table	OBJ	tables
 task	OBJ	tasks
 teddy	OBJ	teddies
 that	OBJ	=this	this
+thing	OBJ	things
 this	OBJ	this
 toadstool	OBJ	toadstools
 token	OBJ	tokens
 tomato	OBJ-FOO	tomatoes
 tooth	OBJ	teeth
 trade	OBJ	trades
+trigger	OBJ	triggers
 trophy	OBJ	trophies
 trouser	OBJ	trousers
 venom	OBJ	venoms
 vertex	OBJ	vertices
+vodka	OBJ-FLU	vodkas
 vortex	OBJ	vortices
 war	OBJ	wars
 water	OBJ-FLU	waters
+wedding	OBJ	weddings
+whiskey	OBJ-FLU	whiskeys
 wine	OBJ-FLU
+wodka	OBJ-FLU	wodkas
 wolf	OBJ	wolves
 wood	OBJ	woods
+word	OBJ	words
 work	OBJ	works
 world	OBJ	worlds
 yclept	OBJ	yclepts
@@ -278,6 +302,7 @@ archer	SUB	archers
 archmage	SUB	archmages
 archrat	SUB-ANI	archrats
 baby	SUB	babies
+ben	SUB-NAM
 bob	SUB-NAM
 boss	SUB	bosses
 boy	SUB	boys
@@ -290,9 +315,11 @@ demon	SUB	demons
 deus	SUB	dei
 djinni	SUB	djinn
 dog	SUB-ANI	dogs
+dragon	SUB-ANI	dragons
 efreeti	SUB	efreet
 elephant	SUB-ANI	elephants
 elf	SUB	elves
+felina	SUB-NAM
 fox	SUB-ANI	foxes
 ghost	SUB	ghosts
 giantrat	SUB-ANI	giantrats
@@ -300,14 +327,18 @@ gnome	SUB	gnomes
 goblin	SUB	goblins
 golem	SUB	golems
 goose	SUB-ANI	geese
+goran	SUB-NAM
 guardian	SUB	guardians
 he	SUB	they
 i	SUB	we
+katinka	SUB-NAM
 kymara	SUB-NAM
 leader	SUB	leaders
 lion	SUB-ANI	lions
 mage	SUB	mages
 man	SUB	men
+mark	SUB-NAM
+mary	SUB-NAM
 me	SUB	=i	us
 penguin	SUB-ANI	penguins
 player	SUB	players
@@ -317,6 +348,7 @@ ratwoman	SUB	ratwomen
 razorrat	SUB-ANI	razorrats
 she	SUB	they
 soldier	SUB	soldiers
+spirit	SUB	spirits
 tiger	SUB-ANI	tigers
 troll	SUB	trolls
 unicorn	SUB-ANI	unicorns
@@ -328,6 +360,7 @@ warrior	SUB	warriors
 woman	SUB	women
 wumpus	SUB	wumpuses
 you	SUB	you
+zak	SUB-NAM
 zombie	SUB	zombies
 
 big	ADJ
@@ -338,7 +371,10 @@ brown	ADJ-COL
 deadly	ADJ
 elder	ADJ
 empty	ADJ
+exact	ADJ
+fiscal	ADJ
 fresh	ADJ
+giant	ADJ
 golden	ADJ-COL
 great	ADJ
 greater	ADJ
@@ -347,6 +383,7 @@ lazy	ADJ
 leather	ADJ
 marked	ADJ
 minor	ADJ
+nice	ADJ
 old	ADJ
 quick	ADJ
 red	ADJ-COL
@@ -354,6 +391,7 @@ royal	ADJ
 short	ADJ
 silvery	ADJ-COL
 small	ADJ
+special	ADJ
 studded	ADJ
 twoside	ADJ
 white	ADJ-COL

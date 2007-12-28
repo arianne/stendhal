@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 /**
  * ConversationParser returns the parsed sentence in this class.
  * The Sentence class stores the sentence content in a list of
@@ -15,6 +17,8 @@ import java.util.List;
  * @author Martin Fuchs
  */
 public class Sentence {
+
+	private static final Logger logger = Logger.getLogger(Sentence.class);
 
 	public final static int ST_UNDEFINED	= 0;
 	public final static int ST_STATEMENT	= 1;
@@ -131,7 +135,12 @@ public class Sentence {
 			Word word = it.next();
 
 			if (!word.getType().isIgnore()) {
-				return word.getNormalized();
+				// special case for numeric expressions to disambiguate "no" from "0"
+				if (word.getType().isNumeral()) {
+					return word.getOriginal();
+				} else {
+					return word.getNormalized();
+				}
 			}
 		}
 
@@ -139,12 +148,12 @@ public class Sentence {
     }
 
 	/**
-	 * Return the number of "VER" Word objects in the sentence.
+	 * Return the number of Word objects of type "VERB" in the sentence.
 	 * 
 	 * @return number of subjects
 	 */
 	public int getVerbCount() {
-		return countWords("VER");
+		return countWords(WordType.VERB);
 	}
 
 	/**
@@ -153,7 +162,7 @@ public class Sentence {
 	 * @return subject
 	 */
 	public Word getVerb(int i) {
-		return getWord(i, "VER");
+		return getWord(i, WordType.VERB);
 	}
 
 	/**
@@ -188,7 +197,7 @@ public class Sentence {
 	 * @return number of subjects
 	 */
 	public int getSubjectCount() {
-		return countWords("SUB");
+		return countWords(WordType.SUBJECT);
 	}
 
 	/**
@@ -197,7 +206,7 @@ public class Sentence {
 	 * @return subject
 	 */
 	public Word getSubject(int i) {
-		return getWord(i, "SUB");
+		return getWord(i, WordType.SUBJECT);
 	}
 
 	/**
@@ -219,7 +228,7 @@ public class Sentence {
 	 * @return number of objects
 	 */
 	public int getObjectCount() {
-		return countWords("OBJ");
+		return countWords(WordType.OBJECT);
 	}
 
 	/**
@@ -228,7 +237,7 @@ public class Sentence {
 	 * @return object
 	 */
 	public Word getObject(int i) {
-		return getWord(i, "OBJ");
+		return getWord(i, WordType.OBJECT);
 	}
 
 	/**
@@ -284,7 +293,7 @@ public class Sentence {
 	 * @return number of objects
 	 */
 	public int getPrepositionCount() {
-		return countWords("PRE");
+		return countWords(WordType.PREPOSITION);
 	}
 
 	/**
@@ -293,7 +302,7 @@ public class Sentence {
 	 * @return object
 	 */
 	public Word getPreposition(int i) {
-		return getWord(i, "PRE");
+		return getWord(i, WordType.PREPOSITION);
 	}
 
 	/**
@@ -423,18 +432,18 @@ public class Sentence {
 	    		if (verb != null) {
 	    			WordType type = verb.getType();
 
-	    			if (original.endsWith("ing")) {
-	    				w.setType(new WordType(type.getTypeString()+"-GER"));
+	    			if (Grammar.isGerund(original)) {
+	    				w.setType(new WordType(type.getTypeString()+WordType.GERUND));
 	    			} else {
 	    				w.setType(type);
 	    			}
 
 	    			w.setNormalized(verb.getNormalized());
 	    		} else {
-    	    		parser.setError("unknown word: " + original);
-
     	    		w.setType(new WordType(""));
     	    		w.setNormalized(original.toLowerCase());
+
+	    			logger.warn("unknown word: " + original);
 	    		}
 	    	}
 	    }
@@ -463,7 +472,7 @@ public class Sentence {
     				// If we already found a verb, we prepend "you" as
 					// first subject and mark the sentence as imperative.
     				if (prevVerb != null) {
-    					Word you = new Word("you", "you", "SUB");
+    					Word you = new Word("you", "you", WordType.SUBJECT);
     					words.add(0, you);
     					sentenceType = ST_IMPERATIVE;
     				}
