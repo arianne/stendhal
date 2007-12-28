@@ -1,4 +1,4 @@
-package games.stendhal.server.entity.npc.newparser;
+package games.stendhal.server.entity.npc.parser;
 
 /**
  * This utility class is used to create string representations

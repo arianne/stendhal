@@ -1,4 +1,4 @@
-package games.stendhal.server.entity.npc.newparser;
+package games.stendhal.server.entity.npc.parser;
 
 /**
  * PunctuationParser is used to trim preceding and trailing

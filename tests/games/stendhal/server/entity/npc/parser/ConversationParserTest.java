@@ -4,8 +4,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
-import games.stendhal.server.entity.npc.newparser.ConversationParser;
-import games.stendhal.server.entity.npc.newparser.Sentence;
+import games.stendhal.server.entity.npc.parser.ConversationParser;
+import games.stendhal.server.entity.npc.parser.Sentence;
 
 import org.junit.Test;
 

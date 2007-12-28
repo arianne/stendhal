@@ -2,8 +2,8 @@ package games.stendhal.server.entity.npc.parser;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import games.stendhal.server.entity.npc.newparser.ConversationParser;
-import games.stendhal.server.entity.npc.newparser.Sentence;
+import games.stendhal.server.entity.npc.parser.ConversationParser;
+import games.stendhal.server.entity.npc.parser.Sentence;
 
 import org.junit.Test;
 
