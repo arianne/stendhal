@@ -37,4 +37,19 @@ public enum Banks {
 	public String getSlotName() {
 		return slotName;
 	}
+
+	/**
+	 * returns the Banks enum instance for the specified slot name
+	 *
+	 * @param slotName name of bank slot
+	 * @return Banks enum instance or null
+	 */
+	public static Banks getBySlotName(String slotName) {
+		for (Banks bank : values()) {
+			if (bank.getSlotName().equals(slotName)) {
+				return bank;
+			}
+		}
+		return null;
+	}
 }
