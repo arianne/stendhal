@@ -384,7 +384,7 @@ public abstract class RPEntity extends GuidedEntity {
 		if (this.name!=null && !this.name.equals(name)) {
 			WordList.getInstance().unregisterName(this.name);
 		}
-		if (name==null || !this.name.equals(name)) {
+		if (this.name==null || !this.name.equals(name)) {
 			WordList.getInstance().registerName(name);
 		}
 
