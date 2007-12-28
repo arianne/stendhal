@@ -2,6 +2,7 @@ package games.stendhal.server.script;
 
 import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.engine.Task;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.core.scripting.ScriptImpl;
@@ -40,31 +41,39 @@ public class PlayerPositionMonitoring extends ScriptImpl {
 
 		private void list() {
 			// create player list
-			StringBuilder sb = new StringBuilder(String.valueOf(counter));
+			final StringBuilder sb = new StringBuilder(String.valueOf(counter));
 			sb.append(": ");
 
-			for (Player player : StendhalRPRuleProcessor.get().getPlayers()) {
-				if (sb.length() > 10) {
-					sb.append(", ");
+			StendhalRPRuleProcessor.get().getOnlinePlayers().forAllPlayersExecute(new Task(){
+
+				public void execute(Player player) {
+
+					if (sb.length() > 10) {
+						sb.append(", ");
+					}
+
+					sb.append(player.getTitle());
+					sb.append(' ');
+
+					StendhalRPZone zone = player.getZone();
+
+					if (zone != null) {
+						sb.append(zone.getName());
+					} else {
+						sb.append("(none)");
+					}
+
+					sb.append(' ');
+					sb.append(player.getX());
+					sb.append(' ');
+					sb.append(player.getY());
+				
+
+					
 				}
-
-				sb.append(player.getTitle());
-				sb.append(' ');
-
-				StendhalRPZone zone = player.getZone();
-
-				if (zone != null) {
-					sb.append(zone.getName());
-				} else {
-					sb.append("(none)");
-				}
-
-				sb.append(' ');
-				sb.append(player.getX());
-				sb.append(' ');
-				sb.append(player.getY());
-			}
-
+				
+			});
+			
 			admin.sendPrivateText(sb.toString());
 		}
 

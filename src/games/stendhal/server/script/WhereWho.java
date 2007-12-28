@@ -2,10 +2,10 @@ package games.stendhal.server.script;
 
 import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.engine.Task;
 import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.entity.player.Player;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -20,35 +20,39 @@ public class WhereWho extends ScriptImpl {
 	public void execute(Player admin, List<String> args) {
 		super.execute(admin, args);
 
-		// create player list
-		Collection<Player> players = StendhalRPRuleProcessor.get().getPlayers();
-		Map<String, StringBuilder> maps = new TreeMap<String, StringBuilder>();
-		for (Player player : players) {
-			StendhalRPZone zone = player.getZone();
-			String zoneid;
+		final Map<String, StringBuilder> maps = new TreeMap<String, StringBuilder>();
+		StendhalRPRuleProcessor.get().getOnlinePlayers().forAllPlayersExecute(new Task() {
 
-			if (zone != null) {
-				zoneid = zone.getName();
-			} else {
-				// Indicate players in world, but not zone
-				zoneid = "(none)";
+			public void execute(Player player) {
+				StendhalRPZone zone = player.getZone();
+				String zoneid;
+
+				if (zone != null) {
+					zoneid = zone.getName();
+				} else {
+					// Indicate players in world, but not zone
+					zoneid = "(none)";
+				}
+
+				// get zone and add it to map
+				StringBuilder sb = maps.get(zoneid);
+				if (sb == null) {
+					sb = new StringBuilder();
+					sb.append(zoneid);
+					sb.append(": ");
+					maps.put(zoneid, sb);
+				}
+
+				// add player
+				sb.append(player.getTitle());
+				sb.append(" (");
+				sb.append(player.getLevel());
+				sb.append(")  ");
+				
 			}
-
-			// get zone and add it to map
-			StringBuilder sb = maps.get(zoneid);
-			if (sb == null) {
-				sb = new StringBuilder();
-				sb.append(zoneid);
-				sb.append(": ");
-				maps.put(zoneid, sb);
-			}
-
-			// add player
-			sb.append(player.getTitle());
-			sb.append(" (");
-			sb.append(player.getLevel());
-			sb.append(")  ");
-		}
+			
+		});
+	
 
 		// create response
 		StringBuilder sb = new StringBuilder();

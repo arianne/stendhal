@@ -250,9 +250,9 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	 * 
 	 * @return A list of all online players
 	 */
-	 public Collection<Player> getPlayers() {
-	 return getOnlinePlayers().getPlayers();
-	 }
+//	 public Collection<Player> getPlayers() {
+//	 return getOnlinePlayers().getPlayers();
+//	 }
 	/**
 	 * Finds an online player with a specific name.
 	 * 
