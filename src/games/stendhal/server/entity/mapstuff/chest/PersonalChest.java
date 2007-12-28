@@ -97,10 +97,11 @@ public class PersonalChest extends Chest {
 	 * 
 	 * @return A per-player/per-bank slot.
 	 */
-	protected RPSlot getBankSlot() {
-		/*
-		 * It's assumed attending != null when called
-		 */
+	public RPSlot getBankSlot() {
+		if (attending == null) {
+			logger.error("Calling getBankSlot on non-attending PersonalChest " + this, new Throwable());
+			return null;
+		}
 		return attending.getSlot(bankName);
 	}
 
@@ -229,4 +230,5 @@ public class PersonalChest extends Chest {
 			}
 		}
 	}
+
 }
