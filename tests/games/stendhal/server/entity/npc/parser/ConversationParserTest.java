@@ -51,14 +51,14 @@ public class ConversationParserTest {
 
 	@Test
 	public final void testSpaceHandling() {
-		Sentence sentence = ConversationParser.parse("drop  three \tchicken");
+		Sentence sentence = ConversationParser.parse("drop  three \tmeat");
 		assertFalse(sentence.hasError());
 		assertEquals("drop", sentence.getVerbString());
 		assertEquals("drop", sentence.getTrigger());
 		assertEquals(3, sentence.getObject(0).getAmount());
-		assertEquals("chicken", sentence.getObjectName());
-		assertEquals("drop three chicken", sentence.getOriginalText());
-		assertEquals("drop chicken", sentence.getNormalized());
+		assertEquals("meat", sentence.getObjectName());
+		assertEquals("drop three meat", sentence.getOriginalText());
+		assertEquals("drop meat", sentence.getNormalized());
 
 		sentence = ConversationParser.parse(" sell house   ");
 		assertFalse(sentence.hasError());
