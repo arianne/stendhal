@@ -182,7 +182,8 @@ class DestinationObject extends MoveableObject {
 	public void addToWorld(Entity entity, Player player) {
 		if (parent != null) {
 			// drop the entity into a slot
-			RPSlot rpslot = parent.getSlot(slot);
+			RPSlot rpslot = ((EntitySlot) parent.getSlot(slot)).getWriteableSlot();
+
 
 			// check if the item can be merged with one already in the slot
 			if (entity instanceof StackableItem) {
@@ -239,7 +240,7 @@ class DestinationObject extends MoveableObject {
 	/**
 	 * returns true when the rpobject is one of the classes in <i>validClasses</i>.
 	 */
-	public boolean checkClass(List<Class< ? >> validClasses) {
+	public boolean checkClass(List<Class<?>> validClasses) {
 		if (parent != null) {
 			return EquipUtil.isCorrectClass(validClasses, parent);
 		}

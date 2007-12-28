@@ -84,7 +84,7 @@ class SourceObject extends MoveableObject {
 				return;
 			}
 
-			RPSlot baseSlot = parent.getSlot(slot);
+			RPSlot baseSlot = ((EntitySlot) parent.getSlot(slot)).getWriteableSlot();
 
 			if (!baseSlot.has(baseItemId)) {
 				logger.warn("Base item(" + parent + ") doesn't containt item("
@@ -207,7 +207,7 @@ class SourceObject extends MoveableObject {
 	/**
 	 * returns true when the rpobject is one of the classes in <i>validClasses</i>.
 	 */
-	public boolean checkClass(List<Class< ? >> validClasses) {
+	public boolean checkClass(List<Class<?>> validClasses) {
 		if (parent != null) {
 			if (!EquipUtil.isCorrectClass(validClasses, parent)) {
 				logger.debug("parent is the wrong class "
