@@ -7,16 +7,30 @@ import marauroa.common.game.Result;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import utilities.PlayerTestHelper;
+
 public class CharacterCreatorTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		// setup RP classes
+		PlayerTestHelper.generatePlayerRPClasses();
+		PlayerTestHelper.generateItemRPClasses();
 	}
 
 	@Test
 	public void testCreate() {
 		CharacterCreator cc = new CharacterCreator("user", "char", null);
-		assertEquals(Result.FAILED_EXCEPTION, cc.create());
+
+		Result result = cc.create().getResult();
+
+		// repeat creation after success in the first run
+		if (result == Result.OK_CREATED) {
+			result = cc.create().getResult();
+		}
+
+		// failure in the second run
+		assertEquals(Result.FAILED_PLAYER_EXISTS, result);
 	}
 
 }

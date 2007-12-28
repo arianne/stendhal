@@ -15,7 +15,6 @@ import marauroa.common.game.Result;
 import marauroa.server.game.db.DatabaseFactory;
 import marauroa.server.game.db.JDBCDatabase;
 import marauroa.server.game.db.Transaction;
-import marauroa.test.TestHelper;
 
 import org.apache.log4j.Logger;
 
@@ -106,7 +105,6 @@ public class CharacterCreator {
 				e1.printStackTrace();
 			}
 			logger.error("Can't create character", e);
-			TestHelper.fail();
 			return new CharacterResult(Result.FAILED_EXCEPTION, character,
 					template);
 		}
