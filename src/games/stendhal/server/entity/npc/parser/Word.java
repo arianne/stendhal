@@ -60,7 +60,7 @@ public class Word {
 	 */
 	public void mergeLeft(final Word other) {
 		original = other.getOriginal() + ' ' + original;
-		setType(getType().merge(other.getType()));
+		mergeType(other.getType());
 		setAmount(mergeAmount(other.amount, amount));
 	}
 
@@ -71,12 +71,9 @@ public class Word {
 	 */
 	public void mergeRight(final Word other) {
 		original = original + ' ' + other.getOriginal();
-		setType(getType().merge(other.getType()));
+		mergeType(other.getType());
 		setAmount(mergeAmount(amount, other.amount));
-
-		if (other.getBreakFlag()) {
-			breakFlag = true;
-		}
+		breakFlag = other.getBreakFlag();
 	}
 
 	/**
@@ -128,6 +125,22 @@ public class Word {
 
 	public void setType(WordType type) {
 		this.type = type;
+	}
+
+	/**
+	 * Merge word type with another one
+	 * while handling null values.
+	 *
+	 * @param otherType
+	 */
+	public void mergeType(WordType otherType) {
+		if (type != null) {
+			if (otherType != null) {
+				type = type.merge(otherType);
+			}
+		} else {
+			type = otherType;
+		}
 	}
 
 	public WordType getType() {
