@@ -28,6 +28,8 @@ public class WordList {
 
 	private static final Logger logger = Logger.getLogger(WordList.class);
 
+	public final static String SUBJECT_NAME_DYNAMIC = WordType.SUBJECT_NAME + WordType.SUFFIX + "DYN";
+
 	private final Map<String, WordEntry> words = new TreeMap<String, WordEntry>();
 
 	private static final WordList instance = new WordList();
@@ -344,7 +346,7 @@ public class WordList {
 	 * register a name to be recognized by the conversation parser
 	 * @param name
 	 */
-	public void registerName(String name) {
+	public void registerSubjectName(String name) {
 		String key = name.toLowerCase();
 		WordEntry w = words.get(key);
 
@@ -352,9 +354,11 @@ public class WordList {
 			WordEntry entry = new WordEntry();
 
 			entry.setNormalized(key);
-			entry.setType(new WordType(WordType.SUBJECT_NAME));
+			entry.setType(new WordType(SUBJECT_NAME_DYNAMIC));
 
 			words.put(key, entry);
+		} else if (!w.getType().isSubject()) {
+			logger.warn("subject name already registered with incompatible word type: " + name + "/" + w.getType().getTypeString());
 		}
 	}
 
@@ -362,11 +366,11 @@ public class WordList {
 	 * remove a name from the conversation parser word list
 	 * @param name
 	 */
-	public void unregisterName(String name) {
+	public void unregisterSubjectName(String name) {
 		String key = name.toLowerCase();
 		WordEntry w = words.get(key);
 
-		if (w!=null && w.getType().getTypeString().equals(WordType.SUBJECT_NAME)) {
+		if (w!=null && w.getType().getTypeString().equals(SUBJECT_NAME_DYNAMIC)) {
 			words.remove(key);
 		}
 	}

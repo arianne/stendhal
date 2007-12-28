@@ -167,7 +167,7 @@ public abstract class RPEntity extends GuidedEntity {
 	@Override
 	public void finalize() {
 		if (name != null) {
-			WordList.getInstance().unregisterName(name);
+			WordList.getInstance().unregisterSubjectName(name);
 		}
 	}
 
@@ -327,10 +327,10 @@ public abstract class RPEntity extends GuidedEntity {
 
 			// register the new name in the conversation parser word list
 			if (name!=null && !name.equals(newName)) {
-				WordList.getInstance().unregisterName(this.name);
+				WordList.getInstance().unregisterSubjectName(this.name);
 			}
 			if (name==null || !name.equals(newName)) {
-				WordList.getInstance().registerName(newName);
+				WordList.getInstance().registerSubjectName(newName);
 			}
 
 			name = newName;
@@ -382,10 +382,10 @@ public abstract class RPEntity extends GuidedEntity {
 	public void setName(String name) {
 		// register the new name in the conversation parser word list
 		if (this.name!=null && !this.name.equals(name)) {
-			WordList.getInstance().unregisterName(this.name);
+			WordList.getInstance().unregisterSubjectName(this.name);
 		}
 		if (this.name==null || !this.name.equals(name)) {
-			WordList.getInstance().registerName(name);
+			WordList.getInstance().registerSubjectName(name);
 		}
 
 		this.name = name;
