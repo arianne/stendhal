@@ -22,6 +22,7 @@ import games.stendhal.server.core.rule.ActionManager;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
+import games.stendhal.server.entity.npc.parser.WordList;
 import games.stendhal.server.entity.player.Player;
 
 import java.awt.geom.Rectangle2D;
@@ -160,6 +161,13 @@ public abstract class RPEntity extends GuidedEntity {
 			entity.addRPSlot("keyring", 8, Definition.PRIVATE);
 		} catch (SyntaxException e) {
 			logger.error("cannot generateRPClass", e);
+		}
+	}
+
+	@Override
+	public void finalize() {
+		if (name != null) {
+			WordList.getInstance().unregisterName(name);
 		}
 	}
 
@@ -315,7 +323,17 @@ public abstract class RPEntity extends GuidedEntity {
 		super.update();
 
 		if (has("name")) {
-			name = get("name");
+			String newName = get("name");
+
+			// register the new name in the conversation parser word list
+			if (name!=null && !name.equals(newName)) {
+				WordList.getInstance().unregisterName(this.name);
+			}
+			if (name==null || !name.equals(newName)) {
+				WordList.getInstance().registerName(newName);
+			}
+
+			name = newName;
 		}
 
 		if (has("atk")) {
@@ -362,6 +380,14 @@ public abstract class RPEntity extends GuidedEntity {
 	 *            The new name.
 	 */
 	public void setName(String name) {
+		// register the new name in the conversation parser word list
+		if (this.name!=null && !this.name.equals(name)) {
+			WordList.getInstance().unregisterName(this.name);
+		}
+		if (name==null || !this.name.equals(name)) {
+			WordList.getInstance().registerName(name);
+		}
+
 		this.name = name;
 		put("name", name);
 	}

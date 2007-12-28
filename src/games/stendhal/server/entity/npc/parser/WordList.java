@@ -113,7 +113,7 @@ public class WordList {
 
 	        // Type identifiers are always upper case, so a lower case word must be a plural. 
 	        if (Character.isLowerCase(entry.getType().getTypeString().charAt(0))) {
-		    	entry.setType(new WordType("OBJ"));
+		    	entry.setType(new WordType(WordType.OBJECT));
 	        	entry.setPlurSing(entry.getType().getTypeString());
 	        }
 	        // complete missing plural expressions using the Grammar.plural() function
@@ -156,7 +156,7 @@ public class WordList {
 	    	WordEntry pluralEntry = new WordEntry();
 
 	    	pluralEntry.setNormalized(entry.getPlurSing());
-	    	pluralEntry.setType(new WordType(entry.getType().getTypeString() + "-PLU"));
+	    	pluralEntry.setType(new WordType(entry.getType().getTypeString() + WordType.SUFFIX_PLURAL));
 	    	pluralEntry.setPlurSing(entry.getNormalized());
 	    	pluralEntry.setValue(entry.getValue());
 
@@ -339,4 +339,36 @@ public class WordList {
 
 		return w;
 	}
+
+	/**
+	 * register a name to be recognized by the conversation parser
+	 * @param name
+	 */
+	public void registerName(String name) {
+		String key = name.toLowerCase();
+		WordEntry w = words.get(key);
+
+		if (w == null) {
+			WordEntry entry = new WordEntry();
+
+			entry.setNormalized(key);
+			entry.setType(new WordType(WordType.SUBJECT_NAME));
+
+			words.put(key, entry);
+		}
+	}
+
+	/**
+	 * remove a name from the conversation parser word list
+	 * @param name
+	 */
+	public void unregisterName(String name) {
+		String key = name.toLowerCase();
+		WordEntry w = words.get(key);
+
+		if (w!=null && w.getType().getTypeString().equals(WordType.SUBJECT_NAME)) {
+			words.remove(key);
+		}
+	}
+
 }
