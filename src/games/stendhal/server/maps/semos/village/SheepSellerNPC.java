@@ -64,9 +64,6 @@ public class SheepSellerNPC implements ZoneConfigurator {
 
 							sheep.setPosition(seller.getX(), seller.getY() + 1);
 
-							seller.getZone().add(sheep);
-
-							player.setSheep(sheep);
 							player.notifyWorldAboutChanges();
 
 							return true;

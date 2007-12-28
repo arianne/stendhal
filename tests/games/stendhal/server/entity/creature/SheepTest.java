@@ -10,6 +10,7 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.mapstuff.spawner.SheepFood;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
+import marauroa.common.Log4J;
 import marauroa.common.game.RPObject;
 
 import org.junit.BeforeClass;
@@ -22,8 +23,8 @@ public class SheepTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		MockStendlRPWorld.get();
-
+		Log4J.init();
+		assertTrue(MockStendlRPWorld.get() instanceof MockStendlRPWorld);
 		PlayerTestHelper.generateCreatureRPClasses();
 		Sheep.generateRPClass();
 	}
@@ -34,7 +35,6 @@ public class SheepTest {
 		StendhalRPZone zone = new StendhalRPZone("testzone", 10, 10);
 		zone.add(meh);
 		assertFalse(meh.searchForFood());
-
 	}
 
 	@Test
@@ -71,7 +71,6 @@ public class SheepTest {
 		assertFalse(zone.getSheepFoodList().isEmpty());
 		assertTrue(meh.searchForFood());
 		assertEquals("found food and thinks of it", "food", meh.getIdea());
-
 	}
 
 	@Test
@@ -96,7 +95,6 @@ public class SheepTest {
 		}
 		assertFalse("no path found", meh.searchForFood());
 		assertEquals(null, meh.getIdea());
-
 	}
 
 	@Test
@@ -144,7 +142,6 @@ public class SheepTest {
 
 		assertTrue("no path found", meh.searchForFood());
 		assertEquals("food", meh.getIdea());
-
 	}
 
 	@Test
@@ -153,7 +150,6 @@ public class SheepTest {
 		assertEquals("You see a sheep; it looks like it weighs about 0.", meh.describe());
 		meh.setDescription("mehmeh");
 		assertEquals("mehmeh", meh.describe());
-		
 	}
 
 	@Ignore
@@ -177,23 +173,33 @@ public class SheepTest {
 	@Test
 	public void testSheep() {
 		new Sheep();
-
 	}
 
 	@Test
 	public void testSheepPlayer() {
+		StendhalRPZone zone = new StendhalRPZone("testzone", 10, 10);
+		MockStendlRPWorld.get().addRPZone(zone);
+
 		Player bob = PlayerTestHelper.createPlayer("bob");
+		zone.add(bob);
+
 		Sheep meh = new Sheep(bob);
+
 		assertSame(bob, meh.getOwner());
 		assertSame(meh, bob.getSheep());
 	}
 
-	
 	@Test
 	public void testSheepRPObjectPlayer() {
+		StendhalRPZone zone = new StendhalRPZone("testzone", 10, 10);
+		MockStendlRPWorld.get().addRPZone(zone);
+
 		Player bob = PlayerTestHelper.createPlayer("bob");
+		zone.add(bob);
+
 		Sheep meh = new Sheep();
 		Sheep meh2 = new Sheep(meh, bob);
+
 		assertNotSame(meh, meh2);
 		assertSame(bob, meh2.getOwner());
 		assertSame(meh2, bob.getSheep());
@@ -210,7 +216,6 @@ public class SheepTest {
 		meh.setIdea("food");
 		meh.setSpeed(1.0);
 		assertTrue("pretend hunting", meh.onHungry());
-
 	}
 
 	@Ignore
@@ -230,14 +235,16 @@ public class SheepTest {
 		meh.onStarve();
 		assertEquals(0, meh.getWeight());
 		assertEquals(2, meh.getHP());
+
 		meh.onStarve();
 		assertEquals(0, meh.getWeight());
 		assertEquals(1, meh.getHP());
+
 		meh.onStarve();
 		assertEquals(0, meh.getWeight());
 		assertEquals(0, meh.getHP());
-
 	}
+
 	@Test
 	public void testEat() {
 		RPObject foodobject = new RPObject();
@@ -266,8 +273,6 @@ public class SheepTest {
 
 		meh.eat(food);
 		assertEquals(100, meh.getWeight());
-	
-
 	}
 
 }

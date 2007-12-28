@@ -26,6 +26,8 @@ import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.management.AttributeNotFoundException;
+
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.SyntaxException;
@@ -117,6 +119,13 @@ public class Sheep extends DomesticAnimal {
 		baseSpeed = 0.25;
 		hunger = 0;
 		timingAdjust = Rand.rand(10);
+
+		if (owner != null) {
+			// add sheep to zone and create RPID to be used in setSheep()
+			owner.getZone().add(this);
+			owner.setSheep(this);
+		}
+
 		update();
 		logger.debug("Created Sheep: " + this);
 	}
@@ -138,6 +147,12 @@ public class Sheep extends DomesticAnimal {
 		baseSpeed = 0.25;
 		hunger = 0;
 		timingAdjust = Rand.rand(10);
+
+		if (owner != null) {
+			// add sheep to zone and create RPID to be used in setSheep()
+			owner.getZone().add(this);
+			owner.setSheep(this);
+		}
 
 		update();
 		logger.debug("Created Sheep: " + this);
