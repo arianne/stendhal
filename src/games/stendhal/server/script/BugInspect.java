@@ -95,25 +95,7 @@ public class BugInspect extends ScriptImpl implements TurnListener {
 					if (warn || caught) {
 
 						StendhalRPRuleProcessor.get().addGameEvent("bug inspect", "support", message);
-						final String completeMessage = "bug_inspect asks for support to ADMIN: " + message;
-
-						StendhalRPRuleProcessor.get().getOnlinePlayers().forFilteredPlayersExecute(new Task() {
-
-							public void execute(Player p) {
-								p.sendPrivateText(completeMessage);
-								p.notifyWorldAboutChanges();
-
-							}
-
-						}, new FilterCriteria<Player>() {
-
-							public boolean passes(Player p) {
-								return p.getAdminLevel() >= AdministrationAction.REQUIRED_ADMIN_LEVEL_FOR_SUPPORT;
-
-							}
-
-						});
-
+						StendhalRPRuleProcessor.sendMessageToSupporters("bug inspect", message);
 						logger.warn("User with large amout of items: " + message + "\r\n" + sb.toString());
 					}
 				}

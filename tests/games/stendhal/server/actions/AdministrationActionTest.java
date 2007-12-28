@@ -138,9 +138,12 @@ public class AdministrationActionTest {
 	public final void testSupportAnswerAction() {
 		Player pl = PlayerTestHelper.createPlayer();
 		Player bob = PlayerTestHelper.createPlayer("bob");
+		Player anptherAdmin = PlayerTestHelper.createPlayer("anotheradmin");
+		anptherAdmin.setAdminLevel(5000);
 		// bad bad
 		MockStendhalRPRuleProcessor.get().addPlayer(pl);
 		MockStendhalRPRuleProcessor.get().addPlayer(bob);
+		MockStendhalRPRuleProcessor.get().addPlayer(anptherAdmin);
 
 		pl.put("adminlevel", 5000);
 		RPAction action = new RPAction();
@@ -149,6 +152,8 @@ public class AdministrationActionTest {
 		action.put("target", "bob");
 		CommandCenter.execute(pl, action);
 		assertEquals("Support (player) tells you: huhu", bob.getPrivateText());
+		assertEquals("player answers bob's support question: huhu", anptherAdmin.getPrivateText());
+		
 		bob.clearEvents();
 		pl.clearEvents();
 		pl.put("adminlevel", 0);
@@ -509,9 +514,9 @@ public class AdministrationActionTest {
 		action.put("minutes", 1);
 
 		CommandCenter.execute(pl, action);
-		assertEquals("You have jailed name for 1 minutes. Reason: whynot.\r\n"+
-					"JailKeeper asks for support to ADMIN: hugo jailed name for 1 minutes. Reason: whynot.\r\n"+
-					"Player name is not online, but the arrest warrant has been recorded anyway.", pl.getPrivateText());
+		assertEquals("You have jailed name for 1 minutes. Reason: whynot.\r\n" 
+				    + "JailKeeper asks for support to ADMIN: hugo jailed name for 1 minutes. Reason: whynot.\r\n"
+				    + "Player name is not online, but the arrest warrant has been recorded anyway.", pl.getPrivateText());
 
 		pl.clearEvents();
 

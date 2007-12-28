@@ -1,14 +1,11 @@
 package games.stendhal.server.actions.admin;
 
+import static games.stendhal.server.actions.WellKnownActionConstants.TARGET;
 import games.stendhal.common.Grammar;
-import games.stendhal.common.filter.FilterCriteria;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
-import games.stendhal.server.core.engine.Task;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
-
-import static games.stendhal.server.actions.WellKnownActionConstants.TARGET;
 
 public class SupportAnswerAction extends AdministrationAction {
 
@@ -34,23 +31,8 @@ public class SupportAnswerAction extends AdministrationAction {
 
 				supported.sendPrivateText("Support (" + player.getTitle() + ") tells you: " + action.get(_TEXT));
 				supported.notifyWorldAboutChanges();
-				StendhalRPRuleProcessor.get().getOnlinePlayers().forFilteredPlayersExecute(
-
-				new Task() {
-
-					public void execute(Player player) {
-						player.sendPrivateText(message);
-						player.notifyWorldAboutChanges();
-
-					}
-
-				}, new FilterCriteria<Player>() {
-
-					public boolean passes(Player p) {
-						return p.getAdminLevel() >= AdministrationAction.REQUIRED_ADMIN_LEVEL_FOR_SUPPORT;
-					}
-
-				});
+				StendhalRPRuleProcessor.sendMessageToSupporters( message);
+				
 			} else {
 				player.sendPrivateText(action.get(TARGET) + " is not currently logged in.");
 			}

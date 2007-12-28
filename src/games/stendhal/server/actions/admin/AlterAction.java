@@ -130,6 +130,9 @@ public class AlterAction extends AdministrationAction {
 						 * (numberValue < Integer.MIN_VALUE)) { return; }
 						 */
 						break;
+					default:
+							// we switch over an enum
+							break;
 					}
 
 					StendhalRPRuleProcessor.get().addGameEvent(

@@ -13,7 +13,6 @@
 package games.stendhal.server.core.engine;
 
 import games.stendhal.common.Debug;
-import games.stendhal.common.filter.CollectionFilter;
 import games.stendhal.common.filter.FilterCriteria;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.actions.admin.AdministrationAction;
@@ -32,8 +31,6 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.extension.StendhalServerExtension;
 
-import java.util.Collection;
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -52,7 +49,6 @@ import marauroa.server.game.rp.IRPRuleProcessor;
 import marauroa.server.game.rp.RPServerManager;
 
 import org.apache.log4j.Logger;
-import org.apache.log4j.helpers.OnlyOnceErrorHandler;
 
 public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
@@ -245,14 +241,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		playersRmText.add(player);
 	}
 
-	/**
-	 * Gets all players who are currently online.
-	 * 
-	 * @return A list of all online players
-	 */
-//	 public Collection<Player> getPlayers() {
-//	 return getOnlinePlayers().getPlayers();
-//	 }
 	/**
 	 * Finds an online player with a specific name.
 	 * 
@@ -509,21 +497,16 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	/**
 	 * sends a message to all supporters.
 	 * 
-	 * @param source
-	 *            a player or script name
 	 * @param message
 	 *            Support message
 	 */
-	public static void sendMessageToSupporters(final String source, final String message) {
-
-		final String text = source + " asks for support to ADMIN: " + message;
-
+	public static void sendMessageToSupporters(final String message) {
 		get().getOnlinePlayers().forFilteredPlayersExecute(
 
 		new Task() {
 
 			public void execute(Player player) {
-				player.sendPrivateText(text);
+				player.sendPrivateText(message);
 				player.notifyWorldAboutChanges();
 
 			}
@@ -538,6 +521,22 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			}
 
 		});
+
+	}
+
+	/**
+	 * sends a message to all supporters.
+	 * 
+	 * @param source
+	 *            a player or script name
+	 * @param message
+	 *            Support message
+	 */
+	public static void sendMessageToSupporters(final String source, final String message) {
+
+		final String text = source + " asks for support to ADMIN: " + message;
+		sendMessageToSupporters(text);
+
 	}
 
 	public static int getAmountOfOnlinePlayers() {
@@ -567,4 +566,5 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		}
 
 	}
+
 }
