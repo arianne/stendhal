@@ -4,7 +4,7 @@ import java.util.StringTokenizer;
 
 /**
  * Parser for conversations with a SpeakerNPC This class parses strings in
- * english language and returns them as Sentence objects. All sentence
+ * English language and returns them as Sentence objects. All sentence
  * constituents are in lower case.
  * 
  * @author Martin Fuchs
@@ -15,19 +15,20 @@ public class ConversationParser {
 	private String error;
 
 	/**
-	 * create a new conversation parser and initialise with the given text
+	 * create a new conversation parser and initialize with the given text.
 	 * string
 	 */
 	public ConversationParser(final String text) {
-		// initialise a new tokenizer with the given text
-		tokenizer = new StringTokenizer(text!=null? text: "");
+		// initialize a new tokenizer with the given text
+		tokenizer = new StringTokenizer(text != null ? text : "");
 
 		// start with no errors.
 		error = null;
 	}
 
 	/**
-	 * backward compatible parse function without conversation context
+	 * backward compatible parse function without conversation context.
+	 * 
 	 * @param text
 	 * @return
 	 */
@@ -36,8 +37,8 @@ public class ConversationParser {
 	}
 
 	/**
-	 * Parse the given text sentence
-	 *
+	 * Parse the given text sentence.
+	 * 
 	 * @param text
 	 * @param ctx
 	 * @return sentence
@@ -47,19 +48,19 @@ public class ConversationParser {
 		// 1.) determine sentence type from trailing punctuation
 		Sentence sentence = new Sentence();
 
-	    if (text != null) {
-	    	text = getSentenceType(text.trim(), sentence);
+		if (text != null) {
+			text = getSentenceType(text.trim(), sentence);
 
-	    	//TODO get rid of underscore handling for item names
-	    	text = text.replace('_', ' ');
-	    }
+			// TODO get rid of underscore handling for item names
+			text = text.replace('_', ' ');
+		}
 
-	    // 2.) feed the separated words into the sentence object
+		// 2.) feed the separated words into the sentence object
 		ConversationParser parser = new ConversationParser(text);
 
 		sentence.parse(parser);
 
-		// 3.) classify word types and normalise words
+		// 3.) classify word types and normalize words
 		sentence.classifyWords(parser);
 
 		// 4.) evaluate sentence type from word order
@@ -68,7 +69,7 @@ public class ConversationParser {
 		// 5.) merge words to form a simpler sentence structure
 		sentence.mergeWords();
 
-		// 6.) standardise sentence type
+		// 6.) standardize sentence type
 		sentence.standardizeSentenceType();
 
 		// 7.) replace grammatical constructs with simpler ones
@@ -80,7 +81,8 @@ public class ConversationParser {
 	}
 
 	/**
-	 * read the next word from the parsed sentence
+	 * read the next word from the parsed sentence.
+	 * 
 	 * @return word string
 	 */
 	public String readNextWord() {
@@ -112,8 +114,8 @@ public class ConversationParser {
 	}
 
 	/**
-	 * evaluate sentence type by looking at the trailing punctuation character
-	 *
+	 * evaluate sentence type by looking at the trailing punctuation character.
+	 * 
 	 * @param text
 	 * @param sentence
 	 * @return
@@ -134,7 +136,7 @@ public class ConversationParser {
 			text = punct.getText();
 		}
 
-	    return text;
-    }
+		return text;
+	}
 
 }

@@ -1,7 +1,7 @@
 package games.stendhal.server.entity.npc.parser;
 
 /**
- * NPC conversation context holder
+ * NPC conversation context holder.
  * 
  * @author Martin Fuchs
  */

@@ -1,23 +1,23 @@
 package games.stendhal.server.entity.npc.parser;
 
 /**
- * A Word is part of a Sentence.
- * It encapsulates the original, white space trimmed text,
- * the word type, a normalised lower case text string
- * and the integer amount.
- *
+ * A Word is part of a Sentence. It encapsulates the original, white space
+ * trimmed text, the word type, a normalized lower case text string and the
+ * integer amount.
+ * 
  * @author Martin Fuchs
  */
 public class Word {
 
 	private String original;
 	private WordType type;
-	private String	normalized;
-	private Integer	amount;
+	private String normalized;
+	private Integer amount;
 	private boolean breakFlag = false;
 
 	/**
-	 * create a Word from the given original string
+	 * create a Word from the given original string.
+	 * 
 	 * @param s
 	 */
 	public Word(String s) {
@@ -25,7 +25,8 @@ public class Word {
 	}
 
 	/**
-	 * create a Word from the given strings
+	 * create a Word from the given strings.
+	 * 
 	 * @param s
 	 * @param n
 	 * @param typeString
@@ -37,7 +38,8 @@ public class Word {
 	}
 
 	/**
-	 * parse the given numeric expression and assign the value to 'amount'
+	 * parse the given numeric expression and assign the value to 'amount'.
+	 * 
 	 * @param s
 	 * @param parser
 	 */
@@ -46,13 +48,14 @@ public class Word {
 			setAmount(new Integer(s));
 			setType(new WordType(WordType.NUMERAL));
 			normalized = amount.toString();
-		} catch(NumberFormatException e) {
+		} catch (NumberFormatException e) {
 			parser.setError("illegal number format: '" + s + "'");
 		}
-    }
+	}
 
 	/**
-	 * merge the given preceding Word into this Word
+	 * merge the given preceding Word into this Word.
+	 * 
 	 * @param other
 	 */
 	public void mergeLeft(final Word other) {
@@ -62,7 +65,8 @@ public class Word {
 	}
 
 	/**
-	 * merge the given following Word into this Word
+	 * merge the given following Word into this Word.
+	 * 
 	 * @param other
 	 */
 	public void mergeRight(final Word other) {
@@ -70,12 +74,14 @@ public class Word {
 		setType(getType().merge(other.getType()));
 		setAmount(mergeAmount(amount, other.amount));
 
-		if (other.getBreakFlag())
+		if (other.getBreakFlag()) {
 			breakFlag = true;
+		}
 	}
 
 	/**
-	 * merge two amounts into one number
+	 * merge two amounts into one number.
+	 * 
 	 * @param left
 	 * @param right
 	 * @return combined number
@@ -84,9 +90,9 @@ public class Word {
 		if (left != null) {
 			if (right != null) {
 				if (left <= right) {
-					return left * right;	// e.g. five hundred
+					return left * right; // e.g. five hundred
 				} else {
-					return left + right;	// e.g. hundred fifty
+					return left + right; // e.g. hundred fifty
 				}
 			} else {
 				return left;
@@ -94,54 +100,55 @@ public class Word {
 		} else {
 			return right;
 		}
-    }
+	}
 
 	public void setAmount(Integer amount) {
-	    this.amount = amount;
-    }
+		this.amount = amount;
+	}
 
 	/**
-	 * return amount as integer value, default to 1
+	 * return amount as integer value, default to 1.
+	 * 
 	 * @return
 	 */
 	public int getAmount() {
-		return amount!=null? amount: 1;
+		return amount != null ? amount : 1;
 	}
 
 	/**
-	 * set flag to separate different parts of the sentence
+	 * set flag to separate different parts of the sentence.
 	 */
 	public void setBreakFlag() {
-	    breakFlag = true;	    
-    }
+		breakFlag = true;
+	}
 
 	public String getOriginal() {
-	    return original;
-    }
+		return original;
+	}
 
 	public void setType(WordType type) {
-	    this.type = type;
-    }
+		this.type = type;
+	}
 
 	public WordType getType() {
-	    return type;
-    }
+		return type;
+	}
 
 	public boolean getBreakFlag() {
-	    return breakFlag;	    
-    }
+		return breakFlag;
+	}
 
 	@Override
 	public String toString() {
-		return normalized!=null? normalized: getOriginal();
+		return normalized != null ? normalized : getOriginal();
 	}
 
 	public void setNormalized(String normalized) {
-	    this.normalized = normalized;
-    }
+		this.normalized = normalized;
+	}
 
 	public String getNormalized() {
-	    return normalized;
-    }
+		return normalized;
+	}
 
 }
