@@ -268,7 +268,7 @@ m*/item/furniture/curtain/red_gold_drawn.png
 m*/item/furniture/curtain/red_gold_gathered.png
 ./item/furniture/curtain/curtain_rails.png
 m*/item/furniture/light/dark_torch.png
-./item/furniture/light/flames.png
+k*/item/furniture/light/flames.png
 m*/item/furniture/light/iron_lamp.png
 m/K*/item/furniture/light/torch.png
 m/K*/item/furniture/light/torch_top.png
