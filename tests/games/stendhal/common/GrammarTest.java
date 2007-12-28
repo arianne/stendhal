@@ -398,7 +398,7 @@ public class GrammarTest {
 	}
 
 	/**
-	 * Tests pluralisation of creatures
+	 * Tests pluralization of creatures.
 	 */
 	@Test
 	public void testPluralCreatures() {
@@ -511,7 +511,7 @@ public class GrammarTest {
 	}
 
 	/**
-	 * Tests creating the full form
+	 * Tests creating the full form.
 	 */
 	@Test
 	public void testFullForm() {

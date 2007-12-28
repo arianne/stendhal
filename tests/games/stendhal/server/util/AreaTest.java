@@ -11,7 +11,7 @@ import org.junit.Test;
 
 
 /**
- * Tests for the area class
+ * Tests for the area class.
  *
  * @author hendrik
  */

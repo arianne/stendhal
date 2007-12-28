@@ -13,7 +13,7 @@ import org.junit.Test;
 import utilities.QuestHelper;
 
 /**
- * test SlashActionParser class
+ * test SlashActionParser class.
  * 
  * @author Martin Fuchs
  */

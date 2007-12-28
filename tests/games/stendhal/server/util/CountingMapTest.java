@@ -8,7 +8,7 @@ import java.util.Map;
 import org.junit.Test;
 
 /**
- * Tests the CountingMap class
+ * Tests the CountingMap class.
  * 
  * @author Martin Fuchs
  */

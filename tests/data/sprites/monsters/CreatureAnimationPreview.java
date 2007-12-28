@@ -20,7 +20,7 @@ public class CreatureAnimationPreview {
 	private static final int NUMBER_OF_FRAMES = 3;
 
 	/**
-	 * This method initializes jPanel
+	 * This method initializes jPanel.
 	 * 
 	 * @return javax.swing.JPanel
 	 */
@@ -38,7 +38,7 @@ public class CreatureAnimationPreview {
 	}
 
 	/**
-	 * This method initializes imageViewerSwing
+	 * This method initializes imageViewerSwing.
 	 * 
 	 * @return data.sprites.monsters.ImageViewerSwing
 	 */
@@ -52,7 +52,7 @@ public class CreatureAnimationPreview {
 	}
 
 	/**
-	 * This method initializes imageViewerSwing1
+	 * This method initializes imageViewerSwing1.
 	 * 
 	 * @return data.sprites.monsters.ImageViewerSwing
 	 */
@@ -66,7 +66,7 @@ public class CreatureAnimationPreview {
 	}
 
 	/**
-	 * This method initializes imageViewerSwing2
+	 * This method initializes imageViewerSwing2.
 	 * 
 	 * @return data.sprites.monsters.ImageViewerSwing
 	 */
@@ -80,7 +80,7 @@ public class CreatureAnimationPreview {
 	}
 
 	/**
-	 * This method initializes imageViewerSwing3
+	 * This method initializes imageViewerSwing3.
 	 * 
 	 * @return data.sprites.monsters.ImageViewerSwing
 	 */
@@ -94,7 +94,7 @@ public class CreatureAnimationPreview {
 	}
 
 	/**
-	 * This method initializes imageViewerSwing4
+	 * This method initializes imageViewerSwing4.
 	 * 
 	 * @return data.sprites.monsters.ImageViewerSwing
 	 */
@@ -134,7 +134,7 @@ public class CreatureAnimationPreview {
 	private AnimationRunner[] animations;
 
 	/**
-	 * This method initializes jFrame
+	 * This method initializes jFrame.
 	 * 
 	 * @return javax.swing.JFrame
 	 */
@@ -178,7 +178,7 @@ public class CreatureAnimationPreview {
 	}
 
 	/**
-	 * This method initializes jSplitPane
+	 * This method initializes jSplitPane.
 	 * 
 	 * @return javax.swing.JSplitPane
 	 */
@@ -193,7 +193,7 @@ public class CreatureAnimationPreview {
 	}
 
 	/**
-	 * This method initializes jScrollPane
+	 * This method initializes jScrollPane.
 	 * 
 	 * @return javax.swing.JScrollPane
 	 */
@@ -206,7 +206,7 @@ public class CreatureAnimationPreview {
 	}
 
 	/**
-	 * This method initializes jTree
+	 * This method initializes jTree.
 	 * 
 	 * @return data.sprites.monsters.FileTree
 	 */

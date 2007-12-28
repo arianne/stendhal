@@ -16,7 +16,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
- * Tests the CreateAccountDialog
+ * Tests the CreateAccountDialog.
  * @author timothyb89
  */
 public class CreateAccountDialogTest {

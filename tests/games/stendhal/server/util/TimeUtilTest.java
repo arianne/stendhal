@@ -4,7 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 /**
- * Tests for TimeUtil
+ * Tests for TimeUtil.
  */
 public class TimeUtilTest {
 

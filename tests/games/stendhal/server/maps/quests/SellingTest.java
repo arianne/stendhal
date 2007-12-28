@@ -22,7 +22,7 @@ import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
 
 /**
- * Test selling cheese to the bar maid
+ * Test selling cheese to the bar maid.
  * @author Martin Fuchs
  */
 public class SellingTest {

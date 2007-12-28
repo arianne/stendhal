@@ -22,7 +22,7 @@ public class ImageViewerSwing extends JComponent {
 	private static final long serialVersionUID = 8190301649166149694L;
 
 	/**
-	 * default Constructor
+	 * default Constructor.
 	 */
 	public ImageViewerSwing() {
 		setImage(Toolkit.getDefaultToolkit().getImage(
@@ -44,7 +44,7 @@ public class ImageViewerSwing extends JComponent {
 	}
 
 	/**
-	 * This method initializes this
+	 * This method initializes this.
 	 * 
 	 */
 	private void initialize() {

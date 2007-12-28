@@ -6,8 +6,6 @@ import static org.junit.Assert.assertTrue;
 import games.stendhal.server.entity.ActiveEntity;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
-import games.stendhal.server.entity.player.GagManager;
-import games.stendhal.server.entity.player.Player;
 
 import org.junit.After;
 import org.junit.BeforeClass;

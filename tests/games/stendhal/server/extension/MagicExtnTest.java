@@ -16,7 +16,7 @@ import org.junit.Test;
 import utilities.PlayerTestHelper;
 
 /**
- * JUnit Tests for MagicExtn
+ * JUnit Tests for MagicExtn.
  * @author Martin Fuchs
  */
 public class MagicExtnTest {

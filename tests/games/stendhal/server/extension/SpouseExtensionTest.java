@@ -19,7 +19,7 @@ import org.junit.Test;
 import utilities.PlayerTestHelper;
 
 /**
- * JUnit Tests for SpouseExtension
+ * JUnit Tests for SpouseExtension.
  * 
  * @author Martin Fuchs
  */

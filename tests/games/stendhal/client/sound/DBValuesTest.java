@@ -19,7 +19,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
- * TestClass for Class DbValues
+ * TestClass for Class DbValues.
  * 
  */
 public class DBValuesTest {

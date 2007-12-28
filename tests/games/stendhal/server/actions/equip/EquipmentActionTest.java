@@ -12,8 +12,8 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
- * Test cases for drop
- *
+ * Test cases for drop.
+ * 
  * @author hendrik
  */
 public class EquipmentActionTest {
@@ -22,15 +22,15 @@ public class EquipmentActionTest {
 	private static final String ZONE_CONTENT = "Level 0/semos/city.tmx";
 
 	/**
-	 * A mock player used for testing.
-	 *
+	 * A mock player used for testing..
+	 * 
 	 * @author hendrik
 	 */
 	private static class MockPlayer extends Player {
 		private String privateText;
 
 		/**
-		 * Creates a new mock player and puts it into the world
+		 * Creates a new mock player and puts it into the world.
 		 */
 		public MockPlayer() {
 			super(new RPObject());
@@ -45,8 +45,8 @@ public class EquipmentActionTest {
 		}
 
 		/**
-		 * gets the last private message
-		 *
+		 * gets the last private message.
+		 * 
 		 * @return last private message
 		 */
 		@Override
@@ -56,8 +56,8 @@ public class EquipmentActionTest {
 	}
 
 	/**
-	 * initialize the world
-	 *
+	 * initialize the world.
+	 * 
 	 * @throws Exception
 	 */
 	@BeforeClass
@@ -81,8 +81,7 @@ public class EquipmentActionTest {
 
 		EquipmentAction action = new EquipmentAction();
 		action.onAction(player, drop);
-		Assert.assertTrue("error message on invalid slot", player
-				.getPrivateText() != null);
+		Assert.assertTrue("error message on invalid slot", player.getPrivateText() != null);
 	}
 
 	@Test
@@ -104,7 +103,6 @@ public class EquipmentActionTest {
 		action.onAction(player, drop);
 		System.err.println(player.getPrivateText());
 
-		Assert.assertTrue("error message on invalid item", player
-				.getPrivateText() != null);
+		Assert.assertTrue("error message on invalid item", player.getPrivateText() != null);
 	}
 }

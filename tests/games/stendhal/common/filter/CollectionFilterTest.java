@@ -36,8 +36,6 @@ public class CollectionFilterTest {
 		list.add(player);
 		assertThat(list.size(), is(5));
 
-		Adminfilter af = new Adminfilter();
-
 		CollectionFilter<Player> cf1 = new CollectionFilter<Player>();
 
 		cf1.addFilterCriteria(new Adminfilter());
@@ -58,19 +56,19 @@ public class CollectionFilterTest {
 
 	}
 
-	class Adminfilter implements FilterCriteria {
+	class Adminfilter implements FilterCriteria<Player> {
 
-		public boolean passes(Object o) {
-			return ((Player) o).getAdminLevel() == 0;
+		public boolean passes(Player o) {
+			return o.getAdminLevel() == 0;
 
 		}
 
 	}
 
-	class NoAdminfilter implements FilterCriteria {
+	class NoAdminfilter implements FilterCriteria<Player> {
 
-		public boolean passes(Object o) {
-			return ((Player) o).getAdminLevel() > 0;
+		public boolean passes(Player o) {
+			return o.getAdminLevel() > 0;
 
 		}
 

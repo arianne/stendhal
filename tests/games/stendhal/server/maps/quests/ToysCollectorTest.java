@@ -19,7 +19,7 @@ import org.junit.Test;
 import utilities.PlayerTestHelper;
 
 public class ToysCollectorTest {
-	ToysCollector quest;
+	private ToysCollector quest;
 
 	@BeforeClass
 	public static void setupFixture() {

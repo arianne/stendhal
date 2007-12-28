@@ -6,7 +6,7 @@ import static org.junit.Assert.fail;
 import org.junit.Test;
 
 /**
- * Tests the WikipediaAccess class
+ * Tests the WikipediaAccess class.
  * 
  * @author Martin Fuchs
  */

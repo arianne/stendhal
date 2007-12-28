@@ -2,14 +2,12 @@ package games.stendhal.server.entity.npc.parser;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import games.stendhal.server.entity.npc.parser.ConversationParser;
-import games.stendhal.server.entity.npc.parser.Sentence;
 
 import org.junit.Test;
 
 /**
- * test ConversationParser class
- *
+ * test ConversationParser class.
+ * 
  * @author Martin Fuchs
  */
 public class SentenceTest {
@@ -22,7 +20,8 @@ public class SentenceTest {
 		sentence.parse(parser);
 		sentence.classifyWords(parser);
 		assertFalse(sentence.hasError());
-		assertEquals("quick/ADJ brown/ADJ-COL fox/SUB-ANI jump/VER over/PRE lazy/ADJ dog/SUB-ANI .", sentence.toString());
+		assertEquals("quick/ADJ brown/ADJ-COL fox/SUB-ANI jump/VER over/PRE lazy/ADJ dog/SUB-ANI .",
+				sentence.toString());
 
 		sentence.mergeWords();
 		assertEquals("fox/SUB-ANI-COL jump/VER over/PRE dog/SUB-ANI .", sentence.toString());
@@ -46,7 +45,7 @@ public class SentenceTest {
 		assertEquals("buy", sentence.getVerb(0).getNormalized());
 		assertEquals("banana", sentence.getObject(0).getNormalized());
 
-		//TODO transfer into "buy banana"
+		// TODO transfer into "buy banana"
 		sentence = ConversationParser.parse("do you have a banana for me?");
 		assertFalse(sentence.hasError());
 		assertEquals(Sentence.ST_QUESTION, sentence.getType());

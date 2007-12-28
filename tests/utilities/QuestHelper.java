@@ -7,7 +7,7 @@ import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.common.Log4J;
 
 /**
- * Helper methods for testing quests
+ * Helper methods for testing quests.
  *
  * @author hendrik
  */

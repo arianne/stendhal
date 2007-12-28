@@ -31,9 +31,9 @@ public class BeerForHayunnTest {
 
 	}
 
-	static SpeakerNPC hayunn;
+	private static SpeakerNPC hayunn;
 
-	static BeerForHayunn bfh;
+	private static BeerForHayunn bfh;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {

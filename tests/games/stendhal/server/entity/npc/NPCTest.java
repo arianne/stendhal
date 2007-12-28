@@ -20,7 +20,7 @@ import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
 
 /**
- * Test NPC logic
+ * Test NPC logic.
  * @author Martin Fuchs
  */
 public class NPCTest {
