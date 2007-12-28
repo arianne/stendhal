@@ -1,6 +1,7 @@
 package games.stendhal.server.core.engine;
 
 import games.stendhal.server.entity.PassiveEntity;
+import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.player.Player;
@@ -60,7 +61,12 @@ public class ItemLogger {
 	    log(item, player, sourceInfo[0] + "-to-" + destInfo[0], sourceInfo[1], sourceInfo[2], destInfo[1], destInfo[2]);
     }
 
-	public static void merge(Player player, Item oldItem, Item outlivingItem) {
+	public static void merge(RPEntity entity, Item oldItem, Item outlivingItem) {
+		if (!(entity instanceof Player)) {
+			return;
+		}
+		Player player = (Player) entity;
+
 		assignIDIfNotPresent(oldItem, outlivingItem);
 		String oldQuantity = getQuantity(oldItem);
 		String oldOutlivingQuantity = getQuantity(outlivingItem);
