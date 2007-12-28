@@ -53,7 +53,7 @@ public class WordList {
 	}
 
 	/**
-	 * read word list from reader object.
+	 * Read word list from reader object.
 	 * 
 	 * @param reader
 	 * @throws IOException
@@ -88,7 +88,7 @@ public class WordList {
 	}
 
 	/**
-	 * read one line of the word list and add the new entry.
+	 * Read one line of the word list and add the new entry.
 	 * 
 	 * @param tk
 	 * @param entry
@@ -150,7 +150,7 @@ public class WordList {
 	}
 
 	/**
-	 * add one entry to the word list.
+	 * Add one entry to the word list.
 	 * 
 	 * @param entry
 	 * @param key
@@ -205,7 +205,7 @@ public class WordList {
 	}
 
 	/**
-	 * print all words sorted by known types.
+	 * Print all words sorted by known types.
 	 * 
 	 * @param writer
 	 */
@@ -243,7 +243,7 @@ public class WordList {
 	}
 
 	/**
-	 * print all words of a given (main-)type.
+	 * Print all words of a given (main-)type.
 	 * 
 	 * @param writer
 	 * @param type
@@ -269,7 +269,7 @@ public class WordList {
 	}
 
 	/**
-	 * find an entry for a given word.
+	 * Find an entry for a given word.
 	 * 
 	 * @param s
 	 * @return Word
@@ -356,7 +356,7 @@ public class WordList {
 	}
 
 	/**
-	 * register a name to be recognized by the conversation parser.
+	 * Register a name to be recognized by the conversation parser.
 	 * 
 	 * @param name
 	 */
@@ -378,7 +378,7 @@ public class WordList {
 	}
 
 	/**
-	 * remove a name from the conversation parser word list.
+	 * Remove a name from the conversation parser word list.
 	 * 
 	 * @param name
 	 */
@@ -393,7 +393,7 @@ public class WordList {
 	}
 
 	/**
-	 * add a new word
+	 * Add a new word to the list in order to remember it later. 
 	 *
 	 * @param s
 	 */
