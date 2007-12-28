@@ -42,8 +42,11 @@ buy	VER
 bye	VER
 close	VER
 cya	VER
+did	VERB	=do
 do	VER
 does	VER	=do
+done	VERB	=do
+dressed	VER
 drop	VER
 eat	VER
 engage	VER
@@ -64,11 +67,13 @@ hola	VER	=hello
 hold	VER
 is	VER	are
 jump	VER
+leave	VER
 like	VER
 look	VER
 love	VER
 made	VER	=make
 make	VER
+married	VER	=marry
 marry	VER
 may	VER-CON
 ok	VER
@@ -133,6 +138,7 @@ claymore	OBJ	claymores
 cloak	OBJ	cloaks
 cloth	OBJ	cloths
 club	OBJ	clubs
+colada	OBJ-FLU	coladas
 commander	OBJ	commanders
 cookie	OBJ-FOO	cookies
 coupon	OBJ	coupons
@@ -159,6 +165,7 @@ erinys	OBJ	erinyes
 eupepsia	OBJ	eupepsia
 favor	OBJ	favors
 favour	OBJ	favours
+fee	OBJ	fees
 fire	OBJ	fires
 fish	OBJ-FOO	fishes
 flail	OBJ	flails
@@ -166,7 +173,10 @@ flask	OBJ	flasks
 flour	OBJ	flours
 flower	OBJ	flowers
 foot	OBJ	feet
+forge	OBJ	forges
 gargoyle	OBJ	gargoyles
+gold	OBJ	golds
+gown	OBJ	gowns
 grain	OBJ-FOO	grains
 halberd	OBJ	halberds
 ham	OBJ	hams
@@ -177,7 +187,9 @@ helium	OBJ	helia
 helmet	OBJ	helmets
 help	OBJ	helps
 hero	OBJ	heros
+hint	OBJ	hints
 home	OBJ	homes
+honeymoon	OBJ	honeymoons
 house	OBJ	houses
 human	OBJ	humans
 hunter	OBJ	hunters
@@ -230,6 +242,7 @@ paper	OBJ	papers
 park	OBJ	parks
 pie	OBJ-FOO	pies
 piece	OBJ	pieces
+pina	OBJ	pinas
 plate	OBJ	plates
 plural	OBJ	plurals
 poison	OBJ-FLU	poisons
@@ -239,6 +252,7 @@ potion	OBJ-FLU	potions
 present	OBJ	presents
 princess	OBJ	princesses
 quest	OBJ	quests
+request	OBJ	requests
 ring	OBJ	rings
 robin	OBJ	robins
 rod	OBJ	rods
@@ -259,6 +273,7 @@ slime	OBJ	slimes
 sodium	OBJ	sodia
 sprig	OBJ-AMO	sprigs
 staff	OBJ	staffs
+star	OBJ	stars
 steel	OBJ	steels
 stendhal	OBJ	stendhals
 stone	OBJ	stones
@@ -331,6 +346,7 @@ goran	SUB-NAM
 guardian	SUB	guardians
 he	SUB	they
 i	SUB	we
+javier	SUB-NAM
 katinka	SUB-NAM
 kymara	SUB-NAM
 leader	SUB	leaders
@@ -347,6 +363,7 @@ ratman	SUB	ratmen
 ratwoman	SUB	ratwomen
 razorrat	SUB-ANI	razorrats
 she	SUB	they
+siandra	SUB-NAM
 soldier	SUB	soldiers
 spirit	SUB	spirits
 tiger	SUB-ANI	tigers
@@ -372,6 +389,7 @@ deadly	ADJ
 elder	ADJ
 empty	ADJ
 exact	ADJ
+exotic	ADJ
 fiscal	ADJ
 fresh	ADJ
 giant	ADJ
@@ -436,12 +454,14 @@ twenty	NUM	20
 two	NUM	2
 zero	NUM	0
 
+down	PRE
 for	PRE
 of	PRE
 off	PRE
 on	PRE
 over	PRE
 under	PRE
+up	PRE
 with	PRE
 
 how	QUE
