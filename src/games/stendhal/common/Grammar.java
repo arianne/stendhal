@@ -796,4 +796,13 @@ public class Grammar {
 			return null;
 		}
     }
+
+	/**
+	 * check the given verb for gerund form
+	 * @param verb
+	 * @return
+	 */
+	public static boolean isGerund(String verb) {
+	    return verb.endsWith("ing");
+    }
 }
