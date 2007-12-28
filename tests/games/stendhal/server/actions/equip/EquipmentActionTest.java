@@ -3,9 +3,9 @@ package games.stendhal.server.actions.equip;
 
 import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.entity.slot.PlayerSlot;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
-import marauroa.common.game.RPSlot;
 
 import org.junit.Assert;
 import org.junit.BeforeClass;
@@ -13,7 +13,7 @@ import org.junit.Test;
 
 /**
  * Test cases for drop.
- * 
+ *
  * @author hendrik
  */
 public class EquipmentActionTest {
@@ -23,7 +23,7 @@ public class EquipmentActionTest {
 
 	/**
 	 * A mock player used for testing..
-	 * 
+	 *
 	 * @author hendrik
 	 */
 	private static class MockPlayer extends Player {
@@ -46,7 +46,7 @@ public class EquipmentActionTest {
 
 		/**
 		 * gets the last private message.
-		 * 
+		 *
 		 * @return last private message
 		 */
 		@Override
@@ -57,7 +57,7 @@ public class EquipmentActionTest {
 
 	/**
 	 * initialize the world.
-	 * 
+	 *
 	 * @throws Exception
 	 */
 	@BeforeClass
@@ -88,7 +88,7 @@ public class EquipmentActionTest {
 	public void testDrop() {
 
 		MockPlayer player = new MockPlayer();
-		player.addSlot(new RPSlot("bag"));
+		player.addSlot(new PlayerSlot("bag"));
 		player.setName("bob");
 		RPAction drop = new RPAction();
 		drop.put("type", "drop");
