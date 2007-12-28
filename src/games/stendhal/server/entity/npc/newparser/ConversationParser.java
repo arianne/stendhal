@@ -43,6 +43,7 @@ public class ConversationParser {
 	 * @return sentence
 	 */
 	public static Sentence parse(String text, ConversationContext ctx) {
+
 		// 1.) determine sentence type from trailing punctuation
 		Sentence sentence = new Sentence();
 
@@ -67,53 +68,10 @@ public class ConversationParser {
 		// 5.) merge words to form a simpler sentence structure
 		sentence.mergeWords();
 
-//		String verb = null;
-//		String subject = null;
-//		String subject2 = null;
-//
-//		for(String word = parser.peekNextWord(); ; parser.readNextWord()) {
-//			//TODO This rule set seems a bit complex - it should be refactored into the Sentence class, if possible.
-//			if (Grammar.isSubject(word)) {
-//				if (subject == null) {
-//					subject = word;
-//				} else if (subject2 == null) {
-//					subject2 = word;
-//				} else {
-//					break;	// too many subjects
-//				}
-//			} else if (word.equals("me")) {
-//				if (verb != null) {
-//					if (subject == null) {
-//    					// If there is a "me" without any preceding subject, we
-//    					// set the first subject to "you" and the second to "i".
-//        				subject = "you";
-//        				subject2 = "i";
-//    				} else if (subject2 == null) {
-//    					// Otherwise the "me" is stored as "i" into subject2.
-//        				subject2 = "i";
-//    				} else {
-//    					break;	// too many subjects
-//    				}
-//				} else {
-//					// no verb yet
-//					if (subject == null) {
-//    					// If there is a "me" without any preceding verb and other
-//						// subject, we store it as "i" into the first subject.
-//        				subject = "i";
-//    				} else if (subject2 == null) {
-//    					// Otherwise the "me" is stored as "i" into subject2.
-//        				subject2 = "i";
-//    				} else {
-//    					break;	// too many subjects
-//    				}
-//				}
-//			} else if (verb == null) {
-//				verb = word;
-//			} else {
-//				break;
-//			}
-//		}
+		// 6.) standardise sentence type
+		sentence.standardizeSentenceType();
 
+		// 7.) replace grammatical constructs with simpler ones
 		sentence.performaAliasing();
 
 		sentence.setError(parser.getError());

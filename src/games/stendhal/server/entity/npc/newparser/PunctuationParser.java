@@ -39,14 +39,26 @@ public class PunctuationParser {
 		}
 	}
 
+	/**
+	 * return preceding punctuation characters
+	 * @return
+	 */
 	public String getPrecedingPunctuation() {
 	    return preceding;
     }
 
+	/**
+	 * return trailing punctuation characters
+	 * @return
+	 */
 	public String getTrailingPunctuation() {
 	    return trailing;
     }
 
+	/**
+	 * return remaining text
+	 * @return
+	 */
 	public String getText() {
 	    return text;
     }

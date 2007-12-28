@@ -25,6 +25,18 @@ public class Word {
 	}
 
 	/**
+	 * create a Word from the given strings
+	 * @param s
+	 * @param n
+	 * @param typeString
+	 */
+	public Word(String s, String n, String typeString) {
+		original = s;
+		normalized = n;
+		type = new WordType(typeString);
+	}
+
+	/**
 	 * parse the given numeric expression and assign the value to 'amount'
 	 * @param s
 	 * @param parser
@@ -57,6 +69,9 @@ public class Word {
 		original = original + ' ' + other.getOriginal();
 		setType(getType().merge(other.getType()));
 		setAmount(mergeAmount(amount, other.amount));
+
+		if (other.getBreakFlag())
+			breakFlag = true;
 	}
 
 	/**
@@ -94,7 +109,7 @@ public class Word {
 	}
 
 	/**
-	 * set flag to separate different sentence parts
+	 * set flag to separate different parts of the sentence
 	 */
 	public void setBreakFlag() {
 	    breakFlag = true;	    

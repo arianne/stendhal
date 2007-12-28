@@ -136,6 +136,14 @@ public class WordType {
     }
 
 	/**
+	 * determine if the word is in conditional form
+	 * @return
+	 */
+	public boolean isConditional() {
+	    return typeString.contains("-CON");
+    }
+
+	/**
 	 * merge with another WordType
 	 * @param other
 	 * @return new WordType object or this
@@ -149,6 +157,10 @@ public class WordType {
 
 		if (other.hasQuestion() && !hasQuestion()) {
 			newTypeString += "-QUE";
+		}
+
+		if (other.isConditional() && !isConditional()) {
+			newTypeString += "-CON";
 		}
 
 		if (newTypeString != typeString) {

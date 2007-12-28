@@ -7,8 +7,10 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * ConversationParser returns the parsed sentence in this class
- * with all delivered words in lower case.
+ * ConversationParser returns the parsed sentence in this class.
+ * The Sentence class stores the sentence content in a list of
+ * parsed and classified words. Words belonging to each other are
+ * merged into common Word objects.
  * 
  * @author Martin Fuchs
  */
@@ -45,6 +47,7 @@ public class Sentence {
     			// handle preceding comma characters
     			if (punct.getPrecedingPunctuation().contains(",")) {
     				if (prevWord != null) {
+    					// break sentence after the previous word
     					prevWord.setBreakFlag();
     				}
     			}
@@ -54,6 +57,7 @@ public class Sentence {
 
     			// handle trailing comma characters
     			if (punct.getTrailingPunctuation().contains(",")) {
+    				// break sentence after the current word
     				word.setBreakFlag();
     			}
 
@@ -351,8 +355,12 @@ public class Sentence {
 		SentenceBuilder builder = new SentenceBuilder();
 
 		for(Word w : words) {
-			if (!w.getType().isIgnore()) {
-				builder.append(w.getNormalized() + "/" + w.getType().getTypeString());
+			if (w.getType() != null) {
+    			if (!w.getType().isIgnore()) {
+    				builder.append(w.getNormalized() + "/" + w.getType().getTypeString());
+    			}
+			} else {
+				builder.append(w.getOriginal());
 			}
 
 			if (w.getBreakFlag()) {
@@ -433,6 +441,40 @@ public class Sentence {
     }
 
 	/**
+	 * standardise sentence type
+	 */
+	public void standardizeSentenceType() {
+		// Look for a "me" without any preceding other subject.
+		Word prevVerb = null;
+
+		for(Word w : words) {
+			if (w.getBreakFlag()) {
+				break;
+			}
+
+			if (w.getType().isVerb()) {
+				if (prevVerb == null) {
+					prevVerb = w;
+				} else {
+					break;
+				}
+			} else if (w.getType().isSubject()) {
+				if (w.getOriginal().equals("me")) {
+    				// If we already found a verb, we prepend "you" as
+					// first subject and mark the sentence as imperative.
+    				if (prevVerb != null) {
+    					Word you = new Word("you", "you", "SUB");
+    					words.add(0, you);
+    					sentenceType = ST_IMPERATIVE;
+    				}
+				}
+
+   				break;
+			}
+		}
+	}
+
+	/**
 	 * replace grammatical constructs with simpler ones with the same meaning,
 	 * so that they can be understood by the FSM rules
 	 * 
@@ -441,22 +483,31 @@ public class Sentence {
 	 * quest writers can specify the conversation syntax on their own.
 	 */
 	public void performaAliasing() {
-		if (sentenceType==ST_IMPERATIVE && getSubjectCount()>=2) {
+		Word verb = getVerb();
+
+		if (verb != null) {
 			Word subject1 = getSubject(0);
 			Word subject2 = getSubject(1);
-			Word verb = getVerb();
 
     		// [you] give me(i) -> [I] buy
     		// Note: The second subject "me" is replaced by "i" in the WordList normalisation.
-    		if (subject1.getNormalized().equals("you") && subject2.getNormalized().equals("i")) {
-    			if (verb!=null && verb.getNormalized().equals("give")) {
-    				// remove the previous subjects and replace the verb with "buy" as first word
+    		if (subject1!=null && subject2!=null &&
+    			(subject1.getNormalized().equals("you") && verb.getNormalized().equals("give") && subject2.getNormalized().equals("i"))) {
+    				// remove the subjects and replace the verb with "buy" as first word
     				words.remove(subject1);
     				words.remove(subject2);
-    				words.remove(verb);
-    				words.add(0, new Word("buy"));
+    				verb.setNormalized("buy");
+    				sentenceType = ST_IMPERATIVE;
+    				return;
     			}
-    		}
+
+    		// [SUBJECT] (would like to have) -> [SUBJECT] buy
+    		if (verb.getNormalized().equals("have") && verb.getOriginal().contains("like") &&
+    			((subject1==null && words.get(0)==verb) || (words.get(0)==subject1 && words.get(1)==verb))) {
+				// replace the verb with "buy"
+				verb.setNormalized("buy");
+				sentenceType = ST_IMPERATIVE;
+			}
 		}
 	}
 
@@ -565,15 +616,27 @@ public class Sentence {
         			// left-merge nouns with preceding adjectives or amounts and composite nouns
         			if ((word.getType().isAdjective() || word.getType().isNumeral() || word.getType().isObject()) &&
         					(next.getType().isObject() || next.getType().isSubject())) {
-        				next.mergeLeft(word);
-        				words.remove(word);
+        				// special case for "ice cream" -> "ice"
+        				if (word.getNormalized().equals("ice") && next.getNormalized().equals("cream")) {
+            				word.mergeRight(next);
+            				words.remove(next);
+        				} else {
+            				next.mergeLeft(word);
+            				words.remove(word);
+        				}
         				changed = true;
         				break;
         			}
         			// right-merge consecutive words of the same main type
         			else if (word.getType().getMainType().equals(next.getType().getMainType())) {
-        				word.mergeRight(next);
-        				words.remove(next);
+        				// handle "would like"
+        				if (word.getType().isConditional()) {
+            				next.mergeLeft(word);
+            				words.remove(word);
+        				} else {
+            				word.mergeRight(next);
+            				words.remove(next);
+        				}
         				changed = true;
         				break;
         			}

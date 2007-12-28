@@ -13,6 +13,7 @@
 #
 #  VER			verb
 #  VER-GER		verb in gerund form
+#  VER-CON		verb in conditional form
 #
 #  OBJ			object
 #  OBJ-AMO		noun specifying amount
@@ -59,11 +60,12 @@ hola	VER	=hello
 hold	VER
 is	VER	are
 jump	VER
+like	VER
 look	VER
 love	VER
 made	VER	=make
 make	VER
-may	VER
+may	VER-CON
 ok	VER
 open	VER
 put	VER
@@ -73,6 +75,8 @@ sell	VER
 speak	VER	=say
 summon	VER
 went	VER	=go
+will	VER
+would	VER-CON	=will
 yes	VER
 
 alga	OBJ	algae
@@ -124,6 +128,7 @@ commander	OBJ	commanders
 cookie	OBJ-FOO	cookies
 coupon	OBJ	coupons
 crab	OBJ	crabs
+cream	OBJ	creams
 creature	OBJ	creatures
 crossbow	OBJ	crossbows
 crown	OBJ	crowns
@@ -407,5 +412,6 @@ why	QUE
 
 please	IGN
 the	IGN
+to	IGN
 whatever	IGN
 
