@@ -676,44 +676,46 @@ public class Sentence {
 						continue;
 					}
 
-					// left-merge nouns with preceding adjectives or amounts and composite nouns
-					if ((word.getType()!=null && (word.getType().isAdjective() || word.getType().isNumeral() || word.getType().isObject())) &&
-							(next.getType().isObject() || next.getType().isSubject())) {
-						// special case for "ice cream" -> "ice"
-						if (word.getNormalized().equals("ice") && next.getNormalized().equals("cream")) {
-							word.mergeRight(next);
-							words.remove(next);
-						} else {
-							next.mergeLeft(word);
-							words.remove(word);
-						}
-						changed = true;
-						break;
+					if (word.getType()!=null && next.getType()!=null) {
+    					// left-merge nouns with preceding adjectives or amounts and composite nouns
+    					if ((word.getType().isAdjective() || word.getType().isNumeral() || word.getType().isObject()) &&
+    						(next.getType().isObject() || next.getType().isSubject())) {
+    						// special case for "ice cream" -> "ice"
+    						if (word.getNormalized().equals("ice") && next.getNormalized().equals("cream")) {
+    							word.mergeRight(next);
+    							words.remove(next);
+    						} else {
+    							next.mergeLeft(word);
+    							words.remove(word);
+    						}
+    						changed = true;
+    						break;
+    					}
+    					// right-merge consecutive words of the same main type
+    					else if (word.getType().getMainType().equals(next.getType().getMainType())) {
+    						// handle "would like"
+    						if (word.getType().isConditional()) {
+    							next.mergeLeft(word);
+    							words.remove(word);
+    						} else {
+    							word.mergeRight(next);
+    							words.remove(next);
+    						}
+    						changed = true;
+    						break;
+    					}
+    					// left-merge question words with following verbs and adjectives
+    					else if (word.getType().isQuestion() &&
+    							(next.getType().isVerb() || next.getType().isAdjective())) {
+    						next.mergeLeft(word);
+    						words.remove(word);
+    						changed = true;
+    						break;
+    					}
 					}
-					// right-merge consecutive words of the same main type
-					else if (word.getType()!=null && next.getType()!=null &&
-							word.getType().getMainType().equals(next.getType().getMainType())) {
-						// handle "would like"
-						if (word.getType().isConditional()) {
-							next.mergeLeft(word);
-							words.remove(word);
-						} else {
-							word.mergeRight(next);
-							words.remove(next);
-						}
-						changed = true;
-						break;
-					}
-					// left-merge question words with following verbs and adjectives
-					else if (word.getType()!=null && word.getType().isQuestion() &&
-							next.getType()!=null && (next.getType().isVerb() || next.getType().isAdjective())) {
-						next.mergeLeft(word);
-						words.remove(word);
-						changed = true;
-						break;
-					}
+
 					// left-merge words to ignore
-					else if (word.getType()!=null && word.getType().isIgnore()) {
+					if (word.getType()!=null && word.getType().isIgnore()) {
 						next.mergeLeft(word);
 						words.remove(word);
 						changed = true;
