@@ -16,7 +16,7 @@ public class Word {
 	private boolean breakFlag = false;
 
 	/**
-	 * create a Word from the given original string.
+	 * Create a Word from the given original string.
 	 * 
 	 * @param s
 	 */
@@ -25,7 +25,7 @@ public class Word {
 	}
 
 	/**
-	 * create a Word from the given strings.
+	 * Create a Word from the given strings.
 	 * 
 	 * @param s
 	 * @param n
@@ -38,7 +38,7 @@ public class Word {
 	}
 
 	/**
-	 * parse the given numeric expression and assign the value to 'amount'.
+	 * Parse the given numeric expression and assign the value to 'amount'.
 	 * 
 	 * @param s
 	 * @param parser
@@ -54,7 +54,7 @@ public class Word {
 	}
 
 	/**
-	 * merge the given preceding Word into this Word.
+	 * Merge the given preceding Word into this Word.
 	 * 
 	 * @param other
 	 */
@@ -65,7 +65,7 @@ public class Word {
 	}
 
 	/**
-	 * merge the given following Word into this Word.
+	 * Merge the given following Word into this Word.
 	 * 
 	 * @param other
 	 */
@@ -77,7 +77,7 @@ public class Word {
 	}
 
 	/**
-	 * merge two amounts into one number.
+	 * Merge two amounts into one number.
 	 * 
 	 * @param left
 	 * @param right
@@ -104,7 +104,7 @@ public class Word {
 	}
 
 	/**
-	 * return amount as integer value, default to 1.
+	 * Return amount as integer value, default to 1.
 	 * 
 	 * @return
 	 */
@@ -113,7 +113,7 @@ public class Word {
 	}
 
 	/**
-	 * set flag to separate different parts of the sentence.
+	 * Set flag to separate different parts of the sentence.
 	 */
 	public void setBreakFlag() {
 		breakFlag = true;
