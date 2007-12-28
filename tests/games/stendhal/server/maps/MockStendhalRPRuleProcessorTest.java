@@ -13,7 +13,7 @@ public class MockStendhalRPRuleProcessorTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		PlayerTestHelper.removePlayer("bob");
+		PlayerTestHelper.removeAllPlayers();
 	}
 
 	@Test
@@ -25,7 +25,6 @@ public class MockStendhalRPRuleProcessorTest {
 	public void testGet() {
 		assertSame(MockStendhalRPRuleProcessor.get(),
 				MockStendhalRPRuleProcessor.get());
-
 	}
 
 	@Test
@@ -42,7 +41,6 @@ public class MockStendhalRPRuleProcessorTest {
 		assertThat(MockStendhalRPRuleProcessor.getAmountOfOnlinePlayers(), is(1));
 		assertSame(bob2, processor.getPlayer("bob"));
 		assertNotSame(bob, processor.getPlayer("bob"));
-
 	}
 
 }

@@ -1,5 +1,6 @@
 package utilities;
 
+import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
 import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.ActiveEntity;
@@ -16,13 +17,16 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.slot.EntitySlot;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
+
+import java.util.List;
+
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
 public class PlayerTestHelper {
 
 	/**
-	 * create an unnamed player object.
+	 * Create an unnamed player object.
 	 * 
 	 * @return player
 	 */
@@ -34,7 +38,7 @@ public class PlayerTestHelper {
 	}
 
 	/**
-	 * create a named player.
+	 * Create a named player.
 	 * 
 	 * @param name
 	 * @return player
@@ -46,7 +50,7 @@ public class PlayerTestHelper {
 	}
 
 	/**
-	 * register a player in rule processor, world and zone.
+	 * Register a player in rule processor, world and zone.
 	 * 
 	 * @param player
 	 * @param zoneName
@@ -56,7 +60,7 @@ public class PlayerTestHelper {
 	}
 
 	/**
-	 * register a player in rule processor, world and zone.
+	 * Register a player in rule processor, world and zone.
 	 * 
 	 * @param player
 	 * @param zone
@@ -74,7 +78,7 @@ public class PlayerTestHelper {
 	}
 
 	/**
-	 * remove a player from rule processor, world and zone.
+	 * Remove a player from rule processor, world and zone.
 	 * 
 	 * @param player
 	 * @param zone
@@ -85,7 +89,7 @@ public class PlayerTestHelper {
 	}
 
 	/**
-	 * remove a player from rule processor, world and zone.
+	 * Remove a player from rule processor, world and zone.
 	 * 
 	 * @param player
 	 * @param zone
@@ -99,7 +103,7 @@ public class PlayerTestHelper {
 	}
 
 	/**
-	 * remove a player from rule processor, world and zone.
+	 * Remove a player from rule processor, world and zone.
 	 * 
 	 * @param playerName
 	 * @param zoneName
@@ -109,7 +113,7 @@ public class PlayerTestHelper {
 	}
 
 	/**
-	 * remove a player from world and rule processor.
+	 * Remove a player from world and rule processor.
 	 * 
 	 * @param playerName
 	 */
@@ -122,7 +126,7 @@ public class PlayerTestHelper {
 	}
 
 	/**
-	 * remove a player from world and rule processor.
+	 * Remove a player from world and rule processor.
 	 * 
 	 * @param player
 	 */
@@ -134,7 +138,19 @@ public class PlayerTestHelper {
 	}
 
 	/**
-	 * equip the player with the given amount of money.
+	 * Remove all players from world and rule processor.
+	 * 
+	 * @param playerName
+	 */
+	public static void removeAllPlayers() {
+		List<Player> players = StendhalRPRuleProcessor.get().getOnlinePlayers().getPlayers();
+
+		for(Player player : players) {
+			removePlayer(player);
+		}
+	}
+	/**
+	 * Equip the player with the given amount of money.
 	 * 
 	 * @param player
 	 * @param amount
@@ -145,7 +161,7 @@ public class PlayerTestHelper {
 	}
 
 	/**
-	 * equip the player with the given amount of items.
+	 * Equip the player with the given amount of items.
 	 * 
 	 * @param player
 	 * @param clazz
@@ -164,7 +180,7 @@ public class PlayerTestHelper {
 	}
 
 	/**
-	 * reset the conversation state of the named NPC.
+	 * Reset the conversation state of the named NPC.
 	 * 
 	 * @param string
 	 */
@@ -177,7 +193,7 @@ public class PlayerTestHelper {
 	}
 
 	/**
-	 * remove the named NPC.
+	 * Remove the named NPC.
 	 * 
 	 * @param npcName
 	 */
@@ -186,7 +202,7 @@ public class PlayerTestHelper {
 	}
 
 	/**
-	 * remove a zone from the world.
+	 * Remove a zone from the world.
 	 * 
 	 * @param name
 	 */
@@ -221,7 +237,6 @@ public class PlayerTestHelper {
 	public static void generateItemRPClasses() {
 		Entity.generateRPClass();
 		Item.generateRPClass();
-
 	}
 
 	public static void generateNPCRPClasses() {
@@ -229,7 +244,6 @@ public class PlayerTestHelper {
 		ActiveEntity.generateRPClass();
 		RPEntity.generateRPClass();
 		NPC.generateRPClass();
-
 	}
 
 	public static void generatePlayerRPClasses() {
@@ -237,7 +251,6 @@ public class PlayerTestHelper {
 		ActiveEntity.generateRPClass();
 		RPEntity.generateRPClass();
 		Player.generateRPClass();
-
 	}
 
 	public static void generateCreatureRPClasses() {
@@ -246,6 +259,5 @@ public class PlayerTestHelper {
 		RPEntity.generateRPClass();
 		NPC.generateRPClass();
 		Creature.generateRPClass();
-		
 	}
 }
