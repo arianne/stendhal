@@ -41,8 +41,6 @@ public class BugInspect extends ScriptImpl implements TurnListener {
 			new Task<Player>() {
 
 			public void execute(Player player) {
-				// TODO Auto-generated method stub
-
 				if (!seen.contains(player.getName())) {
 
 					seen.add(player.getName());
