@@ -66,9 +66,11 @@ explain	VER
 explore	VER
 farewell	VER
 fight	VER
+fill	VER
 fit	VER
 flee	VER
 gamble	VER
+get	VER
 give	VER
 go	VER
 gone	VER	=go
@@ -109,6 +111,8 @@ revive	VER
 run	VER
 say	VER
 sell	VER
+sew	VER
+shout	VER
 sorry	VER
 speak	VER	=say
 start	VER
@@ -123,6 +127,7 @@ would	VER-CON	=will
 yay	VER	=done
 yes	VER
 
+ados	OBJ	ados
 alga	OBJ	algae
 analysis	OBJ	analyses
 antidote	OBJ	antidotes
@@ -141,8 +146,10 @@ bar	OBJ	bars
 bardiche	OBJ	bardiches
 basement	OBJ	basements
 battle	OBJ	battles
+bean	OBJ-FOO	beans
 beer	OBJ-FLU
 blackjack	OBJ	blackjacks
+blood	OBJ	bloods
 board	OBJ	boards
 body	OBJ	bodies
 bone	OBJ	bones
@@ -165,14 +172,18 @@ caboose	OBJ	cabooses
 car	OBJ	cars
 carbuncle	OBJ	carbuncles
 carrot	OBJ-FOO	carrots
+catacomb	OBJ	catacombs
+cauliflower	OBJ	cauliflowers
 chain	OBJ	chains
 challenge	OBJ	challenges
 channange	OBJ	channanges
 chaos	OBJ	chaos
+character	OBJ	characters
 cheese	OBJ-FOO	cheeses
 cherry	OBJ-FOO	cherries
 chest	OBJ	chests
 chunk	OBJ	chunks
+citizenship	OBJ	citizenships
 claymore	OBJ	claymores
 cloak	OBJ	cloaks
 clock	OBJ	clocks
@@ -180,11 +191,13 @@ cloth	OBJ	cloths
 club	OBJ	clubs
 cocktail	OBJ-FLU	cocktails
 cod	OBJ-FOO	cods
+coffin	OBJ	coffins
 colada	OBJ-FLU	coladas
 collard	OBJ	collards
 collection	OBJ	collections
 commander	OBJ	commanders
 cookie	OBJ-FOO	cookies
+cost	OBJ	costs
 coupon	OBJ	coupons
 courgette	OBJ-FOO	courgettes
 cream	OBJ	creams
@@ -206,12 +219,14 @@ earth	OBJ	earths
 eater	OBJ	eaters
 elemental	OBJ	elementals
 emerald	OBJ	emeralds
+entrail	OBJ	entrails
 equipment	OBJ	equipments
 erinys	OBJ	erinyes
 eupepsia	OBJ	eupepsia
 everything	OBJ	everythings
 exam	OBJ	exams
 eye	OBJ	eyes
+faiumoni	OBJ	faiumonis
 favor	OBJ	favors
 favour	OBJ	favours
 fee	OBJ	fees
@@ -224,11 +239,15 @@ flour	OBJ	flours
 flower	OBJ	flowers
 foot	OBJ	feet
 forge	OBJ	forges
+gem	OBJ	gems
+geography	OBJ	geographies
 gnu	OBJ	gnus
+goblet	OBJ	goblets
 gold	OBJ	golds
 gown	OBJ	gowns
 gpl	OBJ	gpls
 grain	OBJ-FOO	grains
+group	OBJ	groups
 halberd	OBJ	halberds
 ham	OBJ	hams
 hammer	OBJ	hammers
@@ -241,6 +260,7 @@ helmet	OBJ	helmets
 help	OBJ	helps
 herb	OBJ	herbs
 hint	OBJ	hints
+history	OBJ	histories
 home	OBJ	homes
 honeymoon	OBJ	honeymoons
 house	OBJ	houses
@@ -253,9 +273,12 @@ island	OBJ	islands
 it	OBJ	its
 item	OBJ	items
 job	OBJ	jobs
+kanmararn	OBJ	kanmararns
 karma	OBJ	karmas
 katana	OBJ	katanas
+kekik	OBJ	kekiks
 key	OBJ	keys
+kingdom	OBJ	kingdoms
 kiss	OBJ	kisses
 knife	OBJ	knives
 knight	OBJ	knights
@@ -263,6 +286,7 @@ kokuda	OBJ	kokudas
 larva	OBJ	larvae
 leek	OBJ-FOO	leeks
 leg	OBJ	legs
+level	OBJ	levels
 library	OBJ	libraries
 list	OBJ	lists
 loaf	OBJ-AMO	loaves
@@ -286,6 +310,9 @@ mouse	OBJ	mice
 mumak	OBJ	mumakil
 mushroom	OBJ-FOO	mushrooms
 my	OBJ-OBS	mys
+name	OBJ	names
+naming	OBJ	namings
+narwol	OBJ	narwols
 news	OBJ	news
 noose	OBJ	nooses
 note	OBJ	notes
@@ -306,12 +333,14 @@ pina	OBJ	pinas
 pinacolad	OBJ-FLU	=pinacolada	pinacoladas
 pinacolada	OBJ-FLU	pinacoladas
 pizza	OBJ-FOO	pizzas
+places	OBJ	places
 plan	OBJ	plans
 plate	OBJ	plates
 plural	OBJ	plurals
 poison	OBJ-FLU	poisons
 porcini	OBJ-FOO	porcini
 portal	OBJ	portals
+position	OBJ	positions
 pot	OBJ	pots
 potion	OBJ-FLU	potions
 present	OBJ	presents
@@ -319,12 +348,14 @@ price	OBJ	prices
 princess	OBJ	princesses
 problem	OBJ	problems
 quest	OBJ	quests
+rainbow	OBJ	rainbows
 request	OBJ	requests
 reward	OBJ	rewards
 rhosyd	OBJ	rhosyds
 ring	OBJ	rings
 robin	OBJ	robins
 rod	OBJ	rods
+room	OBJ	rooms
 rug	OBJ	rugs
 sacerdotist	OBJ	sacerdotists
 sack	OBJ-AMO	sacks
@@ -335,10 +366,12 @@ sapphire	OBJ	sapphires
 scale	OBJ	scales
 scarlet	OBJ	scarlets
 scimitar	OBJ	scimitars
+sclaria	OBJ	sclaria
 scroll	OBJ	scrolls
 scythe	OBJ	scythes
 secret	OBJ	secrets
 security	OBJ	securities
+semos	OBJ	semos
 shadow	OBJ	shadows
 sheaf	OBJ-AMO	sheaves
 shield	OBJ	shields
@@ -352,6 +385,7 @@ space	OBJ	spaces
 species	OBJ	species
 spinach	OBJ-FOO	spinaches
 sprig	OBJ-AMO	sprigs
+sps	OBJ	sps
 staff	OBJ	staffs
 stake	OBJ	stakes
 star	OBJ	stars
@@ -364,6 +398,7 @@ story	OBJ	stories
 suit	OBJ-AMO	suits
 sun	OBJ	suns
 suntan	OBJ	suntans
+supplie	OBJ	supplies
 sword	OBJ	swords
 table	OBJ	tables
 task	OBJ	tasks
@@ -378,8 +413,10 @@ token	OBJ	tokens
 tomato	OBJ-FOO	tomatoes
 tool	OBJ	tools
 tooth	OBJ	teeth
+toy	OBJ	toys
 trade	OBJ	trades
 trading	OBJ	tradings
+treasure	OBJ	treasures
 trigger	OBJ	triggers
 trophy	OBJ	trophies
 trouser	OBJ	trousers
@@ -420,9 +457,11 @@ boy	SUB	boys
 cat	SUB-ANI	cats
 caverat	SUB-ANI	caverats
 ceryl	SUB-NAM
+charles	SUB-NAM
 chicken	SUB-ANI	chickens
 chief	SUB	chiefs
 child	SUB	children
+citizen	SUB
 clownfish	SUB-ANI
 cobra	SUB-ANI	cobras
 crab	SUB-ANI	crabs
@@ -456,10 +495,13 @@ hayunn	SUB-NAM
 he	SUB	they
 heart	SUB
 hero	SUB	heros
+hugo	SUB-NAM
 human	SUB	humans
 hunter	SUB	hunters
 i	SUB	we
 idea	SUB
+io	SUB-NAM
+iou	SUB-NAM
 javier	SUB-NAM
 jynath	SUB-NAM
 katinka	SUB-NAM
@@ -467,7 +509,9 @@ kobold	SUB	kobolds
 kymara	SUB-NAM
 leader	SUB	leaders
 lich	SUB	liches
+lifeguard	SUB
 lion	SUB-ANI	lions
+lord	SUB
 mage	SUB	mages
 man	SUB	men
 margaret	SUB-NAM
@@ -480,6 +524,7 @@ ogre	SUB	ogres
 orc	SUB	orcs
 penguin	SUB-ANI	penguins
 perch	SUB-ANI
+peter	SUB-NAM
 pirate	SUB
 player	SUB	players
 rat	SUB-ANI	rats
@@ -499,6 +544,7 @@ susi	SUB-NAM
 thing	SUB	things
 thonatus	SUB-NAM
 tiger	SUB-ANI	tigers
+tom	SUB-NAM
 troll	SUB	trolls
 trout	SUB-ANI
 unicorn	SUB-ANI	unicorns
@@ -516,6 +562,7 @@ xin	SUB-NAM
 you	SUB	you
 zak	SUB-NAM
 zombie	SUB	zombies
+zynn	SUB-NAM
 
 another	ADJ
 bad	ADJ
@@ -526,6 +573,7 @@ blue	ADJ-COL
 brown	ADJ-COL
 complete	ADJ
 deadly	ADJ
+dwarven	ADJ
 elder	ADJ
 elvish	ADJ
 empty	ADJ
@@ -607,6 +655,7 @@ of	PRE
 off	PRE
 on	PRE
 over	PRE
+somewhere	PRE
 under	PRE
 up	PRE
 with	PRE
@@ -616,6 +665,7 @@ if	QUE
 why	QUE
 
 please	IGN
+really	IGN
 the	IGN
 to	IGN
 whatever	IGN
