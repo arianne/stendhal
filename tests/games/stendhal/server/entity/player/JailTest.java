@@ -9,6 +9,7 @@ import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.common.Log4J;
 
+import org.junit.After;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -21,6 +22,16 @@ public class JailTest {
 		MockStendhalRPRuleProcessor.get().clearPlayers();
 		MockStendlRPWorld.get().addRPZone(new StendhalRPZone(Jail.DEFAULT_JAIL_ZONE, 100, 100));
 		MockStendlRPWorld.get().addRPZone(new StendhalRPZone("-3_semos_jail", 100, 100));
+	}
+
+	@After
+	public void tearDown() throws Exception {
+		// release bob from jail in case he is still imprisoned
+		Jail.get().release("bob");
+
+		//TODO remove arrest warrant in any case - also if bob was not online when arresting him
+
+		MockStendhalRPRuleProcessor.get().clearPlayers();
 	}
 
 	@Test
@@ -36,6 +47,7 @@ public class JailTest {
 	public final void testCriminalimprison() throws Exception {
 		Player policeman = PlayerTestHelper.createPlayer("police_officer");
 		Player bob = PlayerTestHelper.createPlayer("bob");
+		MockStendhalRPRuleProcessor.get().addPlayer(bob);
 		PlayerTestHelper.registerPlayer(bob, "-3_semos_jail");
 
 		Jail.get().imprison(bob.getName(), policeman, 1, "test");
@@ -44,7 +56,6 @@ public class JailTest {
 				policeman.getPrivateText());
 		Jail.get().release(bob);
 		assertFalse(Jail.isInJail(bob));
-
 	}
 
 	@Test
@@ -57,6 +68,7 @@ public class JailTest {
 		Jail.get().imprison("bob", bob, 1, "test");
 		assertFalse(Jail.isInJail(bob));
 
+		MockStendhalRPRuleProcessor.get().addPlayer(bob);
 		bob.setPosition(1, 1);
 		assertTrue(Jail.isInJail(bob));
 		Player nobob = PlayerTestHelper.createPlayer("police_officer");

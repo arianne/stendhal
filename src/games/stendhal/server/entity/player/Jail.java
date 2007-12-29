@@ -33,7 +33,7 @@ public class Jail implements LoginListener {
 	private static final Logger logger = Logger.getLogger(Jail.class);
 
 	// package visibile because of tests
-	static final String DEFAULT_JAIL_ZONE = "-1_semos_jail";
+	public static final String DEFAULT_JAIL_ZONE = "-1_semos_jail";
 	static StendhalRPZone jailzone;
 	ArrestWarrantList arrestWarrants;
 
@@ -104,8 +104,7 @@ public class Jail implements LoginListener {
 
 	// singleton
 	private Jail() {
-		getJailzone();
-		arrestWarrants = new ArrestWarrantList(jailzone);
+		arrestWarrants = new ArrestWarrantList(getJailzone());
 		LoginNotifier.get().addListener(this);
 	}
 
@@ -131,7 +130,7 @@ public class Jail implements LoginListener {
 			policeman.getName() + " jailed " + criminalName
 			+ " for " + minutes + " minutes. Reason: " + reason
 			+ ".");
-		
+
 		if (criminal == null) {
 			String text = "Player " + criminalName + " is not online, but the arrest warrant has been recorded anyway.";
 			policeman.sendPrivateText(text);
@@ -149,9 +148,7 @@ public class Jail implements LoginListener {
 
 	protected void imprison(final Player criminal, Player policeman, int minutes) {
 
-		getJailzone();
-
-		if (jailzone == null) {
+		if (getJailzone() == null) {
 			String text = "Zone " + DEFAULT_JAIL_ZONE + " not found";
 			policeman.sendPrivateText(text);
 			logger.debug(text);
@@ -175,7 +172,7 @@ public class Jail implements LoginListener {
 			Player policeman) {
 		Collections.shuffle(cellEntryPoints);
 		for (Point cell : cellEntryPoints) {
-			if (criminal.teleport(jailzone, cell.x, cell.y, Direction.DOWN,
+			if (criminal.teleport(getJailzone(), cell.x, cell.y, Direction.DOWN,
 					policeman)) {
 				return true;
 			}
@@ -184,11 +181,13 @@ public class Jail implements LoginListener {
 		return false;
 	}
 
-	private void getJailzone() {
+	private static StendhalRPZone getJailzone() {
 		if (jailzone == null) {
 			StendhalRPWorld world = StendhalRPWorld.get();
 			jailzone = (StendhalRPZone) world.getRPZone(DEFAULT_JAIL_ZONE);
 		}
+
+		return jailzone;
 	}
 
 	/**
@@ -200,7 +199,6 @@ public class Jail implements LoginListener {
 	 * @return true if the player has not logged out before he was released
 	 */
 	public boolean release(String inmateName) {
-
 		Player inmate = StendhalRPRuleProcessor.get().getPlayer(inmateName);
 		if (inmate == null) {
 			logger.debug("Jailed player " + inmateName + "has logged out.");
@@ -240,8 +238,9 @@ public class Jail implements LoginListener {
 	 * @return true, if it is in jail, false otherwise.
 	 */
 	public static boolean isInJail(Player inmate) {
+		StendhalRPZone zone = inmate.getZone();
 
-		if (inmate.getZone().equals(jailzone)) {
+		if (zone!=null && zone.equals(getJailzone())) {
 			for (Rectangle cellBlock : cellBlocks) {
 				if (cellBlock.contains(inmate.getX(), inmate.getY())) {
 					return true;

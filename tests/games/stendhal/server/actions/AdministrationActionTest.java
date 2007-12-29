@@ -13,6 +13,7 @@ import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.creature.RaidCreature;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.player.Jail;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
@@ -37,10 +38,19 @@ public class AdministrationActionTest {
 		AdministrationAction.register();
 		MockStendlRPWorld.get();
 		MockStendhalRPRuleProcessor.get().clearPlayers();
+
+		// create zones needed for correct jail functionality:
+		MockStendlRPWorld.get().addRPZone(new StendhalRPZone(Jail.DEFAULT_JAIL_ZONE, 100, 100));
+		MockStendlRPWorld.get().addRPZone(new StendhalRPZone("-3_semos_jail", 100, 100));
 	}
 
 	@After
 	public void tearDown() throws Exception {
+		// release all prisoners left
+		Jail.get().release("name");
+		Jail.get().release("hugo");
+		Jail.get().release("bob");
+
 		MockStendhalRPRuleProcessor.get().clearPlayers();
 	}
 
@@ -540,7 +550,7 @@ public class AdministrationActionTest {
 
 		// We have to use a mock player object here to avoid conflicts because
 		// otherwise the teleporting resets the stored message text events and
-		// getPrivateTextString() returns null instead.
+		// Player.getPrivateText() would return null instead.
 		assertTrue(CommandCenter.execute(pl, action));
 		assertTrue(pl.getPrivateTextString().startsWith("You have jailed hugo for 1 minutes. Reason: whynot."));
 	}
