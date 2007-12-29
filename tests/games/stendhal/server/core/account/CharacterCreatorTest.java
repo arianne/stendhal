@@ -1,7 +1,7 @@
 package games.stendhal.server.core.account;
 
-import static org.junit.Assert.*;
-
+import static org.junit.Assert.assertEquals;
+import marauroa.common.Log4J;
 import marauroa.common.game.Result;
 
 import org.junit.BeforeClass;
@@ -13,6 +13,8 @@ public class CharacterCreatorTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		Log4J.init();
+
 		// setup RP classes
 		PlayerTestHelper.generatePlayerRPClasses();
 		PlayerTestHelper.generateItemRPClasses();
