@@ -9,7 +9,7 @@ import marauroa.common.game.RPAction;
 class AlterAction implements SlashAction {
 
 	/**
-	 * Execute a chat command.
+	 * Executes a chat command.
 	 * 
 	 * @param params
 	 *            The formal parameters.
@@ -19,6 +19,9 @@ class AlterAction implements SlashAction {
 	 * @return <code>true</code> if was handled.
 	 */
 	public boolean execute(String[] params, String remainder) {
+		if (hasInvalidArguments(params, remainder)) {
+			return false;
+		}
 		RPAction alter = new RPAction();
 
 		alter.put("type", "alter");
@@ -32,7 +35,18 @@ class AlterAction implements SlashAction {
 	}
 
 	/**
-	 * Get the maximum number of formal parameters.
+	 * Checks whether the arguments passed are valid for execution.
+	 * 
+	 * @param params
+	 * @param remainder
+	 * @return
+	 */
+	private boolean hasInvalidArguments(String[] params, String remainder) {
+		return params == null || remainder == null || params.length < getMinimumParameters();
+	}
+
+	/**
+	 * Gets the maximum number of formal parameters.
 	 * 
 	 * @return The parameter count.
 	 */
@@ -41,7 +55,7 @@ class AlterAction implements SlashAction {
 	}
 
 	/**
-	 * Get the minimum number of formal parameters.
+	 * Gets the minimum number of formal parameters.
 	 * 
 	 * @return The parameter count.
 	 */
