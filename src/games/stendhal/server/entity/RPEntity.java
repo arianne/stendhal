@@ -13,6 +13,7 @@
 package games.stendhal.server.entity;
 
 import games.stendhal.common.Level;
+import games.stendhal.server.ItemLogger;
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
@@ -1131,6 +1132,7 @@ public abstract class RPEntity extends GuidedEntity {
 					// multiple ones.
 					int quantity = item.getQuantity();
 					if (toDrop >= quantity) {
+						ItemLogger.destroy(this, slot, item);
 						slot.remove(item.getID());
 						toDrop -= quantity;
 						// Recreate the iterator to prevent
@@ -1139,6 +1141,7 @@ public abstract class RPEntity extends GuidedEntity {
 						objectsIterator = slot.iterator();
 					} else {
 						((StackableItem) item).setQuantity(quantity - toDrop);
+						ItemLogger.splitOff(this, item, toDrop);
 						toDrop = 0;
 					}
 				} else {
@@ -1154,6 +1157,7 @@ public abstract class RPEntity extends GuidedEntity {
 				if (toDrop == 0) {
 					updateItemAtkDef();
 					notifyWorldAboutChanges();
+					ItemLogger.destroy(this, slot, item);
 					return true;
 				}
 			}

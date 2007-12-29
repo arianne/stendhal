@@ -45,6 +45,10 @@ public class ItemLogger {
 		log(item, player, "destroy", item.get("name"), getQuantity(item), "on login", slot.getName());
     }
 
+	public static void destroy(RPEntity entity, RPSlot slot, RPObject item) {
+		log(item, entity, "destroy", item.get("name"), getQuantity(item), "quest", slot.getName());
+    }
+
 	public static void dropQuest(Player player, Item item) {
 		log(item, player, "destroy", item.get("name"), getQuantity(item), "quest", null);
     }
@@ -75,6 +79,12 @@ public class ItemLogger {
 	    log(outlivingItem, player, "merged in", oldItem.get(ATTR_LOGID), oldOutlivingQuantity, oldQuantity, newQuantity);
     }
 
+	public static void splitOff(RPEntity player, Item item, int quantity) {
+		String oldQuantity = getQuantity(item);
+		String outlivingQuantity = Integer.toString(Integer.parseInt(oldQuantity) - quantity);
+	    log(item, player, "split out", "-1", oldQuantity, outlivingQuantity, Integer.toString(quantity));
+    }
+
 	public static void splitOff(Player player, Item item, StackableItem newItem, int quantity) {
 		assignIDIfNotPresent(item, newItem);
 		String outlivingQuantity = getQuantity(item);
@@ -100,7 +110,7 @@ public class ItemLogger {
 	the last two are redundant pairs to simplify queries
 	 */
 
-	private static void log(RPObject item, Player player, String event, String param1, String param2, String param3, String param4) {
+	private static void log(RPObject item, RPEntity player, String event, String param1, String param2, String param3, String param4) {
 		if (!item.getRPClass().subclassOf("item")) {
 			return;
 		}
@@ -173,7 +183,7 @@ public class ItemLogger {
 		item.put(ATTR_LOGID, id);
 	}
 
-	private static void writeLog(JDBCTransaction transaction, RPObject item, Player player, String event, String param1, String param2, String param3, String param4) throws SQLException {
+	private static void writeLog(JDBCTransaction transaction, RPObject item, RPEntity player, String event, String param1, String param2, String param3, String param4) throws SQLException {
 		String playerName = null;
 		if (player != null) {
 			playerName = player.getName();
