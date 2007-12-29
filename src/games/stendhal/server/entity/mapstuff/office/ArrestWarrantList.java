@@ -8,7 +8,7 @@ import java.util.List;
 import marauroa.common.game.RPObject;
 
 /**
- * a list of ArrestWarrants as frontend for the the zoen storage
+ * a list of ArrestWarrants as frontend for the the zone storage
  * 
  * @author hendrik
  */
