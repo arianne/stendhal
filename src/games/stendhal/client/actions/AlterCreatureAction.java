@@ -19,6 +19,9 @@ class AlterCreatureAction implements SlashAction {
 	 * @return <code>true</code> if was handled.
 	 */
 	public boolean execute(String[] params, String remainder) {
+		if (params == null || params.length < getMinimumParameters()) {
+			return false;
+		}
 		RPAction alter = new RPAction();
 
 		alter.put("type", "alter");
