@@ -8,7 +8,6 @@ public class ItemTestHelper {
 	public static Item createItem() {
 		PlayerTestHelper.generateItemRPClasses();
 		return new Item("item", "itemclass", "subclass", null);
-
 	}
 
 	public static Item createItem(String name) {

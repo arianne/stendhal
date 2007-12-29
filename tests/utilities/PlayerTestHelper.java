@@ -50,6 +50,29 @@ public class PlayerTestHelper {
 	}
 
 	/**
+	 * Create an unnamed mock player object.
+	 * 
+	 * @return mock player object
+	 */
+	public static TestPlayer createTestPlayer() {
+		PlayerTestHelper.generatePlayerRPClasses();
+		TestPlayer pl = new TestPlayer(new RPObject());
+		PlayerTestHelper.addEmptySlots(pl);
+		return pl;
+	}
+
+	/**
+	 * Create an unnamed mock player object.
+	 * 
+	 * @return mock player object
+	 */
+	public static TestPlayer createTestPlayer(String name) {
+		TestPlayer pl = createTestPlayer();
+		pl.setName(name);
+		return pl;
+	}
+
+	/**
 	 * Register a player in rule processor, world and zone.
 	 * 
 	 * @param player
@@ -237,7 +260,6 @@ public class PlayerTestHelper {
 		player.getSlot("!tutorial").add(new RPObject());
 		player.addSlot(new RPSlot("!visited"));
 		player.getSlot("!visited").add(new RPObject());
-
 	}
 
 	public static void generateItemRPClasses() {
