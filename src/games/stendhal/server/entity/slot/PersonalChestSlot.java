@@ -3,8 +3,6 @@ package games.stendhal.server.entity.slot;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.mapstuff.chest.PersonalChest;
 
-import marauroa.common.game.RPSlot;
-
 import org.apache.log4j.Logger;
 
 /**
