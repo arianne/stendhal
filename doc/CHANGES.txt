@@ -1,6 +1,13 @@
 
 Changelog
 ---------
+0.66
+- added image viewer (ask Monogenes about a map of Semos)
+- added jailing of offline players, freeing after server restart
+- internal, invisible changes
+  - started to rework the way events are send from the server to the client (using RPEvent)
+  - started to implement persistent, non-player related data
+
 0.65.1 (server only)
 - fixed a problem with access to chests
 - added additional log to simplify querying of item history
