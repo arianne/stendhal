@@ -31,7 +31,7 @@ public class CharacterCreatorTest {
 			result = cc.create().getResult();
 		}
 
-		// failure in the second run
+		// expected failure in the second run
 		assertEquals(Result.FAILED_PLAYER_EXISTS, result);
 	}
 
