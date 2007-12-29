@@ -3,13 +3,14 @@ package games.stendhal.server.actions.equip;
 
 import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.entity.slot.PlayerSlot;
 import marauroa.common.game.RPAction;
-import marauroa.common.game.RPObject;
 
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import utilities.PlayerTestHelper;
+import utilities.TestPlayer;
 
 /**
  * Test cases for drop.
@@ -20,40 +21,6 @@ public class EquipmentActionTest {
 	private static final String ZONE_NAME = "0_semos_city";
 
 	private static final String ZONE_CONTENT = "Level 0/semos/city.tmx";
-
-	/**
-	 * A mock player used for testing..
-	 *
-	 * @author hendrik
-	 */
-	private static class MockPlayer extends Player {
-		private String privateText;
-
-		/**
-		 * Creates a new mock player and puts it into the world.
-		 */
-		public MockPlayer() {
-			super(new RPObject());
-			setPosition(10, 5);
-			StendhalRPWorld.get().getRPZone(ZONE_NAME).assignRPObjectID(this);
-			StendhalRPWorld.get().getRPZone(ZONE_NAME).add(this);
-		}
-
-		@Override
-		public void sendPrivateText(String text) {
-			this.privateText = text;
-		}
-
-		/**
-		 * gets the last private message.
-		 *
-		 * @return last private message
-		 */
-		@Override
-		public String getPrivateText() {
-			return privateText;
-		}
-	}
 
 	/**
 	 * initialize the world.
@@ -67,11 +34,25 @@ public class EquipmentActionTest {
 		Player.generateRPClass();
 	}
 
+	/**
+	 * Create player and put it into the world.
+	 * @param name
+	 * @return
+	 */
+	private TestPlayer createTestPlayer(String name) {
+		TestPlayer player = PlayerTestHelper.createTestPlayer(name);
+
+		player.setPosition(10, 5);
+		StendhalRPWorld.get().getRPZone(ZONE_NAME).assignRPObjectID(player);
+		StendhalRPWorld.get().getRPZone(ZONE_NAME).add(player);
+
+		return player;
+	}
+
 	@Test
 	public void testDropInvalidSourceSlot() {
 
-		MockPlayer player = new MockPlayer();
-		player.setName("george");
+		TestPlayer player = createTestPlayer("george");
 
 		RPAction drop = new RPAction();
 		drop.put("type", "drop");
@@ -87,9 +68,8 @@ public class EquipmentActionTest {
 	@Test
 	public void testDrop() {
 
-		MockPlayer player = new MockPlayer();
-		player.addSlot(new PlayerSlot("bag"));
-		player.setName("bob");
+		TestPlayer player = createTestPlayer("bob");
+
 		RPAction drop = new RPAction();
 		drop.put("type", "drop");
 		drop.put("baseobject", player.getID().getObjectID());
