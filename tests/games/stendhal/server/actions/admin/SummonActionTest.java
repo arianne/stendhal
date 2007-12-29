@@ -25,10 +25,10 @@ public class SummonActionTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		Log4J.init();
 		SummonAction.register();
 		MockStendlRPWorld.get();
 		MockStendhalRPRuleProcessor.get().clearPlayers();
-		Log4J.init();
 	}
 
 	@Before
