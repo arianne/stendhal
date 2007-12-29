@@ -40,7 +40,7 @@ public class Engine {
 	 * Creates a new FSM.
 	 * 
 	 * @param speakerNPC
-	 *            the speaker npc for which this FSM is created must not be null
+	 *            the speaker NPC for which this FSM is created must not be null
 	 */
 	public Engine(SpeakerNPC speakerNPC) {
 		if (speakerNPC == null) {
@@ -100,11 +100,16 @@ public class Engine {
 
 		Transition existing = get(state, trigger, condition);
 		if (existing != null) {
-			// A previous state, trigger, condition combination exist.
+			// A previous state, trigger, condition combination exists.
 			logger.warn(speakerNPC.getName() + ": Adding to " + existing
 					+ " the state [" + state + "," + trigger + "," + nextState
 					+ "," + condition + "]");
-			existing.setReply(existing.getReply() + " " + reply);
+
+			if (existing.getReply() != null) {
+    			reply = existing.getReply() + " " + reply;
+			}
+
+			existing.setReply(reply);
 		}
 
 		Transition item = new Transition(state, trigger, condition, nextState,
@@ -130,9 +135,7 @@ public class Engine {
 	 *            a special action to be taken (may be null)
 	 */
 	public void add(int state, List<String> triggers, ChatCondition condition,
-			int nextState, String reply,
-
-			ChatAction action) {
+			int nextState, String reply, ChatAction action) {
 		if (triggers == null) {
 			throw new IllegalArgumentException("triggers list must not be null");
 		}
