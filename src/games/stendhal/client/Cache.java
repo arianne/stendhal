@@ -40,7 +40,7 @@ public class Cache {
 	private static final String VERSION_KEY = "_VERSION";
 
 	/**
-	 * inits the cache.
+	 * Inits the cache.
 	 */
 	public void init() {
 		try {
@@ -85,9 +85,9 @@ public class Cache {
 	}
 
 	/**
-	 * empty cache on update.
+	 * Empty cache on update.
 	 * 
-	 * stendhal is known to crash, if incompatible stuff is in cache.
+	 * Stendhal is known to crash, if incompatible stuff is in cache.
 	 * 
 	 * @throws IOException
 	 *             in case the cache folder is not writeable
@@ -110,7 +110,10 @@ public class Cache {
 	private void initCacheManager() throws IOException {
 		String cacheFile = System.getProperty("user.home")
 				+ stendhal.STENDHAL_FOLDER + "cache/stendhal.cache";
+
+		// create a new cache file if doesn't exist already
 		new File(cacheFile).createNewFile();
+
 		Configuration.setConfigurationFile(true, stendhal.STENDHAL_FOLDER,
 				"cache/stendhal.cache");
 		cacheManager = Configuration.getConfiguration();
