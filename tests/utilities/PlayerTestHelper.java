@@ -1,6 +1,5 @@
 package utilities;
 
-import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
 import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.ActiveEntity;
@@ -17,9 +16,6 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.slot.EntitySlot;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
-
-import java.util.List;
-
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
@@ -164,18 +160,13 @@ public class PlayerTestHelper {
 	 * Remove all players from world and rule processor.
 	 */
 	public static void removeAllPlayers() {
-		StendhalRPRuleProcessor processor = StendhalRPRuleProcessor.get();
+		MockStendhalRPRuleProcessor processor = MockStendhalRPRuleProcessor.get();
 
-		// We need this loop instead of a simple for loop because of concurrency issues.
-		for(;;) {
-			List<Player> players = processor.getOnlinePlayers().getPlayers();
-
-			if (players.isEmpty()) {
-				break;
-			}
-
-			removePlayer(players.get(0));
+		for(Player player : processor.getOnlinePlayers().getPlayers()) {
+			MockStendlRPWorld.get().remove(player.getID());
 		}
+
+		processor.clearPlayers();
 	}
 
 	/**
