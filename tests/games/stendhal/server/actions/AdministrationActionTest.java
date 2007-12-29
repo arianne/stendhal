@@ -746,6 +746,10 @@ public class AdministrationActionTest {
 		action.put("item", "dagger");
 		assertFalse(pl.isEquipped("dagger"));
 		CommandCenter.execute(pl, action);
+		if (pl.getPrivateText() != null) {
+			// print error message in JUnit log
+			assertEquals("", pl.getPrivateText());
+		}
 		assertTrue(pl.isEquipped("dagger"));
 		pl.resetPrivateText();
 
