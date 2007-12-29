@@ -5,10 +5,10 @@ import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPObject;
 
 /**
- * A mock player used to catch private message texts.
+ * A player test class used to catch private message texts.
  */
 public class TestPlayer extends Player {
-	private String privateText;
+	private StringBuilder privateTextBuffer = null;
 
 	/**
 	 * Creates a new mock player without name.
@@ -30,36 +30,50 @@ public class TestPlayer extends Player {
 	 */
 	@Override
 	public void sendPrivateText(NotificationType type, String text) {
-		sendPrivateText(text);
+		appendMessage(text);
+
+		// Don't forget to call the super class.
+		super.sendPrivateText(type, text);
 	}
 
 	/**
-	 * Catch private message texts.
+	 * Append the given string to the private message buffer.
+	 *  
+	 * @param text
 	 */
-	@Override
-	public void sendPrivateText(String text) {
-		if (this.privateText != null) {
-			this.privateText += "\r\n" + text;
+	private void appendMessage(final String text) {
+		if (privateTextBuffer != null) {
+			privateTextBuffer.append("\r\n");
+			privateTextBuffer.append(text);
 		} else {
-			this.privateText = text;
+			privateTextBuffer = new StringBuilder(text);
 		}
 	}
 
 	/**
 	 * Gets the concatenated private message texts
-	 * since the last resetPrivateText() call.
+	 * since the last resetPrivateTextString() call.
 	 *
-	 * @return last private message
+	 * @return private message string
 	 */
-	@Override
-	public String getPrivateText() {
-		return privateText;
+	public String getPrivateTextString() {
+		return privateTextBuffer!=null? privateTextBuffer.toString(): "";
+	}
+
+	/**
+	 * Return boolean flag, if we received any private text
+	 * since the last call to resetPrivateTextString()
+	 *
+	 * @return
+	 */
+	public boolean hasPrivateText() {
+		return privateTextBuffer != null;
 	}
 
 	/**
 	 * Reset private message text.
 	 */
-	public void resetPrivateText() {
-		privateText = null;
+	public void resetPrivateTextString() {
+		privateTextBuffer = null;
 	}
 }

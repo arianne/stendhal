@@ -51,7 +51,6 @@ public class EquipmentActionTest {
 
 	@Test
 	public void testDropInvalidSourceSlot() {
-
 		TestPlayer player = createTestPlayer("george");
 
 		RPAction drop = new RPAction();
@@ -62,12 +61,11 @@ public class EquipmentActionTest {
 
 		EquipmentAction action = new EquipmentAction();
 		action.onAction(player, drop);
-		Assert.assertTrue("error message on invalid slot", player.getPrivateText() != null);
+		Assert.assertTrue("error message on invalid slot", player.getPrivateTextString().length()>0);
 	}
 
 	@Test
 	public void testDrop() {
-
 		TestPlayer player = createTestPlayer("bob");
 
 		RPAction drop = new RPAction();
@@ -81,8 +79,8 @@ public class EquipmentActionTest {
 
 		EquipmentAction action = new EquipmentAction();
 		action.onAction(player, drop);
-		System.err.println(player.getPrivateText());
+		System.err.println(player.getPrivateTextString());
 
-		Assert.assertTrue("error message on invalid item", player.getPrivateText() != null);
+		Assert.assertTrue("error message on invalid item", player.getPrivateTextString().length()>0);
 	}
 }
