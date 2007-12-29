@@ -38,10 +38,10 @@ public class MockStendhalRPRuleProcessor extends StendhalRPRuleProcessor {
 		
 	}
 
-	
-
+	/**
+	 * clear the list of online players
+	 */
 	public void clearPlayers() {
 		onlinePlayers.getPlayers().clear();
-		
 	}
 }
