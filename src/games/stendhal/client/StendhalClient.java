@@ -38,13 +38,13 @@ import javax.swing.JOptionPane;
 import marauroa.client.ClientFramework;
 import marauroa.client.net.IPerceptionListener;
 import marauroa.client.net.PerceptionHandler;
-
-import org.apache.log4j.Logger;
 import marauroa.common.game.Perception;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 import marauroa.common.net.message.MessageS2CPerception;
 import marauroa.common.net.message.TransferContent;
+
+import org.apache.log4j.Logger;
 
 /**
  * This class is the glue to Marauroa, it extends ClientFramework and allow us
@@ -692,10 +692,10 @@ public class StendhalClient extends ClientFramework {
 	}
 
 	/**
-	 * Check to see if the object is the connected user. This is an ungly hack
-	 * needed because the perception protocol distinquishes between normal and
+	 * Check to see if the object is the connected user. This is an ugly hack
+	 * needed because the perception protocol distinguishes between normal and
 	 * private (my) object changes, but not full add/removes.
-	 * 
+	 *
 	 * @param object
 	 *            An object.
 	 * 
@@ -707,5 +707,14 @@ public class StendhalClient extends ClientFramework {
 		} else {
 			return false;
 		}
+	}
+
+	/**
+	 * Return the Cache instance.
+	 * 
+	 * @return cache
+	 */
+	public Cache getCache() {
+		return cache;
 	}
 }

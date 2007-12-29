@@ -1,5 +1,6 @@
 package games.stendhal.client.gui.admin;
 
+import games.stendhal.client.StendhalClient;
 import games.stendhal.client.StendhalUI;
 import games.stendhal.common.NotificationType;
 
@@ -14,8 +15,6 @@ import java.io.PrintStream;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
-
-import marauroa.common.Configuration;
 
 import org.apache.log4j.Logger;
 
@@ -43,7 +42,7 @@ public class TransitionDiagram {
 			ps.close();
 
 			// execute
-			String dotPath = Configuration.getConfiguration().get(
+			String dotPath = StendhalClient.get().getCache().getConfiguration().get(
 					"stendhal.dotPath");
 			if (dotPath == null) {
 				dotPath = "dot";

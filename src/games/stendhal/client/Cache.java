@@ -11,12 +11,12 @@ import java.io.OutputStream;
 import java.net.URL;
 import java.util.Properties;
 
-import org.apache.log4j.Logger;
-
 import marauroa.common.Configuration;
-
+import marauroa.common.ConfigurationParams;
 import marauroa.common.io.Persistence;
 import marauroa.common.net.message.TransferContent;
+
+import org.apache.log4j.Logger;
 
 /**
  * <p>
@@ -38,6 +38,16 @@ public class Cache {
 	private Configuration cacheManager;
 	private Properties prefilledCacheManager;
 	private static final String VERSION_KEY = "_VERSION";
+
+	/**
+	 * Return the client configuration instance
+	 * (content of "stendhal.cache").
+	 * 
+	 * @return
+	 */
+	public Configuration getConfiguration() {
+		return cacheManager;
+	}
 
 	/**
 	 * Inits the cache.
@@ -114,9 +124,8 @@ public class Cache {
 		// create a new cache file if doesn't exist already
 		new File(cacheFile).createNewFile();
 
-		Configuration.setConfigurationFile(true, stendhal.STENDHAL_FOLDER,
-				"cache/stendhal.cache");
-		cacheManager = Configuration.getConfiguration();
+		cacheManager = new Configuration(new ConfigurationParams(
+				true, stendhal.STENDHAL_FOLDER, "cache/stendhal.cache"));
 	}
 
 	/**
