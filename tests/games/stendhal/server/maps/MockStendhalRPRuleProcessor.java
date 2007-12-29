@@ -1,5 +1,6 @@
 package games.stendhal.server.maps;
 
+import games.stendhal.server.core.engine.PlayerList;
 import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
 import games.stendhal.server.entity.player.Player;
 
@@ -34,14 +35,15 @@ public class MockStendhalRPRuleProcessor extends StendhalRPRuleProcessor {
 				;
 			}
 		
-			this.onlinePlayers.getPlayers().add(player);
+			this.onlinePlayers.add(player);
 		
 	}
 
 	/**
-	 * clear the list of online players
+	 * reset the list of online players.
 	 */
 	public void clearPlayers() {
-		onlinePlayers.getPlayers().clear();
+		onlinePlayers = new PlayerList();
+		
 	}
 }

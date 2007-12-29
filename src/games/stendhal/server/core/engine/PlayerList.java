@@ -16,6 +16,12 @@ public class PlayerList {
 	private List<Player> players;
 
 	
+	/**
+	 * use <code>forAllPlayersExecute(Task task) </code> instead.
+	 * 
+	 * @return
+	 */
+	@Deprecated
 	public List<Player> getPlayers() {
 		return players;
 	}
@@ -83,7 +89,7 @@ public class PlayerList {
 		return players.size();
 	}
 
-	void add(Player player) {
+	public void add(Player player) {
 		players.add(player);
 		
 	}

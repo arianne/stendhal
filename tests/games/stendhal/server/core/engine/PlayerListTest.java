@@ -19,14 +19,12 @@ public class PlayerListTest {
 	@Test
 	public void testPlayerList() {
 		PlayerList list = new PlayerList();
-		assertNotNull(list.getPlayers());
-
+		
 	}
 
 	@Test
 	public void testGetOnlinePlayer() {
 		PlayerList list = new PlayerList();
-		assertNotNull(list.getPlayers());
 		assertThat(list.size(), is(0));
 		Player jack = PlayerTestHelper.createPlayer("jack");
 		list.add(jack);

@@ -2,6 +2,7 @@ package utilities;
 
 import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.engine.Task;
 import games.stendhal.server.entity.ActiveEntity;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
@@ -161,10 +162,14 @@ public class PlayerTestHelper {
 	 */
 	public static void removeAllPlayers() {
 		MockStendhalRPRuleProcessor processor = MockStendhalRPRuleProcessor.get();
+		processor.getOnlinePlayers().forAllPlayersExecute(new Task<Player>() {
 
-		for(Player player : processor.getOnlinePlayers().getPlayers()) {
-			MockStendlRPWorld.get().remove(player.getID());
-		}
+			public void execute(Player player) {
+				MockStendlRPWorld.get().remove(player.getID());
+
+			}
+
+		});
 
 		processor.clearPlayers();
 	}
@@ -188,12 +193,10 @@ public class PlayerTestHelper {
 	 * @param amount
 	 * @return success flag
 	 */
-	public static boolean equipWithStackableItem(Player player, String clazz,
-			int amount) {
+	public static boolean equipWithStackableItem(Player player, String clazz, int amount) {
 		StendhalRPWorld world = StendhalRPWorld.get();
 
-		StackableItem item = (StackableItem) world.getRuleManager().getEntityManager().getItem(
-				clazz);
+		StackableItem item = (StackableItem) world.getRuleManager().getEntityManager().getItem(clazz);
 		item.setQuantity(amount);
 
 		return player.equip(item);
