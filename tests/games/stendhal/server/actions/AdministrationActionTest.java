@@ -746,6 +746,7 @@ public class AdministrationActionTest {
 		action.put("item", "dagger");
 		assertFalse(pl.isEquipped("dagger"));
 		CommandCenter.execute(pl, action);
+		// If the following fails, chances are quite good, the "items.xml" configuration file could not be loaded.
 		assertEquals("", pl.getPrivateTextString());
 		assertTrue(pl.isEquipped("dagger"));
 		pl.resetPrivateTextString();
