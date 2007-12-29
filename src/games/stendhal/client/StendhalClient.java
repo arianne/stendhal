@@ -70,7 +70,7 @@ public class StendhalClient extends ClientFramework {
 
 	private GameObjects gameObjects;
 
-	private static StendhalClient client;
+	protected static StendhalClient client;
 
 	private Cache cache;
 
