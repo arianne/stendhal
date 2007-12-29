@@ -32,7 +32,7 @@ import games.stendhal.server.entity.item.ConsumableItem;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
-import games.stendhal.server.events.TextEvent;
+import games.stendhal.server.events.PrivateTextEvent;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -912,7 +912,7 @@ public class Player extends RPEntity {
 	 *            the message.
 	 */
 	public void sendPrivateText(NotificationType type, String text) {
-		addEvent(new TextEvent(type, text));
+		addEvent(new PrivateTextEvent(type, text));
 	}
 
 	/**

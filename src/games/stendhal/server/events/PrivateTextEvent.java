@@ -11,7 +11,7 @@ import marauroa.common.game.Definition.Type;
  *
  * @author hendrik
  */
-public class TextEvent extends RPEvent {
+public class PrivateTextEvent extends RPEvent {
 	private static final String RPCLASS_NAME = "private_text";
 	private static final String TEXT_TYPE = "texttype";
 	private static final String CHANNEL = "channel";
@@ -33,7 +33,7 @@ public class TextEvent extends RPEvent {
 	 * @param type NotificationType
 	 * @param text Text
 	 */
-	public TextEvent(NotificationType type, String text) {
+	public PrivateTextEvent(NotificationType type, String text) {
 		super(RPCLASS_NAME);		
 		put(TEXT_TYPE, type.name());
 		put(TEXT, text);
