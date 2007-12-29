@@ -97,6 +97,8 @@ public class CharacterCreator {
 			 * Finally we add it to database.
 			 */
 			database.addCharacter(trans, username, character, object);
+			trans.commit();
+
 			return new CharacterResult(Result.OK_CREATED, character, object);
 		} catch (Exception e) {
 			try {
