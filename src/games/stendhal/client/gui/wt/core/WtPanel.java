@@ -21,6 +21,7 @@ import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 import games.stendhal.common.Debug;
 
+import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -139,6 +140,9 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	/** true when the window is already closed */
 	private boolean closed;
 
+	/** make it transparent */
+	private float transparency;
+
 	// ///////////////
 	// Debug stuff //
 	// ///////////////
@@ -171,6 +175,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		this.textureSprites = new ArrayList<Sprite>();
 		this.closeListeners = new ArrayList<WtCloseListener>();
 		this.clickListeners = new ArrayList<WtClickListener>();
+		this.transparency = 1.0f;
 
 		if (useWindowManager()) {
 			WtWindowManager.getInstance().formatWindow(this);
@@ -805,6 +810,10 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 				image = recreatePanelImage(g);
 				cachedImage = image;
 			}
+			if (transparency < 0.99) {
+				g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, transparency));
+			}
+
 			g.drawImage(image, 0, 0, null);
 		}
 
@@ -1168,6 +1177,10 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 			// moves the contex-menu to match the position of this panel
 			parent.setContextMenu(contextMenu);
 		}
+	}
+
+	public void setTransparency(float t) {
+		this.transparency = t;
 	}
 
 	/** toString */
