@@ -52,7 +52,7 @@ public class WtWindowManager {
 	/** maps the window names to their configs */
 	private Map<String, WindowConfiguration> configs = new HashMap<String, WindowConfiguration>();
 
-	/** no public constuctor */
+	/** no public constructor */
 	private WtWindowManager() {
 		// try to read the configurations from disk
 		read();

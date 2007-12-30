@@ -168,7 +168,7 @@ public class StendhalRPWorld extends RPWorld {
 
 	private void createRPClasses() {
 		/*
-		 * TODO: Refactor Do as Chadf proposed so the clases self initialize.
+		 * TODO: Refactor Do as Chadf proposed so the classes self initialize.
 		 * This method is prone to be forgotten on addition of new classes.
 		 */
 		Entity.generateRPClass();

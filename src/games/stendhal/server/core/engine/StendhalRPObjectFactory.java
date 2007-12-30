@@ -16,7 +16,6 @@ public class StendhalRPObjectFactory extends RPObjectFactory {
 	private static Logger logger = Logger.getLogger(StendhalRPObjectFactory.class);
 	private static RPObjectFactory singleton;
 	
-
 	@Override
 	public RPObject transform(RPObject object) {
 		RPClass clazz = object.getRPClass();
@@ -29,7 +28,7 @@ public class StendhalRPObjectFactory extends RPObjectFactory {
 		if (name.equals(ArrestWarrant.RPCLASS_NAME)) {
 			return new ArrestWarrant(object);
 		}
-		
+
 		// fallback
 		return super.transform(object);
 	}

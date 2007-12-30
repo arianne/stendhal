@@ -5,7 +5,6 @@ import games.stendhal.server.entity.player.Player;
 
 import java.util.Iterator;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class PlayerList {
@@ -26,7 +25,6 @@ public class PlayerList {
 	 */
 	Player getOnlinePlayer(String name) {
 		return players.get(name);
-
 	}
 
 	/**
@@ -39,7 +37,6 @@ public class PlayerList {
 			public void execute(Player player) {
 				player.sendPrivateText(message);
 				player.notifyWorldAboutChanges();
-
 			}
 		});
 	}
@@ -51,7 +48,7 @@ public class PlayerList {
 	 *            the task to execute
 	 */
 	public void forAllPlayersExecute(Task<Player> task) {
-		Iterator<Entry<String, Player>> it = players.entrySet().iterator();
+		Iterator<Map.Entry<String, Player>> it = players.entrySet().iterator();
 		while (it.hasNext()) {
 			task.execute(it.next().getValue());
 		}
@@ -67,7 +64,7 @@ public class PlayerList {
 	 *            the FilterCriteria to pass
 	 */
 	public void forFilteredPlayersExecute(Task<Player> task, FilterCriteria<Player> filter) {
-		Iterator<Entry<String, Player>> it = players.entrySet().iterator();
+		Iterator<Map.Entry<String, Player>> it = players.entrySet().iterator();
 
 		while (it.hasNext()) {
 
@@ -90,12 +87,10 @@ public class PlayerList {
 
 	public void add(Player player) {
 		players.put(player.getName(), player);
-
 	}
 
 	public boolean remove(Player player) {
 		return players.remove(player.getName()) != null;
-
 	}
 
 }
