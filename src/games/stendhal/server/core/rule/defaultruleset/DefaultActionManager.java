@@ -33,7 +33,7 @@ public class DefaultActionManager implements ActionManager {
 	/** the singleton instance, lazy initialisation */
 	private static DefaultActionManager manager;
 
-	/** no public constuctor */
+	/** no public constructor */
 	private DefaultActionManager() {
 		// hide constructor, this is a Singleton
 	}

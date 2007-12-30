@@ -159,7 +159,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	}
 
 	/**
-	 * copy constuctor
+	 * copy constructor
 	 * 
 	 * @param item
 	 *            item to copy

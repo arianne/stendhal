@@ -69,7 +69,7 @@ public class EquipmentAction implements ActionListener {
 		CommandCenter.register("drop", equip);
 	}
 
-	/** constuctor. */
+	/** constructor. */
 	public EquipmentAction() {
 		validContainerClassesList = Arrays.asList(validContainerClasses);
 	}
