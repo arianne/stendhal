@@ -1,5 +1,7 @@
 package games.stendhal.server.entity.npc.parser;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.StringTokenizer;
 
 /**
@@ -157,10 +159,26 @@ public class ConversationParser {
 	 * @param trigger
 	 * @return
 	 */
-	public static String normalizeTrigger(String trigger) {
+	public static Word normalizeTrigger(String trigger) {
 		Sentence sentence = parse(trigger, null);
 
-		return sentence.getTrigger();
+		return sentence.getTriggerWord();
 	}
+
+	/**
+	 * Create a list of normalized trigger Words from a String list.
+	 *
+	 * @param string list
+	 * @return word lsit
+	 */
+	public static List<Word> normalizeTriggerList(List<String> strings) {
+		List<Word> words = new LinkedList<Word>();
+
+		for(String item : strings) {
+			words.add(normalizeTrigger(item));
+		}
+
+		return words;
+    }
 
 }

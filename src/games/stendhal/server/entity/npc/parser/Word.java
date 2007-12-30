@@ -15,6 +15,8 @@ public class Word {
 	private Integer amount;
 	private boolean breakFlag = false;
 
+	public static final Word emptyWord = new Word("", "", "");
+
 	/**
 	 * Create a Word from the given original string.
 	 * 
@@ -127,22 +129,6 @@ public class Word {
 		this.type = type;
 	}
 
-	/**
-	 * Merge word type with another one
-	 * while handling null values.
-	 *
-	 * @param otherType
-	 */
-	public void mergeType(WordType otherType) {
-		if (type != null) {
-			if (otherType != null) {
-				type = type.merge(otherType);
-			}
-		} else {
-			type = otherType;
-		}
-	}
-
 	public WordType getType() {
 		return type;
 	}
@@ -163,9 +149,63 @@ public class Word {
 		return type!=null? type.getTypeString(): "";
 	}
 
+	/**
+	 * Merge word type with another one
+	 * while handling null values.
+	 *
+	 * @param otherType
+	 */
+	public void mergeType(WordType otherType) {
+		if (type != null) {
+			if (otherType != null) {
+				type = type.merge(otherType);
+			}
+		} else {
+			type = otherType;
+		}
+	}
+
 	public String getNormalizedWithTypeString() {
 		return normalized + "/" + getTypeString();
     }
+
+	private String getMatchString() {
+		// special case for numeric expressions to disambiguate "no" from "0"
+		if (type!=null && type.isNumeral()) {
+			return original.toLowerCase();
+		} else {
+			return normalized;
+		}
+    }
+
+	/**
+	 * Check if two words match.
+	 * 
+	 * @param other word
+	 * @return
+	 */
+	public boolean matches(Word other) {
+		if (other != null) {
+			return getMatchString().equals(other.getMatchString());
+		} else {
+			return false;
+		}
+	}
+
+	/**
+	 * Check if the word beginning matches another word.
+	 * 
+	 * @param other word
+	 * @return
+	 */
+	public boolean matchesBeginning(Word other) {
+		return getMatchString().startsWith(other.getMatchString());
+    }
+
+	@Override
+	public boolean equals(Object other) {
+		return toString().equals(other.toString());
+	}
 
 	@Override
 	public String toString() {

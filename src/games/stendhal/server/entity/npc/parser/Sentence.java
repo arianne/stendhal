@@ -97,7 +97,7 @@ public class Sentence {
 		int count = 0;
 
 		for(Word w : words) {
-			if (w.getType()!=null && w.getType().getTypeString().startsWith(typePrefix)) {
+			if (w.getTypeString().startsWith(typePrefix)) {
 				++count;
 			}
 		}
@@ -112,7 +112,7 @@ public class Sentence {
 	 */
 	public Word getWord(int i, String typePrefix) {
 		for(Word w : words) {
-			if (w.getType()!=null && w.getType().getTypeString().startsWith(typePrefix)) {
+			if (w.getTypeString().startsWith(typePrefix)) {
 				if (i == 0) {
 					return w;
 				}
@@ -124,20 +124,20 @@ public class Sentence {
 		return null;
 	}
 
-	private String triggerCache = null;
+	private Word triggerCache = null;
 
 	/**
-	 * Return trigger string for the FSM engine.
+	 * Return trigger Word for the FSM engine.
 	 * TODO replace by sentence matching.
 	 * 
 	 * @return trigger string
 	 */
-	public String getTrigger() {
+	public Word getTriggerWord() {
 		if (triggerCache != null) {
 			return triggerCache;
 		}
 
-		triggerCache = "";
+		Word trigger = Word.emptyWord;
 
 		Iterator<Word> it = words.iterator();
 
@@ -145,18 +145,14 @@ public class Sentence {
 			Word word = it.next();
 
 			if (word.getType()==null || !word.getType().isIgnore()) {
-				// special case for numeric expressions to disambiguate "no" from "0"
-				if (word.getType()!=null && word.getType().isNumeral()) {
-					triggerCache = word.getOriginal().toLowerCase();
-				} else {
-					triggerCache = word.getNormalized();
-				}
-
+				trigger = word;
 				break;
 			}
 		}
 
-		return triggerCache;
+		triggerCache = trigger;
+
+		return trigger;
 	}
 
 	/**
@@ -400,7 +396,7 @@ public class Sentence {
 		for (Word w : words) {
 			if (w.getType() != null) {
 				if (!w.getType().isIgnore()) {
-					builder.append(w.getNormalized() + "/" + w.getType().getTypeString());
+					builder.append(w.getNormalizedWithTypeString());
 				}
 			} else {
 				builder.append(w.getOriginal());
@@ -466,12 +462,10 @@ public class Sentence {
 				WordEntry verb = wl.normalizeVerb(original);
 
 				if (verb != null) {
-					WordType type = verb.getType();
-
 					if (Grammar.isGerund(original)) {
-						w.setType(new WordType(type.getTypeString()+WordType.GERUND));
+						w.setType(new WordType(verb.getTypeString()+WordType.GERUND));
 					} else {
-						w.setType(type);
+						w.setType(verb.getType());
 					}
 
 					w.setNormalized(verb.getNormalized());
@@ -676,10 +670,13 @@ public class Sentence {
 						continue;
 					}
 
-					if (word.getType()!=null && next.getType()!=null) {
+					WordType curType = word.getType();
+					WordType nextType = next.getType();
+
+					if (curType!=null && nextType!=null) {
     					// left-merge nouns with preceding adjectives or amounts and composite nouns
-    					if ((word.getType().isAdjective() || word.getType().isNumeral() || word.getType().isObject()) &&
-    						(next.getType().isObject() || next.getType().isSubject())) {
+    					if ((curType.isAdjective() || curType.isNumeral() || curType.isObject()) &&
+    						(nextType.isObject() || nextType.isSubject())) {
     						// special case for "ice cream" -> "ice"
     						if (word.getNormalized().equals("ice") && next.getNormalized().equals("cream")) {
     							word.mergeRight(next);
@@ -692,9 +689,9 @@ public class Sentence {
     						break;
     					}
     					// right-merge consecutive words of the same main type
-    					else if (word.getType().getMainType().equals(next.getType().getMainType())) {
+    					else if (curType.getMainType().equals(nextType.getMainType())) {
     						// handle "would like"
-    						if (word.getType().isConditional()) {
+    						if (curType.isConditional()) {
     							next.mergeLeft(word);
     							words.remove(word);
     						} else {
@@ -705,8 +702,8 @@ public class Sentence {
     						break;
     					}
     					// left-merge question words with following verbs and adjectives
-    					else if (word.getType().isQuestion() &&
-    							(next.getType().isVerb() || next.getType().isAdjective())) {
+    					else if (curType.isQuestion() &&
+    							(nextType.isVerb() || nextType.isAdjective())) {
     						next.mergeLeft(word);
     						words.remove(word);
     						changed = true;
@@ -715,7 +712,7 @@ public class Sentence {
 					}
 
 					// left-merge words to ignore
-					if (word.getType()!=null && word.getType().isIgnore()) {
+					if (curType!=null && curType.isIgnore()) {
 						next.mergeLeft(word);
 						words.remove(word);
 						changed = true;
