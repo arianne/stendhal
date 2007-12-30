@@ -74,6 +74,11 @@ public class CloakCollector extends AbstractQuest implements BringListOfItemsQue
 											.getItem(sentence.getOriginalText()).getItemSubclass()
 									+ ". So, will you find them all?");
 					}
+
+					@Override
+					public String toString() {
+						return "describe item";
+					}
 		});
 	}
 

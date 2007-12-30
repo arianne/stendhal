@@ -102,6 +102,11 @@ public class CloakCollector2 extends AbstractQuest {
 								+ Grammar.enumerateCollection(needed2)
 								+ ". Will you find them?");
 					}
+
+					@Override
+					public String toString() {
+						return "list missingcloaks2";
+					}
 				});
 		// player says yes
 		npc.add(ConversationStates.QUEST_2_OFFERED,
@@ -115,6 +120,11 @@ public class CloakCollector2 extends AbstractQuest {
 						engine.say("Brilliant! I'm all excited again! Bye!");
 						player.setQuest(QUEST_SLOT, "");
 						player.addKarma(5.0);
+					}
+
+					@Override
+					public String toString() {
+						return "answer offer2";
 					}
 				});
 
@@ -130,6 +140,11 @@ public class CloakCollector2 extends AbstractQuest {
 						engine
 								.say("Oh ... you're not very friendly. Please say yes?");
 						player.addKarma(-5.0);
+					}
+
+					@Override
+					public String toString() {
+						return "answer refuse2";
 					}
 				});
 
@@ -152,6 +167,11 @@ public class CloakCollector2 extends AbstractQuest {
 									+ StendhalRPWorld.get().getRuleManager().getEntityManager()
 											.getItem(sentence.getOriginalText()).getItemSubclass()
 									+ ". Sorry if that's not much help, it's all I know! So, will you find them all?");
+					}
+
+					@Override
+					public String toString() {
+						return "describe item";
 					}
 				});
 	}
@@ -191,6 +211,11 @@ public class CloakCollector2 extends AbstractQuest {
 								+ ". That's "
 								+ Grammar.enumerateCollection(needed2)
 								+ ". Did you bring any?");
+					}
+
+					@Override
+					public String toString() {
+						return "enumerate missingcloaks2";
 					}
 				});
 		// player says he has a required cloak with him
@@ -241,6 +266,11 @@ public class CloakCollector2 extends AbstractQuest {
 						} else {
 							engine.say("You're terribly forgetful, you already brought that one to me.");
 						}
+					}
+
+					@Override
+					public String toString() {
+						return "answer neededcloaks2";
 					}
 		});
 
