@@ -37,24 +37,14 @@ public class PlayerTestHelper {
 	}
 
 	/**
-	 * Create an unnamed mock player object.
-	 * 
-	 * @return mock player object
-	 */
-	public static TestPlayer createTestPlayer() {
-		PlayerTestHelper.generatePlayerRPClasses();
-		TestPlayer pl = new TestPlayer(new RPObject());
-		PlayerTestHelper.addEmptySlots(pl);
-		return pl;
-	}
-
-	/**
-	 * Create an unnamed mock player object.
+	 * Create an named mock player object.
 	 * 
 	 * @return mock player object
 	 */
 	public static TestPlayer createTestPlayer(String name) {
-		TestPlayer pl = createTestPlayer();
+		PlayerTestHelper.generatePlayerRPClasses();
+		TestPlayer pl = new TestPlayer(new RPObject());
+		PlayerTestHelper.addEmptySlots(pl);
 		pl.setName(name);
 		return pl;
 	}

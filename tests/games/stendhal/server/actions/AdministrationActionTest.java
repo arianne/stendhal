@@ -102,7 +102,7 @@ public class AdministrationActionTest {
 
 	@Test
 	public final void testIsPlayerAllowedToExecuteAdminCommand() {
-		TestPlayer pl = PlayerTestHelper.createTestPlayer();
+		TestPlayer pl = PlayerTestHelper.createTestPlayer("player");
 		assertFalse(AdministrationAction.isPlayerAllowedToExecuteAdminCommand(
 				pl, "", true));
 		// assertEquals("Sorry, command \"\" is unknown.", pl.getPrivateTextString());
@@ -149,7 +149,7 @@ public class AdministrationActionTest {
 
 	@Test
 	public final void testSupportAnswerAction() {
-		TestPlayer pl = PlayerTestHelper.createTestPlayer();
+		TestPlayer pl = PlayerTestHelper.createTestPlayer("player");
 		TestPlayer bob = PlayerTestHelper.createTestPlayer("bob");
 		TestPlayer anptherAdmin = PlayerTestHelper.createTestPlayer("anotheradmin");
 		anptherAdmin.setAdminLevel(5000);
@@ -180,7 +180,7 @@ public class AdministrationActionTest {
 	@Test
 	public final void testTeleportActionToInvalidZone() {
 
-		TestPlayer pl = PlayerTestHelper.createTestPlayer();
+		TestPlayer pl = PlayerTestHelper.createTestPlayer("player");
 		Player bob = PlayerTestHelper.createPlayer("bob");
 		// bad bad
 		MockStendhalRPRuleProcessor.get().addPlayer(pl);
@@ -211,7 +211,7 @@ public class AdministrationActionTest {
 	public final void testTeleportActionToValidZone() {
 
 		StendhalRPZone zoneTo = new StendhalRPZone("zoneTo");
-		TestPlayer pl = PlayerTestHelper.createTestPlayer();
+		TestPlayer pl = PlayerTestHelper.createTestPlayer("player");
 		MockStendhalRPRuleProcessor.get().addPlayer(pl);
 		PlayerTestHelper.generatePlayerRPClasses();
 		Player bob = new Player(new RPObject()) {
@@ -249,7 +249,7 @@ public class AdministrationActionTest {
 
 	@Test
 	public final void testTeleportToActionPlayerNotThere() {
-		TestPlayer pl = PlayerTestHelper.createTestPlayer();
+		TestPlayer pl = PlayerTestHelper.createTestPlayer("player");
 		pl.put("adminlevel", 5000);
 		RPAction action = new RPAction();
 		action.put("type", "teleportto");
