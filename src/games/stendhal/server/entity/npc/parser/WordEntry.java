@@ -55,6 +55,14 @@ public class WordEntry {
 		return type;
 	}
 
+	public String getTypeString() {
+		return type!=null? type.getTypeString(): "";
+	}
+
+	public String getNormalizedWithTypeString() {
+		return normalized + "/" + getTypeString();
+    }
+
 	public void setPlurSing(String plurSing) {
 		this.plurSing = plurSing;
 	}
@@ -63,6 +71,10 @@ public class WordEntry {
 		return plurSing;
 	}
 
+	public boolean isPlural() {
+	    return type!=null && type.isPlural();
+    }
+
 	public void setValue(Integer value) {
 		this.value = value;
 	}
@@ -70,4 +82,5 @@ public class WordEntry {
 	public Integer getValue() {
 		return value;
 	}
+
 }

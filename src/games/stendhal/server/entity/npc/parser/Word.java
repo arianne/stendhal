@@ -151,17 +151,25 @@ public class Word {
 		return breakFlag;
 	}
 
-	@Override
-	public String toString() {
-		return normalized != null ? normalized : getOriginal();
-	}
-
 	public void setNormalized(String normalized) {
 		this.normalized = normalized;
 	}
 
 	public String getNormalized() {
 		return normalized;
+	}
+
+	public String getTypeString() {
+		return type!=null? type.getTypeString(): "";
+	}
+
+	public String getNormalizedWithTypeString() {
+		return normalized + "/" + getTypeString();
+    }
+
+	@Override
+	public String toString() {
+		return normalized != null ? normalized : getOriginal();
 	}
 
 }
