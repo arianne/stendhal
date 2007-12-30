@@ -98,23 +98,31 @@ public class Engine {
 			maxState = state;
 		}
 
+		// look for already existing rules with identical input parameters
 		Transition existing = get(state, trigger, condition);
-		if (existing != null) {
-			// A previous state, trigger, condition combination exists.
-			logger.warn(speakerNPC.getName() + ": Adding to " + existing
-					+ " the state [" + state + "," + trigger + "," + nextState
-					+ "," + condition + "]");
 
-			if (existing.getReply() != null) {
-    			reply = existing.getReply() + " " + reply;
+		if (existing != null) {
+			String existingReply = existing.getReply();
+			PostTransitionAction existingAction = existing.getAction();
+
+			// Concatenate the previous and the new reply texts if the new one is not there already.
+			if (existingReply!=null && !existingReply.contains(reply)) {
+    			reply = existingReply + " " + reply;
 			}
 
 			existing.setReply(reply);
+
+			// If there is no action associated with the previous and with the new rule, we
+			// can silently ignore the new transition, as it is already handled completely.
+			if (action==null && existingAction==null) {
+				return;
+			} else if (action==null || !action.equals(existingAction)) {
+    			logger.warn(speakerNPC.getName() + ": Adding ambiguous state transistion: " + existing
+    					+ " existing_action='" + existingAction + "' new_action='" + action + "'");
+			}
 		}
 
-		Transition item = new Transition(state, trigger, condition, nextState,
-				reply, action);
-		stateTransitionTable.add(item);
+		stateTransitionTable.add(new Transition(state, trigger, condition, nextState, reply, action));
 	}
 
 	/**
