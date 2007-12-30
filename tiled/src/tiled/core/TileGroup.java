@@ -41,7 +41,7 @@ public class TileGroup {
 	private int width;
 	private int height;
 
-	/** default constuctor is private. */
+	/** default constructor is private. */
 	private TileGroup() {
 		this.name = "";
 		tileLayers = new HashMap<TileLayer, List<StatefulTile>>();

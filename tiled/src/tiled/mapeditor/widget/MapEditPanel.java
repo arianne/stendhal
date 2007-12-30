@@ -63,7 +63,7 @@ public class MapEditPanel extends JPanel implements MouseListener, MouseMotionLi
 	/** */
 	private DragType dragType;
 
-	/** constuctor. */
+	/** constructor. */
 	public MapEditPanel(MapEditor mapEditor) {
 		this.mapEditor = mapEditor;
 		addMouseListener(this);
