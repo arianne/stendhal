@@ -2011,10 +2011,13 @@ public class Player extends RPEntity {
 		return "";
 	}
 
+	/**
+	* @deprecated instead use utilities.TestPlayer to get private text messages
+	* in JUnit tests
+	*/
 	public String getPrivateText() {
 		// TODO: remove this hack, it is just a preliminary way to get the test
 		// working again
-
 		StringBuilder sb = null;
 		for (RPEvent event : events()) {
 			if (event.getName().equals("private_text")) {
@@ -2030,7 +2033,6 @@ public class Player extends RPEntity {
 			return null;
 		}
 		return sb.toString();
-
 	}
 
 	private boolean disconnected = false;
