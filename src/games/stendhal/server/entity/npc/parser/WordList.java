@@ -116,9 +116,9 @@ public class WordList {
 
 			// Type identifiers are always upper case, so a lower case word must
 			// be a plural.
-			if (Character.isLowerCase(entry.getType().getTypeString().charAt(0))) {
+			if (Character.isLowerCase(entry.getTypeString().charAt(0))) {
 				entry.setType(new WordType(WordType.OBJECT));
-				entry.setPlurSing(entry.getType().getTypeString());
+				entry.setPlurSing(entry.getTypeString());
 			}
 			// complete missing plural expressions using the Grammar.plural()
 			// function
@@ -163,7 +163,7 @@ public class WordList {
 			WordEntry pluralEntry = new WordEntry();
 
 			pluralEntry.setNormalized(entry.getPlurSing());
-			pluralEntry.setType(new WordType(entry.getType().getTypeString() + WordType.SUFFIX_PLURAL));
+			pluralEntry.setType(new WordType(entry.getTypeString() + WordType.SUFFIX_PLURAL));
 			pluralEntry.setPlurSing(entry.getNormalized());
 			pluralEntry.setValue(entry.getValue());
 
@@ -256,8 +256,7 @@ public class WordList {
 			if (type == null) {
 				matches = w.getType() == null;
 			} else {
-				matches = w.getType() != null && w.getType().getTypeString().startsWith(type)
-						&& !w.getType().isPlural();
+				matches = w.getTypeString().startsWith(type) && !w.isPlural();
 			}
 
 			if (matches) {
@@ -372,8 +371,7 @@ public class WordList {
 
 			words.put(key, entry);
 		} else if (!w.getType().isSubject()) {
-			logger.warn("subject name already registered with incompatible word type: " + name + "/"
-					+ w.getType().getTypeString());
+			logger.warn("subject name already registered with incompatible word type: " + w.getNormalizedWithTypeString());
 		}
 	}
 
@@ -386,8 +384,7 @@ public class WordList {
 		String key = name.toLowerCase();
 		WordEntry w = words.get(key);
 
-		if (w!=null && w.getType()!=null &&
-			w.getType().getTypeString().equals(SUBJECT_NAME_DYNAMIC)) {
+		if (w!=null && w.getTypeString().equals(SUBJECT_NAME_DYNAMIC)) {
 			words.remove(key);
 		}
 	}
