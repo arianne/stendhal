@@ -3,47 +3,35 @@ package games.stendhal.server.core.engine;
 import games.stendhal.common.filter.FilterCriteria;
 import games.stendhal.server.entity.player.Player;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class PlayerList {
 
 	public PlayerList() {
-		players = new LinkedList<Player>();
+		players = new ConcurrentHashMap<String, Player>();
 	}
 
-	
-	private List<Player> players;
+	private Map<String, Player> players;
 
-	
-	/**
-	 * use <code>forAllPlayersExecute(Task task) </code> instead.
-	 * 
-	 * @return
-	 */
-	@Deprecated
-	public List<Player> getPlayers() {
-		return players;
-	}
-
-	
 	/**
 	 * Retrieve from this list a player specified by its name.
-	 * @param name the unique name of a player
-	 * @return the Player specified by the name or <code> null </code> if not found
+	 * 
+	 * @param name
+	 *            the unique name of a player
+	 * @return the Player specified by the name or <code> null </code> if not
+	 *         found
 	 */
 	Player getOnlinePlayer(String name) {
-		for (Player player : players) {
-			if (player.getTitle().equals(name)) {
-				return player;
-			}
-		}
-		return null;
+		return players.get(name);
+
 	}
 
-	
 	/**
 	 * Sends a privateText to all players in the list.
+	 * 
 	 * @param message
 	 */
 	void tellAllOnlinePlayers(final String message) {
@@ -58,23 +46,33 @@ public class PlayerList {
 
 	/**
 	 * Calls the execute method of task for each player in this List.
-	 * @param task the task to execute
+	 * 
+	 * @param task
+	 *            the task to execute
 	 */
 	public void forAllPlayersExecute(Task<Player> task) {
-		for (Player player : players) {
-			task.execute(player);
+		Iterator<Entry<String, Player>> it = players.entrySet().iterator();
+		while (it.hasNext()) {
+			task.execute(it.next().getValue());
 		}
-
 	}
 
 	/**
-	 * Calls the execute method of task for all player in this list that return true in filter.
+	 * Calls the execute method of task for all player in this list that return
+	 * true in filter.
 	 * 
-	 * @param task 	the task to execute. 
-	 * @param filter the FilterCriteria to pass
+	 * @param task
+	 *            the task to execute.
+	 * @param filter
+	 *            the FilterCriteria to pass
 	 */
 	public void forFilteredPlayersExecute(Task<Player> task, FilterCriteria<Player> filter) {
-		for (Player player : players) {
+		Iterator<Entry<String, Player>> it = players.entrySet().iterator();
+
+		while (it.hasNext()) {
+
+			Player player = it.next().getValue();
+
 			if (filter.passes(player)) {
 				task.execute(player);
 			}
@@ -82,7 +80,8 @@ public class PlayerList {
 	}
 
 	/**
-	 * The amount of currently  logged in players.
+	 * The amount of currently logged in players.
+	 * 
 	 * @return
 	 */
 	public int size() {
@@ -90,13 +89,13 @@ public class PlayerList {
 	}
 
 	public void add(Player player) {
-		players.add(player);
-		
+		players.put(player.getName(), player);
+
 	}
 
 	public boolean remove(Player player) {
-		return players.remove(player);
-		
+		return players.remove(player.getName()) != null;
+
 	}
 
 }

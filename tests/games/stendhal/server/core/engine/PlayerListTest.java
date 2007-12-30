@@ -19,7 +19,7 @@ public class PlayerListTest {
 	@Test
 	public void testPlayerList() {
 		PlayerList list = new PlayerList();
-		
+
 	}
 
 	@Test
@@ -30,19 +30,13 @@ public class PlayerListTest {
 		list.add(jack);
 		assertThat(list.size(), is(1));
 		assertSame(jack, list.getOnlinePlayer("jack"));
-		// TODO: it should not be possible to add the same player (name = name )
-		// twice;
 		Player jack2 = PlayerTestHelper.createPlayer("jack");
 		list.add(jack2);
-		assertThat(list.size(), is(2));
-		assertThat(jack, sameInstance(list.getOnlinePlayer("jack")));
-		assertThat(jack2, not(sameInstance(list.getOnlinePlayer("jack"))));
-		assertTrue(list.remove(jack));
+		assertThat(list.size(), is(1));
 		assertThat(jack2, sameInstance(list.getOnlinePlayer("jack")));
-		assertTrue(list.remove(jack2));
-		assertNull(list.getOnlinePlayer("jack"));
-		assertFalse(list.remove(jack2));
-
+		assertThat(jack, not(sameInstance(list.getOnlinePlayer("jack"))));
+		assertTrue(list.remove(jack));
+		assertThat(list.size(), is(0));
 	}
 
 	@Test
@@ -89,9 +83,30 @@ public class PlayerListTest {
 		assertEquals(message, ghost.getPrivateText());
 	}
 
-	
-	
+	@Test
+	public void testAllPlayersRemove() {
+		Player jack = PlayerTestHelper.createPlayer("jack");
+		Player bob = PlayerTestHelper.createPlayer("bob");
+		Player ghost = PlayerTestHelper.createPlayer("ghost");
+		ghost.setGhost(true);
+		final PlayerList list = new PlayerList();
+		list.add(jack);
+		list.add(bob);
+		list.add(ghost);
+		final String message = "tellall test";
+		list.tellAllOnlinePlayers(message);
+		assertEquals(message, jack.getPrivateText());
+		assertEquals(message, bob.getPrivateText());
+		assertEquals(message, ghost.getPrivateText());
+		list.forAllPlayersExecute(new Task<Player>() {
 
-	
+			public void execute(Player player) {
+				list.remove(player);
+
+			}
+
+		});
+		assertThat(list.size(), is(0));
+	}
 
 }
