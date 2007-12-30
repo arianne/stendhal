@@ -24,6 +24,7 @@ public class PlayerTestHelper {
 
 	/**
 	 * Create a named player.
+	 * @deprecated use createTestPlayer instead
 	 * 
 	 * @param name
 	 * @return player

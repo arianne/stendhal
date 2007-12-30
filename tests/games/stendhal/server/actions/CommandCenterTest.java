@@ -12,6 +12,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import utilities.PlayerTestHelper;
+import utilities.TestPlayer;
 
 public class CommandCenterTest {
 
@@ -31,7 +32,7 @@ public class CommandCenterTest {
 		};
 		RPAction action = new RPAction();
 		action.put("type", "action");
-		Player caster = PlayerTestHelper.createPlayer("player");
+		TestPlayer caster = PlayerTestHelper.createTestPlayer("player");
 		CommandCenter.register("action", listener);
 		assertFalse(caster.has("success"));
 		CommandCenter.execute(caster, action);
@@ -52,7 +53,6 @@ public class CommandCenterTest {
 
 			}
 		});
-
 	}
 
 	@Test
@@ -66,9 +66,9 @@ public class CommandCenterTest {
 		RPAction action = new RPAction();
 
 		action.put("type", "");
-		Player caster = PlayerTestHelper.createPlayer("bob");
+		TestPlayer caster = PlayerTestHelper.createTestPlayer("bob");
 		CommandCenter.execute(caster, action);
-		assertEquals("Unknown command ", caster.getPrivateText());
+		assertEquals("Unknown command ", caster.getPrivateTextString());
 	}
 
 }

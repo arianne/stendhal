@@ -6,7 +6,6 @@ import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import marauroa.common.Log4J;
 import marauroa.common.game.RPAction;
@@ -16,6 +15,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import utilities.PlayerTestHelper;
+import utilities.TestPlayer;
 
 /**
  * Test server actions.
@@ -38,11 +38,11 @@ public class LookActionTest {
 		StendhalRPZone zone = new StendhalRPZone("testzone");
 		StendhalRPWorld.get().addRPZone(zone);
 
-		Player player1 = PlayerTestHelper.createPlayer("player1");
+		TestPlayer player1 = PlayerTestHelper.createTestPlayer("player1");
 		processor.addPlayer(player1);
 		zone.add(player1);
 
-		Player player2 = PlayerTestHelper.createPlayer("player2");
+		TestPlayer player2 = PlayerTestHelper.createTestPlayer("player2");
 		processor.addPlayer(player2);
 		zone.add(player2);
 
@@ -52,10 +52,10 @@ public class LookActionTest {
 
 	@Test
 	public void testLook() {
-		Player player1 = MockStendhalRPRuleProcessor.get().getPlayer("player1");
+		TestPlayer player1 = (TestPlayer)MockStendhalRPRuleProcessor.get().getPlayer("player1");
 		assertNotNull(player1);
 
-		Player player2 = MockStendhalRPRuleProcessor.get().getPlayer("player2");
+		TestPlayer player2 = (TestPlayer)MockStendhalRPRuleProcessor.get().getPlayer("player2");
 		assertNotNull(player2);
 
 		// test "/look <name>" syntax
@@ -65,8 +65,8 @@ public class LookActionTest {
 		CommandCenter.execute(player1, action);
 		assertEquals(
 				"You see player1.\nplayer1 is level 0 and has been playing 0 hours and 0 minutes.",
-				player1.getPrivateText());
-		player1.clearEvents();
+				player1.getPrivateTextString());
+		player1.resetPrivateTextString();
 
 		// test "/look #id" syntax
 		action = new RPAction();
@@ -76,14 +76,14 @@ public class LookActionTest {
 		CommandCenter.execute(player1, action);
 		assertEquals(
 				"You see player2.\nplayer2 is level 0 and has been playing 0 hours and 0 minutes.",
-				player1.getPrivateText());
-		player1.clearEvents();
+				player1.getPrivateTextString());
+		player1.resetPrivateTextString();
 
 		action = new RPAction();
 		action.put("type", "look");
 		action.put("target", "npc");
 		CommandCenter.execute(player1, action);
-		assertEquals("You see npc.", player1.getPrivateText());
-		player1.clearEvents();
+		assertEquals("You see npc.", player1.getPrivateTextString());
+		player1.resetPrivateTextString();
 	}
 }
