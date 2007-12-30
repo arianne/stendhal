@@ -32,10 +32,9 @@ import tiled.core.Map;
 import tiled.io.xml.XMLMapTransformer;
 
 /**
- * Converts the stendhal maps from *.tmx to *.stend This class can be started
- * from the command line or through an ant task
+ * Fix maps by loading and saving thems
  * 
- * @author mtotz
+ * @author mtotz, miguel
  */
 public class MapUpdater extends Task {
 	/** list of *.tmx files to convert */
