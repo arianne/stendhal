@@ -210,6 +210,7 @@ public class PlayersQueryTest {
 			}
 		};
 
+		player.setName("player");
 		player.setPet(testPet);
 
 		MockStendhalRPRuleProcessor.get().addPlayer(player);
