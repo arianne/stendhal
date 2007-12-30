@@ -33,7 +33,7 @@ public class WordType {
 
 	public static final String PLURAL = "PLU"; // plural form
 
-	// derived constants
+	// derived string type constants
 	public static final String SUFFIX_COLOR = SUFFIX + COLOR;
 	public static final String SUFFIX_CONDITIONAL = SUFFIX + CONDITIONAL;
 	public static final String SUFFIX_FOOD = SUFFIX + FOOD;
@@ -50,8 +50,8 @@ public class WordType {
 	}
 
 	/**
-	 * return type string Note: There is no setTypeString to make WordType
-	 * objects unmutable.
+	 * Return type string Note: There is no setTypeString to make WordType
+	 * objects immutable.
 	 * 
 	 * @return
 	 */
@@ -60,7 +60,7 @@ public class WordType {
 	}
 
 	/**
-	 * return main word type string (first 3 letters).
+	 * Return main word type string (first 3 letters).
 	 * 
 	 * @return
 	 */
@@ -73,7 +73,7 @@ public class WordType {
 	}
 
 	/**
-	 * determine if the word is a verb.
+	 * Determine if the word is a verb.
 	 * 
 	 * @return
 	 */
@@ -82,7 +82,7 @@ public class WordType {
 	}
 
 	/**
-	 * determine if the word is a verb in gerund form.
+	 * Determine if the word is a verb in gerund form.
 	 * 
 	 * @return
 	 */
@@ -91,7 +91,7 @@ public class WordType {
 	}
 
 	/**
-	 * determine if the word is an object. (a thing, not a person)
+	 * Determine if the word is an object. (a thing, not a person)
 	 * 
 	 * @return
 	 */
@@ -100,7 +100,7 @@ public class WordType {
 	}
 
 	/**
-	 * determine if the word is a person.
+	 * Determine if the word is a person.
 	 * 
 	 * @return
 	 */
@@ -109,7 +109,7 @@ public class WordType {
 	}
 
 	/**
-	 * determine if the word is a numeral.
+	 * Determine if the word is a numeral.
 	 * 
 	 * @return
 	 */
@@ -118,7 +118,7 @@ public class WordType {
 	}
 
 	/**
-	 * determine if the word is an adjective or adverb.
+	 * Determine if the word is an adjective or adverb.
 	 * 
 	 * @return
 	 */
@@ -127,7 +127,7 @@ public class WordType {
 	}
 
 	/**
-	 * determine if the word is a preposition.
+	 * Determine if the word is a preposition.
 	 * 
 	 * @return
 	 */
@@ -136,7 +136,7 @@ public class WordType {
 	}
 
 	/**
-	 * determine words to ignore.
+	 * Determine words to ignore.
 	 * 
 	 * @return
 	 */
@@ -145,7 +145,7 @@ public class WordType {
 	}
 
 	/**
-	 * determine if the word is in plural form.
+	 * Determine if the word is in plural form.
 	 * 
 	 * @return
 	 */
@@ -154,7 +154,7 @@ public class WordType {
 	}
 
 	/**
-	 * determine if the word is a creature name.
+	 * Determine if the word is a creature name.
 	 * 
 	 * @return
 	 */
@@ -163,7 +163,7 @@ public class WordType {
 	}
 
 	/**
-	 * determine if the word is a question word.
+	 * Determine if the word is a question word.
 	 * 
 	 * @return
 	 */
@@ -172,7 +172,7 @@ public class WordType {
 	}
 
 	/**
-	 * determine if the word is an or is merged with a question word.
+	 * Determine if the word is an or is merged with a question word.
 	 * 
 	 * @return
 	 */
@@ -181,7 +181,7 @@ public class WordType {
 	}
 
 	/**
-	 * determine if the word specifies a color.
+	 * Determine if the word specifies a color.
 	 * 
 	 * @return
 	 */
@@ -190,7 +190,7 @@ public class WordType {
 	}
 
 	/**
-	 * determine if the word is in conditional form.
+	 * Determine if the word is in conditional form.
 	 * 
 	 * @return
 	 */
@@ -199,7 +199,7 @@ public class WordType {
 	}
 
 	/**
-	 * merge with another WordType.
+	 * Merge with another WordType.
 	 * 
 	 * @param other
 	 * @return new WordType object or this
