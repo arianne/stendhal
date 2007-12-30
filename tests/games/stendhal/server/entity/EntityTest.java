@@ -14,7 +14,7 @@ public class EntityTest {
 	public void testnextTo() throws Exception {
 		PlayerTestHelper.generatePlayerRPClasses();
 		Entity en = new MockEntity();
-		Player pl = PlayerTestHelper.createPlayer();
+		Player pl = PlayerTestHelper.createPlayer("player");
 
 		en.setPosition(2, 2);
 

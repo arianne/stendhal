@@ -24,7 +24,7 @@ public class NakedConditionTest {
 
 	@Test
 	public final void testFire() {
-		Player bob = PlayerTestHelper.createPlayer();
+		Player bob = PlayerTestHelper.createPlayer("player");
 		bob.setOutfit(new Outfit(0));
 		assertTrue(bob.getOutfit().isNaked());
 		assertTrue(new NakedCondition().fire(bob, null, null));

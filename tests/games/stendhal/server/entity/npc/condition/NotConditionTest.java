@@ -47,11 +47,11 @@ public class NotConditionTest {
 	@Test
 	public void selftest() throws Exception {
 		assertTrue("true",
-				trueCondition.fire(PlayerTestHelper.createPlayer(),
+				trueCondition.fire(PlayerTestHelper.createPlayer("player"),
 						ConversationParser.parse("testNotConditionText"),
 						SpeakerNPCTestHelper.createSpeakerNPC()));
 		assertFalse("false", falsecondition.fire(
-				PlayerTestHelper.createPlayer(),
+				PlayerTestHelper.createPlayer("player"),
 				ConversationParser.parse("testNotConditionText"),
 				SpeakerNPCTestHelper.createSpeakerNPC()));
 
@@ -71,10 +71,10 @@ public class NotConditionTest {
 	@Test
 	public final void testFire() {
 		assertFalse(new NotCondition(trueCondition).fire(
-				PlayerTestHelper.createPlayer(), ConversationParser.parse("notconditiontest"),
+				PlayerTestHelper.createPlayer("player"), ConversationParser.parse("notconditiontest"),
 				SpeakerNPCTestHelper.createSpeakerNPC()));
 		assertTrue(new NotCondition(falsecondition).fire(
-				PlayerTestHelper.createPlayer(), ConversationParser.parse("notconditiontest"),
+				PlayerTestHelper.createPlayer("player"), ConversationParser.parse("notconditiontest"),
 				SpeakerNPCTestHelper.createSpeakerNPC()));
 	}
 

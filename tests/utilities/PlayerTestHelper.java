@@ -23,25 +23,15 @@ import marauroa.common.game.RPSlot;
 public class PlayerTestHelper {
 
 	/**
-	 * Create an unnamed player object.
-	 * 
-	 * @return player
-	 */
-	public static Player createPlayer() {
-		PlayerTestHelper.generatePlayerRPClasses();
-		Player pl = new Player(new RPObject());
-		PlayerTestHelper.addEmptySlots(pl);
-		return pl;
-	}
-
-	/**
 	 * Create a named player.
 	 * 
 	 * @param name
 	 * @return player
 	 */
 	public static Player createPlayer(String name) {
-		Player pl = createPlayer();
+		PlayerTestHelper.generatePlayerRPClasses();
+		Player pl = new Player(new RPObject());
+		PlayerTestHelper.addEmptySlots(pl);
 		pl.setName(name);
 		return pl;
 	}

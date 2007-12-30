@@ -31,7 +31,7 @@ public class AdminLevelActionTest {
 
 	@Test
 	public final void testAdminLevelAction0() {
-		Player pl = PlayerTestHelper.createPlayer();
+		Player pl = PlayerTestHelper.createPlayer("player");
 		Player bob = PlayerTestHelper.createPlayer("bob");
 		MockStendhalRPRuleProcessor.get().addPlayer(pl);
 		MockStendhalRPRuleProcessor.get().addPlayer(bob);
@@ -68,7 +68,7 @@ public class AdminLevelActionTest {
 
 	@Test
 	public final void testAdminLevelActionOverSuper() {
-		Player pl = PlayerTestHelper.createPlayer();
+		Player pl = PlayerTestHelper.createPlayer("player");
 		Player bob = PlayerTestHelper.createPlayer("bob");
 		// bad bad
 		MockStendhalRPRuleProcessor.get().addPlayer(pl);
@@ -126,7 +126,7 @@ public class AdminLevelActionTest {
 	public final void testAdminLevelActionPlayerNotFound() {
 	
 	
-		Player pl = PlayerTestHelper.createPlayer();
+		Player pl = PlayerTestHelper.createPlayer("player");
 		pl.put("adminlevel", 5000);
 		RPAction action = new RPAction();
 		action.put("type", "adminlevel");

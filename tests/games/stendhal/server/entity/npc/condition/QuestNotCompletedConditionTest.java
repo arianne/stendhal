@@ -32,10 +32,10 @@ public class QuestNotCompletedConditionTest {
 	@Test
 	public final void testFire() {
 		assertTrue(new QuestNotCompletedCondition("questname").fire(
-				PlayerTestHelper.createPlayer(),
+				PlayerTestHelper.createPlayer("player"),
 				ConversationParser.parse("testQuestNotCompletedCondition"),
 				SpeakerNPCTestHelper.createSpeakerNPC()));
-		Player bob = PlayerTestHelper.createPlayer();
+		Player bob = PlayerTestHelper.createPlayer("player");
 
 		bob.setQuest("questname", "");
 		assertTrue(new QuestNotCompletedCondition("questname").fire(bob,

@@ -52,7 +52,7 @@ public class PlayersQueryTest {
 		};
 		RPAction action = new RPAction();
 		action.put(WellKnownActionConstants.TYPE, "who");
-		Player player = PlayerTestHelper.createPlayer();
+		Player player = PlayerTestHelper.createPlayer("player");
 		assertFalse(whoWasExecuted);
 		al.onAction(player, action);
 		assertTrue(whoWasExecuted);
@@ -70,7 +70,7 @@ public class PlayersQueryTest {
 		PlayersQuery pq = new PlayersQuery();
 		RPAction action = new RPAction();
 		action.put(WellKnownActionConstants.TYPE, "who");
-		Player player = PlayerTestHelper.createPlayer();
+		Player player = PlayerTestHelper.createPlayer("player");
 		pq.onWho(player, action);
 		assertThat(player.getPrivateText(), equalTo("0 Players online: "));
 		player.clearEvents();
@@ -103,7 +103,7 @@ public class PlayersQueryTest {
 		PlayersQuery pq = new PlayersQuery();
 		RPAction action = new RPAction();
 		action.put(WellKnownActionConstants.TYPE, "where");
-		Player player = PlayerTestHelper.createPlayer();
+		Player player = PlayerTestHelper.createPlayer("player");
 		MockStendhalRPRuleProcessor.get().addPlayer(player);
 
 		pq.onWhere(player, action);
@@ -118,7 +118,7 @@ public class PlayersQueryTest {
 		action.put(WellKnownActionConstants.TYPE, "where");
 		action.put(WellKnownActionConstants.TARGET, "NotThere");
 
-		Player player = PlayerTestHelper.createPlayer();
+		Player player = PlayerTestHelper.createPlayer("player");
 		MockStendhalRPRuleProcessor.get().addPlayer(player);
 
 		pq.onWhere(player, action);
@@ -150,7 +150,7 @@ public class PlayersQueryTest {
 		action.put(WellKnownActionConstants.TYPE, "where");
 		action.put(WellKnownActionConstants.TARGET, "sheep");
 
-		Player player = PlayerTestHelper.createPlayer();
+		Player player = PlayerTestHelper.createPlayer("player");
 		MockStendhalRPRuleProcessor.get().addPlayer(player);
 
 		pq.onWhere(player, action);
@@ -167,7 +167,7 @@ public class PlayersQueryTest {
 		action.put(WellKnownActionConstants.TYPE, "where");
 		action.put(WellKnownActionConstants.TARGET, "pet");
 
-		Player player = PlayerTestHelper.createPlayer();
+		Player player = PlayerTestHelper.createPlayer("player");
 
 		pq.onWhere(player, action);
 		assertThat(player.getPrivateText(), equalTo("You currently have no pet."));

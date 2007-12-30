@@ -45,7 +45,7 @@ public class WeaponsCollector2Test {
 		wc.addToWorld();
 		SpeakerNPC npc = wc.getNPC();
 		Engine en = npc.getEngine();
-		Player pl = PlayerTestHelper.createPlayer();
+		Player pl = PlayerTestHelper.createPlayer("player");
 
 		// set previous quest to done
 		pl.setQuest("weapons_collector", "done");
@@ -73,7 +73,7 @@ public class WeaponsCollector2Test {
 		wc.addToWorld();
 		SpeakerNPC npc = wc.getNPC();
 		Engine en = npc.getEngine();
-		Player pl = PlayerTestHelper.createPlayer();
+		Player pl = PlayerTestHelper.createPlayer("player");
 
 		// set previous quest to done
 		pl.setQuest("weapons_collector", "done");

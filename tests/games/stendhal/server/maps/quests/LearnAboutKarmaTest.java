@@ -37,7 +37,7 @@ public class LearnAboutKarmaTest {
 		quest.addToWorld();
 		en = npc.getEngine();
 
-		player = PlayerTestHelper.createPlayer();
+		player = PlayerTestHelper.createPlayer("player");
 		player.addKarma(-1 * player.getKarma());
 	}
 

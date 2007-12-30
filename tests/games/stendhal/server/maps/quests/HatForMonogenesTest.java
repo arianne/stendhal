@@ -51,7 +51,7 @@ public class HatForMonogenesTest {
 		quest = new HatForMonogenes();
 		quest.addToWorld();
 
-		player = PlayerTestHelper.createPlayer();
+		player = PlayerTestHelper.createPlayer("player");
 	}
 
 	@Test

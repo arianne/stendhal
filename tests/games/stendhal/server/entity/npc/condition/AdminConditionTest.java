@@ -41,10 +41,10 @@ public class AdminConditionTest {
 
 	@Test
 	public void testFire() throws Throwable {
-		assertTrue(new AdminCondition(0).fire(PlayerTestHelper.createPlayer(),
+		assertTrue(new AdminCondition(0).fire(PlayerTestHelper.createPlayer("player"),
 				ConversationParser.parse("testAdminConditionText"),
 				SpeakerNPCTestHelper.createSpeakerNPC()));
-		assertFalse(new AdminCondition().fire(PlayerTestHelper.createPlayer(),
+		assertFalse(new AdminCondition().fire(PlayerTestHelper.createPlayer("player"),
 				ConversationParser.parse("testAdminConditionText"),
 				SpeakerNPCTestHelper.createSpeakerNPC()));
 

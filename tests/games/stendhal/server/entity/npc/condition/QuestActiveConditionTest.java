@@ -32,10 +32,10 @@ public class QuestActiveConditionTest {
 	@Test
 	public final void testFire() {
 		assertFalse(new QuestActiveCondition("questname").fire(
-				PlayerTestHelper.createPlayer(),
+				PlayerTestHelper.createPlayer("player"),
 				ConversationParser.parse("QuestActiveConditionTest"),
 				SpeakerNPCTestHelper.createSpeakerNPC()));
-		Player bob = PlayerTestHelper.createPlayer();
+		Player bob = PlayerTestHelper.createPlayer("player");
 
 		bob.setQuest("questname", "");
 		assertTrue(new QuestActiveCondition("questname").fire(bob,

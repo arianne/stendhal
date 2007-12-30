@@ -48,7 +48,7 @@ public class KilledConditionTest {
 	public final void testFire() {
 		KilledCondition kc = new KilledCondition();
 		assertTrue(kc.fire(null, null, null));
-		Player bob = PlayerTestHelper.createPlayer();
+		Player bob = PlayerTestHelper.createPlayer("player");
 
 		assertTrue("bob has killed all of none", kc.fire(bob, null, null));
 		kc = new KilledCondition("rat");
@@ -56,7 +56,7 @@ public class KilledConditionTest {
 		bob.setSoloKill("rat");
 		assertTrue("bob killed a rat ", kc.fire(bob, null, null));
 
-		bob = PlayerTestHelper.createPlayer();
+		bob = PlayerTestHelper.createPlayer("player");
 		new KilledCondition(Arrays.asList("rat"));
 		assertFalse(kc.fire(bob, null, null));
 		bob.setSoloKill("rat");

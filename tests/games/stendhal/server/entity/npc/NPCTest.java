@@ -57,7 +57,7 @@ public class NPCTest {
 
 	@Test
 	public void testHiAndBye() {
-		Player player = PlayerTestHelper.createPlayer();
+		Player player = PlayerTestHelper.createPlayer("player");
 
 		SpeakerNPC npc = NPCList.get().get("Felina");
 		assertNotNull(npc);

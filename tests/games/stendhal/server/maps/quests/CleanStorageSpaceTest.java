@@ -53,7 +53,7 @@ public class CleanStorageSpaceTest {
 	@Test
 	public void testHiAndbye() {
 		Player player;
-		player = PlayerTestHelper.createPlayer();
+		player = PlayerTestHelper.createPlayer("player");
 
 		assertTrue(!player.hasKilled("rat"));
 
@@ -77,7 +77,7 @@ public class CleanStorageSpaceTest {
 
 	@Test
 	public void doQuest() {
-		Player player = PlayerTestHelper.createPlayer();
+		Player player = PlayerTestHelper.createPlayer("player");
 
 
 

@@ -59,32 +59,32 @@ public class OrConditionTest {
 	public void testFire() throws Throwable {
 
 		assertFalse("empty OR is false", new OrCondition().fire(
-				PlayerTestHelper.createPlayer(),
+				PlayerTestHelper.createPlayer("player"),
 				ConversationParser.parse("testOrConditionText"),
 				SpeakerNPCTestHelper.createSpeakerNPC()));
 
 		OrCondition orCondition = new OrCondition(trueCondition);
 		assertTrue("OR with one Allwaystrue is true", orCondition.fire(
-				PlayerTestHelper.createPlayer(),
+				PlayerTestHelper.createPlayer("player"),
 				ConversationParser.parse("testOrConditionText"),
 				SpeakerNPCTestHelper.createSpeakerNPC()));
 
 		orCondition = new OrCondition(trueCondition, falsecondition);
 		assertTrue("OR with one true and on false is true", orCondition.fire(
-				PlayerTestHelper.createPlayer(),
+				PlayerTestHelper.createPlayer("player"),
 				ConversationParser.parse("testOrConditionText"),
 				SpeakerNPCTestHelper.createSpeakerNPC()));
 
 		orCondition = new OrCondition(falsecondition, trueCondition);
 		assertTrue("OR with one false and on true is true", orCondition.fire(
-				PlayerTestHelper.createPlayer(),
+				PlayerTestHelper.createPlayer("player"),
 				ConversationParser.parse("testOrConditionText"),
 				SpeakerNPCTestHelper.createSpeakerNPC()));
 
 		orCondition = new OrCondition(new AdminCondition());
 
 		assertFalse("OR with one false is false", orCondition.fire(
-				PlayerTestHelper.createPlayer(),
+				PlayerTestHelper.createPlayer("player"),
 				ConversationParser.parse("testOrConditionText"),
 				SpeakerNPCTestHelper.createSpeakerNPC()));
 	}

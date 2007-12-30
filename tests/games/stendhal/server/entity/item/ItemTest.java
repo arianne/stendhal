@@ -227,7 +227,7 @@ public class ItemTest {
 	public void testOnPutOnGround() {
 		Item mo = new Item("name1", "myClass", "mySubclass",
 				new HashMap<String, String>());
-		mo.onPutOnGround(PlayerTestHelper.createPlayer());
+		mo.onPutOnGround(PlayerTestHelper.createPlayer("player"));
 
 	}
 

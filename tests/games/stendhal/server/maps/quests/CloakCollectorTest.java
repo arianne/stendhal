@@ -40,7 +40,7 @@ public class CloakCollectorTest {
 		cc.addToWorld();
 		SpeakerNPC npc = cc.getNPC();
 		Engine en = npc.getEngine();
-		Player monica = PlayerTestHelper.createPlayer();
+		Player monica = PlayerTestHelper.createPlayer("player");
 
 		en.stepTest(monica, ConversationPhrases.GREETING_MESSAGES.get(0));
 		assertEquals(cc.welcomeBeforeStartingQuest(), npc.get("text"));
@@ -131,7 +131,7 @@ public class CloakCollectorTest {
 	@Test
 	public final void testRewardPlayer() {
 		CloakCollector cc = new CloakCollector();
-		Player player = PlayerTestHelper.createPlayer();
+		Player player = PlayerTestHelper.createPlayer("player");
 		double oldKarma = player.getKarma();
 		cc.rewardPlayer(player);
 		assertTrue(player.isEquipped("black_cloak"));

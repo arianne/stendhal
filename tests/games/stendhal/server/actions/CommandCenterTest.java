@@ -31,7 +31,7 @@ public class CommandCenterTest {
 		};
 		RPAction action = new RPAction();
 		action.put("type", "action");
-		Player caster = PlayerTestHelper.createPlayer();
+		Player caster = PlayerTestHelper.createPlayer("player");
 		CommandCenter.register("action", listener);
 		assertFalse(caster.has("success"));
 		CommandCenter.execute(caster, action);

@@ -38,7 +38,7 @@ public class MeetHackimTest {
 		AbstractQuest quest = new MeetHackim();
 		quest.addToWorld();
 
-		player = PlayerTestHelper.createPlayer();
+		player = PlayerTestHelper.createPlayer("player");
 	}
 
 	@Test

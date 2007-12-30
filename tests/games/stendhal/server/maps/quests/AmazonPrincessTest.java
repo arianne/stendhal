@@ -40,7 +40,7 @@ public class AmazonPrincessTest {
 		AbstractQuest quest = new AmazonPrincess();
 		quest.addToWorld();
 
-		player = PlayerTestHelper.createPlayer();
+		player = PlayerTestHelper.createPlayer("player");
 	}
 
 

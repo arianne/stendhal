@@ -49,7 +49,7 @@ public class PlayerInAreaConditionTest {
 		Area ar = new Area(zone, new Rectangle(-2, -2, 4, 4) {
 		});
 		PlayerInAreaCondition cond = new PlayerInAreaCondition(ar);
-		Player player = PlayerTestHelper.createPlayer();
+		Player player = PlayerTestHelper.createPlayer("player");
 		assertFalse(cond.fire(player, null, null));
 		zone.add(player);
 		assertTrue(ar.contains(player));
@@ -60,7 +60,7 @@ public class PlayerInAreaConditionTest {
 	@Test(expected = NullPointerException.class)
 	public void testFireNPE() throws Exception {
 		PlayerInAreaCondition cond = new PlayerInAreaCondition(null);
-		Player player = PlayerTestHelper.createPlayer();
+		Player player = PlayerTestHelper.createPlayer("player");
 		assertFalse(cond.fire(player, null, null));
 	}
 

@@ -35,10 +35,10 @@ public class QuestNotInStateConditionTest {
 	public final void testFire() {
 		String validState = "valid";
 		assertTrue(new QuestNotInStateCondition(QUESTNAME, validState).fire(
-				PlayerTestHelper.createPlayer(),
+				PlayerTestHelper.createPlayer("player"),
 				ConversationParser.parse("QuestNotInStateConditionTest"),
 				SpeakerNPCTestHelper.createSpeakerNPC()));
-		Player bob = PlayerTestHelper.createPlayer();
+		Player bob = PlayerTestHelper.createPlayer("player");
 
 		bob.setQuest(QUESTNAME, "valid");
 		assertFalse(new QuestNotInStateCondition(QUESTNAME, validState).fire(

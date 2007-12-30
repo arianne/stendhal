@@ -55,7 +55,7 @@ public class BeerForHayunnTest {
 
 	@Test
 	public void quest() {
-		Player player = PlayerTestHelper.createPlayer();
+		Player player = PlayerTestHelper.createPlayer("player");
 
 		(new MockRetiredAdventurer()).createDialog(hayunn);
 		Engine en = hayunn.getEngine();
@@ -83,7 +83,7 @@ public class BeerForHayunnTest {
 		assertEquals("done", player.getQuest("beer_hayunn"));
 		en.step(player, "bye");
 		// reject
-		Player player2 = PlayerTestHelper.createPlayer();
+		Player player2 = PlayerTestHelper.createPlayer("player");
 
 		en.step(player2, "hi");
 		assertTrue(hayunn.isTalking());

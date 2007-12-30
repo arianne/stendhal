@@ -60,7 +60,7 @@ public class BringListOfItemsQuestLogicTest {
 			}
 		});
 		assertEquals("emptyList", Arrays.asList(new String[] {}), logic.getListOfStillMissingItems(
-				PlayerTestHelper.createPlayer(), false));
+				PlayerTestHelper.createPlayer("player"), false));
 		BringListOfItemsQuest quest = new NullValueMockBringListOfItemsQuest() {
 			@Override
 			public List<String> getNeededItems() {
@@ -70,11 +70,11 @@ public class BringListOfItemsQuestLogicTest {
 		};
 		logic = new BringListOfItemsQuestLogic(quest);
 		assertEquals(Arrays.asList(new String[] { "one", "two", "three" }), logic.getListOfStillMissingItems(
-				PlayerTestHelper.createPlayer(), false));
+				PlayerTestHelper.createPlayer("player"), false));
 		assertEquals(Arrays.asList(new String[] { "#one", "#two", "#three" }), logic.getListOfStillMissingItems(
-				PlayerTestHelper.createPlayer(), true));
+				PlayerTestHelper.createPlayer("player"), true));
 
-		Player bob = PlayerTestHelper.createPlayer();
+		Player bob = PlayerTestHelper.createPlayer("player");
 		bob.setQuest(quest.getSlotName(), "");
 		assertTrue(bob.hasQuest(quest.getSlotName()));
 		assertEquals(Arrays.asList(new String[] { "one", "two", "three" }),
@@ -108,7 +108,7 @@ public class BringListOfItemsQuestLogicTest {
 		BringListOfItemsQuestLogic logic = new BringListOfItemsQuestLogic(quest);
 		logic.welcomeNewPlayer();
 
-		Player player = PlayerTestHelper.createPlayer();
+		Player player = PlayerTestHelper.createPlayer("player");
 		Engine en = npc.getEngine();
 		en.step(player, "hi");
 		assertTrue(npc.isTalking());
@@ -124,7 +124,7 @@ public class BringListOfItemsQuestLogicTest {
 		BringListOfItemsQuestLogic logic = new BringListOfItemsQuestLogic(quest);
 		logic.welcomePlayerAfterQuest();
 
-		Player player = PlayerTestHelper.createPlayer();
+		Player player = PlayerTestHelper.createPlayer("player");
 		player.setQuest(quest.getSlotName(), "done");
 		Engine en = npc.getEngine();
 		en.step(player, "hi");
@@ -145,7 +145,7 @@ public class BringListOfItemsQuestLogicTest {
 		BringListOfItemsQuestLogic logic = new BringListOfItemsQuestLogic(quest);
 		logic.welcomePlayerAfterQuest();
 
-		Player player = PlayerTestHelper.createPlayer();
+		Player player = PlayerTestHelper.createPlayer("player");
 		player.setQuest(quest.getSlotName(), "done");
 		Engine en = npc.getEngine();
 		en.step(player, "hi");
@@ -163,7 +163,7 @@ public class BringListOfItemsQuestLogicTest {
 		BringListOfItemsQuestLogic logic = new BringListOfItemsQuestLogic(quest);
 		logic.addToWorld();
 
-		Player player = PlayerTestHelper.createPlayer();
+		Player player = PlayerTestHelper.createPlayer("player");
 		Engine en = npc.getEngine();
 		en.step(player, "hi");
 		assertTrue(npc.isTalking());
@@ -238,7 +238,7 @@ public class BringListOfItemsQuestLogicTest {
 		BringListOfItemsQuestLogic logic = new BringListOfItemsQuestLogic(quest);
 		logic.addToWorld();
 
-		Player player = PlayerTestHelper.createPlayer();
+		Player player = PlayerTestHelper.createPlayer("player");
 
 		Engine en = npc.getEngine();
 		en.step(player, "hi");
@@ -262,7 +262,7 @@ public class BringListOfItemsQuestLogicTest {
 		BringListOfItemsQuestLogic logic = new BringListOfItemsQuestLogic(quest);
 		logic.addToWorld();
 
-		Player player = PlayerTestHelper.createPlayer();
+		Player player = PlayerTestHelper.createPlayer("player");
 		Engine en = npc.getEngine();
 		en.step(player, "hi");
 		assertTrue(npc.isTalking());

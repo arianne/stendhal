@@ -42,7 +42,7 @@ public class AlwaysTrueConditionTest {
 	@Test
 	public void testFire() throws Throwable {
 		assertTrue(new AlwaysTrueCondition().fire(
-				PlayerTestHelper.createPlayer(),
+				PlayerTestHelper.createPlayer("player"),
 				ConversationParser.parse("testAllwaysTrueConditionText"),
 				SpeakerNPCTestHelper.createSpeakerNPC()));
 	}

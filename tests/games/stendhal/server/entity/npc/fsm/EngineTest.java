@@ -53,7 +53,7 @@ public class EngineTest {
 			}
 		};
 		en.add(state, triggers, null, nextState, reply, action);
-		Player pete = PlayerTestHelper.createPlayer();
+		Player pete = PlayerTestHelper.createPlayer("player");
 		en.step(pete, "boo");
 		assertEquals(nextState, en.getCurrentState());
 
@@ -87,7 +87,7 @@ public class EngineTest {
 			}
 		};
 		en.add(state, triggers, cc, nextState, reply, action);
-		Player pete = PlayerTestHelper.createPlayer();
+		Player pete = PlayerTestHelper.createPlayer("player");
 		en.step(pete, triggers);
 		assertEquals(nextState, en.getCurrentState());
 		assertEquals(bob.get("text"), reply);

@@ -46,7 +46,7 @@ public class WeaponsCollectorTest {
 		wc.addToWorld();
 		SpeakerNPC npc = wc.getNPC();
 		Engine en = npc.getEngine();
-		Player pl = PlayerTestHelper.createPlayer();
+		Player pl = PlayerTestHelper.createPlayer("player");
 
 		assertTrue(en.stepTest(pl, "hi"));
 		assertEquals(wc.welcomeBeforeStartingQuest(), npc.get("text"));
@@ -142,7 +142,7 @@ System.out.println(npc.get("text"));
 	@Ignore
 	public final void testRewardPlayer() {
 		WeaponsCollector wc = new WeaponsCollector();
-		Player player = PlayerTestHelper.createPlayer();
+		Player player = PlayerTestHelper.createPlayer("player");
 		double oldKarma = player.getKarma();
 		wc.rewardPlayer(player);
 		assertTrue(player.isEquipped("ice_sword"));

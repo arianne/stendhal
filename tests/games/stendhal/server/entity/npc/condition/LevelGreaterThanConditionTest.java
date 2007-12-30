@@ -28,7 +28,7 @@ public class LevelGreaterThanConditionTest {
 
 	@Before
 	public void setUp() throws Exception {
-		level100Player = PlayerTestHelper.createPlayer();
+		level100Player = PlayerTestHelper.createPlayer("player");
 		level100Player.setLevel(100);
 	}
 

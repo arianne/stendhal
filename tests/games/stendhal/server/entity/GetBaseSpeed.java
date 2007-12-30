@@ -31,7 +31,7 @@ public class GetBaseSpeed {
 
 		assertEquals(0.2, (new SpeakerNPC("bob")).getBaseSpeed(), 0.001);
 		assertEquals(0.0, (new Creature()).getBaseSpeed(), 0.001);
-		assertEquals(1.0, (PlayerTestHelper.createPlayer()).getBaseSpeed(),
+		assertEquals(1.0, (PlayerTestHelper.createPlayer("player")).getBaseSpeed(),
 				0.001);
 		assertEquals(0.9, (new Cat()).getBaseSpeed(), 0.001);
 		assertEquals(0.25, (new Sheep()).getBaseSpeed(), 0.001);

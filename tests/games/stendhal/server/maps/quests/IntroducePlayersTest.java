@@ -53,7 +53,7 @@ public class IntroducePlayersTest {
 	@Test
 	public void testHiAndbye() {
 		Player player;
-		player = PlayerTestHelper.createPlayer();
+		player = PlayerTestHelper.createPlayer("player");
 
 		SpeakerNPC npc = NPCList.get().get("Tad");
 		assertNotNull(npc);
@@ -79,7 +79,7 @@ public class IntroducePlayersTest {
 	@Test
 	public void testHiNoAndHiAgain() {
 		Player player;
-		player = PlayerTestHelper.createPlayer();
+		player = PlayerTestHelper.createPlayer("player");
 
 
 		SpeakerNPC npc = NPCList.get().get("Tad");
@@ -111,7 +111,7 @@ public class IntroducePlayersTest {
 	@Test
 	@Ignore
 	public void testQuest() {
-		Player player = PlayerTestHelper.createPlayer();
+		Player player = PlayerTestHelper.createPlayer("player");
 		SpeakerNPC tad = NPCList.get().get("Tad");
 		assertNotNull(tad);
 		Engine engineTad = tad.getEngine();

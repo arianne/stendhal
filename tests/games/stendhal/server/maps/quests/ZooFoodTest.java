@@ -53,7 +53,7 @@ public class ZooFoodTest {
 
 	@Test
 	public void testHiAndBye() {
-		Player player = PlayerTestHelper.createPlayer();
+		Player player = PlayerTestHelper.createPlayer("player");
 
 		SpeakerNPC npc = NPCList.get().get("Katinka");
 		assertNotNull(npc);
@@ -87,7 +87,7 @@ public class ZooFoodTest {
 
 	@Test
 	public void testDoQuest() {
-		Player player = PlayerTestHelper.createPlayer();
+		Player player = PlayerTestHelper.createPlayer("player");
 
 		SpeakerNPC katinkaNpc = NPCList.get().get("Katinka");
 		assertNotNull(katinkaNpc);

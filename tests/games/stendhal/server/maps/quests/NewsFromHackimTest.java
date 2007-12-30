@@ -47,7 +47,7 @@ public class NewsFromHackimTest {
 		AbstractQuest quest = new NewsFromHackim();
 		quest.addToWorld();
 
-		player = PlayerTestHelper.createPlayer();
+		player = PlayerTestHelper.createPlayer("player");
 	}
 
 	@Test

@@ -106,7 +106,7 @@ public class LookBookforCerylTest {
 		LookBookforCeryl quest = new LookBookforCeryl();
 		quest.init("Ceryl needs a book");
 		quest.addToWorld();
-		Player pl = PlayerTestHelper.createPlayer();
+		Player pl = PlayerTestHelper.createPlayer("player");
 		assertFalse(quest.isStarted(pl));
 		assertFalse(quest.isCompleted(pl));
 		Engine cerylEngine = ceryl.getEngine();
@@ -184,7 +184,7 @@ public class LookBookforCerylTest {
 
 	@Test
 	public final void testGetHistory() {
-		Player pl = PlayerTestHelper.createPlayer();
+		Player pl = PlayerTestHelper.createPlayer("player");
 		LookBookforCeryl quest;
 		quest = new LookBookforCeryl();
 		quest.addToWorld();
@@ -235,7 +235,7 @@ public class LookBookforCerylTest {
 		quest = new LookBookforCeryl();
 		quest.init("Ceryl needs a book");
 		quest.addToWorld();
-		Player pl = PlayerTestHelper.createPlayer();
+		Player pl = PlayerTestHelper.createPlayer("player");
 		assertFalse(quest.isCompleted(pl));
 		pl.setQuest(LookBookforCerylTest.CERYL_BOOK, "done");
 		assertTrue(pl.hasQuest(LookBookforCerylTest.CERYL_BOOK));

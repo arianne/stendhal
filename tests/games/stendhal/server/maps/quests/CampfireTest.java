@@ -62,7 +62,7 @@ public class CampfireTest {
 	@Test
 	public void testCanStartQuestNow() throws Exception {
 		Player player;
-		player = PlayerTestHelper.createPlayer();
+		player = PlayerTestHelper.createPlayer("player");
 
 		SpeakerNPC npc = NPCList.get().get("Sally");
 
@@ -97,7 +97,7 @@ public class CampfireTest {
 	@Test
 	public void testHiAndbye() {
 		Player player;
-		player = PlayerTestHelper.createPlayer();
+		player = PlayerTestHelper.createPlayer("player");
 
 		SpeakerNPC npc = NPCList.get().get("Sally");
 		assertNotNull(npc);
@@ -113,7 +113,7 @@ public class CampfireTest {
 	@Test
 	public void testDoQuest() {
 		Player player;
-		player = PlayerTestHelper.createPlayer();
+		player = PlayerTestHelper.createPlayer("player");
 
 		SpeakerNPC npc = NPCList.get().get("Sally");
 		assertNotNull(npc);
@@ -160,7 +160,7 @@ public class CampfireTest {
 
 	@Test
 	public void testIsCompleted() {
-		Player player = PlayerTestHelper.createPlayer();
+		Player player = PlayerTestHelper.createPlayer("player");
 		assertFalse(new Campfire().isCompleted(player));
 
 		player.setQuest(CAMPFIRE, "start");
@@ -173,7 +173,7 @@ public class CampfireTest {
 	@Test
 	public void testJobAndOffer() {
 		Player player;
-		player = PlayerTestHelper.createPlayer();
+		player = PlayerTestHelper.createPlayer("player");
 
 		SpeakerNPC npc = NPCList.get().get("Sally");
 		assertNotNull(npc);

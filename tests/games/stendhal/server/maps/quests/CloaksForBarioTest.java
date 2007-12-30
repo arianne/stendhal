@@ -39,7 +39,7 @@ public class CloaksForBarioTest {
 		quest.addToWorld();
 		en = npc.getEngine();
 
-		player = PlayerTestHelper.createPlayer();
+		player = PlayerTestHelper.createPlayer("player");
 	}
 
 	@Test

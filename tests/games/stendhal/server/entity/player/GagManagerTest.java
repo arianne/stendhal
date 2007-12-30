@@ -30,7 +30,7 @@ public class GagManagerTest {
 
 	@Test
 	public final void testGagAbsentPlayer() {
-		Player policeman = PlayerTestHelper.createPlayer();
+		Player policeman = PlayerTestHelper.createPlayer("player");
 		Player bob = PlayerTestHelper.createPlayer("bob");
 		GagManager.get().gag("bob", policeman, 1, "test");
 		assertEquals("Player bob not found", policeman.getPrivateText());
@@ -39,7 +39,7 @@ public class GagManagerTest {
 
 	@Test
 	public final void testGagPlayer() {
-		Player policeman = PlayerTestHelper.createPlayer();
+		Player policeman = PlayerTestHelper.createPlayer("player");
 		Player bob = PlayerTestHelper.createPlayer("bob");
 		GagManager.get().gag(bob, policeman, 1, "test", bob.getName());
 		assertEquals("You have gagged bob for 1 minutes. Reason: test.",
@@ -51,7 +51,7 @@ public class GagManagerTest {
 
 	@Test
 	public final void testnegativ() {
-		Player policeman = PlayerTestHelper.createPlayer();
+		Player policeman = PlayerTestHelper.createPlayer("player");
 		Player bob = PlayerTestHelper.createPlayer("bob");
 		assertEquals(null, policeman.getPrivateText());
 		GagManager.get().gag(bob, policeman, -1, "test", bob.getName());
@@ -62,7 +62,7 @@ public class GagManagerTest {
 
 	@Test
 	public final void testOnLoggedIn() {
-		Player policeman = PlayerTestHelper.createPlayer();
+		Player policeman = PlayerTestHelper.createPlayer("player");
 		Player bob = PlayerTestHelper.createPlayer("bob");
 
 		GagManager.get().gag(bob, policeman, 1, "test", bob.getName());
@@ -89,7 +89,7 @@ public class GagManagerTest {
 
 	@Test
 	public final void testgetTimeremaining() {
-		Player bob = PlayerTestHelper.createPlayer();
+		Player bob = PlayerTestHelper.createPlayer("player");
 		assertEquals(0L, GagManager.get().getTimeRemaining(bob));
 		bob.setQuest("gag", "" + (System.currentTimeMillis() - 1000));
 		assertTrue(GagManager.get().getTimeRemaining(bob) <= -1000);

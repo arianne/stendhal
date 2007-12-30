@@ -40,7 +40,7 @@ public class PlayerHasItemWithHimConditionTest {
 
 	@Test
 	public final void testFire() {
-		Player player = PlayerTestHelper.createPlayer();
+		Player player = PlayerTestHelper.createPlayer("player");
 		PlayerHasItemWithHimCondition cond = new PlayerHasItemWithHimCondition(
 				"itemname");
 		assertFalse(cond.fire(player, null, null));

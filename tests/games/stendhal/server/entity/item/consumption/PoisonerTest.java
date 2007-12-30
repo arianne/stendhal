@@ -54,7 +54,7 @@ public class PoisonerTest {
 		ConsumableItem c200_1 = new ConsumableItem("cheese", "", "", attributes);
 		zone.add(c200_1);
 		Poisoner poisoner = new Poisoner();
-		Player bob = PlayerTestHelper.createPlayer();
+		Player bob = PlayerTestHelper.createPlayer("player");
 		poisoner.feed(c200_1, bob);
 		assertTrue(bob.isPoisoned());
 	}

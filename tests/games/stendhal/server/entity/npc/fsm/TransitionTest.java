@@ -71,15 +71,15 @@ public class TransitionTest {
 	@Test
 	public final void testIsConditionFulfilled() {
 		Transition t = new Transition(-2, "trigger", null, 0, null, null);
-		assertTrue(t.isConditionFulfilled(PlayerTestHelper.createPlayer(),
+		assertTrue(t.isConditionFulfilled(PlayerTestHelper.createPlayer("player"),
 				null, SpeakerNPCTestHelper.createSpeakerNPC()));
 		t = new Transition(-2, "trigger", new AlwaysTrueCondition(), 0, null,
 				null);
-		assertTrue(t.isConditionFulfilled(PlayerTestHelper.createPlayer(),
+		assertTrue(t.isConditionFulfilled(PlayerTestHelper.createPlayer("player"),
 				null, SpeakerNPCTestHelper.createSpeakerNPC()));
 		t = new Transition(-2, "trigger", new NotCondition(
 				new AlwaysTrueCondition()), 0, null, null);
-		assertFalse(t.isConditionFulfilled(PlayerTestHelper.createPlayer(),
+		assertFalse(t.isConditionFulfilled(PlayerTestHelper.createPlayer("player"),
 				null, SpeakerNPCTestHelper.createSpeakerNPC()));
 
 	}

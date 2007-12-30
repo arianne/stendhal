@@ -32,10 +32,10 @@ public class QuestCompletedConditionTest {
 	@Test
 	public final void testFire() {
 		assertFalse(new QuestCompletedCondition("questname").fire(
-				PlayerTestHelper.createPlayer(),
+				PlayerTestHelper.createPlayer("player"),
 				ConversationParser.parse("testQuestCompletedCondition"),
 				SpeakerNPCTestHelper.createSpeakerNPC()));
-		Player bob = PlayerTestHelper.createPlayer();
+		Player bob = PlayerTestHelper.createPlayer("player");
 
 		bob.setQuest("questname", "");
 		assertFalse(new QuestCompletedCondition("questname").fire(bob,

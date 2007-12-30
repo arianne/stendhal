@@ -26,10 +26,10 @@ public class QuestNotStartedConditionTest {
 	@Test
 	public final void testFire() {
 		assertTrue(new QuestNotStartedCondition("questname").fire(
-				PlayerTestHelper.createPlayer(),
+				PlayerTestHelper.createPlayer("player"),
 				ConversationParser.parse("testAdminConditionText"),
 				SpeakerNPCTestHelper.createSpeakerNPC()));
-		Player bob = PlayerTestHelper.createPlayer();
+		Player bob = PlayerTestHelper.createPlayer("player");
 
 		bob.setQuest("questname", "");
 		assertFalse(new QuestNotStartedCondition("questname").fire(bob,

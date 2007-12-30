@@ -54,7 +54,7 @@ public class WizardBankTest {
 
 	@Test
 	public void testHiAndBye() {
-		Player player = PlayerTestHelper.createPlayer();
+		Player player = PlayerTestHelper.createPlayer("player");
 
 		SpeakerNPC npc = NPCList.get().get("Javier X");
 		assertNotNull(npc);
