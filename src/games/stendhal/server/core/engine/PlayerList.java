@@ -86,11 +86,23 @@ public class PlayerList {
 	}
 
 	public void add(Player player) {
-		players.put(player.getName(), player);
+		String playerName = player.getName();
+
+		if (playerName != null) {
+			players.put(playerName, player);
+		} else {
+			throw new IllegalArgumentException("can't add player without name");
+		}
 	}
 
 	public boolean remove(Player player) {
-		return players.remove(player.getName()) != null;
+		String playerName = player.getName();
+
+		if (playerName != null) {
+			return players.remove(playerName) != null;
+		} else {
+			throw new IllegalArgumentException("can't remove player without name:");
+		}
 	}
 
 }
