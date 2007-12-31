@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Iterator;
 
+import marauroa.common.Log4J;
 import marauroa.server.game.db.JDBCDatabase;
 import marauroa.server.game.db.JDBCTransaction;
 
@@ -43,8 +44,25 @@ public class Analyser {
 	
 	public void analyse() {
 		Iterator<LogEntry> itr = queryDatabase();
+		String itemid = "-1";
+		ItemLocation itemLocation = null;
 		while (itr.hasNext()) {
-			System.out.println(itr.next());
+			LogEntry entry = itr.next();
+
+			// detect group change (next item)
+			if (!entry.getItemid().equals(itemid)) {
+				itemLocation = new ItemLocation();
+				itemid = entry.getItemid();
+			}
+
+			// check consistency
+			boolean res = itemLocation.check(entry.getEvent(), entry.getParam1(), entry.getParam2());
+			if (!res) {
+				logger.error("Inconsistency: exspected location " + itemLocation + " but log entry said " + entry);
+			}
+
+			// update item location
+			itemLocation.update(entry.getEvent(), entry.getParam3(), entry.getParam4());
 		}
 	}
 
@@ -54,6 +72,7 @@ public class Analyser {
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		Log4J.init();
 		Analyser analyser = new Analyser();
 		analyser.analyse();
 	}
