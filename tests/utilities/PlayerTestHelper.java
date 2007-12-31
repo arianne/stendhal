@@ -209,7 +209,7 @@ public class PlayerTestHelper {
 	 * @param name
 	 */
 	public static void removeZone(String zoneName) {
-		// TODO
+		// TODO implement removeZone()
 	}
 
 	public static void addEmptySlots(Player player) {
