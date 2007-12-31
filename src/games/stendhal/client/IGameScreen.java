@@ -22,13 +22,13 @@ public interface IGameScreen {
 	/** The width / height of one tile. */
 	int SIZE_UNIT_PIXELS = 32;
 
-	/** Returns screen width in world units */
+	/** Returns screen width in world units. */
 	double getViewWidth();
 
-	/** Returns screen height in world units */
+	/** Returns screen height in world units .*/
 	double getViewHeight();
 
-	/** Prepare screen for the next frame to be rendered and move it if needed */
+	/** Prepare screen for the next frame to be rendered and move it if needed .*/
 	void nextFrame();
 
 	/**
@@ -302,7 +302,7 @@ public interface IGameScreen {
 	 */
 	boolean isInScreen(int sx, int sy, int swidth, int sheight);
 
-	/** Draw a sprite in screen given its world coordinates */
+	/** Draw a sprite in screen given its world coordinates. */
 	void draw(Sprite sprite, double wx, double wy);
 
 	void drawInScreen(Sprite sprite, int sx, int sy);
@@ -377,7 +377,7 @@ public interface IGameScreen {
 
 	/**
 	 * Formats a text by changing the color of words starting with
-	 * {@link #clone()}.S
+	 * {@link #clone()}.S.
 	 *
 	 * @param line
 	 *            the text
