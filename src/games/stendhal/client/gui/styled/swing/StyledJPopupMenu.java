@@ -69,7 +69,7 @@ public class StyledJPopupMenu extends JPopupMenu {
 			item.setBorder(border);
 
 			/*
-			 * TODO: XXX - Does this help??
+			 * TODO Does this help?? XXX
 			 */
 			item.setMargin(new Insets(0, 0, 0, 0));
 		}

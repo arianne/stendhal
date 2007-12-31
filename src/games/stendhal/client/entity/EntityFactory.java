@@ -29,7 +29,7 @@ public class EntityFactory {
 	}
 
 	/**
-	 * Create a Entity of the correct type depending of the arianne object
+	 * Create a Entity of the correct type depending on the arianne object
 	 * 
 	 * @param object
 	 *            the underlying server RPObject
@@ -53,8 +53,8 @@ public class EntityFactory {
 				eclass = object.get("class");
 			}
 
-			Class<? extends Entity> entityClass = EntityMap.getClass(type,
-					eclass);
+			Class<? extends Entity> entityClass =
+							EntityMap.getClass(type, eclass);
 			if (entityClass == null) {
 				// If there is no entity, let's try without using class.
 				entityClass = EntityMap.getClass(type, null);

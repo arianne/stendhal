@@ -233,8 +233,8 @@ public abstract class ManagedDialog implements ManagedWindow {
 	 */
 	public boolean moveTo(int x, int y) {
 		/*
-		 * TODO: XXX - Perhaps we should require some of it to remain on the
-		 * screen (incase it was saved while in hi-res, then run in low-res)
+		 * TODO Perhaps we should require some of it to remain on the
+		 * screen (incase it was saved while in hi-res, then run in low-res) XXX
 		 */
 		dialog.setLocation(x + owner.getX(), y + owner.getY());
 		return true;

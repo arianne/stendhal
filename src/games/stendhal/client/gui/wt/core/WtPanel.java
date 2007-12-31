@@ -305,9 +305,9 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	 * Moves the panel to the given position.
 	 * 
 	 * @param x
-	 *            x-coordinale
+	 *            x-coordinate
 	 * @param y
-	 *            y-coordinmate
+	 *            y-coordinate
 	 * @return true when the operation is allowed (panel is moved) or false if
 	 *         not (panel is not moved)
 	 */
@@ -319,9 +319,9 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	 * Moves the panel to the given position.
 	 * 
 	 * @param x
-	 *            x-coordinale
+	 *            x-coordinate
 	 * @param y
-	 *            y-coordinmate
+	 *            y-coordinate
 	 * @param checkHeight
 	 *            when true the height must be completely inside the parent
 	 * @return true when the operation is allowed (panel is moved) or false if

@@ -71,8 +71,8 @@ public class Entity implements RPObjectChangeListener {
 	protected String[] moveSounds;
 
 	/**
-	 * session wide instance identifier for this class. TODO: get rid of this
-	 * only used by Soundsystem
+	 * session wide instance identifier for this class.
+	 * TODO: get rid of this only used by Soundsystem
 	 * 
 	 */
 	public final byte[] ID_Token = new byte[0];
