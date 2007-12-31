@@ -10,11 +10,12 @@ import static org.junit.Assert.assertTrue;
 import games.stendhal.common.filter.FilterCriteria;
 import games.stendhal.server.entity.player.Player;
 
+import marauroa.common.game.RPObject;
+
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import utilities.PlayerTestHelper;
-import utilities.PrivateTextMockingTestPlayer;
 
 public class PlayerListTest {
 
@@ -25,18 +26,18 @@ public class PlayerListTest {
 	@Test
 	public void testPlayerList() {
 		PlayerList list = new PlayerList();
-		list.size();	// just to avoid the "is never read" warning
+		list.size(); // just to avoid the "is never read" warning
 	}
 
 	@Test
 	public void testGetOnlinePlayer() {
 		PlayerList list = new PlayerList();
 		assertThat(list.size(), is(0));
-		PrivateTextMockingTestPlayer jack = PlayerTestHelper.createPrivateTextMockingTestPlayer("jack");
+		Player jack = PlayerTestHelper.createPlayer("jack");
 		list.add(jack);
 		assertThat(list.size(), is(1));
 		assertSame(jack, list.getOnlinePlayer("jack"));
-		PrivateTextMockingTestPlayer jack2 = PlayerTestHelper.createPrivateTextMockingTestPlayer("jack");
+		Player jack2 = PlayerTestHelper.createPlayer("jack");
 		list.add(jack2);
 		assertThat(list.size(), is(1));
 		assertThat(jack2, sameInstance(list.getOnlinePlayer("jack")));
@@ -47,59 +48,49 @@ public class PlayerListTest {
 
 	@Test
 	public void testAllPlayersModify() {
-		PrivateTextMockingTestPlayer jack = PlayerTestHelper.createPrivateTextMockingTestPlayer("jack");
-		PrivateTextMockingTestPlayer bob = PlayerTestHelper.createPrivateTextMockingTestPlayer("bob");
-		PrivateTextMockingTestPlayer ghost = PlayerTestHelper.createPrivateTextMockingTestPlayer("ghost");
+		Player jack = PlayerTestHelper.createPlayer("jack");
+		Player bob = PlayerTestHelper.createPlayer("bob");
+		Player ghost = PlayerTestHelper.createPlayer("ghost");
 		ghost.setGhost(true);
 		PlayerList list = new PlayerList();
 		list.add(jack);
 		list.add(bob);
 		list.add(ghost);
-		final String message = "tellall test";
-		list.tellAllOnlinePlayers(message);
-		assertEquals(message, jack.getPrivateTextString());
-		assertEquals(message, bob.getPrivateTextString());
-		assertEquals(message, ghost.getPrivateTextString());
+		final String testString = "testString";
 		list.forAllPlayersExecute(new Task<Player>() {
 			public void execute(Player player) {
-				//TODO Is there a possibility to avoid this type cast?
-				((PrivateTextMockingTestPlayer)player).resetPrivateTextString();
+				player.put(testString, testString);
 			}
 		});
 
-		assertEquals("", jack.getPrivateTextString());
-		assertEquals("", bob.getPrivateTextString());
-		assertEquals("", ghost.getPrivateTextString());
+		assertEquals(testString, jack.get(testString));
+		assertEquals(testString, bob.get(testString));
+		assertEquals(testString, ghost.get(testString));
 
 		list.forFilteredPlayersExecute(new Task<Player>() {
 			public void execute(Player player) {
-				player.sendPrivateText(message);
+				player.put(testString, "");
 			}
 		}, new FilterCriteria<Player>() {
 			public boolean passes(Player o) {
 				return o.isGhost();
 			}
 		});
-		assertEquals("", jack.getPrivateTextString());
-		assertEquals("", bob.getPrivateTextString());
-		assertEquals(message, ghost.getPrivateTextString());
+		assertEquals(testString, jack.get(testString));
+		assertEquals(testString, bob.get(testString));
+		assertEquals("", ghost.get(testString));
 	}
 
 	@Test
 	public void testAllPlayersRemove() {
-		PrivateTextMockingTestPlayer jack = PlayerTestHelper.createPrivateTextMockingTestPlayer("jack");
-		PrivateTextMockingTestPlayer bob = PlayerTestHelper.createPrivateTextMockingTestPlayer("bob");
-		PrivateTextMockingTestPlayer ghost = PlayerTestHelper.createPrivateTextMockingTestPlayer("ghost");
+		Player jack = PlayerTestHelper.createPlayer("jack");
+		Player bob = PlayerTestHelper.createPlayer("bob");
+		Player ghost = PlayerTestHelper.createPlayer("ghost");
 		ghost.setGhost(true);
 		final PlayerList list = new PlayerList();
 		list.add(jack);
 		list.add(bob);
 		list.add(ghost);
-		final String message = "tellall test";
-		list.tellAllOnlinePlayers(message);
-		assertEquals(message, jack.getPrivateTextString());
-		assertEquals(message, bob.getPrivateTextString());
-		assertEquals(message, ghost.getPrivateTextString());
 		list.forAllPlayersExecute(new Task<Player>() {
 
 			public void execute(Player player) {
@@ -108,6 +99,27 @@ public class PlayerListTest {
 
 		});
 		assertThat(list.size(), is(0));
+	}
+
+	@Test
+	public void testGetOnlineCaseInsensitivePlayer() {
+		PlayerList list = new PlayerList();
+		assertThat(list.size(), is(0));
+		Player jack = PlayerTestHelper.createPlayer("jack");
+		list.add(jack);
+		assertThat(list.size(), is(1));
+		assertSame(jack, list.getOnlinePlayer("jack"));
+		assertSame(jack, list.getOnlinePlayer("Jack"));
+		assertSame(jack, list.getOnlinePlayer("jAck"));
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testAddPlayerWithEqualName() {
+		PlayerList list = new PlayerList();
+		Player jack = new Player(new RPObject()) {
+		};
+		list.add(jack);
+
 	}
 
 }

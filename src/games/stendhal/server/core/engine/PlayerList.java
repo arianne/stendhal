@@ -24,7 +24,7 @@ public class PlayerList {
 	 *         found
 	 */
 	Player getOnlinePlayer(String name) {
-		return players.get(name);
+		return players.get(name.toLowerCase());
 	}
 
 	/**
@@ -89,7 +89,7 @@ public class PlayerList {
 		String playerName = player.getName();
 
 		if (playerName != null) {
-			players.put(playerName, player);
+			players.put(playerName.toLowerCase(), player);
 		} else {
 			throw new IllegalArgumentException("can't add player without name");
 		}
@@ -99,7 +99,7 @@ public class PlayerList {
 		String playerName = player.getName();
 
 		if (playerName != null) {
-			return players.remove(playerName) != null;
+			return players.remove(playerName.toLowerCase()) != null;
 		} else {
 			throw new IllegalArgumentException("can't remove player without name:");
 		}
