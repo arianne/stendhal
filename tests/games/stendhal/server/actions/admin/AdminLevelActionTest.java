@@ -1,11 +1,9 @@
 package games.stendhal.server.actions.admin;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 import games.stendhal.server.actions.CommandCenter;
-import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
-
 import marauroa.common.Log4J;
 import marauroa.common.game.RPAction;
 
@@ -14,6 +12,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import utilities.PlayerTestHelper;
+import utilities.PrivateTextMockingTestPlayer;
 
 public class AdminLevelActionTest {
 
@@ -31,8 +30,8 @@ public class AdminLevelActionTest {
 
 	@Test
 	public final void testAdminLevelAction0() {
-		Player pl = PlayerTestHelper.createPlayer("player");
-		Player bob = PlayerTestHelper.createPlayer("bob");
+		PrivateTextMockingTestPlayer pl = PlayerTestHelper.createPrivateTextMockingTestPlayer("player");
+		PrivateTextMockingTestPlayer bob = PlayerTestHelper.createPrivateTextMockingTestPlayer("bob");
 		MockStendhalRPRuleProcessor.get().addPlayer(pl);
 		MockStendhalRPRuleProcessor.get().addPlayer(bob);
 	
@@ -44,14 +43,14 @@ public class AdminLevelActionTest {
 		action.put("newlevel", "0");
 		CommandCenter.execute(pl, action);
 		assertEquals("Changed adminlevel of bob from 0 to 0.", pl
-				.getPrivateText());
+				.getPrivateTextString());
 		assertEquals("player changed your adminlevel from 0 to 0.", bob
-				.getPrivateText());
+				.getPrivateTextString());
 	}
 
 	@Test
 	public final void testAdminLevelActioncasterNotSuper() {
-		Player pl = PlayerTestHelper.createPlayer("bob");
+		PrivateTextMockingTestPlayer pl = PlayerTestHelper.createPrivateTextMockingTestPlayer("bob");
 		pl.put("adminlevel", 4999);
 	
 		MockStendhalRPRuleProcessor.get().addPlayer(pl);
@@ -63,13 +62,13 @@ public class AdminLevelActionTest {
 		CommandCenter.execute(pl, action);
 		assertEquals(
 				"Sorry, but you need an adminlevel of 5000 to change adminlevel.",
-				pl.getPrivateText());
+				pl.getPrivateTextString());
 	}
 
 	@Test
 	public final void testAdminLevelActionOverSuper() {
-		Player pl = PlayerTestHelper.createPlayer("player");
-		Player bob = PlayerTestHelper.createPlayer("bob");
+		PrivateTextMockingTestPlayer pl = PlayerTestHelper.createPrivateTextMockingTestPlayer("player");
+		PrivateTextMockingTestPlayer bob = PlayerTestHelper.createPrivateTextMockingTestPlayer("bob");
 		// bad bad
 		MockStendhalRPRuleProcessor.get().addPlayer(pl);
 		MockStendhalRPRuleProcessor.get().addPlayer(bob);
@@ -82,19 +81,16 @@ public class AdminLevelActionTest {
 		action.put("newlevel", "5001");
 		CommandCenter.execute(pl, action);
 		assertEquals("Changed adminlevel of bob from 0 to 5000.", pl
-				.getPrivateText());
+				.getPrivateTextString());
 		assertEquals(5000, pl.getAdminLevel());
 		assertEquals(5000, bob.getAdminLevel());
 		assertEquals("player changed your adminlevel from 0 to 5000.", bob
-				.getPrivateText());
+				.getPrivateTextString());
 	}
 
 	@Test
 	public final void testAdminLevelActionPlayerFound() {
-	
-	
-	
-		Player pl = PlayerTestHelper.createPlayer("bob");
+		PrivateTextMockingTestPlayer pl = PlayerTestHelper.createPrivateTextMockingTestPlayer("bob");
 		pl.put("adminlevel", 5000);
 	
 		MockStendhalRPRuleProcessor.get().addPlayer(pl);
@@ -103,12 +99,12 @@ public class AdminLevelActionTest {
 		action.put("type", "adminlevel");
 		action.put("target", "bob");
 		CommandCenter.execute(pl, action);
-		assertEquals("bob has adminlevel 5000", pl.getPrivateText());
+		assertEquals("bob has adminlevel 5000", pl.getPrivateTextString());
 	}
 
 	@Test
 	public final void testAdminLevelActionPlayerFoundNoInteger() {
-		Player pl = PlayerTestHelper.createPlayer("bob");
+		PrivateTextMockingTestPlayer pl = PlayerTestHelper.createPrivateTextMockingTestPlayer("bob");
 		pl.put("adminlevel", 5000);
 	
 		MockStendhalRPRuleProcessor.get().addPlayer(pl);
@@ -119,21 +115,19 @@ public class AdminLevelActionTest {
 		action.put("newlevel", "1.3");
 		CommandCenter.execute(pl, action);
 		assertEquals("The new adminlevel needs to be an Integer", pl
-				.getPrivateText());
+				.getPrivateTextString());
 	}
 
 	@Test
 	public final void testAdminLevelActionPlayerNotFound() {
-	
-	
-		Player pl = PlayerTestHelper.createPlayer("player");
+		PrivateTextMockingTestPlayer pl = PlayerTestHelper.createPrivateTextMockingTestPlayer("player");
 		pl.put("adminlevel", 5000);
 		RPAction action = new RPAction();
 		action.put("type", "adminlevel");
 		action.put("target", "bob");
 		CommandCenter.execute(pl, action);
 	
-		assertEquals("Player \"bob\" not found", pl.getPrivateText());
+		assertEquals("Player \"bob\" not found", pl.getPrivateTextString());
 	}
 
 }

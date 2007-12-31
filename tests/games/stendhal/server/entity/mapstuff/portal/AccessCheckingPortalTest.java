@@ -23,6 +23,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import utilities.PlayerTestHelper;
+import utilities.PrivateTextMockingTestPlayer;
 
 public class AccessCheckingPortalTest {
 
@@ -83,7 +84,7 @@ public class AccessCheckingPortalTest {
 	@Test
 	public final void testRejected() {
 		AccessCheckingPortal port = new MockAccessCheckingPortal();
-		Player player = PlayerTestHelper.createPlayer("mayNot");
+		PrivateTextMockingTestPlayer player = PlayerTestHelper.createPrivateTextMockingTestPlayer("mayNot");
 		port.rejected(player);
 		Set<TurnListener> bla = TurnNotifier.get().getEventListForDebugging().get(
 				Integer.valueOf(0));
@@ -92,14 +93,13 @@ public class AccessCheckingPortalTest {
 		assertTrue(listenerset[0] instanceof AccessCheckingPortal.SendMessage);
 		SendMessage sm = (SendMessage) listenerset[0];
 		sm.onTurnReached(0);
-		assertEquals("rejected", player.getPrivateText());
-
+		assertEquals("rejected", player.getPrivateTextString());
 	}
 
 	@Test
 	public final void testSetRejectedMessage() {
 		AccessCheckingPortal port = new MockAccessCheckingPortal();
-		Player player = PlayerTestHelper.createPlayer("mayNot");
+		PrivateTextMockingTestPlayer player = PlayerTestHelper.createPrivateTextMockingTestPlayer("mayNot");
 		port.setRejectedMessage("setRejectMessage");
 		port.rejected(player);
 		Set<TurnListener> bla = TurnNotifier.get().getEventListForDebugging().get(
@@ -109,20 +109,18 @@ public class AccessCheckingPortalTest {
 		assertTrue(listenerset[0] instanceof AccessCheckingPortal.SendMessage);
 		SendMessage sm = (SendMessage) listenerset[0];
 		sm.onTurnReached(0);
-		assertEquals("setRejectMessage", player.getPrivateText());
+		assertEquals("setRejectMessage", player.getPrivateTextString());
 	}
 
 	class MockAccessCheckingPortal extends AccessCheckingPortal {
 
 		public MockAccessCheckingPortal() {
 			super("rejected");
-
 		}
 
 		@Override
 		protected boolean isAllowed(RPEntity user) {
 			return "may".equals(user.getName());
-
 		}
 
 	}

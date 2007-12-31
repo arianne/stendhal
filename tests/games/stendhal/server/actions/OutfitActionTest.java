@@ -26,7 +26,7 @@ public class OutfitActionTest {
 	@Test
 	public void testOnWrongAction() {
 		OutfitAction oa = new OutfitAction();
-		Player player = PlayerTestHelper.createPlayer("player");
+		Player player = PlayerTestHelper.createPrivateTextMockingTestPlayer("player");
 		RPAction action = new RPAction();
 		oa.onAction(player, action);
 		assertTrue("no exception thrown", true);
@@ -35,17 +35,16 @@ public class OutfitActionTest {
 	@Test(expected = NumberFormatException.class)
 	public void testOnActionWrongValue() {
 		OutfitAction oa = new OutfitAction();
-		Player player = PlayerTestHelper.createPlayer("player");
+		Player player = PlayerTestHelper.createPrivateTextMockingTestPlayer("player");
 		RPAction action = new RPAction();
 		action.put("value", "schnick");
 		oa.onAction(player, action);
-
 	}
 
 	@Test
 	public void testOnAction() {
 		OutfitAction oa = new OutfitAction();
-		Player player = PlayerTestHelper.createPlayer("player");
+		Player player = PlayerTestHelper.createPrivateTextMockingTestPlayer("player");
 		RPAction action = new RPAction();
 		assertNull(player.get("outfit"));
 		action.put("value", 1);

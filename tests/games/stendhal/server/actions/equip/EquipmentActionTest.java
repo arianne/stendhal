@@ -10,7 +10,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import utilities.PlayerTestHelper;
-import utilities.TestPlayer;
+import utilities.PrivateTextMockingTestPlayer;
 
 /**
  * Test cases for drop.
@@ -39,8 +39,8 @@ public class EquipmentActionTest {
 	 * @param name
 	 * @return
 	 */
-	private TestPlayer createTestPlayer(String name) {
-		TestPlayer player = PlayerTestHelper.createTestPlayer(name);
+	private PrivateTextMockingTestPlayer createTestPlayer(String name) {
+		PrivateTextMockingTestPlayer player = PlayerTestHelper.createPrivateTextMockingTestPlayer(name);
 
 		player.setPosition(10, 5);
 		StendhalRPWorld.get().getRPZone(ZONE_NAME).assignRPObjectID(player);
@@ -51,7 +51,7 @@ public class EquipmentActionTest {
 
 	@Test
 	public void testDropInvalidSourceSlot() {
-		TestPlayer player = createTestPlayer("george");
+		PrivateTextMockingTestPlayer player = createTestPlayer("george");
 
 		RPAction drop = new RPAction();
 		drop.put("type", "drop");
@@ -66,7 +66,7 @@ public class EquipmentActionTest {
 
 	@Test
 	public void testDrop() {
-		TestPlayer player = createTestPlayer("bob");
+		PrivateTextMockingTestPlayer player = createTestPlayer("bob");
 
 		RPAction drop = new RPAction();
 		drop.put("type", "drop");

@@ -23,13 +23,13 @@ public class CollectionFilterTest {
 	public final void testFilter() {
 		Collection<Player> list = new LinkedList<Player>();
 
-		list.add(PlayerTestHelper.createPlayer("nonAdmin1"));
-		list.add(PlayerTestHelper.createPlayer("nonAdmin2"));
-		list.add(PlayerTestHelper.createPlayer("nonAdmin3"));
-		Player player = PlayerTestHelper.createPlayer("Admin1");
+		list.add(PlayerTestHelper.createPrivateTextMockingTestPlayer("nonAdmin1"));
+		list.add(PlayerTestHelper.createPrivateTextMockingTestPlayer("nonAdmin2"));
+		list.add(PlayerTestHelper.createPrivateTextMockingTestPlayer("nonAdmin3"));
+		Player player = PlayerTestHelper.createPrivateTextMockingTestPlayer("Admin1");
 		player.setAdminLevel(1);
 		list.add(player);
-		player = PlayerTestHelper.createPlayer("bob");
+		player = PlayerTestHelper.createPrivateTextMockingTestPlayer("bob");
 		player.setAdminLevel(10);
 		list.add(player);
 		assertThat(list.size(), is(5));
@@ -51,14 +51,12 @@ public class CollectionFilterTest {
 		result.remove(1);
 		assertThat(result.size(), is(1));
 		assertThat(list.size(), is(5));
-
 	}
 
 	class Adminfilter implements FilterCriteria<Player> {
 
 		public boolean passes(Player o) {
 			return o.getAdminLevel() == 0;
-
 		}
 
 	}
@@ -67,7 +65,6 @@ public class CollectionFilterTest {
 
 		public boolean passes(Player o) {
 			return o.getAdminLevel() > 0;
-
 		}
 
 	}

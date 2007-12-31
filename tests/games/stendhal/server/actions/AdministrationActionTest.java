@@ -27,7 +27,7 @@ import org.junit.Test;
 
 import utilities.PlayerTestHelper;
 import utilities.SpeakerNPCTestHelper;
-import utilities.TestPlayer;
+import utilities.PrivateTextMockingTestPlayer;
 
 public class AdministrationActionTest {
 
@@ -102,7 +102,7 @@ public class AdministrationActionTest {
 
 	@Test
 	public final void testIsPlayerAllowedToExecuteAdminCommand() {
-		TestPlayer pl = PlayerTestHelper.createTestPlayer("player");
+		PrivateTextMockingTestPlayer pl = PlayerTestHelper.createPrivateTextMockingTestPlayer("player");
 		assertFalse(AdministrationAction.isPlayerAllowedToExecuteAdminCommand(
 				pl, "", true));
 		// assertEquals("Sorry, command \"\" is unknown.", pl.getPrivateTextString());
@@ -131,7 +131,7 @@ public class AdministrationActionTest {
 
 	@Test
 	public final void testTellAllAction() {
-		TestPlayer pl = PlayerTestHelper.createTestPlayer("dummy");
+		PrivateTextMockingTestPlayer pl = PlayerTestHelper.createPrivateTextMockingTestPlayer("dummy");
 		// bad bad
 		MockStendhalRPRuleProcessor.get().addPlayer(pl);
 
@@ -149,9 +149,9 @@ public class AdministrationActionTest {
 
 	@Test
 	public final void testSupportAnswerAction() {
-		TestPlayer pl = PlayerTestHelper.createTestPlayer("player");
-		TestPlayer bob = PlayerTestHelper.createTestPlayer("bob");
-		TestPlayer anptherAdmin = PlayerTestHelper.createTestPlayer("anotheradmin");
+		PrivateTextMockingTestPlayer pl = PlayerTestHelper.createPrivateTextMockingTestPlayer("player");
+		PrivateTextMockingTestPlayer bob = PlayerTestHelper.createPrivateTextMockingTestPlayer("bob");
+		PrivateTextMockingTestPlayer anptherAdmin = PlayerTestHelper.createPrivateTextMockingTestPlayer("anotheradmin");
 		anptherAdmin.setAdminLevel(5000);
 		// bad bad
 		MockStendhalRPRuleProcessor.get().addPlayer(pl);
@@ -180,7 +180,7 @@ public class AdministrationActionTest {
 	@Test
 	public final void testTeleportActionToInvalidZone() {
 
-		TestPlayer pl = PlayerTestHelper.createTestPlayer("player");
+		PrivateTextMockingTestPlayer pl = PlayerTestHelper.createPrivateTextMockingTestPlayer("player");
 		Player bob = PlayerTestHelper.createPlayer("bob");
 		// bad bad
 		MockStendhalRPRuleProcessor.get().addPlayer(pl);
@@ -211,7 +211,7 @@ public class AdministrationActionTest {
 	public final void testTeleportActionToValidZone() {
 
 		StendhalRPZone zoneTo = new StendhalRPZone("zoneTo");
-		TestPlayer pl = PlayerTestHelper.createTestPlayer("player");
+		PrivateTextMockingTestPlayer pl = PlayerTestHelper.createPrivateTextMockingTestPlayer("player");
 		MockStendhalRPRuleProcessor.get().addPlayer(pl);
 		PlayerTestHelper.generatePlayerRPClasses();
 		Player bob = new Player(new RPObject()) {
@@ -249,7 +249,7 @@ public class AdministrationActionTest {
 
 	@Test
 	public final void testTeleportToActionPlayerNotThere() {
-		TestPlayer pl = PlayerTestHelper.createTestPlayer("player");
+		PrivateTextMockingTestPlayer pl = PlayerTestHelper.createPrivateTextMockingTestPlayer("player");
 		pl.put("adminlevel", 5000);
 		RPAction action = new RPAction();
 		action.put("type", "teleportto");
@@ -261,7 +261,7 @@ public class AdministrationActionTest {
 	@Test
 	public final void testTeleportToActionPlayerThere() {
 
-		TestPlayer pl = PlayerTestHelper.createTestPlayer("blah");
+		PrivateTextMockingTestPlayer pl = PlayerTestHelper.createPrivateTextMockingTestPlayer("blah");
 
 		pl.put("adminlevel", 5000);
 
@@ -277,7 +277,7 @@ public class AdministrationActionTest {
 
 	@Test
 	public final void testOnAlterActionWrongAttribute() {
-		TestPlayer pl = PlayerTestHelper.createTestPlayer("bob");
+		PrivateTextMockingTestPlayer pl = PlayerTestHelper.createPrivateTextMockingTestPlayer("bob");
 		pl.put("adminlevel", 5000);
 
 		MockStendhalRPRuleProcessor.get().addPlayer(pl);
@@ -298,7 +298,7 @@ public class AdministrationActionTest {
 	@Test
 	public final void testOnAlterAction() {
 
-		TestPlayer pl = PlayerTestHelper.createTestPlayer("bob");
+		PrivateTextMockingTestPlayer pl = PlayerTestHelper.createPrivateTextMockingTestPlayer("bob");
 		pl.put("adminlevel", 5000);
 
 		MockStendhalRPRuleProcessor.get().addPlayer(pl);
@@ -322,7 +322,7 @@ public class AdministrationActionTest {
 
 	@Test
 	public final void testOnAlterActionTitle() {
-		TestPlayer pl = PlayerTestHelper.createTestPlayer("bob");
+		PrivateTextMockingTestPlayer pl = PlayerTestHelper.createPrivateTextMockingTestPlayer("bob");
 		pl.put("adminlevel", 5000);
 
 		MockStendhalRPRuleProcessor.get().addPlayer(pl);
@@ -344,7 +344,7 @@ public class AdministrationActionTest {
 
 		AdministrationAction aa = new AlterAction();
 
-		TestPlayer pl = PlayerTestHelper.createTestPlayer("bob");
+		PrivateTextMockingTestPlayer pl = PlayerTestHelper.createPrivateTextMockingTestPlayer("bob");
 		pl.put("adminlevel", 5000);
 		pl.put("base_hp", 100);
 		pl.setHP(100);
@@ -376,7 +376,7 @@ public class AdministrationActionTest {
 
 	@Test
 	public final void testOnAlterActionHPsub() {
-		TestPlayer pl = PlayerTestHelper.createTestPlayer("bob");
+		PrivateTextMockingTestPlayer pl = PlayerTestHelper.createPrivateTextMockingTestPlayer("bob");
 		pl.put("adminlevel", 5000);
 		pl.put("base_hp", 100);
 		pl.setHP(100);
@@ -399,7 +399,7 @@ public class AdministrationActionTest {
 	@Test
 	public final void testOnAlterActionHPadd() {
 
-		TestPlayer pl = PlayerTestHelper.createTestPlayer("bob");
+		PrivateTextMockingTestPlayer pl = PlayerTestHelper.createPrivateTextMockingTestPlayer("bob");
 		pl.put("adminlevel", 5000);
 		pl.put("base_hp", 100);
 		pl.setHP(10);
@@ -421,7 +421,7 @@ public class AdministrationActionTest {
 
 	@Test
 	public final void testAlterCreatureEntityNotFound() {
-		TestPlayer pl = PlayerTestHelper.createTestPlayer("hugo");
+		PrivateTextMockingTestPlayer pl = PlayerTestHelper.createPrivateTextMockingTestPlayer("hugo");
 
 		MockStendhalRPRuleProcessor.get().addPlayer(pl);
 
@@ -438,7 +438,7 @@ public class AdministrationActionTest {
 	@Test
 	public final void testSummonAlterCreature() {
 
-		TestPlayer pl = PlayerTestHelper.createTestPlayer("hugo");
+		PrivateTextMockingTestPlayer pl = PlayerTestHelper.createPrivateTextMockingTestPlayer("hugo");
 
 		MockStendhalRPRuleProcessor.get().addPlayer(pl);
 		StendhalRPZone zone = new StendhalRPZone("testzone") {
@@ -479,7 +479,7 @@ public class AdministrationActionTest {
 
 	@Test
 	public final void testInvisible() {
-		TestPlayer pl = PlayerTestHelper.createTestPlayer("hugo");
+		PrivateTextMockingTestPlayer pl = PlayerTestHelper.createPrivateTextMockingTestPlayer("hugo");
 		pl.put("adminlevel", 5000);
 		RPAction action = new RPAction();
 		action.put("type", "invisible");
@@ -493,7 +493,7 @@ public class AdministrationActionTest {
 	@Test
 	public final void testTeleclickmode() {
 
-		TestPlayer pl = PlayerTestHelper.createTestPlayer("hugo");
+		PrivateTextMockingTestPlayer pl = PlayerTestHelper.createPrivateTextMockingTestPlayer("hugo");
 		pl.put("adminlevel", 5000);
 		RPAction action = new RPAction();
 		action.put("type", "teleclickmode");
@@ -508,7 +508,7 @@ public class AdministrationActionTest {
 	public final void testJail() {
 		MockStendlRPWorld.get().addRPZone(new StendhalRPZone("-1_semos_jail", 100, 100));
 
-		TestPlayer pl = PlayerTestHelper.createTestPlayer("hugo");
+		PrivateTextMockingTestPlayer pl = PlayerTestHelper.createPrivateTextMockingTestPlayer("hugo");
 		PlayerTestHelper.registerPlayer(pl, "-1_semos_jail");
 		pl.put("adminlevel", 5000);
 		RPAction action = new RPAction();
@@ -557,7 +557,7 @@ public class AdministrationActionTest {
 
 	@Test
 	public final void testGag() {
-		TestPlayer pl = PlayerTestHelper.createTestPlayer("hugo");
+		PrivateTextMockingTestPlayer pl = PlayerTestHelper.createPrivateTextMockingTestPlayer("hugo");
 		pl.put("adminlevel", 5000);
 		RPAction action = new RPAction();
 		action.put("type", "gag");
@@ -601,7 +601,7 @@ public class AdministrationActionTest {
 
 	@Test
 	public final void testOnDestroyEntityNotFOund() {
-		TestPlayer pl = PlayerTestHelper.createTestPlayer("hugo");
+		PrivateTextMockingTestPlayer pl = PlayerTestHelper.createPrivateTextMockingTestPlayer("hugo");
 		pl.put("adminlevel", 5000);
 		RPAction action = new RPAction();
 		action.put("type", "destroy");
@@ -612,7 +612,7 @@ public class AdministrationActionTest {
 
 	@Test
 	public final void testOnDestroyPlayer() {
-		TestPlayer pl = PlayerTestHelper.createTestPlayer("hugo");
+		PrivateTextMockingTestPlayer pl = PlayerTestHelper.createPrivateTextMockingTestPlayer("hugo");
 		pl.put("adminlevel", 5000);
 		pl.resetPrivateTextString();
 
@@ -628,7 +628,7 @@ public class AdministrationActionTest {
 	@Test
 	public final void testOnDestroyNPC() {
 
-		TestPlayer pl = PlayerTestHelper.createTestPlayer("hugo");
+		PrivateTextMockingTestPlayer pl = PlayerTestHelper.createPrivateTextMockingTestPlayer("hugo");
 		SpeakerNPC npc = SpeakerNPCTestHelper.createSpeakerNPC("npcTest");
 		StendhalRPZone testzone = new StendhalRPZone("Testzone");
 		testzone.add(npc);
@@ -650,7 +650,7 @@ public class AdministrationActionTest {
 	@Test
 	public final void testOnDestroyRat() {
 
-		TestPlayer pl = PlayerTestHelper.createTestPlayer("hugo");
+		PrivateTextMockingTestPlayer pl = PlayerTestHelper.createPrivateTextMockingTestPlayer("hugo");
 		Creature rat = new RaidCreature(StendhalRPWorld.get().getRuleManager()
 				.getEntityManager().getCreature("rat"));
 		StendhalRPZone testzone = new StendhalRPZone("Testzone");
@@ -673,7 +673,7 @@ public class AdministrationActionTest {
 	@Test
 	public final void testOnDestroyRatWithTargetID() {
 
-		TestPlayer pl = PlayerTestHelper.createTestPlayer("hugo");
+		PrivateTextMockingTestPlayer pl = PlayerTestHelper.createPrivateTextMockingTestPlayer("hugo");
 		Creature rat = new RaidCreature(StendhalRPWorld.get().getRuleManager()
 				.getEntityManager().getCreature("rat"));
 		StendhalRPZone testzone = new StendhalRPZone("Testzone");
@@ -695,7 +695,7 @@ public class AdministrationActionTest {
 
 	@Test
 	public final void testOnInspectRatWithTargetID() {
-		TestPlayer pl = PlayerTestHelper.createTestPlayer("hugo");
+		PrivateTextMockingTestPlayer pl = PlayerTestHelper.createPrivateTextMockingTestPlayer("hugo");
 		Creature rat = new RaidCreature(StendhalRPWorld.get().getRuleManager()
 				.getEntityManager().getCreature("rat"));
 		StendhalRPZone testzone = new StendhalRPZone("Testzone");
@@ -720,7 +720,7 @@ public class AdministrationActionTest {
 
 	@Test
 	public final void testOnSummonAt() {
-		TestPlayer pl = PlayerTestHelper.createTestPlayer("hugo");
+		PrivateTextMockingTestPlayer pl = PlayerTestHelper.createPrivateTextMockingTestPlayer("hugo");
 		pl.put("adminlevel", 5000);
 		pl.resetPrivateTextString();
 

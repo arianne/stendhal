@@ -14,6 +14,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import utilities.PlayerTestHelper;
+import utilities.PrivateTextMockingTestPlayer;
 
 public class JailTest {
 	@BeforeClass
@@ -36,24 +37,24 @@ public class JailTest {
 
 	@Test
 	public final void testCriminalNotInworld() {
-		Player policeman = PlayerTestHelper.createPlayer("police_officer");
+		PrivateTextMockingTestPlayer policeman = PlayerTestHelper.createPrivateTextMockingTestPlayer("police_officer");
 		PlayerTestHelper.createPlayer("bob");
 		Jail.get().imprison("bob", policeman, 1, "test");
 		assertEquals("You have jailed bob for 1 minutes. Reason: test.\r\n"
-			+ "Player bob is not online, but the arrest warrant has been recorded anyway.", policeman.getPrivateText());
+			+ "Player bob is not online, but the arrest warrant has been recorded anyway.", policeman.getPrivateTextString());
 	}
 
 	@Test
 	public final void testCriminalimprison() throws Exception {
-		Player policeman = PlayerTestHelper.createPlayer("police_officer");
-		Player bob = PlayerTestHelper.createPlayer("bob");
+		PrivateTextMockingTestPlayer policeman = PlayerTestHelper.createPrivateTextMockingTestPlayer("police_officer");
+		PrivateTextMockingTestPlayer bob = PlayerTestHelper.createPrivateTextMockingTestPlayer("bob");
 		MockStendhalRPRuleProcessor.get().addPlayer(bob);
 		PlayerTestHelper.registerPlayer(bob, "-3_semos_jail");
 
 		Jail.get().imprison(bob.getName(), policeman, 1, "test");
 		assertTrue(Jail.isInJail(bob));
 		assertEquals("You have jailed bob for 1 minutes. Reason: test.",
-				policeman.getPrivateText());
+				policeman.getPrivateTextString());
 		Jail.get().release(bob);
 		assertFalse(Jail.isInJail(bob));
 	}

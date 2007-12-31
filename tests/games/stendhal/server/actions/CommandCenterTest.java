@@ -12,7 +12,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import utilities.PlayerTestHelper;
-import utilities.TestPlayer;
+import utilities.PrivateTextMockingTestPlayer;
 
 public class CommandCenterTest {
 
@@ -32,7 +32,7 @@ public class CommandCenterTest {
 		};
 		RPAction action = new RPAction();
 		action.put("type", "action");
-		TestPlayer caster = PlayerTestHelper.createTestPlayer("player");
+		PrivateTextMockingTestPlayer caster = PlayerTestHelper.createPrivateTextMockingTestPlayer("player");
 		CommandCenter.register("action", listener);
 		assertFalse(caster.has("success"));
 		CommandCenter.execute(caster, action);
@@ -66,7 +66,7 @@ public class CommandCenterTest {
 		RPAction action = new RPAction();
 
 		action.put("type", "");
-		TestPlayer caster = PlayerTestHelper.createTestPlayer("bob");
+		PrivateTextMockingTestPlayer caster = PlayerTestHelper.createPrivateTextMockingTestPlayer("bob");
 		CommandCenter.execute(caster, action);
 		assertEquals("Unknown command ", caster.getPrivateTextString());
 	}

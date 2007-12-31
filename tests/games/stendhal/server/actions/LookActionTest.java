@@ -15,7 +15,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import utilities.PlayerTestHelper;
-import utilities.TestPlayer;
+import utilities.PrivateTextMockingTestPlayer;
 
 /**
  * Test server actions.
@@ -38,11 +38,11 @@ public class LookActionTest {
 		StendhalRPZone zone = new StendhalRPZone("testzone");
 		StendhalRPWorld.get().addRPZone(zone);
 
-		TestPlayer player1 = PlayerTestHelper.createTestPlayer("player1");
+		PrivateTextMockingTestPlayer player1 = PlayerTestHelper.createPrivateTextMockingTestPlayer("player1");
 		processor.addPlayer(player1);
 		zone.add(player1);
 
-		TestPlayer player2 = PlayerTestHelper.createTestPlayer("player2");
+		PrivateTextMockingTestPlayer player2 = PlayerTestHelper.createPrivateTextMockingTestPlayer("player2");
 		processor.addPlayer(player2);
 		zone.add(player2);
 
@@ -52,10 +52,10 @@ public class LookActionTest {
 
 	@Test
 	public void testLook() {
-		TestPlayer player1 = (TestPlayer)MockStendhalRPRuleProcessor.get().getPlayer("player1");
+		PrivateTextMockingTestPlayer player1 = (PrivateTextMockingTestPlayer)MockStendhalRPRuleProcessor.get().getPlayer("player1");
 		assertNotNull(player1);
 
-		TestPlayer player2 = (TestPlayer)MockStendhalRPRuleProcessor.get().getPlayer("player2");
+		PrivateTextMockingTestPlayer player2 = (PrivateTextMockingTestPlayer)MockStendhalRPRuleProcessor.get().getPlayer("player2");
 		assertNotNull(player2);
 
 		// test "/look <name>" syntax

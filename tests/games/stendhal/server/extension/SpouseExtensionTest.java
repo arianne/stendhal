@@ -17,6 +17,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import utilities.PlayerTestHelper;
+import utilities.PrivateTextMockingTestPlayer;
 
 /**
  * JUnit Tests for SpouseExtension.
@@ -59,7 +60,7 @@ public class SpouseExtensionTest {
 		StendhalRPWorld world = MockStendlRPWorld.get();
 		StendhalRPZone zone = world.getZone(ZONE_NAME);
 
-		Player admin = PlayerTestHelper.createPlayer("admin");
+		PrivateTextMockingTestPlayer admin = PlayerTestHelper.createPrivateTextMockingTestPlayer("admin");
 		admin.setAdminLevel(400);
 		PlayerTestHelper.registerPlayer(admin, zone);
 
@@ -67,8 +68,8 @@ public class SpouseExtensionTest {
 		action.put("type", "marry");
 		assertTrue(CommandCenter.execute(admin, action));
 		assertEquals("Usage: #/marry #<player1> #<player2>",
-				admin.getPrivateText());
-		admin.clearEvents();
+				admin.getPrivateTextString());
+		admin.resetPrivateTextString();
 
 		action = new RPAction();
 		action.put("type", "marry");
@@ -77,13 +78,13 @@ public class SpouseExtensionTest {
 		assertTrue(CommandCenter.execute(admin, action));
 		assertEquals(
 				"You have successfully married \"player1\" and \"player2\".",
-				admin.getPrivateText());
-		admin.clearEvents();
+				admin.getPrivateTextString());
+		admin.resetPrivateTextString();
 
 		assertTrue(CommandCenter.execute(admin, action));
 		assertEquals(
 				"player1 is already married to player2. player2 is already married to player1.",
-				admin.getPrivateText());
-		admin.clearEvents();
+				admin.getPrivateTextString());
+		admin.resetPrivateTextString();
 	}
 }

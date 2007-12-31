@@ -33,7 +33,6 @@ public class ItemTest {
 		if (StendhalRPWorld.get().getRPZone(ZONE_NAME) == null) {
 			world.addArea(ZONE_NAME, ZONE_CONTENT);
 		}
-
 	}
 
 	@AfterClass
@@ -52,7 +51,6 @@ public class ItemTest {
 	public void testGenerateRPClass() {
 		Entity.generateRPClass();
 		Item.generateRPClass();
-
 	}
 
 	@Test
@@ -227,8 +225,7 @@ public class ItemTest {
 	public void testOnPutOnGround() {
 		Item mo = new Item("name1", "myClass", "mySubclass",
 				new HashMap<String, String>());
-		mo.onPutOnGround(PlayerTestHelper.createPlayer("player"));
-
+		mo.onPutOnGround(PlayerTestHelper.createPrivateTextMockingTestPlayer("player"));
 	}
 
 	@Test
@@ -236,7 +233,6 @@ public class ItemTest {
 		Item mo = new Item("name1", "myClass", "mySubclass",
 				new HashMap<String, String>());
 		mo.onRemoveFromGround();
-
 	}
 
 	@Test
@@ -273,7 +269,6 @@ public class ItemTest {
 		assertTrue(mo.canBeEquippedIn("two"));
 		assertTrue(mo.canBeEquippedIn("three"));
 		assertFalse(mo.canBeEquippedIn("four"));
-
 	}
 
 	@Test
