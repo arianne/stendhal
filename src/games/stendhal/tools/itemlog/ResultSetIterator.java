@@ -18,7 +18,7 @@ public abstract class ResultSetIterator<T> implements Iterator<T> {
 	private static Logger logger = Logger.getLogger(ResultSetIterator.class);
 	
 	private Statement statement;
-	private ResultSet resultSet;
+	protected ResultSet resultSet;
 	private boolean hasNext;
 	private boolean nextCalled;
 	private boolean closed;
