@@ -1,42 +1,52 @@
 package games.stendhal.server.entity.npc.parser;
 
 /**
- * A Word is part of a Sentence. It encapsulates the original, white space
- * trimmed text, the word type, a normalized lower case text string and the
+ * An Expression is part of a Sentence. It encapsulates the original, white space
+ * trimmed text, the expression type, a normalized lower case text string and the
  * integer amount.
  * 
  * @author Martin Fuchs
  */
-public class Word {
+public class Expression {
 
-	private String original;	/** original, un-normalized string expression */
-	private WordType type;		/** word type */
-	private String normalized;	/** normalized string representation of this Word */
-	private Integer amount;		/** number of items */
-	private boolean breakFlag = false;	/** break flag to define sentence part borders */
+	/** original, un-normalized string expression */
+	private String original;
 
-	public static final Word emptyWord = new Word("", "", "");
+	/** expression type */
+	private ExpressionType type;
+
+	/** normalized string representation of this Expression */
+	private String normalized;
+
+	/** number of items */
+	private Integer amount;
+
+	/** break flag to define sentence part borders */
+	private boolean breakFlag = false;
+
+	/** instance of an empty Expression */
+	public static final Expression emptyExpression = new Expression("", "", "");
 
 	/**
-	 * Create a Word from the given original string.
+	 * Create a Expression from the given original string.
 	 * 
 	 * @param s
 	 */
-	public Word(String s) {
+	public Expression(String s) {
 		original = s;
 	}
 
 	/**
-	 * Create a Word from the given strings.
+	 * Create a Expression from the given strings.
 	 * 
 	 * @param s
 	 * @param n
 	 * @param typeString
 	 */
-	public Word(String s, String n, String typeString) {
+	public Expression(String s, String n, String typeString) {
 		original = s;
 		normalized = n;
-		type = new WordType(typeString);
+		type = new ExpressionType(typeString);
 	}
 
 	/**
@@ -48,7 +58,7 @@ public class Word {
 	public void parseAmount(String s, ConversationParser parser) {
 		try {
 			setAmount(new Integer(s));
-			setType(new WordType(WordType.NUMERAL));
+			setType(new ExpressionType(ExpressionType.NUMERAL));
 			normalized = amount.toString();
 		} catch (NumberFormatException e) {
 			parser.setError("illegal number format: '" + s + "'");
@@ -56,22 +66,22 @@ public class Word {
 	}
 
 	/**
-	 * Merge the given preceding Word into this Word.
+	 * Merge the given preceding Expression into this Expression.
 	 * 
 	 * @param other
 	 */
-	public void mergeLeft(final Word other) {
+	public void mergeLeft(final Expression other) {
 		original = other.getOriginal() + ' ' + original;
 		mergeType(other.getType());
 		setAmount(mergeAmount(other.amount, amount));
 	}
 
 	/**
-	 * Merge the given following Word into this Word.
+	 * Merge the given following Expression into this Expression.
 	 * 
 	 * @param other
 	 */
-	public void mergeRight(final Word other) {
+	public void mergeRight(final Expression other) {
 		original = original + ' ' + other.getOriginal();
 		mergeType(other.getType());
 		setAmount(mergeAmount(amount, other.amount));
@@ -130,16 +140,16 @@ public class Word {
 		return original;
 	}
 
-	public void setType(WordType type) {
+	public void setType(ExpressionType type) {
 		this.type = type;
 	}
 
 	/**
-	 * Return the word type.
+	 * Return the expression type.
 	 *
 	 * @return
 	 */
-	public WordType getType() {
+	public ExpressionType getType() {
 		return type;
 	}
 
@@ -171,7 +181,7 @@ public class Word {
 	}
 
 	/**
-	 * Return type word type string.
+	 * Return type expression type string.
 	 * 
 	 * @return
 	 */
@@ -207,12 +217,12 @@ public class Word {
     }
 
 	/**
-	 * Merge word type with another one
+	 * Merge expression type with another one
 	 * while handling null values.
 	 *
 	 * @param otherType
 	 */
-	public void mergeType(WordType otherType) {
+	public void mergeType(ExpressionType otherType) {
 		if (type != null) {
 			if (otherType != null) {
 				type = type.merge(otherType);
@@ -252,7 +262,7 @@ public class Word {
 	 * @param other word
 	 * @return
 	 */
-	public boolean matches(Word other) {
+	public boolean matches(Expression other) {
 		if (other != null) {
 			return getMatchString().equals(other.getMatchString());
 		} else {
@@ -266,12 +276,12 @@ public class Word {
 	 * @param other word
 	 * @return
 	 */
-	public boolean matchesBeginning(Word other) {
+	public boolean matchesBeginning(Expression other) {
 		return getMatchString().startsWith(other.getMatchString());
     }
 
 	/**
-	 * Check for equality of two Word objects.
+	 * Check for equality of two Expression objects.
 	 */
 	@Override
 	public boolean equals(Object other) {
@@ -279,7 +289,7 @@ public class Word {
 	}
 
 	/**
-	 * Return a simple string representation of the word.
+	 * Return a simple string representation of the Expression.
 	 */
 	@Override
 	public String toString() {

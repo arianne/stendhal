@@ -10,8 +10,9 @@ import org.apache.log4j.Logger;
 
 /**
  * ConversationParser returns the parsed sentence in this class. The Sentence
- * class stores the sentence content in a list of parsed and classified words.
- * Words belonging to each other are merged into common Word objects.
+ * class stores the sentence content in a list of parsed and classified
+ * expressions. Words belonging to each other are merged into common
+ * Expression objects.
  * 
  * @author Martin Fuchs
  */
@@ -28,7 +29,7 @@ public class Sentence {
 
 	private String error = null;
 
-	List<Word> words = new ArrayList<Word>();
+	List<Expression> words = new ArrayList<Expression>();
 
 	/**
 	 * Build sentence by using the given parser object.
@@ -36,7 +37,7 @@ public class Sentence {
 	 * @param parser
 	 */
 	public void parse(ConversationParser parser) {
-		Word prevWord = null;
+		Expression prevWord = null;
 
 		for (String ws; (ws = parser.readNextWord()) != null;) {
 			// replace "and" by enumerations separated by break flags
@@ -55,7 +56,7 @@ public class Sentence {
 					}
 				}
 
-				Word word = new Word(punct.getText());
+				Expression word = new Expression(punct.getText());
 				words.add(word);
 
 				// handle trailing comma characters
@@ -93,10 +94,10 @@ public class Sentence {
 	 * @param typePrefix
 	 * @return
 	 */
-	private int countWords(String typePrefix) {
+	private int countExpressions(String typePrefix) {
 		int count = 0;
 
-		for(Word w : words) {
+		for(Expression w : words) {
 			if (w.getTypeString().startsWith(typePrefix)) {
 				++count;
 			}
@@ -110,8 +111,8 @@ public class Sentence {
 	 * 
 	 * @return subject
 	 */
-	public Word getWord(int i, String typePrefix) {
-		for(Word w : words) {
+	public Expression getExpression(int i, String typePrefix) {
+		for(Expression w : words) {
 			if (w.getTypeString().startsWith(typePrefix)) {
 				if (i == 0) {
 					return w;
@@ -124,7 +125,7 @@ public class Sentence {
 		return null;
 	}
 
-	private Word triggerCache = null;
+	private Expression triggerCache = null;
 
 	/**
 	 * Return trigger Word for the FSM engine.
@@ -132,17 +133,17 @@ public class Sentence {
 	 * 
 	 * @return trigger string
 	 */
-	public Word getTriggerWord() {
+	public Expression getTriggerWord() {
 		if (triggerCache != null) {
 			return triggerCache;
 		}
 
-		Word trigger = Word.emptyWord;
+		Expression trigger = Expression.emptyExpression;
 
-		Iterator<Word> it = words.iterator();
+		Iterator<Expression> it = words.iterator();
 
 		while (it.hasNext()) {
-			Word word = it.next();
+			Expression word = it.next();
 
 			if (word.getType()==null || !word.getType().isIgnore()) {
 				trigger = word;
@@ -156,12 +157,12 @@ public class Sentence {
 	}
 
 	/**
-	 * Return the number of Word objects of type "VERB" in the sentence.
+	 * Return the number of Expression objects of type "VERB" in the sentence.
 	 * 
 	 * @return number of subjects
 	 */
 	public int getVerbCount() {
-		return countWords(WordType.VERB);
+		return countExpressions(ExpressionType.VERB);
 	}
 
 	/**
@@ -169,17 +170,17 @@ public class Sentence {
 	 * 
 	 * @return subject
 	 */
-	public Word getVerb(int i) {
-		return getWord(i, WordType.VERB);
+	public Expression getVerb(int i) {
+		return getExpression(i, ExpressionType.VERB);
 	}
 
 	/**
-	 * Return verb as Word object for the special case of
+	 * Return verb as Expression object for the special case of
 	 * sentences with only one verb.
 	 * 
 	 * @return normalized verb string
 	 */
-	public Word getVerb() {
+	public Expression getVerb() {
 		if (getVerbCount() == 1) {
 			return getVerb(0);
 		} else {
@@ -207,7 +208,7 @@ public class Sentence {
 	 * @return number of subjects
 	 */
 	public int getSubjectCount() {
-		return countWords(WordType.SUBJECT);
+		return countExpressions(ExpressionType.SUBJECT);
 	}
 
 	/**
@@ -215,8 +216,8 @@ public class Sentence {
 	 * 
 	 * @return subject
 	 */
-	public Word getSubject(int i) {
-		return getWord(i, WordType.SUBJECT);
+	public Expression getSubject(int i) {
+		return getExpression(i, ExpressionType.SUBJECT);
 	}
 
 	/**
@@ -239,7 +240,7 @@ public class Sentence {
 	 * @return number of objects
 	 */
 	public int getObjectCount() {
-		return countWords(WordType.OBJECT);
+		return countExpressions(ExpressionType.OBJECT);
 	}
 
 	/**
@@ -247,8 +248,8 @@ public class Sentence {
 	 * 
 	 * @return object
 	 */
-	public Word getObject(int i) {
-		return getWord(i, WordType.OBJECT);
+	public Expression getObject(int i) {
+		return getExpression(i, ExpressionType.OBJECT);
 	}
 
 	/**
@@ -275,7 +276,7 @@ public class Sentence {
 	public String getItemName(int i) {
 		// concatenate user specified item names like "baby dragon"
 		// with underscores to build the internal item names
-		Word object = getObject(i);
+		Expression object = getObject(i);
 
 		if (object != null) {
 			// Here we use 'original' instead of 'normalized'
@@ -305,7 +306,7 @@ public class Sentence {
 	 * @return number of objects
 	 */
 	public int getPrepositionCount() {
-		return countWords(WordType.PREPOSITION);
+		return countExpressions(ExpressionType.PREPOSITION);
 	}
 
 	/**
@@ -313,8 +314,8 @@ public class Sentence {
 	 * 
 	 * @return object
 	 */
-	public Word getPreposition(int i) {
-		return getWord(i, WordType.PREPOSITION);
+	public Expression getPreposition(int i) {
+		return getExpression(i, ExpressionType.PREPOSITION);
 	}
 
 	/**
@@ -360,7 +361,7 @@ public class Sentence {
 	public String getOriginalText() {
 		SentenceBuilder builder = new SentenceBuilder();
 
-		for (Word w : words) {
+		for (Expression w : words) {
 			builder.append(w.getOriginal());
 		}
 
@@ -375,7 +376,7 @@ public class Sentence {
 	public String getNormalized() {
 		SentenceBuilder builder = new SentenceBuilder();
 
-		for(Word w : words) {
+		for(Expression w : words) {
 			if (w.getType()==null || !w.getType().isIgnore()) {
 				builder.append(w.getNormalized());
 			}
@@ -393,7 +394,7 @@ public class Sentence {
 	public String toString() {
 		SentenceBuilder builder = new SentenceBuilder();
 
-		for (Word w : words) {
+		for (Expression w : words) {
 			if (w.getType() != null) {
 				if (!w.getType().isIgnore()) {
 					builder.append(w.getNormalizedWithTypeString());
@@ -426,7 +427,7 @@ public class Sentence {
 	public void classifyWords(ConversationParser parser) {
 		WordList wl = WordList.getInstance();
 
-		for (Word w : words) {
+		for (Expression w : words) {
 			String original = w.getOriginal();
 
 			WordEntry entry = wl.find(original);
@@ -439,7 +440,7 @@ public class Sentence {
 					w.setAmount(entry.getValue());
 					w.setNormalized(Integer.toString(w.getAmount()));
 				} else if (entry.getType().isPlural()) {
-					// normalise to the singular form
+					// normalize to the singular form
 					w.setNormalized(entry.getPlurSing());
 				} else {
 					w.setNormalized(entry.getNormalized());
@@ -463,14 +464,14 @@ public class Sentence {
 
 				if (verb != null) {
 					if (Grammar.isGerund(original)) {
-						w.setType(new WordType(verb.getTypeString()+WordType.GERUND));
+						w.setType(new ExpressionType(verb.getTypeString()+ExpressionType.GERUND));
 					} else {
 						w.setType(verb.getType());
 					}
 
 					w.setNormalized(verb.getNormalized());
 				} else {
-					w.setType(new WordType(""));
+					w.setType(new ExpressionType(""));
 					w.setNormalized(original.toLowerCase());
 
 					// add to the word list to print the warning message only once
@@ -487,9 +488,9 @@ public class Sentence {
 	 */
 	public void standardizeSentenceType() {
 		// Look for a "me" without any preceding other subject.
-		Word prevVerb = null;
+		Expression prevVerb = null;
 
-		for (Word w : words) {
+		for (Expression w : words) {
 			if (w.getBreakFlag()) {
 				break;
 			}
@@ -506,7 +507,7 @@ public class Sentence {
 						// If we already found a verb, we prepend "you" as
 						// first subject and mark the sentence as imperative.
 						if (prevVerb != null) {
-							Word you = new Word("you", "you", WordType.SUBJECT);
+							Expression you = new Expression("you", "you", ExpressionType.SUBJECT);
 							words.add(0, you);
 							sentenceType = ST_IMPERATIVE;
 						}
@@ -527,11 +528,11 @@ public class Sentence {
 	 * writers can specify the conversation syntax on their own.
 	 */
 	public void performaAliasing() {
-		Word verb = getVerb();
+		Expression verb = getVerb();
 
 		if (verb != null) {
-			Word subject1 = getSubject(0);
-			Word subject2 = getSubject(1);
+			Expression subject1 = getSubject(0);
+			Expression subject2 = getSubject(1);
 
 			// [you] give me(i) -> [I] buy
 			// Note: The second subject "me" is replaced by "i" in the WordList
@@ -565,11 +566,11 @@ public class Sentence {
 	 * Evaluate the sentence type from word order.
 	 */
 	public int evaluateSentenceType() {
-		Iterator<Word> it = words.iterator();
+		Iterator<Expression> it = words.iterator();
 		int type = ST_UNDEFINED;
 
 		if (it.hasNext()) {
-			Word first = it.next();
+			Expression first = it.next();
 
 			while(first.getType()!=null && first.getType().isQuestion() &&
 					it.hasNext()) {
@@ -580,8 +581,8 @@ public class Sentence {
 				}
 			}
 
-			Word second = null;
-			Word third = null;
+			Expression second = null;
+			Expression third = null;
 
 			if (it.hasNext()) {
 				second = it.next();
@@ -652,17 +653,17 @@ public class Sentence {
 
 		// loop until no more simplification can be made
 		do {
-			Iterator<Word> it = words.iterator();
+			Iterator<Expression> it = words.iterator();
 
 			changed = false;
 
 			if (it.hasNext()) {
-				Word next = it.next();
+				Expression next = it.next();
 
 				// loop over all words of the sentence starting from left
 				while(it.hasNext()) {
 					// Now look at two consecutive words.
-					Word word = next;
+					Expression word = next;
 					next = it.next();
 
 					// don't merge if the break flag is set
@@ -670,8 +671,8 @@ public class Sentence {
 						continue;
 					}
 
-					WordType curType = word.getType();
-					WordType nextType = next.getType();
+					ExpressionType curType = word.getType();
+					ExpressionType nextType = next.getType();
 
 					if (curType!=null && nextType!=null) {
     					// left-merge nouns with preceding adjectives or amounts and composite nouns
@@ -728,16 +729,16 @@ public class Sentence {
 
 		// loop until no more simplification can be made
 		do {
-			Iterator<Word> it = words.iterator();
+			Iterator<Expression> it = words.iterator();
 
 			changed = false;
 
 			if (it.hasNext()) {
-				Word third = it.next();
+				Expression third = it.next();
 
 				if (it.hasNext()) {
-					Word first = null;
-					Word second = third;
+					Expression first = null;
+					Expression second = third;
 					third = it.next();
 
 					// loop over all words of the sentence starting from left

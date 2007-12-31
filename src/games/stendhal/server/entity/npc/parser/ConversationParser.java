@@ -159,7 +159,7 @@ public class ConversationParser {
 	 * @param trigger
 	 * @return
 	 */
-	public static Word normalizeTrigger(String trigger) {
+	public static Expression normalizeTrigger(String trigger) {
 		Sentence sentence = parse(trigger, null);
 
 		return sentence.getTriggerWord();
@@ -171,8 +171,8 @@ public class ConversationParser {
 	 * @param string list
 	 * @return word lsit
 	 */
-	public static List<Word> normalizeTriggerList(List<String> strings) {
-		List<Word> words = new LinkedList<Word>();
+	public static List<Expression> normalizeTriggerList(List<String> strings) {
+		List<Expression> words = new LinkedList<Expression>();
 
 		for(String item : strings) {
 			words.add(normalizeTrigger(item));

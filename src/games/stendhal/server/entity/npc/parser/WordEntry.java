@@ -9,12 +9,15 @@ import java.io.PrintWriter;
  * @author Martin Fuchs
  */
 public class WordEntry {
-	private WordType type;
-	/** word type, e.g. VER, ADJ, OBJ, OBJ-FOO, SUB, SUB-ANI, ... */
+	private ExpressionType type;
+
+	/** Expression type, e.g. VER, ADJ, OBJ, OBJ-FOO, SUB, SUB-ANI, ... */
 	private String normalized;
-	/** normalised word. */
+
+	/** normalized word. */
 	private String plurSing;
-	/** pluralised word (or singular for entries of type ...-PLU .*/
+
+	/** pluralized word (or singular for entries of type ...-PLU .*/
 	private Integer value;
 
 	/** numeric value for words of type NUM. */
@@ -47,11 +50,11 @@ public class WordEntry {
 		return normalized;
 	}
 
-	public void setType(WordType type) {
+	public void setType(ExpressionType type) {
 		this.type = type;
 	}
 
-	public WordType getType() {
+	public ExpressionType getType() {
 		return type;
 	}
 

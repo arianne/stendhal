@@ -1,10 +1,10 @@
 package games.stendhal.server.entity.npc.parser;
 
-public class WordType {
+public class ExpressionType {
 
 	private String typeString = "";
 
-	// word type string constants
+	// Expression type string constants
 	public static final String VERB = "VER"; // verb
 	public static final String GERUND = "-GER"; // gerund form
 	public static final String CONDITIONAL = "CON"; // conditional form
@@ -27,7 +27,7 @@ public class WordType {
 
 	public static final String QUESTION = "QUE"; // question word
 
-	public static final String IGNORE = "IGN"; // word to ignore
+	public static final String IGNORE = "IGN"; // expression to ignore
 
 	public static final String SUFFIX = "-";
 
@@ -45,12 +45,12 @@ public class WordType {
 	public static final String SUFFIX_QUESTION = SUFFIX + QUESTION;
 	public static final String VERB_GERUND = VERB + GERUND;
 
-	public WordType(String s) {
+	public ExpressionType(String s) {
 		typeString = s;
 	}
 
 	/**
-	 * Return type string Note: There is no setTypeString to make WordType
+	 * Return type string Note: There is no setTypeString to make ExpressionType
 	 * objects immutable.
 	 * 
 	 * @return
@@ -60,7 +60,7 @@ public class WordType {
 	}
 
 	/**
-	 * Return main word type string (first 3 letters).
+	 * Return main Expression type string (first 3 letters).
 	 * 
 	 * @return
 	 */
@@ -73,7 +73,7 @@ public class WordType {
 	}
 
 	/**
-	 * Determine if the word is a verb.
+	 * Determine if the Expression consists of verbs.
 	 * 
 	 * @return
 	 */
@@ -82,7 +82,7 @@ public class WordType {
 	}
 
 	/**
-	 * Determine if the word is a verb in gerund form.
+	 * Determine if the Expression contains a verb in gerund form.
 	 * 
 	 * @return
 	 */
@@ -91,7 +91,7 @@ public class WordType {
 	}
 
 	/**
-	 * Determine if the word is an object. (a thing, not a person)
+	 * Determine if the Expression is an object (a thing, not a person).
 	 * 
 	 * @return
 	 */
@@ -100,7 +100,7 @@ public class WordType {
 	}
 
 	/**
-	 * Determine if the word is a person.
+	 * Determine if the Expression represents a person.
 	 * 
 	 * @return
 	 */
@@ -109,7 +109,7 @@ public class WordType {
 	}
 
 	/**
-	 * Determine if the word is a numeral.
+	 * Determine if the Expression consists of numeral words.
 	 * 
 	 * @return
 	 */
@@ -118,7 +118,7 @@ public class WordType {
 	}
 
 	/**
-	 * Determine if the word is an adjective or adverb.
+	 * Determine if the Expression consists of adjectives or adverbs.
 	 * 
 	 * @return
 	 */
@@ -127,7 +127,7 @@ public class WordType {
 	}
 
 	/**
-	 * Determine if the word is a preposition.
+	 * Determine if the Expression consists of prepositions.
 	 * 
 	 * @return
 	 */
@@ -136,7 +136,7 @@ public class WordType {
 	}
 
 	/**
-	 * Determine words to ignore.
+	 * Determine Expression to ignore.
 	 * 
 	 * @return
 	 */
@@ -145,7 +145,7 @@ public class WordType {
 	}
 
 	/**
-	 * Determine if the word is in plural form.
+	 * Determine if the Expression is in plural form.
 	 * 
 	 * @return
 	 */
@@ -154,7 +154,7 @@ public class WordType {
 	}
 
 	/**
-	 * Determine if the word is a creature name.
+	 * Determine if the Expression is a creature name.
 	 * 
 	 * @return
 	 */
@@ -163,7 +163,7 @@ public class WordType {
 	}
 
 	/**
-	 * Determine if the word is a question word.
+	 * Determine if the Expression consists of question words.
 	 * 
 	 * @return
 	 */
@@ -172,7 +172,7 @@ public class WordType {
 	}
 
 	/**
-	 * Determine if the word is an or is merged with a question word.
+	 * Determine if the Expression is a or is merged with a question word.
 	 * 
 	 * @return
 	 */
@@ -181,7 +181,7 @@ public class WordType {
 	}
 
 	/**
-	 * Determine if the word specifies a color.
+	 * Determine if the Expression specifies a color.
 	 * 
 	 * @return
 	 */
@@ -190,7 +190,7 @@ public class WordType {
 	}
 
 	/**
-	 * Determine if the word is in conditional form.
+	 * Determine if the Expression is in conditional form.
 	 * 
 	 * @return
 	 */
@@ -199,12 +199,12 @@ public class WordType {
 	}
 
 	/**
-	 * Merge with another WordType.
+	 * Merge with another ExpressionType.
 	 * 
 	 * @param other
-	 * @return new WordType object or this
+	 * @return new ExpressionType object or this
 	 */
-	public WordType merge(final WordType other) {
+	public ExpressionType merge(final ExpressionType other) {
 		String newTypeString = typeString;
 
 		if (other.hasColor() && !hasColor()) {
@@ -220,7 +220,7 @@ public class WordType {
 		}
 
 		if (newTypeString != typeString) {
-			return new WordType(newTypeString);
+			return new ExpressionType(newTypeString);
 		} else {
 			return this;
 		}

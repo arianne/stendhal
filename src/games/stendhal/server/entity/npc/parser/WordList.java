@@ -18,8 +18,9 @@ import marauroa.common.Log4J;
 import org.apache.log4j.Logger;
 
 /**
- * Word list manager Words are categorised by type (noun, verb, adjective,
- * preposition) and optionally sub-types (animals, food, fluids, ...).
+ * WordList stores a list of words recognized by the ConversationParser. Words are
+ * categorized by type (noun, verb, adjective, preposition) and optionally sub-types
+ * (animals, food, fluids, ...).
  * 
  * @author Martin Fuchs
  */
@@ -27,7 +28,7 @@ public class WordList {
 
 	private static final Logger logger = Logger.getLogger(WordList.class);
 
-	public static final String SUBJECT_NAME_DYNAMIC = WordType.SUBJECT_NAME + WordType.SUFFIX + "DYN";
+	public static final String SUBJECT_NAME_DYNAMIC = ExpressionType.SUBJECT_NAME + ExpressionType.SUFFIX + "DYN";
 
 	private final Map<String, WordEntry> words = new TreeMap<String, WordEntry>();
 
@@ -95,7 +96,7 @@ public class WordList {
 	 */
 	private void readEntryLine(StringTokenizer tk, WordEntry entry) {
 		if (tk.hasMoreTokens()) {
-			entry.setType(new WordType(tk.nextToken()));
+			entry.setType(new ExpressionType(tk.nextToken()));
 
 			if (tk.hasMoreTokens()) {
 				String s = tk.nextToken();
@@ -117,7 +118,7 @@ public class WordList {
 			// Type identifiers are always upper case, so a lower case word must
 			// be a plural.
 			if (Character.isLowerCase(entry.getTypeString().charAt(0))) {
-				entry.setType(new WordType(WordType.OBJECT));
+				entry.setType(new ExpressionType(ExpressionType.OBJECT));
 				entry.setPlurSing(entry.getTypeString());
 			}
 			// complete missing plural expressions using the Grammar.plural()
@@ -163,7 +164,7 @@ public class WordList {
 			WordEntry pluralEntry = new WordEntry();
 
 			pluralEntry.setNormalized(entry.getPlurSing());
-			pluralEntry.setType(new WordType(entry.getTypeString() + WordType.SUFFIX_PLURAL));
+			pluralEntry.setType(new ExpressionType(entry.getTypeString() + ExpressionType.SUFFIX_PLURAL));
 			pluralEntry.setPlurSing(entry.getNormalized());
 			pluralEntry.setValue(entry.getValue());
 
@@ -215,28 +216,28 @@ public class WordList {
 		}
 
 		writer.println();
-		printWordType(writer, WordType.VERB);
+		printWordType(writer, ExpressionType.VERB);
 
 		writer.println();
-		printWordType(writer, WordType.OBJECT);
+		printWordType(writer, ExpressionType.OBJECT);
 
 		writer.println();
-		printWordType(writer, WordType.SUBJECT);
+		printWordType(writer, ExpressionType.SUBJECT);
 
 		writer.println();
-		printWordType(writer, WordType.ADJECTIVE);
+		printWordType(writer, ExpressionType.ADJECTIVE);
 
 		writer.println();
-		printWordType(writer, WordType.NUMERAL);
+		printWordType(writer, ExpressionType.NUMERAL);
 
 		writer.println();
-		printWordType(writer, WordType.PREPOSITION);
+		printWordType(writer, ExpressionType.PREPOSITION);
 
 		writer.println();
-		printWordType(writer, WordType.QUESTION);
+		printWordType(writer, ExpressionType.QUESTION);
 
 		writer.println();
-		printWordType(writer, WordType.IGNORE);
+		printWordType(writer, ExpressionType.IGNORE);
 
 		writer.println();
 		printWordType(writer, null);
@@ -367,11 +368,11 @@ public class WordList {
 			WordEntry entry = new WordEntry();
 
 			entry.setNormalized(key);
-			entry.setType(new WordType(SUBJECT_NAME_DYNAMIC));
+			entry.setType(new ExpressionType(SUBJECT_NAME_DYNAMIC));
 
 			words.put(key, entry);
 		} else if (!w.getType().isSubject()) {
-			logger.warn("subject name already registered with incompatible word type: " + w.getNormalizedWithTypeString());
+			logger.warn("subject name already registered with incompatible expression type: " + w.getNormalizedWithTypeString());
 		}
 	}
 
