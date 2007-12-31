@@ -42,7 +42,6 @@ import java.util.List;
 import java.util.Random;
 
 import marauroa.common.Pair;
-import marauroa.common.game.RPEvent;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 import marauroa.common.game.SyntaxException;
@@ -2009,30 +2008,6 @@ public class Player extends RPEntity {
 	public String getSentence() {
 		// TODO: Sentence here.
 		return "";
-	}
-
-	/**
-	* @deprecated instead use utilities.TestPlayer to get private text messages
-	* in JUnit tests
-	*/
-	public String getPrivateText() {
-		// TODO: remove this hack, it is just a preliminary way to get the test
-		// working again
-		StringBuilder sb = null;
-		for (RPEvent event : events()) {
-			if (event.getName().equals("private_text")) {
-				if (sb == null) {
-					sb = new StringBuilder();
-				} else {
-					sb.append("\r\n");
-				}
-				sb.append(event.get("text"));
-			}
-		}
-		if (sb == null) {
-			return null;
-		}
-		return sb.toString();
 	}
 
 	private boolean disconnected = false;
