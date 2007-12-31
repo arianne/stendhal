@@ -31,10 +31,6 @@ public class MockStendhalRPRuleProcessor extends StendhalRPRuleProcessor {
 	 */
 	public void addPlayer(Player player) {
 		
-			while (this.getOnlinePlayers().remove(player)) {
-				;
-			}
-		
 			this.onlinePlayers.add(player);
 		
 	}
