@@ -18,7 +18,6 @@ import marauroa.common.game.RPAction;
  * http=games.stendhal.server.StendhalHttpServer
  * magic=games.stendhal.server.extension.MagicExtn
  * server_extension=groovy,http,magic
- * 
  */
 public class MagicExtn extends StendhalServerExtension implements
 		ActionListener {
@@ -75,15 +74,10 @@ public class MagicExtn extends StendhalServerExtension implements
 			text = usage;
 		}
 
-		String availableSpells = player.getQuest("spells"); // the list of
-															// spells //FIXME Is
-															// this
-															// getQuest("spells")
-															// correct,
-															// shouldn't it be
-															// s.th. like
-															// player.getSlot("spells")...
-															// ?
+		// the list of spells
+		//FIXME Is this getQuest("spells") correct, shouldn't it be s.th. like
+		// player.getSlot("spells")... ?
+		String availableSpells = player.getQuest("spells");
 
 		// Checks to see if the list of spells available to the player contains
 		// the spell they tried to cast
