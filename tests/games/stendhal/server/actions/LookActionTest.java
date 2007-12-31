@@ -52,10 +52,10 @@ public class LookActionTest {
 
 	@Test
 	public void testLook() {
-		PrivateTextMockingTestPlayer player1 = (PrivateTextMockingTestPlayer)MockStendhalRPRuleProcessor.get().getPlayer("player1");
+		PrivateTextMockingTestPlayer player1 = (PrivateTextMockingTestPlayer) MockStendhalRPRuleProcessor.get().getPlayer("player1");
 		assertNotNull(player1);
 
-		PrivateTextMockingTestPlayer player2 = (PrivateTextMockingTestPlayer)MockStendhalRPRuleProcessor.get().getPlayer("player2");
+		PrivateTextMockingTestPlayer player2 = (PrivateTextMockingTestPlayer) MockStendhalRPRuleProcessor.get().getPlayer("player2");
 		assertNotNull(player2);
 
 		// test "/look <name>" syntax
