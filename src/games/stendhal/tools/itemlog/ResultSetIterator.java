@@ -2,6 +2,7 @@ package games.stendhal.tools.itemlog;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Iterator;
 
 import org.apache.log4j.Logger;
@@ -15,9 +16,22 @@ import org.apache.log4j.Logger;
 public abstract class ResultSetIterator<T> implements Iterator<T> {
 	private static Logger logger = Logger.getLogger(ResultSetIterator.class);
 	
+	private Statement statement;
 	private ResultSet resultSet;
 	private boolean hasNext;
 	private boolean nextCalled;
+	private boolean closed;
+
+	/**
+	 * creates a new ResultSetIterator
+	 *
+	 * @param statement statement
+	 * @param resultSet resultSet
+	 */
+	public ResultSetIterator(Statement statement, ResultSet resultSet) {
+		this.statement = statement;
+		this.resultSet = resultSet;
+	}
 
 	/**
 	 * creates the object instance
@@ -46,6 +60,9 @@ public abstract class ResultSetIterator<T> implements Iterator<T> {
         	hasNext = false;
         	logger.error(e, e);
         }
+        if (!hasNext) {
+        	close();
+        }
     }
 
 	public T next() {
@@ -57,6 +74,22 @@ public abstract class ResultSetIterator<T> implements Iterator<T> {
 	public void remove() {
 		try {
 	        resultSet.deleteRow();
+        } catch (SQLException e) {
+        	logger.error(e, e);
+        }
+	}
+
+	/**
+	 * closed the resultSet and statement
+	 */
+	private void close() {
+		if (closed) {
+			return;
+		}
+		closed = true;
+		try {
+			resultSet.close();
+			statement.close();
         } catch (SQLException e) {
         	logger.error(e, e);
         }
