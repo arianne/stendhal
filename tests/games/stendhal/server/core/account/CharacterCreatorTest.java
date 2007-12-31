@@ -31,7 +31,7 @@ public class CharacterCreatorTest {
 		try {
 			Transaction trans = DatabaseFactory.getDatabase().getTransaction();
 
-			if (!DatabaseFactory.getDatabase().getCharacters(trans, "use").isEmpty()) {
+			if (!DatabaseFactory.getDatabase().getCharacters(trans, "user").isEmpty()) {
 
 				DatabaseFactory.getDatabase().removeCharacter(trans, "user", "char");
 
@@ -40,7 +40,7 @@ public class CharacterCreatorTest {
 
 			assertEquals(Result.OK_CREATED, cc.create().getResult());
 			assertEquals(Result.FAILED_PLAYER_EXISTS, cc.create().getResult());
-			if (!DatabaseFactory.getDatabase().getCharacters(trans, "use").isEmpty()) {
+			if (!DatabaseFactory.getDatabase().getCharacters(trans, "user").isEmpty()) {
 
 				DatabaseFactory.getDatabase().removeCharacter(trans, "user", "char");
 
