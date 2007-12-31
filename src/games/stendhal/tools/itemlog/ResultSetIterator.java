@@ -10,8 +10,9 @@ import org.apache.log4j.Logger;
  * iterates over the log entries returned by a database query
  *
  * @author hendrik
+ * @param <T> object type
  */
-public class ResultSetIterator implements Iterator {
+public class ResultSetIterator<T> implements Iterator<T> {
 	private static Logger logger = Logger.getLogger(ResultSetIterator.class);
 	
 	private ResultSet resultSet;
@@ -32,7 +33,7 @@ public class ResultSetIterator implements Iterator {
 		return hasNext;
 	}
 
-	public Object next() {
+	public T next() {
 		try {
 	        hasNext = resultSet.next();
         } catch (SQLException e) {
@@ -44,7 +45,10 @@ public class ResultSetIterator implements Iterator {
 	}
 
 	public void remove() {
-		// TODO Auto-generated method stub
-
+		try {
+	        resultSet.deleteRow();
+        } catch (SQLException e) {
+        	logger.error(e, e);
+        }
 	}
 }
