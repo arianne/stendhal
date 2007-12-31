@@ -37,7 +37,7 @@ public class CollectionFilterTest {
 		CollectionFilter<Player> cf1 = new CollectionFilter<Player>();
 
 		cf1.addFilterCriteria(new Adminfilter());
-		List<? extends Player> result = (List<? extends Player>) cf1.filterCopy(list);
+		List< ? extends Player> result = (List< ? extends Player>) cf1.filterCopy(list);
 		assertThat(result.size(), is(3));
 		result.remove(1);
 		assertThat(result.size(), is(2));
@@ -46,7 +46,7 @@ public class CollectionFilterTest {
 		CollectionFilter<Player> cf2 = new CollectionFilter<Player>();
 
 		cf2.addFilterCriteria(new NoAdminfilter());
-		result = (List<? extends Player>) cf2.filterCopy(list);
+		result = (List< ? extends Player>) cf2.filterCopy(list);
 		assertThat(result.size(), is(2));
 		result.remove(1);
 		assertThat(result.size(), is(1));

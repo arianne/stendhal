@@ -57,12 +57,12 @@ public class PrivateTextMockingTestPlayer extends Player {
 	 * @return private message string
 	 */
 	public String getPrivateTextString() {
-		return privateTextBuffer!=null? privateTextBuffer.toString(): "";
+		return privateTextBuffer != null ? privateTextBuffer.toString() : "";
 	}
 
 	/**
 	 * Return boolean flag, if we received any private text
-	 * since the last call to resetPrivateTextString()
+	 * since the last call to resetPrivateTextString().
 	 *
 	 * @return
 	 */
