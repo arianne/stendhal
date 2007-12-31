@@ -661,7 +661,7 @@ public class Sentence {
 
 				// loop over all words of the sentence starting from left
 				while(it.hasNext()) {
-					// Now look at two neighbour words.
+					// Now look at two consecutive words.
 					Word word = next;
 					next = it.next();
 
@@ -742,7 +742,7 @@ public class Sentence {
 
 					// loop over all words of the sentence starting from left
 					while(it.hasNext()) {
-						// Now look at three neighbour words.
+						// Now look at three consecutive words.
 						first = second;
 						second = third;
 						third = it.next();
@@ -753,9 +753,9 @@ public class Sentence {
 						}
 
 						// merge "... of ..." expressions into one word
-						if (first.getType()!=null && first.getType().isObject() &&
+						if (first.isObject() &&
 								second.getNormalized().equals("of") &&
-								third.getType()!=null && third.getType().isObject()) {
+								third.isObject()) {
 							String expr = first.getNormalized() + " of " + third.getNormalized();
 							String normalizedExpr = Grammar.extractNoun(expr);
 

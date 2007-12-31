@@ -9,11 +9,11 @@ package games.stendhal.server.entity.npc.parser;
  */
 public class Word {
 
-	private String original;
-	private WordType type;
-	private String normalized;
-	private Integer amount;
-	private boolean breakFlag = false;
+	private String original;	/** original, un-normalized string expression */
+	private WordType type;		/** word type */
+	private String normalized;	/** normalized string representation of this Word */
+	private Integer amount;		/** number of items */
+	private boolean breakFlag = false;	/** break flag to define sentence part borders */
 
 	public static final Word emptyWord = new Word("", "", "");
 
@@ -121,6 +121,11 @@ public class Word {
 		breakFlag = true;
 	}
 
+	/**
+	 * Return the original, un-normalized string expression.
+	 *
+	 * @return
+	 */
 	public String getOriginal() {
 		return original;
 	}
@@ -129,25 +134,77 @@ public class Word {
 		this.type = type;
 	}
 
+	/**
+	 * Return the word type.
+	 *
+	 * @return
+	 */
 	public WordType getType() {
 		return type;
 	}
 
+	/**
+	 * Return the break flag to check for sentence part borders.
+	 *
+	 * @return
+	 */
 	public boolean getBreakFlag() {
 		return breakFlag;
 	}
 
+	/**
+	 * Set the break flag to define sentence part borders.
+	 *
+	 * @param normalized
+	 */
 	public void setNormalized(String normalized) {
 		this.normalized = normalized;
 	}
 
+	/**
+	 * Return the normalized form of the word.
+	 *
+	 * @return
+	 */
 	public String getNormalized() {
 		return normalized;
 	}
 
+	/**
+	 * Return type word type string.
+	 * 
+	 * @return
+	 */
 	public String getTypeString() {
 		return type!=null? type.getTypeString(): "";
 	}
+
+	/**
+	 * Determine if the word is a verb.
+	 * 
+	 * @return
+	 */
+	public boolean isVerb() {
+	    return type!=null && type.isVerb();
+    }
+
+	/**
+	 * Determine if the word is an object. (a thing, not a person)
+	 * 
+	 * @return
+	 */
+	public boolean isObject() {
+	    return type!=null && type.isObject();
+    }
+
+	/**
+	 * Determine if the word is a person.
+	 * 
+	 * @return
+	 */
+	public boolean isSubject() {
+	    return type!=null && type.isSubject();
+    }
 
 	/**
 	 * Merge word type with another one
@@ -165,10 +222,21 @@ public class Word {
 		}
 	}
 
+	/**
+	 * Return the normalized word with type string
+	 * in the format NORMALIZED/TYPE.
+	 *
+	 * @return
+	 */
 	public String getNormalizedWithTypeString() {
 		return normalized + "/" + getTypeString();
     }
 
+	/**
+	 * Return the string expression to be used for matching.
+	 *
+	 * @return
+	 */
 	private String getMatchString() {
 		// special case for numeric expressions to disambiguate "no" from "0"
 		if (type!=null && type.isNumeral()) {
@@ -202,11 +270,17 @@ public class Word {
 		return getMatchString().startsWith(other.getMatchString());
     }
 
+	/**
+	 * Check for equality of two Word objects.
+	 */
 	@Override
 	public boolean equals(Object other) {
 		return toString().equals(other.toString());
 	}
 
+	/**
+	 * Return a simple string representation of the word.
+	 */
 	@Override
 	public String toString() {
 		return normalized != null ? normalized : getOriginal();
