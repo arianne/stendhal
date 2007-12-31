@@ -103,35 +103,34 @@ public class MeetSanta extends AbstractQuest implements LoginListener {
 		return santa;
 	}
 
-        private void addHat(Player player) {
-	    // fetch old outfit as we want to know the current hair
-	    Outfit oldoutfit = player.getOutfit();
-	    // all santa hat sprites are at 50 + current hair
-	    if (oldoutfit.getHair() < 50) {
-		int hatnumber = oldoutfit.getHair() + 50;
-		// the new outfit only changes the hair, rest is null
-		Outfit newOutfit = new Outfit(hatnumber, null, null, null);
-		//put it on, and store old outfit.
-		player.setOutfit(newOutfit.putOver(oldoutfit), true);
-	    }
+	private void addHat(Player player) {
+		// fetch old outfit as we want to know the current hair
+		Outfit oldoutfit = player.getOutfit();
+		// all santa hat sprites are at 50 + current hair
+		if (oldoutfit.getHair() < 50) {
+			int hatnumber = oldoutfit.getHair() + 50;
+			// the new outfit only changes the hair, rest is null
+			Outfit newOutfit = new Outfit(hatnumber, null, null, null);
+			//put it on, and store old outfit.
+			player.setOutfit(newOutfit.putOver(oldoutfit), true);
+		}
 	}
-	
+
 
 	public void onLoggedIn(Player player) {
-	    // is it Christmas?
+		// is it Christmas?
 		Outfit outfit = player.getOutfit();
 		int hairnumber = outfit.getHair();
 		if (hairnumber >= 50 && hairnumber < 90) {
-		    Date now = new Date();
-		    GregorianCalendar notXmas = new GregorianCalendar(2008, Calendar.JANUARY, 6); 
-		    Date dateNotXmas = notXmas.getTime();
-		    if (now.after(dateNotXmas)) {
-			int newhair = hairnumber - 50;
-			Outfit newOutfit = new Outfit(newhair, null, null, null);
-			player.setOutfit(newOutfit.putOver(outfit), false);
-		    }
+			Date now = new Date();
+			GregorianCalendar notXmas = new GregorianCalendar(2008, Calendar.JANUARY, 6);
+			Date dateNotXmas = notXmas.getTime();
+			if (now.after(dateNotXmas)) {
+				int newhair = hairnumber - 50;
+				Outfit newOutfit = new Outfit(newhair, null, null, null);
+				player.setOutfit(newOutfit.putOver(outfit), false);
+			}
 		}
-	
 	}
 
 	@Override
