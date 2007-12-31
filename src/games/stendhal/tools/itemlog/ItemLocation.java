@@ -24,6 +24,19 @@ public class ItemLocation {
 	}
 
 	/**
+	 * extract destination from event name
+	 *
+	 * @param event name of event
+	 * @return destination
+	 */
+	private String getDestFromEventName(String event) {
+		if (event.indexOf("-to-") < 0) {
+			return null;
+		}
+		return event.substring(event.indexOf("-to-") + 4);
+	}
+
+	/**
 	 * checks the consitency between the stored information and the
 	 * logged source. Returns true in case no information is stored.
 	 *
@@ -45,5 +58,23 @@ public class ItemLocation {
 		return source.equals(type)
 			&& this.param1.equals(param1)
 			&& this.param2.endsWith(param2);
+	}
+
+	/**
+	 * updates the location in case the event is a location change event. 
+	 *
+	 * @param event  name of event
+	 * @param param3 param3 from database
+	 * @param param4 param4 from database
+	 */
+	public void update(String event, String param3, String param4) {
+		String dest = getDestFromEventName(event);
+		if (dest == null) {
+			return;
+		}
+
+		type = dest;
+		param1 = param3;
+		param2 = param4;
 	}
 }
