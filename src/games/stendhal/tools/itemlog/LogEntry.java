@@ -70,4 +70,26 @@ public class LogEntry {
     public String getTimestamp() {
     	return timestamp;
     }
+
+    @Override
+    public String toString() {
+    	StringBuilder sb = new StringBuilder();
+    	sb.append(timestamp);
+    	sb.append('\t');
+    	sb.append(itemid);
+    	sb.append('\t');
+    	sb.append(source);
+    	sb.append('\t');
+    	sb.append(event);
+    	sb.append('\t');
+    	sb.append(param1);
+    	sb.append('\t');
+    	sb.append(param2);
+    	sb.append('\t');
+    	sb.append(param3);
+    	sb.append('\t');
+    	sb.append(param4);
+    	
+    	return sb.toString();
+    }
 }
