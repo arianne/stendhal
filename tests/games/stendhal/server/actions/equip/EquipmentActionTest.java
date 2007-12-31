@@ -61,7 +61,7 @@ public class EquipmentActionTest {
 
 		EquipmentAction action = new EquipmentAction();
 		action.onAction(player, drop);
-		Assert.assertTrue("error message on invalid slot", player.getPrivateTextString().length()>0);
+		Assert.assertEquals("Source nonExistingSlotXXXXXX does not exist", player.getPrivateTextString());
 	}
 
 	@Test
@@ -79,8 +79,6 @@ public class EquipmentActionTest {
 
 		EquipmentAction action = new EquipmentAction();
 		action.onAction(player, drop);
-		System.err.println(player.getPrivateTextString());
-
-		Assert.assertTrue("error message on invalid item", player.getPrivateTextString().length()>0);
-	}
+		Assert.assertEquals("There is no such item in the bag of bob", player.getPrivateTextString());
+		}
 }
