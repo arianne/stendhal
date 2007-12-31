@@ -116,7 +116,10 @@ public class Engine {
 			// can silently ignore the new transition, as it is already handled completely.
 			if (action==null && existingAction==null) {
 				return;
-			} else if (action!=null && action.equals(existingAction)) {
+			}
+			// If the previous and the new action are identically, we can silently ignore the
+			// new transition, as it is already handled.
+			else if (action!=null && action.equals(existingAction)) {
 				return;
 			} else {
     			logger.warn(speakerNPC.getName() + ": Adding ambiguous state transition: " + existing
