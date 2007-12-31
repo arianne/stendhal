@@ -1,8 +1,14 @@
 package games.stendhal.server.core.account;
 
 import static org.junit.Assert.assertEquals;
+
+import java.sql.SQLException;
+
 import marauroa.common.Log4J;
 import marauroa.common.game.Result;
+import marauroa.server.game.db.DatabaseFactory;
+import marauroa.server.game.db.NoDatabaseConfException;
+import marauroa.server.game.db.Transaction;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -22,17 +28,31 @@ public class CharacterCreatorTest {
 
 	@Test
 	public void testCreate() {
-		CharacterCreator cc = new CharacterCreator("user", "char", null);
+		try {
+			Transaction trans = DatabaseFactory.getDatabase().getTransaction();
 
-		Result result = cc.create().getResult();
+			if (!DatabaseFactory.getDatabase().getCharacters(trans, "use").isEmpty()) {
 
-		// repeat creation after success in the first run
-		if (result == Result.OK_CREATED) {
-			result = cc.create().getResult();
+				DatabaseFactory.getDatabase().removeCharacter(trans, "user", "char");
+
+			}
+			CharacterCreator cc = new CharacterCreator("user", "char", null);
+
+			assertEquals(Result.OK_CREATED, cc.create().getResult());
+			assertEquals(Result.FAILED_PLAYER_EXISTS, cc.create().getResult());
+			if (!DatabaseFactory.getDatabase().getCharacters(trans, "use").isEmpty()) {
+
+				DatabaseFactory.getDatabase().removeCharacter(trans, "user", "char");
+
+			}
+		} catch (NoDatabaseConfException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
-		// expected failure in the second run
-		assertEquals(Result.FAILED_PLAYER_EXISTS, result);
 	}
 
 }
