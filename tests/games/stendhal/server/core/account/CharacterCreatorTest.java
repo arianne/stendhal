@@ -20,8 +20,6 @@ public class CharacterCreatorTest {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		Log4J.init();
-
-		// setup RP classes
 		PlayerTestHelper.generatePlayerRPClasses();
 		PlayerTestHelper.generateItemRPClasses();
 	}
@@ -46,13 +44,10 @@ public class CharacterCreatorTest {
 
 			}
 		} catch (NoDatabaseConfException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 	}
 
 }
