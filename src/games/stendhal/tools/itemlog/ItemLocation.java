@@ -80,6 +80,6 @@ public class ItemLocation {
 
 	@Override
 	public String toString() {
-		return type + " " + param1 + " " + param2;
+		return type + "\t" + param1 + "\t" + param2;
 	}
 }
