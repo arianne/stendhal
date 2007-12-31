@@ -16,7 +16,7 @@ import games.stendhal.server.entity.player.Player;
 public interface LoginListener {
 
 	/**
-	 * This method is called when the turn number is reached
+	 * Is called when the turn number is reached.
 	 * 
 	 * @param player
 	 *            the player who has logged in

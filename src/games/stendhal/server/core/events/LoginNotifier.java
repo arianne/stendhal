@@ -15,13 +15,11 @@ import java.util.List;
  */
 public class LoginNotifier {
 
-	/** The Singleton instance * */
+	/** The Singleton instance. */
 	private static LoginNotifier instance;
 
 	/**
-	 * This Map maps each player name to the set of all events that will take
-	 * place when that player logs in. Players for whom no event should take
-	 * place needn't be registered here.
+	 * Holds a list of all registered listeners.
 	 */
 	private List<LoginListener> listeners;
 
@@ -31,7 +29,7 @@ public class LoginNotifier {
 	}
 
 	/**
-	 * Return the LoginNotifier instance.
+	 * Returns the LoginNotifier instance.
 	 * 
 	 * @return LoginNotifier the Singleton instance
 	 */
@@ -43,20 +41,20 @@ public class LoginNotifier {
 	}
 
 	/**
-	 * adds a LoginListener
+	 * Adds a LoginListener.
 	 * 
 	 * @param listener
-	 *            LoginListener
+	 *            LoginListener to add
 	 */
 	public void addListener(LoginListener listener) {
 		listeners.add(listener);
 	}
 
 	/**
-	 * removes a LoginListener
+	 * Removes a LoginListener.
 	 * 
 	 * @param listener
-	 *            LoginListener
+	 *            LoginListener to remove
 	 */
 	public void removeListener(LoginListener listener) {
 		listeners.remove(listener);
