@@ -156,12 +156,12 @@ class SourceObject extends MoveableObject {
 		}
 
 		String[] srcInfo = getLogInfo();
-		Entity entity = removeFromWorld(player);
+		Item entity = removeFromWorld(player);
 		logger.debug("item removed");
 		dest.addToWorld(entity, player);
 		logger.debug("item readded");
 	
-		ItemLogger.equipAction(player, item, srcInfo, dest.getLogInfo());
+		ItemLogger.equipAction(player, entity, srcInfo, dest.getLogInfo());
 
 		return true;
 	}
@@ -193,7 +193,7 @@ class SourceObject extends MoveableObject {
 	 * 
 	 * @return Entity to place somewhere else in the world
 	 */
-	public Entity removeFromWorld(Player player) {
+	public Item removeFromWorld(Player player) {
 		if (quantity != 0) {
 			StackableItem newItem = ((StackableItem) item).splitOff(quantity);
 			ItemLogger.splitOff(player, item, newItem, quantity);
