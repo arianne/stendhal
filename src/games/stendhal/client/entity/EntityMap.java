@@ -18,7 +18,7 @@ import java.util.Map;
 import marauroa.common.Pair;
 
 /**
- * EntityMap registers the relationship between Type,eclass and java class of
+ * EntityMap registers the relationship between Type, eclass and java class of
  * entity Objects eclass represents a subtype of type EntityMap encapsulates the
  * implementation
  * 
@@ -81,6 +81,7 @@ public final class EntityMap {
 		register("item", "money", StackableItem.class);
 		register("item", "missile", StackableItem.class);
 		register("item", "ammunition", StackableItem.class);
+		register("item", "container", StackableItem.class);
 
 		register("item", "resource", StackableItem.class);
 
