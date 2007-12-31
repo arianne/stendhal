@@ -30,6 +30,7 @@ public class LogEntryIterator extends ResultSetIterator<LogEntry> {
 		try {
 			return new LogEntry(
 				resultSet.getString("timedate"),
+				resultSet.getString("itemid"),
 	    		resultSet.getString("source"),
 	    		resultSet.getString("event"),
 	    		resultSet.getString("param1"),

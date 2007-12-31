@@ -8,6 +8,7 @@ package games.stendhal.tools.itemlog;
  */
 public class LogEntry {
 	private String timestamp;
+	private String itemid;
 	private String source;
 	private String event;
 	private String param1;
@@ -19,6 +20,7 @@ public class LogEntry {
 	 * creates a new LogEntry
 	 *
 	 * @param timestamp timestamp
+	 * @param itemid id of the item
 	 * @param source name of player
 	 * @param event  name of event
 	 * @param param1 additional param1
@@ -26,8 +28,9 @@ public class LogEntry {
 	 * @param param3 additional param3
 	 * @param param4 additional param4
 	 */
-	public LogEntry(String timestamp, String source, String event, String param1, String param2, String param3, String param4) {
+	public LogEntry(String timestamp, String itemid, String source, String event, String param1, String param2, String param3, String param4) {
 	    this.timestamp = timestamp;
+	    this.itemid = itemid;
 	    this.source = source;
 	    this.event = event;
 	    this.param1 = param1;
@@ -35,6 +38,10 @@ public class LogEntry {
 	    this.param3 = param3;
 	    this.param4 = param4;
     }
+
+	public String getItemid() {
+		return itemid;
+	}
 
     public String getEvent() {
     	return event;
