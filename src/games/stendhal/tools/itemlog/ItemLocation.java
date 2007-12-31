@@ -77,4 +77,9 @@ public class ItemLocation {
 		param1 = param3;
 		param2 = param4;
 	}
+
+	@Override
+	public String toString() {
+		return type + " " + param1 + " " + param2;
+	}
 }
