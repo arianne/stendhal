@@ -58,7 +58,7 @@ public class Analyser {
 			// check consistency
 			boolean res = itemLocation.check(entry.getEvent(), entry.getParam1(), entry.getParam2());
 			if (!res) {
-				logger.error("Inconsistency: exspected location " + itemLocation + " but log entry said " + entry);
+				logger.error("Inconsistency: exspected location \t" + itemLocation + "\t but log entry said \t" + entry);
 			}
 
 			// update item location
