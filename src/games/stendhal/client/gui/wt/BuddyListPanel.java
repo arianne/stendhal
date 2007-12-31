@@ -116,8 +116,8 @@ public class BuddyListPanel extends JPanel {
 			/*
 			 * Tell the parent to re-pack() itself
 			 * 
-			 * TODO: XXX - Maybe there's a better way (without introducing
-			 * dependancies/code-coupling)
+			 * TODO Maybe there's a better way (without introducing
+			 * dependencies/code-coupling) XXX
 			 */
 			putClientProperty("size-change", new Integer(height));
 		}

@@ -327,7 +327,7 @@ public class ZonesXMLLoader {
 	//
 
 	/*
-	 * TODO: XXX - THIS REQUIRES StendhalRPWorld SETUP (i.e. marauroa.ini)
+	 * TODO THIS REQUIRES StendhalRPWorld SETUP (i.e. marauroa.ini) XXX
 	 */
 	public static void main(String[] args) throws Exception {
 		if (args.length != 1) {
