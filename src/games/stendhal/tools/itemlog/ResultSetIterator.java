@@ -11,8 +11,8 @@ import org.apache.log4j.Logger;
  *
  * @author hendrik
  */
-public class LogIterator implements Iterator {
-	private static Logger logger = Logger.getLogger(LogIterator.class);
+public class ResultSetIterator implements Iterator {
+	private static Logger logger = Logger.getLogger(ResultSetIterator.class);
 	
 	private ResultSet resultSet;
 	private boolean hasNext;
