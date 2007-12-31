@@ -36,7 +36,7 @@ import java.util.List;
  * REPETITIONS: - None
  */
 public class MeetSanta extends AbstractQuest implements LoginListener {
-	private static final String QUEST_SLOT = "meet_santa_07";
+	private static final String QUEST_SLOT = "meet_santa_08";
 
 	/** the Santa NPC */
 	protected SpeakerNPC santa;
@@ -137,7 +137,9 @@ public class MeetSanta extends AbstractQuest implements LoginListener {
 	public void addToWorld() {
 		super.addToWorld();
 		LoginNotifier.get().addListener(this);
+		/* activate santa here in 2008
 		createSanta();
 		new TeleporterBehaviour(santa, "Ho, ho, ho! Merry Christmas!", false);
+		*/
 	}
 }
