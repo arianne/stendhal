@@ -151,7 +151,7 @@ public abstract class StendhalUI {
 	public abstract void setOffline(boolean offline);
 
 	/**
-	 * Set the user's positiion.
+	 * Set the user's position.
 	 * 
 	 * @param x
 	 *            The user's X coordinate.
