@@ -8,7 +8,8 @@ import java.util.Iterator;
 import org.apache.log4j.Logger;
 
 /**
- * iterates over the log entries returned by a database query
+ * iterates over a database query ResultSet-object doing all the
+ * magic that is required to query a ResultSet.
  *
  * @author hendrik
  * @param <T> object type
