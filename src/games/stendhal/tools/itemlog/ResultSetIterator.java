@@ -67,7 +67,9 @@ public abstract class ResultSetIterator<T> implements Iterator<T> {
     }
 
 	public T next() {
-		resultSetNext();
+		if (!nextCalled) {
+			resultSetNext();
+		}
 		nextCalled = false;
 		return createObject();
 	}
