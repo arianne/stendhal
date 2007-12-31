@@ -7,20 +7,20 @@ import marauroa.common.game.RPObject;
 /**
  * A player test class used to catch private message texts.
  */
-public class TestPlayer extends Player {
+public class PrivateTextMockingTestPlayer extends Player {
 	private StringBuilder privateTextBuffer = null;
 
 	/**
 	 * Creates a new mock player without name.
 	 */
-	public TestPlayer(RPObject obj) {
+	public PrivateTextMockingTestPlayer(RPObject obj) {
 		super(obj);
 	}
 
 	/**
 	 * Creates a new mock player with name.
 	 */
-	public TestPlayer(RPObject obj, String name) {
+	public PrivateTextMockingTestPlayer(RPObject obj, String name) {
 		this(obj);
 		setName(name);
 	}

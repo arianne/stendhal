@@ -24,7 +24,6 @@ public class PlayerTestHelper {
 
 	/**
 	 * Create a named player.
-	 * @deprecated use createTestPlayer instead
 	 * 
 	 * @param name
 	 * @return player
@@ -42,9 +41,9 @@ public class PlayerTestHelper {
 	 * 
 	 * @return mock player object
 	 */
-	public static TestPlayer createTestPlayer(String name) {
+	public static PrivateTextMockingTestPlayer createPrivateTextMockingTestPlayer(String name) {
 		PlayerTestHelper.generatePlayerRPClasses();
-		TestPlayer pl = new TestPlayer(new RPObject());
+		PrivateTextMockingTestPlayer pl = new PrivateTextMockingTestPlayer(new RPObject());
 		PlayerTestHelper.addEmptySlots(pl);
 		pl.setName(name);
 		return pl;
@@ -147,7 +146,6 @@ public class PlayerTestHelper {
 
 			public void execute(Player player) {
 				MockStendlRPWorld.get().remove(player.getID());
-
 			}
 
 		});
