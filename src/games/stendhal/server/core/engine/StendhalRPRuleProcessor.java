@@ -79,7 +79,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		onlinePlayers = new PlayerList();
 		playersRmText = new LinkedList<Player>();
 		entityToKill = new LinkedList<Pair<RPEntity, Entity>>();
-
 	}
 
 	private void init() {

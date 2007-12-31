@@ -243,7 +243,6 @@ public class BringListOfItemsQuestLogic {
 				public String toString() {
 					return "accept or reject offered item";
 				}
-
 			});
 	}
 

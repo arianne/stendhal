@@ -216,14 +216,12 @@ public class BringListOfItemsQuestLogicTest {
 		assertEquals("item brought", quest.respondToItemBrought(), npc.get("text"));
 		en.step(player, "two");
 		assertEquals("last item brought", quest.respondToLastItemBrought(), npc.get("text"));
-
 	}
 
 	private List<String> hashList(List<String> unhashed) {
 		List<String> hashed = new LinkedList<String>();
 		for (String hashme : unhashed) {
 			hashed.add("#" + hashme);
-
 		}
 
 		return hashed;
@@ -274,7 +272,6 @@ public class BringListOfItemsQuestLogicTest {
 
 		en.step(player, ConversationPhrases.NO_MESSAGES.get(0));
 		assertEquals("answer to quests accepted", quest.respondToQuestRefusal(), npc.get("text"));
-
 	}
 
 	class MockBringListOfItemsQuest implements BringListOfItemsQuest {
@@ -363,7 +360,6 @@ public class BringListOfItemsQuestLogicTest {
 
 		public void rewardPlayer(Player player) {
 			// TODO: implement me
-
 		}
 
 		public boolean shouldWelcomeAfterQuestIsCompleted() {
