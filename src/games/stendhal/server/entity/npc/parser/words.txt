@@ -119,6 +119,7 @@ sorry	VER
 speak	VER	=say
 start	VER
 summon	VER
+take	VER
 travel	VER
 use	VER
 wear	VER

@@ -206,4 +206,21 @@ public class ConversationParserTest {
 		assertEquals("fish", sentence.getObjectName());
 		assertEquals("buy fish", sentence.getNormalized());
 	}
+
+	@Test
+	public final void testCompoundWords() {
+		Sentence sentence = ConversationParser.parse("take golden ring");
+		assertFalse(sentence.hasError());
+		assertEquals("take", sentence.getVerbString());
+		assertEquals("golden ring", sentence.getObjectName());
+		assertEquals("take golden ring", sentence.getNormalized());
+		assertEquals("take/VER golden ring/OBJ-COL", sentence.toString());
+
+		sentence = ConversationParser.parse("take ring golden");
+		assertFalse(sentence.hasError());
+		assertEquals("take", sentence.getVerbString());
+		assertEquals("ring", sentence.getObjectName());
+		assertEquals("take ring golden", sentence.getNormalized());
+		assertEquals("take/VER ring/OBJ golden/ADJ-COL", sentence.toString());
+	}
 }
