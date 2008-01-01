@@ -40,7 +40,7 @@ public class PunctuationParser {
 	}
 
 	/**
-	 * return preceding punctuation characters.
+	 * Return preceding punctuation characters.
 	 * 
 	 * @return
 	 */
@@ -49,7 +49,7 @@ public class PunctuationParser {
 	}
 
 	/**
-	 * return trailing punctuation characters.
+	 * Return trailing punctuation characters.
 	 * 
 	 * @return
 	 */
@@ -58,7 +58,7 @@ public class PunctuationParser {
 	}
 
 	/**
-	 * return remaining text.
+	 * Return remaining text.
 	 * 
 	 * @return
 	 */
