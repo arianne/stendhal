@@ -748,7 +748,8 @@ public class Grammar {
 	}
 
 	/**
-	 * decide if the given word is a preposition
+	 * Decide if the given word is a preposition.
+	 * @deprecated This function is now no more needed, as WordList handles prepositions.
 	 * 
 	 * @param word
 	 * @return true if word is a preposition
@@ -760,7 +761,7 @@ public class Grammar {
 	}
 
 	/**
-	 * decide if the given word is a subject
+	 * Decide if the given word is a subject.
 	 * 
 	 * TODO May be we should also handle the remaining subjective pronouns
 	 * "what", "who" and "they".
@@ -774,12 +775,12 @@ public class Grammar {
 	}
 
 	/**
-	 * Normalise the given regular verb, or return null if not applicable.
+	 * Normalize the given regular verb, or return null if not applicable.
 	 * Note: Some words like "close" are returned without the trailing "e"
 	 * character. This is handled in WordList.normalizeVerb().
 	 *
 	 * @param word
-	 * @return normalised string
+	 * @return normalized string
 	 */
 	public static String normalizeRegularVerb(String word) {
 		if (word.length()>4 && (word.endsWith("ed") || word.endsWith("es"))) {
@@ -798,11 +799,38 @@ public class Grammar {
     }
 
 	/**
-	 * check the given verb for gerund form
+	 * Check the given verb for gerund form, e.g. "doing".
+	 *
 	 * @param verb
 	 * @return
 	 */
 	public static boolean isGerund(String verb) {
-	    return verb.endsWith("ing");
+	    return verb.length()>4 && verb.endsWith("ing");
     }
+
+	/**
+	 * Check the given word for derived adjectives like "magical"
+	 * or "nomadic".
+	 *
+	 * @param word
+	 * @return
+	 */
+	public static boolean isDerivedAdjective(String word) {
+	    return word.length()>4 && word.endsWith("al") || word.endsWith("ic");
+    }
+
+	/**
+	 * Normalize the given derived adjective, or return null if not applicable.
+	 *
+	 * @param word
+	 * @return normalized string
+	 */
+	public static String normalizeDerivedAdjective(String word) {
+		if (word.length()>4 && (word.endsWith("al") || word.endsWith("ic"))) {
+			return word.substring(0, word.length()-2);
+		} else {
+			return null;
+		}
+    }
+
 }

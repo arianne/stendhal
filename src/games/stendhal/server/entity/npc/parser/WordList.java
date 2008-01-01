@@ -327,32 +327,49 @@ public class WordList {
 	}
 
 	/**
-	 * Normalize the given verb.
+	 * Try to normalize the given verb.
 	 * 
 	 * @param word
-	 *			  string
 	 * @return WordEntry
 	 */
-	public WordEntry normalizeVerb(String word) {
+	protected WordEntry normalizeVerb(String word) {
 		word = word.toLowerCase();
 
-		WordEntry w = words.get(word);
+		String normalized = Grammar.normalizeRegularVerb(word);
 
-		if (w == null) {
-			String normalized = Grammar.normalizeRegularVerb(word);
+		if (normalized != null) {
+			WordEntry w = words.get(normalized);
 
-			if (normalized != null) {
-				w = words.get(normalized);
-
-				// try and re-append "e" if it was removed by
-				// normalizeRegularVerb()
-				if (w == null && word.endsWith("e") && !normalized.endsWith("e")) {
-					w = words.get(normalized + "e");
-				}
+			// try and re-append "e" if it was removed by
+			// normalizeRegularVerb()
+			if (w == null && word.endsWith("e") && !normalized.endsWith("e")) {
+				w = words.get(normalized + "e");
 			}
-		}
 
-		return w;
+			return w;
+		} else {
+			return null;
+		}
+	}
+
+	/**
+	 * Try to find a matching word for a derived adjective.
+	 * 
+	 * @param word
+	 * @return WordEntry
+	 */
+	protected WordEntry normalizeAdjective(String word) {
+		word = word.toLowerCase();
+
+		String normalized = Grammar.normalizeDerivedAdjective(word);
+
+		if (normalized != null) {
+			WordEntry w = words.get(normalized);
+
+			return w;
+		} else {
+			return null;
+		}
 	}
 
 	/**

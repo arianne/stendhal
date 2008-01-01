@@ -478,7 +478,7 @@ public class Sentence {
 
 			// handle unknown words
 			if (w.getType() == null) {
-				// recognize declined verbs
+				// recognize declined verbs, e.g. "swimming"
 				WordEntry verb = wl.normalizeVerb(original);
 
 				if (verb != null) {
@@ -490,13 +490,30 @@ public class Sentence {
 
 					w.setNormalized(verb.getNormalized());
 				} else {
-					w.setType(new ExpressionType(""));
-					w.setNormalized(original.toLowerCase());
+					// recognize derived adjectives, e.g. "magical" or "nomadic"
+					WordEntry adjective = wl.normalizeAdjective(original);
 
-					// add to the word list to print the warning message only once
-					wl.add(original);
+					if (adjective != null) {
+						if (Grammar.isDerivedAdjective(original)) {
+							w.setType(new ExpressionType(ExpressionType.ADJECTIVE));
+						} else {
+							// If normalizeAdjective() changed the word, it should be a derived adjective.
+							assert false;
+							w.setType(adjective.getType());
+						}
 
-					logger.warn("unknown word: " + original);
+						w.setNormalized(adjective.getNormalized());
+					} else {
+    					w.setType(new ExpressionType(""));
+    					w.setNormalized(original.toLowerCase());
+
+    					if (entry == null) {
+        					// add to the word list to print the warning message only once
+        					wl.add(original);
+
+        					logger.warn("unknown word: " + original);
+    					}
+					}
 				}
 			}
 		}
