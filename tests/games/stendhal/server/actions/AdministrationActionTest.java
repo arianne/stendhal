@@ -47,7 +47,7 @@ public class AdministrationActionTest {
 	@After
 	public void tearDown() throws Exception {
 		// release all prisoners left
-		Jail.get().release("name");
+		Jail.get().release("player");
 		Jail.get().release("hugo");
 		Jail.get().release("bob");
 
@@ -466,11 +466,11 @@ public class AdministrationActionTest {
 		action.put("type", "altercreature");
 		action.put("target", "#2");
 		// must be of type "name/atk/def/hp/xp",
-		action.put("text", "name/5/6/7/8");
+		action.put("text", "newname/5/6/7/8");
 
 		CommandCenter.execute(pl, action);
 
-		assertEquals("name", "name", rat.getName());
+		assertEquals("name", "newname", rat.getName());
 		assertEquals("atk", 5, rat.getATK());
 		assertEquals("def", 6, rat.getDEF());
 		assertEquals("hp", 7, rat.getHP());
@@ -520,14 +520,14 @@ public class AdministrationActionTest {
 		pl.resetPrivateTextString();
 		action = new RPAction();
 		action.put("type", "jail");
-		action.put("target", "name");
+		action.put("target", "player");
 		action.put("reason", "whynot");
 		action.put("minutes", 1);
 
 		CommandCenter.execute(pl, action);
-		assertEquals("You have jailed name for 1 minutes. Reason: whynot.\r\n" 
-				    + "JailKeeper asks for support to ADMIN: hugo jailed name for 1 minutes. Reason: whynot.\r\n"
-				    + "Player name is not online, but the arrest warrant has been recorded anyway.", pl.getPrivateTextString());
+		assertEquals("You have jailed player for 1 minutes. Reason: whynot.\r\n" 
+				    + "JailKeeper asks for support to ADMIN: hugo jailed player for 1 minutes. Reason: whynot.\r\n"
+				    + "Player player is not online, but the arrest warrant has been recorded anyway.", pl.getPrivateTextString());
 
 		pl.resetPrivateTextString();
 
