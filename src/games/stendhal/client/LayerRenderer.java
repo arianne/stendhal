@@ -18,7 +18,7 @@ package games.stendhal.client;
 import games.stendhal.client.sprite.Tileset;
 
 /**
- * This is a helper base class to render a layer
+ * This is a helper base class to render a layer.
  */
 public abstract class LayerRenderer {
 
