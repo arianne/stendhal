@@ -645,4 +645,28 @@ public class GrammarTest {
 		assertEquals("fish", Grammar.normalizeRegularVerb("fishes"));
 		assertEquals("fish", Grammar.normalizeRegularVerb("fishing"));
 	}
+
+	@Test
+	public void testGerund() {
+		assertTrue(Grammar.isGerund("doing"));
+		assertFalse(Grammar.isGerund("do"));
+		assertTrue(Grammar.isGerund("working"));
+		assertFalse(Grammar.isGerund("work"));
+		assertTrue(Grammar.isGerund("swimming"));
+		assertFalse(Grammar.isGerund("swim"));
+		assertFalse(Grammar.isGerund("thing"));
+		assertFalse(Grammar.isGerund("spring"));
+	}
+
+	@Test
+	public void testNormalizeAdjectives() {
+		assertTrue(Grammar.isDerivedAdjective("nomadic"));
+		assertFalse(Grammar.isDerivedAdjective("nomad"));
+		assertFalse(Grammar.isDerivedAdjective("thing"));
+		assertFalse(Grammar.isDerivedAdjective("swim"));
+
+		assertNull(Grammar.normalizeDerivedAdjective("word"));
+		assertEquals("magic", Grammar.normalizeDerivedAdjective("magical"));
+		assertEquals("nomad", Grammar.normalizeDerivedAdjective("nomadic"));
+	}
 }

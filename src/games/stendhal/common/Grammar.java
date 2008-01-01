@@ -805,7 +805,15 @@ public class Grammar {
 	 * @return
 	 */
 	public static boolean isGerund(String verb) {
-	    return verb.length()>4 && verb.endsWith("ing");
+		if (verb.length()>4 && verb.endsWith("ing")) {
+			// Is there a vowel in the preceding characters?
+			for(int i=verb.length()-3; --i>=0; ) {
+				if (vowel_p(verb.charAt(i)))
+					return true;
+			}
+		}
+
+		return false;
     }
 
 	/**
