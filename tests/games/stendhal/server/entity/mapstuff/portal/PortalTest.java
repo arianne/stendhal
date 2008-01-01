@@ -116,24 +116,20 @@ public class PortalTest {
 
 	@Test
 	public final void testOnUsed() {
-
 		Portal port = new Portal() {
-
 			@Override
 			protected boolean usePortal(Player player) {
-				player.setName("works");
+				player.setName("renamed-" + player.getName());
 				return false;
 			}
 		};
 		Player bob = PlayerTestHelper.createPlayer("player");
 		port.usePortal(bob);
-		assertEquals("works", bob.getName());
-
+		assertEquals("renamed-bob", bob.getName());
 	}
 
 	@Test
 	public final void testOnUsedBackwards() {
-
 		Portal port = new Portal();
 		Player player = PlayerTestHelper.createPlayer("player");
 		port.onUsedBackwards(player);

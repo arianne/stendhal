@@ -132,7 +132,7 @@ use	VER
 wear	VER
 went	VER	=go
 will	VER
-work	VER	works
+work	VER
 would	VER-CON	=will
 yay	VER	=done
 yes	VER
