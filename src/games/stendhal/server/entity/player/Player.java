@@ -1093,7 +1093,9 @@ public class Player extends RPEntity {
 	}
 
 	public void removeSheep(Sheep sheep) {
-		sheep.setOwner(null);
+		if (sheep != null) {
+			sheep.setOwner(null);
+		}
 
 		if (has(ATTR_SHEEP)) {
 			remove(ATTR_SHEEP);
@@ -1103,7 +1105,9 @@ public class Player extends RPEntity {
 	}
 
 	public void removePet(Pet pet) {
-		pet.setOwner(null);
+		if (pet != null) {
+			pet.setOwner(null);
+		}
 
 		if (has(ATTR_PET)) {
 			remove(ATTR_PET);
@@ -1111,7 +1115,6 @@ public class Player extends RPEntity {
 			logger.warn("Called removePet but player has not pet: " + this);
 		}
 	}
-
 	public boolean hasSheep() {
 		return has(ATTR_SHEEP);
 	}
