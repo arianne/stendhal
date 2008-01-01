@@ -12,11 +12,14 @@ public class Expression {
 	/** original, un-normalized string expression */
 	private String original;
 
-	/** expression type */
+	/** Expression type */
 	private ExpressionType type;
 
 	/** normalized string representation of this Expression */
 	private String normalized;
+
+	/** main word of the Expression */
+	private String mainWord;
 
 	/** number of items */
 	private Integer amount;
@@ -25,64 +28,77 @@ public class Expression {
 	private boolean breakFlag = false;
 
 	/** instance of an empty Expression */
-	public static final Expression emptyExpression = new Expression("", "", "");
+	public static final Expression emptyExpression = new Expression("", "");
 
 	/**
-	 * Create a Expression from the given original string.
+	 * Create an Expression from the given original string.
+	 * Normalized form, main word and type are not yet defined.
 	 * 
-	 * @param s
+	 * @param str
 	 */
-	public Expression(String s) {
-		original = s;
+	public Expression(final String str) {
+		original = str;
 	}
 
 	/**
-	 * Create a Expression from the given strings.
+	 * Create an Expression from a single word and a type string.
 	 * 
-	 * @param s
-	 * @param n
+	 * @param word
 	 * @param typeString
 	 */
-	public Expression(String s, String n, String typeString) {
-		original = s;
-		normalized = n;
+	public Expression(final String word, final String typeString) {
+		original = word;
+		normalized = word;
+		mainWord = word;
 		type = new ExpressionType(typeString);
 	}
 
 	/**
 	 * Parse the given numeric expression and assign the value to 'amount'.
 	 * 
-	 * @param s
+	 * @param str
 	 * @param parser
 	 */
-	public void parseAmount(String s, ConversationParser parser) {
+	public void parseAmount(final String str, ConversationParser parser) {
 		try {
-			setAmount(new Integer(s));
+			setAmount(new Integer(str));
 			setType(new ExpressionType(ExpressionType.NUMERAL));
 			normalized = amount.toString();
 		} catch (NumberFormatException e) {
-			parser.setError("illegal number format: '" + s + "'");
+			parser.setError("illegal number format: '" + str + "'");
 		}
 	}
 
 	/**
-	 * Merge the given preceding Expression into this Expression.
+	 * Merge the given preceding Expression into this Expression,
+	 * while leaving mainWord unchanged.
 	 * 
 	 * @param other
 	 */
-	public void mergeLeft(final Expression other) {
+	public void mergeLeft(final Expression other, boolean mergeNormalized) {
 		original = other.getOriginal() + ' ' + original;
+
+		if (mergeNormalized) {
+			normalized = other.getNormalized() + ' ' + normalized;
+		}
+
 		mergeType(other.getType());
 		setAmount(mergeAmount(other.amount, amount));
 	}
 
 	/**
-	 * Merge the given following Expression into this Expression.
+	 * Merge the given following Expression into this Expression,
+	 * while leaving mainWord unchanged.
 	 * 
 	 * @param other
 	 */
-	public void mergeRight(final Expression other) {
+	public void mergeRight(final Expression other, boolean mergeNormalized) {
 		original = original + ' ' + other.getOriginal();
+
+		if (mergeNormalized) {
+			normalized = normalized + ' ' + other.getNormalized();
+		}
+
 		mergeType(other.getType());
 		setAmount(mergeAmount(amount, other.amount));
 		breakFlag = other.getBreakFlag();
@@ -95,7 +111,7 @@ public class Expression {
 	 * @param right
 	 * @return combined number
 	 */
-	private static Integer mergeAmount(Integer left, Integer right) {
+	private static Integer mergeAmount(final Integer left, final Integer right) {
 		if (left != null) {
 			if (right != null) {
 				if (left <= right) {
@@ -111,7 +127,12 @@ public class Expression {
 		}
 	}
 
-	public void setAmount(Integer amount) {
+	/**
+	 * Set item count.
+	 *
+	 * @param amount
+	 */
+	public void setAmount(final Integer amount) {
 		this.amount = amount;
 	}
 
@@ -125,7 +146,7 @@ public class Expression {
 	}
 
 	/**
-	 * Set flag to separate different parts of the sentence.
+	 * Set the break flag to define sentence part borders.
 	 */
 	public void setBreakFlag() {
 		breakFlag = true;
@@ -140,17 +161,32 @@ public class Expression {
 		return original;
 	}
 
-	public void setType(ExpressionType type) {
-		this.type = type;
+	/**
+	 * Set the normalized form of the expression.
+	 *
+	 * @param normalized
+	 */
+	public void setNormalized(final String normalized) {
+		this.normalized = normalized;
+		this.mainWord = normalized;
 	}
 
 	/**
-	 * Return the expression type.
+	 * Return the normalized form of the Expression.
 	 *
 	 * @return
 	 */
-	public ExpressionType getType() {
-		return type;
+	public String getNormalized() {
+		return normalized;
+	}
+
+	/**
+	 * Return the main word of the expression.
+	 *
+	 * @return
+	 */
+	public String getMainWord() {
+		return mainWord;
 	}
 
 	/**
@@ -163,25 +199,25 @@ public class Expression {
 	}
 
 	/**
-	 * Set the break flag to define sentence part borders.
+	 * Set Expression type.
 	 *
-	 * @param normalized
+	 * @param type
 	 */
-	public void setNormalized(String normalized) {
-		this.normalized = normalized;
+	public void setType(ExpressionType type) {
+		this.type = type;
 	}
 
 	/**
-	 * Return the normalized form of the word.
+	 * Return the Expression type.
 	 *
 	 * @return
 	 */
-	public String getNormalized() {
-		return normalized;
+	public ExpressionType getType() {
+		return type;
 	}
 
 	/**
-	 * Return type expression type string.
+	 * Return type Expression type string.
 	 * 
 	 * @return
 	 */
@@ -190,7 +226,7 @@ public class Expression {
 	}
 
 	/**
-	 * Determine if the word is a verb.
+	 * Determine if the Expression consists of verbs.
 	 * 
 	 * @return
 	 */
@@ -199,7 +235,7 @@ public class Expression {
     }
 
 	/**
-	 * Determine if the word is an object. (a thing, not a person)
+	 * Determine if the Expression is an object. (a thing, not a person)
 	 * 
 	 * @return
 	 */
@@ -208,7 +244,7 @@ public class Expression {
     }
 
 	/**
-	 * Determine if the word is a person.
+	 * Determine if the Expression represents a person.
 	 * 
 	 * @return
 	 */
@@ -217,7 +253,7 @@ public class Expression {
     }
 
 	/**
-	 * Merge expression type with another one
+	 * Merge Expression type with another one
 	 * while handling null values.
 	 *
 	 * @param otherType
@@ -233,7 +269,7 @@ public class Expression {
 	}
 
 	/**
-	 * Return the normalized word with type string
+	 * Return the normalized Expression with type string
 	 * in the format NORMALIZED/TYPE.
 	 *
 	 * @return
@@ -257,12 +293,12 @@ public class Expression {
     }
 
 	/**
-	 * Check if two words match.
+	 * Check if two Expressions match.
 	 * 
-	 * @param other word
+	 * @param other Expression
 	 * @return
 	 */
-	public boolean matches(Expression other) {
+	public boolean matches(final Expression other) {
 		if (other != null) {
 			return getMatchString().equals(other.getMatchString());
 		} else {
@@ -271,13 +307,17 @@ public class Expression {
 	}
 
 	/**
-	 * Check if the word beginning matches another word.
+	 * Check if the Expression beginning matches another Expression.
 	 * 
-	 * @param other word
+	 * @param other Expression
 	 * @return
 	 */
-	public boolean matchesBeginning(Expression other) {
-		return getMatchString().startsWith(other.getMatchString());
+	public boolean matchesBeginning(final Expression other) {
+		if (other != null) {
+			return getMatchString().startsWith(other.getMatchString());
+		} else {
+			return false;
+		}
     }
 
 	/**
@@ -293,7 +333,7 @@ public class Expression {
 	 */
 	@Override
 	public String toString() {
-		return normalized != null ? normalized : getOriginal();
+		return normalized != null ? normalized : original;
 	}
 
 }
