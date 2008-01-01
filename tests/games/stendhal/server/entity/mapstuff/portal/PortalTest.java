@@ -123,7 +123,7 @@ public class PortalTest {
 				return false;
 			}
 		};
-		Player bob = PlayerTestHelper.createPlayer("player");
+		Player bob = PlayerTestHelper.createPlayer("bob");
 		port.usePortal(bob);
 		assertEquals("renamed-bob", bob.getName());
 	}
