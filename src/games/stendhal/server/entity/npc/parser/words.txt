@@ -55,12 +55,14 @@ close	VER
 concoct	VER
 cya	VER
 did	VERB	=do
+disembark	VER
 do	VER
 does	VER	=do
 done	VERB	=do
 dressed	VER
 drop	VER
 eat	VER
+embark	VER
 engage	VER
 exchange	VER
 exit	VER
@@ -139,6 +141,7 @@ arandula	OBJ
 armor	OBJ	armors
 arrow	OBJ	arrows
 arundula	OBJ	arundulas
+athor	OBJ	athors
 axe	OBJ	axes
 ayuda	OBJ	ayudas
 bag	OBJ	bags
@@ -181,6 +184,7 @@ chain	OBJ	chains
 challenge	OBJ	challenges
 channange	OBJ	channanges
 chaos	OBJ	chaos
+char	OBJ	chars
 character	OBJ	characters
 cheese	OBJ-FOO	cheeses
 cherry	OBJ-FOO	cherries
@@ -240,8 +244,10 @@ flail	OBJ	flails
 flask	OBJ	flasks
 flour	OBJ	flours
 flower	OBJ	flowers
+food	OBJ-FOO	foods
 foot	OBJ	feet
 forge	OBJ	forges
+gambling	OBJ	gamblings
 gem	OBJ	gems
 geography	OBJ	geographies
 gnu	OBJ	gnus
@@ -298,7 +304,9 @@ longbow	OBJ	longbows
 lotus	OBJ	lotuses
 mace	OBJ	maces
 machine	OBJ	machines
+mackerel	OBJ	mackerels
 magic	OBJ	magics
+mainio	OBJ	mainios
 map	OBJ	maps
 match	OBJ	matches
 matrix	OBJ	matrices
@@ -324,6 +332,7 @@ nugget	OBJ	nuggets
 obsidian	OBJ	obsidians
 offer	OBJ	offers
 onion	OBJ-FOO	onions
+or'ril	OBJ	=Or'ril	or'rils
 ore	OBJ	ores
 pair	OBJ	pairs
 pan	OBJ	pans
@@ -440,6 +449,7 @@ wodka	OBJ-FLU	wodkas
 wood	OBJ	woods
 word	OBJ	words
 world	OBJ	worlds
+xeno	OBJ	xenos
 yclept	OBJ	yclepts
 youngster	OBJ	youngsters
 your	OBJ-OBS	yours
@@ -523,6 +533,7 @@ mary	SUB-NAM
 me	SUB-PRO	=i	us
 monkey	SUB	monkeys
 mummy	SUB	mummies
+nomad	SUB
 ogre	SUB	ogres
 orc	SUB	orcs
 penguin	SUB-ANI	penguins
@@ -589,15 +600,19 @@ golden	ADJ-COL
 good	ADJ
 great	ADJ
 greater	ADJ
+greaterthan	ADJ
 green	ADJ-COL
 lazy	ADJ
 leather	ADJ
+lessthan	ADJ
+magical	ADJ
 markable	ADJ
 marked	ADJ
 mega	ADJ
 minor	ADJ
 missing	ADJ
 nice	ADJ
+nomadic	ADJ
 old	ADJ
 quick	ADJ
 rare	ADJ
