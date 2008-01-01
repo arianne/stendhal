@@ -9,6 +9,7 @@ import java.util.Iterator;
 import marauroa.common.Log4J;
 import marauroa.server.game.db.JDBCDatabase;
 import marauroa.server.game.db.JDBCTransaction;
+import marauroa.server.game.db.StringChecker;
 
 import org.apache.log4j.Logger;
 
@@ -21,14 +22,15 @@ public class Analyser {
 	private static Logger logger = Logger.getLogger(Analyser.class);
 	private static final String SQL = "SELECT timedate, itemid, source, "
 		+ "event, param1, param2, param3, param4 FROM itemlog "
+		+ " WHERE timedate > '%0$s'"
 		+ " ORDER BY itemid, timedate";
 	
-	private LogEntryIterator queryDatabase() {
+	private LogEntryIterator queryDatabase(String timedate) {
 		JDBCTransaction transaction = (JDBCTransaction) JDBCDatabase.getDatabase().getTransaction();
 		try {
 			Connection connection = transaction.getConnection();
 			Statement stmt = connection.createStatement();
-			ResultSet resultSet = stmt.executeQuery(SQL);
+			ResultSet resultSet = stmt.executeQuery(String.format(SQL, StringChecker.escapeSQLString(timedate)));
 			return new LogEntryIterator(stmt, resultSet);
 		
 		} catch (SQLException e) {
@@ -42,8 +44,8 @@ public class Analyser {
 		return null;
 	}
 	
-	public void analyse() {
-		Iterator<LogEntry> itr = queryDatabase();
+	public void analyse(String timedate) {
+		Iterator<LogEntry> itr = queryDatabase(timedate);
 		String itemid = "-1";
 		ItemLocation itemLocation = null;
 		while (itr.hasNext()) {
@@ -73,8 +75,12 @@ public class Analyser {
 	 */
 	public static void main(String[] args) {
 		Log4J.init();
+		String timedate = "1900-01-01";
+		if (args.length > 0) {
+			timedate = args[0];
+		}
 		Analyser analyser = new Analyser();
-		analyser.analyse();
+		analyser.analyse(timedate);
 	}
 
 }
