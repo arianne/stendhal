@@ -32,7 +32,7 @@ m/K*/building/decoration/fireplace.png
 m/K*/building/decoration/fireplace_2.png
 k*/building/decoration/floor_sparkle.png
 b*/building/decoration/green.png
-./building/decoration/green_block.png
+m*/building/decoration/green_block.png
 k*/building/decoration/library_banner.png
 k*/building/decoration/longhorn_skull.png
 k*/building/decoration/magician_banner.png
@@ -41,9 +41,9 @@ m*/building/decoration/pale_red.png
 m/K*./building/decoration/pool.png
 m*/building/decoration/rocks.png
 m*/building/decoration/rocks_2.png
-./building/decoration/skull_carving.png     
+./building/decoration/skull_carving.png => item/statue/skull_carving.png
 k*/building/decoration/skullpedestal.png    
-./building/decoration/squares.png           not found
+./building/decoration/squares.png          deleted 
 m*/building/decoration/squares_2.png
 m/K*./building/decoration/stone_details.png
 m/K*./building/decoration/toolset.png
@@ -340,7 +340,7 @@ m*/item/raised_square.png
 ./object/arrows.png
 k*/object/castle.png
 k*/object/church.png
-./object/letters.png
+J*/object/letters.png
 m*./object/mine_rails.png
 ./object/stalactite.png
 m*/object/suspension_bridge.png
@@ -350,11 +350,11 @@ K*/m*/plant/cactus.png
 k*/plant/grass_2.png
 k*/plant/grass_corners.png
 k*/plant/grass_edges.png
-./plant/grass_mud.png
+./plant/grass_mud.png	deleted
 k*/plant/grasses.png
 ./plant/leaves.png
 m*/plant/vine.png
-./plant/bush/blue_green.png
+m*/plant/bush/blue_green.png
 m*/plant/bush/bushes.png
 k*/plant/bush/hedge.png
 k*/plant/bush/hedge_2.png
