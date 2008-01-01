@@ -22,11 +22,11 @@ import java.net.URL;
 import javax.imageio.ImageIO;
 
 /**
- * This class renders a layer based on a complete image
+ * This class renders a layer based on a complete image.
  */
 public class ImageRenderer extends LayerRenderer {
 
-	Sprite mySprite;
+	private Sprite mySprite;
 
 	public ImageRenderer(URL url) {
 		try {
