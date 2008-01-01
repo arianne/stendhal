@@ -3,6 +3,8 @@ package games.stendhal.server.entity.npc.parser;
 import games.stendhal.common.Grammar;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -181,28 +183,37 @@ public class WordList {
 	}
 
 	/**
-	 * main() function for WordList to read word list and print out in a sorted,
-	 * formated way.
+	 * The main() function WordList reads the current word list writes a new updated,
+	 * pretty formatted list in the file "words.txt".
 	 * 
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		PrintWriter writer = new PrintWriter(System.out);
-		List<String> comments = new ArrayList<String>();
+    	String outputPath = "src/games/stendhal/server/entity/npc/parser/words.txt";
 
-		InputStream str = WordList.class.getResourceAsStream("words.txt");
-		BufferedReader reader = new BufferedReader(new InputStreamReader(str));
+    	// see if we can find the source file in the file sytstem
+		File file = new File(outputPath);
+		if (!file.exists()) {
+			// Otherwise just write the output file into the current directory.
+			outputPath = "words.txt";
+		}
 
-		try {
+        try {
+    		InputStream str = WordList.class.getResourceAsStream("words.txt");
+    		BufferedReader reader = new BufferedReader(new InputStreamReader(str));
+
+        	List<String> comments = new ArrayList<String>();
 			instance.read(reader, comments);
 			reader.close();
+
+        	PrintWriter writer = new PrintWriter(new FileWriter(outputPath));
+			instance.write(writer, comments);
+			writer.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 
-		instance.write(writer, comments);
-
-		writer.close();
+		System.out.println("The updated word list has been written to the file '" + outputPath  +"'.");
 	}
 
 	/**
