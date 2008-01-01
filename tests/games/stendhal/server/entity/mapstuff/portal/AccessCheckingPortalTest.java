@@ -68,14 +68,14 @@ public class AccessCheckingPortalTest {
 		Player player = PlayerTestHelper.createPlayer("mayNot");
 		assertFalse(port.onUsed(player));
 
-		player = PlayerTestHelper.createPlayer("may");
+		player = PlayerTestHelper.createPlayer("player-may");
 		assertTrue(port.onUsed(player));
 	}
 
 	@Test
 	public final void testIsAllowed() {
 		AccessCheckingPortal port = new MockAccessCheckingPortal();
-		Player player = PlayerTestHelper.createPlayer("may");
+		Player player = PlayerTestHelper.createPlayer("player-may");
 		assertTrue(port.isAllowed(player));
 		player = PlayerTestHelper.createPlayer("mayNot");
 		assertFalse(port.isAllowed(player));
@@ -120,7 +120,7 @@ public class AccessCheckingPortalTest {
 
 		@Override
 		protected boolean isAllowed(RPEntity user) {
-			return "may".equals(user.getName());
+			return "player-may".equals(user.getName());
 		}
 
 	}
