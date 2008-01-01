@@ -189,16 +189,8 @@ public class WordList {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-    	String outputPath = "src/games/stendhal/server/entity/npc/parser/words.txt";
-
-    	// see if we can find the source file in the file sytstem
-		File file = new File(outputPath);
-		if (!file.exists()) {
-			// Otherwise just write the output file into the current directory.
-			outputPath = "words.txt";
-		}
-
         try {
+        	// read in the current word list including comment lines
     		InputStream str = WordList.class.getResourceAsStream("words.txt");
     		BufferedReader reader = new BufferedReader(new InputStreamReader(str));
 
@@ -206,14 +198,23 @@ public class WordList {
 			instance.read(reader, comments);
 			reader.close();
 
+	    	// see if we can find the word list source file in the file system
+	    	String outputPath = "src/games/stendhal/server/entity/npc/parser/words.txt";
+
+			File file = new File(outputPath);
+			if (!file.exists()) {
+				// Otherwise just write the output file into the current directory.
+				outputPath = "words.txt";
+			}
+
         	PrintWriter writer = new PrintWriter(new FileWriter(outputPath));
 			instance.write(writer, comments);
 			writer.close();
+
+			System.out.println("The updated word list has been written to the file '" + outputPath  +"'.");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
-		System.out.println("The updated word list has been written to the file '" + outputPath  +"'.");
 	}
 
 	/**
