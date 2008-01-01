@@ -13,7 +13,7 @@ import marauroa.common.game.Definition.Type;
  *
  * @author hendrik
  */
-public class ArrestWarrant extends Entity {
+public class ArrestWarrant extends Entity implements StoreableEntity {
 	public static final String RPCLASS_NAME = "arrest_warrant";
 	private static final String CRIMINAL = "criminal";
 	private static final String POLICE_OFFICER = "police_officer";
