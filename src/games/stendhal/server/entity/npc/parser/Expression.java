@@ -279,11 +279,25 @@ public class Expression {
     }
 
 	/**
+	 * Check if two Expressions match exactly.
+	 * 
+	 * @param other Expression
+	 * @return
+	 */
+	public boolean matches(final Expression other) {
+		if (other != null) {
+			return original.equals(other.original);
+		} else {
+			return false;
+		}
+	}
+
+	/**
 	 * Return the string expression to be used for matching.
 	 *
 	 * @return
 	 */
-	private String getMatchString() {
+	private String getNormalizedMatchString() {
 		// special case for numeric expressions to disambiguate "no" from "0"
 		if (type!=null && type.isNumeral()) {
 			return original.toLowerCase();
@@ -298,9 +312,9 @@ public class Expression {
 	 * @param other Expression
 	 * @return
 	 */
-	public boolean matches(final Expression other) {
+	public boolean matchesNormalized(final Expression other) {
 		if (other != null) {
-			return getMatchString().equals(other.getMatchString());
+			return getNormalizedMatchString().equals(other.getNormalizedMatchString());
 		} else {
 			return false;
 		}
@@ -314,7 +328,7 @@ public class Expression {
 	 */
 	public boolean matchesBeginning(final Expression other) {
 		if (other != null) {
-			return getMatchString().startsWith(other.getMatchString());
+			return getNormalizedMatchString().startsWith(other.getNormalizedMatchString());
 		} else {
 			return false;
 		}
@@ -325,7 +339,13 @@ public class Expression {
 	 */
 	@Override
 	public boolean equals(Object other) {
-		return toString().equals(other.toString());
+		if (other == this) {
+			return true;
+		} else if (other instanceof Expression) {
+	        return original.equals(((Expression)other).original);
+        } else {
+        	return toString().equals(other.toString());
+        }
 	}
 
 	/**

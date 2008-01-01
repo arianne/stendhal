@@ -49,14 +49,13 @@ public class ConversationParser {
 	}
 
 	/**
-	 * Normalize trigger expressions for the FSM engine to match
-	 * the parsed user input.
+	 * Create trigger expression to match the parsed user input in the FSM engine.
 	 * 
-	 * @param trigger
+	 * @param text
 	 * @return expression
 	 */
-	public static Expression normalizeTrigger(String trigger) {
-		return parse(trigger, null).getTriggerExpression();
+	public static Expression createTriggerExpression(String text) {
+		return parse(text, null).getTriggerExpression();
 	}
 
 	/**
@@ -171,11 +170,11 @@ public class ConversationParser {
 	 * @param string list
 	 * @return word list
 	 */
-	public static List<Expression> normalizeTriggerList(List<String> strings) {
+	public static List<Expression> createTriggerList(List<String> strings) {
 		List<Expression> words = new LinkedList<Expression>();
 
 		for(String item : strings) {
-			words.add(normalizeTrigger(item));
+			words.add(createTriggerExpression(item));
 		}
 
 		return words;
