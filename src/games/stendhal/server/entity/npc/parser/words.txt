@@ -21,10 +21,12 @@
 #  OBJ-FLU		fluid
 #  OBJ-FOO		food
 #  OBJ-OBS		obsessional word
+#  OBJ-PRO		pronoun
 #
 #  SUB			subject
 #  SUB-ANI		animal
 #  SUB-NAM		person name
+#  SUB-PRO		personal pronoun
 #
 #  ADJ			adjective/adverb
 #  ADJ-COL		color expressions
@@ -270,7 +272,7 @@ index	OBJ	indices
 ingredients	OBJ	ingredients
 iron	OBJ	irons
 island	OBJ	islands
-it	OBJ	its
+it	OBJ-PRO	its
 item	OBJ	items
 job	OBJ	jobs
 kanmararn	OBJ	kanmararns
@@ -492,13 +494,13 @@ goran	SUB-NAM
 guard	SUB
 guardian	SUB	guardians
 hayunn	SUB-NAM
-he	SUB	they
+he	SUB-PRO	they
 heart	SUB
 hero	SUB	heros
 hugo	SUB-NAM
 human	SUB	humans
 hunter	SUB	hunters
-i	SUB	we
+i	SUB-PRO	we
 idea	SUB
 io	SUB-NAM
 iou	SUB-NAM
@@ -517,7 +519,7 @@ man	SUB	men
 margaret	SUB-NAM
 mark	SUB-NAM
 mary	SUB-NAM
-me	SUB	=i	us
+me	SUB-PRO	=i	us
 monkey	SUB	monkeys
 mummy	SUB	mummies
 ogre	SUB	ogres
@@ -533,7 +535,7 @@ ratwoman	SUB	ratwomen
 razorrat	SUB-ANI	razorrats
 roach	SUB-ANI
 sally	SUB-NAME
-she	SUB	they
+she	SUB-PRO	they
 siandra	SUB-NAM
 skeleton	SUB	skeletons
 soldier	SUB	soldiers
@@ -559,7 +561,7 @@ wolf	SUB-ANI	wolves
 woman	SUB	women
 wumpus	SUB	wumpuses
 xin	SUB-NAM
-you	SUB	you
+you	SUB-PRO	you
 zak	SUB-NAM
 zombie	SUB	zombies
 zynn	SUB-NAM

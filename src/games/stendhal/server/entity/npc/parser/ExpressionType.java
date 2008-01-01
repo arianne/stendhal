@@ -8,6 +8,7 @@ public class ExpressionType {
 	public static final String VERB = "VER"; // verb
 	public static final String GERUND = "-GER"; // gerund form
 	public static final String CONDITIONAL = "CON"; // conditional form
+	public static final String PRONOUN = "PRO"; // pronoun
 
 	public static final String OBJECT = "OBJ"; // object
 	public static final String AMOUNT = "AMO"; // amount
@@ -36,6 +37,7 @@ public class ExpressionType {
 	// derived string type constants
 	public static final String SUFFIX_COLOR = SUFFIX + COLOR;
 	public static final String SUFFIX_CONDITIONAL = SUFFIX + CONDITIONAL;
+	public static final String SUFFIX_PRONOUN = SUFFIX + PRONOUN;
 	public static final String SUFFIX_FOOD = SUFFIX + FOOD;
 	public static final String SUFFIX_FLUID = SUFFIX + FLUID;
 	public static final String SUFFIX_ANIMAL = SUFFIX + ANIMAL;
@@ -199,6 +201,15 @@ public class ExpressionType {
 	}
 
 	/**
+	 * Determine if the Expression is a pronoun.
+	 * 
+	 * @return
+	 */
+	public boolean isPronoun() {
+		return typeString.contains(SUFFIX_PRONOUN);
+	}
+
+	/**
 	 * Merge with another ExpressionType.
 	 * 
 	 * @param other
@@ -217,6 +228,10 @@ public class ExpressionType {
 
 		if (other.isConditional() && !isConditional()) {
 			newTypeString += SUFFIX_CONDITIONAL;
+		}
+
+		if (other.isPronoun() && !isPronoun()) {
+			newTypeString += SUFFIX_PRONOUN;
 		}
 
 		if (newTypeString != typeString) {
