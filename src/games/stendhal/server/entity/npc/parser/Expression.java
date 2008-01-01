@@ -326,7 +326,7 @@ public class Expression {
 	 * @param other Expression
 	 * @return
 	 */
-	public boolean matchesBeginning(final Expression other) {
+	public boolean matchesNormalizedBeginning(final Expression other) {
 		if (other != null) {
 			return getNormalizedMatchString().startsWith(other.getNormalizedMatchString());
 		} else {
