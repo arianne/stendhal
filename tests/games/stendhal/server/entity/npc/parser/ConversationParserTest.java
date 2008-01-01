@@ -223,4 +223,25 @@ public class ConversationParserTest {
 		assertEquals("take ring golden", sentence.getNormalized());
 		assertEquals("take/VER ring/OBJ golden/ADJ-COL", sentence.toString());
 	}
+
+	@Test
+	public final void testSmilies() {
+		Sentence sentence = ConversationParser.parse(":-)");
+		assertFalse(sentence.hasError());
+		assertEquals("smile", sentence.getVerbString());
+		assertEquals("smile", sentence.getNormalized());
+		assertEquals("smile/VER", sentence.toString());
+
+		sentence = ConversationParser.parse(":)");
+		assertFalse(sentence.hasError());
+		assertEquals("smile", sentence.getVerbString());
+		assertEquals("smile", sentence.getNormalized());
+		assertEquals("smile/VER", sentence.toString());
+
+		sentence = ConversationParser.parse(":*");
+		assertFalse(sentence.hasError());
+		assertEquals("kiss", sentence.getVerbString());
+		assertEquals("kiss", sentence.getNormalized());
+		assertEquals("kiss/VER", sentence.toString());
+	}
 }

@@ -37,9 +37,9 @@
 #  IGN			word to ignore
 #
 
-:)	VER
-:*	VER
-:-)	VER
+:)	VER	=smile
+:*	VER	=kiss
+:-)	VER	=smile
 abort	VER
 adios	VER
 appear	VER
@@ -94,6 +94,7 @@ hold	VER
 is	VER	are
 jump	VER
 kill	VER
+kiss	VER
 learn	VER
 leave	VER
 like	VER
@@ -120,6 +121,7 @@ say	VER
 sell	VER
 sew	VER
 shout	VER
+smile	VER
 sorry	VER
 speak	VER	=say
 start	VER
@@ -291,7 +293,6 @@ katana	OBJ	katanas
 kekik	OBJ	kekiks
 key	OBJ	keys
 kingdom	OBJ	kingdoms
-kiss	OBJ	kisses
 knife	OBJ	knives
 knight	OBJ	knights
 kokuda	OBJ	kokudas
