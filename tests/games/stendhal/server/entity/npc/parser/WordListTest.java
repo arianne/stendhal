@@ -87,6 +87,11 @@ public class WordListTest {
 		assertNotNull(w);
 		assertTrue(w.getType().isAdjective());
 		assertEquals(ExpressionType.ADJECTIVE + ExpressionType.SUFFIX_COLOR, w.getTypeString());
+
+		w = wl.find("nomadic");
+		assertNotNull(w);
+		assertTrue(w.getType().isAdjective());
+		assertEquals(ExpressionType.ADJECTIVE, w.getTypeString());
 	}
 
 	@Test
