@@ -106,24 +106,24 @@ public class Engine {
 			PostTransitionAction existingAction = existing.getAction();
 
 			// Concatenate the previous and the new reply texts if the new one is not there already.
-			if (existingReply!=null && !existingReply.contains(reply)) {
-    			reply = existingReply + " " + reply;
+			if (existingReply != null && !existingReply.contains(reply)) {
+				reply = existingReply + " " + reply;
 			}
 
 			existing.setReply(reply);
 
 			// If there is no action associated with the previous and with the new rule, we
 			// can silently ignore the new transition, as it is already handled completely.
-			if (action==null && existingAction==null) {
+			if (action == null && existingAction == null) {
 				return;
 			}
-			// If the previous and the new action are identically, we can silently ignore the
+			// If the previous and the new action are identical, we can silently ignore the
 			// new transition, as it is already handled.
-			else if (action!=null && action.equals(existingAction)) {
+			else if (action != null && action.equals(existingAction)) {
 				return;
 			} else {
-    			logger.warn(speakerNPC.getName() + ": Adding ambiguous state transition: " + existing
-    					+ " existing_action='" + existingAction + "' new_action='" + action + "'");
+				logger.warn(speakerNPC.getName() + ": Adding ambiguous state transition: " + existing
+						+ " existing_action='" + existingAction + "' new_action='" + action + "'");
 			}
 		}
 
