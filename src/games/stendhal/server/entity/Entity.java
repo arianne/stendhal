@@ -289,7 +289,7 @@ public abstract class Entity extends RPObject {
 	 * @return The amount of resistance, or 0 if in ghostmode.
 	 */
 	public int getResistance() {
-		return (isGhost() ? 0 : resistance);
+		return resistance;
 	}
 
 	/**
@@ -301,15 +301,6 @@ public abstract class Entity extends RPObject {
 		return ((getResistance() * entity.getResistance()) / 100);
 	}
 
-	/**
-	 * Checks whether an entity is a ghost (non physically interactive).
-	 * 
-	 * @return <code>true</code> if in ghost mode.
-	 */
-	public boolean isGhost() {
-		// 'ghostmode' attribute is at player level
-		return false;
-	}
 
 	/**
 	 * Determine if this is an obstacle for another entity.

@@ -437,4 +437,26 @@ public abstract class ActiveEntity extends Entity {
 			}
 		}
 	}
+
+	/**
+	 * Checks whether an entity is a ghost (non physically interactive).
+	 * 
+	 * @return <code>true</code> if in ghost mode.
+	 */
+	public boolean isGhost() {
+		// 'ghostmode' attribute is at player level
+		return false;
+	}
+
+	/**
+	 * Get the resistance this has on other entities (0-100).
+	 * 
+	 * @return The amount of resistance, or 0 if in ghostmode.
+	 */
+	public int getResistance() {
+		if (isGhost()) {
+			return 0;
+		}
+		return super.getResistance();
+	}
 }

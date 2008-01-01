@@ -118,11 +118,12 @@ public class OnePlayerArea extends AreaEntity implements MovementListener {
 		if (!(entity instanceof Player)) {
 			return super.isObstacle(entity);
 		}
+		Player player = (Player) entity;
 
 		/*
 		 * Ghosts shouldn't give away their presence
 		 */
-		if (entity.isGhost()) {
+		if (player.isGhost()) {
 			return false;
 		}
 
