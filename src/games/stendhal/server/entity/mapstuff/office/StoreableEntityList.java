@@ -8,10 +8,25 @@ import java.util.List;
 
 import marauroa.common.game.RPObject;
 
-public abstract class StoreableEntityList<T extends Entity> {
+/**
+ * a list of storeable entities that can be accessed by a unique
+ * identifier like a name.
+ *
+ * @author hendrik
+ * @param <T> type of the storeable entities to be managed by this list
+ */
+abstract class StoreableEntityList<T extends Entity> {
 	private StendhalRPZone zone;
 	private Class<T> clazz;
 
+	/**
+	 * creates a new StoreableEntityList
+	 *
+	 * @param zone  zone to store the entities in
+	 * @param clazz class object of the entities to manage
+	 */
+	// the class object is needed, because generic type variables (T)
+	// cannot be used in instanceof.
 	public StoreableEntityList(StendhalRPZone zone, Class<T> clazz) {
 		super();
 		this.zone = zone;
@@ -19,61 +34,58 @@ public abstract class StoreableEntityList<T extends Entity> {
 	}
 
 	/**
-     * Adds an ArrestWarrant
+     * Adds a storeable entity
      * 
-     * @param warrant
-     *            ArrestWarrant
+     * @param entity storeable entity
      */
-    public void add(T warrant) {
-    	zone.add(warrant);
+    public void add(T entity) {
+    	zone.add(entity);
     	zone.storeToDatabase();
     }
 
 	/**
-     * returns the ArrestWarrant for the specified player name
+     * returns the storeable entity for the specified identifier
      * 
-     * @param criminal
-     *            name of player to be arrested
-     * @return ArrestWarrant or <code>null</code> in case there is none
+     * @param identifier name of entity
+     * @return storeable entity or <code>null</code> in case there is none
      */
-    public T getByName(String criminal) {
-    	List<T> arrestWarrants = getList();
-    	for (T arrestWarrant : arrestWarrants) {
-    		if (getName(arrestWarrant).equals(criminal)) {
-    			return arrestWarrant;
+    public T getByName(String identifier) {
+    	List<T> entities = getList();
+    	for (T entity : entities) {
+    		if (getName(entity).equals(identifier)) {
+    			return entity;
     		}
     	}
     	return null;
     }
 
 	/**
-     * removes all ArrestWarrants for this player
+     * removes all storeable entities for this identifier
      * 
-     * @param criminal
-     *            name of player
+     * @param identifier name of entity
      */
-    public void removeByName(String criminal) {
-    	List<T> arrestWarrants = getList();
-    	for (T arrestWarrant : arrestWarrants) {
-    		if (getName(arrestWarrant).equals(criminal)) {
-    			zone.remove(arrestWarrant);
+    public void removeByName(String identifier) {
+    	List<T> entities = getList();
+    	for (T entity : entities) {
+    		if (getName(entity).equals(identifier)) {
+    			zone.remove(entity);
     		}
     	}
     	zone.storeToDatabase();
     }
 
 	/**
-     * gets a list of ArrestWarrant from the zone storage. Note: This is only a
+     * gets a list of storeable entities from the zone storage. Note: This is only a
      * temporary snapshot, do not save it outside the scope of a method.
      * 
-     * @return List of ArrestWarrants.
+     * @return List of storeabe entities.
      */
     private List<T> getList() {
     	List<T> res = new LinkedList<T>();
     	for (RPObject object : zone) {
     		if (clazz.isInstance(object)) {
-    			T arrestWarrant = clazz.cast(object);
-    			res.add(arrestWarrant);
+    			T entity = clazz.cast(object);
+    			res.add(entity);
     		}
     	}
     	return res;
