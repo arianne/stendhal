@@ -27,3 +27,4 @@ keystore.ksX
 marauroa-prod.ini
 server.ini
 .classpath
+server*.ini
