@@ -11,8 +11,8 @@ import org.apache.log4j.Logger;
 /**
  * ConversationParser returns the parsed sentence in this class. The Sentence
  * class stores the sentence content in a list of parsed and classified
- * expressions. Words belonging to each other are merged into common
- * Expression objects.
+ * expressions composed of the words forming the sentence. Words belonging
+ * to each other are merged into common Expression objects.
  * 
  * @author Martin Fuchs
  */
@@ -29,7 +29,7 @@ public class Sentence {
 
 	private String error = null;
 
-	List<Expression> words = new ArrayList<Expression>();
+	List<Expression> expressions = new ArrayList<Expression>();
 
 	/**
 	 * Build sentence by using the given parser object.
@@ -57,7 +57,7 @@ public class Sentence {
 				}
 
 				Expression word = new Expression(punct.getText());
-				words.add(word);
+				expressions.add(word);
 
 				// handle trailing comma characters
 				if (punct.getTrailingPunctuation().contains(",")) {
@@ -97,7 +97,7 @@ public class Sentence {
 	private int countExpressions(String typePrefix) {
 		int count = 0;
 
-		for(Expression w : words) {
+		for(Expression w : expressions) {
 			if (w.getTypeString().startsWith(typePrefix)) {
 				++count;
 			}
@@ -112,7 +112,7 @@ public class Sentence {
 	 * @return subject
 	 */
 	public Expression getExpression(int i, String typePrefix) {
-		for(Expression w : words) {
+		for(Expression w : expressions) {
 			if (w.getTypeString().startsWith(typePrefix)) {
 				if (i == 0) {
 					return w;
@@ -128,19 +128,19 @@ public class Sentence {
 	private Expression triggerCache = null;
 
 	/**
-	 * Return trigger Word for the FSM engine.
+	 * Return trigger Expression for the FSM engine.
 	 * TODO replace by sentence matching.
 	 * 
 	 * @return trigger string
 	 */
-	public Expression getTriggerWord() {
+	public Expression getTriggerExpression() {
 		if (triggerCache != null) {
 			return triggerCache;
 		}
 
 		Expression trigger = Expression.emptyExpression;
 
-		Iterator<Expression> it = words.iterator();
+		Iterator<Expression> it = expressions.iterator();
 
 		while (it.hasNext()) {
 			Expression word = it.next();
@@ -267,28 +267,41 @@ public class Sentence {
 	}
 
 	/**
+	 * Return object name [i] of the parsed sentence.
+	 * 
+	 * @return normalized object name
+	 */
+	public String getObjectName(int i) {
+		return getObject(i).getNormalized();
+	}
+
+	/**
 	 * Return item name derived (by replacing spaces by underscores) from the
 	 * object of the parsed sentence.
-	 * TODO get rid of underscore handling for item names.
-	 * 
+	 *
+	 * @deprecated use getObjectName() to get rid of underscore handling for item names.
+	 *
 	 * @return item name
 	 */
 	public String getItemName(int i) {
-		// concatenate user specified item names like "baby dragon"
-		// with underscores to build the internal item names
-		Expression object = getObject(i);
-
-		if (object != null) {
-			// Here we use 'original' instead of 'normalized'
-			// to handle item names concatenated by underscores.
-			return object.getOriginal().toLowerCase().replace(' ', '_');
-		} else {
-			return null;
-		}
+		return getObjectName(i);
+//		// concatenate user specified item names like "baby dragon"
+//		// with underscores to build the internal item names
+//		Expression object = getObject(i);
+//
+//		if (object != null) {
+//			// Here we use 'original' instead of 'normalized'
+//			// to handle item names concatenated by underscores.
+//			return object.getOriginal().toLowerCase().replace(' ', '_');
+//		} else {
+//			return null;
+//		}
 	}
 
 	/**
 	 * Special case for sentences with only one item.
+	 *
+	 * @deprecated use getObjectName() to get rid of underscore handling for item names.
 	 * 
 	 * @return normalized item name
 	 */
@@ -319,6 +332,15 @@ public class Sentence {
 	}
 
 	/**
+	 * Return true if the sentence is empty.
+	 * 
+	 * @return empty flag
+	 */
+	public boolean isEmpty() {
+		return sentenceType == ST_UNDEFINED && expressions.isEmpty();
+	}
+
+	/**
 	 * Return if some error occurred while parsing the input text.
 	 * 
 	 * @return error flag
@@ -328,23 +350,19 @@ public class Sentence {
 	}
 
 	/**
-	 * Return error message.
+	 * Return error message string.
 	 * 
 	 * @return error string
 	 */
-	public String getError() {
+	public String getErrorString() {
 		return error;
 	}
 
 	/**
-	 * Return true if the sentence is empty.
-	 * 
-	 * @return empty flag
+	 * Set error message string.
+	 *
+	 * @param error
 	 */
-	public boolean isEmpty() {
-		return sentenceType == ST_UNDEFINED && words.isEmpty();
-	}
-
 	protected void setError(String error) {
 		this.error = error;
 	}
@@ -361,7 +379,7 @@ public class Sentence {
 	public String getOriginalText() {
 		SentenceBuilder builder = new SentenceBuilder();
 
-		for (Expression w : words) {
+		for (Expression w : expressions) {
 			builder.append(w.getOriginal());
 		}
 
@@ -376,7 +394,7 @@ public class Sentence {
 	public String getNormalized() {
 		SentenceBuilder builder = new SentenceBuilder();
 
-		for(Expression w : words) {
+		for(Expression w : expressions) {
 			if (w.getType()==null || !w.getType().isIgnore()) {
 				builder.append(w.getNormalized());
 			}
@@ -386,7 +404,8 @@ public class Sentence {
 	}
 
 	/**
-	 * Return the full sentence as lower case string.
+	 * Return the full sentence as lower case string
+	 * including type specifiers.
 	 * 
 	 * @return string
 	 */
@@ -394,7 +413,7 @@ public class Sentence {
 	public String toString() {
 		SentenceBuilder builder = new SentenceBuilder();
 
-		for (Expression w : words) {
+		for (Expression w : expressions) {
 			if (w.getType() != null) {
 				if (!w.getType().isIgnore()) {
 					builder.append(w.getNormalizedWithTypeString());
@@ -427,7 +446,7 @@ public class Sentence {
 	public void classifyWords(ConversationParser parser) {
 		WordList wl = WordList.getInstance();
 
-		for (Expression w : words) {
+		for (Expression w : expressions) {
 			String original = w.getOriginal();
 
 			WordEntry entry = wl.find(original);
@@ -490,7 +509,7 @@ public class Sentence {
 		// Look for a "me" without any preceding other subject.
 		Expression prevVerb = null;
 
-		for (Expression w : words) {
+		for (Expression w : expressions) {
 			if (w.getBreakFlag()) {
 				break;
 			}
@@ -507,8 +526,8 @@ public class Sentence {
 						// If we already found a verb, we prepend "you" as
 						// first subject and mark the sentence as imperative.
 						if (prevVerb != null) {
-							Expression you = new Expression("you", "you", ExpressionType.SUBJECT);
-							words.add(0, you);
+							Expression you = new Expression("you", ExpressionType.SUBJECT);
+							expressions.add(0, you);
 							sentenceType = ST_IMPERATIVE;
 						}
 					}
@@ -543,8 +562,8 @@ public class Sentence {
 					subject2.getNormalized().equals("i")) {
 				// remove the subjects and replace the verb with "buy" as first
 				// word
-				words.remove(subject1);
-				words.remove(subject2);
+				expressions.remove(subject1);
+				expressions.remove(subject2);
 				verb.setNormalized("buy");
 				sentenceType = ST_IMPERATIVE;
 				return;
@@ -553,8 +572,8 @@ public class Sentence {
 			// [SUBJECT] (would like to have) -> [SUBJECT] buy
 			if (verb.getNormalized().equals("have")
 					&& verb.getOriginal().contains("like")
-					&& ((subject1 == null && words.get(0) == verb) ||
-						(words.get(0) == subject1 && words.get(1) == verb))) {
+					&& ((subject1 == null && expressions.get(0) == verb) ||
+						(expressions.get(0) == subject1 && expressions.get(1) == verb))) {
 				// replace the verb with "buy"
 				verb.setNormalized("buy");
 				sentenceType = ST_IMPERATIVE;
@@ -566,7 +585,7 @@ public class Sentence {
 	 * Evaluate the sentence type from word order.
 	 */
 	public int evaluateSentenceType() {
-		Iterator<Expression> it = words.iterator();
+		Iterator<Expression> it = expressions.iterator();
 		int type = ST_UNDEFINED;
 
 		if (it.hasNext()) {
@@ -605,7 +624,7 @@ public class Sentence {
 						type = ST_QUESTION;
 					}
 
-					words.remove(first);
+					expressions.remove(first);
 				}
 				// statements beginning with "it is <VER-GER>"
 				else if (first.getNormalized().equals("it") &&
@@ -615,8 +634,8 @@ public class Sentence {
 						type = ST_STATEMENT;
 					}
 
-					words.remove(first);
-					words.remove(second);
+					expressions.remove(first);
+					expressions.remove(second);
 				}
 			}
 		}
@@ -653,7 +672,7 @@ public class Sentence {
 
 		// loop until no more simplification can be made
 		do {
-			Iterator<Expression> it = words.iterator();
+			Iterator<Expression> it = expressions.iterator();
 
 			changed = false;
 
@@ -663,50 +682,71 @@ public class Sentence {
 				// loop over all words of the sentence starting from left
 				while(it.hasNext()) {
 					// Now look at two consecutive words.
-					Expression word = next;
+					Expression curr = next;
 					next = it.next();
 
 					// don't merge if the break flag is set
-					if (word.getBreakFlag()) {
+					if (curr.getBreakFlag()) {
 						continue;
 					}
 
-					ExpressionType curType = word.getType();
+					ExpressionType curType = curr.getType();
 					ExpressionType nextType = next.getType();
 
 					if (curType!=null && nextType!=null) {
-    					// left-merge nouns with preceding adjectives or amounts and composite nouns
-    					if ((curType.isAdjective() || curType.isNumeral() || curType.isObject()) &&
-    						(nextType.isObject() || nextType.isSubject())) {
+						// check the expression types for concrete subject or object names (no pronouns)
+						boolean currIsName = curType.isObject() || (curType.isSubject() && !curType.isPronoun());
+						boolean nextIsName = nextType.isObject() || (nextType.isSubject() && !nextType.isPronoun());
+
+    					// left-merge nouns with preceding adjectives and composite nouns
+    					if ((curType.isAdjective() || currIsName) && nextIsName) {
     						// special case for "ice cream" -> "ice"
-    						if (word.getNormalized().equals("ice") && next.getNormalized().equals("cream")) {
-    							word.mergeRight(next);
-    							words.remove(next);
+    						if (curr.getNormalized().equals("ice") && next.getNormalized().equals("cream")) {
+    							curr.mergeRight(next, true);
+    							expressions.remove(next);
     						} else {
-    							next.mergeLeft(word);
-    							words.remove(word);
+    							next.mergeLeft(curr, true);
+    							expressions.remove(curr);
     						}
     						changed = true;
     						break;
     					}
-    					// right-merge consecutive words of the same main type
-    					else if (curType.getMainType().equals(nextType.getMainType())) {
+    					// left-merge nouns with preceding amounts, dropping the numerals from the
+    					// merged normalized expression
+    					else if (curType.isNumeral() &&
+    						(nextType.isObject() || nextType.isSubject())) {
+							next.mergeLeft(curr, false);
+							expressions.remove(curr);
+    						changed = true;
+    						break;
+    					}
+    					// right-merge consecutive verbs, preserving only the main verb
+    					else if (curType.isVerb() && nextType.isVerb()) {
     						// handle "would like"
     						if (curType.isConditional()) {
-    							next.mergeLeft(word);
-    							words.remove(word);
+    							next.mergeLeft(curr, false);
+    							expressions.remove(curr);
     						} else {
-    							word.mergeRight(next);
-    							words.remove(next);
+    							curr.mergeRight(next, false);
+    							expressions.remove(next);
     						}
     						changed = true;
     						break;
     					}
-    					// left-merge question words with following verbs and adjectives
+    					// right-merge consecutive words of all other same main types,
+    					// while merging the normalized expressions
+    					else if (curType.getMainType().equals(nextType.getMainType())) {
+							curr.mergeRight(next, true);
+							expressions.remove(next);
+    						changed = true;
+    						break;
+    					}
+    					// left-merge question words with following verbs and adjectives,
+    					// dropping question words from normalized form
     					else if (curType.isQuestion() &&
     							(nextType.isVerb() || nextType.isAdjective())) {
-    						next.mergeLeft(word);
-    						words.remove(word);
+    						next.mergeLeft(curr, false);
+    						expressions.remove(curr);
     						changed = true;
     						break;
     					}
@@ -714,14 +754,14 @@ public class Sentence {
 
 					// left-merge words to ignore
 					if (curType!=null && curType.isIgnore()) {
-						next.mergeLeft(word);
-						words.remove(word);
+						next.mergeLeft(curr, false);
+						expressions.remove(curr);
 						changed = true;
 						break;
 					}
 				}
 			}
-		} while (changed);
+		} while(changed);
 	}
 
 	private void mergeThreeWordExpressions() {
@@ -729,7 +769,7 @@ public class Sentence {
 
 		// loop until no more simplification can be made
 		do {
-			Iterator<Expression> it = words.iterator();
+			Iterator<Expression> it = expressions.iterator();
 
 			changed = false;
 
@@ -753,7 +793,8 @@ public class Sentence {
 							continue;
 						}
 
-						// merge "... of ..." expressions into one word
+						// merge "... of ..." expressions into one expression, preserving
+						// only the main word als merged normalized expression
 						if (first.isObject() &&
 								second.getNormalized().equals("of") &&
 								third.isObject()) {
@@ -762,10 +803,10 @@ public class Sentence {
 
 							// see if the expression has been normalized
 							if (normalizedExpr != expr) {
-								first.mergeRight(second);
-								words.remove(second);
-								third.mergeLeft(first);
-								words.remove(first);
+								first.mergeRight(second, false);
+								expressions.remove(second);
+								third.mergeLeft(first, false);
+								expressions.remove(first);
 								changed = true;
 								break;
 							}
@@ -773,7 +814,7 @@ public class Sentence {
 					}
 				}
 			}
-		} while (changed);
+		} while(changed);
 	}
 
 }

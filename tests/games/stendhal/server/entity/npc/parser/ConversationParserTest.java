@@ -20,7 +20,7 @@ public class ConversationParserTest {
 		assertFalse(sentence.hasError());
 
 		assertEquals("buy", sentence.getVerbString());
-		assertEquals("buy", sentence.getTriggerWord().getNormalized());
+		assertEquals("buy", sentence.getTriggerExpression().getNormalized());
 		assertEquals(3, sentence.getObject(0).getAmount());
 		assertEquals("cookie", sentence.getObjectName());
 	}
@@ -41,10 +41,10 @@ public class ConversationParserTest {
 		assertFalse(sentence.hasError());
 
 		assertEquals("buy", sentence.getVerbString());
-		assertEquals("buy", sentence.getTriggerWord().getNormalized());
+		assertEquals("buy", sentence.getTriggerExpression().getNormalized());
 		assertEquals(1, sentence.getObject(0).getAmount());
 		assertEquals("bread", sentence.getObjectName());
-		assertEquals("bread", sentence.getItemName());
+//		assertEquals("bread", sentence.getItemName());
 		assertEquals("buy Bread", sentence.getOriginalText());
 		assertEquals("buy bread", sentence.getNormalized());
 	}
@@ -55,7 +55,7 @@ public class ConversationParserTest {
 		assertFalse(sentence.hasError());
 		assertEquals("drop", sentence.getVerbString());
 		assertEquals("drop/VER", sentence.getVerb().getNormalizedWithTypeString());
-		assertEquals("drop", sentence.getTriggerWord().getNormalized());
+		assertEquals("drop", sentence.getTriggerExpression().getNormalized());
 		assertEquals(3, sentence.getObject(0).getAmount());
 		assertEquals("meat", sentence.getObjectName());
 		assertEquals("drop three meat", sentence.getOriginalText());
@@ -64,24 +64,25 @@ public class ConversationParserTest {
 		sentence = ConversationParser.parse(" sell house   ");
 		assertFalse(sentence.hasError());
 		assertEquals("sell", sentence.getVerbString());
-		assertEquals("sell", sentence.getTriggerWord().getNormalized());
+		assertEquals("sell", sentence.getTriggerExpression().getNormalized());
 		assertEquals(1, sentence.getObject(0).getAmount());
 		assertEquals("house", sentence.getObjectName());
-		assertEquals("house", sentence.getItemName());
+//		assertEquals("house", sentence.getItemName());
 		assertEquals("sell house", sentence.getNormalized());
 	}
 
 	@Test
 	public final void testItemName() {
-		Sentence sentence = ConversationParser.parse("buy fresh_fish");
+		Sentence sentence = ConversationParser.parse("buy fresh fish");
 		assertFalse(sentence.hasError());
 		assertEquals("buy", sentence.getVerbString());
-		assertEquals("fresh_fish", sentence.getItemName());
+		assertEquals("fresh fish", sentence.getObjectName());
 
-		sentence = ConversationParser.parse("buy fresh fish");
-		assertEquals("buy", sentence.getVerbString());
-		assertEquals("fish", sentence.getObjectName());
-		assertEquals("fresh_fish", sentence.getItemName());
+// Underscores in item names are now no more required.
+//		sentence = ConversationParser.parse("buy fresh_fish");
+//		assertEquals("buy", sentence.getVerbString());
+//		assertEquals("fresh fish", sentence.getObjectName());
+//		assertEquals("fresh fish", sentence.getItemName());
 	}
 
 	@Test
@@ -95,7 +96,7 @@ public class ConversationParserTest {
 		sentence = ConversationParser.parse("buy -10 cars");
 		assertEquals(-10, sentence.getObject(0).getAmount());
 		assertTrue(sentence.hasError());
-		assertEquals("negative amount: -10", sentence.getError());
+		assertEquals("negative amount: -10", sentence.getErrorString());
 	}
 
 	@Test
@@ -191,7 +192,7 @@ public class ConversationParserTest {
 		assertEquals("buy", sentence.getVerbString());
 		assertNull(sentence.getSubject(1));
 		assertEquals(1, sentence.getObject(0).getAmount());
-		assertEquals("ice", sentence.getObjectName());
+		assertEquals("ice cream", sentence.getObjectName());
 	}
 
 	@Test

@@ -14,7 +14,7 @@ import java.util.StringTokenizer;
 public class ConversationParser {
 
 	private StringTokenizer tokenizer;
-	private String error;
+	private String errorBuffer;
 
 	/**
 	 * Create a new conversation parser and initialize with the given text
@@ -24,8 +24,8 @@ public class ConversationParser {
 		// initialize a new tokenizer with the given text
 		tokenizer = new StringTokenizer(text != null ? text : "");
 
-		// start with no errors.
-		error = null;
+		// start with no errors
+		errorBuffer = null;
 	}
 
 	/**
@@ -39,6 +39,27 @@ public class ConversationParser {
 	}
 
 	/**
+	 * Return the sentence in normalized form.
+	 * 
+	 * @param trigger
+	 * @return
+	 */
+	public static String normalize(String text) {
+		return parse(text, null).getNormalized();
+	}
+
+	/**
+	 * Normalize trigger expressions for the FSM engine to match
+	 * the parsed user input.
+	 * 
+	 * @param trigger
+	 * @return expression
+	 */
+	public static Expression normalizeTrigger(String trigger) {
+		return parse(trigger, null).getTriggerExpression();
+	}
+
+	/**
 	 * Parse the given text sentence.
 	 * 
 	 * @param text
@@ -47,14 +68,16 @@ public class ConversationParser {
 	 */
 	public static Sentence parse(String text, ConversationContext ctx) {
 
+		//TODO use context information
+
 		// 1.) determine sentence type from trailing punctuation
 		Sentence sentence = new Sentence();
 
 		if (text != null) {
 			text = getSentenceType(text.trim(), sentence);
 
-			// TODO get rid of underscore handling for item names
-			text = text.replace('_', ' ');
+//			// TODO get rid of underscore handling for item names
+//			text = text.replace('_', ' ');
 		}
 
 		// 2.) feed the separated words into the sentence object
@@ -97,25 +120,27 @@ public class ConversationParser {
 	/**
 	 * Set error flag on parsing problems.
 	 */
-	public void setError(String error) {
-		if (this.error == null) {
-			this.error = error;
+	public void setError(final String error) {
+		if (errorBuffer == null) {
+			errorBuffer = error;
 		} else {
-			this.error += "\n" + error;
+			errorBuffer += '\n';
+			errorBuffer += error;
 		}
 	}
 
 	/**
-	 * Return whether some error occurred while parsing the input text.
+	 * Return accumulated description string for errors occurred while
+	 * parsing the input text.
 	 * 
-	 * @return error flag
+	 * @return error string
 	 */
 	public String getError() {
-		return error;
+		return errorBuffer;
 	}
 
 	/**
-	 * Evaluate sentence type by looking at the trailing punctuation character.
+	 * Evaluate sentence type by looking at the trailing punctuation characters.
 	 *
 	 * @param text
 	 * @param sentence
@@ -126,11 +151,11 @@ public class ConversationParser {
 
 		String trailing = punct.getTrailingPunctuation();
 
-		if (trailing.contains("!")) {
-			sentence.setType(Sentence.ST_IMPERATIVE);
-			text = punct.getText();
-		} else if (trailing.contains("?")) {
+		if (trailing.contains("?")) {
 			sentence.setType(Sentence.ST_QUESTION);
+			text = punct.getText();
+		} else if (trailing.contains("!")) {
+			sentence.setType(Sentence.ST_IMPERATIVE);
 			text = punct.getText();
 		} else if (trailing.contains(".")) {
 			sentence.setType(Sentence.ST_STATEMENT);
@@ -141,35 +166,10 @@ public class ConversationParser {
 	}
 
 	/**
-	 * Return the sentence in normalized form.
-	 * 
-	 * @param trigger
-	 * @return
-	 */
-	public static String normalize(String text) {
-		Sentence sentence = parse(text, null);
-
-		return sentence.getNormalized();
-	}
-
-	/**
-	 * Normalize trigger expressions for the GSM engine to match
-	 * the parsed user input.
-	 * 
-	 * @param trigger
-	 * @return
-	 */
-	public static Expression normalizeTrigger(String trigger) {
-		Sentence sentence = parse(trigger, null);
-
-		return sentence.getTriggerWord();
-	}
-
-	/**
 	 * Create a list of normalized trigger Words from a String list.
 	 *
 	 * @param string list
-	 * @return word lsit
+	 * @return word list
 	 */
 	public static List<Expression> normalizeTriggerList(List<String> strings) {
 		List<Expression> words = new LinkedList<Expression>();
