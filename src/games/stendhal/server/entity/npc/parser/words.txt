@@ -37,6 +37,9 @@
 #  IGN			word to ignore
 #
 
+:)	VER
+:*	VER
+:-)	VER
 abort	VER
 adios	VER
 appear	VER
