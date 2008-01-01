@@ -48,7 +48,7 @@ m*/building/decoration/squares_2.png
 m/K*./building/decoration/stone_details.png
 m/K*./building/decoration/toolset.png
 K*/building/decoration/webs.png  were originally by Katie
-k/building/decoration/wooden_banisters.png     
+./building/decoration/wooden_banisters.png     deleted
 K*./building/decoration/wall_feature.png but 
 k*/building/door/closed.png
 k*/building/door/closed_with_key.png
@@ -111,24 +111,24 @@ K*/building/wall/int_green_blue.png
 K*/building/wall/int_green_blue_2.png
 ./building/wall/int_grey_dark.png
 ./building/wall/int_grey_green.png
-K*./building/wall/int_wall_dark_red.png
-K*./building/wall/int_wall_dark_red_corners.png
+K*/building/wall/int_wall_dark_red.png
+K*/building/wall/int_wall_dark_red_corners.png
 K*/building/wall/int_wall_light_red.png
 k*/building/wall/stone.png
 k*/building/wall/stone_grey.png
 k*/building/wall/wall_brown.png
 k*/building/wall/wood.png
 z*/building/wall/bamboo.png
-K*./building/wall/int_wall_pale.png
-K./building/wall/int_wall_purple.png
-K*./building/wall/int_wall_bricks.png
-K*./building/wall/int_wall_thin_bricks.png
-K*./building/wall/int_wall_fancy_purple.png
-K*./building/wall/int_wall_brick_wood.png
+K*/building/wall/int_wall_pale.png
+K*/building/wall/int_wall_purple.png
+K*/building/wall/int_wall_bricks.png
+K*/building/wall/int_wall_thin_bricks.png
+K*/building/wall/int_wall_fancy_purple.png
+K*/building/wall/int_wall_brick_wood.png
 m*/building/wall/bricked_edges.png
 m*/building/window/broken_window.png
-K*./building/window/int_windows_dark_red.png
-J*./building/window/painted.png
+K*/building/window/int_windows_dark_red.png
+J*/building/window/painted.png
 k*/building/window/window_left.png
 k*/building/window/window_right.png
 k*/building/window/window_long.png
@@ -147,7 +147,7 @@ k*/ground/green_paving_2.png
 k*/ground/green_paving_3.png
 k*/ground/green_paving_4.png
 k*/ground/ground.png
-k/ground/ground_2.png
+./ground/ground_2.png
 ./ground/mud_2.png
 k*/ground/mud_patch.png
 k*/ground/pothole.png
@@ -247,10 +247,10 @@ b*/item/furniture/bed/side_on.png
 b*/item/furniture/bed/side_on_bluer.png
 J*/item/furniture/carpet/border.png
 m*/item/furniture/carpet/brown_rug.png
-D/item/furniture/carpet/carpets.png
-D*/item/furniture/carpet/carpets_2.png
+./item/furniture/carpet/carpets.png
+K*/item/furniture/carpet/carpets_2.png
 ?*/item/furniture/carpet/plain_colours.png
-D/item/furniture/carpet/purple_rug.png
+./item/furniture/carpet/purple_rug.png
 m*/item/furniture/carpet/rug_border.png
 ?*/item/furniture/carpet/black_grey.png
 b*/item/furniture/chair/stool.png
@@ -258,7 +258,7 @@ m*/item/furniture/chair/throne.png
 m*./item/furniture/chair/throne_small.png
 b*/item/furniture/chair/wooden.png
 b*/item/furniture/chair/wooden_pale.png
-m/item/furniture/clock/wooden_clock.png
+m*/item/furniture/clock/wooden_clock.png
 b*/item/furniture/crockery/knife_spoon.png
 m*/item/furniture/curtain/dark_red.png
 m*/item/furniture/curtain/dark_red_central.png
@@ -270,7 +270,7 @@ k*/item/furniture/light/flames.png
 m*/item/furniture/light/iron_lamp.png
 m/K*/item/furniture/light/torch.png
 m/K*/item/furniture/light/torch_top.png
-b/item/furniture/other/drawer.png
+b*/item/furniture/other/drawer.png
 b*/item/furniture/other/drawer_with_mirror.png
 b*/item/furniture/other/piano.png
 z*./item/furniture/other/stick.png
@@ -322,7 +322,7 @@ b*/item/furniture/table/brick_base.png
 m*/item/gothic/large_gravestone.png
 m*/item/gothic/slab.png
 b+k*/item/pot/barrel.png
-J/item/pot/barrel_flat.png
+K*/item/pot/barrel_flat.png
 b+k*/item/pot/barrel_tall.png
 b*/item/pot/box.png
 b+k*/item/pot/dark_barrel.png
@@ -370,8 +370,8 @@ m*/plant/flower/daisy_yellow.png
 k*/plant/indoor/flower_baskets.png
 b*/plant/indoor/flower_vase.png
 b*/plant/indoor/flowering_plant.png
-b./plant/indoor/pot_plant.png
-b./plant/indoor/small_tree.png
+b*/plant/indoor/pot_plant.png
+./plant/indoor/small_tree.png
 k*/plant/stump/int_small_stump.png
 k*/plant/stump/int_small_stump_2.png
 k*/plant/stump/rectangular.png
