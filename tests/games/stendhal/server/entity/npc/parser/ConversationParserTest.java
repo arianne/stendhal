@@ -8,7 +8,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 /**
- * test ConversationParser class.
+ * Test the NPC ConversationParser class.
  *
  * @author Martin Fuchs
  */

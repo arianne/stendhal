@@ -7,7 +7,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 /**
- * test WordList class.
+ * Test the NPC conversation WordList class.
  * 
  * @author Martin Fuchs
  */

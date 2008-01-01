@@ -6,7 +6,7 @@ import static org.junit.Assert.assertFalse;
 import org.junit.Test;
 
 /**
- * test ConversationParser class.
+ * Test the NPC conversation Sentence class.
  * 
  * @author Martin Fuchs
  */
