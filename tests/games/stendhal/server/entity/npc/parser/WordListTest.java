@@ -50,7 +50,7 @@ public class WordListTest {
 		w = wl.find("she");
 		assertNotNull(w);
 		assertTrue(w.getType().isSubject());
-		assertEquals(ExpressionType.SUBJECT, w.getTypeString());
+		assertEquals(ExpressionType.SUBJECT + ExpressionType.SUFFIX_PRONOUN, w.getTypeString());
 		assertEquals("they", w.getPlurSing());
 	}
 

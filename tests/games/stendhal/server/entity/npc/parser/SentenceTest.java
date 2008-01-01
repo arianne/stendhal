@@ -24,7 +24,7 @@ public class SentenceTest {
 				sentence.toString());
 
 		sentence.mergeWords();
-		assertEquals("fox/SUB-ANI-COL jump/VER over/PRE dog/SUB-ANI .", sentence.toString());
+		assertEquals("quick brown fox/SUB-ANI-COL jump/VER over/PRE lazy dog/SUB-ANI .", sentence.toString());
 		assertEquals(Sentence.ST_STATEMENT, sentence.getType());
 
 		sentence = new Sentence();
@@ -32,9 +32,9 @@ public class SentenceTest {
 		sentence.parse(parser);
 		sentence.classifyWords(parser);
 		assertFalse(sentence.hasError());
-		assertEquals("do/VER it/OBJ fit/VER", sentence.toString());
+		assertEquals("do/VER it/OBJ-PRO fit/VER", sentence.toString());
 		assertEquals(Sentence.ST_QUESTION, sentence.evaluateSentenceType());
-		assertEquals("it/OBJ fit/VER ?", sentence.toString());
+		assertEquals("it/OBJ-PRO fit/VER ?", sentence.toString());
 	}
 
 	@Test
@@ -54,7 +54,7 @@ public class SentenceTest {
 
 		sentence = ConversationParser.parse("how are you?");
 		assertFalse(sentence.hasError());
-		assertEquals("is/VER-PLU-QUE you/SUB ?", sentence.toString());
+		assertEquals("is/VER-PLU-QUE you/SUB-PRO ?", sentence.toString());
 		assertEquals(Sentence.ST_QUESTION, sentence.getType());
 
 		sentence = ConversationParser.parse("this is a banana.");
