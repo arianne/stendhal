@@ -248,7 +248,7 @@ public class Postman implements Runnable {
 
 	private void onTell(final String from, final StringTokenizer st) {
 		String param = null;
-		String msg = null;
+		String msg = "";
 		// System.err.println("!" + from + "! !" + cmd + "! !" + msg + "!");
 		if (st.hasMoreTokens()) {
 			param = st.nextToken(); // player
