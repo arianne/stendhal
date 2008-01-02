@@ -45,6 +45,7 @@ public class RentedSign extends Sign implements StoreableEntity {
 	 */
 	public RentedSign(RPObject rpobject) {
 	    super(rpobject);
+	    store();
     }
 
 	/**
