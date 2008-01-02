@@ -15,23 +15,17 @@ package games.stendhal.server.entity.player;
 import games.stendhal.common.Direction;
 import games.stendhal.common.FeatureList;
 import games.stendhal.common.NotificationType;
-import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
-import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TutorialNotifier;
 import games.stendhal.server.core.rp.StendhalRPAction;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.Outfit;
-import games.stendhal.server.entity.PassiveEntity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.Pet;
-import games.stendhal.server.entity.creature.RaidCreature;
 import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.item.ConsumableItem;
 import games.stendhal.server.entity.item.Corpse;
-import games.stendhal.server.entity.item.Item;
-import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.events.PrivateTextEvent;
 
 import java.util.ArrayList;
@@ -41,7 +35,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
-import marauroa.common.Pair;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 import marauroa.common.game.SyntaxException;
@@ -74,26 +67,11 @@ public class Player extends RPEntity {
 	 */
 	protected static final String ATTR_GRUMPY = "grumpy";
 
-	/**
-	 * The pet ID attribute name.
-	 */
-	protected static final String ATTR_PET = "pet";
-
-	/**
-	 * The sheep ID attribute name.
-	 */
-	protected static final String ATTR_SHEEP = "sheep";
 
 	/**
 	 * The teleclick mode attribute name.
 	 */
 	protected static final String ATTR_TELECLICKMODE = "teleclickmode";
-
-	/**
-	 * The name of the zone placed in when killed. TODO: Move to common class
-	 * (maybe via method for runtime config)?
-	 */
-	public static final String DEFAULT_DEAD_AREA = "int_afterlife";
 
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(Player.class);
@@ -108,6 +86,11 @@ public class Player extends RPEntity {
 	 */
 	private static final Random KARMA_RANDOMIZER = new Random();
 
+	private PlayerQuests quests = new PlayerQuests(this);
+	private PlayerDieer  dieer  = new PlayerDieer(this);
+	private KillRecording killRec = new KillRecording(this);
+	PetOwner petOwner = new PetOwner(this);
+
 	/**
 	 * The number of minutes that this player has been logged in on the server.
 	 */
@@ -117,13 +100,13 @@ public class Player extends RPEntity {
 	 * Food, drinks etc. that the player wants to consume and has not finished
 	 * with.
 	 */
-	private List<ConsumableItem> itemsToConsume;
+	List<ConsumableItem> itemsToConsume;
 
 	/**
 	 * Poisonous items that the player still has to consume. This also includes
 	 * poison that was the result of fighting against a poisonous creature.
 	 */
-	private List<ConsumableItem> poisonToConsume;
+	List<ConsumableItem> poisonToConsume;
 
 	/**
 	 * Shows if this player is currently under the influence of an antidote, and
@@ -157,10 +140,6 @@ public class Player extends RPEntity {
 	 * A list of away replys sent to players.
 	 */
 	protected HashMap<String, Long> awayReplies;
-
-	private PlayerSheepManager playerSheepManager;
-
-	private PlayerPetManager playerPetManager;
 
 	public static void generateRPClass() {
 		try {
@@ -235,32 +214,7 @@ public class Player extends RPEntity {
 	}
 
 	public static void destroy(Player player) {
-		Sheep sheep = player.getSheep();
-
-		if (sheep != null) {
-			sheep.getZone().remove(sheep);
-
-			/*
-			 * NOTE: Once the sheep is stored there is no more trace of zoneid.
-			 */
-			player.playerSheepManager.storeSheep(sheep);
-		} else {
-			// Bug on pre 0.20 released
-			if (player.hasSlot("#flock")) {
-				player.removeSlot("#flock");
-			}
-		}
-
-		Pet pet = player.getPet();
-
-		if (pet != null) {
-			pet.getZone().remove(pet);
-
-			/*
-			 * NOTE: Once the pet is stored there is no more trace of zoneid.
-			 */
-			player.playerPetManager.storePet(pet);
-		}
+		player.petOwner.destroy();
 		player.stop();
 		player.stopAttack();
 
@@ -280,8 +234,7 @@ public class Player extends RPEntity {
 
 	public Player(RPObject object) {
 		super(object);
-		playerSheepManager = new PlayerSheepManager(this);
-		playerPetManager = new PlayerPetManager(this);
+
 		setRPClass("player");
 		put("type", "player");
 		// HACK: postman as NPC
@@ -362,11 +315,7 @@ public class Player extends RPEntity {
 	@Override
 	public boolean isObstacle(Entity entity) {
 		if (entity instanceof Player) {
-			/*
-			 * TODO: Create a world cached reference of this zone for identity
-			 * compares instead?
-			 */
-			if (getZone().getName().equals(DEFAULT_DEAD_AREA)) {
+			if (getZone().getName().equals(PlayerDieer.DEFAULT_DEAD_AREA)) {
 				return false;
 			}
 		}
@@ -966,169 +915,28 @@ public class Player extends RPEntity {
 
 	@Override
 	public void onDead(Entity killer) {
-		put("dead", "");
-
-		// Abandon dependants
-		Sheep sheep = getSheep();
-
-		if (sheep != null) {
-			removeSheep(sheep);
-		}
-
-		Pet pet = getPet();
-
-		if (pet != null) {
-			removePet(pet);
-		}
-
-		// We stop eating anything
-		itemsToConsume.clear();
-		poisonToConsume.clear();
-
-		if (!(killer instanceof RaidCreature)) {
-
-			List<Item> ringList = getAllEquipped("emerald_ring");
-			boolean eRingUsed = false;
-
-			for (Item emeraldRing : ringList) {
-				int amount = emeraldRing.getInt("amount");
-				if (amount > 0) {
-					// We broke the emerald ring.
-					emeraldRing.put("amount", amount - 1);
-					eRingUsed = true;
-					break;
-				}
-			}
-
-			if (eRingUsed) {
-				// Penalize: 1% less experience if wearing that ring
-				setXP((int) (getXP() * 0.99));
-				setATKXP((int) (getATKXP() * 0.99));
-				setDEFXP((int) (getDEFXP() * 0.99));
-			} else {
-				// Penalize: 10% less experience
-				setXP((int) (getXP() * 0.9));
-				setATKXP((int) (getATKXP() * 0.9));
-				setDEFXP((int) (getDEFXP() * 0.9));
-			}
-
-			update();
-		}
-
-		super.onDead(killer, false);
-
-		setHP(getBaseHP());
-
-		returnToOriginalOutfit();
-
-		// After a tangle with the grim reaper, give some karma,
-		// but limit abuse
-		if (getKarma() < 75.0) {
-			addKarma(100.0);
-		}
-
-		// Penalize: Respawn on afterlive zone and
-		StendhalRPZone zone = StendhalRPWorld.get().getZone(DEFAULT_DEAD_AREA);
-
-		if (zone != null) {
-			if (!zone.placeObjectAtEntryPoint(this)) {
-				logger.error("Unable to place player in zone " + zone + ": "
-						+ getName());
-			}
-		} else {
-			logger.error("Unable to find dead area [" + DEFAULT_DEAD_AREA
-					+ "] for player: " + getName());
-		}
+		dieer.onDead(killer);
 	}
 
 	@Override
 	protected void dropItemsOn(Corpse corpse) {
-		// drop at least 1 and at most 4 items
-		int maxItemsToDrop = Rand.rand(4);
-		List<Pair<RPObject, RPSlot>> objects = new LinkedList<Pair<RPObject, RPSlot>>();
-
-		for (String slotName : CARRYING_SLOTS) {
-			if (!hasSlot(slotName)) {
-				logger.error("CARRYING_SLOTS contains a slot that player "
-						+ getName() + " doesn't have.");
-			} else {
-				RPSlot slot = getSlot(slotName);
-
-				// a list that will contain the objects that will
-				// be dropped.
-
-				// get a random set of items to drop
-				for (RPObject objectInSlot : slot) {
-					// don't drop special quest rewards as there is no way to
-					// get them again
-					// TODO: Assert these as Item's and use getBoundTo() and
-					// isUndroppableOnDeath()
-					if (objectInSlot.has("bound")
-							|| objectInSlot.has("undroppableondeath")) {
-						continue;
-					}
-					objects.add(new Pair<RPObject, RPSlot>(objectInSlot, slot));
-				}
-			}
-		}
-		Collections.shuffle(objects);
-
-		for (int i = 0; i < maxItemsToDrop; i++) {
-			if (!objects.isEmpty()) {
-				Pair<RPObject, RPSlot> object = objects.remove(0);
-				if (object.first() instanceof StackableItem) {
-					StackableItem item = (StackableItem) object.first();
-
-					// We won't drop the full quantity, but only a
-					// percentage.
-					// Get a random percentage between 26 % and 75 % to drop
-					double percentage = (Rand.rand(50) + 25) / 100.0;
-					int quantityToDrop = (int) Math.round(item.getQuantity()
-							* percentage);
-
-					if (quantityToDrop > 0) {
-						StackableItem itemToDrop = item.splitOff(quantityToDrop);
-						corpse.add(itemToDrop);
-					}
-				} else if (object.first() instanceof PassiveEntity) {
-					object.second().remove(object.first().getID());
-
-					corpse.add((PassiveEntity) object.first());
-				}
-			}
-		}
+		dieer.dropItemsOn(corpse);
 	}
 
 	public void removeSheep(Sheep sheep) {
-		if (sheep != null) {
-			sheep.setOwner(null);
-		}
-
-		if (has(ATTR_SHEEP)) {
-			remove(ATTR_SHEEP);
-		} else {
-			logger.warn("Called removeSheep but player has not sheep: " + this);
-		}
+		petOwner.removeSheep(sheep);
 	}
 
 	public void removePet(Pet pet) {
-		if (pet != null) {
-			pet.setOwner(null);
-		}
-
-		if (has(ATTR_PET)) {
-			remove(ATTR_PET);
-		} else {
-			logger.warn("Called removePet but player has not pet: " + this);
-		}
+		petOwner.removePet(pet);
 	}
 
 	public boolean hasSheep() {
-		return has(ATTR_SHEEP);
+		return petOwner.hasSheep();
 	}
 
 	public boolean hasPet() {
-		return has(ATTR_PET);
+		return petOwner.hasPet();
 	}
 
 	/**
@@ -1138,8 +946,7 @@ public class Player extends RPEntity {
 	 *            The pet.
 	 */
 	public void setPet(Pet pet) {
-		put(ATTR_PET, pet.getID().getObjectID());
-		pet.setOwner(this);
+		petOwner.setPet(pet);
 	}
 
 	/**
@@ -1149,8 +956,7 @@ public class Player extends RPEntity {
 	 *            The sheep.
 	 */
 	public void setSheep(Sheep sheep) {
-		put(ATTR_SHEEP, sheep.getID().getObjectID());
-		sheep.setOwner(this);
+		petOwner.setSheep(sheep);
 	}
 
 	/**
@@ -1159,44 +965,11 @@ public class Player extends RPEntity {
 	 * @return The sheep.
 	 */
 	public Sheep getSheep() {
-		if (has(ATTR_SHEEP)) {
-			try {
-				return (Sheep) StendhalRPWorld.get().get(
-						new RPObject.ID(getInt(ATTR_SHEEP), get("zoneid")));
-			} catch (Exception e) {
-				// TODO: Remove catch after DB reset
-				logger.error("Pre 1.00 Marauroa sheep bug. (player = "
-						+ getName() + ")", e);
-
-				if (has(ATTR_SHEEP)) {
-					remove(ATTR_SHEEP);
-				}
-
-				if (hasSlot("#flock")) {
-					removeSlot("#flock");
-				}
-
-				return null;
-			}
-		} else {
-			return null;
-		}
+		return petOwner.getSheep();
 	}
 
 	public Pet getPet() {
-		try {
-			if (has(ATTR_PET)) {
-				return (Pet) StendhalRPWorld.get().get(
-						new RPObject.ID(getInt(ATTR_PET), get("zoneid")));
-			} else {
-				return null;
-			}
-		} catch (ClassCastException e) {
-			remove(ATTR_PET);
-			logger.error("removed pets attribute" + e);
-			return null;
-		}
-
+		return petOwner.getPet();
 	}
 
 	/**
@@ -1319,13 +1092,7 @@ public class Player extends RPEntity {
 	 * @return true iff the quest has been completed by the player
 	 */
 	public boolean isQuestCompleted(String name) {
-		String info = getKeyedSlot("!quests", name);
-
-		if (info == null) {
-			return false;
-		}
-
-		return info.equals("done");
+		return quests.isQuestCompleted(name);
 	}
 
 	/**
@@ -1338,7 +1105,7 @@ public class Player extends RPEntity {
 	 * @return true iff the player has made any progress in the quest
 	 */
 	public boolean hasQuest(String name) {
-		return (getKeyedSlot("!quests", name) != null);
+		return quests.hasQuest(name);
 	}
 
 	/**
@@ -1349,7 +1116,7 @@ public class Player extends RPEntity {
 	 * @return the player's status in the quest
 	 */
 	public String getQuest(String name) {
-		return getKeyedSlot("!quests", name);
+		return quests.getQuest(name);
 	}
 
 	/**
@@ -1366,29 +1133,15 @@ public class Player extends RPEntity {
 	 *            reset the player's status for the quest.
 	 */
 	public void setQuest(String name, String status) {
-		String oldStatus = getKeyedSlot("!quests", name);
-		setKeyedSlot("!quests", name, status);
-		if ((status == null) || !status.equals(oldStatus)) {
-			StendhalRPRuleProcessor.get().addGameEvent(this.getName(), "quest",
-					name, status);
-		}
+		quests.setQuest(name, status);
 	}
 
 	public List<String> getQuests() {
-		RPSlot slot = getSlot("!quests");
-		RPObject quests = slot.iterator().next();
-
-		List<String> questsList = new LinkedList<String>();
-		for (String quest : quests) {
-			if (!quest.equals("id") && !quest.equals("zoneid")) {
-				questsList.add(quest);
-			}
-		}
-		return questsList;
+		return quests.getQuests();
 	}
 
 	public void removeQuest(String name) {
-		setKeyedSlot("!quests", name, null);
+		quests.removeQuest(name);
 	}
 
 	/**
@@ -1401,34 +1154,7 @@ public class Player extends RPEntity {
 	 * @return true, if the quest is in one of theses states, false otherwise
 	 */
 	public boolean isQuestInState(String name, String... states) {
-		String questState = getQuest(name);
-
-		if (questState != null) {
-			for (String state : states) {
-				if (questState.equals(state)) {
-					return true;
-				}
-			}
-		}
-
-		return false;
-	}
-
-	/**
-	 * Checks if the player has ever killed a creature with the given name
-	 * without the help of any other player.
-	 * 
-	 * @param The
-	 *            name of the creature to check.
-	 * @return true iff this player has ever killed this creature on his own.
-	 */
-	public boolean hasKilledSolo(String name) {
-		String info = getKeyedSlot("!kills", name);
-
-		if (info == null) {
-			return false;
-		}
-		return "solo".equals(info);
+		return quests.isQuestInState(name, states);
 	}
 
 	/**
@@ -1440,32 +1166,9 @@ public class Player extends RPEntity {
 	 * @return true iff this player has ever killed this creature on his own.
 	 */
 	public boolean hasKilled(String name) {
-		return (getKeyedSlot("!kills", name) != null);
+		return killRec.hasKilled(name);
 	}
 
-	/**
-	 * Checks in which way this player has killed the creature with the given
-	 * name.
-	 * 
-	 * @param The
-	 *            name of the creature to check.
-	 * @return either "solo", "shared", or null.
-	 */
-	public String getKill(String name) {
-		return getKeyedSlot("!kills", name);
-	}
-
-	/**
-	 * Stores in which way the player has killed a creature with the given name.
-	 * 
-	 * @param The
-	 *            name of the killed creature.
-	 * @param mode
-	 *            either "solo", "shared", or null.
-	 */
-	private void setKill(String name, String mode) {
-		setKeyedSlot("!kills", name, mode);
-	}
 
 	/**
 	 * Stores that the player has killed 'name' solo. Overwrites shared kills of
@@ -1473,7 +1176,7 @@ public class Player extends RPEntity {
 	 * 
 	 */
 	public void setSoloKill(String name) {
-		setKill(name, "solo");
+		killRec.setSoloKill(name);
 	}
 
 	/**
@@ -1482,10 +1185,7 @@ public class Player extends RPEntity {
 	 * 
 	 */
 	public void setSharedKill(String name) {
-		if (!hasKilledSolo(name)) {
-			setKill(name, "shared");
-		}
-
+		killRec.setSharedKill(name);
 	}
 
 	/**
@@ -1497,7 +1197,7 @@ public class Player extends RPEntity {
 	 *            The name of the creature.
 	 */
 	public void removeKill(String name) {
-		setKeyedSlot("!kills", name, null);
+		killRec.removeKill(name);
 	}
 
 	/**
@@ -1767,24 +1467,6 @@ public class Player extends RPEntity {
 		return false;
 	}
 
-	/**
-	 * gets the sheep manager for this player
-	 * 
-	 * @return PlayerSheepManager
-	 */
-	public PlayerSheepManager getPlayerSheepManager() {
-		return playerSheepManager;
-	}
-
-	/**
-	 * gets the pet manager for this player
-	 * 
-	 * @return PlayerPetManager
-	 */
-	public PlayerPetManager getPlayerPetManager() {
-		return playerPetManager;
-	}
-
 	//
 	// ActiveEntity
 	//
@@ -1951,7 +1633,7 @@ public class Player extends RPEntity {
 		/*
 		 * If player enters afterlife, make them partially transparent
 		 */
-		if (zoneName.equals(DEFAULT_DEAD_AREA)) {
+		if (zoneName.equals(PlayerDieer.DEFAULT_DEAD_AREA)) {
 			setVisibility(50);
 		}
 
@@ -1973,7 +1655,7 @@ public class Player extends RPEntity {
 		/*
 		 * If player leaves afterlife, make them normal
 		 */
-		if (zone.getID().getID().equals(DEFAULT_DEAD_AREA)) {
+		if (zone.getID().getID().equals(PlayerDieer.DEFAULT_DEAD_AREA)) {
 			setVisibility(100);
 		}
 
