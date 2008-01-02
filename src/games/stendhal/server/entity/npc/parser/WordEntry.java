@@ -9,18 +9,17 @@ import java.io.PrintWriter;
  * @author Martin Fuchs
  */
 public class WordEntry {
-	private ExpressionType type;
-
-	/** Expression type, e.g. VER, ADJ, OBJ, OBJ-FOO, SUB, SUB-ANI, ... */
+	/** normalized word. */
 	private String normalized;
 
-	/** normalized word. */
+	/** pluralized word (or singular for entries of type ...-PLU .*/
 	private String plurSing;
 
-	/** pluralized word (or singular for entries of type ...-PLU .*/
-	private Integer value;
+	/** Expression type, e.g. VER, ADJ, OBJ, OBJ-FOO, SUB, SUB-ANI, ... */
+	private ExpressionType type;
 
 	/** numeric value for words of type NUM. */
+	private Integer value;
 
 	public void print(PrintWriter pw, String key) {
 		pw.printf("%s\t", key);
@@ -42,7 +41,7 @@ public class WordEntry {
 		}
 	}
 
-	public void setNormalized(String normalized) {
+	protected void setNormalized(String normalized) {
 		this.normalized = normalized;
 	}
 
@@ -50,7 +49,7 @@ public class WordEntry {
 		return normalized;
 	}
 
-	public void setType(ExpressionType type) {
+	protected void setType(ExpressionType type) {
 		this.type = type;
 	}
 
@@ -66,7 +65,7 @@ public class WordEntry {
 		return normalized + "/" + getTypeString();
     }
 
-	public void setPlurSing(String plurSing) {
+	protected void setPlurSing(String plurSing) {
 		this.plurSing = plurSing;
 	}
 
@@ -78,7 +77,7 @@ public class WordEntry {
 	    return type!=null && type.isPlural();
     }
 
-	public void setValue(Integer value) {
+	protected void setValue(Integer value) {
 		this.value = value;
 	}
 
