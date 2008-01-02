@@ -83,51 +83,48 @@ public class LookUpQuoteTest {
 
 		SpeakerNPC pequodNpc = NPCList.get().get("Pequod");
 		assertNotNull(pequodNpc);
-		Engine enPequod = pequodNpc.getEngine();
-		assertTrue("test saying 'Hello' instead of 'hi'", enPequod.step(
+		Engine pequodEngine = pequodNpc.getEngine();
+		assertTrue("test saying 'Hello' instead of 'hi'", pequodEngine.step(
 				player, "Hello"));
 		assertEquals(
 				"Hello newcomer! I can #help you on your way to become a real fisherman!",
 				pequodNpc.get("text"));
 
-		assertTrue(enPequod.step(player, "help"));
+		assertTrue(pequodEngine.step(player, "help"));
 		assertEquals(
 				"Nowadays you can read signposts, books and other things here in Faiumoni.",
 				pequodNpc.get("text"));
 
-		assertTrue(enPequod.step(player, "task"));
+		assertTrue(pequodEngine.step(player, "quest"));
 		assertEquals(
 				"Well, I once had a book with quotes of famous fishermen, but I lost it. And now I cannot remember a certain quote. Can you look it up for me?",
 				pequodNpc.get("text"));
 
-		assertTrue(enPequod.step(player, "yes"));
-		assertTrue(pequodNpc.get("text").startsWith("Please look up the famous quote by fisherman "));
+		assertTrue(pequodEngine.step(player, "yes"));
+		String reply = pequodNpc.get("text");
+		assertTrue(reply.startsWith("Please look up the famous quote by fisherman "));
+		// fish out the fisherman's man from Pequod's reply
+		String fisherman = reply.substring(45, reply.length()-1);
 		assertTrue(player.hasQuest(QUEST_SLOT));
 		assertTrue(player.getQuest(QUEST_SLOT).startsWith("fisherman "));
 
-		assertTrue(enPequod.step(player, "task"));
+		assertTrue(pequodEngine.step(player, "task"));
 		assertTrue(pequodNpc.get("text").startsWith("I already asked you for a favor already! Have you already looked up the famous quote by fisherman "));
 
-		assertTrue(enPequod.step(player, "bye"));
+		assertTrue(pequodEngine.step(player, "bye"));
 		assertEquals("Goodbye.", pequodNpc.get("text"));
 
 		// bother Pequod again
-		assertTrue(enPequod.step(player, "hi"));
+		assertTrue(pequodEngine.step(player, "hi"));
 		assertTrue(pequodNpc.get("text").startsWith("Welcome back! Did you look up the famous quote by fisherman "));
-		assertTrue(enPequod.step(player, "yes")); // lie
+		assertTrue(pequodEngine.step(player, "yes")); // lie
 		assertEquals("So, what is it?", pequodNpc.get("text"));
-		assertTrue(enPequod.step(player, "bye"));
+		assertTrue(pequodEngine.step(player, "bye"));
 		assertEquals("I think you made a mistake. Come back if you can tell me the correct quote.", pequodNpc.get("text"));
 
-		// bother Pequod again
-		assertTrue(enPequod.step(player, "hi"));
-		assertTrue(pequodNpc.get("text").startsWith("Welcome back! Did you look up the famous quote by fisherman "));
-		// fish out the fisherman's man from Pequod's reply
-		String fisherman = pequodNpc.get("text").substring(60);
-		assertTrue(enPequod.step(player, "yes")); // lie
-		assertEquals("So, what is it?", pequodNpc.get("text"));
+		// TODO mf - read the requested quote from the library instead of using hardcoded strings
 
-        String quote = "";
+		String quote = "";
         switch(fisherman.charAt(0)) {
         	case 'B':	// Bully
         		quote = "Clownfish are always good for a laugh.";
@@ -139,10 +136,10 @@ public class LookUpQuoteTest {
         		quote = "I wouldn't trust a surgeonfish in a hospital, there's something fishy about them.";
         		break;
         	case 'S':	// Sody
-        		quote = "Devout Crustaceans believe in the One True Cod";
+        		quote = "Devout Crustaceans believe in the One True Cod.";
         		break;
         	case 'H':	// Humphrey
-        		quote = "I don't understand why noone buys my fish. The sign says 'Biggest Roaches in town'";
+        		quote = "I don't understand why noone buys my fish. The sign says 'Biggest Roaches in town'.";
         		break;
         	case 'M':	// Monty
         		quote = "My parrot doesn't like to sit on a perch. He says it smells fishy.";
@@ -155,12 +152,26 @@ public class LookUpQuoteTest {
         		break;
         }
 
-		assertTrue(enPequod.step(player, quote));
+		// bother Pequod again
+		assertTrue(pequodEngine.step(player, "hi"));
+		assertTrue(pequodNpc.get("text").startsWith("Welcome back! Did you look up the famous quote by fisherman "));
+		assertTrue(pequodEngine.step(player, "yes")); // lie
+		assertEquals("So, what is it?", pequodNpc.get("text"));
+
+		assertTrue(pequodEngine.step(player, quote));
 		assertEquals("Oh right, that's it! How could I forget this? Here, take this handy fishing rod as an acknowledgement of my gratitude!",
 				pequodNpc.get("text"));
-		assertTrue(enPequod.step(player, "bye"));
-		assertEquals("Goodbye.", pequodNpc.get("text"));
 		assertEquals("done", player.getQuest(QUEST_SLOT));
+		assertTrue(player.isQuestCompleted(QUEST_SLOT));
+
+		assertTrue(pequodEngine.step(player, "bye"));
+		assertEquals("Goodbye.", pequodNpc.get("text"));
+
+		// bother Pequod again
+		assertTrue(pequodEngine.step(player, "hi"));
+		assertTrue(pequodNpc.get("text").startsWith("Welcome back!"));
+		assertTrue(pequodEngine.step(player, "quest"));
+		assertEquals("No, thanks. I have all I need.", pequodNpc.get("text"));
 	}
 
 	@Test
