@@ -2,7 +2,7 @@ create table if not exists character_stats
   (
   name varchar(32) not null,
   online boolean,
-  
+
   admin int default 0,
   sentence varchar(256),
   age integer,
@@ -10,15 +10,15 @@ create table if not exists character_stats
   outfit varchar(32),
   xp integer,
   money integer,
-  
+
   married varchar(32),
-  
+
   /* Attributes */
   atk integer,
   def integer,
   hp integer,
   karma integer,
-  
+
   /* Equipment */
   head varchar(32),
   armor varchar(32),
@@ -32,8 +32,8 @@ create table if not exists character_stats
   primary key(name)
   )
   TYPE=MYISAM;
-  
-  
+
+
 create table if not exists halloffame
   (
   id integer auto_increment not null,
@@ -74,3 +74,15 @@ CREATE TABLE IF NOT EXISTS itemlog (
 /*CREATE INDEX i_itemlog_itemid_event ON itemlog(itemid, event);*/
 /*CREATE INDEX i_itemlog_event_param12 ON itemlog(event, param1, param2);*/
 /*CREATE INDEX i_itemlog_event_param34 ON itemlog(event, param3, param4);*/
+
+create table if not exists words (
+  id         INTEGER AUTO_INCREMENT NOT NULL,
+  normalized VARCHAR(64) NOT NULL,
+  type		VARCHAR(64),
+  plural	VARCHAR(64),
+  value		INTEGER NULL,
+  alias_id	INTEGER NULL,
+  PRIMARY KEY (id)
+) TYPE=MYISAM;
+
+/*CREATE INDEX i_word_normalized ON words(normalized);*/
