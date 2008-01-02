@@ -1,6 +1,6 @@
 package games.stendhal.server.actions.admin;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
@@ -100,6 +100,28 @@ public class AdminLevelActionTest {
 		action.put("target", "bob");
 		CommandCenter.execute(pl, action);
 		assertEquals("bob has adminlevel 5000", pl.getPrivateTextString());
+	}
+	@Test 
+	public final void testAdminLevelActionPlayerGhosted() {
+		PrivateTextMockingTestPlayer pl = PlayerTestHelper.createPrivateTextMockingTestPlayer("bob");
+		pl.put("adminlevel", 5000);
+		pl.setGhost(true);
+		MockStendhalRPRuleProcessor.get().addPlayer(pl);
+		PrivateTextMockingTestPlayer nonAdmin = PlayerTestHelper.createPrivateTextMockingTestPlayer("nonAdmin");
+		PrivateTextMockingTestPlayer admin = PlayerTestHelper.createPrivateTextMockingTestPlayer("admin");
+		admin.setAdminLevel(5000);
+		
+		RPAction action = new RPAction();
+		action.put("type", "adminlevel");
+		action.put("target", "bob");
+		
+		CommandCenter.execute(admin, action);
+		assertTrue(AdministrationAction.isPlayerAllowedToExecuteAdminCommand(admin, "ghostmode", false));
+		assertEquals("bob has adminlevel 5000", admin.getPrivateTextString());
+		
+		CommandCenter.execute(nonAdmin, action);
+		assertEquals("Player \"bob\" not found",nonAdmin.getPrivateTextString());
+
 	}
 
 	@Test

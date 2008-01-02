@@ -25,7 +25,7 @@ public class AdminLevelAction extends AdministrationAction {
 			String name = action.get(_TARGET);
 			Player target = StendhalRPRuleProcessor.get().getPlayer(name);
 
-			if (target == null) {
+			if (target == null || (target.isGhost() && !isAllowedtoSeeGhosts(player))) {
 				logger.debug("Player \"" + name + "\" not found");
 				player.sendPrivateText("Player \"" + name + "\" not found");
 				return;
@@ -55,15 +55,6 @@ public class AdminLevelAction extends AdministrationAction {
 					response = "Sorry, but you need an adminlevel of "
 							+ REQUIRED_ADMIN_LEVEL_FOR_SUPER
 							+ " to change adminlevel.";
-
-					/*
-					 * if (mylevel < oldlevel) { response = "Sorry, but the
-					 * adminlevel of " + target.getTitle() + " is " + oldlevel + ",
-					 * and your level is only " + mylevel + "."; } else if
-					 * (mylevel < newlevel) { response = "Sorry, you cannot set
-					 * an adminlevel of " + newlevel + ", because your level is
-					 * only " + mylevel + ".";
-					 */
 				} else {
 
 					// OK, do the change
@@ -84,6 +75,10 @@ public class AdminLevelAction extends AdministrationAction {
 
 			player.sendPrivateText(response);
 		}
+	}
+
+	boolean isAllowedtoSeeGhosts(Player player) {
+		return AdministrationAction.isPlayerAllowedToExecuteAdminCommand(player, "ghostmode", false);
 	}
 
 }
