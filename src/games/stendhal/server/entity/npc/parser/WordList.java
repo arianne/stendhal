@@ -159,7 +159,7 @@ public class WordList {
 	 * @param key
 	 */
 	private void addLineEntry(WordEntry entry, String key) {
-		words.put(key.toLowerCase(), entry);
+		words.put(trimWord(key), entry);
 
 		// store plural and associate with singular form
 		if (entry.getPlurSing() != null && !entry.getPlurSing().equals(entry.getNormalized())) {
@@ -170,7 +170,7 @@ public class WordList {
 			pluralEntry.setPlurSing(entry.getNormalized());
 			pluralEntry.setValue(entry.getValue());
 
-			WordEntry prev = words.put(entry.getPlurSing().toLowerCase(), pluralEntry);
+			WordEntry prev = words.put(entry.getPlurSing(), pluralEntry);
 
 			if (prev != null) {
 				logger.debug(String.format("ambiguos plural: %s/%s -> %s", pluralEntry.getPlurSing(),
@@ -281,13 +281,47 @@ public class WordList {
 	}
 
 	/**
+	 * Transform the given word to lower case and trim special characters at
+	 * beginning and end to use this normalized form as key in the word list.
+	 *  
+	 * @param word
+	 * @return
+	 */
+	public static String trimWord(String word) {
+		word = word.toLowerCase();
+
+		// Currently we only need to trim "'" characters. 
+		while(word.length() > 0) {
+			char c = word.charAt(0);
+
+			if (c == '\'') {
+				word = word.substring(1);
+			} else {
+				break;
+			}
+		}
+
+		while(word.length() > 0) {
+			char c = word.charAt(word.length()-1);
+
+			if (c == '\'') {
+				word = word.substring(0, word.length()-1);
+			} else {
+				break;
+			}
+		}
+
+	    return word;
+    }
+
+	/**
 	 * Find an entry for a given word.
 	 * 
-	 * @param s
+	 * @param str
 	 * @return Word
 	 */
-	public WordEntry find(String s) {
-		WordEntry w = words.get(s.toLowerCase());
+	public WordEntry find(String str) {
+		WordEntry w = words.get(trimWord(str));
 
 		return w;
 	}
@@ -299,7 +333,7 @@ public class WordList {
 	 * @return plural string
 	 */
 	public String plural(String word) {
-		WordEntry w = words.get(word.toLowerCase());
+		WordEntry w = words.get(trimWord(word));
 
 		if (w != null) {
 			if (w.getType()!=null && !w.getType().isPlural()) {
@@ -322,7 +356,7 @@ public class WordList {
 	 * @return singular string
 	 */
 	public String singular(String word) {
-		WordEntry w = words.get(word.toLowerCase());
+		WordEntry w = words.get(trimWord(word));
 
 		if (w != null) {
 			if (w.getType()!=null && w.getType().isPlural()) {
@@ -345,7 +379,7 @@ public class WordList {
 	 * @return WordEntry
 	 */
 	protected WordEntry normalizeVerb(String word) {
-		word = word.toLowerCase();
+		word = trimWord(word);
 
 		String normalized = Grammar.normalizeRegularVerb(word);
 
@@ -371,7 +405,7 @@ public class WordList {
 	 * @return WordEntry
 	 */
 	protected WordEntry normalizeAdjective(String word) {
-		word = word.toLowerCase();
+		word = trimWord(word);
 
 		String normalized = Grammar.normalizeDerivedAdjective(word);
 
@@ -390,7 +424,7 @@ public class WordList {
 	 * @param name
 	 */
 	public void registerSubjectName(String name) {
-		String key = name.toLowerCase();
+		String key = trimWord(name);
 		WordEntry w = words.get(key);
 
 		if (w==null || w.getType()==null) {
@@ -411,7 +445,7 @@ public class WordList {
 	 * @param name
 	 */
 	public void unregisterSubjectName(String name) {
-		String key = name.toLowerCase();
+		String key = trimWord(name);
 		WordEntry w = words.get(key);
 
 		if (w!=null && w.getTypeString().equals(SUBJECT_NAME_DYNAMIC)) {
@@ -422,10 +456,10 @@ public class WordList {
 	/**
 	 * Add a new word to the list in order to remember it later. 
 	 *
-	 * @param s
+	 * @param str
 	 */
-	public WordEntry add(String s) {
-		String key = s.toLowerCase();
+	public WordEntry add(String str) {
+		String key = trimWord(str);
 		WordEntry entry = words.get(key);
 
 		if (entry == null) {
@@ -434,7 +468,7 @@ public class WordList {
 			entry.setNormalized(key);
 			words.put(key, entry);
 		} else {
-			logger.warn("word already known: " + s + " -> " + entry.getNormalized());
+			logger.warn("word already known: " + str + " -> " + entry.getNormalized());
 		}
 
 		return entry;
