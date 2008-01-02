@@ -54,7 +54,7 @@ public class ToysCollectorTest {
 
 	@Test
 	public final void testGetTriggerPhraseToEnumerateMissingItems() {
-		assertEquals(ConversationPhrases.YES_MESSAGES,
+		assertEquals(ConversationPhrases.EMPTY,
 				quest.getTriggerPhraseToEnumerateMissingItems());
 	}
 

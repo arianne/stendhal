@@ -85,7 +85,7 @@ public class ToysCollector extends AbstractQuest implements
 	}
 
 	public List<String> getTriggerPhraseToEnumerateMissingItems() {
-		return ConversationPhrases.YES_MESSAGES;
+		return ConversationPhrases.EMPTY;
 	}
 
 	public List<String> getAdditionalTriggerPhraseForQuest() {
