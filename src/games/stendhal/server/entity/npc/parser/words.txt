@@ -15,6 +15,7 @@
 #  VER			verb
 #  VER-GER		verb in gerund form
 #  VER-CON		verb in conditional form
+#  VER-NEG		verb in negated form
 #
 #  OBJ			object
 #  OBJ-AMO		amount
@@ -42,10 +43,12 @@
 :-)	VER	=smile
 abort	VER
 adios	VER
+advertise	VER
 appear	VER
 ask	VER	=say
 bail	VER
 bake	VER
+believe	VER
 boo	VER
 borrow	VER
 buy	VER
@@ -61,6 +64,7 @@ did	VERB	=do
 disembark	VER
 do	VER
 does	VER	=do
+don't	VER
 done	VERB	=do
 dressed	VER
 drop	VER
@@ -106,8 +110,10 @@ married	VER	=marry
 marry	VER
 may	VER-CON
 mix	VER
+not	VER-NEG
 ok	VER
 open	VER
+overcook	VER
 own	VER
 play	VER
 protect	VER
@@ -127,13 +133,17 @@ speak	VER	=say
 start	VER
 summon	VER
 take	VER
+there's	VER
 travel	VER
+understand	VER
 use	VER
 wear	VER
 went	VER	=go
 will	VER
+won't	VER-NEG
 work	VER
 would	VER-CON	=will
+wouldn't	VER-CON-NEG=won't
 yay	VER	=done
 yes	VER
 
@@ -216,6 +226,7 @@ cream	OBJ	creams
 creature	OBJ	creatures
 crossbow	OBJ	crossbows
 crown	OBJ	crowns
+crustaceans	OBJ	crustaceans
 cuirass	OBJ	cuirasses
 dagger	OBJ	daggers
 deal	OBJ	deals
@@ -277,6 +288,7 @@ hint	OBJ	hints
 history	OBJ	histories
 home	OBJ	homes
 honeymoon	OBJ	honeymoons
+hospital	OBJ	hospitals
 house	OBJ	houses
 hypha	OBJ	hyphae
 ice	OBJ	ices
@@ -318,6 +330,7 @@ meat	OBJ	meats
 medicine	OBJ	medicines
 militia	OBJ	militia
 mill	OBJ	mills
+mistake	OBJ	mistakes
 money	OBJ	money
 moose	OBJ	moose
 morning	OBJ	mornings
@@ -366,6 +379,7 @@ problem	OBJ	problems
 quest	OBJ	quests
 rainbow	OBJ	rainbows
 request	OBJ	requests
+restaurant	OBJ	restaurants
 reward	OBJ	rewards
 rhosyd	OBJ	rhosyds
 ring	OBJ	rings
@@ -392,10 +406,12 @@ shadow	OBJ	shadows
 sheaf	OBJ-AMO	sheaves
 shield	OBJ	shields
 shop	OBJ	shops
+sign	OBJ	signs
 silver	OBJ	silvers
 skull	OBJ	skulls
 slime	OBJ	slimes
 sodium	OBJ	sodia
+something	OBJ	somethings
 soup	OBJ-FOO	soups
 space	OBJ	spaces
 species	OBJ	species
@@ -418,17 +434,20 @@ supplie	OBJ	supplies
 sword	OBJ	swords
 table	OBJ	tables
 task	OBJ	tasks
+taste	OBJ	tastes
 tavern	OBJ	taverns
 tea	OBJ-FLU	teas
 teddy	OBJ	teddies
 temple	OBJ	temples
 that	OBJ	=this	this
+thing	OBJ	things
 this	OBJ	this
 toadstool	OBJ	toadstools
 token	OBJ	tokens
 tomato	OBJ-FOO	tomatoes
 tool	OBJ	tools
 tooth	OBJ	teeth
+town	OBJ	towns
 toy	OBJ	toys
 trade	OBJ	trades
 trading	OBJ	tradings
@@ -436,6 +455,7 @@ treasure	OBJ	treasures
 trigger	OBJ	triggers
 trophy	OBJ	trophies
 trouser	OBJ	trousers
+trust	OBJ	trusts
 venom	OBJ	venoms
 vertex	OBJ	vertices
 victory	OBJ	victories
@@ -538,6 +558,7 @@ me	SUB-PRO	=i	us
 monkey	SUB	monkeys
 mummy	SUB	mummies
 nomad	SUB
+noone	SUB
 ogre	SUB	ogres
 orc	SUB	orcs
 penguin	SUB-ANI	penguins
@@ -559,7 +580,6 @@ sorcerer	SUB
 spirit	SUB	spirits
 surgeonfish	SUB-ANI
 susi	SUB-NAM
-thing	SUB	things
 thonatus	SUB-NAM
 tiger	SUB-ANI	tigers
 tom	SUB-NAM
@@ -585,12 +605,14 @@ zynn	SUB-NAM
 another	ADJ
 bad	ADJ
 big	ADJ
+biggest	ADJ
 biting	ADJ
 black	ADJ-COL
 blue	ADJ-COL
 brown	ADJ-COL
 complete	ADJ
 deadly	ADJ
+devout	ADJ
 dwarven	ADJ
 elder	ADJ
 elvish	ADJ
@@ -598,6 +620,7 @@ empty	ADJ
 exact	ADJ
 exotic	ADJ
 fiscal	ADJ
+fishy	ADJ
 free	ADJ
 fresh	ADJ
 golden	ADJ-COL
@@ -627,6 +650,7 @@ silvery	ADJ-COL
 small	ADJ
 special	ADJ
 studded	ADJ
+true	ADJ
 twoside	ADJ
 well	ADJ	=good
 white	ADJ-COL
@@ -671,8 +695,10 @@ twenty	NUM	20
 two	NUM	2
 zero	NUM	0
 
+about	PRE
 down	PRE
 for	PRE
+in	PRE
 of	PRE
 off	PRE
 on	PRE
@@ -686,8 +712,11 @@ how	QUE
 if	QUE
 why	QUE
 
+but	IGN
+even	IGN
 please	IGN
 really	IGN
+so	IGN
 the	IGN
 to	IGN
 whatever	IGN

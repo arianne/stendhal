@@ -253,6 +253,15 @@ public class Expression {
     }
 
 	/**
+	 * Determine if the Expression is negated.
+	 * 
+	 * @return
+	 */
+	public boolean isNegated() {
+	    return type!=null && type.isNegated();
+    }
+
+	/**
 	 * Merge Expression type with another one
 	 * while handling null values.
 	 *

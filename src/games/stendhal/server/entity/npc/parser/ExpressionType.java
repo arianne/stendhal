@@ -8,6 +8,7 @@ public class ExpressionType {
 	public static final String VERB = "VER"; // verb
 	public static final String GERUND = "-GER"; // gerund form
 	public static final String CONDITIONAL = "CON"; // conditional form
+	public static final String NEGATED = "NEG"; // negated form
 	public static final String PRONOUN = "PRO"; // pronoun
 
 	public static final String OBJECT = "OBJ"; // object
@@ -37,6 +38,7 @@ public class ExpressionType {
 	// derived string type constants
 	public static final String SUFFIX_COLOR = SUFFIX + COLOR;
 	public static final String SUFFIX_CONDITIONAL = SUFFIX + CONDITIONAL;
+	public static final String SUFFIX_NEGATED = SUFFIX + NEGATED;
 	public static final String SUFFIX_PRONOUN = SUFFIX + PRONOUN;
 	public static final String SUFFIX_FOOD = SUFFIX + FOOD;
 	public static final String SUFFIX_FLUID = SUFFIX + FLUID;
@@ -192,6 +194,15 @@ public class ExpressionType {
 	}
 
 	/**
+	 * Determine if the Expression is a pronoun.
+	 * 
+	 * @return
+	 */
+	public boolean isPronoun() {
+		return typeString.contains(SUFFIX_PRONOUN);
+	}
+
+	/**
 	 * Determine if the Expression is in conditional form.
 	 * 
 	 * @return
@@ -201,12 +212,12 @@ public class ExpressionType {
 	}
 
 	/**
-	 * Determine if the Expression is a pronoun.
+	 * Determine if the Expression is negated.
 	 * 
 	 * @return
 	 */
-	public boolean isPronoun() {
-		return typeString.contains(SUFFIX_PRONOUN);
+	public boolean isNegated() {
+		return typeString.contains(SUFFIX_NEGATED);
 	}
 
 	/**
@@ -232,6 +243,10 @@ public class ExpressionType {
 
 		if (other.isPronoun() && !isPronoun()) {
 			newTypeString += SUFFIX_PRONOUN;
+		}
+
+		if (other.isNegated() != isNegated()) {
+			newTypeString += SUFFIX_NEGATED;
 		}
 
 		if (newTypeString != typeString) {
