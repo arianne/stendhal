@@ -33,8 +33,14 @@ import org.apache.log4j.Logger;
  * WordList stores a list of words recognized by the ConversationParser. Words are
  * categorized by type (noun, verb, adjective, preposition) and optionally sub-types
  * (animals, food, fluids, ...).
- * 
+ *
  * @author Martin Fuchs
+ * 
+ * TODO mf - There should be a tool to administer the word list in the database:
+ * . associate word types, plural and numerical values for new words
+ * . remove wrong spelled words
+ * . add new entries
+ * . print out the "words.txt" file to update the source
  */
 public class WordList {
 
@@ -170,7 +176,7 @@ public class WordList {
 			}
 
 			while (tk.hasMoreTokens()) {
-				logger.warn("superflous trailing word in words.txt: " + tk.nextToken());
+				logger.warn("superfluous trailing word in words.txt: " + tk.nextToken());
 			}
 		}
 	}
@@ -624,9 +630,9 @@ public class WordList {
 		}
 
 		stmt = conn.prepareStatement(
-			"update words\n"+
-			"set alias_id = ?\n"+
-			"where id = ?"
+			"update	words\n"+
+			"set	alias_id = ?\n"+
+			"where	id = ?"
 		);
 
 		try {
