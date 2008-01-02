@@ -184,7 +184,7 @@ public class ConversationParserTest {
 		assertNull(sentence.getSubject(1));
 		assertEquals(4, sentence.getObject(0).getAmount());
 		assertEquals("fish", sentence.getObjectName());
-		assertEquals("buy fish", sentence.getNormalized());
+		assertEquals("buy fish!", sentence.getNormalized());
 
 		sentence = ConversationParser.parse("i would like to have an ice cream");
 		assertFalse(sentence.hasError());
@@ -193,18 +193,19 @@ public class ConversationParserTest {
 		assertNull(sentence.getSubject(1));
 		assertEquals(1, sentence.getObject(0).getAmount());
 		assertEquals("ice cream", sentence.getObjectName());
+		assertEquals("i buy ice cream!", sentence.getNormalized());
 	}
 
 	@Test
 	public final void testPunctuation() {
-		//TODO also handle "if i may ask, give me 4 fishes, please"
+		//TODO mf - also handle "if i may ask, give me 4 fishes, please"
 		Sentence sentence = ConversationParser.parse("give me 4 fishes, please");
 		assertFalse(sentence.hasError());
 		assertEquals("buy", sentence.getVerbString());
 		assertNull(sentence.getSubject(1));
 		assertEquals(4, sentence.getObject(0).getAmount());
 		assertEquals("fish", sentence.getObjectName());
-		assertEquals("buy fish", sentence.getNormalized());
+		assertEquals("buy fish!", sentence.getNormalized());
 	}
 
 	@Test
