@@ -24,10 +24,10 @@ public class FishermanNPC implements ZoneConfigurator {
 	 * @param	attributes	Configuration attributes.
 	 */
 	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
-		buildGoldsmith(zone, attributes);
+		buildFisherman(zone, attributes);
 	}
 
-	private void buildGoldsmith(StendhalRPZone zone, Map<String, String> attributes) {
+	private void buildFisherman(StendhalRPZone zone, Map<String, String> attributes) {
 		SpeakerNPC fisherman = new SpeakerNPC("Pequod") {
 
 			@Override

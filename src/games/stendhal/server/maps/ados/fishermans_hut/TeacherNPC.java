@@ -24,10 +24,10 @@ public class TeacherNPC implements ZoneConfigurator {
 	 * @param	attributes	Configuration attributes.
 	 */
 	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
-		buildGoldsmith(zone, attributes);
+		buildTeacher(zone, attributes);
 	}
 
-	private void buildGoldsmith(StendhalRPZone zone, Map<String, String> attributes) {
+	private void buildTeacher(StendhalRPZone zone, Map<String, String> attributes) {
 		SpeakerNPC fisherman = new SpeakerNPC("Santiago") {
 
 			@Override
