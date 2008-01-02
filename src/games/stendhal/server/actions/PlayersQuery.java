@@ -106,7 +106,7 @@ public class PlayersQuery implements ActionListener {
 	 * sorts the list of players.
 	 * 
 	 * @param playerlist
-	 *            TODO
+	 *            TODO use getSortedPlayers()
 	 * 
 	 * @return sorted list of players
 	 */
