@@ -515,10 +515,11 @@ public class WordList {
 	public void writeToDB() {
 		JDBCDatabase db = JDBCDatabase.getDatabase();
 		Transaction trans = db.getTransaction();
+		boolean success;
 
 		// empty table "words" 
 		Accessor acc = trans.getAccessor();
-		boolean success;
+
 		try {
 			try {
         		acc.execute("truncate table words");
@@ -537,28 +538,48 @@ public class WordList {
         }
     }
 
+	/**
+	 * Store a number of word entries into the database.
+	 * 
+	 * @param keys
+	 * @return success flag
+	 */
 	private boolean insertIntoDB(Set<String> keys) {
 		JDBCDatabase db = JDBCDatabase.getDatabase();
 		Transaction trans = db.getTransaction();
-
-		boolean success = false;
+		boolean success;
 
 		try {
 			success = insertIntoDB(trans, keys);
 
     		if (success) {
     			trans.commit();
-    		} else {
-    			trans.rollback();
     		}
         } catch(SQLException e) {
-	        logger.error("error inserting new word into DB", e);
+	        logger.error("error while inserting new word into DB", e);
 	        success = false;
         }
+
+		if (!success) {
+			try {
+	            trans.rollback();
+            } catch(SQLException e) {
+    	        logger.error("error while rolling back transaction", e);
+            }
+		}
 
         return success;
     }
 
+	/**
+	 * Store a number of word entries into the database, using the given
+	 * Transaction object.
+	 * 
+	 * @param trans
+	 * @param keys
+	 * @return success flag
+	 * @throws SQLException
+	 */
 	private boolean insertIntoDB(Transaction trans, Set<String> keys) throws SQLException {
 		Connection conn = trans.getConnection();
 
@@ -593,7 +614,7 @@ public class WordList {
         				entry.setId(idRes.getInt(1));
             			++count;
         			} else {
-        				logger.error("missing auto-generated id for word: " + key);
+        				logger.error("missing auto-generated ID for word: " + key);
         			}
         			idRes.close();
 				}
@@ -623,7 +644,7 @@ public class WordList {
 
 	        			stmt.execute();
 					} else {
-						logger.error("alias not found: " + key + " -> " + normalized);
+						logger.error("word alias not found: " + key + " -> " + normalized);
 						return false;
 					}
 				}
@@ -640,8 +661,7 @@ public class WordList {
 	/**
 	 * Read word entries from the database.
 	 */
-	private int readFromDB()
-	{
+	private int readFromDB() {
 		JDBCDatabase db = JDBCDatabase.getDatabase();
 
 		Transaction trans = db.getTransaction();
@@ -690,6 +710,11 @@ public class WordList {
 			return count;
         } catch(SQLException e) {
 	        logger.error("error while reading from DB table words", e);
+	        try {
+	            trans.rollback();
+            } catch(SQLException e1) {
+    	        logger.error("error while rolling back transaction", e);
+            }
 	        return -1;
         }
 	}
