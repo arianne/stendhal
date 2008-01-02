@@ -496,9 +496,8 @@ public class Grammar {
 			return enoun.substring(0, enoun.length() - 1) + postfix;
 		} else if (enoun.endsWith("atoes")) {
 			return enoun.substring(0, enoun.length() - 2) + postfix;
-		} else if (enoun.endsWith("ia") || enoun.endsWith("ia")) { // enoun.endsWith("helia")
-			// ||
-			// enoun.endsWith("sodia")
+		// don't transform "wikipedia" to "wikipedium" -> endswith("ia") is not enough
+		} else if (enoun.endsWith("helia") || enoun.endsWith("sodia")) {
 			return enoun.substring(0, enoun.length() - 1) + "um" + postfix;
 		} else if (enoun.endsWith("algae") || enoun.endsWith("hyphae")
 				|| enoun.endsWith("larvae")) {
@@ -792,7 +791,7 @@ public class Grammar {
 			}
 		} else if (word.length()>3 && word.endsWith("s")) {
 			return word.substring(0, word.length()-1);
-		} else if (word.length()>5 && word.endsWith("ing")) {
+		} else if (isGerund(word)) {
 			return word.substring(0, word.length()-3);
 		} else {
 			return null;
@@ -805,11 +804,11 @@ public class Grammar {
 	 * @param verb
 	 * @return
 	 */
-	public static boolean isGerund(String verb) {
-		if (verb.length()>4 && verb.endsWith("ing")) {
+	public static boolean isGerund(String word) {
+		if (word.length()>4 && word.endsWith("ing")) {
 			// Is there a vowel in the preceding characters?
-			for(int i=verb.length()-3; --i>=0; ) {
-				if (vowel_p(verb.charAt(i)))
+			for(int i=word.length()-3; --i>=0; ) {
+				if (vowel_p(word.charAt(i)))
 					return true;
 			}
 		}

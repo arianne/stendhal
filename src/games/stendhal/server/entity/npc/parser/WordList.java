@@ -166,7 +166,6 @@ public class WordList {
 			// function
 			else if (entry.getPlurSing() != null) {
 				String plural = Grammar.plural(entry.getNormalized());
-
 				if (plural.indexOf(' ') == -1 && !plural.equals(entry.getPlurSing())
 						&& !Grammar.isSubject(entry.getNormalized()) && !entry.getNormalized().equals("is")
 						&& !entry.getNormalized().equals("me")) {

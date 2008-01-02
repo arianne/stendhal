@@ -86,7 +86,6 @@ public class GrammarTest {
 		assertEquals("an a", Grammar.a_noun("a"));
 		assertEquals("a ", Grammar.a_noun(""));
 		assertEquals("a eupepsia", Grammar.a_noun("eupepsia"));
-
 	}
 
 	@Test
@@ -360,7 +359,6 @@ public class GrammarTest {
         testPluralisationAndSingularisation("nooses", "noose");
         testPluralisationAndSingularisation("helia", "helium");
         testPluralisationAndSingularisation("sodia", "sodium");
-		testPluralisationAndSingularisation("xxxia", "xxxium");
         testPluralisationAndSingularisation("men", "man");
         testPluralisationAndSingularisation("humans", "human");
 
@@ -385,7 +383,7 @@ public class GrammarTest {
 		testPluralisationAndSingularisation("djinn", "djinni");
 		testPluralisationAndSingularisation("efreet", "efreeti");
 		testPluralisationAndSingularisation("ys", "y");
-		testPluralisationAndSingularisation("abies", "aby");	// baby: ... + consonant + "y"
+		testPluralisationAndSingularisation("abies", "aby"); // baby: ... + consonant + "y"
 		testPluralisationAndSingularisation("fs", "f");
 
         testPluralisationAndSingularisation("matches", "match");
@@ -395,6 +393,7 @@ public class GrammarTest {
         testPluralisationAndSingularisation("bosses", "boss");
         testPluralisationAndSingularisation("bodies", "body");
         testPluralisationAndSingularisation("princesses", "princess");
+        testPluralisationAndSingularisation("wikipedias", "wikipedia");
 	}
 
 	/**
@@ -656,6 +655,7 @@ public class GrammarTest {
 		assertFalse(Grammar.isGerund("swim"));
 		assertFalse(Grammar.isGerund("thing"));
 		assertFalse(Grammar.isGerund("spring"));
+		assertTrue(Grammar.isGerund("acting"));
 	}
 
 	@Test

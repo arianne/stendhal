@@ -250,7 +250,7 @@ emerald	OBJ	emeralds
 entrail	OBJ	entrails
 equipment	OBJ	equipments
 erinys	OBJ	erinyes
-eupepsia	OBJ	eupepsia
+eupepsia	OBJ	eupepsias
 everything	OBJ	everythings
 exam	OBJ	exams
 eye	OBJ	eyes
@@ -333,7 +333,7 @@ match	OBJ	matches
 matrix	OBJ	matrices
 meat	OBJ	meats
 medicine	OBJ	medicines
-militia	OBJ	militia
+militia	OBJ	militias
 mill	OBJ	mills
 mistake	OBJ	mistakes
 money	OBJ	money
@@ -401,7 +401,7 @@ sapphire	OBJ	sapphires
 scale	OBJ	scales
 scarlet	OBJ	scarlets
 scimitar	OBJ	scimitars
-sclaria	OBJ	sclaria
+sclaria	OBJ	sclarias
 scroll	OBJ	scrolls
 scythe	OBJ	scythes
 secret	OBJ	secrets
@@ -446,7 +446,6 @@ teddy	OBJ	teddies
 temple	OBJ	temples
 that	OBJ	=this	this
 these	OBJ	theses
-thing	SUB
 this	OBJ	this
 toadstool	OBJ	toadstools
 token	OBJ	tokens
@@ -473,7 +472,7 @@ water	OBJ-FLU	waters
 weapon	OBJ	weapons
 wedding	OBJ	weddings
 whiskey	OBJ-FLU	whiskeys
-wikipedia	OBJ	wikipedia
+wikipedia	OBJ	wikipedias
 wine	OBJ-FLU
 wodka	OBJ-FLU	wodkas
 wood	OBJ	woods
@@ -588,6 +587,7 @@ spirit	SUB	spirits
 surgeonfish	SUB-ANI
 susi	SUB-NAM
 them	SUB
+thing	SUB
 thonatus	SUB-NAM
 tiger	SUB-ANI	tigers
 tom	SUB-NAM
