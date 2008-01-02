@@ -395,7 +395,7 @@ class PlayerRPClass {
 		}
 
 		// load sheep
-		Sheep sheep = player.getPlayerSheepManager().retrieveSheep();
+		Sheep sheep = player.petOwner.retrieveSheep();
 
 		if (sheep != null) {
 			logger.debug("Player has a sheep");
@@ -417,7 +417,7 @@ class PlayerRPClass {
 		}
 
 		// load pet
-		Pet pet = player.getPlayerPetManager().retrievePet();
+		Pet pet = player.petOwner.retrievePet();
 
 		if (pet != null) {
 			logger.debug("Player has a pet");
