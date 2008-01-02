@@ -34,11 +34,11 @@ public class BringListOfItemsQuestLogic {
 
 	/**
 	 * Returns a list of the names of all items that the given player still
-	 * has to bring to fulfil the quest.
+	 * has to bring to fullfil the quest.
 	 *
 	 * @param player The player doing the quest
 	 * @param hash If true, sets a # character in front of every name
-	 * @return A list of weapon names
+	 * @return A list of item names
 	 */
 	protected List<String> getListOfStillMissingItems(Player player, boolean hash) {
 		List<String> result = new LinkedList<String>();
@@ -48,12 +48,12 @@ public class BringListOfItemsQuestLogic {
 			doneText = "";
 		}
 		List<String> done = Arrays.asList(doneText.split(";"));
-		for (String weapon : concreteQuest.getNeededItems()) {
-			if (!done.contains(weapon)) {
+		for (String item : concreteQuest.getNeededItems()) {
+			if (!done.contains(item)) {
 				if (hash) {
-					weapon = "#" + weapon;
+					item = "#" + item;
 				}
-				result.add(weapon);
+				result.add(item);
 			}
 		}
 		return result;
@@ -184,7 +184,7 @@ public class BringListOfItemsQuestLogic {
 	}
 
 	/**
-	 * player says he has a required weapon with him
+	 * player says he has a required item with him
 	 */
 	protected void playerWantsToGiveItems() {
 		int[] states = new int[] {ConversationStates.ATTENDING, ConversationStates.QUESTION_1};
@@ -222,10 +222,10 @@ public class BringListOfItemsQuestLogic {
 						return;
 					}
 
-					// register weapon as done
+					// register item as done
 					String doneText = player.getQuest(concreteQuest.getSlotName());
 					player.setQuest(concreteQuest.getSlotName(), doneText + ";" + item);
-					// check if the player has brought all weapons
+					// check if the player has brought all items
 					missing = getListOfStillMissingItems(player, true);
 					if (missing.size() > 0) {
 						engine.say(concreteQuest.respondToItemBrought());
@@ -237,7 +237,6 @@ public class BringListOfItemsQuestLogic {
 						engine.setCurrentState(ConversationStates.ATTENDING);
 					}
 				}
-
 
 				@Override
 				public String toString() {
