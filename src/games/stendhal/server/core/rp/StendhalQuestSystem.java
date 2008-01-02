@@ -37,7 +37,7 @@ public class StendhalQuestSystem {
 	}
 
 	/**
-	 * initiales the QuestSystem
+	 * initializes the QuestSystem
 	 */
 	public void init() {
 		/*

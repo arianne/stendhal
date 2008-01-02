@@ -33,12 +33,11 @@ public class DBValues {
 		for (int i = 0; i < 101; i++) {
 			double level = ((double) i) / 100;
 			DB_VALUES[i] = (float) (Math.log(level) / Math.log(10.0) * 20.0);
-
 		}
 	}
 
 	/**
-	 * calculates a dbValue accoring to the volume
+	 * calculates a dbValue according to the volume
 	 * 
 	 * @param volume
 	 *            the volume to be calculated

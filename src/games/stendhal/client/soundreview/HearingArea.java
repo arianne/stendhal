@@ -6,7 +6,7 @@ import java.awt.geom.Rectangle2D;
 
 /**
  * the area around the userAvatar that the avatar can hear the position should
- * be udated by every step the avatar makes
+ * be updated by every step the avatar makes
  * 
  * @author astrid
  * 
