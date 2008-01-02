@@ -111,6 +111,7 @@ public abstract class ActiveEntity extends Entity {
 				return;
 			}
 		}
+
 		boolean collision = zone.collidesObjects(this, this.getArea(nx, ny));
 
 		if (!collision) {

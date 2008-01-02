@@ -96,7 +96,6 @@ public class ZoneNotifier {
 		} else if (destinationZone.equals("int_ados_castle_entrance")) {
 			process(player, ZoneEventType.VISIT_ADOS_CASTLE);
 		}
-
 	}
 
 }

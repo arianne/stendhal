@@ -27,7 +27,6 @@ public class OutfitAction implements ActionListener {
 	}
 
 	public void onAction(Player player, RPAction action) {
-
 		if (action.has(_VALUE)) {
 			StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
 					_OUTFIT, action.get(_VALUE));
@@ -36,6 +35,5 @@ public class OutfitAction implements ActionListener {
 				player.setOutfit(outfit, false);
 			}
 		}
-
 	}
 }
