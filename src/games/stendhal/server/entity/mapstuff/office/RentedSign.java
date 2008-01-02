@@ -47,4 +47,13 @@ public class RentedSign extends Sign implements StoreableEntity {
 	    super(rpobject);
     }
 
+	/**
+	 * returns the owner
+	 *
+	 * @return name of owner
+	 */
+    public String getOwner() {
+    	return get(OWNER);
+    }
+
 }
