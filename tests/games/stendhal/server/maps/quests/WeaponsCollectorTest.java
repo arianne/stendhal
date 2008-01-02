@@ -3,6 +3,9 @@ package games.stendhal.server.maps.quests;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+
+import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
@@ -10,7 +13,6 @@ import games.stendhal.server.entity.player.Player;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -59,7 +61,6 @@ public class WeaponsCollectorTest {
 	}
 
 	@Test
-	@Ignore
 	public final void doQuest() {
 		NPCList.get().add(new SpeakerNPC("Balduin"));
 		WeaponsCollector wc = new WeaponsCollector();
@@ -78,23 +79,12 @@ public class WeaponsCollectorTest {
 		assertTrue(en.stepTest(pl, "collection"));
 		assertEquals(wc.askForMissingItems(wc.getNeededItems()), npc.get("text"));
 
-		assertTrue(en.stepTest(pl, "no"));
-System.out.println(npc.get("text"));
-		assertEquals("Let me know as soon as you find .... Farewell.", npc.get("text"));
-
 		assertTrue(en.stepTest(pl, "yes"));
-System.out.println(npc.get("text"));
-		assertEquals("What is it that you found?", npc.get("text"));
-
-		assertTrue(en.stepTest(pl, "bardiche"));
-System.out.println(npc.get("text"));
-		assertEquals("You haven't seen one before? Well, it's a white_cloak. So, will you find them all?", npc.get("text"));
-
-/*TODO
-		en.stepTest(pl, ConversationPhrases.YES_MESSAGES.get(0));
 		assertEquals(wc.respondToQuestAcception(), npc.get("text"));
-		assertFalse(npc.isTalking());
-		npc.remove("text");
+
+		//npc has stopped conversation
+		
+		
 
 		assertTrue("the quest was accepted, so it should be started", wc.isStarted(pl));
 		assertFalse(wc.isCompleted(pl));
@@ -108,7 +98,7 @@ System.out.println(npc.get("text"));
 		en.stepTest(pl, "bardiche");
 		assertEquals(wc.respondToOfferOfNotExistingItem("bardiche"), npc.get("text"));
 
-		Item cloak = new Item("bardiche", "", "", null);
+        Item cloak = new Item("bardiche", "", "", null);
 		pl.getSlot("bag").add(cloak);
 
 		assertTrue(en.stepTest(pl, "bardiche"));
@@ -127,9 +117,8 @@ System.out.println(npc.get("text"));
 		}
 
 		assertEquals(wc.respondToLastItemBrought(), npc.get("text"));
-		assertTrue(en.step(pl, ConversationPhrases.GOODBYE_MESSAGES.get(0)));
 		assertTrue(wc.isCompleted(pl));
-*/
+		assertTrue(npc.isTalking());
 	}
 
 	@Test
@@ -139,14 +128,13 @@ System.out.println(npc.get("text"));
 	}
 
 	@Test
-	@Ignore
 	public final void testRewardPlayer() {
 		WeaponsCollector wc = new WeaponsCollector();
 		Player player = PlayerTestHelper.createPlayer("player");
-		double oldKarma = player.getKarma();
+		int oldXP = player.getXP();
 		wc.rewardPlayer(player);
+		
 		assertTrue(player.isEquipped("ice_sword"));
-		assertEquals(oldKarma + 5.0, player.getKarma(), 0.01);
-		assertEquals(2500, player.getXP());
+		assertEquals(oldXP + 1000, player.getXP());
 	}
 }
