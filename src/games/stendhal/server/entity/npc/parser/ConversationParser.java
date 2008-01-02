@@ -67,7 +67,7 @@ public class ConversationParser {
 	 */
 	public static Sentence parse(String text, ConversationContext ctx) {
 
-		//TODO use context information
+		//TODO mf - use context information
 
 		// 1.) determine sentence type from trailing punctuation
 		Sentence sentence = new Sentence();
@@ -75,7 +75,7 @@ public class ConversationParser {
 		if (text != null) {
 			text = getSentenceType(text.trim(), sentence);
 
-//			// TODO get rid of underscore handling for item names
+//			// TODO mf - get rid of underscore handling for item names
 //			text = text.replace('_', ' ');
 		}
 
