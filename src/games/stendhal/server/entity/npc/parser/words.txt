@@ -147,7 +147,7 @@ will	VER
 won't	VER-NEG
 work	VER
 would	VER-CON	=will
-wouldn't	VER-CON-NEG=won't
+wouldn't	VER-CON-NEG	=won't
 yay	VER	=done
 yes	VER
 
@@ -354,7 +354,7 @@ nugget	OBJ	nuggets
 obsidian	OBJ	obsidians
 offer	OBJ	offers
 onion	OBJ-FOO	onions
-or'ril	OBJ	=Or'ril	or'rils
+or'ril	OBJ	or'rils
 ore	OBJ	ores
 pair	OBJ	pairs
 pan	OBJ	pans
@@ -446,7 +446,7 @@ teddy	OBJ	teddies
 temple	OBJ	temples
 that	OBJ	=this	this
 these	OBJ	theses
-thing	OBJ	things
+thing	SUB
 this	OBJ	this
 toadstool	OBJ	toadstools
 token	OBJ	tokens
@@ -511,7 +511,7 @@ crab	SUB-ANI	crabs
 cyclops	SUB	cyclopses
 death	SUB	deaths
 demon	SUB	demons
-deniran	SUB-NAM	=Deniran
+deniran	SUB-NAM
 deus	SUB	dei
 djinni	SUB	djinn
 dog	SUB-ANI	dogs

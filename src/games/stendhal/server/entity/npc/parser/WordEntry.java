@@ -21,6 +21,9 @@ public class WordEntry {
 	/** numeric value for words of type NUM. */
 	private Integer value;
 
+	/** database ID */
+	private int id;
+
 	public void print(PrintWriter pw, String key) {
 		pw.printf("%s\t", key);
 
@@ -84,5 +87,13 @@ public class WordEntry {
 	public Integer getValue() {
 		return value;
 	}
+
+	public void setId(int id) {
+	    this.id = id;	    
+    }
+
+	public int getId() {
+	    return id;	    
+    }
 
 }

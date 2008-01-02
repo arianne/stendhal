@@ -4,20 +4,28 @@ import games.stendhal.common.Grammar;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.io.Writer;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Types;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.StringTokenizer;
 import java.util.TreeMap;
 
 import marauroa.common.Log4J;
+import marauroa.server.game.db.Accessor;
+import marauroa.server.game.db.JDBCDatabase;
+import marauroa.server.game.db.Transaction;
 
 import org.apache.log4j.Logger;
 
@@ -35,39 +43,32 @@ public class WordList {
 	public static final String SUBJECT_NAME_DYNAMIC = ExpressionType.SUBJECT_NAME + ExpressionType.SUFFIX + "DYN";
 
 	private static final String WORDS_FILENAME = "words.txt";
-	private static final String NEW_WORDS_FILENAME = "new-words.txt";
 
 	private final Map<String, WordEntry> words = new TreeMap<String, WordEntry>();
 
 	private static final WordList instance = new WordList();
 
-	// initialize word list from the input file "words.txt" in the class path
-	// and the file "new-words.txt" in the file system
+	// initialize the word list by querying the database or reading from the
+	// input file "words.txt" in the class path
 	static {
 		Log4J.init();
 
-		InputStream str = WordList.class.getResourceAsStream(WORDS_FILENAME);
-		BufferedReader reader = new BufferedReader(new InputStreamReader(str));
+		int ret = instance.readFromDB();
 
-		try {
-			instance.read(reader, null);
-			reader.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		if (ret <= 0) {
+    		InputStream str = WordList.class.getResourceAsStream(WORDS_FILENAME);
+    		BufferedReader reader = new BufferedReader(new InputStreamReader(str));
 
-		if (new File(NEW_WORDS_FILENAME).exists()) {
     		try {
-    			str = new FileInputStream(NEW_WORDS_FILENAME);
-    			reader = new BufferedReader(new InputStreamReader(str));
-    
-    			try {
-    				instance.read(reader, null);
-    			} finally {
-    				reader.close();
-    			}
+    			instance.read(reader, null);
+    			reader.close();
     		} catch (IOException e) {
     			e.printStackTrace();
+    		}
+
+    		// If the database is still empty, store the default entries into it.
+    		if (ret == 0) {
+    			instance.writeToDB();
     		}
 		}
 	}
@@ -102,11 +103,12 @@ public class WordList {
 					comments.add(line);
 				}
 			} else {
+				key = trimWord(key);
 				WordEntry entry = new WordEntry();
 				entry.setNormalized(key);
 
 				readEntryLine(tk, entry);
-				addLineEntry(entry, key);
+				addEntry(key, entry);
 			}
 		}
 	}
@@ -125,7 +127,7 @@ public class WordList {
 				String s = tk.nextToken();
 
 				if (s.charAt(0) == '=') {
-					entry.setNormalized(s.substring(1));
+					entry.setNormalized(trimWord(s.substring(1)));
 					s = tk.hasMoreTokens() ? tk.nextToken() : null;
 				}
 
@@ -138,11 +140,11 @@ public class WordList {
 				}
 			}
 
-			// Type identifiers are always upper case, so a lower case word must
-			// be a plural.
+			// Type identifiers are always upper case, so a word in lower case
+			// must be a plural.
 			if (Character.isLowerCase(entry.getTypeString().charAt(0))) {
 				entry.setType(new ExpressionType(ExpressionType.OBJECT));
-				entry.setPlurSing(entry.getTypeString());
+				entry.setPlurSing(trimWord(entry.getTypeString()));
 			}
 			// complete missing plural expressions using the Grammar.plural()
 			// function
@@ -162,24 +164,23 @@ public class WordList {
 				if (plural.indexOf(' ') == -1 && !plural.equals(entry.getPlurSing())
 						&& !Grammar.isSubject(entry.getNormalized()) && !entry.getNormalized().equals("is")
 						&& !entry.getNormalized().equals("me")) {
-					logger.error(String.format("suspicious plural: %s -> %s (%s?)", entry.getNormalized(),
+					logger.warn(String.format("suspicious plural: %s -> %s (%s?)", entry.getNormalized(),
 							entry.getPlurSing(), plural));
 				}
 			}
 
 			while (tk.hasMoreTokens()) {
-				logger.error("superflous trailing word: " + tk.nextToken());
+				logger.warn("superflous trailing word in words.txt: " + tk.nextToken());
 			}
 		}
 	}
 
 	/**
 	 * Add one entry to the word list.
-	 * 
-	 * @param entry
 	 * @param key
+	 * @param entry
 	 */
-	private void addLineEntry(WordEntry entry, String key) {
+	private void addEntry(String key, WordEntry entry) {
 		words.put(trimWord(key), entry);
 
 		// store plural and associate with singular form
@@ -194,7 +195,7 @@ public class WordList {
 			WordEntry prev = words.put(entry.getPlurSing(), pluralEntry);
 
 			if (prev != null) {
-				logger.debug(String.format("ambiguos plural: %s/%s -> %s", pluralEntry.getPlurSing(),
+				logger.debug(String.format("ambiguous plural: %s/%s -> %s", pluralEntry.getPlurSing(),
 						prev.getPlurSing(), entry.getPlurSing()));
 
 				pluralEntry.setPlurSing(null);
@@ -204,8 +205,9 @@ public class WordList {
 	}
 
 	/**
-	 * The main() function WordList reads the current word list writes a new updated,
-	 * pretty formatted list in the file "words.txt".
+	 * The main() function WordList reads the current word list, writes a new
+	 * updated, pretty formatted list in the file "words.txt" and updates
+	 * the database table "words".
 	 * 
 	 * @param args
 	 */
@@ -235,6 +237,9 @@ public class WordList {
 			writer.close();
 
 			System.out.println("The updated word list has been written to the file '" + outputPath  +"'.");
+
+			// update database entries
+			instance.writeToDB();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -285,18 +290,20 @@ public class WordList {
 	 * @param type
 	 */
 	private void printWordType(PrintWriter writer, String type) {
-		for (String word : words.keySet()) {
-			WordEntry w = words.get(word);
+		for (String key : words.keySet()) {
+			WordEntry entry = words.get(key);
 			boolean matches;
 
 			if (type == null) {
-				matches = w.getType() == null;
+				// match all entries with empty type specifier
+				matches = entry.getType() == null;
 			} else {
-				matches = w.getTypeString().startsWith(type) && !w.isPlural();
+				// all real (no plural) entries with matching type string
+				matches = entry.getTypeString().startsWith(type) && !entry.isPlural();
 			}
 
 			if (matches) {
-				w.print(writer, word);
+				entry.print(writer, key);
 
 				writer.println();
 			}
@@ -344,9 +351,9 @@ public class WordList {
 	 * @return Word
 	 */
 	public WordEntry find(String str) {
-		WordEntry w = words.get(trimWord(str));
+		WordEntry entry = words.get(trimWord(str));
 
-		return w;
+		return entry;
 	}
 
 	/**
@@ -356,15 +363,15 @@ public class WordList {
 	 * @return plural string
 	 */
 	public String plural(String word) {
-		WordEntry w = words.get(trimWord(word));
+		WordEntry entry = words.get(trimWord(word));
 
-		if (w != null) {
-			if (w.getType()!=null && !w.getType().isPlural()) {
+		if (entry != null) {
+			if (entry.getType()!=null && !entry.getType().isPlural()) {
 				// return the associated singular from the word list
-				return w.getPlurSing();
+				return entry.getPlurSing();
 			} else {
 				// The word is already in singular form.
-				return w.getNormalized();
+				return entry.getNormalized();
 			}
 		} else {
 			// fall back: call Grammar.plural()
@@ -379,15 +386,15 @@ public class WordList {
 	 * @return singular string
 	 */
 	public String singular(String word) {
-		WordEntry w = words.get(trimWord(word));
+		WordEntry entry = words.get(trimWord(word));
 
-		if (w != null) {
-			if (w.getType()!=null && w.getType().isPlural()) {
+		if (entry != null) {
+			if (entry.getType()!=null && entry.getType().isPlural()) {
 				// return the associated singular from the word list
-				return w.getPlurSing();
+				return entry.getPlurSing();
 			} else {
 				// The word is already in singular form.
-				return w.getNormalized();
+				return entry.getNormalized();
 			}
 		} else {
 			// fall back: call Grammar.singular()
@@ -407,15 +414,15 @@ public class WordList {
 		String normalized = Grammar.normalizeRegularVerb(word);
 
 		if (normalized != null) {
-			WordEntry w = words.get(normalized);
+			WordEntry entry = words.get(normalized);
 
 			// try and re-append "e" if it was removed by
 			// normalizeRegularVerb()
-			if (w == null && word.endsWith("e") && !normalized.endsWith("e")) {
-				w = words.get(normalized + "e");
+			if (entry == null && word.endsWith("e") && !normalized.endsWith("e")) {
+				entry = words.get(normalized + "e");
 			}
 
-			return w;
+			return entry;
 		} else {
 			return null;
 		}
@@ -433,9 +440,9 @@ public class WordList {
 		String normalized = Grammar.normalizeDerivedAdjective(word);
 
 		if (normalized != null) {
-			WordEntry w = words.get(normalized);
+			WordEntry entry = words.get(normalized);
 
-			return w;
+			return entry;
 		} else {
 			return null;
 		}
@@ -448,17 +455,17 @@ public class WordList {
 	 */
 	public void registerSubjectName(String name) {
 		String key = trimWord(name);
-		WordEntry w = words.get(key);
+		WordEntry entry = words.get(key);
 
-		if (w==null || w.getType()==null) {
-			WordEntry entry = new WordEntry();
+		if (entry==null || entry.getType()==null) {
+			WordEntry newEntry = new WordEntry();
 
-			entry.setNormalized(key);
-			entry.setType(new ExpressionType(SUBJECT_NAME_DYNAMIC));
+			newEntry.setNormalized(key);
+			newEntry.setType(new ExpressionType(SUBJECT_NAME_DYNAMIC));
 
-			words.put(key, entry);
-		} else if (!w.getType().isSubject()) {
-			logger.warn("subject name already registered with incompatible expression type: " + w.getNormalizedWithTypeString());
+			words.put(key, newEntry);
+		} else if (!entry.getType().isSubject()) {
+			logger.warn("subject name already registered with incompatible expression type: " + entry.getNormalizedWithTypeString());
 		}
 	}
 
@@ -469,9 +476,9 @@ public class WordList {
 	 */
 	public void unregisterSubjectName(String name) {
 		String key = trimWord(name);
-		WordEntry w = words.get(key);
+		WordEntry entry = words.get(key);
 
-		if (w!=null && w.getTypeString().equals(SUBJECT_NAME_DYNAMIC)) {
+		if (entry!=null && entry.getTypeString().equals(SUBJECT_NAME_DYNAMIC)) {
 			words.remove(key);
 		}
 	}
@@ -491,26 +498,200 @@ public class WordList {
 			entry.setNormalized(key);
 			words.put(key, entry);
 
-			// print out the new word into the new word file
-			Writer newWordsWriter = null;
-
-			try {
-				// open the output file in append mode
-                newWordsWriter = new FileWriter(NEW_WORDS_FILENAME, true);
-
-                try {
-                	newWordsWriter.write(key + '\n');
-                } finally {
-                	newWordsWriter.close();
-                }
-            } catch(IOException e) {
-                logger.error("Problem appending a new word to the new-words output file.", e);
-            }
+			// save the new word into the database
+			Set<String> keys = new HashSet<String>();
+			keys.add(key);
+			insertIntoDB(keys);
 		} else {
 			logger.warn("word already known: " + str + " -> " + entry.getNormalized());
 		}
 
 		return entry;
+	}
+
+	/**
+	 * Write current word list into the database table "words".
+	 */
+	public void writeToDB() {
+		JDBCDatabase db = JDBCDatabase.getDatabase();
+		Transaction trans = db.getTransaction();
+
+		// empty table "words" 
+		Accessor acc = trans.getAccessor();
+		boolean success;
+		try {
+			try {
+        		acc.execute("truncate table words");
+    		} finally {
+        		acc.close();
+            }
+
+    		success = true;
+        } catch(SQLException e) {
+    		success = false;
+            logger.error("error emptying DB table words", e);
+        }
+
+        if (success) {
+        	insertIntoDB(words.keySet());
+        }
+    }
+
+	private boolean insertIntoDB(Set<String> keys) {
+		JDBCDatabase db = JDBCDatabase.getDatabase();
+		Transaction trans = db.getTransaction();
+
+		boolean success = false;
+
+		try {
+			success = insertIntoDB(trans, keys);
+
+    		if (success) {
+    			trans.commit();
+    		} else {
+    			trans.rollback();
+    		}
+        } catch(SQLException e) {
+	        logger.error("error inserting new word into DB", e);
+	        success = false;
+        }
+
+        return success;
+    }
+
+	private boolean insertIntoDB(Transaction trans, Set<String> keys) throws SQLException {
+		Connection conn = trans.getConnection();
+
+		PreparedStatement stmt = conn.prepareStatement(
+			"insert into words(normalized, type, plural, value)\n"+
+			"values(?, ?, ?, ?)"
+		);
+
+		int count = 0;
+
+		try {
+			for (String key : keys) {
+				WordEntry entry = words.get(key);
+
+				// We ignore all plural entries, they are already present as attribute of the singular form.
+				if (entry.getType()==null || !entry.getType().isPlural()) {
+        			stmt.setString(1, key);
+        			stmt.setString(2, entry.getTypeString());
+        			stmt.setString(3, entry.getPlurSing());
+
+        			Integer value = entry.getValue();
+        			if (value != null) {
+        				stmt.setInt(4, value);
+        			} else {
+        				stmt.setNull(4, Types.INTEGER);
+        			}
+
+        			stmt.execute();
+
+        			ResultSet idRes = stmt.getGeneratedKeys();
+        			if (idRes.next()) {
+        				entry.setId(idRes.getInt(1));
+            			++count;
+        			} else {
+        				logger.error("missing auto-generated id for word: " + key);
+        			}
+        			idRes.close();
+				}
+			}
+		} finally {
+			stmt.close();
+		}
+
+		stmt = conn.prepareStatement(
+			"update words\n"+
+			"set alias_id = ?\n"+
+			"where id = ?"
+		);
+
+		try {
+			for (String key : keys) {
+				WordEntry entry = words.get(key);
+				String normalized = entry.getNormalized();
+
+				// Now we store the alias_id for alias entries.
+				if (!normalized.equals(key)) {
+					WordEntry alias = words.get(normalized);
+
+					if (alias != null) {
+	        			stmt.setInt(1, alias.getId());
+	        			stmt.setInt(2, entry.getId());
+
+	        			stmt.execute();
+					} else {
+						logger.error("alias not found: " + key + " -> " + normalized);
+						return false;
+					}
+				}
+			}
+
+			logger.debug("wrote " + count + " words into database");
+
+			return true;
+		} finally {
+			stmt.close();
+		}
+	}
+
+	/**
+	 * Read word entries from the database.
+	 */
+	private int readFromDB()
+	{
+		JDBCDatabase db = JDBCDatabase.getDatabase();
+
+		Transaction trans = db.getTransaction();
+		Accessor acc = trans.getAccessor();
+
+		try {
+	        ResultSet res = acc.query(
+        		"select	w.id, w.normalized, w.type, w.plural, w.value,\n"+
+        			"	s.normalized\n"+
+        		"from	words w\n"+
+        		"left outer join words s on s.id = w.alias_id"
+	        );
+
+			int count = 0;
+
+	        while(res.next()) {
+	        	WordEntry entry = new WordEntry();
+
+	        	entry.setId(res.getInt(1));
+
+	        	String key = res.getString(2);
+	        	entry.setNormalized(key);
+
+	        	entry.setType(new ExpressionType(res.getString(3)));
+
+	        	entry.setPlurSing(res.getString(4));
+
+	        	int value = res.getInt(5);
+	        	if (!res.wasNull()) {
+	        		entry.setValue(value);
+	        	}
+
+	        	String singular = res.getString(6);
+	        	if (singular != null) {
+	        		entry.setNormalized(singular);
+	        	}
+
+	        	addEntry(key, entry);
+	        	++count;
+	        }
+
+			trans.commit();
+
+			logger.debug("read " + count + " word entries from database");
+
+			return count;
+        } catch(SQLException e) {
+	        logger.error("error while reading from DB table words", e);
+	        return -1;
+        }
 	}
 
 }
