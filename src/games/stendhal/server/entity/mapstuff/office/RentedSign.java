@@ -1,10 +1,11 @@
 package games.stendhal.server.entity.mapstuff.office;
 
+import games.stendhal.server.entity.mapstuff.sign.Sign;
+import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.Definition;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.Definition.Type;
-import games.stendhal.server.entity.mapstuff.sign.Sign;
 
 
 /**
@@ -26,10 +27,17 @@ public class RentedSign extends Sign implements StoreableEntity {
 
 	/**
 	 * Creates a RentedSign.
+	 *
+	 * @param owner player who rented this sign
+	 * @param text text to display on this sign
 	 */
-	public RentedSign() {
-	    super();
-    }
+	public RentedSign(Player owner, String text) {
+		setRPClass(RPCLASS_NAME);
+		store();
+		put(OWNER, owner.getName());
+		put(TIMESTAMP, System.currentTimeMillis());
+		super.setText(text);
+	}
 
 	/**
 	 * Creates a RentedSign based on an existing RPObject. This is just for loading 
