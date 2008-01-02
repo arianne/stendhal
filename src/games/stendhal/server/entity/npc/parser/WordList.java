@@ -56,17 +56,19 @@ public class WordList {
 			e.printStackTrace();
 		}
 
-		try {
-			str = new FileInputStream(NEW_WORDS_FILENAME);
-			reader = new BufferedReader(new InputStreamReader(str));
-
-			try {
-				instance.read(reader, null);
-			} finally {
-				reader.close();
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
+		if (new File(NEW_WORDS_FILENAME).exists()) {
+    		try {
+    			str = new FileInputStream(NEW_WORDS_FILENAME);
+    			reader = new BufferedReader(new InputStreamReader(str));
+    
+    			try {
+    				instance.read(reader, null);
+    			} finally {
+    				reader.close();
+    			}
+    		} catch (IOException e) {
+    			e.printStackTrace();
+    		}
 		}
 	}
 
