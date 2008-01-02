@@ -1,10 +1,12 @@
 package games.stendhal.server.entity.player;
 
 import games.stendhal.common.Rand;
+import games.stendhal.server.core.engine.ItemLogger;
 import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.PassiveEntity;
+import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.Pet;
 import games.stendhal.server.entity.creature.RaidCreature;
 import games.stendhal.server.entity.creature.Sheep;
@@ -120,7 +122,7 @@ public class PlayerDieer {
 		int maxItemsToDrop = Rand.rand(4);
 		List<Pair<RPObject, RPSlot>> objects = new LinkedList<Pair<RPObject, RPSlot>>();
 
-		for (String slotName : player.CARRYING_SLOTS) {
+		for (String slotName : RPEntity.CARRYING_SLOTS) {
 			if (!player.hasSlot(slotName)) {
 				logger.error("CARRYING_SLOTS contains a slot that player "
 						+ player.getName() + " doesn't have.");
@@ -161,10 +163,17 @@ public class PlayerDieer {
 
 					if (quantityToDrop > 0) {
 						StackableItem itemToDrop = item.splitOff(quantityToDrop);
+						ItemLogger.splitOff(player, item, itemToDrop, quantityToDrop);
+						ItemLogger.equipAction(player, itemToDrop, 
+							new String[]{"slot", player.getName(), object.second().getName()}, 
+							new String[]{"slot", player.getName(), "content"});
 						corpse.add(itemToDrop);
 					}
 				} else if (object.first() instanceof PassiveEntity) {
 					object.second().remove(object.first().getID());
+					ItemLogger.equipAction(player, (Entity) object.first(), 
+									new String[]{"slot", player.getName(), object.second().getName()}, 
+									new String[]{"slot", player.getName(), "content"});
 
 					corpse.add((PassiveEntity) object.first());
 				}

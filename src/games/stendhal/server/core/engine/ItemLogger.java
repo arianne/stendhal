@@ -1,5 +1,6 @@
 package games.stendhal.server.core.engine;
 
+import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.PassiveEntity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Item;
@@ -61,8 +62,8 @@ public class ItemLogger {
 		log(item, player, "ground-to-ground", zone.getID().getID(), item.getX() + " " + item.getY(), zone.getID().getID(), x + " " + y);
     }
 
-	public static void equipAction(Player player, Item item, String[] sourceInfo, String[] destInfo) {
-	    log(item, player, sourceInfo[0] + "-to-" + destInfo[0], sourceInfo[1], sourceInfo[2], destInfo[1], destInfo[2]);
+	public static void equipAction(Player player, Entity entity, String[] sourceInfo, String[] destInfo) {
+	    log(entity, player, sourceInfo[0] + "-to-" + destInfo[0], sourceInfo[1], sourceInfo[2], destInfo[1], destInfo[2]);
     }
 
 	public static void merge(RPEntity entity, Item oldItem, Item outlivingItem) {
