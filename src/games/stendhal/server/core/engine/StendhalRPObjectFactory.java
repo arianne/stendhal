@@ -1,6 +1,7 @@
 package games.stendhal.server.core.engine;
 
 import games.stendhal.server.entity.mapstuff.office.ArrestWarrant;
+import games.stendhal.server.entity.mapstuff.office.RentedSign;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.server.game.rp.RPObjectFactory;
@@ -27,6 +28,8 @@ public class StendhalRPObjectFactory extends RPObjectFactory {
 
 		if (name.equals(ArrestWarrant.RPCLASS_NAME)) {
 			return new ArrestWarrant(object);
+		} else if (name.equals(RentedSign.RPCLASS_NAME)) {
+			return new RentedSign(object);
 		}
 
 		// fallback
