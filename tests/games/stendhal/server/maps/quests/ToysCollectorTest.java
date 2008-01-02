@@ -32,6 +32,8 @@ public class ToysCollectorTest {
 	public void setUp() throws Exception {
 		NPCList.get().add(new SpeakerNPC("Anna"));
 		quest = new ToysCollector();
+		quest.init("Toys Collector");
+		quest.addToWorld();
 	}
 
 	@After
@@ -41,7 +43,6 @@ public class ToysCollectorTest {
 
 	@Test
 	public final void testGetNeededItems() {
-
 		assertEquals(Arrays.asList(new String[] { "teddy", "dice", "dress" }),
 				quest.getNeededItems());
 	}
@@ -49,7 +50,6 @@ public class ToysCollectorTest {
 	@Test
 	public final void testGetSlotName() {
 		assertEquals("toys_collector", quest.getSlotName());
-
 	}
 
 	@Test
@@ -62,7 +62,6 @@ public class ToysCollectorTest {
 	public final void testGetAdditionalTriggerPhraseForQuest() {
 		assertEquals(Arrays.asList(new String[] { "toys" }),
 				quest.getAdditionalTriggerPhraseForQuest());
-
 	}
 
 	@Test
