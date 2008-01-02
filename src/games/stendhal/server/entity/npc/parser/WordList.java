@@ -4,11 +4,13 @@ import games.stendhal.common.Grammar;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -32,20 +34,37 @@ public class WordList {
 
 	public static final String SUBJECT_NAME_DYNAMIC = ExpressionType.SUBJECT_NAME + ExpressionType.SUFFIX + "DYN";
 
+	private static final String WORDS_FILENAME = "words.txt";
+	private static final String NEW_WORDS_FILENAME = "new-words.txt";
+
 	private final Map<String, WordEntry> words = new TreeMap<String, WordEntry>();
 
 	private static final WordList instance = new WordList();
 
-	// initialize word list from the input file "words.txt"
+	// initialize word list from the input file "words.txt" in the class path
+	// and the file "new-words.txt" in the file system
 	static {
 		Log4J.init();
 
-		InputStream str = WordList.class.getResourceAsStream("words.txt");
+		InputStream str = WordList.class.getResourceAsStream(WORDS_FILENAME);
 		BufferedReader reader = new BufferedReader(new InputStreamReader(str));
 
 		try {
 			instance.read(reader, null);
 			reader.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		try {
+			str = new FileInputStream(NEW_WORDS_FILENAME);
+			reader = new BufferedReader(new InputStreamReader(str));
+
+			try {
+				instance.read(reader, null);
+			} finally {
+				reader.close();
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -191,8 +210,10 @@ public class WordList {
 	public static void main(String[] args) {
         try {
         	// read in the current word list including comment lines
-    		InputStream str = WordList.class.getResourceAsStream("words.txt");
+    		InputStream str = WordList.class.getResourceAsStream(WORDS_FILENAME);
     		BufferedReader reader = new BufferedReader(new InputStreamReader(str));
+
+    		instance.words.clear();
 
         	List<String> comments = new ArrayList<String>();
 			instance.read(reader, comments);
@@ -204,7 +225,7 @@ public class WordList {
 			File file = new File(outputPath);
 			if (!file.exists()) {
 				// Otherwise just write the output file into the current directory.
-				outputPath = "words.txt";
+				outputPath = WORDS_FILENAME;
 			}
 
         	PrintWriter writer = new PrintWriter(new FileWriter(outputPath));
@@ -458,7 +479,7 @@ public class WordList {
 	 *
 	 * @param str
 	 */
-	public WordEntry add(String str) {
+	public WordEntry addNewWord(String str) {
 		String key = trimWord(str);
 		WordEntry entry = words.get(key);
 
@@ -467,6 +488,22 @@ public class WordList {
 
 			entry.setNormalized(key);
 			words.put(key, entry);
+
+			// print out the new word into the new word file
+			Writer newWordsWriter = null;
+
+			try {
+				// open the output file in append mode
+                newWordsWriter = new FileWriter(NEW_WORDS_FILENAME, true);
+
+                try {
+                	newWordsWriter.write(key + '\n');
+                } finally {
+                	newWordsWriter.close();
+                }
+            } catch(IOException e) {
+                logger.error("Problem appending a new word to the new-words output file.", e);
+            }
 		} else {
 			logger.warn("word already known: " + str + " -> " + entry.getNormalized());
 		}

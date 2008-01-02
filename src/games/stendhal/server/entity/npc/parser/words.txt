@@ -64,6 +64,7 @@ did	VERB	=do
 disembark	VER
 do	VER
 does	VER	=do
+doesn't	VER-NEG	=do
 don't	VER
 done	VERB	=do
 dressed	VER
@@ -99,6 +100,7 @@ is	VER	are
 jump	VER
 kill	VER
 kiss	VER
+laugh	VER
 learn	VER
 leave	VER
 like	VER
@@ -127,6 +129,8 @@ say	VER
 sell	VER
 sew	VER
 shout	VER
+sit	VER
+smell	VER
 smile	VER
 sorry	VER
 speak	VER	=say
@@ -204,6 +208,7 @@ character	OBJ	characters
 cheese	OBJ-FOO	cheeses
 cherry	OBJ-FOO	cherries
 chest	OBJ	chests
+chips	OBJ-FOO	chips
 chunk	OBJ	chunks
 citizenship	OBJ	citizenships
 claymore	OBJ	claymores
@@ -440,6 +445,7 @@ tea	OBJ-FLU	teas
 teddy	OBJ	teddies
 temple	OBJ	temples
 that	OBJ	=this	this
+these	OBJ	theses
 thing	OBJ	things
 this	OBJ	this
 toadstool	OBJ	toadstools
@@ -561,6 +567,7 @@ nomad	SUB
 noone	SUB
 ogre	SUB	ogres
 orc	SUB	orcs
+parrot	SUB-ANI
 penguin	SUB-ANI	penguins
 perch	SUB-ANI
 peter	SUB-NAM
@@ -580,6 +587,7 @@ sorcerer	SUB
 spirit	SUB	spirits
 surgeonfish	SUB-ANI
 susi	SUB-NAM
+them	SUB
 thonatus	SUB-NAM
 tiger	SUB-ANI	tigers
 tom	SUB-NAM
@@ -629,6 +637,7 @@ great	ADJ
 greater	ADJ
 greaterthan	ADJ
 green	ADJ-COL
+holy	ADJ
 lazy	ADJ
 leather	ADJ
 lessthan	ADJ
@@ -650,6 +659,7 @@ silvery	ADJ-COL
 small	ADJ
 special	ADJ
 studded	ADJ
+tasty	ADJ
 true	ADJ
 twoside	ADJ
 well	ADJ	=good
@@ -712,6 +722,7 @@ how	QUE
 if	QUE
 why	QUE
 
+always	IGN
 but	IGN
 even	IGN
 please	IGN

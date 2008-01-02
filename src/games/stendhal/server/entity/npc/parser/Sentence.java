@@ -6,8 +6,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import org.apache.log4j.Logger;
-
 /**
  * ConversationParser returns the parsed sentence in this class. The Sentence
  * class stores the sentence content in a list of parsed and classified
@@ -17,8 +15,6 @@ import org.apache.log4j.Logger;
  * @author Martin Fuchs
  */
 public class Sentence {
-
-	private static final Logger logger = Logger.getLogger(Sentence.class);
 
 	public static final int ST_UNDEFINED = 0;
 	public static final int ST_STATEMENT = 1;
@@ -521,11 +517,8 @@ public class Sentence {
     					w.setNormalized(original.toLowerCase());
 
     					if (entry == null) {
-        					// add to the word list
-        					wl.add(original);
-
-        					//TODO mf - print out into the file "new-words.txt"
-        					logger.warn("unknown word: " + original);
+        					// add the unknown word to the word list
+        					wl.addNewWord(original);
     					}
 					}
 				}
@@ -591,8 +584,7 @@ public class Sentence {
 					subject1.getNormalized().equals("you") &&
 					verb.getNormalized().equals("give") &&
 					subject2.getNormalized().equals("i")) {
-				// remove the subjects and replace the verb with "buy" as first
-				// word
+				// remove the subjects and replace the verb with "buy" as first word
 				expressions.remove(subject1);
 				expressions.remove(subject2);
 				verb.setNormalized("buy");
