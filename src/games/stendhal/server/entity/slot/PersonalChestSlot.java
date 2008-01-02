@@ -21,6 +21,13 @@ public class PersonalChestSlot extends ChestSlot {
 
 	@Override
     public boolean isReachableForTakingThingsOutOfBy(Entity entity) {
+
+		// first delegate to super method to check that the player
+		// is next to the chest
+		if (!super.isReachableForTakingThingsOutOfBy(entity)) {
+			return false;
+		}
+
 		// Yes, this comparison of references is by design: Two player objects
 		// are equal if they are for the same character but could be from two 
 		// different session. Marauroa is supposted to prevent two session
@@ -30,7 +37,7 @@ public class PersonalChestSlot extends ChestSlot {
 	    	logger.error(entity + " tried to take stuff out of the bank chest " + chest + " which is currently attenting " + chest.getAttending());
 	    	return false;
 	    }
-	    return super.isReachableForTakingThingsOutOfBy(entity);
+	    return true;
     }
 
 }
