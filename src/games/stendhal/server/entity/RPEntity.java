@@ -905,7 +905,7 @@ public abstract class RPEntity extends GuidedEntity {
 			} else {
 				if (damageDone == totalDamageReceived) {
 					killer.setSoloKill(killedName);
-				} else if (!killer.hasKilledSolo(killedName)) {
+				} else {
 					killer.setSharedKill(killedName);
 				}
 			}
