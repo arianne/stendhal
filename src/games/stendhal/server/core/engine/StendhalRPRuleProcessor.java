@@ -328,9 +328,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 					logger.error("Error in player logic", e);
 				}
 			}
-
 		});
-
 	}
 
 	protected void handleKilledEntities() {
@@ -357,7 +355,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		 * leaks came from list keep adding and adding elements.
 		 */
 		if (Debug.SHOW_LIST_SIZES && (rpman.getTurn() % 1000 == 0)) {
-
 			int objects = 0;
 
 			for (IRPZone zone : StendhalRPWorld.get()) {
@@ -540,12 +537,10 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 	public static int getAmountOfOnlinePlayers() {
 		return get().onlinePlayers.size();
-
 	}
 
 	public static void notifyOnlineStatus(boolean isOnline, final String name) {
 		if (instance != null) {
-
 			if (isOnline) {
 				get().getOnlinePlayers().forAllPlayersExecute(new Task<Player>() {
 					public void execute(Player player) {
@@ -563,7 +558,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 				});
 			}
 		}
-
 	}
 
 }

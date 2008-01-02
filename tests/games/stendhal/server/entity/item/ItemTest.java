@@ -106,7 +106,6 @@ public class ItemTest {
 		Item itemcopy = new Item(mo);
 		assertEquals("val_1", itemcopy.get("att_1"));
 		assertEquals("val_2", itemcopy.get("att_2"));
-
 	}
 
 	@Test
@@ -148,7 +147,6 @@ public class ItemTest {
 		assertEquals(3, mo.getAttack());
 		mo.put("atk", 2);
 		assertEquals(2, mo.getAttack());
-
 	}
 
 	@Test
@@ -195,7 +193,6 @@ public class ItemTest {
 				new HashMap<String, String>());
 		assertEquals("mySubclass", mo.getItemSubclass());
 		new Item("name1", "myClass", null, new HashMap<String, String>());
-
 	}
 
 	@Test

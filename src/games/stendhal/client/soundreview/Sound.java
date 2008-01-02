@@ -35,9 +35,7 @@ public class Sound {
 
 		} else {
 			return SoundMaster.play(name, x, y);
-
 		}
-
 	}
 
 	static {

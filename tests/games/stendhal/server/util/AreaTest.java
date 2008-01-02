@@ -41,7 +41,6 @@ public class AreaTest {
 		Assert.assertTrue(area.contains(entity));
 	}
 
-
 	@Test
 	public void testNotInArea() {
 		StendhalRPWorld.get();

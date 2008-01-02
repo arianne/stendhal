@@ -12,12 +12,10 @@ public class AwayActionTest {
 
 	@Test(expected = NullPointerException.class)
 	public void testPlayerIsNull() {
-
 		RPAction action = new RPAction();
 		action.put("type", "away");
 		AwayAction aa = new AwayAction();
 		aa.onAction(null, action);
-
 	}
 
 	@Test

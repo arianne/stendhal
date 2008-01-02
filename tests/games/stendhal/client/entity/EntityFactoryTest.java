@@ -56,7 +56,6 @@ public class EntityFactoryTest {
 		assertNotNull("entity should be created", en);
 		assertEquals("we should have created a Carrotgrower now",
 				CarrotGrower.class, en.getClass());
-
 	}
 
 	@Test
@@ -78,7 +77,6 @@ public class EntityFactoryTest {
 		assertNotNull("entity should be created", en);
 		assertEquals("we should have created a Grainfield now",
 				GrainField.class, en.getClass());
-
 	}
 
 	@Test
@@ -98,7 +96,6 @@ public class EntityFactoryTest {
 		assertNotNull("entity should be created", en);
 		assertEquals("we should have created a box by now", Box.class, en
 				.getClass());
-
 	}
 
 	@Test
@@ -108,7 +105,6 @@ public class EntityFactoryTest {
 		assertNotNull("entity should be created", en);
 		assertEquals("we should have created a player by now", Player.class, en
 				.getClass());
-
 	}
 
 	@Test
@@ -120,7 +116,6 @@ public class EntityFactoryTest {
 		assertNotNull("entity should be created", en);
 		assertEquals("we should have created a Creature by now",
 				Creature.class, en.getClass());
-
 	}
 
 	@Test
@@ -131,7 +126,6 @@ public class EntityFactoryTest {
 		assertNotNull("entity should be created", en);
 		assertEquals("we should have created a Sheep by now", Sheep.class, en
 				.getClass());
-
 	}
 
 	@Test
@@ -142,7 +136,6 @@ public class EntityFactoryTest {
 		assertNotNull("entity should be created", en);
 		assertEquals("we should have created a NPC by now", NPC.class, en
 				.getClass());
-
 	}
 
 	@Test

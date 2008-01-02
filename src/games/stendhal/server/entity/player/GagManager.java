@@ -63,7 +63,6 @@ public class GagManager implements LoginListener {
 		}
 
 		gag(criminal, policeman, minutes, reason, criminalName);
-
 	}
 
 	void gag(final Player criminal, Player policeman, int minutes,
@@ -104,7 +103,6 @@ public class GagManager implements LoginListener {
 			inmate.sendPrivateText("Your gag sentence is over.");
 			logger.debug("Player " + inmate.getName() + "released from gag.");
 		}
-
 	}
 
 	/**

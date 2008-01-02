@@ -42,7 +42,6 @@ public class SoundMaster implements Runnable, WorldListener {
 			boolean loop) {
 		if (!(x == 0 && y == 0)) {
 			if (HearingArea.contains(x, y)) {
-
 				return play(soundName);
 			}
 		}
@@ -52,7 +51,6 @@ public class SoundMaster implements Runnable, WorldListener {
 	public static AudioClip play(String soundName) {
 		boolean shallLoop = false;
 		return play(soundName, shallLoop);
-
 	}
 
 	public static AudioClip play(String soundName, boolean shallLoop) {
@@ -85,7 +83,6 @@ public class SoundMaster implements Runnable, WorldListener {
 				if (shallLoop) {
 					cl.loop(Clip.LOOP_CONTINUOUSLY);
 				} else {
-
 					cl.start();
 				}
 
@@ -133,27 +130,23 @@ public class SoundMaster implements Runnable, WorldListener {
 		// System.out.println(zoneName);
 		// bg = new Background(zoneName);
 		// bg.run();
-
 	}
 
 	public void zoneLeft(String zoneName) {
 		// System.out.println(zoneName);
 		// bg.stop();
 		// bg=null;
-
 	}
 
 	public static void setMute(boolean on) {
-
 		if (on) {
 			Enumeration<Line> enu = playingClips.elements();
 			while (enu.hasMoreElements()) {
 				Line lin = enu.nextElement();
 				lin.close();
-
 			}
 		}
-		isMute = on;
 
+		isMute = on;
 	}
 }
