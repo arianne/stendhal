@@ -22,6 +22,6 @@ public class RentedSignList extends StoreableEntityList<RentedSign> {
 
 	@Override
     public String getName(RentedSign rentedSign) {
-		return rentedSign.getOwner();
+		return rentedSign.getRenter();
     }
 }

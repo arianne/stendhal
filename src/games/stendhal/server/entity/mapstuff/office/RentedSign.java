@@ -15,26 +15,26 @@ import marauroa.common.game.Definition.Type;
  */
 public class RentedSign extends Sign implements StoreableEntity {
 	public static final String RPCLASS_NAME = "rented_sign";
-	private static final String OWNER = "owner";
+	private static final String RENTER = "renter";
 	private static final String TIMESTAMP = "timestamp";
 
 	public static void generateRPClass() {
 		RPClass clazz = new RPClass(RPCLASS_NAME);
 		clazz.isA("sign");
-		clazz.addAttribute(OWNER, Type.STRING, Definition.HIDDEN);
+		clazz.addAttribute(RENTER, Type.STRING, Definition.HIDDEN);
 		clazz.addAttribute(TIMESTAMP, Type.FLOAT, Definition.HIDDEN);
 	}
 
 	/**
 	 * Creates a RentedSign.
 	 *
-	 * @param owner player who rented this sign
+	 * @param renter player who rented this sign
 	 * @param text text to display on this sign
 	 */
-	public RentedSign(Player owner, String text) {
+	public RentedSign(Player renter, String text) {
 		setRPClass(RPCLASS_NAME);
 		store();
-		put(OWNER, owner.getName());
+		put(RENTER, renter.getName());
 		put(TIMESTAMP, System.currentTimeMillis());
 		super.setText(text);
 	}
@@ -52,8 +52,8 @@ public class RentedSign extends Sign implements StoreableEntity {
 	 *
 	 * @return name of owner
 	 */
-    public String getOwner() {
-    	return get(OWNER);
+    public String getRenter() {
+    	return get(RENTER);
     }
 
 }
