@@ -129,7 +129,7 @@ public class Sentence {
 
 	/**
 	 * Return trigger Expression for the FSM engine.
-	 * TODO replace by sentence matching.
+	 * TODO mf - replace by sentence matching.
 	 * 
 	 * @return trigger string
 	 */
@@ -371,8 +371,8 @@ public class Sentence {
 	 * Return the complete text of the sentence with unchanged case, but with
 	 * trimmed white space.
 	 * 
-	 * TODO There should be only as less code places as possible to rely on this
-	 * method.
+	 * TODO mf - There should be only as less code places as possible to rely
+	 * on this method.
 	 * 
 	 * @return string
 	 */
@@ -382,6 +382,8 @@ public class Sentence {
 		for (Expression w : expressions) {
 			builder.append(w.getOriginal());
 		}
+
+		appendPunctation(builder);
 
 		return builder.toString();
 	}
@@ -399,6 +401,8 @@ public class Sentence {
 				builder.append(w.getNormalized());
 			}
 		}
+
+		appendPunctation(builder);
 
 		return builder.toString();
 	}
@@ -427,16 +431,25 @@ public class Sentence {
 			}
 		}
 
-		if (sentenceType == ST_STATEMENT) {
-			builder.append(".");
-		} else if (sentenceType == ST_IMPERATIVE) {
-			builder.append("!");
-		} else if (sentenceType == ST_QUESTION) {
-			builder.append("?");
-		}
+		appendPunctation(builder);
 
 		return builder.toString();
 	}
+
+	/**
+	 * Return the trailing punctuation depending on the sentence type.
+	 *
+	 * @return
+	 */
+	public void appendPunctation(SentenceBuilder builder) {
+		if (sentenceType == ST_STATEMENT) {
+			builder.append('.');
+		} else if (sentenceType == ST_IMPERATIVE) {
+			builder.append('!');
+		} else if (sentenceType == ST_QUESTION) {
+			builder.append('?');
+		}
+    }
 
 	/**
 	 * Classify word types and normalize words.
@@ -508,9 +521,10 @@ public class Sentence {
     					w.setNormalized(original.toLowerCase());
 
     					if (entry == null) {
-        					// add to the word list to print the warning message only once
+        					// add to the word list
         					wl.add(original);
 
+        					//TODO mf - print out into the file "new-words.txt"
         					logger.warn("unknown word: " + original);
     					}
 					}
@@ -559,8 +573,8 @@ public class Sentence {
 	 * replace grammatical constructs with simpler ones with the same meaning,
 	 * so that they can be understood by the FSM rules
 	 * 
-	 * TODO This grammatical aliasing is only a first step to more flexible NPC
-	 * conversation. It should be integrated with the FSM engine so that quest
+	 * TODO mf - This grammatical aliasing is only a first step to more flexible
+	 * NPC conversation. It should be integrated with the FSM engine so that quest
 	 * writers can specify the conversation syntax on their own.
 	 */
 	public void performaAliasing() {
@@ -832,6 +846,50 @@ public class Sentence {
 				}
 			}
 		} while(changed);
+	}
+
+	/**
+	 * Check if two Sentences match each other.
+	 *
+	 * @param other
+	 * @return
+	 */
+	public boolean matchesNormalized(Sentence other) {
+		// shortcut for sentences with differing lengths
+	    if (expressions.size() != other.expressions.size()) {
+	    	return false;
+	    }
+
+	    // loop over all expressions and match them between both sides
+	    Iterator<Expression> it1 = expressions.iterator();
+	    Iterator<Expression> it2 = other.expressions.iterator();
+
+		while(it1.hasNext() && it2.hasNext()) {
+			Expression e1 = it1.next();
+			Expression e2 = it2.next();
+
+			if (!e1.matchesNormalized(e2)) {
+				return false;
+			}
+		}
+
+		// Now there should be no more expressions at both sides.
+		if (!it1.hasNext() || it2.hasNext()) {
+			return true;
+		} else {
+			return false;
+		}
+    }
+
+	/**
+	 * Check if the Sentence matches the given String.
+	 *
+	 * @param str
+	 * @return
+	 */
+	public boolean matches(String str) {
+		// TODO mf - evaluate expression types instead of just calling matchesNormalized()
+		return matchesNormalized(ConversationParser.parse(str));
 	}
 
 }
