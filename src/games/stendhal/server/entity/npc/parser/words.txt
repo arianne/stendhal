@@ -201,9 +201,7 @@ catacomb	OBJ	catacombs
 cauliflower	OBJ	cauliflowers
 chain	OBJ	chains
 challenge	OBJ	challenges
-channange	OBJ	channanges
 chaos	OBJ	chaos
-char	OBJ	chars
 character	OBJ	characters
 cheese	OBJ-FOO	cheeses
 cherry	OBJ-FOO	cherries
@@ -499,6 +497,7 @@ boy	SUB	boys
 cat	SUB-ANI	cats
 caverat	SUB-ANI	caverats
 ceryl	SUB-NAM
+char	SUB
 charles	SUB-NAM
 chicken	SUB-ANI	chickens
 chief	SUB	chiefs

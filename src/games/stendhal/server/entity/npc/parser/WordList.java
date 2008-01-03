@@ -3,8 +3,6 @@ package games.stendhal.server.entity.npc.parser;
 import games.stendhal.common.Grammar;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -14,7 +12,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -35,12 +32,6 @@ import org.apache.log4j.Logger;
  * (animals, food, fluids, ...).
  *
  * @author Martin Fuchs
- * 
- * TODO mf - There should be a tool to administer the word list in the database:
- * . associate word types, plural and numerical values for new words
- * . remove wrong spelled words
- * . add new entries
- * . print out the "words.txt" file to update the source
  */
 public class WordList {
 
@@ -48,7 +39,7 @@ public class WordList {
 
 	public static final String SUBJECT_NAME_DYNAMIC = ExpressionType.SUBJECT_NAME + ExpressionType.SUFFIX + "DYN";
 
-	private static final String WORDS_FILENAME = "words.txt";
+	public static final String WORDS_FILENAME = "words.txt";
 
 	private final Map<String, WordEntry> words = new TreeMap<String, WordEntry>();
 
@@ -210,91 +201,12 @@ public class WordList {
 	}
 
 	/**
-	 * The main() function WordList reads the current word list, writes a new
-	 * updated, pretty formatted list in the file "words.txt" and updates
-	 * the database table "words".
-	 * 
-	 * @param args
-	 */
-	public static void main(String[] args) {
-        try {
-        	// read in the current word list including comment lines
-    		InputStream str = WordList.class.getResourceAsStream(WORDS_FILENAME);
-    		BufferedReader reader = new BufferedReader(new InputStreamReader(str));
-
-    		instance.words.clear();
-
-        	List<String> comments = new ArrayList<String>();
-			instance.read(reader, comments);
-			reader.close();
-
-	    	// see if we can find the word list source file in the file system
-	    	String outputPath = "src/games/stendhal/server/entity/npc/parser/words.txt";
-
-			File file = new File(outputPath);
-			if (!file.exists()) {
-				// Otherwise just write the output file into the current directory.
-				outputPath = WORDS_FILENAME;
-			}
-
-        	PrintWriter writer = new PrintWriter(new FileWriter(outputPath));
-			instance.write(writer, comments);
-			writer.close();
-
-			System.out.println("The updated word list has been written to the file '" + outputPath  +"'.");
-
-			// update database entries
-			instance.writeToDB();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
-	/**
-	 * Print all words sorted by known types.
-	 * 
-	 * @param writer
-	 */
-	public void write(PrintWriter writer, final List<String> comments) {
-		for (String c : comments) {
-			writer.println(c);
-		}
-
-		writer.println();
-		printWordType(writer, ExpressionType.VERB);
-
-		writer.println();
-		printWordType(writer, ExpressionType.OBJECT);
-
-		writer.println();
-		printWordType(writer, ExpressionType.SUBJECT);
-
-		writer.println();
-		printWordType(writer, ExpressionType.ADJECTIVE);
-
-		writer.println();
-		printWordType(writer, ExpressionType.NUMERAL);
-
-		writer.println();
-		printWordType(writer, ExpressionType.PREPOSITION);
-
-		writer.println();
-		printWordType(writer, ExpressionType.QUESTION);
-
-		writer.println();
-		printWordType(writer, ExpressionType.IGNORE);
-
-		writer.println();
-		printWordType(writer, null);
-	}
-
-	/**
 	 * Print all words of a given (main-)type.
 	 * 
 	 * @param writer
 	 * @param type
 	 */
-	private void printWordType(PrintWriter writer, String type) {
+	void printWordType(PrintWriter writer, String type) {
 		for (String key : words.keySet()) {
 			WordEntry entry = words.get(key);
 			boolean matches;
