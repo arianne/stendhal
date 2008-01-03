@@ -19,7 +19,6 @@ import marauroa.common.game.RPObject;
 import marauroa.server.game.db.IDatabase;
 import marauroa.server.game.db.JDBCDatabase;
 import marauroa.server.game.db.JDBCSQLHelper;
-import marauroa.server.game.db.JDBCTransaction;
 import marauroa.server.game.db.NoDatabaseConfException;
 import marauroa.server.game.db.StringChecker;
 import marauroa.server.game.db.Transaction;
@@ -30,8 +29,26 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 	static final Logger logger = Logger.getLogger(StendhalPlayerDatabase.class);
 
 	
+	/**
+	 * This method returns an instance of PlayerDatabase.
+	 * 
+	 * @return A shared instance of PlayerDatabase
+	 */
+	public static IDatabase getDatabase() {
+		try {
+			if (database == null) {
+				logger.info("Starting Stendhal JDBC Database");
+				database =  (JDBCDatabase) newConnection();
+			}
+
+			return database;
+		} catch (Exception e) {
+			logger.error("cannot get database connection", e);
+			throw new NoDatabaseConfException(e);
+		}
+	}
 	
-	private StendhalPlayerDatabase(Properties connInfo) {
+	protected StendhalPlayerDatabase(Properties connInfo) {
 		super(connInfo);
 		try {
 			configureDatabase();
@@ -40,7 +57,7 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 		}
 	}
 
-	private void configureDatabase() throws SQLException {
+	protected void configureDatabase() throws SQLException {
 		Transaction trans = getTransaction();
 		JDBCSQLHelper.get().runDBScript(trans,
 				"games/stendhal/server/stendhal_init.sql");
@@ -323,26 +340,7 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 		}
 	}
 
-	protected static IDatabase playerDatabase;
 
-	/**
-	 * This method returns an instance of PlayerDatabase.
-	 * 
-	 * @return A shared instance of PlayerDatabase
-	 */
-	public static IDatabase getDatabase() {
-		try {
-			if (playerDatabase == null) {
-				logger.info("Starting Stendhal JDBC Database");
-				playerDatabase =  newConnection();
-			}
-
-			return playerDatabase;
-		} catch (Exception e) {
-			logger.error("cannot get database connection", e);
-			throw new NoDatabaseConfException(e);
-		}
-	}
 
 	/**
 	 * close the database connection TODO This function is not yet used, it
@@ -350,12 +348,12 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 	 */
 	public static void closeDatabase() {
 		try {
-			if (playerDatabase != null) {
+			if (database != null) {
 				logger.info("closing Stendhal JDBC Database");
-				playerDatabase.close();
+				database.close();
 			}
 
-			playerDatabase = null;
+			database = null;
 		} catch (Exception e) {
 			logger.error("cannot close database connection", e);
 		}
