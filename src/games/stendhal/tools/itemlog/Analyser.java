@@ -8,8 +8,8 @@ import java.util.Iterator;
 
 import marauroa.common.Log4J;
 import marauroa.server.game.db.JDBCDatabase;
-import marauroa.server.game.db.JDBCTransaction;
 import marauroa.server.game.db.StringChecker;
+import marauroa.server.game.db.Transaction;
 
 import org.apache.log4j.Logger;
 
@@ -26,7 +26,7 @@ public class Analyser {
 		+ " ORDER BY itemid, timedate";
 	
 	private LogEntryIterator queryDatabase(String timedate) {
-		JDBCTransaction transaction = (JDBCTransaction) JDBCDatabase.getDatabase().getTransaction();
+		Transaction transaction =  JDBCDatabase.getDatabase().getTransaction();
 		try {
 			Connection connection = transaction.getConnection();
 			Statement stmt = connection.createStatement();

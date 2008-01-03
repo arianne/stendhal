@@ -44,6 +44,7 @@ import marauroa.common.game.RPObject;
 import marauroa.server.game.Statistics;
 import marauroa.server.game.container.PlayerEntry;
 import marauroa.server.game.container.PlayerEntryContainer;
+import marauroa.server.game.db.IDatabase;
 import marauroa.server.game.db.Transaction;
 import marauroa.server.game.rp.IRPRuleProcessor;
 import marauroa.server.game.rp.RPServerManager;
@@ -82,7 +83,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	}
 
 	private void init() {
-		database = StendhalPlayerDatabase.getDatabase();
+		database = (StendhalPlayerDatabase) StendhalPlayerDatabase.getDatabase();
 
 		instance = this;
 		addGameEvent("server system", "startup");

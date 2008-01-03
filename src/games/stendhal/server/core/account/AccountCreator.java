@@ -6,7 +6,7 @@ import marauroa.common.crypto.Hash;
 import marauroa.common.game.AccountResult;
 import marauroa.common.game.Result;
 import marauroa.server.game.db.DatabaseFactory;
-import marauroa.server.game.db.JDBCDatabase;
+import marauroa.server.game.db.IDatabase;
 import marauroa.server.game.db.Transaction;
 
 import org.apache.log4j.Logger;
@@ -70,7 +70,7 @@ public class AccountCreator {
 	 * @return Result.OK_CREATED on success
 	 */
 	private AccountResult insertIntoDatabase() {
-		JDBCDatabase database = (JDBCDatabase) DatabaseFactory.getDatabase();
+		IDatabase database = DatabaseFactory.getDatabase();
 		Transaction trans = database.getTransaction();
 		try {
 			trans.begin();

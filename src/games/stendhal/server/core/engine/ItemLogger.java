@@ -12,13 +12,13 @@ import java.sql.SQLException;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 import marauroa.server.game.db.JDBCDatabase;
-import marauroa.server.game.db.JDBCTransaction;
 import marauroa.server.game.db.StringChecker;
+import marauroa.server.game.db.Transaction;
 
 import org.apache.log4j.Logger;
 
 /**
- * Item Logger
+ * Item Logger.
  *
  * @author hendrik
  */
@@ -116,7 +116,7 @@ public class ItemLogger {
 			return;
 		}
 
-		JDBCTransaction transaction = (JDBCTransaction) JDBCDatabase.getDatabase().getTransaction();
+		Transaction transaction =  JDBCDatabase.getDatabase().getTransaction();
 		try {
 
 			assignIDIfNotPresent(transaction, item);
@@ -134,13 +134,13 @@ public class ItemLogger {
 	}
 
 	/**
-	 * Assigns the next logid to the specified item in case it does not already have one
+	 * Assigns the next logid to the specified item in case it does not already have one.
 	 *
 	 * @param item item
 	 * @throws SQLException in case of a database error
 	 */
 	private static void assignIDIfNotPresent(RPObject... items) {
-		JDBCTransaction transaction = (JDBCTransaction) JDBCDatabase.getDatabase().getTransaction();
+		Transaction transaction =  JDBCDatabase.getDatabase().getTransaction();
 		try {
 			for (RPObject item : items) {
 				if (item.getRPClass().subclassOf("item")) {
@@ -160,13 +160,13 @@ public class ItemLogger {
 	}
 	
 	/**
-	 * Assigns the next logid to the specified item in case it does not already have one
+	 * Assigns the next logid to the specified item in case it does not already have one.
 	 *
 	 * @param transaction database transaction
 	 * @param item item
 	 * @throws SQLException in case of a database error
 	 */
-	private static void assignIDIfNotPresent(JDBCTransaction transaction, RPObject item) throws SQLException {
+	private static void assignIDIfNotPresent(Transaction transaction, RPObject item) throws SQLException {
 		if (item.has(ATTR_LOGID)) {
 			return;
 		}
@@ -184,7 +184,7 @@ public class ItemLogger {
 		item.put(ATTR_LOGID, id);
 	}
 
-	private static void writeLog(JDBCTransaction transaction, RPObject item, RPEntity player, String event, String param1, String param2, String param3, String param4) throws SQLException {
+	private static void writeLog(Transaction transaction, RPObject item, RPEntity player, String event, String param1, String param2, String param3, String param4) throws SQLException {
 		String playerName = null;
 		if (player != null) {
 			playerName = player.getName();

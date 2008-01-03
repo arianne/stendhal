@@ -57,7 +57,7 @@ public class TablesToBlob {
 	 */
 	private void loadRPObject(Transaction trans, RPObject object, int object_id)
 			throws SQLException {
-		Connection connection = ((JDBCTransaction) trans).getConnection();
+		Connection connection = trans.getConnection();
 		Statement stmt = connection.createStatement();
 		String query = "select name,value from " + oldDBName
 				+ ".rpattribute where object_id=" + object_id + ";";
@@ -166,7 +166,7 @@ public class TablesToBlob {
 	 */
 	public RPObjectIterator listOldPlayers(Transaction trans) {
 		try {
-			Connection connection = ((JDBCTransaction) trans).getConnection();
+			Connection connection =  trans.getConnection();
 			Statement stmt = connection.createStatement();
 			String query = "select object_id from " + oldDBName
 					+ ".rpobject where slot_id=0";

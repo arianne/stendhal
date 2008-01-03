@@ -21,6 +21,7 @@ import java.util.TreeMap;
 
 import marauroa.common.Log4J;
 import marauroa.server.game.db.Accessor;
+import marauroa.server.game.db.IDatabase;
 import marauroa.server.game.db.JDBCDatabase;
 import marauroa.server.game.db.Transaction;
 
@@ -430,7 +431,7 @@ public class WordList {
 	 * Write current word list into the database table "words".
 	 */
 	public void writeToDB() {
-		JDBCDatabase db = JDBCDatabase.getDatabase();
+		IDatabase db = JDBCDatabase.getDatabase();
 		Transaction trans = db.getTransaction();
 		boolean success;
 
@@ -445,7 +446,7 @@ public class WordList {
             }
 
     		success = true;
-        } catch(SQLException e) {
+        } catch (SQLException e) {
     		success = false;
             logger.error("error emptying DB table words", e);
         }
@@ -462,7 +463,7 @@ public class WordList {
 	 * @return success flag
 	 */
 	private boolean insertIntoDB(Set<String> keys) {
-		JDBCDatabase db = JDBCDatabase.getDatabase();
+		IDatabase db = JDBCDatabase.getDatabase();
 		Transaction trans = db.getTransaction();
 		boolean success;
 
@@ -472,7 +473,7 @@ public class WordList {
     		if (success) {
     			trans.commit();
     		}
-        } catch(SQLException e) {
+        } catch (SQLException e) {
 	        logger.error("error while inserting new word into DB", e);
 	        success = false;
         }
@@ -480,7 +481,7 @@ public class WordList {
 		if (!success) {
 			try {
 	            trans.rollback();
-            } catch(SQLException e) {
+            } catch (SQLException e) {
     	        logger.error("error while rolling back transaction", e);
             }
 		}
@@ -512,7 +513,7 @@ public class WordList {
 				WordEntry entry = words.get(key);
 
 				// We ignore all plural entries, they are already present as attribute of the singular form.
-				if (entry.getType()==null || !entry.getType().isPlural()) {
+				if (entry.getType() == null || !entry.getType().isPlural()) {
         			stmt.setString(1, key);
         			stmt.setString(2, entry.getTypeString());
         			stmt.setString(3, entry.getPlurSing());
@@ -541,8 +542,8 @@ public class WordList {
 		}
 
 		stmt = conn.prepareStatement(
-			"update	words\n"+
-			"set	alias_id = ?\n"+
+			"update	words\n" +
+			"set	alias_id = ?\n" +
 			"where	id = ?"
 		);
 
@@ -579,7 +580,7 @@ public class WordList {
 	 * Read word entries from the database.
 	 */
 	private int readFromDB() {
-		JDBCDatabase db = JDBCDatabase.getDatabase();
+		IDatabase db = JDBCDatabase.getDatabase();
 
 		Transaction trans = db.getTransaction();
 		Accessor acc = trans.getAccessor();
@@ -594,7 +595,7 @@ public class WordList {
 
 			int count = 0;
 
-	        while(res.next()) {
+	        while (res.next()) {
 	        	WordEntry entry = new WordEntry();
 
 	        	entry.setId(res.getInt(1));
@@ -625,11 +626,11 @@ public class WordList {
 			logger.debug("read " + count + " word entries from database");
 
 			return count;
-        } catch(SQLException e) {
+        } catch (SQLException e) {
 	        logger.error("error while reading from DB table words", e);
 	        try {
 	            trans.rollback();
-            } catch(SQLException e1) {
+            } catch (SQLException e1) {
     	        logger.error("error while rolling back transaction", e);
             }
 	        return -1;

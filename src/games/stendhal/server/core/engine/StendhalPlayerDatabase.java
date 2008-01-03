@@ -29,6 +29,8 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 
 	static final Logger logger = Logger.getLogger(StendhalPlayerDatabase.class);
 
+	
+	
 	private StendhalPlayerDatabase(Properties connInfo) {
 		super(connInfo);
 		try {
@@ -59,7 +61,7 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 
 	public void clearOnlineStatus() {
 		try {
-			JDBCTransaction transaction = (JDBCTransaction) getTransaction();
+			Transaction transaction =  getTransaction();
 			Connection connection = transaction.getConnection();
 			Statement stmt = connection.createStatement();
 
@@ -75,7 +77,7 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 
 	public void setOnlineStatus(Player player, boolean online) {
 		try {
-			JDBCTransaction transaction = (JDBCTransaction) getTransaction();
+			Transaction transaction =  getTransaction();
 			Connection connection = transaction.getConnection();
 			Statement stmt = connection.createStatement();
 
@@ -100,7 +102,7 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 		 * Here goes the stendhal specific code.
 		 */
 		try {
-			Connection connection = ((JDBCTransaction) transaction).getConnection();
+			Connection connection =  transaction.getConnection();
 			Statement stmt = connection.createStatement();
 
 			Player instance = (Player) player;
@@ -183,7 +185,7 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 		 * Here goes the stendhal specific code.
 		 */
 		try {
-			Connection connection = ((JDBCTransaction) transaction).getConnection();
+			Connection connection = transaction.getConnection();
 			Statement stmt = connection.createStatement();
 
 			Player instance = (Player) player;
@@ -321,18 +323,18 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 		}
 	}
 
-	private static StendhalPlayerDatabase playerDatabase;
+	protected static IDatabase playerDatabase;
 
 	/**
-	 * This method returns an instance of PlayerDatabase
+	 * This method returns an instance of PlayerDatabase.
 	 * 
 	 * @return A shared instance of PlayerDatabase
 	 */
-	public static StendhalPlayerDatabase getDatabase() {
+	public static IDatabase getDatabase() {
 		try {
 			if (playerDatabase == null) {
 				logger.info("Starting Stendhal JDBC Database");
-				playerDatabase = (StendhalPlayerDatabase) newConnection();
+				playerDatabase =  newConnection();
 			}
 
 			return playerDatabase;
@@ -414,7 +416,7 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 	 */
 
 	/**
-	 * Returns the points in the specified hall of fame
+	 * Returns the points in the specified hall of fame.
 	 * 
 	 * @param trans
 	 *            Transaction
@@ -430,7 +432,7 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 			String fametype) {
 		int res = 0;
 		try {
-			Connection connection = ((JDBCTransaction) trans).getConnection();
+			Connection connection =  trans.getConnection();
 			Statement stmt = connection.createStatement();
 
 			String query = "SELECT points FROM halloffame WHERE charname='"
@@ -451,7 +453,7 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 	}
 
 	/**
-	 * Stores an entry in the hall of fame
+	 * Stores an entry in the hall of fame.
 	 * 
 	 * @param trans
 	 *            Transaction
@@ -468,7 +470,7 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 	public void setHallOfFamePoints(Transaction trans, String playername,
 			String fametype, int points) throws SQLException {
 		try {
-			Connection connection = ((JDBCTransaction) trans).getConnection();
+			Connection connection = trans.getConnection();
 			Statement stmt = connection.createStatement();
 
 			// first try an update

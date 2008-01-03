@@ -13,7 +13,7 @@ import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 import marauroa.common.game.Result;
 import marauroa.server.game.db.DatabaseFactory;
-import marauroa.server.game.db.JDBCDatabase;
+import marauroa.server.game.db.IDatabase;
 import marauroa.server.game.db.Transaction;
 
 import org.apache.log4j.Logger;
@@ -67,7 +67,7 @@ public class CharacterCreator {
 			return new CharacterResult(result, character, template);
 		}
 
-		JDBCDatabase database = (JDBCDatabase) DatabaseFactory.getDatabase();
+		IDatabase database = DatabaseFactory.getDatabase();
 		Transaction trans = database.getTransaction();
 
 		try {

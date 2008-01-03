@@ -48,7 +48,7 @@ public class AgeDumper {
 	private void dump() throws Exception {
 		String query = "insert into age(datewhen, charname, age, version) values(?, ?, ?, ?)";
 		date = new java.sql.Date(new java.util.Date().getTime());
-		Connection connection = ((JDBCTransaction) trans).getConnection();
+		Connection connection =  trans.getConnection();
 		ps = connection.prepareStatement(query);
 
 		for (RPObject object : db) {
