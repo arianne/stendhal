@@ -71,6 +71,11 @@ public class SignLessorNPC extends SpeakerNPCFactory {
 
 					npc.say(reply);
 				}
+
+				@Override
+				public String toString() {
+					return "remember text";
+				}
 		});
 		
 		npc.add(ConversationStates.BUY_PRICE_OFFERED,
@@ -96,6 +101,11 @@ public class SignLessorNPC extends SpeakerNPCFactory {
 					} else {
 						npc.say("Sorry, there are too many signs at the moment. I do not have a free spot left.");
 					}
+				}
+
+				@Override
+				public String toString() {
+					return "put up sign";
 				}
 		});
 
