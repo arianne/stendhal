@@ -4,7 +4,10 @@ import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.NPCList;
+import games.stendhal.server.entity.player.Player;
+import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
+import marauroa.common.game.RPSlot;
 
 /**
  * Utilities to handle entities in the server
@@ -12,6 +15,10 @@ import marauroa.common.game.RPObject;
  * @author Martin Fuchs
  */
 public class EntityHelper {
+	private static final String ATTR_BASESLOT = "baseslot";
+	private static final String ATTR_BASEOBJECT = "baseobject";
+	private static final String ATTR_BASEITEM = "baseitem";
+	
 	/**
 	 * Translate the "target" parameter of actions like "look" into an entity
 	 * reference. Numeric parameters are treated as object IDs, alphanumeric
@@ -54,5 +61,60 @@ public class EntityHelper {
 		} else {
 			return null;
 		}
+	}
+
+	public static Entity entityFromSlot(Player player, RPAction action) {
+		// entity in a slot?
+		if (!action.has(ATTR_BASEITEM) 
+				|| !action.has(ATTR_BASEOBJECT)
+				|| !action.has(ATTR_BASESLOT)) {
+			return null;
+		}
+
+		StendhalRPZone zone = player.getZone();
+
+		int baseObject = action.getInt(ATTR_BASEOBJECT);
+
+		RPObject.ID baseobjectid = new RPObject.ID(baseObject, zone.getID());
+		if (!zone.has(baseobjectid)) {
+			return null;
+		}
+
+		RPObject base = zone.get(baseobjectid);
+		if (!(base instanceof Entity)) {
+			// Shouldn't really happen because everything is an entity
+			return null;
+		}
+
+		Entity baseEntity = (Entity) base;
+
+		if (baseEntity.hasSlot(action.get(ATTR_BASESLOT))) {
+			RPSlot slot = baseEntity.getSlot(action.get(ATTR_BASESLOT));
+
+			if (slot.size() == 0) {
+				return null;
+			}
+
+			RPObject object = null;
+			int item = action.getInt(ATTR_BASEITEM);
+			// scan through the slot to find the requested item
+			for (RPObject rpobject : slot) {
+				if (rpobject.getID().getObjectID() == item) {
+					object = rpobject;
+					break;
+				}
+			}
+
+			// no item found... we take the first one
+			if (object == null) {
+				object = slot.iterator().next();
+			}
+
+			// It is always an entity
+			return (Entity) object;
+		}
+		
+		return null;
+	
 	}
 }
