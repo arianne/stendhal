@@ -134,7 +134,7 @@ public class MoveAction implements ActionListener {
 	private void moveTo(Player player, RPAction action) {
 
 		if (!player.getZone().isMoveToAllowed()) {
-			player.sendPrivateText("Mouse movement is not possible here. Use you keyboard");
+			player.sendPrivateText("Mouse movement is not possible here. Use your keyboard.");
 			return;
 		}
 
