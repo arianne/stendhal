@@ -13,6 +13,7 @@
 package games.stendhal.server.actions;
 
 import games.stendhal.common.Direction;
+import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.events.TutorialNotifier;
@@ -74,34 +75,39 @@ public class MoveAction implements ActionListener {
 	}
 
 	private void push(Player player, RPAction action) {
-		if (action.has(TARGET)) {
-			// evaluate the target parameter
-			StendhalRPZone zone = player.getZone();
-			Entity entity = EntityHelper.entityFromTargetName(
-					action.get(TARGET), zone);
+		if (!action.has(TARGET)) {
+			return;
+		}
 
-			if (entity instanceof RPEntity) {
-				RPEntity rpEntity = (RPEntity) entity;
+		// evaluate the target parameter
+		StendhalRPZone zone = player.getZone();
+		Entity entity = EntityHelper.entityFromTargetName(
+			action.get(TARGET), zone);
 
-				/*
-				 * If object is a NPC we ignore the push action.
-				 */
-				if (rpEntity instanceof SpeakerNPC) {
-					return;
-				}
+		if ((entity == null) || !(entity instanceof RPEntity)) {
+			return;
+		}
+		
+		RPEntity rpEntity = (RPEntity) entity;
 
-				if (player.canPush(rpEntity) && player.nextTo(rpEntity)) {
-					Direction dir = player.getDirectionToward(rpEntity);
+		// If object is a NPC we ignore the push action.
+		if (rpEntity instanceof SpeakerNPC) {
+			return;
+		}
 
-					int x = rpEntity.getX() + dir.getdx();
-					int y = rpEntity.getY() + dir.getdy();
+		if (player.canPush(rpEntity) && player.nextTo(rpEntity)) {
+			Direction dir = player.getDirectionToward(rpEntity);
 
-					if (!zone.collides(rpEntity, x, y)) {
-						rpEntity.setPosition(x, y);
-						rpEntity.notifyWorldAboutChanges();
-						player.onPush(rpEntity);
-					}
-				}
+			int x = rpEntity.getX() + dir.getdx();
+			int y = rpEntity.getY() + dir.getdy();
+
+			if (!zone.collides(rpEntity, x, y)) {
+				StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
+					"push", rpEntity.getName(), rpEntity.getZone().getName(), 
+					rpEntity.getX() + " " + rpEntity.getY() + " --> " + x + " " + y);
+				rpEntity.setPosition(x, y);
+				rpEntity.notifyWorldAboutChanges();
+				player.onPush(rpEntity);
 			}
 		}
 	}
