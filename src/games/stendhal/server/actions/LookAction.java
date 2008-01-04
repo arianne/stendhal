@@ -12,10 +12,12 @@
  ***************************************************************************/
 package games.stendhal.server.actions;
 
+import games.stendhal.common.NotificationType;
 import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
 import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.mapstuff.sign.Sign;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.EntityHelper;
 import marauroa.common.game.RPAction;
@@ -93,7 +95,13 @@ public class LookAction implements ActionListener {
 			}
 			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), _LOOK,
 					name);
-			player.sendPrivateText(entity.describe());
+			
+			String text = entity.describe();
+			if (entity instanceof Sign) {
+				player.sendPrivateText(NotificationType.RESPONSE, text);
+			} else {
+				player.sendPrivateText(text);
+			}
 			world.modify(player);
 			return;
 		} else if (action.has(_TARGET)) {
@@ -108,7 +116,12 @@ public class LookAction implements ActionListener {
 				}
 				StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
 						_LOOK, name);
-				player.sendPrivateText(entity.describe());
+				String text = entity.describe();
+				if (entity instanceof Sign) {
+					player.sendPrivateText(NotificationType.RESPONSE, text);
+				} else {
+					player.sendPrivateText(text);
+				}
 				world.modify(player);
 			}
 		}

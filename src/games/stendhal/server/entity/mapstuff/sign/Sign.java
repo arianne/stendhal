@@ -13,6 +13,7 @@
 package games.stendhal.server.entity.mapstuff.sign;
 
 import games.stendhal.server.entity.Entity;
+import marauroa.common.game.Definition;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.SyntaxException;
@@ -37,7 +38,7 @@ public class Sign extends Entity {
 		try {
 			RPClass sign = new RPClass("sign");
 			sign.isA("entity");
-			sign.addAttribute(ATTR_TEXT, Type.LONG_STRING);
+			sign.addAttribute(ATTR_TEXT, Type.LONG_STRING, Definition.HIDDEN);
 			sign.addAttribute("class", Type.STRING);
 		} catch (SyntaxException e) {
 			logger.error("cannot generate RPClass", e);
@@ -84,4 +85,22 @@ public class Sign extends Entity {
 	public void setText(String text) {
 		put(ATTR_TEXT, text);
 	}
+
+	@Override
+	public String describe() {
+		String text = getText();
+		if (text == null) {
+			return "You see a sign without any text";
+		}
+
+		if (text.contains("\n")) {
+			// The sign's text has multiple lines. Add a linebreak after
+			// "you read" so that it is easier readable.
+			return "You read:\n\"" + text + "\"";
+		} else {
+			return "You read: \"" + text + "\"";
+		}
+	}
+
+	
 }

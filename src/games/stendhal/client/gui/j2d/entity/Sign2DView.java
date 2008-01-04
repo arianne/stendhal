@@ -9,15 +9,14 @@ package games.stendhal.client.gui.j2d.entity;
 //
 //
 
-import games.stendhal.client.StendhalUI;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.Sign;
 import games.stendhal.client.sprite.SpriteStore;
-import games.stendhal.common.NotificationType;
 
-import java.awt.Rectangle;
 import java.util.List;
+
+import marauroa.common.game.RPAction;
 
 /**
  * The 2D view of a sign.
@@ -145,7 +144,14 @@ public class Sign2DView extends Entity2DView {
 	public void onAction(final ActionType at) {
 		switch (at) {
 		case READ:
-			String text = sign.getText();
+			RPAction rpaction = new RPAction();
+			rpaction.put("type", at.toString());
+			entity.fillTargetInfo(rpaction);
+
+			at.send(rpaction);
+			break;
+			
+			/*String text = sign.getText();
 
 			Rectangle area = getArea();
 
@@ -161,7 +167,7 @@ public class Sign2DView extends Entity2DView {
 				StendhalUI.get().addEventLine("You read: \"" + text + "\"",
 						NotificationType.RESPONSE);
 			}
-			break;
+			break;*/
 
 		default:
 			super.onAction(at);
