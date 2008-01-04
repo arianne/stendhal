@@ -2,6 +2,7 @@ package games.stendhal.server.entity.mapstuff.office;
 
 import games.stendhal.server.entity.mapstuff.sign.Sign;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.util.TimeUtil;
 import marauroa.common.game.Definition;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
@@ -66,4 +67,16 @@ public class RentedSign extends Sign implements StoreableEntity {
 		return (long) Float.parseFloat(get(TIMESTAMP));
 	}
 
+	@Override
+	public String describe() {
+		String text = super.describe();
+
+		// add renter and age to the text. We use a relative time because
+		// a fixed timestamp is meaningless for players from
+		// other timezones.
+		int seconds = (int) ((System.currentTimeMillis() - getTimestamp()) / 1000);
+		text = text + "\nThis sign was rented by " + get(RENTER) + " " + TimeUtil.approxTimeUntil(seconds) + " ago.";
+		return text;
+	}
+	
 }
