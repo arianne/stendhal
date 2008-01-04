@@ -57,4 +57,13 @@ public class RentedSign extends Sign implements StoreableEntity {
     	return get(RENTER);
     }
 
+    /**
+     * returns the timestamp when this entity was created
+     *
+     * @return timestamp in milliseconds
+     */
+	public long getTimestamp() {
+		return (long) Float.parseFloat(get(TIMESTAMP));
+	}
+
 }
