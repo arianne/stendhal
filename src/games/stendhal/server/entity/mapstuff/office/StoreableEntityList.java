@@ -1,6 +1,8 @@
 package games.stendhal.server.entity.mapstuff.office;
 
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.events.TurnListener;
+import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.Entity;
 
 import java.awt.Rectangle;
@@ -17,10 +19,11 @@ import marauroa.common.game.RPObject;
  * @author hendrik
  * @param <T> type of the storeable entities to be managed by this list
  */
-abstract class StoreableEntityList<T extends Entity> {
+abstract class StoreableEntityList<T extends Entity> implements TurnListener {
 	private StendhalRPZone zone;
 	private Class<T> clazz;
 	private Shape shape;
+	private int notifyDelta;
 
 	/**
 	 * creates a new StoreableEntityList
@@ -131,7 +134,33 @@ abstract class StoreableEntityList<T extends Entity> {
     	}
     	return res;
     }
-   
-    public abstract String getName(T entity);
+
+	protected void setupTurnNotifier(int notifyDelta) {
+		this.notifyDelta = notifyDelta;
+		TurnNotifier.get().notifyInSeconds(notifyDelta, this);
+	}
+
+    public void onTurnReached(int currentTurn) {
+		boolean modified = false;
+    	List<T> entities = getList();
+    	for (T entity : entities) {
+    		if (shouldExpire(entity)) {
+    			zone.remove(entity);
+    			modified = true;
+    		}
+    	}
+    	
+    	if (modified) {
+    		zone.storeToDatabase();
+    	}
+
+		TurnNotifier.get().notifyInSeconds(notifyDelta, this);
+    }
+
+	protected abstract String getName(T entity);
+
+	protected boolean shouldExpire(T entity) {
+		return false;
+	}
 
 }
