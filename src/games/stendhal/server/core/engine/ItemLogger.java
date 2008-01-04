@@ -6,16 +6,8 @@ import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.player.Player;
-
-import java.sql.SQLException;
-
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
-import marauroa.server.game.db.JDBCDatabase;
-import marauroa.server.game.db.StringChecker;
-import marauroa.server.game.db.Transaction;
-
-import org.apache.log4j.Logger;
 
 /**
  * Item Logger.
@@ -24,8 +16,7 @@ import org.apache.log4j.Logger;
  */
 public class ItemLogger {
 
-	private static Logger logger = Logger.getLogger(ItemLogger.class);
-	private static final String ATTR_LOGID = "logid";
+	private static final String ATTR_ITEM_LOGID = "logid";
 
 	private static String getQuantity(RPObject item) {
 		int quantity = 1;
@@ -36,7 +27,7 @@ public class ItemLogger {
 	}
 
 	public static void loadOnLogin(Player player, RPSlot slot, Item item) {
-		if (item.has(ATTR_LOGID)) {
+		if (item.has(ATTR_ITEM_LOGID)) {
 			return;
 		}
 		itemLog(item, player, "create", item.get("name"), getQuantity(item), "olditem", slot.getName());
@@ -72,12 +63,12 @@ public class ItemLogger {
 		}
 		Player player = (Player) entity;
 
-		itemLogAssignIDIfNotPresent(oldItem, outlivingItem);
+		((StendhalPlayerDatabase) StendhalPlayerDatabase.getDatabase()).itemLogAssignIDIfNotPresent(oldItem, outlivingItem);
 		String oldQuantity = getQuantity(oldItem);
 		String oldOutlivingQuantity = getQuantity(outlivingItem);
 		String newQuantity = Integer.toString(Integer.parseInt(oldQuantity) + Integer.parseInt(oldOutlivingQuantity));
-	    itemLog(oldItem, player, "merge in", outlivingItem.get(ATTR_LOGID), oldQuantity, oldOutlivingQuantity, newQuantity);
-	    itemLog(outlivingItem, player, "merged in", oldItem.get(ATTR_LOGID), oldOutlivingQuantity, oldQuantity, newQuantity);
+	    itemLog(oldItem, player, "merge in", outlivingItem.get(ATTR_ITEM_LOGID), oldQuantity, oldOutlivingQuantity, newQuantity);
+	    itemLog(outlivingItem, player, "merged in", oldItem.get(ATTR_ITEM_LOGID), oldOutlivingQuantity, oldQuantity, newQuantity);
     }
 
 	public static void splitOff(RPEntity player, Item item, int quantity) {
@@ -86,13 +77,17 @@ public class ItemLogger {
 	    itemLog(item, player, "split out", "-1", oldQuantity, outlivingQuantity, Integer.toString(quantity));
     }
 
+	private static void itemLog(RPObject item, RPEntity player, String event, String param1, String param2, String param3, String param4) {
+		((StendhalPlayerDatabase) StendhalPlayerDatabase.getDatabase()).itemLog(item, player, event, param1, param2, param3, param4);
+	}
+
 	public static void splitOff(Player player, Item item, StackableItem newItem, int quantity) {
-		itemLogAssignIDIfNotPresent(item, newItem);
+		((StendhalPlayerDatabase) StendhalPlayerDatabase.getDatabase()).itemLogAssignIDIfNotPresent(item, newItem);
 		String outlivingQuantity = getQuantity(item);
 		String newQuantity = getQuantity(newItem);
 		String oldQuantity = Integer.toString(Integer.parseInt(outlivingQuantity) + Integer.parseInt(newQuantity));
-	    itemLog(item, player, "split out", newItem.get(ATTR_LOGID), oldQuantity, outlivingQuantity, newQuantity);
-	    itemLog(newItem, player, "splitted out", item.get(ATTR_LOGID), oldQuantity, newQuantity, outlivingQuantity);
+	    itemLog(item, player, "split out", newItem.get(ATTR_ITEM_LOGID), oldQuantity, outlivingQuantity, newQuantity);
+	    itemLog(newItem, player, "splitted out", item.get(ATTR_ITEM_LOGID), oldQuantity, newQuantity, outlivingQuantity);
     }
 
 	/*
@@ -111,95 +106,5 @@ public class ItemLogger {
 	the last two are redundant pairs to simplify queries
 	 */
 
-	private static void itemLog(RPObject item, RPEntity player, String event, String param1, String param2, String param3, String param4) {
-		if (!item.getRPClass().subclassOf("item")) {
-			return;
-		}
-
-		Transaction transaction =  JDBCDatabase.getDatabase().getTransaction();
-		try {
-
-			itemLogAssignIDIfNotPresent(transaction, item);
-			itemLogWriteEntry(transaction, item, player, event, param1, param2, param3, param4);
-
-			transaction.commit();
-		} catch (SQLException e) {
-			logger.error(e, e);
-			try {
-				transaction.rollback();
-			} catch (SQLException e1) {
-				logger.error(e1, e1);
-			}
-		}
-	}
-
-	/**
-	 * Assigns the next logid to the specified item in case it does not already have one.
-	 *
-	 * @param item item
-	 * @throws SQLException in case of a database error
-	 */
-	private static void itemLogAssignIDIfNotPresent(RPObject... items) {
-		Transaction transaction =  JDBCDatabase.getDatabase().getTransaction();
-		try {
-			for (RPObject item : items) {
-				if (item.getRPClass().subclassOf("item")) {
-					itemLogAssignIDIfNotPresent(transaction, item);
-				}
-			}
-
-			transaction.commit();
-		} catch (SQLException e) {
-			logger.error(e, e);
-			try {
-				transaction.rollback();
-			} catch (SQLException e1) {
-				logger.error(e1, e1);
-			}
-		}
-	}
-	
-	/**
-	 * Assigns the next logid to the specified item in case it does not already have one.
-	 *
-	 * @param transaction database transaction
-	 * @param item item
-	 * @throws SQLException in case of a database error
-	 */
-	private static void itemLogAssignIDIfNotPresent(Transaction transaction, RPObject item) throws SQLException {
-		if (item.has(ATTR_LOGID)) {
-			return;
-		}
-
-		// increment the last_id value (or initialize it in case that table has 0 rows).
-		int count = transaction.getAccessor().execute("UPDATE itemid SET last_id = last_id+1;");
-		if (count < 0) {
-			logger.error("Unexpected return value of execute method: " + count);
-		} else if (count == 0) {
-			transaction.getAccessor().execute("INSERT INTO itemid (last_id) VALUES (1);");
-		}
-
-		// read last_id from database
-		int id = transaction.getAccessor().querySingleCellInt("SELECT last_id FROM itemid");
-		item.put(ATTR_LOGID, id);
-	}
-
-	private static void itemLogWriteEntry(Transaction transaction, RPObject item, RPEntity player, String event, String param1, String param2, String param3, String param4) throws SQLException {
-		String playerName = null;
-		if (player != null) {
-			playerName = player.getName();
-		}
-		String query = "INSERT INTO itemlog (itemid, source, event, " +
-			"param1, param2, param3, param4) VALUES (" + 
-			item.getInt(ATTR_LOGID) + ", '" + 
-			StringChecker.trimAndEscapeSQLString(playerName, 64) + "', '" +
-			StringChecker.trimAndEscapeSQLString(event, 64) + "', '" +
-			StringChecker.trimAndEscapeSQLString(param1, 64) + "', '" +
-			StringChecker.trimAndEscapeSQLString(param2, 64) + "', '" +
-			StringChecker.trimAndEscapeSQLString(param3, 64) + "', '" +
-			StringChecker.trimAndEscapeSQLString(param4, 64) + "');";
-
-		transaction.getAccessor().execute(query);
-	}
 
 }

@@ -1,5 +1,6 @@
 package games.stendhal.server.core.engine;
 
+import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
 
@@ -26,7 +27,8 @@ import marauroa.server.game.db.Transaction;
 public class StendhalPlayerDatabase extends JDBCDatabase implements
 		Iterable<RPObject> {
 
-	static final Logger logger = Logger.getLogger(StendhalPlayerDatabase.class);
+	private static final Logger logger = Logger.getLogger(StendhalPlayerDatabase.class);
+	private static final String ATTR_ITEM_LOGID = "logid";
 
 	
 	/**
@@ -499,4 +501,96 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 		addGameEvent(transaction, source, event, params);
 		transaction.commit();
 	}
+
+	public void itemLog(RPObject item, RPEntity player, String event, String param1, String param2, String param3, String param4) {
+		if (!item.getRPClass().subclassOf("item")) {
+			return;
+		}
+
+		Transaction transaction =  JDBCDatabase.getDatabase().getTransaction();
+		try {
+
+			itemLogAssignIDIfNotPresent(transaction, item);
+			itemLogWriteEntry(transaction, item, player, event, param1, param2, param3, param4);
+
+			transaction.commit();
+		} catch (SQLException e) {
+			logger.error(e, e);
+			try {
+				transaction.rollback();
+			} catch (SQLException e1) {
+				logger.error(e1, e1);
+			}
+		}
+	}
+
+	/**
+	 * Assigns the next logid to the specified item in case it does not already have one.
+	 *
+	 * @param item item
+	 * @throws SQLException in case of a database error
+	 */
+	public void itemLogAssignIDIfNotPresent(RPObject... items) {
+		Transaction transaction =  JDBCDatabase.getDatabase().getTransaction();
+		try {
+			for (RPObject item : items) {
+				if (item.getRPClass().subclassOf("item")) {
+					itemLogAssignIDIfNotPresent(transaction, item);
+				}
+			}
+
+			transaction.commit();
+		} catch (SQLException e) {
+			logger.error(e, e);
+			try {
+				transaction.rollback();
+			} catch (SQLException e1) {
+				logger.error(e1, e1);
+			}
+		}
+	}
+	
+	/**
+	 * Assigns the next logid to the specified item in case it does not already have one.
+	 *
+	 * @param transaction database transaction
+	 * @param item item
+	 * @throws SQLException in case of a database error
+	 */
+	private void itemLogAssignIDIfNotPresent(Transaction transaction, RPObject item) throws SQLException {
+		if (item.has(ATTR_ITEM_LOGID)) {
+			return;
+		}
+
+		// increment the last_id value (or initialize it in case that table has 0 rows).
+		int count = transaction.getAccessor().execute("UPDATE itemid SET last_id = last_id+1;");
+		if (count < 0) {
+			logger.error("Unexpected return value of execute method: " + count);
+		} else if (count == 0) {
+			transaction.getAccessor().execute("INSERT INTO itemid (last_id) VALUES (1);");
+		}
+
+		// read last_id from database
+		int id = transaction.getAccessor().querySingleCellInt("SELECT last_id FROM itemid");
+		item.put(ATTR_ITEM_LOGID, id);
+	}
+
+	private void itemLogWriteEntry(Transaction transaction, RPObject item, RPEntity player, String event, String param1, String param2, String param3, String param4) throws SQLException {
+		String playerName = null;
+		if (player != null) {
+			playerName = player.getName();
+		}
+		String query = "INSERT INTO itemlog (itemid, source, event, " +
+			"param1, param2, param3, param4) VALUES (" + 
+			item.getInt(ATTR_ITEM_LOGID) + ", '" + 
+			StringChecker.trimAndEscapeSQLString(playerName, 64) + "', '" +
+			StringChecker.trimAndEscapeSQLString(event, 64) + "', '" +
+			StringChecker.trimAndEscapeSQLString(param1, 64) + "', '" +
+			StringChecker.trimAndEscapeSQLString(param2, 64) + "', '" +
+			StringChecker.trimAndEscapeSQLString(param3, 64) + "', '" +
+			StringChecker.trimAndEscapeSQLString(param4, 64) + "');";
+
+		transaction.getAccessor().execute(query);
+	}
+
 }
