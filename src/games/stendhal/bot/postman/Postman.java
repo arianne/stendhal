@@ -179,7 +179,7 @@ public class Postman implements Runnable {
 						}
 					} else if (arianneCmd.equals("Players")) {
 						onWhoResponse(st);
-					} else if (arianneCmd.equalsIgnoreCase("shouts:")) {
+					} else if (arianneCmd.equalsIgnoreCase("shouts:") || arianneCmd.equalsIgnoreCase("rented")) {
 						postmanIRC.sendMessage("#arianne", text);
 						postmanIRC.sendMessage("#arianne-support", text);
 					} else if (arianneCmd.equalsIgnoreCase("asks")

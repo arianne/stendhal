@@ -1,5 +1,6 @@
 	package games.stendhal.server.maps.semos.city;
 
+import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
 import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.mapstuff.office.RentedSign;
@@ -98,6 +99,10 @@ public class SignLessorNPC extends SpeakerNPCFactory {
 					if (success) {
 						player.drop("money", MONEY);
 						npc.say("OK, let me put your sign up.");
+						Player postman = StendhalRPRuleProcessor.get().getPlayer("postman");
+						if (postman != null) {
+							postman.sendPrivateText(player.getName() + " rented a sign saying \"" + text + "\"");
+						}
 					} else {
 						npc.say("Sorry, there are too many signs at the moment. I do not have a free spot left.");
 					}
