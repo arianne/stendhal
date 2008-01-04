@@ -77,7 +77,7 @@ public class SignLessorNPC extends SpeakerNPCFactory {
 		npc.add(ConversationStates.BUY_PRICE_OFFERED,
 			ConversationPhrases.YES_MESSAGES,
 			new PlayerHasItemWithHimCondition("money", MONEY),
-			ConversationStates.ATTENDING, null,
+			ConversationStates.IDLE, null,
 			new SpeakerNPC.ChatAction() {
 
 				@Override
