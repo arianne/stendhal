@@ -38,7 +38,7 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 		try {
 			if (database == null) {
 				logger.info("Starting Stendhal JDBC Database");
-				database =  (JDBCDatabase) newConnection();
+				database = newConnection();
 			}
 
 			return database;
@@ -407,11 +407,6 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 			return null;
 		}
 	}
-
-	/*
-	 * TODO: Refactor We could make room for hall of fame points in the
-	 * character_stats table itself.
-	 */
 
 	/**
 	 * Returns the points in the specified hall of fame.
