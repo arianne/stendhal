@@ -1,5 +1,9 @@
 	package games.stendhal.server.maps.semos.city;
 
+import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.mapstuff.office.RentedSign;
+import games.stendhal.server.entity.mapstuff.office.RentedSignList;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.Sentence;
@@ -9,8 +13,12 @@ import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.LevelGreaterThanCondition;
 import games.stendhal.server.entity.npc.condition.LevelLessThanCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
+import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.TextHasParameterCondition;
 import games.stendhal.server.entity.player.Player;
+
+import java.awt.Rectangle;
+import java.awt.Shape;
 
 /**
  * A merchant (original name: XXX) who rents signs to players.
@@ -19,6 +27,14 @@ import games.stendhal.server.entity.player.Player;
  */
 public class SignLessorNPC extends SpeakerNPCFactory {
 	protected String text;
+	private static final int MONEY = 100; 
+	RentedSignList rentedSignList = null;
+
+	public SignLessorNPC() {
+		StendhalRPZone zone = StendhalRPWorld.get().getZone("0_semos_city");
+		Shape shape = new Rectangle(21, 48, 17, 1);
+		rentedSignList = new RentedSignList(zone, shape);
+	}
 
 	@Override
 	public void createDialog(SpeakerNPC npc) {
@@ -41,7 +57,7 @@ public class SignLessorNPC extends SpeakerNPCFactory {
 		npc.add(ConversationStates.ATTENDING, "rent", 
 			new AndCondition(new LevelGreaterThanCondition(5), new TextHasParameterCondition()), 
 			ConversationStates.BUY_PRICE_OFFERED, 
-			"A sign costs 100 money for 24 hours. Do you want to rent one?",
+			"A sign costs " + MONEY + " money for 24 hours. Do you want to rent one?",
 			new SpeakerNPC.ChatAction() {
 
 				@Override
@@ -52,8 +68,30 @@ public class SignLessorNPC extends SpeakerNPCFactory {
 			
 		});
 		
-		// TODO: implement yes in case a sign can be added
-		// TODO: implement yes in case there is no spot for another sign
+		npc.add(ConversationStates.BUY_PRICE_OFFERED,
+			ConversationPhrases.YES_MESSAGES,
+			new NotCondition(new PlayerHasItemWithHimCondition("money", MONEY)),
+			ConversationStates.ATTENDING,
+			"Sorry, you do not have enough money", null);
+
+		npc.add(ConversationStates.BUY_PRICE_OFFERED,
+			ConversationPhrases.YES_MESSAGES,
+			new PlayerHasItemWithHimCondition("money", MONEY),
+			ConversationStates.ATTENDING, null,
+			new SpeakerNPC.ChatAction() {
+
+				@Override
+				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					RentedSign sign = new RentedSign(player, text);
+					boolean success = rentedSignList.add(sign);
+					if (success) {
+						player.drop("money", MONEY);
+						npc.say("OK, let me put your sign up.");
+					} else {
+						npc.say("Sorry, there are too many signs at the moment. I do not have a free spot left.");
+					}
+				}
+		});
 
 		npc.add(ConversationStates.BUY_PRICE_OFFERED, 
 			ConversationPhrases.NO_MESSAGES, null,
