@@ -457,16 +457,18 @@ Awww... so you're a coward, then? Huh.
     <attribute name="class">buyernpc</attribute>
   </entity>
 
-<!-- TEST
-  <entity x="35" y="35">
-   <implementation class-name="games.stendhal.server.entity.mapstuff.area.DamagingArea">
-    <parameter name="width">1</parameter>
-    <parameter name="height">3</parameter>
-    <parameter name="interval">3</parameter>
-    <parameter name="damage">50</parameter>
-    <parameter name="probability">1</parameter>
-   </implementation>
-   <attribute name="name">purple kryptonite</attribute>
+<!-- this NPC is completly implemented in java, but it is missing a name and graphics.
+     please add it and uncomment him/her. -->
+  <entity x="20" y="50">
+    <implementation class-name="games.stendhal.server.maps.semos.city.SignLessorNPC">
+      <parameter name="name">TODO</parameter>
+      <parameter name="node0">20,50</parameter>
+      <parameter name="node1">38,50</parameter>
+      <parameter name="node2">38,51</parameter>
+      <parameter name="node3">20,51</parameter>
+    </implementation>
+
+    <attribute name="class">TODO</attribute>
   </entity>
 -->
 
