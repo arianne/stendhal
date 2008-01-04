@@ -33,6 +33,7 @@ import games.stendhal.server.entity.mapstuff.Fire;
 import games.stendhal.server.entity.mapstuff.area.AreaEntity;
 import games.stendhal.server.entity.mapstuff.chest.Chest;
 import games.stendhal.server.entity.mapstuff.office.ArrestWarrant;
+import games.stendhal.server.entity.mapstuff.office.RentedSign;
 import games.stendhal.server.entity.mapstuff.portal.Door;
 import games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination;
 import games.stendhal.server.entity.mapstuff.portal.Portal;
@@ -212,15 +213,16 @@ public class StendhalRPWorld extends RPWorld {
 
 		// zone storage
 		ArrestWarrant.generateRPClass();
+		RentedSign.generateRPClass();
 
 		// rpevents
 		ExamineEvent.generateRPClass();
-                
-                //guilds
-                Guild.generateRPClass();
-                GuildMember.generateRPClass();
-                GuildPermission.generateRPClass();
 		PrivateTextEvent.generateRPClass();
+                
+		//guilds
+		Guild.generateRPClass();
+		GuildMember.generateRPClass();
+		GuildPermission.generateRPClass();
 
 		/*
 		 * TODO: Refactor Create RPClasses for actions
