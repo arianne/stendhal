@@ -19,7 +19,7 @@ import marauroa.common.game.RPObject;
  * @author hendrik
  * @param <T> type of the storeable entities to be managed by this list
  */
-abstract class StoreableEntityList<T extends Entity> implements TurnListener {
+public abstract class StoreableEntityList<T extends Entity> implements TurnListener {
 	private StendhalRPZone zone;
 	private Class<T> clazz;
 	private Shape shape;
@@ -33,7 +33,7 @@ abstract class StoreableEntityList<T extends Entity> implements TurnListener {
 	 */
 	// the class object is needed, because generic type variables (T)
 	// cannot be used in instanceof.
-	public StoreableEntityList(StendhalRPZone zone, Class<T> clazz) {
+	StoreableEntityList(StendhalRPZone zone, Class<T> clazz) {
 		this.zone = zone;
 		this.clazz = clazz;
 	}
