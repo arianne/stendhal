@@ -39,31 +39,31 @@ public class ItemLogger {
 		if (item.has(ATTR_LOGID)) {
 			return;
 		}
-		log(item, player, "create", item.get("name"), getQuantity(item), "olditem", slot.getName());
+		itemLog(item, player, "create", item.get("name"), getQuantity(item), "olditem", slot.getName());
 	}
 
 	public static void destroyOnLogin(Player player, RPSlot slot, RPObject item) {
-		log(item, player, "destroy", item.get("name"), getQuantity(item), "on login", slot.getName());
+		itemLog(item, player, "destroy", item.get("name"), getQuantity(item), "on login", slot.getName());
     }
 
 	public static void destroy(RPEntity entity, RPSlot slot, RPObject item) {
-		log(item, entity, "destroy", item.get("name"), getQuantity(item), "quest", slot.getName());
+		itemLog(item, entity, "destroy", item.get("name"), getQuantity(item), "quest", slot.getName());
     }
 
 	public static void dropQuest(Player player, Item item) {
-		log(item, player, "destroy", item.get("name"), getQuantity(item), "quest", null);
+		itemLog(item, player, "destroy", item.get("name"), getQuantity(item), "quest", null);
     }
 
 	public static void timeout(Item item) {
-		log(item, null, "destroy", item.get("name"), getQuantity(item), "timeout", item.getZone().getID().getID() + " " + item.getX() + " " + item.getY());
+		itemLog(item, null, "destroy", item.get("name"), getQuantity(item), "timeout", item.getZone().getID().getID() + " " + item.getX() + " " + item.getY());
     }
 
 	public static void displace(Player player, PassiveEntity item, StendhalRPZone zone, int x, int y) {
-		log(item, player, "ground-to-ground", zone.getID().getID(), item.getX() + " " + item.getY(), zone.getID().getID(), x + " " + y);
+		itemLog(item, player, "ground-to-ground", zone.getID().getID(), item.getX() + " " + item.getY(), zone.getID().getID(), x + " " + y);
     }
 
 	public static void equipAction(Player player, Entity entity, String[] sourceInfo, String[] destInfo) {
-	    log(entity, player, sourceInfo[0] + "-to-" + destInfo[0], sourceInfo[1], sourceInfo[2], destInfo[1], destInfo[2]);
+	    itemLog(entity, player, sourceInfo[0] + "-to-" + destInfo[0], sourceInfo[1], sourceInfo[2], destInfo[1], destInfo[2]);
     }
 
 	public static void merge(RPEntity entity, Item oldItem, Item outlivingItem) {
@@ -72,27 +72,27 @@ public class ItemLogger {
 		}
 		Player player = (Player) entity;
 
-		assignIDIfNotPresent(oldItem, outlivingItem);
+		itemLogAssignIDIfNotPresent(oldItem, outlivingItem);
 		String oldQuantity = getQuantity(oldItem);
 		String oldOutlivingQuantity = getQuantity(outlivingItem);
 		String newQuantity = Integer.toString(Integer.parseInt(oldQuantity) + Integer.parseInt(oldOutlivingQuantity));
-	    log(oldItem, player, "merge in", outlivingItem.get(ATTR_LOGID), oldQuantity, oldOutlivingQuantity, newQuantity);
-	    log(outlivingItem, player, "merged in", oldItem.get(ATTR_LOGID), oldOutlivingQuantity, oldQuantity, newQuantity);
+	    itemLog(oldItem, player, "merge in", outlivingItem.get(ATTR_LOGID), oldQuantity, oldOutlivingQuantity, newQuantity);
+	    itemLog(outlivingItem, player, "merged in", oldItem.get(ATTR_LOGID), oldOutlivingQuantity, oldQuantity, newQuantity);
     }
 
 	public static void splitOff(RPEntity player, Item item, int quantity) {
 		String oldQuantity = getQuantity(item);
 		String outlivingQuantity = Integer.toString(Integer.parseInt(oldQuantity) - quantity);
-	    log(item, player, "split out", "-1", oldQuantity, outlivingQuantity, Integer.toString(quantity));
+	    itemLog(item, player, "split out", "-1", oldQuantity, outlivingQuantity, Integer.toString(quantity));
     }
 
 	public static void splitOff(Player player, Item item, StackableItem newItem, int quantity) {
-		assignIDIfNotPresent(item, newItem);
+		itemLogAssignIDIfNotPresent(item, newItem);
 		String outlivingQuantity = getQuantity(item);
 		String newQuantity = getQuantity(newItem);
 		String oldQuantity = Integer.toString(Integer.parseInt(outlivingQuantity) + Integer.parseInt(newQuantity));
-	    log(item, player, "split out", newItem.get(ATTR_LOGID), oldQuantity, outlivingQuantity, newQuantity);
-	    log(newItem, player, "splitted out", item.get(ATTR_LOGID), oldQuantity, newQuantity, outlivingQuantity);
+	    itemLog(item, player, "split out", newItem.get(ATTR_LOGID), oldQuantity, outlivingQuantity, newQuantity);
+	    itemLog(newItem, player, "splitted out", item.get(ATTR_LOGID), oldQuantity, newQuantity, outlivingQuantity);
     }
 
 	/*
@@ -111,7 +111,7 @@ public class ItemLogger {
 	the last two are redundant pairs to simplify queries
 	 */
 
-	private static void log(RPObject item, RPEntity player, String event, String param1, String param2, String param3, String param4) {
+	private static void itemLog(RPObject item, RPEntity player, String event, String param1, String param2, String param3, String param4) {
 		if (!item.getRPClass().subclassOf("item")) {
 			return;
 		}
@@ -119,8 +119,8 @@ public class ItemLogger {
 		Transaction transaction =  JDBCDatabase.getDatabase().getTransaction();
 		try {
 
-			assignIDIfNotPresent(transaction, item);
-			writeLog(transaction, item, player, event, param1, param2, param3, param4);
+			itemLogAssignIDIfNotPresent(transaction, item);
+			itemLogWriteEntry(transaction, item, player, event, param1, param2, param3, param4);
 
 			transaction.commit();
 		} catch (SQLException e) {
@@ -139,12 +139,12 @@ public class ItemLogger {
 	 * @param item item
 	 * @throws SQLException in case of a database error
 	 */
-	private static void assignIDIfNotPresent(RPObject... items) {
+	private static void itemLogAssignIDIfNotPresent(RPObject... items) {
 		Transaction transaction =  JDBCDatabase.getDatabase().getTransaction();
 		try {
 			for (RPObject item : items) {
 				if (item.getRPClass().subclassOf("item")) {
-					assignIDIfNotPresent(transaction, item);
+					itemLogAssignIDIfNotPresent(transaction, item);
 				}
 			}
 
@@ -166,7 +166,7 @@ public class ItemLogger {
 	 * @param item item
 	 * @throws SQLException in case of a database error
 	 */
-	private static void assignIDIfNotPresent(Transaction transaction, RPObject item) throws SQLException {
+	private static void itemLogAssignIDIfNotPresent(Transaction transaction, RPObject item) throws SQLException {
 		if (item.has(ATTR_LOGID)) {
 			return;
 		}
@@ -184,7 +184,7 @@ public class ItemLogger {
 		item.put(ATTR_LOGID, id);
 	}
 
-	private static void writeLog(Transaction transaction, RPObject item, RPEntity player, String event, String param1, String param2, String param3, String param4) throws SQLException {
+	private static void itemLogWriteEntry(Transaction transaction, RPObject item, RPEntity player, String event, String param1, String param2, String param3, String param4) throws SQLException {
 		String playerName = null;
 		if (player != null) {
 			playerName = player.getName();
