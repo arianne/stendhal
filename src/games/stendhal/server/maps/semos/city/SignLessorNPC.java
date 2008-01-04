@@ -21,7 +21,7 @@ import java.awt.Rectangle;
 import java.awt.Shape;
 
 /**
- * A merchant (original name: XXX) who rents signs to players.
+ * A merchant (original name: Gordon) who rents signs to players.
  *
  * The player has to have at least level 5 to prevent abuse by newly created characters.
  */
@@ -57,15 +57,20 @@ public class SignLessorNPC extends SpeakerNPCFactory {
 		npc.add(ConversationStates.ATTENDING, "rent", 
 			new AndCondition(new LevelGreaterThanCondition(5), new TextHasParameterCondition()), 
 			ConversationStates.BUY_PRICE_OFFERED, 
-			"A sign costs " + MONEY + " money for 24 hours. Do you want to rent one?",
+			null,
 			new SpeakerNPC.ChatAction() {
-
 				@Override
 				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 					String temp = sentence.getOriginalText().trim();
 					text = temp.substring(5).trim();
+					
+					String reply = "A sign costs " + MONEY + " money for 24 hours. Do you want to rent one?";
+					if (rentedSignList.getByName(player.getName()) != null) {
+						reply = reply + " Please note that i will replace the sign you already rented.";
+					}
+
+					npc.say(reply);
 				}
-			
 		});
 		
 		npc.add(ConversationStates.BUY_PRICE_OFFERED,
@@ -82,6 +87,7 @@ public class SignLessorNPC extends SpeakerNPCFactory {
 
 				@Override
 				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					rentedSignList.removeByName(player.getName());
 					RentedSign sign = new RentedSign(player, text);
 					boolean success = rentedSignList.add(sign);
 					if (success) {
