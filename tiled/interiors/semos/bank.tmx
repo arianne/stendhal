@@ -119,9 +119,9 @@
    H4sIAAAAAAAAAO2USw6AMAhEuX5v7cpN0x+F6YD2JbPBiA+qFhEpN/S8oOoah5rWtaj+llo0f+n0y+KvPScG3vtnY33/T7PiMDuPKP6WMPBy/5I/uo6aAe3fmyGLP9KdtX9P/xNpwXa6/nly/TFOo/oM5G407PaK5r97X5Sw/Fkwd+dBZndZ8Io8A+r7Q8xS92T8U04+8y95ANYCJHoAGAAA
   </data>
  </layer>
- <layer name="protection" width="48" height="32" visible="0" opacity="0.33">
+ <layer name="protection" width="48" height="32" opacity="0.33">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3QoQ0AMAwDQc+fqUvDC9ooZ+n4y5WkAJbJBw23/X2ve7b9DwAAADDBAY/QnZsAGAAA
+   H4sIAAAAAAAAAO3DAQkAAAwEocv/qddjKLhqqqqqqqrqqwdXaI8zABgAAA==
   </data>
  </layer>
 </map>
