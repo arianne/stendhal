@@ -90,4 +90,10 @@ public class MockDatabase extends StendhalPlayerDatabase {
 		};
 	}
 
+	@Override
+	protected void initializeRPObjectFactory() {
+		factory = StendhalRPObjectFactory.getFactory();
+		
+	}
+
 }
