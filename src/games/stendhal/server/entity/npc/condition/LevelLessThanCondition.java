@@ -31,7 +31,7 @@ public class LevelLessThanCondition extends SpeakerNPC.ChatCondition {
 
 	@Override
 	public String toString() {
-		return "level > " + level + " ";
+		return "level < " + level + " ";
 	}
 
 	@Override
