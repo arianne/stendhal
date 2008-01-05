@@ -1,6 +1,5 @@
 	package games.stendhal.server.maps.semos.city;
 
-import static games.stendhal.server.actions.WellKnownActionConstants.TARGET;
 import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
 import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.engine.StendhalRPZone;
