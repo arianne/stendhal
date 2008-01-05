@@ -26,9 +26,9 @@ public class Background {
 			initSemosCity();
 		} else if (ZERO_SEMOS_VILLAGE_W.equals(name)) {
 			initSemosVillage();
-		} else {
-			// TODO handle System.out.println("no Background for zone:"+ name);
-		}
+		} 
+			// TODO handle "no Background for zone:"+ name);
+	
 
 	}
 
@@ -45,26 +45,12 @@ public class Background {
 	}
 
 	private void initSemosBlacksmith() {
-		// ambient = new AmbientSound("blacksmith-overall-1", 20);
-		// ambient.addCycle("hammer", 45000, 20, 40, 65);
-		// playAmbientSound(ambient);
-
 		addSound("firesparks-1", 11, 3);
 		addSound("forgefire-1", 11, 3, true);
-		// soundPos = new Point2D.Double(11, 3);
-		// ambient = new AmbientSound("blacksmith-forgefire-main", soundPos, 30,
-		// 50);
-		// ambient.addLoop("forgefire-1", 50, 0);
-		// ambient.addCycle("firesparks-1", 60000, 10, 50, 80);
-		// playAmbientSound(ambient);
+
 		addSound("forgefire-2", 3, 3, true);
 		addSound("forgefire-3", 3, 3, true);
-		// soundPos = new Point2D.Double(3, 3);
-		// ambient = new AmbientSound("blacksmith-forgefire-side", soundPos, 6,
-		// 50);
-		// ambient.addLoop("forgefire-2", 50, 0);
-		// ambient.addLoop("forgefire-3", 50, 0);
-		// playAmbientSound(ambient);
+	
 
 	}
 
@@ -73,7 +59,7 @@ public class Background {
 
 	}
 
-	List<AudioClip> clips;
+	private List<AudioClip> clips;
 
 	public void addSound(String soundFileName, int x, int y) {
 
