@@ -6,7 +6,6 @@ import games.stendhal.server.actions.buddy.BuddyAction;
 import games.stendhal.server.actions.chat.ChatAction;
 import games.stendhal.server.actions.equip.EquipmentAction;
 import games.stendhal.server.actions.guild.CreateGuildAction;
-import games.stendhal.server.actions.move.LookAction;
 import games.stendhal.server.actions.move.MoveAction;
 import games.stendhal.server.entity.player.Player;
 
