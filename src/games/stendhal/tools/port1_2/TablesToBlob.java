@@ -15,7 +15,6 @@ import marauroa.common.Configuration;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 import marauroa.server.game.db.JDBCDatabase;
-import marauroa.server.game.db.JDBCTransaction;
 import marauroa.server.game.db.Transaction;
 
 import org.apache.log4j.Logger;
