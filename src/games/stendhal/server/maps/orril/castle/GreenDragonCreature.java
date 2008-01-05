@@ -15,7 +15,6 @@ import java.util.Map;
  */
 public class GreenDragonCreature implements ZoneConfigurator {
 
-	DefaultEntityManager manager = (DefaultEntityManager) StendhalRPWorld.get().getRuleManager().getEntityManager();
 
 	/**
 	 * Configure a zone.
@@ -28,6 +27,7 @@ public class GreenDragonCreature implements ZoneConfigurator {
 	}
 
 	private void buildCastleDungeonArea(StendhalRPZone zone, Map<String, String> attributes) {
+		DefaultEntityManager manager = (DefaultEntityManager) StendhalRPWorld.get().getRuleManager().getEntityManager();
 		Creature creature = new ItemGuardCreature(manager.getCreature("green_dragon"), "dungeon_silver_key");
 		CreatureRespawnPoint point = new CreatureRespawnPoint(zone, 69, 43, creature, 1);
 		zone.add(point);

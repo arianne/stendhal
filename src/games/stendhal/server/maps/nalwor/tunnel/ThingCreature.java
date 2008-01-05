@@ -16,8 +16,7 @@ import java.util.Map;
  */
 public class ThingCreature implements ZoneConfigurator {
 
-	DefaultEntityManager manager = (DefaultEntityManager) StendhalRPWorld.get().getRuleManager().getEntityManager();
-
+	
 	/**
 	 * Configure a zone.
 	 *
@@ -29,6 +28,7 @@ public class ThingCreature implements ZoneConfigurator {
 	}
 
 	private void buildDrowTunnelArea(StendhalRPZone zone, Map<String, String> attributes) {
+		DefaultEntityManager manager = (DefaultEntityManager) StendhalRPWorld.get().getRuleManager().getEntityManager();
 		Creature creature = new ItemGuardCreature(manager.getCreature("thing"), "amulet");
 		CreatureRespawnPoint point = new CreatureRespawnPoint(zone, 32, 5, creature, 1);
 		zone.add(point);

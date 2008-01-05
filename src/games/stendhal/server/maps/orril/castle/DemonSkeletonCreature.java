@@ -15,9 +15,7 @@ import java.util.Map;
  */
 public class DemonSkeletonCreature implements ZoneConfigurator {
 
-	DefaultEntityManager manager = (DefaultEntityManager) StendhalRPWorld.get().getRuleManager().getEntityManager();
-
-	/**
+		/**
 	 * Configure a zone.
 	 *
 	 * @param	zone		The zone to be configured.
@@ -28,6 +26,7 @@ public class DemonSkeletonCreature implements ZoneConfigurator {
 	}
 
 	private void buildLichPalace(StendhalRPZone zone, Map<String, String> attributes) {
+		DefaultEntityManager manager = (DefaultEntityManager) StendhalRPWorld.get().getRuleManager().getEntityManager();
 		Creature creature = new ItemGuardCreature(manager.getCreature("demon_skeleton"), "lich_gold_key");
 
 		CreatureRespawnPoint point = new CreatureRespawnPoint(zone, 54, 48, creature, 1);
