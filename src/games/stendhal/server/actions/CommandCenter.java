@@ -5,6 +5,7 @@ import games.stendhal.server.actions.admin.AdministrationAction;
 import games.stendhal.server.actions.attack.AttackAction;
 import games.stendhal.server.actions.attack.StopAction;
 import games.stendhal.server.actions.buddy.BuddyAction;
+import games.stendhal.server.actions.chat.AwayAction;
 import games.stendhal.server.actions.chat.ChatAction;
 import games.stendhal.server.actions.equip.EquipmentAction;
 import games.stendhal.server.actions.guild.CreateGuildAction;

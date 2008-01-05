@@ -1,6 +1,7 @@
-package games.stendhal.server.actions;
+package games.stendhal.server.actions.chat;
 
 import static org.junit.Assert.assertEquals;
+import games.stendhal.server.actions.chat.AwayAction;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
 
