@@ -5,6 +5,7 @@ import games.stendhal.server.core.events.LoginListener;
 import games.stendhal.server.core.events.LoginNotifier;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.events.TurnNotifier;
+import games.stendhal.server.util.TimeUtil;
 
 import org.apache.log4j.Logger;
 
@@ -108,8 +109,7 @@ public class GagManager implements LoginListener {
 	/**
 	 * Is player gagged?
 	 * 
-	 * @param inmate
-	 *            player to check
+	 * @param player player to check
 	 * @return true, if it is gagged, false otherwise.
 	 */
 	public static boolean isGagged(Player player) {
@@ -119,6 +119,23 @@ public class GagManager implements LoginListener {
 		return false;
 	}
 
+	/**
+	 * like isGagged(player) but informs the player in case it is gagged
+	 * 
+	 * @param player player to check
+	 * @return true, if it is gagged, false otherwise.
+	 */
+	public static boolean checkIsGaggedAndInformPlayer(Player player) {
+		boolean res = GagManager.isGagged(player);
+		if (res) {
+			long timeRemaining = GagManager.get().getTimeRemaining(player);
+			player.sendPrivateText("You are gagged, it will expire in "
+					+ TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L)));
+		}
+
+		return res;
+	}
+	
 	/**
 	 * If the players' gag has expired, remove it.
 	 * 
