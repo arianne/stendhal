@@ -9,25 +9,25 @@ package games.stendhal.server.entity.npc.parser;
  */
 public class Expression {
 
-	/** original, un-normalized string expression */
+	/** original, un-normalized string expression.*/
 	private String original;
 
-	/** Expression type */
+	/** Expression type. */
 	private ExpressionType type;
 
-	/** normalized string representation of this Expression */
+	/** normalized string representation of this Expression. */
 	private String normalized;
 
-	/** main word of the Expression */
+	/** main word of the Expression. */
 	private String mainWord;
 
-	/** number of items */
+	/** number of items. */
 	private Integer amount;
 
-	/** break flag to define sentence part borders */
+	/** break flag to define sentence part borders. */
 	private boolean breakFlag = false;
 
-	/** instance of an empty Expression */
+	/** instance of an empty Expression. */
 	public static final Expression emptyExpression = new Expression("", "");
 
 	/**
@@ -222,7 +222,7 @@ public class Expression {
 	 * @return
 	 */
 	public String getTypeString() {
-		return type!=null? type.getTypeString(): "";
+		return type != null ? type.getTypeString() : "";
 	}
 
 	/**
@@ -231,7 +231,7 @@ public class Expression {
 	 * @return
 	 */
 	public boolean isVerb() {
-	    return type!=null && type.isVerb();
+	    return type != null && type.isVerb();
     }
 
 	/**
@@ -240,8 +240,8 @@ public class Expression {
 	 * @return
 	 */
 	public boolean isObject() {
-	    return type!=null && type.isObject();
-    }
+		return type != null && type.isObject();
+	}
 
 	/**
 	 * Determine if the Expression represents a person.
@@ -249,8 +249,8 @@ public class Expression {
 	 * @return
 	 */
 	public boolean isSubject() {
-	    return type!=null && type.isSubject();
-    }
+		return type != null && type.isSubject();
+	}
 
 	/**
 	 * Determine if the Expression is negated.
@@ -258,13 +258,12 @@ public class Expression {
 	 * @return
 	 */
 	public boolean isNegated() {
-	    return type!=null && type.isNegated();
-    }
+		return type != null && type.isNegated();
+	}
 
 	/**
-	 * Merge Expression type with another one
-	 * while handling null values.
-	 *
+	 * Merge Expression type with another one while handling null values.
+	 * 
 	 * @param otherType
 	 */
 	public void mergeType(ExpressionType otherType) {
@@ -308,7 +307,7 @@ public class Expression {
 	 */
 	private String getNormalizedMatchString() {
 		// special case for numeric expressions to disambiguate "no" from "0"
-		if (type!=null && type.isNumeral()) {
+		if (type != null && type.isNumeral()) {
 			return original.toLowerCase();
 		} else {
 			return normalized;
@@ -345,13 +344,14 @@ public class Expression {
 
 	/**
 	 * Check for equality of two Expression objects.
+	 * TODO: override hashCode()
 	 */
 	@Override
 	public boolean equals(Object other) {
 		if (other == this) {
 			return true;
 		} else if (other instanceof Expression) {
-	        return original.equals(((Expression)other).original);
+	        return original.equals(((Expression) other).original);
         } else {
         	return toString().equals(other.toString());
         }
