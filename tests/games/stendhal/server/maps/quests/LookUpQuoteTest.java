@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -23,7 +24,7 @@ import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
 
 /**
- * Test for the "Lookup Quote" quest
+ * Test for the "Lookup Quote" quest.
  * 
  * @author Martin Fuchs
  */
@@ -31,7 +32,7 @@ public class LookUpQuoteTest {
 
 	static final String QUEST_SLOT = "get_fishing_rod";
 
-	static LookUpQuote quest;
+	private static LookUpQuote quest;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -104,7 +105,7 @@ public class LookUpQuoteTest {
 		String reply = pequodNpc.get("text");
 		assertTrue(reply.startsWith("Please look up the famous quote by fisherman "));
 		// fish out the fisherman's man from Pequod's reply
-		String fisherman = reply.substring(45, reply.length()-1);
+		String fisherman = reply.substring(45, reply.length() - 1);
 		assertTrue(player.hasQuest(QUEST_SLOT));
 		assertTrue(player.getQuest(QUEST_SLOT).startsWith("fisherman "));
 
@@ -150,12 +151,14 @@ public class LookUpQuoteTest {
         	case 'A':	// Ally
         		quote = "Holy mackerel! These chips are tasty.";
         		break;
+        	default:
+        		fail("unknown fisherman" + fisherman);
         }
 
 		// bother Pequod again
 		assertTrue(pequodEngine.step(player, "hi"));
 		assertTrue(pequodNpc.get("text").startsWith("Welcome back! Did you look up the famous quote by fisherman "));
-		assertTrue(pequodEngine.step(player, "yes")); // lie
+		assertTrue("lie" , pequodEngine.step(player, "yes")); 
 		assertEquals("So, what is it?", pequodNpc.get("text"));
 
 		assertTrue(pequodEngine.step(player, quote));
