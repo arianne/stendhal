@@ -63,7 +63,7 @@ public class LevelLessThanConditionTest {
 
 	@Test
 	public final void testToString() {
-		assertEquals("level > 0 ", new LevelLessThanCondition(0).toString());
+		assertEquals("level < 0 ", new LevelLessThanCondition(0).toString());
 	}
 
 	@Test
