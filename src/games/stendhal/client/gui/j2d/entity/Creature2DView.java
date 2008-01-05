@@ -46,19 +46,19 @@ public class Creature2DView extends RPEntity2DView {
 	/**
 	 * Should the path be hidden for this creature?
 	 */
-	public boolean hidePath;
+	private boolean hidePath;
 	/**
 	 * Whether to display all debug messages for this creature in the game log.
 	 */
-	public boolean watch;
+	private boolean watch;
 
-	/** the patrolpath */
+	/** the patrolpath. */
 	private List<Node> patrolPath;
 
-	/** new path to the target */
+	/** new path to the target. */
 	private List<Node> targetMovedPath;
 
-	/** the path we got */
+	/** the path we got. */
 	private List<Node> moveToTargetPath;
 
 	/**
@@ -383,9 +383,9 @@ public class Creature2DView extends RPEntity2DView {
 	//
 	//
 
-	protected static class Node {
-		public int x;
-		public int y;
+	private static class Node {
+		private int x;
+		private int y;
 
 		public Node(final int x, final int y) {
 			this.x = x;
