@@ -12,7 +12,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
  * removes all storeable entities from the specified list that
  * has the players name as identifier.
  */
-public class RemoveStoreableEntity extends SpeakerNPC.ChatAction {
+public class RemoveStoreableEntityAction extends SpeakerNPC.ChatAction {
 
 	private StoreableEntityList<?> storeableEntityList;
 
@@ -21,7 +21,7 @@ public class RemoveStoreableEntity extends SpeakerNPC.ChatAction {
 	 *
 	 * @param storeableEntityList the list to removed entities from
 	 */
-	public RemoveStoreableEntity(StoreableEntityList<?> storeableEntityList) {
+	public RemoveStoreableEntityAction(StoreableEntityList<?> storeableEntityList) {
 		this.storeableEntityList = storeableEntityList;
 	}
 
@@ -43,6 +43,6 @@ public class RemoveStoreableEntity extends SpeakerNPC.ChatAction {
 	@Override
 	public boolean equals(Object obj) {
 		return EqualsBuilder.reflectionEquals(this, obj, false, 
-			RemoveStoreableEntity.class);
+			RemoveStoreableEntityAction.class);
 	}
 }
