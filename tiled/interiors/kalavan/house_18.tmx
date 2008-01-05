@@ -139,7 +139,7 @@
  </layer>
  <layer name="1_terrain" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAL2VS07DMBCGJ2sOwIIDcBEkFj0JK4IQK1ZwmyK1y4Y9sAB2IEGRKLS04SnKGwq0hd/KWHKN7TSJy0ifbEfjfHaSiVtEdDFBOuAGXIKpwD9XuO81O6Yx3kK7DXbAKdMAq5Q/ZoJRh4wzcM40+Zrqt0XIbRlspDiKhrqOoo4ly/UKqFocoWVOlljX+qrjFsxi/I22z30f3FHieFD4EQsIRq/5oAXazCf4UsaCjpaTFfmsZA0O0A7pbw3FlK9O9RpcMLxD+c5izqlRwhE4Brtgn3NFf08Zr5H72xV12DQ4IkqogxPDmmxrdNWH7tikBFccgMMCjqyhOxYNOU/gGbyA1+wK4z50zxt4Bx+g58lhy/H1rP7DIc4I/XwwOWqOe5aQMwfmmbz7iFIcrn2M6xD1sTJhx3LOfcjzw/b/jx05rjNHzr8HXUb+77sKj5xjOxvSzhwx/xfTp3MixAkAAA==
+   H4sIAAAAAAAAAM2VuU4DMRCGZyU6eiigp+MpkCh4EiqCEBUVvA1IUCb0QAF0QeKQOBKScAoWCGcSjt/yrGIZ27vrNRIjffLEmpnfVjw7dSI6BwNReETdJrgGF2AwCs8l6l6BIfjDYAP+JtgCx8wJWCB/G0Hd0aivkdgpOGNqvKfq26zE6zJYSdEoauo5imrMWvZXwZpFo2TJyWNLmp9oiHd1A8bgd7H22A/BLcl3FTPj2PsWB4ikH4Kkdh00SPbMB9YO9XtI7De1mDw0+B5qD35i/aLfPdQivz7Ve3Da8B/q76JMkn1wALbBLscKf0f5vWjIV030Yc0QUyHJITjK8M6y9Ices04Sl1XBXgGNvKbnzxhiHsETaIPn/BLGM+o6L+AVvIH3QBo+Mf9NQ8wIfT6YNMqOmlOImQCTjO89KikaaflZNER/zP+xxpzHPdT5Yfv+txwxrpmT5N+BezJ//8X+A8fElhjXzIk5/weG2liKxAkAAA==
   </data>
  </layer>
  <layer name="2_object" width="25" height="25">
@@ -149,7 +149,7 @@
  </layer>
  <layer name="3_roof" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoB84AMQHgfgQHe0k1f5c+jiF6iAPh/hqIF6DQ26o+hUdqDNiZ1MTvAdic0YIfk8bKxgeA7EFIwQ/ppEd3IzY2djAFSC+CsTHgPgEVAzEPo7EJwRuA/Fd0pxIV3ABiC8OoP05dLIHW143Aca/KY3yCz3toCY4wDBw9dMoGAXkAAAdU/yVxAkAAA==
+   H4sIAAAAAAAAAGNgoB84AMQHgfgQHe0k1f5c+jiF6iAPh/hqIF6DQ26o+hUdqDNiZ1MbmDNCMC2BBSME0wpwM2JnYwNXgPgqEB8D4hNQMRD7OBKfELgNxHdJcyJdwQUgvjiA9ufQyR5sed0EGP+mNE7P9LCDmuAAw8DVT6NgFJADAMYAi/TECQAA
   </data>
  </layer>
  <layer name="4_roof_add" width="25" height="25">
@@ -162,7 +162,7 @@
    H4sIAAAAAAAAAGNgGAWjYBSMglEwCkbBKBg4cIuGZucx0t6OgQIAUtHDwcQJAAA=
   </data>
  </layer>
- <layer name="collision" width="25" height="25" opacity="0.37">
+ <layer name="collision" width="25" height="25" visible="0" opacity="0.37">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO2TUQrAMAhDc/9L9Kr7lxpj7MZgE4RCY15t7QKwPpAsKk3mtVsrzKhljJMxZWQ1rI8TvcR7ZownZuhn6IwuK2qzWtebhaJ3vFkv7jkUXuc9pgzA8+kyHM3bGMoMY6OJetV7ymD1bL/LqHqZ/OvKw8k7PJ28AOFEBJPECQAA
   </data>

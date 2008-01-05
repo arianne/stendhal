@@ -163,7 +163,7 @@
  </layer>
  <layer name="1_terrain" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAANWVuU7DQBCGxzUPQMED8FJ00FCRCAI1CfAuIEEZ6AkF0IHEIXEFYk4RCBDu6195VkzGdvA6DhIjfdqd9aw/X+utEtFxF6mBC3AKerzsOcN5z9nRi3wZbQWsgD1mnzqLPq/VYeMAHDJHPCb9OvLc5ridBXO/ODoNeR1ZOAYwbxAMifnzYCHGkQufwilKKh9XjkvQj/wN7Tv3s+CKAseN4MtcgNc6lgVVcMK8gFeRG2qqxhX7rOwa/ED7SeE15FO6darXYFTYd+ZzTZkCtsA2WAXrXGv6ayKX810cixSwA3bBhKofFn39XSV1LFFAu9gAm+xP43CNJI4GuAP34EEdm8ScIlMCBXGs7OBogkfwBJ4dHOadFWIcIzH3GvWsppBPMzMRjqT30c4xqrAxRj/fhXbkKRx/8c7/o6PYZUfc/mH//76oSbN/XIM6Y/ePuhi75Zq0e4eZ/w0mcqGlxAkAAA==
+   H4sIAAAAAAAAANWVuU4DMRCGZyU6eiigp+OJ6KChIlEI1CTAu4AEZaAnFEAHEofEFZJwKiTc9/FbHmstx7usNwaJkT557J3xv9Z6dipEdAK6Av+IfWvgApyC7sA/Z9j3HPTA7wUr8MtgFewzB9SZ9WHf/iDUUHYIjphjXtP1TcvymOFxDsz/oNGp6e/hQ2MIecNgRMtfAIsRGhnbJg5WNOYTmoa4V5dgAP4bxnf2fXBF8l41mUGsfYkXCKTvA7V3BVRJ1swLxlcKa0is14wYF6p8Dr0GPzB+UnsN1SldnZo1aDPzXpRIsg12wBrY4Fjhr2tzW34SjSWS7II9MGnEj0bcKxeNZZLE2SbYYv00Gq6WJP8G3II7cG88m0JOgSmCvPas5KDxAB7BE3h20BDfLB+hMeZw1mnMZ5hZi0bSc8TF5AyUjVN4L8z8LLXbX3zz/6hR+EWNuP6h/v91LSZN/2iAa7L3D7He4hjVY1z7h8j/BrQuAlfECQAA
   </data>
  </layer>
  <layer name="2_object" width="25" height="25">
@@ -173,7 +173,7 @@
  </layer>
  <layer name="3_roof" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoB84AMQHgfgQHe0k1v48KJ1LhDnVjAwMtYyY4kVYxOgJgoH2RwFxNJI7VgPxGhzqifHrUADqjNjZ1ATvgdicEYLf08YKhsdAbMEIwY9pZAc3I3Y2NnAFiK8C8TEgPgEVA7GPI/GxgQw0c7MGOF/gAxeA+CIOOXR3o/trqAMToH9MqeinHDrYQWswXMrEgQDE5PM0oJpURlR6FFAGADA4XbDECQAA
+   H4sIAAAAAAAAAGNgoB84AMQHgfgQHe0k1v48KJ1LhDnVjAwMtYyY4kVYxOgJgoH2RwFxNJI7VgPxGhzqifHrUADqjNjZ1AbmjBBMS2DBCMG0AtyM2NnYwBUgvgrEx4D4BFQMxD6OxMcGMtDMzRrgfIEPXADiizjk0N2N7q+hDkyA/jGlop9y6GAHrcFwKRMHAhCTz9OAalIZUelRQBkAAOtrKtHECQAA
   </data>
  </layer>
  <layer name="4_roof_add" width="25" height="25">
@@ -186,7 +186,7 @@
    H4sIAAAAAAAAAGNgGAWjYBSMglEwCkbBKMAObg1x84czAADRBKl9xAkAAA==
   </data>
  </layer>
- <layer name="collision" width="25" height="25" opacity="0.37">
+ <layer name="collision" width="25" height="25" visible="0" opacity="0.37">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO2TUQrAIAxDvf8letX9DoltXqfsYwvIRNckDTXGGPGBlSGmr7pXXGqfac46IfaVb6efFUgmDofyRLN39Fb6mZeTM/RrePx3kFrnTOlQb1UWpI8MNC/C7ejRf5zMTnqs5oDw7Oij2+uT2aXozm6Xf+f7yOroO6/uK41O7dvrArSzAeLECQAA
   </data>

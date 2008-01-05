@@ -62,12 +62,12 @@
  </tileset>
  <layer name="0_floor" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3VSQrCQBCF4RZEwXkhCMaNCLqIKK70Hs4j3sBTOc839IkKRZFq4xiUXnxEQnV+TeiYUkqlPOaDJDO9HmfsvF+zhs+4lYcAWMT8elyQc0GIaNbcZopP9AtQhwYxIZ+bYLP+ec2YsV/ot6At6Jj+3/e70BP0v9AfwFAwghxk1GWPpyHr0KczOvQdIf0WJ+frW0Kbz0joe+TR/jvQ52j6pm/6pv8r/QpUoexiRhLW9JewYtbkujWIQ0n4DreZ2B0Job+BLbNzuG+f+P81fe/7ezgwxy/2dT7ZDyn9nuX7VloTfqIfVff3K9+3ujWJB/teOgGoFrKXABAAAA==
+   H4sIAAAAAAAAAO3VSQrCQBAF0BZEwQkXQkDdiKALRXGlKy/hPOINPJXzfEO/GKEoUk0MGgd68UgIVf0zUB1LKWV9WABSzMI+Ltn1oKaH17hVgBBkiJV9XJNrYYhpeh41ZQ/5RWhBm5iT8w6UyNqPnhlDa57N70JP0Df5f58/gKFg5EP+GCaCKeQhq+4znoacQz6t0aF7hPQsTm7rZ4RsXiOh+8iz+a/Av5HJN/km3+T/Qn4N6lB1USOJKnn/3cCW2ZF1G9CEinAPtEaSgKSQv4cDc3R4b+/4/5r8z+ef4MxcfMzXeWd+ROlnls+t1BP1kB9X95nUzSyfW6mHz/a3uwIdE9NSABAAAA==
   </data>
  </layer>
  <layer name="1_terrain" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoAzsBOJdULybQrNAoBeI+9DEuulo/0QgngTE2UCcA8S5QNxPJ/srkNh5ULoAixwy2APEe6F4H4X2DzbQNNAOGGEAVxojJDfYQQsNzGwkUm4yEE+hgf3EgqlAPG0A7ScF4AtTXGAJDvZgBdTOR7OBeA4QzwXieVQ2mxgwH4gXAPFCIF40APaTCvCFPznpbxQMDCC2/CUVYEsfQ7nuGwVDCwy19FeBgz2SAB8UD0UAANnN9WcAEAAA
+   H4sIAAAAAAAAAO2VzQqCQBRGfV9NWro12kmJmm7K0ugl/Kln6xNmIeLYTKPODM6Bgxcv3E+Gq1qWGBWsiY3grI4TPA/uBSvmRzCGNnTgDoYr5Xu92iXX/UivTwvfxI9gvmocZD/AxqDt2K+e6hwXmOkz9hJ4WSCflRRmEvN5mDpTGi9KrSpzv0dXeIM5vM88m4UHLGAJnxLyeZk6/3/2zyAH1u8vL2P7ofO/z6AXuu2fR6kNevAFalv6mwAQAAA=
   </data>
  </layer>
  <layer name="2_object" width="32" height="32">
@@ -90,7 +90,7 @@
    H4sIAAAAAAAAAO3OMQoAIAxD0ZxbHTyU3q+LqyioVOh/EAhdGulcG8Fd1XsAwsmbNwBSmfRf9eD/Aawl7wEAnjNgfjrUABAAAA==
   </data>
  </layer>
- <layer name="collision" width="32" height="32" opacity="0.34">
+ <layer name="collision" width="32" height="32" visible="0" opacity="0.34">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO2V3QrAIAiFfUbf/2F2Ndikmr+lwwNSBJ1PKQsBAI1xy+rT/LcXHaP5X+Ls8eTTtd18jvef+KscJGcWVT/1l+bqwX8yTvItysrX5ICTuYa/Q97nb+2h6nypMvRg1v6rwo98/0e+9I059f9w9mjZzc/BX92/jPXPeqOjRlxejuKpABAAAA==
   </data>

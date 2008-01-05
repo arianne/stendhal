@@ -37,7 +37,7 @@
  </layer>
  <layer name="1_terrain" width="12" height="12">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNnYGDgIBJzATE3EPMAsSEBzAvEQlD1tgyEgeOoepqpFwBiXySsCMRKaGKCUPXCQCyChlWBWA2LuBgQAwDKJiqvQAIAAA==
+   H4sIAAAAAAAAAGNnYGDgAGItAhikhguIuYGYB4gNCWBeIBYCYhsgtmUgDByB2GlUPdXVg+JLAIh9kbAiECuhiQkyQOJLGIhFgDgECasCsRqaGEiNGBADAHjb+wFAAgAA
   </data>
  </layer>
  <layer name="2_object" width="12" height="12">
@@ -60,7 +60,7 @@
    H4sIAAAAAAAAAGNgGAUjDdRAMTUAACJmp99AAgAA
   </data>
  </layer>
- <layer name="collision" width="12" height="12" opacity="0.47">
+ <layer name="collision" width="12" height="12" visible="0" opacity="0.47">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAKtnYGCoHyDMQEAOH6BUPSE7aeEeUsOGmu7BppcacQgAnQ2WbUACAAA=
   </data>
