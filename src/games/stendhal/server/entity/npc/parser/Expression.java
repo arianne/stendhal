@@ -344,7 +344,6 @@ public class Expression {
 
 	/**
 	 * Check for equality of two Expression objects.
-	 * TODO: override hashCode()
 	 */
 	@Override
 	public boolean equals(Object other) {
@@ -355,6 +354,14 @@ public class Expression {
         } else {
         	return toString().equals(other.toString());
         }
+	}
+
+    /**
+     * Returns a hash code for this Expression object.
+     */
+	@Override
+	public int hashCode() {
+		return original.hashCode();
 	}
 
 	/**
