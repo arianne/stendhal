@@ -112,14 +112,14 @@ public class Engine {
 
 			existing.setReply(reply);
 
-			// If there is no action associated with the previous and with the new rule, we
-			// can silently ignore the new transition, as it is already handled completely.
+		
 			if (action == null && existingAction == null) {
+				// There is no action associated with the previous and with the new rule, we
+				// can silently ignore the new transition, as it is already handled completely.
 				return;
-			}
-			// If the previous and the new action are identical, we can silently ignore the
-			// new transition, as it is already handled.
-			else if (action != null && action.equals(existingAction)) {
+			} else if (action != null && action.equals(existingAction)) {
+				// The previous and the new action are identical, we can silently ignore the
+				// new transition, as it is already handled.
 				return;
 			} else {
 				logger.warn(speakerNPC.getName() + ": Adding ambiguous state transition: " + existing
