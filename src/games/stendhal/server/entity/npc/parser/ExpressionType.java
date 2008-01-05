@@ -170,7 +170,7 @@ public class ExpressionType {
 	}
 
 	/**
-	 * Determine Expression to ignore.
+	 * Determine Expressions to ignore.
 	 * 
 	 * @return
 	 */

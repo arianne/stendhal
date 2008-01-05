@@ -113,8 +113,26 @@ public class SentenceTest {
 		assertFalse(s1.matches(m2));
 
 		s1 = ConversationParser.parse("please work");
-		assertFalse(s1.hasError());
 		m1 = ConversationParser.parseForMatching("IGN VER");
+		assertFalse(s1.hasError());
+		assertFalse(m1.hasError());
+		assertTrue(s1.matches(m1));
+
+		s1 = ConversationParser.parse("so i love you");
+		m1 = ConversationParser.parseForMatching("i love you");
+		assertFalse(s1.hasError());
+		assertFalse(m1.hasError());
+		assertTrue(s1.matches(m1));
+
+		s1 = ConversationParser.parse("so i love you");
+		m1 = ConversationParser.parseForMatching("i love you");
+		assertFalse(s1.hasError());
+		assertFalse(m1.hasError());
+		assertTrue(s1.matches(m1));
+
+		s1 = ConversationParser.parse("but do you love me?");
+		m1 = ConversationParser.parseForMatching("do you love me?");
+		assertFalse(s1.hasError());
 		assertFalse(m1.hasError());
 		assertTrue(s1.matches(m1));
 	}

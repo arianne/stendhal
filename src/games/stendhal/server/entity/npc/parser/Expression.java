@@ -1,5 +1,7 @@
 package games.stendhal.server.entity.npc.parser;
 
+import java.util.Iterator;
+
 /**
  * An Expression is part of a Sentence. It encapsulates the original, white space
  * trimmed text, the expression type, a normalized lower case text string and the
@@ -262,6 +264,24 @@ public class Expression {
 	}
 
 	/**
+	 * Determine Expressions to ignore.
+	 * 
+	 * @return
+	 */
+	public boolean isIgnore() {
+		return type != null && type.isIgnore();
+    }
+
+	/**
+	 * Determine if the Expression consists of question words.
+	 * 
+	 * @return
+	 */
+	public boolean isQuestion() {
+		return type != null && type.isQuestion();
+    }
+
+	/**
 	 * Merge Expression type with another one while handling null values.
 	 * 
 	 * @param otherType
@@ -343,6 +363,24 @@ public class Expression {
     }
 
 	/**
+	 * Advance the iterator and return the next non-ignorable Expression.
+	 * 
+	 * @param it
+	 * @return
+	 */
+	public static Expression nextValid(Iterator<Expression> it) {
+		while (it.hasNext()) {
+			Expression expr = it.next();
+
+			if (!expr.isIgnore()) {
+				return expr;
+			}
+		}
+
+	    return null;
+    }
+
+	/**
 	 * Check for equality of two Expression objects.
 	 */
 	@Override
@@ -371,5 +409,6 @@ public class Expression {
 	public String toString() {
 		return normalized != null ? normalized : original;
 	}
+
 
 }

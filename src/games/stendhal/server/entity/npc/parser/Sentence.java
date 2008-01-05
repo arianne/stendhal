@@ -562,7 +562,7 @@ public class Sentence {
 						break;
 					}
 				} else if (w.getType().isSubject()) {
-					if (w.getOriginal().equals("me")) {
+					if (w.getOriginal().equalsIgnoreCase("me")) {
 						// If we already found a verb, we prepend "you" as
 						// first subject and mark the sentence as imperative.
 						if (prevVerb != null) {
@@ -628,27 +628,24 @@ public class Sentence {
 		Iterator<Expression> it = expressions.iterator();
 		int type = ST_UNDEFINED;
 
-		if (it.hasNext()) {
-			Expression first = it.next();
+		// As words are not yet merged together at this stage, we have to use Expression.nextValid()
+		// in this function to jump over words to ignore.
+		Expression first = Expression.nextValid(it);
 
-			while (first.getType() != null && first.getType().isQuestion() && it.hasNext()) {
-				first = it.next();
-
+		if (first != null) {
+			while (first.getType().isQuestion() && it.hasNext()) {
 				if (type == ST_UNDEFINED) {
 					type = ST_QUESTION;
 				}
+
+				first = Expression.nextValid(it);
 			}
 
 			Expression second = null;
 			Expression third = null;
 
-			if (it.hasNext()) {
-				second = it.next();
-
-				if (it.hasNext()) {
-					third = it.next();
-				}
-			}
+			second = Expression.nextValid(it);
+			third = Expression.nextValid(it);
 
 			if (second != null) {
 				// questions beginning with "is"/"are"
@@ -657,8 +654,9 @@ public class Sentence {
 						type = ST_QUESTION;
 					}
 				}
-				// questions beginning with "do"
-				else if (first.getNormalized().equals("do")) {
+				// questions beginning with "do", but no "do me" sentences
+				else if (first.getNormalized().equals("do") &&
+						(second==null || !second.getOriginal().equalsIgnoreCase("me"))) {
 					if (type == ST_UNDEFINED) {
 						type = ST_QUESTION;
 					}

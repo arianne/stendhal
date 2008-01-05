@@ -245,4 +245,5 @@ public class ConversationParserTest {
 		assertEquals("kiss", sentence.getNormalized());
 		assertEquals("kiss/VER", sentence.toString());
 	}
+
 }
