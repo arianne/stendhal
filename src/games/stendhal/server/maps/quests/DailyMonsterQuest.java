@@ -21,7 +21,7 @@ import java.util.Random;
 import org.apache.log4j.Logger;
 
 /**
- * QUEST: Daily Monster Kill Quest
+ * QUEST: Daily Monster Kill Quest.
  * <p>
  * PARTICIPANTS:
  * <li> Mayor
@@ -46,8 +46,8 @@ public class DailyMonsterQuest extends AbstractQuest {
 
 	class DailyQuestAction extends SpeakerNPC.ChatAction {
 
-		/** All creatures, sorted by level */
-		List<Creature> sortedcreatures;
+		/** All creatures, sorted by level. */
+		private List<Creature> sortedcreatures;
 
 		private String debugString;
 
