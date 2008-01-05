@@ -9,7 +9,6 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.TeleporterBehaviour;
 import games.stendhal.server.entity.npc.action.EquipItemAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
@@ -25,20 +24,20 @@ import java.util.List;
 
 /**
  * QUEST: Meet Santa anywhere around the World.
+ *<p>
+ * PARTICIPANTS: <ul><li> Santa Claus</ul>
  *
- * PARTICIPANTS: - Santa Claus
+ * STEPS: <ul><li> Find Santa <li>Say hi <li> Get reward <li> Get hat</ul>
  *
- * STEPS: - Find Santa - Say hi - Get reward - Get hat
+ * REWARD: <ul><li> a stocking which can be opened to obtain a random good reward: food,
+ * money, potions, items, etc... </ul>
  *
- * REWARD: - a stocking which can be opened to obtain a random good reward: food,
- * money, potions, items, etc...
- *
- * REPETITIONS: - None
+ * REPETITIONS:None
  */
 public class MeetSanta extends AbstractQuest implements LoginListener {
 	private static final String QUEST_SLOT = "meet_santa_08";
 
-	/** the Santa NPC */
+	/** the Santa NPC. */
 	protected SpeakerNPC santa;
 
 	private StendhalRPZone zone;
@@ -48,6 +47,7 @@ public class MeetSanta extends AbstractQuest implements LoginListener {
 		super.init(name, QUEST_SLOT);
 	}
 
+	@SuppressWarnings("unused")
 	private SpeakerNPC createSanta() {
 		santa = new SpeakerNPC("Santa") {
 			@Override
