@@ -11,12 +11,11 @@ import java.util.Date;
 import org.apache.log4j.Logger;
 
 /**
- * this is the internal class which handles an active deathmatch session
+ * this is the internal class which handles an active deathmatch session.
  */
 class DeathmatchEngine implements TurnListener {
-
-	private static final long BAIL_DELAY = 2000; // wait 2 seconds before
-													// bail takes effect
+	/** The amount of milliseconds to wait before bail takes effect. */
+	private static final long BAIL_DELAY = 2000; 
 
 	private static Logger logger = Logger.getLogger(DeathmatchEngine.class);
 
@@ -98,7 +97,7 @@ class DeathmatchEngine implements TurnListener {
 
 		}
 
-		// check wheter the deathmatch was completed
+		// check whether the deathmatch was completed
 		if (deathmatchState.getQuestLevel() >= player.getLevel()
 				+ CreatureSpawner.NUMBER_OF_CREATURES - 2) {
 			// logger.info("May be done");
@@ -158,8 +157,6 @@ class DeathmatchEngine implements TurnListener {
 		}
 
 		// send the player back to the entrance area
-		// StendhalRPZone entranceZone =
-		// StendhalRPWorld.get().getZone(zoneName);
 		player.teleport(dmInfo.getEntranceSpot().getZone(),
 				dmInfo.getEntranceSpot().getX(),
 				dmInfo.getEntranceSpot().getY(), null, null);

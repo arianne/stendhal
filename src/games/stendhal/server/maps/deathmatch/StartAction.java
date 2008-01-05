@@ -5,7 +5,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 
 /**
- * Action to start a new deathmatch session for the player
+ * Action to start a new deathmatch session for the player.
  *
  * @author hendrik
  */
@@ -14,7 +14,7 @@ public class StartAction extends SpeakerNPC.ChatAction {
 	private DeathmatchInfo deathmatchInfo;
 
 	/**
-	 * creates a new StartAction for the specified deathmatch
+	 * Creates a new StartAction for the specified deathmatch.
 	 
 	 * @param deathmatchInfo deathmatch to start
 	 */

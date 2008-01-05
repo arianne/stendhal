@@ -8,7 +8,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 
 /**
- * handles player claim of victory by giving reward after verifing the winning
+ * Handles player claim of victory by giving reward after verifing the winning.
  *
  * @author hendrik
  */
@@ -33,7 +33,7 @@ public class DoneAction extends SpeakerNPC.ChatAction {
 	}
 
 	/**
-	 * Updates the player's points in the hall of fame for deathmatch
+	 * Updates the player's points in the hall of fame for deathmatch.
 	 *
 	 * @param player Player
 	 * @return new amount of points

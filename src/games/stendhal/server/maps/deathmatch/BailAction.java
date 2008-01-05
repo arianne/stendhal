@@ -6,7 +6,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 
 /**
- * handles "bail" trigger to free the player from deathmatch with a penalty
+ * handles "bail" trigger to free the player from deathmatch with a penalty.
  *
  * @author hendrik
  */

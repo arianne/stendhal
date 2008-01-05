@@ -3,9 +3,9 @@ package games.stendhal.server.maps.deathmatch;
 import games.stendhal.server.core.engine.StendhalRPZone;
 
 public class Spot {
-	StendhalRPZone zone;
-	int x;
-	int y;
+	private StendhalRPZone zone;
+	private int x;
+	private int y;
 
 	/**
 	 * is a defined place in a zone.

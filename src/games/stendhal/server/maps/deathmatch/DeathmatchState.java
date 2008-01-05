@@ -3,7 +3,7 @@ package games.stendhal.server.maps.deathmatch;
 import java.util.Date;
 
 /**
- * manages the deathmatch state (which is store in a quest slot)
+ * Manages the deathmatch state (which is stored in a quest slot).
  *
  * @author hendrik
  */
@@ -20,7 +20,7 @@ class DeathmatchState {
 	};
 
 	/**
-	 * creates a start state
+	 * Creates a start state.
 	 *
 	 * @param level
 	 * @return start state
@@ -37,7 +37,7 @@ class DeathmatchState {
 	}
 
 	/**
-	 * parses the questString
+	 * Parses the questString.
 	 *
 	 * @param questString
 	 *            quest string
@@ -54,7 +54,7 @@ class DeathmatchState {
 	}
 
 	/**
-	 * Gets the quest level
+	 * Gets the quest level.
 	 *
 	 * @return quest level
 	 */
@@ -63,7 +63,7 @@ class DeathmatchState {
 	}
 
 	/**
-	 * Sets the quest level
+	 * Sets the quest level.
 	 *
 	 * @param level
 	 *            quest level
@@ -78,7 +78,7 @@ class DeathmatchState {
 	}
 
 	/**
-	 * gets the current lifecycle state
+	 * Gets the current lifecycle state.
 	 *
 	 * @return lifecycleState
 	 */
@@ -87,7 +87,7 @@ class DeathmatchState {
 	}
 
 	/**
-	 * sets the current lifecycle state
+	 * Gets the current lifecycle state.
 	 *
 	 * @param lifecycleState
 	 *            DeathmatchLifecycle
@@ -98,7 +98,7 @@ class DeathmatchState {
 	}
 
 	/**
-	 * returns the state as string which can be stored in the quest slot
+	 * Returns the state as string which can be stored in the quest slot.
 	 *
 	 * @return quest string
 	 */
@@ -113,7 +113,7 @@ class DeathmatchState {
 	}
 
 	/**
-	 * updates the time stamp
+	 * Updates the time stamp.
 	 */
 	public void refreshTimestamp() {
 		date = new Date().getTime();

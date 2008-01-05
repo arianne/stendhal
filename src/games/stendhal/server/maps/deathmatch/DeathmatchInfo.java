@@ -19,7 +19,7 @@ public class DeathmatchInfo {
 	private final StendhalRPZone zone;
 
 	/**
-	 * Creates a new DeathmatchInfo
+	 * Creates a new DeathmatchInfo.
 	 *
 	 * @param arena
 	 *            combat area
@@ -35,7 +35,7 @@ public class DeathmatchInfo {
 	}
 
 	/**
-	 * gets the arena
+	 * Gets the arena.
 	 *
 	 * @return combat area
 	 */
@@ -44,7 +44,7 @@ public class DeathmatchInfo {
 	}
 
 	/**
-	 * gets the zone
+	 * Gets the zone.
 	 *
 	 * @return zone
 	 */

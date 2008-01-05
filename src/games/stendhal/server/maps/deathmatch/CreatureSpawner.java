@@ -33,7 +33,7 @@ static final Logger logger = Logger.getLogger(CreatureSpawner.class);
 		Collections.sort(sortedCreatures, new LevelBasedComparator());
 	}
 	/**
-	 * remove the critters that the player was supposed to kill
+	 * Removes the critters that the player was supposed to kill.
 	 */
 	public void removePlayersMonsters() {
 		for (Creature creature : spawnedCreatures) {
@@ -45,7 +45,7 @@ static final Logger logger = Logger.getLogger(CreatureSpawner.class);
 		}
 	}
 	/**
-	 * check if all our enemies are dead
+	 * Checks if all our enemies are dead.
 	 *
 	 * @return true if all are dead, false otherwise
 	 */
@@ -60,8 +60,8 @@ static final Logger logger = Logger.getLogger(CreatureSpawner.class);
 	}
 
 	/**
-	 * be nice to the player and give him his daily quest creature
-	 * if he hasn't found it yet
+	 * Gives the daily quest creature to the player,
+	 * if he hasn't found it yet, to be nice to the player. 
 	 * @param player the player taking the Deathmatch
 	 * @param dmInfo the Deathmatch's Info
 	 */
@@ -82,7 +82,7 @@ static final Logger logger = Logger.getLogger(CreatureSpawner.class);
 		}
 	}
 	/**
-	 * Calculate which type of creature should be spawned next
+	 * Calculates which type of creature should be spawned next.
 	 *
 	 * @param questLevel level of creature / deathmatch status
 	 * @return creature template
@@ -117,7 +117,7 @@ static final Logger logger = Logger.getLogger(CreatureSpawner.class);
 	}
 
 	/**
-	 * creates a new creature of the named type and adds it to the world
+	 * Creates a new creature of the named type and adds it to the world.
 	 *
 	 * @param template Creature to create
 	 * @param player the player who takes the deatchmatch
