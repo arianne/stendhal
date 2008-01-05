@@ -23,7 +23,7 @@ public class ChatLineParser {
 	}
 
 	/**
-	 * returns the ChatLineParser
+	 * returns the ChatLineParser.
 	 * 
 	 * @return ChatLineParser
 	 */
@@ -35,7 +35,7 @@ public class ChatLineParser {
 	}
 
 	/**
-	 * parses a chat/command line and processes the result
+	 * parses a chat/command line and processes the result.
 	 * 
 	 * @param input
 	 *            string to handle

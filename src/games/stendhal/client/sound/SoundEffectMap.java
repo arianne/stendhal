@@ -19,7 +19,7 @@ import java.util.Map;
 public class SoundEffectMap {
 
 	/**
-	 * the singleton instance initated by default
+	 * the singleton instance initiated by default.
 	 */
 	private static final SoundEffectMap INSTANCE = new SoundEffectMap();
 
@@ -31,7 +31,7 @@ public class SoundEffectMap {
 	}
 
 	/**
-	 * stores the named sound effects
+	 * stores the named sound effects.
 	 */
 	private Map<String, Object> sfxmap = Collections.synchronizedMap(new HashMap<String, Object>(
 			256));
@@ -78,17 +78,7 @@ public class SoundEffectMap {
 	 */
 	ClipRunner getSoundClip(String name) {
 
-		// Object o = getByName(name);
-		// if (o == null)
-		// return null;
-		//	
-		// if (o instanceof ClipRunner) {
-		// return (ClipRunner) o;
-		// }
-		//	
-		// // load sounddata from soundfile
-		// String path = (String) o;
-		// return system.loadSoundDataFromFile(name, path);
+		
 		return (ClipRunner) getByName(name);
 	}
 

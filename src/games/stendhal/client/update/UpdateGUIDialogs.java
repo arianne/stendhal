@@ -5,7 +5,7 @@ import java.text.NumberFormat;
 import javax.swing.JOptionPane;
 
 /**
- * Dialogboxes used during updating
+ * Dialogboxes used during updating..
  * 
  * @author hendrik
  */
@@ -50,7 +50,7 @@ public class UpdateGUIDialogs {
 	}
 
 	/**
-	 * Displays a message box
+	 * Displays a message box.
 	 * 
 	 * @param message
 	 *            message to display

@@ -7,7 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.PrintStream;
 
 /**
- * Record chat/commands
+ * Record chat/commands.
  * 
  * @author hendrik
  */
@@ -22,7 +22,7 @@ public class ScriptRecorder {
 	private long lastTimestamp;
 
 	/**
-	 * Creates a new ScriptRecorder
+	 * Creates a new ScriptRecorder.
 	 * 
 	 * @param classname
 	 *            Name of Class to record
@@ -39,7 +39,7 @@ public class ScriptRecorder {
 	}
 
 	/**
-	 * Starts the recording by writing the header
+	 * Starts the recording by writing the header.
 	 */
 	public void start() {
 		ps.println("package games.stendhal.client.script;");
@@ -57,7 +57,7 @@ public class ScriptRecorder {
 	}
 
 	/**
-	 * Records a chat/command
+	 * Records a chat/command.
 	 * 
 	 * @param text
 	 *            command to record

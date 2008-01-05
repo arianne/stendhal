@@ -26,7 +26,7 @@ public class UpdateGUI extends JFrame {
 	private JEditorPane jEditorPane;
 
 	/**
-	 * This method initializes jPanel
+	 * This method initializes jPanel.
 	 * 
 	 * @return javax.swing.JPanel
 	 */
@@ -42,7 +42,7 @@ public class UpdateGUI extends JFrame {
 	}
 
 	/**
-	 * This method initializes jProgressBar
+	 * This method initializes jProgressBar.
 	 * 
 	 * @return javax.swing.JProgressBar
 	 */
@@ -55,7 +55,7 @@ public class UpdateGUI extends JFrame {
 	}
 
 	/**
-	 * This method initializes jButton
+	 * This method initializes jButton.
 	 * 
 	 * @return javax.swing.JButton
 	 */
@@ -69,7 +69,7 @@ public class UpdateGUI extends JFrame {
 	}
 
 	/**
-	 * This method initializes jButton1
+	 * This method initializes jButton1.
 	 * 
 	 * @return javax.swing.JButton
 	 */
@@ -82,7 +82,7 @@ public class UpdateGUI extends JFrame {
 	}
 
 	/**
-	 * This method initializes jEditorPane
+	 * This method initializes jEditorPane.
 	 * 
 	 * @return javax.swing.JEditorPane
 	 */
@@ -111,16 +111,13 @@ public class UpdateGUI extends JFrame {
 	}
 
 	/**
-	 * This is the default constructor
+	 * Default constructor.
 	 */
 	public UpdateGUI() {
 		super();
 		initialize();
 	}
 
-	/**
-	 * This method initializes this
-	 */
 	private void initialize() {
 		this.setSize(300, 200);
 		this.setContentPane(getJContentPane());
@@ -128,7 +125,7 @@ public class UpdateGUI extends JFrame {
 	}
 
 	/**
-	 * This method initializes jContentPane
+	 * This method initializes jContentPane.
 	 * 
 	 * @return javax.swing.JPanel
 	 */

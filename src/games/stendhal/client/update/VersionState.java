@@ -1,16 +1,16 @@
 package games.stendhal.client.update;
 
 /**
- * Possible State of the Client Version
+ * Possible States of the Client Version.
  * 
  * @author hendrik
  */
 public enum VersionState {
 
-	/** this version is up to date, no update available */
+	/** this version is up to date, no update available. */
 	CURRENT,
 
-	/** we are unable to get version state */
+	/** we are unable to get version state. */
 	ERROR,
 
 	/**
@@ -20,17 +20,17 @@ public enum VersionState {
 	 */
 	OUTDATED,
 
-	/** the update system does not know about this version */
+	/** the update system does not know about this version. */
 	UNKOWN,
 
-	/** there are updates, which should be installed */
+	/** there are updates, which should be installed. */
 	UPDATE_NEEDED,
 
-	/** this is only the initial download */
+	/** this is only the initial download. */
 	INITIAL_DOWNLOAD;
 
 	/**
-	 * converts a string in to VersionState
+	 * converts a string into VersionState.
 	 * 
 	 * @param versionStateString
 	 *            a string represantation

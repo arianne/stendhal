@@ -35,16 +35,16 @@ import org.apache.log4j.Logger;
  */
 class ClipRunner implements LineListener {
 
-	/** the logger */
+	/** the logger. */
 	private static final Logger logger = Logger.getLogger(ClipRunner.class);
 
-	/** name of this clip */
+	/** name of this clip. */
 	private String name;
 
-	/** length */
+	/** length. */
 	private long maxLength;
 
-	/** sound samples */
+	/** sound samples. */
 	private List<AudioClip> samples;
 
 	/**

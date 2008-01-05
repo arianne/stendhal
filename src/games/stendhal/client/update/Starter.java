@@ -25,7 +25,7 @@ import javax.swing.JOptionPane;
 public class Starter {
 
 	/**
-	 * Starts stendhal
+	 * Starts stendhal.
 	 * 
 	 * @param args
 	 *            args

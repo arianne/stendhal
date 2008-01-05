@@ -14,7 +14,7 @@ public class ClasspathEntry implements Comparable<ClasspathEntry> {
 	private String version;
 
 	/**
-	 * create a classpath entry
+	 * create a classpath entry.
 	 * 
 	 * @param filename
 	 */
@@ -38,7 +38,7 @@ public class ClasspathEntry implements Comparable<ClasspathEntry> {
 	}
 
 	/**
-	 * Returns the filename
+	 * Returns the filename.
 	 * 
 	 * @return filename
 	 */
@@ -47,7 +47,7 @@ public class ClasspathEntry implements Comparable<ClasspathEntry> {
 	}
 
 	/**
-	 * returns the type of this jar
+	 * Returns the type of this jar.
 	 * 
 	 * @return type
 	 */
@@ -56,7 +56,7 @@ public class ClasspathEntry implements Comparable<ClasspathEntry> {
 	}
 
 	/**
-	 * returns the version number of this entry
+	 * Returns the version number of this entry.
 	 * 
 	 * @return version
 	 */

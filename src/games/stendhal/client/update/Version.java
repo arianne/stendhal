@@ -3,13 +3,13 @@
 package games.stendhal.client.update;
 
 /**
- * maintains the current version
+ * maintains the current version.
  * 
  * @author hendrik
  */
 public class Version {
 
-	/** Version Number */
+	/** Version Number. */
 	public static final String VERSION = "0.65.5";
 
 	/**
@@ -35,7 +35,7 @@ public class Version {
 	}
 
 	/**
-	 * compares to versions
+	 * Compares two versions.
 	 * 
 	 * @param v1
 	 *            1st version string
@@ -97,7 +97,7 @@ public class Version {
 	}
 
 	/**
-	 * Checks wether theses version of stendhal are compatible
+	 * Checks whether these versions of stendhal are compatible.
 	 * 
 	 * @param v1
 	 *            one version string

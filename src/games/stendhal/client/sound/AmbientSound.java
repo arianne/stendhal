@@ -66,12 +66,12 @@ class AmbientSound {
 	private static class LoopSoundInfo implements Cloneable {
 
 		/**
-		 * the String representing the LoopSoundInfo
+		 * String representing the LoopSoundInfo.
 		 */
 		private String name;
 
 		/**
-		 * the loudness
+		 * the loudness.
 		 */
 		private float loudnessDB;
 
@@ -135,9 +135,9 @@ class AmbientSound {
 	 */
 	private class SoundStarter extends Thread {
 
-		LoopSoundInfo soundInfo;
+		private LoopSoundInfo soundInfo;
 
-		float correctionDB;
+		private float correctionDB;
 
 		/**
 		 * Starts a looping sound.
@@ -498,7 +498,7 @@ class AmbientSound {
 	} // performPlayerPosition
 
 	/**
-	 * detects player loudness fog value and sets corrected volume to all
+	 * detects player loudness fog value and sets corrected volume to all.
 	 * running clips
 	 */
 	public void updateVolume() {

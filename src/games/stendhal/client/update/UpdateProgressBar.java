@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 
 /**
- * a progress bar for the download progress
+ * A progress bar for the download progress.
  */
 public class UpdateProgressBar extends JFrame implements
 		HttpClient.ProgressListener {
@@ -28,7 +28,7 @@ public class UpdateProgressBar extends JFrame implements
 	private JProgressBar progressBar;
 
 	/**
-	 * Creates update progress bar
+	 * Creates update progress bar.
 	 * 
 	 * @param max
 	 *            max file size
@@ -41,7 +41,7 @@ public class UpdateProgressBar extends JFrame implements
 					ClientGameConfiguration.get("GAME_ICON"));
 			setIconImage(new ImageIcon(url).getImage());
 		} catch (Exception e) {
-			// in case that resource is not avainable
+			// in case that resource is not available
 		}
 
 		initializeComponents();

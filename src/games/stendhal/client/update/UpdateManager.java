@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Properties;
 
 /**
- * manages downloading and installing of updates
+ * Manages download and installation of updates.
  * 
  * @author hendrik
  */
@@ -46,7 +46,7 @@ public class UpdateManager {
 	}
 
 	/**
-	 * Processes the update
+	 * Processes the update.
 	 * 
 	 * @param jarFolder
 	 *            folder where the .jar files are stored
@@ -168,7 +168,7 @@ public class UpdateManager {
 	}
 
 	/**
-	 * returns the list of all files to download for the first install
+	 * returns the list of all files to download for the first install.
 	 * 
 	 * @return list of files
 	 */
@@ -184,7 +184,7 @@ public class UpdateManager {
 	}
 
 	/**
-	 * returns the list of all files to download for transitive update
+	 * returns the list of all files to download for transitive update.
 	 * 
 	 * @param startVersion
 	 *            the version to start the path at
@@ -210,7 +210,7 @@ public class UpdateManager {
 	}
 
 	/**
-	 * calculates the sum of the file sizes
+	 * Calculates the sum of the file sizes.
 	 * 
 	 * @param files
 	 *            list of files
@@ -231,7 +231,7 @@ public class UpdateManager {
 	}
 
 	/**
-	 * Downloads the files listed for update
+	 * Downloads the files listed for update.
 	 * 
 	 * @param files
 	 *            list of files to download
@@ -276,7 +276,7 @@ public class UpdateManager {
 	}
 
 	/**
-	 * updates the classpath
+	 * Updates the classpath.
 	 * 
 	 * @param files
 	 */

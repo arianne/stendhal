@@ -34,7 +34,7 @@ import marauroa.common.game.RPObject.ID;
  */
 class SoundCycle extends Thread implements Cloneable {
 
-	/** the logger */
+	
 	private static final Logger logger = Logger.getLogger(SoundCycle.class);
 
 	private byte[] ID_Token;
@@ -116,7 +116,7 @@ class SoundCycle extends Thread implements Cloneable {
 	} // constructor
 
 	/**
-	 * terminates the soundcycle
+	 * Terminates the soundcycle.
 	 */
 	public void terminate() {
 		Entity o;

@@ -112,174 +112,27 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	/** */
 	private ArrayList<AmbientSound> ambientList = new ArrayList<AmbientSound>();
 
-	/** the used mixer */
+	/** the used mixer. */
 	private Mixer mixer;
 
-	/** global volume control */
+	/** global volume control. */
 	private FloatControl volumeCtrl;
 
-	/** current volume setting */
+	/** current volume setting. */
 	private int volumeSetting = 100;
 
 	private float volumeDelta;
 
-	/** true when mute is enabled */
+	/** true when mute is enabled. */
 	private boolean muteSetting;
 
-	/** true when sound is initialized and operative */
+	/** true when sound is initialized and operative .*/
 	private boolean operative;
 
+	
+	
 	/**
-	 * Plays a sound of the given name from the library of this sound system.
-	 * 
-	 * @param name
-	 *            token of sound
-	 * @param volBot
-	 *            relative bottom volume in percent, ranges 0..100
-	 * @param volTop
-	 *            relative top volume in percent, ranges 0..100
-	 * @param correctionDB
-	 *            loudness correction value (decibel)
-	 * @return the sound <code>DataLine</code> that is being played, or
-	 *         <b>null</b> on error
-	 */
-	// protected DataLine playSoundIntern(String name, int volBot, int volTop,
-	// float correctionDB) {
-	// // verify start conditions
-	// if ((name == null) || (volBot == 0) || !operative || muteSetting) {
-	// return null;
-	// }
-	//
-	// if ((volBot < 0) || (volBot > 100) || (volTop < 0) || (volTop > 100) ||
-	// (volTop < volBot)) {
-	// throw new IllegalArgumentException("bad volume setting");
-	// }
-	//
-	// // check/fetch sound
-	// ClipRunner clip = SoundEffectMap.getInstance().getSoundClip(name);
-	// if (clip == null) {
-	// return null;
-	// }
-	//
-	// int volume = volBot + Rand.rand(volTop - volBot + 1);
-	// return clip.play(volume, correctionDB,
-	// SoundSystem.get().getVolumeDelta());
-	// } // playSound
-	/**
-	 * Plays a sound of the given name from the library of this sound system.
-	 * 
-	 * @param name
-	 *            token of sound
-	 * @param volume
-	 *            relative sound amplitude request in percent, ranges 0..100
-	 * @return the sound <code>DataLine</code> that is being played, or
-	 *         <b>null</b> on error
-	 */
-	// public static DataLine playSound(String name, int volume) {
-	// return get().playSoundIntern(name, volume, volume, (float) 0.0);
-	// }
-	/**
-	 * Plays a sound of the given name from the library of this sound system by
-	 * setting volume to a random value between volBot and volTop.
-	 * 
-	 * @param name
-	 *            token of sound
-	 * @param volBot
-	 *            relative bottom volume in percent, ranges 0..100
-	 * @param volTop
-	 *            relative top volume in percent, ranges 0..100
-	 * @return the sound <code>DataLine</code> that is being played, or
-	 *         <b>null</b> on error
-	 */
-	// static DataLine playSound(String name, int volBot, int volTop) {
-	// return get().playSoundIntern(name, volBot, volTop, (float) 0.0);
-	// }
-	/**
-	 * Plays a sound subject to a random performance chance.
-	 * 
-	 * @param chance
-	 *            0..100 % chance value
-	 * @param name
-	 *            token of sound
-	 * @param volBot
-	 *            relative bottom volume in percent, ranges 0..100
-	 * @param volTop
-	 *            relative top volume in percent, ranges 0..100
-	 * @return the sound <code>DataLine</code> that is being played, or
-	 *         <b>null</b> on error or if performance is bailed
-	 */
-	// static DataLine probablePlaySound(int chance, String name, int volBot,
-	// int volTop) {
-	// if (Rand.rand(100) < chance) {
-	// return get().playSoundIntern(name, volBot, volTop, (float) 0.0);
-	// }
-	// return null;
-	// }
-	/**
-	 * Plays a sound bound to a given map position, possibly restricted by an
-	 * audibility area confinement. The sound volume is automatically adjusted
-	 * to reflect the player's map position and hearing range.
-	 * 
-	 * @param where
-	 *            map position expressed in zone's coordinate system
-	 * @param audibility
-	 *            rectangel area of the coordinate system where this sound is
-	 *            audible; if <b>null</b> it is audible everywhere
-	 * @param name
-	 *            library sound token
-	 * @param volBot
-	 *            relative bottom volume
-	 * @param volTop
-	 *            relative top volume
-	 * @param chance
-	 *            percent chance of performance
-	 * @return <code>javax.sound.sampled.DataLine</code> the sound line that
-	 *         is being performed or <b>null</b> if no performance takes place
-	 */
-	// static DataLine playMapSound(Point2D where, Rectangle2D audibility,
-	// String name, int volBot, int volTop,
-	// int chance) {
-	//
-	// double distance;
-	// double maxDist;
-	// int fogVolume;
-	//
-	// // broken cases
-	// if ((where == null) || (chance < 0)) {
-	// throw new IllegalArgumentException();
-	// }
-	//
-	// // lost chance cases (random)
-	// if ((chance < 100) && (Rand.rand(100) >= chance)) {
-	// return null;
-	// }
-	//
-	//
-	// if (User.isNull()) {
-	// return null;
-	// }
-	//
-	// Rectangle2D playerHearing= User.get().getHearingArea();
-	// // exclusion cases
-	// if (!playerHearing.contains(where) || ((audibility != null) &&
-	// !audibility.contains(User.get().getX(),User.get().getY()))) {
-	// return null;
-	// }
-	//
-	// logger.debug("SoundSystem: playing map sound (" + name + ") at pos " +
-	// (int) where.getX() + ", "
-	// + (int) where.getY());
-	//
-	// // determine sound volume cutoff due to distance (fog value)
-	// distance = where.distance(User.get().getX(),User.get().getY());
-	// maxDist = playerHearing.getWidth() / 2;
-	// fogVolume = Math.max(0, (int) (95 * (maxDist - distance) / maxDist + 5));
-	//
-	// return get().playSoundIntern(name, volBot, volTop,
-	// DBValues.getDBValue(fogVolume));
-	// } // playMapSound
-	/**
-	 * plays (?) and registers an ambient sound
+	 * plays (?) and registers an ambient sound.
 	 * 
 	 * @param ambient
 	 *            the sound to be registered
@@ -291,7 +144,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 		synchronized (ambientList) {
 			ambientList.add(ambient);
 		}
-	} // playAmbientSound
+	} 
 
 	/**
 	 * removes the ambient sound from the internal list. It should already be
@@ -585,7 +438,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	 * <li>key starts with "sfx." <b>and </b></li>
 	 * <li>key does not end with ",x"</li>
 	 * <li>or value contains a "."</li>
-	 * </ul>
+	 * </ul>.
 	 * 
 	 * @param key
 	 * @param value

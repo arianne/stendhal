@@ -35,13 +35,13 @@ public class Bootstrap {
 
 	/**
 	 * An URLClassLoader with does load its classes first and only delegates
-	 * missing classes to the parent classloader (default is the other way
+	 * missing classes to the parent classloader. (default is the other way
 	 * round)
 	 */
 	private static class ButtomUpOrderClassLoader extends URLClassLoader {
 
 		/**
-		 * Creates a buttom up order class loader
+		 * Creates a buttom up order class loader.
 		 * 
 		 * @param urls
 		 *            classpath
@@ -53,10 +53,10 @@ public class Bootstrap {
 		}
 
 		@Override
-		protected synchronized Class<?> loadClass(String name, boolean resolve)
+		protected synchronized Class< ? > loadClass(String name, boolean resolve)
 				throws ClassNotFoundException {
 			ClassLoader parent = super.getParent();
-			Class<?> clazz = findLoadedClass(name);
+			Class< ? > clazz = findLoadedClass(name);
 			if (clazz == null) {
 				try {
 					clazz = findClass(name);
@@ -84,7 +84,7 @@ public class Bootstrap {
 	}
 
 	/**
-	 * saves modifed boot properties to disk
+	 * saves modifed boot properties to disk.
 	 * 
 	 * @throws IOException
 	 *             if an IO-error occurs
@@ -102,7 +102,7 @@ public class Bootstrap {
 	}
 
 	/**
-	 * initializes the startup process
+	 * initializes the startup process.
 	 */
 	void init() {
 		// discover folder for .jar-files
@@ -121,7 +121,7 @@ public class Bootstrap {
 	}
 
 	/**
-	 * Sets a dynamic classpath up and returns a Class reference loaded from it
+	 * Sets a dynamic classpath up and returns a Class reference loaded from it.
 	 * 
 	 * @return ClassLoader object
 	 * @throws Exception
@@ -169,7 +169,7 @@ public class Bootstrap {
 	}
 
 	/**
-	 * Do the whole start up process in a privilaged block
+	 * Do the whole start up process in a privileged block.
 	 */
 	private class PrivilegedBoot<T> implements PrivilegedAction<T> {
 
@@ -178,7 +178,7 @@ public class Bootstrap {
 		private String[] args;
 
 		/**
-		 * Creates a PrivilagedBoot object
+		 * Creates a PrivilagedBoot object.
 		 * 
 		 * @param className
 		 *            className to boot
@@ -191,7 +191,7 @@ public class Bootstrap {
 		}
 
 		/**
-		 * Handles the update procedure
+		 * Handles the update procedure.
 		 */
 		private void handleUpdate() {
 			// invoke update handling first
@@ -214,7 +214,7 @@ public class Bootstrap {
 				}
 
 				// start update handling
-				Class<?> clazz = classLoader.loadClass("games.stendhal.client.update.UpdateManager");
+				Class< ? > clazz = classLoader.loadClass("games.stendhal.client.update.UpdateManager");
 				Method method = clazz.getMethod("process", String.class,
 						Properties.class, Boolean.class);
 				method.invoke(clazz.newInstance(), jarFolder, bootProp,
@@ -231,7 +231,7 @@ public class Bootstrap {
 		}
 
 		/**
-		 * store boot prop (if they ware altered during update)
+		 * store boot prop (if they were altered during update).
 		 */
 		private void storeBootProp() {
 			try {
@@ -244,7 +244,7 @@ public class Bootstrap {
 		}
 
 		/**
-		 * load program
+		 * load program.
 		 */
 		private void loadProgram() {
 			// regenerate classloader stuff, because in handleUpdate additional
@@ -252,7 +252,7 @@ public class Bootstrap {
 
 			try {
 				ClassLoader classLoader = createClassloader();
-				Class<?> clazz = classLoader.loadClass(className);
+				Class< ? > clazz = classLoader.loadClass(className);
 				Method method = clazz.getMethod("main", args.getClass());
 				method.invoke(null, (Object) args);
 			} catch (Throwable e) {
@@ -284,7 +284,7 @@ public class Bootstrap {
 
 	/**
 	 * Starts the main-method of specified class after dynamically building the
-	 * classpath
+	 * classpath.
 	 * 
 	 * @param className
 	 *            name of class with "main"-method
@@ -301,7 +301,7 @@ public class Bootstrap {
 		boolean startSelfBuild = true;
 		if (isSigned()) {
 			startSelfBuild = false;
-			// official client, look for updates and integrate additinal .jar
+			// official client, look for updates and integrate additional .jar
 			// files
 			System.err.println("Integrating old updates and looking for new ones");
 			try {
@@ -319,7 +319,7 @@ public class Bootstrap {
 			// self build client, do not try to update it
 			System.err.println("Self build client, starting without update .jar-files");
 			try {
-				Class<?> clazz = Class.forName(className);
+				Class< ? > clazz = Class.forName(className);
 				Method method = clazz.getMethod("main", args.getClass());
 				method.invoke(null, (Object) args);
 			} catch (Exception err) {
@@ -332,7 +332,7 @@ public class Bootstrap {
 	}
 
 	/**
-	 * Handles exceptions during program invocation
+	 * Handles exceptions during program invocation.
 	 * 
 	 * @param t
 	 *            exception

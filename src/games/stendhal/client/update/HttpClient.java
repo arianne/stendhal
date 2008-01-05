@@ -13,7 +13,7 @@ import java.net.URL;
 import java.util.Properties;
 
 /**
- * a very simple http client
+ * a very simple http client.
  * 
  * @author hendrik
  */
@@ -38,7 +38,7 @@ public class HttpClient {
 	public interface ProgressListener {
 
 		/**
-		 * update download status
+		 * update download status.
 		 * 
 		 * @param downloadedBytes
 		 *            bytes downloaded now
@@ -46,7 +46,7 @@ public class HttpClient {
 		void onDownloading(int downloadedBytes);
 
 		/**
-		 * completed download of this file
+		 * completed download of this file.
 		 * 
 		 * @param downloadedBytes
 		 *            completed download
@@ -55,7 +55,7 @@ public class HttpClient {
 	}
 
 	/**
-	 * Creates a HTTP-Client which will connect to the specified URL
+	 * Creates a HTTP-Client which will connect to the specified URL.
 	 * 
 	 * @param url
 	 *            URL to connect to
@@ -65,7 +65,7 @@ public class HttpClient {
 	}
 
 	/**
-	 * Creates a HTTP-Client which will connect to the specified URL
+	 * Creates a HTTP-Client which will connect to the specified URL.
 	 * 
 	 * @param url
 	 *            URL to connect to
@@ -78,7 +78,7 @@ public class HttpClient {
 	}
 
 	/**
-	 * Sets a ProgressListener to be informed of download progress
+	 * Sets a ProgressListener to be informed of download progress.
 	 * 
 	 * @param progressListener
 	 *            ProgressListener
@@ -208,7 +208,7 @@ public class HttpClient {
 	}
 
 	/**
-	 * Fetches a file from the HTTP-Server and stores it on disk
+	 * Fetches a file from the HTTP-Server and stores it on disk.
 	 * 
 	 * @param filename
 	 *            name of the file to write
@@ -238,7 +238,7 @@ public class HttpClient {
 
 	/**
 	 * Copies data from an inputStream to and outputStream and closes both
-	 * steams after work
+	 * streams after work.
 	 * 
 	 * @param inputStream
 	 *            stream to read from

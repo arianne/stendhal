@@ -1,12 +1,12 @@
 package games.stendhal.client.scripting;
 
 /**
- * a client side script
+ * Client side script.
  */
 public interface ClientScript {
 
 	/**
-	 * entry point on script execution
+	 * Entry point on script execution.
 	 * 
 	 * @param args
 	 *            arguments

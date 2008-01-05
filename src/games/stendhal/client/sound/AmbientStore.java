@@ -13,7 +13,7 @@
 package games.stendhal.client.sound;
 
 /**
- * Hardcoded ambient sounds
+ * Hardcoded ambient sounds.
  * 
  * @author Jane Hunt
  */
@@ -24,7 +24,7 @@ class AmbientStore {
 	public static final String BLACKBIRD_1 = "blackbird-1";
 
 	/**
-	 * create an Ambient sound by its name
+	 * create an Ambient sound by its name.
 	 * 
 	 * @param name
 	 *            the String representing the sound's name
