@@ -454,6 +454,7 @@ public abstract class ActiveEntity extends Entity {
 	 * 
 	 * @return The amount of resistance, or 0 if in ghostmode.
 	 */
+	@Override
 	public int getResistance() {
 		if (isGhost()) {
 			return 0;
