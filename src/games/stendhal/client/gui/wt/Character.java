@@ -44,34 +44,34 @@ import marauroa.common.game.RPSlot;
  */
 public class Character extends WtPanel {
 
-	/** Panel width */
+	/** Panel width. */
 	private static final int PANEL_WIDTH = 170;
 
-	/** Panel height */
+	/** Panel height. */
 	private static final int PANEL_HEIGHT = 285;
 
-	/** Height/width of slots */
+	/** Height/width of slots. */
 	private static final int SLOT_SIZE = 39; // estimate
 
-	/** Space between slots */
+	/** Space between slots. */
 	private static final int SLOT_SPACING = 3; // estimate
 
-	/** the stats panel */
+	/** the stats panel. */
 	private WtTextPanel statsPanel;
 
-	/** the stats panel */
+	
 	private Map<String, EntitySlot> slotPanels;
 
-	/** cached player entity */
+	/** cached player entity. */
 	private User playerEntity;
 
-	/** the money we have */
-	int money;
+	/** the money we have. */
+	private int money;
 
-	/** the last player modification counter */
+	/** the last player modification counter. */
 	private long oldPlayerModificationCount;
 
-	/** Creates a new instance of Character */
+	/** Creates a new instance of Character. */
 	public Character(StendhalUI ui) {
 		super("character", ui.getWidth() - PANEL_WIDTH, 0, PANEL_WIDTH,
 				PANEL_HEIGHT);
@@ -144,18 +144,18 @@ public class Character extends WtPanel {
 		addChild(statsPanel);
 	}
 
-	/** we're using the window manager */
+	/** we're using the window manager. */
 	@Override
 	protected boolean useWindowManager() {
 		return true;
 	}
 
-	/** sets the player entity */
+	/** sets the player entity. */
 	public void setPlayer(User userEntity) {
 		this.playerEntity = userEntity;
 	}
 
-	/** refreshes the player stats and updates the text/slot panels */
+	/** refreshes the player stats and updates the text/slot panels.*/
 	private void refreshPlayerStats() {
 		if (playerEntity == null) {
 			return;

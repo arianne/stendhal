@@ -31,31 +31,31 @@ public class BuyWindowContent extends javax.swing.JPanel {
 	protected StendhalUI ui;
 
 	/**
-	 * The card name for CardLayout
+	 * The card name for CardLayout.
 	 */
 	private String card = "intro";
 
 	/**
-	 * The string to be built
+	 * The string to be built.
 	 */
 	private String buildMe;
 
 	/**
-	 * the amount of items
+	 * The amount of items.
 	 */
 	private int amount;
 
 	/**
-	 * If there is an extra option, are we using it (only buy at this point)
+	 * If there is an extra option, are we using it (only buy at this point).
 	 */
 	private boolean buying;
 
 	/**
-	 * Our managedWindow
+	 * Our managedWindow.
 	 */
-	BuyWindow bw;
+	private BuyWindow bw;
 
-	/** Creates new form BuyWindowContent */
+	/** Creates new form BuyWindowContent. */
 	public BuyWindowContent(StendhalUI ui, BuyWindow bw) {
 		this.ui = ui;
 		this.bw = bw;
@@ -65,7 +65,7 @@ public class BuyWindowContent extends javax.swing.JPanel {
 	/**
 	 * The hashmap is used to take an item name (such as "Knife ($15)") and
 	 * translates it into something an NPC can understand (such as, simply,
-	 * 'knife')
+	 * 'knife').
 	 */
 	// private HashMap items = new HashMap();
 	// <editor-fold defaultstate="collapsed" desc=" Generated Code
@@ -156,7 +156,7 @@ public class BuyWindowContent extends javax.swing.JPanel {
 		food_drink.setMaximumSize(new java.awt.Dimension(350, 225));
 		food_drink.setOpaque(false);
 		foodList.setModel(new javax.swing.AbstractListModel() {
-			String[] strings = { "beer ($10)", "wine ($15)", "flask ($5)",
+			private String[] strings = { "beer ($10)", "wine ($15)", "flask ($5)",
 					"cheese ($20)", "apple ($10)", "carrot ($10)",
 					"meat ($40)", "ham ($80)" };
 
@@ -184,7 +184,7 @@ public class BuyWindowContent extends javax.swing.JPanel {
 
 		xin_weapons.setOpaque(false);
 		xinSell.setModel(new javax.swing.AbstractListModel() {
-			String[] strings = { "knife ($15)", "club ($10)", "dagger ($25)",
+			private String[] strings = { "knife ($15)", "club ($10)", "dagger ($25)",
 					"wooden_shield ($25)", "dress ($25)",
 					"leather_helmet ($25)", "cloak ($30)", "leather_legs ($35)" };
 
@@ -214,7 +214,7 @@ public class BuyWindowContent extends javax.swing.JPanel {
 		jLabel2.setBounds(40, 10, 45, 15);
 
 		xinBuy.setModel(new javax.swing.AbstractListModel() {
-			String[] strings = { "short_sword ($15)", "sword ($60)",
+			private String[] strings = { "short_sword ($15)", "sword ($60)",
 					"studded_shield ($20)", "studded_armor ($22)",
 					"studded_legs ($20)", "chain_armor ($29)",
 					"chain_helmet ($25)", "chain_legs ($27)" };
@@ -255,7 +255,7 @@ public class BuyWindowContent extends javax.swing.JPanel {
 
 		potions.setOpaque(false);
 		potionList.setModel(new javax.swing.AbstractListModel() {
-			String[] strings = { "minor_potion ($100)", "potion ($250)",
+			private String[] strings = { "minor_potion ($100)", "potion ($250)",
 					"greater_potion ($500)", "mega_potion", "antidote ($40)",
 					"greater_antidote ($40)" };
 
