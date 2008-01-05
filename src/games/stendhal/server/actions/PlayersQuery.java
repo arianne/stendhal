@@ -102,25 +102,6 @@ public class PlayersQuery implements ActionListener {
 		player.notifyWorldAboutChanges();
 	}
 
-	/**
-	 * sorts the list of players.
-	 * 
-	 * @param playerlist
-	 *            TODO use getSortedPlayers()
-	 * 
-	 * @return sorted list of players
-	 */
-	private List<Player> getSortedPlayers(Collection< ? extends Player> playerlist) {
-		List<Player> players = new ArrayList<Player>(playerlist);
-		Collections.sort(players, new Comparator<Player>() {
-
-			public int compare(Player o1, Player o2) {
-				return o1.getTitle().compareToIgnoreCase(o2.getTitle());
-			}
-		});
-		return players;
-	}
-
 	public void onWhere(Player player, RPAction action) {
 		if (action.has(TARGET)) {
 			String whoName = action.get(TARGET);
