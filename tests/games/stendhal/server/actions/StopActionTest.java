@@ -1,6 +1,7 @@
 package games.stendhal.server.actions;
 
 import static org.junit.Assert.*;
+import games.stendhal.server.actions.attack.StopAction;
 import games.stendhal.server.entity.player.Player;
 
 import marauroa.common.game.RPAction;
