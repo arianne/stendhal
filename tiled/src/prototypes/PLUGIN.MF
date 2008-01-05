@@ -1,4 +1,0 @@
-Manifest-Version: 1.0
-Created-By: 1.4.1_05 (Sun Microsystems Inc.)
-Reader-Class: name.of.your.reader
-Writer-Class: name.of.your.writer
