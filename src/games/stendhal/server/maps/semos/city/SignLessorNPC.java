@@ -32,7 +32,7 @@ import java.awt.Shape;
 public class SignLessorNPC extends SpeakerNPCFactory {
 	protected String text;
 	private static final int MONEY = 100; 
-	RentedSignList rentedSignList = null;
+	protected RentedSignList rentedSignList;
 
 	public SignLessorNPC() {
 		StendhalRPZone zone = StendhalRPWorld.get().getZone("0_semos_city");
@@ -144,13 +144,13 @@ public class SignLessorNPC extends SpeakerNPCFactory {
 
 				@Override
 				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-					String text = sentence.getOriginalText().trim();
-					int pos = text.indexOf(" ");
+					String original = sentence.getOriginalText().trim();
+					int pos = original.indexOf(" ");
 					if (pos < 0) {
 						npc.say("Syntax: delete <nameofplayer>");
 						return;
 					}
-					String playerName = text.substring(pos + 1).trim();
+					String playerName = original.substring(pos + 1).trim();
 					rentedSignList.removeByName(playerName);
 					String message = player.getName() + " deleted sign from " + playerName;
 					StendhalRPRuleProcessor.sendMessageToSupporters("SignLessorNPC", message);
