@@ -10,11 +10,13 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPCFactory;
+import games.stendhal.server.entity.npc.action.RemoveStoreableEntityAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.LevelGreaterThanCondition;
 import games.stendhal.server.entity.npc.condition.LevelLessThanCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
+import games.stendhal.server.entity.npc.condition.PlayerHasStoreableEntityCondition;
 import games.stendhal.server.entity.npc.condition.TextHasParameterCondition;
 import games.stendhal.server.entity.player.Player;
 
@@ -39,7 +41,7 @@ public class SignLessorNPC extends SpeakerNPCFactory {
 
 	@Override
 	public void createDialog(SpeakerNPC npc) {
-		npc.addGreeting();
+		npc.addGreeting("Hi, I #rent signs and #remove outdated onces.");
 		npc.addJob("I #rent signs for a day.");
 		npc.addHelp("If you want to #rent a sign, just tell me what i should write up on it.");
 
@@ -118,6 +120,17 @@ public class SignLessorNPC extends SpeakerNPCFactory {
 			ConversationPhrases.NO_MESSAGES, null,
 			ConversationStates.ATTENDING,
 			"If you change your mind, just talk to me again.", null);
+
+		npc.add(ConversationStates.ATTENDING, "remove", 
+			new PlayerHasStoreableEntityCondition(rentedSignList),
+			ConversationStates.ATTENDING,
+			"Ok, i'll going to remove your sign.",
+			new RemoveStoreableEntityAction(rentedSignList));
+
+		npc.add(ConversationStates.ATTENDING, "remove", 
+			new NotCondition(new PlayerHasStoreableEntityCondition(rentedSignList)),
+			ConversationStates.ATTENDING,
+			"You did not rent any sign, so i cannot remove one.", null);
 
 		npc.addGoodbye();
 	}
