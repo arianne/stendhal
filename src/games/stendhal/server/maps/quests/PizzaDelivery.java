@@ -41,42 +41,42 @@ public class PizzaDelivery extends AbstractQuest {
 	private static final Outfit UNIFORM = new Outfit(null, null, Integer.valueOf(90), null);
 
 	/**
-	 * a customer data object
+	 * A customer data object.
 	 */
 	static class CustomerData {
-		/** A hint where to find the customer */
-		String npcDescription;
+		/** A hint where to find the customer. */
+		private String npcDescription;
 
-		/** The pizza style the customer likes */
-		String flavor;
+		/** The pizza style the customer likes. */
+		private String flavor;
 
-		/** The time until the pizza should be delivered */
-		int expectedMinutes;
+		/** The time until the pizza should be delivered. */
+		private int expectedMinutes;
 
-		/** The money the player should get on fast delivery */
-		int tip;
+		/** The money the player should get on fast delivery. */
+		private int tip;
 
 		/**
 		 * The experience the player should gain for delivery. When the pizza
 		 * has already become cold, the player will gain half of this amount.
 		 */
-		int xp;
+		private int xp;
 
 		/**
 		 * The text that the customer should say upon quick delivery. It should
 		 * contain %d as a placeholder for the tip, and can optionally contain
 		 * %s as a placeholder for the pizza flavor.
 		 */
-		String messageOnHotPizza;
+		private String messageOnHotPizza;
 
 		/**
 		 * The text that the customer should say upon quick delivery. It can
 		 * optionally contain %s as a placeholder for the pizza flavor.
 		 */
-		String messageOnColdPizza;
+		private String messageOnColdPizza;
 
 		/**
-		 * Creates a CustomerData object
+		 * Creates a CustomerData object.
 		 *
 		 * @param npcDescription
 		 * @param flavor
