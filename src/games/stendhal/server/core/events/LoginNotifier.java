@@ -13,7 +13,7 @@ import java.util.List;
  * 
  * @author daniel
  */
-public class LoginNotifier {
+public final class LoginNotifier {
 
 	/** The Singleton instance. */
 	private static LoginNotifier instance;

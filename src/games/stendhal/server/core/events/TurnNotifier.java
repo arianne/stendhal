@@ -17,11 +17,11 @@ import org.apache.log4j.Logger;
  * 
  * @author hendrik, daniel
  */
-public class TurnNotifier {
+public final class TurnNotifier {
 
 	private static Logger logger = Logger.getLogger(TurnNotifier.class);
 
-	/** The Singleton instance * */
+	/** The Singleton instance. */
 	private static TurnNotifier instance;
 
 	private int currentTurn = -1;
@@ -97,7 +97,7 @@ public class TurnNotifier {
 	}
 
 	/**
-	 * Return the number of the next turn
+	 * Return the number of the next turn.
 	 * 
 	 * @return number of the next turn
 	 */
