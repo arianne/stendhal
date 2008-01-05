@@ -6,7 +6,7 @@ import games.stendhal.server.entity.mapstuff.chest.PersonalChest;
 import org.apache.log4j.Logger;
 
 /**
- * a slot of a personal chest
+ * a slot of a personal chest.
  *
  * @author hendrik
  */

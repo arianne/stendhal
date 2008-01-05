@@ -7,7 +7,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Keeps track of "personal chests" which are an interface to the bank slots
+ * Keeps track of "personal chests" which are an interface to the bank slots.
  * 
  * @author hendrik
  */
@@ -21,7 +21,7 @@ public class BankAccessorManager {
 	}
 
 	/**
-	 * get the BankAccessorManager
+	 * Gets the BankAccessorManager.
 	 * 
 	 * @return BankAccessorManager
 	 */
@@ -33,7 +33,7 @@ public class BankAccessorManager {
 	}
 
 	/**
-	 * adds an accessor for this bank
+	 * Adds an accessor for this bank.
 	 * 
 	 * @param bank
 	 *            Banks
@@ -48,8 +48,8 @@ public class BankAccessorManager {
 	}
 
 	/**
-	 * gets the list of accessors for the specified bank. In case the bank is
-	 * unkown, an empty list is automatically created
+	 * Gets the list of accessors for the specified bank. 
+	 * <p> In case the bank is unkown, an empty list is automatically created
 	 * 
 	 * @param bank
 	 *            Banks
@@ -65,7 +65,7 @@ public class BankAccessorManager {
 	}
 
 	/**
-	 * gets the list of accessors for think bank
+	 * gets the list of accessors for think bank.
 	 * 
 	 * @param bank
 	 *            Banks

@@ -3,14 +3,15 @@ package games.stendhal.server.entity.slot;
 import games.stendhal.server.entity.Entity;
 
 /**
- * abused slots of players which contain one RPObject used as hashmap
+ * TODO: explain what is does and what it is used for.
+ * Abused slots of players which contain one RPObject used as hashmap.
  * 
  * @author hendrik
  */
 public class KeyedSlot extends EntitySlot {
 
 	/**
-	 * creates a new keyed slot
+	 * Creates a new keyed slot.
 	 * 
 	 * @param name
 	 *            name of slot

@@ -4,7 +4,7 @@ import marauroa.common.game.RPSlot;
 import games.stendhal.server.entity.Entity;
 
 /**
- * A slot which can contain items
+ * A slot which can contain items.
  * 
  * @author hendrik
  */
@@ -36,9 +36,9 @@ public interface Slot {
 	boolean isItemSlot();
 
 	/**
-	 * returns the slot which must be used for write access
+	 * returns the slot which must be used for write access.
 	 *
 	 * @return RPSlot which should be used
 	 */
-	public RPSlot getWriteableSlot();
+	RPSlot getWriteableSlot();
 }

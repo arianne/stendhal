@@ -1,26 +1,26 @@
 package games.stendhal.server.entity.slot;
 
 /**
- * List of banks
+ * List of banks.
  * 
  * @author hendrik
  */
 public enum Banks {
-	/** bank in Semos */
+	/** bank in Semos. */
 	SEMOS("bank"),
-	/** bank in Ados */
+	/** bank in Ados. */
 	ADOS("bank_ados"),
-	/** bank in Fado */
+	/** bank in Fado. */
 	FADO("bank_fado"),
-	/** bank in Nalwor */
+	/** bank in Nalwor. */
 	NALWOR("bank_nalwor"),
-	/** mini-bank in zaras house */
+	/** mini-bank in zaras house. */
 	ZARAS("zaras_chest_ados");
 
 	private String slotName;
 
 	/**
-	 * create a new TutorialEventType
+	 * Creates a new Bank.
 	 * 
 	 * @param message
 	 *            human readable message
@@ -30,7 +30,7 @@ public enum Banks {
 	}
 
 	/**
-	 * get the slot name
+	 * Gets the slot name.
 	 * 
 	 * @return slotName
 	 */
@@ -39,7 +39,7 @@ public enum Banks {
 	}
 
 	/**
-	 * returns the Banks enum instance for the specified slot name
+	 * Returns the Banks instance for the specified slot name.
 	 *
 	 * @param slotName name of bank slot
 	 * @return Banks enum instance or null

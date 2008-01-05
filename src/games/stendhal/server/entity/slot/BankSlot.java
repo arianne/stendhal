@@ -5,7 +5,7 @@ import games.stendhal.server.entity.Entity;
 import java.util.List;
 
 /**
- * a bank slot
+ * a bank slot.
  * 
  * @author hendrik
  */
@@ -13,7 +13,7 @@ public class BankSlot extends PlayerSlot {
 	private Banks bank;
 
 	/**
-	 * creates a new keyed slot
+	 * Creates a new keyed slot.
 	 * 
 	 * @param bank
 	 *            Bank

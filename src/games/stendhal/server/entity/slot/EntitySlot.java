@@ -4,14 +4,14 @@ import games.stendhal.server.entity.Entity;
 import marauroa.common.game.RPSlot;
 
 /**
- * Stendhal specific information about this slot
+ * Stendhal specific information about this slot.
  * 
  * @author hendrik
  */
 public class EntitySlot extends RPSlot implements Slot {
 
 	/**
-	 * creates an uninitialized EntitySlot
+	 * Creates an uninitialized EntitySlot.
 	 * 
 	 */
 	public EntitySlot() {
@@ -19,7 +19,7 @@ public class EntitySlot extends RPSlot implements Slot {
 	}
 
 	/**
-	 * Creates a new EntitySlot
+	 * Creates a new EntitySlot.
 	 * 
 	 * @param name
 	 *            name of slot

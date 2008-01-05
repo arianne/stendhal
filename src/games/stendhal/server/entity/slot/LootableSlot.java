@@ -3,7 +3,7 @@ package games.stendhal.server.entity.slot;
 import games.stendhal.server.entity.Entity;
 
 /**
- * a lootable slot of some creature
+ * A lootable slot of some creature.
  * 
  * @author hendrik
  */
@@ -11,7 +11,7 @@ public class LootableSlot extends EntitySlot {
 	private Entity owner;
 
 	/**
-	 * creates a new lootable slot
+	 * creates a new lootable slot.
 	 * 
 	 * @param owner
 	 *            owner of this Slot
