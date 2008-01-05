@@ -33,7 +33,7 @@ public class Spell extends PassiveEntity implements EquipListener {
 	 */
 	protected static final String ATTR_NAME = "name";
 
-	/** list of possible slots for this item */
+	/** list of possible slots for this item. */
 	private List<String> possibleSlots = Arrays.asList("spells");
 
 	/**
@@ -74,7 +74,7 @@ public class Spell extends PassiveEntity implements EquipListener {
 		}
 	}
 
-	/** no public 'default' item */
+	/** no public 'default' item. */
 	private Spell() {
 		setRPClass("spell");
 		put("type", "spell");
@@ -120,7 +120,7 @@ public class Spell extends PassiveEntity implements EquipListener {
 
 	/**
 	 * Returns the name or something that can be used to identify the entity for
-	 * the player
+	 * the player.
 	 * 
 	 * @param definite
 	 *            <code>true</code> for "the", and <code>false</code> for

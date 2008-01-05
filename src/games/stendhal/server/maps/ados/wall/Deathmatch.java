@@ -9,7 +9,7 @@ import java.awt.geom.Rectangle2D;
 import java.util.Map;
 
 /**
- * Ados Wall North population - Deathmatch
+ * Ados Wall North population - Deathmatch.
  *
  * @author hendrik
  */

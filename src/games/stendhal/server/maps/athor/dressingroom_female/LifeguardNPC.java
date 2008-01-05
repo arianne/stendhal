@@ -15,7 +15,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 /**
- * Dressing rooms at the Athor island beach (Inside / Level 0)
+ * Dressing rooms at the Athor island beach (Inside / Level 0).
  *
  * @author daniel
  */

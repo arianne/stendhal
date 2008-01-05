@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Builds the jailed Barbarian in Prison Hut on amazon island
+ * Builds the jailed Barbarian in Prison Hut on amazon island.
  *
  * @author Teiv
  */

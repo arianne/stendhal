@@ -7,7 +7,7 @@ import marauroa.common.game.Definition.DefinitionClass;
 import marauroa.common.game.Definition.Type;
 
 /**
- * A text message
+ * A text message.
  *
  * @author hendrik
  */
@@ -18,7 +18,7 @@ public class PrivateTextEvent extends RPEvent {
 	private static final String TEXT = "text";
 
 	/**
-	 * Creates the rpclass
+	 * Creates the rpclass.
 	 */
 	public static void generateRPClass() {
 		RPClass rpclass = new RPClass(RPCLASS_NAME);
@@ -28,7 +28,7 @@ public class PrivateTextEvent extends RPEvent {
 	}
 
 	/**
-	 * Creates a new text event
+	 * Creates a new text event.
 	 *
 	 * @param type NotificationType
 	 * @param text Text

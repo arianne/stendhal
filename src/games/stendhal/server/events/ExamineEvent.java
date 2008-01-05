@@ -19,7 +19,7 @@ public class ExamineEvent extends RPEvent {
 	private static final String TITLE = "title";
 
 	/**
-	 * Creates the rpclass
+	 * Creates the rpclass.
 	 */
 	public static void generateRPClass() {
 		RPClass rpclass = new RPClass(RPCLASS_NAME);
@@ -29,7 +29,7 @@ public class ExamineEvent extends RPEvent {
 	}
 
 	/**
-	 * Creates a new ExamineEvent
+	 * Creates a new ExamineEvent.
 	 *
 	 * @param image image file
 	 * @param title title of image viewer

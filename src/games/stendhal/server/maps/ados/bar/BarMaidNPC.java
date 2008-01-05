@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Builds a Bar Maid NPC to buy food from players
+ * Builds a Bar Maid NPC to buy food from players.
  *
  * @author kymara
  */

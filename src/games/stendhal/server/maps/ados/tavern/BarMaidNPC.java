@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Ados Tavern (Inside / Level 0)
+ * Ados Tavern (Inside / Level 0).
  *
  * @author hendrik
  */

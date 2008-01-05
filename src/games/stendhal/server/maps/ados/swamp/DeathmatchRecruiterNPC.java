@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Entrance to Deathmatch
+ * Entrance to Deathmatch.
  */
 public class DeathmatchRecruiterNPC implements ZoneConfigurator {
 	/**

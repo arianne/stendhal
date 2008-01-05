@@ -16,7 +16,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 /**
- * Ados Goldsmith (Inside / Level 0)
+ * Ados Goldsmith (Inside / Level 0).
  *
  * @author dine
  */

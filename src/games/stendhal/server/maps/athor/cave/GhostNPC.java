@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Builds a Ghost NPC
+ * Builds a Ghost NPC.
  *
  * @author kymara
  */

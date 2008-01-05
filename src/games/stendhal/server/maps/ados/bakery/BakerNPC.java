@@ -16,7 +16,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 /**
- * Ados Bakery (Inside / Level 0)
+ * Ados Bakery (Inside / Level 0).
  *
  * @author hendrik
  */

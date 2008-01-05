@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Builds a Jester NPC to inform entrants to the castle
+ * Builds a Jester NPC to inform entrants to the castle.
  *
  * @author kymara
  */

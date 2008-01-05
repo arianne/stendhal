@@ -6,7 +6,7 @@ import games.stendhal.server.entity.mapstuff.chest.Chest;
 import org.apache.log4j.Logger;
 
 /**
- * a slot of a chest which is only accessable if the chest is open
+ * A slot of a chest which is only accessible, if the chest is open.
  *
  * @author hendrik
  */

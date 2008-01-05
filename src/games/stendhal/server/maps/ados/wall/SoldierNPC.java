@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Ados Wall North population
+ * Ados Wall North population.
  *
  * @author hendrik
  */

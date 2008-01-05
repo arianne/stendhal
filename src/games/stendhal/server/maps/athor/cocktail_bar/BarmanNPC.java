@@ -14,7 +14,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 /**
- * Cocktail Bar at the Athor island beach (Inside / Level 0)
+ * Cocktail Bar at the Athor island beach (Inside / Level 0).
  *
  * @author kymara
  */
