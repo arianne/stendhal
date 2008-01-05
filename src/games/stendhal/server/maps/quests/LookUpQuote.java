@@ -15,18 +15,21 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * QUEST: Quest to get a fishing rod PARTICIPANTS: - Perquod the fisherman
+ * QUEST: Quest to get a fishing rod 
+ * <p>
+ * 
+ * PARTICIPANTS: <ul><li> Perquod the fisherman</ul>
  * 
  * 
- * STEPS: - The fisherman asks you to go to the library to get him a quote of a
- * famous fisherman. - The player goes to the library where a book with some
- * quotes lies on the table and looks the correct one up. - The player goes back
- * to the fisherman and tells him the quote.
+ * STEPS: <ul><li> The fisherman asks you to go to the library to get him a quote of a
+ * famous fisherman. <li> The player goes to the library where a book with some
+ * quotes lies on the table and looks the correct one up. <li>The player goes back
+ * to the fisherman and tells him the quote.</ul>
  * 
  * 
- * REWARD: - 750 XP - A fishing rod.
+ * REWARD: <ul><li>750 XP - A fishing rod.</ul>
  * 
- * REPETITIONS: - no repetitions
+ * REPETITIONS: <ul><li> no repetitions</ul>
  * 
  * @author dine
  */
@@ -34,7 +37,7 @@ import java.util.Map;
 public class LookUpQuote extends AbstractQuest {
 	static final String QUEST_SLOT = "get_fishing_rod";
 
-	static Map<String, String> quotes = new HashMap<String, String>();
+	private static Map<String, String> quotes = new HashMap<String, String>();
 	static {
 		quotes.put("fisherman Bully", "Clownfish are always good for a laugh.");
 		quotes.put("fisherman Jacky",
