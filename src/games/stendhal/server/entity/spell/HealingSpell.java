@@ -29,7 +29,7 @@ import java.util.Map;
  *         now).
  */
 public class HealingSpell extends Spell implements UseListener {
-	public int healAmount;
+	private int healAmount;
 
 	HealingSpell(String name, Map<String, String> attributes) {
 		super(name, attributes);
