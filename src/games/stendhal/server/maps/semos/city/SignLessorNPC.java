@@ -11,6 +11,7 @@ import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPCFactory;
 import games.stendhal.server.entity.npc.action.RemoveStoreableEntityAction;
+import games.stendhal.server.entity.npc.condition.AdminCondition;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.LevelGreaterThanCondition;
 import games.stendhal.server.entity.npc.condition.LevelLessThanCondition;
@@ -131,6 +132,32 @@ public class SignLessorNPC extends SpeakerNPCFactory {
 			new NotCondition(new PlayerHasStoreableEntityCondition(rentedSignList)),
 			ConversationStates.ATTENDING,
 			"You did not rent any sign, so i cannot remove one.", null);
+
+		// admins may remove signs (even low level admins)
+		npc.add(ConversationStates.ATTENDING, "delete", 
+			new AdminCondition(100),
+			ConversationStates.ATTENDING, null,
+			new SpeakerNPC.ChatAction() {
+
+				@Override
+				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					String text = sentence.getOriginalText().trim();
+					int pos = text.indexOf(" ");
+					if (pos < 0) {
+						npc.say("Syntax: delete <nameofplayer>");
+						return;
+					}
+					String playerName = text.substring(pos + 1).trim();
+					rentedSignList.removeByName(playerName);
+					String message = player.getName() + " deleted sign from " + playerName;
+					StendhalRPRuleProcessor.sendMessageToSupporters("SignLessorNPC", message);
+				}
+
+				@Override
+				public String toString() {
+					return "admin delete sign";
+				}
+		});
 
 		npc.addGoodbye();
 	}
