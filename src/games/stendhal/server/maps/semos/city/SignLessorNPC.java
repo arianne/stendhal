@@ -128,7 +128,7 @@ public class SignLessorNPC extends SpeakerNPCFactory {
 		npc.add(ConversationStates.ATTENDING, "remove", 
 			new PlayerHasStoreableEntityCondition(rentedSignList),
 			ConversationStates.ATTENDING,
-			"Ok, i'll going to remove your sign.",
+			"Ok, i am going to remove your sign.",
 			new RemoveStoreableEntityAction(rentedSignList));
 
 		npc.add(ConversationStates.ATTENDING, "remove", 
