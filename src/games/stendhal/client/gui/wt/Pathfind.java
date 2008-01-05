@@ -12,10 +12,11 @@ import java.util.ListIterator;
 import java.util.PriorityQueue;
 
 /**
- * A* implementation. TODO: OPTIMIZATION AND CLEANING!!!! and comment the code..
+ * A* implementation. 
+ * <p>TODO: OPTIMIZATION AND CLEANING!!!! and comment the code..
  * :p i hope durkham dont look here, i dont want hurt her with my crappy code XD
- * TODO: Check if colision() method should be renamed to collision() to prevent
- * double spellings TODO: Check if Reinice() method should be renamed to
+ * <p>TODO: Check if colision() method should be renamed to collision() to prevent
+ * double spellings <p>TODO: Check if Reinice() method should be renamed to
  * Restart() to make its name more meaningful
  * 
  * @author Kawn
@@ -34,10 +35,10 @@ public class Pathfind {
 				}
 			});
 
-	static Rectangle search_area;
-	static List<Node> closed_list = new ArrayList<Node>();
-	static LinkedList<Node> final_path = new LinkedList<Node>();
-	Node current_node;
+	private static Rectangle search_area;
+	private static List<Node> closed_list = new ArrayList<Node>();
+	private static LinkedList<Node> final_path = new LinkedList<Node>();
+	private Node current_node;
 	int final_path_index = 0;
 
 	private static int colision(CollisionDetection collisiondetection, int x1,
@@ -327,12 +328,12 @@ public class Pathfind {
 	}
 
 	private class Node {
-		int x;
-		int y;
-		int G;
-		int H;
-		int F;
-		Node parent;
+		private int x;
+		private int y;
+		private int G;
+		private int H;
+		private int F;
+		private Node parent;
 
 		public Node(int x, int y, int g, int h) {
 			super();
