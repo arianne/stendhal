@@ -66,7 +66,7 @@ public abstract class StendhalUI {
 			NotificationType type);
 
 	/**
-	 * Adds a Swing component to the view
+	 * Adds a Swing component to the view.
 	 */
 	public abstract void addWindow(ManagedWindow imd);
 
@@ -76,9 +76,9 @@ public abstract class StendhalUI {
 	public abstract void chooseOutfit();
 
 	/**
-	 * Like chooseOutfit(), but for Guilds
+	 * Like chooseOutfit(), but for Guilds.
 	 */
-	public abstract void ManageGuilds();
+	public abstract void manageGuilds();
 
 	/**
 	 * Get the default UI.

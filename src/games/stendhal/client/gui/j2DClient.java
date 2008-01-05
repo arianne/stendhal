@@ -1069,7 +1069,7 @@ public class j2DClient extends StendhalUI {
 	}
 
 	@Override
-	public void ManageGuilds() {
+	public void manageGuilds() {
 		GuildManager gm = new GuildManager();
 		gm.setVisible(true);
 	}

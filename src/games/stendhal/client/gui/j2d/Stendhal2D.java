@@ -403,7 +403,7 @@ public class Stendhal2D extends StendhalGUI {
 	 * Initiate guild management by the user.
 	 */
 	@Override
-	public void ManageGuilds() {
+	public void manageGuilds() {
 
 	}
 
