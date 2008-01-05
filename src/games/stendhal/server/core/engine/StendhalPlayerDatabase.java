@@ -507,7 +507,7 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 			return;
 		}
 
-		Transaction transaction =  JDBCDatabase.getDatabase().getTransaction();
+		Transaction transaction =  getDatabase().getTransaction();
 		try {
 
 			itemLogAssignIDIfNotPresent(transaction, item);
@@ -531,7 +531,7 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 	 * @throws SQLException in case of a database error
 	 */
 	public void itemLogAssignIDIfNotPresent(RPObject... items) {
-		Transaction transaction =  JDBCDatabase.getDatabase().getTransaction();
+		Transaction transaction =  getDatabase().getTransaction();
 		try {
 			for (RPObject item : items) {
 				if (item.getRPClass().subclassOf("item")) {

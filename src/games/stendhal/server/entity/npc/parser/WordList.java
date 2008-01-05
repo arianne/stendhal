@@ -1,6 +1,7 @@
 package games.stendhal.server.entity.npc.parser;
 
 import games.stendhal.common.Grammar;
+import games.stendhal.server.core.engine.StendhalPlayerDatabase;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -431,7 +432,7 @@ public class WordList {
 	 * Write current word list into the database table "words".
 	 */
 	public void writeToDB() {
-		IDatabase db = JDBCDatabase.getDatabase();
+		IDatabase db = StendhalPlayerDatabase.getDatabase();
 		Transaction trans = db.getTransaction();
 		boolean success;
 
@@ -463,7 +464,7 @@ public class WordList {
 	 * @return success flag
 	 */
 	private boolean insertIntoDB(Set<String> keys) {
-		IDatabase db = JDBCDatabase.getDatabase();
+		IDatabase db = StendhalPlayerDatabase.getDatabase();
 		Transaction trans = db.getTransaction();
 		boolean success;
 
@@ -580,7 +581,7 @@ public class WordList {
 	 * Read word entries from the database.
 	 */
 	private int readFromDB() {
-		IDatabase db = JDBCDatabase.getDatabase();
+		IDatabase db = StendhalPlayerDatabase.getDatabase();
 
 		Transaction trans = db.getTransaction();
 		Accessor acc = trans.getAccessor();

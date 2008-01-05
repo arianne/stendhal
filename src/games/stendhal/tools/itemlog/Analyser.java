@@ -1,5 +1,7 @@
 package games.stendhal.tools.itemlog;
 
+import games.stendhal.server.core.engine.StendhalPlayerDatabase;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -26,7 +28,7 @@ public class Analyser {
 		+ " ORDER BY itemid, timedate";
 	
 	private LogEntryIterator queryDatabase(String timedate) {
-		Transaction transaction =  JDBCDatabase.getDatabase().getTransaction();
+		Transaction transaction =  StendhalPlayerDatabase.getDatabase().getTransaction();
 		try {
 			Connection connection = transaction.getConnection();
 			Statement stmt = connection.createStatement();
