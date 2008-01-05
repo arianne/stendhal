@@ -305,7 +305,7 @@ public class Expression {
 	 *
 	 * @return
 	 */
-	private String getNormalizedMatchString() {
+	String getNormalizedMatchString() {
 		// special case for numeric expressions to disambiguate "no" from "0"
 		if (type != null && type.isNumeral()) {
 			return original.toLowerCase();

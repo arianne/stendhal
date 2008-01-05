@@ -19,7 +19,7 @@ public class SentenceTest {
 		String text = ConversationParser.getSentenceType("The quick brown fox jumps over the lazy dog.", sentence);
 		ConversationParser parser = new ConversationParser(text);
 		sentence.parse(parser);
-		sentence.classifyWords(parser);
+		sentence.classifyWords(parser, false);
 		assertFalse(sentence.hasError());
 		assertEquals("quick/ADJ brown/ADJ-COL fox/SUB-ANI jump/VER over/PRE lazy/ADJ dog/SUB-ANI.",
 				sentence.toString());
@@ -31,7 +31,7 @@ public class SentenceTest {
 		sentence = new Sentence();
 		parser = new ConversationParser("does it fit");
 		sentence.parse(parser);
-		sentence.classifyWords(parser);
+		sentence.classifyWords(parser, false);
 		assertFalse(sentence.hasError());
 		assertEquals("do/VER it/OBJ-PRO fit/VER", sentence.toString());
 		assertEquals(Sentence.ST_QUESTION, sentence.evaluateSentenceType());
@@ -79,16 +79,42 @@ public class SentenceTest {
 	}
 
 	@Test
-	public final void testMatching() {
+	public final void testComparison() {
 		Sentence s1 = ConversationParser.parse("it is raining cats and dogs");
 		Sentence s2 = ConversationParser.parse("it is raining cats, dogs");
 		Sentence s3 = ConversationParser.parse("it is raining cats but no dogs");
 		assertFalse(s1.hasError());
 		assertFalse(s2.hasError());
 		assertFalse(s3.hasError());
-		assertTrue(s1.matchesNormalized(s1));
-		assertTrue(s1.matchesNormalized(s2));
-		assertFalse(s1.matchesNormalized(s3));
+
+		assertTrue(s1.equalsNormalized(s1));
+		assertTrue(s1.equalsNormalized(s2));
+		assertFalse(s1.equalsNormalized(s3));
+	}
+
+	@Test
+	public final void testMatching() {
+		Sentence s1 = ConversationParser.parse("buy banana");
+		assertFalse(s1.hasError());
+
+		Sentence m1 = ConversationParser.parseForMatching("buy OBJ");
+		Sentence m2 = ConversationParser.parseForMatching("buy SUB");
+		assertFalse(m1.hasError());
+		assertFalse(m2.hasError());
+
+		assertTrue(s1.matches(m1));
+		assertFalse(s1.matches(m2));
+
+		s1 = ConversationParser.parse("make apple pie");
+		assertFalse(s1.hasError());
+
+		m1 = ConversationParser.parseForMatching("VER *pie");
+		m2 = ConversationParser.parseForMatching("VER *cookie");
+		assertFalse(m1.hasError());
+		assertFalse(m2.hasError());
+
+		assertTrue(s1.matches(m1));
+		assertFalse(s1.matches(m2));
 	}
 
 }

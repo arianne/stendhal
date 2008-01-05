@@ -23,6 +23,9 @@ public class Sentence {
 
 	private int sentenceType = ST_UNDEFINED;
 
+	/** Joker String used in pattern matches */
+	private static final String JOKER = "*";
+
 	private String error = null;
 
 	List<Expression> expressions = new ArrayList<Expression>();
@@ -454,13 +457,24 @@ public class Sentence {
 	 * 
 	 * @param parser
 	 */
-	public void classifyWords(ConversationParser parser) {
+	public void classifyWords(ConversationParser parser, boolean forMatching) {
 		WordList wl = WordList.getInstance();
 
 		for (Expression w : expressions) {
 			String original = w.getOriginal();
+			WordEntry entry = null;
 
-			WordEntry entry = wl.find(original);
+			// If the parsed Sentence will be used for matching, look for ExpressionType specifiers. 
+			if (forMatching) {
+				if (ExpressionType.isTypeString(original)) {
+					w.setType(new ExpressionType(original));
+					w.setNormalized(JOKER);
+				}
+			}
+
+			if (w.getType() == null) {
+				entry = wl.find(original);
+			}
 
 			if (entry != null && entry.getType() != null) {
 				w.setType(entry.getType());
@@ -494,7 +508,7 @@ public class Sentence {
 
 				if (verb != null) {
 					if (Grammar.isGerund(original)) {
-						w.setType(new ExpressionType(verb.getTypeString() + ExpressionType.GERUND));
+						w.setType(new ExpressionType(verb.getTypeString() + ExpressionType.SUFFIX_GERUND));
 					} else {
 						w.setType(verb.getType());
 					}
@@ -579,7 +593,7 @@ public class Sentence {
 			Expression subject1 = getSubject(0);
 			Expression subject2 = getSubject(1);
 
-			// [you] give me(i) -> [I] buy
+			// "[you] give me(i)" -> "[I] buy"
 			// Note: The second subject "me" is replaced by "i" in the WordList
 			// normalization.
 			if (subject1 != null 
@@ -595,7 +609,7 @@ public class Sentence {
 				return;
 			}
 
-			// [SUBJECT] (would like to have) -> [SUBJECT] buy
+			// "[SUBJECT] (would like to have)" -> ""[SUBJECT] buy"
 			if (verb.getNormalized().equals("have")
 					&& verb.getOriginal().contains("like")
 					&& ((subject1 == null && expressions.get(0) == verb) ||
@@ -843,18 +857,18 @@ public class Sentence {
 	}
 
 	/**
-	 * Check if two Sentences match each other.
+	 * Check if two Sentences consist of identical normalized Expressions.
 	 *
 	 * @param other
 	 * @return
 	 */
-	public boolean matchesNormalized(Sentence other) {
+	public boolean equalsNormalized(Sentence other) {
 		// shortcut for sentences with differing lengths
 	    if (expressions.size() != other.expressions.size()) {
 	    	return false;
 	    }
 
-	    // loop over all expressions and match them between both sides
+	    // loop over all expressions and compare both sides
 	    Iterator<Expression> it1 = expressions.iterator();
 	    Iterator<Expression> it2 = other.expressions.iterator();
 
@@ -877,13 +891,75 @@ public class Sentence {
 
 	/**
 	 * Check if the Sentence matches the given String.
+	 * The match Sentence can contain explicit expressions, which
+	 * are compared after normalizing, or ExpressionType specifiers
+	 * like "VER" or "SUB*" in upper case.
 	 *
-	 * @param str
+	 * @param text
 	 * @return
 	 */
-	public boolean matches(String str) {
-		// TODO mf - evaluate expression types instead of just calling matchesNormalized()
-		return matchesNormalized(ConversationParser.parse(str));
+	public boolean matchesNormalized(String text) {
+		return matches(ConversationParser.parseForMatching(text));
 	}
+
+	/**
+	 * Check if the Sentence matches the given Sentence.
+	 * The match Sentence can contain explicit expressions, which
+	 * are compared after normalizing, or ExpressionType specifiers
+	 * like "VER" or "SUB*" in upper case.
+	 *
+	 * @param other
+	 * @return
+	 */
+	public boolean matches(Sentence other) {
+		// shortcut for sentences with differing lengths
+	    if (expressions.size() != other.expressions.size()) {
+	    	return false;
+	    }
+
+	    // loop over all expressions and match them between both sides
+	    Iterator<Expression> it1 = expressions.iterator();
+	    Iterator<Expression> it2 = other.expressions.iterator();
+
+		while (it1.hasNext() && it2.hasNext()) {
+			Expression e1 = it1.next();
+			Expression e2 = it2.next();
+			String matchString = e2.getNormalized();
+
+			if (matchString.contains(JOKER)) {
+				if (matchString.equals(JOKER)) {
+					// Type string matching is identified by a single "*" as normalized string expression.
+					if (!matchesJokerString(e1.getTypeString(), e2.getTypeString())) {
+						return false;
+					}
+				} else {
+					// Look for a normalized string match towards the string containing a joker character.
+					if (!matchesJokerString(e1.getNormalizedMatchString(), matchString)) {
+						return false;
+					}
+				}
+			} else if (!e1.matchesNormalized(e2)) {
+				return false;
+			}
+		}
+
+		// Now there should be no more expressions at both sides.
+		if (!it1.hasNext() || it2.hasNext()) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	/**
+	 * Match the given String towards a pattern String containing JOKER characters.
+	 *
+	 * @param str
+	 * @param matchString
+	 * @return
+	 */
+	private boolean matchesJokerString(String str, String matchString) {
+	    return str.matches(".*" + matchString.replace(JOKER, ".*") + ".*");
+    }
 
 }

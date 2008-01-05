@@ -59,15 +59,27 @@ public class ConversationParser {
 	}
 
 	/**
+	 * Parse the given text sentence to be used for sentence matching.
+	 *
+	 * @param text
+	 * @return
+	 */
+	public static Sentence parseForMatching(String text) {
+		ConversationContext ctx = new ConversationContext();
+
+		ctx.setForMatching(true);
+
+		return parse(text, ctx);
+	}
+
+	/**
 	 * Parse the given text sentence.
 	 * 
 	 * @param text
 	 * @param ctx
-	 * @return sentence
+	 * @return Sentence
 	 */
 	public static Sentence parse(String text, ConversationContext ctx) {
-
-		//TODO mf - use context information
 
 		// 1.) determine sentence type from trailing punctuation
 		Sentence sentence = new Sentence();
@@ -85,7 +97,7 @@ public class ConversationParser {
 		sentence.parse(parser);
 
 		// 3.) classify word types and normalize words
-		sentence.classifyWords(parser);
+		sentence.classifyWords(parser, ctx!=null? ctx.isForMatching(): false);
 
 		// 4.) evaluate sentence type from word order
 		sentence.evaluateSentenceType();

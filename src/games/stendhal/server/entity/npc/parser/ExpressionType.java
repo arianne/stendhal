@@ -1,12 +1,15 @@
 package games.stendhal.server.entity.npc.parser;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class ExpressionType {
 
 	private String typeString = "";
 
 	// Expression type string constants
 	public static final String VERB = "VER"; // verb
-	public static final String GERUND = "-GER"; // gerund form
+	public static final String GERUND = "GER"; // gerund form
 	public static final String CONDITIONAL = "CON"; // conditional form
 	public static final String NEGATED = "NEG"; // negated form
 	public static final String PRONOUN = "PRO"; // pronoun
@@ -36,18 +39,45 @@ public class ExpressionType {
 	public static final String PLURAL = "PLU"; // plural form
 
 	// derived string type constants
+	public static final String SUFFIX_GERUND = SUFFIX + GERUND;
 	public static final String SUFFIX_COLOR = SUFFIX + COLOR;
 	public static final String SUFFIX_CONDITIONAL = SUFFIX + CONDITIONAL;
 	public static final String SUFFIX_NEGATED = SUFFIX + NEGATED;
 	public static final String SUFFIX_PRONOUN = SUFFIX + PRONOUN;
 	public static final String SUFFIX_FOOD = SUFFIX + FOOD;
+	public static final String SUFFIX_OBSESSIONAL = SUFFIX + OBSESSIONAL;
 	public static final String SUFFIX_FLUID = SUFFIX + FLUID;
 	public static final String SUFFIX_ANIMAL = SUFFIX + ANIMAL;
 	public static final String SUFFIX_NAME = SUFFIX + NAME;
 	public static final String SUBJECT_NAME = SUBJECT + SUFFIX_NAME;
 	public static final String SUFFIX_PLURAL = SUFFIX + PLURAL;
 	public static final String SUFFIX_QUESTION = SUFFIX + QUESTION;
-	public static final String VERB_GERUND = VERB + GERUND;
+	public static final String VERB_GERUND = VERB + SUFFIX_GERUND;
+
+	/** type string specifiers, which can be used in sentence matching */
+	public final static List<String> TYPESTRINGS = Arrays.asList(
+		VERB,
+		OBJECT,
+		AMOUNT,
+		SUBJECT,
+		ADJECTIVE,
+		NUMERAL,
+		PREPOSITION,
+		QUESTION,
+		//IGNORE,
+
+		SUFFIX_GERUND,
+		SUFFIX_COLOR,
+		SUFFIX_CONDITIONAL,
+		SUFFIX_NEGATED,
+		SUFFIX_PRONOUN,
+		SUFFIX_FOOD,
+		SUFFIX_OBSESSIONAL,
+		SUFFIX_FLUID,
+		SUFFIX_ANIMAL,
+		SUFFIX_NAME,
+		SUFFIX_PLURAL
+	);
 
 	public ExpressionType(String s) {
 		typeString = s;
@@ -221,6 +251,30 @@ public class ExpressionType {
 	}
 
 	/**
+	 * Check if the given String contains a type string specifier.
+	 *
+	 * @param original
+	 * @return
+	 */
+	public static boolean isTypeString(String str) {
+		if (str.length() > 0) {
+			char first = str.charAt(0);
+
+			// All type strings must start with an upper case letter,
+			// even the SUFFIX character '-' is not allowed.
+			if (Character.isUpperCase(first)) {
+        		for(String ts : TYPESTRINGS) {
+        			if (str.contains(ts)) {
+    					return true;
+        			}
+        		}
+			}
+		}
+
+	    return false;
+    }
+
+	/**
 	 * Merge with another ExpressionType.
 	 * 
 	 * @param other
@@ -260,5 +314,6 @@ public class ExpressionType {
 	public String toString() {
 		return typeString;
 	}
+
 
 }
