@@ -8,7 +8,7 @@ import games.stendhal.server.entity.player.GagManager;
 import games.stendhal.server.entity.player.Player;
 
 /**
- * handles public said text 
+ * handles public said text .
  */
 public class PublicChatAction implements ActionListener {
 

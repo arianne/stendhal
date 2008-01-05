@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import marauroa.common.game.Result;
 
 /**
- * Manages a list of validators
+ * Manages a list of validators.
  * 
  * @author hendrik
  */

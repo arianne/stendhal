@@ -20,7 +20,7 @@ import org.apache.log4j.Logger;
  */
 public class PortalSetupDescriptor extends EntitySetupDescriptor {
 	/**
-	 * Logger
+	 * Logger.
 	 */
 	private static final Logger logger = Logger.getLogger(PortalSetupDescriptor.class);
 

@@ -21,7 +21,7 @@ import org.apache.log4j.Logger;
  */
 public abstract class SetupXMLReader {
 	/**
-	 * Logger
+	 * Logger.
 	 */
 	private static final Logger logger = Logger.getLogger(SetupXMLReader.class);
 

@@ -12,7 +12,7 @@ import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
 
 /**
- * handles asking for /support
+ * handles asking for /support.
  */
 public class AskForSupportAction  implements ActionListener {
 	// HashMap <players_name, last_message_time>

@@ -1,7 +1,7 @@
 package games.stendhal.server.core.events;
 
 /**
- * Event types used in the tutorial
+ * Event types used in the tutorial.
  * 
  * @author hendrik
  */
@@ -37,7 +37,7 @@ public enum TutorialEventType {
 	private String message;
 
 	/**
-	 * create a new TutorialEventType
+	 * Creates a new TutorialEventType.
 	 * 
 	 * @param message
 	 *            human readable message
@@ -47,7 +47,7 @@ public enum TutorialEventType {
 	}
 
 	/**
-	 * get the descriptive message
+	 * Gets the descriptive message.
 	 * 
 	 * @return message
 	 */

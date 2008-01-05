@@ -21,7 +21,7 @@ import org.apache.log4j.Logger;
  */
 public class PortalSetupXMLReader extends EntitySetupXMLReader {
 	/**
-	 * Logger
+	 * Logger.
 	 */
 	private static final Logger logger = Logger.getLogger(PortalSetupXMLReader.class);
 

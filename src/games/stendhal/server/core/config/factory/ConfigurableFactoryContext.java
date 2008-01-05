@@ -3,7 +3,7 @@ package games.stendhal.server.core.config.factory;
 import java.util.Map;
 
 /**
- * A configuration context for general object factories
+ * A configuration context for general object factories.
  */
 public class ConfigurableFactoryContext {
 
@@ -35,7 +35,7 @@ public class ConfigurableFactoryContext {
 	}
 
 	/**
-	 * Extracts a boolean value from a string
+	 * Extracts a boolean value from a string.
 	 * 
 	 * @param name
 	 *            name of the attribute (only used for error handling)
@@ -45,8 +45,7 @@ public class ConfigurableFactoryContext {
 	 * @throws IllegalArgumentException
 	 *             in case the value is not a valid boolean
 	 */
-	private static boolean extractBooleanFromString(String name, String value)
-			throws IllegalArgumentException {
+	private static boolean extractBooleanFromString(String name, String value) {
 		if (value.equals("true")) {
 			return true;
 		}
@@ -128,7 +127,7 @@ public class ConfigurableFactoryContext {
 	 * @throws IllegalArgumentException
 	 *             in case the value is not a valid integer or is missing
 	 */
-	public int getRequiredInt(String name) throws IllegalArgumentException {
+	public int getRequiredInt(String name) {
 		String value = this.getRequiredString(name);
 		try {
 			return Integer.parseInt(value);
@@ -165,8 +164,7 @@ public class ConfigurableFactoryContext {
 	 * @throws IllegalArgumentException
 	 *             in case is missing
 	 */
-	public String getRequiredString(String name)
-			throws IllegalArgumentException {
+	public String getRequiredString(String name) {
 		String value = attributes.get(name);
 		if (value == null) {
 			throw new IllegalArgumentException("Missing required attribute "

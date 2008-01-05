@@ -108,13 +108,13 @@ public class StendhalRPZone extends MarauroaRPZone {
 	 */
 	private Set<Item> itemsOnGround;
 
-	/** contains data to if a certain area is walkable */
+	/** contains data to if a certain area is walkable. */
 	public CollisionDetection collisionMap;
 
 	/** Contains data to verify is someone is in a PK-free area. */
 	public CollisionDetection protectionMap;
 
-	/** Position of this zone in the world map */
+	/** Position of this zone in the world map. */
 	private boolean interior;
 
 	private int level;

@@ -18,7 +18,7 @@ import org.apache.log4j.Logger;
  */
 public class ConfiguratorXMLReader extends SetupXMLReader {
 	/**
-	 * Logger
+	 * Logger.
 	 */
 	private static final Logger logger = Logger.getLogger(ConfiguratorXMLReader.class);
 

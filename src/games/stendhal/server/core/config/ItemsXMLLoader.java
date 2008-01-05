@@ -39,17 +39,17 @@ class ItemsXMLLoader extends DefaultHandler {
 
 	private int value;
 
-	/** slots where this item can be equipped */
+	/** slots where this item can be equipped. */
 	private List<String> slots;
 
-	/** Attributes of the item */
+	/** Attributes of the item. */
 	private Map<String, String> attributes;
 
 	private List<DefaultItem> list;
 
 	private boolean attributesTag;
 
-	protected Class<?> implementation;
+	protected Class< ? > implementation;
 
 	public List<DefaultItem> load(URI uri) throws SAXException {
 		list = new LinkedList<DefaultItem>();

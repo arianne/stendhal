@@ -39,7 +39,7 @@ public class ConfigurableFactoryHelper {
 	 *             interpretation.
 	 */
 	public static Object create(ConfigurableFactory factory,
-			ConfigurableFactoryContext ctx, Class<?> clazz) {
+			ConfigurableFactoryContext ctx, Class< ? > clazz) {
 		Object obj;
 
 		obj = factory.create(ctx);
@@ -49,7 +49,7 @@ public class ConfigurableFactoryHelper {
 
 	/**
 	 * Create an object factory using a [logical] class name.
-	 * </p>
+	 * <p>
 	 * 
 	 * <p>
 	 * This will attempt to create a factory for the class in the following
@@ -79,7 +79,7 @@ public class ConfigurableFactoryHelper {
 	 * @return A factory, or <code>null</code> if no valid class was found.
 	 */
 	public static ConfigurableFactory getFactory(String className) {
-		Class<?> clazz;
+		Class< ? > clazz;
 		/*
 		 * First the <class>Factory form
 		 */
@@ -131,7 +131,7 @@ public class ConfigurableFactoryHelper {
 			 */
 			try {
 				return new ACFactory(
-						clazz.getConstructor(new Class<?>[] { ConfigurableFactoryContext.class }));
+						clazz.getConstructor(new Class< ? >[] { ConfigurableFactoryContext.class }));
 			} catch (NoSuchMethodException ex) {
 				// Fall through
 			}
@@ -165,9 +165,9 @@ public class ConfigurableFactoryHelper {
 	 */
 	protected static class ACFactory implements ConfigurableFactory {
 
-		protected Constructor<?> cnstr;
+		protected Constructor< ? > cnstr;
 
-		public ACFactory(Constructor<?> cnstr) {
+		public ACFactory(Constructor< ? > cnstr) {
 			this.cnstr = cnstr;
 		}
 
@@ -197,9 +197,9 @@ public class ConfigurableFactoryHelper {
 	 */
 	protected static class DCFactory implements ConfigurableFactory {
 
-		protected Class<?> clazz;
+		protected Class< ? > clazz;
 
-		public DCFactory(Class<?> clazz) {
+		public DCFactory(Class< ? > clazz) {
 			this.clazz = clazz;
 		}
 

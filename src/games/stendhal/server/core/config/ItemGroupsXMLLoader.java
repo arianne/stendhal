@@ -16,7 +16,7 @@ import org.xml.sax.helpers.DefaultHandler;
  */
 public class ItemGroupsXMLLoader extends DefaultHandler {
 
-	/** Logger */
+	
 	private static final Logger logger = Logger.getLogger(ItemGroupsXMLLoader.class);
 
 	/** The main item configuration file. */
@@ -33,7 +33,7 @@ public class ItemGroupsXMLLoader extends DefaultHandler {
 	}
 
 	/**
-	 * Load items
+	 * Load items.
 	 * 
 	 * @return list of items
 	 * @throws SAXException

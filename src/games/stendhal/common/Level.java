@@ -107,7 +107,7 @@ public class Level {
 	}
 
 	/**
-	 * calculate the experienced needed for a level
+	 * Calculates the experienced needed for a level.
 	 * 
 	 * @param level
 	 * @return experience needed
@@ -120,8 +120,8 @@ public class Level {
 	}
 
 	/**
-	 * calculates how many levels to add when a certain amount of experience is
-	 * added
+	 * Calculates how many levels to add when a certain amount of experience is
+	 * added.
 	 * 
 	 * @param exp
 	 *            the current Experience

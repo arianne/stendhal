@@ -3,7 +3,7 @@ package games.stendhal.server.core.account;
 import marauroa.common.game.Result;
 
 /**
- * validates that reserved names (like admin) are not used as substrings
+ * validates that reserved names (like admin) are not used as substrings.
  * 
  * @author hendrik
  */
@@ -11,7 +11,7 @@ public class ReservedSubStringValidator implements AccountParameterValidator {
 	private String parameterValue;
 
 	/**
-	 * creates a ReservedSubStringValidator
+	 * creates a ReservedSubStringValidator.
 	 * 
 	 * @param parameterValue
 	 *            value to validate

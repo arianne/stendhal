@@ -8,7 +8,7 @@ import games.stendhal.server.entity.RPEntity;
 public interface UseListener {
 
 	/**
-	 * Invoken when the object is used
+	 * Invoked when the object is used.
 	 * 
 	 * @param user
 	 *            the RPEntity who uses the object

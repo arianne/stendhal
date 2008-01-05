@@ -11,7 +11,7 @@
 package games.stendhal.common;
 
 /**
- * Gathers all Debug constants in one place
+ * Gathers all Debug constants in one place.
  * 
  * @author mtotz
  * 
@@ -19,13 +19,13 @@ package games.stendhal.common;
  */
 public class Debug {
 
-	/** server version */
+	/** server version. */
 	public static final String VERSION = "0.65.5";
 
 	/** if this is enable tileset are loaded on demand. */
 	public static final boolean VERY_FAST_CLIENT_START = true;
 
-	/** enables cycling through the panel textures by clicking at the title bar */
+	/** enables cycling through the panel textures by clicking at the title bar. */
 	public static final boolean CYCLE_PANEL_TEXTURES = false;
 
 	/**
@@ -48,7 +48,7 @@ public class Debug {
 	public static final boolean EMULATE_PERCEPTION_LOSS = false;
 
 	/**
-	 * Just a try to get webstart work without additional rights
+	 * Just a try to get webstart work without additional rights.
 	 */
 	public static boolean WEB_START_SANDBOX;
 
@@ -57,7 +57,7 @@ public class Debug {
 	 */
 	public static boolean SHOW_LIST_SIZES;
 
-	/** no instance */
+	/** no instance. */
 	private Debug() {
 		// this is a collection of constants
 	}

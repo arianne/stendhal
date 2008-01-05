@@ -23,7 +23,7 @@ import org.apache.log4j.Logger;
  */
 public class EntitySetupDescriptor extends SetupDescriptor {
 	/**
-	 * Logger
+	 * Logger.
 	 */
 	private static final Logger logger = Logger.getLogger(EntitySetupDescriptor.class);
 

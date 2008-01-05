@@ -12,22 +12,22 @@ import marauroa.common.crypto.RSAKey;
 
 public class GenerateINI {
 
-	/** Where data is read from */
+	/** Where data is read from. */
 	private static BufferedReader in = new BufferedReader(
 			new InputStreamReader(System.in));
 
-	/** The name of the output file */
+	/** The name of the output file. */
 	static final String FILENAME = "server.ini";
 
 	/**
-	 * reads a String from the input. When no String is choosen the defaultValue
+	 * reads a String from the input. When no String is chosen the defaultValue
 	 * is used.
 	 * 
 	 * @param input
 	 *            the buffered input, usually System.in
 	 * @param defaultValue
 	 *            if no value is written.
-	 * @return the string readed or default if none was read.
+	 * @return the string read or default if none was read.
 	 */
 	public static String getStringWithDefault(BufferedReader input,
 			String defaultValue) {
@@ -73,7 +73,7 @@ public class GenerateINI {
 	}
 
 	/**
-	 * makes the first letter of the source uppercase
+	 * Makes the first letter of the source uppercase.
 	 * 
 	 * @param source
 	 *            the string

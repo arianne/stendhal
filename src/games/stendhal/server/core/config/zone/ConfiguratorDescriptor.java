@@ -19,7 +19,7 @@ import org.apache.log4j.Logger;
  */
 public class ConfiguratorDescriptor extends SetupDescriptor {
 	/**
-	 * Logger
+	 * Logger.
 	 */
 	private static final Logger logger = Logger.getLogger(ConfiguratorDescriptor.class);
 
@@ -63,7 +63,7 @@ public class ConfiguratorDescriptor extends SetupDescriptor {
 	 */
 	@Override
 	public void setup(final StendhalRPZone zone) {
-		Class<?> clazz;
+		Class< ? > clazz;
 		Object obj;
 
 		String classNameTemp = getClassName();

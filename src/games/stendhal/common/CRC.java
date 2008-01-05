@@ -17,7 +17,7 @@ public class CRC {
 	// calculating 16-bit CRC
 
 	/**
-	 * generator polynomial
+	 * generator polynomial.
 	 */
 	private static final int poly = 0x1021; /*
 											 * x16 + x12 + x5 + 1 generator

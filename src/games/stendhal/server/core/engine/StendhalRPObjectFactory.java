@@ -9,7 +9,7 @@ import marauroa.server.game.rp.RPObjectFactory;
 import org.apache.log4j.Logger;
 
 /**
- * creates concrete objects of Stendhal classes 
+ * creates concrete objects of Stendhal classes .
  *
  * @author hendrik
  */

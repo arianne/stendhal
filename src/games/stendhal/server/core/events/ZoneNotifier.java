@@ -36,14 +36,14 @@ public class ZoneNotifier {
 
 	/**
 	 * Delays the sending of text (until the next turn for instance to work
-	 * around problems like zone changes)
+	 * around problems like zone changes).
 	 */
 	private static class DelayedPlayerTextSender implements TurnListener {
 		private Player player;
 		private String message;
 
 		/**
-		 * Creates a new DelayedPlayerTextSender
+		 * Creates a new DelayedPlayerTextSender.
 		 * 
 		 * @param player
 		 *            Player to send this message to
@@ -62,7 +62,7 @@ public class ZoneNotifier {
 	}
 
 	/**
-	 * Zone changes
+	 * Zone changes.
 	 * 
 	 * @param player
 	 *            Player

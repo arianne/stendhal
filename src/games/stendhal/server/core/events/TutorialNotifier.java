@@ -37,14 +37,14 @@ public class TutorialNotifier {
 
 	/**
 	 * Delays the sending of text (until the next turn for instance to work
-	 * around problems like zone changes)
+	 * around problems like zone changes).
 	 */
 	private static class DelayedPlayerTextSender implements TurnListener {
 		private Player player;
 		private String message;
 
 		/**
-		 * Creates a new DelayedPlayerTextSender
+		 * Creates a new DelayedPlayerTextSender.
 		 * 
 		 * @param player
 		 *            Player to send this message to
@@ -62,7 +62,7 @@ public class TutorialNotifier {
 	}
 
 	/**
-	 * Login
+	 * Login.
 	 * 
 	 * @param player
 	 *            Player
@@ -72,7 +72,7 @@ public class TutorialNotifier {
 	}
 
 	/**
-	 * moving
+	 * moving.
 	 * 
 	 * @param player
 	 *            Player
@@ -87,7 +87,7 @@ public class TutorialNotifier {
 	}
 
 	/**
-	 * Zone changes
+	 * Zone changes.
 	 * 
 	 * @param player
 	 *            Player
@@ -111,7 +111,7 @@ public class TutorialNotifier {
 	}
 
 	/**
-	 * player got attacked
+	 * player got attacked.
 	 * 
 	 * @param player
 	 *            Player
@@ -121,7 +121,7 @@ public class TutorialNotifier {
 	}
 
 	/**
-	 * player killed something
+	 * player killed something.
 	 * 
 	 * @param player
 	 *            Player
@@ -131,7 +131,7 @@ public class TutorialNotifier {
 	}
 
 	/**
-	 * player got poisoned
+	 * player got poisoned.
 	 * 
 	 * @param player
 	 *            Player
@@ -141,7 +141,7 @@ public class TutorialNotifier {
 	}
 
 	/**
-	 * a player who stayed another minute in game
+	 * a player who stayed another minute in game.
 	 * 
 	 * @param player
 	 *            Player

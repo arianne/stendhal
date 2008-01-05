@@ -1,7 +1,7 @@
 package games.stendhal.server.core.events;
 
 /**
- * Event types used in the new Zone notifier
+ * Event types used in the new Zone notifier.
  * 
  * @author kymara (based on TutorialEventType by hendrik)
  */
@@ -33,7 +33,7 @@ public enum ZoneEventType {
 	private String message;
 
 	/**
-	 * create a new ZoneEventType
+	 * create a new ZoneEventType.
 	 * 
 	 * @param message
 	 *            human readable message
@@ -43,7 +43,7 @@ public enum ZoneEventType {
 	}
 
 	/**
-	 * get the descriptive message
+	 * get the descriptive message.
 	 * 
 	 * @return message
 	 */

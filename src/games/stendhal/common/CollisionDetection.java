@@ -18,7 +18,7 @@ import java.awt.geom.Rectangle2D;
 
 /**
  * This class loads the map and allow you to determine if a player collides or
- * not with any of the non trespasable areas of the world
+ * not with any of the non trespasable areas of the world.
  */
 public class CollisionDetection {
 
@@ -63,11 +63,11 @@ public class CollisionDetection {
 		double w = shape.getWidth();
 		double h = shape.getHeight();
 
-		if ((x < 0) || (x/* +w */>= width)) {
+		if ((x < 0) || (x/* +w */ >= width)) {
 			return;
 		}
 
-		if ((y < 0) || (y/* +h */>= height)) {
+		if ((y < 0) || (y/* +h */ >= height)) {
 			return;
 		}
 
@@ -102,7 +102,7 @@ public class CollisionDetection {
 		}
 	}
 
-	/** Print the area around the (x,y) useful for debugging */
+	/** Print the area around the (x,y) useful for debugging. */
 	public void printaround(int x, int y, int size) {
 		for (int j = y - size; j < y + size; j++) {
 			for (int i = x - size; i < x + size; i++) {
@@ -130,11 +130,11 @@ public class CollisionDetection {
 		// double w=shape.getWidth();
 		// double h=shape.getHeight();
 
-		if ((x < 0) || (x/* +w */>= width)) {
+		if ((x < 0) || (x/* +w */ >= width)) {
 			return true;
 		}
 
-		if ((y < 0) || (y/* +h */>= height)) {
+		if ((y < 0) || (y/* +h */ >= height)) {
 			return true;
 		}
 
@@ -143,7 +143,7 @@ public class CollisionDetection {
 
 	/**
 	 * Returns true if the shape enters in any of the non trespasable areas of
-	 * the map
+	 * the map.
 	 */
 	public boolean collides(Rectangle2D shape) {
 		double x = shape.getX();
@@ -159,11 +159,11 @@ public class CollisionDetection {
 			h += 1.0;
 		}
 
-		if ((x < 0) || (x/* +w */>= width)) {
+		if ((x < 0) || (x/* +w */ >= width)) {
 			return true;
 		}
 
-		if ((y < 0) || (y/* +h */>= height)) {
+		if ((y < 0) || (y/* +h */ >= height)) {
 			return true;
 		}
 
