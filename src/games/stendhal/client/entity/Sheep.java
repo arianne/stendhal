@@ -15,7 +15,7 @@ package games.stendhal.client.entity;
 import games.stendhal.client.soundreview.SoundMaster;
 import games.stendhal.common.Rand;
 
-/** A Sheep entity */
+/** A Sheep entity. */
 public class Sheep extends DomesticAnimal {
 	//
 	// DomesticAnimal

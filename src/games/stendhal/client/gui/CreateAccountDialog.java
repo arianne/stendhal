@@ -46,10 +46,7 @@ import org.apache.log4j.Logger;
 import marauroa.common.game.AccountResult;
 import marauroa.common.net.InvalidVersionException;
 
-/**
- * Summary description for CreateAccountDialog
- * 
- */
+
 public class CreateAccountDialog extends JDialog {
 
 	private static final long serialVersionUID = 4436228792112530975L;
@@ -424,7 +421,7 @@ public class CreateAccountDialog extends JDialog {
 	}
 
 	/**
-	 * Used to preview the CreateAccountDialog
+	 * Used to preview the CreateAccountDialog.
 	 */
 	public static void main(String[] args) {
 		new CreateAccountDialog(null, null);
@@ -532,7 +529,7 @@ public class CreateAccountDialog extends JDialog {
 	}
 
 	/**
-	 * Prints text only when running stand-alone
+	 * Prints text only when running stand-alone.
 	 */
 	public void debug(String text) {
 

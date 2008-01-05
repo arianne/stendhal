@@ -1,7 +1,7 @@
 package games.stendhal.common;
 
 /**
- * Helper functions for various mathematical tasks
+ * Helper functions for various mathematical tasks.
  */
 public class MathHelper {
 
@@ -22,7 +22,7 @@ public class MathHelper {
 	}
 
 	/**
-	 * parses an integer safely, returning 0 if nothing can be sanely parsed
+	 * parses an integer safely, returning 0 if nothing can be sanely parsed.
 	 * from it
 	 * 
 	 * @return An integer

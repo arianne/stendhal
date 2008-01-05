@@ -16,7 +16,7 @@ public class RecordAction implements SlashAction {
 	private ScriptRecorder recorder;
 
 	/**
-	 * Execute a chat command.
+	 * Executes a chat command.
 	 * 
 	 * @param params
 	 *            The formal parameters.
@@ -64,7 +64,7 @@ public class RecordAction implements SlashAction {
 	}
 
 	/**
-	 * get the script recorder
+	 * Gets the script recorder.
 	 * 
 	 * @return ScriptRecorder
 	 */

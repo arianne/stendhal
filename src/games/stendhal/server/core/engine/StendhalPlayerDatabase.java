@@ -580,15 +580,15 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 		if (player != null) {
 			playerName = player.getName();
 		}
-		String query = "INSERT INTO itemlog (itemid, source, event, " +
-			"param1, param2, param3, param4) VALUES (" + 
-			item.getInt(ATTR_ITEM_LOGID) + ", '" + 
-			StringChecker.trimAndEscapeSQLString(playerName, 64) + "', '" +
-			StringChecker.trimAndEscapeSQLString(event, 64) + "', '" +
-			StringChecker.trimAndEscapeSQLString(param1, 64) + "', '" +
-			StringChecker.trimAndEscapeSQLString(param2, 64) + "', '" +
-			StringChecker.trimAndEscapeSQLString(param3, 64) + "', '" +
-			StringChecker.trimAndEscapeSQLString(param4, 64) + "');";
+		String query = "INSERT INTO itemlog (itemid, source, event, " 
+			+ "param1, param2, param3, param4) VALUES (" 
+			+ item.getInt(ATTR_ITEM_LOGID) + ", '" 
+			+ StringChecker.trimAndEscapeSQLString(playerName, 64) + "', '" 
+			+ StringChecker.trimAndEscapeSQLString(event, 64) + "', '" 
+			+ StringChecker.trimAndEscapeSQLString(param1, 64) + "', '" 
+			+ StringChecker.trimAndEscapeSQLString(param2, 64) + "', '" 
+			+ StringChecker.trimAndEscapeSQLString(param3, 64) + "', '" 
+			+ StringChecker.trimAndEscapeSQLString(param4, 64) + "');";
 
 		transaction.getAccessor().execute(query);
 	}

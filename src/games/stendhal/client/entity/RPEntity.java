@@ -158,7 +158,7 @@ public abstract class RPEntity extends ActiveEntity {
 
 	private int defItem = -1;
 
-	/** Create a new game entity */
+	/** Creates a new game entity. */
 	RPEntity() {
 		textIndicators = new LinkedList<TextIndicator>();
 		attackTarget = null;

@@ -57,7 +57,7 @@ class DropAction implements SlashAction {
 	}
 
 	/**
-	 * returns the objectid for the named item
+	 * Returns the objectid for the named item.
 	 * 
 	 * @param slotName
 	 *            name of slot to search

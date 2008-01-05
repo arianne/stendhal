@@ -37,22 +37,22 @@ public class StringFormatter {
 	/** end of each parameter. no escaping. */
 	private static final String PARAMETER_END = "}";
 
-	/** shows that the cache should be refreshed */
+	/** Shows that the cache should be refreshed. */
 	private boolean refreshCache;
 
-	/** cached formatted String */
+	/** Cached formatted String. */
 	private String cachedString;
 
-	/** the static parts of the control-string */
+	/** The static parts of the control-string. */
 	private List<String> staticParts;
 
-	/** names of the parameter in the correct order */
+	/** Names of the parameter in the correct order. */
 	private List<String> parameterPositions;
 
-	/** names/values of the parameter */
+	/** Names/values of the parameter. */
 	private Map<String, String> parameter;
 
-	/** Creates a new instance of StringFormatter */
+	/** Creates a new instance of StringFormatter. */
 	public StringFormatter(String formatString) {
 		staticParts = new ArrayList<String>();
 		parameterPositions = new ArrayList<String>();
@@ -85,7 +85,7 @@ public class StringFormatter {
 		staticParts.add(current);
 	}
 
-	/** sets the value of a parameter */
+	/** Sets the value of a parameter. */
 	public void set(String param, String value) {
 		if (parameter.containsKey(param)) {
 			parameter.put(param, value);
@@ -93,7 +93,7 @@ public class StringFormatter {
 		}
 	}
 
-	/** sets the value of a parameter */
+	/** Sets the value of a parameter. */
 	public void set(String param, int value) {
 		if (parameter.containsKey(param)) {
 			parameter.put(param, Integer.toString(value));
@@ -101,7 +101,7 @@ public class StringFormatter {
 		}
 	}
 
-	/** toString formats the string */
+	/** toString formats the string. */
 	@Override
 	public String toString() {
 		if ((cachedString == null) || refreshCache) {

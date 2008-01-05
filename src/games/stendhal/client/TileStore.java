@@ -30,7 +30,7 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 import marauroa.common.net.InputSerializer;
 
-/** It is class to get tiles from the tileset */
+/** It is class to get tiles from the tileset. */
 public class TileStore implements Tileset {
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(TileStore.class);
@@ -56,7 +56,7 @@ public class TileStore implements Tileset {
 	protected SpriteStore store;
 
 	/**
-	 * The tile sprites
+	 * The tile sprites.
 	 */
 	protected ArrayList<Sprite> tiles;
 

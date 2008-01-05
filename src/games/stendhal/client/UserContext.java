@@ -40,7 +40,7 @@ public class UserContext implements RPObjectChangeListener {
 	private static final Logger logger = Logger.getLogger(UserContext.class);
 
 	/**
-	 * The currently known buddies
+	 * The currently known buddies.
 	 */
 	protected HashMap<String, Boolean> buddies;
 
@@ -521,7 +521,7 @@ public class UserContext implements RPObjectChangeListener {
 	}
 
 	/**
-	 * Debugging code for events
+	 * Debugging code for events.
 	 * 
 	 * @param object
 	 *            the base object

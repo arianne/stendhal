@@ -217,7 +217,7 @@ public class Postman implements Runnable {
 			lastUserPart = "";
 
 			// Are there messages for this player?
-			Iterator<?> itr = messages.keySet().iterator();
+			Iterator< ? > itr = messages.keySet().iterator();
 			while (itr.hasNext()) {
 				String key = itr.next().toString();
 				if (key.startsWith(user + "!")) {

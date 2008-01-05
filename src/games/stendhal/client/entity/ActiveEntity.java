@@ -97,7 +97,7 @@ public abstract class ActiveEntity extends Entity {
 	}
 
 	/**
-	 * compares to floating point values
+	 * Compares to floating point values.
 	 * 
 	 * @param d1
 	 *            first value

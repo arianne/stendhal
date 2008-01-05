@@ -77,10 +77,10 @@ public class Entity implements RPObjectChangeListener {
 	 */
 	public final byte[] ID_Token = new byte[0];
 
-	/** The current x location of this entity */
+	/** The current x location of this entity. */
 	protected double x;
 
-	/** The current y location of this entity */
+	/** The current y location of this entity. */
 	protected double y;
 
 	/**
@@ -108,7 +108,7 @@ public class Entity implements RPObjectChangeListener {
 	 */
 	protected EntityChangeListener[] changeListeners;
 
-	/** The arianne object associated with this game entity */
+	/** The arianne object associated with this game entity. */
 	protected RPObject rpObject;
 
 	/**
@@ -137,7 +137,7 @@ public class Entity implements RPObjectChangeListener {
 	protected String type;
 
 	/**
-	 * defines the distance in which the entity is heard by Player
+	 * Defines the distance in which the entity is heard by Player.
 	 */
 	protected double audibleRange = Double.POSITIVE_INFINITY;
 
@@ -496,7 +496,8 @@ public class Entity implements RPObjectChangeListener {
 	}
 
 	/**
-	 * returns the slot with the specified name or null if the entity does not
+	 * Gets the slot specified by name.
+	 * @return    the specified slot or <code>null</code> if the entity does not
 	 * have this slot
 	 */
 	public RPSlot getSlot(final String name) {

@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Builds the storage NPC in Sedah City
+ * Builds the storage NPC in Sedah City.
  *
  * @author Teiv
  */

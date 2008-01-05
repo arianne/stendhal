@@ -3,15 +3,15 @@ package games.stendhal.client.actions;
 import java.util.HashMap;
 
 /**
- * Manages Slash Action Objects
+ * Manages Slash Action Objects.
  */
 public class SlashActionRepository {
 
-	/** Set of client supported Actions */
+	/** Set of client supported Actions. */
 	private static HashMap<String, SlashAction> actions = new HashMap<String, SlashAction>();
 
 	/**
-	 * registers the available Action
+	 * Registers the available Action.
 	 */
 	public static void register() {
 
@@ -55,7 +55,7 @@ public class SlashActionRepository {
 	}
 
 	/**
-	 * gets the Action object for the specified Action name
+	 * Gets the Action object for the specified Action name.
 	 * 
 	 * @param name
 	 *            name of Action

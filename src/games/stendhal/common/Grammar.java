@@ -23,7 +23,7 @@ public class Grammar {
 	private static final Logger logger = Logger.getLogger(Grammar.class);
 
 	/**
-	 * "it" or "them", depending on the quantity
+	 * "it" or "them", depending on the quantity.
 	 * 
 	 * @param quantity
 	 *            The quantity to examine
@@ -34,7 +34,7 @@ public class Grammar {
 	}
 
 	/**
-	 * Modify a word to upper case notation
+	 * Modify a word to upper case notation.
 	 * 
 	 * @param word
 	 * @return word with first letter in upper case
@@ -51,7 +51,7 @@ public class Grammar {
 	}
 
 	/**
-	 * "It" or "Them", depending on the quantity
+	 * "It" or "Them", depending on the quantity.
 	 * 
 	 * @param quantity
 	 *            The quantity to examine
@@ -62,7 +62,7 @@ public class Grammar {
 	}
 
 	/**
-	 * "it" or "they", depending on the quantity
+	 * "it" or "they", depending on the quantity.
 	 * 
 	 * @param quantity
 	 *            The quantity to examine
@@ -73,7 +73,7 @@ public class Grammar {
 	}
 
 	/**
-	 * "It" or "They", depending on the quantity
+	 * "It" or "They", depending on the quantity.
 	 * 
 	 * @param quantity
 	 *            The quantity to examine
@@ -84,7 +84,7 @@ public class Grammar {
 	}
 
 	/**
-	 * "is" or "are", depending on the quantity
+	 * "is" or "are", depending on the quantity.
 	 * 
 	 * @param quantity
 	 *            The quantity to examine
@@ -95,7 +95,7 @@ public class Grammar {
 	}
 
 	/**
-	 * "Is" or "Are", depending on the quantity
+	 * "Is" or "Are", depending on the quantity.
 	 * 
 	 * @param quantity
 	 *            The quantity to examine
@@ -123,7 +123,7 @@ public class Grammar {
 	}
 
 	/**
-	 * "a [noun]" or "an [noun]", depending on the first syllable
+	 * "a [noun]" or "an [noun]", depending on the first syllable.
 	 * 
 	 * @param noun
 	 *            The noun to examine
@@ -151,7 +151,7 @@ public class Grammar {
 	}
 
 	/**
-	 * adds a prefix unless it was already added
+	 * Adds a prefix unless it was already added.
 	 * 
 	 * @param noun
 	 *            the noun (which may already start with the specified prefix
@@ -173,7 +173,7 @@ public class Grammar {
 	}
 
 	/**
-	 * prefix a noun with an expression like "piece of"
+	 * prefix a noun with an expression like "piece of".
 	 * 
 	 * @param noun
 	 * @return
@@ -229,7 +229,7 @@ public class Grammar {
 	}
 
 	/**
-	 * remove a prefix if present
+	 * Removes a prefix, if present.
 	 * 
 	 * @param prefix
 	 * @param noun
@@ -244,7 +244,7 @@ public class Grammar {
 	}
 
 	/**
-	 * extract noun from a string, that may be prefixed with a singular
+	 * Extracts noun from a string, that may be prefixed with a singular
 	 * expression like "piece of", ...
 	 * 
 	 * @param noun
@@ -267,7 +267,7 @@ public class Grammar {
 	}
 
 	/**
-	 * extract noun from a string, that may be prefixed with a plural expression
+	 * Extracts noun from a string, that may be prefixed with a plural expression
 	 * like "piece of", ...
 	 * 
 	 * @param expr
@@ -290,7 +290,7 @@ public class Grammar {
 	}
 
 	/**
-	 * extract noun from a string, that may be prefixed with a plural expression
+	 * Extracts noun from a string, that may be prefixed with a plural expression
 	 * like "piece of", ... So this function is just the recursive counter part
 	 * to fullForm().
 	 * 
@@ -315,7 +315,7 @@ public class Grammar {
 	}
 
 	/**
-	 * "A [noun]" or "An [noun]", depending on the first syllable
+	 * "A [noun]" or "An [noun]", depending on the first syllable.
 	 * 
 	 * @param noun
 	 *            The noun to examine
@@ -326,7 +326,7 @@ public class Grammar {
 	}
 
 	/**
-	 * "[noun]'s" or "[noun]'", depending on the last character
+	 * "[noun]'s" or "[noun]'", depending on the last character.
 	 * 
 	 * @param noun
 	 *            The noun to examine
@@ -342,7 +342,7 @@ public class Grammar {
 
 	/**
 	 * Returns the plural form of the given noun if not already given in plural
-	 * form
+	 * form.
 	 * 
 	 * @param noun
 	 *            The noun to examine
@@ -444,7 +444,7 @@ public class Grammar {
 
 	/**
 	 * Returns the singular form of the given noun if not already given in
-	 * singular form
+	 * singular form.
 	 * 
 	 * @param enoun
 	 *            The noun to examine
@@ -547,7 +547,7 @@ public class Grammar {
 
 	/**
 	 * Returns either the plural or singular form of the given noun, depending
-	 * on the quantity
+	 * on the quantity.
 	 * 
 	 * @param quantity
 	 *            The quantity to examine
@@ -562,7 +562,7 @@ public class Grammar {
 
 	/**
 	 * Returns either the plural or singular form of the given noun, depending
-	 * on the quantity; also prefixes the quantity
+	 * on the quantity; also prefixes the quantity.
 	 * 
 	 * @param quantity
 	 *            The quantity to examine
@@ -621,8 +621,9 @@ public class Grammar {
 	}
 
 	/**
-	 * Helper function to nicely formulate an enumeration of a collection. For
-	 * example, for a collection containing the 3 elements x, y, z, returns the
+	 * Helper function to nicely formulate an enumeration of a collection.
+	 * <p> 
+	 * For example, for a collection containing the 3 elements x, y, z, returns the
 	 * string "x, y, and z".
 	 * 
 	 * @param collection
@@ -651,7 +652,7 @@ public class Grammar {
 	}
 
 	/**
-	 * convert numbers into their textual representation
+	 * Converts numbers into their textual representation.
 	 * 
 	 * @param n
 	 *            a number
@@ -692,7 +693,7 @@ public class Grammar {
 	}
 
 	/**
-	 * interpret number texts
+	 * Interprets number texts.
 	 * 
 	 * @param n
 	 *            a number
@@ -783,20 +784,20 @@ public class Grammar {
 	 * @return normalized string
 	 */
 	public static String normalizeRegularVerb(String word) {
-		if (word.length()>4 && (word.endsWith("ed") || word.endsWith("es"))) {
-			if (word.charAt(word.length()-4) == word.charAt(word.length()-3)) {
-				return word.substring(0, word.length()-3);
+		if (word.length() > 4 && (word.endsWith("ed") || word.endsWith("es"))) {
+			if (word.charAt(word.length() - 4) == word.charAt(word.length() - 3)) {
+				return word.substring(0, word.length() - 3);
 			} else {
-				return word.substring(0, word.length()-2);
+				return word.substring(0, word.length() - 2);
 			}
-		} else if (word.length()>3 && word.endsWith("s")) {
-			return word.substring(0, word.length()-1);
+		} else if (word.length() > 3 && word.endsWith("s")) {
+			return word.substring(0, word.length() - 1);
 		} else if (isGerund(word)) {
-			return word.substring(0, word.length()-3);
+			return word.substring(0, word.length() - 3);
 		} else {
 			return null;
 		}
-    }
+	}
 
 	/**
 	 * Check the given verb for gerund form, e.g. "doing".
@@ -805,16 +806,17 @@ public class Grammar {
 	 * @return
 	 */
 	public static boolean isGerund(String word) {
-		if (word.length()>4 && word.endsWith("ing")) {
+		if (word.length() > 4 && word.endsWith("ing")) {
 			// Is there a vowel in the preceding characters?
-			for(int i=word.length()-3; --i>=0; ) {
-				if (vowel_p(word.charAt(i)))
+			for (int i = word.length() - 3; --i >= 0;) {
+				if (vowel_p(word.charAt(i))) {
 					return true;
+				}
 			}
 		}
 
 		return false;
-    }
+	}
 
 	/**
 	 * Check the given word for derived adjectives like "magical"
@@ -824,18 +826,18 @@ public class Grammar {
 	 * @return
 	 */
 	public static boolean isDerivedAdjective(String word) {
-	    return word.length()>4 && word.endsWith("al") || word.endsWith("ic");
-    }
+		return word.length() > 4 && word.endsWith("al") || word.endsWith("ic");
+	}
 
 	/**
 	 * Normalize the given derived adjective, or return null if not applicable.
-	 *
+	 * 
 	 * @param word
 	 * @return normalized string
 	 */
 	public static String normalizeDerivedAdjective(String word) {
-		if (word.length()>4 && (word.endsWith("al") || word.endsWith("ic"))) {
-			return word.substring(0, word.length()-2);
+		if (word.length() > 4 && (word.endsWith("al") || word.endsWith("ic"))) {
+			return word.substring(0, word.length() - 2);
 		} else {
 			return null;
 		}

@@ -124,7 +124,7 @@ public class User extends Player {
 	}
 
 	/**
-	 * the absolute world area (coordinates) where the player can possibly hear
+	 * The absolute world area (coordinates) where the player can possibly hear.
 	 * sounds
 	 * 
 	 * @return Rectangle2D area

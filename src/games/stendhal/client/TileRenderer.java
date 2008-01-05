@@ -41,7 +41,7 @@ public class TileRenderer extends LayerRenderer {
 	}
 
 	/**
-	 * Sets the data that will be rendered
+	 * Sets the data that will be rendered.
 	 * 
 	 * @throws ClassNotFoundException
 	 */

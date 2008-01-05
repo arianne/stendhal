@@ -35,7 +35,7 @@ import javax.swing.JPanel;
 import org.apache.log4j.Logger;
 
 /**
- * Displays a credits dialog box
+ * Displays a credits dialog box.
  */
 public class CreditsDialog extends JDialog {
 
@@ -56,7 +56,7 @@ public class CreditsDialog extends JDialog {
 	private Color textColor = new Color(85, 85, 85);
 
 	/**
-	 * creates a new credits dialog
+	 * Creates a new credits dialog.
 	 * 
 	 * @param owner
 	 *            owner window
@@ -99,7 +99,7 @@ public class CreditsDialog extends JDialog {
 	}
 
 	/**
-	 * Reads the credits from credits.text
+	 * Reads the credits from credits.text.
 	 * 
 	 * @return list of lines
 	 */
@@ -123,7 +123,7 @@ public class CreditsDialog extends JDialog {
 	}
 
 	/**
-	 * setting up the listeners an event handling
+	 * Sets up the listeners an event handling.
 	 */
 	private void eventHandling() {
 		this.addWindowListener(new WindowAdapter() {
@@ -142,7 +142,7 @@ public class CreditsDialog extends JDialog {
 	}
 
 	/**
-	 * exit Credits Dialog
+	 * Exits Credits Dialog.
 	 */
 	protected void exit() {
 		sp.stop();

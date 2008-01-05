@@ -53,7 +53,7 @@ class MessageAction implements SlashAction {
 	}
 
 	/**
-	 * get the last player we have send something using /tell
+	 * Gets the last player we have sent something using /tell.
 	 * 
 	 * @return player name
 	 */

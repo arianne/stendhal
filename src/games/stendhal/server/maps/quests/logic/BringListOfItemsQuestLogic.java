@@ -20,7 +20,7 @@ import java.util.List;
  * The NPC keeps track of the items already brought to him.
  */
 public class BringListOfItemsQuestLogic {
-	/** the concrete quest information (which items?, which npc?, what does it say?) */
+	/** The concrete quest information (which items?, which npc?, what does it say?). */
 	protected BringListOfItemsQuest concreteQuest;
 
 	/**
@@ -60,7 +60,7 @@ public class BringListOfItemsQuestLogic {
 	}
 
 	/**
-	 * player says hi before starting the quest
+	 * player says 'hi' before starting the quest.
 	 */
 	protected void welcomeNewPlayer() {
 		concreteQuest.getNPC().add(
@@ -73,7 +73,7 @@ public class BringListOfItemsQuestLogic {
 	}
 
 	/**
-	 * player asks about quest
+	 * Player asks about quest.
 	 */
 	protected void tellAboutQuest() {
  		List<String> questTrigger = new LinkedList<String>(ConversationPhrases.QUEST_MESSAGES);
@@ -89,7 +89,7 @@ public class BringListOfItemsQuestLogic {
 	}
 
 	/**
-	 * player is willing to help
+	 * Player is willing to help.
 	 */
 	protected void acceptQuest() {
 		concreteQuest.getNPC().add(ConversationStates.QUEST_OFFERED,
@@ -99,7 +99,7 @@ public class BringListOfItemsQuestLogic {
 	}
 
 	/**
-	 * player is not willing to help
+	 * Player is not willing to help.
 	 */
 	protected void rejectQuest() {
 		concreteQuest.getNPC().add(ConversationStates.QUEST_OFFERED, ConversationPhrases.NO_MESSAGES, null,
@@ -109,7 +109,7 @@ public class BringListOfItemsQuestLogic {
 	}
 
 	/**
-	 * player asks what exactly is missing
+	 * Player asks what exactly is missing.
 	 */
 	protected void listMissingItemsDuringQuestOffer() {
 		if (concreteQuest.getTriggerPhraseToEnumerateMissingItems() != ConversationPhrases.EMPTY) {
@@ -132,7 +132,7 @@ public class BringListOfItemsQuestLogic {
 	}
 
 	/**
-	 * player asks what exactly is missing
+	 * Player asks what exactly is missing.
 	 */
 	protected void listMissingItems() {
 		// List missing items at the beginning of the conversation and during
@@ -165,7 +165,7 @@ public class BringListOfItemsQuestLogic {
 	}
 
 	/**
-	 * player says he doesn't have required items with him
+	 * Player says he doesn't have required items with him.
 	 */
 	protected void playerDoesNotWantToGiveItems() {
 		concreteQuest.getNPC().add(ConversationStates.QUESTION_1, ConversationPhrases.NO_MESSAGES, null,
@@ -184,7 +184,7 @@ public class BringListOfItemsQuestLogic {
 	}
 
 	/**
-	 * player says he has a required item with him
+	 * Player says he has a required item with him.
 	 */
 	protected void playerWantsToGiveItems() {
 		int[] states = new int[] {ConversationStates.ATTENDING, ConversationStates.QUESTION_1};
@@ -196,7 +196,7 @@ public class BringListOfItemsQuestLogic {
 	}
 
 	/**
-	 * player offers an item
+	 * Player offers an item.
 	 */
 	protected void offerItem() {
 		concreteQuest.getNPC().add(ConversationStates.QUESTION_1, concreteQuest.getNeededItems(), null,
@@ -246,7 +246,7 @@ public class BringListOfItemsQuestLogic {
 	}
 
 	/**
-	 * player returns while quest is still active
+	 * Player returns while quest is still active.
 	 */
 	protected void welcomeKnownPlayer() {
 		concreteQuest.getNPC().add(
@@ -259,7 +259,7 @@ public class BringListOfItemsQuestLogic {
 	}
 
 	/**
-	 * player returns after finishing the quest
+	 * Player returns after finishing the quest.
 	 */
 	protected void welcomePlayerAfterQuest() {
 		if (concreteQuest.shouldWelcomeAfterQuestIsCompleted()) {
@@ -273,7 +273,7 @@ public class BringListOfItemsQuestLogic {
 	}
 
 	/**
-	 * Adds the quest to the world
+	 * Adds the quest to the world.
 	 */
 	public void addToWorld() {
 

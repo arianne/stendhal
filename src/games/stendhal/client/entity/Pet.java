@@ -15,7 +15,7 @@ package games.stendhal.client.entity;
 import games.stendhal.client.soundreview.SoundMaster;
 import games.stendhal.common.Rand;
 
-/** A Pet entity */
+/** A Pet entity. */
 public class Pet extends DomesticAnimal {
 	//
 	// DomesticAnimal
