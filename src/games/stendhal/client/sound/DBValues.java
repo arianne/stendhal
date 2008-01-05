@@ -14,7 +14,7 @@ package games.stendhal.client.sound;
 
 /**
  * is a smelly lazy class just keeping the precalculated dbValues which
- * represent loudness(?)
+ * represent loudness.
  * 
  * volume = 0 -> dbValue -> NegNAN, volume = 100 -> dbValue -> 0
  * 
@@ -22,9 +22,16 @@ package games.stendhal.client.sound;
  * 
  */
 public class DBValues {
+	
+	/**
+	 * Utility Class does not need to be instantiated.
+	 */
+	protected DBValues() {
+
+	}
 
 	/**
-	 * dbValue[0] is mute and dbValue[100] is loudest
+	 * dbValue[0] is mute and dbValue[100] is loudest.
 	 */
 	private static final float[] DB_VALUES = new float[101];
 
@@ -37,7 +44,7 @@ public class DBValues {
 	}
 
 	/**
-	 * calculates a dbValue according to the volume
+	 * calculates a dbValue according to the volume.
 	 * 
 	 * @param volume
 	 *            the volume to be calculated
