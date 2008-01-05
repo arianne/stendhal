@@ -32,7 +32,7 @@ public class Jail implements LoginListener {
 
 	private static final Logger logger = Logger.getLogger(Jail.class);
 
-	// package visibile because of tests
+	// package visible because of tests
 	public static final String DEFAULT_JAIL_ZONE = "-1_semos_jail";
 	static StendhalRPZone jailzone;
 	ArrestWarrantList arrestWarrants;
@@ -240,7 +240,7 @@ public class Jail implements LoginListener {
 	public static boolean isInJail(Player inmate) {
 		StendhalRPZone zone = inmate.getZone();
 
-		if (zone!=null && zone.equals(getJailzone())) {
+		if (zone != null && zone.equals(getJailzone())) {
 			for (Rectangle cellBlock : cellBlocks) {
 				if (cellBlock.contains(inmate.getX(), inmate.getY())) {
 					return true;

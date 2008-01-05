@@ -25,7 +25,7 @@ import marauroa.common.game.RPSlot;
 import org.apache.log4j.Logger;
 
 /**
- * Handles dieing of players.
+ * Handles death of players.
  *
  * @author hendrik
  */

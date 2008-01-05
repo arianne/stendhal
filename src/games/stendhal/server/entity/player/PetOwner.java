@@ -8,7 +8,7 @@ import marauroa.common.game.RPObject;
 import org.apache.log4j.Logger;
 
 /**
- * Handles ownage of pets and sheeps
+ * Handles ownership of pets and sheep.
  *
  * @author hendrik
  */

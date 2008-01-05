@@ -1,7 +1,7 @@
 package games.stendhal.server.entity.player;
 
 /**
- * recodring of killings
+ * recording of killings.
  *
  * @author hendrik
  */

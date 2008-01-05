@@ -9,7 +9,7 @@ import games.stendhal.server.core.events.TurnNotifier;
 import org.apache.log4j.Logger;
 
 /**
- * Manages gags
+ * Manages gags.
  */
 public class GagManager implements LoginListener {
 	/*
@@ -19,14 +19,14 @@ public class GagManager implements LoginListener {
 
 	private static final Logger logger = Logger.getLogger(GagManager.class);
 
-	/** The Singleton instance */
+	/** The Singleton instance. */
 	private static GagManager instance;
 
 	// TODO: cleanup/properly-handle Notifiers in special cases: change gag
 	// time, server restart, player login.
 
 	/**
-	 * returns the GagManager object (Singleton Pattern)
+	 * returns the GagManager object (Singleton Pattern).
 	 * 
 	 * @return GagManager
 	 */
@@ -91,7 +91,7 @@ public class GagManager implements LoginListener {
 	}
 
 	/**
-	 * Removes a gag
+	 * Removes a gag.
 	 * 
 	 * @param inmate
 	 *            player who should be released
@@ -120,7 +120,7 @@ public class GagManager implements LoginListener {
 	}
 
 	/**
-	 * If the players' gag has expired remove it
+	 * If the players' gag has expired, remove it.
 	 * 
 	 * @param inmate
 	 *            player to check
@@ -176,7 +176,7 @@ public class GagManager implements LoginListener {
 	}
 
 	/**
-	 * gets time remaining in milliseconds
+	 * Gets time remaining in milliseconds.
 	 * 
 	 * @param inmate
 	 *            player to check

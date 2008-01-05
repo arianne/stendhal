@@ -804,8 +804,9 @@ public class Player extends RPEntity {
 	}
 
 	/**
-	 * Set/remove a client feature. <strong>NOTE: The names and values MUST NOT
-	 * contain <code>=</code> (equals), or <code>:</code> (colon).
+	 * Sets/removes a client feature.
+	 * <p> <strong>NOTE: The names and values MUST NOT
+	 * contain <code>=</code> (equals), or <code>:</code> (colon). </strong>
 	 * 
 	 * @param name
 	 *            The feature mnemonic.

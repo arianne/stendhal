@@ -9,7 +9,7 @@ import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
 /**
- * accesses the player quest states
+ * Accesses the player quest states.
  *
  * @author hendrik
  */

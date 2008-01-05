@@ -57,13 +57,13 @@ class PlayerRPClass {
 
 	private static Logger logger = Logger.getLogger(PlayerRPClass.class);
 
-	/** list of super admins read from admins.list */
+	/** list of super admins read from admins.list. */
 	private static List<String> adminNames;
 
-	/** only log the first exception while reading welcome URL */
+	/** only log the first exception while reading welcome URL. */
 	private static boolean firstWelcomeException = true;
 
-	/** these items should be bound */
+	/** these items should be bound.*/
 	private static final List<String> ITEMS_TO_BIND = Arrays.asList(
 			"dungeon_silver_key", "lich_gold_key", "trophy_helmet",
 			"lucky_charm", "soup");
@@ -285,7 +285,7 @@ class PlayerRPClass {
 	}
 
 	/**
-	 * reads the admins from admins.list
+	 * reads the admins from admins.list.
 	 * 
 	 * @param player
 	 *            Player to check for super admin status.
@@ -339,7 +339,7 @@ class PlayerRPClass {
 
 	/**
 	 * Places the player (and his/her sheep if there is one) into the world on
-	 * login
+	 * login.
 	 * 
 	 * @param object
 	 *            RPObject representing the player
