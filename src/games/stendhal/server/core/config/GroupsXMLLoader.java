@@ -17,11 +17,11 @@ import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
 /**
- * Loads a list of files from an xml file
+ * Loads a list of files from an xml file.
  */
 class GroupsXMLLoader extends DefaultHandler {
 
-	/** Logger */
+
 	private static final Logger logger = Logger.getLogger(GroupsXMLLoader.class);
 
 	/** The main configuration file. */
@@ -43,7 +43,7 @@ class GroupsXMLLoader extends DefaultHandler {
 	}
 
 	/**
-	 * Loads and returns the list
+	 * Loads and returns the list.
 	 * 
 	 * @return list of group entries
 	 * @throws SAXException
@@ -69,7 +69,7 @@ class GroupsXMLLoader extends DefaultHandler {
 	}
 
 	/**
-	 * Load and returns the list of files
+	 * Load and returns the list of files.
 	 * 
 	 * @param world
 	 *            The world to load into.
@@ -99,25 +99,31 @@ class GroupsXMLLoader extends DefaultHandler {
 		return groups;
 	}
 
+	
+	/**
+	 * Is called when a XML-element is started.
+	 * <p>
+	 * The outer groups tag is ignored.
+	 * <p>
+	 * Any exception occurring while examining a group value is ignored and written to the loggers error channel 
+	 * 
+	 */
 	@Override
-	public void startElement(String namespaceURI, String lName, String qName,
-			Attributes attrs) {
-		if (qName.equals("groups")) {
-			// Ignore
-		} else if (qName.equals("group")) {
-			String s = attrs.getValue("uri");
-			if (s == null) {
+	public void startElement(String namespaceURI, String lName, String qName, Attributes attrs) {
+		 if (qName.equals("group")) {
+			String uriValue = attrs.getValue("uri");
+			if (uriValue == null) {
 				logger.warn("group without 'uri'");
 			} else {
 				try {
-					groups.add(uri.resolve(s));
+					groups.add(uri.resolve(uriValue));
 				} catch (IllegalArgumentException ex) {
-					logger.error("Invalid group reference: " + s + " ["
+					logger.error("Invalid group reference: " + uriValue + " ["
 							+ ex.getMessage() + "]");
 				}
 
 			}
-		} else {
+		} else if (!qName.equals("groups")) {
 			logger.warn("Unknown XML element: " + qName);
 		}
 	}
