@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Entrance to battle arena
+ * Entrance to battle arena.
  */
 public class BattleArenaRecruiterNPC implements ZoneConfigurator {
 	/**

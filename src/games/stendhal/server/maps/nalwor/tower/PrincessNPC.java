@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Builds a Princess NPC who lives in a tower
+ * Builds a Princess NPC who lives in a tower.
  *
  * @author kymara
  */

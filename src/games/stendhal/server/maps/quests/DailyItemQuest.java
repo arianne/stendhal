@@ -14,7 +14,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * QUEST: Daily Item Fetch Quest
+ * QUEST: Daily Item Fetch Quest.
  * <p>
  * PARTICIPANTS:
  * <li> Mayor of Ados

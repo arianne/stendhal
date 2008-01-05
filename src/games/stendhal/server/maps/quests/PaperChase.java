@@ -8,7 +8,7 @@ import games.stendhal.server.entity.player.Player;
 import java.util.StringTokenizer;
 
 /**
- * A kind of paper chase
+ * A kind of paper chase.
  *
  * @author hendrik
  */
@@ -28,11 +28,11 @@ public class PaperChase extends AbstractQuest {
 			"Jynath", "Loretta", "Fidorea" };
 
 	/**
-	 * Handles all normal points in this paper chase (without the first and last
+	 * Handles all normal points in this paper chase (without the first and last.
 	 * one)
 	 */
 	private class PaperChasePoint extends SpeakerNPC.ChatAction {
-		int idx;
+		private int idx;
 
 		PaperChasePoint(int idx) {
 			this.idx = idx;
@@ -50,7 +50,7 @@ public class PaperChase extends AbstractQuest {
 				return;
 			}
 
-			// analyse quest state
+			// analyze quest state
 			StringTokenizer st = new StringTokenizer(questState, ";");
 			String nextNPC = st.nextToken();
 			String startTime = st.nextToken();

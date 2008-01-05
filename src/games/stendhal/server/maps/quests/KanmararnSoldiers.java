@@ -26,7 +26,7 @@ import org.apache.log4j.Logger;
 /**
  * QUEST:
  * <p>
- * Soldiers in Kanmararn
+ * Soldiers in Kanmararn.
  *
  * NOTE:
  * <p>
@@ -81,7 +81,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 	}
 
 	/**
-	 * A CorpseRefiller checks, in regular intervals, if the given corpse
+	 * A CorpseRefiller checks, in regular intervals, if the given corpse.
 	 *
 	 * @author daniel
 	 *
@@ -256,7 +256,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 	}
 
 	/**
-	 * We create NPC Henry who will get us on the quest
+	 * We create NPC Henry who will get us on the quest.
 	 */
 	private void prepareCowardSoldier() {
 		SpeakerNPC henry = npcs.get("Henry");
@@ -365,7 +365,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 	}
 
 	/**
-	 * add James
+	 * add James.
 	 */
 	private void prepareSergeant() {
 		SpeakerNPC james = npcs.get("Sergeant James");

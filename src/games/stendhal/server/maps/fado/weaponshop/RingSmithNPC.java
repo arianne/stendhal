@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Builds an NPC to buy gems and gold and sell engagement ring
+ * Builds an NPC to buy gems and gold and sell engagement ring.
  * <p>
  * He is also the NPC who can fix a broken emerald ring
  * (../../quests/Ringmaker.java)

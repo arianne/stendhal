@@ -24,19 +24,19 @@ import java.util.List;
 import marauroa.common.game.IRPZone;
 
 /**
- * QUEST: Special Soup
+ * QUEST: Special Soup.
+ * <p>
+ * PARTICIPANTS: <ul><li> Old Mother Helena in Fado tavern</ul>
  * 
- * PARTICIPANTS: - Old Mother Helena in Fado tavern
+ * STEPS: <ul><li> Old Mother Helena tells you the ingredients of a special soup <li> You
+ * collect the ingredients <li> You bring the ingredients to the tavern <li> The soup
+ * is served at table<li> Eating the soup heals you fully over time <li> Making it adds karma
+ * </ul>
  * 
- * STEPS: - Old Mother Helena tells you the ingredients of a special soup - You
- * collect the ingredients - You bring the ingredients to the tavern - The soup
- * is served at table - Eating the soup heals you fully over time - Making it adds karma
+ * REWARD: <ul><li>heal <li> Karma bonus of 5 <li>100 XP</ul>
  * 
- * 
- * REWARD: - heal - Karma bonus of 5 - 100 XP
- * 
- * REPETITIONS: - as many as desired - Only possible to repeat once every ten
- * minutes
+ * REPETITIONS: <ul><li> as many as desired <li> Only possible to repeat once every ten
+ * minutes</ul>
  * 
  * @author kymara
  */

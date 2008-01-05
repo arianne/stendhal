@@ -27,7 +27,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * QUEST: The Obsidian Knife
+ * QUEST: The Obsidian Knife.
  * 
  * PARTICIPANTS:
  * <ul>

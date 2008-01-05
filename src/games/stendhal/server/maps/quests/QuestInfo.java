@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Static info about quests (read from quest.xml)
+ * Static info about quests (read from quest.xml).
  * 
  * @author hendrik
  */

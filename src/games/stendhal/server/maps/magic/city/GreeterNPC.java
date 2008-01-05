@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Builds a Wizard NPC who explains about the city
+ * Builds a Wizard NPC who explains about the city.
  *
  * @author kymara
  */

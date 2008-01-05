@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Builds the princess in Kalavan castle
+ * Builds the princess in Kalavan castle.
  *
  * @author kymara
  */

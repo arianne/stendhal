@@ -16,7 +16,7 @@ import games.stendhal.server.entity.npc.condition.AlwaysTrueCondition;
 public class Cataclysm extends AbstractQuest {
 
 	/**
-	 * Carmen tells you that she can sense big changes
+	 * Makes Carmen tell you that she can sense big changes.
 	 */
 	private void carmen() {
 		SpeakerNPC npc = npcs.get("Carmen");
@@ -34,7 +34,7 @@ public class Cataclysm extends AbstractQuest {
 	}
 
 	/**
-	 * Diogenes tells you to ask Carmen what's happening
+	 * Makes Diogenes tell you to ask Carmen what's happening.
 	 */
 	private void diogenes() {
 		SpeakerNPC npc = npcs.get("Diogenes");
@@ -56,7 +56,7 @@ public class Cataclysm extends AbstractQuest {
 	}
 
 	/**
-	 * Hayunn Naratha refers to the Cataclysm
+	 * Makes Hayunn Naratha refer to the Cataclysm.
 	 */
 	private void hayunn() {
 		SpeakerNPC npc = npcs.get("Hayunn Naratha");
@@ -74,7 +74,7 @@ public class Cataclysm extends AbstractQuest {
 	}
 
 	/**
-	 * Monogenes speaks of the fire and Cataclysm
+	 * Makes Monogenes speak of the fire and Cataclysm.
 	 */
 	private void monogenes() {
 		SpeakerNPC npc = npcs.get("Monogenes");
@@ -98,7 +98,7 @@ public class Cataclysm extends AbstractQuest {
 	}
 
 	/**
-	 * Nomyr Ahba tells you rumours of the Cataclysm
+	 * Makes Nomyr Ahba tell you rumours of the Cataclysm.
 	 */
 	private void nomyr() {
 		SpeakerNPC npc = npcs.get("Nomyr Ahba");
@@ -121,7 +121,7 @@ public class Cataclysm extends AbstractQuest {
 	}
 
 	/**
-	 * Sato tells you that Carmen can sense big changes
+	 * Makes Sato tell you that Carmen can sense big changes.
 	 */
 	private void sato() {
 		SpeakerNPC npc = npcs.get("Sato");

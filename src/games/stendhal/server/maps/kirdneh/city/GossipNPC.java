@@ -7,7 +7,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import java.util.Map;
 
 /**
- * Builds a information giving NPC in Kirdneh city 
+ * Builds a information giving NPC in Kirdneh city. 
  *
  * @author kymara
  */

@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Builds an ice cream seller npc
+ * Builds an ice cream seller npc.
  *
  * @author kymara
  */

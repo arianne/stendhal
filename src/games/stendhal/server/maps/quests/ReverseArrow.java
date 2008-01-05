@@ -41,16 +41,16 @@ public class ReverseArrow extends AbstractQuest implements
 
 	private static final String ZONE_NAME = "int_ados_reverse_arrow";
 
-	/** Time (in Seconds) to solve the puzzle */
+	/** Time (in Seconds) to solve the puzzle. */
 	private static final int TIME = 60;
 
-	/** Possible number of moves to solve the puzzle */
+	/** Possible number of moves to solve the puzzle. */
 	private static final int MAX_MOVES = 3;
 
-	/** Horizontal position of the upper left token at the beginning */
+	/** Horizontal position of the upper left token at the beginning. */
 	private static final int OFFSET_X = 15;
 
-	/** Vertical position of the upper left token at the beginning */
+	/** Vertical position of the upper left token at the beginning. */
 	private static final int OFFSET_Y = 10;
 
 	// "static" data
@@ -72,7 +72,7 @@ public class ReverseArrow extends AbstractQuest implements
 	private Timer timer;
 
 	/**
-	 * Checks the result
+	 * Checks the result.
 	 */
 	protected class ReverseArrowCheck implements TurnListener {
 
@@ -161,7 +161,7 @@ public class ReverseArrow extends AbstractQuest implements
 	}
 
 	/**
-	 * Teleports the player out
+	 * Teleports the player out.
 	 */
 	protected class FinishNotifier implements TurnListener {
 		private boolean reset;
@@ -189,7 +189,7 @@ public class ReverseArrow extends AbstractQuest implements
 		private Player timerPlayer;
 
 		/**
-		 * Starts a teleport-out-timer
+		 * Starts a teleport-out-timer.
 		 *
 		 * @param player
 		 *            the player who started the timer
@@ -256,7 +256,7 @@ public class ReverseArrow extends AbstractQuest implements
 	}
 
 	/**
-	 * creates a token and adds it to the world
+	 * Creates a token and adds it to the world.
 	 *
 	 * @param x
 	 *            x-position
@@ -275,7 +275,7 @@ public class ReverseArrow extends AbstractQuest implements
 	}
 
 	/**
-	 * adds the tokens to the game field
+	 * Adds the tokens to the game field.
 	 */
 	private void addAllTokens() {
 		// 0 1 2 3 4
@@ -292,7 +292,7 @@ public class ReverseArrow extends AbstractQuest implements
 	}
 
 	/**
-	 * removes all tokens (called after the player messed them up)
+	 * Removes all tokens (called after the player messed them up).
 	 */
 	private void removeAllTokens() {
 		if (tokens != null) {
@@ -378,7 +378,7 @@ public class ReverseArrow extends AbstractQuest implements
 	}
 
 	/**
-	 * The player moved a token
+	 * The player moved a token.
 	 *
 	 * @param player
 	 *            Player
@@ -401,7 +401,7 @@ public class ReverseArrow extends AbstractQuest implements
 	}
 
 	/**
-	 * A player entered the zone
+	 * A player entered the zone.
 	 *
 	 * @param player
 	 *            Player

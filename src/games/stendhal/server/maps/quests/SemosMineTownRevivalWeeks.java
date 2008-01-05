@@ -20,7 +20,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Puts the player into a funny constume
+ * Puts the player into a funny constume.
  */
 public class SemosMineTownRevivalWeeks extends AbstractQuest {
 

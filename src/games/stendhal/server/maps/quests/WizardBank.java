@@ -21,8 +21,8 @@ import java.util.Arrays;
 import marauroa.common.game.IRPZone;
 
 /**
- * Controls player access to the Wizard's Bank via an NPC. He takes a fee to
- * enter. Players are allowed only 5 minutes access at once.
+ * Controls player access to the Wizard's Bank via an NPC. 
+ * <p>He takes a fee to enter. Players are allowed only 5 minutes access at once.
  * 
  * @author kymara
  */
@@ -38,7 +38,7 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 
 	private static final String ZONE_NAME = "int_magic_bank";
 
-	/** Time (in Seconds) allowed in the bank */
+	/** Time (in Seconds) allowed in the bank. */
 	private static final int TIME = 60 * 5;
 
 	// Cost to access chests

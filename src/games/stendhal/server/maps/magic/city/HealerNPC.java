@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Builds a Healer NPC for the magic city
+ * Builds a Healer NPC for the magic city.
  *
  * @author kymara
  */

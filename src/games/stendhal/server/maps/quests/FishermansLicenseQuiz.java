@@ -18,18 +18,25 @@ import java.util.List;
 import marauroa.common.game.RPObjectNotFoundException;
 
 /**
- * QUEST: Fisherman's license Quiz PARTICIPANTS: - Santiago the fisherman
+ * QUEST: Fisherman's license Quiz.
+ * <p>
+ * PARTICIPANTS: 
+ * <ul><li>Santiago the fisherman</ul
  * 
- * 
- * STEPS: - The fisherman puts all fish species onto the table and the player
- * must identify the names of the fish in the correct order. - The player has
- * one try per day.
- * 
- * REWARD: - 500 XP - The 2nd part of the exam will be unlocked.
- * 
- * REPETITIONS: - If the player has failed the quiz, he can retry after 24
- * hours. - After passing the quiz, no more repetitions are possible.
- * 
+ * <p>
+ * STEPS:
+ * <ul><li> The fisherman puts all fish species onto the table and the player must
+ * identify the names of the fish in the correct order.
+ * <li> The player has one try per day.
+ * </ul><p>
+ * REWARD:
+ * <ul><li> 500 XP
+ * <li> The 2nd part of the exam will be unlocked.
+ * </ul><p>
+ * REPETITIONS:
+ * <ul><li> If the player has failed the quiz, he can retry after 24 hours.
+ * <li> After passing the quiz, no more repetitions are possible.
+ * </ul><p>
  * @author dine
  */
 

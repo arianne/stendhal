@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Builds an witch NPC She is a trader for bric-a-brac items
+ * Builds an witch NPC She is a trader for bric-a-brac items.
  *
  * @author kymara
  */

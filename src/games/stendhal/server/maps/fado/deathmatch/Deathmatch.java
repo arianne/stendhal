@@ -9,7 +9,7 @@ import java.awt.geom.Rectangle2D;
 import java.util.Map;
 
 /**
- * This is just a Deathmatch for Fado (the battle_arena)
+ * Deathmatch for Fado (the battle_arena).
  *
  * @author timothyb89
  *

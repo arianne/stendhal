@@ -223,7 +223,7 @@ public class Blackjack extends AbstractQuest {
 
 	private void letBankDrawAfterPause(final String playerName) {
 		TurnNotifier.get().notifyInSeconds(1, new TurnListener() {
-			String name = playerName;
+			private String name = playerName;
 
 			public void onTurnReached(int currentTurn) {
 				if (name.equals(ramon.getAttending().getName())) {

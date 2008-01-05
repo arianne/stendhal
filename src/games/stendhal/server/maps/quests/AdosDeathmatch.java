@@ -20,7 +20,7 @@ import games.stendhal.server.util.Area;
 import java.util.Arrays;
 
 /**
- * Creating the Stendhal Deathmatch Game
+ * Creates the Ados Deathmatch Game.
  */
 public class AdosDeathmatch extends AbstractQuest {
 	private StendhalRPZone zone;
@@ -43,7 +43,7 @@ public class AdosDeathmatch extends AbstractQuest {
 	}
 
 	/**
-	 * show the player the potential trophy
+	 * Shows the player the potential trophy.
 	 *
 	 * @param x
 	 *            x-position of helmet

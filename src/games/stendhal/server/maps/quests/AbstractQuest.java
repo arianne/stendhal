@@ -16,16 +16,16 @@ public abstract class AbstractQuest implements IQuest {
 	/** The internal name of this quest. (e.g used to read quest.xml) */
 	protected String name;
 
-	/** The slot-name in !quests */
+	/** The slot-name in !quests. */
 	protected String slotName = "XXX"; // TODO init it in the quest-classes
 
-	/** NPCList * */
+	/** NPCList. */
 	protected NPCList npcs = NPCList.get();
 
 	private static final List<String> EMPTY_LIST = new ArrayList<String>();
 
 	/**
-	 * inits the quest by specifying the name.
+	 * Inits this quest by specifying the name.
 	 * <p>
 	 * Make sure to set slotname in the subclasses.
 	 *
@@ -37,7 +37,7 @@ public abstract class AbstractQuest implements IQuest {
 	}
 
 	/**
-	 * inits this quest by specifing the name and quest slot
+	 * Inits this quest by specifing the name and quest slot.
 	 *
 	 * @param name
 	 *            name of quest

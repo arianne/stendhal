@@ -20,7 +20,7 @@ import games.stendhal.server.util.Area;
 import java.util.Arrays;
 
 /**
- * Creating the Stendhal Deathmatch Game for Fado
+ * Creates the Stendhal Deathmatch Game for Fado.
  */
 public class FadoDeathmatch extends AbstractQuest {
 	private StendhalRPZone zone;
@@ -42,7 +42,7 @@ public class FadoDeathmatch extends AbstractQuest {
 	}
 
 	/**
-	 * show the player the potential prize
+	 * Shows the player the potential prize.
 	 *
 	 * @param x
 	 *            x-position of legs
@@ -53,7 +53,7 @@ public class FadoDeathmatch extends AbstractQuest {
 		Item legs = StendhalRPWorld.get().getRuleManager().getEntityManager()
 				.getItem("golden_legs");
 		// we are using these until better
-		// ones are found/commitited. TODO: trophy_legs
+		// ones are found/committed. TODO: trophy_legs
 		legs.put("def", "10");
 		legs.setDescription("This is the grand prize for the Battle Arena winners.");
 		legs.setPosition(x, y);

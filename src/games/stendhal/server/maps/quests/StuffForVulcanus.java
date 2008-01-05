@@ -17,19 +17,33 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * QUEST: The immortal sword forging
+ * QUEST: The immortal sword forging.
  * 
- * PARTICIPANTS: - Vulcanus, son of Zeus itself, will forge for you the god's
- * sword.
+ * PARTICIPANTS:
+ * <ul>
+ * <li> Vulcanus, son of Zeus itself, will forge for you the god's sword.
+ * </ul>
  * 
- * STEPS: - Vulcanus tells you about the sword. - He offers to forge a immortal
- * sword for you if you bring him what it needs. - You give him all what he ask
- * you. - Vulcanus forges the immortal sword for you
+ * STEPS:
+ * <ul>
+ * <li> Vulcanus tells you about the sword.
+ * <li> He offers to forge a immortal sword for you if you bring him what it
+ * needs.
+ * <li> You give him all what he ask you.
+ * <li> Vulcanus forges the immortal sword for you
+ * </ul>
  * 
- * REWARD: - immortal sword - 15000 XP
+ * REWARD:
+ * <ul>
+ * <li> immortal sword
+ * <li>15000 XP
+ * </ul>
  * 
  * 
- * REPETITIONS: - None.
+ * REPETITIONS:
+ * <ul>
+ * <li> None.
+ * </ul>
  */
 public class StuffForVulcanus extends AbstractQuest {
 	private static final int REQUIRED_IRON = 15;

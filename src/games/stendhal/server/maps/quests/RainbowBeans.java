@@ -60,8 +60,8 @@ public class RainbowBeans extends AbstractQuest {
 
 	private static final String QUEST_SLOT = "rainbow_beans";
 
-	/** The RainbowBeansScroll for porting back */
-	static RainbowBeansScroll scroll;
+	/** The RainbowBeansScroll for porting back. */
+	private static RainbowBeansScroll scroll;
 
 	@Override
 	public void init(String name) {

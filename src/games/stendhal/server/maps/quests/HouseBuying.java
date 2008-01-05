@@ -17,7 +17,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Controls house buying
+ * Controls house buying.
  *
  * @author kymara
  */

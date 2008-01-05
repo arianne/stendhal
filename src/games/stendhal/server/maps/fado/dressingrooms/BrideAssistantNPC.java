@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Dressing rooms at fado hotel
+ * Dressing rooms at fado hotel.
  *
  * @author kymara
  */

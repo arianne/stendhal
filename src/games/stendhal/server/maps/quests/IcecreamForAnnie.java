@@ -20,7 +20,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Quest to buy icecream
+ * Quest to buy icecream.
  *
  * @author kymara
  */

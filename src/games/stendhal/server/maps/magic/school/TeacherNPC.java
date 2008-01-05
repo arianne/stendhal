@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Builds a Teacher NPC who flies on a broomstick 
+ * Builds a Teacher NPC who flies on a broomstick. 
  *
  * @author kymara
  */

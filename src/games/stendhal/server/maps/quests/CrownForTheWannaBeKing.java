@@ -44,7 +44,7 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 	private static final String REWARD_NPC_NAME = "Kendra Mattori";
 
 	/**
-	 * required items for the quest as itemName=count;
+	 * required items for the quest.
 	 */
 	private static final String NEEDED_ITEMS = "gold_bar=2;emerald=4;sapphire=3;carbuncle=2;diamond=2;obsidian=1;";
 
@@ -116,7 +116,7 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 	}
 
 	/**
-	 * initialize the main part of the quest
+	 * Initializes the main part of the quest.
 	 */
 	private void step_2() {
 		SpeakerNPC npc = npcs.get(NPC_NAME);

@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Builds a priestess NPC
+ * Builds a priestess NPC.
  * She is a
  *
  * @author kymara

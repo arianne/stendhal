@@ -17,20 +17,21 @@ import java.util.List;
 
 /**
  * QUEST: Meet the Easter Bunny anywhere around the World.
+ * <p>
  * 
- * PARTICIPANTS: - Easter Bunny
+ * PARTICIPANTS:<ul><li> Easter Bunny</ul>
  * 
- * STEPS: - Find Bunny - Say hi - Get reward
+ * STEPS: <ul><li> Find Bunny <li> Say hi <li> Get reward </ul>
  * 
- * REWARD: - a basket which can be opend to obtain a random good reward: food,
- * money, potions, items, etc...
+ * REWARD: <ul><li> a basket which can be opend to obtain a random good reward: food,
+ * money, potions, items, etc...</ul>
  * 
- * REPETITIONS: - None
+ * REPETITIONS: None
  */
 public class MeetBunny extends AbstractQuest {
 	private static final String QUEST_SLOT = "meet_bunny_08";
 
-	/** the Bunny NPC */
+	/** the Bunny NPC. */
 	protected SpeakerNPC bunny;
 
 	private StendhalRPZone zone;

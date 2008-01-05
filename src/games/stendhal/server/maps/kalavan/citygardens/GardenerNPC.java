@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Builds the gardener in Kalavan city gardens
+ * Builds the gardener in Kalavan city gardens.
  *
  * @author kymara
  */

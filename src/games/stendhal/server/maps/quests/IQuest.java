@@ -5,7 +5,7 @@ import games.stendhal.server.entity.player.Player;
 import java.util.List;
 
 /**
- * All quests MUST implement this interface or extend the abstract class
+ * All quests MUST implement this interface or extend the abstract class.
  * AbstractQuest in order for the loader to recognize them
  */
 public interface IQuest {
@@ -74,7 +74,7 @@ public interface IQuest {
 	List<String> getHint(Player player);
 
 	/**
-	 * Returns the name of the quest
+	 * Returns the name of the quest.
 	 *
 	 * @return name
 	 */
