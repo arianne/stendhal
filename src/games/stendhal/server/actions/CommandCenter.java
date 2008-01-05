@@ -113,6 +113,7 @@ public class CommandCenter {
 	}
 
 	static class UnknownAction implements ActionListener {
+		private static Logger logger = Logger.getLogger(UnknownAction.class);
 
 		public void onAction(Player player, RPAction action) {
 			String type = "null";
