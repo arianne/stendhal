@@ -862,6 +862,7 @@ public class Player extends RPEntity {
 	 */
 	public void sendPrivateText(NotificationType type, String text) {
 		addEvent(new PrivateTextEvent(type, text));
+		this.notifyWorldAboutChanges();
 	}
 
 	/**
