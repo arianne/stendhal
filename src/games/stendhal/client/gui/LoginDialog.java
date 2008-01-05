@@ -415,12 +415,12 @@ public class LoginDialog extends JDialog {
 	 * Populate the profiles combobox and select the default.
 	 */
 	protected void populateProfiles(ProfileList profiles) {
-		Iterator<?> iter;
-		int count;
+		
+		
 
 		profilesComboBox.removeAllItems();
 
-		iter = profiles.iterator();
+		Iterator< ? > iter = profiles.iterator();
 
 		while (iter.hasNext()) {
 			profilesComboBox.addItem(iter.next());
@@ -429,7 +429,7 @@ public class LoginDialog extends JDialog {
 		/*
 		 * The last profile (if any) is the default.
 		 */
-		count = profilesComboBox.getItemCount();
+		int count = profilesComboBox.getItemCount();
 		if (count != 0) {
 			profilesComboBox.setSelectedIndex(count - 1);
 		}

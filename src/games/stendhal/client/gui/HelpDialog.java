@@ -26,7 +26,7 @@ import javax.swing.tree.TreeSelectionModel;
 import org.apache.log4j.Logger;
 
 /**
- * A help system that displays the manual
+ * A help system that displays the manual.
  * 
  * @author hendrik (based on "How to Use Trees"
  *         http://java.sun.com/docs/books/tutorial/uiswing/components/tree.html)
@@ -58,14 +58,14 @@ public class HelpDialog extends JFrame {
 	}
 
 	/**
-	 * displays the help system
+	 * Displays the help system.
 	 */
 	public void display() {
 		display(HelpDocument.Introduction);
 	}
 
 	/**
-	 * displays the help system
+	 * Displays the help system.
 	 * 
 	 * @param bookInfo
 	 *            page to display
@@ -77,7 +77,7 @@ public class HelpDialog extends JFrame {
 	}
 
 	/**
-	 * Creates a new help dialog
+	 * Creates a new help dialog.
 	 */
 	private static class HelpDialogPanel extends JPanel implements
 			TreeSelectionListener {
@@ -86,7 +86,7 @@ public class HelpDialog extends JFrame {
 		private JEditorPane htmlPane;
 
 		/**
-		 * Creates a new HelpDialogPanel
+		 * Creates a new HelpDialogPanel.
 		 */
 		public HelpDialogPanel() {
 			super(new GridLayout(1, 0));
@@ -136,7 +136,7 @@ public class HelpDialog extends JFrame {
 		}
 
 		/**
-		 * Update the browser window on selection change in the tree
+		 * Update the browser window on selection change in the tree.
 		 */
 		public void valueChanged(TreeSelectionEvent e) {
 			DefaultMutableTreeNode node = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
@@ -188,7 +188,7 @@ public class HelpDialog extends JFrame {
 	}
 
 	/**
-	 * a help document
+	 * a help document.
 	 */
 	public static enum HelpDocument {
 		Introduction("Introduction", "introduction.html"),

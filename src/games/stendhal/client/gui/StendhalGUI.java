@@ -260,7 +260,7 @@ public abstract class StendhalGUI extends StendhalUI {
 	}
 
 	/**
-	 * Determine if the <Ctrl> key is held down.
+	 * Determine if the [Ctrl] key is held down.
 	 * 
 	 * @return <code>true</code> if down.
 	 */
@@ -270,7 +270,7 @@ public abstract class StendhalGUI extends StendhalUI {
 	}
 
 	/**
-	 * Determine if the <Shift> key is held down.
+	 * Determine if the [Shift] key is held down.
 	 * 
 	 * @return <code>true</code> if down.
 	 */
@@ -291,12 +291,11 @@ public abstract class StendhalGUI extends StendhalUI {
 		shiftDown = ev.isShiftDown();
 	}
 
-	//
-	//
+	
 
 	protected static class DelayedDirectionRelease {
 		/**
-		 * The maximum delay between auto-repeat release-press
+		 * The maximum delay between auto-repeat release-press.
 		 */
 		protected static final long DELAY = 50L;
 

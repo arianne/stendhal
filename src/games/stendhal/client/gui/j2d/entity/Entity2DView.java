@@ -41,7 +41,7 @@ import marauroa.common.game.RPAction;
  */
 public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	/**
-	 * The entity this view is for
+	 * The entity this view is for.
 	 */
 	protected Entity entity;
 

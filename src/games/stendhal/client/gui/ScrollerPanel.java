@@ -78,11 +78,11 @@ public class ScrollerPanel extends JPanel {
 	}
 
 	/**
-	 * creates an ScrollerPane wich scrolls the given text and uses the given
-	 * attributes
+	 * Creates an ScrollerPane which scrolls the given text and uses the given
+	 * attributes.
 	 * 
 	 * @param text
-	 *            the text araay whis should be scrolled - one string per line
+	 *            the text array which should be scrolled - one string per line
 	 *            is scrolled
 	 * @param font
 	 *            the font which is rendered
@@ -116,7 +116,7 @@ public class ScrollerPanel extends JPanel {
 	}
 
 	/**
-	 * setting up the listeners an event handling in general
+	 * Sets up the listeners an event handling in general.
 	 */
 	private void eventHandling() {
 		this.addComponentListener(new ComponentAdapter() {
@@ -157,7 +157,7 @@ public class ScrollerPanel extends JPanel {
 	}
 
 	/**
-	 * calculates the new textposition
+	 * Calculates the new position of text.
 	 */
 	private void moveText() {
 		if (textPos >= -((lineHeight + lineSpacing) * text.length)) {
@@ -169,14 +169,14 @@ public class ScrollerPanel extends JPanel {
 	}
 
 	/**
-	 * reset the textposition
+	 * Resets the text's position.
 	 */
 	private void resetTextPos() {
 		textPos = this.getHeight() - (lineSpacing + lineHeight) * 2;
 	}
 
 	/**
-	 * stops scrolling
+	 * Stops scrolling.
 	 */
 	public void stop() {
 		t.stop();

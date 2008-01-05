@@ -220,14 +220,14 @@ public class StendhalFirstScreen extends JFrame {
 	}
 
 	/**
-	 * opens the create account dialog after checking the server version
+	 * Opens the create account dialog after checking the server version.
 	 */
 	public void createAccount() {
 		checkVersion();
 		new CreateAccountDialog(StendhalFirstScreen.this, client);
 	}
 
-	/** Add Component Without a Layout Manager (Absolute Positioning) */
+	/** Adds Component Without a Layout Manager (Absolute Positioning). */
 	private void addComponent(Container container, Component c, int x, int y,
 			int width, int height) {
 		c.setBounds(x, y, width, height);

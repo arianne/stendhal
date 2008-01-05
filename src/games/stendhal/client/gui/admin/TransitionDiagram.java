@@ -81,7 +81,7 @@ public class TransitionDiagram {
 	}
 
 	/**
-	 * Testcode
+	 * Testcode.
 	 * 
 	 * @param args
 	 *            ignored

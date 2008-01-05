@@ -27,7 +27,7 @@ public class ProgressBar extends JFrame {
 
 	private JProgressBar m_progressBar;
 
-	public Thread m_run;
+	private  Thread m_run;
 
 	private int m_sleepTime = 210;
 
@@ -80,7 +80,7 @@ public class ProgressBar extends JFrame {
 	public void start() {
 		m_run = new Thread() {
 
-			int counter;
+			private int counter;
 
 			@Override
 			public void run() {

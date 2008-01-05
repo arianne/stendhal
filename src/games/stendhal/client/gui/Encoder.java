@@ -104,7 +104,7 @@ public class Encoder {
 		return strBuff.toString();
 	}
 
-	/** create a BitSet based on a string representation of binary digits */
+	/** creates a BitSet based on a string representation of binary digits. */
 	private BitSet createBitSet(String binaryString) {
 		BitSet bset = new BitSet(binaryString.length());
 		boolean bitTrue = false;

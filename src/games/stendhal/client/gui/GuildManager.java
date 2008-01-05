@@ -20,7 +20,7 @@ import marauroa.common.game.RPAction;
 public class GuildManager extends javax.swing.JFrame {
 	private static final long serialVersionUID = -1607102841664745919L;
 
-	/** Creates new form GuildManager */
+	/** Creates new form GuildManager. */
 	public GuildManager() {
 		initComponents();
 		client = StendhalClient.get();
@@ -152,7 +152,7 @@ public class GuildManager extends javax.swing.JFrame {
 	} // GEN-LAST:event_guildTextBoxCreateMouseClicked
 
 	/**
-	 * Create guild
+	 * Create guild.
 	 */
 	private void createGuild(String guildname) {
 		if (client == null) {
@@ -170,7 +170,7 @@ public class GuildManager extends javax.swing.JFrame {
 	}
 
 	/**
-	 * Invite to guild
+	 * Invite to guild.
 	 */
 	private void inviteToGuild(String user, String guildName) {
 		if (client == null) {
@@ -189,7 +189,7 @@ public class GuildManager extends javax.swing.JFrame {
 	}
 
 	/**
-	 * Remove player from guild
+	 * Removes player from guild.
 	 */
 	private void removeFromGuild(String user) { // we shouldn't seed that
 		// string, but....
@@ -202,8 +202,6 @@ public class GuildManager extends javax.swing.JFrame {
 		}
 		RPAction remove = new RPAction();
 		remove.put("type", "removeFromGuild");
-		// remove.put("", ""); //we don't need this. I'll just leave it here
-		// anyway...
 		client.send(remove);
 
 	}
@@ -220,7 +218,6 @@ public class GuildManager extends javax.swing.JFrame {
 		});
 	}
 
-	// Variables declaration - do not modify//GEN-BEGIN:variables
 	private javax.swing.JTextField guildTextBoxCreate;
 
 	private javax.swing.JTextField invitePlayerName;
@@ -242,6 +239,6 @@ public class GuildManager extends javax.swing.JFrame {
 	private javax.swing.JSeparator jSeparator1;
 
 	private javax.swing.JSeparator jSeparator2;
-	// End of variables declaration//GEN-END:variables
+	
 
 }

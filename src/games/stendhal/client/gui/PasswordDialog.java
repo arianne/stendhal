@@ -15,13 +15,12 @@ import javax.swing.JOptionPane;
 public class PasswordDialog extends javax.swing.JFrame {
 	private static final long serialVersionUID = -1607102841664745919L;
 
-	/** Creates new form PasswordDialog */
+	/** Creates new form PasswordDialog. */
 	public PasswordDialog() {
 		initComponents();
 	}
 
-	// <editor-fold defaultstate="collapsed" desc=" Generated Code
-	// ">//GEN-BEGIN:initComponents
+	
 	private void initComponents() {
 		jLabel1 = new javax.swing.JLabel();
 		currrentPass = new javax.swing.JPasswordField();
@@ -109,7 +108,7 @@ public class PasswordDialog extends javax.swing.JFrame {
 		cancelButton.setBounds(100, 210, 75, 25);
 
 		pack();
-	} // </editor-fold>//GEN-END:initComponents
+	} 
 
 	private void acceptButtonActionPerformed(java.awt.event.ActionEvent evt) { // GEN-FIRST:event_acceptButtonActionPerformed
 		if (checkPass(newPass.getPassword(), newPassRepeat.getPassword())) {
@@ -122,29 +121,27 @@ public class PasswordDialog extends javax.swing.JFrame {
 			JOptionPane.showMessageDialog(null,
 					"It seems the passwords you entered do not match. Please try again.");
 		}
-	} // GEN-LAST:event_acceptButtonActionPerformed
+	} 
 
-	private void newPassRepeatKeyTyped(java.awt.event.KeyEvent evt) { // GEN-FIRST:event_newPassRepeatKeyTyped
-		checkPass(newPass.getPassword(), newPassRepeat.getPassword()); // not
-		// used
-	} // GEN-LAST:event_newPassRepeatKeyTyped
+	private void newPassRepeatKeyTyped(java.awt.event.KeyEvent evt) { 
+		checkPass(newPass.getPassword(), newPassRepeat.getPassword()); 
+	} 
 
-	private void newPassKeyTyped(java.awt.event.KeyEvent evt) { // GEN-FIRST:event_newPassKeyTyped
-		checkPass(newPass.getPassword(), newPassRepeat.getPassword()); // not
-		// used
-	} // GEN-LAST:event_newPassKeyTyped
+	private void newPassKeyTyped(java.awt.event.KeyEvent evt) { 
+		checkPass(newPass.getPassword(), newPassRepeat.getPassword()); 
+	} 
 
 	private boolean clear;
 
-	private void currrentPassMouseClicked(java.awt.event.MouseEvent evt) { // GEN-FIRST:event_currrentPassMouseClicked
+	private void currrentPassMouseClicked(java.awt.event.MouseEvent evt) { 
 		if (!clear) {
 			currrentPass.setText("");
 			clear = true;
 		}
-	} // GEN-LAST:event_currrentPassMouseClicked
+	} 
 
 	/**
-	 * Checks to see if the two new passwords match
+	 * Checks to see if the two new passwords match.
 	 */
 	boolean checkPass(char[] pwField_One, char[] pwField_Two) {
 		return new String(pwField_One).equals(new String(pwField_Two));
@@ -162,7 +159,7 @@ public class PasswordDialog extends javax.swing.JFrame {
 		});
 	}
 
-	// Variables declaration - do not modify//GEN-BEGIN:variables
+
 	private javax.swing.JButton acceptButton;
 
 	private javax.swing.JButton cancelButton;
@@ -184,6 +181,6 @@ public class PasswordDialog extends javax.swing.JFrame {
 	private javax.swing.JPasswordField newPass;
 
 	private javax.swing.JPasswordField newPassRepeat;
-	// End of variables declaration//GEN-END:variables
+
 
 }

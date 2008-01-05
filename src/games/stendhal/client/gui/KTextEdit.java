@@ -20,9 +20,7 @@ import javax.swing.text.StyleContext;
 
 import org.apache.log4j.Logger;
 
-/**
- * User: lsoubrev122203 Date: May 9, 2005 Time: 10:02:40 AM
- */
+
 
 public class KTextEdit extends JPanel {
 
@@ -38,14 +36,14 @@ public class KTextEdit extends JPanel {
 	private JScrollPane scrollPane;
 
 	/**
-	 * Basic Constructor
+	 * Basic Constructor.
 	 */
 	public KTextEdit() {
 		buildGUI();
 	}
 
 	/**
-	 * This method builds the Gui
+	 * This method builds the Gui.
 	 */
 	protected void buildGUI() {
 		textPane = new JTextPane();
@@ -58,11 +56,12 @@ public class KTextEdit extends JPanel {
 	}
 
 	/**
+	 * Intializes the basic styles.
 	 * @param textPane
 	 *            the active text component
 	 */
 	protected void initStylesForTextPane(JTextPane textPane) {
-		// Initialize the basics styles.
+		
 		Style def = StyleContext.getDefaultStyleContext().getStyle(
 				StyleContext.DEFAULT_STYLE);
 
@@ -103,7 +102,7 @@ public class KTextEdit extends JPanel {
 	}
 
 	/**
-	 * insert a header
+	 * insert a header.
 	 */
 	protected void insertHeader(String header) {
 		Document doc = textPane.getDocument();
@@ -195,7 +194,7 @@ public class KTextEdit extends JPanel {
 	}
 
 	/**
-	 * The implemented method
+	 * The implemented method.
 	 * 
 	 * @param header
 	 *            a string with the header name

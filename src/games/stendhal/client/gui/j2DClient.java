@@ -109,10 +109,10 @@ public class j2DClient extends StendhalUI {
 
 	private static final long serialVersionUID = 3356310866399084117L;
 
-	/** width of the game screen (without the chat line) */
+	/** width of the game screen (without the chat line). */
 	public static int SCREEN_WIDTH;
 
-	/** height of the game screen (without the chat line) */
+	/** height of the game screen (without the chat line). */
 	public static int SCREEN_HEIGHT;
 
 	static {
@@ -148,26 +148,26 @@ public class j2DClient extends StendhalUI {
 
 	private boolean altDown;
 
-	/** settings panel */
+	/** settings panel. */
 	private SettingsPanel settings;
 
-	/** the Character panel */
+	/** the Character panel. */
 	private Character character;
 
-	/** the Key ring panel */
+	/** the Key ring panel. */
 	private KeyRing keyring;
 
-	/** the buddy list panel */
+	/** the buddy list panel. */
 	private BuddyListDialog nbuddies;
 
 	private ManagedWindow buddies;
 
 	public BuyWindow buywindow;
 
-	/** the minimap panel */
+	/** the minimap panel. */
 	private Minimap minimap;
 
-	/** the inventory */
+	/** the inventory.*/
 	private EntityContainer inventory;
 
 	private User lastuser;
@@ -823,14 +823,6 @@ public class j2DClient extends StendhalUI {
 			 */
 			Direction direction = keyCodeToDirection(e.getKeyCode());
 
-			// int dy;
-			// if (direction.getdy()==0)
-			// dy=1;
-			// else if (direction.getdy()==-1)
-			// dy=0;
-			// else
-			// dy=2;
-
 			if (e.isAltGraphDown()) {
 				User user = User.get();
 
@@ -988,7 +980,7 @@ public class j2DClient extends StendhalUI {
 	}
 
 	/**
-	 * Determine if the <Ctrl> key is held down.
+	 * Determine if the [Ctrl] key is held down.
 	 * 
 	 * @return Returns <code>true</code> if down.
 	 */
@@ -998,7 +990,7 @@ public class j2DClient extends StendhalUI {
 	}
 
 	/**
-	 * Determine if the <Shift> key is held down.
+	 * Determine if the [Shift] key is held down.
 	 * 
 	 * @return Returns <code>true</code> if down.
 	 */
@@ -1153,7 +1145,7 @@ public class j2DClient extends StendhalUI {
 	}
 
 	/**
-	 * Set the offline indication state.
+	 * Sets the offline indication state.
 	 * 
 	 * @param offline
 	 *            <code>true</code> if offline.
@@ -1186,8 +1178,7 @@ public class j2DClient extends StendhalUI {
 		}
 	}
 
-	//
-	//
+	
 
 	protected class QuitCancelCB implements ActionListener {
 		public void actionPerformed(ActionEvent ev) {
@@ -1201,9 +1192,7 @@ public class j2DClient extends StendhalUI {
 		}
 	}
 
-	//
-	//
-
+	
 	public static void main(String[] args) {
 		if (args.length > 0) {
 			int i = 0;
@@ -1250,12 +1239,11 @@ public class j2DClient extends StendhalUI {
 		System.out.println("* -p\tPassword to log into Marauroa server");
 	}
 
-	//
-	//
+	
 
 	protected static class DelayedDirectionRelease {
 		/**
-		 * The maximum delay between auto-repeat release-press
+		 * The maximum delay between auto-repeat release-press.
 		 */
 		protected static final long DELAY = 50L;
 
