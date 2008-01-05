@@ -93,7 +93,7 @@ public class Sentence {
 	private int countExpressions(String typePrefix) {
 		int count = 0;
 
-		for(Expression w : expressions) {
+		for (Expression w : expressions) {
 			if (w.getTypeString().startsWith(typePrefix)) {
 				++count;
 			}
@@ -108,7 +108,7 @@ public class Sentence {
 	 * @return subject
 	 */
 	public Expression getExpression(int i, String typePrefix) {
-		for(Expression w : expressions) {
+		for (Expression w : expressions) {
 			if (w.getTypeString().startsWith(typePrefix)) {
 				if (i == 0) {
 					return w;
@@ -141,7 +141,7 @@ public class Sentence {
 		while (it.hasNext()) {
 			Expression word = it.next();
 
-			if (word.getType()==null || !word.getType().isIgnore()) {
+			if (word.getType() == null || !word.getType().isIgnore()) {
 				trigger = word;
 				break;
 			}
@@ -279,6 +279,7 @@ public class Sentence {
 	 *
 	 * @return item name
 	 */
+	@Deprecated
 	public String getItemName(int i) {
 		return getObjectName(i);
 //		// concatenate user specified item names like "baby dragon"
@@ -301,6 +302,7 @@ public class Sentence {
 	 * 
 	 * @return normalized item name
 	 */
+	@Deprecated
 	public String getItemName() {
 		if (getObjectCount() == 1) {
 			return getItemName(0);
@@ -392,8 +394,8 @@ public class Sentence {
 	public String getNormalized() {
 		SentenceBuilder builder = new SentenceBuilder();
 
-		for(Expression w : expressions) {
-			if (w.getType()==null || !w.getType().isIgnore()) {
+		for (Expression w : expressions) {
+			if (w.getType() == null || !w.getType().isIgnore()) {
 				builder.append(w.getNormalized());
 			}
 		}
@@ -460,7 +462,7 @@ public class Sentence {
 
 			WordEntry entry = wl.find(original);
 
-			if (entry!=null && entry.getType()!=null) {
+			if (entry != null && entry.getType() != null) {
 				w.setType(entry.getType());
 
 				if (entry.getType().isNumeral()) {
@@ -492,7 +494,7 @@ public class Sentence {
 
 				if (verb != null) {
 					if (Grammar.isGerund(original)) {
-						w.setType(new ExpressionType(verb.getTypeString()+ExpressionType.GERUND));
+						w.setType(new ExpressionType(verb.getTypeString() + ExpressionType.GERUND));
 					} else {
 						w.setType(verb.getType());
 					}
@@ -580,10 +582,11 @@ public class Sentence {
 			// [you] give me(i) -> [I] buy
 			// Note: The second subject "me" is replaced by "i" in the WordList
 			// normalization.
-			if (subject1 != null && subject2 != null &&
-					subject1.getNormalized().equals("you") &&
-					verb.getNormalized().equals("give") &&
-					subject2.getNormalized().equals("i")) {
+			if (subject1 != null 
+					&& subject2 != null 
+					&& subject1.getNormalized().equals("you") 
+					&& verb.getNormalized().equals("give") 
+					&& subject2.getNormalized().equals("i")) {
 				// remove the subjects and replace the verb with "buy" as first word
 				expressions.remove(subject1);
 				expressions.remove(subject2);
@@ -614,8 +617,7 @@ public class Sentence {
 		if (it.hasNext()) {
 			Expression first = it.next();
 
-			while(first.getType()!=null && first.getType().isQuestion() &&
-					it.hasNext()) {
+			while (first.getType() != null && first.getType().isQuestion() && it.hasNext()) {
 				first = it.next();
 
 				if (type == ST_UNDEFINED) {
@@ -650,9 +652,9 @@ public class Sentence {
 					expressions.remove(first);
 				}
 				// statements beginning with "it is <VER-GER>"
-				else if (first.getNormalized().equals("it") &&
-						second.getNormalized().equals("is") &&
-						(third!=null && third.getType()!=null && third.getType().isGerund())) {
+				else if (first.getNormalized().equals("it") 
+						&&	second.getNormalized().equals("is") 
+						&& (third != null && third.getType() != null && third.getType().isGerund())) {
 					if (type == ST_UNDEFINED) {
 						type = ST_STATEMENT;
 					}
@@ -703,7 +705,7 @@ public class Sentence {
 				Expression next = it.next();
 
 				// loop over all words of the sentence starting from left
-				while(it.hasNext()) {
+				while (it.hasNext()) {
 					// Now look at two consecutive words.
 					Expression curr = next;
 					next = it.next();
@@ -716,7 +718,7 @@ public class Sentence {
 					ExpressionType curType = curr.getType();
 					ExpressionType nextType = next.getType();
 
-					if (curType!=null && nextType!=null) {
+					if (curType != null && nextType != null) {
 						// check the expression types for concrete subject or object names (no pronouns)
 						boolean currIsName = curType.isObject() || (curType.isSubject() && !curType.isPronoun());
 						boolean nextIsName = nextType.isObject() || (nextType.isSubject() && !nextType.isPronoun());
@@ -736,8 +738,8 @@ public class Sentence {
     					}
     					// left-merge nouns with preceding amounts, dropping the numerals from the
     					// merged normalized expression
-    					else if (curType.isNumeral() &&
-    						(nextType.isObject() || nextType.isSubject())) {
+    					else if (curType.isNumeral() 
+    							&& (nextType.isObject() || nextType.isSubject())) {
 							next.mergeLeft(curr, false);
 							expressions.remove(curr);
     						changed = true;
@@ -766,8 +768,8 @@ public class Sentence {
     					}
     					// left-merge question words with following verbs and adjectives,
     					// dropping question words from normalized form
-    					else if (curType.isQuestion() &&
-    							(nextType.isVerb() || nextType.isAdjective())) {
+    					else if (curType.isQuestion() 
+    							&& (nextType.isVerb() || nextType.isAdjective())) {
     						next.mergeLeft(curr, false);
     						expressions.remove(curr);
     						changed = true;
@@ -776,7 +778,7 @@ public class Sentence {
 					}
 
 					// left-merge words to ignore
-					if (curType!=null && curType.isIgnore()) {
+					if (curType != null && curType.isIgnore()) {
 						next.mergeLeft(curr, false);
 						expressions.remove(curr);
 						changed = true;
@@ -805,7 +807,7 @@ public class Sentence {
 					third = it.next();
 
 					// loop over all words of the sentence starting from left
-					while(it.hasNext()) {
+					while (it.hasNext()) {
 						// Now look at three consecutive words.
 						first = second;
 						second = third;
@@ -818,9 +820,9 @@ public class Sentence {
 
 						// merge "... of ..." expressions into one expression, preserving
 						// only the main word als merged normalized expression
-						if (first.isObject() &&
-								second.getNormalized().equals("of") &&
-								third.isObject()) {
+						if (first.isObject() 
+								&&	second.getNormalized().equals("of") 
+								&&	third.isObject()) {
 							String expr = first.getNormalized() + " of " + third.getNormalized();
 							String normalizedExpr = Grammar.extractNoun(expr);
 
@@ -856,7 +858,7 @@ public class Sentence {
 	    Iterator<Expression> it1 = expressions.iterator();
 	    Iterator<Expression> it2 = other.expressions.iterator();
 
-		while(it1.hasNext() && it2.hasNext()) {
+		while (it1.hasNext() && it2.hasNext()) {
 			Expression e1 = it1.next();
 			Expression e2 = it2.next();
 

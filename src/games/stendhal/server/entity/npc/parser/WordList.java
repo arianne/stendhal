@@ -239,7 +239,7 @@ public class WordList {
 		word = word.toLowerCase();
 
 		// Currently we only need to trim "'" characters. 
-		while(word.length() > 0) {
+		while (word.length() > 0) {
 			char c = word.charAt(0);
 
 			if (c == '\'') {
@@ -249,11 +249,11 @@ public class WordList {
 			}
 		}
 
-		while(word.length() > 0) {
-			char c = word.charAt(word.length()-1);
+		while (word.length() > 0) {
+			char c = word.charAt(word.length() - 1);
 
 			if (c == '\'') {
-				word = word.substring(0, word.length()-1);
+				word = word.substring(0, word.length() - 1);
 			} else {
 				break;
 			}
@@ -284,7 +284,7 @@ public class WordList {
 		WordEntry entry = words.get(trimWord(word));
 
 		if (entry != null) {
-			if (entry.getType()!=null && !entry.getType().isPlural()) {
+			if (entry.getType() != null && !entry.getType().isPlural()) {
 				// return the associated singular from the word list
 				return entry.getPlurSing();
 			} else {
@@ -307,7 +307,7 @@ public class WordList {
 		WordEntry entry = words.get(trimWord(word));
 
 		if (entry != null) {
-			if (entry.getType()!=null && entry.getType().isPlural()) {
+			if (entry.getType() != null && entry.getType().isPlural()) {
 				// return the associated singular from the word list
 				return entry.getPlurSing();
 			} else {
@@ -375,7 +375,7 @@ public class WordList {
 		String key = trimWord(name);
 		WordEntry entry = words.get(key);
 
-		if (entry==null || entry.getType()==null) {
+		if (entry == null || entry.getType() == null) {
 			WordEntry newEntry = new WordEntry();
 
 			newEntry.setNormalized(key);
@@ -396,7 +396,7 @@ public class WordList {
 		String key = trimWord(name);
 		WordEntry entry = words.get(key);
 
-		if (entry!=null && entry.getTypeString().equals(SUBJECT_NAME_DYNAMIC)) {
+		if (entry != null && entry.getTypeString().equals(SUBJECT_NAME_DYNAMIC)) {
 			words.remove(key);
 		}
 	}
@@ -502,8 +502,8 @@ public class WordList {
 		Connection conn = trans.getConnection();
 
 		PreparedStatement stmt = conn.prepareStatement(
-			"insert into words(normalized, type, plural, value)\n"+
-			"values(?, ?, ?, ?)"
+			"insert into words(normalized, type, plural, value)\n"
+				+ "values(?, ?, ?, ?)"
 		);
 
 		int count = 0;
@@ -542,9 +542,9 @@ public class WordList {
 		}
 
 		stmt = conn.prepareStatement(
-			"update	words\n" +
-			"set	alias_id = ?\n" +
-			"where	id = ?"
+			"update	words\n" 
+			+ "set	alias_id = ?\n" 
+			+ "where	id = ?"
 		);
 
 		try {
@@ -587,10 +587,10 @@ public class WordList {
 
 		try {
 	        ResultSet res = acc.query(
-        		"select	w.id, w.normalized, w.type, w.plural, w.value,\n"+
-        			"	s.normalized\n"+
-        		"from	words w\n"+
-        		"left outer join words s on s.id = w.alias_id"
+        		"select	w.id, w.normalized, w.type, w.plural, w.value,\n"
+	        		+ "	s.normalized\n"
+	        		+ "from	words w\n"
+	        		+ "left outer join words s on s.id = w.alias_id"
 	        );
 
 			int count = 0;

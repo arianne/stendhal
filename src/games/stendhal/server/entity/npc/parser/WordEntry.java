@@ -21,7 +21,7 @@ public class WordEntry {
 	/** numeric value for words of type NUM. */
 	private Integer value;
 
-	/** database ID */
+	/** database ID. */
 	private int id;
 
 	public void print(PrintWriter pw, String key) {
@@ -61,7 +61,7 @@ public class WordEntry {
 	}
 
 	public String getTypeString() {
-		return type!=null? type.getTypeString(): "";
+		return type != null ? type.getTypeString() : "";
 	}
 
 	public String getNormalizedWithTypeString() {
@@ -77,7 +77,7 @@ public class WordEntry {
 	}
 
 	public boolean isPlural() {
-	    return type!=null && type.isPlural();
+	    return type != null && type.isPlural();
     }
 
 	protected void setValue(Integer value) {

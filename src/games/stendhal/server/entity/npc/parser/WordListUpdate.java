@@ -48,7 +48,7 @@ public class WordListUpdate {
 
 			writer.close();
 
-			System.out.println("The updated word list has been written to the file '" + outputPath  +"'.");
+			System.out.println("The updated word list has been written to the file '" + outputPath  + "'.");
 
 			// update database entries
 			wl.writeToDB();

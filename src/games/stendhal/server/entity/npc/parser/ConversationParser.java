@@ -29,7 +29,7 @@ public class ConversationParser {
 	}
 
 	/**
-	 * backward compatible parse function without conversation context
+	 * backward compatible parse function without conversation context.
 	 *
 	 * @param text
 	 * @return
@@ -173,7 +173,7 @@ public class ConversationParser {
 	public static List<Expression> createTriggerList(List<String> strings) {
 		List<Expression> words = new LinkedList<Expression>();
 
-		for(String item : strings) {
+		for (String item : strings) {
 			words.add(createTriggerExpression(item));
 		}
 
