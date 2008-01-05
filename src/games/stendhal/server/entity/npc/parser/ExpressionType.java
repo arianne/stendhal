@@ -64,7 +64,7 @@ public class ExpressionType {
 		NUMERAL,
 		PREPOSITION,
 		QUESTION,
-		//IGNORE,
+		IGNORE,
 
 		SUFFIX_GERUND,
 		SUFFIX_COLOR,

@@ -156,7 +156,7 @@ public class Sentence {
 	}
 
 	/**
-	 * Return the number of Expression objects of type "VERB" in the sentence.
+	 * Return the number of Expression objects of type "VER" in the sentence.
 	 * 
 	 * @return number of subjects
 	 */

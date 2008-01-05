@@ -96,25 +96,27 @@ public class SentenceTest {
 	public final void testMatching() {
 		Sentence s1 = ConversationParser.parse("buy banana");
 		assertFalse(s1.hasError());
-
 		Sentence m1 = ConversationParser.parseForMatching("buy OBJ");
 		Sentence m2 = ConversationParser.parseForMatching("buy SUB");
 		assertFalse(m1.hasError());
 		assertFalse(m2.hasError());
-
 		assertTrue(s1.matches(m1));
 		assertFalse(s1.matches(m2));
 
-		s1 = ConversationParser.parse("make apple pie");
+		s1 = ConversationParser.parse("bake apple pie");
 		assertFalse(s1.hasError());
-
 		m1 = ConversationParser.parseForMatching("VER *pie");
 		m2 = ConversationParser.parseForMatching("VER *cookie");
 		assertFalse(m1.hasError());
 		assertFalse(m2.hasError());
-
 		assertTrue(s1.matches(m1));
 		assertFalse(s1.matches(m2));
+
+		s1 = ConversationParser.parse("please work");
+		assertFalse(s1.hasError());
+		m1 = ConversationParser.parseForMatching("IGN VER");
+		assertFalse(m1.hasError());
+		assertTrue(s1.matches(m1));
 	}
 
 }
