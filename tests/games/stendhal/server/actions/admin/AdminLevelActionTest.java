@@ -120,7 +120,7 @@ public class AdminLevelActionTest {
 		assertEquals("bob has adminlevel 5000", admin.getPrivateTextString());
 		
 		CommandCenter.execute(nonAdmin, action);
-		assertEquals("Player \"bob\" not found",nonAdmin.getPrivateTextString());
+		assertEquals("Player \"bob\" not found", nonAdmin.getPrivateTextString());
 
 	}
 

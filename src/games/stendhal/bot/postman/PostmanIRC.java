@@ -10,7 +10,7 @@ import org.jibble.pircbot.IrcException;
 import org.jibble.pircbot.PircBot;
 
 /**
- * IRC Bot for postman
+ * IRC Bot for postman.
  * 
  * @author hendrik
  */
@@ -23,7 +23,7 @@ public class PostmanIRC extends PircBot {
 	private String gameServer;
 
 	/**
-	 * Creates a new PostmanIRC
+	 * Creates a new PostmanIRC.
 	 * 
 	 * @param gameServer
 	 */
@@ -91,7 +91,7 @@ public class PostmanIRC extends PircBot {
 	}
 
 	/**
-	 * For testing only
+	 * For testing only.
 	 * 
 	 * @param args
 	 *            ignored

@@ -110,7 +110,7 @@ public class WeaponsCollectorTest {
 		cloak = new Item("stone_cloak", "", "", null);
 		pl.getSlot("bag").add(cloak);
 
-		for(String cloakName : wc.getNeededItems()) {
+		for (String cloakName : wc.getNeededItems()) {
 			cloak = new Item(cloakName, "", "", null);
 			pl.getSlot("bag").add(cloak);
 			assertTrue(en.step(pl, cloakName));
