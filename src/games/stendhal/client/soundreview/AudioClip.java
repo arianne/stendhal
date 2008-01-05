@@ -33,31 +33,31 @@ import org.apache.log4j.Logger;
  */
 public class AudioClip {
 
-	/** the logger */
+	/** the logger. */
 	private static final Logger logger = Logger.getLogger(AudioClip.class);
 
-	/** the data stream */
+	/** the data stream. */
 	private byte[] audioData;
 
-	/** length of the clip */
+	/** length of the clip. */
 	private int length;
 
-	/** volume for this clip */
+	/** volume for this clip. */
 	private int volume;
 
-	/** the mixer */
+	/** the mixer. */
 	private Mixer mixer;
 
-	/** need this for a nice toString() */
+	/** need this for a nice toString(). */
 	private AudioFormat format;
 
-	/** is the data supported */
+	/** is the data supported. */
 	private boolean supported;
 
 	private Clip line;
 
 	/**
-	 * creates the audio clip
+	 * creates the audio clip.
 	 * 
 	 * @param mixer
 	 *            the Mixer instance to be used
@@ -119,7 +119,7 @@ public class AudioClip {
 	}
 
 	/**
-	 * opens the given line with the encapsulated audio data
+	 * opens the given line with the encapsulated audio data.
 	 * 
 	 * @throws IOException
 	 * @throws UnsupportedAudioFileException
