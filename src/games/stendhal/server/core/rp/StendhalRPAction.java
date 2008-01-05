@@ -50,7 +50,7 @@ public class StendhalRPAction {
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(StendhalRPAction.class);
 
-	/** server manager */
+	/** server manager. */
 	private static RPServerManager rpman;
 
 	public static void initialize(RPServerManager rpman) {
@@ -406,7 +406,7 @@ public class StendhalRPAction {
 	}
 
 	/**
-	 * Calculate lifesteal and update hp of source
+	 * Calculate lifesteal and update hp of source.
 	 * 
 	 * @param attacker
 	 *            the RPEntity doing the hit
@@ -419,7 +419,7 @@ public class StendhalRPAction {
 	private static int handleLifesteal(RPEntity attacker,
 			List<Item> attackerWeapons, int damage) {
 
-		// Calcualte the lifesteal value based on the configured factor
+		// Calculate the lifesteal value based on the configured factor
 		// In case of a lifesteal weapon used together with a non-lifesteal
 		// weapon,
 		// weight it based on the atk-values of the weapons.
@@ -471,15 +471,11 @@ public class StendhalRPAction {
 	}
 
 	/**
-	 * send the content of the zone the player is in to the client
+	 * send the content of the zone the player is in to the client.
 	 * 
 	 * @param player
 	 */
 	public static void transferContent(Player player) {
-
-		// added null check for the sake of testing
-		// TODO: remove the null check and refactor tests or whatever ,
-		// astridEmma
 
 		if (rpman != null) {
 			StendhalRPZone zone = player.getZone();

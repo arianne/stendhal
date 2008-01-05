@@ -180,7 +180,7 @@ public abstract class ActiveEntity extends Entity {
 	/**
 	 * Initialize this entity for an object.
 	 * 
-	 * @param object
+	 * @param base
 	 *            The object.
 	 * 
 	 * @see-also #release()

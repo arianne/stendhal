@@ -385,8 +385,6 @@ public class Entity implements RPObjectChangeListener {
 	}
 
 	/**
-	 * @param user
-	 *            the current player's character
 	 * @return a double value representing the square of the distance in tiles
 	 *         or Double.Positiveinfinity if User is null
 	 */
@@ -399,7 +397,7 @@ public class Entity implements RPObjectChangeListener {
 	}
 
 	/**
-	 * Returns the absolute world area (coordinates) to which audibility of
+	 * @return the absolute world area (coordinates) to which audibility of
 	 * entity sounds is confined. Returns <b>null</b> if confines do not exist
 	 * (audible everywhere).
 	 */
@@ -497,6 +495,8 @@ public class Entity implements RPObjectChangeListener {
 
 	/**
 	 * Gets the slot specified by name.
+	 * @param name of the slot
+	 * 
 	 * @return    the specified slot or <code>null</code> if the entity does not
 	 * have this slot
 	 */

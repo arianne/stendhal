@@ -528,11 +528,9 @@ class Pathfinder {
 		}
 
 		/**
-		 * crates valid cild nodes, the cild nodes have to be - a valid position -
+		 * creates valid child nodes, the child nodes have to be - a valid position -
 		 * a f value less than maxDistance (checked against the given node)
 		 * 
-		 * @param node
-		 *            the node
 		 */
 		public void createChildren() {
 			if (g < maxDistance) {

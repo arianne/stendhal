@@ -84,6 +84,9 @@ public class UserContext implements RPObjectChangeListener {
 	 */
 	protected int sheepID;
 
+	/**
+	 * Constructor.
+	 */
 	public UserContext() {
 		adminlevel = 0;
 		entitySlotListener = new EntityHolderMulticaster();

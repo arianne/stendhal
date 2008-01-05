@@ -218,6 +218,8 @@ public class Chest2DView extends StateEntity2DView {
 	public void onAction(final ActionType at) {
 		switch (at) {
 		case INSPECT:
+			
+			
 			wtEntityContainer = inspector.inspectMe(chest, chest.getContent(),
 					wtEntityContainer);
 			break;

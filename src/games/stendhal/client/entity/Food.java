@@ -78,10 +78,6 @@ public abstract class Food extends Entity {
 	/**
 	 * A slot object added/changed attribute(s).
 	 * 
-	 * @param container
-	 *            The base container object.
-	 * @param slotName
-	 *            The container's slot name.
 	 * @param object
 	 *            The base slot object.
 	 * @param changes
