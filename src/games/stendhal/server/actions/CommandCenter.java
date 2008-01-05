@@ -3,6 +3,7 @@ package games.stendhal.server.actions;
 import games.stendhal.common.NotificationType;
 import games.stendhal.server.actions.admin.AdministrationAction;
 import games.stendhal.server.actions.buddy.BuddyAction;
+import games.stendhal.server.actions.chat.ChatAction;
 import games.stendhal.server.actions.equip.EquipmentAction;
 import games.stendhal.server.entity.player.Player;
 
