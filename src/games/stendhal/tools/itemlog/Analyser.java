@@ -9,7 +9,6 @@ import java.sql.Statement;
 import java.util.Iterator;
 
 import marauroa.common.Log4J;
-import marauroa.server.game.db.JDBCDatabase;
 import marauroa.server.game.db.StringChecker;
 import marauroa.server.game.db.Transaction;
 

@@ -23,7 +23,6 @@ import java.util.TreeMap;
 import marauroa.common.Log4J;
 import marauroa.server.game.db.Accessor;
 import marauroa.server.game.db.IDatabase;
-import marauroa.server.game.db.JDBCDatabase;
 import marauroa.server.game.db.Transaction;
 
 import org.apache.log4j.Logger;
