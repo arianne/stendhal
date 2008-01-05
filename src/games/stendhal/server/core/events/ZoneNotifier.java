@@ -35,33 +35,6 @@ public class ZoneNotifier {
 	}
 
 	/**
-	 * Delays the sending of text (until the next turn for instance to work
-	 * around problems like zone changes).
-	 */
-	private static class DelayedPlayerTextSender implements TurnListener {
-		private Player player;
-		private String message;
-
-		/**
-		 * Creates a new DelayedPlayerTextSender.
-		 * 
-		 * @param player
-		 *            Player to send this message to
-		 * @param message
-		 *            message
-		 */
-		DelayedPlayerTextSender(Player player, String message) {
-			this.player = player;
-			this.message = message;
-		}
-
-		public void onTurnReached(int currentTurn) {
-			player.sendPrivateText(message);
-		}
-
-	}
-
-	/**
 	 * Zone changes.
 	 * 
 	 * @param player

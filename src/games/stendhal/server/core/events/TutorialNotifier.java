@@ -29,35 +29,8 @@ public class TutorialNotifier {
 			// change)
 			// but we delay it for 2 seconds so that the player has some time to
 			// recognize the event
-			DelayedPlayerTextSender dpts = new DelayedPlayerTextSender(player,
-					"Tutorial: " + type.getMessage());
+			DelayedPlayerTextSender dpts = new DelayedPlayerTextSender(player, "Tutorial: " + type.getMessage(), NotificationType.TUTORIAL);
 			TurnNotifier.get().notifyInSeconds(2, dpts);
-		}
-	}
-
-	/**
-	 * Delays the sending of text (until the next turn for instance to work
-	 * around problems like zone changes).
-	 */
-	private static class DelayedPlayerTextSender implements TurnListener {
-		private Player player;
-		private String message;
-
-		/**
-		 * Creates a new DelayedPlayerTextSender.
-		 * 
-		 * @param player
-		 *            Player to send this message to
-		 * @param message
-		 *            message
-		 */
-		DelayedPlayerTextSender(Player player, String message) {
-			this.player = player;
-			this.message = message;
-		}
-
-		public void onTurnReached(int currentTurn) {
-			player.sendPrivateText(NotificationType.TUTORIAL, message);
 		}
 	}
 
