@@ -247,7 +247,7 @@ b*/item/furniture/bed/side_on.png
 b*/item/furniture/bed/side_on_bluer.png
 J*/item/furniture/carpet/border.png
 m*/item/furniture/carpet/brown_rug.png
-./item/furniture/carpet/carpets.png
+b+d+K+J*/item/furniture/carpet/carpets.png
 K*/item/furniture/carpet/carpets_2.png
 ?*/item/furniture/carpet/plain_colours.png
 ./item/furniture/carpet/purple_rug.png
