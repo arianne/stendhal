@@ -12,8 +12,7 @@ import java.util.Map;
 
 public class MinotaurCreature implements ZoneConfigurator {
 
-	DefaultEntityManager manager = (DefaultEntityManager) StendhalRPWorld.get().getRuleManager().getEntityManager();
-
+	
 	/**
 	 * Configure a zone.
 	 * 
@@ -26,6 +25,8 @@ public class MinotaurCreature implements ZoneConfigurator {
 	}
 
 	private void buildQuicksandArea(StendhalRPZone zone, Map<String, String> attributes) {
+		DefaultEntityManager manager = (DefaultEntityManager) StendhalRPWorld.get().getRuleManager().getEntityManager();
+
 		Creature creature = new ItemGuardCreature(manager.getCreature("minotaur"), "minotaur_key");
 
 		CreatureRespawnPoint point = new CreatureRespawnPoint(zone, 121, 121, creature, 1);
