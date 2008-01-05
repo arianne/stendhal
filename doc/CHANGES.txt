@@ -3,7 +3,8 @@ Changelog
 ---------
 0.66
 - added image viewer (ask Monogenes about a map of Semos)
-- added jailing of offline players, freeing after server restart
+- added SignLessorNPC so player can rent a sign for a day
+- added jailing of offline players, freeing even after server restart
 - started to use new features of Marauroa 2.0
   - started to rework the way events are send from the server to the client (using RPEvent)
   - started to implement persistent, non-player related data (zone storage)
