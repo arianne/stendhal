@@ -11,20 +11,22 @@ import java.util.List;
  * This class simulates a ferry going back and forth between the mainland and
  * the island. Note that, even though this class lies in a maps package, this is
  * not a zone configurator.
- *
- * NPCs that have to do with the ferry: Eliza - brings players from the mainland
- * docks to the ferry. Jessica - brings players from the island docks to the
- * ferry. Jackie - brings players from the ferry to the docks. Captain - the
- * ship captain. Laura - the ship galley maid. Ramon - offers blackjack on the
- * ship.
- *
+ * 
+ * NPCs that have to do with the ferry:
+ * <li> Eliza - brings players from the mainland docks to the ferry.
+ * <li>Jessica - brings players from the island docks to the ferry.
+ * <li>Jackie - brings players from the ferry to the docks. Captain - the ship
+ * captain.
+ * <li>Laura - the ship galley maid.
+ * <li>Ramon - offers blackjack on the ship.
+ * 
  * @see games.stendhal.server.maps.athor.ship.CaptainNPC
  * @author daniel
- *
+ * 
  */
-public class AthorFerry implements TurnListener {
+public final class AthorFerry implements TurnListener {
 
-	Status current;
+	private Status current;
 
 	public Status getState() {
 		return current;
@@ -39,7 +41,7 @@ public class AthorFerry implements TurnListener {
 	 */
 	private List<IFerryListener> listeners;
 
-	/** How much it costs to board the ferry */
+	/** How much it costs to board the ferry. */
 	public static final int PRICE = 25;
 
 	private AthorFerry() {
@@ -91,9 +93,9 @@ public class AthorFerry implements TurnListener {
 	}
 	
 	/**
-	 * autoregisters the listener to Athorferry
+	 * Auto registers the listener to Athorferry.
 	 * deregistration must be implemented if it is used for short living objects
-	 * @author astrid
+	 * @author astridemma
 	 *
 	 */
 	public abstract static class FerryListener implements IFerryListener {

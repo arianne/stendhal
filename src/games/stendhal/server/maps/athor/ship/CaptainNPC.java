@@ -9,10 +9,10 @@ import games.stendhal.server.entity.npc.SpeakerNPC.ChatAction;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.athor.ship.AthorFerry.Status;
 
-/** Factory for the captain of Athor Ferry */
+/** Factory for the captain of Athor Ferry. */
 public class CaptainNPC extends SpeakerNPCFactory {
 
-Status ferrystate;
+private Status ferrystate;
 	@Override
 	protected SpeakerNPC instantiate(String name) {
 		// The NPC is defined as a ferry announcer because he notifies

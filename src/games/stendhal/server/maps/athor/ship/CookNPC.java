@@ -9,7 +9,7 @@ import games.stendhal.server.maps.athor.ship.AthorFerry.Status;
 import java.util.HashMap;
 import java.util.Map;
 
-/** Factory for cargo worker on Athor Ferry */
+/** Factory for cargo worker on Athor Ferry. */
 public class CookNPC extends SpeakerNPCFactory {
 
 	@Override

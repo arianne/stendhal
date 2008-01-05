@@ -14,10 +14,10 @@ import games.stendhal.server.maps.athor.ship.AthorFerry.Status;
 
 import java.util.Arrays;
 
-/** Factory for cargo worker on Athor Ferry */
+/** Factory for cargo worker on Athor Ferry. */
 public class CoastConveyerNPC extends SpeakerNPCFactory {
-	static StendhalRPZone islandDocksZone;
-	static StendhalRPZone mainlandDocksZone;
+	private static StendhalRPZone islandDocksZone;
+	private static StendhalRPZone mainlandDocksZone;
 
 	private StendhalRPZone getIslandDockZone() {
 		if (islandDocksZone == null) {
