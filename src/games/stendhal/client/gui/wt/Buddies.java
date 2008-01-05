@@ -53,7 +53,7 @@ public class Buddies extends WtPanel {
 
 	private LinkedList<String> buddies;
 
-	/** Creates a new instance of Buddies */
+	/** Creates a new instance of Buddies. */
 	public Buddies(StendhalUI ui) {
 		super("buddies", ui.getWidth() - 132, 265, 132, 200);
 
@@ -70,7 +70,7 @@ public class Buddies extends WtPanel {
 		buddies = new LinkedList<String>();
 	}
 
-	/** we're using the window manager */
+	/** we're using the window manager. */
 	@Override
 	protected boolean useWindowManager() {
 		return true;

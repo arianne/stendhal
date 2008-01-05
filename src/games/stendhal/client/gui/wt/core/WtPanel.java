@@ -68,89 +68,89 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(WtPanel.class);
 
-	/** size of the titlebar */
+	/** size of the titlebar. */
 	private static final int TITLEBAR_SIZE = 14;
 
-	/** size of the titlebar font */
+	/** size of the titlebar font. */
 	private static final int TITLEBAR_FONT_SIZE = 12;
 
-	/** thickness of the frame */
+	/** thickness of the frame. */
 	private static final int FRAME_SIZE = 3;
 
-	/** panel has a title bar */
+	/** panel has a title bar. */
 	private boolean titleBar;
 
-	/** text of the title */
+	/** text of the title. */
 	private String titleText;
 
-	/** panel has a frame */
+	/** panel has a frame. */
 	private boolean frame;
 
 	/** is the frame embossed? */
 	private boolean frameEmbossed;
 
-	/** panel is movable */
+	/** panel is movable. */
 	private boolean movable;
 
-	/** panel can be resized */
+	/** panel can be resized.*/
 	private boolean resizeable;
 
-	/** panel can be minimized */
+	/** panel can be minimized. */
 	private boolean minimizeable;
 
-	/** true when the panel is minimized */
+	/** true when the panel is minimized. */
 	private boolean minimized;
 
-	/** true when the panel is closeable */
+	/** true when the panel can be closed. */
 	private boolean closeable;
 
-	/** x-position relative to its parent */
+	/** x-position relative to its parent. */
 	private int x;
 
-	/** y-position relative to its parent */
+	/** y-position relative to its parent. */
 	private int y;
 
-	/** the point where we were before the drag started */
+	/** the point where we were before the drag started. */
 	private Point dragPosition;
 
-	/** width of the panel inclusive frames and title bar */
+	/** width of the panel inclusive frames and title bar. */
 	private int width;
 
-	/** height of the panel inclusive frames and title bar */
+	/** height of the panel inclusive frames and title bar. */
 	private int height;
 
-	/** name of the panel */
+	/** name of the panel. */
 	private String name;
 
 	/** all children of this panel. */
 	private LinkedList<WtPanel> children;
 
-	/** the parent of this panel */
+	/** the parent of this panel. */
 	private WtPanel parent;
 
-	/** List of registered CloseListener */
+	/** List of registered CloseListener. */
 	protected List<WtCloseListener> closeListeners;
 
-	/** List of registered ClickListener */
+	/** List of registered ClickListener. */
 	protected List<WtClickListener> clickListeners;
 
-	/** changes the titlebar/frame image */
+	/** changes the titlebar/frame image. */
 	private BufferedImage cachedImage;
 
-	/** true when the window is already closed */
+	/** true when the window is already closed. */
 	private boolean closed;
 
-	/** make it transparent */
+	/** make it transparent. */
 	private float transparency;
 
 	// ///////////////
 	// Debug stuff //
 	// ///////////////
 
-	/** current texture */
+	/** current texture. */
 	private int texture;
 
-	/** list of textures */
+	/** list of textures .*/
 	private List<Sprite> textureSprites;
 
 	/**
@@ -203,7 +203,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		closeListeners.add(listener);
 	}
 
-	/** removes a (registered) closelistener */
+	/** removes a (registered) closelistener. */
 	public void removeCloseListener(WtCloseListener listener) {
 		closeListeners.remove(listener);
 	}
@@ -218,7 +218,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		clickListeners.add(listener);
 	}
 
-	/** removes a (registered) ClickListener */
+	/** removes a (registered) ClickListener. */
 	public void removeClickListener(WtClickListener listener) {
 		clickListeners.remove(listener);
 	}
@@ -231,32 +231,32 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		return false;
 	}
 
-	/** returns x-position of the panel (relative to its parent) */
+	/** Returns x-position of the panel (relative to its parent). */
 	public int getX() {
 		return x;
 	}
 
-	/** returns y-position of the panel (relative to its parent) */
+	/** Returns y-position of the panel (relative to its parent). */
 	public int getY() {
 		return y;
 	}
 
-	/** returns width of the panel */
+	/** Returns width of the panel. */
 	public int getWidth() {
 		return width;
 	}
 
-	/** returns height of the panel */
+	/** Returns height of the panel. */
 	public int getHeight() {
 		return height;
 	}
 
-	/** returns width of the client area */
+	/** Returns width of the client area.*/
 	protected int getClientWidth() {
 		return (frame ? width - FRAME_SIZE * 2 : width);
 	}
 
-	/** returns height of the panel */
+	/** Returns height of the panel. */
 	protected int getClientHeight() {
 		int clientHeight = height;
 		if (frame) {
@@ -270,12 +270,12 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		return clientHeight;
 	}
 
-	/** returns x-pos of the client area */
+	/** Returns x-pos of the client area. */
 	protected int getClientX() {
 		return (frame ? FRAME_SIZE : 0);
 	}
 
-	/** returns y-pos of the client area */
+	/** Returns y-pos of the client area. */
 	protected int getClientY() {
 		int clienty = (frame ? FRAME_SIZE : 0);
 
@@ -370,29 +370,29 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		return true;
 	}
 
-	/** sets the name */
+	/** Sets the name. */
 	public void setName(String name) {
 		this.name = name;
 	}
 
-	/** returns the name */
+	/** Returns the name. */
 	public String getName() {
 		return name;
 	}
 
-	/** returns wether the panel has a title bar */
+	/** Returns whether the panel has a title bar. */
 	public boolean hasTitleBar() {
 		return titleBar;
 	}
 
-	/** enables/disables the title bar */
+	/** Enables/disables the title bar. */
 	public void setTitleBar(boolean titleBar) {
 		this.titleBar = titleBar;
 		// refresh cached panel image
 		cachedImage = null;
 	}
 
-	/** sets the text in the titlebar */
+	/** Sets the text in the titlebar. */
 	public void setTitletext(String text) {
 		if (!this.titleText.equals(text)) {
 			this.titleText = text;
@@ -401,30 +401,30 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		}
 	}
 
-	/** returns wether the panel has a frame */
+	/** Returns whether the panel has a frame. */
 	public boolean hasFrame() {
 		return frame;
 	}
 
-	/** enables/disables the frame */
+	/** Enables/disables the frame. */
 	public void setFrame(boolean frame) {
 		this.frame = frame;
 		// refresh cached panel image
 		cachedImage = null;
 	}
 
-	/** returns wether the panel is movable */
+	/** Returns whether the panel is movable .*/
 	public boolean isMovable() {
 		return movable;
 	}
 
-	/** sets the embossed-state of then frame */
+	/** Sets the embossed-state of then frame. */
 	public void setEmboss(boolean emboss) {
 		this.frameEmbossed = emboss;
 		cachedImage = null;
 	}
 
-	/** returns wether the panels frame is embossed */
+	/** Returns whether the panels frame is embossed. */
 	public boolean isEmbossed() {
 		return frameEmbossed;
 	}
@@ -437,7 +437,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		this.movable = movable;
 	}
 
-	/** returns wether the panel is resizeable */
+	/** Returns whether the panel can be resized. */
 	public boolean isResizeable() {
 		return resizeable;
 	}
@@ -447,7 +447,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		this.resizeable = resizeable;
 	}
 
-	/** returns wether the panel is minimizeable */
+	/** Returns whether the panel can be minmized. */
 	public boolean isMinimizeable() {
 		return minimizeable;
 	}
@@ -460,12 +460,12 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		this.minimizeable = minimizeable;
 	}
 
-	/** returns whether the panel is minimized */
+	/** Returns whether the panel is minimized. */
 	public boolean isMinimized() {
 		return minimized;
 	}
 
-	/** sets the minimized state */
+	/** Sets the minimized state. */
 	public void setMinimized(boolean minimized) {
 		this.minimized = minimized;
 		// refresh cached panel image
@@ -477,7 +477,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		}
 	}
 
-	/** returns wether the panel is closeable */
+	/** Returns whether the panel can be closed. */
 	public boolean isCloseable() {
 		return closeable;
 	}
@@ -489,7 +489,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		this.closeable = closeable;
 	}
 
-	/** returns the parent of the panel */
+	/** Returns the parent of the panel. */
 	public WtPanel getParent() {
 		return parent;
 	}
@@ -502,12 +502,12 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		this.parent = parent;
 	}
 
-	/** returns wether the panel has a parent */
+	/** Returns whether the panel has a parent. */
 	public boolean hasParent() {
 		return (parent != null);
 	}
 
-	/** adds a child-panel to this panel */
+	/** Adds a child-panel to this panel. */
 	public synchronized void addChild(WtPanel panel) {
 		if (panel.hasParent()) {
 			logger.error("Panel " + panel.name + " cannot be added to " + name
@@ -520,7 +520,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		panel.parent = this;
 	}
 
-	/** removes a child-panel from this panel */
+	/** Removes a child-panel from this panel. */
 	public synchronized void removeChild(WtPanel panel) {
 		LinkedList<WtPanel> newChildren = new LinkedList<WtPanel>(children);
 		newChildren.remove(panel);
@@ -529,12 +529,12 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		panel.parent = null;
 	}
 
-	/** returns true when the window is scheduled to be closed. */
+	/** Returns true when the window is scheduled to be closed. */
 	public boolean isClosed() {
 		return closed;
 	}
 
-	/** tells this panel (and all subpanels) to close */
+	/** Tells this panel (and all subpanels) to close. */
 	public void close() {
 		if (isCloseable()) {
 			setVisible(false);
@@ -563,7 +563,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	}
 
 	/**
-	 * Scan all children and remove those without our parenting
+	 * Scans all children and remove those without our parenting.
 	 */
 	protected void checkDisowned() {
 		// remove un/reparented children
@@ -626,7 +626,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		}
 	}
 
-	/** notifies all registered clicklisteners that this panel has been clicked */
+	/** notifies all registered clicklisteners that this panel has been clicked .*/
 	protected void notifyClickListeners(String name, Point point) {
 		WtClickListener[] listeners = clickListeners.toArray(new WtClickListener[clickListeners.size()]);
 
@@ -643,7 +643,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	}
 
 	/**
-	 * resizes the panel so that the client area has the given width and height
+	 * Resizes the panel so that the client area has the given width and height.
 	 * 
 	 * @param width
 	 *            width of client area
@@ -668,7 +668,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		cachedImage = null;
 	}
 
-	/** creates the image background as an image */
+	/** creates the image background as an image. */
 	private BufferedImage recreatePanelImage(Graphics g) {
 		int localHeight = this.height;
 
@@ -786,7 +786,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	}
 
 	/**
-	 * draws the panel into the graphics object
+	 * draws the panel into the graphics object.
 	 * 
 	 * @param g
 	 *            graphics where to render to
@@ -846,12 +846,12 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		drawChildren(g);
 	}
 
-	/** panels draw themselves */
+	/** panels draw themselves. */
 	public void drawDragged(Graphics g) {
 	}
 
 	/**
-	 * draws all children
+	 * draws all children.
 	 * 
 	 * @param clientArea
 	 *            Graphics object clipped to the client region.
@@ -913,7 +913,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		return true;
 	}
 
-	/** return true if the point is in the title */
+	/** return true if the point is in the title. */
 	private boolean hitTitle(int x, int y) {
 		// do we have a title
 		if (!titleBar) {
@@ -929,12 +929,12 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		return true;
 	}
 
-	/** return a object for dragging which is at the position p or null */
+	/** return a object for dragging which is at the position p or null. */
 	protected WtDraggable getDragged(Point p) {
 		return getDragged(p.x, p.y);
 	}
 
-	/** return a object for dragging which is at the position (x,y) or null */
+	/** return a object for dragging which is at the position (x,y) or null. */
 	protected WtDraggable getDragged(int x, int y) {
 		if (isClosed()) {
 			return null;
@@ -975,7 +975,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	}
 
 	/**
-	 * checks if there is a droptarget direct under the position (x,y)
+	 * Checks if there is a droptarget direct under the position (x,y).
 	 * 
 	 * @param x
 	 *            x-coordinate in client space
@@ -1013,24 +1013,24 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		return false;
 	}
 
-	/** returns the rectangle for the minimize button */
+	/** returns the rectangle for the minimize button. */
 	private Rectangle getMiminizeButton() {
 		return new Rectangle(width - (TITLEBAR_SIZE * 2) - FRAME_SIZE,
 				FRAME_SIZE + 1, TITLEBAR_SIZE - 2, TITLEBAR_SIZE - 2);
 	}
 
-	/** returns true when the point (x,y) is inside the minimize button */
+	/** returns true when the point (x,y) is inside the minimize button. */
 	private boolean hitMinimizeButton(int x, int y) {
 		return getMiminizeButton().contains(x, y);
 	}
 
-	/** returns the rectangle for the close button */
+	/** returns the rectangle for the close button. */
 	private Rectangle getCloseButton() {
 		return new Rectangle(width - TITLEBAR_SIZE - FRAME_SIZE,
 				FRAME_SIZE + 1, TITLEBAR_SIZE - 2, TITLEBAR_SIZE - 2);
 	}
 
-	/** returns true when the point (x,y) is inside the close button */
+	/** returns true when the point (x,y) is inside the close button. */
 	private boolean hitCloseButton(int x, int y) {
 		return getCloseButton().contains(x, y);
 	}
@@ -1082,7 +1082,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		return false;
 	}
 
-	/** callback for a doubleclick */
+	/** callback for a doubleclick. */
 	public synchronized boolean onMouseDoubleClick(Point p) {
 		if (isClosed()) {
 			return false;
@@ -1109,7 +1109,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		return false;
 	}
 
-	/** the right mouse button has been clicked (callback) */
+	/** the right mouse button has been clicked (callback). */
 	public synchronized boolean onMouseRightClick(Point p) {
 		if (isClosed()) {
 			return false;
@@ -1137,7 +1137,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		return false;
 	}
 
-	/** ignored */
+	
 	public boolean dragStarted() {
 		if (isClosed()) {
 			return false;
@@ -1147,17 +1147,17 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		return true;
 	}
 
-	/** ignored */
+	/** ignored. */
 	public boolean dragFinished(Point p) {
 		return false;
 	}
 
-	/** move the frame to the requested position */
+	/** move the frame to the requested position .*/
 	public boolean dragMoved(Point p) {
 		return moveTo(dragPosition.x + p.x, dragPosition.y + p.y);
 	}
 
-	/** moves the child panel on top of all others */
+	/** moves the child panel on top of all others. */
 	private void focus(WtPanel child) {
 		if (!children.remove(child)) {
 			return;
@@ -1174,7 +1174,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	 */
 	public void setContextMenu(JPopupMenu contextMenu) {
 		if (parent != null) {
-			// moves the contex-menu to match the position of this panel
+			// moves the context-menu to match the position of this panel
 			parent.setContextMenu(contextMenu);
 		}
 	}
@@ -1183,7 +1183,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		this.transparency = t;
 	}
 
-	/** toString */
+	
 	@Override
 	public String toString() {
 		return super.toString() + ": " + name + " at " + x + "x" + y + " size:"

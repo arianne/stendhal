@@ -32,25 +32,25 @@ import java.util.List;
 public class WtMessageBox extends WtPanel implements WtClickListener,
 		WtCloseListener {
 
-	/** the max height of the panel */
+	/** the max height of the panel. */
 	private static final int MAX_HEIGHT = 100;
 
-	/** space between the buttons */
+	/** space between the buttons. */
 	private static final int BUTTON_SPACING = 5;
 
-	/** the text panel */
+	/** the text panel. */
 	private WtTextPanel textPanel;
 
-	/** the button */
+	/** the button. */
 	private List<WtButton> buttons;
 
-	/** name of the button clicked when the window is closed */
+	/** name of the button clicked when the window is closed. */
 	private String closeButtonName;
 
-	/** false when the messagebox still has to layout the buttons */
+	/** false when the messagebox still has to layout the buttons .*/
 	private boolean layedout;
 
-	/** Creates a new instance of MessageBox */
+	/** Creates a new instance of MessageBox. */
 	public WtMessageBox(String name, int x, int y, int width, String message,
 			ButtonCombination buttonCombination) {
 		super(name, x, y, width, MAX_HEIGHT);
@@ -108,7 +108,7 @@ public class WtMessageBox extends WtPanel implements WtClickListener,
 		super.drawContent(clientArea);
 	}
 
-	/** clicked a button */
+	/** clicked a button. */
 	public void onClick(String name, Point point) {
 		// tell our listeners that a button has been clicked
 		notifyClickListeners(name, point);
@@ -116,13 +116,13 @@ public class WtMessageBox extends WtPanel implements WtClickListener,
 		destroy();
 	}
 
-	/** closed the window */
+	/** closed this window. */
 	public void onClose(String name) {
 		// pseudoclicked the close button
 		onClick(closeButtonName, null);
 	}
 
-	/** some default buttons */
+	/** some default buttons. */
 	public enum ButtonEnum {
 		YES("Yes", 50, 30),
 		NO("No", 50, 30),
@@ -136,25 +136,25 @@ public class WtMessageBox extends WtPanel implements WtClickListener,
 
 		private int height;
 
-		/** private constructon */
+		/** private construction. */
 		private ButtonEnum(String name, int width, int height) {
 			this.name = name;
 			this.width = width;
 			this.height = height;
 		}
 
-		/** returns the name of this button */
+		/** Returns the name of this button. */
 		public String getName() {
 			return name;
 		}
 
-		/** returns a new wt-button */
+		/** Creates a new wt-button. */
 		public WtButton getButton() {
 			return new WtButton(name, width, height, name);
 		}
 	}
 
-	/** some button combinations */
+	/** some button combinations. */
 	public enum ButtonCombination {
 		OK(ButtonEnum.OK, ButtonEnum.OK),
 		YES_NO(ButtonEnum.NO, ButtonEnum.YES, ButtonEnum.NO),
@@ -166,13 +166,13 @@ public class WtMessageBox extends WtPanel implements WtClickListener,
 		OK_CANCEL(ButtonEnum.CANCEL, ButtonEnum.OK, ButtonEnum.CANCEL),
 		QUIT_CANCEL(ButtonEnum.CANCEL, ButtonEnum.QUIT, ButtonEnum.CANCEL);
 
-		/** list of buttons for this combination */
+		/** list of buttons for this combination. */
 		private List<ButtonEnum> buttons;
 
-		/** default button when the window is closed */
+		/** default button when the window is closed. */
 		private ButtonEnum closeButton;
 
-		/** contructor */
+		/** Contructor. */
 		private ButtonCombination(ButtonEnum closeButton, ButtonEnum... buttons) {
 			List<ButtonEnum> buttonList = new ArrayList<ButtonEnum>();
 			this.closeButton = closeButton;
@@ -182,12 +182,12 @@ public class WtMessageBox extends WtPanel implements WtClickListener,
 			this.buttons = Collections.unmodifiableList(buttonList);
 		}
 
-		/** returns a list with the buttons */
+		/** Returns a list with the buttons. */
 		public List<ButtonEnum> getButtons() {
 			return buttons;
 		}
 
-		/** returns a list with the buttons */
+		/** Returns a list with the buttons. */
 		public ButtonEnum getCloseButton() {
 			return closeButton;
 		}

@@ -35,14 +35,14 @@ import marauroa.common.game.RPSlot;
 
 /**
  * 
- * This container is the ground
+ * This container is the ground.
  * 
  * @author mtotz
  * 
  */
 public class GroundContainer extends WtBaseframe implements WtDropTarget,
 		Inspector {
-	/** the game client */
+	/** the game client. */
 	private StendhalClient client;
 
 	/**
@@ -50,10 +50,10 @@ public class GroundContainer extends WtBaseframe implements WtDropTarget,
 	 */
 	private StendhalUI ui;
 
-	/** the game screen */
+	/** the game screen. */
 	private IGameScreen screen;
 
-	/** creates a new groundcontainer */
+	/** creates a new groundcontainer. */
 	public GroundContainer(final StendhalClient client,
 			final IGameScreen screen, final int width, final int height) {
 		super(width, height);
@@ -64,7 +64,7 @@ public class GroundContainer extends WtBaseframe implements WtDropTarget,
 		ui = StendhalUI.get();
 	}
 
-	/** drags an item from the ground */
+	/** drags an item from the ground .*/
 	@Override
 	protected WtDraggable getDragged(int x, int y) {
 		WtDraggable other = super.getDragged(x, y);
@@ -158,7 +158,7 @@ public class GroundContainer extends WtBaseframe implements WtDropTarget,
 		}
 	}
 
-	/** process right click */
+	/** Processes right click. */
 	@Override
 	public synchronized boolean onMouseRightClick(Point p) {
 		// base class checks if the click is within a child

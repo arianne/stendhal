@@ -16,11 +16,11 @@ import games.stendhal.client.StendhalUI;
  */
 public class BuyWindow extends InternalManagedDialog {
 	/**
-	 * The buyWindow
+	 * The buyWindow.
 	 */
 	protected BuyWindowContent content;
 
-	/** Creates a new instance of Buddies */
+	/** Creates a new instance of Buddies. */
 	public BuyWindow(StendhalUI ui) {
 		super("buywindow", "Purchase Items");
 

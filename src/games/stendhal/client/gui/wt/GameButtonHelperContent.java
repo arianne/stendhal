@@ -18,16 +18,13 @@ import games.stendhal.client.gui.styled.swing.StyledJButton;
 public class GameButtonHelperContent extends javax.swing.JPanel {
 	private static final long serialVersionUID = -1607102841664745919L;
 
-	SettingsPanel sp;
+	
 
-	StendhalUI ui;
-
-	/** Creates new form PurchaseHelperContent */
+	/** Creates new form PurchaseHelperContent. */
 	public GameButtonHelperContent(SettingsPanel sp, GameButtonHelper gbh,
 			StendhalUI ui) { // settings panel for the setVisable stuff
 		initComponents();
-		this.sp = sp;
-		this.ui = ui;
+		
 
 	}
 

@@ -51,7 +51,7 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 	 */
 	private static final Sprite background;
 
-	/** the parent of the slot */
+	/** the parent of the slot. */
 	private Entity parent;
 
 	/**
@@ -195,7 +195,7 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 	}
 
 	/**
-	 * returns a draggable object
+	 * returns a draggable object.
 	 */
 	@Override
 	protected WtDraggable getDragged(int x, int y) {
@@ -206,7 +206,7 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 		return null;
 	}
 
-	/** right mouse button was clicked */
+	/** right mouse button was clicked. */
 	@Override
 	public synchronized boolean onMouseRightClick(Point p) {
 		if (view != null) {
@@ -218,7 +218,7 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 		return true;
 	}
 
-	/** doubleclick moves this item to the players inventory */
+	/** doubleclick moves this item to the players inventory. */
 	@Override
 	public synchronized boolean onMouseDoubleClick(Point p) {
 		// check if the baseclass wants to process the event

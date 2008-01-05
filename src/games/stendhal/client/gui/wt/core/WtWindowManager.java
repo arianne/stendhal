@@ -40,25 +40,25 @@ public class WtWindowManager {
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(WtWindowManager.class);
 
-	/** filename for the settings persistence */
+	/** filename for the settings persistence. */
 	private static final String FILE_NAME = "windows.properties";
 
-	/** the saved window positions */
+	/** the saved window positions. */
 	private Properties properties;
 
-	/** the instance */
+	/** the instance. */
 	private static WtWindowManager instance;
 
-	/** maps the window names to their configs */
+	/** maps the window names to their configs. */
 	private Map<String, WindowConfiguration> configs = new HashMap<String, WindowConfiguration>();
 
-	/** no public constructor */
+	/** no public constructor. */
 	private WtWindowManager() {
 		// try to read the configurations from disk
 		read();
 	}
 
-	/** returns the windowmanagers instance */
+	/** returns the windowmanagers instance. */
 	public static WtWindowManager getInstance() {
 		if (instance == null) {
 			instance = new WtWindowManager();
@@ -79,7 +79,7 @@ public class WtWindowManager {
 		}
 	}
 
-	/** saves the current settings to a file */
+	/** saves the current settings to a file. */
 	public void save() {
 		StringBuilder buf = new StringBuilder();
 		for (WindowConfiguration config : configs.values()) {
@@ -104,7 +104,7 @@ public class WtWindowManager {
 		}
 	}
 
-	/** saves the current settings to a file */
+	/** Reads the current settings from a file. */
 	public void read() {
 		properties = new Properties();
 		try {
@@ -177,14 +177,14 @@ public class WtWindowManager {
 		panel.setVisible(config.visible);
 	}
 
-	/** the panel was moved, so update the internal representation */
+	/** the panel was moved, so update the internal representation. */
 	public void moveTo(ManagedWindow panel, int x, int y) {
 		WindowConfiguration config = getConfig(panel);
 		config.x = x;
 		config.y = y;
 	}
 
-	/** the panels minimized state changed, update the internal representation */
+	/** the panels minimized state changed, update the internal representation. */
 	public void setMinimized(ManagedWindow panel, boolean state) {
 		WindowConfiguration config = getConfig(panel);
 
@@ -214,29 +214,29 @@ public class WtWindowManager {
 		config.visible = state;
 	}
 
-	/** encapsulates the configuration of a window */
+	/** encapsulates the configuration of a window. */
 	private class WindowConfiguration {
 
-		/** name of the window */
+		/** name of the window. */
 		public String name;
 
-		/** minimized state of the window */
+		/** minimized state of the window. */
 		public boolean minimized;
 
 		/** is the window visible? */
 		public boolean visible;
 
-		/** x-pos */
+		/** x-pos. */
 		public int x;
 
-		/** y-pos */
+		/** y-pos. */
 		public int y;
 
 		public WindowConfiguration(String name) {
 			this.name = name;
 		}
 
-		/** returns to config as a property string */
+		/** returns to config as a property string. */
 		public String writeToPropertyString() {
 			return "window." + name + ".minimized=" + minimized + "\n"
 					+ "window." + name + ".visible=" + visible + "\n"
@@ -244,13 +244,13 @@ public class WtWindowManager {
 					+ ".y=" + y + "\n";
 		}
 
-		/** returns to config as a property string */
+		/** returns to config as a property string. */
 		@Override
 		public String toString() {
 			return writeToPropertyString();
 		}
 
-		/** adds all props to the property */
+		/** adds all props to the property. */
 		public void writeToProperties(Properties props) {
 			props.put("window." + name + ".minimized", minimized);
 			props.put("window." + name + ".visible", visible);
@@ -258,7 +258,7 @@ public class WtWindowManager {
 			props.put("window." + name + ".y", y);
 		}
 
-		/** reads the config from the properties */
+		/** reads the config from the properties. */
 		public void readFromProperties(Properties props,
 				boolean defaultMinimized, int defaultX, int defaultY,
 				boolean defaultVisible) {
@@ -272,7 +272,7 @@ public class WtWindowManager {
 					Integer.toString(defaultY)));
 		}
 
-		/** reads the config from the properties */
+		/** reads the config from the properties. */
 		public void readFromProperties(Properties props, ManagedWindow defaults) {
 			readFromProperties(props, defaults.isMinimized(), defaults.getX(),
 					defaults.getY(), defaults.isVisible());

@@ -12,15 +12,15 @@ package games.stendhal.client.gui.wt;
 import games.stendhal.client.StendhalUI;
 
 /**
- * The GameButtonHelper
+ * The GameButtonHelper.
  */
 public class GameButtonHelper extends InternalManagedDialog {
 	/**
-	 * The buyWindow
+	 * The buyWindow.
 	 */
 	protected GameButtonHelperContent content;
 
-	/** Creates a new instance of Buddies */
+	/** Creates a new instance of Buddies. */
 	public GameButtonHelper(SettingsPanel sp, StendhalUI ui) {
 		super("gametools", "Game Tools");
 

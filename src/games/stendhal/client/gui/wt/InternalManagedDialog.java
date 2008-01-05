@@ -51,7 +51,7 @@ import javax.swing.SwingUtilities;
  * 
  */
 public class InternalManagedDialog implements ManagedWindow {
-	/** size of the titlebar */
+	/** size of the titlebar. */
 	private static final int TITLEBAR_HEIGHT = 13;
 
 	/**

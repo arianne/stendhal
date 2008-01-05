@@ -32,28 +32,28 @@ import java.awt.Graphics2D;
  */
 public class WtTextPanel extends WtPanel {
 
-	/** default font size */
+	/** default font size. */
 	public static final int DEFAULT_FONT_SIZE = 12;
 
-	/** default color */
+	/** default color. */
 	public static final Color DEFAULT_COLOR = Color.WHITE;
 
-	/** the text to display */
+	/** the text to display. */
 	private StringFormatter formatter;
 
-	/** the font size */
+	/** the font size. */
 	private int fontSize;
 
-	/** the font color */
+	/** the font color. */
 	private Color color;
 
-	/** last height of the text in pixels */
+	/** last height of the text in pixels. */
 	private int lastHeight;
 
 	/** enable automatic line breaks? */
 	private boolean autoLineBreaks;
 
-	/** Creates a new TextPanel */
+	/** Creates a new TextPanel. */
 	public WtTextPanel(String name, int x, int y, int width, int height) {
 		this(name, x, y, width, height, "");
 	}
@@ -76,12 +76,12 @@ public class WtTextPanel extends WtPanel {
 		return lastHeight;
 	}
 
-	/** sets the font size */
+	/** sets the font size. */
 	public void setFontSize(int fontSize) {
 		this.fontSize = fontSize;
 	}
 
-	/** sets the color */
+	/** sets the color. */
 	public void setColor(Color color) {
 		this.color = color;
 	}
@@ -91,17 +91,20 @@ public class WtTextPanel extends WtPanel {
 		this.formatter = new StringFormatter(format);
 	}
 
-	/** sets the value of a parameter */
+	/** sets the value of a parameter. 
+	* @Deprecated use set(String param, String value)
+	*/
+	@Deprecated
 	public void setValue(String param, String value) {
 		formatter.set(param, value);
 	}
 
-	/** sets the value of a parameter */
+	/** sets the value of a parameter. */
 	public void set(String param, int value) {
 		formatter.set(param, value);
 	}
 
-	/** sets the value of a parameter */
+	/** sets the value of a parameter. */
 	public void set(String param, String value) {
 		formatter.set(param, value);
 	}

@@ -31,10 +31,10 @@ import java.awt.Point;
  */
 public class WtButton extends WtPanel {
 
-	/** image for the button */
+	/** image for the button. */
 	private Sprite image;
 
-	/** Creates a new Button with text */
+	/** Creates a new Button with text. */
 	public WtButton(String name, int width, int height, String text) {
 		super(name, 0, 0, width, height);
 		initialize();
@@ -45,14 +45,14 @@ public class WtButton extends WtPanel {
 		setTitletext(text);
 	}
 
-	/** Creates a new Button with an image */
+	/** Creates a new Button with an image. */
 	public WtButton(String name, int width, int height, Sprite image) {
 		super(name, 0, 0, width, height);
 		initialize();
 		this.image = image;
 	}
 
-	/** some initialisations */
+
 	private void initialize() {
 		setMinimizeable(false);
 		setTitleBar(false);
@@ -61,8 +61,8 @@ public class WtButton extends WtPanel {
 	}
 
 	/**
-	 * Draw the button contents. This is only called while open and not
-	 * minimized.
+	 * Draw the button contents. 
+	 * <p>This is only called while open and not minimized.
 	 * 
 	 * @param g
 	 *            The graphics context to draw with.
@@ -77,7 +77,7 @@ public class WtButton extends WtPanel {
 		}
 	}
 
-	/** button is clicked */
+	/** button has been clicked. */
 	@Override
 	public boolean onMouseClick(Point point) {
 		setEmboss(!isEmbossed());
@@ -86,12 +86,12 @@ public class WtButton extends WtPanel {
 		return true;
 	}
 
-	/** returns true when the button in pressed and false when it is released */
+	/** Returns true when the button in pressed and false when it is released. */
 	public boolean isPressed() {
 		return isEmbossed();
 	}
 
-	/** sets the state of the button */
+	/** sets the state of the button. */
 	public void setPressed(boolean pressed) {
 		setEmboss(pressed);
 	}

@@ -29,7 +29,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * The panel where you can adjust your settings
+ * The panel where you can adjust your settings.
  * 
  * @author mtotz
  */
@@ -50,13 +50,13 @@ public class SettingsPanel extends WtPanel implements WtClickListener,
 	 */
 	private static final int SPACING = 5;
 
-	/** width of this panel */
+	/** width of this panel. */
 	private static final int WIDTH = BUTTON_WIDTH + SPACING + SPACING;
 
-	/** map of the buttons (for faster access) ) */
+	/** map of the buttons (for faster access) ). */
 	private Map<String, Entry> entries;
 
-	/** Creates a new instance of OptionsPanel */
+	/** Creates a new instance of OptionsPanel. */
 	public SettingsPanel(final int frameWidth) {
 		super("settings", (frameWidth - WIDTH) / 2, 0, WIDTH, SPACING * 2);
 
@@ -100,13 +100,13 @@ public class SettingsPanel extends WtPanel implements WtClickListener,
 		entries.put(mnemonic, new Entry(button, window));
 	}
 
-	/** we're using the window manager */
+	/** we're using the window manager. */
 	@Override
 	protected boolean useWindowManager() {
 		return true;
 	}
 
-	/** a button was clicked */
+	/** a button was clicked. */
 	public void onClick(String name, Point point) {
 		/*
 		 * Set window visibility
@@ -118,7 +118,7 @@ public class SettingsPanel extends WtPanel implements WtClickListener,
 		}
 	}
 
-	/** a window is closed */
+	/** a window is closed. */
 	public void onClose(String name) {
 		/*
 		 * Unset button

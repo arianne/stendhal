@@ -14,14 +14,14 @@ import javax.swing.Icon;
 import javax.swing.JMenuItem;
 
 /**
- * This is the command list of any entities
+ * This is the command list of any entities.
  * 
  * @author mtotz
  */
 public class CommandList extends WtPopupMenu {
 	private static final long serialVersionUID = -1607102841664745919L;
 
-	/** the entity associated with the command list */
+	/** the entity associated with the command list. */
 	private EntityView view;
 
 	/**
@@ -68,7 +68,7 @@ public class CommandList extends WtPopupMenu {
 		}
 	}
 
-	/** an action has been chosen */
+	/** an action has been chosen. */
 	protected void doAction(String command) {
 		// tell the entity what happened
 		view.onAction(ActionType.getbyRep(command));
@@ -93,8 +93,7 @@ public class CommandList extends WtPopupMenu {
 
 	/**
 	 * A pretty icon to indicate an admin option.
-	 * </p>
-	 * 
+	 *  
 	 * <p>
 	 * It looks something like:
 	 * 
@@ -109,10 +108,6 @@ public class CommandList extends WtPopupMenu {
 	 * </pre>
 	 */
 	protected static class AdminIcon implements Icon {
-
-		//
-		// Icon
-		//
 
 		public int getIconHeight() {
 			return 7;

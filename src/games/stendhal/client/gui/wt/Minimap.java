@@ -63,25 +63,25 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 	 */
 	private static final Color COLOR_ENTITY = new Color(200, 255, 200);
 
-	/** width of the minimap */
+	/** width of the minimap. */
 	private static final int MINIMAP_WIDTH = 129;
 
-	/** height of the minimap */
+	/** height of the minimap. */
 	private static final int MINIMAP_HEIGHT = 129;
 
-	/** minimum scale of the minimap */
+	/** minimum scale of the minimap. */
 	private static final int MINIMAP_MINIMUM_SCALE = 2;
 
 	/** Enable X-ray vision (aka Superman) minimap? */
 	private static final boolean mininps = (System.getProperty("stendhal.superman") != null);
 
-	/** scale of map */
+	/** scale of map. */
 	private int scale;
 
-	/** width of (scaled) minimap */
+	/** width of (scaled) minimap .*/
 	private int width;
 
-	/** height of (scaled) minimap */
+	/** height of (scaled) minimap .*/
 	private int height;
 
 	/**
@@ -104,13 +104,13 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 	 */
 	private double playerY;
 
-	/** minimap image */
+	/** minimap image. */
 	private BufferedImage image;
 
 	private StendhalClient client;
 
 	/**
-	 * PATHFIND
+	 * PATHFIND.
 	 */
 
 	private int nodo_actual;
@@ -122,7 +122,7 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(Minimap.class);
 
-	/** Creates a new instance of Minimap */
+	/** Creates a new instance of Minimap. */
 	public Minimap(StendhalClient client) {
 		super("minimap", 0, 0, 100, 100);
 
@@ -204,7 +204,7 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 		updateView();
 	}
 
-	/** we're using the window manager */
+	/** we're using the window manager. */
 	@Override
 	protected boolean useWindowManager() {
 		return true;
@@ -351,7 +351,7 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 	}
 
 	/**
-	 * Draws the User
+	 * Draws the User.
 	 * 
 	 * @param vg
 	 *            graphics context
@@ -444,7 +444,7 @@ public class Minimap extends WtPanel implements PositionChangeListener {
 				(int) ((player.getY() * scale) + 0.5), color);
 	}
 
-	/** draws a cross at the given position */
+	/** Draws a cross at the given position. */
 	private void drawCross(Graphics g, int x, int y, Color color) {
 		int scale_2 = scale / 2;
 

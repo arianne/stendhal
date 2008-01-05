@@ -30,7 +30,7 @@ public class WoodStyle implements Style {
 	private static Style sharedInstance;
 
 	/**
-	 * The background texture
+	 * The background texture.
 	 */
 	protected Sprite background;
 

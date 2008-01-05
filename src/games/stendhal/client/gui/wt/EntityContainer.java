@@ -31,7 +31,7 @@ import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
 /**
- * This panel is a container showing all items in a slot
+ * This panel is a container showing all items in a slot.
  * 
  * @author mtotz
  */
@@ -40,21 +40,21 @@ public class EntityContainer extends WtPanel implements PositionChangeListener {
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(EntityContainer.class);
 
-	/** when the player is this far away from the container, the panel is closed */
+	/** when the player is this far away from the container, the panel is closed. */
 	private static final int MAX_DISTANCE = 4;
 
-	/** the panels for each item */
+	/** the panels for each item. */
 	private List<EntitySlot> slotPanels;
 
-	/** the object which has the slot */
+	/** the object which has the slot. */
 	private Entity parent;
 
-	/** the slots name */
+	
 	private String slotName;
 
 	private RPSlot shownSlot;
 
-	/** creates the panel */
+	/** Creates the panel. */
 	public EntityContainer(StendhalClient client, String name, int width,
 			int height) {
 		super(name, 0, 300, 100, 100);
@@ -86,13 +86,13 @@ public class EntityContainer extends WtPanel implements PositionChangeListener {
 				* spriteHeight + (height - 1));
 	}
 
-	/** we're using the window manager */
+	/** we're using the window manager. */
 	@Override
 	protected boolean useWindowManager() {
 		return true;
 	}
 
-	/** rescans the content of the slot */
+	/** Rescans the content of the slot. */
 	private void rescanSlotContent() {
 		if ((parent == null) || (slotName == null)) {
 			return;
@@ -184,7 +184,7 @@ public class EntityContainer extends WtPanel implements PositionChangeListener {
 		shownSlot = null;
 	}
 
-	/** sets the player entity */
+	/** Sets the player entity. */
 	public void setSlot(Entity parent, String slot) {
 		this.parent = parent;
 		this.slotName = slot;
@@ -202,7 +202,7 @@ public class EntityContainer extends WtPanel implements PositionChangeListener {
 	}
 
 	/**
-	 * Draw the panel contents. This is only called while open and not
+	 * Draws the panel contents. This is only called while open and not
 	 * minimized.
 	 * 
 	 * @param g

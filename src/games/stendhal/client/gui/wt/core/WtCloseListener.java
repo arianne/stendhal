@@ -19,14 +19,14 @@
 package games.stendhal.client.gui.wt.core;
 
 /**
- * Callback for closing on a panel
+ * Callback for closing on a panel.
  * 
  * @author mtotz
  */
 public interface WtCloseListener {
 
 	/**
-	 * the panel has been closed
+	 * The panel has been closed.
 	 * 
 	 * @param name
 	 *            name of the panel. Note that the panels name does not need to

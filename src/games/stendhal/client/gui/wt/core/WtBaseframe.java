@@ -42,28 +42,28 @@ import javax.swing.JPopupMenu;
 public class WtBaseframe extends WtPanel implements MouseListener,
 		MouseMotionListener {
 
-	/** the currently dragged object or null if there is no such drag operation */
+	/** The currently dragged object or null if there is no such drag operation. */
 	private WtDraggable draggedObject;
 
-	/** the point where the drag started */
+	/** The point where the drag started. */
 	private Point dragStartPoint;
 
-	/** true when there is a dragging operation in progress */
+	/** True when there is a dragging operation in progress. */
 	private boolean dragInProgress;
 
-	/** the context menu, if there is one */
+	/** The context menu, if there is one. */
 	private JPopupMenu jcontextMenu;
 
-	/** a flag for tracking ContextMenu changes */
+	/** A flag for tracking ContextMenu changes.*/
 	private boolean recreatedContextMenu;
 
 	/**
-	 * true if the last single click was handled; it can't be a part of a double
-	 * click
+	 * True if the last single click was handled; it can't be a part of a double
+	 * click.
 	 */
 	private boolean lastClickWasHandled;
 
-	/** the time at which a mouse button was last pressed */
+	/** The time at which a mouse button was last pressed. */
 	private long timeOfLastMousePress = System.currentTimeMillis();
 
 	/**
@@ -83,12 +83,12 @@ public class WtBaseframe extends WtPanel implements MouseListener,
 		setMovable(false);
 	}
 
-	/** resizing is disabled */
+	/** Resizing is disabled. */
 	@Override
 	public void resizeToFitClientArea(int width, int height) {
 	}
 
-	/** returns the currently dragged object or null if there is none */
+	/** Returns the currently dragged object or null, if there is none. */
 	public synchronized WtDraggable getDraggedObject() {
 		// currently no drag operation?
 		if (!dragInProgress || (draggedObject == null)) {
@@ -119,7 +119,7 @@ public class WtBaseframe extends WtPanel implements MouseListener,
 	}
 
 	/**
-	 * draws the frame into the graphics object
+	 * Draws the frame into the graphics object.
 	 * 
 	 * @param g
 	 *            graphics where to render to
@@ -140,7 +140,7 @@ public class WtBaseframe extends WtPanel implements MouseListener,
 		}
 	}
 
-	/** stops the dragging operations */
+	/** Stops the dragging operations. */
 	private void stopDrag(MouseEvent e) {
 		// be sure to stop dragging operations when theleft button is released
 		if (dragInProgress && (draggedObject != null)) {
@@ -302,22 +302,22 @@ public class WtBaseframe extends WtPanel implements MouseListener,
 		stopDrag(e);
 	}
 
-	/** disabled */
+	/** disabled. */
 	@Override
 	public void setName(String name) {
 	}
 
-	/** disabled */
+	/** disabled. */
 	@Override
 	public void setTitleBar(boolean titleBar) {
 	}
 
-	/** disabled */
+	/** disabled. */
 	@Override
 	public void setFrame(boolean frame) {
 	}
 
-	/** disabled */
+	/** disabled. */
 	@Override
 	public void setCloseable(boolean minimizeable) {
 	}

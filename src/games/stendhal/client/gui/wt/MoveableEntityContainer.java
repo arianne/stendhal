@@ -25,16 +25,16 @@ import java.awt.Point;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 
-/** this container is used to drag the entities around */
+/** this container is used to drag the entities around .*/
 public class MoveableEntityContainer implements WtDraggable {
 
-	/** current x-pos of the dragged item */
+	/** current x-pos of the dragged item. */
 	private int x;
 
-	/** current y-pos of the dragged item */
+	/** current y-pos of the dragged item. */
 	private int y;
 
-	/** The moved object */
+	/** The moved object. */
 	private Entity entity;
 
 	/**
@@ -56,7 +56,7 @@ public class MoveableEntityContainer implements WtDraggable {
 	// MoveableEntityContainer
 	//
 
-	/** fills the action with the appropiate 'move from' parameters */
+	/** fills the action with the appropiate 'move from' parameters. */
 	public void fillRPAction(RPAction action) {
 		RPObject rpObject = entity.getRPObject();
 
@@ -92,7 +92,7 @@ public class MoveableEntityContainer implements WtDraggable {
 	// WtDraggable
 	//
 
-	/** drag started */
+	/** drag started. */
 	public boolean dragStarted() {
 		view = GameScreen.get().createView(entity);
 
@@ -113,7 +113,7 @@ public class MoveableEntityContainer implements WtDraggable {
 		return true;
 	}
 
-	/** drag finished */
+	/** drag finished. */
 	public boolean dragFinished(Point p) {
 		if (view != null) {
 			view.release();
@@ -123,7 +123,7 @@ public class MoveableEntityContainer implements WtDraggable {
 		return true;
 	}
 
-	/** moved */
+	/** moved. */
 	public boolean dragMoved(Point p) {
 		x = p.x;
 		y = p.y;
@@ -131,7 +131,7 @@ public class MoveableEntityContainer implements WtDraggable {
 	}
 
 	/**
-	 * draws the entity
+	 * draws the entity.
 	 */
 	public void drawDragged(Graphics g) {
 		if (view != null) {
