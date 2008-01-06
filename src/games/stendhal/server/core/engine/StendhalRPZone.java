@@ -669,7 +669,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 		}
 
 		if (object instanceof NPC) {
-			npcs.remove((NPC) object);
+			npcs.remove(object);
 		}
 
 		/*
