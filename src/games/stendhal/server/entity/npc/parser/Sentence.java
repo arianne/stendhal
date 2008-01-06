@@ -534,8 +534,11 @@ public class Sentence {
     					w.setNormalized(original.toLowerCase());
 
     					if (entry == null) {
-        					// add the unknown word to the word list
-        					wl.addNewWord(original);
+    						// Don't persist expressions used for joker matching.
+    						boolean persist = !isForMatching || !original.contains(JOKER);
+
+   	    					// Add the unknown word to the word list.
+   							wl.addNewWord(original, persist);
     					}
 					}
 				}

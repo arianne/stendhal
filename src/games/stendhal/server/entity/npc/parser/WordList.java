@@ -406,20 +406,23 @@ public class WordList {
 	 *
 	 * @param str
 	 */
-	public WordEntry addNewWord(String str) {
+	public WordEntry addNewWord(String str, boolean persist) {
 		String key = trimWord(str);
 		WordEntry entry = words.get(key);
 
 		if (entry == null) {
 			entry = new WordEntry();
 
+			// add the new entry
 			entry.setNormalized(key);
 			words.put(key, entry);
 
-			// save the new word into the database
-			Set<String> keys = new HashSet<String>();
-			keys.add(key);
-			insertIntoDB(keys);
+			if (persist) {
+    			// save the new word into the database
+    			Set<String> keys = new HashSet<String>();
+    			keys.add(key);
+    			insertIntoDB(keys);
+			}
 		} else {
 			logger.warn("word already known: " + str + " -> " + entry.getNormalized());
 		}
