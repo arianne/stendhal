@@ -5,6 +5,7 @@ import games.stendhal.common.Grammar;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.regex.Pattern;
 
 /**
  * ConversationParser returns the parsed sentence in this class. The Sentence
@@ -457,7 +458,7 @@ public class Sentence {
 	 * 
 	 * @param parser
 	 */
-	public void classifyWords(ConversationParser parser, boolean forMatching) {
+	public void classifyWords(ConversationParser parser, boolean isForMatching) {
 		WordList wl = WordList.getInstance();
 
 		for (Expression w : expressions) {
@@ -465,7 +466,7 @@ public class Sentence {
 			WordEntry entry = null;
 
 			// If the parsed Sentence will be used for matching, look for ExpressionType specifiers. 
-			if (forMatching) {
+			if (isForMatching) {
 				if (ExpressionType.isTypeString(original)) {
 					w.setType(new ExpressionType(original));
 					w.setNormalized(JOKER);
@@ -687,16 +688,16 @@ public class Sentence {
 	/**
 	 * Merge words to form a simpler sentence structure.
 	 */
-	public void mergeWords() {
+	public void mergeWords(boolean isForMatching) {
 
 		// first merge three word expressions of the form "... of ..."
-		mergeThreeWordExpressions();
+		mergeThreeWordExpressions(isForMatching);
 
 		// now merge two word expressions from left to right
-		mergeTwoWordExpressions();
+		mergeTwoWordExpressions(isForMatching);
 	}
 
-	private void mergeTwoWordExpressions() {
+	private void mergeTwoWordExpressions(boolean isForMatching) {
 
 		/*
 		 * There are two possibilities for word merges: Left-merging means to
@@ -725,6 +726,14 @@ public class Sentence {
 					// don't merge if the break flag is set
 					if (curr.getBreakFlag()) {
 						continue;
+					}
+
+					// don't merge if there are joker expressions
+					if (isForMatching) {
+						if (curr.getNormalized().contains(JOKER) ||
+							next.getNormalized().contains(JOKER)) {
+    						continue;
+    					}
 					}
 
 					ExpressionType curType = curr.getType();
@@ -801,7 +810,7 @@ public class Sentence {
 		} while(changed);
 	}
 
-	private void mergeThreeWordExpressions() {
+	private void mergeThreeWordExpressions(boolean isForMatching) {
 		boolean changed;
 
 		// loop until no more simplification can be made
@@ -828,6 +837,15 @@ public class Sentence {
 						// don't merge if the break flag is set
 						if (first.getBreakFlag() || second.getBreakFlag()) {
 							continue;
+						}
+
+						// don't merge if there are joker expressions
+						if (isForMatching) {
+							if (first.getNormalized().contains(JOKER) ||
+								second.getNormalized().contains(JOKER) ||
+								third.getNormalized().contains(JOKER)) {
+	    						continue;
+	    					}
 						}
 
 						// merge "... of ..." expressions into one expression, preserving
@@ -910,18 +928,19 @@ public class Sentence {
 	 * @return
 	 */
 	public boolean matches(Sentence other) {
-		// shortcut for sentences with differing lengths
-	    if (expressions.size() != other.expressions.size()) {
-	    	return false;
-	    }
-
 	    // loop over all expressions and match them between both sides
 	    Iterator<Expression> it1 = expressions.iterator();
 	    Iterator<Expression> it2 = other.expressions.iterator();
+	    Expression e1, e2;
 
-		while (it1.hasNext() && it2.hasNext()) {
-			Expression e1 = it1.next();
-			Expression e2 = it2.next();
+		while(true) {
+			e1 = Expression.nextValid(it1);
+			e2 = Expression.nextValid(it2);
+
+			if (e1 == null || e2 == null) {
+				break;
+			}
+
 			String matchString = e2.getNormalized();
 
 			if (matchString.contains(JOKER)) {
@@ -942,7 +961,9 @@ public class Sentence {
 		}
 
 		// Now there should be no more expressions at both sides.
-		if (!it1.hasNext() || it2.hasNext()) {
+		e1 = Expression.nextValid(it1);
+		e2 = Expression.nextValid(it2);
+		if (e1==null && e2==null) {
 			return true;
 		} else {
 			return false;
@@ -957,7 +978,13 @@ public class Sentence {
 	 * @return
 	 */
 	private boolean matchesJokerString(String str, String matchString) {
-	    return str.matches(".*" + matchString.replace(JOKER, ".*") + ".*");
+		if (str.equals(JOKER)) {
+			// Empty strings do not match the "*" joker.
+			return str.length() > 0;
+		} else { 
+			// Convert the joker string into a regular expression and let the Pattern class do the work.
+			return Pattern.compile(matchString.replace(JOKER, ".*")).matcher(str).find();
+		}
     }
 
 }

@@ -24,7 +24,7 @@ public class SentenceTest {
 		assertEquals("quick/ADJ brown/ADJ-COL fox/SUB-ANI jump/VER over/PRE lazy/ADJ dog/SUB-ANI.",
 				sentence.toString());
 
-		sentence.mergeWords();
+		sentence.mergeWords(false);
 		assertEquals("quick brown fox/SUB-ANI-COL jump/VER over/PRE lazy dog/SUB-ANI.", sentence.toString());
 		assertEquals(Sentence.ST_STATEMENT, sentence.getType());
 
@@ -114,27 +114,27 @@ public class SentenceTest {
 
 		s1 = ConversationParser.parse("please work");
 		m1 = ConversationParser.parseForMatching("IGN VER");
-		assertFalse(s1.hasError());
-		assertFalse(m1.hasError());
+		m2 = ConversationParser.parseForMatching("VER");
+		assertFalse(s1.hasError() || m1.hasError() || m2.hasError());
 		assertTrue(s1.matches(m1));
+		assertTrue(s1.matches(m2));
 
 		s1 = ConversationParser.parse("so i love you");
 		m1 = ConversationParser.parseForMatching("i love you");
-		assertFalse(s1.hasError());
-		assertFalse(m1.hasError());
-		assertTrue(s1.matches(m1));
-
-		s1 = ConversationParser.parse("so i love you");
-		m1 = ConversationParser.parseForMatching("i love you");
-		assertFalse(s1.hasError());
-		assertFalse(m1.hasError());
+		assertFalse(s1.hasError() || m1.hasError());
 		assertTrue(s1.matches(m1));
 
 		s1 = ConversationParser.parse("but do you love me?");
 		m1 = ConversationParser.parseForMatching("do you love me?");
-		assertFalse(s1.hasError());
-		assertFalse(m1.hasError());
+		assertFalse(s1.hasError() || m1.hasError());
 		assertTrue(s1.matches(m1));
+
+		s1 = ConversationParser.parse("do you know Stendhal?");
+		m1 = ConversationParser.parseForMatching("SUB-PRO VER Stendhal?");
+		m2 = ConversationParser.parseForMatching("SUB ADJ Stendhal?");
+		assertFalse(s1.hasError() || m1.hasError() || m2.hasError());
+		assertTrue(s1.matches(m1));
+		assertFalse(s1.matches(m2));
 	}
 
 }

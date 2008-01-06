@@ -80,6 +80,7 @@ public class ConversationParser {
 	 * @return Sentence
 	 */
 	public static Sentence parse(String text, ConversationContext ctx) {
+		boolean forMatching = ctx!=null? ctx.isForMatching(): false;
 
 		// 1.) determine sentence type from trailing punctuation
 		Sentence sentence = new Sentence();
@@ -97,13 +98,13 @@ public class ConversationParser {
 		sentence.parse(parser);
 
 		// 3.) classify word types and normalize words
-		sentence.classifyWords(parser, ctx!=null? ctx.isForMatching(): false);
+		sentence.classifyWords(parser, forMatching);
 
 		// 4.) evaluate sentence type from word order
 		sentence.evaluateSentenceType();
 
 		// 5.) merge words to form a simpler sentence structure
-		sentence.mergeWords();
+		sentence.mergeWords(forMatching);
 
 		// 6.) standardize sentence type
 		sentence.standardizeSentenceType();
