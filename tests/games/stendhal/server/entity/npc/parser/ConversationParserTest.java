@@ -2,6 +2,7 @@ package games.stendhal.server.entity.npc.parser;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
@@ -244,6 +245,20 @@ public class ConversationParserTest {
 		assertEquals("kiss", sentence.getVerbString());
 		assertEquals("kiss", sentence.getNormalized());
 		assertEquals("kiss/VER", sentence.toString());
+	}
+
+	@Test
+	public final void testNullPointer() {
+		Sentence sentence = ConversationParser.parse(null);
+		assertNotNull(sentence);
+		assertEquals(0, sentence.getSubjectCount());
+		assertNull(sentence.getSubject(0));
+		assertEquals(0, sentence.getVerbCount());
+		assertNull(sentence.getVerb(0));
+		assertEquals(0, sentence.getObjectCount());
+		assertNull(sentence.getObject(0));
+		assertNull(sentence.getObjectName());
+		assertFalse(sentence.hasError());
 	}
 
 }
