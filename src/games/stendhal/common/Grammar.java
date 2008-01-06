@@ -349,8 +349,13 @@ public class Grammar {
 	 * @return An appropriate plural form
 	 */
 	public static String plural(String noun) {
+		if (noun == null) {
+			return null;
+		}
+
 		String enoun = fullForm(noun);
 		String postfix = "";
+
 		int position = enoun.indexOf('+');
 		if (position != -1) {
 			if (enoun.charAt(position - 1) == ' ') {
@@ -451,6 +456,10 @@ public class Grammar {
 	 * @return An appropriate singular form
 	 */
 	public static String singular(String enoun) {
+		if (enoun == null) {
+			return null;
+		}
+
 		String postfix = "";
 
 		int position = enoun.indexOf('+');
