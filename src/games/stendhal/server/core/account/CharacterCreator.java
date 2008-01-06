@@ -1,5 +1,6 @@
 package games.stendhal.server.core.account;
 
+import games.stendhal.server.core.engine.StendhalPlayerDatabase;
 import games.stendhal.server.core.rule.RuleManager;
 import games.stendhal.server.core.rule.RuleSetFactory;
 import games.stendhal.server.entity.Entity;
@@ -13,7 +14,6 @@ import marauroa.common.game.CharacterResult;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 import marauroa.common.game.Result;
-import marauroa.server.game.db.DatabaseFactory;
 import marauroa.server.game.db.IDatabase;
 import marauroa.server.game.db.Transaction;
 
@@ -68,7 +68,7 @@ public class CharacterCreator {
 			return new CharacterResult(result, character, template);
 		}
 
-		IDatabase database = DatabaseFactory.getDatabase();
+		IDatabase database = StendhalPlayerDatabase.getDatabase();
 		Transaction trans = database.getTransaction();
 
 		try {
