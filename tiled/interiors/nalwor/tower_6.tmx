@@ -87,6 +87,9 @@
  <tileset name="../../tileset/logic/creature/elf.png" firstgid="157" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/elf.png"/>
  </tileset>
+ <tileset name="grey table" firstgid="167" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/furniture/table/grey_plain.png"/>
+ </tileset>
  <layer name="0_floor" width="20" height="20">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNgoD0wQcO4xNHlkQEvhXjUvFHzRs0bNW+omjdYAQBxpmIlQAYAAA==
@@ -94,12 +97,12 @@
  </layer>
  <layer name="1_terrain" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAABNhYGAQoxIWB2IJILYFYhMkHALEoUAchiaOT84OiOWh5hkDMSMQM5GJmYHYDM08FiBmJROzjZo3ah6VzIsD4ngoTqCCeYlAnATFyYPQvBQgToXitEEYH9Qyjx2IOcjEnGjmOQKxIYXYCWqeAhArUgkrAzEA/3I/kEAGAAA=
+   H4sIAAAAAAAAABNhYGAQoxIWB2IJILYFYhMkHALEoUAchiaOT84OiOWh5hkDMSMQM5GJmYHYDM08FiBmJROzjZo3ah6VzFsOxCugeCUVzFuFhoe7eTC8bpDFLzsQc5CJOdHMcwRiQwqxE9Q8BSBWpBJWBmIA0xrSxUAGAAA=
   </data>
  </layer>
  <layer name="2_object" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgQABRIPYEYj8o7Q+lkbEfVBwmJ8qAHdRCaW8gDgDiUCAOhPJh2AuLHAgUYDGvGUr7AnEQlB0M5SNjdDkQKEEyRwaHe8kB0lQyJ4ZK5uAD1UBcwwAJizIgnkwHOwcCkBO/3UDcA8W9DIj0gi9+s8iwBxfoA+J+IJ6EQz4TiFugND6QA6XTkcRyKXPakAHZZOqjVXkAS0N5QJxPojklBOTDgTgCiCPJlIcBJTLk0MUBRZPB7UAGAAA=
+   H4sIAAAAAAAAAGNgQABRIPYEYj8o7Q+lkbEfVBwmJ8qAHdRCaW8gDgDiUCAOhPJh2AuLHAgUYDGvGUr7AnEQlB0M5SNjdDkQKEEyRwaHe8kB0lQyJ4ZK5uAD1UBcwwAJizIgnkwHOwcCkBO/3UDcA8W9DIj0gi9+s8iwBxfoA+J+IJ6EQz4TiFugND6QA6XTkcRyKXPaoAdrgXgdEGcD8Xoy9NOqPICloTwgzifRnBIC8uFAHAHEkWTKw4ASGXLo4gCh4Vg1QAYAAA==
   </data>
  </layer>
  <layer name="3_roof" width="20" height="20">
@@ -112,7 +115,7 @@
    H4sIAAAAAAAAAGNgGAWjYBSMglEwCkgHADV9EcVABgAA
   </data>
  </layer>
- <layer name="objects" width="20" height="20">
+ <layer name="objects" width="20" height="20" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNgGAX4wNKBdsAoGAWjYBQMUgAAcdGrukAGAAA=
   </data>
