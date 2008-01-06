@@ -3,6 +3,7 @@ package games.stendhal.server.entity.npc.parser;
 /**
  * WordListEditor is a graphical tool to administer the word list stored in
  * the database. It provides the following functionality:
+ * - (re-)initialize the database with the preconfigured word list by calling WordListUpdate
  * - associate word types, plural, numerical values and aliases with new words
  * - remove wrong spelled words
  * - add new entries
