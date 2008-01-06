@@ -49,7 +49,7 @@ public class TellerNPC implements ZoneConfigurator {
 			protected void createDialog() {
 				addGreeting("Welcome to the Fado Bank! Do you need #help?");
 				addJob("I am the manager for the bank.");
-				addHelp("Just to the right, you can see a few chests. Open one and you can store your belongings in it.");
+				addHelp("Just to the left, you can see a few chests. Open one and you can store your belongings in it.");
 				addGoodbye("Have a nice day.");
 			}
 		};
