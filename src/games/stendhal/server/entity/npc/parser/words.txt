@@ -65,7 +65,7 @@ disembark	VER
 do	VER
 does	VER	=do
 doesn't	VER-NEG	=do
-don't	VER
+don't	VER-NEG	=do
 done	VERB	=do
 dressed	VER
 drop	VER
