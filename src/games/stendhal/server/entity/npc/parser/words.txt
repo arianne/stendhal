@@ -60,13 +60,13 @@ cleanme	VER
 close	VER
 concoct	VER
 cya	VER
-did	VERB	=do
+did	VER	=do
 disembark	VER
 do	VER
 does	VER	=do
 doesn't	VER-NEG	=do
 don't	VER-NEG	=do
-done	VERB	=do
+done	VER	=do
 dressed	VER
 drop	VER
 eat	VER
