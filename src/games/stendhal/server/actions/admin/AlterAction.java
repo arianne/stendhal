@@ -15,6 +15,7 @@ public class AlterAction extends AdministrationAction {
 	private static final String _ATTR_HP = "hp";
 	private static final String _SUB = "sub";
 	private static final String _ADD = "add";
+	private static final String _SET = "set";
 	private static final String ATTR_TITLE = "title";
 	private static final String ATTR_ADMINLEVEL = "adminlevel";
 	private static final String _VALUE = "value";
@@ -25,12 +26,10 @@ public class AlterAction extends AdministrationAction {
 
 	public static void register() {
 		CommandCenter.register(_ALTER, new AlterAction(), 900);
-
 	}
 
 	@Override
 	public void perform(Player player, RPAction action) {
-
 		if (action.has(_TARGET) && action.has(_STAT) && action.has(_MODE)
 				&& action.has(_VALUE)) {
 			Entity changed = getTarget(player, action);
@@ -83,13 +82,26 @@ public class AlterAction extends AdministrationAction {
 				String value = action.get(_VALUE);
 				String mode = action.get(_MODE);
 
+				if (!mode.equalsIgnoreCase(_ADD) && !mode.equalsIgnoreCase(_SUB) && !mode.equalsIgnoreCase(_SET)) {
+					player.sendPrivateText("Please issue one of the modes 'add', 'sub' and 'set'.");
+					return;
+				}
+
 				if (isNumerical) {
-					int numberValue = Integer.parseInt(value);
-					if (mode.equals(_ADD)) {
+					int numberValue;
+
+					try {
+						numberValue = Integer.parseInt(value);
+					} catch(NumberFormatException e) {
+						player.sendPrivateText("Please issue a numeric value instead of '" + value + "'");
+						return;
+					}
+
+					if (mode.equalsIgnoreCase(_ADD)) {
 						numberValue = changed.getInt(stat) + numberValue;
 					}
 
-					if (mode.equals(_SUB)) {
+					if (mode.equalsIgnoreCase(_SUB)) {
 						numberValue = changed.getInt(stat) - numberValue;
 					}
 
@@ -141,7 +153,7 @@ public class AlterAction extends AdministrationAction {
 					changed.put(stat, numberValue);
 				} else {
 					// Can be only set if value is not a number
-					if (mode.equals("set")) {
+					if (mode.equalsIgnoreCase(_SET)) {
 						StendhalRPRuleProcessor.get().addGameEvent(
 								player.getName(), _ALTER, action.get(_TARGET),
 								stat, action.get(_VALUE));
