@@ -12,8 +12,6 @@
  ***************************************************************************/
 package games.stendhal.server.actions;
 
-import org.hamcrest.core.IsInstanceOf;
-
 import games.stendhal.common.NotificationType;
 import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
 import games.stendhal.server.entity.Entity;
@@ -35,14 +33,17 @@ public class LookAction implements ActionListener {
 
 	public void onAction(Player player, RPAction action) {
 		Entity entity = EntityHelper.entityFromSlot(player, action);
+
 		if (entity == null) {
 			entity = EntityHelper.entityFromTargetName(action.get(_TARGET), player.getZone());
 		}
 
 		if (entity != null) {
-			 if (entity instanceof Player) {
+			// fix for 1864205
+			if (entity instanceof Player) {
 				Player new_name = (Player) entity;
-				if (new_name.isGhost()){
+				//TODO mf - take into account the user admin level
+				if (new_name.isGhost()) {
 					return;
 				}
 			}
