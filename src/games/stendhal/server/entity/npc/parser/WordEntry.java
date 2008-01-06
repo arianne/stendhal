@@ -9,21 +9,28 @@ import java.io.PrintWriter;
  * @author Martin Fuchs
  */
 public class WordEntry {
-	/** normalized word. */
+
+	// normalized word
 	private String normalized;
 
-	/** pluralized word (or singular for entries of type ...-PLU .*/
+	// pluralized word (or singular for entries of type ...-PLU
 	private String plurSing;
 
-	/** Expression type, e.g. VER, ADJ, OBJ, OBJ-FOO, SUB, SUB-ANI, ... */
+	// Expression type, e.g. VER, ADJ, OBJ, OBJ-FOO, SUB, SUB-ANI, ...
 	private ExpressionType type;
 
-	/** numeric value for words of type NUM. */
+	// numeric value for words of type NUM
 	private Integer value;
 
-	/** database ID. */
+	// database ID
 	private int id;
 
+	/**
+	 * Write word entry to the given print writer.
+	 *
+	 * @param pw
+	 * @param key
+	 */
 	public void print(PrintWriter pw, String key) {
 		pw.printf("%s\t", key);
 
