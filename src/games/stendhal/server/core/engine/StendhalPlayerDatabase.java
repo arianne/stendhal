@@ -6,6 +6,7 @@ import games.stendhal.server.entity.player.Player;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -16,6 +17,7 @@ import java.util.Properties;
 import marauroa.common.Configuration;
 
 import org.apache.log4j.Logger;
+
 import marauroa.common.game.RPObject;
 import marauroa.server.game.db.IDatabase;
 import marauroa.server.game.db.JDBCDatabase;
@@ -29,7 +31,7 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 
 	private static final Logger logger = Logger.getLogger(StendhalPlayerDatabase.class);
 	private static final String ATTR_ITEM_LOGID = "logid";
-
+	
 	
 	/**
 	 * This method returns an instance of PlayerDatabase.
@@ -83,9 +85,8 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 			Transaction transaction =  getTransaction();
 			Connection connection = transaction.getConnection();
 			Statement stmt = connection.createStatement();
-
-			// first try an update
 			String query = "UPDATE character_stats SET online=0";
+
 			logger.debug("clearOnlineStatus is running: " + query);
 			stmt.executeUpdate(query);
 			stmt.close();
@@ -121,80 +122,16 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 		 * Here goes the stendhal specific code.
 		 */
 		try {
-			Connection connection =  transaction.getConnection();
-			Statement stmt = connection.createStatement();
-
 			Player instance = (Player) player;
-
-			String head = null;
-			String armor = null;
-			String lhand = null;
-			String rhand = null;
-			String legs = null;
-			String feet = null;
-			String cloak = null;
-
-			String query = "INSERT INTO character_stats (name, online, admin, sentence, age, level, outfit, xp, money, atk, def, hp, karma, "
-					+ "head, armor, lhand, rhand, legs, feet, cloak) VALUES ("
-					+ "'"
-					+ StringChecker.escapeSQLString(instance.getName())
-					+ "', "
-					+ " false"
-					+ ", "
-					+ instance.getAdminLevel()
-					+ ", "
-					+ "'"
-					+ StringChecker.escapeSQLString(instance.getSentence())
-					+ "', "
-					+ 0
-					+ ", "
-					+ 0
-					+ ", "
-					+ "'"
-					+ 0
-					+ "', "
-					+ 0
-					+ ", "
-					+ 0
-					+ ", "
-					+ instance.getATK()
-					+ ", "
-					+ instance.getDEF()
-					+ ", "
-					+ instance.getBaseHP()
-					+ ", "
-					+ instance.getKarma()
-					+ ", "
-					+ "'"
-					+ StringChecker.escapeSQLString(head)
-					+ "', "
-					+ "'"
-					+ StringChecker.escapeSQLString(armor)
-					+ "', "
-					+ "'"
-					+ StringChecker.escapeSQLString(lhand)
-					+ "', "
-					+ "'"
-					+ StringChecker.escapeSQLString(rhand)
-					+ "', "
-					+ "'"
-					+ StringChecker.escapeSQLString(legs)
-					+ "', "
-					+ "'"
-					+ StringChecker.escapeSQLString(feet)
-					+ "', "
-					+ "'"
-					+ StringChecker.escapeSQLString(cloak) + "'" + ")";
-
-			logger.debug("storeCharacter is running: " + query);
-			stmt.executeUpdate(query);
-			stmt.close();
+			Connection connection =  transaction.getConnection();
+			insertIntoCharStats(instance, connection);
 		} catch (SQLException sqle) {
 			logger.warn("error storing character", sqle);
 			throw sqle;
 		}
 	}
 
+	
 	@Override
 	public void storeCharacter(Transaction transaction, String username,
 			String character, RPObject player) throws SQLException, IOException {
@@ -209,131 +146,13 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 
 			Player instance = (Player) player;
 
-			String head = null;
-			String armor = null;
-			String lhand = null;
-			String rhand = null;
-			String legs = null;
-			String feet = null;
-			String cloak = null;
+		
 
-			Item item = null;
-			item = instance.getHelmet();
-			if (item != null) {
-				head = item.getName();
-			}
-
-			item = instance.getArmor();
-			if (item != null) {
-				armor = item.getName();
-			}
-
-			item = instance.getShield();
-			if (item != null) {
-				lhand = item.getName();
-			}
-
-			List<Item> items = instance.getWeapons();
-			if (items.size() > 0) {
-				rhand = items.get(0).getName();
-			}
-
-			item = instance.getLegs();
-			if (item != null) {
-				legs = item.getName();
-			}
-
-			item = instance.getBoots();
-			if (item != null) {
-				feet = item.getName();
-			}
-
-			item = instance.getCloak();
-			if (item != null) {
-				cloak = item.getName();
-			}
-
-			// first try an update
-			String query = "UPDATE character_stats SET " + "sentence='"
-					+ StringChecker.escapeSQLString(instance.getSentence())
-					+ "', " + "online=false, " + "admin="
-					+ instance.getAdminLevel() + ", " + "age="
-					+ instance.getAge() + ", " + "level=" + instance.getLevel()
-					+ ", " + "outfit='" + instance.getOutfit().getCode()
-					+ "', " + "xp=" + instance.getXP() + ", " + "money="
-					+ instance.getNumberOfEquipped("money") + ", " + "atk="
-					+ instance.getATK() + ", " + "def=" + instance.getDEF()
-					+ ", " + "hp=" + instance.getBaseHP() + ", " + "karma="
-					+ (int) instance.getKarma() + ", " + "head='"
-					+ StringChecker.escapeSQLString(head) + "', " + "armor='"
-					+ StringChecker.escapeSQLString(armor) + "', " + "lhand='"
-					+ StringChecker.escapeSQLString(lhand) + "', " + "rhand='"
-					+ StringChecker.escapeSQLString(rhand) + "', " + "legs='"
-					+ StringChecker.escapeSQLString(legs) + "', " + "feet='"
-					+ StringChecker.escapeSQLString(feet) + "', " + "cloak='"
-					+ StringChecker.escapeSQLString(cloak) + "'"
-					+ " WHERE name='"
-					+ StringChecker.escapeSQLString(player.get("name")) + "'";
-			logger.debug("storeCharacter is running: " + query);
-			int count = stmt.executeUpdate(query);
-
+			
+			int count = updateCharStats(connection, instance);
 			if (count == 0) {
-				// no row was modified, so we need to do an insert
-				query = "INSERT INTO character_stats (name, online, admin, sentence, age, level, outfit, xp, money, atk, def, hp, karma, "
-						+ "head, armor, lhand, rhand, legs, feet, cloak) VALUES ("
-						+ "'"
-						+ StringChecker.escapeSQLString(instance.getName())
-						+ "', "
-						+ " false"
-						+ ", "
-						+ instance.getAdminLevel()
-						+ ", "
-						+ "'"
-						+ StringChecker.escapeSQLString(instance.getSentence())
-						+ "', "
-						+ instance.getAge()
-						+ ", "
-						+ instance.getLevel()
-						+ ", "
-						+ "'"
-						+ instance.getOutfit().getCode()
-						+ "', "
-						+ instance.getXP()
-						+ ", "
-						+ instance.getNumberOfEquipped("money")
-						+ ", "
-						+ instance.getATK()
-						+ ", "
-						+ instance.getDEF()
-						+ ", "
-						+ instance.getBaseHP()
-						+ ", "
-						+ instance.getKarma()
-						+ ", "
-						+ "'"
-						+ StringChecker.escapeSQLString(head)
-						+ "', "
-						+ "'"
-						+ StringChecker.escapeSQLString(armor)
-						+ "', "
-						+ "'"
-						+ StringChecker.escapeSQLString(lhand)
-						+ "', "
-						+ "'"
-						+ StringChecker.escapeSQLString(rhand)
-						+ "', "
-						+ "'"
-						+ StringChecker.escapeSQLString(legs)
-						+ "', "
-						+ "'"
-						+ StringChecker.escapeSQLString(feet)
-						+ "', "
-						+ "'"
-						+ StringChecker.escapeSQLString(cloak)
-						+ "'" + ")";
-
-				logger.debug("storeCharacter is running: " + query);
-				stmt.executeUpdate(query);
+				instance = (Player) player;
+				insertIntoCharStats(instance, connection);
 			}
 			stmt.close();
 		} catch (SQLException sqle) {
@@ -342,10 +161,93 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 		}
 	}
 
+	private int updateCharStats(Connection connection, Player instance) throws SQLException {
+		String updateTemplate = "UPDATE character_stats SET "
+			+ "online=?,admin=?,sentence=?,age=?,level=?,"
+			+ "outfit=?,xp=?,money=?,married=?,atk=?,def=?,hp=?,karma=?,head=?,armor=?,lhand=?,rhand=?,legs=?,feet=?,cloak=? WHERE name=?";
+		PreparedStatement updateCharStatsStatement = connection.prepareStatement(updateTemplate);
+		updateCharStatsStatement.setBoolean(1,false);
+		updateCharStatsStatement.setInt(2, instance.getAdminLevel());
+		updateCharStatsStatement.setString(3, instance.getSentence());
+		updateCharStatsStatement.setInt(4,instance.getAge());
+		updateCharStatsStatement.setInt(5, instance.getLevel());
+		updateCharStatsStatement.setInt(6,instance.getOutfit().getCode());	
+		updateCharStatsStatement.setInt(7,instance.getXP());
+		updateCharStatsStatement.setInt(8,instance.getNumberOfEquipped("money"));
+		//married
+		updateCharStatsStatement.setString(9,null);
+		updateCharStatsStatement.setInt(10,instance.getATK());
+		updateCharStatsStatement.setInt(11,instance.getDEF());
+		updateCharStatsStatement.setInt(12,instance.getHP());
+		updateCharStatsStatement.setDouble(13,instance.getKarma());
+		updateCharStatsStatement.setString(14,extractName(instance.getHelmet()));
+		updateCharStatsStatement.setString(15,extractName(instance.getArmor()));
+		updateCharStatsStatement.setString(16,extractName(instance.getShield()));
+		updateCharStatsStatement.setString(17,extractRhandName(instance));
+		updateCharStatsStatement.setString(18,extractName(instance.getLegs()));
+		updateCharStatsStatement.setString(19,extractName(instance.getBoots()));
+		updateCharStatsStatement.setString(20,extractName(instance.getCloak()));
+		updateCharStatsStatement.setString(21, instance.getName());
+		logger.info("storeCharacter is running: " + updateCharStatsStatement.toString());
+		int count = updateCharStatsStatement.executeUpdate();
+		return count;
+	}
+
+	private void insertIntoCharStats(Player instance, Connection connection) throws SQLException {
+		String insertTemplate="INSERT INTO character_stats (name, online, admin, sentence, age, level, outfit, xp, money, atk, def, hp, karma, "
+			+ "head, armor, lhand, rhand, legs, feet, cloak) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		PreparedStatement insertStatement = connection.prepareStatement(insertTemplate);
+
+		insertStatement.setString(1, instance.getName());
+		insertStatement.setBoolean(2,false);
+		insertStatement.setInt(3, instance.getAdminLevel());
+		insertStatement.setString(4, instance.getSentence());
+		insertStatement.setInt(5,instance.getAge());
+		insertStatement.setInt(6, instance.getLevel());
+		insertStatement.setInt(7,instance.getOutfit().getCode());	
+		insertStatement.setInt(8,instance.getXP());
+		insertStatement.setInt(9,instance.getNumberOfEquipped("money"));
+		insertStatement.setInt(10,instance.getATK());
+		insertStatement.setInt(11,instance.getDEF());
+		insertStatement.setInt(12,instance.getHP());
+		insertStatement.setDouble(13,instance.getKarma());
+		insertStatement.setString(14,extractName(instance.getHelmet()));
+		insertStatement.setString(15,extractName(instance.getArmor()));
+		insertStatement.setString(16,extractName(instance.getShield()));
+		insertStatement.setString(17,extractRhandName(instance));
+		insertStatement.setString(18,extractName(instance.getLegs()));
+		insertStatement.setString(19,extractName(instance.getBoots()));
+		insertStatement.setString(20,extractName(instance.getCloak()));
+
+		logger.debug("storeCharacter is running: " + insertStatement.toString());
+		insertStatement.executeUpdate();
+		
+		connection.commit();
+		insertStatement.close();
+	}
+
+	private String extractRhandName(Player instance) {
+		String rhand=null;
+		List<Item> items = instance.getWeapons();
+		if (items.size() > 0) {
+			rhand = items.get(0).getName();
+		}
+		return rhand;
+	}
+
+	private String extractName(Item item) {
+		if (item != null) {
+			return item.getName();
+		}
+		return null;
+	}
+
 
 
 	/**
-	 * close the database connection TODO This function is not yet used, it
+	 * close the database connection 
+	 * 
+	 * <p>TODO This function is not yet used, it
 	 * should be called for clean shutdown of the game server.
 	 */
 	public static void closeDatabase() {
