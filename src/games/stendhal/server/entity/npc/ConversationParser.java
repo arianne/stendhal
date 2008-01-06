@@ -133,9 +133,9 @@ public class ConversationParser {
 		sentence.setError(parser.getError());
 		sentence.setOriginal(parser.original.toString());
 
-		// derive the singular from the item name if the amount is greater than
-		// one
-		if (sentence.getAmount() != 1) {
+		// derive the singular from the item name if the amount is
+		// greater than one
+		if (object != null && sentence.getAmount() != 1) {
 			object = Grammar.singular(object);
 		}
 
