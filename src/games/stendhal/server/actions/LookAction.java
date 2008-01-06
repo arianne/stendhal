@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.actions;
 
+import org.hamcrest.core.IsInstanceOf;
+
 import games.stendhal.common.NotificationType;
 import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
 import games.stendhal.server.entity.Entity;
@@ -38,6 +40,12 @@ public class LookAction implements ActionListener {
 		}
 
 		if (entity != null) {
+			 if (entity instanceof Player) {
+				Player new_name = (Player) entity;
+				if (new_name.isGhost()){
+					return;
+				}
+			}
 			String name = entity.get(ATTR_TYPE);
 			if (entity.has(ATTR_NAME)) {
 				name = entity.get(ATTR_NAME);
