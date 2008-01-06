@@ -4,6 +4,7 @@ import games.stendhal.server.core.rule.RuleManager;
 import games.stendhal.server.core.rule.RuleSetFactory;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.Outfit;
+import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;
 
 import java.sql.SQLException;
@@ -83,12 +84,12 @@ public class CharacterCreator {
 
 			RuleManager manager = RuleSetFactory.getRuleSet("default");
 
-			object.addSlot("armor");
+			
 			Entity entity = manager.getEntityManager().getItem("leather_armor");
 			RPSlot slot = object.getSlot("armor");
 			slot.add(entity);
 
-			object.addSlot("rhand");
+			
 			entity = manager.getEntityManager().getItem("club");
 			slot = object.getSlot("rhand");
 			slot.add(entity);
@@ -132,7 +133,9 @@ public class CharacterCreator {
 		object.put("def", 10);
 		object.put("def_xp", 0);
 		object.put("xp", 0);
-
+		 for( String slot : RPEntity.CARRYING_SLOTS){
+			 object.addSlot(slot);
+		 }
 		return object;
 	}
 }
