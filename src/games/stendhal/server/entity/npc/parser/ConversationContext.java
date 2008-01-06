@@ -2,11 +2,12 @@ package games.stendhal.server.entity.npc.parser;
 
 /**
  * NPC conversation context holder.
+ * TODO mf - manage conversation state in the NPC conversation engine
  * 
  * @author Martin Fuchs
  */
 public class ConversationContext {
-	
+
 	// conversation context states
 	static final int CCS_NONE			 = 0;	// no current conversation context
 	static final int CCS_WAIT_FOR_YES_NO = 1;	// wait for a yes/no answer
