@@ -901,7 +901,7 @@ public class Sentence {
 		}
 
 		// Now there should be no more expressions at both sides.
-		if (!it1.hasNext() || it2.hasNext()) {
+		if (!it1.hasNext() && !it2.hasNext()) {
 			return true;
 		} else {
 			return false;
