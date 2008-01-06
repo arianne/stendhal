@@ -1,4 +1,4 @@
-	package games.stendhal.server.maps.semos.city;
+package games.stendhal.server.maps.semos.city;
 
 import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
 import games.stendhal.server.core.engine.StendhalRPWorld;
@@ -42,20 +42,20 @@ public class SignLessorNPC extends SpeakerNPCFactory {
 
 	@Override
 	public void createDialog(SpeakerNPC npc) {
-		npc.addGreeting("Hi, I #rent signs and #remove outdated onces.");
+		npc.addGreeting("Hi, I #rent signs and #remove outdated ones.");
 		npc.addJob("I #rent signs for a day.");
-		npc.addHelp("If you want to #rent a sign, just tell me what i should write up on it.");
+		npc.addHelp("If you want to #rent a sign, just tell me what I should write on it.");
 
 		npc.add(ConversationStates.ATTENDING, "rent", 
 			new LevelLessThanCondition(6), 
 			ConversationStates.ATTENDING, 
-			"Oh sorry, i don't rent signs to people who have so little experience like you.",
+			"Oh sorry, I don't rent signs to people who have so little experience as you.",
 			null);
 
 		npc.add(ConversationStates.ATTENDING, "rent", 
 			new AndCondition(new LevelGreaterThanCondition(5), new NotCondition(new TextHasParameterCondition())), 
 			ConversationStates.ATTENDING, 
-			"Just tell me #rent followed by the text i should write on it.",
+			"Just tell me #rent followed by the text I should write on it.",
 			null);
 
 		npc.add(ConversationStates.ATTENDING, "rent", 
@@ -70,7 +70,7 @@ public class SignLessorNPC extends SpeakerNPCFactory {
 					
 					String reply = "A sign costs " + MONEY + " money for 24 hours. Do you want to rent one?";
 					if (rentedSignList.getByName(player.getName()) != null) {
-						reply = reply + " Please note that i will replace the sign you already rented.";
+						reply = reply + " Please note that I will replace the sign you already rented.";
 					}
 
 					npc.say(reply);
@@ -128,7 +128,7 @@ public class SignLessorNPC extends SpeakerNPCFactory {
 		npc.add(ConversationStates.ATTENDING, "remove", 
 			new PlayerHasStoreableEntityCondition(rentedSignList),
 			ConversationStates.ATTENDING,
-			"Ok, i am going to remove your sign.",
+			"Ok, I am going to remove your sign.",
 			new RemoveStoreableEntityAction(rentedSignList));
 
 		npc.add(ConversationStates.ATTENDING, "remove", 
