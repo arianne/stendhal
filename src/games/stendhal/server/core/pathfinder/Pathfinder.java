@@ -104,24 +104,24 @@ class Pathfinder {
 	private TreeNode nodeBest;
 
 	/**
-	 * The entity searching a path
+	 * The entity searching a path.
 	 */
 	private Entity entity;
 
 	/**
-	 * The zone a path is searched
+	 * The zone a path is searched.
 	 */
 	private StendhalRPZone zone;
 
 	/**
-	 * The goal
+	 * The goal.
 	 */
 	private Rectangle2D goalArea;
 
 	private boolean checkEntities;
 
 	/**
-	 * contains the collision data for entities
+	 * Contains the collision data for entities.
 	 */
 	private CollisionDetection collisionMap;
 
@@ -252,8 +252,9 @@ class Pathfinder {
 	}
 
 	/**
-	 * cerates collision data for entities the positions with entities are only
-	 * considered as not valid if they - are next to the start position or -
+	 * Creates collision data for entities.
+	 * <p>The positions with entities are only
+	 * considered as not valid if they: <li> are next to the start position or <li>
 	 * have stopped
 	 */
 	private void createEntityCollisionMap() {
@@ -274,7 +275,7 @@ class Pathfinder {
 	}
 
 	/**
-	 * checks if the goal is reached
+	 * Checks if the goal is reached.
 	 * 
 	 * @param nodeBest
 	 *            the currently best node
@@ -310,7 +311,7 @@ class Pathfinder {
 	}
 
 	/**
-	 * calculates the manhattan distance between to positions
+	 * Calculates the manhattan distance between to positions.
 	 * 
 	 * @param x1
 	 *            x value for position 1
@@ -327,7 +328,7 @@ class Pathfinder {
 	}
 
 	/**
-	 * calculates the square distance between to positions
+	 * Calculates the square distance between to positions.
 	 * 
 	 * @param x1
 	 *            x value for position 1
@@ -470,13 +471,13 @@ class Pathfinder {
 			return parent;
 		}
 
-		/*
-		 * calculates the heuristic for the move form node1 to node2 the right
-		 * heuristic is very importand for A* - a over estimated heuristic will
+		/**
+		 * Calculates the heuristic for the move form node1 to node2. <p> The right
+		 * heuristic is very important for A* - a over estimated heuristic will
 		 * turn A* in to bsf - a under estimated heuristic will turn A* in to
 		 * Dijkstra's so the manhattan distance seams to be the optimal
 		 * heuristic here. But it has one disadvantage. It will expand to much.
-		 * Sevreal nodes will have the same f value It will search the area of
+		 * Several nodes will have the same f value It will search the area of
 		 * the size (abs(startX - goalX) + 1) * (abs(startY - goalY) + 1) So a
 		 * tie-breaker is needed. 1% square distace seems to work fine. A* will
 		 * prefer nodes closer to the goal.
@@ -494,27 +495,19 @@ class Pathfinder {
 		}
 
 		/**
-		 * checks if the entity could stand on a position
+		 * Checks if the entity could stand on the position of this node.
 		 * 
-		 * @param node
-		 *            the position to be checked
 		 * @return true if the the entity could stand on the position
 		 */
 		public boolean isValid() {
-			boolean result = !zone.simpleCollides(entity, x, y);
-			if (checkEntities && result) {
-				Rectangle2D entityArea = entity.getArea(x, y);
-				result = !collisionMap.collides(entityArea);
-			}
-
-			return result;
+			return isValid(x, y);
 		}
 
 		/**
-		 * checks if the entity could stand on a position
+		 * Checks if the entity could stand on the given by the coordinates.
+		 * @param x1 coordinate of the position to be checked
+		 * @param y1 coordinate of the position to be checked
 		 * 
-		 * @param node
-		 *            the position to be checked
 		 * @return true if the the entity could stand on the position
 		 */
 		public boolean isValid(int x1, int y1) {
@@ -528,8 +521,13 @@ class Pathfinder {
 		}
 
 		/**
-		 * creates valid child nodes, the child nodes have to be - a valid position -
-		 * a f value less than maxDistance (checked against the given node)
+		 * Creates valid child nodes.
+		 * <p>
+		 * The child nodes have to be
+		 * <ul>
+		 * <li> a valid position
+		 * <li> a f value less than maxDistance (checked against the given node)
+		 * </ul>
 		 * 
 		 */
 		public void createChildren() {
@@ -542,13 +540,8 @@ class Pathfinder {
 		}
 
 		/**
-		 * Link the children to the parent node. This method may also update the
-		 * parent path if a shorter path is found.
-		 * 
-		 * @param parent
-		 *            the parent node.
-		 * @param child
-		 *            the the new child.
+		 * Links the children to this parent node  and may also update the
+		 * parent path, if a shorter path is found.
 		 */
 		private void linkChild(int x1, int y1) {
 			if (!isValid(x1, y1)) {
@@ -569,7 +562,7 @@ class Pathfinder {
 				nodeRegistry.put(child.nodeNumber, child);
 			} else {
 				// note:
-				// - working on closed nodes is stoped but they may own a better
+				// - working on closed nodes is stopped but they may own a better
 				// parent
 				// so they will also be added to this node (parent)
 				if (child.g > (this.g + 1)) {
@@ -595,7 +588,8 @@ class Pathfinder {
 
 			nodeStack.push(node);
 
-			TreeNode parentTemp, child;
+			TreeNode parentTemp;
+			TreeNode child;
 			while (nodeStack.size() > 0) {
 				parentTemp = nodeStack.pop();
 				c = parentTemp.numChildren;
@@ -612,10 +606,10 @@ class Pathfinder {
 		}
 
 		/**
-		 * calculates the node id
+		 * Calculates the node id.
+		 * @param x of the node
+		 * @param y of the node
 		 * 
-		 * @param node
-		 *            the node
 		 * @return the id of the node
 		 */
 		private int createNodeID(int x, int y) {
