@@ -64,8 +64,7 @@ public class AlterAction extends AdministrationAction {
 
 			boolean isNumerical = false;
 
-			Definition type = clazz.getDefinition(DefinitionClass.ATTRIBUTE,
-					stat);
+			Definition type = clazz.getDefinition(DefinitionClass.ATTRIBUTE, stat);
 			if (type == null) {
 				player.sendPrivateText("Attribute you are altering is not defined in RPClass("
 						+ changed.getRPClass().getName() + ")");
@@ -77,12 +76,12 @@ public class AlterAction extends AdministrationAction {
 				isNumerical = true;
 			}
 
-			if (changed.getRPClass().hasDefinition(DefinitionClass.ATTRIBUTE,
-					stat)) {
+			if (changed.getRPClass().hasDefinition(DefinitionClass.ATTRIBUTE, stat)) {
 				String value = action.get(_VALUE);
 				String mode = action.get(_MODE);
 
-				if (!mode.equalsIgnoreCase(_ADD) && !mode.equalsIgnoreCase(_SUB) && !mode.equalsIgnoreCase(_SET)) {
+				if (mode.length()>0 && !mode.equalsIgnoreCase(_ADD) &&
+						!mode.equalsIgnoreCase(_SUB) && !mode.equalsIgnoreCase(_SET)) {
 					player.sendPrivateText("Please issue one of the modes 'add', 'sub' and 'set'.");
 					return;
 				}

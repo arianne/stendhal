@@ -286,7 +286,7 @@ public class AdministrationActionTest {
 		action.put("type", "alter");
 		action.put("target", "bob");
 		action.put("stat", "0");
-		action.put("mode", "0");
+		action.put("mode", "");
 		action.put("value", 0);
 
 		CommandCenter.execute(pl, action);
@@ -307,7 +307,7 @@ public class AdministrationActionTest {
 		action.put("type", "alter");
 		action.put("target", "bob");
 		action.put("stat", "name");
-		action.put("mode", "0");
+		action.put("mode", "");
 		action.put("value", 0);
 
 		CommandCenter.execute(pl, action);
@@ -331,7 +331,7 @@ public class AdministrationActionTest {
 		action.put("type", "alter");
 		action.put("target", "bob");
 		action.put("stat", "title");
-		action.put("mode", "0");
+		action.put("mode", "");
 		action.put("value", 0);
 
 		CommandCenter.execute(pl, action);
@@ -341,7 +341,6 @@ public class AdministrationActionTest {
 
 	@Test
 	public final void testOnAlterActionHP() {
-
 		AdministrationAction aa = new AlterAction();
 
 		PrivateTextMockingTestPlayer pl = PlayerTestHelper.createPrivateTextMockingTestPlayer("bob");
@@ -354,7 +353,7 @@ public class AdministrationActionTest {
 		action.put("type", "alter");
 		action.put("target", "bob");
 		action.put("stat", "hp");
-		action.put("mode", "0");
+		action.put("mode", "");
 		action.put("value", 0);
 		assertEquals(100, pl.getHP());
 
