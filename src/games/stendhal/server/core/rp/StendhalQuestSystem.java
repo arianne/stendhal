@@ -90,7 +90,7 @@ public class StendhalQuestSystem {
 		loadQuest("MeetIo");
 		loadQuest("MeetKetteh");
 		loadQuest("MeetMonogenes");
-		loadQuest("MeetSanta");
+		// loadQuest("MeetSanta");
 		loadQuest("MeetZynn");
 		loadQuest("NewsFromHackim");
 		// loadQuest("NomyrCataclysm");
