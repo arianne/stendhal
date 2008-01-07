@@ -130,8 +130,11 @@ public class SentenceTest {
 		assertTrue(s1.matches(m1));
 
 		s1 = ConversationParser.parse("do you know Stendhal?");
+		assertEquals("you know stendhal?", s1.getNormalized());
 		m1 = ConversationParser.parseForMatching("SUB-PRO VER Stendhal?");
+		assertEquals("* * stendhal?", m1.getNormalized());
 		m2 = ConversationParser.parseForMatching("SUB ADJ Stendhal?");
+		assertEquals("* * stendhal?", m2.getNormalized());
 		assertFalse(s1.hasError() || m1.hasError() || m2.hasError());
 		assertTrue(s1.matches(m1));
 		assertFalse(s1.matches(m2));
