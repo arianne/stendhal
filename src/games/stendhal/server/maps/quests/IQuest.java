@@ -5,13 +5,13 @@ import games.stendhal.server.entity.player.Player;
 import java.util.List;
 
 /**
- * All quests MUST implement this interface or extend the abstract class.
- * AbstractQuest in order for the loader to recognize them
+ * All quests MUST implement this interface or extend the abstract class
+ * AbstractQuest in order for the loader to recognize them.
  */
 public interface IQuest {
 
 	/**
-	 * Initialize the quest on server startup.
+	 * Initializes the quest on server startup.
 	 *
 	 * @param name
 	 *            Name of this quest
@@ -62,11 +62,12 @@ public interface IQuest {
 	List<String> getHistory(Player player);
 
 	/**
-	 * Gets a list of possible hint-names. The hint system will ensure that the
-	 * same hint is not displayed twice. This class creates a list of useful
-	 * hints (without hints about already completed parts). The texts will be
-	 * looked up in quest.xml
-	 *
+	 * Gets a list of possible hint-names.
+	 * <p>
+	 * The hint system will ensure that the same hint is not displayed twice.
+	 * This class creates a list of useful hints (without hints about already
+	 * completed parts). The texts will be looked up in quest.xml
+	 * 
 	 * @param player
 	 *            Player
 	 * @return list of history item-names

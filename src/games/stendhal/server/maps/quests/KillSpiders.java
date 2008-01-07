@@ -20,15 +20,28 @@ import java.util.List;
 
 /**
  * QUEST: Kill Spiders
- *
- * PARTICIPANTS: - Morgrin
- *
- * STEPS: - Groundskeeper Morgrin ask you to clean up the school basement
- *        - You go kill the spiders in the basement and you get the reward from Morgrin
- *
- * REWARD: - magical egg - 5000 XP
- *
- * REPETITIONS: - after 7 days.
+ * <p>
+ * PARTICIPANTS:
+ * <ul>
+ * <li> Morgrin
+ * </ul>
+ * 
+ * STEPS:
+ * <ul>
+ * <li> Groundskeeper Morgrin ask you to clean up the school basement
+ * <li> You go kill the spiders in the basement and you get the reward from Morgrin
+ * </ul>
+ * <p>
+ * REWARD:
+ * <ul>
+ * <li> magical egg
+ * <li> 5000 XP
+ * </ul>
+ * 
+ * REPETITIONS:
+ * <ul>
+ * <li> after 7 days.
+ * </ul>
  */
 
 public class KillSpiders extends AbstractQuest {
