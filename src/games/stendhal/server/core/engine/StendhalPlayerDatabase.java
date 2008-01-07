@@ -188,7 +188,7 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 		updateCharStatsStatement.setString(19,extractName(instance.getBoots()));
 		updateCharStatsStatement.setString(20,extractName(instance.getCloak()));
 		updateCharStatsStatement.setString(21, instance.getName());
-		logger.info("storeCharacter is running: " + updateCharStatsStatement.toString());
+		logger.debug("storeCharacter is running: " + updateCharStatsStatement.toString());
 		int count = updateCharStatsStatement.executeUpdate();
 		return count;
 	}
@@ -322,8 +322,6 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 	 * @param fametype
 	 *            type of the hall of fame
 	 * @return points or 0 in case there is no entry
-	 * @throws GenericDatabaseException
-	 *             in case of an database error
 	 */
 	public int getHallOfFamePoints(Transaction trans, String playername,
 			String fametype) {
@@ -361,7 +359,6 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 	 * @param points
 	 *            points to store
 	 * @throws SQLException
-	 * @throws GenericDatabaseException
 	 *             in case of an database error
 	 */
 	public void setHallOfFamePoints(Transaction trans, String playername,
@@ -429,8 +426,7 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 	/**
 	 * Assigns the next logid to the specified item in case it does not already have one.
 	 *
-	 * @param item item
-	 * @throws SQLException in case of a database error
+	 * @param items item
 	 */
 	public void itemLogAssignIDIfNotPresent(RPObject... items) {
 		Transaction transaction =  getDatabase().getTransaction();
