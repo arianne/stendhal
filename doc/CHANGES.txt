@@ -8,6 +8,8 @@ Changelog
 - started to use new features of Marauroa 2.0
   - started to rework the way events are send from the server to the client (using RPEvent)
   - started to implement persistent, non-player related data (zone storage)
+- 26.7% of code (block counts) is now covered by automated Junit tests
+
 
 0.65.1 (server only)
 - fixed a problem with access to chests
