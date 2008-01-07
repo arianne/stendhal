@@ -33,7 +33,7 @@ So what are you waiting for?! A whole new world awaits...
 Current Version
 ---------------
 
-Version 0.63
+Version 0.67
 
 
 How to play
