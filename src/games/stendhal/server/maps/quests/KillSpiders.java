@@ -28,7 +28,7 @@ import java.util.List;
  *
  * REWARD: - magical egg - 5000 XP
  *
- * REPETITIONS: - None.
+ * REPETITIONS: - after 7 days.
  */
 
 public class KillSpiders extends AbstractQuest {
@@ -53,7 +53,7 @@ public class KillSpiders extends AbstractQuest {
 							engine.setCurrentState(ConversationStates.ATTENDING);
 						}  else if (player.getQuest(QUEST_SLOT).startsWith("killed;")) {
 							String[] tokens = player.getQuest(QUEST_SLOT).split(";");
-							long delay = 7 * 24 * 60 *  10 * 60 * 1000;
+							long delay = 7 * 24 * 60 *  60 * 1000;
 							long timeRemaining = (Long.parseLong(tokens[1]) + delay) - System.currentTimeMillis();
 							if (timeRemaining > 0) {
 								engine.say("Sorry there is nothing to do for you yet. But maybe you could come back later. I have to clean the school once a week.");
