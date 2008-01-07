@@ -1,5 +1,6 @@
 package games.stendhal.server.util;
 
+import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.NPCList;
@@ -47,10 +48,9 @@ public class EntityHelper {
 			}
 		}
 
-// player name lookup disabled as work around for 1864205
-//		if (entity == null) {
-//			entity = StendhalRPRuleProcessor.get().getPlayer(target);
-//		}
+		if (entity == null) {
+			entity = StendhalRPRuleProcessor.get().getPlayer(target);
+		}
 
 		if (entity == null) {
 			entity = NPCList.get().get(target);
