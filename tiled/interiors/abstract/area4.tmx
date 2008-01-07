@@ -62,17 +62,17 @@
  </tileset>
  <layer name="0_floor" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3VRwoCQRAF0DbnsBAEdSOCLhTFla68hDniDTyVOd/QL7ooiqlmBDO9eMwwVPWfQPUklVLJD3OAExLE/H5ckGsucGt6eI1dHvBCmljejytyzQd+TQ+vsSsPBWhCi5iR8zYUocR6pgyteTS/A11Bz+T/fX4fBoLhG/JHMBZMIAcZdZvzFGQt8mmNhO8R0rNYua6fFrJ5jYTvEY/kPwP/Ribf5Jt8k/8L+VWoQcVGjSQEYSF/DRtmS9atQwPKwj3QGkkM4kL+DvbMweK9veL/a/I/n3+EE3N+Y77Oq/IDEFT6meVzK/Xw2bYjAlGln1k+t1IPn+1vdwFCYbJ5ABAAAA==
+   H4sIAAAAAAAAAO3VuQrCQBDG8fW+j0IIGBsRtFAUK618Ce8TX89b39BPtFiGzGYDmqhs8YMUs/mrYaIlhLACFoIwlFxEIOpyRp7RFYM42C4SkHQ5I8/oqkMDhjCSTKXrMTShRc5sCXnGa3/yajqZmf7f9+ewYCx96K9gzdhADSriuedlqDr05Rmd94jquzh53N9m2nRG5z3itf8O9BmZvumbvun/Qr8LPehozHAykGX6O9gTB+m+fRhAm/kM8gynAEWmf4QTcXb43T7x/2v6wfcvcCVuPvZVPtVPQVqod5buLXeG7raOHOSFemfp3nJn6G5/uzuGYnVAABAAAA==
   </data>
  </layer>
  <layer name="1_terrain" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2VzQqCQBRGfV9NWro12kmJmm7K0ugl/Kln6xNmIeLYTKPODM6Bgxcv3E+Gq1qWGBWsiY3grI4TPA/uBSvmRzCGNnTgDoYr5Xu92iXX/UivTwvfxI9gvmocZD/AxqDt2K+e6hwXmOkz9hJ4WSCflRRmEvN5mDpTGi9KrSpzv0dXeIM5vM88m4UHLGAJnxLyeZk6/3/2zyAH1u8vL2P7ofO/z6AXuu2fR6kNevAFalv6mwAQAAA=
+   H4sIAAAAAAAAAO2VywrCMBBF+8GiLru1uBMVtbrxLT76Cz6/zSNk0UVTE9M2CebAgSkDc0OYtlFkxhVvwrvhrA9DHOFJPJ9x0GD+BKd4wRZmOG4oP87Vbexgt6CX54FP4csw3zUS2wf4M2Q79q3nOv0aZvYUezNMa8hXZY4Li/k6lN2pjKOkdpWq36MlrnCNm4pnq7DFHe7xYCFfl7L7/2X/AnZQ/f7qUrQfPv/7An7h2/7FkjrgB28P1g8fABAAAA==
   </data>
  </layer>
  <layer name="2_object" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3NsREAMAjEsB+b+TIZLQ0D5JAqd074WS0NANM7/gcAkgZsaLrgABAAAA==
+   H4sIAAAAAAAAAO3OoREAIAACQPb17M7nZBaDQc9o8L9Ag4SdMrM+fXHXDh0AVv3zfQAgGUoKimUAEAAA
   </data>
  </layer>
  <layer name="3_roof" width="32" height="32">
@@ -85,7 +85,7 @@
    H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ8HFAAAAPBuEQAcxwAQAAA=
   </data>
  </layer>
- <layer name="objects" width="32" height="32">
+ <layer name="objects" width="32" height="32" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3OMQoAIAxD0ZxbHTyU3q+LqyioVOh/EAhdGulcG8Fd1XsAwsmbNwBSmfRf9eD/Aawl7wEAnjNgfjrUABAAAA==
   </data>
