@@ -60,22 +60,28 @@
  <tileset name="Unbenannt" firstgid="118" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
+ <tileset name="black" firstgid="119" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/ground.png"/>
+ </tileset>
+ <tileset name="black2" firstgid="152" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/ground_2.png"/>
+ </tileset>
  <layer name="0_floor" width="40" height="50">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3UsQoAIAhAQZf6/09uCpqjUPCE2xyeizMiJgAA0NY4vNzt0ndzT3YDwE/Vf/Ge7A4AAKCmBbWC1IdAHwAA
+   H4sIAAAAAAAAAO3UIRIAIAwDwaj+3/NZPJphmHbFuohTqSQFAACMtQ63tlP6AF77/eP09e4DAIDuNhNv5PNAHwAA
   </data>
  </layer>
- <layer name="1_terrain" width="40" height="50">
+ <layer name="1_terrain" width="40" height="50" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO2ZywrCMBBFs63vV7UKijtREBeK+P9f5syikEUiycwwqNwLB4pOmgNtApM2IYSBgBHRZP4bGsFzjIkJcapgSsyEYyVzHENd9oqxHnPAD37aePltiZ2ApZMf1x6IjYDOyY9reS+X7s8efrV7udf+LH3PvdYH/OAHP/jV5BpdPw1r42j8btH1y7A2zj8/X/jBz8pv/sV+qx/xWwR57xKPPROXwtqSOdivJdYCusTYPqk+p038XtIf5c6gJPSxPL/i52t1BnUnHkb34v5Iuj48olm/HoGfLvDTBX66wE8X+OkCP13gp4um//BA2398QvItJtd/vAHLltuHQB8AAA==
   </data>
  </layer>
- <layer name="2_object" width="40" height="50">
+ <layer name="2_object" width="40" height="50" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO2Y2QrCMBBF82Eqal3e3Pdd6w7+/6sTqJjWxqQ244yYA4eBtqZDiTchQsQJRDq6657fZJuonGiBbcXOF999s3imC/YU++Aes6kMhIJ3f5IBOFQc0bbzwiZSsqNrg4QG2LSonnQO4NHgyWIcrHzeWdZ3UOazCe75x70/Cfd8Vvm3fPbgkSVzKfbPj7XFtH5Q5rPp/6jLPy5Q5rPtnMLM5/Obe7bzT8V1Pl/Ec2/+jfdl5Ur8fk86NU2tR1U93woS93S/dUHF4VgYY1cdjEExNmfKmloAi2DJ8Nw/ItflMTjJ6VTgreUzEd83fOICqbfQYX9U328eyfX72fbn5x/P+bcEVzldI/UmSe77PxH7LMfmXDHP2aPHw4k7VnAqKkAfAAA=
   </data>
  </layer>
- <layer name="3_roof" width="40" height="50">
+ <layer name="3_roof" width="40" height="50" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3OMQqAMBBFwdxHERVE1ML738q9QGJhQgpn4LHNLzYlAADg76Zoa7CtZY72BlsA6huisfcTBUu09n6Cz+7MPaIzul52AACQ8wCp8wjfQB8AAA==
   </data>

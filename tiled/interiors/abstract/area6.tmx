@@ -53,12 +53,12 @@
  </tileset>
  <layer name="0_floor" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3XOw7CMBBFUbMCFAmEgAqBoOAnKqBhFVBmk5SsjkkxyFhjz7PjJI2RbkOUnNfFqYwx1cDNgObUBGwKPhP1G3tBLcE24AbEZ3tFfcDW4AbNt+06wq/BDSHftWN9ZIPPl+wUX9sg+T471Q9tcP2Q3cb3bbB9zW7rSxvYR+wcvruB/S21U+7L5TftqUOCn6viF7/4xWf/SJ2ocw/2hbpRd/P//uljg21L798uN7i27/zRxQbJDp2/cm7w2dr5M8eGkI2cv9ts0Gz0+yNlA2LHfH/xhqvTk3oJ/yN2jM8bHlbvkfn9xs41xLb9IfsC8uzq+QAQAAA=
+   H4sIAAAAAAAAAO3XOw7CMBBFUW8hEggBFQJBwU9UQMNOslFWx6QYyVj2zLM9SRoXt0zO62x3zrlu5lZAa2oBtgT/ifqDvaG2YAdwA+KzvaO+YHtwg+b7dp/h9+AGyQ/tXB/ZkPJjdomvbYj5KbvUlzaEvmTX+KkNvq/ZtX5sA/uIbeGHG9g/UiflOyt/6ExdCnyrmt/85jef/St1o+4T2A/qRb3d//kzxQbfjp2/Y24I7dT9Y4wNMVu6f1luSNna/dNig2Qj9++aDZqNvj9KNiB2zvuLNzzBEDvH5w0fMMT2/Tn7AXmVhmcAEAAA
   </data>
  </layer>
  <layer name="1_terrain" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAVDBcgzMjDMxiM/G6qGlvZTQ82o/UPD/kKgWUVA3MA4MPYXA80qQTKP3vbXoZlF6/xXTUAvyGxkTEicHDuIBXuAeC8U76OOkUSDGkZM+2tomO+wgYH0P7H2g9IvLA9TE5AS/rA8XE9lNxAb/rU0ShfDMf2TUjaQ6//R8oc6YCiUP7QCo+E/Gv7rgfZtgOKNdLYbBjYzQvCWAbKfGgAAPOE5igAQAAA=
+   H4sIAAAAAAAAAGNgGAVDBcgzMjDMxiM/G6qGlvZTQ82o/UPD/kKgWUVA3MA4MPYXA80qQTKP3vbXoZlF6/xXTUAvyGxkTEicHDuIBXuAeC8U76OOkUSDGkZM+2tomO+wgYH0P7H2g9IvLA9TE5AS/rA8XE9lNxAb/rU0ShfDMf2TUjaQ6//R8oc6YCiUP7QCo+E/Gv7rgfZtgOKNdLYbZv9mKN4yAPZTCwAABCD8swAQAAA=
   </data>
  </layer>
  <layer name="2_object" width="32" height="32">
@@ -81,7 +81,7 @@
    H4sIAAAAAAAAAGNgGAWjgDwwh3GgXTAKRsHAgOWM2NmjYBRQAqbRMC3R0uxRMApGwSgYBaNgpIDtjBA8lAEAwQnahwAQAAA=
   </data>
  </layer>
- <layer name="collision" width="32" height="32" visible="0" opacity="0.49">
+ <layer name="collision" width="32" height="32" opacity="0.49">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO2OUQrAMAxCc9Te/xT7H7YxMWk7mCCszPgcZjZ+X297fSOhbBXbbM1GmUp2hq9u8LoZfnYD281mMmz0zvLZDShfxfc2MN2rXLQnumGWVToid4yYXIbvMaL3Cl/VTj7qVvkoO7vv4Kv6Oh9lo/fqhqxOsqs2oFzk1nOXGHbXhgjb24D+efmsVSlsdUMFG21Am1Cm2ztZN/Ir/ABLd/78ABAAAA==
   </data>
