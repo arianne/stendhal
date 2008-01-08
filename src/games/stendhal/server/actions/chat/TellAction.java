@@ -24,7 +24,7 @@ public class TellAction implements ActionListener {
 	private String receiverName;
 	private Player sender;
 	private Player receiver;
-	
+
 	private void init(Player player, RPAction action) {
 		text = action.get(TEXT).trim();
 		senderName = player.getName();

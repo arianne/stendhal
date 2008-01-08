@@ -127,7 +127,6 @@ public abstract class AdministrationAction implements ActionListener {
 		}
 
 		perform(player, action);
-
 	}
 
 	protected abstract void perform(Player player, RPAction action);
