@@ -145,4 +145,44 @@ public class LookActionTest {
 		player1.resetPrivateTextString();
 	}
 
+	@Test
+	// Test for 1864205 - /look adminname shows admin in ghostmode
+	public void testLookAdmin() {
+		PrivateTextMockingTestPlayer player1 = (PrivateTextMockingTestPlayer) MockStendhalRPRuleProcessor.get().getPlayer("player1");
+		assertNotNull(player1);
+
+		PrivateTextMockingTestPlayer player2 = (PrivateTextMockingTestPlayer) MockStendhalRPRuleProcessor.get().getPlayer("player2");
+		assertNotNull(player2);
+
+		player1.setAdminLevel(0);
+		player2.setGhost(false);
+		RPAction action = new RPAction();
+		action.put("type", "look");
+		action.put("target", "player2");
+		boolean executeSucceeded = CommandCenter.execute(player1, action);
+		assertTrue(executeSucceeded);
+		assertTrue(player1.getPrivateTextString().startsWith("You see player2."));
+		player1.resetPrivateTextString();
+
+		player1.setAdminLevel(0);
+		player2.setGhost(true);
+		action = new RPAction();
+		action.put("type", "look");
+		action.put("target", "player2");
+		executeSucceeded = CommandCenter.execute(player1, action);
+		assertTrue(executeSucceeded);
+		assertEquals("", player1.getPrivateTextString());
+		player1.resetPrivateTextString();
+
+		player1.setAdminLevel(1000);
+		player2.setGhost(true);
+		action = new RPAction();
+		action.put("type", "look");
+		action.put("target", "player2");
+		executeSucceeded = CommandCenter.execute(player1, action);
+		assertTrue(executeSucceeded);
+		assertTrue(player1.getPrivateTextString().startsWith("You see player2."));
+		player1.resetPrivateTextString();
+	}
+
 }
