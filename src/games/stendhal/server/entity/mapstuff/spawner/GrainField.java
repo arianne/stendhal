@@ -69,7 +69,8 @@ public class GrainField extends GrowingPassiveEntityRespawnPoint implements
 		if (entity.nextTo(this)) {
 			if (getRipeness() == RIPE) {
 				if (entity.isEquipped("old_scythe")
-						|| entity.isEquipped("scythe")) {
+					|| entity.isEquipped("scythe") 
+					|| entity.isEquipped("black_scythe")) {
 					onFruitPicked(null);
 					Item grain = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
 							"grain");
