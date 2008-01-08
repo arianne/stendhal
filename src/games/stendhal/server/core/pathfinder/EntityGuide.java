@@ -23,7 +23,7 @@ public class EntityGuide {
 	 */
 	public FixedPath path;
 	/**
-	 * current position in the path
+	 * current position in the path.
 	 */
 	public int pathPosition;
 

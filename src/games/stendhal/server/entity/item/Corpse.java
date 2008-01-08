@@ -187,7 +187,7 @@ public class Corpse extends PassiveEntity implements TurnListener,
 	/**
 	 * Set the killer name of the corpse.
 	 * 
-	 * @param name
+	 * @param killer
 	 *            The corpse's killer name.
 	 */
 	public void setKiller(final String killer) {

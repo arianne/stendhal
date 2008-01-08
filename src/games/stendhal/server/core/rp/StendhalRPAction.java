@@ -281,15 +281,15 @@ public class StendhalRPAction {
 		if (weapons.isEmpty()) {
 			return 5;
 		}
-		int best = weapons.get(0).getAttackRate();
+		int bestRate = weapons.get(0).getAttackRate();
 		for (Item weapon : weapons) {
-			int res = weapon.getAttackRate();
-			if (res < best) {
-				best = res;
+			int currentRate = weapon.getAttackRate();
+			if (currentRate < bestRate) {
+				bestRate = currentRate;
 			}
 		}
 
-		return best;
+		return bestRate;
 	}
 
 	/**

@@ -103,7 +103,7 @@ public final class EntityMap {
 	 * @param eclass
 	 *            the subtype of type such as book, drink, food , ,
 	 *            small_animal, huge_animal
-	 * @param entityClass
+	 * @param entityClazz
 	 *            the java class of the Entity
 	 */
 	private static void register(final String type, final String eclass,

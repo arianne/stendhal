@@ -652,7 +652,7 @@ class PlayerRPClass {
 		String msg = "This release is EXPERIMENTAL. Need help? #http://arianne.sourceforge.net/wiki/index.php?title=AskForHelp - please report problems, suggestions and bugs. Remember to keep your password completely secret, never tell to another friend, player, or admin.";
 		try {
 			Configuration config = Configuration.getConfiguration();
-			if (config.has("server_welcome)")) {
+			if (config.has("server_welcome")) {
 				msg = config.get("server_welcome");
 				if (msg.startsWith("http://")) {
 					URL url = new URL(msg);

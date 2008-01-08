@@ -31,8 +31,6 @@ public class ItemDumper {
 	 * 
 	 * @param db
 	 *            JDBCPlayerDatabase
-	 * @throws GenericDatabaseException
-	 *             if no database connection can be created
 	 */
 	private ItemDumper(StendhalPlayerDatabase db) {
 		this.db = db;

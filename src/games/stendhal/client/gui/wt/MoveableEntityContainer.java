@@ -56,7 +56,8 @@ public class MoveableEntityContainer implements WtDraggable {
 	// MoveableEntityContainer
 	//
 
-	/** fills the action with the appropiate 'move from' parameters. */
+	/** Fills the action with appropriate 'move from' parameters. 
+	 * @param action to be filled*/
 	public void fillRPAction(RPAction action) {
 		RPObject rpObject = entity.getRPObject();
 
@@ -132,6 +133,7 @@ public class MoveableEntityContainer implements WtDraggable {
 
 	/**
 	 * draws the entity.
+	 * @param g the Graphic context to draw to.
 	 */
 	public void drawDragged(Graphics g) {
 		if (view != null) {

@@ -111,6 +111,7 @@ public class CreatureRespawnPoint implements TurnListener {
 	/**
 	 * Sets the time it takes to respawn a creature. Note that this value
 	 * defaults to the creature's default respawn time.
+	 * @param respawnTime the middled delay between spawns 
 	 */
 	public void setRespawnTime(int respawnTime) {
 		this.respawnTime = respawnTime;

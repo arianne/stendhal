@@ -283,7 +283,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 		return getItemClass().equals(clazz);
 	}
 
-	/** returns the type of the item */
+	/** @return the type of the item */
 	public String getItemClass() {
 		if (has("class")) {
 			return get("class");
@@ -293,7 +293,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 				+ this);
 	}
 
-	/** returns the type of the item */
+	/** @return the subclass of the item */
 	public String getItemSubclass() {
 		if (has("subclass")) {
 			return get("subclass");
@@ -304,7 +304,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	}
 
 	/**
-	 * Get the name of the item.
+	 * Gets the name of the item.
 	 * 
 	 * @return The programatic item name.
 	 */
@@ -321,7 +321,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 		return 1;
 	}
 
-	/** returns the list of possible slots for this item */
+	/** @return the list of possible slots for this item */
 	public List<String> getPossibleSlots() {
 		return possibleSlots;
 	}
@@ -341,10 +341,10 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	}
 
 	/**
-	 * Get the item's infostring. The infostring contains context specific
+	 * Get the item's infoString. The infoString contains context specific
 	 * information that is used by the implementation.
 	 * 
-	 * @return The infostring.
+	 * @return The infoString.
 	 */
 	public String getInfoString() {
 		if (has("infostring")) {
@@ -369,10 +369,13 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	}
 
 	/**
-	 * Is the item undroppable. Undroppable items will never be dropped if the
-	 * player dies.
+	 * Is the item undroppable. 
 	 * 
-	 * @return true if item is undroppable.
+	 * On player death items carried may be dropped into the players corpse.
+	 * unless this method returns true.
+	 * 
+	 * 
+	 * @return true if item may not be dropped on death of players.
 	 */
 	public boolean isUndroppableOnDeath() {
 		if (has("undroppableondeath")) {

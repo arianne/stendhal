@@ -6,6 +6,7 @@ package games.stendhal.common.filter;
  * all the objects in the collection. </p>
  * @author David Rappoport
  * @version 1.0
+ * @param <T> type of the item to check.
  */
 
 public interface FilterCriteria<T> {
@@ -27,7 +28,8 @@ public interface FilterCriteria<T> {
      * 3) Now filter:
      * filter.filter(carCollection);
      * @param o
-     * @return
+     * @return true, if a given object in the collection
+     * passes this filter.
      */
     boolean passes(T o);
 }

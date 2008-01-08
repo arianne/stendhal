@@ -15,6 +15,7 @@ import java.util.Iterator;
  * 
  * @author David Rappoport
  * @version 1.0
+ * @param <T> generic type of collection elements
  */
 
 public class CollectionFilter<T> {
@@ -84,7 +85,7 @@ public class CollectionFilter<T> {
 	 * method.
 	 * 
 	 * @param o
-	 * @return
+	 * @return true if all criteria are passed
 	 */
 	private boolean passesAllCriteria(T o) {
 		for (int i = 0; i < allFilterCriteria.size(); i++) {
@@ -100,7 +101,7 @@ public class CollectionFilter<T> {
 	 * Call the no arguments constructor of the object passed.
 	 * 
 	 * @param object
-	 * @return
+	 * @return a new Instance of the same type as object passed
 	 */
 	@SuppressWarnings("unchecked")
 	public Object createObjectSameClass(Object object) {

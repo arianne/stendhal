@@ -102,6 +102,10 @@ public class StaticGameLayers {
 
 	/**
 	 * Add a new Layer to the set.
+	 * @param area 
+	 * @param layer 
+	 * @param in 
+	 * @throws IOException 
 	 * 
 	 * @throws ClassNotFoundException
 	 */

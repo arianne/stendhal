@@ -370,10 +370,10 @@ public class StendhalRPWorld extends RPWorld {
 	}
 
 	/**
-	 * Find a named zone.
+	 * Find a zone by its id
 	 * 
-	 * @param name
-	 *            The zone name.
+	 * @param id
+	 *            The zone's id
 	 * 
 	 * @return The matching zone, or <code>null</code> if not found.
 	 */

@@ -7,8 +7,8 @@ import games.stendhal.server.entity.npc.SpeakerNPCFactory;
  * An old man (original name: Monogenes) who stands around and gives directions
  * to newcomers. He's the brother of RetireeNPC (original name: Diogenes).
  *
- * @see MeetMonogenes
- * @see HatForMonogenes
+ * @see games.stendhal.server.maps.quests.MeetMonogenes
+ * @see games.stendhal.server.maps.quests.HatForMonogenes
  */
 public class GreeterNPC extends SpeakerNPCFactory {
 

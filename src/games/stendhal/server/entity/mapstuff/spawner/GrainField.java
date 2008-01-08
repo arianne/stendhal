@@ -62,6 +62,8 @@ public class GrainField extends GrowingPassiveEntityRespawnPoint implements
 
 	/**
 	 * Is called when a player tries to harvest this grain field.
+	 * @param entity the harvesting entity
+	 * @return true if successful
 	 */
 	public boolean onUsed(RPEntity entity) {
 		if (entity.nextTo(this)) {

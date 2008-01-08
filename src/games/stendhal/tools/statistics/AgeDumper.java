@@ -30,8 +30,6 @@ public class AgeDumper {
 	 * 
 	 * @param db
 	 *            JDBCPlayerDatabase
-	 * @throws GenericDatabaseException
-	 *             if no database connection can be created
 	 */
 	private AgeDumper(StendhalPlayerDatabase db) {
 		this.db = db;

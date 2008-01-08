@@ -58,6 +58,8 @@ public class VegetableGrower extends GrowingPassiveEntityRespawnPoint implements
 
 	/**
 	 * Is called when a player tries to harvest this item.
+	 * @param entity that tries to harvest
+	 * @return true on success
 	 */
 	public boolean onUsed(RPEntity entity) {
 		if (entity.nextTo(this)) {

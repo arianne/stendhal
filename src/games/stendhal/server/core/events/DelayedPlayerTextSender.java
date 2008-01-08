@@ -11,8 +11,9 @@ class DelayedPlayerTextSender implements TurnListener {
 	private Player player;
 	private String message;
 	private NotificationType type;
+	
 	/**
-	 * Creates a new DelayedPlayerTextSender.
+	 * Creates a new private message type DelayedPlayerTextSender 
 	 * 
 	 * @param player
 	 *            Player to send this message to
@@ -31,12 +32,16 @@ class DelayedPlayerTextSender implements TurnListener {
 	 *            Player to send this message to
 	 * @param message
 	 *            message
+	 * @param type
+	 *            logical notificationType
 	 */
 	DelayedPlayerTextSender(Player player, String message, NotificationType type) {
 		this.player = player;
 		this.message = message;
 		this.type = type;
 	}
+	
+	
 	public void onTurnReached(int currentTurn) {
 		player.sendPrivateText(type, message);
 	}

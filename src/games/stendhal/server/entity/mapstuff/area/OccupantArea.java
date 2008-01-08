@@ -46,8 +46,6 @@ public class OccupantArea extends AreaEntity implements MovementListener,
 	/**
 	 * Create an occupant area.
 	 * 
-	 * @param name
-	 *            The entity name.
 	 * @param width
 	 *            Width of this area
 	 * @param height
@@ -84,6 +82,8 @@ public class OccupantArea extends AreaEntity implements MovementListener,
 
 	/**
 	 * Check if an entity is an [acknowledged] occupant of this area.
+	 * @param entity to be tested
+	 * @return true if is occupant
 	 * 
 	 * 
 	 */

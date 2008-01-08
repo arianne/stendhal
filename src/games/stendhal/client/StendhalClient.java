@@ -545,6 +545,7 @@ public class StendhalClient extends ClientFramework {
 
 	/**
 	 * Handle player changes.
+	 * @param object the player object
 	 */
 	protected void setPlayer(RPObject object) {
 		/*

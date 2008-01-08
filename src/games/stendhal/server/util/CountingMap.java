@@ -10,8 +10,6 @@ import java.util.TreeMap;
  * A map which assigns a unique id to every entry
  * 
  * @author hendrik
- * @param <K>
- *            key type
  * @param <V>
  *            value type
  */

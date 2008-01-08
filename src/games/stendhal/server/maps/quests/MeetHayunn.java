@@ -16,13 +16,15 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * QUEST: Speak with Hayunn PARTICIPANTS: - Hayunn Naratha
+ * QUEST: Speak with Hayunn 
+ * <p>
+ * PARTICIPANTS: <ul><li> Hayunn Naratha</ul>
  *
- * STEPS: - Talk to Hayunn to activate the quest and keep speaking with Hayunn.
+ * STEPS: <ul><li> Talk to Hayunn to activate the quest and keep speaking with Hayunn.</ul>
  *
- * REWARD: - 10 XP - 5 gold coins
+ * REWARD: <ul><li> 10 XP <li> 5 gold coins</ul>
  *
- * REPETITIONS: - As much as wanted, but you only get the reward once.
+ * REPETITIONS: <ul><li> As much as wanted, but you only get the reward once.</ul>
  */
 public class MeetHayunn extends AbstractQuest {
 

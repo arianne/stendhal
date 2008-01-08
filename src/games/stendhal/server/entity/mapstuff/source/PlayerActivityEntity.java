@@ -64,13 +64,15 @@ public abstract class PlayerActivityEntity extends Entity implements
 
 	/**
 	 * Decides if the activity can be done.
+	 * @param player for whom to perform the activity
 	 * 
-	 * @return <code>true</code> if successful.
+	 * @return <code>true</code> if can be done
 	 */
 	protected abstract boolean isPrepared(final Player player);
 
 	/**
 	 * Decides if the activity was successful.
+	 * @param player for whom to perform the activity
 	 * 
 	 * @return <code>true</code> if successful.
 	 */

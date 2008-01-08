@@ -422,10 +422,8 @@ public class GameScreen implements PositionChangeListener, IGameScreen {
 	}
 
 	/**
-	 * Update the view position to center the target position.
+	 * Updates the view position to center the target position.
 	 * 
-	 * @param immediate
-	 *            Center on the coodinates immediately.
 	 */
 	protected void calculateView() {
 		int cvx = (x * SIZE_UNIT_PIXELS) + (SIZE_UNIT_PIXELS / 2) - (sw / 2);

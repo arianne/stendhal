@@ -71,8 +71,6 @@ class GroupsXMLLoader extends DefaultHandler {
 	/**
 	 * Load and returns the list of files.
 	 * 
-	 * @param world
-	 *            The world to load into.
 	 * @param in
 	 *            The config file stream.
 	 * @return list of group entries

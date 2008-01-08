@@ -63,10 +63,11 @@ public class User extends Player {
 	private int modificationCount;
 
 	/**
-	 * returns the modificationCount. This counter is increased each time a
+	 * Returns the modificationCount. This counter is increased each time a
 	 * perception is received from the server (so all serverside changes
-	 * increases the mod-count). This counters purpose is to be sure that this
+	 * increases the mod-count). This counter's purpose is to be sure that this
 	 * entity is modified or not (ie for gui elements).
+	 * @return a number representing the amount of changes.
 	 */
 	public long getModificationCount() {
 		return modificationCount;

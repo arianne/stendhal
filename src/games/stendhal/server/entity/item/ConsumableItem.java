@@ -98,6 +98,8 @@ public class ConsumableItem extends StackableItem implements UseListener,
 	/**
 	 * verifies item is near to player. if so splits one single item of and
 	 * calls consumeItem of the player
+	 * @param user the eating player
+	 * @return true if consumption can be started
 	 * 
 	 */
 	public boolean onUsed(RPEntity user) {

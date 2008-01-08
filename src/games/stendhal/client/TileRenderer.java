@@ -42,6 +42,8 @@ public class TileRenderer extends LayerRenderer {
 
 	/**
 	 * Sets the data that will be rendered.
+	 * @param in the stream to read from
+	 * @throws IOException 
 	 * 
 	 * @throws ClassNotFoundException
 	 */

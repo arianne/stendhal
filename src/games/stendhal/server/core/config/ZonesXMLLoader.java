@@ -66,6 +66,7 @@ public class ZonesXMLLoader {
 
 	/**
 	 * Create an xml based loader of zones.
+	 * @param uri the zone group file
 	 */
 	public ZonesXMLLoader(URI uri) {
 		this.uri = uri;
@@ -76,31 +77,31 @@ public class ZonesXMLLoader {
 	//
 
 	/**
-	 * Load a group of zones into a world.
-	 * 
-	 * @throws SAXException
-	 *             If a SAX error occurred.
-	 * @throws IOException
-	 *             If an I/O error occurred.
-	 * @throws FileNotFoundException
-	 *             If the resource was not found.
-	 */
-	public void load() throws SAXException, IOException {
-		InputStream in = getClass().getResourceAsStream(uri.getPath());
-
-		if (in == null) {
-			throw new FileNotFoundException("Cannot find resource: " + uri);
+		 * Load a group of zones into a world.
+		 * 
+		 * @throws SAXException
+		 *             If a SAX error occurred.
+		 * @throws IOException
+		 *             If an I/O error occurred.
+		 * @throws FileNotFoundException
+		 *             If the resource was not found.
+		 */
+		public void load() throws SAXException, IOException {
+			InputStream in = getClass().getResourceAsStream(uri.getPath());
+	
+			if (in == null) {
+				throw new FileNotFoundException("Cannot find resource: " + uri);
+			}
+	
+			try {
+				load(in);
+			} finally {
+				in.close();
+			}
 		}
-
-		try {
-			load(in);
-		} finally {
-			in.close();
-		}
-	}
 
 	/**
-	 * Load a group of zones into a world using a config file.
+	 * Loads a group of zones into a world using a config file.
 	 * 
 	 * @param in
 	 *            The config file stream.
@@ -165,8 +166,13 @@ public class ZonesXMLLoader {
 	}
 
 	/**
-	 * Load zone data and create a zone from it. Most of this should be moved
+	 * Load zone data and create a new zone from it. Most of this should be moved
 	 * directly into ZoneXMLLoader.
+	 * @param desc the zone's descriptor 
+	 * @param zonedata to be loaded
+	 * @return the created zone
+	 * @throws SAXException if any xml parsing error happened
+	 * @throws IOException if any IO error happened
 	 * 
 	 * 
 	 */
@@ -426,7 +432,8 @@ public class ZonesXMLLoader {
 		}
 
 		/**
-		 * Get the zone title.
+		 * Gets the zone's title.
+		 * @return the zone's title
 		 * 
 		 */
 		public String getTitle() {
@@ -454,7 +461,8 @@ public class ZonesXMLLoader {
 		}
 
 		/**
-		 * Set the zone title.
+		 * Sets the zone title.
+		 * @param title of the zone
 		 * 
 		 */
 		public void setTitle(String title) {

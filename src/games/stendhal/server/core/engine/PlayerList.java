@@ -79,7 +79,7 @@ public class PlayerList {
 	/**
 	 * The amount of currently logged in players.
 	 * 
-	 * @return
+	 * @return the amount Player items in this list.
 	 */
 	public int size() {
 		return players.size();

@@ -377,7 +377,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 	 * 
 	 * TODO: XXX - This should be moved to the zone loader or something.
 	 */
-	public void populate(LayerDefinition objectsLayer) throws IOException {
+	public void populate(LayerDefinition objectsLayer) {
 		/* We build the layer data */
 		objectsLayer.build();
 
@@ -403,6 +403,15 @@ public class StendhalRPZone extends MarauroaRPZone {
 	 * @param clazz
 	 *            the clazz of entity we are loading.<br>
 	 *            It is related to the way entities are stored in tilesets now.
+	 * @param type integer to represent the type of entity to be created.
+	 * <p> if the class contains portal type is evaluated as follows: 
+	 * <ul>
+	 * <li> 0 , 1  entry point 
+	 * <li> 1 zone change
+	 * <li> 5 ,2 , 3 LevelPortal
+	 
+	 * @param x 
+	 * @param y 
 	 * 
 	 * 
 	 */
@@ -602,7 +611,6 @@ public class StendhalRPZone extends MarauroaRPZone {
 	 * @param player
 	 *            The player who put the object on the ground, or null if the
 	 *            object wasn't carried by a player before
-	 * @throws RPObjectInvalidException
 	 */
 	public synchronized void add(RPObject object, Player player) {
 		/*

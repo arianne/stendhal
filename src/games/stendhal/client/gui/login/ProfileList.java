@@ -63,6 +63,8 @@ public class ProfileList {
 	/**
 	 * Load a list of profiles from an input stream. This will replace any
 	 * existing list.
+	 * @param in The Stream to read
+	 * @throws IOException if any IO operation fails
 	 */
 	public void load(InputStream in) throws IOException {
 		Encoder codec = new Encoder();
@@ -92,6 +94,7 @@ public class ProfileList {
 	 * 
 	 * @param out
 	 *            The stream to write.
+	 * @throws IOException if any IO operation fails
 	 */
 	public void save(OutputStream out) throws IOException {
 		Encoder codec = new Encoder();

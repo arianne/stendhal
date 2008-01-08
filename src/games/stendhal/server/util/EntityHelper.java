@@ -28,7 +28,8 @@ public class EntityHelper {
 	 *            representation of the target
 	 * @param zone
 	 *            to search for objects
-	 * @return
+	 * @return the entity associated either with name or id or
+	 *         <code> null </code> if none was found.
 	 */
 	public static Entity entityFromTargetName(String target, StendhalRPZone zone) {
 		Entity entity = null;

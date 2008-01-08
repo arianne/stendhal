@@ -11,8 +11,8 @@ import games.stendhal.server.entity.player.Player;
 /**
  * An old hero (original name: Hayunn Naratha) who guards the dungeon entrance.
  *
- * @see BeerForHayunn
- * @see MeetHayunn
+ * @see games.stendhal.server.maps.quests.BeerForHayunn
+ * @see games.stendhal.server.maps.quests.MeetHayunn
  */
 public class RetiredAdventurerNPC extends SpeakerNPCFactory {
 

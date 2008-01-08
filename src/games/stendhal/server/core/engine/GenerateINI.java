@@ -53,6 +53,9 @@ public class GenerateINI {
 	 * 
 	 * @param input
 	 *            the input stream, usually System.in
+	 * @param errorMessage
+	 *            the error message to print when failing
+	 * @return string read from input
 	 */
 	public static String getStringWithoutDefault(BufferedReader input,
 			String errorMessage) {

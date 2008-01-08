@@ -42,8 +42,6 @@ public class ZoneGroupsXMLLoader extends DefaultHandler {
 	 *             If a SAX error occurred.
 	 * @throws IOException
 	 *             If an I/O error occurred.
-	 * @throws FileNotFoundException
-	 *             If the resource was not found.
 	 */
 	public void load() throws SAXException, IOException {
 		GroupsXMLLoader groupsLoader = new GroupsXMLLoader(uri);

@@ -37,9 +37,9 @@ class AlterAction implements SlashAction {
 	/**
 	 * Checks whether the arguments passed are valid for execution.
 	 * 
-	 * @param params
-	 * @param remainder
-	 * @return
+	 * @param params to be evaluated
+	 * @param remainder to be evaluated
+	 * @return true if <code>params</code>.length too short or remainder is <code>null</code>
 	 */
 	private boolean hasInvalidArguments(String[] params, String remainder) {
 		return params == null || remainder == null || params.length < getMinimumParameters();

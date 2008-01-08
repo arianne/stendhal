@@ -20,12 +20,13 @@ import org.apache.log4j.Logger;
  * Represents a teleport scroll that takes the player to a specified location
  * for a specified time, after which it will teleport the player to given
  * location.
- * 
- * infostring attribute in items.xml: 1_dreamscape 77 35 5400 0_semos_plains_s
- * -1 -1 where 1_dreamscape is the target zone name; 77 and 35 are the target x
- * and y position; 5400 is the number of turns before return; 0_semos_plains_s
- * is the return zone; -1 and -1 are the return x and y positions (negative
- * value means a random position)
+ * <p>
+ * infostring attribute in items.xml:<p> 
+ * <code> 1_dreamscape 77 35 5400 0_semos_plains_s -1 -1 </code>
+ * <p>where <ul><li>1_dreamscape is the target zone name; <li>77 and 35 are the target x
+ * and y position; <li>5400 is the number of turns before return; <li>0_semos_plains_s
+ * is the return zone; <li>-1 and -1 are the return x and y positions (negative
+ * value means a random position)</ul>
  * 
  * TODO: This class isn't fully self-containing as the LoginHandler (that
  * handles the players logging in the target zone) must be implemented
@@ -39,9 +40,6 @@ public class TimedTeleportScroll extends TeleportScroll {
 	 * Teleport the player back from the target zone.
 	 * 
 	 * @param player
-	 * @param returnZone
-	 * @param x
-	 * @param y
 	 * @return true if teleport was successful
 	 */
 	public boolean teleportBack(Player player) {

@@ -199,6 +199,7 @@ public class RPObjectChangeDispatcher {
 	/**
 	 * Fix parent <-> child linkage. TODO: Remove once containers are set right
 	 * on creation.
+	 * @param object whose slots shall be fixed.
 	 */
 	protected void fixContainers(final RPObject object) {
 		for (RPSlot slot : object.slots()) {

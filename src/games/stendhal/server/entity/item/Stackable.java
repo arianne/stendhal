@@ -19,16 +19,19 @@ package games.stendhal.server.entity.item;
  */
 public interface Stackable {
 
-	/** returns the quantity */
+	/** @return the quantity */
 	int getQuantity();
 
-	/** sets the quantity */
+	/** sets the quantity 
+	 * @param amount to be set*/
 	void setQuantity(int amount);
 
-	/** adds the quantity of the other Stackable to this */
+	/** adds the quantity of the other Stackable to this 
+	 * @param other 
+	 * @return */
 	int add(Stackable other);
 
-	/** returns true when both stackables are of the same type and can be merged */
+	/** @return true when both stackables are of the same type and can be merged */
 	boolean isStackable(Stackable other);
 
 }

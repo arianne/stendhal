@@ -22,10 +22,10 @@ public interface IGameScreen {
 	/** The width / height of one tile. */
 	int SIZE_UNIT_PIXELS = 32;
 
-	/** Returns screen width in world units. */
+	/** @return screen width in world units. */
 	double getViewWidth();
 
-	/** Returns screen height in world units .*/
+	/** @return screen height in world units .*/
 	double getViewHeight();
 
 	/** Prepare screen for the next frame to be rendered and move it if needed .*/
@@ -56,7 +56,7 @@ public interface IGameScreen {
 	void removeEntity(final Entity entity);
 
 	/**
-	 * Returns the Graphics2D object in case you want to operate it directly.
+	 * @return the Graphics2D object in case you want to operate it directly.
 	 * Ex. GUI
 	 */
 	Graphics2D expose();
@@ -106,29 +106,39 @@ public interface IGameScreen {
 	void setOffline(boolean offline);
 
 	/**
-	 * Add a text bubble.
-	 *
-	 *
-	 *
+	 * Add a text bubble at a give position of the specified type
+	 * 
+	 * @param x The screen X coordinate.
+	 * @param y The screen Y coordinate.
+	 * @param text The textual content
+	 * @param type The notificationType 
+	 * @param isTalking Is it a talking text bubble
+	 * @see games.stendhal.common.NotificationType
+	 * 
 	 */
 	void addText(double x, double y, String text,
 			NotificationType type, boolean isTalking);
 
 	/**
-	 * Add a text bubble.
-	 *
-	 *
-	 *
+	 * Add a text bubble at a give position of the specified Color
+	 * 
+	 * @param x The screen X coordinate.
+	 * @param y The screen Y coordinate.
+	 * @param text The textual content
+	 * @param color The color in which the text shall be shown 
+	 * @param isTalking Is it a talking text bubble
+	 * @see games.stendhal.common.NotificationType
+	 * 
 	 */
 	void addText(final double x, final double y,
-			final String text, final Color color, final boolean talking);
+			final String text, final Color color, final boolean isTalking);
 
 	/**
 	 * Add a text bubble.
 	 *
-	 * @param sx
+	 * @param x
 	 *            The screen X coordinate.
-	 * @param sy
+	 * @param y
 	 *            The screen Y coordinate.
 	 * @param text
 	 *            The text.
@@ -137,7 +147,7 @@ public interface IGameScreen {
 	 * @param talking
 	 *            Is it is a talking text bubble.
 	 */
-	void addText(final int sx, final int sy, final String text,
+	void addText(final int x, final int y, final String text,
 			final NotificationType type, final boolean talking);
 
 	/**
@@ -151,24 +161,25 @@ public interface IGameScreen {
 	 *            The text.
 	 * @param color
 	 *            The text color.
-	 * @param talking
+	 * @param isTalking
 	 *            Is it is a talking text bubble.
 	 */
 	void addText(int sx, int sy, final String text,
 			final Color color, final boolean isTalking);
 
 	/**
-	 * Remove a text bubble.
+	 * Removes a text bubble.
+	 * @param entity The text to be removed.
 	 */
 	void removeText(Text entity);
 
 	/**
-	 * Remove all objects from the screen.
+	 * Removes all objects from the screen.
 	 */
 	void removeAll();
 
 	/**
-	 * Clear the screen.
+	 * Clears the screen.
 	 */
 	void clear();
 
@@ -178,7 +189,7 @@ public interface IGameScreen {
 	void clearTexts();
 
 	/**
-	 * Get an entity view at given coordinates.
+	 * Gets an entity view at given coordinates.
 	 *
 	 * @param x
 	 *            The X world coordinate.
@@ -190,7 +201,7 @@ public interface IGameScreen {
 	Entity2DView getEntityViewAt(double x, double y);
 
 	/**
-	 * Get an entity view that is movable at given coordinates.
+	 * Get a movable entity view at given coordinates.
 	 *
 	 * @param x
 	 *            The X world coordinate.
@@ -205,7 +216,11 @@ public interface IGameScreen {
 	/**
 	 * Get the text bubble at specific coordinates.
 	 *
-	 *
+	 * @param x
+	 *            The X world coordinate.
+	 * @param y
+	 *            The Y world coordinate.
+	 * @return the text bubble at the given coorodinate or <code>null</code> if not found.
 	 *
 	 */
 	Text getTextAt(double x, double y);
@@ -302,13 +317,23 @@ public interface IGameScreen {
 	 */
 	boolean isInScreen(int sx, int sy, int swidth, int sheight);
 
-	/** Draw a sprite in screen given its world coordinates. */
+	/**
+	 * Draws a sprite in screen given its world coordinates.
+	 * 
+	 * @param sprite
+	 *            to be drawn
+	 * @param wx
+	 *            x in world coordinates
+	 * @param wy
+	 *            y in world coordinates
+	 * 
+	 */
 	void draw(Sprite sprite, double wx, double wy);
 
 	void drawInScreen(Sprite sprite, int sx, int sy);
 
 	/**
-	 * Create a sprite representation of some text.
+	 * Creates a sprite representation of some text.
 	 *
 	 * @param text
 	 *            The text.
@@ -325,7 +350,7 @@ public interface IGameScreen {
 	 *
 	 * @param text
 	 *            The text.
-	 * @param color
+	 * @param textColor
 	 *            The text color.
 	 *
 	 * @return A sprite.
@@ -334,15 +359,14 @@ public interface IGameScreen {
 
 	/**
 	 * Draw a text string (like <em>Graphics</em><code>.drawString()</code>)
-	 * only with an outline border. The area drawn extends 1 pixel out on all
+	 * only with an outline border. <p>The area drawn extends 1 pixel out on all
 	 * side from what would normal be drawn by drawString().
+	 * The outline color is calculated from the text color value.
 	 *
 	 * @param g
 	 *            The graphics context.
 	 * @param textColor
 	 *            The text color.
-	 * @param outlineColor
-	 *            The outline color.
 	 * @param text
 	 *            The text to draw.
 	 * @param x
@@ -377,7 +401,7 @@ public interface IGameScreen {
 
 	/**
 	 * Formats a text by changing the color of words starting with
-	 * {@link #clone()}.S.
+	 * #.
 	 *
 	 * @param line
 	 *            the text
@@ -385,6 +409,7 @@ public interface IGameScreen {
 	 *            the font
 	 * @param colorNormal
 	 *            normal color (for non-special text)
+	 * @return the formatted string
 	 */
 	AttributedString formatLine(String line, Font fontNormal,
 			Color colorNormal);

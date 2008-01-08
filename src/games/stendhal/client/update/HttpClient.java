@@ -138,7 +138,7 @@ public class HttpClient {
 	 * Return an InputStream to read the requested file from. You have to close
 	 * it using
 	 * 
-	 * @see close().
+	 * @see #close
 	 * 
 	 * @return InputStream or null on error.
 	 */
