@@ -85,7 +85,7 @@ public class MoveAction implements ActionListener {
 		// evaluate the target parameter
 		StendhalRPZone zone = player.getZone();
 		Entity entity = EntityHelper.entityFromTargetName(
-			action.get(TARGET), zone);
+			action.get(TARGET), player);
 
 		if ((entity == null) || !(entity instanceof RPEntity)) {
 			return;

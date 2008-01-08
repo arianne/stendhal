@@ -26,12 +26,13 @@ public class EntityHelper {
 	 * 
 	 * @param target
 	 *            representation of the target
-	 * @param zone
-	 *            to search for objects
+	 * @param player
+	 *            to constraint for current zone and screen area
 	 * @return the entity associated either with name or id or
 	 *         <code> null </code> if none was found.
 	 */
-	public static Entity entityFromTargetName(String target, StendhalRPZone zone) {
+	public static Entity entityFromTargetName(String target, Entity player) {
+		StendhalRPZone zone = player.getZone();
 		Entity entity = null;
 
 		if (target != null && target.length() > 1 && target.charAt(0) == '#'
@@ -58,10 +59,15 @@ public class EntityHelper {
 		}
 
 		if (entity != null && entity.getZone() == zone) {
-			return entity;
-		} else {
-			return null;
+			// check distance: 640x480 client screen size for 32x32 pixel tiles
+			// -> makes 20x15 tiles screen size
+			if (Math.abs(entity.getX() - player.getX()) <= 20 &&
+				Math.abs(entity.getY() - player.getY()) <= 15) {
+				return entity;
+			}
 		}
+
+		return null;
 	}
 
 	public static Entity entityFromSlot(Player player, RPAction action) {
@@ -116,6 +122,5 @@ public class EntityHelper {
 		}
 		
 		return null;
-	
 	}
 }

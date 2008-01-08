@@ -35,7 +35,7 @@ public class LookAction implements ActionListener {
 		Entity entity = EntityHelper.entityFromSlot(player, action);
 
 		if (entity == null) {
-			entity = EntityHelper.entityFromTargetName(action.get(_TARGET), player.getZone());
+			entity = EntityHelper.entityFromTargetName(action.get(_TARGET), player);
 		}
 
 		if (entity != null) {
@@ -47,6 +47,7 @@ public class LookAction implements ActionListener {
 					return;
 				}
 			}
+
 			String name = entity.get(ATTR_TYPE);
 			if (entity.has(ATTR_NAME)) {
 				name = entity.get(ATTR_NAME);
@@ -54,11 +55,13 @@ public class LookAction implements ActionListener {
 			StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
 					_LOOK, name);
 			String text = entity.describe();
+
 			if (entity instanceof Sign) {
 				player.sendPrivateText(NotificationType.RESPONSE, text);
 			} else {
 				player.sendPrivateText(text);
 			}
+
 			player.notifyWorldAboutChanges();
 		}
 	}

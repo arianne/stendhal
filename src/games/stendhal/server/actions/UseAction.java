@@ -92,7 +92,7 @@ public class UseAction implements ActionListener {
 			// use is cast over something on the floor
 			// evaluate the target parameter
 			Entity entity = EntityHelper.entityFromTargetName(
-					action.get(TARGET), player.getZone());
+					action.get(TARGET), player);
 
 			if (entity != null) {
 				invokeUseListener(player, entity);

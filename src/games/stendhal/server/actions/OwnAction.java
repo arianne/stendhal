@@ -12,7 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.actions;
 
-import games.stendhal.server.core.engine.StendhalRPZone;
+import static games.stendhal.server.actions.WellKnownActionConstants.TARGET;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.core.pathfinder.Path;
 import games.stendhal.server.entity.Entity;
@@ -24,10 +24,9 @@ import games.stendhal.server.util.EntityHelper;
 
 import java.util.List;
 
-import org.apache.log4j.Logger;
-
 import marauroa.common.game.RPAction;
-import static games.stendhal.server.actions.WellKnownActionConstants.*;
+
+import org.apache.log4j.Logger;
 
 public class OwnAction implements ActionListener {
 
@@ -46,9 +45,7 @@ public class OwnAction implements ActionListener {
 		}
 
 		// evaluate the target parameter
-		StendhalRPZone zone = player.getZone();
-		Entity entity = EntityHelper.entityFromTargetName(action.get(TARGET),
-				zone);
+		Entity entity = EntityHelper.entityFromTargetName(action.get(TARGET), player);
 
 		if (entity != null) {
 			// Make sure the entity is valid (hacked client?)

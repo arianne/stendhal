@@ -48,7 +48,7 @@ public class AttackAction implements ActionListener {
 		if (action.has(TARGET)) {
 			// evaluate the target parameter
 			Entity entity = EntityHelper.entityFromTargetName(
-					action.get(TARGET), player.getZone());
+					action.get(TARGET), player);
 
 			if (entity instanceof RPEntity) {
 				StendhalRPAction.startAttack(player, (RPEntity) entity);
