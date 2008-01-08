@@ -76,7 +76,7 @@
   <image source="../../tileset/item/candle/lamp.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="161" tilewidth="32" tileheight="32">
-  <image source="../../tileset/ground/mud_2.png"/>
+  <image source="../../tileset/building/entrance/shadow.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="164" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/albino_elf.png"/>
