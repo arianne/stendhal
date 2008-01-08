@@ -42,38 +42,66 @@ public class WordList {
 
 	public static final String WORDS_FILENAME = "words.txt";
 
+	/*package*/ static final String VERSION_KEYWORD = "@Version";
+
 	private final Map<String, WordEntry> words = new TreeMap<String, WordEntry>();
 
-	private static final WordList instance = new WordList();
+	private int version = 0;
+
+	private static WordList instance;
 
 	// initialize the word list by querying the database or reading from the
 	// input file "words.txt" in the class path
 	static {
 		Log4J.init();
 
+		initInstance();
+	}
+
+	private static void initInstance() {
+		instance = new WordList();
+
+		// read word list from database
 		int ret = instance.readFromDB();
 
-		if (ret <= 0) {
-    		InputStream str = WordList.class.getResourceAsStream(WORDS_FILENAME);
-    		BufferedReader reader = new BufferedReader(new InputStreamReader(str));
+		int dbVersion = instance.version;
 
-    		try {
-    			instance.read(reader, null);
-    			reader.close();
-    		} catch (IOException e) {
-    			e.printStackTrace();
-    		}
+		// read word list from "words.txt"
+		WordList wordList = new WordList();
 
-    		// If the database is still empty, store the default entries into it.
-    		if (ret == 0) {
-    			instance.writeToDB();
-    		}
+		InputStream str = WordList.class.getResourceAsStream(WORDS_FILENAME);
+		BufferedReader reader = new BufferedReader(new InputStreamReader(str));
+
+		try {
+			wordList.read(reader, null);
+			reader.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		// If the database is still empty, store the default entries into it.
+		// If not, check the version number of the word list between database
+		// and "words.txt". If not equal, re-initialize the DB word list.
+		if (ret == 0 || wordList.version != dbVersion) {
+			// store the new word list into the DB
+			wordList.writeToDB();
+
+			// switch instance to the new created word list
+			instance = wordList;
 		}
 	}
 
 	public static WordList getInstance() {
 		return instance;
 	}
+
+	public int getVersion() {
+	    return version;
+    }
+
+	public void incrementVersion() {
+		++version;
+    }
 
 	/**
 	 * Read word list from reader object.
@@ -88,25 +116,36 @@ public class WordList {
 				break;
 			}
 
-			StringTokenizer tk = new StringTokenizer(line);
+			if (line.startsWith("#")) {
+				// look for the version keyword
+				int idxVersion = line.indexOf(VERSION_KEYWORD);
 
-			if (!tk.hasMoreTokens()) {
-				continue;
-			}
+				if (idxVersion != -1) {
+					String verStr = line.substring(idxVersion+VERSION_KEYWORD.length()).trim();
 
-			String key = tk.nextToken();
-
-			if (key.startsWith("#")) {
-				if (comments != null) {
+					try {
+						version = Integer.parseInt(verStr);
+					} catch(NumberFormatException e) {
+						version = 0;
+					}
+				} else if (comments != null) {
 					comments.add(line);
 				}
 			} else {
-				key = trimWord(key);
-				WordEntry entry = new WordEntry();
-				entry.setNormalized(key);
+				StringTokenizer tk = new StringTokenizer(line);
 
-				readEntryLine(tk, entry);
-				addEntry(key, entry);
+    			if (!tk.hasMoreTokens()) {
+    				continue;
+    			}
+
+    			String key = tk.nextToken();
+
+    			key = trimWord(key);
+    			WordEntry entry = new WordEntry();
+    			entry.setNormalized(key);
+
+    			readEntryLine(tk, entry);
+    			addEntry(key, entry);
 			}
 		}
 	}
@@ -456,6 +495,25 @@ public class WordList {
 
         if (success) {
         	insertIntoDB(words.keySet());
+
+    		acc = trans.getAccessor();
+
+        	try {
+        		try {
+        			acc.execute("insert into words(normalized, type, value)\n"
+        					+ "values('" + VERSION_KEYWORD + "', '" + VERSION_KEYWORD + "', " + version + ")");
+        		} finally {
+            		acc.close();
+        		}
+            } catch(SQLException e) {
+                logger.error("error storing word list version number into DB", e);
+            }
+        }
+
+        try {
+	        acc.close();
+        } catch(SQLException e) {
+        	logger.error("error closing DB accessor", e);
         }
     }
 
@@ -626,6 +684,16 @@ public class WordList {
 
 			trans.commit();
 
+			WordEntry versionEntry = find(VERSION_KEYWORD);
+
+			if (versionEntry != null) {
+				version = versionEntry.getValue();
+				words.remove(versionEntry.getNormalized());
+				--count;
+			} else {
+				version = 0;
+			}
+
 			logger.debug("read " + count + " word entries from database");
 
 			return count;
@@ -636,6 +704,7 @@ public class WordList {
             } catch (SQLException e1) {
     	        logger.error("error while rolling back transaction", e);
             }
+
 	        return -1;
         }
 	}

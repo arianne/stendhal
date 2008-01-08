@@ -1,5 +1,7 @@
+# @Version 1
 #
 # Word list for the Stendhal conversation parser
+#
 # @author Martin Fuchs
 #
 # The list entries are in the following format:
@@ -60,6 +62,7 @@ cleanme	VER
 close	VER
 concoct	VER
 cya	VER
+delete	VER
 did	VER	=do
 disembark	VER
 do	VER
@@ -122,6 +125,8 @@ play	VER
 protect	VER
 put	VER
 rain	VER
+remove	VER
+rent	VER
 reserve	VER
 return	VER
 revive	VER

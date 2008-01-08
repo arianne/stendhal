@@ -18,6 +18,10 @@ import java.util.List;
 public class WordListUpdate {
 
 	public static void main(String[] args) {
+		run();
+	}
+
+	public static void run() {
         try {
     		WordList wl = new WordList();
 
@@ -28,6 +32,9 @@ public class WordListUpdate {
         	List<String> comments = new ArrayList<String>();
 			wl.read(reader, comments);
 			reader.close();
+
+			// increment version counter
+			wl.incrementVersion();
 
 	    	// see if we can find the word list source file in the file system
 	    	String outputPath = "src/games/stendhal/server/entity/npc/parser/" + WordList.WORDS_FILENAME;
@@ -40,7 +47,9 @@ public class WordListUpdate {
 
         	PrintWriter writer = new PrintWriter(new FileWriter(outputPath));
 
-    		for (String c : comments) {
+        	writer.println("# " + WordList.VERSION_KEYWORD + " " + wl.getVersion());
+
+        	for (String c : comments) {
     			writer.println(c);
     		}
 
