@@ -13,6 +13,7 @@
 package games.stendhal.server.actions;
 
 import games.stendhal.common.NotificationType;
+import games.stendhal.server.actions.admin.AdministrationAction;
 import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.mapstuff.sign.Sign;
@@ -39,11 +40,10 @@ public class LookAction implements ActionListener {
 		}
 
 		if (entity != null) {
-			// fix for 1864205
+			// fix for 1864205 - /look adminname shows admin in ghostmode
 			if (entity instanceof Player) {
-				Player new_name = (Player) entity;
-				//TODO mf - take into account the user admin level
-				if (new_name.isGhost()) {
+				if (((Player)entity).isGhost() &&
+						player.getAdminLevel() < AdministrationAction.getLevelForCommand("ghostmode")) {
 					return;
 				}
 			}
@@ -52,8 +52,7 @@ public class LookAction implements ActionListener {
 			if (entity.has(ATTR_NAME)) {
 				name = entity.get(ATTR_NAME);
 			}
-			StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
-					_LOOK, name);
+			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), _LOOK, name);
 			String text = entity.describe();
 
 			if (entity instanceof Sign) {
