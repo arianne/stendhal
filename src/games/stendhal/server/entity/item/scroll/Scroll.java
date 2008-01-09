@@ -69,7 +69,7 @@ public class Scroll extends StackableItem implements UseListener {
 	}
 
 	// TODO: Move up to Item, use useItem() for real impl's
-	public boolean onUsed(RPEntity user) {
+	final public boolean onUsed(RPEntity user) {
 		RPObject base = this;
 
 		// Find the top container
