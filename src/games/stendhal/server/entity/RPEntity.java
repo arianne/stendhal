@@ -1799,7 +1799,7 @@ public abstract class RPEntity extends GuidedEntity {
 	}
 
 	/**
-	 * Perform cycle logic. TODO: Move up to Entity class eventually.
+	 * Perform cycle logic.
 	 */
 	public abstract void logic();
 }
