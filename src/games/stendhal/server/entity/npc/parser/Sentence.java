@@ -909,6 +909,40 @@ public class Sentence {
     }
 
 	/**
+	 * Compare two sentences and return the difference as String.
+	 *
+	 * @param other
+	 * @return difference String
+	 */
+	public String diffNormalized(Sentence other) {
+		SentenceBuilder ret = new SentenceBuilder();
+
+	    // loop over all expressions and match them between both sides
+	    Iterator<Expression> it1 = expressions.iterator();
+	    Iterator<Expression> it2 = other.expressions.iterator();
+
+		while(true) {
+			Expression e1 = Expression.nextValid(it1);
+			Expression e2 = Expression.nextValid(it2);
+
+			if (e1 == null && e2 == null) {
+				break;
+			} else if (e1 != null && e2 != null) {
+    			if (!e1.matchesNormalized(e2)) {
+    				ret.append("-[" + e1.getNormalized() + "]");
+    				ret.append("+[" + e2.getNormalized() + "]");
+    			}
+			} else if (e1 != null) {
+				ret.append("-[" + e1.getNormalized() + "]");
+			} else {
+				ret.append("+[" + e2.getNormalized() + "]");
+			}
+		}
+
+		return ret.toString();
+	}
+
+	/**
 	 * Check if the Sentence matches the given String.
 	 * The match Sentence can contain explicit expressions, which
 	 * are compared after normalizing, or ExpressionType specifiers

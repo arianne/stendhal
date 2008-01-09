@@ -140,4 +140,28 @@ public class SentenceTest {
 		assertFalse(s1.matches(m2));
 	}
 
+	@Test
+	public final void testDiff() {
+		Sentence s1 = ConversationParser.parse("it is raining cats and dogs");
+		Sentence s2 = ConversationParser.parse("it is raining cats, dogs");
+		Sentence s3 = ConversationParser.parse("it is raining cats but no dogs");
+		assertFalse(s1.hasError());
+		assertFalse(s2.hasError());
+		assertFalse(s3.hasError());
+
+		assertEquals("", s1.diffNormalized(s1));
+		assertEquals("", s1.diffNormalized(s2));
+		assertEquals("-[cat] +[cat dog] -[dog]", s1.diffNormalized(s3));
+
+		s2 = ConversationParser.parse("Let's catch a bus.");
+		assertFalse(s2.hasError());
+		assertEquals("catch bus.", s2.getNormalized());
+		assertEquals("-[rain] +[catch] -[cat] +[bus] -[dog]", s1.diffNormalized(s2));
+
+		s3 = ConversationParser.parse("Let's drive by bike.");
+		assertFalse(s3.hasError());
+		assertEquals("drive by bike.", s3.getNormalized());
+		assertEquals("-[catch] +[drive] -[bus] +[by] +[bike]", s2.diffNormalized(s3));
+	}
+
 }

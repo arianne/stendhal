@@ -125,4 +125,5 @@ public class WordListTest {
 		assertEquals("house", wl.singular("houses"));
 		assertEquals("cookie", wl.singular("cookies"));
 	}
+
 }
