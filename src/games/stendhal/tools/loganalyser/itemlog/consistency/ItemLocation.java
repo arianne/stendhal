@@ -1,4 +1,4 @@
-package games.stendhal.tools.itemlog;
+package games.stendhal.tools.loganalyser.itemlog.consistency;
 
 /**
  * represents the location of an item (slot or ground)
