@@ -70,8 +70,9 @@ public class DailyItemQuest extends AbstractQuest {
 				"enhanced_lion_shield", "spinach", "courgette", "collard",
 				"fish_pie", "chicken", "elvish_armor", "elvish_boots",
 				"sclaria", "kekik", "elvish_cloak", "elvish_legs",
-				"shuriken", "coconut",				       
-				"cauliflower", "broccoli", "gold_nugget", "gold_bar");
+				"shuriken", "coconut", "sapphire", "emerald", "carbuncle",			       
+				"cauliflower", "broccoli", "gold_nugget", "gold_bar",
+				"pineapple", "pina_colada", "ice_cream");
 
 		@Override
 		public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
