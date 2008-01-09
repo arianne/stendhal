@@ -48,7 +48,9 @@ import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.entity.player.GagManager;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.spell.Spell;
+import games.stendhal.server.events.DamagedEvent;
 import games.stendhal.server.events.ExamineEvent;
+import games.stendhal.server.events.HealedEvent;
 import games.stendhal.server.events.PrivateTextEvent;
 import games.stendhal.server.events.TextEvent;
 import games.stendhal.tools.tiled.LayerDefinition;
@@ -217,10 +219,12 @@ public class StendhalRPWorld extends RPWorld {
 		RentedSign.generateRPClass();
 
 		// rpevents
+		DamagedEvent.generateRPClass();
 		ExamineEvent.generateRPClass();
+		HealedEvent.generateRPClass();
 		PrivateTextEvent.generateRPClass();
 		TextEvent.generateRPClass();
-                
+
 		//guilds
 		Guild.generateRPClass();
 		GuildMember.generateRPClass();
