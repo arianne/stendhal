@@ -12,7 +12,7 @@ import marauroa.common.game.Definition.Type;
  * @author hendrik
  */
 public class DamagedEvent extends RPEvent {
-	private static final String RPCLASS_NAME = "healed";
+	private static final String RPCLASS_NAME = "damaged";
 	private static final String AMOUNT = "amount";
 	private static final String BY = "by";
 
