@@ -542,11 +542,10 @@ in roaches.
      <destination zone="0_ados_wall" ref="barracks_entrance_center"/>
     </portal>
 
- <!--  there's a portal marked here on map but can't see where it goes?
-  (comment by katie)
-  <portal x="2" y="46" ref="upstairs_1">
-     <destination zone="int_ados_barracks_1" ref="downstairs_1"/>
-    </portal> -->
+
+    <portal x="2" y="46" ref="down">
+     <destination zone="-1_ados_wall" ref="up"/>
+    </portal>
 
     <portal x="46" y="11" ref="upstairs_2">
      <destination zone="int_ados_barracks_1" ref="downstairs_2"/>
@@ -555,9 +554,6 @@ in roaches.
    </zone>
 
   <zone name="int_ados_barracks_1" file="interiors/ados/barracks_1.tmx">
- <!--   <portal x="2" y="46" ref="downstairs_1">
-     <destination zone="int_ados_barracks_0" ref="upstairs_1"/>
-    </portal>-->
 
     <portal x="36" y="4" ref="downstairs_2">
      <destination zone="int_ados_barracks_0" ref="upstairs_2"/>
@@ -1365,6 +1361,21 @@ Southeast: Docks
    </zone>
    
  <zone name="0_ados_wall_s" level="0" x="500768" y="500128" file="Level 0/ados/wall_s.tmx">
+  <portal x="49" y="28" ref="down_left">
+   <destination zone="-1_ados_vaults" ref="up_left"/>
+<!--TODO: Change to QuestCompleted portal -->
+   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.QuestCheckingPortal">
+    <parameter name="quest">vs_quest</parameter>
+    <parameter name="rejected">You find it hard to enter. Perhaps you're not prepared for what is below.</parameter>
+   </implementation>
+  </portal>
+  <portal x="50" y="28" ref="down_right">
+   <destination zone="-1_ados_vaults" ref="up_right"/>
+   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.QuestCheckingPortal">
+    <parameter name="quest">vs_quest</parameter>
+    <parameter name="rejected">You find it hard to enter. Perhaps you're not prepared for what is below.</parameter>
+   </implementation>
+  </portal>
  </zone>
 
  <zone name="0_ados_city_s" level="0" x="500896" y="500128" file="Level 0/ados/city_s.tmx">
@@ -1463,10 +1474,29 @@ Southeast: Docks
   <portal x="4" y="23" ref="0">
    <destination zone="0_ados_outside_nw" ref="0"/>
   </portal>
-
+ </zone>
+ <zone name="-1_ados_wall_n" level="-1" x="500768" y="499872" file="Level -1/ados/wall_n.tmx">
+ </zone>
+ <zone name="-1_ados_city_n" level="-1" x="500896" y="499872" file="Level -1/ados/city_n.tmx">
+ </zone>
+ <zone name="-1_ados_wall" level="-1" x="500768" y="500000" file="Level -1/ados/wall.tmx">
+  <portal x="100" y="54" ref="up">
+   <destination zone="int_ados_barracks_0" ref="down"/>
+  </portal>
+ </zone> 
+ <zone name="-1_ados_city" level="-1" x="500896" y="500000" file="Level -1/ados/city.tmx">  
+ </zone>
+ <zone name="-1_ados_vaults" level="-1" x="500768" y="500128" file="Level -1/ados/vaults.tmx">
+  <portal x="49" y="28" ref="up_left">
+   <destination zone="0_ados_wall_s" ref="down_left"/>
+  </portal>
+  <portal x="50" y="28" ref="up_right">
+   <destination zone="0_ados_wall_s" ref="down_right"/>
+  </portal>
  </zone>
 
-
+ <zone name="-1_ados_city_s" level="-1" x="500896" y="500128" file="Level -1/ados/city_s.tmx">
+ </zone>
  <!--  Level -2 -->
 
  <zone name="-2_mansion" level="-2" x="500384" y="499744" file="interiors/abstract/area2.tmx">
