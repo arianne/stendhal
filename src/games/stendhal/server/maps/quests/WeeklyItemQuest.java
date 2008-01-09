@@ -3,6 +3,7 @@ package games.stendhal.server.maps.quests;
 import games.stendhal.common.Grammar;
 import games.stendhal.common.Level;
 import games.stendhal.common.Rand;
+import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
