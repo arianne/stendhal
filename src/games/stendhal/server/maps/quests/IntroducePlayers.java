@@ -5,6 +5,7 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.DropItemAction;
 import games.stendhal.server.entity.npc.action.EquipItemAction;
+import games.stendhal.server.entity.npc.action.ExamineChatAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
@@ -187,16 +188,16 @@ public class IntroducePlayers extends AbstractQuest {
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "ilisa"), new PlayerHasItemWithHimCondition("flask")),
 				ConversationStates.ATTENDING, 
-				"Ah, I see you have that flask. #Tad needs medicine, right? Hmm... I'll need a few #herbs. Can you help?",
+				"Ah, I see you have that flask. #Tad needs medicine, right? Hmm... I'll need a #herb. Can you help?",
 				new MultipleActions(processStep));
 
 		npc.add(
 				ConversationStates.ATTENDING,
-				Arrays.asList("herbs", "arandula"),
+				Arrays.asList("herb", "arandula"),
 				null,
 				ConversationStates.ATTENDING,
-				"North of Semos, near the tree grove, grows a herb called arandula.",
-				null);
+				"North of Semos, near the tree grove, grows a herb called arandula. Here is a picture I drew so you know what to look for.",
+				new ExamineChatAction("arandula.png", "Ilisa's drawing", "Arandula"));
 
 		npc.add(
 				ConversationStates.ATTENDING,
