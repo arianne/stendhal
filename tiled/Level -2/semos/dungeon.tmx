@@ -120,12 +120,12 @@
  </layer>
  <layer name="2_object" width="64" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3c3WrCUAwAYPeibnsrH0p20xcScQOR1v6epku+D3qjSJNCz0lj9HQCgG19fURHsL05OZ0T5j8np8+E+WfMif10v0dlmfK/RAdAUxlrGKaz38/nmrVTfT3K+Ew1h3sLqMJ6V5M6JzqCWO574I/1AODhu/h6qD6OjgAgRqYZkiXkD1Sg1gUAAKCqa3QAwX6iA4BE+uYJjjZj0LLn3zdPcLQZg5a/He/rsd5fs88AUFGV7x6r5AkAAP5rYPlnx/qD/6F/uObZZ6w/uKZ/2L0c1VTM+Vn1/Pei9wEwbmgm4GizAq0M1cpHmxVoZWivtIcCwDr6ke/fj7o+U2vctbXwWC0VVWtOPW/r+KJqzannVQsDkEnr/c/+Cvu6Aa9W1I4AgAAA
+   H4sIAAAAAAAAAO3cUYrCQAwAUL2ourfyUIs/vZAsuwuytLZjnaabvAf9UaRJoTNpjB4OAPBel2N0BO/XktMpYf4tOZ0T5p8xJ7Yz/ByVZcr/Gh0A0I39vp1r1k/GZ6oWGZ+pWri3gCqsdzWpc6IjiOW+B35ZDwC+fRRfD9XH0REAxMg0Q/IK+QMVqHUBAACo6jM6gGC36AAgkbF5gr3NGPTs+Y/NE+xtxqDnb8fHeqxfr9lnAKioynePVfIEAAD/NfD6Z+f6g/+hf7jm2WeuP7imfzj8OaqpmPOj6vlvRe8DYN7UTMDeZgV6maqV9zYr0MvUXmkPBYB19COfvx91fZbWuGtr4blaKqrWXHre3vFF1ZpLz6sWBiCT3vuf/RW2dQfDsu18AIAAAA==
   </data>
  </layer>
  <layer name="3_roof" width="64" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3cQQqAIBAFULto1H06WodqFbUJTYgh571dC2UMBPMPlQIAAHVb5RkYl/2fwzy9H7N0jBlJzzsDAC7OEtEV8Ge+y4C/cw6IrgAAAADgO2vyu4/R73726AIAAAAAAABII0v2+LTO0bPHU5Z1AgAAQFb+LRBdAQAAAAAAEKW1F7a3Z7Y1h4nKa1pzkt485ev5Ae4OSEzgPgCAAAA=
+   H4sIAAAAAAAAAO3cQQqDMBAF0PSixd6nR+uhuiq4kYSU8DHz3s6N/BGEyB9sDQAA+t6da2BfVd7/1yOdIOs5Mf/hmQEAf3CWSCfgznb9LgPqcA5IJwAAAABYxw5OOsFan3QAAAAAAAAAyqjSPV7NuXv3+FNlTgAAAKjKvwXSCQAAAAAAgJTRXdjZndnRHibV14z2JLN9yur7A5x9AYzIcJUAgAAA
   </data>
  </layer>
  <layer name="objects" width="64" height="128">
