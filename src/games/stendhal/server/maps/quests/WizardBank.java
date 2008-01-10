@@ -10,13 +10,10 @@ import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
-import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
 
 import java.lang.ref.WeakReference;
-import java.util.Arrays;
 
 import marauroa.common.game.IRPZone;
 
@@ -165,72 +162,67 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 					}
 				});
 
-				add(ConversationStates.ATTENDING, "fee", null,
-						ConversationStates.QUEST_OFFERED, "Very well.",
-						new ChatAction() {
-							@Override
-							public void fire(Player player, Sentence sentence,
-									SpeakerNPC engine) {
-								if (player.isQuestCompleted(QUEST_SLOT)
-										|| !player.hasQuest(QUEST_SLOT)) {
-									engine.say("The fee is " + COST
-											+ " money. Do you want to pay?");
-								} else {
-									engine.say("As you already know, the fee is "
-											+ COST + " money.");
-								}
+				addReply("fee", null, new SpeakerNPC.ChatAction() {
+					@Override
+					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+						if (player.isQuestCompleted(QUEST_SLOT)
+								|| !player.hasQuest(QUEST_SLOT)) {
+							engine.say("The fee is " + COST
+									+ " money. Do you want to pay?");
+						} else {
+							engine.say("As you already know, the fee is "
+									+ COST + " money.");
+						}
+					}
+				});
+
+				addReply("yes", null, new SpeakerNPC.ChatAction() {
+					@Override
+					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+						if (player.isQuestCompleted(QUEST_SLOT)
+								|| !player.hasQuest(QUEST_SLOT)) {
+							if (player.drop("money", COST)) {
+								engine.say("Semos, Nalwor and Fado bank chests are to my right. The chests owned by Ados Bank Merchants and your friend Zara are to my left. If you are finished before your time here is done, please say #leave.");
+
+								player.teleport(zone, 10, 10, Direction.DOWN, player);
+
+								TurnNotifier.get().notifyInTurns(0, new Timer(player));
+
+								player.setQuest(QUEST_SLOT, "start");
+							} else {
+								engine.say("You do not have enough money!");
 							}
-						});
+						} else {
+							engine.say("Hm, I do not understand you. If you wish to #leave, just say");
+						}
+					}
+				});
 
-				add(ConversationStates.QUEST_OFFERED, "yes", null,
-						ConversationStates.ATTENDING, null, new ChatAction() {
-							@Override
-							public void fire(Player player, Sentence sentence,
-									SpeakerNPC engine) {
-								if (player.drop("money", COST)) {
-									engine.say("Semos, Nalwor and Fado bank chests are to my right. The chests owned by Ados Bank Merchants and your friend Zara are to my left. If you are finished before your time here is done, please say #leave.");
-									player.teleport(zone, 10, 10,
-											Direction.DOWN, player);
+				addReply("no", null, new SpeakerNPC.ChatAction() {
+					@Override
+					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+						if (player.isQuestCompleted(QUEST_SLOT)
+								|| !player.hasQuest(QUEST_SLOT)) {
+							engine.say("Very well.");
+						} else {
+							engine.say("Hm, I do not understand you. If you wish to #leave, just say");
+						}
+					}
+				});
 
-									TurnNotifier.get().notifyInTurns(0,
-											new Timer(player));
-
-									player.setQuest(QUEST_SLOT, "start");
-								} else {
-									engine.say("You do not have enough money!");
-								}
-							}
-						});
-
-				add(ConversationStates.QUEST_OFFERED, "no", null,
-						ConversationStates.ATTENDING, "Very well.", null);
-
-				// TODO I think, we can now remove this error message case, it
-				// was only a else condition in the previous handling code.
-				add(ConversationStates.ATTENDING,
-						Arrays.asList("yes", "no"),
-						null,
-						ConversationStates.ATTENDING,
-						"Hm, I do not understand you. If you wish to #leave, just say",
-						null);
-
-				add(ConversationStates.ANY, "leave",
-						new QuestNotCompletedCondition(QUEST_SLOT),
-						ConversationStates.ATTENDING,
-						"Thank you for using the Wizard's Bank",
-						new ChatAction() {
-							@Override
-							public void fire(Player player, Sentence sentence,
-									SpeakerNPC engine) {
-								teleportAway(player);
-								// remove the players Timer
-								TurnNotifier.get().dontNotify(new Timer(player));
-							}
-						});
-
-				add(ConversationStates.ATTENDING, "leave",
-						new QuestCompletedCondition(QUEST_SLOT),
-						ConversationStates.ATTENDING, "Leave where?", null);
+				addReply("leave", null, new SpeakerNPC.ChatAction() {
+					@Override
+					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+						if (!player.isQuestCompleted(QUEST_SLOT)) {
+							teleportAway(player);
+							// remove the players Timer
+							TurnNotifier.get().dontNotify(new Timer(player));
+							engine.say("Thank you for using the Wizard's Bank");
+						} else {
+							engine.say("Leave where?");
+						}
+					}
+				});
 
 				addJob("I control access to the bank. My spells ensure people cannot simply come and go as they please. We charge a #fee.");
 
