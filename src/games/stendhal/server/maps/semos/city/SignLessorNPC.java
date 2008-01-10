@@ -98,6 +98,10 @@ public class SignLessorNPC extends SpeakerNPCFactory {
 				@Override
 				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 
+					if (text.length() > 1000) {
+						text = text.substring(1000);
+					}
+					
 					// do not accept all uper case
 					if (StringUtils.countLowerCase(text) < StringUtils.countUpperCase(text) * 2) {
 						text = text.toLowerCase();
