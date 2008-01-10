@@ -135,6 +135,12 @@
   <portal x="101" y="104" ref="49">
    <destination zone="int_kirdneh_house_49" ref="entrance"/>
   </portal> -->
+  <portal x="116" y="81" ref="museum1">
+   <destination zone="int_kirdneh_museum" ref="entrance1"/>
+  </portal>
+  <portal x="116" y="82" ref="museum2">
+   <destination zone="int_kirdneh_museum" ref="entrance2"/>
+  </portal>
  </zone>
 
 <!-- <zone name="int_kirdneh_house_26" file="interiors/kirdneh/house_26.tmx">
@@ -306,6 +312,17 @@
  </portal>
  <portal x="19" y="4" ref="downstair_right">
    <destination zone="int_kirdneh_townhall" ref="upstair_right"/>
+ </portal>
+</zone>
+
+<zone name="int_kirdneh_museum" file="interiors/kirdneh/museum.tmx">
+  <configurator class-name="games.stendhal.server.maps.kirdneh.museum.CuratorNPC"/>
+  <configurator class-name="games.stendhal.server.maps.kirdneh.museum.ItemsOnTable"/>
+ <portal x="1" y="24" ref="entrance1">
+   <destination zone="0_kirdneh_city" ref="museum1"/>
+ </portal>
+ <portal x="1" y="25" ref="entrance2">
+   <destination zone="0_kirdneh_city" ref="museum2"/>
  </portal>
 </zone>
  <!-- Level -1 -->

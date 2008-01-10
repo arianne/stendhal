@@ -1,5 +1,6 @@
 package games.stendhal.server.maps.kirdneh.museum;
 
+import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -48,7 +49,8 @@ public class CuratorNPC implements ZoneConfigurator {
 		};
 
 		npc.setEntityClass("curatornpc");
-		npc.setPosition(10, 10);
+		npc.setPosition(2, 38);
+		npc.setDirection(Direction.RIGHT);
 		npc.initHP(100);
 		zone.add(npc);
 	}
