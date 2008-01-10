@@ -84,9 +84,12 @@
  <tileset name="plants" firstgid="165" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/potted_plants1.png"/>
  </tileset>
+ <tileset name="banners" firstgid="171" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/banners/banners.png"/>
+ </tileset>
  <layer name="0_floor" width="48" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3QsQkAMAwDQRUu3GT/dbNBCkMcObzg+0MhKYYmAwP+ueG/1xrun/4/fv/w9xhPe+3D7x1+b382VbGnkb8afvz48ePHjx8//r/8G+LgOaAAGAAA
+   H4sIAAAAAAAAAO3QMQoAIAwEwRQp0vgR//9AG2vBgPECe7D9cG5m3jQTMODvG/53jeb+7v/j1w9/jfG03z782uHX9kdRGXsI+bPhx48fP378+PHjv/fPnaJ/ATLz1s8AGAAA
   </data>
  </layer>
  <layer name="1_terrain" width="48" height="32">
@@ -96,7 +99,7 @@
  </layer>
  <layer name="2_object" width="48" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2YSwrCMBCGcwGflxK7qrrxAL4fqEtduOlW8XEFBcFTOgNT0DCkUdI06nzwMcl0IP8ii1ClBOF3WGtumV7IYL4SWGasKLv8B/DooP/JXJp/o16z4942/wk8O+jbzLWoxlQxXxWsMdbVd9yfZxOmFxrtjO8X8OojiCAIgiBoLMAl46rIUG8g+c30wL6hDsAh009pgE1a76jeHGWzYQSODXUCTpk+MgcjWuNbbO8ttTui7BFBCJZZ0QH+nDh7JPgzu1TzuEt3bY//TTo5nCP45QFJfzodABgAAA==
+   H4sIAAAAAAAAAO2YOQoCQRBF+wKulxInGjXxAO4LaqiBianicgUFQUQ8otVQA1qUvcBsaD14VHdPFf2DCYZRShB+hyVxzZzZuKOu+Pab0PkKYJGxpNzyP1DKHjx49NOZb/PvRPlX6jO73rvmf6KUI3jy6Kcz3HwDa4hV5yuDFcaqcsufJfRd3zBneaNpeX4GL2kEEQRBEATCDJwzLrIM5YHkN9MBu4baA/vMeUQNrON6i/UaUzYXBuDQUEfgmDnXTMEA1/pbbJda6vgI7C2CkFsmWQf4c0J7S+7vbGNN4l26kb3+b9JK4B4hXV5GKP7eABgAAA==
   </data>
  </layer>
  <layer name="3_roof" width="48" height="32">
