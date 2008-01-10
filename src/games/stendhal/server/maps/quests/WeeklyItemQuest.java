@@ -38,6 +38,8 @@ import java.util.List;
 public class WeeklyItemQuest extends AbstractQuest {
 
 	private static final String QUEST_SLOT = "weekly_item";
+	// prevent int overflow by casting to long
+	private static final long expireDelay = (long) 6 * 60 * 60 * 24 * 7 * 1000; // Milliseconds in 6 week
 
 	class WeeklyQuestAction extends SpeakerNPC.ChatAction {
 
@@ -54,7 +56,6 @@ public class WeeklyItemQuest extends AbstractQuest {
 			String questCount = null;
 			String questLast = null;
 			long delay = 7 * 60 * 60 * 24 * 1000; // Milliseconds in a week
-			long expireDelay = 6 * 60 * 60 * 24 * 7 * 1000; // Milliseconds in 6 week
 
 			if (questInfo != null) {
 				String[] tokens = (questInfo + ";0;0;0").split(";");
@@ -70,7 +71,7 @@ public class WeeklyItemQuest extends AbstractQuest {
 					long timeRemaining = (Long.parseLong(questLast) + expireDelay)
 							- System.currentTimeMillis();
 
-					if (timeRemaining < 0L) {
+					if (timeRemaining < 0) {
 						engine.say(sayText
 								+ " But, perhaps that is now too rare an item. I can give you #another task, or you can return with what I first asked you.");
 						return;
@@ -84,7 +85,7 @@ public class WeeklyItemQuest extends AbstractQuest {
 				long timeRemaining = (Long.parseLong(questLast) + delay)
 						- System.currentTimeMillis();
 
-				if (timeRemaining > 0L) {
+				if (timeRemaining > 0) {
 					engine.say("The museum can only afford to send you to fetch an item once a week. Please check back in "
 							+ TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L))
 							+ ".");
@@ -160,7 +161,6 @@ public class WeeklyItemQuest extends AbstractQuest {
 			String questKill = null;
 			String questCount = null;
 			String questLast = null;
-			long expireDelay = 6 * 60 * 60 * 24 * 7 * 1000; // Milliseconds in 6 weeks
 
 			if (questInfo != null) {
 				String[] tokens = (questInfo + ";0;0;0").split(";");
@@ -174,7 +174,7 @@ public class WeeklyItemQuest extends AbstractQuest {
 					long timeRemaining = (Long.parseLong(questLast) + expireDelay)
 							- System.currentTimeMillis();
 
-					if (timeRemaining < 0L) {
+					if (timeRemaining < 0) {
 						engine.say("I see. Please, ask me for another #quest when you think you can help Kirdneh museum again.");
 						// Don't make the player wait any longer and don't
 						// credit the player with a count increase?
