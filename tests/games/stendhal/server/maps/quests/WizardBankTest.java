@@ -80,11 +80,55 @@ public class WizardBankTest {
 		assertFalse(npc.isTalking());
 		assertEquals("Goodbye.", npc.get("text"));
 
+		 // set quest to "start"
+		player.setQuest(QUEST_SLOT, "start");
+
+		assertTrue(en.step(player, "hi"));
+		assertEquals("Welcome to the Wizard's Bank, player. You may #leave sooner, if required.", npc.get("text"));
+		assertTrue(npc.isTalking());
+
+		assertTrue(en.step(player, "bye"));
+		assertFalse(npc.isTalking());
+		assertEquals("Goodbye.", npc.get("text"));
+
+		 // set quest to "done"
 		player.setQuest(QUEST_SLOT, "done");
 
 		assertTrue(en.step(player, "hi"));
 		assertEquals("Welcome to the Wizard's Bank, player. Do you wish to pay to access your chest again?", npc.get("text"));
 		assertTrue(npc.isTalking());
+
+		assertTrue(en.step(player, "no"));
+		assertTrue(npc.isTalking());
+		assertEquals("Very well.", npc.get("text"));
+
+		assertTrue(en.step(player, "bye"));
+		assertFalse(npc.isTalking());
+		assertEquals("Goodbye.", npc.get("text"));
+
+		 // Test second chest access
+		assertTrue(en.step(player, "hi"));
+		assertEquals("Welcome to the Wizard's Bank, player. Do you wish to pay to access your chest again?", npc.get("text"));
+		assertTrue(npc.isTalking());
+
+		assertTrue(en.step(player, "yes"));
+		assertTrue(npc.isTalking());
+		assertEquals("You do not have enough money!", npc.get("text"));
+
+		assertTrue(en.step(player, "bye"));
+		assertFalse(npc.isTalking());
+		assertEquals("Goodbye.", npc.get("text"));
+
+		assertTrue(en.step(player, "hi"));
+		assertEquals("Welcome to the Wizard's Bank, player. Do you wish to pay to access your chest again?", npc.get("text"));
+		assertTrue(npc.isTalking());
+
+		 // equip the player with enough money to pay the fee
+		assertTrue(PlayerTestHelper.equipWithMoney(player, 1000));
+
+		assertTrue(en.step(player, "yes"));
+		assertTrue(npc.isTalking());
+		assertEquals("Semos, Nalwor and Fado bank chests are to my right. The chests owned by Ados Bank Merchants and your friend Zara are to my left. If you are finished before your time here is done, please say #leave.", npc.get("text"));
 	}
 
 	@Test
@@ -115,7 +159,7 @@ public class WizardBankTest {
 		assertEquals("You do not understand the meaning of the word? You should spend more time in libraries, I hear the one in Ados is excellent.", npc.get("text"));
 		assertTrue(npc.isTalking());
 
-		assertTrue(en.step(player, "help"));
+		assertTrue(en.step(player, "help me"));
 		assertEquals("This bank is suffused with #magic, and as such you may access any vault you own. There will be a #fee to pay for this privilege, as we are not a charity.", npc.get("text"));
 		assertTrue(npc.isTalking());
 
