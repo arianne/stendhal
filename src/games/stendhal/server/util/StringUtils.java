@@ -22,4 +22,21 @@ public class StringUtils {
 		}
 		return count;
 	}
+
+
+	/**
+	 * counts the number of lower case characters
+	 *
+	 * @param text text to count
+	 * @return number of lower case characters
+	 */
+	public int countLowerCase(String text) {
+		int count = 0;
+		for (char chr : text.toCharArray()) {
+			if (Character.isLowerCase(chr)) {
+				count++;
+			}
+		}
+		return count;
+	}
 }
