@@ -20,6 +20,7 @@ import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasStoreableEntityCondition;
 import games.stendhal.server.entity.npc.condition.TextHasParameterCondition;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.util.StringUtils;
 
 import java.awt.Rectangle;
 import java.awt.Shape;
@@ -96,9 +97,18 @@ public class SignLessorNPC extends SpeakerNPCFactory {
 
 				@Override
 				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+
+					// do not accept all uper case
+					if (StringUtils.countLowerCase(text) < StringUtils.countUpperCase(text) * 2) {
+						text = text.toLowerCase();
+					}
+
+					// put the sign up
 					rentedSignList.removeByName(player.getName());
 					RentedSign sign = new RentedSign(player, text);
 					boolean success = rentedSignList.add(sign);
+
+					// confirm, log, tell postman
 					if (success) {
 						player.drop("money", MONEY);
 						npc.say("OK, let me put your sign up.");
