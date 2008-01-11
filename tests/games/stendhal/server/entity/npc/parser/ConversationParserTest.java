@@ -195,6 +195,15 @@ public class ConversationParserTest {
 		assertEquals(1, sentence.getObject(0).getAmount());
 		assertEquals("ice cream", sentence.getObjectName());
 		assertEquals("i buy ice cream!", sentence.getNormalized());
+
+		sentence = ConversationParser.parse("would you like to have an ice cream?");
+		assertFalse(sentence.hasError());
+		assertEquals("you", sentence.getSubject(0).getNormalized());
+		assertEquals("buy", sentence.getVerbString());
+		assertNull(sentence.getSubject(1));
+		assertEquals(1, sentence.getObject(0).getAmount());
+		assertEquals("ice cream", sentence.getObjectName());
+		assertEquals("you buy ice cream!", sentence.getNormalized());
 	}
 
 	@Test
