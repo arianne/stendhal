@@ -52,19 +52,22 @@ public class EntityHelper {
 
 		if (entity == null) {
 			entity = StendhalRPRuleProcessor.get().getPlayer(target);
+
+			if (!player.isInSight(entity)) {
+				entity = null;
+			}
 		}
 
 		if (entity == null) {
 			entity = NPCList.get().get(target);
+
+			if (!player.isInSight(entity)) {
+				entity = null;
+			}
 		}
 
-		if (entity != null && entity.getZone() == zone) {
-			// check distance: 640x480 client screen size for 32x32 pixel tiles
-			// -> makes 20x15 tiles screen size
-			if (Math.abs(entity.getX() - player.getX()) <= 20 &&
-				Math.abs(entity.getY() - player.getY()) <= 15) {
-				return entity;
-			}
+		if (entity != null) {
+			return entity;
 		}
 
 		return null;
