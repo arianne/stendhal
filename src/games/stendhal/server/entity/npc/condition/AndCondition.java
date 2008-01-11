@@ -11,7 +11,8 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
 /**
- * An inverse condition. TODO: correct javadoc
+ * Is constructed from a group of conditions. <p>
+ * It evaluates to <code>true</code>, iff each condition evaluates to true. 
  */
 public class AndCondition extends SpeakerNPC.ChatCondition {
 
