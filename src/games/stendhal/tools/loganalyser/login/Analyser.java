@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -30,14 +31,28 @@ public class Analyser {
 		+ " FROM loginEvent, account"
 		+ " WHERE account.id = loginEvent.player_id"
 		+ " AND username='%1$s' AND loginEvent.timedate > '%2$s'"
-		+ "  ORDER BY loginEvent.timedate LIMIT 1;";
+		+ " ORDER BY loginEvent.timedate LIMIT 1;";
 
 
 	private void analyse(String address, String timedate) throws SQLException {
 		LoginEventIterator iterator = readLoginsFromAddress(address, timedate);
 		List<LoginEvent> events = iterableToList(iterator);
+		StringBuilder sb = new StringBuilder();
 		for (LoginEvent event : events) {
-			System.out.println(event);
+			LoginEvent nextEvent = getNextLoginEvent(event);
+			sb.setLength(0);
+			sb.append("OR (source=\"'");
+			sb.append(StringChecker.escapeSQLString(event.getUsername()));
+			sb.append("' AND timedate >= '");
+			sb.append(StringChecker.escapeSQLString(event.getTimestamp()));
+			sb.append("'");
+			if (nextEvent != null) {
+				sb.append(" AND timedate < '");
+				sb.append(StringChecker.escapeSQLString(event.getTimestamp()));
+				sb.append("'");
+			}
+			sb.append(")");
+			System.out.println(sb.toString());
 		}
 	}
 
@@ -56,6 +71,20 @@ public class Analyser {
 		String select = String.format(SQL_FROM_IP, StringChecker.escapeSQLString(address), StringChecker.escapeSQLString(timedate));
 		ResultSet resultSet = stmt.executeQuery(select);
 		return new LoginEventIterator(stmt, resultSet);
+	}
+	
+	private LoginEvent getNextLoginEvent(LoginEvent event) throws SQLException {
+		LoginEvent nextEvent = null;
+		Transaction transaction =  StendhalPlayerDatabase.getDatabase().getTransaction();
+		Connection connection = transaction.getConnection();
+		Statement stmt = connection.createStatement();
+		String select = String.format(SQL_NEXT_LOGIN, StringChecker.escapeSQLString(event.getUsername()), StringChecker.escapeSQLString(event.getTimestamp()));
+		ResultSet resultSet = stmt.executeQuery(select);
+		Iterator<LoginEvent> itr = new LoginEventIterator(stmt, resultSet);
+		if (itr.hasNext()) {
+			nextEvent = itr.next();
+		}
+		return nextEvent;
 	}
 
 	/**
