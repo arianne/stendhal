@@ -1,19 +1,18 @@
 package games.stendhal.common;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
+import static org.junit.Assert.assertSame;
 import org.junit.Test;
 
 public class DirectionTest {
 
 	@Test
 	public final void testBuild() {
-		assertTrue(Direction.STOP == Direction.build(0));
-		assertTrue(Direction.UP == Direction.build(1));
-		assertTrue(Direction.RIGHT == Direction.build(2));
-		assertTrue(Direction.DOWN == Direction.build(3));
-		assertTrue(Direction.LEFT == Direction.build(4));
+		assertSame(Direction.STOP, Direction.build(0));
+		assertSame(Direction.UP, Direction.build(1));
+		assertSame(Direction.RIGHT, Direction.build(2));
+		assertSame(Direction.DOWN, Direction.build(3));
+		assertSame(Direction.LEFT, Direction.build(4));
 	}
 
 	@Test

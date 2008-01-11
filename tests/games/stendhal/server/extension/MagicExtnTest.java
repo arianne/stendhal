@@ -34,7 +34,7 @@ public class MagicExtnTest {
 		PlayerTestHelper.removePlayer("player");
 	}
 
-	@Ignore
+
 	@Test
 	public final void testMagic() {
 		Player pl = PlayerTestHelper.createPlayer("player");

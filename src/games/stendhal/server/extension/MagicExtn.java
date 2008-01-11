@@ -13,7 +13,7 @@ import org.apache.log4j.Logger;
 import marauroa.common.game.RPAction;
 
 /**
- *  # load StendhalServerExtension(s)
+ *  # load StendhalServerExtension(s).
  * groovy=games.stendhal.server.scripting.StendhalGroovyRunner
  * http=games.stendhal.server.StendhalHttpServer
  * magic=games.stendhal.server.extension.MagicExtn
@@ -75,10 +75,15 @@ public class MagicExtn extends StendhalServerExtension implements
 		}
 
 		// the list of spells
-		//FIXME Is this getQuest("spells") correct, shouldn't it be s.th. like
+		// TODO: Is this getQuest("spells") correct, shouldn't it be s.th. like
 		// player.getSlot("spells")... ?
 		String availableSpells = player.getQuest("spells");
-
+		
+		if (availableSpells == null) {
+			player.sendPrivateText("You can not cast this spell.");
+			return;
+		}
+		
 		// Checks to see if the list of spells available to the player contains
 		// the spell they tried to cast
 		if (availableSpells.contains(castSpell)) {
