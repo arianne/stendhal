@@ -31,9 +31,9 @@ public class LoginEventIterator extends ResultSetIterator<LoginEvent> {
     protected LoginEvent createObject() {
 		try {
 			return new LoginEvent(
+				resultSet.getString("username"),
 				resultSet.getString("address"),
-				resultSet.getString("timedate"),
-	    		resultSet.getString("username"));
+				resultSet.getString("timedate"));
 		} catch (SQLException e) {
 			logger.error(e, e);
 			return null;
