@@ -100,8 +100,8 @@ public class SentenceTest {
 		Sentence m2 = ConversationParser.parseForMatching("buy SUB");
 		assertFalse(m1.hasError());
 		assertFalse(m2.hasError());
-		assertTrue(s1.matches(m1));
-		assertFalse(s1.matches(m2));
+		assertTrue(s1.matchesFull(m1));
+		assertFalse(s1.matchesFull(m2));
 
 		s1 = ConversationParser.parse("bake apple pie");
 		assertFalse(s1.hasError());
@@ -109,25 +109,25 @@ public class SentenceTest {
 		m2 = ConversationParser.parseForMatching("VER *cookie");
 		assertFalse(m1.hasError());
 		assertFalse(m2.hasError());
-		assertTrue(s1.matches(m1));
-		assertFalse(s1.matches(m2));
+		assertTrue(s1.matchesFull(m1));
+		assertFalse(s1.matchesFull(m2));
 
 		s1 = ConversationParser.parse("please work");
 		m1 = ConversationParser.parseForMatching("IGN VER");
 		m2 = ConversationParser.parseForMatching("VER");
 		assertFalse(s1.hasError() || m1.hasError() || m2.hasError());
-		assertTrue(s1.matches(m1));
-		assertTrue(s1.matches(m2));
+		assertTrue(s1.matchesFull(m1));
+		assertTrue(s1.matchesFull(m2));
 
 		s1 = ConversationParser.parse("so i love you");
 		m1 = ConversationParser.parseForMatching("i love you");
 		assertFalse(s1.hasError() || m1.hasError());
-		assertTrue(s1.matches(m1));
+		assertTrue(s1.matchesFull(m1));
 
 		s1 = ConversationParser.parse("but do you love me?");
 		m1 = ConversationParser.parseForMatching("do you love me?");
 		assertFalse(s1.hasError() || m1.hasError());
-		assertTrue(s1.matches(m1));
+		assertTrue(s1.matchesFull(m1));
 
 		s1 = ConversationParser.parse("do you know Stendhal?");
 		assertEquals("you know stendhal?", s1.getNormalized());
@@ -136,8 +136,16 @@ public class SentenceTest {
 		m2 = ConversationParser.parseForMatching("SUB ADJ Stendhal?");
 		assertEquals("* * stendhal?", m2.getNormalized());
 		assertFalse(s1.hasError() || m1.hasError() || m2.hasError());
-		assertTrue(s1.matches(m1));
-		assertFalse(s1.matches(m2));
+		assertTrue(s1.matchesFull(m1));
+		assertFalse(s1.matchesFull(m2));
+
+		s1 = ConversationParser.parse("it is raining cats and dogs");
+		m1 = ConversationParser.parse("it is raining cats");
+		assertFalse(s1.hasError());
+		assertFalse(m1.hasError());
+
+		assertFalse(s1.matchesFull(m1));
+		assertTrue(s1.matchesStart(m1));
 	}
 
 	@Test
