@@ -1,4 +1,4 @@
-package games.stendhal.tools.loganalyser.itemlog.consistency;
+package games.stendhal.tools.loganalyser.util;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

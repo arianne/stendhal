@@ -1,5 +1,7 @@
 package games.stendhal.tools.loganalyser.itemlog.consistency;
 
+import games.stendhal.tools.loganalyser.util.ResultSetIterator;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
