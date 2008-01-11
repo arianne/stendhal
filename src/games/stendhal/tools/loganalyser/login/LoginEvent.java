@@ -29,4 +29,14 @@ public class LoginEvent {
 		return timestamp;
 	}
 
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append(username);
+		sb.append("\t");
+		sb.append(address);
+		sb.append("\t");
+		sb.append(timestamp);
+		return sb.toString();
+	}
 }
