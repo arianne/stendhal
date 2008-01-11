@@ -36,7 +36,7 @@ public class Sentence {
 	 * 
 	 * @param parser
 	 */
-	public void parse(ConversationParser parser) {
+	/*package*/ void parse(ConversationParser parser) {
 		Expression prevWord = null;
 
 		for (String ws; (ws = parser.readNextWord()) != null;) {
@@ -439,12 +439,11 @@ public class Sentence {
 	}
 
 	/**
-	 * TODO: match javadoc to the method
-	 * Return the trailing punctuation depending on the sentence type.
+	 * Append the trailing punctuation depending on the sentence type to the given SentenceBuilder.
 	 *
-	 * @return
+	 * @param builder
 	 */
-	public void appendPunctation(SentenceBuilder builder) {
+	private void appendPunctation(SentenceBuilder builder) {
 		if (sentenceType == ST_STATEMENT) {
 			builder.append('.');
 		} else if (sentenceType == ST_IMPERATIVE) {
@@ -459,7 +458,7 @@ public class Sentence {
 	 * 
 	 * @param parser
 	 */
-	public void classifyWords(ConversationParser parser, boolean isForMatching) {
+	/*package*/ void classifyWords(ConversationParser parser, boolean isForMatching) {
 		WordList wl = WordList.getInstance();
 
 		for (Expression w : expressions) {
@@ -547,13 +546,14 @@ public class Sentence {
 		}
 	}
 
+	// constant Sentence to be used for matching in standardizeSentenceType() 
 	private static final Sentence willSubjectVerb = ConversationParser.parseForMatching("will SUB VER");
 
 	/**
 	 * Standardize sentence type.
 	 */
-	public void standardizeSentenceType() {
-		// Does the Sentence start with "will SUB VER" (will/would SUBJECT VERB)?
+	/*package*/ void standardizeSentenceType() {
+		// Does the Sentence start with a "will/would SUBJECT VERB" construct?
 		if (matchesStart(willSubjectVerb)) {
 			Expression verb1 = getVerb(0);
 			Expression verb2 = getVerb(1);
@@ -603,7 +603,7 @@ public class Sentence {
 	 * NPC conversation. It should be integrated with the FSM engine so that quest
 	 * writers can specify the conversation syntax on their own.
 	 */
-	public void performaAliasing() {
+	/*package*/ void performaAliasing() {
 		Expression verb = getVerb();
 		Expression subject1 = getSubject(0);
 		Expression subject2 = getSubject(1);
@@ -625,14 +625,14 @@ public class Sentence {
 	}
 
 	/**
-	 * Is the sentence of the form "[you] give me(i)" ?
+	 * Is the sentence in the form "[you] give me(i)" ?
 	 *
 	 * @param subject1
 	 * @param verb
 	 * @param subject2
 	 * @return true for match
 	 */
-	static boolean isYouGiveMe(Expression subject1, Expression verb, Expression subject2) {
+	private static boolean isYouGiveMe(Expression subject1, Expression verb, Expression subject2) {
 		if (verb != null
 				&& subject1 != null 
 				&& subject2 != null) {
@@ -648,7 +648,7 @@ public class Sentence {
 	}
 
 	/**
-	 * Is the sentence of the form "[SUBJECT] (would like to have)"?
+	 * Is the sentence in the form "[SUBJECT] (would like to have)"?
 	 *
 	 * @return true for match
 	 */
@@ -679,7 +679,7 @@ public class Sentence {
 	/**
 	 * Evaluate the sentence type from word order.
 	 */
-	public int evaluateSentenceType() {
+	/*package*/ int evaluateSentenceType() {
 		Iterator<Expression> it = expressions.iterator();
 		int type = ST_UNDEFINED;
 
@@ -710,7 +710,7 @@ public class Sentence {
 					}
 				} else if (first.getNormalized().equals("do") 
 						&& (second == null || !second.getOriginal().equalsIgnoreCase("me"))) {
-					// questions begins with "do", but no "do me" sentences
+					// question begins with "do", but no "do me" sentence
 					if (type == ST_UNDEFINED) {
 						type = ST_QUESTION;
 					}
@@ -719,7 +719,7 @@ public class Sentence {
 				} else if (first.getNormalized().equals("it") 
 						&&	second.getNormalized().equals("is") 
 						&& (third != null && third.getType() != null && third.getType().isGerund())) {
-					// statements begins with "it is <VER-GER>"
+					// statement begins with "it is <VER-GER>"
 					if (type == ST_UNDEFINED) {
 						type = ST_STATEMENT;
 					}
@@ -740,7 +740,7 @@ public class Sentence {
 	/**
 	 * Merge words to form a simpler sentence structure.
 	 */
-	public void mergeWords(boolean isForMatching) {
+	/*package*/ void mergeWords(boolean isForMatching) {
 
 		// first merge three word expressions of the form "... of ..."
 		mergeThreeWordExpressions(isForMatching);
