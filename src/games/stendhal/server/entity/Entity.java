@@ -739,4 +739,25 @@ public abstract class Entity extends RPObject {
 	public void setVisibility(final int visibility) {
 		put("visibility", visibility);
 	}
+
+	/**
+	 * Check if the other Entity is near enough to be in sight on the client screen.
+	 *
+	 * @param other
+	 * @return true if near enough
+	 */
+	public boolean isInSight(Entity other) {
+		if (other != null) {
+			if (other.getZone() == getZone()) {
+				// check distance: 640x480 client screen size for 32x32 pixel tiles
+				// -> makes 20x15 tiles screen size
+				if (Math.abs(other.getX() - x) <= 20 &&
+					Math.abs(other.getY() - y) <= 15) {
+					return true;
+				}
+			}
+		}
+
+		return false;
+	}
 }
