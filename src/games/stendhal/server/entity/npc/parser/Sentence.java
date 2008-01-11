@@ -547,37 +547,49 @@ public class Sentence {
 		}
 	}
 
+	private static final Sentence willSubjectVerb = ConversationParser.parseForMatching("will SUB VER");
+
 	/**
 	 * Standardize sentence type.
 	 */
 	public void standardizeSentenceType() {
-		// Look for a "me" without any preceding other subject.
-		Expression prevVerb = null;
+		// Does the Sentence start with "will SUB VER" (will/would SUBJECT VERB)?
+		if (matchesStart(willSubjectVerb)) {
+			Expression verb1 = getVerb(0);
+			Expression verb2 = getVerb(1);
 
-		for (Expression w : expressions) {
-			if (w.getBreakFlag()) {
-				break;
-			}
+			verb2.mergeLeft(verb1, false);
+			expressions.remove(verb1);
+			sentenceType = ST_QUESTION;
+		} else {
+			// Look for a "me" without any preceding other subject.
+			Expression prevVerb = null;
 
-			if (w.getType() != null) {
-				if (w.getType().isVerb()) {
-					if (prevVerb == null) {
-						prevVerb = w;
-					} else {
+			for (Expression w : expressions) {
+				if (w.getBreakFlag()) {
+					break;
+				}
+
+				if (w.getType() != null) {
+					if (w.getType().isVerb()) {
+						if (prevVerb == null) {
+							prevVerb = w;
+						} else {
+							break;
+						}
+					} else if (w.getType().isSubject()) {
+						if (w.getOriginal().equalsIgnoreCase("me")) {
+							// If we already found a verb, we prepend "you" as
+							// first subject and mark the sentence as imperative.
+							if (prevVerb != null) {
+								Expression you = new Expression("you", ExpressionType.SUBJECT);
+								expressions.add(0, you);
+								sentenceType = ST_IMPERATIVE;
+							}
+						}
+
 						break;
 					}
-				} else if (w.getType().isSubject()) {
-					if (w.getOriginal().equalsIgnoreCase("me")) {
-						// If we already found a verb, we prepend "you" as
-						// first subject and mark the sentence as imperative.
-						if (prevVerb != null) {
-							Expression you = new Expression("you", ExpressionType.SUBJECT);
-							expressions.add(0, you);
-							sentenceType = ST_IMPERATIVE;
-						}
-					}
-
-					break;
 				}
 			}
 		}
@@ -593,37 +605,75 @@ public class Sentence {
 	 */
 	public void performaAliasing() {
 		Expression verb = getVerb();
+		Expression subject1 = getSubject(0);
+		Expression subject2 = getSubject(1);
 
-		if (verb != null) {
-			Expression subject1 = getSubject(0);
-			Expression subject2 = getSubject(1);
+		// "[you] give me(i)" -> "[I] buy"
+		if (isYouGiveMe(subject1, verb, subject2)) {
+			// remove the subjects and replace the verb with "buy" as first word
+			expressions.remove(subject1);
+			expressions.remove(subject2);
+			getVerb().setNormalized("buy");
+			sentenceType = ST_IMPERATIVE;
+		}
+		// "[SUBJECT] (would like to have)" -> "[SUBJECT] buy"
+		else if (isLikeToHave()) {
+			// replace the verb with "buy"
+			verb.setNormalized("buy");
+			sentenceType = ST_IMPERATIVE;
+		}
+	}
 
-			// "[you] give me(i)" -> "[I] buy"
-			// Note: The second subject "me" is replaced by "i" in the WordList
-			// normalization.
-			if (subject1 != null 
-					&& subject2 != null 
-					&& subject1.getNormalized().equals("you") 
+	/**
+	 * Is the sentence of the form "[you] give me(i)" ?
+	 *
+	 * @param subject1
+	 * @param verb
+	 * @param subject2
+	 * @return true for match
+	 */
+	static boolean isYouGiveMe(Expression subject1, Expression verb, Expression subject2) {
+		if (verb != null
+				&& subject1 != null 
+				&& subject2 != null) {
+			// Note: The second subject "me" is replaced by "i" in the WordList normalization.
+			if (subject1.getNormalized().equals("you") 
 					&& verb.getNormalized().equals("give") 
 					&& subject2.getNormalized().equals("i")) {
-				// remove the subjects and replace the verb with "buy" as first word
-				expressions.remove(subject1);
-				expressions.remove(subject2);
-				verb.setNormalized("buy");
-				sentenceType = ST_IMPERATIVE;
-				return;
-			}
-
-			// "[SUBJECT] (would like to have)" -> ""[SUBJECT] buy"
-			if (verb.getNormalized().equals("have")
-					&& verb.getOriginal().contains("like")
-					&& ((subject1 == null && expressions.get(0) == verb) 
-						|| (expressions.get(0) == subject1 && expressions.get(1) == verb))) {
-				// replace the verb with "buy"
-				verb.setNormalized("buy");
-				sentenceType = ST_IMPERATIVE;
+				return true;
 			}
 		}
+
+		return false;
+	}
+
+	/**
+	 * Is the sentence of the form "[SUBJECT] (would like to have)"?
+	 *
+	 * @return true for match
+	 */
+	private boolean isLikeToHave() {
+		Expression verb = getVerb();
+
+		if (verb != null) {
+			if (verb.getNormalized().equals("have") && verb.getOriginal().contains("like")) {
+				Expression subject1 = getSubject(0);
+				Expression firstExpression = expressions.get(0);
+				Expression secondExpression = expressions.get(1);
+
+				// "(would like to have)" ?
+				if (subject1 == null && verb == firstExpression) {
+					return true;
+				}
+
+				// "SUBJECT (would like to have)" ?
+				if (subject1 == firstExpression && verb == secondExpression) {
+					return true;
+				}
+			}
+		}
+
+		return false;
 	}
 
 	/**
@@ -713,6 +763,7 @@ public class Sentence {
 		// loop until no more simplification can be made
 		do {
 			Iterator<Expression> it = expressions.iterator();
+			boolean prevConditional = false;
 
 			changed = false;
 
@@ -741,37 +792,41 @@ public class Sentence {
 					ExpressionType curType = curr.getType();
 					ExpressionType nextType = next.getType();
 
+					if (curType.isConditional()) {
+						prevConditional = true;
+					}
+
 					if (curType != null && nextType != null) {
 						// check the expression types for concrete subject or object names (no pronouns)
 						boolean currIsName = curType.isObject() || (curType.isSubject() && !curType.isPronoun());
 						boolean nextIsName = nextType.isObject() || (nextType.isSubject() && !nextType.isPronoun());
 
-    					// left-merge nouns with preceding adjectives and composite nouns
-    					if ((curType.isAdjective() || currIsName) && nextIsName) {
-    						// special case for "ice cream" -> "ice"
-    						if (curr.getNormalized().equals("ice") && next.getNormalized().equals("cream")) {
-    							curr.mergeRight(next, true);
-    							expressions.remove(next);
-    						} else {
-    							next.mergeLeft(curr, true);
-    							expressions.remove(curr);
-    						}
-    						changed = true;
-    						break;
-    					}
-    					// left-merge nouns with preceding amounts, dropping the numerals from the
-    					// merged normalized expression
-    					else if (curType.isNumeral() 
-    							&& (nextType.isObject() || nextType.isSubject())) {
+						// left-merge nouns with preceding adjectives and composite nouns
+						if ((curType.isAdjective() || currIsName) && nextIsName) {
+							// special case for "ice cream" -> "ice"
+							if (curr.getNormalized().equals("ice") && next.getNormalized().equals("cream")) {
+								curr.mergeRight(next, true);
+								expressions.remove(next);
+							} else {
+								next.mergeLeft(curr, true);
+								expressions.remove(curr);
+							}
+							changed = true;
+							break;
+						}
+						// left-merge nouns with preceding amounts, dropping the numerals from the
+						// merged normalized expression
+						else if (curType.isNumeral() 
+								&& (nextType.isObject() || nextType.isSubject())) {
 							next.mergeLeft(curr, false);
 							expressions.remove(curr);
-    						changed = true;
-    						break;
-    					}
-    					// right-merge consecutive verbs, preserving only the main verb
-    					else if (curType.isVerb() && nextType.isVerb()) {
-    						// handle "would like"
-    						if (curType.isConditional()) {
+							changed = true;
+							break;
+						}
+						// right-merge consecutive verbs, preserving only the main verb
+						else if (curType.isVerb() && nextType.isVerb()) {
+							// handle "would like"
+							if (prevConditional) {
     							next.mergeLeft(curr, false);
     							expressions.remove(curr);
     						} else {
@@ -881,6 +936,10 @@ public class Sentence {
 	 * @return
 	 */
 	public boolean equalsNormalized(Sentence other) {
+		if (other == null) {
+			return false;
+		}
+
 		// shortcut for sentences with differing lengths
 	    if (expressions.size() != other.expressions.size()) {
 	    	return false;
@@ -951,7 +1010,46 @@ public class Sentence {
 	 * @return
 	 */
 	public boolean matchesNormalized(String text) {
-		return matches(ConversationParser.parseForMatching(text));
+		return matchesFull(ConversationParser.parseForMatching(text));
+	}
+
+	/**
+	 * Check if the Sentence beginning matches the given String.
+	 * The match Sentence can contain explicit expressions, which
+	 * are compared after normalizing, or ExpressionType specifiers
+	 * like "VER" or "SUB*" in upper case.
+	 *
+	 * @param text
+	 * @return
+	 */
+	public boolean matchesNormalizedStart(String text) {
+		return matchesStart(ConversationParser.parseForMatching(text));
+	}
+
+	/**
+	 * Check if the Sentence completely matches the given Sentence.
+	 * The match Sentence can contain explicit expressions, which
+	 * are compared after normalizing, or ExpressionType specifiers
+	 * like "VER" or "SUB*" in upper case.
+	 *
+	 * @param other
+	 * @return
+	 */
+	public boolean matchesFull(Sentence other) {
+		return matches(other, false);
+	}
+
+	/**
+	 * Check if the Sentence start matches the given Sentence.
+	 * The match Sentence can contain explicit expressions, which
+	 * are compared after normalizing, or ExpressionType specifiers
+	 * like "VER" or "SUB*" in upper case.
+	 *
+	 * @param other
+	 * @return
+	 */
+	public boolean matchesStart(Sentence other) {
+		return matches(other, true);
 	}
 
 	/**
@@ -963,7 +1061,11 @@ public class Sentence {
 	 * @param other
 	 * @return
 	 */
-	public boolean matches(Sentence other) {
+	private boolean matches(Sentence other, boolean matchStart) {
+		if (other == null) {
+			return false;
+		}
+
 	    // loop over all expressions and match them between both sides
 	    Iterator<Expression> it1 = expressions.iterator();
 	    Iterator<Expression> it2 = other.expressions.iterator();
@@ -996,10 +1098,12 @@ public class Sentence {
 			}
 		}
 
-		// Now there should be no more expressions at both sides.
-		e1 = Expression.nextValid(it1);
-		e2 = Expression.nextValid(it2);
+		// If we look for a full match, there should be no more expressions at both sides.
 		if (e1 == null && e2 == null) {
+			return true;
+		}
+		// If we look for a match at Sentence start, there must be no more epxressions at the right side.
+		else if (matchStart && e2 == null) {
 			return true;
 		} else {
 			return false;
