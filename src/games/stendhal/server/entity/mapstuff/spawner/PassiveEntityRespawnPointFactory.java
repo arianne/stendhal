@@ -5,13 +5,13 @@ import marauroa.common.game.IRPZone.ID;
 import org.apache.log4j.Logger;
 
 /**
- * creates a PassiveEntityRespawnPoint
+ * creates a PassiveEntityRespawnPoint.
  */
 public class PassiveEntityRespawnPointFactory {
 	private static Logger logger = Logger.getLogger(PassiveEntityRespawnPointFactory.class);
 
 	/**
-	 * creates a PassiveEntityRespawnPoint
+	 * creates a PassiveEntityRespawnPoint.
 	 * 
 	 * @param clazz
 	 *            class

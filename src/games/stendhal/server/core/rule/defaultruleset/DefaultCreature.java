@@ -31,31 +31,31 @@ public class DefaultCreature {
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(DefaultCreature.class);
 
-	/** Creature class */
+	/** Creature class. */
 	private String clazz;
 
-	/** Creature subclass */
+	/** Creature subclass. */
 	private String subclass;
 
-	/** Creature name */
+	/** Creature name. */
 	private String name;
 
-	/** optional creature description * */
+	/** optional creature description. * */
 	private String description;
 
-	/** Map Tile Id in the way tileset.png:pos */
+	/** Map Tile Id in the way tileset.png:pos. */
 	private String tileid;
 
-	/** hitpoints */
+	/** hitpoints. */
 	private int hp;
 
-	/** Attack points */
+	/** Attack points. */
 	private int atk;
 
-	/** defense points */
+	/** defense points. */
 	private int def;
 
-	/** experience points for killing this creature */
+	/** experience points for killing this creature. */
 	private int xp;
 
 	private int level;
@@ -67,7 +67,7 @@ public class DefaultCreature {
 
 	private int height;
 
-	/** Ths list of items this creature may drop */
+	/** The list of items this creature may drop. */
 	private List<DropItem> dropsItems;
 
 	private List<EquipItem> equipsItems;
@@ -185,7 +185,7 @@ public class DefaultCreature {
 		this.aiProfiles = aiProfiles;
 	}
 
-	/** returns a creature-instance */
+	/** returns a creature-instance. */
 	public Creature getCreature() {
 		Collections.sort(dropsItems, new Comparator<DropItem>() {
 
@@ -208,7 +208,7 @@ public class DefaultCreature {
 		return creature;
 	}
 
-	/** returns the tileid */
+	/** returns the tileid. */
 	public String getTileId() {
 		return tileid;
 	}
@@ -217,7 +217,7 @@ public class DefaultCreature {
 		tileid = val;
 	}
 
-	/** returns the class */
+	/** returns the class. */
 	public String getCreatureClass() {
 		return clazz;
 	}

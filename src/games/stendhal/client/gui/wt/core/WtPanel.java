@@ -853,7 +853,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	/**
 	 * draws all children.
 	 * 
-	 * @param clientArea
+	 * @param g
 	 *            Graphics object clipped to the client region.
 	 */
 	protected void drawChildren(Graphics2D g) {

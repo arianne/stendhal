@@ -9,7 +9,7 @@ package games.stendhal.server.entity.creature;
  */
 public class RaidCreature extends Creature {
 	/**
-	 * RaidCreature
+	 * RaidCreature.
 	 * 
 	 * @param copy
 	 *            creature to wrap

@@ -9,7 +9,7 @@ import games.stendhal.server.entity.npc.TeleporterBehaviour;
 import java.util.Map;
 
 /**
- * Builds a Flower Seller NPC for the Elf Princess quest
+ * Builds a Flower Seller NPC for the Elf Princess quest.
  *
  * @author kymara
  */

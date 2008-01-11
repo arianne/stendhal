@@ -29,7 +29,7 @@ import marauroa.common.game.RPObject;
 public class GrainField extends GrowingPassiveEntityRespawnPoint implements
 		UseListener {
 
-	/** How many regrowing steps are needed before one can harvest again */
+	/** How many growing steps are needed before one can harvest again. */
 	public static final int RIPE = 5;
 
 	public GrainField(RPObject object) {

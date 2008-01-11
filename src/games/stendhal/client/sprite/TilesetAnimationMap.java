@@ -61,8 +61,6 @@ public class TilesetAnimationMap {
 	 * frame, a mapping will be created with the remaining indexes as it's
 	 * frames (in order, starting with it's index).
 	 * 
-	 * @param index
-	 *            The tile index to map.
 	 * @param frameIndexes
 	 *            The indexes of frame tiles.
 	 * @param frameDelays

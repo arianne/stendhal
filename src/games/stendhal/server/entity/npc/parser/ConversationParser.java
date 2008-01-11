@@ -41,7 +41,7 @@ public class ConversationParser {
 	/**
 	 * Return the sentence in normalized form.
 	 * 
-	 * @param trigger
+	 * @param text
 	 * @return
 	 */
 	public static String normalize(String text) {
@@ -80,7 +80,7 @@ public class ConversationParser {
 	 * @return Sentence
 	 */
 	public static Sentence parse(String text, ConversationContext ctx) {
-		boolean forMatching = ctx!=null? ctx.isForMatching(): false;
+		boolean forMatching = ctx != null? ctx.isForMatching() : false;
 
 		// 1.) determine sentence type from trailing punctuation
 		Sentence sentence = new Sentence();
@@ -180,7 +180,7 @@ public class ConversationParser {
 	/**
 	 * Create a list of normalized trigger Words from a String list.
 	 *
-	 * @param string list
+	 * @param strings list
 	 * @return word list
 	 */
 	public static List<Expression> createTriggerList(List<String> strings) {

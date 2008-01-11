@@ -91,7 +91,7 @@ public class PlayerTestHelper {
 	/**
 	 * Remove a player from rule processor, world and zone.
 	 * 
-	 * @param player
+	 * @param playerName
 	 * @param zone
 	 */
 	public static void removePlayer(String playerName, StendhalRPZone zone) {
@@ -184,7 +184,7 @@ public class PlayerTestHelper {
 	/**
 	 * Reset the conversation state of the named NPC.
 	 * 
-	 * @param string
+	 * @param npcName
 	 */
 	public static void resetNPC(String npcName) {
 		SpeakerNPC npc = NPCList.get().get(npcName);
@@ -206,7 +206,7 @@ public class PlayerTestHelper {
 	/**
 	 * Remove a zone from the world.
 	 * 
-	 * @param name
+	 * @param zoneName
 	 */
 	public static void removeZone(String zoneName) {
 		// TODO implement removeZone()

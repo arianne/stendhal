@@ -13,7 +13,7 @@ import marauroa.common.game.RPSlot;
 import marauroa.server.game.db.Transaction;
 
 /**
- * Dumps the items of all players into a table called items
+ * Dumps the items of all players into a table called items.
  * 
  * @author hendrik
  */
@@ -27,7 +27,7 @@ public class ItemDumper {
 	java.sql.Date date;
 
 	/**
-	 * Creates a new ItemDumper
+	 * Creates a new ItemDumper.
 	 * 
 	 * @param db
 	 *            JDBCPlayerDatabase
@@ -38,7 +38,7 @@ public class ItemDumper {
 	}
 
 	/**
-	 * dumps the items
+	 * dumps the items.
 	 * 
 	 * @throws Exception
 	 *             in case of an unexpected Exception
@@ -68,7 +68,7 @@ public class ItemDumper {
 	}
 
 	/**
-	 * logs an item
+	 * logs an item.
 	 * 
 	 * @param name
 	 *            character name
@@ -95,7 +95,7 @@ public class ItemDumper {
 	}
 
 	/**
-	 * starts the ItemDumper
+	 * starts the ItemDumper.
 	 * 
 	 * @param args
 	 *            ignored

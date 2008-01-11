@@ -95,7 +95,7 @@ public class TimedTeleportScroll extends TeleportScroll {
 	}
 
 	/**
-	 * Creates a new timed marked teleport scroll
+	 * Creates a new timed marked teleport scroll.
 	 * 
 	 * @param name
 	 * @param clazz
@@ -108,7 +108,7 @@ public class TimedTeleportScroll extends TeleportScroll {
 	}
 
 	/**
-	 * copy constructor
+	 * Copy constructor.
 	 * 
 	 * @param item
 	 *            item to copy

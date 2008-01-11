@@ -17,7 +17,7 @@ public class MultipleActions extends SpeakerNPC.ChatAction {
 	private List<SpeakerNPC.ChatAction> actions;
 
 	/**
-	 * Creates a new MultipleActions
+	 * Creates a new MultipleActions.
 	 * 
 	 * @param action
 	 *            action to execute
@@ -27,7 +27,7 @@ public class MultipleActions extends SpeakerNPC.ChatAction {
 	}
 
 	/**
-	 * Creates a new MultipleActions
+	 * Creates a new MultipleActions.
 	 * 
 	 * @param actions
 	 *            list of actions to execute

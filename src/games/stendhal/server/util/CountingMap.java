@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 /**
- * A map which assigns a unique id to every entry
+ * A map which assigns a unique id to every entry.
  * 
  * @author hendrik
  * @param <V>
@@ -23,7 +23,7 @@ public class CountingMap<V> implements Serializable,
 	private int counter = 0;
 
 	/**
-	 * creates a new counting map
+	 * Creates a new counting map.
 	 * 
 	 * @param prefix
 	 *            prefix
@@ -33,7 +33,7 @@ public class CountingMap<V> implements Serializable,
 	}
 
 	/**
-	 * adds a new entry to the map unless it is already part of it
+	 * Adds a new entry to the map unless it is already part of it.
 	 * 
 	 * @param value
 	 *            entry

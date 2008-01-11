@@ -58,31 +58,31 @@ public class StendhalHttpServer extends StendhalServerExtension implements
 
 	private static final Logger logger = Logger.getLogger(StendhalHttpServer.class);
 
-	/** what to do with the http request if we don't handle it ourselves * */
+	/** what to do with the http request if we don't handle it ourselves. * */
 	private ProtocolHandler handler;
 
 	// /** our context to retrieve files * */
 	// static Context dataContext;
 
-	/** the port where we listen to http * */
+	/** The port where we listen to http . */
 	private static int PORT;
 
-	/** default expiration time * */
+	/** Default expiration time. */
 	private static final int EXPIRES = 300000; // 5 minutes
 
-	/** GroovyScriptEngine * */
+	/** GroovyScriptEngine. */
 	private static GroovyScriptEngine scriptEngine;
 
-	/** Context to retrieve Groovy scripts * */
+	/** Context to retrieve Groovy scripts. */
 	private static Context scriptContext;
 
-	/** Context to retrieve files * */
+	/** Context to retrieve files . */
 	private static Context fileContext;
 
-	/** GroovyVariableBinding * */
+	/** GroovyVariableBinding. */
 	private static Binding scriptBinding;
 
-	/** initialize the server with the game object connection * */
+	/** Initializes the server with the game object connection. */
 	public StendhalHttpServer() {
 		super();
 		try {
@@ -107,7 +107,7 @@ public class StendhalHttpServer extends StendhalServerExtension implements
 		}
 	}
 
-	/** process a http request and add convenience headers * */
+	/** Processes a http request and add convenience headers. */
 	public void handle(Request req, Response resp) {
 		resp.set("Server", "Stendhal http (Simpleweb)");
 		resp.setDate("Date", System.currentTimeMillis());
@@ -116,7 +116,7 @@ public class StendhalHttpServer extends StendhalServerExtension implements
 		handler.handle(req, resp);
 	}
 
-	/** convenience method to copy stream contents * */
+	/** Convenience method to copy stream contents. */
 	public static void streamCopy(InputStream in, OutputStream out)
 			throws Exception {
 		try {
@@ -206,7 +206,7 @@ public class StendhalHttpServer extends StendhalServerExtension implements
 				String resource, PrintStream outStream) throws Exception;
 	}
 
-	/** Serve Groovy scripts that don't have access to game objects * */
+	/** Serves Groovy scripts that don't have access to game objects. */
 	public static class SecureScriptService extends IncludableView {
 
 		public SecureScriptService(Context context) {
@@ -252,7 +252,7 @@ public class StendhalHttpServer extends StendhalServerExtension implements
 		}
 	}
 
-	/** Serve Groovy scripts that have access to game objects * */
+	/** Serves Groovy scripts that have access to game objects. * */
 	public static class GameScriptService extends SecureScriptService {
 
 		public GameScriptService(Context context) {
@@ -270,7 +270,7 @@ public class StendhalHttpServer extends StendhalServerExtension implements
 		}
 	}
 
-	/** Serve normal files from the document root (fileContext) * */
+	/** Serves normal files from the document root (fileContext). * */
 	public static class FileService extends IncludableView {
 
 		public FileService(Context context) {
@@ -325,7 +325,7 @@ public class StendhalHttpServer extends StendhalServerExtension implements
 		}
 	}
 
-	/** Serve resources from the classpath * */
+	/** Serves resources from the classpath. * */
 	public static class DataService extends View {
 
 		public DataService(Context context) {
@@ -351,7 +351,7 @@ public class StendhalHttpServer extends StendhalServerExtension implements
 		}
 	}
 
-	/** start listening to http requests * */
+	/** Starts listening to http requests. */
 	@Override
 	public void init() {
 		try {

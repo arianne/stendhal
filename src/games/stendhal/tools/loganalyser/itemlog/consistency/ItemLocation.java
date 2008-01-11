@@ -1,7 +1,7 @@
 package games.stendhal.tools.loganalyser.itemlog.consistency;
 
 /**
- * represents the location of an item (slot or ground)
+ * Represents the location of an item (slot or ground).
  *
  * @author hendrik
  */
@@ -11,7 +11,7 @@ public class ItemLocation {
 	private String param2;
 
 	/**
-	 * extract source from event name
+	 * Extracts source from event name.
 	 *
 	 * @param event name of event
 	 * @return source
@@ -24,7 +24,7 @@ public class ItemLocation {
 	}
 
 	/**
-	 * extract destination from event name
+	 * Extract destination from event name.
 	 *
 	 * @param event name of event
 	 * @return destination

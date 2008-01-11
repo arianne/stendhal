@@ -36,7 +36,7 @@ public class InvitationScroll extends TeleportScroll {
 	}
 
 	/**
-	 * copy constructor
+	 * Copy constructor.
 	 * 
 	 * @param item
 	 *            item to copy

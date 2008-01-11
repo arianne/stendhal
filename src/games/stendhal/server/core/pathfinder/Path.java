@@ -76,7 +76,7 @@ public abstract class Path {
 	/**
 	 * Finds a path for the Entity <code>entity</code>.
 	 * 
-	 * @param entity
+	 * @param sourceEntity
 	 *            the Entity
 	 * @param zone
 	 *            the zone, if null the current zone of entity is used.

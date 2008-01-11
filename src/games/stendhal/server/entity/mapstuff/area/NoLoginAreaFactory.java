@@ -9,7 +9,7 @@ import games.stendhal.server.core.config.factory.ConfigurableFactoryContext;
 public class NoLoginAreaFactory implements ConfigurableFactory {
 
 	/**
-	 * Extract the height from context
+	 * Extract the height from context.
 	 * 
 	 * @param ctx
 	 *            The configuration context.
@@ -22,7 +22,7 @@ public class NoLoginAreaFactory implements ConfigurableFactory {
 	}
 
 	/**
-	 * Extract the width from context
+	 * Extract the width from context.
 	 * 
 	 * @param ctx
 	 *            The configuration context.

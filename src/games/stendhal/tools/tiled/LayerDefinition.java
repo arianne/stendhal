@@ -24,7 +24,7 @@ import marauroa.common.net.Serializable;
  * 
  */
 public class LayerDefinition implements Serializable {
-	/** To which map this layer belong */
+	/** To which map this layer belong. */
 	private StendhalMapStructure map;
 
 	/** Width of the layer that SHOULD be the same that the width of the map. */
@@ -44,21 +44,21 @@ public class LayerDefinition implements Serializable {
 	 * <li>objects
 	 * <li>collision
 	 * <li>protection
-	 * </ul>
+	 * </ul>.
 	 */
 	private String name;
 
-	/** The data encoded as int in a array of size width*height */
+	/** The data encoded as int in a array of size width*height .*/
 	private int[] data;
 
 	/**
 	 * The same data in a raw byte array, so we save reencoding it again for
-	 * serialization
+	 * serialization.
 	 */
 	private byte[] raw;
 
 	/**
-	 * Constructor
+	 * Constructor.
 	 * 
 	 * @param layerWidth
 	 *            the width of the layer.
@@ -134,7 +134,7 @@ public class LayerDefinition implements Serializable {
 	}
 
 	/**
-	 * Returns the tile at the x,y position
+	 * Returns the tile at the x,y position.
 	 * 
 	 * @param x
 	 *            the x position
@@ -150,7 +150,6 @@ public class LayerDefinition implements Serializable {
 	 * 
 	 * @return
 	 * @throws IOException
-	 * @throws UnsupportedEncodingException
 	 */
 	public byte[] encode() throws IOException {
 		ByteArrayOutputStream array = new ByteArrayOutputStream();
@@ -164,7 +163,7 @@ public class LayerDefinition implements Serializable {
 	}
 
 	/**
-	 * Deserialize a layer definition
+	 * Deserializes a layer definition.
 	 * 
 	 * @param in
 	 *            input serializer
@@ -185,7 +184,7 @@ public class LayerDefinition implements Serializable {
 	}
 
 	/**
-	 * Returns the width of the layer
+	 * Returns the width of the layer.
 	 * 
 	 * @return
 	 */
@@ -194,7 +193,7 @@ public class LayerDefinition implements Serializable {
 	}
 
 	/**
-	 * Returns the height of the layer
+	 * Returns the height of the layer.
 	 * 
 	 * @return
 	 */
@@ -227,7 +226,7 @@ public class LayerDefinition implements Serializable {
 	}
 
 	/**
-	 * Sets the name of the layer
+	 * Sets the name of the layer.
 	 * 
 	 * @param layerName
 	 *            the name of the layer
@@ -237,7 +236,7 @@ public class LayerDefinition implements Serializable {
 	}
 
 	/**
-	 * Returns the name of the layer
+	 * Returns the name of the layer.
 	 * 
 	 * @return
 	 */

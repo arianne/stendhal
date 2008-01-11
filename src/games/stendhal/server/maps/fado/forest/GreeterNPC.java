@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Builds an albino elf NPC
+ * Builds a Greeter NPC.
  *
  * @author kymara
  */

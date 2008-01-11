@@ -16,7 +16,7 @@ public interface PreTransitionCondition {
 	 * 
 	 * @param player
 	 *            player who caused the transition
-	 * @param text
+	 * @param sentence
 	 *            text he/she said
 	 * @param engine
 	 *            the NPC doing the transition

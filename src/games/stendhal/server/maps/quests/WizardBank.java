@@ -57,7 +57,7 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 		private WeakReference<Player> timerPlayer;
 
 		/**
-		 * Starts a teleport-out-timer
+		 * Starts a teleport-out-timer.
 		 * 
 		 * @param player
 		 *            the player who started the timer

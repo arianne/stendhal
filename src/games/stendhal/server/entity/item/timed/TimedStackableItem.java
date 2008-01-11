@@ -27,10 +27,10 @@ public abstract class TimedStackableItem extends StackableItem implements
 
 	private static Logger logger = Log4J.getLogger(TimedStackableItem.class);
 
-	WeakReference<Player> player;
+	private WeakReference<Player> player;
 
 	/**
-	 * Creates a TimedItem
+	 * Creates a TimedItem.
 	 * 
 	 * @param name
 	 * @param clazz
@@ -43,7 +43,7 @@ public abstract class TimedStackableItem extends StackableItem implements
 	}
 
 	/**
-	 * copy constructor
+	 * copy constructor.
 	 * 
 	 * @param item
 	 *            item to copy

@@ -50,6 +50,7 @@ public class GagManager implements LoginListener {
 	 *            The name of the admin who wants to gag the criminal
 	 * @param minutes
 	 *            The duration of the sentence
+	 * @param reason why criminal was gagged
 	 */
 	public void gag(final String criminalName, Player policeman, int minutes,
 			String reason) {
@@ -120,7 +121,7 @@ public class GagManager implements LoginListener {
 	}
 
 	/**
-	 * like isGagged(player) but informs the player in case it is gagged
+	 * Like isGagged(player) but informs the player in case it is gagged.
 	 * 
 	 * @param player player to check
 	 * @return true, if it is gagged, false otherwise.
@@ -139,7 +140,7 @@ public class GagManager implements LoginListener {
 	/**
 	 * If the players' gag has expired, remove it.
 	 * 
-	 * @param inmate
+	 * @param player
 	 *            player to check
 	 * @return true, if the gag expired and was removed or was already removed.
 	 *         false, if the player still has time to serve.
@@ -195,7 +196,7 @@ public class GagManager implements LoginListener {
 	/**
 	 * Gets time remaining in milliseconds.
 	 * 
-	 * @param inmate
+	 * @param criminal
 	 *            player to check
 	 * @return time remaining in milliseconds
 	 */

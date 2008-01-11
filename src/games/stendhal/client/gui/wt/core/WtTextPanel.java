@@ -112,7 +112,7 @@ public class WtTextPanel extends WtPanel {
 	/**
 	 * Draw the text contents. This is only called while open and not minimized.
 	 * 
-	 * @param g
+	 * @param clientArea
 	 *            The graphics context to draw with.
 	 */
 	@Override

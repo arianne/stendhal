@@ -91,7 +91,7 @@ public class WtMessageBox extends WtPanel implements WtClickListener,
 	 * Draw the messagebox contents. This is only called while open and not
 	 * minimized.
 	 * 
-	 * @param g
+	 * @param clientArea
 	 *            The graphics context to draw with.
 	 */
 	@Override

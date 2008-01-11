@@ -40,7 +40,7 @@ public class StendhalMapWriter implements MapWriter {
 	private PluginLogger pluginLogger;
 
 	/**
-	 * Method writeMap
+	 * 
 	 *
 	 * @param map
 	 * @param filename
@@ -152,7 +152,7 @@ public class StendhalMapWriter implements MapWriter {
 		// not implemented
 	}
 
-	/** accepts all filenames ending with .stend */
+	/** accepts all filenames ending with .stend . */
 	public boolean accept(File pathname) {
 		try {
 			String path = pathname.getCanonicalPath().toLowerCase();

@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * Base class for ghost NPCs
+ * Base class for ghost NPCs.
  * 
  * @author Martin Fuchs
  */
@@ -25,7 +25,7 @@ public abstract class GhostNPCBase extends SpeakerNPC {
 	}
 
 	/**
-	 * ChatAction common to all ghost NPCs
+	 * ChatAction common to all ghost NPCs.
 	 * 
 	 * @author Martin Fuchs
 	 */

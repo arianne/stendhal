@@ -61,7 +61,7 @@ public class CollectionFilter<T> {
 	 * @return a filtered copy of the input collection
 	 */
 	@SuppressWarnings("unchecked")
-    public Collection<? extends T> filterCopy(Collection<? extends T> inputCollection) {
+    public Collection< ? extends T> filterCopy(Collection< ? extends T> inputCollection) {
 
 		Collection<T> outputCollection = null;
 
@@ -69,7 +69,7 @@ public class CollectionFilter<T> {
 
 			outputCollection = (Collection<T>) createObjectSameClass(inputCollection);
 
-			Iterator<? extends T> iter = inputCollection.iterator();
+			Iterator< ? extends T> iter = inputCollection.iterator();
 			while (iter.hasNext()) {
 				T o = iter.next();
 				if (passesAllCriteria(o)) {
@@ -114,13 +114,13 @@ public class CollectionFilter<T> {
 				sameClassObject = constructor.newInstance();
 			}
 		} catch (IllegalAccessException e) {
-			// @todo do something
+			
 		} catch (NoSuchMethodException e) {
-			// @todo do something
+			
 		} catch (InstantiationException e) {
-			// @todo do something
+			
 		} catch (Exception e) {
-			// @todo do something
+			
 		}
 		return sameClassObject;
 	}

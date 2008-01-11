@@ -7,7 +7,7 @@ import games.stendhal.server.entity.player.Player;
 import org.apache.log4j.Logger;
 
 /**
- * equipts the specified item
+ * Drops the specified item.
  */
 public class DropItemAction extends SpeakerNPC.ChatAction {
 	private static Logger logger = Logger.getLogger(DropItemAction.class);
@@ -15,7 +15,7 @@ public class DropItemAction extends SpeakerNPC.ChatAction {
 	private int amount;
 
 	/**
-	 * Creates a new EquipItemAction
+	 * Creates a new DropItemAction.
 	 * 
 	 * @param itemName
 	 *            name of item
@@ -26,7 +26,7 @@ public class DropItemAction extends SpeakerNPC.ChatAction {
 	}
 
 	/**
-	 * Creates a new EquipItemAction
+	 * Creates a new DropItemAction.
 	 * 
 	 * @param itemName
 	 *            name of item

@@ -166,27 +166,27 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 			+ "online=?,admin=?,sentence=?,age=?,level=?,"
 			+ "outfit=?,xp=?,money=?,married=?,atk=?,def=?,hp=?,karma=?,head=?,armor=?,lhand=?,rhand=?,legs=?,feet=?,cloak=? WHERE name=?";
 		PreparedStatement updateCharStatsStatement = connection.prepareStatement(updateTemplate);
-		updateCharStatsStatement.setBoolean(1,false);
+		updateCharStatsStatement.setBoolean(1, false);
 		updateCharStatsStatement.setInt(2, instance.getAdminLevel());
 		updateCharStatsStatement.setString(3, instance.getSentence());
-		updateCharStatsStatement.setInt(4,instance.getAge());
+		updateCharStatsStatement.setInt(4, instance.getAge());
 		updateCharStatsStatement.setInt(5, instance.getLevel());
-		updateCharStatsStatement.setInt(6,instance.getOutfit().getCode());	
-		updateCharStatsStatement.setInt(7,instance.getXP());
-		updateCharStatsStatement.setInt(8,instance.getNumberOfEquipped("money"));
+		updateCharStatsStatement.setInt(6, instance.getOutfit().getCode());	
+		updateCharStatsStatement.setInt(7, instance.getXP());
+		updateCharStatsStatement.setInt(8, instance.getNumberOfEquipped("money"));
 		//married
-		updateCharStatsStatement.setString(9,null);
-		updateCharStatsStatement.setInt(10,instance.getATK());
-		updateCharStatsStatement.setInt(11,instance.getDEF());
-		updateCharStatsStatement.setInt(12,instance.getHP());
-		updateCharStatsStatement.setDouble(13,instance.getKarma());
-		updateCharStatsStatement.setString(14,extractName(instance.getHelmet()));
-		updateCharStatsStatement.setString(15,extractName(instance.getArmor()));
-		updateCharStatsStatement.setString(16,extractName(instance.getShield()));
-		updateCharStatsStatement.setString(17,extractRhandName(instance));
-		updateCharStatsStatement.setString(18,extractName(instance.getLegs()));
-		updateCharStatsStatement.setString(19,extractName(instance.getBoots()));
-		updateCharStatsStatement.setString(20,extractName(instance.getCloak()));
+		updateCharStatsStatement.setString(9, null);
+		updateCharStatsStatement.setInt(10, instance.getATK());
+		updateCharStatsStatement.setInt(11, instance.getDEF());
+		updateCharStatsStatement.setInt(12, instance.getHP());
+		updateCharStatsStatement.setDouble(13, instance.getKarma());
+		updateCharStatsStatement.setString(14, extractName(instance.getHelmet()));
+		updateCharStatsStatement.setString(15, extractName(instance.getArmor()));
+		updateCharStatsStatement.setString(16, extractName(instance.getShield()));
+		updateCharStatsStatement.setString(17, extractRhandName(instance));
+		updateCharStatsStatement.setString(18, extractName(instance.getLegs()));
+		updateCharStatsStatement.setString(19, extractName(instance.getBoots()));
+		updateCharStatsStatement.setString(20, extractName(instance.getCloak()));
 		updateCharStatsStatement.setString(21, instance.getName());
 		logger.debug("storeCharacter is running: " + updateCharStatsStatement.toString());
 		int count = updateCharStatsStatement.executeUpdate();
@@ -194,30 +194,30 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 	}
 
 	private void insertIntoCharStats(Player instance, Connection connection) throws SQLException {
-		String insertTemplate="INSERT INTO character_stats (name, online, admin, sentence, age, level, outfit, xp, money, atk, def, hp, karma, "
+		String insertTemplate = "INSERT INTO character_stats (name, online, admin, sentence, age, level, outfit, xp, money, atk, def, hp, karma, "
 			+ "head, armor, lhand, rhand, legs, feet, cloak) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		PreparedStatement insertStatement = connection.prepareStatement(insertTemplate);
 
 		insertStatement.setString(1, instance.getName());
-		insertStatement.setBoolean(2,false);
+		insertStatement.setBoolean(2, false);
 		insertStatement.setInt(3, instance.getAdminLevel());
 		insertStatement.setString(4, instance.getSentence());
-		insertStatement.setInt(5,instance.getAge());
+		insertStatement.setInt(5, instance.getAge());
 		insertStatement.setInt(6, instance.getLevel());
-		insertStatement.setInt(7,instance.getOutfit().getCode());	
-		insertStatement.setInt(8,instance.getXP());
-		insertStatement.setInt(9,instance.getNumberOfEquipped("money"));
-		insertStatement.setInt(10,instance.getATK());
-		insertStatement.setInt(11,instance.getDEF());
-		insertStatement.setInt(12,instance.getHP());
-		insertStatement.setDouble(13,instance.getKarma());
-		insertStatement.setString(14,extractName(instance.getHelmet()));
-		insertStatement.setString(15,extractName(instance.getArmor()));
-		insertStatement.setString(16,extractName(instance.getShield()));
-		insertStatement.setString(17,extractRhandName(instance));
-		insertStatement.setString(18,extractName(instance.getLegs()));
-		insertStatement.setString(19,extractName(instance.getBoots()));
-		insertStatement.setString(20,extractName(instance.getCloak()));
+		insertStatement.setInt(7, instance.getOutfit().getCode());	
+		insertStatement.setInt(8, instance.getXP());
+		insertStatement.setInt(9, instance.getNumberOfEquipped("money"));
+		insertStatement.setInt(10, instance.getATK());
+		insertStatement.setInt(11, instance.getDEF());
+		insertStatement.setInt(12, instance.getHP());
+		insertStatement.setDouble(13, instance.getKarma());
+		insertStatement.setString(14, extractName(instance.getHelmet()));
+		insertStatement.setString(15, extractName(instance.getArmor()));
+		insertStatement.setString(16, extractName(instance.getShield()));
+		insertStatement.setString(17, extractRhandName(instance));
+		insertStatement.setString(18, extractName(instance.getLegs()));
+		insertStatement.setString(19, extractName(instance.getBoots()));
+		insertStatement.setString(20, extractName(instance.getCloak()));
 
 		logger.debug("storeCharacter is running: " + insertStatement.toString());
 		insertStatement.executeUpdate();
@@ -227,7 +227,7 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 	}
 
 	private String extractRhandName(Player instance) {
-		String rhand=null;
+		String rhand = null;
 		List<Item> items = instance.getWeapons();
 		if (items.size() > 0) {
 			rhand = items.get(0).getName();

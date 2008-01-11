@@ -10,7 +10,7 @@ import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
 /**
- * Deep inspects a player and all his/her items
+ * Deep inspects a player and all his/her items.
  * 
  * @author hendrik
  */

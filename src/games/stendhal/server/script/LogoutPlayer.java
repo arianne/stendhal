@@ -11,7 +11,7 @@ import marauroa.server.game.container.PlayerEntry;
 import marauroa.server.game.container.PlayerEntryContainer;
 
 /**
- * Logout a player
+ * Logs a player out.
  * 
  * @author hendrik
  */

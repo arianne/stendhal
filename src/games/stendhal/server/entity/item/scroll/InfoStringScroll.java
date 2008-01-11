@@ -36,7 +36,7 @@ public class InfoStringScroll extends Scroll {
 	}
 
 	/**
-	 * copy constructor
+	 * Copy constructor.
 	 * 
 	 * @param item
 	 *            item to copy

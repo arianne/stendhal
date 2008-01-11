@@ -34,7 +34,7 @@ public abstract class GrowingPassiveEntityRespawnPoint extends
 
 	private static Logger logger = Logger.getLogger(GrowingPassiveEntityRespawnPoint.class);
 
-	/** How long it takes for one regrowing step */
+	/** How long it takes for one growing step. */
 	private static final int GROWING_RATE = 3000;
 
 	private int ripeness;

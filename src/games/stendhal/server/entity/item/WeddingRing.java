@@ -52,7 +52,7 @@ public class WeddingRing extends Ring {
 	}
 
 	/**
-	 * copy constructor
+	 * Copy constructor.
 	 * 
 	 * @param item
 	 *            item to copy

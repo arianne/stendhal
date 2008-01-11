@@ -18,8 +18,9 @@ public class ConversationParser {
 	private String error;
 
 	/**
-	 * create a new conversation parser and initialise with the given text
-	 * string
+	 * Creates a new conversation parser and initialize with the given text
+	 * string.
+	 * @param text to initialize with
 	 */
 	public ConversationParser(final String text) {
 		// initialise a new tokenizer with the given text
@@ -54,7 +55,7 @@ public class ConversationParser {
 		String subject = null;
 		String subject2 = null;
 
-		for(;;) {
+		for (;;) {
 			String word = parser.peekNextWord();
 			if (word == null) {
 				break;
@@ -248,6 +249,7 @@ public class ConversationParser {
 
 	/**
 	 * set error flag on parsing problems.
+	 * @param error flag to be set
 	 */
 	private void setError(String error) {
 		if (this.error == null) {

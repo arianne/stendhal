@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Builds a Ghost NPC
+ * Builds a Ghost NPC.
  *
  * @author kymara
  */
@@ -22,7 +22,7 @@ public class GhostNPC implements ZoneConfigurator {
 	//
 
 	/**
-	 * Configure a zone.
+	 * Configures a zone.
 	 *
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.

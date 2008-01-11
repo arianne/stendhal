@@ -23,7 +23,7 @@ import java.util.Map;
 public abstract class TeleportScroll extends InfoStringScroll {
 
 	/**
-	 * Creates a new teleport scroll
+	 * Creates a new teleport scroll.
 	 * 
 	 * @param name
 	 * @param clazz
@@ -36,7 +36,7 @@ public abstract class TeleportScroll extends InfoStringScroll {
 	}
 
 	/**
-	 * copy constructor
+	 * Copy constructor.
 	 * 
 	 * @param item
 	 *            item to copy

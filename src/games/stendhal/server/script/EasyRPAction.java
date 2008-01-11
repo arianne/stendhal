@@ -9,7 +9,7 @@ import java.util.List;
 import marauroa.common.game.RPAction;
 
 /**
- * For testing purposes
+ * For testing purposes.
  * 
  * /script EasyRPAction.class type moveto x 1 y 1
  * 

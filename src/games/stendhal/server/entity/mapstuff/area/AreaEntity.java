@@ -101,7 +101,7 @@ public abstract class AreaEntity extends Entity {
 
 	/**
 	 * Returns the name or something that can be used to identify the entity for
-	 * the player
+	 * the player.
 	 * 
 	 * @param definite
 	 *            <code>true</code> for "the", and <code>false</code> for

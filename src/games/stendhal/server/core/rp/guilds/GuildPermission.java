@@ -61,7 +61,7 @@ public class GuildPermission extends Entity {
 	private int rank;
 	
 	/**
-	 * The guild this permission is used in
+	 * The guild this permission is used in.
 	 */
 	private String guild;
 	
@@ -133,7 +133,8 @@ public class GuildPermission extends Entity {
 	}
 
 	public static GuildPermission getPermission(int rank, List<GuildPermission> possible) {
-		Collections.sort(possible, new GuildPermissionComparator());//sort by rank
+		//sort by rank
+		Collections.sort(possible, new GuildPermissionComparator()); 
 
 		for (GuildPermission gp : possible) {
 			if (rank < gp.getRank()) {

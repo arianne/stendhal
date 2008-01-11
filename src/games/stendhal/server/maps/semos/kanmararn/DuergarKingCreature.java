@@ -16,7 +16,7 @@ import java.util.Map;
  */
 public class DuergarKingCreature implements ZoneConfigurator {
 
-	DefaultEntityManager manager = (DefaultEntityManager) StendhalRPWorld.get().getRuleManager().getEntityManager();
+	private DefaultEntityManager manager = (DefaultEntityManager) StendhalRPWorld.get().getRuleManager().getEntityManager();
 
 	/**
 	 * Configure a zone.

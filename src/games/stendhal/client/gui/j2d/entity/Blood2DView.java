@@ -29,7 +29,7 @@ public class Blood2DView extends StateEntity2DView {
 	/**
 	 * Create a 2D view of blood.
 	 * 
-	 * @param entity
+	 * @param blood
 	 *            The entity to render.
 	 */
 	public Blood2DView(final Blood blood) {

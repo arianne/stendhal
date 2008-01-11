@@ -260,7 +260,7 @@ public abstract class Entity extends RPObject {
 	}
 
 	/**
-	 * is this entity not moving
+	 * Is this entity not moving?
 	 * 
 	 * TODO: Remove after the StendhalNavigableEntities dependency is gone
 	 * 
@@ -274,11 +274,6 @@ public abstract class Entity extends RPObject {
 		this.collides = collides;
 	}
 
-	/**
-	 * TODO: docu
-	 * 
-	 * @return ???
-	 */
 	public boolean collides() {
 		return collides;
 	}
@@ -294,6 +289,7 @@ public abstract class Entity extends RPObject {
 
 	/**
 	 * Get the resistance between this and another entity (0-100).
+	 * @param entity other entity to be evaluated
 	 * 
 	 * @return The amount of combined resistance.
 	 */
@@ -392,6 +388,7 @@ public abstract class Entity extends RPObject {
 	 * 
 	 * @param other
 	 *            the entity to which the distance should be calculated
+	 * @return double representing the squared distance
 	 */
 	public double squaredDistance(Entity other) {
 		if ((getWidth() < 1.1) && (getHeight() < 1.1)) {
@@ -413,6 +410,7 @@ public abstract class Entity extends RPObject {
 	 *            The horizontal coordinate of the point
 	 * @param y
 	 *            The vertical coordinate of the point
+	 * @return double representing the squared distance
 	 */
 	public double squaredDistance(int x, int y) {
 		if ((getWidth() < 1.1) && (getHeight() < 1.1)) {
@@ -499,7 +497,7 @@ public abstract class Entity extends RPObject {
 	}
 
 	/**
-	 * returns the area used by this entity
+	 * Returns the area used by this entity.
 	 * 
 	 * @param ex
 	 *            x
@@ -587,7 +585,7 @@ public abstract class Entity extends RPObject {
 	}
 
 	/**
-	 * describes the entity (if a players looks at it)
+	 * Describes the entity (if a players looks at it).
 	 * 
 	 * @return description from the players point of view
 	 */
@@ -600,13 +598,14 @@ public abstract class Entity extends RPObject {
 	}
 
 	/**
-	 * returns the name or something that can be used to identify the entity for
-	 * the player
+	 * Returns the name or something that can be used to identify the entity for
+	 * the player.
 	 * 
 	 * @param definite
 	 *            true for "the" and false for "a/an" in case the entity has no
 	 *            name
-	 * @return name
+	 * @return name 
+	 * 
 	 */
 	public String getDescriptionName(boolean definite) {
 		if (has("subclass")) {
@@ -667,8 +666,8 @@ public abstract class Entity extends RPObject {
 	}
 
 	/**
-	 * Set the entity position.
-	 * </p>
+	 * Sets the entity position.
+	 * 
 	 * 
 	 * <p>
 	 * This calls <code>onMoved()</code>. <strong>Note: When placing during a
@@ -751,8 +750,8 @@ public abstract class Entity extends RPObject {
 			if (other.getZone() == getZone()) {
 				// check distance: 640x480 client screen size for 32x32 pixel tiles
 				// -> makes 20x15 tiles screen size
-				if (Math.abs(other.getX() - x) <= 20 &&
-					Math.abs(other.getY() - y) <= 15) {
+				if (Math.abs(other.getX() - x) <= 20 
+						&& Math.abs(other.getY() - y) <= 15) {
 					return true;
 				}
 			}

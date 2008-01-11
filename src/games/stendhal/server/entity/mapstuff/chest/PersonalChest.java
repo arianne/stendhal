@@ -59,7 +59,7 @@ public class PersonalChest extends Chest {
 	}
 
 	/**
-	 * Gets the entitiy which is currently served by this chest
+	 * Gets the entitiy which is currently served by this chest.
 	 *
 	 * @return Entity
 	 */
@@ -86,8 +86,8 @@ public class PersonalChest extends Chest {
 	private RPObject cloneItem(RPObject item) throws NoSuchMethodException,
 			InstantiationException, IllegalAccessException,
 			InvocationTargetException {
-		Class<?> clazz = item.getClass();
-		Constructor<?> ctor = clazz.getConstructor(clazz);
+		Class< ? > clazz = item.getClass();
+		Constructor< ? > ctor = clazz.getConstructor(clazz);
 		Item clone = (Item) ctor.newInstance(item);
 		return clone;
 	}

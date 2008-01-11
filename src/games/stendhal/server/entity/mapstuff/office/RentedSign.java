@@ -10,7 +10,7 @@ import marauroa.common.game.Definition.Type;
 
 
 /**
- * a sign rented by a player for a fixed amount of time
+ * A sign rented by a player for a fixed amount of time.
  *
  * @author hendrik
  */
@@ -43,6 +43,7 @@ public class RentedSign extends Sign implements StoreableEntity {
 	/**
 	 * Creates a RentedSign based on an existing RPObject. This is just for loading 
 	 * a sign from the database, use the other constructors.
+	 * @param rpobject 
 	 */
 	public RentedSign(RPObject rpobject) {
 	    super(rpobject);
@@ -50,7 +51,7 @@ public class RentedSign extends Sign implements StoreableEntity {
     }
 
 	/**
-	 * returns the owner
+	 * returns the owner.
 	 *
 	 * @return name of owner
 	 */
@@ -59,7 +60,7 @@ public class RentedSign extends Sign implements StoreableEntity {
     }
 
     /**
-     * returns the timestamp when this entity was created
+     * Returns the timestamp when this entity was created.
      *
      * @return timestamp in milliseconds
      */

@@ -27,7 +27,7 @@ public class CreatureLogic {
 
 	/**
 	 * the number of rounds the creature should wait when the path to the target
-	 * is blocked and the target is not moving
+	 * is blocked and the target is not moving.
 	 */
 	protected static final int WAIT_ROUNDS_BECAUSE_TARGET_IS_BLOCKED = 9;
 
@@ -37,10 +37,10 @@ public class CreatureLogic {
 
 	private RPEntity target;
 
-	/** the current (logic)state */
+	/** the current (logic)state .*/
 	private AiState aiState;
 
-	/** the number of rounds to wait for a path the target */
+	/** the number of rounds to wait for a path the target. */
 	private int waitRounds;
 
 	private List<Node> patrolPath;
@@ -147,7 +147,7 @@ public class CreatureLogic {
 	}
 
 	/**
-	 * Finds a new target to attack
+	 * Finds a new target to attack.
 	 */
 	private void logicFindNewTarget() {
 		// ...and find another target
@@ -204,7 +204,7 @@ public class CreatureLogic {
 	}
 
 	/**
-	 * Follow the patrolling path
+	 * Follow the patrolling path.
 	 */
 	private void logicFollowPatrolPath() {
 		if (logger.isDebugEnabled()) {
@@ -264,7 +264,7 @@ public class CreatureLogic {
 	}
 
 	/**
-	 * attacks the target
+	 * attacks the target.
 	 */
 	private void logicAttack() {
 		if (Debug.CREATURES_DEBUG_SERVER) {
@@ -553,7 +553,7 @@ public class CreatureLogic {
 	}
 
 	/**
-	 * resets the AI state
+	 * resets the AI state.
 	 */
 	public void resetAIState() {
 		aiState = AiState.IDLE;

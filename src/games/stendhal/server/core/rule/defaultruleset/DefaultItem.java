@@ -23,7 +23,7 @@ import org.apache.log4j.Logger;
 
 /**
  * All default items which can be reduced to stuff that increase the attack
- * point and stuff that increase the defense points
+ * point and stuff that increase the defense points.
  * 
  * @author Matthias Totz, chad3f
  */
@@ -31,35 +31,35 @@ public class DefaultItem {
 
 	private static final Logger logger = Logger.getLogger(DefaultItem.class);
 
-	/** items class */
+	/** items class. */
 	private String clazz;
 
-	/** items sub class */
+	/** items sub class. */
 	private String subclazz;
 
-	/** items type */
+	/** items type. */
 	private String name;
 
-	/** optional item description * */
+	/** optional item description. */
 	private String description;
 
 	// weight system is not yet implemented.
 	@SuppressWarnings("unused")
 	private double weight;
 
-	/** slots where this item can be equipped */
+	/** slots where this item can be equipped. */
 	private List<String> slots;
 
-	/** Map Tile Id */
+	/** Map Tile Id. */
 	private int tileid;
 
-	/** Attributes of the item */
+	/** Attributes of the item .*/
 	private Map<String, String> attributes;
 
-	/** Implementation creator */
+	/** Implementation creator. */
 	protected Creator creator;
 
-	private Class<?> implementation;
+	private Class< ? > implementation;
 
 	private int value;
 
@@ -102,12 +102,12 @@ public class DefaultItem {
 		return description;
 	}
 
-	public void setImplementation(Class<?> implementation) {
+	public void setImplementation(Class< ? > implementation) {
 		this.implementation = implementation;
 		creator = buildCreator(implementation);
 	}
 
-	public Class<?> getImplementation() {
+	public Class< ? > getImplementation() {
 		return implementation;
 	}
 
@@ -127,8 +127,8 @@ public class DefaultItem {
 	 * 
 	 * @return A creator, or <code>null</code> if none found.
 	 */
-	protected Creator buildCreator(Class<?> implementation) {
-		Constructor<?> construct;
+	protected Creator buildCreator(Class< ? > implementation) {
+		Constructor< ? > construct;
 
 		/*
 		 * <Class>(name, clazz, subclazz, attributes)
@@ -175,7 +175,7 @@ public class DefaultItem {
 	public Item getItem() {
 
 		/*
-		 * Just incase - Really should generate fatal error up front (in
+		 * Just in case - Really should generate fatal error up front (in
 		 * ItemXMLLoader).
 		 */
 		if (creator == null) {
@@ -190,7 +190,7 @@ public class DefaultItem {
 		return item;
 	}
 
-	/** returns the tileid */
+	/** returns the tile id .*/
 	public int getTileId() {
 		return tileid;
 	}
@@ -207,7 +207,7 @@ public class DefaultItem {
 		return value;
 	}
 
-	/** returns the class */
+	/** returns the class. */
 	public String getItemClass() {
 		return clazz;
 	}
@@ -216,7 +216,7 @@ public class DefaultItem {
 		clazz = val;
 	}
 
-	/** returns the subclass */
+	/** returns the subclass. */
 	public String getItemSubClass() {
 		return subclazz;
 	}
@@ -265,13 +265,13 @@ public class DefaultItem {
 	//
 
 	/**
-	 * Base item creator (using a constructor)
+	 * Base item creator (using a constructor).
 	 */
 	protected abstract class Creator {
 
-		protected Constructor<?> construct;
+		protected Constructor< ? > construct;
 
-		public Creator(Constructor<?> construct) {
+		public Creator(Constructor< ? > construct) {
 			this.construct = construct;
 		}
 
@@ -304,7 +304,7 @@ public class DefaultItem {
 	 */
 	protected class AttributesCreator extends Creator {
 
-		public AttributesCreator(Constructor<?> construct) {
+		public AttributesCreator(Constructor< ? > construct) {
 			super(construct);
 		}
 
@@ -320,7 +320,7 @@ public class DefaultItem {
 	 */
 	protected class DefaultCreator extends Creator {
 
-		public DefaultCreator(Constructor<?> construct) {
+		public DefaultCreator(Constructor< ? > construct) {
 			super(construct);
 		}
 
@@ -338,7 +338,7 @@ public class DefaultItem {
 	 */
 	protected class FullCreator extends Creator {
 
-		public FullCreator(Constructor<?> construct) {
+		public FullCreator(Constructor< ? > construct) {
 			super(construct);
 		}
 

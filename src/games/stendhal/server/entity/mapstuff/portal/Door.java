@@ -35,7 +35,7 @@ public abstract class Door extends AccessCheckingPortal implements TurnListener 
 	private static final int TURNS_TO_STAY_OPEN = 9; /* 3 seconds */
 
 	/**
-	 * Whether or not the door is currently open
+	 * Whether or not the door is currently open.
 	 */
 	private boolean open;
 
@@ -111,7 +111,7 @@ public abstract class Door extends AccessCheckingPortal implements TurnListener 
 	}
 
 	/**
-	 * teleport (if the door is now open)
+	 * teleport (if the door is now open).
 	 */
 	@Override
 	public boolean onUsed(RPEntity user) {

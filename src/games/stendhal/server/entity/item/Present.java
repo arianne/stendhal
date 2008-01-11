@@ -21,7 +21,7 @@ public class Present extends Box implements UseListener {
 			"sandwich", "carrot", "cherry", "blue_elf_cloak", "summon_scroll" };
 
 	/**
-	 * Creates a new present
+	 * Creates a new present.
 	 * 
 	 * @param name
 	 * @param clazz
@@ -34,7 +34,7 @@ public class Present extends Box implements UseListener {
 	}
 
 	/**
-	 * copy constructor
+	 * Copy constructor.
 	 * 
 	 * @param item
 	 *            item to copy

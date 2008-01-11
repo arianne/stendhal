@@ -45,7 +45,7 @@ public class Chest extends Entity implements UseListener {
 	}
 
 	/**
-	 * Creates a new chest
+	 * Creates a new chest.
 	 * 
 	 * @param object
 	 *            RPObject
@@ -64,7 +64,7 @@ public class Chest extends Entity implements UseListener {
 	}
 
 	/**
-	 * Creates a new chest
+	 * Creates a new chest.
 	 */
 	public Chest() {
 		setRPClass("chest");
@@ -124,7 +124,7 @@ public class Chest extends Entity implements UseListener {
 	}
 
 	/**
-	 * adds an passive entity (like an item) to the chest
+	 * Adds a passive entity (like an item) to the chest.
 	 * 
 	 * @param entity
 	 *            entity to add
@@ -140,7 +140,7 @@ public class Chest extends Entity implements UseListener {
 	}
 
 	/**
-	 * Returns the content
+	 * Returns the content.
 	 * 
 	 * @return iterator for the content
 	 */

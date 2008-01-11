@@ -10,7 +10,7 @@ import games.stendhal.server.entity.RPEntity;
 public class OneWayPortalDestination extends Portal {
 
 	/**
-	 * Creates a OneWayPortalDestination
+	 * Creates a OneWayPortalDestination.
 	 */
 	public OneWayPortalDestination() {
 		put("hidden", "");

@@ -393,7 +393,8 @@ public class PizzaDelivery extends AbstractQuest {
 		}
 	}
 
-	/** Takes away the player's uniform, if the he is wearing it. */
+	/** Takes away the player's uniform, if the he is wearing it. 
+	 * @param player to remove uniform from*/
 	private void putOffUniform(Player player) {
 		if (UNIFORM.isPartOf(player.getOutfit())) {
 			player.returnToOriginalOutfit();

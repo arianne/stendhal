@@ -54,8 +54,8 @@ public class ExpressionType {
 	public static final String SUFFIX_QUESTION = SUFFIX + QUESTION;
 	public static final String VERB_GERUND = VERB + SUFFIX_GERUND;
 
-	/** type string specifiers, which can be used in sentence matching */
-	public final static List<String> TYPESTRINGS = Arrays.asList(
+	/** Type string specifiers, which can be used in sentence matching. */
+	public static final List<String> TYPESTRINGS = Arrays.asList(
 		VERB,
 		OBJECT,
 		AMOUNT,
@@ -253,7 +253,7 @@ public class ExpressionType {
 	/**
 	 * Check if the given String contains a type string specifier.
 	 *
-	 * @param original
+	 * @param str
 	 * @return
 	 */
 	public static boolean isTypeString(String str) {
@@ -263,7 +263,7 @@ public class ExpressionType {
 			// All type strings must start with an upper case letter,
 			// even the SUFFIX character '-' is not allowed.
 			if (Character.isUpperCase(first)) {
-        		for(String ts : TYPESTRINGS) {
+        		for (String ts : TYPESTRINGS) {
         			if (str.contains(ts)) {
     					return true;
         			}

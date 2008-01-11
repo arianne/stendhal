@@ -22,11 +22,11 @@ public interface Stackable {
 	/** @return the quantity */
 	int getQuantity();
 
-	/** sets the quantity 
+	/** sets the quantity. 
 	 * @param amount to be set*/
 	void setQuantity(int amount);
 
-	/** adds the quantity of the other Stackable to this 
+	/** Adds the quantity of the other Stackable to this .
 	 * @param other 
 	 * @return */
 	int add(Stackable other);

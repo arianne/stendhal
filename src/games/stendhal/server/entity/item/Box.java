@@ -20,7 +20,7 @@ public class Box extends Item implements UseListener {
 	private Logger logger = Logger.getLogger(Box.class);
 
 	/**
-	 * Creates a new box
+	 * Creates a new box.
 	 * 
 	 * @param name
 	 * @param clazz
@@ -33,7 +33,7 @@ public class Box extends Item implements UseListener {
 	}
 
 	/**
-	 * copy constructor
+	 * copy constructor.
 	 * 
 	 * @param item
 	 *            item to copy

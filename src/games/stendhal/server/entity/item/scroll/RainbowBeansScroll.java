@@ -12,7 +12,7 @@ import java.util.Map;
 public class RainbowBeansScroll extends TimedTeleportScroll {
 
 	/**
-	 * Creates a new timed marked teleport scroll
+	 * Creates a new timed marked RainbowBeansScroll scroll.
 	 * 
 	 * @param name
 	 * @param clazz
@@ -25,7 +25,7 @@ public class RainbowBeansScroll extends TimedTeleportScroll {
 	}
 
 	/**
-	 * copy constructor
+	 * Copy constructor.
 	 * 
 	 * @param item
 	 *            item to copy

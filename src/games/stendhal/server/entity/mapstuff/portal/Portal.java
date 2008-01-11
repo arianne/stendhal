@@ -55,7 +55,7 @@ public class Portal extends Entity implements UseListener {
 	}
 
 	/**
-	 * Creates a new portal
+	 * Creates a new portal.
 	 */
 	public Portal() {
 		setRPClass("portal");
@@ -77,7 +77,7 @@ public class Portal extends Entity implements UseListener {
 	}
 
 	/**
-	 * gets the identifier of this portal
+	 * gets the identifier of this portal.
 	 * 
 	 * @return identifier
 	 */
@@ -198,7 +198,7 @@ public class Portal extends Entity implements UseListener {
 	}
 
 	/**
-	 * if this portal is the destination of another portal used
+	 * if this portal is the destination of another portal used.
 	 * 
 	 * @param user
 	 *            the player who used the other portal teleporting to us

@@ -21,7 +21,7 @@ import java.util.Collection;
  */
 public interface EntityManager {
 	/**
-	 * returns the entity or <code>null</code> if the class is unknown
+	 * Returns the entity or <code>null</code> if the class is unknown.
 	 * 
 	 * @param clazz
 	 *            the creature class, must not be <code>null</code>
@@ -31,7 +31,7 @@ public interface EntityManager {
 	Entity getEntity(String clazz);
 
 	/**
-	 * return true if the Entity is a creature
+	 * Return true if the Entity is a creature.
 	 * 
 	 * @param id
 	 *            the tile id
@@ -40,7 +40,7 @@ public interface EntityManager {
 	boolean isCreature(String tileset, int id);
 
 	/**
-	 * return true if the Entity is a creature
+	 * Return true if the Entity is a creature.
 	 * 
 	 * @param clazz
 	 *            the creature class, must not be <code>null</code>
@@ -50,7 +50,7 @@ public interface EntityManager {
 	boolean isCreature(String clazz);
 
 	/**
-	 * return true if the Entity is a Item
+	 * Return true if the Entity is a Item.
 	 * 
 	 * @param clazz
 	 *            the Item class, must not be <code>null</code>
@@ -60,7 +60,7 @@ public interface EntityManager {
 	boolean isItem(String clazz);
 
 	/**
-	 * returns a list of all Creatures that are used at least once
+	 * Returns a list of all Creatures that are used at least once.
 	 */
 	Collection<Creature> getCreatures();
 
@@ -74,7 +74,7 @@ public interface EntityManager {
 	Creature getCreature(String tileset, int id);
 
 	/**
-	 * returns the creature or <code>null</code> if the clazz is unknown
+	 * returns the creature or <code>null</code> if the clazz is unknown.
 	 * 
 	 * @param clazz
 	 *            the creature class, must not be <code>null</code>
@@ -84,8 +84,8 @@ public interface EntityManager {
 	Creature getCreature(String clazz);
 
 	/**
-	 * returns the DefaultCreature or <code>null</code> if the clazz is
-	 * unknown
+	 * Returns the DefaultCreature or <code>null</code> if the clazz is
+	 * unknown.
 	 * 
 	 * @param clazz
 	 *            the creature class
@@ -96,12 +96,12 @@ public interface EntityManager {
 	DefaultCreature getDefaultCreature(String clazz);
 
 	/**
-	 * returns a list of all Items that are being used at least once
+	 * returns a list of all Items that are being used at least once.
 	 */
 	Collection<Item> getItems();
 
 	/**
-	 * returns the item or <code>null</code> if the clazz is unknown
+	 * Returns the item or <code>null</code> if the clazz is unknown.
 	 * 
 	 * @param clazz
 	 *            the item class, must not be <code>null</code>

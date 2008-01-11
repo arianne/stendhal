@@ -33,7 +33,7 @@ public class ItemGuardCreature extends Creature {
 	private String itemType;
 
 	/**
-	 * Creates a ItemGuardCreature
+	 * Creates an ItemGuardCreature.
 	 * 
 	 * @param copy
 	 *            base creature

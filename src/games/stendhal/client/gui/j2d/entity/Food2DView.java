@@ -34,7 +34,7 @@ public class Food2DView extends StateEntity2DView {
 	/**
 	 * Create a 2D view of food.
 	 * 
-	 * @param entity
+	 * @param food
 	 *            The entity to render.
 	 * @param states
 	 *            The number of states.

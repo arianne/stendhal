@@ -165,7 +165,7 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 	 * Draw the panel contents. This is only called while open and not
 	 * minimized.
 	 * 
-	 * @param g
+	 * @param childArea
 	 *            The graphics context to draw with.
 	 */
 	@Override

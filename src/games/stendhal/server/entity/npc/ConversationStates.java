@@ -19,12 +19,12 @@ package games.stendhal.server.entity.npc;
 public class ConversationStates {
 
 	/**
-	 * A wildcard that always matches, regardless of the current state
+	 * A wildcard that always matches, regardless of the current state.
 	 */
 	public static final int ANY = -1;
 
 	/**
-	 * The SpeakerNPC is waiting for a player to start a conversation,
+	 * The SpeakerNPC is waiting for a player to start a conversation.
 	 */
 	public static final int IDLE = 0;
 
@@ -112,11 +112,11 @@ public class ConversationStates {
 	public static final int QUEST_ITEM_BROUGHT = 62;
 
 	/**
-	 * The SpeakerNPC asks the player if the player has brought a requested item
+	 * The SpeakerNPC asks the player if the player has brought a requested item.
 	 */
 	public static final int QUEST_ITEM_QUESTION = 63;
 
-	/** Multi-purpose states for multiple questions */
+	/** Multi-purpose states for multiple questions. */
 	public static final int QUESTION_1 = 70;
 
 	public static final int QUESTION_2 = 71;

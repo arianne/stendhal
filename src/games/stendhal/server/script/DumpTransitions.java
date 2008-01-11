@@ -47,7 +47,7 @@ public class DumpTransitions extends ScriptImpl {
 	}
 
 	/**
-	 * returns the transition diagram as string
+	 * Returns the transition diagram as string.
 	 * 
 	 * @param npc
 	 *            SpeakerNPC

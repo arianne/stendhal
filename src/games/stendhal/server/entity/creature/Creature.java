@@ -77,18 +77,18 @@ public class Creature extends NPC {
 
 	/**
 	 * Ths list of item names this creature may drop Note; per default this list
-	 * is shared with all creatures of that class
+	 * is shared with all creatures of that class.
 	 */
 	protected List<DropItem> dropsItems;
 
 	/**
-	 * Ths list of item instances this creature may drop for use in quests. This
-	 * is always creature specific
+	 * This list of item instances this creature may drop for use in quests. This
+	 * is always creature specific.
 	 */
 	protected List<Item> dropItemInstances;
 
 	/**
-	 * List of things this creature should say
+	 * List of things this creature should say.
 	 */
 	protected List<String> noises;
 
@@ -193,6 +193,10 @@ public class Creature extends NPC {
 
 	/**
 	 * Creates a new creature with the given properties.
+	 * <p>
+	 * Creatures created with this function will share their dropItems with any
+	 * other creature of that kind. If you want individual dropItems, use
+	 * clearDropItemList first!
 	 * 
 	 * @param clazz
 	 *            The creature's class, e.g. "golem"
@@ -232,11 +236,6 @@ public class Creature extends NPC {
 
 		setSize(width, height);
 
-		/**
-		 * Creatures created with this function will share their dropItems with
-		 * any other creature of that kind. If you want individual dropItems,
-		 * use clearDropItemList first!
-		 */
 		if (dropItems != null) {
 			this.dropsItems = dropItems;
 		}
@@ -302,7 +301,7 @@ public class Creature extends NPC {
 
 	/**
 	 * clears the list of predefined dropItems and creates an empty list
-	 * specific to this creature
+	 * specific to this creature.
 	 * 
 	 */
 	public void clearDropItemList() {
@@ -313,7 +312,7 @@ public class Creature extends NPC {
 	/**
 	 * adds a named item to the List of Items that will be dropped on dead if
 	 * clearDropItemList hasn't been called first, this will change all
-	 * creatures of this kind
+	 * creatures of this kind.
 	 */
 	public void addDropItem(String name, double probability, int min, int max) {
 		dropsItems.add(new DropItem(name, probability, min, max));
@@ -322,7 +321,7 @@ public class Creature extends NPC {
 	/**
 	 * adds a named item to the List of Items that will be dropped on dead if
 	 * clearDropItemList hasn't been called first, this will change all
-	 * creatures of this kind
+	 * creatures of this kind.
 	 */
 	public void addDropItem(String name, double probability, int amount) {
 		dropsItems.add(new DropItem(name, probability, amount));
@@ -339,7 +338,7 @@ public class Creature extends NPC {
 	}
 
 	/**
-	 * Returns true if this RPEntity is attackable
+	 * Returns true if this RPEntity is attackable.
 	 */
 	@Override
 	public boolean isAttackable() {
@@ -398,7 +397,7 @@ public class Creature extends NPC {
 	}
 
 	/**
-	 * returns the nearest enemy, which is reachable
+	 * returns the nearest enemy, which is reachable.
 	 * 
 	 * @param range
 	 *            attack radius
@@ -516,7 +515,7 @@ public class Creature extends NPC {
 		return false;
 	}
 
-	/** need to recalculate the ai when we stop the attack */
+	/** need to recalculate the ai when we stop the attack. */
 	@Override
 	public void stopAttack() {
 		creatureLogic.resetAIState();
@@ -631,7 +630,7 @@ public class Creature extends NPC {
 	}
 
 	/**
-	 * returns the value of an ai profile
+	 * returns the value of an ai profile.
 	 * 
 	 * @param key
 	 *            as defined in creatures.xml
@@ -642,7 +641,7 @@ public class Creature extends NPC {
 	}
 
 	/**
-	 * is called after the Creature is added to the zone
+	 * is called after the Creature is added to the zone.
 	 */
 	public void init() {
 		// do nothing

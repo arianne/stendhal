@@ -12,7 +12,7 @@ import games.stendhal.server.entity.player.Player;
 import org.apache.log4j.Logger;
 
 public class OutfitChangerAdder {
-	static Logger logger = Logger.getLogger(OutfitChangerAdder.class);
+	private static Logger logger = Logger.getLogger(OutfitChangerAdder.class);
 
 	/**
 	 * Makes this NPC an outfit changer, i.e. someone who can give players

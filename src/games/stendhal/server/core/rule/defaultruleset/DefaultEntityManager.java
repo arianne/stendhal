@@ -28,7 +28,7 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 
 /**
- * entity manager for the default ruleset
+ * entity manager for the default ruleset.
  * 
  * @author Matthias Totz
  */
@@ -37,25 +37,25 @@ public class DefaultEntityManager implements EntityManager {
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(DefaultEntityManager.class);
 
-	/** the singleton instance, lazy initialisation */
+	/** the singleton instance, lazy initialisation. */
 	private static DefaultEntityManager manager;
 
-	/** maps the tile ids to the classes */
+	/** maps the tile ids to the classes. */
 	private Map<String, String> idToClass;
 
-	/** maps the creature tile-ids to the actual creature enums */
+	/** maps the creature tile-ids to the actual creature enums .*/
 	private Map<String, DefaultCreature> classToCreature;
 
-	/** maps the item names to the actual item enums */
+	/** maps the item names to the actual item enums. */
 	private Map<String, DefaultItem> classToItem;
 
-	/** lists all creatures that are being used at least once */
+	/** lists all creatures that are being used at least once. */
 	private Map<String, Creature> createdCreature;
 
-	/** lists all items that are being used at least once */
+	/** lists all items that are being used at least once .*/
 	private Map<String, Item> createdItem;
 
-	/** no public constructor */
+	/** no public constructor. */
 	private DefaultEntityManager() {
 		idToClass = new HashMap<String, String>();
 
@@ -143,14 +143,14 @@ public class DefaultEntityManager implements EntityManager {
 	}
 
 	/**
-	 * returns a list of all Creatures that are instantiated
+	 * Returns a list of all Creatures that are instantiated.
 	 */
 	public Collection<Creature> getCreatures() {
 		return createdCreature.values();
 	}
 
 	/**
-	 * returns a list of all Items that are instantiated
+	 * Returns a list of all Items that are instantiated.
 	 */
 	public Collection<Item> getItems() {
 		return createdItem.values();
@@ -167,7 +167,7 @@ public class DefaultEntityManager implements EntityManager {
 	}
 
 	/**
-	 * returns the entity or <code>null</code> if the id is unknown
+	 * returns the entity or <code>null</code> if the id is unknown.
 	 * 
 	 * @throws NullPointerException
 	 *             if clazz is <code>null</code>
@@ -194,7 +194,7 @@ public class DefaultEntityManager implements EntityManager {
 	}
 
 	/**
-	 * returns the creature or <code>null</code> if the id is unknown
+	 * Returns the creature or <code>null</code> if the id is unknown.
 	 */
 	public Creature getCreature(String tileset, int id) {
 		String clazz = idToClass.get(tileset + ":" + id);
@@ -206,7 +206,7 @@ public class DefaultEntityManager implements EntityManager {
 	}
 
 	/**
-	 * returns the creature or <code>null</code> if the clazz is unknown
+	 * returns the creature or <code>null</code> if the clazz is unknown.
 	 * 
 	 * @throws NullPointerException
 	 *             if clazz is <code>null</code>
@@ -230,7 +230,7 @@ public class DefaultEntityManager implements EntityManager {
 
 	/**
 	 * returns the DefaultCreature or <code>null</code> if the clazz is
-	 * unknown
+	 * unknown.
 	 * 
 	 * @throws NullPointerException
 	 *             if clazz is <code>null</code>
@@ -244,7 +244,7 @@ public class DefaultEntityManager implements EntityManager {
 		return classToCreature.get(clazz);
 	}
 
-	/** return true if the Entity is a creature */
+	/** return true if the Entity is a creature. */
 	public boolean isCreature(String tileset, int id) {
 		String clazz = idToClass.get(tileset + ":" + id);
 		if (clazz == null) {
@@ -254,7 +254,7 @@ public class DefaultEntityManager implements EntityManager {
 		return isCreature(clazz);
 	}
 
-	/** return true if the Entity is a creature */
+	/** return true if the Entity is a creature .*/
 	public boolean isCreature(String clazz) {
 		if (clazz == null) {
 			throw new NullPointerException("entity class is null");
@@ -262,7 +262,7 @@ public class DefaultEntityManager implements EntityManager {
 		return classToCreature.containsKey(clazz);
 	}
 
-	/** return true if the Entity is a creature */
+	/** return true if the Entity is a creature. */
 	public boolean isItem(String clazz) {
 		if (clazz == null) {
 			throw new NullPointerException("entity class is null");
@@ -271,7 +271,7 @@ public class DefaultEntityManager implements EntityManager {
 	}
 
 	/**
-	 * returns the item or <code>null</code> if the clazz is unknown
+	 * returns the item or <code>null</code> if the clazz is unknown.
 	 * 
 	 * @throws NullPointerException
 	 *             if clazz is <code>null</code>

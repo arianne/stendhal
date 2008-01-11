@@ -11,7 +11,7 @@ import games.stendhal.server.entity.player.Player;
 import org.apache.log4j.Logger;
 
 public class ProducerAdder {
-	static Logger logger = Logger.getLogger(ProducerAdder.class);
+	private static Logger logger = Logger.getLogger(ProducerAdder.class);
 
 	public void addProducer(SpeakerNPC npc, final ProducerBehaviour behaviour,
 			String welcomeMessage) {

@@ -22,7 +22,7 @@ import games.stendhal.server.entity.item.Item;
  */
 public interface ActionManager {
 
-	/** PRE 0.40 */
+	
 	String getSlotNameToEquip(RPEntity entity, Item item);
 
 	boolean onEquip(RPEntity entity, String slotName, Item item);

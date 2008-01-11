@@ -15,7 +15,7 @@ public class NPCOwnedChest extends Chest {
 	private SpeakerNPC npc;
 
 	/**
-	 * Creates a new NPCOwnedChest
+	 * Creates a new NPCOwnedChest.
 	 * 
 	 * @param npc
 	 *            SpeakerNPC

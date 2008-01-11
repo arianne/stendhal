@@ -121,11 +121,11 @@ public class WordList {
 				int idxVersion = line.indexOf(VERSION_KEYWORD);
 
 				if (idxVersion != -1) {
-					String verStr = line.substring(idxVersion+VERSION_KEYWORD.length()).trim();
+					String verStr = line.substring(idxVersion + VERSION_KEYWORD.length()).trim();
 
 					try {
 						version = Integer.parseInt(verStr);
-					} catch(NumberFormatException e) {
+					} catch (NumberFormatException e) {
 						version = 0;
 					}
 				} else if (comments != null) {
@@ -505,14 +505,14 @@ public class WordList {
         		} finally {
             		acc.close();
         		}
-            } catch(SQLException e) {
+            } catch (SQLException e) {
                 logger.error("error storing word list version number into DB", e);
             }
         }
 
         try {
 	        acc.close();
-        } catch(SQLException e) {
+        } catch (SQLException e) {
         	logger.error("error closing DB accessor", e);
         }
     }

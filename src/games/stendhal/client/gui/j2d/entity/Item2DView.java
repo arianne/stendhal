@@ -33,7 +33,7 @@ public class Item2DView extends Entity2DView {
 	/**
 	 * Create a 2D view of an item.
 	 * 
-	 * @param entity
+	 * @param item
 	 *            The entity to render.
 	 */
 	public Item2DView(final Item item) {

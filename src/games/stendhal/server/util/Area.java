@@ -20,7 +20,7 @@ public class Area {
 	private Shape shape;
 
 	/**
-	 * Create a new Area
+	 * Creates a new Area.
 	 * 
 	 * @param zone
 	 *            name of the map
@@ -50,7 +50,7 @@ public class Area {
 	}
 
 	/**
-	 * Get the shape
+	 * Gets the shape.
 	 * 
 	 * @return shape
 	 */

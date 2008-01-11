@@ -5,7 +5,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 
 /**
- * Sets the current state of a quest and modifies the karma of the player
+ * Sets the current state of a quest and modifies the karma of the player.
  */
 public class SetQuestAndModifyKarmaAction extends SpeakerNPC.ChatAction {
 
@@ -14,7 +14,7 @@ public class SetQuestAndModifyKarmaAction extends SpeakerNPC.ChatAction {
 	private double karmaDiff;
 
 	/**
-	 * Creates a new SetQuestAction
+	 * Creates a new SetQuestAction.
 	 * 
 	 * @param questname
 	 *            name of quest-slot to change

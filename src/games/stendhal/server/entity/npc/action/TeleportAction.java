@@ -11,7 +11,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 
 /**
- * Teleports the player to the specified location
+ * Teleports the player to the specified location.
  */
 public class TeleportAction extends SpeakerNPC.ChatAction {
 
@@ -21,7 +21,7 @@ public class TeleportAction extends SpeakerNPC.ChatAction {
 	private Direction direction;
 
 	/**
-	 * Creates a new TeleportAction
+	 * Creates a new TeleportAction.
 	 * 
 	 * @param zonename
 	 *            name of destination zone

@@ -171,7 +171,7 @@ public class TellAction implements ActionListener {
 						receiverName + " has a closed mind, and is seeking solitude from all but close friends");
 				} else {
 					tellIgnorePostman(sender, 
-						receiverName+ " is seeking solitude from all but close friends: " + grumpy);
+						receiverName + " is seeking solitude from all but close friends: " + grumpy);
 				}
 				return false;
 			}

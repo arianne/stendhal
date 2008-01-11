@@ -247,7 +247,7 @@ public class Grammar {
 	 * Extracts noun from a string, that may be prefixed with a singular
 	 * expression like "piece of", ...
 	 * 
-	 * @param noun
+	 * @param expr
 	 * @return
 	 */
 	private static String extractNounSingular(String expr) {
@@ -704,7 +704,7 @@ public class Grammar {
 	/**
 	 * Interprets number texts.
 	 * 
-	 * @param n
+	 * @param text
 	 *            a number
 	 * @return one, two, three, ...
 	 */
@@ -811,7 +811,7 @@ public class Grammar {
 	/**
 	 * Check the given verb for gerund form, e.g. "doing".
 	 *
-	 * @param verb
+	 * @param word
 	 * @return
 	 */
 	public static boolean isGerund(String word) {

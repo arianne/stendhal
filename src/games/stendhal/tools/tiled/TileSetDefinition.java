@@ -18,14 +18,14 @@ public class TileSetDefinition implements Serializable {
 	/** The name of the tileset. Useless */
 	private String name;
 
-	/** The source image of this tileset */
+	/** The source image of this tileset. */
 	private String source;
 
 	/** The id where this tileset begins to number tiles. */
 	private int gid;
 
 	/**
-	 * Constructor
+	 * Constructor.
 	 * 
 	 * @param name
 	 *            the *useless* name of the tileset.
@@ -38,7 +38,7 @@ public class TileSetDefinition implements Serializable {
 	}
 
 	/**
-	 * Returns the id where this tileset begins to number tiles
+	 * Returns the id where this tileset begins to number tiles.
 	 * 
 	 * @return the id where this tileset begins to number tiles
 	 */

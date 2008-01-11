@@ -40,10 +40,9 @@ public class LookAction implements ActionListener {
 		}
 
 		if (entity != null) {
-			// fix for 1864205 - /look adminname shows admin in ghostmode
 			if (entity instanceof Player) {
-				if (((Player)entity).isGhost() &&
-						player.getAdminLevel() < AdministrationAction.getLevelForCommand("ghostmode")) {
+				if (((Player) entity).isGhost() 
+						&& player.getAdminLevel() < AdministrationAction.getLevelForCommand("ghostmode")) {
 					return;
 				}
 			}

@@ -1013,7 +1013,7 @@ public class Player extends RPEntity {
 	}
 
 	/**
-	 * returns the time the player last did an PVP action
+	 * Returns the time the player last did an PVP action.
 	 * 
 	 * @return time in milliseconds
 	 */
@@ -1163,8 +1163,7 @@ public class Player extends RPEntity {
 	 * Checks if the player has ever killed a creature, with or without the help
 	 * of any other player.
 	 * 
-	 * @param The
-	 *            name of the creature to check.
+	 * @param name of the creature to check.
 	 * @return true iff this player has ever killed this creature on his own.
 	 */
 	public boolean hasKilled(String name) {
@@ -1175,7 +1174,7 @@ public class Player extends RPEntity {
 	/**
 	 * Stores that the player has killed 'name' solo. Overwrites shared kills of
 	 * 'name'
-	 * 
+	 * @param name of the victim
 	 */
 	public void setSoloKill(String name) {
 		killRec.setSoloKill(name);

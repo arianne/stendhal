@@ -37,7 +37,7 @@ public class SummonScroll extends InfoStringScroll {
 	private static final Logger logger = Logger.getLogger(SummonScroll.class);
 
 	/**
-	 * Creates a new summon scroll
+	 * Creates a new summon scroll.
 	 * 
 	 * @param name
 	 * @param clazz
@@ -50,7 +50,7 @@ public class SummonScroll extends InfoStringScroll {
 	}
 
 	/**
-	 * copy constructor
+	 * Copy constructor.
 	 * 
 	 * @param item
 	 *            item to copy

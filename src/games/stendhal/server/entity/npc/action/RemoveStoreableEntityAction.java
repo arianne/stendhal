@@ -14,14 +14,14 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
  */
 public class RemoveStoreableEntityAction extends SpeakerNPC.ChatAction {
 
-	private StoreableEntityList<?> storeableEntityList;
+	private StoreableEntityList< ? > storeableEntityList;
 
 	/**
-	 * creates a new RemoveStoreableEntity
+	 * Creates a new RemoveStoreableEntity.
 	 *
 	 * @param storeableEntityList the list to removed entities from
 	 */
-	public RemoveStoreableEntityAction(StoreableEntityList<?> storeableEntityList) {
+	public RemoveStoreableEntityAction(StoreableEntityList< ? > storeableEntityList) {
 		this.storeableEntityList = storeableEntityList;
 	}
 

@@ -12,7 +12,7 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
 /**
- * Starts the recording of kills
+ * Starts the recording of kills.
  * 
  * @author hendrik
  */
@@ -20,7 +20,7 @@ public class StartRecordingKillsAction extends ChatAction {
 	private List<String> toKill;
 
 	/**
-	 * creates a new StartRecodingKillsAction
+	 * Creates a new StartRecodingKillsAction.
 	 * 
 	 * @param toKill
 	 *            list of creatures which should be killed by the player
@@ -30,7 +30,7 @@ public class StartRecordingKillsAction extends ChatAction {
 	}
 
 	/**
-	 * creates a new StartRecodingKillsAction
+	 * Creates a new StartRecodingKillsAction.
 	 * 
 	 * @param toKill
 	 *            creatures which should be killed by the player

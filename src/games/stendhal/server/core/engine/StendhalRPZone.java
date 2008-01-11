@@ -409,6 +409,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 	 * <li> 0 , 1  entry point 
 	 * <li> 1 zone change
 	 * <li> 5 ,2 , 3 LevelPortal
+	 * </ul>
 	 
 	 * @param x 
 	 * @param y 

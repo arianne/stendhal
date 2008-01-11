@@ -8,7 +8,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import java.util.Map;
 
 /**
- * Builds a Curator NPC in Kirdneh museum 
+ * Builds a Curator NPC in Kirdneh museum .
  *
  * @author kymara
  */

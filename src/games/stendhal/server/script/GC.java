@@ -7,7 +7,7 @@ import games.stendhal.server.entity.player.Player;
 import java.util.List;
 
 /**
- * runs the garbage collector manually (for memory profiling)
+ * Runs the garbage collector manually (for memory profiling).
  * 
  * @author hendrik
  */

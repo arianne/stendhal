@@ -31,7 +31,7 @@ public class OnePlayerRoomDoor extends Door {
 	}
 
 	/**
-	 * Creates a new OnePlayerRoomDoor
+	 * Creates a new OnePlayerRoomDoor.
 	 * 
 	 * @param clazz
 	 *            clazz

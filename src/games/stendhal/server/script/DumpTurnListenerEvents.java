@@ -12,7 +12,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * dumps debug information about turn listener events
+ * Dumps debug information about turn listener events.
  * 
  * @author hendrik
  */
@@ -21,7 +21,7 @@ public class DumpTurnListenerEvents extends ScriptImpl {
 	@Override
 	public void execute(Player admin, List<String> args) {
 		int outdated = 0;
-		ObjectCounter<Class<?>> counter = new ObjectCounter<Class<?>>();
+		ObjectCounter<Class< ? >> counter = new ObjectCounter<Class< ? >>();
 
 		TurnNotifier turnNotifier = TurnNotifier.get();
 		int currentTurn = turnNotifier.getCurrentTurnForDebugging();

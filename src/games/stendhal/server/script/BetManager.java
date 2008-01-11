@@ -84,42 +84,42 @@ public class BetManager extends ScriptImpl implements TurnListener {
 
 	private static Logger logger = Logger.getLogger(BetManager.class);
 
-	/** the NPC */
+	/** The NPC. */
 	protected ScriptingNPC npc;
 
-	/** current state */
+	/** Holds the current state. */
 	protected State state = State.IDLE;
 
-	/** list of bets */
+	/** List of bets. */
 	protected List<BetInfo> betInfos = new LinkedList<BetInfo>();
 
-	/** possible targets */
+	/** Possible targets. */
 	protected List<String> targets = new ArrayList<String>();
 
-	/** winner (in state State.PAYING_BETS) */
+	/** Winner (in state State.PAYING_BETS). */
 	protected String winner;
 
 	/**
-	 * Stores information about a bet
+	 * Stores information about a bet.
 	 */
 	protected static class BetInfo {
 
 		// use player name instead of player object
 		// because player may reconnect during the show
-		/** name of player */
-		String playerName;
+		/** name of player. */
+		private String playerName;
 
-		/** target of bet */
-		String target;
+		/** target of bet. */
+		private String target;
 
-		/** name of item */
-		String itemName;
+		/** name of item .*/
+		private String itemName;
 
-		/** amount */
-		int amount;
+		
+		private int amount;
 
 		/**
-		 * converts the bet into a string
+		 * Converts the bet into a string.
 		 * 
 		 * @return String
 		 */
@@ -140,16 +140,16 @@ public class BetManager extends ScriptImpl implements TurnListener {
 	}
 
 	/**
-	 * current state
+	 * Current state.
 	 */
 	private enum State {
-		/** i now nothing */
+		/** I do nothing. */
 		IDLE,
-		/** i accept bets */
+		/** I accept bets. */
 		ACCEPTING_BETS,
-		/** bets are not accepted anymore; enjoy the show */
+		/** Bets are not accepted anymore; enjoy the show. */
 		ACTION,
-		/** now we have a look at the result */
+		/** Now we have a look at the result. */
 		PAYING_BETS
 	}
 

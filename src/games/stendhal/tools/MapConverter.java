@@ -40,17 +40,17 @@ import tiled.view.MapView;
 
 /**
  * Converts the stendhal maps from *.tmx to *.stend This class can be started
- * from the command line or through an ant task
+ * from the command line or through an ant task.
  * 
  * @author mtotz
  */
 public class MapConverter extends Task {
 	private String imagePath;
 
-	/** list of *.tmx files to convert */
+	/** list of *.tmx files to convert. */
 	private List<FileSet> filesets = new ArrayList<FileSet>();
 
-	/** converts the map files */
+	/** converts the map files. */
 	public void convert(String tmxFile) throws Exception {
 		File file = new File(tmxFile);
 
@@ -122,7 +122,7 @@ public class MapConverter extends Task {
 	}
 
 	/**
-	 * The setter for the "stendPath" attribute
+	 * The setter for the "stendPath" attribute.
 	 */
 	public void setImagePath(String imagePath) {
 		this.imagePath = imagePath;
@@ -132,7 +132,7 @@ public class MapConverter extends Task {
 	 * ants execute method.
 	 */
 	@Override
-	public void execute() throws BuildException {
+	public void execute() {
 		try {
 			for (FileSet fileset : filesets) {
 				DirectoryScanner ds = fileset.getDirectoryScanner(getProject());

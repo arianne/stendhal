@@ -35,7 +35,7 @@ public class ConsumableItem extends StackableItem implements UseListener,
 
 	/** How much of this item has not yet been consumed. */
 	private int left;
-	Feeder feeder;
+	private Feeder feeder;
 
 	public ConsumableItem(String name, String clazz, String subclass,
 			Map<String, String> attributes) {
@@ -45,7 +45,7 @@ public class ConsumableItem extends StackableItem implements UseListener,
 	}
 
 	/**
-	 * copy constructor
+	 * copy constructor.
 	 * 
 	 * @param item
 	 *            item to copy

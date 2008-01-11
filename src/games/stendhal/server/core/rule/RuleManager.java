@@ -15,14 +15,14 @@ package games.stendhal.server.core.rule;
 public interface RuleManager {
 
 	/**
-	 * returns the EntityManager for this ruleset
+	 * returns the EntityManager for this ruleset.
 	 * 
 	 * @return the EntityManager for this ruleset
 	 */
 	EntityManager getEntityManager();
 
 	/**
-	 * returns the ActionManager for this ruleset
+	 * returns the ActionManager for this ruleset.
 	 * 
 	 * @return the ActionManager for this ruleset
 	 */

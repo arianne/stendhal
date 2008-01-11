@@ -12,7 +12,7 @@ import games.stendhal.server.entity.player.Player;
 import org.apache.log4j.Logger;
 
 public class SellerAdder {
-	static Logger logger = Logger.getLogger(SellerAdder.class);
+	private static Logger logger = Logger.getLogger(SellerAdder.class);
 
 	public void addSeller(SpeakerNPC npc, SellerBehaviour behaviour) {
 		addSeller(npc, behaviour, true);

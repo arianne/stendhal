@@ -439,6 +439,7 @@ public class Sentence {
 	}
 
 	/**
+	 * TODO: match javadoc to the method
 	 * Return the trailing punctuation depending on the sentence type.
 	 *
 	 * @return
@@ -616,8 +617,8 @@ public class Sentence {
 			// "[SUBJECT] (would like to have)" -> ""[SUBJECT] buy"
 			if (verb.getNormalized().equals("have")
 					&& verb.getOriginal().contains("like")
-					&& ((subject1 == null && expressions.get(0) == verb) ||
-						(expressions.get(0) == subject1 && expressions.get(1) == verb))) {
+					&& ((subject1 == null && expressions.get(0) == verb) 
+						|| (expressions.get(0) == subject1 && expressions.get(1) == verb))) {
 				// replace the verb with "buy"
 				verb.setNormalized("buy");
 				sentenceType = ST_IMPERATIVE;
@@ -657,20 +658,18 @@ public class Sentence {
 					if (type == ST_UNDEFINED) {
 						type = ST_QUESTION;
 					}
-				}
-				// questions beginning with "do", but no "do me" sentences
-				else if (first.getNormalized().equals("do") &&
-						(second==null || !second.getOriginal().equalsIgnoreCase("me"))) {
+				} else if (first.getNormalized().equals("do") 
+						&& (second == null || !second.getOriginal().equalsIgnoreCase("me"))) {
+					// questions begins with "do", but no "do me" sentences
 					if (type == ST_UNDEFINED) {
 						type = ST_QUESTION;
 					}
 
 					expressions.remove(first);
-				}
-				// statements beginning with "it is <VER-GER>"
-				else if (first.getNormalized().equals("it") 
+				} else if (first.getNormalized().equals("it") 
 						&&	second.getNormalized().equals("is") 
 						&& (third != null && third.getType() != null && third.getType().isGerund())) {
+					// statements begins with "it is <VER-GER>"
 					if (type == ST_UNDEFINED) {
 						type = ST_STATEMENT;
 					}
@@ -733,8 +732,8 @@ public class Sentence {
 
 					// don't merge if there are joker expressions
 					if (isForMatching) {
-						if (curr.getNormalized().contains(JOKER) ||
-							next.getNormalized().contains(JOKER)) {
+						if (curr.getNormalized().contains(JOKER) 
+								|| next.getNormalized().contains(JOKER)) {
     						continue;
     					}
 					}
@@ -844,9 +843,9 @@ public class Sentence {
 
 						// don't merge if there are joker expressions
 						if (isForMatching) {
-							if (first.getNormalized().contains(JOKER) ||
-								second.getNormalized().contains(JOKER) ||
-								third.getNormalized().contains(JOKER)) {
+							if (first.getNormalized().contains(JOKER) 
+								||	second.getNormalized().contains(JOKER) 
+								||  third.getNormalized().contains(JOKER)) {
 	    						continue;
 	    					}
 						}
@@ -921,7 +920,7 @@ public class Sentence {
 	    Iterator<Expression> it1 = expressions.iterator();
 	    Iterator<Expression> it2 = other.expressions.iterator();
 
-		while(true) {
+		while (true) {
 			Expression e1 = Expression.nextValid(it1);
 			Expression e2 = Expression.nextValid(it2);
 
@@ -970,7 +969,7 @@ public class Sentence {
 	    Iterator<Expression> it2 = other.expressions.iterator();
 	    Expression e1, e2;
 
-		while(true) {
+		while (true) {
 			e1 = Expression.nextValid(it1);
 			e2 = Expression.nextValid(it2);
 
@@ -1000,7 +999,7 @@ public class Sentence {
 		// Now there should be no more expressions at both sides.
 		e1 = Expression.nextValid(it1);
 		e2 = Expression.nextValid(it2);
-		if (e1==null && e2==null) {
+		if (e1 == null && e2 == null) {
 			return true;
 		} else {
 			return false;

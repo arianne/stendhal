@@ -12,7 +12,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 /**
- * Loads and manages all quests
+ * Loads and manages all quests.
  */
 public class StendhalQuestSystem {
 
@@ -37,7 +37,7 @@ public class StendhalQuestSystem {
 	}
 
 	/**
-	 * initializes the QuestSystem
+	 * Initializes the QuestSystem.
 	 */
 	public void init() {
 		/*
@@ -119,7 +119,7 @@ public class StendhalQuestSystem {
 
 	private boolean loadQuest(String name) {
 		try {
-			Class<?> questClass = Class.forName("games.stendhal.server.maps.quests."
+			Class< ? > questClass = Class.forName("games.stendhal.server.maps.quests."
 					+ name);
 
 			if (!IQuest.class.isAssignableFrom(questClass)) {
@@ -130,7 +130,7 @@ public class StendhalQuestSystem {
 
 			// Create a new instance.
 			logger.info("Loading Quest: " + name);
-			Constructor<?> constr = questClass.getConstructor();
+			Constructor< ? > constr = questClass.getConstructor();
 			IQuest quest = (IQuest) constr.newInstance();
 
 			// init and add to world

@@ -181,7 +181,7 @@ public class Engine {
 	 * 
 	 * @param player
 	 *            Player
-	 * @param sentence
+	 * @param text
 	 *            input
 	 * @return true if a transition was made, false otherwise
 	 */
@@ -233,7 +233,7 @@ public class Engine {
 	 * 
 	 * @param player
 	 *            Player
-	 * @param sentence
+	 * @param text
 	 *            input
 	 * @return true if a transition was made, false otherwise
 	 */

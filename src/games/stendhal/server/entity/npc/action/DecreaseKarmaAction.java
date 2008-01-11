@@ -5,7 +5,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 
 /**
- * decreases the karma of the current player
+ * Decreases the karma of the current player.
  */
 public class DecreaseKarmaAction extends SpeakerNPC.ChatAction {
 

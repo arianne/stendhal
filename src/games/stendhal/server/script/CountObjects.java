@@ -13,7 +13,7 @@ import marauroa.common.game.IRPZone;
 import marauroa.common.game.RPObject;
 
 /**
- * Counts the number of creatures on the world
+ * Counts the number of creatures on the world.
  * 
  * @author hendrik
  */

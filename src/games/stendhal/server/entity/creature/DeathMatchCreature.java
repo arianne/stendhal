@@ -6,7 +6,7 @@ import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.player.Player;
 
 /**
- * An creature that will only reward the specified player
+ * A creature that will only reward the specified player.
  * 
  * @author hendrik
  */
@@ -16,7 +16,7 @@ public class DeathMatchCreature extends Creature {
 	private Player player;
 
 	/**
-	 * DeathCreature
+	 * DeathCreature.
 	 * 
 	 * @param copy
 	 *            creature to wrap
@@ -70,7 +70,7 @@ public class DeathMatchCreature extends Creature {
 	}
 
 	/**
-	 * Calculates the deathmatch points for this kill
+	 * Calculates the deathmatch points for this kill.
 	 * 
 	 * @return number of points to reward
 	 */

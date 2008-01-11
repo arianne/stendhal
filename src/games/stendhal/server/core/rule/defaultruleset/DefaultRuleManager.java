@@ -17,18 +17,18 @@ import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.core.rule.RuleManager;
 
 /**
- * RuleSet-Manager for the default ruleset
+ * RuleSet-Manager for the default ruleset.
  * 
  * @author Matthias totz
  */
 public class DefaultRuleManager implements RuleManager {
 
-	/** returns the EntityManager for the default ruleset */
+	/** returns the EntityManager for the default ruleset. */
 	public EntityManager getEntityManager() {
 		return DefaultEntityManager.getInstance();
 	}
 
-	/** returns the EntityManager for the default ruleset */
+	/** returns the EntityManager for the default ruleset. */
 	public ActionManager getActionManager() {
 		return DefaultActionManager.getInstance();
 	}

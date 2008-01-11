@@ -95,8 +95,6 @@ public class TilesetGroupAnimationMap {
 	 * 
 	 * @param name
 	 *            The name of the tileset.
-	 * @param index
-	 *            The tile index to map.
 	 * @param frameIndexes
 	 *            The indexes of frame tiles.
 	 * @param frameDelays

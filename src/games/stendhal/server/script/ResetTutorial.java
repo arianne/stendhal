@@ -10,7 +10,7 @@ import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
 /**
- * Resets the tutorial
+ * Resets the tutorial.
  * 
  * @author hendrik
  */

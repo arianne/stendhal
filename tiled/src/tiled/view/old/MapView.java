@@ -23,7 +23,6 @@ import javax.swing.Scrollable;
 import javax.swing.JPanel;
 
 import tiled.core.*;
-import tiled.mapeditor.selection.SelectionLayer;
 import tiled.util.TiledConfiguration;
 
 /**

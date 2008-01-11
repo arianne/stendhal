@@ -5,7 +5,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 
 /**
- * Sets the current state of a quest
+ * Sets the current state of a quest.
  */
 public class SetQuestAction extends SpeakerNPC.ChatAction {
 
@@ -14,7 +14,7 @@ public class SetQuestAction extends SpeakerNPC.ChatAction {
 	private String state;
 
 	/**
-	 * Creates a new SetQuestAction
+	 * Creates a new SetQuestAction.
 	 * 
 	 * @param questname
 	 *            name of quest-slot to change

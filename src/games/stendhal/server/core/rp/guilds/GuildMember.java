@@ -17,12 +17,12 @@ import marauroa.common.game.RPObject;
 public class GuildMember extends Entity {
 
     /**
-     * The attribute for the guild, stored as a string
+     * The attribute for the guild, stored as a string.
      */
     private static final String ATTR_GUILD = "guild";
     
     /**
-     * The name of the player this GuildMember represents
+     * The name of the player this GuildMember represents.
      */
     private static final String ATTR_PLAYER = "player";
 
@@ -37,7 +37,7 @@ public class GuildMember extends Entity {
     private static final String ATTR_PERMISSION_ID = "permissionid";
     
     /**
-     * The rpclass of this entity
+     * The rpclass of this entity.
      */
     private static final String RPCLASS = "guild_member";
     

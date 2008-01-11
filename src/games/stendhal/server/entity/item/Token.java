@@ -27,12 +27,12 @@ public class Token extends Item {
 	private TokenMoveListener tokenMoveListener;
 
 	/**
-	 * a listener that will be notified on token move
+	 * A listener that will be notified on token move.
 	 */
 	public interface TokenMoveListener {
 
 		/**
-		 * a token was moved
+		 * a token was moved.
 		 * 
 		 * @param player
 		 *            the player moving it
@@ -41,7 +41,7 @@ public class Token extends Item {
 	}
 
 	/**
-	 * Create a new token
+	 * Creates a new token.
 	 * 
 	 * @param name
 	 *            name of item
@@ -58,7 +58,7 @@ public class Token extends Item {
 	}
 
 	/**
-	 * copy constructor
+	 * Copy constructor.
 	 * 
 	 * @param item
 	 *            item to copy
@@ -76,7 +76,7 @@ public class Token extends Item {
 	}
 
 	/**
-	 * Sets a TokenMoveListener
+	 * Sets a TokenMoveListener.
 	 * 
 	 * @param tokenMoveListener
 	 *            TokenMoveListener

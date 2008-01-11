@@ -20,7 +20,7 @@ import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPObject;
 
 /**
- * A growing carrot which can be picked
+ * A growing carrot which can be picked.
  * 
  * @author hendrik
  */

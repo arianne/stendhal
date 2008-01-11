@@ -17,8 +17,6 @@
 
 package tiled.core;
 
-import java.lang.IllegalStateException;
-import java.lang.UnsupportedOperationException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;

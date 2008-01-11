@@ -10,7 +10,7 @@ import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
 /**
- * Utilities to handle entities in the server
+ * Utilities to handle entities in the server.
  * 
  * @author Martin Fuchs
  */

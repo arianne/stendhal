@@ -96,7 +96,7 @@ public class NPCList implements Iterable<SpeakerNPC> {
 	}
 
 	/**
-	 * returns a list of all NPCs
+	 * Returns a list of all NPCs.
 	 * 
 	 * @return list of npcs
 	 */
@@ -106,14 +106,15 @@ public class NPCList implements Iterable<SpeakerNPC> {
 	}
 
 	/**
-	 * removes all NPCs from this list
+	 * Removes all NPCs from this list.
 	 */
 	public void clear() {
 		contents.clear();
 	}
 
 	/**
-	 * returns an interator over the SpeakerNPC objects
+	 * Returns an interator over the SpeakerNPC objects.
+	 * @return 
 	 */
 	public Iterator<SpeakerNPC> iterator() {
 		return contents.values().iterator();

@@ -166,7 +166,7 @@ public abstract class NPC extends RPEntity {
 	//
 
 	/**
-	 * Returns true if this RPEntity is attackable
+	 * Returns true if this RPEntity is attackable.
 	 */
 	@Override
 	public boolean isAttackable() {

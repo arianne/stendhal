@@ -30,7 +30,7 @@ public class Sign2DView extends Entity2DView {
 	/**
 	 * Create a 2D view of a sign.
 	 * 
-	 * @param entity
+	 * @param sign
 	 *            The entity to render.
 	 */
 	public Sign2DView(final Sign sign) {

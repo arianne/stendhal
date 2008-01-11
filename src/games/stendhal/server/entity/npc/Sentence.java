@@ -247,7 +247,7 @@ public class Sentence {
 	 * quest writers can specify the conversation syntax on their own.
 	 */
 	public void performaAliasing() {
-		if (verb!=null && subject2!=null) {
+		if (verb != null && subject2 != null) {
     		// [you] give me(i) -> [I] buy
     		// Note: The second subject "me" is replaced by "i" in ConversationParser.
     		if (subject1.equals("you") && subject2.equals("i")) {

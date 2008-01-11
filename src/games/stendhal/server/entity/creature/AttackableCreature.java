@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * An creature that will be attacked by normal Creatures
+ * A creature that will be attacked by normal Creatures.
  * 
  * @author hendrik
  */
@@ -15,7 +15,7 @@ public class AttackableCreature extends Creature {
 	private RPEntity master;
 
 	/**
-	 * AttackableCreature
+	 * Class Constructor.
 	 * 
 	 * @param copy
 	 */
@@ -40,7 +40,7 @@ public class AttackableCreature extends Creature {
 	}
 
 	/**
-	 * sets the master of this creature
+	 * Sets the master of this creature.
 	 * 
 	 * @param master
 	 *            master

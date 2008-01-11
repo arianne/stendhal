@@ -133,7 +133,7 @@ public class CharacterCreator {
 		object.put("def", 10);
 		object.put("def_xp", 0);
 		object.put("xp", 0);
-		 for( String slot : RPEntity.CARRYING_SLOTS){
+		 for (String slot : RPEntity.CARRYING_SLOTS) {
 			 object.addSlot(slot);
 		 }
 		return object;

@@ -120,10 +120,6 @@ public class KHtmlEdit extends KTextEdit {
 	 * Append a character to a buffer, escaping HTML meta-characters when
 	 * needed.
 	 * 
-	 * @param text
-	 *            Raw text.
-	 * 
-	 * @return Escaped HTML.
 	 */
 	protected void appendHTML(final StringBuilder sbuf, final char ch) {
 		switch (ch) {
@@ -151,7 +147,6 @@ public class KHtmlEdit extends KTextEdit {
 	 * @param text
 	 *            Raw text.
 	 * 
-	 * @return Escaped HTML.
 	 */
 	protected void appendHTML(final StringBuilder sbuf, final String text) {
 		StringCharacterIterator ci = new StringCharacterIterator(text);

@@ -29,11 +29,11 @@ import org.apache.log4j.Logger;
 // Note this class contains lots of code which was simply copied from Stendhal
 // <= 0.61 and Marauroa 1.x
 public class TablesToBlob {
-	static Logger logger = Logger.getLogger(TablesToBlob.class);
+	private static Logger logger = Logger.getLogger(TablesToBlob.class);
 	private String oldDBName = "marauroa";
 
 	/**
-	 * Creates a new TablesToBlob object
+	 * Creates a new TablesToBlob object.
 	 * 
 	 * @param oldbDBName
 	 *            the name of the old database
@@ -43,7 +43,7 @@ public class TablesToBlob {
 	}
 
 	/**
-	 * Loads an object from the old database structure
+	 * Loads an object from the old database structure.
 	 * 
 	 * @param trans
 	 *            Transaction
@@ -104,7 +104,7 @@ public class TablesToBlob {
 	}
 
 	/**
-	 * Loads an object from the old database structure
+	 * Loads an object from the old database structure.
 	 * 
 	 * @param trans
 	 *            Transaction
@@ -123,7 +123,7 @@ public class TablesToBlob {
 	}
 
 	/**
-	 * An interator which returns a list of all players
+	 * An iterator which returns a list of all players.
 	 * 
 	 * @author hendrik
 	 */
@@ -157,7 +157,7 @@ public class TablesToBlob {
 	}
 
 	/**
-	 * Returns an interator for all old players
+	 * Returns an iterator for all old players.
 	 * 
 	 * @param trans
 	 *            Transaction
@@ -180,7 +180,7 @@ public class TablesToBlob {
 	}
 
 	/**
-	 * Starts the transformation from the command line
+	 * Starts the transformation from the command line.
 	 * 
 	 * @param args
 	 *            the name of the old database
@@ -194,7 +194,7 @@ public class TablesToBlob {
 	}
 
 	/**
-	 * Starts the transformation
+	 * Starts the transformation.
 	 * 
 	 * @throws Exception
 	 *             in case of an unexpected error
@@ -238,7 +238,7 @@ public class TablesToBlob {
 	class PortJDBCDatabase extends JDBCDatabase {
 
 		/**
-		 * creates a new PortJDBCDatabase
+		 * Creates a new PortJDBCDatabase.
 		 * 
 		 * @throws NoDatabaseConfException
 		 *             in case of an configuration error

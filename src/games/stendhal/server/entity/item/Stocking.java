@@ -21,7 +21,7 @@ public class Stocking extends Box implements UseListener {
 			"lucky_charm", "diamond", "gold_bar", "empty_scroll" };
 
 	/**
-	 * Creates a new Stocking
+	 * Creates a new Stocking.
 	 * 
 	 * @param name
 	 * @param clazz
@@ -34,7 +34,7 @@ public class Stocking extends Box implements UseListener {
 	}
 
 	/**
-	 * copy constructor
+	 * Copy constructor.
 	 * 
 	 * @param item
 	 *            item to copy

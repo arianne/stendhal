@@ -13,9 +13,9 @@ import games.stendhal.server.entity.player.Player;
  * of the current player as identifier? 
  */
 public class PlayerHasStoreableEntityCondition extends SpeakerNPC.ChatCondition {
-	private StoreableEntityList<?> storeableEntityList;
+	private StoreableEntityList< ? > storeableEntityList;
 	
-	public PlayerHasStoreableEntityCondition(StoreableEntityList<?> storeableEntityList) {
+	public PlayerHasStoreableEntityCondition(StoreableEntityList< ? > storeableEntityList) {
 		this.storeableEntityList = storeableEntityList;
 	}
 

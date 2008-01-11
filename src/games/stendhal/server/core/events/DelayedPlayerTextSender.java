@@ -13,7 +13,7 @@ class DelayedPlayerTextSender implements TurnListener {
 	private NotificationType type;
 	
 	/**
-	 * Creates a new private message type DelayedPlayerTextSender 
+	 * Creates a new private message type DelayedPlayerTextSender. 
 	 * 
 	 * @param player
 	 *            Player to send this message to

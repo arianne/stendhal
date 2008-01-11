@@ -20,7 +20,7 @@ import org.apache.log4j.Logger;
 import marauroa.common.game.RPAction;
 
 /**
- * ServerExtension to load groovy scripts
+ * ServerExtension to load groovy scripts.
  * 
  * @author intensifly
  */
@@ -36,7 +36,7 @@ public class ScriptRunner extends StendhalServerExtension implements
 	private static final Logger logger = Logger.getLogger(ScriptRunner.class);
 
 	/**
-	 * Constructor for StendhalGroovyRunner
+	 * Constructor for StendhalGroovyRunner.
 	 * 
 	 */
 	public ScriptRunner() {

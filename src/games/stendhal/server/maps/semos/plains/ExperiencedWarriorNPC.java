@@ -14,7 +14,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
- * Experienced warrior knowing a lot about creatures (location semos_plains_s)
+ * Experienced warrior knowing a lot about creatures (location semos_plains_s).
  * Original name: Starkad
  *
  * @author johnnnny
@@ -40,20 +40,20 @@ public class ExperiencedWarriorNPC extends SpeakerNPCFactory {
 
 	/**
 	 * literal for item amounts %s is replaced with singular item name, %a with
-	 * "a/an item name" depending on the item name
+	 * "a/an item name" depending on the item name.
 	 */
 	private static Map<Integer, String> amountLiterals;
 
 	/**
 	 * literal for how dangerous a creature is based on the percentual
 	 * difference to player level %s is replaced with singular creature name, %S
-	 * with plural
+	 * with plural.
 	 */
 	private static Map<Double, String> dangerLiterals;
 
 	/**
 	 * literals for line starts. %s is replaced with singular creature name, %S
-	 * plural
+	 * plural.
 	 */
 	static final String[] LINE_STARTS = new String[] { "Oh yes I know %s!",
 			"When I was your age, I killed many %S!",
@@ -105,34 +105,34 @@ public class ExperiencedWarriorNPC extends SpeakerNPCFactory {
 	}
 
 	/**
-	 * %1 = time to respawn
+	 * %1 = time to respawn.
 	 */
 	static final String[] RESPAWN_TEXTS = new String[] {
 			"They seem to get back after %1.",
 			"They're reborn %1 after their death." };
 
 	/**
-	 * %1 = list of items dropped
+	 * %1 = list of items dropped.
 	 */
 	static final String[] CARRY_TEXTS = new String[] { "They carry %1.",
 			"Dead ones have %1.", "The corpses contain %1." };
 
 	/**
-	 * no attributes
+	 * no attributes.
 	 */
 	static final String[] CARRY_NOTHING_TEXTS = new String[] {
 			"I don't know if they carry anything.",
 			"None of the ones I've seen carried anything." };
 
 	/**
-	 * %1 = list of locations
+	 * %1 = list of locations.
 	 */
 	static final String[] LOCATION_TEXTS = new String[] {
 			"I have seen them %1.", "You should be able to find them %1.",
 			"I have killed few of those %1." };
 
 	/**
-	 * %1 = name of the creature
+	 * %1 = name of the creature.
 	 */
 	static final String[] LOCATION_UNKNOWN_TEXTS = new String[] { "I don't know of any place where you could find %1." };
 

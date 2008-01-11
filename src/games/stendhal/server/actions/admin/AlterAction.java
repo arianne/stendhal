@@ -80,8 +80,8 @@ public class AlterAction extends AdministrationAction {
 				String value = action.get(_VALUE);
 				String mode = action.get(_MODE);
 
-				if (mode.length()>0 && !mode.equalsIgnoreCase(_ADD) &&
-						!mode.equalsIgnoreCase(_SUB) && !mode.equalsIgnoreCase(_SET)) {
+				if (mode.length() > 0 && !mode.equalsIgnoreCase(_ADD) 
+						&& !mode.equalsIgnoreCase(_SUB) && !mode.equalsIgnoreCase(_SET)) {
 					player.sendPrivateText("Please issue one of the modes 'add', 'sub' and 'set'.");
 					return;
 				}
@@ -91,7 +91,7 @@ public class AlterAction extends AdministrationAction {
 
 					try {
 						numberValue = Integer.parseInt(value);
-					} catch(NumberFormatException e) {
+					} catch (NumberFormatException e) {
 						player.sendPrivateText("Please issue a numeric value instead of '" + value + "'");
 						return;
 					}

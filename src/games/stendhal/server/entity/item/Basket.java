@@ -21,7 +21,7 @@ public class Basket extends Box implements UseListener {
 			"sandwich", "cherry", "blue_elf_cloak", "home_scroll" };
 
 	/**
-	 * Creates a new Basket
+	 * Creates a new Basket.
 	 * 
 	 * @param name
 	 * @param clazz
@@ -34,7 +34,7 @@ public class Basket extends Box implements UseListener {
 	}
 
 	/**
-	 * copy constructor
+	 * Copy constructor.
 	 * 
 	 * @param item
 	 *            item to copy

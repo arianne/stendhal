@@ -22,7 +22,8 @@ public class MayorNPC implements ZoneConfigurator {
 	}
 
 	/**
-	 * Adding a a Mayor to the townhall who gives out daily quests
+	 * Adds a Mayor to the townhall who gives out daily quests.
+	 * @param zone zone to be consigured with this
 	 */
 	private void buildSemosTownhallAreaMayor(StendhalRPZone zone) {
 		// We create an NPC

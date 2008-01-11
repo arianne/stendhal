@@ -81,6 +81,7 @@ public class Soup extends AbstractQuest {
 
 	/**
 	 * Serves the soup as a reward for the given player.
+	 * @param player to be rewarded
 	 */
 	private void placeSoupFor(Player player) {
 		Item soup = StendhalRPWorld.get().getRuleManager().getEntityManager()

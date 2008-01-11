@@ -33,7 +33,7 @@ public class StackableItem extends Item implements Stackable {
 	}
 
 	/**
-	 * copy constructor
+	 * Copy constructor.
 	 * 
 	 * @param item
 	 *            item to copy

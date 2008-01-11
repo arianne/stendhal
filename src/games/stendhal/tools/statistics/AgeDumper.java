@@ -12,11 +12,11 @@ import marauroa.common.game.RPObject;
 import marauroa.server.game.db.Transaction;
 
 /**
- * Dumps the Age and Release of players
+ * Dumps the Age and Release of players.
  * 
  * @author hendrik
  */
-public class AgeDumper {
+public final class AgeDumper {
 	StendhalPlayerDatabase db;
 
 	Transaction trans;
@@ -26,7 +26,7 @@ public class AgeDumper {
 	java.sql.Date date;
 
 	/**
-	 * Creates a new AgeDumper
+	 * Creates a new AgeDumper.
 	 * 
 	 * @param db
 	 *            JDBCPlayerDatabase
@@ -37,7 +37,7 @@ public class AgeDumper {
 	}
 
 	/**
-	 * dumps the items
+	 * Dumps the items.
 	 * 
 	 * @throws Exception
 	 *             in case of an unexpected Exception
@@ -59,7 +59,7 @@ public class AgeDumper {
 	}
 
 	/**
-	 * logs a player
+	 * Logs a player.
 	 * 
 	 * @param name
 	 *            character name
@@ -86,7 +86,7 @@ public class AgeDumper {
 	}
 
 	/**
-	 * starts the ItemDumper
+	 * Starts the ItemDumper.
 	 * 
 	 * @param args
 	 *            ignored

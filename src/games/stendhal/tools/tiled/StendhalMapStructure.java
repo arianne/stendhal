@@ -13,16 +13,16 @@ public class StendhalMapStructure {
 	/** TMX Filename that contains this map. */
 	String filename;
 
-	/** Width of the map */
+	/** Width of the map. */
 	int width;
 
-	/** Height of the map */
+	/** Height of the map. */
 	int height;
 
-	/** List of tilesets that this map contains */
+	/** List of tilesets that this map contains. */
 	List<TileSetDefinition> tilesets;
 
-	/** List of layers this map contains */
+	/** List of layers this map contains. */
 	List<LayerDefinition> layers;
 
 	/**
@@ -41,7 +41,7 @@ public class StendhalMapStructure {
 	}
 
 	/**
-	 * Add a new tileset to the map
+	 * Adds a new tileset to the map.
 	 * 
 	 * @param set
 	 *            new tileset
@@ -51,7 +51,7 @@ public class StendhalMapStructure {
 	}
 
 	/**
-	 * Add a new layer to the map
+	 * Adds a new layer to the map.
 	 * 
 	 * @param layer
 	 *            new layer
@@ -62,7 +62,7 @@ public class StendhalMapStructure {
 	}
 
 	/**
-	 * Sets the map TMX filename
+	 * Sets the map TMX filename.
 	 * 
 	 * @param filename
 	 *            the map TMX filename
@@ -101,7 +101,7 @@ public class StendhalMapStructure {
 	}
 
 	/**
-	 * Returns the layer whose name is layer name or null
+	 * Returns the layer whose name is layer name or null.
 	 * 
 	 * @param layername
 	 *            the layer name

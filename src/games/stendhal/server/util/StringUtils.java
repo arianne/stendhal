@@ -8,7 +8,7 @@ package games.stendhal.server.util;
 public class StringUtils {
 
 	/**
-	 * counts the number of upper case characters
+	 * Counts the number of upper case characters.
 	 *
 	 * @param text text to count
 	 * @return number of upper case characters
@@ -25,7 +25,7 @@ public class StringUtils {
 
 
 	/**
-	 * counts the number of lower case characters
+	 * Counts the number of lower case characters.
 	 *
 	 * @param text text to count
 	 * @return number of lower case characters

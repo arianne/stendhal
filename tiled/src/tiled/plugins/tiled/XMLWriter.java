@@ -17,7 +17,6 @@
 
 package tiled.plugins.tiled;
 
-import java.lang.String;
 import java.io.Writer;
 import java.io.IOException;
 import java.util.Stack;

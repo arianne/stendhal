@@ -26,7 +26,7 @@ public abstract class StoreableEntityList<T extends Entity> implements TurnListe
 	private int notifyDelta;
 
 	/**
-	 * creates a new StoreableEntityList
+	 * Creates a new StoreableEntityList.
 	 *
 	 * @param zone  zone to store the entities in
 	 * @param clazz class object of the entities to manage
@@ -44,7 +44,7 @@ public abstract class StoreableEntityList<T extends Entity> implements TurnListe
     }
 
 	/**
-     * Adds a storeable entity
+     * Adds a storeable entity.
      * 
      * @param entity storeable entity
      * @return true in case the entity was added successfully; 
@@ -88,7 +88,7 @@ public abstract class StoreableEntityList<T extends Entity> implements TurnListe
     }
 
 	/**
-     * returns the storeable entity for the specified identifier
+     * Returns the storeable entity for the specified identifier.
      * 
      * @param identifier name of entity
      * @return storeable entity or <code>null</code> in case there is none
@@ -104,7 +104,7 @@ public abstract class StoreableEntityList<T extends Entity> implements TurnListe
     }
 
 	/**
-     * removes all storeable entities for this identifier
+     * Removes all storeable entities for this identifier.
      * 
      * @param identifier name of entity
      */

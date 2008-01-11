@@ -6,7 +6,7 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import java.util.Map;
 
 /**
- * Semos Jail - Level -3
+ * Semos Jail - Level -3.
  * 
  * @author hendrik
  */

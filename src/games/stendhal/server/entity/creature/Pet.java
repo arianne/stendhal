@@ -123,7 +123,7 @@ public abstract class Pet extends DomesticAnimal {
 	/**
 	 * Is called when the pet dies. Removes the dead pet from the owner.
 	 * 
-	 * @param killer
+	 * @param killername
 	 *            The entity who caused the death
 	 */
 	@Override

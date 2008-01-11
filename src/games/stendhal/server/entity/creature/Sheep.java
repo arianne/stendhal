@@ -154,7 +154,7 @@ public class Sheep extends DomesticAnimal {
 	/**
 	 * Is called when the sheep dies. Removes the dead sheep from the owner.
 	 * 
-	 * @param killer
+	 * @param killername
 	 *            The entity who caused the death
 	 */
 	@Override

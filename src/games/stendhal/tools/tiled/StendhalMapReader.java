@@ -24,14 +24,14 @@ import tiled.io.MapReader;
 import tiled.io.PluginLogger;
 
 /**
- * experimental reader for *.stend files
+ * experimental reader for *.stend files.
  */
 public class StendhalMapReader implements MapReader {
 
 	private PluginLogger pluginLogger;
 
 	/**
-	 * Method readMap
+	 * Method readMap.
 	 * 
 	 * @param filename
 	 * @throws Exception
@@ -42,7 +42,7 @@ public class StendhalMapReader implements MapReader {
 	}
 
 	/**
-	 * Method readTileset
+	 * Method readTileset.
 	 * 
 	 * @param filename
 	 * @throws Exception
@@ -53,7 +53,7 @@ public class StendhalMapReader implements MapReader {
 	}
 
 	/**
-	 * Method readMap
+	 * Method readMap.
 	 * 
 	 * @param in
 	 * @throws Exception
@@ -64,7 +64,7 @@ public class StendhalMapReader implements MapReader {
 	}
 
 	/**
-	 * Method readTileset
+	 * Method readTileset.
 	 * 
 	 * @param in
 	 * @throws Exception
@@ -111,7 +111,7 @@ public class StendhalMapReader implements MapReader {
 		return "Stendhal Reader/Writer Plugin";
 	}
 
-	public void setErrorStack(Stack<?> es) {
+	public void setErrorStack(Stack< ? > es) {
 		// not implemented
 	}
 

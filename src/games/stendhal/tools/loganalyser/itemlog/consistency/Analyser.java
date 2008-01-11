@@ -70,7 +70,7 @@ public class Analyser {
 	}
 
 	/**
-	 * entry point
+	 * Entry point.
 	 *
 	 * @param args
 	 */

@@ -48,7 +48,7 @@ public class CreatureRespawnPoint implements TurnListener {
 	private int y;
 
 	/**
-	 * The number of creatures spawned here that can exist at the same time
+	 * The number of creatures spawned here that can exist at the same time.
 	 */
 	private int maximum;
 
@@ -58,12 +58,12 @@ public class CreatureRespawnPoint implements TurnListener {
 	 */
 	private Creature prototypeCreature;
 
-	/** All creatures that were spawned here and that are still alive */
+	/** All creatures that were spawned here and that are still alive. */
 	private List<Creature> creatures;
 
 	/**
 	 * Stores if this respawn point is currently waiting for a creature to
-	 * respawn
+	 * respawn.
 	 */
 	private boolean respawning;
 

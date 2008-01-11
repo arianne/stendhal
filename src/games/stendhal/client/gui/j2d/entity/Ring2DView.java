@@ -63,8 +63,6 @@ public class Ring2DView extends Item2DView {
 	/**
 	 * Populate named state sprites.
 	 * 
-	 * @param map
-	 *            The map to populate.
 	 */
 	@Override
 	protected void buildRepresentation() {

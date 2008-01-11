@@ -5,7 +5,7 @@ import java.io.PrintStream;
 import org.apache.commons.lang.StringEscapeUtils;
 
 /**
- * writes parts of the java file for a chat test case
+ * Writes parts of the java file for a chat test case.
  * 
  * @author hendrik
  */

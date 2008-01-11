@@ -199,7 +199,7 @@ public class CheckSounds {
 	 * <li>key starts with "sfx." <b>and </b></li>
 	 * <li>key does not end with ",x"</li>
 	 * <li>or value contains a "."</li>
-	 * </ul>
+	 * </ul>.
 	 * 
 	 * @param key
 	 * @param value

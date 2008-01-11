@@ -22,8 +22,8 @@ public enum Banks {
 	/**
 	 * Creates a new Bank.
 	 * 
-	 * @param message
-	 *            human readable message
+	 * @param slotName
+	 *            the banks name
 	 */
 	private Banks(String slotName) {
 		this.slotName = slotName;

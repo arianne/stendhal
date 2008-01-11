@@ -37,7 +37,7 @@ public class Ring extends Item implements UseListener {
 	}
 
 	/**
-	 * copy constructor
+	 * Copy constructor.
 	 * 
 	 * @param item
 	 *            item to copy

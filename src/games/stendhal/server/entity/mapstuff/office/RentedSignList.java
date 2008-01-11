@@ -5,7 +5,7 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import java.awt.Shape;
 
 /**
- * a list of RentedSign as frontend for the the zone storage
+ * A list of RentedSign as frontend for the zone storage.
  * 
  * @author hendrik
  */
@@ -13,7 +13,7 @@ public class RentedSignList extends StoreableEntityList<RentedSign> {
 	private static final long EXPIRE_TIMEOUT = 24 * 60 * 60 * 1000;
 
 	/**
-	 * creates a new RentedSignList
+	 * Creates a new RentedSignList.
 	 * 
 	 * @param zone  zone to store the rented signs in
 	 */

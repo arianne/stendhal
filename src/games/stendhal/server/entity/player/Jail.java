@@ -115,6 +115,7 @@ public class Jail implements LoginListener {
 	 *            The name of the admin who wants to jail the criminal
 	 * @param minutes
 	 *            The duration of the sentence
+	 * @param reason why criminal was jailed
 	 */
 	public void imprison(final String criminalName, Player policeman,
 			int minutes, String reason) {

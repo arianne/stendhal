@@ -39,7 +39,7 @@ import marauroa.common.game.Definition.Type;
  */
 public class Item extends PassiveEntity implements TurnListener, EquipListener {
 
-	/** list of possible slots for this item */
+	/** list of possible slots for this item. */
 	private List<String> possibleSlots;
 
 	/**
@@ -150,7 +150,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 		update();
 	}
 
-	/** no public 'default' item */
+	/** no public 'default' item. */
 	private Item() {
 		setRPClass("item");
 		put("type", "item");
@@ -159,7 +159,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	}
 
 	/**
-	 * copy constructor
+	 * copy constructor.
 	 * 
 	 * @param item
 	 *            item to copy
@@ -171,7 +171,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	}
 
 	/**
-	 * on which slots may this item be equipped
+	 * on which slots may this item be equipped.
 	 * 
 	 * @param slots
 	 *            list of allowed slots
@@ -183,7 +183,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 
 	/**
 	 * If this item is created by a PlantGrower, the item will notify it when
-	 * picked from the ground
+	 * picked from the ground.
 	 * 
 	 * @param plantGrower
 	 *            a plant grower
@@ -273,7 +273,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	}
 
 	/**
-	 * Checks if the item is of type <i>type</i>
+	 * Checks if the item is of type <i>type</i> .
 	 * 
 	 * @param clazz
 	 *            the class to check
@@ -531,7 +531,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 
 	/**
 	 * Returns the name or something that can be used to identify the entity for
-	 * the player
+	 * the player.
 	 * 
 	 * @param definite
 	 *            <code>true</code> for "the", and <code>false</code> for

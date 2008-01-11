@@ -27,7 +27,7 @@ public class EmptyScroll extends Scroll {
 	// private static final Logger logger = Logger.getLogger(EmptyScroll.class);
 
 	/**
-	 * Creates a new empty scroll
+	 * Creates a new empty scroll.
 	 * 
 	 * @param name
 	 * @param clazz
@@ -40,7 +40,7 @@ public class EmptyScroll extends Scroll {
 	}
 
 	/**
-	 * copy constructor
+	 * Copy constructor.
 	 * 
 	 * @param item
 	 *            item to copy

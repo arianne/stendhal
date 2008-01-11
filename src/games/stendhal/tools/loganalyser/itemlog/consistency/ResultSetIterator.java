@@ -8,7 +8,7 @@ import java.util.Iterator;
 import org.apache.log4j.Logger;
 
 /**
- * iterates over a database query ResultSet-object doing all the
+ * Iterates over a database query ResultSet-object doing all the
  * magic that is required to query a ResultSet.
  *
  * @author hendrik
@@ -24,7 +24,7 @@ public abstract class ResultSetIterator<T> implements Iterator<T> {
 	private boolean closed;
 
 	/**
-	 * creates a new ResultSetIterator
+	 * Creates a new ResultSetIterator.
 	 *
 	 * @param statement statement
 	 * @param resultSet resultSet
@@ -35,7 +35,7 @@ public abstract class ResultSetIterator<T> implements Iterator<T> {
 	}
 
 	/**
-	 * creates the object instance
+	 * Creates the object instance.
 	 *
 	 * @return T
 	 */
@@ -83,7 +83,7 @@ public abstract class ResultSetIterator<T> implements Iterator<T> {
 	}
 
 	/**
-	 * closed the resultSet and statement
+	 * Closes the resultSet and statement.
 	 */
 	private void close() {
 		if (closed) {

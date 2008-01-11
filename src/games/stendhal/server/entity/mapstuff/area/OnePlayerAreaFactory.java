@@ -18,7 +18,7 @@ import games.stendhal.server.core.config.factory.ConfigurableFactoryContext;
 public class OnePlayerAreaFactory implements ConfigurableFactory {
 
 	/**
-	 * Extract the height from context
+	 * Extracts the height from context.
 	 * 
 	 * @param ctx
 	 *            The configuration context.
@@ -29,7 +29,7 @@ public class OnePlayerAreaFactory implements ConfigurableFactory {
 	}
 
 	/**
-	 * Extract the width from context
+	 * Extracts the width from context.
 	 * 
 	 * @param ctx
 	 *            The configuration context.

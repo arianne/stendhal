@@ -8,7 +8,7 @@ import org.apache.log4j.Logger;
 
 
 /**
- * iterates over the log entries returned by a database query
+ * Iterates over the log entries returned by a database query.
  *
  * @author hendrik
  */
@@ -16,7 +16,7 @@ public class LogEntryIterator extends ResultSetIterator<LogEntry> {
 	private static Logger logger = Logger.getLogger(LogEntryIterator.class);
 
 	/**
-	 * creates a new LogEntryIterator
+	 * Creates a new LogEntryIterator.
 	 *
 	 * @param statement statement
 	 * @param resultSet resultSet

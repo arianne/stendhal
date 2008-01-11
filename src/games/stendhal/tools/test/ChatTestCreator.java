@@ -47,7 +47,7 @@ public class ChatTestCreator {
 	}
 
 	/**
-	 * Converts a chat log into a test case
+	 * Converts a chat log into a test case.
 	 * 
 	 * @param args
 	 *            chatlog.txt [test.java]

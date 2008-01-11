@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * Common phrases used by players to interact with a SpeakerNPC
+ * Common phrases used by players to interact with a SpeakerNPC.
  * 
  * @author hendrik
  */

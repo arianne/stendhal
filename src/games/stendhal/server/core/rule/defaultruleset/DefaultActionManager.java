@@ -30,10 +30,10 @@ import marauroa.common.game.RPSlot;
  */
 public class DefaultActionManager implements ActionManager {
 
-	/** the singleton instance, lazy initialisation */
+	/** the singleton instance, lazy initialisation. */
 	private static DefaultActionManager manager;
 
-	/** no public constructor */
+	/** no public constructor. */
 	private DefaultActionManager() {
 		// hide constructor, this is a Singleton
 	}

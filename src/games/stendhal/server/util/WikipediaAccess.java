@@ -27,16 +27,16 @@ public class WikipediaAccess extends DefaultHandler implements Runnable {
 
 	private StringBuilder text = new StringBuilder();
 
-	/** used by the parser to detect the right tag */
+	/** used by the parser to detect the right tag. */
 	private boolean isContent;
 
-	/** was the parsing completed */
+	/** was the parsing completed. */
 	private boolean finished;
 
 	private String error;
 
 	/**
-	 * creates a new WikipeidaAccess
+	 * Creates a new WikipeidaAccess.
 	 * 
 	 * @param title
 	 *            title of the page to access
@@ -60,7 +60,7 @@ public class WikipediaAccess extends DefaultHandler implements Runnable {
 	}
 
 	/**
-	 * returns the unparsed text
+	 * Returns the unparsed text.
 	 * 
 	 * @return content
 	 */
@@ -69,7 +69,7 @@ public class WikipediaAccess extends DefaultHandler implements Runnable {
 	}
 
 	/**
-	 * Gets the last error message
+	 * Gets the last error message.
 	 * 
 	 * @return error message or <code>null</code> in case no error occurred
 	 */
@@ -78,7 +78,7 @@ public class WikipediaAccess extends DefaultHandler implements Runnable {
 	}
 
 	/**
-	 * Returns the first paragraph of the specified article without wiki code
+	 * Returns the first paragraph of the specified article without wiki code.
 	 * 
 	 * @return content
 	 */
@@ -122,7 +122,7 @@ public class WikipediaAccess extends DefaultHandler implements Runnable {
 	}
 
 	/**
-	 * starts the parsing of the specified article
+	 * Starts the parsing of the specified article.
 	 * 
 	 * @throws Exception
 	 *             in case of an unexpected error
@@ -158,7 +158,7 @@ public class WikipediaAccess extends DefaultHandler implements Runnable {
 	}
 
 	/**
-	 * Returns true when the xml response was completly parsed
+	 * Returns true when the XML response was completely parsed.
 	 * 
 	 * @return true if the parsing was completed, false otherwise
 	 */

@@ -72,7 +72,7 @@ public abstract class CroupierNPC extends SpeakerNPC {
 	}
 
 	/**
-	 * Sets the playing area (a table or something like that)
+	 * Sets the playing area (a table or something like that).
 	 * 
 	 * @param playingArea
 	 *            shape of the playing area (in the same zone as the NPC)

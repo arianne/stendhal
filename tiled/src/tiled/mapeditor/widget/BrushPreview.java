@@ -32,7 +32,7 @@ import tiled.mapeditor.brush.Brush;
 import tiled.view.Orthogonal;
 
 /**
- * Shows a preview of the currently selected Brush
+ * Shows a preview of the currently selected Brush.
  * 
  * @author mtotz
  */

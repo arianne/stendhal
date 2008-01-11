@@ -90,7 +90,7 @@ public abstract class RPEntity extends GuidedEntity {
 	/** List of all enemies that are currently attacking of this entity. */
 	private List<Entity> attackSources;
 
-	/** current target */
+	/** current target. */
 	private RPEntity attackTarget;
 
 	/**
@@ -99,7 +99,7 @@ public abstract class RPEntity extends GuidedEntity {
 	 */
 	protected Map<Entity, Integer> damageReceived;
 
-	/** list of players which are to reward with xp on killing this creature */
+	/** list of players which are to reward with xp on killing this creature. */
 	protected Set<Player> playersToReward;
 
 	protected int totalDamageReceived;
@@ -536,7 +536,7 @@ public abstract class RPEntity extends GuidedEntity {
 	}
 
 	/**
-	 * Gets the mana (magic)
+	 * Gets the mana (magic).
 	 * 
 	 * @return mana
 	 */
@@ -545,7 +545,7 @@ public abstract class RPEntity extends GuidedEntity {
 	}
 
 	/**
-	 * Gets the base mana (like base_hp)
+	 * Gets the base mana (like base_hp).
 	 * 
 	 * @return base mana
 	 */
@@ -554,7 +554,7 @@ public abstract class RPEntity extends GuidedEntity {
 	}
 
 	/**
-	 * sets the available mana
+	 * sets the available mana.
 	 * 
 	 * @param newMana
 	 *            new amount of mana
@@ -565,7 +565,7 @@ public abstract class RPEntity extends GuidedEntity {
 	}
 
 	/**
-	 * Sets the base mana (like base_hp)
+	 * Sets the base mana (like base_hp).
 	 * 
 	 * @param newBaseMana
 	 *            new amount of base mana
@@ -576,7 +576,7 @@ public abstract class RPEntity extends GuidedEntity {
 	}
 
 	/**
-	 * adds to base mana (like addXP)
+	 * adds to base mana (like addXP).
 	 * 
 	 * @param newBaseMana
 	 *            amount of base mana to be added
@@ -628,19 +628,19 @@ public abstract class RPEntity extends GuidedEntity {
 	 **************************************************************************/
 
 	/**
-	 * Returns true if this RPEntity is attackable
+	 * Returns true if this RPEntity is attackable.
 	 */
 	public boolean isAttackable() {
 		return true;
 	}
 
-	/** Modify the entity to order to attack the target entity */
+	/** Modify the entity to order to attack the target entity. */
 	public void attack(RPEntity target) {
 		put("target", target.getID().getObjectID());
 		attackTarget = target;
 	}
 
-	/** Modify the entity to stop attacking */
+	/** Modify the entity to stop attacking. */
 	public void stopAttack() {
 		if (has("risk")) {
 			remove("risk");
@@ -1018,17 +1018,17 @@ public abstract class RPEntity extends GuidedEntity {
 		return false;
 	}
 
-	/** Return true if this entity is attacked */
+	/** Return true if this entity is attacked. */
 	public boolean isAttacked() {
 		return !attackSources.isEmpty();
 	}
 
-	/** Return the Entities that are attacking this character */
+	/** Return the Entities that are attacking this character. */
 	public List<Entity> getAttackSources() {
 		return attackSources;
 	}
 
-	/** Return the RPEntities that are attacking this character */
+	/** Return the RPEntities that are attacking this character. */
 	public List<RPEntity> getAttackingRPEntities() {
 		List<RPEntity> list = new ArrayList<RPEntity>();
 
@@ -1040,7 +1040,7 @@ public abstract class RPEntity extends GuidedEntity {
 		return list;
 	}
 
-	/** Return true if this entity is attacking */
+	/** Return true if this entity is attacking. */
 	public boolean isAttacking() {
 		return attackTarget != null;
 	}
@@ -1365,7 +1365,7 @@ public abstract class RPEntity extends GuidedEntity {
 
 	/**
 	 * checks if an item of class <i>clazz</i> is equipped in slot <i>slot</i>
-	 * returns true if it is, else false
+	 * returns true if it is, else false.
 	 */
 	public boolean isEquippedItemClass(String slot, String clazz) {
 		if (hasSlot(slot)) {
@@ -1385,7 +1385,7 @@ public abstract class RPEntity extends GuidedEntity {
 	/**
 	 * returns the first item of class <i>clazz</i> from the slot or
 	 * <code>null</code> if there is no item with the requested clazz returns
-	 * the item or null
+	 * the item or null.
 	 */
 	public Item getEquippedItemClass(String slot, String clazz) {
 		if (hasSlot(slot)) {
@@ -1536,7 +1536,7 @@ public abstract class RPEntity extends GuidedEntity {
 		}
 	}
 
-	/** returns true if the entity has a shield equipped */
+	/** returns true if the entity has a shield equipped. */
 	public boolean hasShield() {
 		return isEquippedItemClass("lhand", "shield")
 				|| isEquippedItemClass("rhand", "shield");
@@ -1762,7 +1762,7 @@ public abstract class RPEntity extends GuidedEntity {
 
 	/**
 	 * Returns the name or something that can be used to identify the entity for
-	 * the player
+	 * the player.
 	 * 
 	 * @param definite
 	 *            <code>true</code> for "the", and <code>false</code> for

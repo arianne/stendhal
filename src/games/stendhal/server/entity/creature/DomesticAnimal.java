@@ -50,6 +50,7 @@ public abstract class DomesticAnimal extends Creature {
 
 	/**
 	 * Creates a new DomesticAnimal that is owned by a player.
+	 * @param owner of the new animal
 	 */
 	public DomesticAnimal(Player owner) {
 		this.owner = owner;

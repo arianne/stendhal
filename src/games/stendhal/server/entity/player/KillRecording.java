@@ -16,8 +16,7 @@ class KillRecording {
 	 * Checks if the player has ever killed a creature with the given name
 	 * without the help of any other player.
 	 * 
-	 * @param The
-	 *            name of the creature to check.
+	 * @param name of the creature to check.
 	 * @return true iff this player has ever killed this creature on his own.
 	 */
 	public boolean hasKilledSolo(String name) {
@@ -33,8 +32,7 @@ class KillRecording {
 	 * Checks if the player has ever killed a creature, with or without the help
 	 * of any other player.
 	 * 
-	 * @param The
-	 *            name of the creature to check.
+	 * @param  name of the creature to check.
 	 * @return true iff this player has ever killed this creature on his own.
 	 */
 	public boolean hasKilled(String name) {
@@ -45,8 +43,7 @@ class KillRecording {
 	 * Checks in which way this player has killed the creature with the given
 	 * name.
 	 * 
-	 * @param The
-	 *            name of the creature to check.
+	 * @param name of the creature to check.
 	 * @return either "solo", "shared", or null.
 	 */
 	public String getKill(String name) {
@@ -56,8 +53,7 @@ class KillRecording {
 	/**
 	 * Stores in which way the player has killed a creature with the given name.
 	 * 
-	 * @param The
-	 *            name of the killed creature.
+	 * @param name of the killed creature.
 	 * @param mode
 	 *            either "solo", "shared", or null.
 	 */
@@ -68,6 +64,7 @@ class KillRecording {
 	/**
 	 * Stores that the player has killed 'name' solo. Overwrites shared kills of
 	 * 'name'
+	 * @param name of the killed entity
 	 * 
 	 */
 	public void setSoloKill(String name) {
@@ -77,7 +74,7 @@ class KillRecording {
 	/**
 	 * Stores that the player has killed 'name' with help of others. Does not
 	 * overwrite solo kills of 'name'
-	 * 
+	 * @param name of the killed entity 
 	 */
 	public void setSharedKill(String name) {
 		if (!hasKilledSolo(name)) {

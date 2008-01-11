@@ -7,7 +7,7 @@ import games.stendhal.server.entity.RPEntity;
 import marauroa.common.game.RPClass;
 
 /**
- * Burning fire
+ * Burning fire.
  */
 public class Fire extends Entity implements UseListener {
 	public static void generateRPClass() {
@@ -16,7 +16,7 @@ public class Fire extends Entity implements UseListener {
 	}
 
 	/**
-	 * creates a new fiew
+	 * creates a new fire.
 	 * 
 	 * @param width
 	 *            width in grid units

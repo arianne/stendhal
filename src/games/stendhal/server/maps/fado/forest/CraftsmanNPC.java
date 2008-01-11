@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Builds an albino elf NPC 
+ * Builds an albino elf NPC .
  * He is a trader and takes part in a quest (maps/quests/ElvishArmor.java)
  *
  * @author kymara

@@ -35,7 +35,7 @@ public class TeleporterBehaviour implements TurnListener {
 	private SpeakerNPC speakerNPC;
 
 	/**
-	 * Creates a new TeleporterBehaviour
+	 * Creates a new TeleporterBehaviour.
 	 * 
 	 * @param speakerNPC
 	 *            SpeakerNPC
@@ -58,7 +58,7 @@ public class TeleporterBehaviour implements TurnListener {
 	}
 
 	/**
-	 * Creates a new TeleporterBehaviour
+	 * Creates a new TeleporterBehaviour.
 	 * 
 	 * @param speakerNPC
 	 *            SpeakerNPC
@@ -88,7 +88,7 @@ public class TeleporterBehaviour implements TurnListener {
 	}
 
 	/**
-	 * Creates an ArrayList of "outside" zones for NPC
+	 * Creates an ArrayList of "outside" zones for NPC.
 	 */
 	private void listZones() {
 		Iterator<IRPZone> itr = StendhalRPWorld.get().iterator();

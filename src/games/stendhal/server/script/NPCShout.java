@@ -7,7 +7,7 @@ import games.stendhal.server.entity.player.Player;
 import java.util.List;
 
 /**
- * Impersonated a NPC to shout a message to all players
+ * Impersonate a NPC to shout a message to all players.
  * 
  * @author hendrik
  */

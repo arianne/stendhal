@@ -205,9 +205,9 @@ class SourceObject extends MoveableObject {
 	}
 
 	/**
-	 * returns true when the rpobject is one of the classes in <i>validClasses</i>.
+	 * returns true when the RPObject is one of the classes in <i>validClasses</i>.
 	 */
-	public boolean checkClass(List<Class<?>> validClasses) {
+	public boolean checkClass(List<Class< ? >> validClasses) {
 		if (parent != null) {
 			if (!EquipUtil.isCorrectClass(validClasses, parent)) {
 				logger.debug("parent is the wrong class "

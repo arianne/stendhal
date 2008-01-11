@@ -31,7 +31,7 @@ public class MarkedScroll extends TeleportScroll {
 	private static final Logger logger = Logger.getLogger(MarkedScroll.class);
 
 	/**
-	 * Creates a new marked teleport scroll
+	 * Creates a new marked teleport scroll.
 	 * 
 	 * @param name
 	 * @param clazz
@@ -44,7 +44,7 @@ public class MarkedScroll extends TeleportScroll {
 	}
 
 	/**
-	 * copy constructor
+	 * Copy constructor.
 	 * 
 	 * @param item
 	 *            item to copy

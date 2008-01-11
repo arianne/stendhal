@@ -34,7 +34,7 @@ public class ItemChangeGuardCreature extends Creature {
 	private String oldItemType;
 
 	/**
-	 * Creates a ItemGuardCreature
+	 * Creates a ItemGuardCreature.
 	 * 
 	 * @param copy
 	 *            base creature

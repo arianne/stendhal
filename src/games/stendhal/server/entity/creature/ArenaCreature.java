@@ -16,7 +16,7 @@ public class ArenaCreature extends Creature {
 	private Shape arena;
 
 	/**
-	 * ArenaCreature
+	 * ArenaCreature.
 	 * 
 	 * @param copy
 	 *            creature to wrap

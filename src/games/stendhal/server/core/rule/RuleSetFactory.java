@@ -16,12 +16,12 @@ import games.stendhal.server.core.rule.defaultruleset.DefaultRuleManager;
  */
 public class RuleSetFactory {
 
-	/** Creates a new instance of RuleSetFactory */
+	/** Creates a new instance of RuleSetFactory. */
 	private RuleSetFactory() {
 		// hide constructor, this is a Singleton
 	}
 
-	/** returns the ruleset with the given name */
+	/** returns the ruleset with the given name. */
 	public static RuleManager getRuleSet(String name) {
 		return new DefaultRuleManager();
 	}

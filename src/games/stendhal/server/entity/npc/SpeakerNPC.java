@@ -148,6 +148,7 @@ public class SpeakerNPC extends NPC {
 	/**
 	 * Is called when the NPC stops chatting with a player. Override it if
 	 * needed.
+	 * @param player who has been talked to.
 	 */
 	protected void onGoodbye(Player player) {
 		// do nothing
@@ -363,26 +364,45 @@ public class SpeakerNPC extends NPC {
 
 	}
 
-	/** Message when NPC is attending another player. */
+	/** Message when NPC is attending another player. 
+	 * @param text to say to bothering player
+	 * @param action to perform
+	 */
 	public void addWaitMessage(String text, ChatAction action) {
 		waitMessage = text;
 		waitAction = action;
 	}
 
-	/** Message when NPC is attending another player. */
+	
 	public void addInitChatMessage(ChatCondition condition, ChatAction action) {
 		initChatCondition = condition;
 		initChatAction = action;
 	}
 
-	/** Add a new transition to FSM */
+	/**
+	 * Adds a new set of transitions to the FSM.
+	 * 
+	 * @param state
+	 *            the starting state of the FSM
+	 * @param trigger
+	 *            input for this transition
+	 * @param condition
+	 *            null or condition that has to return true for this transition
+	 *            to be considered
+	 * @param nextState
+	 *            the new state of the FSM
+	 * @param reply
+	 *            a simple text reply (may be null for no reply)
+	 * @param action
+	 *            a special action to be taken (may be null)
+	 */
 	public void add(int state, String trigger, ChatCondition condition,
 			int nextState, String reply, ChatAction action) {
 		engine.add(state, trigger, condition, nextState, reply, action);
 	}
 
 	/**
-	 * Adds a new set of transitions to the FSM
+	 * Adds a new set of transitions to the FSM.
 	 * 
 	 * @param state
 	 *            the starting state of the FSM
@@ -404,7 +424,7 @@ public class SpeakerNPC extends NPC {
 	}
 
 	/**
-	 * Adds a new set of transitions to the FSM
+	 * Adds a new set of transitions to the FSM.
 	 * 
 	 * @param states
 	 *            the starting states of the FSM
@@ -428,7 +448,7 @@ public class SpeakerNPC extends NPC {
 	}
 
 	/**
-	 * Adds a new set of transitions to the FSM
+	 * Adds a new set of transitions to the FSM.
 	 * 
 	 * @param states
 	 *            the starting states of the FSM
@@ -452,9 +472,7 @@ public class SpeakerNPC extends NPC {
 		}
 	}
 
-	/**
-	 * 
-	 */
+	
 	public void add(int state, List<String> triggers, int nextState,
 			String reply, ChatAction action) {
 		for (String trigger : triggers) {
@@ -502,7 +520,7 @@ public class SpeakerNPC extends NPC {
 		return false;
 	}
 
-	/** This function evolves the FSM */
+	/** This function evolves the FSM. */
 	private boolean tell(Player player, String text) {
 		// If we are not attending a player, attend this one.
 		if (engine.getCurrentState() == ConversationStates.IDLE) {
@@ -570,7 +588,7 @@ public class SpeakerNPC extends NPC {
 	}
 
 	/**
-	 * Makes NPC say a text and/or do an action when a trigger is said
+	 * Makes NPC say a text and/or do an action when a trigger is said.
 	 * 
 	 * @param trigger
 	 * @param text
@@ -633,7 +651,7 @@ public class SpeakerNPC extends NPC {
 	}
 
 	/**
-	 * Returns a copy of the transition table
+	 * Returns a copy of the transition table.
 	 * 
 	 * @return list of transitions
 	 */

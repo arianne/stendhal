@@ -22,10 +22,10 @@ public class AdminSign extends ScriptImpl {
 	private int signcounter;
 
 	/**
-	 * adds a sign
+	 * Adds a sign.
 	 * 
 	 * @param player
-	 *            admin
+	 *            admin who put the sign
 	 * @param args
 	 *            zone x y text
 	 */
@@ -80,7 +80,7 @@ public class AdminSign extends ScriptImpl {
 	}
 
 	/**
-	 * Removes the specified sign
+	 * Removes the specified sign.
 	 * 
 	 * @param player
 	 *            admin
@@ -119,7 +119,7 @@ public class AdminSign extends ScriptImpl {
 	}
 
 	/**
-	 * Lists all signs
+	 * Lists all signs.
 	 * 
 	 * @param player
 	 *            admin invoking this script

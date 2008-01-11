@@ -79,7 +79,7 @@ public class LevelCheckingPortal extends AccessCheckingPortal {
 	 * @param user
 	 *            The user to be checked.
 	 * 
-	 * @return <code>true<code> if the user can use the portal.
+	 * @return <code>true</code> if the user can use the portal.
 	 */
 	@Override
 	protected boolean isAllowed(RPEntity user) {

@@ -11,8 +11,8 @@ public class GuildPermissionComparator implements Comparator<GuildPermission> {
     /**
      * Compares two GuildPermissions to see if one has greater permissions than 
      * another.
-     * @param o1 the first permission
-     * @param o2 the second permission
+     * @param p1 the first permission
+     * @param p2 the second permission
      * @return -1 if p1 > p2, 0 if equal, or 1 if p1 < p2
      */
     public int compare(GuildPermission p1, GuildPermission p2) {

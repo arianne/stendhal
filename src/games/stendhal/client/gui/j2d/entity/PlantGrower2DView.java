@@ -18,7 +18,7 @@ public class PlantGrower2DView extends Entity2DView {
 	/**
 	 * Create a 2D view of a plant grower.
 	 * 
-	 * @param entity
+	 * @param plantGrower
 	 *            The entity to render.
 	 */
 	public PlantGrower2DView(final PlantGrower plantGrower) {

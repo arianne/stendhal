@@ -5,14 +5,14 @@ import games.stendhal.server.entity.player.Player;
 import java.util.List;
 
 /**
- * A script, which can be reloading at runtime
+ * A script, which can be reloading at runtime.
  * 
  * @author hendrik
  */
 public interface Script {
 
 	/**
-	 * Initial load of the script
+	 * Initial load of this script.
 	 * 
 	 * @param admin
 	 *            the admin who load it or <code>null</code> on server start.
@@ -26,7 +26,7 @@ public interface Script {
 	void load(Player admin, List<String> args, ScriptingSandbox sandbox);
 
 	/**
-	 * Unloads the script
+	 * Unloads this script.
 	 * 
 	 * @param admin
 	 *            the admin who load it or <code>null</code> on server start.
@@ -37,7 +37,7 @@ public interface Script {
 	void unload(Player admin, List<String> args);
 
 	/**
-	 * Execution of this script
+	 * Executes this script.
 	 * 
 	 * @param admin
 	 *            the admin who load it or <code>null</code> on server start.

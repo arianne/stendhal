@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * Analyses a chat log line
+ * Analyzes a chat log line.
  * 
  * @author hendrik
  */

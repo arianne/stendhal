@@ -17,7 +17,7 @@ public class LogEntry {
 	private String param4;
 
 	/**
-	 * creates a new LogEntry
+	 * Creates a new LogEntry.
 	 *
 	 * @param timestamp timestamp
 	 * @param itemid id of the item

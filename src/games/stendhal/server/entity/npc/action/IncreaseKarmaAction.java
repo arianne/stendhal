@@ -5,14 +5,14 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 
 /**
- * Increases the karma of the current player
+ * Increases the karma of the current player.
  */
 public class IncreaseKarmaAction extends SpeakerNPC.ChatAction {
 
 	private double karmaDiff;
 
 	/**
-	 * Creates a new IncreaseKarmaAction
+	 * Creates a new IncreaseKarmaAction.
 	 * 
 	 * @param karmaDiff
 	 *            amount of karma to add

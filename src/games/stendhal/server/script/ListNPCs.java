@@ -9,7 +9,7 @@ import games.stendhal.server.entity.player.Player;
 import java.util.List;
 
 /**
- * lists all npcs and there position
+ * Lists all npcs and there position.
  * 
  * @author hendrik
  */

@@ -86,7 +86,7 @@ public class Corpse extends PassiveEntity implements TurnListener,
 	}
 
 	/**
-	 * non rotting corpse
+	 * non rotting corpse.
 	 * 
 	 * @param clazz
 	 * @param x
@@ -322,7 +322,7 @@ public class Corpse extends PassiveEntity implements TurnListener,
 
 	/**
 	 * Returns the name or something that can be used to identify the entity for
-	 * the player
+	 * the player.
 	 * 
 	 * @param definite
 	 *            <code>true</code> for "the", and <code>false</code> for

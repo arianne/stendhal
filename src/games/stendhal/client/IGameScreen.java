@@ -106,7 +106,7 @@ public interface IGameScreen {
 	void setOffline(boolean offline);
 
 	/**
-	 * Add a text bubble at a give position of the specified type
+	 * Adds a text bubble at a give position of the specified type.
 	 * 
 	 * @param x The screen X coordinate.
 	 * @param y The screen Y coordinate.
@@ -120,7 +120,7 @@ public interface IGameScreen {
 			NotificationType type, boolean isTalking);
 
 	/**
-	 * Add a text bubble at a give position of the specified Color
+	 * Adds a text bubble at a give position of the specified Color.
 	 * 
 	 * @param x The screen X coordinate.
 	 * @param y The screen Y coordinate.

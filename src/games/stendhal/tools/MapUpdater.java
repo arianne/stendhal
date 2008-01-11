@@ -32,15 +32,15 @@ import tiled.core.Map;
 import tiled.io.xml.XMLMapTransformer;
 
 /**
- * Fix maps by loading and saving thems
+ * Fix maps by loading and saving thems.
  * 
  * @author mtotz, miguel
  */
 public class MapUpdater extends Task {
-	/** list of *.tmx files to convert */
+	/** list of *.tmx files to convert. */
 	private List<FileSet> filesets = new ArrayList<FileSet>();
 
-	/** converts the map files */
+	/** Converts the map files. */
 	public void convert(String tmxFile) throws Exception {
 		File file = new File(tmxFile);
 
@@ -63,7 +63,7 @@ public class MapUpdater extends Task {
 	 * ants execute method.
 	 */
 	@Override
-	public void execute() throws BuildException {
+	public void execute() {
 		try {
 			for (FileSet fileset : filesets) {
 				DirectoryScanner ds = fileset.getDirectoryScanner(getProject());

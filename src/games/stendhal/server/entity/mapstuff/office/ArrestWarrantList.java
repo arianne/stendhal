@@ -3,7 +3,7 @@ package games.stendhal.server.entity.mapstuff.office;
 import games.stendhal.server.core.engine.StendhalRPZone;
 
 /**
- * a list of ArrestWarrants as frontend for the the zone storage
+ * A list of ArrestWarrants as frontend for the zone storage.
  * 
  * @author hendrik
  */
@@ -12,7 +12,7 @@ public class ArrestWarrantList extends StoreableEntityList<ArrestWarrant> {
 	private static final long serialVersionUID = 9038872708537070249L;
 
 	/**
-	 * creates a new ArrestWarrantList
+	 * Creates a new ArrestWarrantList.
 	 * 
 	 * @param zone
 	 *            zone to store the ArrestWarrants in

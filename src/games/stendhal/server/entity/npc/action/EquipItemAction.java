@@ -9,7 +9,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 
 /**
- * equips the specified item
+ * Equips the specified item.
  */
 public class EquipItemAction extends SpeakerNPC.ChatAction {
 
@@ -18,7 +18,7 @@ public class EquipItemAction extends SpeakerNPC.ChatAction {
 	private boolean bind;
 
 	/**
-	 * Creates a new EquipItemAction
+	 * Creates a new EquipItemAction.
 	 * 
 	 * @param itemName
 	 *            name of item
@@ -28,7 +28,7 @@ public class EquipItemAction extends SpeakerNPC.ChatAction {
 	}
 
 	/**
-	 * Creates a new EquipItemAction
+	 * Creates a new EquipItemAction.
 	 * 
 	 * @param itemName
 	 *            name of item
@@ -40,7 +40,7 @@ public class EquipItemAction extends SpeakerNPC.ChatAction {
 	}
 
 	/**
-	 * Creates a new EquipItemAction
+	 * Creates a new EquipItemAction.
 	 * 
 	 * @param itemName
 	 *            name of item

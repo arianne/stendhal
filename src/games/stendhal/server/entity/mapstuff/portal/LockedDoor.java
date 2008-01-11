@@ -32,7 +32,7 @@ public class LockedDoor extends Door {
 	protected int requiredAmount;
 
 	/**
-	 * Creates a new Locked door which need 1 key item
+	 * Creates a new Locked door which need 1 key item.
 	 * 
 	 * @param key
 	 *            The name of the item that is required to use the door

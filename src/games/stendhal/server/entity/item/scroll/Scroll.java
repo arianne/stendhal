@@ -32,7 +32,7 @@ public class Scroll extends StackableItem implements UseListener {
 	private static final Logger logger = Logger.getLogger(Scroll.class);
 
 	/**
-	 * Creates a new scroll
+	 * Creates a new scroll.
 	 * 
 	 * @param name
 	 * @param clazz
@@ -45,7 +45,7 @@ public class Scroll extends StackableItem implements UseListener {
 	}
 
 	/**
-	 * copy constructor
+	 * Copy constructor.
 	 * 
 	 * @param item
 	 *            item to copy
@@ -69,7 +69,7 @@ public class Scroll extends StackableItem implements UseListener {
 	}
 
 	// TODO: Move up to Item, use useItem() for real impl's
-	final public boolean onUsed(RPEntity user) {
+	public final boolean onUsed(RPEntity user) {
 		RPObject base = this;
 
 		// Find the top container

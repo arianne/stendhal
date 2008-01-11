@@ -61,8 +61,6 @@ public class AudioClip {
 	 * 
 	 * @param mixer
 	 *            the Mixer instance to be used
-	 * @param name
-	 *            the name of the audio clip
 	 * @param audioData
 	 *            the audio data
 	 * @param volume
@@ -120,6 +118,7 @@ public class AudioClip {
 
 	/**
 	 * opens the given line with the encapsulated audio data.
+	 * @return the supported open line or null
 	 * 
 	 * @throws IOException
 	 * @throws UnsupportedAudioFileException

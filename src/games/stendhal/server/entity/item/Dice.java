@@ -40,7 +40,7 @@ public class Dice extends Item {
 	}
 
 	/**
-	 * copy constructor
+	 * copy constructor.
 	 * 
 	 * @param item
 	 *            item to copy

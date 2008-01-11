@@ -25,6 +25,7 @@ public class DeathmatchInfo {
 	 *            combat area
 	 * @param zone
 	 *            zone
+	 * @param entrance the spot where the players stands before entering DM.
 	 */
 	public DeathmatchInfo(final Area arena, final StendhalRPZone zone,
 			final Spot entrance) {
