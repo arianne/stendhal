@@ -6,6 +6,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.LinkedList;
+import java.util.List;
 
 import marauroa.common.Log4J;
 import marauroa.server.game.db.StringChecker;
@@ -18,24 +20,40 @@ import marauroa.server.game.db.Transaction;
  */
 public class Analyser {
 
-	private static final String SQL = "SELECT username, address, loginEvent.timedate As timedate"
+	private static final String SQL_FROM_IP = "SELECT username, address, loginEvent.timedate As timedate"
 		+ " FROM loginEvent, account "
 		+ " WHERE account.id = loginEvent.player_id"
 		+ " AND loginEvent.address = '%1$s' AND loginEvent.timedate >= '%2$s'"
 		+ " ORDER BY loginEvent.timedate";
+	
+	private static final String SQL_NEXT_LOGIN = "SELECT username, address, loginEvent.timedate As timedate" 
+		+ " FROM loginEvent, account"
+		+ " WHERE account.id = loginEvent.player_id"
+		+ " AND username='%1$s' AND loginEvent.timedate > '%2$s'"
+		+ "  ORDER BY loginEvent.timedate LIMIT 1;";
+
 
 	private void analyse(String address, String timedate) throws SQLException {
 		LoginEventIterator iterator = readLoginsFromAddress(address, timedate);
-		for (LoginEvent event : iterator) {
+		List<LoginEvent> events = iterableToList(iterator);
+		for (LoginEvent event : events) {
 			System.out.println(event);
 		}
 	}
 
+	private static <T> List<T> iterableToList(Iterable<T> itr) {
+		List<T> list = new LinkedList<T>();
+		for (T t : itr) {
+			list.add(t);
+		}
+		return list;
+	}
+	
 	private LoginEventIterator readLoginsFromAddress(String address, String timedate) throws SQLException {
 		Transaction transaction =  StendhalPlayerDatabase.getDatabase().getTransaction();
 		Connection connection = transaction.getConnection();
 		Statement stmt = connection.createStatement();
-		String select = String.format(SQL, StringChecker.escapeSQLString(address), StringChecker.escapeSQLString(timedate));
+		String select = String.format(SQL_FROM_IP, StringChecker.escapeSQLString(address), StringChecker.escapeSQLString(timedate));
 		ResultSet resultSet = stmt.executeQuery(select);
 		return new LoginEventIterator(stmt, resultSet);
 	}
