@@ -5,7 +5,9 @@ import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
 import games.stendhal.server.entity.player.Player;
 
 public class MockStendhalRPRuleProcessor extends StendhalRPRuleProcessor {
-
+ protected MockStendhalRPRuleProcessor() {
+	
+}
 	public static MockStendhalRPRuleProcessor get() {
 		if (!(instance instanceof MockStendhalRPRuleProcessor)) {
 			instance = new MockStendhalRPRuleProcessor();

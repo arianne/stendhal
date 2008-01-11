@@ -59,7 +59,7 @@ public abstract class AdministrationAction implements ActionListener {
 		TeleClickModeAction.register();
 		JailAction.register();
 		GagAction.register();
-
+		AlterQuestAction.register();
 		REQUIRED_ADMIN_LEVELS.put("support", 100);
 		REQUIRED_ADMIN_LEVELS.put("super", 5000);
 	}
@@ -122,6 +122,7 @@ public abstract class AdministrationAction implements ActionListener {
 	public final void onAction(Player player, RPAction action) {
 
 		String type = action.get(WellKnownActionConstants.TYPE);
+		logger.info(type);
 		if (!isPlayerAllowedToExecuteAdminCommand(player, type, true)) {
 			return;
 		}

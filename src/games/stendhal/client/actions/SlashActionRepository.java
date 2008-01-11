@@ -23,6 +23,7 @@ public class SlashActionRepository {
 		actions.put("adminlevel", new AdminLevelAction());
 		actions.put("alter", new AlterAction());
 		actions.put("altercreature", new AlterCreatureAction());
+		actions.put("alterquest", new AlterQuestAction());
 		actions.put("answer", new AnswerAction());
 		actions.put("away", new AwayAction());
 		actions.put("drop", new DropAction());
