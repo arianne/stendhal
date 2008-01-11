@@ -365,7 +365,7 @@ public class WordList {
 	 * @param word
 	 * @return WordEntry
 	 */
-	protected WordEntry normalizeVerb(String word) {
+	/*package*/ WordEntry normalizeVerb(String word) {
 		word = trimWord(word);
 
 		String normalized = Grammar.normalizeRegularVerb(word);
@@ -391,7 +391,7 @@ public class WordList {
 	 * @param word
 	 * @return WordEntry
 	 */
-	protected WordEntry normalizeAdjective(String word) {
+	/*package*/ WordEntry normalizeAdjective(String word) {
 		word = trimWord(word);
 
 		String normalized = Grammar.normalizeDerivedAdjective(word);

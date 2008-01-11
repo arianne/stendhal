@@ -75,7 +75,7 @@ public class Sentence {
 	 * 
 	 * @param type
 	 */
-	protected void setType(int type) {
+	/*package*/ void setType(int type) {
 		this.sentenceType = type;
 	}
 
@@ -365,7 +365,7 @@ public class Sentence {
 	 *
 	 * @param error
 	 */
-	protected void setError(String error) {
+	/*package*/ void setError(String error) {
 		this.error = error;
 	}
 
