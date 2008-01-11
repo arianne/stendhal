@@ -76,6 +76,7 @@ public class Expression {
 	 * while leaving mainWord unchanged.
 	 * 
 	 * @param other
+	 * @param mergeNormalized
 	 */
 	public void mergeLeft(final Expression other, boolean mergeNormalized) {
 		original = other.getOriginal() + ' ' + original;
@@ -93,6 +94,7 @@ public class Expression {
 	 * while leaving mainWord unchanged.
 	 * 
 	 * @param other
+	 * @param mergeNormalized
 	 */
 	public void mergeRight(final Expression other, boolean mergeNormalized) {
 		original = original + ' ' + other.getOriginal();
