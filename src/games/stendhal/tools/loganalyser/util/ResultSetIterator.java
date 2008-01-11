@@ -14,7 +14,7 @@ import org.apache.log4j.Logger;
  * @author hendrik
  * @param <T> object type
  */
-public abstract class ResultSetIterator<T> implements Iterator<T> {
+public abstract class ResultSetIterator<T> implements Iterator<T>, Iterable<T> {
 	private static Logger logger = Logger.getLogger(ResultSetIterator.class);
 	
 	private Statement statement;
@@ -97,4 +97,9 @@ public abstract class ResultSetIterator<T> implements Iterator<T> {
         	logger.error(e, e);
         }
 	}
+
+	public Iterator<T> iterator() {
+		return this;
+	}
+	
 }
