@@ -6638,8 +6638,8 @@
       <size value="1,1"/>
     </attributes>
     <level value="72"/>
-    <experience value="3820"/>
-    <respawn value="2140"/>
+    <experience value="4450"/>
+    <respawn value="2350"/>
     <drops>
       <item value="money" quantity="[5,33]" probability="100.0"/>
       <item value="power_arrow" quantity="[1,5]" probability="5.0"/>
