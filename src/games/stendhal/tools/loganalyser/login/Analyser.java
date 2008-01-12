@@ -32,37 +32,6 @@ public class Analyser {
 		+ " WHERE account.id = loginEvent.player_id"
 		+ " AND username='%1$s' AND loginEvent.timedate > '%2$s'"
 		+ " ORDER BY loginEvent.timedate LIMIT 1;";
-
-
-	private void analyse(String address, String timedate) throws SQLException {
-		LoginEventIterator iterator = readLoginsFromAddress(address, timedate);
-		List<LoginEvent> events = iterableToList(iterator);
-		StringBuilder sb = new StringBuilder();
-		for (LoginEvent event : events) {
-			LoginEvent nextEvent = getNextLoginEvent(event);
-			sb.setLength(0);
-			sb.append("OR (source=\"'");
-			sb.append(StringChecker.escapeSQLString(event.getUsername()));
-			sb.append("' AND timedate >= '");
-			sb.append(StringChecker.escapeSQLString(event.getTimestamp()));
-			sb.append("'");
-			if (nextEvent != null) {
-				sb.append(" AND timedate < '");
-				sb.append(StringChecker.escapeSQLString(event.getTimestamp()));
-				sb.append("'");
-			}
-			sb.append(")");
-			System.out.println(sb.toString());
-		}
-	}
-
-	private static <T> List<T> iterableToList(Iterable<T> itr) {
-		List<T> list = new LinkedList<T>();
-		for (T t : itr) {
-			list.add(t);
-		}
-		return list;
-	}
 	
 	private LoginEventIterator readLoginsFromAddress(String address, String timedate) throws SQLException {
 		Transaction transaction =  StendhalPlayerDatabase.getDatabase().getTransaction();
@@ -87,6 +56,39 @@ public class Analyser {
 		return nextEvent;
 	}
 
+	private static <T> List<T> iterableToList(Iterable<T> itr) {
+		List<T> list = new LinkedList<T>();
+		for (T t : itr) {
+			list.add(t);
+		}
+		return list;
+	}
+
+	private String generatelSQLPart(LoginEvent event, LoginEvent nextEvent) {
+		StringBuilder sb = new StringBuilder();
+		sb.append("OR (source=\"'");
+		sb.append(StringChecker.escapeSQLString(event.getUsername()));
+		sb.append("' AND timedate >= '");
+		sb.append(StringChecker.escapeSQLString(event.getTimestamp()));
+		sb.append("'");
+		if (nextEvent != null) {
+			sb.append(" AND timedate < '");
+			sb.append(StringChecker.escapeSQLString(event.getTimestamp()));
+			sb.append("'");
+		}
+		sb.append(")");
+		return sb.toString();
+	}
+
+	private void analyse(String address, String timedate) throws SQLException {
+		LoginEventIterator iterator = readLoginsFromAddress(address, timedate);
+		List<LoginEvent> events = iterableToList(iterator);
+		for (LoginEvent event : events) {
+			LoginEvent nextEvent = getNextLoginEvent(event);
+			System.out.println(generatelSQLPart(event, nextEvent));
+		}
+	}
+
 	/**
 	 * Entry point.
 	 *
@@ -103,6 +105,4 @@ public class Analyser {
 		Analyser analyser = new Analyser();
 		analyser.analyse(address, timedate);
 	}
-
-
 }
