@@ -474,7 +474,7 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 
 		if (rpentity.isAttacking() && rpentity.isBeingStruck()) {
 			if (frameBladeStrike < 3) {
-				if (rpentity instanceof Pet){
+				if (rpentity instanceof Pet) {
 					System.out.println(getState());
 				}
 				Sprite sprite = bladeStrikeSprites.get(getState())[frameBladeStrike];
