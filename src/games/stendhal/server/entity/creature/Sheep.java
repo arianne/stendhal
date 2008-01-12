@@ -100,6 +100,7 @@ public class Sheep extends DomesticAnimal {
 
 	/**
 	 * Creates a new Sheep that is owned by a player.
+	 * @param owner 
 	 */
 	public Sheep(Player owner) {
 		super(owner);
