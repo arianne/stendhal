@@ -375,7 +375,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 	/**
 	 * Populate a zone based on it's map content.
 	 * 
-	 * TODO: XXX - This should be moved to the zone loader or something.
+	 * TODO: This should be moved to the zone loader or something.
 	 */
 	public void populate(LayerDefinition objectsLayer) {
 		/* We build the layer data */
