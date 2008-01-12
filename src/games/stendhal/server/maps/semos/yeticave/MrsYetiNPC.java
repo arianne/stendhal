@@ -1,0 +1,66 @@
+package games.stendhal.server.maps.semos.yeticave;
+
+import games.stendhal.common.Direction;import games.stendhal.server.core.config.ZoneConfigurator;import games.stendhal.server.core.engine.StendhalRPZone;import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.core.pathfinder.FixedPath;
+import games.stendhal.server.core.pathfinder.Node;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
+public class MrsYetiNPC implements ZoneConfigurator {
+	/**
+	 * Configure a zone.
+	 *
+	 * @param	zone		The zone to be configured.
+	 * @param	attributes	Configuration attributes.
+	 */
+	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+		buildYeti(zone);
+	}
+
+	private void buildYeti(StendhalRPZone zone) {
+		SpeakerNPC yetifemale = new SpeakerNPC("Mrs. Yeti") {
+
+			@Override
+			protected void createPath() {
+				List<Node> nodes = new LinkedList<Node>();
+				nodes.add(new Node(102, 19));
+				nodes.add(new Node(104, 19));
+				nodes.add(new Node(102, 15));
+				nodes.add(new Node(102, 11));
+				nodes.add(new Node(97, 11));
+				nodes.add(new Node(97, 13));
+				nodes.add(new Node(86, 13));
+				nodes.add(new Node(86, 15));
+				nodes.add(new Node(82, 15));
+				nodes.add(new Node(82, 17));
+				nodes.add(new Node(80, 17));
+				nodes.add(new Node(83, 25));
+				nodes.add(new Node(83, 31));
+				nodes.add(new Node(85, 31));
+				nodes.add(new Node(85, 33));
+				nodes.add(new Node(88, 33));
+				nodes.add(new Node(88, 31));
+				nodes.add(new Node(98, 31));
+				nodes.add(new Node(98, 23));
+				nodes.add(new Node(100, 23));
+				nodes.add(new Node(100, 21));
+				nodes.add(new Node(102, 21));
+				setPath(new FixedPath(nodes, true));
+			}
+
+			@Override
+			protected void createDialog() {
+				addGreeting("Greetings, strange foreigner!");
+				addJob("My job is to clean up all this around you!");
+				addHelp("I am not able to help you!");				
+				addGoodbye();
+			}
+		};
+
+		yetifemale.setEntityClass("yetifemalenpc");
+		yetifemale.setPosition(102, 19);
+		yetifemale.initHP(100);
+		zone.add(yetifemale);
+	}
+}
