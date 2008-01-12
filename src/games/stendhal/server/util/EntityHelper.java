@@ -27,12 +27,18 @@ public class EntityHelper {
 	 *            representation of the target
 	 * @param zone
 	 *            to search for objects
-	 * @return
+	 * @return the entity associated either with name or id or
+	 *         <code> null </code> if none was found or any of
+	 *         the input parameters was <code> null </code>.
 	 */
 	public static Entity entityFromTargetName(String target, StendhalRPZone zone) {
+		if (target == null || zone == null) {
+			return null;
+		}
+
 		Entity entity = null;
 
-		if (target != null && target.length() > 1 && target.charAt(0) == '#'
+		if (target.length() > 1 && target.charAt(0) == '#'
 				&& Character.isDigit(target.charAt(1))) {
 			int objectId = Integer.parseInt(target.substring(1));
 
