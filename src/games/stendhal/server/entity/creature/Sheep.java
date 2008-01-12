@@ -284,9 +284,6 @@ public class Sheep extends DomesticAnimal {
 				moveRandomly();
 			} else {
 				logger.debug("Sheep sleeping");
-
-				// TODO: Add 'sleep' idea?
-				// setIdea("sleep");
 				setIdea(null);
 			}
 		} else if (((turn % 10) == 0) && (hunger >= HUNGER_EXTREMELY_HUNGRY)) {
@@ -301,9 +298,6 @@ public class Sheep extends DomesticAnimal {
 		} else {
 			if ((turn % 100) == 0) {
 				logger.debug("Sheep is bored");
-
-				// TODO: Add 'curious' idea?
-				// setIdea("curious");
 				setRandomPathFrom(owner.getX(), owner.getY(), 10);
 				setSpeed(getBaseSpeed());
 			} else {
