@@ -178,12 +178,6 @@ public class PortalSetupDescriptor extends EntitySetupDescriptor {
 				}
 			}
 
-			// Fix PortalBugs; blocked portals
-			if (zone.simpleCollides(portal, portal.getX(), portal.getY())) {
-				logger.warn("Unblocking blocked portal: " + portal);
-				zone.collisionMap.setCollide(portal.getArea(), false);
-			}
-
 			zone.add(portal);
 		} catch (IllegalArgumentException ex) {
 			logger.error("Error with portal factory", ex);
