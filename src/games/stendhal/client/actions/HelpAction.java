@@ -37,6 +37,8 @@ class HelpAction implements SlashAction {
 				"- /away \t\tRemove status away",
 				"- /grumpy <message> \tSets a message to ignore all non-buddies.",
 				"- /grumpy \t\tRemove status grumpy",
+				"- /look  <name> \t\tLook at the named character",
+				"- /attack <name> \t\tAttack the named character",
 				"- /quit \t\t\tLeave the game. You will continue where you left off upon your return",
 				"- /sound mute <on|off> \tMute or unmute the sounds" };
 
