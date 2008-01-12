@@ -49,6 +49,13 @@ public class BuyerAdder {
 
 						if (behaviour.hasItem(item)) {
 							behaviour.chosenItem = item;
+						} else if (behaviour.hasItem(Grammar.plural(item))) {
+							behaviour.chosenItem = Grammar.plural(item);
+						} else {
+							behaviour.chosenItem = null;
+						}
+
+						if (behaviour.chosenItem != null) {
 							if (amount > 1000) {
 								logger.warn("Decreasing very large amount of "
 										+ amount + " to 1 for player "
