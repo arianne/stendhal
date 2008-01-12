@@ -51,7 +51,7 @@ public class WordEntry {
 		}
 	}
 
-	/*package*/ void setNormalized(String normalized) {
+	void setNormalized(String normalized) {
 		this.normalized = normalized;
 	}
 
@@ -59,7 +59,7 @@ public class WordEntry {
 		return normalized;
 	}
 
-	/*package*/ void setType(ExpressionType type) {
+	void setType(ExpressionType type) {
 		this.type = type;
 	}
 
@@ -75,7 +75,7 @@ public class WordEntry {
 		return normalized + "/" + getTypeString();
     }
 
-	/*package*/ void setPlurSing(String plurSing) {
+	void setPlurSing(String plurSing) {
 		this.plurSing = plurSing;
 	}
 
@@ -87,7 +87,7 @@ public class WordEntry {
 	    return type != null && type.isPlural();
     }
 
-	/*package*/ void setValue(Integer value) {
+	void setValue(Integer value) {
 		this.value = value;
 	}
 
@@ -95,7 +95,7 @@ public class WordEntry {
 		return value;
 	}
 
-	/*package*/ void setId(int id) {
+	void setId(int id) {
 	    this.id = id;	    
     }
 

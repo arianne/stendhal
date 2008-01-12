@@ -36,7 +36,7 @@ public class Sentence {
 	 * 
 	 * @param parser
 	 */
-	/*package*/ void parse(ConversationParser parser) {
+	void parse(ConversationParser parser) {
 		Expression prevWord = null;
 
 		for (String ws; (ws = parser.readNextWord()) != null;) {
@@ -75,7 +75,7 @@ public class Sentence {
 	 * 
 	 * @param type
 	 */
-	/*package*/ void setType(int type) {
+	void setType(int type) {
 		this.sentenceType = type;
 	}
 
@@ -365,7 +365,7 @@ public class Sentence {
 	 *
 	 * @param error
 	 */
-	/*package*/ void setError(String error) {
+	void setError(String error) {
 		this.error = error;
 	}
 
@@ -458,7 +458,7 @@ public class Sentence {
 	 * 
 	 * @param parser
 	 */
-	/*package*/ void classifyWords(ConversationParser parser, boolean isForMatching) {
+	void classifyWords(ConversationParser parser, boolean isForMatching) {
 		WordList wl = WordList.getInstance();
 
 		for (Expression w : expressions) {
@@ -552,7 +552,7 @@ public class Sentence {
 	/**
 	 * Standardize sentence type.
 	 */
-	/*package*/ void standardizeSentenceType() {
+	void standardizeSentenceType() {
 		// Does the Sentence start with a "will/would SUBJECT VERB" construct?
 		if (matchesStart(willSubjectVerb)) {
 			Expression verb1 = getVerb(0);
@@ -603,7 +603,7 @@ public class Sentence {
 	 * NPC conversation. It should be integrated with the FSM engine so that quest
 	 * writers can specify the conversation syntax on their own.
 	 */
-	/*package*/ void performaAliasing() {
+	void performaAliasing() {
 		Expression verb = getVerb();
 		Expression subject1 = getSubject(0);
 		Expression subject2 = getSubject(1);
@@ -679,7 +679,7 @@ public class Sentence {
 	/**
 	 * Evaluate the sentence type from word order.
 	 */
-	/*package*/ int evaluateSentenceType() {
+	int evaluateSentenceType() {
 		Iterator<Expression> it = expressions.iterator();
 		int type = ST_UNDEFINED;
 
@@ -740,7 +740,7 @@ public class Sentence {
 	/**
 	 * Merge words to form a simpler sentence structure.
 	 */
-	/*package*/ void mergeWords(boolean isForMatching) {
+	void mergeWords(boolean isForMatching) {
 
 		// first merge three word expressions of the form "... of ..."
 		mergeThreeWordExpressions(isForMatching);

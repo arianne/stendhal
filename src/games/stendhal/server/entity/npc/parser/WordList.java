@@ -42,7 +42,7 @@ public class WordList {
 
 	public static final String WORDS_FILENAME = "words.txt";
 
-	/*package*/ static final String VERSION_KEYWORD = "@Version";
+	static final String VERSION_KEYWORD = "@Version";
 
 	private final Map<String, WordEntry> words = new TreeMap<String, WordEntry>();
 
@@ -365,7 +365,7 @@ public class WordList {
 	 * @param word
 	 * @return WordEntry
 	 */
-	/*package*/ WordEntry normalizeVerb(String word) {
+	WordEntry normalizeVerb(String word) {
 		word = trimWord(word);
 
 		String normalized = Grammar.normalizeRegularVerb(word);
@@ -391,7 +391,7 @@ public class WordList {
 	 * @param word
 	 * @return WordEntry
 	 */
-	/*package*/ WordEntry normalizeAdjective(String word) {
+	WordEntry normalizeAdjective(String word) {
 		word = trimWord(word);
 
 		String normalized = Grammar.normalizeDerivedAdjective(word);
