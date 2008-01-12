@@ -394,6 +394,9 @@ public class GrammarTest {
         testPluralisationAndSingularisation("bodies", "body");
         testPluralisationAndSingularisation("princesses", "princess");
         testPluralisationAndSingularisation("wikipedias", "wikipedia");
+
+        assertEquals("cheese", Grammar.singular("cheese"));
+		testPluralisationAndSingularisation("pieces of cheese", "cheese");
 	}
 
 	/**
