@@ -15,27 +15,15 @@ public class GuildAttributeValidator {
     private static String guildSloganRegex = "[\\w!-&() ]{4, 150}+";
     
     public static boolean validateGuildID(String id) {
-        if (matches(guildIDRegex, id)) {
-            return true;
-        } else {
-            return false;
-        }
+        return matches(guildIDRegex, id);
     }
     
     public static boolean validateGuildName(String name) {
-        if (matches(guildNameRegex, name)) {
-            return true;
-        } else {
-            return false;
-        }
+        return matches(guildNameRegex, name);
     }
     
     public static boolean validateGuildSlogan(String slogan) {
-        if (matches(guildSloganRegex, slogan)) {
-            return true;
-        } else {
-            return false;
-        }
+        return matches(guildSloganRegex, slogan);
     }
     
     public static boolean matches(String regex, String context) {
