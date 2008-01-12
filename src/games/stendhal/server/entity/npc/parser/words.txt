@@ -1,4 +1,4 @@
-# @Version 2
+# @Version 3
 #
 # Word list for the Stendhal conversation parser
 #
@@ -182,6 +182,7 @@ basement	OBJ	basements
 battle	OBJ	battles
 bean	OBJ-FOO	beans
 beer	OBJ-FLU
+bicycle	OBJ	bicycle
 bike	OBJ	bikes
 blackjack	OBJ	blackjacks
 blood	OBJ	bloods
@@ -268,6 +269,7 @@ favor	OBJ	favors
 favour	OBJ	favours
 fee	OBJ	fees
 ferry	OBJ	ferries
+finger	OBJ	fingers
 fire	OBJ	fires
 fish	OBJ-FOO	fishes
 flail	OBJ	flails
