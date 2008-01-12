@@ -548,50 +548,41 @@ public class Sentence {
 		}
 	}
 
-	// constant Sentence to be used for matching in standardizeSentenceType() 
+	// Sentence constants to be used for matching in standardizeSentenceType() 
 	private static final Sentence willSubjectVerb = ConversationParser.parseForMatching("will SUB VER");
+	private static final Sentence haveObjectForMe = ConversationParser.parseForMatching("you have OBJ for me");
 
 	/**
 	 * Standardize sentence type.
 	 */
 	void standardizeSentenceType() {
-		// Does the Sentence start with a "will/would SUBJECT VERB" construct?
-		if (matchesStart(willSubjectVerb)) {
-			Expression verb1 = getVerb(0);
-			Expression verb2 = getVerb(1);
+		// Look for a "me" without any preceding other subject.
+		Expression prevVerb = null;
 
-			verb2.mergeLeft(verb1, false);
-			expressions.remove(verb1);
-			sentenceType = SentenceType.QUESTION;
-		} else {
-			// Look for a "me" without any preceding other subject.
-			Expression prevVerb = null;
+		for (Expression w : expressions) {
+			if (w.getBreakFlag()) {
+				break;
+			}
 
-			for (Expression w : expressions) {
-				if (w.getBreakFlag()) {
-					break;
-				}
-
-				if (w.getType() != null) {
-					if (w.getType().isVerb()) {
-						if (prevVerb == null) {
-							prevVerb = w;
-						} else {
-							break;
-						}
-					} else if (w.getType().isSubject()) {
-						if (w.getOriginal().equalsIgnoreCase("me")) {
-							// If we already found a verb, we prepend "you" as
-							// first subject and mark the sentence as imperative.
-							if (prevVerb != null) {
-								Expression you = new Expression("you", ExpressionType.SUBJECT);
-								expressions.add(0, you);
-								sentenceType = SentenceType.IMPERATIVE;
-							}
-						}
-
+			if (w.getType() != null) {
+				if (w.getType().isVerb()) {
+					if (prevVerb == null) {
+						prevVerb = w;
+					} else {
 						break;
 					}
+				} else if (w.getType().isSubject()) {
+					if (w.getOriginal().equalsIgnoreCase("me")) {
+						// If we already found a verb, we prepend "you" as
+						// first subject and mark the sentence as imperative.
+						if (prevVerb != null) {
+							Expression you = new Expression("you", ExpressionType.SUBJECT);
+							expressions.add(0, you);
+							sentenceType = SentenceType.IMPERATIVE;
+						}
+					}
+
+					break;
 				}
 			}
 		}
@@ -606,22 +597,39 @@ public class Sentence {
 	 * writers can specify the conversation syntax on their own.
 	 */
 	void performaAliasing() {
-		Expression verb = getVerb();
+		Expression verb1 = getVerb(0);
+		Expression verb2 = getVerb(1);
 		Expression subject1 = getSubject(0);
 		Expression subject2 = getSubject(1);
 
-		// "[you] give me(i)" -> "[I] buy"
-		if (isYouGiveMe(subject1, verb, subject2)) {
-			// remove the subjects and replace the verb with "buy" as first word
-			expressions.remove(subject1);
-			expressions.remove(subject2);
-			getVerb().setNormalized("buy");
+		// Does the Sentence start with a "will/would SUBJECT VERB" construct?
+		if (matchesStart(willSubjectVerb)) {
+			// merge the second verb with "will/would", removing the first one 
+			verb2.mergeLeft(verb1, false);
+			expressions.remove(verb1);
+			sentenceType = SentenceType.QUESTION;
+		}
+		// Does the Sentence match "do you have OBJ for me?"?
+		else if (matchesFull(haveObjectForMe)) {
+			expressions.remove(subject1);	// remove "you"
+			expressions.remove(getPreposition(0));	// remove "for"
+			expressions.remove(subject2);	// remove "me"
+			verb1.setNormalized("buy");		// replace "have" by "buy"
 			sentenceType = SentenceType.IMPERATIVE;
 		}
+		// "[you] give me(i)" -> "[I] buy"
+		else if (isYouGiveMe(subject1, verb1, subject2)) {
+			// remove the subjects and replace the verb with "buy" as first word
+			expressions.remove(subject1);	// remove "you"
+			expressions.remove(subject2);	// remove "me"
+			getVerb().setNormalized("buy");	// replace "give" by "buy"
+			sentenceType = SentenceType.IMPERATIVE;
+		}
+
 		// "[SUBJECT] (would like to have)" -> "[SUBJECT] buy"
-		else if (isLikeToHave()) {
+		if (isLikeToHave()) {
 			// replace the verb with "buy"
-			verb.setNormalized("buy");
+			getVerb().setNormalized("buy");
 			sentenceType = SentenceType.IMPERATIVE;
 		}
 	}

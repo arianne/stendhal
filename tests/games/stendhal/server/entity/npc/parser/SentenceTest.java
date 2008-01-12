@@ -47,7 +47,6 @@ public class SentenceTest {
 		assertEquals("banana", sentence.getObject(0).getNormalized());
 		assertEquals("buy banana!", sentence.getNormalized());
 
-		//TODO mf
 		sentence = ConversationParser.parse("do you have a banana for me?");
 		assertFalse(sentence.hasError());
 		assertEquals(Sentence.SentenceType.IMPERATIVE, sentence.getType());
