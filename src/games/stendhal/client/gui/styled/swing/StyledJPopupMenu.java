@@ -6,9 +6,6 @@
 
 package games.stendhal.client.gui.styled.swing;
 
-//
-//
-
 import games.stendhal.client.gui.styled.Style;
 import games.stendhal.client.sprite.Sprite;
 
@@ -35,8 +32,8 @@ public class StyledJPopupMenu extends JPopupMenu {
 
 	/**
 	 * Create a styled JPopupMenu.
-	 * 
-	 * 
+	 * @param style to be applied
+	 * @param label 
 	 */
 	public StyledJPopupMenu(Style style, String label) {
 		super(label);
@@ -54,6 +51,8 @@ public class StyledJPopupMenu extends JPopupMenu {
 
 	/**
 	 * Apply style information to a menu item.
+	 * @param style to be applied
+	 * @param item 
 	 * 
 	 */
 	protected void applyStyle(Style style, JMenuItem item) {
@@ -67,10 +66,6 @@ public class StyledJPopupMenu extends JPopupMenu {
 
 		if (border != null) {
 			item.setBorder(border);
-
-			/*
-			 * TODO Does this help?? XXX
-			 */
 			item.setMargin(new Insets(0, 0, 0, 0));
 		}
 
@@ -85,6 +80,8 @@ public class StyledJPopupMenu extends JPopupMenu {
 
 	/**
 	 * Apply style information to a menu.
+	 * @param style to be applied
+	 * @param menu 
 	 * 
 	 */
 	protected void applyStyle(Style style, JPopupMenu menu) {
