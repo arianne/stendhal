@@ -17,12 +17,14 @@ import java.util.regex.Pattern;
  */
 public class Sentence {
 
-	public static final int ST_UNDEFINED = 0;
-	public static final int ST_STATEMENT = 1;
-	public static final int ST_IMPERATIVE = 2;
-	public static final int ST_QUESTION = 3;
+	public enum SentenceType {
+		UNDEFINED,
+		STATEMENT,
+		IMPERATIVE,
+		QUESTION
+	};
 
-	private int sentenceType = ST_UNDEFINED;
+	private SentenceType sentenceType = SentenceType.UNDEFINED;
 
 	/** Joker String used in pattern matches */
 	private static final String JOKER = "*";
@@ -71,11 +73,11 @@ public class Sentence {
 	}
 
 	/**
-	 * Set sentence type as ST_STATEMENT, ST_IMPERATIVE or ST_QUESTION.
+	 * Set sentence type as STATEMENT, IMPERATIVE or QUESTION.
 	 * 
 	 * @param type
 	 */
-	void setType(int type) {
+	void setType(SentenceType type) {
 		this.sentenceType = type;
 	}
 
@@ -84,7 +86,7 @@ public class Sentence {
 	 * 
 	 * @return
 	 */
-	public int getType() {
+	public SentenceType getType() {
 		return sentenceType;
 	}
 
@@ -339,7 +341,7 @@ public class Sentence {
 	 * @return empty flag
 	 */
 	public boolean isEmpty() {
-		return sentenceType == ST_UNDEFINED && expressions.isEmpty();
+		return sentenceType == SentenceType.UNDEFINED && expressions.isEmpty();
 	}
 
 	/**
@@ -444,11 +446,11 @@ public class Sentence {
 	 * @param builder
 	 */
 	private void appendPunctation(SentenceBuilder builder) {
-		if (sentenceType == ST_STATEMENT) {
+		if (sentenceType == SentenceType.STATEMENT) {
 			builder.append('.');
-		} else if (sentenceType == ST_IMPERATIVE) {
+		} else if (sentenceType == SentenceType.IMPERATIVE) {
 			builder.append('!');
-		} else if (sentenceType == ST_QUESTION) {
+		} else if (sentenceType == SentenceType.QUESTION) {
 			builder.append('?');
 		}
     }
@@ -560,7 +562,7 @@ public class Sentence {
 
 			verb2.mergeLeft(verb1, false);
 			expressions.remove(verb1);
-			sentenceType = ST_QUESTION;
+			sentenceType = SentenceType.QUESTION;
 		} else {
 			// Look for a "me" without any preceding other subject.
 			Expression prevVerb = null;
@@ -584,7 +586,7 @@ public class Sentence {
 							if (prevVerb != null) {
 								Expression you = new Expression("you", ExpressionType.SUBJECT);
 								expressions.add(0, you);
-								sentenceType = ST_IMPERATIVE;
+								sentenceType = SentenceType.IMPERATIVE;
 							}
 						}
 
@@ -614,13 +616,13 @@ public class Sentence {
 			expressions.remove(subject1);
 			expressions.remove(subject2);
 			getVerb().setNormalized("buy");
-			sentenceType = ST_IMPERATIVE;
+			sentenceType = SentenceType.IMPERATIVE;
 		}
 		// "[SUBJECT] (would like to have)" -> "[SUBJECT] buy"
 		else if (isLikeToHave()) {
 			// replace the verb with "buy"
 			verb.setNormalized("buy");
-			sentenceType = ST_IMPERATIVE;
+			sentenceType = SentenceType.IMPERATIVE;
 		}
 	}
 
@@ -679,9 +681,9 @@ public class Sentence {
 	/**
 	 * Evaluate the sentence type from word order.
 	 */
-	int evaluateSentenceType() {
+	SentenceType evaluateSentenceType() {
 		Iterator<Expression> it = expressions.iterator();
-		int type = ST_UNDEFINED;
+		SentenceType type = SentenceType.UNDEFINED;
 
 		// As words are not yet merged together at this stage, we have to use Expression.nextValid()
 		// in this function to jump over words to ignore.
@@ -689,8 +691,8 @@ public class Sentence {
 
 		if (first != null) {
 			while (first.getType().isQuestion() && it.hasNext()) {
-				if (type == ST_UNDEFINED) {
-					type = ST_QUESTION;
+				if (type == SentenceType.UNDEFINED) {
+					type = SentenceType.QUESTION;
 				}
 
 				first = Expression.nextValid(it);
@@ -705,14 +707,14 @@ public class Sentence {
 			if (second != null) {
 				// questions beginning with "is"/"are"
 				if (first.getNormalized().equals("is")) {
-					if (type == ST_UNDEFINED) {
-						type = ST_QUESTION;
+					if (type == SentenceType.UNDEFINED) {
+						type = SentenceType.QUESTION;
 					}
 				} else if (first.getNormalized().equals("do") 
 						&& (second == null || !second.getOriginal().equalsIgnoreCase("me"))) {
 					// question begins with "do", but no "do me" sentence
-					if (type == ST_UNDEFINED) {
-						type = ST_QUESTION;
+					if (type == SentenceType.UNDEFINED) {
+						type = SentenceType.QUESTION;
 					}
 
 					expressions.remove(first);
@@ -720,8 +722,8 @@ public class Sentence {
 						&&	second.getNormalized().equals("is") 
 						&& (third != null && third.getType() != null && third.getType().isGerund())) {
 					// statement begins with "it is <VER-GER>"
-					if (type == ST_UNDEFINED) {
-						type = ST_STATEMENT;
+					if (type == SentenceType.UNDEFINED) {
+						type = SentenceType.STATEMENT;
 					}
 
 					expressions.remove(first);
@@ -730,7 +732,7 @@ public class Sentence {
 			}
 		}
 
-		if (type != ST_UNDEFINED && sentenceType == ST_UNDEFINED) {
+		if (type != SentenceType.UNDEFINED && sentenceType == SentenceType.UNDEFINED) {
 			sentenceType = type;
 		}
 

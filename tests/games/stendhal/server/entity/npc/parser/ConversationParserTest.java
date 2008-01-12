@@ -142,6 +142,12 @@ public class ConversationParserTest {
 		assertEquals("buy", sentence.getVerbString());
 		assertEquals(2, sentence.getObject(0).getAmount());
 		assertEquals("trouser", sentence.getObject(0).getNormalized());
+
+		sentence = ConversationParser.parse("sell 4 chaos boots");
+		assertFalse(sentence.hasError());
+		assertEquals("sell", sentence.getVerbString());
+		assertEquals(4, sentence.getObject(0).getAmount());
+		assertEquals("chaos boot", sentence.getObject(0).getNormalized());
 	}
 
 	@Test

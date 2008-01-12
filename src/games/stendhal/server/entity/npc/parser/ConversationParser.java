@@ -164,13 +164,13 @@ public class ConversationParser {
 		String trailing = punct.getTrailingPunctuation();
 
 		if (trailing.contains("?")) {
-			sentence.setType(Sentence.ST_QUESTION);
+			sentence.setType(Sentence.SentenceType.QUESTION);
 			text = punct.getText();
 		} else if (trailing.contains("!")) {
-			sentence.setType(Sentence.ST_IMPERATIVE);
+			sentence.setType(Sentence.SentenceType.IMPERATIVE);
 			text = punct.getText();
 		} else if (trailing.contains(".")) {
-			sentence.setType(Sentence.ST_STATEMENT);
+			sentence.setType(Sentence.SentenceType.STATEMENT);
 			text = punct.getText();
 		}
 

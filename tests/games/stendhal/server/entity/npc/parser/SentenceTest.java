@@ -26,7 +26,7 @@ public class SentenceTest {
 
 		sentence.mergeWords(false);
 		assertEquals("quick brown fox/SUB-ANI-COL jump/VER over/PRE lazy dog/SUB-ANI.", sentence.toString());
-		assertEquals(Sentence.ST_STATEMENT, sentence.getType());
+		assertEquals(Sentence.SentenceType.STATEMENT, sentence.getType());
 
 		sentence = new Sentence();
 		parser = new ConversationParser("does it fit");
@@ -34,7 +34,7 @@ public class SentenceTest {
 		sentence.classifyWords(parser, false);
 		assertFalse(sentence.hasError());
 		assertEquals("do/VER it/OBJ-PRO fit/VER", sentence.toString());
-		assertEquals(Sentence.ST_QUESTION, sentence.evaluateSentenceType());
+		assertEquals(Sentence.SentenceType.QUESTION, sentence.evaluateSentenceType());
 		assertEquals("it/OBJ-PRO fit/VER?", sentence.toString());
 	}
 
@@ -42,26 +42,28 @@ public class SentenceTest {
 	public final void testSentenceType() {
 		Sentence sentence = ConversationParser.parse("buy banana!");
 		assertFalse(sentence.hasError());
-		assertEquals(Sentence.ST_IMPERATIVE, sentence.getType());
+		assertEquals(Sentence.SentenceType.IMPERATIVE, sentence.getType());
 		assertEquals("buy", sentence.getVerb(0).getNormalized());
 		assertEquals("banana", sentence.getObject(0).getNormalized());
+		assertEquals("buy banana!", sentence.getNormalized());
 
-		// TODO mf - transfer into "buy banana"
+		//TODO mf
 		sentence = ConversationParser.parse("do you have a banana for me?");
 		assertFalse(sentence.hasError());
-		assertEquals(Sentence.ST_QUESTION, sentence.getType());
-		assertEquals("have", sentence.getVerb(0).getNormalized());
+		assertEquals(Sentence.SentenceType.IMPERATIVE, sentence.getType());
+		assertEquals("buy", sentence.getVerb(0).getNormalized());
 		assertEquals("banana", sentence.getObject(0).getNormalized());
+		assertEquals("buy banana!", sentence.getNormalized());
 
 		sentence = ConversationParser.parse("how are you?");
 		assertFalse(sentence.hasError());
 		assertEquals("is/VER-PLU-QUE you/SUB-PRO?", sentence.toString());
-		assertEquals(Sentence.ST_QUESTION, sentence.getType());
+		assertEquals(Sentence.SentenceType.QUESTION, sentence.getType());
 
 		sentence = ConversationParser.parse("this is a banana.");
 		assertFalse(sentence.hasError());
 		assertEquals("this/OBJ is/VER banana/OBJ-FOO.", sentence.toString());
-		assertEquals(Sentence.ST_STATEMENT, sentence.getType());
+		assertEquals(Sentence.SentenceType.STATEMENT, sentence.getType());
 		assertEquals("this", sentence.getObject(0).getNormalized());
 		assertEquals("is", sentence.getVerb(0).getNormalized());
 		assertEquals("banana", sentence.getObject(1).getNormalized());
@@ -72,7 +74,7 @@ public class SentenceTest {
 		Sentence sentence = ConversationParser.parse("it is raining cats and dogs");
 		assertFalse(sentence.hasError());
 		assertEquals("rain/VER-GER cat/SUB-ANI-PLU, dog/SUB-ANI-PLU.", sentence.toString());
-		assertEquals(Sentence.ST_STATEMENT, sentence.getType());
+		assertEquals(Sentence.SentenceType.STATEMENT, sentence.getType());
 		assertEquals("rain", sentence.getVerb(0).getNormalized());
 		assertEquals("cat", sentence.getSubject(0).getNormalized());
 		assertEquals("dog", sentence.getSubject(1).getNormalized());
