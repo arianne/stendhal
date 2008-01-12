@@ -548,10 +548,6 @@ public class Sentence {
 		}
 	}
 
-	// Sentence constants to be used for matching in standardizeSentenceType() 
-	private static final Sentence willSubjectVerb = ConversationParser.parseForMatching("will SUB VER");
-	private static final Sentence haveObjectForMe = ConversationParser.parseForMatching("you have OBJ for me");
-
 	/**
 	 * Standardize sentence type.
 	 */
@@ -603,14 +599,14 @@ public class Sentence {
 		Expression subject2 = getSubject(1);
 
 		// Does the Sentence start with a "will/would SUBJECT VERB" construct?
-		if (matchesStart(willSubjectVerb)) {
+		if (matchesNormalizedStart("will SUB VER")) {
 			// merge the second verb with "will/would", removing the first one 
 			verb2.mergeLeft(verb1, false);
 			expressions.remove(verb1);
 			sentenceType = SentenceType.QUESTION;
 		}
 		// Does the Sentence match "do you have OBJ for me?"?
-		else if (matchesFull(haveObjectForMe)) {
+		else if (matchesNormalized("you have OBJ for me")) {
 			expressions.remove(subject1);	// remove "you"
 			expressions.remove(getPreposition(0));	// remove "for"
 			expressions.remove(subject2);	// remove "me"

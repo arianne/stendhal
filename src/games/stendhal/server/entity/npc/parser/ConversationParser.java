@@ -1,7 +1,9 @@
 package games.stendhal.server.entity.npc.parser;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.StringTokenizer;
 
 /**
@@ -58,6 +60,8 @@ public class ConversationParser {
 		return parse(text, null).getTriggerExpression();
 	}
 
+	private static Map<String, Sentence> matchingSentenceCache = new HashMap<String, Sentence>();
+
 	/**
 	 * Parse the given text sentence to be used for sentence matching.
 	 *
@@ -65,11 +69,18 @@ public class ConversationParser {
 	 * @return
 	 */
 	public static Sentence parseForMatching(String text) {
-		ConversationContext ctx = new ConversationContext();
+		Sentence ret = matchingSentenceCache.get(text);
 
-		ctx.setForMatching(true);
+		if (ret == null) {
+			ConversationContext ctx = new ConversationContext();
+			ctx.setForMatching(true);
 
-		return parse(text, ctx);
+			ret = parse(text, ctx);
+
+			matchingSentenceCache.put(text, ret);
+		}
+
+		return ret;
 	}
 
 	/**
@@ -106,11 +117,13 @@ public class ConversationParser {
 		// 5.) merge words to form a simpler sentence structure
 		sentence.mergeWords(forMatching);
 
-		// 6.) standardize sentence type
-		sentence.standardizeSentenceType();
+		if (!forMatching) {
+    		// 6.) standardize sentence type
+    		sentence.standardizeSentenceType();
 
-		// 7.) replace grammatical constructs with simpler ones
-		sentence.performaAliasing();
+    		// 7.) replace grammatical constructs with simpler ones
+    		sentence.performaAliasing();
+		}
 
 		sentence.setError(parser.getError());
 
