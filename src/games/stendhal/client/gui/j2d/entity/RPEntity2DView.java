@@ -13,6 +13,7 @@ import games.stendhal.client.IGameScreen;
 import games.stendhal.client.StendhalUI;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.Entity;
+import games.stendhal.client.entity.Pet;
 import games.stendhal.client.entity.RPEntity;
 import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.sprite.AnimatedSprite;
@@ -473,6 +474,9 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 
 		if (rpentity.isAttacking() && rpentity.isBeingStruck()) {
 			if (frameBladeStrike < 3) {
+				if (rpentity instanceof Pet){
+					System.out.println(getState());
+				}
 				Sprite sprite = bladeStrikeSprites.get(getState())[frameBladeStrike];
 
 				int sw = sprite.getWidth();

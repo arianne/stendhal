@@ -14,7 +14,6 @@ import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.DomesticAnimal;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
-import games.stendhal.common.Direction;
 
 import java.awt.Graphics2D;
 import java.util.Map;
@@ -74,6 +73,33 @@ public abstract class DomesticAnimal2DView extends RPEntity2DView {
 		ideaChanged = false;
 	}
 
+	//
+	// StateEntity
+	//
+	
+	@Override
+	protected Sprite getSprite(Object state) {
+		if (animal.getWeight() < getBigWeight()) {
+		return super.getSprite(state);
+		}
+		switch (rpentity.getDirection()) {
+		case LEFT:
+			return sprites.get(STATE_BIG_LEFT);
+
+		case RIGHT:
+			return sprites.get(STATE_BIG_RIGHT);
+
+		case UP:
+			return sprites.get(STATE_BIG_UP);
+
+		case DOWN:
+			return sprites.get(STATE_BIG_DOWN);
+
+		default:
+			return sprites.get(STATE_BIG_DOWN);
+		}
+	}
+	
 	//
 	// DomesticAnimal2DView
 	//
@@ -169,37 +195,6 @@ public abstract class DomesticAnimal2DView extends RPEntity2DView {
 	// ActiveEntity2DView
 	//
 
-	/**
-	 * Get the appropriate named state for a direction.
-	 * 
-	 * @param direction
-	 *            The direction.
-	 * 
-	 * @return A named state.
-	 */
-	@Override
-	protected String getDirectionState(final Direction direction) {
-		if (animal.getWeight() < getBigWeight()) {
-			return super.getDirectionState(direction);
-		}
-
-		switch (direction) {
-		case LEFT:
-			return STATE_BIG_LEFT;
-
-		case RIGHT:
-			return STATE_BIG_RIGHT;
-
-		case UP:
-			return STATE_BIG_UP;
-
-		case DOWN:
-			return STATE_BIG_DOWN;
-
-		default:
-			return STATE_BIG_DOWN;
-		}
-	}
 
 	//
 	// Entity2DView
