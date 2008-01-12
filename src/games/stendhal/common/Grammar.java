@@ -493,7 +493,8 @@ public class Grammar {
 		} else if (enoun.length() > 3 && enoun.endsWith("ice")
 				&& ("mMlL".indexOf(enoun.charAt(enoun.length() - 4)) > -1)) {
 			return enoun.substring(0, enoun.length() - 3) + "ouse" + postfix;
-		} else if (enoun.endsWith("eese") && !enoun.endsWith("cabeese")) {
+		} else if (enoun.endsWith("eese") &&
+				!enoun.endsWith("cabeese") && !enoun.endsWith("cheese")) {
 			return enoun.substring(0, enoun.length() - 4) + "oose" + postfix;
 		} else if (enoun.endsWith("eeth")) {
 			return enoun.substring(0, enoun.length() - 4) + "ooth" + postfix;
