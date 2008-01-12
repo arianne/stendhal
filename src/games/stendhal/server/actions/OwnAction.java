@@ -49,8 +49,6 @@ public class OwnAction implements ActionListener {
 
 		if (entity != null) {
 			// Make sure the entity is valid (hacked client?)
-			// TODO: Allow "Own" on client for all RPEntity's just for some
-			// humor?
 			if (!(entity instanceof DomesticAnimal)) {
 				player.sendPrivateText("Maybe you should stick to owning domestic animals.");
 				return;
