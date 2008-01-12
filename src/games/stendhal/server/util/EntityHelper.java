@@ -29,13 +29,18 @@ public class EntityHelper {
 	 * @param player
 	 *            to constraint for current zone and screen area
 	 * @return the entity associated either with name or id or
-	 *         <code> null </code> if none was found.
+	 *         <code> null </code> if none was found or any of
+	 *         the input paramaters was <code> null </code>.
 	 */
 	public static Entity entityFromTargetName(String target, Entity player) {
+		if (target == null || player == null) {
+			return null;
+		}
+
 		StendhalRPZone zone = player.getZone();
 		Entity entity = null;
 
-		if (target != null && target.length() > 1 && target.charAt(0) == '#'
+		if (target.length() > 1 && target.charAt(0) == '#'
 				&& Character.isDigit(target.charAt(1))) {
 			int objectId = Integer.parseInt(target.substring(1));
 
@@ -53,7 +58,7 @@ public class EntityHelper {
 		if (entity == null) {
 			entity = StendhalRPRuleProcessor.get().getPlayer(target);
 
-			if (!player.isInSight(entity)) {
+			if (entity != null && !player.isInSight(entity)) {
 				entity = null;
 			}
 		}
@@ -61,16 +66,12 @@ public class EntityHelper {
 		if (entity == null) {
 			entity = NPCList.get().get(target);
 
-			if (!player.isInSight(entity)) {
+			if (entity != null && !player.isInSight(entity)) {
 				entity = null;
 			}
 		}
 
-		if (entity != null) {
-			return entity;
-		}
-
-		return null;
+		return entity;
 	}
 
 	public static Entity entityFromSlot(Player player, RPAction action) {
