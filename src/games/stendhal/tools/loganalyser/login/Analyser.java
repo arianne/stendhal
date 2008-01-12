@@ -73,7 +73,7 @@ public class Analyser {
 		sb.append("'");
 		if (nextEvent != null) {
 			sb.append(" AND timedate < '");
-			sb.append(StringChecker.escapeSQLString(event.getTimestamp()));
+			sb.append(StringChecker.escapeSQLString(nextEvent.getTimestamp()));
 			sb.append("'");
 		}
 		sb.append(")");
