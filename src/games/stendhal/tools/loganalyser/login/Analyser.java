@@ -23,13 +23,13 @@ public class Analyser {
 
 	private static final String SQL_FROM_IP = "SELECT username, address, loginEvent.timedate As timedate"
 		+ " FROM loginEvent, account "
-		+ " WHERE account.id = loginEvent.player_id"
+		+ " WHERE account.id = loginEvent.player_id AND result=1"
 		+ " AND loginEvent.address = '%1$s' AND loginEvent.timedate >= '%2$s'"
 		+ " ORDER BY loginEvent.timedate";
 	
 	private static final String SQL_NEXT_LOGIN = "SELECT username, address, loginEvent.timedate As timedate" 
 		+ " FROM loginEvent, account"
-		+ " WHERE account.id = loginEvent.player_id"
+		+ " WHERE account.id = loginEvent.player_id AND result=1"
 		+ " AND username='%1$s' AND loginEvent.timedate > '%2$s'"
 		+ " ORDER BY loginEvent.timedate LIMIT 1;";
 	
