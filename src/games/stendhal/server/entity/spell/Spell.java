@@ -12,6 +12,7 @@
 package games.stendhal.server.entity.spell;
 
 import games.stendhal.common.Grammar;
+import games.stendhal.server.core.engine.UnderscoreConverter;
 import games.stendhal.server.core.events.EquipListener;
 import games.stendhal.server.entity.PassiveEntity;
 
@@ -149,7 +150,7 @@ public class Spell extends PassiveEntity implements EquipListener {
 		String name = getName();
 
 		if (name != null) {
-			return name.replace("_", " ");
+			return UnderscoreConverter.transform(name);
 		} else {
 			return super.getTitle();
 		}
