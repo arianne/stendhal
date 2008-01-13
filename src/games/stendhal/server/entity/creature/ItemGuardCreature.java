@@ -12,6 +12,7 @@
 package games.stendhal.server.entity.creature;
 
 import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.UnderscoreConverter;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Item;
@@ -42,11 +43,14 @@ public class ItemGuardCreature extends Creature {
 	 */
 	public ItemGuardCreature(Creature copy, String itemType) {
 		super(copy);
+
+		// replace underscores by spaces, if still present (should no more be the case)
+		itemType = UnderscoreConverter.transform(itemType);
+
 		this.itemType = itemType;
 
 		noises = new LinkedList<String>(noises);
-		noises.add("Thou shall not obtain the " + itemType.replace("_", " ")
-				+ "!");
+		noises.add("Thou shall not obtain the " + itemType + "!");
 
 		if (!StendhalRPWorld.get().getRuleManager().getEntityManager().isItem(
 				itemType)) {
