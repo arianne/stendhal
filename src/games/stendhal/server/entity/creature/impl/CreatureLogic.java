@@ -79,7 +79,6 @@ public class CreatureLogic {
 		// if there is no player near and none will see us...
 		// sleep so we don't waste cpu resources
 		if (!creature.isEnemyNear(30)) {
-
 			// If we are already sleeping, than don't modify the Entity.
 			if (aiState == AiState.SLEEP) {
 				return false;
@@ -96,6 +95,7 @@ public class CreatureLogic {
 			creature.notifyWorldAboutChanges();
 			return false;
 		}
+
 		return true;
 	}
 
@@ -285,9 +285,9 @@ public class CreatureLogic {
 	 * Checks if the position (x, y) is a good position for range combat.
 	 * 
 	 * @param x
-	 *            x value of the position
+	 *			  x value of the position
 	 * @param y
-	 *            y value of the position
+	 *			  y value of the position
 	 * @return true if creature is a good position for range combat
 	 */
 	private boolean isGoodRangeCombatPosition(int x, int y) {
