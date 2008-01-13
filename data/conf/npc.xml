@@ -169,7 +169,7 @@
 			<dialog say="help" reply="I buy and sell several items, ask me for my #offer"/>
 
 			<!-- Hmm... I need to work on the shop part some more I guess.... -->
-			<!-- Coldnt come up with a good way to show both buylist and selllist in one line -->
+			<!-- Couldnt come up with a good way to show both buylist and selllist in one line -->
 			<!-- but this will work for now -->
 			<dialog say="offer" reply="I both #sell and #buy items"/>
 			<dialog say="sell" reply="I sell: " value="listshop, selllist, semos_adventurers_shop"/>
@@ -179,8 +179,6 @@
 		</dialogues>
 		<addshop name="semos_adventurers_shop"/>
 	</npc>
-
-
 
 
 <!-- Shoplist, maybe we should put this in it's own xml file -->
@@ -237,4 +235,3 @@
 	</shop>
 
 </data>
-
