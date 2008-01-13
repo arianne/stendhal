@@ -10,7 +10,6 @@ import marauroa.common.game.RPAction;
 
 import org.junit.After;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import utilities.PlayerTestHelper;
@@ -33,7 +32,6 @@ public class MagicExtnTest {
 	public void tearDown() {
 		PlayerTestHelper.removePlayer("player");
 	}
-
 
 	@Test
 	public final void testMagic() {
