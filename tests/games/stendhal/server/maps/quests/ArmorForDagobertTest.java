@@ -60,18 +60,18 @@ public class ArmorForDagobertTest {
 		en.step(player, "task");
 		assertEquals("I'm so afraid of being robbed. I don't have any protection. Do you think you can help me?", npc.get("text"));
 		en.step(player, "yes");
-		assertEquals("Once I had a nice #leather_cuirass, but it was destroyed during the last robbery. If you find a new one, I'll give you a reward.", npc.get("text"));
+		assertEquals("Once I had a nice #leather cuirass, but it was destroyed during the last robbery. If you find a new one, I'll give you a reward.", npc.get("text"));
 		en.step(player, "leather");
-		assertEquals("A leather_cuirass is the traditional cyclops armor. Some cyclopes are living in the dungeon deep under the city.", npc.get("text"));
+		assertEquals("A leather cuirass is the traditional cyclops armor. Some cyclopes are living in the dungeon deep under the city.", npc.get("text"));
 		en.step(player, "bye");
 		assertEquals("It was a pleasure to serve you.", npc.get("text"));
 
 		// -----------------------------------------------
-		Item item = ItemTestHelper.createItem("leather_cuirass");
+		Item item = ItemTestHelper.createItem("leather cuirass");
 		player.getSlot("bag").add(item);
 
 		en.step(player, "hi");
-		assertEquals("Excuse me, please! I have noticed the leather_cuirass you're carrying. Is it for me?", npc.get("text"));
+		assertEquals("Excuse me, please! I have noticed the leather cuirass you're carrying. Is it for me?", npc.get("text"));
 		en.step(player, "no");
 		assertEquals("Well then, I hope you find another one which you can give to me before I get robbed again.", npc.get("text"));
 		en.step(player, "bye");
@@ -80,10 +80,10 @@ public class ArmorForDagobertTest {
 		// -----------------------------------------------
 
 		en.step(player, "hi");
-		assertEquals("Excuse me, please! I have noticed the leather_cuirass you're carrying. Is it for me?", npc.get("text"));
+		assertEquals("Excuse me, please! I have noticed the leather cuirass you're carrying. Is it for me?", npc.get("text"));
 		// put it out of bag onto ground, then say yes.
-		player.drop("leather_cuirass");
-		assertFalse(player.isEquipped("leather_cuirass"));
+		player.drop("leather cuirass");
+		assertFalse(player.isEquipped("leather cuirass"));
 		npc.remove("text");
 		en.step(player, "yes");
 		// he doesn't do anything.
@@ -95,7 +95,7 @@ public class ArmorForDagobertTest {
 
 		player.getSlot("bag").add(item);
 		en.step(player, "hi");
-		assertEquals("Excuse me, please! I have noticed the leather_cuirass you're carrying. Is it for me?", npc.get("text"));
+		assertEquals("Excuse me, please! I have noticed the leather cuirass you're carrying. Is it for me?", npc.get("text"));
 		en.step(player, "yes");
 		assertEquals("Oh, I am so thankful! Here is some gold I found ... ehm ... somewhere.", npc.get("text"));
 		// [23:08] rosie earns 50 experience points. 

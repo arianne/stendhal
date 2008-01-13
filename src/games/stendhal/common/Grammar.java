@@ -188,7 +188,7 @@ public class Grammar {
 				|| result.equals("chicken")) {
 			result = addPrefixIfNotAlreadyThere(lowString, "piece of ",
 					"pieces of ");
-		} else if (result.endsWith(" ore") || result.endsWith("_ore")) {
+		} else if (result.endsWith(" ore")) {
 			result = addPrefixIfNotAlreadyThere(lowString, "nugget of ",
 					"nuggets of ");
 		} else if (result.equals("flour")) {
@@ -205,20 +205,18 @@ public class Grammar {
 			result = addPrefixIfNotAlreadyThere(lowString, "bottle of ",
 					"bottles of ");
 		} else if (result.equals("money")) {
-			// TODO: fix this (going back to money as workaround because /drop 1
-			// coin does not work
+			// TODO: fix this (going back to money as workaround because
+			// /drop 1 coin does not work
 			// enoun = "coin";
-		} else if (result.startsWith("book_") || result.startsWith("book ")) {
+		} else if (result.startsWith("book ")) {
 			result = result.substring(5) + " book";
 		} else if (result.equals("arandula")) {
 			result = addPrefixIfNotAlreadyThere(lowString, "sprig of ",
 					"sprigs of ");
-		} else if ((result.indexOf("_armor") > -1)
-				|| (result.indexOf(" armor") > -1)) {
+		} else if (result.indexOf(" armor") > -1) {
 			result = addPrefixIfNotAlreadyThere(lowString, "suit of ",
 					"suits of ");
-		} else if (result.endsWith("_legs") || result.endsWith(" legs")
-				|| result.endsWith("_boots") || result.endsWith(" boots")) {
+		} else if (result.endsWith(" legs") || result.endsWith(" boots")) {
 			result = addPrefixIfNotAlreadyThere(lowString, "pair of ",
 					"pairs of ");
 		} else {
@@ -494,7 +492,7 @@ public class Grammar {
 				&& ("mMlL".indexOf(enoun.charAt(enoun.length() - 4)) > -1)) {
 			return enoun.substring(0, enoun.length() - 3) + "ouse" + postfix;
 		} else if (enoun.endsWith("eese") &&
-				!enoun.endsWith("cabeese") && !enoun.endsWith("cheese")) {
+					!enoun.endsWith("cabeese") && !enoun.endsWith("cheese")) {
 			return enoun.substring(0, enoun.length() - 4) + "oose" + postfix;
 		} else if (enoun.endsWith("eeth")) {
 			return enoun.substring(0, enoun.length() - 4) + "ooth" + postfix;

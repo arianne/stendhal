@@ -32,12 +32,12 @@ public class FishSourceTest {
 		assertEquals("You need a fishing rod for fishing.",
 				player.getPrivateTextString());
 		player.resetPrivateTextString();
-		StackableItem fishingRod = new StackableItem("fishing_rod", "", "",
+		StackableItem fishingRod = new StackableItem("fishing rod", "", "",
 				null);
 		fishingRod.setQuantity(1);
 		fishingRod.setID(new ID(2, "testzone"));
 		player.getSlot("bag").add(fishingRod);
-		assertTrue(player.isEquipped("fishing_rod"));
+		assertTrue(player.isEquipped("fishing rod"));
 		fs.onUsed(player);
 		assertEquals("You have started fishing.", player.getPrivateTextString());
 		player.resetPrivateTextString();

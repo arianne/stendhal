@@ -179,7 +179,7 @@ public class ZooFoodTest {
 		assertTrue(enFeelgood.step(player, "offers"));
 
 		assertEquals(
-				"I sell antidote, minor_potion, potion, and greater_potion.",
+				"I sell antidote, minor potion, potion, and greater potion.",
 				feelgoodNpc.get("text"));
 		assertTrue(enFeelgood.step(player, "bye"));
 		assertEquals("Bye!", feelgoodNpc.get("text"));

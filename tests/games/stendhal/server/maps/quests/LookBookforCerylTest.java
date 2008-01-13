@@ -34,7 +34,6 @@ public class LookBookforCerylTest {
 
 	@BeforeClass
 	public static void setupClass() {
-		
 		MockStendhalRPRuleProcessor.get();
 		MockStendlRPWorld.get();
 		Log4J.init();
@@ -140,7 +139,7 @@ public class LookBookforCerylTest {
 		assertEquals(
 				"Oh, Ceryl's looking for that book back? My goodness! I completely forgot about it... here you go!",
 				jynath.get("text"));
-		assertTrue(pl.isEquipped("book_black"));
+		assertTrue(pl.isEquipped("book black"));
 		jynathEngine.step(pl, "bye");
 		assertFalse(jynath.isTalking());
 
@@ -176,7 +175,6 @@ public class LookBookforCerylTest {
 
 	@Test
 	public final void testAddToWorld() {
-
 		LookBookforCeryl quest;
 		quest = new LookBookforCeryl();
 		quest.addToWorld();
@@ -208,7 +206,7 @@ public class LookBookforCerylTest {
 				quest.getHistory(pl));
 
 		Item item = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
-				"book_black");
+				"book black");
 		item.setBoundTo(pl.getName());
 		pl.equip(item, true);
 		assertEquals(3, quest.getHistory(pl).size());
@@ -220,7 +218,6 @@ public class LookBookforCerylTest {
 		assertEquals(4, quest.getHistory(pl).size());
 		assertEquals(Arrays.asList("FIRST_CHAT", "QUEST_ACCEPTED",
 				"FOUND_ITEM", "DONE"), quest.getHistory(pl));
-
 	}
 
 	@Test
@@ -241,7 +238,6 @@ public class LookBookforCerylTest {
 		assertTrue(pl.hasQuest(LookBookforCerylTest.CERYL_BOOK));
 		assertTrue(pl.isQuestCompleted(LookBookforCerylTest.CERYL_BOOK));
 		assertTrue(quest.isCompleted(pl));
-
 	}
 
 	@Test

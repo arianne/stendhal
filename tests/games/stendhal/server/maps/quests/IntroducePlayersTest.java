@@ -95,16 +95,14 @@ public class IntroducePlayersTest {
 				npc.get("text"));
 		en.step(player, "No");
 		assertTrue(npc.isTalking());
-		assertEquals("Oh, please won't you change your mind? *sneeze*", npc
-				.get("text"));
+		assertEquals("Oh, please won't you change your mind? *sneeze*", npc.get("text"));
 		en.step(player, ConversationPhrases.GOODBYE_MESSAGES.get(0));
 		assertFalse(npc.isTalking());
 		assertFalse(player.hasQuest(IntroducePlayersTest.INTRODUCE_PLAYERS));
 		assertEquals("Bye.", npc.get("text"));
 		en.step(player, ConversationPhrases.GREETING_MESSAGES.get(0));
 		assertTrue(npc.isTalking());
-		assertEquals(IntroducePlayersTest.SSSHH_COME_HERE, npc
-				.get("text"));
+		assertEquals(IntroducePlayersTest.SSSHH_COME_HERE, npc.get("text"));
 		en.step(player, ConversationPhrases.GOODBYE_MESSAGES.get(0));
 	}
 

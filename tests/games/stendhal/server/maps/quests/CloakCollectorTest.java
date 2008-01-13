@@ -71,9 +71,9 @@ public class CloakCollectorTest {
 		en.stepTest(monica, cc.getAdditionalTriggerPhraseForQuest().get(0));
 		assertEquals(cc.respondToQuest(), npc.get("text"));
 
-		en.stepTest(monica, "elf_cloak");
+		en.stepTest(monica, "elf cloak");
 		assertEquals(
-				"You haven't seen one before? Well, it's a white_cloak. So, will you find them all?",
+				"You haven't seen one before? Well, it's a white cloak. So, will you find them all?",
 				npc.get("text"));
 
 		en.stepTest(monica, ConversationPhrases.YES_MESSAGES.get(0));
@@ -91,18 +91,18 @@ public class CloakCollectorTest {
 		en.stepTest(monica, ConversationPhrases.YES_MESSAGES.get(0));
 		assertEquals(cc.askForItemsAfterPlayerSaidHeHasItems(), npc.get("text"));
 
-		en.stepTest(monica, "elf_cloak");
-		assertEquals(cc.respondToOfferOfNotExistingItem("elf_cloak"),
+		en.stepTest(monica, "elf cloak");
+		assertEquals(cc.respondToOfferOfNotExistingItem("elf cloak"),
 				npc.get("text"));
 
-		Item cloak = new Item("elf_cloak", "", "", null);
+		Item cloak = new Item("elf cloak", "", "", null);
 		monica.getSlot("bag").add(cloak);
-		en.stepTest(monica, "elf_cloak");
+		en.stepTest(monica, "elf cloak");
 		assertEquals(cc.respondToItemBrought(), npc.get("text"));
-		en.stepTest(monica, "elf_cloak");
+		en.stepTest(monica, "elf cloak");
 		assertEquals(cc.respondToOfferOfNotMissingItem(), npc.get("text"));
 
-		cloak = new Item("stone_cloak", "", "", null);
+		cloak = new Item("stone cloak", "", "", null);
 		monica.getSlot("bag").add(cloak);
 
 		for (String cloakName : cc.getNeededItems()) {
@@ -134,10 +134,9 @@ public class CloakCollectorTest {
 		Player player = PlayerTestHelper.createPlayer("player");
 		double oldKarma = player.getKarma();
 		cc.rewardPlayer(player);
-		assertTrue(player.isEquipped("black_cloak"));
+		assertTrue(player.isEquipped("black cloak"));
 		assertEquals(oldKarma + 5.0, player.getKarma(), 0.01);
 		assertEquals(2500, player.getXP());
-
 	}
 
 }

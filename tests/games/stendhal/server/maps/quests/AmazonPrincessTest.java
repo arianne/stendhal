@@ -43,7 +43,6 @@ public class AmazonPrincessTest {
 		player = PlayerTestHelper.createPlayer("player");
 	}
 
-
 	@Test
 	public void testQuest() {
 		en.step(player, "hi");
@@ -94,14 +93,14 @@ public class AmazonPrincessTest {
 		assertEquals("Goodbye, and beware of the barbarians.", npc.get("text"));
 
 		// -----------------------------------------------
-		Item item = ItemTestHelper.createItem("pina_colada");
+		Item item = ItemTestHelper.createItem("pina colada");
 		player.getSlot("bag").add(item);
 
 		en.step(player, "hi");
 		assertEquals("Huh, what are you doing here?", npc.get("text"));
-		en.step(player, "pina_colada");
+		en.step(player, "pina colada");
 		assertTrue(npc.get("text").startsWith("Thank you!! Take these "));
-		assertTrue(player.isEquipped("fish_pie"));
+		assertTrue(player.isEquipped("fish pie"));
 		en.step(player, "bye");
 		assertEquals("Goodbye, and beware of the barbarians.", npc.get("text"));
 
@@ -118,7 +117,7 @@ public class AmazonPrincessTest {
 
 		en.step(player, "hi");
 		assertEquals("Huh, what are you doing here?", npc.get("text"));
-		en.step(player, "pina_colada");
+		en.step(player, "pina colada");
 		assertEquals("Sometime you could do me a #favour ...", npc.get("text"));
 		en.step(player, "favour");
 		assertTrue(npc.get("text").startsWith("I'm sure I'll be too drunk to have another for at least "));

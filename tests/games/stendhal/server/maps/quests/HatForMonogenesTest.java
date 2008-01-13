@@ -93,10 +93,10 @@ public class HatForMonogenesTest {
 		player.getSlot("bag").add(item);
 		enXin.step(player, "hi");
 		assertEquals("Greetings! How may I help you?", npcXin.get("text"));
-		enXin.step(player, "buy leather_helmet");
-		assertEquals("1 leather_helmet will cost 25. Do you want to buy it?", npcXin.get("text"));
+		enXin.step(player, "buy leather helmet");
+		assertEquals("1 leather helmet will cost 25. Do you want to buy it?", npcXin.get("text"));
 		enXin.step(player, "yes");
-		assertEquals("Congratulations! Here is your leather_helmet!", npcXin.get("text"));
+		assertEquals("Congratulations! Here is your leather helmet!", npcXin.get("text"));
 		enXin.step(player, "bye");
 		assertEquals("Bye.", npc.get("text"));
 

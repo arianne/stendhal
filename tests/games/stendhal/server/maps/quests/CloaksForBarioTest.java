@@ -119,7 +119,7 @@ public class CloaksForBarioTest {
 
 	private void equipCloaks(int quantity) {
 		for (int i = 0; i < quantity; i++) {
-			Item item = ItemTestHelper.createItem("blue_elf_cloak");
+			Item item = ItemTestHelper.createItem("blue elf cloak");
 			player.getSlot("bag").add(item);
 		}
 	}

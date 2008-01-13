@@ -96,7 +96,7 @@ public class WeaponsCollector2Test {
 
 		assertTrue(en.stepTest(pl, "list"));
 		assertEquals(
-				"There are 3 weapons still missing from my newest collection: #morning_star, #staff, and #great_sword."
+				"There are 3 weapons still missing from my newest collection: #morning star, #staff, and #great sword."
 						+ " Do you have anything like that with you?",
 				npc.get("text"));
 
@@ -112,21 +112,21 @@ public class WeaponsCollector2Test {
 
 		assertTrue(en.stepTest(pl, "list"));
 		assertEquals(
-				"There are 3 weapons still missing from my newest collection: #morning_star, #staff, and #great_sword."
+				"There are 3 weapons still missing from my newest collection: #morning star, #staff, and #great sword."
 						+ " Do you have anything like that with you?",
 				npc.get("text"));
 
 		assertTrue(en.stepTest(pl, "yes"));
 		assertEquals("What did you find?", npc.get("text"));
 
-		Item weapon = new Item("morning_star", "", "", null);
+		Item weapon = new Item("morning star", "", "", null);
 		pl.getSlot("bag").add(weapon);
 
-		assertTrue(en.stepTest(pl, "morning_star"));
+		assertTrue(en.stepTest(pl, "morning star"));
 		assertEquals("Thank you very much! Do you have anything more for me?",
 				npc.get("text"));
 
-		assertTrue(en.stepTest(pl, "morning_star"));
+		assertTrue(en.stepTest(pl, "morning star"));
 		assertEquals(
 				"I already have that one. Do you have any other weapon for me?",
 				npc.get("text"));

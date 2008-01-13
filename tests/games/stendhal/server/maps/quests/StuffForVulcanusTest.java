@@ -35,7 +35,6 @@ public class StuffForVulcanusTest {
 		zoneConf.configureZone(new StendhalRPZone("admin_test"), null);
 		npc = NPCList.get().get("Vulcanus");
 
-
 		AbstractQuest quest = new StuffForVulcanus();
 		quest.addToWorld();
 		en = npc.getEngine();
@@ -85,8 +84,8 @@ public class StuffForVulcanusTest {
 		assertEquals("Farewell", npc.get("text"));
 
 		// -----------------------------------------------
-		// superkym gets 12 gold_bar but he wants iron first
-		item = ItemTestHelper.createItem("gold_bar", 12);
+		// superkym gets 12 gold bar but he wants iron first
+		item = ItemTestHelper.createItem("gold bar", 12);
 		player.getSlot("bag").add(item);
 
 		en.step(player, "hi");
@@ -119,7 +118,7 @@ public class StuffForVulcanusTest {
 		// -----------------------------------------------
 
 		// superkym gets 2 hearts
-		item = ItemTestHelper.createItem("giant_heart", 2);
+		item = ItemTestHelper.createItem("giant heart", 2);
 		player.getSlot("bag").add(item);
 
 		en.step(player, "hi");
@@ -129,7 +128,7 @@ public class StuffForVulcanusTest {
 
 		// -----------------------------------------------
 		// superkym gets remaining 4 hearts
-		item = ItemTestHelper.createItem("giant_heart", 4);
+		item = ItemTestHelper.createItem("giant heart", 4);
 		player.getSlot("bag").add(item);
 
 		en.step(player, "hi");

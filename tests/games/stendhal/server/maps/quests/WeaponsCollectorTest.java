@@ -83,8 +83,6 @@ public class WeaponsCollectorTest {
 		assertEquals(wc.respondToQuestAcception(), npc.get("text"));
 
 		//npc has stopped conversation
-		
-		
 
 		assertTrue("the quest was accepted, so it should be started", wc.isStarted(pl));
 		assertFalse(wc.isCompleted(pl));
@@ -107,7 +105,7 @@ public class WeaponsCollectorTest {
 		assertTrue(en.stepTest(pl, "bardiche"));
 		assertEquals(wc.respondToOfferOfNotMissingItem(), npc.get("text"));
 
-		cloak = new Item("stone_cloak", "", "", null);
+		cloak = new Item("stone cloak", "", "", null);
 		pl.getSlot("bag").add(cloak);
 
 		for (String cloakName : wc.getNeededItems()) {
@@ -134,7 +132,7 @@ public class WeaponsCollectorTest {
 		int oldXP = player.getXP();
 		wc.rewardPlayer(player);
 		
-		assertTrue(player.isEquipped("ice_sword"));
+		assertTrue(player.isEquipped("ice sword"));
 		assertEquals(oldXP + 1000, player.getXP());
 	}
 }

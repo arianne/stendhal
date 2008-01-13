@@ -37,7 +37,7 @@ public class JailTest {
 
 	@Test
 	public final void testCriminalNotInworld() {
-		PrivateTextMockingTestPlayer policeman = PlayerTestHelper.createPrivateTextMockingTestPlayer("police_officer");
+		PrivateTextMockingTestPlayer policeman = PlayerTestHelper.createPrivateTextMockingTestPlayer("police officer");
 		PlayerTestHelper.createPlayer("bob");
 		Jail.get().imprison("bob", policeman, 1, "test");
 		assertEquals("You have jailed bob for 1 minutes. Reason: test.\r\n"
@@ -46,7 +46,7 @@ public class JailTest {
 
 	@Test
 	public final void testCriminalimprison() throws Exception {
-		PrivateTextMockingTestPlayer policeman = PlayerTestHelper.createPrivateTextMockingTestPlayer("police_officer");
+		PrivateTextMockingTestPlayer policeman = PlayerTestHelper.createPrivateTextMockingTestPlayer("police officer");
 		PrivateTextMockingTestPlayer bob = PlayerTestHelper.createPrivateTextMockingTestPlayer("bob");
 		MockStendhalRPRuleProcessor.get().addPlayer(bob);
 		PlayerTestHelper.registerPlayer(bob, "-3_semos_jail");
