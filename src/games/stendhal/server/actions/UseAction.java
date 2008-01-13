@@ -125,6 +125,7 @@ public class UseAction implements ActionListener {
 
 		if (object instanceof UseListener) {
 			UseListener listener = (UseListener) object;
+
 			// Make sure nobody uses items bound to someone else.
 			if (listener instanceof Item) {
 				Item item = (Item) listener;
@@ -137,6 +138,7 @@ public class UseAction implements ActionListener {
 					return;
 				}
 			}
+
 			listener.onUsed(player);
 		}
 	}

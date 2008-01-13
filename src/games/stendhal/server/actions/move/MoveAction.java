@@ -52,7 +52,6 @@ public class MoveAction implements ActionListener {
 	}
 
 	public void onAction(Player player, RPAction action) {
-
 		String type = action.get(TYPE);
 
 		if (type.equals(_MOVE)) {
@@ -90,7 +89,7 @@ public class MoveAction implements ActionListener {
 		if ((entity == null) || !(entity instanceof RPEntity)) {
 			return;
 		}
-		
+
 		RPEntity rpEntity = (RPEntity) entity;
 
 		// If object is a NPC we ignore the push action.
@@ -116,7 +115,6 @@ public class MoveAction implements ActionListener {
 	}
 
 	private void move(Player player, RPAction action) {
-
 		if (action.has(_DIR)) {
 			int dirval = action.getInt(_DIR);
 
@@ -131,11 +129,9 @@ public class MoveAction implements ActionListener {
 
 		TutorialNotifier.move(player);
 		player.notifyWorldAboutChanges();
-
 	}
 
 	private void moveTo(Player player, RPAction action) {
-
 		if (!player.getZone().isMoveToAllowed()) {
 			player.sendPrivateText("Mouse movement is not possible here. Use your keyboard.");
 			return;
@@ -162,6 +158,5 @@ public class MoveAction implements ActionListener {
 
 		player.applyClientDirection(false);
 		player.notifyWorldAboutChanges();
-
 	}
 }
