@@ -25,12 +25,12 @@ public class EntityHelper {
 	 * names are searched in the list of players and NPCs.
 	 * 
 	 * @param target
-	 *            representation of the target
+	 *			  representation of the target
 	 * @param player
-	 *            to constraint for current zone and screen area
+	 *			  to constraint for current zone and screen area
 	 * @return the entity associated either with name or id or
-	 *         <code> null </code> if none was found or any of
-	 *         the input paramaters was <code> null </code>.
+	 *		   <code> null </code> if none was found or any of
+	 *		   the input parameters was <code> null </code>.
 	 */
 	public static Entity entityFromTargetName(String target, Entity player) {
 		if (target == null || player == null) {
