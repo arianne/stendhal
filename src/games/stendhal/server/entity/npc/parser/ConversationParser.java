@@ -101,7 +101,7 @@ public class ConversationParser {
 			text = getSentenceType(text.trim(), sentence);
 
 //			// TODO mf - get rid of underscore handling for item names
-//			text = text.replace('_', ' ');
+//			text = UnderscoreConverter.transform(text);
 		}
 
 		// 2.) feed the separated words into the sentence object
