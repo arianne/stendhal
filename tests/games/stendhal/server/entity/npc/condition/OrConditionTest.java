@@ -3,8 +3,8 @@ package games.stendhal.server.entity.npc.condition;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import games.stendhal.server.entity.npc.ConversationParser;
 import games.stendhal.server.entity.npc.SpeakerNPC.ChatCondition;
+import games.stendhal.server.entity.npc.parser.ConversationParser;
 
 import org.junit.After;
 import org.junit.Before;
