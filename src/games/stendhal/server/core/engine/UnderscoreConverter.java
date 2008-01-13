@@ -2,6 +2,7 @@ package games.stendhal.server.core.engine;
 
 import java.util.Iterator;
 
+import marauroa.common.game.Attributes;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
@@ -25,23 +26,24 @@ public class UnderscoreConverter {
 	static void transformNames(RPObject object)	{
 		RPClass clazz = object.getRPClass();
 
+		// Transform all names, but don't change player names.
 		if (clazz == null || !clazz.getName().equals("player")) {
     		// first rename the object itself, if the name contains an underscore character
     		transformAttribute(object, "name");
 		}
 
-		// now loop over all contained slots
+		// Now loop over all contained slots.
 		Iterator<RPSlot> it = object.slotsIterator();
 		while(it.hasNext()) {
 			RPSlot slot = it.next();
 
 			if (slot.getName().equals("!kill")) {
-				// translate the content of the kill list
+				// Translate the content of the kill list.
 				for(RPObject obj : slot) {
-					transformKeyNames(obj);
+					transformSlotKeyNames(obj);
 				}
 			} else {
-				// transform the name of all contained item names
+				// Transform the names of all contained items.
 				for(RPObject obj : slot) {
 					transformNames(obj);
 				}
@@ -76,11 +78,13 @@ public class UnderscoreConverter {
 	 *
 	 * @param object
 	 */
-	static boolean transformKeyNames(RPObject object) {
-		RPObject copy = (RPObject) object.clone();
+	static boolean transformSlotKeyNames(RPObject object) {
+		// create a copy of the attribute map to iterate independently from the original 
+		Attributes attributes = new Attributes(object.getRPClass());
+		attributes.fill(object);
 		int count = 0;
 
-		for(String key : copy) {
+		for(String key : attributes) {
 			if (key.contains("_")) {
 				String newKey = key.replace("_", " ");
 				String value = object.get(key);
@@ -88,7 +92,7 @@ public class UnderscoreConverter {
 				object.remove(key);
 				object.put(newKey, value);
 
-				logger.info("renamed stacked key '"+key+"' to '"+newKey+"'");
+				logger.info("renamed slot key '"+key+"' to '"+newKey+"'");
 				++count;
 			}
 		}
