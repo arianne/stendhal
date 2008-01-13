@@ -8,11 +8,11 @@ import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
+import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Arrays;
@@ -178,7 +178,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 		@Override
 		public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 
-			List<Item> allLeatherLegs = player.getAllEquipped("leather_legs");
+			List<Item> allLeatherLegs = player.getAllEquipped("leather legs");
 			Item questLeatherLegs = null;
 			for (Item leatherLegs : allLeatherLegs) {
 				if ("tom".equalsIgnoreCase(leatherLegs.getInfoString())) {
@@ -196,7 +196,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 				}
 			}
 
-			List<Item> allScaleArmors = player.getAllEquipped("scale_armor");
+			List<Item> allScaleArmors = player.getAllEquipped("scale armor");
 			Item questScaleArmor = null;
 			for (Item scaleArmor : allScaleArmors) {
 				if ("peter".equalsIgnoreCase(scaleArmor.getInfoString())) {
@@ -242,7 +242,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 				player.drop(questMap);
 
 				Item item = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
-						"steel_boots");
+						"steel boots");
 				item.setBoundTo(player.getName());
 				// Is this infostring really needed?
 				item.setInfoString(npc.getName());
@@ -331,7 +331,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 		zone.add(tom);
 
 		// Add a refiller to automatically fill the corpse of unlucky Tom
-		CorpseRefiller tomRefiller = new CorpseRefiller(tom, "leather_legs",
+		CorpseRefiller tomRefiller = new CorpseRefiller(tom, "leather legs",
 				"You see torn leather legs that are heavily covered with blood.");
 		tomRefiller.start();
 
@@ -359,7 +359,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 		// Add a refiller to automatically fill the corpse of unlucky Peter
 		CorpseRefiller peterRefiller = new CorpseRefiller(
 				peter,
-				"scale_armor",
+				"scale armor",
 				"You see a slightly rusty scale armor. It is heavily deformed by several strong hammer blows.");
 		peterRefiller.start();
 	}

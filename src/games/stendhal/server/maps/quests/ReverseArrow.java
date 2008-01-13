@@ -15,8 +15,8 @@ import games.stendhal.server.entity.item.Token;
 import games.stendhal.server.entity.mapstuff.portal.OnePlayerRoomDoor;
 import games.stendhal.server.entity.mapstuff.portal.Portal;
 import games.stendhal.server.entity.mapstuff.sign.Sign;
-import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Collections;

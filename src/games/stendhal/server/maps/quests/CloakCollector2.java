@@ -2,10 +2,12 @@ package games.stendhal.server.maps.quests;
 
 import games.stendhal.common.Grammar;
 import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.UnderscoreConverter;
+import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Arrays;
@@ -33,15 +35,15 @@ import java.util.List;
  */
 public class CloakCollector2 extends AbstractQuest {
 
-    private static final List<String> NEEDEDCLOAKS2 = Arrays.asList("red_cloak", "shadow_cloak", "xeno_cloak",
-								       "elvish_cloak", "chaos_cloak", "mainio_cloak",
-								       "golden_cloak", "black_dragon_cloak");
+    private static final List<String> NEEDEDCLOAKS2 = Arrays.asList("red cloak", "shadow cloak", "xeno cloak",
+								       "elvish cloak", "chaos cloak", "mainio cloak",
+								       "golden cloak", "black dragon cloak");
     private static final String OLD_QUEST = "cloaks_collector";
     private static final String QUEST_SLOT = "cloaks_collector_2";   
 
 	/**
 	 * Returns a list of the names of all cloaks that the given player still has
-	 * to bring to fulfil the quest.
+	 * to bring to fulfill the quest.
 	 *
 	 * @param player
 	 *            The player doing the quest
@@ -151,8 +153,8 @@ public class CloakCollector2 extends AbstractQuest {
 		// player asks about an individual cloak. We used the trick before that all cloaks were named by colour 
 		// (their subclass) - so she would tell them what colour it was. In this case it fails for elvish,
 		// xeno and shadow which are not named by colour. So, this time she'll say, e.g.
-		// It's a shadow_cloak, sorry if that's not much help, so will you find them all?
-		// rather than say for elf cloak she'd said 'It's a white_cloak, so will you find them all?'
+		// It's a shadow cloak, sorry if that's not much help, so will you find them all?
+		// rather than say for elf cloak she'd said 'It's a white cloak, so will you find them all?'
 		// it will still work for red (red_spotted is the subclass), black dragon (black), 
 		// golden, mainio (primary coloured), chaos (multicoloured).
 		npc.add(ConversationStates.QUEST_2_OFFERED, 
@@ -163,9 +165,10 @@ public class CloakCollector2 extends AbstractQuest {
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+						String itemName = sentence.getTriggerExpression().getNormalized();
+						Item item = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(itemName);
 						engine.say("You haven't seen one before? Well, it's a "
-									+ StendhalRPWorld.get().getRuleManager().getEntityManager()
-											.getItem(sentence.getOriginalText()).getItemSubclass()
+									+ (item!=null? UnderscoreConverter.transform(item.getItemSubclass()): itemName)
 									+ ". Sorry if that's not much help, it's all I know! So, will you find them all?");
 					}
 
@@ -235,7 +238,7 @@ public class CloakCollector2 extends AbstractQuest {
 					@Override
 					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						List<String> missing2 = missingcloaks2(player, false);
-						String item = sentence.getOriginalText();
+						String item = sentence.getTriggerExpression().getNormalized();
 
 						if (missing2.contains(item)) {
 							if (player.drop(item)) {

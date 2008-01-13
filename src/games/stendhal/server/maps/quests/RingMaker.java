@@ -4,11 +4,11 @@ import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
+import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
 
@@ -20,7 +20,7 @@ import java.util.List;
  * 
  * PARTICIPANTS:
  * <ul>
- * <li>Ognir, who works in the weaponshop in Fado
+ * <li>Ognir, who works in the weapon shop in Fado
  * </ul>
  * 
  * STEPS:
@@ -64,12 +64,12 @@ public class RingMaker extends AbstractQuest {
 		SpeakerNPC npc = npcs.get("Ognir");
 
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-			new PlayerHasItemWithHimCondition("emerald_ring"),
+			new PlayerHasItemWithHimCondition("emerald ring"),
 			ConversationStates.QUEST_ITEM_BROUGHT, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
 				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-					Item emeraldRing = player.getFirstEquipped("emerald_ring");
+					Item emeraldRing = player.getFirstEquipped("emerald ring");
 					if (emeraldRing != null
 							&& emeraldRing.getInt("amount") > 0) {
 						// ring is not broken so he just lets player know
@@ -104,7 +104,7 @@ public class RingMaker extends AbstractQuest {
 					player.addXP(500);
 					Item emeraldRing = StendhalRPWorld.get()
 							.getRuleManager().getEntityManager().getItem(
-									"emerald_ring");
+									"emerald ring");
 					emeraldRing.setBoundTo(player.getName());
 					player.equip(emeraldRing, true);
 					player.setQuest(QUEST_SLOT, "done");
@@ -127,13 +127,13 @@ public class RingMaker extends AbstractQuest {
 			new SpeakerNPC.ChatAction() {
 				@Override
 				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-					if ((player.isEquipped("gold_bar", REQUIRED_GOLD))
+					if ((player.isEquipped("gold bar", REQUIRED_GOLD))
 							&& (player.isEquipped("money", REQUIRED_MONEY))
 							&& (player.isEquipped("emerald", REQUIRED_GEM))) {
-						player.drop("gold_bar", REQUIRED_GOLD);
+						player.drop("gold bar", REQUIRED_GOLD);
 						player.drop("emerald", REQUIRED_GEM);
 						player.drop("money", REQUIRED_MONEY);
-						player.drop("emerald_ring");
+						player.drop("emerald ring");
 						npc.say("Okay, that's all I need to fix the ring. Come back in "
 							+ REQUIRED_MINUTES
 							+ " minutes and it will be ready. Bye for now.");

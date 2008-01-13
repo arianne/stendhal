@@ -5,7 +5,6 @@ import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPC.ChatAction;
 import games.stendhal.server.entity.npc.action.EquipItemAction;
@@ -19,6 +18,7 @@ import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.TriggerInListCondition;
+import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
 
@@ -158,7 +158,7 @@ public class ObsidianKnife extends AbstractQuest {
 		reward.add(new SpeakerNPC.ChatAction() {
 				@Override
 				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-					String item = sentence.getOriginalText();
+					String item = sentence.getTriggerExpression().getNormalized();
 					if (player.drop(item, REQUIRED_FOOD)) {
 						npc.say("Great! You brought the " + item + "!");
 					}
@@ -173,7 +173,7 @@ public class ObsidianKnife extends AbstractQuest {
 				new SpeakerNPC.ChatCondition() {
 					@Override
 					public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
-						String item = sentence.getOriginalText();
+						String item = sentence.getTriggerExpression().getNormalized();
 						return player.hasQuest(QUEST_SLOT)
 								&& player.getQuest(QUEST_SLOT).equals(item)
 								&& player.isEquipped(item, REQUIRED_FOOD);
@@ -213,7 +213,7 @@ public class ObsidianKnife extends AbstractQuest {
 		SpeakerNPC npc = npcs.get("Ceryl");
 
 		npc.add(ConversationStates.ATTENDING,
-				"gem_book", 
+				"gem book", 
 				new QuestInStateCondition(QUEST_SLOT, "seeking_book"),
 				ConversationStates.QUESTION_1,
 				"You're in luck! Ognir brought it back just last week. Now, who is it for?",
@@ -223,8 +223,8 @@ public class ObsidianKnife extends AbstractQuest {
 				NAME, 
 				null,
 				ConversationStates.ATTENDING, 
-				"Ah, the mountain dwarf! Hope he enjoys the gem_book.",
-				new MultipleActions(new EquipItemAction("book_blue", 1, true), 
+				"Ah, the mountain dwarf! Hope he enjoys the gem book.",
+				new MultipleActions(new EquipItemAction("book blue", 1, true), 
 				new SetQuestAction(QUEST_SLOT, "got_book")));
 
 		// player says something which isn't the dwarf's name.
@@ -239,13 +239,13 @@ public class ObsidianKnife extends AbstractQuest {
 	private void bringBookStep() {
 		SpeakerNPC npc = npcs.get("Alrak");
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "got_book"), new PlayerHasItemWithHimCondition("book_blue")),
+				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "got_book"), new PlayerHasItemWithHimCondition("book blue")),
 				ConversationStates.IDLE, 
 				"Great! I think I'll read this for a while. Bye!",
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-						player.drop("book_blue");
+						player.drop("book lue");
 						player.addXP(500);
 						player.setQuest(QUEST_SLOT, "reading;" + System.currentTimeMillis());
 					}
@@ -258,7 +258,7 @@ public class ObsidianKnife extends AbstractQuest {
 					public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
 						return player.hasQuest(QUEST_SLOT) 
 						&& (player.getQuest(QUEST_SLOT).equals("seeking_book") || player.getQuest(QUEST_SLOT).equals("got_book")) 
-						&& !player.isEquipped("book_blue");
+						&& !player.isEquipped("book blue");
 					}
 				},
 				ConversationStates.ATTENDING,
@@ -326,7 +326,7 @@ public class ObsidianKnife extends AbstractQuest {
 					public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
 						return player.hasQuest(QUEST_SLOT)
 							&& player.getQuest(QUEST_SLOT).equals("knife_offered")
-							&& player.hasKilled("black_dragon")
+							&& player.hasKilled("black dragon")
 							&& player.isEquipped("obsidian")
 							&& player.isEquipped(FISH);
 					}
@@ -353,7 +353,7 @@ public class ObsidianKnife extends AbstractQuest {
 					public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
 						return player.hasQuest(QUEST_SLOT)
 							&& player.getQuest(QUEST_SLOT).equals("knife_offered")
-							&& !player.hasKilled("black_dragon")
+							&& !player.hasKilled("black dragon")
 							&& player.isEquipped("obsidian")
 							&& player.isEquipped(FISH);
 					}
@@ -406,7 +406,7 @@ public class ObsidianKnife extends AbstractQuest {
 						npc.say("The knife is ready! You know, that was enjoyable. I think I'll start making things again. Thanks!");
 						player.addXP(10000);
 						Item knife = StendhalRPWorld.get().getRuleManager()
-								.getEntityManager().getItem("obsidian_knife");
+								.getEntityManager().getItem("obsidian knife");
 						knife.setBoundTo(player.getName());
 						player.equip(knife, true);
 						player.setQuest(QUEST_SLOT, "done");
@@ -432,7 +432,6 @@ public class ObsidianKnife extends AbstractQuest {
 					}
 				}, ConversationStates.ATTENDING,
 				"How did you get down here? I usually only see #kobolds.", null);
-
 	}
 
 	@Override

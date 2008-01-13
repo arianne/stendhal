@@ -24,7 +24,7 @@ import java.util.List;
  * QUEST: Hat For Monogenes PARTICIPANTS: - Monogenes, an old man in Semos city.
  * 
  * STEPS: - Monogenes asks you to buy a hat for him. - Xin Blanca sells you a
- * leather_helmet. - Monogenes sees your leather_helmet and asks for it and then
+ * leather helmet. - Monogenes sees your leather helmet and asks for it and then
  * thanks you.
  * 
  * REWARD: - 10 XP
@@ -49,7 +49,7 @@ public class HatForMonogenes extends AbstractQuest {
 			return res;
 		}
 		res.add("GET_HAT");
-		if (player.isEquipped("leather_hat")
+		if (player.isEquipped("leather hat")
 				|| player.isQuestCompleted(QUEST_SLOT)) {
 			res.add("GOT_HAT");
 		}
@@ -106,19 +106,19 @@ public class HatForMonogenes extends AbstractQuest {
 
 		monogenes.add(ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
-			new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"), new PlayerHasItemWithHimCondition("leather_helmet")),
+			new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"), new PlayerHasItemWithHimCondition("leather helmet")),
 			ConversationStates.QUEST_ITEM_BROUGHT,
 			"Hey! Is that leather hat for me?", null);
 
 		monogenes.add(ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
-			new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"), new NotCondition(new PlayerHasItemWithHimCondition("leather_helmet"))),
+			new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"), new NotCondition(new PlayerHasItemWithHimCondition("leather helmet"))),
 			ConversationStates.ATTENDING,
 			"Hey, my good friend, remember that leather hat I asked you about before? It's still pretty chilly here...",
 			null);
 
 		List<ChatAction> reward = new LinkedList<ChatAction>();
-		reward.add(new DropItemAction("leather_helmet"));
+		reward.add(new DropItemAction("leather helmet"));
 		reward.add(new IncreaseXPAction(10));
 		reward.add(new SetQuestAction(QUEST_SLOT, "done"));
 
@@ -127,7 +127,7 @@ public class HatForMonogenes extends AbstractQuest {
 		monogenes.add(
 			ConversationStates.QUEST_ITEM_BROUGHT,
 			ConversationPhrases.YES_MESSAGES,
-			new PlayerHasItemWithHimCondition("leather_helmet"),
+			new PlayerHasItemWithHimCondition("leather helmet"),
 			ConversationStates.ATTENDING,
 			"Bless you, my good friend! Now my head will stay nice and warm.",
 			new MultipleActions(reward));

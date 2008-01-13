@@ -9,9 +9,10 @@ import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPC.ChatAction;
+import games.stendhal.server.entity.npc.parser.Sentence;
+import games.stendhal.server.entity.npc.parser.Expression;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Collections;
@@ -326,10 +327,11 @@ public class Blackjack extends AbstractQuest {
 				ConversationStates.ATTENDING, null, new ChatAction() {
 					@Override
 					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-			        	stake = sentence.getAmount();
+						Expression object = sentence.getObject(0);
+						stake = object!=null? object.getAmount(): 1;
 
 				        if (sentence.hasError()) {
-				        	npc.say(sentence.getError() + " Just tell me how much you want to risk, for example #stake #50.");
+				        	npc.say(sentence.getErrorString() + " Just tell me how much you want to risk, for example #stake #50.");
 				        } else {
 							if (stake < MIN_STAKE) {
 								npc.say("You must stake at least " + MIN_STAKE

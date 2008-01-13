@@ -6,12 +6,12 @@ import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
+import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
 /**
@@ -152,7 +152,7 @@ public class CloaksForBario extends AbstractQuest {
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-						if (player.drop("blue_elf_cloak")) {
+						if (player.drop("blue elf cloak")) {
 							// find out how many cloaks the player still has to
 							// bring
 							int toBring = Integer.parseInt(player.getQuest(QUEST_SLOT)) - 1;
@@ -165,7 +165,7 @@ public class CloaksForBario extends AbstractQuest {
 								engine.setCurrentState(ConversationStates.QUESTION_1);
 							} else {
 								Item goldenShield = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
-										"golden_shield");
+										"golden shield");
 								goldenShield.setBoundTo(player.getName());
 								player.equip(goldenShield, true);
 								player.addXP(1500);

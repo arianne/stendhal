@@ -1,8 +1,8 @@
 package games.stendhal.server.maps.deathmatch;
 
 import games.stendhal.server.entity.item.Item;
-import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
 /**
@@ -31,7 +31,7 @@ public class BailAction extends SpeakerNPC.ChatAction {
 		player.setQuest("deathmatch", deathmatchState.toQuestString());
 
 		// TODO: fix race condition until bail is processed in DeathmatchEngine
-		Item helmet = player.getFirstEquipped("trophy_helmet");
+		Item helmet = player.getFirstEquipped("trophy helmet");
 		if (helmet != null && helmet.has("def") && helmet.getInt("def") > 1) {
 			engine.say("Coward! I'm sorry to inform you, for this your helmet has been magically weakened.");
 		} else {

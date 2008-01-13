@@ -4,8 +4,8 @@ import games.stendhal.common.Grammar;
 import games.stendhal.common.Level;
 import games.stendhal.common.Rand;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
 
@@ -43,36 +43,36 @@ public class DailyItemQuest extends AbstractQuest {
 		 * it better, go ahead. *
 		 */
 		private final List<String> listeditems = Arrays.asList("knife",
-				"dagger", "short_sword", "sword", "scimitar", "katana",
-				"claymore", "broadsword", "biting_sword", "old_scythe",
-				"small_axe", "hand_axe", "axe", "battle_axe", "bardiche",
-				"scythe", "twoside_axe", "halberd", "club", "staff", "mace",
-				"flail", "skull_staff", "morning_star", "hammer", "war_hammer",
-				"wooden_bow", "longbow", "wooden_arrow", "steel_arrow",
-				"buckler", "wooden_shield", "studded_shield", "plate_shield",
-				"lion_shield", "unicorn_shield", "skull_shield",
-				"crown_shield", "dress", "leather_armor", "leather_cuirass",
-				"studded_armor", "chain_armor", "scale_armor", "plate_armor",
-				"leather_helmet", "studded_helmet", "chain_helmet",
-				"leather_legs", "studded_legs", "chain_legs", "leather_boots",
-				"studded_boots", "cloak", "elf_cloak", "dwarf_cloak",
-				"green_dragon_cloak", "cheese", "carrot", "salad", "apple",
-				"bread", "meat", "ham", "sandwich", "pie", "button_mushroom",
-				"porcini", "toadstool", "beer", "wine", "minor_potion",
-				"antidote", "greater_antidote", "potion", "greater_potion",
+				"dagger", "short sword", "sword", "scimitar", "katana",
+				"claymore", "broadsword", "biting sword", "old scythe",
+				"small axe", "hand axe", "axe", "battle axe", "bardiche",
+				"scythe", "twoside axe", "halberd", "club", "staff", "mace",
+				"flail", "skull staff", "morning star", "hammer", "war hammer",
+				"wooden bow", "longbow", "wooden arrow", "steel arrow",
+				"buckler", "wooden shield", "studded shield", "plate shield",
+				"lion shield", "unicorn shield", "skull shield",
+				"crown shield", "dress", "leather armor", "leather cuirass",
+				"studded armor", "chain armor", "scale armor", "plate armor",
+				"leather helmet", "studded helmet", "chain helmet",
+				"leather legs", "studded legs", "chain legs", "leather boots",
+				"studded boots", "cloak", "elf cloak", "dwarf cloak",
+				"green dragon cloak", "cheese", "carrot", "salad", "apple",
+				"bread", "meat", "ham", "sandwich", "pie", "button mushroom",
+				"porcini", "toadstool", "beer", "wine", "minor potion",
+				"antidote", "greater antidote", "potion", "greater potion",
 				"poison", "flask", "money", "arandula", "wood", "grain",
-				"flour", "iron_ore", "iron", "dice", "teddy", "perch", "roach",
+				"flour", "iron ore", "iron", "dice", "teddy", "perch", "roach",
 				"char", "trout", "surgeonfish", "onion", "leek", "clownfish",
-				"leather_scale_armor", "pauldroned_leather_cuirass",
-				"enhanced_chainmail", "iron_scale_armor", "golden_chainmail",
-				"pauldroned_iron_cuirass", "blue_elf_cloak", "enhanced_mace",
-				"golden_mace", "golden_hammer", "aventail", "composite_bow",
-				"enhanced_lion_shield", "spinach", "courgette", "collard",
-				"fish_pie", "chicken", "elvish_armor", "elvish_boots",
-				"sclaria", "kekik", "elvish_cloak", "elvish_legs",
+            	"leather scale armor", "pauldroned leather cuirass",
+            	"enhanced chainmail", "iron scale armor", "golden chainmail",
+            	"pauldroned iron cuirass", "blue elf cloak", "enhanced mace",
+            	"golden mace", "golden hammer", "aventail", "composite bow",
+            	"enhanced lion shield", "spinach", "courgette", "collard",
+				"fish pie", "chicken", "elvish armor", "elvish boots",
+				"sclaria", "kekik", "elvish cloak", "elvish legs",
 				"shuriken", "coconut", "sapphire", "emerald", "carbuncle",			       
-				"cauliflower", "broccoli", "gold_nugget", "gold_bar",
-				"pineapple", "pina_colada", "ice_cream");
+				"cauliflower", "broccoli", "gold nugget", "gold bar",
+				"pineapple", "pina colada", "ice cream");
 
 		@Override
 		public void fire(Player player, Sentence sentence, SpeakerNPC engine) {

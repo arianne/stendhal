@@ -2,10 +2,11 @@ package games.stendhal.server.maps.quests;
 
 import games.stendhal.common.Grammar;
 import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.UnderscoreConverter;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.quests.logic.BringListOfItemsQuest;
 import games.stendhal.server.maps.quests.logic.BringListOfItemsQuestLogic;
@@ -36,9 +37,9 @@ import java.util.List;
 public class CloakCollector extends AbstractQuest implements BringListOfItemsQuest {
 
 	private static final List<String> NEEDED_CLOAKS = Arrays.asList("cloak",
-			"elf_cloak", "dwarf_cloak", "blue_elf_cloak", "stone_cloak",
-			"green_dragon_cloak", "bone_dragon_cloak", "lich_cloak",
-			"vampire_cloak", "blue_dragon_cloak");
+			"elf cloak", "dwarf cloak", "blue elf cloak", "stone cloak",
+			"green dragon cloak", "bone dragon cloak", "lich cloak",
+			"vampire cloak", "blue dragon cloak");
 
 	private static final String QUEST_SLOT = "cloaks_collector";
 
@@ -69,9 +70,10 @@ public class CloakCollector extends AbstractQuest implements BringListOfItemsQue
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+						String itemName = sentence.getTriggerExpression().getNormalized();
+						Item item = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(itemName);
 						engine.say("You haven't seen one before? Well, it's a "
-									+ StendhalRPWorld.get().getRuleManager().getEntityManager()
-											.getItem(sentence.getOriginalText()).getItemSubclass()
+									+ (item!=null? UnderscoreConverter.transform(item.getItemSubclass()): itemName)
 									+ ". So, will you find them all?");
 					}
 
@@ -177,7 +179,7 @@ public class CloakCollector extends AbstractQuest implements BringListOfItemsQue
 	public void rewardPlayer(Player player) {
 		Item blackcloak = StendhalRPWorld.get()
 				.getRuleManager()
-				.getEntityManager().getItem("black_cloak");
+				.getEntityManager().getItem("black cloak");
 		blackcloak.setBoundTo(player.getName());
 		player.equip(blackcloak, true);
 		player.addKarma(5.0);

@@ -131,7 +131,6 @@ public class StendhalRPAction {
 		return (int) (damage * (1.0 - distance / maxrangeSquared) + (damage - damage
 				* (1.0 - (minrangeSquared / maxrangeSquared)))
 				* (1.0 - distance / maxrangeSquared));
-
 	}
 
 	/**
@@ -281,15 +280,15 @@ public class StendhalRPAction {
 		if (weapons.isEmpty()) {
 			return 5;
 		}
-		int bestRate = weapons.get(0).getAttackRate();
+		int best = weapons.get(0).getAttackRate();
 		for (Item weapon : weapons) {
-			int currentRate = weapon.getAttackRate();
-			if (currentRate < bestRate) {
-				bestRate = currentRate;
+			int res = weapon.getAttackRate();
+			if (res < best) {
+				best = res;
 			}
 		}
 
-		return bestRate;
+		return best;
 	}
 
 	/**

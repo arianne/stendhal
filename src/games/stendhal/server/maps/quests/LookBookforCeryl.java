@@ -122,7 +122,7 @@ public class LookBookforCeryl extends AbstractQuest {
 			new QuestInStateCondition(QUEST_SLOT, "start"),
 			ConversationStates.ATTENDING,
 			"Oh, Ceryl's looking for that book back? My goodness! I completely forgot about it... here you go!",
-			new MultipleActions(new EquipItemAction("book_black", 1, true), new SetQuestAction(QUEST_SLOT, "jynath")));
+			new MultipleActions(new EquipItemAction("book black", 1, true), new SetQuestAction(QUEST_SLOT, "jynath")));
 
 		/** If player keep asking for book, just tell him to hurry up */
 		npc.add(
@@ -152,7 +152,7 @@ public class LookBookforCeryl extends AbstractQuest {
 
 		/** Complete the quest */
 		List<ChatAction> reward = new LinkedList<ChatAction>();
-		reward.add(new DropItemAction("book_black"));
+		reward.add(new DropItemAction("book black"));
 		reward.add(new EquipItemAction("money", 50));
 		reward.add(new IncreaseXPAction(100));
 		reward.add(new IncreaseKarmaAction(4.0));
@@ -161,7 +161,7 @@ public class LookBookforCeryl extends AbstractQuest {
 		npc.add(
 			ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
-			new AndCondition(new QuestInStateCondition(QUEST_SLOT, "jynath"), new PlayerHasItemWithHimCondition("book_black")),
+			new AndCondition(new QuestInStateCondition(QUEST_SLOT, "jynath"), new PlayerHasItemWithHimCondition("book black")),
 			ConversationStates.ATTENDING,
 			"Oh, you got the book back! Phew, thanks!",
 			new MultipleActions(reward));
@@ -174,7 +174,7 @@ public class LookBookforCeryl extends AbstractQuest {
 		npc.add(
 			ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
-			new AndCondition(new QuestInStateCondition(QUEST_SLOT, "jynath"), new NotCondition(new PlayerHasItemWithHimCondition("book_black"))),
+			new AndCondition(new QuestInStateCondition(QUEST_SLOT, "jynath"), new NotCondition(new PlayerHasItemWithHimCondition("book black"))),
 			ConversationStates.ATTENDING, 
 			"Haven't you got that #book back from #Jynath? Please go look for it, quickly!",
 			new SetQuestAction(QUEST_SLOT, null));
@@ -195,11 +195,11 @@ public class LookBookforCeryl extends AbstractQuest {
 		if (player.isQuestInState(QUEST_SLOT, "start", "jynath", "done")) {
 			res.add("QUEST_ACCEPTED");
 		}
-		if ((questState.equals("jynath") && player.isEquipped("book_black"))
+		if ((questState.equals("jynath") && player.isEquipped("book black"))
 				|| questState.equals("done")) {
 			res.add("FOUND_ITEM");
 		}
-		if (questState.equals("jynath") && !player.isEquipped("book_black")) {
+		if (questState.equals("jynath") && !player.isEquipped("book black")) {
 			res.add("LOST_ITEM");
 		}
 		if (questState.equals("done")) {

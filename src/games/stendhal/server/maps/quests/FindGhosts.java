@@ -2,7 +2,6 @@ package games.stendhal.server.maps.quests;
 
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.DecreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
@@ -12,6 +11,7 @@ import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
 import games.stendhal.server.entity.npc.condition.TriggerInListCondition;
+import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Arrays;
@@ -141,7 +141,7 @@ public class FindGhosts extends AbstractQuest {
 				@Override
 				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 					List<String> missing = missingNames(player);
-					String item = sentence.getOriginalText().toLowerCase();
+					String item = sentence.getTriggerExpression().getNormalized();
 
 					String npcQuestText = player.getQuest(QUEST_SLOT).toLowerCase();
 					String[] npcDoneText = npcQuestText.split(":");

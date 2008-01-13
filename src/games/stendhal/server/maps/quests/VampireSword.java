@@ -4,11 +4,11 @@ import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.ProducerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.ProducerBehaviour;
 import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
+import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
 
@@ -95,7 +95,7 @@ public class VampireSword extends AbstractQuest {
 				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 					npc.say("Then you need this #goblet. Take it to the Semos #Catacombs.");
 					Item emptygoblet = StendhalRPWorld.get()
-							.getRuleManager().getEntityManager().getItem("empty_goblet");
+							.getRuleManager().getEntityManager().getItem("empty goblet");
 					player.equip(emptygoblet, true);
 					player.setQuest(QUEST_SLOT, "start");
 				}
@@ -120,26 +120,26 @@ public class VampireSword extends AbstractQuest {
 
 		npc.addGoodbye("*cough* ... farewell ... *cough*");
 		npc.addReply(
-			Arrays.asList("blood", "vampirette_entrails", "bat_entrails"),
+			Arrays.asList("blood", "vampirette entrails", "bat entrails"),
 			"I need blood. I can take it from the entrails of the alive and undead. I will mix the bloods together for you and #fill your #goblet, if you let me drink some too. But I'm afraid of the powerful #lord.");
 
-		npc.addReply(Arrays.asList("lord", "vampire", "skull_ring"),
+		npc.addReply(Arrays.asList("lord", "vampire", "skull ring"),
 			"The Vampire Lord rules these Catacombs! And I'm afraid of him. I can only help you if you kill him and bring me his skull ring with the #goblet.");
 
 		npc.addReply(
-			Arrays.asList("empty_goblet", "goblet"),
+			Arrays.asList("empty goblet", "goblet"),
 			"Only a powerful talisman like this cauldron or a special goblet should contain blood.");
 
 		Map<String, Integer> requiredResources = new TreeMap<String, Integer>();	// use sorted TreeMap instead of HashMap
-		requiredResources.put("vampirette_entrails", 7);
-		requiredResources.put("bat_entrails", 7);
-		requiredResources.put("skull_ring", 1);
-		requiredResources.put("empty_goblet", 1);
+		requiredResources.put("vampirette entrails", 7);
+		requiredResources.put("bat entrails", 7);
+		requiredResources.put("skull ring", 1);
+		requiredResources.put("empty goblet", 1);
 		ProducerBehaviour behaviour = new ProducerBehaviour(
 				"sicky_fill_goblet", "fill", "goblet", requiredResources,
 				5 * 60, true);
 		new ProducerAdder().addProducer(npc, behaviour,
-			"Please don't try to kill me...I'm just a sick old #vampire. Do you have any #blood I could drink? If you have an #empty_goblet I will #fill it with blood for you in my cauldron.");
+			"Please don't try to kill me...I'm just a sick old #vampire. Do you have any #blood I could drink? If you have an #empty goblet I will #fill it with blood for you in my cauldron.");
 
 	}
 
@@ -181,7 +181,7 @@ public class VampireSword extends AbstractQuest {
 					return player.hasQuest(QUEST_SLOT)
 							&& player.getQuest(QUEST_SLOT).equals("start")
 							&& !player.isEquipped("goblet")
-							&& player.isEquipped("empty_goblet");
+							&& player.isEquipped("empty goblet");
 				}
 			}, ConversationStates.IDLE, null, new SpeakerNPC.ChatAction() {
 				@Override
@@ -197,7 +197,7 @@ public class VampireSword extends AbstractQuest {
 					return player.hasQuest(QUEST_SLOT)
 							&& player.getQuest(QUEST_SLOT).equals("start")
 							&& !player.isEquipped("goblet")
-							&& !player.isEquipped("empty_goblet");
+							&& !player.isEquipped("empty goblet");
 				}
 			}, ConversationStates.QUESTION_1, 
 			"I hope you didn't lose your goblet! Do you need another?", null);
@@ -209,7 +209,7 @@ public class VampireSword extends AbstractQuest {
 				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 					npc.say("You stupid ..... Be more careful next time. Bye!");
 					Item emptygoblet = StendhalRPWorld.get()
-							.getRuleManager().getEntityManager().getItem("empty_goblet");
+							.getRuleManager().getEntityManager().getItem("empty goblet");
 					player.equip(emptygoblet, true);
 				}
 			});
@@ -241,7 +241,7 @@ public class VampireSword extends AbstractQuest {
 					player.addXP(5000);
 					Item vampireSword = StendhalRPWorld.get()
 							.getRuleManager().getEntityManager().getItem(
-									"vampire_sword");
+									"vampire sword");
 					vampireSword.setBoundTo(player.getName());
 					player.equip(vampireSword, true);
 					player.setQuest(QUEST_SLOT, "done");

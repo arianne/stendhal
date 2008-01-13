@@ -5,7 +5,6 @@ import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.EquipItemAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
@@ -19,6 +18,7 @@ import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
+import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Arrays;
@@ -137,7 +137,7 @@ public class ElfPrincess extends AbstractQuest {
 						player.addXP(5000);
 						StackableItem goldbars = (StackableItem) StendhalRPWorld
 								.get().getRuleManager().getEntityManager()
-								.getItem("gold_bar");
+								.getItem("gold bar");
 						int goldamount;
 						goldamount = 5 * Rand.roll1D6();
 						goldbars.setQuantity(goldamount);

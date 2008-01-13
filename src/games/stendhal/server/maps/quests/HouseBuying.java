@@ -8,8 +8,8 @@ import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Arrays;
@@ -151,7 +151,7 @@ public class HouseBuying extends AbstractQuest {
 									String postmanslot = postman.getQuest(QUEST_SLOT);
 									String[] boughthouses = postmanslot.split(";");
 									List<String> doneList = Arrays.asList(boughthouses);
-									String item = sentence.getOriginalText();
+									String item = sentence.getTriggerExpression().getNormalized();
 									// now check if the house they said is free
 									if (!doneList.contains(item)) {
 										// it's available, so take money
@@ -355,7 +355,7 @@ public class HouseBuying extends AbstractQuest {
 										String postmanslot = postman.getQuest(POSTMAN_STORAGE_SLOT_2);
 										String[] boughthouses = postmanslot.split(";");
 										List<String> doneList = Arrays.asList(boughthouses);
-										String item = sentence.getOriginalText();
+										String item = sentence.getTriggerExpression().getNormalized();
 										// now check if the house they said is free
 										if (!doneList.contains(item)) {
 											// it's available, so take money

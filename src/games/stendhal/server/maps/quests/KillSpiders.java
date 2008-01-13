@@ -4,7 +4,6 @@ import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPC.ChatAction;
 import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
@@ -13,6 +12,7 @@ import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.action.StartRecordingKillsAction;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
+import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.LinkedList;
@@ -82,7 +82,7 @@ public class KillSpiders extends AbstractQuest {
 				});
 
 		List<ChatAction> actions = new LinkedList<ChatAction>();
-		actions.add(new StartRecordingKillsAction("spider", "poisonous_spider", "giant_spider"));
+		actions.add(new StartRecordingKillsAction("spider", "poisonous spider", "giant spider"));
 		actions.add(new IncreaseKarmaAction(5.0));
 		actions.add(new SetQuestAction(QUEST_SLOT, "start"));
 		
@@ -117,12 +117,12 @@ public class KillSpiders extends AbstractQuest {
 					@Override
 					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						if (player.hasKilled("spider")
-								&& player.hasKilled("poisonous_spider")
-								&& player.hasKilled("giant_spider")) {
+								&& player.hasKilled("poisonous spider")
+								&& player.hasKilled("giant spider")) {
 							engine.say("Oh thank you my friend. Here you have something special, I got it from a Magican. Who he was I do not know. What the egg's good for, I do not know. I only know, it could be useful for you.");
 							Item mythegg = StendhalRPWorld.get()
 									.getRuleManager().getEntityManager()
-									.getItem("mythical_egg");
+									.getItem("mythical egg");
 							mythegg.setBoundTo(player.getName());
 							player.equip(mythegg, true);
 							player.addKarma(5.0);

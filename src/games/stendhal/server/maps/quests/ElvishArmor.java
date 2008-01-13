@@ -3,8 +3,8 @@ package games.stendhal.server.maps.quests;
 import games.stendhal.common.Grammar;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Arrays;
@@ -31,8 +31,8 @@ import java.util.List;
 public class ElvishArmor extends AbstractQuest {
 
 	private static final List<String> NEEDEDITEMS = Arrays.asList(
-			"elvish_armor", "elvish_legs", "elvish_boots", "elvish_sword",
-			"elvish_cloak", "elvish_shield");
+			"elvish armor", "elvish legs", "elvish boots", "elvish sword",
+			"elvish cloak", "elvish shield");
 
 	/**
 	 * Returns a list of the names of all items that the given player still has
@@ -173,7 +173,7 @@ public class ElvishArmor extends AbstractQuest {
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-						String item = sentence.getOriginalText();
+						String item = sentence.getTriggerExpression().getNormalized();
 						List<String> missing = missingitems(player, false);
 						if (missing.contains(item)) {
 							if (player.drop(item)) {
@@ -216,7 +216,7 @@ public class ElvishArmor extends AbstractQuest {
 				new SpeakerNPC.ChatCondition() {
 					@Override
 					public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
-						return !NEEDEDITEMS.contains(sentence.getOriginalText());
+						return !NEEDEDITEMS.contains(sentence.getTriggerExpression().getNormalized());
 					}
 				}, ConversationStates.QUESTION_1,
 				"I don't think that's a piece of elvish armor...", null);

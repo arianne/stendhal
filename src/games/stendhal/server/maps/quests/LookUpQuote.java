@@ -5,8 +5,9 @@ import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.parser.ConversationParser;
+import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.ArrayList;
@@ -149,11 +150,11 @@ public class LookUpQuote extends AbstractQuest {
 				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 					String name = player.getQuest(QUEST_SLOT);
 					String quote = quotes.get(name);
-					if (sentence.getOriginalText().equalsIgnoreCase(quote)) {
+					if (sentence.equalsNormalized(ConversationParser.parse(quote))) {
 						npc.say("Oh right, that's it! How could I forget this? Here, take this handy fishing rod as an acknowledgement of my gratitude!");
 						Item fishingRod = StendhalRPWorld.get()
 								.getRuleManager().getEntityManager()
-								.getItem("fishing_rod");
+								.getItem("fishing rod");
 						fishingRod.setBoundTo(player.getName());
 						player.equip(fishingRod, true);
 						player.addXP(750);

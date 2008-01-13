@@ -5,10 +5,10 @@ import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
 import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
+import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
 
@@ -180,33 +180,33 @@ public class StuffForVulcanus extends AbstractQuest {
 					}
 
 					if (!missingSomething && neededGoldBars > 0) {
-						if (!player.isEquipped("gold_bar", neededGoldBars)) {
-							int amount = player.getNumberOfEquipped("gold_bar");
+						if (!player.isEquipped("gold bar", neededGoldBars)) {
+							int amount = player.getNumberOfEquipped("gold bar");
 							if (amount > 0) {
-								player.drop("gold_bar", amount);
+								player.drop("gold bar", amount);
 								neededGoldBars -= amount;
 							}
 							engine.say("I must pay a bill to spirits in order to cast the enchantment over the sword. I need "
 									+ Grammar.quantityplnoun(neededGoldBars, "gold bar") + " more.");
 							missingSomething = true;
 						} else {
-							player.drop("gold_bar", neededGoldBars);
+							player.drop("gold bar", neededGoldBars);
 							neededGoldBars = 0;
 						}
 					}
 
 					if (!missingSomething && neededGiantHearts > 0) {
-						if (!player.isEquipped("giant_heart", neededGiantHearts)) {
-							int amount = player.getNumberOfEquipped("giant_heart");
+						if (!player.isEquipped("giant heart", neededGiantHearts)) {
+							int amount = player.getNumberOfEquipped("giant heart");
 							if (amount > 0) {
-								player.drop("giant_heart", amount);
+								player.drop("giant heart", amount);
 								neededGiantHearts -= amount;
 							}
 							engine.say("It is the base element of the enchantment. I need "
 								+ Grammar.quantityplnoun(neededGiantHearts, "giant heart") + " still.");
 							missingSomething = true;
 						} else {
-							player.drop("giant_heart", neededGiantHearts);
+							player.drop("giant heart", neededGiantHearts);
 							neededGiantHearts = 0;
 						}
 					}
@@ -262,7 +262,7 @@ public class StuffForVulcanus extends AbstractQuest {
 					engine.say("I have finished forging the mighty immortal sword. You deserve this. Now I'm going to have a long rest, so, goodbye!");
 					player.addXP(15000);
 					Item magicSword = StendhalRPWorld.get()
-						.getRuleManager().getEntityManager().getItem("immortal_sword");
+						.getRuleManager().getEntityManager().getItem("immortal sword");
 					magicSword.setBoundTo(player.getName());
 					player.equip(magicSword, true);
 					player.notifyWorldAboutChanges();

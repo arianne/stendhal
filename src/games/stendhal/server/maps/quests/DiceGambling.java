@@ -8,11 +8,11 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.CroupierNPC;
 import games.stendhal.server.entity.npc.NPCList;
-import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPC.ChatAction;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
+import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Arrays;
@@ -48,26 +48,26 @@ public class DiceGambling extends AbstractQuest {
 				// Margaret will accept it."), // 7
 				new Pair<String, String>("wine",
 						"You have won this delicious bottle of wine!"), // 8
-				new Pair<String, String>("studded_shield",
+				new Pair<String, String>("studded shield",
 						"Take this simple shield as a reward."), // 9
-				new Pair<String, String>("chain_legs",
+				new Pair<String, String>("chain legs",
 						"I hope you have a use for these chain legs."), // 10
 				new Pair<String, String>("antidote",
 						"This antidote will serve you well when you fight against poisonous creatures."), // 11
 				new Pair<String, String>("sandwich",
 						"You have won a tasty sandwich!"), // 12
-				new Pair<String, String>("chain_helmet",
+				new Pair<String, String>("chain helmet",
 						"Your prize is this robust chain helmet."), // 13
-				new Pair<String, String>("golden_hammer",
+				new Pair<String, String>("golden hammer",
 						"Take this valuable golden hammer!"), // 14
 				new Pair<String, String>(
-						"greater_potion",
+						"greater potion",
 						"You have won a greater potion, but with your luck you'll probably never have to use it!"), // 15
-				new Pair<String, String>("pauldroned_iron_cuirass",
+				new Pair<String, String>("pauldroned iron cuirass",
 						"You have won this very rare iron cuirass with pauldrons!"), // 16
-				new Pair<String, String>("crown_shield",
+				new Pair<String, String>("crown shield",
 						"You're so lucky! Here's your prize: an invaluable crown shield!"), // 17
-				new Pair<String, String>("golden_legs",
+				new Pair<String, String>("golden legs",
 						"You have hit the JACKPOT! Golden legs!") // 18
 		);
 

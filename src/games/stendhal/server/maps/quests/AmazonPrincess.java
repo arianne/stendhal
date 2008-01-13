@@ -5,7 +5,6 @@ import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
@@ -13,6 +12,7 @@ import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotInStateCondition;
+import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
 
@@ -52,7 +52,7 @@ public class AmazonPrincess extends AbstractQuest {
 
 	// The delay between repeating quests is 60 minutes
 	private static final int REQUIRED_MINUTES = 60;
-	private static final List<String> triggers = Arrays.asList("drink", "pina_colada", "cocktail", "cheers",	"pina");
+	private static final List<String> triggers = Arrays.asList("drink", "pina colada", "cocktail", "cheers", "pina");
 
 	@Override
 	public void init(String name) {
@@ -133,18 +133,18 @@ public class AmazonPrincess extends AbstractQuest {
 		SpeakerNPC npc = npcs.get("Princess Esclara");
 		npc.add(
 			ConversationStates.ATTENDING, triggers,
-			new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"), new PlayerHasItemWithHimCondition("pina_colada")),
+			new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"), new PlayerHasItemWithHimCondition("pina colada")),
 			ConversationStates.ATTENDING, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
 				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-					player.drop("pina_colada");
+					player.drop("pina colada");
 					player.addKarma(15);
 					StackableItem fishpies = (StackableItem) StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
-							"fish_pie");
+							"fish pie");
 					int pieamount;
 					// make it from 2 to 7 just to avoid dealing with
-					// grammear of pie/pies
+					// grammar of pie/pies
 					pieamount = Rand.roll1D6() + 1;
 					fishpies.setQuantity(pieamount);
 					player.equip(fishpies, true);
@@ -159,7 +159,7 @@ public class AmazonPrincess extends AbstractQuest {
 
 		npc.add(
 			ConversationStates.ATTENDING, triggers,
-			new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"), new NotCondition(new PlayerHasItemWithHimCondition("pina_colada"))),
+			new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"), new NotCondition(new PlayerHasItemWithHimCondition("pina colada"))),
 			ConversationStates.ATTENDING,
 			"You don't have any drink I like yet. Go, and you better get an exotic one!",
 			null);

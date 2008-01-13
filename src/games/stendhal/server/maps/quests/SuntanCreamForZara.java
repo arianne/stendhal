@@ -4,11 +4,11 @@ import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
+import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.ArrayList;
@@ -53,7 +53,7 @@ public class SuntanCreamForZara extends AbstractQuest {
 			return res;
 		}
 		res.add("GET_SUNTAN_CREAM");
-		if (player.isEquipped("suntan_cream")
+		if (player.isEquipped("suntan cream")
 				|| player.isQuestCompleted(QUEST_SLOT)) {
 			res.add("GOT_SUNTAN_CREAM");
 		}
@@ -77,11 +77,11 @@ public class SuntanCreamForZara extends AbstractQuest {
 							npc.say("I don't have a new task for you. But thank you for the suntan cream. I feel my skin is getting better already!");
 							npc.setCurrentState(ConversationStates.ATTENDING);
 						} else {
-							npc.say("Did you forget that you promised me to ask the #lifeguards for #suntan_cream?");
+							npc.say("Did you forget that you promised me to ask the #lifeguards for #suntan cream?");
 							npc.setCurrentState(ConversationStates.ATTENDING);
 						}
 					} else {
-						npc.say("I fell asleep in the sun and now my skin is burnt. Can you bring me the magic #suntan_cream that the #lifeguards produce?");
+						npc.say("I fell asleep in the sun and now my skin is burnt. Can you bring me the magic #suntan cream that the #lifeguards produce?");
 					}
 				}
 			});
@@ -100,7 +100,7 @@ public class SuntanCreamForZara extends AbstractQuest {
 
 		zara.add(
 			ConversationStates.QUEST_OFFERED,
-			Arrays.asList("suntan_cream", "suntan", "cream"),
+			Arrays.asList("suntan cream", "suntan", "cream"),
 			null,
 			ConversationStates.QUEST_OFFERED,
 			"The #lifeguards make a great cream to protect from the sun and to heal sunburns at the same time. Now, will you get it for me?",
@@ -115,7 +115,7 @@ public class SuntanCreamForZara extends AbstractQuest {
 			null);
 
 		zara.addReply(
-			Arrays.asList("suntan_cream", "suntan", "cream"),
+			Arrays.asList("suntan cream", "suntan", "cream"),
 			"The #lifeguards make a great cream to protect from the sun and to heal sunburns at the same time.");
 
 		zara.addReply(
@@ -134,7 +134,7 @@ public class SuntanCreamForZara extends AbstractQuest {
 			new SpeakerNPC.ChatAction() {
 				@Override
 				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-					if (player.isEquipped("suntan_cream")) {
+					if (player.isEquipped("suntan cream")) {
 						npc.say("Great! You got the suntan cream! Is it for me?");
 					} else {
 						npc.say("I know that the #suntan #cream is hard to get, but I hope that you didn't forget my painful problem...");
@@ -148,16 +148,16 @@ public class SuntanCreamForZara extends AbstractQuest {
 			ConversationPhrases.YES_MESSAGES,
 			// make sure the player isn't cheating by putting the
 			// helmet away and then saying "yes"
-			new PlayerHasItemWithHimCondition("suntan_cream"),
+			new PlayerHasItemWithHimCondition("suntan cream"),
 			ConversationStates.ATTENDING,
 			"Thank you! I feel much better immediately! Here, take this key to my row house in Ados. Feel at home as long as I'm still here!",
 			new SpeakerNPC.ChatAction() {
 				@Override
 				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-					player.drop("suntan_cream");
+					player.drop("suntan cream");
 					Item zaraKey = StendhalRPWorld.get()
 							.getRuleManager().getEntityManager()
-							.getItem("small_key");
+							.getItem("small key");
 					zaraKey.setBoundTo(player.getName());
 					player.equip(zaraKey, true);
 					player.addXP(1000);

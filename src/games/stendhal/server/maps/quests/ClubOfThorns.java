@@ -68,8 +68,8 @@ public class ClubOfThorns extends AbstractQuest {
 
 
 		List<ChatAction> start = new LinkedList<ChatAction>();
-		start.add(new EquipItemAction("kotoch_prison_key", 1, true));
-		start.add(new StartRecordingKillsAction("mountain_orc_chief"));
+		start.add(new EquipItemAction("kotoch prison key", 1, true));
+		start.add(new StartRecordingKillsAction("mountain orc chief"));
 		start.add(new IncreaseKarmaAction(6.0));
 		start.add(new SetQuestAction(QUEST_SLOT, "start"));
 
@@ -97,7 +97,7 @@ public class ClubOfThorns extends AbstractQuest {
 		SpeakerNPC npc = npcs.get("Orc Saman");
 
 		List<ChatAction> reward = new LinkedList<ChatAction>();
-		reward.add(new EquipItemAction("club_of_thorns", 1, true));
+		reward.add(new EquipItemAction("club of thorns", 1, true));
 		reward.add(new IncreaseKarmaAction(3.0));
 		reward.add(new IncreaseXPAction(1000));
 		reward.add(new SetQuestAction(QUEST_SLOT, "done"));
@@ -105,13 +105,13 @@ public class ClubOfThorns extends AbstractQuest {
 		// the player returns after having started the quest.
 		// Saman checks if kill was made
 		npc.add(ConversationStates.ATTENDING, "kill",
-			new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"), new KilledCondition("mountain_orc_chief")),
+			new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"), new KilledCondition("mountain orc chief")),
 			ConversationStates.ATTENDING,
 			"Revenge! Good! Take club of hooman blud.",
 			new MultipleActions(reward));
 
 		npc.add(ConversationStates.ATTENDING, "kill",
-			new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"), new NotCondition(new KilledCondition("mountain_orc_chief"))),
+			new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"), new NotCondition(new KilledCondition("mountain orc chief"))),
 			ConversationStates.ATTENDING,
 			"kill Mountain Orc Chief! Kotoch orcs nid revenge!",
 			null);

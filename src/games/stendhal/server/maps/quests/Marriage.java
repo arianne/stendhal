@@ -9,11 +9,11 @@ import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
-import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
+import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.Area;
 import games.stendhal.server.util.TimeUtil;
@@ -134,7 +134,7 @@ public class Marriage extends AbstractQuest {
 					public void fire(Player player, Sentence sentence,
 							SpeakerNPC npc) {
 						// find out whom the player wants to marry.
-						String brideName = sentence.getObjectName();
+						String brideName = sentence.getSubjectName();
 
 						if (brideName == null) {
 							npc.say("You have to tell me who you want to marry.");
@@ -227,7 +227,7 @@ public class Marriage extends AbstractQuest {
 
 	private void giveInvite(Player player) {
 		StackableItem invite = (StackableItem) StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
-				"invitation_scroll");
+				"invitation scroll");
 		invite.setQuantity(4);
 		// location of church
 		invite.setInfoString("int_fado_church 12 20");
@@ -277,7 +277,7 @@ public class Marriage extends AbstractQuest {
 							npc.setCurrentState(ConversationStates.INFORMATION_2);
 						} else {
 							// says you'll need a ring
-							npc.say("I see you're on a life-long quest to get married! I find marriage more of a task, ha ha! Anyway, you'll need a #wedding_ring.");
+							npc.say("I see you're on a life-long quest to get married! I find marriage more of a task, ha ha! Anyway, you'll need a #wedding ring.");
 						}
 					}
 				});
@@ -330,7 +330,7 @@ public class Marriage extends AbstractQuest {
 						npc.say("I'm pleased to say, the wedding ring for your fiancee is finished! Make sure one is made for you, too! *psst* just a little #hint for the wedding day ...");
 						player.addXP(500);
 						Item weddingRing = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
-								"wedding_ring");
+								"wedding ring");
 						weddingRing.setBoundTo(player.getName());
 						player.equip(weddingRing, true);
 						player.setQuest(QUEST_SLOT, "engaged_with_ring");
@@ -340,7 +340,7 @@ public class Marriage extends AbstractQuest {
 				});
 
 		npc.add(ConversationStates.INFORMATION_1,
-				Arrays.asList("wedding_ring", "wedding", "ring"),
+				Arrays.asList("wedding ring", "wedding", "ring"),
 				null,
 				ConversationStates.QUEST_ITEM_QUESTION,
 				"I need "
@@ -359,9 +359,9 @@ public class Marriage extends AbstractQuest {
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-						if ((player.isEquipped("gold_bar", REQUIRED_GOLD))
+						if ((player.isEquipped("gold bar", REQUIRED_GOLD))
 								&& (player.isEquipped("money", REQUIRED_MONEY))) {
-							player.drop("gold_bar", REQUIRED_GOLD);
+							player.drop("gold bar", REQUIRED_GOLD);
 							player.drop("money", REQUIRED_MONEY);
 							npc.say("Good, come back in "
 									+ REQUIRED_MINUTES
@@ -425,7 +425,7 @@ public class Marriage extends AbstractQuest {
 							return player.hasQuest(QUEST_SLOT)
 									&& player.getQuest(QUEST_SLOT).equals(
 											"engaged_with_ring")
-									&& player.isEquipped("wedding_ring");
+									&& player.isEquipped("wedding ring");
 						}
 					},
 					// TODO: make sure the pair getting married are engaged to each
@@ -438,7 +438,7 @@ public class Marriage extends AbstractQuest {
 						public void fire(Player player, Sentence sentence,
 								SpeakerNPC npc) {
 							// find out whom the player wants to marry.
-							String brideName = sentence.getObjectName();
+							String brideName = sentence.getSubjectName();
 	
 							if (brideName == null) {
 								npc.say("You have to tell me who you want to marry.");
@@ -499,7 +499,7 @@ public class Marriage extends AbstractQuest {
 								SpeakerNPC npc) {
 							return (!player.hasQuest(QUEST_SLOT)
 									|| (player.hasQuest(QUEST_SLOT) && player.getQuest(QUEST_SLOT).equals("engaged")) 
-									|| (player.hasQuest(QUEST_SLOT)	&& player.getQuest(QUEST_SLOT).equals("engaged_with_ring") && !player.isEquipped("wedding_ring")));
+									|| (player.hasQuest(QUEST_SLOT)	&& player.getQuest(QUEST_SLOT).equals("engaged_with_ring") && !player.isEquipped("wedding ring")));
 						}
 					},
 					ConversationStates.ATTENDING,
@@ -544,7 +544,7 @@ public class Marriage extends AbstractQuest {
 					@Override
 					public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
 						return (player.isQuestCompleted(QUEST_SLOT))
-								&& player.isEquipped("wedding_ring");
+								&& player.isEquipped("wedding ring");
 					}
 				}, 
 				ConversationStates.QUESTION_3,
@@ -559,7 +559,7 @@ public class Marriage extends AbstractQuest {
 								SpeakerNPC npc) {
 							return (player.hasQuest(QUEST_SLOT) && player.getQuest(
 									QUEST_SLOT).equals("just_married"))
-									&& player.isEquipped("wedding_ring");
+									&& player.isEquipped("wedding ring");
 						}
 					},
 					ConversationStates.QUESTION_3,
@@ -584,7 +584,7 @@ public class Marriage extends AbstractQuest {
 					@Override
 					public boolean fire(Player player, Sentence sentence,
 							SpeakerNPC npc) {
-						return !player.isEquipped("wedding_ring");
+						return !player.isEquipped("wedding ring");
 					}
 				},
 				ConversationStates.ATTENDING,
@@ -620,8 +620,8 @@ public class Marriage extends AbstractQuest {
 								&& wife.hasQuest(QUEST_SLOT)
 								&& wife.getQuest(SPOUSE_QUEST_SLOT).equals(
 										husband.getName())) {
-							if (wife.isEquipped("wedding_ring")) {
-								wife.drop("wedding_ring");
+							if (wife.isEquipped("wedding ring")) {
+								wife.drop("wedding ring");
 							}
 							int xp = (int) (wife.getXP() * 0.03);
 							wife.subXP(xp);
@@ -643,7 +643,7 @@ public class Marriage extends AbstractQuest {
 						}
 						int xp = (int) (husband.getXP() * 0.03);
 						husband.subXP(xp);
-						husband.drop("wedding_ring");
+						husband.drop("wedding ring");
 						husband.removeQuest(QUEST_SLOT);
 						husband.removeQuest(SPOUSE_QUEST_SLOT);
 						npc.say("What a pity...what a pity...and you two were married so happily, too...");
@@ -681,7 +681,7 @@ public class Marriage extends AbstractQuest {
 				&& !bride.getQuest(QUEST_SLOT).equals("engaged_with_ring")) {
 			priest.say(bride.getName()
 					+ " hasn't been to Ognir to get a ring cast for you!");
-		} else if (!bride.isEquipped("wedding_ring")) {
+		} else if (!bride.isEquipped("wedding ring")) {
 			priest.say(bride.getName()
 					+ " hasn't got a wedding ring to give you.");
 		} else {
@@ -723,9 +723,9 @@ public class Marriage extends AbstractQuest {
 
 	private void giveRing(Player player, Player partner) {
 		// players bring their own golden rings
-		player.drop("wedding_ring");
+		player.drop("wedding ring");
 		Item ring = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
-				"wedding_ring");
+				"wedding ring");
 		ring.setInfoString(partner.getName());
 		ring.setBoundTo(player.getName());
 		player.equip(ring, true);
@@ -771,14 +771,14 @@ public class Marriage extends AbstractQuest {
 							// parameter for quantity and a parameter for
 							// location so i gave up.
 							StackableItem invite = (StackableItem) StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
-									"invitation_scroll");
+									"invitation scroll");
 							invite.setQuantity(1);
 							// interior of hotel
 							invite.setInfoString("int_fado_hotel_0 4 40");
 							player.equip(invite, true);
 							StendhalRPZone zone = StendhalRPWorld.get().getZone(
 									"int_fado_lovers_room_"
-											+ sentence.getOriginalText());
+											+ sentence.getTriggerExpression().getNormalized());
 							player.teleport(zone, 5, 5, Direction.DOWN, player);
 							player.notifyWorldAboutChanges();
 							npc.setCurrentState(ConversationStates.IDLE);

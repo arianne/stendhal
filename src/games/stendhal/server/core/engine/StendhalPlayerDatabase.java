@@ -82,7 +82,7 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements
 
 	public void clearOnlineStatus() {
 		try {
-			Transaction transaction =  getTransaction();
+			Transaction transaction = getTransaction();
 			Connection connection = transaction.getConnection();
 			Statement stmt = connection.createStatement();
 			String query = "UPDATE character_stats SET online=0";

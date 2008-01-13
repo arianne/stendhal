@@ -4,12 +4,12 @@ import games.stendhal.common.Grammar;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPC.ChatAction;
 import games.stendhal.server.entity.npc.action.DecreaseKarmaAction;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
+import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Arrays;
@@ -46,7 +46,7 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 	/**
 	 * required items for the quest.
 	 */
-	private static final String NEEDED_ITEMS = "gold_bar=2;emerald=4;sapphire=3;carbuncle=2;diamond=2;obsidian=1;";
+	private static final String NEEDED_ITEMS = "gold bar=2;emerald=4;sapphire=3;carbuncle=2;diamond=2;obsidian=1;";
 
 	/**
 	 * Name of the slot used for this quest.
@@ -160,7 +160,7 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 			@Override
 			public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 				List<String> missingItems = getMissingItems(player, false);
-				String item = sentence.getOriginalText();
+				String item = sentence.getTriggerExpression().getNormalized();
 				int missingCount = getMissingCount(item, missingItems);
 				if (missingCount > 0) {
 					if (dropItems(player, item, missingCount)) {

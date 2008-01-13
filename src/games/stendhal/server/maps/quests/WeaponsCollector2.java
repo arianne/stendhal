@@ -5,13 +5,13 @@ import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPC.ChatAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
+import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Arrays;
@@ -45,9 +45,9 @@ public class WeaponsCollector2 extends AbstractQuest {
 	private static final String QUEST_SLOT = "weapons_collector2";
 
 	private static final List<String> neededWeapons = Arrays.asList(
-			"morning_star", // fairly rare from glow_monster in haunted house
+			"morning star", // fairly rare from glow_monster in haunted house
 			"staff", // rare from monk on mountain
-			"great_sword" // rare from devil_queen on mountain
+			"great sword" // rare from devil_queen on mountain
 	);
 
 	@Override
@@ -69,7 +69,7 @@ public class WeaponsCollector2 extends AbstractQuest {
 
 	/**
 	 * Returns a list of the names of all weapons that the given player still
-	 * has to bring to fulfil the quest.
+	 * has to bring to fulfill the quest.
 	 * 
 	 * @param player
 	 *            The player doing the quest
@@ -201,7 +201,7 @@ public class WeaponsCollector2 extends AbstractQuest {
 					@Override
 					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						List<String> missing = missingWeapons(player, false);
-						String item = sentence.getOriginalText();
+						String item = sentence.getTriggerExpression().getNormalized();
 						if (missing.contains(item)) {
 							if (player.drop(item)) {
 								// register weapon as done
@@ -215,11 +215,11 @@ public class WeaponsCollector2 extends AbstractQuest {
 									engine.say("Thank you very much! Do you have anything more for me?");
 								} else {
 									Item lhandsword = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
-											"l_hand_sword");
+											"l hand sword");
 									lhandsword.setBoundTo(player.getName());
 									player.equip(lhandsword, true);
 									Item rhandsword = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
-											"r_hand_sword");
+											"r hand sword");
 									rhandsword.setBoundTo(player.getName());
 									player.equip(rhandsword, true);
 									player.addXP(3000);

@@ -5,7 +5,6 @@ import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
@@ -14,6 +13,7 @@ import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
 import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
 import games.stendhal.server.entity.npc.condition.TriggerInListCondition;
+import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
 
@@ -52,7 +52,7 @@ public class Soup extends AbstractQuest {
 
 	/**
 	 * Returns a list of the names of all food that the given player still has
-	 * to bring to fulfil the quest.
+	 * to bring to fulfill the quest.
 	 * 
 	 * @param player
 	 *            The player doing the quest
@@ -297,7 +297,7 @@ public class Soup extends AbstractQuest {
 			new SpeakerNPC.ChatAction() {
 				@Override
 				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-					String food = sentence.getOriginalText();
+					String food = sentence.getTriggerExpression().getNormalized();
 					List<String> missing = missingFood(player, false);
 					if (missing.contains(food)) {
 						if (player.drop(food)) {

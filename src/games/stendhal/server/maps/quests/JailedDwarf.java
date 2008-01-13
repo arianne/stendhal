@@ -2,8 +2,8 @@ package games.stendhal.server.maps.quests;
 
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
 /**
@@ -37,7 +37,7 @@ public class JailedDwarf extends AbstractQuest {
 					@Override
 					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						if (!player.isQuestCompleted(QUEST_SLOT)) {
-							if (player.isEquipped("kanmararn_prison_key")) {
+							if (player.isEquipped("kanmararn prison key")) {
 								player.setQuest(QUEST_SLOT, "done");
 								player.addXP(2000);
 								engine.say("You got the key to unlock me! *mumble*  Errrr ... it doesn't look too safe out there for me ... I think I'll just stay here ... perhaps someone could #offer me some good equipment ... ");

@@ -3,13 +3,13 @@ package games.stendhal.server.maps.quests;
 import games.stendhal.common.Grammar;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
+import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Arrays;
@@ -141,7 +141,7 @@ public class FishermansLicenseCollector extends AbstractQuest {
 				@Override
 				public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 					List<String> missing = missingFish(player, false);
-					String item = sentence.getOriginalText();
+					String item = sentence.getTriggerExpression().getNormalized();
 					if (missing.contains(item)) {
 						if (player.drop(item)) {
 							// register fish as done

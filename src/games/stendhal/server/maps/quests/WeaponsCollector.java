@@ -44,8 +44,8 @@ public class WeaponsCollector extends AbstractQuest implements
 		BringListOfItemsQuest {
 
 	private static final List<String> neededWeapons = Arrays.asList("bardiche",
-			"battle_axe", "broadsword", "flail", "halberd", "katana",
-			"golden_mace", "scimitar", "scythe", "war_hammer");
+			"battle axe", "broadsword", "flail", "halberd", "katana",
+			"golden mace", "scimitar", "scythe", "war hammer");
 
 	private static final String QUEST_SLOT = "weapons_collector";
 
@@ -155,7 +155,7 @@ public class WeaponsCollector extends AbstractQuest implements
 
 	public void rewardPlayer(Player player) {
 		RuleManager ruleManager = StendhalRPWorld.get().getRuleManager();
-		Item iceSword = ruleManager.getEntityManager().getItem("ice_sword");
+		Item iceSword = ruleManager.getEntityManager().getItem("ice sword");
 		iceSword.setBoundTo(player.getName());
 		player.equip(iceSword, true);
 		player.addXP(1000);

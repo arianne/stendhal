@@ -7,10 +7,10 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.scroll.RainbowBeansScroll;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.condition.AlwaysTrueCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
+import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
 
@@ -67,7 +67,7 @@ public class RainbowBeans extends AbstractQuest {
 	public void init(String name) {
 		super.init(name, QUEST_SLOT);
 		if (scroll == null) {
-			scroll = (RainbowBeansScroll) StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("rainbow_beans");
+			scroll = (RainbowBeansScroll) StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("rainbow beans");
 		}
 
 		/* login notifier to teleport away players logging into the dream world.
@@ -193,7 +193,7 @@ public class RainbowBeans extends AbstractQuest {
 						player.setQuest(QUEST_SLOT, "done;"
 								+ System.currentTimeMillis());
 						Item rainbowBeans = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
-								"rainbow_beans");
+								"rainbow beans");
 						player.equip(rainbowBeans, true);
 					} else {
 						npc.say("Scammer! You don't have the cash.");
@@ -216,7 +216,7 @@ public class RainbowBeans extends AbstractQuest {
 		// are trying to get him to deal again)
 		// Use AlwaysTrueCondition to override deal as defined in addOffer().
 		npc.add(ConversationStates.ATTENDING,
-			Arrays.asList("deal", "beans", "rainbow_beans", "yes"),
+			Arrays.asList("deal", "beans", "rainbow beans", "yes"),
 			new AlwaysTrueCondition(),
 			ConversationStates.ATTENDING, null,
 			new SpeakerNPC.ChatAction() {

@@ -24,10 +24,10 @@ public class CargoWorkerNPC extends SpeakerNPCFactory {
 		Map<String, Integer> offerings = new HashMap<String, Integer>();
 		offerings.put("poison", 40);
 		offerings.put("toadstool", 60);
-		offerings.put("greater_poison", 60);
-		offerings.put("deadly_poison", 100);
-		offerings.put("mega_poison", 500);
-		offerings.put("disease_poison", 2000);
+		offerings.put("greater poison", 60);
+		offerings.put("deadly poison", 100);
+		offerings.put("mega poison", 500);
+		offerings.put("disease poison", 2000);
 		new BuyerAdder().add(npc, new BuyerBehaviour(offerings), true);
 
 		npc.addGoodbye("Please kill some rats on your way up!");

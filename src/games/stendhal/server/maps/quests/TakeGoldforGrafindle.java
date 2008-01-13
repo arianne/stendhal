@@ -5,11 +5,11 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
+import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.ArrayList;
@@ -57,13 +57,13 @@ public class TakeGoldforGrafindle extends AbstractQuest {
 		if (player.isQuestInState(QUEST_SLOT, "start", "lorithien", "done")) {
 			res.add("QUEST_ACCEPTED");
 		}
-		if ((questState.equals("lorithien") && player.isEquipped("gold_bar",
+		if ((questState.equals("lorithien") && player.isEquipped("gold bar",
 				GOLD_AMOUNT))
 				|| questState.equals("done")) {
 			res.add("FOUND_ITEM");
 		}
 		if (questState.equals("lorithien")
-				&& !player.isEquipped("gold_bar", GOLD_AMOUNT)) {
+				&& !player.isEquipped("gold bar", GOLD_AMOUNT)) {
 			res.add("LOST_ITEM");
 		}
 		if (questState.equals("done")) {
@@ -166,7 +166,7 @@ public class TakeGoldforGrafindle extends AbstractQuest {
 
 					StackableItem goldbars = (StackableItem) StendhalRPWorld
 							.get().getRuleManager()
-							.getEntityManager().getItem("gold_bar");
+							.getEntityManager().getItem("gold bar");
 					goldbars.setQuantity(GOLD_AMOUNT);
 					goldbars.setBoundTo(player.getName());
 					player.equip(goldbars, true);
@@ -207,11 +207,11 @@ public class TakeGoldforGrafindle extends AbstractQuest {
 			new SpeakerNPC.ChatAction() {
 				@Override
 				public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-					if (player.drop("gold_bar", GOLD_AMOUNT)) {
+					if (player.drop("gold bar", GOLD_AMOUNT)) {
 						engine.say("Oh, you brought the gold! Wonderful, I knew I could rely on you. Please, have this key to our customer room.");
 						Item nalworkey = StendhalRPWorld.get()
 								.getRuleManager().getEntityManager()
-								.getItem("nalwor_bank_key");
+								.getItem("nalwor bank key");
 						nalworkey.setBoundTo(player.getName());
 						player.equip(nalworkey);
 						player.addXP(200);

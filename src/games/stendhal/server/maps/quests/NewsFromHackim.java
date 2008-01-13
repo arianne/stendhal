@@ -4,12 +4,12 @@ import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
+import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.ArrayList;
@@ -19,9 +19,9 @@ import java.util.List;
  * QUEST: News from Hackim PARTICIPANTS: - Hackim - Xin Blanca
  * 
  * STEPS: - Hackim asks you to give a message to Xin Blanca. - Xin Blanca thanks
- * you with a pair of leather_legs.
+ * you with a pair of leather legs.
  * 
- * REWARD: - 10 XP - a pair of leather_legs
+ * REWARD: - 10 XP - a pair of leather legs
  * 
  * REPETITIONS: - None.
  */
@@ -105,7 +105,7 @@ public class NewsFromHackim extends AbstractQuest {
 				@Override
 				public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 					String answer;
-					if (!player.isEquipped("leather_legs")) {
+					if (!player.isEquipped("leather legs")) {
 						answer = "Take this set of brand new leather leg armour! Let me know if you want anything else.";
 					} else {
 						answer = "Take this set of brand new... oh, you already have leather leg armour. Well, maybe you can sell them off or something.";
@@ -118,7 +118,7 @@ public class NewsFromHackim extends AbstractQuest {
 					player.setQuest(QUEST_SLOT, "done");
 
 					Item item = StendhalRPWorld.get().getRuleManager()
-							.getEntityManager().getItem("leather_legs");
+							.getEntityManager().getItem("leather legs");
 					player.equip(item, true);
 					player.addXP(10);
 

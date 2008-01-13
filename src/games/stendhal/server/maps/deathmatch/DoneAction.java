@@ -3,8 +3,8 @@ package games.stendhal.server.maps.deathmatch;
 import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
 import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.entity.item.Item;
-import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
 /**
@@ -21,7 +21,7 @@ public class DoneAction extends SpeakerNPC.ChatAction {
 	 * @return Helmet
 	 */
 	private Item createTrophyHelmet(Player player) {
-		Item helmet = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("trophy_helmet");
+		Item helmet = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("trophy helmet");
 		helmet.setBoundTo(player.getName());
 		helmet.put("def", 1);
 		helmet.setInfoString(player.getName());
@@ -56,7 +56,7 @@ public class DoneAction extends SpeakerNPC.ChatAction {
 		int points = updatePoints(player);
 
 		// We assume that the player only carries one trophy helmet.
-		Item helmet = player.getFirstEquipped("trophy_helmet");
+		Item helmet = player.getFirstEquipped("trophy helmet");
 		if (helmet == null) {
 			createTrophyHelmet(player);
 			engine.say("Congratulations, your score is now " + points

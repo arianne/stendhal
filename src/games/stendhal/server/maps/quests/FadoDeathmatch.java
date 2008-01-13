@@ -51,9 +51,9 @@ public class FadoDeathmatch extends AbstractQuest {
 	 */
 	public void createLegs(int x, int y) {
 		Item legs = StendhalRPWorld.get().getRuleManager().getEntityManager()
-				.getItem("golden_legs");
+				.getItem("golden legs");
 		// we are using these until better
-		// ones are found/committed. TODO: trophy_legs
+		// ones are found/committed. TODO: trophy legs
 		legs.put("def", "10");
 		legs.setDescription("This is the grand prize for the Battle Arena winners.");
 		legs.setPosition(x, y);

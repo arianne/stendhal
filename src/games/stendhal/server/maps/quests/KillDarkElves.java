@@ -4,7 +4,6 @@ import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPC.ChatAction;
 import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
@@ -13,6 +12,7 @@ import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.action.StartRecordingKillsAction;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
+import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Arrays;
@@ -58,7 +58,7 @@ public class KillDarkElves extends AbstractQuest {
 				});
 
 		List<ChatAction> actions = new LinkedList<ChatAction>();
-		actions.add(new StartRecordingKillsAction("dark_elf_archer", "dark_elf_captain", "thing"));
+		actions.add(new StartRecordingKillsAction("dark elf archer", "dark elf captain", "thing"));
 		actions.add(new IncreaseKarmaAction(5.0));
 		actions.add(new SetQuestAction(QUEST_SLOT, "start"));
 		
@@ -100,15 +100,15 @@ public class KillDarkElves extends AbstractQuest {
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-						if (player.hasKilled("dark_elf_archer")
-								&& player.hasKilled("dark_elf_captain")
+						if (player.hasKilled("dark elf archer")
+								&& player.hasKilled("dark elf captain")
 								&& player.hasKilled("thing")) {
 							// must have amulet from Thing to complete quest
 							if (player.drop("amulet")) {
 								engine.say("Many, many thanks. I am relieved to have that back. Here, take this ring. It can revive the powers of the dead.");
 								Item emeraldring = StendhalRPWorld.get()
 										.getRuleManager().getEntityManager()
-										.getItem("emerald_ring");
+										.getItem("emerald ring");
 								emeraldring.setBoundTo(player.getName());
 								player.equip(emeraldring, true);
 								player.addKarma(5.0);
