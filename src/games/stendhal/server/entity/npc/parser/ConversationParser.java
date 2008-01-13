@@ -60,6 +60,7 @@ public class ConversationParser {
 		return parse(text, null).getTriggerExpression();
 	}
 
+	/** A cache to hold pre-parsed matching Sentences. */
 	private static Map<String, Sentence> matchingSentenceCache = new HashMap<String, Sentence>();
 
 	/**
