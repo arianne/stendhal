@@ -15,6 +15,7 @@ package games.stendhal.server.entity;
 import games.stendhal.common.Grammar;
 import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.engine.UnderscoreConverter;
 
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
@@ -217,11 +218,11 @@ public abstract class Entity extends RPObject {
 	 */
 	public String getTitle() {
 		if (has("subclass")) {
-			return get("subclass").replace('_', ' ');
+			return UnderscoreConverter.transform(get("subclass"));
 		} else if (has("class")) {
-			return get("class").replace('_', ' ');
+			return UnderscoreConverter.transform(get("class"));
 		} else if (has("type")) {
-			return get("type").replace('_', ' ');
+			return UnderscoreConverter.transform(get("type"));
 		} else {
 			return null;
 		}

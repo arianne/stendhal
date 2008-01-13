@@ -14,6 +14,7 @@ package games.stendhal.server.core.rule.defaultruleset;
 
 import games.stendhal.server.core.config.CreaturesXMLLoader;
 import games.stendhal.server.core.config.ItemGroupsXMLLoader;
+import games.stendhal.server.core.engine.UnderscoreConverter;
 import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.creature.Creature;
@@ -112,6 +113,9 @@ public class DefaultEntityManager implements EntityManager {
 
 	public boolean addItem(DefaultItem item) {
 		String clazz = item.getItemName();
+
+		// just for safety: replace underscores, if still present
+		clazz = UnderscoreConverter.transform(clazz);
 
 		if (classToItem.containsKey(clazz)) {
 			logger.warn("Repeated item name: " + clazz);
@@ -259,6 +263,10 @@ public class DefaultEntityManager implements EntityManager {
 		if (clazz == null) {
 			throw new NullPointerException("entity class is null");
 		}
+
+		// just for safety: replace underscores, if still present
+		clazz = UnderscoreConverter.transform(clazz);
+
 		return classToCreature.containsKey(clazz);
 	}
 
@@ -267,6 +275,10 @@ public class DefaultEntityManager implements EntityManager {
 		if (clazz == null) {
 			throw new NullPointerException("entity class is null");
 		}
+
+		// just for safety: replace underscores, if still present
+		clazz = UnderscoreConverter.transform(clazz);
+
 		return classToItem.containsKey(clazz);
 	}
 
@@ -280,6 +292,9 @@ public class DefaultEntityManager implements EntityManager {
 		if (clazz == null) {
 			throw new NullPointerException("entity class is null");
 		}
+
+		// just for safety: replace underscores, if still present
+		clazz = UnderscoreConverter.transform(clazz);
 
 		// Lookup the clazz in the item table
 		DefaultItem item = classToItem.get(clazz);
