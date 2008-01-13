@@ -21,6 +21,7 @@ import games.stendhal.client.soundreview.SoundMaster;
 import games.stendhal.common.Grammar;
 import games.stendhal.common.NotificationType;
 import games.stendhal.common.Rand;
+import games.stendhal.server.core.engine.UnderscoreConverter;
 
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -311,11 +312,11 @@ public abstract class RPEntity extends ActiveEntity {
 		if (title != null) {
 			return title;
 		} else if (name != null) {
-			return name.replace('_', ' ');
+			return UnderscoreConverter.transform(name);
 		} else if (clazz != null) {
-			return clazz.replace('_', ' ');
+			return UnderscoreConverter.transform(clazz);
 		} else if (type != null) {
-			return type.replace('_', ' ');
+			return UnderscoreConverter.transform(type);
 		} else {
 			return null;
 		}
@@ -716,8 +717,8 @@ public abstract class RPEntity extends ActiveEntity {
 					object.get("zoneid"));
 
 			/*
-			 * TODO: XXX - This is probably meaningless, as create order is
-			 * unpredictable, and the target entity may not have been added yet
+			 * TODO This is probably meaningless, as create order is
+			 * unpredictable, and the target entity may not have been added yet XXX
 			 */
 			attackTarget = (RPEntity) GameObjects.getInstance().get(
 					targetEntityID);
