@@ -1,5 +1,7 @@
 package games.stendhal.server.entity.npc.fsm;
 
+import games.stendhal.server.entity.npc.parser.Expression;
+
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -43,8 +45,8 @@ public class TransitionList {
 	 *            source state
 	 * @return set of triggers
 	 */
-	public Set<String> getTriggersForState(int state) {
-		Set<String> res = new HashSet<String>();
+	public Set<Expression> getTriggersForState(int state) {
+		Set<Expression> res = new HashSet<Expression>();
 		for (Transition transition : transitions) {
 			if (transition.getState() == state) {
 				res.add(transition.getTrigger());
@@ -63,11 +65,11 @@ public class TransitionList {
 	 * @return list of transitions
 	 */
 	public List<Transition> getTransitionsForStateAndTrigger(int state,
-			String trigger) {
+			Expression trigger) {
 		List<Transition> res = new LinkedList<Transition>();
 		for (Transition transition : transitions) {
 			if ((transition.getState() == state)
-					&& (transition.getTrigger().equals(trigger))) {
+					&& (transition.getTrigger().matches(trigger))) {
 				res.add(transition);
 			}
 		}

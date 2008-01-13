@@ -2,14 +2,16 @@
 package games.stendhal.server.entity.npc.fsm;
 
 import games.stendhal.common.Rand;
-import games.stendhal.server.entity.npc.ConversationParser;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPC.ChatAction;
 import games.stendhal.server.entity.npc.SpeakerNPC.ChatCondition;
+import games.stendhal.server.entity.npc.parser.ConversationParser;
+import games.stendhal.server.entity.npc.parser.Expression;
+import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -50,17 +52,18 @@ public class Engine {
 		this.speakerNPC = speakerNPC;
 	}
 
-	private Transition get(int state, String trigger, ChatCondition condition) {
+	/**
+	 * Look for an already registered exactly matching transition
+	 *
+	 * @param state
+	 * @param trigger
+	 * @param condition
+	 * @return previous transition entry
+	 */
+	private Transition get(int state, Expression trigger, ChatCondition condition) {
 		for (Transition transition : stateTransitionTable) {
-			if (transition.matches(state, trigger)) {
-				PreTransitionCondition cond = transition.getCondition();
-
-				if (cond == condition) {
-					return transition;
-				} else if ((cond != null) && cond.equals(condition)) {
-					return transition;
-				}
-			}
+			if (transition.matchesWithCondition(state, trigger, condition))
+				return transition;
 		}
 
 		return null;
@@ -81,7 +84,7 @@ public class Engine {
 	 * 
 	 * @param state
 	 *            old state
-	 * @param trigger
+	 * @param triggerString
 	 *            input trigger
 	 * @param condition
 	 *            additional precondition
@@ -92,14 +95,17 @@ public class Engine {
 	 * @param action
 	 *            additional action after the condition
 	 */
-	public void add(int state, String trigger, ChatCondition condition,
+	public void add(int state, String triggerString, ChatCondition condition,
 			int nextState, String reply, ChatAction action) {
+		// normalize trigger expressions using the conversation parser
+		Expression triggerExpression = ConversationParser.createTriggerExpression(triggerString);
+
 		if (state > maxState) {
 			maxState = state;
 		}
 
-		// look for already existing rules with identical input parameters
-		Transition existing = get(state, trigger, condition);
+		// look for already existing rule with identical input parameters
+		Transition existing = get(state, triggerExpression, condition);
 
 		if (existing != null) {
 			String existingReply = existing.getReply();
@@ -127,7 +133,7 @@ public class Engine {
 			}
 		}
 
-		stateTransitionTable.add(new Transition(state, trigger, condition, nextState, reply, action));
+		stateTransitionTable.add(new Transition(state, triggerExpression, condition, nextState, reply, action));
 	}
 
 	/**
@@ -190,7 +196,7 @@ public class Engine {
 
 		if (sentence.hasError()) {
 			logger.warn("problem parsing the sentence '" + text + "': "
-					+ sentence.getError());
+					+ sentence.getErrorString());
 		}
 
 		return step(player, sentence);
@@ -213,9 +219,13 @@ public class Engine {
 
 		if (matchTransition(MatchType.EXACT_MATCH, player, sentence)) {
 			return true;
+		} else if (matchTransition(MatchType.NORMALIZED_MATCH, player, sentence)) {
+			return true;
 		} else if (matchTransition(MatchType.SIMILAR_MATCH, player, sentence)) {
 			return true;
 		} else if (matchTransition(MatchType.ABSOLUTE_JUMP, player, sentence)) {
+			return true;
+		} else if (matchTransition(MatchType.NORMALIZED_JUMP, player, sentence)) {
 			return true;
 		} else if (matchTransition(MatchType.SIMILAR_JUMP, player, sentence)) {
 			return true;
@@ -245,7 +255,7 @@ public class Engine {
 
 		if (sentence.hasError()) {
 			logger.warn("problem parsing the sentence '" + text + "': "
-					+ sentence.getError());
+					+ sentence.getErrorString());
 		}
 
 		boolean res = step(player, sentence);
@@ -254,67 +264,112 @@ public class Engine {
 		return res;
 	}
 
+	/**
+	 * List of Transition entries used to merge identical transitions in respect
+	 * to Transitions.matchesNormalizedWithCondition()
+	 */
+	private static class TransitionList extends LinkedList<Transition> {
+        private static final long serialVersionUID = 1L;
+
+		public boolean add(Transition otherTrans) {
+			for(Transition transition : this) {
+				if (transition.matchesNormalizedWithCondition(otherTrans.getState(),
+						otherTrans.getTrigger(), otherTrans.getCondition())) {
+					return false;
+				}
+			}
+
+			// No match, so add the new transition entry.
+			return super.add(otherTrans);
+		}
+
+		public static void advance(Iterator<Transition> it, int i) {
+			for(; i>0; --i) {
+				it.next();
+			}
+		}
+	}
+
 	private boolean matchTransition(MatchType type, Player player,
 			Sentence sentence) {
-		List<Transition> listCondition = new LinkedList<Transition>();
-		List<Transition> listConditionLess = new LinkedList<Transition>();
-		int i;
+		// We are using sets instead of lists to merge identical transitions.
+		TransitionList conditionTransitions = new TransitionList();
+		TransitionList conditionlessTransitions = new TransitionList();
 
-		// First we try to match with stateless transitions.
+		// match with all the registered transitions
 		for (Transition transition : stateTransitionTable) {
 			if (matchesTransition(type, sentence, transition)) {
 				if (transition.isConditionFulfilled(player, sentence,
 						speakerNPC)) {
 					if (transition.getCondition() == null) {
-						listConditionLess.add(transition);
+						conditionlessTransitions.add(transition);
 					} else {
-						listCondition.add(transition);
+						conditionTransitions.add(transition);
 					}
 				}
 			}
 		}
 
-		if (listCondition.size() > 0) {
-			if (listCondition.size() > 1) {
-				logger.warn("Chosing random action because of "
-						+ listCondition.size() + " entries in listCondition: "
-						+ listCondition);
-				i = Rand.rand(listCondition.size());
-			} else {
-				i = 0;
-			}
+		Iterator<Transition> it = null;
 
-			executeTransition(player, sentence, listCondition.get(i));
-			return true;
+		// First we try to use a stateless transition.
+		if (conditionTransitions.size() > 0) {
+			it = conditionTransitions.iterator();
+
+			if (conditionTransitions.size() > 1) {
+				logger.warn("Chosing random action because of "
+						+ conditionTransitions.size() + " entries in conditionTransitions: "
+						+ conditionTransitions);
+
+				TransitionList.advance(it, Rand.rand(conditionTransitions.size()));
+			}
 		}
 
 		// Then look for transitions without conditions.
-		if (listConditionLess.size() > 0) {
-			if (listConditionLess.size() > 1) {
-				logger.warn("Chosing random action because of "
-						+ listConditionLess.size()
-						+ " entries in listConditionLess: " + listConditionLess);
-				i = Rand.rand(listConditionLess.size());
-			} else {
-				i = 0;
-			}
+		if (it==null && conditionlessTransitions.size() > 0) {
+			it = conditionlessTransitions.iterator();
 
-			executeTransition(player, sentence, listConditionLess.get(i));
-			return true;
+			if (conditionlessTransitions.size() > 1) {
+				logger.warn("Chosing random action because of "
+						+ conditionlessTransitions.size()
+						+ " entries in conditionlessTransitions: " + conditionlessTransitions);
+
+				TransitionList.advance(it, Rand.rand(conditionlessTransitions.size()));
+			}
 		}
 
-		return false;
+		if (it != null) {
+			executeTransition(player, sentence, it.next());
+
+			return true;
+		} else {
+			return false;
+		}
 	}
 
+	/**
+	 * Look for a match between given sentence and transition in the current state.
+	 * TODO mf - refactor match type handling
+	 * 
+	 * @param type
+	 * @param sentence
+	 * @param transition
+	 * @return
+	 */
 	private boolean matchesTransition(MatchType type, Sentence sentence,
 			Transition transition) {
 		if (type == MatchType.EXACT_MATCH) {
 			return transition.matches(currentState, sentence);
+		} else if (type == MatchType.NORMALIZED_MATCH) {
+			return transition.matchesNormalized(currentState, sentence);
 		} else if (type == MatchType.SIMILAR_MATCH) {
 			return transition.matchesBeginning(currentState, sentence);
 		} else if (type == MatchType.ABSOLUTE_JUMP) {
 			return (currentState != ConversationStates.IDLE)
 					&& transition.matchesWild(sentence);
+		} else if (type == MatchType.NORMALIZED_JUMP) {
+			return (currentState != ConversationStates.IDLE)
+					&& transition.matchesWildNormalized(sentence);
 		} else if (type == MatchType.SIMILAR_JUMP) {
 			return (currentState != ConversationStates.IDLE)
 					&& transition.matchesWildBeginning(sentence);
@@ -324,16 +379,16 @@ public class Engine {
 	}
 
 	private void executeTransition(Player player, Sentence sentence,
-			Transition state) {
-		int nextState = state.getNextState();
-		if (state.getReply() != null) {
-			speakerNPC.say(state.getReply());
+			Transition trans) {
+		int nextState = trans.getNextState();
+		if (trans.getReply() != null) {
+			speakerNPC.say(trans.getReply());
 		}
 
 		currentState = nextState;
 
-		if (state.getAction() != null) {
-			state.getAction().fire(player, sentence, speakerNPC);
+		if (trans.getAction() != null) {
+			trans.getAction().fire(player, sentence, speakerNPC);
 		}
 	}
 

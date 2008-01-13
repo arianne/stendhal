@@ -1,8 +1,9 @@
 package games.stendhal.server.entity.npc.fsm;
 
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.parser.Expression;
+import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
 /**
@@ -18,10 +19,10 @@ public class Transition {
 	private int nextState;
 
 	/**
-	 * The string a player's text must either start with or equal to in order to
-	 * trigger this transition The string is stored in lower case.
+	 * The Word a player's text must either start with or equal to in order to trigger
+	 * this transition. The trigger string is normalized by Sentence.getTriggerWord().
 	 */
-	private String trigger;
+	private Expression trigger;
 
 	/**
 	 * The condition that has to be fulfilled so that the transition can be
@@ -40,7 +41,7 @@ public class Transition {
 	 * 
 	 * @param currentState
 	 *            old state
-	 * @param trigger
+	 * @param triggerExpr
 	 *            input trigger
 	 * @param condition
 	 *            additional precondition
@@ -51,13 +52,13 @@ public class Transition {
 	 * @param action
 	 *            additional action after the condition
 	 */
-	public Transition(int currentState, String trigger,
+	public Transition(int currentState, Expression triggerExpr,
 			PreTransitionCondition condition, int nextState, String reply,
 			PostTransitionAction action) {
 		this.state = currentState;
 		this.condition = condition;
 		this.nextState = nextState;
-		this.trigger = trigger.toLowerCase();
+		this.trigger = triggerExpr;
 		this.reply = reply;
 		this.action = action;
 	}
@@ -73,12 +74,25 @@ public class Transition {
 	 */
 	public boolean matchesWild(Sentence sentence) {
 		return (state == ConversationStates.ANY)
-				&& trigger.equals(sentence.getTrigger());
+				&& trigger.matches(sentence.getTriggerExpression());
 	}
 
 	/**
 	 * Checks whether this is a "wildcard" transition (see class comment of
-	 * SpeakerNPC) and the text beginning matches the trigger.
+	 * SpeakerNPC) and the normalized text matches the trigger.
+	 * 
+	 * @param sentence
+	 *            trigger (parsed user input)
+	 * @return if the transition matches, false otherwise
+	 */
+	public boolean matchesWildNormalized(Sentence sentence) {
+		return (state == ConversationStates.ANY)
+				&& sentence.getTriggerExpression().matchesNormalized(trigger);
+	}
+
+	/**
+	 * Checks whether this is a "wildcard" transition (see class comment of
+	 * SpeakerNPC) and the normalized text beginning matches the trigger.
 	 * 
 	 * @param sentence
 	 *            trigger (parsed user input)
@@ -86,47 +100,118 @@ public class Transition {
 	 */
 	public boolean matchesWildBeginning(Sentence sentence) {
 		return (state == ConversationStates.ANY)
-				&& sentence.getTrigger().startsWith(trigger);
+				&& sentence.getTriggerExpression().matchesNormalizedBeginning(trigger);
 	}
 
 	/**
-	 * checks whether this transition is possible now.
+	 * Checks whether this transition is possible now.
 	 * 
 	 * @param state
 	 *            old state
 	 * @param sentence
 	 *            trigger
-	 * @return true if the transition matches, false otherwise
+	 * @return true if the Transition matches, false otherwise
 	 */
 	public boolean matches(int state, Sentence sentence) {
-		return matches(state, sentence.getTrigger());
+		return matches(state, sentence.getTriggerExpression());
 	}
 
 	/**
-	 * checks whether this transition is possible now.
+	 * Checks whether this transition is possible now.
 	 * 
 	 * @param state
 	 *            old state
 	 * @param text
 	 *            trigger
-	 * @return true if the transition matches, false otherwise
+	 * @return true if the Transition matches, false otherwise
 	 */
-	public boolean matches(int state, String text) {
-		return (state == this.state) && trigger.equals(text);
+	public boolean matches(int state, Expression trigger) {
+		return (state == this.state) && this.trigger.matches(trigger);
 	}
 
 	/**
-	 * checks whether this transition is possible now.
+	 * Checks whether this transition is possible now by using matching
+	 * of the normalized expression.
+	 * 
+	 * @param state
+	 *            old state
+	 * @param sentence
+	 *            trigger
+	 * @return true if the Transition matches, false otherwise
+	 */
+	public boolean matchesNormalized(int state, Sentence sentence) {
+		return matchesNormalized(state, sentence.getTriggerExpression());
+	}
+
+	/**
+	 * Checks whether this transition is possible now by using matching
+	 * of the normalized expression.
+	 * 
+	 * @param state
+	 *            old state
+	 * @param sentence
+	 *            trigger
+	 * @return true if the Transition matches, false otherwise
+	 */
+	public boolean matchesNormalized(int state, Expression trigger) {
+		return (state == this.state) && this.trigger.matchesNormalized(trigger);
+	}
+
+	/**
+	 * Checks whether this transition is possible now by only looking at
+	 * the beginning of the normalized expression.
 	 * 
 	 * @param state
 	 *            old state
 	 * @param sentence
 	 *            trigger, parsed user input
-	 * @return true if the transition matches, false otherwise
+	 * @return true if the Transition matches, false otherwise
 	 */
 	public boolean matchesBeginning(int state, Sentence sentence) {
-		return (state == this.state) && sentence.getTrigger().startsWith(trigger);
+		return (state == this.state) && sentence.getTriggerExpression().matchesNormalizedBeginning(trigger);
 	}
+
+	/**
+	 * Check for match with the given state/trigger/condition combination
+	 * 
+	 * @param state
+	 * @param trigger
+	 * @param condition
+	 * @return
+	 */
+	public boolean matchesWithCondition(int state, Expression trigger, PreTransitionCondition condition) {
+		if (matches(state, trigger)) {
+			if (this.condition == condition) {
+				return true;
+			} else if (this.condition != null && this.condition.equals(condition)) {
+				return true;
+			}
+		}
+
+		// no match
+		return false;
+    }
+
+	/**
+	 * Check for normalized match with the given state/trigger/condition combination
+	 * 
+	 * @param state
+	 * @param trigger
+	 * @param condition
+	 * @return
+	 */
+	public boolean matchesNormalizedWithCondition(int state, Expression trigger, PreTransitionCondition condition) {
+		if (matchesNormalized(state, trigger)) {
+			if (this.condition == condition) {
+				return true;
+			} else if (this.condition != null && this.condition.equals(condition)) {
+				return true;
+			}
+		}
+
+		// no match
+		return false;
+    }
 
 	/**
 	 * Checks whether this transition's condition is fulfilled.
@@ -196,10 +281,13 @@ public class Transition {
 	/**
 	 * @return input
 	 */
-	public String getTrigger() {
+	public Expression getTrigger() {
 		return trigger;
 	}
 
+	/**
+	 * Return a string representation of this Transition.
+	 */
 	@Override
 	public String toString() {
 		return "[" + state + "," + trigger + "," + nextState + "," + condition
