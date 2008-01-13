@@ -2,12 +2,15 @@ package games.stendhal.server.core.engine;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
+import games.stendhal.server.entity.player.Player;
 import marauroa.common.Log4J;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import utilities.PlayerTestHelper;
 
 /**
  * Test the UnderscoreConverter class.
@@ -44,6 +47,16 @@ public class UnderscoreConverterTest {
 		UnderscoreConverter.transformNames(obj);
 		assertEquals("abc 123", obj.get("name"));	// name should be transformed
 		assertEquals("abc_123", obj.get("name2"));	// no change expected
+	}
+
+	@Test
+	public void testTransformPlayer() {
+		Player player = PlayerTestHelper.createPlayer("playername");
+		player.setRPClass("player");
+
+		player.put("name", "player_1");
+		UnderscoreConverter.transformNames(player);
+		assertEquals("player_1", player.get("name"));	// no change expected
 	}
 
 	@Test
