@@ -36,17 +36,26 @@ public class UnderscoreConverter {
 		Iterator<RPSlot> it = object.slotsIterator();
 		while(it.hasNext()) {
 			RPSlot slot = it.next();
+			String slotName = slot.getName();
 
-			if (slot.getName().equals("!kills")) {
-				// Translate the content of the kill list.
-				for(RPObject obj : slot) {
-					transformSlotKeyNames(obj);
-				}
-			} else {
-				// Recurse to transform the names of all contained items.
-				for(RPObject obj : slot) {
-					transformNames(obj);
-				}
+			if (slotName != null) {
+    			if (slotName.equals("!kills")) {
+    				// Translate the content of the kill list.
+    				for(RPObject obj : slot) {
+    					transformSlotKeyNames(obj);
+    				}
+    			}
+    			// exclude key slots from the conversion
+    			else if (!slotName.equals("!visited") &&
+    						!slotName.equals("!buddy") &&
+    						!slotName.equals("!ignore") &&
+    						!slotName.equals("!quests") &&
+    						!slotName.equals("!tutorial")) {
+    				// Recurse to transform the names of all contained items.
+    				for(RPObject obj : slot) {
+    					transformNames(obj);
+    				}
+    			}
 			}
 		}
 	}
