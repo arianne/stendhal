@@ -7,7 +7,6 @@ import games.stendhal.server.entity.mapstuff.office.RentedSign;
 import games.stendhal.server.entity.mapstuff.office.RentedSignList;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPCFactory;
 import games.stendhal.server.entity.npc.action.RemoveStoreableEntityAction;
@@ -19,6 +18,7 @@ import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasStoreableEntityCondition;
 import games.stendhal.server.entity.npc.condition.TextHasParameterCondition;
+import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.StringUtils;
 

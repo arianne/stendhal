@@ -2,13 +2,15 @@ package games.stendhal.server.maps.quests.logic;
 
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.DecreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
+import games.stendhal.server.entity.npc.parser.ConversationParser;
+import games.stendhal.server.entity.npc.parser.Sentence;
+import games.stendhal.server.entity.npc.parser.Expression;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Arrays;
@@ -199,34 +201,37 @@ public class BringListOfItemsQuestLogic {
 	 * Player offers an item.
 	 */
 	protected void offerItem() {
+		final List<Expression> triggerWords = ConversationParser.createTriggerList(concreteQuest.getNeededItems());
+
 		concreteQuest.getNPC().add(ConversationStates.QUESTION_1, concreteQuest.getNeededItems(), null,
 			ConversationStates.QUESTION_1, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
 				public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-					String item = sentence.getOriginalText();
+					Expression itemWord = sentence.getTriggerExpression();
+					String itemName = itemWord.getOriginal();	//TODO should also be possible by using Sentence.getObjectName()
 
-					if (!concreteQuest.getNeededItems().contains(item)) {
+					if (!triggerWords.contains(itemWord)) {
 						engine.say(concreteQuest.respondToOfferOfNotNeededItem());
 						return;
 					}
 
-					List<String> missing = getListOfStillMissingItems(player, false);
-					if (!missing.contains(item)) {
+					List<Expression> missing = ConversationParser.createTriggerList(getListOfStillMissingItems(player, false));
+					if (!missing.contains(itemWord)) {
 						engine.say(concreteQuest.respondToOfferOfNotMissingItem());
 						return;
 					}
 
-					if (!player.drop(item)) {
-						engine.say(concreteQuest.respondToOfferOfNotExistingItem(item));
+					if (!player.drop(itemName)) {
+						engine.say(concreteQuest.respondToOfferOfNotExistingItem(itemName));
 						return;
 					}
 
 					// register item as done
 					String doneText = player.getQuest(concreteQuest.getSlotName());
-					player.setQuest(concreteQuest.getSlotName(), doneText + ";" + item);
+					player.setQuest(concreteQuest.getSlotName(), doneText + ";" + itemName);
 					// check if the player has brought all items
-					missing = getListOfStillMissingItems(player, true);
+					missing = ConversationParser.createTriggerList(getListOfStillMissingItems(player, false));
 					if (missing.size() > 0) {
 						engine.say(concreteQuest.respondToItemBrought());
 					} else {

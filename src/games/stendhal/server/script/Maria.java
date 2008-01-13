@@ -5,9 +5,9 @@ import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.core.scripting.ScriptingNPC;
 import games.stendhal.server.core.scripting.ScriptingSandbox;
 import games.stendhal.server.entity.item.Item;
-import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.List;
@@ -17,7 +17,7 @@ import org.apache.log4j.Logger;
 /**
  * Creates a portable NPC which sell foods&drinks at meetings.
  * 
- * As admin use /script Maria.class to sommon her right next to you. Please put
+ * As admin use /script Maria.class to summon her right next to you. Please put
  * her back in int_admin_playground after use.
  */
 public class Maria extends ScriptImpl {
@@ -58,8 +58,7 @@ public class Maria extends ScriptImpl {
 		int x = 11;
 		int y = 4;
 
-		// if this script is executed by an admin, Maria will be placed next to
-		// him.
+		// If this script is executed by an admin, Maria will be placed next to him.
 		if (admin != null) {
 			sandbox.setZone(sandbox.getZone(admin));
 			x = admin.getX() + 1;
@@ -75,11 +74,9 @@ public class Maria extends ScriptImpl {
 		npc.behave(
 				"job",
 				"I am one of the bar maids at Semos' #tavern and doing outside services. We sell fine beers and food.");
-		npc.behave("tavern", /*
-								 * "I have a #coupon for a free beer in Semos'
-								 * tavern. "+
-								 */
-		"It is on the left side of the temple.");
+		npc.behave("tavern",
+//			"I have a #coupon for a free beer in Semos' tavern. "+
+			"It is on the left side of the temple.");
 		npc.behave("help",
 				"You can get an #offer of drinks and take a break to meet new people!");
 		try {

@@ -81,7 +81,7 @@ public class DumpTransitions extends ScriptImpl {
 	}
 
 	private static String getExtendedTransitionName(Transition transition) {
-		String transitionName = transition.getTrigger();
+		String transitionName = transition.getTrigger().getNormalized();
 		if (transition.getCondition() != null) {
 			transitionName = "~ " + transitionName;
 		}

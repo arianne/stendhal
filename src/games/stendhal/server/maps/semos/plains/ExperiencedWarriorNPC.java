@@ -5,9 +5,9 @@ import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.core.rule.defaultruleset.DefaultCreature;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPCFactory;
+import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.LinkedHashMap;
@@ -188,7 +188,7 @@ public class ExperiencedWarriorNPC extends SpeakerNPCFactory {
 					@Override
 					public void fire(Player player, Sentence sentence, SpeakerNPC speakerNPC) {
 						EntityManager manager = StendhalRPWorld.get().getRuleManager().getEntityManager();
-						String creatureName = sentence.getOriginalText();
+						String creatureName = sentence.getTriggerExpression().getNormalized();
 						DefaultCreature creature = manager.getDefaultCreature(creatureName);
 						if (creature == null) {
 							speakerNPC.say("I have never heard of such a creature! Please tell the name again.");

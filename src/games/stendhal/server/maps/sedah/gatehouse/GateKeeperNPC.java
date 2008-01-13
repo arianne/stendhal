@@ -5,8 +5,9 @@ import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
-import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.parser.Sentence;
+import games.stendhal.server.entity.npc.parser.Expression;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Map;
@@ -47,14 +48,13 @@ public class GateKeeperNPC implements ZoneConfigurator {
 				addGreeting(null, new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-						if (!player.isEquipped("sedah_gate_key")) {
+						if (!player.isEquipped("sedah gate key")) {
 							engine.say("What do you want?");
-
 						} else {
 							// toss a coin to see if he notices player still has
 							// the gate key
 							if (Rand.throwCoin() == 1) {
-								player.drop("sedah_gate_key");
+								player.drop("sedah gate key");
 								engine.say("You shouldn't still have that key! I'll take that right back.");
 							} else {
 								engine.say("Hi, again.");
@@ -72,11 +72,12 @@ public class GateKeeperNPC implements ZoneConfigurator {
 				addReply("bribe", null, new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-				        int amount = sentence.getAmount();
-				        String item = sentence.getItemName();
+						Expression object = sentence.getObject(0);
+						int amount = object!=null? object.getAmount(): 1;
+				        String item = sentence.getObjectName();
 
 				        if (sentence.hasError()) {
-				        	engine.say(sentence.getError() + " Are you trying to trick me? Bribe me some number of coins!");
+				        	engine.say(sentence.getErrorString() + " Are you trying to trick me? Bribe me some number of coins!");
 				        } else if (item == null) {
 							// player only said 'bribe'
 							engine.say("A bribe of no money is no bribe! Bribe me with some amount!");
@@ -93,7 +94,7 @@ public class GateKeeperNPC implements ZoneConfigurator {
 										player.drop("money", amount);
 										engine.say("Ok, I got your money, here's the key.");
 										Item key = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
-												"sedah_gate_key");
+												"sedah gate key");
 										player.equip(key, true);
 									} else {
 										// player bribed enough but doesn't have

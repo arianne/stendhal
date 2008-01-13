@@ -11,8 +11,9 @@ import games.stendhal.server.entity.item.ConsumableItem;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.parser.Sentence;
+import games.stendhal.server.entity.npc.parser.Expression;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.ArrayList;
@@ -189,20 +190,20 @@ public class BetManager extends ScriptImpl implements TurnListener {
 			String errorMsg = null;
 
 			if (sentence.hasError()) {
-				errorMsg = sentence.getError();
-			} else if (sentence.getObjectName() == null
-					|| sentence.getPreposition() == null
-					|| sentence.getObjectName2() == null) {
+				errorMsg = sentence.getErrorString();
+			} else if (sentence.getObjectCount() < 2
+					|| sentence.getPrepositionCount() < 1) {
 				errorMsg = "missing bet parameters";
 			} else {
-				betInfo.amount = sentence.getAmount();
-				betInfo.itemName = sentence.getItemName(); // cheese
+				Expression object = sentence.getObject(0);
+				betInfo.amount = object!=null? object.getAmount(): 1;
+				betInfo.itemName = sentence.getObjectName(); // cheese
 
-				if (!sentence.getPreposition().equals("on")) {
+				if (!sentence.getPreposition(0).equals("on")) {
 					errorMsg = "missing preposition 'on'";
 				}
 
-				betInfo.target = sentence.getItemName2();
+				betInfo.target = sentence.getObjectName(1);
 			}
 
 			// wrong syntax

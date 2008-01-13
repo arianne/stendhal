@@ -5,8 +5,8 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.creature.BabyDragon;
-import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
 
@@ -63,13 +63,14 @@ public class BabyDragonSellerNPC implements ZoneConfigurator {
 										+ ".");
 								return;
 					        }
-						if (player.hasPet()) {
-						    // we don't want him to give a dragon if player already has a pet
-						    engine.say("I cannot give your newly hatched dragon to you if I don't think you'll give it your full attention! Come back when you don't have another pet with you.");
-						    return;
-						}
-						engine.say("Your egg has hatched! So, here you go, a nippy little baby dragon of your own. Don't forget it'll want some #food soon. And remember to #protect it.");
 
+    						if (player.hasPet()) {
+    						    // we don't want him to give a dragon if player already has a pet
+    						    engine.say("I cannot give your newly hatched dragon to you if I don't think you'll give it your full attention! Come back when you don't have another pet with you.");
+    						    return;
+    						}
+
+							engine.say("Your egg has hatched! So, here you go, a nippy little baby dragon of your own. Don't forget it'll want some #food soon. And remember to #protect it.");
 					       	BabyDragon babydragon = new BabyDragon(player);
 
 					       	babydragon.setPosition(engine.getX(), engine.getY() + 1);
@@ -78,13 +79,12 @@ public class BabyDragonSellerNPC implements ZoneConfigurator {
 					       	zone.add(babydragon);
 
 					       	player.setPet(babydragon);
-						// clear the quest slot completely when it's not
-						// being used to store egg hatching times
-						player.removeQuest(QUEST_SLOT);
+    						// clear the quest slot completely when it's not
+    						// being used to store egg hatching times
+					       	player.removeQuest(QUEST_SLOT);
 					       	player.notifyWorldAboutChanges();
-
-					    } else if (player.isEquipped("mythical_egg")) {
-						        engine.say("Where did you get that egg from?! Never mind. Tell me if you need me to #hatch it for you. It is my hobby, after all.");
+					    } else if (player.isEquipped("mythical egg")) {
+					    	engine.say("Where did you get that egg from?! Never mind. Tell me if you need me to #hatch it for you. It is my hobby, after all.");
 					    } else {
 							engine.say("Hi. I don't get so many visitors, down here.");
 					    }
@@ -94,8 +94,8 @@ public class BabyDragonSellerNPC implements ZoneConfigurator {
 					@Override
 					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 					    if (!player.hasPet()) {
-						if (player.isEquipped("mythical_egg")) {
-						    player.drop("mythical_egg");
+						if (player.isEquipped("mythical egg")) {
+						    player.drop("mythical egg");
 						    engine.say("Ok, I'll take your egg and hatch it in one of these nesting boxes. Come back in " + 7 + " days and you should be the proud owner of a new born baby dragon.");
 						    player.setQuest(QUEST_SLOT, Long.toString(System.currentTimeMillis()));
 						    player.notifyWorldAboutChanges();

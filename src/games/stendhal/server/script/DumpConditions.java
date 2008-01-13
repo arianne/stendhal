@@ -8,6 +8,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.PreTransitionCondition;
 import games.stendhal.server.entity.npc.fsm.Transition;
 import games.stendhal.server.entity.npc.fsm.TransitionList;
+import games.stendhal.server.entity.npc.parser.Expression;
 import games.stendhal.server.entity.player.Player;
 
 import java.lang.reflect.Field;
@@ -49,8 +50,8 @@ public class DumpConditions extends ScriptImpl {
 
 		for (Integer stateInt : states) {
 			int state = stateInt.intValue();
-			Set<String> triggers = transitions.getTriggersForState(state);
-			for (String trigger : triggers) {
+			Set<Expression> triggers = transitions.getTriggersForState(state);
+			for (Expression trigger : triggers) {
 				List<Transition> trans = transitions.getTransitionsForStateAndTrigger(
 						state, trigger);
 				Set<PreTransitionCondition> conditions = new HashSet<PreTransitionCondition>();

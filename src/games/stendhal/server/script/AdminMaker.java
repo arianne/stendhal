@@ -9,8 +9,8 @@ import games.stendhal.server.core.scripting.ScriptingSandbox;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Arrays;
@@ -55,14 +55,14 @@ public class AdminMaker extends ScriptImpl {
 			player.addXP(Level.getXP(level + xlevel) - Level.getXP(level));
 		}
 
-		private final List<String> itemsSingle = Arrays.asList("rod_of_the_gm",
-				"golden_shield", "golden_armor", "golden_cloak",
-				"golden_helmet", "golden_legs", "golden_boots",
-				"hunter_crossbow");
+		private final List<String> itemsSingle = Arrays.asList("rod of the gm",
+				"golden shield", "golden armor", "golden cloak",
+				"golden helmet", "golden legs", "golden boots",
+				"hunter crossbow");
 
 		private final List<String> itemsStack = Arrays.asList("money",
-				"greater_potion", "greater_antidote", "power_arrow",
-				"deadly_poison");
+				"greater potion", "greater antidote", "power arrow",
+				"deadly poison");
 
 		private void equip(Player player) {
 
@@ -165,7 +165,7 @@ public class AdminMaker extends ScriptImpl {
 
 			// before we send the player off into the unknown give a marked
 			// scroll
-			Item markedScroll = sandbox.getItem("marked_scroll");
+			Item markedScroll = sandbox.getItem("marked scroll");
 			markedScroll.setInfoString(player.getID().getZoneID() + " "
 					+ player.getX() + " " + player.getY());
 			markedScroll.setBoundTo(player.getName());
