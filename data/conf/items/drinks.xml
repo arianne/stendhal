@@ -36,7 +36,7 @@
     </equipable>
   </item>
 
-  <item name="pina_colada">
+  <item name="pina colada">
     <type class="drink" subclass="pina_colada" tileid="-1"/>
     <description>You see a pina colada.  It looks delicious but tastes dangerously strong!.</description>
     <implementation class-name="games.stendhal.server.entity.item.Drink"/>    <attributes>
@@ -72,7 +72,7 @@
     </equipable>
   </item>
 
-  <item name="greater_antidote">
+  <item name="greater antidote">
     <type class="drink" subclass="greater_antidote" tileid="-1"/>
     <description>You see a greater antidote, to cure you of poison and protect you for a long while.</description>
     <implementation class-name="games.stendhal.server.entity.item.Drink"/>    <attributes>
@@ -108,7 +108,7 @@
     </equipable>
   </item>
 
-  <item name="greater_poison">
+  <item name="greater poison">
     <type class="drink" subclass="greater_poison" tileid="-1"/>
     <description>You see a greater poison. Don't drink it!</description>
     <implementation class-name="games.stendhal.server.entity.item.Drink"/>    <attributes>
@@ -126,7 +126,7 @@
     </equipable>
   </item>
 
-  <item name="deadly_poison">
+  <item name="deadly poison">
     <type class="drink" subclass="deadly_poison" tileid="-1"/>
     <description>You see a deadly poison. Don't drink it!</description>
     <implementation class-name="games.stendhal.server.entity.item.Drink"/>    <attributes>
@@ -144,7 +144,7 @@
     </equipable>
   </item>
 
-  <item name="disease_poison">
+  <item name="disease poison">
     <type class="drink" subclass="disease_poison" tileid="-1"/>
     <description>You see a disease poison.  Be careful, it's wicked.</description>
     <implementation class-name="games.stendhal.server.entity.item.Drink"/>    <attributes>
@@ -162,7 +162,7 @@
     </equipable>
   </item>
 
-  <item name="mega_poison">
+  <item name="mega poison">
     <type class="drink" subclass="mega_poison" tileid="-1"/>
     <description>You see a mega poison. This is some wicked poison.</description>
     <implementation class-name="games.stendhal.server.entity.item.Drink"/>    <attributes>
@@ -180,7 +180,7 @@
     </equipable>
   </item>
 
-  <item name="minor_potion">
+  <item name="minor potion">
     <type class="drink" subclass="minor_potion" tileid="-1"/>
     <description>You see a minor potion. It's not much but may save you in a tight spot.</description>
     <implementation class-name="games.stendhal.server.entity.item.Drink"/>    <attributes>
@@ -235,7 +235,7 @@
     </equipable>
   </item>
 
-  <item name="greater_potion">
+  <item name="greater potion">
     <type class="drink" subclass="greater_potion" tileid="-1"/>
     <description>You see a greater potion, invaluable in battle.</description>
     <implementation class-name="games.stendhal.server.entity.item.Drink"/>    <attributes>
@@ -253,7 +253,7 @@
     </equipable>
   </item>
 
-  <item name="mega_potion">
+  <item name="mega potion">
     <type class="drink" subclass="mega_potion" tileid="-1"/>
     <description>You see a mega potion.  It strenghtens greatly.</description>
     <implementation class-name="games.stendhal.server.entity.item.Drink"/>    <attributes>

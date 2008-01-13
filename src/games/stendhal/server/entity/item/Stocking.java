@@ -17,8 +17,8 @@ public class Stocking extends Box implements UseListener {
 
 	// TODO: Make these configurable
 	// for christmas presents
-	private static final String[] ITEMS = { "mega_potion", "fish_pie",
-			"lucky_charm", "diamond", "gold_bar", "empty_scroll" };
+	private static final String[] ITEMS = { "mega potion", "fish pie",
+			"lucky charm", "diamond", "gold bar", "empty scroll" };
 
 	/**
 	 * Creates a new Stocking.

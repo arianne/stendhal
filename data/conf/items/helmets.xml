@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <items>
-  <item name="leather_helmet">
+  <item name="leather helmet">
     <type class="helmet" subclass="leather_helmet" tileid="-1"/>
     <description>You see a leather helmet, it seems more like a hat than a defensive item.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -14,7 +14,7 @@
     </equipable>
   </item>
 
-  <item name="trophy_helmet">
+  <item name="trophy helmet">
     <type class="helmet" subclass="golden_horned_barbute" tileid="-1"/>
     <description/>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -28,7 +28,7 @@
     </equipable>
   </item>
 
-  <item name="robins_hat">
+  <item name="robins hat">
     <type class="helmet" subclass="robins_hat" tileid="-1"/>
     <description>You see a robins hat. It's cute but that's about it.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -42,7 +42,7 @@
     </equipable>
   </item>
 
-  <item name="studded_helmet">
+  <item name="studded helmet">
     <type class="helmet" subclass="studded_helmet" tileid="-1"/>
     <description>You see a studded helmet, it should protect your head against cuts but perhaps not hard blows.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -56,7 +56,7 @@
     </equipable>
   </item>
 
-  <item name="chain_helmet">
+  <item name="chain helmet">
     <type class="helmet" subclass="chain_helmet" tileid="-1"/>
     <description>You see a solid chain helmet, it will be excellent protection for your head.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -70,7 +70,7 @@
     </equipable>
   </item>
 
-  <item name="viking_helmet">
+  <item name="viking helmet">
     <type class="helmet" subclass="horned_helmet" tileid="-1"/>
     <description>You see a viking helmet. The previous owner wore it to many battles.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -98,7 +98,7 @@
     </equipable>
   </item>
 
-  <item name="red_helmet">
+  <item name="red helmet">
     <type class="helmet" subclass="red_helmet" tileid="-1"/>
     <description>You see a red helmet, it reminds you of a jester's hat but you can be sure it has better protection than that.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -112,7 +112,7 @@
     </equipable>
   </item>
 
-  <item name="golden_helmet">
+  <item name="golden helmet">
     <type class="helmet" subclass="golden_helmet" tileid="-1"/>
     <description>You see a heavy golden helmet. The thick metal should protect you against almost anything.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -126,7 +126,7 @@
     </equipable>
   </item>
 
-  <item name="shadow_helmet">
+  <item name="shadow helmet">
     <type class="helmet" subclass="shadow_helmet" tileid="-1"/>
     <description>You see a heavy shadow helmet. Instead of shining, it darkly gleams.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -140,7 +140,7 @@
     </equipable>
   </item>
 
-  <item name="horned_golden_helmet">
+  <item name="horned golden helmet">
     <type class="helmet" subclass="enhanced_golden_helmet" tileid="-1"/>
     <description>You see a horned golden helmet.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -154,7 +154,7 @@
     </equipable>
   </item>
 
-  <item name="chaos_helmet">
+  <item name="chaos helmet">
     <type class="helmet" subclass="chaos_helmet" tileid="-1"/>
     <description>You see a chaos helmet.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -168,7 +168,7 @@
     </equipable>
   </item>
 
-  <item name="mainio_helmet">
+  <item name="mainio helmet">
     <type class="helmet" subclass="lion_clan_helmet" tileid="-1"/>
     <description>You see a strange helmet. You can barely see when wearing it, but it protects your head very well.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -182,7 +182,7 @@
     </equipable>
   </item>
 
-  <item name="magic_chain_helmet">
+  <item name="magic chain helmet">
     <type class="helmet" subclass="magic_chain_helmet" tileid="-1"/>
     <description>You see a magic chain helmet.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -196,7 +196,7 @@
     </equipable>
   </item>
 
-  <item name="liberty_helmet">
+  <item name="liberty helmet">
     <type class="helmet" subclass="liberty_helmet" tileid="-1"/>
     <description>You see the liberty helmet. It's light and strong, you feel free wearing it.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -210,7 +210,7 @@
     </equipable>
   </item>
 
-  <item name="black_helmet">
+  <item name="black helmet">
     <type class="helmet" subclass="black_helmet" tileid="-1"/>
     <description>You see a black helmet.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>

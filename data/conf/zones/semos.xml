@@ -1703,7 +1703,7 @@ Mature sheep wanted: please speak to Sato
   <portal x="94" y="57" ref="downstairs" replacing="true">
    <destination zone="-3_semos_catacombs" ref="upstairs"/>
    <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
-    <parameter name="key">vampirette_entrails</parameter>
+    <parameter name="key">vampirette entrails</parameter>
     <parameter name="quantity">7</parameter>
     <parameter name="rejected">
      Prove that you killed all vampirettes before you face their lord.
@@ -1874,7 +1874,7 @@ Mature sheep wanted: please speak to Sato
   <portal x="11" y="18" ref="jail_lock_outside">
    <destination zone="-7_kanmararn_prison" ref="jail_lock_inside"/>
    <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
-    <parameter name="key">kanmararn_prison_key</parameter>
+    <parameter name="key">kanmararn prison key</parameter>
     <parameter name="rejected">You do not have the key to open the lock.</parameter>
    </implementation>
   </portal>
@@ -1887,35 +1887,35 @@ Mature sheep wanted: please speak to Sato
   <portal x="19" y="13" ref="jail_lock_outside2">
    <destination zone="-7_kanmararn_prison" ref="jail_lock_inside2"/>
    <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
-    <parameter name="key">kanmararn_prison_key</parameter>
+    <parameter name="key">kanmararn prison key</parameter>
     <parameter name="rejected">You do not have the key to open the lock.</parameter>
    </implementation>
   </portal>
   <portal x="36" y="18" ref="jail_lock_outside3">
    <destination zone="-7_kanmararn_prison" ref="jail_lock_inside3"/>
    <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
-    <parameter name="key">kanmararn_prison_key</parameter>
+    <parameter name="key">kanmararn prison key</parameter>
     <parameter name="rejected">You do not have the key to open the lock.</parameter>
    </implementation>
   </portal>
   <portal x="36" y="22" ref="jail_lock_inside3">
    <destination zone="-7_kanmararn_prison" ref="jail_lock_outside3"/>
    <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
-    <parameter name="key">kanmararn_prison_key</parameter>
+    <parameter name="key">kanmararn prison key</parameter>
     <parameter name="rejected">You do not have the key to open the lock.</parameter>
    </implementation>
   </portal>
   <portal x="44" y="9" ref="jail_lock_inside4">
    <destination zone="-7_kanmararn_prison" ref="jail_lock_outside4"/>
    <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
-    <parameter name="key">kanmararn_prison_key</parameter>
+    <parameter name="key">kanmararn prison key</parameter>
     <parameter name="rejected">You do not have the key to open the lock.</parameter>
    </implementation>
   </portal>
   <portal x="44" y="13" ref="jail_lock_outside4">
    <destination zone="-7_kanmararn_prison" ref="jail_lock_inside4"/>
    <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
-    <parameter name="key">kanmararn_prison_key</parameter>
+    <parameter name="key">kanmararn prison key</parameter>
     <parameter name="rejected">You do not have the key to open the lock.</parameter>
    </implementation>
   </portal>

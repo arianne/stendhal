@@ -50,7 +50,7 @@ public class PassiveEntityRespawnPointFactory {
 			switch (type) {
 			case 0:
 				passiveEntityrespawnPoint = new PassiveEntityRespawnPoint(
-						"button_mushroom", 500);
+						"button mushroom", 500);
 				break;
 			case 1:
 				passiveEntityrespawnPoint = new PassiveEntityRespawnPoint(
@@ -69,7 +69,7 @@ public class PassiveEntityRespawnPointFactory {
 				break;
 			case 1:
 				passiveEntityrespawnPoint = new PassiveEntityRespawnPoint(
-						"iron_ore", 3000);
+						"iron ore", 3000);
 				// TODO: This is only a workaround. We should find a
 				// better name than "plant grower", as we're also
 				// using them for resources, teddies and whatever.
@@ -100,7 +100,7 @@ public class PassiveEntityRespawnPointFactory {
 				break;
 			case 5:
 				passiveEntityrespawnPoint = new VegetableGrower(
-						"chinese_cabbage");
+						"chinese cabbage");
 				break;
 			case 6:
 				passiveEntityrespawnPoint = new VegetableGrower("leek");

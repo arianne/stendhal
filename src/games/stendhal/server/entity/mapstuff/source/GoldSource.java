@@ -33,7 +33,7 @@ public class GoldSource extends PlayerActivityEntity {
 	/**
 	 * The equipment needed.
 	 */
-	private static final String NEEDED_EQUIPMENT = "gold_pan";
+	private static final String NEEDED_EQUIPMENT = "gold pan";
 
 	/**
 	 * The chance that prospecting is successful.

@@ -99,7 +99,7 @@ public class WeddingRing extends Ring {
 			return;
 		}
 
-		if (!spouse.isEquipped("wedding_ring")) {
+		if (!spouse.isEquipped("wedding ring")) {
 			// This means trouble ;)
 			player.sendPrivateText(spouseName
 					+ " is not wearing the wedding ring.");
@@ -107,7 +107,7 @@ public class WeddingRing extends Ring {
 		} else { // spouse is equipped with ring but could be divorced and
 			// have another
 
-			Item weddingRing = spouse.getFirstEquipped("wedding_ring");
+			Item weddingRing = spouse.getFirstEquipped("wedding ring");
 
 			if (weddingRing.getInfoString() == null) { // divorced with ring
 				// and engaged again

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <items>
-  <item name="leather_legs">
+  <item name="leather legs">
     <type class="legs" subclass="leather_legs" tileid="-1"/>
     <description>You see a pair of leather legs. They look new but they're poor quality.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -14,7 +14,7 @@
     </equipable>
   </item>
 
-  <item name="studded_legs">
+  <item name="studded legs">
     <type class="legs" subclass="studded_legs" tileid="-1"/>
     <description>You see a pair of blood stained studded legs. You're not sure if the blood came from their last owner ... or his enemies.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -28,7 +28,7 @@
     </equipable>
   </item>
 
-  <item name="chain_legs">
+  <item name="chain legs">
     <type class="legs" subclass="chain_legs" tileid="-1"/>
     <description>You see a pair of well made chain legs. They should protect you against any attacks aimed low.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -42,7 +42,7 @@
     </equipable>
   </item>
 
-  <item name="red_legs">
+  <item name="red legs">
     <type class="legs" subclass="red_legs" tileid="-1"/>
     <description>A pair of red legs are in your grasp.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -56,7 +56,7 @@
     </equipable>
   </item>
 
-  <item name="elvish_legs">
+  <item name="elvish legs">
     <type class="legs" subclass="elvish_legs" tileid="-1"/>
     <description>You see a pair of elvish legs.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -70,7 +70,7 @@
     </equipable>
   </item>
 
-  <item name="golden_legs">
+  <item name="golden legs">
     <type class="legs" subclass="golden_legs" tileid="-1"/>
     <description>You see a pair of shining, strong golden legs.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -84,7 +84,7 @@
     </equipable>
   </item>
 
-  <item name="shadow_legs">
+  <item name="shadow legs">
     <type class="legs" subclass="shadow_legs" tileid="-1"/>
     <description>You see a pair of shadow legs. The weight of them is incredible.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -98,7 +98,7 @@
     </equipable>
   </item>
 
-  <item name="mainio_legs">
+  <item name="mainio legs">
     <type class="legs" subclass="mainio_legs" tileid="-1"/>
     <description>You see a pair of odd looking legs. They are somewhat startling but they give you a good protection.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -112,7 +112,7 @@
     </equipable>
   </item>
 
-  <item name="chaos_legs">
+  <item name="chaos legs">
     <type class="legs" subclass="chaos_legs" tileid="-1"/>
     <description>You see a pair of chaos legs. The strange colours confuse you.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -126,7 +126,7 @@
     </equipable>
   </item>
 
-  <item name="xeno_legs">
+  <item name="xeno legs">
     <type class="legs" subclass="xeno_legs" tileid="-1"/>
     <description>You see a pair of xeno legs. They're very strong and look brand new.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -140,7 +140,7 @@
     </equipable>
   </item>
 
-  <item name="jewelled_legs">
+  <item name="jewelled legs">
     <type class="legs" subclass="jewelled_legs" tileid="-1"/>
     <description>You see a beautiful pair of jewelled legs. A large red gem glints at you and they're encrusted all over with sapphires.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -154,7 +154,7 @@
     </equipable>
   </item>
 
-  <item name="black_legs">
+  <item name="black legs">
     <type class="legs" subclass="black_legs" tileid="-1"/>
     <description>You see a pair of black legs.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>

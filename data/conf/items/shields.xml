@@ -15,7 +15,7 @@
     </equipable>
   </item>
 
-  <item name="wooden_shield">
+  <item name="wooden shield">
     <type class="shield" subclass="wooden_shield" tileid="-1"/>
     <description>You see a wooden shield. It is made of cheap wood and heavily used. However, it still seems to offer you some kind of basic protection.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -30,7 +30,7 @@
     </equipable>
   </item>
 
-  <item name="studded_shield">
+  <item name="studded shield">
     <type class="shield" subclass="studded_shield" tileid="-1"/>
     <description>You see a studded shield. It's a little dented but seems robust enough.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -45,7 +45,7 @@
     </equipable>
   </item>
 
-  <item name="plate_shield">
+  <item name="plate shield">
     <type class="shield" subclass="plate_shield" tileid="-1"/>
     <description>You see a solid plate shield. It is in good condition, and might be worth a little.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -60,7 +60,7 @@
     </equipable>
   </item>
 
-  <item name="lion_shield">
+  <item name="lion shield">
     <type class="shield" subclass="lion_shield" tileid="-1"/>
     <description>You see a valuable lion shield. It is heavy enough to defend you against strong attacks.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -75,7 +75,7 @@
     </equipable>
   </item>
 
-  <item name="unicorn_shield">
+  <item name="unicorn shield">
     <type class="shield" subclass="unicorn_shield" tileid="-1"/>
     <description>You see a unicorn shield. It's beautifully crafted and will give you excellent protection.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -90,7 +90,7 @@
     </equipable>
   </item>
 
-  <item name="enhanced_lion_shield">
+  <item name="enhanced lion shield">
     <type class="shield" subclass="enhanced_lion_shield" tileid="-1"/>
     <description>An enhanced lion shield glints at you. It will defend you well.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -105,7 +105,7 @@
     </equipable>
   </item>
 
-  <item name="skull_shield">
+  <item name="skull shield">
     <type class="shield" subclass="skull_shield" tileid="-1"/>
     <description>The face of a skull scowls at you from this fearsome skull shield.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -120,7 +120,7 @@
     </equipable>
   </item>
 
-  <item name="crown_shield">
+  <item name="crown shield">
     <type class="shield" subclass="crown_shield" tileid="-1"/>
     <description>You see a mighty crown shield. It is in perfect condition.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -135,7 +135,7 @@
     </equipable>
   </item>
 
-  <item name="red_shield">
+  <item name="red shield">
     <type class="shield" subclass="red_shield" tileid="-1"/>
     <description>You see a red shield. It is a stunning shade of scarlet.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -150,7 +150,7 @@
     </equipable>
   </item>
 
-  <item name="elvish_shield">
+  <item name="elvish shield">
     <type class="shield" subclass="elvish_shield" tileid="-1"/>
     <description>You see an elvish shield. It looks like one big tree leaf!</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -165,7 +165,7 @@
     </equipable>
   </item>
 
-  <item name="golden_shield">
+  <item name="golden shield">
     <type class="shield" subclass="golden_shield" tileid="-1"/>
     <description>You see a golden shield, could it be the ultimate in defence?</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -180,22 +180,37 @@
     </equipable>
   </item>
 
-  <item name="green_dragon_shield">
+  <item name="green dragon shield">
+
     <type class="shield" subclass="green_dragon_shield" tileid="-1"/>
+
     <description>You see an green dragon shield, scaly and strong.</description>
+
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+
       <def value="35"/>
+
     </attributes>
+
     <weight value="14.0"/>
+
     <value value="300000"/>
+
     <equipable>
+
       <slot name="lhand"/>
+
       <slot name="rhand"/>
+
       <slot name="bag"/>
+
     </equipable>
+
   </item>
 
-  <item name="shadow_shield">
+
+
+  <item name="shadow shield">
     <type class="shield" subclass="shadow_shield" tileid="-1"/>
     <description>You see a shadow shield. Rather than reflecting light, it seems to absorb it.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -210,7 +225,7 @@
     </equipable>
   </item>
 
-  <item name="mainio_shield">
+  <item name="mainio shield">
     <type class="shield" subclass="mainio_shield" tileid="-1"/>
     <description>You see a strange looking shield. You have no idea what it's made of, but it seems to protect you well by distracting your enemies.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -225,7 +240,7 @@
     </equipable>
   </item>
 
-  <item name="chaos_shield">
+  <item name="chaos shield">
     <type class="shield" subclass="chaos_shield" tileid="-1"/>
     <description>You see a chaos shield. Its charming appearance will fool your enemies.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -240,7 +255,7 @@
     </equipable>
   </item>
 
-  <item name="magic_plate_shield">
+  <item name="magic plate shield">
     <type class="shield" subclass="lion_clan_shield" tileid="-1"/>
     <description>You see a magic plate shield. Its has a magical quality surrounding it.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -255,7 +270,7 @@
     </equipable>
   </item>
 
-  <item name="xeno_shield">
+  <item name="xeno shield">
     <type class="shield" subclass="xeno_shield" tileid="-1"/>
     <description>You see a lightweight but strong xeno shield, in the colours of the creature it was looted from.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -270,7 +285,7 @@
     </equipable>
   </item>
 
-  <item name="black_shield">
+  <item name="black shield">
     <type class="shield" subclass="black_shield" tileid="-1"/>
     <description>You see a black shield. Its darkness will surely protect you.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>

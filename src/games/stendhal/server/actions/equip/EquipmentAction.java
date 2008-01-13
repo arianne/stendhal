@@ -13,10 +13,9 @@
 package games.stendhal.server.actions.equip;
 
 import games.stendhal.server.actions.ActionListener;
-
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
-
+import games.stendhal.server.core.engine.UnderscoreConverter;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
@@ -27,8 +26,9 @@ import games.stendhal.server.entity.player.Player;
 import java.util.Arrays;
 import java.util.List;
 
-import org.apache.log4j.Logger;
 import marauroa.common.game.RPAction;
+
+import org.apache.log4j.Logger;
 
 /**
  * This listener handles all entity movements from a slot to either another slot
@@ -115,7 +115,7 @@ public class EquipmentAction implements ActionListener {
 		Entity entity = source.getEntity();
 		String itemName = "entity";
 		if (entity.has("name")) {
-			itemName = entity.get("name").replace("_", " ");
+			itemName = UnderscoreConverter.transform(entity.get("name"));
 		} else if (entity instanceof Item) {
 			itemName = "item";
 		}
@@ -187,7 +187,7 @@ public class EquipmentAction implements ActionListener {
 		Entity entity = source.getEntity();
 		String itemName = "entity";
 		if (entity.has("name")) {
-			itemName = entity.get("name").replace("_", " ");
+			itemName = UnderscoreConverter.transform(entity.get("name"));
 		} else if (entity instanceof Item) {
 			itemName = "item";
 		}

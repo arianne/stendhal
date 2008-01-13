@@ -33,9 +33,9 @@ public class WellSource extends PlayerActivityEntity {
 	/**
 	 * The list of possible rewards.
 	 */
-	private static final String[] items = { "money", "wood", "iron_ore",
-			"gold_nugget", "potion", "home_scroll", "greater_potion",
-			"sapphire", "carbuncle", "horned_golden_helmet", "dark_dagger",
+	private static final String[] items = { "money", "wood", "iron ore",
+			"gold nugget", "potion", "home scroll", "greater potion",
+			"sapphire", "carbuncle", "horned golden helmet", "dark dagger",
 			"present" };
 
 	/**
@@ -125,9 +125,9 @@ public class WellSource extends PlayerActivityEntity {
 					itemName);
 
 			// TODO: player bind the better prizes below:
-			// horned_golden_helmet & dark_dagger
-			if (itemName.equals("dark_dagger")
-					|| itemName.equals("horned_golden_helmet")) {
+			// horned golden helmet & dark dagger
+			if (itemName.equals("dark dagger")
+					|| itemName.equals("horned golden helmet")) {
 				/*
 				 * Bound powerful items.
 				 */

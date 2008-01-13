@@ -55,15 +55,15 @@ public class LifeguardNPC implements ZoneConfigurator {
 				Map<String, Integer> requiredResources = new TreeMap<String, Integer>();	// use sorted TreeMap instead of HashMap
 				requiredResources.put("arandula", 1);
 				requiredResources.put("kokuda", 1);
-				requiredResources.put("minor_potion", 1);
+				requiredResources.put("minor potion", 1);
 
-				ProducerBehaviour mixerBehaviour = new ProducerBehaviour("pamela_mix_cream",
-						"mix", "suntan_cream", requiredResources, 10 * 60);
+				ProducerBehaviour mixerBehaviour = new ProducerBehaviour("pamela mix cream",
+						"mix", "suntan cream", requiredResources, 10 * 60);
 
 				new ProducerAdder().addProducer(this, mixerBehaviour, "Hallo!");
 
 				addReply(
-				        Arrays.asList("suntan", "cream", "suntan_cream"),
+				        Arrays.asList("suntan", "cream", "suntan cream"),
 				        "David's and mine suntan cream is famous all over the island. But the way to the labyrinth entrance is blocked, so we can't get all the ingredients we need. If you bring me the things we need, I can #mix our special suntan cream for you.");
 
 				addReply("arandula", "Arandula is a herb which is growing around Semos.");
@@ -72,8 +72,7 @@ public class LifeguardNPC implements ZoneConfigurator {
 				        "kokuda",
 				        "We can't find the Kokuda herb which is growing on this island, because the entrance of the labyrinth, where you can find this herb, is blocked.");
 
-				addReply("minor_potion", "It's a small bottle full of potion. You can buy it at several places.");
-
+				addReply("minor potion", "It's a small bottle full of potion. You can buy it at several places.");
 			}
 		};
 

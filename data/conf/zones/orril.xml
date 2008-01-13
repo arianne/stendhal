@@ -339,7 +339,7 @@ Danger! Deep Water!
    <destination zone="-2_orril_lich_palace" ref="0"/>
    <implementation class-name="games.stendhal.server.entity.mapstuff.portal.LockedDoor">
     <parameter name="class">skulldoor_s</parameter>
-    <parameter name="key">dungeon_silver_key</parameter>
+    <parameter name="key">dungeon silver key</parameter>
    </implementation>
   </portal>
 
@@ -377,7 +377,7 @@ Danger! Deep Water!
    <destination zone="-2_orril_lich_palace" ref="locked_inside_left"/>
    <implementation class-name="games.stendhal.server.entity.mapstuff.portal.LockedDoor">
     <parameter name="class">skulldoor_n</parameter>
-    <parameter name="key">lich_gold_key</parameter>
+    <parameter name="key">lich gold key</parameter>
    </implementation>
   </portal>
 
@@ -455,7 +455,7 @@ Danger! Deep Water!
   <portal x="15" y="10" ref="kotoch_lock_outside">
    <destination zone="-3_kotoch_prison" ref="kotoch_lock_inside"/>
    <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
-    <parameter name="key">kotoch_prison_key</parameter>
+    <parameter name="key">kotoch prison key</parameter>
     <parameter name="rejected">You do not have the key to open the lock.</parameter>
    </implementation>
   </portal>

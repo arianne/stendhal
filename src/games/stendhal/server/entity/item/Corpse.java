@@ -14,6 +14,7 @@ package games.stendhal.server.entity.item;
 
 import games.stendhal.common.Grammar;
 import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.UnderscoreConverter;
 import games.stendhal.server.core.events.EquipListener;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.events.TurnNotifier;
@@ -26,11 +27,12 @@ import games.stendhal.server.entity.slot.LootableSlot;
 import java.awt.geom.Rectangle2D;
 import java.util.Iterator;
 
-import org.apache.log4j.Logger;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 import marauroa.common.game.Definition.Type;
+
+import org.apache.log4j.Logger;
 
 public class Corpse extends PassiveEntity implements TurnListener,
 		EquipListener {
@@ -304,7 +306,7 @@ public class Corpse extends PassiveEntity implements TurnListener,
 		} else {
 			// TODO: Just set name up front and use class only
 			// for client representation
-			text += Grammar.a_noun(get("class")).replace("_", " ");
+			text += UnderscoreConverter.transform(Grammar.a_noun(get("class")));
 		}
 
 		text += ". You can #inspect it to see its contents.";

@@ -185,8 +185,8 @@ public class BuyWindowContent extends javax.swing.JPanel {
 		xin_weapons.setOpaque(false);
 		xinSell.setModel(new javax.swing.AbstractListModel() {
 			private String[] strings = { "knife ($15)", "club ($10)", "dagger ($25)",
-					"wooden_shield ($25)", "dress ($25)",
-					"leather_helmet ($25)", "cloak ($30)", "leather_legs ($35)" };
+					"wooden shield ($25)", "dress ($25)",
+					"leather helmet ($25)", "cloak ($30)", "leather legs ($35)" };
 
 			public int getSize() {
 				return strings.length;
@@ -215,9 +215,9 @@ public class BuyWindowContent extends javax.swing.JPanel {
 
 		xinBuy.setModel(new javax.swing.AbstractListModel() {
 			private String[] strings = { "short_sword ($15)", "sword ($60)",
-					"studded_shield ($20)", "studded_armor ($22)",
-					"studded_legs ($20)", "chain_armor ($29)",
-					"chain_helmet ($25)", "chain_legs ($27)" };
+					"studded shield ($20)", "studded armor ($22)",
+					"studded legs ($20)", "chain armor ($29)",
+					"chain helmet ($25)", "chain legs ($27)" };
 
 			public int getSize() {
 				return strings.length;
@@ -255,9 +255,9 @@ public class BuyWindowContent extends javax.swing.JPanel {
 
 		potions.setOpaque(false);
 		potionList.setModel(new javax.swing.AbstractListModel() {
-			private String[] strings = { "minor_potion ($100)", "potion ($250)",
-					"greater_potion ($500)", "mega_potion", "antidote ($40)",
-					"greater_antidote ($40)" };
+			private String[] strings = { "minor potion ($100)", "potion ($250)",
+					"greater potion ($500)", "mega potion", "antidote ($40)",
+					"greater antidote ($40)" };
 
 			public int getSize() {
 				return strings.length;
@@ -417,19 +417,19 @@ public class BuyWindowContent extends javax.swing.JPanel {
 	// items.put("Knife ($15)", "knife");
 	// items.put("Club ($10)", "club");
 	// items.put("Dagger ($25)", "dagger");
-	// items.put("Wooden Shield ($25)", "wooden_shield");
+	// items.put("Wooden Shield ($25)", "wooden shield");
 	// items.put("Dress ($25)", "dress");
-	// items.put("Leather Helmet ($25)", "leather_helmet");
+	// items.put("Leather Helmet ($25)", "leather helmet");
 	// items.put("Cloak ($30)", "cloak");
-	// items.put("Leather Legs ($35)", "leather_legs");
-	// items.put("Short Sword ($15)", "short_sword");
+	// items.put("Leather Legs ($35)", "leather legs");
+	// items.put("Short Sword ($15)", "short sword");
 	// items.put("Sword ($60)", "sword");
-	// items.put("Studded Shield ($20)", "studded_shield");
-	// items.put("Studded Armor ($22)", "studded_armor");
-	// items.put("Studded Legs ($20)", "studded_legs");
-	// items.put("Chain Armor ($29)", "chain_armor");
-	// items.put("Chain Helmet ($25)", "chain_helmet");
-	// items.put("Chain Legs ($27)", "chain_legs");
+	// items.put("Studded Shield ($20)", "studded shield");
+	// items.put("Studded Armor ($22)", "studded armor");
+	// items.put("Studded Legs ($20)", "studded legs");
+	// items.put("Chain Armor ($29)", "chain armor");
+	// items.put("Chain Helmet ($25)", "chain helmet");
+	// items.put("Chain Legs ($27)", "chain legs");
 	//
 	// // food&drink shop
 	// items.put("Beer ($10)", "beer");
@@ -444,7 +444,8 @@ public class BuyWindowContent extends javax.swing.JPanel {
 	//
 	// }
 
-	// Variables declaration - do not modify//GEN-BEGIN:variables
+	// Variables declaration - do not modify
+	//GEN-BEGIN:variables
 	private javax.swing.JPanel amountChooser;
 
 	private javax.swing.JList foodList;
@@ -494,6 +495,7 @@ public class BuyWindowContent extends javax.swing.JPanel {
 	private javax.swing.JList xinSell;
 
 	private javax.swing.JPanel xin_weapons;
-	// End of variables declaration//GEN-END:variables
+	// End of variables declaration
+	//GEN-END:variables
 
 }

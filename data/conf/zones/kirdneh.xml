@@ -115,7 +115,7 @@
   </portal>-->
   <portal x="96" y="89" ref="44">
    <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
-    <parameter name="key">private_key_44</parameter>
+    <parameter name="key">private key 44</parameter>
     <parameter name="rejected">The door is locked.</parameter>
    </implementation>
    <destination zone="int_kirdneh_house_44" ref="entrance"/>

@@ -26,7 +26,7 @@
     </equipable>
   </item>
 
-  <item name="big_bottle">
+  <item name="big bottle">
     <type class="container" subclass="big_bottle" tileid="-1"/>
     <description>You see a big bottle.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
@@ -39,7 +39,7 @@
     </equipable>
   </item>
 
-  <item name="empty_goblet">
+  <item name="empty goblet">
     <type class="container" subclass="empty_goblet" tileid="-1"/>
     <description>You see an empty goblet.  You wonder what could it hold.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>

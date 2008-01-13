@@ -30,8 +30,8 @@ public class FeaturesTestArea implements ZoneConfigurator {
 		public void onDead(Entity killer) {
 			if (killer instanceof RPEntity) {
 				RPEntity killerRPEntity = (RPEntity) killer;
-				if (!killerRPEntity.isEquipped("key_golden")) {
-					Item item = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("key_golden");
+				if (!killerRPEntity.isEquipped("golden key")) {
+					Item item = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("golden key");
 					killerRPEntity.equip(item, true);
 				}
 			}
@@ -63,13 +63,13 @@ public class FeaturesTestArea implements ZoneConfigurator {
 		List<String> slots = new LinkedList<String>();
 		slots.add("bag");
 
-		DefaultItem item = new DefaultItem("key", "gold", "key_golden", -1);
+		DefaultItem item = new DefaultItem("key", "gold", "golden key", -1);
 		item.setImplementation(Item.class);
 		item.setWeight(1);
 		item.setEquipableSlots(slots);
 		manager.addItem(item);
 
-		item = new DefaultItem("key", "golden", "key_silver", -1);
+		item = new DefaultItem("key", "golden", "silver key", -1);
 		item.setImplementation(Item.class);
 		item.setWeight(1);
 		item.setEquipableSlots(slots);

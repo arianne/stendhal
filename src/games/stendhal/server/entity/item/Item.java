@@ -15,6 +15,7 @@ package games.stendhal.server.entity.item;
 import games.stendhal.common.Grammar;
 import games.stendhal.server.core.engine.ItemLogger;
 import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.UnderscoreConverter;
 import games.stendhal.server.core.events.EquipListener;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.events.TurnNotifier;
@@ -544,7 +545,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 		String name = getName();
 
 		if (name != null) {
-			return name.replace('_', ' ');
+			return UnderscoreConverter.transform(name);
 		} else {
 			return super.getDescriptionName(definite);
 		}
@@ -560,7 +561,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 		String name = getName();
 
 		if (name != null) {
-			return name.replace('_', ' ');
+			return UnderscoreConverter.transform(name);
 		} else {
 			return super.getTitle();
 		}

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <items>
-  <item name="old_scythe">
+  <item name="old scythe">
     <type class="axe" subclass="oldscythe" tileid="-1"/>
     <description>You see an old scythe, it used to be weapon of death. But now it is only a useful tool for farming.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -16,7 +16,7 @@
     </equipable>
   </item>
 
-  <item name="small_axe">
+  <item name="small axe">
     <type class="axe" subclass="small_axe" tileid="-1"/>
     <description>You see a small axe. It appears well made but you suspect it is too light to do much damage.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -32,7 +32,7 @@
     </equipable>
   </item>
 
-  <item name="hand_axe">
+  <item name="hand axe">
     <type class="axe" subclass="hand_axe" tileid="-1"/>
     <description>You see a hand axe, well worn from years of use but may prove useful.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -64,7 +64,7 @@
     </equipable>
   </item>
 
-  <item name="battle_axe">
+  <item name="battle axe">
     <type class="axe" subclass="battle_axe" tileid="-1"/>
     <description>You see a battle axe. It is well crafted and sharp despite its age.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -96,7 +96,7 @@
     </equipable>
   </item>
 
-  <item name="twoside_axe">
+  <item name="twoside axe">
     <type class="axe" subclass="twosided_poleaxe" tileid="-1"/>
     <description>You see a well crafted twoside axe.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -128,7 +128,7 @@
     </equipable>
   </item>
 
-  <item name="golden_twoside_axe">
+  <item name="golden twoside axe">
     <type class="axe" subclass="golden_twosided_poleaxe" tileid="-1"/>
     <description>You see a golden twoside axe.  This axe is a rare find.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -160,7 +160,7 @@
     </equipable>
   </item>
 
-  <item name="magic_twoside_axe">
+  <item name="magic twoside axe">
     <type class="axe" subclass="magic_twosided_poleaxe" tileid="-1"/>
     <description>You see a magic twoside axe. The nature of the magic isn't clear to you.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -176,7 +176,7 @@
     </equipable>
   </item>
 
-  <item name="durin_axe">
+  <item name="durin axe">
     <type class="axe" subclass="durin_axe" tileid="-1"/>
     <description>You see a durin axe, a great prize from the dwarves.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -192,7 +192,7 @@
     </equipable>
   </item>
 
-  <item name="black_scythe">
+  <item name="black scythe">
     <type class="axe" subclass="black_scythe" tileid="-1"/>
     <description>You see a black scythe. Its attack is awesome for a farming tool.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -208,7 +208,7 @@
     </equipable>
   </item>
 
-  <item name="chaos_axe">
+  <item name="chaos axe">
     <type class="axe" subclass="chaos_axe" tileid="-1"/>
     <description>You see a chaos axe. The handle is some alloy you can't recognise and the blade is golden coloured, but thinking too long about it makes you confused.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -224,7 +224,7 @@
     </equipable>
   </item>
 
-  <item name="black_halberd">
+  <item name="black halberd">
     <type class="axe" subclass="black_halberd" tileid="-1"/>
     <description>You see a black halberd. It's immensely heavy so will make huge blows but you can only swing it at a very slow rate.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>

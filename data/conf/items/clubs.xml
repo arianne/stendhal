@@ -64,7 +64,7 @@
     </equipable>
   </item>
 
-  <item name="enhanced_mace">
+  <item name="enhanced mace">
     <type class="club" subclass="enhanced_mace" tileid="-1"/>
     <description>You see an enhanced mace. The heavy attacking end makes it hard to balance.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -80,7 +80,7 @@
     </equipable>
   </item>
 
-  <item name="golden_mace">
+  <item name="golden mace">
     <type class="club" subclass="golden_mace" tileid="-1"/>
     <description>You see a shining golden mace. Despite looking ornamental, it is sharp enough to do some damage.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -96,7 +96,7 @@
     </equipable>
   </item>
 
-  <item name="skull_staff">
+  <item name="skull staff">
     <type class="club" subclass="skull_staff" tileid="-1"/>
     <description>You see a rare skull staff. It appears mystical but will work like any other staff.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -113,7 +113,7 @@
     </equipable>
   </item>
 
-  <item name="morning_star">
+  <item name="morning star">
     <type class="club" subclass="golden_flail" tileid="-1"/>
     <description>You see a morning star.  This is a very rare item indeed.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -145,7 +145,7 @@
     </equipable>
   </item>
 
-  <item name="golden_hammer">
+  <item name="golden hammer">
     <type class="club" subclass="golden_hammer" tileid="-1"/>
     <description>You see a valuable golden hammer. This golden weapon may be worth a lot to someone. It has a slow rate of attack.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -161,7 +161,7 @@
     </equipable>
   </item>
 
-  <item name="war_hammer">
+  <item name="war hammer">
     <type class="club" subclass="grand_warhammer" tileid="-1"/>
     <description>You see a huge war hammer. It seems strong but is so heavy that you can only lift it to attack every so often..</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -177,7 +177,7 @@
     </equipable>
   </item>
 
-  <item name="ice_war_hammer">
+  <item name="ice war hammer">
     <type class="club" subclass="ice_grand_warhammer" tileid="-1"/>
     <description>You see a ice war hammer. The last owner must have been huge, to wield it.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -193,7 +193,7 @@
     </equipable>
   </item>
 
-  <item name="chaos_hammer">
+  <item name="chaos hammer">
     <type class="club" subclass="chaos_hammer" tileid="-1"/>
     <description>You see a chaos hammer. It is a fearsome weapon.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -225,7 +225,7 @@
     </equipable>
   </item>
 
-  <item name="vulcano_hammer">
+  <item name="vulcano hammer">
     <type class="club" subclass="vulcano_hammer" tileid="-1"/>
     <description>You see a vulcano hammer. It's said to be a weapon of a God, but attacks with a snail like pace.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -241,7 +241,7 @@
     </equipable>
   </item>
 
-  <item name="club_of_thorns">
+  <item name="club of thorns">
     <type class="club" subclass="club_of_thorns" tileid="-1"/>
     <description>You see the club of thorns. The thorns are full with blood of tortured humans. It is hugely powerful but will drain your life to use it.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -258,7 +258,7 @@
     </equipable>
   </item>
 
-  <item name="rod_of_the_gm">
+  <item name="rod of the gm">
     <type class="club" subclass="rod_of_the_gm" tileid="-1"/>
     <description>You see a rod of the GM.  This rod is reserved for those with special powers, be careful not to let it fall into the wrong hands.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>

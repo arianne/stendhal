@@ -47,7 +47,7 @@ Walk on, and you will be returned to the land of the living...
    <destination zone="int_pathfinding" ref="locked_inside"/>
    <implementation class-name="games.stendhal.server.entity.mapstuff.portal.LockedDoor">
     <parameter name="class">skulldoor_s</parameter>
-    <parameter name="key">key_golden</parameter>
+    <parameter name="key">golden key</parameter>
    </implementation>
   </portal>
 

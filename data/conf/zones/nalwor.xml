@@ -272,7 +272,7 @@
   <portal x="15" y="21" ref="customer_room_entrance">
     <destination zone="int_nalwor_bank" ref="customer_room_exit"/>
     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
-      <parameter name="key">nalwor_bank_key</parameter>
+      <parameter name="key">nalwor bank key</parameter>
       <parameter name="rejected">The door is locked.</parameter>
     </implementation>
   </portal>
@@ -280,7 +280,7 @@
   <portal x="16" y="21" ref="customer_room_exit">
     <destination zone="int_nalwor_bank" ref="customer_room_entrance"/>
     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
-      <parameter name="key">nalwor_bank_key</parameter>
+      <parameter name="key">nalwor bank key</parameter>
       <parameter name="rejected">The door is locked.</parameter>
     </implementation>
   </portal>

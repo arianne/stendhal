@@ -190,49 +190,49 @@ West: Semos
    <portal x="7" y="74" ref="house_50">
      <destination zone="int_ados_house_50" ref="in"/>
      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
-     <parameter name="key">private_key_50</parameter>
+     <parameter name="key">private key 50</parameter>
      <parameter name="rejected">The door is locked.</parameter>
      </implementation>
    </portal>
    <portal x="12" y="74" ref="house_51">
      <destination zone="int_ados_house_51" ref="in"/>
      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
-     <parameter name="key">private_key_51</parameter>
+     <parameter name="key">private key 51</parameter>
      <parameter name="rejected">The door is locked.</parameter>
      </implementation>
    </portal>
    <portal x="17" y="74" ref="house_52">
      <destination zone="int_ados_house_52" ref="in"/>
      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
-     <parameter name="key">private_key_52</parameter>
+     <parameter name="key">private key 52</parameter>
      <parameter name="rejected">The door is locked.</parameter>
      </implementation>
    </portal>
    <portal x="22" y="74" ref="house_53">
      <destination zone="int_ados_house_53" ref="in"/>
      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
-     <parameter name="key">private_key_53</parameter>
+     <parameter name="key">private key 53</parameter>
      <parameter name="rejected">The door is locked.</parameter>
      </implementation>
    </portal>
    <portal x="27" y="74" ref="house_54">
      <destination zone="int_ados_house_54" ref="in_left"/>
      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
-     <parameter name="key">private_key_54</parameter>
+     <parameter name="key">private key 54</parameter>
      <parameter name="rejected">The door is locked.</parameter>
      </implementation>
    </portal>
    <portal x="32" y="74" ref="house_55">
      <destination zone="int_ados_house_55" ref="in_left"/>
      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
-     <parameter name="key">private_key_55</parameter>
+     <parameter name="key">private key 55</parameter>
      <parameter name="rejected">The door is locked.</parameter>
      </implementation>
    </portal> 
    <portal x="37" y="74" ref="house_56">
      <destination zone="int_ados_house_56" ref="in"/>
      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
-     <parameter name="key">private_key_56</parameter>
+     <parameter name="key">private key 56</parameter>
      <parameter name="rejected">The door is locked.</parameter>
      </implementation>
    </portal> 
@@ -240,7 +240,7 @@ West: Semos
    <portal x="14" y="85" ref="zaras_house_entrance">
      <destination zone="int_ados_zaras_house_0" ref="entrance_zaras_house"/>
      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
-       <parameter name="key">small_key</parameter>
+       <parameter name="key">small key</parameter>
        <parameter name="rejected">The door is locked.</parameter>
      </implementation>
    </portal>
@@ -248,42 +248,42 @@ West: Semos
    <portal x="19" y="85" ref="house_57">
      <destination zone="int_ados_house_57" ref="in"/>
      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
-     <parameter name="key">private_key_57</parameter>
+     <parameter name="key">private key 57</parameter>
      <parameter name="rejected">The door is locked.</parameter>
      </implementation>
    </portal>
    <portal x="24" y="85" ref="house_58">
      <destination zone="int_ados_house_58" ref="in"/>
      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
-     <parameter name="key">private_key_58</parameter>
+     <parameter name="key">private key 58</parameter>
      <parameter name="rejected">The door is locked.</parameter>
      </implementation>
    </portal>
    <portal x="29" y="85" ref="house_59">
      <destination zone="int_ados_house_59" ref="in"/>
      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
-     <parameter name="key">private_key_59</parameter>
+     <parameter name="key">private key 59</parameter>
      <parameter name="rejected">The door is locked.</parameter>
      </implementation>
    </portal>
    <portal x="34" y="85" ref="house_60">
      <destination zone="int_ados_house_60" ref="in"/>
      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
-     <parameter name="key">private_key_60</parameter>
+     <parameter name="key">private key 60</parameter>
      <parameter name="rejected">The door is locked.</parameter>
      </implementation>
    </portal>
    <portal x="39" y="85" ref="house_61">
      <destination zone="int_ados_house_61" ref="in"/>
      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
-     <parameter name="key">private_key_61</parameter>
+     <parameter name="key">private key 61</parameter>
      <parameter name="rejected">The door is locked.</parameter>
      </implementation>
    </portal>
    <portal x="44" y="85" ref="house_62">
      <destination zone="int_ados_house_62" ref="in"/>
      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
-     <parameter name="key">private_key_62</parameter>
+     <parameter name="key">private key 62</parameter>
      <parameter name="rejected">The door is locked.</parameter>
      </implementation>
    </portal>
@@ -467,7 +467,7 @@ in roaches.
     <portal x="8" y="14" ref="entrance_zaras_house">
      <destination zone="0_ados_city_n" ref="zaras_house_entrance"/>
      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
-     <parameter name="key">small_key</parameter>
+     <parameter name="key">small key</parameter>
      <parameter name="rejected">Zara would be angry if you forgot the key inside her house.</parameter>
      </implementation>
     </portal>
@@ -1281,42 +1281,42 @@ Southeast: Docks
   <portal x="5" y="52" ref="house_63">
      <destination zone="int_ados_house_63" ref="in"/>
      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
-     <parameter name="key">private_key_63</parameter>
+     <parameter name="key">private key 63</parameter>
      <parameter name="rejected">The door is locked.</parameter>
      </implementation>
    </portal>
    <portal x="5" y="60" ref="house_64">
      <destination zone="int_ados_house_64" ref="in"/>
      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
-     <parameter name="key">private_key_64</parameter>
+     <parameter name="key">private key 64</parameter>
      <parameter name="rejected">The door is locked.</parameter>
      </implementation>
    </portal>
    <portal x="5" y="69" ref="house_65">
      <destination zone="int_ados_house_65" ref="in"/>
      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
-     <parameter name="key">private_key_65</parameter>
+     <parameter name="key">private key 65</parameter>
      <parameter name="rejected">The door is locked.</parameter>
      </implementation>
    </portal>
    <portal x="5" y="76" ref="house_66">
      <destination zone="int_ados_house_66" ref="in"/>
      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
-     <parameter name="key">private_key_66</parameter>
+     <parameter name="key">private key 66</parameter>
      <parameter name="rejected">The door is locked.</parameter>
      </implementation>
    </portal>
    <portal x="18" y="55" ref="house_67">
      <destination zone="int_ados_house_67" ref="in"/>
      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
-     <parameter name="key">private_key_67</parameter>
+     <parameter name="key">private key 67</parameter>
      <parameter name="rejected">The door is locked.</parameter>
      </implementation>
    </portal>
    <portal x="18" y="61" ref="house_68">
      <destination zone="int_ados_house_68" ref="in"/>
      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
-     <parameter name="key">private_key_68</parameter>
+     <parameter name="key">private key 68</parameter>
      <parameter name="rejected">The door is locked.</parameter>
      </implementation>
    </portal>

@@ -80,7 +80,6 @@ class KillRecording {
 		if (!hasKilledSolo(name)) {
 			setKill(name, "shared");
 		}
-
 	}
 
 	/**

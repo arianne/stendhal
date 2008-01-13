@@ -109,7 +109,7 @@ public class MagicExtn extends StendhalServerExtension implements
 					player.sendPrivateText("You do not have enough available mana to use this spell.");
 				}
 
-			} else if (castSpell.contains("raise_stats")) {
+			} else if (castSpell.contains("raise stats")) {
 				if (player.getMana() > 100) {
 					/**
 					 * Raises the level of a player along with the atk/def

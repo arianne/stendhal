@@ -44,7 +44,7 @@
     </equipable>
   </item>
 
-  <item name="iron_ore">
+  <item name="iron ore">
     <type class="resource" subclass="iron_ore" tileid="-1"/>
     <description/>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
@@ -104,7 +104,7 @@
     </equipable>
   </item>
 
-  <item name="gold_nugget">
+  <item name="gold nugget">
     <type class="resource" subclass="gold_ore" tileid="-1"/>
     <description>You see a gold nugget.  Its rich golden colour shines, and it may be useful.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
@@ -134,7 +134,7 @@
     </equipable>
   </item>
 
-  <item name="gold_bar">
+  <item name="gold bar">
     <type class="resource" subclass="gold_bar" tileid="-1"/>
     <description>You see a gold bar. It will make beautiful jewellery, or fetch a fine price.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
@@ -149,7 +149,7 @@
     </equipable>
   </item>
 
-  <item name="golden_egg">
+  <item name="golden egg">
     <type class="resource" subclass="golden_egg" tileid="-1"/>
     <description>You see a valuable golden egg.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
@@ -164,7 +164,7 @@
     </equipable>
   </item>
 
-  <item name="spotted_egg">
+  <item name="spotted egg">
     <type class="food" subclass="spotted_egg" tileid="-1"/>
     <description>You see a spotted egg. They are said to be delicious.</description>
     <implementation class-name="games.stendhal.server.entity.item.Food"/>    <attributes>
@@ -182,7 +182,7 @@
     </equipable>
   </item>
 
- <item name="reptile_egg">
+ <item name="reptile egg">
     <type class="resource" subclass="green_egg" tileid="-1"/>
     <description>You see a valuable reptile egg.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>

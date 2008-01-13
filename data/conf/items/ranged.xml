@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <items>
-  <item name="wooden_bow">
+  <item name="wooden bow">
     <type class="ranged" subclass="wooden_bow" tileid="-1"/>
     <description>You see a wooden bow. With this in one hand, and wooden arrows in the other, you may be able to attack from a distance.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -32,7 +32,7 @@
     </equipable>
   </item>
 
-  <item name="composite_bow">
+  <item name="composite bow">
     <type class="ranged" subclass="composite_bow" tileid="-1"/>
     <description>You see a composite bow. It's better strung than most bows, for excellent ranged attack.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -64,7 +64,7 @@
     </equipable>
   </item>
 
-  <item name="hunter_crossbow">
+  <item name="hunter crossbow">
     <type class="ranged" subclass="hunter_crossbow" tileid="-1"/>
  <description>You see a hunter crossbow. You must decide if the high attack is worth the short range it has.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>

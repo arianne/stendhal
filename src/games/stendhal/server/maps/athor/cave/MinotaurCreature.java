@@ -12,12 +12,11 @@ import java.util.Map;
 
 public class MinotaurCreature implements ZoneConfigurator {
 
-	
 	/**
 	 * Configure a zone.
 	 * 
-	 * @param 	zone		The zone to be configured.
-	 * @param 	attributes	Configuration attributes.
+	 * @param	zone		The zone to be configured.
+	 * @param	attributes	Configuration attributes.
 	 */
 
 	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
@@ -27,11 +26,10 @@ public class MinotaurCreature implements ZoneConfigurator {
 	private void buildQuicksandArea(StendhalRPZone zone, Map<String, String> attributes) {
 		DefaultEntityManager manager = (DefaultEntityManager) StendhalRPWorld.get().getRuleManager().getEntityManager();
 
-		Creature creature = new ItemGuardCreature(manager.getCreature("minotaur"), "minotaur_key");
+		Creature creature = new ItemGuardCreature(manager.getCreature("minotaur"), "minotaur key");
 
 		CreatureRespawnPoint point = new CreatureRespawnPoint(zone, 121, 121, creature, 1);
 
 		zone.add(point);
-
 	}
 }

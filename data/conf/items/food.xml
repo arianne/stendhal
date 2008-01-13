@@ -181,7 +181,7 @@
     </equipable>
   </item>
 
-  <item name="button_mushroom">
+  <item name="button mushroom">
     <type class="food" subclass="button_mushroom" tileid="-1"/>
     <description>You see a button mushroom.  It can be an ingredient, or you can eat it.</description>
     <implementation class-name="games.stendhal.server.entity.item.Food"/>    <attributes>
@@ -577,7 +577,7 @@
     </equipable>
   </item>
 
-  <item name="fairy_cake">
+  <item name="fairy cake">
     <type class="food" subclass="fairy_cake" tileid="-1"/>
     <description>You see a luscious fairy cake with icing and sprinkles on top.</description>
     <implementation class-name="games.stendhal.server.entity.item.Food"/>    <attributes>
@@ -631,7 +631,7 @@
     </equipable>
   </item>
 
-  <item name="fish_pie">
+  <item name="fish pie">
     <type class="food" subclass="fishpie" tileid="-1"/>
     <description>You see a fish and leek pie. It's not too stodgy so you can eat it faster than a meat pie.</description>
     <implementation class-name="games.stendhal.server.entity.item.Food"/>    <attributes>
@@ -649,7 +649,7 @@
     </equipable>
   </item>
 
-  <item name="easter_egg">
+  <item name="easter egg">
     <type class="food" subclass="easter_egg" tileid="-1"/>
     <description>You see a lovely chocolate easter egg.</description>
     <implementation class-name="games.stendhal.server.entity.item.Food"/>    <attributes>

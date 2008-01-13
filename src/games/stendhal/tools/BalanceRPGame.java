@@ -118,19 +118,19 @@ public class BalanceRPGame {
 		Item weapon = em.getItem("club");
 		area.assignRPObjectID(weapon);
 
-		Item shield = em.getItem("wooden_shield");
+		Item shield = em.getItem("wooden shield");
 		area.assignRPObjectID(shield);
 
 		Item armor = em.getItem("dress");
 		area.assignRPObjectID(armor);
 
-		Item helmet = em.getItem("leather_helmet");
+		Item helmet = em.getItem("leather helmet");
 		area.assignRPObjectID(helmet);
 
-		Item legs = em.getItem("leather_legs");
+		Item legs = em.getItem("leather legs");
 		area.assignRPObjectID(legs);
 
-		Item boots = em.getItem("leather_boots");
+		Item boots = em.getItem("leather boots");
 		area.assignRPObjectID(boots);
 
 		Player player = new Player(new RPObject());

@@ -135,7 +135,7 @@ class DeathmatchEngine implements TurnListener {
 
 	private void handleBail() {
 		player.setQuest("deathmatch", "cancel");
-		Item helmet = player.getFirstEquipped("trophy_helmet");
+		Item helmet = player.getFirstEquipped("trophy helmet");
 		if (helmet != null) {
 			int defense = 1;
 			if (helmet.has("def")) {

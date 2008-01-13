@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <items>
-  <item name="assassin_dagger">
+  <item name="assassin dagger">
     <type class="sword" subclass="assassin_dagger" tileid="-1"/>
     <description>You see an assassin dagger, easy to pull out and use when needed.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -32,7 +32,7 @@
     </equipable>
   </item>
 
-  <item name="night_dagger">
+  <item name="night dagger">
     <type class="sword" subclass="black_dagger" tileid="-1"/>
     <description>You see a night dagger, to be used with stealth.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -48,7 +48,7 @@
     </equipable>
   </item>
 
-  <item name="obsidian_knife">
+  <item name="obsidian knife">
     <type class="sword" subclass="obsidian_knife" tileid="-1"/>
     <description>You see a knife whose blade is crafted to a lethal edge from finest obsidian.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -64,7 +64,7 @@
     </equipable>
   </item>
 
-  <item name="soul_dagger">
+  <item name="soul dagger">
     <type class="sword" subclass="soul_dagger" tileid="-1"/>
     <description>You see a soul dagger. It's so light and sharp that you can stab at a very fast rate.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -96,7 +96,7 @@
     </equipable>
   </item>
 
-  <item name="dark_dagger">
+  <item name="dark dagger">
     <type class="sword" subclass="dark_dagger" tileid="-1"/>
     <description>You see a dark dagger. It's designed to be used with a fast motion.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -112,7 +112,7 @@
     </equipable>
   </item>
 
-  <item name="hell_dagger">
+  <item name="hell dagger">
     <type class="sword" subclass="hell_dagger" tileid="-1"/>
     <description>You see a hell dagger. Is the colour that of the burning fires of Hell?.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -128,7 +128,7 @@
     </equipable>
   </item>
 
-  <item name="short_sword">
+  <item name="short sword">
     <type class="sword" subclass="short_sword" tileid="-1"/>
     <description>You see a well kept short sword which will be easy to carry as you travel.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -144,7 +144,7 @@
     </equipable>
   </item>
 
-  <item name="r_hand_sword">
+  <item name="r hand sword">
     <type class="sword" subclass="r_hand_sword" tileid="-1"/>
     <description>You see r hand sword. It must be used with a left hand sword.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -160,7 +160,7 @@
     </equipable>
   </item>
 
-  <item name="l_hand_sword">
+  <item name="l hand sword">
     <type class="sword" subclass="l_hand_sword" tileid="-1"/>
     <description>You see l hand sword. It must be used with right hand sword.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -192,7 +192,7 @@
     </equipable>
   </item>
 
-  <item name="imperator_sword">
+  <item name="imperator sword">
     <type class="sword" subclass="imperator_sword" tileid="-1"/>
     <description>You see a an imperator sword, crafted from you know not what.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -272,7 +272,7 @@
     </equipable>
   </item>
 
-  <item name="orc_sword">
+  <item name="orc sword">
     <type class="sword" subclass="orc_sword" tileid="-1"/>
     <description>You see an orc sword which has a heavy and deadly appearance.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -288,7 +288,7 @@
     </equipable>
   </item>
 
-  <item name="demon_sword">
+  <item name="demon sword">
     <type class="sword" subclass="kilij" tileid="-1"/>
     <description>Demon skeletons return from hell with this demon sword.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -304,7 +304,7 @@
     </equipable>
   </item>
 
-  <item name="vampire_sword">
+  <item name="vampire sword">
     <type class="sword" subclass="vampire_sword" tileid="-1"/>
     <description>You see the vampire sword, which will suck life from those you attack with it.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -337,7 +337,7 @@
     </equipable>
   </item>
 
-  <item name="biting_sword">
+  <item name="biting sword">
     <type class="sword" subclass="biting_sword" tileid="-1"/>
     <description>The point of this biting sword is chiseled to a lethal point. It will serve you well.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -353,7 +353,7 @@
     </equipable>
   </item>
 
-  <item name="fire_sword">
+  <item name="fire sword">
     <type class="sword" subclass="fire_sword" tileid="-1"/>
     <description>Flames race along this fire sword as you wield it.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -369,7 +369,7 @@
     </equipable>
   </item>
 
-  <item name="ice_sword">
+  <item name="ice sword">
     <type class="sword" subclass="ice_sword" tileid="-1"/>
     <description>You see an ice sword, the blade is lethally cold to the touch, and you know it is one of the best weapons you'll find.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -385,7 +385,7 @@
     </equipable>
   </item>
 
-  <item name="chaos_sword">
+  <item name="chaos sword">
     <type class="sword" subclass="chaos_sword" tileid="-1"/>
     <description>The chaos sword. It hurts them but it heals you.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -418,7 +418,7 @@
     </equipable>
   </item>
 
-  <item name="golden_orc_sword">
+  <item name="golden orc sword">
     <type class="sword" subclass="golden_orc_sword" tileid="-1"/>
     <description>You see a golden orc sword, with its heavy and deadly appearance it seems also valuable.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -434,7 +434,7 @@
     </equipable>
   </item>
 
-  <item name="elvish_sword">
+  <item name="elvish sword">
     <type class="sword" subclass="elvish_sword" tileid="-1"/>
     <description>This an elvish sword. It looks like it is made from tree leaves!</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -450,7 +450,7 @@
     </equipable>
   </item>
 
-  <item name="drow_sword">
+  <item name="drow sword">
     <type class="sword" subclass="blooddrinker" tileid="-1"/>
     <description>This is a genuine drow sword.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -466,7 +466,7 @@
     </equipable>
   </item>
 
-  <item name="great_sword">
+  <item name="great sword">
     <type class="sword" subclass="great_sword" tileid="-1"/>
     <description>This rare great sword is heavy and of good craftsmanship. It can only attack incredibly slowly.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -482,7 +482,7 @@
     </equipable>
   </item>
 
-  <item name="orcish_sword">
+  <item name="orcish sword">
     <type class="sword" subclass="orcish_sword" tileid="-1"/>
     <description>This orcish sword is badly done and weighs a lot.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -498,7 +498,7 @@
     </equipable>
   </item>
 
-  <item name="immortal_sword">
+  <item name="immortal sword">
     <type class="sword" subclass="magic_sword" tileid="-1"/>
     <description>This immortal sword is a gift of gods to the chosen one. It is heavy and of exquisite craftsmanship.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -514,7 +514,7 @@
     </equipable>
   </item>
 
-  <item name="xeno_sword">
+  <item name="xeno sword">
     <type class="sword" subclass="xeno_sword" tileid="-1"/>
     <description>You wield a xeno sword. Despite the great strength it is strangely light.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -530,7 +530,7 @@
     </equipable>
   </item>
 
-  <item name="black_sword">
+  <item name="black sword">
     <type class="sword" subclass="black_sword" tileid="-1"/>
     <description>You see a black sword.  Its darkness will surely protect you.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -546,7 +546,7 @@
     </equipable>
   </item>
 
-  <item name="demon_fire_sword">
+  <item name="demon fire sword">
     <type class="sword" subclass="demon_fire_sword" tileid="-1"/>
     <description>The demon fire sword, a horrible sword taken from hell's deepest dungeons.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>

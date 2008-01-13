@@ -51,7 +51,7 @@ public class ProducerBehaviour extends Behaviour {
 	 */
 	// private String productUnit;
 	/**
-	 * The name of the product, e.g. "plate_armor". It must be a valid item
+	 * The name of the product, e.g. "plate armor". It must be a valid item
 	 * name.
 	 */
 	private String productName;
@@ -62,7 +62,7 @@ public class ProducerBehaviour extends Behaviour {
 	private boolean productBound;
 
 	/**
-	 * A mapping which maps the name of each required resource (e.g. "iron_ore")
+	 * A mapping which maps the name of each required resource (e.g. "iron ore")
 	 * to the amount of this resource that is required for one unit of the
 	 * product.
 	 */
@@ -83,11 +83,11 @@ public class ProducerBehaviour extends Behaviour {
 	 * @param productionActivity
 	 *            the name of the activity, e.g. "build", "forge", "bake"
 	 * @param productName
-	 *            the name of the product, e.g. "plate_armor". It must be a
+	 *            the name of the product, e.g. "plate armor". It must be a
 	 *            valid item name.
 	 * @param requiredResourcesPerItem
 	 *            a mapping which maps the name of each required resource (e.g.
-	 *            "iron_ore") to the amount of this resource that is required
+	 *            "iron ore") to the amount of this resource that is required
 	 *            for one unit of the product.
 	 * @param productionTimePerItem
 	 *            the number of seconds required to produce one unit of the
@@ -108,11 +108,11 @@ public class ProducerBehaviour extends Behaviour {
 	 * @param productionActivity
 	 *            the name of the activity, e.g. "build", "forge", "bake"
 	 * @param productName
-	 *            the name of the product, e.g. "plate_armor". It must be a
+	 *            the name of the product, e.g. "plate armor". It must be a
 	 *            valid item name.
 	 * @param requiredResourcesPerItem
 	 *            a mapping which maps the name of each required resource (e.g.
-	 *            "iron_ore") to the amount of this resource that is required
+	 *            "iron ore") to the amount of this resource that is required
 	 *            for one unit of the product.
 	 * @param productionTimePerItem
 	 *            the number of seconds required to produce one unit of the

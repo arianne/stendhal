@@ -17,8 +17,8 @@ public class Basket extends Box implements UseListener {
 
 	// TODO: Make these configurable
 	// for easter presents
-	private static final String[] ITEMS = { "greater_potion", "pie",
-			"sandwich", "cherry", "blue_elf_cloak", "home_scroll" };
+	private static final String[] ITEMS = { "greater potion", "pie",
+			"sandwich", "cherry", "blue elf cloak", "home scroll" };
 
 	/**
 	 * Creates a new Basket.
@@ -48,13 +48,13 @@ public class Basket extends Box implements UseListener {
 		this.removeOne();
 		String itemName;
 		if (Rand.roll1D20() == 1) {
-			itemName = "easter_egg";
+			itemName = "easter egg";
 		} else {
 			itemName = ITEMS[Rand.rand(ITEMS.length)];
 		}
 		Item item = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
 				itemName);
-		if (itemName.equals("easter_egg")) {
+		if (itemName.equals("easter egg")) {
 			item.setBoundTo(player.getName());
 		}
 		player.sendPrivateText("Congratulations, you've got "

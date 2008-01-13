@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <items>
-  <item name="dungeon_silver_key">
+  <item name="dungeon silver key">
     <type class="key" subclass="silver" tileid="-1"/>
     <description>You see a silver dungeon key. Use it only if you are brave.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -13,7 +13,7 @@
     </equipable>
   </item>
 
-  <item name="lich_gold_key">
+  <item name="lich gold key">
     <type class="key" subclass="gold" tileid="-1"/>
     <description>You see a golden lich key. It will open the door to terrible things.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -26,7 +26,7 @@
     </equipable>
   </item>
 
-  <item name="minotaur_key">
+  <item name="minotaur key">
     <type class="key" subclass="bronze" tileid="-1"/>
     <description>You see a fancy bronze key. It smells faintly of minotaur, perhaps one dropped it?</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -39,7 +39,7 @@
     </equipable>
   </item>
 
-  <item name="nalwor_bank_key">
+  <item name="nalwor bank key">
     <type class="key" subclass="nalwor" tileid="-1"/>
     <description>You see a key to the customer room of Nalwor Bank.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -52,7 +52,7 @@
     </equipable>
   </item>
 
-  <item name="kotoch_prison_key">
+  <item name="kotoch prison key">
     <type class="key" subclass="copper" tileid="-1"/>
     <description>You see an ancient copper key, enscribed with something in Orcish.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -65,7 +65,7 @@
     </equipable>
   </item>
 
-  <item name="kanmararn_prison_key">
+  <item name="kanmararn prison key">
     <type class="key" subclass="blue" tileid="-1"/>
     <description>You see a key which matches the locks in the Kanmararn prison.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -78,7 +78,7 @@
     </equipable>
   </item>
 
-  <item name="sedah_gate_key">
+  <item name="sedah gate key">
     <type class="key" subclass="square" tileid="-1"/>
     <description>You see a key for the gate to the imperial city of Sedah.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -91,7 +91,7 @@
     </equipable>
   </item>
 
- <item name="private_key_1">
+ <item name="private key 1">
     <type class="key" subclass="purple" tileid="-1"/>
     <description>You see a private key to House 1 in Kalavan City.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -103,7 +103,7 @@
       <slot name="keyring"/>
     </equipable>
   </item>
- <item name="private_key_2">
+ <item name="private key 2">
     <type class="key" subclass="turquoise" tileid="-1"/>
     <description>You see a private key to House 2 in Kalavan City.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -115,7 +115,7 @@
       <slot name="keyring"/>
     </equipable>
   </item>
- <item name="private_key_3">
+ <item name="private key 3">
     <type class="key" subclass="yellow" tileid="-1"/>
     <description>You see a private key to House 3 in Kalavan City.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -127,7 +127,7 @@
       <slot name="keyring"/>
     </equipable>
   </item>
- <item name="private_key_4">
+ <item name="private key 4">
     <type class="key" subclass="lime" tileid="-1"/>
     <description>You see a private key to House 4 in Kalavan City.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -139,7 +139,7 @@
       <slot name="keyring"/>
     </equipable>
   </item>
- <item name="private_key_5">
+ <item name="private key 5">
     <type class="key" subclass="pink" tileid="-1"/>
     <description>You see a private key to House 5 in Kalavan City.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -151,7 +151,7 @@
       <slot name="keyring"/>
     </equipable>
   </item>
- <item name="private_key_6">
+ <item name="private key 6">
     <type class="key" subclass="red" tileid="-1"/>
     <description>You see a private key to House 6 in Kalavan City.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -163,7 +163,7 @@
       <slot name="keyring"/>
     </equipable>
   </item>
- <item name="private_key_7">
+ <item name="private key 7">
     <type class="key" subclass="orange" tileid="-1"/>
     <description>You see a private key to House 7 in Kalavan City.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -175,7 +175,7 @@
       <slot name="keyring"/>
     </equipable>
   </item>
- <item name="private_key_8">
+ <item name="private key 8">
     <type class="key" subclass="navy" tileid="-1"/>
     <description>You see a private key to House 8 in Kalavan City.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -187,7 +187,7 @@
       <slot name="keyring"/>
     </equipable>
   </item>
- <item name="private_key_9">
+ <item name="private key 9">
     <type class="key" subclass="purple" tileid="-1"/>
     <description>You see a private key to House 9 in Kalavan City.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -199,7 +199,7 @@
       <slot name="keyring"/>
     </equipable>
   </item>
- <item name="private_key_10">
+ <item name="private key 10">
     <type class="key" subclass="turquoise" tileid="-1"/>
     <description>You see a private key to House 10 in Kalavan City.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -211,7 +211,7 @@
       <slot name="keyring"/>
     </equipable>
   </item>
- <item name="private_key_11">
+ <item name="private key 11">
     <type class="key" subclass="lime" tileid="-1"/>
     <description>You see a private key to House 11 in Kalavan City.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -223,7 +223,7 @@
       <slot name="keyring"/>
     </equipable>
   </item>
- <item name="private_key_12">
+ <item name="private key 12">
     <type class="key" subclass="yellow" tileid="-1"/>
     <description>You see a private key to House 12 in Kalavan City.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -235,7 +235,7 @@
       <slot name="keyring"/>
     </equipable>
   </item>
- <item name="private_key_13">
+ <item name="private key 13">
     <type class="key" subclass="navy" tileid="-1"/>
     <description>You see a private key to House 13 in Kalavan City.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -247,7 +247,7 @@
       <slot name="keyring"/>
     </equipable>
   </item>
- <item name="private_key_14">
+ <item name="private key 14">
     <type class="key" subclass="pink" tileid="-1"/>
     <description>You see a private key to House 14 in Kalavan City.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -259,7 +259,7 @@
       <slot name="keyring"/>
     </equipable>
   </item>
- <item name="private_key_15">
+ <item name="private key 15">
     <type class="key" subclass="orange" tileid="-1"/>
     <description>You see a private key to House 15 in Kalavan City.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -271,7 +271,7 @@
       <slot name="keyring"/>
     </equipable>
   </item>
- <item name="private_key_16">
+ <item name="private key 16">
     <type class="key" subclass="red" tileid="-1"/>
     <description>You see a private key to House 16 in Kalavan City.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -283,7 +283,7 @@
       <slot name="keyring"/>
     </equipable>
   </item>
- <item name="private_key_17">
+ <item name="private key 17">
     <type class="key" subclass="purple" tileid="-1"/>
     <description>You see a private key to House 17 in Kalavan City.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -295,7 +295,7 @@
       <slot name="keyring"/>
     </equipable>
   </item>
- <item name="private_key_18">
+ <item name="private key 18">
     <type class="key" subclass="turquoise" tileid="-1"/>
     <description>You see a private key to House 18 in Kalavan City.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -307,7 +307,7 @@
       <slot name="keyring"/>
     </equipable>
   </item>
- <item name="private_key_19">
+ <item name="private key 19">
     <type class="key" subclass="yellow" tileid="-1"/>
     <description>You see a private key to House 19 in Kalavan City.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -319,7 +319,7 @@
       <slot name="keyring"/>
     </equipable>
   </item>
- <item name="private_key_20">
+ <item name="private key 20">
     <type class="key" subclass="orange" tileid="-1"/>
     <description>You see a private key to House 20 in Kalavan City.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -331,7 +331,7 @@
       <slot name="keyring"/>
     </equipable>
   </item>
- <item name="private_key_21">
+ <item name="private key 21">
     <type class="key" subclass="lime" tileid="-1"/>
     <description>You see a private key to House 21 in Kalavan City.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -343,7 +343,7 @@
       <slot name="keyring"/>
     </equipable>
   </item>
- <item name="private_key_22">
+ <item name="private key 22">
     <type class="key" subclass="pink" tileid="-1"/>
     <description>You see a private key to House 22 in Kalavan City.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -355,7 +355,7 @@
       <slot name="keyring"/>
     </equipable>
   </item>
- <item name="private_key_23">
+ <item name="private key 23">
     <type class="key" subclass="navy" tileid="-1"/>
     <description>You see a private key to House 23 in Kalavan City.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -367,7 +367,7 @@
       <slot name="keyring"/>
     </equipable>
   </item>
- <item name="private_key_24">
+ <item name="private key 24">
     <type class="key" subclass="red" tileid="-1"/>
     <description>You see a private key to House 24 in Kalavan City.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -379,7 +379,7 @@
       <slot name="keyring"/>
     </equipable>
   </item>
- <item name="private_key_25">
+ <item name="private key 25">
     <type class="key" subclass="pink" tileid="-1"/>
     <description>You see a private key to House 25 in Kalavan City.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -392,7 +392,7 @@
     </equipable>
   </item>
 
- <item name="private_key_44">
+ <item name="private key 44">
     <type class="key" subclass="navy" tileid="-1"/>
     <description>You see a private key to House 44 in Kirdneh City.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -406,7 +406,7 @@
   </item>
 
 
- <item name="private_key_50">
+ <item name="private key 50">
     <type class="key" subclass="yellow" tileid="-1"/>
     <description>You see a private key to House 50 in Ados City N.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -418,7 +418,7 @@
       <slot name="keyring"/>
     </equipable>
   </item>
- <item name="private_key_51">
+ <item name="private key 51">
     <type class="key" subclass="red" tileid="-1"/>
     <description>You see a private key to House 51 in Ados City N.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -430,7 +430,7 @@
       <slot name="keyring"/>
     </equipable>
   </item>
- <item name="private_key_52">
+ <item name="private key 52">
     <type class="key" subclass="orange" tileid="-1"/>
     <description>You see a private key to House 52 in Ados City N.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -442,7 +442,7 @@
       <slot name="keyring"/>
     </equipable>
   </item>
- <item name="private_key_53">
+ <item name="private key 53">
     <type class="key" subclass="purple" tileid="-1"/>
     <description>You see a private key to House 53 in Ados City N.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -454,7 +454,7 @@
       <slot name="keyring"/>
     </equipable>
   </item>
- <item name="private_key_54">
+ <item name="private key 54">
     <type class="key" subclass="lime" tileid="-1"/>
     <description>You see a private key to House 54 in Ados City N.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -466,7 +466,7 @@
       <slot name="keyring"/>
     </equipable>
   </item>
- <item name="private_key_55">
+ <item name="private key 55">
     <type class="key" subclass="pink" tileid="-1"/>
     <description>You see a private key to House 55 in Ados City N.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -478,7 +478,7 @@
       <slot name="keyring"/>
     </equipable>
   </item>
- <item name="private_key_56">
+ <item name="private key 56">
     <type class="key" subclass="red" tileid="-1"/>
     <description>You see a private key to House 56 in Ados City N.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -490,7 +490,7 @@
       <slot name="keyring"/>
     </equipable>
   </item>
- <item name="private_key_57">
+ <item name="private key 57">
     <type class="key" subclass="orange" tileid="-1"/>
     <description>You see a private key to House 57 in Ados City N.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -502,7 +502,7 @@
       <slot name="keyring"/>
     </equipable>
   </item>
- <item name="private_key_58">
+ <item name="private key 58">
     <type class="key" subclass="navy" tileid="-1"/>
     <description>You see a private key to House 58 in Ados City N.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -514,7 +514,7 @@
       <slot name="keyring"/>
     </equipable>
  </item>
- <item name="private_key_59">
+ <item name="private key 59">
     <type class="key" subclass="yellow" tileid="-1"/>
     <description>You see a private key to House 59 in Ados City N.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -526,7 +526,7 @@
       <slot name="keyring"/>
     </equipable>
   </item>
- <item name="private_key_60">
+ <item name="private key 60">
     <type class="key" subclass="yellow" tileid="-1"/>
     <description>You see a private key to House 60 in Ados City N.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -538,7 +538,7 @@
       <slot name="keyring"/>
     </equipable>
   </item>
- <item name="private_key_61">
+ <item name="private key 61">
     <type class="key" subclass="yellow" tileid="-1"/>
     <description>You see a private key to House 61 in Ados City N.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -550,7 +550,7 @@
       <slot name="keyring"/>
     </equipable>
   </item>
- <item name="private_key_62">
+ <item name="private key 62">
     <type class="key" subclass="yellow" tileid="-1"/>
     <description>You see a private key to House 62 in Ados City N.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -562,7 +562,7 @@
       <slot name="keyring"/>
     </equipable>
   </item>
- <item name="private_key_63">
+ <item name="private key 63">
     <type class="key" subclass="yellow" tileid="-1"/>
     <description>You see a private key to House 63 in Ados City.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -574,7 +574,7 @@
       <slot name="keyring"/>
     </equipable>
   </item>
- <item name="private_key_64">
+ <item name="private key 64">
     <type class="key" subclass="lime" tileid="-1"/>
     <description>You see a private key to House 64 in Ados City.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -586,7 +586,7 @@
       <slot name="keyring"/>
     </equipable>
   </item>
- <item name="private_key_65">
+ <item name="private key 65">
     <type class="key" subclass="pink" tileid="-1"/>
     <description>You see a private key to House 65 in Ados City.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -598,7 +598,7 @@
       <slot name="keyring"/>
     </equipable>
   </item>
- <item name="private_key_66">
+ <item name="private key 66">
     <type class="key" subclass="red" tileid="-1"/>
     <description>You see a private key to House 66 in Ados City.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -610,7 +610,7 @@
       <slot name="keyring"/>
     </equipable>
   </item>
- <item name="private_key_67">
+ <item name="private key 67">
     <type class="key" subclass="orange" tileid="-1"/>
     <description>You see a private key to House 67 in Ados City.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -622,7 +622,7 @@
       <slot name="keyring"/>
     </equipable>
   </item>
- <item name="private_key_68">
+ <item name="private key 68">
     <type class="key" subclass="navy" tileid="-1"/>
     <description>You see a private key to House 68 in Ados City.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -635,7 +635,7 @@
     </equipable>
   </item>
 
-  <item name="fado_hotel_key_001">
+  <item name="fado hotel key 001">
     <type class="key" subclass="hotel" tileid="-1"/>
     <description>You see a key to room #001 in the Fado Hotel.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -648,7 +648,7 @@
     </equipable>
   </item>
 
-  <item name="fado_hotel_key_002">
+  <item name="fado hotel key 002">
     <type class="key" subclass="hotel" tileid="-1"/>
     <description>You see a key to room #002 in the Fado Hotel.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -661,7 +661,7 @@
     </equipable>
   </item>
 
-  <item name="fado_hotel_key_003">
+  <item name="fado hotel key 003">
     <type class="key" subclass="hotel" tileid="-1"/>
     <description>You see a key to room #003 in the Fado Hotel.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -674,7 +674,7 @@
     </equipable>
   </item>
 
-  <item name="fado_hotel_key_004">
+  <item name="fado hotel key 004">
     <type class="key" subclass="hotel" tileid="-1"/>
     <description>You see a key to room #004 in the Fado Hotel.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -687,7 +687,7 @@
     </equipable>
   </item>
 
-  <item name="fado_hotel_key_005">
+  <item name="fado hotel key 005">
     <type class="key" subclass="hotel" tileid="-1"/>
     <description>You see a key to room #005 in the Fado Hotel.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -700,7 +700,7 @@
     </equipable>
   </item>
 
-  <item name="fado_hotel_key_006">
+  <item name="fado hotel key 006">
     <type class="key" subclass="hotel" tileid="-1"/>
     <description>You see a key to room #006 in the Fado Hotel.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -713,7 +713,7 @@
     </equipable>
   </item>
 
-  <item name="fado_hotel_key_007">
+  <item name="fado hotel key 007">
     <type class="key" subclass="hotel" tileid="-1"/>
     <description>You see a key to room #007 in the Fado Hotel.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -726,7 +726,7 @@
     </equipable>
   </item>
 
-  <item name="fado_hotel_key_008">
+  <item name="fado hotel key 008">
     <type class="key" subclass="hotel" tileid="-1"/>
     <description>You see a key to room #008 in the Fado Hotel.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -739,7 +739,7 @@
     </equipable>
   </item>
 
-  <item name="small_key">
+  <item name="small key">
     <type class="key" subclass="common" tileid="-1"/>
     <description>You see the key for Zara's row house in Ados.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>

@@ -119,7 +119,7 @@ public class AnimalKeeperNPC implements ZoneConfigurator {
 		zone.add(point);
 
 		// 67, 31 black_bear
-		creature = new AdosAttackableCreature(manager.getCreature("black_bear"));
+		creature = new AdosAttackableCreature(manager.getCreature("black bear"));
 		point = new CreatureRespawnPoint(zone, 67, 31, creature, 1);
 		zone.add(point);
 

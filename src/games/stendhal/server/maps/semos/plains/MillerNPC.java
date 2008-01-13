@@ -26,7 +26,7 @@ public class MillerNPC extends SpeakerNPCFactory {
 		Map<String, Integer> requiredResources = new TreeMap<String, Integer>();
 		requiredResources.put("grain", 5);
 
-		ProducerBehaviour behaviour = new ProducerBehaviour("jenny_mill_flour",
+		ProducerBehaviour behaviour = new ProducerBehaviour("jenny mill flour",
 				"mill", "flour", requiredResources, 2 * 60);
 
 		new ProducerAdder().addProducer(npc, behaviour,

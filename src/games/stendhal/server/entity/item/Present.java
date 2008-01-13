@@ -17,8 +17,8 @@ public class Present extends Box implements UseListener {
 
 	// TODO: Make these configurable
 	// for presents
-	private static final String[] ITEMS = { "greater_potion", "pie",
-			"sandwich", "carrot", "cherry", "blue_elf_cloak", "summon_scroll" };
+	private static final String[] ITEMS = { "greater potion", "pie",
+			"sandwich", "carrot", "cherry", "blue elf cloak", "summon scroll" };
 
 	/**
 	 * Creates a new present.

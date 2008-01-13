@@ -84,11 +84,9 @@ public class CharacterCreator {
 
 			RuleManager manager = RuleSetFactory.getRuleSet("default");
 
-			
-			Entity entity = manager.getEntityManager().getItem("leather_armor");
+			Entity entity = manager.getEntityManager().getItem("leather armor");
 			RPSlot slot = object.getSlot("armor");
 			slot.add(entity);
-
 			
 			entity = manager.getEntityManager().getItem("club");
 			slot = object.getSlot("rhand");

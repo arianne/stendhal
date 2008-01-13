@@ -55,7 +55,7 @@ public class BuyerNPC implements ZoneConfigurator {
 			protected void createDialog() {
 				addGreeting("Hello.");
 				addJob("I potter around collecting odds and bobs. Sometimes I sell items, but mostly I like to keep them. If you have any relics to #trade, I would be very happy indeed.");
-				addHelp("I could tell you about some of these wonderful items here. The white #pot, #coffins, #dress, #shield, #armor, #tools, #rug, #flowers, #clock and #sewing_machine are all fascinating!");
+				addHelp("I could tell you about some of these wonderful items here. The white #pot, #coffins, #dress, #shield, #armor, #tools, #rug, #flowers, #clock and #sewing machine are all fascinating!");
 				addReply(
 						"pot",
 						"You mean the white and blue one, the oriental pot, I suppose. That is an original made by the ancient oni people. It's very rare.");
@@ -84,7 +84,7 @@ public class BuyerNPC implements ZoneConfigurator {
 						"armor",
 						"Ah, that mighty piece was made in Deniran. I'm afraid I know little more about it.");
 				addReply(
-						"sewing_machine",
+						"sewing machine",
 						"Oh you know that is my favourite. It was made by a man called Zinger, and it still works just as well as the day it was made.");
 				addQuest("I have no favour to ask of you.");
 				new BuyerAdder().add(this, new BuyerBehaviour(shops.get("buymagic")), false);

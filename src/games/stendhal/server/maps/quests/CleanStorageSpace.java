@@ -27,7 +27,7 @@ import java.util.List;
  * <li> Eonna
  * <p>
  * STEPS:
- * <li> Eonna asks you to clean her storage_space.
+ * <li> Eonna asks you to clean her storage space.
  * <li> You go kill at least a rat, a cave rat and a cobra.
  * <li> Eoanna checks your kills and then thanks you.
  * <p>
@@ -76,7 +76,7 @@ public class CleanStorageSpace extends AbstractQuest {
 
 		npc.add(
 				ConversationStates.QUEST_OFFERED,
-				Arrays.asList("basement", "storage_space"),
+				Arrays.asList("basement", "storage space"),
 				null,
 				ConversationStates.QUEST_OFFERED,
 				"Yes, it's just down the stairs, over there. A whole bunch of nasty-looking rats; I think I saw a snake as well! You should be careful... still want to help me?",

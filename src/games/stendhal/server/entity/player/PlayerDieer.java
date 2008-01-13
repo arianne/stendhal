@@ -63,7 +63,7 @@ public class PlayerDieer {
 
 		if (!(killer instanceof RaidCreature)) {
 
-			List<Item> ringList = player.getAllEquipped("emerald_ring");
+			List<Item> ringList = player.getAllEquipped("emerald ring");
 			boolean eRingUsed = false;
 
 			for (Item emeraldRing : ringList) {

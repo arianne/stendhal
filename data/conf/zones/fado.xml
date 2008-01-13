@@ -364,7 +364,7 @@ For example say:  11  if you want the room called Water of Love.
        <portal x="0" y="40" ref="room_001_entrance">
              <destination zone="int_fado_hotel_room_001" ref="entrance"/>
              <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
-               <parameter name="key">fado_hotel_key_001</parameter>
+               <parameter name="key">fado hotel key 001</parameter>
                <parameter name="rejected">Keys are at the front desk</parameter>
              </implementation>
            </portal>
@@ -372,7 +372,7 @@ For example say:  11  if you want the room called Water of Love.
            <portal x="10" y="40" ref="room_002_entrance">
              <destination zone="int_fado_hotel_room_002" ref="entrance"/>
              <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
-               <parameter name="key">fado_hotel_key_002</parameter>
+               <parameter name="key">fado hotel key 002</parameter>
                <parameter name="rejected">Keys are at the front desk</parameter>
              </implementation>
            </portal>
@@ -380,7 +380,7 @@ For example say:  11  if you want the room called Water of Love.
            <portal x="0" y="33" ref="room_003_entrance">
              <destination zone="int_fado_hotel_room_003" ref="entrance"/>
              <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
-               <parameter name="key">fado_hotel_key_003</parameter>
+               <parameter name="key">fado hotel key 003</parameter>
                <parameter name="rejected">Keys are at the front desk</parameter>
              </implementation>
            </portal>
@@ -388,7 +388,7 @@ For example say:  11  if you want the room called Water of Love.
            <portal x="10" y="33" ref="room_004_entrance">
              <destination zone="int_fado_hotel_room_004" ref="entrance"/>
              <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
-               <parameter name="key">fado_hotel_key_004</parameter>
+               <parameter name="key">fado hotel key 004</parameter>
                <parameter name="rejected">Keys are at the front desk</parameter>
              </implementation>
            </portal>
@@ -396,7 +396,7 @@ For example say:  11  if you want the room called Water of Love.
            <portal x="0" y="26" ref="room_005_entrance">
              <destination zone="int_fado_hotel_room_005" ref="entrance"/>
              <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
-               <parameter name="key">fado_hotel_key_005</parameter>
+               <parameter name="key">fado hotel key 005</parameter>
                <parameter name="rejected">Keys are at the front desk</parameter>
              </implementation>
            </portal>
@@ -404,7 +404,7 @@ For example say:  11  if you want the room called Water of Love.
            <portal x="10" y="26" ref="room_006_entrance">
              <destination zone="int_fado_hotel_room_006" ref="entrance"/>
              <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
-               <parameter name="key">fado_hotel_key_006</parameter>
+               <parameter name="key">fado hotel key 006</parameter>
                <parameter name="rejected">Keys are at the front desk</parameter>
              </implementation>
            </portal>
@@ -412,7 +412,7 @@ For example say:  11  if you want the room called Water of Love.
            <portal x="0" y="19" ref="room_007_entrance">
              <destination zone="int_fado_hotel_room_007" ref="entrance"/>
              <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
-               <parameter name="key">fado_hotel_key_007</parameter>
+               <parameter name="key">fado hotel key 007</parameter>
                <parameter name="rejected">Keys are at the front desk</parameter>
              </implementation>
            </portal>
@@ -420,7 +420,7 @@ For example say:  11  if you want the room called Water of Love.
            <portal x="10" y="19" ref="room_008_entrance">
              <destination zone="int_fado_hotel_room_008" ref="entrance"/>
              <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
-               <parameter name="key">fado_hotel_key_008</parameter>
+               <parameter name="key">fado hotel key 008</parameter>
                <parameter name="rejected">Keys are at the front desk</parameter>
              </implementation>
            </portal>-->
@@ -796,21 +796,21 @@ black halberd     12000
  <configurator class-name="games.stendhal.server.maps.sedah.gatehouse.GateKeeperNPC" />
   <portal x="115" y="73" ref="in1">
    <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
-     <parameter name="key">sedah_gate_key</parameter>
+     <parameter name="key">sedah gate key</parameter>
      <parameter name="rejected">The gate is locked</parameter>
    </implementation>
    <destination zone="-1_fado_great_cave_w2" ref="in"/>
   </portal>
   <portal x="116" y="73" ref="in2">
    <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
-     <parameter name="key">sedah_gate_key</parameter>
+     <parameter name="key">sedah gate key</parameter>
      <parameter name="rejected">The gate is locked</parameter>
    </implementation>
    <destination zone="-1_fado_great_cave_w2" ref="in"/>
   </portal>
   <portal x="117" y="73" ref="in3">
    <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
-     <parameter name="key">sedah_gate_key</parameter>
+     <parameter name="key">sedah gate key</parameter>
      <parameter name="rejected">The gate is locked</parameter>
    </implementation>
    <destination zone="-1_fado_great_cave_w2" ref="in"/>

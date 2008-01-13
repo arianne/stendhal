@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-
-
-
 <!--
 quests.xml
+
 This file contains all the descriptive data about quests.
 
 State: EXPERIMENTAL to help me think about a quest system
@@ -13,7 +11,6 @@ State: EXPERIMENTAL to help me think about a quest system
 <quests xmlns="http://arianne.sf.net/stendhal/schema/quests"
 		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		xsi:schemaLocation="http://arianne.sf.net/stendhal/schema/quests quests.xsd">
-
 
 	<quest name="ArmorForDagobert">
 		<title>Armor For Dagobert</title>
@@ -54,7 +51,7 @@ State: EXPERIMENTAL to help me think about a quest system
 	</quest>
 
 	<quest name="Campfire">
-		<title>Campfire</title>
+    	<title>Campfire</title>
 		<repeatable done="false" />
 		<description>
 			Sally wants to build a campfire, but she doesn't have any wood.
@@ -83,7 +80,7 @@ State: EXPERIMENTAL to help me think about a quest system
 			<entry name="DONE">I gave the beer to Hayunn. He paid me 20 gold coins and 10 xp</entry>
 		</history>
 	</quest>
-	
+
 	<quest name="CleanStorageSpace">
 		<title>Clean the Storage Space</title>
 		<repeatable done="false" />
@@ -148,7 +145,7 @@ State: EXPERIMENTAL to help me think about a quest system
 			<entry name="FOUND_ITEM_WITHOUT_QUEST">Plink commented about the bear I have with me</entry>
 		</history>
 	</quest>
-	
+
 	<quest name="SevenCherubs">
 		<title>Seven Cherubs</title>
 		<repeatable done="false" />
@@ -160,7 +157,7 @@ State: EXPERIMENTAL to help me think about a quest system
 			<entry name="DONE">Done! I have found every one!</entry>
 		</history>
 	</quest>
-	
+
 	<quest name="ZooFood">
 		<title>Zoo Food</title>
 		<repeatable done="false" />

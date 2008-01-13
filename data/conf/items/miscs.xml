@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <items>
-  <item name="giant_heart">
+  <item name="giant heart">
     <type class="misc" subclass="giant_heart" tileid="-1"/>
     <description>You see a giant heart. This proves that a giant was defeated, and has magical properties that you are not sure of.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
@@ -100,7 +100,7 @@
     </equipable>
   </item>
 
-  <item name="skull_ring">
+  <item name="skull ring">
     <type class="misc" subclass="skull_ring" tileid="-1"/>
     <description>You see a skull ring.</description>
     <implementation class-name="games.stendhal.server.entity.item.Ring"/>    <attributes>
@@ -113,7 +113,7 @@
     </equipable>
   </item>
 
-  <item name="vampirette_entrails">
+  <item name="vampirette entrails">
     <type class="misc" subclass="vampirette_entrails" tileid="-1"/>
     <description>You see some vampirette entrails. These guts proves that a vampirette was slain.</description> 
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
@@ -128,7 +128,7 @@
     </equipable>
   </item>
 
-  <item name="bat_entrails">
+  <item name="bat entrails">
     <type class="misc" subclass="bat_entrails" tileid="-1"/>
     <description>You see some bat entrails, full of the blood of a living creature.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
@@ -143,7 +143,7 @@
     </equipable>
   </item>
 
-  <item name="suntan_cream">
+  <item name="suntan cream">
     <type class="misc" subclass="suntan_cream" tileid="-1"/>
     <description/>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
@@ -170,7 +170,7 @@
     </equipable>
   </item>
 
-  <item name="closed_envelope">
+  <item name="closed envelope">
     <type class="misc" subclass="closed_envelope" tileid="-1"/>
     <description/>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -184,7 +184,7 @@
     </equipable>
   </item>
 
-  <item name="opened_envelope">
+  <item name="opened envelope">
     <type class="misc" subclass="opened_envelope" tileid="-1"/>
     <description/>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -198,7 +198,7 @@
     </equipable>
   </item>
 
-  <item name="sealed_envelope">
+  <item name="sealed envelope">
     <type class="misc" subclass="sealed_envelope" tileid="-1"/>
     <description/>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -212,7 +212,7 @@
     </equipable>
   </item>
 
-  <item name="unsealed_envelope">
+  <item name="unsealed envelope">
     <type class="misc" subclass="unsealed_envelope" tileid="-1"/>
     <description/>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>

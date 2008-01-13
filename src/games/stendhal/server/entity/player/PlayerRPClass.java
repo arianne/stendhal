@@ -17,6 +17,7 @@ import games.stendhal.server.actions.admin.AdministrationAction;
 import games.stendhal.server.core.engine.ItemLogger;
 import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.engine.UnderscoreConverter;
 import games.stendhal.server.core.rp.StendhalRPAction;
 import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.creature.DomesticAnimal;
@@ -65,11 +66,10 @@ class PlayerRPClass {
 
 	/** these items should be bound.*/
 	private static final List<String> ITEMS_TO_BIND = Arrays.asList(
-			"dungeon_silver_key", "lich_gold_key", "trophy_helmet",
-			"lucky_charm", "soup");
+			"dungeon silver_key", "lich gold key", "trophy helmet",
+			"lucky charm", "soup");
 
 	/*
-	 * 
 	 * leather_armor_+1 leather_scale_armor leather_cuirass_+1
 	 * pauldroned_leather_cuirass chain_armor_+1 enhanced_chainmail
 	 * scale_armor_+1 iron_scale_armor chain_armor_+3 golden_chainmail
@@ -87,12 +87,12 @@ class PlayerRPClass {
 			"longbow_+1", "lion_shield_+1");
 
 	private static final List<String> ITEM_NAMES_NEW = Arrays.asList(
-			"morning_star", "leather_scale_armor",
-			"pauldroned_leather_cuirass", "enhanced_chainmail",
-			"iron_scale_armor", "golden_chainmail", "pauldroned_iron_cuirass",
-			"golden_twoside_axe", "blue_elf_cloak", "enhanced_mace",
-			"golden_mace", "golden_hammer", "aventail", "horned_golden_helmet",
-			"composite_bow", "enhanced_lion_shield");
+			"morning star", "leather scale armor",
+			"pauldroned leather cuirass", "enhanced chainmail",
+			"iron scale armor", "golden chainmail", "pauldroned iron cuirass",
+			"golden twoside axe", "blue elf cloak", "enhanced mace",
+			"golden mace", "golden hammer", "aventail", "horned golden helmet",
+			"composite bow", "enhanced lion shield");
 
 	/**
 	 * Generates the RPClass and specifies slots and attributes.
@@ -541,8 +541,11 @@ class PlayerRPClass {
 						name = ITEM_NAMES_NEW.get(ITEM_NAMES_OLD.indexOf(name));
 					}
 
-					Item entity = world.getRuleManager().getEntityManager().getItem(
-							name);
+					// Remove underscore characters from old database item names - ConversationParser
+					// is now capable to work with space separated item names.
+					name = UnderscoreConverter.transform(name);
+
+					Item entity = world.getRuleManager().getEntityManager().getItem(name);
 
 					// log removed items
 					if (entity == null) {

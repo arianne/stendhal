@@ -32,7 +32,7 @@ public class FishSource extends PlayerActivityEntity {
 	/**
 	 * The equipment needed.
 	 */
-	private static final String NEEDED_EQUIPMENT = "fishing_rod";
+	private static final String NEEDED_EQUIPMENT = "fishing rod";
 
 	/**
 	 * The name of the item to be caught.

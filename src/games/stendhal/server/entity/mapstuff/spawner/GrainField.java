@@ -33,13 +33,13 @@ public class GrainField extends GrowingPassiveEntityRespawnPoint implements
 	public static final int RIPE = 5;
 
 	public GrainField(RPObject object) {
-		super(object, "grain_field", "Harvest", RIPE, 1, 2);
+		super(object, "grain field", "Harvest", RIPE, 1, 2);
 		setResistance(80);
 		update();
 	}
 
 	public GrainField() {
-		super("grain_field", "Harvest", RIPE, 1, 2);
+		super("grain field", "Harvest", RIPE, 1, 2);
 		setResistance(80);
 	}
 
@@ -68,9 +68,9 @@ public class GrainField extends GrowingPassiveEntityRespawnPoint implements
 	public boolean onUsed(RPEntity entity) {
 		if (entity.nextTo(this)) {
 			if (getRipeness() == RIPE) {
-				if (entity.isEquipped("old_scythe")
+				if (entity.isEquipped("old scythe")
 					|| entity.isEquipped("scythe") 
-					|| entity.isEquipped("black_scythe")) {
+					|| entity.isEquipped("black scythe")) {
 					onFruitPicked(null);
 					Item grain = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
 							"grain");

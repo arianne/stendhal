@@ -13,7 +13,7 @@
     </equipable>
   </item>
 
-  <item name="summon_scroll">
+  <item name="summon scroll">
     <type class="scroll" subclass="summon" tileid="-1"/>
     <description/>
     <implementation class-name="games.stendhal.server.entity.item.scroll.SummonScroll"/>    <attributes>
@@ -28,7 +28,7 @@
     </equipable>
   </item>
 
-  <item name="nalwor_city_scroll">
+  <item name="nalwor city scroll">
     <type class="scroll" subclass="nalwor" tileid="-1"/>
     <description>You see a nalwor city scroll, it will take you back to nalwor city.</description>
     <implementation class-name="games.stendhal.server.entity.item.scroll.MarkedScroll"/>    <attributes>
@@ -44,7 +44,7 @@
     </equipable>
   </item>
 
-  <item name="ados_city_scroll">
+  <item name="ados city scroll">
     <type class="scroll" subclass="ados" tileid="-1"/>
     <description>You see a ados city scroll, it will take you back to ados city.</description>
     <implementation class-name="games.stendhal.server.entity.item.scroll.MarkedScroll"/>    <attributes>
@@ -60,7 +60,7 @@
     </equipable>
   </item>
 
-  <item name="fado_city_scroll">
+  <item name="fado city scroll">
     <type class="scroll" subclass="fado" tileid="-1"/>
     <description>You see a fado city scroll, it will take you back to fado city.</description>
     <implementation class-name="games.stendhal.server.entity.item.scroll.MarkedScroll"/>    <attributes>
@@ -76,7 +76,7 @@
     </equipable>
   </item>
 
-  <item name="marked_scroll">
+  <item name="marked scroll">
     <type class="scroll" subclass="marked" tileid="-1"/>
     <description/>
     <implementation class-name="games.stendhal.server.entity.item.scroll.MarkedScroll"/>    <attributes>
@@ -91,7 +91,7 @@
     </equipable>
   </item>
 
-  <item name="invitation_scroll">
+  <item name="invitation scroll">
     <type class="scroll" subclass="invitation" tileid="-1"/>
     <description/>
     <implementation class-name="games.stendhal.server.entity.item.scroll.MarkedScroll"/>    <attributes>
@@ -106,7 +106,7 @@
     </equipable>
   </item>
 
-  <item name="home_scroll">
+  <item name="home scroll">
     <type class="scroll" subclass="home" tileid="-1"/>
     <description>You see a home scroll, it will take you back to semos city.</description>
     <implementation class-name="games.stendhal.server.entity.item.scroll.MarkedScroll"/>    <attributes>
@@ -122,7 +122,7 @@
     </equipable>
   </item>
 
-  <item name="empty_scroll">
+  <item name="empty scroll">
     <type class="scroll" subclass="empty" tileid="-1"/>
     <description>You see an empty scroll. If used correctly it will return you to where you marked it at.</description>
     <implementation class-name="games.stendhal.server.entity.item.scroll.EmptyScroll"/>    <attributes>
@@ -137,7 +137,7 @@
     </equipable>
   </item>
 
-  <item name="rainbow_beans">
+  <item name="rainbow beans">
     <type class="scroll" subclass="rainbow_beans" tileid="-1"/>
     <description>You see a small pile of rainbow beans. One says something odd.</description>
     <implementation class-name="games.stendhal.server.entity.item.scroll.RainbowBeansScroll"/>    <attributes>

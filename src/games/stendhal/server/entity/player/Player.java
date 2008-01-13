@@ -535,7 +535,7 @@ public class Player extends RPEntity {
 		/*
 		 * with a lucky charm you use up less karma to be just as lucky
 		 */
-		if (this.isEquipped("lucky_charm")) {
+		if (this.isEquipped("lucky charm")) {
 			karma -= 0.5 * score;
 		} else {
 			karma -= score;
@@ -1432,7 +1432,7 @@ public class Player extends RPEntity {
 			put("outfit_org", get("outfit"));
 		}
 
-		// if the new outfit is not temporay, remove the backup
+		// if the new outfit is not temporary, remove the backup
 		if (!temporary && has("outfit_org")) {
 			remove("outfit_org");
 		}

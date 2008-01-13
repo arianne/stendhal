@@ -50,7 +50,7 @@ public abstract class CroupierNPC extends SpeakerNPC {
 				String text = prizeAndText.second();
 				Item prize = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
 						prizeName);
-				if (prizeName.equals("golden_legs")) {
+				if (prizeName.equals("golden legs")) {
 					prize.setBoundTo(player.getName());
 				}
 

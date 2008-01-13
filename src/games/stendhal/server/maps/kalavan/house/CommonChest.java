@@ -24,8 +24,8 @@ public class CommonChest implements ZoneConfigurator {
 		Chest chest = new Chest();
 		chest.setPosition(22, 2);
 		chest.add(StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("wine"));
-		chest.add(StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("easter_egg"));
-		chest.add(StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("mega_potion"));
+		chest.add(StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("easter egg"));
+		chest.add(StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("mega potion"));
 		chest.add(StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("present"));
 		chest.add(StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("pie"));
 		zone.add(chest);

@@ -33,7 +33,7 @@
     </equipable>
   </item>
 
-  <item name="power_dart">
+  <item name="power dart">
     <type class="missile" subclass="dart" tileid="-1"/>
     <description>You see a power dart. You'll need to be close before you can use it as a missile. Stand square on, not diagonally, for the best results. </description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
@@ -67,7 +67,7 @@
     </equipable>
   </item>
 
-  <item name="wooden_spear">
+  <item name="wooden spear">
     <type class="missile" subclass="wooden_spear" tileid="-1"/>
     <description>You see a wooden spear. You can attack at a distance with this primitive weapon. Stand square on, not diagonally, for the best results.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>

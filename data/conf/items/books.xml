@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <items>
-  <item name="book_black">
+  <item name="book black">
     <type class="book" subclass="book_black" tileid="-1"/>
     <description>You see the black book that Jynath kept out for so long.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -12,7 +12,7 @@
     </equipable>
   </item>
   
-  <item name="book_blue">
+  <item name="book blue">
     <type class="book" subclass="book_blue" tileid="-1"/>
     <description>You see a book with the words GEMS AND MINERALS on the front cover.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>

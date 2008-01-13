@@ -91,175 +91,175 @@
   <portal x="80" y="10" ref="house_1_entrance">
    <destination zone="int_kalavan_house_1" ref="entrance"/>
     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
-      <parameter name="key">private_key_1</parameter>
+      <parameter name="key">private key 1</parameter>
       <parameter name="rejected">The door to this house is locked.</parameter>
     </implementation>
   </portal>
   <portal x="99" y="10" ref="house_2_entrance">
    <destination zone="int_kalavan_house_2" ref="entrance"/>
     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
-      <parameter name="key">private_key_2</parameter>
+      <parameter name="key">private key 2</parameter>
       <parameter name="rejected">The door to this house is locked.</parameter>
     </implementation>
   </portal>
   <portal x="118" y="10" ref="house_3_entrance">
    <destination zone="int_kalavan_house_3" ref="entrance"/>
     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
-      <parameter name="key">private_key_3</parameter>
+      <parameter name="key">private key 3</parameter>
       <parameter name="rejected">The door to this house is locked.</parameter>
     </implementation>
   </portal>
   <portal x="117" y="27" ref="house_4_entrance">
    <destination zone="int_kalavan_house_4" ref="entrance"/>
     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
-      <parameter name="key">private_key_4</parameter>
+      <parameter name="key">private key 4</parameter>
       <parameter name="rejected">The door to this house is locked.</parameter>
     </implementation>
   </portal>
   <portal x="121" y="43" ref="house_5_entrance">
    <destination zone="int_kalavan_house_5" ref="entrance_right"/>
     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
-      <parameter name="key">private_key_5</parameter>
+      <parameter name="key">private key 5</parameter>
       <parameter name="rejected">The door to this house is locked.</parameter>
     </implementation>
   </portal>
   <portal x="121" y="59" ref="house_6_entrance">
    <destination zone="int_kalavan_house_6" ref="entrance"/>
     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
-      <parameter name="key">private_key_6</parameter>
+      <parameter name="key">private key 6</parameter>
       <parameter name="rejected">The door to this house is locked.</parameter>
     </implementation>
   </portal>
  <portal x="121" y="74" ref="house_7_entrance">
    <destination zone="int_kalavan_house_7" ref="entrance"/>
     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
-      <parameter name="key">private_key_7</parameter>
+      <parameter name="key">private key 7</parameter>
       <parameter name="rejected">The door to this house is locked.</parameter>
     </implementation>
   </portal>
   <portal x="118" y="91" ref="house_8_entrance">
    <destination zone="int_kalavan_house_8" ref="entrance"/>
     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
-      <parameter name="key">private_key_8</parameter>
+      <parameter name="key">private key 8</parameter>
       <parameter name="rejected">The door to this house is locked.</parameter>
     </implementation>
   </portal> 
   <portal x="118" y="106" ref="house_9_entrance">
    <destination zone="int_kalavan_house_9" ref="entrance_right"/>
     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
-      <parameter name="key">private_key_9</parameter>
+      <parameter name="key">private key 9</parameter>
       <parameter name="rejected">The door to this house is locked.</parameter>
     </implementation>
   </portal>
   <portal x="118" y="120" ref="house_10_entrance">
    <destination zone="int_kalavan_house_10" ref="entrance_right"/>
     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
-      <parameter name="key">private_key_10</parameter>
+      <parameter name="key">private key 10</parameter>
       <parameter name="rejected">The door to this house is locked.</parameter>
     </implementation>
   </portal>
   <portal x="101" y="121" ref="house_11_entrance">
    <destination zone="int_kalavan_house_11" ref="entrance"/>
     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
-      <parameter name="key">private_key_11</parameter>
+      <parameter name="key">private key 11</parameter>
       <parameter name="rejected">The door to this house is locked.</parameter>
     </implementation>
   </portal>
   <portal x="78" y="121" ref="house_12_entrance">
    <destination zone="int_kalavan_house_12" ref="entrance"/>
     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
-      <parameter name="key">private_key_12</parameter>
+      <parameter name="key">private key 12</parameter>
       <parameter name="rejected">The door to this house is locked.</parameter>
     </implementation>
   </portal>
   <portal x="61" y="121" ref="house_13_entrance">
    <destination zone="int_kalavan_house_13" ref="entrance"/>
     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
-      <parameter name="key">private_key_13</parameter>
+      <parameter name="key">private key 13</parameter>
       <parameter name="rejected">The door to this house is locked.</parameter>
     </implementation>
   </portal>
   <portal x="39" y="121" ref="house_14_entrance">
    <destination zone="int_kalavan_house_14" ref="entrance"/>
     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
-      <parameter name="key">private_key_14</parameter>
+      <parameter name="key">private key 14</parameter>
       <parameter name="rejected">The door to this house is locked.</parameter>
     </implementation>
   </portal>
   <portal x="21" y="121" ref="house_15_entrance">
    <destination zone="int_kalavan_house_15" ref="entrance"/>
     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
-      <parameter name="key">private_key_15</parameter>
+      <parameter name="key">private key 15</parameter>
       <parameter name="rejected">The door to this house is locked.</parameter>
     </implementation>
   </portal>
   <portal x="9" y="121" ref="house_16_entrance">
    <destination zone="int_kalavan_house_16" ref="entrance"/>
     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
-      <parameter name="key">private_key_16</parameter>
+      <parameter name="key">private key 16</parameter>
       <parameter name="rejected">The door to this house is locked.</parameter>
     </implementation>
   </portal>
   <portal x="6" y="106" ref="house_17_entrance">
    <destination zone="int_kalavan_house_17" ref="entrance"/>
     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
-      <parameter name="key">private_key_17</parameter>
+      <parameter name="key">private key 17</parameter>
       <parameter name="rejected">The door to this house is locked.</parameter>
     </implementation>
   </portal>
   <portal x="9" y="91" ref="house_18_entrance">
    <destination zone="int_kalavan_house_18" ref="entrance_right"/>
     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
-      <parameter name="key">private_key_18</parameter>
+      <parameter name="key">private key 18</parameter>
       <parameter name="rejected">The door to this house is locked.</parameter>
     </implementation>
   </portal>
   <portal x="7" y="74" ref="house_19_entrance">
    <destination zone="int_kalavan_house_19" ref="entrance"/>
     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
-      <parameter name="key">private_key_19</parameter>
+      <parameter name="key">private key 19</parameter>
       <parameter name="rejected">The door to this house is locked.</parameter>
     </implementation>
   </portal>
   <portal x="9" y="60" ref="house_20_entrance">
    <destination zone="int_kalavan_house_20" ref="entrance"/>
     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
-      <parameter name="key">private_key_20</parameter>
+      <parameter name="key">private key 20</parameter>
       <parameter name="rejected">The door to this house is locked.</parameter>
     </implementation>
   </portal>
   <portal x="6" y="44" ref="house_21_entrance">
    <destination zone="int_kalavan_house_21" ref="entrance"/>
     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
-      <parameter name="key">private_key_21</parameter>
+      <parameter name="key">private key 21</parameter>
       <parameter name="rejected">The door to this house is locked.</parameter>
     </implementation>
   </portal>
   <portal x="9" y="27" ref="house_22_entrance">
    <destination zone="int_kalavan_house_22" ref="entrance"/>
     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
-      <parameter name="key">private_key_22</parameter>
+      <parameter name="key">private key 22</parameter>
       <parameter name="rejected">The door to this house is locked.</parameter>
     </implementation>
   </portal>
   <portal x="7" y="10" ref="house_23_entrance">
    <destination zone="int_kalavan_house_23" ref="entrance"/>
     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
-      <parameter name="key">private_key_23</parameter>
+      <parameter name="key">private key 23</parameter>
       <parameter name="rejected">The door to this house is locked.</parameter>
     </implementation>
   </portal>
   <portal x="27" y="10" ref="house_24_entrance">
    <destination zone="int_kalavan_house_24" ref="entrance"/>
     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
-      <parameter name="key">private_key_24</parameter>
+      <parameter name="key">private key 24</parameter>
       <parameter name="rejected">The door to this house is locked.</parameter>
     </implementation>
   </portal>
   <portal x="45" y="10" ref="house_25_entrance">
    <destination zone="int_kalavan_house_25" ref="entrance"/>
     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
-      <parameter name="key">private_key_25</parameter>
+      <parameter name="key">private key 25</parameter>
       <parameter name="rejected">The door to this house is locked.</parameter>
     </implementation>
   </portal>

@@ -31,9 +31,9 @@ import java.util.List;
  *
  * STEPS:
  * <ul>
- * <li>Dagobert asks you to find a leather_cuirass.</li>
- * <li>You get a leather_cuirass, e.g. by killing a cyclops.</li>
- * <li>Dagobert sees your leather_cuirass and asks for it and then thanks you.</li>
+ * <li>Dagobert asks you to find a leather cuirass.</li>
+ * <li>You get a leather cuirass, e.g. by killing a cyclops.</li>
+ * <li>Dagobert sees your leather cuirass and asks for it and then thanks you.</li>
  * </ul>
  *
  * REWARD:
@@ -70,7 +70,7 @@ public class ArmorForDagobert extends AbstractQuest {
 		if (player.isQuestInState(QUEST_SLOT, "start", "done")) {
 			res.add("QUEST_ACCEPTED");
 		}
-		if ((questState.equals("start") && player.isEquipped("leather_cuirass"))
+		if ((questState.equals("start") && player.isEquipped("leather cuirass"))
 				|| questState.equals("done")) {
 			res.add("FOUND_ITEM");
 		}
@@ -105,7 +105,7 @@ public class ArmorForDagobert extends AbstractQuest {
 			ConversationPhrases.YES_MESSAGES,
 			null,
 			ConversationStates.ATTENDING,
-			"Once I had a nice #leather_cuirass, but it was destroyed during the last robbery. If you find a new one, I'll give you a reward.",
+			"Once I had a nice #leather cuirass, but it was destroyed during the last robbery. If you find a new one, I'll give you a reward.",
 			new SetQuestAction(QUEST_SLOT, "start"));
 
 		// player is not willing to help
@@ -116,13 +116,13 @@ public class ArmorForDagobert extends AbstractQuest {
 			"Well, then I guess I'll just duck and cover.",
 			new SetQuestAction(QUEST_SLOT, "rejected"));
 
-		// player wants to know what a leather_cuirass is
+		// player wants to know what a leather cuirass is
 		npc.add(
 			ConversationStates.ATTENDING,
-			Arrays.asList("leather_cuirass", "leather", "cuirass"),
+			Arrays.asList("leather cuirass", "leather", "cuirass"),
 			null,
 			ConversationStates.ATTENDING,
-			"A leather_cuirass is the traditional cyclops armor. Some cyclopes are living in the dungeon deep under the city.",
+			"A leather cuirass is the traditional cyclops armor. Some cyclopes are living in the dungeon deep under the city.",
 			null);
 	}
 
@@ -131,19 +131,19 @@ public class ArmorForDagobert extends AbstractQuest {
 
 		// player returns while quest is still active
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-			new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"), new PlayerHasItemWithHimCondition("leather_cuirass")),
+			new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"), new PlayerHasItemWithHimCondition("leather cuirass")),
 			ConversationStates.QUEST_ITEM_BROUGHT, 
-			"Excuse me, please! I have noticed the leather_cuirass you're carrying. Is it for me?",
+			"Excuse me, please! I have noticed the leather cuirass you're carrying. Is it for me?",
 			null);
 
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-			new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"), new NotCondition(new PlayerHasItemWithHimCondition("leather_cuirass"))),
+			new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"), new NotCondition(new PlayerHasItemWithHimCondition("leather cuirass"))),
 			ConversationStates.ATTENDING, 
-			"Luckily I haven't been robbed while you were away. I would be glad to receive a leather_cuirass. Anyway, how can I #help you?",
+			"Luckily I haven't been robbed while you were away. I would be glad to receive a leather cuirass. Anyway, how can I #help you?",
 			null);
 
 		List<SpeakerNPC.ChatAction> reward = new LinkedList<SpeakerNPC.ChatAction>();
-		reward.add(new DropItemAction("leather_cuirass"));
+		reward.add(new DropItemAction("leather cuirass"));
 		reward.add(new EquipItemAction("money", 80));
 		reward.add(new IncreaseXPAction(50));
 		reward.add(new SetQuestAction(QUEST_SLOT, "done"));
@@ -153,7 +153,7 @@ public class ArmorForDagobert extends AbstractQuest {
 			ConversationPhrases.YES_MESSAGES,
 			// make sure the player isn't cheating by putting the armor
 			// away and then saying "yes"
-			new PlayerHasItemWithHimCondition("leather_cuirass"), 
+			new PlayerHasItemWithHimCondition("leather cuirass"), 
 			ConversationStates.ATTENDING, "Oh, I am so thankful! Here is some gold I found ... ehm ... somewhere.",
 			new MultipleActions(reward));
 

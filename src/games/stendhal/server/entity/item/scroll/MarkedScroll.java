@@ -84,7 +84,7 @@ public class MarkedScroll extends TeleportScroll {
 					// invalid zone (the scroll may have been marked in an
 					// old version and the zone was removed)
 					player.sendPrivateText("Oh oh. For some strange reason the scroll did not teleport me to the right place.");
-					logger.warn("marked_scroll to unknown zone " + infostring
+					logger.warn("marked scroll to unknown zone " + infostring
 							+ " teleported " + player.getName()
 							+ " to Semos instead");
 				} else {
