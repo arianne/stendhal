@@ -214,7 +214,6 @@ public class ConversationParserTest {
 
 	@Test
 	public final void testPunctuation() {
-		//TODO mf - also handle "if i may ask, give me 4 fishes, please"
 		Sentence sentence = ConversationParser.parse("give me 4 fishes, please");
 		assertFalse(sentence.hasError());
 		assertEquals("buy", sentence.getVerbString());
@@ -222,6 +221,9 @@ public class ConversationParserTest {
 		assertEquals(4, sentence.getObject(0).getAmount());
 		assertEquals("fish", sentence.getObjectName());
 		assertEquals("buy fish!", sentence.getNormalized());
+
+		//TODO mf - also handle "May I ask you to give me 4 fishes, please?"
+		//TODO mf - also handle "If i may ask, could you please give me 4 fishes?"
 	}
 
 	@Test
