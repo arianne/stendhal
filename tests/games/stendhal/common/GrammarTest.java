@@ -2,8 +2,11 @@ package games.stendhal.common;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
+
+import games.stendhal.server.entity.npc.parser.ConversationParser;
 
 import java.util.Collection;
 import java.util.LinkedList;
@@ -588,16 +591,16 @@ public class GrammarTest {
 
 	@Test
 	public void testIsPreposition() {
-		assertTrue(Grammar.isPreposition("on"));
-		assertTrue(Grammar.isPreposition("of"));
-		assertTrue(Grammar.isPreposition("under"));
-		assertTrue(Grammar.isPreposition("with"));
+		assertNotNull(ConversationParser.parse("on").getPreposition(0));
+		assertNotNull(ConversationParser.parse("of").getPreposition(0));
+		assertNotNull(ConversationParser.parse("under").getPreposition(0));
+		assertNotNull(ConversationParser.parse("with").getPreposition(0));
 
-		assertFalse(Grammar.isPreposition("if"));
-		assertFalse(Grammar.isPreposition("house"));
-		assertFalse(Grammar.isPreposition("dog"));
-		assertFalse(Grammar.isPreposition("player"));
-		assertFalse(Grammar.isPreposition("kymara"));
+		assertNull(ConversationParser.parse("if").getPreposition(0));
+		assertNull(ConversationParser.parse("house").getPreposition(0));
+		assertNull(ConversationParser.parse("dog").getPreposition(0));
+		assertNull(ConversationParser.parse("player").getPreposition(0));
+		assertNull(ConversationParser.parse("kymara").getPreposition(0));
 	}
 
 	@Test

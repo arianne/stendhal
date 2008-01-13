@@ -756,20 +756,6 @@ public class Grammar {
 	}
 
 	/**
-	 * Decide if the given word is a preposition.
-	 * @deprecated This function is now no more needed, as WordList handles prepositions.
-	 * 
-	 * @param word
-	 * @return true if word is a preposition
-	 */
-	@Deprecated
-	public static boolean isPreposition(String word) {
-		// TODO handle more prepositions
-		return word.equals("on") || word.equals("of") || word.equals("under")
-				|| word.equals("with");
-	}
-
-	/**
 	 * Decide if the given word is a subject.
 	 * 
 	 * TODO May be we should also handle the remaining subjective pronouns
