@@ -1,5 +1,6 @@
 package games.stendhal.server.entity.npc;
 
+import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Arrays;

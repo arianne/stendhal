@@ -1,8 +1,8 @@
 package games.stendhal.server.entity.npc.condition;
 
 import games.stendhal.server.entity.Outfit;
-import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
 import org.apache.commons.lang.builder.EqualsBuilder;

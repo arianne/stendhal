@@ -1,12 +1,12 @@
 package games.stendhal.server.entity.npc.condition;
 
+import games.stendhal.server.entity.mapstuff.office.StoreableEntityList;
+import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.parser.Sentence;
+import games.stendhal.server.entity.player.Player;
+
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
-
-import games.stendhal.server.entity.mapstuff.office.StoreableEntityList;
-import games.stendhal.server.entity.npc.Sentence;
-import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.player.Player;
 
 /**
  * Is there a storeable entity in the specified list that has name

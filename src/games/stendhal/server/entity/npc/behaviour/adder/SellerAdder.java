@@ -3,10 +3,11 @@ package games.stendhal.server.entity.npc.behaviour.adder;
 import games.stendhal.common.Grammar;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
 import games.stendhal.server.entity.npc.fsm.Engine;
+import games.stendhal.server.entity.npc.parser.Sentence;
+import games.stendhal.server.entity.npc.parser.Expression;
 import games.stendhal.server.entity.player.Player;
 
 import org.apache.log4j.Logger;
@@ -42,12 +43,13 @@ public class SellerAdder {
 							SpeakerNPC engine) {
 						// find out what the player wants to buy, and how much
 						// of it
-						int amount = sentence.getAmount();
-						String item = sentence.getItemName();
+						Expression object = sentence.getObject(0);
+						int amount = object!=null? object.getAmount(): 1;
+						String item = sentence.getObjectName();
 
 						if (sentence.hasError()) {
 							engine.say("Sorry, I did not understand you. "
-									+ sentence.getError());
+									+ sentence.getErrorString());
 							engine.setCurrentState(ConversationStates.ATTENDING);
 						} else if (behaviour.hasItem(item)) {
 							// find out if the NPC sells this item, and if so,

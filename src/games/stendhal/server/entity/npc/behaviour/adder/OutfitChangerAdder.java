@@ -3,10 +3,10 @@ package games.stendhal.server.entity.npc.behaviour.adder;
 import games.stendhal.common.Grammar;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.impl.OutfitChangerBehaviour;
 import games.stendhal.server.entity.npc.fsm.Engine;
+import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
 import org.apache.log4j.Logger;
@@ -72,7 +72,7 @@ public class OutfitChangerAdder {
 					public void fire(Player player, Sentence sentence,
 							SpeakerNPC engine) {
 						// find out what the player wants to wear
-						String item = sentence.getItemName();
+						String item = sentence.getObjectName();
 						/*
 						 * We ignore any amounts and skip the numeric
 						 * expressions. sentence.getAmount();
@@ -80,7 +80,7 @@ public class OutfitChangerAdder {
 
 						if (sentence.hasError()) {
 							engine.say("Sorry, I did not understand you. "
-									+ sentence.getError());
+									+ sentence.getErrorString());
 						} else if (item == null
 								&& behaviour.dealtItems().size() == 1) {
 							// The NPC only offers one type of outfit, so
@@ -146,8 +146,7 @@ public class OutfitChangerAdder {
 						public void fire(Player player, Sentence sentence,
 								SpeakerNPC npc) {
 							if (behaviour.returnToOriginalOutfit(player)) {
-								// TODO: it would be cool if you could get a
-								// refund
+								// TODO: it would be cool if you could get a refund
 								// for returning the outfit, i. e. the money is
 								// only paid as a deposit.
 								npc.say("Thank you!");

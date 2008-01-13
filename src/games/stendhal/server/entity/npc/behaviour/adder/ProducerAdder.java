@@ -2,10 +2,11 @@ package games.stendhal.server.entity.npc.behaviour.adder;
 
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.impl.ProducerBehaviour;
 import games.stendhal.server.entity.npc.fsm.Engine;
+import games.stendhal.server.entity.npc.parser.Sentence;
+import games.stendhal.server.entity.npc.parser.Expression;
 import games.stendhal.server.entity.player.Player;
 
 import org.apache.log4j.Logger;
@@ -50,14 +51,14 @@ public class ProducerAdder {
 				}, ConversationStates.ATTENDING, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, Sentence sentence,
-							SpeakerNPC npc) {
-						int amount = sentence.getAmount();
-						String item = sentence.getItemName();
+					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+						Expression object = sentence.getObject(0);
+						int amount = object!=null? object.getAmount(): 1;
+						String item = sentence.getObjectName();
 
 						if (sentence.hasError()) {
 							npc.say("Sorry, I did not understand you. "
-									+ sentence.getError());
+									+ sentence.getErrorString());
 						} else {
 							if (amount > 1000) {
 								logger.warn("Decreasing very large amount of "

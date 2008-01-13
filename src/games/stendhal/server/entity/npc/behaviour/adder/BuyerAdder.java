@@ -3,10 +3,11 @@ package games.stendhal.server.entity.npc.behaviour.adder;
 import games.stendhal.common.Grammar;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
 import games.stendhal.server.entity.npc.fsm.Engine;
+import games.stendhal.server.entity.npc.parser.Sentence;
+import games.stendhal.server.entity.npc.parser.Expression;
 import games.stendhal.server.entity.player.Player;
 
 import org.apache.log4j.Logger;
@@ -34,15 +35,14 @@ public class BuyerAdder {
 				new SpeakerNPC.ChatAction() {
 
 					@Override
-					public void fire(Player player, Sentence sentence,
-							SpeakerNPC engine) {
-
-						int amount = sentence.getAmount();
-						String item = sentence.getItemName();
+					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+						Expression object = sentence.getObject(0);
+						int amount = object!=null? object.getAmount(): 1;
+						String item = sentence.getObjectName();
 
 						if (sentence.hasError()) {
 							engine.say("Sorry, I did not understand you. "
-									+ sentence.getError());
+									+ sentence.getErrorString());
 							engine.setCurrentState(ConversationStates.ATTENDING);
 							return;
 						}

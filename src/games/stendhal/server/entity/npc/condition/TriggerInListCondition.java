@@ -1,7 +1,9 @@
 package games.stendhal.server.entity.npc.condition;
 
-import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.parser.ConversationParser;
+import games.stendhal.server.entity.npc.parser.Sentence;
+import games.stendhal.server.entity.npc.parser.Expression;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Arrays;
@@ -15,7 +17,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
  * Was one of theses trigger phrases said? (Use with a ""-trigger in npc.add)
  */
 public class TriggerInListCondition extends SpeakerNPC.ChatCondition {
-	private List<String> triggers = new LinkedList<String>();
+	private List<Expression> triggers = new LinkedList<Expression>();
 
 	/**
 	 * Creates a new TriggerInListCondition.
@@ -35,13 +37,13 @@ public class TriggerInListCondition extends SpeakerNPC.ChatCondition {
 	 */
 	public TriggerInListCondition(List<String> trigger) {
 		for (String trig : trigger) {
-			this.triggers.add(trig.trim().toLowerCase());
+			this.triggers.add(ConversationParser.createTriggerExpression(trig));
 		}
 	}
 
 	@Override
 	public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
-		return triggers.contains(sentence.getTrigger().trim().toLowerCase());
+		return triggers.contains(sentence.getTriggerExpression());
 	}
 
 	@Override

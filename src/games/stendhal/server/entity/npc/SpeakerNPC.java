@@ -7,6 +7,8 @@ import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.npc.fsm.PostTransitionAction;
 import games.stendhal.server.entity.npc.fsm.PreTransitionCondition;
 import games.stendhal.server.entity.npc.fsm.Transition;
+import games.stendhal.server.entity.npc.parser.ConversationParser;
+import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.LinkedList;
