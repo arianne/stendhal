@@ -105,12 +105,9 @@ public class GrammarTest {
 		assertEquals("bottle of poison", Grammar.fullForm("poison"));
 		assertEquals("bottle of antidote", Grammar.fullForm("antidote"));
 		assertEquals("money", Grammar.fullForm("money"));
-		assertEquals("whatever book", Grammar.fullForm("book_whatever"));
 		assertEquals("whatever book", Grammar.fullForm("book whatever"));
 		assertEquals("sprig of arandula", Grammar.fullForm("arandula"));
-		assertEquals("suit of iron_armor", Grammar.fullForm("iron_armor"));
 		assertEquals("suit of iron armor", Grammar.fullForm("iron armor"));
-		assertEquals("pair of iron_legs", Grammar.fullForm("iron_legs"));
 		assertEquals("pair of iron legs", Grammar.fullForm("iron legs"));
 		assertEquals("pair of iron boots", Grammar.fullForm("iron boots"));
 	}
@@ -397,6 +394,7 @@ public class GrammarTest {
 
         assertEquals("cheese", Grammar.singular("cheese"));
 		testPluralisationAndSingularisation("pieces of cheese", "cheese");
+		testPluralisationAndSingularisation("bicycles", "bicycle");
 	}
 
 	/**
@@ -546,7 +544,6 @@ public class GrammarTest {
 				"#bread"));
 		assertEquals("2 loaves of #bread", Grammar.quantityplnoun(2,
 				"#bread"));
-
 	}
 
 	@Test
