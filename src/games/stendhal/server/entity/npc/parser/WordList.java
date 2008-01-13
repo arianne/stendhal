@@ -305,7 +305,7 @@ public class WordList {
 	 * Find an entry for a given word.
 	 * 
 	 * @param str
-	 * @return Word
+	 * @return WordEntry
 	 */
 	public WordEntry find(String str) {
 		WordEntry entry = words.get(trimWord(str));
