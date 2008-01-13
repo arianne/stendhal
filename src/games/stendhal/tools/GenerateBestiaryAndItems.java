@@ -2,6 +2,7 @@ package games.stendhal.tools;
 
 import games.stendhal.server.core.config.CreaturesXMLLoader;
 import games.stendhal.server.core.config.ItemGroupsXMLLoader;
+import games.stendhal.server.core.engine.UnderscoreConverter;
 import games.stendhal.server.core.rule.defaultruleset.DefaultCreature;
 import games.stendhal.server.core.rule.defaultruleset.DefaultItem;
 import games.stendhal.server.entity.creature.impl.DropItem;
@@ -47,9 +48,9 @@ public class GenerateBestiaryAndItems {
 			}
 
 			String name = creature.getCreatureName();
-			System.out.println("== " + name.replace("_", " ") + " ==");
+			System.out.println("== " + UnderscoreConverter.transform(name) + " ==");
 			System.out.println("{{Creature|");
-			System.out.println("|name= " + name.replace("_", " ") + "");
+			System.out.println("|name= " + UnderscoreConverter.transform(name) + "");
 			System.out.println("|image= " + name + "");
 			System.out.println("|hp= " + creature.getHP() + "");
 			System.out.println("|atk= " + creature.getATK() + "");
@@ -85,7 +86,7 @@ public class GenerateBestiaryAndItems {
 
 			System.out.println("{{Item|");
 			System.out.println("|name       = "
-					+ item.getItemName().replace("_", " "));
+					+ UnderscoreConverter.transform(item.getItemName()));
 			System.out.println("|class      = " + item.getItemClass());
 			System.out.println("|image      = " + item.getItemName());
 			System.out.println("|description= TODO");
