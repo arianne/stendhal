@@ -1,14 +1,14 @@
 /* $Id$ */
 /***************************************************************************
- *                      (C) Copyright 2003 - Marauroa                      *
+ *						(C) Copyright 2003 - Marauroa					   *
  ***************************************************************************
  ***************************************************************************
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
+ *																		   *
+ *	 This program is free software; you can redistribute it and/or modify  *
+ *	 it under the terms of the GNU General Public License as published by  *
+ *	 the Free Software Foundation; either version 2 of the License, or	   *
+ *	 (at your option) any later version.								   *
+ *																		   *
  ***************************************************************************/
 package games.stendhal.server.entity.npc;
 
@@ -23,12 +23,13 @@ import games.stendhal.server.entity.item.Corpse;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.log4j.Logger;
 import marauroa.common.game.Definition;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.SyntaxException;
 import marauroa.common.game.Definition.Type;
+
+import org.apache.log4j.Logger;
 
 public abstract class NPC extends RPEntity {
 
@@ -69,7 +70,7 @@ public abstract class NPC extends RPEntity {
 	 * Set the NPC's idea/thought.
 	 * 
 	 * @param idea
-	 *            The idea mnemonic, or <code>null</code>.
+	 *			  The idea mnemonic, or <code>null</code>.
 	 */
 	public void setIdea(String idea) {
 		if (idea != null) {
@@ -112,13 +113,13 @@ public abstract class NPC extends RPEntity {
 	 * is not asynchronous, so this thread is blocked until a path is found.
 	 * 
 	 * @param destEntity
-	 *            the destination entity
+	 *			  the destination entity
 	 * @param min
-	 *            minimum distance to the destination entity
+	 *			  minimum distance to the destination entity
 	 * @param max
-	 *            maximum distance to the destination entity
+	 *			  maximum distance to the destination entity
 	 * @param maxPathRadius
-	 *            the maximum radius in which a path is searched
+	 *			  the maximum radius in which a path is searched
 	 */
 	public void setMovement(Entity destEntity, double min, double max,
 			double maxPathRadius) {
@@ -144,11 +145,11 @@ public abstract class NPC extends RPEntity {
 	 * Set a random destination as a path.
 	 * 
 	 * @param distance
-	 *            The maximum axis distance to move.
+	 *			  The maximum axis distance to move.
 	 * @param x
-	 *            The origin X coordinate for placement.
+	 *			  The origin X coordinate for placement.
 	 * @param y
-	 *            The origin Y coordinate for placement.
+	 *			  The origin Y coordinate for placement.
 	 */
 	public void setRandomPathFrom(final int x, final int y, final int distance) {
 		int dist2_1 = distance + distance + 1;
