@@ -278,46 +278,6 @@ public class Sentence {
 	}
 
 	/**
-	 * Return item name derived (by replacing spaces by underscores) from the
-	 * object of the parsed sentence.
-	 *
-	 * @deprecated use getObjectName() to get rid of underscore handling for item names.
-	 *
-	 * @return item name
-	 */
-	@Deprecated
-	public String getItemName(int i) {
-		return getObjectName(i);
-//		// concatenate user specified item names like "baby dragon"
-//		// with underscores to build the internal item names
-//		Expression object = getObject(i);
-//
-//		if (object != null) {
-//			// Here we use 'original' instead of 'normalized'
-//			// to handle item names concatenated by underscores.
-//			return object.getOriginal().toLowerCase().replace(' ', '_');
-//		} else {
-//			return null;
-//		}
-	}
-
-	/**
-	 * Special case for sentences with only one item.
-	 *
-	 * @deprecated use getObjectName() to get rid of underscore handling for item names.
-	 * 
-	 * @return normalized item name
-	 */
-	@Deprecated
-	public String getItemName() {
-		if (getObjectCount() == 1) {
-			return getItemName(0);
-		} else {
-			return null;
-		}
-	}
-
-	/**
 	 * Return the number of prepositions.
 	 * 
 	 * @return number of objects
