@@ -210,31 +210,31 @@ public class FindGhostsTest {
 		en.step(player, "Mary");
 		assertEquals("Thank you. If you met any other spirits, please tell me their name.", npc.get("text"));
 		assertThat(player.getQuest("find_ghosts").split(":")[1], containsString("mary"));
-		assertThat(player.getQuest("find_ghosts").split(":")[0], not(containsString("Mary")));
+		assertThat(player.getQuest("find_ghosts").split(":")[0],  not(containsString("Mary")));
 
 		en.step(player, "Mary");
-		assertEquals("Thank you. If you met any other spirits, please tell me their name.", npc.get("text"));
+		assertEquals("You've told me that name already, thanks. If you met any other spirits, please tell me their name.", npc.get("text"));
 	
 		en.step(player, "Brandy");
 		assertEquals("Sorry, I don't understand you. What name are you trying to say?", npc.get("text"));
 		
-		assertThat(player.getQuest("find_ghosts").split(":")[1], not(containsString("Ben")));
+		assertThat(player.getQuest("find_ghosts").split(":")[1], not(containsString("ben")));
 		en.step(player, "Ben");
 		assertEquals("Thank you. If you met any other spirits, please tell me their name.", npc.get("text"));
-		assertThat(player.getQuest("find_ghosts").split(":")[1], containsString("Ben"));
+		assertThat(player.getQuest("find_ghosts").split(":")[1], containsString("ben"));
 		
-		assertThat(player.getQuest("find_ghosts").split(":")[1], not(containsString("Zak")));
+		assertThat(player.getQuest("find_ghosts").split(":")[1], not(containsString("zak")));
 		en.step(player, "Zak");
 		assertEquals("Thank you. If you met any other spirits, please tell me their name.", npc.get("text"));
-		assertThat(player.getQuest("find_ghosts").split(":")[1], containsString("Zak"));
+		assertThat(player.getQuest("find_ghosts").split(":")[1], containsString("zak"));
 		
 		
-		assertThat(player.getQuest("find_ghosts").split(":")[1], not(containsString("Goran")));
+		assertThat(player.getQuest("find_ghosts"), not(containsString("Goran")));
 		en.step(player, "Goran");
 		assertEquals(
 				"Thank you. Now that I know those 4 names, perhaps I can even reach the spirits with my mind. I can't give you anything of material value, but I have given you a boost to your basic wellbeing, which will last forever. May you live long, and prosper.",
 				npc.get("text"));
-		assertThat(player.getQuest("find_ghosts").split(":")[1], containsString("Goran"));
+		assertThat(player.getQuest("find_ghosts"), is("done"));
 		// [22:27] superkym heals 50 health points.
 		// [22:27] superkym earns 5000 experience points.
 		en.step(player, "bye");
