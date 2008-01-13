@@ -78,6 +78,7 @@ public class Scroll extends StackableItem implements UseListener {
 		}
 
 		if (user.nextTo((Entity) base)) {
+			assert user instanceof Player;//TODO either use if (user instanceof Player) or change the method signature
 			if (useScroll((Player) user)) {
 				this.removeOne();
 				user.notifyWorldAboutChanges();
@@ -100,8 +101,8 @@ public class Scroll extends StackableItem implements UseListener {
 	 */
 	protected boolean useScroll(Player player) {
 		/*
-		 * Default behaviour TODO: XXX - obsolete?? Can never really happen,
-		 * make abstract?
+		 * Default behaviour TODO obsolete?? Can never really happen,
+		 * make abstract? XXX
 		 */
 		player.sendPrivateText("What a strange scroll! You can't make heads or tails of it.");
 		return false;
