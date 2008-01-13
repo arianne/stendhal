@@ -370,7 +370,7 @@ public class j2DClient extends StendhalUI {
 
 		// Display a warning message in case the screen size was adjusted
 		// This is a temporary solution until this issue is fixed server side.
-		// I hope that it discourages its use without the risks of unabdateable
+		// I hope that it discourages its use without the risks of unupdateable
 		// clients being distributed
 		if (!stendhal.SCREEN_SIZE.equals("640x480")) {
 			addEventLine("Using window size cheat: " + stendhal.SCREEN_SIZE,
