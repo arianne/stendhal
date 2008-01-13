@@ -132,7 +132,7 @@ public class WikipediaAccess extends DefaultHandler implements Runnable {
 			// look it up using the Wikipedia API
 			HttpClient httpClient = new HttpClient(
 					"http://en.wikipedia.org/w/query.php?format=xml&titles="
-							+ title.replace(" ", "_").replace("%", "%25")
+							+ title.replace(' ', '_').replace("%", "%25")
 							+ "&what=content");
 			SAXParserFactory factory = SAXParserFactory.newInstance();
 
