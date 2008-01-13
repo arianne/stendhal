@@ -37,7 +37,7 @@ public class UnderscoreConverter {
 		while(it.hasNext()) {
 			RPSlot slot = it.next();
 
-			if (slot.getName().equals("!kill")) {
+			if (slot.getName().equals("!kills")) {
 				// Translate the content of the kill list.
 				for(RPObject obj : slot) {
 					transformSlotKeyNames(obj);
