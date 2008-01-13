@@ -326,13 +326,12 @@ public abstract class RPEntity extends GuidedEntity {
 			String newName = get("name");
 
 			// register the new name in the conversation parser word list
-//TODO name registering in WordList disabled for now
-//			if (name!=null && !name.equals(newName)) {
-//				WordList.getInstance().unregisterSubjectName(this.name);
-//			}
-//			if (name==null || !name.equals(newName)) {
-//				WordList.getInstance().registerSubjectName(newName);
-//			}
+			if (name!=null && !name.equals(newName)) {
+				WordList.getInstance().unregisterSubjectName(this.name);
+			}
+			if (name==null || !name.equals(newName)) {
+				WordList.getInstance().registerSubjectName(newName);
+			}
 
 			name = newName;
 		}
@@ -382,13 +381,12 @@ public abstract class RPEntity extends GuidedEntity {
 	 */
 	public void setName(String name) {
 		// register the new name in the conversation parser word list
-//TODO name registering in WordList disabled for now
-//		if (this.name!=null && !this.name.equals(name)) {
-//			WordList.getInstance().unregisterSubjectName(this.name);
-//		}
-//		if (this.name==null || !this.name.equals(name)) {
-//			WordList.getInstance().registerSubjectName(name);
-//		}
+		if (this.name!=null && !this.name.equals(name)) {
+			WordList.getInstance().unregisterSubjectName(this.name);
+		}
+		if (this.name==null || !this.name.equals(name)) {
+			WordList.getInstance().registerSubjectName(name);
+		}
 
 		this.name = name;
 		put("name", name);
@@ -658,7 +656,7 @@ public abstract class RPEntity extends GuidedEntity {
 		if (attackTarget != null) {
 			attackTarget.attackSources.remove(this);
 
-			// TODO: XXX - Opponent could attack again, really remove?
+			// TODO Opponent could attack again, really remove? XXX
 			// Yes, because otherwise we would have a memory leak. When else
 			// should dead creatures be removed from the hash map? --mort
 			enemiesThatGiveFightXP.remove(attackTarget);
@@ -873,7 +871,8 @@ public abstract class RPEntity extends GuidedEntity {
 
 			/** We limit xp gain for up to eight levels difference */
 			/**
-			 * TODO: XXX: Disabled. double gainXpLimitation = 1 + ((oldLevel -
+			 * TODO Disabled. XXX
+			 * double gainXpLimitation = 1 + ((oldLevel -
 			 * killer.getLevel()) / (20.0)); if (gainXpLimitation < 0.0) {
 			 * gainXpLimitation = 0.0; } else if (gainXpLimitation > 1.0) {
 			 * gainXpLimitation = 1.0; }
@@ -1442,13 +1441,13 @@ public abstract class RPEntity extends GuidedEntity {
 			weapons.add(weaponItem);
 
 			// pair weapons
-			if (weaponItem.getName().startsWith("l_hand_")) {
+			if (weaponItem.getName().startsWith("l hand ")) {
 				// check if there is a matching right-hand weapon in
 				// the other hand.
 				String rpclass = weaponItem.getItemClass();
 				weaponItem = getEquippedItemClass("rhand", rpclass);
 				if ((weaponItem != null)
-						&& (weaponItem.getName().startsWith("r_hand_"))) {
+						&& (weaponItem.getName().startsWith("r hand "))) {
 					weapons.add(weaponItem);
 				} else {
 					// You can't use a left-hand weapon without the matching
@@ -1458,7 +1457,7 @@ public abstract class RPEntity extends GuidedEntity {
 			} else {
 				// You can't hold a right-hand weapon with your left hand, for
 				// ergonomic reasons ;)
-				if (weaponItem.getName().startsWith("r_hand_")) {
+				if (weaponItem.getName().startsWith("r hand ")) {
 					weapons.clear();
 				}
 			}
