@@ -61,13 +61,11 @@ public class UnderscoreConverter {
 	static boolean transformAttribute(RPObject object, final String key)	{
 		String value = object.get(key);
 
-		if (value != null) {
-			if (value.contains("_")) {
-				String newValue = value.replace("_", " ");
-				object.put(key, newValue);
-				logger.info("renamed attribute '"+key+"' value '"+value+"' to '"+newValue+"'");
-				return true;
-			}
+		String newValue = transform(value);
+		if (newValue != value) {
+			object.put(key, newValue);
+			logger.info("renamed attribute '"+key+"' value '"+value+"' to '"+newValue+"'");
+			return true;
 		}
 
 		return false;
@@ -86,8 +84,9 @@ public class UnderscoreConverter {
 		int count = 0;
 
 		for(String key : attributes) {
-			if (key.contains("_")) {
-				String newKey = key.replace("_", " ");
+			String newKey = transform(key);
+
+			if (newKey != key) {
 				String value = object.get(key);
 
 				object.remove(key);
@@ -99,6 +98,26 @@ public class UnderscoreConverter {
 		}
 
 		return count > 0;
+	}
+
+	/**
+	 * Replace underscores in the given String by spaces.
+	 * 
+	 * @param str
+	 * @return transformed String if str contained an underscore,
+	 * 			or unchanged String
+	 * 			or null if str was null
+	 */
+	public static String transform(String str) {
+		if (str != null) {
+			if (str.indexOf('_') != -1) {
+				return str.replace('_', ' ');
+			} else {
+				return str;
+			}
+		} else {
+			return null;
+		}
 	}
 
 }
