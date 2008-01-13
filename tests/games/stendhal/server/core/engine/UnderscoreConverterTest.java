@@ -2,17 +2,65 @@ package games.stendhal.server.core.engine;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
+import marauroa.common.Log4J;
+import marauroa.common.game.RPObject;
+import marauroa.common.game.RPSlot;
 
+import org.junit.BeforeClass;
 import org.junit.Test;
 
+/**
+ * Test the UnderscoreConverter class.
+ *
+ * @author Martin Fuchs
+ */
 public class UnderscoreConverterTest {
-
-	@Test
-	public void testTransform() {
-		assertNull(UnderscoreConverter.transform(null));
-		assertEquals("", UnderscoreConverter.transform(""));
-		assertEquals("abc def", UnderscoreConverter.transform("abc_def"));
-		assertEquals("abc def", UnderscoreConverter.transform("abc def"));
+	@BeforeClass
+	public static void setupClass() {
+		Log4J.init();
 	}
 
+	@Test
+	public void testTransformString() {
+		assertNull(UnderscoreConverter.transform(null));
+		assertEquals("", UnderscoreConverter.transform(""));
+		assertEquals(" ", UnderscoreConverter.transform(" "));
+		assertEquals(" ", UnderscoreConverter.transform("_"));
+		assertEquals("x ", UnderscoreConverter.transform("x_"));
+		assertEquals(" x", UnderscoreConverter.transform("_x"));
+		assertEquals("abc 1", UnderscoreConverter.transform("abc_1"));
+		assertEquals("abc def", UnderscoreConverter.transform("abc_def"));
+		assertEquals("abc def", UnderscoreConverter.transform("abc def"));
+		assertEquals("abc def ghi", UnderscoreConverter.transform("abc_def_ghi"));
+		assertEquals("abc def ghi", UnderscoreConverter.transform("abc def ghi"));
+	}
+
+	@Test
+	public void testTransformName() {
+		RPObject obj = new RPObject();
+
+		obj.put("name", "abc_123");
+		obj.put("name2", "abc_123");
+		UnderscoreConverter.transformNames(obj);
+		assertEquals("abc 123", obj.get("name"));	// name should be transformed
+		assertEquals("abc_123", obj.get("name2"));	// no change expected
+	}
+
+	@Test
+	public void testTransformItems() {
+		RPObject obj = new RPObject();
+
+		RPSlot slot = new RPSlot("slot1");
+		obj.addSlot(slot);
+
+		RPObject item1 = new RPObject();
+		slot.add(item1);
+		item1.put("name", "abc_123");
+		item1.put("name2", "abc_123");
+
+		UnderscoreConverter.transformNames(obj);
+
+		assertEquals("abc 123", item1.get("name"));	// name should be transformed
+		assertEquals("abc_123", item1.get("name2"));	// no change expected
+	}
 }
