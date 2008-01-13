@@ -21,14 +21,14 @@ public class UnderscoreConverter {
 	/**
 	 * Transform all item and creature names in the given RPObject.
 	 *
-	 * @param object
+	 * @param object to transform
 	 */
 	static void transformNames(RPObject object)	{
 		RPClass clazz = object.getRPClass();
 
 		// Transform all names, but don't change player names.
 		if (clazz == null || !clazz.getName().equals("player")) {
-    		// first rename the object itself, if the name contains an underscore character
+    		// First rename the object itself, if the name contains an underscore character.
     		transformAttribute(object, "name");
 		}
 
@@ -43,7 +43,7 @@ public class UnderscoreConverter {
 					transformSlotKeyNames(obj);
 				}
 			} else {
-				// Transform the names of all contained items.
+				// Recurse to transform the names of all contained items.
 				for(RPObject obj : slot) {
 					transformNames(obj);
 				}
@@ -54,11 +54,11 @@ public class UnderscoreConverter {
 	/**
 	 * Transform the value for the given key name in 'object'.
 	 *
-	 * @param object
-	 * @param key
+	 * @param object to transform
+	 * @param name of the key to transform
 	 * @return true if changed
 	 */
-	static boolean transformAttribute(RPObject object, String key)	{
+	static boolean transformAttribute(RPObject object, final String key)	{
 		String value = object.get(key);
 
 		if (value != null) {
@@ -76,7 +76,8 @@ public class UnderscoreConverter {
 	/**
 	 * Replace all underscore characters by spaces in the key names of a "!kills" slot
 	 *
-	 * @param object
+	 * @param object to transform
+	 * @return true if changed
 	 */
 	static boolean transformSlotKeyNames(RPObject object) {
 		// create a copy of the attribute map to iterate independently from the original 
