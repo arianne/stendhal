@@ -33,9 +33,8 @@ public class StendhalRPObjectFactory extends RPObjectFactory {
 			return new RentedSign(object);
 		}
 
-//TODO Underscore transformation is currently still disabled.
-//		// transform underscore delimited item and creature names into space delimited names
-//		UnderscoreConverter.transformNames(object);
+		// transform underscore delimited item and creature names into space delimited names
+		UnderscoreConverter.transformNames(object);
 
 		// fallback
 		return super.transform(object);
