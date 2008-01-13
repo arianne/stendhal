@@ -9,7 +9,7 @@ import marauroa.server.game.rp.RPObjectFactory;
 import org.apache.log4j.Logger;
 
 /**
- * creates concrete objects of Stendhal classes .
+ * Creates concrete objects of Stendhal classes.
  *
  * @author hendrik
  */
@@ -24,6 +24,7 @@ public class StendhalRPObjectFactory extends RPObjectFactory {
 			logger.error("Cannot create concrete object for " + object + " because it does not have an RPClass.");
 			return super.transform(object);
 		}
+
 		String name = clazz.getName();
 
 		if (name.equals(ArrestWarrant.RPCLASS_NAME)) {
@@ -31,6 +32,10 @@ public class StendhalRPObjectFactory extends RPObjectFactory {
 		} else if (name.equals(RentedSign.RPCLASS_NAME)) {
 			return new RentedSign(object);
 		}
+
+//TODO Underscore transformation is currently still disabled.
+//		// transform underscore delimited item and creature names into space delimited names
+//		UnderscoreConverter.transformNames(object);
 
 		// fallback
 		return super.transform(object);
