@@ -1,10 +1,10 @@
 package games.stendhal.server.entity.npc.fsm;
 
 import static org.junit.Assert.assertEquals;
-import games.stendhal.server.entity.npc.Sentence;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPC.ChatAction;
 import games.stendhal.server.entity.npc.SpeakerNPC.ChatCondition;
+import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
 import org.junit.BeforeClass;
@@ -49,7 +49,7 @@ public class EngineTest {
 
 			@Override
 			public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-				assertEquals("boo", sentence.getTrigger());
+				assertEquals("boo", sentence.getTriggerExpression().getNormalized());
 			}
 		};
 		en.add(state, triggers, null, nextState, reply, action);
@@ -72,7 +72,7 @@ public class EngineTest {
 
 			@Override
 			public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
-				assertEquals(triggers, sentence.getTrigger());
+				assertEquals(triggers, sentence.getTriggerExpression().getNormalized());
 				return true;
 			}
 		};
@@ -83,7 +83,7 @@ public class EngineTest {
 
 			@Override
 			public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-				assertEquals(triggers, sentence.getTrigger());
+				assertEquals(triggers, sentence.getTriggerExpression().getNormalized());
 			}
 		};
 		en.add(state, triggers, cc, nextState, reply, action);
