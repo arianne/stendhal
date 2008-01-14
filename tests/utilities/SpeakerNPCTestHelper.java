@@ -2,7 +2,14 @@ package utilities;
 
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
-public class SpeakerNPCTestHelper  {
+/**
+ * Provides convenience methods for SpeakerNPC creation. the Created NPC extends
+ * <p>
+ * SpeakerNPC and overrides <code>registerTheNewNameInTheConversationParserWordList</code> to
+ * avoid database access
+ * 
+ */
+public class SpeakerNPCTestHelper {
 
 	public static SpeakerNPC createSpeakerNPC() {
 		return createSpeakerNPC("bob");
@@ -10,7 +17,11 @@ public class SpeakerNPCTestHelper  {
 
 	public static SpeakerNPC createSpeakerNPC(String name) {
 		PlayerTestHelper.generateNPCRPClasses();
-		return new SpeakerNPC(name);
+		return new SpeakerNPC(name) {
+			@Override
+			protected void registerTheNewNameInTheConversationParserWordList(String newName, String oldName) {
+			}
+		};
 	}
 
 }
