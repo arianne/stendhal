@@ -30,7 +30,7 @@ import java.util.List;
  * <li> Sally asks you for wood for her campfire
  * <li> You collect 10 pieces of wood in the forest
  * <li> You give the wood to Sally.
- * <li> Katinka gives you 10 meat or ham in return.
+ * <li> Sally gives you 10 meat or ham in return.
  * <p>
  * REWARD: <li> 10 meat or ham <li> 50 XP
  * <p>
@@ -40,6 +40,8 @@ import java.util.List;
 public class Campfire extends AbstractQuest {
 
 	private static final int REQUIRED_WOOD = 10;
+	
+	private static final int REQUIRED_MINUTES = 5;
 
 	private static final String QUEST_SLOT = "campfire";
 
@@ -87,25 +89,18 @@ public class Campfire extends AbstractQuest {
 		} else if (player.getQuest(QUEST_SLOT).equals("start")) {
 			return false;
 		} else {
-			int turnWhenLastBroughtWood;
-			try {
-				turnWhenLastBroughtWood = Integer.parseInt(player.getQuest(QUEST_SLOT));
-			} catch (NumberFormatException e) {
-				// compatibility: Old Stendhal version stored "done" on
-				// completed quest
-				return true;
-			}
-			int turnsSinceLastBroughtWood = StendhalRPRuleProcessor.get().getTurn()
-				- turnWhenLastBroughtWood;
-			if (turnsSinceLastBroughtWood < 0) {
-				// TODO: use time instead of turn number, that will make such
-				// things easier.
-				// The server was restarted since last doing the quest.
-				// Make sure the player can repeat the quest.
-				turnsSinceLastBroughtWood = 0;
-				player.setQuest(QUEST_SLOT, "0");
-			}
-			return turnsSinceLastBroughtWood >= 1000;
+			String lasttime = player.getQuest(QUEST_SLOT);
+		   
+		   long delay = REQUIRED_MINUTES * 60 * 1000;
+		   
+		   long timeRemaining = (Long.parseLong(lasttime) + delay) - System.currentTimeMillis();
+		   
+		   if (timeRemaining < 0) {
+		   player.setQuest(QUEST_SLOT, "0");
+		   return true;
+		   } else {
+		   return false;
+		   }
 		}
 	}
 
@@ -192,7 +187,7 @@ public class Campfire extends AbstractQuest {
 					@Override
 					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 						player.drop("wood", REQUIRED_WOOD);
-						player.setQuest(QUEST_SLOT, Integer.toString(StendhalRPRuleProcessor.get().getTurn()));
+						player.setQuest(QUEST_SLOT,  "" + System.currentTimeMillis());
 						player.addXP(50);
 
 						String rewardClass;

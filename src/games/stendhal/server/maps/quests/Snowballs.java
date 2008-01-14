@@ -16,6 +16,7 @@ import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotInStateCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.util.TimeUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,22 +25,25 @@ import java.util.List;
  * QUEST: Snowballs
  * <p>
  * PARTICIPANTS:
- * <li> Sally, a scout sitting next to a campfire near Or'rill
+ * <li> Mr. Yeti, a creature in a dungeon needs help
  * <p>
  * STEPS:
- * <li> Sally asks you for wood for her campfire
- * <li> You collect 10 pieces of wood in the forest
- * <li> You give the wood to Sally.
- * <li> Katinka gives you 10 meat or ham in return.
+ * <li> Mr. Yeti ask for some snow, and wants you to get 25 snowballs.
+ * <li> You collect 25 snowballs from ice golems.
+ * <li> You give the snowballs to Mr. Yeti.
+ * <li> Mr. Yeti gives you 20 cod or perch.
  * <p>
  * REWARD: <li> 20 cod or perch <li> 500 XP
  * <p>
- * REPETITIONS: <li> Unlimited, but 1000 turns (ca. 5 minutes) of waiting are
+ * REPETITIONS: <li> Unlimited, but 12960 turns (should be 12 hours) of waiting are
  * required between repetitions
  */
+ 
 public class Snowballs extends AbstractQuest {
 
 	private static final int REQUIRED_SNOWBALLS = 25;
+	
+	private static final int REQUIRED_MINUTES = 120;
 
 	private static final String QUEST_SLOT = "snowballs";
 
@@ -87,25 +91,18 @@ public class Snowballs extends AbstractQuest {
 		} else if (player.getQuest(QUEST_SLOT).equals("start")) {
 			return false;
 		} else {
-			int turnWhenLastBroughtSnowballs;
-			try {
-				turnWhenLastBroughtSnowballs = Integer.parseInt(player.getQuest(QUEST_SLOT));
-			} catch (NumberFormatException e) {
-				// compatibility: Old Stendhal version stored "done" on
-				// completed quest
-				return true;
-			}
-			int turnsSinceLastBroughtSnowballs = StendhalRPRuleProcessor.get().getTurn()
-				- turnWhenLastBroughtSnowballs;
-			if (turnsSinceLastBroughtSnowballs < 0) {
-				// TODO: use time instead of turn number, that will make such
-				// things easier.
-				// The server was restarted since last doing the quest.
-				// Make sure the player can repeat the quest.
-				turnsSinceLastBroughtSnowballs = 0;
-				player.setQuest(QUEST_SLOT, "0");
-			}
-			return turnsSinceLastBroughtSnowballs >= 10;
+			String lasttime = player.getQuest(QUEST_SLOT);
+		   
+		   long delay = REQUIRED_MINUTES * 60 * 1000;
+		   
+		   long timeRemaining = (Long.parseLong(lasttime) + delay) - System.currentTimeMillis();
+		   
+		   if (timeRemaining < 0) {
+		   player.setQuest(QUEST_SLOT, "0");
+		   return true;
+		   } else {
+		   return false;
+		   }
 		}
 	}
 
@@ -134,7 +131,7 @@ public class Snowballs extends AbstractQuest {
 				@Override
 				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 					if (canStartQuestNow(npc, player)) {
-						npc.say("Greetings stranger! Have you seen my snow sculptures? Could you do me a #favour?");
+						npc.say("Greetings stranger! Have you seen my snow sculptures? Could you do me a #favor?");
 					} else {
 						// TODO: say how many minutes are left.
 						npc.say("I have enough snow for my new sculpture. Thank you for helping!");
@@ -192,7 +189,7 @@ public class Snowballs extends AbstractQuest {
 					@Override
 					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 						player.drop("snowball", REQUIRED_SNOWBALLS);
-						player.setQuest(QUEST_SLOT, Integer.toString(StendhalRPRuleProcessor.get().getTurn()));
+						player.setQuest(QUEST_SLOT, "" + System.currentTimeMillis());
 						player.addXP(500);
 
 						String rewardClass;
