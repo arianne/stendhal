@@ -27,6 +27,8 @@ import marauroa.common.game.RPObject;
 
 import org.apache.log4j.Logger;
 
+//TODO mf - enable compound words for all slash commands by processing them by ConversationParser
+
 /**
  * Most /commands for admins are handled here.
  */
