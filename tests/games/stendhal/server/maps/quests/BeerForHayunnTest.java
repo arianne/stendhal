@@ -2,7 +2,13 @@ package games.stendhal.server.maps.quests;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
+
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
+import games.stendhal.server.core.rule.defaultruleset.DefaultEntityManager;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -99,5 +105,39 @@ public class BeerForHayunnTest {
 		assertEquals("rejected", player2.getQuest("beer_hayunn"));
 		en.step(player2, "bye");
 	}
+	@Test
+	public void testgetHistory() {
+		Player player = PlayerTestHelper.createPlayer("bob");
+		assertTrue(bfh.getHistory(player).isEmpty());
+		player.setQuest("beer_hayunn", "");
+		List<String> history = new LinkedList<String>();
+		history.add("FIRST_CHAT");
+		assertEquals(history, bfh.getHistory(player));
+		
+		player.setQuest("beer_hayunn", "rejected");
+		history.add("QUEST_REJECTED");
+		assertEquals(history, bfh.getHistory(player));
+	
+		player.setQuest("beer_hayunn", "start");
+		history.remove("QUEST_REJECTED");
+		history.add("QUEST_ACCEPTED");
+		assertEquals(history, bfh.getHistory(player));
+
+		player.equip(DefaultEntityManager.getInstance().getItem("beer"));
+		history.add("FOUND_ITEM");
+		assertEquals(history, bfh.getHistory(player));
+		player.setQuest("beer_hayunn", "done");
+		history.add("DONE");
+		assertEquals(history, bfh.getHistory(player));
+
+	}
+
+	@Test
+	public void testinit() {
+		BeerForHayunn quest = new BeerForHayunn();
+		quest.init("bla");
+		assertEquals("bla", quest.getName());
+	}
+	
 
 }
