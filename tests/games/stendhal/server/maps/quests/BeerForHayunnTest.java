@@ -2,12 +2,7 @@ package games.stendhal.server.maps.quests;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.*;
-
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-
+import static org.junit.Assert.assertTrue;
 import games.stendhal.server.core.rule.defaultruleset.DefaultEntityManager;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.NPCList;
@@ -17,6 +12,10 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import games.stendhal.server.maps.semos.city.RetiredAdventurerNPC;
+
+import java.util.LinkedList;
+import java.util.List;
+
 import marauroa.common.Log4J;
 import marauroa.common.game.RPObject.ID;
 
