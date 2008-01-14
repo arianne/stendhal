@@ -1,6 +1,7 @@
 package games.stendhal.server.maps.quests;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.rule.defaultruleset.DefaultEntityManager;
@@ -16,6 +17,7 @@ import games.stendhal.server.maps.semos.tavern.TraderNPC;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -26,15 +28,22 @@ import utilities.QuestHelper;
 
 public class HatForMonogenesTest {
 
-
 	private SpeakerNPC npc;
 	private Engine en;
 	private SpeakerNPC npcXin;
 	private Engine enXin;
+	private AbstractQuest quest;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		QuestHelper.setUpBeforeClass();
+		assertTrue(NPCList.get().getNPCs().isEmpty());
+
+	}
+
+	@After
+	public void tearDown() throws Exception {
+		NPCList.get().clear();
 	}
 
 	@Before
@@ -50,12 +59,11 @@ public class HatForMonogenesTest {
 		npcXin = NPCList.get().get("Xin Blanca");
 		enXin = npcXin.getEngine();
 
-		AbstractQuest quest = new MeetMonogenes();
+		quest = new MeetMonogenes();
 		quest.addToWorld();
 		quest = new HatForMonogenes();
 		quest.addToWorld();
 
-		
 	}
 
 	@Test
@@ -165,34 +173,31 @@ public class HatForMonogenesTest {
 
 	@Test
 	public void testGetHistory() {
-		HatForMonogenes quest = new HatForMonogenes();
 		Player player = PlayerTestHelper.createPlayer("bob");
 		List<String> history = new ArrayList<String>();
 		assertEquals(history, quest.getHistory(player));
-		
-		
+
 		player.setQuest("hat_monogenes", "");
 		history.add("FIRST_CHAT");
 		history.add("GET_HAT");
 		assertEquals(history, quest.getHistory(player));
-		
+
 		player.equip("bag", ItemTestHelper.createItem("leather hat"));
 		history.add("GOT_HAT");
-		
+
 		assertEquals(history, quest.getHistory(player));
 		player.setQuest("hat_monogenes", "done");
 		history.add("DONE");
-		
+
 		assertEquals(history, quest.getHistory(player));
 
 	}
-	
+
 	@Test
 	public void testinit() {
 		HatForMonogenes quest = new HatForMonogenes();
 		quest.init("bla");
 		assertEquals("bla", quest.getName());
 	}
-	
 
 }
