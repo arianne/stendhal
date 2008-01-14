@@ -111,7 +111,7 @@ public class WordList {
 	 * @throws IOException
 	 */
 	public void read(BufferedReader reader, List<String> comments) throws IOException {
-		for (;;) {
+		while(true) {
 			String line = reader.readLine();
 			if (line == null) {
 				break;
