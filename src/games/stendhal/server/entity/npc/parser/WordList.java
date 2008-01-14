@@ -55,6 +55,7 @@ public class WordList {
 	static {
 		Log4J.init();
 
+		///TODO mf - implement a switch to disable database access for JUnit test runs
 		initInstance();
 	}
 
