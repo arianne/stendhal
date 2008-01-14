@@ -91,6 +91,15 @@ public class Sentence {
 	}
 
 	/**
+	 * Return an iterator over all expressions.
+	 *
+	 * @return Expression iterator
+	 */
+	public Iterator<Expression> iterator() {
+		return expressions.iterator();
+	}
+
+	/**
 	 * Count the number of words matching the given type string.
 	 * 
 	 * @param typePrefix
