@@ -30,7 +30,12 @@ public class PlayerTestHelper {
 	 */
 	public static Player createPlayer(String name) {
 		PlayerTestHelper.generatePlayerRPClasses();
-		Player pl = new Player(new RPObject());
+		Player pl = new Player(new RPObject() {
+		}) {
+			@Override
+			protected void registerTheNewNameInTheConversationParserWordList(String newName, String oldName) {
+			}
+		};
 		PlayerTestHelper.addEmptySlots(pl);
 		pl.setName(name);
 		return pl;
@@ -38,6 +43,7 @@ public class PlayerTestHelper {
 
 	/**
 	 * Create an named mock player object.
+	 * @param name of the player
 	 * 
 	 * @return mock player object
 	 */
