@@ -380,16 +380,20 @@ public abstract class RPEntity extends GuidedEntity {
 	 *            The new name.
 	 */
 	public void setName(String name) {
-		// register the new name in the conversation parser word list
-		if (this.name!=null && !this.name.equals(name)) {
-			WordList.getInstance().unregisterSubjectName(this.name);
-		}
-		if (this.name==null || !this.name.equals(name)) {
-			WordList.getInstance().registerSubjectName(name);
-		}
+		
+		registerTheNewNameInTheConversationParserWordList(name, this.name);
 
 		this.name = name;
 		put("name", name);
+	}
+
+	protected void registerTheNewNameInTheConversationParserWordList(String newName, String oldName) {
+		if (oldName != null && !oldName.equals(newName)) {
+			WordList.getInstance().unregisterSubjectName(oldName);
+		}
+		if (oldName == null || !oldName.equals(newName)) {
+			WordList.getInstance().registerSubjectName(newName);
+		}
 	}
 
 	/**
