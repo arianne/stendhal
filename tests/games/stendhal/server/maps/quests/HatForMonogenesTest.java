@@ -195,7 +195,6 @@ public class HatForMonogenesTest {
 
 	@Test
 	public void testinit() {
-		HatForMonogenes quest = new HatForMonogenes();
 		quest.init("bla");
 		assertEquals("bla", quest.getName());
 	}
