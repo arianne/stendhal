@@ -31,11 +31,7 @@ public class PlayerTestHelper {
 	public static Player createPlayer(String name) {
 		PlayerTestHelper.generatePlayerRPClasses();
 		Player pl = new Player(new RPObject() {
-		}) {
-			@Override
-			protected void registerTheNewNameInTheConversationParserWordList(String newName, String oldName) {
-			}
-		};
+		});
 		PlayerTestHelper.addEmptySlots(pl);
 		pl.setName(name);
 		return pl;

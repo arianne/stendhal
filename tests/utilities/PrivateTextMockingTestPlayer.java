@@ -10,10 +10,6 @@ import marauroa.common.game.RPObject;
 public class PrivateTextMockingTestPlayer extends Player {
 	private StringBuilder privateTextBuffer = null;
 
-	@Override
-	protected void registerTheNewNameInTheConversationParserWordList(String newName, String oldName) {
-		;
-	}
 
 	/**
 	 * Creates a new mock player without name.

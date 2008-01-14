@@ -18,9 +18,7 @@ public class SpeakerNPCTestHelper {
 	public static SpeakerNPC createSpeakerNPC(String name) {
 		PlayerTestHelper.generateNPCRPClasses();
 		return new SpeakerNPC(name) {
-			@Override
-			protected void registerTheNewNameInTheConversationParserWordList(String newName, String oldName) {
-			}
+			
 		};
 	}
 
