@@ -127,6 +127,7 @@ public class WeaponsCollector extends AbstractQuest implements
 		return "Well, maybe someone else will happen by and help me. Bye";
 	}
 
+	//TODO mf - The client displays only the first word of item names with compound words like "battle axe" in blue.
 	public String askForMissingItems(List<String> missingItems) {
 		return "There " + Grammar.isare(missingItems.size()) + " "
 				+ Grammar.quantityplnoun(missingItems.size(), "weapon")
