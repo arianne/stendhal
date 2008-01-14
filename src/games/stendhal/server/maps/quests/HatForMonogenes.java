@@ -42,7 +42,7 @@ public class HatForMonogenes extends AbstractQuest {
 	@Override
 	public List<String> getHistory(Player player) {
 		List<String> res = new ArrayList<String>();
-		if (player.hasQuest("Monogenes")) {
+		if (player.hasQuest(QUEST_SLOT)) {
 			res.add("FIRST_CHAT");
 		}
 		if (!player.hasQuest(QUEST_SLOT)) {
