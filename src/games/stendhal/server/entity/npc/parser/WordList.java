@@ -415,7 +415,7 @@ public class WordList {
 		String key = trimWord(name);
 		WordEntry entry = words.get(key);
 
-		if (entry == null || entry.getType() == null) {
+		if (entry == null || entry.getType() == null || entry.getType().isEmpty()) {
 			WordEntry newEntry = new WordEntry();
 
 			newEntry.setNormalized(key);

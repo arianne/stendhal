@@ -107,6 +107,15 @@ public class ExpressionType {
 	}
 
 	/**
+	 * Look for empty type strings.
+	 *
+	 * @return
+	 */
+	public boolean isEmpty() {
+		return typeString.length() == 0;
+    }
+
+	/**
 	 * Determine if the Expression consists of verbs.
 	 * 
 	 * @return
