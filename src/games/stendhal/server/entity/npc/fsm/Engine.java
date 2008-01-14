@@ -358,25 +358,32 @@ public class Engine {
 	 */
 	private boolean matchesTransition(MatchType type, Sentence sentence,
 			Transition transition) {
-		if (type == MatchType.EXACT_MATCH) {
-			return transition.matches(currentState, sentence);
-		} else if (type == MatchType.NORMALIZED_MATCH) {
-			return transition.matchesNormalized(currentState, sentence);
-		} else if (type == MatchType.SIMILAR_MATCH) {
-			return transition.matchesBeginning(currentState, sentence);
-		} else if (type == MatchType.ABSOLUTE_JUMP) {
-			return (currentState != ConversationStates.IDLE)
-					&& transition.matchesWild(sentence);
-		} else if (type == MatchType.NORMALIZED_JUMP) {
-			return (currentState != ConversationStates.IDLE)
-					&& transition.matchesWildNormalized(sentence);
-		} else if (type == MatchType.SIMILAR_JUMP) {
-			return (currentState != ConversationStates.IDLE)
-					&& transition.matchesWildBeginning(sentence);
-		} else {
-			return false;
+		switch(type) {
+			case EXACT_MATCH:
+				return transition.matches(currentState, sentence);
+
+			case NORMALIZED_MATCH:
+				return transition.matchesNormalized(currentState, sentence);
+
+			case SIMILAR_MATCH:
+				return transition.matchesBeginning(currentState, sentence);
+
+			case ABSOLUTE_JUMP:
+				return (currentState != ConversationStates.IDLE)
+						&& transition.matchesWild(sentence);
+
+			case NORMALIZED_JUMP:
+				return (currentState != ConversationStates.IDLE)
+						&& transition.matchesWildNormalized(sentence);
+			case SIMILAR_JUMP:
+				return (currentState != ConversationStates.IDLE)
+						&& transition.matchesWildBeginning(sentence);
+
+			default:
+				return false;
 		}
 	}
+
 
 	private void executeTransition(Player player, Sentence sentence,
 			Transition trans) {
