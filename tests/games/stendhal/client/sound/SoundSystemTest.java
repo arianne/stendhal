@@ -71,9 +71,7 @@ public class SoundSystemTest {
 		SoundSystem ss1 = SoundSystem.get();
 		SoundSystem ss2 = SoundSystem.get();
 		assertTrue("must receive identical instance", (ss1 == ss2));
-
 	}
-
 
 	@Test
 	public final void testisValidEntry() {
@@ -86,9 +84,6 @@ public class SoundSystemTest {
 				.isValidEntry("sfx.", "."));
 		assertTrue("value has comma x and name has point", SoundSystem.get()
 				.isValidEntry("sfx.,x", "."));
-
 	}
-
-
 
 }
