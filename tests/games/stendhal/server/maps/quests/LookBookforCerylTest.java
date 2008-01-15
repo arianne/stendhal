@@ -2,6 +2,7 @@ package games.stendhal.server.maps.quests;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import games.stendhal.server.core.engine.StendhalRPWorld;
@@ -207,6 +208,7 @@ public class LookBookforCerylTest {
 
 		Item item = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
 				"black book");
+		assertNotNull(item);
 		item.setBoundTo(pl.getName());
 		pl.equip(item, true);
 		assertEquals(3, quest.getHistory(pl).size());
