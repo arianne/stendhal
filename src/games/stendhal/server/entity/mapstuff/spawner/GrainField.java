@@ -33,13 +33,13 @@ public class GrainField extends GrowingPassiveEntityRespawnPoint implements
 	public static final int RIPE = 5;
 
 	public GrainField(RPObject object) {
-		super(object, "grain field", "Harvest", RIPE, 1, 2);
+		super(object, "grain_field", "grain field", "Harvest", RIPE, 1, 2);
 		setResistance(80);
 		update();
 	}
 
 	public GrainField() {
-		super("grain field", "Harvest", RIPE, 1, 2);
+		super("grain_field", "grain field", "Harvest", RIPE, 1, 2);
 		setResistance(80);
 	}
 

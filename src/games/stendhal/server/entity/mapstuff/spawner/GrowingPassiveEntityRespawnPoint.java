@@ -61,17 +61,17 @@ public abstract class GrowingPassiveEntityRespawnPoint extends
 		setSize(width, height);
 	}
 
-	public GrowingPassiveEntityRespawnPoint(RPObject object, String type,
+	public GrowingPassiveEntityRespawnPoint(RPObject object, String type, String itemName,
 			String actionName, int maxRipeness, int width, int height) {
-		super(object, type, GROWING_RATE);
+		super(object, itemName, GROWING_RATE);
 		setResistance(30);
 		init(type, actionName, maxRipeness, width, height);
 		update();
 	}
 
-	public GrowingPassiveEntityRespawnPoint(String type, String actionName,
+	public GrowingPassiveEntityRespawnPoint(String type, String itemName, String actionName,
 			int maxRipeness, int width, int height) {
-		super(type, GROWING_RATE);
+		super(itemName, GROWING_RATE);
 		setResistance(30);
 		init(type, actionName, maxRipeness, width, height);
 	}
