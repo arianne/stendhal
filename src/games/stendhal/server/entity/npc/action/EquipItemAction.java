@@ -8,10 +8,13 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
+import org.apache.log4j.Logger;
+
 /**
  * Equips the specified item.
  */
 public class EquipItemAction extends SpeakerNPC.ChatAction {
+	private static Logger logger = Logger.getLogger(EquipItemAction.class);
 
 	private String itemName;
 	private int amount;
@@ -59,15 +62,19 @@ public class EquipItemAction extends SpeakerNPC.ChatAction {
 	public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 		EntityManager entityManager = StendhalRPWorld.get().getRuleManager().getEntityManager();
 		Item item = entityManager.getItem(itemName);
-		if (item instanceof StackableItem) {
-			StackableItem stackableItem = (StackableItem) item;
-			stackableItem.setQuantity(amount);
+		if (item != null) {
+    		if (item instanceof StackableItem) {
+    			StackableItem stackableItem = (StackableItem) item;
+    			stackableItem.setQuantity(amount);
+    		}
+    		if (bind) {
+    			item.setBoundTo(player.getName());
+    		}
+    		player.equip(item, true);
+    		player.notifyWorldAboutChanges();
+		} else {
+			logger.error("Cannot find item '" + itemName + "' to equip", new Throwable());
 		}
-		if (bind) {
-			item.setBoundTo(player.getName());
-		}
-		player.equip(item, true);
-		player.notifyWorldAboutChanges();
 	}
 
 	@Override
