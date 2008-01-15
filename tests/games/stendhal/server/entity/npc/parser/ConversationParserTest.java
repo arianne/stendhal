@@ -241,6 +241,13 @@ public class ConversationParserTest {
 		assertEquals("ring", sentence.getObjectName());
 		assertEquals("take ring golden", sentence.getNormalized());
 		assertEquals("take/VER ring/OBJ golden/ADJ-COL", sentence.toString());
+
+		sentence = ConversationParser.parse("take lich gold key");
+		assertFalse(sentence.hasError());
+		assertEquals("take", sentence.getVerbString());
+		assertEquals("lich gold key", sentence.getObjectName());
+		assertEquals("take lich gold key", sentence.getNormalized());
+		assertEquals("take/VER lich gold key/OBJ", sentence.toString());
 	}
 
 	@Test
