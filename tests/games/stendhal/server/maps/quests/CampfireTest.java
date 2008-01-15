@@ -80,16 +80,17 @@ public class CampfireTest {
 				npc.get("text"));
 		assertTrue(en.step(player, "bye"));
 
-		player.setQuest(CampfireTest.CAMPFIRE, "1");
+		player.setQuest(CampfireTest.CAMPFIRE, String.valueOf(System.currentTimeMillis()));
 		en.step(player, "hi");
 		assertEquals(
 				"Oh, I still have plenty of wood from the last time you helped me. Thank you for helping!",
 				npc.get("text"));
 		assertTrue(en.step(player, "bye"));
 
-		player.setQuest(CampfireTest.CAMPFIRE, "-1000");
+		long SIXMINUTESAGO = System.currentTimeMillis() - 6 * 60 * 1000;
+		player.setQuest(CampfireTest.CAMPFIRE, String.valueOf(SIXMINUTESAGO));
 		en.step(player, "hi");
-		assertEquals("Hi! Could you do me a #favor?", npc.get("text"));
+		assertEquals("delay is 5 minutes, so 6 minutes should be enough", "Hi! Could you do me a #favor?", npc.get("text"));
 		assertTrue(en.step(player, "bye"));
 
 	}
