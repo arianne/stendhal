@@ -46,6 +46,7 @@ public class UnderscoreConverter {
     				}
     			}
     			// exclude key slots from the conversion
+//    			else if (!slotName.startsWith("!"))
     			else if (!slotName.equals("!visited") &&
     						!slotName.equals("!buddy") &&
     						!slotName.equals("!ignore") &&
@@ -110,7 +111,8 @@ public class UnderscoreConverter {
 	}
 
 	/**
-	 * Replace underscores in the given String by spaces.
+	 * Replace underscores in the given String by spaces. Additionally correct
+	 * some item names to correct grammatical word order.
 	 * 
 	 * @param str
 	 * @return transformed String if str contained an underscore,
@@ -120,7 +122,17 @@ public class UnderscoreConverter {
 	public static String transform(String str) {
 		if (str != null) {
 			if (str.indexOf('_') != -1) {
-				return str.replace('_', ' ');
+				str = str.replace('_', ' ');
+			}
+
+			if (str.equals("key golden")) {
+				return "golden key";
+			} else if (str.equals("key silver")) {
+				return "silver key";
+			} else if (str.equals("book black")) {
+				return "black book";
+			} else if (str.equals("book blue")) {
+				return "blue book";
 			} else {
 				return str;
 			}

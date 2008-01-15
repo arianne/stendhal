@@ -139,7 +139,7 @@ public class LookBookforCerylTest {
 		assertEquals(
 				"Oh, Ceryl's looking for that book back? My goodness! I completely forgot about it... here you go!",
 				jynath.get("text"));
-		assertTrue(pl.isEquipped("book black"));
+		assertTrue(pl.isEquipped("black book"));
 		jynathEngine.step(pl, "bye");
 		assertFalse(jynath.isTalking());
 
@@ -206,7 +206,7 @@ public class LookBookforCerylTest {
 				quest.getHistory(pl));
 
 		Item item = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
-				"book black");
+				"black book");
 		item.setBoundTo(pl.getName());
 		pl.equip(item, true);
 		assertEquals(3, quest.getHistory(pl).size());

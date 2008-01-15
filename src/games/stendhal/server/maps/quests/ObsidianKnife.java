@@ -224,7 +224,7 @@ public class ObsidianKnife extends AbstractQuest {
 				null,
 				ConversationStates.ATTENDING, 
 				"Ah, the mountain dwarf! Hope he enjoys the gem book.",
-				new MultipleActions(new EquipItemAction("book blue", 1, true), 
+				new MultipleActions(new EquipItemAction("blue book", 1, true), 
 				new SetQuestAction(QUEST_SLOT, "got_book")));
 
 		// player says something which isn't the dwarf's name.
@@ -239,7 +239,7 @@ public class ObsidianKnife extends AbstractQuest {
 	private void bringBookStep() {
 		SpeakerNPC npc = npcs.get("Alrak");
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "got_book"), new PlayerHasItemWithHimCondition("book blue")),
+				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "got_book"), new PlayerHasItemWithHimCondition("blue book")),
 				ConversationStates.IDLE, 
 				"Great! I think I'll read this for a while. Bye!",
 				new SpeakerNPC.ChatAction() {
@@ -258,7 +258,7 @@ public class ObsidianKnife extends AbstractQuest {
 					public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
 						return player.hasQuest(QUEST_SLOT) 
 						&& (player.getQuest(QUEST_SLOT).equals("seeking_book") || player.getQuest(QUEST_SLOT).equals("got_book")) 
-						&& !player.isEquipped("book blue");
+						&& !player.isEquipped("blue book");
 					}
 				},
 				ConversationStates.ATTENDING,
