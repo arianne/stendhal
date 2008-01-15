@@ -373,7 +373,7 @@ public abstract class RPEntity extends GuidedEntity {
 	 * @param newName
 	 * @param oldName
 	 */
-	private void registerNewName(String newName, String oldName) {
+	private static void registerNewName(String newName, String oldName) {
 		if (oldName != null && !oldName.equals(newName)) {
 			WordList.getInstance().unregisterSubjectName(oldName);
 		}
