@@ -48,6 +48,8 @@ public class WordList {
 
 	private int version = 0;
 
+	private static boolean enableDatabaseAccess = false;
+
 	private static WordList instance;
 
 	// initialize the word list by querying the database or reading from the
@@ -55,40 +57,51 @@ public class WordList {
 	static {
 		Log4J.init();
 
-		///TODO mf - implement a switch to disable database access for JUnit test runs
 		initInstance();
 	}
 
 	private static void initInstance() {
+		// read word list from "words.txt"
 		instance = new WordList();
 
+		instance.readFromResources();
+	}
+
+	public static void attachDatabase() {
+		enableDatabaseAccess = true;
+
 		// read word list from database
-		int ret = instance.readFromDB();
+		WordList dbWordList = new WordList();
 
-		int dbVersion = instance.version;
+		int ret = dbWordList.readFromDB();
 
-		// read word list from "words.txt"
-		WordList wordList = new WordList();
+		int dbVersion = dbWordList.version;
 
-		InputStream str = WordList.class.getResourceAsStream(WORDS_FILENAME);
-		BufferedReader reader = new BufferedReader(new InputStreamReader(str));
-
-		try {
-			wordList.read(reader, null);
-			reader.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		// At this point instance already contains the word list of "words.txt",
+		// so let's use this to compare the version number against the database content.
 
 		// If the database is still empty, store the default entries into it.
 		// If not, check the version number of the word list between database
 		// and "words.txt". If not equal, re-initialize the DB word list.
-		if (ret == 0 || wordList.version != dbVersion) {
+		if (ret == 0 || instance.version != dbVersion) {
 			// store the new word list into the DB
-			wordList.writeToDB();
+			instance.writeToDB();
+		} else {
+			// switch instance to the database word list
+			instance = dbWordList;
+		}
+    }
 
-			// switch instance to the new created word list
-			instance = wordList;
+	private void readFromResources()
+	{
+		InputStream str = WordList.class.getResourceAsStream(WORDS_FILENAME);
+		BufferedReader reader = new BufferedReader(new InputStreamReader(str));
+
+		try {
+			read(reader, null);
+			reader.close();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 
@@ -457,7 +470,7 @@ public class WordList {
 			entry.setNormalized(key);
 			words.put(key, entry);
 
-			if (persist) {
+			if (persist && enableDatabaseAccess) {
     			// save the new word into the database
     			Set<String> keys = new HashSet<String>();
     			keys.add(key);
@@ -474,6 +487,10 @@ public class WordList {
 	 * Write current word list into the database table "words".
 	 */
 	public void writeToDB() {
+		if (!enableDatabaseAccess) {
+			return;
+		}
+
 		IDatabase db = StendhalPlayerDatabase.getDatabase();
 		Transaction trans = db.getTransaction();
 		boolean success;
@@ -525,6 +542,10 @@ public class WordList {
 	 * @return success flag
 	 */
 	private boolean insertIntoDB(Set<String> keys) {
+		if (!enableDatabaseAccess) {
+			return false;
+		}
+
 		IDatabase db = StendhalPlayerDatabase.getDatabase();
 		Transaction trans = db.getTransaction();
 		boolean success;
@@ -642,6 +663,10 @@ public class WordList {
 	 * Read word entries from the database.
 	 */
 	private int readFromDB() {
+		if (!enableDatabaseAccess) {
+			return 0;
+		}
+
 		IDatabase db = StendhalPlayerDatabase.getDatabase();
 
 		Transaction trans = db.getTransaction();

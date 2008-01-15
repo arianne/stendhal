@@ -23,6 +23,8 @@ public class WordListUpdate {
 
 	public static void run() {
         try {
+        	WordList.attachDatabase();
+
     		WordList wl = new WordList();
 
         	// read in the current word list including comment lines

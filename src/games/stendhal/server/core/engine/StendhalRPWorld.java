@@ -45,6 +45,7 @@ import games.stendhal.server.entity.mapstuff.spawner.GrowingPassiveEntityRespawn
 import games.stendhal.server.entity.mapstuff.spawner.PassiveEntityRespawnPoint;
 import games.stendhal.server.entity.mapstuff.spawner.SheepFood;
 import games.stendhal.server.entity.npc.NPC;
+import games.stendhal.server.entity.npc.parser.WordList;
 import games.stendhal.server.entity.player.GagManager;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.spell.Spell;
@@ -254,6 +255,8 @@ public class StendhalRPWorld extends RPWorld {
 	public void onInit() {
 		try {
 			super.onInit();
+
+			WordList.attachDatabase();
 
 			// create the pathfinder thread and start it
 			// pathfinderThread = new PathfinderThread(this);
