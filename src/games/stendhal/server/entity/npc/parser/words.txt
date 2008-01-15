@@ -1,4 +1,4 @@
-# @Version 5
+# @Version 6
 #
 # Word list for the Stendhal conversation parser
 #
@@ -253,6 +253,7 @@ divorce	OBJ	divorces
 doll	OBJ	dolls
 dress	OBJ	dresses
 drink	OBJ-FLU	drinks
+dungeon	OBJ	dungeons
 earth	OBJ	earths
 eater	OBJ	eaters
 elemental	OBJ	elementals
