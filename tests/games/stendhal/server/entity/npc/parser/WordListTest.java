@@ -2,8 +2,8 @@ package games.stendhal.server.entity.npc.parser;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-
+import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.*;
 import org.junit.Test;
 
 /**
@@ -125,5 +125,30 @@ public class WordListTest {
 		assertEquals("house", wl.singular("houses"));
 		assertEquals("cookie", wl.singular("cookies"));
 	}
+	
+	@Test
+	public void testTrimWords() {
+		String word = "BLABLA";
+		assertThat(WordList.trimWord(word), is("blabla"));
+		assertThat(word, is("BLABLA"));
+		word = "";
+		assertThat(WordList.trimWord(word), is(""));
+		
+		word = "\'";
+		assertThat(WordList.trimWord(word), is(""));
+	
+		
+		word = "\'\'";
+		assertThat(WordList.trimWord(word), is(""));
+		
+		
+		word = "b\'\'";
+		assertThat(WordList.trimWord(word), is("b"));
+	
+		
+		word = "\'\'B\'L\'A\'B\'L\'A\'\'";
+		assertThat(WordList.trimWord(word), is("b\'l\'a\'b\'l\'a"));
+	}
+	
 
 }
