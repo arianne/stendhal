@@ -25,8 +25,9 @@ public class PlayerListTest {
 
 	@Test
 	public void testPlayerList() {
+		@SuppressWarnings("unused")
 		PlayerList list = new PlayerList();
-		list.size(); // just to avoid the "is never read" warning
+		
 	}
 
 	@Test
