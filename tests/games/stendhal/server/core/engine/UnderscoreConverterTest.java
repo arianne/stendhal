@@ -49,8 +49,8 @@ public class UnderscoreConverterTest {
 
 		UnderscoreConverter.transformNames(obj);
 
-		assertEquals("abc 123", obj.get("name"));	// name should be transformed
-		assertEquals("abc_123", obj.get("name2"));	// no change expected
+		assertEquals("name should be transformed", "abc 123", obj.get("name"));	
+		assertEquals("no change expected", "abc_123", obj.get("name2"));	
 	}
 
 	@Test
@@ -62,7 +62,7 @@ public class UnderscoreConverterTest {
 
 		UnderscoreConverter.transformNames(player);
 
-		assertEquals("player_1", player.get("name"));	// no change expected
+		assertEquals("no change expected", "player_1", player.get("name"));	
 		assertEquals("player_1", player.getName());
 	}
 
@@ -80,13 +80,12 @@ public class UnderscoreConverterTest {
 
 		UnderscoreConverter.transformNames(obj);
 
-		assertEquals("abc 123", item1.get("name"));	// name should be transformed
-		assertEquals("abc_123", item1.get("name2"));// no change expected
+		assertEquals("name should be transformed", "abc 123", item1.get("name"));	
+		assertEquals("no change expected", "abc_123", item1.get("name2"));
 	}
 
 	@Test
-	// test transformation of the killing record slot
-	public void testTransformKillSlot() {
+	public void testTransformationOfTheKillingRecordSlot() {
 		Player player = PlayerTestHelper.createPlayer("player");
 
 		player.setSoloKill("name");
