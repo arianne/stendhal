@@ -60,6 +60,9 @@ public class WordList {
 		initInstance();
 	}
 
+	/**
+	 * Initialize the WordList instance.
+	 */
 	private static void initInstance() {
 		// read word list from "words.txt"
 		instance = new WordList();
@@ -67,6 +70,13 @@ public class WordList {
 		instance.readFromResources();
 	}
 
+	/**
+	 * Attach WordList to database and enable persistence.
+	 * WordList is per default only using the pre-configured Resource word list
+	 * and does not store new words into the database to enable JUint tests
+	 * without database access. A call to <code>attachDatabase()</code> reads the word
+	 * list from the database and enables further write access to it.
+	 */
 	public static void attachDatabase() {
 		enableDatabaseAccess = true;
 
@@ -92,6 +102,9 @@ public class WordList {
 		}
     }
 
+	/**
+	 * Reads the word list from the resourse file "words.txt".
+	 */
 	private void readFromResources()
 	{
 		InputStream str = WordList.class.getResourceAsStream(WORDS_FILENAME);
@@ -105,15 +118,26 @@ public class WordList {
 		}
 	}
 
+	/**
+	 * Returns a reference to the global word list instance.
+	 * @return WordList
+	 */
 	public static WordList getInstance() {
 		return instance;
 	}
 
+	/**
+	 * Returns the WordList version number. 
+	 * @return version number
+	 */
 	public int getVersion() {
 	    return version;
     }
 
-	public void incrementVersion() {
+	/**
+	 * Increments the WordList version number.
+	 */
+	void incrementVersion() {
 		++version;
     }
 
