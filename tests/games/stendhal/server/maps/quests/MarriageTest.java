@@ -55,7 +55,7 @@ public class MarriageTest {
 
 		player = PlayerTestHelper.createPlayerWithOutFit("player");
 		player2 = PlayerTestHelper.createPlayerWithOutFit("player2");
-		
+
 		zone.add(player);
 		player.setPosition(52, 53);
 		zone.add(player2);
@@ -77,7 +77,7 @@ public class MarriageTest {
 		// **in front of church**
 		npc = NPCList.get().get("Sister Benedicta");
 		en = npc.getEngine();
-		
+
 		en.step(player, "hi");
 		assertEquals("Welcome to this place of worship.", npc.get("text"));
 		en.step(player, "help");

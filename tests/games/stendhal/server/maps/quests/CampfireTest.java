@@ -92,7 +92,6 @@ public class CampfireTest {
 		en.step(player, "hi");
 		assertEquals("delay is 5 minutes, so 6 minutes should be enough", "Hi! Could you do me a #favor?", npc.get("text"));
 		assertTrue(en.step(player, "bye"));
-
 	}
 
 	@Test
