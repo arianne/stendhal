@@ -89,11 +89,19 @@ public class Campfire extends AbstractQuest {
 		} else if (player.getQuest(QUEST_SLOT).equals("start")) {
 			return false;
 		} else {
-			String lasttime = player.getQuest(QUEST_SLOT);
+		   long lastTime; 
+			try {
+ 				lastTime = Long.parseLong(player.getQuest(QUEST_SLOT));
+			} catch (NumberFormatException e) {
+ 				// compatibility: Old Stendhal version stored "done" on
+ 				// completed quest
+ 				return true;
+ 			}
+
 		   
 		   long delay = REQUIRED_MINUTES * 60 * 1000;
 		   
-		   long timeRemaining = (Long.parseLong(lasttime) + delay) - System.currentTimeMillis();
+		   long timeRemaining = (lastTime + delay) - System.currentTimeMillis();
 		   
 		   if (timeRemaining < 0) {
 		   player.setQuest(QUEST_SLOT, "0");
