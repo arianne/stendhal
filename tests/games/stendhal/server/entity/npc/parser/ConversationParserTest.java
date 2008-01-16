@@ -250,11 +250,28 @@ public class ConversationParserTest {
 		assertEquals("take/VER lich gold key/OBJ", sentence.toString());
 
 		sentence = ConversationParser.parse("take dungeon silver key");
-		assertFalse(sentence.hasError());
-		assertEquals("take", sentence.getVerbString());
-		assertEquals("dungeon silver key", sentence.getObjectName());
-		assertEquals("take dungeon silver key", sentence.getNormalized());
 		assertEquals("take/VER dungeon silver key/OBJ", sentence.toString());
+		assertEquals("dungeon silver key", sentence.getObjectName());
+
+		sentence = ConversationParser.parse("buy lion shield");
+		assertEquals("buy/VER lion shield/OBJ", sentence.toString());
+		assertEquals("lion shield", sentence.getObjectName());
+
+		sentence = ConversationParser.parse("buy wedding ring");
+		assertEquals("buy/VER wedding ring/OBJ", sentence.toString());
+		assertEquals("wedding ring", sentence.getObjectName());
+
+		sentence = ConversationParser.parse("buy engagement ring");
+		assertEquals("buy/VER engagement ring/OBJ", sentence.toString());
+		assertEquals("engagement ring", sentence.getObjectName());
+
+		sentence = ConversationParser.parse("buy lion shield");
+		assertEquals("buy/VER enhanced lion shield/OBJ", sentence.toString());
+		assertEquals("enhanced lion shield", sentence.getObjectName());
+
+		sentence = ConversationParser.parse("buy 1 summon scroll");
+		assertEquals("buy/VER summon scroll/OBJ", sentence.toString());
+		assertEquals("summon scroll", sentence.getObjectName());
 	}
 
 	@Test
