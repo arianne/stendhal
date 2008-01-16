@@ -1,4 +1,4 @@
-# @Version 6
+# @Version 7
 #
 # Word list for the Stendhal conversation parser
 #
@@ -258,6 +258,7 @@ earth	OBJ	earths
 eater	OBJ	eaters
 elemental	OBJ	elementals
 emerald	OBJ	emeralds
+engagement	OBJ	engagements
 entrail	OBJ	entrails
 equipment	OBJ	equipments
 erinys	OBJ	erinyes
