@@ -106,7 +106,7 @@ public class MarriageTest {
 		npc = NPCList.get().get("Ognir");
 		en = npc.getEngine();
 		en.step(player, "hi");
-		assertEquals("Hi! Can I #help you?.", npc.get("text"));
+		assertEquals("Hi! Can I #help you?", npc.get("text"));
 		en.step(player, "help");
 		assertEquals("I am an expert on #wedding rings and #emerald rings, sometimes called the ring of #life.", npc.get("text"));
 		en.step(player, "task");
@@ -114,9 +114,9 @@ public class MarriageTest {
 		en.step(player, "wedding");
 		assertEquals("I need 10 gold bars and a fee of 500 money, to make a wedding ring for your fiancee. Do you have it?", npc.get("text"));
 		en.step(player, "yes");
-		assertEquals("No problem, just come back when you have both the money and the gold.", npc.get("text"));
+		assertEquals("Come back when you have both the money and the gold.", npc.get("text"));
 		en.step(player, "bye");
-		
+
 		// -----------------------------------------------
 
 		Item item = ItemTestHelper.createItem("money", 5000);
