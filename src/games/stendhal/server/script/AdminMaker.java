@@ -53,6 +53,13 @@ public class AdminMaker extends ScriptImpl {
 			}
 
 			player.addXP(Level.getXP(level + xlevel) - Level.getXP(level));
+
+			// set the atk and def to half the level (is a good rule of thumb)
+			int skills = ((Level.getXP(level)+xlevel)/2);
+			player.setATKXP(skills);
+			player.setDEFXP(skills);	
+			player.incATKXP();
+			player.incDEFXP();
 		}
 
 		private final List<String> itemsSingle = Arrays.asList("rod of the gm",
@@ -84,6 +91,8 @@ public class AdminMaker extends ScriptImpl {
 					player.equip(stackableItem);
 				}
 			}
+			// turn on their keyring for them
+			player.setFeature("keyring", true);
 		}
 
 		private void admin(Player player) {
@@ -97,7 +106,7 @@ public class AdminMaker extends ScriptImpl {
 
 		@Override
 		public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-			engine.say("I will give you some items, and adjust your level.");
+			engine.say("I will give you some items, and adjust your level and skills. Also, your keyring is enabled.");
 			xpGain(player);
 			equip(player);
 			admin(player);
@@ -107,15 +116,31 @@ public class AdminMaker extends ScriptImpl {
 	protected class TeleportAction extends SpeakerNPC.ChatAction {
 
 		private final List<Destination> DESTINATIONS = Arrays.asList(
-				new Destination("0_nalwor_city", 88, 85), new Destination(
-						"-2_orril_dungeon", 106, 21), new Destination(
-						"-1_semos_mine_nw", 22, 75), new Destination(
-						"-6_kanmararn_city", 33, 52), new Destination(
-						"-2_ados_outside_nw", 28, 4), new Destination(
-						"1_kikareukin_cave", 18, 97), new Destination(
-						"0_kalavan_city", 64, 13), new Destination(
-						"-1_fado_great_cave_e3", 13, 100), new Destination(
-						"0_athor_island", 77, 73));
+			new Destination("0_nalwor_city", 88, 85),
+			new Destination("-1_nalwor_drows_tunnel_n", 58, 44),
+			new Destination("0_ados_city", 30, 57),
+			new Destination("0_orril_forest_e", 107, 7),
+			new Destination("0_ados_mountain_n2_w2", 10, 100),
+			new Destination("0_semos_mountain_n2_e2", 86, 71),
+			new Destination("-2_orril_dungeon", 106, 21),
+			new Destination("-2_orril_lich_palace", 67, 118),
+			new Destination("-2_orril_dwarf_mine", 50, 40),
+			new Destination("-1_semos_mine_nw", 22, 75),
+			new Destination("-6_kanmararn_city", 33, 52),
+			new Destination("-2_ados_outside_nw", 28, 4),
+			new Destination("-2_kotoch_entrance", 20, 111),
+			new Destination("1_kikareukin_cave", 18, 97),
+			new Destination("0_kalavan_city", 64, 13),
+			new Destination("0_kirdneh_city", 63, 26),
+			new Destination("0_fado_city", 30, 20),
+			new Destination("-1_fado_great_cave_e3", 13, 100),
+			new Destination("-1_fado_great_cave_w2", 90, 57),
+			new Destination("0_athor_island", 77, 73),
+			new Destination("5_kikareukin_cave", 31, 100),
+			new Destination("-2_semos_mine_e2", 4, 5),
+			new Destination("0_amazon_island_nw", 30, 30),
+			new Destination("int_mithrilbourgh_stores", 6, 5)
+		);
 
 		private static final String TELE_QUEST_SLOT = "AdminMakerTele";
 
@@ -226,7 +251,7 @@ public class AdminMaker extends ScriptImpl {
 		sandbox.add(npc);
 
 		// Create Dialog
-		npc.behave("greet", "Hi, how can i help you?");
+		npc.behave("greet", "Hi, how can i #help you?");
 		npc.behave("help",
 				"Perhaps you would like a free power #upgrade and maybe a #random destination?");
 		npc.addGoodbye();
