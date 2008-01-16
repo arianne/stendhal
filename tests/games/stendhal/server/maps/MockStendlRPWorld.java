@@ -23,5 +23,9 @@ public class MockStendlRPWorld extends StendhalRPWorld {
 	protected void initialize() {
 
 	}
+	
+	public static void  reset() {
+		instance = null;
+	}
 
 }
