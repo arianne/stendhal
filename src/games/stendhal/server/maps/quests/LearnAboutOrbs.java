@@ -85,7 +85,7 @@ public class LearnAboutOrbs extends AbstractQuest {
 			"use", 
 			new LevelGreaterThanCondition(10),
 			ConversationStates.QUESTION_1,
-			"Just right click and select Use. Did you get any message?",
+			"Just right click on the orb and select Use. Did you get any message?",
 			null);
 
 		// player interested in orb but level < 10
@@ -109,7 +109,7 @@ public class LearnAboutOrbs extends AbstractQuest {
 		npc.add(ConversationStates.QUESTION_1,
 			ConversationPhrases.YES_MESSAGES, null,
 			ConversationStates.ATTENDING,
-			"You're a natural! Now that you have learnt to use that orb, it will teleport you to a place of magical significance. So don't use it unless you will be able to find your way back!",
+			"You're a natural! Now that you have learned to use that orb, it will teleport you to a place of magical significance. So don't use it unless you will be able to find your way back!",
 			new MultipleActions(new IncreaseXPAction(50), new SetQuestAction(QUEST_SLOT, "done")));
 
 		// player didn't get message, try again
