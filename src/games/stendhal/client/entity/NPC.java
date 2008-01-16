@@ -94,8 +94,7 @@ public class NPC extends RPEntity {
 
 		if (soundWait < System.currentTimeMillis() && Rand.rand(1000) < 5) {
 
-			if (moveSounds!=null)
-			{
+			if (moveSounds != null) {
 				SoundMaster.play(moveSounds[Rand.rand(moveSounds.length)], x, y);
 			}
 			soundWait = System.currentTimeMillis() + 2000L;

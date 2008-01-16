@@ -105,8 +105,7 @@ public class WordList {
 	/**
 	 * Reads the word list from the resourse file "words.txt".
 	 */
-	private void readFromResources()
-	{
+	private void readFromResources() {
 		InputStream str = WordList.class.getResourceAsStream(WORDS_FILENAME);
 		BufferedReader reader = new BufferedReader(new InputStreamReader(str));
 
@@ -148,7 +147,7 @@ public class WordList {
 	 * @throws IOException
 	 */
 	public void read(BufferedReader reader, List<String> comments) throws IOException {
-		while(true) {
+		while (true) {
 			String line = reader.readLine();
 			if (line == null) {
 				break;
