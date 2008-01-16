@@ -11,6 +11,7 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
+import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
@@ -263,9 +264,9 @@ public class Marriage extends AbstractQuest {
 		SpeakerNPC npc = npcs.get("Ognir");
 
 		npc.add(ConversationStates.ATTENDING,
-				ConversationPhrases.QUEST_MESSAGES,
+				Arrays.asList("wedding ring", "wedding"),
 				new QuestStateStartsWithCondition(QUEST_SLOT, "engaged"),
-				ConversationStates.INFORMATION_1, 
+				ConversationStates.QUEST_ITEM_QUESTION, 
 				null,
 				new SpeakerNPC.ChatAction() {
 					@Override
@@ -277,38 +278,50 @@ public class Marriage extends AbstractQuest {
 							npc.setCurrentState(ConversationStates.INFORMATION_2);
 						} else {
 							// says you'll need a ring
-							npc.say("I see you're on a life-long quest to get married! I find marriage more of a task, ha ha! Anyway, you'll need a #wedding ring.");
+							npc.say("I need "
+									+ REQUIRED_GOLD
+									+ " gold bars and a fee of "
+									+ REQUIRED_MONEY
+									+ " money, to make a wedding ring for your fiancee. Do you have it?");
 						}
 					}
 				});
 
-		// response to QUEST_MESSAGES if you are not engaged
+		// response to wedding ring enquiry if you are not engaged
 		npc.add(ConversationStates.ATTENDING,
-				ConversationPhrases.QUEST_MESSAGES,
+				Arrays.asList("wedding ring", "wedding"),
 				new QuestNotStartedCondition(QUEST_SLOT),
 				ConversationStates.ATTENDING,
 				"I'd forge a wedding ring for you to give your partner, if you were engaged to someone. If you want to get engaged, speak to the nun outside the church.",
 				null);
 
-		// response to QUEST_MESSAGES when you're already married
+		// response to wedding ring enquiry when you're already married
 		npc.add(ConversationStates.ATTENDING,
-				ConversationPhrases.QUEST_MESSAGES,
+				Arrays.asList("wedding ring", "wedding"),
 				new QuestCompletedCondition(QUEST_SLOT),
 				ConversationStates.ATTENDING,
-				"You must already have enough to do, now that you're married. Don't worry about me!",
+				"I hope you're still happily married, else I can't see why you'd need another ring...though if you are having trouble and want a divorce, speak to the clerk in Ados Town Hall.",
 				null);
 
-		// Here the beahviour is defined for if you say hi to Ognir and your
+		// response to wedding ring enquiry when you're married but not taken honeymoon
+		npc.add(ConversationStates.ATTENDING,
+				Arrays.asList("wedding ring", "wedding"),
+				new QuestInStateCondition(QUEST_SLOT, "just_married"),
+				ConversationStates.ATTENDING,
+				"Congratulations on your recent wedding! Don't forget to ask Linda in Fado Hotel about your honeymoon.",
+				null);
+
+		// Here the behaviour is defined for if you make a wedding ring enquiry to Ognir and your
 		// ring is being made
-		npc.add(ConversationStates.IDLE, 
-				ConversationPhrases.GREETING_MESSAGES,
-				new QuestStateStartsWithCondition(QUEST_SLOT, "forging;"),
+	 	npc.add(ConversationStates.ATTENDING, 
+				Arrays.asList("wedding ring", "wedding"),
+		 		new QuestStateStartsWithCondition(QUEST_SLOT, "forging;"),
 				ConversationStates.IDLE, 
-				null, 
+		 		null, 
 				new SpeakerNPC.ChatAction() {
-					@Override
-					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-						String[] tokens = player.getQuest(QUEST_SLOT).split(";");
+	 				@Override
+	 				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+	 					String[] tokens = player.getQuest(QUEST_SLOT).split(";");
 						long delay = REQUIRED_MINUTES * 60 * 1000; // minutes
 						// ->
 						// milliseconds
@@ -339,16 +352,6 @@ public class Marriage extends AbstractQuest {
 					}
 				});
 
-		npc.add(ConversationStates.INFORMATION_1,
-				Arrays.asList("wedding ring", "wedding", "ring"),
-				null,
-				ConversationStates.QUEST_ITEM_QUESTION,
-				"I need "
-						+ REQUIRED_GOLD
-						+ " gold bars and a fee of "
-						+ REQUIRED_MONEY
-						+ " money, to make a wedding ring for your fiancee. Do you have it?",
-				null);
 
 		// player says yes, they want a wedding ring made
 		npc.add(ConversationStates.QUEST_ITEM_QUESTION,

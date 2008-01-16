@@ -6,12 +6,14 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
+import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
 
+import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -63,28 +65,32 @@ public class RingMaker extends AbstractQuest {
 	private void FixRingStep() {
 		SpeakerNPC npc = npcs.get("Ognir");
 
-		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-			new PlayerHasItemWithHimCondition("emerald ring"),
+		npc.add(ConversationStates.ATTENDING, Arrays.asList("emerald ring", "life", "emerald"),
+			new NotCondition(new QuestStateStartsWithCondition(QUEST_SLOT, "forging;")),
 			ConversationStates.QUEST_ITEM_BROUGHT, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
 				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 					Item emeraldRing = player.getFirstEquipped("emerald ring");
-					if (emeraldRing != null
-							&& emeraldRing.getInt("amount") > 0) {
-						// ring is not broken so he just lets player know
-						// where it can be fixed
-						npc.say("Hello. That's a rare emerald on your ring. If it gets broken, come to me to fix it.");
-						npc.setCurrentState(ConversationStates.ATTENDING);
+					if (emeraldRing != null){
+						if(emeraldRing.getInt("amount") > 0) {
+							// ring is not broken so he just lets player know
+							// where it can be fixed
+							npc.say("I see you already have an emerald ring. If it gets broken, you can come to me to fix it.");
+							npc.setCurrentState(ConversationStates.ATTENDING);
+						} else {
+							// notices ring is broken
+							npc.say("What a pity, your emerald ring is broken. I can fix it, for a #price.");
+						}
 					} else {
-						// notices ring is broken
-						npc.say("What a pity, your emerald ring is broken. I can fix it, for a #price.");
-						player.setQuest(QUEST_SLOT, "start");
+						// they don't have a ring with them, tell about quest
+						npc.say("It is difficult to get the ring of life. Do a favour for a powerful elf in Nal'wor and you may receive one as a reward.");
+						npc.setCurrentState(ConversationStates.ATTENDING);
 					}
 				}
 			});
 
-		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
+		npc.add(ConversationStates.ATTENDING, Arrays.asList("emerald ring", "life", "emerald"),
 			new QuestStateStartsWithCondition(QUEST_SLOT, "forging;"),
 			ConversationStates.IDLE, null, new SpeakerNPC.ChatAction() {
 				@Override
@@ -95,12 +101,12 @@ public class RingMaker extends AbstractQuest {
 					long timeRemaining = (Long.parseLong(tokens[1]) + delay)
 							- System.currentTimeMillis();
 					if (timeRemaining > 0L) {
-						npc.say("I haven't finished fixing your ring. Please check back in "
+						npc.say("I haven't finished fixing your ring of life. Please check back in "
 							+ TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L))
 							+ ". Good bye for now.");
 						return;
 					}
-					npc.say("I'm pleased to say, your ring is fixed! It's good as new now.");
+					npc.say("I'm pleased to say, your ring of life is fixed! It's good as new now.");
 					player.addXP(500);
 					Item emeraldRing = StendhalRPWorld.get()
 							.getRuleManager().getEntityManager().getItem(
@@ -123,7 +129,7 @@ public class RingMaker extends AbstractQuest {
 
 		npc.add(ConversationStates.QUEST_ITEM_BROUGHT,
 			ConversationPhrases.YES_MESSAGES, null,
-			ConversationStates.QUEST_ITEM_BROUGHT, null,
+			ConversationStates.IDLE, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
 				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
@@ -139,31 +145,17 @@ public class RingMaker extends AbstractQuest {
 							+ " minutes and it will be ready. Bye for now.");
 						player.setQuest(QUEST_SLOT, "forging;"
 								+ System.currentTimeMillis());
-						npc.setCurrentState(ConversationStates.IDLE);
 					} else {
-						npc.say("Come back when you have the money, the gem and the gold.");
-						/*
-						 * set quest slot to done until he decides he wants
-						 * to pay this is incase player comes back without
-						 * the ring and wants to talk to him about something
-						 * else
-						 */
-						player.setQuest(QUEST_SLOT, "done");
-						npc.setCurrentState(ConversationStates.ATTENDING);
+						npc.say("Come back when you have the money, the gem and the gold. Goodbye.");
 					}
 				}
 			});
 
-		/*
-		 * set quest slot to done until he decides he wants to
-		 * pay this is incase player comes back without the ring
-		 * and wants to talk to him about something else
-		 */
 		npc.add(ConversationStates.QUEST_ITEM_BROUGHT,
 			ConversationPhrases.NO_MESSAGES, null,
 			ConversationStates.ATTENDING, 
 			"No problem, just come back when you have the money, the emerald, and the gold.",
-			new SetQuestAction(QUEST_SLOT, "done"));
+			null);
 	}
 
 	@Override
@@ -182,14 +174,8 @@ public class RingMaker extends AbstractQuest {
 		}
 		res.add("FIRST_CHAT");
 		String questState = player.getQuest(QUEST_SLOT);
-		if (player.isQuestInState(QUEST_SLOT, "start", "done")) {
-			res.add("QUEST_ACCEPTED");
-		}
 		if (player.getQuest(QUEST_SLOT).startsWith("forging;")) {
 			res.add("FORGING");
-		}
-		if (questState.equals("done")) {
-			res.add("DONE");
 		}
 		return res;
 	}

@@ -58,15 +58,14 @@ public class RingSmithNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-				addGreeting("Hi, can I help you?");
+				addGreeting("Hi! Can I #help you?");
 				addJob("I work with #gold, to fix and make jewellery.");
-				addOffer("I sell diamond engagement rings which I make myself. I also buy gems and gold, see the red catalogue on the table.");
-				addReply("request",
-						"Just ask about the #task if you want me to make a wedding ring for someone.");
+				addOffer("I sell engagement rings which I make myself. I also buy gems and gold, see the red catalogue on the table.");
 				addReply(
 						"gold",
 						"It's cast from gold nuggets which you can pan for on Or'ril river. I don't cast it myself, but a smith in Ados does.");
-				addHelp("You can sell weapons to Yorphin Baos over there. I #trade in precious items and I can also make a wedding ring as a special #request.");
+				addHelp("I am an expert on #wedding rings and #emerald rings, sometimes called the ring of #life.");
+				addQuest("Well, you could consider getting married to be a quest! Ask me about #wedding rings if you need one.");
 				new SellerAdder().addSeller(this, new SellerBehaviour(shops.get("sellrings")), false);
 				new BuyerAdder().add(this, new BuyerBehaviour(shops.get("buyprecious")), false);
 				addGoodbye("Bye, my friend.");
