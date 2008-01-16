@@ -205,7 +205,7 @@ public class ObsidianKnife extends AbstractQuest {
 				ConversationPhrases.YES_MESSAGES, 
 				null,
 				ConversationStates.ATTENDING, 
-				"Thanks. Try asking at a library for a 'gem_book'.",
+				"Thanks. Try asking at a library for a 'gem book'.",
 				new SetQuestAndModifyKarmaAction(QUEST_SLOT, "seeking_book", 10.0));
 	}
 
@@ -245,7 +245,7 @@ public class ObsidianKnife extends AbstractQuest {
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-						player.drop("book lue");
+						player.drop("blue book");
 						player.addXP(500);
 						player.setQuest(QUEST_SLOT, "reading;" + System.currentTimeMillis());
 					}
@@ -262,7 +262,7 @@ public class ObsidianKnife extends AbstractQuest {
 					}
 				},
 				ConversationStates.ATTENDING,
-				"Hello again. I hope you haven't forgotten about the gem_book I wanted.",
+				"Hello again. I hope you haven't forgotten about the gem book I wanted.",
 				null);
 	}
 
