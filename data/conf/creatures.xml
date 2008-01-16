@@ -7295,7 +7295,6 @@
       <item value="money" quantity="[10,90]" probability="100.0"/>
       <item value="shadow armor" quantity="[1,1]" probability="0.5"/>
       <item value="lich cloak" quantity="[1,1]" probability="1.5"/>
-
       <item value="golden shield" quantity="[1,1]" probability="1.5"/>
       <item value="soul dagger" quantity="[1,1]" probability="0.0080"/>
     </drops>
@@ -8075,6 +8074,7 @@
       <item value="greater potion" quantity="[1,2]" probability="80.0"/>
       <item value="magic plate armor" quantity="[1,1]" probability="0.002"/>
       <item value="chaos boots" quantity="[1,1]" probability="0.5"/>
+      <item value="black halberd" quantity="[1,1]" probability="0.001"/>
     </drops>
     <equips>
     </equips>
@@ -8167,7 +8167,6 @@
       <item value="money" quantity="[40,100]" probability="100.0"/>
       <item value="shadow shield" quantity="[1,1]" probability="0.5"/>
       <item value="lich cloak" quantity="[1,1]" probability="2.0"/>
-
       <item value="black shield" quantity="[1,1]" probability="0.0010"/>
       <item value="soul dagger" quantity="[1,1]" probability="0.020"/>
     </drops>
@@ -8197,7 +8196,6 @@
     <drops>
       <item value="money" quantity="[10,70]" probability="100.0"/>
       <item value="imperator sword" quantity="[1,1]" probability="1.0"/>
-
       <item value="red cloak" quantity="[1,1]" probability="8.5"/>
       <item value="red helmet" quantity="[1,1]" probability="6.0"/>
      </drops>
@@ -8488,7 +8486,6 @@
       <item value="golden cloak" quantity="[1,1]" probability="1.0"/>
       <item value="liberty helmet" quantity="[1,1]" probability="0.1"/>
       <item value="aventail" quantity="[1,1]" probability="10.0"/>
-
     </drops>
     <equips>
     </equips>
@@ -8588,7 +8585,7 @@
       <item value="chaos cloak" quantity="[1,1]" probability="1.0"/>
       <item value="black helmet" quantity="[1,1]" probability="0.025"/>
       <item value="black shield" quantity="[1,1]" probability="0.05"/>
-      <item value="black sword" quantity="[1,1]" probability="0.0050"/>
+      <item value="chaos axe" quantity="[1,1]" probability="0.0050"/>
     </drops>
     <equips>
     </equips>
@@ -8789,7 +8786,7 @@
       <item value="potion" quantity="[1,2]" probability="30.0"/>
       <item value="chaos legs" quantity="[1,1]" probability="2.5"/>
       <item value="chaos cloak" quantity="[1,1]" probability="0.5"/>
-      <item value="black sword" quantity="[1,1]" probability="0.025"/>
+      <item value="black halberd" quantity="[1,1]" probability="0.01"/>
     </drops>
     <equips>
     </equips>
@@ -8876,9 +8873,7 @@
     <description></description>
     <attributes>
       <atk value="268"/>
-
       <def value="39"/>
-
       <hp value="1200"/>
       <speed value="1.0"/>
       <size value="1,1"/>
@@ -8949,7 +8944,6 @@
       <atk value="284"/>
       <def value="41"/>
       <hp value="2618"/>
-
       <speed value="1.0"/>
       <size value="1,1"/>
     </attributes>
@@ -8976,10 +8970,8 @@
     <description></description>
     <attributes>
       <atk value="292"/>
-
       <def value="41"/>
       <hp value="2700"/>
-
       <speed value="1.0"/>
       <size value="3,2"/>
     </attributes>
@@ -9010,10 +9002,8 @@
     <description></description>
     <attributes>
       <atk value="272"/>
-
       <def value="43"/>
       <hp value="2350"/>
-
       <speed value="0.7"/>
       <size value="2,2"/>
     </attributes>
@@ -9045,10 +9035,8 @@
     <description></description>
     <attributes>
       <atk value="303"/>
-
       <def value="41"/>
       <hp value="2250"/>
-
       <speed value="1.0"/>
       <size value="2,2"/>
     </attributes>
@@ -9079,9 +9067,7 @@
     <attributes>
       <atk value="283"/>
       <def value="43"/>
-
       <hp value="2218"/>
-
       <speed value="1.0"/>
       <size value="2,2"/>
     </attributes>
@@ -9128,7 +9114,7 @@
       <item value="black cloak" quantity="[1,1]" probability="0.5"/>
       <item value="chaos helmet" quantity="[1,1]" probability="0.5"/>
       <item value="chaos shield" quantity="[1,1]" probability="1.0"/>
-      <item value="black sword" quantity="[1,1]" probability="0.05"/>
+      <item value="chaos axe" quantity="[1,1]" probability="0.05"/>
     </drops>
     <equips>
     </equips>
@@ -9212,10 +9198,8 @@
     <description></description>
     <attributes>
       <atk value="325"/>
-
       <def value="44"/>
       <hp value="4333"/>
-
       <speed value="1.0"/>
       <size value="3,2"/>
     </attributes>
@@ -9251,10 +9235,8 @@
     <description></description>
     <attributes>
       <atk value="335"/>
-
       <def value="45"/>
       <hp value="4300"/>
-
       <speed value="1.0"/>
       <size value="2,2"/>
     </attributes>
@@ -9292,11 +9274,8 @@
     <description></description>
     <attributes>
       <atk value="345"/>
-
       <def value="46"/>
-
       <hp value="4000"/>
-
       <speed value="1.0"/>
       <size value="3,2"/>
     </attributes>
@@ -9333,9 +9312,7 @@
     <attributes>
       <atk value="360"/>
       <def value="47"/>
-
       <hp value="4118"/>
-
       <speed value="0.8"/>
       <size value="4,3"/>
     </attributes>
@@ -9346,14 +9323,10 @@
       <item value="mega potion" quantity="[1,2]" probability="50.0"/>
       <item value="money" quantity="[500,4000]" probability="100.0"/>
       <item value="mainio cloak" quantity="[1,1]" probability="2.5"/>
-
       <item value="mainio helmet" quantity="[1,1]" probability="2.0"/>
       <item value="mainio legs" quantity="[1,1]" probability="2.5"/>
-
       <item value="mainio boots" quantity="[1,1]" probability="2.5"/>
-
       <item value="mainio shield" quantity="[1,1]" probability="2.5"/>
-
       <item value="mainio armor" quantity="[1,1]" probability="1.0"/>
     </drops>
     <equips>
@@ -9373,9 +9346,7 @@
     <attributes>
       <atk value="390"/>
       <def value="49"/>
-
       <hp value="5900"/>
-
       <speed value="1.0"/>
       <size value="3,3"/>
     </attributes>
@@ -9389,7 +9360,7 @@
       <item value="black legs" quantity="[1,1]" probability="2.0"/>
       <item value="black boots" quantity="[1,1]" probability="1.0"/>
       <item value="black shield" quantity="[1,1]" probability="1.0"/>
-      <item value="black sword" quantity="[1,1]" probability="1.0"/>
+      <item value="black scythe" quantity="[1,1]" probability="1.0"/>
     </drops>
     <equips>
     </equips>
@@ -9413,7 +9384,6 @@
     <attributes>
       <atk value="420"/>
       <def value="50"/>
-
       <hp value="10000"/>
       <speed value="0.6"/>
       <size value="13,13"/>
@@ -9425,9 +9395,7 @@
       <item value="money" quantity="[2000,20000]" probability="100.0"/>
       <item value="mega potion" quantity="[2,4]" probability="60.0"/>
       <item value="black armor" quantity="[1,1]" probability="2.5"/>
-
       <item value="black shield" quantity="[1,1]" probability="2.5"/>
-
       <item value="emerald ring" quantity="[1,1]" probability="1.0"/>
       <item value="demon fire sword" quantity="[1,1]" probability="0.1"/>
     </drops>
@@ -9452,7 +9420,6 @@
     <attributes>
       <atk value="450"/>
       <def value="50"/>
-
       <hp value="12000"/>
       <speed value="1.0"/>
       <size value="3,2"/>
@@ -9466,9 +9433,7 @@
       <item value="money" quantity="[3000,30000]" probability="100.0"/>
       <item value="magic plate armor" quantity="[1,1]" probability="2.0"/>
       <item value="jewelled legs" quantity="[1,1]" probability="2.5"/>
-
       <item value="black cloak" quantity="[1,1]" probability="2.5"/>
-
       <item value="liberty helmet" quantity="[1,1]" probability="1.0"/>
       <item value="magic twoside axe" quantity="[1,1]" probability="2.0"/>
     </drops>
