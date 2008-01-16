@@ -78,19 +78,19 @@ public class MarriageTest {
 		npc = NPCList.get().get("Sister Benedicta");
 		en = npc.getEngine();
 
-		en.step(player, "hi");
+		assertTrue(en.step(player, "hi"));
 		assertEquals("Welcome to this place of worship.", npc.get("text"));
-		en.step(player, "help");
+		assertTrue(en.step(player, "help"));
 		assertEquals("I don't know what you need, dear child.", npc.get("text"));
-		en.step(player, "engage");
+		assertTrue(en.step(player, "engage"));
 		assertEquals("You have to tell me who you want to marry.", npc.get("text"));
-		en.step(player, "engage player2");
+		assertTrue(en.step(player, "engage player2"));
 		assertEquals("player, do you want to get engaged to player2?", npc.get("text"));
-		en.step(player, "yes");
+		assertTrue(en.step(player, "yes"));
 		assertEquals("player2, do you want to get engaged to player?", npc.get("text"));
-		en.step(player2, "yes");
+		assertTrue(en.step(player2, "yes"));
 		assertEquals("Congratulations, player and player2, you are now engaged! Please make sure you have got wedding rings made before you go to the church for the service. And here are some invitations you can give to your guests.", npc.get("text"));
-		en.step(player, "bye");
+		assertTrue(en.step(player, "bye"));
 		assertEquals("Goodbye, may peace be with you.", npc.get("text"));
 
 		assertEquals("engaged", player.getQuest(QUEST_SLOT));
@@ -105,17 +105,17 @@ public class MarriageTest {
 		// **at ringsmith**
 		npc = NPCList.get().get("Ognir");
 		en = npc.getEngine();
-		en.step(player, "hi");
+		assertTrue(en.step(player, "hi"));
 		assertEquals("Hi! Can I #help you?", npc.get("text"));
-		en.step(player, "help");
+		assertTrue(en.step(player, "help"));
 		assertEquals("I am an expert on #wedding rings and #emerald rings, sometimes called the ring of #life.", npc.get("text"));
-		en.step(player, "task");
+		assertTrue(en.step(player, "task"));
 		assertEquals("Well, you could consider getting married to be a quest! Ask me about #wedding rings if you need one.", npc.get("text"));
-		en.step(player, "wedding");
+		assertTrue(en.step(player, "wedding"));
 		assertEquals("I need 10 gold bars and a fee of 500 money, to make a wedding ring for your fiancee. Do you have it?", npc.get("text"));
-		en.step(player, "yes");
+		assertTrue(en.step(player, "yes"));
 		assertEquals("Come back when you have both the money and the gold.", npc.get("text"));
-		en.step(player, "bye");
+		assertTrue(en.step(player, "bye"));
 
 		// -----------------------------------------------
 
