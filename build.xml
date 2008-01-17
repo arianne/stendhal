@@ -557,11 +557,12 @@
 
 	<target name="tests" description="Compile and run tests" depends="compile_tests,run_tests"/>
 
-	<target name="compile_tests" description="Compile all tests" depends="server_build, client_build">
+	<target name="compile_tests" description="Compile all tests" depends="server_build, client_build, compile_tools">
 		<mkdir dir="${build_tests}"/>
 
 		<javac srcdir="tests" destdir="${build_tests}" debug="${javac.debug}" debuglevel="${javac.debuglevel}" source="1.5" target="1.5" deprecation="${javac.deprecation}">
 			<include name="**/*.java"/>
+			<include name="games/stendhal/tools/test/LineAnalyser.java"/>
 
 			<compilerarg value="-encoding"/>
 			<compilerarg value="utf8"/>
@@ -577,11 +578,12 @@
 				<pathelement path="${junit_jar}"/>
 				<pathelement path="${groovy_jar}"/>
 				<pathelement path="${simple_jar}"/>
+                <pathelement path="${build_tools}"/>
 			</classpath>
 		</javac>
 	</target>
 
-	<target name="compile_tools" description="Compile all tools" depends="server_build,client_build">
+	<target name="compile_tools" description="Compile all tools" depends="server_build, client_build">
 		<mkdir dir="${build_tools}"/>
 
 		<javac srcdir="tools" destdir="${build_tools}" debug="${javac.debug}" debuglevel="${javac.debuglevel}" source="1.5" target="1.5" deprecation="${javac.deprecation}">
