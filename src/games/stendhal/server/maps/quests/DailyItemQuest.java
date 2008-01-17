@@ -47,7 +47,7 @@ public class DailyItemQuest extends AbstractQuest {
 				"claymore", "broadsword", "biting sword", "old scythe",
 				"small axe", "hand axe", "axe", "battle axe", "bardiche",
 				"scythe", "twoside axe", "halberd", "club", "staff", "mace",
-				"flail", "skull staff", "morning star", "hammer", "war hammer",
+				"flail", "morning star", "hammer", "war hammer",
 				"wooden bow", "longbow", "wooden arrow", "steel arrow",
 				"buckler", "wooden shield", "studded shield", "plate shield",
 				"lion shield", "unicorn shield", "skull shield",
