@@ -737,10 +737,12 @@ public class Sentence {
 
 		// loop until no more simplification can be made
 		do {
-			Iterator<Expression> it = expressions.iterator();
-			boolean prevConditional = false;
-
 			changed = false;
+
+			Iterator<Expression> it = expressions.iterator();
+
+			boolean prevConditional = false;
+			boolean precedingVerb = false;
 
 			if (it.hasNext()) {
 				Expression next = it.next();
@@ -772,12 +774,8 @@ public class Sentence {
 					}
 
 					if (curType != null && nextType != null) {
-						// check the expression types for concrete subject or object names (no pronouns)
-						boolean currIsName = curType.isObject() || (curType.isSubject() && !curType.isPronoun());
-						boolean nextIsName = nextType.isObject() || (nextType.isSubject() && !nextType.isPronoun());
-
-						// left-merge nouns with preceding adjectives and composite nouns
-						if ((curType.isAdjective() || currIsName) && nextIsName) {
+						// left-merge composite nouns and nouns with preceding adjectives or verbs
+						if (isCompoundNoun(curType, nextType, precedingVerb)) {
 							// special case for "ice cream" -> "ice"
 							if (curr.getNormalized().equals("ice") && next.getNormalized().equals("cream")) {
 								curr.mergeRight(next, true);
@@ -798,18 +796,14 @@ public class Sentence {
 							changed = true;
 							break;
 						}
-						// right-merge consecutive verbs, preserving only the main verb
+						// left-merge "would like", preserving only the main verb
 						else if (curType.isVerb() && nextType.isVerb()) {
-							// handle "would like"
 							if (prevConditional) {
     							next.mergeLeft(curr, false);
     							expressions.remove(curr);
-    						} else {
-    							curr.mergeRight(next, false);
-    							expressions.remove(next);
-    						}
-    						changed = true;
-    						break;
+        						changed = true;
+        						break;
+							}
     					}
     					// right-merge consecutive words of all other same main types,
     					// while merging the normalized expressions
@@ -837,10 +831,55 @@ public class Sentence {
 						changed = true;
 						break;
 					}
+
+					// manage precedingVerb flag to detect compound verb/noun constructs
+					if (curr.getBreakFlag()) {
+						precedingVerb = false;
+					} else if (curType.isVerb()) {
+						precedingVerb = true;
+					} else if (curType.isSubject()) {
+						precedingVerb = false;
+					}
 				}
 			}
 		} while(changed);
 	}
+
+	/**
+	 * Decide if the given two expressions form a compound noun.
+	 * 
+	 * @param curType
+	 * @param nextType
+	 * @param precedingVerb
+	 * @return
+	 */
+	private static boolean isCompoundNoun(ExpressionType curType, ExpressionType nextType, boolean precedingVerb) {
+		// check the next expression type for concrete subject or object names (no pronouns)
+		boolean nextIsName = nextType.isObject() || (nextType.isSubject() && !nextType.isPronoun());
+
+		// left-merge composite nouns and nouns with preceding adjectives or verbs
+		if (nextIsName) {
+			// check the current expression type for concrete subject or object names (no pronouns)
+			boolean currIsName = curType.isObject() || (curType.isSubject() && !curType.isPronoun());
+
+			// handle compound words like "fire sword"
+			if (currIsName) {
+				return true;
+			}
+
+			// handle compound words like "golden sword"
+			if (curType.isAdjective()) {
+				return true;
+			}
+
+			// handle compound words like "summon scroll"
+			if (curType.isVerb() && precedingVerb) {
+				return true;
+			}
+		}
+
+		return false;
+    }
 
 	private void mergeThreeWordExpressions(boolean isForMatching) {
 		boolean changed;
@@ -1059,7 +1098,7 @@ public class Sentence {
 			if (matchString.contains(JOKER)) {
 				if (matchString.equals(JOKER)) {
 					// Type string matching is identified by a single "*" as normalized string expression.
-					if (!matchesJokerString(e1.getTypeString(), e2.getTypeString())) {
+					if (!matchesJokerString(e1.getTypeString(), e2.getTypeString()+"*")) {
 						return false;
 					}
 				} else {
