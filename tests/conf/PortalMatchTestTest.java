@@ -18,7 +18,7 @@ public class PortalMatchTestTest {
 
 	@Test
 	public void testvalidate() throws Exception {
-		LinkedList<TestPortal> portals = new LinkedList<TestPortal>();
+		LinkedList<PortalTestObject> portals = new LinkedList<PortalTestObject>();
 		DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory
 				.newInstance();
 		DocumentBuilder docBuilder = docBuilderFactory.newDocumentBuilder();
@@ -26,7 +26,7 @@ public class PortalMatchTestTest {
 
 		portals.addAll(pmt.proceedDocument(xmldoc));
 		assertTrue(pmt.isValid(portals));
-		portals = new LinkedList<TestPortal>();
+		portals = new LinkedList<PortalTestObject>();
 		xmldoc = docBuilder.parse(new File("tests/conf/invalid.xml"));
 		portals.addAll(pmt.proceedDocument(xmldoc));
 		assertFalse(pmt.isValid(portals));

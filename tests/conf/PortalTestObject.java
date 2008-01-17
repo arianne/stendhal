@@ -1,6 +1,6 @@
 package conf;
 
-public class TestPortal {
+public class PortalTestObject {
 	private String zone;
 
 	private String name;
@@ -9,7 +9,7 @@ public class TestPortal {
 
 	private String destName;
 
-	TestPortal(String zone, String name, String destZone, String destName) {
+	PortalTestObject(String zone, String name, String destZone, String destName) {
 		super();
 		this.zone = zone;
 		this.name = name;
@@ -17,14 +17,14 @@ public class TestPortal {
 		this.destName = destName;
 	}
 
-	public TestPortal() {
+	public PortalTestObject() {
 		zone = "";
 		name = "";
 		destZone = "";
 		destName = "";
 	}
 
-	boolean isDestinationOf(TestPortal source) {
+	boolean isDestinationOf(PortalTestObject source) {
 		if (source == null) {
 			return false;
 		}
