@@ -124,7 +124,6 @@ public abstract class AdministrationAction implements ActionListener {
 	public final void onAction(Player player, RPAction action) {
 
 		String type = action.get(WellKnownActionConstants.TYPE);
-		logger.info(type);
 		if (!isPlayerAllowedToExecuteAdminCommand(player, type, true)) {
 			return;
 		}
