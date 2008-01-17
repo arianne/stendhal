@@ -6,11 +6,12 @@
 
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
-import games.stendhal.server.config.ItemsXMLLoader;
+import games.stendhal.server.core.config.ItemsXMLLoader;
+import games.stendhal.server.core.rule.defaultruleset.DefaultCreature;
+import games.stendhal.server.core.rule.defaultruleset.DefaultItem;
 import games.stendhal.server.entity.creature.impl.DropItem;
 import games.stendhal.server.entity.creature.impl.EquipItem;
-import games.stendhal.server.rule.defaultruleset.DefaultCreature;
-import games.stendhal.server.rule.defaultruleset.DefaultItem;
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.io.BufferedReader;
@@ -20,12 +21,16 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringReader;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+
 import org.xml.sax.SAXException;
 
 /**
@@ -120,10 +125,15 @@ public class JCreature extends javax.swing.JFrame {
 	}
 
 	private List<DefaultItem> loadItemsList(String ref) throws SAXException {
-		ItemsXMLLoader itemsLoader = ItemsXMLLoader.get();
-		List<DefaultItem> items = itemsLoader.load(ref);
+		ItemsXMLLoader itemsLoader = new ItemsXMLLoader();
 
-		return items;
+		try {
+			List<DefaultItem> items = itemsLoader.load(new URI(ref));
+
+			return items;
+		} catch(URISyntaxException e) {
+			throw new SAXException(e);
+		}
 	}
 
 	private void clean(Graphics g) {

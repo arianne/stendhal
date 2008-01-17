@@ -1,12 +1,17 @@
-import games.stendhal.server.config.CreaturesXMLLoader;
-import games.stendhal.server.config.ItemsXMLLoader;
-import games.stendhal.server.rule.defaultruleset.DefaultCreature;
-import games.stendhal.server.rule.defaultruleset.DefaultItem;
+import games.stendhal.server.core.config.CreaturesXMLLoader;
+import games.stendhal.server.core.config.ItemsXMLLoader;
+import games.stendhal.server.core.rule.defaultruleset.DefaultCreature;
+import games.stendhal.server.core.rule.defaultruleset.DefaultItem;
+
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+
 import org.xml.sax.SAXException;
 
 /*
@@ -103,12 +108,17 @@ public class EditorXML {
 	}
 
 	private List<DefaultItem> loadItemsList(String ref) throws SAXException {
-		ItemsXMLLoader itemsLoader = ItemsXMLLoader.get();
-		List<DefaultItem> items = itemsLoader.load(ref);
+		ItemsXMLLoader itemsLoader = new ItemsXMLLoader();
 
-		sortItems(items);
+		try {
+			List<DefaultItem> items = itemsLoader.load(new URI(ref));
 
-		return items;
+			sortItems(items);
+
+			return items;
+		} catch(URISyntaxException e) {
+			throw new SAXException(e);
+		}
 	}
 
 	void sortItems(final List<DefaultItem> items) {

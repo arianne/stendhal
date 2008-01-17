@@ -1,9 +1,9 @@
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
+import games.stendhal.server.core.rule.defaultruleset.DefaultCreature;
+import games.stendhal.server.core.rule.defaultruleset.DefaultItem;
 import games.stendhal.server.entity.creature.impl.DropItem;
-import games.stendhal.server.rule.defaultruleset.DefaultCreature;
-import games.stendhal.server.rule.defaultruleset.DefaultItem;
-import marauroa.common.Pair;
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.io.BufferedReader;
@@ -18,8 +18,12 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Vector;
+
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+
+import marauroa.common.Pair;
+
 import org.xml.sax.SAXException;
 
 /*
