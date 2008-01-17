@@ -373,8 +373,7 @@ public class Marriage extends AbstractQuest {
 									+ System.currentTimeMillis());
 							npc.setCurrentState(ConversationStates.IDLE);
 						} else {
-							// player said they had the money and/or gold but
-							// they lied
+							// player said they had the money and/or gold but they lied
 							npc.say("Come back when you have both the money and the gold.");
 						}
 					}
