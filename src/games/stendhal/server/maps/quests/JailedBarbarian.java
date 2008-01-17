@@ -1,0 +1,248 @@
+package games.stendhal.server.maps.quests;
+
+import games.stendhal.common.Rand;
+import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.entity.item.StackableItem;
+import games.stendhal.server.entity.npc.ConversationPhrases;
+import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
+import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.NotCondition;
+import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
+import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
+import games.stendhal.server.entity.npc.condition.QuestNotInStateCondition;
+import games.stendhal.server.entity.npc.parser.Sentence;
+import games.stendhal.server.entity.player.Player;
+
+import java.util.Arrays;
+import java.util.List;
+
+/**
+ * QUEST: The Amazon Princess
+ *
+ * PARTICIPANTS:
+ * <ul>
+ * <li>Lorenz, the jailed barbarian in a hut on Amazon Island/li>
+ * </ul>
+ *
+ * STEPS:
+ * <ul>
+ * <li>1. Lorenz ask you for a scythe to bring him</li>
+ * <li>2. You have to ask Princess Escalara for a 'reason'</li>
+ * <li>3. You have to bring him an egg</li>
+ * <li>4. You have to inform Princess Ylflia</li>
+ * <li>5. You have to bring him an barbarian armor</li>
+ * <li>6. You get an reward.
+ * </ul>
+ *
+ * REWARD:
+ * <ul>
+ * <li>You get 25 gold bars</li>
+ * <li>You get 50.000 experince points</li>
+ * </ul>
+ *
+ * REPETITIONS:
+ * <ul>
+ * <li>Not repeatable.</li>
+ * </ul>
+ */
+ 
+ public class JailedBarbarian extends AbstractQuest {
+ 
+ 	private static final String QUEST_SLOT = "jailedbarb";
+ 	
+ 	@Override
+	public void init(String name) {
+		super.init(name, QUEST_SLOT);
+	}
+	
+	private void step1() {
+		SpeakerNPC npc = npcs.get("Lorenz");	
+		
+		npc.add(ConversationStates.ATTENDING,
+				ConversationPhrases.QUEST_MESSAGES, null,
+				ConversationStates.ATTENDING, null,
+				new SpeakerNPC.ChatAction() {
+					@Override
+					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+						if (!player.hasQuest(QUEST_SLOT) || player.getQuest(QUEST_SLOT).equals("rejected")) {
+							npc.say("I need some help to escape from this prison. These ugly Amazoness! Can you help me please?");
+							npc.setCurrentState(ConversationStates.QUEST_OFFERED);
+						} else if (player.isQuestCompleted(QUEST_SLOT)) { 
+							npc.say("Thank you for your help! Now i can escape!");
+						}
+					}
+				});
+		npc.add(ConversationStates.QUEST_OFFERED,
+				ConversationPhrases.YES_MESSAGES, null,
+				ConversationStates.ATTENDING,
+				"Thank you! First I need a scythe to cut down these ugly flowers. And beware of bring me an old one! Let me know if you have one!",
+				new SetQuestAndModifyKarmaAction(QUEST_SLOT, "start", 10.0));
+
+		// Player says no, they've lost karma.
+		npc.add(ConversationStates.QUEST_OFFERED,
+				ConversationPhrases.NO_MESSAGES, null, ConversationStates.IDLE,
+				"So go away and someone who can help me!",
+				new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", 10.0));
+	}
+	
+	private void step2() {
+	SpeakerNPC npc = npcs.get("Lorenz");	
+	
+		npc.add(ConversationStates.ATTENDING, "scythe",
+				new AndCondition( new QuestInStateCondition(QUEST_SLOT, "start"),
+				new PlayerHasItemWithHimCondition("scythe")),
+				ConversationStates.ATTENDING, null,
+				new SpeakerNPC.ChatAction() {
+				@Override
+				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					player.drop("scythe");
+					player.addKarma(10);
+					player.addXP(1000);
+					npc.say("Thank you!! First part is done! Now i can cut all flowers down! Now please ask Princess Esclara why i am here! I think my name should say here something!");
+					player.setQuest(QUEST_SLOT, "capture");
+				};
+		});
+
+		npc.add(
+			ConversationStates.ATTENDING, "scythe",
+			new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"), new NotCondition(new PlayerHasItemWithHimCondition("scythe"))),
+			ConversationStates.ATTENDING,
+			"Don't lie! Go and get one and hurry up!",
+			null);
+	}
+	
+	private void step3() {
+	SpeakerNPC npc = npcs.get("Princess Esclara");
+	
+		npc.add(ConversationStates.ATTENDING, "Lorenz",
+				new QuestInStateCondition(QUEST_SLOT, "capture"),
+				ConversationStates.ATTENDING, null,
+				new SpeakerNPC.ChatAction() {
+				@Override
+				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					npc.say("You want to know why he is in there? He and his ugly friends diged the #tunnel to our sweet Island! Thats why he get jailed!");
+					player.setQuest(QUEST_SLOT, "princess");
+				};
+		});
+	}
+	
+	private void step4() {
+	SpeakerNPC npc = npcs.get("Lorenz");
+	
+		npc.add(ConversationStates.ATTENDING, "tunnel",
+				new QuestInStateCondition(QUEST_SLOT, "princess"),
+				ConversationStates.ATTENDING, null,
+				new SpeakerNPC.ChatAction() {
+				@Override
+				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					npc.say("What she drives me nut, like all the flowers! This makes me hungry, go and get an egg for me! Just let me now, you got one.");
+					player.setQuest(QUEST_SLOT, "egg");
+				};
+		});	
+	}
+	
+	private void step5() {
+	SpeakerNPC npc = npcs.get("Lorenz");	
+	
+		npc.add(ConversationStates.ATTENDING, "egg",
+				new AndCondition( new QuestInStateCondition(QUEST_SLOT, "egg"),
+				new PlayerHasItemWithHimCondition("egg")),
+				ConversationStates.ATTENDING, null,
+				new SpeakerNPC.ChatAction() {
+				@Override
+				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					player.drop("egg");
+					player.addKarma(10);
+					player.addXP(1000);
+					npc.say("Thank you again my friend. Now you have to tell Princess Ylflia, in Kavalan Castle, that i am #jailed here. Please hurry up!");
+					player.setQuest(QUEST_SLOT, "jailed");
+				};
+		});
+
+		npc.add(
+			ConversationStates.ATTENDING, "egg",
+			new AndCondition(new QuestInStateCondition(QUEST_SLOT, "egg"), new NotCondition(new PlayerHasItemWithHimCondition("egg"))),
+			ConversationStates.ATTENDING,
+			"I cannot see an egg!",
+			null);
+	}
+	
+	private void step6() {
+	SpeakerNPC npc = npcs.get("Princess Ylflia");
+	
+		npc.add(ConversationStates.ATTENDING, "jailed",
+				new QuestInStateCondition(QUEST_SLOT, "jailed"),
+				ConversationStates.ATTENDING, null,
+				new SpeakerNPC.ChatAction() {
+				@Override
+				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					npc.say("Oh my dear. My father should not know it. Hope he is fine! Thanks for this message! Send him #greetings! You better return to him, he could need more help.");
+					player.setQuest(QUEST_SLOT, "spoken");
+				};
+		});
+	}
+
+	private void step7() {
+	SpeakerNPC npc = npcs.get("Lorenz");
+	
+		npc.add(ConversationStates.ATTENDING, "greetings",
+				new QuestInStateCondition(QUEST_SLOT, "spoken"),
+				ConversationStates.ATTENDING, null,
+				new SpeakerNPC.ChatAction() {
+				@Override
+				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					npc.say("Thanks my friend. Now a last task for you! Bring me a barbarian armor. Without this i cannot escape from here! Go! Go! And let me know when you have the #armor !");
+					player.setQuest(QUEST_SLOT, "armor");
+				};
+		});
+	}
+	
+	private void step8() {
+	SpeakerNPC npc = npcs.get("Lorenz");	
+	
+		npc.add(ConversationStates.ATTENDING, "armor",
+				new AndCondition( new QuestInStateCondition(QUEST_SLOT, "armor"),
+				new PlayerHasItemWithHimCondition("barbarian armor")),
+				ConversationStates.ATTENDING, null,
+				new SpeakerNPC.ChatAction() {
+				@Override
+				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+					player.drop("barbarian armor");
+					 StackableItem gold = (StackableItem) StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("gold_bar");
+					int goldamount = 20;
+					gold.setQuantity(goldamount);
+					player.equip(gold, true);
+					player.addKarma(15);
+					player.addXP(50000);
+					npc.say("Thats all! Now i am prepared for my escape! Here is something i have stolen from Princess Esclara! Do not let her know. And now leave me!");
+					player.setQuest(QUEST_SLOT, "done");
+				};
+		});
+
+		npc.add(
+			ConversationStates.ATTENDING, "armor",
+			new AndCondition(new QuestInStateCondition(QUEST_SLOT, "armor"), new NotCondition(new PlayerHasItemWithHimCondition("barbarian armor"))),
+			ConversationStates.ATTENDING,
+			"You have no barbarian armor with you! Go get one!",
+			null);
+	}
+	
+	@Override
+	public void addToWorld() {
+		super.addToWorld();
+
+		step1();
+		step2();
+		step3();
+		step4();
+		step5();
+		step6();
+		step7();
+		step8();
+	}
+
+ 
+}
+ 
