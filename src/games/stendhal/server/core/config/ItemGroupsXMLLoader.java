@@ -50,8 +50,8 @@ public class ItemGroupsXMLLoader extends DefaultHandler {
 		for (URI groupUri : groups) {
 			logger.debug("Loading item group [" + groupUri + "]");
 			list.addAll(loader.load(groupUri));
-
 		}
+
 		return list;
 	}
 }

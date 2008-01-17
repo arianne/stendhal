@@ -20,7 +20,7 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
-class ItemsXMLLoader extends DefaultHandler {
+public class ItemsXMLLoader extends DefaultHandler {
 
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(ItemsXMLLoader.class);
