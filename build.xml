@@ -621,6 +621,7 @@
 				<pathelement path="${junit_jar}"/>
 				<pathelement path="${groovy_jar}"/>
 				<pathelement path="${simple_jar}"/>
+				<pathelement path="${commons_lang_jar}"/>
 				<pathelement path="."/>
 			</classpath>
 
