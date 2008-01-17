@@ -5,16 +5,14 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.condition.NotCondition;
-import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
 
-import java.util.Arrays;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -163,7 +161,6 @@ public class RingMaker extends AbstractQuest {
 		super.addToWorld();
 
 		FixRingStep();
-
 	}
 
 	@Override
@@ -174,7 +171,7 @@ public class RingMaker extends AbstractQuest {
 		}
 		res.add("FIRST_CHAT");
 		String questState = player.getQuest(QUEST_SLOT);
-		if (player.getQuest(QUEST_SLOT).startsWith("forging;")) {
+		if (questState.startsWith("forging;")) {
 			res.add("FORGING");
 		}
 		return res;
