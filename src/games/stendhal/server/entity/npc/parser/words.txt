@@ -1,4 +1,4 @@
-# @Version 7
+# @Version 8
 #
 # Word list for the Stendhal conversation parser
 #
@@ -331,6 +331,7 @@ leek	OBJ-FOO	leeks
 leg	OBJ	legs
 level	OBJ	levels
 library	OBJ	libraries
+life	OBJ	lives
 list	OBJ	lists
 loaf	OBJ-AMO	loaves
 log	OBJ	logs
@@ -640,6 +641,7 @@ dwarven	ADJ
 elder	ADJ
 elvish	ADJ
 empty	ADJ
+enhanced	ADJ
 exact	ADJ
 exotic	ADJ
 fiscal	ADJ
