@@ -201,6 +201,7 @@ public class ConversationParserTest {
 		assertEquals(1, sentence.getObject(0).getAmount());
 		assertEquals("ice cream", sentence.getObjectName());
 		assertEquals("i buy ice cream!", sentence.getNormalized());
+		assertEquals("i/SUB-PRO buy/VER-CON ice cream/OBJ!", sentence.toString());
 
 		sentence = ConversationParser.parse("would you like to have an ice cream?");
 		assertFalse(sentence.hasError());
@@ -210,6 +211,7 @@ public class ConversationParserTest {
 		assertEquals(1, sentence.getObject(0).getAmount());
 		assertEquals("ice cream", sentence.getObjectName());
 		assertEquals("you buy ice cream!", sentence.getNormalized());
+		assertEquals("you/SUB-PRO buy/VER-CON ice cream/OBJ!", sentence.toString());
 	}
 
 	@Test
@@ -265,9 +267,14 @@ public class ConversationParserTest {
 		assertEquals("buy/VER engagement ring/OBJ", sentence.toString());
 		assertEquals("engagement ring", sentence.getObjectName());
 
-		sentence = ConversationParser.parse("buy lion shield");
+		sentence = ConversationParser.parse("buy enhanced lion shield");
 		assertEquals("buy/VER enhanced lion shield/OBJ", sentence.toString());
 		assertEquals("enhanced lion shield", sentence.getObjectName());
+
+		sentence = ConversationParser.parse("buy summon scroll");
+		assertEquals("buy/VER summon scroll/OBJ", sentence.toString());
+		assertEquals("buy", sentence.getVerbString());
+		assertEquals("summon scroll", sentence.getObjectName());
 
 		sentence = ConversationParser.parse("buy 1 summon scroll");
 		assertEquals("buy/VER summon scroll/OBJ", sentence.toString());
