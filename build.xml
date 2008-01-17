@@ -623,6 +623,8 @@
 				<pathelement path="${simple_jar}"/>
 				<pathelement path="${commons_lang_jar}"/>
 				<pathelement path="."/>
+				<pathelement path="data/conf"/>
+				<pathelement path="${mysqldriver_jarname}"/>
 			</classpath>
 
 			<formatter type="plain" usefile="false"/>
