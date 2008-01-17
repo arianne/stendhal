@@ -121,7 +121,7 @@ public class AmazonPrincess extends AbstractQuest {
 		npc.add(ConversationStates.QUEST_OFFERED,
 				ConversationPhrases.NO_MESSAGES, null, ConversationStates.IDLE,
 				"Oh, never mind. Bye then.",
-				new SetQuestAndModifyKarmaAction(QUEST_SLOT, "start", 10.0));
+				new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -10.0));
 	}
 
 	/*
