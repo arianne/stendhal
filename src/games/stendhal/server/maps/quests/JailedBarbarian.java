@@ -29,7 +29,7 @@ import java.util.List;
  * STEPS:
  * <ul>
  * <li>1. Lorenz ask you for a scythe to bring him</li>
- * <li>2. You have to ask Princess Escalara for a 'reason'</li>
+ * <li>2. You have to ask Princess Esclara for a 'reason'</li>
  * <li>3. You have to bring him an egg</li>
  * <li>4. You have to inform Princess Ylflia</li>
  * <li>5. You have to bring him an barbarian armor</li>
@@ -38,8 +38,8 @@ import java.util.List;
  *
  * REWARD:
  * <ul>
- * <li>You get 25 gold bars</li>
- * <li>You get 50.000 experince points</li>
+ * <li>You get 20 gold bars</li>
+ * <li>You get 52.000 experince points in all</li>
  * </ul>
  *
  * REPETITIONS:
@@ -67,24 +67,24 @@ import java.util.List;
 					@Override
 					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 						if (!player.hasQuest(QUEST_SLOT) || player.getQuest(QUEST_SLOT).equals("rejected")) {
-							npc.say("I need some help to escape from this prison. These ugly Amazoness! Can you help me please?");
+							npc.say("I need some help to escape from this prison. These ugly Amazonesses! Can you help me please?");
 							npc.setCurrentState(ConversationStates.QUEST_OFFERED);
 						} else if (player.isQuestCompleted(QUEST_SLOT)) { 
-							npc.say("Thank you for your help! Now i can escape!");
+							npc.say("Thank you for your help! Now I can escape!");
 						}
 					}
 				});
 		npc.add(ConversationStates.QUEST_OFFERED,
 				ConversationPhrases.YES_MESSAGES, null,
 				ConversationStates.ATTENDING,
-				"Thank you! First I need a scythe to cut down these ugly flowers. And beware of bring me an old one! Let me know if you have one!",
+				"Thank you! First I need a #scythe to cut down these ugly flowers. And beware of bringing me an old one! Let me know if you have one!",
 				new SetQuestAndModifyKarmaAction(QUEST_SLOT, "start", 10.0));
 
 		// Player says no, they've lost karma.
 		npc.add(ConversationStates.QUEST_OFFERED,
 				ConversationPhrases.NO_MESSAGES, null, ConversationStates.IDLE,
 				"So go away and someone who can help me!",
-				new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", 10.0));
+				new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -10.0));
 	}
 	
 	private void step2() {
@@ -100,7 +100,7 @@ import java.util.List;
 					player.drop("scythe");
 					player.addKarma(10);
 					player.addXP(1000);
-					npc.say("Thank you!! First part is done! Now i can cut all flowers down! Now please ask Princess Esclara why i am here! I think my name should say here something!");
+					npc.say("Thank you!! First part is done! Now I can cut all flowers down! Now please ask Princess Esclara why I am here! I think saying my name should tell her something...");
 					player.setQuest(QUEST_SLOT, "capture");
 				};
 		});
@@ -109,7 +109,7 @@ import java.util.List;
 			ConversationStates.ATTENDING, "scythe",
 			new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"), new NotCondition(new PlayerHasItemWithHimCondition("scythe"))),
 			ConversationStates.ATTENDING,
-			"Don't lie! Go and get one and hurry up!",
+			"You don't have a scythe yet! Go and get one and hurry up!",
 			null);
 	}
 	
@@ -122,10 +122,15 @@ import java.util.List;
 				new SpeakerNPC.ChatAction() {
 				@Override
 				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-					npc.say("You want to know why he is in there? He and his ugly friends diged the #tunnel to our sweet Island! Thats why he get jailed!");
+					npc.say("You want to know why he is in there? He and his ugly friends dug the #tunnel to our sweet Island! That's why he got jailed!");
 					player.setQuest(QUEST_SLOT, "princess");
 				};
 		});
+		npc.add(ConversationStates.ATTENDING, "tunnel",
+				new QuestInStateCondition(QUEST_SLOT, "princess"),
+				ConversationStates.ATTENDING, "I am angry now and won't speak any more of it! If you want to learn more you'll have to ask him about the #tunnel!",
+				null);	
+
 	}
 	
 	private void step4() {
@@ -137,7 +142,7 @@ import java.util.List;
 				new SpeakerNPC.ChatAction() {
 				@Override
 				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-					npc.say("What she drives me nut, like all the flowers! This makes me hungry, go and get an egg for me! Just let me now, you got one.");
+					npc.say("What she drives me nuts, like all the flowers! This makes me hungry, go and get an #egg for me! Just let me know, you got one.");
 					player.setQuest(QUEST_SLOT, "egg");
 				};
 		});	
@@ -156,7 +161,7 @@ import java.util.List;
 					player.drop("egg");
 					player.addKarma(10);
 					player.addXP(1000);
-					npc.say("Thank you again my friend. Now you have to tell Princess Ylflia, in Kavalan Castle, that i am #jailed here. Please hurry up!");
+					npc.say("Thank you again my friend. Now you have to tell Princess Ylflia, in Kalavan Castle, that I am #jailed here. Please hurry up!");
 					player.setQuest(QUEST_SLOT, "jailed");
 				};
 		});
@@ -167,12 +172,17 @@ import java.util.List;
 			ConversationStates.ATTENDING,
 			"I cannot see an egg!",
 			null);
+
+		npc.add(ConversationStates.ATTENDING, "jailed",
+				new QuestInStateCondition(QUEST_SLOT, "jailed"),
+				ConversationStates.ATTENDING, "I know that *I'm* jailed! I need you to go tell Princess Ylflia that I am here!",
+				null);
 	}
 	
 	private void step6() {
 	SpeakerNPC npc = npcs.get("Princess Ylflia");
 	
-		npc.add(ConversationStates.ATTENDING, "jailed",
+		npc.add(ConversationStates.ATTENDING, Arrays.asList("jailed","Lorenz"),
 				new QuestInStateCondition(QUEST_SLOT, "jailed"),
 				ConversationStates.ATTENDING, null,
 				new SpeakerNPC.ChatAction() {
@@ -182,6 +192,12 @@ import java.util.List;
 					player.setQuest(QUEST_SLOT, "spoken");
 				};
 		});
+
+		npc.add(ConversationStates.ATTENDING, "greetings",
+				new QuestInStateCondition(QUEST_SLOT, "spoken"),
+				ConversationStates.ATTENDING, "Please, go and give Lorenz my #greetings.",
+				null);
+
 	}
 
 	private void step7() {
@@ -193,7 +209,7 @@ import java.util.List;
 				new SpeakerNPC.ChatAction() {
 				@Override
 				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-					npc.say("Thanks my friend. Now a last task for you! Bring me a barbarian armor. Without this i cannot escape from here! Go! Go! And let me know when you have the #armor !");
+					npc.say("Thanks my friend. Now a final task for you! Bring me a barbarian armor. Without this I cannot escape from here! Go! Go! And let me know when you have the #armor !");
 					player.setQuest(QUEST_SLOT, "armor");
 				};
 		});
@@ -210,13 +226,13 @@ import java.util.List;
 				@Override
 				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 					player.drop("barbarian armor");
-					 StackableItem gold = (StackableItem) StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("gold_bar");
+					 StackableItem gold = (StackableItem) StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("gold bar");
 					int goldamount = 20;
 					gold.setQuantity(goldamount);
 					player.equip(gold, true);
 					player.addKarma(15);
 					player.addXP(50000);
-					npc.say("Thats all! Now i am prepared for my escape! Here is something i have stolen from Princess Esclara! Do not let her know. And now leave me!");
+					npc.say("Thats all! Now I am prepared for my escape! Here is something I have stolen from Princess Esclara! Do not let her know. And now leave me!");
 					player.setQuest(QUEST_SLOT, "done");
 				};
 		});

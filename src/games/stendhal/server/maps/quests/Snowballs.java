@@ -28,14 +28,14 @@ import java.util.List;
  * <li> Mr. Yeti, a creature in a dungeon needs help
  * <p>
  * STEPS:
- * <li> Mr. Yeti ask for some snow, and wants you to get 25 snowballs.
+ * <li> Mr. Yeti asks for some snow, and wants you to get 25 snowballs.
  * <li> You collect 25 snowballs from ice golems.
  * <li> You give the snowballs to Mr. Yeti.
  * <li> Mr. Yeti gives you 20 cod or perch.
  * <p>
  * REWARD: <li> 20 cod or perch <li> 500 XP
  * <p>
- * REPETITIONS: <li> Unlimited, but 12960 turns (should be 12 hours) of waiting are
+ * REPETITIONS: <li> Unlimited, but 12 hours of waiting is
  * required between repetitions
  */
  
@@ -154,7 +154,7 @@ public class Snowballs extends AbstractQuest {
 				@Override
 				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 					if (canStartQuestNow(npc, player)) {
-						npc.say("I like to make some snow sculptures but the snow in this cavern is not good enough. Would you help me and get some snowballs for me? I need twentyfive of them.");
+						npc.say("I like to make snow sculptures, but the snow in this cavern is not good enough. Would you help me and get some snowballs? I need twenty five of them.");
 					} else {
 						npc.say("I have enough snow to finish my sculpture, but thanks for asking.");
 						npc.setCurrentState(ConversationStates.ATTENDING);
@@ -167,7 +167,7 @@ public class Snowballs extends AbstractQuest {
 			ConversationPhrases.YES_MESSAGES,
 			null,
 			ConversationStates.ATTENDING,
-			"Fine. You can Get the snowballs from the ice golem in this cavern, but be careful there is something huge near them! Come back when you get twentyfive snowballs!",
+			"Fine. You can loot the snowballs from the ice golem in this cavern, but be careful there is something huge nearby! Come back when you get twenty five snowballs.",
 			new SetQuestAction(QUEST_SLOT, "start"));
 
 		// player is not willing to help
@@ -175,7 +175,7 @@ public class Snowballs extends AbstractQuest {
 			ConversationPhrases.NO_MESSAGES,
 			null,
 			ConversationStates.ATTENDING,
-			"So what are you doing her? Go away!",
+			"So what are you doing here? Go away!",
 			null);
 	}
 
@@ -198,7 +198,7 @@ public class Snowballs extends AbstractQuest {
 						} else {
 							rewardClass = "perch";
 						}
-						npc.say("Thank you! Here, take some " + rewardClass + "! I do not like to eat them,");
+						npc.say("Thank you! Here, take some " + rewardClass + "! I do not like to eat them.");
 						EntityManager manager = StendhalRPWorld.get()
 								.getRuleManager().getEntityManager();
 						StackableItem reward = (StackableItem) manager.getItem(rewardClass);
@@ -220,7 +220,7 @@ public class Snowballs extends AbstractQuest {
 			ConversationPhrases.NO_MESSAGES,
 			null,
 			ConversationStates.ATTENDING,
-			"Oh i hope you bring me them soon! I like to finish my sculpture!",
+			"Oh I hope you bring me them soon! I would like to finish my sculpture!",
 			null);
 	}
 
