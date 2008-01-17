@@ -74,6 +74,7 @@ public class StendhalQuestSystem {
 		loadQuest("IcecreamForAnnie");
 		loadQuest("ImperialPrincess");
 		loadQuest("IntroducePlayers");
+		loadQuest("JailedBarbarian");
 		loadQuest("JailedDwarf");
 		loadQuest("LearnAboutKarma");
 		loadQuest("LearnAboutOrbs");
@@ -81,6 +82,7 @@ public class StendhalQuestSystem {
 		loadQuest("LookUpQuote");
 		loadQuest("KanmararnSoldiers");
 		loadQuest("KillDarkElves");
+		loadQuest("KillSpiders");
 		loadQuest("Marriage");
 		// loadQuest("MonogenesCataclysm");
 		// loadQuest("MeetBunny");
@@ -103,6 +105,7 @@ public class StendhalQuestSystem {
 		// loadQuest("SatoCataclysm");
 		// loadQuest("SemosMineTownRevivalWeeks");
 		loadQuest("SevenCherubs");
+		loadQuest("Snowballs");
 		loadQuest("Soup");
 		loadQuest("StuffForVulcanus");
 		loadQuest("SuntanCreamForZara");
@@ -114,9 +117,6 @@ public class StendhalQuestSystem {
         loadQuest("WeeklyItemQuest");
 		loadQuest("WizardBank");
 		loadQuest("ZooFood");
-		loadQuest("KillSpiders");
-		loadQuest("Snowballs");
-		loadQuest("JailedBarbarian");
 	}
 
 	private boolean loadQuest(String name) {
