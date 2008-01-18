@@ -11,18 +11,15 @@ public class PrivateTextMockingTestPlayer extends Player {
 	private StringBuilder privateTextBuffer = null;
 
 
-	/**
-	 * Creates a new mock player without name.
-	 */
-	public PrivateTextMockingTestPlayer(RPObject obj) {
-		super(obj);
-	}
+	
 
 	/**
 	 * Creates a new mock player with name.
+	 * @param obj to copy
+	 * @param name to assign
 	 */
 	public PrivateTextMockingTestPlayer(RPObject obj, String name) {
-		this(obj);
+		super(obj);
 		setName(name);
 	}
 
@@ -62,10 +59,10 @@ public class PrivateTextMockingTestPlayer extends Player {
 	}
 
 	/**
-	 * Return boolean flag, if we received any private text
+	 * Returns boolean flag, if we received any private text
 	 * since the last call to resetPrivateTextString().
 	 *
-	 * @return
+	 * @return true if messages has been received
 	 */
 	public boolean hasPrivateText() {
 		return privateTextBuffer != null;

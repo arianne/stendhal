@@ -45,9 +45,8 @@ public class PlayerTestHelper {
 	 */
 	public static PrivateTextMockingTestPlayer createPrivateTextMockingTestPlayer(String name) {
 		PlayerTestHelper.generatePlayerRPClasses();
-		PrivateTextMockingTestPlayer pl = new PrivateTextMockingTestPlayer(new RPObject());
+		PrivateTextMockingTestPlayer pl = new PrivateTextMockingTestPlayer(new RPObject(), name);
 		PlayerTestHelper.addEmptySlots(pl);
-		pl.setName(name);
 		return pl;
 	}
 

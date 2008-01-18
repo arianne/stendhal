@@ -195,7 +195,7 @@ public class PlayersQueryTest {
 				});
 			}
 		};
-		player = new PrivateTextMockingTestPlayer(new RPObject()) {
+		player = new PrivateTextMockingTestPlayer(new RPObject(), "player") {
 			@Override
 			public Sheep getSheep() {
 				return testSheep;
@@ -207,7 +207,6 @@ public class PlayersQueryTest {
 			}
 		};
 
-		player.setName("player");
 		player.setPet(testPet);
 
 		MockStendhalRPRuleProcessor.get().addPlayer(player);
