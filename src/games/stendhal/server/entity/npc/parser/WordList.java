@@ -490,6 +490,7 @@ public class WordList {
 		Sentence item = ConversationParser.parse(name, ctx);
 
 		Expression lastExpr = null;
+		boolean prepositionSeen = false;
 
 		for(Expression expr : item) {
     		if (expr.getType() == null || expr.getType().isEmpty()) {
@@ -505,7 +506,11 @@ public class WordList {
     						name + "': " + expr.getNormalizedWithTypeString());
     		}
 
-			lastExpr = expr;
+    		if (expr.isPreposition()) {
+    			prepositionSeen = true;
+    		} else if (!prepositionSeen) {
+    			lastExpr = expr;
+    		}
     	}
 
 		if (lastExpr != null) {
@@ -574,7 +579,7 @@ public class WordList {
 	}
 
 	/**
-	 * Write current word list into the database table "words".
+	 * Store current word list into the database table "words".
 	 */
 	public void writeToDB() {
 		if (!enableDatabaseAccess) {
@@ -626,7 +631,7 @@ public class WordList {
     }
 
 	/**
-	 * Store a number of word entries into the database.
+	 * Insert a number of word entries into the database.
 	 * 
 	 * @param keys
 	 * @return success flag
@@ -663,7 +668,7 @@ public class WordList {
     }
 
 	/**
-	 * Store a number of word entries into the database, using the given
+	 * Insert a number of word entries into the database, using the given
 	 * Transaction object.
 	 * 
 	 * @param trans
