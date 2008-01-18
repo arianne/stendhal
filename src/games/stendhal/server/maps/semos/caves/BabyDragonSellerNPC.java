@@ -119,7 +119,7 @@ public class BabyDragonSellerNPC implements ZoneConfigurator {
 				addReply("travel",
 						"You'll need your baby dragon to be close by in order for it to follow you when you change zones; you can say #pet to call it if it's not paying attention. If you decide to abandon it, you can right-click on YOURSELF and select 'Leave Pet'.");
 				addReply("protect",
-					 "Other creatures can small the strong scent of your baby dragon, and may attack it. It will fight back to defend itself but at times it will need help, or it will surely die.");
+					 "Other creatures can smell the strong scent of your baby dragon, and may attack it. It will fight back to defend itself but at times it will need help, or it will surely die.");
 				addReply("own",
 						"Like all pets and sheep, if you find any wild or abandoned baby dragon, you can right-click on them and select 'Own' to tame them. It will start following you, and I can bet you it'll want #food pretty soon.");
 			}
