@@ -112,6 +112,7 @@
 			<include name="games/stendhal/tools/tiled/ServerTMXLoader.java"/>
 			<include name="games/stendhal/tools/tiled/StendhalMapStructure.java"/>
 			<include name="games/stendhal/tools/tiled/TileSetDefinition.java"/>
+			<include name="games/stendhal/tools/test/LineAnalyser.java"/>
 
 			<compilerarg value="-encoding"/>
 			<compilerarg value="utf8"/>
@@ -562,7 +563,6 @@
 
 		<javac srcdir="tests" destdir="${build_tests}" debug="${javac.debug}" debuglevel="${javac.debuglevel}" source="1.5" target="1.5" deprecation="${javac.deprecation}">
 			<include name="**/*.java"/>
-			<include name="games/stendhal/tools/test/LineAnalyser.java"/>
 
 			<compilerarg value="-encoding"/>
 			<compilerarg value="utf8"/>
