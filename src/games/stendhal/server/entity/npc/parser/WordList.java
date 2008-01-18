@@ -14,7 +14,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -492,9 +491,7 @@ public class WordList {
 
 		Expression lastExpr = null;
 
-		for(Iterator<Expression> it=item.iterator(); it.hasNext(); ) {
-			Expression expr = it.next();
-
+		for(Expression expr : item) {
     		if (expr.getType() == null || expr.getType().isEmpty()) {
     			// register the unknown word as new object entry
     			WordEntry entry = words.get(expr.getNormalized());

@@ -15,7 +15,7 @@ import java.util.regex.Pattern;
  * 
  * @author Martin Fuchs
  */
-public class Sentence {
+public class Sentence implements Iterable<Expression> {
 
 	public enum SentenceType {
 		UNDEFINED,
