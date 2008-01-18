@@ -3570,7 +3570,7 @@
     </ai>
   </creature>
 
-  <creature name="duergar elder">
+  <creature name="elder duergar">
     <type class="dwarf" subclass="duergar_elder" tileid="dwarf_duergar.png:2"/>
     <description></description>
     <attributes>
@@ -5761,7 +5761,7 @@
     </ai>
   </creature>
 
-  <creature name="duergar black">
+  <creature name="black duergar">
     <type class="dwarf" subclass="duergar_black" tileid="dwarf_duergar.png:1"/>
     <description></description>
     <attributes>
@@ -8634,7 +8634,7 @@
     </ai>
   </creature>
 
-  <creature name="giant elder">
+  <creature name="elder giant">
     <type class="giant_human" subclass="giant_elder" tileid="giant_human.png:0"/>
     <description></description>
     <attributes>

@@ -133,6 +133,12 @@ public class UnderscoreConverter {
 				return "black book";
 			} else if (str.equals("book blue")) {
 				return "blue book";
+			} else if (str.equals("duergar elder")) {
+				return "elder duergar";
+			} else if (str.equals("duergar black")) {
+				return "black duergar";
+			} else if (str.equals("giant elder")) {
+				return "elder giant";
 			} else {
 				return str;
 			}
