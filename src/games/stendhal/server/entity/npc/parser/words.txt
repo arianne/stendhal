@@ -1,4 +1,4 @@
-# @Version 8
+# @Version 9
 #
 # Word list for the Stendhal conversation parser
 #
@@ -381,6 +381,7 @@ madaram	OBJ	madarams
 magic	OBJ	magics
 mainio	OBJ	mainios
 map	OBJ	maps
+mask	OBJ	masks
 match	OBJ	matches
 matrix	OBJ	matrices
 meat	OBJ	meats
@@ -472,6 +473,7 @@ sedah	OBJ	sedahs
 semos	OBJ	semos
 shadow	OBJ	shadows
 sheaf	OBJ-AMO	sheaves
+sheep	OBJ-ANI	sheep
 shield	OBJ	shields
 shop	OBJ	shops
 shuriken	OBJ	shurikens
@@ -504,6 +506,7 @@ sun	OBJ	suns
 suntan	OBJ	suntans
 supplie	OBJ	supplies
 surgeonfish	OBJ-ANI	surgeonfishes
+swimsuit	OBJ	swimsuits
 sword	OBJ	swords
 table	OBJ	tables
 task	OBJ	tasks
@@ -530,6 +533,7 @@ trigger	OBJ	triggers
 trophy	OBJ	trophies
 trouser	OBJ	trousers
 trout	OBJ-ANI	trouts
+trunk	OBJ	trunks
 trust	OBJ	trusts
 tunnel	OBJ	tunnels
 ugmash	OBJ	ugmashes
