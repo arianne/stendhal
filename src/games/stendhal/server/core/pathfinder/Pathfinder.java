@@ -28,7 +28,6 @@ import games.stendhal.server.entity.Entity;
 import java.awt.geom.Rectangle2D;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.PriorityQueue;
@@ -260,8 +259,8 @@ class Pathfinder {
 	private void createEntityCollisionMap() {
 		collisionMap = new CollisionDetection();
 		collisionMap.init(zone.getWidth(), zone.getHeight());
-		for (Iterator<RPObject> it = zone.iterator(); it.hasNext();) {
-			Entity otherEntity = (Entity) it.next();
+		for (RPObject obj : zone) {
+			Entity otherEntity = (Entity) obj;
 			if (!entity.getID().equals(otherEntity.getID())
 					&& otherEntity.isObstacle(entity)
 					&& (otherEntity.stopped() || otherEntity.nextTo(
