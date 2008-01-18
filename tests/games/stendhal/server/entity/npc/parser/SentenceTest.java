@@ -19,7 +19,7 @@ public class SentenceTest {
 		String text = ConversationParser.getSentenceType("The quick brown fox jumps over the lazy dog.", sentence);
 		ConversationParser parser = new ConversationParser(text);
 		sentence.parse(parser);
-		sentence.classifyWords(parser, false);
+		sentence.classifyWords(parser, false, false);
 		assertFalse(sentence.hasError());
 		assertEquals("quick/ADJ brown/ADJ-COL fox/SUB-ANI jump/VER over/PRE lazy/ADJ dog/SUB-ANI.",
 				sentence.toString());
@@ -31,7 +31,7 @@ public class SentenceTest {
 		sentence = new Sentence();
 		parser = new ConversationParser("does it fit");
 		sentence.parse(parser);
-		sentence.classifyWords(parser, false);
+		sentence.classifyWords(parser, false, false);
 		assertFalse(sentence.hasError());
 		assertEquals("do/VER it/OBJ-PRO fit/VER", sentence.toString());
 		assertEquals(Sentence.SentenceType.QUESTION, sentence.evaluateSentenceType());

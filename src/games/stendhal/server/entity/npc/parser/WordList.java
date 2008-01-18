@@ -14,6 +14,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -38,7 +39,7 @@ public class WordList {
 
 	private static final Logger logger = Logger.getLogger(WordList.class);
 
-	public static final String SUBJECT_NAME_DYNAMIC = ExpressionType.SUBJECT_NAME + ExpressionType.SUFFIX + "DYN";
+	public static final String SUBJECT_NAME_DYNAMIC = ExpressionType.SUBJECT_NAME + ExpressionType.SUFFIX_DYNAMIC;
 
 	public static final String WORDS_FILENAME = "words.txt";
 
@@ -103,7 +104,7 @@ public class WordList {
     }
 
 	/**
-	 * Reads the word list from the resourse file "words.txt".
+	 * Reads the word list from the resource file "words.txt".
 	 */
 	private void readFromResources() {
 		InputStream str = WordList.class.getResourceAsStream(WORDS_FILENAME);
@@ -458,7 +459,7 @@ public class WordList {
 			newEntry.setType(new ExpressionType(SUBJECT_NAME_DYNAMIC));
 
 			words.put(key, newEntry);
-		} else if (!entry.getType().isSubject()) {
+		} else if (!checkNameCompatibleLastType(entry.getType(), ExpressionType.SUBJECT)) {
 			logger.warn("subject name already registered with incompatible expression type: " + entry.getNormalizedWithTypeString());
 		}
 	}
@@ -476,6 +477,75 @@ public class WordList {
 			words.remove(key);
 		}
 	}
+
+	/**
+	 * Register an item or creature name to be recognized by the conversation parser.
+	 * 
+	 * @param name
+	 * @param typeString
+	 */
+	public void registerName(String name, String typeString) {
+		// parse item name without merging Expression entries
+		ConversationContext ctx = new ConversationContext();
+		ctx.setMergeExpressions(false);
+		Sentence item = ConversationParser.parse(name, ctx);
+
+		Expression lastExpr = null;
+
+		for(Iterator<Expression> it=item.iterator(); it.hasNext(); ) {
+			Expression expr = it.next();
+
+    		if (expr.getType() == null || expr.getType().isEmpty()) {
+    			// register the unknown word as new object entry
+    			WordEntry entry = words.get(expr.getNormalized());
+
+    			// set the type to the given one and add the "DYN" suffix
+    			ExpressionType type = new ExpressionType(typeString + ExpressionType.SUFFIX_DYNAMIC);
+    			entry.setType(type);
+    			expr.setType(type);
+    		} else if (expr.isQuestion()) {
+    			logger.warn("object name already registered with incompatible expression type while registering name '" +
+    						name + "': " + expr.getNormalizedWithTypeString());
+    		}
+
+			lastExpr = expr;
+    	}
+
+		if (lastExpr != null) {
+			ExpressionType lastType = lastExpr.getType();
+
+			if (!checkNameCompatibleLastType(lastType, typeString)) {
+    			logger.warn("last word of name '" + name + "' has unexpected type: "
+    						+ lastExpr.getNormalizedWithTypeString()
+    						+ " expected type: " + typeString);
+			}
+		}
+
+		//TODO mf - register compound item names to use them later when merging words
+
+	}
+
+	private static boolean checkNameCompatibleLastType(ExpressionType lastType, String typeString) {
+		if (lastType.getTypeString().startsWith(typeString)) {
+			return true;
+		}
+
+		if (lastType.isNumeral()) {
+			return true;
+		}
+
+		if (lastType.isDynamic()) {
+			return true;
+		}
+
+		// Ignore words like "chicken" and "incorporeal armor", which are registered as objects,
+		// but also used as subjects.
+		if (lastType.isObject() && typeString.equals(ExpressionType.SUBJECT)) {
+			return true;
+		}
+
+	    return false;
+    }
 
 	/**
 	 * Add a new word to the list in order to remember it later. 

@@ -19,6 +19,8 @@ import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.npc.parser.ExpressionType;
+import games.stendhal.server.entity.npc.parser.WordList;
 
 import java.net.URI;
 import java.util.Collection;
@@ -77,6 +79,8 @@ public class DefaultEntityManager implements EntityManager {
 				}
 
 				classToItem.put(clazz, item);
+
+				WordList.getInstance().registerName(item.getItemName(), ExpressionType.OBJECT);
 			}
 		} catch (Exception e) {
 			logger.error("items.xml could not be loaded", e);
@@ -105,6 +109,8 @@ public class DefaultEntityManager implements EntityManager {
 
 				classToCreature.put(clazz, creature);
 				idToClass.put(id, clazz);
+
+				WordList.getInstance().registerName(creature.getCreatureName(), ExpressionType.SUBJECT);
 			}
 		} catch (org.xml.sax.SAXException e) {
 			e.printStackTrace();

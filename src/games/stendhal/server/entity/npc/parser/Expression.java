@@ -284,6 +284,15 @@ public class Expression {
     }
 
 	/**
+	 * Determine if the Expression consists of prepositions.
+	 * 
+	 * @return
+	 */
+	public boolean isPreposition() {
+		return type != null && type.isPreposition();
+    }
+
+	/**
 	 * Merge Expression type with another one while handling null values.
 	 * 
 	 * @param otherType
@@ -411,6 +420,5 @@ public class Expression {
 	public String toString() {
 		return normalized != null ? normalized : original;
 	}
-
 
 }

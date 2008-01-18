@@ -429,7 +429,7 @@ public class Sentence {
 	 * 
 	 * @param parser
 	 */
-	void classifyWords(ConversationParser parser, boolean isForMatching) {
+	void classifyWords(ConversationParser parser, boolean isForMatching, boolean persistNewWords) {
 		WordList wl = WordList.getInstance();
 
 		for (Expression w : expressions) {
@@ -506,7 +506,7 @@ public class Sentence {
 
     					if (entry == null) {
     						// Don't persist expressions used for joker matching.
-    						boolean persist = !isForMatching || !original.contains(JOKER);
+    						boolean persist = persistNewWords && (!isForMatching || !original.contains(JOKER));
 
    	    					// Add the unknown word to the word list.
    							wl.addNewWord(original, persist);
@@ -1098,7 +1098,7 @@ public class Sentence {
 			if (matchString.contains(JOKER)) {
 				if (matchString.equals(JOKER)) {
 					// Type string matching is identified by a single "*" as normalized string expression.
-					if (!matchesJokerString(e1.getTypeString(), e2.getTypeString()+"*")) {
+					if (!matchesJokerString(e1.getTypeString(), e2.getTypeString())) {
 						return false;
 					}
 				} else {

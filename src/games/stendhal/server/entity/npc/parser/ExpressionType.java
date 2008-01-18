@@ -38,6 +38,8 @@ public class ExpressionType {
 
 	public static final String PLURAL = "PLU"; // plural form
 
+	public static final String DYNAMIC = "DYN"; // expression dynamically defined at runtime
+
 	// derived string type constants
 	public static final String SUFFIX_GERUND = SUFFIX + GERUND;
 	public static final String SUFFIX_COLOR = SUFFIX + COLOR;
@@ -53,6 +55,8 @@ public class ExpressionType {
 	public static final String SUFFIX_PLURAL = SUFFIX + PLURAL;
 	public static final String SUFFIX_QUESTION = SUFFIX + QUESTION;
 	public static final String VERB_GERUND = VERB + SUFFIX_GERUND;
+	public static final String SUFFIX_DYNAMIC = SUFFIX + DYNAMIC;
+
 
 	/** Type string specifiers, which can be used in sentence matching. */
 	public static final List<String> TYPESTRINGS = Arrays.asList(
@@ -260,6 +264,15 @@ public class ExpressionType {
 	}
 
 	/**
+	 * Determine if the Expression contains a dynamically defined word.
+	 * 
+	 * @return
+	 */
+	public boolean isDynamic() {
+		return typeString.contains(SUFFIX_DYNAMIC);
+	}
+
+	/**
 	 * Check if the given String contains a type string specifier.
 	 *
 	 * @param str
@@ -310,6 +323,10 @@ public class ExpressionType {
 
 		if (other.isNegated() != isNegated()) {
 			newTypeString += SUFFIX_NEGATED;
+		}
+
+		if (other.isDynamic() && !isDynamic()) {
+			newTypeString += SUFFIX_DYNAMIC;
 		}
 
 		if (newTypeString != typeString) {

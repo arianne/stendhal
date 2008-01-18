@@ -27,24 +27,20 @@ public class CharacterCreatorTest {
 	public void testCreate() {
 		
 			Transaction trans = DatabaseFactory.getDatabase().getTransaction();
-			CharacterCreator cc = new CharacterCreator("user", "char", null);
+			CharacterCreator cc = new CharacterCreator("user", "player", null);
 			assertEquals(Result.OK_CREATED, cc.create().getResult());
 			assertEquals(Result.FAILED_PLAYER_EXISTS, cc.create().getResult());
 
 			try {
-				trans.getAccessor().execute("DELETE FROM character_stats where name='char';");
+				trans.getAccessor().execute("DELETE FROM character_stats where name='player';");
 				trans.commit();
-				trans.getAccessor().execute("DELETE rpobject , characters from rpobject , characters where characters.charname = \"char\" and characters.object_id = rpobject.object_id;");
+				trans.getAccessor().execute("DELETE rpobject , characters from rpobject , characters where characters.charname = \"player\" and characters.object_id = rpobject.object_id;");
 				trans.commit();
-				
 			} catch (NoDatabaseConfException e) {
-				
 				e.printStackTrace();
 			} catch (SQLException e) {
-				
 				e.printStackTrace();
 			}
-		
 	}
 
 }

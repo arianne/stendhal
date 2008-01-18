@@ -1,4 +1,4 @@
-# @Version 8
+# @Version 7
 #
 # Word list for the Stendhal conversation parser
 #
@@ -25,6 +25,7 @@
 #  OBJ-FOO		food
 #  OBJ-OBS		obsessional word
 #  OBJ-PRO		pronoun
+#  OBJ-ANI		animal used as item object
 #
 #  SUB			subject
 #  SUB-ANI		animal
@@ -214,10 +215,12 @@ cauliflower	OBJ	cauliflowers
 chain	OBJ	chains
 challenge	OBJ	challenges
 chaos	OBJ	chaos
+char	OBJ	chars
 character	OBJ	characters
 cheese	OBJ-FOO	cheeses
 cherry	OBJ-FOO	cherries
 chest	OBJ	chests
+chicken	OBJ-ANI	chickens
 chips	OBJ-FOO	chips
 chunk	OBJ	chunks
 citizenship	OBJ	citizenships
@@ -225,6 +228,7 @@ claymore	OBJ	claymores
 cloak	OBJ	cloaks
 clock	OBJ	clocks
 cloth	OBJ	cloths
+clownfish	OBJ-ANI	clownfishes
 club	OBJ	clubs
 cocktail	OBJ-FLU	cocktails
 cod	OBJ-FOO	cods
@@ -232,7 +236,6 @@ coffin	OBJ	coffins
 colada	OBJ-FLU	coladas
 collard	OBJ	collards
 collection	OBJ	collections
-commander	OBJ	commanders
 cookie	OBJ-FOO	cookies
 cost	OBJ	costs
 coupon	OBJ	coupons
@@ -256,7 +259,6 @@ drink	OBJ-FLU	drinks
 dungeon	OBJ	dungeons
 earth	OBJ	earths
 eater	OBJ	eaters
-elemental	OBJ	elementals
 emerald	OBJ	emeralds
 engagement	OBJ	engagements
 entrail	OBJ	entrails
@@ -297,6 +299,7 @@ hammer	OBJ	hammers
 hand	OBJ	hands
 hat	OBJ	hats
 hatch	OBJ	hatches
+heart	OBJ	hearts
 helium	OBJ	helia
 helm	OBJ	helms
 helmet	OBJ	helmets
@@ -324,7 +327,6 @@ kekik	OBJ	kekiks
 key	OBJ	keys
 kingdom	OBJ	kingdoms
 knife	OBJ	knives
-knight	OBJ	knights
 kokuda	OBJ	kokudas
 larva	OBJ	larvae
 leek	OBJ-FOO	leeks
@@ -375,6 +377,7 @@ pan	OBJ	pans
 paper	OBJ	papers
 park	OBJ	parks
 patch	OBJ	patches
+perch	OBJ-ANI	perches
 pie	OBJ-FOO	pies
 piece	OBJ	pieces
 pina	OBJ	pinas
@@ -402,11 +405,11 @@ restaurant	OBJ	restaurants
 reward	OBJ	rewards
 rhosyd	OBJ	rhosyds
 ring	OBJ	rings
+roach	OBJ-ANI	roaches
 robin	OBJ	robins
 rod	OBJ	rods
 room	OBJ	rooms
 rug	OBJ	rugs
-sacerdotist	OBJ	sacerdotists
 sack	OBJ-AMO	sacks
 safety	OBJ	safeties
 salad	OBJ	salads
@@ -428,7 +431,6 @@ shop	OBJ	shops
 sign	OBJ	signs
 silver	OBJ	silvers
 skull	OBJ	skulls
-slime	OBJ	slimes
 sodium	OBJ	sodia
 something	OBJ	somethings
 soup	OBJ-FOO	soups
@@ -450,6 +452,7 @@ suit	OBJ-AMO	suits
 sun	OBJ	suns
 suntan	OBJ	suntans
 supplie	OBJ	supplies
+surgeonfish	OBJ-ANI	surgeonfishes
 sword	OBJ	swords
 table	OBJ	tables
 task	OBJ	tasks
@@ -474,6 +477,7 @@ treasure	OBJ	treasures
 trigger	OBJ	triggers
 trophy	OBJ	trophies
 trouser	OBJ	trousers
+trout	OBJ-ANI	trouts
 trust	OBJ	trusts
 venom	OBJ	venoms
 vertex	OBJ	vertices
@@ -513,14 +517,12 @@ boy	SUB	boys
 cat	SUB-ANI	cats
 caverat	SUB-ANI	caverats
 ceryl	SUB-NAM
-char	SUB
 charles	SUB-NAM
-chicken	SUB-ANI	chickens
 chief	SUB	chiefs
 child	SUB	children
 citizen	SUB
-clownfish	SUB-ANI
 cobra	SUB-ANI	cobras
+commander	SUB	commanders
 crab	SUB-ANI	crabs
 cyclops	SUB	cyclopses
 death	SUB	deaths
@@ -532,6 +534,7 @@ dog	SUB-ANI	dogs
 dragon	SUB-ANI	dragons
 dwarf	SUB	dwarves
 efreeti	SUB	efreet
+elemental	SUB	elementals
 elephant	SUB-ANI	elephants
 elf	SUB	elves
 exhibits	SUB
@@ -551,7 +554,6 @@ guard	SUB
 guardian	SUB	guardians
 hayunn	SUB-NAM
 he	SUB-PRO	they
-heart	SUB
 hero	SUB	heros
 hugo	SUB-NAM
 human	SUB	humans
@@ -563,6 +565,7 @@ iou	SUB-NAM
 javier	SUB-NAM
 jynath	SUB-NAM
 katinka	SUB-NAM
+knight	SUB	knights
 kobold	SUB	kobolds
 kymara	SUB-NAM
 leader	SUB	leaders
@@ -584,7 +587,6 @@ ogre	SUB	ogres
 orc	SUB	orcs
 parrot	SUB-ANI
 penguin	SUB-ANI	penguins
-perch	SUB-ANI
 peter	SUB-NAM
 pirate	SUB
 player	SUB	players
@@ -592,15 +594,15 @@ rat	SUB-ANI	rats
 ratman	SUB	ratmen
 ratwoman	SUB	ratwomen
 razorrat	SUB-ANI	razorrats
-roach	SUB-ANI
+sacerdotist	SUB	sacerdotists
 sally	SUB-NAME
 she	SUB-PRO	they
 siandra	SUB-NAM
 skeleton	SUB	skeletons
+slime	SUB	slimes
 soldier	SUB	soldiers
 sorcerer	SUB
 spirit	SUB	spirits
-surgeonfish	SUB-ANI
 susi	SUB-NAM
 them	SUB
 thing	SUB
@@ -608,7 +610,6 @@ thonatus	SUB-NAM
 tiger	SUB-ANI	tigers
 tom	SUB-NAM
 troll	SUB	trolls
-trout	SUB-ANI
 unicorn	SUB-ANI	unicorns
 vampire	SUB
 vegetarian	SUB	vegetarians

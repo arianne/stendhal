@@ -31,23 +31,13 @@ public class ConversationParser {
 	}
 
 	/**
-	 * backward compatible parse function without conversation context.
-	 *
-	 * @param text
-	 * @return
-	 */
-	public static Sentence parse(final String text) {
-		return parse(text, null);
-	}
-
-	/**
 	 * Return the sentence in normalized form.
 	 * 
 	 * @param text
 	 * @return
 	 */
 	public static String normalize(String text) {
-		return parse(text, null).getNormalized();
+		return parse(text).getNormalized();
 	}
 
 	/**
@@ -57,7 +47,17 @@ public class ConversationParser {
 	 * @return expression
 	 */
 	public static Expression createTriggerExpression(String text) {
-		return parse(text, null).getTriggerExpression();
+		return parse(text).getTriggerExpression();
+	}
+
+	/**
+	 * Parse function without conversation context.
+	 *
+	 * @param text
+	 * @return
+	 */
+	public static Sentence parse(final String text) {
+		return parse(text, new ConversationContext());
 	}
 
 	/** A cache to hold pre-parsed matching Sentences. */
@@ -92,7 +92,6 @@ public class ConversationParser {
 	 * @return Sentence
 	 */
 	public static Sentence parse(String text, ConversationContext ctx) {
-		boolean forMatching = ctx != null? ctx.isForMatching() : false;
 
 		// 1.) determine sentence type from trailing punctuation
 		Sentence sentence = new Sentence();
@@ -107,20 +106,22 @@ public class ConversationParser {
 		sentence.parse(parser);
 
 		// 3.) classify word types and normalize words
-		sentence.classifyWords(parser, forMatching);
+		sentence.classifyWords(parser, ctx.isForMatching(), ctx.getPersistNewWords());
 
 		// 4.) evaluate sentence type from word order
 		sentence.evaluateSentenceType();
 
-		// 5.) merge words to form a simpler sentence structure
-		sentence.mergeWords(forMatching);
+		if (ctx.getMergeExpressions()) {
+    		// 5.) merge words to form a simpler sentence structure
+    		sentence.mergeWords(ctx.isForMatching());
 
-		if (!forMatching) {
-    		// 6.) standardize sentence type
-    		sentence.standardizeSentenceType();
+    		if (!ctx.isForMatching()) {
+        		// 6.) standardize sentence type
+    			sentence.standardizeSentenceType();
 
-    		// 7.) replace grammatical constructs with simpler ones
-    		sentence.performaAliasing();
+        		// 7.) replace grammatical constructs with simpler ones
+        		sentence.performaAliasing();
+    		}
 		}
 
 		sentence.setError(parser.getError());
