@@ -71,41 +71,39 @@ public class OutfitChangerAdder {
 					@Override
 					public void fire(Player player, Sentence sentence,
 							SpeakerNPC engine) {
-						// find out what the player wants to wear
-						String item = sentence.getObjectName();
-						/*
-						 * We ignore any amounts and skip the numeric
-						 * expressions. sentence.getAmount();
-						 */
-
 						if (sentence.hasError()) {
 							engine.say("Sorry, I did not understand you. "
 									+ sentence.getErrorString());
-						} else if (item == null
-								&& behaviour.dealtItems().size() == 1) {
-							// The NPC only offers one type of outfit, so
-							// it's clear what the player wants.
-							item = behaviour.dealtItems().iterator().next();
 						}
+
+						// find out what the player wants to wear
+						boolean found = behaviour.findMatchingName(sentence);
 
 						// find out if the NPC sells this item, and if so,
 						// how much it costs.
-						if (behaviour.hasItem(item)) {
-							behaviour.chosenItem = item;
+						if (!found && behaviour.dealtItems().size() == 1) {
+                			// The NPC only offers one type of outfit, so
+                			// it's clear what the player wants.
+							behaviour.chosenItem = behaviour.dealtItems().iterator().next();
+							found = true;
+						}
+
+						if (found) {
+							// We ignore any amounts.
 							behaviour.setAmount(1);
 
-							int price = behaviour.getUnitPrice(item)
+							int price = behaviour.getUnitPrice(behaviour.chosenItem)
 									* behaviour.getAmount();
 
-							engine.say("A " + item + " will cost " + price
+							engine.say("A " + behaviour.chosenItem + " will cost " + price
 									+ ". Do you want to " + command + " it?");
 						} else {
-							if (item == null) {
+							if (behaviour.chosenItem == null) {
 								engine.say("Please tell me what you want to "
 										+ command + ".");
 							} else {
 								engine.say("Sorry, I don't sell "
-										+ Grammar.plural(item));
+										+ Grammar.plural(behaviour.chosenItem));
 							}
 							engine.setCurrentState(ConversationStates.ATTENDING);
 						}

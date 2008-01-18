@@ -11,7 +11,10 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc.behaviour.impl;
 
-import games.stendhal.common.MathHelper;
+import games.stendhal.server.entity.npc.parser.ExpressionType;
+import games.stendhal.server.entity.npc.parser.NameSearch;
+import games.stendhal.server.entity.npc.parser.Sentence;
+import games.stendhal.server.entity.npc.parser.WordList;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.HashMap;
@@ -39,6 +42,10 @@ public abstract class MerchantBehaviour extends Behaviour {
 
 	public MerchantBehaviour(Map<String, Integer> priceList) {
 		this.priceList = priceList;
+
+		for(String itemName : priceList.keySet()) {
+			WordList.getInstance().registerName(itemName, ExpressionType.OBJECT);
+		}
 	}
 
 	/**
@@ -79,9 +86,10 @@ public abstract class MerchantBehaviour extends Behaviour {
 	 *            a String containing an integer number. If it isn't an integer,
 	 *            the amount will be set to 1.
 	 */
-	public void setAmount(String text) {
-		setAmount(MathHelper.parseIntDefault(text, 1));
-	}
+// TODO unused function
+//	public void setAmount(String text) {
+//		setAmount(MathHelper.parseIntDefault(text, 1));
+//	}
 
 	/**
 	 * Sets the amount that the player wants to buy from the NPC.
@@ -118,7 +126,34 @@ public abstract class MerchantBehaviour extends Behaviour {
 		}
 	}
 
+	/**
+	 * Return item amount.
+	 *
+	 * @return
+	 */
 	public int getAmount() {
 		return amount;
 	}
+
+	/**
+	 * Search for a matching item name in the available item names.
+	 *
+	 * @param sentence
+	 * @return true if found match
+	 */
+	public boolean findMatchingName(Sentence sentence) {
+		NameSearch search = sentence.findMatchingName(priceList.keySet());
+
+		if (search.found()) {
+			// Store found item.
+    		chosenItem = search.getName();
+    		amount = search.getAmount();
+		} else {
+			// If there was no match, return the given object name instead. 
+    		chosenItem = sentence.getObjectNameOrExpressionAfterVerb();
+    		amount = 1;
+		}
+
+		return search.found();
+    }
 }

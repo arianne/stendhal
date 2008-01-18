@@ -7,7 +7,6 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.npc.parser.Sentence;
-import games.stendhal.server.entity.npc.parser.Expression;
 import games.stendhal.server.entity.player.Player;
 
 import org.apache.log4j.Logger;
@@ -41,45 +40,41 @@ public class SellerAdder {
 					@Override
 					public void fire(Player player, Sentence sentence,
 							SpeakerNPC engine) {
-						// find out what the player wants to buy, and how much
-						// of it
-						Expression object = sentence.getObject(0);
-						int amount = object!=null? object.getAmount(): 1;
-						String item = sentence.getObjectName();
-
 						if (sentence.hasError()) {
 							engine.say("Sorry, I did not understand you. "
 									+ sentence.getErrorString());
 							engine.setCurrentState(ConversationStates.ATTENDING);
-						} else if (behaviour.hasItem(item)) {
-							// find out if the NPC sells this item, and if so,
-							// how much it costs.
-							behaviour.chosenItem = item;
-							if (amount > 1000) {
-								logger.warn("Decreasing very large amount of "
-										+ amount + " to 1 for player "
-										+ player.getName() + " talking to "
-										+ engine.getName() + " saying "
-										+ sentence);
-								amount = 1;
-							}
-							behaviour.setAmount(amount);
-
-							int price = behaviour.getUnitPrice(item)
-									* behaviour.getAmount();
-
-							engine.say(Grammar.quantityplnoun(amount, item)
-									+ " will cost " + price
-									+ ". Do you want to buy "
-									+ Grammar.itthem(amount) + "?");
 						} else {
-							if (item == null) {
-								engine.say("Please tell me what you want to buy.");
-							} else {
-								engine.say("Sorry, I don't sell "
-										+ Grammar.plural(item));
-							}
-							engine.setCurrentState(ConversationStates.ATTENDING);
+							// find out what the player wants to buy, and how much of it
+							if (behaviour.findMatchingName(sentence)) {
+    							// find out if the NPC sells this item, and if so,
+    							// how much it costs.
+    							if (behaviour.getAmount() > 1000) {
+    								logger.warn("Decreasing very large amount of "
+    										+ behaviour.getAmount() + " to 1 for player "
+    										+ player.getName() + " talking to "
+    										+ engine.getName() + " saying "
+    										+ sentence);
+    								behaviour.setAmount(1);
+    							}
+
+    							int price = behaviour.getUnitPrice(behaviour.chosenItem)
+    									* behaviour.getAmount();
+
+    							engine.say(Grammar.quantityplnoun(behaviour.getAmount(), behaviour.chosenItem)
+    									+ " will cost " + price
+    									+ ". Do you want to buy "
+    									+ Grammar.itthem(behaviour.getAmount()) + "?");
+    						} else {
+    							if (behaviour.chosenItem == null) {
+    								engine.say("Please tell me what you want to buy.");
+    							} else {
+    								engine.say("Sorry, I don't sell "
+    										+ Grammar.plural(behaviour.chosenItem));
+    							}
+
+    							engine.setCurrentState(ConversationStates.ATTENDING);
+    						}
 						}
 					}
 				});

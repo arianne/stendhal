@@ -34,6 +34,33 @@ import org.apache.log4j.Logger;
  *
  * @author Martin Fuchs
  */
+
+/*
+[21:18] <kymara> i have a question about the word list
+[21:19] <kymara> if someone makes a new shop selling items which aren't already sold, or a quest with new items, do we have any guarantee it will work?
+[21:19] <kymara> or do we now have to add shop inventories to the word list too?
+[21:20] <kymara> are there any rules for whether we'll have to add words or not?
+[21:22] <martin_> it will work in most cases without any additional intervention, but it is better to add the new vocabulary to be sure the words are assigned correct types
+[21:22] <martin_> it works this way:
+[21:22] <martin_> at program start the item and creature lists are read from xml
+[21:23] <martin_> the same time this names are registered in the word list, if not already present
+[21:23] <martin_> items are treated as objects
+[21:23] <martin_> and creatures are treated as subjects
+[21:23] <martin_> this is the default type assignment
+[21:23] <martin_> so one should from time to time into the database for still untyped word entries
+[21:24] <durkham> one should <verb missing>
+[21:24] <martin_> this is why i implemented the script ListUnknownWords.class
+[21:24] <martin_> so one should look from time to time into the database for still untyped word entries
+[21:24] <martin_> by executing /script ListUnknownWords.class
+[21:25] <martin_> currently i added all words, which are present in item and creature names
+[21:25] <martin_> if you add a completely new one, it will be recognized as new
+[21:26] <durkham> so we do not take care when creating new items or creatures ?
+[21:26] <durkham> as it is handled automatically
+[21:26] <martin_> normally it's no problem
+[21:27] <martin_> only for some ambiguess words
+[21:27] <martin_> then we have to look into it and use some brain :)
+*/
+
 public class WordList {
 
 	private static final Logger logger = Logger.getLogger(WordList.class);
@@ -45,6 +72,8 @@ public class WordList {
 	static final String VERSION_KEYWORD = "@Version";
 
 	private final Map<String, WordEntry> words = new TreeMap<String, WordEntry>();
+
+	Set<Sentence> compoundNames = new HashSet<Sentence>();
 
 	private int version = 0;
 
@@ -497,13 +526,14 @@ public class WordList {
     			// register the unknown word as new object entry
     			WordEntry entry = words.get(expr.getNormalized());
 
-    			// set the type to the given one and add the "DYN" suffix
+    			// set the type to the given one with added "DYN" suffix
     			ExpressionType type = new ExpressionType(typeString + ExpressionType.SUFFIX_DYNAMIC);
     			entry.setType(type);
     			expr.setType(type);
     		} else if (expr.isQuestion()) {
-    			logger.warn("object name already registered with incompatible expression type while registering name '" +
-    						name + "': " + expr.getNormalizedWithTypeString());
+    			logger.warn("object name already registered with incompatible expression type while registering name '"
+    						+ name + "': " + expr.getNormalizedWithTypeString()
+    						+ " expected type: " + typeString);
     		}
 
     		if (expr.isPreposition()) {
@@ -523,8 +553,10 @@ public class WordList {
 			}
 		}
 
-		//TODO mf - register compound item names to use them later when merging words
-
+		// register compound item names to use them later when merging words
+		if (item.getExpressions().size() > 1) {
+			compoundNames.add(item);
+		}
 	}
 
 	private static boolean checkNameCompatibleLastType(ExpressionType lastType, String typeString) {
@@ -540,9 +572,12 @@ public class WordList {
 			return true;
 		}
 
-		// Ignore words like "chicken" and "incorporeal armor", which are registered as objects,
+		// Ignore words like "chicken", "cat" and "incorporeal armor", which are registered as objects,
 		// but also used as subjects.
 		if (lastType.isObject() && typeString.equals(ExpressionType.SUBJECT)) {
+			return true;
+		}
+		if (lastType.isSubject() && typeString.equals(ExpressionType.OBJECT)) {
 			return true;
 		}
 

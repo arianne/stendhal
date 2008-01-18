@@ -40,6 +40,8 @@ public class ExpressionType {
 
 	public static final String DYNAMIC = "DYN"; // expression dynamically defined at runtime
 
+	public static final String UNKNOWN = ""; // expression withoput type
+
 	// derived string type constants
 	public static final String SUFFIX_GERUND = SUFFIX + GERUND;
 	public static final String SUFFIX_COLOR = SUFFIX + COLOR;

@@ -4,6 +4,8 @@ import games.stendhal.common.Grammar;
 import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.parser.ExpressionType;
+import games.stendhal.server.entity.npc.parser.WordList;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
 
@@ -131,6 +133,10 @@ public class ProducerBehaviour extends Behaviour {
 		this.requiredResourcesPerItem = requiredResourcesPerItem;
 		this.productionTimePerItem = productionTimePerItem;
 		this.productBound = productBound;
+
+		for(String itemName : requiredResourcesPerItem.keySet()) {
+			WordList.getInstance().registerName(itemName, ExpressionType.OBJECT);
+		}
 	}
 
 	public String getQuestSlot() {

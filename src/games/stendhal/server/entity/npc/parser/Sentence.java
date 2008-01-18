@@ -5,6 +5,7 @@ import games.stendhal.common.Grammar;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 import java.util.regex.Pattern;
 
 /**
@@ -91,6 +92,15 @@ public class Sentence implements Iterable<Expression> {
 	}
 
 	/**
+	 * Return the list of expressions.
+	 *
+	 * @return Expression iterator
+	 */
+	public List<Expression> getExpressions() {
+		return expressions;
+	}
+
+	/**
 	 * Return an iterator over all expressions.
 	 *
 	 * @return Expression iterator
@@ -100,10 +110,10 @@ public class Sentence implements Iterable<Expression> {
 	}
 
 	/**
-	 * Count the number of words matching the given type string.
+	 * Count the number of Expressions matching the given type string.
 	 * 
 	 * @param typePrefix
-	 * @return
+	 * @return number of matching Expressions
 	 */
 	private int countExpressions(String typePrefix) {
 		int count = 0;
@@ -120,11 +130,30 @@ public class Sentence implements Iterable<Expression> {
 	/**
 	 * Return verb [i] of the sentence.
 	 * 
-	 * @return subject
+	 * @return verb
 	 */
 	public Expression getExpression(int i, String typePrefix) {
 		for (Expression w : expressions) {
 			if (w.getTypeString().startsWith(typePrefix)) {
+				if (i == 0) {
+					return w;
+				}
+
+				--i;
+			}
+		}
+
+		return null;
+	}
+
+	/**
+	 * Return unknown word [i] of the sentence.
+	 * 
+	 * @return subject
+	 */
+	public Expression getUnknownTypeExpression(int i) {
+		for (Expression w : expressions) {
+			if (w.getTypeString().length() == 0) {
 				if (i == 0) {
 					return w;
 				}
@@ -1139,6 +1168,86 @@ public class Sentence implements Iterable<Expression> {
 			// Convert the joker string into a regular expression and let the Pattern class do the work.
 			return Pattern.compile(matchString.replace(JOKER, ".*")).matcher(str).find();
 		}
+    }
+
+	/**
+	 * Search for a matching item name in the given Sentence 
+	 * 
+	 * @param sentence
+	 * @param names
+	 * @return item name, or null if no match
+	 */
+	public NameSearch findMatchingName(Set<String> names) {
+		NameSearch ret = new NameSearch(names);
+
+		// check first object of the sentence
+		Expression item = getObject(0);
+
+		if (item != null) {
+			if (ret.search(item)) {
+				return ret;
+			}
+		}
+
+		if (!ret.found()) {
+			// check first subject
+			item = getSubject(0);
+
+			if (item != null) {
+				if (ret.search(item)) {
+					return ret;
+    			}
+			}
+		}
+
+		if (!ret.found()) {
+			// check second subject, e.g. in "i buy cat"
+			item = getSubject(1);
+
+			if (item != null) {
+    			if (ret.search(item)) {
+    				return ret;
+    			}
+			}
+		}
+
+		return ret;
+    }
+
+	/**
+	 * Return the name of the object in the Sentence or look for another
+	 * word following the verb.
+	 *
+	 * @return String or null if nothing found
+	 */
+	public String getObjectNameOrExpressionAfterVerb() {
+		String ret = getObjectName();
+
+		// If we could not find an object, look for the expression following the verb.
+		if (ret == null) {
+			Expression verb = getVerb();
+
+			if (verb != null) {
+				Iterator<Expression> it = expressions.iterator();
+
+    			if (it.hasNext() && verb==it.next() && it.hasNext()) {
+    				Expression nextExpression = it.next();
+
+       				ret = nextExpression.getNormalized();
+    			}
+			}
+		}
+
+		// If this still didn't work, take the first unknown word.
+		if (ret == null) {
+			Expression unknown = getUnknownTypeExpression(0);
+
+			if (unknown != null) {
+				ret = unknown.getNormalized();
+			}
+		}
+
+		return ret;
     }
 
 }
