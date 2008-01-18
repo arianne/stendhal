@@ -9,12 +9,12 @@ public class TestPortalTest {
 
 	@Test
 	public void isDestinationOf() throws Exception {
-		TestPortal emptyPortal = new TestPortal();
+		PortalTestObject emptyPortal = new PortalTestObject();
 
 		assertFalse(emptyPortal.isDestinationOf(null));
 		assertFalse(emptyPortal.isDestinationOf(emptyPortal));
-		TestPortal source = new TestPortal("1", "source", "1", "target");
-		TestPortal target = new TestPortal("1", "target", "", "");
+		PortalTestObject source = new PortalTestObject("1", "source", "1", "target");
+		PortalTestObject target = new PortalTestObject("1", "target", "", "");
 		assertFalse(emptyPortal.isDestinationOf(target));
 		assertTrue(target.isDestinationOf(source));
 		assertFalse(source.isDestinationOf(target));
@@ -24,11 +24,11 @@ public class TestPortalTest {
 	@Test
 	public void testHasdestinationTest() {
 
-		assertFalse(new TestPortal().hasDestination());
-		assertTrue(new TestPortal("1", "target", "any", "").hasDestination());
-		assertTrue(new TestPortal("1", "target", "", "any").hasDestination());
-		assertFalse(new TestPortal("1", "target", "", "").hasDestination());
-		assertTrue(new TestPortal("1", "source", "1", "target")
+		assertFalse(new PortalTestObject().hasDestination());
+		assertTrue(new PortalTestObject("1", "target", "any", "").hasDestination());
+		assertTrue(new PortalTestObject("1", "target", "", "any").hasDestination());
+		assertFalse(new PortalTestObject("1", "target", "", "").hasDestination());
+		assertTrue(new PortalTestObject("1", "source", "1", "target")
 				.hasDestination());
 
 	}

@@ -15,7 +15,7 @@ import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 
 public class PortalMatchTest {
-	private LinkedList<TestPortal> portals = new LinkedList<TestPortal>();
+	private LinkedList<PortalTestObject> portals = new LinkedList<PortalTestObject>();
 
 	@Test
 	public void testread() throws Exception {
@@ -53,9 +53,9 @@ public class PortalMatchTest {
 
 	}
 
-	LinkedList<TestPortal> proceedDocument(Document xmldoc) {
+	LinkedList<PortalTestObject> proceedDocument(Document xmldoc) {
 		// normalize text representation
-		LinkedList<TestPortal> tempList = new LinkedList<TestPortal>();
+		LinkedList<PortalTestObject> tempList = new LinkedList<PortalTestObject>();
 		String zone = "";
 		String destZone = "";
 		String destName = "";
@@ -80,20 +80,20 @@ public class PortalMatchTest {
 
 					}
 				}
-				tempList.add(new TestPortal(zone, name, destZone, destName));
+				tempList.add(new PortalTestObject(zone, name, destZone, destName));
 
 			}
 		} // end of for loop with s var
 		return tempList;
 	}
 
-	public boolean isValid(LinkedList<TestPortal> testList) {
+	public boolean isValid(LinkedList<PortalTestObject> testList) {
 		boolean result = true;
 
-		for (TestPortal x : testList) {
+		for (PortalTestObject x : testList) {
 			if (x.hasDestination()) {
 				boolean founddestination = false;
-				for (TestPortal y : testList) {
+				for (PortalTestObject y : testList) {
 					if (y.isDestinationOf(x)) {
 						founddestination = true;
 					}
