@@ -21,8 +21,6 @@ public class ListUnknownWords extends ScriptImpl {
 
 	@Override
 	public void execute(Player admin, List<String> args) {
-		super.execute(admin, args);
-
 		IDatabase db = StendhalPlayerDatabase.getDatabase();
 		Transaction trans = db.getTransaction();
 		Accessor acc = trans.getAccessor();
@@ -33,7 +31,8 @@ public class ListUnknownWords extends ScriptImpl {
 	        ResultSet res = acc.query(
         		"select normalized\n"
 	        		+ "from	words w\n"
-	        		+ "where type = ''"
+	        		+ "where type = ''\n"
+	        		+ "order by normalized"
 	        );
 
 	        while (res.next()) {
