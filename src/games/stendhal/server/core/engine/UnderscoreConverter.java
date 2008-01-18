@@ -139,6 +139,8 @@ public class UnderscoreConverter {
 				return "black duergar";
 			} else if (str.equals("giant elder")) {
 				return "elder giant";
+			} else if (str.equals("chaos sorceror")) {
+				return "chaos sorcerer";
 			} else {
 				return str;
 			}

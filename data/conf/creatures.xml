@@ -6868,7 +6868,7 @@
     </ai>
   </creature>
 
- <creature name="amazoness elite coastguard">
+  <creature name="amazoness elite coastguard">
     <type class="amazon" subclass="amazoness_elite_coastguard" tileid="amazon.png:5"/>
     <description></description>
     <attributes>
@@ -6987,7 +6987,7 @@
     </ai>
   </creature>
 
- <creature name="amazoness bodyguard">
+  <creature name="amazoness bodyguard">
     <type class="amazon" subclass="amazoness_bodyguard" tileid="amazon.png:2"/>
     <description></description>
     <attributes>
@@ -7077,7 +7077,7 @@
     </ai>
   </creature>
 
- <creature name="amazoness coastguard mistress">
+  <creature name="amazoness coastguard mistress">
     <type class="amazon" subclass="amazoness_coastguard_master" tileid="amazon.png:9"/>
     <description></description>
     <attributes>
@@ -7308,7 +7308,7 @@
     </ai>
   </creature>
 
- <creature name="amazoness commander">
+  <creature name="amazoness commander">
     <type class="amazon" subclass="amazoness_commander" tileid="amazon.png:4"/>
     <description></description>
     <attributes>
@@ -7924,7 +7924,7 @@
     </ai>
   </creature>
 
- <creature name="amazoness vigilance">
+  <creature name="amazoness vigilance">
     <type class="amazon" subclass="amazoness_vigilance" tileid="amazon.png:8"/>
     <description></description>
     <attributes>
@@ -8117,7 +8117,7 @@
     </ai>
   </creature>
 
-  <creature name="chaos sorceror">
+  <creature name="chaos sorcerer">
     <type class="chaos" subclass="chaos_sorceror" tileid="chaos.png:6"/>
     <description></description>
     <attributes>
@@ -8180,7 +8180,7 @@
     </ai>
   </creature>
 
- <creature name="amazoness imperator">
+  <creature name="amazoness imperator">
     <type class="amazon" subclass="amazoness_imperator" tileid="amazon.png:7"/>
     <description></description>
     <attributes>
@@ -9061,7 +9061,7 @@
     </ai>
   </creature>
 
-    <creature name="amazoness giant">
+  <creature name="amazoness giant">
     <type class="giant_human" subclass="amazoness_giant" tileid="giant_human.png:10"/>
     <description></description>
     <attributes>
