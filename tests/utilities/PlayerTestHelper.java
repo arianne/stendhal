@@ -15,6 +15,7 @@ import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.slot.EntitySlot;
+import games.stendhal.server.entity.slot.PlayerSlot;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.common.game.RPObject;
@@ -214,16 +215,18 @@ public class PlayerTestHelper {
 	}
 
 	public static void addEmptySlots(Player player) {
-		player.addSlot(new EntitySlot("bag"));
-		player.addSlot(new EntitySlot("lhand"));
-		player.addSlot(new EntitySlot("rhand"));
-		player.addSlot(new EntitySlot("armor"));
-		player.addSlot(new EntitySlot("head"));
-		player.addSlot(new EntitySlot("legs"));
-		player.addSlot(new EntitySlot("feet"));
-		player.addSlot(new EntitySlot("finger"));
-		player.addSlot(new EntitySlot("cloak"));
-		player.addSlot(new EntitySlot("keyring"));
+//		"bag", "rhand", "lhand", "head", "armor",
+//		"legs", "feet", "finger", "cloak", "keyring"
+		player.addSlot(new PlayerSlot("bag"));
+		player.addSlot(new PlayerSlot("lhand"));
+		player.addSlot(new PlayerSlot("rhand"));
+		player.addSlot(new PlayerSlot("armor"));
+		player.addSlot(new PlayerSlot("head"));
+		player.addSlot(new PlayerSlot("legs"));
+		player.addSlot(new PlayerSlot("feet"));
+		player.addSlot(new PlayerSlot("finger"));
+		player.addSlot(new PlayerSlot("cloak"));
+		player.addSlot(new PlayerSlot("keyring"));
 		player.addSlot(new RPSlot("!buddy"));
 		player.getSlot("!buddy").add(new RPObject());
 		player.addSlot(new RPSlot("!quests"));
