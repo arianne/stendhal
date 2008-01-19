@@ -9,6 +9,8 @@ import java.util.LinkedList;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
+import marauroa.common.Log4J;
+
 import org.junit.Test;
 import org.w3c.dom.Document;
 
@@ -18,6 +20,7 @@ public class PortalMatchTestTest {
 
 	@Test
 	public void testvalidate() throws Exception {
+		Log4J.init();
 		LinkedList<PortalTestObject> portals = new LinkedList<PortalTestObject>();
 		DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory
 				.newInstance();

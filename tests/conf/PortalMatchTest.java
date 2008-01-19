@@ -1,13 +1,18 @@
 package conf;
 
 import static org.junit.Assert.assertTrue;
-
+import static org.junit.Assert.*;
 import java.io.File;
+import java.io.FileFilter;
 import java.util.LinkedList;
+import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
+import marauroa.common.Log4J;
+
+import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
@@ -15,62 +20,65 @@ import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 
 public class PortalMatchTest {
-	private LinkedList<PortalTestObject> portals = new LinkedList<PortalTestObject>();
+	private static final Logger logger = Logger.getLogger(PortalMatchTest.class); 
+	private final transient List<PortalTestObject> portals = new LinkedList<PortalTestObject>();
 
 	@Test
-	public void testread() throws Exception {
-
+	public void testread() {
+		Log4J.init();
 		try {
 
-			DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
-			DocumentBuilder docBuilder = docBuilderFactory.newDocumentBuilder();
-			// todo:make this read directory content
-			String[] zonesxml = { "ados.xml", "amazon.xml", "athor.xml",
-					"fado.xml", "kalavan.xml", "kikareukin.xml", "kirdneh.xml",
-					"misc.xml", "nalwor.xml", "orril.xml", "semos.xml" };
+			final DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
+			final DocumentBuilder docBuilder = docBuilderFactory.newDocumentBuilder();
+			
+			final File directory = new File("data/conf/zones/");
+			final File[] files = directory.listFiles(new FileFilter() {
 
-			for (int zone = 0; zone < zonesxml.length; zone++) {
-				Document doc = docBuilder.parse(new File("data/conf/zones/"
-						+ zonesxml[zone]));
+				public boolean accept(File file) {
+					return file.getName().endsWith("xml");
+				}
+			});
 
+			assertFalse("files should not be empty", files.length == 0);
+			for (File f : files) {
+				final Document doc = docBuilder.parse(f);
 				portals.addAll(proceedDocument(doc));
 			}
 
 		} catch (SAXParseException err) {
-			System.out.println("** Parsing error" + ", line "
-					+ err.getLineNumber() + ", uri " + err.getSystemId());
-			System.out.println(" " + err.getMessage());
+		
+			fail(err.toString());
 
 		} catch (SAXException e) {
-			Exception x = e.getException();
-			((x == null) ? e : x).printStackTrace();
-
-		} catch (Throwable t) {
-			t.printStackTrace();
+			
+			fail(e.toString());
+		} catch (Exception t) {
+			
+			fail(t.toString());
 		}
 
 		assertTrue("All portals are valid", isValid(portals));
 
 	}
 
-	LinkedList<PortalTestObject> proceedDocument(Document xmldoc) {
+	List<PortalTestObject> proceedDocument(final Document xmldoc) {
 		// normalize text representation
-		LinkedList<PortalTestObject> tempList = new LinkedList<PortalTestObject>();
+		final List<PortalTestObject> tempList = new LinkedList<PortalTestObject>();
 		String zone = "";
 		String destZone = "";
 		String destName = "";
 		String name = "";
 		xmldoc.getDocumentElement().normalize();
 
-		NodeList listOfPortals = xmldoc.getElementsByTagName("portal");
+		final NodeList listOfPortals = xmldoc.getElementsByTagName("portal");
 		if (listOfPortals.getLength() > 0) {
-			listOfPortals.item(0).getAttributes().item(0).toString();
+			
 			for (int s = 0; s < listOfPortals.getLength(); s++) {
 				zone = listOfPortals.item(s).getParentNode().getAttributes().getNamedItem(
 						"name").getNodeValue();
 				name = listOfPortals.item(s).getAttributes().getNamedItem("ref").getNodeValue();
-				listOfPortals.item(s).getNodeName();
-				NodeList listofChildren = listOfPortals.item(s).getChildNodes();
+				
+				final NodeList listofChildren = listOfPortals.item(s).getChildNodes();
 				for (int i = 0; i < listofChildren.getLength(); i++) {
 					if ("destination".equals(listofChildren.item(i).getNodeName())) {
 						destName = listofChildren.item(i).getAttributes().getNamedItem(
@@ -87,7 +95,7 @@ public class PortalMatchTest {
 		return tempList;
 	}
 
-	public boolean isValid(LinkedList<PortalTestObject> testList) {
+	public boolean isValid(final List<PortalTestObject> testList) {
 		boolean result = true;
 
 		for (PortalTestObject x : testList) {
@@ -100,7 +108,7 @@ public class PortalMatchTest {
 
 				}
 				if (!founddestination) {
-					System.out.println(x.toString());
+					logger.warn(x.toString());
 
 				}
 				result = result && founddestination;
