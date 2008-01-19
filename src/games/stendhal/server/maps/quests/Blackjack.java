@@ -55,8 +55,6 @@ public class Blackjack extends AbstractQuest {
 	private StendhalRPZone zone = StendhalRPWorld.get().getZone(
 			"-1_athor_ship_w2");
 
-	private Behaviour behaviour = new Behaviour();
-
 	private void startNewGame(Player player) {
 		cleanUpTable();
 		playerCards.clear();
@@ -338,6 +336,8 @@ public class Blackjack extends AbstractQuest {
 				        if (sentence.hasError()) {
 				        	npc.say(sentence.getErrorString() + " Just tell me how much you want to risk, for example #stake #50.");
 				        } else {
+				        	Behaviour behaviour = new Behaviour();
+
 							behaviour.parseRequest(sentence);
 
 							stake = behaviour.getAmount();

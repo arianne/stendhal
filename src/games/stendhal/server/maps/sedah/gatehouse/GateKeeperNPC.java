@@ -6,8 +6,8 @@ import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.behaviour.impl.Behaviour;
 import games.stendhal.server.entity.npc.parser.Sentence;
-import games.stendhal.server.entity.npc.parser.Expression;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Map;
@@ -72,44 +72,44 @@ public class GateKeeperNPC implements ZoneConfigurator {
 				addReply("bribe", null, new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-						Expression object = sentence.getObject(0);
-						int amount = object != null ? object.getAmount() : 1;
-				        String item = sentence.getObjectName();
-
 				        if (sentence.hasError()) {
 				        	engine.say(sentence.getErrorString() + " Are you trying to trick me? Bribe me some number of coins!");
-				        } else if (item == null) {
-							// player only said 'bribe'
-							engine.say("A bribe of no money is no bribe! Bribe me with some amount!");
-				        } else if (!item.toLowerCase().equals("money")) {
-							// This bit is just in case the player says 'bribe X potatoes', not money
-							engine.say("You can't bribe me with anything but money!");
-						} else {
-							try {
-								if (amount < 300) {
-									// Less than 300 is not money for him
-									engine.say("You think that amount will persuade me?! That's more than my job is worth!");
-								} else {
-									if (player.isEquipped("money", amount)) {
-										player.drop("money", amount);
-										engine.say("Ok, I got your money, here's the key.");
-										Item key = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
-												"sedah gate key");
-										player.equip(key, true);
-									} else {
-										// player bribed enough but doesn't have
-										// the cash
-										engine.say("Criminal! You don't have "
-												+ amount + " money!");
-									}
+				        } else {
+				        	Behaviour behaviour = new Behaviour("money");
+
+				        	if (behaviour.parseRequest(sentence) || behaviour.getChosenItemName() == null) {
+					        	int amount = behaviour.getAmount();
+
+					        	if (sentence.getExpressions().size() == 1) {
+            						// player only said 'bribe'
+            						engine.say("A bribe of no money is no bribe! Bribe me with some amount!");
+					        	} else {
+					        		if (amount < 300) {
+    									// Less than 300 is not money for him
+    									engine.say("You think that amount will persuade me?! That's more than my job is worth!");
+    								} else {
+    									if (player.isEquipped("money", amount)) {
+    										player.drop("money", amount);
+    										engine.say("Ok, I got your money, here's the key.");
+    										Item key = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
+    												"sedah gate key");
+    										player.equip(key, true);
+    									} else {
+    										// player bribed enough but doesn't have
+    										// the cash
+    										engine.say("Criminal! You don't have "
+    												+ amount + " money!");
+    									}
+    								}
 								}
-							} catch (NumberFormatException e) {
-								// player said bribe followed by a non integer
-								engine.say("Are you trying to trick me? Bribe me some number of coins!");
-							}
-						}
+        			        } else {
+        						// This bit is just in case the player says 'bribe X potatoes', not money
+        						engine.say("You can't bribe me with anything but money!");
+        					}
+			        	}
 					}
 				});
+
 				addGoodbye("Bye. Don't say I didn't warn you!");
 			}
 		};
