@@ -27,7 +27,7 @@ public class Sentence implements Iterable<Expression> {
 
 	private SentenceType sentenceType = SentenceType.UNDEFINED;
 
-	/** Joker String used in pattern matches. */
+	/** JOKER is a joker String used in pattern matches. */
 	private static final String JOKER = "*";
 
 	private String error = null;
@@ -692,7 +692,7 @@ public class Sentence implements Iterable<Expression> {
 
 	/**
 	 * Evaluate the sentence type from word order.
-	 * @return 
+	 * @return SentenceType
 	 */
 	SentenceType evaluateSentenceType() {
 		Iterator<Expression> it = expressions.iterator();
@@ -757,6 +757,8 @@ public class Sentence implements Iterable<Expression> {
 	 * @param isForMatching 
 	 */
 	void mergeWords(boolean isForMatching) {
+
+		//TODO mf - use WordList.compoundNames to merge compound names
 
 		// first merge three word expressions of the form "... of ..."
 		mergeThreeWordExpressions(isForMatching);
