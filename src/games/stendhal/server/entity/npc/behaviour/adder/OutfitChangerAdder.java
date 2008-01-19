@@ -103,7 +103,7 @@ public class OutfitChangerAdder {
 										+ command + ".");
 							} else {
 								engine.say("Sorry, I don't sell "
-										+ Grammar.plural(behaviour.chosenItem));
+										+ Grammar.plural(behaviour.chosenItem) + ".");
 							}
 							engine.setCurrentState(ConversationStates.ATTENDING);
 						}

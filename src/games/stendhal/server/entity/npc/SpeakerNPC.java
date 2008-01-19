@@ -57,7 +57,7 @@ import org.apache.log4j.Logger;
  * fire(Player player, String text, SpeakerNPC npc) { int i=text.indexOf(" ");
  * String item=text.substring(i+1); if(item.equals("sword")) { npc.say(item+"
  * costs 10 coins. Do you want to buy?"); } else { npc.say("Sorry, I don't sell " +
- * item); npc.setActualState(ConversationStates.ATTENDING); } } });
+ * item + "."); npc.setActualState(ConversationStates.ATTENDING); } } });
  * 
  * Now the hard part. We listen to "buy", so we need to process the text, and
  * for that we use the ChatAction class, we create a new class that will handle

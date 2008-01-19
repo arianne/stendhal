@@ -70,7 +70,7 @@ public class SellerAdder {
     								engine.say("Please tell me what you want to buy.");
     							} else {
     								engine.say("Sorry, I don't sell "
-    										+ Grammar.plural(behaviour.chosenItem));
+    										+ Grammar.plural(behaviour.chosenItem) + ".");
     							}
 
     							engine.setCurrentState(ConversationStates.ATTENDING);
