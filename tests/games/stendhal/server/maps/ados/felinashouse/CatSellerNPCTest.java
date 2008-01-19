@@ -1,4 +1,4 @@
-package games.stendhal.server.maps.quests;
+package games.stendhal.server.maps.ados.felinashouse;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -40,9 +40,6 @@ public class CatSellerNPCTest {
 
 		CatSellerNPC bar = new CatSellerNPC();
 		bar.configureZone(zone, null);
-
-		// load items to handle money
-		world.getRuleManager().getEntityManager();
 	}
 
 	@AfterClass
@@ -98,6 +95,15 @@ public class CatSellerNPCTest {
 
 		assertTrue(en.step(player, "buy dog"));
 		assertEquals("Sorry, I don't sell dogs.", npc.get("text"));
+
+		assertTrue(en.step(player, "buy house"));
+		assertEquals("Sorry, I don't sell houses.", npc.get("text"));
+
+		assertTrue(en.step(player, "buy someunknownthing"));
+		assertEquals("Sorry, I don't sell someunknownthings.", npc.get("text"));
+
+		assertTrue(en.step(player, "buy a bottle of wine"));
+		assertEquals("Sorry, I don't sell bottles of wine.", npc.get("text"));
 
 		assertTrue(en.step(player, "buy cat"));
 		assertEquals("1 cat will cost 100. Do you want to buy it?", npc.get("text"));
