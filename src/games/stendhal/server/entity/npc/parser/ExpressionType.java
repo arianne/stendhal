@@ -306,34 +306,39 @@ public class ExpressionType {
 	 */
 	public ExpressionType merge(final ExpressionType other) {
 		String newTypeString = typeString;
+		boolean modified = false;
 
 		if (other.hasColor() && !hasColor()) {
 			newTypeString += SUFFIX_COLOR;
+			modified = true;
 		}
 
 		if (other.hasQuestion() && !hasQuestion()) {
 			newTypeString += SUFFIX_QUESTION;
+			modified = true;
 		}
 
 		if (other.isConditional() && !isConditional()) {
 			newTypeString += SUFFIX_CONDITIONAL;
+			modified = true;
 		}
 
 		if (other.isPronoun() && !isPronoun()) {
 			newTypeString += SUFFIX_PRONOUN;
+			modified = true;
 		}
 
 		if (other.isNegated() != isNegated()) {
 			newTypeString += SUFFIX_NEGATED;
+			modified = true;
 		}
 
 		if (other.isDynamic() && !isDynamic()) {
 			newTypeString += SUFFIX_DYNAMIC;
+			modified = true;
 		}
 
-		// Check if there was any change of the type, then
-		// we must create and return a new ExpressionType object.
-		if (newTypeString != typeString) {
+		if (modified) {
 			return new ExpressionType(newTypeString);
 		} else {
 			return this;
