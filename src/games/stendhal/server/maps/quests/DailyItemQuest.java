@@ -80,8 +80,10 @@ public class DailyItemQuest extends AbstractQuest {
 			String questKill = null;
 			String questCount = null;
 			String questLast = null;
-			long delay = 60 * 60 * 24 * 1000; // Milliseconds in a day
-			long expireDelay = 60 * 60 * 24 * 7 * 1000; // Milliseconds in a week
+			// Milliseconds in a day
+			long delay = 60 * 60 * 24 * 1000; 
+			// Milliseconds in a week
+			long expireDelay = 60 * 60 * 24 * 7 * 1000; 
 
 			if (questInfo != null) {
 				String[] tokens = (questInfo + ";0;0;0").split(";");
@@ -160,7 +162,7 @@ public class DailyItemQuest extends AbstractQuest {
 				}
 				engine.say("Good work! Let me thank you on behalf of the people of Ados!");
 				player.addXP(reward);
-				questCount = "" + (new Integer(questCount) + 1);
+				questCount = "" + (Integer.valueOf(questCount).intValue() + 1);
 				questLast = "" + (new Date()).getTime();
 				player.setQuest("daily_item", "done" + ";" + questLast + ";"
 						+ questCount);
@@ -180,7 +182,8 @@ public class DailyItemQuest extends AbstractQuest {
 			String questKill = null;
 			String questCount = null;
 			String questLast = null;
-			long expireDelay = 60 * 60 * 24 * 7 * 1000; // Milliseconds in a week
+			// Milliseconds in a week
+			long expireDelay = 60 * 60 * 24 * 7 * 1000; 
 
 			if (questInfo != null) {
 				String[] tokens = (questInfo + ";0;0;0").split(";");
