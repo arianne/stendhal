@@ -39,6 +39,9 @@ public class SellingTest {
 
 		BarMaidNPC bar = new BarMaidNPC();
 		bar.configureZone(zone, null);
+
+		// load items to handle money
+		world.getRuleManager().getEntityManager();
 	}
 
 	@AfterClass
@@ -89,6 +92,12 @@ public class SellingTest {
 
 		assertTrue(en.step(player, "offer"));
 		assertEquals("I buy cheese, meat, spinach, ham, flour, and porcini.", npc.get("text"));
+
+		assertTrue(en.step(player, "sell"));
+		assertEquals("Please tell me what you want to sell.", npc.get("text"));
+
+		assertTrue(en.step(player, "sell house"));
+		assertEquals("Sorry, I don't buy any houses.", npc.get("text"));
 
 		assertTrue(en.step(player, "sell cheese"));
 		assertEquals("1 piece of cheese is worth 5. Do you want to sell it?", npc.get("text"));
