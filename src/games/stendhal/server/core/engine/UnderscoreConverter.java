@@ -70,6 +70,8 @@ public class UnderscoreConverter {
 		String value = object.get(key);
 
 		String newValue = transform(value);
+
+		// As transform() just returns the unchanged object, we can use "!=" and don't need to use equals().
 		if (newValue != value) {
 			object.put(key, newValue);
 			logger.info("renamed attribute '" + key + "' value '" + value + "' to '" + newValue + "'");
@@ -114,7 +116,7 @@ public class UnderscoreConverter {
 	 * 
 	 * @param str
 	 * @return transformed String if str contained an underscore,
-	 * 			or unchanged String
+	 * 			or unchanged String object
 	 * 			or null if str was null
 	 */
 	public static String transform(String str) {
