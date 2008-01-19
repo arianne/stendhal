@@ -54,7 +54,7 @@ public abstract class RPEntity extends GuidedEntity {
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(RPEntity.class);
 
-	protected static Statistics stats;
+	private static Statistics stats;
 
 	private String name;
 
@@ -165,7 +165,7 @@ public abstract class RPEntity extends GuidedEntity {
 	}
 
 	@Override
-	public void finalize() {
+	protected void finalize() {
 		if (name != null) {
 			WordList.getInstance().unregisterSubjectName(name);
 		}
@@ -631,12 +631,15 @@ public abstract class RPEntity extends GuidedEntity {
 
 	/**
 	 * Returns true if this RPEntity is attackable.
+	 * @return 
 	 */
 	public boolean isAttackable() {
 		return true;
 	}
 
-	/** Modify the entity to order to attack the target entity. */
+	/** Modify the entity to order to attack the target entity. 
+	 * @param target 
+	 */
 	public void attack(RPEntity target) {
 		put("target", target.getID().getObjectID());
 		attackTarget = target;
@@ -725,6 +728,8 @@ public abstract class RPEntity extends GuidedEntity {
 	/**
 	 * This method is called when this entity has been attacked by Entity
 	 * attacker and it has been damaged with damage points.
+	 * @param attacker 
+	 * @param damage 
 	 */
 	public void onDamaged(Entity attacker, int damage) {
 		logger.debug("Damaged " + damage + " points by " + attacker.getID());
@@ -1021,17 +1026,23 @@ public abstract class RPEntity extends GuidedEntity {
 		return false;
 	}
 
-	/** Return true if this entity is attacked. */
+	/** Return true if this entity is attacked. 
+	 * @return */
 	public boolean isAttacked() {
 		return !attackSources.isEmpty();
 	}
 
-	/** Return the Entities that are attacking this character. */
+	/** 
+	 * Returns the Entities that are attacking this character. 
+	 * @return 
+	 */
 	public List<Entity> getAttackSources() {
 		return attackSources;
 	}
 
-	/** Return the RPEntities that are attacking this character. */
+	/** Returns the RPEntities that are attacking this character. 
+	 * @return 
+	 */
 	public List<RPEntity> getAttackingRPEntities() {
 		List<RPEntity> list = new ArrayList<RPEntity>();
 
@@ -1369,6 +1380,9 @@ public abstract class RPEntity extends GuidedEntity {
 	/**
 	 * checks if an item of class <i>clazz</i> is equipped in slot <i>slot</i>
 	 * returns true if it is, else false.
+	 * @param slot 
+	 * @param clazz 
+	 * @return 
 	 */
 	public boolean isEquippedItemClass(String slot, String clazz) {
 		if (hasSlot(slot)) {
@@ -1389,6 +1403,9 @@ public abstract class RPEntity extends GuidedEntity {
 	 * returns the first item of class <i>clazz</i> from the slot or
 	 * <code>null</code> if there is no item with the requested clazz returns
 	 * the item or null.
+	 * @param slot 
+	 * @param clazz 
+	 * @return 
 	 */
 	public Item getEquippedItemClass(String slot, String clazz) {
 		if (hasSlot(slot)) {
@@ -1692,6 +1709,7 @@ public abstract class RPEntity extends GuidedEntity {
 
 	/**
 	 * Can this entity do a distance attack on the given target?
+	 * @param target 
 	 * 
 	 * @return true if this entity is armed with a distance weapon and if the
 	 *         target is in range.
