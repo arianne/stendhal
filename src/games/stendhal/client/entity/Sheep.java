@@ -30,7 +30,7 @@ public class Sheep extends DomesticAnimal {
 		if (Rand.rand(100) < chance) {
 			String token = getWeight() > 50 ? soundnames[0][which]
 					: soundnames[1][which];
-			SoundMaster.play(token, x, y); // playSound(token, 20, 35, chance);
+			SoundMaster.play(token, x, y); 
 		}
 	}
 }
