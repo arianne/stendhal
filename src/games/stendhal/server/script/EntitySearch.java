@@ -18,15 +18,15 @@ import marauroa.common.game.RPObject;
 
 /**
  * Search...
- * 
- * /script EntitySearch.class cname <creatureName> Respawn points for archrat
+ * <p>
+ * /script EntitySearch.class cname &lt;creatureName &gt; Respawn points for archrat
  * [1] int_admin_playground [7] -3_orril_dungeon
- * 
+ * <p>
  * /script EntitySearch.class nonrespawn Non-Respawn creatures (minus sheep)
  * balrog (350) 0_semos_plains_n 11 11 death (30) 0_semos_plains_n 27 24
  * black_death (300) 0_semos_plains_n 44 44
- * 
- * /script EntitySearch.class zname <partialZoneName> Respawn points for zone
+ * <p>
+ * /script EntitySearch.class zname &lt; partialZoneName &gt; Respawn points for zone
  * names containing: 0_semos_plain Respawn points for 0_semos_plains_ne [1]
  * gnome(2) [17] rat(0) Respawn points for 0_semos_plains_n_e2 [2] snake(3) [1]
  * gnome(2) ...
