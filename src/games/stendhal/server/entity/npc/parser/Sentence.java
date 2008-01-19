@@ -129,6 +129,8 @@ public class Sentence implements Iterable<Expression> {
 
 	/**
 	 * Return verb [i] of the sentence.
+	 * @param i 
+	 * @param typePrefix 
 	 * 
 	 * @return verb
 	 */
@@ -148,6 +150,7 @@ public class Sentence implements Iterable<Expression> {
 
 	/**
 	 * Return unknown word [i] of the sentence.
+	 * @param i 
 	 * 
 	 * @return subject
 	 */
@@ -207,6 +210,7 @@ public class Sentence implements Iterable<Expression> {
 
 	/**
 	 * Return verb [i] of the sentence.
+	 * @param i 
 	 * 
 	 * @return subject
 	 */
@@ -253,6 +257,7 @@ public class Sentence implements Iterable<Expression> {
 
 	/**
 	 * Return subject [i] of the sentence.
+	 * @param i 
 	 * 
 	 * @return subject
 	 */
@@ -285,6 +290,7 @@ public class Sentence implements Iterable<Expression> {
 
 	/**
 	 * Return object [i] of the parsed sentence (e.g. item to be bought).
+	 * @param i 
 	 * 
 	 * @return object
 	 */
@@ -308,6 +314,7 @@ public class Sentence implements Iterable<Expression> {
 
 	/**
 	 * Return object name [i] of the parsed sentence.
+	 * @param i 
 	 * 
 	 * @return normalized object name
 	 */
@@ -326,6 +333,7 @@ public class Sentence implements Iterable<Expression> {
 
 	/**
 	 * Return the preposition [i] of the parsed sentence.
+	 * @param i 
 	 * 
 	 * @return object
 	 */
@@ -457,6 +465,8 @@ public class Sentence implements Iterable<Expression> {
 	 * Classify word types and normalize words.
 	 * 
 	 * @param parser
+	 * @param isForMatching 
+	 * @param persistNewWords 
 	 */
 	void classifyWords(ConversationParser parser, boolean isForMatching, boolean persistNewWords) {
 		WordList wl = WordList.getInstance();
@@ -682,6 +692,7 @@ public class Sentence implements Iterable<Expression> {
 
 	/**
 	 * Evaluate the sentence type from word order.
+	 * @return 
 	 */
 	SentenceType evaluateSentenceType() {
 		Iterator<Expression> it = expressions.iterator();
@@ -743,6 +754,7 @@ public class Sentence implements Iterable<Expression> {
 
 	/**
 	 * Merge words to form a simpler sentence structure.
+	 * @param isForMatching 
 	 */
 	void mergeWords(boolean isForMatching) {
 
@@ -1098,6 +1110,7 @@ public class Sentence implements Iterable<Expression> {
 	 * like "VER" or "SUB*" in upper case.
 	 *
 	 * @param other
+	 * @param matchStart 
 	 * @return
 	 */
 	private boolean matches(Sentence other, boolean matchStart) {

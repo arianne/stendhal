@@ -21,6 +21,7 @@ public class ConversationParser {
 	/**
 	 * Create a new conversation parser and initialize with the given text
 	 * string.
+	 * @param text 
 	 */
 	public ConversationParser(final String text) {
 		// initialize a new tokenizer with the given text
@@ -143,6 +144,7 @@ public class ConversationParser {
 
 	/**
 	 * Set error flag on parsing problems.
+	 * @param error 
 	 */
 	public void setError(final String error) {
 		if (errorBuffer == null) {

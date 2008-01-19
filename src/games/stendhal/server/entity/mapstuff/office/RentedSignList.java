@@ -16,6 +16,7 @@ public class RentedSignList extends StoreableEntityList<RentedSign> {
 	 * Creates a new RentedSignList.
 	 * 
 	 * @param zone  zone to store the rented signs in
+	 * @param shape 
 	 */
 	public RentedSignList(StendhalRPZone zone, Shape shape) {
 		super(zone, shape, RentedSign.class);

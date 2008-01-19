@@ -57,6 +57,7 @@ public class Sign extends Entity {
 	/**
 	 * Creates a sign based on an existing RPObject. This is just for loading 
 	 * a sign from the database, use the other constructors.
+	 * @param rpobject 
 	 */
 	public Sign(RPObject rpobject) {
 		super(rpobject);
