@@ -137,19 +137,20 @@ public class Sentence implements Iterable<Expression> {
 
 	/**
 	 * Return verb [i] of the sentence.
+	 *
 	 * @param i 
 	 * @param typePrefix 
 	 * 
 	 * @return verb
 	 */
-	public Expression getExpression(int i, String typePrefix) {
+	public Expression getExpression(int idx, String typePrefix) {
+		int i = 0;
+
 		for (Expression w : expressions) {
 			if (w.getTypeString().startsWith(typePrefix)) {
-				if (i == 0) {
+				if (i++ == idx) {
 					return w;
 				}
-
-				--i;
 			}
 		}
 
@@ -162,14 +163,14 @@ public class Sentence implements Iterable<Expression> {
 	 * 
 	 * @return subject
 	 */
-	public Expression getUnknownTypeExpression(int i) {
+	public Expression getUnknownTypeExpression(int idx) {
+		int i = 0;
+
 		for (Expression w : expressions) {
 			if (w.getTypeString().length() == 0) {
-				if (i == 0) {
+				if (i++ == idx) {
 					return w;
 				}
-
-				--i;
 			}
 		}
 

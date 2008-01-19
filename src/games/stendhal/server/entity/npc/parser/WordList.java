@@ -142,7 +142,7 @@ public class WordList {
 			read(reader, null);
 			reader.close();
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.error("error while reading resource file 'words.txt'", e);
 		}
 	}
 
