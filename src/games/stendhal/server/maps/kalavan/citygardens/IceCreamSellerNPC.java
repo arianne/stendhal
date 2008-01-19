@@ -30,7 +30,7 @@ public class IceCreamSellerNPC implements ZoneConfigurator {
 	}
 
 	//
-	// MaidNPC
+	// IceCreamSellerNPC
 	//
 
 	private void buildNPC(StendhalRPZone zone, Map<String, String> attributes) {
