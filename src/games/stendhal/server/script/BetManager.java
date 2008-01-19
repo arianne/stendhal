@@ -12,8 +12,8 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.npc.parser.Expression;
+import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.ArrayList;
@@ -199,7 +199,7 @@ public class BetManager extends ScriptImpl implements TurnListener {
 				betInfo.amount = object != null ? object.getAmount() : 1;
 				betInfo.itemName = sentence.getObjectName(); // cheese
 
-				if (!sentence.getPreposition(0).equals("on")) {
+				if (!sentence.getPreposition(0).getNormalized().equals("on")) {
 					errorMsg = "missing preposition 'on'";
 				}
 
