@@ -103,10 +103,6 @@ public class IceCreamSellerNPCTest {
 		assertTrue(en.step(player, "buy someunknownthing"));
 		assertEquals("Sorry, I don't sell someunknownthings.", npc.get("text"));
 
-//TODO mf - handle correctly "a bunch of socks"
-//		assertTrue(en.step(player, "buy a bunch of socks"));
-//		assertEquals("Sorry, I don't sell bunches of socks.", npc.get("text"));
-
 		assertTrue(en.step(player, "buy icecream"));
 		assertEquals("1 icecream will cost 30. Do you want to buy it?", npc.get("text"));
 
@@ -119,8 +115,8 @@ public class IceCreamSellerNPCTest {
 		assertTrue(en.step(player, "yes"));
 		assertEquals("Sorry, you don't have enough money!", npc.get("text"));
 
-		// equip with enough money to buy one ice cream
-		assertTrue(PlayerTestHelper.equipWithMoney(player, 30));
+		// equip with enough money to buy two ice creams
+		assertTrue(PlayerTestHelper.equipWithMoney(player, 60));
 
 		assertTrue(en.step(player, "buy three icecreams"));
 		assertEquals("3 icecreams will cost 90. Do you want to buy them?", npc.get("text"));
@@ -135,8 +131,14 @@ public class IceCreamSellerNPCTest {
 
 		assertTrue(en.step(player, "yes"));
 		assertEquals("Congratulations! Here is your icecream!", npc.get("text"));
+		assertTrue(player.isEquipped("icecream", 1));
 
-		assertTrue(player.isEquipped("icecream"));
+		assertTrue(en.step(player, "buy icecream"));
+		assertEquals("1 icecream will cost 30. Do you want to buy it?", npc.get("text"));
+
+		assertTrue(en.step(player, "yes"));
+		assertEquals("Congratulations! Here is your icecream!", npc.get("text"));
+		assertTrue(player.isEquipped("icecream", 2));
 	}
 
 	@Test
