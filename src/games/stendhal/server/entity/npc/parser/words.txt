@@ -1,4 +1,4 @@
-# @Version 9
+# @Version 10
 #
 # Word list for the Stendhal conversation parser
 #
@@ -146,6 +146,7 @@ smell	VER
 smile	VER
 sorry	VER
 speak	VER	=say
+stake	VER
 start	VER
 summon	VER
 take	VER
@@ -492,7 +493,6 @@ spinach	OBJ-FOO	spinaches
 sprig	OBJ-AMO	sprigs
 sps	OBJ	sps
 staff	OBJ	staffs
-stake	OBJ	stakes
 star	OBJ	stars
 status	OBJ	stati
 steel	OBJ	steels

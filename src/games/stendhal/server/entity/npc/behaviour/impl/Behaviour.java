@@ -76,7 +76,7 @@ public class Behaviour {
 	 * @param sentence
 	 * @return true if found match
 	 */
-	public boolean findMatchingItem(Sentence sentence) {
+	public boolean parseRequest(Sentence sentence) {
 		NameSearch search = sentence.findMatchingName(itemNames);
 
 		if (search.found()) {

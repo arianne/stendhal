@@ -11,8 +11,8 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPC.ChatAction;
+import games.stendhal.server.entity.npc.behaviour.impl.Behaviour;
 import games.stendhal.server.entity.npc.parser.Sentence;
-import games.stendhal.server.entity.npc.parser.Expression;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Collections;
@@ -54,6 +54,8 @@ public class Blackjack extends AbstractQuest {
 	// TODO: Resolve when requested (incase reloadable zones support added)
 	private StendhalRPZone zone = StendhalRPWorld.get().getZone(
 			"-1_athor_ship_w2");
+
+	private Behaviour behaviour = new Behaviour();
 
 	private void startNewGame(Player player) {
 		cleanUpTable();
@@ -333,12 +335,13 @@ public class Blackjack extends AbstractQuest {
 				ConversationStates.ATTENDING, null, new ChatAction() {
 					@Override
 					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-						Expression object = sentence.getObject(0);
-						stake = object != null? object.getAmount() : 1;
-
 				        if (sentence.hasError()) {
 				        	npc.say(sentence.getErrorString() + " Just tell me how much you want to risk, for example #stake #50.");
 				        } else {
+							behaviour.parseRequest(sentence);
+
+							stake = behaviour.getAmount();
+
 							if (stake < MIN_STAKE) {
 								npc.say("You must stake at least " + MIN_STAKE
 										+ " pieces of gold.");

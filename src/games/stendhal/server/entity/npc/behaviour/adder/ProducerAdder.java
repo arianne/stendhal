@@ -55,7 +55,7 @@ public class ProducerAdder {
 							npc.say("Sorry, I did not understand you. "
 									+ sentence.getErrorString());
 						} else {
-							boolean found = behaviour.findMatchingItem(sentence);
+							boolean found = behaviour.parseRequest(sentence);
 
     						// Find out how much items we shall produce.
     						if (!found && behaviour.getChosenItemName() == null) {

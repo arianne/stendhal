@@ -42,7 +42,7 @@ public class BuyerAdder {
 							return;
 						}
 
-						if (behaviour.findMatchingItem(sentence)) {
+						if (behaviour.parseRequest(sentence)) {
 							if (behaviour.getAmount() > 1000) {
 								logger.warn("Decreasing very large amount of "
 										+ behaviour.getAmount() + " to 1 for player "

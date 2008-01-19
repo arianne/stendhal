@@ -77,7 +77,7 @@ public class OutfitChangerAdder {
 						}
 
 						// find out what the player wants to wear
-						boolean found = behaviour.findMatchingItem(sentence);
+						boolean found = behaviour.parseRequest(sentence);
 
 						// find out if the NPC sells this item, and if so,
 						// how much it costs.
