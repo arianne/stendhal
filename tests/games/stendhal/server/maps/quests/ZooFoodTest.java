@@ -131,7 +131,7 @@ public class ZooFoodTest {
 		assertTrue(enKatinka.step(player, "hi"));
 		assertEquals("Welcome back! Have you brought the 10 pieces of ham?",
 				katinkaNpc.get("text"));
-		assertTrue(enKatinka.step(player, "yes")); // lie
+		assertTrue("lie", enKatinka.step(player, "yes")); 
 		assertEquals(
 				"*sigh* I SPECIFICALLY said that we need 10 pieces of ham!",
 				katinkaNpc.get("text"));
@@ -148,7 +148,7 @@ public class ZooFoodTest {
 		assertTrue(enKatinka.step(player, "hi"));
 		assertEquals("Welcome back! Have you brought the 10 pieces of ham?",
 				katinkaNpc.get("text"));
-		assertTrue(enKatinka.step(player, "yes")); // lie
+		assertTrue("lie", enKatinka.step(player, "yes")); 
 		assertEquals(
 				"*sigh* I SPECIFICALLY said that we need 10 pieces of ham!",
 				katinkaNpc.get("text"));

@@ -185,7 +185,7 @@ public class CampfireTest {
 		assertTrue(en.step(player, "job"));
 		assertEquals("Work? I'm just a little girl! I'm a scout, you know.",
 				npc.get("text"));
-		assertFalse(en.step(player, "offers")); // no matching state transition
+		assertFalse("no matching state transition", en.step(player, "offers")); 
 		assertEquals("Work? I'm just a little girl! I'm a scout, you know.",
 				npc.get("text"));
 		assertTrue(en.step(player, "help"));

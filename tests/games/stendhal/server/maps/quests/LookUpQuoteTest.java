@@ -118,7 +118,7 @@ public class LookUpQuoteTest {
 		// bother Pequod again
 		assertTrue(pequodEngine.step(player, "hi"));
 		assertTrue(pequodNpc.get("text").startsWith("Welcome back! Did you look up the famous quote by fisherman "));
-		assertTrue(pequodEngine.step(player, "yes")); // lie
+		assertTrue("lie", pequodEngine.step(player, "yes")); 
 		assertEquals("So, what is it?", pequodNpc.get("text"));
 		assertTrue(pequodEngine.step(player, "bye"));
 		assertEquals("I think you made a mistake. Come back if you can tell me the correct quote.", pequodNpc.get("text"));
