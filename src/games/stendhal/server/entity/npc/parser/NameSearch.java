@@ -5,7 +5,7 @@ import games.stendhal.common.Grammar;
 import java.util.Set;
 
 /**
- * Return structure for Sentence.findMatchingName()
+ * Returns structure for Sentence.findMatchingName().
  *
  * @author Martin Fuchs
  */
@@ -22,10 +22,9 @@ public class NameSearch {
 	private int	amount;
 
 	/**
-	 * Search for item to match the given Expression. 
+	 * Searches for item to match the given Expression. 
 	 *
 	 * @param item
-	 * @param names
 	 * @return item name, or null if no match
 	 */
 	public boolean search(Expression item) {
@@ -62,7 +61,7 @@ public class NameSearch {
 	/**
 	 * Return item name.
 	 *
-	 * @return
+	 * @return 
 	 */
 	public String getName() {
         return name;

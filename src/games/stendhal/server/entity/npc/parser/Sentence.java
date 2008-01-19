@@ -27,7 +27,7 @@ public class Sentence implements Iterable<Expression> {
 
 	private SentenceType sentenceType = SentenceType.UNDEFINED;
 
-	/** Joker String used in pattern matches */
+	/** Joker String used in pattern matches. */
 	private static final String JOKER = "*";
 
 	private String error = null;
@@ -1002,11 +1002,7 @@ public class Sentence implements Iterable<Expression> {
 		}
 
 		// Now there should be no more expressions at both sides.
-		if (!it1.hasNext() && !it2.hasNext()) {
-			return true;
-		} else {
-			return false;
-		}
+		return (!it1.hasNext() && !it2.hasNext());
     }
 
 	/**
@@ -1146,11 +1142,10 @@ public class Sentence implements Iterable<Expression> {
 			return true;
 		}
 		// If we look for a match at Sentence start, there must be no more epxressions at the right side.
-		else if (matchStart && e2 == null) {
-			return true;
-		} else {
-			return false;
+		else {
+			return (matchStart && e2 == null);
 		}
+	
 	}
 
 	/**
@@ -1171,9 +1166,8 @@ public class Sentence implements Iterable<Expression> {
     }
 
 	/**
-	 * Search for a matching item name in the given Sentence 
+	 * Searches for a matching item name in the given Set .
 	 * 
-	 * @param sentence
 	 * @param names
 	 * @return item name, or null if no match
 	 */
@@ -1230,7 +1224,7 @@ public class Sentence implements Iterable<Expression> {
 			if (verb != null) {
 				Iterator<Expression> it = expressions.iterator();
 
-    			if (it.hasNext() && verb==it.next() && it.hasNext()) {
+    			if (it.hasNext() && verb == it.next() && it.hasNext()) {
     				Expression nextExpression = it.next();
 
        				ret = nextExpression.getNormalized();
