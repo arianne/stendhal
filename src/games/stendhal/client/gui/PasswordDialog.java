@@ -113,10 +113,8 @@ public class PasswordDialog extends javax.swing.JFrame {
 	private void acceptButtonActionPerformed(java.awt.event.ActionEvent evt) { // GEN-FIRST:event_acceptButtonActionPerformed
 		if (checkPass(newPass.getPassword(), newPassRepeat.getPassword())) {
 			// check for server password and see if that is accepted
-			JOptionPane.showMessageDialog(null, "Passwords Match"); // remove
-			// this-
-			// just for
-			// testing.
+			// remove this- just for testing.
+			JOptionPane.showMessageDialog(null, "Passwords Match"); 
 		} else {
 			JOptionPane.showMessageDialog(null,
 					"It seems the passwords you entered do not match. Please try again.");
@@ -142,6 +140,9 @@ public class PasswordDialog extends javax.swing.JFrame {
 
 	/**
 	 * Checks to see if the two new passwords match.
+	 * @param pwField_One 
+	 * @param pwField_Two 
+	 * @return 
 	 */
 	boolean checkPass(char[] pwField_One, char[] pwField_Two) {
 		return new String(pwField_One).equals(new String(pwField_Two));

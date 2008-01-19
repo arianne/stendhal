@@ -136,8 +136,10 @@ public class CreateAccountDialog extends JDialog {
 		// row 0
 		c.anchor = GridBagConstraints.LINE_START;
 		c.insets = new Insets(4, 4, 4, 4);
-		c.gridx = 0; // column
-		c.gridy = 0; // row
+		// column
+		c.gridx = 0; 
+		// row
+		c.gridy = 0; 
 		c.fill = GridBagConstraints.NONE;
 		contentPane.add(serverLabel, c);
 		c.gridx = 1;
@@ -210,7 +212,8 @@ public class CreateAccountDialog extends JDialog {
 		this.setTitle("Create New Account");
 		this.setResizable(false);
 		this.setSize(new Dimension(350, 275));
-		this.pack(); // required on Compiz
+		// required on Compiz
+		this.pack(); 
 		this.setLocationRelativeTo(owner);
 
 	}
@@ -241,8 +244,8 @@ public class CreateAccountDialog extends JDialog {
 					"Account not created (running standalone)!");
 			return;
 		}
-
-		final int finalPort; // port couldnt be accessed from inner class
+		// port couldnt be accessed from inner class
+		final int finalPort; 
 		final ProgressBar progressBar = new ProgressBar(owner);
 
 		try {
@@ -261,17 +264,19 @@ public class CreateAccountDialog extends JDialog {
 
 			@Override
 			public void run() {
-				progressBar.start(); // intialize progress bar
-				setEnabled(false); // disable this screen when attempting to
-				// connect
+				// intialize progress bar
+				progressBar.start(); 
+				// disable this screen when attempting to connect
+				setEnabled(false); 
+	
 
 				try {
 					client.connect(server, finalPort);
-					progressBar.step(); // for each major connection milestone
-					// call step()
+					// for each major connection milestone call step()
+					progressBar.step(); 
 				} catch (Exception ex) {
-					progressBar.cancel(); // if something goes horribly just
-					// cancel the progressbar
+					// if something goes horribly just cancel the progressbar
+					progressBar.cancel(); 
 					setEnabled(true);
 					JOptionPane.showMessageDialog(
 							owner,
@@ -357,6 +362,7 @@ public class CreateAccountDialog extends JDialog {
 
 	/**
 	 * Runs field checks, to, ex. confirm the passwords correct, etc.
+	 * @return 
 	 */
 	private boolean checkFields() {
 		//
@@ -422,6 +428,7 @@ public class CreateAccountDialog extends JDialog {
 
 	/**
 	 * Used to preview the CreateAccountDialog.
+	 * @param args 
 	 */
 	public static void main(String[] args) {
 		new CreateAccountDialog(null, null);
@@ -530,6 +537,7 @@ public class CreateAccountDialog extends JDialog {
 
 	/**
 	 * Prints text only when running stand-alone.
+	 * @param text 
 	 */
 	public void debug(String text) {
 

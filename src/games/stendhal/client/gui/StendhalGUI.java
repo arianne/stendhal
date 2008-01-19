@@ -315,8 +315,8 @@ public abstract class StendhalGUI extends StendhalUI {
 		protected boolean facing;
 
 		/**
-		 * 
-		 * 
+		 * @param dir 
+		 * @param facing 
 		 */
 		public DelayedDirectionRelease(final Direction dir, final boolean facing) {
 			this.dir = dir;

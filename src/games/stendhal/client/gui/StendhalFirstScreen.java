@@ -227,7 +227,13 @@ public class StendhalFirstScreen extends JFrame {
 		new CreateAccountDialog(StendhalFirstScreen.this, client);
 	}
 
-	/** Adds Component Without a Layout Manager (Absolute Positioning). */
+	/** Adds Component Without a Layout Manager (Absolute Positioning). 
+	 * @param container 
+	 * @param c 
+	 * @param x 
+	 * @param y 
+	 * @param width 
+	 * @param height */
 	private void addComponent(Container container, Component c, int x, int y,
 			int width, int height) {
 		c.setBounds(x, y, width, height);

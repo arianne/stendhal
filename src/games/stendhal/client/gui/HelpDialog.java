@@ -52,7 +52,8 @@ public class HelpDialog extends JFrame {
 
 		// Create and set up the content pane.
 		panel = new HelpDialogPanel();
-		panel.setOpaque(true); // content panes must be opaque
+		// content panes must be opaque
+		panel.setOpaque(true); 
 		super.setContentPane(panel);
 
 	}
@@ -160,7 +161,7 @@ public class HelpDialog extends JFrame {
 				}
 				if (url != null) {
 					htmlPane.setPage(url);
-				} else { // null url
+				} else { 
 					htmlPane.setText("File Not Found");
 				}
 			} catch (IOException e) {

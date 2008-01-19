@@ -117,8 +117,8 @@ public class ChefNPCTest {
 		String[] questStatus = player.getQuest("leander_make_sandwiches")
 				.split(";");
 		String[] expected = { "1", "sandwich", "" };
-		assertEquals(expected[0], questStatus[0]); // amount
-		assertEquals(expected[1], questStatus[1]); // item
+		assertEquals("amount", expected[0], questStatus[0]); 
+		assertEquals("item", expected[1], questStatus[1]); 
 
 		assertTrue(npc.isTalking());
 		assertEquals(
@@ -171,8 +171,8 @@ public class ChefNPCTest {
 		String[] questStatus = player.getQuest("leander_make_sandwiches")
 				.split(";");
 		String[] expected = { "2", "sandwich", "" };
-		assertEquals(expected[0], questStatus[0]); // amount
-		assertEquals(expected[1], questStatus[1]); // item
+		assertEquals("amount", expected[0], questStatus[0]);
+		assertEquals("item", expected[1], questStatus[1]); 
 
 		assertTrue(npc.isTalking());
 		assertEquals(

@@ -69,7 +69,8 @@ public class CreditsDialog extends JDialog {
 		logger.debug("about dialog event handling ready");
 
 		this.setTitle("Stendhal Credits");
-		this.pack(); // required on Compiz
+		// required on Compiz
+		this.pack(); 
 		if (owner != null) {
 			this.setLocation(owner.getX() + 25, owner.getY() + 25);
 			this.setSize(owner.getSize());

@@ -112,6 +112,7 @@ public class OutfitDialog extends JDialog {
 
 	/**
 	 * Creates new form SetOutfitGameDialog.
+	 * @param parent 
 	 * 
 	 * @param title
 	 *            a String with the title for the dialog
@@ -136,14 +137,12 @@ public class OutfitDialog extends JDialog {
 		client = StendhalClient.get();
 
 		// initializes the arrays
-		hairs = new Sprite[total_hairs]; // Plus 1 to add the
-		// sprite_empty.png that is always
-		// at 0
+		// Plus 1 to add the sprite_empty.png that is always at 0
+		hairs = new Sprite[total_hairs]; 
 		heads = new Sprite[total_heads];
 		bodies = new Sprite[total_bodies];
-		clothes = new Sprite[total_clothes]; // Plus 1 to add the
-		// sprite_empty.png that is
-		// always at 0
+		// Plus 1 to add the sprite_empty.png that is always at 0
+		clothes = new Sprite[total_clothes]; 
 
 		// updates the draws every 2500 milliseconds
 		timer = new Timer();
@@ -199,6 +198,8 @@ public class OutfitDialog extends JDialog {
 
 	/**
 	 * Draws a hair images from an outfit code.
+	 * @param code 
+	 * @param g 
 	 */
 	private void drawHair(int code, Graphics g) {
 		Sprite sprite = store.getTile(ostore.getHairSprite(code), PLAYER_WIDTH,
@@ -222,6 +223,8 @@ public class OutfitDialog extends JDialog {
 
 	/**
 	 * Draws a head from the outfit code.
+	 * @param code 
+	 * @param g 
 	 */
 	private void drawHead(int code, Graphics g) {
 		Sprite sprite = store.getTile(ostore.getHeadSprite(code), PLAYER_WIDTH,
@@ -245,6 +248,8 @@ public class OutfitDialog extends JDialog {
 
 	/**
 	 * Draws a dress from the outfit code.
+	 * @param code 
+	 * @param g 
 	 */
 	private void drawDress(int code, Graphics g) {
 		Sprite sprite = store.getTile(ostore.getDressSprite(code),
@@ -269,6 +274,8 @@ public class OutfitDialog extends JDialog {
 
 	/**
 	 * Draws a base from an outfit code.
+	 * @param code 
+	 * @param g 
 	 */
 	private void drawBase(int code, Graphics g) {
 		Sprite sprite = store.getTile(ostore.getBaseSprite(code), PLAYER_WIDTH,
@@ -290,6 +297,7 @@ public class OutfitDialog extends JDialog {
 
 	/**
 	 * Draws final player.
+	 * @param g 
 	 */
 	private void drawFinalPlayer(Graphics g) {
 		drawBase(bodies_index, g);
@@ -513,7 +521,8 @@ public class OutfitDialog extends JDialog {
 
 	
 
-	/** this is called every time the user moves the slider. */
+	/** this is called every time the user moves the slider. 
+	 * @param evt */
 	private void jsliderDirectionStateChanged(ChangeEvent evt) { 
 		direction = jsliderDirection.getValue();
 
@@ -524,13 +533,15 @@ public class OutfitDialog extends JDialog {
 		redrawDress(clothes_index, jlblClothes.getGraphics());
 	} 
 
-	/** when user closes this window. */
+	/** when user closes this window. 
+	 * @param evt */
 	private void formWindowClosing(WindowEvent evt) { 
 		timer.cancel();
 		this.dispose();
 	} 
 
-	/** Clothes Right button. */
+	/** Clothes Right button. 
+	 * @param evt */
 	private void jbtRightClothesActionPerformed(ActionEvent evt) { 
 		if (clothes_index < clothes.length - 1) {
 			clothes_index++;
@@ -542,7 +553,8 @@ public class OutfitDialog extends JDialog {
 		redrawFinalPlayer(jlblFinalResult.getGraphics());
 	} 
 
-	/** Clothes Left button. */
+	/** Clothes Left button. 
+	 * @param evt */
 	private void jbtLeftClothesActionPerformed(ActionEvent evt) { 
 		if (clothes_index > 0) {
 			clothes_index--;
@@ -554,7 +566,8 @@ public class OutfitDialog extends JDialog {
 		redrawFinalPlayer(jlblFinalResult.getGraphics());
 	} 
 
-	/** Bodies Right button. */
+	/** Bodies Right button. 
+	 * @param evt */
 	private void jbtRightBodiesActionPerformed(ActionEvent evt) { 
 		if (bodies_index < bodies.length - 1) {
 			bodies_index++;
@@ -566,7 +579,8 @@ public class OutfitDialog extends JDialog {
 		redrawFinalPlayer(jlblFinalResult.getGraphics());
 	} 
 
-	/** Bodies Left button. */
+	/** Bodies Left button. 
+	 * @param evt */
 	private void jbtLeftBodiesActionPerformed(ActionEvent evt) { // GEN-FIRST:event_jbtLeftBodiesActionPerformed
 		if (bodies_index > 0) {
 			bodies_index--;
@@ -578,7 +592,8 @@ public class OutfitDialog extends JDialog {
 		redrawFinalPlayer(jlblFinalResult.getGraphics());
 	} // GEN-LAST:event_jbtLeftBodiesActionPerformed
 
-	/** Heads Right button. */
+	/** Heads Right button. 
+	 * @param evt */
 	private void jbtRightHeadsActionPerformed(ActionEvent evt) { // GEN-FIRST:event_jbtRightHeadsActionPerformed
 		if (heads_index < heads.length - 1) {
 			heads_index++;
@@ -590,7 +605,8 @@ public class OutfitDialog extends JDialog {
 		redrawFinalPlayer(jlblFinalResult.getGraphics());
 	} // GEN-LAST:event_jbtRightHeadsActionPerformed
 
-	/** Heads Left button. */
+	/** Heads Left button. 
+	 * @param evt */
 	private void jbtLeftHeadsActionPerformed(ActionEvent evt) { // GEN-FIRST:event_jbtLeftHeadsActionPerformed
 		if (heads_index > 0) {
 			heads_index--;
@@ -602,7 +618,8 @@ public class OutfitDialog extends JDialog {
 		redrawFinalPlayer(jlblFinalResult.getGraphics());
 	} // GEN-LAST:event_jbtLeftHeadsActionPerformed
 
-	/** Hairs Right button. */
+	/** Hairs Right button. 
+	 * @param evt */
 	private void jbtRightHairsActionPerformed(ActionEvent evt) { // GEN-FIRST:event_jbtRightHairsActionPerformed
 		if (hairs_index < hairs.length - 1) {
 			hairs_index++;
@@ -614,7 +631,8 @@ public class OutfitDialog extends JDialog {
 		redrawFinalPlayer(jlblFinalResult.getGraphics());
 	} // GEN-LAST:event_jbtRightHairsActionPerformed
 
-	/** Hairs Left button. */
+	/** Hairs Left button. 
+	 * @param evt */
 	private void jbtLeftHairsActionPerformed(ActionEvent evt) { // GEN-FIRST:event_jbtLeftHairsActionPerformed
 		if (hairs_index > 0) {
 			hairs_index--;
@@ -626,7 +644,8 @@ public class OutfitDialog extends JDialog {
 		redrawFinalPlayer(jlblFinalResult.getGraphics());
 	} // GEN-LAST:event_jbtLeftHairsActionPerformed
 
-	/** Button OK action. */
+	/** Button OK action. 
+	 * @param evt */
 	private void jbtOKActionPerformed(ActionEvent evt) { // GEN-FIRST:event_jbtOKActionPerformed
 		sendAction();
 

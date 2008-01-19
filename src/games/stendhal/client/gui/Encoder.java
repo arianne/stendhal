@@ -18,10 +18,10 @@ public class Encoder {
 
 	public String decode(String str) {
 		try {
-			BitSet nameSet = createBitSet(str); // create a BitSet based on the
-												// binary representation
-
-			nameSet.xor(key); // xor the BitSet with the key
+			// create a BitSet based on the binary representation
+			BitSet nameSet = createBitSet(str); 
+			 // xor the BitSet with the key
+			nameSet.xor(key);
 
 			// turn the xor'd BitSet back into a String
 			StringBuilder strBuff = new StringBuilder(str.length() * 7);
@@ -46,17 +46,13 @@ public class Encoder {
 	}
 
 	public String encode(String str) {
-		String binaryString = stringToBinary(str); // create binary
-													// representationn of input
-													// string
+		// create binary representationn of input string
+		String binaryString = stringToBinary(str); 
 
 		// add the length (in binary number format) of entire encoded string to
 		// the begging of the encoded string.
-		String sizeOfEncodedString = String.valueOf(binaryString.length() / 7); // the
-																				// size
-																				// of
-																				// total
-																				// binaryString
+		// the size of total binaryString
+		String sizeOfEncodedString = String.valueOf(binaryString.length() / 7); 
 		String stringSizeBinary = "";
 		// if the size of the encoded string isnt two digits in length then add
 		// a zero as padding
@@ -69,11 +65,10 @@ public class Encoder {
 					i - 1, i));
 			binaryString = stringSizeBinary.concat(binaryString);
 		}
-
-		BitSet nameSet = createBitSet(binaryString); // create a BitSet based
-														// on the binary
-														// representation
-		nameSet.xor(key); // xor the BitSet with the key
+		// create a BitSet based on the binary representation
+		BitSet nameSet = createBitSet(binaryString);
+		// xor the BitSet with the key
+		nameSet.xor(key); 
 
 		// turn the xor'd BitSet back into a String so it can be written to file
 		StringBuilder strBuff = new StringBuilder(str.length() * 7);
@@ -104,7 +99,9 @@ public class Encoder {
 		return strBuff.toString();
 	}
 
-	/** creates a BitSet based on a string representation of binary digits. */
+	/** creates a BitSet based on a string representation of binary digits. 
+	 * @param binaryString 
+	 * @return */
 	private BitSet createBitSet(String binaryString) {
 		BitSet bset = new BitSet(binaryString.length());
 		boolean bitTrue = false;
@@ -130,10 +127,10 @@ public class Encoder {
 			// add to buffer
 			binary = Integer.toBinaryString(theString.charAt(i));
 			len = binary.length();
-			if (len < 7) { // somtimes integers do not take up the total 7
-							// bits. So padding is necessary
-				paddingNeededSize = 7 - len; // how many binary digits are
-												// missing to be complete
+			// somtimes integers do not take up the total 7 bits. So padding is necessary
+			if (len < 7) { 
+				// how many binary digits are missing to be complete
+				paddingNeededSize = 7 - len; 
 				for (int k = 0; k < paddingNeededSize; k++) {
 					padding = padding.concat("0");
 				}

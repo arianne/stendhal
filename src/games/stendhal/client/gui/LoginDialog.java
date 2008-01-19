@@ -119,8 +119,10 @@ public class LoginDialog extends JDialog {
 		l = new JLabel("Account profiles");
 
 		c.insets = new Insets(4, 4, 15, 4);
-		c.gridx = 0; // column
-		c.gridy = 0; // row
+		// column
+		c.gridx = 0;
+		 // row
+		c.gridy = 0;
 		contentPane.add(l, c);
 
 		profilesComboBox = new JComboBox();
@@ -135,8 +137,10 @@ public class LoginDialog extends JDialog {
 		 */
 		l = new JLabel("Server name");
 		c.insets = new Insets(4, 4, 4, 4);
-		c.gridx = 0; // column
-		c.gridy = 1; // row
+		// column
+		c.gridx = 0;
+		 // row
+		c.gridy = 1;
 		contentPane.add(l, c);
 
 		serverField = new JTextField(
@@ -314,6 +318,7 @@ public class LoginDialog extends JDialog {
 
 	/**
 	 * Connect to a server using a given profile.
+	 * @param profile 
 	 */
 	protected void connect(Profile profile) {
 		final ProgressBar progressBar = new ProgressBar(this);
@@ -386,6 +391,7 @@ public class LoginDialog extends JDialog {
 
 	/**
 	 * Load saves profiles.
+	 * @return 
 	 */
 	private ProfileList loadProfiles() {
 		ProfileList tmpProfiles = new ProfileList();
@@ -413,6 +419,7 @@ public class LoginDialog extends JDialog {
 
 	/**
 	 * Populate the profiles combobox and select the default.
+	 * @param profiles 
 	 */
 	protected void populateProfiles(ProfileList profiles) {
 		

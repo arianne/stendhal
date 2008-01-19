@@ -231,9 +231,8 @@ public class j2DClient extends StendhalUI {
 
 		if (System.getProperty("stendhal.refactoringgui") != null) {
 			canvas = new Canvas();
-			canvas.setBounds(200, 0, 600, SCREEN_HEIGHT); // A bit
-			// repetitive... oh
-			// well
+			// A bit repetitive... oh well
+			canvas.setBounds(200, 0, 600, SCREEN_HEIGHT); 
 		} else {
 			canvas = new Canvas();
 			canvas.setBounds(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);

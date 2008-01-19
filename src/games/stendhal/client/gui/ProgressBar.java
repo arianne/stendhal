@@ -30,15 +30,16 @@ public class ProgressBar extends JFrame {
 	private  Thread m_run;
 
 	private int m_sleepTime = 210;
-
-	private int m_stepSize = 2; // makes for 10 normal steps. 100/10
+	
+	// makes for 10 normal steps. 100/10
+	private int m_stepSize = 2; 
 
 	private int m_stepSizeMultiplier = 1;
+	// keeps track of how many times it has lookp with a multiplier greater then 0
+	private int m_stepCounter; 
 
-	private int m_stepCounter; // keeps track of how amny times it has lookp
-	// with a multiplier greater then 0
-
-	private boolean m_con = true; // continue while true
+	// continue while true
+	private boolean m_con = true; 
 
 	public ProgressBar(Window w) {
 		super("Connecting...");
@@ -112,19 +113,26 @@ public class ProgressBar extends JFrame {
 		this.setVisible(true);
 		m_run.start();
 	}
-
-	public void step() { // temporary speed up bar
+	/** 
+	 * Temporarily speeds up bar.
+	 */
+	public void step() { 
 		m_stepCounter = 3;
 		m_stepSizeMultiplier = 2;
 	}
-
+	
+	/**
+	 *  Speeds up to quickly finish.
+	 */
 	public void finish() {
-		m_stepCounter = 20; // speed up to quickly finish
+		m_stepCounter = 20; 
 		m_stepSizeMultiplier = 2;
 		m_sleepTime = 15;
 	}
-
-	public void cancel() { // exit quickly
+	/**
+	 * Exits quickly.
+	 */
+	public void cancel() { 
 		m_con = false;
 		this.dispose();
 	}

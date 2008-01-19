@@ -8,7 +8,6 @@ import games.stendhal.server.actions.admin.AdministrationAction;
 import games.stendhal.server.actions.admin.AlterAction;
 import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.core.rule.defaultruleset.DefaultEntityManager;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.creature.RaidCreature;
@@ -34,7 +33,8 @@ public class AdministrationActionTest {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		Log4J.init();
-		DefaultEntityManager.getInstance();	// load item classes including "dagger" from XML
+		// load item classes including "dagger" from XML
+		//DefaultEntityManager.getInstance();	
 		AdministrationAction.register();
 		MockStendlRPWorld.get();
 		MockStendhalRPRuleProcessor.get().clearPlayers();
@@ -52,10 +52,6 @@ public class AdministrationActionTest {
 		Jail.get().release("bob");
 
 		MockStendhalRPRuleProcessor.get().clearPlayers();
-	}
-
-	@Test
-	public final void testRegisterCommandLevel() {
 	}
 
 	@Test
@@ -105,7 +101,7 @@ public class AdministrationActionTest {
 		PrivateTextMockingTestPlayer pl = PlayerTestHelper.createPrivateTextMockingTestPlayer("player");
 		assertFalse(AdministrationAction.isPlayerAllowedToExecuteAdminCommand(
 				pl, "", true));
-		// assertEquals("Sorry, command \"\" is unknown.", pl.getPrivateTextString());
+		assertEquals("Sorry, command \"\" is unknown.", pl.getPrivateTextString());
 		assertTrue(AdministrationAction.isPlayerAllowedToExecuteAdminCommand(
 				pl, "adminlevel", true));
 		pl.resetPrivateTextString();

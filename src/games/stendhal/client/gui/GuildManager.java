@@ -191,8 +191,8 @@ public class GuildManager extends javax.swing.JFrame {
 	/**
 	 * Removes player from guild.
 	 */
-	private void removeFromGuild(String user) { // we shouldn't seed that
-		// string, but....
+	private void removeFromGuild(String user) { 
+		// we shouldn't seed that string, but....
 		if (client == null) {
 			// If running standalone, give an error
 			JOptionPane.showMessageDialog(
