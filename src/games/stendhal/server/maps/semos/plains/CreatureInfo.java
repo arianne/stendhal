@@ -161,7 +161,7 @@ public class CreatureInfo {
 	 * get the approximate respawn time of a creature.
 	 *
 	 * @param creature
-	 * @return
+	 * @return a string representing the next respawntime of a creature
 	 */
 	private String getRespawnInfo(DefaultCreature creature) {
 		return TimeUtil.approxTimeUntil((int) (creature.getRespawnTime() * 0.3));

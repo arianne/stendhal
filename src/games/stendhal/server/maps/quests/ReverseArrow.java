@@ -132,6 +132,7 @@ public class ReverseArrow extends AbstractQuest implements
 
 		/**
 		 * invoked shortly after the player did his/her third move.
+		 * @param currentTurn on which it is invoked
 		 */
 		public void onTurnReached(int currentTurn) {
 			if (checkBoard() && (moveCount <= MAX_MOVES)) {
@@ -175,6 +176,7 @@ public class ReverseArrow extends AbstractQuest implements
 
 		/**
 		 * invoked shortly after the player did his job.
+		 * @param currentTurn on which it is invoked
 		 */
 		public void onTurnReached(int currentTurn) {
 			finish(reset, player);
