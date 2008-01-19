@@ -72,6 +72,7 @@ public class WordListUpdate {
 	/**
 	 * Print all words sorted by known types.
 	 * 
+	 * @param wl word list
 	 * @param writer
 	 */
 	private static void writeWordList(WordList wl, PrintWriter writer) {

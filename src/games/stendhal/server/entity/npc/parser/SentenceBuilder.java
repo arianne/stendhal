@@ -20,7 +20,8 @@ public class SentenceBuilder {
 	}
 
 	/**
-	 * append string separated by space.
+	 * Append string separated by space.
+	 *
 	 * @param s
 	 */
 	public void append(final String s) {
@@ -34,7 +35,8 @@ public class SentenceBuilder {
 	}
 
 	/**
-	 * directly append the given character.
+	 * Directly append the given character.
+	 *
 	 * @param c
 	 */
 	public void append(char c) {
