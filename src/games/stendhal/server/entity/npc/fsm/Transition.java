@@ -121,7 +121,7 @@ public class Transition {
 	 * 
 	 * @param state
 	 *            old state
-	 * @param text
+	 * @param trigger
 	 *            trigger
 	 * @return true if the Transition matches, false otherwise
 	 */
@@ -149,7 +149,7 @@ public class Transition {
 	 * 
 	 * @param state
 	 *            old state
-	 * @param sentence
+	 * @param trigger
 	 *            trigger
 	 * @return true if the Transition matches, false otherwise
 	 */
@@ -172,12 +172,12 @@ public class Transition {
 	}
 
 	/**
-	 * Check for match with the given state/trigger/condition combination
+	 * Checks for match with the given state/trigger/condition combination.
 	 * 
 	 * @param state
 	 * @param trigger
 	 * @param condition
-	 * @return
+	 * @return true if condition has been found
 	 */
 	public boolean matchesWithCondition(int state, Expression trigger, PreTransitionCondition condition) {
 		if (matches(state, trigger)) {
@@ -193,12 +193,12 @@ public class Transition {
     }
 
 	/**
-	 * Check for normalized match with the given state/trigger/condition combination
+	 * Checks for normalized match with the given state/trigger/condition combination.
 	 * 
 	 * @param state
 	 * @param trigger
 	 * @param condition
-	 * @return
+	 * @return true if condition has been found
 	 */
 	public boolean matchesNormalizedWithCondition(int state, Expression trigger, PreTransitionCondition condition) {
 		if (matchesNormalized(state, trigger)) {

@@ -53,7 +53,7 @@ public class Engine {
 	}
 
 	/**
-	 * Look for an already registered exactly matching transition
+	 * Looks for an already registered exactly matching transition.
 	 *
 	 * @param state
 	 * @param trigger
@@ -62,8 +62,9 @@ public class Engine {
 	 */
 	private Transition get(int state, Expression trigger, ChatCondition condition) {
 		for (Transition transition : stateTransitionTable) {
-			if (transition.matchesWithCondition(state, trigger, condition))
+			if (transition.matchesWithCondition(state, trigger, condition)) {
 				return transition;
+			}
 		}
 
 		return null;
@@ -266,13 +267,14 @@ public class Engine {
 
 	/**
 	 * List of Transition entries used to merge identical transitions in respect
-	 * to Transitions.matchesNormalizedWithCondition()
+	 * to Transitions.matchesNormalizedWithCondition().
 	 */
 	private static class TransitionList extends LinkedList<Transition> {
         private static final long serialVersionUID = 1L;
 
+		@Override
 		public boolean add(Transition otherTrans) {
-			for(Transition transition : this) {
+			for (Transition transition : this) {
 				if (transition.matchesNormalizedWithCondition(otherTrans.getState(),
 						otherTrans.getTrigger(), otherTrans.getCondition())) {
 					return false;
@@ -284,7 +286,7 @@ public class Engine {
 		}
 
 		public static void advance(Iterator<Transition> it, int i) {
-			for(; i>0; --i) {
+			for (; i > 0; --i) {
 				it.next();
 			}
 		}
@@ -326,7 +328,7 @@ public class Engine {
 		}
 
 		// Then look for transitions without conditions.
-		if (it==null && conditionlessTransitions.size() > 0) {
+		if (it == null && conditionlessTransitions.size() > 0) {
 			it = conditionlessTransitions.iterator();
 
 			if (conditionlessTransitions.size() > 1) {
@@ -354,7 +356,7 @@ public class Engine {
 	 * @param type
 	 * @param sentence
 	 * @param transition
-	 * @return
+	 * @return true if transition has been found
 	 */
 	private boolean matchesTransition(MatchType type, Sentence sentence,
 			Transition transition) {

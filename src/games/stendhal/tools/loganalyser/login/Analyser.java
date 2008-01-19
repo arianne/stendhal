@@ -15,7 +15,7 @@ import marauroa.server.game.db.StringChecker;
 import marauroa.server.game.db.Transaction;
 
 /**
- * Extracts timeframe of logins to accounts from a specified ip address
+ * Extracts timeframe of logins to accounts from a specified ip address.
  *
  * @author hendrik
  */

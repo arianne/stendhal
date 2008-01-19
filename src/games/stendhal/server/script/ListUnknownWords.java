@@ -42,12 +42,12 @@ public class ListUnknownWords extends ScriptImpl {
 
 			trans.commit();
         } catch (SQLException e) {
-        	sb.append("error while reading from DB table words: " +e.getMessage());
+        	sb.append("error while reading from DB table words: " + e.getMessage());
 
 	        try {
 	            trans.rollback();
             } catch (SQLException e1) {
-    	        sb.append("error while rolling back transaction: " +e.getMessage());
+    	        sb.append("error while rolling back transaction: " + e.getMessage());
             }
         }
 

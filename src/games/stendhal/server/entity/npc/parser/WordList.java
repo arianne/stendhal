@@ -90,7 +90,7 @@ public class WordList {
 	}
 
 	/**
-	 * Initialize the WordList instance.
+	 * Initializes the WordList instance.
 	 */
 	private static void initInstance() {
 		// read word list from "words.txt"
@@ -170,7 +170,7 @@ public class WordList {
     }
 
 	/**
-	 * Read word list from reader object.
+	 * Reads word list from reader object.
 	 * 
 	 * @param reader
 	 * @throws IOException
@@ -217,7 +217,7 @@ public class WordList {
 	}
 
 	/**
-	 * Read one line of the word list and add the new entry.
+	 * Reads one line of the word list and adds the new entry.
 	 * 
 	 * @param tk
 	 * @param entry
@@ -521,7 +521,7 @@ public class WordList {
 		Expression lastExpr = null;
 		boolean prepositionSeen = false;
 
-		for(Expression expr : item) {
+		for (Expression expr : item) {
     		if (expr.getType() == null || expr.getType().isEmpty()) {
     			// register the unknown word as new object entry
     			WordEntry entry = words.get(expr.getNormalized());

@@ -8,6 +8,8 @@ public class MathHelper {
 	/**
 	 * parses an integer safely. returning a default if nothing can be sanely
 	 * parsed from it
+	 * @param s the string to parse
+	 * @param def the default to set
 	 * 
 	 * @return An integer
 	 */
@@ -24,6 +26,7 @@ public class MathHelper {
 	/**
 	 * parses an integer safely, returning 0 if nothing can be sanely parsed.
 	 * from it
+	 * @param s to parse
 	 * 
 	 * @return An integer
 	 */

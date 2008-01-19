@@ -1,7 +1,7 @@
 package games.stendhal.tools.loganalyser.login;
 
 /**
- * a login event
+ * a login event.
  *
  * @author hendriks
  */

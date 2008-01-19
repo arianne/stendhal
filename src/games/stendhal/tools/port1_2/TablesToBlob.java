@@ -110,6 +110,7 @@ public class TablesToBlob {
 	 *            Transaction
 	 * @param id
 	 *            id of the object to load
+	 * @return the loaded RPobject
 	 * @throws SQLException
 	 *             in case of an database exception
 	 */
@@ -240,9 +241,10 @@ public class TablesToBlob {
 		/**
 		 * Creates a new PortJDBCDatabase.
 		 * 
-		 * @throws NoDatabaseConfException
+		 * @throws marauroa.server.game.db.NoDatabaseConfException
 		 *             in case of an configuration error
 		 */
+		
 		public PortJDBCDatabase() {
 			super(getInitProps());
 		}

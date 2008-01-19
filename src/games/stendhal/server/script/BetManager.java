@@ -196,7 +196,7 @@ public class BetManager extends ScriptImpl implements TurnListener {
 				errorMsg = "missing bet parameters";
 			} else {
 				Expression object = sentence.getObject(0);
-				betInfo.amount = object!=null? object.getAmount(): 1;
+				betInfo.amount = object != null ? object.getAmount() : 1;
 				betInfo.itemName = sentence.getObjectName(); // cheese
 
 				if (!sentence.getPreposition(0).equals("on")) {
@@ -426,6 +426,9 @@ public class BetManager extends ScriptImpl implements TurnListener {
 			TurnNotifier.get().notifyInTurns(
 					WAIT_TIME_BETWEEN_WINNER_ANNOUNCEMENTS, this);
 			break;
+			default:
+				logger.warn("unknown switch case" + idx);
+				break;
 
 		}
 	}
