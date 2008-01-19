@@ -73,7 +73,7 @@ public class GateKeeperNPC implements ZoneConfigurator {
 					@Override
 					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						Expression object = sentence.getObject(0);
-						int amount = object!=null? object.getAmount(): 1;
+						int amount = object != null ? object.getAmount() : 1;
 				        String item = sentence.getObjectName();
 
 				        if (sentence.hasError()) {

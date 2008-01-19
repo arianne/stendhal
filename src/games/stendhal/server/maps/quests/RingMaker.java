@@ -70,8 +70,8 @@ public class RingMaker extends AbstractQuest {
 				@Override
 				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 					Item emeraldRing = player.getFirstEquipped("emerald ring");
-					if (emeraldRing != null){
-						if(emeraldRing.getInt("amount") > 0) {
+					if (emeraldRing != null) {
+						if (emeraldRing.getInt("amount") > 0) {
 							// ring is not broken so he just lets player know
 							// where it can be fixed
 							npc.say("I see you already have an emerald ring. If it gets broken, you can come to me to fix it.");
