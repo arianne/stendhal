@@ -383,7 +383,8 @@ public class GrammarTest {
 		testPluralisationAndSingularisation("djinn", "djinni");
 		testPluralisationAndSingularisation("efreet", "efreeti");
 		testPluralisationAndSingularisation("ys", "y");
-		testPluralisationAndSingularisation("abies", "aby"); // baby: ... + consonant + "y"
+		// baby: ... + consonant + "y"
+		testPluralisationAndSingularisation("abies", "aby"); 
 		testPluralisationAndSingularisation("fs", "f");
 
         testPluralisationAndSingularisation("matches", "match");
