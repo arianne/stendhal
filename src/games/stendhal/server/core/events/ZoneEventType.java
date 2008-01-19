@@ -22,7 +22,7 @@ public enum ZoneEventType {
 	VISIT_MAGIC_CITY_N(
 			"Your skin prickles as you explore further. There is definitely magic here."),
 	VISIT_MAGIC_CITY(
-			"You now sense a strong magical presence. Perhaps sorcerors are nearby, or some strong enchantments?"),
+			"You now sense a strong magical presence. Perhaps sorcerers are nearby, or some strong enchantments?"),
 	VISIT_DREAMSCAPE(
 			"You start to hallucinate. You think you're in a new land, somewhere unknown, with strange, terrible creatures and fantastic sights."),
 	VISIT_SEMOS_CAVES(
