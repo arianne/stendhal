@@ -12,7 +12,7 @@
  *  modified for Stendhal, an Arianne powered RPG 
  *  (http://arianne.sf.net)
  *
- *  Matthias Totz <mtotz@users.sourceforge.net>
+ *  Matthias Totz &lt;mtotz@users.sourceforge.net&gt;
  */
 
 package tiled.mapeditor.widget;
@@ -34,7 +34,7 @@ import tiled.mapeditor.util.TileSelectionListener;
 /**
  * Shows one tab for each Tileset.
  * 
- * @author Matthias Totz <mtotz@users.sourceforge.net>
+ * @author Matthias Totz &lt;mtotz@users.sourceforge.net&gt;
  */
 public class TilesetChooserTabbedPane extends TilesetChooser implements TileSelectionListener {
 	private static final long serialVersionUID = -2997343048462435218L;

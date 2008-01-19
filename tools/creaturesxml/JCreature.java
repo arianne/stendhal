@@ -44,7 +44,7 @@ public class JCreature extends javax.swing.JFrame {
 
 	private EditorXML xml;
 
-	/** Creates new form JCreature */
+	/** Creates new form JCreature. */
 	public JCreature(EditorXML xml) throws SAXException {
 		this.xml = xml;
 		initComponents();

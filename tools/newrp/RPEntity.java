@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * Represents a active RP entity, like a player or a creature
+ * Represents an active RP entity, like a player or a creature.
  *
  * @author miguel
  *
@@ -17,7 +17,7 @@ public abstract class RPEntity {
 	Item weapon;
 
 	/**
-	 * The armor it wears
+	 * The armor it wears.
 	 */
 	Item armor;
 
@@ -38,18 +38,18 @@ public abstract class RPEntity {
 	int strength;
 
 	/**
-	 * Determine: - Attack rate - Handle of weapons
+	 * Determine: - Attack rate - Handle of weapons.
 	 */
 	int dexterity;
 
 	/**
-	 * Determine: - How fast we can move - How good we can dodge
+	 * Determine: - How fast we can move - How good we can dodge.
 	 */
 	int agility;
 
 	/**
-	 * Determine: - Amount of HP points - How fast we can restore HP and MP
-	 * points
+	 * Determines <li> Amount of HP points <li> How fast we can restore HP and MP
+	 * points.
 	 */
 	int constitution;
 
@@ -91,22 +91,22 @@ public abstract class RPEntity {
 	Sex sex;
 
 	/**
-	 * Base MP (Mana points)
+	 * Base MP (Mana points).
 	 */
 	int basemp;
 
 	/**
-	 * Actual MP
+	 * Actual MP.
 	 */
 	int mp;
 
 	/**
-	 * Base HP (Health points)
+	 * Base HP (Health points).
 	 */
 	int basehp;
 
 	/**
-	 * Actual HP
+	 * Actual HP.
 	 */
 	int hp;
 
@@ -132,7 +132,7 @@ public abstract class RPEntity {
 	int turnToCastAgain;
 
 	/**
-	 * How many turns should be spent until we can attack again
+	 * How many turns should be spent until we can attack again?
 	 */
 	int turnToAttackAgain;
 

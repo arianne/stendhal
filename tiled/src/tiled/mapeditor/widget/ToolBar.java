@@ -12,7 +12,7 @@
  *  modified for Stendhal, an Arianne powered RPG 
  *  (http://arianne.sf.net)
  *
- *  Matthias Totz <mtotz@users.sourceforge.net>
+ *  Matthias Totz &lt;mtotz@users.sourceforge.net&gt;
  */
 
 package tiled.mapeditor.widget;
@@ -38,7 +38,7 @@ import tiled.mapeditor.util.MapEventAdapter;
 /**
  * The toolbar.
  * 
- * @author Matthias Totz <mtotz@users.sourceforge.net>
+ * @author Matthias Totz &lt;mtotz@users.sourceforge.net&gt;
  */
 public class ToolBar extends JToolBar implements ActionListener {
 	private static final long serialVersionUID = 1L;

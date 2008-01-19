@@ -12,7 +12,7 @@
  *  modified for Stendhal, an Arianne powered RPG 
  *  (http://arianne.sf.net)
  *
- *  Matthias Totz <mtotz@users.sourceforge.net>
+ *  Matthias Totz &lt;mtotz@users.sourceforge.net&gt;
  */
 
 package tiled.mapeditor.undo;
@@ -37,7 +37,7 @@ public class MapLayerEdit extends AbstractUndoableEdit {
 	private List<MapLayer> layerUndo;
 	/** the layers to be copied when redoing the changes. */
 	private List<MapLayer> layerRedo;
-	/** displayName */
+	/** displayName. */
 	private String name;
 	/** true when start() has been called, but end() not yet. */
 	private boolean inProgress = false;

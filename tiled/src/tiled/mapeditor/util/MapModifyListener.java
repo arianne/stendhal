@@ -12,7 +12,7 @@
  *  modified for Stendhal, an Arianne powered RPG 
  *  (http://arianne.sf.net)
  *
- *  Matthias Totz <mtotz@users.sourceforge.net>
+ *  Matthias Totz &lt;mtotz@users.sourceforge.net&gt;
  */
 
 package tiled.mapeditor.util;
@@ -25,7 +25,7 @@ import tiled.core.Map;
  * This listener will be notified when the map content changes. This will not be
  * notified when another map is loaded
  * 
- * @author Matthias Totz <mtotz@users.sourceforge.net>
+ * @author Matthias Totz &lt;mtotz@users.sourceforge.net&gt;
  */
 public interface MapModifyListener {
 	void mapModified(Map map, Rectangle modifiedRegion);

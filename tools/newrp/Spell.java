@@ -12,17 +12,17 @@ import java.util.List;
  */
 public class Spell {
 	/**
-	 * Name of the spell *useless*
+	 * Name of the spell *useless*.
 	 */
 	String name;
 
 	/**
-	 * Skill this spell uses.
+	 * Skill this spell uses..
 	 */
 	SkillType skill;
 
 	/**
-	 * List of the effects this spell causes
+	 * List of the effects this spell causes.
 	 */
 	List<Effect> effects;
 
@@ -117,7 +117,7 @@ class RangeSpell extends Spell {
 	int range;
 
 	/**
-	 * How much area does it affect
+	 * How much area does it affect?
 	 */
 	int area;
 

@@ -12,7 +12,7 @@
  *  modified for Stendhal, an Arianne powered RPG 
  *  (http://arianne.sf.net)
  *
- *  Matthias Totz <mtotz@users.sourceforge.net>
+ *  Matthias Totz &lt;mtotz@users.sourceforge.net&gt;
  */
 
 package tiled.mapeditor;
@@ -93,7 +93,7 @@ public class MapEditor implements ActionListener, MapChangeListener, ComponentLi
 	public static final int PS_MOVE = 6;
 	public static final int PS_MOVEOBJ = 7;
 
-	/** current release version */
+	/** current release version. */
 	public static final String VERSION = "0.0.2";
 	public static final String TITLE = "Stendhal Mapeditor";
 

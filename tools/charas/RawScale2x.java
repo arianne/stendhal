@@ -6,16 +6,16 @@ package tools.charas;
  * @author Kevin Glass
  */
 public class RawScale2x {
-	/** The src image data */
+	/** The src image data. */
 	private int[] srcImage;
 
-	/** The dest image data */
+	/** The dest image data. */
 	private int[] dstImage;
 
-	/** The width of the source image */
+	/** The width of the source image.*/
 	private int width;
 
-	/** The height of the source image */
+	/** The height of the source image. */
 	private int height;
 
 	/**
@@ -51,7 +51,7 @@ public class RawScale2x {
 	}
 
 	/**
-	 * Set a pixel in the destination image data
+	 * Sets a pixel in the destination image data.
 	 *
 	 * @param x
 	 *            The x location of the pixel to set

@@ -31,12 +31,12 @@ enum ItemType {
  */
 public class Item {
 	/**
-	 * Type of item
+	 * Type of item.
 	 */
 	ItemType type;
 
 	/**
-	 * Name of the item *useless*
+	 * Name of the item *useless*.
 	 */
 	String name;
 

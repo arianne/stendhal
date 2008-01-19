@@ -3,7 +3,7 @@ package tools.charas;
 import java.awt.image.BufferedImage;
 
 /**
- * A utility to perform the scale2x algorithm on an image
+ * A utility to perform the scale2x algorithm on an image.
  * 
  * @author Kevin Glass
  * @author johnnnny

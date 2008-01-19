@@ -9,7 +9,7 @@ package newrp;
 public interface Effect {
 	/**
 	 * Apply the effect from the source to the target considering the ruling
-	 * attribute ( STR, AGI, DEX, CON, INT or WIS )
+	 * attribute ( STR, AGI, DEX, CON, INT or WIS ).
 	 *
 	 * @param source
 	 * @param target
@@ -63,22 +63,22 @@ enum DamageType {
 	SLASH,
 	/** Damage caused by a hammer. */
 	BASH,
-	/** Damage caused by a knife or an arrow */
+	/** Damage caused by a knife or an arrow. */
 	STAB,
-	/** Damage caused by a fire */
+	/** Damage caused by a fire. */
 	FIRE,
-	/** Damage caused by ice or by a ice spell */
+	/** Damage caused by ice or by a ice spell. */
 	COLD,
-	/** Damage caused by acid element */
+	/** Damage caused by acid element. */
 	ACID,
-	/** Damage because of disease or a spell */
+	/** Damage because of disease or a spell. */
 	DISEASE,
 	/** Damage because of light. */
 	LIGHT,
 }
 
 /**
- * Damage effect
+ * Damage effect.
  *
  * @author miguel
  *
@@ -104,7 +104,7 @@ abstract class DamageEffect implements Effect {
 }
 
 /**
- * A simpler approach to damage effect
+ * A simpler approach to damage effect.
  *
  * @author miguel
  *

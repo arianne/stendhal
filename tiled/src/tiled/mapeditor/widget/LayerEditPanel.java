@@ -12,7 +12,7 @@
  *  modified for Stendhal, an Arianne powered RPG 
  *  (http://arianne.sf.net)
  *
- *  Matthias Totz <mtotz@users.sourceforge.net>
+ *  Matthias Totz &lt;mtotz@users.sourceforge.net&gt;
  */
 
 package tiled.mapeditor.widget;
@@ -47,7 +47,7 @@ import tiled.mapeditor.util.MapEventAdapter;
 /**
  * Panel with the Layer Table (aka Data Panel) It also shows the minimap.
  * 
- * @author Matthias Totz <mtotz@users.sourceforge.net>
+ * @author Matthias Totz &lt;mtotz@users.sourceforge.net&gt;
  */
 public class LayerEditPanel extends JPanel implements ListSelectionListener, ChangeListener, TableModelListener {
 	private static final long serialVersionUID = 314584416481357898L;
