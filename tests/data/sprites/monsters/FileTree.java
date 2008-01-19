@@ -17,12 +17,13 @@ import javax.swing.tree.TreePath;
 
 public class FileTree extends JTree {
 	/**
-	 *
+	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
 	public FileTree(String path) throws FileNotFoundException {
-		super((TreeModel) null); // Create the JTree itself
+		// Create the JTree itself
+		super((TreeModel) null);
 
 		// Use horizontal and vertical lines
 		putClientProperty("JTree.lineStyle", "Angled");
@@ -61,7 +62,7 @@ public class FileTree extends JTree {
 	// file system tree
 	protected class FileTreeNode extends DefaultMutableTreeNode {
 		/**
-		 *
+		 * 
 		 */
 		private static final long serialVersionUID = 3223106240309250204L;
 
@@ -72,8 +73,7 @@ public class FileTree extends JTree {
 			// is a directory
 			file = new File(parent, name);
 			if (!file.exists()) {
-				throw new FileNotFoundException("File " + name
-						+ " does not exist");
+				throw new FileNotFoundException("File " + name + " does not exist");
 			}
 
 			isDir = file.isDirectory();
@@ -113,8 +113,8 @@ public class FileTree extends JTree {
 					removeAllChildren();
 					interim = false;
 				}
-
-				String[] names = file.list(); // Get list of contents
+				// Get list of contents
+				String[] names = file.list();
 
 				// Process the directories
 				for (int i = 0; i < names.length; i++) {
@@ -145,7 +145,7 @@ public class FileTree extends JTree {
 				// reason to look at this directory again, so
 				// set populated to true. Otherwise, we set interim
 				// so that we look again in the future if we need to
-				if (descend  || !addedNodes) {
+				if (descend || !addedNodes) {
 					populated = true;
 				} else {
 					// Just set interim state
@@ -155,24 +155,38 @@ public class FileTree extends JTree {
 			return addedNodes;
 		}
 
-		protected File file; // File object for this node
+		/**
+		 * File object for this node.
+		 */
+		protected File file;
 
-		protected String name; // Name of this node
-
+		/**
+		 * Name of this node.
+		 */
+		protected String name;
+		/**
+		 * true if we have been populated.
+		 */
 		protected boolean populated;
+		/**
+		 * true if we are in interim state.
+		 */
 
-		// true if we have been populated
 		protected boolean interim;
+		/**
+		 * true if this is a directory.
+		 */
 
-		// true if we are in interim state
-		protected boolean isDir; // true if this is a directory
+		protected boolean isDir;
 	}
 
 	// Inner class that handles Tree Expansion Events
 	protected class TreeExpansionHandler implements TreeExpansionListener {
 		public void treeExpanded(TreeExpansionEvent evt) {
-			TreePath path = evt.getPath(); // The expanded path
-			JTree tree = (JTree) evt.getSource(); // The tree
+			// The expanded path
+			TreePath path = evt.getPath(); 
+			 // The tree
+			JTree tree = (JTree) evt.getSource();
 
 			// Get the last component of the path and
 			// arrange to have it fully populated.

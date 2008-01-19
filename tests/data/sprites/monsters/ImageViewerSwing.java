@@ -107,7 +107,6 @@ public class ImageViewerSwing extends JComponent {
 	 */
 	@Override
 	public void paintComponent(Graphics g) {
-		// super.paint( g );
 		// get size of box we have to draw in
 		Dimension dim = getSize();
 		if (image != null) {
@@ -121,12 +120,8 @@ public class ImageViewerSwing extends JComponent {
 			// this does not complete the job, just starts it.
 			// We are notified of progress through our Component ImageObserver
 			// interface.
-			g.drawImage(image, /* Image to draw */
-			(dim.width - imageWidth) / 2, /* x */
-			(dim.height - imageHeight) / 2, /* y */
-			imageWidth, /* width */
-			imageHeight, /* height */
-			this); /* this ImageViewerSwing component */
+			g.drawImage(image, (dim.width - imageWidth) / 2, (dim.height - imageHeight) / 2, imageWidth, imageHeight,
+					this); 
 
 		} else {
 			/* we have no Image, clear the box */
@@ -143,9 +138,10 @@ public class ImageViewerSwing extends JComponent {
 	@Override
 	public Dimension getPreferredSize() {
 		if (image != null) {
-			/* should just fit the Image */
+			// should just fit the Image 
 			return (new Dimension(image.getWidth(this), image.getHeight(this)));
-		} else { /* empty square as a placeholder */
+		} else { 
+			// empty square as a place holder 
 			return new Dimension(100, 100);
 		}
 	}
@@ -163,6 +159,6 @@ public class ImageViewerSwing extends JComponent {
 	/**
 	 * Image that this viewer is currently displaying.
 	 */
-	private Image image; // @jve:decl-index=0:
+	private Image image; 
 
-} // @jve:decl-index=0:visual-constraint="10,10" // end class ImageViewerSwing
+} 

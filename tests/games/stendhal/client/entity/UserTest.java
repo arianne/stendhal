@@ -12,9 +12,8 @@ public class UserTest {
 	public final void testUser() {
 		User user = new User();
 
-		// test default values
 		assertEquals(0, (int) user.getModificationCount());
-		assertFalse(User.isAdmin()); // user.isAdmin()
+		assertFalse(User.isAdmin()); 
 		assertFalse(user.hasSheep());
 		assertFalse(user.hasPet());
 		/*
