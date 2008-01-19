@@ -140,11 +140,7 @@ public class OnePlayerArea extends AreaEntity implements MovementListener {
 				 * But don't block entities that got in the area (somehow) from
 				 * leaving.
 				 */
-				if ((entity == occupant) || contains(entity)) {
-					return false;
-				} else {
-					return true;
-				}
+				return ((entity != occupant) && !contains(entity));
 			}
 
 			logger.warn("Occupant vanished: " + occupant.getName());
