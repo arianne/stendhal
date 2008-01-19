@@ -57,13 +57,19 @@ public class Expression {
 
 	/**
 	 * Parse the given numeric expression and assign the value to 'amount'.
-	 * 
+	 * TODO mf - We may switch from Integer to Long if we extend the column type in table 'words'
+	 *
 	 * @param str
 	 * @param parser
 	 */
 	public void parseAmount(final String str, ConversationParser parser) {
 		try {
-			setAmount(new Integer(str));
+			// replace commas by dots to recognize numbers like "1,5"
+			String numberString = str.replace(',', '.');
+
+			// Parse as float number, then round to the next integer.
+			setAmount((int)Math.round(Double.parseDouble(numberString)));
+
 			setType(new ExpressionType(ExpressionType.NUMERAL));
 			normalized = amount.toString();
 		} catch (NumberFormatException e) {
@@ -146,6 +152,15 @@ public class Expression {
 	 * @return
 	 */
 	public int getAmount() {
+		return amount != null ? amount.intValue() : 1;
+	}
+
+	/**
+	 * Return amount as integer value, default to 1.
+	 * 
+	 * @return
+	 */
+	public long getAmountLong() {
 		return amount != null ? amount : 1;
 	}
 

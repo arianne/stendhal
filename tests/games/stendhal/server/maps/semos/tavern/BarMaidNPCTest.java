@@ -146,10 +146,7 @@ public class BarMaidNPCTest {
 		assertEquals("Congratulations! Here are your pieces of ham!", npc.get("text"));
 
 		assertTrue(en.step(player, "buy 10000 ham"));
-		assertEquals("10000 pieces of ham will cost 800000. Do you want to buy it?", npc.get("text"));
-
-		assertTrue(en.step(player, "yes"));
-		assertEquals("Sorry, you don't have enough money!", npc.get("text"));
+		assertEquals("1 piece of ham will cost 80. Do you want to buy it?", npc.get("text"));
 	}
 
 	@Test

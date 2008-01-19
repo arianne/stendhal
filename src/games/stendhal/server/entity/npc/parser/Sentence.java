@@ -51,15 +51,23 @@ public class Sentence implements Iterable<Expression> {
 			} else {
 				PunctuationParser punct = new PunctuationParser(ws);
 
+				String precedingPunct = punct.getPrecedingPunctuation();
+				String text = punct.getText();
+
+				// avoid to trim leading decimal points from numbers
+				if (precedingPunct.length()>0 && text.matches("[0-9.,]+")) {
+					text = ws;
+				}
+
 				// handle preceding comma characters
-				if (punct.getPrecedingPunctuation().contains(",")) {
+				if (precedingPunct.contains(",")) {
 					if (prevWord != null) {
 						// break sentence after the previous word
 						prevWord.setBreakFlag();
 					}
 				}
 
-				Expression word = new Expression(punct.getText());
+				Expression word = new Expression(text);
 				expressions.add(word);
 
 				// handle trailing comma characters
@@ -502,7 +510,7 @@ public class Sentence implements Iterable<Expression> {
 				}
 			} else {
 				// handle numeric expressions
-				if (original.matches("^[+-]?[0-9]+")) {
+				if (original.matches("^[+-]?[0-9.,]+")) {
 					w.parseAmount(original, parser);
 					int amount = w.getAmount();
 
