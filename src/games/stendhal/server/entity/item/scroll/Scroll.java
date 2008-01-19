@@ -78,7 +78,6 @@ public class Scroll extends StackableItem implements UseListener {
 		}
 
 		if (user.nextTo((Entity) base)) {
-			assert user instanceof Player;//TODO either use if (user instanceof Player) or change the method signature
 			if (useScroll((Player) user)) {
 				this.removeOne();
 				user.notifyWorldAboutChanges();
