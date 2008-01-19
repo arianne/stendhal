@@ -31,12 +31,15 @@ public class WizardBankTest {
 	public static void setUpBeforeClass() throws Exception {
 		QuestHelper.setUpBeforeClass();
 
-		StendhalRPZone zone = new StendhalRPZone(ZONE_NAME);
 		StendhalRPWorld world = StendhalRPWorld.get();
+		StendhalRPZone zone = new StendhalRPZone(ZONE_NAME);
 		world.addRPZone(zone);
 
 		WizardBank wb = new WizardBank();
 		wb.addToWorld();
+
+		// load items to handle money
+		world.getRuleManager().getEntityManager();
 	}
 
 	@AfterClass
