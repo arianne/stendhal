@@ -55,7 +55,7 @@ public class AdminMaker extends ScriptImpl {
 			player.addXP(Level.getXP(level + xlevel) - Level.getXP(level));
 
 			// set the atk and def to half the level (is a good rule of thumb)
-			int skills = ((Level.getXP(level)+xlevel)/2);
+			int skills = ((Level.getXP(level) + xlevel) / 2);
 			player.setATKXP(skills);
 			player.setDEFXP(skills);	
 			player.incATKXP();
@@ -172,11 +172,10 @@ public class AdminMaker extends ScriptImpl {
 			return true;
 		}
 
-		// todo: a better way?
 		private class Destination {
-			public String zone;
-			public int x;
-			public int y;
+			private String zone;
+			private int x;
+			private int y;
 
 			Destination(String zone, int x, int y) {
 				this.zone = zone;
