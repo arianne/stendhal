@@ -15,6 +15,7 @@ import java.io.PrintStream;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.WindowConstants;
 
 import org.apache.log4j.Logger;
 
@@ -66,7 +67,7 @@ public class TransitionDiagram {
 			JLabel label = new JLabel(scale(icon));
 			jd.add(label);
 
-			jd.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			jd.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 			jd.pack();
 			jd.setVisible(true);
 
@@ -108,7 +109,8 @@ public class TransitionDiagram {
 		Dimension ssize = Toolkit.getDefaultToolkit().getScreenSize();
 		int ow = img.getWidth(null);
 		int oh = img.getHeight(null);
-		int w = ssize.width - 20; // screens are usually wide..
+		// screens are usually wide..
+		int w = ssize.width - 20; 
 		int h = ssize.height - 100;
 
 		if (ow >= w || oh >= h) {
