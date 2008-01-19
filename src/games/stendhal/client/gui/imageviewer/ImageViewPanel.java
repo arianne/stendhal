@@ -73,13 +73,10 @@ public class ImageViewPanel extends StyledJPanel {
 					+ FONT_SIZE + "\">" + alt + "</big></i></b><br>";
 		}
 
-		// only display when not null. we can simply use this to send
-		// notifications to the player.
-		String img = "";
-		if (image != null) {
-			img = "<img width=" + width + " height=" + height + " src="
+		
+		String img = "<img width=" + width + " height=" + height + " src="
 					+ url.toString() + ">";
-		}
+		
 		String text = "<html>" + caption + img;
 		JLabel imageLabel = new JLabel(text);
 
