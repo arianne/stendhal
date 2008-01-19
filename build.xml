@@ -357,8 +357,8 @@
 		</signjar>
 	</target>
 
-	<target name="dist" depends="sign_jars, dist_binary, dist_source" description="Creates all the packages needed for a Stendhal release"/>
-	<target name="dist_binary" depends="dist_server_binary,dist_client_binary,dist_client_no_sound_binary,dist_client_starter"/>
+	<target name="dist" depends="clean, sign_jars, dist_binary, dist_source" description="Creates all the packages needed for a Stendhal release"/>
+	<target name="dist_binary" depends="clean, dist_server_binary,dist_client_binary,dist_client_no_sound_binary,dist_client_starter"/>
 
 	<target name="dist_server_binary" depends="server_build">
 		<mkdir dir="${buildroot}/stendhal-server-${version}"/>
