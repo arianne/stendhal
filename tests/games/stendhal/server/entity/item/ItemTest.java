@@ -255,7 +255,7 @@ public class ItemTest {
 	public void testCanBeEquippedIn() {
 		Item mo = new Item("name1", "myClass", "mySubclass",
 				new HashMap<String, String>());
-		assertTrue(mo.canBeEquippedIn(null)); // ground is null
+		assertTrue("ground is null", mo.canBeEquippedIn(null));  
 		LinkedList<String> slots = new LinkedList<String>();
 		slots.add("one");
 		slots.add("two");
