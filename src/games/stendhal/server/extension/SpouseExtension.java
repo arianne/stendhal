@@ -19,18 +19,23 @@ import org.apache.log4j.Logger;
 import marauroa.common.game.RPAction;
 
 /**
- * @author intensifly This extension adds marriage to the game world. there are
- *         2 commands: /marry <Player1> <Player2> which will create a bond
- *         between those players This command is an admin command of the same
- *         access level as /jail ;) /spouse which will teleport a married player
- *         to his spouse To enable this extension, add it to the marauroa.int
- *         file:
- *  # load StendhalServerExtension(s)
- * groovy=games.stendhal.server.scripting.StendhalGroovyRunner
- * http=games.stendhal.server.StendhalHttpServer
- * spouse=games.stendhal.server.extension.SpouseExtension
- * server_extension=groovy,http,spouse
+ * This extension adds marriage to the game world. there are 2 commands:
+ * <li>/marry &lt;Player1&gt; &lt;Player2&gt;
+ * <p>
+ * which will create a bond between those players This command is an admin
+ * command of the same access level as /jail ;)
+ * <li>/spouse which will teleport a married player to his spouse
+ * <p>
+ * To enable this extension, add it to the marauroa.int file:
+ * <p>
+ * <tt>#</tt> load StendhalServerExtension(s)
+ * <p>
+ * groovy=games.stendhal.server.scripting.StendhalGroovyRunner <p>
+ * http=games.stendhal.server.StendhalHttpServer <p>
+ * spouse=games.stendhal.server.extension.SpouseExtension <p>
+ * server_extension=groovy,http,spouse <p>
  * 
+ * @author intensifly
  */
 public class SpouseExtension extends StendhalServerExtension implements
 		ActionListener {
