@@ -308,6 +308,15 @@ public class Expression {
     }
 
 	/**
+	 * Determine if the Expression consists of numeral words.
+	 * 
+	 * @return
+	 */
+	public boolean isNumeral() {
+		return type != null && type.isNumeral();
+    }
+
+	/**
 	 * Merge Expression type with another one while handling null values.
 	 * 
 	 * @param otherType

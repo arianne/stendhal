@@ -103,6 +103,9 @@ public class IceCreamSellerNPCTest {
 		assertTrue(en.step(player, "buy someunknownthing"));
 		assertEquals("Sorry, I don't sell someunknownthings.", npc.get("text"));
 
+		assertTrue(en.step(player, "buy a bunch of socks"));
+		assertEquals("Sorry, I don't sell bunches of socks.", npc.get("text"));
+
 		assertTrue(en.step(player, "buy icecream"));
 		assertEquals("1 icecream will cost 30. Do you want to buy it?", npc.get("text"));
 

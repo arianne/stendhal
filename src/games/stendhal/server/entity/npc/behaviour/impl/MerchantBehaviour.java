@@ -150,7 +150,7 @@ public abstract class MerchantBehaviour extends Behaviour {
     		amount = search.getAmount();
 		} else {
 			// If there was no match, return the given object name instead. 
-    		chosenItem = sentence.getObjectNameOrExpressionAfterVerb();
+    		chosenItem = sentence.getExpressionStringAfterVerb();
     		amount = 1;
 		}
 

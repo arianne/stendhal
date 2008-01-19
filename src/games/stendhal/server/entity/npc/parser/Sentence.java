@@ -160,10 +160,27 @@ public class Sentence implements Iterable<Expression> {
 	}
 
 	/**
+	 * Count the number of Expressions with unkown type.
+	 * 
+	 * @return number of Expressions with unknown type
+	 */
+	private int countUnknownTypeExpressions() {
+		int count = 0;
+
+		for (Expression w : expressions) {
+			if (w.getTypeString().length() == 0) {
+				++count;
+			}
+		}
+
+		return count;
+	}
+
+	/**
 	 * Return unknown word [i] of the sentence.
 	 * @param i 
 	 * 
-	 * @return subject
+	 * @return Expression with unknown type
 	 */
 	public Expression getUnknownTypeExpression(int idx) {
 		int i = 0;
@@ -1239,31 +1256,29 @@ public class Sentence implements Iterable<Expression> {
     }
 
 	/**
-	 * Return the name of the object in the Sentence or look for another
-	 * word following the verb.
+	 * Return a string containing the sentence part referenced by a verb
+	 * or simple the single object name.
 	 *
 	 * @return String or null if nothing found
 	 */
-	public String getObjectNameOrExpressionAfterVerb() {
-		String ret = getObjectName();
+	public String getExpressionStringAfterVerb() {
+		String ret = null;
 
-		// If we could not find an object, look for the expression following the verb.
-		if (ret == null) {
-			Expression verb = getVerb();
+		int unkownCount = countUnknownTypeExpressions();
+		int verbCount = getVerbCount();
 
-			if (verb != null) {
-				Iterator<Expression> it = expressions.iterator();
-
-    			if (it.hasNext() && verb == it.next() && it.hasNext()) {
-    				Expression nextExpression = it.next();
-
-       				ret = nextExpression.getNormalized();
-    			}
-			}
+		// If all words in the Sentence could be recognized, just return the object name, if available.
+		if (unkownCount == 0) {
+			ret = getObjectName();
 		}
 
-		// If this still didn't work, take the first unknown word.
-		if (ret == null) {
+		// If we could not find an object, look for the expressions following the single verb.
+		if (ret == null && verbCount == 1) {
+			ret = stringFromExpressionsAfter(getVerb());
+		}
+
+		// If we didn't find anything usable until now, take the first unknown word.
+		if (ret == null && unkownCount > 0) {
 			Expression unknown = getUnknownTypeExpression(0);
 
 			if (unknown != null) {
@@ -1271,7 +1286,64 @@ public class Sentence implements Iterable<Expression> {
 			}
 		}
 
+		// If this still didn't work, look for the expressions following the first verb.
+		if (ret == null && verbCount > 1) {
+			ret = stringFromExpressionsAfter(getVerb(0));
+		}
+
 		return ret;
+    }
+
+	/**
+	 * Build a string from the list of expressions following the given one.
+	 *
+	 * @param verb
+	 * @return
+	 */
+	private String stringFromExpressionsAfter(Expression expr) {
+		if (expr == null) {
+			return null;
+		}
+
+		Iterator<Expression> it = iteratorFromExpression(expr);
+
+		// skip leading amount expressions
+		Iterator<Expression> it2 = iteratorFromExpression(expr);
+		if (it2.hasNext()) {
+			Expression e2 = it2.next();
+
+			if (e2.isNumeral()) {
+				it.next();
+			}
+		}
+
+		// build a string from the expression list
+		SentenceBuilder buffer = new SentenceBuilder();
+
+		if (buffer.appendUntilBreak(it) > 0) {
+			return buffer.toString();
+		} else {
+			return null;
+		}
+    }
+
+	/**
+	 * Iterate until we find the given Expression object.
+	 *
+	 * @param expr
+	 * @return
+	 */
+	private Iterator<Expression> iteratorFromExpression(Expression expr) {
+		Iterator<Expression> it = expressions.iterator();
+
+		while (it.hasNext()) {
+			// Did we find it?
+			if (expr == it.next()) {
+				break;
+			}
+		}
+
+		return it;
     }
 
 }

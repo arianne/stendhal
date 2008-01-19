@@ -37,8 +37,7 @@ public class CatSellerNPCTest {
 		StendhalRPWorld world = StendhalRPWorld.get();
 		world.addRPZone(zone);
 
-		CatSellerNPC bar = new CatSellerNPC();
-		bar.configureZone(zone, null);
+		new CatSellerNPC().configureZone(zone, null);
 	}
 
 	@AfterClass
@@ -89,6 +88,9 @@ public class CatSellerNPCTest {
 		assertTrue(en.step(player, "care"));
 		assertEquals("Cats love chicken and fish. Just place a piece on the ground and your cat will run over to eat it. You can right-click on her and choose 'Look' at any time, to check up on her weight; she will gain one unit of weight for every piece of chicken she eats.", npc.get("text"));
 
+		// There is currently no quest response defined for Felina.
+		assertFalse(en.step(player, "quest"));
+
 		assertTrue(en.step(player, "buy"));
 		assertEquals("Please tell me what you want to buy.", npc.get("text"));
 
@@ -103,6 +105,9 @@ public class CatSellerNPCTest {
 
 		assertTrue(en.step(player, "buy a bottle of wine"));
 		assertEquals("Sorry, I don't sell bottles of wine.", npc.get("text"));
+
+		assertTrue(en.step(player, "buy a hand full of peace"));
+		assertEquals("Sorry, I don't sell hand fulls of peace.", npc.get("text"));
 
 		assertTrue(en.step(player, "buy cat"));
 		assertEquals("1 cat will cost 100. Do you want to buy it?", npc.get("text"));
