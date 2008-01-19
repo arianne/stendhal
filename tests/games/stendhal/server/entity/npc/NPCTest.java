@@ -34,8 +34,9 @@ public class NPCTest {
 		StendhalRPZone zone = new StendhalRPZone(ZONE_NAME);
 		StendhalRPWorld world = StendhalRPWorld.get();
 		world.addRPZone(zone);
-
-		CatSellerNPC bar = new CatSellerNPC();	// any NPC
+		//	TODO: make this tests independent of the rest of implementations
+		
+		CatSellerNPC bar = new CatSellerNPC();	
 		bar.configureZone(zone, null);
 	}
 
