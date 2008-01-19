@@ -46,7 +46,7 @@ public class SellerAdder {
 							engine.setCurrentState(ConversationStates.ATTENDING);
 						} else {
 							// find out what the player wants to buy, and how much of it
-							if (behaviour.findMatchingName(sentence)) {
+							if (behaviour.findMatchingItem(sentence)) {
     							// find out if the NPC sells this item, and if so,
     							// how much it costs.
     							if (behaviour.getAmount() > 1000) {
@@ -58,19 +58,19 @@ public class SellerAdder {
     								behaviour.setAmount(1);
     							}
 
-    							int price = behaviour.getUnitPrice(behaviour.chosenItem)
+    							int price = behaviour.getUnitPrice(behaviour.getChosenItemName())
     									* behaviour.getAmount();
 
-    							engine.say(Grammar.quantityplnoun(behaviour.getAmount(), behaviour.chosenItem)
+    							engine.say(Grammar.quantityplnoun(behaviour.getAmount(), behaviour.getChosenItemName())
     									+ " will cost " + price
     									+ ". Do you want to buy "
     									+ Grammar.itthem(behaviour.getAmount()) + "?");
     						} else {
-    							if (behaviour.chosenItem == null) {
+    							if (behaviour.getChosenItemName() == null) {
     								engine.say("Please tell me what you want to buy.");
     							} else {
     								engine.say("Sorry, I don't sell "
-    										+ Grammar.plural(behaviour.chosenItem) + ".");
+    										+ Grammar.plural(behaviour.getChosenItemName()) + ".");
     							}
 
     							engine.setCurrentState(ConversationStates.ATTENDING);
@@ -86,7 +86,7 @@ public class SellerAdder {
 					@Override
 					public void fire(Player player, Sentence sentence,
 							SpeakerNPC engine) {
-						String itemName = behaviour.chosenItem;
+						String itemName = behaviour.getChosenItemName();
 						logger.debug("Selling a " + itemName + " to player "
 								+ player.getName());
 

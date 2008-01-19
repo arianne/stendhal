@@ -77,14 +77,14 @@ public class OutfitChangerAdder {
 						}
 
 						// find out what the player wants to wear
-						boolean found = behaviour.findMatchingName(sentence);
+						boolean found = behaviour.findMatchingItem(sentence);
 
 						// find out if the NPC sells this item, and if so,
 						// how much it costs.
 						if (!found && behaviour.dealtItems().size() == 1) {
                 			// The NPC only offers one type of outfit, so
                 			// it's clear what the player wants.
-							behaviour.chosenItem = behaviour.dealtItems().iterator().next();
+							behaviour.setChosenItemName(behaviour.dealtItems().iterator().next());
 							found = true;
 						}
 
@@ -92,18 +92,18 @@ public class OutfitChangerAdder {
 							// We ignore any amounts.
 							behaviour.setAmount(1);
 
-							int price = behaviour.getUnitPrice(behaviour.chosenItem)
+							int price = behaviour.getUnitPrice(behaviour.getChosenItemName())
 									* behaviour.getAmount();
 
-							engine.say("A " + behaviour.chosenItem + " will cost " + price
+							engine.say("A " + behaviour.getChosenItemName() + " will cost " + price
 									+ ". Do you want to " + command + " it?");
 						} else {
-							if (behaviour.chosenItem == null) {
+							if (behaviour.getChosenItemName() == null) {
 								engine.say("Please tell me what you want to "
 										+ command + ".");
 							} else {
 								engine.say("Sorry, I don't sell "
-										+ Grammar.plural(behaviour.chosenItem) + ".");
+										+ Grammar.plural(behaviour.getChosenItemName()) + ".");
 							}
 							engine.setCurrentState(ConversationStates.ATTENDING);
 						}
@@ -117,7 +117,7 @@ public class OutfitChangerAdder {
 					@Override
 					public void fire(Player player, Sentence sentence,
 							SpeakerNPC npc) {
-						String itemName = behaviour.chosenItem;
+						String itemName = behaviour.getChosenItemName();
 						logger.debug("Selling a " + itemName + " to player "
 								+ player.getName());
 

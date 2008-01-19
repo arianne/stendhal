@@ -30,7 +30,7 @@ public class SheepBuyerNPC extends SpeakerNPCFactory {
 			public int getCharge(Player player) {
 				if (player.hasSheep()) {
 					Sheep sheep = player.getSheep();
-					return Math.round(getUnitPrice(chosenItem) * ((float) sheep.getWeight() / (float) sheep.MAX_WEIGHT));
+					return Math.round(getUnitPrice(chosenItemName) * ((float) sheep.getWeight() / (float) sheep.MAX_WEIGHT));
 				} else {
 					return 0;
 				}

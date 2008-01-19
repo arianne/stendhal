@@ -42,7 +42,7 @@ public class BuyerAdder {
 							return;
 						}
 
-						if (behaviour.findMatchingName(sentence)) {
+						if (behaviour.findMatchingItem(sentence)) {
 							if (behaviour.getAmount() > 1000) {
 								logger.warn("Decreasing very large amount of "
 										+ behaviour.getAmount() + " to 1 for player "
@@ -54,16 +54,16 @@ public class BuyerAdder {
 
 							int price = behaviour.getCharge(player);
 
-							engine.say(Grammar.quantityplnoun(behaviour.getAmount(), behaviour.chosenItem)
+							engine.say(Grammar.quantityplnoun(behaviour.getAmount(), behaviour.getChosenItemName())
 									+ " " + Grammar.isare(behaviour.getAmount()) + " worth "
 									+ price + ". Do you want to sell "
 									+ Grammar.itthem(behaviour.getAmount()) + "?");
 						} else {
-							if (behaviour.chosenItem == null) {
+							if (behaviour.getChosenItemName() == null) {
 								engine.say("Please tell me what you want to sell.");
 							} else {
 								engine.say("Sorry, I don't buy any "
-										+ Grammar.plural(behaviour.chosenItem) + ".");
+										+ Grammar.plural(behaviour.getChosenItemName()) + ".");
 							}
 
 							engine.setCurrentState(ConversationStates.ATTENDING);

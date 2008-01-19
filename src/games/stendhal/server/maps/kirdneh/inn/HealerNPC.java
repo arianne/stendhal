@@ -80,7 +80,7 @@ public class HealerNPC implements ZoneConfigurator {
 		        new SpeakerNPC.ChatAction() {
 			        @Override
 			        public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-				        healerBehaviour.chosenItem = "heal";
+				        healerBehaviour.setChosenItemName("heal");
 				        healerBehaviour.setAmount(1);
 				        int cost = healerBehaviour.getCharge(player);
 					engine.say("For " + cost + " cash, ok?");

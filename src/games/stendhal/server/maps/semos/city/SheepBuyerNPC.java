@@ -24,7 +24,7 @@ public class SheepBuyerNPC extends SpeakerNPCFactory {
 			}
 
 			private int getValue(Sheep sheep) {
-				return Math.round(getUnitPrice(chosenItem) * ((float) sheep.getWeight() / (float) sheep.MAX_WEIGHT));
+				return Math.round(getUnitPrice(chosenItemName) * ((float) sheep.getWeight() / (float) sheep.MAX_WEIGHT));
 			}
 			
 			@Override
