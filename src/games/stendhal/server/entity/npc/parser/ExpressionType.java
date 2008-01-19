@@ -40,7 +40,7 @@ public class ExpressionType {
 
 	public static final String DYNAMIC = "DYN"; // expression dynamically defined at runtime
 
-	public static final String UNKNOWN = ""; // expression withoput type
+	public static final String UNKNOWN = ""; // expression without type
 
 	// derived string type constants
 	public static final String SUFFIX_GERUND = SUFFIX + GERUND;
@@ -331,6 +331,8 @@ public class ExpressionType {
 			newTypeString += SUFFIX_DYNAMIC;
 		}
 
+		// Check if there was any change of the type, then
+		// we must create and return a new ExpressionType object.
 		if (newTypeString != typeString) {
 			return new ExpressionType(newTypeString);
 		} else {
