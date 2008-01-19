@@ -231,7 +231,7 @@ public class Grammar {
 	 * 
 	 * @param prefix
 	 * @param noun
-	 * @return object name without prefix
+	 * @return object name without prefix, or same object as given if the prefix was not found
 	 */
 	private static String removePrefix(String noun, String prefix) {
 		if (noun.startsWith(prefix)) {
@@ -246,7 +246,7 @@ public class Grammar {
 	 * expression like "piece of", ...
 	 * 
 	 * @param expr
-	 * @return
+	 * @return extracted noun, or same object as given if no matching prefix was found
 	 */
 	private static String extractNounSingular(String expr) {
 		String result;
@@ -269,7 +269,7 @@ public class Grammar {
 	 * like "piece of", ...
 	 * 
 	 * @param expr
-	 * @return
+	 * @return extracted noun, or same object as given if no matching prefix was found
 	 */
 	private static String extractNounPlural(String expr) {
 		String result;
@@ -304,10 +304,15 @@ public class Grammar {
 
 		// loop until all prefix strings are removed
 		do {
+			// remember original expression
 			lastExpr = result;
+
 			result = extractNounSingular(result);
 			result = extractNounPlural(result);
-		} while (result != lastExpr);
+		}
+		// As the extract...() functions return the original object, if no change occurred,
+		// we can just use an comparison without equals() here.
+		while (result != lastExpr);
 
 		return result;
 	}
@@ -624,7 +629,6 @@ public class Grammar {
 		default:
 			logger.error("Grammar.ordered not implemented for: " + n);
 			return Integer.toString(n);
-
 		}
 	}
 
