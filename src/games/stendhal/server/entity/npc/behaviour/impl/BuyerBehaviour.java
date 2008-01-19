@@ -56,14 +56,14 @@ public class BuyerBehaviour extends MerchantBehaviour {
 	 */
 	@Override
 	public boolean transactAgreedDeal(SpeakerNPC seller, Player player) {
-		if (player.drop(chosenItem, getAmount())) {
+		if (player.drop(chosenItemName, getAmount())) {
 			payPlayer(player);
 			seller.say("Thanks! Here is your money.");
 			return true;
 		} else {
 			seller.say("Sorry! You don't have "
 					+ (getAmount() == 1 ? "any" : "that many") + " "
-					+ Grammar.plnoun(getAmount(), chosenItem) + ".");
+					+ Grammar.plnoun(getAmount(), getChosenItemName()) + ".");
 			return false;
 		}
 	}

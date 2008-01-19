@@ -123,7 +123,7 @@ public class OutfitChangerBehaviour extends MerchantBehaviour implements
 	 */
 	@Override
 	public boolean transactAgreedDeal(SpeakerNPC seller, Player player) {
-		String outfitType = chosenItem;
+		String outfitType = chosenItemName;
 		if (player.isEquipped("money", getCharge(player))) {
 			player.drop("money", getCharge(player));
 			putOnOutfit(player, outfitType);

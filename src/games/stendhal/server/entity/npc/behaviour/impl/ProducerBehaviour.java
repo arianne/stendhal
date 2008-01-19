@@ -21,7 +21,7 @@ import java.util.TreeSet;
  * 
  * @author daniel
  */
-public class ProducerBehaviour extends Behaviour {
+public class ProducerBehaviour extends TransactionBehaviour {
 
 	/**
 	 * To store the current status of a production order, each ProducerBehaviour
@@ -52,10 +52,6 @@ public class ProducerBehaviour extends Behaviour {
 	 * The unit in which the product is counted, e.g. "bags", "pieces", "pounds"
 	 */
 	// private String productUnit;
-	/**
-	 * The name of the product, e.g. "plate armor". It must be a valid item
-	 * name.
-	 */
 	private String productName;
 
 	/**
@@ -74,8 +70,6 @@ public class ProducerBehaviour extends Behaviour {
 	 * The number of seconds required to produce one unit of the product.
 	 */
 	private int productionTimePerItem;
-
-	private int amount;
 
 	/**
 	 * Creates a new ProducerBehaviour.
@@ -126,6 +120,8 @@ public class ProducerBehaviour extends Behaviour {
 	public ProducerBehaviour(String questSlot, String productionActivity,
 			String productName, Map<String, Integer> requiredResourcesPerItem,
 			int productionTimePerItem, boolean productBound) {
+		super(productName);
+
 		this.questSlot = questSlot;
 		this.productionActivity = productionActivity;
 		// this.productUnit = productUnit;
@@ -155,6 +151,11 @@ public class ProducerBehaviour extends Behaviour {
 	// return productUnit;
 	// }
 
+	/**
+	 * Return item name of the product to produce.
+	 *
+	 * @return product name
+	 */
 	public String getProductName() {
 		return productName;
 	}
@@ -308,6 +309,7 @@ public class ProducerBehaviour extends Behaviour {
 		} else {
 			StackableItem products = (StackableItem) StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
 					getProductName());
+
 			products.setQuantity(numberOfProductItems);
 
 			if (isProductBound()) {
@@ -325,23 +327,4 @@ public class ProducerBehaviour extends Behaviour {
 		}
 	}
 
-	/**
-	 * Sets the amount that the player wants to buy from the NPC.
-	 * 
-	 * @param amount
-	 *            amount
-	 */
-	public void setAmount(int amount) {
-		if (amount < 1) {
-			amount = 1;
-		}
-		if (amount > 1000) {
-			amount = 1;
-		}
-		this.amount = amount;
-	}
-
-	public int getAmount() {
-		return amount;
-	}
 }

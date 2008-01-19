@@ -12,8 +12,6 @@
 package games.stendhal.server.entity.npc.behaviour.impl;
 
 import games.stendhal.server.entity.npc.parser.ExpressionType;
-import games.stendhal.server.entity.npc.parser.NameSearch;
-import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.npc.parser.WordList;
 import games.stendhal.server.entity.player.Player;
 
@@ -27,20 +25,18 @@ import org.apache.log4j.Logger;
  * Represents the behaviour of a NPC who is able to either sell items to a
  * player, or buy items from a player.
  */
-public abstract class MerchantBehaviour extends Behaviour {
+public abstract class MerchantBehaviour extends TransactionBehaviour {
 	private static Logger logger = Logger.getLogger(MerchantBehaviour.class);
 
 	protected Map<String, Integer> priceList;
-
-	public String chosenItem;
-
-	private int amount;
 
 	public MerchantBehaviour() {
 		this(new HashMap<String, Integer>());
 	}
 
 	public MerchantBehaviour(Map<String, Integer> priceList) {
+		super(priceList.keySet());
+
 		this.priceList = priceList;
 
 		for (String itemName : priceList.keySet()) {
@@ -82,18 +78,6 @@ public abstract class MerchantBehaviour extends Behaviour {
 	/**
 	 * Sets the amount that the player wants to buy from the NPC.
 	 * 
-	 * @param text
-	 *            a String containing an integer number. If it isn't an integer,
-	 *            the amount will be set to 1.
-	 */
-// TODO unused function
-//	public void setAmount(String text) {
-//		setAmount(MathHelper.parseIntDefault(text, 1));
-//	}
-
-	/**
-	 * Sets the amount that the player wants to buy from the NPC.
-	 * 
 	 * @param amount
 	 *            amount
 	 */
@@ -119,41 +103,10 @@ public abstract class MerchantBehaviour extends Behaviour {
 	 * @return The price; 0 if no item was chosen or if the amount is 0.
 	 */
 	public int getCharge(Player player) {
-		if (chosenItem == null) {
+		if (chosenItemName == null) {
 			return 0;
 		} else {
-			return amount * getUnitPrice(chosenItem);
+			return amount * getUnitPrice(getChosenItemName());
 		}
 	}
-
-	/**
-	 * Return item amount.
-	 *
-	 * @return
-	 */
-	public int getAmount() {
-		return amount;
-	}
-
-	/**
-	 * Search for a matching item name in the available item names.
-	 *
-	 * @param sentence
-	 * @return true if found match
-	 */
-	public boolean findMatchingName(Sentence sentence) {
-		NameSearch search = sentence.findMatchingName(priceList.keySet());
-
-		if (search.found()) {
-			// Store found item.
-    		chosenItem = search.getName();
-    		amount = search.getAmount();
-		} else {
-			// If there was no match, return the given object name instead. 
-    		chosenItem = sentence.getExpressionStringAfterVerb();
-    		amount = 1;
-		}
-
-		return search.found();
-    }
 }

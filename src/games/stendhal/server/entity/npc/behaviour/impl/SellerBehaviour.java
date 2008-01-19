@@ -66,9 +66,9 @@ public class SellerBehaviour extends MerchantBehaviour {
 		StendhalRPWorld world = StendhalRPWorld.get();
 		EntityManager manager = world.getRuleManager().getEntityManager();
 
-		Item item = manager.getItem(chosenItem);
+		Item item = manager.getItem(chosenItemName);
 		if (item == null) {
-			logger.error("Trying to sell an nonexistant item: " + chosenItem);
+			logger.error("Trying to sell an nonexistant item: " + getChosenItemName());
 			return false;
 		}
 
@@ -89,11 +89,11 @@ public class SellerBehaviour extends MerchantBehaviour {
 				player.drop("money", getCharge(player));
 				seller.say("Congratulations! Here "
 						+ Grammar.isare(getAmount()) + " your "
-						+ Grammar.plnoun(getAmount(), chosenItem) + "!");
+						+ Grammar.plnoun(getAmount(), getChosenItemName()) + "!");
 				return true;
 			} else {
 				seller.say("Sorry, but you cannot equip the "
-						+ Grammar.plnoun(getAmount(), chosenItem) + ".");
+						+ Grammar.plnoun(getAmount(), getChosenItemName()) + ".");
 				return false;
 			}
 		} else {
