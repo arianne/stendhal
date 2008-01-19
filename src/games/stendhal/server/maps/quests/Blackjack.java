@@ -23,6 +23,9 @@ import java.util.Map;
 import java.util.Stack;
 
 public class Blackjack extends AbstractQuest {
+	
+	// 1 min at 300 ms/turn
+	private static final int ONE_MINUTE = 180;
 
 	private static final int MIN_STAKE = 10;
 
@@ -105,7 +108,7 @@ public class Blackjack extends AbstractQuest {
 	private int sumValues(List<String> cards) {
 		int sum = 0;
 		for (String card : cards) {
-			sum += cardValues.get(card);
+			sum += cardValues.get(card).intValue();
 		}
 		int numberOfAces = countAces(cards);
 		while ((sum > 21) && (numberOfAces > 0)) {
@@ -122,6 +125,7 @@ public class Blackjack extends AbstractQuest {
 	/**
 	 * Deals <i>number</i> cards to the player, if the player is not standing,
 	 * and to the bank, if the bank is not standing.
+	 * @param player 
 	 *
 	 * @param number
 	 *            The number of cards that each player should draw.
@@ -178,6 +182,7 @@ public class Blackjack extends AbstractQuest {
 	}
 
 	/**
+	 * @param player 
 	 * @return The text that the dealer should say, or null if he shouldn't say
 	 *         anything.
 	 */
@@ -304,18 +309,19 @@ public class Blackjack extends AbstractQuest {
 		String[] pictures = { "J", "Q", "K" };
 		for (String color : colors) {
 			for (int i = 2; i <= 10; i++) {
-				cardValues.put(i + color, i);
+				cardValues.put(i + color, Integer.valueOf(i));
 			}
 			for (String picture : pictures) {
-				cardValues.put(picture + color, 10);
+				cardValues.put(picture + color, Integer.valueOf(10));
 			}
 			// ace values can change to 1 during the game
-			cardValues.put("A" + color, 11);
+			cardValues.put("A" + color, Integer.valueOf(11));
 		}
 
 		// increase the timeout, as otherwise the player often
 		// would use their stake because of reacting too slow.
-		ramon.setPlayerChatTimeout(180); // 1 min at 300 ms/turn
+		
+		ramon.setPlayerChatTimeout(ONE_MINUTE); 
 
 		ramon.add(ConversationStates.ATTENDING, "play", null,
 				ConversationStates.ATTENDING,
