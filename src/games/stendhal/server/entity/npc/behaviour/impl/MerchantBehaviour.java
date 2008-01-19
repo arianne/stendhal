@@ -43,7 +43,7 @@ public abstract class MerchantBehaviour extends Behaviour {
 	public MerchantBehaviour(Map<String, Integer> priceList) {
 		this.priceList = priceList;
 
-		for(String itemName : priceList.keySet()) {
+		for (String itemName : priceList.keySet()) {
 			WordList.getInstance().registerName(itemName, ExpressionType.OBJECT);
 		}
 	}

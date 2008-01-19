@@ -134,7 +134,7 @@ public class ProducerBehaviour extends Behaviour {
 		this.productionTimePerItem = productionTimePerItem;
 		this.productBound = productBound;
 
-		for(String itemName : requiredResourcesPerItem.keySet()) {
+		for (String itemName : requiredResourcesPerItem.keySet()) {
 			WordList.getInstance().registerName(itemName, ExpressionType.OBJECT);
 		}
 	}

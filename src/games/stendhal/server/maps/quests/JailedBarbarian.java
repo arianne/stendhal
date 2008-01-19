@@ -1,6 +1,5 @@
 package games.stendhal.server.maps.quests;
 
-import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -11,40 +10,38 @@ import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
-import games.stendhal.server.entity.npc.condition.QuestNotInStateCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Arrays;
-import java.util.List;
 
 /**
  * QUEST: The Amazon Princess
  *
  * PARTICIPANTS:
  * <ul>
- * <li>Lorenz, the jailed barbarian in a hut on Amazon Island/li>
+ * <li>Lorenz, the jailed barbarian in a hut on Amazon Island
  * </ul>
  *
  * STEPS:
  * <ul>
- * <li>1. Lorenz ask you for a scythe to bring him</li>
- * <li>2. You have to ask Princess Esclara for a 'reason'</li>
- * <li>3. You have to bring him an egg</li>
- * <li>4. You have to inform Princess Ylflia</li>
- * <li>5. You have to bring him an barbarian armor</li>
+ * <li>1. Lorenz ask you for a scythe to bring him
+ * <li>2. You have to ask Princess Esclara for a 'reason'
+ * <li>3. You have to bring him an egg
+ * <li>4. You have to inform Princess Ylflia
+ * <li>5. You have to bring him an barbarian armor
  * <li>6. You get an reward.
  * </ul>
  *
  * REWARD:
  * <ul>
- * <li>You get 20 gold bars</li>
- * <li>You get 52.000 experince points in all</li>
+ * <li>You get 20 gold bars
+ * <li>You get 52.000 experince points in all
  * </ul>
  *
  * REPETITIONS:
  * <ul>
- * <li>Not repeatable.</li>
+ * <li>Not repeatable.
  * </ul>
  */
  
@@ -91,7 +88,7 @@ import java.util.List;
 	SpeakerNPC npc = npcs.get("Lorenz");	
 	
 		npc.add(ConversationStates.ATTENDING, "scythe",
-				new AndCondition( new QuestInStateCondition(QUEST_SLOT, "start"),
+				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"),
 				new PlayerHasItemWithHimCondition("scythe")),
 				ConversationStates.ATTENDING, null,
 				new SpeakerNPC.ChatAction() {
@@ -152,7 +149,7 @@ import java.util.List;
 	SpeakerNPC npc = npcs.get("Lorenz");	
 	
 		npc.add(ConversationStates.ATTENDING, "egg",
-				new AndCondition( new QuestInStateCondition(QUEST_SLOT, "egg"),
+				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "egg"),
 				new PlayerHasItemWithHimCondition("egg")),
 				ConversationStates.ATTENDING, null,
 				new SpeakerNPC.ChatAction() {
@@ -182,7 +179,7 @@ import java.util.List;
 	private void step6() {
 	SpeakerNPC npc = npcs.get("Princess Ylflia");
 	
-		npc.add(ConversationStates.ATTENDING, Arrays.asList("jailed","Lorenz"),
+		npc.add(ConversationStates.ATTENDING, Arrays.asList("jailed", "Lorenz"),
 				new QuestInStateCondition(QUEST_SLOT, "jailed"),
 				ConversationStates.ATTENDING, null,
 				new SpeakerNPC.ChatAction() {
@@ -219,7 +216,7 @@ import java.util.List;
 	SpeakerNPC npc = npcs.get("Lorenz");	
 	
 		npc.add(ConversationStates.ATTENDING, "armor",
-				new AndCondition( new QuestInStateCondition(QUEST_SLOT, "armor"),
+				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "armor"),
 				new PlayerHasItemWithHimCondition("barbarian armor")),
 				ConversationStates.ATTENDING, null,
 				new SpeakerNPC.ChatAction() {

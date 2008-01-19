@@ -186,6 +186,7 @@ public class OutfitChangerBehaviour extends MerchantBehaviour implements
 	 * 
 	 * @param player
 	 *            The player.
+	 * @param outfitType the outfit to wear
 	 */
 	public void putOnOutfit(Player player, String outfitType) {
 		List<Outfit> possibleNewOutfits = outfitTypes.get(outfitType);
@@ -243,6 +244,7 @@ public class OutfitChangerBehaviour extends MerchantBehaviour implements
 	/**
 	 * Puts the outfit off, but only if the player hasn't taken it off himself
 	 * already.
+	 * @param player who wears the outfit
 	 */
 	protected void onWornOff(Player player) {
 		if (wearsOutfitFromHere(player)) {

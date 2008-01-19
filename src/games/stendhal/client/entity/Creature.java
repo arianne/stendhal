@@ -214,7 +214,7 @@ public class Creature extends RPEntity {
 		super.onPosition(x, y);
 
 		if ((soundWait < System.currentTimeMillis()) && (Rand.rand(100) < 5)) {
-			if (moveSounds != null){
+			if (moveSounds != null) {
 				SoundMaster.play(moveSounds[Rand.rand(moveSounds.length)], x, y);
 			}
 
