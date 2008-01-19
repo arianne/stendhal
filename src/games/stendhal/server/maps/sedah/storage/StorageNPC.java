@@ -19,8 +19,6 @@ import java.util.Map;
  * @author Teiv
  */
 public class StorageNPC implements ZoneConfigurator {
-	private ShopList shops = ShopList.get();
-
 	//
 	// ZoneConfigurator
 	//
@@ -33,13 +31,13 @@ public class StorageNPC implements ZoneConfigurator {
 	 * @param attributes
 	 *            Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone,
+	public void configureZone(final StendhalRPZone zone, final
 			Map<String, String> attributes) {
-		buildNPC(zone, attributes);
+		buildNPC(zone);
 	}
 
-	private void buildNPC(StendhalRPZone zone, Map<String, String> attributes) {
-		SpeakerNPC storageNPC = new SpeakerNPC("Pjotr Yearl") {
+	private void buildNPC(final StendhalRPZone zone) {
+		final SpeakerNPC storageNPC = new SpeakerNPC("Pjotr Yearl") {
 
 			@Override
 			protected void createPath() {
@@ -72,7 +70,7 @@ public class StorageNPC implements ZoneConfigurator {
 						"The Scarlet Army is a special division of Kalavan's Army. They all wear a red armor.");
 				addHelp("Have you seen this, no armor left here. At the moment I'm not able to serve the #Scarlet Army!");
 				addOffer("Bring me some armor and i pay you out!");
-				new BuyerAdder().add(this, new BuyerBehaviour(shops.get("buyred")), false);
+				new BuyerAdder().add(this, new BuyerBehaviour(ShopList.get().get("buyred")), false);
 				addGoodbye("Have a nice day!");
 			}
 		};
