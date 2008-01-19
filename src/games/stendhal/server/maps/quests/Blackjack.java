@@ -328,7 +328,7 @@ public class Blackjack extends AbstractQuest {
 					@Override
 					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 						Expression object = sentence.getObject(0);
-						stake = object!=null? object.getAmount(): 1;
+						stake = object != null? object.getAmount() : 1;
 
 				        if (sentence.hasError()) {
 				        	npc.say(sentence.getErrorString() + " Just tell me how much you want to risk, for example #stake #50.");
