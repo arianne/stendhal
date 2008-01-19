@@ -51,8 +51,8 @@ public class OutfitTest {
 		assertEquals(Integer.valueOf(2), ou.getHead());
 		assertEquals(Integer.valueOf(3), ou.getDress());
 		assertEquals(Integer.valueOf(4), ou.getBase());
-
-		ou = new Outfit(01020304); // coded octal
+		// coded octal
+		ou = new Outfit(01020304); 
 		assertEquals(Integer.valueOf(0), ou.getHair());
 		assertEquals(Integer.valueOf(27), ou.getHead());
 		assertEquals(Integer.valueOf(5), ou.getDress());
