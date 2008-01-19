@@ -56,7 +56,7 @@ public class LibrarianNPC implements ZoneConfigurator {
 					        @Override
 					        public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 						        // extract the title
-					        	String title = sentence.getObjectName();
+					        	String title = sentence.getExpressionStringAfterVerb();
 
 						        if (title == null) {
 							        npc.say("What do you want to be explained?");
