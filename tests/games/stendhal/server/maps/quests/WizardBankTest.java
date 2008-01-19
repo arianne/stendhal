@@ -37,9 +37,6 @@ public class WizardBankTest {
 
 		WizardBank wb = new WizardBank();
 		wb.addToWorld();
-
-		// load items to handle money
-		world.getRuleManager().getEntityManager();
 	}
 
 	@AfterClass

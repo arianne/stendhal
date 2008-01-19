@@ -1,6 +1,7 @@
 package utilities;
 
 import static org.junit.Assert.assertTrue;
+import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
@@ -19,7 +20,11 @@ public class QuestHelper {
 		PlayerTestHelper.generateItemRPClasses();
 		PlayerTestHelper.generateNPCRPClasses();
 		assertTrue(MockStendhalRPRuleProcessor.get() instanceof MockStendhalRPRuleProcessor);
-		MockStendlRPWorld.get();
+		StendhalRPWorld world = MockStendlRPWorld.get();
+
+		// load items to handle money and other items
+		world.getRuleManager().getEntityManager();
+
 		NPCList.get().clear();
 	}
 

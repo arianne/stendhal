@@ -39,9 +39,6 @@ public class SellingTest {
 
 		BarMaidNPC bar = new BarMaidNPC();
 		bar.configureZone(zone, null);
-
-		// load items to handle money
-		world.getRuleManager().getEntityManager();
 	}
 
 	@AfterClass
