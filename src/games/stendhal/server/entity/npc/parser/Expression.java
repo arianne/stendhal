@@ -413,6 +413,8 @@ public class Expression {
 	public boolean equals(Object other) {
 		if (other == this) {
 			return true;
+		} else if (other == null) {
+			return false;
 		} else if (other instanceof Expression) {
 	        return original.equals(((Expression) other).original);
         } else {

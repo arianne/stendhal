@@ -821,7 +821,7 @@ public class Sentence implements Iterable<Expression> {
 					ExpressionType curType = curr.getType();
 					ExpressionType nextType = next.getType();
 
-					if (curType.isConditional()) {
+					if (curType != null && curType.isConditional()) {
 						prevConditional = true;
 					}
 
@@ -1002,7 +1002,9 @@ public class Sentence implements Iterable<Expression> {
 	 * @return
 	 */
 	public boolean equalsNormalized(Sentence other) {
-		if (other == null) {
+		if (other == this) {
+			return true;
+		} else if (other == null) {
 			return false;
 		}
 

@@ -855,10 +855,11 @@ public class WordList {
 			return count;
         } catch (SQLException e) {
 	        logger.error("error while reading from DB table words", e);
+
 	        try {
 	            trans.rollback();
             } catch (SQLException e1) {
-    	        logger.error("error while rolling back transaction", e);
+    	        logger.error("error while rolling back transaction", e1);
             }
 
 	        return -1;
