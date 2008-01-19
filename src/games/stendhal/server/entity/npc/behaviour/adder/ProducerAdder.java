@@ -6,7 +6,6 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.impl.ProducerBehaviour;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.npc.parser.Sentence;
-import games.stendhal.server.entity.npc.parser.Expression;
 import games.stendhal.server.entity.player.Player;
 
 import org.apache.log4j.Logger;
@@ -52,26 +51,33 @@ public class ProducerAdder {
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-						Expression object = sentence.getObject(0);
-						int amount = object != null? object.getAmount() : 1;
-						String item = sentence.getObjectName();
-
 						if (sentence.hasError()) {
 							npc.say("Sorry, I did not understand you. "
 									+ sentence.getErrorString());
 						} else {
-							if (amount > 1000) {
-								logger.warn("Decreasing very large amount of "
-										+ amount
-										+ (item != null ? item + " " : "")
-										+ " to 1 for player "
-										+ player.getName() + " talking to "
-										+ npc.getName() + " saying " + sentence);
-								amount = 1;
-							}
-							if (behaviour.askForResources(npc, player, amount)) {
-								npc.setCurrentState(ConversationStates.PRODUCTION_OFFERED);
-							}
+							boolean found = behaviour.findMatchingItem(sentence);
+
+    						// Find out how much items we shall produce.
+    						if (!found && behaviour.getChosenItemName() == null) {
+    							behaviour.setChosenItemName(behaviour.getProductName());
+    							found = true;
+    						}
+
+    						if (found) {
+    							if (behaviour.getAmount() > 1000) {
+    								logger.warn("Decreasing very large amount of "
+    										+ behaviour.getAmount()
+    										+ (behaviour.getChosenItemName() != null ? behaviour.getChosenItemName() + " " : "")
+    										+ " to 1 for player "
+    										+ player.getName() + " talking to "
+    										+ npc.getName() + " saying " + sentence);
+    								behaviour.setAmount(1);
+    							}
+
+    							if (behaviour.askForResources(npc, player, behaviour.getAmount())) {
+    								npc.setCurrentState(ConversationStates.PRODUCTION_OFFERED);
+    							}
+    						}
 						}
 					}
 				});
