@@ -148,9 +148,11 @@ public class Sentence implements Iterable<Expression> {
 
 		for (Expression w : expressions) {
 			if (w.getTypeString().startsWith(typePrefix)) {
-				if (i++ == idx) {
+				if (i == idx) {
 					return w;
 				}
+
+				++i;
 			}
 		}
 
@@ -168,9 +170,11 @@ public class Sentence implements Iterable<Expression> {
 
 		for (Expression w : expressions) {
 			if (w.getTypeString().length() == 0) {
-				if (i++ == idx) {
+				if (i == idx) {
 					return w;
 				}
+
+				++i;
 			}
 		}
 
