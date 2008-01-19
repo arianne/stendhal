@@ -23,7 +23,7 @@ public class User extends Player {
 	 * TODO remove unused code private FeatureList features;
 	 */
 
-	private String _serverVersion = null;
+	private String serverVersion = null;
 
 	public static boolean isNull() {
 
@@ -201,12 +201,12 @@ public class User extends Player {
 			}
 
 			if (changes.has("release")) {
-				_serverVersion = changes.get("release");
-				if (!Version.checkCompatibility(_serverVersion,
+				serverVersion = changes.get("release");
+				if (!Version.checkCompatibility(serverVersion,
 						stendhal.VERSION)) {
 					StendhalUI.get().addEventLine(
 							"Your client may not function properly.\nThe version of this server is "
-									+ _serverVersion
+									+ serverVersion
 									+ " but your client is version "
 									+ stendhal.VERSION
 									+ ".\nPlease download the new version from http://arianne.sourceforge.net",
@@ -252,6 +252,6 @@ public class User extends Player {
 	 * @return server version string
 	 */
 	public String getServerVersion() {
-		return _serverVersion;
+		return serverVersion;
 	}
 }
