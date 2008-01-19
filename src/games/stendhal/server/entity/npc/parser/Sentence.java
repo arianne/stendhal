@@ -160,11 +160,11 @@ public class Sentence implements Iterable<Expression> {
 	}
 
 	/**
-	 * Count the number of Expressions with unkown type.
+	 * Count the number of Expressions with unknown type.
 	 * 
 	 * @return number of Expressions with unknown type
 	 */
-	private int countUnknownTypeExpressions() {
+	public int getUnknownTypeCount() {
 		int count = 0;
 
 		for (Expression w : expressions) {
@@ -370,6 +370,38 @@ public class Sentence implements Iterable<Expression> {
 	public Expression getPreposition(int i) {
 		return getExpression(i, ExpressionType.PREPOSITION);
 	}
+
+	/**
+	 * Return the number of number Expressions.
+	 * 
+	 * @return number of number Expressions
+	 */
+	public int getNumeralCount() {
+		return countExpressions(ExpressionType.NUMERAL);
+	}
+
+	/**
+	 * Return numeral [i] of the parsed sentence.
+	 * @param i 
+	 * 
+	 * @return numeral
+	 */
+	public Expression getNumeral(int i) {
+		return getExpression(i, ExpressionType.NUMERAL);
+	}
+
+	/**
+	 * Return the single numeral of the parsed sentence.
+	 * 
+	 * @return numeral
+	 */
+	public Expression getNumeral() {
+		if (getNumeralCount() == 1) {
+			return getNumeral(0);
+		} else {
+			return null;
+		}
+    }
 
 	/**
 	 * Return true if the sentence is empty.
@@ -1264,7 +1296,7 @@ public class Sentence implements Iterable<Expression> {
 	public String getExpressionStringAfterVerb() {
 		String ret = null;
 
-		int unkownCount = countUnknownTypeExpressions();
+		int unkownCount = getUnknownTypeCount();
 		int verbCount = getVerbCount();
 
 		// If all words in the Sentence could be recognized, just return the object name, if available.
