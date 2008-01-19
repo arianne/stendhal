@@ -34,27 +34,25 @@ public class UnderscoreConverter {
 
 		// Now loop over all contained slots.
 		Iterator<RPSlot> it = object.slotsIterator();
-		while(it.hasNext()) {
+		while (it.hasNext()) {
 			RPSlot slot = it.next();
 			String slotName = slot.getName();
 
 			if (slotName != null) {
     			if (slotName.equals("!kills")) {
     				// Translate the content of the kill list.
-    				for(RPObject obj : slot) {
+    				for (RPObject obj : slot) {
     					transformSlotKeyNames(obj);
     				}
-    			}
-    			// exclude key slots from the conversion
-//    			else if (!slotName.startsWith("!"))
-    			else if (!slotName.equals("!visited") &&
-    						!slotName.equals("!buddy") &&
-    						!slotName.equals("!ignore") &&
-    						!slotName.equals("!quests") &&
-    						!slotName.equals("!tutorial")) {
+    			} else if (!slotName.equals("!visited") 
+    					&&	!slotName.equals("!buddy") 
+    					&&	!slotName.equals("!ignore") 
+    					&&	!slotName.equals("!quests") 
+    					&&	!slotName.equals("!tutorial")) {
+    				// slotName is non of excluded key slots 
     				// Recurse to transform the names of all contained items.
-    				for(RPObject obj : slot) {
-    					transformNames(obj);
+    				for (RPObject obj : slot) {
+						transformNames(obj);
     				}
     			}
 			}
@@ -65,7 +63,7 @@ public class UnderscoreConverter {
 	 * Transform the value for the given key name in 'object'.
 	 *
 	 * @param object to transform
-	 * @param name of the key to transform
+	 * @param key of the key to transform
 	 * @return true if changed
 	 */
 	static boolean transformAttribute(RPObject object, final String key)	{
@@ -74,7 +72,7 @@ public class UnderscoreConverter {
 		String newValue = transform(value);
 		if (newValue != value) {
 			object.put(key, newValue);
-			logger.info("renamed attribute '"+key+"' value '"+value+"' to '"+newValue+"'");
+			logger.info("renamed attribute '" + key + "' value '" + value + "' to '" + newValue + "'");
 			return true;
 		}
 
@@ -82,7 +80,7 @@ public class UnderscoreConverter {
 	}
 
 	/**
-	 * Replace all underscore characters by spaces in the key names of a "!kills" slot
+	 * Replaces all underscore characters by spaces in the key names of a "!kills" slot.
 	 *
 	 * @param object to transform
 	 * @return true if changed
@@ -93,7 +91,7 @@ public class UnderscoreConverter {
 		attributes.fill(object);
 		int count = 0;
 
-		for(String key : attributes) {
+		for (String key : attributes) {
 			String newKey = transform(key);
 
 			if (newKey != key) {
@@ -102,7 +100,7 @@ public class UnderscoreConverter {
 				object.remove(key);
 				object.put(newKey, value);
 
-				logger.info("renamed slot key '"+key+"' to '"+newKey+"'");
+				logger.info("renamed slot key '" + key + "' to '" + newKey + "'");
 				++count;
 			}
 		}
