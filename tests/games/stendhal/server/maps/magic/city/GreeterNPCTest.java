@@ -92,6 +92,9 @@ public class GreeterNPCTest {
 		assertTrue(en.step(player, "explain"));
 		assertEquals("As a city for wizards only, we have much to learn from one another. Thus, old quarrels are forgotten and we live here in peace.", npc.get("text"));
 
+		assertTrue(en.step(player, "quest"));
+		assertEquals("Neither can live while the other survives! The Dark Lord must be killed...no ... wait... that was some other time. Forgive me for confusing you, I need nothing.", npc.get("text"));
+
 		assertTrue(en.step(player, "buy"));
 		assertEquals("Please tell me what you want to buy.", npc.get("text"));
 
