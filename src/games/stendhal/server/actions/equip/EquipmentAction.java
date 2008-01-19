@@ -94,7 +94,7 @@ public class EquipmentAction implements ActionListener {
 	private void onEquip(Player player, RPAction action) {
 		// get source and check it
 		logger.debug("Checking source object conditions: " + action);
-		SourceObject source = new SourceObject(action, player);
+		SourceObject source = SourceObject.createSourceObject(action, player);
 		if (!source.isValid()) {
 			logger.debug("Source is not valid");
 			return;
@@ -167,7 +167,7 @@ public class EquipmentAction implements ActionListener {
 
 	private void onDrop(Player player, RPAction action) {
 		// get source and check it
-		SourceObject source = new SourceObject(action, player);
+		SourceObject source = SourceObject.createSourceObject(action, player);
 		if (!source.isValid()
 				|| !source.checkDistance(player, EquipActionConsts.MAXDISTANCE)
 				|| !source.checkClass(validContainerClassesList)) {
