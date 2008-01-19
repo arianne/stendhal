@@ -183,6 +183,14 @@ East: Nalwor, Semos
   <portal x="16" y="30" ref="entrance">
    <destination zone="0_orril_river_s" ref="jynath_house_entrance"/>
   </portal>
+
+  <portal x="12" y="8" ref="orb_left">
+   <destination zone="-1_fado_great_cave_e3" ref="jynath_orb"/>
+  </portal>
+  <portal x="13" y="8" ref="orb_right">
+   <destination zone="-1_fado_great_cave_e3" ref="jynath_orb"/>
+  </portal>
+
  </zone>
 
  <zone name="0_orril_river_se" level="0" x="500000" y="500384" file="Level 0/orril/river_se.tmx">

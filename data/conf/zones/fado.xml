@@ -1002,6 +1002,9 @@ it back as you got it!
    <attribute name="class">transparent</attribute>
    <attribute name="resistance">0</attribute>
   </entity>
+  <portal x="31" y="62" ref="jynath_orb">
+   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
+  </portal>
 </zone>
 <!-- Interiors for Magic underground city here -->
 <zone name="int_magic_theater" file="interiors/magic/theater.tmx">
@@ -1014,6 +1017,20 @@ it back as you got it!
   <portal x="32" y="1" ref="entrance_right">
    <destination zone="-1_fado_great_cave_e3" ref="theater_entrance_right"/>
   </portal>
+  <entity x="27" y="61">
+   <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
+   <attribute name="text">... so goodnight dear Diary till tomorrow. P.s. Must remember to get this diary re-bound as the pages are loose! 
+Today I used an orb in the witch Jynath's house and arrived in a city of witches and wizards. I nearly died when I walked around but luckily I found a home scroll in the corpse of a littlewizard and now I am about to teleport home.</attribute>
+   <attribute name="class">transparent</attribute>
+   <attribute name="resistance">0</attribute>
+  </entity>
+  <entity x="22" y="59">
+   <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
+   <attribute name="text">Notice from Headmistress: School witches and wizards, be more careful with your belongings! Many of you are losing your home scrolls!
+</attribute>
+   <attribute name="class">transparent</attribute>
+   <attribute name="resistance">0</attribute>
+  </entity>
 </zone>
 
 <zone name="int_magic_shrine" file="interiors/magic/shrine.tmx">
