@@ -107,7 +107,7 @@ public class SourceObjectTest {
 		Item dropitem = DefaultEntityManager.getInstance().getItem("money");
 		assertNotNull(dropitem);
 		zone.add(bob);
-		dropitem.setID(new RPObject.ID(999,"blabla"));
+		dropitem.setID(new RPObject.ID(999, "blabla"));
 		//assertTrue(bob.equip(dropitem));
 		assertNotNull(dropitem.getID().getObjectID());
 		RPAction action = new RPAction();

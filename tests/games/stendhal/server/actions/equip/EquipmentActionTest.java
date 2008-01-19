@@ -37,7 +37,7 @@ public class EquipmentActionTest {
 	/**
 	 * Create player and put it into the world.
 	 * @param name
-	 * @return
+	 * @return a Player where the  privateTexts are captured
 	 */
 	private PrivateTextMockingTestPlayer createTestPlayer(String name) {
 		PrivateTextMockingTestPlayer player = PlayerTestHelper.createPrivateTextMockingTestPlayer(name);
