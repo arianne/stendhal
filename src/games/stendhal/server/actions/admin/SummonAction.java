@@ -45,7 +45,6 @@ public class SummonAction extends AdministrationAction {
 							+ "\" not found.");
 					return;
 				} else if (manager.isCreature(type)) {
-
 					entity = new RaidCreature((Creature) entity);
 				}
 
