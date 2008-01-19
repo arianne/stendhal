@@ -106,8 +106,7 @@ public class CreatureProtectionAreaFactory implements ConfigurableFactory {
 	 * @throws IllegalArgumentException
 	 *             If the attribute is other than "block" or "allow".
 	 */
-	protected boolean getBlockedDefault(ConfigurableFactoryContext ctx)
-			throws IllegalArgumentException {
+	protected boolean getBlockedDefault(ConfigurableFactoryContext ctx) {
 		String s = ctx.getString("default", null);
 
 		if (s == null) {

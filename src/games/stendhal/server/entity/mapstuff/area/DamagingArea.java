@@ -75,6 +75,8 @@ public class DamagingArea extends OccupantArea {
 	/**
 	 * Calculate the entity's final defense value. Taken from new (potential
 	 * replacement) combat code.
+	 * @param entity 
+	 * @return defense value
 	 */
 	protected float calculateDefense(RPEntity entity) {
 		float potential;

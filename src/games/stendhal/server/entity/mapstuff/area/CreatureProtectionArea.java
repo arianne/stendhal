@@ -224,6 +224,9 @@ public class CreatureProtectionArea extends AreaEntity {
 
 		/**
 		 * Check if a class/subclass matches.
+		 * @param clazz 
+		 * @param subclazz 
+		 * @return true if both are equals to fields
 		 * 
 		 * 
 		 * 
