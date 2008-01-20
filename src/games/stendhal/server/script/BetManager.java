@@ -191,19 +191,22 @@ public class BetManager extends ScriptImpl implements TurnListener {
 
 			if (sentence.hasError()) {
 				errorMsg = sentence.getErrorString();
-			} else if (sentence.getObjectCount() < 2
-					|| sentence.getPrepositionCount() < 1) {
-				errorMsg = "missing bet parameters";
 			} else {
-				Expression object = sentence.getObject(0);
-				betInfo.amount = object != null ? object.getAmount() : 1;
-				betInfo.itemName = sentence.getObjectName(); // cheese
+				Expression object1 = sentence.getObject(0);
+				Expression preposition = sentence.getPreposition(0);
+				Expression object2 = sentence.getObject(1);
 
-				if (!sentence.getPreposition(0).getNormalized().equals("on")) {
-					errorMsg = "missing preposition 'on'";
-				}
-
-				betInfo.target = sentence.getObjectName(1);
+				if (object1 != null && object2 != null && preposition != null) {
+    				if (preposition.equals("on")) {
+        				betInfo.amount = object1.getAmount();
+        				betInfo.itemName = object1.getNormalized(); // cheese
+        				betInfo.target = object2.getNormalized();
+    				} else {
+    					errorMsg = "missing preposition 'on'";
+    				}
+    			} else {
+    				errorMsg = "missing bet parameters";
+    			}
 			}
 
 			// wrong syntax
@@ -298,7 +301,7 @@ public class BetManager extends ScriptImpl implements TurnListener {
 				if (winner.equals(betInfo.target)) {
 					Item item = sandbox.getItem(betInfo.itemName);
 
-					// it should allways be a stackable items as we checked for
+					// it should always be a stackable items as we checked for
 					// ConsumableItem when accepting the bet. But just in case
 					// something is changed in the future, we will check it
 					// again:
@@ -429,7 +432,6 @@ public class BetManager extends ScriptImpl implements TurnListener {
 			default:
 				logger.warn("unknown switch case" + idx);
 				break;
-
 		}
 	}
 }

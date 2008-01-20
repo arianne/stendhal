@@ -1,4 +1,4 @@
-# @Version 10
+# @Version 11
 #
 # Word list for the Stendhal conversation parser
 #
@@ -53,6 +53,7 @@ ask	VER	=say
 bail	VER
 bake	VER
 believe	VER
+bet	VER
 boo	VER
 borrow	VER
 bribe	VER
