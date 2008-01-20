@@ -2,7 +2,6 @@ package games.stendhal.client.scripting;
 
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.StendhalUI;
-import games.stendhal.client.actions.RecordAction;
 import games.stendhal.client.actions.SlashActionRepository;
 import games.stendhal.common.NotificationType;
 import marauroa.common.game.RPAction;
@@ -12,14 +11,11 @@ import marauroa.common.game.RPAction;
  */
 public class ChatLineParser {
 	private static ChatLineParser instance;
-	private RecordAction recordAction;
 
 	// hide constructor (Singleton)
 	private ChatLineParser() {
 
 		SlashActionRepository.register();
-
-		recordAction = (RecordAction) SlashActionRepository.get("record");
 	}
 
 	/**
@@ -49,11 +45,6 @@ public class ChatLineParser {
 
 		if (text.length() == 0) {
 			return false;
-		}
-
-		// record it (if recording)
-		if (recordAction.getRecorder() != null) {
-			recordAction.getRecorder().recordChatLine(text);
 		}
 
 		if (text.charAt(0) == '/') {

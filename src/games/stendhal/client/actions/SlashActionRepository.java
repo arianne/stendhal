@@ -39,7 +39,6 @@ public class SlashActionRepository {
 		actions.put("joinguild", new CreateGuildAction());
 		actions.put("msg", msg);
 		actions.put("quit", new QuitAction());
-		actions.put("record", new RecordAction());
 		actions.put("remove", new RemoveBuddyAction());
 		actions.put("sound", new SoundAction());
 		actions.put("summonat", new SummonAtAction());
