@@ -82,7 +82,7 @@ public class BakerNPC implements ZoneConfigurator {
 				requiredResources.put("carrot", Integer.valueOf(1));
 				requiredResources.put("button mushroom", Integer.valueOf(1));
 
-				ProducerBehaviour behaviour = new ProducerBehaviour("arlindo make pie", "make", "pie",
+				ProducerBehaviour behaviour = new ProducerBehaviour("arlindo_make_pie", "make", "pie",
 				        requiredResources, 7 * 60);
 
 				new ProducerAdder().addProducer(this, behaviour,

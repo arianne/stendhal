@@ -47,7 +47,7 @@ public class BlacksmithNPC extends SpeakerNPCFactory {
 		requiredResources.put("wood", 1);
 		requiredResources.put("iron ore", 1);
 
-		ProducerBehaviour behaviour = new ProducerBehaviour("xoderos cast iron",
+		ProducerBehaviour behaviour = new ProducerBehaviour("xoderos_cast_iron",
 				"cast", "iron", requiredResources, 5 * 60);
 
 		new ProducerAdder().addProducer(npc, behaviour,

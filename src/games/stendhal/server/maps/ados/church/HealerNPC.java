@@ -30,7 +30,7 @@ public class HealerNPC extends SpeakerNPCFactory {
 		Map<String, Integer> requiredResources = new TreeMap<String, Integer>();	// use sorted TreeMap instead of HashMap
 		requiredResources.put("money", 20);
 		requiredResources.put("giant heart", 1);
-		ProducerBehaviour behaviour = new ProducerBehaviour("valo concoct potion",
+		ProducerBehaviour behaviour = new ProducerBehaviour("valo_concoct_potion",
 				"concoct", "mega potion", requiredResources, 2 * 60);
 
 		new ProducerAdder().addProducer(npc, behaviour,

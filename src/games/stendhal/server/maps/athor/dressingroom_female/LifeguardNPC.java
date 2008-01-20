@@ -57,7 +57,7 @@ public class LifeguardNPC implements ZoneConfigurator {
 				requiredResources.put("kokuda", 1);
 				requiredResources.put("minor potion", 1);
 
-				ProducerBehaviour mixerBehaviour = new ProducerBehaviour("pamela mix cream",
+				ProducerBehaviour mixerBehaviour = new ProducerBehaviour("pamela_mix_cream",
 						"mix", "suntan cream", requiredResources, 10 * 60);
 
 				new ProducerAdder().addProducer(this, mixerBehaviour, "Hallo!");

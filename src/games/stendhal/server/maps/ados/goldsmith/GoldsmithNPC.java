@@ -71,7 +71,7 @@ public class GoldsmithNPC implements ZoneConfigurator {
 				requiredResources.put("wood", 2);
 				requiredResources.put("gold nugget", 1);
 
-				ProducerBehaviour behaviour = new ProducerBehaviour("joshua cast gold",
+				ProducerBehaviour behaviour = new ProducerBehaviour("joshua_cast_gold",
 						"cast", "gold bar", requiredResources, 15 * 60);
 
 				new ProducerAdder().addProducer(this, behaviour,

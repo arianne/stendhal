@@ -91,7 +91,7 @@ public class BakerNPC implements ZoneConfigurator {
 				requiredResources.put("mackerel", 1);
 				requiredResources.put("leek", 1);
 
-				ProducerBehaviour behaviour = new ProducerBehaviour("linzo make fish pie", "make", "fish pie",
+				ProducerBehaviour behaviour = new ProducerBehaviour("linzo_make_fish_pie", "make", "fish pie",
 				        requiredResources, 5 * 60);
 
 				new ProducerAdder().addProducer(this, behaviour,

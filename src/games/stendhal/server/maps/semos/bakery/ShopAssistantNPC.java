@@ -27,7 +27,7 @@ public class ShopAssistantNPC extends SpeakerNPCFactory {
 		Map<String, Integer> requiredResources = new TreeMap<String, Integer>();
 		requiredResources.put("flour", 2);
 
-		ProducerBehaviour behaviour = new ProducerBehaviour("erna bake bread",
+		ProducerBehaviour behaviour = new ProducerBehaviour("erna_bake_bread",
 				"bake", "bread", requiredResources, 10 * 60);
 
 		new ProducerAdder().addProducer(npc, behaviour,
