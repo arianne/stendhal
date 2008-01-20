@@ -68,7 +68,6 @@ public class Debuggera extends ScriptImpl {
 
 		@Override
 		public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-
 			// list quest
 			StringBuffer sb = new StringBuffer("Your quest states are:");
 			List<String> quests = player.getQuests();
@@ -77,7 +76,7 @@ public class Debuggera extends ScriptImpl {
 			}
 
 			// change quest
-			String quest = sentence.getObjectName();
+			String quest = sentence.getOriginalText();
 			int pos = quest != null ? quest.indexOf("=") : -1;
 			if (pos > -1) {
 				String value = quest.substring(pos + 1);
