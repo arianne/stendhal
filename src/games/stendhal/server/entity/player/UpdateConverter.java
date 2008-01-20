@@ -176,19 +176,22 @@ public abstract class UpdateConverter {
 		if (kills != null) {
     		RPObject newKills = new RPObject();
     		for (String attr : kills) {
-    			String newAttr = attr;
-    			String value = kills.get(attr);
+    			// skip "id" entries
+    			if (!attr.equals("id")) {
+        			String newAttr = attr;
+        			String value = kills.get(attr);
 
-    			// Is it stored using the old recording system without an dot?
-    			if (attr.indexOf('.') < 0) {
-    				newAttr = updateItemName(newAttr);
-    				newAttr = value + "." + newAttr;
-    				value = "1";
+        			// Is it stored using the old recording system without an dot?
+        			if (attr.indexOf('.') < 0) {
+        				newAttr = updateItemName(newAttr);
+        				newAttr = value + "." + newAttr;
+        				value = "1";
+        			}
+
+        			newKills.put(newAttr, value);
     			}
-
-    			newKills.put(newAttr, value);
     		}
-		
+
     		RPSlot slot = object.getSlot("!kills");
     		slot.remove(kills.getID());
     		slot.add(newKills);
