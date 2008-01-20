@@ -34,7 +34,7 @@ class DropAction implements SlashAction {
 			StendhalUI.get().addEventLine("Invalid quantity");
 			return true;
 		}
-		String itemName = params[1];
+		String itemName = remainder;
 		for (String slotName : CARRYING_SLOTS) {
 			int itemID = findItem(slotName, itemName);
 			if (itemID != -1) {
@@ -82,7 +82,7 @@ class DropAction implements SlashAction {
 	 * @return The parameter count.
 	 */
 	public int getMaximumParameters() {
-		return 2;
+		return 1;
 	}
 
 	/**
