@@ -34,6 +34,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.WeakHashMap;
 
 import marauroa.common.game.Definition;
 import marauroa.common.game.RPClass;
@@ -174,7 +175,7 @@ public abstract class RPEntity extends GuidedEntity {
 	public RPEntity(RPObject object) {
 		super(object);
 		attackSources = new ArrayList<Entity>();
-		damageReceived = new HashMap<Entity, Integer>();
+		damageReceived = new WeakHashMap<Entity, Integer>();
 		playersToReward = new HashSet<String>();
 		enemiesThatGiveFightXP = new HashMap<RPEntity, Integer>();
 		totalDamageReceived = 0;
@@ -183,7 +184,7 @@ public abstract class RPEntity extends GuidedEntity {
 	public RPEntity() {
 		super();
 		attackSources = new ArrayList<Entity>();
-		damageReceived = new HashMap<Entity, Integer>();
+		damageReceived = new WeakHashMap<Entity, Integer>();
 		playersToReward = new HashSet<String>();
 		enemiesThatGiveFightXP = new HashMap<RPEntity, Integer>();
 		totalDamageReceived = 0;
@@ -749,8 +750,9 @@ public abstract class RPEntity extends GuidedEntity {
 
 		// remember the damage done so that the attacker can later be rewarded
 		// XP etc.
-		if (damageReceived.containsKey(attacker)) {
-			damageReceived.put(attacker, damage + damageReceived.get(attacker));
+		Integer oldDamage = damageReceived.get(attacker);
+		if (oldDamage != null) {
+			damageReceived.put(attacker, damage + oldDamage);
 		} else {
 			damageReceived.put(attacker, damage);
 		}
