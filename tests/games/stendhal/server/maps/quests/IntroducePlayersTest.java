@@ -17,6 +17,7 @@ import games.stendhal.server.maps.semos.townhall.BoyNPC;
 import marauroa.common.Log4J;
 import marauroa.common.game.RPObject.ID;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -47,6 +48,12 @@ public class IntroducePlayersTest {
 
 	@Before
 	public void setUp() throws Exception {
+	}
+
+	@After
+	public void TearDown() throws Exception {
+		PlayerTestHelper.resetNPC("Tad");
+		PlayerTestHelper.resetNPC("Ilisa");
 	}
 
 	@Test
