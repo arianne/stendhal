@@ -12,7 +12,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
  */
 public class QuestStartedCondition extends SpeakerNPC.ChatCondition {
 
-	private String questname;
+	protected String questname;
 
 	/**
 	 * Creates a new QuestStartedCondition.
@@ -26,7 +26,7 @@ public class QuestStartedCondition extends SpeakerNPC.ChatCondition {
 
 	@Override
 	public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
-		return (player.hasQuest(questname));
+		return (player.hasQuest(questname) && !"rejected".equals(player.getQuest(questname)));
 	}
 
 	@Override

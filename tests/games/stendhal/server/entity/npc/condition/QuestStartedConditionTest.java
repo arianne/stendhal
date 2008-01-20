@@ -6,22 +6,12 @@ import static org.junit.Assert.assertTrue;
 import games.stendhal.server.entity.npc.parser.ConversationParser;
 import games.stendhal.server.entity.player.Player;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 
 import utilities.PlayerTestHelper;
 import utilities.SpeakerNPCTestHelper;
 
 public class QuestStartedConditionTest {
-
-	@Before
-	public void setUp() throws Exception {
-	}
-
-	@After
-	public void tearDown() throws Exception {
-	}
 
 	@Test
 	public final void testFire() {
@@ -37,6 +27,11 @@ public class QuestStartedConditionTest {
 				SpeakerNPCTestHelper.createSpeakerNPC()));
 
 		bob.setQuest("questname", null);
+		assertFalse(new QuestStartedCondition("questname").fire(bob,
+				ConversationParser.parse("testAdminConditionText"),
+				SpeakerNPCTestHelper.createSpeakerNPC()));
+		
+		bob.setQuest("questname", "rejected");
 		assertFalse(new QuestStartedCondition("questname").fire(bob,
 				ConversationParser.parse("testAdminConditionText"),
 				SpeakerNPCTestHelper.createSpeakerNPC()));

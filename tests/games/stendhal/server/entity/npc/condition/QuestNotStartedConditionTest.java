@@ -40,6 +40,11 @@ public class QuestNotStartedConditionTest {
 		assertTrue(new QuestNotStartedCondition("questname").fire(bob,
 				ConversationParser.parse("testAdminConditionText"),
 				SpeakerNPCTestHelper.createSpeakerNPC()));
+		
+		bob.setQuest("questname", "rejected");
+		assertTrue(new QuestNotStartedCondition("questname").fire(bob,
+				ConversationParser.parse("testAdminConditionText"),
+				SpeakerNPCTestHelper.createSpeakerNPC()));
 	}
 
 	@Test
@@ -76,6 +81,7 @@ public class QuestNotStartedConditionTest {
 		assertTrue(new QuestNotStartedCondition("questname").equals(new QuestNotStartedCondition(
 				"questname") {
 		}));
+		
 	}
 
 	@Test

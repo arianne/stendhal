@@ -26,7 +26,7 @@ public class QuestNotStartedCondition extends SpeakerNPC.ChatCondition {
 
 	@Override
 	public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
-		return (!player.hasQuest(questname));
+		return (!player.hasQuest(questname) || "rejected".equals(player.getQuest(questname)));
 	}
 
 	@Override
@@ -42,6 +42,6 @@ public class QuestNotStartedCondition extends SpeakerNPC.ChatCondition {
 	@Override
 	public boolean equals(Object obj) {
 		return EqualsBuilder.reflectionEquals(this, obj, false,
-				QuestStartedCondition.class);
+				QuestNotStartedCondition.class);
 	}
 }
