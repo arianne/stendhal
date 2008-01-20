@@ -31,7 +31,7 @@ public class CreateAccountDialogTest {
     public void testInValidPass() {
 
         CreateAccountDialog cad = new CreateAccountDialog();
-        assertFalse(cad.validatePassword(new String(), new String()));
+        assertFalse(cad.validatePassword("", ""));
 
         String user1 = "qwerty";
         String pass1 = "qwerty";

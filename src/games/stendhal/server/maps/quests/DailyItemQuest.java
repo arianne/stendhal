@@ -201,7 +201,7 @@ public class DailyItemQuest extends AbstractQuest {
 						engine.say("I see. Please, ask me for another #quest when you think you can help Ados again.");
 						// Don't make the player wait any longer and don't
 						// credit the player with a count increase?
-						// questCount = "" + (new Integer(questCount) + 1 );
+						// questCount = "" + (Integer.valueOf(questCount) + 1 );
 						// questLast = "" + (new Date()).getTime();
 						player.setQuest("daily_item", "done" + ";" + questLast
 								+ ";" + questCount);

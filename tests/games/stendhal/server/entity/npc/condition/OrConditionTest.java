@@ -50,7 +50,7 @@ public class OrConditionTest {
 				(ChatCondition) null)));
 		assertFalse(new OrCondition((ChatCondition) null).equals(new OrCondition(
 				falsecondition)));
-		assertFalse(new OrCondition().equals(new Integer(100)));
+		assertFalse(new OrCondition().equals(Integer.valueOf(100)));
 		assertTrue(new OrCondition().equals(new OrCondition() {
 		}));
 	}

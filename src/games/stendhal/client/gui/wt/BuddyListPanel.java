@@ -119,7 +119,7 @@ public class BuddyListPanel extends JPanel {
 			 * TODO Maybe there's a better way (without introducing
 			 * dependencies/code-coupling) XXX
 			 */
-			putClientProperty("size-change", new Integer(height));
+			putClientProperty("size-change", Integer.valueOf(height));
 		}
 	}
 

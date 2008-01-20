@@ -109,7 +109,7 @@ class AmbientSound {
 				si = (LoopSoundInfo) super.clone();
 				si.clip = null;
 			} catch (CloneNotSupportedException e) {
-				System.out.println("#### bad clone");
+				logger.warn("#### bad clone");
 				return null;
 			}
 

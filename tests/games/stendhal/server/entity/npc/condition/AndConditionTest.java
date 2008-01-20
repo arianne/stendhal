@@ -61,7 +61,7 @@ public class AndConditionTest {
 				(ChatCondition) null)));
 		assertFalse(new AndCondition((ChatCondition) null).equals(new AndCondition(
 				falsecondition)));
-		assertFalse(new AndCondition().equals(new Integer(100)));
+		assertFalse(new AndCondition().equals(Integer.valueOf(100)));
 		assertTrue(new AndCondition().equals(new AndCondition() {
 		}));
 	}

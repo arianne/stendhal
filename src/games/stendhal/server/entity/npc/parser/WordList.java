@@ -236,7 +236,7 @@ public class WordList {
 
 				if (s != null) {
 					if (entry.getType().isNumeral()) {
-						entry.setValue(new Integer(s));
+						entry.setValue(Integer.valueOf(s));
 					} else {
 						entry.setPlurSing(s);
 					}

@@ -343,7 +343,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 		 *            And object ID.
 		 */
 		public FQID(RPObject.ID id) {
-			this(new Object[] { new Integer(id.getObjectID()) });
+			this(new Object[] { Integer.valueOf(id.getObjectID()) });
 		}
 
 		/**
@@ -373,7 +373,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 			RPObject node = object;
 
 			while (true) {
-				path.addFirst(new Integer(node.getID().getObjectID()));
+				path.addFirst(Integer.valueOf(node.getID().getObjectID()));
 
 				RPSlot slot = node.getContainerSlot();
 

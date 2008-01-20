@@ -117,7 +117,7 @@ public class SpeakerNPCFactory implements ConfigurableFactory {
 		}
 	}
 
-	public void createDialog(SpeakerNPC npc) {
+	public void createDialog(final SpeakerNPC npc) {
 		// sub classes can implement this method
 	}
 

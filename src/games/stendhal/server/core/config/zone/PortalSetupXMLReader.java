@@ -78,7 +78,7 @@ public class PortalSetupXMLReader extends EntitySetupXMLReader {
 			 * For now, treat valid number strings as Integer refs
 			 */
 			try {
-				identifier = new Integer(s);
+				identifier = Integer.valueOf(s);
 			} catch (NumberFormatException ex) {
 				identifier = s;
 			}
@@ -114,7 +114,7 @@ public class PortalSetupXMLReader extends EntitySetupXMLReader {
 			 * For now, treat valid number strings as Integer refs
 			 */
 			try {
-				identifier = new Integer(s);
+				identifier = Integer.valueOf(s);
 			} catch (NumberFormatException ex) {
 				identifier = s;
 			}

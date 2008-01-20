@@ -148,7 +148,7 @@ public class WeeklyItemQuest extends AbstractQuest {
 				player.equip(money, true);
 				engine.say("Wonderful! Here is " + Integer.toString(goldamount) + " money to cover your expenses.");
 				player.addXP(reward);
-				questCount = "" + (new Integer(questCount) + 1);
+				questCount = "" + (Integer.valueOf(questCount) + 1);
 				questLast = "" + (new Date()).getTime();
 				player.setQuest("weekly_item", "done" + ";" + questLast + ";"
 						+ questCount);
@@ -185,7 +185,7 @@ public class WeeklyItemQuest extends AbstractQuest {
 						engine.say("I see. Please, ask me for another #quest when you think you can help Kirdneh museum again.");
 						// Don't make the player wait any longer and don't
 						// credit the player with a count increase?
-						// questCount = "" + (new Integer(questCount) + 1 );
+						// questCount = "" + (Integer.valueOf(questCount) + 1 );
 						// questLast = "" + (new Date()).getTime();
 						player.setQuest("weekly_item", "done" + ";" + questLast
 								+ ";" + questCount);

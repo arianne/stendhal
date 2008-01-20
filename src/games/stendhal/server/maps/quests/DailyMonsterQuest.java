@@ -268,7 +268,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 				}
 				engine.say("Good work! Let me thank you in the name of the people of Semos!");
 				player.addXP(reward);
-				questCount = "" + (new Integer(questCount) + 1);
+				questCount = "" + (Integer.valueOf(questCount) + 1);
 				questLast = "" + (new Date()).getTime();
 				player.setQuest("daily", "done" + ";" + questLast + ";"
 						+ questCount);
@@ -306,7 +306,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 						engine.say("As you wish, ask me for another #quest when you think you have what it takes to help Semos again.");
 						// Don't make the player wait any longer and don't
 						// credit the player with a count increase?
-						// questCount = "" + (new Integer(questCount) + 1 );
+						// questCount = "" + (Integer.valueOf(questCount) + 1 );
 						// questLast = "" + (new Date()).getTime();
 						player.setQuest("daily", "done" + ";" + questLast + ";"
 								+ questCount);

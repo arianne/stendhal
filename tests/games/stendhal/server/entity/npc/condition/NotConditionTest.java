@@ -103,7 +103,7 @@ public class NotConditionTest {
 				null)));
 		assertFalse(new NotCondition(null).equals(new NotCondition(
 				trueCondition)));
-		assertFalse(new NotCondition(trueCondition).equals(new Integer(100)));
+		assertFalse(new NotCondition(trueCondition).equals(Integer.valueOf(100)));
 		assertTrue(new NotCondition(trueCondition).equals(new NotCondition(
 				trueCondition) {
 		}));

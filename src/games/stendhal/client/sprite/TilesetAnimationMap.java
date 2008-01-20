@@ -52,7 +52,7 @@ public class TilesetAnimationMap {
 	 */
 	public void add(final int index, final int[] frameIndexes,
 			final int[] frameDelays) {
-		animations.put(new Integer(index), new Mapping(frameIndexes,
+		animations.put(Integer.valueOf(index), new Mapping(frameIndexes,
 				frameDelays));
 	}
 
@@ -104,7 +104,7 @@ public class TilesetAnimationMap {
 	 * @return A sprite, or <code>null</code> if no mapped sprite.
 	 */
 	public Sprite getSprite(final Tileset tileset, final int index) {
-		Mapping mapping = animations.get(new Integer(index));
+		Mapping mapping = animations.get(Integer.valueOf(index));
 
 		if (mapping == null) {
 			return null;

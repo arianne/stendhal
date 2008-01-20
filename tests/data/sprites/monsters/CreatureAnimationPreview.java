@@ -168,7 +168,6 @@ public class CreatureAnimationPreview {
 					imageViewerSwing2 = null;
 					imageViewerSwing3 = null;
 					imageViewerSwing4 = null;
-					System.out.println("windowClosing()");
 					super.windowClosing(e);
 					System.exit(0);
 				}

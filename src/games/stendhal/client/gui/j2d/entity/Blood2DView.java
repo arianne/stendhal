@@ -68,7 +68,7 @@ public class Blood2DView extends StateEntity2DView {
 
 		// TODO: Allow animated frames
 		for (int y = 0; y < theight; y += IGameScreen.SIZE_UNIT_PIXELS) {
-			map.put(new Integer(i++), store.getTile(tiles, 0, y,
+			map.put(Integer.valueOf(i++), store.getTile(tiles, 0, y,
 					IGameScreen.SIZE_UNIT_PIXELS, IGameScreen.SIZE_UNIT_PIXELS));
 		}
 	}

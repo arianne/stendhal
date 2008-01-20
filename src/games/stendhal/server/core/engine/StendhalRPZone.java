@@ -255,7 +255,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 	private int maxPortalNumber = 64;
 
 	public Object assignPortalID(Portal portal) {
-		portal.setIdentifier(new Integer(++maxPortalNumber));
+		portal.setIdentifier(Integer.valueOf(++maxPortalNumber));
 
 		return portal.getIdentifier();
 	}

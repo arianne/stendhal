@@ -356,16 +356,16 @@ public class ReverseArrow extends AbstractQuest implements
 		entranceZone = StendhalRPWorld.get().getZone(entranceZoneName);
 		door = new NotifyingDoor("housedoor");
 		door.setPosition(95, 101);
-		door.setIdentifier(new Integer((0)));
-		door.setDestination(ZONE_NAME, new Integer(0));
+		door.setIdentifier(Integer.valueOf((0)));
+		door.setDestination(ZONE_NAME, Integer.valueOf(0));
 		entranceZone.add(door);
 
 		door.open();
 
 		Portal exit = new Portal();
 		exit.setPosition(17, 20);
-		exit.setIdentifier(new Integer(0));
-		exit.setDestination(entranceZoneName, new Integer(0));
+		exit.setIdentifier(Integer.valueOf(0));
+		exit.setDestination(entranceZoneName, Integer.valueOf(0));
 		zone.add(exit);
 
 		Sign sign = new Sign();

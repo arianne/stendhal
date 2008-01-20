@@ -162,7 +162,7 @@ public class MapReader implements MapReaderPlugin {
 
 		for (int i = 0; i < parameterTypes.length; i++) {
 			if (parameterTypes[i].getName().equalsIgnoreCase("int")) {
-				conformingArguments[i] = new Integer(args[i]);
+				conformingArguments[i] = Integer.valueOf(args[i]);
 			} else if (parameterTypes[i].getName().equalsIgnoreCase("float")) {
 				conformingArguments[i] = new Float(args[i]);
 			} else if (parameterTypes[i].getName().endsWith("String")) {

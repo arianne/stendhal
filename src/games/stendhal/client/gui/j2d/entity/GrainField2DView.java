@@ -102,7 +102,7 @@ public class GrainField2DView extends StateEntity2DView {
 
 		// TODO: Allow animated frames
 		for (int y = 0; y < theight; y += height) {
-			map.put(new Integer(i++), store.getTile(tiles, 0, y, width, height));
+			map.put(Integer.valueOf(i++), store.getTile(tiles, 0, y, width, height));
 		}
 	}
 
@@ -113,7 +113,7 @@ public class GrainField2DView extends StateEntity2DView {
 	 */
 	@Override
 	protected Object getState() {
-		return new Integer(grainField.getRipeness());
+		return Integer.valueOf(grainField.getRipeness());
 	}
 
 	//

@@ -33,7 +33,7 @@ public class AlwaysTrueConditionTest {
 		AlwaysTrueCondition obj = new AlwaysTrueCondition();
 		assertTrue(obj.equals(obj));
 
-		assertFalse(new AlwaysTrueCondition().equals(new Integer(100)));
+		assertFalse(new AlwaysTrueCondition().equals(Integer.valueOf(100)));
 
 		assertTrue(new AlwaysTrueCondition().equals(new AlwaysTrueCondition()));
 		assertTrue(new AlwaysTrueCondition().equals(new AlwaysTrueCondition() {

@@ -44,7 +44,7 @@ public class IntegerSpinner extends JSpinner {
 	}
 
 	public void setValue(int value) {
-		setValue(new Integer(value));
+		setValue(Integer.valueOf(value));
 	}
 
 	public int intValue() {

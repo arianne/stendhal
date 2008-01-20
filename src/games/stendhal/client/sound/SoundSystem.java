@@ -409,11 +409,9 @@ public class SoundSystem implements WorldObjects.WorldListener {
 					+ loaded + " loaded / "
 					+ SoundEffectMap.getInstance().size() + " library sounds";
 			logger.info(hstr);
-			System.out.println(hstr);
 			if (failedCounted != 0) {
 				hstr = "missing or corrupted sounds: " + failedCounted;
 				logger.info(hstr);
-				System.out.println(hstr);
 			}
 
 			// register listeners
