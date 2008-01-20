@@ -14,7 +14,6 @@ package games.stendhal.server.entity.item;
 
 import games.stendhal.common.Grammar;
 import games.stendhal.server.core.engine.StendhalRPWorld;
-import games.stendhal.server.core.engine.UnderscoreConverter;
 import games.stendhal.server.core.events.EquipListener;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.events.TurnNotifier;
@@ -22,6 +21,7 @@ import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.PassiveEntity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.entity.player.UpdateConverter;
 import games.stendhal.server.entity.slot.LootableSlot;
 
 import java.awt.geom.Rectangle2D;
@@ -306,7 +306,7 @@ public class Corpse extends PassiveEntity implements TurnListener,
 		} else {
 			// TODO: Just set name up front and use class only
 			// for client representation
-			text += UnderscoreConverter.transform(Grammar.a_noun(get("class")));
+			text += UpdateConverter.transformItemName(Grammar.a_noun(get("class")));
 		}
 
 		text += ". You can #inspect it to see its contents.";

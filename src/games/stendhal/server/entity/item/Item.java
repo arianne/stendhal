@@ -15,13 +15,13 @@ package games.stendhal.server.entity.item;
 import games.stendhal.common.Grammar;
 import games.stendhal.server.core.engine.ItemLogger;
 import games.stendhal.server.core.engine.StendhalRPWorld;
-import games.stendhal.server.core.engine.UnderscoreConverter;
 import games.stendhal.server.core.events.EquipListener;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.PassiveEntity;
 import games.stendhal.server.entity.mapstuff.spawner.PassiveEntityRespawnPoint;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.entity.player.UpdateConverter;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -545,7 +545,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 		String name = getName();
 
 		if (name != null) {
-			return UnderscoreConverter.transform(name);
+			return UpdateConverter.transformItemName(name);
 		} else {
 			return super.getDescriptionName(definite);
 		}
@@ -561,7 +561,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 		String name = getName();
 
 		if (name != null) {
-			return UnderscoreConverter.transform(name);
+			return UpdateConverter.transformItemName(name);
 		} else {
 			return super.getTitle();
 		}

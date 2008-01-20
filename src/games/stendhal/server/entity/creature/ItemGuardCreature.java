@@ -12,10 +12,10 @@
 package games.stendhal.server.entity.creature;
 
 import games.stendhal.server.core.engine.StendhalRPWorld;
-import games.stendhal.server.core.engine.UnderscoreConverter;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.player.UpdateConverter;
 
 import java.util.LinkedList;
 
@@ -45,7 +45,7 @@ public class ItemGuardCreature extends Creature {
 		super(copy);
 
 		// replace underscores by spaces, if still present (should no more be the case)
-		itemType = UnderscoreConverter.transform(itemType);
+		itemType = UpdateConverter.transformItemName(itemType);
 
 		this.itemType = itemType;
 

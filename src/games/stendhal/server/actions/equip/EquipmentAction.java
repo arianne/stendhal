@@ -15,13 +15,13 @@ package games.stendhal.server.actions.equip;
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
-import games.stendhal.server.core.engine.UnderscoreConverter;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.mapstuff.chest.Chest;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.entity.player.UpdateConverter;
 
 import java.util.Arrays;
 import java.util.List;
@@ -115,7 +115,7 @@ public class EquipmentAction implements ActionListener {
 		Entity entity = source.getEntity();
 		String itemName = "entity";
 		if (entity.has("name")) {
-			itemName = UnderscoreConverter.transform(entity.get("name"));
+			itemName = UpdateConverter.transformItemName(entity.get("name"));
 		} else if (entity instanceof Item) {
 			itemName = "item";
 		}
@@ -187,7 +187,7 @@ public class EquipmentAction implements ActionListener {
 		Entity entity = source.getEntity();
 		String itemName = "entity";
 		if (entity.has("name")) {
-			itemName = UnderscoreConverter.transform(entity.get("name"));
+			itemName = UpdateConverter.transformItemName(entity.get("name"));
 		} else if (entity instanceof Item) {
 			itemName = "item";
 		}

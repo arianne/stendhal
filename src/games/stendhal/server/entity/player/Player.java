@@ -152,7 +152,7 @@ public class Player extends RPEntity {
 	public static Player create(RPObject object) {
 
 		// add attributes and slots
-		PlayerRPClass.updatePlayerRPObject(object);
+		UpdateConverter.updatePlayerRPObject(object);
 
 		Player player = new Player(object);
 		player.stop();

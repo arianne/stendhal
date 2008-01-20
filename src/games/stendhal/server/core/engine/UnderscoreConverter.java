@@ -1,5 +1,7 @@
 package games.stendhal.server.core.engine;
 
+import games.stendhal.server.entity.player.UpdateConverter;
+
 import java.util.Iterator;
 
 import marauroa.common.game.Attributes;
@@ -69,7 +71,7 @@ public class UnderscoreConverter {
 	static boolean transformAttribute(RPObject object, final String key)	{
 		String value = object.get(key);
 
-		String newValue = transform(value);
+		String newValue = UpdateConverter.transformItemName(value);
 
 		// As transform() just returns the unchanged object, we can use "!=" and don't need to use equals().
 		if (newValue != value) {
@@ -94,7 +96,7 @@ public class UnderscoreConverter {
 		int count = 0;
 
 		for (String key : attributes) {
-			String newKey = transform(key);
+			String newKey = UpdateConverter.transformItemName(key);
 
 			if (newKey != key) {
 				String value = object.get(key);
@@ -108,45 +110,6 @@ public class UnderscoreConverter {
 		}
 
 		return count > 0;
-	}
-
-	/**
-	 * Replace underscores in the given String by spaces. Additionally correct
-	 * some item names to correct grammatical word order.
-	 * 
-	 * @param str
-	 * @return transformed String if str contained an underscore,
-	 * 			or unchanged String object
-	 * 			or null if str was null
-	 */
-	public static String transform(String str) {
-		if (str != null) {
-			if (str.indexOf('_') != -1) {
-				str = str.replace('_', ' ');
-			}
-
-			if (str.equals("key golden")) {
-				return "golden key";
-			} else if (str.equals("key silver")) {
-				return "silver key";
-			} else if (str.equals("book black")) {
-				return "black book";
-			} else if (str.equals("book blue")) {
-				return "blue book";
-			} else if (str.equals("duergar elder")) {
-				return "elder duergar";
-			} else if (str.equals("duergar black")) {
-				return "black duergar";
-			} else if (str.equals("giant elder")) {
-				return "elder giant";
-			} else if (str.equals("chaos sorceror")) {
-				return "chaos sorcerer";
-			} else {
-				return str;
-			}
-		} else {
-			return null;
-		}
 	}
 
 }

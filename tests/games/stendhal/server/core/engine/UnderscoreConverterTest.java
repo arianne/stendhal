@@ -1,10 +1,8 @@
 package games.stendhal.server.core.engine;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.entity.player.UpdateConverter;
 import marauroa.common.Log4J;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
@@ -15,7 +13,7 @@ import org.junit.Test;
 import utilities.PlayerTestHelper;
 
 /**
- * Test the UnderscoreConverter class.
+ * Test the PlayerRPClassConverter class.
  *
  * @author Martin Fuchs
  */
@@ -27,17 +25,17 @@ public class UnderscoreConverterTest {
 
 	@Test
 	public void testTransformString() {
-		assertNull(UnderscoreConverter.transform(null));
-		assertEquals("", UnderscoreConverter.transform(""));
-		assertEquals(" ", UnderscoreConverter.transform(" "));
-		assertEquals(" ", UnderscoreConverter.transform("_"));
-		assertEquals("x ", UnderscoreConverter.transform("x_"));
-		assertEquals(" x", UnderscoreConverter.transform("_x"));
-		assertEquals("abc 1", UnderscoreConverter.transform("abc_1"));
-		assertEquals("abc def", UnderscoreConverter.transform("abc def"));
-		assertEquals("abc def ghi", UnderscoreConverter.transform("abc_def ghi"));
-		assertEquals("abc def ghi", UnderscoreConverter.transform("abc_def_ghi"));
-		assertEquals("abc def ghi", UnderscoreConverter.transform("abc def ghi"));
+		assertNull(UpdateConverter.transformItemName(null));
+		assertEquals("", UpdateConverter.transformItemName(""));
+		assertEquals(" ", UpdateConverter.transformItemName(" "));
+		assertEquals(" ", UpdateConverter.transformItemName("_"));
+		assertEquals("x ", UpdateConverter.transformItemName("x_"));
+		assertEquals(" x", UpdateConverter.transformItemName("_x"));
+		assertEquals("abc 1", UpdateConverter.transformItemName("abc_1"));
+		assertEquals("abc def", UpdateConverter.transformItemName("abc def"));
+		assertEquals("abc def ghi", UpdateConverter.transformItemName("abc_def ghi"));
+		assertEquals("abc def ghi", UpdateConverter.transformItemName("abc_def_ghi"));
+		assertEquals("abc def ghi", UpdateConverter.transformItemName("abc def ghi"));
 	}
 
 	@Test

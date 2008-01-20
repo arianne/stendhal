@@ -12,9 +12,9 @@
 package games.stendhal.server.entity.spell;
 
 import games.stendhal.common.Grammar;
-import games.stendhal.server.core.engine.UnderscoreConverter;
 import games.stendhal.server.core.events.EquipListener;
 import games.stendhal.server.entity.PassiveEntity;
+import games.stendhal.server.entity.player.UpdateConverter;
 
 import java.util.Arrays;
 import java.util.List;
@@ -150,7 +150,7 @@ public class Spell extends PassiveEntity implements EquipListener {
 		String name = getName();
 
 		if (name != null) {
-			return UnderscoreConverter.transform(name);
+			return UpdateConverter.transformItemName(name);
 		} else {
 			return super.getTitle();
 		}

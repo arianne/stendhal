@@ -2,12 +2,12 @@ package games.stendhal.server.maps.quests;
 
 import games.stendhal.common.Grammar;
 import games.stendhal.server.core.engine.StendhalRPWorld;
-import games.stendhal.server.core.engine.UnderscoreConverter;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.entity.player.UpdateConverter;
 import games.stendhal.server.maps.quests.logic.BringListOfItemsQuest;
 import games.stendhal.server.maps.quests.logic.BringListOfItemsQuestLogic;
 
@@ -73,7 +73,7 @@ public class CloakCollector extends AbstractQuest implements BringListOfItemsQue
 						String itemName = sentence.getTriggerExpression().getNormalized();
 						Item item = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(itemName);
 						engine.say("You haven't seen one before? Well, it's a "
-									+ (item != null ? UnderscoreConverter.transform(item.getItemSubclass()) : itemName)
+									+ (item != null ? UpdateConverter.transformItemName(item.getItemSubclass()) : itemName)
 									+ ". So, will you find them all?");
 					}
 

@@ -17,9 +17,7 @@ import games.stendhal.server.actions.admin.AdministrationAction;
 import games.stendhal.server.core.engine.ItemLogger;
 import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.core.engine.UnderscoreConverter;
 import games.stendhal.server.core.rp.StendhalRPAction;
-import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.creature.DomesticAnimal;
 import games.stendhal.server.entity.creature.Pet;
 import games.stendhal.server.entity.creature.Sheep;
@@ -27,8 +25,6 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.slot.BankSlot;
 import games.stendhal.server.entity.slot.Banks;
-import games.stendhal.server.entity.slot.EntitySlot;
-import games.stendhal.server.entity.slot.KeyedSlot;
 import games.stendhal.server.entity.slot.PlayerSlot;
 
 import java.io.BufferedReader;
@@ -68,31 +64,6 @@ class PlayerRPClass {
 	private static final List<String> ITEMS_TO_BIND = Arrays.asList(
 			"dungeon silver_key", "lich gold key", "trophy helmet",
 			"lucky charm", "soup");
-
-	/*
-	 * leather_armor_+1 leather_scale_armor leather_cuirass_+1
-	 * pauldroned_leather_cuirass chain_armor_+1 enhanced_chainmail
-	 * scale_armor_+1 iron_scale_armor chain_armor_+3 golden_chainmail
-	 * scale_armor_+2 pauldroned_iron_cuirass twoside_axe_+3 golden_twoside_axe
-	 * elf_cloak_+2 blue_elf_cloak mace_+1 enhanced_mace mace_+2 golden_mace
-	 * hammer_+3 golden_hammer chain_helmet_+2 aventail golden_helmet_+3
-	 * horned_golden_helmet longbow_+1 composite_bow lion_shield_+1
-	 * enhanced_lion_shield
-	 */
-	private static final List<String> ITEM_NAMES_OLD = Arrays.asList(
-			"flail_+2", "leather_armor_+1", "leather_cuirass_+1",
-			"chain_armor_+1", "scale_armor_+1", "chain_armor_+3",
-			"scale_armor_+2", "twoside_axe_+3", "elf_cloak_+2", "mace_+1",
-			"mace_+2", "hammer_+3", "chain_helmet_+2", "golden_helmet_+3",
-			"longbow_+1", "lion_shield_+1");
-
-	private static final List<String> ITEM_NAMES_NEW = Arrays.asList(
-			"morning star", "leather scale armor",
-			"pauldroned leather cuirass", "enhanced chainmail",
-			"iron scale armor", "golden chainmail", "pauldroned iron cuirass",
-			"golden twoside axe", "blue elf cloak", "enhanced mace",
-			"golden mace", "golden hammer", "aventail", "horned golden helmet",
-			"composite bow", "enhanced lion shield");
 
 	/**
 	 * Generates the RPClass and specifies slots and attributes.
@@ -184,129 +155,6 @@ class PlayerRPClass {
 
 		player.addRPEvent("transition_graph", Definition.STANDARD);
 		player.addRPEvent("examine", Definition.STANDARD);
-	}
-
-	/**
-	 * Updates a player RPObject from an old version of Stendhal.
-	 * 
-	 * @param object
-	 *            RPObject representing a player
-	 */
-	static void updatePlayerRPObject(RPObject object) {
-		String[] slotsNormal = { "bag", "rhand", "lhand", "head", "armor",
-				"legs", "feet", "finger", "cloak", "bank", "bank_ados",
-				"zaras_chest_ados", "bank_fado", "bank_nalwor", "spells",
-				"keyring" };
-
-		String[] slotsSpecial = { "!quests", "!kills", "!buddy", "!ignore",
-				"!visited", "skills", "!tutorial", "!features" };
-
-		// Port from 0.03 to 0.10
-		if (!object.has("base_hp")) {
-			object.put("base_hp", "100");
-			object.put("hp", "100");
-		}
-
-		// Port from 0.13 to 0.20
-		if (!object.has("outfit")) {
-			object.put("outfit", new Outfit().getCode());
-		}
-
-		// create slots if they do not exist yet:
-
-		// Port from 0.20 to 0.30: bag, rhand, lhand, armor, head, legs, feet
-		// Port from 0.44 to 0.50: cloak, bank
-		// Port from 0.57 to 0.58: bank_ados, bank_fado
-		// Port from 0.58 to ?: bank_nalwor, keyring, finger
-		for (String slotName : slotsNormal) {
-			if (!object.hasSlot(slotName)) {
-				object.addSlot(new EntitySlot(slotName));
-			}
-		}
-
-		// Port from 0.44 to 0.50: !buddy
-		// Port from 0.56 to 0.56.1: !ignore
-		// Port from 0.57 to 0.58: skills
-		for (String slotName : slotsSpecial) {
-			if (!object.hasSlot(slotName)) {
-				object.addSlot(new KeyedSlot(slotName));
-			}
-			RPSlot slot = object.getSlot(slotName);
-			if (slot.size() == 0) {
-				RPObject singleObject = new RPObject();
-				slot.add(singleObject);
-			}
-		}
-
-		// Port from 0.30 to 0.35
-		if (!object.has("atk_xp")) {
-			object.put("atk_xp", "0");
-			object.put("def_xp", "0");
-		}
-
-		if (object.has("devel")) {
-			object.remove("devel");
-		}
-
-		// From 0.44 to 0.50
-		if (!object.has("release")) {
-			object.put("release", "0.00");
-			object.put("atk", "10");
-			object.put("def", "10");
-		}
-
-		if (!object.has("age")) {
-			object.put("age", "0");
-		}
-
-		if (!object.has("karma")) {
-			// A little beginner's luck
-			object.put("karma", 10);
-		}
-		if (!object.has("mana")) {
-			object.put("mana", 0);
-		}
-		if (!object.has("base_mana")) {
-			object.put("base_mana", 0);
-		}
-
-		// Renamed to skills
-		if (object.has("!skills")) {
-			object.remove("!skills");
-		}
-
-		if (!object.has("height")) {
-			object.put("height", 2);
-		}
-		if (!object.has("width")) {
-			object.put("width", 1);
-		}
-
-		// port to 0.66
-		transformKillSlot(object);
-	}
-
-	private static void transformKillSlot(RPObject object) {
-		RPObject kills = Player.getKeyedSlotObject(object, "!kills");
-		if (kills == null) {
-			return;
-		}
-
-		RPObject newKills = new RPObject();
-		for (String attr : kills) {
-			String newAttr = attr;
-			String value = kills.get(attr);
-			if (attr.indexOf('.') < 0) {
-				newAttr = UnderscoreConverter.transform(newAttr);
-				newAttr = value + "." + newAttr;
-				value = "1";
-			}
-			newKills.put(newAttr, value);
-		}
-		
-		RPSlot slot = object.getSlot("!kills");
-		slot.remove(kills.getID());
-		slot.add(newKills);
 	}
 
 	/**
@@ -560,16 +408,7 @@ class PlayerRPClass {
 				if (item.get("type").equals("item")) {
 					// TODO: Move to Item.create(RPObject)?
 
-					// handle renamed items
-					String name = item.get("name");
-					if (ITEM_NAMES_OLD.indexOf(name) > -1) {
-						name = ITEM_NAMES_NEW.get(ITEM_NAMES_OLD.indexOf(name));
-					}
-
-					// Remove underscore characters from old database item names - ConversationParser
-					// is now capable to work with space separated item names.
-					name = UnderscoreConverter.transform(name);
-
+					String name = UpdateConverter.updateItemName(item.get("name"));
 					Item entity = world.getRuleManager().getEntityManager().getItem(name);
 
 					// log removed items

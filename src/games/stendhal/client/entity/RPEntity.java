@@ -21,7 +21,7 @@ import games.stendhal.client.soundreview.SoundMaster;
 import games.stendhal.common.Grammar;
 import games.stendhal.common.NotificationType;
 import games.stendhal.common.Rand;
-import games.stendhal.server.core.engine.UnderscoreConverter;
+import games.stendhal.server.entity.player.UpdateConverter;
 
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -312,11 +312,11 @@ public abstract class RPEntity extends ActiveEntity {
 		if (title != null) {
 			return title;
 		} else if (name != null) {
-			return UnderscoreConverter.transform(name);
+			return UpdateConverter.transformItemName(name);
 		} else if (clazz != null) {
-			return UnderscoreConverter.transform(clazz);
+			return UpdateConverter.transformItemName(clazz);
 		} else if (type != null) {
-			return UnderscoreConverter.transform(type);
+			return UpdateConverter.transformItemName(type);
 		} else {
 			return null;
 		}
