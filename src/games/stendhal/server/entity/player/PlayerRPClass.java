@@ -282,6 +282,31 @@ class PlayerRPClass {
 			object.put("width", 1);
 		}
 
+		// port to 0.66
+		transformKillSlot(object);
+	}
+
+	private static void transformKillSlot(RPObject object) {
+		RPObject kills = Player.getKeyedSlotObject(object, "!kills");
+		if (kills == null) {
+			return;
+		}
+
+		RPObject newKills = new RPObject();
+		for (String attr : kills) {
+			String newAttr = attr;
+			String value = kills.get(attr);
+			if (attr.indexOf('.') < 0) {
+				newAttr = UnderscoreConverter.transform(newAttr);
+				newAttr = value + "." + newAttr;
+				value = "1";
+			}
+			newKills.put(newAttr, value);
+		}
+		
+		RPSlot slot = object.getSlot("!kills");
+		slot.remove(kills.getID());
+		slot.add(newKills);
 	}
 
 	/**
@@ -536,7 +561,7 @@ class PlayerRPClass {
 					// TODO: Move to Item.create(RPObject)?
 
 					// handle renamed items
-					String name = item.get("name");
+					String name = UnderscoreConverter.transform(item.get("name"));
 					if (ITEM_NAMES_OLD.indexOf(name) > -1) {
 						name = ITEM_NAMES_NEW.get(ITEM_NAMES_OLD.indexOf(name));
 					}
