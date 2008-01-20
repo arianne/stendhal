@@ -51,6 +51,11 @@ public class QuestActiveConditionTest {
 		assertFalse(new QuestActiveCondition("questname").fire(bob,
 				ConversationParser.parse("QuestActiveConditionTest"),
 				SpeakerNPCTestHelper.createSpeakerNPC()));
+		
+		bob.setQuest("questname", "rejected");
+		assertFalse(new QuestActiveCondition("questname").fire(bob,
+				ConversationParser.parse("QuestActiveConditionTest"),
+				SpeakerNPCTestHelper.createSpeakerNPC()));
 
 	}
 
