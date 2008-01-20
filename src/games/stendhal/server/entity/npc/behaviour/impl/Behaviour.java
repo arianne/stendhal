@@ -7,6 +7,12 @@ import games.stendhal.server.entity.npc.parser.Sentence;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Behaviour is the base class for all quest behaviours parsing a sentence to
+ * get an amount and an item name.
+ * 
+ * @author Martin Fuchs
+ */
 public class Behaviour {
 
 	/** ItemNames contains all valid item names. */
