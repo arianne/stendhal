@@ -5,7 +5,6 @@ import games.stendhal.server.core.config.ItemGroupsXMLLoader;
 import games.stendhal.server.core.rule.defaultruleset.DefaultCreature;
 import games.stendhal.server.core.rule.defaultruleset.DefaultItem;
 import games.stendhal.server.entity.creature.impl.DropItem;
-import games.stendhal.server.entity.player.UpdateConverter;
 
 import java.net.URI;
 import java.util.Collections;
@@ -48,9 +47,9 @@ public class GenerateBestiaryAndItems {
 			}
 
 			String name = creature.getCreatureName();
-			System.out.println("== " + UpdateConverter.transformItemName(name) + " ==");
+			System.out.println("== " + name + " ==");
 			System.out.println("{{Creature|");
-			System.out.println("|name= " + UpdateConverter.transformItemName(name) + "");
+			System.out.println("|name= " + name + "");
 			System.out.println("|image= " + name + "");
 			System.out.println("|hp= " + creature.getHP() + "");
 			System.out.println("|atk= " + creature.getATK() + "");
@@ -85,8 +84,7 @@ public class GenerateBestiaryAndItems {
 			}
 
 			System.out.println("{{Item|");
-			System.out.println("|name       = "
-					+ UpdateConverter.transformItemName(item.getItemName()));
+			System.out.println("|name       = " + item.getItemName());
 			System.out.println("|class      = " + item.getItemClass());
 			System.out.println("|image      = " + item.getItemName());
 			System.out.println("|description= TODO");

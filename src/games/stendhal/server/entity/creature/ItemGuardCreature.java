@@ -15,7 +15,6 @@ import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Item;
-import games.stendhal.server.entity.player.UpdateConverter;
 
 import java.util.LinkedList;
 
@@ -43,9 +42,6 @@ public class ItemGuardCreature extends Creature {
 	 */
 	public ItemGuardCreature(Creature copy, String itemType) {
 		super(copy);
-
-		// replace underscores by spaces, if still present (should no more be the case)
-		itemType = UpdateConverter.transformItemName(itemType);
 
 		this.itemType = itemType;
 

@@ -306,7 +306,7 @@ public class Corpse extends PassiveEntity implements TurnListener,
 		} else {
 			// TODO: Just set name up front and use class only
 			// for client representation
-			text += UpdateConverter.transformItemName(Grammar.a_noun(get("class")));
+			text += Grammar.a_noun(UpdateConverter.transformItemName(get("class")));
 		}
 
 		text += ". You can #inspect it to see its contents.";

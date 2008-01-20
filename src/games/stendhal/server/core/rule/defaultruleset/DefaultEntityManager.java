@@ -20,7 +20,6 @@ import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.parser.ExpressionType;
 import games.stendhal.server.entity.npc.parser.WordList;
-import games.stendhal.server.entity.player.UpdateConverter;
 
 import java.net.URI;
 import java.util.Collection;
@@ -119,9 +118,6 @@ public class DefaultEntityManager implements EntityManager {
 
 	public boolean addItem(DefaultItem item) {
 		String clazz = item.getItemName();
-
-		// just for safety: replace underscores, if still present
-		clazz = UpdateConverter.transformItemName(clazz);
 
 		if (classToItem.containsKey(clazz)) {
 			logger.warn("Repeated item name: " + clazz);
@@ -270,9 +266,6 @@ public class DefaultEntityManager implements EntityManager {
 			throw new NullPointerException("entity class is null");
 		}
 
-		// just for safety: replace underscores, if still present
-		clazz = UpdateConverter.transformItemName(clazz);
-
 		return classToCreature.containsKey(clazz);
 	}
 
@@ -281,9 +274,6 @@ public class DefaultEntityManager implements EntityManager {
 		if (clazz == null) {
 			throw new NullPointerException("entity class is null");
 		}
-
-		// just for safety: replace underscores, if still present
-		clazz = UpdateConverter.transformItemName(clazz);
 
 		return classToItem.containsKey(clazz);
 	}
@@ -298,9 +288,6 @@ public class DefaultEntityManager implements EntityManager {
 		if (clazz == null) {
 			throw new NullPointerException("entity class is null");
 		}
-
-		// just for safety: replace underscores, if still present
-		clazz = UpdateConverter.transformItemName(clazz);
 
 		// Lookup the clazz in the item table
 		DefaultItem item = classToItem.get(clazz);

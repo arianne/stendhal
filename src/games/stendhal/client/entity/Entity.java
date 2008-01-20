@@ -310,7 +310,7 @@ public class Entity implements RPObjectChangeListener {
 		if (title != null) {
 			return title;
 		} else if (name != null) {
-			return UpdateConverter.transformItemName(name);
+			return name;
 		} else if (type != null) {
 			return UpdateConverter.transformItemName(type);
 		} else {

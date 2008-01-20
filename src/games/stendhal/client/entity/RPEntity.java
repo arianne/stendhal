@@ -312,7 +312,7 @@ public abstract class RPEntity extends ActiveEntity {
 		if (title != null) {
 			return title;
 		} else if (name != null) {
-			return UpdateConverter.transformItemName(name);
+			return name;
 		} else if (clazz != null) {
 			return UpdateConverter.transformItemName(clazz);
 		} else if (type != null) {

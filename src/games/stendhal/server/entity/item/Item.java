@@ -21,7 +21,6 @@ import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.PassiveEntity;
 import games.stendhal.server.entity.mapstuff.spawner.PassiveEntityRespawnPoint;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.entity.player.UpdateConverter;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -545,7 +544,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 		String name = getName();
 
 		if (name != null) {
-			return UpdateConverter.transformItemName(name);
+			return name;
 		} else {
 			return super.getDescriptionName(definite);
 		}
@@ -561,7 +560,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 		String name = getName();
 
 		if (name != null) {
-			return UpdateConverter.transformItemName(name);
+			return name;
 		} else {
 			return super.getTitle();
 		}

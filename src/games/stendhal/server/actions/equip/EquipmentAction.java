@@ -21,7 +21,6 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.mapstuff.chest.Chest;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.entity.player.UpdateConverter;
 
 import java.util.Arrays;
 import java.util.List;
@@ -115,7 +114,7 @@ public class EquipmentAction implements ActionListener {
 		Entity entity = source.getEntity();
 		String itemName = "entity";
 		if (entity.has("name")) {
-			itemName = UpdateConverter.transformItemName(entity.get("name"));
+			itemName = entity.get("name");
 		} else if (entity instanceof Item) {
 			itemName = "item";
 		}
@@ -187,7 +186,7 @@ public class EquipmentAction implements ActionListener {
 		Entity entity = source.getEntity();
 		String itemName = "entity";
 		if (entity.has("name")) {
-			itemName = UpdateConverter.transformItemName(entity.get("name"));
+			itemName = entity.get("name");
 		} else if (entity instanceof Item) {
 			itemName = "item";
 		}
