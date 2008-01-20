@@ -94,7 +94,7 @@ public class CloaksForBario extends AbstractQuest {
 					@Override
 					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						if (!player.isQuestCompleted(QUEST_SLOT)) {
-							if (player.hasQuest(QUEST_SLOT)) {
+							if (player.hasQuest(QUEST_SLOT) && !"rejected".equals(player.getQuest(QUEST_SLOT))) {
 								engine.say("You promised me to bring me ten blue elven cloaks. Remember?");
 							} else {
 								engine.say("I don't dare go upstairs anymore because I stole a beer barrel from the dwarves. But it is so cold down here... Can you help me?");

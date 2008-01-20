@@ -1,5 +1,6 @@
 package games.stendhal.server.maps.quests;
 
+import static junit.framework.Assert.assertTrue;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.assertEquals;
@@ -83,7 +84,7 @@ public class FindGhostsTest {
 				"I sense that there are 4 other spirits, but if only I knew their names I could contact them. Will you find them, then come back and tell me their names?",
 				npc.get("text"));
 		en.step(player, "no");
-		assertEquals(null, player.getQuest("find_ghosts"));
+		assertEquals("rejected", player.getQuest("find_ghosts"));
 		assertEquals("Oh. Never mind. Perhaps since I'm only a ghost I couldn't offer you much reward anyway.",
 				npc.get("text"));
 		en.step(player, "bye");
@@ -123,7 +124,7 @@ public class FindGhostsTest {
 				"I sense that there are 4 other spirits, but if only I knew their names I could contact them. Will you find them, then come back and tell me their names?",
 				npc.get("text"));
 		en.step(player, "no");
-		assertEquals(null, player.getQuest("find_ghosts"));
+		assertEquals("rejected", player.getQuest("find_ghosts"));
 		assertEquals("Oh. Never mind. Perhaps since I'm only a ghost I couldn't offer you much reward anyway.",
 				npc.get("text"));
 		en.step(player, "bye");
@@ -131,7 +132,7 @@ public class FindGhostsTest {
 
 		en.step(player, "hi");
 		assertEquals("Wooouhhhhhh!", npc.get("text"));
-		en.step(player, "task");
+		assertTrue(en.step(player, "task"));
 		assertEquals(
 				"I feel so lonely. I only ever see creatures and alive people. If I knew about #spirits like me, I would feel better.",
 				npc.get("text"));
