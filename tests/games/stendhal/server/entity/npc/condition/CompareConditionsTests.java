@@ -9,7 +9,6 @@ import java.awt.Rectangle;
 import java.util.Arrays;
 import java.util.List;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -23,6 +22,7 @@ public class CompareConditionsTests {
 	@Before
 	public void setUp() throws Exception {
 		Area ar = new Area(new StendhalRPZone("test"), new Rectangle() {
+			// just an empty sub class
 		});
 		ChatCondition[] conarray = new ChatCondition[] { new AdminCondition(),
 				new AlwaysTrueCondition(),
@@ -48,18 +48,13 @@ public class CompareConditionsTests {
 	public void testname() throws Exception {
 		for (ChatCondition cond1 : conditionsA2) {
 			for (ChatCondition cond2 : conditionsB2) {
-				if (cond1 == cond2) {
-					continue;
+				if (cond1 != cond2) {					
+					assertFalse(cond1.toString() + "should not equal" + cond2.toString(), cond1.equals(cond2));
+					assertFalse(cond2.toString() + "should not equal" + cond1.toString(), cond2.equals(cond1));
 				}
-				assertFalse(cond1.equals(cond2));
-				assertFalse(cond2.equals(cond1));
-
 			}
 		}
 	}
 
-	@After
-	public void tearDown() throws Exception {
-	}
-
+	
 }
