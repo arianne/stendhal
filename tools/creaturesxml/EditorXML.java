@@ -116,7 +116,7 @@ public class EditorXML {
 			sortItems(items);
 
 			return items;
-		} catch(URISyntaxException e) {
+		} catch (URISyntaxException e) {
 			throw new SAXException(e);
 		}
 	}

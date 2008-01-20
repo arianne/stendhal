@@ -55,7 +55,7 @@ public class Sentence implements Iterable<Expression> {
 				String text = punct.getText();
 
 				// avoid to trim leading decimal points from numbers
-				if (precedingPunct.length()>0 && text.matches("[0-9.,]+")) {
+				if (precedingPunct.length() > 0 && text.matches("[0-9.,]+")) {
 					text = ws;
 				}
 

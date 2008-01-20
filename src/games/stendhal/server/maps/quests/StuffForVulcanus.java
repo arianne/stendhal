@@ -73,7 +73,7 @@ public class StuffForVulcanus extends AbstractQuest {
 			new SpeakerNPC.ChatAction() {
 				@Override
 				public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-					if (!player.hasQuest(QUEST_SLOT)|| "rejected".equals(player.getQuest(QUEST_SLOT))) {
+					if (!player.hasQuest(QUEST_SLOT) || "rejected".equals(player.getQuest(QUEST_SLOT))) {
 						engine.say("I once forged the most powerful of swords. I can do it again for you. Are you interested?");
 					} else if (player.isQuestCompleted(QUEST_SLOT)) {
 						engine.say("Oh! I am so tired. Look for me later. I need a few years of relaxing.");

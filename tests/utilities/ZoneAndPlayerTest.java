@@ -31,7 +31,7 @@ public abstract class ZoneAndPlayerTest extends QuestHelper {
 	protected static void setupZone(String zoneName, ZoneConfigurator... zoneConfigurators) {
 		StendhalRPZone zone = setupZone(zoneName);
 
-		for(ZoneConfigurator zoneConfigurator : zoneConfigurators) {
+		for (ZoneConfigurator zoneConfigurator : zoneConfigurators) {
 			zoneConfigurator.configureZone(zone, null);
 		}
     }

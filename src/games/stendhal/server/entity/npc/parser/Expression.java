@@ -68,7 +68,7 @@ public class Expression {
 			String numberString = str.replace(',', '.');
 
 			// Parse as float number, then round to the next integer.
-			setAmount((int)Math.round(Double.parseDouble(numberString)));
+			setAmount((int) Math.round(Double.parseDouble(numberString)));
 
 			setType(new ExpressionType(ExpressionType.NUMERAL));
 			normalized = amount.toString();

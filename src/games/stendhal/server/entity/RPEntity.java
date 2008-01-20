@@ -775,7 +775,7 @@ public abstract class RPEntity extends GuidedEntity {
 	 */
 	protected void addPlayersToReward(Entity player) {
 		if (player instanceof Player) {
-			playersToReward.add(((Player)player).getName());
+			playersToReward.add(((Player) player).getName());
 		}
 	}
 

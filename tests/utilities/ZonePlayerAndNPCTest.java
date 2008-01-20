@@ -29,7 +29,7 @@ public abstract class ZonePlayerAndNPCTest extends ZoneAndPlayerTest {
 		
 		assertTrue(npcNames.length > 0);
 
-		for(String npcName : npcNames) {
+		for (String npcName : npcNames) {
 			this.npcNames.add(npcName);
 		}
     }
@@ -41,7 +41,7 @@ public abstract class ZonePlayerAndNPCTest extends ZoneAndPlayerTest {
 	 */
 	@After
 	public void tearDown() throws Exception {
-		for(String npcName : npcNames) {
+		for (String npcName : npcNames) {
 			resetNPC(npcName);
 		}
 		

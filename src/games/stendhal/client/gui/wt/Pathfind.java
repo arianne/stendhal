@@ -286,7 +286,7 @@ public class Pathfind {
 		ListIterator<Node> i = closed_list.listIterator();
 		Node temp;
 		while (i.hasNext()) {
-			temp = (Node) i.next();
+			temp =  i.next();
 			// System.out.println("E:"+temp.x+":"+temp.y + " G " +temp.G + " H "
 			// + temp.H + " "+ temp.parent.x +":" + temp.parent.y);
 		}
@@ -298,7 +298,7 @@ public class Pathfind {
 
 		for (int j = closed_list.size() - 1; j >= 0; j--) {
 
-			temp = (Node) closed_list.get(j);
+			temp =  closed_list.get(j);
 			if ((petiX == temp.x) && (petiY == temp.y)) {
 
 				// System.out.println("S:"+temp.x+":"+temp.y + " G " +temp.G + "

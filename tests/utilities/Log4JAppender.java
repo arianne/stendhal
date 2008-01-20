@@ -22,7 +22,7 @@ public class Log4JAppender extends AppenderSkeleton {
 	}
 
 	public static String[] getMessages() {
-		return (String[]) messages.toArray(new String[messages.size()]);
+		return  messages.toArray(new String[messages.size()]);
 	}
 
 	public static void clear() {

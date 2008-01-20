@@ -260,10 +260,10 @@ public class UserContext implements RPObjectChangeListener {
 	/**
 	 * Fire name change event to all registered listeners.
 	 * 
-	 * @param name
+	 * @param newName
 	 *            The new player name.
 	 */
-	protected void fireNameChanged(String name) {
+	protected void fireNameChanged(String newName) {
 		// TODO: Impl
 	}
 
@@ -394,16 +394,16 @@ public class UserContext implements RPObjectChangeListener {
 
 			String buddyName = key.substring(1);
 
-			Boolean online = (changes.getInt(key) != 0);
+			boolean online = (changes.getInt(key) != 0);
 
 			if (!buddies.containsKey(buddyName)) {
-				buddies.put(buddyName, online);
+				buddies.put(buddyName, Boolean.valueOf(online));
 				fireBuddyAdded(buddyName);
 
 				if (online) {
 					fireBuddyOnline(buddyName);
 				}
-			} else if (buddies.get(buddyName) != online) {
+			} else if (buddies.get(buddyName).booleanValue() != online) {
 				if (online) {
 					fireBuddyOnline(buddyName);
 				} else {

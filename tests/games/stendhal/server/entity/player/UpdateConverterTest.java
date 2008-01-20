@@ -74,7 +74,7 @@ public class UpdateConverterTest {
 		killSlot = player.getSlot("!kills");
 		killStore = killSlot.getFirst();
 
-		String idDot = killStore.get(oldID+".id");
+		String idDot = killStore.get(oldID + ".id");
 		assertEquals(null, idDot);
 
 		assertTrue(player.hasKilled("name"));
@@ -103,7 +103,7 @@ public class UpdateConverterTest {
 		killSlot = player.getSlot("!kills");
 		killStore = killSlot.getFirst();
 
-		String idDot = killStore.get(oldID+".id");
+		String idDot = killStore.get(oldID + ".id");
 		assertEquals(null, idDot);
 
 		assertTrue(player.hasKilled("name"));

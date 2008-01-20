@@ -49,8 +49,8 @@ public class Line {
 	}
 
 	private static void recalculateXY(int x1, int y1, int deltaY, int deltaX, int steps, int curpixel) {
-		x = x1 + (int) ((deltaX * curpixel) / steps);
-		y = y1 + (int) ((deltaY * curpixel) / steps);
+		x = x1 + ((deltaX * curpixel) / steps);
+		y = y1 + ((deltaY * curpixel) / steps);
 	}
 
 }

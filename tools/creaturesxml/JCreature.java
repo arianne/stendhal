@@ -131,7 +131,7 @@ public class JCreature extends javax.swing.JFrame {
 			List<DefaultItem> items = itemsLoader.load(new URI(ref));
 
 			return items;
-		} catch(URISyntaxException e) {
+		} catch (URISyntaxException e) {
 			throw new SAXException(e);
 		}
 	}

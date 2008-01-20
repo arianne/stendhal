@@ -31,7 +31,7 @@ public abstract class PlayerTestHelper {
 	public static Player createPlayer(String name) {
 		PlayerTestHelper.generatePlayerRPClasses();
 
-		Player pl = new Player(new RPObject() {});
+		Player pl = new Player(new RPObject());
 		pl.setName(name);
 
 		PlayerTestHelper.addEmptySlots(pl);
