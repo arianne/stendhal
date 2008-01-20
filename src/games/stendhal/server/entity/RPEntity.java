@@ -100,7 +100,7 @@ public abstract class RPEntity extends GuidedEntity {
 	protected Map<Entity, Integer> damageReceived;
 
 	/** list of players which are to reward with xp on killing this creature. */
-	protected Set<Player> playersToReward;
+	protected Set<String> playersToReward;
 
 	protected int totalDamageReceived;
 
@@ -175,7 +175,7 @@ public abstract class RPEntity extends GuidedEntity {
 		super(object);
 		attackSources = new ArrayList<Entity>();
 		damageReceived = new HashMap<Entity, Integer>();
-		playersToReward = new HashSet<Player>();
+		playersToReward = new HashSet<String>();
 		enemiesThatGiveFightXP = new HashMap<RPEntity, Integer>();
 		totalDamageReceived = 0;
 	}
@@ -184,7 +184,7 @@ public abstract class RPEntity extends GuidedEntity {
 		super();
 		attackSources = new ArrayList<Entity>();
 		damageReceived = new HashMap<Entity, Integer>();
-		playersToReward = new HashSet<Player>();
+		playersToReward = new HashSet<String>();
 		enemiesThatGiveFightXP = new HashMap<RPEntity, Integer>();
 		totalDamageReceived = 0;
 	}
@@ -773,7 +773,7 @@ public abstract class RPEntity extends GuidedEntity {
 	 */
 	protected void addPlayersToReward(Entity player) {
 		if (player instanceof Player) {
-			playersToReward.add((Player) player);
+			playersToReward.add(((Player)player).getName());
 		}
 	}
 
@@ -859,7 +859,12 @@ public abstract class RPEntity extends GuidedEntity {
 	protected void rewardKillers(int oldXP, int oldLevel) {
 		int xpReward = (int) (oldXP * 0.05);
 
-		for (Player killer : playersToReward) {
+		for (String killerName : playersToReward) {
+			Player killer = StendhalRPRuleProcessor.get().getPlayer(killerName);
+			// check logout
+			if (killer == null) {
+				continue;
+			}
 
 			TutorialNotifier.killedSomething(killer);
 
