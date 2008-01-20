@@ -106,7 +106,7 @@ public class RingMakerTest {
 		// this time say no they don't want to pay yet
 		npc = NPCList.get().get("Ognir");
 		en = npc.getEngine();
-		Item item = DefaultEntityManager.getInstance().getItem("emerald_ring");
+		Item item = DefaultEntityManager.getInstance().getItem("emerald ring");
 		item.put("amount", 0);
 		player.getSlot("bag").add(item);
 		assertTrue(en.step(player, "hi"));
@@ -127,7 +127,7 @@ public class RingMakerTest {
 	@Test
 	public void testOrderEmeraldRing() {
 		
-		Item item = DefaultEntityManager.getInstance().getItem("emerald_ring");
+		Item item = DefaultEntityManager.getInstance().getItem("emerald ring");
 		item.put("amount", 0);
 		player.getSlot("bag").add(item);
 		
