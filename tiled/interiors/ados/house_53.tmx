@@ -141,6 +141,9 @@
  <tileset name="tile" firstgid="434" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/carpet/oriental_floor_tile.png"/>
  </tileset>
+ <tileset name="blackdragon picture" firstgid="435" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/furniture/picture/blackdragon.png"/>
+ </tileset>
  <layer name="0_floor" width="16" height="16">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAANvEyMCwaRBjZRx4pOgfxcRhezQ81PRjw74MtNcPAHpzHKoABAAA
@@ -153,7 +156,7 @@
  </layer>
  <layer name="2_object" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgwAQqjAwMqoxYJICgByjei0PuFJRWA8qrQ9XsBeJZQPZsIJ4DxH1A3I9DPy4wD6h+PhAvAOIJQDyRRP3ogJlC/b8o044VcADdtBVIb6eB2SBwBohXAe1YDcTnydB/GYjXAPWuBeKrJOq9QoZ9pIJSoLsOAmlXCuOWGqCTCm7Qg9IGZOo3gtImBNQBAP6NMzwABAAA
+   H4sIAAAAAAAAAGNgwASbGRkYtjBikQCCHqB4Lw65U1B6K1B+G1TNXiCeBWTPBuI5QNwHxP049OMC84Dq5wPxAiCeAMQTSdSPDpgp1P+LMu1YAQfQTVuB9HYamA0CZ4B4FdCO1UB8ngz9l4F4DVDvWiC+SqLeK2TYRyooBbrrIJB2pTBuqQE6qeAGPShtQKZ+IyhtQkAdAFzDMtQABAAA
   </data>
  </layer>
  <layer name="3_roof" width="16" height="16">
