@@ -61,13 +61,21 @@ public class UpdateConverterTest {
 		Player player = PlayerTestHelper.createPlayer("player");
 
 		RPSlot killSlot = player.getSlot("!kills");
-		RPObject obj = killSlot.getFirst();
+		RPObject killStore = killSlot.getFirst();
 
-		obj.put("name", "solo");
-		obj.put("monster", "shared");
-		obj.put("cave_rat", "solo");
+		killStore.put("name", "solo");
+		killStore.put("monster", "shared");
+		killStore.put("cave_rat", "solo");
+
+		String oldID = killStore.get("id");
 
 		UpdateConverter.updatePlayerRPObject(player);
+
+		killSlot = player.getSlot("!kills");
+		killStore = killSlot.getFirst();
+
+		String idDot = killStore.get(oldID+".id");
+		assertEquals(null, idDot);
 
 		assertTrue(player.hasKilled("name"));
 		assertTrue(player.hasKilled("monster"));
@@ -76,7 +84,7 @@ public class UpdateConverterTest {
 	}
 
 	/**
-	 * Tests the new killings slot functionality.
+	 * Tests the new killings slot functionality in conjunction with updatePlayerRPObject().
 	 */ 
 	@Test
 	public void testKillingRecords() {
@@ -86,7 +94,17 @@ public class UpdateConverterTest {
 		player.setSharedKill("monster");
 		player.setSoloKill("cave rat");
 
+		RPSlot killSlot = player.getSlot("!kills");
+		RPObject killStore = killSlot.getFirst();
+		String oldID = killStore.get("id");
+
 		UpdateConverter.updatePlayerRPObject(player);
+
+		killSlot = player.getSlot("!kills");
+		killStore = killSlot.getFirst();
+
+		String idDot = killStore.get(oldID+".id");
+		assertEquals(null, idDot);
 
 		assertTrue(player.hasKilled("name"));
 		assertTrue(player.hasKilled("monster"));
