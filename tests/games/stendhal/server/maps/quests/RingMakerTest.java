@@ -79,7 +79,7 @@ public class RingMakerTest {
 		assertEquals("It is difficult to get the ring of life. Do a favour for a powerful elf in Nal'wor and you may receive one as a reward.", npc.get("text"));
 		assertTrue(en.step(player, "bye"));
 		// -----------------------------------------------
-		Item item = DefaultEntityManager.getInstance().getItem("emerald_ring");
+		Item item = DefaultEntityManager.getInstance().getItem("emerald ring");
 		player.getSlot("bag").add(item);
 		assertTrue(en.step(player, "hi"));
 		assertEquals("Hi! Can I #help you?", npc.get("text"));
@@ -88,7 +88,7 @@ public class RingMakerTest {
 		assertTrue(en.step(player, "emerald"));
 		assertEquals("I see you already have an emerald ring. If it gets broken, you can come to me to fix it.", npc.get("text"));
 
-	// break the ring don't give them money and make them lie that they have it
+		// break the ring don't give them money and make them lie that they have it
 		item.put("amount", 0);
 		assertTrue(en.step(player, "emerald"));
 		assertEquals("What a pity, your emerald ring is broken. I can fix it, for a #price.", npc.get("text"));
@@ -97,7 +97,6 @@ public class RingMakerTest {
 		assertTrue(en.step(player, "yes"));
 		assertEquals("Come back when you have the money, the gem and the gold. Goodbye.", npc.get("text"));
 		assertEquals(ConversationStates.IDLE, en.getCurrentState());
-		
 	}
 	
 	@Test
@@ -156,8 +155,7 @@ public class RingMakerTest {
 
 	@Test
 	public void testFetchOrderedEmeraldRing() {
-		
-		
+
 		player.setQuest("fix_emerald_ring", "forging;" + Long.MAX_VALUE);
 		
 		en.step(player, "hi");
