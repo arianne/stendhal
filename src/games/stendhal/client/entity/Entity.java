@@ -15,7 +15,7 @@ package games.stendhal.client.entity;
 import games.stendhal.client.events.RPObjectChangeListener;
 import games.stendhal.client.sound.SoundSystem;
 import games.stendhal.client.update.Version;
-import games.stendhal.server.entity.player.UpdateConverter;
+
 
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
@@ -312,7 +312,7 @@ public class Entity implements RPObjectChangeListener {
 		} else if (name != null) {
 			return name;
 		} else if (type != null) {
-			return UpdateConverter.transformItemName(type);
+			return type;
 		} else {
 			return null;
 		}

@@ -21,7 +21,6 @@ import games.stendhal.client.soundreview.SoundMaster;
 import games.stendhal.common.Grammar;
 import games.stendhal.common.NotificationType;
 import games.stendhal.common.Rand;
-import games.stendhal.server.entity.player.UpdateConverter;
 
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -314,9 +313,9 @@ public abstract class RPEntity extends ActiveEntity {
 		} else if (name != null) {
 			return name;
 		} else if (clazz != null) {
-			return UpdateConverter.transformItemName(clazz);
+			return clazz;
 		} else if (type != null) {
-			return UpdateConverter.transformItemName(type);
+			return type;
 		} else {
 			return null;
 		}
