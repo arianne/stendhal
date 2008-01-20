@@ -20,7 +20,7 @@ import org.apache.log4j.Logger;
 import marauroa.common.game.RPAction;
 
 /**
- * ServerExtension to load groovy scripts.
+ * ServerExtension to load Groovy and Java scripts.
  * 
  * @author intensifly
  */
@@ -36,14 +36,12 @@ public class ScriptRunner extends StendhalServerExtension implements
 	private static final Logger logger = Logger.getLogger(ScriptRunner.class);
 
 	/**
-	 * Constructor for StendhalGroovyRunner.
-	 * 
+	 * Constructor for ScriptRunner.
 	 */
 	public ScriptRunner() {
 		super();
 		scripts = new HashMap<String, ScriptingSandbox>();
 		CommandCenter.register("script", this, REQUIRED_ADMINLEVEL);
-
 	}
 
 	@Override
@@ -52,11 +50,11 @@ public class ScriptRunner extends StendhalServerExtension implements
 		if (url != null) {
 			File dir = new File(url.getFile());
 			String[] strs = dir.list(new FilenameFilter() {
-
 				public boolean accept(File dir, String name) {
 					return name.endsWith(".groovy");
 				}
 			});
+
 			for (int i = 0; i < strs.length; i++) {
 				try {
 					perform(strs[i]);
@@ -158,7 +156,6 @@ public class ScriptRunner extends StendhalServerExtension implements
 			// parse args if the is a space
 			int pos = cmd.indexOf(' ');
 			if (pos > -1) {
-
 				// analyse the first word: mode or filename?
 				String temp = cmd.substring(0, pos);
 				cmd = cmd.substring(pos + 1);
