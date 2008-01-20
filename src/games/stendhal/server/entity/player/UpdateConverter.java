@@ -20,10 +20,9 @@ public abstract class UpdateConverter {
 			"longbow_+1", "lion_shield_+1"
 	);
 	private static final List<String> ITEM_NAMES_NEW = Arrays.asList(
-			"morning star", "leather scale armor",
-			"pauldroned leather cuirass", "enhanced chainmail",
-			"iron scale armor", "golden chainmail", "pauldroned iron cuirass",
-			"golden twoside axe", "blue elf cloak", "enhanced mace",
+			"morning star", "leather scale armor", "pauldroned leather cuirass",
+			"enhanced chainmail", "iron scale armor", "golden chainmail",
+			"pauldroned iron cuirass", "golden twoside axe", "blue elf cloak", "enhanced mace",
 			"golden mace", "golden hammer", "aventail", "horned golden helmet",
 			"composite bow", "enhanced lion shield"
 	);
@@ -49,8 +48,9 @@ public abstract class UpdateConverter {
 	{
 		if (name != null) {
     		// handle renamed items
-    		if (ITEM_NAMES_OLD.indexOf(name) != -1) {
-    			name = ITEM_NAMES_NEW.get(ITEM_NAMES_OLD.indexOf(name));
+    		int idx = ITEM_NAMES_OLD.indexOf(name);
+    		if (idx != -1) {
+    			name = ITEM_NAMES_NEW.get(idx);
     		}
 
     		// Remove underscore characters from old database item names - ConversationParser
@@ -58,8 +58,9 @@ public abstract class UpdateConverter {
     		name = transformItemName(name);
 
     		// rename some additional items to fix grammar in release 0.66
-    		if (ITEM_NAMES_OLD_0_66.indexOf(name) != -1) {
-    			name = ITEM_NAMES_NEW_0_66.get(ITEM_NAMES_OLD.indexOf(name));
+    		idx = ITEM_NAMES_OLD_0_66.indexOf(name);
+    		if (idx != -1) {
+    			name = ITEM_NAMES_NEW_0_66.get(idx);
     		}
 		}
 
@@ -171,29 +172,33 @@ public abstract class UpdateConverter {
 	 */
 	static void transformKillSlot(RPObject object) {
 		RPObject kills = Player.getKeyedSlotObject(object, "!kills");
-		if (kills == null) {
-			return;
-		}
 
-		RPObject newKills = new RPObject();
-		for (String attr : kills) {
-			String newAttr = attr;
-			String value = kills.get(attr);
-			if (attr.indexOf('.') < 0) {
-				newAttr = transformItemName(newAttr);
-				newAttr = value + "." + newAttr;
-				value = "1";
-			}
-			newKills.put(newAttr, value);
-		}
+		if (kills != null) {
+    		RPObject newKills = new RPObject();
+    		for (String attr : kills) {
+    			String newAttr = attr;
+    			String value = kills.get(attr);
+
+    			// Is it stored using the old recording system without an dot?
+    			if (attr.indexOf('.') < 0) {
+    				newAttr = updateItemName(newAttr);
+    				newAttr = value + "." + newAttr;
+    				value = "1";
+    			}
+
+    			newKills.put(newAttr, value);
+    		}
 		
-		RPSlot slot = object.getSlot("!kills");
-		slot.remove(kills.getID());
-		slot.add(newKills);
+    		RPSlot slot = object.getSlot("!kills");
+    		slot.remove(kills.getID());
+    		slot.add(newKills);
+		}
 	}
 
 	/**
 	 * Replace underscores in the given String by spaces.
+	 * This is used to replace underscore characters in compound item and creature names
+	 * after loading data from the database.
 	 * 
 	 * @param name
 	 * @return transformed String if name contained an underscore,
