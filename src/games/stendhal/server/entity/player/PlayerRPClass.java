@@ -65,6 +65,9 @@ class PlayerRPClass {
 			"dungeon silver_key", "lich gold key", "trophy helmet",
 			"lucky charm", "soup");
 
+	public static final String DEFAULT_ENTRY_ZONE = "int_semos_guard_house";
+	public static final String RESET_ENTRY_ZONE = "int_semos_townhall";
+
 	/**
 	 * Generates the RPClass and specifies slots and attributes.
 	 */
@@ -208,8 +211,6 @@ class PlayerRPClass {
 		}
 	}
 
-	public static final String DEFAULT_ENTRY_ZONE = "int_semos_townhall";
-
 	/**
 	 * Places the player (and his/her sheep if there is one) into the world on
 	 * login.
@@ -256,11 +257,12 @@ class PlayerRPClass {
 			/*
 			 * Fallback to default zone
 			 */
-			zone = StendhalRPWorld.get().getZone(DEFAULT_ENTRY_ZONE);
+			String defaultZoneName = getDefaultZoneForPlayer(player);
+			zone = StendhalRPWorld.get().getZone(defaultZoneName);
 
 			if (zone == null) {
 				logger.error("Unable to locate default zone ["
-						+ DEFAULT_ENTRY_ZONE + "]");
+						+ defaultZoneName + "]");
 				return;
 			}
 
@@ -313,6 +315,20 @@ class PlayerRPClass {
 
 		player.notifyWorldAboutChanges();
 		StendhalRPAction.transferContent(player);
+	}
+
+	/**
+	 * Low level players have a different start zone
+	 *
+	 * @param player Player
+	 * @return name of start zone
+	 */
+	private static String getDefaultZoneForPlayer(Player player) {
+		if (player.getLevel() < 2) {
+			return DEFAULT_ENTRY_ZONE;
+		} else {
+			return RESET_ENTRY_ZONE;
+		}
 	}
 
 	/**
