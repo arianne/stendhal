@@ -24,20 +24,30 @@ import java.util.List;
 
 /**
  * QUEST: Club of Thorns
- * <p>
+ * 
  * PARTICIPANTS:
- * <li> Orc Saman
- * <p>
+ * <ul>
+ * <li> Orc Saman</li>
+ * </ul>
+ * 
  * STEPS:
- * <li> Orc Saman asks you to kill mountain orc chief in prison for revenge
- * <li> Go kill mountain orc chief in prison using key given by Saman to get in
- * <li> Return and you get Club of Thorns as reward
- * <p>
+ * <ul>
+ * <li> Orc Saman asks you to kill mountain orc chief in prison for revenge</li>
+ * <li> Go kill mountain orc chief in prison using key given by Saman to get in</li>
+ * <li> Return and you get Club of Thorns as reward<li>
+ * </ul>
+ * 
  * REWARD:
- * <li> 1000 XP
- * <p>
+ * <ul>
+ * <li> 1000 XP<li>
+ * <li> Club of Thorns</li>
+ * <li> Karma: 6<li>
+ * </ul>
+ * 
  * REPETITIONS:
- * <li> None.
+ * <ul>
+ * <li> None.</li>
+ * </ul>
  */
 public class ClubOfThorns extends AbstractQuest {
 	private static final String QUEST_SLOT = "club_thorns";

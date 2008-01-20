@@ -45,6 +45,7 @@ import java.util.Arrays;
  * <ul>
  * <li>5000 XP</li>
  * <li>Some gold bars, random between 5,10,15,20,25,30.</li>
+ * <li>Karma: 15</li>
  * </ul>
  *
  * REPETITIONS:
@@ -135,6 +136,7 @@ public class ElfPrincess extends AbstractQuest {
 					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 						player.drop("rhosyd");
 						player.addXP(5000);
+						player.addKarma(15);
 						StackableItem goldbars = (StackableItem) StendhalRPWorld
 								.get().getRuleManager().getEntityManager()
 								.getItem("gold bar");

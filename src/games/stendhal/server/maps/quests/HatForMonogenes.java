@@ -6,8 +6,10 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPC.ChatAction;
 import games.stendhal.server.entity.npc.action.DropItemAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
+import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
+import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
@@ -21,13 +23,25 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * QUEST: Hat For Monogenes PARTICIPANTS: - Monogenes, an old man in Semos city.
+ * QUEST: Hat For Monogenes 
  * 
- * STEPS: - Monogenes asks you to buy a hat for him. - Xin Blanca sells you a
- * leather helmet. - Monogenes sees your leather helmet and asks for it and then
- * thanks you.
+ * PARTICIPANTS: 
+ * <ul>
+ * <li>Monogenes, an old man in Semos city.</li>
+ * </ul>
  * 
- * REWARD: - 10 XP
+ * STEPS:
+ * <ul> 
+ * <li> Monogenes asks you to buy a hat for him.</li>
+ * <li> Xin Blanca sells you a leather helmet.</li>
+ * <li> Monogenes sees your leather helmet and asks for it and then thanks you.</li>
+ * </ul>
+ * 
+ * REWARD: 
+ * <ul>
+ * <li>10 XP</li>
+ * <li>Karma: 10</li>
+ * </ul>
  * 
  * REPETITIONS: - None.
  */
@@ -82,7 +96,7 @@ public class HatForMonogenes extends AbstractQuest {
 			null,
 			ConversationStates.ATTENDING,
 			"Thanks, my good friend. I'll be waiting here for your return!",
-			new SetQuestAction(QUEST_SLOT, "start"));
+			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "start", 5.0));
 
 		monogenes.add(
 			ConversationStates.QUEST_OFFERED,
@@ -90,7 +104,7 @@ public class HatForMonogenes extends AbstractQuest {
 			null,
 			ConversationStates.ATTENDING,
 			"You surely have more importants things to do, and little time to do them in. I'll just stay here and freeze to death, I guess... *sniff*",
-			new SetQuestAction(QUEST_SLOT, "rejected"));
+			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -5.0));
 
 		monogenes.add(
 			ConversationStates.QUEST_OFFERED,
@@ -120,6 +134,7 @@ public class HatForMonogenes extends AbstractQuest {
 		List<ChatAction> reward = new LinkedList<ChatAction>();
 		reward.add(new DropItemAction("leather helmet"));
 		reward.add(new IncreaseXPAction(10));
+		reward.add(new IncreaseKarmaAction(10));
 		reward.add(new SetQuestAction(QUEST_SLOT, "done"));
 
 		// make sure the player isn't cheating by putting the

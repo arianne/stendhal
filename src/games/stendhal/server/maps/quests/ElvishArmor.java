@@ -13,20 +13,28 @@ import java.util.List;
 
 /**
  * QUEST: ElvishArmor
- * <p>
+ * 
  * PARTICIPANTS:
- * <li> Lupos, an albino elf who live in Fado Forest
- * <p>
+ * <ul>
+ * <li> Lupos, an albino elf who live in Fado Forest</li>
+ * </ul>
+ * 
  * STEPS:
- * <li> Lupos wants to see every piece of elvish equipment you can bring him
- * <p>
+ * <ul>
+ * <li> Lupos wants to see every piece of elvish equipment you can bring him</li>
+ * </ul>
+ * 
  * REWARD:
- * <li> 20000 XP
- * <li> 25 Karma
- * <li> ability to sell elvish stuff and also drow sword
- * <p>
+ * <ul>
+ * <li> 20000 XP</li>
+ * <li> Karma:25</li>
+ * <li> ability to sell elvish stuff and also drow sword</li>
+ * </ul>
+ * 
  * REPETITIONS:
- * <li> None.
+ * <ul>
+ * <li> None.</li>
+ * </ul>
  */
 public class ElvishArmor extends AbstractQuest {
 

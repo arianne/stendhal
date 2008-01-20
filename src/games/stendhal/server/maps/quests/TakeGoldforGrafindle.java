@@ -6,6 +6,7 @@ import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
@@ -115,14 +116,15 @@ public class TakeGoldforGrafindle extends AbstractQuest {
 				@Override
 				public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 					player.setQuest(QUEST_SLOT, "start");
-					player.addKarma(3.0);
+					player.addKarma(5.0);
 				}
 			});
 
-		npc.add(ConversationStates.QUEST_OFFERED, "no", null,
-			ConversationStates.ATTENDING,
-			"Well, at least you are honest and told me from the start.",
-			null);
+		npc.add(ConversationStates.QUEST_OFFERED, 
+				ConversationPhrases.NO_MESSAGES, null,
+				ConversationStates.ATTENDING,
+				"Well, at least you are honest and told me from the start.",
+				new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -5.0));
 
 		npc.add(
 			ConversationStates.QUEST_OFFERED,
@@ -215,7 +217,7 @@ public class TakeGoldforGrafindle extends AbstractQuest {
 						nalworkey.setBoundTo(player.getName());
 						player.equip(nalworkey);
 						player.addXP(200);
-						player.addKarma(5.0);
+						player.addKarma(10.0);
 
 						player.notifyWorldAboutChanges();
 

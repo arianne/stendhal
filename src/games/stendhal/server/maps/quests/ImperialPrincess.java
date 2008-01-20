@@ -6,6 +6,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
+import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
@@ -17,22 +18,30 @@ import java.util.Arrays;
 
 /**
  * QUEST: Imperial princess
- * <p>
- * PARTICIPANTS: The princess and King in Kalavan Castle
- * 
+ 
+ * PARTICIPANTS: 
+ * <ul>
+ * <li> The princess and King in Kalavan Castle</li>
+ * </ul>
  * 
  * STEPS:
- * <li> Princess asks you to fetch a number of herbs and potions
- * <li> You bring them
- * <li> She recommends you to her father
- * <li> you speak with him
+ * <ul>
+ * <li> Princess asks you to fetch a number of herbs and potions</li>
+ * <li> You bring them</li>
+ * <li> She recommends you to her father</li>
+ * <li> you speak with him</li>
+ * </ul>
  * 
  * REWARD:
- * <li> XP
- * <li> ability to buy houses
+ * <ul>
+ * <li> XP</li>
+ * <li> ability to buy houses in kalavan</li>
+ * </ul>
  * 
  * REPETITIONS:
- * <li> None.
+ * <ul>
+ * <li> None.</li>
+ * </ul>
  */
 public class ImperialPrincess extends AbstractQuest {
 	private static final int ARANDULA_DIVISOR = 40;
@@ -103,13 +112,16 @@ public class ImperialPrincess extends AbstractQuest {
 						// store the current level incase it increases before
 						// she see them next.
 						player.setQuest(QUEST_SLOT, Integer.toString(player.getLevel()));
+						player.addKarma(10);						
 					}
 				});
 
 		npc.add(ConversationStates.QUEST_OFFERED,
 				ConversationPhrases.NO_MESSAGES, null,
 				ConversationStates.ATTENDING,
-				"So you'll just let them suffer! How despicable.", null);
+				"So you'll just let them suffer! How despicable.",
+				new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -5.0));
+		
 		// give some hints of where to find herbs. No warranties!
 		npc.addReply(
 				"kokuda",

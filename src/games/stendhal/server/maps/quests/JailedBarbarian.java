@@ -16,32 +16,35 @@ import games.stendhal.server.entity.player.Player;
 import java.util.Arrays;
 
 /**
- * QUEST: The Amazon Princess
+ * QUEST: The Jailed Barbarian
  *
  * PARTICIPANTS:
  * <ul>
- * <li>Lorenz, the jailed barbarian in a hut on Amazon Island
+ * <li>Lorenz, the jailed barbarian in a hut on Amazon Island</li>
+ * <li>Esclara the Amazon Princess</li>
+ * <li>Ylflia the Princess of Kalavan</li>
  * </ul>
  *
  * STEPS:
  * <ul>
- * <li>1. Lorenz ask you for a scythe to bring him
- * <li>2. You have to ask Princess Esclara for a 'reason'
- * <li>3. You have to bring him an egg
- * <li>4. You have to inform Princess Ylflia
- * <li>5. You have to bring him an barbarian armor
- * <li>6. You get an reward.
+ * <li>1. Lorenz ask you for a scythe to bring him</li>
+ * <li>2. You have to ask Princess Esclara for a 'reason'</li>
+ * <li>3. You have to bring him an egg</li>
+ * <li>4. You have to inform Princess Ylflia</li>
+ * <li>5. You have to bring him an barbarian armor</li>
+ * <li>6. You get an reward.</li>
  * </ul>
  *
  * REWARD:
  * <ul>
- * <li>You get 20 gold bars
- * <li>You get 52.000 experince points in all
+ * <li>You get 20 gold bars</li>
+ * <li>Karma: 15</li>
+ * <li>You get 52.000 experince points in all</li>
  * </ul>
  *
  * REPETITIONS:
  * <ul>
- * <li>Not repeatable.
+ * <li>Not repeatable.</li>
  * </ul>
  */
  

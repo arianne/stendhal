@@ -7,7 +7,7 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.action.SetQuestAction;
+import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
@@ -16,25 +16,33 @@ import games.stendhal.server.entity.player.Player;
 
 /**
  * QUEST: Cloaks for Bario
- * <p>
+ * 
  * PARTICIPANTS:
- * <li> Bario, a guy living in an underground house deep under the Ados Wildlife
- * Refuge
- * <p>
+ * <ul>
+ * <li> Bario, a guy living in an underground house deep under the Ados Wildlife Refuge</li>
+ * </ul>
+ * 
  * STEPS:
- * <li> Bario asks you for a number of blue elf cloaks.
- * <li> You get some of the cloaks somehow, e.g. by killing elves.
- * <li> You bring the cloaks to Bario and give them to him.
+ * <ul>
+ * <li> Bario asks you for a number of blue elf cloaks.</li>
+ * <li> You get some of the cloaks somehow, e.g. by killing elves.</li>
+ * <li> You bring the cloaks to Bario and give them to him.</li>
  * <li> Repeat until Bario received enough cloaks. (Of course you can bring up
- * all required cloaks at the same time.)
- * <li> Bario gives you a golden shield in exchange.
- * <p>
+ * all required cloaks at the same time.)</li>
+ * <li> Bario gives you a golden shield in exchange.</li>
+ * </ul>
+ * 
  * REWARD:
- * <li> golden shield
- * <li> 1500 XP
- * <p>
+ * <ul>
+ * <li> golden shield</li>
+ * <li> 1500 XP</li>
+ * <li> Karma: 25</li>
+ * </ul>
+ * 
  * REPETITIONS:
- * <li> None.
+ * <ul>
+ * <li> None.</li>
+ * </ul>
  */
 public class CloaksForBario extends AbstractQuest {
 
@@ -104,12 +112,14 @@ public class CloaksForBario extends AbstractQuest {
 				ConversationPhrases.YES_MESSAGES, null,
 				ConversationStates.ATTENDING,
 				"I need some blue elven cloaks if I'm to survive the winter. Bring me ten of them, and I will give you a reward.",
-				new SetQuestAction(QUEST_SLOT, Integer.toString(REQUIRED_CLOAKS)));
+				new SetQuestAndModifyKarmaAction(QUEST_SLOT, Integer.toString(REQUIRED_CLOAKS), 5.0));
 
 		// player is not willing to help
-		npc.add(ConversationStates.QUEST_OFFERED, "no", null,
+		npc.add(ConversationStates.QUEST_OFFERED, 
+				ConversationPhrases.NO_MESSAGES, null,
 				ConversationStates.ATTENDING,
-				"Oh dear... I'm going to be in trouble...", null);
+				"Oh dear... I'm going to be in trouble...",
+				new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -5.0));
 	}
 
 	private void step_2() {
@@ -169,6 +179,7 @@ public class CloaksForBario extends AbstractQuest {
 								goldenShield.setBoundTo(player.getName());
 								player.equip(goldenShield, true);
 								player.addXP(1500);
+								player.addKarma(25);
 								player.notifyWorldAboutChanges();
 								player.setQuest(QUEST_SLOT, "done");
 								engine.say("Thank you very much! Now I have enough cloaks to survive the winter. Here, take this golden shield as a reward.");

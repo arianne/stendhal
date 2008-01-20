@@ -10,6 +10,7 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
+import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
@@ -209,6 +210,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 					&& (questScaleArmor != null)) {
 				npc.say("Oh my! Peter, Tom, and Charles are all dead? *cries*. Anyway, here is your reward. And keep the IOU.");
 				player.addXP(2500);
+				player.addKarma(15);
 				player.drop(questLeatherLegs);
 				player.drop(questScaleArmor);
 				Item map = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
@@ -239,6 +241,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 			if (questMap != null) {
 				npc.say("The map! Wonderful! Thank you. And here is your reward.");
 				player.addXP(5000);
+				player.addKarma(15);
 				player.drop(questMap);
 
 				Item item = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
@@ -283,7 +286,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 			ConversationPhrases.YES_MESSAGES, null,
 			ConversationStates.ATTENDING,
 			"Thank you! I'll be waiting for your return.",
-			new SetQuestAction(QUEST_SLOT, "start"));
+			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "start", 5.0));
 
 		henry.add(
 			ConversationStates.QUEST_OFFERED,
@@ -296,8 +299,9 @@ public class KanmararnSoldiers extends AbstractQuest {
 		henry.add(ConversationStates.QUEST_OFFERED,
 			ConversationPhrases.NO_MESSAGES, null,
 			ConversationStates.ATTENDING,
-			"OK. I understand. I'm scared of the #dwarves myself.", null);
-
+			"OK. I understand. I'm scared of the #dwarves myself.", 
+			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -5.0));
+		
 		henry.add(ConversationStates.IDLE,
 			ConversationPhrases.GREETING_MESSAGES,
 			new QuestInStateCondition(QUEST_SLOT, "start"),

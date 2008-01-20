@@ -5,6 +5,7 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.behaviour.adder.ProducerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.ProducerBehaviour;
 import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
@@ -98,6 +99,7 @@ public class VampireSword extends AbstractQuest {
 							.getRuleManager().getEntityManager().getItem("empty goblet");
 					player.equip(emptygoblet, true);
 					player.setQuest(QUEST_SLOT, "start");
+					player.addKarma(5);
 				}
 			});
 
@@ -107,7 +109,7 @@ public class VampireSword extends AbstractQuest {
 			null,
 			ConversationStates.IDLE,
 			"Oh, well forget it then. You must have a better sword than I can forge, huh? Bye.",
-			null);
+			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -5.0));
 
 		npc.addReply("catacombs", "The Catacombs of north Semos of the ancient #stories.");
 
@@ -239,6 +241,7 @@ public class VampireSword extends AbstractQuest {
 					}
 					npc.say("I have finished forging the mighty Vampire Sword. You deserve this. Now i'm going back to work, goodbye!");
 					player.addXP(5000);
+					player.addKarma(15);
 					Item vampireSword = StendhalRPWorld.get()
 							.getRuleManager().getEntityManager().getItem(
 									"vampire sword");

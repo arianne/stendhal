@@ -6,7 +6,7 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPC.ChatAction;
-import games.stendhal.server.entity.npc.action.DecreaseKarmaAction;
+import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
@@ -19,17 +19,29 @@ import java.util.List;
 /**
  * QUEST: CrownForTheWannaBeKing
  *
- * PARTICIPANTS: - Ivan Abe, the wannabe king who lives in Kalavan
- *               - Kendra Mattori, priestess living in Wizard City
+ * PARTICIPANTS: 
+ * <ul>
+ * <li> Ivan Abe, the wannabe king who lives in Kalavan</li>
+ * <li> Kendra Mattori, priestess living in Wizard City</li>
+ * </ul>
  *
- * STEPS: - Ivan Abe wants you to bring him gems and gold for his crown which he
- *          believes will help him to become the new king.
- *        - Kendra Mattori gives the reward after player brought all required items.
+ * STEPS:
+ * <ul>
+ * <li> Ivan Abe wants you to bring him gems and gold for his crown which he
+ *      believes will help him to become the new king.</li>
+ * <li> Kendra Mattori gives the reward after player brought all required items.</li>
+ * </ul>
  *
- * REWARD: - 10,000 XP
- *         - Player's ATK XP is increased by 0.1% of his/her XP.
+ * REWARD:
+ * <ul>
+ * <li> 10,000 XP</li>
+ * <li> Player's ATK XP is increased by 0.1% of his/her XP.</li>
+ * </ul>
  *
- * REPETITIONS: - None.
+ * REPETITIONS:
+ * <ul>
+ * <li> None.</li>
+ * </ul>
  */
 public class CrownForTheWannaBeKing extends AbstractQuest {
 
@@ -109,10 +121,11 @@ public class CrownForTheWannaBeKing extends AbstractQuest {
 				});
 
 		/* player is not willing to help */
-		npc.add(ConversationStates.QUEST_OFFERED, "no", null,
+		npc.add(ConversationStates.QUEST_OFFERED, 
+				ConversationPhrases.NO_MESSAGES, null,
 				ConversationStates.IDLE, 
 				"Oh you don't want to help me?! Get lost, you are wasting my precious time!",
-				new DecreaseKarmaAction(5.0));
+				new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -5.0));
 	}
 
 	/**

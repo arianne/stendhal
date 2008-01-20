@@ -6,8 +6,10 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.DropItemAction;
 import games.stendhal.server.entity.npc.action.EquipItemAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
+import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
+import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
@@ -39,6 +41,7 @@ import java.util.List;
  * <ul>
  * <li>10 XP</li>
  * <li>20 gold coins</li>
+ * <li>Karma: 10</li>
  * </ul>
  * 
  * REPETITIONS:
@@ -102,7 +105,7 @@ public class BeerForHayunn extends AbstractQuest {
 			null,
 			ConversationStates.ATTENDING,
 			"Thanks! I'll be right here, waiting. And guarding, of course.",
-			new SetQuestAction(QUEST_SLOT, "start"));
+			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "start", 5.0));
 
 		npc.add(
 			ConversationStates.QUEST_OFFERED,
@@ -110,7 +113,7 @@ public class BeerForHayunn extends AbstractQuest {
 			null,
 			ConversationStates.ATTENDING,
 			"Oh, well forget it then. I guess I'll just hope for it to start raining, and then stand with my mouth open.",
-			new SetQuestAction(QUEST_SLOT, "rejected"));
+			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -5.0));
 
 		npc.add(
 			ConversationStates.QUEST_OFFERED,
@@ -157,6 +160,7 @@ public class BeerForHayunn extends AbstractQuest {
 		reward.add(new EquipItemAction("money", 20));
 		reward.add(new IncreaseXPAction(10));
 		reward.add(new SetQuestAction(QUEST_SLOT, "done"));
+		reward.add(new IncreaseKarmaAction(10));
 
 		npc.add(
 			ConversationStates.QUEST_ITEM_BROUGHT,

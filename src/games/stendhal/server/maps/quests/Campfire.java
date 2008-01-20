@@ -7,7 +7,7 @@ import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.action.SetQuestAction;
+import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
@@ -21,20 +21,31 @@ import java.util.List;
 
 /**
  * QUEST: Campfire
- * <p>
+ * 
  * PARTICIPANTS:
- * <li> Sally, a scout sitting next to a campfire near Or'rill
- * <p>
+ * <ul>
+ * <li> Sally, a scout sitting next to a campfire near Or'rill</li>
+ * </ul>
+ * 
  * STEPS:
- * <li> Sally asks you for wood for her campfire
- * <li> You collect 10 pieces of wood in the forest
- * <li> You give the wood to Sally.
- * <li> Sally gives you 10 meat or ham in return.
- * <p>
- * REWARD: <li> 10 meat or ham <li> 50 XP
- * <p>
- * REPETITIONS: <li> Unlimited, but 1000 turns (ca. 5 minutes) of waiting are
- * required between repetitions
+ * <ul>
+ * <li> Sally asks you for wood for her campfire</li>
+ * <li> You collect 10 pieces of wood in the forest</li>
+ * <li> You give the wood to Sally.</li>
+ * <li> Sally gives you 10 meat or ham in return.<li>
+ * </ul>
+ * 
+ * REWARD:
+ * <ul> 
+ * <li> 10 meat or ham</li>
+ * <li> 50 XP</li>
+ * <li> Karma: 10</li>
+ * </ul>
+ * 
+ * REPETITIONS: 
+ * <ul>
+ * <li> Unlimited, but 5 minutes of waiting are required between repetitions</li>
+ * </ul>
  */
 public class Campfire extends AbstractQuest {
 
@@ -173,7 +184,7 @@ public class Campfire extends AbstractQuest {
 			null,
 			ConversationStates.ATTENDING,
 			"Okay. You can find wood in the forest north of here. Come back when you get ten pieces of wood!",
-			new SetQuestAction(QUEST_SLOT, "start"));
+			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "start", 5.0));
 
 		// player is not willing to help
 		npc.add(ConversationStates.QUEST_OFFERED,
@@ -181,7 +192,7 @@ public class Campfire extends AbstractQuest {
 			null,
 			ConversationStates.ATTENDING,
 			"Oh dear, how am I going to cook all this meat? Perhaps I'll just have to feed it to the animals...",
-			null);
+			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -5.0));
 	}
 
 	private void prepareBringingStep() {
@@ -209,6 +220,7 @@ public class Campfire extends AbstractQuest {
 						StackableItem reward = (StackableItem) manager.getItem(rewardClass);
 						reward.setQuantity(REQUIRED_WOOD);
 						player.equip(reward, true);
+						player.addKarma(10);
 						player.notifyWorldAboutChanges();
 					}
 				});

@@ -6,8 +6,10 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPC.ChatAction;
 import games.stendhal.server.entity.npc.action.DropItemAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
+import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
+import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
@@ -23,15 +25,33 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * QUEST: Hungry Joshua PARTICIPANTS: - Xoderos - Joshua
+ * QUEST: Hungry Joshua 
  * 
- * STEPS: - Talk with Xoderos to activate the quest. - Make 5 sandwiches. - Talk
- * with Joshua to give him the sandwiches. - Return to Xoderos with a message
- * from Joshua.
+ * PARTICIPANTS: 
+ * <ul>
+ * <li> Xoderos the blacksmith in Semos</li>
+ * <li> Joshua the blacksmith in Ados</li>
+ * </ul>
  * 
- * REWARD: - 200 XP - ability to use the keyring
+ * STEPS: 
+ * <ul>
+ * <li> Talk with Xoderos to activate the quest.</li>
+ * <li> Make 5 sandwiches.</li>
+ * <li> Talk with Joshua to give him the sandwiches.</li>
+ * <li> Return to Xoderos with a message from Joshua.</li>
+ * </ul>
  * 
- * REPETITIONS: - None.
+ * REWARD:
+ * <ul>
+ * <li> 200 XP</li>
+ * <li> Karma: 10</li>
+ * <li> ability to use the keyring</li>
+ * </ul>
+ * 
+ * REPETITIONS: 
+ * <ul>
+ * <li> None.</li>
+ * </ul>
  */
 public class HungryJoshua extends AbstractQuest {
 	private static final int FOOD_AMOUNT = 5;
@@ -115,7 +135,7 @@ public class HungryJoshua extends AbstractQuest {
 			null,
 			ConversationStates.ATTENDING,
 			"Thank you. Please tell him #food or #sandwich so he knows you're not just a customer.",
-			new SetQuestAction(QUEST_SLOT, "start"));
+			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "start", 5.0));
 
 		npc.add(
 			ConversationStates.QUEST_OFFERED,
@@ -123,7 +143,7 @@ public class HungryJoshua extends AbstractQuest {
 			null,
 			ConversationStates.ATTENDING,
 			"So you'd just let him starve! I'll have to hope someone else is more charitable.",
-			null);
+			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -5.0));
 
 		npc.add(
 			ConversationStates.QUEST_OFFERED,
@@ -161,6 +181,7 @@ public class HungryJoshua extends AbstractQuest {
 		reward.add(new DropItemAction("sandwich", FOOD_AMOUNT));
 		reward.add(new IncreaseXPAction(150));
 		reward.add(new SetQuestAction(QUEST_SLOT, "joshua"));
+		reward.add(new IncreaseKarmaAction(15));
 
 		npc.add(ConversationStates.QUEST_ITEM_BROUGHT,
 			ConversationPhrases.YES_MESSAGES, 

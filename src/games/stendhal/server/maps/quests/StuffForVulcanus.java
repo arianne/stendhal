@@ -6,6 +6,7 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
 import games.stendhal.server.entity.npc.condition.QuestStateStartsWithCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
@@ -100,17 +101,18 @@ public class StuffForVulcanus extends AbstractQuest {
 						+ REQUIRED_GIANT_HEART
 						+ " giant hearts. Come back when you have them in the same #exact order!");
 					player.setQuest(QUEST_SLOT, "start;0;0;0;0");
+					player.addKarma(10);
 
 				}
 			});
 
 		npc.add(
 			ConversationStates.QUEST_OFFERED,
-			"no",
+			ConversationPhrases.NO_MESSAGES,
 			null,
 			ConversationStates.IDLE,
 			"Oh, well forget it then, if you don't want an immortal sword...",
-			null);
+			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -10.0));
 
 		npc.addReply("exact",
 			"This archaic magic requires that the ingredients are added on a exact order.");
@@ -261,6 +263,7 @@ public class StuffForVulcanus extends AbstractQuest {
 
 					engine.say("I have finished forging the mighty immortal sword. You deserve this. Now I'm going to have a long rest, so, goodbye!");
 					player.addXP(15000);
+					player.addKarma(25);
 					Item magicSword = StendhalRPWorld.get()
 						.getRuleManager().getEntityManager().getItem("immortal sword");
 					magicSword.setBoundTo(player.getName());

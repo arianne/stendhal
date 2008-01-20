@@ -20,24 +20,32 @@ import marauroa.common.game.RPObjectNotFoundException;
 
 /**
  * QUEST: Fisherman's license Quiz.
- * <p>
- * PARTICIPANTS: 
- * <ul><li>Santiago the fisherman</ul
  * 
- * <p>
+ * PARTICIPANTS: 
+ * <ul>
+ * <li>Santiago the fisherman</li>
+ * </ul>
+ * 
  * STEPS:
- * <ul><li> The fisherman puts all fish species onto the table and the player must
- * identify the names of the fish in the correct order.
- * <li> The player has one try per day.
- * </ul><p>
+ * <ul>
+ * <li> The fisherman puts all fish species onto the table and the player must
+ * 		identify the names of the fish in the correct order.</li>
+ * <li> The player has one try per day.</li>
+ * </ul>
+ * 
  * REWARD:
- * <ul><li> 500 XP
- * <li> The 2nd part of the exam will be unlocked.
- * </ul><p>
+ * <ul>
+ * <li> 500 XP</li>
+ * <li> Karma: 15</li>
+ * <li> The 2nd part of the exam will be unlocked.</li>
+ * </ul>
+ * 
  * REPETITIONS:
- * <ul><li> If the player has failed the quiz, he can retry after 24 hours.
- * <li> After passing the quiz, no more repetitions are possible.
- * </ul><p>
+ * <ul>
+ * <li> If the player has failed the quiz, he can retry after 24 hours.</li>
+ * <li> After passing the quiz, no more repetitions are possible.</li>
+ * </ul>
+ * 
  * @author dine
  */
 
@@ -191,6 +199,7 @@ public class FishermansLicenseQuiz extends AbstractQuest {
 								npc.say("Correct! Congratulations, you have passed the first part of the #exam.");
 								cleanUpTable();
 								player.setQuest(QUEST_SLOT, "done");
+								player.addKarma(15);
 								player.addXP(500);
 							} else {
 								npc.say("Correct! So, what kind of fish is this?");

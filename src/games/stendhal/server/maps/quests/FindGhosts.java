@@ -3,7 +3,6 @@ package games.stendhal.server.maps.quests;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.action.DecreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
@@ -21,16 +20,31 @@ import java.util.List;
 /**
  * QUEST: Find Ghosts
  * 
- * PARTICIPANTS: - Carena
+ * PARTICIPANTS: 
+ * <ul>
+ * <li> Carena</li>
+ * </ul>
  * 
- * STEPS: - Carena asks you to find the 4 other spirits on Fauimoni - You go
- * find them and remember their names - You return and say the names - Carena
- * checks you have met them, then gives reward - Note: you can meet the ghosts
- * before you started the quest with her
+ * STEPS:
+ * <ul>
+ * <li> Carena asks you to find the 4 other spirits on Fauimoni</li>
+ * <li> You go find them and remember their names</li>
+ * <li> You return and say the names</li>
+ * <li> Carena checks you have met them, then gives reward</li>
+ * <li> Note: you can meet the ghosts before you started the quest with her</li>
+ * </ul>
  * 
- * REWARD: - base HP bonus of 50 - 5000 XP
+ * REWARD: 
+ * <ul>
+ * <li> base HP bonus of 50</li>
+ * <li> 5000 XP</li>
+ * <li> Karma: 15</li>
+ * </ul>
  * 
- * REPETITIONS: - None.
+ * REPETITIONS: 
+ * <ul>
+ * <li> None.</li>
+ * </ul>
  */
 public class FindGhosts extends AbstractQuest {
 
@@ -104,11 +118,11 @@ public class FindGhosts extends AbstractQuest {
 
 		npc.add(
 			ConversationStates.QUEST_OFFERED,
-			"no",
+			ConversationPhrases.NO_MESSAGES,
 			null,
 			ConversationStates.ATTENDING,
 			"Oh. Never mind. Perhaps since I'm only a ghost I couldn't offer you much reward anyway.",
-			new DecreaseKarmaAction(25.0));
+			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -15.0));
 
 		npc.add(
 			ConversationStates.QUEST_OFFERED,
@@ -179,6 +193,7 @@ public class FindGhosts extends AbstractQuest {
 						player.setBaseHP(50 + player.getBaseHP());
 						player.heal(50, true);
 						player.addXP(5000);
+						player.addKarma(15);
 						reply += " Now that I know those 4 names, perhaps I can even reach the spirits with my mind. I can't give you anything of material value, but I have given you a boost to your basic wellbeing, which will last forever. May you live long, and prosper.";
 						npc.say(reply);
 						player.setQuest(QUEST_SLOT, "done");

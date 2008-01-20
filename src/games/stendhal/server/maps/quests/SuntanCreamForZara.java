@@ -5,7 +5,7 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.action.SetQuestAction;
+import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
@@ -90,13 +90,13 @@ public class SuntanCreamForZara extends AbstractQuest {
 			ConversationPhrases.YES_MESSAGES, null,
 			ConversationStates.ATTENDING,
 			"Thank you very much. I'll be waiting here for your return!",
-			new SetQuestAction(QUEST_SLOT, "start"));
+			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "start", 5.0));
 
 		zara.add(ConversationStates.QUEST_OFFERED,
 			ConversationPhrases.NO_MESSAGES, null,
 			ConversationStates.ATTENDING,
 			"Ok, but I would have had a nice reward for you...",
-			new SetQuestAction("QUEST_SLOT", "start"));
+			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -5.0));
 
 		zara.add(
 			ConversationStates.QUEST_OFFERED,
@@ -161,6 +161,7 @@ public class SuntanCreamForZara extends AbstractQuest {
 					zaraKey.setBoundTo(player.getName());
 					player.equip(zaraKey, true);
 					player.addXP(1000);
+					player.addKarma(15);
 					player.setQuest(QUEST_SLOT, "done");
 					player.notifyWorldAboutChanges();
 				}

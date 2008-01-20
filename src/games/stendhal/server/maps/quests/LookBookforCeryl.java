@@ -10,6 +10,7 @@ import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
+import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
@@ -76,15 +77,15 @@ public class LookBookforCeryl extends AbstractQuest {
 			null,
 			ConversationStates.ATTENDING,
 			"Great! Please get me it as quickly as possible... there's a huge waiting list!",
-			new SetQuestAction(QUEST_SLOT, "start"));
+			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "start", 5.0));
 
 		npc.add(
 			ConversationStates.QUEST_OFFERED,
-			"no",
+			ConversationPhrases.NO_MESSAGES,
 			null,
 			ConversationStates.ATTENDING,
 			"Oh... I suppose I will have to get somebody else to do it, then.",
-			null);
+			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -5.0));
 
 		npc.add(
 			ConversationStates.QUEST_OFFERED,
@@ -155,7 +156,7 @@ public class LookBookforCeryl extends AbstractQuest {
 		reward.add(new DropItemAction("black book"));
 		reward.add(new EquipItemAction("money", 50));
 		reward.add(new IncreaseXPAction(100));
-		reward.add(new IncreaseKarmaAction(4.0));
+		reward.add(new IncreaseKarmaAction(10.0));
 		reward.add(new SetQuestAction(QUEST_SLOT, "done"));
 
 		npc.add(

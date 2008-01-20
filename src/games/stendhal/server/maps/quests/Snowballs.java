@@ -7,7 +7,7 @@ import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.action.SetQuestAction;
+import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
@@ -166,7 +166,7 @@ public class Snowballs extends AbstractQuest {
 			null,
 			ConversationStates.ATTENDING,
 			"Fine. You can loot the snowballs from the ice golem in this cavern, but be careful there is something huge nearby! Come back when you get twenty five snowballs.",
-			new SetQuestAction(QUEST_SLOT, "start"));
+			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "start", 5.0));
 
 		// player is not willing to help
 		npc.add(ConversationStates.QUEST_OFFERED,
@@ -174,7 +174,7 @@ public class Snowballs extends AbstractQuest {
 			null,
 			ConversationStates.ATTENDING,
 			"So what are you doing here? Go away!",
-			null);
+			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -5.0));
 	}
 
 	private void prepareBringingStep() {
@@ -189,6 +189,7 @@ public class Snowballs extends AbstractQuest {
 						player.drop("snowball", REQUIRED_SNOWBALLS);
 						player.setQuest(QUEST_SLOT, "" + System.currentTimeMillis());
 						player.addXP(500);
+						player.addKarma(15);
 
 						String rewardClass;
 						if (Rand.throwCoin() == 1) {

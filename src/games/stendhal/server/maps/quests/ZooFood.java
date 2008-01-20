@@ -5,7 +5,7 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPC.ChatAction;
-import games.stendhal.server.entity.npc.action.SetQuestAction;
+import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.condition.OrCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
@@ -106,13 +106,13 @@ public class ZooFood extends AbstractQuest {
 				"Okay, but please don't let the poor animals suffer too long! Bring me the "
 						+ Grammar.plnoun(REQUIRED_HAM, "ham")
 						+ " as soon as you get " + Grammar.itthem(REQUIRED_HAM)
-						+ ".", new SetQuestAction(QUEST_SLOT, "start")
+						+ ".", new SetQuestAndModifyKarmaAction(QUEST_SLOT, "start", 5.0)
 		);
 
 		// player is not willing to help
-		npc.add(ConversationStates.QUEST_OFFERED, "no", null,
+		npc.add(ConversationStates.QUEST_OFFERED, ConversationPhrases.NO_MESSAGES, null,
 				ConversationStates.ATTENDING, "Oh dear... I guess we're going to have to feed them with the deer...",
-				new SetQuestAction(QUEST_SLOT, "rejected")
+				new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -5.0)
 		);
 	}
 
@@ -141,6 +141,7 @@ public class ZooFood extends AbstractQuest {
 							player.notifyWorldAboutChanges();
 							player.setQuest(QUEST_SLOT, "done");
 							player.addXP(200);
+							player.addKarma(15);
 							engine.say("Thank you! You have rescued our rare animals.");
 						} else {
 							engine.say("*sigh* I SPECIFICALLY said that we need "

@@ -4,7 +4,7 @@ import games.stendhal.common.Grammar;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.action.SetQuestAction;
+import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
@@ -18,23 +18,28 @@ import java.util.List;
 
 /**
  * QUEST: Fisherman's license Collector
- * <p>
+ * 
  * PARTICIPANTS:
- * <li> Santiago the fisherman
- *
- *
- * <p>
+ * <ul>
+ * <li> Santiago the fisherman</li>
+ * </ul>
+ * 
  * STEPS:
- * <li> The player must bring all kinds of fishes to the fisherman
- *
- * <p>
+ * </ul>
+ * <li> The player must bring all kinds of fishes to the fisherman</li>
+ * </ul>
+ * 
  * REWARD:
- * <li> 2000 XP
+ * <ul>
+ * <li> 2000 XP</li>
  * <li> The player gets a fisherman's license (i.e. fishing skills increased by
- * 0.2).
+ *      0.2).</li>
+ * </ul>
  *
  * REPETITIONS:
- * <li> No repetitions.
+ * <ul>
+ * <li> No repetitions.</li>
+ * </ul>
  *
  * @author dine
  */
@@ -93,13 +98,14 @@ public class FishermansLicenseCollector extends AbstractQuest {
 			ConversationPhrases.YES_MESSAGES, null,
 			ConversationStates.ATTENDING,
 			"You have to bring me one fish of each #species so that I can see what you have learned so far.",
-			new SetQuestAction(QUEST_SLOT, ""));
+			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "", 5.0));
 
 		// player is not willing to help
 		npc.add(ConversationStates.QUEST_2_OFFERED,
 			ConversationPhrases.NO_MESSAGES, null,
 			ConversationStates.ATTENDING,
-			"It's okay, then you can excercise a bit more.", null);
+			"It's okay, then you can excercise a bit more.",
+			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -5.0));
 
 		// player asks what exactly is missing
 		npc.add(ConversationStates.ATTENDING, "species",

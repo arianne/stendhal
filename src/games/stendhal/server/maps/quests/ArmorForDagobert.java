@@ -6,8 +6,10 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.DropItemAction;
 import games.stendhal.server.entity.npc.action.EquipItemAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
+import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
+import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
@@ -40,6 +42,7 @@ import java.util.List;
  * <ul>
  * <li>50 XP</li>
  * <li>80 gold</li>
+ * <i>Karma: 10</li>
  * </ul>
  *
  * REPETITIONS:
@@ -106,7 +109,7 @@ public class ArmorForDagobert extends AbstractQuest {
 			null,
 			ConversationStates.ATTENDING,
 			"Once I had a nice #leather cuirass, but it was destroyed during the last robbery. If you find a new one, I'll give you a reward.",
-			new SetQuestAction(QUEST_SLOT, "start"));
+			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "start", 5.0));
 
 		// player is not willing to help
 		npc.add(
@@ -114,7 +117,7 @@ public class ArmorForDagobert extends AbstractQuest {
 			ConversationPhrases.NO_MESSAGES, null,
 			ConversationStates.ATTENDING,
 			"Well, then I guess I'll just duck and cover.",
-			new SetQuestAction(QUEST_SLOT, "rejected"));
+			new SetQuestAndModifyKarmaAction(QUEST_SLOT, "rejected", -5.0));
 
 		// player wants to know what a leather cuirass is
 		npc.add(
@@ -147,6 +150,7 @@ public class ArmorForDagobert extends AbstractQuest {
 		reward.add(new EquipItemAction("money", 80));
 		reward.add(new IncreaseXPAction(50));
 		reward.add(new SetQuestAction(QUEST_SLOT, "done"));
+		reward.add(new IncreaseKarmaAction(10));
 
 		npc.add(
 			ConversationStates.QUEST_ITEM_BROUGHT,
