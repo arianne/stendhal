@@ -19,7 +19,6 @@ import marauroa.common.game.RPObject.ID;
 
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import utilities.PlayerTestHelper;
@@ -107,7 +106,6 @@ public class IntroducePlayersTest {
 	}
 
 	@Test
-	@Ignore
 	public void testQuest() {
 		Player player = PlayerTestHelper.createPlayer("player");
 		SpeakerNPC tad = NPCList.get().get("Tad");
@@ -147,7 +145,7 @@ public class IntroducePlayersTest {
 		Engine engineIlisa = ilisa.getEngine();
 		engineIlisa.step(player, ConversationPhrases.GREETING_MESSAGES.get(0));
 		assertEquals(
-				"Ah, I see you have that flask. #Tad needs medicine, right? Hmm... I'll need a few #herbs. Can you help?",
+				"Ah, I see you have that flask. #Tad needs medicine, right? Hmm... I'll need a #herb. Can you help?",
 				ilisa.get("text"));
 		engineIlisa.step(player, "yes");
 		assertEquals("corpse&herbs", player.getQuest(IntroducePlayersTest.INTRODUCE_PLAYERS));
@@ -160,6 +158,7 @@ public class IntroducePlayersTest {
 				"*sniff* *sniff* I still feel ill, please hurry", tad
 						.get("text"));
 
+		//TODO still to be finished: get the herb for Ilisa
 	}
 
 }
