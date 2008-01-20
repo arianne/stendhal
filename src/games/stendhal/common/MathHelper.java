@@ -14,6 +14,10 @@ public class MathHelper {
 	 * @return An integer
 	 */
 	public static int parseIntDefault(String s, int def) {
+		if (s == null) {
+			return def;
+		}
+
 		int r;
 		try {
 			r = Integer.parseInt(s);
