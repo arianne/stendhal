@@ -141,6 +141,9 @@
   <portal x="116" y="82" ref="museum2">
    <destination zone="int_kirdneh_museum" ref="entrance2"/>
   </portal>
+  <portal x="119" y="37" ref="bank">
+   <destination zone="int_kirdneh_bank" ref="entrance"/>
+  </portal>
  </zone>
 
 <!-- <zone name="int_kirdneh_house_26" file="interiors/kirdneh/house_26.tmx">
@@ -325,6 +328,45 @@
    <destination zone="0_kirdneh_city" ref="museum2"/>
  </portal>
 </zone>
+
+<zone name="int_kirdneh_bank" file="interiors/kirdneh/bank.tmx">
+ <portal x="1" y="18" ref="entrance">
+   <destination zone="0_kirdneh_city" ref="bank"/>
+ </portal>
+ <entity x="3" y="9">
+   <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
+   <attribute name="text">Kirdneh Bank, sub - branch of Fado Bank, proudly providing excellent service day to day.</attribute>
+   <attribute name="class">transparent</attribute>
+ </entity>
+ <entity x="12" y="9">
+   <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
+   <attribute name="text">Memo: contact main branch, Fado Bank, for staff training.</attribute>
+   <attribute name="class">transparent</attribute>
+ </entity>
+ <entity x="3" y="2">
+  <implementation class-name="games.stendhal.server.entity.mapstuff.chest.PersonalChest">
+   <parameter name="slot">bank_fado</parameter>
+  </implementation>
+ </entity>
+ <entity x="2" y="2">
+  <implementation class-name="games.stendhal.server.entity.mapstuff.area.OnePlayerArea">
+   <parameter name="width">2</parameter>
+   <parameter name="height">4</parameter>
+  </implementation>
+ </entity>
+ <entity x="13" y="2">
+  <implementation class-name="games.stendhal.server.entity.mapstuff.chest.PersonalChest">
+   <parameter name="slot">bank_fado</parameter>
+  </implementation>
+ </entity>
+ <entity x="13" y="2">
+  <implementation class-name="games.stendhal.server.entity.mapstuff.area.OnePlayerArea">
+   <parameter name="width">2</parameter>
+   <parameter name="height">4</parameter>
+  </implementation>
+ </entity>
+</zone>
+
  <!-- Level -1 -->
 
  <!-- Level -2 -->
