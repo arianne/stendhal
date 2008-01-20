@@ -26,7 +26,7 @@ public class QuestActiveCondition extends SpeakerNPC.ChatCondition {
 
 	@Override
 	public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
-		return (player.hasQuest(questname) && !player.isQuestCompleted(questname));
+		return (player.hasQuest(questname) && !player.isQuestInState(questname, "rejected") && !player.isQuestCompleted(questname));
 	}
 
 	@Override
