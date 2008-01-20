@@ -11,7 +11,7 @@ import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
-import games.stendhal.server.maps.semos.city.RetiredAdventurerNPC;
+import games.stendhal.server.maps.semos.guardhouse.RetiredAdventurerNPC;
 
 import java.util.LinkedList;
 import java.util.List;
