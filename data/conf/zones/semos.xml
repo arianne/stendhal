@@ -175,8 +175,29 @@ Southeast: Farmhouse
   </portal>
   <entity x="17" y="12">
    <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
-   <attribute name="text">Some text to be filled in.</attribute>
+   <attribute name="text">KNOW HOW TO KILL CREATURES by Hayunn Naratha
+My personal favourite has always been to right-click and choose to ATTACK a creature. You can't go wrong with that!
+The sharper minded amongst you might prefer to double-click directly on the creature. It works too!
+</attribute>
    <attribute name="class">book_red</attribute>
+  </entity>
+  <entity x="12" y="4">
+    <implementation class-name="games.stendhal.server.maps.semos.guardhouse.RetiredAdventurerNPC">
+      <parameter name="name">Hayunn Naratha</parameter>
+      <parameter name="node0">12,4</parameter>
+      <parameter name="node1">15,4</parameter>
+      <parameter name="node2">15,5</parameter>
+      <parameter name="node3">18,5</parameter>
+      <parameter name="node4">18,9</parameter>
+      <parameter name="node5">5,9</parameter>
+      <parameter name="node6">5,3</parameter>
+      <parameter name="node7">5,9</parameter>
+      <parameter name="node8">12,9</parameter>
+    </implementation>
+
+    <attribute name="class">oldheronpc</attribute>
+    <attribute name="level">18</attribute>
+    <attribute name="hp">98</attribute>
   </entity>
  </zone>
 <zone name="int_0_semos_village_w_house_66" file="interiors/abstract/house_000.tmx">
@@ -405,22 +426,6 @@ Awww... so you're a coward, then? Huh.
     </implementation>
 
     <attribute name="class">welcomernpc</attribute>
-  </entity>
-
-  <entity x="27" y="38">
-    <implementation class-name="games.stendhal.server.maps.semos.city.RetiredAdventurerNPC">
-      <parameter name="name">Hayunn Naratha</parameter>
-      <parameter name="node0">27,38</parameter>
-      <parameter name="node1">27,39</parameter>
-      <parameter name="node2">29,39</parameter>
-      <parameter name="node3">29,38</parameter>
-      <parameter name="node4">29,39</parameter>
-      <parameter name="node5">27,39</parameter>
-    </implementation>
-
-    <attribute name="class">oldheronpc</attribute>
-    <attribute name="level">18</attribute>
-    <attribute name="hp">98</attribute>
   </entity>
 
   <entity x="24" y="43">
