@@ -1,11 +1,17 @@
 package games.stendhal.server.entity.player;
 
+import games.stendhal.common.MathHelper;
+
 /**
  * recording of killings.
  *
  * @author hendrik
  */
 class KillRecording {
+	private static final String KILL_SLOT_NAME = "!kills";
+	private static final String PREFIX_SHARED = "shared.";
+	private static final String PREFIX_SOLO = "solo.";
+	
 	private Player player;
 	
 	public KillRecording(Player player) {
@@ -20,12 +26,8 @@ class KillRecording {
 	 * @return true iff this player has ever killed this creature on his own.
 	 */
 	public boolean hasKilledSolo(String name) {
-		String info = player.getKeyedSlot("!kills", name);
-
-		if (info == null) {
-			return false;
-		}
-		return "solo".equals(info);
+		String count = player.getKeyedSlot(KILL_SLOT_NAME, PREFIX_SOLO + name);
+		return MathHelper.parseIntDefault(count, 0) > 0;
 	}
 
 	/**
@@ -36,18 +38,9 @@ class KillRecording {
 	 * @return true iff this player has ever killed this creature on his own.
 	 */
 	public boolean hasKilled(String name) {
-		return (player.getKeyedSlot("!kills", name) != null);
-	}
-
-	/**
-	 * Checks in which way this player has killed the creature with the given
-	 * name.
-	 * 
-	 * @param name of the creature to check.
-	 * @return either "solo", "shared", or null.
-	 */
-	public String getKill(String name) {
-		return player.getKeyedSlot("!kills", name);
+		String count = player.getKeyedSlot(KILL_SLOT_NAME, PREFIX_SHARED + name);
+		boolean shared = MathHelper.parseIntDefault(count, 0) > 0;
+		return shared || hasKilledSolo(name);
 	}
 
 	/**
@@ -58,7 +51,10 @@ class KillRecording {
 	 *            either "solo", "shared", or null.
 	 */
 	private void setKill(String name, String mode) {
-		player.setKeyedSlot("!kills", name, mode);
+		String key = mode + "." + name;
+		String count = player.getKeyedSlot(KILL_SLOT_NAME, key);
+		int oldValue = MathHelper.parseIntDefault(count, 0);
+		player.setKeyedSlot(KILL_SLOT_NAME, key, Integer.toString(oldValue + 1));
 	}
 
 	/**
@@ -77,9 +73,7 @@ class KillRecording {
 	 * @param name of the killed entity 
 	 */
 	public void setSharedKill(String name) {
-		if (!hasKilledSolo(name)) {
-			setKill(name, "shared");
-		}
+		setKill(name, "shared");
 	}
 
 	/**
@@ -91,6 +85,7 @@ class KillRecording {
 	 *            The name of the creature.
 	 */
 	public void removeKill(String name) {
-		player.setKeyedSlot("!kills", name, null);
+		player.setKeyedSlot(KILL_SLOT_NAME, PREFIX_SHARED + name, null);
+		player.setKeyedSlot(KILL_SLOT_NAME, PREFIX_SOLO + name, null);
 	}
 }
