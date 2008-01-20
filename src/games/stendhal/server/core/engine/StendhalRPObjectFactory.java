@@ -33,9 +33,6 @@ public class StendhalRPObjectFactory extends RPObjectFactory {
 			return new RentedSign(object);
 		}
 
-		// transform underscore delimited item and creature names into space delimited names
-		UnderscoreConverter.transformNames(object);
-
 		// fallback
 		return super.transform(object);
 	}
