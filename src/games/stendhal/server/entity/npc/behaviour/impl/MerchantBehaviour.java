@@ -81,6 +81,7 @@ public abstract class MerchantBehaviour extends TransactionBehaviour {
 	 * @param amount
 	 *            amount
 	 */
+	@Override
 	public void setAmount(int amount) {
 		// TODO: This does not solve the problem, it is just a quick fix to get
 		// the server back online.

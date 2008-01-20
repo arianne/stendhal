@@ -40,6 +40,7 @@ public class ChefNPCTest extends ZonePlayerAndNPCTest {
 		super(ZONE_NAME, "chef");
 	}
 
+	@Override
 	@Before
 	public void setUp() throws Exception {
 		super.setUp();
@@ -51,6 +52,7 @@ public class ChefNPCTest extends ZonePlayerAndNPCTest {
 		cnpc.createDialog(npc);
 	}
 
+	@Override
 	@After
 	public void tearDown() throws Exception {
 		super.tearDown();

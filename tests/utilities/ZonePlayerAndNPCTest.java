@@ -39,6 +39,7 @@ public abstract class ZonePlayerAndNPCTest extends ZoneAndPlayerTest {
 	 *
 	 * @throws Exception
 	 */
+	@Override
 	@After
 	public void tearDown() throws Exception {
 		for (String npcName : npcNames) {
