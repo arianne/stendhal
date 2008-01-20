@@ -561,7 +561,7 @@ class PlayerRPClass {
 					// TODO: Move to Item.create(RPObject)?
 
 					// handle renamed items
-					String name = UnderscoreConverter.transform(item.get("name"));
+					String name = item.get("name");
 					if (ITEM_NAMES_OLD.indexOf(name) > -1) {
 						name = ITEM_NAMES_NEW.get(ITEM_NAMES_OLD.indexOf(name));
 					}
