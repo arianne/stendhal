@@ -89,14 +89,14 @@ public class BeerForHayunn extends AbstractQuest {
 			ConversationPhrases.QUEST_MESSAGES, 
 			new QuestNotCompletedCondition(QUEST_SLOT),
 			ConversationStates.QUEST_OFFERED, 
-			"My mouth is dry, but I can't be seen to abandon my post! Could you bring me some #beer from the #tavern?",
+			"My mouth is dry, but I can't be seen to abandon this teaching room! Could you bring me some #beer from the #tavern?",
 			null);
 
 		npc.add(ConversationStates.ATTENDING,
 			ConversationPhrases.QUEST_MESSAGES,
 			new QuestCompletedCondition(QUEST_SLOT),
 			ConversationStates.ATTENDING, 
-			"Thanks all the same, but I don't want to get too heavily into drinking; I'm still on duty, you know! I'll need my wits about me if a monster shows up...",
+			"Thanks all the same, but I don't want to get too heavily into drinking; I'm still on duty, you know! I'll need my wits about me if a student shows up...",
 			null);
 
 		npc.add(
