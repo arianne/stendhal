@@ -1,9 +1,12 @@
 package games.stendhal.server.maps.quests;
 
+import static junit.framework.Assert.assertFalse;
+import static junit.framework.Assert.assertTrue;
 import static org.junit.Assert.assertEquals;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
@@ -43,20 +46,20 @@ public class StuffForVulcanusTest {
 	}
 
 	@Test
-	public void testQuest() {
-		en.step(player, "hi");
+	public void testHiAndByeQuest() {
+		assertTrue(en.step(player, "hi"));
 		assertEquals("Chairetismata! I am Vulcanus the smither.", npc.get("text"));
-		en.step(player, "help");
+		assertTrue(en.step(player, "help"));
 		assertEquals("I may help you to get a very #special item for only a few others...", npc.get("text"));
-		en.step(player, "special");
+		assertTrue(en.step(player, "special"));
 		assertEquals("Who told you that!?! *cough* Anyway, yes, I can forge a very special item for you. But you will need to complete a #quest", npc.get("text"));
-		en.step(player, "yes");
-		en.step(player, "quest");
+		assertFalse(en.step(player, "yes"));
+		assertTrue(en.step(player, "quest"));
 		assertEquals("I once forged the most powerful of swords. I can do it again for you. Are you interested?", npc.get("text"));
-		en.step(player, "no");
+		assertTrue(en.step(player, "no"));
 		assertEquals("Oh, well forget it then, if you don't want an immortal sword...", npc.get("text"));
-		en.step(player, "bye");
-
+		assertEquals(ConversationStates.IDLE, en.getCurrentState());
+		assertEquals("rejected", player.getQuest("immortalsword_quest"));
 		// -----------------------------------------------
 
 		en.step(player, "hi");
@@ -151,14 +154,16 @@ public class StuffForVulcanusTest {
 		assertEquals("Farewell", npc.get("text"));
 
 		// -----------------------------------------------
-
+		
+		
 		en.step(player, "hi");
 		assertEquals("I haven't finished forging the sword. Please check back in 10 minutes.", npc.get("text"));
 		en.step(player, "bye");
-/*		TODO: find a way to test this (without waiting ten minutes of course)
+		//TODO: find a way to test this (without waiting ten minutes of course)
 		
 		// -----------------------------------------------
-
+		
+		player.setQuest("immortalsword_quest", "forging;0");
 		en.step(player, "hi");
 		assertEquals("I have finished forging the mighty immortal sword. You deserve this. Now I'm going to have a long rest, so, goodbye!", npc.get("text"));
 		// [23:26] superkym earns 15000 experience points.
@@ -170,6 +175,6 @@ public class StuffForVulcanusTest {
 		assertEquals("Chairetismata! I am Vulcanus the smither.", npc.get("text"));
 		en.step(player, "task");
 		assertEquals("Oh! I am so tired. Look for me later. I need a few years of relaxing.", npc.get("text"));
-*/		
+		
 	}
 }
