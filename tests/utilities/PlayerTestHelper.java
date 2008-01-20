@@ -166,6 +166,21 @@ public class PlayerTestHelper {
 	}
 
 	/**
+	 * Equip the player with the given items.
+	 * 
+	 * @param player
+	 * @param clazz
+	 * @return success flag
+	 */
+	public static boolean equipWithItem(Player player, String clazz) {
+		StendhalRPWorld world = StendhalRPWorld.get();
+
+		Item item = world.getRuleManager().getEntityManager().getItem(clazz);
+
+		return player.equip(item);
+	}
+
+	/**
 	 * Equip the player with the given amount of items.
 	 * 
 	 * @param player
