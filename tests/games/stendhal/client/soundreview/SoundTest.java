@@ -3,15 +3,12 @@ package games.stendhal.client.soundreview;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import games.stendhal.client.entity.User;
-
-
 import marauroa.common.Log4J;
 
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 
 public class SoundTest {
@@ -46,7 +43,6 @@ public class SoundTest {
 	}
 
 	@Test
-@Ignore//@@ don't commit
 	public void testPlay() {
 		SoundMaster sm = new SoundMaster();
 		sm.init();
