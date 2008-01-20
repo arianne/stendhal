@@ -6,7 +6,6 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.StackableItem;
-import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
@@ -52,11 +51,7 @@ public class CampfireTest {
 
 	@After
 	public void tearDown() throws Exception {
-		SpeakerNPC npc = NPCList.get().get("Sally");
-
-		if (npc != null) {
-			npc.setCurrentState(ConversationStates.IDLE);
-		}
+		PlayerTestHelper.resetNPC("Sally");
 	}
 
 	@Test

@@ -42,7 +42,7 @@ public class PlinksToyTest {
 		PlinksToy quest = new PlinksToy();
 		quest.addToWorld();
 		en = npc.getEngine();
-		
+
 		player = PlayerTestHelper.createPlayer("player");
 	}
 

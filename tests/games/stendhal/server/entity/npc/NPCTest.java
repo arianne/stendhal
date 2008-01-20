@@ -50,10 +50,7 @@ public class NPCTest {
 
 	@After
 	public void tearDown() throws Exception {
-		SpeakerNPC npc = NPCList.get().get("Felina");
-		if (npc != null) {
-			npc.setCurrentState(ConversationStates.IDLE);
-		}
+		PlayerTestHelper.resetNPC("Felina");
 	}
 
 	@Test

@@ -12,7 +12,6 @@ import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.fado.weaponshop.RingSmithNPC;
 
-
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;

@@ -1,10 +1,10 @@
 package games.stendhal.server.maps.quests;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.*;
-import static org.junit.matchers.StringContains.*;
-import static org.hamcrest.CoreMatchers.*;
-
+import static org.junit.Assert.assertThat;
+import static org.junit.matchers.StringContains.containsString;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.NPCList;

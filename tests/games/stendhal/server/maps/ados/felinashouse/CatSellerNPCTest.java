@@ -6,7 +6,6 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
@@ -50,10 +49,7 @@ public class CatSellerNPCTest {
 
 	@After
 	public void tearDown() throws Exception {
-		SpeakerNPC npc = NPCList.get().get("Felina");
-		if (npc != null) {
-			npc.setCurrentState(ConversationStates.IDLE);
-		}
+		PlayerTestHelper.resetNPC("Felina");
 	}
 
 	@Test
