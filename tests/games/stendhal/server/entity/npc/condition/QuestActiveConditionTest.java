@@ -7,8 +7,6 @@ import games.stendhal.server.entity.npc.parser.ConversationParser;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.Log4J;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -19,14 +17,6 @@ public class QuestActiveConditionTest {
 	@BeforeClass
 	public static void setUpClass() throws Exception {
 		Log4J.init();
-	}
-
-	@Before
-	public void setUp() throws Exception {
-	}
-
-	@After
-	public void tearDown() throws Exception {
 	}
 
 	@Test
@@ -90,7 +80,8 @@ public class QuestActiveConditionTest {
 		assertFalse(new QuestActiveCondition("questname").equals(new QuestActiveCondition(
 				"questname2")));
 		assertTrue(new QuestActiveCondition("questname").equals(new QuestActiveCondition(
-				"questname") {
+				"questname") { 
+			//sub classing
 		}));
 	}
 
