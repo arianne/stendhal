@@ -98,14 +98,5 @@ public class UnderscoreConverterTest {
 		assertTrue(player.hasKilled("monster"));
 		assertFalse(player.hasKilled("cave_rat"));
 		assertTrue(player.hasKilled("cave rat"));
-
-		RPSlot killSlot = player.getSlot("!kills");
-		RPObject obj = killSlot.getFirst();
-
-		assertEquals("solo", obj.get("name"));
-		assertEquals("shared", obj.get("monster"));
-		assertNull("solo", obj.get("cave_rat"));
-		assertEquals("solo", obj.get("cave rat"));
-		assertNull(obj.get("cave_rat"));
 	}
 }
