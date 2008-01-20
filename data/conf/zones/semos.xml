@@ -169,10 +169,15 @@ Southeast: Farmhouse
   </entity>
  </zone>
 
-<zone name="int_0_semos_village_w_house_65" file="interiors/abstract/house_000.tmx">
-  <portal x="7" y="14" ref="entrance">
-   <destination zone="0_semos_village_w" ref="house_65_entrance"/>
+<zone name="int_semos_guard_house" file="interiors/semos/guard_house.tmx">
+  <portal x="13" y="16" ref="entrance">
+   <destination zone="0_semos_village_w" ref="guard_house_entrance"/>
   </portal>
+  <entity x="17" y="12">
+   <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
+   <attribute name="text">Some text to be filled in.</attribute>
+   <attribute name="class">book_red</attribute>
+  </entity>
  </zone>
 <zone name="int_0_semos_village_w_house_66" file="interiors/abstract/house_000.tmx">
   <portal x="7" y="14" ref="entrance">
@@ -181,8 +186,8 @@ Southeast: Farmhouse
  </zone>
 
  <zone name="0_semos_village_w" level="0" x="500000" y="500000" file="Level 0/semos/village_w.tmx">
- <portal x="16" y="34" ref="house_65_entrance">
-   <destination zone="int_0_semos_village_w_house_65" ref="entrance"/>
+ <portal x="16" y="34" ref="guard_house_entrance">
+   <destination zone="int_semos_guard_house" ref="entrance"/>
   </portal>
    <portal x="29" y="40" ref="house_66_entrance">
    <destination zone="int_0_semos_village_w_house_66" ref="entrance"/>
@@ -269,14 +274,6 @@ Mature sheep wanted: please speak to Sato.
    </attribute>
   </entity>
 
-  <entity x="16" y="35">
-   <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
-   <attribute name="text">
-[CLOSED]
-
-The tavern has moved into a more central location in Semos. Please come join us at the social hub of the Semos area!
-   </attribute>
-  </entity>
  </zone>
 
  <zone name="0_semos_city" level="0" x="500064" y="500000" file="Level 0/semos/city.tmx">
