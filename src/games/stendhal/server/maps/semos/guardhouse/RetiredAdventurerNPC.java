@@ -10,8 +10,6 @@ import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.StartRecordingKillsAction;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
-import games.stendhal.server.entity.npc.parser.Sentence;
-import games.stendhal.server.entity.player.Player;
 
 import java.util.LinkedList;
 import java.util.List;
