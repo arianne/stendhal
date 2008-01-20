@@ -14,9 +14,9 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import utilities.NPCTestBase;
+import utilities.ZonePlayerAndNPCTest;
 
-public class CleanStorageSpaceTest extends NPCTestBase {
+public class CleanStorageSpaceTest extends ZonePlayerAndNPCTest {
 
 	private static final String ZONE_NAME = "testzone";
 

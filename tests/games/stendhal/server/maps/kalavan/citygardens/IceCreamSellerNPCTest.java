@@ -11,20 +11,20 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import utilities.NPCTestBase;
+import utilities.ZonePlayerAndNPCTest;
 
 /**
  * Test buying ice cream.
  *
  * @author Martin Fuchs
  */
-public class IceCreamSellerNPCTest extends NPCTestBase {
+public class IceCreamSellerNPCTest extends ZonePlayerAndNPCTest {
 
 	private static final String ZONE_NAME = "0_kalavan_city_gardens";
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		NPCTestBase.setUpBeforeClass();
+		ZonePlayerAndNPCTest.setUpBeforeClass();
 
 		setupZone(ZONE_NAME, new IceCreamSellerNPC());
 	}

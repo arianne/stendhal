@@ -17,9 +17,9 @@ import marauroa.common.game.RPObject.ID;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import utilities.NPCTestBase;
+import utilities.ZonePlayerAndNPCTest;
 
-public class IntroducePlayersTest extends NPCTestBase {
+public class IntroducePlayersTest extends ZonePlayerAndNPCTest {
 
 	private static final String ZONE_NAME = "testzone";
 

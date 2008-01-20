@@ -11,20 +11,20 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import utilities.NPCTestBase;
+import utilities.ZonePlayerAndNPCTest;
 
 /**
  * Test selling cheese to the bar maid.
  *
  * @author Martin Fuchs
  */
-public class SellingTest extends NPCTestBase {
+public class SellingTest extends ZonePlayerAndNPCTest {
 
 	private static final String ZONE_NAME = "int_ados_bar";
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		NPCTestBase.setUpBeforeClass();
+		ZonePlayerAndNPCTest.setUpBeforeClass();
 
 		setupZone(ZONE_NAME, new BarMaidNPC());
 	}

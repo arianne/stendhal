@@ -14,9 +14,9 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import utilities.NPCTestBase;
+import utilities.ZonePlayerAndNPCTest;
 
-public class ChefNPCTest extends NPCTestBase {
+public class ChefNPCTest extends ZonePlayerAndNPCTest {
 
 	private static final String ZONE_NAME = "testzone";
 
@@ -27,7 +27,7 @@ public class ChefNPCTest extends NPCTestBase {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		NPCTestBase.setUpBeforeClass();
+		ZonePlayerAndNPCTest.setUpBeforeClass();
 
 		setupZone(ZONE_NAME);
 	}

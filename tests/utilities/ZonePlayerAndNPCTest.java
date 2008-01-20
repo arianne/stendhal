@@ -15,7 +15,7 @@ import org.junit.After;
  *
  * @author Martin Fuchs
  */
-public class NPCTestBase extends PlayerTestBase {
+public abstract class ZonePlayerAndNPCTest extends ZoneAndPlayerTest {
 
 	private List<String> npcNames = new Vector<String>();
 
@@ -24,7 +24,7 @@ public class NPCTestBase extends PlayerTestBase {
 	 * 
 	 * @param npcNames
 	 */
-	protected NPCTestBase(String zoneName, String... npcNames) {
+	protected ZonePlayerAndNPCTest(String zoneName, String... npcNames) {
 		super(zoneName);
 		
 		assertTrue(npcNames.length > 0);

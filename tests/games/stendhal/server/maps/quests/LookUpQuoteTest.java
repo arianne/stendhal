@@ -15,14 +15,14 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import utilities.NPCTestBase;
+import utilities.ZonePlayerAndNPCTest;
 
 /**
  * Test for the "Lookup Quote" quest.
  * 
  * @author Martin Fuchs
  */
-public class LookUpQuoteTest extends NPCTestBase {
+public class LookUpQuoteTest extends ZonePlayerAndNPCTest {
 
 	private static final String ZONE_NAME = "testzone";
 
@@ -32,7 +32,7 @@ public class LookUpQuoteTest extends NPCTestBase {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		NPCTestBase.setUpBeforeClass();
+		ZonePlayerAndNPCTest.setUpBeforeClass();
 
 		setupZone(ZONE_NAME, new FishermanNPC());
 

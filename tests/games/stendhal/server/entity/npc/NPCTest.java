@@ -10,20 +10,20 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import utilities.NPCTestBase;
+import utilities.ZonePlayerAndNPCTest;
 
 /**
  * Test NPC logic.
  *
  * @author Martin Fuchs
  */
-public class NPCTest extends NPCTestBase {
+public class NPCTest extends ZonePlayerAndNPCTest {
 
 	private static final String ZONE_NAME = "int_ados_felinas_house";
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		NPCTestBase.setUpBeforeClass();
+		ZonePlayerAndNPCTest.setUpBeforeClass();
 
 		setupZone(ZONE_NAME, new CatSellerNPC());
 

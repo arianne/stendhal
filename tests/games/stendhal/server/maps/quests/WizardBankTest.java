@@ -11,9 +11,9 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import utilities.NPCTestBase;
+import utilities.ZonePlayerAndNPCTest;
 
-public class WizardBankTest extends NPCTestBase {
+public class WizardBankTest extends ZonePlayerAndNPCTest {
 
 	private static final String GRAFINDLE_QUEST_SLOT = "grafindle_gold";
 	private static final String ZARA_QUEST_SLOT = "suntan_cream_zara";
@@ -22,7 +22,7 @@ public class WizardBankTest extends NPCTestBase {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		NPCTestBase.setUpBeforeClass();
+		ZonePlayerAndNPCTest.setUpBeforeClass();
 
 		setupZone(ZONE_NAME);
 

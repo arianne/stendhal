@@ -14,7 +14,7 @@ import org.junit.Before;
  *
  * @author Martin Fuchs
  */
-public abstract class PlayerTestBase extends QuestHelper {
+public abstract class ZoneAndPlayerTest extends QuestHelper {
 
 	/** Zone used in the test. */
 	protected StendhalRPZone zone;
@@ -53,7 +53,7 @@ public abstract class PlayerTestBase extends QuestHelper {
 	 *
 	 * @param zoneName
 	 */
-	protected PlayerTestBase(String zoneName) {
+	protected ZoneAndPlayerTest(String zoneName) {
 		zone = StendhalRPWorld.get().getZone(zoneName);
 		assertNotNull(zone);
 	}
