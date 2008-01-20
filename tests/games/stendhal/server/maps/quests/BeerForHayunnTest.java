@@ -65,13 +65,14 @@ public class BeerForHayunnTest {
 		(new MockRetiredAdventurer()).createDialog(hayunn);
 		Engine en = hayunn.getEngine();
 		en.step(player, "hi");
+		assertTrue(player.hasQuestCompleted("meet_hayunn"));
 		assertTrue(hayunn.isTalking());
 		assertEquals(
-				"You've probably heard of me; Hayunn Naratha, a retired adventurer. Have you read my book? No? It's called \"Know How To Kill Creatures\". Maybe we could talk about adventuring, if you like?",
+				"Hi again, how can I #help you this time?",
 				hayunn.get("text"));
 		en.step(player, "quest");
 		assertEquals(
-				"My mouth is dry, but I can't be seen to abandon my post! Could you bring me some #beer from the #tavern?",
+				"My mouth is dry, but I can't be seen to abandon this teaching room! Could you bring me some #beer from the #tavern?",
 				hayunn.get("text"));
 		en.step(player, "yes");
 		assertTrue(player.hasQuest("beer_hayunn"));
@@ -91,13 +92,14 @@ public class BeerForHayunnTest {
 		Player player2 = PlayerTestHelper.createPlayer("player");
 
 		en.step(player2, "hi");
+		assertTrue(player2.hasQuestCompleted("meet_hayunn"));
 		assertTrue(hayunn.isTalking());
 		assertEquals(
-				"You've probably heard of me; Hayunn Naratha, a retired adventurer. Have you read my book? No? It's called \"Know How To Kill Creatures\". Maybe we could talk about adventuring, if you like?",
+				"Hi again, how can I #help you this time?",
 				hayunn.get("text"));
 		en.step(player2, "quest");
 		assertEquals(
-				"My mouth is dry, but I can't be seen to abandon my post! Could you bring me some #beer from the #tavern?",
+				"My mouth is dry, but I can't be seen to abandon this teaching room! Could you bring me some #beer from the #tavern?",
 				hayunn.get("text"));
 		en.step(player2, "no");
 		assertTrue(player2.hasQuest("beer_hayunn"));
