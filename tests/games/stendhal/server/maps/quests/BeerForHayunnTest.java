@@ -65,7 +65,7 @@ public class BeerForHayunnTest {
 		(new MockRetiredAdventurer()).createDialog(hayunn);
 		Engine en = hayunn.getEngine();
 		en.step(player, "hi");
-		assertTrue(player.hasQuestCompleted("meet_hayunn"));
+		assertTrue(player.isQuestCompleted("meet_hayunn"));
 		assertTrue(hayunn.isTalking());
 		assertEquals(
 				"Hi again, how can I #help you this time?",
@@ -92,7 +92,7 @@ public class BeerForHayunnTest {
 		Player player2 = PlayerTestHelper.createPlayer("player");
 
 		en.step(player2, "hi");
-		assertTrue(player2.hasQuestCompleted("meet_hayunn"));
+		assertTrue(player2.isQuestCompleted("meet_hayunn"));
 		assertTrue(hayunn.isTalking());
 		assertEquals(
 				"Hi again, how can I #help you this time?",
