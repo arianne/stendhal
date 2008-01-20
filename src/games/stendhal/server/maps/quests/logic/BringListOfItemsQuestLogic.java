@@ -208,8 +208,9 @@ public class BringListOfItemsQuestLogic {
 			new SpeakerNPC.ChatAction() {
 				@Override
 				public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+					// We can't use Sentence.getObjectName() here because of the case where "one" is used as trigger word.
 					Expression itemWord = sentence.getTriggerExpression();
-					String itemName = itemWord.getOriginal();	//TODO should also be possible by using Sentence.getObjectName()
+					String itemName = itemWord.getOriginal();
 
 					if (!triggerWords.contains(itemWord)) {
 						engine.say(concreteQuest.respondToOfferOfNotNeededItem());
