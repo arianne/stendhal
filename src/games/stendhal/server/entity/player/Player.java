@@ -698,7 +698,7 @@ public class Player extends RPEntity {
 	 * @param name name of key slot
 	 * @return object or <code>null</code> it does not exist
 	 */
-	private static RPObject getKeyedSlotObject(RPObject object, String name) {
+	static RPObject getKeyedSlotObject(RPObject object, String name) {
 		if (!object.hasSlot(name)) {
 			logger.error("Expected to find " + name + " slot");
 			return null;
