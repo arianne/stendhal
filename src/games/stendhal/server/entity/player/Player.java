@@ -693,6 +693,28 @@ public class Player extends RPEntity {
 	}
 
 	/**
+	 * returns the single object of a "keyed slot"
+	 * 
+	 * @param name name of key slot
+	 * @return object or <code>null</code> it does not exist
+	 */
+	private static RPObject getKeyedSlotObject(RPObject object, String name) {
+		if (!object.hasSlot(name)) {
+			logger.error("Expected to find " + name + " slot");
+			return null;
+		}
+
+		RPSlot slot = object.getSlot(name);
+
+		if (slot.size() == 0) {
+			logger.error("Found empty " + name + " slot");
+			return null;
+		}
+
+		return slot.iterator().next();
+	}
+	
+	/**
 	 * Get a keyed string value on a named slot.
 	 * 
 	 * @param name
@@ -703,22 +725,10 @@ public class Player extends RPEntity {
 	 * @return The keyed value of the slot, or <code>null</code> if not set.
 	 */
 	public String getKeyedSlot(String name, String key) {
-		RPSlot slot;
-		RPObject object;
-
-		if (!hasSlot(name)) {
-			logger.error("Expected to find " + name + " slot");
+		RPObject object = Player.getKeyedSlotObject(this, name);
+		if (object == null) {
 			return null;
 		}
-
-		slot = getSlot(name);
-
-		if (slot.size() == 0) {
-			logger.error("Found empty " + name + " slot");
-			return null;
-		}
-
-		object = slot.iterator().next();
 
 		return object.has(key) ? object.get(key) : null;
 	}
@@ -737,22 +747,10 @@ public class Player extends RPEntity {
 	 *         there was a problem.
 	 */
 	public boolean setKeyedSlot(String name, String key, String value) {
-		RPSlot slot;
-		RPObject object;
-
-		if (!hasSlot(name)) {
-			logger.error("Expected to find " + name + " slot");
+		RPObject object = Player.getKeyedSlotObject(this, name);
+		if (object == null) {
 			return false;
 		}
-
-		slot = getSlot(name);
-
-		if (slot.size() == 0) {
-			logger.error("Found empty " + name + " slot");
-			return false;
-		}
-
-		object = slot.iterator().next();
 
 		if (value != null) {
 			object.put(key, value);
