@@ -4,7 +4,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -14,25 +13,22 @@ import games.stendhal.server.maps.ados.outside.AnimalKeeperNPC;
 import games.stendhal.server.maps.ados.outside.VeterinarianNPC;
 import marauroa.common.game.RPObject.ID;
 
-import org.junit.After;
 import org.junit.AfterClass;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import utilities.PlayerTestHelper;
-import utilities.QuestHelper;
+import utilities.NPCTestBase;
 
-public class ZooFoodTest {
+public class ZooFoodTest extends NPCTestBase {
+
+	private static final String ZONE_NAME = "testzone";
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		QuestHelper.setUpBeforeClass();
+		NPCTestBase.setUpBeforeClass();
 
-		AnimalKeeperNPC katinkaconf = new AnimalKeeperNPC();
-		katinkaconf.configureZone(new StendhalRPZone("testzone"), null);
-		VeterinarianNPC fellgoodconf = new VeterinarianNPC();
-		fellgoodconf.configureZone(new StendhalRPZone("testzone"), null);
+		setupZone(ZONE_NAME, new AnimalKeeperNPC(), new VeterinarianNPC());
+
 		ZooFood zf = new ZooFood();
 		zf.addToWorld();
 	}
@@ -41,19 +37,13 @@ public class ZooFoodTest {
 	public static void tearDownAfterClass() throws Exception {
 	}
 
-	@Before
-	public void setUp() throws Exception {
-	}
-
-	@After
-	public void tearDown() throws Exception {
-		PlayerTestHelper.resetNPC("Katinka");
-		PlayerTestHelper.resetNPC("Dr. Feelgood");
+	public ZooFoodTest() {
+		super(ZONE_NAME, "Katinka", "Dr. Feelgood");
 	}
 
 	@Test
 	public void testHiAndBye() {
-		Player player = PlayerTestHelper.createPlayer("player");
+		Player player = createPlayer("player");
 
 		SpeakerNPC npc = NPCList.get().get("Katinka");
 		assertNotNull(npc);
@@ -87,7 +77,7 @@ public class ZooFoodTest {
 
 	@Test
 	public void testDoQuest() {
-		Player player = PlayerTestHelper.createPlayer("player");
+		Player player = createPlayer("player");
 
 		SpeakerNPC katinkaNpc = NPCList.get().get("Katinka");
 		assertNotNull(katinkaNpc);
@@ -140,7 +130,7 @@ public class ZooFoodTest {
 		// equip player with to less needed stuff
 		StackableItem ham = new StackableItem("ham", "", "", null);
 		ham.setQuantity(5);
-		ham.setID(new ID(2, "testzone"));
+		ham.setID(new ID(2, ZONE_NAME));
 		player.getSlot("bag").add(ham);
 		assertEquals(5, player.getNumberOfEquipped("ham"));
 
@@ -157,7 +147,7 @@ public class ZooFoodTest {
 		// equip player with to needed stuff
 		StackableItem ham2 = new StackableItem("ham", "", "", null);
 		ham2.setQuantity(5);
-		ham2.setID(new ID(3, "testzone"));
+		ham2.setID(new ID(3, ZONE_NAME));
 		player.getSlot("bag").add(ham2);
 		assertEquals(10, player.getNumberOfEquipped("ham"));
 		// bring stuff to katinka

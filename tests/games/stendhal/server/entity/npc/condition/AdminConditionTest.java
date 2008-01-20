@@ -10,7 +10,7 @@ import org.junit.Test;
 import utilities.PlayerTestHelper;
 import utilities.SpeakerNPCTestHelper;
 
-public class AdminConditionTest {
+public class AdminConditionTest extends PlayerTestHelper {
 
 	@Test
 	public void testConstructor() throws Throwable {
@@ -41,10 +41,10 @@ public class AdminConditionTest {
 
 	@Test
 	public void testFire() throws Throwable {
-		assertTrue(new AdminCondition(0).fire(PlayerTestHelper.createPlayer("player"),
+		assertTrue(new AdminCondition(0).fire(createPlayer("player"),
 				ConversationParser.parse("testAdminConditionText"),
 				SpeakerNPCTestHelper.createSpeakerNPC()));
-		assertFalse(new AdminCondition().fire(PlayerTestHelper.createPlayer("player"),
+		assertFalse(new AdminCondition().fire(createPlayer("player"),
 				ConversationParser.parse("testAdminConditionText"),
 				SpeakerNPCTestHelper.createSpeakerNPC()));
 
@@ -67,4 +67,5 @@ public class AdminConditionTest {
 		new AdminCondition(100).fire(null, ConversationParser.parse("testAdminConditionText"),
 				SpeakerNPCTestHelper.createSpeakerNPC());
 	}
+
 }

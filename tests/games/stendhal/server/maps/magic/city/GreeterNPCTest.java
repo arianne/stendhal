@@ -4,60 +4,42 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-import games.stendhal.server.core.engine.StendhalRPWorld;
-import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
-import games.stendhal.server.entity.player.Player;
 
-import org.junit.After;
 import org.junit.AfterClass;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import utilities.PlayerTestHelper;
-import utilities.QuestHelper;
+import utilities.NPCTestBase;
 
 /**
  * Test buying scrolls.
+ *
  * @author Martin Fuchs
  */
-public class GreeterNPCTest {
+public class GreeterNPCTest extends NPCTestBase {
 
 	private static final String ZONE_NAME = "-1_fado_great_cave_e3";
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		QuestHelper.setUpBeforeClass();
+		NPCTestBase.setUpBeforeClass();
 
-		StendhalRPZone zone = new StendhalRPZone(ZONE_NAME);
-		StendhalRPWorld world = StendhalRPWorld.get();
-		world.addRPZone(zone);
-
-		GreeterNPC bar = new GreeterNPC();
-		bar.configureZone(zone, null);
+		setupZone(ZONE_NAME, new GreeterNPC());
 	}
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
 	}
 
-	@Before
-	public void setUp() throws Exception {
-	}
-
-	@After
-	public void tearDown() throws Exception {
-		PlayerTestHelper.resetNPC("Erodel Bmud");
+	public GreeterNPCTest() {
+		super(ZONE_NAME, "Erodel Bmud");
 	}
 
 	@Test
 	public void testHiAndBye() {
-		Player player = PlayerTestHelper.createPlayer("player");
-
-		SpeakerNPC npc = NPCList.get().get("Erodel Bmud");
+		SpeakerNPC npc = getNPC("Erodel Bmud");
 		assertNotNull(npc);
 		Engine en = npc.getEngine();
 
@@ -70,10 +52,7 @@ public class GreeterNPCTest {
 
 	@Test
 	public void testBuyScroll() {
-		Player player = PlayerTestHelper.createPlayer("player");
-
-		SpeakerNPC npc = NPCList.get().get("Erodel Bmud");
-		assertNotNull(npc);
+		SpeakerNPC npc = getNPC("Erodel Bmud");
 		Engine en = npc.getEngine();
 
 		assertTrue(en.step(player, "hi"));
@@ -122,7 +101,7 @@ public class GreeterNPCTest {
 		assertEquals("2 summon scrolls will cost 600. Do you want to buy them?", npc.get("text"));
 
 		// equip with enough money to buy the two scrolls
-		assertTrue(PlayerTestHelper.equipWithMoney(player, 600));
+		assertTrue(equipWithMoney(player, 600));
 
 		assertFalse(player.isEquipped("summon scroll"));
 		assertTrue(en.step(player, "yes"));
@@ -132,7 +111,7 @@ public class GreeterNPCTest {
 		assertTrue(en.step(player, "buy home scroll"));
 		assertEquals("1 home scroll will cost 375. Do you want to buy it?", npc.get("text"));
 
-		assertTrue(PlayerTestHelper.equipWithMoney(player, 300));
+		assertTrue(equipWithMoney(player, 300));
 		assertTrue(en.step(player, "yes"));
 		assertEquals("Sorry, you don't have enough money!", npc.get("text"));
 
@@ -140,7 +119,7 @@ public class GreeterNPCTest {
 		assertEquals("1 home scroll will cost 375. Do you want to buy it?", npc.get("text"));
 
 		// add another 75 coins to be able to buy the scroll
-		assertTrue(PlayerTestHelper.equipWithMoney(player, 75));
+		assertTrue(equipWithMoney(player, 75));
 
 		assertFalse(player.isEquipped("home scroll"));
 		assertTrue(en.step(player, "yes"));
@@ -150,10 +129,7 @@ public class GreeterNPCTest {
 
 	@Test
 	public void testSellScroll() {
-		Player player = PlayerTestHelper.createPlayer("player");
-
-		SpeakerNPC npc = NPCList.get().get("Erodel Bmud");
-		assertNotNull(npc);
+		SpeakerNPC npc = getNPC("Erodel Bmud");
 		Engine en = npc.getEngine();
 
 		assertTrue(en.step(player, "hi"));
@@ -162,4 +138,5 @@ public class GreeterNPCTest {
 		// There is not yet a trigger for selling things to Erodel
 		assertFalse(en.step(player, "sell summon scroll"));
 	}
+
 }

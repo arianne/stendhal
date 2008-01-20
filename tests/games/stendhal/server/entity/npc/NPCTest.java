@@ -2,63 +2,45 @@ package games.stendhal.server.entity.npc;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
-import games.stendhal.server.core.engine.StendhalRPWorld;
-import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.fsm.Engine;
-import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.ados.felinashouse.CatSellerNPC;
 
-import org.junit.After;
 import org.junit.AfterClass;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import utilities.PlayerTestHelper;
-import utilities.QuestHelper;
+import utilities.NPCTestBase;
 
 /**
  * Test NPC logic.
+ *
  * @author Martin Fuchs
  */
-public class NPCTest {
+public class NPCTest extends NPCTestBase {
 
 	private static final String ZONE_NAME = "int_ados_felinas_house";
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		QuestHelper.setUpBeforeClass();
+		NPCTestBase.setUpBeforeClass();
 
-		StendhalRPZone zone = new StendhalRPZone(ZONE_NAME);
-		StendhalRPWorld world = StendhalRPWorld.get();
-		world.addRPZone(zone);
+		setupZone(ZONE_NAME, new CatSellerNPC());
+
 		//	TODO: make this tests independent of the rest of implementations
-		
-		CatSellerNPC bar = new CatSellerNPC();	
-		bar.configureZone(zone, null);
 	}
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
 	}
 
-	@Before
-	public void setUp() throws Exception {
-	}
-
-	@After
-	public void tearDown() throws Exception {
-		PlayerTestHelper.resetNPC("Felina");
+	public NPCTest() throws Exception {
+		super(ZONE_NAME, "Felina");
 	}
 
 	@Test
 	public void testHiAndBye() {
-		Player player = PlayerTestHelper.createPlayer("player");
-
-		SpeakerNPC npc = NPCList.get().get("Felina");
-		assertNotNull(npc);
+		SpeakerNPC npc = getNPC("Felina");
 		Engine en = npc.getEngine();
 
 		assertTrue(en.step(player, "hi Felina"));
@@ -70,10 +52,7 @@ public class NPCTest {
 
 	@Test
 	public void testLogic() {
-		Player player = PlayerTestHelper.createPlayer("player");
-
-		SpeakerNPC npc = NPCList.get().get("Felina");
-		assertNotNull(npc);
+		SpeakerNPC npc = getNPC("Felina");
 		Engine en = npc.getEngine();
 
 		npc.listenTo(player, "hi");
@@ -85,30 +64,29 @@ public class NPCTest {
 		assertNotNull(npc.getAttending());
 		npc.preLogic();
 		assertEquals("Bye.", npc.get("text"));
-		assertNull(npc.getAttending());
+		assertEquals(null, npc.getAttending());
 	}
 
 	@Test
 	public void testIdea() {
-		SpeakerNPC npc = NPCList.get().get("Felina");
-		assertNotNull(npc);
+		SpeakerNPC npc = getNPC("Felina");
 
-		assertNull(npc.getIdea());
+		assertEquals(null, npc.getIdea());
 		npc.setIdea("walk");
 		assertEquals("walk", npc.getIdea());
 
 		npc.setIdea(null);
-		assertNull(npc.getIdea());
+		assertEquals(null, npc.getIdea());
 	}
 
 	//TODO NPC.setOutfit() function seems not to be used anywhere, so it could be removed.
 	@Test
 	public void testOutfit() {
-		SpeakerNPC npc = NPCList.get().get("Felina");
-		assertNotNull(npc);
+		SpeakerNPC npc = getNPC("Felina");
 
-		assertNull(npc.getIdea());
+		assertEquals(null, npc.getIdea());
 		npc.setOutfit("suite");
 		assertEquals("suite", npc.get("outfit"));
 	}
+
 }

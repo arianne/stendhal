@@ -4,61 +4,43 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-import games.stendhal.server.core.engine.StendhalRPWorld;
-import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
-import games.stendhal.server.entity.player.Player;
 
-import org.junit.After;
 import org.junit.AfterClass;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import utilities.PlayerTestHelper;
-import utilities.QuestHelper;
+import utilities.NPCTestBase;
 
 /**
  * Test buying with fractional amounts.
  *
  * @author Martin Fuchs
  */
-public class BarMaidNPCTest {
+public class BarMaidNPCTest extends NPCTestBase {
 
 	private static final String ZONE_NAME = "int_semos_tavern_0";
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		QuestHelper.setUpBeforeClass();
+		NPCTestBase.setUpBeforeClass();
 
-		StendhalRPZone zone = new StendhalRPZone(ZONE_NAME);
-		StendhalRPWorld world = StendhalRPWorld.get();
-		world.addRPZone(zone);
-
-		new BarMaidNPC().configureZone(zone, null);
+		setupZone(ZONE_NAME, new BarMaidNPC());
 	}
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
 	}
 
-	@Before
-	public void setUp() throws Exception {
-	}
-
-	@After
-	public void tearDown() throws Exception {
-		PlayerTestHelper.resetNPC("Margaret");
+	public BarMaidNPCTest() {
+		super(ZONE_NAME, "Margaret");
 	}
 
 	@Test
 	public void testHiAndBye() {
-		Player player = PlayerTestHelper.createPlayer("player");
-
-		SpeakerNPC npc = NPCList.get().get("Margaret");
-		assertNotNull(npc);
+		SpeakerNPC npc = getNPC("Margaret");
 		Engine en = npc.getEngine();
 
 		assertTrue(en.step(player, "hello"));
@@ -70,10 +52,7 @@ public class BarMaidNPCTest {
 
 	@Test
 	public void testBuyHam() {
-		Player player = PlayerTestHelper.createPlayer("player");
-
-		SpeakerNPC npc = NPCList.get().get("Margaret");
-		assertNotNull(npc);
+		SpeakerNPC npc = getNPC("Margaret");
 		Engine en = npc.getEngine();
 
 		assertTrue(en.step(player, "hi"));
@@ -113,7 +92,7 @@ public class BarMaidNPCTest {
 		assertEquals("Sorry, you don't have enough money!", npc.get("text"));
 
 		// equip with enough money
-		assertTrue(PlayerTestHelper.equipWithMoney(player, 1000));
+		assertTrue(equipWithMoney(player, 1000));
 
 		assertFalse(player.isEquipped("ham"));
 		assertTrue(en.step(player, "buy 5 hams"));
@@ -147,8 +126,6 @@ public class BarMaidNPCTest {
 
 	@Test
 	public void testSellHam() {
-		Player player = PlayerTestHelper.createPlayer("player");
-
 		SpeakerNPC npc = NPCList.get().get("Margaret");
 		assertNotNull(npc);
 		Engine en = npc.getEngine();
@@ -156,7 +133,8 @@ public class BarMaidNPCTest {
 		assertTrue(en.step(player, "hi Margaret"));
 		assertEquals("Greetings! How may I help you?", npc.get("text"));
 
-		// Currently there are no response to sell sentences for Margaret.
+		// Currently there are no response to "sell" sentences defined for Margaret.
 		assertFalse(en.step(player, "sell"));
 	}
+
 }

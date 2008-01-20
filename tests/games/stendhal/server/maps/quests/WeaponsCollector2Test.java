@@ -19,7 +19,7 @@ import utilities.QuestHelper;
 
 public class WeaponsCollector2Test {
 	@BeforeClass
-	public static void setupclass() {
+	public static void setupclass() throws Exception {
 		QuestHelper.setUpBeforeClass();
 	}
 

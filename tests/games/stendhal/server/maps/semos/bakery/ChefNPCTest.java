@@ -6,10 +6,6 @@ import static org.junit.Assert.assertTrue;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
-import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
-import games.stendhal.server.maps.MockStendlRPWorld;
-import marauroa.common.Log4J;
 import marauroa.common.game.RPObject.ID;
 
 import org.junit.After;
@@ -18,42 +14,47 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import utilities.PlayerTestHelper;
+import utilities.NPCTestBase;
 
-public class ChefNPCTest {
+public class ChefNPCTest extends NPCTestBase {
+
+	private static final String ZONE_NAME = "testzone";
+
 	private static final String QUEST = "leander_make_sandwiches";
 
-	private Engine en;
-
-	private Player player;
-
 	private SpeakerNPC npc;
+	private Engine en;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		MockStendlRPWorld.get();
-		assertTrue(MockStendhalRPRuleProcessor.get() instanceof MockStendhalRPRuleProcessor);
-		Log4J.init();
+		NPCTestBase.setUpBeforeClass();
+
+		setupZone(ZONE_NAME);
 	}
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
 	}
 
+	public ChefNPCTest() {
+		super(ZONE_NAME, "chef");
+	}
+
 	@Before
 	public void setUp() throws Exception {
+		super.setUp();
+
 		npc = new SpeakerNPC("chef");
 		ChefNPC cnpc = new ChefNPC();
 
 		en = npc.getEngine();
 		cnpc.createDialog(npc);
-
-		player = PlayerTestHelper.createPlayer("bob");
 	}
 
 	@After
 	public void tearDown() throws Exception {
-		PlayerTestHelper.resetNPC("chef");
+		super.tearDown();
+
 		player.removeQuest(QUEST);
 	}
 
@@ -95,14 +96,14 @@ public class ChefNPCTest {
 				npc.get("text"));
 		StackableItem cheese = new StackableItem("cheese", "", "", null);
 		cheese.setQuantity(2);
-		cheese.setID(new ID(2, "testzone"));
+		cheese.setID(new ID(2, ZONE_NAME));
 		player.getSlot("bag").add(cheese);
 		StackableItem bread = new StackableItem("bread", "", "", null);
 		bread.setQuantity(1);
-		bread.setID(new ID(1, "testzone"));
+		bread.setID(new ID(1, ZONE_NAME));
 		player.getSlot("bag").add(bread);
 		StackableItem ham = new StackableItem("ham", "", "", null);
-		ham.setID(new ID(3, "testzone"));
+		ham.setID(new ID(3, ZONE_NAME));
 		player.getSlot("bag").add(ham);
 		assertEquals(2, player.getNumberOfEquipped("cheese"));
 		assertEquals(1, player.getNumberOfEquipped("bread"));
@@ -146,15 +147,15 @@ public class ChefNPCTest {
 				npc.get("text"));
 		StackableItem cheese = new StackableItem("cheese", "", "", null);
 		cheese.setQuantity(4);
-		cheese.setID(new ID(2, "testzone"));
+		cheese.setID(new ID(2, ZONE_NAME));
 		player.getSlot("bag").add(cheese);
 		StackableItem bread = new StackableItem("bread", "", "", null);
 		bread.setQuantity(2);
-		bread.setID(new ID(1, "testzone"));
+		bread.setID(new ID(1, ZONE_NAME));
 		player.getSlot("bag").add(bread);
 		StackableItem ham = new StackableItem("ham", "", "", null);
 		ham.setQuantity(2);
-		ham.setID(new ID(3, "testzone"));
+		ham.setID(new ID(3, ZONE_NAME));
 		player.getSlot("bag").add(ham);
 		assertEquals(4, player.getNumberOfEquipped("cheese"));
 		assertEquals(2, player.getNumberOfEquipped("bread"));
@@ -198,15 +199,15 @@ public class ChefNPCTest {
 				npc.get("text"));
 		StackableItem cheese = new StackableItem("cheese", "", "", null);
 		cheese.setQuantity(6);
-		cheese.setID(new ID(2, "testzone"));
+		cheese.setID(new ID(2, ZONE_NAME));
 		player.getSlot("bag").add(cheese);
 		StackableItem bread = new StackableItem("bread", "", "", null);
 		bread.setQuantity(3);
-		bread.setID(new ID(1, "testzone"));
+		bread.setID(new ID(1, ZONE_NAME));
 		player.getSlot("bag").add(bread);
 		StackableItem ham = new StackableItem("ham", "", "", null);
 		ham.setQuantity(10);
-		ham.setID(new ID(3, "testzone"));
+		ham.setID(new ID(3, ZONE_NAME));
 		player.getSlot("bag").add(ham);
 		assertEquals(6, player.getNumberOfEquipped("cheese"));
 		assertEquals(3, player.getNumberOfEquipped("bread"));
@@ -241,4 +242,5 @@ public class ChefNPCTest {
 				npc.get("text"));
 		assertEquals(3, player.getNumberOfEquipped("sandwich"));
 	}
+
 }

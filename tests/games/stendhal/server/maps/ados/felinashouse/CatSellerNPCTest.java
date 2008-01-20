@@ -2,62 +2,42 @@ package games.stendhal.server.maps.ados.felinashouse;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-import games.stendhal.server.core.engine.StendhalRPWorld;
-import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
-import games.stendhal.server.entity.player.Player;
 
-import org.junit.After;
 import org.junit.AfterClass;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import utilities.PlayerTestHelper;
-import utilities.QuestHelper;
+import utilities.NPCTestBase;
 
 /**
  * Test buying cats.
  * @author Martin Fuchs
  */
-public class CatSellerNPCTest {
+public class CatSellerNPCTest extends NPCTestBase {
 
 	private static final String ZONE_NAME = "int_ados_felinas_house";
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		QuestHelper.setUpBeforeClass();
+		NPCTestBase.setUpBeforeClass();
 
-		StendhalRPZone zone = new StendhalRPZone(ZONE_NAME);
-		StendhalRPWorld world = StendhalRPWorld.get();
-		world.addRPZone(zone);
-
-		new CatSellerNPC().configureZone(zone, null);
+		setupZone(ZONE_NAME, new CatSellerNPC());
 	}
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
 	}
 
-	@Before
-	public void setUp() throws Exception {
-	}
-
-	@After
-	public void tearDown() throws Exception {
-		PlayerTestHelper.resetNPC("Felina");
+	public CatSellerNPCTest() {
+		super(ZONE_NAME, "Felina");
 	}
 
 	@Test
 	public void testHiAndBye() {
-		Player player = PlayerTestHelper.createPlayer("player");
-
-		SpeakerNPC npc = NPCList.get().get("Felina");
-		assertNotNull(npc);
+		SpeakerNPC npc = getNPC("Felina");
 		Engine en = npc.getEngine();
 
 		assertTrue(en.step(player, "hi Felina"));
@@ -69,10 +49,7 @@ public class CatSellerNPCTest {
 
 	@Test
 	public void testBuyCat() {
-		Player player = PlayerTestHelper.createPlayer("player");
-
-		SpeakerNPC npc = NPCList.get().get("Felina");
-		assertNotNull(npc);
+		SpeakerNPC npc = getNPC("Felina");
 		Engine en = npc.getEngine();
 
 		assertTrue(en.step(player, "hi"));
@@ -124,7 +101,7 @@ public class CatSellerNPCTest {
 		assertEquals("Hmm... I just don't think you're cut out for taking care of more than one cat at once.", npc.get("text"));
 
 		// equip with enough money to buy the cat
-		assertTrue(PlayerTestHelper.equipWithMoney(player, 500));
+		assertTrue(equipWithMoney(player, 500));
 		assertTrue(en.step(player, "buy cat"));
 		assertEquals("1 cat will cost 100. Do you want to buy it?", npc.get("text"));
 
@@ -138,10 +115,7 @@ public class CatSellerNPCTest {
 
 	@Test
 	public void testSellCat() {
-		Player player = PlayerTestHelper.createPlayer("player");
-
-		SpeakerNPC npc = NPCList.get().get("Felina");
-		assertNotNull(npc);
+		SpeakerNPC npc = getNPC("Felina");
 		Engine en = npc.getEngine();
 
 		assertTrue(en.step(player, "hi"));
@@ -150,4 +124,5 @@ public class CatSellerNPCTest {
 		assertTrue(en.step(player, "sell cat"));
 		assertEquals("Sell??? What kind of a monster are you? Why would you ever sell your beautiful cat?", npc.get("text"));
 	}
+
 }

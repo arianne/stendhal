@@ -20,7 +20,7 @@ import utilities.QuestHelper;
 
 public class CloakCollectorTest {
 	@BeforeClass
-	public static void setupclass() {
+	public static void setupclass() throws Exception {
 		QuestHelper.setUpBeforeClass();
 	}
 

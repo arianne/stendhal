@@ -5,30 +5,26 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
-import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
-import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.ados.fishermans_hut.FishermanNPC;
 
 import java.util.Arrays;
 
-import org.junit.After;
 import org.junit.AfterClass;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import utilities.PlayerTestHelper;
-import utilities.QuestHelper;
+import utilities.NPCTestBase;
 
 /**
  * Test for the "Lookup Quote" quest.
  * 
  * @author Martin Fuchs
  */
-public class LookUpQuoteTest {
+public class LookUpQuoteTest extends NPCTestBase {
+
+	private static final String ZONE_NAME = "testzone";
 
 	static final String QUEST_SLOT = "get_fishing_rod";
 
@@ -36,10 +32,9 @@ public class LookUpQuoteTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		QuestHelper.setUpBeforeClass();
+		NPCTestBase.setUpBeforeClass();
 
-		FishermanNPC pequodconf = new FishermanNPC();
-		pequodconf.configureZone(new StendhalRPZone("testzone"), null);
+		setupZone(ZONE_NAME, new FishermanNPC());
 
 		quest = new LookUpQuote();
 		quest.addToWorld();
@@ -50,20 +45,13 @@ public class LookUpQuoteTest {
 	public static void tearDownAfterClass() throws Exception {
 	}
 
-	@Before
-	public void setUp() throws Exception {
-	}
-
-	@After
-	public void tearDown() throws Exception {
-		PlayerTestHelper.resetNPC("Pequod");
+	public LookUpQuoteTest() {
+		super(ZONE_NAME, "Pequod");
 	}
 
 	@Test
 	public void testHiAndBye() {
-		Player player = PlayerTestHelper.createPlayer("player");
-
-		SpeakerNPC npc = NPCList.get().get("Pequod");
+		SpeakerNPC npc = getNPC("Pequod");
 		assertNotNull(npc);
 		Engine en1 = npc.getEngine();
 		assertTrue("test text recognition with additional text after 'hi'",
@@ -80,9 +68,7 @@ public class LookUpQuoteTest {
 
 	@Test
 	public void testDoQuest() {
-		Player player = PlayerTestHelper.createPlayer("player");
-
-		SpeakerNPC pequodNpc = NPCList.get().get("Pequod");
+		SpeakerNPC pequodNpc = getNPC("Pequod");
 		assertNotNull(pequodNpc);
 		Engine pequodEngine = pequodNpc.getEngine();
 		assertTrue("test saying 'Hello' instead of 'hi'", pequodEngine.step(
@@ -179,17 +165,17 @@ public class LookUpQuoteTest {
 
 	@Test
 	public final void testGetHistory() {
-		Player pl = PlayerTestHelper.createPlayer("player");
-		assertTrue(quest.getHistory(pl).isEmpty());
+		assertTrue(quest.getHistory(player).isEmpty());
 
-		pl.setQuest(QUEST_SLOT, "fisherman Bully");
-		assertEquals(2, quest.getHistory(pl).size());
+		player.setQuest(QUEST_SLOT, "fisherman Bully");
+		assertEquals(2, quest.getHistory(player).size());
 		assertEquals(Arrays.asList("FIRST_CHAT", "GET_FISHING_ROD"),
-				quest.getHistory(pl));
+				quest.getHistory(player));
 
-		pl.setQuest(QUEST_SLOT, "done");
-		assertEquals(3, quest.getHistory(pl).size());
+		player.setQuest(QUEST_SLOT, "done");
+		assertEquals(3, quest.getHistory(player).size());
 		assertEquals(Arrays.asList("FIRST_CHAT", "GET_FISHING_ROD", "DONE"),
-				quest.getHistory(pl));
+				quest.getHistory(player));
 	}
+
 }

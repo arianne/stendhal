@@ -2,26 +2,23 @@ package games.stendhal.server.maps.quests;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
-import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import games.stendhal.server.maps.semos.storage.HousewifeNPC;
 import marauroa.common.Log4J;
 
-import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import utilities.PlayerTestHelper;
+import utilities.NPCTestBase;
 
-public class CleanStorageSpaceTest {
+public class CleanStorageSpaceTest extends NPCTestBase {
+
+	private static final String ZONE_NAME = "testzone";
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -29,8 +26,8 @@ public class CleanStorageSpaceTest {
 
 		assertTrue(MockStendhalRPRuleProcessor.get() instanceof MockStendhalRPRuleProcessor);
 		MockStendlRPWorld.get();
-		HousewifeNPC eonna = new HousewifeNPC();
-		eonna.configureZone(new StendhalRPZone("testzone"), null);
+
+		setupZone(ZONE_NAME, new HousewifeNPC());
 
 		CleanStorageSpace cf = new CleanStorageSpace();
 		cf.addToWorld();
@@ -40,21 +37,17 @@ public class CleanStorageSpaceTest {
 	public static void tearDownAfterClass() throws Exception {
 	}
 
-	@After
-	public void tearDown() throws Exception {
-		PlayerTestHelper.resetNPC("Eonna");
+	public CleanStorageSpaceTest() {
+		super(ZONE_NAME, "Eonna");
 	}
 
 	@Test
 	public void testHiAndbye() {
-		Player player;
-		player = PlayerTestHelper.createPlayer("player");
-
 		assertTrue(!player.hasKilled("rat"));
 
-		SpeakerNPC npc = NPCList.get().get("Eonna");
-		assertNotNull(npc);
+		SpeakerNPC npc = getNPC("Eonna");
 		Engine en = npc.getEngine();
+
 		assertTrue(en.step(player, "hi"));
 		assertTrue(npc.isTalking());
 		assertEquals("Hi there, young hero.", npc.get("text"));
@@ -72,14 +65,10 @@ public class CleanStorageSpaceTest {
 
 	@Test
 	public void doQuest() {
-		Player player = PlayerTestHelper.createPlayer("player");
-
-
-
-		SpeakerNPC npc = NPCList.get().get("Eonna");
-		assertNotNull(npc);
+		SpeakerNPC npc = getNPC("Eonna");
 		Engine en = npc.getEngine();
 		assertFalse(npc.isTalking());
+
 		assertTrue(en.step(player, "hi"));
 		assertTrue(npc.isTalking());
 		assertEquals("Hi there, young hero.", npc.get("text"));

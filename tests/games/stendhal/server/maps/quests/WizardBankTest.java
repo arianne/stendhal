@@ -2,25 +2,18 @@ package games.stendhal.server.maps.quests;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-import games.stendhal.server.core.engine.StendhalRPWorld;
-import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
 
-import org.junit.After;
 import org.junit.AfterClass;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import utilities.PlayerTestHelper;
-import utilities.QuestHelper;
+import utilities.NPCTestBase;
 
-public class WizardBankTest {
+public class WizardBankTest extends NPCTestBase {
 
 	private static final String GRAFINDLE_QUEST_SLOT = "grafindle_gold";
 	private static final String ZARA_QUEST_SLOT = "suntan_cream_zara";
@@ -29,11 +22,9 @@ public class WizardBankTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		QuestHelper.setUpBeforeClass();
+		NPCTestBase.setUpBeforeClass();
 
-		StendhalRPWorld world = StendhalRPWorld.get();
-		StendhalRPZone zone = new StendhalRPZone(ZONE_NAME);
-		world.addRPZone(zone);
+		setupZone(ZONE_NAME);
 
 		WizardBank wb = new WizardBank();
 		wb.addToWorld();
@@ -43,21 +34,13 @@ public class WizardBankTest {
 	public static void tearDownAfterClass() throws Exception {
 	}
 
-	@Before
-	public void setUp() throws Exception {
-	}
-
-	@After
-	public void tearDown() throws Exception {
-		PlayerTestHelper.resetNPC("Javier X");
+	public WizardBankTest() {
+		super(ZONE_NAME, "Javier X");
 	}
 
 	@Test
 	public void testHiAndBye() {
-		Player player = PlayerTestHelper.createPlayer("player");
-
-		SpeakerNPC npc = NPCList.get().get("Javier X");
-		assertNotNull(npc);
+		SpeakerNPC npc = getNPC("Javier X");
 		Engine en = npc.getEngine();
 
 		 // Test trusted access to the bank.
@@ -124,7 +107,7 @@ public class WizardBankTest {
 		assertTrue(npc.isTalking());
 
 		 // equip the player with enough money to pay the fee
-		assertTrue(PlayerTestHelper.equipWithMoney(player, 1000));
+		assertTrue(equipWithMoney(player, 1000));
 
 		assertTrue(en.step(player, "yes"));
 		assertTrue(npc.isTalking());
@@ -134,10 +117,9 @@ public class WizardBankTest {
 	@Test
 	public void testReplies() {
 		 // A named player name needed to create the name based hash code.
-		Player player = PlayerTestHelper.createPlayer("player1");
+		Player player = createPlayer("player1");
 
-		SpeakerNPC npc = NPCList.get().get("Javier X");
-		assertNotNull(npc);
+		SpeakerNPC npc = getNPC("Javier X");
 		Engine en = npc.getEngine();
 
 		 // set requirements to access the bank
@@ -171,11 +153,10 @@ public class WizardBankTest {
 	@Test
 	public void testDoQuest() {
 		 // A named player name needed to create the name based hash code.
-		Player player = PlayerTestHelper.createPlayer("player2");
-		PlayerTestHelper.registerPlayer(player, ZONE_NAME);
+		Player player = createPlayer("player2");
+		registerPlayer(player, ZONE_NAME);
 
-		SpeakerNPC npc = NPCList.get().get("Javier X");
-		assertNotNull(npc);
+		SpeakerNPC npc = getNPC("Javier X");
 		Engine en = npc.getEngine();
 
 		 // set requirements to access the bank
@@ -212,7 +193,7 @@ public class WizardBankTest {
 		assertFalse(player.hasQuest(QUEST_SLOT));
 
 		 // equip the player with enough money to pay the fee
-		assertTrue(PlayerTestHelper.equipWithMoney(player, 1000));
+		assertTrue(equipWithMoney(player, 1000));
 
 		assertTrue(en.step(player, "fee"));
 		assertEquals("The fee is 1000 money. Do you want to pay?", npc.get("text"));

@@ -15,7 +15,6 @@ public class AbstractQuestTest {
 	private final class Mockquest extends AbstractQuest {
 		String getSlotName() {
 			return slotName;
-
 		}
 	}
 
@@ -100,7 +99,6 @@ public class AbstractQuestTest {
 		Player pl = PlayerTestHelper.createPlayer("player");
 		assertFalse(quest.isStarted(pl));
 		pl.setQuest(QUESTSlotSTRING, "whatever");
-
 	}
 
 	@Test(expected = NullPointerException.class)

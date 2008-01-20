@@ -15,7 +15,7 @@ import org.junit.Test;
 
 import utilities.PlayerTestHelper;
 
-public class AdminHelpNPCTest {
+public class AdminHelpNPCTest extends PlayerTestHelper {
 
 	private Engine en;
 
@@ -40,8 +40,7 @@ public class AdminHelpNPCTest {
 		en = npc.getEngine();
 		adminHelper.createDialog(npc);
 
-		player = PlayerTestHelper.createPlayer("bob");
-
+		player = createPlayer("bob");
 	}
 
 	@Test
@@ -96,4 +95,5 @@ public class AdminHelpNPCTest {
 		assertEquals("Bye, remember to take care of yourself.", npc.get("text"));
 
 	}
+
 }

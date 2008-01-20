@@ -9,7 +9,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
  * avoid database access
  * 
  */
-public class SpeakerNPCTestHelper {
+public abstract class SpeakerNPCTestHelper {
 
 	public static SpeakerNPC createSpeakerNPC() {
 		return createSpeakerNPC("bob");
@@ -17,9 +17,7 @@ public class SpeakerNPCTestHelper {
 
 	public static SpeakerNPC createSpeakerNPC(String name) {
 		PlayerTestHelper.generateNPCRPClasses();
-		return new SpeakerNPC(name) {
-			
-		};
+		return new SpeakerNPC(name) {};
 	}
 
 }

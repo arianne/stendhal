@@ -1,6 +1,9 @@
 package utilities;
 
 import static org.junit.Assert.assertTrue;
+
+import org.junit.BeforeClass;
+
 import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
@@ -12,17 +15,20 @@ import marauroa.common.Log4J;
  *
  * @author hendrik
  */
-public class QuestHelper {
+public abstract class QuestHelper extends PlayerTestHelper  {
 	
-	public static void setUpBeforeClass() {
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
 		Log4J.init();
-		PlayerTestHelper.generatePlayerRPClasses();
-		PlayerTestHelper.generateItemRPClasses();
-		PlayerTestHelper.generateNPCRPClasses();
+
+		generatePlayerRPClasses();
+		generateItemRPClasses();
+		generateNPCRPClasses();
+
 		assertTrue(MockStendhalRPRuleProcessor.get() instanceof MockStendhalRPRuleProcessor);
 		StendhalRPWorld world = MockStendlRPWorld.get();
 
-		// load items to handle money and other items
+		// load item configurations to handle money and other items
 		world.getRuleManager().getEntityManager();
 
 		NPCList.get().clear();

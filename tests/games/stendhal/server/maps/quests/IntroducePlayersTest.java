@@ -2,29 +2,26 @@ package games.stendhal.server.maps.quests;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
-import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import games.stendhal.server.maps.semos.townhall.BoyNPC;
 import marauroa.common.Log4J;
 import marauroa.common.game.RPObject.ID;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import utilities.PlayerTestHelper;
+import utilities.NPCTestBase;
 
-public class IntroducePlayersTest {
+public class IntroducePlayersTest extends NPCTestBase {
+
+	private static final String ZONE_NAME = "testzone";
 
 	private static final String INTRODUCE_PLAYERS = "introduce_players";
 	private static final String SSSHH_COME_HERE = "Ssshh! Come here, player! I have a #task for you.";
@@ -33,36 +30,26 @@ public class IntroducePlayersTest {
 	public static void setUpBeforeClass() throws Exception {
 		Log4J.init();
 
-		PlayerTestHelper.generatePlayerRPClasses();
-		PlayerTestHelper.generateItemRPClasses();
+		generatePlayerRPClasses();
+		generateItemRPClasses();
 
 		assertTrue(MockStendhalRPRuleProcessor.get() instanceof MockStendhalRPRuleProcessor);
 		MockStendlRPWorld.get();
-		BoyNPC tad = new BoyNPC();
-		tad.configureZone(new StendhalRPZone("testzone"), null);
-		SpeakerNPC Ilisa = new SpeakerNPC("Ilisa");
-		NPCList.get().add(Ilisa);
-		IntroducePlayers ip = new IntroducePlayers();
-		ip.addToWorld();
+
+		setupZone(ZONE_NAME, new BoyNPC());
+
+		NPCList.get().add(new SpeakerNPC("Ilisa"));
+
+		new IntroducePlayers().addToWorld();
 	}
 
-	@Before
-	public void setUp() throws Exception {
-	}
-
-	@After
-	public void TearDown() throws Exception {
-		PlayerTestHelper.resetNPC("Tad");
-		PlayerTestHelper.resetNPC("Ilisa");
+	public IntroducePlayersTest() {
+		super(ZONE_NAME, "Tad", "Ilisa");
 	}
 
 	@Test
 	public void testHiAndbye() {
-		Player player;
-		player = PlayerTestHelper.createPlayer("player");
-
-		SpeakerNPC npc = NPCList.get().get("Tad");
-		assertNotNull(npc);
+		SpeakerNPC npc = getNPC("Tad");
 		Engine en = npc.getEngine();
 		en.step(player, ConversationPhrases.GREETING_MESSAGES.get(0));
 		assertTrue(npc.isTalking());
@@ -84,12 +71,7 @@ public class IntroducePlayersTest {
 
 	@Test
 	public void testHiNoAndHiAgain() {
-		Player player;
-		player = PlayerTestHelper.createPlayer("player");
-
-
-		SpeakerNPC npc = NPCList.get().get("Tad");
-		assertNotNull(npc);
+		SpeakerNPC npc = getNPC("Tad");
 		Engine en = npc.getEngine();
 		en.step(player, ConversationPhrases.GREETING_MESSAGES.get(0));
 		assertTrue(npc.isTalking());
@@ -114,9 +96,7 @@ public class IntroducePlayersTest {
 
 	@Test
 	public void testQuest() {
-		Player player = PlayerTestHelper.createPlayer("player");
-		SpeakerNPC tad = NPCList.get().get("Tad");
-		assertNotNull(tad);
+		SpeakerNPC tad = getNPC("Tad");
 		Engine engineTad = tad.getEngine();
 		engineTad.step(player, ConversationPhrases.GREETING_MESSAGES.get(0));
 		assertTrue(tad.isTalking());
@@ -135,7 +115,7 @@ public class IntroducePlayersTest {
 
 		StackableItem flask = new StackableItem("flask", "", "", null);
 		flask.setQuantity(1);
-		flask.setID(new ID(2, "testzone"));
+		flask.setID(new ID(2, ZONE_NAME));
 		player.getSlot("bag").add(flask);
 		assertTrue(player.isEquipped("flask"));
 		engineTad.step(player, ConversationPhrases.GREETING_MESSAGES.get(0));
@@ -147,8 +127,7 @@ public class IntroducePlayersTest {
 		assertEquals("ilisa", player.getQuest(IntroducePlayersTest.INTRODUCE_PLAYERS));
 		engineTad.step(player, ConversationPhrases.GOODBYE_MESSAGES.get(0));
 
-		SpeakerNPC ilisa = NPCList.get().get("Ilisa");
-		assertNotNull(ilisa);
+		SpeakerNPC ilisa = getNPC("Ilisa");
 		Engine engineIlisa = ilisa.getEngine();
 		engineIlisa.step(player, ConversationPhrases.GREETING_MESSAGES.get(0));
 		assertEquals(

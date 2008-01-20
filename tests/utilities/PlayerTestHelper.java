@@ -20,7 +20,7 @@ import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
-public class PlayerTestHelper {
+public abstract class PlayerTestHelper {
 
 	/**
 	 * Create a named player.
@@ -30,10 +30,12 @@ public class PlayerTestHelper {
 	 */
 	public static Player createPlayer(String name) {
 		PlayerTestHelper.generatePlayerRPClasses();
-		Player pl = new Player(new RPObject() {
-		});
-		PlayerTestHelper.addEmptySlots(pl);
+
+		Player pl = new Player(new RPObject() {});
 		pl.setName(name);
+
+		PlayerTestHelper.addEmptySlots(pl);
+
 		return pl;
 	}
 
@@ -45,8 +47,10 @@ public class PlayerTestHelper {
 	 */
 	public static PrivateTextMockingTestPlayer createPrivateTextMockingTestPlayer(String name) {
 		PlayerTestHelper.generatePlayerRPClasses();
+
 		PrivateTextMockingTestPlayer pl = new PrivateTextMockingTestPlayer(new RPObject(), name);
 		PlayerTestHelper.addEmptySlots(pl);
+
 		return pl;
 	}
 
@@ -67,14 +71,28 @@ public class PlayerTestHelper {
 	 * @param zone
 	 */
 	public static void registerPlayer(Player player, StendhalRPZone zone) {
-		MockStendhalRPRuleProcessor.get().addPlayer(player);
-		MockStendlRPWorld.get().add(player);
+		registerPlayer(player);
+
 		zone.add(player);
+	}
+
+	/**
+	 * Register a player in rule processor and world.
+	 * 
+	 * @param player
+	 * @param zone
+	 */
+	public static void registerPlayer(Player player) {
+		MockStendhalRPRuleProcessor.get().addPlayer(player);
+
+		MockStendlRPWorld.get().add(player);
 	}
 
 	public static Player createPlayerWithOutFit(String name) {
 		Player player = createPlayer(name);
+
 		player.put("outfit", "01010101");
+
 		return player;
 	}
 

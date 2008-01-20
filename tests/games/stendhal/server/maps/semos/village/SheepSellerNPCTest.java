@@ -2,64 +2,44 @@ package games.stendhal.server.maps.semos.village;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import games.stendhal.server.core.engine.StendhalRPWorld;
-import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
-import games.stendhal.server.entity.player.Player;
 
-import org.junit.After;
 import org.junit.AfterClass;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import utilities.PlayerTestHelper;
-import utilities.QuestHelper;
+import utilities.NPCTestBase;
 
 /**
  * Test buying sheep.
  *
  * @author Martin Fuchs
  */
-public class SheepSellerNPCTest {
+public class SheepSellerNPCTest extends NPCTestBase {
 
 	private static final String ZONE_NAME = "0_semos_village_w";
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		QuestHelper.setUpBeforeClass();
+		NPCTestBase.setUpBeforeClass();
 
-		StendhalRPZone zone = new StendhalRPZone(ZONE_NAME);
-		StendhalRPWorld world = StendhalRPWorld.get();
-		world.addRPZone(zone);
-
-		SheepSellerNPC seller = new SheepSellerNPC();
-		seller.configureZone(zone, null);
+		setupZone(ZONE_NAME, new SheepSellerNPC());
 	}
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
 	}
 
-	@Before
-	public void setUp() throws Exception {
-	}
-
-	@After
-	public void tearDown() throws Exception {
-		PlayerTestHelper.resetNPC("Nishiya");
+	public SheepSellerNPCTest() {
+		super(ZONE_NAME, "Nishiya");
 	}
 
 	@Test
 	public void testHiAndBye() {
-		Player player = PlayerTestHelper.createPlayer("player");
-
-		SpeakerNPC npc = NPCList.get().get("Nishiya");
-		assertNotNull(npc);
+		SpeakerNPC npc = getNPC("Nishiya");
 		Engine en = npc.getEngine();
 
 		assertTrue(en.step(player, "hello"));
@@ -71,13 +51,10 @@ public class SheepSellerNPCTest {
 
 	@Test
 	public void testBuySheep() {
-		Player player = PlayerTestHelper.createPlayer("player");
-
 		StendhalRPWorld world = StendhalRPWorld.get();
-		PlayerTestHelper.registerPlayer(player, world.getZone(ZONE_NAME));
+		registerPlayer(player, world.getZone(ZONE_NAME));
 
-		SpeakerNPC npc = NPCList.get().get("Nishiya");
-		assertNotNull(npc);
+		SpeakerNPC npc = getNPC("Nishiya");
 		Engine en = npc.getEngine();
 
 		assertTrue(en.step(player, "hi"));
@@ -114,7 +91,7 @@ public class SheepSellerNPCTest {
 		assertEquals("You don't seem to have enough money.", npc.get("text"));
 
 		// equip with enough money to buy one sheep
-		assertTrue(PlayerTestHelper.equipWithMoney(player, 30));
+		assertTrue(equipWithMoney(player, 30));
 
 		assertTrue(en.step(player, "buy 2 sheep"));
 		assertEquals("2 sheep will cost 60. Do you want to buy them?", npc.get("text"));
@@ -135,10 +112,7 @@ public class SheepSellerNPCTest {
 
 	@Test
 	public void testSellSheep() {
-		Player player = PlayerTestHelper.createPlayer("player");
-
-		SpeakerNPC npc = NPCList.get().get("Nishiya");
-		assertNotNull(npc);
+		SpeakerNPC npc = getNPC("Nishiya");
 		Engine en = npc.getEngine();
 
 		assertTrue(en.step(player, "hi Nishiya"));

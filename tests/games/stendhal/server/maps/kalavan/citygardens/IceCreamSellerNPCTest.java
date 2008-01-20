@@ -4,59 +4,42 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-import games.stendhal.server.core.engine.StendhalRPWorld;
-import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
-import games.stendhal.server.entity.player.Player;
 
-import org.junit.After;
 import org.junit.AfterClass;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import utilities.PlayerTestHelper;
-import utilities.QuestHelper;
+import utilities.NPCTestBase;
 
 /**
  * Test buying ice cream.
+ *
  * @author Martin Fuchs
  */
-public class IceCreamSellerNPCTest {
+public class IceCreamSellerNPCTest extends NPCTestBase {
 
 	private static final String ZONE_NAME = "0_kalavan_city_gardens";
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		QuestHelper.setUpBeforeClass();
+		NPCTestBase.setUpBeforeClass();
 
-		StendhalRPZone zone = new StendhalRPZone(ZONE_NAME);
-		StendhalRPWorld world = StendhalRPWorld.get();
-		world.addRPZone(zone);
-
-		new IceCreamSellerNPC().configureZone(zone, null);
+		setupZone(ZONE_NAME, new IceCreamSellerNPC());
 	}
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
 	}
 
-	@Before
-	public void setUp() throws Exception {
-	}
-
-	@After
-	public void tearDown() throws Exception {
-		PlayerTestHelper.resetNPC("Sam");
+	public IceCreamSellerNPCTest() {
+		super(ZONE_NAME, "Sam");
 	}
 
 	@Test
 	public void testHiAndBye() {
-		Player player = PlayerTestHelper.createPlayer("player");
-
-		SpeakerNPC npc = NPCList.get().get("Sam");
+		SpeakerNPC npc = getNPC("Sam");
 		assertNotNull(npc);
 		Engine en = npc.getEngine();
 
@@ -69,10 +52,7 @@ public class IceCreamSellerNPCTest {
 
 	@Test
 	public void testBuyIceCream() {
-		Player player = PlayerTestHelper.createPlayer("player");
-
-		SpeakerNPC npc = NPCList.get().get("Sam");
-		assertNotNull(npc);
+		SpeakerNPC npc = getNPC("Sam");
 		Engine en = npc.getEngine();
 
 		assertTrue(en.step(player, "hi"));
@@ -115,7 +95,7 @@ public class IceCreamSellerNPCTest {
 		assertEquals("Sorry, you don't have enough money!", npc.get("text"));
 
 		// equip with enough money to buy two ice creams
-		assertTrue(PlayerTestHelper.equipWithMoney(player, 60));
+		assertTrue(equipWithMoney(player, 60));
 
 		assertTrue(en.step(player, "buy three icecreams"));
 		assertEquals("3 icecreams will cost 90. Do you want to buy them?", npc.get("text"));
@@ -142,10 +122,7 @@ public class IceCreamSellerNPCTest {
 
 	@Test
 	public void testSellIceCream() {
-		Player player = PlayerTestHelper.createPlayer("player");
-
-		SpeakerNPC npc = NPCList.get().get("Sam");
-		assertNotNull(npc);
+		SpeakerNPC npc = getNPC("Sam");
 		Engine en = npc.getEngine();
 
 		assertTrue(en.step(player, "hi Sam"));
@@ -154,4 +131,5 @@ public class IceCreamSellerNPCTest {
 		// Currently there are no response to sell sentences for Sam.
 		assertFalse(en.step(player, "sell"));
 	}
+
 }

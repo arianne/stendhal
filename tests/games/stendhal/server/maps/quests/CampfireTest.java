@@ -2,29 +2,25 @@ package games.stendhal.server.maps.quests;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.StackableItem;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
-import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import games.stendhal.server.maps.orril.river.CampingGirlNPC;
 import marauroa.common.Log4J;
 import marauroa.common.game.RPObject.ID;
 
-import org.junit.After;
 import org.junit.AfterClass;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import utilities.PlayerTestHelper;
+import utilities.NPCTestBase;
 
-public class CampfireTest {
+public class CampfireTest extends NPCTestBase {
+
+	private static final String ZONE_NAME = "testzone";
 
 	private static final String CAMPFIRE = "campfire";
 
@@ -34,8 +30,8 @@ public class CampfireTest {
 
 		assertTrue(MockStendhalRPRuleProcessor.get() instanceof MockStendhalRPRuleProcessor);
 		MockStendlRPWorld.get();
-		CampingGirlNPC sallyconf = new CampingGirlNPC();
-		sallyconf.configureZone(new StendhalRPZone("testzone"), null);
+
+		setupZone(ZONE_NAME, new CampingGirlNPC());
 
 		Campfire cf = new Campfire();
 		cf.addToWorld();
@@ -45,23 +41,13 @@ public class CampfireTest {
 	public static void tearDownAfterClass() throws Exception {
 	}
 
-	@Before
-	public void setUp() throws Exception {
-	}
-
-	@After
-	public void tearDown() throws Exception {
-		PlayerTestHelper.resetNPC("Sally");
+	public CampfireTest() {
+		super(ZONE_NAME, "Sally");
 	}
 
 	@Test
 	public void testCanStartQuestNow() throws Exception {
-		Player player;
-		player = PlayerTestHelper.createPlayer("player");
-
-		SpeakerNPC npc = NPCList.get().get("Sally");
-
-		assertNotNull(npc);
+		SpeakerNPC npc = getNPC("Sally");
 		Engine en = npc.getEngine();
 
 		assertTrue(en.step(player, "hi"));
@@ -91,12 +77,9 @@ public class CampfireTest {
 
 	@Test
 	public void testHiAndbye() {
-		Player player;
-		player = PlayerTestHelper.createPlayer("player");
-
-		SpeakerNPC npc = NPCList.get().get("Sally");
-		assertNotNull(npc);
+		SpeakerNPC npc = getNPC("Sally");
 		Engine en = npc.getEngine();
+
 		assertTrue(en.step(player, "hi"));
 		assertTrue(npc.isTalking());
 		assertEquals("Hi! Could you do me a #favor?", npc.get("text"));
@@ -107,12 +90,9 @@ public class CampfireTest {
 
 	@Test
 	public void testDoQuest() {
-		Player player;
-		player = PlayerTestHelper.createPlayer("player");
-
-		SpeakerNPC npc = NPCList.get().get("Sally");
-		assertNotNull(npc);
+		SpeakerNPC npc = getNPC("Sally");
 		Engine en = npc.getEngine();
+
 		assertTrue(en.step(player, "hi"));
 		assertTrue(npc.isTalking());
 		assertEquals("Hi! Could you do me a #favor?", npc.get("text"));
@@ -129,7 +109,7 @@ public class CampfireTest {
 		assertEquals("Bye.", npc.get("text"));
 		StackableItem wood = new StackableItem("wood", "", "", null);
 		wood.setQuantity(10);
-		wood.setID(new ID(2, "testzone"));
+		wood.setID(new ID(2, ZONE_NAME));
 		player.getSlot("bag").add(wood);
 		assertEquals(10, player.getNumberOfEquipped("wood"));
 		assertTrue(en.step(player, "hi"));
@@ -155,7 +135,6 @@ public class CampfireTest {
 
 	@Test
 	public void testIsCompleted() {
-		Player player = PlayerTestHelper.createPlayer("player");
 		assertFalse(new Campfire().isCompleted(player));
 
 		player.setQuest(CAMPFIRE, "start");
@@ -167,13 +146,9 @@ public class CampfireTest {
 
 	@Test
 	public void testJobAndOffer() {
-		Player player;
-		player = PlayerTestHelper.createPlayer("player");
-
-		SpeakerNPC npc = NPCList.get().get("Sally");
-		assertNotNull(npc);
-
+		SpeakerNPC npc = getNPC("Sally");
 		Engine en = npc.getEngine();
+
 		assertTrue(en.step(player, "hi"));
 		assertTrue(npc.isTalking());
 		assertEquals("Hi! Could you do me a #favor?", npc.get("text"));
@@ -192,4 +167,5 @@ public class CampfireTest {
 		assertFalse(npc.isTalking());
 		assertEquals("Bye.", npc.get("text"));
 	}
+
 }

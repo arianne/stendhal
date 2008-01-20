@@ -25,7 +25,7 @@ import org.junit.Test;
 import utilities.PlayerTestHelper;
 import utilities.PrivateTextMockingTestPlayer;
 
-public class AccessCheckingPortalTest {
+public class AccessCheckingPortalTest extends PlayerTestHelper {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -65,26 +65,26 @@ public class AccessCheckingPortalTest {
 		zone.add(destPort);
 		MockStendlRPWorld.get().addRPZone(zone);
 
-		Player player = PlayerTestHelper.createPlayer("mayNot");
+		Player player = createPlayer("mayNot");
 		assertFalse(port.onUsed(player));
 
-		player = PlayerTestHelper.createPlayer("player-may");
+		player = createPlayer("player-may");
 		assertTrue(port.onUsed(player));
 	}
 
 	@Test
 	public final void testIsAllowed() {
 		AccessCheckingPortal port = new MockAccessCheckingPortal();
-		Player player = PlayerTestHelper.createPlayer("player-may");
+		Player player = createPlayer("player-may");
 		assertTrue(port.isAllowed(player));
-		player = PlayerTestHelper.createPlayer("mayNot");
+		player = createPlayer("mayNot");
 		assertFalse(port.isAllowed(player));
 	}
 
 	@Test
 	public final void testRejected() {
 		AccessCheckingPortal port = new MockAccessCheckingPortal();
-		PrivateTextMockingTestPlayer player = PlayerTestHelper.createPrivateTextMockingTestPlayer("mayNot");
+		PrivateTextMockingTestPlayer player = createPrivateTextMockingTestPlayer("mayNot");
 		port.rejected(player);
 		Set<TurnListener> bla = TurnNotifier.get().getEventListForDebugging().get(
 				Integer.valueOf(0));
@@ -99,7 +99,7 @@ public class AccessCheckingPortalTest {
 	@Test
 	public final void testSetRejectedMessage() {
 		AccessCheckingPortal port = new MockAccessCheckingPortal();
-		PrivateTextMockingTestPlayer player = PlayerTestHelper.createPrivateTextMockingTestPlayer("mayNot");
+		PrivateTextMockingTestPlayer player = createPrivateTextMockingTestPlayer("mayNot");
 		port.setRejectedMessage("setRejectMessage");
 		port.rejected(player);
 		Set<TurnListener> bla = TurnNotifier.get().getEventListForDebugging().get(

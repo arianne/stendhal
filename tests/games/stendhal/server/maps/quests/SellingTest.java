@@ -2,65 +2,44 @@ package games.stendhal.server.maps.quests;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-import games.stendhal.server.core.engine.StendhalRPWorld;
-import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
-import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.ados.bar.BarMaidNPC;
 
-import org.junit.After;
 import org.junit.AfterClass;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import utilities.PlayerTestHelper;
-import utilities.QuestHelper;
+import utilities.NPCTestBase;
 
 /**
  * Test selling cheese to the bar maid.
+ *
  * @author Martin Fuchs
  */
-public class SellingTest {
+public class SellingTest extends NPCTestBase {
 
 	private static final String ZONE_NAME = "int_ados_bar";
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		QuestHelper.setUpBeforeClass();
+		NPCTestBase.setUpBeforeClass();
 
-		StendhalRPZone zone = new StendhalRPZone(ZONE_NAME);
-		StendhalRPWorld world = StendhalRPWorld.get();
-		world.addRPZone(zone);
-
-		BarMaidNPC bar = new BarMaidNPC();
-		bar.configureZone(zone, null);
+		setupZone(ZONE_NAME, new BarMaidNPC());
 	}
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
 	}
 
-	@Before
-	public void setUp() throws Exception {
-	}
-
-	@After
-	public void tearDown() throws Exception {
-		PlayerTestHelper.resetNPC("Siandra");
-		PlayerTestHelper.removePlayer("player");
+	public SellingTest() {
+		super(ZONE_NAME, "Siandra");
 	}
 
 	@Test
 	public void testHiAndBye() {
-		Player player = PlayerTestHelper.createPlayer("player");
-
-		SpeakerNPC npc = NPCList.get().get("Siandra");
-		assertNotNull(npc);
+		SpeakerNPC npc = getNPC("Siandra");
 		Engine en = npc.getEngine();
 
 		assertTrue(en.step(player, "hi Siandra"));
@@ -72,10 +51,7 @@ public class SellingTest {
 
 	@Test
 	public void testSelling() {
-		Player player = PlayerTestHelper.createPlayer("player");
-
-		SpeakerNPC npc = NPCList.get().get("Siandra");
-		assertNotNull(npc);
+		SpeakerNPC npc = getNPC("Siandra");
 		Engine en = npc.getEngine();
 
 		assertTrue(en.step(player, "hi"));
@@ -104,7 +80,7 @@ public class SellingTest {
 
 		 // equip the player with enough cheese to be sold
 		assertFalse(player.isEquipped("cheese", 1));
-		assertTrue(PlayerTestHelper.equipWithStackableItem(player, "cheese", 3));
+		assertTrue(equipWithStackableItem(player, "cheese", 3));
         assertTrue(player.isEquipped("cheese", 3));
         assertFalse(player.isEquipped("cheese", 4));
 
@@ -122,4 +98,5 @@ public class SellingTest {
         assertTrue(player.isEquipped("cheese", 2));
         assertFalse(player.isEquipped("cheese", 3));
 	}
+
 }
