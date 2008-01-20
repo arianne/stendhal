@@ -289,7 +289,7 @@ where panning for gold is possible. this spot is south of Or'ril castle.
          </zone>
          
          <zone name="int_fado_shepherd_house" file="interiors/fado/shepherd_house.tmx">
-           <portal x="10" y="31" ref="entrance">
+           <portal x="10" y="30" ref="entrance">
              <destination zone="0_fado_city" ref="shepherd_house_entrance"/>
            </portal>
          </zone>
