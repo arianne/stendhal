@@ -67,7 +67,7 @@ public class ProducerAdder {
     							if (behaviour.getAmount() > 1000) {
     								logger.warn("Decreasing very large amount of "
     										+ behaviour.getAmount()
-    										+ (behaviour.getChosenItemName() != null ? behaviour.getChosenItemName() + " " : "")
+    										+ " " + behaviour.getChosenItemName()
     										+ " to 1 for player "
     										+ player.getName() + " talking to "
     										+ npc.getName() + " saying " + sentence);

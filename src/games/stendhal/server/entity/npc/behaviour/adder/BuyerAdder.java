@@ -45,7 +45,9 @@ public class BuyerAdder {
 						if (behaviour.parseRequest(sentence)) {
 							if (behaviour.getAmount() > 1000) {
 								logger.warn("Decreasing very large amount of "
-										+ behaviour.getAmount() + " to 1 for player "
+										+ behaviour.getAmount()
+										+ " " + behaviour.getChosenItemName()
+										+ " to 1 for player "
 										+ player.getName() + " talking to "
 										+ engine.getName() + " saying "
 										+ sentence);
