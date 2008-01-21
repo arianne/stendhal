@@ -292,6 +292,7 @@
  </zone>-->
 <zone name="int_kirdneh_inn" file="interiors/kirdneh/inn.tmx">
  <configurator class-name="games.stendhal.server.maps.kirdneh.inn.HealerNPC"/>
+ <configurator class-name="games.stendhal.server.maps.kirdneh.inn.BarmanNPC"/>
   <portal x="18" y="23" ref="entrance">
    <destination zone="0_kirdneh_city" ref="tavern"/>
   </portal>
