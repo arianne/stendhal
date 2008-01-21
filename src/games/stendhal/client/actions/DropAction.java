@@ -3,7 +3,7 @@ package games.stendhal.client.actions;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.StendhalUI;
 import games.stendhal.client.entity.User;
-
+import games.stendhal.common.Grammar;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 
@@ -37,9 +37,17 @@ class DropAction implements SlashAction {
 			StendhalUI.get().addEventLine("Invalid quantity");
 			return true;
 		}
+
 		String itemName = remainder;
+		String singularItemName = Grammar.singular(itemName);
+
 		for (String slotName : CARRYING_SLOTS) {
 			int itemID = findItem(slotName, itemName);
+
+			if (itemID == -1 && !itemName.equals(singularItemName)) {
+				itemID = findItem(slotName, singularItemName);
+			}
+
 			if (itemID != -1) {
 				RPAction drop = new RPAction();
 
@@ -55,7 +63,8 @@ class DropAction implements SlashAction {
 				return true;
 			}
 		}
-		StendhalUI.get().addEventLine("You don't have any " + itemName);
+
+		StendhalUI.get().addEventLine("You don't have any " + singularItemName);
 		return true;
 	}
 
@@ -93,6 +102,6 @@ class DropAction implements SlashAction {
 	 * @return The parameter count.
 	 */
 	public int getMinimumParameters() {
-		return 2;
+		return 1;
 	}
 }
