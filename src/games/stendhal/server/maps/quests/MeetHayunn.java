@@ -25,11 +25,16 @@ import java.util.List;
  * <p>
  * PARTICIPANTS: <ul><li> Hayunn Naratha</ul>
  *
- * STEPS: <ul><li> Talk to Hayunn to activate the quest and keep speaking with Hayunn.</ul>
+ * STEPS: <ul>
+ * <li> Talk to Hayunn to activate the quest.
+ * <li> He asks you to kill a rat, also offering to teach you how
+ * <li> Return and learn how to loot, identify items and heal
+ * <li> Return and learn how to double click move, and get some URLs
+ * </ul>
  *
- * REWARD: <ul><li> 20 XP <li> 5 gold coins</ul>
+ * REWARD: <ul><li> 20 XP <li> 5 gold coins <li> studded shield </ul>
  *
- * REPETITIONS: <ul><li> As much as wanted, but you only get the reward once.</ul>
+ * REPETITIONS: <ul><li> Get the URLs as much as wanted but you only get the reward once.</ul>
  */
 public class MeetHayunn extends AbstractQuest {
 
@@ -186,7 +191,7 @@ public class MeetHayunn extends AbstractQuest {
 			null);
 
 		List<SpeakerNPC.ChatAction> reward2 = new LinkedList<SpeakerNPC.ChatAction>();
-		reward2.add(new EquipItemAction("studded_shield"));
+		reward2.add(new EquipItemAction("studded shield"));
 		reward2.add(new IncreaseXPAction(20));
 		reward2.add(new SetQuestAction(QUEST_SLOT, "done"));
 
