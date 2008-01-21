@@ -313,9 +313,10 @@ public abstract class RPEntity extends ActiveEntity {
 		} else if (name != null) {
 			return name;
 		} else if (clazz != null) {
-			return clazz;
+			// replace underscores in clazz and type without calling the function UpdateConverter.transformItemName() located in server code
+			return clazz.replace('_', ' ');
 		} else if (type != null) {
-			return type;
+			return type.replace('_', ' ');
 		} else {
 			return null;
 		}
