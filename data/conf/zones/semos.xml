@@ -181,18 +181,14 @@ The sharper minded amongst you might prefer to double-click directly on the crea
 </attribute>
    <attribute name="class">book_red</attribute>
   </entity>
-  <entity x="12" y="4">
+  <entity x="4" y="9">
     <implementation class-name="games.stendhal.server.maps.semos.guardhouse.RetiredAdventurerNPC">
       <parameter name="name">Hayunn Naratha</parameter>
-      <parameter name="node0">12,4</parameter>
-      <parameter name="node1">15,4</parameter>
-      <parameter name="node2">15,5</parameter>
-      <parameter name="node3">18,5</parameter>
-      <parameter name="node4">18,9</parameter>
-      <parameter name="node5">5,9</parameter>
-      <parameter name="node6">5,3</parameter>
-      <parameter name="node7">5,9</parameter>
-      <parameter name="node8">12,9</parameter>
+      <parameter name="node0">4,9</parameter>
+      <parameter name="node1">6,9</parameter>
+      <parameter name="node2">6,14</parameter>
+      <parameter name="node3">6,9</parameter>
+      <parameter name="node4">11,9</parameter>
     </implementation>
 
     <attribute name="class">oldheronpc</attribute>
