@@ -269,7 +269,7 @@
   <portal x="11" y="11" ref="upstairs">
     <destination zone="int_nalwor_bank_1" ref="downstairs"/>
    </portal> 
-  <portal x="15" y="21" ref="customer_room_entrance">
+  <portal x="14" y="21" ref="customer_room_entrance">
     <destination zone="int_nalwor_bank" ref="customer_room_exit"/>
     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
       <parameter name="key">nalwor bank key</parameter>
@@ -277,7 +277,7 @@
     </implementation>
   </portal>
   <!-- seems strange to lock it from the inside? Else, a player will leave their key in the nalwor bank chest -->
-  <portal x="16" y="21" ref="customer_room_exit">
+  <portal x="17" y="21" ref="customer_room_exit">
     <destination zone="int_nalwor_bank" ref="customer_room_entrance"/>
     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
       <parameter name="key">nalwor bank key</parameter>
