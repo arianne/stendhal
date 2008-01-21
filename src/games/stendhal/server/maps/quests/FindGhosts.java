@@ -1,5 +1,6 @@
 package games.stendhal.server.maps.quests;
 
+import games.stendhal.common.Grammar;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -222,8 +223,16 @@ public class FindGhosts extends AbstractQuest {
 			Arrays.asList("spirits", "spirit"),
 			null,
 			ConversationStates.QUESTION_1,
-			"I seek to know more about other spirits who are dead but stalk the earthly world as ghosts. Please tell me any names you know.",
-			null);
+			null,
+			new SpeakerNPC.ChatAction() {
+    			@Override
+    			public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
+    				List<String> missing = missingNames(player);
+    				npc.say("I seek to know more about other spirits who are dead but stalk the earthly world as ghosts. "
+    						+ "Please tell me any names you know, I am still looking for "
+    						+ Grammar.numberString(missing.size()) + " of them.");
+    			}
+			});
 
 		// the player goes to Carena and says hi, and has no quest or is
 		// completed.

@@ -206,6 +206,11 @@ public class FindGhostsTest {
 		en.step(player, "yes");
 		assertEquals("Sorry, I don't understand you. What name are you trying to say?", npc.get("text"));
 		
+		en.step(player, "spirits");
+		assertEquals(
+				"I seek to know more about other spirits who are dead but stalk the earthly world as ghosts. Please tell me any names you know, I am still looking for four of them.",
+				npc.get("text"));
+
 		assertThat(player.getQuest("find_ghosts").split(":")[0], containsString("Mary"));
 		assertThat(player.getQuest("find_ghosts").split(":")[1], not(containsString("Mary")));
 		en.step(player, "Mary");
@@ -218,18 +223,33 @@ public class FindGhostsTest {
 	
 		en.step(player, "Brandy");
 		assertEquals("Sorry, I don't understand you. What name are you trying to say?", npc.get("text"));
-		
+
+		en.step(player, "spirits");
+		assertEquals(
+				"I seek to know more about other spirits who are dead but stalk the earthly world as ghosts. Please tell me any names you know, I am still looking for three of them.",
+				npc.get("text"));
+
 		assertThat(player.getQuest("find_ghosts").split(":")[1], not(containsString("ben")));
 		en.step(player, "Ben");
 		assertEquals("Thank you. If you met any other spirits, please tell me their name.", npc.get("text"));
 		assertThat(player.getQuest("find_ghosts").split(":")[1], containsString("ben"));
-		
+
+		en.step(player, "spirits");
+		assertEquals(
+				"I seek to know more about other spirits who are dead but stalk the earthly world as ghosts. Please tell me any names you know, I am still looking for two of them.",
+				npc.get("text"));
+
 		assertThat(player.getQuest("find_ghosts").split(":")[1], not(containsString("zak")));
 		en.step(player, "Zak");
 		assertEquals("Thank you. If you met any other spirits, please tell me their name.", npc.get("text"));
 		assertThat(player.getQuest("find_ghosts").split(":")[1], containsString("zak"));
 		
 		
+		en.step(player, "spirits");
+		assertEquals(
+				"I seek to know more about other spirits who are dead but stalk the earthly world as ghosts. Please tell me any names you know, I am still looking for one of them.",
+				npc.get("text"));
+
 		assertThat(player.getQuest("find_ghosts"), not(containsString("Goran")));
 		en.step(player, "Goran");
 		assertEquals(
