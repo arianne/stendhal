@@ -5,7 +5,7 @@ import java.util.List;
 
 public class ExpressionType {
 
-	private String typeString = "";
+	private final String typeString;
 
 	// Expression type string constants
 	public static final String VERB = "VER"; // verb
@@ -338,6 +338,8 @@ public class ExpressionType {
 			modified = true;
 		}
 
+		// Check if there was any change of the type, then we must create and return
+		// a new ExpressionType object, as typeString is immutable.
 		if (modified) {
 			return new ExpressionType(newTypeString);
 		} else {
@@ -349,6 +351,5 @@ public class ExpressionType {
 	public String toString() {
 		return typeString;
 	}
-
 
 }
