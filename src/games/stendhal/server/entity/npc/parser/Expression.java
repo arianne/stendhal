@@ -424,10 +424,10 @@ public class Expression {
 			return true;
 		} else if (other == null) {
 			return false;
-		} else if (other instanceof Expression) {
+		} else if (other.getClass() == Expression.class) {
 	        return original.equals(((Expression) other).original);
         } else {
-        	return toString().equals(other.toString());
+        	return false;
         }
 	}
 
