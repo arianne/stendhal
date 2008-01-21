@@ -90,9 +90,12 @@
  <tileset name="loom" firstgid="490" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/other/loom.png"/>
  </tileset>
+ <tileset name="ground" firstgid="494" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/ground_2.png"/>
+ </tileset>
  <layer name="0_floor" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAANvHyMCwbxSP4lE8ikfxKCYRAwBZcigqQAYAAA==
+   H4sIAAAAAAAAANvHyMCwbxSP4lE8ikfxiMUfoZhUfQDcG5IJQAYAAA==
   </data>
  </layer>
  <layer name="1_terrain" width="20" height="20">
