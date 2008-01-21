@@ -29,5 +29,14 @@ public class ExpressionTest {
 		assertTrue(expr2.matchesNormalizedBeginning(expr1));
 		assertFalse(expr1.matchesNormalizedBeginning(expr3));
 	}
+	
+	@Test
+	public final void testEquals() {
+		Expression exp = new Expression("blabla");
+		assertTrue(exp.equals(exp));
+		assertTrue(exp.equals("blabla"));
+		assertFalse(exp.equals(null));
+		assertTrue("should not break equals contract","blabla".equals(exp));
+	}
 
 }
