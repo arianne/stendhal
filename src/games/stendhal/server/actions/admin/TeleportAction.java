@@ -4,6 +4,7 @@ import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
 import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.player.Jail;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Set;
@@ -62,6 +63,8 @@ public class TeleportAction extends AdministrationAction {
 					_TELEPORT, action.get(TARGET), zone.getName(),
 					Integer.toString(x), Integer.toString(y));
 			teleported.teleport(zone, x, y, null, player);
+			
+			Jail.get().grantParoleIfPlayerWasAPrisoner(teleported);
 		}
 	}
 

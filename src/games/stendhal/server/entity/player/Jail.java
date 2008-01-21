@@ -251,6 +251,12 @@ public class Jail implements LoginListener {
 		return false;
 	}
 
+	public void grantParoleIfPlayerWasAPrisoner(Player player) {
+		// destroy the arrest warrent so that the player is not
+		// rejailed on next login
+		arrestWarrants.removeByName(player.getName());
+	}
+
 	public void onLoggedIn(final Player player) {
 		// we need to do this on the next turn because the
 		// client does not get any private messages otherwise
