@@ -208,7 +208,7 @@ public class FindGhostsTest {
 		
 		en.step(player, "spirits");
 		assertEquals(
-				"I seek to know more about other spirits who are dead but stalk the earthly world as ghosts. Please tell me any names you know, I am still looking for four of them.",
+				"I seek to know more about other spirits who are dead but stalk the earthly world as ghosts. Please tell me any names you know.",
 				npc.get("text"));
 
 		assertThat(player.getQuest("find_ghosts").split(":")[0], containsString("Mary"));
@@ -226,7 +226,7 @@ public class FindGhostsTest {
 
 		en.step(player, "spirits");
 		assertEquals(
-				"I seek to know more about other spirits who are dead but stalk the earthly world as ghosts. Please tell me any names you know, I am still looking for three of them.",
+				"I seek to know more about other spirits who are dead but stalk the earthly world as ghosts. Please tell me any names you know.",
 				npc.get("text"));
 
 		assertThat(player.getQuest("find_ghosts").split(":")[1], not(containsString("ben")));
@@ -236,7 +236,7 @@ public class FindGhostsTest {
 
 		en.step(player, "spirits");
 		assertEquals(
-				"I seek to know more about other spirits who are dead but stalk the earthly world as ghosts. Please tell me any names you know, I am still looking for two of them.",
+				"I seek to know more about other spirits who are dead but stalk the earthly world as ghosts. Please tell me any names you know.",
 				npc.get("text"));
 
 		assertThat(player.getQuest("find_ghosts").split(":")[1], not(containsString("zak")));
@@ -247,7 +247,7 @@ public class FindGhostsTest {
 		
 		en.step(player, "spirits");
 		assertEquals(
-				"I seek to know more about other spirits who are dead but stalk the earthly world as ghosts. Please tell me any names you know, I am still looking for one of them.",
+				"I seek to know more about other spirits who are dead but stalk the earthly world as ghosts. Please tell me any names you know.",
 				npc.get("text"));
 
 		assertThat(player.getQuest("find_ghosts"), not(containsString("Goran")));
