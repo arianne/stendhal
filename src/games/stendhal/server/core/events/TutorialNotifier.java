@@ -53,7 +53,7 @@ public class TutorialNotifier {
 	public static void move(Player player) {
 		StendhalRPZone zone = player.getZone();
 		if (zone != null) {
-			if (zone.getName().equals("int_semos_townhall")) {
+			if (zone.getName().equals("int_semos_guard_house")) {
 				process(player, TutorialEventType.FIRST_MOVE);
 			}
 		}
@@ -71,8 +71,7 @@ public class TutorialNotifier {
 	 */
 	public static void zoneChange(Player player, String sourceZone,
 			String destinationZone) {
-		if (sourceZone.equals("int_semos_townhall")
-				&& destinationZone.equals("0_semos_city")) {
+		if (destinationZone.equals("0_semos_city")) {
 			process(player, TutorialEventType.VISIT_SEMOS_CITY);
 		} else if (destinationZone.equals("-1_semos_dungeon")) {
 			process(player, TutorialEventType.VISIT_SEMOS_DUNGEON);
