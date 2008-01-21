@@ -11,7 +11,10 @@ import marauroa.common.game.RPObject;
  * Drop a player item.
  */
 class DropAction implements SlashAction {
-	// TODO: find a way to not have this redundand at server and client
+	// TODO: find a way to not have this redundant at server and client
+	// possibilities:
+	// a.) move all command line parsing
+	// b.) transfer information about available slots at login time from server to client
 	private static final String[] CARRYING_SLOTS = { "bag", "head", "rhand",
 			"lhand", "armor", "cloak", "legs", "feet", "finger", "keyring" };
 
@@ -66,7 +69,6 @@ class DropAction implements SlashAction {
 	 * @return objectid or <code>-1</code> in case there is no such item
 	 */
 	private int findItem(String slotName, String itemName) {
-
 		for (RPObject item : User.get().getSlot(slotName)) {
 			if (item.get("name").equals(itemName)) {
 				int itemID = item.getID().getObjectID();
