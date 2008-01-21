@@ -65,7 +65,9 @@ public class WordList {
 
 	private static final Logger logger = Logger.getLogger(WordList.class);
 
+	// ExpressionTypes for dynamic registration
 	public static final String SUBJECT_NAME_DYNAMIC = ExpressionType.SUBJECT_NAME + ExpressionType.SUFFIX_DYNAMIC;
+	public static final String VERB_DYNAMIC = ExpressionType.VERB + ExpressionType.SUFFIX_DYNAMIC;
 
 	public static final String WORDS_FILENAME = "words.txt";
 
@@ -582,6 +584,27 @@ public class WordList {
 		}
 
 	    return false;
+    }
+
+	/**
+	 * Register a verb to be recognized by the conversation parser.
+	 *
+	 * @param verb
+	 */
+	public void registerVerb(String verb) {
+		String key = trimWord(verb);
+		WordEntry entry = words.get(key);
+
+		if (entry == null || entry.getType() == null || entry.getType().isEmpty()) {
+			WordEntry newEntry = new WordEntry();
+
+			newEntry.setNormalized(key);
+			newEntry.setType(new ExpressionType(VERB_DYNAMIC));
+
+			words.put(key, newEntry);
+//		} else if (!checkNameCompatibleLastType(entry.getType(), ExpressionType.VERB)) {
+//			logger.warn("verb name already registered with incompatible expression type: " + entry.getNormalizedWithTypeString());
+		}
     }
 
 	/**
