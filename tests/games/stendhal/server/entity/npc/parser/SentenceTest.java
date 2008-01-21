@@ -15,7 +15,7 @@ public class SentenceTest {
 
 	@Test
 	public final void testGrammar() {
-		Sentence sentence = new Sentence();
+		SentenceImplementation sentence = new SentenceImplementation();
 		String text = ConversationParser.getSentenceType("The quick brown fox jumps over the lazy dog.", sentence);
 		ConversationParser parser = new ConversationParser(text);
 		sentence.parse(parser);
@@ -28,7 +28,7 @@ public class SentenceTest {
 		assertEquals("quick brown fox/SUB-ANI-COL jump/VER over/PRE lazy dog/SUB-ANI.", sentence.toString());
 		assertEquals(Sentence.SentenceType.STATEMENT, sentence.getType());
 
-		sentence = new Sentence();
+		sentence = new SentenceImplementation();
 		parser = new ConversationParser("does it fit");
 		sentence.parse(parser);
 		sentence.classifyWords(parser, false, false);

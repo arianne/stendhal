@@ -95,7 +95,7 @@ public class ConversationParser {
 	public static Sentence parse(String text, ConversationContext ctx) {
 
 		// 1.) determine sentence type from trailing punctuation
-		Sentence sentence = new Sentence();
+		SentenceImplementation sentence = new SentenceImplementation();
 
 		if (text != null) {
 			text = getSentenceType(text.trim(), sentence);
