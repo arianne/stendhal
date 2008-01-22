@@ -13,7 +13,7 @@ import java.util.StringTokenizer;
  * 
  * @author Martin Fuchs
  */
-public class ConversationParser {
+public final class ConversationParser {
 
 	private StringTokenizer tokenizer;
 	private String errorBuffer;

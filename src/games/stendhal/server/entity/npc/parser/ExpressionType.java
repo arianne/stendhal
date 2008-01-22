@@ -3,7 +3,7 @@ package games.stendhal.server.entity.npc.parser;
 import java.util.Arrays;
 import java.util.List;
 
-public class ExpressionType {
+public final class ExpressionType {
 
 	private final String typeString;
 

@@ -9,7 +9,7 @@ import java.util.Iterator;
  * 
  * @author Martin Fuchs
  */
-public class Expression {
+public final class Expression {
 
 	/** original, un-normalized string expression.*/
 	private String original;

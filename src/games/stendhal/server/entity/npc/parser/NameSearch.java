@@ -9,7 +9,7 @@ import java.util.Set;
  *
  * @author Martin Fuchs
  */
-public class NameSearch {
+public final class NameSearch {
 	NameSearch(Set<String> names) {
 		this.names = names;
 		this.name = null;

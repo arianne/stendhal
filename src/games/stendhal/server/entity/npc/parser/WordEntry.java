@@ -8,7 +8,7 @@ import java.io.PrintWriter;
  * 
  * @author Martin Fuchs
  */
-public class WordEntry {
+public final class WordEntry {
 
 	// normalized word
 	private String normalized;

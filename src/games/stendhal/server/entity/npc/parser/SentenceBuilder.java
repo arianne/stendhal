@@ -8,7 +8,7 @@ import java.util.Iterator;
  * 
  * @author Martin Fuchs
  */
-public class SentenceBuilder {
+public final class SentenceBuilder {
 	private StringBuilder builder = new StringBuilder();
 	private boolean first = true;
 	private char space = ' ';

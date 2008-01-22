@@ -6,7 +6,7 @@ package games.stendhal.server.entity.npc.parser;
  * 
  * @author Martin Fuchs
  */
-public class PunctuationParser {
+public final class PunctuationParser {
 
 	private String text;
 

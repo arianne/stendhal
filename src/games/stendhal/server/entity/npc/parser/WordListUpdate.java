@@ -15,7 +15,7 @@ import java.util.List;
  * a new updated, pretty formatted list in the file "words.txt" and updates the
  * database table "words".
  */
-public class WordListUpdate {
+public final class WordListUpdate {
 
 	public static void main(String[] args) {
 		run();

@@ -60,7 +60,7 @@ import org.apache.log4j.Logger;
 [21:27] <martin_> then we have to look into it and use some brain :)
 */
 
-public class WordList {
+public final class WordList {
 
 	private static final Logger logger = Logger.getLogger(WordList.class);
 
