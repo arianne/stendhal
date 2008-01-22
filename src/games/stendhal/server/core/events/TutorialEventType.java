@@ -11,12 +11,16 @@ public enum TutorialEventType {
 			"Hi, welcome to Stendhal. You can move around using the arrow keys."),
 	FIRST_MOVE(
 			"You can talk to Hayunn Naratha by saying \"hi\"."),
+	RETURN_GUARDHOUSE(
+			"Talk to Hayunn Naratha again by saying \"hi\"."),
 	VISIT_SEMOS_CITY(
 			"You can get a map of Semos from Monogenes. Start by saying \"hi\". Or you can go down the steps to the dungeons and fight some creatures."),
 	VISIT_SEMOS_DUNGEON(
 			"You can attack creatures by right clicking on them and choosing \"Attack\""),
 	VISIT_SEMOS_DUNGEON_2(
 			"Be careful. If you walk deeper and deeper, the creatures will get more powerful."),
+	VISIT_SEMOS_TAVERN(
+			"You can trade with an NPC by saying \"hi\" then asking for their \"offer\". If you want to buy something, perhaps some cheese, say \"buy cheese\"."),
 	FIRST_ATTACKED(
 			"Did you notice that creature walking towards you with the yellow square? It is attacking you."),
 	FIRST_KILL(
