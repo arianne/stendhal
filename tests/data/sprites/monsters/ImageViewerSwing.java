@@ -25,8 +25,7 @@ public class ImageViewerSwing extends JComponent {
 	 * default Constructor.
 	 */
 	public ImageViewerSwing() {
-		setImage(Toolkit.getDefaultToolkit().getImage(
-				"data/sprites/ideas/admin.png"));
+		setImage(Toolkit.getDefaultToolkit().getImage("data/sprites/ideas/admin.png"));
 
 		initialize();
 	}
@@ -83,6 +82,7 @@ public class ImageViewerSwing extends JComponent {
 				tracker.addImage(image, 0);
 				tracker.waitForID(0);
 			} catch (InterruptedException e) {
+				//load completed
 			}
 		}
 		// image is now ready, let's paint it
@@ -121,7 +121,7 @@ public class ImageViewerSwing extends JComponent {
 			// We are notified of progress through our Component ImageObserver
 			// interface.
 			g.drawImage(image, (dim.width - imageWidth) / 2, (dim.height - imageHeight) / 2, imageWidth, imageHeight,
-					this); 
+					this);
 
 		} else {
 			/* we have no Image, clear the box */
@@ -138,10 +138,10 @@ public class ImageViewerSwing extends JComponent {
 	@Override
 	public Dimension getPreferredSize() {
 		if (image != null) {
-			// should just fit the Image 
+			// should just fit the Image
 			return (new Dimension(image.getWidth(this), image.getHeight(this)));
-		} else { 
-			// empty square as a place holder 
+		} else {
+			// empty square as a place holder
 			return new Dimension(100, 100);
 		}
 	}
@@ -159,6 +159,6 @@ public class ImageViewerSwing extends JComponent {
 	/**
 	 * Image that this viewer is currently displaying.
 	 */
-	private Image image; 
+	private Image image;
 
-} 
+}

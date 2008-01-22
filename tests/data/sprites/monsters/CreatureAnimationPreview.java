@@ -109,7 +109,7 @@ public class CreatureAnimationPreview {
 	}
 
 	public static void main(String[] args) {
-		
+
 		(new CreatureAnimationPreview()).getJFrame().setVisible(true);
 	}
 
@@ -215,23 +215,21 @@ public class CreatureAnimationPreview {
 		if (jTree == null) {
 			try {
 				Preferences pref = Preferences.userNodeForPackage(AnimationRunner.class);
-				File lastDirectory=null;
-				if (pref.get("lastpath",null)!= null) {
-					lastDirectory = new File(pref.get("lastpath",null));
-						
+				File lastDirectory = null;
+				if (pref.get("lastpath", null) != null) {
+					lastDirectory = new File(pref.get("lastpath", null));
+
 				}
-				
-				
+
 				JFileChooser fc = new JFileChooser(lastDirectory);
-				
-				
+
 				fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 				int returnVal = fc.showOpenDialog(jScrollPane);
 
 				if (returnVal == JFileChooser.APPROVE_OPTION) {
 					File file = fc.getSelectedFile();
-					Preferences.userNodeForPackage(AnimationRunner.class).put("lastpath",file.getAbsolutePath());
-					
+					Preferences.userNodeForPackage(AnimationRunner.class).put("lastpath", file.getAbsolutePath());
+
 					jTree = new FileTree(file.getPath());
 				} else {
 					System.exit(0);
@@ -243,83 +241,66 @@ public class CreatureAnimationPreview {
 				e1.printStackTrace();
 			}
 			if (jTree != null) {
-				jTree
-						.addTreeSelectionListener(new javax.swing.event.TreeSelectionListener() {
-							public void valueChanged(
-									javax.swing.event.TreeSelectionEvent e) {
-								jFrame.setTitle(e.getNewLeadSelectionPath()
-										.getLastPathComponent().toString());
+				jTree.addTreeSelectionListener(new javax.swing.event.TreeSelectionListener() {
+					public void valueChanged(javax.swing.event.TreeSelectionEvent e) {
+						jFrame.setTitle(e.getNewLeadSelectionPath().getLastPathComponent().toString());
 
-								BufferedImage buf = null;
-								try {
-									File file = new File(e
-											.getNewLeadSelectionPath()
-											.getLastPathComponent().toString());
-									if (file.isDirectory()) {
-										return;
-									}
-
-									buf = ImageIO.read(file);
-									if (buf == null) {
-										return;
-									}
-								} catch (IOException e1) {
-									// should never happen;
-									e1.printStackTrace();
-									return;
-								}
-
-								getImageViewerSwing1().setImage(buf);
-								if (animations == null) {
-									animations = new AnimationRunner[4];
-									animations[0] = AnimationCreate(buf, 0,
-											getImageViewerSwing());
-									animations[1] = AnimationCreate(buf, 1,
-											getImageViewerSwing2());
-									animations[2] = AnimationCreate(buf, 2,
-											getImageViewerSwing3());
-									animations[3] = AnimationCreate(buf, 3,
-											getImageViewerSwing4());
-
-								} else {
-									animations[0].stopAnimation();
-									animations[1].stopAnimation();
-									animations[2].stopAnimation();
-									animations[3].stopAnimation();
-								}
-
-								animations[0].startAnimation(buffersCreate(buf,
-										0));
-								animations[1].startAnimation(buffersCreate(buf,
-										1));
-								animations[2].startAnimation(buffersCreate(buf,
-										2));
-								animations[3].startAnimation(buffersCreate(buf,
-										3));
-
+						BufferedImage buf = null;
+						try {
+							File file = new File(e.getNewLeadSelectionPath().getLastPathComponent().toString());
+							if (file.isDirectory()) {
+								return;
 							}
-						});
+
+							buf = ImageIO.read(file);
+							if (buf == null) {
+								return;
+							}
+						} catch (IOException e1) {
+							// should never happen;
+							e1.printStackTrace();
+							return;
+						}
+
+						getImageViewerSwing1().setImage(buf);
+						if (animations == null) {
+							animations = new AnimationRunner[4];
+							animations[0] = AnimationCreate(buf, 0, getImageViewerSwing());
+							animations[1] = AnimationCreate(buf, 1, getImageViewerSwing2());
+							animations[2] = AnimationCreate(buf, 2, getImageViewerSwing3());
+							animations[3] = AnimationCreate(buf, 3, getImageViewerSwing4());
+
+						} else {
+							animations[0].stopAnimation();
+							animations[1].stopAnimation();
+							animations[2].stopAnimation();
+							animations[3].stopAnimation();
+						}
+
+						animations[0].startAnimation(buffersCreate(buf, 0));
+						animations[1].startAnimation(buffersCreate(buf, 1));
+						animations[2].startAnimation(buffersCreate(buf, 2));
+						animations[3].startAnimation(buffersCreate(buf, 3));
+
+					}
+				});
 			}
 		}
 		return jTree;
 	}
 
-	AnimationRunner AnimationCreate(BufferedImage buf, int row,
-			ImageViewerSwing imageViewer) {
+	AnimationRunner AnimationCreate(BufferedImage buf, int row, ImageViewerSwing imageViewer) {
 		return new AnimationRunner(imageViewer);
 	}
 
 	private BufferedImage[] buffersCreate(BufferedImage buf, int row) {
 		BufferedImage[] buffers = new BufferedImage[NUMBER_OF_FRAMES];
-		int framewidth = buf.getWidth()
-				/ CreatureAnimationPreview.NUMBER_OF_FRAMES;
+		int framewidth = buf.getWidth() / CreatureAnimationPreview.NUMBER_OF_FRAMES;
 
-		int frameheight = buf.getHeight()
-				/ CreatureAnimationPreview.NUMBER_OF_ROWS;
+		int frameheight = buf.getHeight() / CreatureAnimationPreview.NUMBER_OF_ROWS;
 		for (int i = 0; i < NUMBER_OF_FRAMES; i++) {
 
-			buffers[i] = buf.getSubimage(i * framewidth, row * frameheight,
-					framewidth, frameheight);
+			buffers[i] = buf.getSubimage(i * framewidth, row * frameheight, framewidth, frameheight);
 
 		}
 		return buffers;

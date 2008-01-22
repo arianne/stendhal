@@ -184,8 +184,8 @@ public class FileTree extends JTree {
 	protected static class TreeExpansionHandler implements TreeExpansionListener {
 		public void treeExpanded(TreeExpansionEvent evt) {
 			// The expanded path
-			TreePath path = evt.getPath(); 
-			 // The tree
+			TreePath path = evt.getPath();
+			// The tree
 			JTree tree = (JTree) evt.getSource();
 
 			// Get the last component of the path and
