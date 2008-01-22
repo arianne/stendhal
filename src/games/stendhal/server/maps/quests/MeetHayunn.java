@@ -5,6 +5,7 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPC.ChatAction;
 import games.stendhal.server.entity.npc.action.EquipItemAction;
+import games.stendhal.server.entity.npc.action.ExamineChatAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
@@ -140,13 +141,14 @@ public class MeetHayunn extends AbstractQuest {
 		reward.add(new EquipItemAction("money", 5));
 		reward.add(new IncreaseXPAction(10));
 		reward.add(new SetQuestAction(QUEST_SLOT, "taught"));
+		reward.add(new ExamineChatAction("monogenes.png", "Monogenes", "North part of Semos city."));
 
 		npc.add(
 			ConversationStates.INFORMATION_5,
 			ConversationPhrases.YES_MESSAGES,
 			null,
 			ConversationStates.ATTENDING,
-			"Follow the path through this village to the east, and you can't miss Semos. If you go and speak to Monogenes he will give you a map. Good luck!",
+			"Follow the path through this village to the east, and you can't miss Semos. If you go and speak to Monogenes, the old man in this picture, he will give you a map. Good luck!",
 			new MultipleActions(reward));
 
 	   	// incase player didn't finish learning everything when he came after killing the rat, he must have another chance. Here it is.
@@ -181,7 +183,7 @@ public class MeetHayunn extends AbstractQuest {
 			"Simple, really; just double-click the place you want to move to. There's a lot more information than I can relate just off the top of my head... do you want to know where to read more?",
 			null);
 
-		String epilog = "You can find a list of all sorts of animals, monsters, and other foes at #http://arianne.sourceforge.net/wiki/index.php?title=StendhalBestiary \nYou can find out about experience points and levelling up at #http://arianne.sourceforge.net/wiki/index.php?title=LevelTables \nYou can read about some of the currently most powerful and successful warriors at #http://stendhal.game-host.org\n ";
+		String epilog = "You can find many frequently asked questions are answered at #http://arianne.sourceforge.net/wiki/index.php?title=StendhalFAQ \nYou can find out about experience points and levelling up at #http://arianne.sourceforge.net/wiki/index.php?title=LevelTables \nYou can read about some of the currently most powerful and successful warriors at #http://stendhal.game-host.org\n ";
 		
 			//This is used if the player returns, asks for #help and then say #yes
 			npc.add(ConversationStates.ATTENDING,
