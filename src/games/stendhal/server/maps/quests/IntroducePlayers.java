@@ -193,7 +193,7 @@ public class IntroducePlayers extends AbstractQuest {
 
 		npc.add(
 				ConversationStates.ATTENDING,
-				Arrays.asList("herb", "arandula"),
+				Arrays.asList("herb", "arandula","yes", "ok"),
 				null,
 				ConversationStates.ATTENDING,
 				"North of Semos, near the tree grove, grows a herb called arandula. Here is a picture I drew so you know what to look for.",
