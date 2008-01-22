@@ -15,7 +15,7 @@ package games.stendhal.server.entity.player;
 import games.stendhal.common.Debug;
 import games.stendhal.server.actions.admin.AdministrationAction;
 import games.stendhal.server.core.engine.ItemLogger;
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.rp.StendhalRPAction;
 import games.stendhal.server.entity.creature.DomesticAnimal;
@@ -166,7 +166,7 @@ class PlayerRPClass {
 	 * @param player
 	 *            Player to check for super admin status.
 	 */
-	static void readAdminsFromFile(Player player) {
+	static void  readAdminsFromFile(Player player) {
 		if (adminNames == null) {
 			adminNames = new LinkedList<String>();
 
@@ -228,7 +228,7 @@ class PlayerRPClass {
 				if (!object.get("release").equals(Debug.VERSION)) {
 					player.put("release", Debug.VERSION);
 				} else {
-					zone = StendhalRPWorld.get().getZone(object.get("zoneid"));
+					zone = SingletonRepository.getRPWorld().getZone(object.get("zoneid"));
 				}
 			}
 		} catch (RuntimeException e) {
@@ -258,7 +258,7 @@ class PlayerRPClass {
 			 * Fallback to default zone
 			 */
 			String defaultZoneName = getDefaultZoneForPlayer(player);
-			zone = StendhalRPWorld.get().getZone(defaultZoneName);
+			zone = SingletonRepository.getRPWorld().getZone(defaultZoneName);
 
 			if (zone == null) {
 				logger.error("Unable to locate default zone ["
@@ -318,7 +318,7 @@ class PlayerRPClass {
 	}
 
 	/**
-	 * Low level players have a different start zone
+	 * Low level players have a different start zone.
 	 *
 	 * @param player Player
 	 * @return name of start zone
@@ -350,7 +350,7 @@ class PlayerRPClass {
 		 * Only add directly if required attributes are present
 		 */
 		if (animal.has("zoneid") && animal.has("x") && animal.has("y")) {
-			StendhalRPZone zone = StendhalRPWorld.get().getZone(
+			StendhalRPZone zone = SingletonRepository.getRPWorld().getZone(
 					animal.get("zoneid"));
 
 			/*
@@ -409,7 +409,6 @@ class PlayerRPClass {
 	 */
 	private static void loadSlotContent(Player player, RPSlot slot,
 			RPSlot newSlot) {
-		StendhalRPWorld world = StendhalRPWorld.get();
 		List<RPObject> objects = new LinkedList<RPObject>();
 		for (RPObject objectInSlot : slot) {
 			objects.add(objectInSlot);
@@ -425,7 +424,7 @@ class PlayerRPClass {
 					// TODO: Move to Item.create(RPObject)?
 
 					String name = UpdateConverter.updateItemName(item.get("name"));
-					Item entity = world.getRuleManager().getEntityManager().getItem(name);
+					Item entity = SingletonRepository.getEntityManager().getItem(name);
 
 					// log removed items
 					if (entity == null) {

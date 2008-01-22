@@ -1,6 +1,7 @@
 /* $Id$ */
 package games.stendhal.server.script;
 
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -20,7 +21,7 @@ public class ListNPCs extends ScriptImpl {
 		super.execute(admin, args);
 
 		StringBuilder res = new StringBuilder();
-		NPCList npcs = NPCList.get();
+		NPCList npcs = SingletonRepository.getNPCList();
 		for (String name : npcs.getNPCs()) {
 			SpeakerNPC npc = npcs.get(name);
 			res.append("\r\n" + name + "\t is in ");

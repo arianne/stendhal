@@ -3,8 +3,7 @@ package games.stendhal.server.actions.admin;
 import static games.stendhal.server.actions.WellKnownActionConstants.MINUTES;
 import static games.stendhal.server.actions.WellKnownActionConstants.TARGET;
 import games.stendhal.server.actions.CommandCenter;
-import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
-import games.stendhal.server.entity.player.Jail;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
 
@@ -29,9 +28,9 @@ public class JailAction extends AdministrationAction {
 			}
 			try {
 				int minutes = action.getInt(MINUTES);
-				StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
+				SingletonRepository.getRuleProcessor().addGameEvent(player.getName(),
 						_JAIL, target, Integer.toString(minutes), reason);
-				Jail.get().imprison(target, player, minutes, reason);
+				SingletonRepository.getJail().imprison(target, player, minutes, reason);
 			} catch (NumberFormatException e) {
 				player.sendPrivateText(USAGE_JAIL_NAME_MINUTES_REASON);
 			}

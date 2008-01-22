@@ -1,8 +1,6 @@
 package games.stendhal.server.core.account;
 
-import games.stendhal.server.core.engine.StendhalPlayerDatabase;
-import games.stendhal.server.core.rule.RuleManager;
-import games.stendhal.server.core.rule.RuleSetFactory;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.RPEntity;
@@ -68,7 +66,7 @@ public class CharacterCreator {
 			return new CharacterResult(result, character, template);
 		}
 
-		IDatabase database = StendhalPlayerDatabase.getDatabase();
+		IDatabase database = SingletonRepository.getPlayerDatabase();
 		Transaction trans = database.getTransaction();
 
 		try {
@@ -82,13 +80,11 @@ public class CharacterCreator {
 
 			object.update();
 
-			RuleManager manager = RuleSetFactory.getRuleSet("default");
-
-			Entity entity = manager.getEntityManager().getItem("leather armor");
+			Entity entity = SingletonRepository.getEntityManager().getItem("leather armor");
 			RPSlot slot = object.getSlot("armor");
 			slot.add(entity);
 			
-			entity = manager.getEntityManager().getItem("club");
+			entity = SingletonRepository.getEntityManager().getItem("club");
 			slot = object.getSlot("rhand");
 			slot.add(entity);
 

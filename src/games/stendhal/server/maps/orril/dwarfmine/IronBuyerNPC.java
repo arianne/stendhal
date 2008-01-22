@@ -1,6 +1,7 @@
 package games.stendhal.server.maps.orril.dwarfmine;
 
 import games.stendhal.server.core.config.ZoneConfigurator;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
@@ -20,7 +21,7 @@ public class IronBuyerNPC implements ZoneConfigurator {
 	private ShopList shops;
 
 	public IronBuyerNPC() {
-		this.shops = ShopList.get();
+		this.shops = SingletonRepository.getShopList();
 	}
 
 	/**

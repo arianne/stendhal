@@ -15,7 +15,7 @@ package games.stendhal.server.entity.player;
 import games.stendhal.common.Direction;
 import games.stendhal.common.FeatureList;
 import games.stendhal.common.NotificationType;
-import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TutorialNotifier;
 import games.stendhal.server.core.rp.StendhalRPAction;
@@ -176,7 +176,7 @@ public class Player extends RPEntity {
 			for (String buddyName : buddies) {
 				// TODO: Remove '_' prefix if ID is made completely virtual
 				if (buddyName.charAt(0) == '_') {
-					Player buddy = StendhalRPRuleProcessor.get().getPlayer(
+					Player buddy = SingletonRepository.getRuleProcessor().getPlayer(
 							buddyName.substring(1));
 					if ((buddy != null) && !buddy.isGhost()) {
 						buddies.put(buddyName, 1);
@@ -693,7 +693,7 @@ public class Player extends RPEntity {
 	}
 
 	/**
-	 * returns the single object of a "keyed slot"
+	 * Returns the single object of a "keyed slot".
 	 * 
 	 * @param name name of key slot
 	 * @return object or <code>null</code> it does not exist
@@ -1393,7 +1393,7 @@ public class Player extends RPEntity {
 	 * @param entity
 	 */
 	public void onPush(RPEntity entity) {
-		pushCounter = StendhalRPRuleProcessor.get().getTurn();
+		pushCounter = SingletonRepository.getRuleProcessor().getTurn();
 	}
 
 	/**
@@ -1403,7 +1403,7 @@ public class Player extends RPEntity {
 	 * @return true iff pushing is possible
 	 */
 	public boolean canPush(RPEntity entity) {
-		return ((this != entity) && (StendhalRPRuleProcessor.get().getTurn()
+		return ((this != entity) && (SingletonRepository.getRuleProcessor().getTurn()
 				- pushCounter > 10));
 	}
 
@@ -1544,7 +1544,7 @@ public class Player extends RPEntity {
 
 		applyMovement();
 
-		int turn = StendhalRPRuleProcessor.get().getTurn();
+		int turn = SingletonRepository.getRuleProcessor().getTurn();
 
 		/*
 		 * TODO: Refactor Implement the attack rate into attack itself. Done in

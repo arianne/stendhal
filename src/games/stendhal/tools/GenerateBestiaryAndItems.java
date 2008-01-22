@@ -2,6 +2,7 @@ package games.stendhal.tools;
 
 import games.stendhal.server.core.config.CreaturesXMLLoader;
 import games.stendhal.server.core.config.ItemGroupsXMLLoader;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.rule.defaultruleset.DefaultCreature;
 import games.stendhal.server.core.rule.defaultruleset.DefaultItem;
 import games.stendhal.server.entity.creature.impl.DropItem;
@@ -14,7 +15,7 @@ import java.util.List;
 public class GenerateBestiaryAndItems {
 
 	public static void generateCreatures() throws Exception {
-		CreaturesXMLLoader creatureLoader = CreaturesXMLLoader.get();
+		CreaturesXMLLoader creatureLoader = SingletonRepository.getCreaturesXMLLoader();
 		List<DefaultCreature> creatures = creatureLoader.load("data/conf/creatures.xml");
 
 		Collections.sort(creatures, new Comparator<DefaultCreature>() {

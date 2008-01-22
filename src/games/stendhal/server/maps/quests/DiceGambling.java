@@ -1,13 +1,12 @@
 package games.stendhal.server.maps.quests;
 
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Dice;
 import games.stendhal.server.entity.mapstuff.sign.Sign;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.CroupierNPC;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPC.ChatAction;
 import games.stendhal.server.entity.npc.condition.NotCondition;
@@ -28,7 +27,7 @@ public class DiceGambling extends AbstractQuest {
 	@SuppressWarnings("unchecked")
 	public void addToWorld() {
 
-		CroupierNPC ricardo = (CroupierNPC) NPCList.get().get("Ricardo");
+		CroupierNPC ricardo = (CroupierNPC) SingletonRepository.getNPCList().get("Ricardo");
 
 		List<Pair<String, String>> prizes = Arrays.asList(
 				null, // 0 - can't happen
@@ -109,8 +108,7 @@ public class DiceGambling extends AbstractQuest {
 				@Override
 				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 					player.drop("money", STAKE);
-					Dice dice = (Dice) StendhalRPWorld.get()
-							.getRuleManager().getEntityManager()
+					Dice dice = (Dice) SingletonRepository.getEntityManager()
 							.getItem("dice");
 					dice.setCroupierNPC((CroupierNPC) npc);
 					player.equip(dice, true);

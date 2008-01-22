@@ -1,7 +1,7 @@
 package games.stendhal.server.script;
 
 import games.stendhal.common.Grammar;
-import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.entity.player.Player;
 
@@ -21,7 +21,7 @@ public class DropPlayerItems extends ScriptImpl {
 			admin.sendPrivateText("<player> [<amount>] <item>");
 			return;
 		}
-		Player player = StendhalRPRuleProcessor.get().getPlayer(args.get(0));
+		Player player = SingletonRepository.getRuleProcessor().getPlayer(args.get(0));
 		String itemName = null;
 		int amount = 1;
 		if (args.size() == 3) {
@@ -38,7 +38,7 @@ public class DropPlayerItems extends ScriptImpl {
 		admin.sendPrivateText(msg);
 		if (res) {
 			player.sendPrivateText(msg);
-			StendhalRPRuleProcessor.get().addGameEvent(admin.getName(),
+			SingletonRepository.getRuleProcessor().addGameEvent(admin.getName(),
 					"admindrop", player.getName(), Integer.toString(amount),
 					itemName);
 		}

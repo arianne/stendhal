@@ -11,7 +11,7 @@ package games.stendhal.server.entity.mapstuff.chest;
 
 import games.stendhal.server.core.config.factory.ConfigurableFactory;
 import games.stendhal.server.core.config.factory.ConfigurableFactoryContext;
-import games.stendhal.server.entity.npc.NPCList;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
 /**
@@ -34,7 +34,7 @@ public class NPCOwnedChestFactory implements ConfigurableFactory {
 	 */
 	protected SpeakerNPC getNPC(ConfigurableFactoryContext ctx) {
 		String npcName = ctx.getRequiredString("npc");
-		SpeakerNPC npc = NPCList.get().get(npcName);
+		SpeakerNPC npc = SingletonRepository.getNPCList().get(npcName);
 		if (npc == null) {
 			throw new IllegalArgumentException("Unknown NPC: " + npcName);
 		}

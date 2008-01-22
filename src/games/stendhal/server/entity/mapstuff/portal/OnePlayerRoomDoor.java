@@ -1,9 +1,9 @@
 package games.stendhal.server.entity.mapstuff.portal;
 
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TurnListener;
-import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.RPEntity;
 
 /**
@@ -25,7 +25,7 @@ public class OnePlayerRoomDoor extends Door {
 					open();
 				}
 			}
-			TurnNotifier.get().notifyInTurns(60, this);
+			SingletonRepository.getTurnNotifier().notifyInTurns(60, this);
 		}
 
 	}
@@ -38,12 +38,12 @@ public class OnePlayerRoomDoor extends Door {
 	 */
 	public OnePlayerRoomDoor(String clazz) {
 		super(clazz);
-		TurnNotifier.get().notifyInTurns(60, new PeriodicOpener());
+		SingletonRepository.getTurnNotifier().notifyInTurns(60, new PeriodicOpener());
 	}
 
 	@Override
 	protected boolean isAllowed(RPEntity user) {
-		StendhalRPWorld world = StendhalRPWorld.get();
+		StendhalRPWorld world = SingletonRepository.getRPWorld();
 		StendhalRPZone zone = world.getZone(super.getDestinationZone());
 		return (zone.getPlayerAndFriends().size() == 0);
 	}

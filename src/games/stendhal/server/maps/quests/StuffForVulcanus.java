@@ -1,7 +1,7 @@
 package games.stendhal.server.maps.quests;
 
 import games.stendhal.common.Grammar;
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -264,8 +264,7 @@ public class StuffForVulcanus extends AbstractQuest {
 					engine.say("I have finished forging the mighty immortal sword. You deserve this. Now I'm going to have a long rest, so, goodbye!");
 					player.addXP(15000);
 					player.addKarma(25);
-					Item magicSword = StendhalRPWorld.get()
-						.getRuleManager().getEntityManager().getItem("immortal sword");
+					Item magicSword = SingletonRepository.getEntityManager().getItem("immortal sword");
 					magicSword.setBoundTo(player.getName());
 					player.equip(magicSword, true);
 					player.notifyWorldAboutChanges();

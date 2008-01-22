@@ -14,7 +14,7 @@ package games.stendhal.server.actions;
 
 import games.stendhal.common.NotificationType;
 import games.stendhal.server.actions.admin.AdministrationAction;
-import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.mapstuff.sign.Sign;
 import games.stendhal.server.entity.player.Player;
@@ -51,7 +51,7 @@ public class LookAction implements ActionListener {
 			if (entity.has(ATTR_NAME)) {
 				name = entity.get(ATTR_NAME);
 			}
-			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), _LOOK, name);
+			SingletonRepository.getRuleProcessor().addGameEvent(player.getName(), _LOOK, name);
 			String text = entity.describe();
 
 			if (entity instanceof Sign) {

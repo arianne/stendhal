@@ -1,6 +1,6 @@
 package games.stendhal.server.script;
 
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.core.scripting.ScriptImpl;
@@ -41,7 +41,7 @@ public class EntitySearch extends ScriptImpl {
 
 		// check targetName
 
-		EntityManager manager = StendhalRPWorld.get().getRuleManager().getEntityManager();
+		EntityManager manager = SingletonRepository.getEntityManager();
 		Creature tempc = manager.getCreature(targetName);
 		if (tempc != null) {
 			// get the proper case of the characters in the string
@@ -52,7 +52,7 @@ public class EntitySearch extends ScriptImpl {
 		}
 
 		// count for each zone
-		for (IRPZone irpzone : StendhalRPWorld.get()) {
+		for (IRPZone irpzone : SingletonRepository.getRPWorld()) {
 			StendhalRPZone zone = (StendhalRPZone) irpzone;
 
 			for (CreatureRespawnPoint p : zone.getRespawnPointList()) {
@@ -84,7 +84,7 @@ public class EntitySearch extends ScriptImpl {
 
 		res.append("\r\nNon-Respawn creatures (minus domestic animals):");
 
-		for (IRPZone irpzone : StendhalRPWorld.get()) {
+		for (IRPZone irpzone : SingletonRepository.getRPWorld()) {
 			StendhalRPZone zone = (StendhalRPZone) irpzone;
 
 			for (RPObject n : zone) {
@@ -113,7 +113,7 @@ public class EntitySearch extends ScriptImpl {
 
 		res.append("\r\nRespawn points for zone names containing: "
 				+ targetName);
-		for (IRPZone irpzone : StendhalRPWorld.get()) {
+		for (IRPZone irpzone : SingletonRepository.getRPWorld()) {
 			StendhalRPZone zone = (StendhalRPZone) irpzone;
 
 			String zoneName = zone.getName();

@@ -12,7 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.mapstuff.portal;
 
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.UseListener;
 import games.stendhal.server.entity.Entity;
@@ -168,7 +168,7 @@ public class Portal extends Entity implements UseListener {
 			return false;
 		}
 
-		StendhalRPZone destZone = StendhalRPWorld.get().getZone(
+		StendhalRPZone destZone = SingletonRepository.getRPWorld().getZone(
 				getDestinationZone());
 
 		if (destZone == null) {

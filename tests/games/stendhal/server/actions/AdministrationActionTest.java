@@ -6,7 +6,7 @@ import static org.junit.Assert.assertTrue;
 import games.stendhal.common.Direction;
 import games.stendhal.server.actions.admin.AdministrationAction;
 import games.stendhal.server.actions.admin.AlterAction;
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.creature.Creature;
@@ -47,9 +47,9 @@ public class AdministrationActionTest {
 	@After
 	public void tearDown() throws Exception {
 		// release all prisoners left
-		Jail.get().release("player");
-		Jail.get().release("hugo");
-		Jail.get().release("bob");
+		SingletonRepository.getJail().release("player");
+		SingletonRepository.getJail().release("hugo");
+		SingletonRepository.getJail().release("bob");
 
 		MockStendhalRPRuleProcessor.get().clearPlayers();
 	}
@@ -646,8 +646,7 @@ public class AdministrationActionTest {
 	public final void testOnDestroyRat() {
 
 		PrivateTextMockingTestPlayer pl = PlayerTestHelper.createPrivateTextMockingTestPlayer("hugo");
-		Creature rat = new RaidCreature(StendhalRPWorld.get().getRuleManager()
-				.getEntityManager().getCreature("rat"));
+		Creature rat = new RaidCreature(SingletonRepository.getEntityManager().getCreature("rat"));
 		StendhalRPZone testzone = new StendhalRPZone("Testzone");
 		testzone.add(rat);
 		testzone.add(pl);
@@ -669,8 +668,7 @@ public class AdministrationActionTest {
 	public final void testOnDestroyRatWithTargetID() {
 
 		PrivateTextMockingTestPlayer pl = PlayerTestHelper.createPrivateTextMockingTestPlayer("hugo");
-		Creature rat = new RaidCreature(StendhalRPWorld.get().getRuleManager()
-				.getEntityManager().getCreature("rat"));
+		Creature rat = new RaidCreature(SingletonRepository.getEntityManager().getCreature("rat"));
 		StendhalRPZone testzone = new StendhalRPZone("Testzone");
 		testzone.add(rat);
 		testzone.add(pl);
@@ -691,8 +689,7 @@ public class AdministrationActionTest {
 	@Test
 	public final void testOnInspectRatWithTargetID() {
 		PrivateTextMockingTestPlayer pl = PlayerTestHelper.createPrivateTextMockingTestPlayer("hugo");
-		Creature rat = new RaidCreature(StendhalRPWorld.get().getRuleManager()
-				.getEntityManager().getCreature("rat"));
+		Creature rat = new RaidCreature(SingletonRepository.getEntityManager().getCreature("rat"));
 		StendhalRPZone testzone = new StendhalRPZone("Testzone");
 		testzone.add(rat);
 		testzone.add(pl);

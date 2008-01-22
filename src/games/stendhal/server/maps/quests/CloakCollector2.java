@@ -1,7 +1,7 @@
 package games.stendhal.server.maps.quests;
 
 import games.stendhal.common.Grammar;
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -166,7 +166,7 @@ public class CloakCollector2 extends AbstractQuest {
 					@Override
 					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						String itemName = sentence.getTriggerExpression().getNormalized();
-						Item item = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(itemName);
+						Item item = SingletonRepository.getEntityManager().getItem(itemName);
 						engine.say("You haven't seen one before? Well, it's a "
 									+ (item != null ? UpdateConverter.transformItemName(item.getItemSubclass()) : itemName)
 									+ ". Sorry if that's not much help, it's all I know! So, will you find them all?");

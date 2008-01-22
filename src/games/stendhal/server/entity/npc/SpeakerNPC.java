@@ -1,6 +1,6 @@
 package games.stendhal.server.entity.npc;
 
-import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.npc.fsm.Engine;
@@ -300,7 +300,7 @@ public class SpeakerNPC extends NPC {
 			// If the player is too far away
 			if ((attending.squaredDistance(this) > 8 * 8)
 			// or if the player fell asleep ;)
-					|| (StendhalRPRuleProcessor.get().getTurn()
+					|| (SingletonRepository.getRuleProcessor().getTurn()
 							- lastMessageTurn > playerChatTimeout)) {
 				// we force him to say bye to NPC :)
 				if (goodbyeMessage != null) {
@@ -534,7 +534,7 @@ public class SpeakerNPC extends NPC {
 			return true;
 		}
 
-		lastMessageTurn = StendhalRPRuleProcessor.get().getTurn();
+		lastMessageTurn = SingletonRepository.getRuleProcessor().getTurn();
 
 		return engine.step(player, text);
 	}

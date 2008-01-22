@@ -14,7 +14,7 @@ package games.stendhal.server.actions.equip;
 
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.actions.CommandCenter;
-import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
@@ -156,7 +156,7 @@ public class EquipmentAction implements ActionListener {
 			if (entity instanceof StackableItem) {
 				amount = ((StackableItem) entity).getQuantity();
 			}
-			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "equip",
+			SingletonRepository.getRuleProcessor().addGameEvent(player.getName(), "equip",
 					itemName, source.getSlot(), dest.getSlot(),
 					Integer.toString(amount));
 	
@@ -198,7 +198,7 @@ public class EquipmentAction implements ActionListener {
 						+ " minutes, as all items do. But in this case there is no way to restore it.");
 			}
 			int amount = source.getQuantity();
-			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "drop",
+			SingletonRepository.getRuleProcessor().addGameEvent(player.getName(), "drop",
 					itemName, source.getSlot(), dest.getSlot(),
 					Integer.toString(amount));
 			player.updateItemAtkDef();

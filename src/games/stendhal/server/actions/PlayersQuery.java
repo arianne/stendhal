@@ -14,6 +14,7 @@ package games.stendhal.server.actions;
 
 import games.stendhal.common.filter.FilterCriteria;
 import games.stendhal.server.actions.admin.AdministrationAction;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.engine.Task;
@@ -47,7 +48,7 @@ public class PlayersQuery implements ActionListener {
 	}
 
 	public void onWho(Player player, RPAction action) {
-		StendhalRPRuleProcessor rules = StendhalRPRuleProcessor.get();
+		StendhalRPRuleProcessor rules = SingletonRepository.getRuleProcessor();
 		final TreeSet<String> treeSet = new TreeSet<String>();
 
 		if (player.getAdminLevel() >= AdministrationAction.getLevelForCommand("ghostmode")) {
@@ -101,7 +102,7 @@ public class PlayersQuery implements ActionListener {
 		if (action.has(TARGET)) {
 			String whoName = action.get(TARGET);
 
-			StendhalRPRuleProcessor rules = StendhalRPRuleProcessor.get();
+			StendhalRPRuleProcessor rules = SingletonRepository.getRuleProcessor();
 
 			rules.addGameEvent(player.getName(), _WHERE, whoName);
 

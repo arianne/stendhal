@@ -1,7 +1,6 @@
 package games.stendhal.tools.loganalyser.login;
 
-import games.stendhal.server.core.engine.StendhalPlayerDatabase;
-
+import games.stendhal.server.core.engine.SingletonRepository;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -34,7 +33,7 @@ public class Analyser {
 		+ " ORDER BY loginEvent.timedate LIMIT 1;";
 	
 	private LoginEventIterator readLoginsFromAddress(String address, String timedate) throws SQLException {
-		Transaction transaction =  StendhalPlayerDatabase.getDatabase().getTransaction();
+		Transaction transaction =  SingletonRepository.getPlayerDatabase().getTransaction();
 		Connection connection = transaction.getConnection();
 		Statement stmt = connection.createStatement();
 		String select = String.format(SQL_FROM_IP, StringChecker.escapeSQLString(address), StringChecker.escapeSQLString(timedate));
@@ -44,7 +43,7 @@ public class Analyser {
 	
 	private LoginEvent getNextLoginEvent(LoginEvent event) throws SQLException {
 		LoginEvent nextEvent = null;
-		Transaction transaction =  StendhalPlayerDatabase.getDatabase().getTransaction();
+		Transaction transaction =  SingletonRepository.getPlayerDatabase().getTransaction();
 		Connection connection = transaction.getConnection();
 		Statement stmt = connection.createStatement();
 		String select = String.format(SQL_NEXT_LOGIN, StringChecker.escapeSQLString(event.getUsername()), StringChecker.escapeSQLString(event.getTimestamp()));

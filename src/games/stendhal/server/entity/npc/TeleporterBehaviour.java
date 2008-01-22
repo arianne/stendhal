@@ -3,10 +3,10 @@ package games.stendhal.server.entity.npc;
 
 import games.stendhal.common.Direction;
 import games.stendhal.common.Rand;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TurnListener;
-import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.core.pathfinder.Path;
@@ -46,13 +46,13 @@ public class TeleporterBehaviour implements TurnListener {
 			final String repeatedText) {
 		this.speakerNPC = speakerNPC;
 		listZones();
-		TurnNotifier.get().notifyInTurns(60, this);
+		SingletonRepository.getTurnNotifier().notifyInTurns(60, this);
 		// say something every minute so that can be noticed more easily
-		TurnNotifier.get().notifyInTurns(60, new TurnListener() {
+		SingletonRepository.getTurnNotifier().notifyInTurns(60, new TurnListener() {
 
 			public void onTurnReached(int currentTurn) {
 				speakerNPC.say(repeatedText);
-				TurnNotifier.get().notifyInTurns(60 * 3, this);
+				SingletonRepository.getTurnNotifier().notifyInTurns(60 * 3, this);
 			}
 		});
 	}
@@ -76,7 +76,7 @@ public class TeleporterBehaviour implements TurnListener {
 	}
 
 	private void addHighProbability() {
-		StendhalRPWorld world = StendhalRPWorld.get();
+		StendhalRPWorld world = SingletonRepository.getRPWorld();
 		for (int i = 0; i < 10; i++) {
 			zones.add(world.getZone("0_semos_city"));
 			zones.add(world.getZone("0_semos_village_w"));
@@ -91,7 +91,7 @@ public class TeleporterBehaviour implements TurnListener {
 	 * Creates an ArrayList of "outside" zones for NPC.
 	 */
 	private void listZones() {
-		Iterator<IRPZone> itr = StendhalRPWorld.get().iterator();
+		Iterator<IRPZone> itr = SingletonRepository.getRPWorld().iterator();
 		zones = new ArrayList<StendhalRPZone>();
 		List<String> badZones = new ArrayList<String>();
 		badZones.add("0_nalwor_city");
@@ -158,6 +158,6 @@ public class TeleporterBehaviour implements TurnListener {
 		}
 
 		// Schedule so we are notified again in 5 minutes
-		TurnNotifier.get().notifyInTurns(5 * 60 * 3, this);
+		SingletonRepository.getTurnNotifier().notifyInTurns(5 * 60 * 3, this);
 	}
 }

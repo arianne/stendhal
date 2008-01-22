@@ -11,7 +11,7 @@ package games.stendhal.server.entity.mapstuff.source;
 
 import games.stendhal.common.Grammar;
 import games.stendhal.common.Rand;
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.player.Player;
@@ -121,7 +121,7 @@ public class WellSource extends PlayerActivityEntity {
 	protected void onFinished(final Player player, final boolean successful) {
 		if (successful) {
 			String itemName = items[Rand.rand(items.length)];
-			Item item = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
+			Item item = SingletonRepository.getEntityManager().getItem(
 					itemName);
 
 			// TODO: player bind the better prizes below:

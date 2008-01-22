@@ -1,6 +1,6 @@
 package games.stendhal.server.maps.deathmatch;
 
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
@@ -19,7 +19,7 @@ public class LeaveAction extends SpeakerNPC.ChatAction {
 		DeathmatchState deathmatchState = DeathmatchState.createFromQuestString(player.getQuest("deathmatch"));
 
 		if (deathmatchState.getLifecycleState() == DeathmatchLifecycle.DONE) {
-			StendhalRPZone zone = StendhalRPWorld.get().getZone("0_semos_plains_n");
+			StendhalRPZone zone = SingletonRepository.getRPWorld().getZone("0_semos_plains_n");
 			player.teleport(zone, 100, 115, null, player);
 		} else if (deathmatchState.getLifecycleState() == DeathmatchLifecycle.VICTORY) {
 			engine.say("I don't think you claimed your #victory yet.");

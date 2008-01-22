@@ -2,7 +2,7 @@ package games.stendhal.server.actions.admin;
 
 import marauroa.common.game.RPAction;
 import games.stendhal.server.actions.CommandCenter;
-import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.player.Player;
 
 public class TeleClickModeAction extends AdministrationAction {
@@ -19,11 +19,11 @@ public class TeleClickModeAction extends AdministrationAction {
 
 		if (player.isTeleclickEnabled()) {
 			player.setTeleclickEnabled(false);
-			StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
+			SingletonRepository.getRuleProcessor().addGameEvent(player.getName(),
 					_TELECLICKMODE, "off");
 		} else {
 			player.setTeleclickEnabled(true);
-			StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
+			SingletonRepository.getRuleProcessor().addGameEvent(player.getName(),
 					_TELECLICKMODE, "on");
 		}
 	}

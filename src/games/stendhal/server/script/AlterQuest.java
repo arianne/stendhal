@@ -1,5 +1,6 @@
 package games.stendhal.server.script;
 
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
 import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.entity.player.Player;
@@ -23,7 +24,7 @@ public class AlterQuest extends ScriptImpl {
 		}
 
 		// find player
-		StendhalRPRuleProcessor rules = StendhalRPRuleProcessor.get();
+		StendhalRPRuleProcessor rules = SingletonRepository.getRuleProcessor();
 		Player target = rules.getPlayer(args.get(0));
 		if (target != null) {
 

@@ -83,7 +83,7 @@ public class MeetHayunn extends AbstractQuest {
 		//player returns to Hayunn not having killed a rat
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(new QuestInStateCondition(QUEST_SLOT,"start"),new NotCondition(new KilledCondition("rat"))),
+				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"), new NotCondition(new KilledCondition("rat"))),
 				ConversationStates.ATTENDING,
 		        "I see you haven't managed to kill a rat yet. Do you need me to tell you how to fight them?",
 				null);
@@ -96,7 +96,7 @@ public class MeetHayunn extends AbstractQuest {
 		npc.add(
 				ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
-				new AndCondition(new QuestInStateCondition(QUEST_SLOT,"start"),new KilledCondition("rat")),
+				new AndCondition(new QuestInStateCondition(QUEST_SLOT, "start"), new KilledCondition("rat")),
 				ConversationStates.INFORMATION_1,
 		        "You killed the rat! Now, you may ask, what is the point behind risking your life to kill things? #Yes?",
 				new MultipleActions(actions));
@@ -152,7 +152,7 @@ public class MeetHayunn extends AbstractQuest {
 	   	// incase player didn't finish learning everything when he came after killing the rat, he must have another chance. Here it is.
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
-				new QuestInStateCondition(QUEST_SLOT,"killed"),
+				new QuestInStateCondition(QUEST_SLOT, "killed"),
 				ConversationStates.INFORMATION_1,
 		        "You ran off pretty fast after coming to tell me you killed that rat! I was about to give you some more hints and tips. Do you want to hear them?",
 				null);
@@ -160,7 +160,7 @@ public class MeetHayunn extends AbstractQuest {
 		// Player has returned to say hi again.
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
-				new QuestInStateCondition(QUEST_SLOT,"taught"),
+				new QuestInStateCondition(QUEST_SLOT, "taught"),
 				ConversationStates.INFORMATION_6,
 		        "Hello again. Have you come to learn more from me?",
 				null);

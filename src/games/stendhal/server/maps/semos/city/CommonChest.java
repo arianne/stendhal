@@ -1,7 +1,7 @@
 package games.stendhal.server.maps.semos.city;
 
 import games.stendhal.server.core.config.ZoneConfigurator;
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.mapstuff.chest.Chest;
 
@@ -23,10 +23,10 @@ public class CommonChest implements ZoneConfigurator {
 
 		Chest chest = new Chest();
 		chest.setPosition(44, 60);
-		chest.add(StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("knife"));
-		chest.add(StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("wooden shield"));
-		chest.add(StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("leather armor"));
-		chest.add(StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("money"));
+		chest.add(SingletonRepository.getEntityManager().getItem("knife"));
+		chest.add(SingletonRepository.getEntityManager().getItem("wooden shield"));
+		chest.add(SingletonRepository.getEntityManager().getItem("leather armor"));
+		chest.add(SingletonRepository.getEntityManager().getItem("money"));
 		zone.add(chest);
 	}
 }

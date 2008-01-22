@@ -1,7 +1,7 @@
 package games.stendhal.server.maps.ados.coast;
 
 import games.stendhal.common.Direction;
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -26,7 +26,7 @@ public class FerryConveyerNPC extends SpeakerNPCFactory {
 
 	public static StendhalRPZone getShipZone() {
 		if (shipZone == null) {
-			shipZone = StendhalRPWorld.get().getZone("0_athor_ship_w2");
+			shipZone = SingletonRepository.getRPWorld().getZone("0_athor_ship_w2");
 		}
 		return shipZone;
 	}

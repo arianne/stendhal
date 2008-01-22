@@ -1,6 +1,7 @@
 /* $Id$ */
 package games.stendhal.server.script;
 
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.core.scripting.ScriptImpl;
@@ -23,7 +24,7 @@ public class DumpTurnListenerEvents extends ScriptImpl {
 		int outdated = 0;
 		ObjectCounter<Class< ? >> counter = new ObjectCounter<Class< ? >>();
 
-		TurnNotifier turnNotifier = TurnNotifier.get();
+		TurnNotifier turnNotifier = SingletonRepository.getTurnNotifier();
 		int currentTurn = turnNotifier.getCurrentTurnForDebugging();
 		Map<Integer, Set<TurnListener>> events = turnNotifier.getEventListForDebugging();
 

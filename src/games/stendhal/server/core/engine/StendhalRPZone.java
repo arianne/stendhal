@@ -35,7 +35,6 @@ import games.stendhal.server.entity.mapstuff.spawner.PassiveEntityRespawnPoint;
 import games.stendhal.server.entity.mapstuff.spawner.PassiveEntityRespawnPointFactory;
 import games.stendhal.server.entity.mapstuff.spawner.SheepFood;
 import games.stendhal.server.entity.npc.NPC;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.tools.tiled.LayerDefinition;
@@ -448,7 +447,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 				add(sheep);
 			} else if (clazz.contains("logic/creature")) {
 				// get the default EntityManager
-				EntityManager manager = StendhalRPWorld.get().getRuleManager().getEntityManager();
+				EntityManager manager = SingletonRepository.getEntityManager();
 
 				// Is the entity a creature
 				if (manager.isCreature(clazz, type)) {
@@ -507,7 +506,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 			return;
 		}
 
-		for (IRPZone i : StendhalRPWorld.get()) {
+		for (IRPZone i : SingletonRepository.getRPWorld()) {
 			StendhalRPZone zone = (StendhalRPZone) i;
 
 			if (zone.isInterior()) {
@@ -652,7 +651,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 		} else if (object instanceof BabyDragon) {
 			playersAndFriends.add((BabyDragon) object);
 		} else if (object instanceof SpeakerNPC) {
-			NPCList.get().add((SpeakerNPC) object);
+			SingletonRepository.getNPCList().add((SpeakerNPC) object);
 		} else if (object instanceof Portal) {
 			portals.add((Portal) object);
 		}
@@ -666,7 +665,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 		}
 
 		// TODO: Move up to MarauroaRPZone?
-		StendhalRPWorld.get().requestSync(object);
+		SingletonRepository.getRPWorld().requestSync(object);
 	}
 
 	@Override
@@ -702,7 +701,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 		} else if (object instanceof BabyDragon) {
 			playersAndFriends.remove(object);
 		} else if (object instanceof SpeakerNPC) {
-			NPCList.get().remove(((SpeakerNPC) object).getName());
+			SingletonRepository.getNPCList().remove(((SpeakerNPC) object).getName());
 		} else if (object instanceof Portal) {
 			portals.remove(object);
 		}

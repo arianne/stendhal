@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.entity.Entity;
 
@@ -29,8 +30,8 @@ public class ItemTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		StendhalRPWorld world = StendhalRPWorld.get();
-		if (StendhalRPWorld.get().getRPZone(ZONE_NAME) == null) {
+		StendhalRPWorld world = SingletonRepository.getRPWorld();
+		if (SingletonRepository.getRPWorld().getRPZone(ZONE_NAME) == null) {
 			world.addArea(ZONE_NAME, ZONE_CONTENT);
 		}
 	}

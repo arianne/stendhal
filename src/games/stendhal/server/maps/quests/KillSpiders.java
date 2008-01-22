@@ -1,6 +1,6 @@
 package games.stendhal.server.maps.quests;
 
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -120,8 +120,7 @@ public class KillSpiders extends AbstractQuest {
 								&& player.hasKilled("poisonous spider")
 								&& player.hasKilled("giant spider")) {
 							engine.say("Oh thank you my friend. Here you have something special, I got it from a Magican. Who he was I do not know. What the egg's good for, I do not know. I only know, it could be useful for you.");
-							Item mythegg = StendhalRPWorld.get()
-									.getRuleManager().getEntityManager()
+							Item mythegg = SingletonRepository.getEntityManager()
 									.getItem("mythical egg");
 							mythegg.setBoundTo(player.getName());
 							player.equip(mythegg, true);

@@ -4,8 +4,8 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.BeforeClass;
 
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPWorld;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.common.Log4J;
@@ -29,9 +29,9 @@ public abstract class QuestHelper extends PlayerTestHelper  {
 		StendhalRPWorld world = MockStendlRPWorld.get();
 
 		// load item configurations to handle money and other items
-		world.getRuleManager().getEntityManager();
+		SingletonRepository.getEntityManager();
 
-		NPCList.get().clear();
+		SingletonRepository.getNPCList().clear();
 	}
 
 }

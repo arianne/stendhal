@@ -1,10 +1,8 @@
 package games.stendhal.server.actions.admin;
 
 import games.stendhal.server.actions.CommandCenter;
-import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.entity.player.Jail;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Set;
@@ -30,7 +28,7 @@ public class TeleportAction extends AdministrationAction {
 		if (action.has(TARGET) && action.has(_ZONE) && action.has(X)
 				&& action.has(Y)) {
 			String name = action.get(TARGET);
-			Player teleported = StendhalRPRuleProcessor.get().getPlayer(name);
+			Player teleported = SingletonRepository.getRuleProcessor().getPlayer(name);
 
 			if (teleported == null) {
 				String text = "Player \"" + name + "\" not found";
@@ -41,12 +39,12 @@ public class TeleportAction extends AdministrationAction {
 
 			// validate the zone-name.
 			IRPZone.ID zoneid = new IRPZone.ID(action.get(_ZONE));
-			if (!StendhalRPWorld.get().hasRPZone(zoneid)) {
+			if (!SingletonRepository.getRPWorld().hasRPZone(zoneid)) {
 				String text = "Zone \"" + zoneid + "\" not found.";
 				logger.debug(text);
 
 				Set<String> zoneNames = new TreeSet<String>();
-				for (IRPZone irpZone : StendhalRPWorld.get()) {
+				for (IRPZone irpZone : SingletonRepository.getRPWorld()) {
 					StendhalRPZone zone = (StendhalRPZone) irpZone;
 					zoneNames.add(zone.getName());
 				}
@@ -54,17 +52,17 @@ public class TeleportAction extends AdministrationAction {
 				return;
 			}
 
-			StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(
+			StendhalRPZone zone = (StendhalRPZone) SingletonRepository.getRPWorld().getRPZone(
 					zoneid);
 			int x = action.getInt(X);
 			int y = action.getInt(Y);
 
-			StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
+			SingletonRepository.getRuleProcessor().addGameEvent(player.getName(),
 					_TELEPORT, action.get(TARGET), zone.getName(),
 					Integer.toString(x), Integer.toString(y));
 			teleported.teleport(zone, x, y, null, player);
 			
-			Jail.get().grantParoleIfPlayerWasAPrisoner(teleported);
+			SingletonRepository.getJail().grantParoleIfPlayerWasAPrisoner(teleported);
 		}
 	}
 

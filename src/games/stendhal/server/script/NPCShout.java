@@ -1,6 +1,6 @@
 package games.stendhal.server.script;
 
-import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.entity.player.Player;
 
@@ -34,7 +34,7 @@ public class NPCShout extends ScriptImpl {
 			}
 			String text = sb.toString();
 
-			StendhalRPRuleProcessor.get().tellAllPlayers(text);
+			SingletonRepository.getRuleProcessor().tellAllPlayers(text);
 		}
 	}
 

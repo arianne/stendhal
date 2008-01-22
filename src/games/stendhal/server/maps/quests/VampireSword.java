@@ -1,6 +1,6 @@
 package games.stendhal.server.maps.quests;
 
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -95,8 +95,7 @@ public class VampireSword extends AbstractQuest {
 				@Override
 				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 					npc.say("Then you need this #goblet. Take it to the Semos #Catacombs.");
-					Item emptygoblet = StendhalRPWorld.get()
-							.getRuleManager().getEntityManager().getItem("empty goblet");
+					Item emptygoblet = SingletonRepository.getEntityManager().getItem("empty goblet");
 					player.equip(emptygoblet, true);
 					player.setQuest(QUEST_SLOT, "start");
 					player.addKarma(5);
@@ -210,8 +209,7 @@ public class VampireSword extends AbstractQuest {
 				@Override
 				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 					npc.say("You stupid ..... Be more careful next time. Bye!");
-					Item emptygoblet = StendhalRPWorld.get()
-							.getRuleManager().getEntityManager().getItem("empty goblet");
+					Item emptygoblet = SingletonRepository.getEntityManager().getItem("empty goblet");
 					player.equip(emptygoblet, true);
 				}
 			});
@@ -242,8 +240,7 @@ public class VampireSword extends AbstractQuest {
 					npc.say("I have finished forging the mighty Vampire Sword. You deserve this. Now i'm going back to work, goodbye!");
 					player.addXP(5000);
 					player.addKarma(15);
-					Item vampireSword = StendhalRPWorld.get()
-							.getRuleManager().getEntityManager().getItem(
+					Item vampireSword = SingletonRepository.getEntityManager().getItem(
 									"vampire sword");
 					vampireSword.setBoundTo(player.getName());
 					player.equip(vampireSword, true);

@@ -3,8 +3,7 @@
  */
 package games.stendhal.tools.port1_2;
 
-import games.stendhal.server.core.engine.StendhalRPWorld;
-
+import games.stendhal.server.core.engine.SingletonRepository;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -205,7 +204,7 @@ public class TablesToBlob {
 		System.out.println("PORTING RPOBJECT, RPATTRIBUTE and RPSLOT tables from Marauroa 1.0 to object_data of Marauroa 2.0");
 		System.out.println();
 		Configuration.setConfigurationFile("server.ini");
-		StendhalRPWorld.get();
+		SingletonRepository.getRPWorld();
 
 		PortJDBCDatabase db = new PortJDBCDatabase();
 

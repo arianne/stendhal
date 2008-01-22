@@ -1,10 +1,10 @@
 package games.stendhal.server.script;
 
 import games.stendhal.common.Direction;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TurnListener;
-import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.core.scripting.ScriptingNPC;
 import games.stendhal.server.core.scripting.ScriptingSandbox;
@@ -99,7 +99,7 @@ public class Debuggera extends ScriptImpl {
 
 		@Override
 		public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-			TurnNotifier.get().notifyInTurns(0,
+			SingletonRepository.getTurnNotifier().notifyInTurns(0,
 					new TeleportScriptAction(player, engine, sentence, sandbox));
 		}
 	}
@@ -202,7 +202,7 @@ public class Debuggera extends ScriptImpl {
 				}
 			}
 			if (keepRunning) {
-				TurnNotifier.get().notifyInTurns(0, this);
+				SingletonRepository.getTurnNotifier().notifyInTurns(0, this);
 			}
 		}
 	}
@@ -233,13 +233,13 @@ public class Debuggera extends ScriptImpl {
 			this.player = player;
 			counter = 0;
 			player.sendPrivateText("Let's start");
-			TurnNotifier.get().notifyInTurns(10, this);
+			SingletonRepository.getTurnNotifier().notifyInTurns(10, this);
 		}
 
 		public void onTurnReached(int currentTurn) {
 			try {
 				String zoneName = zones.get(counter);
-				StendhalRPZone zone = StendhalRPWorld.get().getZone(zoneName);
+				StendhalRPZone zone = SingletonRepository.getRPWorld().getZone(zoneName);
 
 				int[][] tele_xy = { { 5, 5 }, { 50, 50 }, { 20, 20 },
 						{ 100, 100 }, { 100, 5 } };
@@ -263,7 +263,7 @@ public class Debuggera extends ScriptImpl {
 
 			counter++;
 			if (counter < zones.size()) {
-				TurnNotifier.get().notifyInTurns(10, this);
+				SingletonRepository.getTurnNotifier().notifyInTurns(10, this);
 			}
 		}
 	}
@@ -378,7 +378,7 @@ public class Debuggera extends ScriptImpl {
 				"teleportme"), new AdminCondition(), ConversationStates.IDLE,
 				null, new TeleportNPCAction(sandbox));
 
-		StendhalRPWorld world = StendhalRPWorld.get();
+		StendhalRPWorld world = SingletonRepository.getRPWorld();
 		npc.add(ConversationStates.ATTENDING, Arrays.asList("sightseeing",
 				"memory", "memoryhole"), new AdminCondition(),
 				ConversationStates.IDLE, null, new SightseeingAction(sandbox,

@@ -3,7 +3,7 @@ package games.stendhal.server.entity.creature.impl;
 import games.stendhal.common.Debug;
 import games.stendhal.common.Direction;
 import games.stendhal.common.Rand;
-import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
@@ -493,10 +493,10 @@ public class CreatureLogic {
 	}
 
 	public void logic() {
-		StendhalRPWorld world = StendhalRPWorld.get();
+		StendhalRPWorld world = SingletonRepository.getRPWorld();
 		healer.heal(creature);
 
-		int turn = StendhalRPRuleProcessor.get().getTurn();
+		int turn = SingletonRepository.getRuleProcessor().getTurn();
 
 		/*
 		 * We only *think* once each few turns. So we save CPU time. Each

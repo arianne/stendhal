@@ -1,5 +1,6 @@
 package games.stendhal.server.maps.quests;
 
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.player.Player;
 
@@ -20,7 +21,7 @@ public abstract class AbstractQuest implements IQuest {
 	protected String slotName = "XXX"; // TODO init it in the quest-classes
 
 	/** NPCList. */
-	protected NPCList npcs = NPCList.get();
+	protected NPCList npcs = SingletonRepository.getNPCList();
 
 	private static final List<String> EMPTY_LIST = new ArrayList<String>();
 

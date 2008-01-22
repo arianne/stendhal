@@ -1,5 +1,6 @@
 package games.stendhal.server.core.rp.guilds;
 
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.Definition;
@@ -78,7 +79,7 @@ public class GuildMember extends Entity {
     
     private void loadData() {
         playerName = get(ATTR_PLAYER);
-        guild = GuildList.get().getGuild(get(ATTR_GUILD));
+        guild = SingletonRepository.getGuildList().getGuild(get(ATTR_GUILD));
         permission = guild.getPermission(getInt(ATTR_RANK));
     }
 

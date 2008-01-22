@@ -1,7 +1,6 @@
 package games.stendhal.server.core.scripting;
 
-import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.player.Player;
 import groovy.lang.Binding;
 import groovy.lang.GroovyShell;
@@ -29,8 +28,8 @@ public class ScriptInGroovy extends ScriptingSandbox {
 
 		// TODO: get rid of these variables, use the Singleton getters
 		// in the scripts
-		groovyBinding.setVariable("rules", StendhalRPRuleProcessor.get());
-		groovyBinding.setVariable("world", StendhalRPWorld.get());
+		groovyBinding.setVariable("rules", SingletonRepository.getRuleProcessor());
+		groovyBinding.setVariable("world", SingletonRepository.getRPWorld());
 	}
 
 	// ------------------------------------------------------------------------

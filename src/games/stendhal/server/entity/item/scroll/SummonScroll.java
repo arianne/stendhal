@@ -12,7 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.item.scroll;
 
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.rp.StendhalRPAction;
 import games.stendhal.server.core.rule.EntityManager;
@@ -84,7 +84,7 @@ public class SummonScroll extends InfoStringScroll {
 		int x = player.getInt("x");
 		int y = player.getInt("y");
 
-		EntityManager manager = StendhalRPWorld.get().getRuleManager().getEntityManager();
+		EntityManager manager = SingletonRepository.getEntityManager();
 
 		Creature pickedCreature = null;
 

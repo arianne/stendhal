@@ -1,12 +1,11 @@
 package games.stendhal.server.script;
 
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
 import games.stendhal.server.core.engine.Task;
 import games.stendhal.server.core.events.TurnListener;
-import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.entity.item.StackableItem;
-import games.stendhal.server.entity.player.Jail;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.HashSet;
@@ -30,13 +29,13 @@ public class BugInspect extends ScriptImpl implements TurnListener {
 	@Override
 	public void execute(Player admin, List<String> args) {
 		super.execute(admin, args);
-		TurnNotifier.get().notifyInTurns(6, this);
+		SingletonRepository.getTurnNotifier().notifyInTurns(6, this);
 		keepRunning = true;
 		seen.clear();
 	}
 
 	public void onTurnReached(int currentTurn) {
-		StendhalRPRuleProcessor.get().getOnlinePlayers().forAllPlayersExecute(
+		SingletonRepository.getRuleProcessor().getOnlinePlayers().forAllPlayersExecute(
 				
 			new Task<Player>() {
 
@@ -82,9 +81,9 @@ public class BugInspect extends ScriptImpl implements TurnListener {
 					String message = player.getName() + " has a large amount of items";
 					if (caught) {
 
-						StendhalRPRuleProcessor.get().addGameEvent("bug inspect", "jail", player.getName(),
+						SingletonRepository.getRuleProcessor().addGameEvent("bug inspect", "jail", player.getName(),
 								Integer.toString(-1), "possible bug abuse");
-						Jail.get().imprison(player.getName(), player, -1, "possible bug abuse");
+						SingletonRepository.getJail().imprison(player.getName(), player, -1, "possible bug abuse");
 						player.sendPrivateText("Please use /support to talk to an admin about your large amount of items which may have been the result of a bug.");
 						player.notifyWorldAboutChanges();
 
@@ -93,7 +92,7 @@ public class BugInspect extends ScriptImpl implements TurnListener {
 
 					if (warn || caught) {
 
-						StendhalRPRuleProcessor.get().addGameEvent("bug inspect", "support", message);
+						SingletonRepository.getRuleProcessor().addGameEvent("bug inspect", "support", message);
 						StendhalRPRuleProcessor.sendMessageToSupporters("bug inspect", message);
 						logger.warn("User with large amout of items: " + message + "\r\n" + sb.toString());
 					}
@@ -103,7 +102,7 @@ public class BugInspect extends ScriptImpl implements TurnListener {
 		});
 
 		if (keepRunning) {
-			TurnNotifier.get().notifyInTurns(6, this);
+			SingletonRepository.getTurnNotifier().notifyInTurns(6, this);
 		}
 	}
 

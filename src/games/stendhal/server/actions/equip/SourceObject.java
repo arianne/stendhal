@@ -1,7 +1,7 @@
 package games.stendhal.server.actions.equip;
 
 import games.stendhal.server.core.engine.ItemLogger;
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.EquipListener;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Item;
@@ -169,8 +169,8 @@ class SourceObject extends MoveableObject {
 	private Item getNonContainedItem(RPObject.ID baseItemId) {
 
 		Entity entity = null;
-		if (StendhalRPWorld.get().has(baseItemId)) {
-			entity = (Entity) StendhalRPWorld.get().get(baseItemId);
+		if (SingletonRepository.getRPWorld().has(baseItemId)) {
+			entity = (Entity) SingletonRepository.getRPWorld().get(baseItemId);
 			if (!(entity instanceof Item)) {
 				entity = null;
 			} else {

@@ -1,6 +1,6 @@
 package games.stendhal.server.script;
 
-import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.entity.player.Player;
 
@@ -27,7 +27,7 @@ public class ResetTutorial extends ScriptImpl {
 		}
 
 		// find the player and slot
-		Player player = StendhalRPRuleProcessor.get().getPlayer(args.get(0));
+		Player player = SingletonRepository.getRuleProcessor().getPlayer(args.get(0));
 		RPSlot slot = player.getSlot("!tutorial");
 
 		// remove old store object

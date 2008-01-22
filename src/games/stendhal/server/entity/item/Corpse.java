@@ -13,10 +13,9 @@
 package games.stendhal.server.entity.item;
 
 import games.stendhal.common.Grammar;
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.EquipListener;
 import games.stendhal.server.core.events.TurnListener;
-import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.PassiveEntity;
 import games.stendhal.server.entity.RPEntity;
@@ -161,7 +160,7 @@ public class Corpse extends PassiveEntity implements TurnListener,
 				(int) (rect.getX() + ((rect.getWidth() - getWidth()) / 2.0)),
 				(int) (rect.getY() + ((rect.getHeight() - getHeight()) / 2.0)));
 
-		TurnNotifier.get().notifyInSeconds(DEGRADATION_STEP_TIMEOUT, this);
+		SingletonRepository.getTurnNotifier().notifyInSeconds(DEGRADATION_STEP_TIMEOUT, this);
 		stage = 0;
 		put("stage", stage);
 
@@ -209,7 +208,7 @@ public class Corpse extends PassiveEntity implements TurnListener,
 	private void modify() {
 		if (getZone() != null) {
 			if (isContained()) {
-				StendhalRPWorld.get().modify(getBase());
+				SingletonRepository.getRPWorld().modify(getBase());
 			} else {
 				notifyWorldAboutChanges();
 			}
@@ -243,15 +242,15 @@ public class Corpse extends PassiveEntity implements TurnListener,
 			if (isContained()) {
 				// We modify the base container if the object change.
 
-				StendhalRPWorld.get().modify(getBase());
+				SingletonRepository.getRPWorld().modify(getBase());
 
 				getContainerSlot().remove(this.getID());
 			} else {
-				StendhalRPWorld.get().remove(getID());
+				SingletonRepository.getRPWorld().remove(getID());
 			}
 
 		} else {
-			TurnNotifier.get().notifyInSeconds(DEGRADATION_STEP_TIMEOUT, this);
+			SingletonRepository.getTurnNotifier().notifyInSeconds(DEGRADATION_STEP_TIMEOUT, this);
 		}
 	}
 

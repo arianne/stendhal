@@ -2,7 +2,7 @@ package games.stendhal.server.maps.quests;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import games.stendhal.server.entity.npc.NPCList;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPCFactory;
 import games.stendhal.server.entity.npc.fsm.Engine;
@@ -30,7 +30,7 @@ public class MeetHackimTest {
 	@Before
 	public void setUp() {
 		npc = new SpeakerNPC("Hackim Easso");
-		NPCList.get().add(npc);
+		SingletonRepository.getNPCList().add(npc);
 		SpeakerNPCFactory npcConf = new BlacksmithAssistantNPC();
 		npcConf.createDialog(npc);
 		en = npc.getEngine();

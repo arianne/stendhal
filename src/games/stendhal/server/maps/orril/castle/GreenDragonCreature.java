@@ -1,7 +1,7 @@
 package games.stendhal.server.maps.orril.castle;
 
 import games.stendhal.server.core.config.ZoneConfigurator;
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.rule.defaultruleset.DefaultEntityManager;
 import games.stendhal.server.entity.creature.Creature;
@@ -27,7 +27,7 @@ public class GreenDragonCreature implements ZoneConfigurator {
 	}
 
 	private void buildCastleDungeonArea(StendhalRPZone zone, Map<String, String> attributes) {
-		DefaultEntityManager manager = (DefaultEntityManager) StendhalRPWorld.get().getRuleManager().getEntityManager();
+		DefaultEntityManager manager = (DefaultEntityManager) SingletonRepository.getEntityManager();
 		Creature creature = new ItemGuardCreature(manager.getCreature("green dragon"), "dungeon silver key");
 		CreatureRespawnPoint point = new CreatureRespawnPoint(zone, 69, 43, creature, 1);
 		zone.add(point);

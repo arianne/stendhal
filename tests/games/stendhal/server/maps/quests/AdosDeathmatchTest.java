@@ -2,9 +2,9 @@ package games.stendhal.server.maps.quests;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
@@ -42,7 +42,7 @@ public class AdosDeathmatchTest {
 		MockStendlRPWorld.get().addRPZone(ados_wall_n);
 
 		configurator.configureZone(zone, null);
-		SpeakerNPC recruiter = NPCList.get().get("Thonatus");
+		SpeakerNPC recruiter = SingletonRepository.getNPCList().get("Thonatus");
 		assertNotNull(recruiter);
 		Player dmPlayer = PlayerTestHelper.createPlayer("dmPlayer");
 		Engine en = recruiter.getEngine();

@@ -1,8 +1,8 @@
 package games.stendhal.server.entity.mapstuff.chest;
 
 import games.stendhal.common.Grammar;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.TurnListener;
-import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.slot.PersonalChestSlot;
@@ -158,7 +158,7 @@ public class PersonalChest extends Chest {
 	public void open(RPEntity user) {
 		attending = user;
 
-		TurnNotifier.get().notifyInTurns(0, new SyncContent());
+		SingletonRepository.getTurnNotifier().notifyInTurns(0, new SyncContent());
 
 		RPSlot content = getSlot("content");
 		content.clear();
@@ -226,7 +226,7 @@ public class PersonalChest extends Chest {
 		 */
 		public void onTurnReached(int currentTurn) {
 			if (syncContent()) {
-				TurnNotifier.get().notifyInTurns(0, this);
+				SingletonRepository.getTurnNotifier().notifyInTurns(0, this);
 			}
 		}
 	}

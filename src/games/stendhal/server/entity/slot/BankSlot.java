@@ -1,5 +1,6 @@
 package games.stendhal.server.entity.slot;
 
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.Entity;
 
 import java.util.List;
@@ -27,7 +28,7 @@ public class BankSlot extends PlayerSlot {
 	public boolean isReachableForTakingThingsOutOfBy(Entity entity) {
 		// Check if we are next to a chest which acts as an interface
 		// to this bank slot
-		List<Entity> accessors = BankAccessorManager.get().get(bank);
+		List<Entity> accessors = SingletonRepository.getBankAccessorManager().get(bank);
 		boolean found = false;
 		for (Entity accessor : accessors) {
 			if (entity.nextTo(accessor)) {

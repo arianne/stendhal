@@ -1,6 +1,6 @@
 package games.stendhal.server.maps.quests;
 
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.mapstuff.spawner.PassiveEntityRespawnPoint;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -111,7 +111,7 @@ public class PlinksToy extends AbstractQuest {
 	}
 
 	private void step_2() {
-		StendhalRPZone zone = StendhalRPWorld.get().getZone("0_semos_plains_n");
+		StendhalRPZone zone = SingletonRepository.getRPWorld().getZone("0_semos_plains_n");
 		PassiveEntityRespawnPoint teddyRespawner = new PassiveEntityRespawnPoint("teddy", 1500);
 		teddyRespawner.setPosition(107, 84);
 		teddyRespawner.setDescription("There's a teddy-bear-shaped depression in the sand here.");

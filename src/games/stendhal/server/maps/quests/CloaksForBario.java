@@ -2,7 +2,7 @@ package games.stendhal.server.maps.quests;
 
 import games.stendhal.common.Grammar;
 import games.stendhal.common.MathHelper;
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -174,7 +174,7 @@ public class CloaksForBario extends AbstractQuest {
 												"cloak") + ".");
 								engine.setCurrentState(ConversationStates.QUESTION_1);
 							} else {
-								Item goldenShield = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
+								Item goldenShield = SingletonRepository.getEntityManager().getItem(
 										"golden shield");
 								goldenShield.setBoundTo(player.getName());
 								player.equip(goldenShield, true);

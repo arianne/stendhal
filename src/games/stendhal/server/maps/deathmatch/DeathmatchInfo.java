@@ -1,7 +1,7 @@
 package games.stendhal.server.maps.deathmatch;
 
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.Area;
 
@@ -35,6 +35,7 @@ public class DeathmatchInfo {
 		this.entranceSpot = entrance;
 	}
 
+	
 	/**
 	 * Gets the arena.
 	 *
@@ -65,6 +66,8 @@ public class DeathmatchInfo {
 		DeathmatchState deathmatchState = DeathmatchState.createStartState(player.getLevel());
 		player.setQuest("deathmatch", deathmatchState.toQuestString());
 		DeathmatchEngine dmEngine = new DeathmatchEngine(player, this);
-		TurnNotifier.get().notifyInTurns(0, dmEngine);
+		SingletonRepository.getTurnNotifier().notifyInTurns(0, dmEngine);
 	}
+	
+	
 }

@@ -1,7 +1,7 @@
 package games.stendhal.server.maps;
 
 import games.stendhal.server.core.config.ZoneConfigurator;
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.rule.defaultruleset.DefaultEntityManager;
 import games.stendhal.server.core.rule.defaultruleset.DefaultItem;
@@ -31,7 +31,7 @@ public class FeaturesTestArea implements ZoneConfigurator {
 			if (killer instanceof RPEntity) {
 				RPEntity killerRPEntity = (RPEntity) killer;
 				if (!killerRPEntity.isEquipped("golden key")) {
-					Item item = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("golden key");
+					Item item = SingletonRepository.getEntityManager().getItem("golden key");
 					killerRPEntity.equip(item, true);
 				}
 			}
@@ -45,7 +45,7 @@ public class FeaturesTestArea implements ZoneConfigurator {
 	}
 
 	public FeaturesTestArea() {
-		manager = (DefaultEntityManager) StendhalRPWorld.get().getRuleManager().getEntityManager();
+		manager = (DefaultEntityManager) SingletonRepository.getEntityManager();
 	}
 
 	/**

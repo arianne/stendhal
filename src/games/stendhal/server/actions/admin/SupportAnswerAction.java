@@ -3,6 +3,7 @@ package games.stendhal.server.actions.admin;
 import static games.stendhal.server.actions.WellKnownActionConstants.TARGET;
 import games.stendhal.common.Grammar;
 import games.stendhal.server.actions.CommandCenter;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
@@ -24,9 +25,9 @@ public class SupportAnswerAction extends AdministrationAction {
 			final String message = player.getTitle() + " answers " + Grammar.suffix_s(action.get(TARGET))
 					+ " support question: " + action.get(_TEXT);
 
-			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), _SUPPORTANSWER, action.get(TARGET),
+			SingletonRepository.getRuleProcessor().addGameEvent(player.getName(), _SUPPORTANSWER, action.get(TARGET),
 					action.get(_TEXT));
-			Player supported = StendhalRPRuleProcessor.get().getPlayer(action.get(TARGET));
+			Player supported = SingletonRepository.getRuleProcessor().getPlayer(action.get(TARGET));
 			if (supported != null) {
 
 				supported.sendPrivateText("Support (" + player.getTitle() + ") tells you: " + action.get(_TEXT));

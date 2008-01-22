@@ -1,8 +1,8 @@
 package games.stendhal.server.entity.mapstuff.office;
 
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TurnListener;
-import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.Entity;
 
 import java.awt.Rectangle;
@@ -137,7 +137,7 @@ public abstract class StoreableEntityList<T extends Entity> implements TurnListe
 
 	protected void setupTurnNotifier(int notifyDelta) {
 		this.notifyDelta = notifyDelta;
-		TurnNotifier.get().notifyInSeconds(notifyDelta, this);
+		SingletonRepository.getTurnNotifier().notifyInSeconds(notifyDelta, this);
 	}
 
     public void onTurnReached(int currentTurn) {
@@ -154,7 +154,7 @@ public abstract class StoreableEntityList<T extends Entity> implements TurnListe
     		zone.storeToDatabase();
     	}
 
-		TurnNotifier.get().notifyInSeconds(notifyDelta, this);
+		SingletonRepository.getTurnNotifier().notifyInSeconds(notifyDelta, this);
     }
 
 	protected abstract String getName(T entity);

@@ -1,7 +1,7 @@
 package games.stendhal.server.actions.admin;
 
 import games.stendhal.server.actions.CommandCenter;
-import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
 import static games.stendhal.server.actions.WellKnownActionConstants.*;
@@ -23,7 +23,7 @@ public class AdminLevelAction extends AdministrationAction {
 		if (action.has(_TARGET)) {
 
 			String name = action.get(_TARGET);
-			Player target = StendhalRPRuleProcessor.get().getPlayer(name);
+			Player target = SingletonRepository.getRuleProcessor().getPlayer(name);
 
 			if (target == null || (target.isGhost() && !isAllowedtoSeeGhosts(player))) {
 				logger.debug("Player \"" + name + "\" not found");
@@ -58,7 +58,7 @@ public class AdminLevelAction extends AdministrationAction {
 				} else {
 
 					// OK, do the change
-					StendhalRPRuleProcessor.get().addGameEvent(
+					SingletonRepository.getRuleProcessor().addGameEvent(
 							player.getName(), _ADMINLEVEL, target.getName(),
 							_ADMINLEVEL, action.get(_NEWLEVEL));
 					target.setAdminLevel(newlevel);

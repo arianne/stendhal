@@ -6,10 +6,10 @@
 
 package games.stendhal.server.entity.mapstuff.area;
 
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.MovementListener;
 import games.stendhal.server.core.events.TurnListener;
-import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.ActiveEntity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;
@@ -76,7 +76,7 @@ public class OccupantArea extends AreaEntity implements MovementListener,
 		targets.add(entity.getID());
 
 		if (targets.size() == 1) {
-			TurnNotifier.get().notifyInTurns(interval, this);
+			SingletonRepository.getTurnNotifier().notifyInTurns(interval, this);
 		}
 	}
 
@@ -152,7 +152,7 @@ public class OccupantArea extends AreaEntity implements MovementListener,
 		targets.remove(entity.getID());
 
 		if (targets.isEmpty()) {
-			TurnNotifier.get().dontNotify(this);
+			SingletonRepository.getTurnNotifier().dontNotify(this);
 		}
 	}
 
@@ -371,7 +371,7 @@ public class OccupantArea extends AreaEntity implements MovementListener,
 		}
 
 		if (!targets.isEmpty()) {
-			TurnNotifier.get().notifyInTurns(interval, this);
+			SingletonRepository.getTurnNotifier().notifyInTurns(interval, this);
 		}
 	}
 }

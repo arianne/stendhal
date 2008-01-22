@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.mapstuff.portal;
 
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.RPEntity;
@@ -120,7 +121,7 @@ public abstract class Door extends AccessCheckingPortal implements TurnListener 
 
 		if (couldUse) {
 			// open door, or stop door from closing
-			TurnNotifier turnNotifier = TurnNotifier.get();
+			TurnNotifier turnNotifier = SingletonRepository.getTurnNotifier();
 			if (isOpen()) {
 				// The door is still open because another player just used it.
 				// Thus, it is scheduled to auto-close soon. We delay this

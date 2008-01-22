@@ -2,9 +2,9 @@ package games.stendhal.server.maps.quests;
 
 import static org.junit.Assert.assertEquals;
 import games.stendhal.server.core.config.ZoneConfigurator;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
@@ -33,7 +33,7 @@ public class CloaksForBarioTest {
 	public void setUp() {
 		ZoneConfigurator zoneConf = new CloaksCollectorNPC();
 		zoneConf.configureZone(new StendhalRPZone("admin_test"), null);
-		npc = NPCList.get().get("Bario");
+		npc = SingletonRepository.getNPCList().get("Bario");
 
 		AbstractQuest quest = new CloaksForBario();
 		quest.addToWorld();

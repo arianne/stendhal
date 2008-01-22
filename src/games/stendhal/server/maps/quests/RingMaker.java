@@ -1,6 +1,6 @@
 package games.stendhal.server.maps.quests;
 
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -106,8 +106,7 @@ public class RingMaker extends AbstractQuest {
 					}
 					npc.say("I'm pleased to say, your ring of life is fixed! It's good as new now.");
 					player.addXP(500);
-					Item emeraldRing = StendhalRPWorld.get()
-							.getRuleManager().getEntityManager().getItem(
+					Item emeraldRing = SingletonRepository.getEntityManager().getItem(
 									"emerald ring");
 					emeraldRing.setBoundTo(player.getName());
 					player.equip(emeraldRing, true);

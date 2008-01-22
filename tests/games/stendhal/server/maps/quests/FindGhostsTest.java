@@ -7,8 +7,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 import static org.junit.matchers.StringContains.containsString;
 import games.stendhal.server.core.config.ZoneConfigurator;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
@@ -40,7 +40,7 @@ public class FindGhostsTest {
 		StendhalRPZone zone = new StendhalRPZone("admin_test");
 		ZoneConfigurator zoneConf = new WomanGhostNPC();
 		zoneConf.configureZone(zone, null);
-		npc = NPCList.get().get("Carena");
+		npc = SingletonRepository.getNPCList().get("Carena");
 		en = npc.getEngine();
 
 		zoneConf = new KidGhostNPC();
@@ -64,7 +64,7 @@ public class FindGhostsTest {
 
 	@org.junit.After
 	public void tearDown() throws Exception {
-		NPCList.get().clear();
+		SingletonRepository.getNPCList().clear();
 	}
 
 	@Test
@@ -151,7 +151,7 @@ public class FindGhostsTest {
 		assertEquals("looking:said", player.getQuest("find_ghosts"));
 
 		int oldxp = player.getXP();
-		npcGhost = NPCList.get().get("Mary");
+		npcGhost = SingletonRepository.getNPCList().get("Mary");
 		enGhost = npcGhost.getEngine();
 		enGhost.step(player, "hi");
 		assertEquals("Remember my name ... Mary ... Mary ...", npcGhost.get("text"));
@@ -164,7 +164,7 @@ public class FindGhostsTest {
 		assertThat(player.getQuest("find_ghosts") , not(containsString("Ben")));
 
 		oldxp = player.getXP();
-		npcGhost = NPCList.get().get("Ben");
+		npcGhost = SingletonRepository.getNPCList().get("Ben");
 		enGhost = npcGhost.getEngine();
 		enGhost.step(player, "hi");
 		assertEquals(
@@ -178,7 +178,7 @@ public class FindGhostsTest {
 		assertThat(player.getQuest("find_ghosts") , not(containsString("Goran")));
 
 		oldxp = player.getXP();
-		npcGhost = NPCList.get().get("Goran");
+		npcGhost = SingletonRepository.getNPCList().get("Goran");
 		enGhost = npcGhost.getEngine();
 		enGhost.step(player, "hi");
 		assertEquals("Remember my name ... Goran ... Goran ...", npcGhost.get("text"));
@@ -190,7 +190,7 @@ public class FindGhostsTest {
 		oldxp = player.getXP();
 		assertThat(player.getQuest("find_ghosts") , not(containsString("Zak")));
 
-		npcGhost = NPCList.get().get("Zak");
+		npcGhost = SingletonRepository.getNPCList().get("Zak");
 		enGhost = npcGhost.getEngine();
 		enGhost.step(player, "hi");
 		assertEquals("Remember my name ... Zak ... Zak ...", npcGhost.get("text"));

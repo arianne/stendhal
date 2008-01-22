@@ -1,7 +1,7 @@
 package games.stendhal.server.script;
 
 import games.stendhal.common.Level;
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.core.scripting.ScriptingNPC;
@@ -163,7 +163,7 @@ public class AdminMaker extends ScriptImpl {
 			Destination picked = DESTINATIONS.get(i);
 
 			// Teleport
-			StendhalRPZone zone = StendhalRPWorld.get().getZone(picked.zone);
+			StendhalRPZone zone = SingletonRepository.getRPWorld().getZone(picked.zone);
 			if (!player.teleport(zone, picked.x, picked.y, null, player)) {
 				logger.error("AdminMaker random teleport failed, "
 						+ picked.zone + " " + picked.x + " " + picked.y);

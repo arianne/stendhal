@@ -13,7 +13,7 @@
 package games.stendhal.server.entity;
 
 import games.stendhal.common.Grammar;
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.player.UpdateConverter;
 
@@ -581,7 +581,7 @@ public abstract class Entity extends RPObject {
 	public void notifyWorldAboutChanges() {
 		// Only possible if in a zone
 		if (getZone() != null) {
-			StendhalRPWorld.get().modify(this);
+			SingletonRepository.getRPWorld().modify(this);
 		}
 	}
 

@@ -1,9 +1,9 @@
 package games.stendhal.server.entity.item.consumption;
 
 import static org.junit.Assert.assertTrue;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.core.rule.defaultruleset.DefaultEntityManager;
 import games.stendhal.server.entity.ActiveEntity;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
@@ -37,7 +37,7 @@ public class PoisonerTest {
 
 	public final void testFeed() {
 
-		DefaultEntityManager.getInstance();
+		SingletonRepository.getEntityManager();
 		Entity.generateRPClass();
 		ActiveEntity.generateRPClass();
 		RPEntity.generateRPClass();
@@ -48,7 +48,7 @@ public class PoisonerTest {
 		attributes.put("regen", "200");
 		attributes.put("frequency", "1");
 		attributes.put("id", "1");
-		StendhalRPWorld world = StendhalRPWorld.get();
+		StendhalRPWorld world = SingletonRepository.getRPWorld();
 		StendhalRPZone zone = new StendhalRPZone("test");
 		world.addRPZone(zone);
 		ConsumableItem c200_1 = new ConsumableItem("cheese", "", "", attributes);

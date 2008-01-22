@@ -1,8 +1,7 @@
 package games.stendhal.server.maps.quests;
 
 import games.stendhal.common.Grammar;
-import games.stendhal.server.core.engine.StendhalRPWorld;
-import games.stendhal.server.core.rule.RuleManager;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -155,8 +154,7 @@ public class WeaponsCollector extends AbstractQuest implements
 	}
 
 	public void rewardPlayer(Player player) {
-		RuleManager ruleManager = StendhalRPWorld.get().getRuleManager();
-		Item iceSword = ruleManager.getEntityManager().getItem("ice sword");
+		Item iceSword = SingletonRepository.getEntityManager().getItem("ice sword");
 		iceSword.setBoundTo(player.getName());
 		player.equip(iceSword, true);
 		player.addXP(1000);

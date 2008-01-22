@@ -39,7 +39,7 @@ public class TaxmanNPC implements ZoneConfigurator {
 				nodes.add(new Node(2, 14));
 				nodes.add(new Node(9, 14));
 				nodes.add(new Node(9, 16));
-				nodes.add(new Node(16,16));
+				nodes.add(new Node(16, 16));
 				nodes.add(new Node(9, 16));
 				nodes.add(new Node(9, 14));
 				setPath(new FixedPath(nodes, true));

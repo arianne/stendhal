@@ -3,9 +3,9 @@ package games.stendhal.server.maps.quests;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ConversationPhrases;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
@@ -38,7 +38,7 @@ public class IntroducePlayersTest extends ZonePlayerAndNPCTest {
 
 		setupZone(ZONE_NAME, new BoyNPC());
 
-		NPCList.get().add(new SpeakerNPC("Ilisa"));
+		SingletonRepository.getNPCList().add(new SpeakerNPC("Ilisa"));
 
 		new IntroducePlayers().addToWorld();
 	}

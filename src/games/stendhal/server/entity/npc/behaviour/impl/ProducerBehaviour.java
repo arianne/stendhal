@@ -1,7 +1,7 @@
 package games.stendhal.server.entity.npc.behaviour.impl;
 
 import games.stendhal.common.Grammar;
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.ExpressionType;
@@ -307,7 +307,7 @@ public class ProducerBehaviour extends TransactionBehaviour {
 					+ " for you. Come back in "
 					+ getApproximateRemainingTime(player) + " to get it.");
 		} else {
-			StackableItem products = (StackableItem) StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
+			StackableItem products = (StackableItem) SingletonRepository.getEntityManager().getItem(
 					getProductName());
 
 			products.setQuantity(numberOfProductItems);

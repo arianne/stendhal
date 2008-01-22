@@ -1,8 +1,7 @@
 package games.stendhal.server.entity.npc.parser;
 
 import games.stendhal.common.Grammar;
-import games.stendhal.server.core.engine.StendhalPlayerDatabase;
-
+import games.stendhal.server.core.engine.SingletonRepository;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -644,7 +643,7 @@ public class WordList {
 			return;
 		}
 
-		IDatabase db = StendhalPlayerDatabase.getDatabase();
+		IDatabase db = SingletonRepository.getPlayerDatabase();
 		Transaction trans = db.getTransaction();
 		boolean success;
 
@@ -699,7 +698,7 @@ public class WordList {
 			return false;
 		}
 
-		IDatabase db = StendhalPlayerDatabase.getDatabase();
+		IDatabase db = SingletonRepository.getPlayerDatabase();
 		Transaction trans = db.getTransaction();
 		boolean success;
 
@@ -820,7 +819,7 @@ public class WordList {
 			return 0;
 		}
 
-		IDatabase db = StendhalPlayerDatabase.getDatabase();
+		IDatabase db = SingletonRepository.getPlayerDatabase();
 
 		Transaction trans = db.getTransaction();
 		Accessor acc = trans.getAccessor();

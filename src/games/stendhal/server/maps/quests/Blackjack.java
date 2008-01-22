@@ -2,10 +2,9 @@ package games.stendhal.server.maps.quests;
 
 import games.stendhal.common.Direction;
 import games.stendhal.common.Grammar;
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TurnListener;
-import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -52,20 +51,17 @@ public class Blackjack extends AbstractQuest {
 	private SpeakerNPC ramon;
 
 	// TODO: Resolve when requested (incase reloadable zones support added)
-	private StendhalRPZone zone = StendhalRPWorld.get().getZone(
+	private StendhalRPZone zone = SingletonRepository.getRPWorld().getZone(
 			"-1_athor_ship_w2");
 
 	private void startNewGame(Player player) {
 		cleanUpTable();
 		playerCards.clear();
 		bankCards.clear();
-
-		playerCardsItem = (StackableItem) StendhalRPWorld.get()
-				.getRuleManager().getEntityManager().getItem("cards");
+		playerCardsItem = (StackableItem) SingletonRepository.getEntityManager().getItem("cards");
 		zone.add(playerCardsItem);
 		playerCardsItem.setPosition(25, 38);
-		bankCardsItem = (StackableItem) StendhalRPWorld.get().getRuleManager()
-				.getEntityManager().getItem("cards");
+		bankCardsItem = (StackableItem) SingletonRepository.getEntityManager().getItem("cards");
 		bankCardsItem.setPosition(27, 38);
 		zone.add(bankCardsItem);
 
@@ -228,7 +224,7 @@ public class Blackjack extends AbstractQuest {
 	}
 
 	private void letBankDrawAfterPause(final String playerName) {
-		TurnNotifier.get().notifyInSeconds(1, new TurnListener() {
+		SingletonRepository.getTurnNotifier().notifyInSeconds(1, new TurnListener() {
 			private String name = playerName;
 
 			public void onTurnReached(int currentTurn) {
@@ -252,8 +248,7 @@ public class Blackjack extends AbstractQuest {
 	 * @return A message that the NPC should say to inform the player.
 	 */
 	private String payOff(Player player, int factor) {
-		StackableItem money = (StackableItem) StendhalRPWorld.get()
-				.getRuleManager().getEntityManager().getItem("money");
+		StackableItem money = (StackableItem) SingletonRepository.getEntityManager().getItem("money");
 		money.setQuantity(factor * stake);
 		player.equip(money, true);
 		if (factor == 1) {

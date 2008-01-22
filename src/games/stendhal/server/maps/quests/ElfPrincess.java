@@ -1,7 +1,7 @@
 package games.stendhal.server.maps.quests;
 
 import games.stendhal.common.Rand;
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -137,8 +137,7 @@ public class ElfPrincess extends AbstractQuest {
 						player.drop("rhosyd");
 						player.addXP(5000);
 						player.addKarma(15);
-						StackableItem goldbars = (StackableItem) StendhalRPWorld
-								.get().getRuleManager().getEntityManager()
+						StackableItem goldbars = (StackableItem) SingletonRepository.getEntityManager()
 								.getItem("gold bar");
 						int goldamount;
 						goldamount = 5 * Rand.roll1D6();

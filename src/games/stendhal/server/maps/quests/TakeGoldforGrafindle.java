@@ -1,6 +1,6 @@
 package games.stendhal.server.maps.quests;
 
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -166,9 +166,7 @@ public class TakeGoldforGrafindle extends AbstractQuest {
 				public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 					player.setQuest(QUEST_SLOT, "lorithien");
 
-					StackableItem goldbars = (StackableItem) StendhalRPWorld
-							.get().getRuleManager()
-							.getEntityManager().getItem("gold bar");
+					StackableItem goldbars = (StackableItem) SingletonRepository.getEntityManager().getItem("gold bar");
 					goldbars.setQuantity(GOLD_AMOUNT);
 					goldbars.setBoundTo(player.getName());
 					player.equip(goldbars, true);
@@ -211,8 +209,7 @@ public class TakeGoldforGrafindle extends AbstractQuest {
 				public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 					if (player.drop("gold bar", GOLD_AMOUNT)) {
 						engine.say("Oh, you brought the gold! Wonderful, I knew I could rely on you. Please, have this key to our customer room.");
-						Item nalworkey = StendhalRPWorld.get()
-								.getRuleManager().getEntityManager()
+						Item nalworkey = SingletonRepository.getEntityManager()
 								.getItem("nalwor bank key");
 						nalworkey.setBoundTo(player.getName());
 						player.equip(nalworkey);

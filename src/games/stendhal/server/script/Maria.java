@@ -1,11 +1,11 @@
 /* $Id$ */
 package games.stendhal.server.script;
 
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.core.scripting.ScriptingNPC;
 import games.stendhal.server.core.scripting.ScriptingSandbox;
 import games.stendhal.server.entity.item.Item;
-import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
@@ -80,7 +80,7 @@ public class Maria extends ScriptImpl {
 		npc.behave("help",
 				"You can get an #offer of drinks and take a break to meet new people!");
 		try {
-			npc.behave("sell", ShopList.get().get("food&drinks"));
+			npc.behave("sell", SingletonRepository.getShopList().get("food&drinks"));
 		} catch (NoSuchMethodException e) {
 			logger.error(e, e);
 		}

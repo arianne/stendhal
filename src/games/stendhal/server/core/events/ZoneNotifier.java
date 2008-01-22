@@ -1,5 +1,6 @@
 package games.stendhal.server.core.events;
 
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.player.Player;
 
 /**
@@ -30,7 +31,7 @@ public class ZoneNotifier {
 			// recognize the event
 			DelayedPlayerTextSender dpts = new DelayedPlayerTextSender(player,
 					type.getMessage());
-			TurnNotifier.get().notifyInSeconds(2, dpts);
+			SingletonRepository.getTurnNotifier().notifyInSeconds(2, dpts);
 		}
 	}
 

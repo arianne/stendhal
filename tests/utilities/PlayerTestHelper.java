@@ -1,5 +1,6 @@
 package utilities;
 
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.engine.Task;
@@ -11,7 +12,6 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPC;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.slot.PlayerSlot;
@@ -61,7 +61,7 @@ public abstract class PlayerTestHelper {
 	 * @param zoneName
 	 */
 	public static void registerPlayer(Player player, String zoneName) {
-		registerPlayer(player, StendhalRPWorld.get().getZone(zoneName));
+		registerPlayer(player, SingletonRepository.getRPWorld().getZone(zoneName));
 	}
 
 	/**
@@ -191,9 +191,9 @@ public abstract class PlayerTestHelper {
 	 * @return success flag
 	 */
 	public static boolean equipWithItem(Player player, String clazz) {
-		StendhalRPWorld world = StendhalRPWorld.get();
+		StendhalRPWorld world = SingletonRepository.getRPWorld();
 
-		Item item = world.getRuleManager().getEntityManager().getItem(clazz);
+		Item item = SingletonRepository.getEntityManager().getItem(clazz);
 
 		return player.equip(item);
 	}
@@ -207,9 +207,9 @@ public abstract class PlayerTestHelper {
 	 * @return success flag
 	 */
 	public static boolean equipWithStackableItem(Player player, String clazz, int amount) {
-		StendhalRPWorld world = StendhalRPWorld.get();
+		StendhalRPWorld world = SingletonRepository.getRPWorld();
 
-		StackableItem item = (StackableItem) world.getRuleManager().getEntityManager().getItem(clazz);
+		StackableItem item = (StackableItem) SingletonRepository.getEntityManager().getItem(clazz);
 		item.setQuantity(amount);
 
 		return player.equip(item);
@@ -221,7 +221,7 @@ public abstract class PlayerTestHelper {
 	 * @param npcName
 	 */
 	public static void resetNPC(String npcName) {
-		SpeakerNPC npc = NPCList.get().get(npcName);
+		SpeakerNPC npc = SingletonRepository.getNPCList().get(npcName);
 
 		if (npc != null) {
 			npc.setCurrentState(ConversationStates.IDLE);
@@ -234,7 +234,7 @@ public abstract class PlayerTestHelper {
 	 * @param npcName
 	 */
 	public static void removeNPC(String npcName) {
-		NPCList.get().remove(npcName);
+		SingletonRepository.getNPCList().remove(npcName);
 	}
 
 	/**

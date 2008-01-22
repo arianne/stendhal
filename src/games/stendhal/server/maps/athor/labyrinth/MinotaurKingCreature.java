@@ -1,7 +1,7 @@
 package games.stendhal.server.maps.athor.labyrinth;
 
 import games.stendhal.server.core.config.ZoneConfigurator;
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.rule.defaultruleset.DefaultEntityManager;
 import games.stendhal.server.entity.creature.Creature;
@@ -24,7 +24,7 @@ public class MinotaurKingCreature implements ZoneConfigurator {
 	}
 
 	private void buildLabyrinth(StendhalRPZone zone, Map<String, String> attributes) {
-		DefaultEntityManager manager = (DefaultEntityManager) StendhalRPWorld.get().getRuleManager().getEntityManager();
+		DefaultEntityManager manager = (DefaultEntityManager) SingletonRepository.getEntityManager();
 
 		Creature creature = new ItemGuardCreature(manager.getCreature("minotaur king"), "kokuda");
 

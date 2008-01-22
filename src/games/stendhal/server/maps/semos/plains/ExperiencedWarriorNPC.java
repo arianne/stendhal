@@ -1,6 +1,6 @@
 package games.stendhal.server.maps.semos.plains;
 
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.core.rule.defaultruleset.DefaultCreature;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -187,7 +187,7 @@ public class ExperiencedWarriorNPC extends SpeakerNPCFactory {
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, Sentence sentence, SpeakerNPC speakerNPC) {
-						EntityManager manager = StendhalRPWorld.get().getRuleManager().getEntityManager();
+						EntityManager manager = SingletonRepository.getEntityManager();
 						String creatureName = sentence.getTriggerExpression().getNormalized();
 						DefaultCreature creature = manager.getDefaultCreature(creatureName);
 						if (creature == null) {
@@ -249,7 +249,7 @@ public class ExperiencedWarriorNPC extends SpeakerNPCFactory {
 			final String creatureName) {
 		String result = null;
 		DefaultCreature creature;
-		EntityManager manager = StendhalRPWorld.get().getRuleManager().getEntityManager();
+		EntityManager manager = SingletonRepository.getEntityManager();
 		creature = manager.getDefaultCreature(creatureName);
 		if (creature != null) {
 			result = creatureInfo.getCreatureInfo(player, creature, 3, 8, true);

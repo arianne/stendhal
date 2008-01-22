@@ -3,7 +3,7 @@ package games.stendhal.server.maps.quests;
 import games.stendhal.common.Grammar;
 import games.stendhal.common.Level;
 import games.stendhal.common.Rand;
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -140,8 +140,7 @@ public class WeeklyItemQuest extends AbstractQuest {
 					reward = 0;
 				}
 				int goldamount;
-				StackableItem money = (StackableItem) StendhalRPWorld
-								.get().getRuleManager().getEntityManager()
+				StackableItem money = (StackableItem) SingletonRepository.getEntityManager()
 								.getItem("money");
 				goldamount = 100 * Rand.roll1D6();
 				money.setQuantity(goldamount);

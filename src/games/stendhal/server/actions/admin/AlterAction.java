@@ -2,7 +2,7 @@ package games.stendhal.server.actions.admin;
 
 import games.stendhal.common.Grammar;
 import games.stendhal.server.actions.CommandCenter;
-import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.Definition;
@@ -146,14 +146,14 @@ public class AlterAction extends AdministrationAction {
 							break;
 					}
 
-					StendhalRPRuleProcessor.get().addGameEvent(
+					SingletonRepository.getRuleProcessor().addGameEvent(
 							player.getName(), _ALTER, action.get(_TARGET),
 							stat, Integer.toString(numberValue));
 					changed.put(stat, numberValue);
 				} else {
 					// Can be only set if value is not a number
 					if (mode.equalsIgnoreCase(_SET)) {
-						StendhalRPRuleProcessor.get().addGameEvent(
+						SingletonRepository.getRuleProcessor().addGameEvent(
 								player.getName(), _ALTER, action.get(_TARGET),
 								stat, action.get(_VALUE));
 						changed.put(stat, action.get(_VALUE));

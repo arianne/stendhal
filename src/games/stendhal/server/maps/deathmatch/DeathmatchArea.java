@@ -1,9 +1,8 @@
 package games.stendhal.server.maps.deathmatch;
 
 import games.stendhal.common.Direction;
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.LoginListener;
-import games.stendhal.server.core.events.LoginNotifier;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.Area;
 
@@ -20,7 +19,7 @@ public class DeathmatchArea implements LoginListener {
 
 	protected void initialize() {
 
-		LoginNotifier.get().addListener(this);
+		SingletonRepository.getLoginNotifier().addListener(this);
 
 	}
 
@@ -35,7 +34,7 @@ public class DeathmatchArea implements LoginListener {
 	private void teleportToCowardPlace(Player player) {
 		
 		if (cowardSpot == null) {
-			cowardSpot = new Spot(StendhalRPWorld.get().getZone(
+			cowardSpot = new Spot(SingletonRepository.getRPWorld().getZone(
 			"0_semos_mountain_n2_w"), 104, 123);
 		}
 		player.teleport(cowardSpot.getZone(), cowardSpot.getX(), cowardSpot.getY(), Direction.DOWN, player);

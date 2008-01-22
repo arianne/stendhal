@@ -12,7 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.actions;
 
-import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
@@ -28,7 +28,7 @@ public class OutfitAction implements ActionListener {
 
 	public void onAction(Player player, RPAction action) {
 		if (action.has(_VALUE)) {
-			StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
+			SingletonRepository.getRuleProcessor().addGameEvent(player.getName(),
 					_OUTFIT, action.get(_VALUE));
 			Outfit outfit = new Outfit(action.getInt(_VALUE));
 			if (outfit.isChoosableByPlayers()) {

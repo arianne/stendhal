@@ -1,6 +1,7 @@
 /* $Id$ */
 package games.stendhal.server.script;
 
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.scripting.ScriptImpl;
@@ -22,7 +23,7 @@ public class CountObjects extends ScriptImpl {
 	@Override
 	public void execute(Player admin, List<String> args) {
 		int count = 0;
-		StendhalRPWorld world = StendhalRPWorld.get();
+		StendhalRPWorld world = SingletonRepository.getRPWorld();
 		for (IRPZone irpZone : world) {
 			StendhalRPZone zone = (StendhalRPZone) irpZone;
 			Iterator<RPObject> itr2 = zone.iterator();

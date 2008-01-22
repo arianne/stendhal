@@ -1,6 +1,7 @@
 package games.stendhal.server.maps.semos.kanmararn;
 
 import games.stendhal.server.core.config.ZoneConfigurator;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
@@ -14,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 public class DwarfGuardNPC implements ZoneConfigurator {
-	private ShopList shops = ShopList.get();
+	private ShopList shops = SingletonRepository.getShopList();
 
 		/**
 	 * Configure a zone.

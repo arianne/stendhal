@@ -13,6 +13,7 @@
 package games.stendhal.server.actions.chat;
 
 import games.stendhal.server.actions.CommandCenter;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.player.GagManager;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
@@ -41,7 +42,7 @@ public class ChatAction {
 	public void onAction(final Player player, final RPAction action) {
 
 		if (GagManager.isGagged(player)) {
-			long timeRemaining = GagManager.get().getTimeRemaining(player);
+			long timeRemaining = SingletonRepository.getGagManager().getTimeRemaining(player);
 			player.sendPrivateText("You are gagged, it will expire in "
 					+ TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L)));
 			return;

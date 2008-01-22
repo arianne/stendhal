@@ -1,7 +1,7 @@
 package games.stendhal.server.maps.quests;
 
 import static org.junit.Assert.assertEquals;
-import games.stendhal.server.entity.npc.NPCList;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPCFactory;
 import games.stendhal.server.entity.npc.fsm.Engine;
@@ -29,7 +29,7 @@ public class LearnAboutKarmaTest {
 	@Before
 	public void setUp() {
 		npc = new SpeakerNPC("Sarzina");
-		NPCList.get().add(npc);
+		SingletonRepository.getNPCList().add(npc);
 		SpeakerNPCFactory npcConf = new SellerNPC();
 		npcConf.createDialog(npc);
 

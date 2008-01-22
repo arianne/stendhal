@@ -1,9 +1,9 @@
 /* $Id$ */
 package games.stendhal.server.script;
 
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.PostTransitionAction;
 import games.stendhal.server.entity.npc.fsm.PreTransitionCondition;
@@ -55,7 +55,7 @@ public class DumpTransitionsEx extends ScriptImpl {
 		for (String arg : args) {
 			npcName.append(arg + " ");
 		}
-		SpeakerNPC npc = NPCList.get().get(npcName.toString().trim());
+		SpeakerNPC npc = SingletonRepository.getNPCList().get(npcName.toString().trim());
 		if (npc == null) {
 			admin.sendPrivateText("There is no NPC called " + npcName);
 			return;

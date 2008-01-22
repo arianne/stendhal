@@ -1,6 +1,6 @@
 package games.stendhal.server.maps.quests;
 
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -117,8 +117,7 @@ public class NewsFromHackim extends AbstractQuest {
 									+ answer);
 					player.setQuest(QUEST_SLOT, "done");
 
-					Item item = StendhalRPWorld.get().getRuleManager()
-							.getEntityManager().getItem("leather legs");
+					Item item = SingletonRepository.getEntityManager().getItem("leather legs");
 					player.equip(item, true);
 					player.addXP(10);
 

@@ -1,9 +1,8 @@
 package games.stendhal.server.maps.quests;
 
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TurnListener;
-import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -100,7 +99,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 		}
 
 		public void start() {
-			TurnNotifier.get().notifyInTurns(1, this);
+			SingletonRepository.getTurnNotifier().notifyInTurns(1, this);
 		}
 
 		private boolean equalsExpectedItem(Item item) {
@@ -130,7 +129,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 			try {
 				if (!isStillFilled) {
 					// recreate the item and fill the corpse
-					Item item = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
+					Item item = SingletonRepository.getEntityManager().getItem(
 							itemName);
 					item.setInfoString(corpse.getName());
 					item.setDescription(description);
@@ -143,7 +142,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 				logger.warn("Quest corpse is full: " + corpse.getName());
 			}
 			// continue the checking cycle
-			TurnNotifier.get().notifyInSeconds(CORPSE_REFILL_SECONDS, this);
+			SingletonRepository.getTurnNotifier().notifyInSeconds(CORPSE_REFILL_SECONDS, this);
 		}
 	}
 
@@ -212,7 +211,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 				player.addKarma(15);
 				player.drop(questLeatherLegs);
 				player.drop(questScaleArmor);
-				Item map = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
+				Item map = SingletonRepository.getEntityManager().getItem(
 						"map");
 				map.setInfoString(npc.getName());
 				map.setDescription("You see a hand drawn map, but no matter how you look at it, nothing on it looks familiar.");
@@ -243,7 +242,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 				player.addKarma(15);
 				player.drop(questMap);
 
-				Item item = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
+				Item item = SingletonRepository.getEntityManager().getItem(
 						"steel boots");
 				item.setBoundTo(player.getName());
 				// Is this infostring really needed?
@@ -322,7 +321,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 	 * add corpses of ex-NPCs.
 	 */
 	private void prepareCorpses() {
-		StendhalRPZone zone = StendhalRPWorld.get().getZone("-6_kanmararn_city");
+		StendhalRPZone zone = SingletonRepository.getRPWorld().getZone("-6_kanmararn_city");
 
 		// Now we create the corpse of the second NPC
 		Corpse tom = new Corpse("youngsoldiernpc", 5, 47);

@@ -14,8 +14,7 @@ package games.stendhal.server.entity;
 
 import games.stendhal.common.Level;
 import games.stendhal.server.core.engine.ItemLogger;
-import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TutorialNotifier;
 import games.stendhal.server.core.rule.ActionManager;
@@ -444,7 +443,7 @@ public abstract class RPEntity extends GuidedEntity {
 		// In case we level up several levels at a single time.
 		for (int i = 0; i < Math.abs(levels); i++) {
 			setATK(this.atk + (int) Math.signum(levels) * 1);
-			StendhalRPRuleProcessor.get().addGameEvent(getName(), "atk",
+			SingletonRepository.getRuleProcessor().addGameEvent(getName(), "atk",
 					Integer.toString(getATK()));
 		}
 
@@ -480,7 +479,7 @@ public abstract class RPEntity extends GuidedEntity {
 		// In case we level up several levels at a single time.
 		for (int i = 0; i < Math.abs(levels); i++) {
 			setDEF(this.def + (int) Math.signum(levels) * 1);
-			StendhalRPRuleProcessor.get().addGameEvent(getName(), "def",
+			SingletonRepository.getRuleProcessor().addGameEvent(getName(), "def",
 					Integer.toString(getDEF()));
 		}
 
@@ -603,9 +602,9 @@ public abstract class RPEntity extends GuidedEntity {
 		this.xp += newxp;
 		put("xp", xp);
 
-		StendhalRPRuleProcessor.get().addGameEvent(getName(), "added xp",
+		SingletonRepository.getRuleProcessor().addGameEvent(getName(), "added xp",
 				Integer.toString(newxp));
-		StendhalRPRuleProcessor.get().addGameEvent(getName(), "xp",
+		SingletonRepository.getRuleProcessor().addGameEvent(getName(), "xp",
 				Integer.toString(xp));
 
 		int newLevel = Level.getLevel(getXP());
@@ -616,7 +615,7 @@ public abstract class RPEntity extends GuidedEntity {
 			setBaseHP(getBaseHP() + (int) Math.signum(levels) * 10);
 			setHP(getHP() + (int) Math.signum(levels) * 10);
 
-			StendhalRPRuleProcessor.get().addGameEvent(getName(), "level",
+			SingletonRepository.getRuleProcessor().addGameEvent(getName(), "level",
 					Integer.toString(newLevel));
 			setLevel(newLevel);
 		}
@@ -678,7 +677,7 @@ public abstract class RPEntity extends GuidedEntity {
 		if (turnWhenLastDamaged == null) {
 			return false;
 		}
-		int currentTurn = StendhalRPRuleProcessor.get().getTurn();
+		int currentTurn = SingletonRepository.getRuleProcessor().getTurn();
 		if (currentTurn - turnWhenLastDamaged > TURNS_WHILE_FIGHT_XP_INCREASES) {
 			enemiesThatGiveFightXP.remove(enemy);
 			return false;
@@ -735,12 +734,12 @@ public abstract class RPEntity extends GuidedEntity {
 	public void onDamaged(Entity attacker, int damage) {
 		logger.debug("Damaged " + damage + " points by " + attacker.getID());
 
-		StendhalRPRuleProcessor.get().addGameEvent(attacker.getTitle(),
+		SingletonRepository.getRuleProcessor().addGameEvent(attacker.getTitle(),
 				"damaged", getName(), Integer.toString(damage));
 
 		bleedOnGround();
 		if (attacker instanceof RPEntity) {
-			int currentTurn = StendhalRPRuleProcessor.get().getTurn();
+			int currentTurn = SingletonRepository.getRuleProcessor().getTurn();
 			enemiesThatGiveFightXP.put((RPEntity) attacker, currentTurn);
 		}
 
@@ -847,7 +846,7 @@ public abstract class RPEntity extends GuidedEntity {
 	 */
 	protected void kill(Entity killer) {
 		setHP(0);
-		StendhalRPRuleProcessor.get().killRPEntity(this, killer);
+		SingletonRepository.getRuleProcessor().killRPEntity(this, killer);
 	}
 
 	/**
@@ -862,7 +861,7 @@ public abstract class RPEntity extends GuidedEntity {
 		int xpReward = (int) (oldXP * 0.05);
 
 		for (String killerName : playersToReward) {
-			Player killer = StendhalRPRuleProcessor.get().getPlayer(killerName);
+			Player killer = SingletonRepository.getRuleProcessor().getPlayer(killerName);
 			// check logout
 			if (killer == null) {
 				continue;
@@ -964,7 +963,7 @@ public abstract class RPEntity extends GuidedEntity {
 		String killerName = killer.getTitle();
 
 		if (killer instanceof RPEntity) {
-			StendhalRPRuleProcessor.get().addGameEvent(killerName, "killed",
+			SingletonRepository.getRuleProcessor().addGameEvent(killerName, "killed",
 					getName());
 		}
 
@@ -1096,7 +1095,7 @@ public abstract class RPEntity extends GuidedEntity {
 	 * @return true if the item can be equipped, else false
 	 */
 	public boolean equip(Item item, boolean putOnGroundIfItCannotEquiped) {
-		ActionManager manager = StendhalRPWorld.get().getRuleManager().getActionManager();
+		ActionManager manager = SingletonRepository.getActionManager();
 
 		String slot = manager.getSlotNameToEquip(this, item);
 		if (slot != null) {
@@ -1127,7 +1126,7 @@ public abstract class RPEntity extends GuidedEntity {
 	 */
 	public boolean equip(String slotName, Item item) {
 		if (hasSlot(slotName)) {
-			ActionManager manager = StendhalRPWorld.get().getRuleManager().getActionManager();
+			ActionManager manager = SingletonRepository.getActionManager();
 			if (manager.onEquip(this, slotName, item)) {
 				updateItemAtkDef();
 				return true;

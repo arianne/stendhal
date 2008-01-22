@@ -1,14 +1,12 @@
 package games.stendhal.server.core.scripting;
 
-import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.rp.StendhalRPAction;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.NPC;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.HashSet;
@@ -41,12 +39,12 @@ public abstract class ScriptingSandbox {
 	}
 
 	public StendhalRPZone getZone(RPObject rpobject) {
-		return (StendhalRPZone) StendhalRPWorld.get().getRPZone(
+		return (StendhalRPZone) SingletonRepository.getRPWorld().getRPZone(
 				rpobject.getID());
 	}
 
 	public boolean setZone(String name) {
-		zone = StendhalRPWorld.get().getZone(name);
+		zone = SingletonRepository.getRPWorld().getZone(name);
 		return (zone != null);
 	}
 
@@ -57,7 +55,7 @@ public abstract class ScriptingSandbox {
 
 	public StendhalRPZone addZone(String name, String content) {
 		try {
-			zone = StendhalRPWorld.get().addArea(name, content);
+			zone = SingletonRepository.getRPWorld().addArea(name, content);
 			logger.info(filename + " added area: " + name);
 		} catch (Exception e) {
 			logger.error("Exception while tyring to add area: " + e);
@@ -76,7 +74,7 @@ public abstract class ScriptingSandbox {
 	 */
 	@Deprecated
 	public boolean transferPlayer(Player player, String zoneName, int x, int y) {
-		StendhalRPZone zoneTemp = StendhalRPWorld.get().getZone(zoneName);
+		StendhalRPZone zoneTemp = SingletonRepository.getRPWorld().getZone(zoneName);
 		return player.teleport(zoneTemp, x, y, null, null);
 	}
 
@@ -101,20 +99,20 @@ public abstract class ScriptingSandbox {
 	}
 
 	public Creature[] getCreatures() {
-		return (StendhalRPWorld.get().getRuleManager().getEntityManager().getCreatures().toArray(new Creature[1]));
+		return (SingletonRepository.getEntityManager().getCreatures().toArray(new Creature[1]));
 	}
 
 	public Creature getCreature(String clazz) {
-		return StendhalRPWorld.get().getRuleManager().getEntityManager().getCreature(
+		return SingletonRepository.getEntityManager().getCreature(
 				clazz);
 	}
 
 	public Item[] getItems() {
-		return (StendhalRPWorld.get().getRuleManager().getEntityManager().getItems().toArray(new Item[1]));
+		return (SingletonRepository.getEntityManager().getItems().toArray(new Item[1]));
 	}
 
 	public Item getItem(String name) {
-		return StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
+		return SingletonRepository.getEntityManager().getItem(
 				name);
 	}
 
@@ -133,7 +131,7 @@ public abstract class ScriptingSandbox {
 	}
 
 	public void addGameEvent(String source, String event, List<String> params) {
-		StendhalRPRuleProcessor.get().addGameEvent(source, event,
+		SingletonRepository.getRuleProcessor().addGameEvent(source, event,
 				params.toArray(new String[params.size()]));
 	}
 
@@ -160,7 +158,7 @@ public abstract class ScriptingSandbox {
 	public void remove(NPC npc) {
 		logger.info("Removing " + filename + " added NPC: " + npc);
 		try {
-			NPCList.get().remove(npc.getName());
+			SingletonRepository.getNPCList().remove(npc.getName());
 
 			zone = npc.getZone();
 			zone.remove(npc);
@@ -175,7 +173,7 @@ public abstract class ScriptingSandbox {
 		try {
 			logger.info("Removing script added object: " + object);
 			String id = object.getID().getZoneID();
-			zone = StendhalRPWorld.get().getZone(id);
+			zone = SingletonRepository.getRPWorld().getZone(id);
 			zone.remove(object);
 			loadedRPObjects.remove(object);
 		} catch (Exception e) {

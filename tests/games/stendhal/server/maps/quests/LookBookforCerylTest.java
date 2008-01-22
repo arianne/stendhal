@@ -5,11 +5,10 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
@@ -49,14 +48,14 @@ public class LookBookforCerylTest {
 		PlayerTestHelper.generateNPCRPClasses();
 		new WitchNPC().configureZone(new StendhalRPZone("testzone"), null);
 		new LibrarianNPC().configureZone(new StendhalRPZone("testzone"), null);
-		jynath = NPCList.get().get("jynath");
-		ceryl = NPCList.get().get("ceryl");
+		jynath = SingletonRepository.getNPCList().get("jynath");
+		ceryl = SingletonRepository.getNPCList().get("ceryl");
 	}
 
 	@After
 	public void tearDown() throws Exception {
-		NPCList.get().remove("ceryl");
-		NPCList.get().remove("Jynath");
+		SingletonRepository.getNPCList().remove("ceryl");
+		SingletonRepository.getNPCList().remove("Jynath");
 	}
 
 	@Test
@@ -206,7 +205,7 @@ public class LookBookforCerylTest {
 				Arrays.asList("FIRST_CHAT", "QUEST_ACCEPTED", "LOST_ITEM"),
 				quest.getHistory(pl));
 
-		Item item = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
+		Item item = SingletonRepository.getEntityManager().getItem(
 				"black book");
 		assertNotNull(item);
 		item.setBoundTo(pl.getName());

@@ -1,10 +1,9 @@
 package games.stendhal.server.actions.admin;
 
 import games.stendhal.server.actions.CommandCenter;
-import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.RPEntity;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
 import static games.stendhal.server.actions.WellKnownActionConstants.TARGET;
@@ -21,10 +20,10 @@ public class TeleportToAction extends AdministrationAction {
 	public void perform(Player player, RPAction action) {
 		if (action.has(TARGET)) {
 			String name = action.get(TARGET);
-			RPEntity teleported = StendhalRPRuleProcessor.get().getPlayer(name);
+			RPEntity teleported = SingletonRepository.getRuleProcessor().getPlayer(name);
 
 			if (teleported == null) {
-				teleported = NPCList.get().get(name);
+				teleported = SingletonRepository.getNPCList().get(name);
 				if (teleported == null) {
 
 					String text = "Player \"" + name + "\" not found";
@@ -39,7 +38,7 @@ public class TeleportToAction extends AdministrationAction {
 			int y = teleported.getY();
 
 			player.teleport(zone, x, y, null, player);
-			StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
+			SingletonRepository.getRuleProcessor().addGameEvent(player.getName(),
 					_TELEPORTTO, action.get(TARGET), zone.getName(),
 					Integer.toString(x), Integer.toString(y));
 		}

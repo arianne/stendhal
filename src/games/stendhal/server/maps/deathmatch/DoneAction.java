@@ -1,7 +1,7 @@
 package games.stendhal.server.maps.deathmatch;
 
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
-import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
@@ -21,7 +21,7 @@ public class DoneAction extends SpeakerNPC.ChatAction {
 	 * @return Helmet
 	 */
 	private Item createTrophyHelmet(Player player) {
-		Item helmet = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("trophy helmet");
+		Item helmet = SingletonRepository.getEntityManager().getItem("trophy helmet");
 		helmet.setBoundTo(player.getName());
 		helmet.put("def", 1);
 		helmet.setInfoString(player.getName());
@@ -39,7 +39,7 @@ public class DoneAction extends SpeakerNPC.ChatAction {
 	 * @return new amount of points
 	 */
 	private int updatePoints(Player player) {
-		StendhalRPRuleProcessor rules = StendhalRPRuleProcessor.get();
+		StendhalRPRuleProcessor rules = SingletonRepository.getRuleProcessor();
 		DeathmatchState deathmatchState = DeathmatchState.createFromQuestString(player.getQuest("deathmatch"));
 		rules.addHallOfFamePoints(player.getName(), "D", deathmatchState.getQuestLevel());
 		return rules.getHallOfFamePoints(player.getName(), "D");

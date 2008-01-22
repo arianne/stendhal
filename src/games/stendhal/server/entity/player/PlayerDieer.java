@@ -2,7 +2,7 @@ package games.stendhal.server.entity.player;
 
 import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.ItemLogger;
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.PassiveEntity;
@@ -104,7 +104,7 @@ public class PlayerDieer {
 		}
 
 		// Penalize: Respawn on afterlive zone and
-		StendhalRPZone zone = StendhalRPWorld.get().getZone(DEFAULT_DEAD_AREA);
+		StendhalRPZone zone = SingletonRepository.getRPWorld().getZone(DEFAULT_DEAD_AREA);
 
 		if (zone != null) {
 			if (!zone.placeObjectAtEntryPoint(player)) {

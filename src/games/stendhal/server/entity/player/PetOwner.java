@@ -1,6 +1,6 @@
 package games.stendhal.server.entity.player;
 
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.creature.Pet;
 import games.stendhal.server.entity.creature.Sheep;
 import marauroa.common.game.RPObject;
@@ -99,7 +99,7 @@ class PetOwner {
 	public Sheep getSheep() {
 		if (player.has(ATTR_SHEEP)) {
 			try {
-				return (Sheep) StendhalRPWorld.get().get(
+				return (Sheep) SingletonRepository.getRPWorld().get(
 						new RPObject.ID(player.getInt(ATTR_SHEEP), player.get("zoneid")));
 			} catch (Exception e) {
 				// TODO: Remove catch after DB reset
@@ -124,7 +124,7 @@ class PetOwner {
 	public Pet getPet() {
 		try {
 			if (player.has(ATTR_PET)) {
-				return (Pet) StendhalRPWorld.get().get(
+				return (Pet) SingletonRepository.getRPWorld().get(
 						new RPObject.ID(player.getInt(ATTR_PET), player.get("zoneid")));
 			} else {
 				return null;

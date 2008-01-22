@@ -1,6 +1,7 @@
 package games.stendhal.server.core.rp;
 
 import games.stendhal.server.core.config.QuestsXMLLoader;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.quests.IQuest;
 import games.stendhal.server.maps.quests.QuestInfo;
@@ -44,7 +45,7 @@ public class StendhalQuestSystem {
 		 * TODO: Refactor What about loading this from a XML file like zones?
 		 */
 
-		questInfos = QuestsXMLLoader.get();
+		questInfos = SingletonRepository.getQuestsXMLLoader();
 		loadQuest("AdosDeathmatch");
 		loadQuest("AmazonPrincess");
 		loadQuest("ArmorForDagobert");

@@ -1,6 +1,7 @@
 package games.stendhal.server.actions.admin;
 
 import games.stendhal.server.actions.CommandCenter;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
@@ -19,20 +20,20 @@ public class GhostModeAction extends AdministrationAction {
 
 		if (player.isGhost()) {
 			player.setGhost(false);
-			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), _GHOSTMODE, "off");
+			SingletonRepository.getRuleProcessor().addGameEvent(player.getName(), _GHOSTMODE, "off");
 
 			player.setInvisible(false);
-			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), _INVISIBLE, "off");
+			SingletonRepository.getRuleProcessor().addGameEvent(player.getName(), _INVISIBLE, "off");
 	
 		} else {
 			/*
 			 * When we enter ghostmode we want our player to be also invisible.
 			 */
 			player.setInvisible(true);
-			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), _INVISIBLE, "on");
+			SingletonRepository.getRuleProcessor().addGameEvent(player.getName(), _INVISIBLE, "on");
 
 			player.setGhost(true);
-			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), _GHOSTMODE, "on");
+			SingletonRepository.getRuleProcessor().addGameEvent(player.getName(), _GHOSTMODE, "on");
 	
 			
 		}

@@ -3,7 +3,7 @@ package games.stendhal.server.actions;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -37,7 +37,7 @@ public class LookActionTest {
 				.get();
 
 		StendhalRPZone zone = new StendhalRPZone("testzone");
-		StendhalRPWorld.get().addRPZone(zone);
+		SingletonRepository.getRPWorld().addRPZone(zone);
 
 		PrivateTextMockingTestPlayer player1 = PlayerTestHelper.createPrivateTextMockingTestPlayer("player1");
 		processor.addPlayer(player1);

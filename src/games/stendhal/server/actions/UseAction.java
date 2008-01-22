@@ -17,7 +17,7 @@ import static games.stendhal.server.actions.WellKnownActionConstants._BASEOBJECT
 import static games.stendhal.server.actions.WellKnownActionConstants._BASESLOT;
 import static games.stendhal.server.actions.WellKnownActionConstants.TARGET;
 import static games.stendhal.server.actions.WellKnownActionConstants._USE;
-import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.UseListener;
 import games.stendhal.server.entity.Entity;
@@ -120,7 +120,7 @@ public class UseAction implements ActionListener {
 			infostring = object.get("infostring");
 		}
 
-		StendhalRPRuleProcessor.get().addGameEvent(player.getName(), _USE,
+		SingletonRepository.getRuleProcessor().addGameEvent(player.getName(), _USE,
 				name, infostring);
 
 		if (object instanceof UseListener) {

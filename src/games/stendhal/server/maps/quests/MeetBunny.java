@@ -1,6 +1,6 @@
 package games.stendhal.server.maps.quests;
 
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -77,7 +77,7 @@ public class MeetBunny extends AbstractQuest {
 		bunny.initHP(100);
 
 		// start in int_admin_playground
-		zone = StendhalRPWorld.get().getZone("int_admin_playground");
+		zone = SingletonRepository.getRPWorld().getZone("int_admin_playground");
 		bunny.setPosition(17, 13);
 		zone.add(bunny);
 

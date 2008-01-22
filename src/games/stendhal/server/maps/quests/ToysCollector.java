@@ -1,8 +1,8 @@
 package games.stendhal.server.maps.quests;
 
 import games.stendhal.common.Grammar;
-import games.stendhal.server.core.engine.StendhalRPWorld;
-import games.stendhal.server.core.rule.RuleManager;
+import games.stendhal.server.core.engine.SingletonRepository;
+
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -149,8 +149,7 @@ public class ToysCollector extends AbstractQuest implements
 	}
 
 	public void rewardPlayer(Player player) {
-		RuleManager ruleManager = StendhalRPWorld.get().getRuleManager();
-		StackableItem pie = (StackableItem) ruleManager.getEntityManager().getItem(
+		StackableItem pie = (StackableItem) SingletonRepository.getEntityManager().getItem(
 				"pie");
 		pie.setQuantity(3);
 		player.equip(pie, true);

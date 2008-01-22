@@ -47,7 +47,7 @@ public class SummonActionTest {
 	}
 	
 	@After
-	public void teardown(){
+	public void teardown() {
 		MockStendhalRPRuleProcessor.get().clearPlayers();
 	}
 	

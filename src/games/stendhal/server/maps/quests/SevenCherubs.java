@@ -1,6 +1,7 @@
 package games.stendhal.server.maps.quests;
 
 import games.stendhal.common.Rand;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
@@ -150,9 +151,7 @@ public class SevenCherubs extends AbstractQuest {
 								 *
 								 */
 								String[] items = { "golden boots", "golden armor", "golden helmet" };
-								Item item = StendhalRPWorld
-									.get().getRuleManager()
-									.getEntityManager()
+								Item item = SingletonRepository.getEntityManager()
 									.getItem(items[Rand.rand(items.length)]);
 								item.setBoundTo(player.getName());
 								player.equip(item, true);
@@ -174,7 +173,7 @@ public class SevenCherubs extends AbstractQuest {
 
 	@Override
 	public void addToWorld() {
-		StendhalRPWorld world = StendhalRPWorld.get();
+		StendhalRPWorld world = SingletonRepository.getRPWorld();
 		super.addToWorld();
 
 		StendhalRPZone zone;

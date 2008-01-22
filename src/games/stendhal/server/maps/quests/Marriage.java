@@ -1,8 +1,7 @@
 package games.stendhal.server.maps.quests;
 
 import games.stendhal.common.Direction;
-import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
@@ -78,7 +77,7 @@ public class Marriage extends AbstractQuest {
 
 	private static final int REQUIRED_MINUTES = 10;
 
-	private NPCList npcs = NPCList.get();
+	private NPCList npcs = SingletonRepository.getNPCList();
 
 	private Player groom;
 
@@ -191,7 +190,7 @@ public class Marriage extends AbstractQuest {
 		IRPZone outsideChurchZone = nun.getZone();
 		Area inFrontOfNun = new Area(outsideChurchZone, new Rectangle(51, 52, 6, 5));
 		groom = player;
-		bride = StendhalRPRuleProcessor.get().getPlayer(partnerName);
+		bride = SingletonRepository.getRuleProcessor().getPlayer(partnerName);
 
 		if (!inFrontOfNun.contains(groom)) {
 			nun.say("My hearing is not so good, please both come close to tell me who you want to get engaged to.");
@@ -227,7 +226,7 @@ public class Marriage extends AbstractQuest {
 	}
 
 	private void giveInvite(Player player) {
-		StackableItem invite = (StackableItem) StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
+		StackableItem invite = (StackableItem) SingletonRepository.getEntityManager().getItem(
 				"invitation scroll");
 		invite.setQuantity(4);
 		// location of church
@@ -342,7 +341,7 @@ public class Marriage extends AbstractQuest {
 						 */
 						npc.say("I'm pleased to say, the wedding ring for your fiancee is finished! Make sure one is made for you, too! *psst* just a little #hint for the wedding day ...");
 						player.addXP(500);
-						Item weddingRing = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
+						Item weddingRing = SingletonRepository.getEntityManager().getItem(
 								"wedding ring");
 						weddingRing.setBoundTo(player.getName());
 						player.equip(weddingRing, true);
@@ -614,7 +613,7 @@ public class Marriage extends AbstractQuest {
 						String partnerName;
 						husband = player;
 						partnerName = husband.getQuest(SPOUSE_QUEST_SLOT);
-						wife = StendhalRPRuleProcessor.get().getPlayer(
+						wife = SingletonRepository.getRuleProcessor().getPlayer(
 								partnerName);
 						// check wife is online and check that they're still
 						// married to the current husband
@@ -633,7 +632,7 @@ public class Marriage extends AbstractQuest {
 									+ " has divorced from you.");
 							npc.say("What a pity...what a pity...and you two were married so happily, too...");
 						} else {
-							Player postman = StendhalRPRuleProcessor.get().getPlayer(
+							Player postman = SingletonRepository.getRuleProcessor().getPlayer(
 									"postman");
 							if (postman != null) {
 								postman.sendPrivateText("Wilfred tells you: msg "
@@ -660,7 +659,7 @@ public class Marriage extends AbstractQuest {
 		Area inFrontOfAltar = new Area(churchZone, new Rectangle(10, 9, 4, 1));
 
 		groom = player;
-		bride = StendhalRPRuleProcessor.get().getPlayer(partnerName);
+		bride = SingletonRepository.getRuleProcessor().getPlayer(partnerName);
 
 		if (!inFrontOfAltar.contains(groom)) {
 			priest.say("You must step in front of the altar if you want to marry.");
@@ -726,7 +725,7 @@ public class Marriage extends AbstractQuest {
 	private void giveRing(Player player, Player partner) {
 		// players bring their own golden rings
 		player.drop("wedding ring");
-		Item ring = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
+		Item ring = SingletonRepository.getEntityManager().getItem(
 				"wedding ring");
 		ring.setInfoString(partner.getName());
 		ring.setBoundTo(player.getName());
@@ -772,13 +771,13 @@ public class Marriage extends AbstractQuest {
 							// know how to make it so that GiveInvite() has a
 							// parameter for quantity and a parameter for
 							// location so i gave up.
-							StackableItem invite = (StackableItem) StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
+							StackableItem invite = (StackableItem) SingletonRepository.getEntityManager().getItem(
 									"invitation scroll");
 							invite.setQuantity(1);
 							// interior of hotel
 							invite.setInfoString("int_fado_hotel_0 4 40");
 							player.equip(invite, true);
-							StendhalRPZone zone = StendhalRPWorld.get().getZone(
+							StendhalRPZone zone = SingletonRepository.getRPWorld().getZone(
 									"int_fado_lovers_room_"
 											+ sentence.getTriggerExpression().getNormalized());
 							player.teleport(zone, 5, 5, Direction.DOWN, player);

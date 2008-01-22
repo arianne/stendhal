@@ -5,10 +5,9 @@ package games.stendhal.server.entity.item.scroll;
 
 import games.stendhal.common.Grammar;
 import games.stendhal.common.Rand;
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TurnListener;
-import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Map;
@@ -74,7 +73,7 @@ public class TimedTeleportScroll extends TeleportScroll {
 			return true; /* player is already away from the target zone */
 		}
 
-		StendhalRPZone returnZone = StendhalRPWorld.get().getZone(
+		StendhalRPZone returnZone = SingletonRepository.getRPWorld().getZone(
 				returnZoneName);
 
 		if (x < 0) {
@@ -146,19 +145,19 @@ public class TimedTeleportScroll extends TeleportScroll {
 		}
 
 		/* check destination */
-		StendhalRPZone targetZone = StendhalRPWorld.get().getZone(
+		StendhalRPZone targetZone = SingletonRepository.getRPWorld().getZone(
 				targetZoneName);
 
 		if (targetZone != null) {
 			String beforeReturnMessage = getBeforeReturnMessage();
 			if (beforeReturnMessage != null) {
-				TurnNotifier.get().notifyInTurns(
+				SingletonRepository.getTurnNotifier().notifyInTurns(
 						(int) (timeInTurns * 0.9),
 						new TimedTeleportWarningTurnListener(player,
-								StendhalRPWorld.get().getZone(targetZoneName),
+								SingletonRepository.getRPWorld().getZone(targetZoneName),
 								beforeReturnMessage));
 			}
-			TurnNotifier.get().notifyInTurns(timeInTurns,
+			SingletonRepository.getTurnNotifier().notifyInTurns(timeInTurns,
 					new TimedTeleportTurnListener(player));
 
 			/*

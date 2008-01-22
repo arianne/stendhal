@@ -1,7 +1,7 @@
 package games.stendhal.server.maps.semos.kanmararn;
 
 import games.stendhal.server.core.config.ZoneConfigurator;
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.rule.defaultruleset.DefaultEntityManager;
 import games.stendhal.server.entity.creature.Creature;
@@ -16,7 +16,7 @@ import java.util.Map;
  */
 public class DuergarKingCreature implements ZoneConfigurator {
 
-	private DefaultEntityManager manager = (DefaultEntityManager) StendhalRPWorld.get().getRuleManager().getEntityManager();
+	private DefaultEntityManager manager = SingletonRepository.getEntityManager();
 
 	/**
 	 * Configure a zone.

@@ -13,7 +13,7 @@
 package games.stendhal.server.entity.npc.behaviour.impl;
 
 import games.stendhal.common.Grammar;
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
@@ -63,8 +63,7 @@ public class SellerBehaviour extends MerchantBehaviour {
 	 */
 	@Override
 	public boolean transactAgreedDeal(SpeakerNPC seller, Player player) {
-		StendhalRPWorld world = StendhalRPWorld.get();
-		EntityManager manager = world.getRuleManager().getEntityManager();
+		EntityManager manager = SingletonRepository.getEntityManager();
 
 		Item item = manager.getItem(chosenItemName);
 		if (item == null) {

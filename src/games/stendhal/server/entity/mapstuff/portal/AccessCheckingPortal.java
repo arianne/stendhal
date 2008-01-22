@@ -6,8 +6,8 @@
 
 package games.stendhal.server.entity.mapstuff.portal;
 
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.TurnListener;
-import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.RPEntity;
 
 /**
@@ -62,7 +62,7 @@ public abstract class AccessCheckingPortal extends Portal {
 	 *            The message to send.
 	 */
 	protected void sendMessage(RPEntity user, String text) {
-		TurnNotifier.get().notifyInTurns(0, new SendMessage(user, text));
+		SingletonRepository.getTurnNotifier().notifyInTurns(0, new SendMessage(user, text));
 	}
 
 	/**

@@ -11,7 +11,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.creature;
 
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Item;
@@ -50,7 +50,7 @@ public class ItemChangeGuardCreature extends Creature {
 		this.itemType = itemType;
 		this.oldItemType = oldItemType;
 
-		if (!StendhalRPWorld.get().getRuleManager().getEntityManager().isItem(
+		if (!SingletonRepository.getEntityManager().isItem(
 				itemType)) {
 			logger.error(copy.getName() + " drops nonexistent item " + itemType);
 		}
@@ -67,7 +67,7 @@ public class ItemChangeGuardCreature extends Creature {
 			RPEntity killerRPEntity = (RPEntity) killer;
 
 			if (killerRPEntity.drop(oldItemType)) {
-				Item item = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
+				Item item = SingletonRepository.getEntityManager().getItem(
 						itemType);
 
 				killerRPEntity.equip(item, true);

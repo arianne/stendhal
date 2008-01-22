@@ -1,6 +1,7 @@
 package games.stendhal.server.maps.ados.sewingroom;
 
 import games.stendhal.server.core.config.ZoneConfigurator;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
@@ -17,7 +18,7 @@ import java.util.Map;
  * Ados City, house with a woman who makes sails for the ships
  */
 public class SeamstressNPC implements ZoneConfigurator {
-	private ShopList shops = ShopList.get();
+	private ShopList shops = SingletonRepository.getShopList();
 
 	/**
 	 * Configure a zone.

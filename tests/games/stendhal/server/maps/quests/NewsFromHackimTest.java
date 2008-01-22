@@ -2,8 +2,8 @@ package games.stendhal.server.maps.quests;
 
 import static org.junit.Assert.assertEquals;
 import games.stendhal.server.core.config.ZoneConfigurator;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPCFactory;
 import games.stendhal.server.entity.npc.fsm.Engine;
@@ -34,14 +34,14 @@ public class NewsFromHackimTest {
 	@Before
 	public void setUp() {
 		npcHackim = new SpeakerNPC("Hackim Easso");
-		NPCList.get().add(npcHackim);
+		SingletonRepository.getNPCList().add(npcHackim);
 		SpeakerNPCFactory npcConf = new BlacksmithAssistantNPC();
 		npcConf.createDialog(npcHackim);
 		enHackim = npcHackim.getEngine();
 
 		ZoneConfigurator zoneConf = new TraderNPC();
 		zoneConf.configureZone(new StendhalRPZone("int_semos_tavern"), null);
-		npcXin = NPCList.get().get("Xin Blanca");
+		npcXin = SingletonRepository.getNPCList().get("Xin Blanca");
 		enXin = npcXin.getEngine();
 
 		AbstractQuest quest = new NewsFromHackim();

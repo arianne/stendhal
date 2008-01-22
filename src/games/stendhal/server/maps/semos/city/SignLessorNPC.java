@@ -1,7 +1,7 @@
 package games.stendhal.server.maps.semos.city;
 
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
-import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.mapstuff.office.RentedSign;
 import games.stendhal.server.entity.mapstuff.office.RentedSignList;
@@ -36,7 +36,7 @@ public class SignLessorNPC extends SpeakerNPCFactory {
 	protected RentedSignList rentedSignList;
 
 	public SignLessorNPC() {
-		StendhalRPZone zone = StendhalRPWorld.get().getZone("0_semos_city");
+		StendhalRPZone zone = SingletonRepository.getRPWorld().getZone("0_semos_city");
 		Shape shape = new Rectangle(21, 48, 17, 1);
 		rentedSignList = new RentedSignList(zone, shape);
 	}
@@ -118,11 +118,11 @@ public class SignLessorNPC extends SpeakerNPCFactory {
 						npc.say("OK, let me put your sign up.");
 
 						// inform irc using postman
-						Player postman = StendhalRPRuleProcessor.get().getPlayer("postman");
+						Player postman = SingletonRepository.getRuleProcessor().getPlayer("postman");
 						if (postman != null) {
 							postman.sendPrivateText(player.getName() + " rented a sign saying \"" + text + "\"");
 						}
-						StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "sign", "rent", text);
+						SingletonRepository.getRuleProcessor().addGameEvent(player.getName(), "sign", "rent", text);
 					} else {
 						npc.say("Sorry, there are too many signs at the moment. I do not have a free spot left.");
 					}
@@ -168,7 +168,7 @@ public class SignLessorNPC extends SpeakerNPCFactory {
 					rentedSignList.removeByName(playerName);
 					String message = player.getName() + " deleted sign from " + playerName;
 					StendhalRPRuleProcessor.sendMessageToSupporters("SignLessorNPC", message);
-					StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "sign", "deleted", playerName);
+					SingletonRepository.getRuleProcessor().addGameEvent(player.getName(), "sign", "deleted", playerName);
 				}
 
 				@Override

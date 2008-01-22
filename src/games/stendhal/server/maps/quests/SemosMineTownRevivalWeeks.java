@@ -1,7 +1,7 @@
 package games.stendhal.server.maps.quests;
 
 import games.stendhal.common.Direction;
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
@@ -32,7 +32,7 @@ public class SemosMineTownRevivalWeeks extends AbstractQuest {
 	}
 
 	private void createNPC() {
-		StendhalRPZone zone = StendhalRPWorld.get().getZone(
+		StendhalRPZone zone = SingletonRepository.getRPWorld().getZone(
 				"0_semos_mountain_n2");
 		SpeakerNPC npc = new SpeakerNPC("Susi") {
 			@Override
@@ -158,7 +158,7 @@ public class SemosMineTownRevivalWeeks extends AbstractQuest {
 	}
 
 	private void createSignToCloseTower() {
-		StendhalRPZone zone = StendhalRPWorld.get().getZone(
+		StendhalRPZone zone = SingletonRepository.getRPWorld().getZone(
 				"0_semos_mountain_n2");
 		Sign sign = new Sign();
 		sign.setPosition(105, 114);

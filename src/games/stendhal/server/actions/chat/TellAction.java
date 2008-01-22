@@ -5,7 +5,7 @@ import static games.stendhal.server.actions.WellKnownActionConstants.TEXT;
 import games.stendhal.common.Grammar;
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.actions.admin.AdministrationAction;
-import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.player.GagManager;
 import games.stendhal.server.entity.player.Jail;
 import games.stendhal.server.entity.player.Player;
@@ -30,7 +30,7 @@ public class TellAction implements ActionListener {
 		senderName = player.getName();
 		receiverName = action.get(TARGET);
 		sender = player;
-		receiver = StendhalRPRuleProcessor.get().getPlayer(receiverName);
+		receiver = SingletonRepository.getRuleProcessor().getPlayer(receiverName);
 	}
 
 	private boolean validateAction(RPAction action) {
@@ -143,7 +143,7 @@ public class TellAction implements ActionListener {
 		tellAboutAwayStatusIfNeccessary();
 
 		receiver.setLastPrivateChatter(senderName);
-		StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "chat",
+		SingletonRepository.getRuleProcessor().addGameEvent(player.getName(), "chat",
 			receiverName, Integer.toString(text.length()),
 			text.substring(0, Math.min(text.length(), 1000)));
 	}

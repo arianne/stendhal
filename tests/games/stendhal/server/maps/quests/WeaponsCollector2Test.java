@@ -2,9 +2,9 @@ package games.stendhal.server.maps.quests;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
@@ -29,7 +29,7 @@ public class WeaponsCollector2Test {
 
 	@After
 	public void tearDown() throws Exception {
-		NPCList.get().remove("Balduin");
+		SingletonRepository.getNPCList().remove("Balduin");
 	}
 
 	@Test
@@ -40,7 +40,7 @@ public class WeaponsCollector2Test {
 
 	@Test
 	public final void rejectQuest() {
-		NPCList.get().add(new SpeakerNPC("Balduin"));
+		SingletonRepository.getNPCList().add(new SpeakerNPC("Balduin"));
 		WeaponsCollector2 wc = new WeaponsCollector2();
 		wc.addToWorld();
 		SpeakerNPC npc = wc.getNPC();
@@ -67,7 +67,7 @@ public class WeaponsCollector2Test {
 
 	@Test
 	public final void doQuest() {
-		NPCList.get().add(new SpeakerNPC("Balduin"));
+		SingletonRepository.getNPCList().add(new SpeakerNPC("Balduin"));
 		WeaponsCollector2 wc = new WeaponsCollector2();
 		wc.init("weaponscollector2_quest");
 		wc.addToWorld();

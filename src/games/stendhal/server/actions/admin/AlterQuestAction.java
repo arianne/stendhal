@@ -1,6 +1,7 @@
 package games.stendhal.server.actions.admin;
 
 import games.stendhal.server.actions.CommandCenter;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
@@ -14,7 +15,7 @@ public class AlterQuestAction extends AdministrationAction {
 		
 
 		// find player
-		StendhalRPRuleProcessor rules = StendhalRPRuleProcessor.get();
+		StendhalRPRuleProcessor rules = SingletonRepository.getRuleProcessor();
 		Player target = rules.getPlayer(action.get("target"));
 		if (target != null) {
 

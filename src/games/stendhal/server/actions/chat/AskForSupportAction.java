@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import games.stendhal.server.actions.ActionListener;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
 import games.stendhal.server.entity.player.Jail;
 import games.stendhal.server.entity.player.Player;
@@ -47,7 +48,7 @@ public class AskForSupportAction  implements ActionListener {
 					+ "\r\nPlease use #/supportanswer #" + player.getTitle()
 					+ " to answer.";
 
-			StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
+			SingletonRepository.getRuleProcessor().addGameEvent(player.getName(),
 					"support", action.get(TEXT));
 
 			StendhalRPRuleProcessor.sendMessageToSupporters(player.getTitle(), message);

@@ -3,6 +3,7 @@ package games.stendhal.server.maps.semos.village;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
@@ -51,7 +52,7 @@ public class SheepSellerNPCTest extends ZonePlayerAndNPCTest {
 
 	@Test
 	public void testBuySheep() {
-		StendhalRPWorld world = StendhalRPWorld.get();
+		StendhalRPWorld world = SingletonRepository.getRPWorld();
 		registerPlayer(player, world.getZone(ZONE_NAME));
 
 		SpeakerNPC npc = getNPC("Nishiya");

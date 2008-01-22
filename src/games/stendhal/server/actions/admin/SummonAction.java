@@ -1,8 +1,7 @@
 package games.stendhal.server.actions.admin;
 
 import games.stendhal.server.actions.CommandCenter;
-import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.rp.StendhalRPAction;
 import games.stendhal.server.core.rule.EntityManager;
@@ -35,7 +34,7 @@ public class SummonAction extends AdministrationAction {
 				int y = action.getInt(Y);
 
 				if (!zone.collides(player, x, y)) {
-					EntityManager manager = StendhalRPWorld.get().getRuleManager().getEntityManager();
+					EntityManager manager = SingletonRepository.getEntityManager();
 					String type = action.get(_CREATURE);
 
 					Entity entity = manager.getEntity(type);
@@ -48,7 +47,7 @@ public class SummonAction extends AdministrationAction {
 						entity = new RaidCreature((Creature) entity);
 					}
 
-					StendhalRPRuleProcessor.get().addGameEvent(player.getName(), _SUMMON, type);
+					SingletonRepository.getRuleProcessor().addGameEvent(player.getName(), _SUMMON, type);
 
 					StendhalRPAction.placeat(zone, entity, x, y);
 				}

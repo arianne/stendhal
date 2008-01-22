@@ -14,8 +14,7 @@ package games.stendhal.server.core.rp;
 
 import games.stendhal.common.Grammar;
 import games.stendhal.common.Rand;
-import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TutorialNotifier;
 import games.stendhal.server.core.events.ZoneNotifier;
@@ -259,7 +258,7 @@ public class StendhalRPAction {
 			logger.info(player.getName() + " is attacking " + entity.getName());
 		}
 
-		StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "attack",
+		SingletonRepository.getRuleProcessor().addGameEvent(player.getName(), "attack",
 				entity.getName());
 
 		player.attack(entity);
@@ -501,7 +500,7 @@ public class StendhalRPAction {
 		int entity_x = x + origin.getX();
 		int entity_y = y + origin.getY();
 
-		StendhalRPZone zone = StendhalRPWorld.get().getZoneAt(
+		StendhalRPZone zone = SingletonRepository.getRPWorld().getZoneAt(
 				origin.getLevel(), entity_x, entity_y, entity);
 
 		if (zone != null) {
@@ -755,7 +754,7 @@ public class StendhalRPAction {
 					String source = oldZone.getName();
 					String destination = zone.getName();
 
-					StendhalRPRuleProcessor.get().addGameEvent(
+					SingletonRepository.getRuleProcessor().addGameEvent(
 							player.getName(), "change zone", destination);
 
 					TutorialNotifier.zoneChange(player, source, destination);

@@ -1,6 +1,6 @@
 package games.stendhal.server.maps.quests;
 
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -155,8 +155,7 @@ public class SuntanCreamForZara extends AbstractQuest {
 				@Override
 				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 					player.drop("suntan cream");
-					Item zaraKey = StendhalRPWorld.get()
-							.getRuleManager().getEntityManager()
+					Item zaraKey = SingletonRepository.getEntityManager()
 							.getItem("small key");
 					zaraKey.setBoundTo(player.getName());
 					player.equip(zaraKey, true);

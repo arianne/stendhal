@@ -1,7 +1,7 @@
 package games.stendhal.server.actions.admin;
 
 import games.stendhal.server.actions.CommandCenter;
-import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.player.Player;
@@ -38,7 +38,7 @@ public class AlterCreatureAction extends AdministrationAction {
 
 			if (changed instanceof Creature && parts.length == 5) {
 				Creature creature = (Creature) changed;
-				StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
+				SingletonRepository.getRuleProcessor().addGameEvent(player.getName(),
 						"alter", action.get(_TARGET), stat);
 
 				creature.setName(parts[0]);

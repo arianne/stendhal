@@ -2,7 +2,7 @@ package games.stendhal.server.maps.fado.deathmatch;
 
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
@@ -58,7 +58,7 @@ public class BattleArenaRecruiterNPC implements ZoneConfigurator {
 					        @Override
 					        public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						        if (player.getLevel() >= 20) {
-							        StendhalRPZone zone = StendhalRPWorld.get().getZone("int_fado_battle_arena");
+							        StendhalRPZone zone = SingletonRepository.getRPWorld().getZone("int_fado_battle_arena");
 							        player.teleport(zone, 33, 26, Direction.DOWN, null);
 						        } else {
 							        engine.say("Sorry, you are too weak! Maybe you should train a bit more before coming back.");

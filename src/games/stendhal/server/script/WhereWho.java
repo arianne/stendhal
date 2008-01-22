@@ -1,6 +1,6 @@
 package games.stendhal.server.script;
 
-import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.engine.Task;
 import games.stendhal.server.core.scripting.ScriptImpl;
@@ -21,7 +21,7 @@ public class WhereWho extends ScriptImpl {
 		super.execute(admin, args);
 
 		final Map<String, StringBuilder> maps = new TreeMap<String, StringBuilder>();
-		StendhalRPRuleProcessor.get().getOnlinePlayers().forAllPlayersExecute(
+		SingletonRepository.getRuleProcessor().getOnlinePlayers().forAllPlayersExecute(
 				
 			new Task<Player>() {
 

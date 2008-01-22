@@ -2,11 +2,10 @@ package games.stendhal.server.maps.quests;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.core.rule.defaultruleset.DefaultEntityManager;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
@@ -39,7 +38,7 @@ public class RingMakerTest {
 
 		AbstractQuest quest = new RingMaker();
 		quest.addToWorld();
-		npc = NPCList.get().get("Ognir");
+		npc = SingletonRepository.getNPCList().get("Ognir");
 		en = npc.getEngine();
 	}
 
@@ -69,7 +68,7 @@ public class RingMakerTest {
 	public void testOrderEmeraldRingWithoutEnoughmoney() {
 		
 		// **at ringsmith**
-		npc = NPCList.get().get("Ognir");
+		npc = SingletonRepository.getNPCList().get("Ognir");
 		en = npc.getEngine();
 		assertTrue(en.step(player, "hi"));
 		assertEquals("Hi! Can I #help you?", npc.get("text"));
@@ -79,7 +78,7 @@ public class RingMakerTest {
 		assertEquals("It is difficult to get the ring of life. Do a favour for a powerful elf in Nal'wor and you may receive one as a reward.", npc.get("text"));
 		assertTrue(en.step(player, "bye"));
 		// -----------------------------------------------
-		Item item = DefaultEntityManager.getInstance().getItem("emerald ring");
+		Item item = SingletonRepository.getEntityManager().getItem("emerald ring");
 		player.getSlot("bag").add(item);
 		assertTrue(en.step(player, "hi"));
 		assertEquals("Hi! Can I #help you?", npc.get("text"));
@@ -104,9 +103,9 @@ public class RingMakerTest {
 		
 		// -----------------------------------------------
 		// this time say no they don't want to pay yet
-		npc = NPCList.get().get("Ognir");
+		npc = SingletonRepository.getNPCList().get("Ognir");
 		en = npc.getEngine();
-		Item item = DefaultEntityManager.getInstance().getItem("emerald ring");
+		Item item = SingletonRepository.getEntityManager().getItem("emerald ring");
 		item.put("amount", 0);
 		player.getSlot("bag").add(item);
 		assertTrue(en.step(player, "hi"));
@@ -127,7 +126,7 @@ public class RingMakerTest {
 	@Test
 	public void testOrderEmeraldRing() {
 		
-		Item item = DefaultEntityManager.getInstance().getItem("emerald ring");
+		Item item = SingletonRepository.getEntityManager().getItem("emerald ring");
 		item.put("amount", 0);
 		player.getSlot("bag").add(item);
 		

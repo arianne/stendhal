@@ -2,13 +2,12 @@ package games.stendhal.tools;
 
 import marauroa.common.Pair;
 import games.stendhal.common.Rand;
-import games.stendhal.server.core.config.CreaturesXMLLoader;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.rp.StendhalRPAction;
 import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.core.rule.defaultruleset.DefaultCreature;
-import games.stendhal.server.core.rule.defaultruleset.DefaultEntityManager;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
@@ -85,11 +84,11 @@ public class BalanceRPGame {
 	}
 
 	public static void main(String[] args) throws Exception {
-		StendhalRPWorld world = StendhalRPWorld.get();
+		StendhalRPWorld world = SingletonRepository.getRPWorld();
 		StendhalRPZone area = new StendhalRPZone("test");
 		world.addRPZone(area);
 
-		List<DefaultCreature> creatures = CreaturesXMLLoader.get().load(
+		List<DefaultCreature> creatures = SingletonRepository.getCreaturesXMLLoader().load(
 				"data/conf/creatures.xml");
 
 		Collections.sort(creatures, new Comparator<DefaultCreature>() {
@@ -114,7 +113,7 @@ public class BalanceRPGame {
 					* 14);
 		}
 
-		EntityManager em = DefaultEntityManager.getInstance();
+		EntityManager em = SingletonRepository.getEntityManager();
 		Item weapon = em.getItem("club");
 		area.assignRPObjectID(weapon);
 

@@ -12,7 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.mapstuff.spawner;
 
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.UseListener;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Item;
@@ -72,7 +72,7 @@ public class GrainField extends GrowingPassiveEntityRespawnPoint implements
 					|| entity.isEquipped("scythe") 
 					|| entity.isEquipped("black scythe")) {
 					onFruitPicked(null);
-					Item grain = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
+					Item grain = SingletonRepository.getEntityManager().getItem(
 							"grain");
 					entity.equip(grain, true);
 					return true;

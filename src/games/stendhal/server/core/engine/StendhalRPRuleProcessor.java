@@ -18,10 +18,7 @@ import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.actions.admin.AdministrationAction;
 import games.stendhal.server.core.account.AccountCreator;
 import games.stendhal.server.core.account.CharacterCreator;
-import games.stendhal.server.core.events.LoginNotifier;
-import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.core.events.TutorialNotifier;
-import games.stendhal.server.core.rp.StendhalQuestSystem;
 import games.stendhal.server.core.rp.StendhalRPAction;
 import games.stendhal.server.core.scripting.ScriptRunner;
 import games.stendhal.server.entity.Entity;
@@ -82,7 +79,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	}
 
 	private void init() {
-		database = (StendhalPlayerDatabase) StendhalPlayerDatabase.getDatabase();
+		database = (StendhalPlayerDatabase) SingletonRepository.getPlayerDatabase();
 
 		instance = this;
 		addGameEvent("server system", "startup");
@@ -164,7 +161,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			this.rpman = rpman;
 			StendhalRPAction.initialize(rpman);
 			/* Initialize quests */
-			StendhalQuestSystem.get().init();
+			SingletonRepository.getStendhalQuestSystem().init();
 
 			new ScriptRunner();
 
@@ -308,7 +305,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 	protected void executeNPCsPreLogic() {
 		// SpeakerNPC logic
-		NPCList npcList = NPCList.get();
+		NPCList npcList = SingletonRepository.getNPCList();
 		for (SpeakerNPC npc : npcList) {
 			npc.preLogic();
 		}
@@ -357,7 +354,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		if (Debug.SHOW_LIST_SIZES && (rpman.getTurn() % 1000 == 0)) {
 			int objects = 0;
 
-			for (IRPZone zone : StendhalRPWorld.get()) {
+			for (IRPZone zone : SingletonRepository.getRPWorld()) {
 				objects += zone.size();
 			}
 
@@ -376,7 +373,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		long globalStart = System.currentTimeMillis();
 		try {
 			StringBuilder sb = new StringBuilder();
-			for (IRPZone zoneI : StendhalRPWorld.get()) {
+			for (IRPZone zoneI : SingletonRepository.getRPWorld()) {
 				long start = System.currentTimeMillis();
 				StendhalRPZone zone = (StendhalRPZone) zoneI;
 				zone.logic();
@@ -390,7 +387,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			}
 
 			// run registered object's logic method for this turn
-			TurnNotifier.get().logic(currentTurn);
+			SingletonRepository.getTurnNotifier().logic(currentTurn);
 
 		} catch (Exception e) {
 			logger.error("error in endTurn", e);
@@ -422,7 +419,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			}
 
 			addGameEvent(player.getName(), "login");
-			LoginNotifier.get().onPlayerLoggedIn(player);
+			SingletonRepository.getLoginNotifier().onPlayerLoggedIn(player);
 			TutorialNotifier.login(player);
 
 			database.setOnlineStatus(player, true);
@@ -497,7 +494,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	 *            Support message
 	 */
 	public static void sendMessageToSupporters(final String message) {
-		get().getOnlinePlayers().forFilteredPlayersExecute(
+		SingletonRepository.getRuleProcessor().getOnlinePlayers().forFilteredPlayersExecute(
 
 		new Task<Player>() {
 
@@ -536,13 +533,13 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	}
 
 	public static int getAmountOfOnlinePlayers() {
-		return get().onlinePlayers.size();
+		return SingletonRepository.getRuleProcessor().onlinePlayers.size();
 	}
 
 	public static void notifyOnlineStatus(boolean isOnline, final String name) {
 		if (instance != null) {
 			if (isOnline) {
-				get().getOnlinePlayers().forAllPlayersExecute(new Task<Player>() {
+				SingletonRepository.getRuleProcessor().getOnlinePlayers().forAllPlayersExecute(new Task<Player>() {
 					public void execute(Player player) {
 						player.notifyOnline(name);
 
@@ -550,7 +547,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 				});
 
 			} else {
-				get().getOnlinePlayers().forAllPlayersExecute(new Task<Player>() {
+				SingletonRepository.getRuleProcessor().getOnlinePlayers().forAllPlayersExecute(new Task<Player>() {
 					public void execute(Player player) {
 						player.notifyOffline(name);
 

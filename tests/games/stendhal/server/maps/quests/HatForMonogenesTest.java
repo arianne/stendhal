@@ -3,10 +3,9 @@ package games.stendhal.server.maps.quests;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import games.stendhal.server.core.config.ZoneConfigurator;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.core.rule.defaultruleset.DefaultEntityManager;
 import games.stendhal.server.entity.item.Item;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPCFactory;
 import games.stendhal.server.entity.npc.fsm.Engine;
@@ -37,26 +36,26 @@ public class HatForMonogenesTest {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		QuestHelper.setUpBeforeClass();
-		assertTrue(NPCList.get().getNPCs().isEmpty());
+		assertTrue(SingletonRepository.getNPCList().getNPCs().isEmpty());
 
 	}
 
 	@After
 	public void tearDown() throws Exception {
-		NPCList.get().clear();
+		SingletonRepository.getNPCList().clear();
 	}
 
 	@Before
 	public void setUp() {
 		npc = new SpeakerNPC("Monogenes");
-		NPCList.get().add(npc);
+		SingletonRepository.getNPCList().add(npc);
 		SpeakerNPCFactory npcConf = new GreeterNPC();
 		npcConf.createDialog(npc);
 		en = npc.getEngine();
 
 		ZoneConfigurator zoneConf = new TraderNPC();
 		zoneConf.configureZone(new StendhalRPZone("int_semos_tavern"), null);
-		npcXin = NPCList.get().get("Xin Blanca");
+		npcXin = SingletonRepository.getNPCList().get("Xin Blanca");
 		enXin = npcXin.getEngine();
 
 		quest = new MeetMonogenes();
@@ -157,7 +156,7 @@ public class HatForMonogenesTest {
 
 		// -----------------------------------------------
 
-		player.equip("bag", DefaultEntityManager.getInstance().getItem("leather helmet"));
+		player.equip("bag", SingletonRepository.getEntityManager().getItem("leather helmet"));
 		en.step(player, "hi");
 		assertEquals("Hey! Is that leather hat for me?", npc.get("text"));
 		oldXP = player.getXP();

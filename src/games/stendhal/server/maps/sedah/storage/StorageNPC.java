@@ -1,10 +1,10 @@
 package games.stendhal.server.maps.sedah.storage;
 
 import games.stendhal.server.core.config.ZoneConfigurator;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
-import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.BuyerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.BuyerBehaviour;
@@ -70,7 +70,7 @@ public class StorageNPC implements ZoneConfigurator {
 						"The Scarlet Army is a special division of Kalavan's Army. They all wear a red armor.");
 				addHelp("Have you seen this, no armor left here. At the moment I'm not able to serve the #Scarlet Army!");
 				addOffer("Bring me some armor and i pay you out!");
-				new BuyerAdder().add(this, new BuyerBehaviour(ShopList.get().get("buyred")), false);
+				new BuyerAdder().add(this, new BuyerBehaviour(SingletonRepository.getShopList().get("buyred")), false);
 				addGoodbye("Have a nice day!");
 			}
 		};

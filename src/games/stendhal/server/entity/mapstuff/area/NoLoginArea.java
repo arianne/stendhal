@@ -6,8 +6,8 @@
 
 package games.stendhal.server.entity.mapstuff.area;
 
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.LoginListener;
-import games.stendhal.server.core.events.LoginNotifier;
 import games.stendhal.server.entity.player.Player;
 
 import org.apache.log4j.Logger;
@@ -76,7 +76,7 @@ public class NoLoginArea extends AreaEntity implements LoginListener {
 
 		super.put("server-only", 1);
 
-		LoginNotifier.get().addListener(this);
+		SingletonRepository.getLoginNotifier().addListener(this);
 	}
 
 	/**

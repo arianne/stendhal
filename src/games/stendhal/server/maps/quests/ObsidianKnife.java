@@ -1,7 +1,7 @@
 package games.stendhal.server.maps.quests;
 
 import games.stendhal.common.Rand;
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -405,8 +405,7 @@ public class ObsidianKnife extends AbstractQuest {
 						}
 						npc.say("The knife is ready! You know, that was enjoyable. I think I'll start making things again. Thanks!");
 						player.addXP(10000);
-						Item knife = StendhalRPWorld.get().getRuleManager()
-								.getEntityManager().getItem("obsidian knife");
+						Item knife = SingletonRepository.getEntityManager().getItem("obsidian knife");
 						knife.setBoundTo(player.getName());
 						player.equip(knife, true);
 						player.setQuest(QUEST_SLOT, "done");

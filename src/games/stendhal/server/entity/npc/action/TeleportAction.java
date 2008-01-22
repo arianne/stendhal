@@ -1,7 +1,7 @@
 package games.stendhal.server.entity.npc.action;
 
 import games.stendhal.common.Direction;
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
@@ -41,7 +41,7 @@ public class TeleportAction extends SpeakerNPC.ChatAction {
 
 	@Override
 	public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-		StendhalRPZone zone = StendhalRPWorld.get().getZone(zonename);
+		StendhalRPZone zone = SingletonRepository.getRPWorld().getZone(zonename);
 		player.teleport(zone, x, y, direction, player);
 		player.notifyWorldAboutChanges();
 	}

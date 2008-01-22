@@ -2,7 +2,7 @@ package games.stendhal.server.entity.item;
 
 import games.stendhal.common.Grammar;
 import games.stendhal.common.Rand;
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.UseListener;
 import games.stendhal.server.entity.player.Player;
 
@@ -52,7 +52,7 @@ public class Basket extends Box implements UseListener {
 		} else {
 			itemName = ITEMS[Rand.rand(ITEMS.length)];
 		}
-		Item item = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
+		Item item = SingletonRepository.getEntityManager().getItem(
 				itemName);
 		if (itemName.equals("easter egg")) {
 			item.setBoundTo(player.getName());

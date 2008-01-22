@@ -1,5 +1,7 @@
 package games.stendhal.server.entity.npc;
 
+import games.stendhal.server.core.engine.SingletonRepository;
+
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -12,7 +14,7 @@ import java.util.Map.Entry;
 public class ShopList {
 
 	static {
-		ShopList shops = get();
+		ShopList shops = SingletonRepository.getShopList();
 
 		shops.add("food&drinks", "beer", 10);
 		shops.add("food&drinks", "wine", 15);

@@ -1,9 +1,8 @@
 package games.stendhal.server.util;
 
-import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
@@ -56,7 +55,7 @@ public class EntityHelper {
 		}
 
 		if (entity == null) {
-			entity = StendhalRPRuleProcessor.get().getPlayer(target);
+			entity = SingletonRepository.getRuleProcessor().getPlayer(target);
 
 			if (entity != null && !player.isInSight(entity)) {
 				entity = null;
@@ -64,7 +63,7 @@ public class EntityHelper {
 		}
 
 		if (entity == null) {
-			entity = NPCList.get().get(target);
+			entity = SingletonRepository.getNPCList().get(target);
 
 			if (entity != null && !player.isInSight(entity)) {
 				entity = null;

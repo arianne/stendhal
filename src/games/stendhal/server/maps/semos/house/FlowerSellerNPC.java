@@ -1,7 +1,7 @@
 package games.stendhal.server.maps.semos.house;
 
 import games.stendhal.server.core.config.ZoneConfigurator;
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.TeleporterBehaviour;
@@ -40,7 +40,7 @@ public class FlowerSellerNPC implements ZoneConfigurator {
 		rose.initHP(100);
 
 		// start in int_semos_house
-		StendhalRPZone	zone = StendhalRPWorld.get().getZone("int_semos_house");
+		StendhalRPZone	zone = SingletonRepository.getRPWorld().getZone("int_semos_house");
 		rose.setPosition(5, 6);
 		zone.add(rose);
 

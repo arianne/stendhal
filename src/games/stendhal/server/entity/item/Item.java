@@ -14,10 +14,9 @@ package games.stendhal.server.entity.item;
 
 import games.stendhal.common.Grammar;
 import games.stendhal.server.core.engine.ItemLogger;
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.EquipListener;
 import games.stendhal.server.core.events.TurnListener;
-import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.PassiveEntity;
 import games.stendhal.server.entity.mapstuff.spawner.PassiveEntityRespawnPoint;
 import games.stendhal.server.entity.player.Player;
@@ -430,7 +429,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	public void onPutOnGround(Player player) {
 		// persistent items don't degrade
 		if (!isPersistent()) {
-			TurnNotifier.get().notifyInSeconds(DEGRADATION_TIMEOUT, this);
+			SingletonRepository.getTurnNotifier().notifyInSeconds(DEGRADATION_TIMEOUT, this);
 		}
 	}
 
@@ -438,7 +437,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 		// persistent items don't degrade
 		if (!isPersistent()) {
 			// stop the timer so that the item won't degrade anymore
-			TurnNotifier.get().dontNotify(this);
+			SingletonRepository.getTurnNotifier().dontNotify(this);
 		}
 		if (plantGrower != null) {
 			plantGrower.onFruitPicked(this);
@@ -519,9 +518,9 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 			RPSlot slot = getContainerSlot();
 			slot.remove(getID());
 
-			StendhalRPWorld.get().modify(base);
+			SingletonRepository.getRPWorld().modify(base);
 		} else {
-			StendhalRPWorld.get().remove(getID());
+			SingletonRepository.getRPWorld().remove(getID());
 		}
 	}
 

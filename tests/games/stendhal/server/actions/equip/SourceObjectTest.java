@@ -1,8 +1,8 @@
 package games.stendhal.server.actions.equip;
 
 import static org.junit.Assert.*;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.core.rule.defaultruleset.DefaultEntityManager;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
@@ -58,7 +58,7 @@ public class SourceObjectTest {
 		MockStendlRPWorld.get();
 		Player bob = PlayerTestHelper.createPlayer("bob");
 		StendhalRPZone zone = new StendhalRPZone("dropzone");
-		Item dropitem = DefaultEntityManager.getInstance().getItem("money");
+		Item dropitem = SingletonRepository.getEntityManager().getItem("money");
 		assertNotNull(dropitem);
 		zone.add(bob);
 		assertTrue(bob.equip(dropitem));
@@ -81,7 +81,7 @@ public class SourceObjectTest {
 		MockStendlRPWorld.get();
 		Player bob = PlayerTestHelper.createPlayer("bob");
 		StendhalRPZone zone = new StendhalRPZone("dropzone");
-		Item dropitem = DefaultEntityManager.getInstance().getItem("money");
+		Item dropitem = SingletonRepository.getEntityManager().getItem("money");
 		assertNotNull(dropitem);
 		zone.add(bob);
 		assertTrue(bob.equip(dropitem));
@@ -104,7 +104,7 @@ public class SourceObjectTest {
 		MockStendlRPWorld.get();
 		Player bob = PlayerTestHelper.createPlayer("bob");
 		StendhalRPZone zone = new StendhalRPZone("dropzone");
-		Item dropitem = DefaultEntityManager.getInstance().getItem("money");
+		Item dropitem = SingletonRepository.getEntityManager().getItem("money");
 		assertNotNull(dropitem);
 		zone.add(bob);
 		dropitem.setID(new RPObject.ID(999, "blabla"));

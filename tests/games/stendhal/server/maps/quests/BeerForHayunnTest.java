@@ -3,9 +3,8 @@ package games.stendhal.server.maps.quests;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import games.stendhal.server.core.rule.defaultruleset.DefaultEntityManager;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.StackableItem;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
@@ -46,7 +45,7 @@ public class BeerForHayunnTest {
 		assertTrue(MockStendhalRPRuleProcessor.get() instanceof MockStendhalRPRuleProcessor);
 		MockStendlRPWorld.get();
 		hayunn = new SpeakerNPC("Hayunn Naratha");
-		NPCList.get().add(hayunn);
+		SingletonRepository.getNPCList().add(hayunn);
 
 		bfh = new BeerForHayunn();
 
@@ -124,7 +123,7 @@ public class BeerForHayunnTest {
 		history.add("QUEST_ACCEPTED");
 		assertEquals(history, bfh.getHistory(player));
 
-		player.equip(DefaultEntityManager.getInstance().getItem("beer"));
+		player.equip(SingletonRepository.getEntityManager().getItem("beer"));
 		history.add("FOUND_ITEM");
 		assertEquals(history, bfh.getHistory(player));
 		player.setQuest("beer_hayunn", "done");

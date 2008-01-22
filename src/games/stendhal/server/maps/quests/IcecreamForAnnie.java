@@ -1,6 +1,6 @@
 package games.stendhal.server.maps.quests;
 
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
@@ -160,8 +160,7 @@ public class IcecreamForAnnie extends AbstractQuest {
 								+ System.currentTimeMillis());
 							player.addKarma(10.0);
 							player.addXP(500);
-							Item item = StendhalRPWorld.get()
-										.getRuleManager().getEntityManager()
+							Item item = SingletonRepository.getEntityManager()
 										.getItem("present");
 							player.equip(item, true);
 					    } else {
@@ -235,7 +234,7 @@ public class IcecreamForAnnie extends AbstractQuest {
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
-		zone = StendhalRPWorld.get().getZone(ZONE_NAME);
+		zone = SingletonRepository.getRPWorld().getZone(ZONE_NAME);
 		createNPC();
 		createMummyNPC();
 	}

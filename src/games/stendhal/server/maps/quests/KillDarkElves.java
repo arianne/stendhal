@@ -1,6 +1,6 @@
 package games.stendhal.server.maps.quests;
 
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -106,8 +106,7 @@ public class KillDarkElves extends AbstractQuest {
 							// must have amulet from Thing to complete quest
 							if (player.drop("amulet")) {
 								engine.say("Many, many thanks. I am relieved to have that back. Here, take this ring. It can revive the powers of the dead.");
-								Item emeraldring = StendhalRPWorld.get()
-										.getRuleManager().getEntityManager()
+								Item emeraldring = SingletonRepository.getEntityManager()
 										.getItem("emerald ring");
 								emeraldring.setBoundTo(player.getName());
 								player.equip(emeraldring, true);

@@ -12,8 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.item;
 
-import games.stendhal.server.core.engine.StendhalRPWorld;
-
+import games.stendhal.server.core.engine.SingletonRepository;
 import java.util.Map;
 
 import marauroa.common.game.RPObject;
@@ -83,7 +82,7 @@ public class StackableItem extends Item implements Stackable {
 		}
 
 		if (quantity >= amountToSplitOff) {
-			StackableItem newItem = (StackableItem) StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
+			StackableItem newItem = (StackableItem) SingletonRepository.getEntityManager().getItem(
 					getName());
 
 			newItem.setQuantity(amountToSplitOff);
@@ -106,7 +105,7 @@ public class StackableItem extends Item implements Stackable {
 					while (base.isContained()) {
 						base = base.getContainer();
 					}
-					StendhalRPWorld.get().modify(base);
+					SingletonRepository.getRPWorld().modify(base);
 				} else {
 					try {
 						notifyWorldAboutChanges();

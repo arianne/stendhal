@@ -1,8 +1,7 @@
 package games.stendhal.server.maps.quests;
 
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.LoginListener;
-import games.stendhal.server.core.events.LoginNotifier;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.scroll.RainbowBeansScroll;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -67,13 +66,13 @@ public class RainbowBeans extends AbstractQuest {
 	public void init(String name) {
 		super.init(name, QUEST_SLOT);
 		if (scroll == null) {
-			scroll = (RainbowBeansScroll) StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("rainbow beans");
+			scroll = (RainbowBeansScroll) SingletonRepository.getEntityManager().getItem("rainbow beans");
 		}
 
 		/* login notifier to teleport away players logging into the dream world.
 		 * TODO: this should be done in the TimedTeleportScroll class or it's subclass.
 		 */
-		LoginNotifier.get().addListener(new LoginListener() {
+		SingletonRepository.getLoginNotifier().addListener(new LoginListener() {
 			public void onLoggedIn(Player player) {
 				scroll.teleportBack(player);
 			}
@@ -192,7 +191,7 @@ public class RainbowBeans extends AbstractQuest {
 						npc.say("Alright, here's the beans. Once you take them, you come down in about 30 minutes. And if you get nervous up there, hit one of the green panic squares to take you back here.");
 						player.setQuest(QUEST_SLOT, "done;"
 								+ System.currentTimeMillis());
-						Item rainbowBeans = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
+						Item rainbowBeans = SingletonRepository.getEntityManager().getItem(
 								"rainbow beans");
 						player.equip(rainbowBeans, true);
 					} else {

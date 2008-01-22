@@ -3,9 +3,9 @@ package games.stendhal.server.maps.quests;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
@@ -30,12 +30,12 @@ public class CloakCollectorTest {
 
 	@After
 	public void tearDown() throws Exception {
-		NPCList.get().remove("Josephine");
+		SingletonRepository.getNPCList().remove("Josephine");
 	}
 
 	@Test
 	public final void rejectQuest() {
-		NPCList.get().add(new SpeakerNPC("Josephine"));
+		SingletonRepository.getNPCList().add(new SpeakerNPC("Josephine"));
 		CloakCollector cc = new CloakCollector();
 		cc.addToWorld();
 		SpeakerNPC npc = cc.getNPC();
@@ -57,7 +57,7 @@ public class CloakCollectorTest {
 
 	@Test
 	public final void doQuest() {
-		NPCList.get().add(new SpeakerNPC("Josephine"));
+		SingletonRepository.getNPCList().add(new SpeakerNPC("Josephine"));
 		CloakCollector cc = new CloakCollector();
 		cc.addToWorld();
 		cc.init("CloaksCollector");

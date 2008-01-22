@@ -13,7 +13,7 @@
 package games.stendhal.server.entity.item;
 
 import games.stendhal.common.Direction;
-import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
@@ -93,7 +93,7 @@ public class WeddingRing extends Ring {
 			return;
 		}
 
-		Player spouse = StendhalRPRuleProcessor.get().getPlayer(spouseName);
+		Player spouse = SingletonRepository.getRuleProcessor().getPlayer(spouseName);
 		if (spouse == null) {
 			player.sendPrivateText(spouseName + " is not online.");
 			return;

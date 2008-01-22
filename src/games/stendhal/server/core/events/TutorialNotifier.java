@@ -1,6 +1,7 @@
 package games.stendhal.server.core.events;
 
 import games.stendhal.common.NotificationType;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.player.Player;
 
@@ -30,7 +31,7 @@ public class TutorialNotifier {
 			// but we delay it for 2 seconds so that the player has some time to
 			// recognize the event
 			DelayedPlayerTextSender dpts = new DelayedPlayerTextSender(player, "Tutorial: " + type.getMessage(), NotificationType.TUTORIAL);
-			TurnNotifier.get().notifyInSeconds(2, dpts);
+			SingletonRepository.getTurnNotifier().notifyInSeconds(2, dpts);
 		}
 	}
 

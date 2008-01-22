@@ -1,6 +1,6 @@
 package games.stendhal.server.script;
 
-import games.stendhal.server.core.engine.StendhalPlayerDatabase;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.entity.player.Player;
 
@@ -21,7 +21,7 @@ public class ListUnknownWords extends ScriptImpl {
 
 	@Override
 	public void execute(Player admin, List<String> args) {
-		IDatabase db = StendhalPlayerDatabase.getDatabase();
+		IDatabase db = SingletonRepository.getPlayerDatabase();
 		Transaction trans = db.getTransaction();
 		Accessor acc = trans.getAccessor();
 

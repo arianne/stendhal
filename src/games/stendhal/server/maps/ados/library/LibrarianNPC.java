@@ -1,9 +1,9 @@
 package games.stendhal.server.maps.ados.library;
 
 import games.stendhal.server.core.config.ZoneConfigurator;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TurnListener;
-import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -68,7 +68,7 @@ public class LibrarianNPC implements ZoneConfigurator {
 						        thread.setPriority(Thread.MIN_PRIORITY);
 						        thread.setDaemon(true);
 						        thread.start();
-						        TurnNotifier.get().notifyInTurns(10, new WikipediaWaiter(npc, access));
+						        SingletonRepository.getTurnNotifier().notifyInTurns(10, new WikipediaWaiter(npc, access));
 						        npc.say("Please wait, while i am looking it up in the book called #Wikipedia!");
 					        }
 					        // TODO: implement pointer to authors, GFDL, etc...
@@ -100,7 +100,7 @@ public class LibrarianNPC implements ZoneConfigurator {
 
 		public void onTurnReached(int currentTurn) {
 			if (!access.isFinished()) {
-				TurnNotifier.get().notifyInTurns(3, new WikipediaWaiter(npc, access));
+				SingletonRepository.getTurnNotifier().notifyInTurns(3, new WikipediaWaiter(npc, access));
 				return;
 			}
 			if (access.getError() != null) {

@@ -2,12 +2,10 @@ package games.stendhal.server.maps.quests;
 
 import games.stendhal.common.Direction;
 import games.stendhal.common.Grammar;
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.LoginListener;
-import games.stendhal.server.core.events.LoginNotifier;
 import games.stendhal.server.core.events.TurnListener;
-import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.StackableItem;
@@ -138,8 +136,7 @@ public class ReverseArrow extends AbstractQuest implements
 			if (checkBoard() && (moveCount <= MAX_MOVES)) {
 				if (!player.isQuestCompleted(QUEST_SLOT)) {
 					npc.say("Congratulations, you solved the quiz.");
-					StackableItem money = (StackableItem) StendhalRPWorld.get()
-							.getRuleManager().getEntityManager().getItem(
+					StackableItem money = (StackableItem) SingletonRepository.getEntityManager().getItem(
 									"money");
 					money.setQuantity(50);
 					player.equip(money);
@@ -156,7 +153,7 @@ public class ReverseArrow extends AbstractQuest implements
 			}
 
 			// teleport the player out
-			TurnNotifier.get().notifyInTurns(6,
+			SingletonRepository.getTurnNotifier().notifyInTurns(6,
 					new FinishNotifier(true, player)); // 2 seconds
 		}
 	}
@@ -215,11 +212,11 @@ public class ReverseArrow extends AbstractQuest implements
 					if (counter > 0) {
 						npc.say("You have " + counter + " seconds left.");
 						counter = counter - 10;
-						TurnNotifier.get().notifyInTurns(10 * 3, this);
+						SingletonRepository.getTurnNotifier().notifyInTurns(10 * 3, this);
 					} else {
 						// teleport the player out
 						npc.say("Sorry, your time is up.");
-						TurnNotifier.get().notifyInTurns(1,
+						SingletonRepository.getTurnNotifier().notifyInTurns(1,
 								new FinishNotifier(true, player));
 						// need to do this on the next turn
 					}
@@ -266,8 +263,7 @@ public class ReverseArrow extends AbstractQuest implements
 	 *            y-position
 	 */
 	private void addTokenToWorld(int x, int y) {
-		EntityManager entityManager = StendhalRPWorld.get().getRuleManager()
-				.getEntityManager();
+		EntityManager entityManager = SingletonRepository.getEntityManager();
 		Token token = (Token) entityManager.getItem("token");
 		token.setPosition(x, y);
 		token.setPersistent(true);
@@ -308,7 +304,7 @@ public class ReverseArrow extends AbstractQuest implements
 	}
 
 	private void step_1() {
-		zone = StendhalRPWorld.get().getZone(ZONE_NAME);
+		zone = SingletonRepository.getRPWorld().getZone(ZONE_NAME);
 		step1CreateNPC();
 		step1CreateDoors();
 	}
@@ -353,7 +349,7 @@ public class ReverseArrow extends AbstractQuest implements
 	private void step1CreateDoors() {
 		// 0_semos_mountain_n2 at (95,101)
 		String entranceZoneName = "0_semos_mountain_n2";
-		entranceZone = StendhalRPWorld.get().getZone(entranceZoneName);
+		entranceZone = SingletonRepository.getRPWorld().getZone(entranceZoneName);
 		door = new NotifyingDoor("housedoor");
 		door.setPosition(95, 101);
 		door.setIdentifier(Integer.valueOf((0)));
@@ -376,7 +372,7 @@ public class ReverseArrow extends AbstractQuest implements
 
 	public void onLoggedIn(Player player) {
 		// need to do this on the next turn
-		TurnNotifier.get().notifyInTurns(1, new FinishNotifier(false, player));
+		SingletonRepository.getTurnNotifier().notifyInTurns(1, new FinishNotifier(false, player));
 	}
 
 	/**
@@ -392,10 +388,10 @@ public class ReverseArrow extends AbstractQuest implements
 		} else if (moveCount == MAX_MOVES) {
 			npc.say("This was your " + Grammar.ordered(moveCount)
 					+ " and final move. Let me check your work.");
-			TurnNotifier.get().notifyInTurns(6, new ReverseArrowCheck()); // 2
+			SingletonRepository.getTurnNotifier().notifyInTurns(6, new ReverseArrowCheck()); // 2
 																			// seconds
 			if (timer != null) {
-				TurnNotifier.get().dontNotify(timer);
+				SingletonRepository.getTurnNotifier().dontNotify(timer);
 			}
 		} else {
 			npc.say("Sorry, you may only do " + MAX_MOVES + " moves");
@@ -416,7 +412,7 @@ public class ReverseArrow extends AbstractQuest implements
 			removeAllTokens();
 			addAllTokens();
 			timer = new Timer(player);
-			TurnNotifier.get().notifyInTurns(0, timer);
+			SingletonRepository.getTurnNotifier().notifyInTurns(0, timer);
 			moveCount = 0;
 		}
 	}
@@ -443,7 +439,7 @@ public class ReverseArrow extends AbstractQuest implements
 			player = null;
 			moveCount = 0;
 			if (timer != null) {
-				TurnNotifier.get().dontNotify(timer);
+				SingletonRepository.getTurnNotifier().dontNotify(timer);
 			}
 			door.open();
 		}
@@ -453,7 +449,7 @@ public class ReverseArrow extends AbstractQuest implements
 	public void addToWorld() {
 		super.addToWorld();
 
-		LoginNotifier.get().addListener(this);
+		SingletonRepository.getLoginNotifier().addListener(this);
 
 		step_1();
 	}

@@ -1,10 +1,9 @@
 package games.stendhal.server.entity.player;
 
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
 import games.stendhal.server.core.events.LoginListener;
-import games.stendhal.server.core.events.LoginNotifier;
 import games.stendhal.server.core.events.TurnListener;
-import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.util.TimeUtil;
 
 import org.apache.log4j.Logger;
@@ -40,7 +39,7 @@ public class GagManager implements LoginListener {
 
 	// singleton
 	private GagManager() {
-		LoginNotifier.get().addListener(this);
+		SingletonRepository.getLoginNotifier().addListener(this);
 	}
 
 	/**
@@ -54,7 +53,7 @@ public class GagManager implements LoginListener {
 	 */
 	public void gag(final String criminalName, Player policeman, int minutes,
 			String reason) {
-		final Player criminal = StendhalRPRuleProcessor.get().getPlayer(
+		final Player criminal = SingletonRepository.getRuleProcessor().getPlayer(
 				criminalName);
 
 		if (criminal == null) {
@@ -129,7 +128,7 @@ public class GagManager implements LoginListener {
 	public static boolean checkIsGaggedAndInformPlayer(Player player) {
 		boolean res = GagManager.isGagged(player);
 		if (res) {
-			long timeRemaining = GagManager.get().getTimeRemaining(player);
+			long timeRemaining = SingletonRepository.getGagManager().getTimeRemaining(player);
 			player.sendPrivateText("You are gagged, it will expire in "
 					+ TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L)));
 		}
@@ -175,11 +174,11 @@ public class GagManager implements LoginListener {
 
 		// Set a timer so that the inmate is automatically released after
 		// serving his sentence. We're using the TurnNotifier; we use
-		TurnNotifier.get().notifyInSeconds(
+		SingletonRepository.getTurnNotifier().notifyInSeconds(
 				(int) (getTimeRemaining(criminal) / 1000), new TurnListener() {
 					public void onTurnReached(int currentTurn) {
 
-						Player criminal2 = StendhalRPRuleProcessor.get().getPlayer(
+						Player criminal2 = SingletonRepository.getRuleProcessor().getPlayer(
 								criminalName);
 						if (criminal2 == null) {
 							logger.debug("Gagged player " + criminalName

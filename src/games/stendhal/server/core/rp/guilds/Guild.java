@@ -1,5 +1,6 @@
 package games.stendhal.server.core.rp.guilds;
 
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.Entity;
 import java.util.LinkedList;
 import java.util.List;
@@ -111,7 +112,7 @@ public class Guild extends Entity {
 	}
 
 	private void loadData() {
-		permissions = GuildPermissionList.get().getPermissionsForGuild(this);
+		permissions = SingletonRepository.getGuildPermissionList().getPermissionsForGuild(this);
 		name = get(ATTR_NAME);
 		slogan = get(ATTR_SLOGAN);
 		imageURL = get(ATTR_IMAGEURL);

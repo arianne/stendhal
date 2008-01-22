@@ -1,7 +1,7 @@
 package games.stendhal.server.maps.quests;
 
 import games.stendhal.common.Level;
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.creature.LevelBasedComparator;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -52,7 +52,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 		private String debugString;
 
 		public DailyQuestAction() {
-			Collection<Creature> creatures = StendhalRPWorld.get().getRuleManager().getEntityManager().getCreatures();
+			Collection<Creature> creatures = SingletonRepository.getEntityManager().getCreatures();
 			sortedcreatures = new LinkedList<Creature>();
 			sortedcreatures.addAll(creatures);
 			Collections.sort(sortedcreatures, new LevelBasedComparator());

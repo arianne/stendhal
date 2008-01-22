@@ -15,7 +15,7 @@ package games.stendhal.server.actions.equip;
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.core.engine.ItemLogger;
-import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.PassiveEntity;
 import games.stendhal.server.entity.item.Item;
@@ -65,7 +65,7 @@ public class DisplaceAction implements ActionListener {
 								&& (!isItemBelowOtherPlayer(player, entity))
 								&& (player.squaredDistance(x, y) < 8 * 8)
 								&& !zone.simpleCollides(entity, x, y)) {
-							StendhalRPRuleProcessor.get().addGameEvent(
+							SingletonRepository.getRuleProcessor().addGameEvent(
 									player.getName(), "displace",
 									entity.get("type"));
 							

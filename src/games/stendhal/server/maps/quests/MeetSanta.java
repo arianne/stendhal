@@ -1,9 +1,8 @@
 package games.stendhal.server.maps.quests;
 
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.LoginListener;
-import games.stendhal.server.core.events.LoginNotifier;
 import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -96,7 +95,7 @@ public class MeetSanta extends AbstractQuest implements LoginListener {
 		santa.initHP(100);
 
 		// start in int_admin_playground
-		zone = StendhalRPWorld.get().getZone("int_admin_playground");
+		zone = SingletonRepository.getRPWorld().getZone("int_admin_playground");
 		santa.setPosition(17, 13);
 		zone.add(santa);
 
@@ -136,7 +135,7 @@ public class MeetSanta extends AbstractQuest implements LoginListener {
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
-		LoginNotifier.get().addListener(this);
+		SingletonRepository.getLoginNotifier().addListener(this);
 		/* activate santa here in 2008
 		createSanta();
 		new TeleporterBehaviour(santa, "Ho, ho, ho! Merry Christmas!", false);

@@ -1,7 +1,7 @@
 package games.stendhal.server.maps.quests;
 
 import games.stendhal.common.Rand;
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -140,7 +140,7 @@ public class AmazonPrincess extends AbstractQuest {
 				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 					player.drop("pina colada");
 					player.addKarma(15);
-					StackableItem fishpies = (StackableItem) StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
+					StackableItem fishpies = (StackableItem) SingletonRepository.getEntityManager().getItem(
 							"fish pie");
 					int pieamount;
 					// make it from 2 to 7 just to avoid dealing with

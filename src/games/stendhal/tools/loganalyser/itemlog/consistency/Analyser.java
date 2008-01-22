@@ -1,7 +1,6 @@
 package games.stendhal.tools.loganalyser.itemlog.consistency;
 
-import games.stendhal.server.core.engine.StendhalPlayerDatabase;
-
+import games.stendhal.server.core.engine.SingletonRepository;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -27,7 +26,7 @@ public class Analyser {
 		+ " ORDER BY itemid, timedate";
 	
 	private LogEntryIterator queryDatabase(String timedate) {
-		Transaction transaction =  StendhalPlayerDatabase.getDatabase().getTransaction();
+		Transaction transaction =  SingletonRepository.getPlayerDatabase().getTransaction();
 		try {
 			Connection connection = transaction.getConnection();
 			Statement stmt = connection.createStatement();

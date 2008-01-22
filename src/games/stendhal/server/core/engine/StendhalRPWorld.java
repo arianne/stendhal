@@ -16,8 +16,7 @@ import games.stendhal.server.core.config.ZoneGroupsXMLLoader;
 import games.stendhal.server.core.rp.guilds.Guild;
 import games.stendhal.server.core.rp.guilds.GuildMember;
 import games.stendhal.server.core.rp.guilds.GuildPermission;
-import games.stendhal.server.core.rule.RuleManager;
-import games.stendhal.server.core.rule.RuleSetFactory;
+import games.stendhal.server.core.rule.defaultruleset.DefaultRuleManager;
 import games.stendhal.server.entity.ActiveEntity;
 import games.stendhal.server.entity.Blood;
 import games.stendhal.server.entity.Entity;
@@ -46,7 +45,6 @@ import games.stendhal.server.entity.mapstuff.spawner.PassiveEntityRespawnPoint;
 import games.stendhal.server.entity.mapstuff.spawner.SheepFood;
 import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.entity.npc.parser.WordList;
-import games.stendhal.server.entity.player.GagManager;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.spell.Spell;
 import games.stendhal.server.events.BuddyLoginEvent;
@@ -98,14 +96,14 @@ public class StendhalRPWorld extends RPWorld {
 	// private PathfinderThread pathfinderThread;
 
 	/** The rule system manager. */
-	private RuleManager ruleManager;
+	private DefaultRuleManager ruleManager;
 
 	protected StendhalRPWorld() {
 		super();
 
 		createRPClasses();
 
-		ruleManager = RuleSetFactory.getRuleSet("default");
+		ruleManager = SingletonRepository.getRuleSet();
 		instance = this;
 	}
 
@@ -130,7 +128,7 @@ public class StendhalRPWorld extends RPWorld {
 	 */
 	@Deprecated
 	public static StendhalRPWorld getInstance() {
-		return get();
+		return SingletonRepository.getRPWorld();
 	}
 
 	/**
@@ -169,7 +167,7 @@ public class StendhalRPWorld extends RPWorld {
 	// }
 
 	/** returns the current rulemanager. */
-	public RuleManager getRuleManager() {
+	public DefaultRuleManager getRuleManager() {
 		return ruleManager;
 	}
 
@@ -284,7 +282,7 @@ public class StendhalRPWorld extends RPWorld {
 			// this
 			// make sure that it is always initialized on server startup so that
 			// its LoginListener does not miss anyone.
-			GagManager.get();
+			SingletonRepository.getGagManager();
 		} catch (Exception e) {
 			logger.error("Error on Init the server.", e);
 		}
@@ -293,7 +291,7 @@ public class StendhalRPWorld extends RPWorld {
 	@Override
 	public void onFinish() {
 		super.onFinish();
-		StendhalRPRuleProcessor.get().addGameEvent("server system", "shutdown");
+		SingletonRepository.getRuleProcessor().addGameEvent("server system", "shutdown");
 	}
 
 	protected void validatePortal(Portal portal) {

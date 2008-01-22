@@ -5,7 +5,7 @@ package games.stendhal.server.core.scripting;
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.actions.admin.AdministrationAction;
-import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.extension.StendhalServerExtension;
 
@@ -179,7 +179,7 @@ public class ScriptRunner extends StendhalServerExtension implements
 				args = new String[0];
 			}
 
-			StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
+			SingletonRepository.getRuleProcessor().addGameEvent(player.getName(),
 					"script", script, mode, Arrays.asList(args).toString());
 
 			// execute script

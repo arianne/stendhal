@@ -1,6 +1,6 @@
 package games.stendhal.server.maps.quests;
 
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -57,7 +57,7 @@ public class FishermansLicenseQuiz extends AbstractQuest {
 
 	private int currentSpeciesNo;
 
-	private static StendhalRPZone zone = StendhalRPWorld.get().getZone(
+	private static StendhalRPZone zone = SingletonRepository.getRPWorld().getZone(
 			"int_ados_fishermans_hut_west");
 
 	private Item fishOnTable;
@@ -110,7 +110,7 @@ public class FishermansLicenseQuiz extends AbstractQuest {
 	private void putNextFishOnTable() {
 		currentSpeciesNo++;
 		cleanUpTable();
-		fishOnTable = StendhalRPWorld.get().getRuleManager().getEntityManager()
+		fishOnTable = SingletonRepository.getEntityManager()
 				.getItem(getCurrentSpecies());
 		fishOnTable.setDescription("You see a fish.");
 

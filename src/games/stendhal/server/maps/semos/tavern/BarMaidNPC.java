@@ -1,6 +1,7 @@
 package games.stendhal.server.maps.semos.tavern;
 
 import games.stendhal.server.core.config.ZoneConfigurator;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
@@ -17,7 +18,7 @@ import java.util.Map;
  * Inside Semos Tavern - Level 0 (ground floor)
  */
 public class BarMaidNPC implements ZoneConfigurator {
-	private ShopList shops = ShopList.get();
+	private ShopList shops = SingletonRepository.getShopList();
 
 	/**
 	 * Configure a zone.

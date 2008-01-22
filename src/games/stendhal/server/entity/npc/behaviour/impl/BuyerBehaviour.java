@@ -13,7 +13,7 @@
 package games.stendhal.server.entity.npc.behaviour.impl;
 
 import games.stendhal.common.Grammar;
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
@@ -37,7 +37,7 @@ public class BuyerBehaviour extends MerchantBehaviour {
 	 *            The player who sells
 	 */
 	protected void payPlayer(Player player) {
-		StackableItem money = (StackableItem) StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
+		StackableItem money = (StackableItem) SingletonRepository.getEntityManager().getItem(
 				"money");
 		money.setQuantity(getCharge(player));
 		player.equip(money, true);

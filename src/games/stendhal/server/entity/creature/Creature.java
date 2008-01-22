@@ -14,8 +14,7 @@ package games.stendhal.server.entity.creature;
 
 import games.stendhal.common.Level;
 import games.stendhal.common.Rand;
-import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
@@ -363,7 +362,7 @@ public class Creature extends NPC {
 			}
 		}
 
-		for (Item item : createDroppedItems(StendhalRPWorld.get().getRuleManager().getEntityManager())) {
+		for (Item item : createDroppedItems(SingletonRepository.getEntityManager())) {
 			corpse.add(item);
 
 			if (corpse.isFull()) {
@@ -531,7 +530,7 @@ public class Creature extends NPC {
 			String poisonType = poison[1];
 
 			if (roll <= prob) {
-				ConsumableItem item = (ConsumableItem) StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
+				ConsumableItem item = (ConsumableItem) SingletonRepository.getEntityManager().getItem(
 						poisonType);
 				if (item == null) {
 					logger.error("Creature unable to poisoning with "
@@ -543,7 +542,7 @@ public class Creature extends NPC {
 						Player player = (Player) entity;
 
 						if (player.poison(item)) {
-							StendhalRPRuleProcessor.get().addGameEvent(
+							SingletonRepository.getRuleProcessor().addGameEvent(
 									getName(), "poison", player.getName());
 
 							// TODO: Use a_noun()?
@@ -567,7 +566,7 @@ public class Creature extends NPC {
 	 *            The number of turns between healings
 	 */
 	public void healSelf(int amount, int frequency) {
-		if ((StendhalRPRuleProcessor.get().getTurn() % frequency == 0)
+		if ((SingletonRepository.getRuleProcessor().getTurn() % frequency == 0)
 				&& (getHP() > 0)) {
 			heal(amount);
 		}
@@ -580,7 +579,7 @@ public class Creature extends NPC {
 			}
 
 			RPSlot slot = getSlot(equippedItem.slot);
-			EntityManager manager = StendhalRPWorld.get().getRuleManager().getEntityManager();
+			EntityManager manager = SingletonRepository.getEntityManager();
 
 			Item item = manager.getItem(equippedItem.name);
 

@@ -1,6 +1,7 @@
 // $Id$
 package games.stendhal.server.actions.equip;
 
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
@@ -29,7 +30,7 @@ public class EquipmentActionTest {
 	 */
 	@BeforeClass
 	public static void buildWorld() throws Exception {
-		StendhalRPWorld world = StendhalRPWorld.get();
+		StendhalRPWorld world = SingletonRepository.getRPWorld();
 		world.addArea(ZONE_NAME, ZONE_CONTENT);
 		Player.generateRPClass();
 	}
@@ -43,8 +44,8 @@ public class EquipmentActionTest {
 		PrivateTextMockingTestPlayer player = PlayerTestHelper.createPrivateTextMockingTestPlayer(name);
 
 		player.setPosition(10, 5);
-		StendhalRPWorld.get().getRPZone(ZONE_NAME).assignRPObjectID(player);
-		StendhalRPWorld.get().getRPZone(ZONE_NAME).add(player);
+		SingletonRepository.getRPWorld().getRPZone(ZONE_NAME).assignRPObjectID(player);
+		SingletonRepository.getRPWorld().getRPZone(ZONE_NAME).add(player);
 
 		return player;
 	}

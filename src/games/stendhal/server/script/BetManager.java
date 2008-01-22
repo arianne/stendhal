@@ -1,9 +1,7 @@
 package games.stendhal.server.script;
 
-import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.TurnListener;
-import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.core.scripting.ScriptingNPC;
 import games.stendhal.server.core.scripting.ScriptingSandbox;
@@ -217,7 +215,7 @@ public class BetManager extends ScriptImpl implements TurnListener {
 			}
 
 			// check that item is a ConsumableItem
-			Item item = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
+			Item item = SingletonRepository.getEntityManager().getItem(
 					betInfo.itemName);
 			if (!(item instanceof ConsumableItem)) {
 				engine.say("Sorry " + player.getTitle()
@@ -261,7 +259,7 @@ public class BetManager extends ScriptImpl implements TurnListener {
 		if (!betInfos.isEmpty()) {
 			BetInfo betInfo = betInfos.remove(0);
 
-			Player player = StendhalRPRuleProcessor.get().getPlayer(
+			Player player = SingletonRepository.getRuleProcessor().getPlayer(
 					betInfo.playerName);
 			if (player == null) {
 				// player logged out
@@ -322,7 +320,7 @@ public class BetManager extends ScriptImpl implements TurnListener {
 				targets.clear();
 				state = State.IDLE;
 			} else {
-				TurnNotifier.get().notifyInTurns(
+				SingletonRepository.getTurnNotifier().notifyInTurns(
 						WAIT_TIME_BETWEEN_WINNER_ANNOUNCEMENTS, this);
 			}
 		}
@@ -426,7 +424,7 @@ public class BetManager extends ScriptImpl implements TurnListener {
 			winner = args.get(1);
 			state = State.PAYING_BETS;
 			npc.say("And the winner is ... " + winner + ".");
-			TurnNotifier.get().notifyInTurns(
+			SingletonRepository.getTurnNotifier().notifyInTurns(
 					WAIT_TIME_BETWEEN_WINNER_ANNOUNCEMENTS, this);
 			break;
 			default:

@@ -1,7 +1,6 @@
 package games.stendhal.server.maps.quests;
 
-import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
@@ -139,7 +138,7 @@ public class HouseBuying extends AbstractQuest {
 						new SpeakerNPC.ChatAction() {
 							@Override
 							public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-								Player postman = StendhalRPRuleProcessor.get().getPlayer(
+								Player postman = SingletonRepository.getRuleProcessor().getPlayer(
 										"postman");
 								// is postman online?
 								if (postman != null) {
@@ -156,7 +155,7 @@ public class HouseBuying extends AbstractQuest {
 									if (!doneList.contains(item)) {
 										// it's available, so take money
 										if (player.isEquipped("money", COST)) {
-											Item key = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
+											Item key = SingletonRepository.getEntityManager().getItem(
 													"private_key_" + item);
 											engine.say("Congratulations, here is your key to house "
 													+ item
@@ -209,7 +208,7 @@ public class HouseBuying extends AbstractQuest {
 						public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 							if (player.isEquipped("money", COST_OF_SPARE_KEY)) {
 								String house = player.getQuest(QUEST_SLOT);
-								Item key = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
+								Item key = SingletonRepository.getEntityManager().getItem(
 										"private_key_" + house);
 								key.setUndroppableOnDeath(true);
 								if (player.equip(key)) {
@@ -343,7 +342,7 @@ public class HouseBuying extends AbstractQuest {
 							new SpeakerNPC.ChatAction() {
 								@Override
 								public void fire(Player player, Sentence sentence, SpeakerNPC engine2) {
-									Player postman = StendhalRPRuleProcessor.get().getPlayer(
+									Player postman = SingletonRepository.getRuleProcessor().getPlayer(
 											"postman");
 									// is postman online?
 									if (postman != null) {
@@ -360,7 +359,7 @@ public class HouseBuying extends AbstractQuest {
 										if (!doneList.contains(item)) {
 											// it's available, so take money
 											if (player.isEquipped("money", COST_ADOS)) {
-												Item key = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
+												Item key = SingletonRepository.getEntityManager().getItem(
 														"private_key_" + item);
 												engine2.say("Congratulations, here is your key to house "
 														+ item
@@ -416,7 +415,7 @@ public class HouseBuying extends AbstractQuest {
 							public void fire(Player player, Sentence sentence, SpeakerNPC engine2) {
 								if (player.isEquipped("money", COST_OF_SPARE_KEY)) {
 									String house = player.getQuest(QUEST_SLOT);
-									Item key = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
+									Item key = SingletonRepository.getEntityManager().getItem(
 											"private_key_" + house);
 									key.setUndroppableOnDeath(true);
 									if (player.equip(key)) {
@@ -465,9 +464,9 @@ public class HouseBuying extends AbstractQuest {
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
-		zone = StendhalRPWorld.get().getZone(ZONE_NAME);
+		zone = SingletonRepository.getRPWorld().getZone(ZONE_NAME);
 		createNPC();
-		zone2 = StendhalRPWorld.get().getZone(ZONE_NAME2);
+		zone2 = SingletonRepository.getRPWorld().getZone(ZONE_NAME2);
 		createNPC2();
 	}
 }

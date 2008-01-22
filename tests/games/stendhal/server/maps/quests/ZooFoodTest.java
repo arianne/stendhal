@@ -4,8 +4,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.StackableItem;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
@@ -45,7 +45,7 @@ public class ZooFoodTest extends ZonePlayerAndNPCTest {
 	public void testHiAndBye() {
 		Player player = createPlayer("player");
 
-		SpeakerNPC npc = NPCList.get().get("Katinka");
+		SpeakerNPC npc = SingletonRepository.getNPCList().get("Katinka");
 		assertNotNull(npc);
 		Engine en1 = npc.getEngine();
 		assertTrue("test text recognition with additional text after 'hi'",
@@ -59,7 +59,7 @@ public class ZooFoodTest extends ZonePlayerAndNPCTest {
 		assertFalse(npc.isTalking());
 		assertEquals("Goodbye!", npc.get("text"));
 
-		npc = NPCList.get().get("Dr. Feelgood");
+		npc = SingletonRepository.getNPCList().get("Dr. Feelgood");
 		assertNotNull(npc);
 		Engine en = npc.getEngine();
 		assertTrue(en.step(player, "hi"));
@@ -79,10 +79,10 @@ public class ZooFoodTest extends ZonePlayerAndNPCTest {
 	public void testDoQuest() {
 		Player player = createPlayer("player");
 
-		SpeakerNPC katinkaNpc = NPCList.get().get("Katinka");
+		SpeakerNPC katinkaNpc = SingletonRepository.getNPCList().get("Katinka");
 		assertNotNull(katinkaNpc);
 		Engine enKatinka = katinkaNpc.getEngine();
-		SpeakerNPC feelgoodNpc = NPCList.get().get("Dr. Feelgood");
+		SpeakerNPC feelgoodNpc = SingletonRepository.getNPCList().get("Dr. Feelgood");
 		assertNotNull(feelgoodNpc);
 		Engine enFeelgood = feelgoodNpc.getEngine();
 		assertTrue("test saying 'Hallo' instead of 'hi'", enKatinka.step(

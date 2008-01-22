@@ -3,9 +3,9 @@ package games.stendhal.server.maps.quests;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
@@ -35,7 +35,7 @@ public class PlinksToyTest {
 		MockStendlRPWorld.get().addRPZone(new StendhalRPZone("0_semos_plains_n"));
 
 		npc = new SpeakerNPC("Plink");
-		NPCList.get().add(npc);
+		SingletonRepository.getNPCList().add(npc);
 		LittleBoyNPC npcConf = new LittleBoyNPC();
 		npcConf.createDialog(npc);
 

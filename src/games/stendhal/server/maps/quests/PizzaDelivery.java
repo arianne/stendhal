@@ -2,7 +2,7 @@ package games.stendhal.server.maps.quests;
 
 import games.stendhal.common.Grammar;
 import games.stendhal.common.Rand;
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
@@ -289,7 +289,7 @@ public class PizzaDelivery extends AbstractQuest {
 		String name = Rand.rand(customerDB.keySet());
 		CustomerData data = customerDB.get(name);
 
-		Item pizza = StendhalRPWorld.get().getRuleManager().getEntityManager()
+		Item pizza = SingletonRepository.getEntityManager()
 				.getItem("pizza");
 		pizza.setInfoString(data.flavor);
 		pizza.setDescription("You see a " + data.flavor + ".");
@@ -366,8 +366,7 @@ public class PizzaDelivery extends AbstractQuest {
 								npc.say(String.format(data.messageOnHotPizza,
 										data.tip));
 							}
-							StackableItem money = (StackableItem) StendhalRPWorld
-									.get().getRuleManager().getEntityManager()
+							StackableItem money = (StackableItem) SingletonRepository.getEntityManager()
 									.getItem("money");
 							money.setQuantity(data.tip);
 							player.equip(money, true);

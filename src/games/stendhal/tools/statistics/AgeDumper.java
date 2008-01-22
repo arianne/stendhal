@@ -1,8 +1,7 @@
 package games.stendhal.tools.statistics;
 
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalPlayerDatabase;
-import games.stendhal.server.core.engine.StendhalRPWorld;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -94,7 +93,7 @@ public final class AgeDumper {
 	 *             in case of an unexpected item
 	 */
 	public static void main(String[] args) throws Exception {
-		StendhalRPWorld.get();
+		SingletonRepository.getRPWorld();
 		Configuration.setConfigurationFile("marauroa-prod.ini");
 		StendhalPlayerDatabase db = (StendhalPlayerDatabase) StendhalPlayerDatabase.newConnection();
 		AgeDumper itemDumper = new AgeDumper(db);

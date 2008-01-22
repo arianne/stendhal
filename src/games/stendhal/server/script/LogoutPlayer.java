@@ -1,6 +1,6 @@
 package games.stendhal.server.script;
 
-import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.entity.player.Player;
 
@@ -40,7 +40,7 @@ public class LogoutPlayer extends ScriptImpl {
 			}
 
 			Player player = (Player) entry.object;
-			StendhalRPRuleProcessor.get().getRPManager().disconnectPlayer(
+			SingletonRepository.getRuleProcessor().getRPManager().disconnectPlayer(
 					player);
 			admin.sendPrivateText(args.get(0) + " has been logged out");
 		} catch (Exception e) {

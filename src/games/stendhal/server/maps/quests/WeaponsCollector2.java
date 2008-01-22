@@ -1,7 +1,7 @@
 package games.stendhal.server.maps.quests;
 
 import games.stendhal.common.Grammar;
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -214,11 +214,11 @@ public class WeaponsCollector2 extends AbstractQuest {
 								if (missing.size() > 0) {
 									engine.say("Thank you very much! Do you have anything more for me?");
 								} else {
-									Item lhandsword = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
+									Item lhandsword = SingletonRepository.getEntityManager().getItem(
 											"l hand sword");
 									lhandsword.setBoundTo(player.getName());
 									player.equip(lhandsword, true);
-									Item rhandsword = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
+									Item rhandsword = SingletonRepository.getEntityManager().getItem(
 											"r hand sword");
 									rhandsword.setBoundTo(player.getName());
 									player.equip(rhandsword, true);

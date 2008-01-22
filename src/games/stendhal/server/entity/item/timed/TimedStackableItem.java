@@ -1,6 +1,7 @@
 package games.stendhal.server.entity.item.timed;
 
 import games.stendhal.common.Grammar;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.core.events.UseListener;
 import games.stendhal.server.entity.Entity;
@@ -64,7 +65,7 @@ public abstract class TimedStackableItem extends StackableItem implements
 		if (user.nextTo((Entity) base)) {
 			if (useItem((Player) user)) {
 				/* set the timer for the duration */
-				TurnNotifier notifier = TurnNotifier.get();
+				TurnNotifier notifier = SingletonRepository.getTurnNotifier();
 				notifier.notifyInTurns(getAmount(), this);
 				player = new WeakReference<Player>((Player) user);
 				this.removeOne();

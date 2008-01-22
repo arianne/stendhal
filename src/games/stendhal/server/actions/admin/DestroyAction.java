@@ -1,7 +1,7 @@
 package games.stendhal.server.actions.admin;
 
 import games.stendhal.server.actions.CommandCenter;
-import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
@@ -61,7 +61,7 @@ public class DestroyAction extends AdministrationAction {
 			name = inspected.get(_ATTR_NAME);
 		}
 
-		StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "removed",
+		SingletonRepository.getRuleProcessor().addGameEvent(player.getName(), "removed",
 				name, zone.getName(), Integer.toString(inspected.getX()),
 				Integer.toString(inspected.getY()));
 

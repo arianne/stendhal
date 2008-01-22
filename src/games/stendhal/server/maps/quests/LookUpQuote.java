@@ -1,7 +1,7 @@
 package games.stendhal.server.maps.quests;
 
 import games.stendhal.common.Rand;
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -152,8 +152,7 @@ public class LookUpQuote extends AbstractQuest {
 					String quote = quotes.get(name);
 					if (sentence.equalsNormalized(ConversationParser.parse(quote))) {
 						npc.say("Oh right, that's it! How could I forget this? Here, take this handy fishing rod as an acknowledgement of my gratitude!");
-						Item fishingRod = StendhalRPWorld.get()
-								.getRuleManager().getEntityManager()
+						Item fishingRod = SingletonRepository.getEntityManager()
 								.getItem("fishing rod");
 						fishingRod.setBoundTo(player.getName());
 						player.equip(fishingRod, true);

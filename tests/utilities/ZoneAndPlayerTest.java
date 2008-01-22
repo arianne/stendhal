@@ -2,7 +2,7 @@ package utilities;
 
 import static org.junit.Assert.assertNotNull;
 import games.stendhal.server.core.config.ZoneConfigurator;
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.player.Player;
 
@@ -10,7 +10,7 @@ import org.junit.After;
 import org.junit.Before;
 
 /**
- * Base class for quest tests
+ * Base class for quest tests.
  *
  * @author Martin Fuchs
  */
@@ -43,7 +43,7 @@ public abstract class ZoneAndPlayerTest extends QuestHelper {
 	 */
 	protected static StendhalRPZone setupZone(String zoneName) {
 		StendhalRPZone zone = new StendhalRPZone(zoneName);
-		StendhalRPWorld.get().addRPZone(zone);
+		SingletonRepository.getRPWorld().addRPZone(zone);
 
 		return zone;
     }
@@ -54,7 +54,7 @@ public abstract class ZoneAndPlayerTest extends QuestHelper {
 	 * @param zoneName
 	 */
 	protected ZoneAndPlayerTest(String zoneName) {
-		zone = StendhalRPWorld.get().getZone(zoneName);
+		zone = SingletonRepository.getRPWorld().getZone(zoneName);
 		assertNotNull(zone);
 	}
 

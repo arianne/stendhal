@@ -1,6 +1,6 @@
 package games.stendhal.server.core.rp.guilds;
 
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import java.util.LinkedList;
 import java.util.List;
@@ -32,7 +32,7 @@ public class GuildList {
     }
     
     private void loadZone() {
-        guildsZone = StendhalRPWorld.get().getZone(GUILD_ZONE);
+        guildsZone = SingletonRepository.getRPWorld().getZone(GUILD_ZONE);
     }
     
     private void loadGuilds() {

@@ -3,9 +3,9 @@ package games.stendhal.server.maps.quests;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
@@ -41,7 +41,7 @@ public class WeaponsCollectorTest {
 
 	@Test
 	public final void rejectQuest() {
-		NPCList.get().add(new SpeakerNPC("Balduin"));
+		SingletonRepository.getNPCList().add(new SpeakerNPC("Balduin"));
 		WeaponsCollector wc = new WeaponsCollector();
 		wc.init("weaponscollector_quest");
 		wc.addToWorld();
@@ -61,7 +61,7 @@ public class WeaponsCollectorTest {
 
 	@Test
 	public final void doQuest() {
-		NPCList.get().add(new SpeakerNPC("Balduin"));
+		SingletonRepository.getNPCList().add(new SpeakerNPC("Balduin"));
 		WeaponsCollector wc = new WeaponsCollector();
 		wc.init("weaponscollector_quest");
 		wc.addToWorld();

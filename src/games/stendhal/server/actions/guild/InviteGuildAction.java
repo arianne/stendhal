@@ -8,7 +8,7 @@ package games.stendhal.server.actions.guild;
 
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.actions.CommandCenter;
-import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
 
@@ -45,7 +45,7 @@ public class InviteGuildAction implements ActionListener {
 			// we have all the options, so let's coninue...
 
 			// we use player1 for other player
-			Player player1 = StendhalRPRuleProcessor.get().getPlayer(
+			Player player1 = SingletonRepository.getRuleProcessor().getPlayer(
 					action.get(_PLAYERNAME));
 			if (player1.get(_GUILD) == null) {
 				// it is safe to put the player from the guild as they are not

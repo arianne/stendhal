@@ -13,8 +13,8 @@
 package games.stendhal.server.entity;
 
 import games.stendhal.common.Rand;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.TurnListener;
-import games.stendhal.server.core.events.TurnNotifier;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.Definition.Type;
 
@@ -56,7 +56,7 @@ public class Blood extends PassiveEntity implements TurnListener {
 		setEntityClass(clazz);
 		put("amount", amount);
 
-		TurnNotifier.get().notifyInSeconds(DEGRADATION_TIMEOUT, this);
+		SingletonRepository.getTurnNotifier().notifyInSeconds(DEGRADATION_TIMEOUT, this);
 	}
 
 	//

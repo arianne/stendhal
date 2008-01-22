@@ -25,7 +25,7 @@ import java.util.List;
  * </ul>
  * 
  * STEPS:
- * </ul>
+ * <ul>
  * <li> The player must bring all kinds of fishes to the fisherman</li>
  * </ul>
  * 

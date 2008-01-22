@@ -1,6 +1,6 @@
 package games.stendhal.server.maps.quests;
 
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -226,7 +226,7 @@ import java.util.Arrays;
 				@Override
 				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 					player.drop("barbarian armor");
-					 StackableItem gold = (StackableItem) StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("gold bar");
+					 StackableItem gold = (StackableItem) SingletonRepository.getEntityManager().getItem("gold bar");
 					int goldamount = 20;
 					gold.setQuantity(goldamount);
 					player.equip(gold, true);

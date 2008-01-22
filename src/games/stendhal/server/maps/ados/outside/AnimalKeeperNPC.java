@@ -2,11 +2,9 @@ package games.stendhal.server.maps.ados.outside;
 
 import games.stendhal.common.Grammar;
 import games.stendhal.server.core.config.ZoneConfigurator;
-import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TurnListener;
-import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.core.rule.defaultruleset.DefaultEntityManager;
@@ -49,7 +47,7 @@ public class AnimalKeeperNPC implements ZoneConfigurator {
 					cryForHelp = "Katinka shouts: Help! " + Grammar.A_noun(killer.getTitle()) + " is eating our "
 					        + Grammar.plural(getTitle()) + ".";
 					// HACK: we need to wait a turn because the message is lost otherwise
-					TurnNotifier.get().notifyInTurns(0, this);
+					SingletonRepository.getTurnNotifier().notifyInTurns(0, this);
 				}
 			}
 		}
@@ -62,7 +60,7 @@ public class AnimalKeeperNPC implements ZoneConfigurator {
 		public void onTurnReached(int currentTurn) {
 			// HACK: we need to wait a turn because the message is lost otherwise
 			// sends the message to all players
-			StendhalRPRuleProcessor.get().tellAllPlayers(cryForHelp);
+			SingletonRepository.getRuleProcessor().tellAllPlayers(cryForHelp);
 		}
 	}
 
@@ -109,7 +107,7 @@ public class AnimalKeeperNPC implements ZoneConfigurator {
 
 		// put special RespawnPoints
 		// 65, 34 bear
-		DefaultEntityManager manager = (DefaultEntityManager) StendhalRPWorld.get().getRuleManager().getEntityManager();
+		DefaultEntityManager manager = (DefaultEntityManager) SingletonRepository.getEntityManager();
 		Creature creature = new AdosAttackableCreature(manager.getCreature("bear"));
 		CreatureRespawnPoint point = new CreatureRespawnPoint(zone, 65, 34, creature, 1);
 		zone.add(point);

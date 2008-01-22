@@ -12,7 +12,7 @@
 
 package games.stendhal.server.entity.npc.behaviour.impl;
 
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.player.Player;
 
 /**
@@ -44,6 +44,6 @@ public class HealerBehaviour extends SellerBehaviour {
 	public void heal(Player player) {
 		player.heal();
 		player.healPoison();
-		StendhalRPWorld.get().modify(player);
+		SingletonRepository.getRPWorld().modify(player);
 	}
 }

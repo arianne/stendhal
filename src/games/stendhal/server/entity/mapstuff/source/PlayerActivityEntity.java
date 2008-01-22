@@ -9,8 +9,8 @@ package games.stendhal.server.entity.mapstuff.source;
 //
 //
 
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.TurnListener;
-import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.core.events.UseListener;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
@@ -126,11 +126,11 @@ public abstract class PlayerActivityEntity extends Entity implements
 			/*
 			 * You can't start a new activity before the last one has finished.
 			 */
-			if (TurnNotifier.get().getRemainingTurns(activity) == -1) {
+			if (SingletonRepository.getTurnNotifier().getRemainingTurns(activity) == -1) {
 				player.faceToward(this);
 				onStarted(player);
 
-				TurnNotifier.get().notifyInSeconds(getDuration(), activity);
+				SingletonRepository.getTurnNotifier().notifyInSeconds(getDuration(), activity);
 			}
 		}
 

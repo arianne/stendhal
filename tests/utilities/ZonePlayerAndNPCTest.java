@@ -2,7 +2,7 @@ package utilities;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-import games.stendhal.server.entity.npc.NPCList;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
 import java.util.List;
@@ -56,7 +56,7 @@ public abstract class ZonePlayerAndNPCTest extends ZoneAndPlayerTest {
 	 * @return SpeakerNPC
 	 */
 	protected SpeakerNPC getNPC(String npcName) {
-		SpeakerNPC npc = NPCList.get().get(npcName);
+		SpeakerNPC npc = SingletonRepository.getNPCList().get(npcName);
 
 		assertNotNull(npc);
 

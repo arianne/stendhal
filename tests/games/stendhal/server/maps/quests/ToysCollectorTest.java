@@ -2,8 +2,8 @@ package games.stendhal.server.maps.quests;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.npc.ConversationPhrases;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 
@@ -30,7 +30,7 @@ public class ToysCollectorTest {
 
 	@Before
 	public void setUp() throws Exception {
-		NPCList.get().add(new SpeakerNPC("Anna"));
+		SingletonRepository.getNPCList().add(new SpeakerNPC("Anna"));
 		quest = new ToysCollector();
 		quest.init("Toys Collector");
 		quest.addToWorld();
@@ -38,7 +38,7 @@ public class ToysCollectorTest {
 
 	@After
 	public void tearDown() throws Exception {
-		NPCList.get().remove("Anna");
+		SingletonRepository.getNPCList().remove("Anna");
 	}
 
 	@Test

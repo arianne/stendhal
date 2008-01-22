@@ -13,7 +13,7 @@
 package games.stendhal.server.entity.creature;
 
 import games.stendhal.common.Rand;
-import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.core.pathfinder.Path;
@@ -274,7 +274,7 @@ public class Sheep extends DomesticAnimal {
 	 * Called when the sheep is idle.
 	 */
 	protected void onIdle() {
-		int turn = StendhalRPRuleProcessor.get().getTurn() + timingAdjust;
+		int turn = SingletonRepository.getRuleProcessor().getTurn() + timingAdjust;
 
 		if (owner == null) {
 			/*

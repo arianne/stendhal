@@ -1,6 +1,6 @@
 package games.stendhal.server.util;
 
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.creature.Creature;
 
@@ -33,7 +33,7 @@ public class AreaTest {
 
 	@Test
 	public void testInArea() {
-		StendhalRPWorld.get();
+		SingletonRepository.getRPWorld();
 		Area area = createArea();
 		Creature entity = new Creature();
 		zone.add(entity);
@@ -43,7 +43,7 @@ public class AreaTest {
 
 	@Test
 	public void testNotInArea() {
-		StendhalRPWorld.get();
+		SingletonRepository.getRPWorld();
 		Area area = createArea();
 
 		// other zone

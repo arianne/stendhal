@@ -8,7 +8,7 @@ package games.stendhal.server.entity.item.scroll;
 //
 //
 
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.player.Player;
 
@@ -67,7 +67,7 @@ public class InvitationScroll extends TeleportScroll {
 			return false;
 		}
 
-		zone = StendhalRPWorld.get().getZone(st.nextToken());
+		zone = SingletonRepository.getRPWorld().getZone(st.nextToken());
 
 		if (!st.hasMoreTokens()) {
 			return false;

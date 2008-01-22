@@ -12,7 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.mapstuff.spawner;
 
-import games.stendhal.server.core.events.TurnNotifier;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
 
 import java.awt.geom.Rectangle2D;
@@ -99,7 +99,7 @@ public abstract class GrowingPassiveEntityRespawnPoint extends
 			setRipeness(ripeness + 1);
 
 			logger.debug("Grow " + ripeness + " up to " + maxRipeness);
-			TurnNotifier.get().notifyInTurns(getRandomTurnsForRegrow(), this);
+			SingletonRepository.getTurnNotifier().notifyInTurns(getRandomTurnsForRegrow(), this);
 
 			notifyWorldAboutChanges();
 		}
@@ -121,7 +121,7 @@ public abstract class GrowingPassiveEntityRespawnPoint extends
 	public void setToFullGrowth() {
 		setRipeness(maxRipeness);
 		// don't grow anything new until someone harvests
-		TurnNotifier.get().dontNotify(this);
+		SingletonRepository.getTurnNotifier().dontNotify(this);
 	}
 
 }

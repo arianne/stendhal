@@ -1,9 +1,9 @@
 /* $Id$ */
 package games.stendhal.server.script;
 
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.PreTransitionCondition;
 import games.stendhal.server.entity.npc.fsm.Transition;
@@ -33,9 +33,9 @@ public class DumpConditions extends ScriptImpl {
 	@Override
 	public void execute(Player admin, List<String> args) {
 		dumpedTable = new StringBuilder();
-		Set<String> npcs = NPCList.get().getNPCs();
+		Set<String> npcs = SingletonRepository.getNPCList().getNPCs();
 		for (String npcName : npcs) {
-			dump(NPCList.get().get(npcName));
+			dump(SingletonRepository.getNPCList().get(npcName));
 		}
 		System.out.println(dumpedTable.toString());
 	}

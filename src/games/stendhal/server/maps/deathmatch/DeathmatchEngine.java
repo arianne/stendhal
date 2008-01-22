@@ -1,7 +1,7 @@
 package games.stendhal.server.maps.deathmatch;
 
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.TurnListener;
-import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.creature.DeathMatchCreature;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
@@ -66,7 +66,7 @@ class DeathmatchEngine implements TurnListener {
 			action();
 		}
 		if (keepRunning) {
-			TurnNotifier.get().notifyInTurns(0, this);
+			SingletonRepository.getTurnNotifier().notifyInTurns(0, this);
 		}
 	}
 

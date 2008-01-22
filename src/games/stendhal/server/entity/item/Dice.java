@@ -14,8 +14,8 @@ package games.stendhal.server.entity.item;
 
 import games.stendhal.common.Grammar;
 import games.stendhal.common.Rand;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.npc.CroupierNPC;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.LinkedList;
@@ -70,7 +70,7 @@ public class Dice extends Item {
 			String name = getInfoString();
 
 			if (name != null) {
-				croupierNPC = (CroupierNPC) NPCList.get().get(name);
+				croupierNPC = (CroupierNPC) SingletonRepository.getNPCList().get(name);
 			}
 		}
 	}

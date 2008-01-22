@@ -1,10 +1,9 @@
 package games.stendhal.server.script;
 
-import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.engine.Task;
 import games.stendhal.server.core.events.TurnListener;
-import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.entity.player.Player;
 
@@ -44,7 +43,7 @@ public class PlayerPositionMonitoring extends ScriptImpl {
 			final StringBuilder sb = new StringBuilder(String.valueOf(counter));
 			sb.append(": ");
 
-			StendhalRPRuleProcessor.get().getOnlinePlayers().forAllPlayersExecute(
+			SingletonRepository.getRuleProcessor().getOnlinePlayers().forAllPlayersExecute(
 					
 				new Task<Player>() {
 
@@ -82,7 +81,7 @@ public class PlayerPositionMonitoring extends ScriptImpl {
 		public void onTurnReached(int currentTurn) {
 			list();
 			if (counter < INTERVALS.length) {
-				TurnNotifier.get().notifyInTurns(
+				SingletonRepository.getTurnNotifier().notifyInTurns(
 						(int) (INTERVALS[counter] * 1000 / 300f), this);
 			}
 			counter++;
@@ -92,7 +91,7 @@ public class PlayerPositionMonitoring extends ScriptImpl {
 	@Override
 	public void execute(Player admin, List<String> args) {
 		super.execute(admin, args);
-		TurnNotifier.get().notifyInTurns(1, new PlayerPositionListener(admin));
+		SingletonRepository.getTurnNotifier().notifyInTurns(1, new PlayerPositionListener(admin));
 	}
 
 }

@@ -1,6 +1,6 @@
 package games.stendhal.server.maps.deathmatch;
 
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.rp.StendhalRPAction;
@@ -28,7 +28,7 @@ static final Logger logger = Logger.getLogger(CreatureSpawner.class);
 	private List<Creature> sortedCreatures = new LinkedList<Creature>();
 	private List<DeathMatchCreature> spawnedCreatures = new ArrayList<DeathMatchCreature>();
 	CreatureSpawner() {
-		Collection<Creature> creatures = StendhalRPWorld.get().getRuleManager().getEntityManager().getCreatures();
+		Collection<Creature> creatures = SingletonRepository.getEntityManager().getCreatures();
 		sortedCreatures.addAll(creatures);
 		Collections.sort(sortedCreatures, new LevelBasedComparator());
 	}

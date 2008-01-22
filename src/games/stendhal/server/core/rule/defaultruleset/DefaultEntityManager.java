@@ -14,6 +14,7 @@ package games.stendhal.server.core.rule.defaultruleset;
 
 import games.stendhal.server.core.config.CreaturesXMLLoader;
 import games.stendhal.server.core.config.ItemGroupsXMLLoader;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.creature.Creature;
@@ -90,7 +91,7 @@ public class DefaultEntityManager implements EntityManager {
 		createdCreature = new HashMap<String, Creature>();
 
 		try {
-			CreaturesXMLLoader loader = CreaturesXMLLoader.get();
+			CreaturesXMLLoader loader = SingletonRepository.getCreaturesXMLLoader();
 			List<DefaultCreature> creatures = loader.load("data/conf/creatures.xml");
 
 			for (DefaultCreature creature : creatures) {

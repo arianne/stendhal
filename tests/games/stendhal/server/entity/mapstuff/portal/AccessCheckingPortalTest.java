@@ -3,9 +3,9 @@ package games.stendhal.server.entity.mapstuff.portal;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TurnListener;
-import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.mapstuff.portal.AccessCheckingPortal.SendMessage;
@@ -45,8 +45,8 @@ public class AccessCheckingPortalTest extends PlayerTestHelper {
 
 	@After
 	public void tearDown() throws Exception {
-		TurnNotifier.get().getEventListForDebugging().clear();
-		assertTrue(TurnNotifier.get().getEventListForDebugging().isEmpty());
+		SingletonRepository.getTurnNotifier().getEventListForDebugging().clear();
+		assertTrue(SingletonRepository.getTurnNotifier().getEventListForDebugging().isEmpty());
 	}
 
 	@Test
@@ -86,7 +86,7 @@ public class AccessCheckingPortalTest extends PlayerTestHelper {
 		AccessCheckingPortal port = new MockAccessCheckingPortal();
 		PrivateTextMockingTestPlayer player = createPrivateTextMockingTestPlayer("mayNot");
 		port.rejected(player);
-		Set<TurnListener> bla = TurnNotifier.get().getEventListForDebugging().get(
+		Set<TurnListener> bla = SingletonRepository.getTurnNotifier().getEventListForDebugging().get(
 				Integer.valueOf(0));
 		TurnListener[] listenerset = new TurnListener[bla.size()];
 		bla.toArray(listenerset);
@@ -102,7 +102,7 @@ public class AccessCheckingPortalTest extends PlayerTestHelper {
 		PrivateTextMockingTestPlayer player = createPrivateTextMockingTestPlayer("mayNot");
 		port.setRejectedMessage("setRejectMessage");
 		port.rejected(player);
-		Set<TurnListener> bla = TurnNotifier.get().getEventListForDebugging().get(
+		Set<TurnListener> bla = SingletonRepository.getTurnNotifier().getEventListForDebugging().get(
 				Integer.valueOf(0));
 		TurnListener[] listenerset = new TurnListener[bla.size()];
 		bla.toArray(listenerset);

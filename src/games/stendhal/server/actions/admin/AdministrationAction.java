@@ -14,7 +14,7 @@ package games.stendhal.server.actions.admin;
 
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.actions.WellKnownActionConstants;
-import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.player.Player;
@@ -152,7 +152,7 @@ public abstract class AdministrationAction implements ActionListener {
 		}
 		if (id != null) {
 			if (!id.startsWith("#")) {
-				target = StendhalRPRuleProcessor.get().getPlayer(id);
+				target = SingletonRepository.getRuleProcessor().getPlayer(id);
 				return target;
 			} else {
 				id = id.substring(1);

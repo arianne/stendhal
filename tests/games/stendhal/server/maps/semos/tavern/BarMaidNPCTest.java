@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-import games.stendhal.server.entity.npc.NPCList;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 
@@ -126,7 +126,7 @@ public class BarMaidNPCTest extends ZonePlayerAndNPCTest {
 
 	@Test
 	public void testSellHam() {
-		SpeakerNPC npc = NPCList.get().get("Margaret");
+		SpeakerNPC npc = SingletonRepository.getNPCList().get("Margaret");
 		assertNotNull(npc);
 		Engine en = npc.getEngine();
 

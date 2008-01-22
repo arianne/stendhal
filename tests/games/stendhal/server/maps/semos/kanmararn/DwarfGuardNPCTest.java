@@ -14,7 +14,7 @@ import org.junit.Test;
 import utilities.ZonePlayerAndNPCTest;
 
 /**
- * Test for DwarfGuardNPC: sell chaos legs
+ * Test for DwarfGuardNPC: sell chaos legs.
  *
  * @author Martin Fuchs
  */

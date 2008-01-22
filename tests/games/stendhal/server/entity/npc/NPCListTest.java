@@ -1,6 +1,7 @@
 package games.stendhal.server.entity.npc;
 
 import static org.junit.Assert.*;
+import games.stendhal.server.core.engine.SingletonRepository;
 
 import org.junit.After;
 import org.junit.Before;
@@ -22,7 +23,7 @@ public class NPCListTest {
 	public final void testGet() {
 		NPCList npclist = new NPCList() {
 		};
-		assertSame(npclist, NPCList.get());
+		assertSame(npclist, SingletonRepository.getNPCList());
 	}
 
 	@Test

@@ -13,7 +13,7 @@
 package games.stendhal.server.entity.mapstuff.spawner;
 
 import games.stendhal.common.Grammar;
-import games.stendhal.server.core.events.TurnNotifier;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
@@ -97,6 +97,6 @@ public class SheepFood extends PassiveEntityRespawnPoint {
 	public void setToFullGrowth() {
 		setAmount(MAX_NUMBER_OF_FRUITS);
 		// don't grow anything new until someone picks a fruit
-		TurnNotifier.get().dontNotify(this);
+		SingletonRepository.getTurnNotifier().dontNotify(this);
 	}
 }

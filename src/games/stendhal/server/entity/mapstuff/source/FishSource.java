@@ -10,7 +10,7 @@ package games.stendhal.server.entity.mapstuff.source;
 //
 
 import games.stendhal.common.Rand;
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
 
@@ -136,7 +136,7 @@ public class FishSource extends PlayerActivityEntity {
 	@Override
 	protected void onFinished(final Player player, final boolean successful) {
 		if (successful) {
-			Item item = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
+			Item item = SingletonRepository.getEntityManager().getItem(
 					itemName);
 
 			player.equip(item, true);

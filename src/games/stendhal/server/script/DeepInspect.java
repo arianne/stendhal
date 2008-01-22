@@ -1,6 +1,6 @@
 package games.stendhal.server.script;
 
-import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.entity.player.Player;
 
@@ -23,7 +23,7 @@ public class DeepInspect extends ScriptImpl {
 			admin.sendPrivateText("Need player name as parameter.");
 			return;
 		}
-		Player player = StendhalRPRuleProcessor.get().getPlayer(args.get(0));
+		Player player = SingletonRepository.getRuleProcessor().getPlayer(args.get(0));
 		StringBuffer sb = new StringBuffer();
 		sb.append("Inspecting " + player.getName() + "\n");
 

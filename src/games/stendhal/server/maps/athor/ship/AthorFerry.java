@@ -1,7 +1,7 @@
 package games.stendhal.server.maps.athor.ship;
 
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.TurnListener;
-import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.util.TimeUtil;
 
 import java.util.LinkedList;
@@ -57,7 +57,7 @@ public final class AthorFerry implements TurnListener {
 			instance = new AthorFerry();
 
 			// initiate the turn notification cycle
-			TurnNotifier.get().notifyInSeconds(1, instance);
+			SingletonRepository.getTurnNotifier().notifyInSeconds(1, instance);
 
 		}
 		return instance;
@@ -70,7 +70,7 @@ public final class AthorFerry implements TurnListener {
 	 */
 
 	private String getRemainingSeconds() {
-		int secondsUntilNextState = TurnNotifier.get()
+		int secondsUntilNextState = SingletonRepository.getTurnNotifier()
 				.getRemainingSeconds(this);
 		return TimeUtil.approxTimeUntil(secondsUntilNextState);
 	}
@@ -86,7 +86,7 @@ public final class AthorFerry implements TurnListener {
 		for (IFerryListener npc : listeners) {
 			npc.onNewFerryState(current);
 		}
-		TurnNotifier.get().notifyInSeconds(current.duration(), this);
+		SingletonRepository.getTurnNotifier().notifyInSeconds(current.duration(), this);
 	}
 
 	public void addListener(IFerryListener npc) {
@@ -101,7 +101,7 @@ public final class AthorFerry implements TurnListener {
 	 */
 	public abstract static class FerryListener implements IFerryListener {
 		public FerryListener() {
-			AthorFerry.get().addListener(this);
+			SingletonRepository.getAthorFerry().addListener(this);
 		}
 
 		public abstract void onNewFerryState(Status current);
@@ -126,7 +126,7 @@ public final class AthorFerry implements TurnListener {
 			@Override
 			public String toString() {
 				return "The ferry is currently anchored at the mainland. It will take off in "
-						+ AthorFerry.get().getRemainingSeconds() + ".";
+						+ SingletonRepository.getAthorFerry().getRemainingSeconds() + ".";
 			}
 		},
 		DRIVING_TO_ISLAND {
@@ -143,7 +143,7 @@ public final class AthorFerry implements TurnListener {
 			@Override
 			public String toString() {
 				return "The ferry is currently sailing to the island. It will arrive in "
-						+ AthorFerry.get().getRemainingSeconds() + ".";
+						+ SingletonRepository.getAthorFerry().getRemainingSeconds() + ".";
 			}
 
 		},
@@ -161,7 +161,7 @@ public final class AthorFerry implements TurnListener {
 			@Override
 			public String toString() {
 				return "The ferry is currently anchored at the island. It will take off in "
-						+ AthorFerry.get().getRemainingSeconds() + ".";
+						+ SingletonRepository.getAthorFerry().getRemainingSeconds() + ".";
 			}
 
 		},
@@ -179,7 +179,7 @@ public final class AthorFerry implements TurnListener {
 			@Override
 			public String toString() {
 				return "The ferry is currently sailing to the mainland. It will arrive in "
-						+ AthorFerry.get().getRemainingSeconds() + ".";
+						+ SingletonRepository.getAthorFerry().getRemainingSeconds() + ".";
 			}
 
 		};

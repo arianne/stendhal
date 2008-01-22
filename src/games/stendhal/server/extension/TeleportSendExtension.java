@@ -3,10 +3,9 @@ package games.stendhal.server.extension;
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.actions.admin.AdministrationAction;
-import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.RPEntity;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.player.Player;
 
 import org.apache.log4j.Logger;
@@ -66,7 +65,7 @@ public class TeleportSendExtension extends StendhalServerExtension implements
 		if (action.has("target") && action.has("args")) {
 			// Parse Player1
 			String name1 = action.get("target");
-			Player player1 = StendhalRPRuleProcessor.get().getPlayer(name1);
+			Player player1 = SingletonRepository.getRuleProcessor().getPlayer(name1);
 			if (player1 == null) {
 				String text = "Player \"" + name1 + "\" not found";
 				admin.sendPrivateText(text);
@@ -76,9 +75,9 @@ public class TeleportSendExtension extends StendhalServerExtension implements
 
 			// Parse Player2 (player/npc)
 			String name2 = action.get("args");
-			RPEntity player2 = StendhalRPRuleProcessor.get().getPlayer(name2);
+			RPEntity player2 = SingletonRepository.getRuleProcessor().getPlayer(name2);
 			if (player2 == null) {
-				player2 = NPCList.get().get(name2);
+				player2 = SingletonRepository.getNPCList().get(name2);
 				if (player2 == null) {
 
 					String text = "Player \"" + name2 + "\" not found";

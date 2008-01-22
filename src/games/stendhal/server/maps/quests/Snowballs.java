@@ -1,7 +1,7 @@
 package games.stendhal.server.maps.quests;
 
 import games.stendhal.common.Rand;
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -198,8 +198,7 @@ public class Snowballs extends AbstractQuest {
 							rewardClass = "perch";
 						}
 						npc.say("Thank you! Here, take some " + rewardClass + "! I do not like to eat them.");
-						EntityManager manager = StendhalRPWorld.get()
-								.getRuleManager().getEntityManager();
+						EntityManager manager = SingletonRepository.getEntityManager();
 						StackableItem reward = (StackableItem) manager.getItem(rewardClass);
 						reward.setQuantity(20);
 						player.equip(reward, true);

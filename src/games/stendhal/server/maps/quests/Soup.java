@@ -1,7 +1,7 @@
 package games.stendhal.server.maps.quests;
 
 import games.stendhal.common.Grammar;
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -84,9 +84,9 @@ public class Soup extends AbstractQuest {
 	 * @param player to be rewarded
 	 */
 	private void placeSoupFor(Player player) {
-		Item soup = StendhalRPWorld.get().getRuleManager().getEntityManager()
+		Item soup = SingletonRepository.getEntityManager()
 				.getItem("soup");
-		IRPZone zone = StendhalRPWorld.get().getZone("int_fado_tavern");
+		IRPZone zone = SingletonRepository.getRPWorld().getZone("int_fado_tavern");
 		// place on table (for effect only :) )
 		soup.setPosition(17, 23);
 		// only allow player who made soup to eat the soup

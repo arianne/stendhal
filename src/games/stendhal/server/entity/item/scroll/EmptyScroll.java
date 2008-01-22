@@ -12,7 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.item.scroll;
 
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
@@ -60,7 +60,7 @@ public class EmptyScroll extends Scroll {
 		StendhalRPZone zone = player.getZone();
 
 		if (zone.isTeleportAllowed()) {
-			Item markedScroll = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
+			Item markedScroll = SingletonRepository.getEntityManager().getItem(
 					"marked scroll");
 			markedScroll.setInfoString(player.getID().getZoneID() + " "
 					+ player.getX() + " " + player.getY());

@@ -1,7 +1,7 @@
 package games.stendhal.server.actions.equip;
 
 import games.stendhal.server.core.engine.ItemLogger;
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Stackable;
@@ -217,7 +217,7 @@ class DestinationObject extends MoveableObject {
 				rpslot.add(entity);
 			}
 
-			StendhalRPWorld.get().modify(parent);
+			SingletonRepository.getRPWorld().modify(parent);
 		} else {
 			// drop the entity to the ground. Do this always in the player's
 			// zone.

@@ -1,5 +1,6 @@
 package games.stendhal.server.core.events;
 
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPWorld;
 
 import java.util.ArrayList;
@@ -128,7 +129,7 @@ public final class TurnNotifier {
 	 *            the object to notify
 	 */
 	public void notifyInSeconds(int sec, TurnListener turnListener) {
-		notifyInTurns(StendhalRPWorld.get().getTurnsInSeconds(sec),
+		notifyInTurns(SingletonRepository.getRPWorld().getTurnsInSeconds(sec),
 				turnListener);
 	}
 

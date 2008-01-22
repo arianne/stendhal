@@ -10,7 +10,7 @@ package games.stendhal.server.extension;
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.actions.admin.AdministrationAction;
-import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.rp.StendhalRPAction;
 import games.stendhal.server.entity.player.Player;
@@ -90,7 +90,7 @@ public class SpouseExtension extends StendhalServerExtension implements
 
 		if (action.has("target")) {
 			name1 = action.get("target");
-			player1 = StendhalRPRuleProcessor.get().getPlayer(name1);
+			player1 = SingletonRepository.getRuleProcessor().getPlayer(name1);
 			if (player1 == null) {
 				canMarry = false;
 				text += "Player \"" + name1 + "\" not found. ";
@@ -103,7 +103,7 @@ public class SpouseExtension extends StendhalServerExtension implements
 
 		if (action.has("args")) {
 			name2 = action.get("args");
-			player2 = StendhalRPRuleProcessor.get().getPlayer(name2);
+			player2 = SingletonRepository.getRuleProcessor().getPlayer(name2);
 			if (player2 == null) {
 				canMarry = false;
 				text += "Player \"" + name2 + "\" not found. ";
@@ -145,7 +145,7 @@ public class SpouseExtension extends StendhalServerExtension implements
 					+ "\". You can use #/spouse if you want to be together.");
 			text = "You have successfully married \"" + name1 + "\" and \""
 					+ name2 + "\".";
-			StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
+			SingletonRepository.getRuleProcessor().addGameEvent(player.getName(),
 					"marry", name1 + " + " + name2);
 		}
 
@@ -157,7 +157,7 @@ public class SpouseExtension extends StendhalServerExtension implements
 			Player teleported = null;
 
 			String name = player.getQuest(SPOUSE);
-			teleported = StendhalRPRuleProcessor.get().getPlayer(name);
+			teleported = SingletonRepository.getRuleProcessor().getPlayer(name);
 
 			if (teleported == null) {
 				String text = "Your spouse (\"" + name + "\") is not online.";
@@ -173,7 +173,7 @@ public class SpouseExtension extends StendhalServerExtension implements
 			// TODO: use Player.teleport()
 
 			if (StendhalRPAction.placeat(zone, player, x, y)) {
-				StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
+				SingletonRepository.getRuleProcessor().addGameEvent(player.getName(),
 						"teleportto", teleported.getName() + "(spouse)");
 			}
 

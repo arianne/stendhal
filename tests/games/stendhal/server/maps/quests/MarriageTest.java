@@ -2,9 +2,9 @@ package games.stendhal.server.maps.quests;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
@@ -75,7 +75,7 @@ public class MarriageTest {
 		player2.removeQuest(QUEST_SLOT);
 
 		// **in front of church**
-		npc = NPCList.get().get("Sister Benedicta");
+		npc = SingletonRepository.getNPCList().get("Sister Benedicta");
 		en = npc.getEngine();
 
 		assertTrue(en.step(player, "hi"));
@@ -103,7 +103,7 @@ public class MarriageTest {
 		player2.setQuest(QUEST_SLOT, "engaged");
 
 		// **at ringsmith**
-		npc = NPCList.get().get("Ognir");
+		npc = SingletonRepository.getNPCList().get("Ognir");
 		en = npc.getEngine();
 		assertTrue(en.step(player, "hi"));
 		assertEquals("Hi! Can I #help you?", npc.get("text"));
@@ -160,7 +160,7 @@ public class MarriageTest {
 	@Test
 	public void testBuySuitForGrom() {
 		// **at hotel's dressing room**
-		npc = NPCList.get().get("Timothy");
+		npc = SingletonRepository.getNPCList().get("Timothy");
 		en = npc.getEngine();
 		en.step(player, "hi");
 		assertEquals("Good day! If you're a prospective groom I can #help you prepare for your wedding.", npc.get("text"));
@@ -178,7 +178,7 @@ public class MarriageTest {
 	public void testBuyGownForBride() {
 
 		// **at hotel's dressing room**
-		npc = NPCList.get().get("Tamara");
+		npc = SingletonRepository.getNPCList().get("Tamara");
 		en = npc.getEngine();
 		en.step(player2, "hi");
 		assertEquals("Welcome! If you're a bride-to-be I can #help you get ready for your wedding", npc.get("text"));
@@ -192,7 +192,7 @@ public class MarriageTest {
 
 	@Test
 	public void testFetchOrderedWeddingRings() {
-		npc = NPCList.get().get("Ognir");
+		npc = SingletonRepository.getNPCList().get("Ognir");
 		en = npc.getEngine();
 
 		player.setQuest("marriage", "forging;" + Long.MAX_VALUE);
@@ -263,7 +263,7 @@ public class MarriageTest {
 		player.setQuest("marriage", "engaged_with_ring");
 		player2.setQuest("marriage", "engaged_with_ring");
 
-		npc = NPCList.get().get("Lukas");
+		npc = SingletonRepository.getNPCList().get("Lukas");
 		en = npc.getEngine();
 		en.step(player2, "hi");
 		assertEquals("Welcome to this place of worship. Are you here to be #married?", npc.get("text"));
@@ -283,7 +283,7 @@ public class MarriageTest {
 		player.setQuest("marriage", "engaged_with_ring");
 		player2.setQuest("marriage", "engaged_with_ring");
 
-		npc = NPCList.get().get("Priest");
+		npc = SingletonRepository.getNPCList().get("Priest");
 		en = npc.getEngine();
 		en.step(player, "hi");
 		assertEquals("Welcome to the church!", npc.get("text"));
@@ -338,7 +338,7 @@ public class MarriageTest {
 		player.setQuest("marriage", "just_married");
 		player2.setQuest("marriage", "just_married");
 
-		npc = NPCList.get().get("Linda");
+		npc = SingletonRepository.getNPCList().get("Linda");
 		en = npc.getEngine();
 		en.step(player, "hi");
 		assertEquals("Hello! Welcome to the Fado City Hotel! Can I #help you?", npc.get("text"));

@@ -1,6 +1,6 @@
 package games.stendhal.server.maps.semos.blacksmith;
 
-import games.stendhal.server.entity.npc.ShopList;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPCFactory;
 import games.stendhal.server.entity.npc.behaviour.adder.ProducerAdder;
@@ -40,7 +40,7 @@ public class BlacksmithNPC extends SpeakerNPCFactory {
 		npc.addHelp("If you bring me #wood and #iron ore, I can #cast the iron for you. Then you could sell it to the dwarves, to make yourself a little money.");
 		npc.addJob("Greetings. Unfortunately, because of the war, I'm not currently allowed to sell weapons to anyone except the official armoury. However, I can still #cast iron for you, or I can make you an #offer on some good tools.");
 		npc.addGoodbye();
-		new SellerAdder().addSeller(npc, new SellerBehaviour(ShopList.get().get("selltools")));
+		new SellerAdder().addSeller(npc, new SellerBehaviour(SingletonRepository.getShopList().get("selltools")));
 
 		// Xoderos casts iron if you bring him wood and iron ore.
 		Map<String, Integer> requiredResources = new TreeMap<String, Integer>();	// use sorted TreeMap instead of HashMap

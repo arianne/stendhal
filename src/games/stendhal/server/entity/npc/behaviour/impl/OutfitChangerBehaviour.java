@@ -13,10 +13,9 @@
 package games.stendhal.server.entity.npc.behaviour.impl;
 
 import games.stendhal.common.Rand;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.LoginListener;
-import games.stendhal.server.core.events.LoginNotifier;
 import games.stendhal.server.core.events.TurnListener;
-import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
@@ -105,7 +104,7 @@ public class OutfitChangerBehaviour extends MerchantBehaviour implements
 		this.endurance = endurance;
 		this.wearOffMessage = wearOffMessage;
 		if (endurance != NEVER_WEARS_OFF) {
-			LoginNotifier.get().addListener(this);
+			SingletonRepository.getLoginNotifier().addListener(this);
 			namesOfPlayersWithWornOffOutfits = new ArrayList<String>();
 		}
 	}
@@ -196,9 +195,9 @@ public class OutfitChangerBehaviour extends MerchantBehaviour implements
 		if (endurance != NEVER_WEARS_OFF) {
 			// restart the wear-off timer if the player was still wearing
 			// another temporary outfit.
-			TurnNotifier.get().dontNotify(new OutwearClothes(player));
+			SingletonRepository.getTurnNotifier().dontNotify(new OutwearClothes(player));
 			// make the costume disappear after some time
-			TurnNotifier.get().notifyInTurns(endurance,
+			SingletonRepository.getTurnNotifier().notifyInTurns(endurance,
 					new OutwearClothes(player));
 		}
 	}

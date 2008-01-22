@@ -14,10 +14,10 @@ package games.stendhal.server.entity.mapstuff.spawner;
 
 import games.stendhal.common.Grammar;
 import games.stendhal.common.Rand;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TurnListener;
-import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Item;
 
@@ -107,7 +107,7 @@ public class PassiveEntityRespawnPoint extends Entity implements TurnListener {
 		if (picked != null) {
 			picked.setPlantGrower(null);
 		}
-		TurnNotifier.get().notifyInTurns(getRandomTurnsForRegrow(), this);
+		SingletonRepository.getTurnNotifier().notifyInTurns(getRandomTurnsForRegrow(), this);
 	}
 
 	protected int getRandomTurnsForRegrow() {
@@ -121,11 +121,11 @@ public class PassiveEntityRespawnPoint extends Entity implements TurnListener {
 		if (!hasPickableFruit) {
 			logger.debug("Growing " + growingItemName);
 
-			StendhalRPWorld world = StendhalRPWorld.get();
+			StendhalRPWorld world = SingletonRepository.getRPWorld();
 			StendhalRPZone zone = world.getZone(getID().getZoneID());
 
 			// create a new grown item
-			Item grownItem = world.getRuleManager().getEntityManager().getItem(
+			Item grownItem = SingletonRepository.getEntityManager().getItem(
 					growingItemName);
 			grownItem.setPlantGrower(this);
 			grownItem.setPosition(getX(), getY());
@@ -140,7 +140,7 @@ public class PassiveEntityRespawnPoint extends Entity implements TurnListener {
 			growNewFruit();
 		}
 		// don't grow anything new until someone picks a fruit
-		TurnNotifier.get().dontNotify(this);
+		SingletonRepository.getTurnNotifier().dontNotify(this);
 	}
 
 	public void onTurnReached(int currentTurn) {

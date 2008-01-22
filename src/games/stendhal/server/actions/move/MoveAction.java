@@ -16,7 +16,7 @@ import games.stendhal.common.Direction;
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.actions.WellKnownActionConstants;
-import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.events.TutorialNotifier;
@@ -104,7 +104,7 @@ public class MoveAction implements ActionListener {
 			int y = rpEntity.getY() + dir.getdy();
 
 			if (!zone.collides(rpEntity, x, y)) {
-				StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
+				SingletonRepository.getRuleProcessor().addGameEvent(player.getName(),
 					"push", rpEntity.getName(), rpEntity.getZone().getName(), 
 					rpEntity.getX() + " " + rpEntity.getY() + " --> " + x + " " + y);
 				rpEntity.setPosition(x, y);

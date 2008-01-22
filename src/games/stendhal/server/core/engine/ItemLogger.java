@@ -63,7 +63,7 @@ public class ItemLogger {
 		}
 		Player player = (Player) entity;
 
-		((StendhalPlayerDatabase) StendhalPlayerDatabase.getDatabase()).itemLogAssignIDIfNotPresent(oldItem, outlivingItem);
+		((StendhalPlayerDatabase) SingletonRepository.getPlayerDatabase()).itemLogAssignIDIfNotPresent(oldItem, outlivingItem);
 		String oldQuantity = getQuantity(oldItem);
 		String oldOutlivingQuantity = getQuantity(outlivingItem);
 		String newQuantity = Integer.toString(Integer.parseInt(oldQuantity) + Integer.parseInt(oldOutlivingQuantity));
@@ -78,11 +78,11 @@ public class ItemLogger {
     }
 
 	private static void itemLog(RPObject item, RPEntity player, String event, String param1, String param2, String param3, String param4) {
-		((StendhalPlayerDatabase) StendhalPlayerDatabase.getDatabase()).itemLog(item, player, event, param1, param2, param3, param4);
+		((StendhalPlayerDatabase) SingletonRepository.getPlayerDatabase()).itemLog(item, player, event, param1, param2, param3, param4);
 	}
 
 	public static void splitOff(Player player, Item item, StackableItem newItem, int quantity) {
-		((StendhalPlayerDatabase) StendhalPlayerDatabase.getDatabase()).itemLogAssignIDIfNotPresent(item, newItem);
+		((StendhalPlayerDatabase) SingletonRepository.getPlayerDatabase()).itemLogAssignIDIfNotPresent(item, newItem);
 		String outlivingQuantity = getQuantity(item);
 		String newQuantity = getQuantity(newItem);
 		String oldQuantity = Integer.toString(Integer.parseInt(outlivingQuantity) + Integer.parseInt(newQuantity));

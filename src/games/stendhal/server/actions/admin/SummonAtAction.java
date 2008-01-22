@@ -1,8 +1,7 @@
 package games.stendhal.server.actions.admin;
 
 import games.stendhal.server.actions.CommandCenter;
-import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
@@ -27,7 +26,7 @@ public class SummonAtAction extends AdministrationAction {
 
 		if (action.has(TARGET) && action.has(_SLOT) && action.has(_ITEM)) {
 			String name = action.get(TARGET);
-			Player changed = StendhalRPRuleProcessor.get().getPlayer(name);
+			Player changed = SingletonRepository.getRuleProcessor().getPlayer(name);
 
 			if (changed == null) {
 				logger.debug("Player \"" + name + "\" not found.");
@@ -46,12 +45,12 @@ public class SummonAtAction extends AdministrationAction {
 				return;
 			}
 
-			EntityManager manager = StendhalRPWorld.get().getRuleManager().getEntityManager();
+			EntityManager manager = SingletonRepository.getEntityManager();
 			String type = action.get(_ITEM);
 
 			// Is the entity an item
 			if (manager.isItem(type)) {
-				StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
+				SingletonRepository.getRuleProcessor().addGameEvent(player.getName(),
 						_SUMMONAT, changed.getName(), slotName, type);
 				Item item = manager.getItem(type);
 

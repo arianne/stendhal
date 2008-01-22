@@ -1,7 +1,6 @@
 package games.stendhal.server.entity.npc;
 
-import games.stendhal.server.core.engine.StendhalRPWorld;
-import games.stendhal.server.core.events.TurnNotifier;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Dice;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
@@ -48,7 +47,7 @@ public abstract class CroupierNPC extends SpeakerNPC {
 			if (prizeAndText != null) {
 				String prizeName = prizeAndText.first();
 				String text = prizeAndText.second();
-				Item prize = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
+				Item prize = SingletonRepository.getEntityManager().getItem(
 						prizeName);
 				if (prizeName.equals("golden legs")) {
 					prize.setBoundTo(player.getName());
@@ -66,8 +65,8 @@ public abstract class CroupierNPC extends SpeakerNPC {
 			}
 			// The croupier takes the dice away from the table after some time.
 			// This is simulated by shortening the degradation time of the dice.
-			TurnNotifier.get().dontNotify(dice);
-			TurnNotifier.get().notifyInSeconds(CLEAR_PLAYING_AREA_TIME, dice);
+			SingletonRepository.getTurnNotifier().dontNotify(dice);
+			SingletonRepository.getTurnNotifier().notifyInSeconds(CLEAR_PLAYING_AREA_TIME, dice);
 		}
 	}
 

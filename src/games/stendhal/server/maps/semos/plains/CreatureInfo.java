@@ -2,7 +2,7 @@ package games.stendhal.server.maps.semos.plains;
 
 import games.stendhal.common.Grammar;
 import games.stendhal.common.Rand;
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.rule.defaultruleset.DefaultCreature;
 import games.stendhal.server.entity.creature.Creature;
@@ -206,7 +206,7 @@ public class CreatureInfo {
 		Map<String, Integer> zoneCounts = new HashMap<String, Integer>();
 
 		/* count creatures for each zone */
-		for (IRPZone zone : StendhalRPWorld.get()) {
+		for (IRPZone zone : SingletonRepository.getRPWorld()) {
 			for (CreatureRespawnPoint p : ((StendhalRPZone) zone).getRespawnPointList()) {
 				Creature c = p.getPrototypeCreature();
 				if (creatureName.equals(c.getName())) {

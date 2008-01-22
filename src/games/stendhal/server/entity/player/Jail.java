@@ -1,13 +1,12 @@
 package games.stendhal.server.entity.player;
 
 import games.stendhal.common.Direction;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
 import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.LoginListener;
-import games.stendhal.server.core.events.LoginNotifier;
 import games.stendhal.server.core.events.TurnListener;
-import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.mapstuff.office.ArrestWarrant;
 import games.stendhal.server.entity.mapstuff.office.ArrestWarrantList;
 
@@ -105,7 +104,7 @@ public class Jail implements LoginListener {
 	// singleton
 	private Jail() {
 		arrestWarrants = new ArrestWarrantList(getJailzone());
-		LoginNotifier.get().addListener(this);
+		SingletonRepository.getLoginNotifier().addListener(this);
 	}
 
 	/**
@@ -120,7 +119,7 @@ public class Jail implements LoginListener {
 	public void imprison(final String criminalName, Player policeman,
 			int minutes, String reason) {
 
-		final Player criminal = StendhalRPRuleProcessor.get().getPlayer(
+		final Player criminal = SingletonRepository.getRuleProcessor().getPlayer(
 						criminalName);
 
 		ArrestWarrant arrestWarrant = new ArrestWarrant(criminalName, policeman, minutes, reason);
@@ -158,11 +157,11 @@ public class Jail implements LoginListener {
 		boolean successful = teleportToAvailableCell(criminal, policeman);
 		if (successful) {
 			Jailer jailer = new Jailer(criminal.getName());
-			TurnNotifier.get().dontNotify(jailer);
+			SingletonRepository.getTurnNotifier().dontNotify(jailer);
 
 			// Set a timer so that the inmate is automatically released after
 			// serving his sentence.
-			TurnNotifier.get().notifyInSeconds(minutes * 60, jailer);
+			SingletonRepository.getTurnNotifier().notifyInSeconds(minutes * 60, jailer);
 		} else {
 			policeman.sendPrivateText("Could not find a cell for"
 					+ criminal.getName());
@@ -184,7 +183,7 @@ public class Jail implements LoginListener {
 
 	private static StendhalRPZone getJailzone() {
 		if (jailzone == null) {
-			StendhalRPWorld world = StendhalRPWorld.get();
+			StendhalRPWorld world = SingletonRepository.getRPWorld();
 			jailzone = (StendhalRPZone) world.getRPZone(DEFAULT_JAIL_ZONE);
 		}
 
@@ -200,7 +199,7 @@ public class Jail implements LoginListener {
 	 * @return true if the player has not logged out before he was released
 	 */
 	public boolean release(String inmateName) {
-		Player inmate = StendhalRPRuleProcessor.get().getPlayer(inmateName);
+		Player inmate = SingletonRepository.getRuleProcessor().getPlayer(inmateName);
 		if (inmate == null) {
 			logger.debug("Jailed player " + inmateName + "has logged out.");
 			return false;
@@ -213,7 +212,7 @@ public class Jail implements LoginListener {
 	void release(Player inmate) {
 		// Only teleport the player if he is still in jail.
 		// It could be that an admin has teleported him out earlier.
-		StendhalRPWorld world = StendhalRPWorld.get();
+		StendhalRPWorld world = SingletonRepository.getRPWorld();
 		if (isInJail(inmate)) {
 			IRPZone.ID zoneid = new IRPZone.ID("-3_semos_jail");
 			if (!world.hasRPZone(zoneid)) {
@@ -260,7 +259,7 @@ public class Jail implements LoginListener {
 	public void onLoggedIn(final Player player) {
 		// we need to do this on the next turn because the
 		// client does not get any private messages otherwise
-		TurnNotifier.get().notifyInTurns(1, new TurnListener() {
+		SingletonRepository.getTurnNotifier().notifyInTurns(1, new TurnListener() {
 			public void onTurnReached(int currentTurn) {
 				String name = player.getName();
 				ArrestWarrant arrestWarrant = arrestWarrants.getByName(name);

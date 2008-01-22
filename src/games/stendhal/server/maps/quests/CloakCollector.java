@@ -1,7 +1,7 @@
 package games.stendhal.server.maps.quests;
 
 import games.stendhal.common.Grammar;
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -71,7 +71,7 @@ public class CloakCollector extends AbstractQuest implements BringListOfItemsQue
 					@Override
 					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 						String itemName = sentence.getTriggerExpression().getNormalized();
-						Item item = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(itemName);
+						Item item = SingletonRepository.getEntityManager().getItem(itemName);
 						engine.say("You haven't seen one before? Well, it's a "
 									+ (item != null ? UpdateConverter.transformItemName(item.getItemSubclass()) : itemName)
 									+ ". So, will you find them all?");
@@ -177,9 +177,7 @@ public class CloakCollector extends AbstractQuest implements BringListOfItemsQue
 	}
 
 	public void rewardPlayer(Player player) {
-		Item blackcloak = StendhalRPWorld.get()
-				.getRuleManager()
-				.getEntityManager().getItem("black cloak");
+		Item blackcloak = SingletonRepository.getEntityManager().getItem("black cloak");
 		blackcloak.setBoundTo(player.getName());
 		player.equip(blackcloak, true);
 		player.addKarma(5.0);

@@ -1,12 +1,10 @@
 package games.stendhal.server.maps.quests;
 
 import games.stendhal.common.Direction;
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.LoginListener;
-import games.stendhal.server.core.events.LoginNotifier;
 import games.stendhal.server.core.events.TurnListener;
-import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.parser.Sentence;
@@ -112,7 +110,7 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 						npc.say(playerTemp.getTitle() + ", you have "
 								+ TimeUtil.timeUntil(counter) + " left.");
 						counter = counter - 10 * 6;
-						TurnNotifier.get().notifyInTurns(10 * 3 * 6, this);
+						SingletonRepository.getTurnNotifier().notifyInTurns(10 * 3 * 6, this);
 					} else {
 						// teleport the player out
 						npc.say("Sorry, " + playerTemp.getTitle()
@@ -186,7 +184,7 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 
 								player.teleport(zone, 10, 10, Direction.DOWN, player);
 
-								TurnNotifier.get().notifyInTurns(0, new Timer(player));
+								SingletonRepository.getTurnNotifier().notifyInTurns(0, new Timer(player));
 
 								player.setQuest(QUEST_SLOT, "start");
 							} else {
@@ -216,7 +214,7 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 						if (!player.isQuestCompleted(QUEST_SLOT)) {
 							teleportAway(player);
 							// remove the players Timer
-							TurnNotifier.get().dontNotify(new Timer(player));
+							SingletonRepository.getTurnNotifier().dontNotify(new Timer(player));
 							engine.say("Thank you for using the Wizard's Bank");
 						} else {
 							engine.say("Leave where?");
@@ -278,9 +276,9 @@ public class WizardBank extends AbstractQuest implements LoginListener {
 	public void addToWorld() {
 		super.addToWorld();
 
-		LoginNotifier.get().addListener(this);
+		SingletonRepository.getLoginNotifier().addListener(this);
 
-		zone = StendhalRPWorld.get().getZone(ZONE_NAME);
+		zone = SingletonRepository.getRPWorld().getZone(ZONE_NAME);
 		createNPC();
 	}
 }

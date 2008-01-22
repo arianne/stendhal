@@ -3,8 +3,8 @@ package games.stendhal.server.maps.quests;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import games.stendhal.server.core.config.ZoneConfigurator;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
@@ -36,14 +36,14 @@ public class ElfPrincessTest {
 	public void setUp() {
 		ZoneConfigurator zoneConf = new PrincessNPC();
 		zoneConf.configureZone(new StendhalRPZone("admin_test"), null);
-		npc = NPCList.get().get("Tywysoga");
+		npc = SingletonRepository.getNPCList().get("Tywysoga");
 		en = npc.getEngine();
 
 		StendhalRPZone zone = new StendhalRPZone("int_semos_house");
 		MockStendlRPWorld.get().addRPZone(zone);
 		zoneConf = new FlowerSellerNPC();
 		zoneConf.configureZone(zone, null);
-		npcRose = NPCList.get().get("Rose Leigh");
+		npcRose = SingletonRepository.getNPCList().get("Rose Leigh");
 		enRose = npcRose.getEngine();
 
 		AbstractQuest quest = new ElfPrincess();

@@ -1,6 +1,6 @@
 package games.stendhal.server.maps.quests;
 
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -66,7 +66,7 @@ public class McPeglegIOU extends AbstractQuest {
 					if (iouNote != null) {
 						engine.say("Where did you get that from? Anyways, here is the money *sighs*");
 						player.drop(iouNote);
-						StackableItem money = (StackableItem) StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
+						StackableItem money = (StackableItem) SingletonRepository.getEntityManager().getItem(
 								"money");
 						money.setQuantity(250);
 						player.equip(money);

@@ -11,7 +11,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.creature;
 
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Item;
@@ -47,8 +47,8 @@ public class ItemGuardCreature extends Creature {
 
 		noises = new LinkedList<String>(noises);
 		noises.add("Thou shall not obtain the " + itemType + "!");
-
-		if (!StendhalRPWorld.get().getRuleManager().getEntityManager().isItem(
+	
+		if (!SingletonRepository.getEntityManager().isItem(
 				itemType)) {
 			logger.error(copy.getName() + " drops unexisting item " + itemType);
 		}
@@ -64,7 +64,7 @@ public class ItemGuardCreature extends Creature {
 		if (killer instanceof RPEntity) {
 			RPEntity killerRPEntity = (RPEntity) killer;
 			if (!killerRPEntity.isEquipped(itemType)) {
-				Item item = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
+				Item item = SingletonRepository.getEntityManager().getItem(
 						itemType);
 				item.setBoundTo(killerRPEntity.getName());
 				killerRPEntity.equip(item, true);

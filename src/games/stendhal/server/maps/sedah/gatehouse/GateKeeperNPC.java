@@ -2,7 +2,7 @@ package games.stendhal.server.maps.sedah.gatehouse;
 
 import games.stendhal.common.Rand;
 import games.stendhal.server.core.config.ZoneConfigurator;
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -91,7 +91,7 @@ public class GateKeeperNPC implements ZoneConfigurator {
     									if (player.isEquipped("money", amount)) {
     										player.drop("money", amount);
     										engine.say("Ok, I got your money, here's the key.");
-    										Item key = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
+    										Item key = SingletonRepository.getEntityManager().getItem(
     												"sedah gate key");
     										player.equip(key, true);
     									} else {

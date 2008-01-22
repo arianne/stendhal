@@ -9,6 +9,7 @@ package games.stendhal.server.entity.mapstuff.sign;
 //
 //
 
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.npc.ShopList;
 
 /**
@@ -18,7 +19,7 @@ public class ShopSign extends Sign {
 	/**
 	 * The shop list.
 	 */
-	protected ShopList shops = ShopList.get();
+	protected ShopList shops = SingletonRepository.getShopList();
 
 	/**
 	 * Create a shop list sign.

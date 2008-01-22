@@ -4,8 +4,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPCFactory;
 import games.stendhal.server.entity.npc.fsm.Engine;
@@ -36,7 +36,7 @@ public class ArmorForDagobertTest {
 	@Before
 	public void setUp() {
 		npc = new SpeakerNPC("Dagobert");
-		NPCList.get().add(npc);
+		SingletonRepository.getNPCList().add(npc);
 		SpeakerNPCFactory npcConf = new CustomerAdvisorNPC();
 		npcConf.createDialog(npc);
 

@@ -1,6 +1,6 @@
 package games.stendhal.server.script;
 
-import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.entity.player.Player;
 
@@ -32,7 +32,7 @@ public class EasyRPAction extends ScriptImpl {
 			action.put(args.get(i * 2), args.get(i * 2 + 1));
 		}
 
-		StendhalRPRuleProcessor.get().execute(admin, action);
+		SingletonRepository.getRuleProcessor().execute(admin, action);
 	}
 
 }

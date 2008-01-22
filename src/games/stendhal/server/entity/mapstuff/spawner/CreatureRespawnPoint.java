@@ -13,9 +13,9 @@
 package games.stendhal.server.entity.mapstuff.spawner;
 
 import games.stendhal.common.Rand;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TurnListener;
-import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.core.rp.StendhalRPAction;
 import games.stendhal.server.entity.creature.Creature;
 
@@ -97,7 +97,7 @@ public class CreatureRespawnPoint implements TurnListener {
 		this.creatures = new LinkedList<Creature>();
 
 		respawning = true;
-		TurnNotifier.get().notifyInTurns(Rand.rand(respawnTime), this); // don't
+		SingletonRepository.getTurnNotifier().notifyInTurns(Rand.rand(respawnTime), this); // don't
 																		// respawn
 																		// in
 																		// next
@@ -129,7 +129,7 @@ public class CreatureRespawnPoint implements TurnListener {
 		if (!respawning) {
 			// start respawning a new creature
 			respawning = true;
-			TurnNotifier.get().notifyInTurns(
+			SingletonRepository.getTurnNotifier().notifyInTurns(
 					Rand.rand(respawnTime) + respawnTime / 2, this);
 		}
 
@@ -150,7 +150,7 @@ public class CreatureRespawnPoint implements TurnListener {
 		} else {
 			// Spawns a new creature with time equally distributed
 			// in [respawnTime/2,respawnTime + respawnTime/2]
-			TurnNotifier.get().notifyInTurns(
+			SingletonRepository.getTurnNotifier().notifyInTurns(
 					Rand.rand(respawnTime) + respawnTime / 2, this);
 		}
 	}

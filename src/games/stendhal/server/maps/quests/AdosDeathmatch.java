@@ -1,7 +1,7 @@
 package games.stendhal.server.maps.quests;
 
 import games.stendhal.common.Direction;
-import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -51,7 +51,7 @@ public class AdosDeathmatch extends AbstractQuest {
 	 *            y-position of helmet
 	 */
 	public void createHelmet(int x, int y) {
-		Item helmet = StendhalRPWorld.get().getRuleManager().getEntityManager()
+		Item helmet = SingletonRepository.getEntityManager()
 				.getItem("trophy helmet");
 		helmet.put("def", "20");
 		helmet.setDescription("This is the grand prize for Deathmatch winners.");

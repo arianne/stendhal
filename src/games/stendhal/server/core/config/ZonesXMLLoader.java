@@ -14,6 +14,7 @@ import games.stendhal.server.core.config.zone.EntitySetupXMLReader;
 import games.stendhal.server.core.config.zone.PortalSetupXMLReader;
 import games.stendhal.server.core.config.zone.SetupDescriptor;
 import games.stendhal.server.core.config.zone.SetupXMLReader;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.engine.StendhalRPZone;
 
@@ -204,7 +205,7 @@ public class ZonesXMLLoader {
 			zone.setPosition(desc.getLevel(), desc.getX(), desc.getY());
 		}
 
-		StendhalRPWorld.get().addRPZone(zone);
+		SingletonRepository.getRPWorld().addRPZone(zone);
 
 		try {
 			zone.onInit();

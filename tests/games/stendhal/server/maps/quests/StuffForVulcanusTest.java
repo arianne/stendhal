@@ -4,10 +4,10 @@ import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertTrue;
 import static org.junit.Assert.assertEquals;
 import games.stendhal.server.core.config.ZoneConfigurator;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
@@ -36,7 +36,7 @@ public class StuffForVulcanusTest {
 	public void setUp() {
 		ZoneConfigurator zoneConf = new SmithNPC();
 		zoneConf.configureZone(new StendhalRPZone("admin_test"), null);
-		npc = NPCList.get().get("Vulcanus");
+		npc = SingletonRepository.getNPCList().get("Vulcanus");
 
 		AbstractQuest quest = new StuffForVulcanus();
 		quest.addToWorld();
