@@ -181,7 +181,7 @@ public class FileTree extends JTree {
 	}
 
 	// Inner class that handles Tree Expansion Events
-	protected class TreeExpansionHandler implements TreeExpansionListener {
+	protected static class TreeExpansionHandler implements TreeExpansionListener {
 		public void treeExpanded(TreeExpansionEvent evt) {
 			// The expanded path
 			TreePath path = evt.getPath(); 

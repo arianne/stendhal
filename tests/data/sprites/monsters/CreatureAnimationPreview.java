@@ -6,6 +6,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.prefs.Preferences;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFileChooser;
@@ -108,6 +109,7 @@ public class CreatureAnimationPreview {
 	}
 
 	public static void main(String[] args) {
+		
 		(new CreatureAnimationPreview()).getJFrame().setVisible(true);
 	}
 
@@ -212,13 +214,24 @@ public class CreatureAnimationPreview {
 	private FileTree getJTree() {
 		if (jTree == null) {
 			try {
-				File file = null;
-				JFileChooser fc = new JFileChooser();
+				Preferences pref = Preferences.userNodeForPackage(AnimationRunner.class);
+				File lastDirectory=null;
+				if (pref.get("lastpath",null)!= null) {
+					lastDirectory = new File(pref.get("lastpath",null));
+						
+				}
+				
+				
+				JFileChooser fc = new JFileChooser(lastDirectory);
+				
+				
 				fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 				int returnVal = fc.showOpenDialog(jScrollPane);
 
 				if (returnVal == JFileChooser.APPROVE_OPTION) {
-					file = fc.getSelectedFile();
+					File file = fc.getSelectedFile();
+					Preferences.userNodeForPackage(AnimationRunner.class).put("lastpath",file.getAbsolutePath());
+					
 					jTree = new FileTree(file.getPath());
 				} else {
 					System.exit(0);

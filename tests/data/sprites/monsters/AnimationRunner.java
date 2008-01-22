@@ -38,14 +38,17 @@ public class AnimationRunner implements ActionListener {
 		timer.stop();
 
 	}
-
+int direction= 1;
 	public void actionPerformed(ActionEvent e) {
 		ivs.setImage(frames[currentframe]);
-		currentframe++;
-
-		if (currentframe == number_of_frames) {
-			currentframe = 0;
+		
+		if (currentframe == number_of_frames-1) {
+			direction = -1;
 		}
+		if (currentframe == 0) {
+			direction = 1;
+		}
+		currentframe += direction; 
 
 	}
 
