@@ -16,7 +16,7 @@ import static games.stendhal.server.actions.WellKnownActionConstants.X;
 import static games.stendhal.server.actions.WellKnownActionConstants.Y;
 
 public class SummonAction extends AdministrationAction {
-
+	private static final String USAGE = "Usage: /summon <whatToSummon> [<x> <y>]";
 	private static final String _CREATURE = "creature";
 	private static final String _SUMMON = "summon";
 
@@ -28,31 +28,33 @@ public class SummonAction extends AdministrationAction {
 	@Override
 	public void perform(Player player, RPAction action) {
 
-		if (action.has(_CREATURE) && action.has(X) && action.has(Y)) {
-			StendhalRPZone zone = player.getZone();
-			int x = action.getInt(X);
-			int y = action.getInt(Y);
+		try {
+			if (action.has(_CREATURE) && action.has(X) && action.has(Y)) {
+				StendhalRPZone zone = player.getZone();
+				int x = action.getInt(X);
+				int y = action.getInt(Y);
 
-			if (!zone.collides(player, x, y)) {
-				EntityManager manager = StendhalRPWorld.get().getRuleManager().getEntityManager();
-				String type = action.get(_CREATURE);
+				if (!zone.collides(player, x, y)) {
+					EntityManager manager = StendhalRPWorld.get().getRuleManager().getEntityManager();
+					String type = action.get(_CREATURE);
 
-				Entity entity = manager.getEntity(type);
+					Entity entity = manager.getEntity(type);
 
-				if (entity == null) {
-					logger.info("onSummon: Entity \"" + type + "\" not found.");
-					player.sendPrivateText("onSummon: Entity \"" + type
-							+ "\" not found.");
-					return;
-				} else if (manager.isCreature(type)) {
-					entity = new RaidCreature((Creature) entity);
+					if (entity == null) {
+						logger.info("onSummon: Entity \"" + type + "\" not found.");
+						player.sendPrivateText("onSummon: Entity \"" + type + "\" not found.");
+						return;
+					} else if (manager.isCreature(type)) {
+						entity = new RaidCreature((Creature) entity);
+					}
+
+					StendhalRPRuleProcessor.get().addGameEvent(player.getName(), _SUMMON, type);
+
+					StendhalRPAction.placeat(zone, entity, x, y);
 				}
-
-				StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
-						_SUMMON, type);
-
-				StendhalRPAction.placeat(zone, entity, x, y);
 			}
+		} catch (NumberFormatException e) {
+			player.sendPrivateText(USAGE);
 		}
 	}
 

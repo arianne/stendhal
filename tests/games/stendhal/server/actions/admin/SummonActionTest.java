@@ -13,6 +13,7 @@ import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.common.Log4J;
 import marauroa.common.game.RPAction;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -30,7 +31,9 @@ public class SummonActionTest {
 		MockStendlRPWorld.get();
 		MockStendhalRPRuleProcessor.get().clearPlayers();
 	}
+	
 
+	
 	@Before
 	public void setUP() {
 		zone = new StendhalRPZone("testzone") {
@@ -42,7 +45,12 @@ public class SummonActionTest {
 			}
 		};
 	}
-
+	
+	@After
+	public void teardown(){
+		MockStendhalRPRuleProcessor.get().clearPlayers();
+	}
+	
 	@Test
 	public final void testSummonRat() {
 
@@ -107,5 +115,24 @@ public class SummonActionTest {
 		assertNull(zone.getEntityAt(0, 0));
 
 	}
+	
+	@Test
+	public final void testAvoidNFE() {
+		Player pl = PlayerTestHelper.createPlayer("hugo");
 
+		MockStendhalRPRuleProcessor.get().addPlayer(pl);
+
+		zone.add(pl);
+		pl.setPosition(1, 1);
+		pl.put("adminlevel", 5000);
+		RPAction action = new RPAction();
+		action.put("type", "summon");
+		action.put("creature", "unknown");
+		action.put("x", "bag");
+		action.put("y", "perch");
+		CommandCenter.execute(pl, action);
+		assertEquals(1, pl.getID().getObjectID());
+		assertNull(zone.getEntityAt(0, 0));
+
+	}
 }
