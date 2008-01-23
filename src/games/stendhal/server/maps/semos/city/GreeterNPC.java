@@ -14,8 +14,9 @@ public class GreeterNPC extends SpeakerNPCFactory {
 
 	@Override
 	public void createDialog(SpeakerNPC npc) {
-		npc.addJob("Me? I give directions to newcomers to Semos and help them settle in. When I'm in a bad mood I sometimes give misleading directions to amuse myself... hee hee hee! Of course, sometimes I get my wrong directions wrong and they end up being right after all! Ha ha!");
-
+		npc.addJob("I'm Diogenes' older brother and I don't actually remember what I used to do... I'm retired now.");
+		npc.addOffer("I give directions to newcomers to Semos and help them settle in. When I'm in a bad mood I sometimes give misleading directions to amuse myself... hee hee hee! Of course, sometimes I get my wrong directions wrong and they end up being right after all! Ha ha!");
 		// All further behaviour is defined in quest classes.
+
 	}
 }

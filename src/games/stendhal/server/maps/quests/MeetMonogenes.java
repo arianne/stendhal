@@ -54,15 +54,15 @@ public class MeetMonogenes extends AbstractQuest {
 			ConversationPhrases.HELP_MESSAGES,
 			null,
 			ConversationStates.INFORMATION_1,
-			"I'm Diogenes' older brother and I don't actually remember what I used to do... I'm retired now. I can offer you a few tips on socializing with the residents of Semos, if you like?",
+			"I can offer you a few tips on socializing with the residents of Semos, if you like?",
 			null);
 
 		npc.add(
 			ConversationStates.INFORMATION_1,
 			ConversationPhrases.YES_MESSAGES,
 			null,
-			ConversationStates.INFORMATION_2,
-			"First of all, you should introduce yourself by saying HI. After this, try to keep the conversation to the topics they bring up; suitable subjects will be highlighted #like #this. A few generally safe topics of conversation are the person's #job, asking for #help, asking if they have an #offer to make, and asking for a #quest to go on. Anyway, do you want a quick run-down of the buildings in Semos?",
+			ConversationStates.ATTENDING,
+			"You should introduce yourself by saying \"hi\". After this, try to keep the conversation to the topics they bring up; suitable subjects will be highlighted #like #this. A few generally safe topics of conversation are the person's #job, asking for #help, asking if they have an #offer to make, and asking for a #quest to go on. Now, if you want a quick run-down of the #buildings in Semos, just say.",
 			null);
 
 		npc.add(
@@ -74,21 +74,13 @@ public class MeetMonogenes extends AbstractQuest {
 			null);
 
 		npc.add(
-			ConversationStates.INFORMATION_2,
-			ConversationPhrases.YES_MESSAGES,
+			ConversationStates.ATTENDING,
+			"buildings",
 			null,
 			ConversationStates.ATTENDING,
-			"It's a good idea to read the wooden signs to identify places; just right-click on them and choose LOOK. Now, I can show you a #map or direct you to the #bank, the #library, the #tavern, the #temple, the #blacksmith, the #bakery, or the old #village.",
+			"I can show you a #map or direct you to the #bank, the #library, the #tavern, the #temple, the #blacksmith, the #bakery, or the old #village.",
 			null);
 
-		npc.add(
-			ConversationStates.INFORMATION_2,
-			"no",
-			null,
-			ConversationStates.IDLE,
-			"Already finding your way about, huh? Glad to hear it! Goodbye!",
-			null);
-		
 		npc.add(
 			ConversationStates.ATTENDING,
 			"map", null, ConversationStates.ATTENDING, "Caption\n"
