@@ -1,6 +1,7 @@
 package games.stendhal.server.maps.quests;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -17,7 +18,7 @@ import utilities.ZonePlayerAndNPCTest;
  *
  * @author Martin Fuchs
  */
-public class HouseByingTest extends ZonePlayerAndNPCTest {
+public class HouseBuyingTest extends ZonePlayerAndNPCTest {
 
 	private static final String ZONE_NAME = "0_kalavan_city";
 	private static final String ZONE_NAME2 = "int_ados_town_hall_3";
@@ -36,7 +37,7 @@ public class HouseByingTest extends ZonePlayerAndNPCTest {
 	public static void tearDownAfterClass() throws Exception {
 	}
 
-	public HouseByingTest() {
+	public HouseBuyingTest() {
 		super(ZONE_NAME, "Barrett Holmes", "Reg Denson");
 	}
 
@@ -88,8 +89,8 @@ public class HouseByingTest extends ZonePlayerAndNPCTest {
 //		assertTrue(en.step(player, "yes"));
 //		assertEquals("Sorry, you don't have enough money!", npc.get("text"));
 //
-//		// equip with enough money to buy two ice creams
-//		assertTrue(equipWithMoney(player, 60));
+//		// equip with enough money
+//		assertTrue(equipWithMoney(player, 500000));
 //
 //		assertFalse(player.isEquipped("house"));
 //
@@ -99,10 +100,6 @@ public class HouseByingTest extends ZonePlayerAndNPCTest {
 //
 //		assertTrue(en.step(player, "buy house"));
 //		assertEquals("1 house will cost 30. Do you want to buy it?", npc.get("text"));
-//
-//		assertTrue(en.step(player, "yes"));
-//		assertEquals("Congratulations! Here is your house!", npc.get("text"));
-//		assertTrue(player.isEquipped("house", 2));
 	}
 
 	@Test
@@ -119,8 +116,7 @@ public class HouseByingTest extends ZonePlayerAndNPCTest {
 		assertTrue(en.step(player, "cost"));
 		assertEquals("The cost of a new house in Ados is 120000 money. But I am afraid I cannot trust you with house ownership just yet, as you have not been a part of this world long enough.", npc.get("text"));
 
-		assertTrue(en.step(player, "ok"));
-		assertEquals("Before we go on, I must warn you that anyone with a key to your house can enter it, and have access to any creature you left inside, whenever they like. Do you still wish to buy a spare key?", npc.get("text"));
+		assertFalse(en.step(player, "ok"));
 	}
 
 }
