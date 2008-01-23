@@ -87,12 +87,9 @@ public class EntitySearch extends ScriptImpl {
 		for (IRPZone irpzone : SingletonRepository.getRPWorld()) {
 			StendhalRPZone zone = (StendhalRPZone) irpzone;
 
-			for (RPObject n : zone) {
-				if ((n instanceof Creature) && !(n instanceof DomesticAnimal)) { // exclude
-																					// sheep
-																					// and
-																					// pets
-					Creature c = (Creature) n;
+			for (RPObject rpObj : zone) {
+				if (isACreatureButNoPet(rpObj)) { 
+					Creature c = (Creature) rpObj;
 					if (c.getRespawnPoint() == null) {
 						String zoneName = zone.getName();
 						res.append("\r\n" + c.getName() + " (" + c.getLevel()
@@ -106,6 +103,10 @@ public class EntitySearch extends ScriptImpl {
 		}
 
 		sandbox.privateText(player, res.toString());
+	}
+
+	private boolean isACreatureButNoPet(RPObject rpObj) {
+		return (rpObj instanceof Creature) && !(rpObj instanceof DomesticAnimal);
 	}
 
 	public void findByZoneName(Player player, String targetName) {
