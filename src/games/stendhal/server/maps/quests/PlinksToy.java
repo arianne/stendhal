@@ -23,16 +23,16 @@ import java.util.List;
 
 /**
  * QUEST: Plink's Toy
+ * <p>
+ * PARTICIPANTS: <ul><li> Plink <li> some wolves </ul>
  * 
- * PARTICIPANTS: - Plink - some wolves
+ * STEPS: <ul><li> Plink tells you that he got scared by some wolves and ran away
+ * dropping his teddy. <li> Find the teddy in the Park Of Wolves <li> Bring it back to
+ * Plink </ul>
  * 
- * STEPS: - Plink tells you that he got scared by some wolves and ran away
- * dropping his teddy. - Find the teddy in the Park Of Wolves - Bring it back to
- * Plink
+ * REWARD: <ul><li> a smile <li> 20 XP </ul>
  * 
- * REWARD: - a smile - 20 XP
- * 
- * REPETITIONS: - None.
+ * REPETITIONS: <ul><li> None. </ul>
  */
 public class PlinksToy extends AbstractQuest {
 

@@ -19,22 +19,35 @@ import java.util.Map;
 
 /**
  * QUEST: Pizza Delivery
+ * <p>
+ * PARTICIPANTS:
+ * <ul>
+ * <li> Leander (the baker in Semos)
+ * <li> NPC's all over the world (as customers)
+ * </ul>
  * 
- * PARTICIPANTS: - Leander (the baker in Semos) - NPC's all over the world (as
- * customers)
+ * STEPS:
+ * <ul>
+ * <li> Leander gives you a pizza and tells you who ordered it, and how much
+ * time you have to deliver.
+ * <li> As a gimmick, you get a pizza delivery uniform.
+ * <li> You walk to the customer and say "pizza".
+ * <li> The customer takes the pizza. If you were fast enough, you get a tip.
+ * <li> You put on your original clothes automatically.
+ * </ul>
+ * REWARD:
+ * <ul>
+ * <li> XP (Amount varies depending on customer. You only get half of the XP if
+ * the pizza has become cold.)
+ * <li> gold coins (As a tip, if you were fast enough; amount varies depending
+ * on customer.)
+ * </ul>
  * 
- * STEPS: - Leander gives you a pizza and tells you who ordered it, and how much
- * time you have to deliver. - As a gimmick, you get a pizza delivery uniform. -
- * You walk to the customer and say "pizza". - The customer takes the pizza. If
- * you were fast enough, you get a tip. - You put on your original clothes
- * automatically.
- * 
- * REWARD: - XP (Amount varies depending on customer. You only get half of the
- * XP if the pizza has become cold.) - gold coins (As a tip, if you were fast
- * enough; amount varies depending on customer.)
- * 
- * REPETITIONS: - As many as wanted, but you can't get a new task while you
- * still have the chance to do the current delivery on time.
+ * REPETITIONS:
+ * <ul>
+ * <li> As many as wanted, but you can't get a new task while you still have the
+ * chance to do the current delivery on time.
+ * </ul>
  */
 public class PizzaDelivery extends AbstractQuest {
 
