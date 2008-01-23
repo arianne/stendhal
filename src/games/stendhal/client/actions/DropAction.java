@@ -44,6 +44,7 @@ class DropAction implements SlashAction {
 		for (String slotName : CARRYING_SLOTS) {
 			int itemID = findItem(slotName, itemName);
 
+			// search again using the singular, i case it was a plural item name
 			if (itemID == -1 && !itemName.equals(singularItemName)) {
 				itemID = findItem(slotName, singularItemName);
 			}
