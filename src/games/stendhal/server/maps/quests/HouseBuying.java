@@ -300,7 +300,6 @@ public class HouseBuying extends AbstractQuest {
 							reply = "";
 						}
 						engine2.say("Hello, " + player.getTitle() + "." + reply);
-
 					}
 				});
 				addReply("cost", null, new SpeakerNPC.ChatAction() {
@@ -389,10 +388,9 @@ public class HouseBuying extends AbstractQuest {
 										engine2.say("Oh dear, I've lost my records temporarily. I'm afraid I can't check anything for you. Please try again another time.");
 									}
 								}
-
 							});
 				}
-				
+
 				// we need to warn people who buy spare keys about the house
 				// being accessible to other players with a key
 				add(
@@ -402,7 +400,7 @@ public class HouseBuying extends AbstractQuest {
 						ConversationStates.QUESTION_2,
 						"Before we go on, I must warn you that anyone with a key to your house can enter it, and have access to any creature you left inside, whenever they like. Do you still wish to buy a spare key?",
 						null);
-				
+
 				// player wants spare keys and is ok with house being accessible
 				// to other person.
 				add(ConversationStates.QUESTION_2,
@@ -429,21 +427,21 @@ public class HouseBuying extends AbstractQuest {
 								}
 							}
 						});
-				
+
 				add(ConversationStates.QUESTION_2,
 					ConversationPhrases.NO_MESSAGES,
 					null,
 					ConversationStates.ATTENDING,
 					"That is wise of you. It is certainly better to restrict use of your house to those you can really trust.",
 					null);
-				
+
 				add(ConversationStates.QUESTION_1,
 					ConversationPhrases.NO_MESSAGES,
 					null,
 					ConversationStates.ATTENDING,
 					"No problem! If I can help you with anything else, just ask.",
 					null);
-			
+
 				addJob("I'm an estate agent. In simple terms, I sell houses for the city of Ados. Please ask about the #cost if you are interested. Our brochure is at #http://arianne.sourceforge.net/wiki/index.php?title=StendhalHouses.");
                 addReply("citizen", "I conduct an informal survey amongst the Ados residents. If you have helped everyone in Ados, I see no reason why they shouldn't recommend you. I speak with my friend Joshua, the Mayor, the little girl Anna, Pequod the fisherman, Zara, and I even commune with Carena, of the spirit world. Together they give a reliable opinion.");
 				addReply("buy",	"You may wish to know the #cost before you buy. Perhaps our brochure, #http://arianne.sourceforge.net/wiki/index.php?title=StendhalHouses would also be of interest.");
@@ -461,6 +459,7 @@ public class HouseBuying extends AbstractQuest {
 		npc2.initHP(100);
 		zone2.add(npc2);
 	}
+
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
