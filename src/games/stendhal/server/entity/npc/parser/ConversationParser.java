@@ -48,7 +48,12 @@ public final class ConversationParser {
 	 * @return expression
 	 */
 	public static Expression createTriggerExpression(String text) {
-		return parse(text).getTriggerExpression();
+		ConversationContext ctx = new ConversationContext();
+
+		// don't ignore words with type "IGN" if specified in trigger expressions
+		ctx.setIgnoreIgnorable(false);
+
+		return parse(text, ctx).getTriggerExpression();
 	}
 
 	/**
@@ -95,7 +100,7 @@ public final class ConversationParser {
 	public static Sentence parse(String text, ConversationContext ctx) {
 
 		// 1.) determine sentence type from trailing punctuation
-		SentenceImplementation sentence = new SentenceImplementation();
+		SentenceImplementation sentence = new SentenceImplementation(ctx);
 
 		if (text != null) {
 			text = getSentenceType(text.trim(), sentence);
@@ -107,14 +112,14 @@ public final class ConversationParser {
 		sentence.parse(parser);
 
 		// 3.) classify word types and normalize words
-		sentence.classifyWords(parser, ctx.isForMatching(), ctx.getPersistNewWords());
+		sentence.classifyWords(parser);
 
 		// 4.) evaluate sentence type from word order
 		sentence.evaluateSentenceType();
 
 		if (ctx.getMergeExpressions()) {
     		// 5.) merge words to form a simpler sentence structure
-    		sentence.mergeWords(ctx.isForMatching());
+    		sentence.mergeWords();
 
     		if (!ctx.isForMatching()) {
         		// 6.) standardize sentence type

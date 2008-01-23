@@ -18,6 +18,7 @@ public class ConversationContext {
 	private boolean forMatching = false;		// flag for sentences to be used for matching
 	private boolean mergeExpressions = true;	// flag to enable Expression merging
 	private boolean persistNewWords = true;		// flag to enable storing new words into the database
+	private boolean ignoreIgnorable = true;		// flag to enable ignoring of words marked with the type IGN
 
 	public void setState(int state) {
 		this.state = state;
@@ -45,6 +46,13 @@ public class ConversationContext {
     }
 	public boolean getPersistNewWords() {
 	    return persistNewWords;
+    }
+
+	public void setIgnoreIgnorable(boolean ignoreIgnorable) {
+		this.ignoreIgnorable = ignoreIgnorable;
+    }
+	public boolean getIgnoreIgnorable() {
+		return ignoreIgnorable;
     }
 
 }

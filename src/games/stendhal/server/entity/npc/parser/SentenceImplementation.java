@@ -13,6 +13,15 @@ import java.util.Iterator;
 final class SentenceImplementation extends Sentence {
 
 	/**
+	 * Create a SentenceImplementation object.
+	 *
+	 * @param ctx
+	 */
+	protected SentenceImplementation(ConversationContext ctx) {
+	    super(ctx);
+    }
+
+	/**
 	 * Build sentence by using the given parser object.
 	 * 
 	 * @param parser
@@ -63,10 +72,8 @@ final class SentenceImplementation extends Sentence {
 	 * Classify word types and normalize words.
 	 * 
 	 * @param parser
-	 * @param isForMatching 
-	 * @param persistNewWords 
 	 */
-	void classifyWords(ConversationParser parser, boolean isForMatching, boolean persistNewWords) {
+	void classifyWords(ConversationParser parser) {
 		WordList wl = WordList.getInstance();
 
 		for (Expression w : expressions) {
@@ -74,7 +81,7 @@ final class SentenceImplementation extends Sentence {
 			WordEntry entry = null;
 
 			// If the parsed Sentence will be used for matching, look for ExpressionType specifiers. 
-			if (isForMatching) {
+			if (context.isForMatching()) {
 				if (ExpressionType.isTypeString(original)) {
 					w.setType(new ExpressionType(original));
 					w.setNormalized(JOKER);
@@ -143,7 +150,8 @@ final class SentenceImplementation extends Sentence {
 
     					if (entry == null) {
     						// Don't persist expressions used for joker matching.
-    						boolean persist = persistNewWords && (!isForMatching || !original.contains(JOKER));
+    						boolean persist = context.getPersistNewWords() &&
+    											(!context.isForMatching() || !original.contains(JOKER));
 
    	    					// Add the unknown word to the word list.
    							wl.addNewWord(original, persist);
@@ -298,7 +306,7 @@ final class SentenceImplementation extends Sentence {
 
 		// As words are not yet merged together at this stage, we have to use Expression.nextValid()
 		// in this function to jump over words to ignore.
-		Expression first = Expression.nextValid(it);
+		Expression first = nextValid(it);
 
 		if (first != null) {
 			while (first.getType().isQuestion() && it.hasNext()) {
@@ -306,14 +314,14 @@ final class SentenceImplementation extends Sentence {
 					type = SentenceType.QUESTION;
 				}
 
-				first = Expression.nextValid(it);
+				first = nextValid(it);
 			}
 
 			Expression second = null;
 			Expression third = null;
 
-			second = Expression.nextValid(it);
-			third = Expression.nextValid(it);
+			second = nextValid(it);
+			third = nextValid(it);
 
 			if (second != null) {
 				// questions beginning with "is"/"are"
@@ -354,18 +362,18 @@ final class SentenceImplementation extends Sentence {
 	 * Merge words to form a simpler sentence structure.
 	 * @param isForMatching 
 	 */
-	void mergeWords(boolean isForMatching) {
+	void mergeWords() {
 
 		//TODO mf - use WordList.compoundNames to merge compound names
 
 		// first merge three word expressions of the form "... of ..."
-		mergeThreeWordExpressions(isForMatching);
+		mergeThreeWordExpressions();
 
 		// now merge two word expressions from left to right
-		mergeTwoWordExpressions(isForMatching);
+		mergeTwoWordExpressions();
 	}
 
-	private void mergeTwoWordExpressions(boolean isForMatching) {
+	private void mergeTwoWordExpressions() {
 
 		/*
 		 * There are two possibilities for word merges: Left-merging means to
@@ -400,7 +408,7 @@ final class SentenceImplementation extends Sentence {
 					}
 
 					// don't merge if there are joker expressions
-					if (isForMatching) {
+					if (context.isForMatching()) {
 						if (curr.getNormalized().contains(JOKER) 
 								|| next.getNormalized().contains(JOKER)) {
     						continue;
@@ -466,11 +474,13 @@ final class SentenceImplementation extends Sentence {
 					}
 
 					// left-merge words to ignore
-					if (curType != null && curType.isIgnore()) {
-						next.mergeLeft(curr, false);
-						expressions.remove(curr);
-						changed = true;
-						break;
+					if (context.getIgnoreIgnorable()) {
+    					if (curType != null && isIgnorable(curr)) {
+    						next.mergeLeft(curr, false);
+    						expressions.remove(curr);
+    						changed = true;
+    						break;
+    					}
 					}
 
 					// manage precedingVerb flag to detect compound verb/noun constructs
@@ -522,7 +532,7 @@ final class SentenceImplementation extends Sentence {
 		return false;
     }
 
-	private void mergeThreeWordExpressions(boolean isForMatching) {
+	private void mergeThreeWordExpressions() {
 		boolean changed;
 
 		// loop until no more simplification can be made
@@ -552,7 +562,7 @@ final class SentenceImplementation extends Sentence {
 						}
 
 						// don't merge if there are joker expressions
-						if (isForMatching) {
+						if (context.isForMatching()) {
 							if (first.getNormalized().contains(JOKER) 
 								||	second.getNormalized().contains(JOKER) 
 								||  third.getNormalized().contains(JOKER)) {

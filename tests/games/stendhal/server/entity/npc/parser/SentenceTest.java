@@ -15,23 +15,26 @@ public class SentenceTest {
 
 	@Test
 	public final void testGrammar() {
-		SentenceImplementation sentence = new SentenceImplementation();
+		ConversationContext ctx = new ConversationContext();
+		ctx.setPersistNewWords(false);
+
+		SentenceImplementation sentence = new SentenceImplementation(ctx);
 		String text = ConversationParser.getSentenceType("The quick brown fox jumps over the lazy dog.", sentence);
 		ConversationParser parser = new ConversationParser(text);
 		sentence.parse(parser);
-		sentence.classifyWords(parser, false, false);
+		sentence.classifyWords(parser);
 		assertFalse(sentence.hasError());
 		assertEquals("quick/ADJ brown/ADJ-COL fox/SUB-ANI jump/VER over/PRE lazy/ADJ dog/SUB-ANI.",
 				sentence.toString());
 
-		sentence.mergeWords(false);
+		sentence.mergeWords();
 		assertEquals("quick brown fox/SUB-ANI-COL jump/VER over/PRE lazy dog/SUB-ANI.", sentence.toString());
 		assertEquals(Sentence.SentenceType.STATEMENT, sentence.getType());
 
-		sentence = new SentenceImplementation();
+		sentence = new SentenceImplementation(ctx);
 		parser = new ConversationParser("does it fit");
 		sentence.parse(parser);
-		sentence.classifyWords(parser, false, false);
+		sentence.classifyWords(parser);
 		assertFalse(sentence.hasError());
 		assertEquals("do/VER it/OBJ-PRO fit/VER", sentence.toString());
 		assertEquals(Sentence.SentenceType.QUESTION, sentence.evaluateSentenceType());

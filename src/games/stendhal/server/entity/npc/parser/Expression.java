@@ -1,6 +1,5 @@
 package games.stendhal.server.entity.npc.parser;
 
-import java.util.Iterator;
 
 /**
  * An Expression is part of a Sentence. It encapsulates the original, white space
@@ -395,24 +394,6 @@ public final class Expression {
 		} else {
 			return false;
 		}
-    }
-
-	/**
-	 * Advance the iterator and return the next non-ignorable Expression.
-	 * 
-	 * @param it
-	 * @return
-	 */
-	public static Expression nextValid(Iterator<Expression> it) {
-		while (it.hasNext()) {
-			Expression expr = it.next();
-
-			if (!expr.isIgnore()) {
-				return expr;
-			}
-		}
-
-	    return null;
     }
 
 	/**

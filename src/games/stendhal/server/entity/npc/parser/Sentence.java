@@ -32,6 +32,17 @@ public class Sentence implements Iterable<Expression> {
 
 	List<Expression> expressions = new ArrayList<Expression>();
 
+	protected final ConversationContext context;
+
+	/**
+	 * Create a Sentence object.
+	 *
+	 * @param ctx
+	 */
+	protected Sentence(ConversationContext ctx) {
+		context = ctx;
+	}
+
 	/**
 	 * Set sentence type as STATEMENT, IMPERATIVE or QUESTION.
 	 * 
@@ -149,8 +160,6 @@ public class Sentence implements Iterable<Expression> {
 		return null;
 	}
 
-	private Expression triggerCache = null;
-
 	/**
 	 * Return trigger Expression for the FSM engine.
 	 * TODO mf - replace by sentence matching.
@@ -158,26 +167,12 @@ public class Sentence implements Iterable<Expression> {
 	 * @return trigger string
 	 */
 	public Expression getTriggerExpression() {
-		if (triggerCache != null) {
-			return triggerCache;
+		// just return the first expression
+		if (expressions.size() > 0) {
+			return expressions.get(0);
+		} else {
+			return Expression.emptyExpression;
 		}
-
-		Expression trigger = Expression.emptyExpression;
-
-		Iterator<Expression> it = expressions.iterator();
-
-		while (it.hasNext()) {
-			Expression word = it.next();
-
-			if (word.getType() == null || !word.getType().isIgnore()) {
-				trigger = word;
-				break;
-			}
-		}
-
-		triggerCache = trigger;
-
-		return trigger;
 	}
 
 	/**
@@ -420,7 +415,7 @@ public class Sentence implements Iterable<Expression> {
 		SentenceBuilder builder = new SentenceBuilder();
 
 		for (Expression w : expressions) {
-			if (w.getType() == null || !w.getType().isIgnore()) {
+			if (w.getType() == null || !isIgnorable(w)) {
 				builder.append(w.getNormalized());
 			}
 		}
@@ -429,6 +424,16 @@ public class Sentence implements Iterable<Expression> {
 
 		return builder.toString();
 	}
+
+	/**
+	 * Check if the given Expression should be ignored.
+	 *
+	 * @param expr
+	 * @return
+	 */
+	protected boolean isIgnorable(Expression expr) {
+	    return context.getIgnoreIgnorable() && expr.isIgnore();
+    }
 
 	/**
 	 * Return the full sentence as lower case string
@@ -442,7 +447,7 @@ public class Sentence implements Iterable<Expression> {
 
 		for (Expression w : expressions) {
 			if (w.getType() != null) {
-				if (!w.getType().isIgnore()) {
+				if (!isIgnorable(w)) {
 					builder.append(w.getNormalizedWithTypeString());
 				}
 			} else {
@@ -523,8 +528,8 @@ public class Sentence implements Iterable<Expression> {
 	    Iterator<Expression> it2 = other.expressions.iterator();
 
 		while (true) {
-			Expression e1 = Expression.nextValid(it1);
-			Expression e2 = Expression.nextValid(it2);
+			Expression e1 = nextValid(it1);
+			Expression e2 = nextValid(it2);
 
 			if (e1 == null && e2 == null) {
 				break;
@@ -542,6 +547,24 @@ public class Sentence implements Iterable<Expression> {
 
 		return ret.toString();
 	}
+
+	/**
+	 * Advance the iterator and return the next non-ignorable Expression.
+	 * 
+	 * @param it
+	 * @return
+	 */
+	public Expression nextValid(Iterator<Expression> it) {
+		while (it.hasNext()) {
+			Expression expr = it.next();
+
+			if (!isIgnorable(expr)) {
+				return expr;
+			}
+		}
+
+	    return null;
+    }
 
 	/**
 	 * Check if the Sentence matches the given String.
@@ -616,8 +639,8 @@ public class Sentence implements Iterable<Expression> {
 	    Expression e1, e2;
 
 		while (true) {
-			e1 = Expression.nextValid(it1);
-			e2 = Expression.nextValid(it2);
+			e1 = nextValid(it1);
+			e2 = nextValid(it2);
 
 			if (e1 == null || e2 == null) {
 				break;
@@ -646,7 +669,7 @@ public class Sentence implements Iterable<Expression> {
 		if (e1 == null && e2 == null) {
 			return true;
 		}
-		// If we look for a match at Sentence start, there must be no more epxressions at the right side.
+		// If we look for a match at Sentence start, there must be no more expressions at the right side.
 		else {
 			return (matchStart && e2 == null);
 		}
