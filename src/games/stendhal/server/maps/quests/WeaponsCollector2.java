@@ -35,10 +35,15 @@ import java.util.List;
  * several weapons at the same time.)
  * <li> Balduin gives you a pair of swords in exchange.
  * </ul>
- * <p>
- * REWARD: <ul><li> rhand sword and lhand sword <li> 3000 XP
+ * REWARD:
+ * <ul>
+ * <li> rhand sword and lhand sword
+ * <li> 3000 XP
  * </ul>
- * REPETITIONS: <ul><li> None.<li>
+ * REPETITIONS:
+ * <ul>
+ * <li> None.
+ * </ul>
  */
 public class WeaponsCollector2 extends AbstractQuest {
 
