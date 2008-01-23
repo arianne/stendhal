@@ -19,6 +19,10 @@ import java.util.Map;
  * @author timothyb89/kymara
  */
 public class MaidNPC implements ZoneConfigurator {
+
+	// This is 1 minute at 300 ms per turn.
+	private static final int TIME_OUT = 200;
+
 	//
 	// ZoneConfigurator
 	//
@@ -74,7 +78,7 @@ public class MaidNPC implements ZoneConfigurator {
 				addGoodbye("Goodbye, all you customers do work me hard ...");
 			}
 		};
-
+		tavernMaid.setPlayerChatTimeout(TIME_OUT); 
 		tavernMaid.setEntityClass("oldmaidnpc");
 		tavernMaid.setPosition(10, 16);
 		tavernMaid.initHP(100);

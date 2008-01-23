@@ -41,6 +41,9 @@ public class MeetHayunn extends AbstractQuest {
 
 	private static final String QUEST_SLOT = "meet_hayunn";
 
+	//This is 1 minute at 300 ms per turn
+	private static final int TIME_OUT = 200;
+
 	@Override
 	public void init(String name) {
 		super.init(name, QUEST_SLOT);
@@ -215,6 +218,8 @@ public class MeetHayunn extends AbstractQuest {
 				ConversationPhrases.NO_MESSAGES, null, ConversationStates.ATTENDING,
 				"Oh well, I'm sure someone else will stop by for a chat soon.",
 				null);
+
+		npc.setPlayerChatTimeout(TIME_OUT); 
 	}
 
 	@Override
