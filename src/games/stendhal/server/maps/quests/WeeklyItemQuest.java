@@ -19,21 +19,22 @@ import java.util.List;
  * QUEST: Weekly Item Fetch Quest.
  * <p>
  * PARTICIPANTS:
- * <li> Hazel, Museum Curator of Kirdneh
+ * <ul><li> Hazel, Museum Curator of Kirdneh
  * <li> some items
- * <p>
- * STEPS:
+ * </ul>
+ * STEPS:<ul>
  * <li> talk to Museum Curator to get a quest to fetch a rare item
  * <li> bring the item to the Museum Curator
  * <li> if you cannot bring it in 6 weeks she offers you the chance to fetch
- * another instead
- * <p>
+ * 
+ * another instead </ul>
+ * 
  * REWARD:
- * <li> xp
+ * <ul><li> xp
  * <li> between 100 and 600 money
- * <p>
+ * </ul>
  * REPETITIONS:
- * <li> once a week
+ * <ul><li> once a week</ul>
  */
 public class WeeklyItemQuest extends AbstractQuest {
 

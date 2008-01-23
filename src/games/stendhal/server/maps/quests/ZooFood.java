@@ -25,7 +25,7 @@ import java.util.List;
  * <li> Katinka, the keeper at the Ados Wildlife Refuge
  * <li> Dr.Feelgood, the veterinary
  * </ul>
- * <p>
+ * 
  * STEPS:
  * <ul>
  * <li> Katinka asks you for ham for the animals.
@@ -34,9 +34,9 @@ import java.util.List;
  * <li> Katinka thanks you.
  * <li> You can then buy cheap medicine from Dr. Feelgood.
  * </ul>
- * <p>
- * REWARD: - 200 XP - everlasting supply for cheap medicine
- * <p>
+ * 
+ * REWARD: <ul><li> 200 XP <li> everlasting supply for cheap medicine
+ * </ul>
  * REPETITIONS: - None.
  */
 public class ZooFood extends AbstractQuest {

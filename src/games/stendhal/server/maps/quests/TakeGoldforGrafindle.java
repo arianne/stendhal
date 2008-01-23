@@ -18,21 +18,21 @@ import java.util.List;
 
 /**
  * QUEST: Take gold for Grafindle
- * <p>
- * PARTICIPANTS:
+ * 
+ * PARTICIPANTS: <ul>
  * <li> Grafindle
- * <li> Lorithien
- * <p>
- * STEPS:
+ * <li> Lorithien </ul>
+ * 
+ * STEPS:<ul>
  * <li> Talk with Grafindle to activate the quest.
  * <li> Talk with Lorithien for the money.
- * <li> Return the gold bars to Grafindle
- * <p>
- * REWARD:
+ * <li> Return the gold bars to Grafindle</ul>
+ * 
+ * REWARD:<ul>
  * <li> 200 XP
  * <li> key to nalwor bank customer room
- * <p>
- * REPETITIONS: <li> None.
+ * </ul>
+ * REPETITIONS: <ul><li> None.</ul>
  */
 public class TakeGoldforGrafindle extends AbstractQuest {
 	private static final int GOLD_AMOUNT = 25;

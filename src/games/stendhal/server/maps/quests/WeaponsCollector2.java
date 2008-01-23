@@ -36,9 +36,9 @@ import java.util.List;
  * <li> Balduin gives you a pair of swords in exchange.
  * </ul>
  * <p>
- * REWARD: - rhand sword and lhand sword - 3000 XP
- * <p>
- * REPETITIONS: - None.
+ * REWARD: <ul><li> rhand sword and lhand sword <li> 3000 XP
+ * </ul>
+ * REPETITIONS: <ul><li> None.<li>
  */
 public class WeaponsCollector2 extends AbstractQuest {
 

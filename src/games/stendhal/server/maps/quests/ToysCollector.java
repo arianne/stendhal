@@ -17,23 +17,23 @@ import java.util.List;
 
 /**
  * QUEST: Toys Collector
- * <p>
- * PARTICIPANTS:
- * <li> Anna, a girl who live in Ados
- * <p>
+ * 
+ * PARTICIPANTS: <ul>
+ * <li> Anna, a girl who live in Ados </ul>
+ * 
  * STEPS:
- * <li> Anna asks for some toys
+ * <ul><li> Anna asks for some toys
  * <li> You guess she might like a teddy, dice or dress
  * <li> You bring the toy to Anna
  * <li> Repeat until Anna received all toys. (Of course you can bring several
  * toys at the same time.)
  * <li> Anna gives you a reward
- * <p>
- * REWARD:
+ * </ul>
+ * REWARD:<ul>
  * <li> ? some pies?
  * <li> 100 XP
- * <p>
- * REPETITIONS: - None.
+ * </ul>
+ * REPETITIONS: <ul><li> None.</ul>
  */
 public class ToysCollector extends AbstractQuest implements
 		BringListOfItemsQuest {
