@@ -76,6 +76,26 @@ public class PassiveEntityRespawnPointFactory {
 				// We should also consider making them non-clickable.
 				passiveEntityrespawnPoint.setDescription("You see a small vein of iron ore.");
 				break;
+
+				// added/modified by tigertoes
+			case 2:
+				passiveEntityrespawnPoint = new PassiveEntityRespawnPoint(
+						"gold bar", 6000);
+				break;
+			case 3:
+				passiveEntityrespawnPoint = new PassiveEntityRespawnPoint(
+						"mithril bar", 6000);
+				break;
+			case 4:
+				passiveEntityrespawnPoint = new PassiveEntityRespawnPoint(
+						"gold nugget", 6000);
+				break;
+			case 5:
+				passiveEntityrespawnPoint = new PassiveEntityRespawnPoint(
+						"mithril nugget", 6000);
+				break;	
+				// end of added/modified by tigertoes
+				
 			}
 		} else if (clazz.contains("sheepfood")) {
 			passiveEntityrespawnPoint = new SheepFood();
@@ -120,6 +140,24 @@ public class PassiveEntityRespawnPointFactory {
 				break;
 			}
 
+			// added/modified by tigertoes
+		} else if (clazz.contains("jewelry")) {
+			switch (type) {
+			case 0:
+				passiveEntityrespawnPoint = new PassiveEntityRespawnPoint(
+						"carbuncle", 6000);
+				break;
+			case 1:
+				passiveEntityrespawnPoint = new PassiveEntityRespawnPoint(
+						"sapphire", 6000);
+				break;
+			case 2:
+				passiveEntityrespawnPoint = new PassiveEntityRespawnPoint(
+						"emerald", 6000);
+				break;
+			}			
+				// end of added/modified by tigertoes
+			
 		} else if (clazz.contains("sign")) {
 			/*
 			 * Ignore signs. The way to go is XML.
