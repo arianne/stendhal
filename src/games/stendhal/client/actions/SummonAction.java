@@ -2,6 +2,7 @@ package games.stendhal.client.actions;
 
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.entity.User;
+import games.stendhal.common.NameBuilder;
 import marauroa.common.game.RPAction;
 
 /**
@@ -11,6 +12,11 @@ class SummonAction implements SlashAction {
 
 	/**
 	 * Execute a chat command.
+	 * 
+	 * We accept the following command syntaxes, coordinates are recognized from numeric parameters:
+	 * /summon <creature name>
+	 * /summon <creature name> x y
+	 * /summon x y <creature name>
 	 * 
 	 * @param params
 	 *            The formal parameters.
@@ -22,18 +28,44 @@ class SummonAction implements SlashAction {
 	public boolean execute(String[] params, String remainder) {
 		RPAction summon = new RPAction();
 
-		summon.put("type", "summon");
-		summon.put("creature", params[0]);
+		NameBuilder name = new NameBuilder();
+		Integer x = null, y = null;
 
-		if (params[2] != null) {
-			summon.put("x", params[1]);
-			summon.put("y", params[2]);
-		} else if (params[1] != null) {
-			return false;
+		for(int i=0; i<params.length; ++i) {
+			String str = params[i];
+
+			if (str != null) {
+    			try {
+    				Integer num = new Integer(str);
+
+    				if (x == null) {
+    					x = num;
+    				} else if (y == null) {
+    					y = num;
+    				} else {
+    					name.append(str);
+    				}
+    			} catch(NumberFormatException e) {
+    				name.append(str);
+    			}
+			}
+		}
+
+		summon.put("type", "summon");
+		summon.put("creature", name.toString());
+
+		if (x != null) {
+			if (y != null) {
+    			summon.put("x", x);
+    			summon.put("y", y);
+    		} else {
+    			return false;
+			}
 		} else {
 			summon.put("x", (int) User.get().getX());
 			summon.put("y", (int) User.get().getY());
 		}
+
 		StendhalClient.get().send(summon);
 
 		return true;
@@ -45,7 +77,7 @@ class SummonAction implements SlashAction {
 	 * @return The parameter count.
 	 */
 	public int getMaximumParameters() {
-		return 3;
+		return 9;
 	}
 
 	/**
