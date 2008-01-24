@@ -14,8 +14,9 @@ import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
-
 import marauroa.common.game.RPClass;
+
+import org.apache.log4j.Logger;
 
 /**
  * A gold source is a spot where a player can prospect for gold nuggets. He
@@ -30,6 +31,8 @@ import marauroa.common.game.RPClass;
  * @author daniel
  */
 public class GoldSource extends PlayerActivityEntity {
+	private static final Logger logger = Logger.getLogger(GoldSource.class);
+
 	/**
 	 * The equipment needed.
 	 */
@@ -49,7 +52,7 @@ public class GoldSource extends PlayerActivityEntity {
 	 * Create a gold source.
 	 */
 	public GoldSource() {
-		this("gold_nugget");
+		this("gold nugget");
 	}
 
 	/**
@@ -127,12 +130,15 @@ public class GoldSource extends PlayerActivityEntity {
 	@Override
 	protected void onFinished(final Player player, final boolean successful) {
 		if (successful) {
-			Item item = SingletonRepository.getEntityManager().getItem(
-					itemName);
+			Item item = SingletonRepository.getEntityManager().getItem(itemName);
 
-			player.equip(item, true);
-			player.sendPrivateText("You found "
-					+ Grammar.a_noun(item.getTitle()) + ".");
+			if (item != null) {
+    			player.equip(item, true);
+    			player.sendPrivateText("You found "
+    					+ Grammar.a_noun(item.getTitle()) + ".");
+			} else {
+				logger.error("could not find item: " + itemName);
+			}
 		} else {
 			player.sendPrivateText("You didn't find anything.");
 		}
