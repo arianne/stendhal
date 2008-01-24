@@ -1,14 +1,11 @@
 package utilities;
 
 import static org.junit.Assert.assertTrue;
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
+import marauroa.common.Log4J;
 
 import org.junit.BeforeClass;
-
-import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.engine.StendhalRPWorld;
-import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
-import games.stendhal.server.maps.MockStendlRPWorld;
-import marauroa.common.Log4J;
 
 /**
  * Helper methods for testing quests.
@@ -26,7 +23,6 @@ public abstract class QuestHelper extends PlayerTestHelper  {
 		generateNPCRPClasses();
 
 		assertTrue(MockStendhalRPRuleProcessor.get() instanceof MockStendhalRPRuleProcessor);
-		StendhalRPWorld world = MockStendlRPWorld.get();
 
 		// load item configurations to handle money and other items
 		SingletonRepository.getEntityManager();

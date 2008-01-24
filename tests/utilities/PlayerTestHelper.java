@@ -1,7 +1,6 @@
 package utilities;
 
 import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.engine.Task;
 import games.stendhal.server.entity.ActiveEntity;
@@ -191,8 +190,6 @@ public abstract class PlayerTestHelper {
 	 * @return success flag
 	 */
 	public static boolean equipWithItem(Player player, String clazz) {
-		StendhalRPWorld world = SingletonRepository.getRPWorld();
-
 		Item item = SingletonRepository.getEntityManager().getItem(clazz);
 
 		return player.equip(item);
@@ -207,8 +204,6 @@ public abstract class PlayerTestHelper {
 	 * @return success flag
 	 */
 	public static boolean equipWithStackableItem(Player player, String clazz, int amount) {
-		StendhalRPWorld world = SingletonRepository.getRPWorld();
-
 		StackableItem item = (StackableItem) SingletonRepository.getEntityManager().getItem(clazz);
 		item.setQuantity(amount);
 
