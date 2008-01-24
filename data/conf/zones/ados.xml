@@ -1580,8 +1580,29 @@ Southeast: Docks
 
  <!--  Level -1 -->
 
- <zone name="-1_mansion" level="-1" x="500384" y="499744" file="interiors/abstract/area1.tmx">
- </zone>
+
+  <!--  added/modified by tigertoes -->
+ <zone name="-1_ados_abandoned_keep" level="-1" x="500384" y="499744" file="Level -1/ados/abandoned_keep.tmx">
+  <configurator class-name="games.stendhal.server.maps.ados.abandonedkeep.OrcWeaponArmorGuyNPC"/>
+ 
+     <entity x="116" y="0">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
+     <attribute name="text">
+We Sell Armor and Weapons
+
+Golden Boots 3000
+Golden Legs 6000
+Golden Helmet 6000
+Golden Armor 14000
+Golden Shield 20000
+
+Assassins Dagger 12000
+     </attribute>
+     <attribute name="class">blackboard</attribute>
+    </entity>
+
+  <!--  end of added/modified by tigertoes -->
+</zone>
 
  <zone name="-1_ados_tunnel_w2" level="-1" x="500768" y="499744" file="Level -1/ados/tunnel_w2.tmx">
  </zone>
@@ -1632,16 +1653,21 @@ Southeast: Docks
  </zone>
  <!--  Level -2 -->
 
- <zone name="-2_mansion" level="-2" x="500384" y="499744" file="interiors/abstract/area2.tmx">
+  <!--  added/modified by tigertoes -->
+ <zone name="-2_ados_abandoned_keep" level="-2" x="500384" y="499744" file="Level -2/ados/abandoned_keep.tmx">
  </zone>
+  <!--  end of added/modified by tigertoes -->
 
  <zone name="-2_ados_outside_nw" level="-2" x="500640" y="499872" file="Level -2/ados/outside_nw.tmx">
  </zone>
 
 
  <!--  Level -3 -->
- <zone name="-3_mansion" level="-3" x="500384" y="499744" file="interiors/abstract/area3.tmx">
+
+   <!--  added/modified by tigertoes -->
+ <zone name="-3_ados_abandoned_keep" level="-3" x="500384" y="499744" file="Level -3/ados/abandoned_keep.tmx">
  </zone>
+  <!--  end of added/modified by tigertoes -->
 
  <zone name="-3_ados_outside_nw" level="-3" x="500640" y="499872" file="Level -3/ados/outside_nw.tmx">
   <configurator class-name="games.stendhal.server.maps.ados.outside.CloaksCollectorNPC" />
@@ -1656,18 +1682,30 @@ Southeast: Docks
 
  <!--  Level -4 -->
 
- <zone name="-4_mansion" level="-4" x="500384" y="499744" file="interiors/abstract/area4.tmx">
+  <!--  added/modified by tigertoes -->
+ <zone name="-4_ados_abandoned_keep" level="-4" x="500384" y="499744" file="Level -4/ados/abandoned_keep.tmx">
  </zone>
+  <!--  end of added/modified by tigertoes -->
 
  <!--  Level -5 -->
 
- <zone name="-5_mansion" level="-5" x="500384" y="499744" file="interiors/abstract/area5.tmx">
+  <!--  added/modified by tigertoes -->
+ <zone name="-5_ados_abandoned_keep" level="-5" x="500384" y="499744" file="Level -5/ados/abandoned_keep.tmx">
  </zone>
+  <!--  end of added/modified by tigertoes -->
 
  <!--  Level -6 -->
 
- <zone name="-6_mansion" level="-6" x="500384" y="499744" file="interiors/abstract/area6.tmx">
+  <!--  added/modified by tigertoes 
+ <zone name="-6_ados_abandoned_keep1" level="-6" x="500384" y="499744" file="Level -6/ados/abandoned_keep1.tmx">
+  </zone>
+ <zone name="-6_ados_abandoned_keep2" level="-6" x="500384" y="499744" file="Level -6/ados/abandoned_keep2.tmx">
+  </zone>
+ <zone name="-6_ados_abandoned_keep3" level="-6" x="500384" y="499744" file="Level -6/ados/abandoned_keep3.tmx">
+  </zone>
+ <zone name="-6_ados_abandoned_keep4" level="-6" x="500384" y="499744" file="Level -6/ados/abandoned_keep4.tmx">
  </zone>
+    end of added/modified by tigertoes -->
 
  <!--  Level -7 -->
 
