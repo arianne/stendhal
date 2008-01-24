@@ -105,9 +105,9 @@ public class LevelCheckingPortal extends AccessCheckingPortal {
 		if (rejectMessage != null) {
 			super.rejected(user);
 		} else if (user.getLevel() < minLevel) {
-			sendMessage(user, "I am to weak to use this portal.");
+			sendMessage(user, "I am too weak to use this portal.");
 		} else if (user.getLevel() > maxLevel) {
-			sendMessage(user, "I am to strong to use this portal.");
+			sendMessage(user, "I am too strong to use this portal.");
 		}
 	}
 }
