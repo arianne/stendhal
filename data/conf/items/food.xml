@@ -163,6 +163,24 @@
     </equipable>
   </item>
 
+   <item name="black apple">
+    <type class="food" subclass="blackapple" tileid="-1"/>
+    <description>You see a black apple. It must be a gift from lil Johnnnny. He's the guy with black items.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Food"/>    <attributes>
+      <amount value="20"/>
+      <frequency value="30"/>
+      <quantity value="1"/>
+      <regen value="3"/>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
+    </equipable>
+  </item>
+ 
   <item name="bread">
     <type class="food" subclass="baguette" tileid="-1"/>
     <description>You see a loaf of bread.  It is freshly baked and ready to eat.</description>
