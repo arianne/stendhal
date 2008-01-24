@@ -73,6 +73,20 @@ public class ShopList {
 		shops.add("sellstuff", "cloak", 30);
 		shops.add("sellstuff", "leather legs", 35);
 
+		shops.add("sellbetterstuff1", "golden armor", 14000);
+		shops.add("sellbetterstuff1", "golden boots", 3000);
+		shops.add("sellbetterstuff1", "golden helmet", 6000);
+		shops.add("sellbetterstuff1", "golden legs", 6000);
+		shops.add("sellbetterstuff1", "golden shield", 20000);
+		shops.add("sellbetterstuff1", "assassin dagger", 12000);
+
+		shops.add("sellbetterstuff2", "shadow armor", 18000);
+		shops.add("sellbetterstuff2", "shadow boots", 4000);
+		shops.add("sellbetterstuff2", "shadow helmet", 8000);
+		shops.add("sellbetterstuff2", "shadow legs", 10000);
+		shops.add("sellbetterstuff2", "shadow shield", 30000);
+		shops.add("sellbetterstuff2", "hell dagger", 20000);
+
 		shops.add("sellrangedstuff", "wooden bow", 300);
 		shops.add("sellrangedstuff", "wooden arrow", 2);
 
