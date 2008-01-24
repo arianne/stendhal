@@ -39,7 +39,7 @@ public class LevelCheckingPortalFactory extends AccessCheckingPortalFactory {
 	 *             If the level attribute is invalid.
 	 */
 	protected int getMinimumLevel(ConfigurableFactoryContext ctx) {
-		return ctx.getInt("maximum-level", LevelCheckingPortal.DEFAULT_MIN);
+		return ctx.getInt("minimum-level", LevelCheckingPortal.DEFAULT_MIN);
 	}
 
 	//
