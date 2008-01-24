@@ -127,7 +127,7 @@ public class MeetHayunn extends AbstractQuest {
 			ConversationPhrases.YES_MESSAGES,
 			null,
 			ConversationStates.INFORMATION_4,
-			"You need to eat regularly! By right-clicking a food item - either your bag or on the ground - you can slowly regain my health with each bite. That takes time of course, and there are ways to regain your health instantly... want to hear?",
+			"You need to eat regularly! By right-clicking a food item - either your bag or on the ground - you can slowly regain your health with each bite. That takes time of course, and there are ways to regain your health instantly... want to hear?",
 			null);
 
 		npc.add(
