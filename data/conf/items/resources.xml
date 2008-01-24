@@ -119,6 +119,21 @@
     </equipable>
   </item>
 
+  <item name="mithril nugget">
+    <type class="resource" subclass="mithril_ore" tileid="-1"/>
+    <description>You see a mithril nugget.  Its pale silvery color shines, and it may be useful.</description>
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
+      <quantity value="1"/>
+    </attributes>
+    <weight value="2.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
+    </equipable>
+  </item>
+
   <item name="iron">
     <type class="resource" subclass="iron" tileid="-1"/>
     <description/>
@@ -136,7 +151,22 @@
 
   <item name="gold bar">
     <type class="resource" subclass="gold_bar" tileid="-1"/>
-    <description>You see a gold bar. It will make beautiful jewellery, or fetch a fine price.</description>
+    <description>You see a gold bar. It will make beautiful jewelry, or fetch a fine price.</description>
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
+      <quantity value="1"/>
+    </attributes>
+    <weight value="2.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
+    </equipable>
+  </item>
+
+  <item name="mithril bar">
+    <type class="resource" subclass="mithril_bar" tileid="-1"/>
+    <description>You see a mithril bar. It can be made into excellent armor, or fetch a fine price.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
       <quantity value="1"/>
     </attributes>
