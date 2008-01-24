@@ -231,7 +231,7 @@ b*/item/chest/wooden_pale.png
 k*/item/corpse/huge_animal.png
 ./item/corpse/skeleton.png
 ./item/corpse/skull_dark.png a version of this is in mirage sets so must we replace?
-./item/corpse/skull_pale.png
+k*/item/corpse/skull_pale.png
 K*/item/drink/bottle_and_glass.png
 k*/item/drink/cognac.png
 k*/item/drink/red_wine.png
