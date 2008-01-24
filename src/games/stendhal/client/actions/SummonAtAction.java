@@ -24,11 +24,8 @@ class SummonAtAction implements SlashAction {
 		summon.put("type", "summonat");
 		summon.put("target", params[0]);
 		summon.put("slot", params[1]);
-		summon.put("item", params[2]);
-
-		if (params[3] != null) {
-			summon.put("amount", params[3]);
-		}
+		summon.put("amount", params[2]);
+		summon.put("item", remainder);
 
 		StendhalClient.get().send(summon);
 
@@ -41,7 +38,7 @@ class SummonAtAction implements SlashAction {
 	 * @return The parameter count.
 	 */
 	public int getMaximumParameters() {
-		return 4;
+		return 3;
 	}
 
 	/**
