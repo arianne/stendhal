@@ -112,6 +112,20 @@
     </equipable>
   </item>
 
+  <item name="blue helmet">
+    <type class="helmet" subclass="blue_helmet" tileid="-1"/>
+    <description>You see a brand new blue helmet.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <def value="7"/>
+    </attributes>
+    <weight value="8.0"/>
+    <value value="3012"/>
+    <equipable>
+      <slot name="head"/>
+      <slot name="bag"/>
+    </equipable>
+  </item>
+
   <item name="golden helmet">
     <type class="helmet" subclass="golden_helmet" tileid="-1"/>
     <description>You see a heavy golden helmet. The thick metal should protect you against almost anything.</description>

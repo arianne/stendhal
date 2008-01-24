@@ -70,6 +70,20 @@
     </equipable>
   </item>
 
+  <item name="blue striped cloak">
+    <type class="cloak" subclass="blue_striped_cloak" tileid="-1"/>
+    <description>You see a fashionable blue striped cloak.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <def value="7"/>
+    </attributes>
+    <weight value="5.0"/>
+    <value value="2200"/>
+    <equipable>
+      <slot name="cloak"/>
+      <slot name="bag"/>
+    </equipable>
+  </item>
+
   <item name="blue elf cloak">
     <type class="cloak" subclass="lightblue_cloak" tileid="-1"/>
     <description>You see a blue elf cloak. The material is thick and warm.</description>

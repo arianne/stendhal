@@ -150,6 +150,22 @@
     </equipable>
   </item>
 
+  <item name="blue shield">
+    <type class="shield" subclass="blue_shield" tileid="-1"/>
+    <description>You see a blue shield. It feels light in your hand but is strong enough for excellent protection.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <def value="30"/>
+    </attributes>
+    <weight value="24.0"/>
+    <value value="186768"/>
+    <equipable>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
+    </equipable>
+  </item>
+
+
   <item name="elvish shield">
     <type class="shield" subclass="elvish_shield" tileid="-1"/>
     <description>You see an elvish shield. It looks like one big tree leaf!</description>

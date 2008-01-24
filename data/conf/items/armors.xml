@@ -196,6 +196,20 @@
     </equipable>
   </item>
 
+  <item name="blue armor">
+    <type class="armor" subclass="blue_armor" tileid="-1"/>
+    <description>You see a suit of blue armor. The colour is stunning azure.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <def value="13"/>
+    </attributes>
+    <weight value="35.0"/>
+    <value value="18000"/>
+    <equipable>
+      <slot name="armor"/>
+      <slot name="bag"/>
+    </equipable>
+  </item>
+
   <item name="elvish armor">
     <type class="armor" subclass="elvish_armor" tileid="-1"/>
     <description>You see a suit of elvish armor. It's made from tree leaves! But somehow constructed to give strong defence.</description>

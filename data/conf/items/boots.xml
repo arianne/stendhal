@@ -70,6 +70,20 @@
     </equipable>
   </item>
 
+  <item name="blue boots">
+    <type class="boots" subclass="blue_boots" tileid="-1"/>
+    <description>You see a pair of blue boots.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <def value="6"/>
+    </attributes>
+    <weight value="9.0"/>
+    <value value="1812"/>
+    <equipable>
+      <slot name="feet"/>
+      <slot name="bag"/>
+    </equipable>
+  </item>
+
   <item name="elvish boots">
     <type class="boots" subclass="elvish_boots" tileid="-1"/>
     <description>You see a pair of elvish boots.</description>

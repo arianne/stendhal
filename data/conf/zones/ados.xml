@@ -1588,15 +1588,16 @@ Southeast: Docks
      <entity x="116" y="0">
      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
      <attribute name="text">
-We Sell Armor and Weapons
+We Sell Armor and Weapons:
 
-Golden Boots 3000
-Golden Legs 6000
-Golden Helmet 6000
-Golden Armor 14000
-Golden Shield 20000
+Blue Boots (def 6) 3000
+Blue Striped Cloak (def 7) 5000
+Blue Legs (def 7) 6000
+Blue Helmet (def 7) 6000
+Blue Armor (def 13) 14000
+Blue Shield (def 30) 20000
 
-Assassins Dagger 12000
+Assassin Dagger (atk 6 rate 2) 12000
      </attribute>
      <attribute name="class">blackboard</attribute>
     </entity>
