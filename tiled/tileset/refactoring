@@ -173,7 +173,7 @@ m*/ground/indoor/tiles.png
 ./ground/ladder/horizontal_pale.png
 F*/ground/ladder/small.png
 F*/ground/ladder/steps.png
-./ground/ladder/vertical_dark.png
+k*/ground/ladder/vertical_dark.png
 ./ground/ladder/vertical_pale.png
 k*/ground/ridge/earth_dark.png
 k*/ground/ridge/earth_pale.png
