@@ -100,12 +100,12 @@ public class CreatureInfo {
 		this.probabilityLiterals = probabilityLiterals;
 		this.amountLiterals = amountLiterals;
 		this.dangerLiterals = dangerLiterals;
-		this.lineStartTexts = lineStartTexts;
-		this.respawnTexts = respawnTexts;
-		this.carryTexts = carryTexts;
+		this.lineStartTexts = lineStartTexts.clone();
+		this.respawnTexts = respawnTexts.clone();
+		this.carryTexts = carryTexts.clone();
 		this.carryNothingTexts = carryNothingTexts.clone();
-		this.locationTexts = locationTexts;
-		this.locationUnknownTexts = locationUnknownTexts;
+		this.locationTexts = locationTexts.clone();
+		this.locationUnknownTexts = locationUnknownTexts.clone();
 	}
 
 	/**
