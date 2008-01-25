@@ -14,9 +14,9 @@ class SummonAction implements SlashAction {
 	 * Execute a chat command.
 	 * 
 	 * We accept the following command syntaxes, coordinates are recognized from numeric parameters:
-	 * /summon <creature name>
-	 * /summon <creature name> x y
-	 * /summon x y <creature name>
+	 * /summon &lt;creature name&gt;
+	 * /summon &lt;creature name&gt; x y
+	 * /summon x y &lt;creature name&gt;
 	 * 
 	 * @param params
 	 *            The formal parameters.
@@ -31,7 +31,7 @@ class SummonAction implements SlashAction {
 		NameBuilder name = new NameBuilder();
 		Integer x = null, y = null;
 
-		for(int i=0; i<params.length; ++i) {
+		for (int i = 0; i < params.length; ++i) {
 			String str = params[i];
 
 			if (str != null) {
@@ -45,7 +45,7 @@ class SummonAction implements SlashAction {
     				} else {
     					name.append(str);
     				}
-    			} catch(NumberFormatException e) {
+    			} catch (NumberFormatException e) {
     				name.append(str);
     			}
 			}
