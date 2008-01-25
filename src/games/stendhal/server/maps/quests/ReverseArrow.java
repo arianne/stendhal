@@ -152,9 +152,9 @@ public class ReverseArrow extends AbstractQuest implements
 				npc.say("I am sorry. This does not look like an arrow pointing upwards to me.");
 			}
 
-			// teleport the player out
+			// teleport the player out after 2 seconds of delay
 			SingletonRepository.getTurnNotifier().notifyInTurns(6,
-					new FinishNotifier(true, player)); // 2 seconds
+					new FinishNotifier(true, player)); 
 		}
 	}
 
@@ -338,8 +338,8 @@ public class ReverseArrow extends AbstractQuest implements
 						+ TIME + " seconds.");
 			}
 		};
-
-		npc.setEntityClass("oldwizardnpc"); // TODO change outfit
+		// TODO change outfit
+		npc.setEntityClass("oldwizardnpc"); 
 		npc.setPosition(20, 8);
 		npc.setDirection(Direction.DOWN);
 		npc.initHP(100);
@@ -388,8 +388,8 @@ public class ReverseArrow extends AbstractQuest implements
 		} else if (moveCount == MAX_MOVES) {
 			npc.say("This was your " + Grammar.ordered(moveCount)
 					+ " and final move. Let me check your work.");
-			SingletonRepository.getTurnNotifier().notifyInTurns(6, new ReverseArrowCheck()); // 2
-																			// seconds
+			// notify in 2 seconds
+			SingletonRepository.getTurnNotifier().notifyInTurns(6, new ReverseArrowCheck()); 
 			if (timer != null) {
 				SingletonRepository.getTurnNotifier().dontNotify(timer);
 			}
