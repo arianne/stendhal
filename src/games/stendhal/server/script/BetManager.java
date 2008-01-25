@@ -195,7 +195,7 @@ public class BetManager extends ScriptImpl implements TurnListener {
 				Expression object2 = sentence.getObject(1);
 
 				if (object1 != null && object2 != null && preposition != null) {
-    				if (preposition.equals("on")) {
+    				if (preposition.getNormalized().equals("on")) {
         				betInfo.amount = object1.getAmount();
         				betInfo.itemName = object1.getNormalized(); // cheese
         				betInfo.target = object2.getNormalized();
