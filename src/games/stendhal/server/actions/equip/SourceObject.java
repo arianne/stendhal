@@ -124,8 +124,9 @@ class SourceObject extends MoveableObject {
 
 			source.quantity = action.getInt(EquipActionConsts.QUANTITY);
 			if ((entityQuantity < 1) || (source.quantity < 1) || (source.quantity >= entityQuantity)) {
-				source.quantity = 0; // quantity == 0 performs a regular move
+				// quantity == 0 performs a regular move
 				// of the entire item
+				source.quantity = 0; 
 			}
 		}
 	}

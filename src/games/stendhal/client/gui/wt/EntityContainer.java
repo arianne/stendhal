@@ -159,11 +159,13 @@ public class EntityContainer extends WtPanel implements PositionChangeListener {
 	private void checkDistance() {
 		User user = User.get();
 
-		if (user != null && parent != null) { // fix for Bug 1825678:
-												// NullPointerException happened
-												// after double clicking one
-												// monster and a fast double
-												// click on another monster
+		if (user != null && parent != null) {
+			// null checks are fixes for Bug 1825678:
+			// NullPointerException happened
+			// after double clicking one
+			// monster and a fast double
+			// click on another monster
+			
 			if (user.getID().equals(parent.getID())) {
 				// We don't want to close our own stuff
 				return;
