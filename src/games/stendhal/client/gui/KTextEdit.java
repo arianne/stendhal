@@ -75,8 +75,8 @@ public class KTextEdit extends JPanel {
 
 		s = textPane.addStyle("bold", regular);
 		StyleConstants.setFontSize(regular, TEXT_SIZE + 1);
-		StyleConstants.setItalic(s, true);
-		StyleConstants.setBold(s, false);
+		StyleConstants.setItalic(s, false);	//true);
+		StyleConstants.setBold(s, true);	//false);
 		StyleConstants.setForeground(s, Color.blue);
 
 		s = textPane.addStyle("header", regular);
@@ -92,7 +92,7 @@ public class KTextEdit extends JPanel {
 
 	/**
 	 * @param desiredColor
-	 *            the color with wich the text must be colored
+	 *            the color with which the text must be colored
 	 * @return the colored style
 	 */
 	public Style getColor(Color desiredColor) {
@@ -138,7 +138,14 @@ public class KTextEdit extends JPanel {
 			int i = 0;
 			for (String pieces : parts) {
 				if (i > 0) {
-					int index = pieces.indexOf(" ");
+					char terminator = ' ';
+
+					// color quoted compound words like "#'iron sword'"
+					if (pieces.charAt(0) == '\'') {
+						terminator = '\'';
+					}
+
+					int index = pieces.indexOf(terminator);
 					if (index == -1) {
 						index = pieces.length();
 					}
@@ -146,6 +153,7 @@ public class KTextEdit extends JPanel {
 					doc.insertString(doc.getLength(),
 							pieces.substring(0, index),
 							textPane.getStyle("bold"));
+
 					pieces = pieces.substring(index);
 				}
 
