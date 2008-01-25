@@ -1,6 +1,7 @@
 package games.stendhal.server.maps.quests;
 
 import games.stendhal.common.Grammar;
+import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -48,7 +49,7 @@ public class Soup extends AbstractQuest {
 
 	private static final String QUEST_SLOT = "soup_maker";
 
-	private static final int REQUIRED_MINUTES = 10;
+	private static final long REQUIRED_MINUTES_IN_MILLISECONDS = 10 * MathHelper.MILLISENCONDS_IN_ONE_MINUTE;
 
 	/**
 	 * Returns a list of the names of all food that the given player still has
@@ -129,10 +130,7 @@ public class Soup extends AbstractQuest {
 
 					String[] tokens = player.getQuest(QUEST_SLOT)
 							.split(";");
-					long delay = REQUIRED_MINUTES * 60 * 1000; // minutes
-																// ->
-																// milliseconds
-					long timeRemaining = (Long.parseLong(tokens[1]) + delay)
+					long timeRemaining = (Long.parseLong(tokens[1]) + REQUIRED_MINUTES_IN_MILLISECONDS)
 							- System.currentTimeMillis();
 					return (timeRemaining <= 0L);
 				}
@@ -159,9 +157,8 @@ public class Soup extends AbstractQuest {
 					}
 
 					String[] tokens = player.getQuest(QUEST_SLOT).split(";");
-					// minutes -> milliseconds
-					long delay = REQUIRED_MINUTES * 60 * 1000; 
-					long timeRemaining = (Long.parseLong(tokens[1]) + delay)
+					
+					long timeRemaining = (Long.parseLong(tokens[1]) + REQUIRED_MINUTES_IN_MILLISECONDS)
 							- System.currentTimeMillis();
 					return (timeRemaining > 0L);
 				}
@@ -170,9 +167,7 @@ public class Soup extends AbstractQuest {
 				@Override
 				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 					String[] tokens = player.getQuest(QUEST_SLOT).split(";");
-					// minutes -> milliseconds
-					long delay = REQUIRED_MINUTES * 60 * 1000;
-					long timeRemaining = (Long.parseLong(tokens[1]) + delay)
+					long timeRemaining = (Long.parseLong(tokens[1]) + REQUIRED_MINUTES_IN_MILLISECONDS)
 							- System.currentTimeMillis();
 					npc.say("I hope you don't want more soup, because I haven't finished washing the dishes. Please check back in "
 						+ TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L))
