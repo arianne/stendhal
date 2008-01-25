@@ -285,8 +285,8 @@ public class ObsidianKnife extends AbstractQuest {
 					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 						String[] tokens = player.getQuest(QUEST_SLOT)
 								.split(";");
-						long delay = REQUIRED_DAYS * 60 * 60 * 24 * 1000; // milliseconds in REQUIRED_DAYS days
-						long timeRemaining = (Long.parseLong(tokens[1]) + delay)
+						long delayInMilliSeconds = REQUIRED_DAYS * 60 * 60 * 24 * 1000; 
+						long timeRemaining = (Long.parseLong(tokens[1]) + delayInMilliSeconds)
 								- System.currentTimeMillis();
 						if (timeRemaining > 0L) {
 							npc.say("I haven't finished reading that book. Maybe I'll be done in "
@@ -395,8 +395,8 @@ public class ObsidianKnife extends AbstractQuest {
 					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 						String[] tokens = player.getQuest(QUEST_SLOT)
 								.split(";");
-						long delay = REQUIRED_MINUTES * 60 * 1000; // minutes -> milliseconds
-						long timeRemaining = (Long.parseLong(tokens[1]) + delay)
+						long delayInMilliSeconds = REQUIRED_MINUTES * 60 * 1000; 
+						long timeRemaining = (Long.parseLong(tokens[1]) + delayInMilliSeconds)
 								- System.currentTimeMillis();
 						if (timeRemaining > 0L) {
 							npc.say("I haven't finished making the knife. Please check back in "
