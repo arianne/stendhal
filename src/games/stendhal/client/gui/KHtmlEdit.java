@@ -162,7 +162,7 @@ public class KHtmlEdit extends KTextEdit {
 	}
 
 	/**
-	 * Translate a standard stendhal encoded to HTML encoded.
+	 * Translate a standard Stendhal encoded to HTML encoded.
 	 * 
 	 * @param text
 	 *            The text to encode.
