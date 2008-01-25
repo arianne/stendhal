@@ -43,7 +43,7 @@ public class BlacksmithNPC extends SpeakerNPCFactory {
 		new SellerAdder().addSeller(npc, new SellerBehaviour(SingletonRepository.getShopList().get("selltools")));
 
 		// Xoderos casts iron if you bring him wood and iron ore.
-		Map<String, Integer> requiredResources = new TreeMap<String, Integer>();	// use sorted TreeMap instead of HashMap
+		Map<String, Integer> requiredResources = new TreeMap<String, Integer>();	
 		requiredResources.put("wood", 1);
 		requiredResources.put("iron ore", 1);
 
