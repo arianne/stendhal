@@ -44,8 +44,7 @@ public abstract class UpdateConverter {
 	 * @param name
 	 * @return 
 	 */
-	public static String updateItemName(String name)
-	{
+	public static String updateItemName(String name) {
 		if (name != null) {
     		// handle renamed items
     		int idx = ITEM_NAMES_OLD.indexOf(name);
