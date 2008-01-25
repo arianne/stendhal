@@ -175,6 +175,7 @@ public class CreatureAnimationPreview {
 				}
 			});
 		}
+
 		return jFrame;
 	}
 
