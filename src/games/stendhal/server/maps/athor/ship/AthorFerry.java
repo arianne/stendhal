@@ -104,7 +104,7 @@ public final class AthorFerry implements TurnListener {
 			SingletonRepository.getAthorFerry().addListener(this);
 		}
 
-		public abstract void onNewFerryState(Status current);
+		
 	}
 
 	public interface IFerryListener {

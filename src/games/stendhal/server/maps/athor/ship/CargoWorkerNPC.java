@@ -33,7 +33,7 @@ public class CargoWorkerNPC extends SpeakerNPCFactory {
 		npc.addGoodbye("Please kill some rats on your way up!");
 		new AthorFerry.FerryListener() {
 
-			@Override
+			
 			public void onNewFerryState(Status status) {
 				switch (status) {
 				case ANCHORED_AT_MAINLAND:

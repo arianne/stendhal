@@ -98,7 +98,7 @@ public class FerryConveyerNPC extends SpeakerNPCFactory {
 				new AthorFerry.FerryListener() {
 
 
-					@Override
+					
 					public void onNewFerryState(Status status) {
 						ferrystate = status;
 						switch (status) {

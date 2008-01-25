@@ -108,7 +108,7 @@ public class CoastConveyerNPC extends SpeakerNPCFactory {
 				"Aye, matey!", null);
 		new AthorFerry.FerryListener() {
 
-			@Override
+			
 			public void onNewFerryState(Status status) {
 				ferryState = status;
 				switch (status) {

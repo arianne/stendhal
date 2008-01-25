@@ -28,7 +28,6 @@ public class CookNPC extends SpeakerNPCFactory {
 
 		npc.addGoodbye();
 		new AthorFerry.FerryListener() {
-			@Override
 			public void onNewFerryState(Status status) {
 				switch (status) {
 				case ANCHORED_AT_MAINLAND:
