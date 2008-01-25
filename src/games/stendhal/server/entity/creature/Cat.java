@@ -44,8 +44,8 @@ public class Cat extends Pet {
 				"perch", "roach", "surgeonfish", "clownfish");
 
 		HP = 200;
-
-		incHP = 4; // each chicken or fish would give +5 HP
+		// each chicken or fish would give +5 HP
+		incHP = 4; 
 
 		ATK = 10;
 

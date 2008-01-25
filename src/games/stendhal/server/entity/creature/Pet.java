@@ -163,8 +163,9 @@ public abstract class Pet extends DomesticAnimal {
 	private Item getNearestFood(double range) {
 
 		Set<Item> items = getZone().getItemsOnGround();
-		double squaredDistance = range * range; // This way we save several sqrt
-		// operations
+		// This way we save several sqrt operations
+		double squaredDistance = range * range; 
+
 		Item chosen = null;
 		for (Item i : items) {
 			if (canEat(i)) {
@@ -192,7 +193,8 @@ public abstract class Pet extends DomesticAnimal {
 		food.removeOne();
 		hunger = 0;
 		if (getHP() < getBaseHP()) {
-			heal(incHP); // directly increase the pet's health points
+			// directly increase the pet's health points
+			heal(incHP); 
 		}
 	}
 
@@ -267,12 +269,13 @@ public abstract class Pet extends DomesticAnimal {
 				if (owner == null) {
 					logger.debug("Pet (ownerless and hungry but not starving) moves randomly");
 					moveRandomly();
+					// TODO: refactor move randomly to not override hungry idea 
 					// unfortunately something in moveRandomly overwrites the
 					// hungry idea
 					// :( must i change moveRandomly,
 					// or is setting it again here after the one in
 					// moveRandomly() enough?
-					setIdea("food"); // try it!
+					setIdea("food");
 				} else if ((owner != null) && !nextTo(owner)) {
 					moveToOwner();
 				} else {
