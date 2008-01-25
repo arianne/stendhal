@@ -316,7 +316,7 @@ final class SentenceImplementation extends Sentence {
 		Expression first = nextValid(it);
 
 		if (first != null) {
-			while (first.getType().isQuestion() && it.hasNext()) {
+			while (first.isQuestion() && it.hasNext()) {
 				if (type == SentenceType.UNDEFINED) {
 					type = SentenceType.QUESTION;
 				}
