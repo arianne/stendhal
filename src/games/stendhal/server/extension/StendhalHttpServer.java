@@ -67,8 +67,8 @@ public class StendhalHttpServer extends StendhalServerExtension implements
 	/** The port where we listen to http . */
 	private static int PORT;
 
-	/** Default expiration time. */
-	private static final int EXPIRES = 300000; // 5 minutes
+	/** Default expiration time of 5 Minutes in milliseconds. */
+	private static final int EXPIRES = 300000; 
 
 	/** GroovyScriptEngine. */
 	private static GroovyScriptEngine scriptEngine;
@@ -100,7 +100,8 @@ public class StendhalHttpServer extends StendhalServerExtension implements
 				PORT = Integer.parseInt(Configuration.getConfiguration().get(
 						"http.port").trim());
 			} else {
-				PORT = 80; // default http-port
+				// default http-port
+				PORT = 80; 
 			}
 		} catch (Exception e) {
 			logger.error(e, e);
@@ -135,8 +136,8 @@ public class StendhalHttpServer extends StendhalServerExtension implements
 		}
 	}
 
-	/** writing HTML to the respons stream while filtering and replacing * */
-	/** ssi <!--#include --> directives * */
+	/** Writes HTML to the response stream while filtering and replacing
+	 ssi <!--#include --> directives. */ 
 	public static void outputHTML(StringBuffer s, PrintStream out, Request req,
 			String dir) throws Exception {
 		int left = 0, right;
@@ -210,7 +211,8 @@ public class StendhalHttpServer extends StendhalServerExtension implements
 	public static class SecureScriptService extends IncludableView {
 
 		public SecureScriptService(Context context) {
-			super(context); // this context will be ignored
+			super(context); 
+			// this context will be ignored
 		}
 
 		public Binding getBinding() {
@@ -256,7 +258,8 @@ public class StendhalHttpServer extends StendhalServerExtension implements
 	public static class GameScriptService extends SecureScriptService {
 
 		public GameScriptService(Context context) {
-			super(context); // this context will be ignored
+			super(context); 
+			// this context will be ignored
 		}
 
 		@Override
@@ -341,8 +344,8 @@ public class StendhalHttpServer extends StendhalServerExtension implements
 						resource);
 				resp.set("Content-Type", context.getContentType(resource));
 				resp.set("Cache-Control", "public");
-				resp.setDate("Expires", System.currentTimeMillis() + 900000); // 15
-																				// minutes
+				// set expires to 15 minutes from now 
+				resp.setDate("Expires", System.currentTimeMillis() + 900000); 
 				streamCopy(in, out);
 				out.close();
 			} else {

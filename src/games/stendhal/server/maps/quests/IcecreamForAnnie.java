@@ -78,7 +78,8 @@ public class IcecreamForAnnie extends AbstractQuest {
 							} else {
 								npc.say("Hello. I'm hungry.");
 							}
-						} else { //any other options? (like rejected quest slot)
+						} else { 
+							//any other options (like rejected quest slot)
 							npc.say("Hello.");
 						}
 					}
@@ -95,24 +96,24 @@ public class IcecreamForAnnie extends AbstractQuest {
 							if (!player.hasQuest(QUEST_SLOT) || player.getQuest(QUEST_SLOT).equals("rejected")) {
 								npc.say("I'm hungry! I'd like an icecream, please. Vanilla, with a chocolate flake. Will you get me one?");
 								npc.setCurrentState(ConversationStates.QUEST_OFFERED);
-							} else if (player.isQuestCompleted(QUEST_SLOT)) { // shouldn't happen
+							} else if (player.isQuestCompleted(QUEST_SLOT)) { 
+								// shouldn't happen
 								npc.say("I'm full up now thank you!");
 							} else if (player.getQuest(QUEST_SLOT).startsWith("eating;")) {
 								// She is still full from her previous icecream,
 								// she doesn't want another yet
-								String[] tokens = player.getQuest(QUEST_SLOT).split(";"); // this splits the time from the word eating
-								// tokens now is like an array with 'eating' in
-								// tokens[0] and
-								// the time is in tokens[1]. so we use just
-								// tokens[1]
+								
+								// Split the time from the word eating 
+								// tokens now is like an array with 'eating' in tokens[0] and
+								// the time is in tokens[1]. so we use just tokens[1]
+								String[] tokens = player.getQuest(QUEST_SLOT).split(";"); 
 	
-								long delay = REQUIRED_MINUTES * 60 * 1000; // minutes
-																			// ->
-								// milliseconds
+								long delayInMilliseconds = REQUIRED_MINUTES * 60 * 1000; 
+																			
 								// timeRemaining is ''time when quest was done +
 								// delay - time now''
 								// if this is > 0, she's still full
-								long timeRemaining = (Long.parseLong(tokens[1]) + delay)
+								long timeRemaining = (Long.parseLong(tokens[1]) + delayInMilliseconds)
 										- System.currentTimeMillis();
 								if (timeRemaining > 0L) {
 									npc.say("I've had too much icecream. I feel sick.");
