@@ -148,6 +148,7 @@ public class Player extends RPEntity {
 			logger.error("cannot generateRPClass", e);
 		}
 	}
+	
 
 	public static Player create(RPObject object) {
 
@@ -197,6 +198,37 @@ public class Player extends RPEntity {
 		return player;
 	}
 
+	public static  Player createEmptyZeroLevelPlayer(String characterName) {
+		/*
+		 * TODO: Update to use Player and RPEntity methods.
+		 */
+		Player object = new Player(new RPObject());
+		object.setID(RPObject.INVALID_ID);
+
+		object.put("type", "player");
+		object.put("name", characterName);
+		object.put("outfit", new Outfit().getCode());
+		object.put("base_hp", 100);
+		object.put("hp", 100);
+		object.put("atk", 10);
+		object.put("atk_xp", 0);
+		object.put("def", 10);
+		object.put("def_xp", 0);
+		object.put("xp", 0);
+		 for (String slot : RPEntity.CARRYING_SLOTS) {
+			 object.addSlot(slot);
+		 }
+		 object.update();
+
+			Entity entity = SingletonRepository.getEntityManager().getItem("leather armor");
+			RPSlot slot = object.getSlot("armor");
+			slot.add(entity);
+			
+			entity = SingletonRepository.getEntityManager().getItem("club");
+			slot = object.getSlot("rhand");
+			slot.add(entity);
+		return object;
+	}
 	private static void convertOldfeaturesList(Player player) {
 		if (player.has("features")) {
 			logger.info("Converting features for " + player.getName() + ": "

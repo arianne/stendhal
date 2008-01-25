@@ -1,16 +1,12 @@
 package games.stendhal.server.core.account;
 
 import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.entity.Entity;
-import games.stendhal.server.entity.Outfit;
-import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;
 
 import java.sql.SQLException;
 
 import marauroa.common.game.CharacterResult;
 import marauroa.common.game.RPObject;
-import marauroa.common.game.RPSlot;
 import marauroa.common.game.Result;
 import marauroa.server.game.db.IDatabase;
 import marauroa.server.game.db.Transaction;
@@ -76,17 +72,9 @@ public class CharacterCreator {
 						character, template);
 			}
 
-			Player object = createEmptyZeroLevelPlayer();
+			Player object = Player.createEmptyZeroLevelPlayer(character);
 
-			object.update();
-
-			Entity entity = SingletonRepository.getEntityManager().getItem("leather armor");
-			RPSlot slot = object.getSlot("armor");
-			slot.add(entity);
 			
-			entity = SingletonRepository.getEntityManager().getItem("club");
-			slot = object.getSlot("rhand");
-			slot.add(entity);
 
 			/*
 			 * Finally we add it to database.
@@ -107,29 +95,5 @@ public class CharacterCreator {
 		}
 	}
 
-	private Player createEmptyZeroLevelPlayer() {
-		/*
-		 * TODO: move it to player class as it is its duty to provide a empty
-		 * level 0 player.
-		 * 
-		 * TODO: Update to use Player and RPEntity methods.
-		 */
-		Player object = new Player(new RPObject());
-		object.setID(RPObject.INVALID_ID);
-
-		object.put("type", "player");
-		object.put("name", character);
-		object.put("outfit", new Outfit().getCode());
-		object.put("base_hp", 100);
-		object.put("hp", 100);
-		object.put("atk", 10);
-		object.put("atk_xp", 0);
-		object.put("def", 10);
-		object.put("def_xp", 0);
-		object.put("xp", 0);
-		 for (String slot : RPEntity.CARRYING_SLOTS) {
-			 object.addSlot(slot);
-		 }
-		return object;
-	}
+	
 }
