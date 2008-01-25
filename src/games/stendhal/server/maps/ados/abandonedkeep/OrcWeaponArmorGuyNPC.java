@@ -11,7 +11,7 @@ import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
 import java.util.Map;
 
 /**
- * Inside Ados Abandoned Keep - level -1
+ * Inside Ados Abandoned Keep - level -1 .
  */
 public class OrcWeaponArmorGuyNPC implements ZoneConfigurator {
     private ShopList shops = SingletonRepository.getShopList();
