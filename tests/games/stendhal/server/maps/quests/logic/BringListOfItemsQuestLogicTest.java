@@ -3,6 +3,7 @@ package games.stendhal.server.maps.quests.logic;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import games.stendhal.common.Grammar;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -182,7 +183,7 @@ public class BringListOfItemsQuestLogicTest {
 
 		en.step(player, quest.getTriggerPhraseToEnumerateMissingItems().get(0));
 		assertEquals("i have not brought anything yet it should be all needed items",
-				hashList(quest.getNeededItems()).toString(), npc.get("text"));
+				"#'one', #'two', and #'three'", npc.get("text"));
 
 		StackableItem item = new StackableItem("one", "", "", null);
 		item.setQuantity(10);
@@ -200,7 +201,7 @@ public class BringListOfItemsQuestLogicTest {
 		en.step(player, quest.getTriggerPhraseToEnumerateMissingItems().get(0));
 		List<String> missing = new LinkedList<String>(quest.getNeededItems());
 		missing.remove("one");
-		assertEquals("two and three are missing", hashList(missing).toString(), npc.get("text"));
+		assertEquals("two and three are missing", "#'two' and #'three'", npc.get("text"));
 		en.step(player, "two");
 		assertEquals("item brought", quest.respondToOfferOfNotExistingItem("two"), npc.get("text"));
 
@@ -216,15 +217,6 @@ public class BringListOfItemsQuestLogicTest {
 		assertEquals("item brought", quest.respondToItemBrought(), npc.get("text"));
 		en.step(player, "two");
 		assertEquals("last item brought", quest.respondToLastItemBrought(), npc.get("text"));
-	}
-
-	private List<String> hashList(List<String> unhashed) {
-		List<String> hashed = new LinkedList<String>();
-		for (String hashme : unhashed) {
-			hashed.add("#" + hashme);
-		}
-
-		return hashed;
 	}
 
 	@Test
@@ -290,7 +282,7 @@ public class BringListOfItemsQuestLogicTest {
 		}
 
 		public String askForMissingItems(List<String> missingItems) {
-			return missingItems.toString();
+			return Grammar.enumerateCollection(missingItems);
 		}
 
 		public List<String> getAdditionalTriggerPhraseForQuest() {

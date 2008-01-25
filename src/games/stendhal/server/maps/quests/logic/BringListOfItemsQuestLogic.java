@@ -36,10 +36,10 @@ public class BringListOfItemsQuestLogic {
 
 	/**
 	 * Returns a list of the names of all items that the given player still
-	 * has to bring to fullfil the quest.
+	 * has to bring to fulfill the quest.
 	 *
 	 * @param player The player doing the quest
-	 * @param hash If true, sets a # character in front of every name
+	 * @param hash If true, sets a # character in front of every name and puts it in quotes
 	 * @return A list of item names
 	 */
 	protected List<String> getListOfStillMissingItems(Player player, boolean hash) {

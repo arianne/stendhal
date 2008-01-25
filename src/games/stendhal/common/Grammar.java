@@ -646,20 +646,37 @@ public class Grammar {
 		if (collection == null) {
 			return "";
 		}
+
 		String[] elements = collection.toArray(new String[collection.size()]);
 		if (elements.length == 0) {
 			return "";
 		} else if (elements.length == 1) {
-			return elements[0];
+			return quoteHash(elements[0]);
 		} else if (elements.length == 2) {
-			return elements[0] + " and " + elements[1];
+			return quoteHash(elements[0]) + " and " + quoteHash(elements[1]);
 		} else {
 			StringBuffer sb = new StringBuffer();
+
 			for (int i = 0; i < elements.length - 1; i++) {
-				sb.append(elements[i] + ", ");
+				sb.append(quoteHash(elements[i]) + ", ");
 			}
-			sb.append("and " + elements[elements.length - 1]);
+			sb.append("and " + quoteHash(elements[elements.length - 1]));
+
 			return sb.toString();
+		}
+	}
+
+	/**
+	 * To let the client display compound words like "#battle axe" in blue, we put the whole item name in quotes.
+	 *
+	 * @param str
+	 * @return
+	 */
+	static String quoteHash(String str) {
+		if (str != null && str.length() > 0 && str.charAt(0)=='#') {
+			return "#'" + str.substring(1) + '\'';
+		} else {
+			return str;
 		}
 	}
 
