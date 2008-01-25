@@ -47,8 +47,8 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	 * picked.
 	 */
 	private PassiveEntityRespawnPoint plantGrower;
-
-	public static final int DEGRADATION_TIMEOUT = 10 * 60; // 10 minutes
+	// 10 minutes
+	public static final int DEGRADATION_TIMEOUT = 10 * 60; 
 
 	public static void generateRPClass() {
 		RPClass entity = new RPClass("item");
