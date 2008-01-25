@@ -77,7 +77,12 @@ public class Debuggera extends ScriptImpl {
 
 			// change quest
 			String quest = sentence.getOriginalText();
-			int pos = quest != null ? quest.indexOf("=") : -1;
+			int pos;
+			if (quest ==  null) {
+				pos = -1;
+			} else {
+				pos = quest.indexOf("=");
+			}
 			if (pos > -1) {
 				String value = quest.substring(pos + 1);
 				quest = quest.substring(0, pos);
