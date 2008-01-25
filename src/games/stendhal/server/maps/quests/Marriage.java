@@ -321,10 +321,8 @@ public class Marriage extends AbstractQuest {
 	 				@Override
 	 				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 	 					String[] tokens = player.getQuest(QUEST_SLOT).split(";");
-						long delay = REQUIRED_MINUTES * 60 * 1000; // minutes
-						// ->
-						// milliseconds
-						long timeRemaining = (Long.parseLong(tokens[1]) + delay)
+						long delayInMIlliSeconds = REQUIRED_MINUTES * 60 * 1000; 
+						long timeRemaining = (Long.parseLong(tokens[1]) + delayInMIlliSeconds)
 								- System.currentTimeMillis();
 						// ring is not ready yet
 						if (timeRemaining > 0L) {
