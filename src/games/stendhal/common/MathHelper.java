@@ -4,7 +4,11 @@ package games.stendhal.common;
  * Helper functions for various mathematical tasks.
  */
 public class MathHelper {
-
+	public static long MILLISENCONDS_IN_ONE_MINUTE = 60 * 1000; 
+	public static long MILLISENCONDS_IN_ONE_HOUR = 60 * MILLISENCONDS_IN_ONE_MINUTE; 
+    public static long MILLISENCONDS_IN_ONE_DAY = 24 * MILLISENCONDS_IN_ONE_HOUR;
+    public static long MILLISENCONDS_IN_ONE_WEEK = 7 * MILLISENCONDS_IN_ONE_DAY;
+    
 	/**
 	 * parses an integer safely. returning a default if nothing can be sanely
 	 * parsed from it

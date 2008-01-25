@@ -1,6 +1,7 @@
 package games.stendhal.server.entity.player;
 
 import games.stendhal.common.Direction;
+import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPRuleProcessor;
 import games.stendhal.server.core.engine.StendhalRPWorld;
@@ -265,7 +266,7 @@ public class Jail implements LoginListener {
 				ArrestWarrant arrestWarrant = arrestWarrants.getByName(name);
 				if (arrestWarrant != null) {
 					long timestamp = arrestWarrant.getTimestamp();
-					if (timestamp + 30 * 24 * 60 * 60 * 100 < System.currentTimeMillis()) {
+					if (timestamp + 30 * MathHelper.MILLISENCONDS_IN_ONE_DAY < System.currentTimeMillis()) {
 						arrestWarrants.removeByName(name);
 					} else {
 						player.sendPrivateText("You have been jailed by "

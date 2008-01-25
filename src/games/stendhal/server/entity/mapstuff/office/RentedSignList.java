@@ -1,5 +1,6 @@
 package games.stendhal.server.entity.mapstuff.office;
 
+import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.engine.StendhalRPZone;
 
 import java.awt.Shape;
@@ -10,7 +11,7 @@ import java.awt.Shape;
  * @author hendrik
  */
 public class RentedSignList extends StoreableEntityList<RentedSign> {
-	private static final long EXPIRE_TIMEOUT = 24 * 60 * 60 * 1000;
+	private static final long EXPIRE_TIMEOUT = MathHelper.MILLISENCONDS_IN_ONE_DAY;
 
 	/**
 	 * Creates a new RentedSignList.

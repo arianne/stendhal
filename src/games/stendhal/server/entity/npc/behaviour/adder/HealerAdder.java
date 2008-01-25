@@ -1,5 +1,6 @@
 package games.stendhal.server.entity.npc.behaviour.adder;
 
+import games.stendhal.common.MathHelper;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -36,7 +37,7 @@ public class HealerAdder {
 								engine.say("Sorry, I cannot heal you because you are way too strong for my limited powers");
 							} else if (!player.isNew()
 									&& player.getLastPVPActionTime() > System.currentTimeMillis()
-											- 2 * 60 * 60 * 1000) {
+											- 2 * MathHelper.MILLISENCONDS_IN_ONE_HOUR) {
 								// ignore the PVP flag for very young characters
 								// (low atk, low def AND low level)
 								engine.say("Sorry, but you have a bad aura, so that I am unable to heal you right now.");
