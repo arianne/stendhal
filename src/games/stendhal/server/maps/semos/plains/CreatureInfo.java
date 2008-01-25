@@ -20,6 +20,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Map.Entry;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -102,7 +103,7 @@ public class CreatureInfo {
 		this.lineStartTexts = lineStartTexts;
 		this.respawnTexts = respawnTexts;
 		this.carryTexts = carryTexts;
-		this.carryNothingTexts = carryNothingTexts;
+		this.carryNothingTexts = carryNothingTexts.clone();
 		this.locationTexts = locationTexts;
 		this.locationUnknownTexts = locationUnknownTexts;
 	}
@@ -265,20 +266,20 @@ public class CreatureInfo {
 			if ("int".equals(level)) {
 				return "inside a building in " + getInteriorName(zoneName);
 			} else if (level.startsWith("-")) {
-				int levelValue = 0;
+				int levelValue;
 				try {
 					levelValue = Integer.parseInt(level);
-				} catch (Exception e) {
-					/* do nothing */
+				} catch (NumberFormatException e) {
+					levelValue = 0;
 				}
 				result = levelValue < -2 ? "deep below ground level at "
 						: "below ground level at ";
 			} else if (level.matches("^\\d")) { /* positive floor */
-				int levelValue = 0;
+				int levelValue;
 				try {
 					levelValue = Integer.parseInt(level);
-				} catch (Exception e) {
-					/* do nothing */
+				} catch (NumberFormatException e) {
+					levelValue = 0; 
 				}
 				if (levelValue != 0) {
 					result = levelValue > 1 ? "high above the ground level at "
@@ -435,9 +436,9 @@ public class CreatureInfo {
 	private <T extends Number> String getLiteral(Map<T, String> literals,
 			T val, T defValue) {
 		String result = literals.get(defValue);
-		for (T d : literals.keySet()) {
-			if (d.doubleValue() <= val.doubleValue()) {
-				result = literals.get(d);
+		for (Entry<T, String> entry  : literals.entrySet()) {
+			if (entry.getKey().doubleValue() <= val.doubleValue()) {
+				result = entry.getValue();
 				break;
 			}
 		}
