@@ -176,6 +176,7 @@ public class KHtmlEdit extends KTextEdit {
 		char ch = ci.current();
 
 		while (ch != CharacterIterator.DONE) {
+			// display text after "#" as link
 			if (ch == '#') {
 				ch = ci.next();
 
@@ -219,18 +220,28 @@ public class KHtmlEdit extends KTextEdit {
 	protected String extractLink(final CharacterIterator ci) {
 		StringBuilder sbuf = new StringBuilder();
 		char ch = ci.current();
+		char terminator = ' ';
+
+		// color quoted compound words like "#'iron sword'"
+		if (ch == '\'') {
+			terminator = ch;
+		}
 
 		while (ch != CharacterIterator.DONE) {
-			if (ch == ' ') {
-				/*
-				 * Continued link (#abc #def)?
-				 */
-				ch = ci.next();
+			if (ch == terminator) {
+				if (terminator == ' ') {
+    				/*
+    				 * Continued link (#abc #def)?
+    				 */
+    				ch = ci.next();
 
-				if (ch == '#') {
-					ch = ' ';
+    				if (ch == '#') {
+    					ch = ' ';
+    				} else {
+    					ci.previous();
+    					break;
+    				}
 				} else {
-					ci.previous();
 					break;
 				}
 			}
