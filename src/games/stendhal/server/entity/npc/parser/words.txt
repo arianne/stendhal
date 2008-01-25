@@ -1,4 +1,4 @@
-# @Version 11
+# @Version 12
 #
 # Word list for the Stendhal conversation parser
 #
@@ -868,6 +868,7 @@ silvery	ADJ-COL
 small	ADJ
 special	ADJ
 spotted	ADJ
+striped	ADJ
 studded	ADJ
 super	ADJ
 tasty	ADJ
