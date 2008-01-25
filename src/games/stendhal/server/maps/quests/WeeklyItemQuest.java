@@ -39,8 +39,9 @@ import java.util.List;
 public class WeeklyItemQuest extends AbstractQuest {
 
 	private static final String QUEST_SLOT = "weekly_item";
-	// prevent int overflow by casting to long
-	private static final long expireDelay = (long) 6 * 60 * 60 * 24 * 7 * 1000; // Milliseconds in 6 week
+
+	// Milliseconds in 6 week
+	private static final long expireDelay = 6L * 7L * 24L * 60L * 60L * 1000L; 
 
 	class WeeklyQuestAction extends SpeakerNPC.ChatAction {
 
@@ -63,7 +64,8 @@ public class WeeklyItemQuest extends AbstractQuest {
 			String questKill = null;
 			String questCount = null;
 			String questLast = null;
-			long delay = 7 * 60 * 60 * 24 * 1000; // Milliseconds in a week
+			// Milliseconds in a week
+			final long delay = 7 * 60 * 60 * 24 * 1000; 
 
 			if (questInfo != null) {
 				String[] tokens = (questInfo + ";0;0;0").split(";");
