@@ -11,7 +11,7 @@ import java.awt.Shape;
  * @author hendrik
  */
 public class RentedSignList extends StoreableEntityList<RentedSign> {
-	private static final long EXPIRE_TIMEOUT = MathHelper.MILLISENCONDS_IN_ONE_DAY;
+	private static final long EXPIRE_TIMEOUT = MathHelper.MILLISECONDS_IN_ONE_DAY;
 
 	/**
 	 * Creates a new RentedSignList.

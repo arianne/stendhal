@@ -86,7 +86,7 @@ public class AmazonPrincess extends AbstractQuest {
 							// the time is in tokens[1]. so we use just
 							// tokens[1]
 
-							long delay = REQUIRED_MINUTES * MathHelper.MILLISENCONDS_IN_ONE_MINUTE;
+							long delay = REQUIRED_MINUTES * MathHelper.MILLISECONDS_IN_ONE_MINUTE;
 							// timeRemaining is ''time when quest was done +
 							// delay - time now''
 							// if this is > 0, she's still drunk!

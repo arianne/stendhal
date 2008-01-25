@@ -251,7 +251,7 @@ public class StuffForVulcanus extends AbstractQuest {
 
 					String[] tokens = player.getQuest(QUEST_SLOT).split(";");
 					
-					long delay = REQUIRED_MINUTES * MathHelper.MILLISENCONDS_IN_ONE_MINUTE; 
+					long delay = REQUIRED_MINUTES * MathHelper.MILLISECONDS_IN_ONE_MINUTE; 
 					long timeRemaining = (Long.parseLong(tokens[1]) + delay)
 							- System.currentTimeMillis();
 

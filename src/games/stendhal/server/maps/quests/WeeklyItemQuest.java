@@ -41,7 +41,7 @@ public class WeeklyItemQuest extends AbstractQuest {
 
 	private static final String QUEST_SLOT = "weekly_item";
 
-	private static final long expireDelay = 6L * MathHelper.MILLISENCONDS_IN_ONE_WEEK; 
+	private static final long expireDelay = 6L * MathHelper.MILLISECONDS_IN_ONE_WEEK; 
 
 	class WeeklyQuestAction extends SpeakerNPC.ChatAction {
 
@@ -64,7 +64,7 @@ public class WeeklyItemQuest extends AbstractQuest {
 			String questKill = null;
 			String questCount = null;
 			String questLast = null;
-			final long delay = MathHelper.MILLISENCONDS_IN_ONE_WEEK; 
+			final long delay = MathHelper.MILLISECONDS_IN_ONE_WEEK; 
 
 			if (questInfo != null) {
 				String[] tokens = (questInfo + ";0;0;0").split(";");

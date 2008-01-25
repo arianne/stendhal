@@ -286,7 +286,7 @@ public class ObsidianKnife extends AbstractQuest {
 					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 						String[] tokens = player.getQuest(QUEST_SLOT)
 								.split(";");
-						long delayInMilliSeconds = REQUIRED_DAYS * MathHelper.MILLISENCONDS_IN_ONE_DAY; 
+						long delayInMilliSeconds = REQUIRED_DAYS * MathHelper.MILLISECONDS_IN_ONE_DAY; 
 						long timeRemaining = (Long.parseLong(tokens[1]) + delayInMilliSeconds)
 								- System.currentTimeMillis();
 						if (timeRemaining > 0L) {
@@ -396,7 +396,7 @@ public class ObsidianKnife extends AbstractQuest {
 					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 						String[] tokens = player.getQuest(QUEST_SLOT)
 								.split(";");
-						long delayInMilliSeconds = REQUIRED_MINUTES * MathHelper.MILLISENCONDS_IN_ONE_MINUTE; 
+						long delayInMilliSeconds = REQUIRED_MINUTES * MathHelper.MILLISECONDS_IN_ONE_MINUTE; 
 						long timeRemaining = (Long.parseLong(tokens[1]) + delayInMilliSeconds)
 								- System.currentTimeMillis();
 						if (timeRemaining > 0L) {

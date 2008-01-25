@@ -82,9 +82,9 @@ public class DailyItemQuest extends AbstractQuest {
 			String questCount = null;
 			String questLast = null;
 			
-			long delay = MathHelper.MILLISENCONDS_IN_ONE_DAY; 
+			long delay = MathHelper.MILLISECONDS_IN_ONE_DAY; 
 
-			long expireDelay = MathHelper.MILLISENCONDS_IN_ONE_WEEK; 
+			long expireDelay = MathHelper.MILLISECONDS_IN_ONE_WEEK; 
 
 			if (questInfo != null) {
 				String[] tokens = (questInfo + ";0;0;0").split(";");
@@ -184,7 +184,7 @@ public class DailyItemQuest extends AbstractQuest {
 			String questCount = null;
 			String questLast = null;
 			// Milliseconds in a week
-			long expireDelay = MathHelper.MILLISENCONDS_IN_ONE_WEEK; 
+			long expireDelay = MathHelper.MILLISECONDS_IN_ONE_WEEK; 
 
 			if (questInfo != null) {
 				String[] tokens = (questInfo + ";0;0;0").split(";");

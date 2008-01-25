@@ -110,7 +110,7 @@ public class Campfire extends AbstractQuest {
  			}
 
 		   
-		   long delay = REQUIRED_MINUTES * MathHelper.MILLISENCONDS_IN_ONE_MINUTE;
+		   long delay = REQUIRED_MINUTES * MathHelper.MILLISECONDS_IN_ONE_MINUTE;
 		   
 		   long timeRemaining = (lastTime + delay) - System.currentTimeMillis();
 		   

@@ -69,7 +69,7 @@ public class CampfireTest extends ZonePlayerAndNPCTest {
 				npc.get("text"));
 		assertTrue(en.step(player, "bye"));
 
-		long SIXMINUTESAGO = System.currentTimeMillis() - 6 * MathHelper.MILLISENCONDS_IN_ONE_MINUTE;
+		long SIXMINUTESAGO = System.currentTimeMillis() - 6 * MathHelper.MILLISECONDS_IN_ONE_MINUTE;
 		player.setQuest(CampfireTest.CAMPFIRE, String.valueOf(SIXMINUTESAGO));
 		en.step(player, "hi");
 		assertEquals("delay is 5 minutes, so 6 minutes should be enough", "Hi! Could you do me a #favor?", npc.get("text"));

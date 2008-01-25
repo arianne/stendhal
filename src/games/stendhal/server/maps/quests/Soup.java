@@ -49,7 +49,7 @@ public class Soup extends AbstractQuest {
 
 	private static final String QUEST_SLOT = "soup_maker";
 
-	private static final long REQUIRED_MINUTES_IN_MILLISECONDS = 10 * MathHelper.MILLISENCONDS_IN_ONE_MINUTE;
+	private static final long REQUIRED_MINUTES_IN_MILLISECONDS = 10 * MathHelper.MILLISECONDS_IN_ONE_MINUTE;
 
 	/**
 	 * Returns a list of the names of all food that the given player still has

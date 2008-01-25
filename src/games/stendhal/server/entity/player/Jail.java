@@ -266,7 +266,7 @@ public class Jail implements LoginListener {
 				ArrestWarrant arrestWarrant = arrestWarrants.getByName(name);
 				if (arrestWarrant != null) {
 					long timestamp = arrestWarrant.getTimestamp();
-					if (timestamp + 30 * MathHelper.MILLISENCONDS_IN_ONE_DAY < System.currentTimeMillis()) {
+					if (timestamp + 30 * MathHelper.MILLISECONDS_IN_ONE_DAY < System.currentTimeMillis()) {
 						arrestWarrants.removeByName(name);
 					} else {
 						player.sendPrivateText("You have been jailed by "

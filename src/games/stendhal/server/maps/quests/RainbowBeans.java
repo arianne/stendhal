@@ -109,7 +109,7 @@ public class RainbowBeans extends AbstractQuest {
 					}
 
 					String[] tokens = player.getQuest(QUEST_SLOT).split(";");
-					long delayInMilliSeconds = REQUIRED_MINUTES * MathHelper.MILLISENCONDS_IN_ONE_MINUTE; 
+					long delayInMilliSeconds = REQUIRED_MINUTES * MathHelper.MILLISECONDS_IN_ONE_MINUTE; 
 					long timeRemaining = (Long.parseLong(tokens[1]) + delayInMilliSeconds)
 							- System.currentTimeMillis();
 					return (timeRemaining <= 0L);
@@ -136,7 +136,7 @@ public class RainbowBeans extends AbstractQuest {
 					}
 
 					String[] tokens = player.getQuest(QUEST_SLOT).split(";");
-					long delayInMilliSeconds = REQUIRED_MINUTES * MathHelper.MILLISENCONDS_IN_ONE_MINUTE; 
+					long delayInMilliSeconds = REQUIRED_MINUTES * MathHelper.MILLISECONDS_IN_ONE_MINUTE; 
 					long timeRemaining = (Long.parseLong(tokens[1]) + delayInMilliSeconds)
 							- System.currentTimeMillis();
 					return (timeRemaining > 0L);
@@ -147,7 +147,7 @@ public class RainbowBeans extends AbstractQuest {
 				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 					String[] tokens = player.getQuest(QUEST_SLOT).split(";");
 
-					long delayInMilliSeconds = REQUIRED_MINUTES * MathHelper.MILLISENCONDS_IN_ONE_MINUTE; 
+					long delayInMilliSeconds = REQUIRED_MINUTES * MathHelper.MILLISECONDS_IN_ONE_MINUTE; 
 					long timeRemaining = (Long.parseLong(tokens[1]) + delayInMilliSeconds)
 							- System.currentTimeMillis();
 					npc.say("Alright? I hope you don't want more beans. You can't take more of that stuff for at least another "

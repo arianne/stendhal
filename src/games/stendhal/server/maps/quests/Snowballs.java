@@ -92,7 +92,7 @@ public class Snowballs extends AbstractQuest {
 		} else {
 			String lasttime = player.getQuest(QUEST_SLOT);
 		   
-		   long delay = REQUIRED_MINUTES * MathHelper.MILLISENCONDS_IN_ONE_MINUTE;
+		   long delay = REQUIRED_MINUTES * MathHelper.MILLISECONDS_IN_ONE_MINUTE;
 		   
 		   long timeRemaining = (Long.parseLong(lasttime) + delay) - System.currentTimeMillis();
 		   
