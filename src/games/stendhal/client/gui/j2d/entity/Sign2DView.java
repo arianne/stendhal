@@ -22,10 +22,7 @@ import marauroa.common.game.RPAction;
  * The 2D view of a sign.
  */
 public class Sign2DView extends Entity2DView {
-	/**
-	 * The sign entity.
-	 */
-	private Sign sign;
+	
 
 	/**
 	 * Create a 2D view of a sign.
@@ -35,8 +32,6 @@ public class Sign2DView extends Entity2DView {
 	 */
 	public Sign2DView(final Sign sign) {
 		super(sign);
-
-		this.sign = sign;
 	}
 
 	//
