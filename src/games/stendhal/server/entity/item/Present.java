@@ -13,7 +13,7 @@ import java.util.Map;
  * 
  * @author kymara
  */
-public class Present extends Box implements UseListener {
+public class Present extends Box {
 
 	// TODO: Make these configurable
 	// for presents

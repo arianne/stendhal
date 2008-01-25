@@ -13,7 +13,7 @@ import java.util.Map;
  * 
  * @author kymara
  */
-public class Basket extends Box implements UseListener {
+public class Basket extends Box {
 
 	// TODO: Make these configurable
 	// for easter presents
