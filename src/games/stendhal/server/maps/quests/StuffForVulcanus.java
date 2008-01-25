@@ -1,6 +1,7 @@
 package games.stendhal.server.maps.quests;
 
 import games.stendhal.common.Grammar;
+import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -55,7 +56,7 @@ public class StuffForVulcanus extends AbstractQuest {
 
 	private static final int REQUIRED_GIANT_HEART = 6;
 
-	private static final int REQUIRED_TIME = 10;
+	private static final int REQUIRED_MINUTES = 10;
 
 	private static final String QUEST_SLOT = "immortalsword_quest";
 
@@ -215,7 +216,7 @@ public class StuffForVulcanus extends AbstractQuest {
 
 					if (player.hasKilled("giant") && !missingSomething) {
 						engine.say("You've brought everything I need to make the immortal sword, and what is more, you are strong enough to handle it. Come back in "
-							+ REQUIRED_TIME
+							+ REQUIRED_MINUTES
 							+ " minutes and it will be ready.");
 						player.setQuest(QUEST_SLOT, "forging;" + System.currentTimeMillis());
 					} else {
@@ -249,8 +250,8 @@ public class StuffForVulcanus extends AbstractQuest {
 				public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 
 					String[] tokens = player.getQuest(QUEST_SLOT).split(";");
-					// minutes -> milliseconds
-					long delay = REQUIRED_TIME * 60 * 1000; 
+					
+					long delay = REQUIRED_MINUTES * MathHelper.MILLISENCONDS_IN_ONE_MINUTE; 
 					long timeRemaining = (Long.parseLong(tokens[1]) + delay)
 							- System.currentTimeMillis();
 

@@ -1,5 +1,6 @@
 package games.stendhal.server.maps.semos.caves;
 
+import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
@@ -18,7 +19,7 @@ public class BabyDragonSellerNPC implements ZoneConfigurator {
 
 	private static final String QUEST_SLOT = "hatching_dragon";
 	// A baby dragon takes this long to hatch
-	private static final int REQUIRED_DAYS = 7;
+	private static final long REQUIRED_DAYS = 7L;
 	/**
 	 * Configure a zone.
 	 *
@@ -54,7 +55,7 @@ public class BabyDragonSellerNPC implements ZoneConfigurator {
 					@Override
 					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 					    if (player.hasQuest(QUEST_SLOT)) {
-						long delay = REQUIRED_DAYS * 60 * 60 * 24 * 1000;
+						long delay = REQUIRED_DAYS * MathHelper.MILLISENCONDS_IN_ONE_DAY;
 						long timeRemaining = (Long.parseLong(player.getQuest(QUEST_SLOT))
 								      + delay) - System.currentTimeMillis();
 						if (timeRemaining > 0L) {

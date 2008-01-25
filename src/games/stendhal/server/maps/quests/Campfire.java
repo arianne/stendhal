@@ -1,5 +1,6 @@
 package games.stendhal.server.maps.quests;
 
+import games.stendhal.common.MathHelper;
 import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.rule.EntityManager;
@@ -109,7 +110,7 @@ public class Campfire extends AbstractQuest {
  			}
 
 		   
-		   long delay = REQUIRED_MINUTES * 60 * 1000;
+		   long delay = REQUIRED_MINUTES * MathHelper.MILLISENCONDS_IN_ONE_MINUTE;
 		   
 		   long timeRemaining = (lastTime + delay) - System.currentTimeMillis();
 		   

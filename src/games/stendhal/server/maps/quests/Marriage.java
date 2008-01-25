@@ -1,6 +1,7 @@
 package games.stendhal.server.maps.quests;
 
 import games.stendhal.common.Direction;
+import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
@@ -321,7 +322,7 @@ public class Marriage extends AbstractQuest {
 	 				@Override
 	 				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 	 					String[] tokens = player.getQuest(QUEST_SLOT).split(";");
-						long delayInMIlliSeconds = REQUIRED_MINUTES * 60 * 1000; 
+						long delayInMIlliSeconds = REQUIRED_MINUTES * MathHelper.MILLISENCONDS_IN_ONE_MINUTE; 
 						long timeRemaining = (Long.parseLong(tokens[1]) + delayInMIlliSeconds)
 								- System.currentTimeMillis();
 						// ring is not ready yet

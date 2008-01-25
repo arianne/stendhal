@@ -3,6 +3,7 @@ package games.stendhal.server.maps.quests;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import games.stendhal.common.MathHelper;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
@@ -68,7 +69,7 @@ public class CampfireTest extends ZonePlayerAndNPCTest {
 				npc.get("text"));
 		assertTrue(en.step(player, "bye"));
 
-		long SIXMINUTESAGO = System.currentTimeMillis() - 6 * 60 * 1000;
+		long SIXMINUTESAGO = System.currentTimeMillis() - 6 * MathHelper.MILLISENCONDS_IN_ONE_MINUTE;
 		player.setQuest(CampfireTest.CAMPFIRE, String.valueOf(SIXMINUTESAGO));
 		en.step(player, "hi");
 		assertEquals("delay is 5 minutes, so 6 minutes should be enough", "Hi! Could you do me a #favor?", npc.get("text"));

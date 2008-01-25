@@ -1,5 +1,6 @@
 package games.stendhal.server.maps.quests;
 
+import games.stendhal.common.MathHelper;
 import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
@@ -285,7 +286,7 @@ public class ObsidianKnife extends AbstractQuest {
 					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 						String[] tokens = player.getQuest(QUEST_SLOT)
 								.split(";");
-						long delayInMilliSeconds = REQUIRED_DAYS * 60 * 60 * 24 * 1000; 
+						long delayInMilliSeconds = REQUIRED_DAYS * MathHelper.MILLISENCONDS_IN_ONE_DAY; 
 						long timeRemaining = (Long.parseLong(tokens[1]) + delayInMilliSeconds)
 								- System.currentTimeMillis();
 						if (timeRemaining > 0L) {
@@ -395,7 +396,7 @@ public class ObsidianKnife extends AbstractQuest {
 					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 						String[] tokens = player.getQuest(QUEST_SLOT)
 								.split(";");
-						long delayInMilliSeconds = REQUIRED_MINUTES * 60 * 1000; 
+						long delayInMilliSeconds = REQUIRED_MINUTES * MathHelper.MILLISENCONDS_IN_ONE_MINUTE; 
 						long timeRemaining = (Long.parseLong(tokens[1]) + delayInMilliSeconds)
 								- System.currentTimeMillis();
 						if (timeRemaining > 0L) {

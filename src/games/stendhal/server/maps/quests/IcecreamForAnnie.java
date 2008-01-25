@@ -1,5 +1,6 @@
 package games.stendhal.server.maps.quests;
 
+import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
@@ -108,7 +109,7 @@ public class IcecreamForAnnie extends AbstractQuest {
 								// the time is in tokens[1]. so we use just tokens[1]
 								String[] tokens = player.getQuest(QUEST_SLOT).split(";"); 
 	
-								long delayInMilliseconds = REQUIRED_MINUTES * 60 * 1000; 
+								long delayInMilliseconds = REQUIRED_MINUTES * MathHelper.MILLISENCONDS_IN_ONE_MINUTE; 
 																			
 								// timeRemaining is ''time when quest was done +
 								// delay - time now''

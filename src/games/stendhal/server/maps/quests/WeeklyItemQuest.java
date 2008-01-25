@@ -2,6 +2,7 @@ package games.stendhal.server.maps.quests;
 
 import games.stendhal.common.Grammar;
 import games.stendhal.common.Level;
+import games.stendhal.common.MathHelper;
 import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.StackableItem;
@@ -40,8 +41,7 @@ public class WeeklyItemQuest extends AbstractQuest {
 
 	private static final String QUEST_SLOT = "weekly_item";
 
-	// Milliseconds in 6 week
-	private static final long expireDelay = 6L * 7L * 24L * 60L * 60L * 1000L; 
+	private static final long expireDelay = 6L * MathHelper.MILLISENCONDS_IN_ONE_WEEK; 
 
 	class WeeklyQuestAction extends SpeakerNPC.ChatAction {
 
@@ -64,8 +64,7 @@ public class WeeklyItemQuest extends AbstractQuest {
 			String questKill = null;
 			String questCount = null;
 			String questLast = null;
-			// Milliseconds in a week
-			final long delay = 7 * 60 * 60 * 24 * 1000; 
+			final long delay = MathHelper.MILLISENCONDS_IN_ONE_WEEK; 
 
 			if (questInfo != null) {
 				String[] tokens = (questInfo + ";0;0;0").split(";");

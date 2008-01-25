@@ -1,5 +1,6 @@
 package games.stendhal.server.maps.quests;
 
+import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -66,7 +67,7 @@ public class KillSpiders extends AbstractQuest {
 							engine.setCurrentState(ConversationStates.ATTENDING);
 						}  else if (player.getQuest(QUEST_SLOT).startsWith("killed;")) {
 							String[] tokens = player.getQuest(QUEST_SLOT).split(";");
-							long delay = 7 * 24 * 60 *  60 * 1000;
+							long delay = MathHelper.MILLISENCONDS_IN_ONE_WEEK;
 							long timeRemaining = (Long.parseLong(tokens[1]) + delay) - System.currentTimeMillis();
 							if (timeRemaining > 0) {
 								engine.say("Sorry there is nothing to do for you yet. But maybe you could come back later. I have to clean the school once a week.");

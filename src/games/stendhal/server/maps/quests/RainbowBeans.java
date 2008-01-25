@@ -1,5 +1,6 @@
 package games.stendhal.server.maps.quests;
 
+import games.stendhal.common.MathHelper;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.events.LoginListener;
 import games.stendhal.server.entity.item.Item;
@@ -108,7 +109,7 @@ public class RainbowBeans extends AbstractQuest {
 					}
 
 					String[] tokens = player.getQuest(QUEST_SLOT).split(";");
-					long delayInMilliSeconds = REQUIRED_MINUTES * 60 * 1000; 
+					long delayInMilliSeconds = REQUIRED_MINUTES * MathHelper.MILLISENCONDS_IN_ONE_MINUTE; 
 					long timeRemaining = (Long.parseLong(tokens[1]) + delayInMilliSeconds)
 							- System.currentTimeMillis();
 					return (timeRemaining <= 0L);
@@ -135,7 +136,7 @@ public class RainbowBeans extends AbstractQuest {
 					}
 
 					String[] tokens = player.getQuest(QUEST_SLOT).split(";");
-					long delayInMilliSeconds = REQUIRED_MINUTES * 60 * 1000; 
+					long delayInMilliSeconds = REQUIRED_MINUTES * MathHelper.MILLISENCONDS_IN_ONE_MINUTE; 
 					long timeRemaining = (Long.parseLong(tokens[1]) + delayInMilliSeconds)
 							- System.currentTimeMillis();
 					return (timeRemaining > 0L);
@@ -146,7 +147,7 @@ public class RainbowBeans extends AbstractQuest {
 				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 					String[] tokens = player.getQuest(QUEST_SLOT).split(";");
 
-					long delayInMilliSeconds = REQUIRED_MINUTES * 60 * 1000; 
+					long delayInMilliSeconds = REQUIRED_MINUTES * MathHelper.MILLISENCONDS_IN_ONE_MINUTE; 
 					long timeRemaining = (Long.parseLong(tokens[1]) + delayInMilliSeconds)
 							- System.currentTimeMillis();
 					npc.say("Alright? I hope you don't want more beans. You can't take more of that stuff for at least another "
