@@ -131,7 +131,7 @@ public class VampireSword extends AbstractQuest {
 			Arrays.asList("empty goblet", "goblet"),
 			"Only a powerful talisman like this cauldron or a special goblet should contain blood.");
 
-		Map<String, Integer> requiredResources = new TreeMap<String, Integer>();	// use sorted TreeMap instead of HashMap
+		Map<String, Integer> requiredResources = new TreeMap<String, Integer>();	
 		requiredResources.put("vampirette entrails", 7);
 		requiredResources.put("bat entrails", 7);
 		requiredResources.put("skull ring", 1);
