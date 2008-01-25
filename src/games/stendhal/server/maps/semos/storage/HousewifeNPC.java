@@ -24,12 +24,13 @@ public class HousewifeNPC implements ZoneConfigurator {
 	private void buildSemosStorageArea(StendhalRPZone zone, Map<String, String> attributes) {
 		SpeakerNPC npc = new SpeakerNPC("Eonna") {
 
+			/**
+			 * Creates a path around the table with the beers and to the furnance.
+			 */
 			@Override
 			protected void createPath() {
 				List<Node> nodes = new LinkedList<Node>();
-				nodes.add(new Node(4, 12)); // its around the table with
-				// the beers and to the
-				// furnance
+				nodes.add(new Node(4, 12)); 
 				nodes.add(new Node(15, 13));
 				nodes.add(new Node(15, 13));
 				nodes.add(new Node(15, 9));
