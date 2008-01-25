@@ -119,7 +119,6 @@ public class Engine {
 
 			existing.setReply(reply);
 
-		
 			if (action == null && existingAction == null) {
 				// There is no action associated with the previous and with the new rule, we
 				// can silently ignore the new transition, as it is already handled completely.
