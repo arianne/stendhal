@@ -150,8 +150,8 @@ final class SentenceImplementation extends Sentence {
 
     					if (entry == null) {
     						// Don't persist expressions used for joker matching.
-    						boolean persist = context.getPersistNewWords() &&
-    											(!context.isForMatching() || !original.contains(JOKER));
+    						boolean persist = context.getPersistNewWords() 
+    										&& (!context.isForMatching() || !original.contains(JOKER));
 
    	    					// Add the unknown word to the word list.
    							wl.addNewWord(original, persist);
@@ -221,18 +221,25 @@ final class SentenceImplementation extends Sentence {
 		}
 		// Does the Sentence match "do you have OBJ for me?"?
 		else if (matchesNormalized("you have OBJ for me")) {
-			expressions.remove(subject1);	// remove "you"
-			expressions.remove(getPreposition(0));	// remove "for"
-			expressions.remove(subject2);	// remove "me"
-			verb1.setNormalized("buy");		// replace "have" by "buy"
+			// remove "you"
+			expressions.remove(subject1);	
+			// remove "for"
+			expressions.remove(getPreposition(0));
+			// remove "me"
+			expressions.remove(subject2);	
+			// replace "have" by "buy"
+			verb1.setNormalized("buy");		
 			sentenceType = SentenceType.IMPERATIVE;
 		}
 		// "[you] give me(i)" -> "[I] buy"
 		else if (isYouGiveMe(subject1, verb1, subject2)) {
 			// remove the subjects and replace the verb with "buy" as first word
-			expressions.remove(subject1);	// remove "you"
-			expressions.remove(subject2);	// remove "me"
-			getVerb().setNormalized("buy");	// replace "give" by "buy"
+			// remove "you"
+			expressions.remove(subject1);	
+			// remove "me"
+			expressions.remove(subject2);	
+			// replace "give" by "buy"
+			getVerb().setNormalized("buy");
 			sentenceType = SentenceType.IMPERATIVE;
 		}
 

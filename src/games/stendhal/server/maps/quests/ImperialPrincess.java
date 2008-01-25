@@ -177,7 +177,8 @@ public class ImperialPrincess extends AbstractQuest {
 						} else if (player.hasQuest(QUEST_SLOT)
 								&& player.getQuest(QUEST_SLOT).equals("recommended")) {
 							engine.say("The herbs you brought did a wonderful job. I told my father you can be trusted, you should go speak with him now.");
-						} else { /* reminder */
+						} else { 
+							//reminder
 							engine.say("Shh! Don't say it till you have the "
 									+ required_arandula
 									+ " arandula, 1 #kokuda, 1 #sclaria, 1 #kekik, "
