@@ -5,6 +5,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
+import games.stendhal.server.maps.MockStendlRPWorld;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -22,6 +23,7 @@ public class CatSellerNPCTest extends ZonePlayerAndNPCTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		MockStendlRPWorld.get();
 		ZonePlayerAndNPCTest.setUpBeforeClass();
 
 		setupZone(ZONE_NAME, new CatSellerNPC());

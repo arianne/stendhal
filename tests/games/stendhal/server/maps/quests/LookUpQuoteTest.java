@@ -7,6 +7,7 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
+import games.stendhal.server.maps.MockStendlRPWorld;
 import games.stendhal.server.maps.ados.fishermans_hut.FishermanNPC;
 
 import java.util.Arrays;
@@ -24,14 +25,29 @@ import utilities.ZonePlayerAndNPCTest;
  */
 public class LookUpQuoteTest extends ZonePlayerAndNPCTest {
 
+	private static final char TOMMY_FIRST_LETTER = 'T';
+
+	private static final char JACKY_FIRST_LETTER = 'J';
+
+	private static final char BULLY_FIRST_LETTER = 'B';
+	private static final char SODY_FIRST_LETTER = 'S';
 	private static final String ZONE_NAME = "testzone";
 
 	static final String QUEST_SLOT = "get_fishing_rod";
+
+	private static final char HUMPREY_FIRST_LETTER = 'H';
+
+	private static final char MONTY_FIRST_LETTER = 'M';
+
+	private static final char CHARBY_FIRST_LETTER = 'C';
+
+	private static final char ALLY_FIRST_LETTER = 'A';
 
 	private static LookUpQuote quest;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		MockStendlRPWorld.get();
 		ZonePlayerAndNPCTest.setUpBeforeClass();
 
 		setupZone(ZONE_NAME, new FishermanNPC());
@@ -109,32 +125,33 @@ public class LookUpQuoteTest extends ZonePlayerAndNPCTest {
 		assertTrue(pequodEngine.step(player, "bye"));
 		assertEquals("I think you made a mistake. Come back if you can tell me the correct quote.", pequodNpc.get("text"));
 
-		// TODO mf - read the requested quote from the library instead of using hardcoded strings
+		// 
 
 		String quote = "";
-        switch(fisherman.charAt(0)) {
-        	case 'B':	// Bully
+        
+		switch(fisherman.charAt(0)) {
+        	case BULLY_FIRST_LETTER:
         		quote = "Clownfish are always good for a laugh.";
         		break;
-        	case 'J':	// Jacky
+        	case JACKY_FIRST_LETTER:	
         		quote = "Don't mistake your trout for your old trout, she wouldn't taste so good.";
         		break;
-        	case 'T':	// Tommy
+        	case TOMMY_FIRST_LETTER:
         		quote = "I wouldn't trust a surgeonfish in a hospital, there's something fishy about them.";
         		break;
-        	case 'S':	// Sody
+        	case SODY_FIRST_LETTER:	
         		quote = "Devout Crustaceans believe in the One True Cod.";
         		break;
-        	case 'H':	// Humphrey
+        	case HUMPREY_FIRST_LETTER:
         		quote = "I don't understand why noone buys my fish. The sign says 'Biggest Roaches in town'.";
         		break;
-        	case 'M':	// Monty
+        	case MONTY_FIRST_LETTER:
         		quote = "My parrot doesn't like to sit on a perch. He says it smells fishy.";
         		break;
-        	case 'C':	// Charby
+        	case CHARBY_FIRST_LETTER:
         		quote = "That fish restaurant really overcooks everything. It even advertises char fish.";
         		break;
-        	case 'A':	// Ally
+        	case ALLY_FIRST_LETTER:	
         		quote = "Holy mackerel! These chips are tasty.";
         		break;
         	default:
