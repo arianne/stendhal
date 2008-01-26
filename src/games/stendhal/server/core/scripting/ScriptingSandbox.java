@@ -15,8 +15,9 @@ import java.util.Map;
 import java.util.Set;
 import java.util.WeakHashMap;
 
-import org.apache.log4j.Logger;
 import marauroa.common.game.RPObject;
+
+import org.apache.log4j.Logger;
 
 public abstract class ScriptingSandbox {
 
@@ -145,7 +146,7 @@ public abstract class ScriptingSandbox {
 
 	// ------------------------------------------------------------------------
 
-	public abstract boolean load(Player player, String[] args);
+	public abstract boolean load(Player player, List<String> args);
 
 	public String getMessage() {
 		return exceptionMessage;
@@ -183,7 +184,7 @@ public abstract class ScriptingSandbox {
 	}
 
 	@SuppressWarnings("unchecked")
-	public void unload(Player player, String[] args) {
+	public void unload(Player player, List<String> args) {
 		Set<NPC> setNPC = new HashSet<NPC>(loadedNPCs.keySet());
 
 		for (NPC npc : setNPC) {
@@ -197,7 +198,7 @@ public abstract class ScriptingSandbox {
 		}
 	}
 
-	public boolean execute(Player player, String[] args) {
+	public boolean execute(Player player, List<String> args) {
 		// do nothing
 		return true;
 	}

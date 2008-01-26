@@ -8,9 +8,7 @@ import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
-import java.util.Arrays;
 import java.util.List;
-
 
 import org.apache.log4j.Logger;
 
@@ -62,9 +60,9 @@ public class ScriptInJava extends ScriptingSandbox {
 	}
 
 	@Override
-	public boolean load(Player admin, String[] args) {
+	public boolean load(Player admin, List<String> args) {
 		Class< ? >[] signature = new Class< ? >[] { Player.class, List.class, ScriptingSandbox.class };
-		Object[] params = new Object[] { admin, Arrays.asList(args), this };
+		Object[] params = new Object[] { admin, args, this };
 
 		try {
 			newInstance();
@@ -83,9 +81,9 @@ public class ScriptInJava extends ScriptingSandbox {
 	}
 
 	@Override
-	public boolean execute(Player admin, String[] args) {
+	public boolean execute(Player admin, List<String> args) {
 		Class< ? >[] signature = new Class[] { Player.class, List.class };
-		Object[] params = new Object[] { admin, Arrays.asList(args) };
+		Object[] params = new Object[] { admin, args };
 
 		try {
 			Method theMethod = script.getClass().getMethod("execute", signature);
@@ -99,9 +97,10 @@ public class ScriptInJava extends ScriptingSandbox {
 	}
 
 	@Override
-	public void unload(Player admin, String[] args) {
+	public void unload(Player admin, List<String> args) {
 		Class< ? >[] signature = new Class< ? >[] { Player.class, List.class };
-		Object[] params = new Object[] { admin, Arrays.asList(args) };
+		Object[] params = new Object[] { admin, args };
+
 		try {
 			Method theMethod = script.getClass().getMethod("unload", signature);
 			theMethod.invoke(script, params);

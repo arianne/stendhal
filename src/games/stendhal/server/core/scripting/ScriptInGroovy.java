@@ -7,6 +7,7 @@ import groovy.lang.GroovyShell;
 
 import java.io.File;
 import java.util.HashMap;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 
@@ -35,9 +36,9 @@ public class ScriptInGroovy extends ScriptingSandbox {
 	// ------------------------------------------------------------------------
 
 	@Override
-	public boolean load(Player player, String[] args) {
+	public boolean load(Player player, List<String> args) {
 		groovyBinding.setVariable("player", player);
-		groovyBinding.setVariable("args", args);
+		groovyBinding.setVariable("args", args.toArray(new String[]{}));
 		GroovyShell interp = new GroovyShell(groovyBinding);
 		boolean ret = true;
 
@@ -58,7 +59,7 @@ public class ScriptInGroovy extends ScriptingSandbox {
 	}
 
 	@Override
-	public boolean execute(Player player, String[] args) {
+	public boolean execute(Player player, List<String> args) {
 		return load(player, args);
 	}
 }
