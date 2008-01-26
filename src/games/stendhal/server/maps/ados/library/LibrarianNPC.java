@@ -49,7 +49,7 @@ public class LibrarianNPC implements ZoneConfigurator {
 			protected void createDialog() {
 				addGreeting();
 				addJob("I am the librarian");
-				addHelp("Just ask me to #explain #something");
+				addHelp("Just ask me to #explain something");
 				add(ConversationStates.ATTENDING, "explain", null, ConversationStates.ATTENDING, null,
 				        new SpeakerNPC.ChatAction() {
 

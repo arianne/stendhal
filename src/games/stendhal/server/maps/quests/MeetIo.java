@@ -77,7 +77,7 @@ public class MeetIo extends AbstractQuest {
 			ConversationPhrases.YES_MESSAGES,
 			null,
 			ConversationStates.INFORMATION_2,
-			"Type #/where #username to discern where in Stendhal that person is currently roaming; you can use #/where #sheep to keep track of any sheep you might own. To understand the system used for defining positions in Stendhal, try asking #Zynn; he knows more about it that I do. Ready for the third lesson?",
+			"Type #/where #username to discern where in Stendhal that person is currently roaming; you can use #'/where sheep' to keep track of any sheep you might own. To understand the system used for defining positions in Stendhal, try asking #Zynn; he knows more about it that I do. Ready for the third lesson?",
 			null);
 
 		npc.add(
@@ -93,7 +93,7 @@ public class MeetIo extends AbstractQuest {
 			ConversationPhrases.YES_MESSAGES,
 			null,
 			ConversationStates.INFORMATION_3,
-			"Type #/tell #username #message or #/msg #username #message to talk to anybody you wish, no matter where in Stendhal that person is.  You can type #// #response to continue talking to the last person you send a message to. Ready to learn my fourth tip?",
+			"Type #'/tell username message' or #'/msg username message' to talk to anybody you wish, no matter where in Stendhal that person is.  You can type #'// response' to continue talking to the last person you send a message to. Ready to learn my fourth tip?",
 			null);
 
 		npc.add(
@@ -109,7 +109,7 @@ public class MeetIo extends AbstractQuest {
 			ConversationPhrases.YES_MESSAGES,
 			null,
 			ConversationStates.INFORMATION_5,
-			"Type #/support #<message> to report a problem to any administrators who happen to be online at that moment. You can also try IRC, if you are still having problems; start up any IRC client and join channel ##arianne on the server #irc.freenode.net\nOkay, time for your last lesson in mental manipulation!",
+			"Type #/support #<message> to report a problem to any administrators who happen to be online at that moment. You can also try IRC, if you are still having problems; start up any IRC client and join channel ##arianne on the server #'irc.freenode.net'\nOkay, time for your last lesson in mental manipulation!",
 			null);
 
 		npc.add(

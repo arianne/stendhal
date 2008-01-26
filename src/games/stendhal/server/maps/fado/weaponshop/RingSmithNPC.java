@@ -65,8 +65,8 @@ public class RingSmithNPC implements ZoneConfigurator {
 				addReply(
 						"gold",
 						"It's cast from gold nuggets which you can pan for on Or'ril river. I don't cast it myself, but a smith in Ados does.");
-				addHelp("I am an expert on #wedding rings and #emerald rings, sometimes called the ring of #life.");
-				addQuest("Well, you could consider getting married to be a quest! Ask me about #wedding rings if you need one.");
+				addHelp("I am an expert on #'wedding rings' and #'emerald rings', sometimes called the ring of #life.");
+				addQuest("Well, you could consider getting married to be a quest! Ask me about #'wedding rings' if you need one.");
 				new SellerAdder().addSeller(this, new SellerBehaviour(shops.get("sellrings")), false);
 				new BuyerAdder().add(this, new BuyerBehaviour(shops.get("buyprecious")), false);
 				addGoodbye("Bye, my friend.");

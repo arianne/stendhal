@@ -32,7 +32,7 @@ public class ChefNPC extends SpeakerNPCFactory {
 		        "My daughter Sally might be able to help you get ham. She's a scout, you see; I think she's currently camped out south of Or'ril Castle.");
 		npc.addReply("pizza", "I need someone who helps me delivering pizza. Maybe you could do that #task.");
 		npc.addReply(Arrays.asList("sandwich", "sandwiches"),
-		        "My sandwiches are tasty and nutritious. If you want one, just tell me to #make #1 #sandwich.");
+		        "My sandwiches are tasty and nutritious. If you want one, just tell me to #'make 1 sandwich'.");
 		npc.addGoodbye();
 
 		// Leander makes sandwiches if you bring him bread, cheese, and ham.

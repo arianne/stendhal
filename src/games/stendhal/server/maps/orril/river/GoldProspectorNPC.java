@@ -47,7 +47,7 @@ public class GoldProspectorNPC implements ZoneConfigurator {
 				        ConversationPhrases.YES_MESSAGES,
 				        null,
 				        ConversationStates.ATTENDING,
-				        "First you need a #gold pan to separate the gold from the mud. Then you have to search for the right spot in the water. The flat water in this area is very rich of gold ressources. Just doubleclick on the lightblue water when you see something glittering. But don't give up too early, you need a lot of luck and patience.",
+				        "First you need a #gold #pan to separate the gold from the mud. Then you have to search for the right spot in the water. The flat water in this area is very rich of gold ressources. Just doubleclick on the lightblue water when you see something glittering. But don't give up too early, you need a lot of luck and patience.",
 				        null);
 
 				add(ConversationStates.INFORMATION_1, ConversationPhrases.NO_MESSAGES, null,

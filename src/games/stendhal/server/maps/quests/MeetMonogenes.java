@@ -62,7 +62,7 @@ public class MeetMonogenes extends AbstractQuest {
 			ConversationPhrases.YES_MESSAGES,
 			null,
 			ConversationStates.ATTENDING,
-			"You should introduce yourself by saying \"hi\". After this, try to keep the conversation to the topics they bring up; suitable subjects will be highlighted #like #this. A few generally safe topics of conversation are the person's #job, asking for #help, asking if they have an #offer to make, and asking for a #quest to go on. Now, if you want a quick run-down of the #buildings in Semos, just say.",
+			"You should introduce yourself by saying \"hi\". After this, try to keep the conversation to the topics they bring up; suitable subjects will be highlighted #'like this'. A few generally safe topics of conversation are the person's #job, asking for #help, asking if they have an #offer to make, and asking for a #quest to go on. Now, if you want a quick run-down of the #buildings in Semos, just say.",
 			null);
 
 		npc.add(

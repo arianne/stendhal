@@ -63,7 +63,7 @@ public class GoldsmithNPC implements ZoneConfigurator {
 			protected void createDialog() {
 				addGreeting("Hi!");
 				addJob("I'm the goldsmith of this city.");
-				addHelp("My brother Xoderos is a blacksmith in Semos. Currently he is selling tools. Perhaps he can make a #gold pan for you.");
+				addHelp("My brother Xoderos is a blacksmith in Semos. Currently he is selling tools. Perhaps he can make a #gold #pan for you.");
 				addGoodbye("Bye");
 
 				// Joshua makes gold if you bring him gold nugget and wood
@@ -75,7 +75,7 @@ public class GoldsmithNPC implements ZoneConfigurator {
 						"cast", "gold bar", requiredResources, 15 * 60);
 
 				new ProducerAdder().addProducer(this, behaviour,
-				        "Hi! I'm the local goldsmith. If you require me to #cast you a #gold #bar just tell me!");
+				        "Hi! I'm the local goldsmith. If you require me to #cast you a #'gold bar' just tell me!");
 				addReply("wood",
 		        		"I need some wood to keep my furnace lit. You can find any amount of it just lying around in the forest.");
 				addReply(Arrays.asList("ore", "gold ore", "gold nugget"),
@@ -84,7 +84,6 @@ public class GoldsmithNPC implements ZoneConfigurator {
 				        "After I've casted the gold for you keep it save. I've heard rumours that Fado city will be safe to travel to again soon. There you can sell or trade gold.");
 				addReply("gold pan",
 				        "If you had a gold pan, you would be able to prospect for gold at certain places.");
-
 			}
 		};
 

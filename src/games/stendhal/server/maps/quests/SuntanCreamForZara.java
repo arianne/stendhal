@@ -77,11 +77,11 @@ public class SuntanCreamForZara extends AbstractQuest {
 							npc.say("I don't have a new task for you. But thank you for the suntan cream. I feel my skin is getting better already!");
 							npc.setCurrentState(ConversationStates.ATTENDING);
 						} else {
-							npc.say("Did you forget that you promised me to ask the #lifeguards for #suntan cream?");
+							npc.say("Did you forget that you promised me to ask the #lifeguards for #'suntan cream'?");
 							npc.setCurrentState(ConversationStates.ATTENDING);
 						}
 					} else {
-						npc.say("I fell asleep in the sun and now my skin is burnt. Can you bring me the magic #suntan cream that the #lifeguards produce?");
+						npc.say("I fell asleep in the sun and now my skin is burnt. Can you bring me the magic #'suntan cream' that the #lifeguards produce?");
 					}
 				}
 			});
@@ -137,7 +137,7 @@ public class SuntanCreamForZara extends AbstractQuest {
 					if (player.isEquipped("suntan cream")) {
 						npc.say("Great! You got the suntan cream! Is it for me?");
 					} else {
-						npc.say("I know that the #suntan #cream is hard to get, but I hope that you didn't forget my painful problem...");
+						npc.say("I know that the #'suntan cream' is hard to get, but I hope that you didn't forget my painful problem...");
 						npc.setCurrentState(ConversationStates.ATTENDING);
 					}
 				}

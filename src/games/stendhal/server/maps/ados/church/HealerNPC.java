@@ -21,7 +21,7 @@ public class HealerNPC extends SpeakerNPCFactory {
 	    npc.addReply("giant heart",
 		        "Giants dwell in caves east of here. Good luck slaying those beasts ...");
 	    npc.addReply("heal", "I can #concoct a strong #mega potion for you to use while you travel. I need one special ingredient and a small charge to cover my time.");
-	    npc.addReply("mega potion", "It is a powerful elixir. If you want one, ask me to #concoct #1 #mega potion.");
+	    npc.addReply("mega potion", "It is a powerful elixir. If you want one, ask me to #'concoct 1 mega' potion.");
 	    npc.addReply("money", "That is your own concern. We of the cloth need not scurry around to make cash.");    
 	    npc.addHelp("If you want to become wise like me, you should visit a library. There is much to learn.");
 	    npc.addGoodbye("Fare thee well.");

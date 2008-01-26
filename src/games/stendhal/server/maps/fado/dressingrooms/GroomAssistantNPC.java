@@ -45,8 +45,8 @@ public class GroomAssistantNPC implements ZoneConfigurator {
 			protected void createDialog() {
 				addGreeting("Good day! If you're a prospective groom I can #help you prepare for your wedding.");
 				addJob("I assist grooms with getting suitably dressed for their wedding.");
-				addHelp("Please tell me if you want to #wear #a #suit for your wedding.");
-				addReply("suit", "If you want to look smart you must #wear #a #suit for your wedding. The hire charge is 50 money.");
+				addHelp("Please tell me if you want to #'wear a suit' for your wedding.");
+				addReply("suit", "If you want to look smart you must #'wear a suit' for your wedding. The hire charge is 50 money.");
 				addQuest("You should probably be thinking about your wedding.");
 				addGoodbye("Good bye, I hope everything goes well for you.");
 

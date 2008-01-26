@@ -65,7 +65,7 @@ public class WizardNPC implements ZoneConfigurator {
 				        Arrays.asList("magic", "scroll", "scrolls"),
 				        null,
 				        ConversationStates.ATTENDING,
-				        "I #offer scrolls that help you to travel faster: #home scrolls and the #markable #empty scrolls. For the more advanced customer, I also have #summon scrolls!",
+				        "I #offer scrolls that help you to travel faster: #'home scrolls' and the #markable #'empty scrolls'. For the more advanced customer, I also have #'summon scrolls'!",
 				        null);
 				add(ConversationStates.ATTENDING, Arrays.asList("home", "home scroll"), null,
 				        ConversationStates.ATTENDING,

@@ -40,9 +40,9 @@ public class BrideAssistantNPC implements ZoneConfigurator {
 			protected void createDialog() {
 				addGreeting("Welcome! If you're a bride-to-be I can #help you get ready for your wedding");
 				addJob("I assist brides with getting dressed for their wedding.");
-				addHelp("Just tell me if you want to #wear #a #gown for your wedding.");
+				addHelp("Just tell me if you want to #'wear a gown' for your wedding.");
 				addQuest("You don't want to be thinking about that kind of thing ahead of your big day!");
-				addReply("gown", "Every bride needs a beautiful wedding dress! It's a charge of 100 money if you want to #wear #a #gown.");
+				addReply("gown", "Every bride needs a beautiful wedding dress! It's a charge of 100 money if you want to #wear a #gown.");
 				addGoodbye("Have a lovely time!");
 
 				Map<String, Integer> priceList = new HashMap<String, Integer>();

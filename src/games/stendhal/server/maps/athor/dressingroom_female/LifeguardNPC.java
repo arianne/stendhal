@@ -43,7 +43,7 @@ public class LifeguardNPC implements ZoneConfigurator {
 			@Override
 			protected void createDialog() {
 				addJob("I'm one of the lifeguards at this beach. And as you can see, I also take care of the women's dressing room.");
-				addHelp("Just tell me if you want to #borrow #a #swimsuit!");
+				addHelp("Just tell me if you want to #'borrow a swimsuit'!");
 				addGoodbye("Have fun!");
 
 				Map<String, Integer> priceList = new HashMap<String, Integer>();

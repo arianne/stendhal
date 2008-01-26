@@ -56,7 +56,7 @@ public class BuyerNPC implements ZoneConfigurator {
 			protected void createDialog() {
 				addGreeting("Hello.");
 				addJob("I potter around collecting odds and bobs. Sometimes I sell items, but mostly I like to keep them. If you have any relics to #trade, I would be very happy indeed.");
-				addHelp("I could tell you about some of these wonderful items here. The white #pot, #coffins, #dress, #shield, #armor, #tools, #rug, #flowers, #clock and #sewing machine are all fascinating!");
+				addHelp("I could tell you about some of these wonderful items here. The white #pot, #coffins, #dress, #shield, #armor, #tools, #rug, #flowers, #clock and #'sewing machine' are all fascinating!");
 				addReply(
 						"pot",
 						"You mean the white and blue one, the oriental pot, I suppose. That is an original made by the ancient oni people. It's very rare.");

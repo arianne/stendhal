@@ -320,16 +320,16 @@ public class Blackjack extends AbstractQuest {
 
 		ramon.add(ConversationStates.ATTENDING, "play", null,
 				ConversationStates.ATTENDING,
-				"In order to play, you have to at least #stake #" + MIN_STAKE
-						+ " and at most #stake #" + MAX_STAKE
-						+ " pieces of gold. So, how much will you risk?", null);
+				"In order to play, you have to at least #'stake " + MIN_STAKE
+						+ "' and at most ##stake " + MAX_STAKE
+						+ "' pieces of gold. So, how much will you risk?", null);
 
 		ramon.add(ConversationStates.ATTENDING, "stake", null,
 				ConversationStates.ATTENDING, null, new ChatAction() {
 					@Override
 					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 				        if (sentence.hasError()) {
-				        	npc.say(sentence.getErrorString() + " Just tell me how much you want to risk, for example #stake #50.");
+				        	npc.say(sentence.getErrorString() + " Just tell me how much you want to risk, for example #'stake 50'.");
 				        } else {
 				        	Behaviour behaviour = new Behaviour();
 
