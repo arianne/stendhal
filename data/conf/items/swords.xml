@@ -80,6 +80,23 @@
     </equipable>
   </item>
 
+  <item name="magic dagger">
+    <type class="sword" subclass="magic_dagger" tileid="-1"/>
+    <description>You see a magic dagger. It can steal life from those you stab with it.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <atk value="5"/>
+      <rate value="1"/>
+      <lifesteal value="0.1"/> 
+    </attributes>
+    <weight value="0.2"/>
+    <value value="1000000"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+    </equipable>
+  </item>
+
   <item name="dagger">
     <type class="sword" subclass="dagger" tileid="-1"/>
     <description>You see a dagger, it is little more than decorative but you can jab pretty fast with it.</description>
@@ -127,6 +144,24 @@
       <slot name="rhand"/>
     </equipable>
   </item>
+
+ <item name="chaos dagger"> 
+  <type class="sword" subclass="chaos_dagger" tileid="-1"/> 
+  <description>You see a chaos dagger, it is very lightweight and sharp. It will heal you while hurting them.</description> 
+  <implementation class-name="games.stendhal.server.entity.item.Item"/> 
+  <attributes>
+   <lifesteal value="0.1"/> 
+   <atk value="7"/> 
+   <rate value="2"/>
+  </attributes> 
+  <weight value="1"/>    
+  <value value="10400"/>
+  <equipable> 
+     <slot name="bag"/> 
+     <slot name="lhand"/> 
+	 <slot name="rhand"/> 
+  </equipable> 
+ </item>
 
   <item name="short sword">
     <type class="sword" subclass="short_sword" tileid="-1"/>
