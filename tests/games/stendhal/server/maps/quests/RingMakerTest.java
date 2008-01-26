@@ -73,7 +73,7 @@ public class RingMakerTest {
 		assertTrue(en.step(player, "hi"));
 		assertEquals("Hi! Can I #help you?", npc.get("text"));
 		assertTrue(en.step(player, "help"));
-		assertEquals("I am an expert on #wedding rings and #emerald rings, sometimes called the ring of #life.", npc.get("text"));
+		assertEquals("I am an expert on #'wedding rings' and #'emerald rings', sometimes called the ring of #life.", npc.get("text"));
 		assertTrue(en.step(player, "emerald"));
 		assertEquals("It is difficult to get the ring of life. Do a favour for a powerful elf in Nal'wor and you may receive one as a reward.", npc.get("text"));
 		assertTrue(en.step(player, "bye"));
@@ -83,7 +83,7 @@ public class RingMakerTest {
 		assertTrue(en.step(player, "hi"));
 		assertEquals("Hi! Can I #help you?", npc.get("text"));
 		assertTrue(en.step(player, "help"));
-		assertEquals("I am an expert on #wedding rings and #emerald rings, sometimes called the ring of #life.", npc.get("text"));
+		assertEquals("I am an expert on #'wedding rings' and #'emerald rings', sometimes called the ring of #life.", npc.get("text"));
 		assertTrue(en.step(player, "emerald"));
 		assertEquals("I see you already have an emerald ring. If it gets broken, you can come to me to fix it.", npc.get("text"));
 
@@ -111,7 +111,7 @@ public class RingMakerTest {
 		assertTrue(en.step(player, "hi"));
 		assertEquals("Hi! Can I #help you?", npc.get("text"));
 		assertTrue(en.step(player, "help"));
-		assertEquals("I am an expert on #wedding rings and #emerald rings, sometimes called the ring of #life.", npc.get("text"));
+		assertEquals("I am an expert on #'wedding rings' and #'emerald rings', sometimes called the ring of #life.", npc.get("text"));
 		assertTrue(en.step(player, "emerald"));
 		assertEquals("What a pity, your emerald ring is broken. I can fix it, for a #price.", npc.get("text"));
 		assertTrue(en.step(player, "price"));
@@ -140,7 +140,7 @@ public class RingMakerTest {
 		assertTrue(en.step(player, "hi"));
 		assertEquals("Hi! Can I #help you?", npc.get("text"));
 		assertTrue(en.step(player, "help"));
-		assertEquals("I am an expert on #wedding rings and #emerald rings, sometimes called the ring of #life.", npc.get("text"));
+		assertEquals("I am an expert on #'wedding rings' and #'emerald rings', sometimes called the ring of #life.", npc.get("text"));
 		assertTrue(en.step(player, "emerald"));
 		assertEquals("What a pity, your emerald ring is broken. I can fix it, for a #price.", npc.get("text"));
 		assertTrue(en.step(player, "price"));
@@ -160,7 +160,7 @@ public class RingMakerTest {
 		en.step(player, "hi");
 		assertEquals("Hi! Can I #help you?", npc.get("text"));
 		en.step(player, "help");
-		assertEquals("I am an expert on #wedding rings and #emerald rings, sometimes called the ring of #life.", npc.get("text"));
+		assertEquals("I am an expert on #'wedding rings' and #'emerald rings', sometimes called the ring of #life.", npc.get("text"));
 		en.step(player, "emerald");
 		assertTrue(npc.get("text").startsWith("I haven't finished fixing your ring of life. Please check back"));
 		en.step(player, "bye");
@@ -173,14 +173,13 @@ public class RingMakerTest {
 		en.step(player, "hi");
 		assertEquals("Hi! Can I #help you?", npc.get("text"));
 		en.step(player, "help");
-		assertEquals("I am an expert on #wedding rings and #emerald rings, sometimes called the ring of #life.", npc.get("text"));
+		assertEquals("I am an expert on #'wedding rings' and #'emerald rings', sometimes called the ring of #life.", npc.get("text"));
 		int oldXP = player.getXP();
 		en.step(player, "emerald");
 		assertEquals("I'm pleased to say, your ring of life is fixed! It's good as new now.", npc.get("text"));
 		assertEquals("player earns 500 experience points.", oldXP + 500, player.getXP());
 		en.step(player, "bye");
 		assertEquals("Bye, my friend.", npc.get("text"));
-
 	}
 
 }

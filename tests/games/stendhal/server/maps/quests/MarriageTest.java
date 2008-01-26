@@ -108,9 +108,9 @@ public class MarriageTest {
 		assertTrue(en.step(player, "hi"));
 		assertEquals("Hi! Can I #help you?", npc.get("text"));
 		assertTrue(en.step(player, "help"));
-		assertEquals("I am an expert on #wedding rings and #emerald rings, sometimes called the ring of #life.", npc.get("text"));
+		assertEquals("I am an expert on #'wedding rings' and #'emerald rings', sometimes called the ring of #life.", npc.get("text"));
 		assertTrue(en.step(player, "task"));
-		assertEquals("Well, you could consider getting married to be a quest! Ask me about #wedding rings if you need one.", npc.get("text"));
+		assertEquals("Well, you could consider getting married to be a quest! Ask me about #'wedding rings' if you need one.", npc.get("text"));
 		assertTrue(en.step(player, "wedding"));
 		assertEquals("I need 10 gold bars and a fee of 500 money, to make a wedding ring for your fiancee. Do you have it?", npc.get("text"));
 		assertTrue(en.step(player, "yes"));
@@ -126,7 +126,7 @@ public class MarriageTest {
 		
 		en.step(player, "hi");
 		en.step(player, "task");
-		assertEquals("Well, you could consider getting married to be a quest! Ask me about #wedding rings if you need one.", npc.get("text"));
+		assertEquals("Well, you could consider getting married to be a quest! Ask me about #'wedding rings' if you need one.", npc.get("text"));
 		en.step(player, "wedding");
 		assertEquals("I need 10 gold bars and a fee of 500 money, to make a wedding ring for your fiancee. Do you have it?", npc.get("text"));
 		en.step(player, "yes");
@@ -146,7 +146,7 @@ public class MarriageTest {
 		en.step(player2, "hi");
 		assertEquals("Hi! Can I #help you?", npc.get("text"));
 		en.step(player2, "help");
-		assertEquals("I am an expert on #wedding rings and #emerald rings, sometimes called the ring of #life.", npc.get("text"));
+		assertEquals("I am an expert on #'wedding rings' and #'emerald rings', sometimes called the ring of #life.", npc.get("text"));
 		en.step(player2, "wedding");
 		assertEquals("I need 10 gold bars and a fee of 500 money, to make a wedding ring for your fiancee. Do you have it?", npc.get("text"));
 		en.step(player2, "yes");
@@ -165,7 +165,7 @@ public class MarriageTest {
 		en.step(player, "hi");
 		assertEquals("Good day! If you're a prospective groom I can #help you prepare for your wedding.", npc.get("text"));
 		en.step(player, "help");
-		assertEquals("Please tell me if you want to #wear #a #suit for your wedding.", npc.get("text"));
+		assertEquals("Please tell me if you want to #'wear a suit' for your wedding.", npc.get("text"));
 		en.step(player, "wear");
 		assertEquals("A suit will cost 50. Do you want to wear it?", npc.get("text"));
 		en.step(player, "yes");
@@ -183,7 +183,7 @@ public class MarriageTest {
 		en.step(player2, "hi");
 		assertEquals("Welcome! If you're a bride-to-be I can #help you get ready for your wedding", npc.get("text"));
 		en.step(player2, "help");
-		assertEquals("Just tell me if you want to #wear #a #gown for your wedding.", npc.get("text"));
+		assertEquals("Just tell me if you want to #'wear a gown' for your wedding.", npc.get("text"));
 		en.step(player2, "wear a gown");
 		assertEquals("A gown will cost 100. Do you want to wear it?", npc.get("text"));
 		en.step(player2, "yes");
@@ -201,7 +201,7 @@ public class MarriageTest {
 		en.step(player, "hi");
 		assertEquals("Hi! Can I #help you?", npc.get("text"));
 		en.step(player, "help");
-		assertEquals("I am an expert on #wedding rings and #emerald rings, sometimes called the ring of #life.", npc.get("text"));
+		assertEquals("I am an expert on #'wedding rings' and #'emerald rings', sometimes called the ring of #life.", npc.get("text"));
 		en.step(player, "wedding");
 		assertTrue(npc.get("text").startsWith("I haven't finished making the wedding ring. Please check back"));
 		en.step(player, "bye");
@@ -217,7 +217,7 @@ public class MarriageTest {
 		en.step(player, "hi");
 		assertEquals("Hi! Can I #help you?", npc.get("text"));
 		en.step(player, "help");
-		assertEquals("I am an expert on #wedding rings and #emerald rings, sometimes called the ring of #life.", npc.get("text"));
+		assertEquals("I am an expert on #'wedding rings' and #'emerald rings', sometimes called the ring of #life.", npc.get("text"));
 		en.step(player, "wedding");
 		assertEquals("I'm pleased to say, the wedding ring for your fiancee is finished! Make sure one is made for you, too! *psst* just a little #hint for the wedding day ...", npc.get("text"));
 		// [14:25] player earns 500 experience points.
@@ -229,7 +229,7 @@ public class MarriageTest {
 		en.step(player2, "hi");
 		assertEquals("Hi! Can I #help you?", npc.get("text"));
 		en.step(player2, "help");
-		assertEquals("I am an expert on #wedding rings and #emerald rings, sometimes called the ring of #life.", npc.get("text"));
+		assertEquals("I am an expert on #'wedding rings' and #'emerald rings', sometimes called the ring of #life.", npc.get("text"));
 		en.step(player2, "wedding");
 		assertEquals("I'm pleased to say, the wedding ring for your fiancee is finished! Make sure one is made for you, too! *psst* just a little #hint for the wedding day ...", npc.get("text"));
 		// [14:26] player2 earns 500 experience points.StendhalRPRuleProcessor.get()
@@ -244,7 +244,7 @@ public class MarriageTest {
 		en.step(player, "hi");
 		assertEquals("Hi! Can I #help you?", npc.get("text"));
 		en.step(player, "help");
-		assertEquals("I am an expert on #wedding rings and #emerald rings, sometimes called the ring of #life.", npc.get("text"));
+		assertEquals("I am an expert on #'wedding rings' and #'emerald rings', sometimes called the ring of #life.", npc.get("text"));
 		en.step(player, "wedding");
 		assertEquals("Looking forward to your wedding? Make sure your fiancee gets a wedding ring made for you, too! Oh and remember to get #dressed up for the big day.", npc.get("text"));
 		en.step(player, "dressed");

@@ -63,7 +63,7 @@ public class MeetHackimTest {
 		en.step(player, "yes");
 		assertEquals("*whisper* Go to the tavern and talk to a man called #Xin #Blanca... he buys and sells equipment that might interest you. Do you want to hear more?", npc.get("text"));
 		en.step(player, "yes");
-		assertEquals("Ask him what he has to #offer, and look at what he will let you #buy and #sell. For instance, if you had a studded shield which you didn't want, you could #sell #studded #shield.", npc.get("text"));
+		assertEquals("Ask him what he has to #offer, and look at what he will let you #buy and #sell. For instance, if you had a studded shield which you didn't want, you could #'sell studded shield'.", npc.get("text"));
 		npc.remove("text");
 		en.step(player, "sell");
 		assertFalse(npc.has("text"));

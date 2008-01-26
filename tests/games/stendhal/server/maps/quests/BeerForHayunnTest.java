@@ -138,6 +138,5 @@ public class BeerForHayunnTest {
 		quest.init("bla");
 		assertEquals("bla", quest.getName());
 	}
-	
 
 }

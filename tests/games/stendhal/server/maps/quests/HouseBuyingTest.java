@@ -80,6 +80,7 @@ public class HouseBuyingTest extends ZonePlayerAndNPCTest {
 		assertTrue(en.step(player, "buy house"));
 		assertEquals("You may wish to know the #cost before you buy. Perhaps our brochure, #http://arianne.sourceforge.net/wiki/index.php?title=StendhalHouses would also be of interest.", npc.get("text"));
 
+//TODO mf - finish house buying test
 //		assertTrue(en.step(player, "really"));
 //		assertEquals("Sorry, I don't sell someunknownthings.", npc.get("text"));
 //

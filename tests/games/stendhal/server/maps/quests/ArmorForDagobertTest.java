@@ -86,7 +86,7 @@ public class ArmorForDagobertTest {
 		questHistory.add("QUEST_ACCEPTED");
 		assertEquals(questHistory, quest.getHistory(player));
 		assertEquals(
-				"Once I had a nice #leather cuirass, but it was destroyed during the last robbery. If you find a new one, I'll give you a reward.",
+				"Once I had a nice #'leather cuirass', but it was destroyed during the last robbery. If you find a new one, I'll give you a reward.",
 				npc.get("text"));
 		en.step(player, "leather");
 		assertEquals(questHistory, quest.getHistory(player));
