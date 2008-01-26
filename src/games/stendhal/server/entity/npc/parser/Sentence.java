@@ -1,5 +1,7 @@
 package games.stendhal.server.entity.npc.parser;
 
+import games.stendhal.common.ErrorDrain;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -14,7 +16,7 @@ import java.util.regex.Pattern;
  * 
  * @author Martin Fuchs
  */
-public class Sentence implements Iterable<Expression> {
+public class Sentence implements Iterable<Expression>, ErrorDrain {
 
 	public enum SentenceType {
 		UNDEFINED,
@@ -381,7 +383,7 @@ public class Sentence implements Iterable<Expression> {
 	 *
 	 * @param error
 	 */
-	void setError(String error) {
+	public void setError(String error) {
 		this.error = error;
 	}
 

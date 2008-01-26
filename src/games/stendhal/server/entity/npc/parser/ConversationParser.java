@@ -1,5 +1,7 @@
 package games.stendhal.server.entity.npc.parser;
 
+import games.stendhal.common.ErrorDrain;
+
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -13,7 +15,7 @@ import java.util.StringTokenizer;
  * 
  * @author Martin Fuchs
  */
-public final class ConversationParser {
+public final class ConversationParser implements ErrorDrain {
 
 	private StringTokenizer tokenizer;
 	private String errorBuffer;
@@ -130,7 +132,7 @@ public final class ConversationParser {
     		}
 		}
 
-		sentence.setError(parser.getError());
+		sentence.setError(parser.getErrorString());
 
 		return sentence;
 	}
@@ -161,12 +163,19 @@ public final class ConversationParser {
 	}
 
 	/**
+	 * Return true on any error.
+	 */
+	public boolean hasError() {
+	    return errorBuffer.length() > 0;
+    }
+
+	/**
 	 * Return accumulated description string for errors occurred while
 	 * parsing the input text.
 	 * 
 	 * @return error string
 	 */
-	public String getError() {
+	public String getErrorString() {
 		return errorBuffer;
 	}
 
