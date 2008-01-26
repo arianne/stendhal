@@ -1,6 +1,6 @@
 package games.stendhal.server.entity.npc.parser;
 
-import games.stendhal.common.ErrorDrain;
+import games.stendhal.common.ErrorBuffer;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -16,7 +16,7 @@ import java.util.regex.Pattern;
  * 
  * @author Martin Fuchs
  */
-public class Sentence implements Iterable<Expression>, ErrorDrain {
+public class Sentence extends ErrorBuffer implements Iterable<Expression> {
 
 	public enum SentenceType {
 		UNDEFINED,
@@ -29,8 +29,6 @@ public class Sentence implements Iterable<Expression>, ErrorDrain {
 
 	/** JOKER is a joker String used in pattern matches. */
 	protected static final String JOKER = "*";
-
-	protected String error = null;
 
 	List<Expression> expressions = new ArrayList<Expression>();
 
@@ -358,33 +356,6 @@ public class Sentence implements Iterable<Expression>, ErrorDrain {
 	 */
 	public boolean isEmpty() {
 		return sentenceType == SentenceType.UNDEFINED && expressions.isEmpty();
-	}
-
-	/**
-	 * Return if some error occurred while parsing the input text.
-	 * 
-	 * @return error flag
-	 */
-	public boolean hasError() {
-		return error != null;
-	}
-
-	/**
-	 * Return error message string.
-	 * 
-	 * @return error string
-	 */
-	public String getErrorString() {
-		return error;
-	}
-
-	/**
-	 * Set error message string.
-	 *
-	 * @param error
-	 */
-	public void setError(String error) {
-		this.error = error;
 	}
 
 	/**
