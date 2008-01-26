@@ -144,7 +144,6 @@ public class EntitySearch extends ScriptImpl {
 		}
 
 		sandbox.privateText(player, res.toString());
-
 	}
 
 	@Override
@@ -158,7 +157,10 @@ public class EntitySearch extends ScriptImpl {
 		} else if (args.size() == 2 && args.get(0).equals("zname")) {
 			findByZoneName(admin, args.get(1));
 		} else {
-			admin.sendPrivateText("/script EntitySearch.class cname <creatureName>\n/script EntitySearch.class nonrespawn\n/script EntitySearch.class zname <partialZoneName>");
+			admin.sendPrivateText(
+					"/script EntitySearch.class cname <creatureName>\n"
+					+"/script EntitySearch.class nonrespawn\n"
+					+"/script EntitySearch.class zname <partialZoneName>");
 		}
 
 	}
