@@ -94,11 +94,9 @@ public class FerryConveyerNPC extends SpeakerNPCFactory {
 				null);
 
 				new AthorFerry.FerryListener() {
-					@Override
 					public void onNewFerryState(Status status) {
 						ferrystate = status;
 						switch (status) {
-
 						case ANCHORED_AT_MAINLAND:
 							npc.say("Attention: The ferry has arrived at this coast! You can now #board the ship.");
 							break;
