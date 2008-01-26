@@ -105,11 +105,11 @@ public class SlashActionParserTest {
 	public final void testError() {
 		SlashActionCommand cmd = SlashActionParser.parse("");
 		assertTrue(cmd.hasError());
-		assertEquals("Missing slash command", cmd.getError());
+		assertEquals("Missing slash command", cmd.getErrorString());
 
 		cmd = SlashActionParser.parse("where 'abc");
 		assertTrue(cmd.hasError());
-		assertEquals("Unterminated quote in slash command", cmd.getError());
+		assertEquals("Unterminated quote", cmd.getErrorString());
 	}
 
 }
