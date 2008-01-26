@@ -9,7 +9,6 @@ import org.apache.log4j.Logger;
 /**
  * Drops the specified item.
  */
-//TODO mf - enable compound words for all slash commands by processing them by ConversationParser
 public class DropItemAction extends SpeakerNPC.ChatAction {
 	private static Logger logger = Logger.getLogger(DropItemAction.class);
 	private String itemName;
