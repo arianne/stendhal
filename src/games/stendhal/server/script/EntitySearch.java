@@ -158,7 +158,7 @@ public class EntitySearch extends ScriptImpl {
 			findByZoneName(admin, args.get(1));
 		} else {
 			admin.sendPrivateText(
-					"/script EntitySearch.class cname <creatureName>\n"
+					"/script EntitySearch.class cname '<creatureName>'\n"
 					+"/script EntitySearch.class nonrespawn\n"
 					+"/script EntitySearch.class zname <partialZoneName>");
 		}
