@@ -1,4 +1,4 @@
-# @Version 12
+# @Version 13
 #
 # Word list for the Stendhal conversation parser
 #
@@ -211,6 +211,7 @@ broadsword	OBJ	broadswords
 broccoli	OBJ-FOO	broccolis
 bronze	OBJ	bronzes
 buckler	OBJ	bucklers
+building	OBJ	buildings
 bureau	OBJ	bureaux
 bus	OBJ	bus
 bush	OBJ	bushes
@@ -391,6 +392,7 @@ medicine	OBJ	medicines
 militia	OBJ	militias
 mill	OBJ	mills
 mistake	OBJ	mistakes
+mithril	OBJ	mithrils
 mithrilbourgh	OBJ-NAM	mithrilbourghs
 money	OBJ	money
 moose	OBJ	moose
