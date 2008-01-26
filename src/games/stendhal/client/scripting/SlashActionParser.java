@@ -1,17 +1,73 @@
 package games.stendhal.client.scripting;
 
 import games.stendhal.client.actions.SlashActionRepository;
+import games.stendhal.common.CommandlineParser;
 
 import java.text.CharacterIterator;
-import java.text.StringCharacterIterator;
 
 /**
- * Command line parser for the Stendhal client The parser recognises the
+ * Command line parser for the Stendhal client The parser recognizes the
  * registered slash action commands and handles string quoting.
  * 
  * @author Martin Fuchs
  */
-public class SlashActionParser {
+public class SlashActionParser extends CommandlineParser {
+
+	SlashActionParser(String text) {
+		super(text);
+	}
+
+	/**
+	 * Extract slash command from the command line start.
+	 *
+	 * @return
+	 */
+	protected SlashActionCommand extractCommand() {
+		SlashActionCommand command = new SlashActionCommand();
+
+		char ch = ci.current();
+
+		if (ch == CharacterIterator.DONE) {
+			command.setError("Missing slash command");
+			return command;
+		}
+
+		/*
+		 * Must be non-space after slash
+		 */
+		if (Character.isWhitespace(ch)) {
+			command.setError("Unexpected space after slash character");
+			return command;
+		}
+
+		/*
+		 * Extract command name
+		 */
+		if (Character.isLetterOrDigit(ch)) {
+			StringBuilder buf = new StringBuilder();
+
+			/*
+			 * Word command
+			 */
+			while ((ch != CharacterIterator.DONE)
+					&& !Character.isWhitespace(ch)) {
+				buf.append(ch);
+				ch = ci.next();
+			}
+
+			command.setName(buf.toString());
+		} else {
+			/*
+			 * Special character command
+			 */
+			command.setName(String.valueOf(ch));
+
+			ci.next();
+		}
+
+		return command;
+	}
+
 	/**
 	 * Parse the given slash command. The text is supposed not to include the
 	 * slash character but to start directly after the slash on the client
@@ -22,44 +78,14 @@ public class SlashActionParser {
 	 * @return SlashActionCommand object
 	 */
 	public static SlashActionCommand parse(final String text) {
-		SlashActionCommand command = new SlashActionCommand();
-
-		if (text.length() == 0) {
-			return command.setError("Missing slash command");
-		}
-
 		/*
 		 * Parse command
 		 */
-		CharacterIterator ci = new StringCharacterIterator(text);
-		char ch = ci.current();
+		SlashActionParser parser = new SlashActionParser(text);
 
-		/*
-		 * Must be non-space after slash
-		 */
-		if (Character.isWhitespace(ch)) {
-			return command.setError("Unexpected space after slash character");
-		}
-
-		/*
-		 * Extract command name
-		 */
-		if (Character.isLetterOrDigit(ch)) {
-			/*
-			 * Word command
-			 */
-			while ((ch != CharacterIterator.DONE)
-					&& !Character.isWhitespace(ch)) {
-				ch = ci.next();
-			}
-
-			command.setName(text.substring(0, ci.getIndex()));
-		} else {
-			/*
-			 * Special character command
-			 */
-			command.setName(String.valueOf(ch));
-			ch = ci.next();
+		SlashActionCommand command = parser.extractCommand();
+		if (command.hasError()) {
+			return command;
 		}
 
 		/*
@@ -68,7 +94,7 @@ public class SlashActionParser {
 		command.setAction(SlashActionRepository.get(command.getName()));
 
 		int minimum, maximum;
-
+	
 		if (command.getAction() != null) {
 			minimum = command.getAction().getMinimumParameters();
 			maximum = command.getAction().getMaximumParameters();
@@ -81,28 +107,60 @@ public class SlashActionParser {
 		}
 
 		/*
-		 * Extract parameters (ch already set to first character)
+		 * Extract parameters
 		 */
 		command.setParams(new String[maximum]);
 
+		parser.extractParameters(command, minimum, maximum);
+
+		/*
+		 * Remainder text
+		 */
+		command.setRemainder(parser.getRemainingText());
+
+		return command;
+	}
+
+	/**
+	 * Return remaining text.
+	 *
+	 * @return
+	 */
+	private String getRemainingText() {
+		skipWhitespace();
+
+		StringBuilder sbuf = new StringBuilder(ci.getEndIndex() - ci.getIndex() + 1);
+
+		while (ci.current() != CharacterIterator.DONE) {
+			sbuf.append(ci.current());
+			ci.next();
+		}
+
+		return sbuf.toString();
+    }
+
+	/**
+	 * Read parameters into the given SlashActionCommand object.
+	 *
+	 * @param command
+	 * @param minimum
+	 * @param maximum
+	 * @return success flag
+	 */
+	private boolean extractParameters(SlashActionCommand command, int minimum, int maximum) {
 		for (int i = 0; i < maximum; i++) {
-			/*
-			 * Skip leading spaces
-			 */
-			while (Character.isWhitespace(ch)) {
-				ch = ci.next();
-			}
+			skipWhitespace();
 
 			/*
 			 * EOL?
 			 */
-			if (ch == CharacterIterator.DONE) {
+			if (ci.current() == CharacterIterator.DONE) {
 				/*
 				 * Incomplete parameters?
 				 */
 				if (i < minimum) {
-					return command.setError("Missing command parameter for '"
-							+ command.getName() + "'");
+					command.setError("Missing command parameter for '" + command.getName() + "'");
+					return false;
 				}
 
 				break;
@@ -111,57 +169,14 @@ public class SlashActionParser {
 			/*
 			 * Grab parameter
 			 */
-			StringBuffer sbuf = new StringBuffer();
-			char quote = CharacterIterator.DONE;
+			command.getParams()[i] = getNextParameter(command);
 
-			while (ch != CharacterIterator.DONE) {
-				if (ch == quote) {
-					// End of quote
-					quote = CharacterIterator.DONE;
-				} else if (quote != CharacterIterator.DONE) {
-					// Quoted character
-					sbuf.append(ch);
-				} else if ((ch == '"') || (ch == '\'')) {
-					// Start of quote
-					quote = ch;
-				} else if (Character.isWhitespace(ch)) {
-					// End of token
-					break;
-				} else {
-					// Token character
-					sbuf.append(ch);
-				}
-
-				ch = ci.next();
+			if (command.hasError()) {
+				return false;
 			}
-
-			/*
-			 * Unterminated quote?
-			 */
-			if (quote != CharacterIterator.DONE) {
-				return command.setError("Unterminated quote in slash command");
-			}
-
-			command.getParams()[i] = sbuf.toString();
 		}
 
-		/*
-		 * Remainder text
-		 */
-		while (Character.isWhitespace(ch)) {
-			ch = ci.next();
-		}
+		return true;
+    }
 
-		StringBuffer sbuf = new StringBuffer(ci.getEndIndex() - ci.getIndex()
-				+ 1);
-
-		while (ch != CharacterIterator.DONE) {
-			sbuf.append(ch);
-			ch = ci.next();
-		}
-
-		command.setRemainder(sbuf.toString());
-
-		return command;
-	}
 }
