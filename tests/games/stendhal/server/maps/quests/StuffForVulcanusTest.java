@@ -104,7 +104,7 @@ public class StuffForVulcanusTest {
 		en.step(player, "hi");
 		assertEquals("How do you expect me to #forge it without missing 26 wood logs for the fire?", npc.get("text"));
 		en.step(player, "forge");
-		assertEquals("I will need 0 #iron, 26 #'wood logs', 12 #'gold bars' and 6 #'giant hearts'.", npc.get("text"));
+		assertEquals("I will need 0 #iron, 26 #wood logs, 12 #gold bars and 6 #giant hearts.", npc.get("text"));
 		en.step(player, "bye");
 		assertEquals("Farewell", npc.get("text"));
 
