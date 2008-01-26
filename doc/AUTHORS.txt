@@ -18,7 +18,7 @@ Authors of Stendhal are:
   · Added sound system
 - Matthias Totz
   · Added GUI.
-  · Helped refactoring and fixind code.
+  · Helped refactoring and fixing code.
 - Anders Asplund
   · *Real* Map maker
 - Javier Correa
@@ -37,4 +37,6 @@ Authors of Stendhal are:
 - Timothyb89
   · Java Coding
   · Map Making
-  
+- Martin Fuchs
+  . SpeakerNPC speech parsing
+  . JUnit tests
