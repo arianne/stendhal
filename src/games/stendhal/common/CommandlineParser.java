@@ -34,6 +34,8 @@ public class CommandlineParser {
 	 * @return parameter
 	 */
 	public String getNextParameter(ErrorDrain errors) {
+		skipWhitespace();
+
 		char ch = ci.current();
 
 		StringBuffer sbuf = null;
