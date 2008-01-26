@@ -26,7 +26,6 @@ public class CreateAccountDialogTest {
 		Log4J.init();
 	}
 
-
     @Test
     public void testInValidPass() {
 
@@ -49,8 +48,6 @@ public class CreateAccountDialogTest {
 
         String pass5 = "rtyuiop";
         assertFalse(cad.validatePassword(user2, pass5));
-
-
     }
     @Test
     public void testValidPass() {

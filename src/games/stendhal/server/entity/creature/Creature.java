@@ -657,8 +657,8 @@ public class Creature extends NPC {
 	public void makeNoise() {
 		if (noises == null) {
 			return;
-
 		}
+
 		if (noises.size() > 0) {
 			int pos = Rand.rand(noises.size());
 			say(noises.get(pos));

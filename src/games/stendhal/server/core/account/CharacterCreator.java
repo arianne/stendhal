@@ -74,8 +74,6 @@ public class CharacterCreator {
 
 			Player object = Player.createEmptyZeroLevelPlayer(character);
 
-			
-
 			/*
 			 * Finally we add it to database.
 			 */
@@ -90,10 +88,8 @@ public class CharacterCreator {
 				e1.printStackTrace();
 			}
 			logger.error("Can't create character", e);
-			return new CharacterResult(Result.FAILED_EXCEPTION, character,
-					template);
+			return new CharacterResult(Result.FAILED_EXCEPTION, character, template);
 		}
 	}
-
 	
 }

@@ -25,7 +25,6 @@ public class CharacterCreatorTest {
 
 	@Test
 	public void testCreate() {
-		
 			Transaction trans = DatabaseFactory.getDatabase().getTransaction();
 			CharacterCreator cc = new CharacterCreator("user", "player", null);
 			assertEquals(Result.OK_CREATED, cc.create().getResult());

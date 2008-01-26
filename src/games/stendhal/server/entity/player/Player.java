@@ -215,18 +215,21 @@ public class Player extends RPEntity {
 		object.put("def", 10);
 		object.put("def_xp", 0);
 		object.put("xp", 0);
-		 for (String slot : RPEntity.CARRYING_SLOTS) {
-			 object.addSlot(slot);
-		 }
-		 object.update();
 
-			Entity entity = SingletonRepository.getEntityManager().getItem("leather armor");
-			RPSlot slot = object.getSlot("armor");
-			slot.add(entity);
-			
-			entity = SingletonRepository.getEntityManager().getItem("club");
-			slot = object.getSlot("rhand");
-			slot.add(entity);
+		for (String slot : RPEntity.CARRYING_SLOTS) {
+			object.addSlot(slot);
+		}
+
+		object.update();
+
+        Entity entity = SingletonRepository.getEntityManager().getItem("leather armor");
+        RPSlot slot = object.getSlot("armor");
+        slot.add(entity);
+        
+        entity = SingletonRepository.getEntityManager().getItem("club");
+        slot = object.getSlot("rhand");
+        slot.add(entity);
+
 		return object;
 	}
 	private static void convertOldfeaturesList(Player player) {
