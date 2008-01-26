@@ -94,7 +94,7 @@ public class SlashActionParser extends CommandlineParser {
 		command.setAction(SlashActionRepository.get(command.getName()));
 
 		int minimum, maximum;
-	
+
 		if (command.getAction() != null) {
 			minimum = command.getAction().getMinimumParameters();
 			maximum = command.getAction().getMaximumParameters();
