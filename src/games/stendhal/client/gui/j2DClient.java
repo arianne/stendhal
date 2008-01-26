@@ -19,6 +19,7 @@ import games.stendhal.client.StaticGameLayers;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.StendhalUI;
 import games.stendhal.client.stendhal;
+import games.stendhal.client.actions.SlashActionRepository;
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.EntityView;
 import games.stendhal.client.entity.User;
@@ -241,6 +242,9 @@ public class j2DClient extends StendhalUI {
 		// going to do that our self in accelerated mode
 		canvas.setIgnoreRepaint(true);
 		panel.add(canvas);
+
+		// register the slash actions in the client side command line parser
+		SlashActionRepository.register();
 
 		/*
 		 * Chat input field
