@@ -104,7 +104,6 @@ public class FerryConveyerNPC extends SpeakerNPCFactory {
 				default:
 					break;
 				}
-
 			}
 		};
 	}

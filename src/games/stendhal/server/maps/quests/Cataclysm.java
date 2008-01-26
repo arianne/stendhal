@@ -30,7 +30,6 @@ public class Cataclysm extends AbstractQuest {
 				"I sense many changes approaching. I believe that a #Cataclysm is coming.");
 		npc.addReply("Cataclysm",
 				"Yes, some upheaval, maybe a rebirth of old spirits. The lands could change and new ways begin.");
-
 	}
 
 	/**
@@ -52,7 +51,6 @@ public class Cataclysm extends AbstractQuest {
 		npc.addReply(
 						"no",
 						"Ah, the folly of youth! You do not look around you with open eyes until it is too late.");
-
 	}
 
 	/**
@@ -94,7 +92,6 @@ public class Cataclysm extends AbstractQuest {
 		npc.addReply(
 			"Cataclysm",
 			"I've never seen the like, but my great grandfather spoke of such a thing. Some see it as a disaster. Others say that the rebuilding after such an event allows for new life and new ways.");
-
 	}
 
 	/**
@@ -138,7 +135,6 @@ public class Cataclysm extends AbstractQuest {
 			"Carmen",
 			"She's a summon healer, she can sense anything strange with her powers. Me, I'm just a simple sheep dealer.");
 	}
-
 
 	@Override
 	public void addToWorld() {

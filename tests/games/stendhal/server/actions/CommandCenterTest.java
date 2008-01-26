@@ -47,8 +47,8 @@ public class CommandCenterTest {
 
 			}
 		});
-		CommandCenter.register("this", new ActionListener() {
 
+		CommandCenter.register("this", new ActionListener() {
 			public void onAction(Player player, RPAction action) {
 
 			}

@@ -267,7 +267,6 @@ public class VampireSword extends AbstractQuest {
 			ConversationStates.IDLE,
 			"You know, collect the iron ore lying around and get it cast! Bye!",
 			null);
-
 	}
 
 	@Override

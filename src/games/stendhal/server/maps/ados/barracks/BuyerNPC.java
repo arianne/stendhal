@@ -60,6 +60,7 @@ public class BuyerNPC implements ZoneConfigurator {
 				addGoodbye("Goodbye, comrade.");
 			}
 		};
+
 		npc.setDescription("You see Mrotho, guarding over Ados Barracks.");
 		npc.setEntityClass("barracksbuyernpc");
 		npc.setPosition(45, 49);

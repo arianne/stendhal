@@ -26,7 +26,7 @@ public class RichardStallmanNPC implements ZoneConfigurator {
 				setDirection(Direction.DOWN);
 				super.say(text, false);
 			}
-			
+
 			@Override
 			protected void createPath() {
 				setPath(null);
@@ -43,8 +43,7 @@ public class RichardStallmanNPC implements ZoneConfigurator {
 					"Stendhal is #free software under #GNU #GPL. You can run, copy, distribute, study, change and improve this software.");
 				addReply("gnu", "http://www.gnu.org/");
 				addReply("gpl", "http://www.gnu.org/licenses/gpl.html");
-				
-				
+
 				addGoodbye();
 			}
 		};

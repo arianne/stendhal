@@ -45,8 +45,7 @@ public class CargoWorkerNPC extends SpeakerNPCFactory {
 					npc.say("Attention: We have set sail!");
 					break;
 				}
-
 			}
-			};
+		};
 	}
 }

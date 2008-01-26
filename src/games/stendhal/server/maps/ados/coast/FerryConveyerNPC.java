@@ -70,7 +70,6 @@ public class FerryConveyerNPC extends SpeakerNPCFactory {
 					}
 				});
 
-
 		npc.add(ConversationStates.SERVICE_OFFERED,
 				ConversationPhrases.YES_MESSAGES,
 				null,
@@ -94,11 +93,8 @@ public class FerryConveyerNPC extends SpeakerNPCFactory {
 				"You don't know what you're missing, landlubber!",
 				null);
 
-
 				new AthorFerry.FerryListener() {
-
-
-					
+					@Override
 					public void onNewFerryState(Status status) {
 						ferrystate = status;
 						switch (status) {
@@ -113,6 +109,6 @@ public class FerryConveyerNPC extends SpeakerNPCFactory {
 							break;
 						}
 					}
-					};
+				};
 	}
 }

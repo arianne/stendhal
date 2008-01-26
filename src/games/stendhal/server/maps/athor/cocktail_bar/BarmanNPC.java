@@ -55,7 +55,6 @@ public class BarmanNPC implements ZoneConfigurator {
 				ProducerBehaviour mixerBehaviour = new ProducerBehaviour("barman_mix_pina",
 						"mix", "pina colada", requiredResources, 2 * 60);
 				new ProducerAdder().addProducer(this, mixerBehaviour, "Aloha!");
-
 			}
 		};
 
