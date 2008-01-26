@@ -88,6 +88,8 @@ public class CommandlineParser {
 		List<String> params = new Vector<String>();
 
 		do {
+			skipWhitespace();
+
 			String param = getNextParameter(errors);
 
 			if (param == null) {

@@ -2,6 +2,9 @@
 
 package games.stendhal.server.core.scripting;
 
+import games.stendhal.common.CommandlineParser;
+import games.stendhal.common.ErrorBuffer;
+import games.stendhal.common.ErrorDrain;
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.actions.admin.AdministrationAction;
@@ -12,12 +15,13 @@ import games.stendhal.server.extension.StendhalServerExtension;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.net.URL;
-import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-import org.apache.log4j.Logger;
 import marauroa.common.game.RPAction;
+
+import org.apache.log4j.Logger;
 
 /**
  * ServerExtension to load Groovy and Java scripts.
@@ -73,7 +77,7 @@ public class ScriptRunner extends StendhalServerExtension implements
 
 	// TODO: document and clean this method
 	private synchronized boolean perform(String name, String mode,
-			Player player, String[] args) {
+			Player player, List<String> args) {
 		boolean ret = false;
 		name = name.trim();
 
@@ -139,7 +143,8 @@ public class ScriptRunner extends StendhalServerExtension implements
 				"script", true)) {
 			return;
 		}
-		String text = "usage: #/script #[-execute|-load>|-unload] #<filename> #[<args>]\n  mode is either load (default) or remove";
+		String text = "usage: #/script #[-execute|-load>|-unload] #<filename> #[<args>]\n"
+					+"  mode is either load (default) or remove";
 		if (action.has("target")) {
 
 			// concat target and args to get the original string back
@@ -173,19 +178,20 @@ public class ScriptRunner extends StendhalServerExtension implements
 				script = temp;
 			}
 
-			// split remaining args
-			String[] args = cmd.split("\\s+");
-			if ((args.length == 1) && args[0].equals("")) {
-				args = new String[0];
-			}
+			// use the same routine as in the client to parse quoted arguments
+			CommandlineParser parser = new CommandlineParser(cmd);
+			ErrorDrain errors = new ErrorBuffer();
+
+			List<String> args = parser.readAllParameters(errors);
 
 			SingletonRepository.getRuleProcessor().addGameEvent(player.getName(),
-					"script", script, mode, Arrays.asList(args).toString());
+					"script", script, mode, args.toString());
 
 			// execute script
 			script = script.trim();
 			if (script.endsWith(".groovy") || script.endsWith(".class")) {
 				boolean res = perform(script, mode, player, args);
+
 				if (res) {
 					text = "Script \"" + script + "\" was successfully " + mode
 							+ (mode == "execute" ? "d" : "ed") + ".";
@@ -205,8 +211,8 @@ public class ScriptRunner extends StendhalServerExtension implements
 				text = "Invalid filename: It should end with .groovy or .class";
 			}
 		}
-		player.sendPrivateText(text);
 
+		player.sendPrivateText(text);
 	}
 
 }
