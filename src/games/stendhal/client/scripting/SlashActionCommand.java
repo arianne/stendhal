@@ -1,21 +1,20 @@
 package games.stendhal.client.scripting;
 
 import games.stendhal.client.actions.SlashAction;
+import games.stendhal.common.ErrorBuffer;
 
 /**
  * Command line parser for the Stendhal client.
  * 
  * @author Martin Fuchs
  */
-public class SlashActionCommand {
+public class SlashActionCommand extends ErrorBuffer {
 
 	private String name;
 	private SlashAction action;
 
 	private String[] params;
 	private String remainder;
-
-	private String error = null;
 
 	/**
 	 * @return action object
@@ -79,42 +78,6 @@ public class SlashActionCommand {
 	 */
 	void setRemainder(final String remainder) {
 		this.remainder = remainder;
-	}
-
-	/**
-	 * return whether some error occurred while parsing the input text.
-	 * 
-	 * @return error flag
-	 */
-	boolean hasError() {
-		return error != null;
-	}
-
-	/**
-	 * return error message.
-	 * 
-	 * @return error string
-	 */
-	public String getError() {
-		return error;
-	}
-
-	/**
-	 * set error flag.
-	 * 
-	 * @param error
-	 *            the error message
-	 * 
-	 * @return this
-	 */
-	public SlashActionCommand setError(final String error) {
-		if (this.error == null) {
-			this.error = error;
-		} else {
-			this.error += "\n" + error;
-		}
-
-		return this;
 	}
 
 	/**
