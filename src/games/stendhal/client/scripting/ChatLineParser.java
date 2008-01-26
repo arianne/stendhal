@@ -2,33 +2,13 @@ package games.stendhal.client.scripting;
 
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.StendhalUI;
-import games.stendhal.client.actions.SlashActionRepository;
 import games.stendhal.common.NotificationType;
 import marauroa.common.game.RPAction;
 
 /**
  * Parses the input in the chat box and invokes the appropriate action.
  */
-public class ChatLineParser {
-	private static ChatLineParser instance;
-
-	// hide constructor (Singleton)
-	private ChatLineParser() {
-
-		SlashActionRepository.register();
-	}
-
-	/**
-	 * returns the ChatLineParser.
-	 * 
-	 * @return ChatLineParser
-	 */
-	public static synchronized ChatLineParser get() {
-		if (instance == null) {
-			instance = new ChatLineParser();
-		}
-		return instance;
-	}
+public abstract class ChatLineParser {
 
 	/**
 	 * parses a chat/command line and processes the result.
@@ -39,7 +19,7 @@ public class ChatLineParser {
 	 * @return <code>true</code> if command was valid enough to process,
 	 *         <code>false</code> otherwise.
 	 */
-	public boolean parseAndHandle(String input) {
+	public static boolean parseAndHandle(String input) {
 		// get line
 		String text = input.trim();
 
@@ -52,7 +32,7 @@ public class ChatLineParser {
 			String[] params = command.getParams();
 
 			if (command.hasError()) {
-				StendhalUI.get().addEventLine(command.getError(),
+				StendhalUI.get().addEventLine(command.getErrorString(),
 						NotificationType.ERROR);
 				return false;
 			}
@@ -61,8 +41,7 @@ public class ChatLineParser {
 			 * Execute
 			 */
 			if (command.getAction() != null) {
-				return command.getAction().execute(params,
-						command.getRemainder());
+				return command.getAction().execute(params, command.getRemainder());
 			} else {
 				/*
 				 * Server extension

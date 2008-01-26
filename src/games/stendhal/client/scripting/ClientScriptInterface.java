@@ -18,7 +18,7 @@ public class ClientScriptInterface {
 	 *            String to parse and handle
 	 */
 	public void invoke(String input) {
-		ChatLineParser.get().parseAndHandle(input);
+		ChatLineParser.parseAndHandle(input);
 		sleepMillis(300);
 	}
 
