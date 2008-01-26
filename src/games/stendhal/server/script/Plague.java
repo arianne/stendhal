@@ -21,7 +21,7 @@ public class Plague extends ScriptImpl {
 
 		// help
 		if (args.size() == 0) {
-			admin.sendPrivateText("/script Plague <ringcount> <creature>");
+			admin.sendPrivateText("/script Plague.class [ringcount] <creature>");
 			return;
 		}
 
@@ -32,10 +32,14 @@ public class Plague extends ScriptImpl {
 		sandbox.setZone(myZone);
 
 		// select creature
-		String creatureClass = args.get(0);
+		String creatureClass;
+
 		if (args.size() >= 2) {
 			creatureClass = args.get(1);
+		} else {
+			creatureClass = args.get(0);
 		}
+
 		Creature tempCreature = sandbox.getCreature(creatureClass);
 		if (tempCreature == null) {
 			admin.sendPrivateText("No such creature");
