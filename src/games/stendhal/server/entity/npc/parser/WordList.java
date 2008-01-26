@@ -2,6 +2,7 @@ package games.stendhal.server.entity.npc.parser;
 
 import games.stendhal.common.Grammar;
 import games.stendhal.server.core.engine.SingletonRepository;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -12,6 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -472,6 +474,9 @@ public final class WordList {
 		}
 	}
 
+	// We keep house holding the usage of registered subject names.
+	private Map<String, Integer> subjectRefCount = new HashMap<String, Integer>();
+
 	/**
 	 * Register a name to be recognized by the conversation parser.
 	 * 
@@ -479,6 +484,15 @@ public final class WordList {
 	 */
 	public void registerSubjectName(String name) {
 		String key = trimWord(name);
+
+		Integer usageCount = subjectRefCount.get(key);
+		if (usageCount != null) {
+			// For already known names, we have only to increment the usage counter.
+			subjectRefCount.put(key, ++usageCount);
+			return;
+		}
+
+		// register the new subject name
 		WordEntry entry = words.get(key);
 
 		if (entry == null || entry.getType() == null || entry.getType().isEmpty()) {
@@ -488,6 +502,7 @@ public final class WordList {
 			newEntry.setType(new ExpressionType(SUBJECT_NAME_DYNAMIC));
 
 			words.put(key, newEntry);
+			subjectRefCount.put(key, 1);
 		} else if (!checkNameCompatibleLastType(entry.getType(), ExpressionType.SUBJECT)) {
 			logger.warn("subject name already registered with incompatible expression type: " + entry.getNormalizedWithTypeString());
 		}
@@ -503,7 +518,16 @@ public final class WordList {
 		WordEntry entry = words.get(key);
 
 		if (entry != null && entry.getTypeString().equals(SUBJECT_NAME_DYNAMIC)) {
-			words.remove(key);
+			Integer usageCount = subjectRefCount.get(key);
+
+    		if (usageCount != null) {
+    			// decrement the usage counter
+    			subjectRefCount.put(key, --usageCount);
+
+    			if (usageCount == 0) {
+    				words.remove(key);
+    			}
+    		}
 		}
 	}
 
