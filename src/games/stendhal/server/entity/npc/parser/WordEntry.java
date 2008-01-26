@@ -103,4 +103,12 @@ public final class WordEntry {
 	    return id;	    
     }
 
+	/**
+	 * Return a simple string representation of the Expression.
+	 */
+	@Override
+	public String toString() {
+		return getNormalizedWithTypeString();
+	}
+
 }
