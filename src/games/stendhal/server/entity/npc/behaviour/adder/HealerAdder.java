@@ -27,7 +27,7 @@ public class HealerAdder {
 							SpeakerNPC engine) {
 						healerBehaviour.setChosenItemName("heal");
 						healerBehaviour.setAmount(1);
-						int cost = healerBehaviour.getCharge(player);
+						int cost = healerBehaviour.getCharge(engine, player);
 
 						if (cost > 0) {
 							engine.say("Healing costs " + cost
@@ -58,7 +58,7 @@ public class HealerAdder {
 					public void fire(Player player, Sentence sentence,
 							SpeakerNPC engine) {
 						if (player.drop("money",
-								healerBehaviour.getCharge(player))) {
+								healerBehaviour.getCharge(engine, player))) {
 							healerBehaviour.heal(player);
 							engine.say("There, you are healed. How else may I help you?");
 						} else {

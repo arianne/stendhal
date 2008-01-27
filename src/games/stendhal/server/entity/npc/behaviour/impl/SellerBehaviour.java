@@ -83,9 +83,9 @@ public class SellerBehaviour extends MerchantBehaviour {
 			setAmount(1);
 		}
 
-		if (player.isEquipped("money", getCharge(player))) {
+		if (player.isEquipped("money", getCharge(seller, player))) {
 			if (player.equip(item)) {
-				player.drop("money", getCharge(player));
+				player.drop("money", getCharge(seller, player));
 				seller.say("Congratulations! Here "
 						+ Grammar.isare(getAmount()) + " your "
 						+ Grammar.plnoun(getAmount(), getChosenItemName()) + "!");

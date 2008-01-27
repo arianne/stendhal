@@ -27,7 +27,7 @@ public class SheepBuyerNPC extends SpeakerNPCFactory {
 			}
 
 			@Override
-			public int getCharge(Player player) {
+			public int getCharge(SpeakerNPC npc, Player player) {
 				if (player.hasSheep()) {
 					Sheep sheep = player.getSheep();
 					return Math.round(getUnitPrice(chosenItemName) * ((float) sheep.getWeight() / (float) sheep.MAX_WEIGHT));
@@ -46,7 +46,7 @@ public class SheepBuyerNPC extends SpeakerNPCFactory {
 						seller.say("*drool* Sheep flesh! Bring da sheep here!");
 					} else {
 						seller.say("Mmm... Is look yummy! Here, you take dis gold!");
-						payPlayer(player);
+						payPlayer(seller, player);
 
 						player.removeSheep(sheep);
 						player.notifyWorldAboutChanges();
