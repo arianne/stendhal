@@ -5,8 +5,6 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
-import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.maps.MockStendlRPWorld;
 
@@ -27,7 +25,6 @@ import org.xml.sax.SAXException;
 
 import utilities.PlayerTestHelper;
 import utilities.RPClass.ItemTestHelper;
-import utilities.RPClass.PassiveEntityRespawnPointTestHelper;
 
 public class ItemTest {
 	
