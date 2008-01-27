@@ -2,10 +2,12 @@ package games.stendhal.server.entity.item;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPWorld;
+import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.maps.MockStendlRPWorld;
 
 import java.awt.geom.Rectangle2D;
@@ -13,6 +15,8 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
+
+import marauroa.common.Log4J;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -22,21 +26,19 @@ import org.junit.Test;
 import org.xml.sax.SAXException;
 
 import utilities.PlayerTestHelper;
+import utilities.RPClass.ItemTestHelper;
 import utilities.RPClass.PassiveEntityRespawnPointTestHelper;
 
 public class ItemTest {
-	private static final String ZONE_NAME = "0_semos_village_w";
-
-	private static final String ZONE_CONTENT = "Level 0/semos/village_w.tmx";
+	
+	private static final String ZONE_NAME = "ITEMTESTZONE";
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		Log4J.init();
 		MockStendlRPWorld.get();
-		PassiveEntityRespawnPointTestHelper.generateRPClasses();
-		StendhalRPWorld world = SingletonRepository.getRPWorld();
-		if (SingletonRepository.getRPWorld().getRPZone(ZONE_NAME) == null) {
-			world.addArea(ZONE_NAME, ZONE_CONTENT);
-		}
+		ItemTestHelper.generateRPClasses();
+		
 	}
 
 	@AfterClass
@@ -234,19 +236,27 @@ public class ItemTest {
 	public void testOnTurnReached() throws SAXException, IOException {
 		Item mo = new Item("name1", "myClass", "mySubclass",
 				new HashMap<String, String>());
-
-		mo.put("id", 1);
-		mo.put("zoneid", ZONE_NAME);
+		StendhalRPZone zone = new StendhalRPZone(ZONE_NAME);
+		zone.add(mo);
+		assertTrue(zone.has(mo.getID()));
 		mo.onTurnReached(1);
+		assertNotNull(mo.getZone());
+		assertFalse(zone.has(mo.getID()));
 	}
 
 	@Test
 	public void testRemoveOne() throws SAXException, IOException {
 		Item mo = new Item("name1", "myClass", "mySubclass",
 				new HashMap<String, String>());
-		mo.put("id", 2);
-		mo.put("zoneid", ZONE_NAME);
+		StendhalRPZone zone = new StendhalRPZone(ZONE_NAME);
+		MockStendlRPWorld.get().addRPZone(zone);
+		zone.add(mo);
+		assertTrue(zone.has(mo.getID()));
 		mo.removeOne();
+		assertNotNull(mo.getZone());
+		assertFalse(zone.has(mo.getID()));
+		
+		
 	}
 
 	@Test
@@ -267,12 +277,17 @@ public class ItemTest {
 	}
 
 	@Test
-	public void testRemoveFromWorld() throws SAXException, IOException {
+	public void testRemoveFromWorld() {
 		Item mo = new Item("name1", "myClass", "mySubclass",
 				new HashMap<String, String>());
-		mo.put("id", 3);
-		mo.put("zoneid", ZONE_NAME);
+		StendhalRPZone zone = new StendhalRPZone(ZONE_NAME);
+		MockStendlRPWorld.get().addRPZone(zone);
+		zone.add(mo);
+		assertTrue(zone.has(mo.getID()));
+		
 		mo.removeFromWorld();
+		assertNotNull(mo.getZone());
+		assertFalse(zone.has(mo.getID()));
 	}
 
 }
