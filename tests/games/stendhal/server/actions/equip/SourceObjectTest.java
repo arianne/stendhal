@@ -13,8 +13,8 @@ import marauroa.common.game.RPObject;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
-import utilities.ItemTestHelper;
 import utilities.PlayerTestHelper;
+import utilities.RPClass.ItemTestHelper;
 
 public class SourceObjectTest {
 

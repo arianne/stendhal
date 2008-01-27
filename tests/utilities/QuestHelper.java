@@ -7,6 +7,8 @@ import marauroa.common.Log4J;
 
 import org.junit.BeforeClass;
 
+import utilities.RPClass.ItemTestHelper;
+
 /**
  * Helper methods for testing quests.
  *
@@ -19,7 +21,7 @@ public abstract class QuestHelper extends PlayerTestHelper  {
 		Log4J.init();
 
 		generatePlayerRPClasses();
-		generateItemRPClasses();
+		ItemTestHelper.generateRPClasses();
 		generateNPCRPClasses();
 
 		assertTrue(MockStendhalRPRuleProcessor.get() instanceof MockStendhalRPRuleProcessor);

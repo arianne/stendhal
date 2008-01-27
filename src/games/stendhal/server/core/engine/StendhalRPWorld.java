@@ -171,7 +171,7 @@ public class StendhalRPWorld extends RPWorld {
 		return ruleManager;
 	}
 
-	private void createRPClasses() {
+	protected void createRPClasses() {
 		/*
 		 * TODO: Refactor Do as Chadf proposed so the classes self initialize.
 		 * This method is prone to be forgotten on addition of new classes.

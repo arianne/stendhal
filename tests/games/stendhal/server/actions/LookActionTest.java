@@ -8,6 +8,7 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
+import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.common.Log4J;
 import marauroa.common.game.RPAction;
 
@@ -27,8 +28,10 @@ public class LookActionTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() {
+		MockStendlRPWorld.get();
 		Log4J.init();
 		PlayerTestHelper.generatePlayerRPClasses();
+		
 	}
 
 	@Before

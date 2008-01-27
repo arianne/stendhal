@@ -1,16 +1,15 @@
 package games.stendhal.server.entity.item.consumption;
 
 import static org.junit.Assert.assertEquals;
-import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Drink;
-import games.stendhal.server.entity.item.Item;
-
 import java.util.HashMap;
 import java.util.Map;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import utilities.RPClass.ItemTestHelper;
 
 public class FeederFactoryTest {
 
@@ -24,8 +23,7 @@ public class FeederFactoryTest {
 
 	@Test
 	public final void testGetEaterForSoup() {
-		Entity.generateRPClass();
-		Item.generateRPClass();
+		ItemTestHelper.generateRPClasses();
 		String name = "soup";
 		String clazz = "drink";
 		String subclass = "soup";

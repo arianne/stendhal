@@ -14,9 +14,9 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import utilities.ItemTestHelper;
 import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
+import utilities.RPClass.ItemTestHelper;
 
 public class CloaksForBarioTest {
 

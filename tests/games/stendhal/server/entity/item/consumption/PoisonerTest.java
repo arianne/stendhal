@@ -4,11 +4,7 @@ import static org.junit.Assert.assertTrue;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.entity.ActiveEntity;
-import games.stendhal.server.entity.Entity;
-import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.ConsumableItem;
-import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.HashMap;
@@ -21,6 +17,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import utilities.PlayerTestHelper;
+import utilities.RPClass.ItemTestHelper;
 
 public class PoisonerTest {
 
@@ -37,11 +34,8 @@ public class PoisonerTest {
 
 	public final void testFeed() {
 		SingletonRepository.getEntityManager();
-		Entity.generateRPClass();
-		ActiveEntity.generateRPClass();
-		RPEntity.generateRPClass();
-		Item.generateRPClass();
-		Player.generateRPClass();
+		ItemTestHelper.generateRPClasses();
+		PlayerTestHelper.generatePlayerRPClasses();
 		Map<String, String> attributes = new HashMap<String, String>();
 		attributes.put("amount", "1000");
 		attributes.put("regen", "200");

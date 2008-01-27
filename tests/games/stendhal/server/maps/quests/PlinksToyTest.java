@@ -16,9 +16,10 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import utilities.ItemTestHelper;
 import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
+import utilities.RPClass.ItemTestHelper;
+import utilities.RPClass.PassiveEntityRespawnPointTestHelper;
 
 public class PlinksToyTest {
 	private Player player = null;
@@ -28,6 +29,10 @@ public class PlinksToyTest {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		QuestHelper.setUpBeforeClass();
+
+		PassiveEntityRespawnPointTestHelper.generateRPClasses();
+		
+		
 	}
 	
 	@Before

@@ -267,16 +267,6 @@ public abstract class PlayerTestHelper {
 		player.getSlot("!visited").add(new RPObject());
 	}
 
-	public static void generateItemRPClasses() {
-		if (!RPClass.hasRPClass("entity")) {
-			Entity.generateRPClass();
-		}
-
-		if (!RPClass.hasRPClass("item")) {
-			Item.generateRPClass();
-		}
-	}
-
 	public static void generateEntityRPClasses() {
 		if (!RPClass.hasRPClass("entity")) {
 			Entity.generateRPClass();

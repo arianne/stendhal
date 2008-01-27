@@ -18,6 +18,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import utilities.ZonePlayerAndNPCTest;
+import utilities.RPClass.ItemTestHelper;
 
 public class IntroducePlayersTest extends ZonePlayerAndNPCTest {
 
@@ -31,7 +32,7 @@ public class IntroducePlayersTest extends ZonePlayerAndNPCTest {
 		Log4J.init();
 
 		generatePlayerRPClasses();
-		generateItemRPClasses();
+		ItemTestHelper.generateRPClasses();
 
 		assertTrue(MockStendhalRPRuleProcessor.get() instanceof MockStendhalRPRuleProcessor);
 		MockStendlRPWorld.get();

@@ -13,6 +13,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import utilities.PlayerTestHelper;
+import utilities.RPClass.ItemTestHelper;
 
 public class CharacterCreatorTest {
 
@@ -20,7 +21,7 @@ public class CharacterCreatorTest {
 	public static void setUpBeforeClass() throws Exception {
 		Log4J.init();
 		PlayerTestHelper.generatePlayerRPClasses();
-		PlayerTestHelper.generateItemRPClasses();
+		ItemTestHelper.generateRPClasses();
 	}
 
 	@Test

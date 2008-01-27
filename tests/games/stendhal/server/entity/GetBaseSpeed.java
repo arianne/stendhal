@@ -13,12 +13,16 @@ import org.junit.Before;
 import org.junit.Test;
 
 import utilities.PlayerTestHelper;
+import utilities.RPClass.CatTestHelper;
 
 public class GetBaseSpeed {
 
 	@Before
 	public void setUp() throws Exception {
-		new MockStendhalRPWorld();
+		PlayerTestHelper.generateCreatureRPClasses();
+		CatTestHelper.generateRPClasses();
+		
+		//new MockStendhalRPWorld();
 
 	}
 

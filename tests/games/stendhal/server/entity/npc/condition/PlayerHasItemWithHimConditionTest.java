@@ -10,8 +10,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import utilities.ItemTestHelper;
 import utilities.PlayerTestHelper;
+import utilities.RPClass.ItemTestHelper;
 
 public class PlayerHasItemWithHimConditionTest {
 

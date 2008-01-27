@@ -4,9 +4,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.entity.ActiveEntity;
-import games.stendhal.server.entity.Entity;
-import games.stendhal.server.entity.RPEntity;
 
 import org.junit.After;
 import org.junit.BeforeClass;
@@ -19,10 +16,7 @@ public class GagManagerTest {
 
 	@BeforeClass
 	public static void setUp() throws Exception {
-		Entity.generateRPClass();
-		ActiveEntity.generateRPClass();
-		RPEntity.generateRPClass();
-		Player.generateRPClass();
+		PlayerTestHelper.generatePlayerRPClasses();
 		PlayerTestHelper.removePlayer("bob");
 	}
 

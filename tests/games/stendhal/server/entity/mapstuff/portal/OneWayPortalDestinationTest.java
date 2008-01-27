@@ -2,32 +2,17 @@ package games.stendhal.server.entity.mapstuff.portal;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import games.stendhal.server.entity.Entity;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import utilities.RPClass.PortalTestHelper;
 
 public class OneWayPortalDestinationTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		Entity.generateRPClass();
-		Portal.generateRPClass();
-	}
-
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
-
-	@Before
-	public void setUp() throws Exception {
-	}
-
-	@After
-	public void tearDown() throws Exception {
+		PortalTestHelper.generateRPClasses();
 	}
 
 	@Test (expected = IllegalArgumentException.class)

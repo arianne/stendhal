@@ -9,12 +9,13 @@ import org.junit.After;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import utilities.RPClass.BloodTestHelper;
+
 public class BloodTest {
 
 	@BeforeClass
 	public static void setUp() throws Exception {
-		Entity.generateRPClass();
-		Blood.generateRPClass();
+		BloodTestHelper.generateRPClasses();
 	}
 
 	@After

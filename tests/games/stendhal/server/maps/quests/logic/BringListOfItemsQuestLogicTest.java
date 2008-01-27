@@ -25,6 +25,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import utilities.PlayerTestHelper;
+import utilities.RPClass.ItemTestHelper;
 
 public class BringListOfItemsQuestLogicTest {
 
@@ -34,7 +35,7 @@ public class BringListOfItemsQuestLogicTest {
 		assertTrue(MockStendhalRPRuleProcessor.get() instanceof MockStendhalRPRuleProcessor);
 		PlayerTestHelper.generateNPCRPClasses();
 		PlayerTestHelper.generatePlayerRPClasses();
-		PlayerTestHelper.generateItemRPClasses();
+		ItemTestHelper.generateRPClasses();
 	}
 
 	@Before

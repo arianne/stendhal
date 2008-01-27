@@ -3,7 +3,6 @@ package games.stendhal.server.actions.equip;
 
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPWorld;
-import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
 
 import org.junit.Assert;
@@ -12,6 +11,9 @@ import org.junit.Test;
 
 import utilities.PlayerTestHelper;
 import utilities.PrivateTextMockingTestPlayer;
+import utilities.RPClass.PortalTestHelper;
+import utilities.RPClass.SheepFoodTestHelper;
+import utilities.RPClass.SheepTestHelper;
 
 /**
  * Test cases for drop.
@@ -30,9 +32,13 @@ public class EquipmentActionTest {
 	 */
 	@BeforeClass
 	public static void buildWorld() throws Exception {
+		SheepFoodTestHelper.generateRPClasses();
+		PlayerTestHelper.generatePlayerRPClasses();
+		SheepTestHelper.generateRPClasses();
+		PortalTestHelper.generateRPClasses();
 		StendhalRPWorld world = SingletonRepository.getRPWorld();
 		world.addArea(ZONE_NAME, ZONE_CONTENT);
-		Player.generateRPClass();
+	
 	}
 
 	/**

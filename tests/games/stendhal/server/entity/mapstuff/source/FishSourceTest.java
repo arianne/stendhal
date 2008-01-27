@@ -21,6 +21,7 @@ public class FishSourceTest {
 		Log4J.init();
 		assertTrue(MockStendhalRPRuleProcessor.get() instanceof MockStendhalRPRuleProcessor);
 		MockStendlRPWorld.get();
+		
 	}
 
 	@Test

@@ -18,6 +18,9 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import utilities.PlayerTestHelper;
+import utilities.RPClass.CorpseTestHelper;
+import utilities.RPClass.SheepFoodTestHelper;
+import utilities.RPClass.SheepTestHelper;
 
 public class SheepTest {
 
@@ -26,7 +29,8 @@ public class SheepTest {
 		Log4J.init();
 		assertTrue(MockStendlRPWorld.get() instanceof MockStendlRPWorld);
 		PlayerTestHelper.generateCreatureRPClasses();
-		Sheep.generateRPClass();
+		SheepTestHelper.generateRPClasses();
+		SheepFoodTestHelper.generateRPClasses();
 	}
 
 	@Test
@@ -226,6 +230,7 @@ public class SheepTest {
 
 	@Test
 	public void testOnStarve() {
+		CorpseTestHelper.generateRPClasses();
 		Sheep meh = new Sheep();
 		StendhalRPZone zone = new StendhalRPZone("testzone", 10, 10);
 		zone.add(meh);

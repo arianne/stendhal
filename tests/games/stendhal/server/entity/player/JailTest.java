@@ -15,11 +15,13 @@ import org.junit.Test;
 
 import utilities.PlayerTestHelper;
 import utilities.PrivateTextMockingTestPlayer;
+import utilities.RPClass.ArrestWarrentTestHelper;
 
 public class JailTest {
 	@BeforeClass
 	public static void setUpClass() throws Exception {
 		Log4J.init();
+		ArrestWarrentTestHelper.generateRPClasses();
 		MockStendhalRPRuleProcessor.get().clearPlayers();
 		MockStendlRPWorld.get().addRPZone(new StendhalRPZone(Jail.DEFAULT_JAIL_ZONE, 100, 100));
 		MockStendlRPWorld.get().addRPZone(new StendhalRPZone("-3_semos_jail", 100, 100));

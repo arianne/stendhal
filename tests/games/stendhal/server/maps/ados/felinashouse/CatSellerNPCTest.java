@@ -12,6 +12,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import utilities.ZonePlayerAndNPCTest;
+import utilities.RPClass.CatTestHelper;
 
 /**
  * Test buying cats.
@@ -24,6 +25,8 @@ public class CatSellerNPCTest extends ZonePlayerAndNPCTest {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		MockStendlRPWorld.get();
+		
+		CatTestHelper.generateRPClasses();
 		ZonePlayerAndNPCTest.setUpBeforeClass();
 
 		setupZone(ZONE_NAME, new CatSellerNPC());

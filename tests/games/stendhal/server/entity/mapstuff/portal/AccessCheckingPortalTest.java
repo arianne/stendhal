@@ -6,7 +6,6 @@ import static org.junit.Assert.assertTrue;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TurnListener;
-import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.mapstuff.portal.AccessCheckingPortal.SendMessage;
 import games.stendhal.server.entity.player.Player;
@@ -24,14 +23,14 @@ import org.junit.Test;
 
 import utilities.PlayerTestHelper;
 import utilities.PrivateTextMockingTestPlayer;
+import utilities.RPClass.PortalTestHelper;
 
 public class AccessCheckingPortalTest extends PlayerTestHelper {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		Log4J.init();
-		Entity.generateRPClass();
-		Portal.generateRPClass();
+		PortalTestHelper.generateRPClasses();
 	}
 
 	@AfterClass

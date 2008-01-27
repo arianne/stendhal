@@ -5,7 +5,6 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.common.Log4J;
@@ -14,6 +13,8 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import utilities.PlayerTestHelper;
+import utilities.RPClass.EntityTestHelper;
+import utilities.RPClass.PortalTestHelper;
 
 public class PortalTest {
 
@@ -21,8 +22,8 @@ public class PortalTest {
 	public static void setUpBeforeClass() throws Exception {
 
 		Log4J.init();
-		Entity.generateRPClass();
-		Portal.generateRPClass();
+		EntityTestHelper.generateRPClasses();
+		PortalTestHelper.generateRPClasses();
 	}
 
 	@Test

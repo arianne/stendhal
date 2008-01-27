@@ -6,7 +6,7 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPWorld;
-import games.stendhal.server.entity.Entity;
+import games.stendhal.server.maps.MockStendlRPWorld;
 
 import java.awt.geom.Rectangle2D;
 import java.io.IOException;
@@ -22,6 +22,7 @@ import org.junit.Test;
 import org.xml.sax.SAXException;
 
 import utilities.PlayerTestHelper;
+import utilities.RPClass.PassiveEntityRespawnPointTestHelper;
 
 public class ItemTest {
 	private static final String ZONE_NAME = "0_semos_village_w";
@@ -30,6 +31,8 @@ public class ItemTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		MockStendlRPWorld.get();
+		PassiveEntityRespawnPointTestHelper.generateRPClasses();
 		StendhalRPWorld world = SingletonRepository.getRPWorld();
 		if (SingletonRepository.getRPWorld().getRPZone(ZONE_NAME) == null) {
 			world.addArea(ZONE_NAME, ZONE_CONTENT);
@@ -46,12 +49,6 @@ public class ItemTest {
 
 	@After
 	public void tearDown() throws Exception {
-	}
-
-	@Test
-	public void testGenerateRPClass() {
-		Entity.generateRPClass();
-		Item.generateRPClass();
 	}
 
 	@Test
