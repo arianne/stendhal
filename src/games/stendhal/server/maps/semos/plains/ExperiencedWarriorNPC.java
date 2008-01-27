@@ -108,8 +108,8 @@ public class ExperiencedWarriorNPC extends SpeakerNPCFactory {
 	 * %1 = time to respawn.
 	 */
 	static final String[] RESPAWN_TEXTS = new String[] {
-			"They seem to get back after %1.",
-			"They're reborn %1 after their death." };
+			"On average they return after %1.",
+			"It varies, but they're reborn around %1 after their death." };
 
 	/**
 	 * %1 = list of items dropped.
