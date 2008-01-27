@@ -29,7 +29,6 @@ public class BeerForHayunnTest {
 
 		@Override
 		public void createDialog(SpeakerNPC npc) {
-
 			super.createDialog(npc);
 		}
 
@@ -54,7 +53,6 @@ public class BeerForHayunnTest {
 
 	@Before
 	public void setup() {
-
 	}
 
 	@Test
@@ -105,6 +103,7 @@ public class BeerForHayunnTest {
 		assertEquals("rejected", player2.getQuest("beer_hayunn"));
 		en.step(player2, "bye");
 	}
+
 	@Test
 	public void testgetHistory() {
 		Player player = PlayerTestHelper.createPlayer("bob");

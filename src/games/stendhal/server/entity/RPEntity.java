@@ -119,7 +119,6 @@ public abstract class RPEntity extends GuidedEntity {
 			"lhand", "armor", "finger", "cloak", "legs", "feet", "keyring" };
 
 	public static void generateRPClass() {
-
 		try {
 			stats = Statistics.getStatistics();
 			RPClass entity = new RPClass("rpentity");

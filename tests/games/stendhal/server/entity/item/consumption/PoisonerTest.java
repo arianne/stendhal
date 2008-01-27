@@ -36,7 +36,6 @@ public class PoisonerTest {
 	@Test
 
 	public final void testFeed() {
-
 		SingletonRepository.getEntityManager();
 		Entity.generateRPClass();
 		ActiveEntity.generateRPClass();

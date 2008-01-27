@@ -111,8 +111,8 @@ public class StendhalRPWorld extends RPWorld {
 		if (instance == null) {
 			instance = new StendhalRPWorld();
 			instance.initialize();
-
 		}
+
 		return instance;
 	}
 
