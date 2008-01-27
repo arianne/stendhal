@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.maps.MockStendlRPWorld;
 
 import org.junit.After;
 import org.junit.BeforeClass;
@@ -15,7 +16,8 @@ public class BloodTest {
 
 	@BeforeClass
 	public static void setUp() throws Exception {
-		BloodTestHelper.generateRPClasses();
+		MockStendlRPWorld.get();
+		
 	}
 
 	@After

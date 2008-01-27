@@ -12,20 +12,20 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import utilities.ZonePlayerAndNPCTest;
+import utilities.ZonePlayerAndNPCTestImpl;
 
 /**
  * Test buying with fractional amounts.
  *
  * @author Martin Fuchs
  */
-public class BarMaidNPCTest extends ZonePlayerAndNPCTest {
+public class BarMaidNPCTest extends ZonePlayerAndNPCTestImpl {
 
 	private static final String ZONE_NAME = "int_semos_tavern_0";
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		ZonePlayerAndNPCTest.setUpBeforeClass();
+		ZonePlayerAndNPCTestImpl.setUpBeforeClass();
 
 		setupZone(ZONE_NAME, new BarMaidNPC());
 	}

@@ -17,15 +17,15 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import utilities.ZonePlayerAndNPCTest;
+import utilities.ZonePlayerAndNPCTestImpl;
 
-public class ZooFoodTest extends ZonePlayerAndNPCTest {
+public class ZooFoodTest extends ZonePlayerAndNPCTestImpl {
 
 	private static final String ZONE_NAME = "testzone";
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		ZonePlayerAndNPCTest.setUpBeforeClass();
+		ZonePlayerAndNPCTestImpl.setUpBeforeClass();
 
 		setupZone(ZONE_NAME, new AnimalKeeperNPC(), new VeterinarianNPC());
 

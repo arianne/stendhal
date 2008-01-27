@@ -11,20 +11,20 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import utilities.ZonePlayerAndNPCTest;
+import utilities.ZonePlayerAndNPCTestImpl;
 
 /**
  * Test for DwarfGuardNPC: sell chaos legs.
  *
  * @author Martin Fuchs
  */
-public class DwarfGuardNPCTest extends ZonePlayerAndNPCTest {
+public class DwarfGuardNPCTest extends ZonePlayerAndNPCTestImpl {
 
 	private static final String ZONE_NAME = "-7_kanmararn_prison";
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		ZonePlayerAndNPCTest.setUpBeforeClass();
+		ZonePlayerAndNPCTestImpl.setUpBeforeClass();
 
 		setupZone(ZONE_NAME, new DwarfGuardNPC());
 

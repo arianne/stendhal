@@ -11,14 +11,14 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import utilities.ZonePlayerAndNPCTest;
+import utilities.ZonePlayerAndNPCTestImpl;
 import utilities.RPClass.CatTestHelper;
 
 /**
  * Test buying cats.
  * @author Martin Fuchs
  */
-public class CatSellerNPCTest extends ZonePlayerAndNPCTest {
+public class CatSellerNPCTest extends ZonePlayerAndNPCTestImpl {
 
 	private static final String ZONE_NAME = "int_ados_felinas_house";
 
@@ -27,7 +27,7 @@ public class CatSellerNPCTest extends ZonePlayerAndNPCTest {
 		MockStendlRPWorld.get();
 		
 		CatTestHelper.generateRPClasses();
-		ZonePlayerAndNPCTest.setUpBeforeClass();
+		ZonePlayerAndNPCTestImpl.setUpBeforeClass();
 
 		setupZone(ZONE_NAME, new CatSellerNPC());
 	}

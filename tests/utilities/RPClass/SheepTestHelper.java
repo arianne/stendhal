@@ -5,7 +5,8 @@ import marauroa.common.game.RPClass;
 
 public class SheepTestHelper {
 	public static void generateRPClasses() {
-		PassiveEntityRespawnPointTestHelper.generateRPClasses();
+	
+		CreatureTestHelper.generateRPClasses();
 		if (!RPClass.hasRPClass("sheep")) {
 			Sheep.generateRPClass();
 		}

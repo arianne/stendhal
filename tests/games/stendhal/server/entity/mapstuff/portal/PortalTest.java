@@ -22,6 +22,7 @@ public class PortalTest {
 	public static void setUpBeforeClass() throws Exception {
 
 		Log4J.init();
+		MockStendlRPWorld.get();
 		EntityTestHelper.generateRPClasses();
 		PortalTestHelper.generateRPClasses();
 	}

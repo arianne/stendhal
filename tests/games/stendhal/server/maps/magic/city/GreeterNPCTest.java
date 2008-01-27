@@ -11,20 +11,20 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import utilities.ZonePlayerAndNPCTest;
+import utilities.ZonePlayerAndNPCTestImpl;
 
 /**
  * Test buying scrolls.
  *
  * @author Martin Fuchs
  */
-public class GreeterNPCTest extends ZonePlayerAndNPCTest {
+public class GreeterNPCTest extends ZonePlayerAndNPCTestImpl {
 
 	private static final String ZONE_NAME = "-1_fado_great_cave_e3";
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		ZonePlayerAndNPCTest.setUpBeforeClass();
+		ZonePlayerAndNPCTestImpl.setUpBeforeClass();
 
 		setupZone(ZONE_NAME, new GreeterNPC());
 	}

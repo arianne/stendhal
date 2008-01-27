@@ -17,9 +17,9 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import utilities.ZonePlayerAndNPCTest;
+import utilities.ZonePlayerAndNPCTestImpl;
 
-public class CampfireTest extends ZonePlayerAndNPCTest {
+public class CampfireTest extends ZonePlayerAndNPCTestImpl {
 
 	private static final String ZONE_NAME = "testzone";
 

@@ -6,6 +6,7 @@ import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.ConsumableItem;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.MockStendlRPWorld;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -14,6 +15,7 @@ import marauroa.common.Log4J;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import utilities.PlayerTestHelper;
@@ -21,8 +23,9 @@ import utilities.RPClass.ItemTestHelper;
 
 public class PoisonerTest {
 
-	@Before
-	public void setUp() throws Exception {
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+		MockStendlRPWorld.get();
 		Log4J.init();
 	}
 

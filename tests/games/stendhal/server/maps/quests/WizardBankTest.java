@@ -12,9 +12,9 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import utilities.ZonePlayerAndNPCTest;
+import utilities.ZonePlayerAndNPCTestImpl;
 
-public class WizardBankTest extends ZonePlayerAndNPCTest {
+public class WizardBankTest extends ZonePlayerAndNPCTestImpl {
 
 	private static final String GRAFINDLE_QUEST_SLOT = "grafindle_gold";
 	private static final String ZARA_QUEST_SLOT = "suntan_cream_zara";
@@ -24,7 +24,7 @@ public class WizardBankTest extends ZonePlayerAndNPCTest {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		MockStendlRPWorld.get();
-		ZonePlayerAndNPCTest.setUpBeforeClass();
+		ZonePlayerAndNPCTestImpl.setUpBeforeClass();
 
 		setupZone(ZONE_NAME);
 

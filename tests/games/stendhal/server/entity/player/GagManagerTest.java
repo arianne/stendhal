@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.maps.MockStendlRPWorld;
 
 import org.junit.After;
 import org.junit.BeforeClass;
@@ -15,7 +16,8 @@ import utilities.PrivateTextMockingTestPlayer;
 public class GagManagerTest {
 
 	@BeforeClass
-	public static void setUp() throws Exception {
+	public static void setUpeforeClass() throws Exception {
+		MockStendlRPWorld.get();
 		PlayerTestHelper.generatePlayerRPClasses();
 		PlayerTestHelper.removePlayer("bob");
 	}

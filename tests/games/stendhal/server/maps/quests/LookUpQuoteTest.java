@@ -16,14 +16,14 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import utilities.ZonePlayerAndNPCTest;
+import utilities.ZonePlayerAndNPCTestImpl;
 
 /**
  * Test for the "Lookup Quote" quest.
  * 
  * @author Martin Fuchs
  */
-public class LookUpQuoteTest extends ZonePlayerAndNPCTest {
+public class LookUpQuoteTest extends ZonePlayerAndNPCTestImpl {
 
 	private static final char TOMMY_FIRST_LETTER = 'T';
 
@@ -48,7 +48,7 @@ public class LookUpQuoteTest extends ZonePlayerAndNPCTest {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		MockStendlRPWorld.get();
-		ZonePlayerAndNPCTest.setUpBeforeClass();
+		ZonePlayerAndNPCTestImpl.setUpBeforeClass();
 
 		setupZone(ZONE_NAME, new FishermanNPC());
 

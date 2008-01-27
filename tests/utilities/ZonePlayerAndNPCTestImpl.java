@@ -15,16 +15,16 @@ import org.junit.After;
  *
  * @author Martin Fuchs
  */
-public abstract class ZonePlayerAndNPCTest extends ZoneAndPlayerTest {
+public abstract class ZonePlayerAndNPCTestImpl extends ZoneAndPlayerTestImpl {
 
 	private List<String> npcNames = new Vector<String>();
-
+	
 	/**
 	 * Register NPC names for cleanup in tearDown().
 	 * 
 	 * @param npcNames
 	 */
-	protected ZonePlayerAndNPCTest(String zoneName, String... npcNames) {
+	protected ZonePlayerAndNPCTestImpl(String zoneName, String... npcNames) {
 		super(zoneName);
 		
 		assertTrue(npcNames.length > 0);

@@ -17,10 +17,10 @@ import marauroa.common.game.RPObject.ID;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import utilities.ZonePlayerAndNPCTest;
+import utilities.ZonePlayerAndNPCTestImpl;
 import utilities.RPClass.ItemTestHelper;
 
-public class IntroducePlayersTest extends ZonePlayerAndNPCTest {
+public class IntroducePlayersTest extends ZonePlayerAndNPCTestImpl {
 
 	private static final String ZONE_NAME = "testzone";
 

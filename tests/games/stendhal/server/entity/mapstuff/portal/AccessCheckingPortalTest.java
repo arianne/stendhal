@@ -30,6 +30,7 @@ public class AccessCheckingPortalTest extends PlayerTestHelper {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		Log4J.init();
+		MockStendlRPWorld.get();
 		PortalTestHelper.generateRPClasses();
 	}
 

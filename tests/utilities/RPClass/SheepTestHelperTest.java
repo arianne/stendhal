@@ -8,7 +8,7 @@ import org.junit.Test;
 public class SheepTestHelperTest {
 	@Test
 	public void testGenerateRPClasses() {
-		CreatureTestHelper.generateRPClasses();
+		
 		SheepTestHelper.generateRPClasses();
 		assertTrue(RPClass.hasRPClass("sheep"));
 	}

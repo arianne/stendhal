@@ -14,6 +14,7 @@ import org.junit.Test;
 
 import utilities.PlayerTestHelper;
 import utilities.PrivateTextMockingTestPlayer;
+import utilities.RPClass.FishSourceTestHelper;
 
 public class FishSourceTest {
 	@BeforeClass
@@ -26,6 +27,7 @@ public class FishSourceTest {
 
 	@Test
 	public void testOnUsed() {
+		FishSourceTestHelper.generateRPClasses();
 		FishSource fs = new FishSource("somefish");
 		PrivateTextMockingTestPlayer player = PlayerTestHelper.createPrivateTextMockingTestPlayer("bob");
 

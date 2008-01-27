@@ -3,6 +3,7 @@ package utilities;
 import static org.junit.Assert.assertTrue;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
+import games.stendhal.server.maps.MockStendlRPWorld;
 import marauroa.common.Log4J;
 
 import org.junit.BeforeClass;
@@ -19,7 +20,7 @@ public abstract class QuestHelper extends PlayerTestHelper  {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		Log4J.init();
-
+		MockStendlRPWorld.get();
 		generatePlayerRPClasses();
 		ItemTestHelper.generateRPClasses();
 		generateNPCRPClasses();

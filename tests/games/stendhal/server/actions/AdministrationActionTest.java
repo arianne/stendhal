@@ -11,6 +11,7 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.creature.RaidCreature;
+import games.stendhal.server.entity.mapstuff.office.ArrestWarrant;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Jail;
 import games.stendhal.server.entity.player.Player;
@@ -27,12 +28,18 @@ import org.junit.Test;
 import utilities.PlayerTestHelper;
 import utilities.SpeakerNPCTestHelper;
 import utilities.PrivateTextMockingTestPlayer;
+import utilities.RPClass.ArrestWarrentTestHelper;
+import utilities.RPClass.CorpseTestHelper;
+import utilities.RPClass.CreatureTestHelper;
 
 public class AdministrationActionTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		Log4J.init();
+		ArrestWarrentTestHelper.generateRPClasses();
+		CreatureTestHelper.generateRPClasses();
+		CorpseTestHelper.generateRPClasses();
 		// load item classes including "dagger" from XML
 		//DefaultEntityManager.getInstance();	
 		AdministrationAction.register();
@@ -501,6 +508,7 @@ public class AdministrationActionTest {
 
 	@Test
 	public final void testJail() {
+		
 		MockStendlRPWorld.get().addRPZone(new StendhalRPZone("-1_semos_jail", 100, 100));
 
 		PrivateTextMockingTestPlayer pl = PlayerTestHelper.createPrivateTextMockingTestPlayer("hugo");
@@ -644,7 +652,7 @@ public class AdministrationActionTest {
 
 	@Test
 	public final void testOnDestroyRat() {
-
+		CreatureTestHelper.generateRPClasses();
 		PrivateTextMockingTestPlayer pl = PlayerTestHelper.createPrivateTextMockingTestPlayer("hugo");
 		Creature rat = new RaidCreature(SingletonRepository.getEntityManager().getCreature("rat"));
 		StendhalRPZone testzone = new StendhalRPZone("Testzone");

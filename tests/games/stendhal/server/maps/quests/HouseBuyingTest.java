@@ -11,21 +11,21 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import utilities.ZonePlayerAndNPCTest;
+import utilities.ZonePlayerAndNPCTestImpl;
 
 /**
  * Test buying ice cream.
  *
  * @author Martin Fuchs
  */
-public class HouseBuyingTest extends ZonePlayerAndNPCTest {
+public class HouseBuyingTest extends ZonePlayerAndNPCTestImpl {
 
 	private static final String ZONE_NAME = "0_kalavan_city";
 	private static final String ZONE_NAME2 = "int_ados_town_hall_3";
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		ZonePlayerAndNPCTest.setUpBeforeClass();
+		ZonePlayerAndNPCTestImpl.setUpBeforeClass();
 
 		setupZone(ZONE_NAME);
 		setupZone(ZONE_NAME2);

@@ -9,6 +9,7 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.MockStendlRPWorld;
 import games.stendhal.server.maps.amazon.hut.PrincessNPC;
 
 import org.junit.Before;
@@ -27,6 +28,7 @@ public class AmazonPrincessTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		MockStendlRPWorld.get();
 		QuestHelper.setUpBeforeClass();
 	}
 
