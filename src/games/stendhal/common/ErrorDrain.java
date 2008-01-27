@@ -7,8 +7,8 @@ package games.stendhal.common;
  */
 public interface ErrorDrain {
 
-	public void setError(String error);
-	public boolean hasError();
-	public String getErrorString();
+	void setError(String error);
+	boolean hasError();
+	String getErrorString();
 	
 }
