@@ -14,7 +14,6 @@ import java.util.Map;
 import marauroa.common.Log4J;
 
 import org.junit.After;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 

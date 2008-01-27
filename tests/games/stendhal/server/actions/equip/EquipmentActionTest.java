@@ -12,10 +12,7 @@ import org.junit.Test;
 
 import utilities.PlayerTestHelper;
 import utilities.PrivateTextMockingTestPlayer;
-import utilities.RPClass.CreatureTestHelper;
-import utilities.RPClass.PortalTestHelper;
-import utilities.RPClass.SheepFoodTestHelper;
-import utilities.RPClass.SheepTestHelper;
+
 
 /**
  * Test cases for drop.
