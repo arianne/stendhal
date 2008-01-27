@@ -143,8 +143,7 @@ public class ScriptRunner extends StendhalServerExtension implements
 				"script", true)) {
 			return;
 		}
-		String text = "usage: #/script #[-execute|-load>|-unload] #<filename> #[<args>]\n"
-					+"  mode is either load (default) or remove";
+		String text = "usage: #/script #[-execute|-load>|-unload] #<filename> #[<args>]\n mode is either load (default) or remove";
 		if (action.has("target")) {
 
 			// concat target and args to get the original string back
