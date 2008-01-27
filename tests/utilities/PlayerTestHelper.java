@@ -16,6 +16,7 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.slot.PlayerSlot;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
+import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
@@ -267,29 +268,50 @@ public abstract class PlayerTestHelper {
 	}
 
 	public static void generateItemRPClasses() {
-		Entity.generateRPClass();
-		Item.generateRPClass();
+		if (!RPClass.hasRPClass("entity")) {
+			Entity.generateRPClass();
+		}
+
+		if (!RPClass.hasRPClass("item")) {
+			Item.generateRPClass();
+		}
+	}
+
+	public static void generateEntityRPClasses() {
+		if (!RPClass.hasRPClass("entity")) {
+			Entity.generateRPClass();
+		}
+
+		if (!RPClass.hasRPClass("active_entity")) {
+			ActiveEntity.generateRPClass();
+		}
+
+		if (!RPClass.hasRPClass("rpentity")) {
+			RPEntity.generateRPClass();
+		}
 	}
 
 	public static void generateNPCRPClasses() {
-		Entity.generateRPClass();
-		ActiveEntity.generateRPClass();
-		RPEntity.generateRPClass();
-		NPC.generateRPClass();
+		generateEntityRPClasses();
+
+		if (!RPClass.hasRPClass("npc")) {
+			NPC.generateRPClass();
+		}
 	}
 
 	public static void generatePlayerRPClasses() {
-		Entity.generateRPClass();
-		ActiveEntity.generateRPClass();
-		RPEntity.generateRPClass();
-		Player.generateRPClass();
+		generateEntityRPClasses();
+
+		if (!RPClass.hasRPClass("player")) {
+			Player.generateRPClass();
+		}
 	}
 
 	public static void generateCreatureRPClasses() {
-		Entity.generateRPClass();
-		ActiveEntity.generateRPClass();
-		RPEntity.generateRPClass();
-		NPC.generateRPClass();
-		Creature.generateRPClass();
+		generateNPCRPClasses();
+
+		if (!RPClass.hasRPClass("creature")) {
+			Creature.generateRPClass();
+		}
 	}
 }
