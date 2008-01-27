@@ -3,10 +3,11 @@ package games.stendhal.server.entity.mapstuff.chest;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import games.stendhal.server.entity.PassiveEntity;
 import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.PassiveEntity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Corpse;
+import marauroa.common.game.RPClass;
 import marauroa.common.game.SlotIsFullException;
 
 import org.junit.After;
@@ -17,6 +18,13 @@ public class ChestTest {
 
 	@Before
 	public void setUp() throws Exception {
+		if (!RPClass.hasRPClass("entity")) {
+			Entity.generateRPClass();
+		}
+
+		if (!RPClass.hasRPClass("chest")) {
+			Chest.generateRPClass();
+		}
 	}
 
 	@After
@@ -25,8 +33,6 @@ public class ChestTest {
 
 	@Test(expected = SlotIsFullException.class)
 	public final void testSize() {
-		Entity.generateRPClass();
-		Chest.generateRPClass();
 		Chest ch = new Chest();
 		assertEquals(0, ch.size());
 		for (int i = 0; i < 30; i++) {
@@ -40,8 +46,6 @@ public class ChestTest {
 
 	@Test
 	public final void testOpen() {
-		Entity.generateRPClass();
-		Chest.generateRPClass();
 		Chest ch = new Chest();
 		assertFalse(ch.isOpen());
 		ch.open();
@@ -49,13 +53,10 @@ public class ChestTest {
 		assertTrue(ch.isOpen());
 		ch.close();
 		assertFalse(ch.isOpen());
-
 	}
 
 	@Test
 	public final void testOnUsed() {
-		Entity.generateRPClass();
-		Chest.generateRPClass();
 		Chest ch = new Chest();
 		assertFalse(ch.isOpen());
 		ch.onUsed(new RPEntity() {
