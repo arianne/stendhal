@@ -29,12 +29,12 @@ public abstract class PlayerTestHelper {
 	 * @return player
 	 */
 	public static Player createPlayer(String name) {
-		PlayerTestHelper.generatePlayerRPClasses();
+		generatePlayerRPClasses();
 
 		Player pl = new Player(new RPObject());
 		pl.setName(name);
 
-		PlayerTestHelper.addEmptySlots(pl);
+		addEmptySlots(pl);
 
 		return pl;
 	}
@@ -46,10 +46,10 @@ public abstract class PlayerTestHelper {
 	 * @return mock player object
 	 */
 	public static PrivateTextMockingTestPlayer createPrivateTextMockingTestPlayer(String name) {
-		PlayerTestHelper.generatePlayerRPClasses();
+		generatePlayerRPClasses();
 
 		PrivateTextMockingTestPlayer pl = new PrivateTextMockingTestPlayer(new RPObject(), name);
-		PlayerTestHelper.addEmptySlots(pl);
+		addEmptySlots(pl);
 
 		return pl;
 	}
