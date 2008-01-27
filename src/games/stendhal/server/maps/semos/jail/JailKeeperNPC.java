@@ -33,8 +33,8 @@ public class JailKeeperNPC implements ZoneConfigurator {
 			@Override
 			protected void createPath() {
 				List<Node> nodes = new LinkedList<Node>();
-				nodes.add(new Node(4, 15));
-				nodes.add(new Node(27, 15));
+				nodes.add(new Node(4, 17));
+				nodes.add(new Node(27, 17));
 				nodes.add(new Node(27, 18));
 				nodes.add(new Node(4, 18));
 				setPath(new FixedPath(nodes, true));
@@ -50,7 +50,7 @@ public class JailKeeperNPC implements ZoneConfigurator {
 		};
 
 		npc.setEntityClass("youngsoldiernpc");
-		npc.setPosition(4, 15);
+		npc.setPosition(4, 17);
 		npc.initHP(100);
 		zone.add(npc);
 	}
