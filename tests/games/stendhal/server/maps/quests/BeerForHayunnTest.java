@@ -62,6 +62,9 @@ public class BeerForHayunnTest {
 		(new MockRetiredAdventurer()).createDialog(hayunn);
 		Engine en = hayunn.getEngine();
 		en.step(player, "hi");
+		// we assume the player has already completed the meet hayunn quest
+		// so that we know which of the greetings he will use
+		player.setQuest("meet_hayunn", "done");
 		assertTrue(player.isQuestCompleted("meet_hayunn"));
 		assertTrue(hayunn.isTalking());
 		assertEquals(
@@ -89,6 +92,7 @@ public class BeerForHayunnTest {
 		Player player2 = PlayerTestHelper.createPlayer("player");
 
 		en.step(player2, "hi");
+		player2.setQuest("meet_hayunn", "done");
 		assertTrue(player2.isQuestCompleted("meet_hayunn"));
 		assertTrue(hayunn.isTalking());
 		assertEquals(
