@@ -61,7 +61,7 @@ public class HealerNPC implements ZoneConfigurator {
 		zone.add(npc);
 	}
     // Don't want to use standard responses for Heal, in fact what to modify them all, so just configure it all here.
-    private void addHealer(SpeakerNPC npc, int cost) {
+    private void addHealer(final SpeakerNPC npc, int cost) {
     final HealerBehaviour healerBehaviour = new HealerBehaviour(cost);
 		Engine engine = npc.getEngine();
 
@@ -80,11 +80,14 @@ public class HealerNPC implements ZoneConfigurator {
 		        new SpeakerNPC.ChatAction() {
 			        @Override
 			        public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-				        healerBehaviour.setChosenItemName("heal");
-				        healerBehaviour.setAmount(1);
-				        int cost = healerBehaviour.getCharge(player);
-					engine.say("For " + cost + " cash, ok?");
-				}
+                        healerBehaviour.setChosenItemName("heal");
+                        healerBehaviour.setAmount(1);
+                        int cost = healerBehaviour.getCharge(npc, player);
+
+                        if (cost != 0) {
+                        	engine.say("For " + cost + " cash, ok?");
+                        }
+			        }
 		        });
 
 		engine.add(ConversationStates.HEAL_OFFERED, 
@@ -95,7 +98,7 @@ public class HealerNPC implements ZoneConfigurator {
 		        new SpeakerNPC.ChatAction() {
 			        @Override
 			        public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
-				        if (player.drop("money", healerBehaviour.getCharge(player))) {
+				        if (player.drop("money", healerBehaviour.getCharge(npc, player))) {
 					        healerBehaviour.heal(player);
 					        engine.say("All better now, everyone better. I love you, I do.");
 				        } else {
