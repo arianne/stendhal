@@ -31,7 +31,7 @@ public class TaxmanNPC implements ZoneConfigurator {
 
 	private void buildNPC(StendhalRPZone zone) {
 		// Please change the NPCOwned Chest name if you change this NPC name.
-		SpeakerNPC npc = new SpeakerNPC("Tax Man") {
+		SpeakerNPC npc = new SpeakerNPC("Mr Taxman") {
 
 			@Override
 			protected void createPath() {
