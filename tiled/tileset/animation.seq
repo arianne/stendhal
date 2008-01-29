@@ -289,6 +289,33 @@ tileset/ground/rock/hell.png                    *        10:26
 tileset/ground/rock/hell.png                    *        26:42    
 tileset/ground/rock/hell.png                    *        42:58   
 tileset/ground/rock/hell.png                    *        58:10   
+# added by tigertoes
+tileset/ground/rock/hell.png                    *        250:252:254
+tileset/ground/rock/hell.png                    *        252:254:250
+tileset/ground/rock/hell.png                    *        254:250:252
+tileset/ground/rock/hell.png                    *        251:253:255
+tileset/ground/rock/hell.png                    *        253:255:251
+tileset/ground/rock/hell.png                    *        255:251:253
+tileset/ground/rock/hell.png                    *        266:268:270
+tileset/ground/rock/hell.png                    *        268:270:266
+tileset/ground/rock/hell.png                    *        270:266:268
+tileset/ground/rock/hell.png                    *        267:269:271
+tileset/ground/rock/hell.png                    *        269:271:267
+tileset/ground/rock/hell.png                    *        271:267:269
+tileset/ground/rock/hell.png                    *        272:273:274
+tileset/ground/rock/hell.png                    *        273:274:272
+tileset/ground/rock/hell.png                    *        274:272:273
+tileset/ground/rock/hell.png                    *        288:289:290
+tileset/ground/rock/hell.png                    *        289:290:288
+tileset/ground/rock/hell.png                    *        290:288:289
+tileset/ground/rock/hell.png                    *        304:305:306
+tileset/ground/rock/hell.png                    *        305:306:304
+tileset/ground/rock/hell.png                    *        306:304:305
+tileset/ground/rock/hell.png                    *        291:292:293:294:295
+tileset/ground/rock/hell.png                    *        292:293:294:295:291
+tileset/ground/rock/hell.png                    *        293:294:295:291:292
+tileset/ground/rock/hell.png                    *        294:295:291:292:293
+tileset/ground/rock/hell.png                    *        295:291:292:293:294
 
 # water from ground.png
 # the waves travel north, if the map uses the first tile,

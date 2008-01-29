@@ -21,46 +21,46 @@
  <tileset name="Sin nombre" firstgid="97" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/rock/hell.png"/>
  </tileset>
- <tileset name="Sin nombre" firstgid="369" tilewidth="32" tileheight="32">
+ <tileset name="Sin nombre" firstgid="401" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/corpse/huge_animal.png"/>
  </tileset>
- <tileset name="Sin nombre" firstgid="373" tilewidth="32" tileheight="32">
+ <tileset name="Sin nombre" firstgid="405" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/light/dark_torch.png"/>
  </tileset>
- <tileset name="Sin nombre" firstgid="381" tilewidth="32" tileheight="32">
+ <tileset name="Sin nombre" firstgid="413" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/blood/nsew_stains.png"/>
  </tileset>
- <tileset name="Sin nombre" firstgid="385" tilewidth="32" tileheight="32">
+ <tileset name="Sin nombre" firstgid="417" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/flagpole.png"/>
  </tileset>
- <tileset name="Sin nombre" firstgid="388" tilewidth="32" tileheight="32">
+ <tileset name="Sin nombre" firstgid="420" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/banners/flag.png"/>
  </tileset>
- <tileset name="Sin nombre" firstgid="400" tilewidth="32" tileheight="32">
+ <tileset name="Sin nombre" firstgid="432" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/huge_animal.png"/>
  </tileset>
- <tileset name="Sin nombre" firstgid="413" tilewidth="32" tileheight="32">
+ <tileset name="Sin nombre" firstgid="445" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/madaram.png"/>
  </tileset>
- <tileset name="stairs" firstgid="426" tilewidth="32" tileheight="32">
+ <tileset name="stairs" firstgid="458" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/stairs_orange.png"/>
  </tileset>
- <tileset name="portal" firstgid="438" tilewidth="32" tileheight="32">
+ <tileset name="portal" firstgid="470" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset name="detail" firstgid="445" tilewidth="32" tileheight="32">
+ <tileset name="detail" firstgid="477" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/grey_detail.png"/>
  </tileset>
- <tileset name="balrog" firstgid="453" tilewidth="32" tileheight="32">
+ <tileset name="balrog" firstgid="485" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/enormous_creature.png"/>
  </tileset>
- <tileset name="blackdeath" firstgid="454" tilewidth="32" tileheight="32">
+ <tileset name="blackdeath" firstgid="486" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/huge_animal.png"/>
  </tileset>
- <tileset name="necro" firstgid="467" tilewidth="32" tileheight="32">
+ <tileset name="necro" firstgid="499" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/hybrid.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="480" tilewidth="32" tileheight="32">
+ <tileset name="Untitled" firstgid="512" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/grey_corners.png"/>
  </tileset>
  <layer name="0_floor" width="32" height="32">
@@ -70,7 +70,7 @@
  </layer>
  <layer name="1_terrain" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3U2w3AIAxDUZi7y7Z0EUbIyw5Csr8jnfuVMbQb9k7/7Re4RdvohoyNaqjY1QaEnW1A2tEGhu1tYNqehqfB7zA0Tbtvp//PavB/w2A2WDazwWszGqI2siFrIxqqdqUBZWca0LbG2wYrkyIPABAAAA==
+   H4sIAAAAAAAAAO2U2w3AIAzEgO4/QZftCOTho0I6f0fYCJQxzBWs+OhMzNJuvKFxTrsBuEO5AXzDdAP9fzINAne4QeiONLxT7z/hMMbcx9/7Zx3Yv8/GoWzYuZUNUbeiIesmG6puoqHr7jRQ7koD7TY6PhDUrWAAEAAA
   </data>
  </layer>
  <layer name="2_object" width="32" height="32">
@@ -80,7 +80,7 @@
  </layer>
  <layer name="3_roof" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3UQQ0AMAzEsBb1NPZDsVMr2QTySxUAp/83bqAB7JP4T6IBwHwP49BVTgAQAAA=
+   H4sIAAAAAAAAAO3UQQ0AMAzEsJY/gGlsh2KnVrIJ5JcqAE7/b9xAA9gn8Z9EA4D5Hp7pGJoAEAAA
   </data>
  </layer>
  <layer name="4_roof_add" width="32" height="32">
@@ -90,7 +90,7 @@
  </layer>
  <layer name="objects" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3UQQ0AMAgEQepfF4hATX8oIGmazCjYz10E/CnP6wJgWy/vuvwEAMC4HPcrlAAQAAA=
+   H4sIAAAAAAAAAO3UsQ0AMAgDQbL/nDAEVTomQIoi3U3wjR0Bf8rzugDY1su7Lj8BADAuIzhBAAAQAAA=
   </data>
  </layer>
  <layer name="collision" width="32" height="32" opacity="0.49">

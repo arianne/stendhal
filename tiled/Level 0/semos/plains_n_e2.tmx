@@ -57,25 +57,25 @@
  <tileset name="../../tileset/logic/item/resources.png" firstgid="360" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/item/resources.png"/>
  </tileset>
- <tileset name="../../tileset/logic/creature/gnome.png" firstgid="362" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/creature/gnome.png" firstgid="366" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/gnome.png"/>
  </tileset>
- <tileset name="../../tileset/logic/item/mushroom.png" firstgid="364" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/item/mushroom.png" firstgid="368" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/item/mushroom.png"/>
  </tileset>
- <tileset name="../../tileset/logic/item/sheepfood.png" firstgid="370" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/item/sheepfood.png" firstgid="374" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/item/sheepfood.png"/>
  </tileset>
- <tileset name="../../tileset/logic/creature/animal.png" firstgid="371" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/creature/animal.png" firstgid="375" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/animal.png"/>
  </tileset>
- <tileset name="../../tileset/logic/item/vegetable.png" firstgid="397" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/item/vegetable.png" firstgid="401" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/item/vegetable.png"/>
  </tileset>
- <tileset name="../../tileset/logic/collision.png" firstgid="408" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/collision.png" firstgid="412" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset name="herb" firstgid="409" tilewidth="32" tileheight="32">
+ <tileset name="herb" firstgid="413" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/item/herb.png"/>
  </tileset>
  <layer name="0_floor" width="64" height="128">
@@ -105,12 +105,12 @@
  </layer>
  <layer name="objects" width="64" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3bsW7CMBAG4ORZO7RCbYeOFQtPwEyftmtFA9jEkeO775MYwkSc/46LlUwTAAAAAJG9zL1/AbBnX0l7xDPn/ZF0reCvTHWQ6VyjMgdvI+vsAACZHP3fE9infAMM4VTZr98a9Hcz0PPsF41BxonsXb6LWCcAGNvr/P9z/T3LzvO6Y/pbyv9SPcC1CPV/r+/LP3vxvVEO1/T/Eeu9t8vO1qT3M8Bb5brUo9lf/79N/QOU+QnWD+0bxNB7BhxVSf7VA1GVZF7+iaok8/JPVDW9X/6Jpmb2l3/3mdGY/4motE/p/2RWk/0W+feeJFnJPgC0d5jr9qfsZUFe6j++ltdYXgD6+wXvgT0RAIAAAA==
+   H4sIAAAAAAAAAO3bsW7CMBAG4ORZO7QTajt0rFh4Amb6rF0rGsAmjhzffZ/EECbi/HdcrGSaAAAAAIjsZe79C4A9+0raI54574+kawV/ZaqDTOcalTl4G1lnBwDI5Oj/nsA+5RtgCKfKfv3WoL+bgZ5nv2gMMk5k7/JdxDoBwNhe5/+f6+9Zdp7XHdPfUv6X6gGuRaj/e31f/tmL741yuKb/j1jvvV12tia9nwHeKtelHs3++v9t6h+gzE+wfmjfIIbeM+CoSvKvHoiqJPPyT1QlmZd/oqrp/fJPNDWzv/y7z4zG/E9EpX1K/yezmuy3yL/3JMlK9gGgvcNctz9lLwvyUv/xtbzG8gLQ3y+ib2lTAIAAAA==
   </data>
  </layer>
  <layer name="collision" width="64" height="128" visible="0" opacity="0.52">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2ZS46DUBADyf0vkOOOnlAkFgyB94nd3VUSq0ixywMENNu2be/XfjizsmMk/7Nj1Xc7ceU/2n/ltjPp2eCuQ5QNzph9Ppx9b0TYYIcNdmbdI6Myej1k2KDBtTAGG7BBgw3WPXtFgg3Y4BtswAaNaBus6Bllg5Ud3e+Pxz6/3sBhl1/lO2+ggA3OYQOuk8aT+0XWPXo2yL7JEacdHLaueh5cUd0fAKCX6r8h+ONf2R/yUvmdsvo7dXX/RmX3D7hrNnDZ845v1r//kezn+hVPzvWs+zxxz77Bt88z+t91y+j+IbMbgDsrr7+R972Zh2oDh/uasgP+umyHDvjrsh064K/LduiAvy7boQP+umyHDopsp/8hqPxdwL9G5n/gXyPTCfzVDbQ4+Ve//nn+02U7dMBfl+3QAX9dtkMH/HXZDh3w12U7dMjk3/M8if+c7BGU/g5E6zsb/GtmO3TAX5ft0AF/XbZDB/x12Q4d8Ndl93aY+Ywf2X/GDlH9VdkrwF+b7XAAAFSh+r0P/9r+AAAAAKDhD2XFJOAAgAAA
+   H4sIAAAAAAAAAO2ZS46DUBADyf2vkMOOnlAkFgyB94nd3VUSq0ixywMENNu2be/XfjizsmMk/7Nj1Xc7ceU/2n/ltjPp2eCuQ5QNzph9Ppx9b0TYYIcNdmbdI6Myej1k2KDBtTAGG7BBgw3WPXtFgg3Y4BtswAaNaBus6Bllg5Ud3e+Pxz6/3sBhl1/lO2+ggA3OYQOuk8aT+0XWPXo2yL7JEacdHLaueh5cUd0fAKCX6r8h+ONf2R/yUvmdsvo7dXX/RmX3D7hrNnDZ845v1r//kezn+hVPzvWs+zxxz77Bt88z+t91y+j+IbMbgDsrr7+R972Zh2oDh/uasgP+umyHDvjrsh064K/LduiAvy7boQP+umyHDopsp/8hqPxdwL9G5n/gXyPTCfzVDbQ4+Ve//nn+02U7dMBfl+3QAX9dtkMH/HXZDh3w12U7dMjk3/M8if+c7BGU/g5E6zsb/GtmO3TAX5ft0AF/XbZDB/x12Q4d8Ndl93aY+Ywf2X/GDlH9VdkrwF+b7XAAAFSh+r0P/9r+AAAAAKDhDyorGecAgAAA
   </data>
  </layer>
  <layer name="protection" width="64" height="128">

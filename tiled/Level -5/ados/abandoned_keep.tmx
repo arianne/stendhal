@@ -24,25 +24,25 @@
  <tileset name="Sin nombre" firstgid="98" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/rock/hell.png"/>
  </tileset>
- <tileset name="portal" firstgid="370" tilewidth="32" tileheight="32">
+ <tileset name="portal" firstgid="402" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset name="stairs" firstgid="377" tilewidth="32" tileheight="32">
+ <tileset name="stairs" firstgid="409" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/stairs.png"/>
  </tileset>
- <tileset name="stairs down" firstgid="381" tilewidth="32" tileheight="32">
+ <tileset name="stairs down" firstgid="413" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/grey_stone_stairs_down.png"/>
  </tileset>
- <tileset name="grey detail" firstgid="387" tilewidth="32" tileheight="32">
+ <tileset name="grey detail" firstgid="419" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/grey_detail.png"/>
  </tileset>
- <tileset name="mithrilguys" firstgid="395" tilewidth="32" tileheight="32">
+ <tileset name="mithrilguys" firstgid="427" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/human_soldier.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="404" tilewidth="32" tileheight="32">
+ <tileset name="Untitled" firstgid="436" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/item/jewelry.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="407" tilewidth="32" tileheight="32">
+ <tileset name="Untitled" firstgid="439" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/item/resources.png"/>
  </tileset>
  <layer name="0_floor" width="32" height="32">
@@ -57,12 +57,12 @@
  </layer>
  <layer name="2_object" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3NAQEAMAjAoBn77e3hoQAFAFz35u8fAKgFJNaJSgAQAAA=
+   H4sIAAAAAAAAAO3NAQEAMAjAoNk/wdvaw0MBCgC47s3fPwBQC8BOkH0AEAAA
   </data>
  </layer>
  <layer name="3_roof" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3UIRIAIAwDweYVPBn4NaJUgESUituZk7ExAwDcurzsbWi77G2Y8rK3APAb/8//AxUNnb1alBFqlgAQAAA=
+   H4sIAAAAAAAAAO3UIRIAIAwDweYV/F8Bv0SUCpCIUnE7czI2ZgCAW5eXvQ1tl70NU172FgB+4//5f6CiobNXC1QCMJQAEAAA
   </data>
  </layer>
  <layer name="4_roof_add" width="32" height="32">
@@ -72,7 +72,7 @@
  </layer>
  <layer name="objects" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjAAFmMTIwzATi2UA8B4qnAfFUIJ7CSJnZPUTop8R+Ysynpf3UcA8tw3+ogX5GCB61f2TaPwpIAxOJiKsSEuNzMpXjn1T7qQWICZvBAnCFOSlxMZT8OwpGwWAGhNpxxLbzCKmjdllLC0CqG4eCn0YyAACLuGqQABAAAA==
+   H4sIAAAAAAAAAGNgGAWjAAF2MTIw7ATi3UC8B4q3AfFWIN7CSJnZa4jQT4n9xJhPS/up4R5ahv9QA+sZIXjU/pFp/yggDWwkIq6mkBifm6kc/6TaTy1ATNgMFoArzEmJi6Hk31EwCgYzINSOI7adR0gdtctaWgBS3TgU/DSSAQAUdNEbABAAAA==
   </data>
  </layer>
  <layer name="collision" width="32" height="32" opacity="0.51">

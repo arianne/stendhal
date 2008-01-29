@@ -201,10 +201,10 @@
  <tileset name="huge animals" firstgid="384" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/huge_animal.png"/>
  </tileset>
- <tileset name="webs" firstgid="396" tilewidth="32" tileheight="32">
+ <tileset name="webs" firstgid="397" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/decoration/webs.png"/>
  </tileset>
- <tileset name="animals" firstgid="402" tilewidth="32" tileheight="32">
+ <tileset name="animals" firstgid="403" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/animal.png"/>
  </tileset>
  <layer name="0_floor" width="20" height="20">
@@ -219,12 +219,12 @@
  </layer>
  <layer name="2_object" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgwA2yGBkYsoE4hxGPIiygD6i+AIgL0fTlAvl5QJxPonkjEVRSOYyobd4oGFygjsrxO9jNowRUU9kt1DZvKAEAFcnMBEAGAAA=
+   H4sIAAAAAAAAAGNgwA2yGBkYsoE4hxGPIiygH6i+AIgL0fTlAvl5QJxPonkjEVRSOYyobd4oGFygjsrxO9jNowRUU9kt1DZvKAEAVy75V0AGAAA=
   </data>
  </layer>
  <layer name="3_roof" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoD7oY2Rg6GeknnkTgGZNpKJ5tACVg9x9o2AUDFVQPZq3Bi0AABQ/TOlABgAA
+   H4sIAAAAAAAAAGNgoD7oZ2RgmMBIPfMmAs2aREXzaAEqB7n7RsEoGKqgejRvDVoAANj6+UBABgAA
   </data>
  </layer>
  <layer name="4_roof_add" width="20" height="20">
@@ -234,7 +234,7 @@
  </layer>
  <layer name="objects" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWkAC1Gys1YTAUzRgH5oHU0/EcBFcCS0XTEAAArgeuEQAYAAA==
+   H4sIAAAAAAAAAGNgGAWkAC1Gys1YQgUzRgH5oHU0/EcBFcDS0XTEAADAXjEJQAYAAA==
   </data>
  </layer>
  <layer name="collision" width="20" height="20" opacity="0.41">

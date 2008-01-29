@@ -21,34 +21,34 @@
  <tileset name="Sin nombre" firstgid="97" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/rock/hell.png"/>
  </tileset>
- <tileset name="Sin nombre" firstgid="369" tilewidth="32" tileheight="32">
+ <tileset name="Sin nombre" firstgid="401" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/corpse/huge_animal.png"/>
  </tileset>
- <tileset name="Sin nombre" firstgid="373" tilewidth="32" tileheight="32">
+ <tileset name="Sin nombre" firstgid="405" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/light/dark_torch.png"/>
  </tileset>
- <tileset name="Sin nombre" firstgid="381" tilewidth="32" tileheight="32">
+ <tileset name="Sin nombre" firstgid="413" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/blood/nsew_stains.png"/>
  </tileset>
- <tileset name="Sin nombre" firstgid="385" tilewidth="32" tileheight="32">
+ <tileset name="Sin nombre" firstgid="417" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/flagpole.png"/>
  </tileset>
- <tileset name="Sin nombre" firstgid="388" tilewidth="32" tileheight="32">
+ <tileset name="Sin nombre" firstgid="420" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/banners/flag.png"/>
  </tileset>
- <tileset name="Sin nombre" firstgid="400" tilewidth="32" tileheight="32">
+ <tileset name="Sin nombre" firstgid="432" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/huge_animal.png"/>
  </tileset>
- <tileset name="Sin nombre" firstgid="412" tilewidth="32" tileheight="32">
+ <tileset name="Sin nombre" firstgid="445" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/madaram.png"/>
  </tileset>
- <tileset name="stairs" firstgid="425" tilewidth="32" tileheight="32">
+ <tileset name="stairs" firstgid="458" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/stairs_orange.png"/>
  </tileset>
- <tileset name="portal" firstgid="437" tilewidth="32" tileheight="32">
+ <tileset name="portal" firstgid="470" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset name="detail" firstgid="444" tilewidth="32" tileheight="32">
+ <tileset name="detail" firstgid="477" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/grey_detail.png"/>
  </tileset>
  <layer name="0_floor" width="32" height="32">
@@ -58,17 +58,17 @@
  </layer>
  <layer name="1_terrain" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAVDBcgzMjDMxiM/G6qGlvZTQ82o/UPD/kKgWUVA3MA4MPYXA80qQTKP3vbXoZlF6/xXTUAvyGxkTEicHDuIBXuAeC8U76OOkUSDGkZM+2tomO+wgYH0P7H2g9IvLA9TE5AS/rA8XE9lNxAb/rU0ShfDMf2TUjaQ6//R8oc6YCiUP7QCo+E/Gv7rgfZtgOKNdLYbZv9mKN4yAPZTCwAABCD8swAQAAA=
+   H4sIAAAAAAAAAO2USwqAMAxE25N4Zj+7+juIegYVvY8ptCAqWiVpqWRgNlrn2ZBECFYsSqQQ6ua9Mmco+RhnmB8HP4WsDNzKMPwcsopdnm9+fciinj/18K3O3vvp+ReGqzpwbzzgRDqrlGd+STh3Vwp5f1e+7l87w5h6U387ww3yP7jWvyLqiz/2/5vd8PX+vH9wFMP+oRLXn+s/Am8ynj2zLX8xXgPwsbQBrYWeBwAQAAA=
   </data>
  </layer>
  <layer name="2_object" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3MwQkAMAgAMV29XdwVLAj2kbyPiwDgZydnu1e3+e12AADsKIAnUdcAEAAA
+   H4sIAAAAAAAAAO3MwQkAMAgAMd1/i3ZRV7Ag2EfyPi4CgJ+dnO1e3ea32wEAsKMAtLTN/wAQAAA=
   </data>
  </layer>
  <layer name="3_roof" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjYBSMglFQzohbrhEo149Hnlh1lUSYMdhBGRY/YBMbBbQBo+E/sIBW4Y+v/KEWoIcdtAaj6X9gwWj4DywYDf+BBwcZUfFQBQA4k8a9ABAAAA==
+   H4sIAAAAAAAAAGNgGAWjYBSMglEwnRG33EKg3Ho88sSqm0mEGYMdTMPiB2xio4A2YDT8BxbQKvzxlT/UAvSwg9ZgNP0PLBgN/4EFo+E/8OARIyoeqgAA79YVRQAQAAA=
   </data>
  </layer>
  <layer name="4_roof_add" width="32" height="32">
@@ -78,7 +78,7 @@
  </layer>
  <layer name="objects" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjgDwwh3GgXTAKRsHAgOWM2NmjYBRQAqbRMC3R0uxRMApGwSgYBaNgpIDtjBA8lAEAwQnahwAQAAA=
+   H4sIAAAAAAAAAGNgGAWjgDywl3GgXTAKRsHAgBOM2NmjYBRQArbRMC3R0uxRMApGwSgYBaNgpIAbjBA8lAEAjip4XQAQAAA=
   </data>
  </layer>
  <layer name="collision" width="32" height="32" opacity="0.49">

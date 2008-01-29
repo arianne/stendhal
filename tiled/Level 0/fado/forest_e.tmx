@@ -63,7 +63,7 @@
  <tileset name="Untitled" firstgid="748" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/item/resources.png"/>
  </tileset>
- <tileset name="portal" firstgid="750" tilewidth="32" tileheight="32">
+ <tileset name="portal" firstgid="754" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
  <layer name="0_floor" width="128" height="128">
@@ -88,7 +88,7 @@
  </layer>
  <layer name="objects" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3cwQ2DMAwAQNT996xA/XSDqg9+9FHJJol9NwESJjG2k20DAAAAAACYw/4Y/QRAd4d1CIBC7GvAHfzLA+SS0wEAwLrUTQCo5GlfK+HlPQ7h++EkFgAAgJWYWwIAqpHfAAAA8IvZOjKJL2AF3xlXc64AADncOQBEMv8CuSLqI2osAAAAAAAAQAd6owBAFOdwIYecHf7j/A8A1CIfZhSxB3Rk7SOaOg0wM71NAAAAIJt7ZwEA0DcHAAAAuPZuUDfRLwSAPpzPBaCaD47GFZ8AAAEA
+   H4sIAAAAAAAAAO3cMQ6DMAwAQNT//7MCde1edWCjQyWbJPbdC5AwibGdbBsAAAAAAMAc9sfoJwC6O6xDABRiXwPu4F8eIJecDgAA1qVuAkAlT/taCS/vcQjfDyexAAAArMTcEgBQjfwGAACAX8zWkUl8ASv4zriacwUAyOHOASCS+RfIFVEfUWMBAAAAAAAAOtAbBQCiOIcLOeTs8B/nfwCgFvkwo4g9oCNrH9HUaYCZ6W0CAAAA2dw7CwCAvjkAAADAtXeDuol+IQD04XwuANV8ABxEGh4AAAEA
   </data>
  </layer>
  <layer name="collision" width="128" height="128" visible="0" opacity="0.37">

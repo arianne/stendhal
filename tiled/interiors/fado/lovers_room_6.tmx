@@ -87,7 +87,7 @@
  <tileset name="resources.png" firstgid="260" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/item/resources.png"/>
  </tileset>
- <tileset name="mushroom.png" firstgid="262" tilewidth="32" tileheight="32">
+ <tileset name="mushroom.png" firstgid="266" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/item/mushroom.png"/>
  </tileset>
  <layer name="0_floor" width="25" height="25">
@@ -117,7 +117,7 @@
  </layer>
  <layer name="objects" width="25" height="25" opacity="0.9">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoA9gYRxa5uICbDSyj1bm4gPUDjt6xwWt7B0ofwwHMJzyxygYBaNgFAx2AAD5KyZHxAkAAA==
+   H4sIAAAAAAAAAGNgoA9gYRxa5uICXDSyj1bm4gPUDjt6xwWt7B0ofwwHMJzyxygYBaNgFAx2AADjFQQPxAkAAA==
   </data>
  </layer>
  <layer name="collision" width="25" height="25" opacity="0.25">
