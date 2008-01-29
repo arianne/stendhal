@@ -378,9 +378,9 @@
 </zone>
 
  <zone name="int_kirdneh_river_house_0" file="interiors/kirdneh/river_house_0.tmx">
-  <portal x="22" y="2" ref="downstair">
+  <!--<portal x="22" y="2" ref="downstair">
     <destination zone="-1_kirdneh_little_dungeon" ref="upstairhouse"/>
-  </portal>
+  </portal> -->
   <portal x="15" y="30" ref="entrance">
     <destination zone="0_kirdneh_river_w" ref="river_house"/>
   </portal>
@@ -398,11 +398,12 @@
 
  <!-- Level -1 -->
 
+<!-- Problems with another dungeon
 <zone name="-1_kirdneh_little_dungeon" Level='-1' x="500128" y="500576" file="Level -1/kirdneh/little_dungeon.tmx">
   <portal x="52" y="42" ref="upstairhouse">
     <destination zone="int_kirdneh_river_house_0" ref="downstair" />
   </portal>
-</zone>
+</zone> -->
 
 
  <!-- Level -2 -->
