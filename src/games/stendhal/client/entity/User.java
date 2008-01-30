@@ -113,6 +113,14 @@ public class User extends Player {
 		}
 		return rpObject.has("pet");
 	}
+	
+	public int getSheepID() {
+		return rpObject.getInt("sheep");
+	}
+	
+	public int getPetID() {
+		return rpObject.getInt("pet");
+	}
 
 	@Override
 	public void onHealed(final int amount) {
