@@ -196,9 +196,13 @@ The sharper minded amongst you might prefer to double-click directly on the crea
     <attribute name="hp">98</attribute>
   </entity>
  </zone>
-<zone name="int_0_semos_village_w_house_66" file="interiors/abstract/house_000.tmx">
-  <portal x="7" y="14" ref="entrance">
-   <destination zone="0_semos_village_w" ref="house_66_entrance"/>
+
+ <zone name="int_semos_hostel" file="interiors/semos/hostel.tmx">
+  <portal x="12" y="23" ref="entrance_left">
+   <destination zone="0_semos_village_w" ref="hostel_entrance"/>
+  </portal>
+  <portal x="13" y="23" ref="entrance_right">
+   <destination zone="0_semos_village_w" ref="hostel_entrance"/>
   </portal>
  </zone>
 
@@ -206,8 +210,8 @@ The sharper minded amongst you might prefer to double-click directly on the crea
  <portal x="16" y="34" ref="guard_house_entrance">
    <destination zone="int_semos_guard_house" ref="entrance"/>
   </portal>
-   <portal x="29" y="40" ref="house_66_entrance">
-   <destination zone="int_0_semos_village_w_house_66" ref="entrance"/>
+   <portal x="29" y="40" ref="hostel_entrance">
+   <destination zone="int_semos_hostel" ref="entrance_right"/>
   </portal>
   <configurator class-name="games.stendhal.server.maps.semos.village.SheepSellerNPC" />
 
