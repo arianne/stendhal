@@ -2,10 +2,25 @@
 Changelog
 ---------
 0.67
+- new players start in semos guardhouse
+- hayunn naratha gives an initial quest to new players
+- weekly item quest from kirdneh museum
+- bank in kirdneh (sub branch of fado bank)
+- bar tender in kirdneh inn
+- river zone west of kirdneh
+- sewer system added below ados
+- abandoned keep full of dwarves and soldiers below ados mountain
+- seller in abandoned keep sells a good set of armor
+- yeti cave under semos mountain n w4, do a favour for mr yeti
+- couple of new low rate desirable weapons added
+- black scythe, black halberd, chaos axe now dropped rarely
+- help jailed barbarian on amazon island
+- new zone, a fiery underworld
 - new conversation parser:
- - item and creature names now don't contain any undercores to form compound names
+ - item and creature names now don't contain any underscores to form compound names
  - you can use correct grammar for space separated words and item names in plural
 - recognition of player and NPC names in commands like: /look, /use, /own, /attack
+
 
 0.66
 - added image viewer (ask Monogenes about a map of Semos)
