@@ -17,6 +17,7 @@ Changelog
 - new zone, a fiery underworld
 - fixed bug, relog mid fight and you now still earn your xp
 - orbs now work as they should, i.e. you have to right-click and Use them
+- jynath's orb linked to a safe spot in magic city
 - new conversation parser:
  - item and creature names now don't contain any underscores to form compound names
  - you can use correct grammar for space separated words and item names in plural
