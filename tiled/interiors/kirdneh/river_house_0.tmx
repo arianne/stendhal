@@ -162,7 +162,7 @@
  </layer>
  <layer name="objects" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3VQQ0AMAzEsA7ayh9UUZwmdTaC/FJFwj2vCwDgH+27AIRteM0AarIIvAAQAAA=
+   H4sIAAAAAAAAAO3VMQ0AAAjAMLCGf1GoICTQKti3CCZUbhcAwB++C8C0C69pAsBXjgAQAAA=
   </data>
  </layer>
  <layer name="collision" width="32" height="32" opacity="0.44">
