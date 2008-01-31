@@ -685,6 +685,9 @@ black halberd     12000
 </zone>
 <!-- Magic underground city is here -->
 <zone name="-1_fado_great_cave_n_e2" level="-1" x="500128" y="500512" file="Level -1/fado/great_cave_n_e2.tmx">
+  <portal x="28" y="48" ref="kirdneh_house">
+   <destination zone="int_kirdneh_river_house_0" ref="downstair"/>
+  </portal>
   <portal x="112" y="17" ref="school_entrance_left">
    <destination zone="int_magic_school_0" ref="entrance_left"/>
   </portal>
@@ -777,7 +780,7 @@ black halberd     12000
    <destination zone="int_magic_house4" ref="entrance"/>
   </portal>
   <portal x="74" y="102" ref="house5_entrance">
-   <destination zone="int_magic_house5" ref="entrance"/>
+   <destination zone="int_magic_house5" ref="entrance_right"/>
   </portal>
   <portal x="47" y="61" ref="lounge_entrance">
    <destination zone="int_magic_lounge" ref="entrance"/>
