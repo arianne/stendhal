@@ -205,7 +205,7 @@ public class FindGhosts extends AbstractQuest {
 				}
 			});
 
-		npc.add(ConversationStates.QUESTION_1, Arrays.asList("no","bye","goodbye"), null,
+		npc.add(ConversationStates.QUESTION_1, Arrays.asList("no", "bye", "goodbye"), null,
 				ConversationStates.IDLE, "No problem, come back later.", null);
 
 		// player says something which isn't in the needed spirits list.
