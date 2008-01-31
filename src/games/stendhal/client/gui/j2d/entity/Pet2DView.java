@@ -63,11 +63,13 @@ public class Pet2DView extends DomesticAnimal2DView {
 	@Override
 	protected void buildActions(final List<String> list) {
 		super.buildActions(list);
-		if (!User.isNull() && User.get().hasPet()&& User.get().getPetID()==((Pet) entity).getID().getObjectID()) {
-			list.add(ActionType.LEAVE_PET.getRepresentation());
-		}
-		if (!User.isNull() && !User.get().hasPet()) {
-			list.add(ActionType.OWN.getRepresentation());
+		if (!User.isNull()) {
+			if (!User.get().hasPet()) {
+				list.add(ActionType.OWN.getRepresentation());
+			} else if (User.get().getPetID() == ((Pet) entity).getID().getObjectID()) {
+				list.add(ActionType.LEAVE_PET.getRepresentation());
+			}
+
 		}
 	}
 	//
