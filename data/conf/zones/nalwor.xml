@@ -701,6 +701,8 @@
 
 <zone name="hell" level="-2" x="500160" y="500096" file="interiors/abstract/hell.tmx">
  <configurator class-name="games.stendhal.server.maps.semos.jail.NoTeleport"/>
+ <configurator class-name="games.stendhal.server.maps.nalwor.hell.ElementalsNPCs"/>
+ <configurator class-name="games.stendhal.server.maps.nalwor.hell.ReaperNPC"/>
   <portal x="9" y="9" ref="start">
    <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
   </portal>
