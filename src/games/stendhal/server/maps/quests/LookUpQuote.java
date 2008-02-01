@@ -19,7 +19,7 @@ import java.util.Map;
  * QUEST: Quest to get a fishing rod 
  * <p>
  * 
- * PARTICIPANTS: <ul><li> Perquod the fisherman</ul>
+ * PARTICIPANTS: <ul><li> Pequod the fisherman</ul>
  * 
  * 
  * STEPS: <ul><li> The fisherman asks you to go to the library to get him a quote of a
