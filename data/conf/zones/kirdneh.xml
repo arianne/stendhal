@@ -59,82 +59,174 @@
     <implementation class-name="games.stendhal.server.entity.mapstuff.area.WalkBlocker"/>
     <attribute name="description">You see a sizzling barbecue.</attribute>
   </entity>
- <!-- <portal x="31" y="26" ref="26">
+  <portal x="31" y="26" ref="26">
    <destination zone="int_kirdneh_house_26" ref="entrance"/>
+   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
+    <parameter name="key">private key 26</parameter>
+    <parameter name="rejected">The door is locked.</parameter>
+   </implementation>
   </portal>
   <portal x="51" y="26" ref="27">
    <destination zone="int_kirdneh_house_27" ref="entrance"/>
+   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
+    <parameter name="key">private key 27</parameter>
+    <parameter name="rejected">The door is locked.</parameter>
+   </implementation>
   </portal>
   <portal x="77" y="25" ref="28">
    <destination zone="int_kirdneh_house_28" ref="entrance"/>
+   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
+    <parameter name="key">private key 28</parameter>
+    <parameter name="rejected">The door is locked.</parameter>
+   </implementation>
   </portal>
   <portal x="96" y="25" ref="29">
    <destination zone="int_kirdneh_house_29" ref="entrance"/>
+   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
+    <parameter name="key">private key 29</parameter>
+    <parameter name="rejected">The door is locked.</parameter>
+   </implementation>
   </portal>
   <portal x="31" y="42" ref="30">
    <destination zone="int_kirdneh_house_30" ref="entrance"/>
+   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
+    <parameter name="key">private key 30</parameter>
+    <parameter name="rejected">The door is locked.</parameter>
+   </implementation>
   </portal>
   <portal x="51" y="42" ref="31">
    <destination zone="int_kirdneh_house_31" ref="entrance"/>
+   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
+    <parameter name="key">private key 31</parameter>
+    <parameter name="rejected">The door is locked.</parameter>
+   </implementation>
   </portal>
   <portal x="77" y="42" ref="32">
    <destination zone="int_kirdneh_house_32" ref="entrance"/>
+   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
+    <parameter name="key">private key 32</parameter>
+    <parameter name="rejected">The door is locked.</parameter>
+   </implementation>
   </portal>
   <portal x="96" y="42" ref="33">
    <destination zone="int_kirdneh_house_33" ref="entrance"/>
+   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
+    <parameter name="key">private key 33</parameter>
+    <parameter name="rejected">The door is locked.</parameter>
+   </implementation>
   </portal> 
   <portal x="31" y="58" ref="34">
    <destination zone="int_kirdneh_house_34" ref="entrance"/>
+   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
+    <parameter name="key">private key 34</parameter>
+    <parameter name="rejected">The door is locked.</parameter>
+   </implementation>
   </portal>
   <portal x="51" y="58" ref="35">
    <destination zone="int_kirdneh_house_35" ref="entrance"/>
+   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
+    <parameter name="key">private key 35</parameter>
+    <parameter name="rejected">The door is locked.</parameter>
+   </implementation>
   </portal>
   <portal x="93" y="58" ref="36">
    <destination zone="int_kirdneh_house_36" ref="entrance"/>
+   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
+    <parameter name="key">private key 36</parameter>
+    <parameter name="rejected">The door is locked.</parameter>
+   </implementation>
   </portal>
   <portal x="99" y="58" ref="37">
    <destination zone="int_kirdneh_house_37" ref="entrance"/>
+   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
+    <parameter name="key">private key 37</parameter>
+    <parameter name="rejected">The door is locked.</parameter>
+   </implementation>
   </portal> 
   <portal x="32" y="74" ref="38">
    <destination zone="int_kirdneh_house_38" ref="entrance"/>
+   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
+    <parameter name="key">private key 38</parameter>
+    <parameter name="rejected">The door is locked.</parameter>
+   </implementation>
   </portal>
   <portal x="50" y="74" ref="39">
    <destination zone="int_kirdneh_house_39" ref="entrance"/>
+   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
+    <parameter name="key">private key 39</parameter>
+    <parameter name="rejected">The door is locked.</parameter>
+   </implementation>
   </portal>
   <portal x="77" y="74" ref="40">
    <destination zone="int_kirdneh_house_40" ref="entrance"/>
+   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
+    <parameter name="key">private key 40</parameter>
+    <parameter name="rejected">The door is locked.</parameter>
+   </implementation>
   </portal>
   <portal x="96" y="74" ref="41">
    <destination zone="int_kirdneh_house_41" ref="entrance"/>
+   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
+    <parameter name="key">private key 41</parameter>
+    <parameter name="rejected">The door is locked.</parameter>
+   </implementation>
   </portal>
   <portal x="47" y="89" ref="42">
    <destination zone="int_kirdneh_house_42" ref="entrance"/>
+   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
+    <parameter name="key">private key 42</parameter>
+    <parameter name="rejected">The door is locked.</parameter>
+   </implementation>
   </portal>
   <portal x="79" y="89" ref="43">
    <destination zone="int_kirdneh_house_43" ref="entrance"/>
-  </portal>-->
+   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
+    <parameter name="key">private key 43</parameter>
+    <parameter name="rejected">The door is locked.</parameter>
+   </implementation>
+  </portal>
   <portal x="96" y="89" ref="44">
+   <destination zone="int_kirdneh_house_44" ref="entrance"/>
    <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
     <parameter name="key">private key 44</parameter>
     <parameter name="rejected">The door is locked.</parameter>
    </implementation>
-   <destination zone="int_kirdneh_house_44" ref="entrance"/>
   </portal>
-<!--  <portal x="32" y="105" ref="45">
+ <portal x="32" y="105" ref="45">
    <destination zone="int_kirdneh_house_45" ref="entrance"/>
+   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
+    <parameter name="key">private key 45</parameter>
+    <parameter name="rejected">The door is locked.</parameter>
+   </implementation>
   </portal>
   <portal x="50" y="105" ref="46">
    <destination zone="int_kirdneh_house_46" ref="entrance"/>
+   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
+    <parameter name="key">private key 46</parameter>
+    <parameter name="rejected">The door is locked.</parameter>
+   </implementation>
   </portal>
   <portal x="77" y="104" ref="47">
    <destination zone="int_kirdneh_house_47" ref="entrance"/>
+   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
+    <parameter name="key">private key 45</parameter>
+    <parameter name="rejected">The door is locked.</parameter>
+   </implementation>
   </portal>
   <portal x="91" y="104" ref="48">
-   <destination zone="int_kirdneh_house_48" ref="entrance"/>
+   <destination zone="int_kirdneh_house_48" ref="entrance"/>   
+    <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
+    <parameter name="key">private key 48</parameter>
+    <parameter name="rejected">The door is locked.</parameter>
+   </implementation>
   </portal>
   <portal x="101" y="104" ref="49">
    <destination zone="int_kirdneh_house_49" ref="entrance"/>
-  </portal> -->
+   <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
+    <parameter name="key">private key 49</parameter>
+    <parameter name="rejected">The door is locked.</parameter>
+   </implementation>
+  </portal> 
   <portal x="116" y="81" ref="museum1">
    <destination zone="int_kirdneh_museum" ref="entrance1"/>
   </portal>
@@ -146,7 +238,7 @@
   </portal>
  </zone>
 
-<!-- <zone name="int_kirdneh_house_26" file="interiors/kirdneh/house_26.tmx">
+ <zone name="int_kirdneh_house_26" file="interiors/kirdneh/house_26.tmx">
   <portal x="19" y="23" ref="entrance">
    <destination zone="0_kirdneh_city" ref="26"/>
   </portal>
@@ -259,13 +351,13 @@
   <portal x="22" y="23" ref="entrance">
    <destination zone="0_kirdneh_city" ref="43"/>
   </portal>
- </zone>-->
+ </zone>
  <zone name="int_kirdneh_house_44" file="interiors/kirdneh/house_44.tmx">
   <portal x="20" y="23" ref="entrance">
    <destination zone="0_kirdneh_city" ref="44"/>
   </portal>
  </zone>
- <!--<zone name="int_kirdneh_house_45" file="interiors/kirdneh/house_45.tmx">
+ <zone name="int_kirdneh_house_45" file="interiors/kirdneh/house_45.tmx">
   <portal x="19" y="23" ref="entrance">
    <destination zone="0_kirdneh_city" ref="45"/>
   </portal>
@@ -289,7 +381,7 @@
   <portal x="18" y="23" ref="entrance">
    <destination zone="0_kirdneh_city" ref="49"/>
   </portal>
- </zone>-->
+ </zone>
 <zone name="int_kirdneh_inn" file="interiors/kirdneh/inn.tmx">
  <configurator class-name="games.stendhal.server.maps.kirdneh.inn.HealerNPC"/>
  <configurator class-name="games.stendhal.server.maps.kirdneh.inn.BarmanNPC"/>

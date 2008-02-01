@@ -33,9 +33,11 @@ public class HouseBuying extends AbstractQuest {
 	private static final String DAILY_ITEM_QUEST_SLOT = "daily_item";
 	private static final String FISHROD_QUEST_SLOT = "get_fishing_rod";
 	private static final String ZARA_QUEST_SLOT = "suntan_cream_zara";
+	private static final String KIRDNEH_QUEST_SLOT = "weekly_item";
 	// Cost to buy house (lots!)
 	private static final int COST = 100000;
 	private static final int COST_ADOS = 120000;
+	private static final int COST_KIRDNEH = 120000;
 	// Cost to buy spare keys
 	private static final int COST_OF_SPARE_KEY = 1000;
 
@@ -55,18 +57,22 @@ public class HouseBuying extends AbstractQuest {
 	private static final String POSTMAN_SLOT_INIT = ";";
 	private static final String POSTMAN_STORAGE_SLOT_1 = "house";
 	private static final String POSTMAN_STORAGE_SLOT_2 = "ados_house";
-
+	private static final String POSTMAN_STORAGE_SLOT_3 = "kirdneh_house";
+	
 	private static final String ZONE_NAME = "0_kalavan_city";
 	private static final String ZONE_NAME2 = "int_ados_town_hall_3";
+	private static final String ZONE_NAME3 = "int_kirdneh_townhall";
 	protected SpeakerNPC npc;
 	protected SpeakerNPC npc2;
+	protected SpeakerNPC npc3;
 	protected StendhalRPZone zone;
 	protected StendhalRPZone zone2;
+	protected StendhalRPZone zone3;
 	@Override
 	public void init(String name) {
 		super.init(name, QUEST_SLOT);
 	}
-
+	// TODO: Do it the right way! (Clean up duplicated code)
 	// TODO: Create Barrett Holmes in a map file and only add the quest specific stuff here
 
 	private void createNPC() {
@@ -459,6 +465,183 @@ public class HouseBuying extends AbstractQuest {
 		npc2.initHP(100);
 		zone2.add(npc2);
 	}
+	
+	private void createNPC3() {
+		npc3 = new SpeakerNPC("Roger Frampton") {
+			@Override
+			protected void createPath() {
+				setPath(null);
+			}
+
+			@Override
+			protected void createDialog() {
+				addGreeting(null, new SpeakerNPC.ChatAction() {
+					@Override
+					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+						String reply;
+						if (player.hasQuest(QUEST_SLOT)) {
+							reply = " At the cost of "
+									+ COST_OF_SPARE_KEY
+									+ " money you can purchase a spare key for your house. Do you want to buy one now?";
+							engine.setCurrentState(ConversationStates.QUESTION_1);
+						} else {
+							reply = "";
+						}
+						engine.say("Hello, " + player.getTitle() + "." + reply);
+					}
+				});
+				addReply("cost", null, new SpeakerNPC.ChatAction() {
+					@Override
+					public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+						if (player.getAge() < REQUIRED_AGE) {
+							engine.say("The cost of a new house in Kirdneh is "
+									+ COST_KIRDNEH
+									+ " money. But I am afraid I cannot trust you with house ownership just yet, as you have not been a part of this world long enough.");
+						} else if (!(player.hasQuest(KIRDNEH_QUEST_SLOT)
+								     && player.getQuest(KIRDNEH_QUEST_SLOT).startsWith("done"))) {
+							engine.say("The cost of a new house in Kirdneh is "
+									+ COST_KIRDNEH
+									+ " money. But I am afraid I cannot sell you a house yet as you must first prove yourself a worthy #citizen.");
+						} else if (!player.hasQuest(QUEST_SLOT)) {
+							engine.say("The cost of a new house in Kirdneh is "
+									+ COST_KIRDNEH
+									+ " money. If you have a house in mind, please tell me the number now. I will check availability. The Kirdneh houses are numbered from 26 to 49.");
+							engine.setCurrentState(ConversationStates.QUEST_OFFERED);
+						} else {
+							engine.say("In Kirdneh the cost of a new house is "
+									+ COST_KIRDNEH
+									+ " money. But you cannot own more than one house on the island, the market is too demanding for that!");
+						}
+					}
+				});
+				// for house number, from 26 to 49:
+				for (int house = 26; house < 49; house++) {
+					add(ConversationStates.QUEST_OFFERED,
+							Integer.toString(house), 
+							null,
+							ConversationStates.ATTENDING, 
+							null,
+							new SpeakerNPC.ChatAction() {
+								@Override
+								public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+									Player postman = SingletonRepository.getRuleProcessor().getPlayer(
+											"postman");
+									// is postman online?
+									if (postman != null) {
+										// First, check if anyone has bought a
+										// house yet
+										if (!postman.hasQuest(POSTMAN_STORAGE_SLOT_3)) {
+											postman.setQuest(POSTMAN_STORAGE_SLOT_3, POSTMAN_SLOT_INIT);
+										}
+										String postmanslot = postman.getQuest(POSTMAN_STORAGE_SLOT_3);
+										String[] boughthouses = postmanslot.split(";");
+										List<String> doneList = Arrays.asList(boughthouses);
+										String item = sentence.getTriggerExpression().getNormalized();
+										// now check if the house they said is free
+										if (!doneList.contains(item)) {
+											// it's available, so take money
+											if (player.isEquipped("money", COST_KIRDNEH)) {
+												Item key = SingletonRepository.getEntityManager().getItem(
+														"private_key_" + item);
+												engine.say("Congratulations, here is your key to house "
+														+ item
+														+ "! Do you want to buy a spare key, at a price of "
+														+ COST_OF_SPARE_KEY + " money?");
+												key.setUndroppableOnDeath(true);
+												if (player.equip(key)) {
+													player.drop("money", COST_KIRDNEH);
+    												// remember what house they own
+    												player.setQuest(QUEST_SLOT, item);
+    												postman.setQuest(POSTMAN_STORAGE_SLOT_3, postmanslot + ";" + item);
+    												engine.setCurrentState(ConversationStates.QUESTION_1);
+												} else {
+													engine.say("Sorry, you can't carry more keys!");
+												}
+											} else {
+												engine.say("You do not have enough money to buy a house!");
+											}
+										} else {
+											engine.say("Sorry, house "
+													+ item
+													+ " is sold, please give me the number of another.");
+											engine.setCurrentState(ConversationStates.QUEST_OFFERED);
+										}
+									} else {
+										// postman is offline!
+										engine.say("Oh dear, I've lost my records temporarily. I'm afraid I can't check anything for you. Please try again another time.");
+									}
+								}
+							});
+				}
+
+				// we need to warn people who buy spare keys about the house
+				// being accessible to other players with a key
+				add(
+						ConversationStates.QUESTION_1,
+						ConversationPhrases.YES_MESSAGES,
+						null,
+						ConversationStates.QUESTION_2,
+						"Before we go on, I must warn you that anyone with a key to your house can enter it, and have access to any creature you left inside, whenever they like. Do you still wish to buy a spare key?",
+						null);
+
+				// player wants spare keys and is ok with house being accessible
+				// to other person.
+				add(ConversationStates.QUESTION_2,
+						ConversationPhrases.YES_MESSAGES, 
+						null,
+						ConversationStates.ATTENDING, 
+						null,
+						new SpeakerNPC.ChatAction() {
+							@Override
+							public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
+								if (player.isEquipped("money", COST_OF_SPARE_KEY)) {
+									String house = player.getQuest(QUEST_SLOT);
+									Item key = SingletonRepository.getEntityManager().getItem(
+											"private_key_" + house);
+									key.setUndroppableOnDeath(true);
+									if (player.equip(key)) {
+										player.drop("money", COST_OF_SPARE_KEY);
+										engine.say("Here you go, a spare key to your house. Please remember, only give spare keys to people you #really, #really, trust!");
+									} else {
+										engine.say("Sorry, you can't carry more keys!");
+									}
+								} else {
+									engine.say("You do not have enough money for another key!");
+								}
+							}
+						});
+
+				add(ConversationStates.QUESTION_2,
+					ConversationPhrases.NO_MESSAGES,
+					null,
+					ConversationStates.ATTENDING,
+					"That is wise of you. It is certainly better to restrict use of your house to those you can really trust.",
+					null);
+
+				add(ConversationStates.QUESTION_1,
+					ConversationPhrases.NO_MESSAGES,
+					null,
+					ConversationStates.ATTENDING,
+					"No problem! If I can help you with anything else, just ask.",
+					null);
+
+				addJob("I'm an estate agent. In simple terms, I sell houses for the city of Kirdneh. Please ask about the #cost if you are interested. Our brochure is at #http://arianne.sourceforge.net/wiki/index.php?title=StendhalHouses.");
+                addReply("citizen", "Just ensure you have the museum curator on your side.");
+				addReply("buy",	"You may wish to know the #cost before you buy. Perhaps our brochure, #http://arianne.sourceforge.net/wiki/index.php?title=StendhalHouses would also be of interest.");
+				addReply("really", "That's right, really, really, really. Really.");
+				addOffer("I sell Kirdneh houses, please look at #http://arianne.sourceforge.net/wiki/index.php?title=StendhalHouses for examples of how they look inside. Then ask about the #cost when you are ready.");
+				addHelp("You may be eligible to become a #citizen. Of course there must also be houses available in Kirdneh. If you can pay the #cost, I'll give you a key. As a house owner you can buy spare keys to give your friends. See #http://arianne.sourceforge.net/wiki/index.php?title=StendhalHouses for pictures inside the houses and more details.");
+				addQuest("You may buy houses from me, please ask the #cost if you are interested. Perhaps you would first like to view our brochure, #http://arianne.sourceforge.net/wiki/index.php?title=StendhalHouses.");
+				addGoodbye("Goodbye.");
+			}
+		};
+
+		npc3.setDescription("You see a smart looking man.");
+		npc3.setEntityClass("man_004_npc");
+		npc3.setPosition(31, 4);
+		npc3.initHP(100);
+		zone3.add(npc3);
+	}
 
 	@Override
 	public void addToWorld() {
@@ -467,5 +650,7 @@ public class HouseBuying extends AbstractQuest {
 		createNPC();
 		zone2 = SingletonRepository.getRPWorld().getZone(ZONE_NAME2);
 		createNPC2();
+		zone3 = SingletonRepository.getRPWorld().getZone(ZONE_NAME3);
+		createNPC3();
 	}
 }

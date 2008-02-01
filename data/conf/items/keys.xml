@@ -391,7 +391,222 @@
       <slot name="keyring"/>
     </equipable>
   </item>
-
+ <item name="private key 26">
+    <type class="key" subclass="lime" tileid="-1"/>
+    <description>You see a private key to House 26 in Kirdneh City.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="keyring"/>
+    </equipable>
+  </item>
+ <item name="private key 27">
+    <type class="key" subclass="brown" tileid="-1"/>
+    <description>You see a private key to House 27 in Kirdneh City.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="keyring"/>
+    </equipable>
+  </item>
+ <item name="private key 28">
+    <type class="key" subclass="red" tileid="-1"/>
+    <description>You see a private key to House 28 in Kirdneh City.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="keyring"/>
+    </equipable>
+  </item>
+ <item name="private key 29">
+    <type class="key" subclass="green" tileid="-1"/>
+    <description>You see a private key to House 29 in Kirdneh City.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="keyring"/>
+    </equipable>
+  </item>
+ <item name="private key 30">
+    <type class="key" subclass="lime" tileid="-1"/>
+    <description>You see a private key to House 30 in Kirdneh City.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="keyring"/>
+    </equipable>
+  </item>
+ <item name="private key 31">
+    <type class="key" subclass="navy" tileid="-1"/>
+    <description>You see a private key to House 31 in Kirdneh City.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="keyring"/>
+    </equipable>
+  </item>
+ <item name="private key 32">
+    <type class="key" subclass="orange" tileid="-1"/>
+    <description>You see a private key to House 32 in Kirdneh City.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="keyring"/>
+    </equipable>
+  </item>
+ <item name="private key 33">
+    <type class="key" subclass="grey" tileid="-1"/>
+    <description>You see a private key to House 33 in Kirdneh City.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="keyring"/>
+    </equipable>
+  </item>
+ <item name="private key 34">
+    <type class="key" subclass="pink" tileid="-1"/>
+    <description>You see a private key to House 34 in Kirdneh City.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="keyring"/>
+    </equipable>
+  </item>
+ <item name="private key 35">
+    <type class="key" subclass="lilac" tileid="-1"/>
+    <description>You see a private key to House 44 in Kirdneh City.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="keyring"/>
+    </equipable>
+  </item>
+ <item name="private key 36">
+    <type class="key" subclass="purple" tileid="-1"/>
+    <description>You see a private key to House 36 in Kirdneh City.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="keyring"/>
+    </equipable>
+  </item>
+ <item name="private key 37">
+    <type class="key" subclass="red" tileid="-1"/>
+    <description>You see a private key to House 37 in Kirdneh City.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="keyring"/>
+    </equipable>
+  </item>
+ <item name="private key 38">
+    <type class="key" subclass="brown" tileid="-1"/>
+    <description>You see a private key to House 38 in Kirdneh City.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="keyring"/>
+    </equipable>
+  </item>
+ <item name="private key 39">
+    <type class="key" subclass="lime" tileid="-1"/>
+    <description>You see a private key to House 39 in Kirdneh City.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="keyring"/>
+    </equipable>
+  </item>
+ <item name="private key 40">
+    <type class="key" subclass="orange" tileid="-1"/>
+    <description>You see a private key to House 40 in Kirdneh City.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="keyring"/>
+    </equipable>
+  </item>
+ <item name="private key 41">
+    <type class="key" subclass="yellow" tileid="-1"/>
+    <description>You see a private key to House 41 in Kirdneh City.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="keyring"/>
+    </equipable>
+  </item>
+ <item name="private key 42">
+    <type class="key" subclass="grey" tileid="-1"/>
+    <description>You see a private key to House 42 in Kirdneh City.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="keyring"/>
+    </equipable>
+  </item>
+ <item name="private key 43">
+    <type class="key" subclass="pink" tileid="-1"/>
+    <description>You see a private key to House 43 in Kirdneh City.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="keyring"/>
+    </equipable>
+  </item>
  <item name="private key 44">
     <type class="key" subclass="navy" tileid="-1"/>
     <description>You see a private key to House 44 in Kirdneh City.</description>
@@ -404,8 +619,66 @@
       <slot name="keyring"/>
     </equipable>
   </item>
-
-
+ <item name="private key 45">
+    <type class="key" subclass="turquoise" tileid="-1"/>
+    <description>You see a private key to House 45 in Kirdneh City.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="keyring"/>
+    </equipable>
+  </item>
+ <item name="private key 46">
+    <type class="key" subclass="lime" tileid="-1"/>
+    <description>You see a private key to House 46 in Kirdneh City.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="keyring"/>
+    </equipable>
+  </item>
+ <item name="private key 47">
+    <type class="key" subclass="grey" tileid="-1"/>
+    <description>You see a private key to House 47 in Kirdneh City.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="keyring"/>
+    </equipable>
+  </item>
+ <item name="private key 48">
+    <type class="key" subclass="yellow" tileid="-1"/>
+    <description>You see a private key to House 48 in Kirdneh City.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="keyring"/>
+    </equipable>
+  </item>
+ <item name="private key 49">
+    <type class="key" subclass="orange" tileid="-1"/>
+    <description>You see a private key to House 49 in Kirdneh City.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="keyring"/>
+    </equipable>
+  </item>
  <item name="private key 50">
     <type class="key" subclass="yellow" tileid="-1"/>
     <description>You see a private key to House 50 in Ados City N.</description>
