@@ -870,7 +870,7 @@ public abstract class RPEntity extends GuidedEntity {
 
 			Integer damageDone = damageReceived.get(killer);
 			if (damageDone == null) {
-				return;
+				continue;
 			}
 
 			if (logger.isDebugEnabled()) {
