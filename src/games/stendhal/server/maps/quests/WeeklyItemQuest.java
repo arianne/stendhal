@@ -33,6 +33,7 @@ import java.util.List;
  * REWARD:
  * <ul><li> xp
  * <li> between 100 and 600 money
+ * <li> can buy kirdneh house if other eligibilities met
  * </ul>
  * REPETITIONS:
  * <ul><li> once a week</ul>
@@ -49,14 +50,14 @@ public class WeeklyItemQuest extends AbstractQuest {
 		 * All items which are hard enough to find but not tooo hard and not in Daily quest. If you want to do
 		 * it better, go ahead. *
 		 */
-		private final List<String> listeditems = Arrays.asList("mega_potion", "lucky_charm", "ice_sword", "fire_sword",
-				"great_sword", "immortal_sword", "dark_dagger", "assassin_dagger", "night_dagger", "hell_dagger",
-				"golden_cloak", "shadow_cloak", "chaos_cloak", "mainio_cloak", "obsidian", "diamond", "golden_legs",
-				"shadow_legs", "golden_armor", "shadow_armor", "golden_shield", "shadow_shield", "skull_staff",
-				"steel_boots", "golden_boots", "shadow_boots", "stone_boots", "chaos_boots", "golden_helmet",
-				"shadow_helmet", "horned_golden_helmet", "chaos_helmet", "golden_twoside_axe", "drow_sword",
-				"chaos_legs", "chaos_sword", "chaos_shield", "chaos_armor", "green_dragon_shield", "egg",
-				"golden_arrow", "power_arrow", "mainio_legs", "mainio_boots", "mainio_shield", "mainio_armor");
+		private final List<String> listeditems = Arrays.asList("mega potion", "lucky charm", "ice sword", "fire sword",
+				"great sword", "immortal sword", "dark dagger", "assassin dagger", "night dagger", "hell dagger",
+				"golden cloak", "shadow cloak", "chaos cloak", "mainio cloak", "obsidian", "diamond", "golden legs",
+				"shadow legs", "golden armor", "shadow armor", "golden shield", "shadow shield", "skull staff",
+				"steel boots", "golden boots", "shadow boots", "stone boots", "chaos boots", "golden helmet",
+				"shadow helmet", "horned golden helmet", "chaos helmet", "golden twoside axe", "drow sword",
+				"chaos legs", "chaos sword", "chaos shield", "chaos armor", "green dragon shield", "egg",
+				"golden arrow", "power arrow", "mainio legs", "mainio boots", "mainio shield", "mainio armor");
 
 		@Override
 		public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
