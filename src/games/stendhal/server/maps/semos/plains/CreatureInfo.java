@@ -62,6 +62,7 @@ public class CreatureInfo {
 		zoneNameMappings.put("0_athor_ship_w2", "Athor ferry");
 		zoneNameMappings.put("-1_athor_ship_w2", "Athor ferry");
 		zoneNameMappings.put("-2_athor_ship_w2", "Athor ferry");
+		zoneNameMappings.put("hell", "Hell");
 	}
 
 	/**
