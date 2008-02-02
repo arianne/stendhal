@@ -198,6 +198,7 @@ The sharper minded amongst you might prefer to double-click directly on the crea
  </zone>
 
  <zone name="int_semos_hostel" file="interiors/semos/hostel.tmx">
+  <configurator class-name="games.stendhal.server.maps.semos.hostel.KidsNPCs"/>
   <portal x="12" y="23" ref="entrance_left">
    <destination zone="0_semos_village_w" ref="hostel_entrance"/>
   </portal>
