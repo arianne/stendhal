@@ -1,6 +1,6 @@
 package games.stendhal.server.entity.npc.parser;
 
-abstract class PackageInfo {
+final class PackageInfo {
 
 /*TODO mf - describe Conversation Parser usage and implementation
 
@@ -62,6 +62,33 @@ the character response.
 This description can be used as base for further functionality tests.
 
 ...
+
+
+FAQ:
+
+[21:18] <kymara> i have a question about the word list
+[21:19] <kymara> if someone makes a new shop selling items which aren't already sold, or a quest with new items, do we have any guarantee it will work?
+[21:19] <kymara> or do we now have to add shop inventories to the word list too?
+[21:20] <kymara> are there any rules for whether we'll have to add words or not?
+[21:22] <martin_> it will work in most cases without any additional intervention, but it is better to add the new vocabulary to be sure the words are assigned correct types
+[21:22] <martin_> it works this way:
+[21:22] <martin_> at program start the item and creature lists are read from xml
+[21:23] <martin_> the same time this names are registered in the word list, if not already present
+[21:23] <martin_> items are treated as objects
+[21:23] <martin_> and creatures are treated as subjects
+[21:23] <martin_> this is the default type assignment
+[21:23] <martin_> so one should from time to time into the database for still untyped word entries
+[21:24] <durkham> one should <verb missing>
+[21:24] <martin_> this is why i implemented the script ListUnknownWords.class
+[21:24] <martin_> so one should look from time to time into the database for still untyped word entries
+[21:24] <martin_> by executing /script ListUnknownWords.class
+[21:25] <martin_> currently i added all words, which are present in item and creature names
+[21:25] <martin_> if you add a completely new one, it will be recognized as new
+[21:26] <durkham> so we do not take care when creating new items or creatures ?
+[21:26] <durkham> as it is handled automatically
+[21:26] <martin_> normally it's no problem
+[21:27] <martin_> only for some ambiguess words
+[21:27] <martin_> then we have to look into it and use some brain :)
 
 */
 
