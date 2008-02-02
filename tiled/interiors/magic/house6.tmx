@@ -96,6 +96,9 @@
  <tileset name="collision" firstgid="213" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
+ <tileset name="dark elf" firstgid="214" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/creature/dark_elf.png"/>
+ </tileset>
  <layer name="0_floor" width="25" height="25">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAHNmYGBwHsWjeBSP4lFMd+xBBB61Y9SOoWoHpfbRw46hjgEmwmjdxAkAAA==
@@ -123,7 +126,7 @@
  </layer>
  <layer name="objects" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ43oAAAeDP5i1XpxAkAAA==
+   H4sIAAAAAAAAAGNgGAWDGdwfaAeMglEwCkYBCeA2hfofUMMRAwweDLQDqAweDLQDRgFOAAB1Y7W/xAkAAA==
   </data>
  </layer>
  <layer name="collision" width="25" height="25" opacity="0.43">

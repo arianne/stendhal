@@ -477,6 +477,9 @@
  <tileset name="collision" firstgid="1115" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
+ <tileset name="madaram" firstgid="1116" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/creature/madaram.png"/>
+ </tileset>
  <layer name="0_floor" width="20" height="20">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAACtnYGAoH8WjeBSP4lE8iknEAHXiLAFABgAA
@@ -504,7 +507,7 @@
  </layer>
  <layer name="objects" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjYBSMglEwCkgHADV9EcVABgAA
+   H4sIAAAAAAAAAGNgGNkghYU4dYlEqhsFo2AUjIKRAgA+A3zRQAYAAA==
   </data>
  </layer>
  <layer name="collision" width="20" height="20" opacity="0.48">
