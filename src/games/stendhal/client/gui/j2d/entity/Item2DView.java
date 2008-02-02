@@ -167,9 +167,15 @@ public class Item2DView extends Entity2DView {
 		switch (at) {
 		case USE:
 			RPAction rpaction = new RPAction();
+			Entity entity = getEntity();
 
 			rpaction.put("type", at.toString());
-			getEntity().fillTargetInfo(rpaction);
+
+			if (entity != null) {
+				getEntity().fillTargetInfo(rpaction);
+			} else {
+				logger.error("entity is null, action type: " + at.toString());
+			}
 
 			at.send(rpaction);
 			break;
