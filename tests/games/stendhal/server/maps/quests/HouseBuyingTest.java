@@ -22,6 +22,7 @@ public class HouseBuyingTest extends ZonePlayerAndNPCTestImpl {
 
 	private static final String ZONE_NAME = "0_kalavan_city";
 	private static final String ZONE_NAME2 = "int_ados_town_hall_3";
+	private static final String ZONE_NAME3 = "int_kirdneh_townhall";
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -29,6 +30,7 @@ public class HouseBuyingTest extends ZonePlayerAndNPCTestImpl {
 
 		setupZone(ZONE_NAME);
 		setupZone(ZONE_NAME2);
+		setupZone(ZONE_NAME3);
 
 		new HouseBuying().addToWorld();
 	}
