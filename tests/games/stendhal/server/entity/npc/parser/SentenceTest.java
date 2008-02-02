@@ -149,26 +149,41 @@ public class SentenceTest {
 		assertFalse(m1.hasError());
 		assertFalse(s1.matchesFull(m1));
 		assertTrue(s1.matchesStart(m1));
+	}
 
-		s1 = ConversationParser.parse("zero");
-		assertFalse(s1.hasError());
-		assertTrue(s1.matchesNormalized("zero"));
-		assertTrue(s1.matchesNormalized("0"));
+	@Test
+	public final void testNumberMatching() {
+		Sentence s = ConversationParser.parse("zero");
+		assertFalse(s.hasError());
+		assertTrue(s.matchesNormalized("zero"));
+		assertTrue(s.matchesNormalized("0"));
 
-		s1 = ConversationParser.parse("no");
-		assertFalse(s1.hasError());
-		assertTrue(s1.matchesNormalized("no"));
-		assertTrue(s1.matchesNormalized("0"));
+		s = ConversationParser.parse("no");
+		assertFalse(s.hasError());
+		assertTrue(s.matchesNormalized("no"));
+		assertTrue(s.matchesNormalized("0"));
 
-		s1 = ConversationParser.parse("one");
-		assertFalse(s1.hasError());
-		assertTrue(s1.matchesNormalized("one"));
-		assertTrue(s1.matchesNormalized("1"));
+		s = ConversationParser.parse("one");
+		assertFalse(s.hasError());
+		assertTrue(s.matchesNormalized("one"));
+		assertTrue(s.matchesNormalized("1"));
 
-		s1 = ConversationParser.parse("two");
+		s = ConversationParser.parse("two");
+		assertFalse(s.hasError());
+		assertTrue(s.matchesNormalized("two"));
+		assertTrue(s.matchesNormalized("2"));
+	}
+
+	@Test
+	public final void testTriggerMatching() {
+		Sentence s1 = ConversationParser.parse("spade");
+		Expression e1 = s1.getTriggerExpression();
+		Sentence s2 = ConversationParser.parse("a spade");
+		Expression e2 = s2.getTriggerExpression();
 		assertFalse(s1.hasError());
-		assertTrue(s1.matchesNormalized("two"));
-		assertTrue(s1.matchesNormalized("2"));
+		assertFalse(s2.hasError());
+		assertTrue(e1.matchesNormalized(e2));
+		assertTrue(e2.matchesNormalized(e1));
 	}
 
 	@Test
