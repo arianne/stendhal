@@ -167,6 +167,7 @@ public abstract class RPEntity extends GuidedEntity {
 	protected void finalize() {
 		if (name != null) {
 			WordList.getInstance().unregisterSubjectName(name);
+			name = null;
 		}
 	}
 
