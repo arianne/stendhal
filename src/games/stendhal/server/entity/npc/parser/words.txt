@@ -1,4 +1,4 @@
-# @Version 13
+# @Version 15
 #
 # Word list for the Stendhal conversation parser
 #
@@ -490,6 +490,7 @@ something	OBJ	somethings
 soul	OBJ	souls
 soup	OBJ-FOO	soups
 space	OBJ	spaces
+spade	OBJ	spades
 spear	OBJ	spears
 species	OBJ	species
 spinach	OBJ-FOO	spinaches
