@@ -477,6 +477,12 @@
  <tileset name="collision" firstgid="1115" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
+ <tileset name="top sheet for bed" firstgid="1116" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/furniture/bed/bed_grey2_top_sheet.png"/>
+ </tileset>
+ <tileset name="bed grey alternative" firstgid="1117" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/furniture/bed/bed_grey2.png"/>
+ </tileset>
  <layer name="0_floor" width="25" height="25">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3DAQkAAAwDoL3M+kdcjoOCvaSqqr46a+Y3pMQJAAA=
@@ -484,7 +490,7 @@
  </layer>
  <layer name="1_terrain" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAPNnYGAIoCEOAuJwIA4B4kwa4FAgDoPaUcoAAQ5MDAw8UEwpGwQqsdjhCJWjFhubHU5I6qjBxmYHNcFaZkw7QGLUBBuw2LGBynaAAK6wsgHaZQvEdmTYia6X1mGFLT6oHVbY4gMENgLFNyHZhc7HBvDpQbajBohbCeBaNLPridDTgGRHDxEYPQ9VEqkPZkcSERibHcTog9mRx0C4DM1Hs6OQCD1FDNjzhxcLA4MEUhxKAdnSZKY5apZXl5mws9HtEAPKSTAxkAyuAvVcB+JrTKhsQnaA2OJImBy7CdkhCaSlkLA0ATuIDStJPGYFsuA2n5SwQge+QHO9gdgPiP2BOAiPPVeYsLOR7YhgIFwuwPAsIJ5NpNpIqB3RQBxLAp4HxPNJUB8HxAAvZjfVxAkAAA==
+   H4sIAAAAAAAAALWUzWoCMRRGL6nLrq0/r6KiXSpqFa1KqYvuulEUXAiK3XTnEyjYJyior9JWX8cvOAMxvU4yY+aDg3cyuTmQOKkT0VOMNEEHtMB7DLTBs+eY0DlFQXTvcWstM2UcJe+dTD/B19fmcOOc41GZ56LmHC7zffffIcdcZss4to4dMtf2KgdXHhQiOPXeuPeKOw/Xe8Wdh8wO43vFpT9zCepRHTPwaWCurb2w6PlQHEsL9G9oatnnO94s4Bw2fb5jQOY7dKg5RhY9Y+K/jzLus5RyhhnU2Yj/OZf31Y/ga92RxLuUoND5Q88RHMRlbXLI+kEhitvkSOM3o5A1OGz3Kh2wViPBj8uE2Ss9VaxbATVQB80Az6/ga9XRJfO94LMCa8u5Pc/xAl5DsAFfIeb3wQkhByuKxAkAAA==
   </data>
  </layer>
  <layer name="2_object" width="25" height="25">
@@ -494,7 +500,7 @@
  </layer>
  <layer name="3_roof" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAXkAEcm6rNHAWXAkpmBwQqIrZnpq3eogXVAP65nxs2nlp5RMAqoCYSBZaUoHctLkH0iSJiedo+CkQmWAPFSEvUAAO7OgPHECQAA
+   H4sIAAAAAAAAAGNgGAXkAEcmBDuGBbs4MWqQxUcBZcCSmYHBCoitmemrd6iBdUA/rmfGzaeWnlEwCqgJhIHlpigTYXXUtE8ECdPT7lEwMsESIF5Koh4A7i5dSMQJAAA=
   </data>
  </layer>
  <layer name="4_roof_add" width="25" height="25">
