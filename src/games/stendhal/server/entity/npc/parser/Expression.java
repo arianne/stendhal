@@ -360,8 +360,8 @@ public final class Expression {
 	 * @return
 	 */
 	String getNormalizedMatchString() {
-		// special case for numeric expressions to disambiguate "no" from "0"
-		if (type != null && type.isNumeral()) {
+		// special case to disambiguate "no" from "0"
+		if (normalized != null && normalized.equals("no")) {
 			return original.toLowerCase();
 		} else {
 			return normalized;

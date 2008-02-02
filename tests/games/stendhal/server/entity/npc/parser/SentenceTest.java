@@ -147,9 +147,28 @@ public class SentenceTest {
 		m1 = ConversationParser.parse("it is raining cats");
 		assertFalse(s1.hasError());
 		assertFalse(m1.hasError());
-
 		assertFalse(s1.matchesFull(m1));
 		assertTrue(s1.matchesStart(m1));
+
+		s1 = ConversationParser.parse("zero");
+		assertFalse(s1.hasError());
+		assertTrue(s1.matchesNormalized("zero"));
+		assertTrue(s1.matchesNormalized("0"));
+
+		s1 = ConversationParser.parse("no");
+		assertFalse(s1.hasError());
+		assertTrue(s1.matchesNormalized("no"));
+		assertTrue(s1.matchesNormalized("0"));
+
+		s1 = ConversationParser.parse("one");
+		assertFalse(s1.hasError());
+		assertTrue(s1.matchesNormalized("one"));
+		assertTrue(s1.matchesNormalized("1"));
+
+		s1 = ConversationParser.parse("two");
+		assertFalse(s1.hasError());
+		assertTrue(s1.matchesNormalized("two"));
+		assertTrue(s1.matchesNormalized("2"));
 	}
 
 	@Test
