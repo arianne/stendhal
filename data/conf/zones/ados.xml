@@ -1359,9 +1359,27 @@ black helmet 10000
  </zone>
 
 
-   <zone name="0_ados_forest_w2" level="0" x="500256" y="500000" file="Level 0/ados/forest_w2.tmx">
-   </zone>
-   
+  <zone name="0_ados_forest_w2" level="0" x="500256" y="500000" file="Level 0/ados/forest_w2.tmx">
+   <portal x="21" y="100" ref="farm">
+    <destination zone="int_ados_farm_house" ref="in"/>
+   </portal>
+  </zone>
+
+  <zone name="int_ados_farm_house" file="interiors/ados/farm_house.tmx">
+   <portal x="22" y="23" ref="in">
+    <destination zone="0_ados_forest_w2" ref="farm"/>
+   </portal>
+   <portal x="22" y="14" ref="up">
+    <destination zone="int_ados_farm_house_1" ref="down"/>
+   </portal>
+  </zone>
+
+  <zone name="int_ados_farm_house_1" file="interiors/ados/farm_house_1.tmx">
+   <portal x="22" y="14" ref="down">
+    <destination zone="int_ados_farm_house" ref="up"/>
+   </portal>
+  </zone>
+
    <zone name="0_ados_rock_w" level="0" x="500384" y="500000" file="Level 0/ados/rock_w.tmx">
     <entity x="14" y="50">
      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
