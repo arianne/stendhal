@@ -1603,7 +1603,7 @@ Southeast: Docks
   <configurator class-name="games.stendhal.server.maps.ados.abandonedkeep.OrcWeaponArmorGuyNPC"/>
   <configurator class-name="games.stendhal.server.maps.ados.abandonedkeep.OrcKillGiantDwarfNPC"/>
  
-     <entity x="103" y="0">
+     <entity x="110" y="1">
      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
      <attribute name="text">
 We Sell Armor and Weapons:
@@ -1715,16 +1715,11 @@ Assassin Dagger (atk 6 rate 2) 12000
 
  <!--  Level -6 -->
 
-  <!--  added/modified by tigertoes 
- <zone name="-6_ados_abandoned_keep1" level="-6" x="500384" y="499744" file="Level -6/ados/abandoned_keep1.tmx">
+  <!--  added/modified by tigertoes -->
+ <zone name="-6_ados_abandoned_keep" level="-6" x="500384" y="499744" file="Level -6/ados/abandoned_keep.tmx">
   </zone>
- <zone name="-6_ados_abandoned_keep2" level="-6" x="500384" y="499744" file="Level -6/ados/abandoned_keep2.tmx">
-  </zone>
- <zone name="-6_ados_abandoned_keep3" level="-6" x="500384" y="499744" file="Level -6/ados/abandoned_keep3.tmx">
-  </zone>
- <zone name="-6_ados_abandoned_keep4" level="-6" x="500384" y="499744" file="Level -6/ados/abandoned_keep4.tmx">
- </zone>
-    end of added/modified by tigertoes -->
+ 
+  <!--  end of added/modified by tigertoes -->
 
  <!--  Level -7 -->
 

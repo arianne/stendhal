@@ -70,6 +70,7 @@ public class StendhalQuestSystem {
 		loadQuest("FishermansLicenseCollector");
 		loadQuest("HatForMonogenes");
 		// loadQuest("HayunnCataclysm");
+		loadQuest("HelpTomi");
 		loadQuest("HouseBuying");
 		loadQuest("HungryJoshua");
 		loadQuest("IcecreamForAnnie");

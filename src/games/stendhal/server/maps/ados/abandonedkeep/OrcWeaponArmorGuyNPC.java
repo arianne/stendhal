@@ -3,11 +3,15 @@ package games.stendhal.server.maps.ados.abandonedkeep;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.pathfinder.FixedPath;
+import games.stendhal.server.core.pathfinder.Node;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -31,7 +35,17 @@ public class OrcWeaponArmorGuyNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createPath() {
-				setPath(null);
+				List<Node> nodes = new LinkedList<Node>();
+				nodes.add(new Node(104, 3));
+				nodes.add(new Node(109, 3));
+				nodes.add(new Node(109, 8));
+				nodes.add(new Node(108, 8));
+				nodes.add(new Node(108, 10));
+				nodes.add(new Node(109, 10));
+				nodes.add(new Node(109, 13));
+				nodes.add(new Node(104, 13));
+				setPath(new FixedPath(nodes, true));
+
 			}
 
 			@Override

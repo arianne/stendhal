@@ -4019,6 +4019,30 @@
     </ai>
   </creature>
 
+ <creature name="madaram pawn">
+    <type class="madaram" subclass="madaram_peasant" tileid="chess.png:6"/>
+    <description>You see a pawn for a game of chess. It will reward little if killed.</description>
+    <attributes>
+      <atk value="142"/>
+      <def value="22"/>
+      <hp value="300"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="41"/>
+    <experience value="545"/>
+    <respawn value="1400"/>
+    <drops>
+      <item value="money" quantity="[5,13]" probability="100.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="non offensive"/>
+      <profile name="human"/>
+     </ai>
+  </creature>
+
   <creature name="duergar elite">
     <type class="dwarf" subclass="duergar_elite" tileid="dwarf_duergar.png:3"/>
     <description></description>
@@ -5098,6 +5122,30 @@
     </ai>
   </creature>
 
+ <creature name="madaram bishop">
+    <type class="madaram" subclass="madaram_healer" tileid="chess.png:9"/>
+    <description>You see a bishop for a game of chess. It will reward you little if you slay it.</description>
+    <attributes>
+      <atk value="165"/>
+      <def value="24"/>
+      <hp value="390"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="53"/>
+    <experience value="1005"/>
+    <respawn value="1510"/>
+    <drops>
+      <item value="money" quantity="[5,43]" probability="100.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="non offensive"/>
+      <profile name="human"/>
+    </ai>
+  </creature>
+
   <creature name="mountain dwarf">
     <type class="dwarf" subclass="dwarf" tileid="mountain_dwarf.png:1"/>
     <description></description>
@@ -5215,6 +5263,31 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
+
+ <creature name="madaram rook">
+    <type class="madaram" subclass="madaram_axeman" tileid="chess.png:7"/>
+    <description>You see a rook for a game of chess. It will scarcely reward you to kill it.</description>
+    <attributes>
+      <atk value="155"/>
+      <def value="24"/>
+      <hp value="370"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="55"/>
+    <experience value="1105"/>
+    <respawn value="1610"/>
+    <drops>
+      <item value="money" quantity="[5,43]" probability="100.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="non offensive"/>
+      <profile name="human"/>
+    </ai>
+  </creature>
+
 
   <creature name="giant kobold">
     <type class="huge_animal" subclass="giant_kobold" tileid="huge_animal.png:4"/>
@@ -5459,6 +5532,30 @@
       <profile name="offensive"/>
       <profile name="human"/>
       <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+ <creature name="madaram queen ">
+    <type class="madaram" subclass="madaram_queen" tileid="chess.png:11"/>
+    <description>You see a queen piece for a game of chess. She will reward little if you kill her.</description>
+    <attributes>
+      <atk value="165"/>
+      <def value="26"/>
+      <hp value="470"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="57"/>
+    <experience value="1210"/>
+    <respawn value="1680"/>
+    <drops>
+      <item value="money" quantity="[5,43]" probability="100.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="non offensive"/>
+      <profile name="human"/>
     </ai>
   </creature>
 
@@ -5875,6 +5972,32 @@
       <item value="shadow boots" quantity="[1,1]" probability="2.0"/>
       <item value="pie" quantity="[1,1]" probability="2.0"/>
     </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+ <creature name="madaram knight">
+    <type class="madaram" subclass="madaram_cavalry" tileid="chess.png:8"/>
+    <description>You see a knight, a chess piece. He won't reward you if you kill him.</description>
+    <attributes>
+      <atk value="179"/>
+      <def value="26"/>
+      <hp value="520"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="61"/>
+    <experience value="1405"/>
+    <respawn value="1810"/>
+    <drops>
+      <item value="money" quantity="[5,53]" probability="100.0"/>
+     </drops>
     <equips>
     </equips>
     <ai>
@@ -6530,6 +6653,31 @@
     </ai>
   </creature>
 
+
+ <creature name="madaram king">
+    <type class="madaram" subclass="madaram_buster_blader" tileid="chess.png:10"/>
+    <description>You see a king to play chess with, he will reward you little if you kill him.</description>
+    <attributes>
+      <atk value="195"/>
+      <def value="34"/>
+      <hp value="600"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="69"/>
+    <experience value="2055"/>
+    <respawn value="2210"/>
+    <drops>
+      <item value="money" quantity="[5,43]" probability="100.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="non offensive"/>
+      <profile name="human"/>
+    </ai>
+  </creature>
+
   <creature name="winged blue imp">
     <type class="demon" subclass="winged_blue_imp" tileid="demon.png:1"/>
     <description></description>
@@ -6955,6 +7103,30 @@
       <profile name="offensive"/>
       <profile name="human"/>
       <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="chaos pawn">
+    <type class="chaos" subclass="chaos_soldier" tileid="chess.png:0"/>
+    <description>You see a pawn for a game of chess. He will drop little if you kill him.</description>
+    <attributes>
+      <atk value="193"/>
+      <def value="30"/>
+      <hp value="650"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="75"/>
+    <experience value="2480"/>
+    <respawn value="2510"/>
+    <drops>
+      <item value="money" quantity="[10,50]" probability="100.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="non offensive"/>
+      <profile name="human"/>
     </ai>
   </creature>
 
@@ -7739,7 +7911,7 @@
   </creature>
 
 <creature name="Dhohr Nuggetcutter">
-    <type class="huge_animal" subclass="giant_dwarf" tileid="dhor_nuggetcutter.png:0"/>
+    <type class="huge_animal" subclass="giant_dwarf" tileid="dhohr_nuggetcutter.png:0"/>
     <description></description>
     <attributes>
       <atk value="225"/>
@@ -8049,6 +8221,30 @@
     </ai>
   </creature>
 
+  <creature name="chaos rook">
+    <type class="chaos" subclass="chaos_commander" tileid="chess.png:1"/>
+    <description>You see a rook for a game of chess. He will drop little if you kill him.</description>
+    <attributes>
+      <atk value="219"/>
+      <def value="33"/>
+      <hp value="996"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="97"/>
+    <experience value="5045"/>
+    <respawn value="4120"/>
+    <drops>
+      <item value="money" quantity="[10,90]" probability="100.0"/>
+     </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="non offensive"/>
+      <profile name="human"/>
+    </ai>
+  </creature>
+
   <creature name="dark elf viceroy">
     <type class="dark_elf" subclass="dark_elf_viceroy" tileid="dark_elf.png:8"/>
     <description></description>
@@ -8178,6 +8374,30 @@
       <profile name="offensive"/>
       <profile name="human"/>
       <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="chaos bishop">
+    <type class="chaos" subclass="chaos_sorceror" tileid="chess.png:3"/>
+    <description>You see a bishop for a game of chess. He will drop little if you kill him.</description>
+    <attributes>
+      <atk value="203"/>
+      <def value="31"/>
+      <hp value="708"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="103"/>
+    <experience value="6250"/>
+    <respawn value="3000"/>
+    <drops>
+      <item value="money" quantity="[10,50]" probability="100.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>      
+      <profile name="non offensive"/>
+      <profile name="human"/>
     </ai>
   </creature>
 
@@ -8339,6 +8559,30 @@
       <profile name="offensive"/>
       <profile name="human"/>
       <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="chaos knight">
+    <type class="chaos" subclass="chaos_dragonrider" tileid="chess.png:2"/>
+    <description>You see a knight for a game of chess. He will drop little if you kill him.</description>
+    <attributes>
+      <atk value="233"/>
+      <def value="35"/>
+      <hp value="1218"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="109"/>
+    <experience value="7000"/>
+    <respawn value="5300"/>
+    <drops>
+      <item value="money" quantity="[10,50]" probability="100.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="non offensive"/>
+      <profile name="human"/>
     </ai>
   </creature>
 
@@ -8628,6 +8872,30 @@
       <profile name="offensive"/>
       <profile name="human"/>
       <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="chaos king">
+    <type class="chaos" subclass="chaos_lord" tileid="chess.png:4"/>
+    <description>You see a king of a game of chess. He will reward little if you kill him.</description>
+    <attributes>
+      <atk value="254"/>
+      <def value="37"/>
+      <hp value="1662"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="130"/>
+    <experience value="10500"/>
+    <respawn value="8300"/>
+    <drops>
+      <item value="money" quantity="[80,200]" probability="100.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="non offensive"/>
+      <profile name="human"/>
     </ai>
   </creature>
 
@@ -9161,6 +9429,31 @@
     </ai>
   </creature>
 
+  <creature name="chaos queen">
+    <type class="chaos" subclass="chaos_overlord" tileid="chess.png:5"/>
+    <description></description>
+    <attributes>
+      <atk value="308"/>
+      <def value="43"/>
+      <hp value="3318"/>
+      <speed value="1.0"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="190"/>
+    <experience value="35200"/>
+    <respawn value="21600"/>
+    <drops>
+      <item value="money" quantity="[100,600]" probability="100.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="non offensive"/>
+      <profile name="human"/>
+      <profile name="heal" params="5,50"/>
+    </ai>
+  </creature>
+
   <creature name="chaos red dragonrider">
     <type class="huge_animal" subclass="chaos_red_dragonrider" tileid="huge_animal.png:11"/>
     <description></description>
@@ -9490,7 +9783,7 @@
     <description></description>
     <attributes>
       <atk value="480"/>
-      <def value="50"/>
+      <def value="51"/>
       <hp value="14000"/>
       <speed value="1.0"/>
       <size value="2,2"/>
@@ -9503,7 +9796,7 @@
       <item value="gold bar" quantity="[2,10]" probability="30.0"/>
       <item value="money" quantity="[8000,40000]" probability="100.0"/>
       <item value="emerald ring" quantity="[1,1]" probability="2.0"/>
-      <item value="magic dagger" quantity="[1,1]" probability="0.5"/>
+      <item value="golden blade" quantity="[1,1]" probability="0.5"/>
     </drops>
     <equips>
     </equips>
