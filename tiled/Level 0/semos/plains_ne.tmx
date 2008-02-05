@@ -108,6 +108,9 @@
  <tileset name="Sin nombre" firstgid="366" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/animal.png"/>
  </tileset>
+ <tileset name="farm animal" firstgid="392" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/creature/farm_animal.png"/>
+ </tileset>
  <layer name="0_floor" width="64" height="128">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3XOxKCMBRAUcYZt2Lj/vfn2FkYTSDfl1OcEsl9QMDbcRw3AAAAAAAAAAAAYEqPhNHrGtW9Q/+/9pr9OeeazW7to+6xGYx8xiJ2l7T32u96+tUYvT+nL+oMcrsiPgclPdH6z/REmcHZfT3CO+Hq2leeQc01rzaDFmu9MoOes2t9rhrftW/PhNrr6zXjGu01ZjDyPsuR+r0a/avsT6P67xP77M89Rn+f/pI16e/XX7rX6t+n/9v7YZf+1PsxWn/p94F+/fr169evX7/+Oftzne0/c64Zuf4x+3d//vXr169fv379+vXr169/l/4Z///OyPWP2Z97jH79+vXr169fv379Lfp70N++HwAAAIC1vADwaJ1hAIAAAA==
@@ -135,7 +138,7 @@
  </layer>
  <layer name="objects" width="64" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3bMQ7CMAwAQPpJBgQr4iP8G3VgqCiFoDQ48Z3EAFMSu46TisMBAOo7Tf8eAUCf1E8AYHTZ+53n/LOvwyzzGmTNg0jzncfyaTz3QONl3TFIjOQKlIu0J9RSWpOy9gO/ilLzWRphDxxhDpGoaRDX2l5aWgPVTIA+OD/BuJy5oA7PUj76IwCI6za9fmo5T2XfobU98z+DrT6/5vPvPLEP+c9eetj/5T+Z6f8B6NFo58LLynxq/wbQQml9Vv+ArNQ/AN6peefh/ReZjZb/Le5DW9+5jnbHG8lo+Q8l5D/AvvRwsWX+j3bmuffoWjFeYh+b+CxZj3zEfFtpb6kXBb7xAIeO/qMAgAAA
+   H4sIAAAAAAAAAO3bMQ7CMAwAwPaTDAhWxEfYeTLqwFBRCkFpceI7iQGmOE4dJxXDAAD1Hcd/jwCgTeonANC77P3OM/7s8zDJPAdZ10GkeKexfBrPLdB4WXYIkiNrBcpF2hNquRfGlLUf+FWUms9cD3tgDzFEoqZBXEu9SmkNVDMB2lB6PgXa4cwFdXiW8nG/DABxXcfXTy2nsew7+9sy//Rvrc+v+fxvdZ6w/nOT/+3Y/+Oz/nPT/wPQot7eM50X4qn9G8AeSuuz+gdkpf4B8E7NOw/vf3KT/77scR+6951rb3e8xKH+5Sb/ANvSw8WW+T/amWNv0aVivuQ+NvmZMx/5yPm60t5SLwp84wHgyXWnAIAAAA==
   </data>
  </layer>
  <layer name="collision" width="64" height="128" opacity="0.42">

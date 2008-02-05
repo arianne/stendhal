@@ -90,6 +90,9 @@
  <tileset name="spruce" firstgid="510" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/tree/spruce.png"/>
  </tileset>
+ <tileset name="farm animal" firstgid="516" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/creature/farm_animal.png"/>
+ </tileset>
  <layer name="0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3aQU7DQABD0QrKgvufkluwQmIBbdLMjO3xX1jsUDrvN6kKn7fb7fOffZzcPXzvT/a24f6zxx9//Lv9zzag9sMff/zxxx9//Nf7pzeAf3cD+Hc/B/Dvvgfg3+3/rAG1VZL/jg2orZT+NKC3SvRPbgH/sf5pDeA/3j+pAfzn+Kc00PAZQOWf0AD+8xtwbgH/tQ24tdDwPYCjv3sDarMGf5cGdr8H4I+/q79DA7v/PcjdX90A/np/ZQP4dzew+/+EJPkrGsDfy58G8F/dwDP/5AZS/Vc2cMQ/tYFkf7cG1JaN/qsawN/Xf0UD+Hv7r+gAf3//mQ3gn+E/qwH8c/xnNIB/lv/oDvDP9B/VAf7Z/lc7wL/b/1kDakv853eAv97NtQG15Qp/tZdDAzvdA37OoNH91QZ29H/UgdomqQG151X/9rU1oD5vxzU1oD5r111tQO2KPw3gr/VPaEB9xs5r+F5Ifcbuw797u98DZpzZl4EbDfj7p3Qyyt+xAfzxx39sA0n/J4Q//viP9U96BqjPNWk73gPUZ5q0kfcAlwbUZ5q0s/4JzwH1mSbtFX/3BtRnmrQZ/uoG1GeaNPy7h3/3XvV3/gygPtOkXfF3bUB9pkmb6a9qQH2mScO/e/j37qo9/tnDv3v4dw//3o2wxz93+PdulD3+eRtpj3/WRtu7+v9cm/q8nTbD3t2fDuba458xlb/C/i//9gbw722gzf6Rf1sDbc/9I/5NDTTaH/FvaEDh7mB/1H/3Blrtm/3vv342urf7j7Q/4u5of8Z/lwZWv9+d7c/6J3egct/RP6kBtbuz/RX/hBbU9mrbVf5OHYx8PTu/72f4K3uY9Rp2tp/tn77d7fEfb49//lrs8e+2x3+MvdoQf4292m7EHr0+tYmbvdpqtf/uXbS910f5p/fReJ9f6e/aQOszXuHv1gDu6/1ndHD09125XrXJbv6v9KG6FrVHo7/D1A5uU3tg7ze1E/YZU5ti77G/zlltjrvH8GUjW1C/Bra+A/X1Ml0H6mtk61tQXwtjjDHGGGPp+warsM9iAAABAA==
@@ -112,7 +115,7 @@
  </layer>
  <layer name="objects" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3cQQ0AIAwDwOFf1UygBwd8G9idgj6XJl0VAAAAAACQ0CudAAAAAAAAAAAAAAAAAGbYtjwAAAAAAAAAAAAAAAAAAAAAAAAAAABR/sQCAAAAAAAAAAAAAAAAAPynbUgBAAAAAOBKlw4ATOcegvcd9uhgOAAAAQA=
+   H4sIAAAAAAAAAO3cwQkAIAwDQPXn/hO5hPM4Q0FR6d0EeZZCUgoAAAAAAK/q7XYCThr1dgIAAAAAAAAAAAAAAADIYeryAAAAAABBNqAAAAAAAAAAAAAAAAAAAAAA9rITS4T9DwAAAAAAAAAAAAAAAAD4w9AhBQAAAIBU7IRBnF86AJCdewj+twC0NjxwAAABAA==
   </data>
  </layer>
  <layer name="collision" width="128" height="128" opacity="0.37">
