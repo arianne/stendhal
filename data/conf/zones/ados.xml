@@ -1598,8 +1598,7 @@ Southeast: Docks
  <!--  Level -1 -->
 
 
-  <!--  added/modified by tigertoes -->
- <zone name="-1_ados_abandoned_keep" level="-1" x="500384" y="499744" file="Level -1/ados/abandoned_keep.tmx">
+ <zone name="-1_ados_abandoned_keep" level="-1" x="500512" y="499744" file="Level -1/ados/abandoned_keep.tmx">
   <configurator class-name="games.stendhal.server.maps.ados.abandonedkeep.OrcWeaponArmorGuyNPC"/>
   <configurator class-name="games.stendhal.server.maps.ados.abandonedkeep.OrcKillGiantDwarfNPC"/>
  
@@ -1620,7 +1619,6 @@ Assassin Dagger (atk 6 rate 2) 12000
      <attribute name="class">blackboard</attribute>
     </entity>
 
-  <!--  end of added/modified by tigertoes -->
 </zone>
 
  <zone name="-1_ados_tunnel_w2" level="-1" x="500768" y="499744" file="Level -1/ados/tunnel_w2.tmx">
@@ -1672,21 +1670,17 @@ Assassin Dagger (atk 6 rate 2) 12000
  </zone>
  <!--  Level -2 -->
 
-  <!--  added/modified by tigertoes -->
- <zone name="-2_ados_abandoned_keep" level="-2" x="500384" y="499744" file="Level -2/ados/abandoned_keep.tmx">
+ <zone name="-2_ados_abandoned_keep" level="-2" x="500512" y="499744" file="Level -2/ados/abandoned_keep.tmx">
  </zone>
-  <!--  end of added/modified by tigertoes -->
-
+ 
  <zone name="-2_ados_outside_nw" level="-2" x="500640" y="499872" file="Level -2/ados/outside_nw.tmx">
  </zone>
 
 
  <!--  Level -3 -->
 
-   <!--  added/modified by tigertoes -->
- <zone name="-3_ados_abandoned_keep" level="-3" x="500384" y="499744" file="Level -3/ados/abandoned_keep.tmx">
+  <zone name="-3_ados_abandoned_keep" level="-3" x="500512" y="499744" file="Level -3/ados/abandoned_keep.tmx">
  </zone>
-  <!--  end of added/modified by tigertoes -->
 
  <zone name="-3_ados_outside_nw" level="-3" x="500640" y="499872" file="Level -3/ados/outside_nw.tmx">
   <configurator class-name="games.stendhal.server.maps.ados.outside.CloaksCollectorNPC" />
@@ -1701,25 +1695,20 @@ Assassin Dagger (atk 6 rate 2) 12000
 
  <!--  Level -4 -->
 
-  <!--  added/modified by tigertoes -->
- <zone name="-4_ados_abandoned_keep" level="-4" x="500384" y="499744" file="Level -4/ados/abandoned_keep.tmx">
+  <zone name="-4_ados_abandoned_keep" level="-4" x="500512" y="499744" file="Level -4/ados/abandoned_keep.tmx">
  </zone>
-  <!--  end of added/modified by tigertoes -->
 
  <!--  Level -5 -->
 
-  <!--  added/modified by tigertoes -->
- <zone name="-5_ados_abandoned_keep" level="-5" x="500384" y="499744" file="Level -5/ados/abandoned_keep.tmx">
+ <zone name="-5_ados_abandoned_keep" level="-5" x="500512" y="499744" file="Level -5/ados/abandoned_keep.tmx">
  </zone>
-  <!--  end of added/modified by tigertoes -->
 
  <!--  Level -6 -->
 
-  <!--  added/modified by tigertoes -->
- <zone name="-6_ados_abandoned_keep" level="-6" x="500384" y="499744" file="Level -6/ados/abandoned_keep.tmx">
+ <zone name="-6_ados_abandoned_keep" level="-6" x="500512" y="499744" file="Level -6/ados/abandoned_keep.tmx">
   </zone>
  
-  <!--  end of added/modified by tigertoes -->
+
 
  <!--  Level -7 -->
 
