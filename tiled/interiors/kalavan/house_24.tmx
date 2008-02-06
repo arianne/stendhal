@@ -153,7 +153,7 @@
  <tileset name="flames" firstgid="649" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/light/flames.png"/>
  </tileset>
- <tileset name="food" firstgid="651" tilewidth="32" tileheight="32">
+ <tileset name="food" firstgid="655" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/item/sheepfood.png"/>
  </tileset>
  <layer name="0_floor" width="32" height="32">
@@ -183,7 +183,7 @@
  </layer>
  <layer name="objects" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3PwQ0AAAQAMbG+pa3gJ6Kd4C4CAACYqtwu2PX9Hy5rFVgwZQAQAAA=
+   H4sIAAAAAAAAAO3PQQkAAAgAMbE/WNkK/kTcEtxFAAAAU5XbBbu+/8NlDcQs3cwAEAAA
   </data>
  </layer>
  <layer name="collision" width="32" height="32" opacity="0.35">

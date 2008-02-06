@@ -78,10 +78,10 @@
  <tileset name="flames" firstgid="206" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/light/flames.png"/>
  </tileset>
- <tileset name="stairs" firstgid="208" tilewidth="32" tileheight="32">
+ <tileset name="stairs" firstgid="212" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/stairs.png"/>
  </tileset>
- <tileset name="imperials" firstgid="212" tilewidth="32" tileheight="32">
+ <tileset name="imperials" firstgid="216" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/human_imperial.png"/>
  </tileset>
  <layer name="0_floor" width="30" height="30">
@@ -91,7 +91,7 @@
  </layer>
  <layer name="1_terrain" width="30" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAOWWSwrCMBRF42eiFmf+HQnqTN2KuCM/VAR/u9G2W3DgjryChRDSJK9Jo+CDMwmv77QmtzZgjJU90wBVMARdTwxA5eNtgwezK5Pr3z0tweursrxPy7mRZq2o5401a6LXdn/zePugQ2DkwFsHJQJNpt6XRLOWegNGz7vNeeB/Z5P3hph3sWzyewN3rm/F4er8U+ZQvC7zS/FS87vUuP/JGxG8pvk12d+Y2K8q194i/n+LfF5Z7tJKCF5qfmXnUHWfWUU9zzrvGmzAFuw8eg8gBHtw9Og9gTO4gKuij5pfWT9f38jvL3vzvDdMvut6kv4xmICpwfXiHMp3XU3on4E5WBBmpHNehUyvqBAOAAA=
+   H4sIAAAAAAAAAOWWSwrCMBRF42eiFmf+HQnqTN2KuCM/VAR/u9G2W3DofryChRDSJK9Jo+CDMwmv77QmtzZgjJU90wBVMARdTwxA5eNtgwezK5Pr3z0tweursrxPy7mRZq2o5401a6LXdn/zePugQ2DkwFsHJQJNpt6XRLOWegNGz7vNeeB/Z5P3hph3sWzyewN3rm/F4er8U+ZQvC7zS/FS87vUuP/JGxG8pvk12d+Y2K8q194i/n+LfF5Z7tJKCF5qfmXnUHWfWUU9zzrvGmzAFuw8eg8gBHtw9Og9gTO4gKuij5pfWT9f38jvL3vzvDdMvut6kv4xmICpwfXiHMp3XU3on4E5WBBmpHNecGbCexAOAAA=
   </data>
  </layer>
  <layer name="2_object" width="30" height="30">
@@ -111,7 +111,7 @@
  </layer>
  <layer name="objects" width="30" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAUjCSSj8W8OiCuGBhgNm1EwCoYXGM3To2AUDC0wmmdHwVAF6O3twQ4A0vIf/hAOAAA=
+   H4sIAAAAAAAAAGNgGAUjCSSj8e8OiCuGBhgNm1EwCoYXGM3To2AUDC0wmmdHwVAF6O3twQ4AyyIakhAOAAA=
   </data>
  </layer>
  <layer name="collision" width="30" height="30" opacity="0.44">

@@ -51,16 +51,16 @@
  <tileset name="../../tileset/item/furniture/light/flames.png" firstgid="446" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/light/flames.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/statue/cross.png" firstgid="448" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/item/furniture/statue/cross.png" firstgid="452" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/statue/cross.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/logic/portal.png" firstgid="449" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/portal.png" firstgid="453" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset name="../../tileset/logic/collision.png" firstgid="456" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/collision.png" firstgid="460" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset name="../../tileset/logic/protection.png" firstgid="457" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/protection.png" firstgid="461" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/protection.png"/>
  </tileset>
  <layer name="0_floor" width="24" height="24">
@@ -85,17 +85,17 @@
  </layer>
  <layer name="objects" width="24" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjYBSMglEwCkbBKBia4CgjKiYWAAAhlK6IAAkAAA==
+   H4sIAAAAAAAAAGNgGAWjYBSMglEwCkbBKBia4CQjKiYWAABSqDx0AAkAAA==
   </data>
  </layer>
  <layer name="collision" width="24" height="24" visible="0" opacity="0.47">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAADvByMBwYphgEEDnw8SQ5ZDFsOnBZz41ALHmo4thU4dL32BwP63NJ8ZOaoUPJWoHynx6hg8pYKSZT0v1xJSJo+bTznx6qCcVDFfzSYlHYvUBADCLF8cACQAA
+   H4sIAAAAAAAAADvDyMBwZphgEEDnw8SQ5ZDFsOnBZz41ALHmo4thU4dL32BwP63NJ8ZOaoUPJWoHynx6hg8pYKSZT0v1xJSJo+bTznx6qCcVDFfzSYlHYvUBABgfWoAACQAA
   </data>
  </layer>
  <layer name="protection" width="24" height="24" visible="0" opacity="0.43">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAADvJyMBwchSP4lE8ikfxKB7Fo3gEYQCdlMwZAAkAAA==
+   H4sIAAAAAAAAADvLyMBwdhSP4lE8ikfxKB7Fo3gEYQBPJdLkAAkAAA==
   </data>
  </layer>
 </map>

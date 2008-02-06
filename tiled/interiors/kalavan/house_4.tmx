@@ -105,34 +105,34 @@
  <tileset name="flame" firstgid="199" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/light/flames.png"/>
  </tileset>
- <tileset name="shelf" firstgid="201" tilewidth="32" tileheight="32">
+ <tileset name="shelf" firstgid="205" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/shelve/bright_bookshelf_and_cupboard.png"/>
  </tileset>
- <tileset name="shelf" firstgid="207" tilewidth="32" tileheight="32">
+ <tileset name="shelf" firstgid="211" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/shelve/bright_bookshelf.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="216" tilewidth="32" tileheight="32">
+ <tileset name="Untitled" firstgid="220" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/chest/large.png"/>
  </tileset>
- <tileset name="pillow" firstgid="224" tilewidth="32" tileheight="32">
+ <tileset name="pillow" firstgid="228" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/bed/pillow_red.png"/>
  </tileset>
- <tileset name="pillow2" firstgid="225" tilewidth="32" tileheight="32">
+ <tileset name="pillow2" firstgid="229" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/bed/pillow_yellow.png"/>
  </tileset>
- <tileset name="screen" firstgid="226" tilewidth="32" tileheight="32">
+ <tileset name="screen" firstgid="230" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/other/oriental_screen.png"/>
  </tileset>
- <tileset name="table" firstgid="230" tilewidth="32" tileheight="32">
+ <tileset name="table" firstgid="234" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/table/oriental_table.png"/>
  </tileset>
- <tileset name="shelf" firstgid="234" tilewidth="32" tileheight="32">
+ <tileset name="shelf" firstgid="238" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/shelve/dark_bookshelf_2.png"/>
  </tileset>
- <tileset name="pot" firstgid="240" tilewidth="32" tileheight="32">
+ <tileset name="pot" firstgid="244" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/oriental_jar.png"/>
  </tileset>
- <tileset name="statue" firstgid="241" tilewidth="32" tileheight="32">
+ <tileset name="statue" firstgid="245" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/statue/seahorse.png"/>
  </tileset>
  <layer name="0_floor" width="25" height="25">
@@ -142,17 +142,17 @@
  </layer>
  <layer name="1_terrain" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAANXUOY7CMBQGYLMjGBqWlmWAZgCJY7AUtOw9l2EkqICOmVNQUHIDoIG78Fs8S8HCwQ4JiCd9ikme8uM4cYYxFvdQGhJQhoKmkkE/7/2ijBzsmLpOcKZxlvp1Kitl8JrCL41Vmc9m6FQVajTewwGOBhkzmBvkPSqn8/iBiuKaPC85w27NO9J/83o9nGYUIa/p29LPn1mdXZ+fqldkmHyDVuL9qiquy99gC9p0dFpNaNCR17318IHfBQGbjCCEXBBWZExczhi/aR6PMrrQI/0PzhjAkIw8ynjFephmbBQZEYi6gN9/eydjzG5L/q1b4v7yPMQ+uoAlrJj+PmxH7LspiJE1/MG/5dyzknAB2s4OWcQJAAA=
+   H4sIAAAAAAAAANXUOY7CMBQGYLMjGBqWlmWAZgCJY7AUtOw9l2EkqICOmVNQUHIHoIGb8Fs8S8HCwQ4JiCd9ikme8uM4cYYxFvdQGhJQhoKmkkE/7/2ijBzsmLpOcKZxlvp1Kitl8JrCL41Vmc9m6FQVajTewwGOBhkzmBvkPSqn8/iBiuKaPC85w27NO9J/83o9nGYUIa/p29LPn1mdXZ+fqldkmHyDVuL9qiquy99gC9p0dFpNaNCR17318IHfBQGbjCCEXBBWZExczhi/aR6PMrrQI/0PzhjAkIw8ynjFephmbBQZEYi6gN9/eydjzG5L/q1b4v7yPMQ+uoAlrJj+PmxH7LspiJE1/MG/5dyzknABFCkzjsQJAAA=
   </data>
  </layer>
  <layer name="2_object" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgwA6KcIjjAyVk6BnMoIxMffeA+D41HTIMgQ8d7EjAIf4WiN/TwL4PNDCTXqAciCsG2hEkAl8o/ZBG5g9UfCLbGwTEwVAcQqZ5T4D4KRYaBkKBOAyKw3GY8RuI/5BhdwCZcvjAAzR+IBY1GXjkiAHPgPg5mXqJBS+A+CWN7SAXkBvf1AbxBPijgIEBADySqzfECQAA
+   H4sIAAAAAAAAAGNgwA6KcIjjAyVk6BnMoIxMfY+A+DE1HTIMgQ8d7EjAIf4RiD/TwL4vNDCTXqAciCsG2hEkAl8o/ZRG5g9UfCLbGwTEwVAcQqZ5L4D4JRYaBkKBOAyKw3GY8R9EMJJudwCZcvjAEzR+IBY1GXjkiAGvgPg1mXqJBW+A+C2N7SAXkBvf1AbxBPijgIEBAK+pF77ECQAA
   </data>
  </layer>
  <layer name="3_roof" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNggIAjDLQHR9H4yHbeAOKbJJhVSqadt4D4NprYeSC+AMQXSbCfVHAJiC8D8RUS9EwA4om0cQ4YUCPOCYUdevgTAq+A+A1FLhoF+IA7EBdAaXKBGxC7QulRgB98BuIveOQfAfFjLDQMBCGxQ3CY8R2If1DgxlFAPUAovqkBRuN7FCADAMBMlXnECQAA
+   H4sIAAAAAAAAAGNggIAjDLQHR9H4yHbeAeK7JJhVSqad94D4PprYZSC+AsRXSbCfVHANiK8D8Q0S9EwA4om0cQ4YUCPOCYUdevgTAu+A+ANFLhoF+IA7EBdAaXKBGxC7QulRgB98B+IfeOSfAfFzLDQMBCGxQ3CY8RuI/1DgxlFAPUAovqkBRuN7FCADAHnSk3LECQAA
   </data>
  </layer>
  <layer name="4_roof_add" width="25" height="25">

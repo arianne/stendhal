@@ -81,7 +81,7 @@
  <tileset name="flames" firstgid="197" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/light/flames.png"/>
  </tileset>
- <tileset name="wall items" firstgid="199" tilewidth="32" tileheight="32">
+ <tileset name="wall items" firstgid="203" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/armor/weapons_for_walls.png"/>
  </tileset>
  <layer name="0_floor" width="64" height="64">
@@ -96,7 +96,7 @@
  </layer>
  <layer name="2_object" width="64" height="64">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3a/0rDMBAH8L6N71gE9zZ1ojJkoIP9NzfBf/zHB3KFBuJxaXrJermm3w+Ebnfd+jPpkqxpAAAAZHbe699r+RqWXL5Gb5n5pdsL8+e5dkTZfeL6J+HnLs3/OvRE4mcS92MWfQrX78+XX4deSPxE4n6stPYG39GfL66OuTg9n1xsTvQYHxS3Dfbc4p5fgtT2X7NuwnzcdbwTFgi7lN6Bwqz8bknxPSxzrmFK23jI2N4ctK/hcVi+X8uH8rY5eL5Bz1q91HaMrwIT0PGPXbOu3wl0/MPS+IYGOv6hPb4BAGlCcz+1zwk5obmfWueEuLFoTmzOqAYbYQ7PNJCy3I5uFLZhrR3VrsNraEdfhXGAmuD+BwDLuPFYF/vR3JFCuPHYtY3RTonVaOr/gLj1/P7bdiRH89b6fV0g3kbyfv/teSRH89b6fVKuboz131Jzmugcr/sPbkfe9x4zShuIl8bN8XZk6ZMc25RiTay+O7U9G8aOt43kly7n+QcAAGX9AZia6qMAQAAA
+   H4sIAAAAAAAAAO3aS2rDMBAGYN+mdzSF5jZuSltCCbSB7NJkU+immx6nMVigDiPLI8Wjsfx/IJzMOPFTciSlaQAAAGR23uvfa/kally+Rm+Z+aXbC/PnuXZE2X3i+ifh5y7N/zr0ROJnEvdjFn0K1+/Pl1+HXkj8ROJ+rLT2Bt/Rny+ujrk4PZ9cbE70GB8Utw323OKeX4LU9l+zbsJ83HW8ExYIu5TegcKs/G5J8T0sc65hStt4yNjeHLSv4XFYvl/Lh/K2OXi+Qc9avdR2jK8CE9Dxj12zrt8JdPzD0viGBjr+oT2+AQBpQnM/tc8JOaG5n1rnhLixaE5szqgGG2EOzzSQstyObhS2Ya0d1a7Da2hHX4VxgJrg/gcAy7jxWBf70dyRQrjx2LWN0U6J1Wjq/4C49fz+23YkR/PW+n1dIN5G8n7/7XkkR/PW+n1Srm6M9d9Sc5roHK/7D25H3vceM0obiJfGzfF2ZOmTHNuUYk2svju1PRvGjreN5Jcu5/kHAABl/QGhgBqdAEAAAA==
   </data>
  </layer>
  <layer name="3_roof" width="64" height="64">

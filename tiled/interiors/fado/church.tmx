@@ -51,13 +51,13 @@
  <tileset name="../../tileset/item/furniture/light/flames.png" firstgid="380" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/light/flames.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/logic/portal.png" firstgid="382" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/portal.png" firstgid="386" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset name="../../tileset/logic/collision.png" firstgid="389" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/collision.png" firstgid="393" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset name="../../tileset/logic/protection.png" firstgid="390" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/protection.png" firstgid="394" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/protection.png"/>
  </tileset>
  <layer name="0_floor" width="24" height="24">
@@ -82,17 +82,17 @@
  </layer>
  <layer name="objects" width="24" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjYBSMglEwCkbBKBiaoIkRFRMLAIuc1j8ACQAA
+   H4sIAAAAAAAAAGNgGAWjYBSMglEwCkbBKBiaoI0RFRMLAFp3p2sACQAA
   </data>
  </layer>
  <layer name="collision" width="24" height="24" opacity="0.47">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGtlZGBoHWYYBGA0MWxkGpd5tAC43ItNDSluQ/cPITeQI4fLfGxhis0f+NTiMx+XGwmlAWLdj0sNOWmDEjXk6qUkvZIT/pSAUfNHzR81f+ibT217yK3zyTEDAHprHqQACQAA
+   H4sIAAAAAAAAAOtkZGDoHGYYBGA0MWxkGpd5tAC43ItNDSluQ/cPITeQI4fLfGxhis0f+NTiMx+XGwmlAWLdj0sNOWmDEjXk6qUkvZIT/pSAUfNHzR81f+ibT217yK3zyTEDALY5fRQACQAA
   </data>
  </layer>
  <layer name="protection" width="24" height="24" visible="0" opacity="0.43">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3DAQ0AAAwCIF/e3AY5bPSSqqo+On4e/LgACQAA
+   H4sIAAAAAAAAAO3DAQ0AAAwCIF/f1AY5bPSSqqo+OknKrmQACQAA
   </data>
  </layer>
 </map>
