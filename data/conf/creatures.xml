@@ -9865,10 +9865,9 @@
       <size value="1,1"/>
     </attributes>
     <level value="1000"/>
-    <experience value="0"/>
+    <experience value="100"/>
     <respawn value="5000"/>
     <drops>
-      <item value="money" quantity="[5,13]" probability="100.0"/>
     </drops>
     <equips>
     </equips>
@@ -9892,7 +9891,6 @@
     <experience value="0"/>
     <respawn value="5000"/>
     <drops>
-      <item value="money" quantity="[10,50]" probability="100.0"/>
     </drops>
     <equips>
     </equips>
@@ -9917,7 +9915,6 @@
     <experience value="0"/>
     <respawn value="5000"/>
     <drops>
-      <item value="money" quantity="[5,43]" probability="100.0"/>
     </drops>
     <equips>
     </equips>
@@ -9942,7 +9939,6 @@
     <experience value="0"/>
     <respawn value="5000"/>
     <drops>
-      <item value="money" quantity="[10,90]" probability="100.0"/>
      </drops>
     <equips>
     </equips>
@@ -9966,7 +9962,6 @@
     <experience value="0"/>
     <respawn value="5000"/>
     <drops>
-      <item value="money" quantity="[5,53]" probability="100.0"/>
      </drops>
     <equips>
     </equips>
@@ -9991,7 +9986,6 @@
     <experience value="0"/>
     <respawn value="5000"/>
     <drops>
-      <item value="money" quantity="[10,50]" probability="100.0"/>
     </drops>
     <equips>
     </equips>
@@ -10015,7 +10009,6 @@
     <experience value="0"/>
     <respawn value="5000"/>
     <drops>
-      <item value="money" quantity="[5,43]" probability="100.0"/>
     </drops>
     <equips>
     </equips>
@@ -10039,7 +10032,6 @@
     <experience value="0"/>
     <respawn value="5000"/>
     <drops>
-      <item value="money" quantity="[10,50]" probability="100.0"/>
     </drops>
     <equips>
     </equips>
@@ -10063,7 +10055,6 @@
     <experience value="0"/>
     <respawn value="5000"/>
     <drops>
-      <item value="money" quantity="[5,43]" probability="100.0"/>
     </drops>
     <equips>
     </equips>
@@ -10087,7 +10078,6 @@
     <experience value="0"/>
     <respawn value="5000"/>
     <drops>
-      <item value="money" quantity="[80,200]" probability="100.0"/>
     </drops>
     <equips>
     </equips>
@@ -10111,7 +10101,6 @@
     <experience value="0"/>
     <respawn value="5000"/> 
     <drops>
-      <item value="money" quantity="[5,43]" probability="100.0"/>
     </drops>
     <equips>
     </equips>
@@ -10135,7 +10124,6 @@
     <experience value="0"/>
     <respawn value="5000"/>
     <drops>
-      <item value="money" quantity="[100,600]" probability="100.0"/>
     </drops>
     <equips>
     </equips>
