@@ -118,13 +118,8 @@ public class Soup extends AbstractQuest {
 			new SpeakerNPC.ChatCondition() {
 				@Override
 				public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
-					// we don't set quest slot to done so we can't check
-					// this
-					// return player.isQuestCompleted(QUEST_SLOT);
-					boolean questdone = player.hasQuest(QUEST_SLOT)
-							&& player.getQuest(QUEST_SLOT).startsWith(
-									"done");
-					if (!questdone) {
+
+					if (!player.isQuestCompleted(QUEST_SLOT)) {
 						return false; // we haven't done the quest yet
 					}
 
@@ -146,13 +141,7 @@ public class Soup extends AbstractQuest {
 			new SpeakerNPC.ChatCondition() {
 				@Override
 				public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
-					// we don't set quest slot to done so we can't check
-					// this
-					// return player.isQuestCompleted(QUEST_SLOT);
-					boolean questdone = player.hasQuest(QUEST_SLOT)
-							&& player.getQuest(QUEST_SLOT).startsWith(
-									"done");
-					if (!questdone) {
+					if (!player.isQuestCompleted(QUEST_SLOT)) {
 						return false; // we haven't done the quest yet
 					}
 
@@ -183,8 +172,7 @@ public class Soup extends AbstractQuest {
 			new SpeakerNPC.ChatAction() {
 				@Override
 				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-					if (!(player.hasQuest(QUEST_SLOT) && player.getQuest(
-							QUEST_SLOT).startsWith("done"))) {
+					if (!(player.hasQuest(QUEST_SLOT) && player.isQuestCompleted(QUEST_SLOT))) {
 						npc.say("My special soup has a magic touch. "
 								+ "I need you to bring me the #ingredients.");
 					} else { // to be honest i don't understand when this
@@ -263,7 +251,7 @@ public class Soup extends AbstractQuest {
 			ConversationPhrases.GREETING_MESSAGES,
 			new AndCondition(new QuestStartedCondition(QUEST_SLOT), new NotCondition(new QuestStateStartsWithCondition(QUEST_SLOT, "done"))),
 			ConversationStates.QUESTION_1,
-			"Welcome back! I hope you collected some #ingredients for the soup.",
+			"Welcome back! I hope you collected some #ingredients for the soup, or #everything.",
 			null);
 
 		// player asks what exactly is missing
@@ -324,7 +312,7 @@ public class Soup extends AbstractQuest {
 								placeSoupFor(player);
 								player.healPoison();
 								npc.say("The soup's on the table for you. It will heal you. "
-										+ "My magical method in making the soup had given you a little karma too.");
+										+ "My magical method in making the soup has given you a little karma too.");
 								player.setQuest(QUEST_SLOT, "done;"
 										+ System.currentTimeMillis());
 								player.notifyWorldAboutChanges();
@@ -340,6 +328,20 @@ public class Soup extends AbstractQuest {
 					}
 				}
 			});
+		
+		// Perhaps player wants to give all the ingredients at once
+		npc.add(ConversationStates.QUESTION_1, "everything",
+				null,
+				ConversationStates.QUESTION_1,
+				null,
+				new SpeakerNPC.ChatAction() {
+			    @Override
+			    public void fire(Player player, Sentence sentence,
+					   SpeakerNPC npc) {
+			    	checkForAllIngredients(player, npc);
+			}
+		});
+		
 
 		// player says something which isn't in the needed food list.
 		npc.add(ConversationStates.QUESTION_1, "",
@@ -359,7 +361,43 @@ public class Soup extends AbstractQuest {
 			null);
 
 	}
-
+	
+	// if we're checking all at once it's a bit different method
+	// also player is rewarded less xp and no karma (don't get karma for being lazy)
+	private void checkForAllIngredients(Player player, SpeakerNPC npc) {
+		List<String> missing = missingFood(player, false);
+		for (String food : missing) {
+		if (player.drop(food)) {							
+			// register ingredient as done
+			String doneText = player.getQuest(QUEST_SLOT);
+			player.setQuest(QUEST_SLOT, doneText + ";"
+			+ food);
+			}
+		}
+		//		 check if the player has brought all Food
+		missing = missingFood(player, true);
+		if (missing.size() > 0) {
+			npc.say("You didn't have all the ingredients I need. I still need "
+							+ Grammar.quantityplnoun(missing.size(),
+									"ingredient") + ": "
+							+ Grammar.enumerateCollection(missing)
+							+ ".");
+			return;
+		}
+		else {
+			// you get less XP if you did it the lazy way
+			// and no karma
+			player.addXP(20);
+			placeSoupFor(player);
+			player.healPoison();
+			npc.say("The soup's on the table for you, it will heal you. Tell me if I can help you with anything else.");
+			player.setQuest(QUEST_SLOT, "done;"
+					+ System.currentTimeMillis());
+			player.notifyWorldAboutChanges();
+			npc.setCurrentState(ConversationStates.ATTENDING);
+		}
+	}
+	
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
