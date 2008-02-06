@@ -15,7 +15,9 @@ import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.player.Player;
 
+import java.util.Arrays;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -46,8 +48,9 @@ import java.util.List;
 public class HelpTomi extends AbstractQuest {
 
 	private static final String QUEST_SLOT = "help_tomi";
-//	private static final List<String> extraTrigger = Arrays.asList("ice");
-	
+	private static final String extraTrigger = "ice";
+	private List<String> questTrigger;
+
 	@Override
 	public void init(String name) {
 		super.init(name, QUEST_SLOT);
@@ -67,30 +70,19 @@ public class HelpTomi extends AbstractQuest {
 		return res;
 	}
 	
-	/*
-	 * TODO: Make the trigger be this trigger not ConversationPhrases.QUEST_MESSAGES) in each case below. 
-	 * But I'm too stupid (kymara)
-	 * I've copied similar code from ;ogic for BringItemsQuests 
-	 * and it doesn't complain about boolean->List string there :(
-	private List<String> trigger() {
-		List<String> questTrigger = new LinkedList<String>(ConversationPhrases.QUEST_MESSAGES);
-		return (questTrigger.addAll(extraTrigger));
-
-	}*/
-
 	private void step1() {
 		SpeakerNPC npc = npcs.get("tomi");
 		
 		// says quest or ice and doesn't have an ice sword and hasn't brought one before
 		npc.add(ConversationStates.ATTENDING,
-			ConversationPhrases.QUEST_MESSAGES, 
+			questTrigger, 
 			new AndCondition(new QuestNotCompletedCondition(QUEST_SLOT), new NotCondition(new PlayerHasItemWithHimCondition("ice sword"))),
 			ConversationStates.ATTENDING, 
 			"my ice? ice plz", null);
 		
 		// says quest or ice and doesn't have an ice sword and has brought one in the past
 		npc.add(ConversationStates.ATTENDING,
-			ConversationPhrases.QUEST_MESSAGES,
+			questTrigger,
 			new AndCondition(new QuestCompletedCondition(QUEST_SLOT), new NotCondition(new PlayerHasItemWithHimCondition("ice sword"))),
 			ConversationStates.ATTENDING, 
 			"where is my ice?", null);
@@ -98,7 +90,7 @@ public class HelpTomi extends AbstractQuest {
 		// says quest or ice and has ice sword with him (first time)
 		// player gets a karma bonus and some xp
 		npc.add(ConversationStates.ATTENDING,
-			ConversationPhrases.QUEST_MESSAGES, 
+			questTrigger, 
 			new AndCondition(new QuestNotCompletedCondition(QUEST_SLOT), new PlayerHasItemWithHimCondition("ice sword")),
 			ConversationStates.ATTENDING,
 			"my ice :)",
@@ -107,17 +99,19 @@ public class HelpTomi extends AbstractQuest {
 		// says quest or ice and has ice sword with him (second+ time)
 		// player gets a karma bonus and some xp
 		npc.add(ConversationStates.ATTENDING,
-			ConversationPhrases.QUEST_MESSAGES, 
+			questTrigger, 
 			new AndCondition(new QuestCompletedCondition(QUEST_SLOT), new PlayerHasItemWithHimCondition("ice sword")),
 			ConversationStates.ATTENDING,
 			"my ice :) :) :)",
-			new MultipleActions(new DropItemAction("ice sword"), new IncreaseXPAction(1000), new IncreaseKarmaAction(30.0), new SetQuestAction(QUEST_SLOT, "done")));
+			new MultipleActions(new DropItemAction("ice sword"), new IncreaseXPAction(3000), new IncreaseKarmaAction(30.0), new SetQuestAction(QUEST_SLOT, "done")));
 	}
 
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
-
+		// want "ice" and quest_messages to have same meaning in this quest
+	    questTrigger = new LinkedList<String>(ConversationPhrases.QUEST_MESSAGES);
+		questTrigger.add(extraTrigger);
 		step1();
 
 	}
