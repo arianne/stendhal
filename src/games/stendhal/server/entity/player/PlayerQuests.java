@@ -33,7 +33,7 @@ class PlayerQuests {
 			return false;
 		}
 
-		return info.equals("done");
+		return info.equals("done") || info.startsWith("done;");
 	}
 
 	/**
