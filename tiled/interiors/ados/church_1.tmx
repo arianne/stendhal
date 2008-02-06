@@ -3,55 +3,55 @@
  <tileset name="Unbenannt" firstgid="1" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/wall_brown.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="7" tilewidth="32" tileheight="32">
+ <tileset name="Unbenannt" firstgid="10" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_wall_dark_red_corners.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="23" tilewidth="32" tileheight="32">
+ <tileset name="Unbenannt" firstgid="26" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_wall_dark_red.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="39" tilewidth="32" tileheight="32">
+ <tileset name="Unbenannt" firstgid="42" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/stairs.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="43" tilewidth="32" tileheight="32">
+ <tileset name="Unbenannt" firstgid="46" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/window/int_windows_dark_red.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="59" tilewidth="32" tileheight="32">
+ <tileset name="Unbenannt" firstgid="62" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/other/warmer.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="61" tilewidth="32" tileheight="32">
+ <tileset name="Unbenannt" firstgid="64" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/logs.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="64" tilewidth="32" tileheight="32">
+ <tileset name="Unbenannt" firstgid="67" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/brush.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="67" tilewidth="32" tileheight="32">
+ <tileset name="Unbenannt" firstgid="70" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/chest/large.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="75" tilewidth="32" tileheight="32">
+ <tileset name="Unbenannt" firstgid="78" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/barrel.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="77" tilewidth="32" tileheight="32">
+ <tileset name="Unbenannt" firstgid="80" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/box.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="78" tilewidth="32" tileheight="32">
+ <tileset name="Unbenannt" firstgid="81" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/pot_golden.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="82" tilewidth="32" tileheight="32">
+ <tileset name="Unbenannt" firstgid="85" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/light/iron_lamp.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="85" tilewidth="32" tileheight="32">
+ <tileset name="Unbenannt" firstgid="88" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/chair/wooden_pale.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="89" tilewidth="32" tileheight="32">
+ <tileset name="Unbenannt" firstgid="92" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/shelve/bright_bookshelf_and_cupboard.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="95" tilewidth="32" tileheight="32">
+ <tileset name="Unbenannt" firstgid="98" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="102" tilewidth="32" tileheight="32">
+ <tileset name="Unbenannt" firstgid="105" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="103" tilewidth="32" tileheight="32">
+ <tileset name="Unbenannt" firstgid="106" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/protection.png"/>
  </tileset>
  <layer name="0_floor" width="40" height="20">
@@ -61,17 +61,17 @@
  </layer>
  <layer name="1_terrain" width="40" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3RTQuCUBBG4dkZYZkUrQp0Xdr35///YZ7FBIO4asDrYl54wLuaA2YiMlM33M17bP37cxTIsccLb/1Owd5fYKl9O5neaok+z359BxwTtwytQYsTzolbhnbBVab/f6Pvv0Wfb9HnW/T5Fn2+2b4VKjzw1O8U7P1S+9bYqA++5j22/v0tOq1JBq+ADAAA
+   H4sIAAAAAAAAAO3RTQuCUBBG4VkbYZkUrQp0Xdr35///W57FBIO4asDrYl54wLuaA2YiMlM33M17bP37cxTIsccLb/1Owd5fYKl9O5neaok+z359BxwTtwytQYsTzolbhnbBVab/f6Pvv0Wfb9HnW/T5Fn2+2b4VKjzw1O8U7P1S+9bYqA++5j22/v0tOjcH1xqADAAA
   </data>
  </layer>
  <layer name="2_object" width="40" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoC1woJG51lQyx5FK5qADGyqY4QPETiTq8YViYoE9CZgagJD7tKhkD7mA1PAbBcMDhCNhdBBDAo5FwviAOxB7UMl9gwEMZfeRG7/44ni4xe8oQAWkxq8fEPtD2QFAHIhEDwYwHNwXggOPgsELAGRVEMSADAAA
+   H4sIAAAAAAAAAGNgoC1wppG5dlQyx4VK5qADeyqY4Q/EriTqCYBiYoETCZgagJD7dKlkD7mA1PAbBcMDRCFhdBBPAk5AwviAFxB7U8l9gwEMZfeRG78JeOwbbvE7ClABqfEbCMRBUHYwEIcg0YMBDAf3hePAo2DwAgAeh2yZgAwAAA==
   </data>
  </layer>
  <layer name="3_roof" width="40" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAW0BHYk4FEwCkYiiCQBRyFhfMAZiF1o5N5RQBogN37xxfFo/A5vMBLjNwgHHiwgGAceBaOAXAAALNdcz4AMAAA=
+   H4sIAAAAAAAAAGNgGAW0BI4k4FEwCkYiiCEBxyJhfMANiN1p5N5RQBogN37xxfFo/A5vMBLjNxQHHiwgDAceBaOAXAAAhnN7l4AMAAA=
   </data>
  </layer>
  <layer name="4_roof_add" width="40" height="20">
@@ -81,17 +81,17 @@
  </layer>
  <layer name="objects" width="40" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3OQREAAAgDoHW1fwdT7PQBCUjgj7kOAABQtfRu5dSADAAA
+   H4sIAAAAAAAAAO3OQREAAAgDoKW1fwRT7PQBCUjgj7kOAABQtbMeqTGADAAA
   </data>
  </layer>
  <layer name="collision" width="40" height="20" opacity="0.49">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2VQQoAIAgEfa3/f0KnCERQ0zTEgb1kbHMyBACcuEPhzqzcdGj9pPuWjpd+2fzutxk/Hxa/qJ3AdUb4VdDJL3Lv084IvwrGT/e+NOc8q905hw5+mX+3Z2dMThY2BfgRgAwAAA==
+   H4sIAAAAAAAAAO2VQQoAIAgE/a7//0CnCERQ0zTEgb1kbHMyBACcuEPhzqzcdGj9pPuWjpd+2fzutxk/Hxa/qJ3AdUb4VdDJL3Lv084IvwrGT/e+NOc8q905hw5+mX+3Z2dMThZLOAhggAwAAA==
   </data>
  </layer>
  <layer name="protection" width="40" height="20" opacity="0.44">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3DQQ0AAAwDoXNb/w7mYi9IWDVVVdWHB8kbn3KADAAA
+   H4sIAAAAAAAAAO3DQQ0AAAwDodNb/wLmYi9IWDVVVdWHBwGd8jaADAAA
   </data>
  </layer>
 </map>
