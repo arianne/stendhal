@@ -8,6 +8,7 @@ import games.stendhal.server.entity.npc.behaviour.impl.OutfitChangerBehaviour;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.util.TimeUtil;
 
 import org.apache.log4j.Logger;
 
@@ -95,14 +96,14 @@ public class OutfitChangerAdder {
 							int price = behaviour.getUnitPrice(behaviour.getChosenItemName())
 									* behaviour.getAmount();
 
-							engine.say("A " + behaviour.getChosenItemName() + " will cost " + price
+							engine.say("To " + command + " a "  + behaviour.getChosenItemName() + " will cost " + price
 									+ ". Do you want to " + command + " it?");
 						} else {
 							if (behaviour.getChosenItemName() == null) {
 								engine.say("Please tell me what you want to "
 										+ command + ".");
 							} else {
-								engine.say("Sorry, I don't sell "
+								engine.say("Sorry, I don't offer "
 										+ Grammar.plural(behaviour.getChosenItemName()) + ".");
 							}
 							engine.setCurrentState(ConversationStates.ATTENDING);
@@ -124,6 +125,10 @@ public class OutfitChangerAdder {
 						if (behaviour.transactAgreedDeal(npc, player)) {
 							if (canReturn) {
 								npc.say("Thanks, and please don't forget to #return it when you don't need it anymore!");
+								// -1 is also the public static final int NEVER_WEARS_OFF = -1; 
+								// but it doesn't recognise it here ...
+							} else if (behaviour.endurance != -1) {
+								npc.say("Thanks! This will wear off in " +  TimeUtil.timeUntil((int) (behaviour.endurance*0.3)) + ".");
 							} else {
 								npc.say("Thanks!");
 							}
