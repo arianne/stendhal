@@ -45,6 +45,9 @@
  <tileset name="corners" firstgid="446" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/grey_corners.png"/>
  </tileset>
+ <tileset name="Untitled" firstgid="450" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/creature/giant_human.png"/>
+ </tileset>
  <layer name="0_floor" width="32" height="32">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3Xuw7CMAyF4VSiQsBawcBlLSxsfVGeGDNYCpEdn1yaLhnO2u/f4g7OuWHj7YEdaDtwI/hN1P/ZR9oJ3AQ2ID7bC+0DbgEbLN+3U32kIeaHdo5vNWi+ZOf6sQbJ1+wSX2sI/Zhd6ksNvm/ZNfywgX3EruX7DeyfaZeG/pV2y/Brrfvd73732b/THg39J+3l/t+fVg1sS+/v2g2+rd0fazWEduz+qt0g2db9WatBs5H7u7QhZqP/H7kNlp3y/8UNMzjETvG54Q0OsX1/y30B5D7PWwAQAAA=
@@ -72,7 +75,7 @@
  </layer>
  <layer name="objects" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjgDwwjXGgXTAKRsHAgIWM2NmjYBRQAvpomJZoafYoGAWjYBSMglEwUsBGRggeygAAq2HK8gAQAAA=
+   H4sIAAAAAAAAAGNgGAWjgDwwjXGgXTAKRsHAgOOM2NmjYBRQAvpomJZoafYoGAWjYBSMglEwUsBGRggeygAAVCxMsgAQAAA=
   </data>
  </layer>
  <layer name="collision" width="32" height="32" opacity="0.49">
