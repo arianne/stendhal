@@ -32,10 +32,10 @@ import java.util.Map;
  */
 public class OutfitChangerBehaviour extends MerchantBehaviour implements
 		LoginListener {
-
+    // TODO: review scope
 	public static final int NEVER_WEARS_OFF = -1;
-
-	private int endurance;
+    // TODO: review scope (see OutfitChangerAdder)
+	public int endurance;
 
 	private String wearOffMessage;
 
@@ -133,7 +133,7 @@ public class OutfitChangerBehaviour extends MerchantBehaviour implements
 		}
 	}
 
-	class OutwearClothes implements TurnListener {
+	protected class OutwearClothes implements TurnListener {
 		WeakReference<Player> ref;
 		String name;
 
