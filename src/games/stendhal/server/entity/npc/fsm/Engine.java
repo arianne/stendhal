@@ -113,7 +113,7 @@ public class Engine {
 			PostTransitionAction existingAction = existing.getAction();
 
 			// Concatenate the previous and the new reply texts if the new one is not there already.
-			if (existingReply != null && !existingReply.contains(reply)) {
+			if (existingReply != null && reply != null && !existingReply.contains(reply)) {
 				reply = existingReply + " " + reply;
 			}
 
