@@ -15,6 +15,7 @@ import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.action.SetQuestAndModifyKarmaAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.LevelGreaterThanCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
@@ -43,6 +44,7 @@ import java.util.List;
  * <li>Get the book from Ceryl, and remember the name of who it is for</li>
  * <li>Bring the book to Alrak - he reads it for 3 days</li>
  * <li>After 3 days Alrak has learned how to make a knife from obsidian</li>
+ * <li>Provided you have high enough level, you can continue</li>
  * <li>Get obsidian for the blade and a fish for the fish bone handle</li>
  * <li>Alrak makes the knife for you</li>
  * </ul>
@@ -61,7 +63,9 @@ import java.util.List;
 public class ObsidianKnife extends AbstractQuest {
 
 	private static final int REQUIRED_FOOD = 100;
-
+	
+	private static final int REQUIRED_LEVEL = 100;
+	
 	private static final List<String> FOOD_LIST = Arrays.asList("ham", "meat", "cheese");
 
 	private static final int REQUIRED_DAYS = 3;
@@ -296,7 +300,7 @@ public class ObsidianKnife extends AbstractQuest {
 							return;
 						}
 						npc.say("I've finished reading! That was really interesting. I learned how to make a special #knife from #obsidian.");
-						player.setQuest(QUEST_SLOT, "knife_offered");
+						player.setQuest(QUEST_SLOT, "book_read");
 						player.notifyWorldAboutChanges();
 						npc.setCurrentState(ConversationStates.QUEST_2_OFFERED);
 					}
@@ -304,20 +308,34 @@ public class ObsidianKnife extends AbstractQuest {
 
 		npc.add(ConversationStates.QUEST_2_OFFERED,
 				"obsidian",
-				null,
+				new LevelGreaterThanCondition(REQUIRED_LEVEL),
 				ConversationStates.QUEST_2_OFFERED,
 				"That book says that the black gem, obsidian, can be used to make a very sharp cutting edge. Fascinating! If you slay a black dragon to bring it, I'll make a #knife for you.",
-				null);
+				new SetQuestAction(QUEST_SLOT,"knife_offered"));
 
 		npc.add(ConversationStates.QUEST_2_OFFERED,
 				"knife",
-				null,
+				new LevelGreaterThanCondition(REQUIRED_LEVEL),
 				ConversationStates.QUEST_2_OFFERED,
 				"I'll make an obsidian knife if you can get the gem which makes the blade. Bring a "
 						+ FISH
 						+ " so that I can make the bone handle, too.",
+				new SetQuestAction(QUEST_SLOT,"knife_offered"));
+		
+		npc.add(ConversationStates.QUEST_2_OFFERED,
+				Arrays.asList("obsidian", "knife"),
+				new NotCondition (new LevelGreaterThanCondition(REQUIRED_LEVEL)),
+				ConversationStates.ATTENDING,
+				"Well, I don't think you're quite ready for such a dangerous weapon yet. How about you come back when you're above level " + Integer.toString(REQUIRED_LEVEL) + "?",
 				null);
-
+		
+		npc.add(ConversationStates.IDLE, 
+				ConversationPhrases.GREETING_MESSAGES,
+				new QuestInStateCondition(QUEST_SLOT,"book_read"),
+				ConversationStates.QUEST_2_OFFERED,
+				"Hi! Perhaps you have come to ask about that #knife again ... ",
+				null);
+		        
 		// player says hi to NPC when equipped with the fish and the gem and
 		// he's killed a black dragon
 		npc.add(ConversationStates.IDLE, 
