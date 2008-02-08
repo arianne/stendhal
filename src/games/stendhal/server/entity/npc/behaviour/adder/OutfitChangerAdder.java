@@ -128,7 +128,7 @@ public class OutfitChangerAdder {
 								// -1 is also the public static final int NEVER_WEARS_OFF = -1; 
 								// but it doesn't recognise it here ...
 							} else if (behaviour.endurance != -1) {
-								npc.say("Thanks! This will wear off in " +  TimeUtil.timeUntil((int) (behaviour.endurance*0.3)) + ".");
+								npc.say("Thanks! This will wear off in " +  TimeUtil.timeUntil((int) (behaviour.endurance * 0.3)) + ".");
 							} else {
 								npc.say("Thanks!");
 							}

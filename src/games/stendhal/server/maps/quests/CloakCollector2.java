@@ -264,7 +264,7 @@ public class CloakCollector2 extends AbstractQuest {
 											"done;rewarded");
 									Item boots = SingletonRepository.getEntityManager().getItem("killer boots");
 									boots.setBoundTo(player.getName());
-									player.equip(boots,true);
+									player.equip(boots, true);
 									player.notifyWorldAboutChanges();
 									engine.setCurrentState(ConversationStates.ATTENDING);
 								}
@@ -310,15 +310,15 @@ public class CloakCollector2 extends AbstractQuest {
 		// player returns after finishing the quest but not rewarded
 		npc.add(ConversationStates.IDLE, 
 				ConversationPhrases.GREETING_MESSAGES,
-				new QuestInStateCondition(QUEST_SLOT,"done"), 
+				new QuestInStateCondition(QUEST_SLOT, "done"), 
 				ConversationStates.ATTENDING,
 				"Oh! I didnt' reward you for helping me again! Here, take this boots. I think they're gorgeous but they don't fit me :(", 
-				new MultipleActions(new EquipItemAction("killer boots",1,true), new SetQuestAction(QUEST_SLOT,"done;rewarded")));
+				new MultipleActions(new EquipItemAction("killer boots", 1, true), new SetQuestAction(QUEST_SLOT, "done;rewarded")));
 	
 		//		 player returns after finishing the quest and was rewarded
 		npc.add(ConversationStates.IDLE, 
 				ConversationPhrases.GREETING_MESSAGES,
-				new QuestInStateCondition(QUEST_SLOT,"done;rewarded"), 
+				new QuestInStateCondition(QUEST_SLOT, "done;rewarded"), 
 				ConversationStates.ATTENDING,
 				"Thanks again for helping me! The cloaks look great!",
 				null);
