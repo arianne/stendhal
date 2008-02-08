@@ -167,7 +167,7 @@ public class MarriageTest {
 		en.step(player, "help");
 		assertEquals("Please tell me if you want to #'wear a suit' for your wedding.", npc.get("text"));
 		en.step(player, "wear");
-		assertEquals("A suit will cost 50. Do you want to wear it?", npc.get("text"));
+		assertEquals("To wear a  suit will cost 50. Do you want to wear it?", npc.get("text"));
 		en.step(player, "yes");
 		assertEquals("Thanks, and please don't forget to #return it when you don't need it anymore!", npc.get("text"));
 		en.step(player2, "bye");
@@ -185,7 +185,7 @@ public class MarriageTest {
 		en.step(player2, "help");
 		assertEquals("Just tell me if you want to #'wear a gown' for your wedding.", npc.get("text"));
 		en.step(player2, "wear a gown");
-		assertEquals("A gown will cost 100. Do you want to wear it?", npc.get("text"));
+		assertEquals("To wear a  gown will cost 100. Do you want to wear it?", npc.get("text"));
 		en.step(player2, "yes");
 		assertEquals("Thanks, and please don't forget to #return it when you don't need it anymore!", npc.get("text"));
 	}
