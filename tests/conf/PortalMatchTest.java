@@ -1,6 +1,8 @@
 package conf;
 
-import static org.junit.Assert.assertFalse;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.not;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
@@ -41,7 +43,7 @@ public class PortalMatchTest {
 				}
 			});
 
-			assertFalse("files should not be empty", files.length == 0);
+			assertThat("files should not be empty", files.length, not((is(0))));
 			for (File f : files) {
 				final Document doc = docBuilder.parse(f);
 				portals.addAll(proceedDocument(doc));
