@@ -4,18 +4,13 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class OutfitTest {
 
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-	}
-
 	@Test
 	public void testOutfit() {
-		Outfit ou = new Outfit();
+		final Outfit ou = new Outfit();
 		assertEquals(Integer.valueOf(0), ou.getHair());
 		assertEquals(Integer.valueOf(0), ou.getHead());
 		assertEquals(Integer.valueOf(0), ou.getDress());
@@ -25,7 +20,7 @@ public class OutfitTest {
 
 	@Test
 	public void testOutfitIntegerIntegerIntegerInteger() {
-		Outfit ou = new Outfit(1, 2, 3, 4);
+		final Outfit ou = new Outfit(1, 2, 3, 4);
 		assertEquals(Integer.valueOf(1), ou.getHair());
 		assertEquals(Integer.valueOf(2), ou.getHead());
 		assertEquals(Integer.valueOf(3), ou.getDress());
@@ -45,7 +40,7 @@ public class OutfitTest {
 		assertEquals(Integer.valueOf(3), ou.getDress());
 		assertEquals(Integer.valueOf(4), ou.getBase());
 
-		String outfitnumber = "01020304";
+		final String outfitnumber = "01020304";
 		ou = new Outfit(Integer.parseInt(outfitnumber));
 		assertEquals(Integer.valueOf(1), ou.getHair());
 		assertEquals(Integer.valueOf(2), ou.getHead());
@@ -62,7 +57,7 @@ public class OutfitTest {
 
 	@Test
 	public void testSetGetBase() {
-		Outfit of = new Outfit();
+		final Outfit of = new Outfit();
 		of.setBase(0);
 		assertEquals(Integer.valueOf(0), of.getBase());
 		of.setBase(100);
@@ -74,7 +69,7 @@ public class OutfitTest {
 
 	@Test
 	public void testSetGetDress() {
-		Outfit of = new Outfit();
+		final Outfit of = new Outfit();
 		of.setDress(0);
 		assertEquals(Integer.valueOf(0), of.getDress());
 		of.setDress(-1);
@@ -85,7 +80,7 @@ public class OutfitTest {
 
 	@Test
 	public void testSetGetHair() {
-		Outfit of = new Outfit();
+		final Outfit of = new Outfit();
 		of.setHair(0);
 		assertEquals(Integer.valueOf(0), of.getHair());
 		of.setHair(-1);
@@ -96,7 +91,7 @@ public class OutfitTest {
 
 	@Test
 	public void testSetGetHead() {
-		Outfit of = new Outfit();
+		final Outfit of = new Outfit();
 		of.setHead(0);
 		assertEquals(Integer.valueOf(0), of.getHead());
 		of.setHead(-1);
@@ -112,8 +107,8 @@ public class OutfitTest {
 
 	@Test
 	public void testPutOver() {
-		Outfit orig = new Outfit(12345678);
-		Outfit pullover = new Outfit();
+		final Outfit orig = new Outfit(12345678);
+		final Outfit pullover = new Outfit();
 		assertEquals(12345678, orig.getCode());
 
 		Outfit result = orig.putOver(pullover);
@@ -147,7 +142,7 @@ public class OutfitTest {
 
 	@Test
 	public void testIsPartOf() {
-		Outfit of = new Outfit();
+		final Outfit of = new Outfit();
 		assertTrue(of.isPartOf(of));
 		Outfit part = new Outfit(null, null, null, null);
 		assertTrue(part.isPartOf(of));
@@ -189,7 +184,7 @@ public class OutfitTest {
 
 	@Test
 	public void testIsNaked() {
-		Outfit of = new Outfit();
+		final Outfit of = new Outfit();
 		assertTrue(of.isNaked());
 		of.setDress(1);
 		assertFalse(of.isNaked());

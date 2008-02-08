@@ -1,37 +1,29 @@
 package games.stendhal.server.entity;
 
 import static org.junit.Assert.assertEquals;
-import games.stendhal.server.core.engine.StendhalRPWorld;
 import games.stendhal.server.entity.creature.Cat;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import marauroa.common.game.RPObject;
 
-import org.junit.After;
-import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import utilities.PlayerTestHelper;
 import utilities.RPClass.CatTestHelper;
+import utilities.RPClass.SheepTestHelper;
 
 public class GetBaseSpeed {
 
-	@Before
-	public void setUp() throws Exception {
+	@BeforeClass
+	public static void setUpClass() {
 		PlayerTestHelper.generateCreatureRPClasses();
 		CatTestHelper.generateRPClasses();
-		
-		//new MockStendhalRPWorld();
-
-	}
-
-	@After
-	public void tearDown() throws Exception {
+		SheepTestHelper.generateRPClasses();
 	}
 
 	@Test
-	public void testgetBaseSpeed() throws Exception {
+	public void testgetBaseSpeed() {
 
 		assertEquals(0.2, (new SpeakerNPC("bob")).getBaseSpeed(), 0.001);
 		assertEquals(0.0, (new Creature()).getBaseSpeed(), 0.001);
@@ -42,13 +34,4 @@ public class GetBaseSpeed {
 
 	}
 
-	class MockStendhalRPWorld extends StendhalRPWorld {
-		@Override
-		protected void initialize() {
-		}
-
-		@Override
-		public void modify(RPObject object) {
-		}
-	}
 }

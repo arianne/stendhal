@@ -5,23 +5,13 @@ import games.stendhal.common.Direction;
 
 import java.awt.Rectangle;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 
 public class ActiveEntityTest {
 
-	@Before
-	public void setUp() throws Exception {
-	}
-
-	@After
-	public void tearDown() throws Exception {
-	}
-
 	@Test
 	public final void testGetDirectionTowardArea() {
-		ActiveEntity ae = new ActiveEntity() {
+		final ActiveEntity ae = new ActiveEntity() {
 		};
 		ae.setPosition(5, 5);
 		Rectangle area;
@@ -51,7 +41,7 @@ public class ActiveEntityTest {
 
 	@Test
 	public final void testFaceto() {
-		ActiveEntity ae = new ActiveEntity() {
+		final ActiveEntity ae = new ActiveEntity() {
 		};
 		ae.setPosition(5, 5);
 

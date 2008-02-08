@@ -11,10 +11,10 @@ import utilities.PlayerTestHelper;
 
 public class EntityTest {
 	@Test
-	public void testnextTo() throws Exception {
+	public void testnextTo() {
 		PlayerTestHelper.generatePlayerRPClasses();
-		Entity en = new MockEntity();
-		Player pl = PlayerTestHelper.createPlayer("player");
+		final Entity en = new Entity() { };
+		final Player pl = PlayerTestHelper.createPlayer("player");
 
 		en.setPosition(2, 2);
 
@@ -69,7 +69,5 @@ public class EntityTest {
 
 	}
 
-	class MockEntity extends Entity {
-
-	}
+	
 }
