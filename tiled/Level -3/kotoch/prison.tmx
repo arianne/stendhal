@@ -21,33 +21,33 @@
  <tileset name="../../tileset/building/entrance/int_iron_bars.png" firstgid="83" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/int_iron_bars.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/bed/side_on.png" firstgid="89" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/item/furniture/bed/side_on.png" firstgid="95" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/bed/side_on.png"/>
  </tileset>
- <tileset name="../../tileset/logic/portal.png" firstgid="91" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/portal.png" firstgid="97" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset name="../../tileset/logic/collision.png" firstgid="98" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/collision.png" firstgid="104" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset name="../../tileset/logic/protection.png" firstgid="99" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/protection.png" firstgid="105" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/protection.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="100" tilewidth="32" tileheight="32">
+ <tileset name="Untitled" firstgid="106" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/mountain_orc.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="104" tilewidth="32" tileheight="32">
+ <tileset name="Untitled" firstgid="110" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/light/dark_torch.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="112" tilewidth="32" tileheight="32">
+ <tileset name="Untitled" firstgid="118" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/brown.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="117" tilewidth="32" tileheight="32">
+ <tileset name="Untitled" firstgid="123" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/small_animal.png"/>
  </tileset>
  <layer name="0_floor" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2SMQoAIAgAbe+5/p92oRK1IrjhVu9EVUT0U3rRnJbwexoind0QbfA2rvzZG2X8N50Vd6xy2zknfy2yR9V/RBt23tNtHvcrPwAAAADAjAGSUEjiABAAAA==
+   H4sIAAAAAAAAAO2SMQoAIAgAbe/Fvr5dqEStCG641TtRFRH9lF40pyX8noZIZzdEG7yNK3/2Rhn/TWfFHavcds7JX4vsUfUf0Yad93Sbx/3KDwAAAAAwYwB8uMoCABAAAA==
   </data>
  </layer>
  <layer name="1_terrain" width="32" height="32">
@@ -57,12 +57,12 @@
  </layer>
  <layer name="2_object" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWDBeQNQjv8aOIK4kHAANs/CkYuCAPicDw4goA8TM0oGAWjgDAYjPXfKBgFo2AU0AOMln+jgN4AADW2wzsAEAAA
+   H4sIAAAAAAAAAGNgGAWDBZQMQjv8aOIK4kHAANs/CkYuCAPicDw4goA8TM0oGAWjgDAYjPXfKBgFo2AU0AOMln+jgN4AAAktPTYAEAAA
   </data>
  </layer>
  <layer name="3_roof" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAUwkEMHO7LoYMcoGAXDAQQDcQgeHEpAHqZmFIyCUUAY0KNuyqCDHaNgFIyCUUAqGG3/j4KRBgBOebZmABAAAA==
+   H4sIAAAAAAAAAGNgGAUwUEQHOwroYMcoGAXDAQQDcQgeHEpAHqZmFIyCUUAY0KNuyqODHaNgFIyCUUAqGG3/j4KRBgCMAYLdABAAAA==
   </data>
  </layer>
  <layer name="4_roof_add" width="32" height="32">
@@ -72,12 +72,12 @@
  </layer>
  <layer name="objects" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAXUApUD7YARBlIG2gEDAEbTGALEj3D7BwMop4MdlKb5Cqq4YhTgA6Pl0igYBZSB0XKKPECPOmgoglgqmTOaLocvAABHIBHtABAAAA==
+   H4sIAAAAAAAAAGNgGAXUAvUD7YARBrIG2gEDAEbTGAKkjnD7BwOopYMdlKb5Oqq4YhTgA6Pl0igYBZSB0XKKPECPOmgogmQqmTOaLocvAACv0sWoABAAAA==
   </data>
  </layer>
  <layer name="collision" width="32" height="32" opacity="0.46">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3VSwoAIAgEUM/q/Q/R1j6YoExCM+CmgqeLSkVEWVNOa5l4ht1T53yVvxq3+Sv6iM7vnaf/nx+5s9k73tFHhD79bj6ij8j/h0jF+1NZ9OkjQ3/3EX1Yq9v8L/1fawBp61QUABAAAA==
+   H4sIAAAAAAAAAO3VSwoAIAgEUI/r/U/Q1j6YoExCM+CmgqeLSkVEWVNOa5l4ht1T53yVvxq3+Sv6iM7vnaf/nx+5s9k73tFHhD79bj6ij8j/h0jF+1NZ9OkjQ3/3EX1Yq9v8L/1fawBM9sB8ABAAAA==
   </data>
  </layer>
  <layer name="protection" width="32" height="32" opacity="0.47">

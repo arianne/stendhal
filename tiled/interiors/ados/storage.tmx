@@ -21,25 +21,25 @@
  <tileset name="../../tileset/building/entrance/int_iron_bars.png" firstgid="61" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/int_iron_bars.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/item/chest/large.png" firstgid="67" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/item/chest/large.png" firstgid="73" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/chest/large.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/item/armor/weapons_rack.png" firstgid="75" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/item/armor/weapons_rack.png" firstgid="81" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/armor/weapons_rack.png"/>
  </tileset>
- <tileset name="../../tileset/logic/creature/small_animal.png" firstgid="93" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/creature/small_animal.png" firstgid="99" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/small_animal.png"/>
  </tileset>
- <tileset name="../../tileset/logic/item/sheepfood.png" firstgid="98" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/item/sheepfood.png" firstgid="104" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/item/sheepfood.png"/>
  </tileset>
- <tileset name="../../tileset/logic/creature/sheep.png" firstgid="99" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/creature/sheep.png" firstgid="105" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/sheep.png"/>
  </tileset>
- <tileset name="../../tileset/logic/creature/animal.png" firstgid="100" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/creature/animal.png" firstgid="106" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/animal.png"/>
  </tileset>
- <tileset name="../../tileset/logic/collision.png" firstgid="126" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/collision.png" firstgid="132" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
  <layer name="0_floor" width="32" height="32">
@@ -54,12 +54,12 @@
  </layer>
  <layer name="2_object" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2RSwrAIAwFczcL7QH6sdX7n8MnRLrUTWzRNzC8bZiI/AMHl4a1YoVbw5Ix4f/nhn8ns7PDGz7qBU/dQ42fXTc+uX/pXLp7eX8ShP0tyf1DRfa3g/0J6UsCskH/BwAQAAA=
+   H4sIAAAAAAAAAO2RQQqAMAwE8z0L+gBbtfX/j3ALKR7tJVrMDgx7DRORMZhg6FgrZrh0LPkn/L9v+HfinRUeMKsbTLpRPT+6zQO1f+vcuu9y/6QI+1tS+5cH2d8O9ifkXS7i5a//ABAAAA==
   </data>
  </layer>
  <layer name="3_roof" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2SSwqAMAwFc7Hqou78tt7/Ln2FFN2pYCmkb2DINkwiQkh7PJxeTGIT3p30zgwPGNQNrjoX9Wy2nX1y/9K5dN/lukmUb/0dHG6Ofy5rkNw/Psj/rwf7E9IXCaCmGBcAEAAA
+   H4sIAAAAAAAAAO2SSwqAMAwFc7Hquu78tt7/In2FFN2pYCmkb2DINkwiQkh7PJxeTGIT3p30zgwPGNQNrjoX9Wy2nX1y/9K5dN/lukmUb/0dHG6Ofy5rkNw/Psj/rwf7E9IXCXHSgg0AEAAA
   </data>
  </layer>
  <layer name="4_roof_add" width="32" height="32">
@@ -69,12 +69,12 @@
  </layer>
  <layer name="objects" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWDEcRRwYxyKpiBDshxF8wdRdR0yBAAtPQvNdIHMeZSyx5apMVRMLwAsWmNVmmfHiAJiukNYGFGb/vR42qg/D8KRhZAT2PJOMRpCZIJK6E7GIxuojUY9TNxYCjXq6OAPAAAbR68ggAQAAA=
+   H4sIAAAAAAAAAGNgGAWDEaRQwYxaKpiBDshxF8wdFdR0yBAAtPQvNdIHMeZSyx5apMVRMLwAsWmNVmmfHiADiukNYGFGb/vR42qg/D8KRhZAT2OZOMRpCTIJK6E7GIxuojUY9TNxYCjXq6OAPAAAmkmgcwAQAAA=
   </data>
  </layer>
  <layer name="collision" width="32" height="32" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2UUQoAIAhDPbln7wJZMhWlNvBv7cWkVESU456dPJ6MM5lZ5HP/5Mf2fsuKer2ays/qF+VHvRWazJ+2q4rMyXy0/9/fn9Wl5T2dyegfvTOqV/jsn/wuPvpfRnO6ZwHwNcfBABAAAA==
+   H4sIAAAAAAAAAO2UUQoAIAhDPbwH7wJZMhWlNvBv7cWkVESU456dPJ6MM5lZ5HP/5Mf2fsuKer2ays/qF+VHvRWazJ+2q4rMyXy0/9/fn9Wl5T2dyegfvTOqV/jsn/wuPvpfRnO6ZwEDDcamABAAAA==
   </data>
  </layer>
  <layer name="protection" width="32" height="32">
