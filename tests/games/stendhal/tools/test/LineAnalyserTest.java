@@ -1,91 +1,95 @@
 package games.stendhal.tools.test;
 
-import org.junit.Assert;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
+
 import org.junit.Test;
 
 public class LineAnalyserTest {
 
 	@Test
 	public void testEmpty() {
-		LineAnalyser analyser = new LineAnalyser("");
-		Assert.assertEquals("", analyser.getLine());
-		Assert.assertEquals("", analyser.getStripped());
-		Assert.assertNull(analyser.getProtagonist());
-		Assert.assertEquals("", analyser.getText());
-		Assert.assertFalse(analyser.isComment());
-		Assert.assertTrue(analyser.isEmpty());
-		Assert.assertFalse(analyser.isNPCSpeaking());
-		Assert.assertFalse(analyser.isPlayerSpeaking());
-		Assert.assertFalse(analyser.isStatus());
+		final LineAnalyser analyser = new LineAnalyser("");
+		assertEquals("", analyser.getLine());
+		assertEquals("", analyser.getStripped());
+		assertNull(analyser.getProtagonist());
+		assertEquals("", analyser.getText());
+		assertFalse(analyser.isComment());
+		assertTrue(analyser.isEmpty());
+		assertFalse(analyser.isNPCSpeaking());
+		assertFalse(analyser.isPlayerSpeaking());
+		assertFalse(analyser.isStatus());
 	}
 
 	@Test
 	public void testSpace() {
-		LineAnalyser analyser = new LineAnalyser(" ");
-		Assert.assertEquals("", analyser.getLine());
-		Assert.assertEquals("", analyser.getStripped());
-		Assert.assertNull(analyser.getProtagonist());
-		Assert.assertEquals("", analyser.getText());
-		Assert.assertFalse(analyser.isComment());
-		Assert.assertTrue(analyser.isEmpty());
-		Assert.assertFalse(analyser.isNPCSpeaking());
-		Assert.assertFalse(analyser.isPlayerSpeaking());
-		Assert.assertFalse(analyser.isStatus());
+		final LineAnalyser analyser = new LineAnalyser(" ");
+		assertEquals("", analyser.getLine());
+		assertEquals("", analyser.getStripped());
+		assertNull(analyser.getProtagonist());
+		assertEquals("", analyser.getText());
+		assertFalse(analyser.isComment());
+		assertTrue(analyser.isEmpty());
+		assertFalse(analyser.isNPCSpeaking());
+		assertFalse(analyser.isPlayerSpeaking());
+		assertFalse(analyser.isStatus());
 	}
 
 	@Test
 	public void testPlayer() {
-		LineAnalyser analyser = new LineAnalyser("[21:24] <player> hi");
-		Assert.assertEquals("[21:24] <player> hi", analyser.getLine());
-		Assert.assertEquals("<player> hi", analyser.getStripped());
-		Assert.assertEquals("player", analyser.getProtagonist());
-		Assert.assertEquals("hi", analyser.getText());
-		Assert.assertFalse(analyser.isComment());
-		Assert.assertFalse(analyser.isEmpty());
-		Assert.assertFalse(analyser.isNPCSpeaking());
-		Assert.assertTrue(analyser.isPlayerSpeaking());
-		Assert.assertFalse(analyser.isStatus());
+		final LineAnalyser analyser = new LineAnalyser("[21:24] <player> hi");
+		assertEquals("[21:24] <player> hi", analyser.getLine());
+		assertEquals("<player> hi", analyser.getStripped());
+		assertEquals("player", analyser.getProtagonist());
+		assertEquals("hi", analyser.getText());
+		assertFalse(analyser.isComment());
+		assertFalse(analyser.isEmpty());
+		assertFalse(analyser.isNPCSpeaking());
+		assertTrue(analyser.isPlayerSpeaking());
+		assertFalse(analyser.isStatus());
 	}
 
 	@Test
 	public void testNPC() {
-		LineAnalyser analyser = new LineAnalyser("[21:24] <Plink> *cries* There were wolves in the park! *sniff* I ran away, but I dropped my teddy! Please will you get it for me? *sniff* Please?");
-		Assert.assertEquals("[21:24] <Plink> *cries* There were wolves in the park! *sniff* I ran away, but I dropped my teddy! Please will you get it for me? *sniff* Please?", analyser.getLine());
-		Assert.assertEquals("<Plink> *cries* There were wolves in the park! *sniff* I ran away, but I dropped my teddy! Please will you get it for me? *sniff* Please?", analyser.getStripped());
-		Assert.assertEquals("Plink", analyser.getProtagonist());
-		Assert.assertEquals("*cries* There were wolves in the park! *sniff* I ran away, but I dropped my teddy! Please will you get it for me? *sniff* Please?", analyser.getText());
-		Assert.assertFalse(analyser.isComment());
-		Assert.assertFalse(analyser.isEmpty());
-		Assert.assertTrue(analyser.isNPCSpeaking());
-		Assert.assertFalse(analyser.isPlayerSpeaking());
-		Assert.assertFalse(analyser.isStatus());
+		final LineAnalyser analyser = new LineAnalyser("[21:24] <Plink> *cries* There were wolves in the park! *sniff* I ran away, but I dropped my teddy! Please will you get it for me? *sniff* Please?");
+		assertEquals("[21:24] <Plink> *cries* There were wolves in the park! *sniff* I ran away, but I dropped my teddy! Please will you get it for me? *sniff* Please?", analyser.getLine());
+		assertEquals("<Plink> *cries* There were wolves in the park! *sniff* I ran away, but I dropped my teddy! Please will you get it for me? *sniff* Please?", analyser.getStripped());
+		assertEquals("Plink", analyser.getProtagonist());
+		assertEquals("*cries* There were wolves in the park! *sniff* I ran away, but I dropped my teddy! Please will you get it for me? *sniff* Please?", analyser.getText());
+		assertFalse(analyser.isComment());
+		assertFalse(analyser.isEmpty());
+		assertTrue(analyser.isNPCSpeaking());
+		assertFalse(analyser.isPlayerSpeaking());
+		assertFalse(analyser.isStatus());
 	}
 
 	@Test
 	public void testComment() {
-		LineAnalyser analyser = new LineAnalyser("// he doesn't do anything.");
-		Assert.assertEquals("// he doesn't do anything.", analyser.getLine());
-		Assert.assertEquals("he doesn't do anything.", analyser.getStripped());
-		Assert.assertNull(analyser.getProtagonist());
-		Assert.assertEquals("he doesn't do anything.", analyser.getText());
-		Assert.assertTrue(analyser.isComment());
-		Assert.assertFalse(analyser.isEmpty());
-		Assert.assertFalse(analyser.isNPCSpeaking());
-		Assert.assertFalse(analyser.isPlayerSpeaking());
-		Assert.assertTrue(analyser.isStatus());
+		final LineAnalyser analyser = new LineAnalyser("// he doesn't do anything.");
+		assertEquals("// he doesn't do anything.", analyser.getLine());
+		assertEquals("he doesn't do anything.", analyser.getStripped());
+		assertNull(analyser.getProtagonist());
+		assertEquals("he doesn't do anything.", analyser.getText());
+		assertTrue(analyser.isComment());
+		assertFalse(analyser.isEmpty());
+		assertFalse(analyser.isNPCSpeaking());
+		assertFalse(analyser.isPlayerSpeaking());
+		assertTrue(analyser.isStatus());
 	}
 
 	@Test
 	public void testStatus() {
-		LineAnalyser analyser = new LineAnalyser("[21:25] player earns 10 experience points.");
-		Assert.assertEquals("[21:25] player earns 10 experience points.", analyser.getLine());
-		Assert.assertEquals("player earns 10 experience points.", analyser.getStripped());
-		Assert.assertNull(analyser.getProtagonist());
-		Assert.assertEquals("player earns 10 experience points.", analyser.getText());
-		Assert.assertFalse(analyser.isComment());
-		Assert.assertFalse(analyser.isEmpty());
-		Assert.assertFalse(analyser.isNPCSpeaking());
-		Assert.assertFalse(analyser.isPlayerSpeaking());
-		Assert.assertTrue(analyser.isStatus());
+		final LineAnalyser analyser = new LineAnalyser("[21:25] player earns 10 experience points.");
+		assertEquals("[21:25] player earns 10 experience points.", analyser.getLine());
+		assertEquals("player earns 10 experience points.", analyser.getStripped());
+		assertNull(analyser.getProtagonist());
+		assertEquals("player earns 10 experience points.", analyser.getText());
+		assertFalse(analyser.isComment());
+		assertFalse(analyser.isEmpty());
+		assertFalse(analyser.isNPCSpeaking());
+		assertFalse(analyser.isPlayerSpeaking());
+		assertTrue(analyser.isStatus());
 	}
 }
