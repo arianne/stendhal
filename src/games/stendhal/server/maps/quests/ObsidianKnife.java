@@ -64,7 +64,9 @@ public class ObsidianKnife extends AbstractQuest {
 
 	private static final int REQUIRED_FOOD = 100;
 	
-	private static final int REQUIRED_LEVEL = 100;
+	// Required level to move from the finished reading stage to 
+	// the offering knife stage
+	private static final int REQUIRED_LEVEL = 50;
 	
 	private static final List<String> FOOD_LIST = Arrays.asList("ham", "meat", "cheese");
 
@@ -317,7 +319,7 @@ public class ObsidianKnife extends AbstractQuest {
 				"knife",
 				new LevelGreaterThanCondition(REQUIRED_LEVEL),
 				ConversationStates.QUEST_2_OFFERED,
-				"I'll make an obsidian knife if you can get the gem which makes the blade. Bring a "
+				"I'll make an obsidian knife if you can slay a black dragon and get the gem which makes the blade. Bring a "
 						+ FISH
 						+ " so that I can make the bone handle, too.",
 				new SetQuestAction(QUEST_SLOT,"knife_offered"));
