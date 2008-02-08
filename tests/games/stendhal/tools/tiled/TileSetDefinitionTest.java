@@ -20,9 +20,7 @@ public class TileSetDefinitionTest {
 	@Before
 	public void setUp() {
 		map = new StendhalMapStructure(64, 64);
-		TileSetDefinition set = null;
-
-		set = new TileSetDefinition("name1", 1);
+		TileSetDefinition set = new TileSetDefinition("name1", 1);
 		set.setSource("source1");
 		map.addTileset(set);
 
@@ -41,24 +39,24 @@ public class TileSetDefinitionTest {
 
 	@Test
 	public void testSerialization() throws IOException, ClassNotFoundException {
-		List<TileSetDefinition> tilesets = map.getTilesets();
+		final List<TileSetDefinition> tilesets = map.getTilesets();
 
-		ByteArrayOutputStream array = new ByteArrayOutputStream();
-		OutputSerializer out = new OutputSerializer(array);
+		final ByteArrayOutputStream array = new ByteArrayOutputStream();
+		final OutputSerializer out = new OutputSerializer(array);
 
 		out.write(tilesets.size());
 		for (TileSetDefinition set : tilesets) {
 			set.writeObject(out);
 		}
 
-		byte[] serialized = array.toByteArray();
+		final byte[] serialized = array.toByteArray();
 
-		ByteArrayInputStream sarray = new ByteArrayInputStream(serialized);
-		InputSerializer in = new InputSerializer(sarray);
+		final ByteArrayInputStream sarray = new ByteArrayInputStream(serialized);
+		final InputSerializer in = new InputSerializer(sarray);
 
-		int amount = in.readInt();
+		final int amount = in.readInt();
 		assertEquals(amount, tilesets.size());
-		List<TileSetDefinition> serializedTilesets = new LinkedList<TileSetDefinition>();
+		final List<TileSetDefinition> serializedTilesets = new LinkedList<TileSetDefinition>();
 
 		for (int i = 0; i < amount; i++) {
 			serializedTilesets.add((TileSetDefinition) in.readObject(new TileSetDefinition(

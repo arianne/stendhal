@@ -48,8 +48,8 @@ public class CommandlineParserTest {
 
 	@Test
 	public final void testQuoting() {
-		ErrorBuffer errors = new ErrorBuffer();
-		CommandlineParser parser = new CommandlineParser("where 'player 2'");
+		final ErrorBuffer errors = new ErrorBuffer();
+		final CommandlineParser parser = new CommandlineParser("where 'player 2'");
 		assertFalse(errors.hasError());
 		assertEquals("where", parser.getNextParameter(errors));
 		assertEquals("player 2", parser.getNextParameter(errors));

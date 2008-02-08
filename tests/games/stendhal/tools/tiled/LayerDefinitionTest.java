@@ -1,5 +1,6 @@
 package games.stendhal.tools.tiled;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
@@ -20,9 +21,8 @@ public class LayerDefinitionTest {
 	@Before
 	public void setUp() {
 		map = new StendhalMapStructure(64, 64);
-		TileSetDefinition set = null;
-
-		set = new TileSetDefinition("name1", 1);
+		
+		TileSetDefinition set = new TileSetDefinition("name1", 1);
 		set.setSource("source1");
 		map.addTileset(set);
 
@@ -38,8 +38,7 @@ public class LayerDefinitionTest {
 		set.setSource("source4");
 		map.addTileset(set);
 
-		LayerDefinition layer = null;
-		layer = new LayerDefinition(64, 64);
+		final LayerDefinition layer = new LayerDefinition(64, 64);
 		layer.build();
 
 		layer.setName("layer1");
@@ -52,10 +51,10 @@ public class LayerDefinitionTest {
 
 	@Test
 	public void testBelongToTileset() {
-		LayerDefinition layer = map.getLayer("layer1");
+		final LayerDefinition layer = map.getLayer("layer1");
 		assertNotNull(layer);
 
-		int tileid = layer.getTileAt(10, 20);
+		final int tileid = layer.getTileAt(10, 20);
 		assertEquals(1, tileid);
 
 		assertEquals("source1",
@@ -73,18 +72,18 @@ public class LayerDefinitionTest {
 
 	@Test
 	public void testSerialization() throws IOException, ClassNotFoundException {
-		ByteArrayOutputStream array = new ByteArrayOutputStream();
-		OutputSerializer out = new OutputSerializer(array);
+		final ByteArrayOutputStream array = new ByteArrayOutputStream();
+		final OutputSerializer out = new OutputSerializer(array);
 
-		LayerDefinition layer = map.getLayer("layer1");
+		final LayerDefinition layer = map.getLayer("layer1");
 		layer.writeObject(out);
 
-		byte[] serialized = array.toByteArray();
+		final byte[] serialized = array.toByteArray();
 
-		ByteArrayInputStream sarray = new ByteArrayInputStream(serialized);
-		InputSerializer in = new InputSerializer(sarray);
+		final ByteArrayInputStream sarray = new ByteArrayInputStream(serialized);
+		final InputSerializer in = new InputSerializer(sarray);
 
-		LayerDefinition serializedLayer = (LayerDefinition) in.readObject(new LayerDefinition(
+		final LayerDefinition serializedLayer = (LayerDefinition) in.readObject(new LayerDefinition(
 				0, 0));
 
 		assertEquals(layer.getName(), serializedLayer.getName());
@@ -93,12 +92,10 @@ public class LayerDefinitionTest {
 		assertEquals(layer.exposeRaw().length,
 				serializedLayer.exposeRaw().length);
 
-		byte[] a = layer.exposeRaw();
-		byte[] b = serializedLayer.exposeRaw();
-
-		for (int i = 0; i < a.length; i++) {
-			assertEquals(a[i], b[i]);
-		}
+		final byte[] rawData = layer.exposeRaw();
+		final byte[] serializedData = serializedLayer.exposeRaw();
+		assertArrayEquals(rawData, serializedData);
+		
 	}
 
 }
