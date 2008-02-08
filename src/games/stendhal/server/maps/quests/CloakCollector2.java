@@ -6,6 +6,10 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.EquipItemAction;
+import games.stendhal.server.entity.npc.action.MultipleActions;
+import games.stendhal.server.entity.npc.action.SetQuestAction;
+import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.player.UpdateConverter;
@@ -255,9 +259,12 @@ public class CloakCollector2 extends AbstractQuest {
 								} else {
 									rewardPlayer(player);
 									// TODO: Make speech mention scent reward if applicable.
-									engine.say("Oh, yay! You're so kind, I bet you'll have great Karma now! Listen, I want to reward you with something special but it's not ready yet. So you make sure to come back and check with me some time soon. I won't forget!");
+									engine.say("Oh, yay! You're so kind, I bet you'll have great Karma now! Here, take these killer boots. I think they're gorgeous but they don't fit me!");
 									player.setQuest(QUEST_SLOT,
-											"done");
+											"done;rewarded");
+									Item boots = SingletonRepository.getEntityManager().getItem("killer boots");
+									boots.setBoundTo(player.getName());
+									player.equip(boots,true);
 									player.notifyWorldAboutChanges();
 									engine.setCurrentState(ConversationStates.ATTENDING);
 								}
@@ -300,17 +307,20 @@ public class CloakCollector2 extends AbstractQuest {
 				}, ConversationStates.ATTENDING, "Okay then. Come back later.",
 				null);
 
-		// player returns after finishing the quest
+		// player returns after finishing the quest but not rewarded
 		npc.add(ConversationStates.IDLE, 
 				ConversationPhrases.GREETING_MESSAGES,
-				new SpeakerNPC.ChatCondition() {
-					@Override
-					public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
-						return player.isQuestCompleted(QUEST_SLOT);
-					}
-				}, 
+				new QuestInStateCondition(QUEST_SLOT,"done"), 
 				ConversationStates.ATTENDING,
-				"Hi again, lovely! All my cloaks still look great! Thanks!", 
+				"Oh! I didnt' reward you for helping me again! Here, take this boots. I think they're gorgeous but they don't fit me :(", 
+				new MultipleActions(new EquipItemAction("killer boots",1,true), new SetQuestAction(QUEST_SLOT,"done;rewarded")));
+	
+		//		 player returns after finishing the quest and was rewarded
+		npc.add(ConversationStates.IDLE, 
+				ConversationPhrases.GREETING_MESSAGES,
+				new QuestInStateCondition(QUEST_SLOT,"done;rewarded"), 
+				ConversationStates.ATTENDING,
+				"Thanks again for helping me! The cloaks look great!",
 				null);
 	}
 

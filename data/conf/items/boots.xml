@@ -189,7 +189,7 @@
       <def value="13"/>
     </attributes>
     <weight value="17.0"/>
-    <value value="23625"/>
+    <value value="17625"/>
     <equipable>
       <slot name="bag"/>
       <slot name="feet"/>
@@ -204,6 +204,20 @@
     </attributes>
     <weight value="17.0"/>
     <value value="23625"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="feet"/>
+    </equipable>
+  </item>
+  
+    <item name="killer boots">
+    <type class="boots" subclass="killer_boots" tileid="-1"/>
+    <description>You see a high heeled pair of killer boots. Are you brave enough to wear them?</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <def value="22"/>
+    </attributes>
+    <weight value="18.0"/>
+    <value value="30625"/>
     <equipable>
       <slot name="bag"/>
       <slot name="feet"/>
