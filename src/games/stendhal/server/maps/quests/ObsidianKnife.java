@@ -313,7 +313,7 @@ public class ObsidianKnife extends AbstractQuest {
 				new LevelGreaterThanCondition(REQUIRED_LEVEL),
 				ConversationStates.QUEST_2_OFFERED,
 				"That book says that the black gem, obsidian, can be used to make a very sharp cutting edge. Fascinating! If you slay a black dragon to bring it, I'll make a #knife for you.",
-				new SetQuestAction(QUEST_SLOT,"knife_offered"));
+				new SetQuestAction(QUEST_SLOT, "knife_offered"));
 
 		npc.add(ConversationStates.QUEST_2_OFFERED,
 				"knife",
@@ -322,18 +322,18 @@ public class ObsidianKnife extends AbstractQuest {
 				"I'll make an obsidian knife if you can slay a black dragon and get the gem which makes the blade. Bring a "
 						+ FISH
 						+ " so that I can make the bone handle, too.",
-				new SetQuestAction(QUEST_SLOT,"knife_offered"));
+				new SetQuestAction(QUEST_SLOT, "knife_offered"));
 		
 		npc.add(ConversationStates.QUEST_2_OFFERED,
 				Arrays.asList("obsidian", "knife"),
-				new NotCondition (new LevelGreaterThanCondition(REQUIRED_LEVEL)),
+				new NotCondition(new LevelGreaterThanCondition(REQUIRED_LEVEL)),
 				ConversationStates.ATTENDING,
 				"Well, I don't think you're quite ready for such a dangerous weapon yet. How about you come back when you're above level " + Integer.toString(REQUIRED_LEVEL) + "?",
 				null);
 		
 		npc.add(ConversationStates.IDLE, 
 				ConversationPhrases.GREETING_MESSAGES,
-				new QuestInStateCondition(QUEST_SLOT,"book_read"),
+				new QuestInStateCondition(QUEST_SLOT, "book_read"),
 				ConversationStates.QUEST_2_OFFERED,
 				"Hi! Perhaps you have come to ask about that #knife again ... ",
 				null);

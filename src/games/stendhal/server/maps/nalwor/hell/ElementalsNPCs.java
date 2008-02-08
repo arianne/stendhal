@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Creates the elementals npcs in hell
+ * Creates the elementals npcs in hell.
  *
  * @author kymara
  */
@@ -30,7 +30,7 @@ public class ElementalsNPCs implements ZoneConfigurator {
 	}
 
 	private void buildNPCs(StendhalRPZone zone) {
-		String[] names = {"Savanka","Xeoilia","Azira"};
+		String[] names = {"Savanka", "Xeoilia", "Azira"};
 		Node[] start = new Node[] { new Node(117, 5), new Node(119, 8), new Node(118, 10) };
 		for (int i = 0; i < 3; i++) {
 			SpeakerNPC npc = new SpeakerNPC(names[i]) {

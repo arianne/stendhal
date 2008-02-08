@@ -7,7 +7,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import java.util.Map;
 
 /**
- * Builds the reaper in hell
+ * Builds the reaper in hell.
  *
  * @author kymara
  */

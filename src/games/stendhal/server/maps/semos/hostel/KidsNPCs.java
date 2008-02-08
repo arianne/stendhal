@@ -10,7 +10,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import java.util.Map;
 
 /**
- * Creates kids who are sleeping in semos hostel
+ * Creates kids who are sleeping in semos hostel.
  *
  * @author kymara
  */
@@ -26,8 +26,8 @@ public class KidsNPCs implements ZoneConfigurator {
 	}
 
 	private void buildNPCs(StendhalRPZone zone) {
-		String[] names = {"Taylor","Covester","Mick","Richard"};
-		String[] classes = { "kid2npc", "kid1npc", "kid9npc","kid8npc" };
+		String[] names = {"Taylor", "Covester", "Mick", "Richard"};
+		String[] classes = { "kid2npc", "kid1npc", "kid9npc", "kid8npc" };
 		int[][] start = { {3, 3}, {9, 3}, {15, 3}, {21, 3} };
 		for (int i = 0; i < 4; i++) {
 			SpeakerNPC npc = new SpeakerNPC(names[i]) {

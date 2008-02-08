@@ -383,8 +383,7 @@ public class Soup extends AbstractQuest {
 							+ Grammar.enumerateCollection(missing)
 							+ ".");
 			return;
-		}
-		else {
+		} else {
 			// you get less XP if you did it the lazy way
 			// and no karma
 			player.addXP(20);
