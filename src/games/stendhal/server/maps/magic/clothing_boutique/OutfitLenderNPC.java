@@ -25,40 +25,8 @@ public class OutfitLenderNPC implements ZoneConfigurator {
 	
 	// outfits to last for 24 hours (in turns)
 	public static final int endurance = 24 * 12000;  
-	// these outfits must be put on over existing outfit 
-	// (what's null doesn't change that part of the outfit)	
-	// so true means we put on over
-	private static Pair<Outfit,Boolean> JUMPSUIT = new Pair <Outfit,Boolean>(new Outfit(null, null, Integer.valueOf(83), null),true);
-	private static Pair<Outfit,Boolean> DUNGAREES = new Pair <Outfit,Boolean>(new Outfit(null, null, Integer.valueOf(84), null),true);
-	private static Pair<Outfit,Boolean> BLACK_DRESS = new Pair <Outfit,Boolean>(new Outfit(null, null, Integer.valueOf(85), null),true);
 	
-	private static Pair<Outfit,Boolean> GOWN = new Pair <Outfit,Boolean>(new Outfit(null, null, Integer.valueOf(82), null),true);
-	private static Pair<Outfit,Boolean> NOOB = new Pair <Outfit,Boolean>(new Outfit(null, null, Integer.valueOf(80), null),true);
-	private static Pair<Outfit,Boolean> BUNNY = new Pair <Outfit,Boolean>(new Outfit(Integer.valueOf(00), null, Integer.valueOf(81), Integer.valueOf(98)),true);
-	private static Pair<Outfit,Boolean> GLASSES = new Pair <Outfit,Boolean>(new Outfit(null, Integer.valueOf(99), null, null),true);
-	private static Pair<Outfit,Boolean> GLASSES_2 = new Pair <Outfit,Boolean>(new Outfit(null, Integer.valueOf(79), null, null),true);
-	private static Pair<Outfit,Boolean> HAT = new Pair <Outfit,Boolean>(new Outfit(Integer.valueOf(99), null, null, null),true);
-
-	// these outfits must replace the current outfit (what's null simply isn't there)
-	private static Pair<Outfit,Boolean> HORSE = new Pair <Outfit,Boolean>(new Outfit(Integer.valueOf(00), Integer.valueOf(98),Integer.valueOf(00) , Integer.valueOf(97)),false);
-	private static Pair<Outfit,Boolean> GIRL_HORSE = new Pair <Outfit,Boolean>(new Outfit(Integer.valueOf(00), Integer.valueOf(98),Integer.valueOf(00) , Integer.valueOf(96)),false);
-	private static Pair<Outfit,Boolean> ALIEN = new Pair <Outfit,Boolean>(new Outfit(Integer.valueOf(00), Integer.valueOf(98), Integer.valueOf(00), Integer.valueOf(95)),false);
-
-	private static HashMap<String, Pair<Outfit,Boolean>> outfitTypes = new HashMap<String, Pair<Outfit,Boolean>>();
-	static {
-		outfitTypes.put("jumpsuit",JUMPSUIT);
-		outfitTypes.put("dungarees",DUNGAREES);
-		outfitTypes.put("black dress",BLACK_DRESS);
-		outfitTypes.put("gown",GOWN);
-		outfitTypes.put("orange",NOOB);
-		outfitTypes.put("bunny",BUNNY);
-		outfitTypes.put("glasses",GLASSES);
-		outfitTypes.put("other glasses",GLASSES_2);
-		outfitTypes.put("hat",HAT);
-		outfitTypes.put("horse",HORSE);
-		outfitTypes.put("girl horse",GIRL_HORSE);
-		outfitTypes.put("alien",ALIEN);	
-	}
+	private static HashMap<String, Pair<Outfit, Boolean>> outfitTypes = new HashMap<String, Pair<Outfit, Boolean>>();
 	/**
 	 * Configure a zone.
 	 *
@@ -66,8 +34,47 @@ public class OutfitLenderNPC implements ZoneConfigurator {
 	 * @param	attributes	Configuration attributes.
 	 */
 	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+		initOutfits();
 		buildBoutiqueArea(zone);
 	}
+
+	private void initOutfits() {
+		// these outfits must be put on over existing outfit 
+		// (what's null doesn't change that part of the outfit)	
+		// so true means we put on over
+		  Pair<Outfit, Boolean> JUMPSUIT = new Pair<Outfit, Boolean>(new Outfit(null, null, Integer.valueOf(83), null), true);
+		  Pair<Outfit, Boolean> DUNGAREES = new Pair<Outfit, Boolean>(new Outfit(null, null, Integer.valueOf(84), null), true);
+		  Pair<Outfit, Boolean> BLACK_DRESS = new Pair<Outfit, Boolean>(new Outfit(null, null,	Integer.valueOf(85), null), true);
+
+		  Pair<Outfit, Boolean> GOWN = new Pair<Outfit, Boolean>(new Outfit(null, null, Integer.valueOf(82), null), true);
+		  Pair<Outfit, Boolean> NOOB = new Pair<Outfit, Boolean>(new Outfit(null, null, Integer.valueOf(80), null), true);
+		  Pair<Outfit, Boolean> BUNNY = new Pair<Outfit, Boolean>(new Outfit(Integer.valueOf(00), null, Integer.valueOf(81), Integer.valueOf(98)), true);
+		  Pair<Outfit, Boolean> GLASSES = new Pair<Outfit, Boolean>(new Outfit(null, Integer.valueOf(99), null, null), true);
+		  Pair<Outfit, Boolean> GLASSES_2 = new Pair<Outfit, Boolean>(new Outfit(null, Integer.valueOf(79), null, null), true);
+		  Pair<Outfit, Boolean> HAT = new Pair<Outfit, Boolean>(new Outfit(Integer.valueOf(99), null, null, null), true);
+
+		// these outfits must replace the current outfit (what's null simply isn't there)
+		  Pair<Outfit, Boolean> HORSE = new Pair<Outfit, Boolean>(new Outfit(Integer.valueOf(00), Integer.valueOf(98), Integer.valueOf(00), Integer.valueOf(97)), false);
+		  Pair<Outfit, Boolean> GIRL_HORSE = new Pair<Outfit, Boolean>(new Outfit(Integer.valueOf(00), Integer.valueOf(98), Integer.valueOf(00), Integer.valueOf(96)), false);
+		  Pair<Outfit, Boolean> ALIEN = new Pair<Outfit, Boolean>(new Outfit(Integer.valueOf(00), Integer.valueOf(98), Integer.valueOf(00), Integer.valueOf(95)), false);
+
+		
+		
+			outfitTypes.put("jumpsuit", JUMPSUIT);
+			outfitTypes.put("dungarees", DUNGAREES);
+			outfitTypes.put("black dress", BLACK_DRESS);
+			outfitTypes.put("gown", GOWN);
+			outfitTypes.put("orange", NOOB);
+			outfitTypes.put("bunny", BUNNY);
+			outfitTypes.put("glasses", GLASSES);
+			outfitTypes.put("other glasses", GLASSES_2);
+			outfitTypes.put("hat", HAT);
+			outfitTypes.put("horse", HORSE);
+			outfitTypes.put("girl horse", GIRL_HORSE);
+			outfitTypes.put("alien", ALIEN);
+	}
+		
+	
 
 	private void buildBoutiqueArea(StendhalRPZone zone) {
 		SpeakerNPC npc = new SpeakerNPC("Liliana") {
@@ -85,19 +92,19 @@ public class OutfitLenderNPC implements ZoneConfigurator {
 			protected void createDialog() {
 				class SpecialOutfitChangerBehaviour extends OutfitChangerBehaviour {
 					SpecialOutfitChangerBehaviour(Map<String, Integer> priceList, int endurance, String wearOffMessage) {
-						super(priceList,endurance,wearOffMessage);
+						super(priceList, endurance, wearOffMessage);
 					}
 
 					@Override
 					public void putOnOutfit(Player player, String outfitType) {
 						
-						Pair<Outfit,Boolean> outfitPair = outfitTypes.get(outfitType);
+						Pair<Outfit, Boolean> outfitPair = outfitTypes.get(outfitType);
 						Outfit outfit = outfitPair.first();
 						boolean type = outfitPair.second();
 						if (type) {
 							player.setOutfit(outfit.putOver(player.getOutfit()), true);
 						} else {
-							player.setOutfit(outfit,true);
+							player.setOutfit(outfit, true);
 						}
 						if (endurance != NEVER_WEARS_OFF) {
 							// restart the wear-off timer if the player was still wearing
@@ -110,18 +117,18 @@ public class OutfitLenderNPC implements ZoneConfigurator {
 					}
 				}
 				Map<String, Integer> priceList = new HashMap<String, Integer>();
-				priceList.put("jumpsuit",500);
-				priceList.put("dungarees",500);
-				priceList.put("black dress",500);
-				priceList.put("gown",750);
-				priceList.put("orange",500);
-				priceList.put("bunny",800);
-				priceList.put("glasses",400);
-				priceList.put("other glasses",400);
-				priceList.put("hat",400);
-				priceList.put("horse",1200);
-				priceList.put("girl horse",1200);
-				priceList.put("alien",1200);	
+				priceList.put("jumpsuit", 500);
+				priceList.put("dungarees", 500);
+				priceList.put("black dress", 500);
+				priceList.put("gown", 750);
+				priceList.put("orange", 500);
+				priceList.put("bunny", 800);
+				priceList.put("glasses", 400);
+				priceList.put("other glasses", 400);
+				priceList.put("hat", 400);
+				priceList.put("horse", 1200);
+				priceList.put("girl horse", 1200);
+				priceList.put("alien", 1200);	
 				addGreeting("Hi! How many I help you?");
 				addQuest("I can't think of anything for you, sorry.");
 				add(
@@ -135,7 +142,7 @@ public class OutfitLenderNPC implements ZoneConfigurator {
 				addHelp("Our hired outfits wear off after one day, but you can always come back for more!");
 				addGoodbye("Bye!");
 				OutfitChangerBehaviour behaviour = new SpecialOutfitChangerBehaviour(priceList, endurance, "Your magical outfit has worn off.");
-				new OutfitChangerAdder().addOutfitChanger(this, behaviour,"hire",false,false);
+				new OutfitChangerAdder().addOutfitChanger(this, behaviour, "hire", false, false);
 			}
 		};
 
