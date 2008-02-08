@@ -884,21 +884,11 @@ public abstract class RPEntity extends GuidedEntity {
 
 			int xpEarn = (int) (xpReward * ((float) damageDone / (float) totalDamageReceived));
 
-			/** We limit xp gain for up to eight levels difference */
-			/**
-			 * TODO Disabled. XXX
-			 * double gainXpLimitation = 1 + ((oldLevel -
-			 * killer.getLevel()) / (20.0)); if (gainXpLimitation < 0.0) {
-			 * gainXpLimitation = 0.0; } else if (gainXpLimitation > 1.0) {
-			 * gainXpLimitation = 1.0; }
-			 */
+			
 
-			double gainXpLimitation = 1;
+			logger.debug("OnDead: " + xpReward + "\t" + damageDone + "\t" + totalDamageReceived + "\t");
 
-			logger.debug("OnDead: " + xpReward + "\t" + damageDone + "\t"
-					+ totalDamageReceived + "\t" + gainXpLimitation);
-
-			int reward = (int) (xpEarn * gainXpLimitation);
+			int reward = xpEarn;
 
 			// We ensure that the player gets at least 1 experience
 			// point, because getting nothing lowers motivation.
