@@ -49,8 +49,7 @@ public class DeathMatchCreature extends Creature {
 	protected void rewardKillers(int oldXP, int oldLevel) {
 		Integer damageReceivedByPlayer = damageReceived.get(player);
 		if (damageReceivedByPlayer != null) {
-			int basePoints = player.getLevel();
-			points = basePoints
+			points = player.getLevel()
 					* (damageReceivedByPlayer / totalDamageReceived);
 
 			// For some quests etc., it is required that the player kills a
