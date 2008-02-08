@@ -77,7 +77,7 @@ public class LayerDefinition implements Serializable {
 	 * @param map
 	 *            the map
 	 */
-	void setMap(StendhalMapStructure map) {
+	void setMap(final StendhalMapStructure map) {
 		this.map = map;
 	}
 
@@ -122,8 +122,8 @@ public class LayerDefinition implements Serializable {
 	 * @param tileId
 	 *            the tile code to set ( Use 0 for none ).
 	 */
-	public void set(int x, int y, int tileId) {
-		int offset = 4 * (x + y * width);
+	public void set(final int x, final int y, final int tileId) {
+		final int offset = 4 * (x + y * width);
 
 		raw[0 + offset] = (byte) (tileId & 0xFF);
 		raw[1 + offset] = (byte) ((tileId >>> 8) & 0xFF);
@@ -142,7 +142,7 @@ public class LayerDefinition implements Serializable {
 	 *            the y position
 	 * @return the tile that exists at that position or 0 for none.
 	 */
-	public int getTileAt(int x, int y) {
+	public int getTileAt(final int x, final int y) {
 		return data[y * width + x];
 	}
 
@@ -152,9 +152,9 @@ public class LayerDefinition implements Serializable {
 	 * @throws IOException
 	 */
 	public byte[] encode() throws IOException {
-		ByteArrayOutputStream array = new ByteArrayOutputStream();
-		DeflaterOutputStream out_stream = new DeflaterOutputStream(array);
-		OutputSerializer out = new OutputSerializer(out_stream);
+		final ByteArrayOutputStream array = new ByteArrayOutputStream();
+		final DeflaterOutputStream out_stream = new DeflaterOutputStream(array);
+		final OutputSerializer out = new OutputSerializer(out_stream);
 
 		writeObject(out);
 		out_stream.close();
