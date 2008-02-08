@@ -1,13 +1,13 @@
 package conf;
 
 public class PortalTestObject {
-	private String zone;
+	private final String zone;
 
-	private String name;
+	private final String name;
 
-	private String destZone;
+	private final String destZone;
 
-	private String destName;
+	private final String destName;
 
 	PortalTestObject(String zone, String name, String destZone, String destName) {
 		super();
@@ -24,11 +24,11 @@ public class PortalTestObject {
 		destName = "";
 	}
 
-	boolean isDestinationOf(PortalTestObject source) {
+	boolean isDestinationOf(final PortalTestObject source) {
 		if (source == null) {
 			return false;
 		}
-		if (source.destName.equals("") || source.destZone.equals("")) {
+		if ("".equals(source.destName) || "".equals(source.destZone)) {
 			return false;
 		}
 		return this.name.equals(source.destName)
@@ -38,7 +38,7 @@ public class PortalTestObject {
 
 	public boolean hasDestination() {
 
-		return !(destName.equals("") && destZone.equals(""));
+		return !("".equals(destName) && "".equals(destZone));
 	}
 
 	@Override
