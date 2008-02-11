@@ -23,8 +23,9 @@ import marauroa.common.Pair;
 
 public class OutfitLenderNPC implements ZoneConfigurator {
 	
-	// outfits to last for 24 hours (in turns)
-	public static final int endurance = 24 * 12000;  
+	// outfits to last for 4 hours (in turns)
+	// TODO : change to 24 before release
+	public static final int endurance = 4 * 12000;  
 	
 	private static HashMap<String, Pair<Outfit, Boolean>> outfitTypes = new HashMap<String, Pair<Outfit, Boolean>>();
 	/**
@@ -139,7 +140,7 @@ public class OutfitLenderNPC implements ZoneConfigurator {
 					"Just tell me if you want to #hire a #gown, #hire a #black #dress, #hire #glasses, #hire #other #glasses, #hire a #hat, #hire an #alien suit, #hire a #horse outfit, #hire a #girl #horse outfit, #hire a #jumpsuit, #hire #dungarees, #hire a #bunny #suit or #hire an #orange outfit.",
 					new ExamineChatAction("outfits.png", "Outfits", "Price varies"));
 				addJob("I work in this clothes boutique. It's no ordinary shop, we use magic to put our clients into fantastic outfits. Ask about the #offer.");
-				addHelp("Our hired outfits wear off after one day, but you can always come back for more!");
+				addHelp("Our hired outfits wear off after some time, but you can always come back for more!");
 				addGoodbye("Bye!");
 				OutfitChangerBehaviour behaviour = new SpecialOutfitChangerBehaviour(priceList, endurance, "Your magical outfit has worn off.");
 				new OutfitChangerAdder().addOutfitChanger(this, behaviour, "hire", false, false);
