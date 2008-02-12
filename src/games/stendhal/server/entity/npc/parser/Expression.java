@@ -17,7 +17,7 @@ public final class Expression {
 	private ExpressionType type;
 
 	/** normalized string representation of this Expression. */
-	private String normalized;
+	private String normalized = "";
 
 	/** main word of the Expression. */
 	private String mainWord;
@@ -195,6 +195,7 @@ public final class Expression {
 	 * @return
 	 */
 	public String getNormalized() {
+		assert normalized.length() > 0;
 		return normalized;
 	}
 
@@ -425,7 +426,11 @@ public final class Expression {
 	 */
 	@Override
 	public String toString() {
-		return normalized != null ? normalized : original;
+		if (normalized != null && normalized.length() > 0) {
+			return normalized;
+		} else {
+			return original;
+		}
 	}
 
 }
