@@ -73,4 +73,18 @@
       <slot name="bag"/>
     </equipable>
   </item>
+
+  <item name="rose">
+    <type class="herb" subclass="rose" tileid="-1"/>
+    <description>You see a single red rose. It smells heavenly.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    </attributes>
+    <weight value="0.01"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
+    </equipable>
+  </item>
 </items>
