@@ -496,12 +496,12 @@ public class HouseBuying extends AbstractQuest {
 						if (player.getAge() < REQUIRED_AGE) {
 							engine.say("The cost of a new house in Kirdneh is "
 									+ COST_KIRDNEH
-									+ " money. But I am afraid I cannot trust you with house ownership just yet, as you have not been a part of this world long enough.");
+									+ " money. But I am afraid I cannot trust you with house ownership just yet. Come back when you have spent at least " + Integer.toString((int) (REQUIRED_AGE/60)) + " hours on Faiumoni.");
 						} else if (!(player.hasQuest(KIRDNEH_QUEST_SLOT)
 								     && player.getQuest(KIRDNEH_QUEST_SLOT).startsWith("done"))) {
 							engine.say("The cost of a new house in Kirdneh is "
 									+ COST_KIRDNEH
-									+ " money. But I am afraid I cannot sell you a house yet as you must first prove yourself a worthy #citizen.");
+									+ " money. But my principle is never to sell a house without establishing first the good #reputation of the prospective buyer.");
 						} else if (!player.hasQuest(QUEST_SLOT)) {
 							engine.say("The cost of a new house in Kirdneh is "
 									+ COST_KIRDNEH
@@ -563,7 +563,7 @@ public class HouseBuying extends AbstractQuest {
 										} else {
 											engine.say("Sorry, house "
 													+ item
-													+ " is sold, please give me the number of another.");
+													+ " is sold, please give me the number of another, from 26 to 49.");
 											engine.setCurrentState(ConversationStates.QUEST_OFFERED);
 										}
 									} else {
@@ -626,11 +626,11 @@ public class HouseBuying extends AbstractQuest {
 					null);
 
 				addJob("I'm an estate agent. In simple terms, I sell houses for the city of Kirdneh. Please ask about the #cost if you are interested. Our brochure is at #http://arianne.sourceforge.net/wiki/index.php?title=StendhalHouses.");
-                addReply("citizen", "Just ensure you have the museum curator on your side.");
+                addReply("reputation", "I will ask Hazel about you. Provided you've finished any task she asked you to do for her recently, and haven't left anything unfinished, she will like you.");
 				addReply("buy",	"You may wish to know the #cost before you buy. Perhaps our brochure, #http://arianne.sourceforge.net/wiki/index.php?title=StendhalHouses would also be of interest.");
 				addReply("really", "That's right, really, really, really. Really.");
-				addOffer("I sell Kirdneh houses, please look at #http://arianne.sourceforge.net/wiki/index.php?title=StendhalHouses for examples of how they look inside. Then ask about the #cost when you are ready.");
-				addHelp("You may be eligible to become a #citizen. Of course there must also be houses available in Kirdneh. If you can pay the #cost, I'll give you a key. As a house owner you can buy spare keys to give your friends. See #http://arianne.sourceforge.net/wiki/index.php?title=StendhalHouses for pictures inside the houses and more details.");
+				addOffer("I sell houses from this beautiful city of Kirdneh, please look at #http://arianne.sourceforge.net/wiki/index.php?title=StendhalHouses for examples of how they look inside. Then ask about the #cost when you are ready.");
+				addHelp("You must have a good #reputation if you want to buy an available house in Kirdneh. If you can pay the #cost, I'll give you a key. As a house owner you can buy spare keys to give your friends. See #http://arianne.sourceforge.net/wiki/index.php?title=StendhalHouses for pictures inside typical houses and more details.");
 				addQuest("You may buy houses from me, please ask the #cost if you are interested. Perhaps you would first like to view our brochure, #http://arianne.sourceforge.net/wiki/index.php?title=StendhalHouses.");
 				addGoodbye("Goodbye.");
 			}
