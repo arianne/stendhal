@@ -1,4 +1,4 @@
-# @Version 15
+# @Version 16
 #
 # Word list for the Stendhal conversation parser
 #
@@ -459,6 +459,7 @@ roach	OBJ-ANI	roaches
 robin	OBJ	robins
 rod	OBJ	rods
 room	OBJ	rooms
+rose	OBJ	roses
 rug	OBJ	rugs
 sack	OBJ-AMO	sacks
 safety	OBJ	safeties
