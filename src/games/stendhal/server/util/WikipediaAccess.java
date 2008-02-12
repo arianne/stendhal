@@ -92,12 +92,17 @@ public class WikipediaAccess extends DefaultHandler implements Runnable {
 			content = content.replaceAll("(?s)<!--.*?-->", "");
 			// remove ref
 			content = content.replaceAll("(?s)<ref>.*?</ref>", "");
+
 			// remove templates
-			// This doesn't work with templates inside templates.
+			// first for two level deep templates
+			content = content.replaceAll("(?s)\\{\\{([^{}]*?\\{\\{[^{}]*?\\}\\})+[^{}].*?\\}\\}", "");
+			// then handle one level templates (This doesn't work with templates inside templates.)
 			content = content.replaceAll("(?s)\\{\\{.*?\\}\\}", "");
+
 			// remove tables
 			// This doesn't work with templates inside templates.
 			content = content.replaceAll("(?s)\\{\\|.*?\\|\\}", "");
+
 			// remove complex links
 			content = content.replaceAll("\\[\\[[^\\]]*\\|", "");
 			// remove simple links
