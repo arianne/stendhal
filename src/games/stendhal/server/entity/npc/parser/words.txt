@@ -458,6 +458,7 @@ risecia	OBJ	risecias
 roach	OBJ-ANI	roaches
 robin	OBJ	robins
 rod	OBJ	rods
+rose OBJ roses
 room	OBJ	rooms
 rose	OBJ	roses
 rug	OBJ	rugs
