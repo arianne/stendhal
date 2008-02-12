@@ -1071,7 +1071,7 @@ Today I used an orb in the witch Jynath's house and arrived in a city of witches
 </zone>
 
 <zone name="int_magic_clothing_boutique" file="interiors/magic/clothing_boutique.tmx">
-<configurator class-name="games.stendhal.server.maps.magic.clothing_boutique.OutfitLenderNPC"/>
+<!-- remove till ready <configurator class-name="games.stendhal.server.maps.magic.clothing_boutique.OutfitLenderNPC"/>-->
   <portal x="18" y="23" ref="entrance">
    <destination zone="-1_fado_great_cave_e3" ref="clothing_entrance"/>
   </portal> 

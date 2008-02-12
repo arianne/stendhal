@@ -1512,7 +1512,7 @@ Southeast: Docks
    </zone>
    
  <zone name="0_ados_wall_s" level="0" x="500768" y="500128" file="Level 0/ados/wall_s.tmx">
-  <portal x="49" y="33" ref="down_left">
+ <!-- Removed till vaults ready <portal x="49" y="33" ref="down_left">
    <destination zone="-1_ados_vaults" ref="up_left"/>
    <implementation class-name="games.stendhal.server.entity.mapstuff.portal.QuestCompletedPortal">
     <parameter name="quest">vs_quest</parameter>
@@ -1525,7 +1525,7 @@ Southeast: Docks
     <parameter name="quest">vs_quest</parameter>
     <parameter name="rejected">You find it hard to enter. Perhaps you're not prepared for what is below.</parameter>
    </implementation>
-  </portal>
+  </portal>-->
  </zone>
 
  <zone name="0_ados_city_s" level="0" x="500896" y="500128" file="Level 0/ados/city_s.tmx">
@@ -1657,14 +1657,14 @@ Assassin Dagger (atk 6 rate 2) 12000
  </zone> 
  <zone name="-1_ados_city" level="-1" x="500896" y="500000" file="Level -1/ados/city.tmx">  
  </zone>
- <zone name="-1_ados_vaults" level="-1" x="500768" y="500128" file="Level -1/ados/vaults.tmx">
+ <!-- commented out till ready <zone name="-1_ados_vaults" level="-1" x="500768" y="500128" file="Level -1/ados/vaults.tmx">
   <portal x="49" y="28" ref="up_left">
    <destination zone="0_ados_wall_s" ref="down_left"/>
   </portal>
   <portal x="50" y="28" ref="up_right">
    <destination zone="0_ados_wall_s" ref="down_right"/>
   </portal>
- </zone>
+ </zone> -->
 
  <zone name="-1_ados_city_s" level="-1" x="500896" y="500128" file="Level -1/ados/city_s.tmx">
  </zone>
