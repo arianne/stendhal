@@ -493,10 +493,12 @@ final class SentenceImplementation extends Sentence {
 					// manage precedingVerb flag to detect compound verb/noun constructs
 					if (curr.getBreakFlag()) {
 						precedingVerb = false;
-					} else if (curType.isVerb()) {
-						precedingVerb = true;
-					} else if (curType.isSubject()) {
-						precedingVerb = false;
+					} else if (curType != null) {
+						if (curType.isVerb()) {
+    						precedingVerb = true;
+    					} else if (curType.isSubject()) {
+    						precedingVerb = false;
+    					}
 					}
 				}
 			}
