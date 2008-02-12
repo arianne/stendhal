@@ -84,6 +84,7 @@ public class StendhalQuestSystem {
 		loadQuest("LookUpQuote");
 		loadQuest("KanmararnSoldiers");
 		loadQuest("KillDarkElves");
+		loadQuest("KillDhohrNuggetcutter");
 		loadQuest("KillSpiders");
 		loadQuest("Marriage");
 		// loadQuest("MonogenesCataclysm");

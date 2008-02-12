@@ -11,9 +11,15 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Inside Ados Abandoned Keep - level -1 .
+ * Builds the orc kill diant dwarf NPC.
+ *
+ * @author Teiv
  */
 public class OrcKillGiantDwarfNPC implements ZoneConfigurator {
+
+	//
+	// ZoneConfigurator
+	//
 
 	/**
 	 * Configure a zone.
@@ -21,12 +27,14 @@ public class OrcKillGiantDwarfNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
+	
 	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
-		buildZogfang(zone);
+		buildNPC(zone, attributes);
 	}
 
-	private void buildZogfang(StendhalRPZone zone) {
-		SpeakerNPC zogfang = new SpeakerNPC("Zogfang") {
+
+	private void buildNPC(StendhalRPZone zone, Map<String, String> attributes) {
+		SpeakerNPC zogfangNPC = new SpeakerNPC("Zogfang") {
 
 			@Override
 			protected void createPath() {
@@ -39,22 +47,22 @@ public class OrcKillGiantDwarfNPC implements ZoneConfigurator {
 				nodes.add(new Node(12, 114));
 				nodes.add(new Node(5, 114));
 				setPath(new FixedPath(nodes, true));
-				
+	
 			}
 
 			@Override
 			protected void createDialog() {
-				addGreeting();
-				addJob("I stay and wait for able-bodied warriors to help defeat our enemies.");
-				addHelp("We are the ones in need of help.");
-				addOffer("I have nothing to offer except thanks for a job well done.");
-				addGoodbye();
+				addGreeting("Hello my fine fellow.  Welcome to our humble dwelling.");
+				addJob("I wait for able bodied warriors to defeat the remaining dwarves in our area.");
+				addReply("dwarves", "When we got here, we had to run the dwarves from this area. There are only a few left.  Will you help us with this #task?");
+				addHelp("When we got here, we had to run the dwarves from this area. There are only a few left.  Will you help us with this #task?");
+				addGoodbye("I wish you well on your journeys.");
 			}
 		};
 
-		zogfang.setEntityClass("orcbuyernpc");
-		zogfang.setPosition(10, 107);
-		zogfang.initHP(100);
-		zone.add(zogfang);
+		zogfangNPC.setEntityClass("orcbuyernpc");
+		zogfangNPC.setPosition(10, 107);
+		zogfangNPC.initHP(1000);
+		zone.add(zogfangNPC);
 	}
 }
