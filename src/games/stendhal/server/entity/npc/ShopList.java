@@ -252,6 +252,14 @@ public class ShopList {
 		shops.add("buyred", "red legs", 200);
 		shops.add("buyred", "red shield", 750);
 
+		// mainio items (despot in mithrilbourgh throne room)
+		shops.add("buymainio", "mainio armor", 12000);
+		shops.add("buymainio", "mainio boots", 3000);
+		shops.add("buymainio", "mainio cloak", 5000);
+		shops.add("buymainio", "mainio helmet", 5000);
+		shops.add("buymainio", "mainio legs", 6000);
+		shops.add("buymainio", "mainio shield", 10000);
+
 	}
 
 	private static ShopList instance;

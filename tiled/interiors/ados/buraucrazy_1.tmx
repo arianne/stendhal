@@ -120,9 +120,9 @@
    H4sIAAAAAAAAAO1SQQ4AIAjy///rP90bKVgtt3Lj0CSBrJlZ+1gGKoaDeOiOqo/63lnJofpjZo69iMPOyvIz73fbH8thc8x2+bq/LG+Htpf/tr9oD+wsJYsyk/k/TIaod2q/Ffx5nFP+kH4lf4x2tarsT/kXHz466xmvAOALAAA=
   </data>
  </layer>
- <layer name="protection" width="40" height="19" visible="0" opacity="0.24">
+ <layer name="protection" width="40" height="19" opacity="0.24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3DAQkAAAwEoesf8POsx1Bw1VRV1RcP1c6b8OALAAA=
+   H4sIAAAAAAAAAO3DAQkAAAwEofv+pddjKLhqqqrqiwfoBVn74AsAAA==
   </data>
  </layer>
 </map>

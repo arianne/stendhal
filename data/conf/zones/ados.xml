@@ -725,6 +725,13 @@ black helmet 10000
 </attribute>
      <attribute name="class">book_blue</attribute>
     </entity>
+    <entity x="18" y="13">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
+      <parameter name="shop">buymainio</parameter>
+      <parameter name="title">-- Despot Halb Errvl (Mithrilbourgh) buys --</parameter>
+     </implementation>
+     <attribute name="class">book_blue</attribute>
+    </entity>
     <entity x="12" y="14">
      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
       <parameter name="shop">buyaxe</parameter>
