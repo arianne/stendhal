@@ -66,6 +66,7 @@ public class PassiveEntityRespawnPointFactory {
 			case 0:
 				passiveEntityrespawnPoint = new PassiveEntityRespawnPoint(
 						"wood", 1500);
+				passiveEntityrespawnPoint.setDescription("You see a log shaped indent in the ground.");
 				break;
 			case 1:
 				passiveEntityrespawnPoint = new PassiveEntityRespawnPoint(
@@ -77,24 +78,26 @@ public class PassiveEntityRespawnPointFactory {
 				passiveEntityrespawnPoint.setDescription("You see a small vein of iron ore.");
 				break;
 
-				// added/modified by tigertoes
 			case 2:
 				passiveEntityrespawnPoint = new PassiveEntityRespawnPoint(
 						"gold bar", 6000);
+				passiveEntityrespawnPoint.setDescription("You see a trace of a gold shimmer.");
 				break;
 			case 3:
 				passiveEntityrespawnPoint = new PassiveEntityRespawnPoint(
 						"mithril bar", 6000);
+				passiveEntityrespawnPoint.setDescription("You see a trace of a silvery shimmer.");
 				break;
 			case 4:
 				passiveEntityrespawnPoint = new PassiveEntityRespawnPoint(
 						"gold nugget", 6000);
+				passiveEntityrespawnPoint.setDescription("You see tiny gold shards.");
 				break;
 			case 5:
 				passiveEntityrespawnPoint = new PassiveEntityRespawnPoint(
 						"mithril nugget", 6000);
+				passiveEntityrespawnPoint.setDescription("You see tiny pieces of mithril ore.");
 				break;	
-				// end of added/modified by tigertoes
 				
 			}
 		} else if (clazz.contains("sheepfood")) {
@@ -104,6 +107,7 @@ public class PassiveEntityRespawnPointFactory {
 			case 0:
 				passiveEntityrespawnPoint = new PassiveEntityRespawnPoint(
 						"apple", 500);
+				passiveEntityrespawnPoint.setDescription("You see a place where an apple looks likely to fall.");
 				break;
 			case 1:
 				passiveEntityrespawnPoint = new VegetableGrower("carrot");
@@ -140,23 +144,24 @@ public class PassiveEntityRespawnPointFactory {
 				break;
 			}
 
-			// added/modified by tigertoes
 		} else if (clazz.contains("jewelry")) {
 			switch (type) {
 			case 0:
 				passiveEntityrespawnPoint = new PassiveEntityRespawnPoint(
 						"carbuncle", 6000);
+				passiveEntityrespawnPoint.setDescription("You see trace elements of some red crystal.");
 				break;
 			case 1:
 				passiveEntityrespawnPoint = new PassiveEntityRespawnPoint(
 						"sapphire", 6000);
+				passiveEntityrespawnPoint.setDescription("You see evidence of a sapphire stone being here recently.");
 				break;
 			case 2:
 				passiveEntityrespawnPoint = new PassiveEntityRespawnPoint(
 						"emerald", 6000);
+				passiveEntityrespawnPoint.setDescription("You see trace elements of the precious gem emerald.");
 				break;
 			}			
-				// end of added/modified by tigertoes
 			
 		} else if (clazz.contains("sign")) {
 			/*
@@ -168,6 +173,7 @@ public class PassiveEntityRespawnPointFactory {
 			case 0:
 				passiveEntityrespawnPoint = new PassiveEntityRespawnPoint(
 						"coconut", 800);
+				passiveEntityrespawnPoint.setDescription("You see a place where a coconut looks likely to fall.");
 				break;
 			case 1:
 				passiveEntityrespawnPoint = new PassiveEntityRespawnPoint(
