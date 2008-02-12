@@ -9746,7 +9746,7 @@
       <def value="50"/>
       <hp value="10000"/>
       <speed value="0.6"/>
-      <size value="13,13"/>
+      <size value="11,12"/>
     </attributes>
     <level value="350"/>
     <experience value="430000"/>
