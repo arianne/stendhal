@@ -513,7 +513,7 @@
  <zone name="-1_nalwor_caves_w" level="-1" x="500128" y="500128" file="Level -1/nalwor/caves_w.tmx">
   <portal x="47" y="28" ref="hell1">
     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
-      <parameter name="minimum-level">300</parameter>
+      <parameter name="minimum-level">200</parameter>
       <parameter name="rejected">You hold yourself back from falling into a vast chasm.</parameter>
     </implementation>
    <destination zone="hell" ref="start"/>
@@ -521,7 +521,7 @@
   </portal>
   <portal x="48" y="28" ref="hell2">
     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
-      <parameter name="minimum-level">300</parameter>
+      <parameter name="minimum-level">200</parameter>
       <parameter name="rejected">You hold yourself back from falling into a vast chasm.</parameter>
     </implementation>
    <destination zone="hell" ref="start"/>
@@ -529,7 +529,7 @@
   </portal>
   <portal x="49" y="28" ref="hell3">
     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
-      <parameter name="minimum-level">300</parameter>
+      <parameter name="minimum-level">200</parameter>
       <parameter name="rejected">You hold yourself back from falling into a vast chasm.</parameter>
     </implementation>
    <destination zone="hell" ref="start"/>
@@ -537,7 +537,7 @@
   </portal>
   <portal x="50" y="28" ref="hell4">
     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
-      <parameter name="minimum-level">300</parameter>
+      <parameter name="minimum-level">200</parameter>
       <parameter name="rejected">You hold yourself back from falling into a vast chasm.</parameter>
     </implementation>
    <destination zone="hell" ref="start"/>
@@ -545,7 +545,7 @@
   </portal>
   <portal x="51" y="27" ref="hell5">
     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
-      <parameter name="minimum-level">300</parameter>
+      <parameter name="minimum-level">200</parameter>
       <parameter name="rejected">You hold yourself back from falling into a vast chasm.</parameter>
     </implementation>
    <destination zone="hell" ref="start"/>
@@ -553,7 +553,7 @@
   </portal>
   <portal x="52" y="27" ref="hell6">
     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
-      <parameter name="minimum-level">300</parameter>
+      <parameter name="minimum-level">200</parameter>
       <parameter name="rejected">You hold yourself back from falling into a vast chasm.</parameter>
     </implementation>
    <destination zone="hell" ref="start"/>
@@ -561,7 +561,7 @@
   </portal>
   <portal x="53" y="27" ref="hell7">
     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
-      <parameter name="minimum-level">300</parameter>
+      <parameter name="minimum-level">200</parameter>
       <parameter name="rejected">You hold yourself back from falling into a vast chasm.</parameter>
     </implementation>
    <destination zone="hell" ref="start"/>
@@ -569,7 +569,7 @@
   </portal>
   <portal x="54" y="27" ref="hell8">
     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
-      <parameter name="minimum-level">300</parameter>
+      <parameter name="minimum-level">200</parameter>
       <parameter name="rejected">You hold yourself back from falling into a vast chasm.</parameter>
     </implementation>
    <destination zone="hell" ref="start"/>
@@ -577,7 +577,7 @@
   </portal>
   <portal x="55" y="27" ref="hell9">
     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
-      <parameter name="minimum-level">300</parameter>
+      <parameter name="minimum-level">200</parameter>
       <parameter name="rejected">You hold yourself back from falling into a vast chasm.</parameter>
     </implementation>
    <destination zone="hell" ref="start"/>
@@ -585,7 +585,7 @@
   </portal>
   <portal x="56" y="26" ref="hell10">
     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
-      <parameter name="minimum-level">300</parameter>
+      <parameter name="minimum-level">200</parameter>
       <parameter name="rejected">You hold yourself back from falling into a vast chasm.</parameter>
     </implementation>
    <destination zone="hell" ref="start"/>
@@ -593,7 +593,7 @@
   </portal>
   <portal x="57" y="26" ref="hel11">
     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
-      <parameter name="minimum-level">300</parameter>
+      <parameter name="minimum-level">200</parameter>
       <parameter name="rejected">You hold yourself back from falling into a vast chasm.</parameter>
     </implementation>
    <destination zone="hell" ref="start"/>
@@ -601,7 +601,7 @@
   </portal>
   <portal x="58" y="26" ref="hell12">
     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
-      <parameter name="minimum-level">300</parameter>
+      <parameter name="minimum-level">200</parameter>
       <parameter name="rejected">You hold yourself back from falling into a vast chasm.</parameter>
     </implementation>
    <destination zone="hell" ref="start"/>
@@ -609,7 +609,7 @@
   </portal>
   <portal x="59" y="26" ref="hell13">
     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
-      <parameter name="minimum-level">300</parameter>
+      <parameter name="minimum-level">200</parameter>
       <parameter name="rejected">You hold yourself back from falling into a vast chasm.</parameter>
     </implementation>
    <destination zone="hell" ref="start"/>
@@ -617,7 +617,7 @@
   </portal>
   <portal x="60" y="25" ref="hell14">
     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
-      <parameter name="minimum-level">300</parameter>
+      <parameter name="minimum-level">200</parameter>
       <parameter name="rejected">You hold yourself back from falling into a vast chasm.</parameter>
     </implementation>
    <destination zone="hell" ref="start"/>
@@ -625,7 +625,7 @@
   </portal>
   <portal x="61" y="25" ref="hell15">
     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
-      <parameter name="minimum-level">300</parameter>
+      <parameter name="minimum-level">200</parameter>
       <parameter name="rejected">You hold yourself back from falling into a vast chasm.</parameter>
     </implementation>
    <destination zone="hell" ref="start"/>
@@ -633,7 +633,7 @@
   </portal>
   <portal x="62" y="24" ref="hell16">
     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
-      <parameter name="minimum-level">300</parameter>
+      <parameter name="minimum-level">200</parameter>
       <parameter name="rejected">You hold yourself back from falling into a vast chasm.</parameter>
     </implementation>
    <destination zone="hell" ref="start"/>
@@ -641,7 +641,7 @@
   </portal>
   <portal x="63" y="24" ref="hell17">
     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
-      <parameter name="minimum-level">300</parameter>
+      <parameter name="minimum-level">200</parameter>
       <parameter name="rejected">You hold yourself back from falling into a vast chasm.</parameter>
     </implementation>
    <destination zone="hell" ref="start"/>
@@ -649,7 +649,7 @@
   </portal>
   <portal x="64" y="24" ref="hell18">
     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
-      <parameter name="minimum-level">300</parameter>
+      <parameter name="minimum-level">200</parameter>
       <parameter name="rejected">You hold yourself back from falling into a vast chasm.</parameter>
     </implementation>
    <destination zone="hell" ref="start"/>
@@ -657,7 +657,7 @@
   </portal>
   <portal x="65" y="23" ref="hell19">
     <implementation class-name="games.stendhal.server.entity.mapstuff.portal.LevelCheckingPortal">
-      <parameter name="minimum-level">300</parameter>
+      <parameter name="minimum-level">200</parameter>
       <parameter name="rejected">You hold yourself back from falling into a vast chasm.</parameter>
     </implementation>
    <destination zone="hell" ref="start"/>
@@ -703,6 +703,7 @@
  <configurator class-name="games.stendhal.server.maps.semos.jail.NoTeleport"/>
  <configurator class-name="games.stendhal.server.maps.nalwor.hell.ElementalsNPCs"/>
  <configurator class-name="games.stendhal.server.maps.nalwor.hell.ReaperNPC"/>
+ <configurator class-name="games.stendhal.server.maps.nalwor.hell.Reaper2NPC"/>
  <configurator class-name="games.stendhal.server.maps.nalwor.hell.CaptiveNPC"/>
   <portal x="9" y="9" ref="start">
    <implementation class-name="games.stendhal.server.entity.mapstuff.portal.OneWayPortalDestination"/>
