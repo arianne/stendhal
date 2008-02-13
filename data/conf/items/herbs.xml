@@ -77,7 +77,8 @@
   <item name="rose">
     <type class="herb" subclass="rose" tileid="-1"/>
     <description>You see a single red rose. It smells heavenly.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
+     <quantity value="1"/>
     </attributes>
     <weight value="0.01"/>
     <value value="1"/>
