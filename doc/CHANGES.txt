@@ -6,15 +6,21 @@ Changelog
 - weekly item quest from kirdneh museum
 - bank in kirdneh (sub branch of fado bank)
 - bar tender in kirdneh inn
+- you can buy kirdneh houses now
+- buy red roses in kirdneh
 - river zone west of kirdneh
 - sewer system added below ados
 - abandoned keep full of dwarves and soldiers below ados mountain
 - seller in abandoned keep sells a good set of armor
+- quest in abandoned keep to clear area of moutain dwarves
+- ados forest w2 has a large farm with animals
 - yeti cave under semos mountain n w4, do a favour for mr yeti
 - couple of new low rate desirable weapons added
 - black scythe, black halberd, chaos axe now dropped (rarely)
+- sell mainio stuff in mithrilbourgh
 - help jailed barbarian on amazon island
 - new zone, a fiery underworld
+- taxman npc in ados keeps list of all buyers in faiumoni
 - fixed bug, relog mid fight and you now still earn your xp
 - orbs now work as they should, i.e. you have to right-click and Use them
 - jynath's orb linked to a safe spot in magic city
