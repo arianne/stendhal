@@ -1,4 +1,4 @@
-# @Version 16
+# @Version 17
 #
 # Word list for the Stendhal conversation parser
 #
@@ -46,30 +46,47 @@
 :*	VER	=kiss
 :-)	VER	=smile
 abort	VER
+accept	VER
 adios	VER
+admit	VER
 advertise	VER
+annoy	VER
+answer	VER
 appear	VER
 ask	VER	=say
 bail	VER
 bake	VER
+be	VER
 believe	VER
 bet	VER
+blow	VER
 boo	VER
 borrow	VER
 bribe	VER
 buy	VER
 bye	VER
+can	VER
 care	VER
 cast	VER
 catch	VER
+change	VER
 cheers	VER
+clean	VER
 cleanme	VER
+clear	VER
 close	VER
+come	VER
+complain	VER
 concoct	VER
+confuse	VER
+consider	VER
+convert	VER
+could	VER-CON	=can
 cya	VER
 delete	VER
 did	VER	=do
 disembark	VER
+display	VER
 do	VER
 does	VER	=do
 doesn't	VER-NEG	=do
@@ -82,32 +99,45 @@ eat	VER
 embark	VER
 engage	VER
 exchange	VER
+exhibit	VER
 exit	VER
 explain	VER
 explore	VER
 farewell	VER
+feed	VER
 fight	VER
 fill	VER
+find	VER
 fit	VER
+fix	VER
 flee	VER
 fly	VER
+follow	VER
 gamble	VER
 get	VER
 give	VER
 go	VER
 gone	VER	=go
 greetings	VER
+grow	VER
 had	VER	=have
 hallo	VER	=hello
 has	VER	=have
 have	VER
 heal	VER
+hear	VER
 hello	VER
 hi	VER	=hello
+hide	VER
 hola	VER	=hello
 hold	VER
+hurry	VER
+ignore	VER
+imagine	VER
+include	VER
 is	VER	are
 jump	VER
+keep	VER
 kill	VER
 kiss	VER
 know	VER
@@ -116,6 +146,8 @@ learn	VER
 leave	VER
 let	VER
 like	VER
+load	VER
+lol	VER
 look	VER
 love	VER
 made	VER	=make
@@ -123,54 +155,92 @@ make	VER
 married	VER	=marry
 marry	VER
 may	VER-CON
+mean	VER
 mix	VER
+move	VER
+need	VER
 not	VER-NEG
 ok	VER
 open	VER
 overcook	VER
 own	VER
 play	VER
+prefer	VER
 protect	VER
 put	VER
 rain	VER
+recognize	VER
+release	VER
+remember	VER
 remove	VER
 rent	VER
+report	VER
 reserve	VER
+reset	VER
 return	VER
 revive	VER
+rofl	VER
 run	VER
+saw	VER	=see
 say	VER
+seem	VER
+seen	VER	=see
 sell	VER
+send	VER
 sew	VER
+shoot	VER
+should	VER-CON	=shall
 shout	VER
 sit	VER
+sleep	VER
 smell	VER
 smile	VER
 sorry	VER
+sound	VER
 speak	VER	=say
+spread	VER
 stake	VER
+stand	VER
 start	VER
+stay	VER
+steal	VER
 summon	VER
+summonat	VER
 take	VER
+talk	VER
+tease	VER
+tell	VER
+thank	VER
 there's	VER
+think	VER
+told	VER	=tell
+transfer	VER
 travel	VER
+try	VER
 understand	VER
 use	VER
+want	VER
+was	VER
 wear	VER
+welcome	VER
 went	VER	=go
 will	VER
 won't	VER-NEG
 work	VER
+worry	VER
 would	VER-CON	=will
 wouldn't	VER-CON-NEG	=won't
 yay	VER	=done
+yep	VER
 yes	VER
+yup	VER	=yep
 
 ados	OBJ	ados
 air	OBJ	airs
 alga	OBJ	algae
 amulet	OBJ	amulets
 analysis	OBJ	analyses
+angle	OBJ	angles
 antidote	OBJ	antidotes
 apple	OBJ	apples
 arandula	OBJ
@@ -178,11 +248,13 @@ armor	OBJ	armors
 arrow	OBJ	arrows
 arundula	OBJ	arundulas
 athor	OBJ	athors
+atmosphere	OBJ	atmospheres
 aventail	OBJ	aventails
 axe	OBJ	axes
 ayuda	OBJ	ayudas
 bag	OBJ	bags
 bakery	OBJ	bakeries
+ball	OBJ	balls
 banana	OBJ-FOO	bananas
 bank	OBJ	banks
 bar	OBJ	bars
@@ -205,12 +277,14 @@ bottle	OBJ	bottles
 bow	OBJ	bows
 box	OBJ	boxes
 brain	OBJ	brains
+branch	OBJ	branches
 brandy	OBJ-FLU	brandies
 bread	OBJ
 broadsword	OBJ	broadswords
 broccoli	OBJ-FOO	broccolis
 bronze	OBJ	bronzes
 buckler	OBJ	bucklers
+bug	OBJ	bugs
 building	OBJ	buildings
 bureau	OBJ	bureaux
 bus	OBJ	bus
@@ -227,9 +301,11 @@ catacomb	OBJ	catacombs
 cauliflower	OBJ	cauliflowers
 cavalry	OBJ	cavalries
 cave	OBJ	caves
+cell	OBJ	cells
 chain	OBJ	chains
 chainmail	OBJ	chainmails
 challenge	OBJ	challenges
+channel	OBJ	channels
 chaos	OBJ	chaos
 char	OBJ	chars
 character	OBJ	characters
@@ -243,6 +319,7 @@ chunk	OBJ	chunks
 citizenship	OBJ	citizenships
 city	OBJ	cities
 claymore	OBJ	claymores
+client	OBJ	clients
 cloak	OBJ	cloaks
 clock	OBJ	clocks
 cloth	OBJ	cloths
@@ -251,12 +328,22 @@ club	OBJ	clubs
 cocktail	OBJ-FLU	cocktails
 coconut	OBJ	coconuts
 cod	OBJ-FOO	cods
+code	OBJ	codes
+coffee	OBJ-FLU	coffees
 coffin	OBJ	coffins
 colada	OBJ-FLU	coladas
 collard	OBJ	collards
 collection	OBJ	collections
+collision	OBJ	collisions
+color	OBJ	colors
+command	OBJ	commands
+comment	OBJ	comments
+company	OBJ	companies
+computer	OBJ	computers
+converter	OBJ	converters
 cookie	OBJ-FOO	cookies
 cost	OBJ	costs
+costume	OBJ	costumes
 coupon	OBJ	coupons
 courgette	OBJ-FOO	courgettes
 cream	OBJ	creams
@@ -267,14 +354,22 @@ crustaceans	OBJ	crustaceans
 cuirass	OBJ	cuirasses
 dagger	OBJ	daggers
 dart	OBJ	darts
+data	OBJ	datas
+database	OBJ	databases
+day	OBJ	days
 deal	OBJ	deals
 deathmatch	OBJ	deathmatches
+department	OBJ	departments
+description	OBJ	descriptions
 diamond	OBJ	diamonds
 dice	OBJ	dice
+difference	OBJ	differences
+direction	OBJ	directions
 disease	OBJ	diseases
 dish	OBJ	dishes
 divorce	OBJ	divorces
 doll	OBJ	dolls
+donkey	OBJ-ANI	donkeys
 dress	OBJ	dresses
 drink	OBJ-FLU	drinks
 dungeon	OBJ	dungeons
@@ -286,21 +381,28 @@ egg	OBJ	eggs
 elite	OBJ	elites
 emerald	OBJ	emeralds
 engagement	OBJ	engagements
+england	OBJ	englands
 entrail	OBJ	entrails
 envelope	OBJ	envelopes
+environment	OBJ	environments
 equipment	OBJ	equipments
 erinys	OBJ	erinyes
+error	OBJ	errors
 eupepsia	OBJ	eupepsias
 everything	OBJ	everythings
 exam	OBJ	exams
 experiment	OBJ	experiments
 eye	OBJ	eyes
+face	OBJ	faces
 fado	OBJ-NAM	fados
 faiumoni	OBJ	faiumonis
+fault	OBJ	faults
 favor	OBJ	favors
 favour	OBJ	favours
+feature	OBJ	features
 fee	OBJ	fees
 ferry	OBJ	ferries
+figure	OBJ	figures
 finger	OBJ	fingers
 fire	OBJ	fires
 fish	OBJ-FOO	fishes
@@ -311,12 +413,17 @@ flower	OBJ	flowers
 food	OBJ-FOO	foods
 foot	OBJ	feet
 forge	OBJ	forges
+fun	OBJ	funs
+future	OBJ	futures
 gambling	OBJ	gamblings
 gate	OBJ	gates
 gem	OBJ	gems
 geography	OBJ	geographies
+germany	OBJ	germanies
+glas	OBJ	glas
 glow	OBJ	glows
 gnu	OBJ	gnus
+goat	OBJ-ANI	goats
 goblet	OBJ	goblets
 gold	OBJ	golds
 gown	OBJ	gowns
@@ -324,13 +431,16 @@ gpl	OBJ	gpls
 grain	OBJ-FOO	grains
 grobble	OBJ	grobbles
 group	OBJ	groups
+hair	OBJ	hairs
 halberd	OBJ	halberds
 ham	OBJ	hams
 hammer	OBJ	hammers
 hand	OBJ	hands
 hat	OBJ	hats
 hatch	OBJ	hatches
+head	OBJ	heads
 heart	OBJ	hearts
+heat	OBJ	heats
 helium	OBJ	helia
 hell	OBJ	hells
 helm	OBJ	helms
@@ -343,17 +453,21 @@ home	OBJ	homes
 honeymoon	OBJ	honeymoons
 hospital	OBJ	hospitals
 hotel	OBJ	hotels
+hour	OBJ	hours
 house	OBJ	houses
 hypha	OBJ	hyphae
 ice	OBJ	ices
 icecream	OBJ	icecreams
+image	OBJ	images
 index	OBJ	indices
 ingredients	OBJ	ingredients
 invitation	OBJ	invitations
+irc	OBJ	ircs
 iron	OBJ	irons
 island	OBJ	islands
 it	OBJ-PRO	its
 item	OBJ	items
+jail	OBJ	jails
 job	OBJ	jobs
 kalavan	OBJ-NAM	kalavans
 kanmararn	OBJ	kanmararns
@@ -365,6 +479,8 @@ kingdom	OBJ	kingdoms
 knife	OBJ	knives
 kokuda	OBJ	kokudas
 kotoch	OBJ-NAM	kotoches
+lag	OBJ	lags
+language	OBJ	languages
 larva	OBJ	larvae
 leek	OBJ-FOO	leeks
 leg	OBJ	legs
@@ -372,6 +488,7 @@ level	OBJ	levels
 liberty	OBJ	liberties
 library	OBJ	libraries
 life	OBJ	lives
+limit	OBJ	limits
 list	OBJ	lists
 loaf	OBJ-AMO	loaves
 log	OBJ	logs
@@ -391,14 +508,19 @@ meat	OBJ	meats
 medicine	OBJ	medicines
 militia	OBJ	militias
 mill	OBJ	mills
+mine	OBJ-PRO	mines
+minute	OBJ	minutes
+mirror	OBJ	mirrors
 mistake	OBJ	mistakes
 mithril	OBJ	mithrils
 mithrilbourgh	OBJ-NAM	mithrilbourghs
+moment	OBJ	moments
 money	OBJ	money
 moose	OBJ	moose
 morning	OBJ	mornings
 mountain	OBJ	mountains
 mouse	OBJ	mice
+mouth	OBJ	mouths
 mumak	OBJ	mumakil
 mushroom	OBJ-FOO	mushrooms
 my	OBJ-OBS	mys
@@ -410,9 +532,12 @@ news	OBJ	news
 night	OBJ	nights
 nihonto	OBJ	nihontos
 noose	OBJ	nooses
+nose	OBJ	noses
 note	OBJ	notes
 nothing	OBJ	nothings
+npc	OBJ	npcs
 nugget	OBJ	nuggets
+number	OBJ	numbers
 obsidian	OBJ	obsidians
 offer	OBJ	offers
 onion	OBJ-FOO	onions
@@ -423,6 +548,7 @@ pan	OBJ	pans
 paper	OBJ	papers
 park	OBJ	parks
 patch	OBJ	patches
+path	OBJ	paths
 perch	OBJ-ANI	perches
 pie	OBJ-FOO	pies
 piece	OBJ	pieces
@@ -431,10 +557,11 @@ pinacolad	OBJ-FLU	=pinacolada	pinacoladas
 pinacolada	OBJ-FLU	pinacoladas
 pineapple	OBJ	pineapples
 pizza	OBJ-FOO	pizzas
-places	OBJ	places
+place	OBJ	places
 plan	OBJ	plans
 plate	OBJ	plates
 plural	OBJ	plurals
+point	OBJ	points
 poison	OBJ-FLU	poisons
 porcini	OBJ-FOO	porcini
 portal	OBJ	portals
@@ -443,22 +570,27 @@ pot	OBJ	pots
 potion	OBJ-FLU	potions
 power	OBJ	powers
 present	OBJ	presents
+presentation	OBJ	presentations
 price	OBJ	prices
 princess	OBJ	princesses
 prison	OBJ	prisons
 problem	OBJ	problems
+product	OBJ	products
 quest	OBJ	quests
+question	OBJ	questions
 rainbow	OBJ	rainbows
+ranch	OBJ	ranches
+rate	OBJ	rates
 request	OBJ	requests
 restaurant	OBJ	restaurants
 reward	OBJ	rewards
 rhosyd	OBJ	rhosyds
+riddle	OBJ	riddles
 ring	OBJ	rings
 risecia	OBJ	risecias
 roach	OBJ-ANI	roaches
 robin	OBJ	robins
 rod	OBJ	rods
-rose OBJ roses
 room	OBJ	rooms
 rose	OBJ	roses
 rug	OBJ	rugs
@@ -471,21 +603,27 @@ scale	OBJ	scales
 scarlet	OBJ	scarlets
 scimitar	OBJ	scimitars
 sclaria	OBJ	sclarias
+screen	OBJ	screens
+script	OBJ	scripts
 scroll	OBJ	scrolls
 scythe	OBJ	scythes
 secret	OBJ	secrets
 security	OBJ	securities
 sedah	OBJ	sedahs
 semos	OBJ	semos
+sense	OBJ	senses
+server	OBJ	servers
 shadow	OBJ	shadows
 sheaf	OBJ-AMO	sheaves
 sheep	OBJ-ANI	sheep
+sheet	OBJ	sheets
 shield	OBJ	shields
 shop	OBJ	shops
 shuriken	OBJ	shurikens
 sign	OBJ	signs
 silver	OBJ	silvers
 skull	OBJ	skulls
+snow	OBJ	snows
 snowball	OBJ	snowballs
 sodium	OBJ	sodia
 something	OBJ	somethings
@@ -495,6 +633,7 @@ space	OBJ	spaces
 spade	OBJ	spades
 spear	OBJ	spears
 species	OBJ	species
+speed	OBJ	speeds
 spinach	OBJ-FOO	spinaches
 sprig	OBJ-AMO	sprigs
 sps	OBJ	sps
@@ -507,11 +646,14 @@ stocking	OBJ	stockings
 stone	OBJ	stones
 storage	OBJ	storages
 story	OBJ	stories
+stuff	OBJ	stuffs
+style	OBJ	styles
 suit	OBJ-AMO	suits
 sun	OBJ	suns
 suntan	OBJ	suntans
 supplie	OBJ	supplies
 surgeonfish	OBJ-ANI	surgeonfishes
+sweatshirt	OBJ	sweatshirts
 swimsuit	OBJ	swimsuits
 sword	OBJ	swords
 table	OBJ	tables
@@ -521,15 +663,20 @@ tavern	OBJ	taverns
 tea	OBJ-FLU	teas
 teddy	OBJ	teddies
 temple	OBJ	temples
+text	OBJ	texts
 that	OBJ	=this	this
-these	OBJ	theses
-this	OBJ	this
+these	OBJ-PRO	theses
+this	OBJ-PRO	this
 thorn	OBJ	thorns
+those	OBJ-PRO	thoses
+time	OBJ	times
 toadstool	OBJ	toadstools
 token	OBJ	tokens
 tomato	OBJ-FOO	tomatoes
 tool	OBJ	tools
 tooth	OBJ	teeth
+torture	OBJ	tortures
+tour	OBJ	tours
 town	OBJ	towns
 toy	OBJ	toys
 trade	OBJ	trades
@@ -543,6 +690,7 @@ trunk	OBJ	trunks
 trust	OBJ	trusts
 tunnel	OBJ	tunnels
 ugmash	OBJ	ugmashes
+url	OBJ	urls
 venom	OBJ	venoms
 vertex	OBJ	vertices
 victory	OBJ	victories
@@ -552,12 +700,16 @@ vodka	OBJ-FLU	vodkas
 vortex	OBJ	vortices
 vulcano	OBJ	vulcanos
 war	OBJ	wars
+wardrobe	OBJ	wardrobes
 water	OBJ-FLU	waters
+way	OBJ	ways
 weapon	OBJ	weapons
 wedding	OBJ	weddings
 whiskey	OBJ-FLU	whiskeys
 wikipedia	OBJ	wikipedias
+window	OBJ	windows
 wine	OBJ-FLU
+wish	OBJ	wishes
 wodka	OBJ-FLU	wodkas
 wood	OBJ	woods
 wool	OBJ	wools
@@ -569,10 +721,13 @@ yarn	OBJ	yarns
 yclept	OBJ	yclepts
 youngster	OBJ	youngsters
 your	OBJ-OBS	yours
+zone	OBJ	zones
 
+admin	SUB
 admiral	SUB
 ahouga	SUB
 albino	SUB
+alien	SUB
 amazoness	SUB
 angel	SUB
 archer	SUB	archers
@@ -600,6 +755,7 @@ bodyguard	SUB
 boss	SUB	bosses
 boy	SUB	boys
 bride	SUB
+brother	SUB
 caiman	SUB-ANI
 cannibal	SUB
 captain	SUB
@@ -608,6 +764,7 @@ caverat	SUB-ANI	caverats
 ceryl	SUB-NAM
 chaman	SUB
 charles	SUB-NAM
+chick	SUB
 chief	SUB	chiefs
 child	SUB	children
 citizen	SUB
@@ -616,11 +773,14 @@ coastguard	SUB
 cobra	SUB-ANI	cobras
 colonel	SUB
 commander	SUB	commanders
+cowboy	SUB
 crab	SUB-ANI	crabs
 crocodile	SUB-ANI
 cyclops	SUB	cyclopses
 dalmung	SUB
 darkmonk	SUB
+daughter	SUB
+daugther	SUB
 death	SUB	deaths
 deer	SUB-ANI
 defender	SUB
@@ -644,12 +804,14 @@ exhibits	SUB
 falatheen	SUB
 felina	SUB-NAM
 fox	SUB-ANI	foxes
+friend	SUB
 frogman	SUB
 gargoyle	SUB	gargoyles
 general	SUB
 ghost	SUB	ghosts
 giant	SUB
 giantrat	SUB-ANI	giantrats
+girl	SUB
 gm	SUB
 gnome	SUB	gnomes
 goblin	SUB	goblins
@@ -660,10 +822,12 @@ goose	SUB-ANI	geese
 goran	SUB-NAM
 guard	SUB
 guardian	SUB	guardians
+guy	SUB
 hayunn	SUB-NAM
 he	SUB-PRO	they
 healer	SUB
 hero	SUB	heros
+horse	SUB-ANI
 housewife	SUB
 hugo	SUB-NAM
 human	SUB	humans
@@ -682,7 +846,7 @@ killer	SUB
 king	SUB
 knight	SUB	knights
 kobold	SUB	kobolds
-kymara	SUB-NAM
+lady	SUB
 leader	SUB	leaders
 leprechaun	SUB
 lich	SUB	liches
@@ -708,6 +872,7 @@ mohiko	SUB
 monk	SUB
 monkey	SUB	monkeys
 monster	SUB
+mother	SUB
 mummy	SUB	mummies
 mutant	SUB
 naga	SUB
@@ -724,12 +889,14 @@ panda	SUB-ANI
 parrot	SUB-ANI
 peasant	SUB
 penguin	SUB-ANI	penguins
+people	SUB
 peter	SUB-NAM
 phantom	SUB
 pigeon	SUB-ANI
 pirate	SUB
 player	SUB	players
 priest	SUB
+purist	SUB
 queen	SUB
 ranger	SUB
 rat	SUB-ANI	rats
@@ -739,6 +906,7 @@ razorrat	SUB-ANI	razorrats
 reptile	SUB-ANI
 robot	SUB
 roohako	SUB
+rook	SUB
 sacerdotist	SUB	sacerdotists
 sally	SUB-NAME
 samurai	SUB
@@ -748,12 +916,15 @@ servant	SUB
 she	SUB-PRO	they
 sheepman	SUB
 siandra	SUB-NAM
+sister	SUB
 skeleton	SUB	skeletons
 skelly	SUB
 slime	SUB	slimes
 snake	SUB-ANI
 snarfkin	SUB
 soldier	SUB	soldiers
+someone	SUB-PRO
+son	SUB
 sorcerer	SUB
 spider	SUB-ANI
 spirit	SUB	spirits
@@ -782,6 +953,7 @@ warrior	SUB	warriors
 werewolf	SUB-ANI
 windwalker	SUB
 wisewoman	SUB
+witch	SUB
 wizard	SUB
 wolf	SUB-ANI	wolves
 woman	SUB	women
@@ -795,38 +967,65 @@ zynn	SUB-NAM
 another	ADJ
 armed	ADJ
 bad	ADJ
+before	ADJ
+below	ADJ
+best	ADJ
+better	ADJ
 big	ADJ
 biggest	ADJ
 biting	ADJ
 black	ADJ-COL
 bloody	ADJ
 blue	ADJ-COL
+broken	ADJ
 brown	ADJ-COL
+central	ADJ
 closed	ADJ
 complete	ADJ
 composite	ADJ
+confused	ADJ
+cool	ADJ
 dark	ADJ
+dayly	ADJ
 dead	ADJ
 deadly	ADJ
+delicious	ADJ
 devout	ADJ
+different	ADJ
 drow	ADJ
 dwarven	ADJ
 dwarvish	ADJ
+eastern	ADJ
 elder	ADJ
 elvish	ADJ
 empty	ADJ
 enhanced	ADJ
+enough	ADJ
+european	ADJ
+every	ADJ
+everywhere	ADJ
 exact	ADJ
+exactly	ADJ
 exotic	ADJ
+expensive	ADJ
+extremely	ADJ
 fairy	ADJ
 fallen	ADJ
+fast	ADJ
+few	ADJ
+fine	ADJ
 fiscal	ADJ
 fishy	ADJ
 flying	ADJ
+forward	ADJ
 free	ADJ
 fresh	ADJ
+full	ADJ
+genius	ADJ
+global	ADJ
 golden	ADJ-COL
 good	ADJ
+grand	ADJ
 great	ADJ
 greater	ADJ
 greaterthan	ADJ
@@ -846,46 +1045,85 @@ l	ADJ
 lazy	ADJ
 leather	ADJ
 lessthan	ADJ
+local	ADJ
+low	ADJ
+lower	ADJ
 lucky	ADJ
 magical	ADJ
+main	ADJ
+many	ADJ
 markable	ADJ
 marked	ADJ
 mega	ADJ
 minor	ADJ
 missing	ADJ
+much	ADJ
 mythical	ADJ
+naked	ADJ
+nasty	ADJ
+naturally	ADJ
+nearly	ADJ
+next	ADJ
 nice	ADJ
 nomadic	ADJ
 old	ADJ
 orcish	ADJ
+patient	ADJ
 pauldroned	ADJ
+pink	ADJ-COL
+plenty	ADJ
 poisonous	ADJ
+pretty	ADJ
 private	ADJ
+properly	ADJ
 quick	ADJ
 r	ADJ
+random	ADJ
 rare	ADJ
+readable	ADJ
+recently	ADJ
 red	ADJ-COL
+right	ADJ
 rotten	ADJ
+round	ADJ
 royal	ADJ
+same	ADJ
 sealed	ADJ
 short	ADJ
+silly	ADJ
 silvery	ADJ-COL
+similar	ADJ
+simple	ADJ
 small	ADJ
+snug	ADJ
+spare	ADJ
 special	ADJ
 spotted	ADJ
 striped	ADJ
 studded	ADJ
+stupid	ADJ
 super	ADJ
+sure	ADJ
+sweet	ADJ
 tasty	ADJ
 tiny	ADJ
+transparent	ADJ
 true	ADJ
 twoside	ADJ
+ugly	ADJ
+unfair	ADJ
 unsealed	ADJ
+unused	ADJ
 violet	ADJ-COL
+weekly	ADJ
+weird	ADJ
 well	ADJ	=good
 white	ADJ-COL
+whole	ADJ
 winged	ADJ
 wooden	ADJ
+worth	ADJ
+wrong	ADJ
 young	ADJ
 
 a	NUM	1
@@ -930,7 +1168,9 @@ about	PRE
 by	PRE
 down	PRE
 for	PRE
+from	PRE
 in	PRE
+into	PRE
 of	PRE
 off	PRE
 on	PRE
@@ -942,16 +1182,30 @@ with	PRE
 
 how	QUE
 if	QUE
+what	QUE
+where	QUE
+who	QUE
 why	QUE
 
+again	IGN
+already	IGN
 always	IGN
+any	IGN
 but	IGN
 even	IGN
 let's	IGN
+only	IGN
 please	IGN
+probably	IGN
 really	IGN
 so	IGN
+some	IGN
+soon	IGN
 the	IGN
+though	IGN
 to	IGN
 whatever	IGN
+while	IGN
+yeah	IGN
+yet	IGN
 
