@@ -68,6 +68,7 @@ public class HouseBuying extends AbstractQuest {
 	protected StendhalRPZone zone;
 	protected StendhalRPZone zone2;
 	protected StendhalRPZone zone3;
+
 	@Override
 	public void init(String name) {
 		super.init(name, QUEST_SLOT);
