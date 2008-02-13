@@ -223,7 +223,7 @@ public class ShopList {
 		// buy chaos items (scared dwarf, after quest)
 		shops.add("buychaos", "chaos legs", 8000);
 		shops.add("buychaos", "chaos sword", 12000);
-		shops.add("buychaos", "chaos shield", 15000);
+		shops.add("buychaos", "chaos shield", 18000);
 		shops.add("buychaos", "chaos armor", 20000);
 
 		// buy elvish items (albino elf, after quest)
@@ -253,12 +253,12 @@ public class ShopList {
 		shops.add("buyred", "red shield", 750);
 
 		// mainio items (despot in mithrilbourgh throne room)
-		shops.add("buymainio", "mainio armor", 12000);
-		shops.add("buymainio", "mainio boots", 3000);
-		shops.add("buymainio", "mainio cloak", 5000);
-		shops.add("buymainio", "mainio helmet", 5000);
-		shops.add("buymainio", "mainio legs", 6000);
-		shops.add("buymainio", "mainio shield", 10000);
+		shops.add("buymainio", "mainio armor", 22000);
+		shops.add("buymainio", "mainio boots", 4000);
+		shops.add("buymainio", "mainio cloak", 12000);
+		shops.add("buymainio", "mainio helmet", 8000);
+		shops.add("buymainio", "mainio legs", 7000);
+		shops.add("buymainio", "mainio shield", 16000);
 
 	}
 
