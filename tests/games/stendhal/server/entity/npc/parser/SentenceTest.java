@@ -64,7 +64,7 @@ public class SentenceTest {
 
 		sentence = ConversationParser.parse("this is a banana.");
 		assertFalse(sentence.hasError());
-		assertEquals("this/OBJ is/VER banana/OBJ-FOO.", sentence.toString());
+		assertEquals("this/OBJ-PRO is/VER banana/OBJ-FOO.", sentence.toString());
 		assertEquals(Sentence.SentenceType.STATEMENT, sentence.getType());
 		assertEquals("this", sentence.getObject(0).getNormalized());
 		assertEquals("is", sentence.getVerb(0).getNormalized());
