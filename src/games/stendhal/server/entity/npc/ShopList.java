@@ -83,9 +83,9 @@ public class ShopList {
 
 		shops.add("sellbetterstuff2", "shadow armor", 18000);
 		shops.add("sellbetterstuff2", "shadow boots", 4000);
-		shops.add("sellbetterstuff2", "shadow cloak", 6000);
+		shops.add("sellbetterstuff2", "shadow cloak", 7000);
 		shops.add("sellbetterstuff2", "shadow helmet", 8000);
-		shops.add("sellbetterstuff2", "shadow legs", 8000);
+		shops.add("sellbetterstuff2", "shadow legs", 10000);
 		shops.add("sellbetterstuff2", "shadow shield", 30000);
 		shops.add("sellbetterstuff2", "hell dagger", 20000);
 

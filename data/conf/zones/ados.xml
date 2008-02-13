@@ -1703,6 +1703,26 @@ Assassin Dagger (atk 6 rate 2) 12000
  <!--  Level -4 -->
 
   <zone name="-4_ados_abandoned_keep" level="-4" x="500512" y="499744" file="Level -4/ados/abandoned_keep.tmx">
+
+  <configurator class-name="games.stendhal.server.maps.ados.abandonedkeep.DwarfWeaponArmorGuyNPC"/>
+ 
+     <entity x="13" y="26">
+     <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
+     <attribute name="text">
+We Sell Armor and Weapons:
+
+Shadow Boots (def 9) 4000
+Shadow Cloak (def 13) 7000
+Shadow Legs (def 9) 10000
+Shadow Helmet (def 10) 8000
+Shadow Armor (def 17) 18000
+Shadow Shield (def 36) 30000
+
+Hell Dagger (atk 9 rate 2) 20000
+     </attribute>
+     <attribute name="class">blackboard</attribute>
+    </entity>
+
  </zone>
 
  <!--  Level -5 -->
