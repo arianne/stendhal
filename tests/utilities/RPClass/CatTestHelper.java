@@ -6,10 +6,9 @@ import marauroa.common.game.RPClass;
 public class CatTestHelper {
 	public static void generateRPClasses() {
 		PetTestHelper.generateRPClasses();
+
 		if (!RPClass.hasRPClass("cat")) {
 			Cat.generateRPClass();
 		}
-
 	}
-
 }

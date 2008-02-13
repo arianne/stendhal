@@ -60,7 +60,6 @@ public class Cat extends Pet {
 		setXP(XP);
 		setBaseHP(HP);
 		setHP(HP);
-
 	}
 
 	public static void generateRPClass() {

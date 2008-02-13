@@ -33,7 +33,6 @@ public class FlowerSellerNPC implements ZoneConfigurator {
 			    addGoodbye("Everything's coming up roses ... bye ...");
 			    // the rest is in the ElfPrincess quest
 			}
-
 		};
 
 		rose.setEntityClass("gypsywomannpc");
