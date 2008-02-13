@@ -80,12 +80,12 @@ public class PassiveEntityRespawnPointFactory {
 
 			case 2:
 				passiveEntityrespawnPoint = new PassiveEntityRespawnPoint(
-						"gold bar", 6000);
+						"gold bar", 9000);
 				passiveEntityrespawnPoint.setDescription("You see a trace of a gold shimmer.");
 				break;
 			case 3:
 				passiveEntityrespawnPoint = new PassiveEntityRespawnPoint(
-						"mithril bar", 6000);
+						"mithril bar", 16000);
 				passiveEntityrespawnPoint.setDescription("You see a trace of a silvery shimmer.");
 				break;
 			case 4:
@@ -95,7 +95,7 @@ public class PassiveEntityRespawnPointFactory {
 				break;
 			case 5:
 				passiveEntityrespawnPoint = new PassiveEntityRespawnPoint(
-						"mithril nugget", 6000);
+						"mithril nugget", 12000);
 				passiveEntityrespawnPoint.setDescription("You see tiny pieces of mithril ore.");
 				break;	
 				
