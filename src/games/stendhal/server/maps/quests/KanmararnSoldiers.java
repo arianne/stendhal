@@ -394,9 +394,19 @@ public class KanmararnSoldiers extends AbstractQuest {
 			new QuestInStateCondition(QUEST_SLOT, "map"),
 			ConversationStates.ATTENDING, null,
 			new JamesQuestCompleteAction());
-
+		
+		james.add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES, 
+				new QuestCompletedCondition(QUEST_SLOT),
+				ConversationStates.ATTENDING,
+				"Thanks again for bringing me the map!", null);
+		
+		james.add(ConversationStates.ATTENDING, ConversationPhrases.HELP_MESSAGES, 
+				new QuestCompletedCondition(QUEST_SLOT),
+				ConversationStates.ATTENDING,
+				"Thanks again for bringing me the map!", null);
+		
 		james.add(ConversationStates.ATTENDING, Arrays.asList("map", "henry",
-			"quest", "task", "help", "group", "one"),
+			 "group", "one"),
 			new QuestCompletedCondition(QUEST_SLOT),
 			ConversationStates.ATTENDING,
 			"Thanks again for bringing me the map!", null);
