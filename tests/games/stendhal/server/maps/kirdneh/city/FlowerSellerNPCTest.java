@@ -115,7 +115,7 @@ public class FlowerSellerNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("5 roses will cost 250. Do you want to buy them?", npc.get("text"));
 
 		assertTrue(en.step(player, "yes"));
-		assertEquals("Congratulations! Here are your 5 roses!", npc.get("text"));
+		assertEquals("Congratulations! Here are your roses!", npc.get("text"));
 
 		assertTrue(player.isEquipped("rose", 6));
 		assertFalse(player.isEquipped("rose", 7));
