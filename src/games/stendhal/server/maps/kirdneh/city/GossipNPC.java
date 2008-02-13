@@ -42,11 +42,10 @@ public class GossipNPC implements ZoneConfigurator {
 				addGreeting("Heya!");
 				addJob("Um, not sure what you mean. Right now I'm waiting for my mum to get back from the #shops.");
 				addHelp("I have some #news about the bazaar over there.");
-
 				addOffer("I don't sell stuff, I'm just waiting for my mum. But I have some #news if you wanna hear it.");
 				addQuest("Huh? I don't get you.");
-				addReply("news", "Some shopkeepers will be at the market soon! It'll be cool, it's kind of empty round here at the moment.");
-				addReply("shops", "Yeah she's had to go out of town. But there's #news about our own bazaar.");
+				addReply("news", "Some more shopkeepers will be at the market soon! It'll be cool, it's kind of empty round here at the moment.");
+				addReply("shops", "Yeah she's had to go out of town. All we have here is that flower seller! There's #news about our bazaar, though ...");
 				addGoodbye("See you around.");
 			}
 		};
