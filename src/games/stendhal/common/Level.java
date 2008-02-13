@@ -14,13 +14,16 @@ package games.stendhal.common;
 
 import org.apache.log4j.Logger;
 
-/** Utility class for getting the creature-level for some given exp. points. */
+/** Utility class for getting the player level for some given exp. points. */
 public class Level {
 
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(Level.class);
 
-	private static final int LEVELS = 480;
+
+	// Max Level is LEVELS - 1.
+	// xp formula overflows for level = 599.
+	private static final int LEVELS = 598;
 
 	private static int[] xp;
 
@@ -28,7 +31,7 @@ public class Level {
 
 	static {
 		/*
-		 * Calculate eXPeriance
+		 * Calculate eXPerience
 		 */
 		xp = new int[LEVELS + 1];
 
