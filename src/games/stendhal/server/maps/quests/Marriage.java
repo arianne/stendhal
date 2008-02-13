@@ -184,6 +184,8 @@ public class Marriage extends AbstractQuest {
 				ConversationStates.IDLE, 
 				"What a shame! Goodbye!", 
 				null);
+		
+		
 	}
 
 	private void startEngagement(SpeakerNPC nun, Player player,
@@ -240,13 +242,29 @@ public class Marriage extends AbstractQuest {
 	}
 
 	private void finishEngagement() {
-		giveInvite(groom);
-		giveInvite(bride);
+		// we check if each of the bride and groom are engaged, or both, and only give invites 
+		// if they were not already engaged.
+		String additional;
+		if (!isEngaged(groom)) {
+			giveInvite(groom);
+			if (!isEngaged(bride)) {
+				giveInvite(bride);
+				additional = "And here are some invitations you can give to your guests.";
+			}
+			else {
+				additional = "I have given invitations for your guests to " + groom.getName() + ".";
+				}
+		} else if (!isEngaged(bride)) {
+			giveInvite(bride);
+			additional = "I have given invitations for your guests to " + bride.getName() + ".";
+		} else {
+			additional = "I have not given you more invitation scrolls, as you were both already engaged, and had them before.";
+		}		
 		nun.say("Congratulations, "
 				+ groom.getName()
 				+ " and "
 				+ bride.getName()
-				+ ", you are now engaged! Please make sure you have got wedding rings made before you go to the church for the service. And here are some invitations you can give to your guests.");
+				+ ", you are now engaged! Please make sure you have got wedding rings made before you go to the church for the service. " + additional);
 		// Memorize that the two engaged so that the priest knows
 		groom.setQuest(QUEST_SLOT, "engaged");
 		bride.setQuest(QUEST_SLOT, "engaged");
@@ -258,7 +276,11 @@ public class Marriage extends AbstractQuest {
 
 	private boolean isMarried(Player player) {
 		return player.hasQuest(SPOUSE_QUEST_SLOT);
-	}
+	} 
+	
+    private boolean isEngaged(Player player) {
+        return (player.hasQuest(QUEST_SLOT) && player.getQuest(QUEST_SLOT).startsWith("engaged")) ;
+    }
 
 	private void makeRingsStep() {
 		SpeakerNPC npc = npcs.get("Ognir");
@@ -423,8 +445,8 @@ public class Marriage extends AbstractQuest {
 						public boolean fire(Player player, Sentence sentence,
 								SpeakerNPC npc) {
 							return player.hasQuest(QUEST_SLOT)
-									&& player.getQuest(QUEST_SLOT).equals(
-											"engaged_with_ring")
+									&& player.getQuest(QUEST_SLOT).startsWith(
+											"engaged")
 									&& player.isEquipped("wedding ring");
 						}
 					},
@@ -497,9 +519,8 @@ public class Marriage extends AbstractQuest {
 						@Override
 						public boolean fire(Player player, Sentence sentence,
 								SpeakerNPC npc) {
-							return (!player.hasQuest(QUEST_SLOT)
-									|| (player.hasQuest(QUEST_SLOT) && player.getQuest(QUEST_SLOT).equals("engaged")) 
-									|| (player.hasQuest(QUEST_SLOT)	&& player.getQuest(QUEST_SLOT).equals("engaged_with_ring") && !player.isEquipped("wedding ring")));
+							return (!player.hasQuest(QUEST_SLOT) 
+									|| (player.hasQuest(QUEST_SLOT)	&& player.getQuest(QUEST_SLOT).startsWith("engaged") && !player.isEquipped("wedding ring")));
 						}
 					},
 					ConversationStates.ATTENDING,
@@ -677,11 +698,7 @@ public class Marriage extends AbstractQuest {
 		} else if (bride.hasQuest(QUEST_SLOT)
 				&& !bride.getQuest(QUEST_SLOT).startsWith("engaged")) {
 			priest.say(bride.getName() + " isn't engaged.");
-		} else if (bride.hasQuest(QUEST_SLOT)
-				&& !bride.getQuest(QUEST_SLOT).equals("engaged_with_ring")) {
-			priest.say(bride.getName()
-					+ " hasn't been to Ognir to get a ring cast for you!");
-		} else if (!bride.isEquipped("wedding ring")) {
+		}  else if (!bride.isEquipped("wedding ring")) {
 			priest.say(bride.getName()
 					+ " hasn't got a wedding ring to give you.");
 		} else {
