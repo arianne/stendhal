@@ -46,7 +46,7 @@ Please download Stendhal from http://arianne.sourceforge.net
 
 Then just do:
 
-  java -jar stendhal-0.63.jar
+  java -jar stendhal-0.67.jar
 
 Alternatively you can run it using Java Webstart technology at:
 
@@ -92,5 +92,5 @@ http://arianne.sourceforge.net/wiki/index.php?title=StendhalonEclipse
 Legal
 -----
 
-Stendhal(c) is copyright of Miguel Angel Blanch Lardin, 2005
+Stendhal(c) is copyright of Miguel Angel Blanch Lardin, 2008
 arianne_rpg at users dot sourceforge dot net
