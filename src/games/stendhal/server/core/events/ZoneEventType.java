@@ -28,7 +28,9 @@ public enum ZoneEventType {
 	VISIT_SEMOS_CAVES(
 			"The ground in this cave trembles from the footfalls of GIANTS! The weak should explore no further here. Turn around and run away!"),
 	VISIT_ADOS_CASTLE(
-			"You sense that great atrocities have happened here. The castle must be overrun with evil creatures, as the sounds of their last victims ring in your ears. It may be wise to stay away.");
+					  "You sense that great atrocities have happened here. The castle must be overrun with evil creatures, as the sounds of their last victims ring in your ears. It may be wise to stay away."),
+	VISIT_HELL(
+			   "You fall down a deep chasm into the fires of hell. You can hear screaming of some poor soul being tortured, and the roars of fearsome creatures.");
 
 	private String message;
 

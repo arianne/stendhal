@@ -137,4 +137,13 @@ public class TutorialNotifier {
 			process(player, TutorialEventType.TIMED_HELP);
 		}
 	}
+	/**
+	 * player > level 2 logged in for new release
+	 * 
+	 * @param player
+	 *            Player
+	 */
+	public static void newrelease(Player player) {
+		process(player, TutorialEventType.NEW_RELEASE);
+	}
 }
