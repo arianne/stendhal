@@ -36,8 +36,9 @@ public enum TutorialEventType {
 	TIMED_NAKED(
 			"Oh, aren't you feeling cold? Right click on yourself and choose \"Set Outfit\" to get dressed."),
 	TIMED_PASSWORD(
-			"Remember to keep your password completely secret, never tell it to another friend, player, or even admin.");
-
+				   "Remember to keep your password completely secret, never tell it to another friend, player, or even admin."),
+	NEW_RELEASE(
+			"As of 0.67, item and creature names don't have any _ in. Just spaces. When you want to sell a studded shield, say #sell #studded #shield and not #sell #studded_shield. Likewise, for when you want to /drop items. Use a space and not an _.");
 	private String message;
 
 	/**

@@ -69,6 +69,8 @@ public class ZoneNotifier {
 			process(player, ZoneEventType.VISIT_SEMOS_CAVES);
 		} else if (destinationZone.equals("int_ados_castle_entrance")) {
 			process(player, ZoneEventType.VISIT_ADOS_CASTLE);
+		} else if (destinationZone.equals("hell")) {
+			process(player, ZoneEventType.VISIT_HELL);
 		}
 	}
 

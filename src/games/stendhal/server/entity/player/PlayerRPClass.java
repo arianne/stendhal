@@ -17,6 +17,7 @@ import games.stendhal.server.actions.admin.AdministrationAction;
 import games.stendhal.server.core.engine.ItemLogger;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.core.events.TutorialNotifier;
 import games.stendhal.server.core.rp.StendhalRPAction;
 import games.stendhal.server.entity.creature.DomesticAnimal;
 import games.stendhal.server.entity.creature.Pet;
@@ -227,6 +228,7 @@ class PlayerRPClass {
 			if (object.has("zoneid") && object.has("x") && object.has("y")) {
 				if (!object.get("release").equals(Debug.VERSION)) {
 					player.put("release", Debug.VERSION);
+					TutorialNotifier.newrelease(player);
 				} else {
 					zone = SingletonRepository.getRPWorld().getZone(object.get("zoneid"));
 				}
