@@ -452,9 +452,21 @@
 
 	<target name="dist_source">
 		<mkdir dir="${buildroot}/stendhal-${version}-src"/>
+		
 		<copy todir="${buildroot}/stendhal-${version}-src/src">
 			<fileset dir="src"/>
 		</copy>
+		
+		<mkdir dir="${buildroot}/stendhal-${version}-src/libs"/>
+		
+		<copy todir="${buildroot}/stendhal-${version}-src/tests">
+			<fileset dir="tests"/>
+		</copy>
+
+		<copy todir="${buildroot}/stendhal-${version}-src/tools">
+			<fileset dir="tools"/>
+		</copy>
+
 		<copy todir="${buildroot}/stendhal-${version}-src/data">
 			<fileset dir="data">
                 <!-- There is a 4MB OGG there! -->
@@ -475,11 +487,15 @@
 
 		<copy todir="${buildroot}/stendhal-${version}-src" file="build.xml"/>
 		<copy todir="${buildroot}/stendhal-${version}-src" file="build.ant.properties"/>
+		
+		<copy todir="${buildroot}/stendhal-${version}-src" file="README.txt"/>
+		<copy todir="${buildroot}/stendhal-${version}-src" file="COPYING.txt"/>
+		<copy todir="${buildroot}/stendhal-${version}-src" file="LICENSE.txt"/>
+		
 		<copy todir="${buildroot}/stendhal-${version}-src" file=".hotspotrc"/>
 		<copy todir="${buildroot}/stendhal-server-${version}-src/doc">
 			<fileset dir="doc"/>
 		</copy>
-		<copy todir="${buildroot}/stendhal-server-${version}-src" file="README.txt"/>
 
 		<tar destfile="${buildroot}/stendhal-${version}-src.tar.gz" compression="gzip">
 			<tarfileset dir="${buildroot}/stendhal-${version}-src" prefix="stendhal-${version}">
