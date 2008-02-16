@@ -24,7 +24,15 @@ class SummonAtAction implements SlashAction {
 		summon.put("type", "summonat");
 		summon.put("target", params[0]);
 		summon.put("slot", params[1]);
-		summon.put("amount", params[2]);
+		try {
+			// TODO: this should be corrected in parser;
+			int amount = Integer.valueOf(params[2]);
+			summon.put("amount", params[2]);
+		} catch (NumberFormatException e) {
+		    remainder = params[2] + " " + remainder;
+		}
+		
+		
 		summon.put("item", remainder);
 
 		StendhalClient.get().send(summon);
