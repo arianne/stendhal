@@ -18,7 +18,7 @@ public class LevelTest {
 
 	@Test
 	public final void testMaxLevel() {
-		assertEquals(479, Level.maxLevel());
+		assertEquals(597, Level.maxLevel());
 
 	}
 
@@ -34,7 +34,7 @@ public class LevelTest {
 		assertEquals(50, Level.getXP(1));
 		assertEquals(9753800, Level.getXP(100));
 
-		assertEquals(1093303800, Level.getXP(Level.maxLevel()));
+		assertEquals(2118873200, Level.getXP(Level.maxLevel()));
 	}
 
 	@Test
@@ -46,7 +46,7 @@ public class LevelTest {
 
 	@Test
 	public final void testGetMoreThanMaxXP() {
-		assertEquals(1100177500, Level.getXP(Level.maxLevel() + 1));
+		assertEquals(2129553600, Level.getXP(Level.maxLevel() + 1));
 		assertEquals(-1, Level.getXP(Level.maxLevel() + 2));
 	}
 
@@ -67,7 +67,7 @@ public class LevelTest {
 	@Test
 	public final void testGetWisdom() {
 		assertEquals(0.0, Level.getWisdom(0), 0.001);
-		assertEquals(0.991, Level.getWisdom(Level.maxLevel()), 0.001);
+		assertEquals(0.9973688848712813, Level.getWisdom(Level.maxLevel()), 0.001);
 	}
 
 	@Test(expected = ArrayIndexOutOfBoundsException.class)
