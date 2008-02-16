@@ -279,7 +279,7 @@ public class Marriage extends AbstractQuest {
 	} 
 	
     private boolean isEngaged(Player player) {
-        return (player.hasQuest(QUEST_SLOT) && player.getQuest(QUEST_SLOT).startsWith("engaged")) ;
+        return (player.hasQuest(QUEST_SLOT) && player.getQuest(QUEST_SLOT).startsWith("engaged"));
     }
 
 	private void makeRingsStep() {

@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Builds the 2nd reaper in hell
+ * Builds the 2nd reaper in hell.
  * @author kymara
  */
 public class Reaper2NPC implements ZoneConfigurator {
@@ -51,19 +51,19 @@ public class Reaper2NPC implements ZoneConfigurator {
 			@Override
 			protected void createDialog() {
 				addGreeting("#elddir a evlos tsum uoy ecalp siht #evael ot kees uoy fI");
-				add(ConversationStates.ATTENDING,"evael",null,ConversationStates.QUESTION_1, "?erus uoy erA .truh lliw tI",null);
+				add(ConversationStates.ATTENDING, "evael", null, ConversationStates.QUESTION_1, "?erus uoy erA .truh lliw tI", null);
 				List<SpeakerNPC.ChatAction> processStep = new LinkedList<SpeakerNPC.ChatAction>();
-				processStep.add( new TeleportAction("int_afterlife", 31, 23, Direction.UP));
+				processStep.add(new TeleportAction("int_afterlife", 31, 23, Direction.UP));
 				processStep.add(new DecreaseKarmaAction(-100.0));
 				processStep.add(new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
 						player.subXP(10000);
-						player.sendPrivateText(NotificationType.NEGATIVE,"The Reaper took 10000 XP and gave you bad karma.");
+						player.sendPrivateText(NotificationType.NEGATIVE, "The Reaper took 10000 XP and gave you bad karma.");
 					}
 				});
-				add(ConversationStates.QUESTION_1,Arrays.asList("yes","sey","ok","ko"),null,ConversationStates.IDLE, "!ahahahaH",new MultipleActions(processStep));
-				add(ConversationStates.QUESTION_1,Arrays.asList("no","on"),null,ConversationStates.ATTENDING, ".eniF",null);
+				add(ConversationStates.QUESTION_1, Arrays.asList("yes", "sey", "ok", "ko"), null, ConversationStates.IDLE, "!ahahahaH", new MultipleActions(processStep));
+				add(ConversationStates.QUESTION_1, Arrays.asList("no", "on"), null, ConversationStates.ATTENDING, ".eniF", null);
 				addReply("elddir", ".rorrim ym ksA");
 				addJob(".gnivil eht fo sluos eht tsevrah I");
 				addHelp("#evael ot hsiw uoy dluohs ,lleh fo setag eht ot syek eht dloh I");

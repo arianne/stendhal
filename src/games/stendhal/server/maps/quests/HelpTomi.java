@@ -20,7 +20,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * QUEST: Get tomi his Ice
+ * QUEST: Get tomi his Ice.
  * 
  * PARTICIPANTS:
  * <ul>

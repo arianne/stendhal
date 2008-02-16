@@ -138,7 +138,7 @@ public class TutorialNotifier {
 		}
 	}
 	/**
-	 * player > level 2 logged in for new release
+	 * player > level 2 logged in for new release.
 	 * 
 	 * @param player
 	 *            Player

@@ -43,8 +43,8 @@ public class FlowerSellerNPC implements ZoneConfigurator {
 			@Override
 			protected void createDialog() {
 				addGreeting("Hi! Are you here to #trade?");
-				addReply("yes","Good! I can sell you a beautiful red rose. Not rhosyd mind you, they're rare. Only Rose Leigh knows where they grow, and noone ever knows where Rose Leigh is!");
-				addReply("no","Very well, if I can help you just say.");
+				addReply("yes", "Good! I can sell you a beautiful red rose. Not rhosyd mind you, they're rare. Only Rose Leigh knows where they grow, and noone ever knows where Rose Leigh is!");
+				addReply("no", "Very well, if I can help you just say.");
 				addJob("I sell roses in this here market.");
 				addHelp("If you need to access your funds, there is a branch of Fado bank right here in Kirdneh. It's the small building north of the museum, on the east of the city.");
 				Map<String, Integer> offerings = new HashMap<String, Integer>();
