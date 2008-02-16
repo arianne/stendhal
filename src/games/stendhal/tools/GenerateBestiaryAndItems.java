@@ -28,6 +28,11 @@ public class GenerateBestiaryAndItems {
 			public boolean equals(Object obj) {
 				return true;
 			}
+			
+			@Override
+			public int hashCode() {
+				return 1;
+			}
 		});
 
 		int level = -1;
