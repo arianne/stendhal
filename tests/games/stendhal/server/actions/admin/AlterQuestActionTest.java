@@ -100,6 +100,5 @@ public class AlterQuestActionTest {
 		action.put("state", "queststate");
 		CommandCenter.execute(pl, action);
 		assertFalse(bob.hasQuest("questname"));
-	
 	}
 }
