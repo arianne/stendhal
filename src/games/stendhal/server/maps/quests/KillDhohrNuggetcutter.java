@@ -72,10 +72,10 @@ public class KillDhohrNuggetcutter extends AbstractQuest {
 							long timeRemaining = (Long.parseLong(tokens[1]) + delay) - System.currentTimeMillis();
 							if (timeRemaining > 0) {
 								engine.say("Thank you for helping us. Maybe you could come back later. The dwarves might return. Try back in " + TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L)) + ".");
+								engine.setCurrentState(ConversationStates.ATTENDING);
 								return;
 							}
 							engine.say("Would you like to help us again?");
-							engine.setCurrentState(ConversationStates.QUEST_OFFERED);
 						} else {
 							engine.say("Thank you for your help in our time of need. Now we feel much safer.");
 							engine.setCurrentState(ConversationStates.ATTENDING);
