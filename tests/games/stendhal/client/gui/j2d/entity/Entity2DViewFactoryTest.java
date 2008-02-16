@@ -32,7 +32,6 @@ import games.stendhal.client.entity.User;
 import games.stendhal.client.entity.WellSource;
 import marauroa.common.Log4J;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -45,10 +44,6 @@ public class Entity2DViewFactoryTest {
 		Log4J.init();
 
 		GameScreen.setDefaultScreen(new MockScreen());
-	}
-
-	@After
-	public void tearDown() throws Exception {
 	}
 
 	@Test
