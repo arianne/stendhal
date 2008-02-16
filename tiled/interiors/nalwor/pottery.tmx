@@ -99,14 +99,20 @@
  <tileset name="../../tileset/logic/collision.png" firstgid="237" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
+ <tileset name="../../tileset/ground/brown.png" firstgid="238" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/brown.png"/>
+ </tileset>
+ <tileset name="../../tileset/building/entrance/blue_green_detail.png" firstgid="243" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/entrance/blue_green_detail.png"/>
+ </tileset>
  <layer name="0_floor" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNhYGBgGcWjeBSP4lE8iknEAEAZGCFABgAA
+   H4sIAAAAAAAAAGNhYGBgGcWjeBDh91A8WM0bxaN4FEMwAHlaIPdABgAA
   </data>
  </layer>
  <layer name="1_terrain" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3TywqDMBQE0Lu1aBVFkVJx4WOnP+OjVf//PxwhQojBIFcLQgfOJoRZ3bGI6HESGxx4QsLkgif63nQsDbSSDlJGXw8fyZfZN8AomZh9ulzZ58NLkkGuvJkEoi+ESLFGfTeJwaLtXa45654rqOl396zLne7l38frU/emY9rg3t50CigNf5a9zdTjUPdABgAA
+   H4sIAAAAAAAAAONkYGDgohLmAWJeIOYDYlkKMT8QC0DNk2EgDQQDcQgSDgVieSLMs8UhHgbE4Ug4gkjzcIFIII5CwtEUmocN0NI8ISCWQsLKQKyCJkYIC0PNEwViMTSsCsRqWMQJYQkg5mTATJfaQKyDRZzc9KwLxHoM9EvP2MBQSi+j5lFmHnp+w4YJ5UF8+Q0bJiYPgvIbACRXmddABgAA
   </data>
  </layer>
  <layer name="2_object" width="20" height="20">
@@ -116,10 +122,10 @@
  </layer>
  <layer name="3_roof" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoC1QpLH5ZkjsTDT+cABlONjDGagCsRqVzCoFYm0g1oGy8akjBCoYiIuPx0hyxVB91ATEuBUbqMfBxuaPx0SYlYnEP0+E/dQOB1oAWBwjuxVX+MDUDAV/0QoAADK6SHVABgAA
+   H4sIAAAAAAAAAGNgoC1QpLH5ZkjsTDT+QIBSHGxyQRkO9nAG34H4B5XMAsXBZyD+woA/PoiJqwoG4uLjMZJcMVQfNQG56aoeBxubPx4TYVYmEv88EfZTOxxgAD08KMl3sDhGdiuu8IGpoZW/hgIAAEfhDz5ABgAA
   </data>
  </layer>
- <layer name="4_roof_add" width="20" height="20" visible="0">
+ <layer name="4_roof_add" width="20" height="20">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNgGAWjYBSMglEwCkgHADV9EcVABgAA
   </data>
