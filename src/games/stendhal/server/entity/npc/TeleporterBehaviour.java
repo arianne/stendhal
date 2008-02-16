@@ -24,7 +24,7 @@ import marauroa.common.game.IRPZone;
  * 
  * @author hendrik
  */
-public class TeleporterBehaviour implements TurnListener {
+public final class TeleporterBehaviour implements TurnListener {
 
 	private static Logger logger = Logger.getLogger(TeleporterBehaviour.class);
 
@@ -136,7 +136,7 @@ public class TeleporterBehaviour implements TurnListener {
 				logger.debug("Placing teleporting NPC at " + zone.getName()
 						+ " " + x + " " + y);
 			} else {
-				logger.info("Cannot place teleporting NPC at " + zone.getName()
+				logger.info("Cannot place teleporting NPC " + speakerNPC.getName() + " at " + zone.getName()
 						+ " " + x + " " + y);
 			}
 		}
