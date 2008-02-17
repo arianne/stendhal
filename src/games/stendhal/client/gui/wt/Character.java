@@ -225,12 +225,26 @@ public class Character extends WtPanel {
 		statsPanel.set("def", playerEntity.getDef());
 		statsPanel.set("atkitem", atkitem);
 		statsPanel.set("defitem", defitem);
-		statsPanel.set("atkxp", playerEntity.getAtkXp());
-		statsPanel.set("defxp", playerEntity.getDefXp());
+
+
+		/*
+		 * Show the amount of XP left to level up on ATK
+		 */
+		int atkLvl = Level.getLevel(playerEntity.getAtkXp());
+		int nextAtkXp = Level.getXP(atkLvl + 1) -  playerEntity.getAtkXp();
+		statsPanel.set("atkxp", Integer.toString(nextAtkXp));
+
+		/*
+		 * Show the amount of XP left to level up on DEF
+		 */
+		int defLvl = Level.getLevel(playerEntity.getDefXp());
+		int nextDefXp = Level.getXP(defLvl + 1) -  playerEntity.getDefXp();
+		statsPanel.set("defxp", Integer.toString(nextDefXp));
+			
+		
 		statsPanel.set("xp", playerEntity.getXp());
 		int level = Level.getLevel(playerEntity.getXp());
-		statsPanel.set("xptonextlevel", Level.getXP(level + 1)
-				- playerEntity.getXp());
+		statsPanel.set("xptonextlevel", Level.getXP(level + 1) - playerEntity.getXp());
 		statsPanel.set("money", money);
 
 		oldPlayerModificationCount = playerEntity.getModificationCount();
