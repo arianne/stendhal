@@ -158,7 +158,7 @@ public final class TurnNotifier {
 		if (turn <= currentTurn) {
 			logger.error("requested turn " + turn
 					+ " is in the past. Current turn is " + currentTurn,
-					new Throwable());
+					new IllegalArgumentException("turn"));
 			return;
 		}
 
