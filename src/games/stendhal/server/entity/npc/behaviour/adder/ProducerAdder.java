@@ -78,7 +78,11 @@ public class ProducerAdder {
     								npc.setCurrentState(ConversationStates.PRODUCTION_OFFERED);
     							}
     						} else {
-    							npc.say("Sorry, I don't understand you.");
+    							if (behaviour.getItemNames().size() == 1) { 
+    								npc.say("Sorry, I can only produce " + behaviour.getItemNames().iterator().next() + ".");
+    							} else {
+    								npc.say("Sorry, I don't understand you.");
+    							}
     						}
 						}
 					}

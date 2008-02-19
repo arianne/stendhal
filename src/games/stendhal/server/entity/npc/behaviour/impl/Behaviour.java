@@ -38,6 +38,14 @@ public class Behaviour {
     }
 
 	/**
+	 * @return the recognized item names
+	 */
+	public Set<String> getItemNames()
+	{
+		return itemNames;
+	}
+
+	/**
      * @return the chosenItemName
      */
     public String getChosenItemName() {
