@@ -80,18 +80,6 @@ public class MillerNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertTrue(en.step(player, "mill grain"));
 		assertEquals("Sorry, I can only produce flour.", npc.get("text"));
 
-//TODO mf - complete milling test case
-//		assertTrue(equipWithItem(player, "scythe"));
-//
-//		assertTrue(equipWithItem(player, "chaos legs"));
-//		assertTrue(en.step(player, "sell chaos leg"));
-//		assertEquals("1 pair of chaos legs is worth 8000. Do you want to sell it?", npc.get("text"));
-//
-//		assertFalse(player.isEquipped("money", 8000));
-//		assertTrue(en.step(player, "yes"));
-//		assertEquals("Thanks! Here is your money.", npc.get("text"));
-//		assertTrue(player.isEquipped("money", 8000));
-
 		assertTrue(en.step(player, "bye"));
 		assertEquals("Bye.", npc.get("text"));
 	}

@@ -507,7 +507,7 @@ matrix	OBJ	matrices
 meat	OBJ	meats
 medicine	OBJ	medicines
 militia	OBJ	militias
-mill	OBJ	mills
+mill	VER
 mine	OBJ-PRO	mines
 minute	OBJ	minutes
 mirror	OBJ	mirrors
