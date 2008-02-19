@@ -1,4 +1,4 @@
-# @Version 17
+# @Version 18
 #
 # Word list for the Stendhal conversation parser
 #
@@ -156,6 +156,7 @@ married	VER	=marry
 marry	VER
 may	VER-CON
 mean	VER
+mill	VER
 mix	VER
 move	VER
 need	VER
@@ -507,7 +508,6 @@ matrix	OBJ	matrices
 meat	OBJ	meats
 medicine	OBJ	medicines
 militia	OBJ	militias
-mill	OBJ	mills
 mine	OBJ-PRO	mines
 minute	OBJ	minutes
 mirror	OBJ	mirrors
