@@ -77,6 +77,8 @@ public class ProducerAdder {
     							if (behaviour.askForResources(npc, player, behaviour.getAmount())) {
     								npc.setCurrentState(ConversationStates.PRODUCTION_OFFERED);
     							}
+    						} else {
+    							npc.say("Sorry, I don't understand you.");
     						}
 						}
 					}
