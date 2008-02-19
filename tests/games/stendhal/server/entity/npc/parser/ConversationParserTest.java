@@ -24,6 +24,20 @@ public class ConversationParserTest {
 		assertEquals("buy", sentence.getTriggerExpression().getNormalized());
 		assertEquals(3, sentence.getObject(0).getAmount());
 		assertEquals("cookie", sentence.getObjectName());
+
+		sentence = ConversationParser.parse("buy 30 cookies");
+		assertFalse(sentence.hasError());
+		assertEquals("buy", sentence.getVerbString());
+		assertEquals("buy", sentence.getTriggerExpression().getNormalized());
+		assertEquals(30, sentence.getObject(0).getAmount());
+		assertEquals("cookie", sentence.getObjectName());
+
+		sentence = ConversationParser.parse("buy 150 cookies");
+		assertFalse(sentence.hasError());
+		assertEquals("buy", sentence.getVerbString());
+		assertEquals("buy", sentence.getTriggerExpression().getNormalized());
+		assertEquals(150, sentence.getObject(0).getAmount());
+		assertEquals("cookie", sentence.getObjectName());
 	}
 
 	@Test
