@@ -13,7 +13,7 @@ public class AlterQuestAction implements SlashAction {
 		action.put("type", "alterquest");
 		action.put("target", params[0]);
 		action.put("name", params[1]);
-		if (params.length > 2 && params[2] != null){
+		if (params.length > 2 && params[2] != null) {
 			action.put("state", params[2]);
 		}
 		StendhalClient.get().send(action);
