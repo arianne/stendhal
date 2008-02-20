@@ -1,0 +1,59 @@
+package games.stendhal.server.entity.item;
+
+import games.stendhal.server.entity.RPEntity;
+
+import java.util.Map;
+
+public class RingOfLife extends Ring {
+
+	public RingOfLife(String name, String clazz, String subclass, Map<String, String> attributes) {
+		super(name, clazz, subclass, attributes);
+	}
+
+	public RingOfLife(Ring item) {
+		super(item);
+	}
+	
+	public RingOfLife() {
+		super("emerald ring", "ring", "emerald-ring", null);
+		put("amount", 1);
+		  
+	}
+
+	@Override
+	public boolean onUsed(RPEntity user) {
+		if (!isBroken()) {
+			damage();
+		}
+		return true;
+	}
+	
+	public boolean isBroken() {
+		return  getInt("amount") == 0;
+	}
+
+	public void damage() {
+		put("amount", 0);
+	}
+	
+	public void repair() {
+		put("amount", 1);
+	}
+	
+
+	/**
+	 * Gets the description.
+	 * 
+	 * The description of RingOfLife depends on the ring's state.
+	 * 
+	 * @return The description text.
+	 */
+	@Override
+	public String describe() {
+		if (isBroken()) {
+			return "You see the ring of life. The gleam is lost from the stone and it has no powers.";
+		} else {
+			return "You see the ring of life. Wear it, and you risk less from death.";
+		}
+	}
+}

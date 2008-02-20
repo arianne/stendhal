@@ -26,6 +26,7 @@ import games.stendhal.server.entity.creature.Pet;
 import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.item.ConsumableItem;
 import games.stendhal.server.entity.item.Corpse;
+import games.stendhal.server.entity.item.RingOfLife;
 import games.stendhal.server.events.PrivateTextEvent;
 
 import java.util.ArrayList;
@@ -203,7 +204,7 @@ public class Player extends RPEntity {
 			if (player.hasQuest(questSlot)) {
 				String temp = player.getQuest(questSlot);
 				temp = temp.replace('_', ' ');
-				player.setQuest(questSlot,temp);
+				player.setQuest(questSlot, temp);
 			}
 		}
 
@@ -1749,5 +1750,27 @@ public class Player extends RPEntity {
 
 	public boolean isDisconnected() {
 		return disconnected;
+	}
+
+
+	public List<RingOfLife> getAllEquippedWorkingRingOfLife() {
+		
+			List<RingOfLife> result = new LinkedList<RingOfLife>();
+
+			for (String slotName : CARRYING_SLOTS) {
+				RPSlot slot = getSlot(slotName);
+
+				for (RPObject object : slot) {
+					if (object instanceof RingOfLife) {
+						RingOfLife ring =  (RingOfLife) object;
+						if (!ring.isBroken()) {
+							result.add(ring);
+						}
+						
+					}
+				}
+			}
+			return result;
+		
 	}
 }

@@ -11,7 +11,7 @@ import games.stendhal.server.entity.creature.Pet;
 import games.stendhal.server.entity.creature.RaidCreature;
 import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.item.Corpse;
-import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.item.RingOfLife;
 import games.stendhal.server.entity.item.StackableItem;
 
 import java.util.Collections;
@@ -43,51 +43,29 @@ public class PlayerDieer {
 
 	public void onDead(Entity killer) {
 		player.put("dead", "");
+		logger.info("ondeadstart");
+		abondonPetsAndSheep();
 
-		// Abandon dependants
-		Sheep sheep = player.getSheep();
-
-		if (sheep != null) {
-			player.removeSheep(sheep);
-		}
-
-		Pet pet = player.getPet();
-
-		if (pet != null) {
-			player.removePet(pet);
-		}
-
-		// We stop eating anything
-		player.itemsToConsume.clear();
-		player.poisonToConsume.clear();
+		stopEating();
+		
 
 		if (!(killer instanceof RaidCreature)) {
-
-			List<Item> ringList = player.getAllEquipped("emerald ring");
-			boolean eRingUsed = false;
-
-			for (Item emeraldRing : ringList) {
-				int amount = emeraldRing.getInt("amount");
-				if (amount > 0) {
-					// We broke the emerald ring.
-					emeraldRing.put("amount", amount - 1);
-					eRingUsed = true;
-					break;
-				}
-			}
-
-			if (eRingUsed) {
-				// Penalize: 1% less experience if wearing that ring
-				player.setXP((int) (player.getXP() * 0.99));
-				player.setATKXP((int) (player.getATKXP() * 0.99));
-				player.setDEFXP((int) (player.getDEFXP() * 0.99));
+			logger.info("noraidcreature");
+			List<RingOfLife> ringList = player.getAllEquippedWorkingRingOfLife();
+			
+			logger.info("ringlist " + ringList);
+			double penaltyFactor;
+			if (ringList.isEmpty()) {
+				penaltyFactor = 0.9;
 			} else {
-				// Penalize: 10% less experience
-				player.setXP((int) (player.getXP() * 0.9));
-				player.setATKXP((int) (player.getATKXP() * 0.9));
-				player.setDEFXP((int) (player.getDEFXP() * 0.9));
+				ringList.get(0).damage();
+				penaltyFactor = 0.99;
 			}
-
+			
+			player.setXP((int) (player.getXP() * penaltyFactor));
+			player.setATKXP((int) (player.getATKXP() * penaltyFactor));
+			player.setDEFXP((int) (player.getDEFXP() * penaltyFactor));
+			
 			player.update();
 		}
 
@@ -103,17 +81,42 @@ public class PlayerDieer {
 			player.addKarma(100.0);
 		}
 
-		// Penalize: Respawn on afterlive zone and
+		respawnInAfterLife();
+	}
+
+
+	private void respawnInAfterLife() {
 		StendhalRPZone zone = SingletonRepository.getRPWorld().getZone(DEFAULT_DEAD_AREA);
 
-		if (zone != null) {
+		if (zone == null) {
+			logger.error("Unable to find dead area [" + DEFAULT_DEAD_AREA
+					+ "] for player: " + player.getName());
+		} else {
 			if (!zone.placeObjectAtEntryPoint(player)) {
 				logger.error("Unable to place player in zone " + zone + ": "
 						+ player.getName());
 			}
-		} else {
-			logger.error("Unable to find dead area [" + DEFAULT_DEAD_AREA
-					+ "] for player: " + player.getName());
+		}
+	}
+
+
+	private void stopEating() {
+		player.itemsToConsume.clear();
+		player.poisonToConsume.clear();
+	}
+
+
+	private void abondonPetsAndSheep() {
+		Sheep sheep = player.getSheep();
+
+		if (sheep != null) {
+			player.removeSheep(sheep);
+		}
+
+		Pet pet = player.getPet();
+
+		if (pet != null) {
+			player.removePet(pet);
 		}
 	}
 
