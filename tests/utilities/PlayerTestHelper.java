@@ -160,16 +160,8 @@ public abstract class PlayerTestHelper {
 	 * Remove all players from world and rule processor.
 	 */
 	public static void removeAllPlayers() {
-		MockStendhalRPRuleProcessor processor = MockStendhalRPRuleProcessor.get();
-		processor.getOnlinePlayers().forAllPlayersExecute(new Task<Player>() {
-
-			public void execute(Player player) {
-				MockStendlRPWorld.get().remove(player.getID());
-			}
-
-		});
-
-		processor.clearPlayers();
+		MockStendlRPWorld.reset();
+		MockStendhalRPRuleProcessor.get().clearPlayers();
 	}
 
 	/**
