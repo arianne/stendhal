@@ -8,6 +8,7 @@ import games.stendhal.server.core.events.TurnNotifier;
 import games.stendhal.server.core.rp.StendhalQuestSystem;
 import games.stendhal.server.core.rp.guilds.GuildList;
 import games.stendhal.server.core.rp.guilds.GuildPermissionList;
+import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.core.rule.defaultruleset.DefaultActionManager;
 import games.stendhal.server.core.rule.defaultruleset.DefaultEntityManager;
 import games.stendhal.server.core.rule.defaultruleset.DefaultRuleManager;
@@ -37,6 +38,8 @@ import games.stendhal.server.maps.athor.ship.AthorFerry;
  */
 public class SingletonRepository {
 	
+	private static EntityManager entityManager;
+
 	public static StendhalRPRuleProcessor getRuleProcessor() {
 		return StendhalRPRuleProcessor.get();
 	}
@@ -101,8 +104,16 @@ public class SingletonRepository {
 		return AthorFerry.get();
 	}
 
-	public static DefaultEntityManager getEntityManager() {
-		return DefaultEntityManager.getInstance();
+
+	public static EntityManager getEntityManager() {
+		if (entityManager == null) {
+				entityManager = new DefaultEntityManager();
+			}
+			return entityManager;
+	}
+
+	static void setEntityManager(EntityManager entityManager) {
+		SingletonRepository.entityManager = entityManager;
 	}
 
 	public static DefaultActionManager getActionManager() {

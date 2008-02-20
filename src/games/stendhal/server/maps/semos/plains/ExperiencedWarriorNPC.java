@@ -1,7 +1,6 @@
 package games.stendhal.server.maps.semos.plains;
 
 import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.core.rule.defaultruleset.DefaultCreature;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -187,9 +186,8 @@ public class ExperiencedWarriorNPC extends SpeakerNPCFactory {
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, Sentence sentence, SpeakerNPC speakerNPC) {
-						EntityManager manager = SingletonRepository.getEntityManager();
 						String creatureName = sentence.getTriggerExpression().getNormalized();
-						DefaultCreature creature = manager.getDefaultCreature(creatureName);
+						DefaultCreature creature = SingletonRepository.getEntityManager().getDefaultCreature(creatureName);
 						if (creature == null) {
 							speakerNPC.say("I have never heard of such a creature! Please tell the name again.");
 							speakerNPC.setCurrentState(ConversationStates.QUESTION_1);
@@ -248,9 +246,7 @@ public class ExperiencedWarriorNPC extends SpeakerNPCFactory {
 	private String getCreatureInfo(final Player player,
 			final String creatureName) {
 		String result = null;
-		DefaultCreature creature;
-		EntityManager manager = SingletonRepository.getEntityManager();
-		creature = manager.getDefaultCreature(creatureName);
+		DefaultCreature creature = SingletonRepository.getEntityManager().getDefaultCreature(creatureName);
 		if (creature != null) {
 			result = creatureInfo.getCreatureInfo(player, creature, 3, 8, true);
 		} else {

@@ -1,5 +1,7 @@
 package games.stendhal.server.actions.admin;
 
+import static games.stendhal.server.actions.WellKnownActionConstants.X;
+import static games.stendhal.server.actions.WellKnownActionConstants.Y;
 import games.stendhal.server.actions.CommandCenter;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
@@ -10,9 +12,6 @@ import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.creature.RaidCreature;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
-
-import static games.stendhal.server.actions.WellKnownActionConstants.X;
-import static games.stendhal.server.actions.WellKnownActionConstants.Y;
 
 public class SummonAction extends AdministrationAction {
 	private static final String USAGE = "Usage: /summon <whatToSummon> [<x> <y>]";

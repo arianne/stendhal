@@ -42,13 +42,14 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.log4j.Logger;
 import marauroa.common.game.Definition;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 import marauroa.common.game.SyntaxException;
 import marauroa.common.game.Definition.Type;
+
+import org.apache.log4j.Logger;
 
 /**
  * Serverside representation of a creature.
@@ -579,9 +580,7 @@ public class Creature extends NPC {
 			}
 
 			RPSlot slot = getSlot(equippedItem.slot);
-			EntityManager manager = SingletonRepository.getEntityManager();
-
-			Item item = manager.getItem(equippedItem.name);
+			Item item = SingletonRepository.getEntityManager().getItem(equippedItem.name);
 
 			if (item instanceof StackableItem) {
 				((StackableItem) item).setQuantity(equippedItem.quantity);
@@ -591,14 +590,14 @@ public class Creature extends NPC {
 		}
 	}
 
-	private List<Item> createDroppedItems(EntityManager manager) {
+	private List<Item> createDroppedItems(EntityManager defaultEntityManager) {
 		List<Item> list = new LinkedList<Item>();
 
 		for (DropItem dropped : dropsItems) {
 			double probability = Rand.rand(1000000) / 10000.0;
 
 			if (probability <= (dropped.probability / SERVER_DROP_GENEROSITY)) {
-				Item item = manager.getItem(dropped.name);
+				Item item = defaultEntityManager.getItem(dropped.name);
 				if (item == null) {
 					logger.error("Unable to create item: " + dropped.name);
 					continue;

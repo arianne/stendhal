@@ -1,6 +1,5 @@
 package games.stendhal.tools;
 
-import marauroa.common.Pair;
 import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPWorld;
@@ -17,6 +16,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import marauroa.common.Pair;
 import marauroa.common.game.RPObject;
 
 /** * NOTE: AWFUL CODE FOLLOWS. YOU ARE NOT SUPPOSED TO READ THIS ;P ** */

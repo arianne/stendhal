@@ -3,7 +3,6 @@ package games.stendhal.server.maps.quests;
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.Rand;
 import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -216,8 +215,7 @@ public class Campfire extends AbstractQuest {
 							rewardClass = "ham";
 						}
 						npc.say("Thank you! Here, take some " + rewardClass + "!");
-						EntityManager manager = SingletonRepository.getEntityManager();
-						StackableItem reward = (StackableItem) manager.getItem(rewardClass);
+						StackableItem reward = (StackableItem) SingletonRepository.getEntityManager().getItem(rewardClass);
 						reward.setQuantity(REQUIRED_WOOD);
 						player.equip(reward, true);
 						player.addKarma(10);

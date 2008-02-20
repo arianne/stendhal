@@ -7,7 +7,7 @@ import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TurnListener;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
-import games.stendhal.server.core.rule.defaultruleset.DefaultEntityManager;
+import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.creature.AttackableCreature;
 import games.stendhal.server.entity.creature.Creature;
@@ -107,7 +107,7 @@ public class AnimalKeeperNPC implements ZoneConfigurator {
 
 		// put special RespawnPoints
 		// 65, 34 bear
-		DefaultEntityManager manager = (DefaultEntityManager) SingletonRepository.getEntityManager();
+		EntityManager manager = (EntityManager) SingletonRepository.getEntityManager();
 		Creature creature = new AdosAttackableCreature(manager.getCreature("bear"));
 		CreatureRespawnPoint point = new CreatureRespawnPoint(zone, 65, 34, creature, 1);
 		zone.add(point);

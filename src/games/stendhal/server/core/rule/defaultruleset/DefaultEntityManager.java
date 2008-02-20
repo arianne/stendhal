@@ -40,9 +40,6 @@ public class DefaultEntityManager implements EntityManager {
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(DefaultEntityManager.class);
 
-	/** the singleton instance, lazy initialisation. */
-	private static DefaultEntityManager manager;
-
 	/** maps the tile ids to the classes. */
 	private Map<String, String> idToClass;
 
@@ -59,7 +56,7 @@ public class DefaultEntityManager implements EntityManager {
 	private Map<String, Item> createdItem;
 
 	/** no public constructor. */
-	private DefaultEntityManager() {
+	public DefaultEntityManager() {
 		idToClass = new HashMap<String, String>();
 
 		// Build the items tables
@@ -163,15 +160,6 @@ public class DefaultEntityManager implements EntityManager {
 		return createdItem.values();
 	}
 
-	/**
-	 * returns the instance of this manager. Note: This method is synchonized.
-	 */
-	public static synchronized DefaultEntityManager getInstance() {
-		if (manager == null) {
-			manager = new DefaultEntityManager();
-		}
-		return manager;
-	}
 
 	/**
 	 * returns the entity or <code>null</code> if the id is unknown.

@@ -242,16 +242,16 @@ public class DefaultCreature {
 		name = val;
 	}
 
-	public boolean verifyItems(EntityManager manager) {
+	public boolean verifyItems(EntityManager defaultEntityManager) {
 		for (DropItem item : dropsItems) {
-			if (!manager.isItem(item.name)) {
+			if (!defaultEntityManager.isItem(item.name)) {
 				logger.warn("Item " + item.name + " doesnt exists");
 				return false;
 			}
 		}
 
 		for (EquipItem item : equipsItems) {
-			if (!manager.isItem(item.name)) {
+			if (!defaultEntityManager.isItem(item.name)) {
 				logger.warn("Item " + item.name + " doesnt exists");
 				return false;
 			}

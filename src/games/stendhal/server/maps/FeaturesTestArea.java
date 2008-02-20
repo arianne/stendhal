@@ -3,7 +3,7 @@ package games.stendhal.server.maps;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.core.rule.defaultruleset.DefaultEntityManager;
+import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.core.rule.defaultruleset.DefaultItem;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
@@ -18,7 +18,7 @@ import java.util.Map;
 
 public class FeaturesTestArea implements ZoneConfigurator {
 
-	private DefaultEntityManager manager;
+	private EntityManager manager;
 
 	static class QuestRat extends Creature {
 
@@ -45,7 +45,7 @@ public class FeaturesTestArea implements ZoneConfigurator {
 	}
 
 	public FeaturesTestArea() {
-		manager = (DefaultEntityManager) SingletonRepository.getEntityManager();
+		manager = (EntityManager) SingletonRepository.getEntityManager();
 	}
 
 	/**

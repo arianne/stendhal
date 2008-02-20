@@ -2,7 +2,6 @@ package games.stendhal.server.script;
 
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
-import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.creature.DomesticAnimal;
@@ -41,8 +40,7 @@ public class EntitySearch extends ScriptImpl {
 
 		// check targetName
 
-		EntityManager manager = SingletonRepository.getEntityManager();
-		Creature tempc = manager.getCreature(targetName);
+		Creature tempc = SingletonRepository.getEntityManager().getCreature(targetName);
 		if (tempc != null) {
 			// get the proper case of the characters in the string
 			targetName = tempc.getName();

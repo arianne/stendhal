@@ -1,7 +1,6 @@
 package games.stendhal.server.entity.npc.action;
 
 import games.stendhal.server.core.engine.SingletonRepository;
-import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -60,8 +59,7 @@ public class EquipItemAction extends SpeakerNPC.ChatAction {
 
 	@Override
 	public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-		EntityManager entityManager = SingletonRepository.getEntityManager();
-		Item item = entityManager.getItem(itemName);
+		Item item = SingletonRepository.getEntityManager().getItem(itemName);
 		if (item != null) {
     		if (item instanceof StackableItem) {
     			StackableItem stackableItem = (StackableItem) item;
