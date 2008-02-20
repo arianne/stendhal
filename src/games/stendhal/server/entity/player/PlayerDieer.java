@@ -33,7 +33,7 @@ public class PlayerDieer {
 	/** The name of the zone placed in when killed. */
 	public static final String DEFAULT_DEAD_AREA = "int_afterlife";
 
-	private static Logger logger = Logger.getLogger(PlayerDieer.class);
+	private static final Logger logger = Logger.getLogger(PlayerDieer.class);
 	private Player player;
 	
 	public PlayerDieer(Player player) {
@@ -126,10 +126,7 @@ public class PlayerDieer {
 		List<Pair<RPObject, RPSlot>> objects = new LinkedList<Pair<RPObject, RPSlot>>();
 
 		for (String slotName : RPEntity.CARRYING_SLOTS) {
-			if (!player.hasSlot(slotName)) {
-				logger.error("CARRYING_SLOTS contains a slot that player "
-						+ player.getName() + " doesn't have.");
-			} else {
+			if (player.hasSlot(slotName)) {
 				RPSlot slot = player.getSlot(slotName);
 
 				// a list that will contain the objects that will
@@ -147,6 +144,9 @@ public class PlayerDieer {
 					}
 					objects.add(new Pair<RPObject, RPSlot>(objectInSlot, slot));
 				}
+			} else {
+				logger.error("CARRYING_SLOTS contains a slot that player "
+						+ player.getName() + " doesn't have.");
 			}
 		}
 		Collections.shuffle(objects);
