@@ -14,19 +14,19 @@ import java.util.Collection;
  */
 public interface EntityManager {
 
-	public abstract boolean addItem(DefaultItem item);
+	boolean addItem(DefaultItem item);
 
-	public abstract boolean addCreature(DefaultCreature creature);
+	boolean addCreature(DefaultCreature creature);
 
 	/**
 	 * Returns a list of all Creatures that are used at least once.
 	 */
-	public abstract Collection<Creature> getCreatures();
+	Collection<Creature> getCreatures();
 
 	/**
 	 * returns a list of all Items that are being used at least once.
 	 */
-	public abstract Collection<Item> getItems();
+	Collection<Item> getItems();
 
 	/**
 	 * Returns the entity or <code>null</code> if the class is unknown.
@@ -36,7 +36,7 @@ public interface EntityManager {
 	 * @return the entity or <code>null</code>
 	 * 
 	 */
-	public abstract Entity getEntity(String clazz);
+	Entity getEntity(String clazz);
 
 	/**
 	 * returns the creature or <code>null</code> if the id is unknown.
@@ -45,7 +45,7 @@ public interface EntityManager {
 	 *            the tile id
 	 * @return the creature or <code>null</code>
 	 */
-	public abstract Creature getCreature(String tileset, int id);
+	Creature getCreature(String tileset, int id);
 
 	/**
 	 * returns the creature or <code>null</code> if the clazz is unknown.
@@ -57,7 +57,7 @@ public interface EntityManager {
 	 * @throws NullPointerException
 	 *             if clazz is <code>null</code>
 	 */
-	public abstract Creature getCreature(String clazz);
+	Creature getCreature(String clazz);
 
 	/**
 	 * Returns the DefaultCreature or <code>null</code> if the clazz is
@@ -69,7 +69,7 @@ public interface EntityManager {
 	 * @throws NullPointerException
 	 *             if clazz is <code>null</code>
 	 */
-	public abstract DefaultCreature getDefaultCreature(String clazz);
+	DefaultCreature getDefaultCreature(String clazz);
 
 	/**
 	 * Return true if the Entity is a creature.
@@ -78,7 +78,7 @@ public interface EntityManager {
 	 *            the tile id
 	 * @return true if it is a creature, false otherwise
 	 */
-	public abstract boolean isCreature(String tileset, int id);
+	boolean isCreature(String tileset, int id);
 
 	/**
 	 * Return true if the Entity is a creature.
@@ -88,7 +88,7 @@ public interface EntityManager {
 	 * @return true if it is a creature, false otherwise
 	 * 
 	 */
-	public abstract boolean isCreature(String clazz);
+	boolean isCreature(String clazz);
 
 	/**
 	 * Return true if the Entity is a Item.
@@ -98,7 +98,7 @@ public interface EntityManager {
 	 * @return true if it is a Item, false otherwise
 	 * 
 	 */
-	public abstract boolean isItem(String clazz);
+	boolean isItem(String clazz);
 
 	/**
 	 * Returns the item or <code>null</code> if the clazz is unknown.
@@ -108,6 +108,6 @@ public interface EntityManager {
 	 * @return the item or <code>null</code>
 	 * 
 	 */
-	public abstract Item getItem(String clazz);
+	Item getItem(String clazz);
 
 }
