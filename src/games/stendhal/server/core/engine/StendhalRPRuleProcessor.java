@@ -48,7 +48,7 @@ import marauroa.server.game.rp.RPServerManager;
 import org.apache.log4j.Logger;
 
 public class StendhalRPRuleProcessor implements IRPRuleProcessor {
-	/** Which marauroa version are we running */
+	/** Which stendhal version are we running. */
 	private static final String VERSION = "0.70";
 
 	/** the logger instance. */
@@ -163,7 +163,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			/*
 			 * Print version information.
 			 */
-			logger.info("Running Stendhal server VERSION "+VERSION);
+			logger.info("Running Stendhal server VERSION " + VERSION);
 			
 			this.rpman = rpman;
 			StendhalRPAction.initialize(rpman);
