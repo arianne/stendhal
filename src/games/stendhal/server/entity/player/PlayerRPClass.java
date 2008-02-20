@@ -454,7 +454,7 @@ class PlayerRPClass {
 						entity.setRPClass(rpclass);
 						
 						// If we've updated the item name we don't want persistent reverting it
-						entity.put("name",name);
+						entity.put("name", name);
 					}
 
 					if (entity instanceof StackableItem) {
