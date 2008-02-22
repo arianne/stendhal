@@ -4,6 +4,8 @@ import games.stendhal.common.Grammar;
 
 import java.util.Iterator;
 
+import org.apache.log4j.Logger;
+
 /**
  * SentenceImplementation contains the implementation details of
  * building Sentence objects.
@@ -11,6 +13,8 @@ import java.util.Iterator;
  * @author Martin Fuchs
  */
 final class SentenceImplementation extends Sentence {
+
+	private static final Logger logger = Logger.getLogger(SentenceImplementation.class);
 
 	/**
 	 * Create a SentenceImplementation object.
@@ -101,7 +105,9 @@ final class SentenceImplementation extends Sentence {
 					w.setNormalized(Integer.toString(w.getAmount()));
 				} else if (entry.getType().isPlural()) {
 					// normalize to the singular form
-					assert entry.getPlurSing()!=null;
+					if (entry.getPlurSing() == null) {
+						logger.error("SentenceImplementation.classifyWords(): unexpected condition for original='"+original+"': entry.getPlurSing() is null");
+					}
 					w.setNormalized(entry.getPlurSing());
 				} else {
 					w.setNormalized(entry.getNormalized());
@@ -140,7 +146,7 @@ final class SentenceImplementation extends Sentence {
 							w.setType(new ExpressionType(ExpressionType.ADJECTIVE));
 						} else {
 							// If normalizeAdjective() changed the word, it should be a derived adjective.
-							assert false;
+							logger.error("SentenceImplementation.classifyWords(): unexpected normalized adjective '"+adjective+"' of original '"+original+"'");
 							w.setType(adjective.getType());
 						}
 
