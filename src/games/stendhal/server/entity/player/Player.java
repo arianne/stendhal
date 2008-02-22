@@ -203,7 +203,7 @@ public class Player extends RPEntity {
 		for (String questSlot : questObjectRename) {
 			if (player.hasQuest(questSlot)) {
 				String temp = player.getQuest(questSlot);
-				temp = temp.replace('_', ' ');
+				temp = temp.replace('_', ' ');	//TODO use UpdateConverter.updateItemName() instead to also convert renamed items
 				player.setQuest(questSlot, temp);
 			}
 		}
