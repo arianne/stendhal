@@ -199,11 +199,33 @@ public class Player extends RPEntity {
 				"cloaks_for_bario", "crown_for_the_wannabe_king",
 				"daily_item", "daily", "elvish_armor", "weapons_collector",
 				"weapons_collector2", "weekly_item"};
+
 		for (String questSlot : questObjectRename) {
 			if (player.hasQuest(questSlot)) {
-				String temp = player.getQuest(questSlot);
-				temp = temp.replace('_', ' ');
-				player.setQuest(questSlot, temp);
+				String itemString = player.getQuest(questSlot);
+
+				String[] items = itemString.split(";");
+
+				StringBuilder buffer = new StringBuilder();
+				boolean first = true;
+
+				for(int i=0; i<items.length; ++i) {
+					String temp = items[i];
+
+					// Convert old item names to their new representation with correct grammar
+					// and without underscores.
+					temp = UpdateConverter.updateItemName(temp);
+
+					if (first) {
+						buffer.append(temp);
+						first = false;
+					} else {
+						buffer.append(';');
+						buffer.append(temp);
+					}
+				}
+
+				player.setQuest(questSlot, buffer.toString());
 			}
 		}
 
