@@ -667,7 +667,7 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
     }
 
 	/**
-	 * Searches for a matching item name in the given Set .
+	 * Searches for a matching item name in the given Set.
 	 * 
 	 * @param names
 	 * @return item name, or null if no match
