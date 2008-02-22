@@ -360,7 +360,7 @@ public class CreatureInfo {
 	 */
 	private String getDropItemsInfo(final DefaultCreature creature,
 			int maxNumberOfItems) {
-		StringBuffer result = new StringBuffer();
+		StringBuilder result = new StringBuilder();
 		List<DropItem> dropItems = creature.getDropItems();
 		Collections.sort(dropItems, new Comparator<DropItem>() {
 			public int compare(DropItem o1, DropItem o2) {

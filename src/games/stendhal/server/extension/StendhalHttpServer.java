@@ -138,7 +138,7 @@ public class StendhalHttpServer extends StendhalServerExtension implements
 
 	/** Writes HTML to the response stream while filtering and replacing
 	 ssi <!--#include --> directives. */ 
-	public static void outputHTML(StringBuffer s, PrintStream out, Request req,
+	public static void outputHTML(StringBuilder s, PrintStream out, Request req,
 			String dir) throws Exception {
 		int left = 0, right;
 		while ((left = s.indexOf("<!--#include", left)) >= 0) {
@@ -181,7 +181,7 @@ public class StendhalHttpServer extends StendhalServerExtension implements
 						service.process(req, null, fileInclude,
 								new PrintStream(outStream));
 					}
-					s.insert(left, new StringBuffer(outStream.toString()));
+					s.insert(left, new StringBuilder(outStream.toString()));
 				} catch (Exception e) {
 					s.insert(left, "<!-- " + e.getMessage() + " -->");
 					logger.error(e, e);
@@ -247,7 +247,7 @@ public class StendhalHttpServer extends StendhalServerExtension implements
 					&& !"text/html".equals(resp.getValue("Content-Type"))) {
 				out.writeTo(outStream);
 			} else {
-				outputHTML(new StringBuffer(out.toString()), outStream, req,
+				outputHTML(new StringBuilder(out.toString()), outStream, req,
 						req.getPath().getDirectory());
 			}
 			outStream.close();
@@ -318,7 +318,7 @@ public class StendhalHttpServer extends StendhalServerExtension implements
 				out.close();
 				if (isHTML) {
 					PrintStream rOut = outStream;
-					outputHTML(new StringBuffer(out.toString()), rOut, req,
+					outputHTML(new StringBuilder(out.toString()), rOut, req,
 							context.getPath(resource).getDirectory());
 					rOut.close();
 				}

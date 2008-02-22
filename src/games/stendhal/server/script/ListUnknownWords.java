@@ -25,7 +25,7 @@ public class ListUnknownWords extends ScriptImpl {
 		Transaction trans = db.getTransaction();
 		Accessor acc = trans.getAccessor();
 
-		StringBuffer sb = new StringBuffer("Currently unknown words:\n");
+		StringBuilder sb = new StringBuilder("Currently unknown words:\n");
 
 		try {
 	        ResultSet res = acc.query(

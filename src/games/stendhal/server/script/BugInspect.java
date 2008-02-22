@@ -44,7 +44,7 @@ public class BugInspect extends ScriptImpl implements TurnListener {
 
 					seen.add(player.getName());
 
-					StringBuffer sb = new StringBuffer();
+					StringBuilder sb = new StringBuilder();
 					sb.append("Inspecting " + player.getName() + "\n");
 					boolean caught = false;
 					boolean warn = false;
@@ -98,7 +98,6 @@ public class BugInspect extends ScriptImpl implements TurnListener {
 					}
 				}
 			}
-
 		});
 
 		if (keepRunning) {

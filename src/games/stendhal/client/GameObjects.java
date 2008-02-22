@@ -439,7 +439,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 		 */
 		@Override
 		public String toString() {
-			StringBuffer sbuf = new StringBuffer();
+			StringBuilder sbuf = new StringBuilder();
 
 			sbuf.append('[');
 			sbuf.append(path[0]);

@@ -234,7 +234,7 @@ public class DefaultItem {
 	}
 
 	public String toXML() {
-		StringBuffer os = new StringBuffer();
+		StringBuilder os = new StringBuilder();
 		os.append("  <item name=\"" + name + "\">\n");
 		os.append("    <type class=\"" + clazz + "\" subclass=\"" + subclazz
 				+ "\" tileid=\"" + tileid + "\"/>\n");

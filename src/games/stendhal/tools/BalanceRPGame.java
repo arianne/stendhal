@@ -160,7 +160,7 @@ public class BalanceRPGame {
 		//
 		// System.exit(0);
 
-		StringBuffer st = new StringBuffer("Creatures done: \n");
+		StringBuilder sb = new StringBuilder("Creatures done: \n");
 
 		boolean found = false;
 
@@ -285,13 +285,13 @@ public class BalanceRPGame {
 					+ "ATK: " + target.getATK() + "\t\tDEF: " + target.getDEF()
 					+ "\t\tHP: " + target.getBaseHP() + "\t\tXP: "
 					+ creature.getXP());
-			st.append("BALANCED: " + creature.getCreatureName() + "("
+			sb.append("BALANCED: " + creature.getCreatureName() + "("
 					+ creature.getLevel() + ")\tATK: " + target.getATK()
 					+ "\tDEF: " + target.getDEF() + "\tHP: "
 					+ target.getBaseHP() + "\tXP: " + creature.getXP() + "\n");
 		}
 
-		// OUTPUT: System.out.println (st);
+		// OUTPUT: System.out.println (sb);
 	}
 
 	private static double score(int turns, double leftHP, int level,

@@ -38,12 +38,12 @@ public class CommandlineParser {
 
 		char ch = ci.current();
 
-		StringBuffer sbuf = null;
+		StringBuilder sbuf = null;
 		char quote = CharacterIterator.DONE;
 
 		while (ch != CharacterIterator.DONE) {
 			if (sbuf == null) {
-				sbuf = new StringBuffer();
+				sbuf = new StringBuilder();
 			}
 
 			if (ch == quote) {

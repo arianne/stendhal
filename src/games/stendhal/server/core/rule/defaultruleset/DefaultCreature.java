@@ -261,7 +261,7 @@ public class DefaultCreature {
 	}
 
 	public String toXML() {
-		StringBuffer os = new StringBuffer();
+		StringBuilder os = new StringBuilder();
 		os.append("  <creature name=\"" + name + "\">\n");
 		os.append("    <type class=\"" + clazz + "\" subclass=\"" + subclass
 				+ "\" tileid=\""

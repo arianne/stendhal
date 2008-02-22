@@ -655,7 +655,7 @@ public class Grammar {
 		} else if (elements.length == 2) {
 			return quoteHash(elements[0]) + " and " + quoteHash(elements[1]);
 		} else {
-			StringBuffer sb = new StringBuffer();
+			StringBuilder sb = new StringBuilder();
 
 			for (int i = 0; i < elements.length - 1; i++) {
 				sb.append(quoteHash(elements[i]) + ", ");

@@ -166,7 +166,7 @@ public class RPObjectChangeDispatcher {
 	 *            to be dumped
 	 */
 	public static void dumpObject(RPObject object) {
-		StringBuffer sbuf = new StringBuffer();
+		StringBuilder sbuf = new StringBuilder();
 
 		sbuf.append(object.getRPClass().getName());
 		sbuf.append('[');
@@ -182,7 +182,7 @@ public class RPObjectChangeDispatcher {
 		System.err.println("");
 	}
 
-	protected static void buildIDPath(final StringBuffer sbuf,
+	protected static void buildIDPath(final StringBuilder sbuf,
 			final RPObject object) {
 		RPSlot slot = object.getContainerSlot();
 

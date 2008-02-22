@@ -962,7 +962,7 @@ public class Entity implements RPObjectChangeListener {
 
 	@Override
 	public String toString() {
-		StringBuffer sbuf = new StringBuffer();
+		StringBuilder sbuf = new StringBuilder();
 
 		sbuf.append(getClass().getName());
 

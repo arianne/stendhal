@@ -69,7 +69,7 @@ public class Debuggera extends ScriptImpl {
 		@Override
 		public void fire(Player player, Sentence sentence, SpeakerNPC engine) {
 			// list quest
-			StringBuffer sb = new StringBuffer("Your quest states are:");
+			StringBuilder sb = new StringBuilder("Your quest states are:");
 			List<String> quests = player.getQuests();
 			for (String quest : quests) {
 				sb.append("\r\n" + quest + " = " + player.getQuest(quest));

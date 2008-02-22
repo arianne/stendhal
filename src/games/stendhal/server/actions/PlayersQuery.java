@@ -55,7 +55,7 @@ public class PlayersQuery implements ActionListener {
 			rules.getOnlinePlayers().forAllPlayersExecute(new Task<Player>() {
 				public void execute(Player p) {
 
-					StringBuffer text = new StringBuffer(p.getTitle());
+					StringBuilder text = new StringBuilder(p.getTitle());
 
 					if (p.isGhost()) {
 						text.append("(!");
@@ -68,11 +68,10 @@ public class PlayersQuery implements ActionListener {
 					treeSet.add(text.toString());
 				}
 			});
-
 		} else {
 			rules.getOnlinePlayers().forFilteredPlayersExecute(new Task<Player>() {
 				public void execute(Player p) {
-					StringBuffer text = new StringBuffer(p.getTitle());
+					StringBuilder text = new StringBuilder(p.getTitle());
 					text.append("(");
 
 					text.append(p.getLevel());
@@ -84,9 +83,7 @@ public class PlayersQuery implements ActionListener {
 				public boolean passes(Player o) {
 					return !o.isGhost();
 				}
-
 			});
-
 		}
 
 		StringBuilder online = new StringBuilder();

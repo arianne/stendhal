@@ -24,7 +24,7 @@ public class DeepInspect extends ScriptImpl {
 			return;
 		}
 		Player player = SingletonRepository.getRuleProcessor().getPlayer(args.get(0));
-		StringBuffer sb = new StringBuffer();
+		StringBuilder sb = new StringBuilder();
 		sb.append("Inspecting " + player.getName() + "\n");
 
 		// inspect slots

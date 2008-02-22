@@ -289,7 +289,7 @@ public class ShopList {
 	public String toString(String name, String header) {
 		Map<String, Integer> items = contents.get(name);
 
-		StringBuffer sb = new StringBuffer(header + "\n");
+		StringBuilder sb = new StringBuilder(header + "\n");
 
 		for (Entry<String, Integer> entry : items.entrySet()) {
 			sb.append(entry.getKey() + " \t" + entry.getValue() + "\n");

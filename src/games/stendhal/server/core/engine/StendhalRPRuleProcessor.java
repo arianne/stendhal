@@ -365,7 +365,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 				objects += zone.size();
 			}
 
-			StringBuffer os = new StringBuffer();
+			StringBuilder os = new StringBuilder();
 			os.append("entityToKill: " + entityToKill.size() + "\n");
 			os.append("players: " + getOnlinePlayers().size() + "\n");
 			os.append("playersRmText: " + playersRmText.size() + "\n");

@@ -1093,7 +1093,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 		debugturn++;
 
 		if (Debug.SHOW_LIST_SIZES && (debugturn % 1000 == 0)) {
-			StringBuffer os = new StringBuffer("Name: " + this.getID());
+			StringBuilder os = new StringBuilder("Name: " + this.getID());
 			os.append("blood: " + bloods.size() + "\n");
 			os.append("itemsOnGround: " + itemsOnGround.size() + "\n");
 			os.append("movementListeners: " + movementListeners.size() + "\n");

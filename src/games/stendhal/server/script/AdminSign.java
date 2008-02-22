@@ -59,7 +59,7 @@ public class AdminSign extends ScriptImpl {
 			sign.setPosition(x, y);
 
 			// concat text ignoring first 3 args
-			StringBuffer sb = new StringBuffer();
+			StringBuilder sb = new StringBuilder();
 			for (int i = 3; i < args.size(); i++) {
 				sb.append(args.get(i) + " ");
 			}

@@ -75,7 +75,7 @@ public final class TurnNotifier {
 		}
 
 		if (logger.isDebugEnabled()) {
-			StringBuffer os = new StringBuffer();
+			StringBuilder os = new StringBuilder();
 			os.append("register: " + register.size() + "\n");
 			os.append("set: " + (set != null ? set.size() : 0) + "\n");
 			logger.info(os);
@@ -145,7 +145,7 @@ public final class TurnNotifier {
 	public void notifyAtTurn(int turn, TurnListener turnListener) {
 		if (logger.isDebugEnabled()) {
 			logger.info("Notify at " + turn + " by " + turnListener);
-			StringBuffer st = new StringBuffer();
+			StringBuilder st = new StringBuilder();
 
 			for (StackTraceElement e : Thread.currentThread().getStackTrace()) {
 				st.append(e);

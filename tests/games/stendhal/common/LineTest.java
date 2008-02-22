@@ -26,7 +26,7 @@ public class LineTest {
 	@Test
 	public void testLine2_2_10_7() {
 		String expected = "2,5;3,5;4,5;5,5;6,6;7,6;8,6;9,6;10,7;";
-		final StringBuffer sb = new StringBuffer();
+		final StringBuilder sb = new StringBuilder();
 
 		Line.renderLine(2, 5, 10, 7, new Action() {
 
@@ -42,7 +42,7 @@ public class LineTest {
 	@Test
 	public void testLine10_7_2_2() {
 		String expected = "10,7;9,7;8,6;7,6;6,5;5,4;4,4;3,3;2,2;";
-		final StringBuffer sb = new StringBuffer();
+		final StringBuilder sb = new StringBuilder();
 
 		Line.renderLine(10, 7, 2, 2, new Action() {
 
@@ -61,7 +61,7 @@ public class LineTest {
 	public void testLine1_1_10_10() {
 
 		String expected = "1,1;2,2;3,3;4,4;5,5;6,6;7,7;8,8;9,9;10,10;";
-		final StringBuffer sb = new StringBuffer();
+		final StringBuilder sb = new StringBuilder();
 		Line.renderLine(1, 1, 10, 10, new Action() {
 
 			@Override
@@ -79,7 +79,7 @@ public class LineTest {
 	public void testLine1_0_10_0() {
 
 		String expected = "1,0;2,0;3,0;4,0;5,0;6,0;7,0;8,0;9,0;10,0;";
-		final StringBuffer sb = new StringBuffer();
+		final StringBuilder sb = new StringBuilder();
 		Line.renderLine(1, 0, 10, 0, new Action() {
 
 			@Override

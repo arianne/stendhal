@@ -96,7 +96,7 @@ public class XMLUtil {
 	 * @return The contained text.
 	 */
 	public static String getText(final Element element) {
-		StringBuffer sbuf = new StringBuffer();
+		StringBuilder sbuf = new StringBuilder();
 
 		getText(element, sbuf, false);
 
@@ -113,7 +113,7 @@ public class XMLUtil {
 	 * @param decend
 	 *            Whether to descend into child elements.
 	 */
-	public static void getText(final Element element, final StringBuffer sbuf,
+	public static void getText(final Element element, final StringBuilder sbuf,
 			final boolean decend) {
 		Node node = element.getFirstChild();
 

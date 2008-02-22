@@ -32,9 +32,7 @@ public class TimeUtil {
 	 * @return A text representation.
 	 */
 	public static String approxTimeUntil(int seconds) {
-		StringBuffer sbuf;
-
-		sbuf = new StringBuffer();
+		StringBuilder sbuf = new StringBuilder();
 		approxTimeUntil(sbuf, seconds);
 
 		return sbuf.toString();
@@ -48,7 +46,7 @@ public class TimeUtil {
 	 * @param seconds
 	 *            The number of seconds till/past (in positive values).
 	 */
-	public static void approxTimeUntil(StringBuffer sbuf, int seconds) {
+	public static void approxTimeUntil(StringBuilder sbuf, int seconds) {
 		if (approxUnit(sbuf, seconds, SECONDS_IN_WEEK, "week")) {
 			return;
 		}
@@ -83,7 +81,7 @@ public class TimeUtil {
 	 * @return <code>true</code> if unit used, <code>false</code> if the
 	 *         amount was too small to apply.
 	 */
-	protected static boolean approxUnit(StringBuffer sbuf, int amount,
+	protected static boolean approxUnit(StringBuilder sbuf, int amount,
 			int size, String name) {
 		int count = amount / size;
 		int remainder;
@@ -145,9 +143,7 @@ public class TimeUtil {
 	 * @return A text representation.
 	 */
 	public static String timeUntil(int seconds, boolean forceSeconds) {
-		StringBuffer sbuf;
-
-		sbuf = new StringBuffer();
+		StringBuilder sbuf = new StringBuilder();
 		timeUntil(sbuf, seconds, forceSeconds);
 
 		return sbuf.toString();
@@ -161,7 +157,7 @@ public class TimeUtil {
 	 * @param seconds
 	 *            The number of seconds till/past (in positive values).
 	 */
-	public static void timeUntil(StringBuffer sbuf, int seconds) {
+	public static void timeUntil(StringBuilder sbuf, int seconds) {
 		timeUntil(sbuf, seconds, false);
 	}
 
@@ -175,7 +171,7 @@ public class TimeUtil {
 	 * @param forceSeconds
 	 *            Show seconds even if over a minute.
 	 */
-	public static void timeUntil(StringBuffer sbuf, int seconds,
+	public static void timeUntil(StringBuilder sbuf, int seconds,
 			boolean forceSeconds) {
 		boolean appended = false;
 		int count = seconds / SECONDS_IN_WEEK;

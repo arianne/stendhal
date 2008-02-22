@@ -212,7 +212,7 @@ public class FixedPath {
 	 */
 	@Override
 	public String toString() {
-		StringBuffer sbuf = new StringBuffer();
+		StringBuilder sbuf = new StringBuilder();
 
 		sbuf.append("FixedPath[");
 		sbuf.append(nodes);
