@@ -192,6 +192,21 @@ public class Player extends RPEntity {
 
 		player.updateItemAtkDef();
 
+		// From 0.66 to 0.67
+		// update quest slot content, 
+		// replace "_" with " ", for item/creature names
+		String[] questObjectRename = { "cloaks_collector_2", "cloaks_collector",
+				"cloaks_for_bario", "crown_for_the_wannabe_king",
+				"daily_item", "daily", "elvish_armor", "weapons_collector",
+				"weapons_collector2", "weekly_item"};
+		for (String questSlot : questObjectRename) {
+			if (player.hasQuest(questSlot)) {
+				String temp = player.getQuest(questSlot);
+				temp = temp.replace('_', ' ');
+				player.setQuest(questSlot, temp);
+			}
+		}
+
 		PlayerRPClass.welcome(player);
 
 		logger.debug("Finally player is :" + player);
