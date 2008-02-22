@@ -101,6 +101,7 @@ final class SentenceImplementation extends Sentence {
 					w.setNormalized(Integer.toString(w.getAmount()));
 				} else if (entry.getType().isPlural()) {
 					// normalize to the singular form
+					assert entry.getPlurSing()!=null;
 					w.setNormalized(entry.getPlurSing());
 				} else {
 					w.setNormalized(entry.getNormalized());
@@ -580,7 +581,7 @@ final class SentenceImplementation extends Sentence {
 						}
 
 						// merge "... of ..." expressions into one expression, preserving
-						// only the main word als merged normalized expression
+						// only the main word as merged normalized expression
 						if (first.isObject() 
 								&&	second.getNormalized().equals("of") 
 								&&	third.isObject()) {
