@@ -1,7 +1,6 @@
 package games.stendhal.server.script;
 
 import games.stendhal.common.MathHelper;
-import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.scripting.ScriptImpl;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.creature.RaidCreature;
@@ -24,7 +23,14 @@ public class Plague extends ScriptImpl {
 			admin.sendPrivateText("/script Plague.class [ringcount] <creature>");
 			return;
 		}
+		
+		
+		// extract position of admin
 
+		int x = admin.getX();
+		int y = admin.getY();
+		sandbox.setZone(admin.getZone());
+		
 		
 		int ringcount = MathHelper.parseIntDefault(args.get(0), -1);
 		int startArgIndex = 1;
@@ -32,6 +38,9 @@ public class Plague extends ScriptImpl {
 			ringcount = 1;
 			startArgIndex = 0;
 		}
+		
+		// concatenate torn words into one
+		
 		String creatureClass="";
 		List <String>  templist  =   args.subList(startArgIndex,args.size());
 		for (String part : templist) {
@@ -39,15 +48,11 @@ public class Plague extends ScriptImpl {
 		}
 		
 		creatureClass  = creatureClass.trim();
-		// extract position of admin
-		StendhalRPZone myZone = sandbox.getZone(admin);
-		int x = admin.getX();
-		int y = admin.getY();
-		sandbox.setZone(myZone);
-
 		
+	
 
 		Creature tempCreature = sandbox.getCreature(creatureClass);
+		
 		if (tempCreature == null) {
 			admin.sendPrivateText("No such creature");
 		} else {
