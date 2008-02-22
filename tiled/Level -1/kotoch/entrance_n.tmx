@@ -45,6 +45,9 @@
  <tileset name="Unbenannt" firstgid="206" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/earthen.png"/>
  </tileset>
+ <tileset name="vulcanus" firstgid="212" tilewidth="32" tileheight="32">
+  <image source="../../tileset/object/vulcanus.png"/>
+ </tileset>
  <layer name="0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3XywmAMBBF0UDAL5aX/lsxARX3CkHnLE4Bw32bKSmlAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAlv6D3DfTtbwPf9FZ7/b+pdRuqsZr0D6d1m6ulWvUPR//Y9I9N/9jy0f6kfyyt23ajfzxP/37tAQCAv9sB+JQf3wAAAQA=
@@ -57,12 +60,12 @@
  </layer>
  <layer name="2_object" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3ROwrCQBSG0ex/FUFSRMQiFr7iC9yYt0g5FhaTi8w58DHVwA+36wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIBv+mgTDdGYO4UE22gX7aPph3+vKmv4F+/sAVR3is6FLpmjWM01mgvdMkexGvdv02F53b9Nx+V1/7a5f9vu0aPQM3MUAAAAQGUfnKmrEgAAAQA=
+   H4sIAAAAAAAAAO3ROwoCMRSG0ex/FSIWilho4Wt8gctwM94iRYqxsMgEzTnwkWkGLvwpAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJ/Monm0iJZtT6GBVbSONtH2i/8eVa7hVzxbH0B1h+g40qnlUUzmHA25VHxfml3ElMr9X8n+vdjlt9y/zP7/bZ9f+/fN/n27RreR7i2PAgAAAKjsDaYE/S0AAAEA
   </data>
  </layer>
  <layer name="3_roof" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3OAQ0AAAgDoPePZyJj3E1IQAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC/TTsAAABHLAHxvSQAAAEA
+   H4sIAAAAAAAAAO3OwQkAMAgAMfcfr+g+7QqCYB8J3P8iAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAjnzV9gQAAAAw6mwPAADAJy7zEVvZAAABAA==
   </data>
  </layer>
  <layer name="4_roof_add" width="128" height="128">
@@ -77,7 +80,7 @@
  </layer>
  <layer name="collision" width="128" height="128" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3SMQoAIAwEwfz/b/mTnXVA5SwmMP3BpquqAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIDt5NLbyfavD/aT/YP0bvRHf+72n/5Eejdv+k8vvRv90Z/7/5DeAAAAkLYAhxRk3QAAAQA=
+   H4sIAAAAAAAAAO3Sqw0AIBBEweu/N3rCoRAkfBYxl4xDvGRpVdUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgGHn0u1k968P+sn+g3Q37/afvUt3827/2aW7ubP/6p9Id3Nn/9VLd2N/7M/5/5BuAAAASOuubrM4AAABAA==
   </data>
  </layer>
  <layer name="protection" width="128" height="128">
