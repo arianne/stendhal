@@ -340,7 +340,9 @@ public class Engine {
 		}
 
 		if (it != null) {
-			executeTransition(player, sentence, it.next());
+			Transition transition = it.next();
+
+			executeTransition(player, sentence, transition);
 
 			return true;
 		} else {
