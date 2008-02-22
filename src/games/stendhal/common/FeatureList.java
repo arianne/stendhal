@@ -85,21 +85,6 @@ public class FeatureList implements Iterable<String> {
 	 * Encoded features are in the form of:<br>
 	 * <em>name</em>[<code>=</code><em>value</em>][<code>:</code><em>name</em>[<code>=</code><em>value</em>]...]
 	 */
-	/*
-	 * TODO remove unused code public String encode() { StringBuffer sbuf;
-	 * 
-	 * sbuf = new StringBuffer();
-	 * 
-	 * for (String name : list.keySet()) { String value = list.get(name);
-	 * 
-	 * if (sbuf.length() != 0) { sbuf.append(':'); }
-	 * 
-	 * sbuf.append(name);
-	 * 
-	 * if (value.length() != 0) { sbuf.append('='); sbuf.append(value); } }
-	 * 
-	 * return sbuf.toString(); }
-	 */
 
 	/**
 	 * Get a feature value.
@@ -115,10 +100,6 @@ public class FeatureList implements Iterable<String> {
 	 * 
 	 * @return <code>true</code> is a feature is enabled.
 	 */
-	/*
-	 * TODO remove unused code public boolean has(String name) { return
-	 * list.containsKey(name); }
-	 */
 
 	/**
 	 * Enable/disable a feature.
@@ -130,10 +111,6 @@ public class FeatureList implements Iterable<String> {
 	 * 
 	 * @return <code>true</code> if the list changed,
 	 *         <code>false<code> otherwise.
-	 */
-	/*
-	 * TODO remove unused code public boolean set(String name, boolean enabled) {
-	 * return set(name, enabled ? "" : null); }
 	 */
 
 	/**
@@ -147,13 +124,6 @@ public class FeatureList implements Iterable<String> {
 	 * 
 	 * @return <code>true</code> if the list changed,
 	 *         <code>false<code> otherwise.
-	 */
-	/*
-	 * TODO remove unused code public boolean set(String name, String value) {
-	 * if (value != null) { list.put(name, value); } else { if
-	 * (list.remove(name) == null) { return false; } }
-	 * 
-	 * return true; }
 	 */
 
 	//
