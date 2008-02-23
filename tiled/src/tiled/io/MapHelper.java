@@ -184,7 +184,7 @@ public class MapHelper {
 		if (config.keyHasValue("tiled.report.io", 1)) {
 			if (s.size() > 0) {
 				Iterator itr = s.iterator();
-				StringBuffer warnings = new StringBuffer();
+				StringBuilder warnings = new StringBuilder();
 				while (itr.hasNext()) {
 					warnings.append((String) itr.next() + "\n");
 				}
@@ -285,7 +285,7 @@ public class MapHelper {
 	}
 
 	/** loads the given map. */
-	public static Map loadMap(JFrame appFrame, String fileName, StringBuffer errorBuf) {
+	public static Map loadMap(JFrame appFrame, String fileName, StringBuilder errorBuf) {
 		Map ret = null;
 		try {
 			File mapFile = new File(fileName);
@@ -326,7 +326,7 @@ public class MapHelper {
 	}
 
 	/** saves the map. */
-	public static boolean saveMapNew(JFrame appFrame, Map map, boolean saveAs, StringBuffer errorBuf) {
+	public static boolean saveMapNew(JFrame appFrame, Map map, boolean saveAs, StringBuilder errorBuf) {
 		if (map == null) {
 			return false;
 		}

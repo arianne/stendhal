@@ -179,7 +179,7 @@ public class JItem extends javax.swing.JFrame {
 		drawSinglePart(spr, 1, 1, imageResource.getGraphics());
 		itemGFXLocation.setText(gfxLocation);
 
-		StringBuffer os = new StringBuffer();
+		StringBuilder os = new StringBuilder();
 		for (Map.Entry<String, String> entry : actual.getAttributes().entrySet()) {
 			os.append(entry.getKey());
 			if (entry.getValue() != null) {

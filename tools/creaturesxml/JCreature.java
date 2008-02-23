@@ -206,7 +206,7 @@ public class JCreature extends javax.swing.JFrame {
 
 		SuggestAttributeButtonActionPerformed(null);
 
-		StringBuffer os = new StringBuffer("");
+		StringBuilder os = new StringBuilder("");
 
 		double value = 0;
 		for (DropItem item : actual.getDropItems()) {
@@ -222,7 +222,7 @@ public class JCreature extends javax.swing.JFrame {
 			creatureDrops.setText(os.toString());
 		}
 
-		os = new StringBuffer("");
+		os = new StringBuilder("");
 		for (EquipItem item : actual.getEquipedItems()) {
 			os.append(item.name + "; " + item.slot + "; " + item.quantity
 					+ "\n");
@@ -232,7 +232,7 @@ public class JCreature extends javax.swing.JFrame {
 			creatureEquips.setText(os.toString());
 		}
 
-		os = new StringBuffer("");
+		os = new StringBuilder("");
 		for (String line : actual.getNoiseLines()) {
 			os.append("says: " + line + "\n");
 		}

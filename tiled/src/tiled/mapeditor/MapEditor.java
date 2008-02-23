@@ -744,7 +744,7 @@ public class MapEditor implements ActionListener, MapChangeListener, ComponentLi
 	 *         if an error occurred
 	 */
 	public boolean loadMap(String file) {
-		StringBuffer errorBuffer = new StringBuffer();
+		StringBuilder errorBuffer = new StringBuilder();
 		Map map = MapHelper.loadMap(appFrame, file, errorBuffer);
 
 		if (map == null && errorBuffer.length() > 0) {
@@ -776,7 +776,7 @@ public class MapEditor implements ActionListener, MapChangeListener, ComponentLi
 	 *            "Save As" dialog.
 	 */
 	public void saveMap(boolean bSaveAs) {
-		StringBuffer buf = new StringBuffer();
+		StringBuilder buf = new StringBuilder();
 		MapHelper.saveMapNew(appFrame, currentMap, bSaveAs, buf);
 
 		// if (currentMap == null)
