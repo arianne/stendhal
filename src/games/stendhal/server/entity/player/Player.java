@@ -19,6 +19,7 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TutorialNotifier;
 import games.stendhal.server.core.rp.StendhalRPAction;
+import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.RPEntity;
@@ -193,36 +194,40 @@ public class Player extends RPEntity {
 
 		player.updateItemAtkDef();
 
+		EntityManager entityMgr = SingletonRepository.getEntityManager();
+
 		// From 0.66 to 0.67
 		// update quest slot content, 
 		// replace "_" with " ", for item/creature names
-		String[] questObjectRename = { "cloaks_collector_2", "cloaks_collector",
-				"cloaks_for_bario", "crown_for_the_wannabe_king",
-				"daily_item", "daily", "elvish_armor", "weapons_collector",
-				"weapons_collector2", "weekly_item"};
-
-		for (String questSlot : questObjectRename) {
+		for (String questSlot : player.getQuests()) {
 			if (player.hasQuest(questSlot)) {
 				String itemString = player.getQuest(questSlot);
 
-				String[] items = itemString.split(";");
+				String[] parts = itemString.split(";");
 
 				StringBuilder buffer = new StringBuilder();
 				boolean first = true;
 
-				for(int i=0; i<items.length; ++i) {
-					String temp = items[i];
+				for(int i=0; i<parts.length; ++i) {
+					String oldName = parts[i];
 
 					// Convert old item names to their new representation with correct grammar
 					// and without underscores.
-					temp = UpdateConverter.updateItemName(temp);
+					String newName = UpdateConverter.updateItemName(oldName);
+
+					// check for valid item and creature names if the update converter changed the name
+					if (!newName.equals(oldName)) {
+						if (!entityMgr.isCreature(newName) && !entityMgr.isItem(newName)) {
+							newName = oldName;
+						}
+					}
 
 					if (first) {
-						buffer.append(temp);
+						buffer.append(newName);
 						first = false;
 					} else {
 						buffer.append(';');
-						buffer.append(temp);
+						buffer.append(newName);
 					}
 				}
 
@@ -661,9 +666,7 @@ public class Player extends RPEntity {
 	 *         there was a problem.
 	 */
 	public boolean addIgnore(String name, int duration, String reply) {
-		StringBuffer sbuf;
-
-		sbuf = new StringBuffer();
+		StringBuilder sbuf = new StringBuilder();
 
 		if (duration != 0) {
 			sbuf.append(System.currentTimeMillis() + (duration * 60000L));
