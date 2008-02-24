@@ -1,4 +1,4 @@
-# @Version 17
+# @Version 18
 #
 # Word list for the Stendhal conversation parser
 #
