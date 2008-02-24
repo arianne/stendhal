@@ -1,4 +1,4 @@
-# @Version 19
+# @Version 20
 #
 # Word list for the Stendhal conversation parser
 #
@@ -185,11 +185,13 @@ rofl	VER
 run	VER
 saw	VER	=see
 say	VER
+see	VER
 seem	VER
 seen	VER	=see
 sell	VER
 send	VER
 sew	VER
+shall	VER
 shoot	VER
 should	VER-CON	=shall
 shout	VER
