@@ -528,7 +528,7 @@ public abstract class RPEntity {
 	 */
 	@Override
 	public String toString() {
-		StringBuffer os = new StringBuffer();
+		StringBuilder os = new StringBuilder();
 		os.append("ENTITY: " + sex + " " + race + " " + type + "\n");
 		os.append("Level: " + level + "\n");
 		os.append("STR: " + strength + "\n");

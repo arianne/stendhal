@@ -550,7 +550,7 @@ public class XMLMapWriter implements tiled.io.MapWriter, FileFilter {
 		}
 
 		// Append .. for each remaining parent in fromParents
-		StringBuffer relPathBuf = new StringBuffer();
+		StringBuilder relPathBuf = new StringBuilder();
 		for (int i = shared; i < fromParents.size() - 1; i++) {
 			relPathBuf.append(".." + File.separator);
 		}
