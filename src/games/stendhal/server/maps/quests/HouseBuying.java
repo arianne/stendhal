@@ -74,7 +74,6 @@ public class HouseBuying extends AbstractQuest {
 		super.init(name, QUEST_SLOT);
 	}
 	// TODO: Do it the right way! (Clean up duplicated code)
-	// TODO: Create Barrett Holmes in a map file and only add the quest specific stuff here
 
 	private void createNPC() {
 		npc = new SpeakerNPC("Barrett Holmes") {
@@ -163,7 +162,7 @@ public class HouseBuying extends AbstractQuest {
 										// it's available, so take money
 										if (player.isEquipped("money", COST)) {
 											Item key = SingletonRepository.getEntityManager().getItem(
-													"private_key_" + item);
+													"private key " + item);
 											engine.say("Congratulations, here is your key to house "
 													+ item
 													+ "! Do you want to buy a spare key, at a price of "
@@ -216,7 +215,7 @@ public class HouseBuying extends AbstractQuest {
 							if (player.isEquipped("money", COST_OF_SPARE_KEY)) {
 								String house = player.getQuest(QUEST_SLOT);
 								Item key = SingletonRepository.getEntityManager().getItem(
-										"private_key_" + house);
+										"private key " + house);
 								key.setUndroppableOnDeath(true);
 								if (player.equip(key)) {
 									player.drop("money", COST_OF_SPARE_KEY);
@@ -263,7 +262,6 @@ public class HouseBuying extends AbstractQuest {
 		zone.add(npc);
 	}
 
-	// TODO: Create Reg Denson in a map file and only add the quest specific stuff here
 	
 	private void createNPC2() {
 		npc2 = new SpeakerNPC("Reg Denson") {
@@ -316,8 +314,7 @@ public class HouseBuying extends AbstractQuest {
 							engine2.say("The cost of a new house in Ados is "
 									+ COST_ADOS
 									+ " money. But I am afraid I cannot trust you with house ownership just yet, as you have not been a part of this world long enough.");
-						} else if (!(player.hasQuest(DAILY_ITEM_QUEST_SLOT)
-								     && player.getQuest(DAILY_ITEM_QUEST_SLOT).startsWith("done")
+						} else if (!(player.isQuestCompleted(DAILY_ITEM_QUEST_SLOT)
 								     && player.isQuestCompleted(ANNA_QUEST_SLOT)
 								     && player.isQuestCompleted(KEYRING_QUEST_SLOT)
 								     && player.isQuestCompleted(FISHROD_QUEST_SLOT)
@@ -366,7 +363,7 @@ public class HouseBuying extends AbstractQuest {
 											// it's available, so take money
 											if (player.isEquipped("money", COST_ADOS)) {
 												Item key = SingletonRepository.getEntityManager().getItem(
-														"private_key_" + item);
+														"private key " + item);
 												engine2.say("Congratulations, here is your key to house "
 														+ item
 														+ "! Do you want to buy a spare key, at a price of "
@@ -421,7 +418,7 @@ public class HouseBuying extends AbstractQuest {
 								if (player.isEquipped("money", COST_OF_SPARE_KEY)) {
 									String house = player.getQuest(QUEST_SLOT);
 									Item key = SingletonRepository.getEntityManager().getItem(
-											"private_key_" + house);
+											"private key " + house);
 									key.setUndroppableOnDeath(true);
 									if (player.equip(key)) {
 										player.drop("money", COST_OF_SPARE_KEY);
@@ -497,9 +494,8 @@ public class HouseBuying extends AbstractQuest {
 						if (player.getAge() < REQUIRED_AGE) {
 							engine.say("The cost of a new house in Kirdneh is "
 									+ COST_KIRDNEH
-									+ " money. But I am afraid I cannot trust you with house ownership just yet. Come back when you have spent at least " + Integer.toString((int) (REQUIRED_AGE / 60)) + " hours on Faiumoni.");
-						} else if (!(player.hasQuest(KIRDNEH_QUEST_SLOT)
-								     && player.getQuest(KIRDNEH_QUEST_SLOT).startsWith("done"))) {
+									+ " money. But I am afraid I cannot trust you with house ownership just yet. Come back when you have spent at least " + Integer.toString((int) (REQUIRED_AGE/60)) + " hours on Faiumoni.");
+						} else if (!player.isQuestCompleted(KIRDNEH_QUEST_SLOT)) {
 							engine.say("The cost of a new house in Kirdneh is "
 									+ COST_KIRDNEH
 									+ " money. But my principle is never to sell a house without establishing first the good #reputation of the prospective buyer.");
@@ -543,7 +539,7 @@ public class HouseBuying extends AbstractQuest {
 											// it's available, so take money
 											if (player.isEquipped("money", COST_KIRDNEH)) {
 												Item key = SingletonRepository.getEntityManager().getItem(
-														"private_key_" + item);
+														"private key " + item);
 												engine.say("Congratulations, here is your key to house "
 														+ item
 														+ "! Do you want to buy a spare key, at a price of "
@@ -598,7 +594,7 @@ public class HouseBuying extends AbstractQuest {
 								if (player.isEquipped("money", COST_OF_SPARE_KEY)) {
 									String house = player.getQuest(QUEST_SLOT);
 									Item key = SingletonRepository.getEntityManager().getItem(
-											"private_key_" + house);
+											"private key " + house);
 									key.setUndroppableOnDeath(true);
 									if (player.equip(key)) {
 										player.drop("money", COST_OF_SPARE_KEY);
