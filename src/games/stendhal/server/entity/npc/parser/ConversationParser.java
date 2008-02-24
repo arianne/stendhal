@@ -135,7 +135,8 @@ public final class ConversationParser extends ErrorBuffer {
 
     		sentence.setError(parser.getErrorString());
 		} catch(Exception e) {
-			logger.error(e.getMessage());
+			logger.error("ConversationParser.parse(): catched Exception while parsing '" +
+					text + "'\n" + e.getMessage());
 			sentence.setError(e.getMessage());
 			e.printStackTrace();
 		}
