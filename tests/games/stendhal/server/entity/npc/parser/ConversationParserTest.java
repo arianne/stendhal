@@ -329,12 +329,13 @@ public class ConversationParserTest {
 		assertNull(sentence.getObjectName());
 		assertFalse(sentence.hasError());
 	}
+
 	@Test
 	public final void testNumber() {
 		Sentence sentence = ConversationParser.parse(Integer.valueOf(30).toString());
 		assertNotNull(sentence);
 		assertEquals(30, sentence.getExpressions().get(0).getAmount());
-		
+
 		assertEquals(0, sentence.getSubjectCount());
 		assertNull(sentence.getSubject(0));
 		assertEquals(0, sentence.getVerbCount());

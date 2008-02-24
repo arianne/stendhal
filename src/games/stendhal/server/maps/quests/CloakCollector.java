@@ -184,5 +184,4 @@ public class CloakCollector extends AbstractQuest implements BringListOfItemsQue
 		player.addXP(2500);
 	}
 
-
 }

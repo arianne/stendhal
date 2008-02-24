@@ -31,8 +31,6 @@ public class PlinksToyTest {
 		QuestHelper.setUpBeforeClass();
 
 		PassiveEntityRespawnPointTestHelper.generateRPClasses();
-		
-		
 	}
 	
 	@Before
