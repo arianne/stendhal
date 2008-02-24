@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
 
+import org.apache.log4j.Logger;
+
 /**
  * Parser for conversations with a SpeakerNPC This class parses strings in
  * English language and returns them as Sentence objects. All sentence
@@ -16,6 +18,8 @@ import java.util.StringTokenizer;
  * @author Martin Fuchs
  */
 public final class ConversationParser extends ErrorBuffer {
+
+	private static final Logger logger = Logger.getLogger(ConversationParser.class);
 
 	private StringTokenizer tokenizer;
 
@@ -100,35 +104,42 @@ public final class ConversationParser extends ErrorBuffer {
 		// 1.) determine sentence type from trailing punctuation
 		SentenceImplementation sentence = new SentenceImplementation(ctx);
 
-		if (text != null) {
-			text = getSentenceType(text.trim(), sentence);
-		}
-
-		// 2.) feed the separated words into the sentence object
-		ConversationParser parser = new ConversationParser(text);
-
-		sentence.parse(parser);
-
-		// 3.) classify word types and normalize words
-		sentence.classifyWords(parser);
-
-		// 4.) evaluate sentence type from word order
-		sentence.evaluateSentenceType();
-
-		if (ctx.getMergeExpressions()) {
-    		// 5.) merge words to form a simpler sentence structure
-    		sentence.mergeWords();
-
-    		if (!ctx.isForMatching()) {
-        		// 6.) standardize sentence type
-    			sentence.standardizeSentenceType();
-
-        		// 7.) replace grammatical constructs with simpler ones
-        		sentence.performaAliasing();
+		try {
+    		if (text != null) {
+    			text = getSentenceType(text.trim(), sentence);
     		}
-		}
 
-		sentence.setError(parser.getErrorString());
+    		// 2.) feed the separated words into the sentence object
+    		ConversationParser parser = new ConversationParser(text);
+
+    		sentence.parse(parser);
+
+    		// 3.) classify word types and normalize words
+    		sentence.classifyWords(parser);
+
+    		// 4.) evaluate sentence type from word order
+    		sentence.evaluateSentenceType();
+
+    		if (ctx.getMergeExpressions()) {
+        		// 5.) merge words to form a simpler sentence structure
+        		sentence.mergeWords();
+
+        		if (!ctx.isForMatching()) {
+            		// 6.) standardize sentence type
+        			sentence.standardizeSentenceType();
+
+            		// 7.) replace grammatical constructs with simpler ones
+            		sentence.performaAliasing();
+        		}
+    		}
+
+    		sentence.setError(parser.getErrorString());
+		} catch(Exception e) {
+			logger.error("ConversationParser.parse(): catched Exception while parsing '" +
+							text + "'\n" + e.getMessage());
+			sentence.setError(e.getMessage());
+			e.printStackTrace();
+		}
 
 		return sentence;
 	}

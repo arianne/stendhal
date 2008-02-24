@@ -11,7 +11,7 @@ import java.io.PrintWriter;
 public final class WordEntry {
 
 	// normalized word
-	private String normalized;
+	private String normalized = "";
 
 	// pluralized word (or singular for entries of type ...-PLU
 	private String plurSing;
