@@ -98,7 +98,7 @@ public class FlowerSellerNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("Sorry, you don't have enough money!", npc.get("text"));
 
 		// equip with enough money to buy one rose
-		assertTrue(equipWithMoney(player, 500));
+		assertTrue(equipWithMoney(player, 50));
 		assertTrue(en.step(player, "buy rose"));
 		assertEquals("1 rose will cost 50. Do you want to buy it?", npc.get("text"));
 
