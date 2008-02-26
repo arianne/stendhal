@@ -134,7 +134,8 @@
 
 		<jar jarfile="${lib}/${server_jarname}" basedir="${build_server}">
 			<manifest>
-				<attribute name="Class-path" value="${maps_jarname} ${xmlconf_jarname} log4j.jar groovy.jar"/>
+				<attribute name="Main-Class" value="marauroa.server.marauroad"/>
+				<attribute name="Class-path" value="marauroa.jar ${maps_jarname} ${xmlconf_jarname} ${maps_jarname} commons-lang.jar log4j.jar groovy.jar ${mysqldriver_jarname}"/>
 			</manifest>
 		</jar>
 
@@ -209,14 +210,14 @@
 
 	<!-- Runs the client -->
 	<target name="client_run" depends="client_build" description="Runs the client">
-		<mkdir dir="run"/>
-		<mkdir dir="run/lib"/>
+		<mkdir dir="run_clnt"/>
+		<mkdir dir="run_clnt/lib"/>
 
-		<copy todir="run">
+		<copy todir="run_clnt">
 			<fileset file="build/lib/${client_jarname}"/>
 		</copy>
 
-		<copy todir="run/lib">
+		<copy todir="run_clnt/lib">
 			<fileset file="build/lib/${client_data}"/>
 			<fileset file="build/lib/${client_sound_data}"/>
 			<fileset file="libs/marauroa.jar"/>
@@ -224,15 +225,38 @@
 		</copy>
 
 		<exec dir="." executable="java">
-			<arg line="-Xmx256m -cp run -jar run/${client_jarname}"/>
+			<arg line="-Xmx256m -cp run_clnt -jar run_clnt/${client_jarname}"/>
 		</exec>
 
 		<!-- we've run the program, so delete the jars -->
-		<delete dir="run"/>
+		<delete dir="run_clnt"/>
 	</target>
 
 	<!-- Netbeans won't let you choose ant options, so this does it for us-->
 	<target name="run" depends="client_run"  description="Runs client for netbeans trick"/>
+
+	<!-- Runs the client -->
+	<target name="server_run" depends="server_build" description="Runs the server">
+		<mkdir dir="run_srvr"/>
+
+		<copy todir="run_srvr">
+			<fileset file="build/lib/${server_jarname}"/>
+			<fileset file="build/lib/${xmlconf_jarname}"/>
+			<fileset file="build/lib/${maps_jarname}"/>
+			<fileset file="libs/marauroa.jar"/>
+			<fileset file="libs/groovy.jar"/>
+			<fileset file="libs/commons-lang.jar"/>
+			<fileset file="libs/log4j.jar"/>
+			<fileset file="libs/${mysqldriver_jarname}"/>
+		</copy>
+
+		<exec dir="." executable="java">
+			<arg line="-Xmx256m -cp run_srvr -jar run_srvr/${server_jarname} -c server.ini -l"/>
+		</exec>
+
+		<!-- we've run the program, so delete the jars -->
+		<delete dir="run_srvr"/>
+	</target>
 
 	<target name="client_build" depends="init" description="Build JAR file for Stendhal client">
 		<mkdir dir="${build_client}"/>
@@ -369,7 +393,7 @@
 	</target>
 
 	<target name="dist" depends="clean, sign_jars, dist_binary, dist_source" description="Creates all the packages needed for a Stendhal release"/>
-	<target name="dist_binary" depends="clean, dist_server_binary,dist_client_binary,dist_client_no_sound_binary,dist_client_starter"/>
+	<target name="dist_binary" depends="clean, dist_server_binary, dist_client_binary, dist_client_no_sound_binary, dist_client_starter"/>
 
 	<target name="dist_server_binary" depends="server_build">
 		<mkdir dir="${buildroot}/stendhal-server-${version}"/>
@@ -388,7 +412,6 @@
 		<copy todir="${buildroot}/stendhal-server-${version}/web">
 			<fileset dir="web"/>
 		</copy>
-
 
 		<copy todir="${buildroot}/stendhal-server-${version}" file="${groovy_jar}"/>
 		<copy todir="${buildroot}/stendhal-server-${version}" file="${simple_jar}"/>
@@ -647,7 +670,7 @@
 				<pathelement path="${groovy_jar}"/>
 				<pathelement path="${simple_jar}"/>
 				<pathelement path="${commons_lang_jar}"/>
-				<pathelement path="${mysqldriver_jarname}"/>
+				<pathelement path="${mysqldriver_jar}"/>
 				<pathelement path="."/>
 				<pathelement path="data/conf"/>
 			</classpath>
