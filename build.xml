@@ -224,7 +224,9 @@
                 <fileset file="libs/log4j.jar"/>
             </copy>
 
-            <exec command="java -Xmx256m -cp run -jar run/${client_jarname}"/>
+        	<exec dir="." executable="java">
+				<arg line="-Xmx256m -cp run -jar run/${client_jarname}"/>
+        	</exec>
 
             <!-- we've run the program, so delete the jars -->
             <delete dir="run"/>
