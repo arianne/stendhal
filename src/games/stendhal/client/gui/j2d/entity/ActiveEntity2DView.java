@@ -130,7 +130,7 @@ public abstract class ActiveEntity2DView extends StateEntity2DView {
 		super.entityChanged(entity, property);
 
 		if (property == ActiveEntity.PROP_DIRECTION) {
-			stateChanged = true;
+			proceedChangedState();
 		} else if (property == ActiveEntity.PROP_SPEED) {
 			animatedChanged = true;
 		}

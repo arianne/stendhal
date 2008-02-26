@@ -202,7 +202,7 @@ public class Door2DView extends StateEntity2DView {
 		if (property == Entity.PROP_CLASS) {
 			representationChanged = true;
 		} else if (property == Door.PROP_OPEN) {
-			stateChanged = true;
+			proceedChangedState();
 		}
 	}
 

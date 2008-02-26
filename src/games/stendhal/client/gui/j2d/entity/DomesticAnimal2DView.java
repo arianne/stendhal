@@ -248,7 +248,7 @@ public abstract class DomesticAnimal2DView extends RPEntity2DView {
 		if (property == DomesticAnimal.PROP_IDEA) {
 			ideaChanged = true;
 		} else if (property == DomesticAnimal.PROP_WEIGHT) {
-			stateChanged = true;
+			proceedChangedState();
 		}
 	}
 

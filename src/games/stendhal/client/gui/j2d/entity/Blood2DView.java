@@ -118,7 +118,7 @@ public class Blood2DView extends StateEntity2DView {
 		super.entityChanged(entity, property);
 
 		if (property == Blood.PROP_AMOUNT) {
-			stateChanged = true;
+			proceedChangedState();
 		}
 	}
 }

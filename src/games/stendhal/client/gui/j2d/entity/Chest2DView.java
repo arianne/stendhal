@@ -199,7 +199,7 @@ public class Chest2DView extends StateEntity2DView {
 		super.entityChanged(entity, property);
 
 		if (property == Chest.PROP_OPEN) {
-			stateChanged = true;
+			proceedChangedState();
 			openChanged = true;
 		}
 	}

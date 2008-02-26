@@ -116,7 +116,7 @@ public class Food2DView extends StateEntity2DView {
 		super.entityChanged(entity, property);
 
 		if (property == Food.PROP_AMOUNT) {
-			stateChanged = true;
+			proceedChangedState();
 		}
 	}
 }

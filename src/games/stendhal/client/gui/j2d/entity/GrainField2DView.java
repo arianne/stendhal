@@ -187,7 +187,7 @@ public class GrainField2DView extends StateEntity2DView {
 		if (property == Entity.PROP_CLASS) {
 			representationChanged = true;
 		} else if (property == GrainField.PROP_RIPENESS) {
-			stateChanged = true;
+			proceedChangedState();
 		}
 	}
 
