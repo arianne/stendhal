@@ -87,8 +87,7 @@
 		<delete dir="${buildroot}/build_tiled_convertmaps"/>
 	</target>
 
-
-<target name="server_build" depends="init,checkxml" description="Build JAR file for Stendhal server">
+	<target name="server_build" depends="init,checkxml" description="Build JAR file for Stendhal server">
 		<mkdir dir="${build_server}"/>
 
 		<copy todir="${build_server}/data/conf" file="data/conf/stendhalcreateaccount.properties"/>
@@ -101,9 +100,9 @@
 
 		<!-- Update version number. -->
 		<replaceregexp file="${src}/games/stendhal/server/core/engine/StendhalRPRuleProcessor.java"
-               match="private static final String VERSION = &quot;.*&quot;;"
-               replace="private static final String VERSION = &quot;${version}&quot;;"
-               byline="true"/>
+			   match="private static final String VERSION = &quot;.*&quot;;"
+			   replace="private static final String VERSION = &quot;${version}&quot;;"
+			   byline="true"/>
 	
 		<javac srcdir="${src}" destdir="${build_server}" debug="${javac.debug}" debuglevel="${javac.debuglevel}" source="1.5" target="1.5" deprecation="${javac.deprecation}">
 			<include name="games/stendhal/common/*.java"/>
@@ -204,41 +203,41 @@
 
 	</target>
 
-        <target name="jar" depends="client_build, server_build" description="Builds Client and Server">
-            <echo>Built client and server for NetBeans.</echo>
-        </target>
+	<target name="jar" depends="client_build, server_build" description="Builds Client and Server">
+		<echo>Built client and server for NetBeans.</echo>
+	</target>
 
-        <!-- Runs the client -->
-        <target name="client_run" depends="client_build" description="Runs the client">
-            <mkdir dir="run"/>
-            <mkdir dir="run/lib"/>
+	<!-- Runs the client -->
+	<target name="client_run" depends="client_build" description="Runs the client">
+		<mkdir dir="run"/>
+		<mkdir dir="run/lib"/>
 
-            <copy todir="run">
-                <fileset file="build/lib/${client_jarname}"/>
-            </copy>
+		<copy todir="run">
+			<fileset file="build/lib/${client_jarname}"/>
+		</copy>
 
-            <copy todir="run/lib">
-                <fileset file="build/lib/${client_data}"/>
-                <fileset file="build/lib/${client_sound_data}"/>
-                <fileset file="libs/marauroa.jar"/>
-                <fileset file="libs/log4j.jar"/>
-            </copy>
+		<copy todir="run/lib">
+			<fileset file="build/lib/${client_data}"/>
+			<fileset file="build/lib/${client_sound_data}"/>
+			<fileset file="libs/marauroa.jar"/>
+			<fileset file="libs/log4j.jar"/>
+		</copy>
 
-        	<exec dir="." executable="java">
-				<arg line="-Xmx256m -cp run -jar run/${client_jarname}"/>
-        	</exec>
+		<exec dir="." executable="java">
+			<arg line="-Xmx256m -cp run -jar run/${client_jarname}"/>
+		</exec>
 
-            <!-- we've run the program, so delete the jars -->
-            <delete dir="run"/>
-        </target>
+		<!-- we've run the program, so delete the jars -->
+		<delete dir="run"/>
+	</target>
 
-        <!-- Netbeans won't let you choose ant options, so this does it for us-->
-        <target name="run" depends="client_run"  description="Runs client for netbeans trick"/>
+	<!-- Netbeans won't let you choose ant options, so this does it for us-->
+	<target name="run" depends="client_run"  description="Runs client for netbeans trick"/>
 
 	<target name="client_build" depends="init" description="Build JAR file for Stendhal client">
 		<mkdir dir="${build_client}"/>
 
-       	<copy todir="${build_client}/games/stendhal/client/gui" file="${src}/games/stendhal/client/gui/credits.txt"/>
+		<copy todir="${build_client}/games/stendhal/client/gui" file="${src}/games/stendhal/client/gui/credits.txt"/>
 
 		<javac srcdir="${src}" destdir="${build_client}" debug="${javac.debug}" debuglevel="${javac.debuglevel}" source="1.5" target="1.5" deprecation="${javac.deprecation}">
 			<include name="games/stendhal/client/*.java"/>
@@ -262,7 +261,7 @@
 		</javac>
 
 		<!-- compile Starter.java for Java 1.2. So we will be able to
-  		 display a dialogbox if running on an old Java Version -->
+		 display a dialogbox if running on an old Java Version -->
 		<javac srcdir="${src}" destdir="${build_client}" debug="${javac.debug}" debuglevel="${javac.debuglevel}" source="1.2" target="1.2" deprecation="${javac.deprecation}">
 			<include name="games/stendhal/client/update/Starter.java"/>
 
@@ -276,7 +275,7 @@
 
 		<jar jarfile="${lib}/${client_starter_jarname}">
 			<fileset dir="${build_client}">
-	           <include name="games/stendhal/client/update/*"/>
+			   <include name="games/stendhal/client/update/*"/>
 			</fileset>
 			<manifest>
 				<attribute name="Main-Class" value="games.stendhal.client.update.Starter"/>
@@ -338,13 +337,13 @@
 
 	<target name="docs" depends="server_build, client_build" description="Build javadocs for Stendhal">
 		<javadoc packagenames="games.stendhal.*"
-           defaultexcludes="yes"
-           destdir="${docs}"
-           author="true"
-           version="true"
-           use="true"
-           classpath="${classpath}"
-           windowtitle="Stendhal API Documentation Version: ${version}">
+		   defaultexcludes="yes"
+		   destdir="${docs}"
+		   author="true"
+		   version="true"
+		   use="true"
+		   classpath="${classpath}"
+		   windowtitle="Stendhal API Documentation Version: ${version}">
 			<fileset dir="${src}">
 				<include name="**/*.java"/>
 			</fileset>
@@ -353,11 +352,11 @@
 
 	<target name="compile" depends="server_build, client_build" description="Generates JAR files for both client and server"/>
 
-    <condition property="exclude.signing" value="true">
-      <not>
-       <available file="keystore.ks"/>
-      </not>
-    </condition>
+	<condition property="exclude.signing" value="true">
+	  <not>
+	   <available file="keystore.ks"/>
+	  </not>
+	</condition>
 
 	<target name="sign_jars" depends="server_build, client_build" unless="exclude.signing">
 		<signjar alias="${keystore.alias}" keystore="keystore.ks" storepass="${keystore.password}">
@@ -425,7 +424,7 @@
 		<copy todir="${buildroot}/stendhal-${version}" file="README.txt"/>
 		<copy todir="${buildroot}/stendhal-${version}" file=".hotspotrc"/>
 		<zip destfile="${buildroot}/stendhal-FULL-${version}.zip"
-         	basedir="${buildroot}/stendhal-${version}"/>
+			basedir="${buildroot}/stendhal-${version}"/>
 		<delete dir="${buildroot}/stendhal-${version}"/>
 	</target>
 
@@ -481,9 +480,9 @@
 
 		<copy todir="${buildroot}/stendhal-${version}-src/data">
 			<fileset dir="data">
-                <!-- There is a 4MB OGG there! -->
+				<!-- There is a 4MB OGG there! -->
 				<exclude name="music/**/*"/>
-            </fileset>
+			</fileset>
 		</copy>
 
 		<copy todir="${buildroot}/stendhal-server-${version}/web">
@@ -517,7 +516,6 @@
 
 		<delete dir="${buildroot}/stendhal-${version}-src"/>
 	</target>
-
 
 	<target name="rendermaps" description="Converts the *.tmx files to PNG images scaled 1:16">
 		<mkdir dir="${build_tiled_convertmaps}"/>
@@ -606,7 +604,7 @@
 				<pathelement path="${junit_jar}"/>
 				<pathelement path="${groovy_jar}"/>
 				<pathelement path="${simple_jar}"/>
-                <pathelement path="${build_tools}"/>
+				<pathelement path="${build_tools}"/>
 			</classpath>
 		</javac>
 	</target>
