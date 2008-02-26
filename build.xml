@@ -208,22 +208,26 @@
             <echo>Built client and server for NetBeans.</echo>
         </target>
 
-
         <!-- Runs the client -->
         <target name="client_run" depends="client_build" description="Runs the client">
             <mkdir dir="run"/>
+            <mkdir dir="run/lib"/>
 
             <copy todir="run">
                 <fileset file="build/lib/${client_jarname}"/>
+            </copy>
+
+            <copy todir="run/lib">
                 <fileset file="build/lib/${client_data}"/>
                 <fileset file="build/lib/${client_sound_data}"/>
                 <fileset file="libs/marauroa.jar"/>
                 <fileset file="libs/log4j.jar"/>
             </copy>
+
             <exec command="java -Xmx256m -cp run -jar run/${client_jarname}"/>
+
             <!-- we've run the program, so delete the jars -->
             <delete dir="run"/>
-
         </target>
 
         <!-- Netbeans won't let you choose ant options, so this does it for us-->
