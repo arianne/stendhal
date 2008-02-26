@@ -231,8 +231,7 @@ public class Corpse2DView extends Entity2DView {
 	public void onAction(final ActionType at) {
 		switch (at) {
 		case INSPECT:
-			wtEntityContainer = inspector.inspectMe(corpse,
-					corpse.getContent(), wtEntityContainer);
+			wtEntityContainer = inspector.inspectMe(corpse, corpse.getContent(), wtEntityContainer, 2, 2);
 			break;
 
 		default:

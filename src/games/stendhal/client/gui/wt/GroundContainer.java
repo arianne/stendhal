@@ -17,7 +17,6 @@ import games.stendhal.client.IGameScreen;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.StendhalUI;
 import games.stendhal.client.entity.ActionType;
-import games.stendhal.client.entity.Chest;
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.EntityView;
 import games.stendhal.client.entity.Inspector;
@@ -231,13 +230,10 @@ public class GroundContainer extends WtBaseframe implements WtDropTarget,
 	//
 
 	public EntityContainer inspectMe(Entity suspect, RPSlot content,
-			EntityContainer container) {
+			EntityContainer container, int width , int height) {
 		if ((container == null) || !container.isVisible()) {
-			if (suspect instanceof Chest) {
-				container = new EntityContainer(client, suspect.getType(), 5, 6);
-			} else {
-				container = new EntityContainer(client, suspect.getType(), 2, 2);
-			}
+			container = new EntityContainer(client, suspect.getType(), width, height);
+			
 
 			addChild(container);
 

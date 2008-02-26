@@ -168,7 +168,7 @@ public class Chest2DView extends StateEntity2DView {
 				// we're wanted to open this?
 				if (requestOpen) {
 					wtEntityContainer = inspector.inspectMe(chest,
-							chest.getContent(), wtEntityContainer);
+							chest.getContent(), wtEntityContainer, 5, 6);
 				}
 			} else {
 				if (wtEntityContainer != null) {
@@ -221,7 +221,7 @@ public class Chest2DView extends StateEntity2DView {
 			
 			
 			wtEntityContainer = inspector.inspectMe(chest, chest.getContent(),
-					wtEntityContainer);
+					wtEntityContainer, 5, 6);
 			break;
 
 		case OPEN:
