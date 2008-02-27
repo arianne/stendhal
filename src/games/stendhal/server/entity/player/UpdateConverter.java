@@ -226,7 +226,9 @@ public abstract class UpdateConverter {
 	public static void updateQuests(Player player) {
 		EntityManager entityMgr = SingletonRepository.getEntityManager();
 
-		 // rename old quest slot "Valo_concoct_potion" to "valo_concoct_potion"
+		// rename old quest slot "Valo_concoct_potion" to "valo_concoct_potion"
+		//TODO avoid to lose potion in case there is an entry with the old and the new name at the same time:
+		// combine them by taking the minimum of the two times and the sum if the two amounts
 		renameQuestSlot(player, "Valo_concoct_potion", "valo_concoct_potion");
 
 		// From 0.66 to 0.67
