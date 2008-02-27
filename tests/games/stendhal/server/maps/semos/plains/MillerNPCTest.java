@@ -72,10 +72,10 @@ public class MillerNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("Do you know the bakery in Semos? I'm proud to say they use my flour. But the wolves ate my delivery boy again recently... they're probably running out.", npc.get("text"));
 
 		assertTrue(en.step(player, "mill"));
-		assertEquals("I can only mill 1 sack of flour if you bring me 5 sheaves of #grain.", npc.get("text"));
+		assertEquals("I can only mill 1 sack of flour if you bring me 5 #'sheaves of grain'.", npc.get("text"));
 
 		assertTrue(en.step(player, "mill two sacks of flour"));
-		assertEquals("I can only mill 2 sacks of flour if you bring me 10 sheaves of #grain.", npc.get("text"));
+		assertEquals("I can only mill 2 sacks of flour if you bring me 10 #'sheaves of grain'.", npc.get("text"));
 
 		assertTrue(en.step(player, "mill grain"));
 		assertEquals("Sorry, I can only produce flour.", npc.get("text"));
