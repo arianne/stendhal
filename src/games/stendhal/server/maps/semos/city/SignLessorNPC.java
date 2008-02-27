@@ -32,6 +32,8 @@ import java.awt.Shape;
  */
 public class SignLessorNPC extends SpeakerNPCFactory {
 	protected String text;
+	// 1 min at 300 ms/turn
+	private static final int ONE_MINUTE = 180;
 	private static final int MONEY = 100; 
 	protected RentedSignList rentedSignList;
 
@@ -46,7 +48,8 @@ public class SignLessorNPC extends SpeakerNPCFactory {
 		npc.addGreeting("Hi, I #rent signs and #remove outdated ones.");
 		npc.addJob("I #rent signs for a day.");
 		npc.addHelp("If you want to #rent a sign, just tell me what I should write on it.");
-
+		npc.setPlayerChatTimeout(ONE_MINUTE);
+		
 		npc.add(ConversationStates.ATTENDING, "rent", 
 			new LevelLessThanCondition(6), 
 			ConversationStates.ATTENDING, 
