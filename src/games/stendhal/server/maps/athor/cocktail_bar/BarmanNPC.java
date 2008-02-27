@@ -49,7 +49,8 @@ public class BarmanNPC implements ZoneConfigurator {
 				addGoodbye("Cheers!");
 
 				// make cocktail!
-				Map<String, Integer> requiredResources = new TreeMap<String, Integer>();	// use sorted TreeMap instead of HashMap
+				// (uses sorted TreeMap instead of HashMap)
+				Map<String, Integer> requiredResources = new TreeMap<String, Integer>();
 				requiredResources.put("coconut", 1);
 				requiredResources.put("pineapple", 1);
 				ProducerBehaviour mixerBehaviour = new ProducerBehaviour("barman_mix_pina",

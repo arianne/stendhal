@@ -85,7 +85,8 @@ public class BakerNPC implements ZoneConfigurator {
 				addGoodbye();
 
 				// Linzo makes fish pies if you bring him flour, leek, cod and mackerel
-				Map<String, Integer> requiredResources = new TreeMap<String, Integer>();	// use sorted TreeMap instead of HashMap
+				// (uses sorted TreeMap instead of HashMap)
+				Map<String, Integer> requiredResources = new TreeMap<String, Integer>();
 				requiredResources.put("flour", 1);
 				requiredResources.put("cod", 2);
 				requiredResources.put("mackerel", 1);

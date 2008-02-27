@@ -27,7 +27,8 @@ public class HealerNPC extends SpeakerNPCFactory {
 	    npc.addGoodbye("Fare thee well.");
 
 		// Valo makes mega potions if you bring giant heart and money
-		Map<String, Integer> requiredResources = new TreeMap<String, Integer>();	// use sorted TreeMap instead of HashMap
+		// (uses sorted TreeMap instead of HashMap)
+		Map<String, Integer> requiredResources = new TreeMap<String, Integer>();
 		requiredResources.put("money", 20);
 		requiredResources.put("giant heart", 1);
 		ProducerBehaviour behaviour = new ProducerBehaviour("valo_concoct_potion",

@@ -31,7 +31,8 @@ public class LifeguardNPC extends SpeakerNPCFactory {
 		new OutfitChangerAdder().addOutfitChanger(npc, behaviour, "borrow");
 
 		// stuff needed for the SuntanCreamForZara quest
-		Map<String, Integer> requiredResources = new TreeMap<String, Integer>();	// use sorted TreeMap instead of HashMap
+		// (uses sorted TreeMap instead of HashMap)
+		Map<String, Integer> requiredResources = new TreeMap<String, Integer>();
 		requiredResources.put("arandula", 1);
 		requiredResources.put("kokuda", 1);
 		requiredResources.put("minor potion", 1);

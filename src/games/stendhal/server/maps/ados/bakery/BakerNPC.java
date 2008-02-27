@@ -76,7 +76,8 @@ public class BakerNPC implements ZoneConfigurator {
 				addGoodbye();
 
 				// Arlindo makes pies if you bring him flour, meat, carrot and a mushroom
-				Map<String, Integer> requiredResources = new TreeMap<String, Integer>();	// use sorted TreeMap instead of HashMap
+				// (uses sorted TreeMap instead of HashMap)
+				Map<String, Integer> requiredResources = new TreeMap<String, Integer>();
 				requiredResources.put("flour", Integer.valueOf(2));
 				requiredResources.put("meat", Integer.valueOf(2));
 				requiredResources.put("carrot", Integer.valueOf(1));
