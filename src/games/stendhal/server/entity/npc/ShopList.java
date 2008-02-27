@@ -57,12 +57,17 @@ public class ShopList {
 		shops.add("adosscrolls", "ados city scroll", 400);
 		shops.add("adosscrolls", "empty scroll", 2000);
 
+		shops.add("kirdnehscrolls", "kirdneh city scroll", 400);
+		shops.add("kirdnehscrolls", "home scroll", 400);
+		shops.add("kirdnehscrolls", "empty scroll", 2000);
+
 		shops.add("allscrolls", "home scroll", 250);
 		shops.add("allscrolls", "summon scroll", 200);
 		shops.add("allscrolls", "empty scroll", 2000);
 		shops.add("allscrolls", "ados city scroll", 400);
 		shops.add("allscrolls", "nalwor city scroll", 400);
 		shops.add("allscrolls", "fado city scroll", 600);
+		shops.add("allscrolls", "kirdneh city scroll", 600);
 
 		shops.add("sellstuff", "knife", 15);
 		shops.add("sellstuff", "club", 10);

@@ -2,8 +2,12 @@ package games.stendhal.server.maps.kirdneh.museum;
 
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.behaviour.adder.SellerAdder;
+import games.stendhal.server.entity.npc.behaviour.impl.SellerBehaviour;
 
 import java.util.Map;
 
@@ -13,6 +17,7 @@ import java.util.Map;
  * @author kymara
  */
 public class CuratorNPC implements ZoneConfigurator {
+	private ShopList shops = SingletonRepository.getShopList();
 	//
 	// ZoneConfigurator
 	//
@@ -42,8 +47,9 @@ public class CuratorNPC implements ZoneConfigurator {
 			protected void createDialog() {
 				addGreeting("Welcome to Kirdneh Museum.");
 				addJob("I am the curator of this museum. That means I organise the displays and look for new #exhibits.");
-				addHelp("This is a place for rare artefacts and special #exhibits.");			
-				addOffer("We don't sell any of our rare artefacts. But we are always interested in new #exhibits.");
+				addHelp("This is a place for rare artefacts and special #exhibits.");
+				// remaining behaviour defined in games.stendhal.server.maps.quests.WeeklyItemQuest
+				new SellerAdder().addSeller(this, new SellerBehaviour(shops.get("kirdnehscrolls")));
 				addGoodbye("Good bye, it was pleasant talking with you.");
 			}
 		};
