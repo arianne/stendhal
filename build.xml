@@ -235,7 +235,7 @@
 	<!-- Netbeans won't let you choose ant options, so this does it for us-->
 	<target name="run" depends="client_run"  description="Runs client for netbeans trick"/>
 
-	<!-- Runs the client -->
+	<!-- Runs the server -->
 	<target name="server_run" depends="server_build" description="Runs the server">
 		<mkdir dir="run_srvr"/>
 
