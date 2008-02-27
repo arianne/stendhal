@@ -184,15 +184,11 @@ public class ProducerBehaviour extends TransactionBehaviour {
 	 * @return A string describing the required resources.
 	 */
 	private String getRequiredResourceNamesWithHashes(int amount) {
-		Set<String> requiredResourcesWithHashes = new TreeSet<String>(); // use
-																			// sorted
-																			// TreeSet
-																			// instead
-																			// of
-																			// HashSet
+		// use sorted TreeSet instead of HashSet
+		Set<String> requiredResourcesWithHashes = new TreeSet<String>();
 		for (Map.Entry<String, Integer> entry : getRequiredResourcesPerItem().entrySet()) {
-			requiredResourcesWithHashes.add(Grammar.quantityplnoun(amount
-					* entry.getValue(), "#" + entry.getKey()));
+			requiredResourcesWithHashes.add(Grammar.quantityplnounWithHash(amount
+					* entry.getValue(), entry.getKey()));
 		}
 		return Grammar.enumerateCollection(requiredResourcesWithHashes);
 	}
