@@ -589,6 +589,21 @@ public class Grammar {
 	}
 
 	/**
+	 * Returns either the plural or singular form of the given noun, depending on
+	 * the quantity; also prefixes the quantity and prints the noun with a hash prefix.
+	 * 
+	 * @param quantity
+	 *            The quantity to examine
+	 * @param noun
+	 *            The noun to examine
+	 * @return Either "[quantity] [noun]" or "[quantity]" + plural("[noun]") as
+	 *         appropriate
+	 */
+	public static String quantityplnounWithHash(int quantity, String noun) {
+		return "" + quantity + " #'" + plnoun(quantity, noun) + "'";
+	}
+
+	/**
 	 * Is the character a vowel?
 	 * 
 	 * @param c
