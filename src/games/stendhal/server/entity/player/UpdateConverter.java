@@ -1,5 +1,7 @@
 package games.stendhal.server.entity.player;
 
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.slot.EntitySlot;
 import games.stendhal.server.entity.slot.KeyedSlot;
@@ -215,6 +217,66 @@ public abstract class UpdateConverter {
 		}
 
 		return name;
+	}
+
+	/**
+	 * Update the quest slot to the current version.
+	 * @param player
+	 */
+	public static void updateQuests(Player player) {
+		EntityManager entityMgr = SingletonRepository.getEntityManager();
+
+		 // rename old quest slot "Valo_concoct_potion" to "valo_concoct_potion"
+		renameQuestSlot(player, "Valo_concoct_potion", "valo_concoct_potion");
+
+		// From 0.66 to 0.67
+		// update quest slot content, 
+		// replace "_" with " ", for item/creature names
+		for (String questSlot : player.getQuests()) {
+			if (player.hasQuest(questSlot)) {
+				String itemString = player.getQuest(questSlot);
+
+				String[] parts = itemString.split(";");
+
+				StringBuilder buffer = new StringBuilder();
+				boolean first = true;
+
+				for(int i=0; i<parts.length; ++i) {
+					String oldName = parts[i];
+
+					// Convert old item names to their new representation with correct grammar
+					// and without underscores.
+					String newName = UpdateConverter.updateItemName(oldName);
+
+					// check for valid item and creature names if the update converter changed the name
+					if (!newName.equals(oldName)) {
+						if (!entityMgr.isCreature(newName) && !entityMgr.isItem(newName)) {
+							newName = oldName;
+						}
+					}
+
+					if (first) {
+						buffer.append(newName);
+						first = false;
+					} else {
+						buffer.append(';');
+						buffer.append(newName);
+					}
+				}
+
+				player.setQuest(questSlot, buffer.toString());
+			}
+		}
+    }
+
+	 // update the name of a quest to the new spelling
+	private static void renameQuestSlot(Player player, String oldName, String newName) {
+		String questState = player.getQuest(oldName);
+
+		if (questState != null) {
+			player.setQuest(newName, questState);
+			player.removeQuest(oldName);
+		}
 	}
 
 }

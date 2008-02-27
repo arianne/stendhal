@@ -19,7 +19,6 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.events.TutorialNotifier;
 import games.stendhal.server.core.rp.StendhalRPAction;
-import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.RPEntity;
@@ -194,46 +193,7 @@ public class Player extends RPEntity {
 
 		player.updateItemAtkDef();
 
-		EntityManager entityMgr = SingletonRepository.getEntityManager();
-
-		// From 0.66 to 0.67
-		// update quest slot content, 
-		// replace "_" with " ", for item/creature names
-		for (String questSlot : player.getQuests()) {
-			if (player.hasQuest(questSlot)) {
-				String itemString = player.getQuest(questSlot);
-
-				String[] parts = itemString.split(";");
-
-				StringBuilder buffer = new StringBuilder();
-				boolean first = true;
-
-				for(int i=0; i<parts.length; ++i) {
-					String oldName = parts[i];
-
-					// Convert old item names to their new representation with correct grammar
-					// and without underscores.
-					String newName = UpdateConverter.updateItemName(oldName);
-
-					// check for valid item and creature names if the update converter changed the name
-					if (!newName.equals(oldName)) {
-						if (!entityMgr.isCreature(newName) && !entityMgr.isItem(newName)) {
-							newName = oldName;
-						}
-					}
-
-					if (first) {
-						buffer.append(newName);
-						first = false;
-					} else {
-						buffer.append(';');
-						buffer.append(newName);
-					}
-				}
-
-				player.setQuest(questSlot, buffer.toString());
-			}
-		}
+		UpdateConverter.updateQuests(player);
 
 		PlayerRPClass.welcome(player);
 
