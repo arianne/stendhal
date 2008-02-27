@@ -21,6 +21,7 @@ import java.util.TreeMap;
  * @author hendrik
  */
 public class BakerNPC implements ZoneConfigurator {
+
 	/**
 	 * Configure a zone.
 	 *
@@ -97,4 +98,5 @@ public class BakerNPC implements ZoneConfigurator {
 		baker.initHP(100);
 		zone.add(baker);
 	}
+
 }
