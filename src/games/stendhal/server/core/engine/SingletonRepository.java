@@ -124,6 +124,4 @@ public class SingletonRepository {
 		return new DefaultRuleManager();
 	}
 
-	
-
 }
