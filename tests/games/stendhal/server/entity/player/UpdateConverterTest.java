@@ -2,6 +2,7 @@ package games.stendhal.server.entity.player;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import marauroa.common.Log4J;
 import marauroa.common.game.RPObject;
@@ -109,6 +110,23 @@ public class UpdateConverterTest {
 		assertTrue(player.hasKilled("name"));
 		assertTrue(player.hasKilled("monster"));
 		assertTrue(player.hasKilled("cave rat"));
+	}
+
+	@Test
+	public void testRenameQuest() {
+		Player player = PlayerTestHelper.createPlayer("player");
+
+		// First we use only the old quest slot name.
+		player.setQuest("Valo_concoct_potion", "3;mega potion;1200000000000");
+		UpdateConverter.updateQuests(player);
+		assertNull(player.getQuest("Valo_concoct_potion"));
+		assertEquals("3;mega potion;1200000000000", player.getQuest("valo_concoct_potion"));
+
+		// Now add the old name to the existing new one.
+		player.setQuest("Valo_concoct_potion", "8;mega potion;1300000000000");
+		UpdateConverter.updateQuests(player);
+		assertNull(player.getQuest("Valo_concoct_potion"));
+		assertEquals("11;mega potion;1200000000000", player.getQuest("valo_concoct_potion"));
 	}
 
 }
