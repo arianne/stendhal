@@ -1106,13 +1106,13 @@ black helmet 10000
 
  <!-- garden --> 
  <portal x="15" y="29" ref="outgardenleft">
-   <destination zone="int_ados_castle_garden" ref="ingardenleft"/>
+   <destination zone="0_ados_city" ref="ingardenleft"/>
   </portal>
  <portal x="16" y="29" ref="outgardencenter">
-   <destination zone="int_ados_castle_garden" ref="ingardenright"/>
+   <destination zone="0_ados_city" ref="ingardenright"/>
   </portal>
  <portal x="17" y="29" ref="outgardenright">
-   <destination zone="int_ados_castle_garden" ref="ingardenright"/>
+   <destination zone="0_ados_city" ref="ingardenright"/>
   </portal>
 
  <!-- secret dungeon-->
@@ -1121,27 +1121,9 @@ black helmet 10000
   </portal>
  </zone>
 
-
-
- <zone name="int_ados_castle_garden" file="interiors/ados/castle_garden.tmx">
- <!-- entrance --> 
- <portal x="15" y="5" ref="ingardenleft">
-   <destination zone="int_ados_castle_throne" ref="outgardenleft"/>
-  </portal>
- <portal x="16" y="5" ref="ingardenright">
-   <destination zone="int_ados_castle_throne" ref="outgardenright"/>
-  </portal>
-
-  <!-- dungeon-->
-  <portal x="2" y="29" ref="downstair">
-   <destination zone="int_ados_castle_dungeons" ref="entrance1"/>
-  </portal>
- </zone>
-
-
  <zone name="int_ados_castle_dungeons" file="interiors/ados/castle_dungeons.tmx">
  <portal x="33" y="29" ref="entrance1">
-   <destination zone="int_ados_castle_garden" ref="downstair"/>
+   <destination zone="0_ados_city" ref="castledungeons"/>
   </portal>
  <portal x="46" y="3" ref="entrance2">
    <destination zone="int_ados_castle_throne" ref="secret"/>
@@ -1431,12 +1413,25 @@ Southeast: Docks
    </zone>
    
    <zone name="0_ados_city" level="0" x="500896" y="500000" file="Level 0/ados/city.tmx">
+   <!-- castle garden entrance --> 
+   <portal x="17" y="24" ref="ingardenleft">
+     <destination zone="int_ados_castle_throne" ref="outgardenleft"/>
+   </portal>
+   <portal x="18" y="24" ref="ingardenright">
+     <destination zone="int_ados_castle_throne" ref="outgardenright"/>
+   </portal>
+
+  <!-- castle dungeon-->
+  <portal x="10" y="31" ref="castledungeons">
+   <destination zone="int_ados_castle_dungeons" ref="entrance1"/>
+  </portal>
+
    <entity x="89" y="63">
     	<implementation class-name="games.stendhal.server.entity.mapstuff.source.FishSource">
      	<parameter name="species">cod</parameter>
     	</implementation>
     </entity>
-  <portal x="5" y="52" ref="house_63">
+   <portal x="5" y="52" ref="house_63">
      <destination zone="int_ados_house_63" ref="in"/>
      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.KeyedPortal">
      <parameter name="key">private key 63</parameter>
