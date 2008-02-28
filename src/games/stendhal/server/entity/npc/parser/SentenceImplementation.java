@@ -1,5 +1,6 @@
 package games.stendhal.server.entity.npc.parser;
 
+import games.stendhal.common.ErrorDrain;
 import games.stendhal.common.Grammar;
 
 import java.util.Iterator;
@@ -75,9 +76,9 @@ final class SentenceImplementation extends Sentence {
 	/**
 	 * Classify word types and normalize words.
 	 * 
-	 * @param parser
+	 * @param errors
 	 */
-	void classifyWords(ConversationParser parser) {
+	void classifyWords(ErrorDrain errors) {
 		WordList wl = WordList.getInstance();
 
 		for (Expression w : expressions) {
@@ -105,21 +106,23 @@ final class SentenceImplementation extends Sentence {
 					w.setNormalized(Integer.toString(w.getAmount()));
 				} else if (entry.getType().isPlural()) {
 					// normalize to the singular form
-					if (entry.getPlurSing() == null) {
-						logger.error("SentenceImplementation.classifyWords(): unexpected condition for original='"+original+"': entry.getPlurSing() is null");
+					// If getPlurSing() is null, there is no unique singular form, so use the original string.
+					if (entry.getPlurSing() != null) {
+						w.setNormalized(entry.getPlurSing());
+					} else {
+						w.setNormalized(original);
 					}
-					w.setNormalized(entry.getPlurSing());
 				} else {
 					w.setNormalized(entry.getNormalized());
 				}
 			} else {
 				// handle numeric expressions
 				if (original.matches("^[+-]?[0-9.,]+")) {
-					w.parseAmount(original, parser);
+					w.parseAmount(original, errors);
 					int amount = w.getAmount();
 
 					if (amount < 0) {
-						parser.setError("negative amount: " + amount);
+						errors.setError("negative amount: " + amount);
 					}
 				}
 			}
@@ -323,7 +326,7 @@ final class SentenceImplementation extends Sentence {
 		Expression first = nextValid(it);
 
 		if (first != null) {
-			while (first.isQuestion() && it.hasNext()) {
+			while (first != null && first.isQuestion() && it.hasNext()) {
 				if (type == SentenceType.UNDEFINED) {
 					type = SentenceType.QUESTION;
 				}
