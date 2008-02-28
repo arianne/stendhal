@@ -294,22 +294,26 @@ public abstract class UpdateConverter {
 				String[] newParts = newState.split(";");
 
 				if (oldParts.length==3 && newParts.length==3) {
-    				int oldAmount = Integer.parseInt(oldParts[0]);
-    				int newAmount = Integer.parseInt(newParts[0]);
-    				String oldItem = oldParts[1];
-    				String newItem = newParts[1];
-    				long oldTime = Long.parseLong(oldParts[2]);
-    				long newTime = Long.parseLong(newParts[2]);
+					try {
+        				int oldAmount = Integer.parseInt(oldParts[0]);
+        				int newAmount = Integer.parseInt(newParts[0]);
+        				String oldItem = oldParts[1];
+        				String newItem = newParts[1];
+        				long oldTime = Long.parseLong(oldParts[2]);
+        				long newTime = Long.parseLong(newParts[2]);
 
-    				if (oldItem.equals(newItem)) {
-    					newAmount += oldAmount;
+        				if (oldItem.equals(newItem)) {
+        					newAmount += oldAmount;
 
-    					if (oldTime < newTime) {
-    						newTime = oldTime;
-    					}
+        					if (oldTime < newTime) {
+        						newTime = oldTime;
+        					}
 
-    					questState = Integer.toString(newAmount) + ';' + newItem + ';' + Long.toString(newTime);
-    				}
+        					questState = Integer.toString(newAmount) + ';' + newItem + ';' + Long.toString(newTime);
+        				}
+        			} catch(NumberFormatException e) {
+        				e.printStackTrace();
+        			}
 				}
 			}
 
