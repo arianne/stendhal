@@ -122,7 +122,7 @@ public class UpdateConverterTest {
 		assertNull(player.getQuest("Valo_concoct_potion"));
 		assertEquals("3;mega potion;1200000000000", player.getQuest("valo_concoct_potion"));
 
-		// Now add the old name to the existing new one.
+		// Now add the old name to the existing new one and see if they are accumulated correct.
 		player.setQuest("Valo_concoct_potion", "8;mega potion;1300000000000");
 		UpdateConverter.updateQuests(player);
 		assertNull(player.getQuest("Valo_concoct_potion"));

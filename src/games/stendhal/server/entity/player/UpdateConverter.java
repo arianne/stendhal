@@ -227,9 +227,9 @@ public abstract class UpdateConverter {
 		EntityManager entityMgr = SingletonRepository.getEntityManager();
 
 		// rename old quest slot "Valo_concoct_potion" to "valo_concoct_potion"
-		//TODO avoid to lose potion in case there is an entry with the old and the new name at the same time:
-		// combine them by taking the minimum of the two times and the sum if the two amounts
-		renameQuestSlot(player, "Valo_concoct_potion", "valo_concoct_potion");
+		// We avoid to lose potion in case there is an entry with the old and the new name at the same
+		// time by combining them by calculating the minimum of the two times and the sum of the two amounts.
+		migrateSumTimedQuestSlot(player, "Valo_concoct_potion", "valo_concoct_potion");
 
 		// From 0.66 to 0.67
 		// update quest slot content, 
@@ -272,10 +272,47 @@ public abstract class UpdateConverter {
     }
 
 	 // update the name of a quest to the new spelling
-	private static void renameQuestSlot(Player player, String oldName, String newName) {
-		String questState = player.getQuest(oldName);
+//	private static void renameQuestSlot(Player player, String oldName, String newName) {
+//		String questState = player.getQuest(oldName);
+//
+//		if (questState != null) {
+//			player.setQuest(newName, questState);
+//			player.removeQuest(oldName);
+//		}
+//	}
 
-		if (questState != null) {
+	 // update the name of a quest to the new spelling and accumulate the content
+	private static void migrateSumTimedQuestSlot(Player player, String oldName, String newName) {
+		String oldState = player.getQuest(oldName);
+
+		if (oldState != null) {
+			String questState = oldState;
+			String newState = player.getQuest(newName);
+
+			if (newState != null) {
+				String[] oldParts = oldState.split(";");
+				String[] newParts = newState.split(";");
+
+				if (oldParts.length==3 && newParts.length==3) {
+    				int oldAmount = Integer.parseInt(oldParts[0]);
+    				int newAmount = Integer.parseInt(newParts[0]);
+    				String oldItem = oldParts[1];
+    				String newItem = newParts[1];
+    				long oldTime = Long.parseLong(oldParts[2]);
+    				long newTime = Long.parseLong(newParts[2]);
+
+    				if (oldItem.equals(newItem)) {
+    					newAmount += oldAmount;
+
+    					if (oldTime < newTime) {
+    						newTime = oldTime;
+    					}
+
+    					questState = Integer.toString(newAmount) + ';' + newItem + ';' + Long.toString(newTime);
+    				}
+				}
+			}
+
 			player.setQuest(newName, questState);
 			player.removeQuest(oldName);
 		}
