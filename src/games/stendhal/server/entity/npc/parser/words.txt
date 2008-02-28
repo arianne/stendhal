@@ -1,4 +1,4 @@
-# @Version 20
+# @Version 21
 #
 # Word list for the Stendhal conversation parser
 #
@@ -1218,6 +1218,7 @@ soon	IGN
 the	IGN
 though	IGN
 to	IGN
+very	IGN
 whatever	IGN
 while	IGN
 yeah	IGN
