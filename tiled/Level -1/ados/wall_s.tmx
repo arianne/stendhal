@@ -36,6 +36,12 @@
  <tileset name="Unbenannt" firstgid="165" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/mutant.png"/>
  </tileset>
+ <tileset name="giantrat" firstgid="171" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/creature/giant_animal.png"/>
+ </tileset>
+ <tileset name="animals" firstgid="173" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/creature/animal.png"/>
+ </tileset>
  <layer name="0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3ZQW7DIBAFUB+xZ6ov3hUqQjZmbAq4eU9CreLEXvwMDGTbAAAAAAAAAAAY7avj4H1Sdt/Z3/T/3jjS53ifPPOWUXs/6zqbq1N2+/abb23U3sNc0fU6zz7N47zLk34tzz7VNet72qeX/V3+GmvrkX055+e9HeuK5JtnevT6XlzTw60rknfL2E/uIf91ROu87OVq18/uJf/57tT50Znc2bXafeU/T2utt57J7tvxXC//tUTm+Ej25TpwtReQ/xzRtf1O9vJf01/U/N387f/G67nWH637V7/ZpuH8f47e2d85CyjnAMbpmf9Rple9/tEawDi95v+Wtf5qj2H9n+NO75/37C113/IdUP9zRM/6opm3PF/+cz39DkQzL58t/7kiZ4B367z2bOe/80XX7F79mvzXMTL38pnyX8PI7NPz1P/nUv+f7ewcaEYvwni1/ebZPqT8vqRzKd6ntteM/P6g/t+p5eyh9ToAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD8Bz+ROfD7AAABAA==
@@ -63,7 +69,7 @@
  </layer>
  <layer name="objects" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3ZQQqAMAwEwPz/IVr7Si+C4tkaa2ag94VNaMUIAAAAAAAAAAAgy5odgGmZnf/RKQDAPFp2AIZZsgMAr7HvUMsS9r6y0d37PgD4Dvd9bU/3348D/E8PO17Blh2AV93fAVucM2Dfuc4DAAA8qYV/hVXoGQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIDKdu5rqH0AAAEA
+   H4sIAAAAAAAAAO3bMQrAMAgF0Nz/IB1Khh6xcyEWpJWAvDeKg9sXxDEAAAAAAAAAAACAXWay/yqZAgD4Qj5DH8fuAQCAMnIeAPqT9/ztDOrZGy8AUOttD4zyHAAAAABW/AYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADA0w3dHeSfAAABAA==
   </data>
  </layer>
  <layer name="collision" width="128" height="128" opacity="0.54">
