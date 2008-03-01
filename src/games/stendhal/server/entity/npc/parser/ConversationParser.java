@@ -23,14 +23,27 @@ public final class ConversationParser extends ErrorBuffer {
 
 	private StringTokenizer tokenizer;
 
+	final String originalText;
+
+	/**
+	 * Return the original parsed text.
+	 *
+	 * @return
+	 */
+	public String getOriginalText() {
+	    return originalText;
+    }
+
 	/**
 	 * Create a new conversation parser and initialize with the given text
 	 * string.
+	 *
 	 * @param text 
 	 */
 	public ConversationParser(final String text) {
 		// initialize a new tokenizer with the given text
 		tokenizer = new StringTokenizer(text != null ? text : "");
+		originalText = text;
 	}
 
 	/**
@@ -145,6 +158,7 @@ public final class ConversationParser extends ErrorBuffer {
 
 	/**
 	 * Read the next word from the parsed sentence.
+	 *
 	 * @return word string
 	 */
 	public String readNextWord() {

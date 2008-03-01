@@ -32,6 +32,8 @@ final class SentenceImplementation extends Sentence {
 	 * @param parser
 	 */
 	void parse(ConversationParser parser) {
+		originalText = parser.getOriginalText();
+
 		Expression prevWord = null;
 
 		for (String ws; (ws = parser.readNextWord()) != null;) {

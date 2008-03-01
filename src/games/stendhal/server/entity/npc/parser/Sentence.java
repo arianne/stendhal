@@ -34,6 +34,8 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
 
 	protected final ConversationContext context;
 
+	protected String originalText;
+
 	/**
 	 * Create a Sentence object.
 	 *
@@ -367,7 +369,7 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
 	 * 
 	 * @return string
 	 */
-	public String getOriginalText() {
+	public String getTrimmedText() {
 		SentenceBuilder builder = new SentenceBuilder();
 
 		for (Expression w : expressions) {
@@ -377,6 +379,18 @@ public class Sentence extends ErrorBuffer implements Iterable<Expression> {
 		appendPunctation(builder);
 
 		return builder.toString();
+	}
+
+	/**
+	 * Return the original parsed text of the sentence.
+	 * 
+	 * TODO mf - There should be only as less code places as possible to rely
+	 * on this method.
+	 * 
+	 * @return string
+	 */
+	public String getOriginalText() {
+		return originalText;
 	}
 
 	/**
