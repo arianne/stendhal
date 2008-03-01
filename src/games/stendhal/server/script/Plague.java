@@ -23,15 +23,13 @@ public class Plague extends ScriptImpl {
 			admin.sendPrivateText("/script Plague.class [ringcount] <creature>");
 			return;
 		}
-		
-		
+
 		// extract position of admin
 
 		int x = admin.getX();
 		int y = admin.getY();
 		sandbox.setZone(admin.getZone());
-		
-		
+
 		int ringcount = MathHelper.parseIntDefault(args.get(0), -1);
 		int startArgIndex = 1;
 		if (ringcount == -1){
@@ -41,15 +39,13 @@ public class Plague extends ScriptImpl {
 		
 		// concatenate torn words into one
 		
-		String creatureClass="";
+		String creatureClass = "";
 		List <String>  templist  =   args.subList(startArgIndex,args.size());
 		for (String part : templist) {
 			creatureClass = creatureClass + part + " "; 
 		}
 		
 		creatureClass  = creatureClass.trim();
-		
-	
 
 		Creature tempCreature = sandbox.getCreature(creatureClass);
 		
@@ -71,7 +67,6 @@ public class Plague extends ScriptImpl {
 				admin.sendPrivateText("That's too many! Please keep <ringcount> less or equal to "
 						+ MAX_RING_COUNT + ".");
 			}
-			
 		}
 	}
 }
