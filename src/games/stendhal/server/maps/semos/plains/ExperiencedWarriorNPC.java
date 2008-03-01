@@ -6,6 +6,8 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPCFactory;
+import games.stendhal.server.entity.npc.condition.NotCondition;
+import games.stendhal.server.entity.npc.condition.TriggerInListCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
@@ -142,7 +144,6 @@ public class ExperiencedWarriorNPC extends SpeakerNPCFactory {
 
 	@Override
 	public void createDialog(SpeakerNPC npc) {
-
 		class StateInfo {
 			private String creatureName;
 
@@ -181,7 +182,8 @@ public class ExperiencedWarriorNPC extends SpeakerNPCFactory {
 				ConversationStates.QUESTION_1,
 				"Which creature you would like to hear more about?", null);
 
-		npc.add(ConversationStates.QUESTION_1, "", null,
+		npc.add(ConversationStates.QUESTION_1, "",
+				new NotCondition(new TriggerInListCondition(ConversationPhrases.GOODBYE_MESSAGES)),
 				ConversationStates.ATTENDING, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
@@ -224,8 +226,7 @@ public class ExperiencedWarriorNPC extends SpeakerNPCFactory {
 						if (stateInfo.getCreatureName() != null) {
 							if (player.drop("money",
 									stateInfo.getInformationCost())) {
-								String infoString = getCreatureInfo(player,
-										stateInfo.getCreatureName());
+								String infoString = getCreatureInfo(player, stateInfo.getCreatureName());
 								infoString += " If you want to hear about another creature, just tell me which.";
 								speakerNPC.say(infoString);
 								speakerNPC.setCurrentState(ConversationStates.QUESTION_1);
@@ -243,9 +244,8 @@ public class ExperiencedWarriorNPC extends SpeakerNPCFactory {
 		npc.addGoodbye("Farewell and godspeed!");
 	}
 
-	private String getCreatureInfo(final Player player,
-			final String creatureName) {
-		String result = null;
+	private static String getCreatureInfo(final Player player, final String creatureName) {
+		String result;
 		DefaultCreature creature = SingletonRepository.getEntityManager().getDefaultCreature(creatureName);
 		if (creature != null) {
 			result = creatureInfo.getCreatureInfo(player, creature, 3, 8, true);
