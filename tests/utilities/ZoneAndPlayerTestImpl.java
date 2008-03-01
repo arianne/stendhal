@@ -23,6 +23,16 @@ public abstract class ZoneAndPlayerTestImpl extends QuestHelper {
 	protected Player player;
 
 	/**
+	 * Protected constructor to initialize the zone member variable.
+	 *
+	 * @param zoneName
+	 */
+	protected ZoneAndPlayerTestImpl(String zoneName) {
+		zone = SingletonRepository.getRPWorld().getZone(zoneName);
+		assertNotNull(zone);
+	}
+
+	/**
 	 * Setup and configure zone with the configurators given as parameters before starting the test.
 	 *
 	 * @param zoneName
@@ -47,16 +57,6 @@ public abstract class ZoneAndPlayerTestImpl extends QuestHelper {
 
 		return zone;
     }
-
-	/**
-	 * Protected constructor to initialize the zone member variable.
-	 *
-	 * @param zoneName
-	 */
-	protected ZoneAndPlayerTestImpl(String zoneName) {
-		zone = SingletonRepository.getRPWorld().getZone(zoneName);
-		assertNotNull(zone);
-	}
 
 	/**
 	 * Create the player to be used in the test.
