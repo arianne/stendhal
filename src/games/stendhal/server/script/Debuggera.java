@@ -27,7 +27,7 @@ import org.apache.log4j.Logger;
 
 /**
  * code for abstract/int_admin_playground which creates a NPC to help testers.
- * 
+ *
  * @author hendrik
  */
 public class Debuggera extends ScriptImpl {
@@ -78,7 +78,7 @@ public class Debuggera extends ScriptImpl {
 			// change quest
 			String quest = sentence.getOriginalText();
 			int pos;
-			if (quest ==  null) {
+			if (quest == null) {
 				pos = -1;
 			} else {
 				pos = quest.indexOf("=");
@@ -258,6 +258,7 @@ public class Debuggera extends ScriptImpl {
 						break;
 					}
 				}
+
 				if (!foundSpot) {
 					player.sendPrivateText("Sorry, did not find a free spot in "
 							+ zoneName);
@@ -266,7 +267,8 @@ public class Debuggera extends ScriptImpl {
 				Logger.getLogger(SightseeingAction.class).error(e, e);
 			}
 
-			counter++;
+			++counter;
+
 			if (counter < zones.size()) {
 				SingletonRepository.getTurnNotifier().notifyInTurns(10, this);
 			}
@@ -311,16 +313,15 @@ public class Debuggera extends ScriptImpl {
 				"greetings", "hola"), new AdminCondition(),
 				ConversationStates.ATTENDING,
 				"Hi, game master. Do you think i am #crazy?", null);
-		/*
-		 * npc.add(ConversationStates.IDLE, [ "hi","hello","greetings","hola" ],
-		 * new AdminCondition(), ConversationStates.QUESTION_1, "May I talk to
-		 * strangers?", null); npc.add(ConversationStates.QUESTION_1,
-		 * SpeakerNPC.YES_MESSAGES, new AdminCondition(),
-		 * ConversationStates.ATTENDING, null, new
-		 * DebuggeraEnablerAction(true)); npc.add(ConversationStates.QUESTION_1,
-		 * "no", new AdminCondition(), ConversationStates.ATTENDING, null, new
-		 * DebuggeraEnablerAction(false));
-		 */
+
+//		npc.add(ConversationStates.IDLE, [ "hi","hello","greetings","hola" ],
+//				new AdminCondition(), ConversationStates.QUESTION_1,
+//				"May I talk to strangers?", null);
+//		npc.add(ConversationStates.QUESTION_1, SpeakerNPC.YES_MESSAGES, new AdminCondition(),
+//				ConversationStates.ATTENDING, null, new DebuggeraEnablerAction(true));
+//		npc.add(ConversationStates.QUESTION_1, "no", new AdminCondition(),
+//				ConversationStates.ATTENDING, null, new DebuggeraEnablerAction(false));
+
 		npc.behave(Arrays.asList("insane", "crazy", "mad"),
 				"Why are you so mean? I AM NOT INSANE. My mummy says, I am a #special child.");
 		npc.behave(
@@ -395,7 +396,6 @@ public class Debuggera extends ScriptImpl {
 	 * You help me, And I'll help you. And together, We will see it through.
 	 * 
 	 * The sky is blue, The Earth Earth is green. I can help, To keep it clean.
-	 * 
 	 */
 
 }
