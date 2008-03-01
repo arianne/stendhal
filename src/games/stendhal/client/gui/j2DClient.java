@@ -184,6 +184,14 @@ public class j2DClient extends StendhalUI {
 
 	private static final boolean newCode = (System.getProperty("stendhal.newgui") != null);
 
+	/**
+	 * A constructor for JUnit tests.
+	 */
+	public j2DClient() {
+		super(null);
+		setDefault(this);
+	}
+
 	public j2DClient(StendhalClient client) {
 		super(client);
 
@@ -1220,6 +1228,7 @@ public class j2DClient extends StendhalUI {
 			if ((username != null) && (password != null) && (host != null)
 					&& (port != null)) {
 				StendhalClient client = StendhalClient.get();
+
 				try {
 					client.connect(host, Integer.parseInt(port));
 					client.login(username, password);
@@ -1241,8 +1250,6 @@ public class j2DClient extends StendhalUI {
 		System.out.println("* -u\tUsername to log into Marauroa server");
 		System.out.println("* -p\tPassword to log into Marauroa server");
 	}
-
-	
 
 	protected static class DelayedDirectionRelease {
 		/**
