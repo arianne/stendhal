@@ -17,7 +17,6 @@ public class AlterActionTest {
 
 	@Test
 	public void testExecute() {
-
 		new MockStendhalClient("") {
 			@Override
 			public void send(RPAction action) {
@@ -36,7 +35,6 @@ public class AlterActionTest {
 		assertFalse(action.execute(new String[] { "schnick", "schnick", "schnick" }, null));
 
 		assertTrue(action.execute(new String[] { "schnick", "schnack", "schnuck" }, "blabla"));
-
 	}
 
 	@Test

@@ -201,7 +201,7 @@ public class Player extends RPEntity {
 		return player;
 	}
 
-	public static  Player createEmptyZeroLevelPlayer(String characterName) {
+	public static Player createEmptyZeroLevelPlayer(String characterName) {
 		/*
 		 * TODO: Update to use Player and RPEntity methods.
 		 */
@@ -235,6 +235,7 @@ public class Player extends RPEntity {
 
 		return object;
 	}
+
 	private static void convertOldfeaturesList(Player player) {
 		if (player.has("features")) {
 			logger.info("Converting features for " + player.getName() + ": "

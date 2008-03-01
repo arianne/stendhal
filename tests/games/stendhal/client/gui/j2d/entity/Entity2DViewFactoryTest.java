@@ -115,16 +115,15 @@ public class Entity2DViewFactoryTest {
 
 	@Test
 	public final void testCreateUser2Dview() {
-
 		assertNotNull(new User2DView(new User()));
 		assertEquals(Entity2DViewFactory.get().create(new User()).getClass(),
 				User2DView.class);
 	}
+
 	@Test
 	public final void testCreateFire2Dview() {
-
-	assertNotNull(Entity2DViewFactory.get().create(new Fire()));
-	assertEquals(Entity2DViewFactory.get().create(new Fire()).getClass(),
-			AnimatedLoopEntity2DView.class);
+    	assertNotNull(Entity2DViewFactory.get().create(new Fire()));
+    	assertEquals(Entity2DViewFactory.get().create(new Fire()).getClass(),
+    			AnimatedLoopEntity2DView.class);
 	}
 }
