@@ -5,7 +5,7 @@ import games.stendhal.server.entity.player.Player;
 import java.util.List;
 
 /**
- * Default implementaion of the Script interface.
+ * Default implementation of the Script interface.
  * 
  * @author hendrik
  */

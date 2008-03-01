@@ -125,8 +125,8 @@ class Pathfinder {
 	private CollisionDetection collisionMap;
 
 	/**
-	 * The maximum distance for the path. It is comared with the f value of the
-	 * node The deafult is 40 The minimum for working pathfinding is
+	 * The maximum distance for the path. It is compared with the f value of the
+	 * node The default is 40 The minimum for working pathfinding is
 	 * heuristicFromStartNode + 1
 	 */
 	private double maxDistance;
