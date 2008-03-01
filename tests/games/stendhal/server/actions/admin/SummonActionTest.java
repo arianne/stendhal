@@ -32,8 +32,6 @@ public class SummonActionTest {
 		MockStendhalRPRuleProcessor.get().clearPlayers();
 	}
 	
-
-	
 	@Before
 	public void setUP() {
 		zone = new StendhalRPZone("testzone") {
@@ -53,7 +51,6 @@ public class SummonActionTest {
 	
 	@Test
 	public final void testSummonRat() {
-
 		Player pl = PlayerTestHelper.createPlayer("hugo");
 
 		MockStendhalRPRuleProcessor.get().addPlayer(pl);
@@ -70,7 +67,6 @@ public class SummonActionTest {
 		assertEquals(1, pl.getID().getObjectID());
 		Creature rat = (Creature) zone.getEntityAt(0, 0);
 		assertEquals("rat", rat.get("subclass"));
-
 	}
 
 	@Test
@@ -92,12 +88,10 @@ public class SummonActionTest {
 		assertEquals(1, pl.getID().getObjectID());
 		Item item = (Item) zone.getEntityAt(0, 0);
 		assertEquals("dagger", item.get("subclass"));
-
 	}
 
 	@Test
 	public final void testSummonUnKnown() {
-
 		Player pl = PlayerTestHelper.createPlayer("hugo");
 
 		MockStendhalRPRuleProcessor.get().addPlayer(pl);
@@ -113,7 +107,6 @@ public class SummonActionTest {
 		CommandCenter.execute(pl, action);
 		assertEquals(1, pl.getID().getObjectID());
 		assertNull(zone.getEntityAt(0, 0));
-
 	}
 	
 	@Test
@@ -133,6 +126,5 @@ public class SummonActionTest {
 		CommandCenter.execute(pl, action);
 		assertEquals(1, pl.getID().getObjectID());
 		assertNull(zone.getEntityAt(0, 0));
-
 	}
 }
