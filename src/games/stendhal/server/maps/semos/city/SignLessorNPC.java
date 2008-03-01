@@ -32,6 +32,7 @@ import java.awt.Shape;
  */
 public class SignLessorNPC extends SpeakerNPCFactory {
 	protected String text;
+
 	// 1 min at 300 ms/turn
 	private static final int ONE_MINUTE = 180;
 	private static final int MONEY = 100; 
@@ -69,10 +70,10 @@ public class SignLessorNPC extends SpeakerNPCFactory {
 			new SpeakerNPC.ChatAction() {
 				@Override
 				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-					String temp = sentence.getOriginalText().trim();
-					text = temp.substring(5).trim();
-					
+					text = sentence.getOriginalText().trim().substring(5).trim();
+
 					String reply = "A sign costs " + MONEY + " money for 24 hours. Do you want to rent one?";
+
 					if (rentedSignList.getByName(player.getName()) != null) {
 						reply = reply + " Please note that I will replace the sign you already rented.";
 					}
@@ -97,15 +98,13 @@ public class SignLessorNPC extends SpeakerNPCFactory {
 			new PlayerHasItemWithHimCondition("money", MONEY),
 			ConversationStates.IDLE, null,
 			new SpeakerNPC.ChatAction() {
-
 				@Override
 				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-
 					if (text.length() > 1000) {
 						text = text.substring(1000);
 					}
-					
-					// do not accept all uper case
+
+					// do not accept all upper case
 					if (StringUtils.countLowerCase(text) < StringUtils.countUpperCase(text) * 2) {
 						text = text.toLowerCase();
 					}
@@ -120,7 +119,7 @@ public class SignLessorNPC extends SpeakerNPCFactory {
 						player.drop("money", MONEY);
 						npc.say("OK, let me put your sign up.");
 
-						// inform irc using postman
+						// inform IRC using postman
 						Player postman = SingletonRepository.getRuleProcessor().getPlayer("postman");
 						if (postman != null) {
 							postman.sendPrivateText(player.getName() + " rented a sign saying \"" + text + "\"");
@@ -158,16 +157,13 @@ public class SignLessorNPC extends SpeakerNPCFactory {
 			new AdminCondition(100),
 			ConversationStates.ATTENDING, null,
 			new SpeakerNPC.ChatAction() {
-
 				@Override
 				public void fire(Player player, Sentence sentence, SpeakerNPC npc) {
-					String original = sentence.getOriginalText().trim();
-					int pos = original.indexOf(" ");
-					if (pos < 0) {
+					if (sentence.getExpressions().size() < 2) {
 						npc.say("Syntax: delete <nameofplayer>");
 						return;
 					}
-					String playerName = original.substring(pos + 1).trim();
+					String playerName = sentence.getExpressionStringAfterVerb();
 					rentedSignList.removeByName(playerName);
 					String message = player.getName() + " deleted sign from " + playerName;
 					StendhalRPRuleProcessor.sendMessageToSupporters("SignLessorNPC", message);
