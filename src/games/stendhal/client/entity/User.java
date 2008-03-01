@@ -36,7 +36,6 @@ public class User extends Player {
 	}
 
 	public User() {
-		super();
 		instance = this;
 		modificationCount = 0;
 		/*
