@@ -4,6 +4,8 @@ import games.stendhal.common.Grammar;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.condition.NotCondition;
+import games.stendhal.server.entity.npc.condition.TriggerInListCondition;
 import games.stendhal.server.entity.npc.parser.Sentence;
 import games.stendhal.server.entity.player.Player;
 
@@ -221,12 +223,8 @@ public class ElvishArmor extends AbstractQuest {
 		});
 
 		npc.add(ConversationStates.QUESTION_1, "",
-				new SpeakerNPC.ChatCondition() {
-					@Override
-					public boolean fire(Player player, Sentence sentence, SpeakerNPC engine) {
-						return !NEEDEDITEMS.contains(sentence.getTriggerExpression().getNormalized());
-					}
-				}, ConversationStates.QUESTION_1,
+				new NotCondition(new TriggerInListCondition(NEEDEDITEMS)),
+				ConversationStates.QUESTION_1,
 				"I don't think that's a piece of elvish armor...", null);
 
 		npc.add(
