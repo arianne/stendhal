@@ -10,26 +10,23 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class AwayActionTest {
-
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 	}
 
 	@Test
 	public void testExecute() {
-
 		new MockStendhalClient("") {
 			@Override
 			public void send(RPAction action) {
 				client = null;
-				assertEquals(action.get("type"), "away");
-				assertEquals(action.get("message"), "schnick");
-
+				assertEquals("away", action.get("type"));
+				assertEquals("schnick", action.get("message"));
 			}
 		};
+
 		AwayAction action = new AwayAction();
 		assertTrue(action.execute(null, "schnick"));
-
 	}
 
 	@Test

@@ -17,19 +17,17 @@ public class AnswerActionTest {
 
 	@Test
 	public void testExecute() {
-
 		new MockStendhalClient("") {
 			@Override
 			public void send(RPAction action) {
 				client = null;
-				assertEquals(action.get("type"), "answer");
-				assertEquals(action.get("text"), "schnick");
+				assertEquals("answer", action.get("type"));
+				assertEquals("schnick", action.get("text"));
 
 			}
 		};
 		AnswerAction action = new AnswerAction();
 		assertTrue(action.execute(null, "schnick"));
-
 	}
 
 	@Test
