@@ -341,7 +341,6 @@ public class Soup extends AbstractQuest {
 			    	checkForAllIngredients(player, npc);
 			}
 		});
-		
 
 		// player says something which isn't in the needed food list.
 		npc.add(ConversationStates.QUESTION_1, "",
@@ -359,9 +358,8 @@ public class Soup extends AbstractQuest {
 			new AndCondition(new QuestStartedCondition(QUEST_SLOT), new NotCondition(new QuestStateStartsWithCondition(QUEST_SLOT, "done"))),
 			ConversationStates.ATTENDING, "Okay then. Come back later.",
 			null);
-
 	}
-	
+
 	// if we're checking all at once it's a bit different method
 	// also player is rewarded less xp and no karma (don't get karma for being lazy)
 	private void checkForAllIngredients(Player player, SpeakerNPC npc) {
@@ -374,7 +372,7 @@ public class Soup extends AbstractQuest {
 			+ food);
 			}
 		}
-		//		 check if the player has brought all Food
+		// check if the player has brought all Food
 		missing = missingFood(player, true);
 		if (missing.size() > 0) {
 			npc.say("You didn't have all the ingredients I need. I still need "
