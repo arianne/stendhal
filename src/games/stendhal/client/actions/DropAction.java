@@ -15,7 +15,7 @@ class DropAction implements SlashAction {
 	// possibilities:
 	// a.) move all command line parsing
 	// b.) transfer information about available slots at login time from server to client
-	private static final String[] CARRYING_SLOTS = { "bag", "head", "rhand",
+	static final String[] CARRYING_SLOTS = { "bag", "head", "rhand",
 			"lhand", "armor", "cloak", "legs", "feet", "finger", "keyring" };
 
 	/**
@@ -30,21 +30,29 @@ class DropAction implements SlashAction {
 	 */
 	public boolean execute(String[] params, String remainder) {
 		int quantity;
+		String itemName;
 
-		try {
-			quantity = Integer.parseInt(params[0]);
-		} catch (NumberFormatException ex) {
-			StendhalUI.get().addEventLine("Invalid quantity");
-			return true;
+		// Is there a numeric expression as first parameter?
+		if (params[0].matches("[0-9].*")) {
+    		try {
+    			quantity = Integer.parseInt(params[0]);
+    		} catch (NumberFormatException ex) {
+    			StendhalUI.get().addEventLine("Invalid quantity");
+    			return true;
+    		}
+
+    		itemName = remainder;
+		} else {
+			quantity = 1;
+			itemName = (params[0] + " " + remainder).trim();
 		}
 
-		String itemName = remainder;
 		String singularItemName = Grammar.singular(itemName);
 
 		for (String slotName : CARRYING_SLOTS) {
 			int itemID = findItem(slotName, itemName);
 
-			// search again using the singular, i case it was a plural item name
+			// search again using the singular, in case it was a plural item name
 			if (itemID == -1 && !itemName.equals(singularItemName)) {
 				itemID = findItem(slotName, singularItemName);
 			}
