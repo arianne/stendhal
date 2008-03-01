@@ -52,6 +52,7 @@ public class ProducerBehaviour extends TransactionBehaviour {
 	 * The unit in which the product is counted, e.g. "bags", "pieces", "pounds"
 	 */
 	// private String productUnit;
+
 	private String productName;
 
 	/**
@@ -147,9 +148,9 @@ public class ProducerBehaviour extends TransactionBehaviour {
 		return productionActivity;
 	}
 
-	// protected String getProductUnit() {
-	// return productUnit;
-	// }
+//	protected String getProductUnit() {
+//	return productUnit;
+//	}
 
 	/**
 	 * Return item name of the product to produce.
@@ -205,7 +206,6 @@ public class ProducerBehaviour extends TransactionBehaviour {
 				+ (getProductionTime(numberOfProductItems) * 1000);
 		int remainingSeconds = (int) ((finishTime - timeNow) / 1000);
 		return TimeUtil.approxTimeUntil(remainingSeconds);
-
 	}
 
 	private int getMaximalAmount(Player player) {
