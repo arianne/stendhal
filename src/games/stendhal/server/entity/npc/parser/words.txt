@@ -1,4 +1,4 @@
-# @Version 21
+# @Version 22
 #
 # Word list for the Stendhal conversation parser
 #
@@ -338,6 +338,7 @@ cod	OBJ-FOO	cods
 code	OBJ	codes
 coffee	OBJ-FLU	coffees
 coffin	OBJ	coffins
+coin	OBJ	=money	coins
 colada	OBJ-FLU	coladas
 collard	OBJ	collards
 collection	OBJ	collections
@@ -479,6 +480,7 @@ it	OBJ-PRO	its
 item	OBJ	items
 jail	OBJ	jails
 job	OBJ	jobs
+juice	OBJ-FLU	juices
 kalavan	OBJ-NAM	kalavans
 kanmararn	OBJ	kanmararns
 karma	OBJ	karmas
@@ -676,11 +678,9 @@ tea	OBJ-FLU	teas
 teddy	OBJ	teddies
 temple	OBJ	temples
 text	OBJ	texts
-that	OBJ	=this	this
-these	OBJ-PRO	theses
-this	OBJ-PRO	this
+that	OBJ-PRO	=this	those
+this	OBJ-PRO	these
 thorn	OBJ	thorns
-those	OBJ-PRO	thoses
 time	OBJ	times
 toadstool	OBJ	toadstools
 token	OBJ	tokens

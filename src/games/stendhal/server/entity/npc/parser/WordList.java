@@ -187,7 +187,7 @@ public final class WordList {
     			WordEntry entry = new WordEntry();
     			entry.setNormalized(key);
 
-    			readEntryLine(tk, entry);
+    			readEntryLine(key, tk, entry);
     			addEntry(key, entry);
 			}
 		}
@@ -199,7 +199,7 @@ public final class WordList {
 	 * @param tk
 	 * @param entry
 	 */
-	private void readEntryLine(StringTokenizer tk, WordEntry entry) {
+	private void readEntryLine(String key, StringTokenizer tk, WordEntry entry) {
 		if (tk.hasMoreTokens()) {
 			entry.setType(new ExpressionType(tk.nextToken()));
 
@@ -220,6 +220,8 @@ public final class WordList {
 				}
 			}
 
+			String normalized = entry.getNormalized();
+
 			// Type identifiers are always upper case, so a word in lower case
 			// must be a plural.
 			if (Character.isLowerCase(entry.getTypeString().charAt(0))) {
@@ -229,22 +231,27 @@ public final class WordList {
 			// complete missing plural expressions using the Grammar.plural()
 			// function
 			else if (entry.getPlurSing() == null && entry.getType().isObject()) {
-				String plural = Grammar.plural(entry.getNormalized());
+				String plural = Grammar.plural(normalized);
 
 				// only store single word plurals
 				if (plural.indexOf(' ') == -1) {
 					entry.setPlurSing(plural);
 				}
 			}
-			// check for sensible plural strings using the Grammar.plural()
-			// function
+			// check plural strings using the Grammar.plural() function
 			else if (entry.getPlurSing() != null) {
-				String plural = Grammar.plural(entry.getNormalized());
-				if (plural.indexOf(' ') == -1 && !plural.equals(entry.getPlurSing())
-						&& !Grammar.isSubject(entry.getNormalized()) && !entry.getNormalized().equals("is")
-						&& !entry.getNormalized().equals("me")) {
-					logger.warn(String.format("suspicious plural: %s -> %s (%s?)", entry.getNormalized(),
-							entry.getPlurSing(), plural));
+				if (!entry.getType().isPronoun() && !normalized.equals("is")) {
+					String plural = Grammar.plural(key);
+
+    				if (plural.indexOf(' ') == -1 && !plural.equals(entry.getPlurSing())) {
+    					// retry with normalized in case it differs from key
+    					plural = Grammar.plural(normalized);
+
+    					if (plural.indexOf(' ') == -1 && !plural.equals(entry.getPlurSing())) {
+        					logger.warn(String.format("suspicious plural: %s -> %s (%s?)", key,
+        							entry.getPlurSing(), plural));
+    					}
+    				}
 				}
 			}
 
