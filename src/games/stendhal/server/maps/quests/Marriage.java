@@ -184,8 +184,6 @@ public class Marriage extends AbstractQuest {
 				ConversationStates.IDLE, 
 				"What a shame! Goodbye!", 
 				null);
-		
-		
 	}
 
 	private void startEngagement(SpeakerNPC nun, Player player,
@@ -754,7 +752,6 @@ public class Marriage extends AbstractQuest {
 	}
 
 	private void honeymoonStep() {
-
 		SpeakerNPC linda = npcs.get("Linda");
 		// tell her you want a honeymoon
 		linda.add(
@@ -804,13 +801,13 @@ public class Marriage extends AbstractQuest {
 		}
 
 		// player says something which isn't a room number
-		/*
-		 * npc.add(ConversationStates.QUESTION_1, "", new
-		 * SpeakerNPC.ChatCondition() { @Override public boolean fire(Player
-		 * player, Sentence sentence, SpeakerNPC npc) { return
-		 * !ROOMS.contains(text); } }, ConversationStates.QUESTION_1, "Sorry,
-		 * that's not a room number we have available.", null);
-		 */
+//		npc.add(ConversationStates.QUESTION_1, "", new SpeakerNPC.ChatCondition() {
+//			@Override public boolean fire(Player player, Sentence sentence, SpeakerNPC npc) {
+//				return !ROOMS.contains(text);
+//				}
+//			}, ConversationStates.QUESTION_1,
+//			"Sorry, that's not a room number we have available.", null
+//		);
 
 		// say honeymoon but you aren't 'just married'
 		linda.add(
