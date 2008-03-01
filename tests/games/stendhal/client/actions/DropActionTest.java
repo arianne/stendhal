@@ -11,7 +11,6 @@ import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPObject.ID;
 
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
@@ -24,10 +23,6 @@ public class DropActionTest {
 	private static final int USER_ID = 1001;
 	private static final int MONEY_ID = 1234;
 	private static final int SILVER_SWORD_ID = 1235;
-
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-	}
 
 	/**
 	 * Create and initialize a User object.
